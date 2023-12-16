@@ -23,7 +23,7 @@
 //NORTH default dir
 /obj/docking_port
 	invisibility = INVISIBILITY_ABSTRACT
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "pinonfar"
 
 	resistance_flags = RESIST_ALL
@@ -516,7 +516,6 @@
 
 /obj/docking_port/mobile/proc/transit_failure()
 	message_admins("Shuttle [src] repeatedly failed to create transit zone.")
-	log_debug("Setting [src]/[src.id] idle")
 	set_idle()
 
 //call the shuttle to destination S

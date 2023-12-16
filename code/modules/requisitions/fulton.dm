@@ -12,7 +12,7 @@
 	tool_behaviour = TOOL_FULTON
 	resistance_flags = RESIST_ALL
 	///Reference to the balloon vis obj effect
-	var/atom/movable/vis_obj/fulton_baloon/baloon
+	var/atom/movable/vis_obj/fulton_balloon/baloon
 	var/obj/effect/fulton_extraction_holder/holder_obj
 	/// How many times you can use the fulton before it goes poof
 	var/uses = 3
@@ -59,7 +59,7 @@
 		return FALSE
 	user.visible_message(span_notice("[user] starts attaching [src] to [spirited_away]."),\
 	span_notice("You start attaching the pack to [spirited_away]..."), null, 5)
-	if(!do_after(user, 5 SECONDS, TRUE, spirited_away))
+	if(!do_after(user, 5 SECONDS, NONE, spirited_away))
 		return FALSE
 	if(!isturf(spirited_away.loc))
 		balloon_alert(user, "Must extract on the ground")
@@ -68,7 +68,7 @@
 		balloon_alert(user, "Cannot extract anchored")
 		return FALSE
 	var/area/bathhouse = get_area(spirited_away)
-	if(bathhouse.ceiling >= CEILING_METAL)
+	if(bathhouse.ceiling >= CEILING_OBSTRUCTED)
 		balloon_alert(user, "Cannot extract indoors")
 		return FALSE
 	return TRUE
@@ -212,7 +212,7 @@
 		return
 	if(must_be_used_outdoors)
 		var/area/target_area = get_area(target)
-		if(target_area.ceiling >= CEILING_METAL)
+		if(target_area.ceiling >= CEILING_OBSTRUCTED)
 			balloon_alert(user, "Cannot extract indoors")
 			return
 	var/atom/movable/movable_target = target

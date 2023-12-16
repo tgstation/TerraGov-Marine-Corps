@@ -2,13 +2,14 @@
 	return 0 //only carbon liveforms have this proc
 
 /mob/living/emp_act(severity)
-	var/list/L = src.get_contents()
+	var/list/L = GetAllContents()
 	for(var/obj/O in L)
 		O.emp_act(severity)
 	..()
 
 //this proc handles being hit by a thrown atom
 /mob/living/hitby(atom/movable/AM, speed = 5)
+	. = TRUE
 	if(isliving(AM))
 		var/mob/living/thrown_mob = AM
 		if(thrown_mob.mob_size >= mob_size)
@@ -40,9 +41,9 @@
 		visible_message(span_warning(" [src] staggers under the impact!"),span_warning(" You stagger under the impact!"), null, 5)
 		src.throw_at(get_edge_target_turf(src, get_dir(AM.throw_source, src)), 1, speed * 0.5)
 
-//This is called when the mob is thrown into a dense turf
-/mob/living/proc/turf_collision(turf/T, speed)
-	src.take_limb_damage(speed*5)
+/mob/living/turf_collision(turf/T, speed)
+	take_overall_damage(speed * 5, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 2)
+	playsound(src, 'sound/weapons/heavyhit.ogg', 40)
 
 /mob/living/proc/near_wall(direction,distance=1)
 	var/turf/T = get_step(get_turf(src),direction)
@@ -90,13 +91,7 @@
 	. = ..()
 	if(!.)
 		return
-	var/fire_light = min(fire_stacks,5)
-	if(fire_light > fire_luminosity) // light up xenos if new light source thats bigger hits them
-		if(fire_light < light_range)
-			set_light_range(fire_light) //update range
-		set_light_color(BlendRGB(light_color, LIGHT_COLOR_LAVA))
-		fire_luminosity = fire_light
-		set_light_on(TRUE) //And activate it
+	update_fire()
 	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	var/obj/item/clothing/mask/facehugger/G = get_inactive_held_item()
 	if(istype(F))
@@ -115,15 +110,6 @@
 	fire_stacks = 0
 	update_fire()
 	UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
-
-
-/mob/living/carbon/xenomorph/ExtinguishMob()
-	. = ..()
-	set_light_on(FALSE) //Reset lighting
-
-/mob/living/carbon/xenomorph/boiler/ExtinguishMob()
-	. = ..()
-	update_boiler_glow()
 
 /mob/living/proc/update_fire()
 	return
@@ -173,20 +159,19 @@
 /mob/living/proc/resist_fire(datum/source)
 	SIGNAL_HANDLER
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
-	Paralyze(3 SECONDS)
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/open/floor/plating/ground/snow))
 		visible_message(span_danger("[src] rolls in the snow, putting themselves out!"), \
 		span_notice("You extinguish yourself in the snow!"), null, 5)
 		ExtinguishMob()
-		return
-
-	visible_message(span_danger("[src] rolls on the floor, trying to put themselves out!"), \
-	span_notice("You stop, drop, and roll!"), null, 5)
-	if(fire_stacks <= 0)
-		visible_message(span_danger("[src] has successfully extinguished themselves!"), \
-		span_notice("You extinguish yourself."), null, 5)
-		ExtinguishMob()
+	else
+		visible_message(span_danger("[src] rolls on the floor, trying to put themselves out!"), \
+		span_notice("You stop, drop, and roll!"), null, 5)
+		if(fire_stacks <= 0)
+			visible_message(span_danger("[src] has successfully extinguished themselves!"), \
+			span_notice("You extinguish yourself."), null, 5)
+			ExtinguishMob()
+	Paralyze(3 SECONDS)
 
 
 //Mobs on Fire end

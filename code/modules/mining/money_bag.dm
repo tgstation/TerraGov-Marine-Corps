@@ -35,17 +35,17 @@
 
 	var/dat = "<b>The contents of the moneybag reveal...</b><br>"
 	if(amt_gold)
-		dat += "Gold coins: [amt_gold] <A href='?src=\ref[src];remove=gold'>Remove one</A><br>"
+		dat += "Gold coins: [amt_gold] <A href='?src=[text_ref(src)];remove=gold'>Remove one</A><br>"
 	if(amt_silver)
-		dat += "Silver coins: [amt_silver] <A href='?src=\ref[src];remove=silver'>Remove one</A><br>"
+		dat += "Silver coins: [amt_silver] <A href='?src=[text_ref(src)];remove=silver'>Remove one</A><br>"
 	if(amt_iron)
-		dat += "Metal coins: [amt_iron] <A href='?src=\ref[src];remove=iron'>Remove one</A><br>"
+		dat += "Metal coins: [amt_iron] <A href='?src=[text_ref(src)];remove=iron'>Remove one</A><br>"
 	if(amt_diamond)
-		dat += "Diamond coins: [amt_diamond] <A href='?src=\ref[src];remove=diamond'>Remove one</A><br>"
+		dat += "Diamond coins: [amt_diamond] <A href='?src=[text_ref(src)];remove=diamond'>Remove one</A><br>"
 	if(amt_phoron)
-		dat += "Phoron coins: [amt_phoron] <A href='?src=\ref[src];remove=phoron'>Remove one</A><br>"
+		dat += "Phoron coins: [amt_phoron] <A href='?src=[text_ref(src)];remove=phoron'>Remove one</A><br>"
 	if(amt_uranium)
-		dat += "Uranium coins: [amt_uranium] <A href='?src=\ref[src];remove=uranium'>Remove one</A><br>"
+		dat += "Uranium coins: [amt_uranium] <A href='?src=[text_ref(src)];remove=uranium'>Remove one</A><br>"
 
 	var/datum/browser/popup = new(user, "moneybag")
 	popup.set_content(dat)

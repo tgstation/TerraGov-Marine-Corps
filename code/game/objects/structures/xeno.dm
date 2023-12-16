@@ -121,7 +121,7 @@
 		return FALSE
 
 	if(X.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
-		if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active && refundable)
+		if(CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active && refundable)
 			SSresinshaping.quickbuild_points_by_hive[X.hivenumber]++
 		X.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
 		playsound(src, "alien_resin_break", 25) //SFX
@@ -197,14 +197,14 @@
 	if(X.a_intent != INTENT_HARM)
 		try_toggle_state(X)
 		return TRUE
-	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+	if(CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		SSresinshaping.quickbuild_points_by_hive[X.hivenumber]++
 		qdel(src)
 		return TRUE
 
 	src.balloon_alert(X, "Destroying...")
 	playsound(src, "alien_resin_break", 25)
-	if(do_after(X, 1 SECONDS, FALSE, src, BUSY_ICON_HOSTILE))
+	if(do_after(X, 1 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
 		src.balloon_alert(X, "Destroyed")
 		qdel(src)
 
@@ -296,7 +296,7 @@
 		return
 	current_user = X
 	X.balloon_alert(X, "Applying...")
-	if(!do_after(X, RESIN_SELF_TIME, TRUE, X, BUSY_ICON_MEDICAL))
+	if(!do_after(X, RESIN_SELF_TIME, NONE, X, BUSY_ICON_MEDICAL))
 		current_user = null
 		return
 	activate_jelly(X)
@@ -309,7 +309,7 @@
 		return
 	current_user = user
 	user.balloon_alert(user, "Applying...")
-	if(!do_after(user, RESIN_SELF_TIME, TRUE, user, BUSY_ICON_MEDICAL))
+	if(!do_after(user, RESIN_SELF_TIME, NONE, user, BUSY_ICON_MEDICAL))
 		current_user = null
 		return
 	activate_jelly(user)
@@ -328,7 +328,7 @@
 	M.balloon_alert(user, "Applying...")
 	if(M != user)
 		user.balloon_alert(M, "Applying jelly...") //Notify recipient to not move.
-	if(!do_after(user, (M == user ? RESIN_SELF_TIME : RESIN_OTHER_TIME), TRUE, M, BUSY_ICON_MEDICAL))
+	if(!do_after(user, (M == user ? RESIN_SELF_TIME : RESIN_OTHER_TIME), NONE, M, BUSY_ICON_MEDICAL))
 		current_user = null
 		return FALSE
 	activate_jelly(M)

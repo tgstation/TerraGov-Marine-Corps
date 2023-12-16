@@ -62,19 +62,29 @@
 	var/obj/deployed_machine
 
 	if(user)
-		if(!ishuman(user) || CHECK_BITFIELD(item_to_deploy.flags_item, NODROP))
+		if(!ishuman(user) || HAS_TRAIT(item_to_deploy, TRAIT_NODROP))
 			return
 
 		if(LinkBlocked(get_turf(user), location))
 			location.balloon_alert(user, "No room to deploy")
 			return
+		var/newdir = get_dir(user, location)
+		if(deploy_type.flags_atom & ON_BORDER)
+			for(var/obj/object in location)
+				if(!object.density)
+					continue
+				if(!(object.flags_atom & ON_BORDER))
+					continue
+				if(object.dir != newdir)
+					continue
+				location.balloon_alert(user, "No room to deploy")
+				return
 		if(user.do_actions)
 			user.balloon_alert(user, "You are already doing something!")
 			return
 		user.balloon_alert(user, "You start deploying...")
-		user.setDir(get_dir(user, location)) //Face towards deploy location for ease of deploy.
-		var/newdir = user.dir //Save direction before the doafter for ease of deploy
-		if(!do_after(user, deploy_time, TRUE, item_to_deploy, BUSY_ICON_BUILD))
+		user.setDir(newdir) //Face towards deploy location for ease of deploy.
+		if(!do_after(user, deploy_time, NONE, item_to_deploy, BUSY_ICON_BUILD))
 			return
 		if(LinkBlocked(get_turf(user), location))
 			location.balloon_alert(user, "No room to deploy")
@@ -123,6 +133,9 @@
 	var/obj/deployed_machine = source //The machinethat is undeploying should be the the one sending the Signal
 	var/obj/item/undeployed_item = deployed_machine.get_internal_item() //Item the machine is undeploying
 
+	if(!undeployed_item)
+		CRASH("[src] is missing it's internal item.")
+
 	if(!user)
 		CRASH("[source] has sent the signal COMSIG_ITEM_UNDEPLOY to [undeployed_item] without the arg 'user'")
 	if(!ishuman(user))
@@ -132,7 +145,7 @@
 		sentry = deployed_machine
 	sentry?.set_on(FALSE)
 	user.balloon_alert(user, "You start disassembling [undeployed_item]")
-	if(!do_after(user, deploy_time, TRUE, deployed_machine, BUSY_ICON_BUILD))
+	if(!do_after(user, deploy_time, NONE, deployed_machine, BUSY_ICON_BUILD))
 		sentry?.set_on(TRUE)
 		return
 

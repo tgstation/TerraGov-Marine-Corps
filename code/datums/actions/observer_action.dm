@@ -31,18 +31,6 @@
 		return FALSE
 	check_hive_status(usr)
 
-/datum/action/observer_action/join_larva_queue
-	name = "Join Larva Queue"
-	action_icon_state = "larva_queue"
-	action_type = ACTION_TOGGLE
-
-/datum/action/observer_action/join_larva_queue/action_activate()
-	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	if(HS.add_to_larva_candidate_queue(owner))
-		set_toggle(TRUE)
-		return
-	set_toggle(FALSE)
-
 /datum/action/observer_action/take_ssd_mob
 	name = "Take SSD mob"
 	action_icon_state = "take_ssd"
@@ -76,6 +64,12 @@
 		to_chat(owner, span_warning("You cannot join if the mob is dead."))
 		return FALSE
 
+	if(isxeno(new_mob))
+		var/mob/living/carbon/xenomorph/ssd_xeno = new_mob
+		if(ssd_xeno.tier != XENO_TIER_MINION && XENODEATHTIME_CHECK(owner))
+			XENODEATHTIME_MESSAGE(owner)
+			return
+
 	if(HAS_TRAIT(new_mob, TRAIT_POSSESSING))
 		to_chat(owner, span_warning("That mob is currently possessing a different mob."))
 		return FALSE
@@ -98,3 +92,12 @@
 		return
 	var/mob/living/carbon/human/H = new_mob
 	H.fully_replace_character_name(H.real_name, H.species.random_name(H.gender))
+
+//respawn button for campaign gamemode
+/datum/action/observer_action/campaign_respawn
+	name = "Respawn"
+	action_icon_state = "respawn"
+
+/datum/action/observer_action/campaign_respawn/action_activate()
+	var/datum/game_mode/mode = SSticker.mode
+	mode.player_respawn(owner)

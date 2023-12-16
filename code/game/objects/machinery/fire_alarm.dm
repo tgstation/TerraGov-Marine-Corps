@@ -7,10 +7,11 @@ FIRE ALARM
 /obj/machinery/firealarm
 	name = "fire alarm"
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
-	icon = 'icons/obj/wallframes.dmi'
+	icon = 'icons/obj/machines/fire_alarm.dmi'
 	icon_state = "fire0"
-	pixel_x = -16
-	pixel_y = -16
+	light_range = 1
+	light_power = 0.5
+	light_color = LIGHT_COLOR_BLUE
 	var/detecting = 1
 	var/working = 1
 	var/time = 10
@@ -38,15 +39,37 @@ FIRE ALARM
 
 	switch(dir)
 		if(NORTH)
-			pixel_y -= 32
+			pixel_y = -32
 		if(SOUTH)
-			pixel_y += 32
+			pixel_y = 32
 		if(EAST)
-			pixel_x -= 32
+			pixel_x = -32
 		if(WEST)
-			pixel_x += 32
+			pixel_x = 32
 
 	update_icon()
+
+/obj/machinery/firealarm/update_icon()
+	. = ..()
+	set_light(0)
+	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
+		return
+
+	var/area/A = get_area(src)
+	if(A.flags_alarm_state & ALARM_WARNING_FIRE)
+		set_light_color(LIGHT_COLOR_EMISSIVE_ORANGE)
+	else
+		switch(GLOB.marine_main_ship.get_security_level())
+			if("delta")
+				set_light_color(LIGHT_COLOR_PINK)
+			if("red")
+				set_light_color(LIGHT_COLOR_EMISSIVE_RED)
+			if("blue")
+				set_light_color(LIGHT_COLOR_BLUE)
+			else
+				set_light_color(LIGHT_COLOR_EMISSIVE_GREEN)
+
+	set_light(initial(light_range))
 
 /obj/machinery/firealarm/update_icon_state()
 	. = ..()
@@ -60,11 +83,11 @@ FIRE ALARM
 		return
 	if(CHECK_BITFIELD(machine_stat, NOPOWER))
 		return
-	. += image(icon, "fire_o[(is_mainship_level(z)) ? GLOB.marine_main_ship.get_security_level() : "green"]")
+	. += emissive_appearance(icon, "fire_o[(is_mainship_level(z)) ? GLOB.marine_main_ship.get_security_level() : "green"]")
+	. += mutable_appearance(icon, "fire_o[(is_mainship_level(z)) ? GLOB.marine_main_ship.get_security_level() : "green"]")
 	var/area/A = get_area(src)
 	if(A.flags_alarm_state & ALARM_WARNING_FIRE)
-		. += image(icon, "fire_o1")
-
+		. += mutable_appearance(icon, "fire_o1")
 
 /obj/machinery/firealarm/fire_act(temperature, volume)
 	if(detecting && (temperature > T0C+200))
@@ -154,16 +177,16 @@ FIRE ALARM
 	var/d2
 
 	if (A.flags_alarm_state & ALARM_WARNING_FIRE)
-		d1 = "<A href='?src=\ref[src];reset=1'>Reset - Lockdown</A>"
+		d1 = "<A href='?src=[text_ref(src)];reset=1'>Reset - Lockdown</A>"
 	else
-		d1 = "<A href='?src=\ref[src];alarm=1'>Alarm - Lockdown</A>"
+		d1 = "<A href='?src=[text_ref(src)];alarm=1'>Alarm - Lockdown</A>"
 	if(timing)
-		d2 = "<A href='?src=\ref[src];time=0'>Stop Time Lock</A>"
+		d2 = "<A href='?src=[text_ref(src)];time=0'>Stop Time Lock</A>"
 	else
-		d2 = "<A href='?src=\ref[src];time=1'>Initiate Time Lock</A>"
+		d2 = "<A href='?src=[text_ref(src)];time=1'>Initiate Time Lock</A>"
 	var/second = round(time) % 60
 	var/minute = (round(time) - second) / 60
-	var/dat = "<B>Fire alarm</B> [d1]\n<HR>The current alert level is: [GLOB.marine_main_ship.get_security_level()]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>"
+	var/dat = "<B>Fire alarm</B> [d1]\n<HR>The current alert level is: [GLOB.marine_main_ship.get_security_level()]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=[text_ref(src)];tp=-30'>-</A> <A href='?src=[text_ref(src)];tp=-1'>-</A> <A href='?src=[text_ref(src)];tp=1'>+</A> <A href='?src=[text_ref(src)];tp=30'>+</A>"
 
 	var/datum/browser/popup = new(user, "firealarm", "<div align='center'>Fire alarm</div>")
 	popup.set_content(dat)

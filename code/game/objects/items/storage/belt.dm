@@ -95,6 +95,7 @@
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/pill,
 		/obj/item/reagent_containers/syringe,
+		/obj/item/storage/pill_bottle,
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/stack/medical,
 		/obj/item/reagent_containers/hypospray/autoinjector,
@@ -545,6 +546,24 @@
 	new /obj/item/ammo_magazine/rifle/tx54(src)
 	new /obj/item/ammo_magazine/rifle/tx54(src)
 
+/obj/item/storage/belt/marine/smartgun/Initialize(mapload)
+	. = ..()
+	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
+	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
+	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
+	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
+	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
+	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
+
+/obj/item/storage/belt/marine/target_rifle/Initialize(mapload)
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle(src)
+
 /obj/item/storage/belt/marine/upp
 	name = "\improper Type 41 pattern load rig"
 	desc = "The Type 41 load rig is the standard-issue LBE of the USL pirates. The primary function of this belt is to provide easy access to mags for the Type 71 during operations. Despite being designed for the Type 71 weapon system, the pouches are modular enough to fit other types of ammo and equipment."
@@ -559,7 +578,7 @@
 	new /obj/item/ammo_magazine/rifle/type71(src)
 	new /obj/item/ammo_magazine/rifle/type71(src)
 	new /obj/item/ammo_magazine/rifle/type71(src)
-
+	new /obj/item/ammo_magazine/rifle/type71(src)
 
 /obj/item/storage/belt/marine/som
 	name = "\improper S18 ammo belt"
@@ -702,7 +721,7 @@
 
 
 			to_chat(user, span_notice("You start refilling [src] with [M]."))
-			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+			if(!do_after(user, 1.5 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 				return
 
 			for(var/x in 1 to (storage_slots - length(contents)))
@@ -918,21 +937,32 @@
 	max_storage_space = 27
 	can_hold = list(/obj/item/explosive/grenade)
 
+/obj/item/storage/belt/grenade/standard/Initialize(mapload)
+	. = ..()
+	new /obj/item/explosive/grenade/incendiary(src)
+	new /obj/item/explosive/grenade/incendiary(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+
 /obj/item/storage/belt/grenade/som
 	name = "\improper S16 pattern grenade rig"
 	desc = "A simple harness system available in many configurations. This version is designed to carry bulk quantities of grenades."
 	icon_state = "grenadebelt_som"
 
-/obj/item/storage/belt/grenade/standard/Initialize(mapload)
+/obj/item/storage/belt/grenade/som/standard/Initialize(mapload)
 	. = ..()
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade(src)
-	new /obj/item/explosive/grenade(src)
-	new /obj/item/explosive/grenade(src)
-	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade/incendiary/som(src)
+	new /obj/item/explosive/grenade/incendiary/som(src)
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/som(src)
 
 /obj/item/storage/belt/grenade/b17
 	name = "\improper M276 pattern M40 HEDP rig Mk II"
@@ -976,3 +1006,19 @@
 	desc = "A small, lightweight pouch that can be clipped onto armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines. Made from genuine SOM leather."
 	icon_state = "sparepouch_som"
 	item_state = "som_belt"
+
+/obj/item/storage/belt/protein_pack
+	name = "\improper protein pack load rig"
+	desc = "A storage belt designed to hold mass amounts of protein packs for those particuarly hungry marines."
+	icon_state = "p_belt"
+	item_state = "shotgunbelt"
+	storage_slots = 20
+	max_storage_space = 20
+	max_w_class = WEIGHT_CLASS_TINY
+	can_hold = list(/obj/item/reagent_containers/food/snacks/protein_pack)
+	sprite_slots = 4
+
+/obj/item/storage/belt/protein_pack/Initialize(mapload)
+	. = ..()
+	for(var/i in 1 to storage_slots)
+		new /obj/item/reagent_containers/food/snacks/protein_pack(src)

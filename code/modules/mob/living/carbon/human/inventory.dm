@@ -9,19 +9,23 @@
 	if(incapacitated() || lying_angle)
 		return
 
-	var/slot_requested = client?.prefs?.quick_equip[quick_equip_slot]
+	var/slot_requested = client?.prefs?.quick_equip[quick_equip_slot] || VALID_EQUIP_SLOTS
 	var/obj/item/I = get_active_held_item()
 	if(!I) //draw item
 		if(next_move > world.time)
 			return
-		if(slot_requested)
+
+		if(slot_requested) //Equips from quick_equip 1-5
 			if(draw_from_slot_if_possible(slot_requested))
 				next_move = world.time + 1
 				return
-		for(var/slot in SLOT_DRAW_ORDER)
+
+		var/list/slot_to_draw = client?.prefs?.slot_draw_order_pref || SLOT_DRAW_ORDER //Equips from draw order in prefs
+		for(var/slot in slot_to_draw)
 			if(draw_from_slot_if_possible(slot))
 				next_move = world.time + 1
 				return
+
 	else //store item
 		if(s_active?.attackby(I, src)) //stored in currently open storage
 			return TRUE
@@ -272,6 +276,8 @@
 	W.loc = src
 	W.layer = ABOVE_HUD_LAYER
 	W.plane = ABOVE_HUD_PLANE
+
+	W.forceMove(src)
 
 	var/obj/item/selected_slot //the item in the specific slot we're trying to insert into, if applicable
 
@@ -531,13 +537,12 @@
 
 /mob/living/carbon/human/stripPanelUnequip(obj/item/I, mob/M, slot_to_process)
 	if(!I.canStrip(M))
-		to_chat(src, span_warning("You can't remove [I.name], it appears to be stuck!</span>"))
 		return
 	log_combat(src, M, "attempted to remove [key_name(I)] ([slot_to_process])")
 
 	M.visible_message(span_danger("[src] tries to remove [M]'s [I.name]."), \
 					span_userdanger("[src] tries to remove [M]'s [I.name]."), null, 5)
-	if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_HOSTILE))
+	if(do_after(src, HUMAN_STRIP_DELAY, NONE, M, BUSY_ICON_HOSTILE))
 		if(Adjacent(M) && I && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)
 			log_combat(src, M, "removed [key_name(I)] ([slot_to_process])")

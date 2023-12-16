@@ -175,8 +175,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		update_icon()
 
 /obj/item/Destroy()
-	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
-	flags_item &= ~NODROP //so the item is properly unequipped if on a mob.
 	if(ismob(loc))
 		var/mob/m = loc
 		m.temporarilyRemoveItemFromInventory(src, TRUE)
@@ -333,16 +331,16 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 ///When hit by a thrown object, play the associated hitsound of the object
 /obj/item/throw_impact(atom/hit_atom, speed, bounce)
 	. = ..()
-	if(isliving(hit_atom))
+	if(. && isliving(hit_atom))
 		playsound(src, hitsound, 50)
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
 //the call happens after the item's potential loc change.
 /obj/item/proc/dropped(mob/user)
-	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
-
-	if(flags_item & DELONDROP)
+	if((flags_item & DELONDROP) && !QDELETED(src))
 		qdel(src)
+	flags_item &= ~IN_INVENTORY
+	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
 
 ///Called whenever an item is unequipped to a new loc (IE, not when the item ends up in the hands)
 /obj/item/proc/removed_from_inventory(mob/user)
@@ -367,11 +365,12 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				break
 			if(!affected_limbs.Find(X.name) )
 				continue
-			if(istype(X) && X.take_damage_limb(0, H.modify_by_armor(raw_damage * rand(0.75, 1.25), ACID, def_zone = X.name)))
+			if(istype(X) && X.take_damage_limb(0, H.modify_by_armor(raw_damage * randfloat(0.75, 1.25), ACID, def_zone = X.name)))
 				H.UpdateDamageIcon()
 			limb_count++
 		UPDATEHEALTH(H)
 		QDEL_NULL(current_acid)
+	flags_item |= IN_INVENTORY
 	return
 
 ///Called to return an item to equip using the quick equip hotkey. Base proc returns the item itself, overridden for storage behavior.
@@ -412,6 +411,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	for(var/datum/action/A AS in actions)
 		if(item_action_slot_check(user, slot)) //some items only give their actions buttons when in a specific slot.
 			A.give_action(user)
+
+	flags_item |= IN_INVENTORY
 
 	if(!equipped_to_slot)
 		return
@@ -479,7 +480,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	if(!slot || !user)
 		return FALSE
 
-	if(CHECK_BITFIELD(flags_item, NODROP) && slot != SLOT_L_HAND && slot != SLOT_R_HAND && !override_nodrop) //No drops can only be equipped to a hand slot
+	if(HAS_TRAIT(src, TRAIT_NODROP) && slot != SLOT_L_HAND && slot != SLOT_R_HAND && !override_nodrop) //No drops can only be equipped to a hand slot
 		if(slot == SLOT_L_HAND || slot == SLOT_R_HAND)
 			to_chat(user, span_notice("[src] is stuck to your hand!"))
 		return FALSE
@@ -677,8 +678,16 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	return storage_item.can_be_inserted(src, warning)
 
+/// Checks whether the item can be unequipped from owner by stripper. Generates a message on failure and returns TRUE/FALSE
 /obj/item/proc/canStrip(mob/stripper, mob/owner)
-	return !(flags_item & NODROP)
+	if(HAS_TRAIT(src, TRAIT_NODROP))
+		stripper.balloon_alert(stripper, "[src] is stuck!")
+		return FALSE
+	return TRUE
+
+/// Used by any item which wants to react to or prevent its own stripping, called after checks/delays. Return TRUE to block normal stripping behavior.
+/obj/item/proc/special_stripped_behavior(mob/stripper, mob/owner)
+	return
 
 /obj/item/proc/update_item_sprites()
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
@@ -1002,7 +1011,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 
 	user.visible_message(span_danger("[user] sprays water from [src]!"), \
-	span_warning("You spray water from [src]."),)
+	span_warning("You spray water from [src]."))
 
 	playsound(user.loc, 'sound/effects/extinguish.ogg', 52, 1, 7)
 
@@ -1014,7 +1023,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(istype(user.buckled, /obj/structure/bed/chair))
 				C = user.buckled
 			var/obj/B = user.buckled
-			var/movementdirection = turn(direction,180)
+			var/movementdirection = REVERSE_DIR(direction)
 			if(C)
 				C.propelled = 4
 			B.Move(get_step(user,movementdirection), movementdirection)
@@ -1057,7 +1066,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(!W)
 				return
 			W.reagents = R
-			R.my_atom = W
+			R.my_atom = WEAKREF(W)
 			if(!W || !src)
 				return
 			reagents.trans_to(W,1)
@@ -1114,10 +1123,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		var/datum/callback/tool_check = CALLBACK(src, PROC_REF(tool_check_callback), user, amount, extra_checks)
 
 		if(ismob(target))
-			if(do_mob(user, target, delay, extra_checks=tool_check))
+			if(do_after(user, delay, NONE, target, extra_checks = tool_check))
 				return
 
-		else if(!do_after(user, delay, target=target, extra_checks=tool_check))
+		else if(!do_after(user, delay, target = target, extra_checks = tool_check))
 			return
 
 	else if(extra_checks && !extra_checks.Invoke()) // Invoke the extra checks once, just in case.
@@ -1205,8 +1214,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	var/mutable_appearance/standing = mutable_appearance(iconfile2use, state2use, layer2use)
 
 	//Apply any special features
+	apply_custom(standing, inhands, iconfile2use, state2use) //image overrideable proc to customize the onmob icon.
+	//Apply any special features
 	if(!inhands)
-		apply_custom(standing)		//image overrideable proc to customize the onmob icon.
 		apply_blood(standing)			//Some items show blood when bloodied.
 		apply_accessories(standing)		//Some items sport accessories like webbings or ties.
 
@@ -1228,14 +1238,16 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return icon_override
 
 	//2: species-specific sprite sheets.
-	. = LAZYACCESS(sprite_sheets, species_type)
-	if(. && !inhands)
-		return
+	var/icon = LAZYACCESS(sprite_sheets, species_type)
+	if(icon && !inhands)
+		return icon
 
 	//3: slot-specific sprite sheets
-	. = LAZYACCESS(item_icons, slot_name)
-	if(.)
-		return
+	icon = LAZYACCESS(item_icons, slot_name)
+	if(ispath(icon, /datum/greyscale_config))
+		return SSgreyscale.GetColoredIconByType(icon, greyscale_colors)
+	if(icon)
+		return icon
 
 	//5: provided default_icon
 	if(default_icon)
@@ -1262,9 +1274,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return icon_state
 
 ///applies any custom thing to the sprite, caled by make_worn_icon().
-/obj/item/proc/apply_custom(mutable_appearance/standing)
+/obj/item/proc/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	SHOULD_CALL_PARENT(TRUE)
-	SEND_SIGNAL(src, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, standing)
+	if(blocks_emissive != EMISSIVE_BLOCK_NONE)
+		standing.overlays += emissive_blocker(icon_used, state_used, alpha = standing.alpha)
+	SEND_SIGNAL(src, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, standing, inhands, icon_used, state_used)
 	return standing
 
 ///applies blood on the item, called by make_worn_icon().
@@ -1419,12 +1433,13 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(!variant)
 				return
 
-			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+			if(!do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 				return
 
 			current_variant = variant
 			update_icon()
 			update_greyscale()
+			SEND_SIGNAL(src, COMSIG_ITEM_VARIANT_CHANGE, user, variant)
 			return
 		if(PRESET_COLORS)
 			var/color_selection
@@ -1442,7 +1457,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(COLOR_WHEEL)
 			new_color = input(user, "Pick a color", "Pick color") as null|color
 
-	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+	if(!new_color || !do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 		return
 
 	set_greyscale_colors(new_color)

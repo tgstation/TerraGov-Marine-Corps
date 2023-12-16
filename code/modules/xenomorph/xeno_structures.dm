@@ -55,7 +55,7 @@
 /obj/structure/xeno/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(!(HAS_TRAIT(X, TRAIT_VALHALLA_XENO) && X.a_intent == INTENT_HARM && (tgui_alert(X, "Are you sure you want to tear down [src]?", "Tear down [src]?", list("Yes","No"))) == "Yes"))
 		return ..()
-	if(!do_after(X, 3 SECONDS, TRUE, src))
+	if(!do_after(X, 3 SECONDS, NONE, src))
 		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	balloon_alert_to_viewers("\The [X] tears down \the [src]!", "We tear down \the [src].")
@@ -229,13 +229,13 @@
 		set_trap_type(null)
 		balloon_alert(X, "Removed facehugger")
 		return
-	var/datum/action/xeno_action/activable/corrosive_acid/acid_action = locate(/datum/action/xeno_action/activable/corrosive_acid) in X.actions
+	var/datum/action/ability/activable/xeno/corrosive_acid/acid_action = locate(/datum/action/ability/activable/xeno/corrosive_acid) in X.actions
 	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas))
 		var/datum/ammo/xeno/boiler_gas/boiler_glob = X.ammo
 		if(!boiler_glob.enhance_trap(src, X))
 			return
 	else if(acid_action)
-		if(!do_after(X, 2 SECONDS, TRUE, src))
+		if(!do_after(X, 2 SECONDS, NONE, src))
 			return
 		switch(acid_action.acid_type)
 			if(/obj/effect/xenomorph/acid/weak)
@@ -350,7 +350,7 @@ TUNNEL
 
 	if(X.a_intent == INTENT_HARM && X == creator)
 		balloon_alert(X, "Filling in tunnel...")
-		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
+		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
 		return
 
@@ -430,7 +430,7 @@ TUNNEL
 	if(isxenolarva(M)) //Larva can zip through near-instantly, they are wormlike after all
 		tunnel_time = 5
 
-	if(!do_after(M, tunnel_time, FALSE, src, BUSY_ICON_GENERIC))
+	if(!do_after(M, tunnel_time, IGNORE_HELD_ITEM, src, BUSY_ICON_GENERIC))
 		balloon_alert(M, "Crawling interrupted")
 		return
 	if(!targettunnel || !isturf(targettunnel.loc)) //Make sure the end tunnel is still there
@@ -460,7 +460,7 @@ TUNNEL
 	name = "acid well"
 	desc = "An acid well. It stores acid to put out fires."
 	icon = 'icons/Xeno/acid_pool.dmi'
-	icon_state = "fullwell"
+	icon_state = "well"
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
@@ -524,8 +524,14 @@ TUNNEL
 
 /obj/structure/xeno/acidwell/update_icon()
 	. = ..()
-	icon_state = "well[charges]"
 	set_light(charges , charges / 2, LIGHT_COLOR_GREEN)
+
+/obj/structure/xeno/acidwell/update_overlays()
+	. = ..()
+	if(!charges)
+		return
+	. += mutable_appearance(icon, "[charges]", alpha = src.alpha)
+	. += emissive_appearance(icon, "[charges]", alpha = src.alpha)
 
 /obj/structure/xeno/acidwell/flamer_fire_act(burnlevel) //Removes a charge of acid, but fire is extinguished
 	acid_well_fire_interaction()
@@ -557,7 +563,7 @@ TUNNEL
 /obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.a_intent == INTENT_HARM && (CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_BUILDER) || X == creator) ) //If we're a builder caste or the creator and we're on harm intent, deconstruct it.
 		balloon_alert(X, "Removing...")
-		if(!do_after(X, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(X, XENO_ACID_WELL_FILL_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
 			balloon_alert(X, "Stopped removing")
 			return
 		playsound(src, "alien_resin_break", 25)
@@ -578,7 +584,7 @@ TUNNEL
 	charging = TRUE
 
 	balloon_alert(X, "Refilling...")
-	if(!do_after(X, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_BUILD))
+	if(!do_after(X, XENO_ACID_WELL_FILL_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 		charging = FALSE
 		balloon_alert(X, "Aborted refilling")
 		return
@@ -700,7 +706,7 @@ TUNNEL
 
 	if((X.a_intent == INTENT_HARM && isxenohivelord(X)) || X.hivenumber != hivenumber)
 		balloon_alert(X, "Destroying...")
-		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
+		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
 		return
 
@@ -1144,7 +1150,7 @@ TUNNEL
 	max_integrity = 600
 	xeno_structure_flags = CRITICAL_STRUCTURE
 	///boost amt to be added per tower per cycle
-	var/boost_amount = 0.25
+	var/boost_amount = 0.2
 
 /obj/structure/xeno/evotower/Initialize(mapload, _hivenumber)
 	. = ..()
@@ -1166,9 +1172,9 @@ TUNNEL
 		if(EXPLODE_WEAK)
 			take_damage(100, BRUTE, BOMB)
 
-/obj/structure/xeno/maturitytower
-	name = "Maturity tower"
-	desc = "A sickly outcrop from the ground. It seems to ooze a strange chemical that makes the vegetation around it grow faster."
+/obj/structure/xeno/psychictower
+	name = "Psychic Relay"
+	desc = "A sickly outcrop from the ground. It seems to allow for more advanced growth of the Xenomorphs."
 	icon = 'icons/Xeno/2x2building.dmi'
 	icon_state = "maturitytower"
 	bound_width = 64
@@ -1176,19 +1182,17 @@ TUNNEL
 	obj_integrity = 400
 	max_integrity = 400
 	xeno_structure_flags = CRITICAL_STRUCTURE
-	///boost amt to be added per tower per cycle
-	var/boost_amount = 0.2
 
-/obj/structure/xeno/maturitytower/Initialize(mapload, _hivenumber)
+/obj/structure/xeno/psychictower/Initialize(mapload, _hivenumber)
 	. = ..()
-	GLOB.hive_datums[hivenumber].maturitytowers += src
+	GLOB.hive_datums[hivenumber].psychictowers += src
 	set_light(2, 2, LIGHT_COLOR_GREEN)
 
-/obj/structure/xeno/maturitytower/Destroy()
-	GLOB.hive_datums[hivenumber].maturitytowers -= src
+/obj/structure/xeno/psychictower/Destroy()
+	GLOB.hive_datums[hivenumber].psychictowers -= src
 	return ..()
 
-/obj/structure/xeno/maturitytower/ex_act(severity)
+/obj/structure/xeno/psychictower/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(700, BRUTE, BOMB)
@@ -1449,7 +1453,7 @@ TUNNEL
 
 /obj/structure/xeno/plant/heal_fruit/on_use(mob/user)
 	balloon_alert(user, "Consuming...")
-	if(!do_after(user, 2 SECONDS, FALSE, src))
+	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
 		return FALSE
 	if(!isxeno(user))
 		var/datum/effect_system/smoke_spread/xeno/acid/plant_explosion = new(get_turf(src))
@@ -1478,7 +1482,7 @@ TUNNEL
 
 /obj/structure/xeno/plant/armor_fruit/on_use(mob/user)
 	balloon_alert(user, "Consuming...")
-	if(!do_after(user, 2 SECONDS, FALSE, src))
+	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
 		return FALSE
 	if(!isxeno(user))
 		var/turf/far_away_lands = get_turf(user)
@@ -1527,7 +1531,7 @@ TUNNEL
 
 /obj/structure/xeno/plant/plasma_fruit/on_use(mob/user)
 	balloon_alert(user, "Consuming...")
-	if(!do_after(user, 2 SECONDS, FALSE, src))
+	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
 		return FALSE
 	if(!isxeno(user))
 		visible_message(span_warning("[src] releases a sticky substance before spontaneously bursting into flames!"))
@@ -1536,8 +1540,8 @@ TUNNEL
 		return TRUE
 
 	var/mob/living/carbon/xenomorph/X = user
-	if(isxenoravager(X)) //Ask if this should be made into a trait for xenos with special ressources
-		to_chat(X, span_xenowarning("But our body rejects the fruit, our fury does not build up with a healthy diet!"))
+	if(!(X.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA))
+		to_chat(X, span_xenowarning("But our body rejects the fruit, we do not share the same plasma type!"))
 		return FALSE
 	X.apply_status_effect(/datum/status_effect/plasma_surge, X.xeno_caste.plasma_max, bonus_regen, duration)
 	balloon_alert(X, "Plasma restored")
@@ -1601,7 +1605,7 @@ TUNNEL
 
 /obj/structure/xeno/plant/stealth_plant/on_use(mob/user)
 	balloon_alert(user, "Shaking...")
-	if(!do_after(user, 2 SECONDS, FALSE, src))
+	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
 		return FALSE
 	visible_message(span_danger("[src] releases a burst of glowing pollen!"))
 	veil()

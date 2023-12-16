@@ -33,6 +33,7 @@
 				return
 			to_chat(H, span_notice("You swallow some of contents of the [src]."))
 			if(reagents.total_volume)
+				record_reagent_consumption(min(10, reagents.total_volume), reagents.reagent_list, user)
 				reagents.trans_to(H, 10)
 			playsound(H.loc,'sound/items/drink.ogg', 15, 1)
 			return 1
@@ -41,12 +42,13 @@
 				to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 				return
 			M.visible_message(span_warning("[user] attempts to feed [M] [src]."))
-			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
+			if(!do_after(user, 3 SECONDS, NONE, M, BUSY_ICON_FRIENDLY))
 				return
 			M.visible_message(span_warning("[user] feeds [M] [src]."))
 			var/rgt_list_text = get_reagent_list_text()
 			log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
 			if(reagents.total_volume)
+				record_reagent_consumption(min(10, reagents.total_volume), reagents.reagent_list, user, M)
 				reagents.reaction(M, INGEST)
 				reagents.trans_to(M, 10)
 			playsound(M.loc,'sound/items/drink.ogg', 15, 1)

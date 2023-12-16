@@ -6,18 +6,18 @@
 // ***************************************
 // *********** Recycle
 // ***************************************
-/datum/action/xeno_action/activable/recycle
+/datum/action/ability/activable/xeno/recycle
 	name = "Recycle"
 	action_icon_state = "recycle"
 	desc = "We deconstruct the body of a fellow fallen xenomorph to avoid marines from harvesting our sisters in arms."
-	use_state_flags = XACT_USE_STAGGERED //can't use while staggered, defender fortified or crest down
+	use_state_flags = ABILITY_USE_STAGGERED //can't use while staggered, defender fortified or crest down
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECYCLE,
 	)
-	plasma_cost = 750
+	ability_cost = 750
 	gamemode_flags = ABILITY_NUCLEARWAR
 
-/datum/action/xeno_action/activable/recycle/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/recycle/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	var/mob/living/carbon/xenomorph/hivelord = owner
 	var/mob/living/carbon/xenomorph/victim = target
@@ -40,14 +40,16 @@
 			hivelord.balloon_alert(hivelord, "Sister isn't dead")
 		return FALSE
 
-/datum/action/xeno_action/activable/recycle/use_ability(atom/target)
+/datum/action/ability/activable/xeno/recycle/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/recycled_xeno = target
 	var/mob/living/carbon/xenomorph/hivelord = owner
 	hivelord.face_atom(recycled_xeno) //Face towards the target so we don't look silly
 	hivelord.visible_message(span_warning("\The [hivelord] starts breaking apart \the [recycled_xeno]'s carcass."), \
 	span_danger("We slowly deconstruct upon \the [recycled_xeno]'s carcass!"), null, 20)
-	if(!do_after(owner, 7 SECONDS, FALSE, recycled_xeno, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, TRUE, XACT_USE_BUSY)))
+	if(!do_after(owner, 7 SECONDS, IGNORE_HELD_ITEM, recycled_xeno, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, TRUE, ABILITY_USE_BUSY)))
 		return
+
+	hivelord.record_recycle_points(recycled_xeno)
 
 	recycled_xeno.gib()
 
@@ -59,8 +61,8 @@
 // ***************************************
 // *********** Resin building
 // ***************************************
-/datum/action/xeno_action/activable/secrete_resin/hivelord
-	plasma_cost = 100
+/datum/action/ability/activable/xeno/secrete_resin/hivelord
+	ability_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
 		/obj/alien/resin/sticky,
@@ -70,29 +72,29 @@
 // ***************************************
 // *********** Resin walker
 // ***************************************
-/datum/action/xeno_action/toggle_speed
+/datum/action/ability/xeno_action/toggle_speed
 	name = "Resin Walker"
 	action_icon_state = "toggle_speed"
 	desc = "Move faster on resin."
-	plasma_cost = 50
+	ability_cost = 50
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RESIN_WALKER,
 	)
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = ABILITY_USE_LYING
 	action_type = ACTION_TOGGLE
 	var/speed_activated = FALSE
 	var/speed_bonus_active = FALSE
 
-/datum/action/xeno_action/toggle_speed/remove_action()
+/datum/action/ability/xeno_action/toggle_speed/remove_action()
 	resinwalk_off(TRUE) // Ensure we remove the movespeed
 	return ..()
 
-/datum/action/xeno_action/toggle_speed/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/toggle_speed/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	if(speed_activated)
 		return TRUE
 
-/datum/action/xeno_action/toggle_speed/action_activate()
+/datum/action/ability/xeno_action/toggle_speed/action_activate()
 	if(speed_activated)
 		resinwalk_off()
 		return fail_activate()
@@ -100,7 +102,7 @@
 	succeed_activate()
 
 
-/datum/action/xeno_action/toggle_speed/proc/resinwalk_on(silent = FALSE)
+/datum/action/ability/xeno_action/toggle_speed/proc/resinwalk_on(silent = FALSE)
 	var/mob/living/carbon/xenomorph/walker = owner
 	speed_activated = TRUE
 	if(!silent)
@@ -112,7 +114,7 @@
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(resinwalk_on_moved))
 
 
-/datum/action/xeno_action/toggle_speed/proc/resinwalk_off(silent = FALSE)
+/datum/action/ability/xeno_action/toggle_speed/proc/resinwalk_off(silent = FALSE)
 	var/mob/living/carbon/xenomorph/walker = owner
 	if(!silent)
 		owner.balloon_alert(owner, "Resin walk ended")
@@ -124,7 +126,7 @@
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 
 
-/datum/action/xeno_action/toggle_speed/proc/resinwalk_on_moved(datum/source, atom/oldloc, direction, Forced = FALSE)
+/datum/action/ability/xeno_action/toggle_speed/proc/resinwalk_on_moved(datum/source, atom/oldloc, direction, Forced = FALSE)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/walker = owner
 	if(!isturf(walker.loc) || walker.plasma_stored < 10)
@@ -146,17 +148,17 @@
 // ***************************************
 // *********** Tunnel
 // ***************************************
-/datum/action/xeno_action/build_tunnel
+/datum/action/ability/xeno_action/build_tunnel
 	name = "Dig Tunnel"
 	action_icon_state = "build_tunnel"
 	desc = "Create a tunnel entrance. Use again to create the tunnel exit."
-	plasma_cost = 200
-	cooldown_timer = 120 SECONDS
+	ability_cost = 200
+	cooldown_duration = 120 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_TUNNEL,
 	)
 
-/datum/action/xeno_action/build_tunnel/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/build_tunnel/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -174,19 +176,19 @@
 			owner.balloon_alert(owner, "Cannot dig, needs empty hand")
 		return FALSE
 
-/datum/action/xeno_action/build_tunnel/on_cooldown_finish()
+/datum/action/ability/xeno_action/build_tunnel/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, span_notice("We are ready to dig a tunnel again."))
 	return ..()
 
-/datum/action/xeno_action/build_tunnel/action_activate()
+/datum/action/ability/xeno_action/build_tunnel/action_activate()
 	var/turf/T = get_turf(owner)
 	var/mob/living/carbon/xenomorph/hivelord/X = owner
 
 	X.balloon_alert(X, "Digging...")
 	X.visible_message(span_xenonotice("[X] begins digging out a tunnel entrance."), \
 	span_xenonotice("We begin digging out a tunnel entrance."), null, 5)
-	if(!do_after(X, HIVELORD_TUNNEL_DIG_TIME, TRUE, T, BUSY_ICON_BUILD))
+	if(!do_after(X, HIVELORD_TUNNEL_DIG_TIME, NONE, T, BUSY_ICON_BUILD))
 		X.balloon_alert(X, "Digging aborted")
 		return fail_activate()
 
@@ -228,23 +230,23 @@
 // ***************************************
 // *********** plasma transfer
 // ***************************************
-/datum/action/xeno_action/activable/transfer_plasma/improved
+/datum/action/ability/activable/xeno/transfer_plasma/improved
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 4
 	transfer_delay = 0.5 SECONDS
 	max_range = 7
 
 
-/datum/action/xeno_action/place_jelly_pod
+/datum/action/ability/xeno_action/place_jelly_pod
 	name = "Place Resin Jelly pod"
 	action_icon_state = "resin_jelly_pod"
 	desc = "Place down a dispenser that allows xenos to retrieve fireproof jelly."
-	plasma_cost = 500
-	cooldown_timer = 1 MINUTES
+	ability_cost = 500
+	cooldown_duration = 1 MINUTES
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_JELLY_POD,
 	)
 
-/datum/action/xeno_action/place_jelly_pod/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/place_jelly_pod/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
@@ -264,7 +266,7 @@
 	if(!T.check_alien_construction(owner, silent))
 		return FALSE
 
-/datum/action/xeno_action/place_jelly_pod/action_activate()
+/datum/action/ability/xeno_action/place_jelly_pod/action_activate()
 	var/turf/T = get_turf(owner)
 
 	succeed_activate()
@@ -274,17 +276,17 @@
 	to_chat(owner, span_xenonotice("We shape some resin into \a [pod]."))
 	add_cooldown()
 
-/datum/action/xeno_action/create_jelly
+/datum/action/ability/xeno_action/create_jelly
 	name = "Create Resin Jelly"
 	action_icon_state = "resin_jelly"
 	desc = "Create a fireproof jelly."
-	plasma_cost = 100
-	cooldown_timer = 20 SECONDS
+	ability_cost = 100
+	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_JELLY,
 	)
 
-/datum/action/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -293,7 +295,7 @@
 			owner.balloon_alert(owner, "Cannot jelly, need empty hands")
 		return FALSE
 
-/datum/action/xeno_action/create_jelly/action_activate()
+/datum/action/ability/xeno_action/create_jelly/action_activate()
 	var/obj/item/resin_jelly/jelly = new(owner.loc)
 	owner.put_in_hands(jelly)
 	to_chat(owner, span_xenonotice("We create a globule of resin from our ovipostor.")) // Ewww...
@@ -303,20 +305,20 @@
 // ***************************************
 // *********** Healing Infusion
 // ***************************************
-/datum/action/xeno_action/activable/healing_infusion
+/datum/action/ability/activable/xeno/healing_infusion
 	name = "Healing Infusion"
 	action_icon_state = "healing_infusion"
 	desc = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
-	cooldown_timer = 12.5 SECONDS
-	plasma_cost = 200
+	cooldown_duration = 12.5 SECONDS
+	ability_cost = 200
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEALING_INFUSION,
 	)
-	use_state_flags = XACT_USE_LYING
-	target_flags = XABB_MOB_TARGET
+	use_state_flags = ABILITY_USE_LYING
+	target_flags = ABILITY_MOB_TARGET
 	var/heal_range = HIVELORD_HEAL_RANGE
 
-/datum/action/xeno_action/activable/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -327,7 +329,7 @@
 		return FALSE
 	var/mob/living/carbon/xenomorph/patient = target
 
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
 		if(!silent)
 			target.balloon_alert(owner, "Cannot heal, dead")
 		return FALSE
@@ -341,7 +343,7 @@
 		return FALSE
 
 
-/datum/action/xeno_action/activable/healing_infusion/proc/check_distance(atom/target, silent)
+/datum/action/ability/activable/xeno/healing_infusion/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
 	if(dist > heal_range)
 		if(!silent)
@@ -355,7 +357,7 @@
 	return TRUE
 
 
-/datum/action/xeno_action/activable/healing_infusion/use_ability(atom/target)
+/datum/action/ability/activable/xeno/healing_infusion/use_ability(atom/target)
 	if(owner.do_actions)
 		return FALSE
 
@@ -378,25 +380,28 @@
 	succeed_activate()
 	add_cooldown()
 
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.heals++
 	GLOB.round_statistics.hivelord_healing_infusions++ //Statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hivelord_healing_infusions")
 
 // ***************************************
 // *********** Sow
 // ***************************************
-/datum/action/xeno_action/sow
+/datum/action/ability/xeno_action/sow
 	name = "Sow"
 	action_icon_state = "place_trap"
 	desc = "Sow the seeds of an alien plant."
-	plasma_cost = 200
-	cooldown_timer = 45 SECONDS
-	use_state_flags = XACT_USE_LYING
+	ability_cost = 200
+	cooldown_duration = 45 SECONDS
+	use_state_flags = ABILITY_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_PLANT,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CHOOSE_PLANT,
 	)
 
-/datum/action/xeno_action/sow/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/sow/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(!owner_xeno.loc_weeds_type)
@@ -408,7 +413,7 @@
 	if(!T.check_alien_construction(owner, silent))
 		return FALSE
 
-/datum/action/xeno_action/sow/action_activate()
+/datum/action/ability/xeno_action/sow/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!X.selected_plant)
 		return FALSE
@@ -418,14 +423,14 @@
 	add_cooldown()
 	return succeed_activate()
 
-/datum/action/xeno_action/sow/update_button_icon()
+/datum/action/ability/xeno_action/sow/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	button.overlays.Cut()
 	button.overlays += image('icons/Xeno/actions.dmi', button, initial(X.selected_plant.name))
 	return ..()
 
 ///Shows a radial menu to pick the plant they wish to put down when they use the ability
-/datum/action/xeno_action/sow/proc/choose_plant()
+/datum/action/ability/xeno_action/sow/proc/choose_plant()
 	var/plant_choice = show_radial_menu(owner, owner, GLOB.plant_images_list, radius = 48)
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!plant_choice)
@@ -437,6 +442,6 @@
 	X.balloon_alert(X, "[plant_choice]")
 	update_button_icon()
 
-/datum/action/xeno_action/sow/alternate_action_activate()
+/datum/action/ability/xeno_action/sow/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(choose_plant))
 	return COMSIG_KB_ACTIVATED

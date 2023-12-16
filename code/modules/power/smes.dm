@@ -47,7 +47,7 @@
 		for(var/d in GLOB.cardinals)
 			var/turf/T = get_step(src, d)
 			for(var/obj/machinery/power/terminal/term in T)
-				if(term?.dir == turn(d, 180))
+				if(term?.dir == REVERSE_DIR(d))
 					terminal = term
 					break dir_loop
 	if(!terminal)
@@ -228,7 +228,7 @@
 		to_chat(user, span_notice("You start building the power terminal..."))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, 1)
 
-		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD) || C.get_amount() < 10)
+		if(!do_after(user, 50, NONE, src, BUSY_ICON_BUILD) || C.get_amount() < 10)
 			return
 
 		var/obj/structure/cable/N = T.get_cable_node() //get the connecting node cable, if there's one
@@ -418,7 +418,7 @@
 	..()
 
 /proc/rate_control(S, V, C, Min=1, Max=5, Limit=null)
-	var/href = "<A href='?src=\ref[S];rate control=1;[V]"
+	var/href = "<A href='?src=[text_ref(S)];rate control=1;[V]"
 	var/rate = "[href]=-[Max]'>-</A>[href]=-[Min]'>-</A> [(C?C : 0)] [href]=[Min]'>+</A>[href]=[Max]'>+</A>"
 	if(Limit) return "[href]=-[Limit]'>-</A>"+rate+"[href]=[Limit]'>+</A>"
 	return rate

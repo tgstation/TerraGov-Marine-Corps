@@ -86,7 +86,7 @@
 	//If there is an item in the slot you are clicking on, this will relay the click to the item within the slot
 	var/atom/item_in_slot = usr.get_item_by_slot(slot_id)
 	if(item_in_slot)
-		return item_in_slot.Click()
+		return item_in_slot.Click(location, control, params)
 
 	if(!istype(src, /atom/movable/screen/inventory/hand) && usr.attack_ui(slot_id)) // until we get a proper hands refactor
 		usr.update_inv_l_hand()
@@ -388,9 +388,6 @@
 	icon = 'icons/mob/screen/alien.dmi'
 	z_prefix = "ay_"
 
-/atom/movable/screen/zone_sel/robot
-	icon = 'icons/mob/screen/cyborg.dmi'
-
 /atom/movable/screen/healths
 	name = "health"
 	icon_state = "health0"
@@ -400,11 +397,6 @@
 /atom/movable/screen/healths/alien
 	icon = 'icons/mob/screen/alien.dmi'
 	screen_loc = ui_alien_health
-
-/atom/movable/screen/healths/robot
-	icon = 'icons/mob/screen/cyborg.dmi'
-	screen_loc = ui_borg_health
-
 
 /atom/movable/screen/stamina_hud
 	icon = 'icons/mob/screen/health.dmi'
@@ -627,7 +619,7 @@
 	///The target which the arrow points to
 	var/atom/target
 	///The duration of the effect
-	var/duration
+	var/duration = 1
 	///holder for the deletation timer
 	var/del_timer
 

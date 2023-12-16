@@ -83,7 +83,7 @@
 		/datum/reagent/medicine/meralyne = list(NAME = "Meralyne", REQ = 5, BRUTE_AMP = 0.2, BURN_AMP = 0, TOX_HEAL = 0, STAM_REG_AMP = 0, SPEED_BOOST = 0),
 		/datum/reagent/medicine/dermaline = list(NAME = "Dermaline", REQ = 5, BRUTE_AMP = 0, BURN_AMP = 0.2, TOX_HEAL = 0, STAM_REG_AMP = 0, SPEED_BOOST = 0),
 		/datum/reagent/medicine/dylovene = list(NAME = "Dylovene", REQ = 5, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = 0.5, STAM_REG_AMP = 0, SPEED_BOOST = 0),
-		/datum/reagent/medicine/synaptizine = list(NAME = "Synaptizine", REQ = 3, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = 1, STAM_REG_AMP = 0.1, SPEED_BOOST = 0),
+		/datum/reagent/medicine/synaptizine = list(NAME = "Synaptizine", REQ = 1, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = 1, STAM_REG_AMP = 0.1, SPEED_BOOST = 0),
 		/datum/reagent/medicine/neuraline = list(NAME = "Neuraline", REQ = 2, BRUTE_AMP = 1, BURN_AMP = 1, TOX_HEAL = -3, STAM_REG_AMP = 0, SPEED_BOOST = -0.3),
 	)
 
@@ -189,7 +189,7 @@
 	update_resource(-resource_drain_amount)
 
 	wearer.adjustToxLoss(-tox_heal*boost_amount)
-	wearer.heal_limb_damage(6*boost_amount*brute_heal_amp, 6*boost_amount*burn_heal_amp)
+	wearer.heal_overall_damage(6*boost_amount*brute_heal_amp, 6*boost_amount*burn_heal_amp)
 	vali_necro_timer = world.time - processing_start
 	if(vali_necro_timer > 20 SECONDS)
 		return
@@ -341,7 +341,7 @@
 
 	wearer.add_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT, TRUE, 0, NONE, TRUE, 4)
 	wearer.balloon_alert(wearer, "You begin connecting [held_item]")
-	if(!do_after(wearer, 1 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
+	if(!do_after(wearer, 1 SECONDS, IGNORE_USER_LOC_CHANGE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 		wearer.remove_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT)
 		wearer.balloon_alert(wearer, "You were interrupted")
 		return
@@ -354,7 +354,7 @@
 /datum/component/chem_booster/proc/manage_weapon_connection(obj/item/weapon_to_connect)
 	if(connected_weapon)
 		wearer.balloon_alert(wearer, "Disconnected [connected_weapon]")
-		DISABLE_BITFIELD(connected_weapon.flags_item, NODROP)
+		REMOVE_TRAIT(connected_weapon, TRAIT_NODROP, VALI_TRAIT)
 		UnregisterSignal(connected_weapon, COMSIG_ITEM_ATTACK)
 		UnregisterSignal(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED))
 		connected_weapon = null
@@ -364,7 +364,7 @@
 		return FALSE
 
 	connected_weapon = weapon_to_connect
-	ENABLE_BITFIELD(connected_weapon.flags_item, NODROP)
+	ADD_TRAIT(connected_weapon, TRAIT_NODROP, VALI_TRAIT)
 	RegisterSignal(connected_weapon, COMSIG_ITEM_ATTACK, PROC_REF(drain_resource))
 	RegisterSignals(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(vali_connect))
 	return TRUE
@@ -411,7 +411,7 @@
 		return
 
 	wearer.balloon_alert(wearer, "You begin filling [held_item]")
-	if(!do_after(wearer, 1 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
+	if(!do_after(wearer, 1 SECONDS, IGNORE_USER_LOC_CHANGE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 		return
 
 	update_resource(-volume)
@@ -445,7 +445,7 @@
 	if(!held_beaker.reagents.total_volume && meds_beaker.reagents.total_volume) //Pills should never be empty so we don't worry about loading into them
 		var/pick = tgui_input_list(wearer, "Unload internal reagent storage into held container:", "Vali system", list("Yes", "No"))
 		if(pick == "Yes")
-			if(!do_after(wearer, 0.5 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
+			if(!do_after(wearer, 0.5 SECONDS, IGNORE_USER_LOC_CHANGE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 				return
 			meds_beaker.reagents.trans_to(held_beaker, 30)
 			to_chat(wearer, get_meds_beaker_contents())
@@ -455,7 +455,7 @@
 		wearer.balloon_alert(wearer, "The system's reagent storage is full")
 		return
 
-	if(!do_after(wearer, 0.5 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
+	if(!do_after(wearer, 0.5 SECONDS, IGNORE_USER_LOC_CHANGE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 		return
 
 	var/trans = held_beaker.reagents.trans_to(meds_beaker, held_beaker.amount_per_transfer_from_this)

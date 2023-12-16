@@ -377,7 +377,7 @@ function draw_mc() {
 		var td2 = document.createElement("td");
 		if (part[2]) {
 			var a = document.createElement("a");
-			a.href = "?_src_=vars;admin_token=" + href_token + ";Vars=" + part[2];
+			a.href = "?_src_=vars;admin_token=" + href_token + ";vars=" + part[2];
 			a.textContent = part[1];
 			td2.appendChild(a);
 		} else {

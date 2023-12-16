@@ -1,20 +1,19 @@
 /obj/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0)
 	if(QDELETED(src))
 		CRASH("[src] taking damage after deletion")
-
+	if(!damage_amount)
+		return
 	if(effects)
 		play_attack_sound(damage_amount, damage_type, damage_flag)
-
 	if((resistance_flags & INDESTRUCTIBLE) || obj_integrity <= 0)
 		return
-	damage_amount = run_obj_armor(damage_amount, damage_type, damage_flag, attack_dir, armour_penetration)
 
+	if(damage_flag)
+		damage_amount = round(modify_by_armor(damage_amount, damage_flag, armour_penetration), DAMAGE_PRECISION)
 	if(damage_amount < DAMAGE_PRECISION)
 		return
 	. = damage_amount
-
 	obj_integrity = max(obj_integrity - damage_amount, 0)
-
 	update_icon()
 
 	//BREAKING FIRST
@@ -25,29 +24,14 @@
 	if(obj_integrity <= 0)
 		obj_destruction(damage_amount, damage_type, damage_flag)
 
-
-/obj/proc/repair_damage(repair_amount)
-	obj_integrity = min(obj_integrity + repair_amount, max_integrity)
-
-
-///returns the damage value of the attack after processing the obj's various armor protections
-/obj/proc/run_obj_armor(damage_amount, damage_type, damage_flag = "", attack_dir, armour_penetration = 0)
-	if(!damage_type)
-		return 0
-	if(damage_flag)
-		var/obj_hard_armor = hard_armor.getRating(damage_flag)
-		var/obj_soft_armor = soft_armor.getRating(damage_flag)
-		if(armour_penetration)
-			if(obj_hard_armor)
-				obj_hard_armor = max(0, obj_hard_armor - (obj_hard_armor * armour_penetration * 0.01)) //AP reduces a % of hard armor.
-			if(obj_soft_armor)
-				obj_soft_armor = max(0, obj_soft_armor - armour_penetration) //Flat removal.
-		if(obj_hard_armor)
-			damage_amount = max(0, damage_amount - obj_hard_armor)
-		if(obj_soft_armor)
-			damage_amount = max(0, damage_amount - (damage_amount * obj_soft_armor * 0.01))
-	return round(damage_amount, DAMAGE_PRECISION)
-
+///Increase obj_integrity and record it to the repairer's stats
+/obj/proc/repair_damage(repair_amount, mob/user)
+	repair_amount = min(repair_amount, max_integrity - obj_integrity)
+	if(user?.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+		personal_statistics.integrity_repaired += repair_amount
+		personal_statistics.times_repaired++
+	obj_integrity += repair_amount
 
 ///the sound played when the obj is damaged.
 /obj/proc/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
@@ -84,6 +68,10 @@
 
 /obj/hitby(atom/movable/AM, speed = 5)
 	. = ..()
+	if(!.)
+		return
+	if(!anchored && (move_resist < MOVE_FORCE_STRONG))
+		step(src, AM.dir)
 	visible_message(span_warning("[src] was hit by [AM]."), visible_message_flags = COMBAT_MESSAGE)
 	var/tforce = 0
 	if(ismob(AM))
@@ -102,7 +90,7 @@
 		return
 	playsound(loc, P.hitsound, 50, 1)
 	visible_message(span_warning("\the [src] is damaged by \the [P]!"), visible_message_flags = COMBAT_MESSAGE)
-	take_damage(P.damage, P.ammo.damage_type, P.ammo.armor_type, 0, turn(P.dir, 180), P.ammo.penetration)
+	take_damage(P.damage, P.ammo.damage_type, P.ammo.armor_type, 0, REVERSE_DIR(P.dir), P.ammo.penetration)
 
 
 /obj/proc/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0) //used by attack_alien, attack_animal, and attack_slime

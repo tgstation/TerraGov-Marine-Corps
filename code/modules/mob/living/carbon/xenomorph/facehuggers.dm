@@ -158,7 +158,7 @@
 	user.visible_message(span_warning("\ [user] attempts to plant [src] on [M]'s face!"), \
 	span_warning("We attempt to plant [src] on [M]'s face!"))
 	if(M.client && !M.stat) //Delay for conscious cliented mobs, who should be resisting.
-		if(!do_after(user, 1 SECONDS, TRUE, M, BUSY_ICON_DANGER))
+		if(!do_after(user, 1 SECONDS, NONE, M, BUSY_ICON_DANGER))
 			return
 	if(!Attach(M))
 		go_idle()
@@ -245,12 +245,8 @@
 	if(stat != CONSCIOUS) //need to be active to leap
 		return
 
-	for(var/check_smoke in get_turf(src)) //Check for pacifying smoke
-		if(!istype(check_smoke, /obj/effect/particle_effect/smoke/xeno))
-			continue
-
-		var/obj/effect/particle_effect/smoke/xeno/xeno_smoke = check_smoke
-		if(CHECK_BITFIELD(xeno_smoke.smoke_traits, SMOKE_HUGGER_PACIFY)) //Cancel out and make the hugger go idle if we have the xeno pacify tag
+	for(var/obj/effect/particle_effect/smoke/check_smoke in get_turf(src)) //Check for pacifying smoke
+		if(CHECK_BITFIELD(check_smoke.smoke_traits, SMOKE_HUGGER_PACIFY)) //Cancel out and make the hugger go idle if we have the xeno pacify tag
 			go_idle()
 			return
 
@@ -358,39 +354,45 @@
 	update_icon()
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
+	if(isopenturf(hit_atom))
+		var/valid_victim
+		for(var/mob/living/carbon/M in hit_atom)
+			if(!M.can_be_facehugged(src))
+				continue
+			valid_victim = TRUE
+			hit_atom = M
+		if(!valid_victim)
+			leaping = FALSE
+			go_idle()
+			return FALSE
 	. = ..()
+	if(!.)
+		return
 	if(stat != CONSCIOUS)
-		return ..()
-	if(iscarbon(hit_atom))
-		var/mob/living/carbon/M = hit_atom
-		if(loc == M) //Caught
-			update_icon()
-			pre_leap(impact_time)
-		else if(leaping && M.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
-			if(!Attach(M))
-				go_idle()
-			return
-		else
-			step(src, REVERSE_DIR(dir)) //We want the hugger to bounce off if it hits a mob.
-			update_icon()
-			if(!issamexenohive(M)) //If the target is not friendly, stagger and slow it, and activate faster.
-				M.adjust_stagger(3 SECONDS) //Apply stagger and slowdown so the carrier doesn't have to suicide when going for direct hugger hits.
-				M.add_slowdown(3)
-				pre_leap(impact_time) //Go into the universal leap set up proc
-				return
+		return
+	if(!iscarbon(hit_atom))
+		leaping = FALSE
+		go_idle()
+		return
 
-			pre_leap(activate_time) //Go into the universal leap set up proc
-			return
+	var/mob/living/carbon/carbon_victim = hit_atom
+	if(loc == carbon_victim) //Caught
+		pre_leap(impact_time)
+	else if(leaping && carbon_victim.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
+		if(!Attach(carbon_victim))
+			go_idle()
 	else
-		if(leaping)
-			for(var/mob/living/carbon/M in loc)
-				if(M.can_be_facehugged(src))
-					if(!Attach(M))
-						go_idle()
-					return
-	leaping = FALSE
-	go_idle(FALSE)
+		step(src, REVERSE_DIR(dir))
+		if(!issamexenohive(carbon_victim))
+			carbon_victim.adjust_stagger(3 SECONDS)
+			carbon_victim.add_slowdown(3)
+		pre_leap(activate_time)
 
+	leaping = FALSE
+
+/obj/item/clothing/mask/facehugger/stop_throw(flying, original_layer)
+	. = ..()
+	update_icon()
 
 //////////////////////
 //  FACEHUG CHECKS
@@ -442,7 +444,7 @@
 	if(check_mask)
 		if(wear_mask)
 			var/obj/item/W = wear_mask
-			if(W.flags_item & NODROP)
+			if(HAS_TRAIT(W, TRAIT_NODROP))
 				return FALSE
 			if(istype(W, /obj/item/clothing/mask/facehugger))
 				var/obj/item/clothing/mask/facehugger/hugger = W
@@ -505,7 +507,7 @@
 		if(H.head)
 			var/obj/item/clothing/head/D = H.head
 			if(istype(D))
-				if(D.anti_hug > 0 || D.flags_item & NODROP)
+				if(D.anti_hug > 0 || HAS_TRAIT(D, TRAIT_NODROP))
 					blocked = D
 					D.anti_hug = max(0, --D.anti_hug)
 					H.visible_message("<span class='danger'>[src] smashes against [H]'s [D.name], damaging it!")
@@ -521,7 +523,7 @@
 				if(hugger.stat != DEAD)
 					return FALSE
 
-			if(W.anti_hug > 0 || W.flags_item & NODROP)
+			if(W.anti_hug > 0 || HAS_TRAIT(W, TRAIT_NODROP))
 				if(!blocked)
 					blocked = W
 				W.anti_hug = max(0, --W.anti_hug)
@@ -551,12 +553,12 @@
 		var/stamina_dmg = user.maxHealth + user.max_stamina
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
 		user.Unconscious(2 SECONDS)
-	addtimer(VARSET_CALLBACK(src, flags_item, flags_item|NODROP), IMPREGNATION_TIME) // becomes stuck after min-impreg time
 	attached = TRUE
 	go_idle(FALSE, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(Impregnate), user), IMPREGNATION_TIME)
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/target)
+	ADD_TRAIT(src, TRAIT_NODROP, HUGGER_TRAIT)
 	var/as_planned = target?.wear_mask == src ? TRUE : FALSE
 	if(target.can_be_facehugged(src, FALSE, FALSE) && !sterile && as_planned) //is hugger still on face and can they still be impregnated
 		if(!(locate(/obj/item/alien_embryo) in target))
@@ -564,6 +566,9 @@
 			embryo.hivenumber = hivenumber
 			GLOB.round_statistics.now_pregnant++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
+			if(source?.client)
+				var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[source.ckey]
+				personal_statistics.impregnations++
 			sterile = TRUE
 		kill_hugger()
 	else
@@ -600,7 +605,7 @@
 	addtimer(CALLBACK(src, PROC_REF(melt_away)), melt_timer)
 
 /obj/item/clothing/mask/facehugger/proc/reset_attach_status(forcedrop = TRUE)
-	flags_item &= ~NODROP
+	REMOVE_TRAIT(src, TRAIT_NODROP, HUGGER_TRAIT)
 	attached = FALSE
 	if(isliving(loc) && forcedrop) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
 		var/mob/living/M = loc

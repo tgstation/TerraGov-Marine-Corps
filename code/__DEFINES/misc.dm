@@ -38,6 +38,9 @@
 //subtypesof(), typesof() without the parent path
 #define subtypesof(typepath) ( typesof(typepath) - typepath )
 
+/// Takes a datum as input, returns its ref string
+#define text_ref(datum) ref(datum)
+
 #define RESIZE_DEFAULT_SIZE 1
 
 GLOBAL_VAR_INIT(global_unique_id, 1)
@@ -138,3 +141,6 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 
 //Actually better performant than reverse_direction()
 #define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )
+
+// shorter way to write as anything
+#define AS as anything

@@ -468,14 +468,6 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
-"apa" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
-/turf/open/floor/plating/ground/snow/layer0,
-/area/gelida/outdoors/colony_streets/central_streets)
 "apd" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/whitegreenfull2,
@@ -498,7 +490,7 @@
 /area/gelida/landing_zone_1)
 "apR" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 1
 	},
 /obj/machinery/light,
@@ -548,6 +540,11 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
+"ass" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/patrol_point/som/som_22,
+/turf/open/floor/prison/whitegreenfull2,
+/area/gelida/cavestructuretwo)
 "ast" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -607,7 +604,7 @@
 /area/gelida/indoors/a_block/security)
 "atZ" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	pixel_y = 7
 	},
 /turf/open/floor/prison/whitepurple/full{
@@ -908,7 +905,7 @@
 /area/gelida/indoors/b_block/bridge)
 "aGG" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 4
 	},
@@ -1446,13 +1443,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/gelida/cavestructuretwo)
-"aYW" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
-/turf/open/floor/plating/ground/snow/layer0,
-/area/gelida/outdoors/colony_streets/central_streets)
 "aZg" = (
 /obj/structure/prop/vehicle/crane/destructible,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -2608,18 +2598,11 @@
 /area/gelida/indoors/a_block/dorms)
 "bMU" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 1
 	},
 /turf/open/floor/carpet,
 /area/gelida/indoors/c_block/garage)
-"bMY" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
-/turf/open/floor/plating/ground/snow/layer0,
-/area/gelida/outdoors/colony_streets/central_streets)
 "bNd" = (
 /obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -2854,7 +2837,7 @@
 /area/gelida/indoors/b_block/bridge)
 "bUO" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8
 	},
 /turf/open/floor/prison/darkred/full,
@@ -3453,7 +3436,7 @@
 	pixel_x = 6;
 	pixel_y = -5
 	},
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 4
 	},
@@ -3463,6 +3446,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/central_streets)
+"csv" = (
+/obj/effect/landmark/patrol_point/som/som_13,
+/turf/open/floor/plating,
+/area/shuttle/drop1/gelida)
 "csw" = (
 /obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating,
@@ -4490,13 +4477,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/bridges/corpo)
-"cYE" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
-/turf/open/floor/plating/ground/snow/layer0,
-/area/gelida/outdoors/colony_streets/central_streets)
 "cYN" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -4612,6 +4592,10 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
+"dbW" = (
+/obj/effect/landmark/campaign_structure/sensor_tower,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/gelida/outdoors/colony_streets/north_west_street)
 "dci" = (
 /obj/structure/platform{
 	dir = 10
@@ -4919,7 +4903,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/b_block/bar)
 "doc" = (
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	pixel_y = 5
 	},
 /turf/open/floor/prison,
@@ -5601,7 +5585,7 @@
 /area/gelida/indoors/b_block/bridge)
 "dLu" = (
 /obj/structure/table/fancywoodentable,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	pixel_y = 3
 	},
 /turf/open/floor/wood,
@@ -5704,6 +5688,10 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
+"dPe" = (
+/obj/effect/landmark/patrol_point/tgmc_11,
+/turf/open/floor/plating,
+/area/shuttle/drop2/gelida)
 "dPl" = (
 /obj/structure/stairs/corner_seamless{
 	dir = 4
@@ -6274,6 +6262,10 @@
 	},
 /turf/open/floor/carpet,
 /area/gelida/indoors/a_block/executive)
+"efd" = (
+/obj/effect/landmark/patrol_point/som/som_24,
+/turf/open/floor/prison,
+/area/gelida/cavestructuretwo)
 "efi" = (
 /turf/closed/shuttle/dropship2/fins{
 	dir = 4
@@ -6695,13 +6687,6 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/shuttle/dropship/floor,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
-"evd" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
-/turf/open/floor/plating/ground/snow/layer0,
-/area/gelida/outdoors/colony_streets/east_central_street)
 "eve" = (
 /obj/machinery/light{
 	dir = 4
@@ -6752,7 +6737,7 @@
 /area/gelida/indoors/c_block/mining)
 "evW" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4;
 	pixel_y = 1
 	},
@@ -7008,7 +6993,7 @@
 /area/gelida/outdoors/colony_streets/east_central_street)
 "eEZ" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 5
 	},
@@ -7468,6 +7453,7 @@
 /area/gelida/indoors/a_block/medical)
 "eTs" = (
 /obj/structure/platform_decoration,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "eTu" = (
@@ -9323,6 +9309,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/dorms)
+"gnp" = (
+/obj/effect/landmark/patrol_point/tgmc_14,
+/turf/open/floor/plating,
+/area/shuttle/drop2/gelida)
 "gns" = (
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/darkred/full,
@@ -10252,7 +10242,7 @@
 /area/gelida/indoors/a_block/medical)
 "gQg" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 3
 	},
@@ -10457,13 +10447,6 @@
 /obj/structure/largecrate,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/cavestructuretwo)
-"gZW" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
-/turf/open/floor/plating/ground/snow/layer0,
-/area/gelida/outdoors/colony_streets/east_central_street)
 "had" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -11700,7 +11683,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/garage)
 "hTM" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/medical)
 "hUc" = (
@@ -11892,7 +11875,7 @@
 /area/gelida/indoors/a_block/dorms)
 "hZr" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	desc = "A small desktop computer. Someone has switched to personal emails and disabled the inventory sort system.";
 	name = "inventory computer"
 	},
@@ -12014,7 +11997,7 @@
 /area/gelida/indoors/a_block/dorms)
 "icZ" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 3
 	},
@@ -12505,6 +12488,15 @@
 	},
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/a_block/kitchen)
+"itK" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/landmark/campaign_structure/phoron_crate,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
+	dir = 4
+	},
+/area/gelida/outdoors/colony_streets/central_streets)
 "itZ" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -13458,6 +13450,10 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/lone_buildings/storage_blocks)
+"jbF" = (
+/obj/effect/landmark/campaign_structure/phoron_crate,
+/turf/open/floor/prison,
+/area/gelida/outdoors/colony_streets/north_east_street)
 "jcm" = (
 /obj/machinery/landinglight/lz1,
 /turf/open/floor/prison,
@@ -13513,13 +13509,6 @@
 	dir = 8
 	},
 /area/gelida/indoors/a_block/medical)
-"jeo" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
-/turf/open/floor/plating/ground/snow/layer0,
-/area/gelida/outdoors/colony_streets/east_central_street)
 "jeL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/whitegreenfull2,
@@ -14472,7 +14461,7 @@
 	},
 /area/gelida/outdoors/colony_streets/south_west_street)
 "jPr" = (
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4;
 	pixel_y = 7
 	},
@@ -14600,7 +14589,7 @@
 /area/gelida/landing_zone_forecon/landing_zone_4)
 "jRO" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4;
 	pixel_y = 3
 	},
@@ -15074,7 +15063,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "kiW" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -15256,6 +15245,10 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_street)
+"kqO" = (
+/obj/effect/landmark/campaign_structure/sensor_tower,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/gelida/outdoors/colony_streets/central_streets)
 "kqQ" = (
 /obj/structure/stairs/corner_seamless,
 /turf/open/floor/prison/darkred/full,
@@ -15476,7 +15469,7 @@
 /area/gelida/indoors/a_block/medical)
 "kzQ" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4;
 	pixel_y = 2
 	},
@@ -16576,7 +16569,7 @@
 "lmc" = (
 /obj/structure/table/reinforced/prison,
 /obj/structure/window,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 4
 	},
@@ -17393,7 +17386,7 @@
 /area/gelida/landing_zone_2)
 "lMZ" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4
 	},
 /obj/structure/window,
@@ -17668,7 +17661,7 @@
 /area/gelida/indoors/a_block/medical)
 "lXm" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -17752,6 +17745,10 @@
 /obj/item/weapon/gun/pistol/m1911,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/north_west_street)
+"mao" = (
+/obj/effect/landmark/campaign_structure/phoron_crate,
+/turf/open/floor/prison/cleanmarked,
+/area/gelida/indoors/lone_buildings/storage_blocks)
 "maw" = (
 /obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
@@ -17882,7 +17879,7 @@
 /area/gelida/indoors/a_block/admin)
 "mfj" = (
 /obj/structure/table/mainship,
-/obj/item/storage/box/flashbangs{
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour{
 	pixel_x = 7;
 	pixel_y = 2
 	},
@@ -18344,13 +18341,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall,
 /area/gelida/indoors/c_block/mining)
-"mtu" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
-/turf/open/floor/plating/ground/snow/layer0,
-/area/gelida/outdoors/colony_streets/central_streets)
 "mtx" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/effect/spawner/random/misc/structure/supplycrate{
@@ -18443,7 +18433,7 @@
 /area/gelida/indoors/a_block/executive)
 "mwx" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -19159,6 +19149,10 @@
 "mWd" = (
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/landing_zone_1)
+"mWf" = (
+/obj/effect/landmark/patrol_point/tgmc_13,
+/turf/open/floor/plating,
+/area/shuttle/drop2/gelida)
 "mWv" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -19235,13 +19229,14 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/corpo)
 "mYK" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/east_caves)
+"mYS" = (
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/floor/plating,
+/area/gelida/landing_zone_1)
 "mZr" = (
 /obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/whitegreenfull2,
@@ -19834,10 +19829,7 @@
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
 "ntZ" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/east_caves)
 "nue" = (
@@ -20370,6 +20362,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/mining)
+"nNq" = (
+/obj/effect/landmark/campaign_structure/phoron_crate,
+/turf/open/floor/prison/darkbrown/full,
+/area/gelida/indoors/c_block/mining)
 "nNt" = (
 /obj/structure/stairs/seamless{
 	dir = 1
@@ -20459,7 +20455,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "nPI" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	pixel_y = 3
 	},
 /turf/open/floor/prison/plate,
@@ -20544,7 +20540,7 @@
 /area/gelida/outdoors/colony_streets/south_west_street)
 "nSm" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 6
 	},
@@ -21344,7 +21340,7 @@
 /area/gelida/indoors/a_block/dorms)
 "owa" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	pixel_y = 5
 	},
 /turf/open/floor/prison/whitegreenfull2,
@@ -22218,7 +22214,7 @@
 /area/gelida/powergen)
 "oXo" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	pixel_y = 9
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -23151,13 +23147,6 @@
 /obj/structure/bed/stool,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
-"pBo" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
-/turf/open/floor/mainship/black/full,
-/area/gelida/powergen)
 "pBL" = (
 /obj/structure/closet,
 /turf/open/floor/prison/whitepurple/full{
@@ -23413,13 +23402,6 @@
 	dir = 1
 	},
 /area/gelida/outdoors/colony_streets/central_streets)
-"pKl" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
-/turf/open/floor/mainship/black/full,
-/area/gelida/powergen)
 "pKF" = (
 /obj/structure/table/mainship,
 /obj/item/key/cargo_train,
@@ -23959,6 +23941,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/north_street)
+"qcB" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/east_caves)
 "qcQ" = (
 /obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating,
@@ -24418,7 +24404,7 @@
 /area/gelida/indoors/c_block/garage)
 "qvC" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4
 	},
 /turf/open/floor/prison/darkred/full,
@@ -24447,6 +24433,7 @@
 /area/gelida/indoors/c_block/cargo)
 "qwO" = (
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_street)
 "qwT" = (
@@ -24628,13 +24615,17 @@
 /obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/medical)
+"qDp" = (
+/obj/effect/landmark/campaign_structure/phoron_crate,
+/turf/open/floor/prison/whitegreenfull2,
+/area/gelida/indoors/a_block/fitness)
 "qDM" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/caves/east_caves/garbledradio)
 "qDN" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 1;
 	pixel_y = 6
 	},
@@ -24839,7 +24830,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/hallway)
 "qKl" = (
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 4
 	},
@@ -25113,10 +25104,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "qSw" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/east_caves)
 "qSH" = (
@@ -25258,6 +25246,10 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/hallway)
+"qXz" = (
+/obj/effect/landmark/campaign_structure/sensor_tower,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/gelida/outdoors/colony_streets/north_east_street)
 "qXQ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/plating_catwalk/prison,
@@ -25902,7 +25894,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "roD" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/machinery/atmospherics/components/unary/cryo_cell{
+	dir = 1
+	},
 /turf/open/floor/tile/dark2{
 	dir = 4
 	},
@@ -26154,7 +26148,7 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "ryK" = (
 /obj/structure/table/mainship,
-/obj/item/storage/box/flashbangs{
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour{
 	pixel_x = -5;
 	pixel_y = 5
 	},
@@ -26246,7 +26240,7 @@
 /area/gelida/indoors/a_block/admin)
 "rCt" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 1;
 	pixel_y = 6
 	},
@@ -26482,7 +26476,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "rMA" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 4
 	},
@@ -26716,6 +26710,10 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
+"rVb" = (
+/obj/effect/landmark/campaign_structure/phoron_crate,
+/turf/open/floor/prison,
+/area/gelida/indoors/lone_buildings/storage_blocks)
 "rVn" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/drinks/cans/souto{
@@ -26844,7 +26842,7 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "rZN" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4
 	},
 /obj/item/tool/lighter/random{
@@ -27295,6 +27293,10 @@
 	},
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/kitchen)
+"spx" = (
+/obj/effect/landmark/patrol_point/tgmc_12,
+/turf/open/floor/plating,
+/area/shuttle/drop2/gelida)
 "spC" = (
 /obj/structure/prop/mainship/gelida/rails,
 /obj/structure/prop/mainship/gelida/rails{
@@ -27617,7 +27619,7 @@
 /area/gelida/indoors/c_block/mining)
 "szX" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	pixel_y = 6
 	},
 /turf/open/floor/prison/blue/plate{
@@ -28166,7 +28168,7 @@
 /area/gelida/indoors/c_block/garage)
 "sRh" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	pixel_y = 5
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -28366,7 +28368,7 @@
 /area/gelida/indoors/b_block/bridge)
 "sZV" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 4
 	},
@@ -28705,6 +28707,10 @@
 /obj/effect/spawner/gibspawner/xeno,
 /turf/open/floor/prison/blue,
 /area/gelida/indoors/a_block/admin)
+"tlU" = (
+/obj/effect/landmark/campaign_structure/phoron_crate,
+/turf/open/floor/prison,
+/area/gelida/outdoors/colony_streets/north_west_street)
 "tmg" = (
 /obj/structure/stairs/corner_seamless{
 	dir = 4
@@ -29534,7 +29540,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/south_street)
 "tTe" = (
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 4
 	},
@@ -29824,6 +29830,10 @@
 	},
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/bar)
+"udk" = (
+/obj/effect/landmark/patrol_point/som/som_12,
+/turf/open/floor/plating,
+/area/gelida/landing_zone_1)
 "udG" = (
 /obj/structure/prop/vehicle/apc{
 	dir = 4;
@@ -30653,7 +30663,7 @@
 /area/gelida/outdoors/rock)
 "uJf" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 1;
 	pixel_y = 5
 	},
@@ -30884,7 +30894,7 @@
 /obj/structure/window{
 	dir = 8
 	},
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	desc = "A small desktop computer. Someone has switched to personal emails and disabled the inventory sort system.";
 	name = "inventory computer"
 	},
@@ -30931,7 +30941,7 @@
 /area/gelida/indoors/c_block/garage)
 "uUl" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 7
 	},
@@ -31142,7 +31152,7 @@
 /area/gelida/indoors/c_block/cargo)
 "vaA" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -31667,6 +31677,10 @@
 	dir = 4
 	},
 /area/gelida/indoors/b_block/hydro)
+"vtN" = (
+/obj/effect/landmark/campaign_structure/sensor_tower,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/gelida/outdoors/colony_streets/south_street)
 "vuo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -32241,7 +32255,7 @@
 /area/gelida/outdoors/rock)
 "vNY" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 1
 	},
@@ -32464,13 +32478,6 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/admin)
-"vXT" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
-/turf/open/floor/plating/ground/snow/layer0,
-/area/gelida/outdoors/colony_streets/east_central_street)
 "vXW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
@@ -32709,6 +32716,10 @@
 "wfV" = (
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
+"wgu" = (
+/obj/effect/landmark/patrol_point/som/som_21,
+/turf/open/floor/prison,
+/area/gelida/cavestructuretwo)
 "wgZ" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -32864,6 +32875,10 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_1)
+"wnr" = (
+/obj/effect/landmark/patrol_point/tgmc_24,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/east_caves)
 "woj" = (
 /obj/structure/table/mainship,
 /obj/structure/flora/pottedplant{
@@ -32878,7 +32893,7 @@
 /area/gelida/indoors/a_block/hallway)
 "wok" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
@@ -33981,7 +33996,7 @@
 /area/gelida/outdoors/colony_streets/north_street)
 "xhe" = (
 /obj/structure/table/fancywoodentable,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4;
 	pixel_y = 3
 	},
@@ -33991,6 +34006,10 @@
 /obj/item/tool/shovel/etool,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/b_block/bridge)
+"xhS" = (
+/obj/effect/landmark/campaign_structure/phoron_crate,
+/turf/open/floor/prison/plate,
+/area/gelida/outdoors/colony_streets/north_street)
 "xic" = (
 /obj/structure/platform_decoration{
 	dir = 6
@@ -34174,7 +34193,7 @@
 /area/gelida/indoors/b_block/bridge)
 "xoV" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 1
 	},
 /obj/item/ashtray/bronze{
@@ -34325,6 +34344,10 @@
 /obj/structure/closet/crate,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/indoors/lone_buildings/storage_blocks)
+"xuf" = (
+/obj/effect/landmark/patrol_point/som/som_23,
+/turf/open/floor/prison,
+/area/gelida/cavestructuretwo)
 "xuW" = (
 /obj/machinery/computer/intel_computer{
 	pixel_y = 13
@@ -34872,6 +34895,10 @@
 	},
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/north_street)
+"xLR" = (
+/obj/effect/landmark/patrol_point/som/som_14,
+/turf/open/floor/plating,
+/area/shuttle/drop1/gelida)
 "xLY" = (
 /obj/item/tool/wirecutters,
 /turf/open/floor/prison,
@@ -35482,13 +35509,6 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_west_street)
-"ygA" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
-/turf/open/floor/plating/ground/snow/layer0,
-/area/gelida/outdoors/colony_streets/east_central_street)
 "ygI" = (
 /obj/structure/prop/vehicle/crane/destructible{
 	dir = 1
@@ -38705,6 +38725,7 @@ xpG
 xpG
 xpG
 alr
+spx
 alr
 alr
 alr
@@ -38712,8 +38733,7 @@ alr
 alr
 alr
 alr
-alr
-alr
+dPe
 alr
 alr
 alr
@@ -39958,7 +39978,7 @@ uew
 uew
 kTM
 bYC
-ann
+mao
 rpT
 rpT
 vwz
@@ -40296,11 +40316,11 @@ yiB
 yiB
 xod
 cZX
-upW
+xuf
 cZX
 mSM
 aUs
-upW
+wgu
 fTM
 yiB
 yiB
@@ -40705,7 +40725,7 @@ xpG
 xpG
 xpG
 alr
-alr
+mWf
 alr
 xpG
 xpG
@@ -40713,7 +40733,7 @@ whD
 xpG
 xpG
 alr
-alr
+gnp
 alr
 alr
 alr
@@ -41505,7 +41525,7 @@ uew
 uew
 uew
 uew
-uew
+dbW
 uew
 vaE
 uew
@@ -41854,7 +41874,7 @@ upW
 eWM
 sZZ
 upW
-upW
+efd
 upW
 sWh
 yiB
@@ -42072,7 +42092,7 @@ sWh
 cLZ
 kuB
 dkT
-awQ
+ass
 apd
 awQ
 awQ
@@ -42420,7 +42440,7 @@ ftO
 ftO
 myA
 myA
-apa
+myA
 bCj
 flJ
 vaN
@@ -42867,7 +42887,7 @@ edD
 iIp
 acc
 rnb
-cYE
+vaN
 vaN
 vaN
 niz
@@ -43307,13 +43327,13 @@ uhx
 sqm
 gHP
 gVv
-aYW
+vaN
 vaN
 vaN
 rnb
 vaN
 rMv
-mtu
+vaN
 vaN
 vaN
 rMv
@@ -43533,7 +43553,7 @@ gVv
 gVv
 vaN
 rnb
-bMY
+vaN
 vaN
 rMv
 vaN
@@ -50573,7 +50593,7 @@ pht
 waV
 iZn
 sKa
-ams
+qDp
 vPO
 qIV
 qIV
@@ -52375,7 +52395,7 @@ nGK
 nGK
 nGK
 oCk
-nGK
+tlU
 nGK
 wtN
 knI
@@ -53194,9 +53214,9 @@ eqT
 pbF
 cqM
 hNx
-pBo
 cqM
-pKl
+cqM
+cqM
 cqM
 pXd
 qih
@@ -53861,7 +53881,7 @@ oTT
 fPM
 iqm
 pHo
-pBo
+cqM
 cqM
 cqM
 pXd
@@ -54401,7 +54421,7 @@ hoS
 gVv
 hUy
 sAO
-sAO
+itK
 sAO
 sAO
 sAO
@@ -54912,7 +54932,7 @@ sdU
 qMo
 wjf
 wjf
-wjf
+rVb
 lHB
 bYC
 dvV
@@ -55735,7 +55755,7 @@ vaN
 vaN
 gVv
 gVv
-vaN
+kqO
 vaN
 xIC
 vaN
@@ -56017,7 +56037,7 @@ jTv
 sPN
 ced
 sdU
-sdU
+vtN
 trn
 sdU
 sdU
@@ -56134,7 +56154,7 @@ jlM
 ujh
 vdC
 gzM
-awU
+xhS
 rip
 awU
 boI
@@ -56923,7 +56943,7 @@ kci
 kci
 jSP
 kci
-kci
+nNq
 uWr
 aXD
 aXD
@@ -69388,7 +69408,7 @@ xIt
 xIt
 xIt
 jqf
-jqf
+qcB
 jqf
 jqf
 jqf
@@ -70016,7 +70036,7 @@ kqs
 kqs
 vXc
 kqs
-kqs
+udk
 ecy
 ecy
 ecy
@@ -70230,7 +70250,7 @@ kqs
 kqs
 kqs
 ecy
-ecy
+xLR
 ecy
 ecy
 ecy
@@ -70500,7 +70520,7 @@ jqf
 ldC
 laW
 jqf
-jqf
+wnr
 xIt
 xIt
 xIt
@@ -71789,7 +71809,7 @@ ecy
 ecy
 ecy
 ecy
-ecy
+csv
 ecy
 ecy
 ecy
@@ -72227,7 +72247,7 @@ guX
 kqs
 vXc
 kqs
-kqs
+mYS
 kqs
 ecy
 ecy
@@ -72569,7 +72589,7 @@ swH
 aFn
 dqA
 kgx
-bCH
+jbF
 bCH
 jMq
 bCH
@@ -72584,7 +72604,7 @@ vby
 ilb
 qpm
 ilb
-ilb
+qXz
 ilb
 juQ
 ilb
@@ -72615,7 +72635,7 @@ wGQ
 jIb
 jIb
 jIb
-vXT
+jIb
 eux
 eux
 jZM
@@ -73057,12 +73077,12 @@ jaT
 jIb
 bBV
 jIb
-ygA
 jIb
 jIb
 jIb
 jIb
-gZW
+jIb
+jIb
 jIb
 ndb
 ndb
@@ -73503,11 +73523,11 @@ wGQ
 jIb
 jIb
 jIb
-jeo
+jIb
 jIb
 jIb
 jaT
-evd
+jIb
 jIb
 ndb
 ndb

@@ -8682,10 +8682,7 @@
 /obj/structure/bed/chair/comfy{
 	dir = 4
 	},
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship)
 "bNr" = (
@@ -9359,10 +9356,7 @@
 /area/deltastation/maintenance/department/science)
 "bUN" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
+/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/exit/departure_lounge)
 "bVb" = (
@@ -12560,7 +12554,7 @@
 "cEW" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/prop/mainship/computer/aiupload,
+/obj/machinery/prop/computer/aiupload,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -14306,7 +14300,7 @@
 /area/deltastation/engineering/hallway)
 "cYD" = (
 /obj/machinery/smartfridge,
-/turf/open/space/basic,
+/turf/open/floor/iron,
 /area/deltastation/service/kitchen)
 "cYE" = (
 /obj/effect/spawner/random/misc/structure/girder,
@@ -15731,10 +15725,7 @@
 /turf/open/floor/iron/large,
 /area/deltastation/security/processing)
 "dmS" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/derelictnortheast)
 "dna" = (
@@ -20295,10 +20286,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/eva/abandoned)
 "eem" = (
@@ -20621,10 +20609,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/break_room)
 "ehL" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/derelictnortheast)
 "ehT" = (
@@ -24476,10 +24461,7 @@
 /area/deltastation/engineering/main)
 "eUI" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/exit/departure_lounge)
 "eUP" = (
@@ -30204,10 +30186,7 @@
 /area/deltastation/science/ordnance/freezerchamber)
 "gbt" = (
 /obj/effect/turf_decal/warning_stripes/box,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/eva/abandoned)
 "gbD" = (
@@ -32470,10 +32449,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/robotics/mechbay)
 "gyi" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship)
 "gyr" = (
@@ -34992,10 +34968,7 @@
 /area/deltastation/security/brig)
 "gZV" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
+/obj/effect/landmark/patrol_point/tgmc_14,
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/exit/departure_lounge)
 "hab" = (
@@ -49184,10 +49157,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/storage)
 "jYE" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship)
 "jYF" = (
@@ -56915,7 +56885,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
 	},
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/iron/white,
 /area/deltastation/medical/treatment_center)
 "lEb" = (
@@ -57455,10 +57425,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/eva/abandoned)
 "lJu" = (
@@ -59047,7 +59014,7 @@
 /area/deltastation/maintenance/disposal/incinerator)
 "lZA" = (
 /obj/machinery/smartfridge/chemistry,
-/turf/open/space/basic,
+/turf/open/floor/iron/white,
 /area/deltastation/medical/pharmacy)
 "lZF" = (
 /obj/effect/ai_node,
@@ -67740,10 +67707,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port/aft)
 "nRw" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/derelictnortheast)
 "nRB" = (
@@ -70959,10 +70923,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/chapel)
 "oAr" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/derelictnortheast)
 "oAs" = (
@@ -72135,7 +72096,7 @@
 "oKN" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/prop/mainship/computer/aiupload{
+/obj/machinery/prop/computer/aiupload{
 	name = "cyborg upload console"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -75178,10 +75139,7 @@
 /turf/closed/wall,
 /area/deltastation/service/chapel)
 "prZ" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
+/obj/effect/landmark/patrol_point/tgmc_12,
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/exit/departure_lounge)
 "psc" = (
@@ -87548,10 +87506,6 @@
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/port/fore)
-"rOc" = (
-/obj/machinery/smartfridge,
-/turf/open/space/basic,
-/area/deltastation/service/hydroponics)
 "rOn" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/engibelt,
@@ -94767,10 +94721,7 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/fitness/recreation)
 "tmG" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/eva/abandoned)
 "tmL" = (
@@ -100406,7 +100357,7 @@
 /area/deltastation/hallway/secondary/service)
 "urR" = (
 /obj/effect/turf_decal/tile/transparent/blue/fourcorners,
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/iron,
 /area/deltastation/medical/treatment_center)
 "urU" = (
@@ -103655,10 +103606,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port)
 "uZO" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship)
 "uZS" = (
@@ -120394,7 +120342,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 10
 	},
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/iron/white,
 /area/deltastation/medical/treatment_center)
 "ymd" = (
@@ -153401,7 +153349,7 @@ xli
 gqm
 keZ
 keZ
-rOc
+fzS
 oxT
 osP
 obo

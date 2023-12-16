@@ -117,7 +117,7 @@
 			else
 				user.visible_message(span_warning("[user] begins to wipe [H]'s lipstick off with \the [src]."), \
 									span_notice("You begin to wipe off [H]'s lipstick."))
-				if(do_after(user, 10, TRUE, H, BUSY_ICON_FRIENDLY))
+				if(do_after(user, 10, NONE, H, BUSY_ICON_FRIENDLY))
 					user.visible_message(span_notice("[user] wipes [H]'s lipstick off with \the [src]."), \
 										span_notice("You wipe off [H]'s lipstick."))
 					H.lip_style = null
@@ -166,8 +166,8 @@
 /obj/item/paper/proc/updateinfolinks()
 	info_links = info
 	for(var/i=1,  i<=min(fields, 15), i++)
-		addtofield(i, "<font face=\"[deffont]\"><A href='?src=\ref[src];write=[i]'>write</A></font>", 1)
-	info_links = info_links + "<font face=\"[deffont]\"><A href='?src=\ref[src];write=end'>write</A></font>"
+		addtofield(i, "<font face=\"[deffont]\"><A href='?src=[text_ref(src)];write=[i]'>write</A></font>", 1)
+	info_links = info_links + "<font face=\"[deffont]\"><A href='?src=[text_ref(src)];write=end'>write</A></font>"
 
 
 /obj/item/paper/proc/clearpaper()
@@ -590,3 +590,34 @@ then, for every time you included a field, increment fields. */
 /obj/item/paper/memorial
 	name = "Memorial Note"
 	info = {"May the souls of our fallen brothers be at rest; not that we may find solace in their passing, but that we should take our due initiative to press on in their memory."}
+
+/obj/item/paper/obnote
+	name = "Notice for OB Operators"
+	info = {"REMINDER TO ALL ORDNANCE OFFICERS:
+	Gimbal controls on the Arachne OB system must stay BELOW 45 degrees at all times! Raising above this mark risks point-blank explosive hull misfire.
+	Gimbal controls are automatic, so no further user interference is required."}
+
+/obj/item/paper/crane
+	name = "Maintenance Notice"
+	info = {"Once again, I am reminding you that the crane equipment is not a toy, and you people shouldnt even be driving it without an operators certification. As it stands, I moved it to engineering for the time being, so you dont get any ideas. I pulled the spark plugs too, just for some added security. - Chief Drydock Engineer Steele"}
+
+/obj/item/paper/arachneresearch1
+	name = "URGENT WORK ORDER - SUSPEND ALL OTHER ASSIGNMENTS"
+	info = {"Good Morning, Researchers. I understand that this is unusual, so Ill cut to the chase. Its important that we stay ahead of this thing, even if our military associates disagree; right now, the biggest threat to our operations is not the expansion of those bugs, but rather the intervention of delinquents of our own species.
+	The Martians continue to impede all operations across the territory, and unlike the aliens, they actually know where to poke to hurt us the most. Thus, we must take upon ourselves a new burden, despite the perceived immorality of it all.
+	We require new solutions that are uniquely capable of eliminating the Martian kind, whatever the cost. They will never forgive you for what you do here, and I understand you realize that. Our benefactor commends your resolve, and ability to see the bigger picture; rest assured, you will be well compensated for your time.
+	- Executive Liaison REDACTED, Deputy Administrator of Internal Affairs"}
+
+/obj/item/paper/arachneresearch2
+	name = "Discussion of the MTN-165 Toxin"
+	info = {"Following recent testing on detained Martian operatives, we have made a breakthrough. While broadly similar genetically, the years of separation between Earthers and Martians has allowed for the most minute of mutations.
+	Most of these are focused towards adaptations to the lower Martian gravity, but a few more interesting genes are specific to the respiratory system. Sure enough, we have been able to exploit these to create a toxin capable of dispatching a Martian, while leaving our own men with minor lesions on the trachea.
+	Currently, this solution only proves effective in high concentrations only achievable in a lab setting, so further testing will be required for a combat-ready solution.
+	- Lead Advisory Researcher REDACTED"}
+
+/obj/item/paper/arachnebrig
+	name = "Hastily-Scribbled Note"
+	info = {"They have nearly broken through the inner airlock. I have no doubts that they will kill me to get to him, but I will not give them an easy fight.
+	I signed on as an MP to uphold the principles of our government. We should be accountable to the law, even during times of war - and the rights of humankind are not up for debate. We took the company researcher into custody on account of multiple, heinous violations of these principles.
+	I suppose our sponsors disagree. So be it. I am making this record so that their voices are heard, even in some small way; we have brought the men who did these things to justice, for a time, but that time is nearly up.
+	Just because they are our enemy does not mean they should suff-"}

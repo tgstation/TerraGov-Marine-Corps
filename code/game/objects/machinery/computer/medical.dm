@@ -1,7 +1,8 @@
 /obj/machinery/computer/med_data
 	name = "Medical Records"
 	desc = "This can be used to check medical records."
-	icon_state = "medcomp"
+	icon_state = "computer"
+	screen_overlay = "medcomp"
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_NT_CORPORATE)
 	circuit = /obj/item/circuitboard/computer/med_data
 	var/obj/item/card/id/scan = null
@@ -49,30 +50,30 @@
 		return
 	var/dat
 	if(src.temp)
-		dat = "<TT>[src.temp]</TT><BR><BR><A href='?src=\ref[src];temp=1'>Clear Screen</A>"
+		dat = "<TT>[src.temp]</TT><BR><BR><A href='?src=[text_ref(src)];temp=1'>Clear Screen</A>"
 	else
-		dat = "Confirm Identity: <A href='?src=\ref[src];scan=1'>[scan ? "[scan.name]": "----------"]</A><HR>"
+		dat = "Confirm Identity: <A href='?src=[text_ref(src)];scan=1'>[scan ? "[scan.name]": "----------"]</A><HR>"
 		if (src.authenticated)
 			switch(src.screen)
 				if(1.0)
 					dat += {"
-<A href='?src=\ref[src];search=1'>Search Records</A>
-<BR><A href='?src=\ref[src];screen=2'>List Records</A>
+<A href='?src=[text_ref(src)];search=1'>Search Records</A>
+<BR><A href='?src=[text_ref(src)];screen=2'>List Records</A>
 <BR>
-<BR><A href='?src=\ref[src];screen=5'>Medbot Tracking</A>
+<BR><A href='?src=[text_ref(src)];screen=5'>Medbot Tracking</A>
 <BR>
-<BR><A href='?src=\ref[src];screen=3'>Record Maintenance</A>
-<BR><A href='?src=\ref[src];logout=1'>{Log Out}</A><BR>
+<BR><A href='?src=[text_ref(src)];screen=3'>Record Maintenance</A>
+<BR><A href='?src=[text_ref(src)];logout=1'>{Log Out}</A><BR>
 "}
 				if(2.0)
 					dat += "<B>Record List</B>:<HR>"
 					if(!isnull(GLOB.datacore.general))
 						for(var/datum/data/record/R in sortRecord(GLOB.datacore.general))
-							dat += "<A href='?src=\ref[src];d_rec=\ref[R]'>[R.fields["id"]]: [R.fields["name"]]<BR></A>"
+							dat += "<A href='?src=[text_ref(src)];d_rec=[text_ref(R)]'>[R.fields["id"]]: [R.fields["name"]]<BR></A>"
 							//Foreach goto(132)
-					dat += "<HR><A href='?src=\ref[src];screen=1'>Back</A>"
+					dat += "<HR><A href='?src=[text_ref(src)];screen=1'>Back</A>"
 				if(3.0)
-					dat += "<B>Records Maintenance</B><HR>\n<A href='?src=\ref[src];back=1'>Backup To Disk</A><BR>\n<A href='?src=\ref[src];u_load=1'>Upload From disk</A><BR>\n<A href='?src=\ref[src];del_all=1'>Delete All Records</A><BR>\n<BR>\n<A href='?src=\ref[src];screen=1'>Back</A>"
+					dat += "<B>Records Maintenance</B><HR>\n<A href='?src=[text_ref(src)];back=1'>Backup To Disk</A><BR>\n<A href='?src=[text_ref(src)];u_load=1'>Upload From disk</A><BR>\n<A href='?src=[text_ref(src)];del_all=1'>Delete All Records</A><BR>\n<BR>\n<A href='?src=[text_ref(src)];screen=1'>Back</A>"
 				if(4.0)
 					if(istype(active1.fields["photo_front"], /obj/item/photo))
 						var/obj/item/photo/P1 = active1.fields["photo_front"]
@@ -84,29 +85,29 @@
 					if ((istype(src.active1, /datum/data/record) && GLOB.datacore.general.Find(src.active1)))
 						dat += "<table><tr><td>Name: [active1.fields["name"]] \
 								ID: [active1.fields["id"]]<BR>\n	\
-								Sex: <A href='?src=\ref[src];field=sex'>[active1.fields["sex"]]</A><BR>\n	\
-								Age: <A href='?src=\ref[src];field=age'>[active1.fields["age"]]</A><BR>\n	\
-								Fingerprint: <A href='?src=\ref[src];field=fingerprint'>[active1.fields["fingerprint"]]</A><BR>\n	\
-								Physical Status: <A href='?src=\ref[src];field=p_stat'>[active1.fields["p_stat"]]</A><BR>\n	\
-								Mental Status: <A href='?src=\ref[src];field=m_stat'>[active1.fields["m_stat"]]</A><BR></td><td align = center valign = top> \
+								Sex: <A href='?src=[text_ref(src)];field=sex'>[active1.fields["sex"]]</A><BR>\n	\
+								Age: <A href='?src=[text_ref(src)];field=age'>[active1.fields["age"]]</A><BR>\n	\
+								Fingerprint: <A href='?src=[text_ref(src)];field=fingerprint'>[active1.fields["fingerprint"]]</A><BR>\n	\
+								Physical Status: <A href='?src=[text_ref(src)];field=p_stat'>[active1.fields["p_stat"]]</A><BR>\n	\
+								Mental Status: <A href='?src=[text_ref(src)];field=m_stat'>[active1.fields["m_stat"]]</A><BR></td><td align = center valign = top> \
 								Photo:<br><img src=photo_front height=64 width=64 border=5><img src=photo_side height=64 width=64 border=5></td></tr></table>"
 					else
 						dat += "<B>General Record Lost!</B><BR>"
 					if ((istype(src.active2, /datum/data/record) && GLOB.datacore.medical.Find(src.active2)))
-						dat += "<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: <A href='?src=\ref[src];field=b_type'>[active2.fields["b_type"]]</A><BR>\nDNA: <A href='?src=\ref[src];field=b_dna'>[active2.fields["b_dna"]]</A><BR>\n<BR>\nMinor Disabilities: <A href='?src=\ref[src];field=mi_dis'>[active2.fields["mi_dis"]]</A><BR>\nDetails: <A href='?src=\ref[src];field=mi_dis_d'>[active2.fields["mi_dis_d"]]</A><BR>\n<BR>\nMajor Disabilities: <A href='?src=\ref[src];field=ma_dis'>[active2.fields["ma_dis"]]</A><BR>\nDetails: <A href='?src=\ref[src];field=ma_dis_d'>[active2.fields["ma_dis_d"]]</A><BR>\n<BR>\nAllergies: <A href='?src=\ref[src];field=alg'>[active2.fields["alg"]]</A><BR>\nDetails: <A href='?src=\ref[src];field=alg_d'>[active2.fields["alg_d"]]</A><BR>\n<BR>\nCurrent Diseases: <A href='?src=\ref[src];field=cdi'>[active2.fields["cdi"]]</A> (per disease info placed in log/comment section)<BR>\nDetails: <A href='?src=\ref[src];field=cdi_d'>[active2.fields["cdi_d"]]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='?src=\ref[src];field=notes'>[decode(src.active2.fields["notes"])]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
+						dat += "<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: <A href='?src=[text_ref(src)];field=b_type'>[active2.fields["b_type"]]</A><BR>\nDNA: <A href='?src=[text_ref(src)];field=b_dna'>[active2.fields["b_dna"]]</A><BR>\n<BR>\nMinor Disabilities: <A href='?src=[text_ref(src)];field=mi_dis'>[active2.fields["mi_dis"]]</A><BR>\nDetails: <A href='?src=[text_ref(src)];field=mi_dis_d'>[active2.fields["mi_dis_d"]]</A><BR>\n<BR>\nMajor Disabilities: <A href='?src=[text_ref(src)];field=ma_dis'>[active2.fields["ma_dis"]]</A><BR>\nDetails: <A href='?src=[text_ref(src)];field=ma_dis_d'>[active2.fields["ma_dis_d"]]</A><BR>\n<BR>\nAllergies: <A href='?src=[text_ref(src)];field=alg'>[active2.fields["alg"]]</A><BR>\nDetails: <A href='?src=[text_ref(src)];field=alg_d'>[active2.fields["alg_d"]]</A><BR>\n<BR>\nCurrent Diseases: <A href='?src=[text_ref(src)];field=cdi'>[active2.fields["cdi"]]</A> (per disease info placed in log/comment section)<BR>\nDetails: <A href='?src=[text_ref(src)];field=cdi_d'>[active2.fields["cdi_d"]]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='?src=[text_ref(src)];field=notes'>[decode(src.active2.fields["notes"])]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
 						var/counter = 1
 						while(src.active2.fields["com_[counter]"])
-							dat += "[active2.fields["com_[counter]"]]<BR><A href='?src=\ref[src];del_c=[counter]'>Delete Entry</A><BR><BR>"
+							dat += "[active2.fields["com_[counter]"]]<BR><A href='?src=[text_ref(src)];del_c=[counter]'>Delete Entry</A><BR><BR>"
 							counter++
-						dat += "<A href='?src=\ref[src];add_c=1'>Add Entry</A><BR><BR>"
-						dat += "<A href='?src=\ref[src];del_r=1'>Delete Record (Medical Only)</A><BR><BR>"
+						dat += "<A href='?src=[text_ref(src)];add_c=1'>Add Entry</A><BR><BR>"
+						dat += "<A href='?src=[text_ref(src)];del_r=1'>Delete Record (Medical Only)</A><BR><BR>"
 					else
 						dat += "<B>Medical Record Lost!</B><BR>"
-						dat += "<A href='?src=\ref[src];new=1'>New Record</A><BR><BR>"
-					dat += "\n<A href='?src=\ref[src];print_p=1'>Print Record</A><BR>\n<A href='?src=\ref[src];screen=2'>Back</A><BR>"
+						dat += "<A href='?src=[text_ref(src)];new=1'>New Record</A><BR><BR>"
+					dat += "\n<A href='?src=[text_ref(src)];print_p=1'>Print Record</A><BR>\n<A href='?src=[text_ref(src)];screen=2'>Back</A><BR>"
 				if(5)
 					dat += "<center><b>Medical Robot Monitor</b></center>"
-					dat += "<a href='?src=\ref[src];screen=1'>Back</a>"
+					dat += "<a href='?src=[text_ref(src)];screen=1'>Back</a>"
 					dat += "<br><b>Medical Robots:</b>"
 					var/bdat = null
 					if(!bdat)
@@ -116,7 +117,7 @@
 
 				else
 		else
-			dat += "<A href='?src=\ref[src];login=1'>{Log In}</A>"
+			dat += "<A href='?src=[text_ref(src)];login=1'>{Log In}</A>"
 
 	var/datum/browser/popup = new(user, "med_rec", "<div align='center'>Medical Records</div>")
 	popup.set_content(dat)
@@ -194,7 +195,7 @@
 			src.active2 = null
 
 		if (href_list["del_all"])
-			src.temp = "Are you sure you wish to delete all records?<br>\n\t<A href='?src=\ref[src];temp=1;del_all2=1'>Yes</A><br>\n\t<A href='?src=\ref[src];temp=1'>No</A><br>"
+			src.temp = "Are you sure you wish to delete all records?<br>\n\t<A href='?src=[text_ref(src)];temp=1;del_all2=1'>Yes</A><br>\n\t<A href='?src=[text_ref(src)];temp=1'>No</A><br>"
 
 		if (href_list["del_all2"])
 			for(var/datum/data/record/R in GLOB.datacore.medical)
@@ -281,13 +282,13 @@
 						src.active2.fields["notes"] = t1
 				if("p_stat")
 					if (istype(src.active1, /datum/data/record))
-						src.temp = "<B>Physical Condition:</B><BR>\n\t<A href='?src=\ref[src];temp=1;p_stat=deceased'>*Deceased*</A><BR>\n\t<A href='?src=\ref[src];temp=1;p_stat=ssd'>*SSD*</A><BR>\n\t<A href='?src=\ref[src];temp=1;p_stat=active'>Active</A><BR>\n\t<A href='?src=\ref[src];temp=1;p_stat=unfit'>Physically Unfit</A><BR>\n\t<A href='?src=\ref[src];temp=1;p_stat=disabled'>Disabled</A><BR>"
+						src.temp = "<B>Physical Condition:</B><BR>\n\t<A href='?src=[text_ref(src)];temp=1;p_stat=deceased'>*Deceased*</A><BR>\n\t<A href='?src=[text_ref(src)];temp=1;p_stat=ssd'>*SSD*</A><BR>\n\t<A href='?src=[text_ref(src)];temp=1;p_stat=active'>Active</A><BR>\n\t<A href='?src=[text_ref(src)];temp=1;p_stat=unfit'>Physically Unfit</A><BR>\n\t<A href='?src=[text_ref(src)];temp=1;p_stat=disabled'>Disabled</A><BR>"
 				if("m_stat")
 					if (istype(src.active1, /datum/data/record))
-						src.temp = "<B>Mental Condition:</B><BR>\n\t<A href='?src=\ref[src];temp=1;m_stat=insane'>*Insane*</A><BR>\n\t<A href='?src=\ref[src];temp=1;m_stat=unstable'>*Unstable*</A><BR>\n\t<A href='?src=\ref[src];temp=1;m_stat=watch'>*Watch*</A><BR>\n\t<A href='?src=\ref[src];temp=1;m_stat=stable'>Stable</A><BR>"
+						src.temp = "<B>Mental Condition:</B><BR>\n\t<A href='?src=[text_ref(src)];temp=1;m_stat=insane'>*Insane*</A><BR>\n\t<A href='?src=[text_ref(src)];temp=1;m_stat=unstable'>*Unstable*</A><BR>\n\t<A href='?src=[text_ref(src)];temp=1;m_stat=watch'>*Watch*</A><BR>\n\t<A href='?src=[text_ref(src)];temp=1;m_stat=stable'>Stable</A><BR>"
 				if("b_type")
 					if (istype(src.active2, /datum/data/record))
-						src.temp = "<B>Blood Type:</B><BR>\n\t<A href='?src=\ref[src];temp=1;b_type=an'>A-</A> <A href='?src=\ref[src];temp=1;b_type=ap'>A+</A><BR>\n\t<A href='?src=\ref[src];temp=1;b_type=bn'>B-</A> <A href='?src=\ref[src];temp=1;b_type=bp'>B+</A><BR>\n\t<A href='?src=\ref[src];temp=1;b_type=abn'>AB-</A> <A href='?src=\ref[src];temp=1;b_type=abp'>AB+</A><BR>\n\t<A href='?src=\ref[src];temp=1;b_type=on'>O-</A> <A href='?src=\ref[src];temp=1;b_type=op'>O+</A><BR>"
+						src.temp = "<B>Blood Type:</B><BR>\n\t<A href='?src=[text_ref(src)];temp=1;b_type=an'>A-</A> <A href='?src=[text_ref(src)];temp=1;b_type=ap'>A+</A><BR>\n\t<A href='?src=[text_ref(src)];temp=1;b_type=bn'>B-</A> <A href='?src=[text_ref(src)];temp=1;b_type=bp'>B+</A><BR>\n\t<A href='?src=[text_ref(src)];temp=1;b_type=abn'>AB-</A> <A href='?src=[text_ref(src)];temp=1;b_type=abp'>AB+</A><BR>\n\t<A href='?src=[text_ref(src)];temp=1;b_type=on'>O-</A> <A href='?src=[text_ref(src)];temp=1;b_type=op'>O+</A><BR>"
 				if("b_dna")
 					if (istype(src.active2, /datum/data/record))
 						var/t1 = stripped_input(usr, "Please input DNA hash:", "Med. records", active2.fields["b_dna"], MAX_MESSAGE_LEN)
@@ -345,7 +346,7 @@
 
 		if (href_list["del_r"])
 			if (active2)
-				src.temp = "Are you sure you wish to delete the record (Medical Portion Only)?<br>\n\t<A href='?src=\ref[src];temp=1;del_r2=1'>Yes</A><br>\n\t<A href='?src=\ref[src];temp=1'>No</A><br>"
+				src.temp = "Are you sure you wish to delete the record (Medical Portion Only)?<br>\n\t<A href='?src=[text_ref(src)];temp=1;del_r2=1'>Yes</A><br>\n\t<A href='?src=[text_ref(src)];temp=1'>No</A><br>"
 
 		if (href_list["del_r2"])
 			if (active2)
@@ -396,13 +397,13 @@
 			if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
 				return
 			var/counter = 1
-			while(src.active2.fields[text("com_[]", counter)])
+			while(src.active2.fields["com_[counter]"])
 				counter++
 			src.active2.fields["com_[counter]"] = "Made by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]"
 
 		if (href_list["del_c"])
-			if ((istype(src.active2, /datum/data/record) && src.active2.fields[text("com_[]", href_list["del_c"])]))
-				src.active2.fields[text("com_[]", href_list["del_c"])] = "<B>Deleted</B>"
+			if ((istype(src.active2, /datum/data/record) && src.active2.fields["com_[href_list["del_c"]]"]))
+				src.active2.fields["com_[href_list["del_c"]]"] = "<B>Deleted</B>"
 
 		if (href_list["search"])
 			var/t1 = stripped_input(usr, "Search String: (Name, DNA, or ID)", "Med. records")
@@ -490,5 +491,6 @@
 /obj/machinery/computer/med_data/laptop
 	name = "Medical Laptop"
 	desc = "Cheap Nanotrasen Laptop."
-	icon_state = "medlaptop"
+	icon_state = "computer_small"
+	screen_overlay = "medlaptop"
 	density = FALSE

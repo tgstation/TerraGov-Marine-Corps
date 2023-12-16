@@ -3,7 +3,7 @@
 	real_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
-	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, WANTED_HUD, SQUAD_HUD_TERRAGOV, SQUAD_HUD_SOM, ORDER_HUD, PAIN_HUD, XENO_DEBUFF_HUD, HEART_STATUS_HUD)
 	health_threshold_crit = -50
 	melee_damage = 5
@@ -129,3 +129,8 @@
 
 	/// This is the cooldown on suffering additional effects for when shock gets high
 	COOLDOWN_DECLARE(last_shock_effect)
+
+///copies over clothing preferences like underwear to another human
+/mob/living/carbon/human/proc/copy_clothing_prefs(mob/living/carbon/human/destination)
+	destination.underwear = underwear
+	destination.undershirt = undershirt

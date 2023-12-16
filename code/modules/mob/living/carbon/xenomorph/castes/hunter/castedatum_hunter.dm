@@ -13,23 +13,23 @@
 	gib_flick = "Hunter Gibbed"
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 24
 	attack_delay = 7
 
 	// *** Speed *** //
-	speed = -1.1
+	speed = -1.4
 	weeds_speed_mod = -0.1
 
 	// *** Plasma *** //
-	plasma_max = 100
-	plasma_gain = 10
+	plasma_max = 200
+	plasma_gain = 18
 
 	// *** Health *** //
-	max_health = 230
+	max_health = 290
 
 	// *** Evolution *** //
-	evolution_threshold = 180
-	upgrade_threshold = TIER_TWO_YOUNG_THRESHOLD
+	evolution_threshold = 225
+	upgrade_threshold = TIER_TWO_THRESHOLD
 
 	evolves_to = list(/mob/living/carbon/xenomorph/ravager, /mob/living/carbon/xenomorph/widow)
 	deevolves_to = /mob/living/carbon/xenomorph/runner
@@ -40,11 +40,7 @@
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 10, FIRE = 15, ACID = 10)
-
-	// *** Ranged Attack *** //
-	charge_type = CHARGE_TYPE_MEDIUM
-	pounce_delay = 15 SECONDS
+	soft_armor = list(MELEE = 55, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
 
 	// *** Stealth ***
 	stealth_break_threshold = 15
@@ -54,15 +50,15 @@
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/silence,
-		/datum/action/xeno_action/activable/pounce/hunter,
-		/datum/action/xeno_action/stealth,
-		/datum/action/xeno_action/activable/hunter_mark,
-		/datum/action/xeno_action/psychic_trace,
-		/datum/action/xeno_action/mirage,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/silence,
+		/datum/action/ability/activable/xeno/pounce,
+		/datum/action/ability/xeno_action/stealth,
+		/datum/action/ability/activable/xeno/hunter_mark,
+		/datum/action/ability/xeno_action/psychic_trace,
+		/datum/action/ability/xeno_action/mirage,
 	)
 
 	// *** Vent Crawl Parameters *** //
@@ -70,123 +66,71 @@
 	vent_exit_speed = HUNTER_VENT_CRAWL_TIME
 	silent_vent_crawl = TRUE
 
-/datum/xeno_caste/hunter/young
-	upgrade_name = "Young"
-
-	upgrade = XENO_UPGRADE_ZERO
-
-/datum/xeno_caste/hunter/mature
-	upgrade_name = "Mature"
-	caste_desc = "A fast, powerful front line combatant. It looks a little more dangerous."
-	upgrade = XENO_UPGRADE_ONE
-
-	// *** Speed *** //
-	speed = -1.2
-
-	// *** Plasma *** //
-	plasma_max = 150
-	plasma_gain = 15
-
-	// *** Health *** //
-	max_health = 250
-
-	// *** Evolution *** //
-	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
-
-	// *** Defense *** //
-	soft_armor = list(MELEE = 45, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 15, FIRE = 20, ACID = 15)
-
-	// *** Ranged Attack *** //
-	pounce_delay = 12.5 SECONDS
-
-/datum/xeno_caste/hunter/elder
-	upgrade_name = "Elder"
-	caste_desc = "A fast, powerful front line combatant. It looks pretty strong."
-	upgrade = XENO_UPGRADE_TWO
-
-	// *** Melee Attacks *** //
-	melee_damage = 24
-
-	// *** Speed *** //
-	speed = -1.3
-
-	// *** Plasma *** //
-	plasma_max = 200
-	plasma_gain = 18
-
-	// *** Health *** //
-	max_health = 270
-
-	// *** Evolution *** //
-	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
-
-	// *** Defense *** //
-	soft_armor = list(MELEE = 50, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 18, FIRE = 25, ACID = 18)
-
-	// *** Ranged Attack *** //
-	pounce_delay = 11.0 SECONDS
-
-/datum/xeno_caste/hunter/ancient
-	upgrade_name = "Ancient"
-	caste_desc = "A fast, powerful front line combatant. It looks extremely deadly."
-	upgrade = XENO_UPGRADE_THREE
-	ancient_message = "We are the epitome of the hunter. Few can stand against us in open combat."
-
-	// *** Melee Attacks *** //
-	melee_damage = 24
-
-	// *** Speed *** //
-	speed = -1.4
-
-	// *** Plasma *** //
-	plasma_max = 200
-	plasma_gain = 18
-
-	// *** Health *** //
-	max_health = 290
-
-	// *** Evolution *** //
-	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
-
-	// *** Defense *** //
-	soft_armor = list(MELEE = 55, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 18, FIRE = 30, ACID = 18)
-
-	// *** Ranged Attack *** //
-	pounce_delay = 10.0 SECONDS
+/datum/xeno_caste/hunter/normal
+	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/hunter/primordial
 	upgrade_name = "Primordial"
-	upgrade = XENO_UPGRADE_FOUR
-	caste_desc = "A silent but deadly killing machine. It looks frighteningly powerful"
-	ancient_message = "We are the ultimate predator. Let the hunt begin."
-
-	// *** Melee Attacks *** //
-	melee_damage = 24
-
-	// *** Speed *** //
-	speed = -1.4
-
-	// *** Plasma *** //
-	plasma_max = 200
-	plasma_gain = 18
-
-	// *** Health *** //
-	max_health = 290
-	// *** Defense *** //
-	soft_armor = list(MELEE = 55, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 18, FIRE = 30, ACID = 18)
-
-	// *** Ranged Attack *** //
-	pounce_delay = 10.0 SECONDS
+	upgrade = XENO_UPGRADE_PRIMO
+	caste_desc = "A silent but deadly killing machine. It looks frighteningly powerful."
+	primordial_message = "We are the ultimate predator. Let the hunt begin."
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/silence,
-		/datum/action/xeno_action/activable/pounce/hunter,
-		/datum/action/xeno_action/stealth,
-		/datum/action/xeno_action/stealth/disguise,
-		/datum/action/xeno_action/activable/hunter_mark,
-		/datum/action/xeno_action/psychic_trace,
-		/datum/action/xeno_action/mirage,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/silence,
+		/datum/action/ability/activable/xeno/pounce,
+		/datum/action/ability/xeno_action/stealth,
+		/datum/action/ability/xeno_action/stealth/disguise,
+		/datum/action/ability/activable/xeno/hunter_mark,
+		/datum/action/ability/xeno_action/psychic_trace,
+		/datum/action/ability/xeno_action/mirage,
+	)
+
+
+/////
+
+/datum/xeno_caste/hunter/weapon_x
+	display_name = "Weapon X"
+	upgrade_name = ""
+	caste_desc = "A fast, powerful creature. It has some kind of machinery attached to its head."
+	caste_type_path = /mob/living/carbon/xenomorph/hunter/weapon_x
+
+	// *** Melee Attacks *** //
+	melee_damage = 26
+
+	// *** Speed *** //
+	speed = -1.7
+
+	// *** Health *** //
+	max_health = 330
+
+	// *** Flags *** //
+	caste_flags = CASTE_INNATE_HEALING|CASTE_INNATE_PLASMA_REGEN|CASTE_HIDE_IN_STATUS
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HEAL_WITHOUT_QUEEN
+
+	// *** Defense *** //
+	soft_armor = list(MELEE = 65, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 20, BIO = 30, FIRE = 50, ACID = 30)
+
+/datum/xeno_caste/hunter/weapon_x/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
+/datum/xeno_caste/hunter/weapon_x/primordial
+	upgrade_name = "Primordial"
+	upgrade = XENO_UPGRADE_PRIMO
+	caste_desc = "A silent but deadly killing machine. It looks frighteningly powerful."
+	primordial_message = "We are the ultimate predator. Let the hunt begin."
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/silence,
+		/datum/action/ability/activable/xeno/pounce,
+		/datum/action/ability/xeno_action/stealth,
+		/datum/action/ability/xeno_action/stealth/disguise,
+		/datum/action/ability/activable/xeno/hunter_mark,
+		/datum/action/ability/xeno_action/psychic_trace,
+		/datum/action/ability/xeno_action/mirage,
 	)

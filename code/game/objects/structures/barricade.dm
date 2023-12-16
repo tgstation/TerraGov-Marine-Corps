@@ -99,7 +99,7 @@
 	var/obj/item/stack/barbed_wire/B = I
 
 	balloon_alert_to_viewers("Setting up wire...")
-	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD) || !can_wire)
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD) || !can_wire)
 		return
 
 	playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
@@ -121,7 +121,7 @@
 
 	balloon_alert_to_viewers("Removing wire...")
 
-	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return TRUE
 
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
@@ -287,7 +287,7 @@
 
 	user.visible_message("[user] starts clearing out \the [src].", "You start removing \the [src].")
 
-	if(!do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, ET.shovelspeed, NONE, src, BUSY_ICON_BUILD))
 		return
 
 	if(ET.folded)
@@ -366,13 +366,13 @@
 
 	balloon_alert_to_viewers("Repairing...")
 
-	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 		return
 
 	if(!D.use(1))
 		return
 
-	repair_damage(max_integrity)
+	repair_damage(max_integrity, user)
 	balloon_alert_to_viewers("Repaired")
 	update_icon()
 
@@ -454,13 +454,13 @@
 
 	balloon_alert_to_viewers("Repairing base...")
 
-	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
 		return FALSE
 
 	if(!metal_sheets.use(2))
 		return FALSE
 
-	repair_damage(max_integrity * 0.3)
+	repair_damage(max_integrity * 0.3, user)
 	balloon_alert_to_viewers("Base repaired")
 	update_icon()
 
@@ -490,7 +490,7 @@
 			return FALSE
 
 	balloon_alert_to_viewers("attaching [choice]")
-	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return FALSE
 
 	if(!metal_sheets.use(CADE_UPGRADE_REQUIRED_SHEETS))
@@ -538,11 +538,11 @@
 		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
 			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
 				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return TRUE
 
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, TRUE)
-			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 
 			balloon_alert_to_viewers("bolt protection panel replaced")
@@ -552,12 +552,12 @@
 		if(BARRICADE_METAL_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
 			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
 				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return TRUE
 
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, TRUE)
 
-			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 
 			balloon_alert_to_viewers("bolt protection panel removed")
@@ -572,11 +572,11 @@
 		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
 			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
 				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return TRUE
 
 			playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
-			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 
 			balloon_alert_to_viewers("anchor bolts loosened")
@@ -600,7 +600,7 @@
 
 			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
 				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return TRUE
 
 			for(var/obj/structure/barricade/B in loc)
@@ -609,7 +609,7 @@
 					return TRUE
 
 			playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
-			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 
 			balloon_alert_to_viewers("anchor bolts secured")
@@ -627,13 +627,13 @@
 		if(BARRICADE_METAL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
 			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
 				var/fumbling_time = 5 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return TRUE
 
 			balloon_alert_to_viewers("disassembling")
 
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-			if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 
 			user.visible_message(span_notice("[user] takes [src]'s panels apart."),
@@ -655,13 +655,13 @@
 
 			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
 				var/fumbling_time = 5 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return TRUE
 
 			balloon_alert_to_viewers("removing armor plates")
 
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-			if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 
 			balloon_alert_to_viewers("removed armor plates")
@@ -772,7 +772,7 @@
 		if(BARRICADE_PLASTEEL_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
 			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
 				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 
 			for(var/obj/structure/barricade/B in loc)
@@ -780,7 +780,7 @@
 					balloon_alert(user, "already a barricade here")
 					return
 
-			if(!do_after(user, 1, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 1, NONE, src, BUSY_ICON_BUILD))
 				return
 
 			balloon_alert_to_viewers("bolt protection panel removed")
@@ -789,7 +789,7 @@
 		if(BARRICADE_PLASTEEL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
 			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
 				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 			balloon_alert_to_viewers("bolt protection panel replaced")
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
@@ -818,13 +818,13 @@
 		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing.
 			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
 				var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 			balloon_alert_to_viewers("disassembling")
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 			busy = TRUE
 
-			if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 50, NONE, src, BUSY_ICON_BUILD))
 				busy = FALSE
 				return
 
@@ -856,7 +856,7 @@
 		if(BARRICADE_PLASTEEL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
 			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
 				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 			balloon_alert_to_viewers("anchor bolts loosened")
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
@@ -877,7 +877,7 @@
 
 			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
 				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 			balloon_alert_to_viewers("secured bolts")
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
@@ -903,13 +903,13 @@
 
 		balloon_alert_to_viewers("Repairing base...")
 
-		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
+		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
 			return
 
 		if(!plasteel_sheets.use(2))
 			return
 
-		repair_damage(max_integrity * 0.3)
+		repair_damage(max_integrity * 0.3, user)
 		balloon_alert_to_viewers("Base repaired")
 		update_icon()
 
@@ -1005,7 +1005,7 @@
 		if(ET.folded)
 			return TRUE
 		balloon_alert_to_viewers("disassembling...")
-		if(!do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, ET.shovelspeed, NONE, src, BUSY_ICON_BUILD))
 			return TRUE
 		user.visible_message(span_notice("[user] disassembles [src]."),
 		span_notice("You disassemble [src]."))
@@ -1031,13 +1031,13 @@
 		if(LAZYACCESS(user.do_actions, src))
 			return
 
-		if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_BUILD) || obj_integrity >= max_integrity)
+		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD) || obj_integrity >= max_integrity)
 			return
 
 		if(!D.use(1))
 			return
 
-		repair_damage(max_integrity * 0.2) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
+		repair_damage(max_integrity * 0.2, user) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
 		balloon_alert_to_viewers("Repaired")
 		update_icon()
 
@@ -1056,6 +1056,9 @@
 
 /obj/structure/barricade/metal/deployable/Initialize(mapload, _internal_item, deployer)
 	. = ..()
+	if(!_internal_item && !internal_shield)
+		return INITIALIZE_HINT_QDEL
+
 	internal_shield = _internal_item
 
 	name = internal_shield.name
@@ -1099,3 +1102,27 @@
 
 /obj/structure/barricade/metal/deployable/attempt_barricade_upgrade()
 	return //not upgradable
+
+
+/*----------------------*/
+// CONCRETE
+/*----------------------*/
+
+/obj/structure/barricade/concrete
+	name = "concrete barricade"
+	desc = "A short wall made of reinforced concrete. It looks like it can take a lot of punishment."
+	icon_state = "concrete_0"
+	coverage = 100
+	max_integrity = 500
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 40, BIO = 100, FIRE = 100, ACID = 20)
+	stack_type = null
+	destroyed_stack_amount = 0
+	hit_sound = "sound/effects/metalhit.ogg"
+	barricade_type = "concrete"
+	can_wire = FALSE
+
+/obj/structure/barricade/concrete/update_overlays()
+	. = ..()
+	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", dir == SOUTH ? BELOW_OBJ_LAYER : ABOVE_MOB_LAYER, dir)
+	new_overlay.pixel_y = (dir == SOUTH ? -32 : 32)
+	. += new_overlay

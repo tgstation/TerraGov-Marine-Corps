@@ -2,7 +2,7 @@
 	name = "nanopaste"
 	singular_name = "nanite swarm"
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "tube"
 	amount = 10
 	max_amount = 10
@@ -22,7 +22,7 @@
 
 		if(S.surgery_open_stage == 0)
 			if (S && (S.limb_status & LIMB_ROBOT))
-				if(user.do_actions || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_MEDICAL))
+				if(user.do_actions || !do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_MEDICAL))
 					return
 				if(S.get_damage())
 					S.heal_limb_damage(15, 15, robo_repair = TRUE, updating_health = TRUE)

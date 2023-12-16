@@ -9,7 +9,7 @@
 	item_state = "hypo"
 	icon_state = "hypo"
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = null
+	possible_transfer_amounts = list(1, 3, 5, 10, 15, 20, 30)
 	volume = 60
 	init_reagent_flags = OPENCONTAINER
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -76,20 +76,13 @@
 	if(skilllock && user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_NOVICE)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
 		span_notice("You fumble around figuring out how to use the [src]."))
-		if(!do_after(user, SKILL_TASK_EASY, TRUE, A, BUSY_ICON_UNSKILLED) || (!in_range(A, user) || !user.Adjacent(A)))
+		if(!do_after(user, SKILL_TASK_EASY, NONE, A, BUSY_ICON_UNSKILLED) || (!in_range(A, user) || !user.Adjacent(A)))
 			return
 
 	if(ismob(A))
 		var/mob/M = A
 		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
 			return
-		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && M.skills.getRating(SKILL_CQC) >= SKILL_CQC_MP)
-			user.Paralyze(6 SECONDS)
-			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
-			M.visible_message(span_danger("[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!"), \
-				span_warning("You knock [user] to the ground before they could inject you!"), null, 5)
-			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-			return FALSE
 
 	var/list/injected = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
@@ -100,6 +93,7 @@
 		var/mob/M = A
 		balloon_alert(user, "Injects [M]")
 		to_chat(M, span_warning("You feel a tiny prick!")) // inject self doubleposting
+		record_reagent_consumption(min(amount_per_transfer_from_this, reagents.total_volume), injected, user, M)
 
 	// /mob/living/carbon/human/attack_hand causes
 	// changeNext_move(7) which creates a delay
@@ -217,25 +211,21 @@
 	liquifier = TRUE
 
 
-/obj/item/reagent_containers/hypospray/interact(mob/user)
-	. = ..()
-	if(.)
-		return
-
+/obj/item/reagent_containers/hypospray/open_ui(mob/user)
 	var/dat = {"
-	<B><A href='?src=\ref[src];autolabeler=1'>Activate Autolabeler</A></B><BR>
+	<B><A href='?src=[text_ref(src)];autolabeler=1'>Activate Autolabeler</A></B><BR>
 	<B>Current Label:</B> [label]<BR>
 	<BR>
-	<B><A href='?src=\ref[src];overlayer=1'>Activate Tagger</A></B><BR>
+	<B><A href='?src=[text_ref(src)];overlayer=1'>Activate Tagger</A></B><BR>
 	<B>Current Tag:</B> [description_overlay]<BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];inject_mode=1'>Toggle Mode (Toggles between injecting and draining):</B><BR>
-	<B>Current Mode:</B> [inject_mode ? "Inject" : "Draw"]</A><BR>
+	<B><A href='byond://?src=[text_ref(src)];inject_mode=1'>Toggle Mode:</A></B><BR>
+	<B>Current Mode:</B> [inject_mode ? "Inject" : "Draw"]<BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];set_transfer=1'>Set Transfer Amount (Change amount drained/injected per use):</A></B><BR>
+	<B><A href='byond://?src=[text_ref(src)];set_transfer=1'>Set Transfer Amount:</A></B><BR>
 	<B>Current Transfer Amount [amount_per_transfer_from_this]</B><BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];flush=1'>Flush Hypospray (Empties the hypospray of all contents):</A></B><BR>
+	<B><A href='byond://?src=[text_ref(src)];flush=1'>Empty Hypospray:</A></B><BR>
 	<BR>"}
 
 	var/datum/browser/popup = new(user, "hypospray")
@@ -243,27 +233,24 @@
 	popup.open()
 
 
-/obj/item/reagent_containers/hypospray/advanced/interact(mob/user)
-	. = ..()
-	if(.)
-		return
+/obj/item/reagent_containers/hypospray/advanced/open_ui(mob/user)
 	var/dat = {"
-	<B><A href='?src=\ref[src];autolabeler=1'>Activate Autolabeler</A></B><BR>
+	<B><A href='?src=[text_ref(src)];autolabeler=1'>Activate Autolabeler</A></B><BR>
 	<B>Current Label:</B> [label]<BR>
 	<BR>
-	<B><A href='?src=\ref[src];overlayer=1'>Activate Tagger</A></B><BR>
+	<B><A href='?src=[text_ref(src)];overlayer=1'>Activate Tagger</A></B><BR>
 	<B>Current Tag:</B> [description_overlay]<BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];inject_mode=1'>Toggle Mode:</A></B><BR>
+	<B><A href='byond://?src=[text_ref(src)];inject_mode=1'>Toggle Mode:</A></B><BR>
 	<B>Current Mode:</B> [inject_mode ? "Inject" : "Draw"]<BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];set_transfer=1'>Set Transfer Amount:</A></B><BR>
+	<B><A href='byond://?src=[text_ref(src)];set_transfer=1'>Set Transfer Amount:</A></B><BR>
 	<B>Current Transfer Amount:</B> [amount_per_transfer_from_this]<BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];displayreagents=1'>Display Reagent Content:</A></B><BR>
+	<B><A href='byond://?src=[text_ref(src)];displayreagents=1'>Display Reagent Content:</A></B><BR>
 	<BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];flush=1'>Flush Hypospray (Empties the hypospray of all contents):</A></B><BR>
+	<B><A href='byond://?src=[text_ref(src)];flush=1'>Empty Hypospray:</A></B><BR>
 	<BR>"}
 
 	var/datum/browser/popup = new(user, "hypospray")
@@ -306,7 +293,7 @@
 		update_icon()
 
 	else if(href_list["set_transfer"])
-		var/N = tgui_input_list(usr, "Amount per transfer from this:", "[src]", list(30, 20, 15, 10, 5, 3, 1))
+		var/N = tgui_input_list(usr, "Amount per transfer from this:", "[src]", possible_transfer_amounts)
 		if(!N)
 			return
 
@@ -496,7 +483,7 @@
 	list_reagents = list(
 		/datum/reagent/hypervene = 60,
 	)
-	description_overlay = "Ht"
+	description_overlay = "Hy"
 
 /obj/item/reagent_containers/hypospray/advanced/nanoblood
 	name = "nanoblood hypospray"
@@ -613,10 +600,11 @@
 
 /obj/item/reagent_containers/hypospray/advanced/imialky
 	name = "big imialky hypospray"
-	desc = "A hypospray loaded with a mixture of imidazoline and alkysine. Chemicals that will heal the brain and eyes."
+	desc = "A hypospray loaded with a mixture of imidazoline and alkysine. Chemicals that will heal brain, eyes, and ears."
+	amount_per_transfer_from_this = 5
 	list_reagents = list(
-		/datum/reagent/medicine/imidazoline = 30,
-		/datum/reagent/medicine/alkysine = 30,
+		/datum/reagent/medicine/imidazoline = 48,
+		/datum/reagent/medicine/alkysine = 12,
 	)
 	description_overlay = "Im"
 

@@ -102,6 +102,11 @@
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Hotaru class of helmet."
 	icon_state = "hotaru_visor"
 
+/obj/item/armor_module/armor/visor/marine/dashe
+	name = "\improper Style Pattern Dashe visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Dashe class of helmet."
+	icon_state = "dashe_visor"
+
 /obj/item/armor_module/armor/visor/marine/eva
 	name = "\improper Jaeger Pattern EVA visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the EVA class of helmet."
@@ -198,3 +203,20 @@
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the EOD class of helmet."
 	icon_state = "eod_visor_old"
 	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
+
+//Hardsuit Helmet Visors
+/obj/item/armor_module/armor/visor/marine/fourvisor
+	name = "\improper FleckTex Mark V helmet visor"
+	desc = "The visor attachment of the FleckTex WY-01 series modular helmets. This one is designed for the Mark V Breacher class of helmet."
+	icon_state = "fourvisor_visor"
+
+/obj/item/armor_module/armor/visor/marine/foureyevisor
+	name = "\improper FleckTex Mark III helmet visor"
+	desc = "The visor attachment of the FleckTex WY-01 series modular helmets. This one is designed for the Mark III Marauder class of helmet."
+	icon_state = "foureye_visor"
+
+/obj/item/armor_module/armor/visor/marine/markonevisor
+	name = "\improper FleckTex Mark I helmet visor"
+	desc = "The visor attachment of the FleckTex WY-01 series modular helmets. This one is designed for the Mark I Raider class of helmet."
+	icon_state = "markone_visor"
+

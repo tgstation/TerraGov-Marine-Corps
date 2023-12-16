@@ -201,7 +201,7 @@
 		building_time -= clamp(R.time * ( user.skills.getRating(SKILL_CONSTRUCTION) - R.skill_req ) * 0.40, 0 , 0.85 * building_time) // -40% time each extra skill point
 	if(building_time)
 		balloon_alert_to_viewers("building [R.title]")
-		if(!do_after(user, building_time, TRUE, src, (building_time > R.time ? BUSY_ICON_UNSKILLED : BUSY_ICON_BUILD)))
+		if(!do_after(user, building_time, NONE, src, (building_time > R.time ? BUSY_ICON_UNSKILLED : BUSY_ICON_BUILD)))
 			return
 		if(!building_checks(user, R, multiplier))
 			return
@@ -233,6 +233,8 @@
 			qdel(I)
 	//BubbleWrap END
 
+	if(istype(O, /obj/structure))
+		user.record_structures_built()
 
 /obj/item/stack/proc/building_checks(mob/user, datum/stack_recipe/R, multiplier)
 	if (get_amount() < R.req_amount*multiplier)

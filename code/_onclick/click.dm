@@ -1,8 +1,9 @@
-//Delays the mob's next click/action by num deciseconds
-// eg: 10 - 3 = 7 deciseconds of delay
-// eg: 10 * 0.5 = 5 deciseconds of delay
-// DOES NOT EFFECT THE BASE 1 DECISECOND DELAY OF NEXT_CLICK
-
+/**
+ * Delays the mob's next click/action by num deciseconds
+ * eg: 10 - 3 = 7 deciseconds of delay
+ * eg: 10 * 0.5 = 5 deciseconds of delay
+ * DOES NOT EFFECT THE BASE 1 DECISECOND DELAY OF NEXT_CLICK
+ */
 /mob/proc/changeNext_move(num)
 	next_move = world.time + ((num + next_move_adjust) * next_move_modifier)
 
@@ -303,15 +304,21 @@
 	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_MIDDLECLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
 		return FALSE
 
+	if(!selected_ability)
+		return FALSE
+	A = ability_target(A)
+	if(selected_ability.can_use_ability(A))
+		selected_ability.use_ability(A)
+
 #define TARGET_FLAGS_MACRO(flagname, typepath) \
 if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	. = locate(typepath) in get_turf(A);\
 	if(.){\
 		return;}}
 
-/mob/living/carbon/xenomorph/proc/ability_target(atom/A)
-	TARGET_FLAGS_MACRO(XABB_MOB_TARGET, /mob/living)
-	if(selected_ability.target_flags & XABB_TURF_TARGET)
+/mob/living/carbon/proc/ability_target(atom/A)
+	TARGET_FLAGS_MACRO(ABILITY_MOB_TARGET, /mob/living)
+	if(selected_ability.target_flags & ABILITY_TURF_TARGET)
 		return get_turf(A)
 	return A
 
@@ -329,7 +336,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 		A = ability_target(A)
 		if(selected_ability.can_use_ability(A))
 			selected_ability.use_ability(A)
-			return !CHECK_BITFIELD(selected_ability.use_state_flags, XACT_DO_AFTER_ATTACK)
+			return !CHECK_BITFIELD(selected_ability.use_state_flags, ABILITY_DO_AFTER_ATTACK)
 
 /*
 	Right click
@@ -481,6 +488,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 */
 /mob/proc/CtrlShiftClickOn(atom/A)
 	A.CtrlShiftClick(src)
+	return
 
 
 /mob/proc/ShiftMiddleClickOn(atom/A)

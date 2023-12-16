@@ -66,7 +66,7 @@
 		span_danger("[user] tries to move you out of [src]!")
 		)
 	var/olddir = dir
-	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_HOSTILE) || dir != olddir)
+	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_HOSTILE) || dir != olddir)
 		return TRUE //True to intercept the click. No need for further actions after this.
 	silent = TRUE
 	. = ..()

@@ -6,10 +6,17 @@
 	name = "blink drive"
 	desc = "A portable Bluespace Displacement Drive, otherwise known as a blink drive. Can teleport the user across short distances with a degree of unreliability, with potentially fatal results. Teleporting past 5 tiles, to tiles out of sight or rapid use of the drive add variance to the teleportation destination. <b>Alt right click or middleclick to teleport to a destination when the blink drive is equipped.</b>"
 	icon = 'icons/obj/items/jetpack.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
+	)
 	icon_state = "bluespace_pack"
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
 	obj_flags = CAN_BE_HIT
+	light_range = 0.1
+	light_power = 0.1
+	light_color = LIGHT_COLOR_BLUE
 	///Number of teleport charges you currently have
 	var/charges = 3
 	///True if you can use shift click/middle click to use it
@@ -23,6 +30,10 @@
 /obj/item/blink_drive/update_icon()
 	. = ..()
 	equipped_user?.update_inv_back()
+	if(charges)
+		turn_light(equipped_user, TRUE)
+	else
+		turn_light(equipped_user, FALSE)
 
 /obj/item/blink_drive/update_icon_state()
 	. = ..()
@@ -30,6 +41,12 @@
 		icon_state = initial(icon_state)
 	else
 		icon_state = "[initial(icon_state)]_e"
+
+/obj/item/blink_drive/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	set_light_on(toggle_on)
 
 /obj/item/blink_drive/equipped(mob/user, slot)
 	. = ..()
@@ -58,6 +75,11 @@
 		SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
 		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, PROC_REF(unselect))
 	selected = !selected
+
+/obj/item/blink_drive/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	. = ..()
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
+	standing.overlays.Add(emissive_overlay)
 
 ///Signal handler for making it impossible to use middleclick to use the blink drive
 /obj/item/blink_drive/proc/unselect(datum/source, mob/user)
@@ -117,7 +139,9 @@
 
 	var/atom/movable/pulled_target = user.pulling
 	if(pulled_target)
-		if(!do_after(user, 0.5 SECONDS, TRUE, user, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 0.5 SECONDS, IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, user, BUSY_ICON_HOSTILE))
+			return
+		if(pulled_target != user.pulling)
 			return
 		user.balloon_alert(user, "pulled someone through")
 
@@ -127,7 +151,7 @@
 		pulled_target.forceMove(target_turf)
 	teleport_debuff_aoe(user)
 
-	if(target_turf.density || isspaceturf(target_turf))
+	if(!target_turf.can_teleport_here())
 		user.emote("gored")
 		user.gib() //telegibbed
 		if(pulled_target && ismob(pulled_target))

@@ -47,8 +47,7 @@
 	if(!mapload)
 		connect_to_shuttle(SSshuttle.get_containing_shuttle(src))
 
-		for(var/port_id in SSshuttle.stationary)
-			var/obj/docking_port/stationary/S = SSshuttle.stationary[port_id]
+		for(var/obj/docking_port/stationary/S AS in SSshuttle.stationary)
 			if(S.id == shuttleId)
 				jumpto_ports[S.id] = TRUE
 
@@ -161,7 +160,7 @@
 	if(designate_time && (landing_clear != SHUTTLE_DOCKER_BLOCKED))
 		to_chat(current_user, span_warning("Targeting transit location, please wait [DisplayTimeText(designate_time)]..."))
 		designating_target_loc = the_eye.loc
-		var/wait_completed = do_after(current_user, designate_time, TRUE, designating_target_loc, extra_checks = CALLBACK(src, /obj/machinery/computer/camera_advanced/shuttle_docker/proc/canDesignateTarget))
+		var/wait_completed = do_after(current_user, designate_time, NONE, designating_target_loc, extra_checks = CALLBACK(src, /obj/machinery/computer/camera_advanced/shuttle_docker/proc/canDesignateTarget))
 		designating_target_loc = null
 		if(!current_user)
 			return
@@ -296,7 +295,7 @@
 	if(!T || T.x <= 10 || T.y <= 10 || T.x >= world.maxx - 10 || T.y >= world.maxy - 10)
 		return SHUTTLE_DOCKER_BLOCKED
 	var/area/turf_area = get_area(T)
-	if(turf_area.ceiling >= CEILING_UNDERGROUND)
+	if(turf_area.ceiling >= CEILING_OBSTRUCTED)
 		return SHUTTLE_DOCKER_BLOCKED
 	// If it's one of our shuttle areas assume it's ok to be there
 	if(shuttle_port.shuttle_areas[T.loc])
@@ -365,7 +364,7 @@
 /mob/camera/aiEye/remote/shuttle_docker/setLoc(T)
 	..()
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/console = origin
-	console.checkLandingSpot()
+	console?.checkLandingSpot()
 
 /mob/camera/aiEye/remote/shuttle_docker/update_remote_sight(mob/living/user)
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/console = origin

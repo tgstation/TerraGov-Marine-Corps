@@ -23,6 +23,13 @@
 /mob/living/proc/finish_aura_cycle()
 	received_auras.Cut() //Living, of course, doesn't care about any
 
+///Can we receive this aura? returns bool
+/mob/living/proc/can_receive_aura(aura_type, atom/source, datum/aura_bearer/bearer)
+	SHOULD_CALL_PARENT(TRUE)
+	. = TRUE
+	if(faction != bearer.faction)
+		return FALSE
+
 ///Update what auras we'll receive this life tick if it's either new or stronger than current. aura_type as AURA_ define, strength as number.
 /mob/living/proc/receive_aura(aura_type, strength)
 	if(received_auras[aura_type] > strength)
@@ -91,11 +98,6 @@
 	set_armor_datum()
 	AddElement(/datum/element/gesture)
 	AddElement(/datum/element/keybinding_update)
-	stamina_regen_modifiers = list()
-	received_auras = list()
-	emitted_auras = list()
-	RegisterSignal(src, COMSIG_AURA_STARTED, PROC_REF(add_emitted_auras))
-	RegisterSignal(src, COMSIG_AURA_FINISHED, PROC_REF(remove_emitted_auras))
 
 /mob/living/Destroy()
 	for(var/datum/status_effect/effect AS in status_effects)
@@ -128,48 +130,8 @@
 	return
 
 
-/mob/proc/get_contents()
-	return
-
-
-//Recursive function to find everything a mob is holding.
-/mob/living/get_contents(obj/item/storage/Storage = null)
-	var/list/L = list()
-
-	if(Storage) //If it called itself
-		L += Storage.return_inv()
-
-		for(var/obj/item/gift/G in Storage.return_inv()) //Check for gift-wrapped items
-			L += G.gift
-			if(istype(G.gift, /obj/item/storage))
-				L += get_contents(G.gift)
-
-		for(var/obj/item/smallDelivery/D in Storage.return_inv()) //Check for package wrapped items
-			L += D.wrapped
-			if(istype(D.wrapped, /obj/item/storage)) //this should never happen
-				L += get_contents(D.wrapped)
-		return L
-
-	else
-
-		L += contents
-		for(var/obj/item/storage/S in contents)	//Check for storage items
-			L += get_contents(S)
-
-		for(var/obj/item/gift/G in contents) //Check for gift-wrapped items
-			L += G.gift
-			if(istype(G.gift, /obj/item/storage))
-				L += get_contents(G.gift)
-
-		for(var/obj/item/smallDelivery/D in contents) //Check for package wrapped items
-			L += D.wrapped
-			if(istype(D.wrapped, /obj/item/storage)) //this should never happen
-				L += get_contents(D.wrapped)
-		return L
-
-
 /mob/living/proc/check_contents_for(A)
-	var/list/L = get_contents()
+	var/list/L = GetAllContents()
 
 	for(var/obj/O in L)
 		if(O.type == A)
@@ -429,6 +391,9 @@
 		return
 	if(!client)
 		return
+	var/mob/mob_to_push = AM
+	if(istype(mob_to_push) && mob_to_push.lying_angle)
+		return
 	now_pushing = TRUE
 	var/dir_to_target = get_dir(src, AM)
 
@@ -449,7 +414,6 @@
 		if(force_push(AM, move_force, dir_to_target, push_anchored))
 			push_anchored = TRUE
 	if(ismob(AM))
-		var/mob/mob_to_push = AM
 		var/atom/movable/mob_buckle = mob_to_push.buckled
 		// If we can't pull them because of what they're buckled to, make sure we can push the thing they're buckled to instead.
 		// If neither are true, we're not pushing anymore.
@@ -581,15 +545,6 @@
 		return
 	else
 		smokecloak_off()
-
-/mob/living/proc/do_jitter_animation(jitteriness)
-	var/amplitude = min(4, (jitteriness/100) + 1)
-	var/pixel_x_diff = rand(-amplitude, amplitude)
-	var/pixel_y_diff = rand(-amplitude/3, amplitude/3)
-	var/final_pixel_x = initial(pixel_x)
-	var/final_pixel_y = initial(pixel_y)
-	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 2, loop = 6)
-	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 2)
 
 
 /*

@@ -66,16 +66,6 @@
 		return
 
 	if (user.a_intent == INTENT_HARM && ismob(target) && isliving(user))
-		var/mob/M = target
-		var/mob/living/L = user
-		if(M != L && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && M.skills.getRating(SKILL_CQC) >= SKILL_CQC_MP)
-			L.Paralyze(6 SECONDS)
-			log_combat(M, L, "blocked", addition="using their cqc skill (syringe injection)")
-			M.visible_message(span_danger("[M]'s reflexes kick in and knock [L] to the ground before they could use \the [src]'!"), \
-				span_warning("You knock [L] to the ground before they could inject you!"), null, 5)
-			playsound(L.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-			return
-
 		syringestab(target, user)
 		return
 
@@ -165,7 +155,7 @@
 					else
 						user.visible_message(span_danger("[user] begins hunting for an injection port on [target]'s suit!"))
 
-					if(!do_mob(user, target, injection_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+					if(!do_after(user, injection_time, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 						return
 
 					user.visible_message(span_warning("[user] injects [target] with the syringe!"))
@@ -177,6 +167,7 @@
 							injected += R.name
 						var/contained = english_list(injected)
 						log_combat(user, M, "injected", src, "Reagents: [contained]")
+						record_reagent_consumption(min(10, reagents.total_volume), reagents.reagent_list, user, M)
 
 				reagents.reaction(target, INJECT)
 
@@ -317,7 +308,7 @@
 
 			if(ismob(target) && target != user)
 				user.visible_message(span_danger("[user] is trying to inject [target] with a giant syringe!"))
-				if(!do_mob(user, target, 30 SECONDS, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+				if(!do_after(user, 30 SECONDS, NONE, target, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 					return
 				user.visible_message(span_warning("[user] injects [target] with a giant syringe!"))
 			spawn(5)

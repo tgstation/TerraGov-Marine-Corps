@@ -336,6 +336,12 @@
 		qdel(I)
 		qdel(src)
 		user.put_in_hands(P)
+	else if(istype(I, /obj/item/clothing/glasses/night/m56_goggles))
+		var/obj/item/clothing/glasses/night/sunglasses/P = new
+		to_chat(user, span_notice("You fasten the KTLD sight to the inside of the glasses."))
+		qdel(I)
+		qdel(src)
+		user.put_in_hands(P)
 
 		update_icon(user)
 

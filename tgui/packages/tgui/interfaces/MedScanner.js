@@ -9,6 +9,7 @@ export const MedScanner = (props, context) => {
     species,
     dead,
     health,
+    max_health,
     total_brute,
     total_burn,
     toxin,
@@ -50,7 +51,7 @@ export const MedScanner = (props, context) => {
           <LabeledList>
             <LabeledList.Item label="Health">
               <ProgressBar
-                value={health / 100}
+                value={health / max_health}
                 ranges={{
                   good: [0.4, Infinity],
                   average: [0.2, 0.4],

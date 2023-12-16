@@ -21,12 +21,7 @@
 
 /obj/machinery/prop/mainship/hangar/dropship_part_fabricator
 
-/obj/machinery/prop/mainship/computer/PC
-	name = "personal desktop"
-	desc = "A small computer hooked up into the ship's computer network."
-	icon_state = "terminal1"
-
-/obj/machinery/prop/mainship/computer
+/obj/machinery/prop/computer
 	name = "systems computer"
 	desc = "A small computer hooked up into the ship's systems."
 
@@ -36,9 +31,22 @@
 	idle_power_usage = 20
 
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "terminal"
+	icon_state = "computer_small"
+	light_range = 1
+	light_power = 0.5
+	light_color = LIGHT_COLOR_BLUE
+	///The actual screen sprite for this computer
+	var/screen_overlay = "terminal_misc"
+	///The destroyed computer sprite. Defaults based on the icon_state if not specified
+	var/broken_icon
 
-/obj/machinery/prop/mainship/computer/ex_act(severity)
+/obj/machinery/prop/computer/Initialize(mapload)
+	. = ..()
+	if(!broken_icon)
+		broken_icon = "[initial(icon_state)]_broken"
+	update_icon()
+
+/obj/machinery/prop/computer/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			qdel(src)
@@ -55,27 +63,50 @@
 			if (prob(15))
 				set_broken()
 
-
-/obj/machinery/prop/mainship/computer/proc/set_broken()
+/obj/machinery/prop/computer/proc/set_broken()
 	machine_stat |= BROKEN
 	update_icon()
 
-/obj/machinery/prop/mainship/computer/update_icon_state()
-	icon_state = initial(icon_state)
-	if(machine_stat & BROKEN)
-		icon_state += "b"
-	if(machine_stat & NOPOWER)
-		icon_state = initial(icon_state)
-		icon_state += "0"
+/obj/machinery/prop/computer/update_icon()
+	. = ..()
+	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
+		set_light(0)
+	else
+		set_light(initial(light_range))
 
-/obj/machinery/prop/mainship/computer/aiupload
+/obj/machinery/prop/computer/update_icon_state()
+	if(machine_stat & (BROKEN|DISABLED))
+		icon_state = "[initial(icon_state)]_broken"
+	else
+		icon_state = initial(icon_state)
+
+/obj/machinery/prop/computer/update_overlays()
+	. = ..()
+	if(!screen_overlay)
+		return
+	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
+		return
+	. += emissive_appearance(icon, screen_overlay, alpha = src.alpha)
+	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
+
+/obj/machinery/prop/computer/PC
+	name = "personal desktop"
+	desc = "A small computer hooked up into the ship's computer network."
+	icon_state = "terminal"
+	screen_overlay = "terminal1"
+
+/obj/machinery/prop/computer/aiupload
 	name = "\improper AI upload console"
 	desc = "Used to upload laws to the AI."
 
-	icon_state = "aiupload"
+	icon_state = "computer"
+	screen_overlay = "aiupload"
+	broken_icon = "computer_blue_broken"
 
-/obj/machinery/prop/mainship/computer/dna
-	icon_state = "dna"
+/obj/machinery/prop/computer/dna
+	icon_state = "computer"
+	screen_overlay = "dna"
+	broken_icon = "computer_blue_broken"
 
 /obj/structure/prop/mainship/massdiver
 	name = "mass driver"
@@ -166,7 +197,9 @@
 	name = "R&D Console"
 	icon = 'icons/obj/machines/computer.dmi'
 	desc = "A research console."
-	icon_state = "rdcomp"
+	icon_state = "computer"
+	screen_overlay = "rdcomp"
+	broken_icon = "computer_blue_broken"
 
 /obj/machinery/prop/r_n_d/server
 	name = "R&D Server"
@@ -178,18 +211,21 @@
 	name = "R&D Server Controller"
 	icon = 'icons/obj/machines/computer.dmi'
 	desc = "Oversees all research"
-	icon_state = "rdcomp"
+	icon_state = "computer"
+	screen_overlay = "rdcomp"
+	broken_icon = "computer_blue_broken"
 
 /obj/machinery/prop/computer/communications
 	name = "communications console"
 	desc = "This can be used for various important functions."
-	icon_state = "comm"
+	screen_overlay = "comm"
 	icon = 'icons/obj/machines/computer.dmi'
 
 /obj/machinery/prop/computer/crew
 	name = "Crew monitoring computer"
 	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
-	icon_state = "crew"
+	icon_state = "computer"
+	screen_overlay = "crew"
 	icon = 'icons/obj/machines/computer.dmi'
 
 /obj/machinery/prop/r_n_d/server/alt
@@ -419,12 +455,14 @@
 	layer = LADDER_LAYER
 	light_range = 4
 	resistance_flags = RESIST_ALL //no delaminations here
+	allow_pass_flags = NONE
 	opacity = TRUE
 
 /obj/structure/prop/mainship/doorblocker //doors that exist only to block access, used mostly for valhalla omegastation
 	name = "\improper Barred Airlock"
 	icon = 'icons/Marine/mainship_props.dmi'
 	resistance_flags = RESIST_ALL
+	allow_pass_flags = NONE
 	desc = "It opens and closes."
 	opacity = TRUE
 
@@ -646,6 +684,15 @@
 	resistance_flags = RESIST_ALL
 	density = TRUE
 
+/obj/structure/prop/mainship/prop_tech/som
+	name = "SOM technician"
+	desc = "A hard working SOM technician maintaining the vehicles of the base, as well as the base itself. They seem to be very busy investigating something right now."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "SOM_technician"
+
+/obj/structure/prop/mainship/prop_tech/som/alt
+	icon_state = "SOM_technician_2"
+
 /obj/structure/prop/mainship/prop_sominf
 	name = "SOM Infantry"
 	desc = "Standard Sons of Mars infantry with a V-31 assault rifle on hand. While their face is obscured by the visor, it feels like you should keep going instead of loitering around."
@@ -654,6 +701,36 @@
 	resistance_flags = RESIST_ALL
 	density = TRUE
 
+/obj/structure/prop/mainship/prop_sominf/heavy
+	name = "SOM heavy infantry"
+	desc = "Heavy Sons of Mars infantry with a VX-32 charger on hand. While their face is obscured by the visor, it feels like you should keep going instead of loitering around."
+	icon_state = "SOM_heavy_armed"
+
+/obj/structure/prop/mainship/prop_sominf/heavy/unarmed
+	name = "SOM heavy infantry"
+	desc = "Heavy Sons of Mars infantry. Better leave them to whatever it is they're doing"
+	icon_state = "SOM_heavy"
+
+/obj/structure/prop/mainship/prop_sominf/lorica
+	name = "SOM heavy infantry"
+	desc = "Sons of Mars infantry in heavy duty Lorica armor, with a VX-32 charger on hand. They don't look like they're messing around."
+	icon_state = "lorica_armed"
+
+/obj/structure/prop/mainship/prop_sominf/lorica/unarmed
+	name = "SOM heavy infantry"
+	desc = "Sons of Mars infantry in heavy duty Lorica armor. They look pretty tough."
+	icon_state = "lorica"
+
+/obj/structure/prop/mainship/som_scientist
+	name = "SOM scientist"
+	desc = "A hard working SOM scientist type. They look like they're doing something important."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "SOM_scientist"
+	resistance_flags = RESIST_ALL
+	density = TRUE
+
+/obj/structure/prop/mainship/som_scientist/alt
+	icon_state = "SOM_scientist_2"
 
 /obj/structure/prop/templedoor
 	name = "Strange Temple"
@@ -767,8 +844,8 @@
 
 /obj/structure/prop/mainship/meterprop/random/Initialize(mapload)
 	. = ..()
-	kpa = rand(9.3, 21.4)
-	kelvin = rand(10.3, 28.4)
+	kpa = randfloat(9.3, 21.4)
+	kelvin = randfloat(10.3, 28.4)
 
 /obj/structure/prop/mainship/pipeprop //does not init and so doesn't generate lag at all
 	name = "pipe"
@@ -1942,6 +2019,16 @@
 	. = ..()
 	icon_state = "camera1"
 
+/obj/machinery/prop/computer/tadpole
+	name = "Tadpole navigation computer"
+	desc = "Used to designate a precise transit location for the Tadpole."
+	icon_state = "shuttlecomputer"
+	screen_overlay = "shuttlecomputer_screen"
+	resistance_flags = RESIST_ALL
+
+/obj/structure/prop/computer
+	icon = 'icons/obj/machines/computer.dmi'
+
 /obj/structure/prop/computer/broken
 	name = "broken computer"
 	desc = "A busted PC, the internals look fried, there's no fixing this one."
@@ -2008,13 +2095,72 @@
 /obj/machinery/computer/solars
 	name = "Port Quarter Solar Control"
 	desc = "A controller for solar panel arrays."
-	icon_state = "solar"
+	icon_state = "computer"
+	screen_overlay = "solar"
+	broken_icon = "computer_blue_broken"
 
 /obj/structure/prop/mainship/errorprop
 	name = "ERROR"
 	desc = "If you see this object in game you should ahelp, something has broken."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "error"
+
+/obj/prop/mainship/prop/news_tv
+	name = "TV"
+	desc = "Suprisingly still relevant, this one is set to the news channel."
+	icon = 'icons/obj/status_display.dmi'
+	icon_state = "news"
+	density = FALSE
+	///List for the news stories
+	var/list/news_list = list()
+	///News stories
+	var/news_stories = ""
+/obj/prop/mainship/prop/news_tv/Initialize(mapload)
+	. = ..()
+	news_list = splittext(news_stories, ";")
+	addtimer(CALLBACK(src, PROC_REF(start_send)), SSticker.round_start_time + 1 MINUTES)
+
+/obj/prop/mainship/prop/news_tv/proc/start_send()
+	for(var/i = 1 to length(news_list))
+		addtimer(CALLBACK(src, PROC_REF(send_story), i), 45 SECONDS * i)
+
+/obj/prop/mainship/prop/news_tv/proc/send_story(story)
+	var/selected_story = news_list[story]
+	say(selected_story)
+
+/obj/prop/mainship/prop/news_tv/tg
+	news_stories = "The peace of the Persatuan system was broken as missiles, lasers and coilguns are fired in a fierce naval battle with TerraGov and the SOM, the navy was able to secure the jump points being used by the SOM cutting off the remaining SOM ships left in the system.;\
+		TDF releases headcam footage being nicknamed 'Martian Bushcutting' showing an infantryman wiping a squad of MMC using only a machete. Nanotrasen pharmaceutical division used the video as a showcase of their advanced combat cocktail mix.;\
+		In a recent press conference Terrabound Mechanics CEO Korol Smith broke down after a question regarding the recently finished mech program 'Mech program is 154 billion overbudget and should have been canned since the start!', shouted Korol Smith. This is after the Rhino light tank program got cancelled over the more advanced mech program.;\
+		A recent skirmish against the ICCN and the TGN results in a TGN victory. Both sides with 5 ships each are head on in a brachistochrone trajectory TG fires first firing a salvo of 200 torch missiles, the ICCN being primarily a laser star focused fleet makes them very effective in point defense allows them to intercept most, 3 missiles impact killing 2 ships and disabling 1. ICC ships fire off their lasers and a beam is able to focus enough to melt through the armor of a TG ship disabling them then being completely melted down with focused fire before counter fire from the remaining TG ships is able to vaporize the remaining ships.;\
+		Nano-toys, releases the rouny plush line based off the runner xenomorph, some concerned parents criticizes the toy saying, 'Its outrageous that it's ok to sell a plush depicting a killer alien that has killed hundreds of colonists as a toy for children!'.;\
+		Viral footage shows a mech racing against the colonists of LV-235, with the mech making extensive use of its boosters to outpace the other vehicles to the point of overheating. We ask mech freelancer John Sauter what his story is, 'We had a contract here but it was over pretty fast, so me and my comrades decided to see what kinda activities the locals have, apparently they have a racing event. One of the guys joked about bringing the mech to the race and i said fuck it, lets do it and man what a ride it was, won an entire basket of oranges for getting 1st place, not the best prize but ill take it, im pretty sure im a pioneer in this field too. John Sauter first mech racer, thats a good title.'.;\
+		TG Transportation Safety Board has recently released a new list of locations marked as quarantine which includes LV-462, Big Red, and Chigusa. TGMC have been sent to enforce the quarantine and clear the infestation of the recent xenomorph outbreaks, a statement is also included stating the situation is currently under control.;\
+		Tadpole class dropships land dropping off more rescue teams to rescue the civilians out of the Hope-3 O'Neill cylinder colony situated on lagrange 1 of Lakota as yesterday a cargo liner collision suspected to be manned by CLF operatives crashed into the colony. Death tolls are currently 45k+ dead and 15k+ injured. This is likely a reprisal attack after the navy began to clamp down on the CLF, more combat ships are being sent to protect especially high value targets.;\
+		War correspondent Tim Sholk on the ground in Lolokal station, take it away 'It's a very tense situation here, as you can see most of the stations population have taken refuge near the medical wing caught in the middle of battle against MMC forces and the TGMC, while TG controls the station for now and preparing for evacuation of the-' 'BREACHING CHARGE ON ENGINEERING MARINES MOVE IN AND REEINFORCE, CUT THE FEED NOW!'.;\
+		Famous photographer Will Navidson goes missing after going on a short break with his family on the planet of New Vingrina, local authorities ask for any information on whereabouts. Was last seen buying camping supplies in a Leafes Outdoor Equipment store.;\
+		3rd generation bluespace drive. 1500kN of thrust. 200km+ Delta V. Liquid Droplet Radiators. Protection. Luxury. Luna Shipworks proudly presents the Marik Class Yacht with 4 large hardpoints for any of your needs whether it be transport or light cargo hauling or even racing.;\
+		Mars, a place that has been completely devastated by the independence war. Mine fields and rows of trenches litter the landscape with colonies wiped off the map completely, you can stop this tragedy from happening again, join the marine corps today.;\
+		'This material will change the course of our species and its time to rise from the rubble, look upon the stars and grasp them!' DIRECTED BY ALEXANDER BREEN 'It's a race against time we have Onmark Fusion stating that they will get their bluespace drive test on the 15th, we have to rush this prototype Paul.' 'Paul me and the kids haven't seen you in 5 months! You have to take a break sometime.' THIS REMEMBRANCE DAY 'This is Armstrong-1 we have reached jump point anomaly. Begin ignition in 5 4 3 2 1' BLUESPACE In theaters 15th of July.;\
+		'Hey Alex, got you the coffee you asked for' 'This doesn't seem like the usual' 'It's a new chain they got a classic pre strife era France vibe in their cafe, was founded by the Rushin Engines band' 'This is nice, wakes you up instantly and it's got a really rich flavour i haven't felt before' 'Yup that would be the special Java organically grown coffee beans, they also use the newest tech in chemistry, i swear it looked more like a lab back there than a cafe' Baron Cafe. 'Taste the future of coffee, today. No gimmicks. Pure quality'.;\
+		TGMC enforces the peace here in the recently liberated Tiberius from the ICC, as you can see it has been very peacefu- 'FUCK YOU IMPERIALISTS! YOU AND THE CORPOS HAVE TAKEN EVERYTHING FROM ME, WHAT ELSE DO YOU WANT!' 'Shut that man up! Alec, escort that camera crew out of here things are about to get heated here'."
+
+/obj/prop/mainship/prop/news_tv/som
+	news_stories = "Our navy makes a foothold on the Persatuan system as we destroy the imperialists holds in the system, using a mass amount of drones and carrier ships allows us to easily project force everywhere in the system in a matter of a few hours.;\
+		Shang-12 Research Station has had constant fighting for the past 2 days and only has recently ended now thanks to the bravery of Shokk Platoon marine Ming, bodycam footage shows him fearlessly charging enemy holdouts with his boarding axe putting full faith in his equipment allowing for a breakthrough, we can all aspire to go to these lengths of bravery.;\
+		We recently encountered a full squad of TG mechs, although it was no match for our mech boys, a single volkite lance and a good hit is all it takes to take down their mechs, they may have a lot of it but it doesn't match the quality of our equipment.;\
+		New Malay Shipyards advanced casaba drone gets put to the test in it's first real combat engagement against two TG frigates and 3 cargo freighters, MNV Tex class frigate launches 24 drones and the AI sets a course to rendezvous with the targets, with its high amount of thrust they are able to close in to an effective range fast and use their casaba howitzers to intercept incoming missiles, 6 drones are able to get through quickly dispatching the enemy ships as they get in effective casaba range, they use their advanced RCS thrusters to dodge enemy coilgun fire and as they pass the destroyed ships they turn on their engines to irradiate the area leaving no survivors.;\
+		Are you ready to take your Verf warfare to the next level? Introducing the Verf Volkite Caliver toy, simply connect it with the battery backpack and start releasing the full rapid fire of the Verf Volkite Caliver, everything you need to mow down your friends. Helmet sold seperately, batteries not included. VERF.;\
+		The Independent Colonies Trade Admin would like to remind you that moving alien animals and plants without a permit to another star system is illegal and may land you up to 2 years in jail and a 1 million kreto fine, recently we have had issues with cartels trying to ship exotic animals by using unsuspecting passangers, do not accept any offers from anyone for help with carrying.;\
+		TerraGov suffers a massive disaster as a cargo liner goes out of control and collides into an O'Neill cylinder colony with many casualties and billions of dollars in cargo lost, a few ship analysts say that the TerraGov claim that it was a terrorist attack is false, the maint logs of the ship suggested instead it was a mechanical failure.;\
+		We have here Boris Kilo on the frontline of an armed rebellion against TG on the moon of Harvest 'These rebels are sick and tired of the horrible working conditions Nanotrasen has set and the tariff increases TG has done' 'With our wages were just working from meal to meal with no prospect of advancing and they want to increase the damn import tariffs? No enough is enough!' 'Look at this footage we captured so called TDF peacekeepers executing suspected collaborators and shooting into protestors, show it to the whole damn galaxy that they rule this place with fear'.;\
+		Insmoth ocean planet colony population mysteriously vanishes. Colony Newport-212 known for its export of exotic fish has completely vanished with no conclusive evidence of what happened to the colonists, according to flight logs no shuttle was ever nearby the colony, a few leads are possible cultist activity on the planet as investigators and crews who often carry cargo to the planet report odd behaviour and gold statues of unknown idols littering the colonies.;\
+		Today we remember the battle of Olympus Mons, a day to remind ourselves of the sacrifice our forefathers made to escape from the tyranny and imperialist ambitions of Terra and on that day 25152 brave Martians died to secure our future to assault and capture a prototype bluespace drive leading us to our destiny among the stars and preserving Mars, even if Terra holds our holy land. Mars shall not be forgotten.;\
+		Tonight's execution! A TerraGov spy has been caught and tried today deemed guilty, it shall be a special execution showcasing the MMC's new radiation grenades if everything goes as planned this spy will meet a very painful demise! Execution tonight at 6 on all channels.;\
+		An extinct alien civilization found? An exploratory team had set down on Lakita-984, a very hot Terra like planet with bizzare weather patterns. Scans indicate high amounts of greenhouse gasses and areas with high amounts of radiation perhaps a small scale nuclear conflict along with global warming had been their end? A lot of debris was found in orbit that have damage similar to laser fire, they also found wildly varied technological level and design of machinery seemingly as they were from entirely different worlds. Destroyed and decaying buildings are scattered across the planet with only a few major clusters of them, showing an isolationist culture. The more gruesome discovery was of bones of corpses found in massive piles like a massacre had happened, some say it was a religious ritual.;\
+		Mariner Aerospace M350 SSTO family, the most widely used civilian SSTO family in SOM space. The latest generation hybrid engines, air-breathing hypersonic turbines into a radiation free NTR in a vacuum. 800 carrying capacity with flexible cargo capacity. M350 the technical benchmark in its field.;\
+		Orbital ring construction on Catakan continues smoothly with no major incidents, Phobos Manufacturing plays the biggest part of construction with its massive mobile construction platform able to produce any parts needed locally and housing a good amount of the construction workers, the orbital ring is expected to be finished in 3 years with 9 space elevators and 12 stations connecting to it along with dome gardens and cities along the skyhooks.;\
+		Shipyard work more attractive to young adults than office work? More and more young adults are flocking to shipyard and space related work as they want an escape from the monotony and rat race of the office world, here we are at New Malay Shipyards with Austin Li a 20 year old who gave up his managerial position for shipyard work 'I wanted to just escape from the boredom, feel challenged and accomplished from the work i do and i found that in shipyard work, it's a tough job and the pay is not as good but nothing beats the view from up here and the feeling of freedom from zero g, atleast thats my perspective. Sorry i gotta get to my EVA mech now, work calls."
 
 #undef VENDOR_BROKEN
 #undef VENDOR_BLANK

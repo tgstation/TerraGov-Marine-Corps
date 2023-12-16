@@ -162,6 +162,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "cigoff"
 	w_class = WEIGHT_CLASS_TINY
 	flags_armor_protection = NONE
+	light_range = 0.1
+	light_power = 0.1
+	light_color = LIGHT_COLOR_ORANGE
 	var/lit = FALSE
 	var/icon_on = "cigon"  //Note - these are in masks.dmi not in cigarette.dmi
 	var/icon_off = "cigoff"
@@ -172,11 +175,23 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/list/list_reagents = list(/datum/reagent/nicotine = 15)
 	/// the quantity that will be transmited each 2 seconds
 	var/transquantity = 1
-	flags_armor_protection = NONE
+	///Icon_state for mob sprite emissive
+	var/emissive_state = "cigon_emissive"
 
 /obj/item/clothing/mask/cigarette/Initialize(mapload)
 	. = ..()
 	create_reagents(chem_volume, INJECTABLE|NO_REACT, list_reagents) // making the cigarrete a chemical holder with a maximum volume of 30
+
+/obj/item/clothing/mask/cigarette/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	. = ..()
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, emissive_state)
+	standing.overlays.Add(emissive_overlay)
+
+/obj/item/clothing/mask/cigarette/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	set_light_on(toggle_on)
 
 /obj/item/clothing/mask/cigarette/attackby(obj/item/W, mob/user, params)
 	if(lit || smoketime <= 0)
@@ -268,6 +283,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return
 
 	lit = TRUE
+	turn_light(null, TRUE)
 	heat = 1000
 	name = "lit [name]"
 	attack_verb = list("burnt", "singed")
@@ -386,7 +402,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/emergency
 	name = "Red Comrade"
-	desc = "A red cigarrete. With some writings in it. Some of it is in russian, but,the Red Russian warning, is in indistinguishable."
+	desc = "A bright red cigarette with what appears to be russian branding on it. The words \"RUSSIAN RED\", however are unmistakable."
 	icon_state = "rrcigoff"
 	item_state = "rrcigoff"
 	icon_on = "rrcigon"
@@ -440,6 +456,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	smoketime = 1500
 	chem_volume = 40
 	list_reagents = list(/datum/reagent/nicotine = 10)
+	emissive_state = "cigaron_emissive"
 
 /obj/item/clothing/mask/cigarette/cigar/cohiba
 	name = "\improper Cohiba Robusto cigar"
@@ -477,6 +494,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			to_chat(M, span_notice("Your [name] goes out, and you empty the ash."))
 			heat = 0
 			lit = FALSE
+			turn_light(null, FALSE)
 			icon_state = icon_off
 			item_state = icon_off
 			M.update_inv_wear_mask(0)
@@ -488,6 +506,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		user.visible_message(span_notice("[user] puts out [src]."))
 		heat = 0
 		lit = FALSE
+		turn_light(user, FALSE)
 		icon_state = icon_off
 		item_state = icon_off
 		STOP_PROCESSING(SSobj, src)
@@ -527,7 +546,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/tool/lighter
 	name = "cheap lighter"
 	desc = "A cheap-as-free lighter."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "lighter-g"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/smoking_left.dmi',

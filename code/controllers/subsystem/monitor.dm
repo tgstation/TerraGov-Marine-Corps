@@ -2,7 +2,7 @@ SUBSYSTEM_DEF(monitor)
 	name = "Monitor"
 	init_order = INIT_ORDER_MONITOR
 	runlevels = RUNLEVEL_GAME
-	wait = 5 MINUTES
+	wait = 3 MINUTES
 	can_fire = TRUE
 	///The current state
 	var/current_state = STATE_BALANCED
@@ -34,13 +34,12 @@ SUBSYSTEM_DEF(monitor)
 	var/maximum_connected_players_count = 0
 
 /datum/monitor_statistics
-	var/king = 0
-	var/ancient_T4 = 0
-	var/elder_T4 = 0
-	var/ancient_T3 = 0
-	var/elder_T3 = 0
-	var/ancient_T2 = 0
-	var/elder_T2 = 0
+	var/primo_T4 = 0
+	var/normal_T4 = 0
+	var/primo_T3 = 0
+	var/normal_T3 = 0
+	var/primo_T2 = 0
+	var/normal_T2 = 0
 	var/list/miniguns_in_use = list()
 	var/list/sadar_in_use = list()
 	var/list/b18_in_use = list()
@@ -85,8 +84,8 @@ SUBSYSTEM_DEF(monitor)
 		return
 	for(var/mob/dead/observer/observer AS in GLOB.observer_list)
 		GLOB.key_to_time_of_role_death[observer.key] -= 5 MINUTES //If we are in a constant stalemate, every 5 minutes we remove 5 minutes of respawn time to become a marine
-	message_admins("Stalemate detected, respawn buff system in action : 5 minutes were removed from the respawn time of everyone, xeno won : [length(GLOB.observer_list) * 0.75 * 5] larvas")
-	log_game("5 minutes were removed from the respawn time of everyone, xeno won : [length(GLOB.observer_list) * 0.75 * 5] larvas")
+	message_admins("Stalemate detected, respawn buff system in action : 5 minutes were removed from the respawn time of everyone, xeno won : [length(GLOB.observer_list) * 0.75] larvas")
+	log_game("5 minutes were removed from the respawn time of everyone, xeno won : [length(GLOB.observer_list) * 0.75] larvas")
 	//This will be in effect for 5 SSsilo runs. For 30 ghosts that makes 1 new larva every 2.5 minutes
 	SSsilo.larva_spawn_rate_temporary_buff = length(GLOB.observer_list) * 0.75
 
@@ -105,13 +104,12 @@ SUBSYSTEM_DEF(monitor)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	switch(gamestate)
 		if(GROUNDSIDE)
-			. += stats.ancient_T2 * ANCIENT_T2_WEIGHT
-			. += stats.ancient_T3 * ANCIENT_T3_WEIGHT
-			. += stats.elder_T2 * ELDER_T2_WEIGHT
-			. += stats.elder_T3 * ELDER_T3_WEIGHT
-			. += stats.ancient_T4 * ANCIENT_T4_WEIGHT
-			. += stats.elder_T4 * ELDER_T4_WEIGHT
-			. += stats.king * KING_WEIGHT
+			. += stats.primo_T2 * PRIMO_T2_WEIGHT
+			. += stats.primo_T3 * PRIMO_T3_WEIGHT
+			. += stats.normal_T2 * NORMAL_T2_WEIGHT
+			. += stats.normal_T3 * NORMAL_T3_WEIGHT
+			. += stats.primo_T4 * PRIMO_T4_WEIGHT
+			. += stats.normal_T4 * NORMAL_T4_WEIGHT
 			. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
 			. += (length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
 			. += length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * XENOS_LIFE_WEIGHT
@@ -188,7 +186,7 @@ SUBSYSTEM_DEF(monitor)
 	if(current_state >= STATE_BALANCED || ((xeno_job.total_positions - xeno_job.current_positions) <= (length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * TOO_MUCH_BURROWED_PROPORTION)) || length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) == 0)
 		return 1
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	var/xeno_alive_plus_burrowed = length(HN.get_total_xeno_number()) + (xeno_job.total_positions - xeno_job.current_positions)
+	var/xeno_alive_plus_burrowed = HN.total_xenos_for_evolving()
 	var/buff_needed_estimation = min( MAXIMUM_XENO_BUFF_POSSIBLE , 1 + (xeno_job.total_positions-xeno_job.current_positions) / (xeno_alive_plus_burrowed ? xeno_alive_plus_burrowed : 1))
 	// No need to ask admins every time
 	if(GLOB.xeno_stat_multiplicator_buff != 1)

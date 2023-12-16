@@ -271,13 +271,39 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 			tts_message_to_use = message_raw
 
 		var/list/filter = list()
+		var/list/special_filter = list()
+		var/voice_to_use = voice
+		var/use_radio = FALSE
 		if(length(voice_filter) > 0)
 			filter += voice_filter
 
 		if(length(tts_filter) > 0)
 			filter += tts_filter.Join(",")
+		if(ishuman(src))
+			var/mob/living/carbon/human/human_speaker = src
+			if(human_speaker.wear_mask)
+				var/obj/item/clothing/mask/worn_mask = human_speaker.wear_mask
+				if(istype(worn_mask))
+					if(worn_mask.voice_override)
+						voice_to_use = worn_mask.voice_override
+					if(worn_mask.voice_filter)
+						filter += worn_mask.voice_filter
+					use_radio = worn_mask.use_radio_beeps_tts
+		if(use_radio)
+			special_filter += TTS_FILTER_RADIO
+		if(issilicon(src))
+			special_filter += TTS_FILTER_SILICON
 
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice, filter.Join(","), listened, FALSE, message_range, (job?.job_flags & JOB_FLAG_LOUDER_TTS) ? 20 : 0, pitch = pitch, silicon = tts_silicon_voice_effect)
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice_to_use, filter.Join(","), listened, message_range = message_range, volume_offset = (job?.job_flags & JOB_FLAG_LOUDER_TTS) ? 20 : 0, pitch = pitch, special_filters = special_filter.Join("|"))
+
+	//speech bubble
+	var/list/speech_bubble_recipients = list()
+	for(var/mob/M in listening)
+		if(M.client)
+			speech_bubble_recipients.Add(M.client)
+	var/image/I = image('icons/mob/effects/talk.dmi', src, "[bubble_type][say_test(message_raw)]", FLY_LAYER)
+	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), I, speech_bubble_recipients, 30)
 
 /mob/living/GetVoice()
 	return name

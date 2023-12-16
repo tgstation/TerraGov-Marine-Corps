@@ -33,8 +33,11 @@
 
 		else //Dead
 			dead_ticks ++
-			if(dead_ticks > TIME_BEFORE_DNR)
-				set_undefibbable()
+			var/mob/dead/observer/related_ghost = get_ghost()
+			// boolean, determines if the body's ghost can reenter the body
+			var/ghost_left = !client && !related_ghost?.can_reenter_corpse
+			if(dead_ticks > TIME_BEFORE_DNR || ghost_left)
+				set_undefibbable(ghost_left)
 			else
 				med_hud_set_status()
 
@@ -43,9 +46,14 @@
 	//Handle temperature/pressure differences between body and environment
 	handle_environment() //Optimized a good bit.
 
+/**
+ * Marks the mob as unrevivable
+ * Arguments:
+ * * affects_synth - If synths should be affected
+ */
 
-/mob/living/carbon/human/proc/set_undefibbable()
-	if(issynth(src)) //synths do not dnr.
+/mob/living/carbon/human/proc/set_undefibbable(affects_synth = FALSE)
+	if(issynth(src) && !affects_synth) //synths do not dnr (unless they want to, todo: dnr'd synths should probably be put into ssd mob list or something).
 		return
 	ADD_TRAIT(src, TRAIT_UNDEFIBBABLE , TRAIT_UNDEFIBBABLE)
 	SEND_SIGNAL(src, COMSIG_HUMAN_SET_UNDEFIBBABLE)
@@ -57,7 +65,7 @@
 			qdel(parasite)
 		DISABLE_BITFIELD(status_flags, XENO_HOST)
 
-	if(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
+	if((SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS) && job?.job_cost)
 		job.add_job_positions(1)
 	if(hud_list)
 		med_hud_set_status()

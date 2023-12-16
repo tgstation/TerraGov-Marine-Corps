@@ -250,6 +250,36 @@
 	iff_signal = TGMC_LOYALIST_IFF
 	var/dogtag_taken = FALSE
 
+/obj/item/card/id/dogtag/update_icon_state()
+	if(dogtag_taken)
+		icon_state = initial(icon_state) + "_taken"
+		return
+	icon_state = initial(icon_state)
+
+/obj/item/card/id/dogtag/canStrip(mob/stripper, mob/owner)
+	. = ..()
+	if(!.)
+		return
+	if(dogtag_taken)
+		stripper.balloon_alert(stripper, "Info tag already taken")
+		return FALSE
+	if(owner.stat != DEAD)
+		stripper.balloon_alert(stripper, "[owner] isn't dead yet")
+		return FALSE
+
+/obj/item/card/id/dogtag/special_stripped_behavior(mob/stripper, mob/owner)
+	if(dogtag_taken)
+		return
+	stripper.balloon_alert(stripper, "Took info tag")
+	to_chat(stripper, span_notice("You take [owner]'s information tag, leaving the ID tag."))
+	dogtag_taken = TRUE
+	update_icon()
+	var/obj/item/dogtag/info_tag = new()
+	info_tag.fallen_names = list(registered_name)
+	info_tag.fallen_assignments = list(assignment)
+	stripper.put_in_hands(info_tag)
+	return TRUE
+
 // Vendor points for job override
 /obj/item/card/id/dogtag/smartgun
 	marine_points = list(
@@ -306,7 +336,7 @@
 	icon = 'icons/obj/items/card.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	var/fallen_names[0]
-	var/fallen_assignements[0]
+	var/fallen_assignments[0]
 
 /obj/item/dogtag/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -317,8 +347,8 @@
 		name = "information dog tags"
 		if(D.fallen_names)
 			fallen_names += D.fallen_names
-		if(D.fallen_assignements)
-			fallen_assignements += D.fallen_assignements
+		if(D.fallen_assignments)
+			fallen_assignments += D.fallen_assignments
 		qdel(D)
 		return TRUE
 
@@ -326,14 +356,14 @@
 	. = ..()
 	if(ishuman(user) && fallen_names && length(fallen_names))
 		if(length(fallen_names) == 1)
-			to_chat(user, span_notice("It reads: \"[fallen_names[1]] - [fallen_assignements[1]]\"."))
+			to_chat(user, span_notice("It reads: \"[fallen_names[1]] - [fallen_assignments[1]]\"."))
 		else
 			var/msg = "<span class='notice'> It reads: "
 			for(var/x = 1 to length(fallen_names))
 				if (x == length(fallen_names))
-					msg += "\"[fallen_names[x]] - [fallen_assignements[x]]\""
+					msg += "\"[fallen_names[x]] - [fallen_assignments[x]]\""
 				else
-					msg += "\"[fallen_names[x]] - [fallen_assignements[x]]\", "
+					msg += "\"[fallen_names[x]] - [fallen_assignments[x]]\", "
 
 			msg += ".</span>"
 

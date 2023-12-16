@@ -52,7 +52,7 @@
 	if(broken == 2 && isscrewdriver(I))
 		balloon_alert_to_viewers("starts to fix the microwave")
 
-		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user,20, NONE, src, BUSY_ICON_BUILD))
 			return TRUE
 
 		balloon_alert_to_viewers("fixes part of the microwave")
@@ -61,7 +61,7 @@
 	else if(broken == 1 && iswrench(I))
 		balloon_alert_to_viewers("starts to fix part of the microwave")
 
-		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user,20, NONE, src, BUSY_ICON_BUILD))
 			return TRUE
 
 		balloon_alert_to_viewers("fixes the microwave")
@@ -81,7 +81,7 @@
 
 		balloon_alert_to_viewers("starts cleaning [src]")
 
-		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user,20, NONE, src, BUSY_ICON_BUILD))
 			return TRUE
 
 		balloon_alert_to_viewers("cleans the [src]")
@@ -193,8 +193,8 @@
 		else
 			dat = {"<b>Ingredients:</b><br>[dat]"}
 		dat += {"<HR><BR>
-<a href='?src=\ref[src];action=cook'>Turn on!</a><br>
-<a href='?src=\ref[src];action=dispose'>Eject ingredients!</a>
+<a href='?src=[text_ref(src)];action=cook'>Turn on!</a><br>
+<a href='?src=[text_ref(src)];action=dispose'>Eject ingredients!</a>
 "}
 
 	var/datum/browser/popup = new(user, "microwave", "<div align='center'>Microwave Controls</div>")

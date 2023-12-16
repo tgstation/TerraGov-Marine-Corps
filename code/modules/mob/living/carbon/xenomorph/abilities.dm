@@ -2,16 +2,16 @@
 // *********** Universal abilities
 // ***************************************
 // Resting
-/datum/action/xeno_action/xeno_resting
+/datum/action/ability/xeno_action/xeno_resting
 	name = "Rest"
 	action_icon_state = "resting"
 	desc = "Rest on weeds to regenerate health and plasma."
-	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY|XACT_USE_CLOSEDTURF
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_CRESTED|ABILITY_USE_AGILITY|ABILITY_USE_CLOSEDTURF
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REST,
 	)
 
-/datum/action/xeno_action/xeno_resting/action_activate()
+/datum/action/ability/xeno_action/xeno_resting/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!istype(X))
 		return
@@ -21,16 +21,16 @@
 // ***************************************
 // *********** Drone-y abilities
 // ***************************************
-/datum/action/xeno_action/activable/plant_weeds
+/datum/action/ability/activable/xeno/plant_weeds
 	name = "Plant Weeds"
 	action_icon_state = "plant_weeds"
-	plasma_cost = 75
+	ability_cost = 75
 	desc = "Plant a weed node on your tile."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_WEEDS,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CHOOSE_WEEDS,
 	)
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = ABILITY_USE_LYING
 	///the maximum range of the ability
 	var/max_range = 0
 	///The seleted type of weeds
@@ -40,21 +40,21 @@
 	///The turf that was last weeded
 	var/turf/last_weeded_turf
 
-/datum/action/xeno_action/activable/plant_weeds/can_use_action(atom/A, silent = FALSE, override_flags)
-	plasma_cost = initial(plasma_cost) * initial(weed_type.plasma_cost_mult)
+/datum/action/ability/activable/xeno/plant_weeds/can_use_action(atom/A, silent = FALSE, override_flags)
+	ability_cost = initial(ability_cost) * initial(weed_type.ability_cost_mult)
 	return ..()
 
-/datum/action/xeno_action/activable/plant_weeds/action_activate()
+/datum/action/ability/activable/xeno/plant_weeds/action_activate()
 	if(max_range)
 		return ..()
 	if(can_use_action())
 		plant_weeds(owner)
 
-/datum/action/xeno_action/activable/plant_weeds/use_ability(atom/A)
+/datum/action/ability/activable/xeno/plant_weeds/use_ability(atom/A)
 	plant_weeds(max_range ? A : get_turf(owner))
 
 ////Plant a weeds node on the selected atom
-/datum/action/xeno_action/activable/plant_weeds/proc/plant_weeds(atom/A)
+/datum/action/ability/activable/xeno/plant_weeds/proc/plant_weeds(atom/A)
 	var/turf/T = get_turf(A)
 
 	if(!T.check_alien_construction(owner, FALSE))
@@ -79,15 +79,18 @@
 	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.weeds_planted++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_planted")
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.weeds_planted++
 	add_cooldown()
-	return succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
+	return succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? ability_cost/2 : ability_cost)
 
-/datum/action/xeno_action/activable/plant_weeds/alternate_action_activate()
+/datum/action/ability/activable/xeno/plant_weeds/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(choose_weed))
 	return COMSIG_KB_ACTIVATED
 
 ///Chose which weed will be planted by the xeno owner or toggle automatic weeding
-/datum/action/xeno_action/activable/plant_weeds/proc/choose_weed()
+/datum/action/ability/activable/xeno/plant_weeds/proc/choose_weed()
 	var/weed_choice = show_radial_menu(owner, owner, GLOB.weed_images_list, radius = 35)
 	if(!weed_choice)
 		return
@@ -102,7 +105,7 @@
 	update_button_icon()
 
 ///Toggles automatic weeding
-/datum/action/xeno_action/activable/plant_weeds/proc/toggle_auto_weeding()
+/datum/action/ability/activable/xeno/plant_weeds/proc/toggle_auto_weeding()
 	SIGNAL_HANDLER
 	if(auto_weeding)
 		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
@@ -116,17 +119,17 @@
 	to_chat(owner, span_xenonotice("We will now automatically plant weeds."))
 
 ///Used for performing automatic weeding
-/datum/action/xeno_action/activable/plant_weeds/proc/weed_on_move(datum/source)
+/datum/action/ability/activable/xeno/plant_weeds/proc/weed_on_move(datum/source)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.loc_weeds_type)
 		return
 	if(get_dist(owner, last_weeded_turf) < AUTO_WEEDING_MIN_DIST)
 		return
-	if(!can_use_action(silent = TRUE))
+	if(!can_use_ability(xeno_owner.loc, TRUE, ABILITY_IGNORE_SELECTED_ABILITY))
 		return
 	plant_weeds(owner)
 
-/datum/action/xeno_action/activable/plant_weeds/update_button_icon()
+/datum/action/ability/activable/xeno/plant_weeds/update_button_icon()
 	action_icon_state = initial(weed_type.name)
 	if(auto_weeding)
 		if(!visual_references[VREF_IMAGE_ONTOP])
@@ -139,21 +142,21 @@
 	return ..()
 
 //AI stuff
-/datum/action/xeno_action/activable/plant_weeds/ai_should_start_consider()
+/datum/action/ability/activable/xeno/plant_weeds/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/plant_weeds/ai_should_use(target)
-	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+/datum/action/ability/activable/xeno/plant_weeds/ai_should_use(target)
+	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+		return FALSE
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(owner_xeno.loc_weeds_type)
-		return ..()
+		return FALSE
 	return TRUE
 
-/datum/action/xeno_action/activable/plant_weeds/ranged
+/datum/action/ability/activable/xeno/plant_weeds/ranged
 	max_range = 4
 
-/datum/action/xeno_action/activable/plant_weeds/ranged/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/plant_weeds/ranged/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/area/area = get_area(A)
 	if(area.flags_area & MARINE_BASE)
 		if(!silent)
@@ -164,19 +167,18 @@
 		return FALSE
 	return ..()
 
-/datum/action/xeno_action/activable/plant_weeds/ranged/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+/datum/action/ability/activable/xeno/plant_weeds/ranged/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
 	return ..()
 
 // Secrete Resin
-/datum/action/xeno_action/activable/secrete_resin
+/datum/action/ability/activable/xeno/secrete_resin
 	name = "Secrete Resin"
 	action_icon_state = RESIN_WALL
 	desc = "Builds whatever resin you selected"
-	ability_name = "secrete resin"
-	target_flags = XABB_TURF_TARGET
-	plasma_cost = 75
+	target_flags = ABILITY_TURF_TARGET
+	ability_cost = 75
 	action_type = ACTION_TOGGLE
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SECRETE_RESIN,
@@ -196,7 +198,7 @@
 
 
 /// Helper for handling the start of mouse-down and to begin the drag-building
-/datum/action/xeno_action/activable/secrete_resin/proc/start_resin_drag(mob/user, atom/object, turf/location, control, params)
+/datum/action/ability/activable/xeno/secrete_resin/proc/start_resin_drag(mob/user, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
 
 	var/list/modifiers = params2list(params)
@@ -205,21 +207,21 @@
 		preshutter_build_resin(get_turf(object))
 
 /// Helper for ending drag-building , activated on mose-up
-/datum/action/xeno_action/activable/secrete_resin/proc/stop_resin_drag()
+/datum/action/ability/activable/xeno/secrete_resin/proc/stop_resin_drag()
 	SIGNAL_HANDLER
 	dragging = FALSE
 
 /// Handles removing the dragging functionality from the action all-togheter on round-start (shutter open)
-/datum/action/xeno_action/activable/secrete_resin/proc/end_resin_drag()
+/datum/action/ability/activable/xeno/secrete_resin/proc/end_resin_drag()
 	SIGNAL_HANDLER
 	dragging = FALSE
 	UnregisterSignal(owner, list(COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDOWN))
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED,COMSIG_GLOB_DROPPOD_LANDED))
 
 /// Extra handling for adding the action for draggin functionality (for instant building)
-/datum/action/xeno_action/activable/secrete_resin/give_action(mob/living/L)
+/datum/action/ability/activable/xeno/secrete_resin/give_action(mob/living/L)
 	. = ..()
-	if(!(CHECK_BITFIELD(SSticker?.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active))
+	if(!CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) || !SSresinshaping.active)
 		return
 
 	var/mutable_appearance/build_maptext = mutable_appearance(icon = null,icon_state = null, layer = ACTION_LAYER_MAPTEXT)
@@ -234,19 +236,19 @@
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED,COMSIG_GLOB_DROPPOD_LANDED), PROC_REF(end_resin_drag))
 
 /// Extra handling to remove the stuff needed for dragging
-/datum/action/xeno_action/activable/secrete_resin/remove_action(mob/living/carbon/xenomorph/X)
-	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD))
+/datum/action/ability/activable/xeno/secrete_resin/remove_action(mob/living/carbon/xenomorph/X)
+	if(!CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD))
 		return ..()
 	UnregisterSignal(owner, list(COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDOWN))
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED,COMSIG_GLOB_DROPPOD_LANDED))
 	update_button_icon() //reason for the double return ..() here is owner gets unassigned in one of the parent procs, so we can't call parent before unregistering signals here
 	return ..()
 
-/datum/action/xeno_action/activable/secrete_resin/update_button_icon()
+/datum/action/ability/activable/xeno/secrete_resin/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/A = X.selected_resin
 	action_icon_state = initial(A.name)
-	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		button.cut_overlay(visual_references[VREF_MUTABLE_BUILDING_COUNTER])
 		var/mutable_appearance/number = visual_references[VREF_MUTABLE_BUILDING_COUNTER]
 		number.maptext = MAPTEXT("[SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()]]")
@@ -257,7 +259,7 @@
 		visual_references[VREF_MUTABLE_BUILDING_COUNTER] = null
 	return ..()
 
-/datum/action/xeno_action/activable/secrete_resin/action_activate()
+/datum/action/ability/activable/xeno/secrete_resin/action_activate()
 	//Left click on the secrete resin button opens up radial menu (new type of changing structures).
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability != src)
@@ -272,7 +274,7 @@
 	X.balloon_alert(X, initial(A.name))
 	update_button_icon()
 
-/datum/action/xeno_action/activable/secrete_resin/alternate_action_activate()
+/datum/action/ability/activable/xeno/secrete_resin/alternate_action_activate()
 	//Right click on secrete resin button cycles through to the next construction type (old method of changing structures).
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability != src)
@@ -286,16 +288,16 @@
 	X.balloon_alert(X, initial(A.name))
 	update_button_icon()
 
-/datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
+/datum/action/ability/activable/xeno/secrete_resin/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xowner = owner
-	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		preshutter_build_resin(A)
 	else if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
 		build_resin(get_turf(owner))
 	else
 		build_resin(get_turf(A))
 
-/datum/action/xeno_action/activable/secrete_resin/proc/get_wait()
+/datum/action/ability/activable/xeno/secrete_resin/proc/get_wait()
 	. = base_wait
 	if(!scaling_wait)
 		return
@@ -309,10 +311,16 @@
 	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * build_resin_modifier
 
 /// A version of build_resin with the plasma drain and distance checks removed.
-/datum/action/xeno_action/activable/secrete_resin/proc/preshutter_build_resin(turf/T)
+/datum/action/ability/activable/xeno/secrete_resin/proc/preshutter_build_resin(turf/T)
+	if(!SSresinshaping.active)
+		stack_trace("[owner] ([key_name(owner)]) didn't have their quickbuild signals unregistered properly and tried using quickbuild after the subsystem was off!")
+		end_resin_drag()
+		return
+
 	if(!SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()])
 		owner.balloon_alert(owner, "The hive has ran out of quickbuilding points! Wait until more sisters awaken or the marines land!")
 		return
+
 	var/mob/living/carbon/xenomorph/X = owner
 	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin))
 		if(ERROR_CANT_WEED)
@@ -350,12 +358,12 @@
 		SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()]--
 
 
-/datum/action/xeno_action/activable/secrete_resin/proc/preshutter_resin_drag(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+/datum/action/ability/activable/xeno/secrete_resin/proc/preshutter_resin_drag(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
 	if(dragging)
 		preshutter_build_resin(get_turf(over_object))
 
-/datum/action/xeno_action/activable/secrete_resin/proc/build_resin(turf/T)
+/datum/action/ability/activable/xeno/secrete_resin/proc/build_resin(turf/T)
 	var/mob/living/carbon/xenomorph/X = owner
 	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin))
 		if(ERROR_CANT_WEED)
@@ -384,7 +392,7 @@
 	if(!line_of_sight(owner, T))
 		to_chat(owner, span_warning("You cannot secrete resin without line of sight!"))
 		return fail_activate()
-	if(!do_after(X, get_wait(), TRUE, T, BUSY_ICON_BUILD))
+	if(!do_after(X, get_wait(), NONE, T, BUSY_ICON_BUILD))
 		return fail_activate()
 	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin))
 		if(ERROR_CANT_WEED)
@@ -424,20 +432,21 @@
 		new_resin = new X.selected_resin(T)
 	switch(X.selected_resin)
 		if(/obj/alien/resin/sticky)
-			plasma_cost = initial(plasma_cost) / 3
+			ability_cost = initial(ability_cost) / 3
 	if(new_resin)
 		add_cooldown(SSmonitor.gamestate == SHUTTERS_CLOSED ? get_cooldown()/2 : get_cooldown())
-		succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
-	plasma_cost = initial(plasma_cost) //Reset the plasma cost
+		succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? ability_cost/2 : ability_cost)
+	ability_cost = initial(ability_cost) //Reset the plasma cost
+	owner.record_structures_built()
 
-/datum/action/xeno_action/pheromones
+/datum/action/ability/xeno_action/pheromones
 	name = "Emit Pheromones"
 	action_icon_state = "emit_pheromones"
-	plasma_cost = 30
+	ability_cost = 30
 	desc = "Opens your pheromone options."
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY|XACT_USE_LYING
+	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_NOTTURF|ABILITY_USE_BUSY|ABILITY_USE_LYING
 
-/datum/action/xeno_action/pheromones/proc/apply_pheros(phero_choice)
+/datum/action/ability/xeno_action/pheromones/proc/apply_pheros(phero_choice)
 	var/mob/living/carbon/xenomorph/X = owner
 
 	if(X.current_aura && X.current_aura.aura_types[1] == phero_choice)
@@ -457,66 +466,65 @@
 	X.hud_set_pheromone() //Visual feedback that the xeno has immediately started emitting pheromones
 	succeed_activate()
 
-/datum/action/xeno_action/pheromones/action_activate()
+/datum/action/ability/xeno_action/pheromones/action_activate()
 	var/phero_choice = show_radial_menu(owner, owner, GLOB.pheromone_images_list, radius = 35)
 	if(!phero_choice)
 		return fail_activate()
 	apply_pheros(phero_choice)
 
-/datum/action/xeno_action/pheromones/emit_recovery
+/datum/action/ability/xeno_action/pheromones/emit_recovery
 	name = "Toggle Recovery Pheromones"
 	desc = "Increases healing for yourself and nearby teammates."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_RECOVERY,
 	)
 
-/datum/action/xeno_action/pheromones/emit_recovery/action_activate()
+/datum/action/ability/xeno_action/pheromones/emit_recovery/action_activate()
 	apply_pheros(AURA_XENO_RECOVERY)
 
-/datum/action/xeno_action/pheromones/emit_recovery/should_show()
+/datum/action/ability/xeno_action/pheromones/emit_recovery/should_show()
 	return FALSE
 
-/datum/action/xeno_action/pheromones/emit_warding
+/datum/action/ability/xeno_action/pheromones/emit_warding
 	name = "Toggle Warding Pheromones"
 	desc = "Increases armor for yourself and nearby teammates."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_WARDING,
 	)
 
-/datum/action/xeno_action/pheromones/emit_warding/action_activate()
+/datum/action/ability/xeno_action/pheromones/emit_warding/action_activate()
 	apply_pheros(AURA_XENO_WARDING)
 
-/datum/action/xeno_action/pheromones/emit_warding/should_show()
+/datum/action/ability/xeno_action/pheromones/emit_warding/should_show()
 	return FALSE
 
-/datum/action/xeno_action/pheromones/emit_frenzy
+/datum/action/ability/xeno_action/pheromones/emit_frenzy
 	name = "Toggle Frenzy Pheromones"
 	desc = "Increases damage for yourself and nearby teammates."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_FRENZY,
 	)
 
-/datum/action/xeno_action/pheromones/emit_frenzy/action_activate()
+/datum/action/ability/xeno_action/pheromones/emit_frenzy/action_activate()
 	apply_pheros(AURA_XENO_FRENZY)
 
-/datum/action/xeno_action/pheromones/emit_frenzy/should_show()
+/datum/action/ability/xeno_action/pheromones/emit_frenzy/should_show()
 	return FALSE
 
 
-/datum/action/xeno_action/activable/transfer_plasma
+/datum/action/ability/activable/xeno/transfer_plasma
 	name = "Transfer Plasma"
 	action_icon_state = "transfer_plasma"
 	desc = "Give some of your plasma to a teammate."
-	ability_name = "transfer plasma"
 	var/plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT
 	var/transfer_delay = 2 SECONDS
 	var/max_range = 2
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TRANSFER_PLASMA,
 	)
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 
-/datum/action/xeno_action/activable/transfer_plasma/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/transfer_plasma/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -540,7 +548,7 @@
 		to_chat(owner, span_xenowarning("[target] already has full plasma."))
 		return FALSE
 
-/datum/action/xeno_action/activable/transfer_plasma/use_ability(atom/A)
+/datum/action/ability/activable/xeno/transfer_plasma/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/xenomorph/target = A
 
@@ -551,7 +559,7 @@
 
 	X.face_atom(target) //Face our target so we don't look silly
 
-	if(!do_after(X, transfer_delay, TRUE, null, BUSY_ICON_FRIENDLY))
+	if(!do_after(X, transfer_delay, NONE, null, BUSY_ICON_FRIENDLY))
 		return fail_activate()
 
 	if(!can_use_ability(A))
@@ -579,19 +587,22 @@
 // *********** Corrosive Acid
 // ***************************************
 
-/datum/action/xeno_action/activable/corrosive_acid
+/datum/action/ability/activable/xeno/corrosive_acid
 	name = "Corrosive Acid"
 	action_icon_state = "corrosive_acid"
 	desc = "Cover an object with acid to slowly melt it. Takes a few seconds."
-	ability_name = "corrosive acid"
-	plasma_cost = 100
+	ability_cost = 100
 	var/obj/effect/xenomorph/acid/acid_type = /obj/effect/xenomorph/acid
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CORROSIVE_ACID,
 	)
-	use_state_flags = XACT_USE_BUCKLED
+	use_state_flags = ABILITY_USE_BUCKLED
 
-/datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/corrosive_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
+	// Check if it's an acid object we're upgrading
+	if (istype(A, /obj/effect/xenomorph/acid))
+		var/obj/effect/xenomorph/acid/existing_acid = A
+		A = existing_acid.acid_t // Swap the target to the target of the acid
 	. = ..()
 	if(!.)
 		return FALSE
@@ -612,22 +623,29 @@
 			owner.balloon_alert(owner, "[A] is already subject to a more or equally powerful acid")
 		return FALSE
 
-/datum/action/xeno_action/activable/corrosive_acid/use_ability(atom/A)
+/datum/action/ability/activable/xeno/corrosive_acid/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
+
+	// Check if it's an acid object we're upgrading
+	if (istype(A, /obj/effect/xenomorph/acid))
+		var/obj/effect/xenomorph/acid/existing_acid = A
+		A = existing_acid.acid_t // Swap the target to the target of the acid
+
 	if(!A.dissolvability(initial(acid_type.acid_strength)))
 		return fail_activate()
 
 	X.face_atom(A)
 	to_chat(X, span_xenowarning("We begin generating enough acid to melt through the [A]"))
 
-	if(!do_after(X, A.get_acid_delay(), TRUE, A, BUSY_ICON_HOSTILE))
+	if(!do_after(X, A.get_acid_delay(), NONE, A, BUSY_ICON_HOSTILE))
 		return fail_activate()
 
 	if(!can_use_ability(A, TRUE))
 		return fail_activate()
 
+	var/old_acid_ticks = A.current_acid?.ticks
 	QDEL_NULL(A.current_acid)
-	A.current_acid = new acid_type(get_turf(A), A, A.dissolvability(initial(acid_type.acid_strength)))
+	A.current_acid = new acid_type(get_turf(A), A, A.dissolvability(initial(acid_type.acid_strength)), old_acid_ticks)
 
 	succeed_activate()
 
@@ -637,43 +655,23 @@
 	span_xenowarning("We vomit globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!"), null, 5)
 	playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
 
-/datum/action/xeno_action/activable/corrosive_acid/proc/acid_progress_transfer(acid_type, obj/O, turf/T)
-	if(!O && !T)
-		return
-
-	var/obj/effect/xenomorph/acid/new_acid = acid_type
-
-	var/obj/effect/xenomorph/acid/current_acid
-
-	if(T)
-		current_acid = T.current_acid
-
-	else if(O)
-		current_acid = O.current_acid
-
-	if(!current_acid) //Sanity check. No acid
-		return
-	new_acid.ticks = current_acid.ticks //Inherit the old acid's progress
-	qdel(current_acid)
-
-
 // ***************************************
 // *********** Super strong acid
 // ***************************************
 
-/datum/action/xeno_action/activable/corrosive_acid/strong
+/datum/action/ability/activable/xeno/corrosive_acid/strong
 	name = "Corrosive Acid"
-	plasma_cost = 200
+	ability_cost = 200
 	acid_type = /obj/effect/xenomorph/acid/strong
 
 
-/datum/action/xeno_action/activable/spray_acid
+/datum/action/ability/activable/xeno/spray_acid
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPRAY_ACID,
 	)
-	use_state_flags = XACT_USE_BUCKLED
+	use_state_flags = ABILITY_USE_BUCKLED
 
-/datum/action/xeno_action/activable/spray_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/spray_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -688,12 +686,12 @@
 		return FALSE
 
 
-/datum/action/xeno_action/activable/spray_acid/on_cooldown_finish()
+/datum/action/ability/activable/xeno/spray_acid/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
 	to_chat(owner, span_xenodanger("We feel our acid glands refill. We can spray acid again."))
 	return ..()
 
-/datum/action/xeno_action/activable/spray_acid/proc/acid_splat_turf(turf/T)
+/datum/action/ability/activable/xeno/spray_acid/proc/acid_splat_turf(turf/T)
 	. = locate(/obj/effect/xenomorph/spray) in T
 	if(!.)
 		var/mob/living/carbon/xenomorph/X = owner
@@ -707,33 +705,32 @@
 			A.acid_spray_act(owner)
 
 
-/datum/action/xeno_action/activable/xeno_spit
+/datum/action/ability/activable/xeno/xeno_spit
 	name = "Xeno Spit"
 	action_icon_state = "shift_spit_neurotoxin"
 	desc = "Spit neurotoxin or acid at your target up to 7 tiles away."
-	ability_name = "xeno spit"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_XENO_SPIT,
 	)
-	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED|XACT_DO_AFTER_ATTACK
-	target_flags = XABB_MOB_TARGET
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED|ABILITY_DO_AFTER_ATTACK
+	target_flags = ABILITY_MOB_TARGET
 	///Current target that the xeno is targeting. This is for aiming.
 	var/current_target
 
-/datum/action/xeno_action/activable/xeno_spit/give_action(mob/living/L)
+/datum/action/ability/activable/xeno/xeno_spit/give_action(mob/living/L)
 	. = ..()
 	owner.AddComponent(/datum/component/automatedfire/autofire, get_cooldown(), _fire_mode = GUN_FIREMODE_AUTOMATIC,  _callback_reset_fire = CALLBACK(src, PROC_REF(reset_fire)), _callback_fire = CALLBACK(src, PROC_REF(fire)))
 
-/datum/action/xeno_action/activable/xeno_spit/remove_action(mob/living/L)
+/datum/action/ability/activable/xeno/xeno_spit/remove_action(mob/living/L)
 	qdel(owner.GetComponent(/datum/component/automatedfire/autofire))
 	return ..()
 
-/datum/action/xeno_action/activable/xeno_spit/update_button_icon()
+/datum/action/ability/activable/xeno/xeno_spit/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	action_icon_state = "shift_spit_[initial(X.ammo.icon_state)]"
 	return ..()
 
-/datum/action/xeno_action/activable/xeno_spit/action_activate()
+/datum/action/ability/activable/xeno/xeno_spit/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability != src)
 		RegisterSignal(X, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
@@ -751,11 +748,11 @@
 	X.update_spits(TRUE)
 	update_button_icon()
 
-/datum/action/xeno_action/activable/xeno_spit/deselect()
+/datum/action/ability/activable/xeno/xeno_spit/deselect()
 	UnregisterSignal(owner, list(COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEDOWN))
 	return ..()
 
-/datum/action/xeno_action/activable/xeno_spit/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/xeno_spit/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -767,22 +764,22 @@
 			to_chat(X, span_warning("We need [X.ammo?.spit_cost - X.plasma_stored] more plasma!"))
 		return FALSE
 
-/datum/action/xeno_action/activable/xeno_spit/get_cooldown()
+/datum/action/ability/activable/xeno/xeno_spit/get_cooldown()
 	var/mob/living/carbon/xenomorph/X = owner
 	return (X.xeno_caste.spit_delay + X.ammo?.added_spit_delay)
 
-/datum/action/xeno_action/activable/xeno_spit/on_cooldown_finish()
+/datum/action/ability/activable/xeno/xeno_spit/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, span_notice("We feel our neurotoxin glands swell with ichor. We can spit again."))
 	return ..()
 
-/datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)
+/datum/action/ability/activable/xeno/xeno_spit/use_ability(atom/A)
 	if(!owner.GetComponent(/datum/component/ai_controller)) //If its not an ai it will register to listen for clicks instead of use this proc. We want to call start_fire from here only if the owner is an ai.
 		return
-	start_fire(object = A, can_use_ability_flags = XACT_IGNORE_SELECTED_ABILITY)
+	start_fire(object = A, can_use_ability_flags = ABILITY_IGNORE_SELECTED_ABILITY)
 
 ///Starts the xeno firing.
-/datum/action/xeno_action/activable/xeno_spit/proc/start_fire(datum/source, atom/object, turf/location, control, params, can_use_ability_flags)
+/datum/action/ability/activable/xeno/xeno_spit/proc/start_fire(datum/source, atom/object, turf/location, control, params, can_use_ability_flags)
 	SIGNAL_HANDLER
 	var/list/modifiers = params2list(params)
 	if(((modifiers["right"] || modifiers["middle"]) && (modifiers["shift"] || modifiers["ctrl"] || modifiers["left"])) || \
@@ -800,14 +797,14 @@
 	xeno?.client?.mouse_pointer_icon = 'icons/effects/xeno_target.dmi'
 
 ///Fires the spit projectile.
-/datum/action/xeno_action/activable/xeno_spit/proc/fire()
+/datum/action/ability/activable/xeno/xeno_spit/proc/fire()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/turf/current_turf = get_turf(owner)
 	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
 	playsound(X.loc, sound_to_play, 25, 1)
 
 	var/obj/projectile/newspit = new /obj/projectile(current_turf)
-	plasma_cost = X.ammo.spit_cost
+	ability_cost = X.ammo.spit_cost
 	newspit.generate_bullet(X.ammo, X.ammo.damage * SPIT_UPGRADE_BONUS(X))
 	newspit.def_zone = X.get_limbzone_target()
 	newspit.fire_at(current_target, X, null, X.ammo.max_range, X.ammo.shell_speed)
@@ -819,19 +816,19 @@
 	return NONE
 
 ///Resets the autofire component.
-/datum/action/xeno_action/activable/xeno_spit/proc/reset_fire()
+/datum/action/ability/activable/xeno/xeno_spit/proc/reset_fire()
 	set_target(null)
 	owner?.client?.mouse_pointer_icon = initial(owner.client.mouse_pointer_icon)
 
 ///Changes the current target.
-/datum/action/xeno_action/activable/xeno_spit/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+/datum/action/ability/activable/xeno/xeno_spit/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/xeno = owner
 	set_target(get_turf_on_clickcatcher(over_object, xeno, params))
 	xeno.face_atom(current_target)
 
 ///Sets the current target and registers for qdel to prevent hardels
-/datum/action/xeno_action/activable/xeno_spit/proc/set_target(atom/object)
+/datum/action/ability/activable/xeno/xeno_spit/proc/set_target(atom/object)
 	if(object == current_target || object == owner)
 		return
 	if(current_target)
@@ -841,25 +838,25 @@
 		RegisterSignal(current_target, COMSIG_QDELETING, PROC_REF(clean_target))
 
 ///Cleans the current target in case of Hardel
-/datum/action/xeno_action/activable/xeno_spit/proc/clean_target()
+/datum/action/ability/activable/xeno/xeno_spit/proc/clean_target()
 	SIGNAL_HANDLER
 	current_target = get_turf(current_target)
 
 ///Stops the Autofire component and resets the current cursor.
-/datum/action/xeno_action/activable/xeno_spit/proc/stop_fire()
+/datum/action/ability/activable/xeno/xeno_spit/proc/stop_fire()
 	SIGNAL_HANDLER
 	owner?.client?.mouse_pointer_icon = initial(owner.client.mouse_pointer_icon)
 	SEND_SIGNAL(owner, COMSIG_XENO_STOP_FIRE)
 
-/datum/action/xeno_action/activable/xeno_spit/ai_should_start_consider()
+/datum/action/ability/activable/xeno/xeno_spit/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/xeno_spit/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/xeno_spit/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
 	if(get_dist(target, owner) > 6)
 		return FALSE
-	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(!line_of_sight(owner, target))
 		return FALSE
@@ -868,7 +865,7 @@
 	return TRUE
 
 
-/datum/action/xeno_action/xenohide
+/datum/action/ability/xeno_action/xenohide
 	name = "Hide"
 	action_icon_state = "xenohide"
 	desc = "Causes your sprite to hide behind certain objects and under tables. Not the same as stealth. Does not use plasma."
@@ -876,7 +873,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HIDE,
 	)
 
-/datum/action/xeno_action/xenohide/action_activate()
+/datum/action/ability/xeno_action/xenohide/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.layer != XENO_HIDING_LAYER)
 		X.layer = XENO_HIDING_LAYER
@@ -889,22 +886,21 @@
 
 
 //Neurotox Sting
-/datum/action/xeno_action/activable/neurotox_sting
+/datum/action/ability/activable/xeno/neurotox_sting
 	name = "Neurotoxin Sting"
 	action_icon_state = "neuro_sting"
 	desc = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
-	ability_name = "neurotoxin sting"
-	cooldown_timer = 12 SECONDS
-	plasma_cost = 150
+	cooldown_duration = 12 SECONDS
+	ability_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_NEUROTOX_STING,
 	)
-	target_flags = XABB_MOB_TARGET
-	use_state_flags = XACT_USE_BUCKLED
+	target_flags = ABILITY_MOB_TARGET
+	use_state_flags = ABILITY_USE_BUCKLED
 	/// Whatever our victim is injected with.
 	var/sting_chemical = /datum/reagent/toxin/xeno_neurotoxin
 
-/datum/action/xeno_action/activable/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -925,12 +921,12 @@
 			to_chat(owner, span_warning("Ashamed, we reconsider bullying the poor, nested host with our stinger."))
 		return FALSE
 
-/datum/action/xeno_action/activable/neurotox_sting/on_cooldown_finish()
+/datum/action/ability/activable/xeno/neurotox_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(owner, span_xenodanger("We feel our toxic glands refill. We can use our [ability_name] again."))
+	to_chat(owner, span_xenodanger("We feel our toxic glands refill. We can use our [initial(name)] again."))
 	return ..()
 
-/datum/action/xeno_action/activable/neurotox_sting/use_ability(atom/A)
+/datum/action/ability/activable/xeno/neurotox_sting/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 
 	succeed_activate()
@@ -941,42 +937,41 @@
 	track_stats()
 
 ///Adds ability tally to the end-round statistics.
-/datum/action/xeno_action/activable/neurotox_sting/proc/track_stats()
+/datum/action/ability/activable/xeno/neurotox_sting/proc/track_stats()
 	GLOB.round_statistics.sentinel_neurotoxin_stings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "sentinel_neurotoxin_stings")
 
 //Ozelomelyn Sting
-/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn
+/datum/action/ability/activable/xeno/neurotox_sting/ozelomelyn
 	name = "Ozelomelyn Sting"
 	action_icon_state = "drone_sting"
 	desc = "A channeled melee attack that injects the target with Ozelomelyn over a few seconds, purging chemicals and dealing minor toxin damage to a moderate cap while inside them."
-	ability_name = "ozelomelyn sting"
-	cooldown_timer = 25 SECONDS
+	cooldown_duration = 25 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OZELOMELYN_STING,
 	)
-	plasma_cost = 100
+	ability_cost = 100
 	sting_chemical = /datum/reagent/toxin/xeno_ozelomelyn
 
 ///Adds ability tally to the end-round statistics.
-/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn/track_stats()
+/datum/action/ability/activable/xeno/neurotox_sting/ozelomelyn/track_stats()
 	GLOB.round_statistics.ozelomelyn_stings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "ozelomelyn_stings")
 
 // ***************************************
 // *********** Psychic Whisper
 // ***************************************
-/datum/action/xeno_action/psychic_whisper
+/datum/action/ability/xeno_action/psychic_whisper
 	name = "Psychic Whisper"
 	action_icon_state = "psychic_whisper"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_WHISPER,
 	)
-	use_state_flags = XACT_USE_LYING
-	target_flags = XABB_MOB_TARGET
+	use_state_flags = ABILITY_USE_LYING
+	target_flags = ABILITY_MOB_TARGET
 
 
-/datum/action/xeno_action/psychic_whisper/action_activate()
+/datum/action/ability/xeno_action/psychic_whisper/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/list/target_list = list()
 	for(var/mob/living/possible_target in view(WORLD_VIEW, X))
@@ -1007,16 +1002,17 @@
 // ***************************************
 // *********** Lay Egg
 // ***************************************
-/datum/action/xeno_action/lay_egg
+/datum/action/ability/xeno_action/lay_egg
 	name = "Lay Egg"
 	action_icon_state = "lay_egg"
-	plasma_cost = 200
-	cooldown_timer = 12 SECONDS
+	desc = "Create an egg that will grow a larval hugger after a short delay. Empty eggs can have huggers inserted into them."
+	ability_cost = 200
+	cooldown_duration = 12 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LAY_EGG,
 	)
 
-/datum/action/xeno_action/lay_egg/action_activate(mob/living/carbon/xenomorph/user)
+/datum/action/ability/xeno_action/lay_egg/action_activate(mob/living/carbon/xenomorph/user)
 	var/mob/living/carbon/xenomorph/xeno = owner
 	var/turf/current_turf = get_turf(owner)
 
@@ -1030,7 +1026,7 @@
 	owner.visible_message(span_xenonotice("[owner] starts planting an egg."), \
 		span_xenonotice("We start planting an egg."), null, 5)
 
-	if(!do_after(owner, 2.5 SECONDS, TRUE, current_turf, BUSY_ICON_BUILD, extra_checks = CALLBACK(current_turf, TYPE_PROC_REF(/turf, check_alien_construction), owner)))
+	if(!do_after(owner, 2.5 SECONDS, NONE, current_turf, BUSY_ICON_BUILD, extra_checks = CALLBACK(current_turf, TYPE_PROC_REF(/turf, check_alien_construction), owner)))
 		return fail_activate()
 
 	if(!xeno.loc_weeds_type)
@@ -1041,26 +1037,26 @@
 
 	succeed_activate()
 	add_cooldown()
+	owner.record_traps_created()
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////
 /// Rally Hive
 ///////////////////
-/datum/action/xeno_action/rally_hive
+/datum/action/ability/xeno_action/rally_hive
 	name = "Rally Hive"
 	action_icon_state = "rally_hive"
 	desc = "Rallies the hive to a congregate at a target location, along with an arrow pointer. Gives the Hive your current health status. 60 second cooldown."
-	ability_name = "rally hive"
-	plasma_cost = 0
+	ability_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_HIVE,
 	)
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	cooldown_timer = 60 SECONDS
-	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	cooldown_duration = 60 SECONDS
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
 
-/datum/action/xeno_action/rally_hive/action_activate()
+/datum/action/ability/xeno_action/rally_hive/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 
 	xeno_message("Our leader [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", "xenoannounce", 6, X.hivenumber, FALSE, X, 'sound/voice/alien_distantroar_3.ogg',TRUE,null,/atom/movable/screen/arrow/leader_tracker_arrow)
@@ -1072,34 +1068,33 @@
 	GLOB.round_statistics.xeno_rally_hive++ //statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_rally_hive")
 
-/datum/action/xeno_action/rally_minion
+/datum/action/ability/xeno_action/rally_minion
 	name = "Rally Minions"
 	action_icon_state = "minion_agressive"
 	desc = "Rallies the minions around you, asking them to follow you if they don't have a leader already. Rightclick to change minion behaviour."
-	ability_name = "rally minions"
-	plasma_cost = 0
+	ability_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_MINION,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_MINION_BEHAVIOUR,
 	)
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	cooldown_timer = 10 SECONDS
-	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	cooldown_duration = 10 SECONDS
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
 	///If minions should be agressive
 	var/minions_agressive = TRUE
 
-/datum/action/xeno_action/rally_minion/update_button_icon()
+/datum/action/ability/xeno_action/rally_minion/update_button_icon()
 	action_icon_state = minions_agressive ? "minion_agressive" : "minion_passive"
 	return ..()
 
-/datum/action/xeno_action/rally_minion/action_activate()
+/datum/action/ability/xeno_action/rally_minion/action_activate()
 	succeed_activate()
 	add_cooldown()
 	owner.emote("roar")
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, owner)
 	SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, minions_agressive) //New escorting ais should have the same behaviour as old one
 
-/datum/action/xeno_action/rally_minion/alternate_action_activate()
+/datum/action/ability/xeno_action/rally_minion/alternate_action_activate()
 	minions_agressive = !minions_agressive
 	SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, minions_agressive)
 	update_button_icon()
@@ -1108,35 +1103,35 @@
 
 /mob/living/carbon/xenomorph/proc/add_abilities()
 	for(var/action_path in xeno_caste.actions)
-		var/datum/action/xeno_action/action = new action_path()
+		var/datum/action/ability/xeno_action/action = new action_path()
 		if(!SSticker.mode || SSticker.mode.flags_xeno_abilities & action.gamemode_flags)
 			action.give_action(src)
 
 
 /mob/living/carbon/xenomorph/proc/remove_abilities()
-	for(var/action_datum in xeno_abilities)
+	for(var/action_datum in mob_abilities)
 		qdel(action_datum)
 
-/datum/action/xeno_action/rally_hive/hivemind //Halve the cooldown for Hiveminds as their relative omnipresence means they can actually make use of this lower cooldown.
-	cooldown_timer = 30 SECONDS
+/datum/action/ability/xeno_action/rally_hive/hivemind //Halve the cooldown for Hiveminds as their relative omnipresence means they can actually make use of this lower cooldown.
+	cooldown_duration = 30 SECONDS
 
 //*********
 // Psy Drain
 //*********
-/datum/action/xeno_action/activable/psydrain
+/datum/action/ability/activable/xeno/psydrain
 	name = "Psy drain"
 	action_icon_state = "headbite"
 	desc = "Drain the victim of its life force to gain larva and psych points"
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEADBITE,
 	)
 	gamemode_flags = ABILITY_NUCLEARWAR
-	plasma_cost = 100
+	ability_cost = 100
 	///How much larva points it gives (8 points for one larva in distress)
 	var/larva_point_reward = 1
 
-/datum/action/xeno_action/activable/psydrain/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/psydrain/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..() //do after checking the below stuff
 	if(!.)
 		return
@@ -1173,7 +1168,7 @@
 	span_danger("We slowly drain \the [victim]'s life force!"), null, 20)
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/magic/nightfall.ogg', 40, channel = channel)
-	if(!do_after(X, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
+	if(!do_after(X, 5 SECONDS, IGNORE_HELD_ITEM, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		X.visible_message(span_xenowarning("\The [X] retracts its inner jaw."), \
 		span_danger("We retract our inner jaw."), null, 20)
 		X.stop_sound_channel(channel)
@@ -1181,7 +1176,7 @@
 	X.stop_sound_channel(channel)
 	succeed_activate() //dew it
 
-/datum/action/xeno_action/activable/psydrain/use_ability(mob/M)
+/datum/action/ability/activable/xeno/psydrain/use_ability(mob/M)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/victim = M
 
@@ -1211,26 +1206,29 @@
 	X.hive.update_tier_limits()
 	GLOB.round_statistics.larva_from_psydrain +=larva_point_reward / xeno_job.job_points_needed
 
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.drained++
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")
 
 /////////////////////////////////
 // Cocoon
 /////////////////////////////////
-/datum/action/xeno_action/activable/cocoon
+/datum/action/ability/activable/xeno/cocoon
 	name = "Cocoon"
 	action_icon_state = "regurgitate"
 	desc = "Devour your victim to cocoon it in your belly. This cocoon will automatically be ejected later, and while the marine inside it still has life force it will give psychic points."
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGURGITATE,
 	)
-	plasma_cost = 100
+	ability_cost = 100
 	gamemode_flags = ABILITY_NUCLEARWAR
 	///In how much time the cocoon will be ejected
 	var/cocoon_production_time = 3 SECONDS
 
-/datum/action/xeno_action/activable/cocoon/can_use_ability(atom/A, silent, override_flags)
+/datum/action/ability/activable/xeno/cocoon/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -1273,12 +1271,12 @@
 
 	succeed_activate()
 
-/datum/action/xeno_action/activable/cocoon/use_ability(atom/A)
+/datum/action/ability/activable/xeno/cocoon/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/victim = A
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/vore/struggle.ogg', 40, channel = channel)
-	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
+	if(!do_after(X, 7 SECONDS, IGNORE_HELD_ITEM, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
 		X.stop_sound_channel(channel)
 		return fail_activate()
@@ -1295,7 +1293,7 @@
 	succeed_activate()
 	channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/vore/escape.ogg', 40, channel = channel)
-	if(!do_after(X, cocoon_production_time, FALSE, null, BUSY_ICON_DANGER))
+	if(!do_after(X, cocoon_production_time, IGNORE_HELD_ITEM, null, BUSY_ICON_DANGER))
 		to_chat(owner, span_warning("We moved too soon and we will have to devour our victim again!"))
 		X.eject_victim(FALSE, starting_turf)
 		X.stop_sound_channel(channel)
@@ -1303,23 +1301,26 @@
 	victim.dead_ticks = 0
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	X.eject_victim(TRUE, starting_turf)
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.cocooned++
 
 /////////////////////////////////
 // blessing Menu
 /////////////////////////////////
-/datum/action/xeno_action/blessing_menu
+/datum/action/ability/xeno_action/blessing_menu
 	name = "Mothers Blessings"
 	action_icon_state = "hivestore"
 	desc = "Ask the Queen Mother for blessings for your hive in exchange for psychic energy."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BLESSINGSMENU,
 	)
-	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_CRESTED|ABILITY_USE_AGILITY
 
-/datum/action/xeno_action/blessing_menu/should_show()
+/datum/action/ability/xeno_action/blessing_menu/should_show()
 	return FALSE // Blessings meni now done through hive status UI!
 
-/datum/action/xeno_action/blessing_menu/action_activate()
+/datum/action/ability/xeno_action/blessing_menu/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	X.hive.purchases.interact(X)
 	return succeed_activate()

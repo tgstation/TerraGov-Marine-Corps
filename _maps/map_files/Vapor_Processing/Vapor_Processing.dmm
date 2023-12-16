@@ -988,7 +988,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "gg" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -999,7 +999,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "gj" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "gk" = (
@@ -1022,10 +1022,7 @@
 /turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
 "go" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "gI" = (
@@ -1121,7 +1118,7 @@
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
 "ht" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/machinery/light,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
@@ -3813,10 +3810,7 @@
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "wG" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "wI" = (
@@ -3869,10 +3863,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "xH" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "xK" = (
@@ -3910,10 +3901,7 @@
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
 "yv" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/se)
 "yz" = (
@@ -4168,10 +4156,7 @@
 /turf/open/ground,
 /area/lv624/ground/compound/se)
 "BZ" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
 "Cd" = (
@@ -4436,10 +4421,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
 "FZ" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/ground,
 /area/space)
 "Gh" = (
@@ -4625,10 +4607,7 @@
 /turf/open/floor/grass,
 /area/vapor_processing/south_compound)
 "JL" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/ground,
 /area/space)
 "JN" = (
@@ -4675,10 +4654,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
 "Kr" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "Ks" = (
@@ -4941,10 +4917,7 @@
 /turf/open/floor,
 /area/maintenance/substation)
 "NS" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
+/obj/effect/landmark/patrol_point/tgmc_14,
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "Oa" = (
@@ -5090,17 +5063,11 @@
 /turf/open/floor/grass,
 /area/lv624/ground/compound/c)
 "PN" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "PP" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/ground,
 /area/space)
 "PR" = (
@@ -5257,10 +5224,7 @@
 /turf/open/floor,
 /area/storage/tools)
 "Sr" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/ground,
 /area/space)
 "St" = (
@@ -5308,10 +5272,7 @@
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
 "SV" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
+/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "SW" = (
@@ -5659,10 +5620,7 @@
 	},
 /area/vapor_processing/cargo3)
 "Xn" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
 "Xv" = (
@@ -5677,10 +5635,7 @@
 /turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
 "XB" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
 "XE" = (
@@ -5818,10 +5773,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "ZH" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
+/obj/effect/landmark/patrol_point/tgmc_12,
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "ZJ" = (

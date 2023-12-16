@@ -511,7 +511,7 @@
 	},
 /area/whiskey_outpost)
 "ct" = (
-/obj/item/weapon/gun/heavy_laser,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser,
 /turf/open/floor/plating/warning,
 /area/whiskey_outpost/outside/west)
 "cv" = (
@@ -568,11 +568,11 @@
 /area/whiskey_outpost)
 "cI" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "cJ" = (
@@ -623,10 +623,10 @@
 /area/whiskey_outpost/outside/west)
 "cO" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/west)
 "cQ" = (
@@ -1995,7 +1995,7 @@
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "jR" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/structure/sign/safety/medical_supplies{
 	dir = 1
 	},
@@ -2006,7 +2006,7 @@
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "jW" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -2449,7 +2449,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/whiskey_outpost/outside/north)
 "lX" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "lZ" = (
@@ -2521,7 +2521,7 @@
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "ms" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "mt" = (
@@ -3450,7 +3450,7 @@
 /obj/structure/barricade/sandbags{
 	dir = 1
 	},
-/obj/item/weapon/gun/heavy_laser{
+/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser{
 	dir = 8
 	},
 /obj/structure/platform{
@@ -3708,7 +3708,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "sv" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
@@ -3816,7 +3816,7 @@
 /obj/structure/barricade/sandbags{
 	pixel_y = -6
 	},
-/obj/item/weapon/gun/launcher/rocket/heavy_rr{
+/obj/item/weapon/gun/heavy_isg{
 	dir = 4
 	},
 /obj/structure/platform{
@@ -4369,7 +4369,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "ws" = (
-/obj/item/weapon/gun/heavy_laser,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/east)
 "wt" = (
@@ -4575,11 +4575,11 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "xM" = (
@@ -4741,7 +4741,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "za" = (
-/obj/item/weapon/gun/heavy_laser{
+/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser{
 	dir = 4
 	},
 /obj/structure/platform{
@@ -5421,11 +5421,11 @@
 /area/whiskey_outpost/outside/north)
 "Dh" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "Di" = (
@@ -5611,7 +5611,7 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/west)
 "EQ" = (
-/obj/item/weapon/gun/launcher/rocket/heavy_rr,
+/obj/item/weapon/gun/heavy_isg,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "ER" = (
@@ -6366,7 +6366,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "Lc" = (
-/obj/item/weapon/gun/launcher/rocket/heavy_rr{
+/obj/item/weapon/gun/heavy_isg{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -6550,7 +6550,7 @@
 	},
 /area/whiskey_outpost/outside/west)
 "MF" = (
-/obj/item/weapon/gun/heavy_laser,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "MI" = (
@@ -6854,7 +6854,7 @@
 /area/whiskey_outpost/outside/south)
 "OO" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "OP" = (
@@ -7013,11 +7013,11 @@
 /area/whiskey_outpost/outside/west)
 "QC" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "QF" = (
@@ -7070,11 +7070,11 @@
 "Rg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/east)
 "Rj" = (
@@ -7559,7 +7559,7 @@
 	},
 /area/whiskey_outpost)
 "Vi" = (
-/obj/item/weapon/gun/heavy_laser,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser,
 /obj/structure/platform,
 /turf/open/floor/plating/asteroidwarning,
 /area/whiskey_outpost)

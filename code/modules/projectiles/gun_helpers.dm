@@ -72,7 +72,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	to_chat(user, span_warning("[src] flashes a warning sign indicating unauthorized use!"))
 
 /obj/item/weapon/gun/proc/do_wield(mob/user, wdelay) //*shrugs*
-	if(wield_time > 0 && !do_mob(user, user, wdelay, BUSY_ICON_HOSTILE, null, PROGRESS_CLOCK, IGNORE_LOC_CHANGE, CALLBACK(src, PROC_REF(is_wielded))))
+	if(wield_time > 0 && !do_after(user, wdelay, IGNORE_LOC_CHANGE, user, BUSY_ICON_HOSTILE, null, PROGRESS_CLOCK, CALLBACK(src, PROC_REF(is_wielded))))
 		return FALSE
 	flags_item |= FULLY_WIELDED
 	setup_bullet_accuracy()
@@ -117,10 +117,10 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	to_chat(user, span_notice("You start a tactical reload."))
 	var/tac_reload_time = max(0.25 SECONDS, 0.75 SECONDS - user.skills.getRating(SKILL_FIREARMS) * 5)
 	if(length(chamber_items))
-		if(!do_after(user, tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
+		if(!do_after(user, tac_reload_time, IGNORE_USER_LOC_CHANGE, new_magazine) && loc == user)
 			return
 		unload(user)
-	if(!do_after(user, tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
+	if(!do_after(user, tac_reload_time, IGNORE_USER_LOC_CHANGE, new_magazine) && loc == user)
 		return
 	if(istype(new_magazine.loc, /obj/item/storage))
 		var/obj/item/storage/S = new_magazine.loc
@@ -634,7 +634,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 /obj/item/weapon/gun/proc/toggle_auto_aim_mode(mob/living/carbon/human/user) //determines whether toggle_aim_mode activates at the end of gun/wield proc
 
-	if((flags_item & WIELDED) || (flags_item & IS_DEPLOYED)) //if gun is wielded it toggles aim mode directly instead
+	if((flags_item & FULLY_WIELDED) || (flags_item & IS_DEPLOYED)) //if gun is wielded it toggles aim mode directly instead
 		toggle_aim_mode(user)
 		return
 
@@ -672,7 +672,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(user.do_actions)
 		return
 	if(!user.marksman_aura)
-		if(!do_after(user, aim_time, TRUE, (flags_item & IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR, ignore_turf_checks = (flags_item & IS_DEPLOYED) ? FALSE : TRUE))
+		if(!do_after(user, aim_time, (flags_item & IS_DEPLOYED) ? NONE : IGNORE_USER_LOC_CHANGE, (flags_item & IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR))
 			to_chat(user, span_warning("<b>Your concentration is interrupted!</b>"))
 			return
 	if(!(flags_item & WIELDED) && !(flags_item & IS_DEPLOYED))

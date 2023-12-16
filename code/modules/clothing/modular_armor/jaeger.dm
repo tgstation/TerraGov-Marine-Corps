@@ -149,6 +149,11 @@
 		/obj/item/armor_module/armor/visor/marine/trooper,
 		/obj/item/armor_module/armor/visor/marine/kabuto,
 		/obj/item/armor_module/armor/visor/marine/hotaru,
+		/obj/item/armor_module/armor/visor/marine/dashe,
+		/obj/item/armor_module/armor/visor/marine/fourvisor,
+		/obj/item/armor_module/armor/visor/marine/foureyevisor,
+		/obj/item/armor_module/armor/visor/marine/markonevisor,
+		/obj/item/armor_module/armor/secondary_color/helm,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
@@ -231,3 +236,44 @@
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Hotaru markings"
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/hotaru, /obj/item/armor_module/storage/helmet)
 	greyscale_config = /datum/greyscale_config/armor_mk1/hotaru
+
+/obj/item/clothing/head/modular/marine/dashe
+	name = "Style Pattern Dashe Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Dashe markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/dashe, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk1/dashe
+
+// Hardsuit Helmets
+
+/obj/item/clothing/head/modular/marine/hardsuit_helm
+	name = "FleckTex Base Hardsuit Helmet"
+	desc = "Usually paired with the FleckTex WY-01 modular exoskeleton. Can mount utility functions on the helmet hard points. Has Base markings"
+	greyscale_config = /datum/greyscale_config/hardsuit_variant
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/secondary_color/helm)
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_VISOR,
+		ATTACHMENT_SLOT_STORAGE,
+		ATTACHMENT_SLOT_HEAD_MODULE,
+		ATTACHMENT_SLOT_BADGE,
+		ATTACHMENT_SLOT_HELM_SECONDARY_COLOR,
+	)
+
+/obj/item/clothing/head/modular/marine/hardsuit_helm/markfive
+	name = "FleckTex Mark V Breacher Helmet"
+	desc = "Usually paired with the FleckTex WY-01 modular exoskeleton. Can mount utility functions on the helmet hard points. Has Breacher markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/fourvisor, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/secondary_color/helm)
+	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markfive
+
+/obj/item/clothing/head/modular/marine/hardsuit_helm/markthree
+	name = "FleckTex Mark III Marauder Helmet"
+	desc = "Usually paired with the FleckTex WY-01 modular exoskeleton. Can mount utility functions on the helmet hard points. Has Marauder markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/foureyevisor, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/secondary_color/helm)
+	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markthree
+
+/obj/item/clothing/head/modular/marine/hardsuit_helm/markone
+	name = "FleckTex Mark I Raider Helmet"
+	desc = "Usually paired with the FleckTex WY-01 modular exoskeleton. Can mount utility functions on the helmet hard points. Has Raider markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/markonevisor, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/secondary_color/helm)
+	greyscale_config = /datum/greyscale_config/hardsuit_variant
+
+

@@ -56,7 +56,7 @@
 	/// Whom the owner is linked to.
 	var/mob/living/carbon/xenomorph/link_target
 	/// References the Essence Link action and its vars.
-	var/datum/action/xeno_action/activable/essence_link/essence_link_action
+	var/datum/action/ability/activable/xeno/essence_link/essence_link_action
 	/// If the target xeno was within range.
 	var/was_within_range = TRUE
 	/// Cooldown for passive attunement increase.
@@ -71,7 +71,7 @@
 /datum/status_effect/stacking/essence_link/on_creation(mob/living/new_owner, stacks_to_apply, mob/living/carbon/link_target)
 	link_owner = new_owner
 	src.link_target = link_target
-	essence_link_action = link_owner.actions_by_path[/datum/action/xeno_action/activable/essence_link]
+	essence_link_action = link_owner.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
 	ADD_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	ADD_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	RegisterSignals(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(end_link))
@@ -114,8 +114,8 @@
 	if(stacks < 1 || !was_within_range || remaining_health >= link_target.maxHealth)
 		return
 	var/heal_amount = link_target.maxHealth * (DRONE_ESSENCE_LINK_REGEN * stacks)
-	var/plasma_cost = heal_amount * 2
-	if(link_owner.plasma_stored < plasma_cost)
+	var/ability_cost = heal_amount * 2
+	if(link_owner.plasma_stored < ability_cost)
 		if(!COOLDOWN_CHECK(src, plasma_warning))
 			return
 		link_owner.balloon_alert(link_owner, "No plasma for link")
@@ -124,7 +124,7 @@
 		return
 	link_target.adjustFireLoss(-max(0, heal_amount - link_target.getBruteLoss()), passive = TRUE)
 	link_target.adjustBruteLoss(-heal_amount, passive = TRUE)
-	link_owner.use_plasma(plasma_cost)
+	link_owner.use_plasma(ability_cost)
 
 /// Shares the Resin Jelly buff with the linked xeno.
 /datum/status_effect/stacking/essence_link/proc/share_jelly(datum/source)
@@ -265,20 +265,20 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	/// References the Essence Link action and its vars.
-	var/datum/action/xeno_action/activable/essence_link/essence_link_action
+	var/datum/action/ability/activable/xeno/essence_link/essence_link_action
 	/// References the Enhancement action and its vars.
-	var/datum/action/xeno_action/enhancement/enhancement_action
+	var/datum/action/ability/xeno_action/enhancement/enhancement_action
 	/// If the target xeno was within range.
 	var/was_within_range = TRUE
 	/// The plasma cost per tick of this ability.
-	var/plasma_cost
+	var/ability_cost
 
 /datum/status_effect/drone_enhancement/on_creation(mob/living/new_owner, mob/living/carbon/new_target)
 	buffed_xeno = new_owner
 	buffing_xeno = new_target
-	essence_link_action = buffing_xeno.actions_by_path[/datum/action/xeno_action/activable/essence_link]
-	enhancement_action = buffing_xeno.actions_by_path[/datum/action/xeno_action/enhancement]
-	plasma_cost = round(buffing_xeno.xeno_caste.plasma_max * 0.1)
+	essence_link_action = buffing_xeno.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
+	enhancement_action = buffing_xeno.actions_by_path[/datum/action/ability/xeno_action/enhancement]
+	ability_cost = round(buffing_xeno.xeno_caste.plasma_max * 0.1)
 	RegisterSignal(buffed_xeno, COMSIG_MOB_DEATH, PROC_REF(handle_death))
 	RegisterSignal(buffing_xeno, COMSIG_MOB_DEATH, PROC_REF(handle_death))
 	INVOKE_ASYNC(buffed_xeno, TYPE_PROC_REF(/mob/living/carbon/xenomorph, emote), "roar2")
@@ -299,10 +299,10 @@
 		was_within_range = within_range
 		toggle_buff(was_within_range)
 
-	if(buffing_xeno.plasma_stored < plasma_cost)
+	if(buffing_xeno.plasma_stored < ability_cost)
 		enhancement_action.end_ability()
 		return
-	buffing_xeno.use_plasma(plasma_cost)
+	buffing_xeno.use_plasma(ability_cost)
 
 /// Toggles the buff on or off.
 /datum/status_effect/drone_enhancement/proc/toggle_buff(toggle)
@@ -569,7 +569,7 @@
 		ADD_TRAIT(owner_xeno, TRAIT_HANDS_BLOCKED, src)
 		target.AdjustKnockdown(KNOCKDOWN_DURATION)
 
-		if(do_after(owner_xeno, KNOCKDOWN_DURATION, FALSE, target, ignore_turf_checks = FALSE))
+		if(do_after(owner_xeno, KNOCKDOWN_DURATION, IGNORE_HELD_ITEM, target))
 			owner_xeno.gain_plasma(plasma_gain_on_hit)
 
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
@@ -823,3 +823,79 @@
 	scale = 0.6
 	rotation = 0
 	spin = 0
+
+// ***************************************
+// *********** Blessings
+// ***************************************
+/datum/status_effect/blessing
+	duration = -1
+	tick_interval = 5 SECONDS
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = null
+	/// The owner of this buff.
+	var/mob/living/carbon/xenomorph/buff_owner
+	///Aura strength of the puppeteer who gave this effect
+	var/strength = 1
+	///weakref to the puppeteer to set strength
+	var/datum/weakref/puppeteer
+
+/datum/status_effect/blessing/tick()
+	var/mob/living/carbon/xenomorph/xeno = puppeteer?.resolve()
+	if(!xeno)
+		return
+	strength = xeno.xeno_caste.aura_strength
+
+/datum/status_effect/blessing/on_creation(mob/living/new_owner, mob/living/carbon/xenomorph/caster)
+	owner = new_owner
+	puppeteer = WEAKREF(caster)
+	strength = caster.xeno_caste.aura_strength
+	return ..()
+
+/datum/status_effect/blessing/frenzy
+	id = "blessing of frenzy"
+
+/datum/status_effect/blessing/frenzy/on_apply()
+	buff_owner = owner
+	if(!isxeno(buff_owner))
+		return FALSE
+	buff_owner.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, strength * -0.2)
+	return TRUE
+
+/datum/status_effect/blessing/frenzy/on_remove()
+	buff_owner.remove_movespeed_modifier(type)
+	return ..()
+
+/datum/status_effect/blessing/fury
+	id = "blessing of fury"
+	///the modifier we apply to the xenos melee damage modifier
+	var/modifier
+
+/datum/status_effect/blessing/fury/on_apply()
+	buff_owner = owner
+	if(!isxeno(buff_owner))
+		return FALSE
+	modifier = strength * 0.07
+	buff_owner.xeno_melee_damage_modifier += modifier
+	return TRUE
+
+/datum/status_effect/blessing/fury/on_remove()
+	buff_owner.xeno_melee_damage_modifier -= modifier
+	return ..()
+
+/datum/status_effect/blessing/warding
+	id = "blessing of warding"
+	///A holder for the exact armor modified by this status effect
+	var/datum/armor/armor_modifier
+
+/datum/status_effect/blessing/warding/on_apply()
+	buff_owner = owner
+	if(!isxeno(buff_owner))
+		return FALSE
+	armor_modifier = buff_owner.soft_armor.scaleAllRatings(strength * 2.7)
+	buff_owner.soft_armor = buff_owner.soft_armor.attachArmor(armor_modifier)
+	return TRUE
+
+/datum/status_effect/blessing/warding/on_remove()
+	buff_owner.soft_armor = buff_owner.soft_armor.detachArmor(armor_modifier)
+	armor_modifier = null
+	return ..()

@@ -90,6 +90,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 /obj/effect/hallucination/simple/Initialize(mapload, mob/living/carbon/T)
 	. = ..()
+	if(!target)
+		return INITIALIZE_HINT_QDEL
 	target = T
 	current_image = GetImage()
 	if(target.client)
@@ -126,7 +128,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	Show()
 
 /obj/effect/hallucination/simple/Destroy()
-	if(target.client)
+	if(target?.client)
 		target.client.images.Remove(current_image)
 	active = FALSE
 	return ..()
@@ -142,6 +144,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	name = "Mature Runner ([rand(100, 999)])"
 
 /obj/effect/hallucination/simple/xeno/throw_impact(atom/hit_atom, speed)
+	. = ..()
+	if(!.)
+		return
 	if(hit_atom == target && target.stat != DEAD)
 		target.Paralyze(3 SECONDS, TRUE, TRUE)
 		target.visible_message(span_danger("[target] flails around wildly."),span_xenowarning("\The [src] pounces at [target]!"))

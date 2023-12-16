@@ -31,7 +31,7 @@
 		/obj/item/attachable/buildasentry,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	actions_types = list(/datum/action/item_action/aim_mode) // all pistols can aim mode
 	aim_speed_modifier = 0.65
 	scatter = -2
@@ -47,12 +47,18 @@
 /obj/item/weapon/gun/pistol/standard_pistol
 	name = "\improper P-14 pistol"
 	desc = "The P-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 21-round 9mm magazines."
-	icon_state = "tp14"
-	item_state = "tp14"
+	icon_state = GUN_ICONSTATE_LOADED
+	item_state = GUN_ICONSTATE_LOADED
 	caliber = CALIBER_9X19 //codex
 	max_shells = 21 //codex
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_p14.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
+	greyscale_config = /datum/greyscale_config/gun/pistol
+	colorable_allowed = PRESET_COLORS_ALLOWED
+	item_icons = list(
+		slot_l_hand_str = /datum/greyscale_config/gun_inhand/tp14,
+		slot_r_hand_str = /datum/greyscale_config/gun_inhand/r_hand/tp14,
+	)
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pistol)
 
@@ -72,8 +78,8 @@
 /obj/item/weapon/gun/pistol/plasma_pistol
 	name = "\improper PP-7 plasma pistol"
 	desc = "An experimental weapon designed to set the terrain and targets on fire. It hums with power as magnetic fields coil round each other."
-	icon_state = "tx7"
-	item_state = "tx7"
+	icon_state = GUN_ICONSTATE_LOADED
+	item_state = GUN_ICONSTATE_LOADED
 	caliber = CALIBER_PLASMA
 	max_shots = 10
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
@@ -82,6 +88,12 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/plasma_pistol)
 	type_of_casings = null
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
+	greyscale_config = /datum/greyscale_config/gun/pistol/tx7
+	colorable_allowed = PRESET_COLORS_ALLOWED
+	item_icons = list(
+		slot_l_hand_str = /datum/greyscale_config/gun_inhand/tx7,
+		slot_r_hand_str = /datum/greyscale_config/gun_inhand/r_hand/tx7,
+	)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
@@ -95,7 +107,7 @@
 	)
 
 	muzzleflash_iconstate = "muzzle_flash_laser"
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 	actions_types = list()
 	wield_delay = 0.5 SECONDS
@@ -123,13 +135,12 @@
 	return FALSE
 
 /obj/item/weapon/gun/pistol/plasma_pistol/on_attach(obj/item/attached_to, mob/user)
-	flags_gun_features |= GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features |= (GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY)
 	return ..()
 
 /obj/item/weapon/gun/pistol/plasma_pistol/on_detach(obj/item/attached_to, mob/user)
-	flags_gun_features &= ~GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features &= ~(GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY)
 	return ..()
-
 
 /obj/item/weapon/gun/pistol/plasma_pistol/guardsman_pistol
 	name = "\improper Guardsman\'s plasma pistol"
@@ -168,14 +179,20 @@
 /obj/item/weapon/gun/pistol/standard_heavypistol
 	name = "\improper P-23 service pistol"
 	desc = "A standard P-23 chambered in .45 ACP. Has a smaller magazine capacity, but packs a better punch. Has an irremovable laser sight. Uses .45 magazines."
-	icon_state = "tp23"
-	item_state = "tp23"
+	icon_state = GUN_ICONSTATE_LOADED
+	item_state = GUN_ICONSTATE_LOADED
 	caliber = CALIBER_45ACP //codex
 	max_shells = 14 //codex
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_p23.ogg'
 	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
+	greyscale_config = /datum/greyscale_config/gun/pistol/tp23
+	colorable_allowed = PRESET_COLORS_ALLOWED
+	item_icons = list(
+		slot_l_hand_str = /datum/greyscale_config/gun_inhand/tp23,
+		slot_r_hand_str = /datum/greyscale_config/gun_inhand/r_hand/tp23,
+	)
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_heavypistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_heavypistol)
 	attachable_allowed = list(
@@ -190,7 +207,7 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 22,"rail_x" = 13, "rail_y" = 24, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.2 SECONDS
@@ -247,7 +264,7 @@
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 	)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	fire_delay = 0.15 SECONDS
 	damage_mult = 1.3
 
@@ -328,14 +345,14 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 20, "stock_y" = 17)
 
-	fire_delay = 0.7 SECONDS
+	fire_delay = 0.45 SECONDS
 	scatter_unwielded = 25
 	recoil = 1
 	recoil_unwielded = 2
-	scatter = 4
+	scatter = 2
 	scatter_unwielded = 7
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.7
@@ -374,7 +391,7 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
 	//Making the gun have an invisible silencer since it's supposed to have one.
 	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible)
@@ -414,7 +431,7 @@
 		/obj/item/attachable/lace,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 25, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
 	fire_delay = 0.15 SECONDS
@@ -442,7 +459,7 @@
 		/obj/item/attachable/lace,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
 	fire_delay = 0.15 SECONDS
@@ -453,7 +470,7 @@
 
 
 //-------------------------------------------------------
-//.45 MARSHALS PISTOL //Inspired by the Browning Hipower
+// Browning Hipower
 
 /obj/item/weapon/gun/pistol/highpower
 	name = "\improper Highpower automag"
@@ -470,17 +487,17 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/highpower)
 	force = 10
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 18, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
 
-	fire_delay = 1 SECONDS
+	fire_delay = 0.45 SECONDS
 	burst_delay = 0.5 SECONDS
-	damage_mult = 1.2
+	damage_mult = 1.1
 	recoil = 1
 	recoil_unwielded = 2
-	accuracy_mult_unwielded = 0.7
+	accuracy_mult_unwielded = 0.6
 	scatter = 3
-	scatter_unwielded = 6
+	scatter_unwielded = 7
 
 //-------------------------------------------------------
 //VP70
@@ -684,7 +701,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	type_of_casings = null
 	gun_skill_category = SKILL_PISTOLS
 	attachable_allowed = list()
-	flags_gun_features = GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 
 	fire_delay = 0.3 SECONDS
 	burst_delay = 0.2 SECONDS
@@ -698,12 +715,16 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	icon_state = "elite_knife"
 	reload_sound = 'sound/weapons/flipblade.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/pistol_cocked.ogg'
+	caliber = CALIBER_ALIEN
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 25
+	force = 30
 	movement_acc_penalty_mult = 3
-	wield_delay = 0.2 SECONDS
+	aim_slowdown = -0.2
+	wield_delay = 1 SECONDS // This is how long a knife takes to pull out in CS.
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/knife
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/knife)
 	type_of_casings = "bullet"
 	gun_skill_category = SKILL_PISTOLS
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 14,"rail_x" = 9, "rail_y" = 17, "under_x" = 23, "under_y" = 11, "stock_x" = 23, "stock_y" = 10)
@@ -727,7 +748,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/lace,
 	)
-
 
 // Smart pistol, based on Calico M-950
 /obj/item/weapon/gun/pistol/smart_pistol
@@ -753,7 +773,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/lace,
 	)
 
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_IFF
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_IFF|GUN_SMOKE_PARTICLES
 	gun_skill_category = SKILL_SMARTGUN
 	actions_types = list() // Inherits aimmode, but has IFF so..
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_SEMIAUTO)

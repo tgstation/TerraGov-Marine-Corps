@@ -42,13 +42,21 @@
 		return FALSE
 	newoccupant.drop_all_held_items()
 	add_occupant(newoccupant)
-	newoccupant.forceMove(src)
+	if(newoccupant.loc != src)
+		newoccupant.forceMove(src)
 	newoccupant.update_mouse_pointer()
 	add_fingerprint(newoccupant, "moved in as pilot")
 	log_message("[newoccupant] moved in as pilot.", LOG_MECHA)
 	setDir(dir_in)
 	playsound(src, 'sound/machines/windowdoor.ogg', 50, TRUE)
 	set_mouse_pointer()
+	for(var/faction in GLOB.faction_to_data_hud)
+		var/datum/atom_hud/squad/hud_type = GLOB.huds[GLOB.faction_to_data_hud[faction]]
+		if(faction == newoccupant.faction)
+			hud_type.add_to_hud(src)
+		else
+			hud_type.remove_from_hud(src)
+
 	if(!internal_damage)
 		SEND_SOUND(newoccupant, sound('sound/mecha/nominal.ogg',volume=50))
 	return TRUE
@@ -104,7 +112,7 @@
 /obj/vehicle/sealed/mecha/resisted_against(mob/living/user)
 	to_chat(user, span_notice("You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting."))
 	is_currently_ejecting = TRUE
-	if(do_after(user, exit_delay, target = src))
+	if(do_after(user, exit_delay, NONE, src))
 		to_chat(user, span_notice("You exit the mech."))
 		mob_exit(user, TRUE)
 	else

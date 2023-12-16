@@ -80,7 +80,7 @@
 	RegisterSignal(src, COMSIG_ITEM_UNDEPLOY, PROC_REF(handle_undeploy_references))
 	LAZYINITLIST(linked_struct_binoculars)
 	var/obj/item/mortar_kit/mortar = get_internal_item()
-	for (var/obj/item/binoculars/tactical/binoc in mortar.linked_item_binoculars)
+	for (var/obj/item/binoculars/tactical/binoc in mortar?.linked_item_binoculars)
 		binoc.set_mortar(src)
 	impact_cam = new
 	impact_cam.forceMove(src)
@@ -213,7 +213,7 @@
 		span_notice("You start loading \a [mortar_shell.name] into [src]."))
 		playsound(loc, reload_sound, 50, 1)
 		busy = TRUE
-		if(!do_after(user, reload_time, TRUE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, reload_time, NONE, src, BUSY_ICON_HOSTILE))
 			busy = FALSE
 			return
 
@@ -324,9 +324,10 @@
 /obj/machinery/deployable/mortar/proc/handle_undeploy_references()
 	SIGNAL_HANDLER
 	var/obj/item/mortar_kit/mortar = get_internal_item()
-	LAZYINITLIST(mortar.linked_item_binoculars)
-	LAZYCLEARLIST(mortar.linked_item_binoculars)
-	mortar.linked_item_binoculars = linked_struct_binoculars.Copy()
+	if(mortar)
+		LAZYINITLIST(mortar.linked_item_binoculars)
+		LAZYCLEARLIST(mortar.linked_item_binoculars)
+		mortar.linked_item_binoculars = linked_struct_binoculars.Copy()
 	UnregisterSignal(src, COMSIG_ITEM_UNDEPLOY)
 
 /obj/machinery/deployable/mortar/attack_hand_alternate(mob/living/user)
@@ -386,13 +387,24 @@
 		amount_to_fire = length(chamber_items)
 	for(var/turf/spread_turf in RANGE_TURFS(firing_spread, target))
 		turf_list += spread_turf
+	//Probably easier to declare and update a counter than it is to keep accessing a client and datum multiple times
+	var/shells_fired = 0
+	var/war_crimes_counter = 0
 	for(var/i = 1 to amount_to_fire)
 		var/turf/impact_turf = pick(turf_list)
 		in_chamber = chamber_items[next_chamber_position]
 		addtimer(CALLBACK(src, PROC_REF(begin_fire), impact_turf, in_chamber), fire_delay * i)
 		next_chamber_position--
 		chamber_items -= in_chamber
+		if(istype(in_chamber, /obj/item/mortal_shell/howitzer/white_phos || /obj/item/mortal_shell/rocket/mlrs/gas))
+			war_crimes_counter++
+		shells_fired++
 		QDEL_NULL(in_chamber)
+	if(user.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+		personal_statistics.artillery_fired += shells_fired
+		if(war_crimes_counter)
+			personal_statistics.war_crimes += war_crimes_counter
 	return ..()
 
 // Artillery cameras. Together with the artillery impact hud tablet, shows a live feed of imapcts.
@@ -430,7 +442,7 @@
 
 /obj/item/mortar_kit/unique_action(mob/user)
 	var/area/current_area = get_area(src)
-	if(current_area.ceiling >= CEILING_METAL)
+	if(current_area.ceiling >= CEILING_OBSTRUCTED)
 		to_chat(user, span_warning("You probably shouldn't deploy [src] indoors."))
 		return
 	return ..()
@@ -617,7 +629,7 @@
 		span_notice("You start loading \a [mortar_shell.name] into [src]."))
 		playsound(loc, reload_sound, 50, 1)
 		busy = TRUE
-		if(!do_after(user, reload_time, TRUE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, reload_time, NONE, src, BUSY_ICON_HOSTILE))
 			busy = FALSE
 			return
 
@@ -842,7 +854,7 @@
 
 
 /obj/structure/closet/crate/mortar_ammo/mlrs_kit
-	name = "\improper TA-40L howitzer kit"
+	name = "\improper TA-40L MLRS kit"
 	desc = "A crate containing a basic, somehow compressed kit consisting of an entire multiple launch rocket system and some rockets, to get a artilleryman started."
 
 /obj/structure/closet/crate/mortar_ammo/mlrs_kit/PopulateContents()

@@ -215,23 +215,6 @@
 		img.alpha = (i * alpha_inc) - 1
 		damage_overlays[i] = img
 
-//Damage
-/**
-	Returns a number after taking into account both soft and hard armor for the specified damage type
-
-	Arguments
-	* Damage_amount: The original unmodified damage
-	* armor_type: The type of armor by which the damage will be modified
-	* penetration: How much the damage source might bypass the armour value (optional)
-
-	Hard armor reduces penetration by a flat amount.
-	Penetration reduces soft armor by a flat amount.
-	Damage cannot go into the negative, or exceed the original amount.
-*/
-/turf/proc/modify_by_armor(damage_amount, armor_type, penetration)
-	penetration = max(0, penetration - hard_armor.getRating(armor_type))
-	return clamp((damage_amount * (1 - ((soft_armor.getRating(armor_type) - penetration) * 0.01))), 0, damage_amount)
-
 ///Applies damage to the wall
 /turf/closed/wall/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", armour_penetration = 0)
 	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
@@ -255,14 +238,19 @@
 		update_icon()
 
 ///Repairs the wall by an amount
-/turf/closed/wall/proc/repair_damage(repair_amount)
+/turf/closed/wall/proc/repair_damage(repair_amount, mob/user)
 	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
 		return
 
 	if(!repair_amount)
 		return
 
-	wall_integrity = min(max_integrity, wall_integrity + repair_amount)
+	repair_amount = min(repair_amount, max_integrity - wall_integrity)
+	if(user?.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+		personal_statistics.integrity_repaired += repair_amount
+		personal_statistics.times_repaired++
+	wall_integrity += repair_amount
 	update_icon()
 
 
@@ -372,14 +360,14 @@
 		span_notice("You start repairing the damage to [src]."))
 		add_overlay(GLOB.welding_sparks)
 		playsound(src, 'sound/items/welder.ogg', 25, 1)
-		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || !iswallturf(src) || !WT?.isOn())
+		if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || !iswallturf(src) || !WT?.isOn())
 			cut_overlay(GLOB.welding_sparks)
 			return
 
 		user.visible_message(span_notice("[user] finishes repairing the damage to [src]."),
 		span_notice("You finish repairing the damage to [src]."))
 		cut_overlay(GLOB.welding_sparks)
-		repair_damage(250)
+		repair_damage(250, user)
 
 	else
 		//DECONSTRUCTION
@@ -392,7 +380,7 @@
 					span_notice("You begin slicing through the outer plating."))
 					add_overlay(GLOB.welding_sparks)
 
-					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
 						cut_overlay(GLOB.welding_sparks)
 						return
 
@@ -410,7 +398,7 @@
 					span_notice("You begin removing the support lines."))
 					playsound(src, 'sound/items/screwdriver.ogg', 25, 1)
 
-					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -427,7 +415,7 @@
 					add_overlay(GLOB.welding_sparks)
 					playsound(src, 'sound/items/welder.ogg', 25, 1)
 
-					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
 						cut_overlay(GLOB.welding_sparks)
 						return
 
@@ -445,7 +433,7 @@
 					span_notice("You struggle to pry off the cover."))
 					playsound(src, 'sound/items/crowbar.ogg', 25, 1)
 
-					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -460,7 +448,7 @@
 					span_notice("You start loosening the anchoring bolts securing the support rods."))
 					playsound(src, 'sound/items/ratchet.ogg', 25, 1)
 
-					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -475,7 +463,7 @@
 					span_notice("You begin uncrimping the hydraulic lines."))
 					playsound(src, 'sound/items/wirecutter.ogg', 25, 1)
 
-					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -490,7 +478,7 @@
 					span_notice("You struggle to pry off the inner sheath."))
 					playsound(src, 'sound/items/crowbar.ogg', 25, 1)
 
-					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -507,7 +495,7 @@
 					playsound(src, 'sound/items/welder.ogg', 25, 1)
 					add_overlay(GLOB.welding_sparks)
 
-					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
 						cut_overlay(GLOB.welding_sparks)
 						return
 

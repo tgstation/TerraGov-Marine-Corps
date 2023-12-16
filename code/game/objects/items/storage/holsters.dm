@@ -91,7 +91,10 @@
 ///Adds or removes underlay sprites, checks holstered_item to see which underlay to add
 /obj/item/storage/holster/proc/update_underlays()
 	if(holstered_item && !holstered_item_underlay)
-		holstered_item_underlay = image(icon, src, holstered_item.icon_state)
+		if(holstered_item.greyscale_config && holstered_item.greyscale_colors)
+			holstered_item_underlay = image(SSgreyscale.GetColoredIconByType(holstered_item.greyscale_config, holstered_item.greyscale_colors), "belt")
+		else
+			holstered_item_underlay = image(icon, src, holstered_item.icon_state)
 		underlays += holstered_item_underlay
 	else
 		underlays -= holstered_item_underlay
@@ -154,9 +157,9 @@
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact,
 	)
-	bypass_w_limit = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle,)
+	bypass_w_limit = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle)
 	///only one RR per bag
-	storage_type_limits = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle = 1,)
+	storage_type_limits = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle = 1)
 	can_hold = list(
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
@@ -185,6 +188,15 @@
 	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
 	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+
+/obj/item/storage/holster/backholster/rpg/heam/Initialize(mapload)
+	. = ..()
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle/heam(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/rpg/som
@@ -220,6 +232,15 @@
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/som/rad(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
+/obj/item/storage/holster/backholster/rpg/som/heat/Initialize(mapload)
+	. = ..()
+	new /obj/item/ammo_magazine/rocket/som/heat(src)
+	new /obj/item/ammo_magazine/rocket/som/heat(src)
+	new /obj/item/ammo_magazine/rocket/som/heat(src)
+	new /obj/item/ammo_magazine/rocket/som/heat(src)
+	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/som/heat(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+
 /obj/item/storage/holster/backholster/mortar
 	name = "\improper TGMC mortar bag"
 	desc = "This backpack can hold 11 80mm mortar shells, in addition to the mortar itself."
@@ -229,9 +250,9 @@
 	storage_slots = null
 	max_storage_space = 30
 	access_delay = 0
-	holsterable_allowed = list(/obj/item/mortar_kit,)
-	bypass_w_limit = list(/obj/item/mortar_kit,)
-	storage_type_limits = list(/obj/item/mortar_kit = 1,)
+	holsterable_allowed = list(/obj/item/mortar_kit)
+	bypass_w_limit = list(/obj/item/mortar_kit)
+	storage_type_limits = list(/obj/item/mortar_kit = 1)
 	can_hold = list(
 		/obj/item/mortal_shell/he,
 		/obj/item/mortal_shell/incendiary,
@@ -264,13 +285,11 @@
 	max_storage_space = 16
 	max_w_class = WEIGHT_CLASS_NORMAL
 	access_delay = 0
-	holsterable_allowed = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer,)
-	bypass_w_limit = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer,)
-	storage_type_limits = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer = 1,)
-		///The internal fuel tank
+	holsterable_allowed = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer)
+	bypass_w_limit = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer)
+	storage_type_limits = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer = 1)
+	///The internal fuel tank
 	var/obj/item/ammo_magazine/flamer_tank/internal/tank
-
-	///The linked flamerthrower that cannot be dropped
 
 	sprite_sheets = list(
 		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
@@ -280,7 +299,7 @@
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		)
 
-/obj/item/storage/holster/backholster/flamer/Initialize()
+/obj/item/storage/holster/backholster/flamer/Initialize(mapload)
 	. = ..()
 	tank = new
 	update_icon()
@@ -332,7 +351,7 @@
 	. = ..()
 	. += "[tank.current_rounds] units of fuel left!"
 
-/obj/item/storage/holster/backholster/flamer/full/Initialize()
+/obj/item/storage/holster/backholster/flamer/full/Initialize(mapload)
 	. = ..()
 	var/flamer = new /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), flamer)
@@ -392,12 +411,12 @@
 	desc = "A large leather scabbard used to carry a sword. Appears to be a reproduction, rather than original. It can be strapped to the waist or armor."
 	icon_state = "officer_sheath"
 	flags_equip_slot = ITEM_SLOT_BELT
-	holsterable_allowed = list(/obj/item/weapon/claymore/mercsword/officersword)
-	can_hold = list(/obj/item/weapon/claymore/mercsword/officersword)
+	holsterable_allowed = list(/obj/item/weapon/claymore/mercsword/machete/officersword)
+	can_hold = list(/obj/item/weapon/claymore/mercsword/machete/officersword)
 
 /obj/item/storage/holster/blade/officer/full/Initialize(mapload)
 	. = ..()
-	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/officersword(src)
+	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/machete/officersword(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 //guns
@@ -645,10 +664,32 @@
 		/obj/item/cell/lasgun/plasma,
 	)
 
+/obj/item/storage/holster/belt/pistol/m4a3/som/serpenta/Initialize(mapload, ...)
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
 /obj/item/storage/holster/belt/pistol/m4a3/som/fancy
 	name = "\improper S19-B holster rig"
 	desc = "A quality pistol belt of a style typically seen worn by SOM officers. It looks old, but well looked after."
 	icon_state = "som_belt_pistol_fancy"
+
+/obj/item/storage/holster/belt/pistol/m4a3/som/fancy/fieldcommander/Initialize(mapload)
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta/custom(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/pistol/stand
 	name = "\improper M276 pattern M4A3 holster rig"

@@ -63,7 +63,7 @@
 
 	var/mob/mob_source = source
 
-	if(!do_after(user, equipping.equip_delay_other, source, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, equipping.equip_delay_other, NONE, source, BUSY_ICON_FRIENDLY))
 		return FALSE
 
 	if(!mob_source.can_put_in_hand(equipping, hand_index))
@@ -122,10 +122,7 @@
 
 /// Getter proc for the alternate action for removing nodrop traits from items with straps
 /datum/strippable_item/proc/get_strippable_alternate_action_strap(obj/item/item, atom/source)
-	if(!HAS_TRAIT(item, TRAIT_STRAPPABLE))
-		return
-
-	if(CHECK_BITFIELD(item.flags_item, NODROP))
+	if(HAS_TRAIT_FROM(item, TRAIT_NODROP, STRAPPABLE_ITEM_TRAIT))
 		return "loosen_strap"
 	else
 		return "tighten_strap"
@@ -135,10 +132,15 @@
 	if(!HAS_TRAIT(item, TRAIT_STRAPPABLE))
 		return
 
-	user.balloon_alert_to_viewers("[CHECK_BITFIELD(item.flags_item, NODROP) ? "Loosening" : "Tightening"] strap...")
+	var/strapped = HAS_TRAIT_FROM(item, TRAIT_NODROP, STRAPPABLE_ITEM_TRAIT)
+	user.balloon_alert_to_viewers("[strapped ? "Loosening" : "Tightening"] strap...")
 
-	if(!do_after(user, 3 SECONDS, TRUE, source, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 3 SECONDS, NONE, source, BUSY_ICON_FRIENDLY))
 		return
 
-	TOGGLE_BITFIELD(item.flags_item, NODROP)
-	user.balloon_alert_to_viewers("[CHECK_BITFIELD(item.flags_item, NODROP) ? "Loosened" : "Tightened"] strap")
+	if(!strapped)
+		ADD_TRAIT(item, TRAIT_NODROP, STRAPPABLE_ITEM_TRAIT)
+		user.balloon_alert_to_viewers("Tightened strap")
+	else
+		REMOVE_TRAIT(item, TRAIT_NODROP, STRAPPABLE_ITEM_TRAIT)
+		user.balloon_alert_to_viewers("Loosened strap")

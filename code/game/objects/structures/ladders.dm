@@ -104,7 +104,7 @@
 	step(user, get_dir(user, src))
 	user.visible_message(span_notice("[user] starts climbing [ladder_dir_name] [src]."),
 	span_notice("You start climbing [ladder_dir_name] [src]."))
-	if(!do_after(user, 20, FALSE, src, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
+	if(!do_after(user, 20, IGNORE_HELD_ITEM, src, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
 		return
 	user.trainteleport(ladder_dest.loc)
 	visible_message(span_notice("[user] climbs [ladder_dir_name] [src].")) //Hack to give a visible message to the people here without duplicating user message
@@ -239,7 +239,7 @@
 		user.visible_message(span_warning("[user] takes position to throw [G] [ladder_dir_name] [src]."),
 		span_warning("You take position to throw [G] [ladder_dir_name] [src]."))
 
-		if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 10, NONE, src, BUSY_ICON_HOSTILE))
 			return
 
 		user.visible_message(span_warning("[user] throws [G] [ladder_dir_name] [src]!"),
@@ -279,7 +279,7 @@
 		user.visible_message(span_warning("[user] takes position to throw [F] [ladder_dir_name] [src]."),
 		span_warning("You take position to throw [F] [ladder_dir_name] [src]."))
 
-		if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 10, NONE, src, BUSY_ICON_HOSTILE))
 			return
 
 		user.visible_message(span_warning("[user] throws [F] [ladder_dir_name] [src]!"),

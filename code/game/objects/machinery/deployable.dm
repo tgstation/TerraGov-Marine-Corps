@@ -5,22 +5,27 @@
 	allow_pass_flags = PASS_AIR
 	///Since /obj/machinery/deployable aquires its sprites from an item and are set in New(), initial(icon_state) would return null. This var exists as a substitute.
 	var/default_icon_state
-	///Item that is deployed to create src.
-	var/obj/item/internal_item
+	///Weakref to item that is deployed to create src.
+	var/datum/weakref/internal_item
 
 /obj/machinery/deployable/Initialize(mapload, _internal_item, mob/deployer)
 	. = ..()
-	internal_item = _internal_item
+	if(!internal_item && !_internal_item)
+		return INITIALIZE_HINT_QDEL
 
-	name = internal_item.name
-	desc = internal_item.desc
+	internal_item = WEAKREF(_internal_item)
 
-	icon = initial(internal_item.icon)
-	default_icon_state = initial(internal_item.icon_state) + "_deployed"
+	var/obj/item/new_internal_item = internal_item.resolve()
+
+	name = new_internal_item.name
+	desc = new_internal_item.desc
+
+	icon = initial(new_internal_item.icon)
+	default_icon_state = initial(new_internal_item.icon_state) + "_deployed"
 	icon_state = default_icon_state
 
-	soft_armor = internal_item.soft_armor
-	hard_armor = internal_item.hard_armor
+	soft_armor = new_internal_item.soft_armor
+	hard_armor = new_internal_item.hard_armor
 
 	prepare_huds()
 	if(istype(deployer))
@@ -31,7 +36,7 @@
 	update_icon()
 
 /obj/machinery/deployable/get_internal_item()
-	return internal_item
+	return internal_item?.resolve()
 
 /obj/machinery/deployable/clear_internal_item()
 	internal_item = null
@@ -50,7 +55,9 @@
 		if(A.acid_t == src)
 			to_chat(user, "You can't get near that, it's melting!")
 			return
-	var/obj/item/item = internal_item
+	var/obj/item/item = get_internal_item()
+	if(!item)
+		return
 	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
 		to_chat(user, span_notice("The [src] is anchored in place and cannot be disassembled."))
 		return
@@ -58,8 +65,6 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 
 /obj/machinery/deployable/Destroy()
-	if(internal_item)
-		QDEL_NULL(internal_item)
 	operator?.unset_interaction()
 	return ..()
 
@@ -69,13 +74,19 @@
 	var/mob/living/carbon/human/user = usr //this is us
 	if(over_object != user || !in_range(src, user))
 		return
-	if(CHECK_BITFIELD(internal_item.flags_item, DEPLOYED_WRENCH_DISASSEMBLE))
+	var/obj/item/_internal_item = get_internal_item()
+	if(!_internal_item)
+		return
+	if(CHECK_BITFIELD(_internal_item.flags_item, DEPLOYED_WRENCH_DISASSEMBLE))
 		to_chat(user, span_notice("You cannot disassemble [src] without a wrench."))
 		return
 	disassemble(user)
 
 /obj/machinery/deployable/wrench_act(mob/living/user, obj/item/I)
-	if(!CHECK_BITFIELD(internal_item.flags_item, DEPLOYED_WRENCH_DISASSEMBLE))
+	var/obj/item/_internal_item = get_internal_item()
+	if(!_internal_item)
+		return
+	if(!CHECK_BITFIELD(_internal_item.flags_item, DEPLOYED_WRENCH_DISASSEMBLE))
 		return ..()
 	disassemble(user)
 

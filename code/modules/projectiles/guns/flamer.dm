@@ -51,6 +51,9 @@
 		/obj/item/ammo_magazine/flamer_tank/backtank,
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
+	light_range = 0.1
+	light_power = 0.1
+	light_color = LIGHT_COLOR_ORANGE
 	///Max range of the flamer in tiles.
 	var/flame_max_range = 6
 	///Max resin wall penetration in tiles.
@@ -115,10 +118,11 @@
 		return
 	if(light)
 		ENABLE_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)
+		turn_light(null, TRUE)
 	else
 		DISABLE_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)
+		turn_light(null, FALSE)
 	playsound(src, CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT) ? 'sound/weapons/guns/interact/flamethrower_on.ogg' : 'sound/weapons/guns/interact/flamethrower_off.ogg', 25, 1)
-
 
 	if(CHECK_BITFIELD(flags_flamer_features, FLAMER_NO_LIT_OVERLAY))
 		return
@@ -134,6 +138,12 @@
 	lit_overlay.pixel_x += lit_overlay_offset_x
 	lit_overlay.pixel_y += lit_overlay_offset_y
 	. += lit_overlay
+
+/obj/item/weapon/gun/flamer/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	set_light_on(toggle_on)
 
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
 	. = ..()
@@ -304,6 +314,11 @@
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
 
+/obj/item/weapon/gun/flamer/som/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	. = ..()
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
+	standing.overlays.Add(emissive_overlay)
+
 /obj/item/weapon/gun/flamer/som/mag_harness
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide, /obj/item/attachable/magnetic_harness)
 
@@ -403,7 +418,7 @@
 ///Flamer windup called before firing
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/proc/do_windup()
 	windup_checked = WEAPON_WINDUP_CHECKING
-	if(!do_after(gun_user, 1 SECONDS, TRUE, src))
+	if(!do_after(gun_user, 1 SECONDS, IGNORE_USER_LOC_CHANGE, src))
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	windup_checked = WEAPON_WINDUP_CHECKED
@@ -486,7 +501,6 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	light_on = TRUE
 	light_range = 3
 	light_power = 3
-	light_color = LIGHT_COLOR_LAVA
 	///Tracks how much "fire" there is. Basically the timer of how long the fire burns
 	var/firelevel = 12
 	///Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature
@@ -497,6 +511,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 /obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	. = ..()
 	set_fire(fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
+	updateicon()
 
 	START_PROCESSING(SSobj, src)
 
@@ -550,15 +565,15 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		C.take_overall_damage(fire_damage, BURN, FIRE, updating_health = TRUE)
 
 /obj/flamer_fire/proc/updateicon()
-	var/light_color = "LIGHT_COLOR_LAVA"
+	var/light_color = "LIGHT_COLOR_FLAME"
 	var/light_intensity = 3
 	switch(flame_color)
 		if("red")
-			light_color = LIGHT_COLOR_LAVA
+			light_color = LIGHT_COLOR_FLAME
 		if("blue")
-			light_color = LIGHT_COLOR_CYAN
+			light_color = LIGHT_COLOR_BLUE_FLAME
 		if("green")
-			light_color = LIGHT_COLOR_GREEN
+			light_color = LIGHT_COLOR_ELECTRIC_GREEN
 	switch(firelevel)
 		if(1 to 9)
 			icon_state = "[flame_color]_1"

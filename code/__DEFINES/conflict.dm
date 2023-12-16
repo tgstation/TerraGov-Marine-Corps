@@ -40,7 +40,7 @@
 //flags_ammo_behavior
 #define AMMO_EXPLOSIVE (1<<0) //Ammo will impact a targeted open turf instead of continuing past it
 #define AMMO_XENO (1<<1)
-#define AMMO_XENO_TOX (1<<2) //Unused value.
+#define AMMO_UNWIELDY (1<<2) //poor accuracy against humans
 #define AMMO_ENERGY (1<<3) //Ammo will pass through windows and has damage reduced by smokes with SMOKE_NERF_BEAM
 #define AMMO_ROCKET (1<<4) //Ammo is more likely to continue past cover such as cades //todo merge AMMO_ROCKET and AMMO_SNIPER
 #define AMMO_SNIPER (1<<5) //Ammo is more likely to continue past cover such as cades
@@ -80,6 +80,7 @@
 #define GUN_NO_PITCH_SHIFT_NEAR_EMPTY (1<<13)
 #define GUN_SHOWS_AMMO_REMAINING (1<<14) //Whether the mob sprite reflects the ammo level
 #define GUN_SHOWS_LOADED (1<<15) //Whether the mob sprite as loaded or unloaded, a binary version of the above
+#define GUN_SMOKE_PARTICLES (1<<16) //Whether the gun has smoke particles
 
 //reciever_flags. Used to determin how the gun cycles, what kind of ammo it uses, etc.
 #define AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION (1<<0)
@@ -218,3 +219,10 @@
 #define X_FIRE_LAYER 1
 #define X_TOTAL_LAYERS 9
 /////////////////////////////////
+
+//Cave comms defines
+#define CAVE_NO_INTERFERENCE 0 //! No impact on comms.
+#define CAVE_MINOR_INTERFERENCE 1 //! Scrambles outgoing messages, no impact on incoming.
+#define CAVE_FULL_INTERFERENCE 2 //! Prevents incoming and outgoing messages.
+
+#define ANTENNA_SYNCING_TIME 30 SECONDS //! Time needed to initially configure an antenna module after equipping.

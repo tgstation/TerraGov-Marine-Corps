@@ -117,7 +117,14 @@ Administrative related.
 
 /datum/config_entry/flag/log_manifest
 
+/// log roundstart divide occupations debug information to a file
+/datum/config_entry/flag/log_job_debug
+
 /datum/config_entry/flag/log_timers_on_bucket_reset // logs all timers in buckets on automatic bucket reset (Useful for timer debugging)
+
+/// Log human readable versions of json log entries
+/datum/config_entry/flag/log_as_human_readable
+	config_entry_value = TRUE
 
 /datum/config_entry/flag/allow_admin_ooccolor // Allows admins to customize their OOC color.
 
@@ -153,7 +160,7 @@ Administrative related.
 /datum/config_entry/number/lobby_countdown
 	config_entry_value = 180
 
-/datum/config_entry/number/round_end_countdown
+/datum/config_entry/number/mission_end_countdown
 	config_entry_value = 120
 
 /datum/config_entry/flag/see_own_notes

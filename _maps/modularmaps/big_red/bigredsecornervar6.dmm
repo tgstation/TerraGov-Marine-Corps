@@ -226,7 +226,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "nn" = (
-/obj/structure/ship_ammo/rocket/fatty,
+/obj/structure/ship_ammo/cas/rocket/fatty,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "nY" = (
@@ -270,7 +270,7 @@
 	},
 /area/bigredv2/caves/secomplex)
 "rJ" = (
-/obj/structure/ship_ammo/rocket/napalm,
+/obj/structure/ship_ammo/cas/rocket/napalm,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "sc" = (
@@ -331,7 +331,7 @@
 	},
 /area/bigredv2/caves/secomplex)
 "ud" = (
-/obj/structure/ship_ammo/rocket/widowmaker,
+/obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "ur" = (
@@ -350,7 +350,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "uX" = (
-/obj/structure/ship_ammo/rocket/banshee,
+/obj/structure/ship_ammo/cas/rocket/banshee,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
@@ -611,10 +611,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "LX" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
+/obj/effect/landmark/patrol_point/tgmc_14,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "Md" = (
@@ -711,10 +708,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Rb" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
+/obj/effect/landmark/patrol_point/tgmc_12,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "Rf" = (
@@ -754,10 +748,7 @@
 /area/bigredv2/caves/secomplex)
 "SZ" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "Tw" = (
@@ -808,7 +799,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "Wt" = (
-/obj/structure/dropship_equipment/weapon/rocket_pod,
+/obj/structure/dropship_equipment/cas/weapon/rocket_pod,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Wz" = (
@@ -845,10 +836,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Yh" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
+/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "Yn" = (

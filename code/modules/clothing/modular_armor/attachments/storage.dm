@@ -35,12 +35,14 @@
 	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, PROC_REF(open_storage))	//Open storage if the armor is alt right clicked
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(insert_item))
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_GHOST, PROC_REF(open_storage))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, PROC_REF(draw_from_storage))
+	RegisterSignal(parent, COMSIG_CLICK_CTRL, PROC_REF(left_draw_from_storage))
 	storage.master_item = parent
 
 /obj/item/armor_module/storage/on_detach(obj/item/detaching_from, mob/user)
 	equip_delay_self = initial(equip_delay_self)
 	strip_delay = initial(strip_delay)
-	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_CLICK_ALT_RIGHT, COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_ATTACK_GHOST))
+	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_CLICK_ALT_RIGHT, COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_ATTACK_GHOST, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, COMSIG_CLICK_CTRL))
 	storage.master_item = src
 	return ..()
 
@@ -69,6 +71,23 @@
 		return
 	INVOKE_ASYNC(storage, TYPE_PROC_REF(/atom, attackby), I, user)
 	return COMPONENT_NO_AFTERATTACK
+
+///We draw from the item's storage
+/obj/item/armor_module/storage/proc/draw_from_storage(datum/source, mob/user)
+	SIGNAL_HANDLER
+	if(parent.loc != user)
+		return
+	INVOKE_ASYNC(storage, TYPE_PROC_REF(/obj/item/storage/internal, attempt_draw_object), user)
+	return COMPONENT_NO_ATTACK_HAND
+
+
+///We draw the leftmost item from the item's storage
+/obj/item/armor_module/storage/proc/left_draw_from_storage(datum/source, mob/user)
+	SIGNAL_HANDLER
+	if(parent.loc != user)
+		return
+	INVOKE_ASYNC(storage, TYPE_PROC_REF(/obj/item/storage/internal, attempt_draw_object), user, TRUE)
+	return COMPONENT_NO_ATTACK_HAND
 
 /obj/item/armor_module/storage/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -140,6 +159,7 @@
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/tweezers,
+		/obj/item/tweezers_advanced,
 		/obj/item/whistle,
 	)
 
@@ -304,6 +324,7 @@
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/tweezers,
+		/obj/item/tweezers_advanced,
 		/obj/item/whistle,
 	)
 
@@ -394,13 +415,21 @@
 	flags_attach_features = NONE
 
 /obj/item/storage/internal/marinehelmet
-	max_storage_space = 2
+	max_storage_space = 3
 	storage_slots = 2
 	max_w_class = WEIGHT_CLASS_TINY
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
 		/obj/item/reagent_containers/food/snacks,
+		/obj/item/stack/medical/heal_pack/gauze,
+		/obj/item/stack/medical/heal_pack/ointment,
+		/obj/item/ammo_magazine/handful,
 	)
 	cant_hold = list(
-		/obj/item/stack,
+		/obj/item/stack/sheet,
+		/obj/item/stack/catwalk,
+		/obj/item/stack/rods,
+		/obj/item/stack/sandbags_empty,
+		/obj/item/stack/tile,
+		/obj/item/stack/cable_coil,
 	)

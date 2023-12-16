@@ -245,18 +245,18 @@
 /turf/open/floor/grass,
 /area/mainship/living/port_garden)
 "aaY" = (
-/obj/structure/ship_ammo/minirocket/illumination,
+/obj/structure/ship_ammo/cas/minirocket/illumination,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "aaZ" = (
-/obj/structure/ship_ammo/minirocket/illumination,
+/obj/structure/ship_ammo/cas/minirocket/illumination,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "aba" = (
-/obj/structure/ship_ammo/minirocket,
+/obj/structure/ship_ammo/cas/minirocket,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "abb" = (
@@ -370,7 +370,7 @@
 /turf/open/floor/mainship,
 /area/mainship/living/port_garden)
 "abz" = (
-/obj/structure/ship_ammo/rocket/widowmaker,
+/obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "abC" = (
@@ -449,7 +449,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/exoarmor)
 "abV" = (
-/obj/structure/dropship_equipment/sentry_holder,
+/obj/structure/dropship_equipment/shuttle/sentry_holder,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
@@ -523,7 +523,7 @@
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
 "acs" = (
-/obj/structure/dropship_equipment/operatingtable,
+/obj/structure/dropship_equipment/shuttle/operatingtable,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "acu" = (
@@ -564,11 +564,11 @@
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
 "acB" = (
-/obj/structure/dropship_equipment/weapon/rocket_pod,
+/obj/structure/dropship_equipment/cas/weapon/rocket_pod,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "acD" = (
-/obj/structure/dropship_equipment/weapon/heavygun,
+/obj/structure/dropship_equipment/cas/weapon/heavygun,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "acE" = (
@@ -585,7 +585,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "acJ" = (
-/obj/structure/ship_ammo/heavygun,
+/obj/structure/ship_ammo/cas/heavygun,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "acK" = (
@@ -702,7 +702,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
 "adm" = (
-/obj/structure/ship_ammo/rocket/banshee,
+/obj/structure/ship_ammo/cas/rocket/banshee,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "ado" = (
@@ -802,7 +802,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
 "adF" = (
-/obj/structure/ship_ammo/rocket/keeper,
+/obj/structure/ship_ammo/cas/rocket/keeper,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "adG" = (
@@ -1589,7 +1589,7 @@
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ahA" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ahB" = (
@@ -1775,7 +1775,7 @@
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "aif" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "aig" = (
@@ -2087,7 +2087,7 @@
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ajw" = (
-/obj/machinery/cloning_console/vats,
+/obj/machinery/computer/cloning_console/vats,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ajB" = (
@@ -2192,7 +2192,7 @@
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ajU" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ajV" = (
@@ -2298,7 +2298,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "bEy" = (
-/obj/structure/dropship_equipment/weapon_holder/machinegun,
+/obj/structure/dropship_equipment/shuttle/weapon_holder/machinegun,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "bOe" = (
@@ -2477,6 +2477,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
+"jPH" = (
+/obj/machinery/bot/cleanbot,
+/turf/open/floor/mainship,
+/area/mainship/medical/medical_science)
 "jRy" = (
 /obj/item/reagent_containers/food/snacks/grown/poppy,
 /turf/open/floor/mainship,
@@ -2544,7 +2548,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "ljx" = (
-/obj/structure/dropship_equipment/weapon/minirocket_pod,
+/obj/structure/dropship_equipment/cas/weapon/minirocket_pod,
 /obj/machinery/light,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
@@ -2686,7 +2690,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "rmt" = (
-/obj/structure/ship_ammo/heavygun,
+/obj/structure/ship_ammo/cas/heavygun,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
@@ -2850,7 +2854,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "wpk" = (
-/obj/structure/ship_ammo/minirocket,
+/obj/structure/ship_ammo/cas/minirocket,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -5318,7 +5322,7 @@ ahq
 ahO
 tZD
 tZD
-tZD
+jPH
 tZD
 aiW
 ahq

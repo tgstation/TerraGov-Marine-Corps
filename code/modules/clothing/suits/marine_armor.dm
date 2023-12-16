@@ -62,7 +62,9 @@
 		armor_overlays["lamp"] = null
 	user?.update_inv_wear_suit()
 
-/obj/item/clothing/suit/storage/marine/apply_custom(mutable_appearance/standing)
+/obj/item/clothing/suit/storage/marine/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	if(inhands)
+		return
 	. = ..()
 	var/mutable_appearance/new_overlay
 	for(var/i in armor_overlays)
@@ -270,6 +272,9 @@
 	desc = "A heavily armored suit built by who-knows-what for elite operations. It is a fully self-contained system and is heavily corrosion resistant."
 	icon_state = "commando_armor"
 	soft_armor = list(MELEE = 90, BULLET = 120, LASER = 200, ENERGY = 100, BOMB = 100, BIO = 100, FIRE = 100, ACID = 100)
+	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE)
+	attachments_allowed = list(/obj/item/armor_module/storage/grenade)
+	starting_attachments = list(/obj/item/armor_module/storage/grenade)
 	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
 
@@ -460,9 +465,18 @@
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_heat_protection =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 50, ENERGY = 60, BOMB = 40, BIO = 10, FIRE = 60, ACID = 50)
-	attachments_by_slot = list(ATTACHMENT_SLOT_MODULE)
-	attachments_allowed = list(/obj/item/armor_module/module/better_shoulder_lamp)
-	starting_attachments = list(/obj/item/armor_module/module/better_shoulder_lamp)
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_STORAGE,
+		ATTACHMENT_SLOT_MODULE,
+	)
+	attachments_allowed = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/general,
+	)
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/general,
+	)
 
 /obj/item/clothing/suit/storage/faction/freelancer/leader
 	attachments_by_slot = list(

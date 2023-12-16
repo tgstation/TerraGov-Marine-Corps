@@ -5,6 +5,7 @@
 	density = TRUE
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "consoleright"
+	screen_overlay = "consoleright_emissive"
 	circuit = null
 	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_MACHINE_TGUI
@@ -81,7 +82,7 @@
 				L.visible_message(span_notice("[L] fumbles around figuring out how to use the automated targeting system."),
 				span_notice("You fumble around figuring out how to use the automated targeting system."))
 				var/fumbling_time = 10 SECONDS
-				if(!do_after(L, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(L, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return FALSE
 			for(var/X in GLOB.active_laser_targets)
 				var/obj/effect/overlay/temp/laser_target/LT = X
@@ -94,7 +95,7 @@
 					if(!(selected_equipment?.dropship_equipment_flags & IS_WEAPON))
 						to_chat(L, span_warning("No weapon selected."))
 						return
-					var/obj/structure/dropship_equipment/weapon/DEW = selected_equipment
+					var/obj/structure/dropship_equipment/cas/weapon/DEW = selected_equipment
 					if(!DEW.ammo_equipped || DEW.ammo_equipped.ammo_count <= 0)
 						to_chat(L, span_warning("[DEW] has no ammo."))
 						return

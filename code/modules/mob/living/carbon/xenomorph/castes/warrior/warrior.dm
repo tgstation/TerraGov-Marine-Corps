@@ -11,16 +11,16 @@
 	pixel_x = -16
 	old_x = -16
 	tier = XENO_TIER_TWO
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	bubble_icon = "alienroyal"
 	///How many stacks of combo do we have ? Interacts with every ability.
 	var/combo = 0
 	///Abilities with empowered interactions
 	var/list/empowerable_actions = list(
-		/datum/action/xeno_action/activable/fling,
-		/datum/action/xeno_action/activable/toss,
-		/datum/action/xeno_action/activable/punch,
-		/datum/action/xeno_action/activable/punch/jab,
+		/datum/action/ability/activable/xeno/fling,
+		/datum/action/ability/activable/xeno/toss,
+		/datum/action/ability/activable/xeno/punch,
+		/datum/action/ability/activable/xeno/punch/jab,
 	)
 // ***************************************
 // *********** Icons
@@ -48,7 +48,11 @@
 	..()
 
 /mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, force = move_force, suppress_message = TRUE, lunge = FALSE)
-	if(!check_state() || agility)
+	if(!check_state())
+		return FALSE
+
+	if(agility)
+		balloon_alert(src, "Cannot in agility mode")
 		return FALSE
 
 	var/mob/living/L = AM
@@ -89,7 +93,7 @@
 	if(!empowerable) //gives combo but doesn't combo but doesn't consume it.
 		give_combo()
 		return FALSE
-	if(upgrade != XENO_UPGRADE_FOUR)
+	if(upgrade != XENO_UPGRADE_PRIMO)
 		return FALSE
 	if(combo >= WARRIOR_COMBO_THRESHOLD) //Fully stacked, clear all the stacks and return TRUE.
 		emote("roar")
@@ -100,11 +104,11 @@
 
 ///Primordial warriors empowered ability trigger when they get 3 combo stacks, handles visuals aswell.
 /mob/living/carbon/xenomorph/warrior/proc/give_combo()
-	if(upgrade != XENO_UPGRADE_FOUR)
+	if(upgrade != XENO_UPGRADE_PRIMO)
 		return FALSE
 	combo++
 	if(combo >= WARRIOR_COMBO_THRESHOLD)
-		for(var/datum/action/xeno_action/A AS in actions)
+		for(var/datum/action/ability/xeno_action/A AS in actions)
 			if(A.type in empowerable_actions)
 				A.add_empowered_frame()
 				A.update_button_icon()
@@ -113,7 +117,7 @@
 
 ///Removes all combo stacks from the warrior, removes the frame around the ability buttons.
 /mob/living/carbon/xenomorph/warrior/proc/clear_combo()
-	for(var/datum/action/xeno_action/A AS in actions)
+	for(var/datum/action/ability/xeno_action/A AS in actions)
 		if(A.type in empowerable_actions)
 			A.remove_empowered_frame()
 			A.update_button_icon()

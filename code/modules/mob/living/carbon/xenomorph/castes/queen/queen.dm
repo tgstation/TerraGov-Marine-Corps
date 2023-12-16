@@ -15,7 +15,7 @@
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = XENO_TIER_FOUR //Queen doesn't count towards population limit.
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	bubble_icon = "alienroyal"
 
 	var/breathing_counter = 0
@@ -31,15 +31,6 @@
 	. = ..()
 	hive.RegisterSignal(src, COMSIG_HIVE_XENO_DEATH, TYPE_PROC_REF(/datum/hive_status, on_queen_death))
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
-
-
-// ***************************************
-// *********** Life overrides
-// ***************************************
-/mob/living/carbon/xenomorph/queen/handle_decay()
-	if(prob(20+abs(3*upgrade_as_number())))
-		use_plasma(min(rand(1,2), plasma_stored))
-
 
 // ***************************************
 // *********** Mob overrides
@@ -81,17 +72,21 @@
 // *********** Name
 // ***************************************
 /mob/living/carbon/xenomorph/queen/generate_name()
-	switch(upgrade)
-		if(XENO_UPGRADE_ZERO)
-			name = "[hive.prefix]Queen ([nicknumber])"			 //Young
-		if(XENO_UPGRADE_ONE)
-			name = "[hive.prefix]Elder Queen ([nicknumber])"	 //Mature
-		if(XENO_UPGRADE_TWO)
-			name = "[hive.prefix]Elder Empress ([nicknumber])"	 //Elder
-		if(XENO_UPGRADE_THREE)
-			name = "[hive.prefix]Ancient Empress ([nicknumber])" //Ancient
-		if(XENO_UPGRADE_FOUR)
-			name = "[hive.prefix]Primordial Empress ([nicknumber])"
+	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
+	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
+	switch(playtime_mins)
+		if(0 to 600)
+			name = prefix + "Hatchling Queen ([nicknumber])"
+		if(601 to 1500)
+			name = prefix + "Young Queen ([nicknumber])"
+		if(1501 to 4200)
+			name = prefix + "Mature Empress ([nicknumber])"
+		if(4201 to 10500)
+			name = prefix + "Elder Empress ([nicknumber])"
+		if(10501 to INFINITY)
+			name = prefix + "Ancient Empress ([nicknumber])"
+		else
+			name = prefix + "Hatchling Queen ([nicknumber])"
 
 	real_name = name
 	if(mind)

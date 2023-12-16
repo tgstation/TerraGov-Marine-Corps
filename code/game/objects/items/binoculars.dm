@@ -1,9 +1,12 @@
 /obj/item/binoculars
-
 	name = "binoculars"
 	desc = "A pair of binoculars."
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "binoculars"
-
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/binoculars_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/binoculars_right.dmi',
+	)
 	flags_atom = CONDUCT
 	force = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -28,6 +31,8 @@
 /obj/item/binoculars/tactical
 	name = "tactical binoculars"
 	desc = "A pair of binoculars, with a laser targeting function. Unique action to toggle mode. Alt+Click to change selected linked artillery. Ctrl+Click when using to target something. Shift+Click to get coordinates. Ctrl+Shift+Click to fire OB when lasing in OB mode"
+	icon = 'icons/Marine/marine-navigation.dmi'
+	icon_state = "range_finders"
 	var/laser_cooldown = 0
 	var/cooldown_duration = 200 //20 seconds
 	var/obj/effect/overlay/temp/laser_target/laser
@@ -139,7 +144,7 @@
 	. = ..()
 	if(!length(linked_mortars))
 		return
-	if(length(linked_mortars) == 1) 
+	if(length(linked_mortars) == 1)
 		to_chat(user, span_notice("There is only one linked piece, you can't switch to another."))
 	selected_mortar += 1
 	check_mortar_index()
@@ -208,14 +213,8 @@
 	if(!istype(TU))
 		return
 	var/is_outside = FALSE
-	if(is_ground_level(TU.z))
-		switch(targ_area.ceiling)
-			if(CEILING_NONE)
-				is_outside = TRUE
-			if(CEILING_GLASS)
-				is_outside = TRUE
-			if(CEILING_METAL)
-				is_outside = TRUE
+	if(is_ground_level(TU.z) && (targ_area.ceiling <= CEILING_OBSTRUCTED))
+		is_outside = TRUE
 	if(!is_outside)
 		to_chat(user, span_warning("DEPTH WARNING: Target too deep for ordnance."))
 		return
@@ -224,7 +223,7 @@
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
 	if(mode != MODE_RANGE_FINDER)
 		to_chat(user, span_notice("INITIATING LASER TARGETING. Stand still."))
-		if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating(SKILL_LEADERSHIP))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
+		if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating(SKILL_LEADERSHIP))), NONE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
 			return
 	if(targ_area.flags_area & OB_CAS_IMMUNE)
 		to_chat(user, span_warning("Our payload won't reach this target!"))
@@ -236,7 +235,7 @@
 			laser = CS
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
 			while(laser)
-				if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
+				if(!do_after(user, 5 SECONDS, NONE, laser, BUSY_ICON_GENERIC))
 					QDEL_NULL(laser)
 					break
 		if(MODE_RANGE_FINDER)
@@ -251,6 +250,9 @@
 			mortar.recieve_target(TU,user)
 			return
 		if(MODE_RAILGUN)
+			if(SSticker?.mode?.flags_round_type & MODE_DISALLOW_RAILGUN)
+				to_chat(user, span_notice("ERROR. NO LINKED RAILGUN DETECTED. UNABLE TO FIRE."))
+				return
 			to_chat(user, span_notice("ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE."))
 			if((GLOB.marine_main_ship?.rail_gun?.last_firing + COOLDOWN_RAILGUN_FIRE) > world.time)
 				to_chat(user, "[icon2html(src, user)] [span_warning("The Rail Gun hasn't cooled down yet!")]")
@@ -260,13 +262,13 @@
 				var/obj/effect/overlay/temp/laser_target/RGL = new (TU, 0, laz_name, S)
 				laser = RGL
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
-				if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
+				if(!do_after(user, 2 SECONDS, NONE, user, BUSY_ICON_GENERIC))
 					QDEL_NULL(laser)
 					return
 				to_chat(user, span_notice("TARGET ACQUIRED. RAILGUN IS FIRING. DON'T MOVE."))
 				while(laser)
 					GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(TU,user)
-					if(!do_after(user, 3 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
+					if(!do_after(user, 3 SECONDS, NONE, laser, BUSY_ICON_GENERIC))
 						QDEL_NULL(laser)
 						break
 		if(MODE_ORBITAL)
@@ -277,7 +279,7 @@
 				var/obj/effect/overlay/temp/laser_target/OB/OBL = new (TU, 0, laz_name, S)
 				laser = OBL
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
-				if(!do_after(user, 15 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
+				if(!do_after(user, 15 SECONDS, NONE, user, BUSY_ICON_GENERIC))
 					QDEL_NULL(laser)
 					return
 				to_chat(user, span_notice("TARGET ACQUIRED. ORBITAL CANNON IS READY TO FIRE."))
@@ -285,7 +287,7 @@
 				current_turf = TU
 				ob_fired = FALSE // Reset the fired state
 				while(laser && !ob_fired)
-					if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
+					if(!do_after(user, 5 SECONDS, NONE, laser, BUSY_ICON_GENERIC))
 						QDEL_NULL(laser)
 						break
 				current_turf = null

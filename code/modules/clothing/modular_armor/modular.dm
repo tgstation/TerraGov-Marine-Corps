@@ -97,6 +97,14 @@
 		/obj/item/armor_module/armor/legs/marine/kabuto,
 		/obj/item/armor_module/armor/arms/marine/kabuto,
 
+		/obj/item/armor_module/armor/chest/marine/hotaru,
+		/obj/item/armor_module/armor/legs/marine/hotaru,
+		/obj/item/armor_module/armor/arms/marine/hotaru,
+
+		/obj/item/armor_module/armor/chest/marine/dashe,
+		/obj/item/armor_module/armor/arms/marine/dashe,
+		/obj/item/armor_module/armor/legs/marine/dashe,
+
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
@@ -126,7 +134,9 @@
 	///Uniform type that is allowed to be worn with this.
 	var/allowed_uniform_type = /obj/item/clothing/under/marine
 
-/obj/item/clothing/suit/modular/apply_custom(mutable_appearance/standing)
+/obj/item/clothing/suit/modular/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	if(inhands)
+		return
 	. = ..()
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE] || !istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		return standing
@@ -220,6 +230,55 @@
 		/obj/item/armor_module/armor/badge,
 	)
 
+/obj/item/clothing/suit/modular/hardsuit_exoskeleton
+	name = "FleckTex WY-01 modular exoskeleton"
+	desc = "FleckTex Dynamics brand new modular hardsuit exoskeleton, designed for full compatiability with jaeger modules. Comes with pre-installed light armour-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
+	icon_state = "exoskeleton"
+	item_state = "exoskeleton"
+	greyscale_config = /datum/greyscale_config/exoskeleton
+	colorable_allowed = PRESET_COLORS_ALLOWED
+	colorable_colors = ARMOR_PALETTES_LIST
+	greyscale_colors = ARMOR_PALETTE_DRAB
+	allowed_uniform_type = /obj/item/clothing/under
+	attachments_allowed = list(
+
+		/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markfive,
+		/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markfive,
+		/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markfive,
+
+		/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markthree,
+		/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markthree,
+		/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markthree,
+
+		/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markone,
+		/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markone,
+		/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markone,
+
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/eshield,
+
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/general/som,
+		/obj/item/armor_module/storage/engineering/som,
+		/obj/item/armor_module/storage/medical/som,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
 /** Core helmet module */
 /obj/item/clothing/head/modular
 	name = "Jaeger Pattern Helmet"
@@ -272,19 +331,31 @@
 	///Pixel offset on the Y axis for how the helmet sits on the mob without a visor.
 	var/visorless_offset_y = -1
 
-/obj/item/clothing/head/modular/apply_custom(mutable_appearance/standing)
+/obj/item/clothing/head/modular/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	if(inhands)
+		return
 	. = ..()
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE] && istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		var/obj/item/armor_module/storage/storage_module = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 		if(storage_module.show_storage)
 			for(var/obj/item/stored AS in storage_module.storage.contents)
-				standing.overlays += mutable_appearance(storage_module.show_storage_icon, icon_state = initial(stored.icon_state))
+				if(istype(stored, /obj/item/ammo_magazine/handful))
+					standing.overlays += mutable_appearance(storage_module.show_storage_icon, icon_state = stored.icon_state, layer = COLLAR_LAYER)
+				else
+					standing.overlays += mutable_appearance(storage_module.show_storage_icon, icon_state = initial(stored.icon_state), layer = COLLAR_LAYER)
 	if(attachments_by_slot[ATTACHMENT_SLOT_VISOR])
 		return standing
 	standing.pixel_x = visorless_offset_x
 	standing.pixel_y = visorless_offset_y
 	return standing
 
+/obj/item/clothing/head/modular/on_pocket_insertion()
+	. = ..()
+	update_clothing_icon()
+
+/obj/item/clothing/head/modular/on_pocket_removal()
+	. = ..()
+	update_clothing_icon()
 
 /obj/item/clothing/head/modular/get_mechanics_info()
 	. = ..()
@@ -296,6 +367,7 @@
 	name = "style mask"
 	desc = "A cool sylish mask that through some arcane magic blocks gas attacks. How? Who knows. How did you even get this?"
 	breathy = FALSE
+	voice_filter = null
 	icon_state = "gas_alt"
 	item_state = "gas_alt"
 	item_icons = list(slot_wear_mask_str)

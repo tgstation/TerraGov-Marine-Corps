@@ -305,8 +305,9 @@
 
 /obj/effect/overlay/temp/gib_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
 	. = ..()
-	pixel_x = source_mob.pixel_x
-	pixel_y = source_mob.pixel_y
+	if(source_mob)
+		pixel_x = source_mob.pixel_x
+		pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
 
 /obj/effect/overlay/temp/gib_animation/ex_act(severity)
@@ -351,7 +352,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 0
 	vis_flags = NONE
-	blocks_emissive = NONE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 
 /obj/effect/overlay/temp/timestop_effect
 	icon = 'icons/effects/160x160.dmi'
@@ -364,5 +365,11 @@
 	layer = ABOVE_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon_state = "eye_open"
+	pixel_x = 16
+	pixel_y = 16
+
+/obj/effect/overlay/dread
+	layer = ABOVE_MOB_LAYER
+	icon_state = "spooky"
 	pixel_x = 16
 	pixel_y = 16

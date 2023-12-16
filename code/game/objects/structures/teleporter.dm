@@ -17,10 +17,10 @@
 
 /obj/machinery/deployable/teleporter/examine(mob/user)
 	. = ..()
-	var/obj/item/teleporter_kit/kit = internal_item
-	if(!kit.cell)
+	var/obj/item/teleporter_kit/kit = get_internal_item()
+	if(!kit?.cell)
 		. += "It is currently lacking a power cell."
-	if(kit.linked_teleporter)
+	if(kit?.linked_teleporter)
 		. += "It is currently linked to Teleporter #[kit.linked_teleporter.self_tele_tag] at [get_area(kit.linked_teleporter)]"
 	else
 		. += "It is not linked to any other teleporter."
@@ -33,7 +33,7 @@
 
 /obj/machinery/deployable/teleporter/attack_hand(mob/living/user)
 	. = ..()
-	var/obj/item/teleporter_kit/kit = internal_item
+	var/obj/item/teleporter_kit/kit = get_internal_item()
 	if(!istype(kit))
 		CRASH("A teleporter didn't have an internal item, or it was of the wrong type.")
 
@@ -55,13 +55,13 @@
 		return
 
 	var/obj/machinery/deployable/teleporter/deployed_linked_teleporter = kit.linked_teleporter.loc
-	var/obj/item/teleporter_kit/linked_kit = deployed_linked_teleporter.internal_item
+	var/obj/item/teleporter_kit/linked_kit = deployed_linked_teleporter.get_internal_item()
 
 	if(deployed_linked_teleporter.z != z)
 		to_chat(user, span_warning("[src] and [deployed_linked_teleporter] are too far apart!"))
 		return
 
-	if(!deployed_linked_teleporter.powered() && (!linked_kit.cell || linked_kit.cell.charge < TELEPORTING_COST))
+	if(!deployed_linked_teleporter.powered() && (!linked_kit?.cell || linked_kit.cell.charge < TELEPORTING_COST))
 		to_chat(user, span_warning("[deployed_linked_teleporter] is not powered!"))
 		return
 
@@ -103,13 +103,13 @@
 	. = ..()
 	if(!user)
 		return
-	var/obj/item/teleporter_kit/kit = internal_item
+	var/obj/item/teleporter_kit/kit = get_internal_item()
 	if(!istype(kit))
 		CRASH("A teleporter didn't have an internal item, or it was of the wrong type.")
 	if(!kit.cell)
 		to_chat(user, span_warning("There is no cell to remove!"))
 		return
-	if(!do_after(user, 2 SECONDS, TRUE, src))
+	if(!do_after(user, 2 SECONDS, NONE, src))
 		return FALSE
 	playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 	to_chat(user , span_notice("You remove [kit.cell] from \the [src]."))
@@ -122,23 +122,23 @@
 		return FALSE
 	if(!istype(I, /obj/item/cell))
 		return FALSE
-	var/obj/item/teleporter_kit/kit = internal_item
+	var/obj/item/teleporter_kit/kit = get_internal_item()
 	if(!istype(kit))
 		CRASH("A teleporter didn't have an internal item, or it was of the wrong type.")
-	if(kit.cell)
+	if(kit?.cell)
 		to_chat(user , span_warning("There is already a cell inside, use a crowbar to remove it."))
 		return FALSE
-	if(!do_after(user, 2 SECONDS, TRUE, src))
+	if(!do_after(user, 2 SECONDS, NONE, src))
 		return FALSE
 	user.temporarilyRemoveItemFromInventory(I)
-	I.forceMove(internal_item)
+	I.forceMove(kit)
 	kit.cell = I
 	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 	update_icon()
 
 /obj/machinery/deployable/teleporter/update_icon_state()
-	var/obj/item/teleporter_kit/kit = internal_item
-	if(powered() || kit.cell?.charge > TELEPORTING_COST)
+	var/obj/item/teleporter_kit/kit = get_internal_item()
+	if(powered() || kit?.cell?.charge > TELEPORTING_COST)
 		icon_state = default_icon_state + "_on"
 		return
 	icon_state = default_icon_state

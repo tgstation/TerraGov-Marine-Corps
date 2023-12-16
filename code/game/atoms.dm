@@ -119,6 +119,9 @@
 	///The acid currently on this atom
 	var/obj/effect/xenomorph/acid/current_acid = null
 
+	///Cooldown for telling someone they're buckled
+	COOLDOWN_DECLARE(buckle_message_cooldown)
+
 /*
 We actually care what this returns, since it can return different directives.
 Not specifically here, but in other variations of this. As a general safety,
@@ -128,7 +131,7 @@ directive is properly returned.
 //===========================================================================
 /atom/Destroy()
 	if(reagents)
-		qdel(reagents)
+		QDEL_NULL(reagents)
 
 	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
 
@@ -408,7 +411,10 @@ directive is properly returned.
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
-/atom/proc/relaymove()
+/atom/proc/relaymove(mob/living/user, direct)
+	if(COOLDOWN_CHECK(src, buckle_message_cooldown))
+		COOLDOWN_START(src, buckle_message_cooldown, 2.5 SECONDS)
+		balloon_alert(user, "Can't move while buckled!")
 	return
 
 /**
@@ -438,7 +444,11 @@ directive is properly returned.
 /atom/proc/hitby(atom/movable/AM, speed = 5)
 	if(density)
 		AM.stop_throw()
+		return TRUE
 
+///Psionic interaction with this atom
+/atom/proc/psi_act(psi_power, mob/living/user)
+	return
 
 /atom/proc/GenerateTag()
 	return
@@ -460,104 +470,6 @@ directive is properly returned.
 //This proc is called on the location of an atom when the atom is Destroy()'d
 /atom/proc/handle_atom_del(atom/A)
 	SEND_SIGNAL(src, COMSIG_ATOM_CONTENTS_DEL, A)
-
-
-// Generic logging helper
-/atom/proc/log_message(message, message_type, color, log_globally = TRUE)
-	if(!log_globally)
-		return
-
-	var/log_text = "[key_name(src)] [message] [AREACOORD(src)]"
-	switch(message_type)
-		if(LOG_ATTACK)
-			log_attack(log_text)
-		if(LOG_SAY)
-			log_say(log_text)
-		if(LOG_TELECOMMS)
-			log_telecomms(log_text)
-		if(LOG_WHISPER)
-			log_whisper(log_text)
-		if(LOG_HIVEMIND)
-			log_hivemind(log_text)
-		if(LOG_EMOTE)
-			log_emote(log_text)
-		if(LOG_DSAY)
-			log_dsay(log_text)
-		if(LOG_OOC)
-			log_ooc(log_text)
-		if(LOG_XOOC)
-			log_xooc(log_text)
-		if(LOG_MOOC)
-			log_mooc(log_text)
-		if(LOG_ADMIN)
-			log_admin(log_text)
-		if(LOG_LOOC)
-			log_looc(log_text)
-		if(LOG_ADMIN_PRIVATE)
-			log_admin_private(log_text)
-		if(LOG_ASAY)
-			log_admin_private_asay(log_text)
-		if(LOG_GAME)
-			log_game(log_text)
-		if(LOG_MECHA)
-			log_mecha(log_text)
-		if(LOG_SPEECH_INDICATORS)
-			log_speech_indicators(log_text)
-		else
-			stack_trace("Invalid individual logging type: [message_type]. Defaulting to [LOG_GAME] (LOG_GAME).")
-			log_game(log_text)
-
-
-// Helper for logging chat messages or other logs wiht arbitrary inputs (e.g. announcements)
-/atom/proc/log_talk(message, message_type, tag, log_globally = TRUE)
-	var/prefix = tag ? "([tag]) " : ""
-	log_message("[prefix]\"[message]\"", message_type, log_globally=log_globally)
-
-
-// Helper for logging of messages with only one sender and receiver
-/proc/log_directed_talk(atom/source, atom/target, message, message_type, tag)
-	if(!tag)
-		stack_trace("Unspecified tag for private message")
-		tag = "UNKNOWN"
-
-	source.log_talk(message, message_type, tag="[tag] to [key_name(target)]")
-	if(source != target)
-		target.log_talk(message, message_type, tag="[tag] from [key_name(source)]", log_globally=FALSE)
-
-/*
-Proc for attack log creation, because really why not
-1 argument is the actor performing the action
-2 argument is the target of the action
-3 is a verb describing the action (e.g. punched, throwed, kicked, etc.)
-4 is a tool with which the action was made (usually an item)
-5 is any additional text, which will be appended to the rest of the log line
-*/
-
-/proc/log_combat(atom/user, atom/target, what_done, atom/object, addition)
-	if ((user && SEND_SIGNAL(user, COMSIG_COMBAT_LOG)) | (target && SEND_SIGNAL(target, COMSIG_COMBAT_LOG)) & DONT_LOG)
-		return
-
-	var/ssource = key_name(user)
-	var/starget = key_name(target)
-
-	var/mob/living/living_target = target
-	var/hp = istype(living_target) ? " (NEWHP: [living_target.health]) " : ""
-
-	var/sobject = ""
-	if(object)
-		sobject = " with [key_name(object)]"
-	var/saddition = ""
-	if(addition)
-		saddition = " [addition]"
-
-	var/postfix = "[sobject][saddition][hp]"
-
-	var/message = "has [what_done] [starget][postfix]"
-	user.log_message(message, LOG_ATTACK, color = "#f46666")
-
-	if(target && user != target)
-		var/reverse_message = "has been [what_done] by [ssource][postfix] in [AREACOORD(user)]"
-		target.log_message(reverse_message, LOG_ATTACK, color = "#eabd7e", log_globally = FALSE)
 
 
 /atom/New(loc, ...)
@@ -1041,3 +953,29 @@ Proc for attack log creation, because really why not
 ///Adds the debris element for projectile impacts
 /atom/proc/add_debris_element()
 	AddElement(/datum/element/debris, null, -15, 8, 0.7)
+
+/**
+	Returns a number after taking into account both soft and hard armor for the specified damage type, usually damage
+
+	Arguments
+	* Damage_amount: The original unmodified damage
+	* armor_type: The type of armor by which the damage will be modified
+	* penetration: How much the damage source might bypass the armour value (optional)
+	* def_zone: What part of the body we want to check the armor of (optional)
+	* attack_dir: What direction the attack was from (optional)
+
+	Hard armor reduces penetration by a flat amount, and sunder in the case of xenos
+	Penetration reduces soft armor by a flat amount.
+	Damage cannot go into the negative, or exceed the original amount.
+*/
+/atom/proc/modify_by_armor(damage_amount, armor_type, penetration, def_zone, attack_dir)
+	penetration = max(0, penetration - get_hard_armor(armor_type, def_zone))
+	return clamp((damage_amount * (1 - ((get_soft_armor(armor_type, def_zone) - penetration) * 0.01))), 0, damage_amount)
+
+///Returns the soft armor for the given atom. If human and a limb is specified, gets the armor for that specific limb.
+/atom/proc/get_soft_armor(armor_type, proj_def_zone)
+	return
+
+///Returns the hard armor for the given atom. If human and a limb is specified, gets the armor for that specific limb.
+/atom/proc/get_hard_armor(armor_type, proj_def_zone)
+	return

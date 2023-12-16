@@ -13,6 +13,7 @@ REAGENT SCANNER
 /obj/item/t_scanner
 	name = "\improper T-ray scanner"
 	desc = "A terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
+	icon = 'icons/obj/device.dmi'
 	icon_state = "t-ray0"
 	var/on = 0
 	flags_atom = CONDUCT
@@ -62,6 +63,7 @@ REAGENT SCANNER
 
 /obj/item/healthanalyzer
 	name = "\improper HF2 health analyzer"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "health"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
@@ -98,7 +100,7 @@ REAGENT SCANNER
 /obj/item/healthanalyzer/proc/analyze_vitals(mob/living/carbon/M, mob/living/user, show_patient)
 	if(user.skills.getRating(SKILL_MEDICAL) < skill_threshold)
 		to_chat(user, span_warning("You start fumbling around with [src]..."))
-		if(!do_mob(user, M, max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating(SKILL_MEDICAL)), 0), BUSY_ICON_UNSKILLED))
+		if(!do_after(user, max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating(SKILL_MEDICAL)), 0), NONE, M, BUSY_ICON_UNSKILLED))
 			return
 	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
 	if(!iscarbon(M))
@@ -153,6 +155,7 @@ REAGENT SCANNER
 		"patient" = patient.name,
 		"dead" = (patient.stat == DEAD || HAS_TRAIT(patient, TRAIT_FAKEDEATH)),
 		"health" = patient.health,
+		"max_health" = patient.maxHealth,
 		"total_brute" = round(patient.getBruteLoss()),
 		"total_burn" = round(patient.getFireLoss()),
 		"toxin" = round(patient.getToxLoss()),
@@ -338,6 +341,7 @@ REAGENT SCANNER
 /obj/item/tool/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	name = "analyzer"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "atmos"
 	item_state = "analyzer"
 	w_class = WEIGHT_CLASS_SMALL
@@ -387,6 +391,7 @@ REAGENT SCANNER
 /obj/item/mass_spectrometer
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
 	name = "mass-spectrometer"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "spectrometer"
 	item_state = "analyzer"
 	w_class = WEIGHT_CLASS_SMALL

@@ -1,5 +1,5 @@
 //Color variant defines
-#define SPEED_COLOR ""
+#define NORMAL_COLOR ""
 #define RESTING_COLOR "white"
 #define STICKY_COLOR "green"
 
@@ -22,7 +22,7 @@
 
 	var/obj/alien/weeds/node/parent_node
 	///The color variant of the sprite
-	var/color_variant = SPEED_COLOR
+	var/color_variant = NORMAL_COLOR
 	///The healing buff when resting on this weed
 	var/resting_buff = 1
 	///If these weeds are not destroyed but just swapped
@@ -183,15 +183,17 @@
 	plane = GAME_PLANE
 	icon = 'icons/obj/smooth_objects/weedwall.dmi'
 	icon_state = "weedwall"
-	base_icon_state = "weedwall"
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_ALIEN_WEEDS)
-	canSmoothWith = list(SMOOTH_GROUP_ALIEN_WEEDS)
 
 /obj/alien/weeds/weedwall/update_icon_state()
 	var/turf/closed/wall/W = loc
-	icon_state = W.junctiontype ? "weedwall[W.junctiontype]" : initial(icon_state)
-	icon_state += color_variant
+	if(!istype(W))
+		icon_state = initial(icon_state)
+	else
+		icon_state = W.smoothing_junction ? "weedwall-[W.smoothing_junction]" : initial(icon_state)
+	if(color_variant == STICKY_COLOR)
+		icon = 'icons/obj/smooth_objects/weedwallsticky.dmi'
+	else if(color_variant == RESTING_COLOR)
+		icon = 'icons/obj/smooth_objects/weedwallrest.dmi'
 
 // =================
 // windowed weed wall
@@ -201,6 +203,8 @@
 	var/window_type = /obj/structure/window/framed
 
 /obj/alien/weeds/weedwall/window/update_icon_state()
+	var/obj/structure/window/framed/F = locate() in loc
+	icon_state = F?.smoothing_junction ? "weedwall-[F.smoothing_junction]" : initial(icon_state)
 	if(color_variant == STICKY_COLOR)
 		icon = 'icons/obj/smooth_objects/weedwallsticky.dmi'
 	if(color_variant == RESTING_COLOR)
@@ -247,7 +251,7 @@
 	/// What type of weeds this node spreads
 	var/obj/alien/weeds/weed_type = /obj/alien/weeds
 	///The plasma cost multiplier for this node
-	var/plasma_cost_mult = 1
+	var/ability_cost_mult = 1
 
 /obj/alien/weeds/node/Initialize(mapload, obj/alien/weeds/node/node)
 	var/swapped = FALSE
@@ -297,11 +301,11 @@
 //Sticky weed node
 /obj/alien/weeds/node/sticky
 	name = STICKY_WEED
-	desc = "A weird, pulsating red node."
+	desc = "A weird, pulsating blue node."
 	weed_type = /obj/alien/weeds/sticky
 	color_variant = STICKY_COLOR
 	node_icon = "weednodegreen"
-	plasma_cost_mult = 3
+	ability_cost_mult = 3
 
 /obj/alien/weeds/node/sticky/Initialize(mapload, obj/alien/weeds/node/node)
 	. = ..()
@@ -336,9 +340,9 @@
 //Resting weed node
 /obj/alien/weeds/node/resting
 	name = RESTING_WEED
-	desc = "A weird, pulsating white node."
+	desc = "A weird, pulsating pale node."
 	weed_type = /obj/alien/weeds/resting
 	color_variant = RESTING_COLOR
 	node_icon = "weednodewhite"
 	resting_buff = RESTING_BUFF
-	plasma_cost_mult = 2
+	ability_cost_mult = 2

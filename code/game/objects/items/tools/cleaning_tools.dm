@@ -41,7 +41,7 @@
 		var/turf/T = get_turf(A)
 		user.visible_message(span_warning("[user] begins to clean \the [T]."))
 
-		if(do_after(user, 40, TRUE, T, BUSY_ICON_GENERIC))
+		if(do_after(user, 40, NONE, T, BUSY_ICON_GENERIC))
 			T.clean(src)
 			balloon_alert(user, "Finished mopping")
 
@@ -81,7 +81,7 @@
 	name = "soap"
 	desc = "A cheap bar of soap. Doesn't smell."
 	gender = PLURAL
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/janitor.dmi'
 	icon_state = "soap"
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 4

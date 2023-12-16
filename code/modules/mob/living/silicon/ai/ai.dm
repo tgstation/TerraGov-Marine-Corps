@@ -70,6 +70,9 @@
 /mob/living/silicon/ai/Initialize(mapload, ...)
 	. = ..()
 
+	if(!CONFIG_GET(flag/allow_ai))
+		return INITIALIZE_HINT_QDEL
+
 	track = new(src)
 	builtInCamera = new(src)
 	builtInCamera.network = list("marinemainship")
@@ -90,7 +93,7 @@
 	create_eye()
 
 	if(!job)
-		var/datum/job/terragov/silicon/ai/ai_job = SSjob.type_occupations[/datum/job/terragov/silicon/ai]
+		var/datum/job/terragov/silicon/ai/ai_job = SSjob.GetJobType(/datum/job/terragov/silicon/ai)
 		if(!ai_job)
 			stack_trace("Unemployment has reached to an AI, who has failed to find a job.")
 		apply_assigned_role_to_spawn(ai_job)
@@ -244,7 +247,7 @@
 /mob/living/silicon/ai/proc/toggle_camera_light()
 	if(camera_light_on)
 		for(var/obj/machinery/camera/C in lit_cameras)
-			C.set_light(0)
+			C.set_light(initial(C.light_range), initial(C.light_power))
 			lit_cameras = list()
 		to_chat(src, span_notice("Camera lights deactivated."))
 	else
@@ -387,9 +390,9 @@
 		. += "Railgun status: Railgun is ready to fire."
 
 		if(last_ai_bioscan + COOLDOWN_AI_BIOSCAN > world.time)
-			stat("AI bioscan status:", "Instruments recalibrating, next scan in [(last_ai_bioscan  + COOLDOWN_AI_BIOSCAN - world.time)/10] seconds.") //about 10 minutes
+			. += "AI bioscan status: Instruments recalibrating, next scan in [(last_ai_bioscan  + COOLDOWN_AI_BIOSCAN - world.time)/10] seconds." //about 10 minutes
 		else
-			stat("AI bioscan status:", "Instruments are ready to scan the planet.")
+			. += "AI bioscan status: Instruments are ready to scan the planet."
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
 	. = ..()

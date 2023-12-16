@@ -21,11 +21,14 @@
 		if(amount < 8)
 			to_chat(user, span_warning("You need at least [8 - amount] more [src] to make razorwire obstacles!"))
 			return
+		if(B.amount < 2)
+			to_chat(user, span_warning("You need [2 - B.amount] more [B] to make a razor wire obstacle!"))
+			return
 		use(8)
-		B.use(1)
+		B.use(2)
 		var/obj/structure/razorwire/M = new /obj/item/stack/razorwire(user.loc, 2)
 		to_chat(user, span_notice("You combine the rods and barbed wire into [M]!"))
-
+		return
 	if (iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 
@@ -53,7 +56,7 @@
 	if (locate(/obj/structure/grille, usr.loc))
 		for(var/obj/structure/grille/G in usr.loc)
 			if (G.obj_integrity <= G.integrity_failure)
-				G.repair_damage(10)
+				G.repair_damage(10, user)
 				G.density = TRUE
 				G.icon_state = "grille"
 				use(1)
@@ -66,7 +69,7 @@
 			return
 		to_chat(usr, span_notice("Assembling grille..."))
 		ENABLE_BITFIELD(obj_flags, IN_USE)
-		if (!do_after(usr, 20, TRUE, src, BUSY_ICON_BUILD))
+		if (!do_after(usr, 20, NONE, src, BUSY_ICON_BUILD))
 			DISABLE_BITFIELD(obj_flags, IN_USE)
 			return
 		new /obj/structure/grille/ ( usr.loc )
@@ -83,7 +86,7 @@
 		return
 
 	to_chat(user, span_notice("Reinforcing the floor."))
-	if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD) || !istype(T, /turf/open/floor/plating))
+	if(!do_after(user, 30, NONE, src, BUSY_ICON_BUILD) || !istype(T, /turf/open/floor/plating))
 		return
 	if(!use(2))
 		to_chat(user, span_warning("You need more rods."))

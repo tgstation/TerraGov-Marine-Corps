@@ -51,3 +51,189 @@
   - config: Reverted random addition to gitignore
   tyeagg:
   - bugfix: landing lights now work
+2023-09-09:
+  Blundir:
+  - imageadd: new devour action icon, updated action icon for defiler
+  Looking4bros:
+  - balance: Chem healing on some chemicals is now overall instead of per limb
+  RipGrayson:
+  - balance: Removed all the flashbang boxes from the ground.
+  - rscadd: Added shivs to Prison
+  novaepee:
+  - bugfix: fix lego hotaru so that you can actually put it on exoskeleton
+2023-09-13:
+  forestbbbbbbb:
+  - bugfix: Fix some space turfs
+2023-09-15:
+  AzonStarfall:
+  - bugfix: Changes the prefix of the SR-153 to SG-153.
+  Barnet2:
+  - bugfix: PO timelock should work now.
+  Blundir:
+  - bugfix: fixed helmet items not being visible when you insert them
+  - imageadd: added a lot new sprites for helmet items + resprited some old ones
+  Wisemonster:
+  - qol: The dropship fabricator has had it's items separated into more distinct categories.
+  - code_imp: Repathed dropship/condor equipment, dropship/condor weapons, and condor
+      ammo.
+2023-09-16:
+  Looking4bros:
+  - balance: More Deathsquad updating.
+  - balance: Energy sword (which is issued to SOM as well) is now strapable. (shield
+      is not issued to anyone else)
+  Pariah919:
+  - rscdel: surplus clothing
+  forestbbbbbbb:
+  - rscadd: Add a balloon alert for moving while buckled
+2023-09-17:
+  AzonStarfall:
+  - bugfix: Fixes references to SR-153 in the requisitions list and loadout files.
+  Barnet2:
+  - balance: Added a xeno respawn timer on xeno death and ghosting, does not apply
+      if you took a minion
+  - rscadd: Adds Psychic Relays, increase xenos slots. Removes slot increase from
+      evo towers. Starting psy down to 1400
+  - rscdel: Removes maturity towers
+  - balance: Removes the maturity system, keeps it for primos. Xenos now start at
+      ancient stats.
+  ivanmixo:
+  - bugfix: Fixed tarping before eord making you invisible
+  - refactor: Made lockers not use signals where they aren't necessary. Should help
+      with signals not unregistering properly in some cases
+  - code_imp: Ported tg's del the world unit test and brought our reference tracker
+      and garbage collector mostly up to date. Also squashed a lot of harddels.
+2023-09-18:
+  AzonStarfall:
+  - qol: Adjusted Theseus requisitions to be more ergonomic.
+  Lumipharon:
+  - bugfix: fixed jetpacks not working over razorwire
+  - bugfix: fixed certain xenos getting stuck on objects after being thrown in certain
+      situations
+2023-09-19:
+  Barnet2:
+  - balance: Autobalance check now occurs every 3 minutes instead of every 5
+  - rscadd: Added chemical dropper to the NanotrasenMed Plus
+  Blundir:
+  - imagedel: removed tons of unused stuff
+  DeltaFire15:
+  - balance: Marines no longer have access to razor airburst grenades
+  Victor239:
+  - rscdel: King no longer has additional special autobalance weight.
+  ivanmixo:
+  - qol: Adds a pref to disable radial menu for laser weapons
+  yyzsong:
+  - rscadd: Adds the FAMAS and M412L1 HPR to valhalla. Go play with 'em.
+2023-09-20:
+  AzonStarfall:
+  - rscadd: Added the TGS Arachne, a replacement for the TGS Minerva
+  - config: Added the TGS Arachne in config
+  - config: Disabled the TGS Minerva in config
+  Pariah919:
+  - balance: Superheavy pistols like the Deagle and Hipower have significantly less
+      fire delay, deal a bit less sunder, deal halved slowdown and have better handling.
+  Wisemonster:
+  - rscadd: Renamed face paints to customization kits and updated their description
+      to reflect their armor/clothing changing properties.
+2023-09-21:
+  AzonStarfall:
+  - qol: Made some quality of life adjustments to the genetic escape shuttles.
+  - rscdel: Removed TGS Minerva
+  - config: Removed Minerva from the config
+  - bugfix: Changed title of SG-153 magazines
+  Barnet2:
+  - bugfix: Xeno queue should (hopefully) work as intended now
+  - bugfix: If you ghost as a Valhalla xeno, your xeno respawn timer shouldn't reset
+  Pariah919:
+  - balance: Derringer has better gun handling statistics and deals stagger on hit
+      again,
+  TiviPlus:
+  - qol: Redid the CAS plane UI
+  Wisemonster:
+  - spellcheck: Removed "Jaeger" from req module buy orders' names, adds "armor" and
+      "set" to module orders that are chest piece only or a set.
+  XElectricX:
+  - rscadd: Individual player statistics that are displayed at the end of the round.
+  - code_imp: Refactor requisitions sell code to be neater and have a separate proc
+      for getting the value of sold objects.
+  forestbbbbbbb:
+  - bugfix: Fix xeno spawns not counting towards autobalance
+  ivanmixo:
+  - balance: Gau hits twice again
+2023-09-23:
+  Blundir:
+  - bugfix: flames now spawn with correct flame light color
+  - code_imp: changed hex color codes of flame light color
+  RipGrayson:
+  - bugfix: Made soundplayers no longer dense.
+  - bugfix: Fixes weeds on walls sometimes going invisible.
+  dopamiin0:
+  - rscadd: The dropship fabricator will now receive points whenever anything is exported,
+      equal to 5% of the exported item's value.
+  - balance: Low orbit now only generates 6 points a minute for CAS. High orbit now
+      generates 30.
+  - balance: The prices of almost all items in the dropship fabricator have been increased.
+  - balance: Minirockets now only take 2 seconds to impact on medium orbit, but have
+      an even smaller explosion radius.
+2023-09-24:
+  Blundir:
+  - rscadd: helmets can now hold gauze, ointment, barbed wire, handful of bullets
+  - rscadd: helmets can now hold a total weight of 3 instead of 2
+  - bugfix: fixed items in a helmet rending under a helmet visor
+  - imageadd: 'added helmet storage sprites for: gauze, bullet handfuls, c4, pinpointer,
+      barbed wire, superior welding goggles and more'
+  Pariah919:
+  - balance: Another balance pass on superheavy pistols, their stagger has been significantly
+      reduced, alongside their fire rate being minorly made worse (0.05 more seconds,
+      so .35 for Deagle and .4 for automag.) Automag does a bit less damage and has
+      a bit more scatter.
+  QualityVan:
+  - bugfix: Taking info tags from corpses works again
+2023-09-25:
+  Looking4bros:
+  - qol: Vali Claymore only bump slashes when wielded.
+  Lumipharon:
+  - rscadd: Added Campaign gamemode
+  ivanmixo:
+  - rscadd: You can now draw from webbings, armor and helmet with right click
+  - rscadd: You can now draw the leftmost item from storage
+  - bugfix: Fixed clicking the inventory hud element not transferring clicks to the
+      item in the slot correctly (right clicking the slots now right clicks the item
+      in the slot)
+2023-09-26:
+  AzonStarfall:
+  - qol: Standardized hazard stripes for dropship outlines across all ships.
+  Blundir:
+  - bugfix: fixed FC sheath side sprites
+2023-09-27:
+  Wisemonster:
+  - rscadd: Added an eyewear category to the surplus clothing vendor, containing various
+      cosmetic and prescription eyewear.
+  - rscdel: Moved the ballistic goggles from the headwear category to the new eyewear
+      category.
+  ivanmixo:
+  - admin: Admins can't bypass proc call restrictions with remote sdql
+  tyeagg:
+  - rscadd: smoke particles for gun firing
+2023-09-28:
+  Barnet2:
+  - balance: Re-added Magmoor LZ 2's SE flank.
+2023-09-29:
+  Barnet2:
+  - rscadd: Added cosmetic xeno ranks, broodling - archon.
+  - balance: Hold order gives 5% damage resist per leadership level instead of 10%.
+  Blundir:
+  - bugfix: id card having no mob icon when spawning on mob
+  - bugfix: fixed backpack prefs overriding spawn of job assigned backpacks
+  - code_imp: made it possible to specify to spawn without backpack or id in job datums
+  - bugfix: fixed boiler making neuro traps with acid
+  - rscadd: after typing a message, icon above you stays for some time
+  Lumipharon:
+  - bugfix: fixed a running intent exploit
+  ivanmixo:
+  - rscdel: Blackbox subsystem doesn't fire postgame
+  - admin: Fix runtime on init
+  - bugfix: Fixes doors blocking line of sight when they shouldn't
+  vvvv-vvvv:
+  - bugfix: Fix stray zeroes in prefs
+  - bugfix: Fix "Spawn as undefined" in job prefs, where the overflow job should have
+      been

@@ -16,6 +16,7 @@
 	name = "Tadpole navigation computer"
 	desc = "Used to designate a precise transit location for the Tadpole."
 	icon_state = "shuttlecomputer"
+	screen_overlay = "shuttlecomputer_screen"
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
 	density = FALSE
 	interaction_flags = INTERACT_OBJ_UI
@@ -50,7 +51,7 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
 	..()
 	start_processing()
-	set_light(3,3)
+	set_light(3,3, LIGHT_COLOR_RED)
 	land_action = new
 	tadmap = new
 	return INITIALIZE_HINT_LATELOAD
@@ -167,7 +168,7 @@
 		return
 	X.visible_message("[X] begins to slash delicately at the computer",
 	"We start slashing delicately at the computer. This will take a while.")
-	if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+	if(!do_after(X, 10 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
 	visible_message("The inner wiring is visible, it can be slashed!")
 	X.visible_message("[X] continue to slash at the computer",
@@ -175,7 +176,7 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+	if(!do_after(X, 10 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
 	visible_message("The wiring is destroyed, nobody will be able to repair this computer!")
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MINI_DROPSHIP_DESTROYED, src)

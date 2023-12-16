@@ -1,5 +1,7 @@
 /datum/squad
 	var/name = ""
+	/// custom squad only: allows users to set a description for the squad
+	var/desc = ""
 	var/id = NO_SQUAD
 	var/tracking_id = null // for use with SSdirection
 	var/color = 0 //Color for helmets, etc.
@@ -10,7 +12,9 @@
 		SQUAD_ENGINEER = 0,
 		SQUAD_CORPSMAN = 0,
 		SQUAD_SMARTGUNNER = 0,
-		SQUAD_LEADER = 0)
+		SQUAD_LEADER = 0,
+		SQUAD_ROBOT = 0, //for campaign
+	)
 	var/max_positions = list(
 		SQUAD_MARINE = -1,
 		SQUAD_LEADER = 1)
@@ -136,8 +140,14 @@
 		SOM_SQUAD_LEADER = 1,
 )
 
-/datum/squad/New()
-	. = ..()
+/datum/squad/New(set_color, set_name)
+	if(set_color)
+		color = set_color
+	if(set_name)
+		name = set_name
+
+	..()
+
 	tracking_id = SSdirection.init_squad(name, squad_leader)
 
 	for(var/state in GLOB.playable_squad_icons)
@@ -148,6 +158,14 @@
 
 		var/icon_state = lowertext(name) + "_" + state
 		GLOB.minimap_icons[icon_state] = icon2base64(top)
+
+/datum/squad/Destroy(force, ...)
+	for(var/mob/living/carbon/human/squaddie AS in marines_list)
+		remove_from_squad(squaddie)
+	GLOB.custom_squad_radio_freqs -= "[radio_freq]"
+	SSjob.active_squads[faction] -= src
+	SSjob.squads -= id
+	return ..()
 
 
 /datum/squad/proc/get_all_members()
@@ -177,7 +195,7 @@
 	if((ismarineleaderjob(new_squaddie.job) || issommarineleaderjob(new_squaddie.job)) && !squad_leader)
 		squad_leader = new_squaddie
 		SSdirection.set_leader(tracking_id, new_squaddie)
-		SSdirection.start_tracking(TRACKING_ID_MARINE_COMMANDER, new_squaddie)
+		SSdirection.start_tracking(faction == FACTION_SOM ? TRACKING_ID_SOM_COMMANDER : TRACKING_ID_MARINE_COMMANDER, new_squaddie)
 
 	var/obj/item/radio/headset/mainship/headset = new_squaddie.wear_ear
 	if(give_radio && !istype(headset))
@@ -209,7 +227,6 @@
 	new_squaddie.update_action_buttons()
 	new_squaddie.update_inv_head()
 	new_squaddie.update_inv_wear_suit()
-	log_manifest("[key_name(new_squaddie)] has been assigned as [name] [new_squaddie.job.title].")
 	return TRUE
 
 
@@ -267,6 +284,7 @@
 
 	SSdirection.clear_leader(tracking_id)
 	SSdirection.stop_tracking(TRACKING_ID_MARINE_COMMANDER, squad_leader)
+	SSdirection.stop_tracking(TRACKING_ID_SOM_COMMANDER, squad_leader)
 
 	//Handle aSL skill level and radio
 	if(!ismarineleaderjob(squad_leader.job) && !issommarineleaderjob(squad_leader.job))
@@ -297,7 +315,7 @@
 
 	squad_leader = H
 	SSdirection.set_leader(tracking_id, H)
-	SSdirection.start_tracking(TRACKING_ID_MARINE_COMMANDER, H)
+	SSdirection.start_tracking(faction == FACTION_SOM ? TRACKING_ID_SOM_COMMANDER : TRACKING_ID_MARINE_COMMANDER, H)
 
 	//Handle aSL skill level and radio
 	if(!ismarineleaderjob(squad_leader.job) && !issommarineleaderjob(squad_leader.job))
@@ -389,3 +407,69 @@
 		if(squad.assign_initial(player, job, latejoin))
 			return TRUE
 	return FALSE
+
+GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
+///initializes a new custom squad. all args mandatory
+/proc/create_squad(squad_name, squad_color, mob/living/carbon/human/creator)
+	//Create the squad
+	if(!squad_name)
+		return
+	if(!squad_color)
+		return
+	if(!ishuman(creator))
+		return
+	var/freq = FREQ_CUSTOM_SQUAD_MIN + 2 * length(GLOB.custom_squad_radio_freqs)
+	if(freq > FREQ_CUSTOM_SQUAD_MAX)
+		return
+
+	var/new_id = lowertext(squad_name) + "_squad"
+	if(SSjob.squads[new_id])
+		return
+
+	var/squad_faction = creator.faction
+	var/datum/squad/new_squad = new(squad_color, squad_name)
+	new_squad.id = new_id
+	new_squad.access = list(ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
+	new_squad.radio_freq = freq
+	GLOB.custom_squad_radio_freqs["[freq]"] = new_squad
+	var/radio_channel_name = new_squad.name
+	LAZYADDASSOCSIMPLE(GLOB.radiochannels, "[radio_channel_name]", freq)
+	LAZYADDASSOCSIMPLE(GLOB.reverseradiochannels, "[freq]", radio_channel_name)
+	new_squad.faction = squad_faction
+	if(new_squad.faction == FACTION_TERRAGOV)
+		var/list/terragov_server_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/server/presets/alpha]
+		var/list/terragov_bus_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/bus/preset_three]
+		var/list/terragov_receiver_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/receiver/preset_left]
+		LAZYADDASSOCSIMPLE(terragov_server_freqs, 1, freq)
+		LAZYADDASSOCSIMPLE(terragov_bus_freqs, 1, freq)
+		LAZYADDASSOCSIMPLE(terragov_receiver_freqs, 1, freq)
+	else
+		var/list/som_server_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/server/presets/zulu]
+		var/list/som_bus_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/bus/preset_three/som]
+		var/list/som_receiver_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/receiver/preset_left/som]
+		LAZYADDASSOCSIMPLE(som_server_freqs, 1, freq)
+		LAZYADDASSOCSIMPLE(som_bus_freqs, 1, freq)
+		LAZYADDASSOCSIMPLE(som_receiver_freqs, 1, freq)
+	SSjob.active_squads[new_squad.faction] += new_squad
+	SSjob.squads[new_squad.id] = new_squad
+	LAZYSET(SSjob.squads_by_name[new_squad.faction], new_squad.name, new_squad)
+	creator.change_squad(new_squad.id)
+	for(var/obj/item/encryptionkey/key in GLOB.custom_updating_encryptkeys)
+		if(!istype(key.loc, /obj/item/radio/headset))
+			continue
+		var/obj/item/radio/headset/head = key.loc
+		head.recalculateChannels()
+	return new_squad
+
+/// Color_hex = ui_key assoc list
+GLOBAL_LIST_INIT(custom_squad_colors, list(
+	COLOR_RED = "alpharadio",
+	COLOR_VERY_SOFT_YELLOW = "bravoradio",
+	COLOR_STRONG_MAGENTA = "charlieradio",
+	COLOR_NAVY = "deltaradio",
+	COLOR_PURPLE = "sciradio",
+	COLOR_TAN_ORANGE = "zuluradio",
+	COLOR_TEAL = "yankeeradio",
+	COLOR_GREEN = "xrayradio",
+	COLOR_MAGENTA = "whiskeyradio",
+))

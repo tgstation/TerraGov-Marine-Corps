@@ -5,7 +5,7 @@
 
 /obj/item/tool/pickaxe
 	name = "pickaxe"
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/mining.dmi'
 	icon_state = "pickaxe"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -81,6 +81,8 @@
 
 /obj/item/tool/pickaxe/plasmacutter
 	name = "plasma cutter"
+	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
+	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "plasma_cutter_off"
 	item_state = "plasmacutter"
 	w_class = WEIGHT_CLASS_BULKY
@@ -88,7 +90,6 @@
 	force = 70
 	damtype = BURN
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction
-	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
 	drill_verb = "cutting"
 	attack_verb = list("dissolves", "disintegrates", "liquefies", "subliminates", "vaporizes")
 	heat = 3800
@@ -279,7 +280,7 @@
 		if(!start_cut(user, target.name, target, 0, span_notice("You start melting the [target.name] with [src].")))
 			return
 		playsound(user.loc, 'sound/items/welder.ogg', 25, 1)
-		if(!do_after(user, calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, T, BUSY_ICON_BUILD))
+		if(!do_after(user, calc_delay(user) * PLASMACUTTER_VLOW_MOD, NONE, T, BUSY_ICON_BUILD))
 			return
 		if(!powered)
 			fizzle_message(user)
@@ -302,7 +303,7 @@
 	if(!start_cut(user, O.name, O))
 		return TRUE
 
-	if(!do_after(user, calc_delay(user), TRUE, O, BUSY_ICON_HOSTILE))
+	if(!do_after(user, calc_delay(user), NONE, O, BUSY_ICON_HOSTILE))
 		return TRUE
 
 	cut_apart(user, O.name, O)

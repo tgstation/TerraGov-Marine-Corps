@@ -2,13 +2,12 @@
 // *********** Nightfall
 // ***************************************
 
-/datum/action/xeno_action/activable/nightfall
+/datum/action/ability/activable/xeno/nightfall
 	name = "Nightfall"
 	action_icon_state = "nightfall"
-	ability_name = "Nightfall"
 	desc = "Shut down all electrical lights nearby for 10 seconds."
-	cooldown_timer = 45 SECONDS
-	plasma_cost = 100
+	cooldown_duration = 45 SECONDS
+	ability_cost = 100
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_NIGHTFALL,
 	)
@@ -17,11 +16,11 @@
 	/// How long till the lights go on again
 	var/duration = 10 SECONDS
 
-/datum/action/xeno_action/activable/nightfall/on_cooldown_finish()
+/datum/action/ability/activable/xeno/nightfall/on_cooldown_finish()
 	to_chat(owner, span_notice("We gather enough mental strength to shut down lights again."))
 	return ..()
 
-/datum/action/xeno_action/activable/nightfall/use_ability()
+/datum/action/ability/activable/xeno/nightfall/use_ability()
 	playsound(owner, 'sound/magic/nightfall.ogg', 50, 1)
 	succeed_activate()
 	add_cooldown()
@@ -37,19 +36,18 @@
 #define PETRIFY_RANGE 7
 #define PETRIFY_DURATION 6 SECONDS
 #define PETRIFY_WINDUP_TIME 2 SECONDS
-/datum/action/xeno_action/petrify
+/datum/action/ability/xeno_action/petrify
 	name = "Petrify"
 	action_icon_state = "petrify"
 	desc = "After a windup, petrifies all humans looking at you. While petrified humans are immune to damage, but also can't attack."
-	ability_name = "petrify"
-	plasma_cost = 100
-	cooldown_timer = 30 SECONDS
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	ability_cost = 100
+	cooldown_duration = 30 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PETRIFY,
 	)
 
-/datum/action/xeno_action/petrify/action_activate()
+/datum/action/ability/xeno_action/petrify/action_activate()
 	var/obj/effect/overlay/eye/eye = new
 	owner.vis_contents += eye
 	flick("eye_opening", eye)
@@ -57,7 +55,7 @@
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, PETRIFY_ABILITY_TRAIT)
 
-	if(!do_after(owner, PETRIFY_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, PETRIFY_WINDUP_TIME, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
 		flick("eye_closing", eye)
 		addtimer(CALLBACK(src, PROC_REF(remove_eye), eye), 7, TIMER_CLIENT_TIME)
 		finish_charging()
@@ -102,7 +100,7 @@
 	succeed_activate()
 
 ///cleans up when the charge up is finished or interrupted
-/datum/action/xeno_action/petrify/proc/finish_charging()
+/datum/action/ability/xeno_action/petrify/proc/finish_charging()
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, PETRIFY_ABILITY_TRAIT)
 	if(!isxeno(owner))
 		return
@@ -111,7 +109,7 @@
 		ADD_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 
 ///ends all combat-relazted effects
-/datum/action/xeno_action/petrify/proc/end_effects(list/humans)
+/datum/action/ability/xeno_action/petrify/proc/end_effects(list/humans)
 	for(var/mob/living/carbon/human/human AS in humans)
 		human.notransform = FALSE
 		human.status_flags &= ~GODMODE
@@ -121,27 +119,26 @@
 		human.overlays -= humans[human]
 
 ///callback for removing the eye from viscontents
-/datum/action/xeno_action/petrify/proc/remove_eye(obj/effect/eye)
+/datum/action/ability/xeno_action/petrify/proc/remove_eye(obj/effect/eye)
 	owner.vis_contents -= eye
 
 // ***************************************
 // *********** Off-Guard
 // ***************************************
 #define OFF_GUARD_RANGE 8
-/datum/action/xeno_action/activable/off_guard
+/datum/action/ability/activable/xeno/off_guard
 	name = "Off-guard"
 	action_icon_state = "off_guard"
 	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
-	ability_name = "off guard"
-	plasma_cost = 100
-	cooldown_timer = 20 SECONDS
-	target_flags = XABB_MOB_TARGET
+	ability_cost = 100
+	cooldown_duration = 20 SECONDS
+	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
 	)
 
 
-/datum/action/xeno_action/activable/off_guard/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/off_guard/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -163,7 +160,7 @@
 			target.balloon_alert(owner, "already dead")
 		return FALSE
 
-/datum/action/xeno_action/activable/off_guard/use_ability(atom/target)
+/datum/action/ability/activable/xeno/off_guard/use_ability(atom/target)
 	var/mob/living/carbon/human/human_target = target
 	human_target.apply_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF, 100)
 	human_target.apply_status_effect(STATUS_EFFECT_CONFUSED, 40)
@@ -184,21 +181,20 @@
 #define SHATTERING_ROAR_DAMAGE 40
 #define SHATTERING_ROAR_CHARGE_TIME 1.2 SECONDS
 
-/datum/action/xeno_action/activable/shattering_roar
+/datum/action/ability/activable/xeno/shattering_roar
 	name = "Shattering roar"
 	action_icon_state = "shattering_roar"
 	desc = "Unleash a mighty psychic roar, knocking down any foes in your path and weakening them."
-	ability_name = "shattering roar"
-	plasma_cost = 225
-	cooldown_timer = 45 SECONDS
-	target_flags = XABB_TURF_TARGET
+	ability_cost = 225
+	cooldown_duration = 45 SECONDS
+	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SHATTERING_ROAR,
 	)
 	/// Tracks victims to make sure we only hit them once
 	var/list/victims_hit = list()
 
-/datum/action/xeno_action/activable/shattering_roar/use_ability(atom/target)
+/datum/action/ability/activable/xeno/shattering_roar/use_ability(atom/target)
 	if(!target)
 		return
 	owner.dir = get_cardinal_dir(owner, target)
@@ -210,7 +206,7 @@
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT) //Vulnerable while charging up
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, SHATTERING_ROAR_ABILITY_TRAIT)
 
-	if(!do_after(owner, SHATTERING_ROAR_CHARGE_TIME, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, SHATTERING_ROAR_CHARGE_TIME, NONE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
 		owner.balloon_alert(owner, "interrupted!")
 		finish_charging()
 		add_cooldown(10 SECONDS)
@@ -232,7 +228,7 @@
 	succeed_activate()
 
 ///Carries out the attack iteratively based on distance from source
-/datum/action/xeno_action/activable/shattering_roar/proc/execute_attack(iteration, list/turf/turfs_to_attack, range, target, turf/source)
+/datum/action/ability/activable/xeno/shattering_roar/proc/execute_attack(iteration, list/turf/turfs_to_attack, range, target, turf/source)
 	if(iteration > range)
 		victims_hit.Cut()
 		return
@@ -245,7 +241,7 @@
 	addtimer(CALLBACK(src, PROC_REF(execute_attack), iteration, turfs_to_attack, range, target, source), SHATTERING_ROAR_SPEED)
 
 ///Applies attack effects to everything relevant on a given turf
-/datum/action/xeno_action/activable/shattering_roar/proc/attack_turf(turf/turf_victim, severity)
+/datum/action/ability/activable/xeno/shattering_roar/proc/attack_turf(turf/turf_victim, severity)
 	new /obj/effect/temp_visual/shattering_roar(turf_victim)
 	for(var/victim in turf_victim)
 		if(victim in victims_hit)
@@ -271,7 +267,7 @@
 				window_victim.ex_act(EXPLODE_DEVASTATE)
 
 ///cleans up when the charge up is finished or interrupted
-/datum/action/xeno_action/activable/shattering_roar/proc/finish_charging()
+/datum/action/ability/activable/xeno/shattering_roar/proc/finish_charging()
 	owner.update_icons()
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, SHATTERING_ROAR_ABILITY_TRAIT)
 	if(!isxeno(owner))
@@ -295,14 +291,13 @@
 #define ZEROFORM_BEAM_RANGE 10
 #define ZEROFORM_CHARGE_TIME 2 SECONDS
 #define ZEROFORM_TICK_RATE 0.3 SECONDS
-/datum/action/xeno_action/zero_form_beam
+/datum/action/ability/xeno_action/zero_form_beam
 	name = "Zero-Form Energy Beam"
 	action_icon_state = "zero_form_beam"
 	desc = "After a windup, concentrates the hives energy into a forward-facing beam that pierces everything, but only hurts living beings."
-	ability_name = "zero form energy beam"
-	plasma_cost = 25
-	cooldown_timer = 10 SECONDS
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	ability_cost = 25
+	cooldown_duration = 10 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ZEROFORMBEAM,
 	)
@@ -317,11 +312,11 @@
 	///ref to looping timer for the fire loop
 	var/timer_ref
 
-/datum/action/xeno_action/zero_form_beam/Destroy()
+/datum/action/ability/xeno_action/zero_form_beam/Destroy()
 	QDEL_NULL(sound_loop)
 	return ..()
 
-/datum/action/xeno_action/zero_form_beam/New(Target)
+/datum/action/ability/xeno_action/zero_form_beam/New(Target)
 	. = ..()
 	sound_loop = new
 
@@ -330,7 +325,7 @@
 	alpha = 0
 	animate(src, alpha = 255, time = ZEROFORM_CHARGE_TIME)
 
-/datum/action/xeno_action/zero_form_beam/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/zero_form_beam/can_use_action(silent, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -339,7 +334,7 @@
 			owner.balloon_alert("too early")
 		return FALSE
 
-/datum/action/xeno_action/zero_form_beam/action_activate()
+/datum/action/ability/xeno_action/zero_form_beam/action_activate()
 	if(timer_ref)
 		stop_beaming()
 		return
@@ -370,7 +365,7 @@
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
 
-	if(!do_after(owner, ZEROFORM_CHARGE_TIME, FALSE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, ZEROFORM_CHARGE_TIME, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
 		QDEL_NULL(beam)
 		QDEL_NULL(particles)
 		targets = null
@@ -387,7 +382,7 @@
 	execute_attack()
 
 /// recursive proc for firing the actual beam
-/datum/action/xeno_action/zero_form_beam/proc/execute_attack()
+/datum/action/ability/xeno_action/zero_form_beam/proc/execute_attack()
 	if(!can_use_action(TRUE))
 		stop_beaming()
 		return
@@ -407,7 +402,7 @@
 	timer_ref = addtimer(CALLBACK(src, PROC_REF(execute_attack)), ZEROFORM_TICK_RATE, TIMER_STOPPABLE)
 
 ///ends and cleans up beam
-/datum/action/xeno_action/zero_form_beam/proc/stop_beaming()
+/datum/action/ability/xeno_action/zero_form_beam/proc/stop_beaming()
 	SIGNAL_HANDLER
 	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE))
 	sound_loop.stop(owner)
@@ -458,23 +453,22 @@
 // ***************************************
 // *********** Psychic Summon
 // ***************************************
-/datum/action/xeno_action/psychic_summon
+/datum/action/ability/xeno_action/psychic_summon
 	name = "Psychic Summon"
 	action_icon_state = "stomp"
 	desc = "Summons all xenos in a hive to the caller's location, uses all plasma to activate."
-	ability_name = "Psychic summon"
-	plasma_cost = 900 //uses all an young kings plasma
-	cooldown_timer = 10 MINUTES
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	ability_cost = 900
+	cooldown_duration = 10 MINUTES
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HIVE_SUMMON,
 	)
 
-/datum/action/xeno_action/activable/psychic_summon/on_cooldown_finish()
+/datum/action/ability/activable/xeno/psychic_summon/on_cooldown_finish()
 	to_chat(owner, span_warning("The hives power swells. We may summon our sisters again."))
 	return ..()
 
-/datum/action/xeno_action/psychic_summon/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/psychic_summon/can_use_action(silent, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -484,7 +478,7 @@
 			owner.balloon_alert(owner, "noone to call")
 		return FALSE
 
-/datum/action/xeno_action/psychic_summon/action_activate()
+/datum/action/ability/xeno_action/psychic_summon/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 
 	log_game("[key_name(owner)] has begun summoning hive in [AREACOORD(owner)]")
@@ -495,7 +489,7 @@
 			continue
 		sister.add_filter("summonoutline", 2, outline_filter(1, COLOR_VIOLET))
 
-	if(!do_after(X, 10 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
+	if(!do_after(X, 10 SECONDS, IGNORE_HELD_ITEM, X, BUSY_ICON_HOSTILE))
 		add_cooldown(5 SECONDS)
 		for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 			sister.remove_filter("summonoutline")

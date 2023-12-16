@@ -213,15 +213,6 @@
 	character.underwear = underwear
 	character.undershirt = undershirt
 
-	if(backpack > BACK_NOTHING)
-		var/obj/item/storage/backpack/new_backpack
-		switch(backpack)
-			if(BACK_BACKPACK)
-				new_backpack = new /obj/item/storage/backpack/marine(character)
-			if(BACK_SATCHEL)
-				new_backpack = new /obj/item/storage/backpack/marine/satchel(character)
-		character.equip_to_slot_or_del(new_backpack, SLOT_BACK)
-
 	character.update_body()
 	character.update_hair()
 

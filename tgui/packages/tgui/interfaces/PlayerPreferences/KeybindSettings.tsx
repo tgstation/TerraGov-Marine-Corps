@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../../backend';
-import { Button, Input, Section, LabeledList, Box, Grid, ButtonKeybind } from '../../components';
+import { Button, Input, Section, LabeledList, Box, Stack, ButtonKeybind } from '../../components';
 import { TextInputModal } from './TextInputModal';
 
 const KEY_MODS = {
@@ -59,8 +59,8 @@ export const KeybindSettings = (props, context) => {
       <Box>
         Search: <Input onInput={(_e, value) => setFilter(value)} />
       </Box>
-      <Grid>
-        <Grid.Column>
+      <Stack>
+        <Stack.Item grow>
           <Section title="Main">
             {all_keybindings['MOVEMENT']?.filter(filterSearch).map((kb) => (
               <KeybindingPreference key={kb.name} keybind={kb} />
@@ -104,15 +104,15 @@ export const KeybindSettings = (props, context) => {
               />
             ))}
           </Section>
-          {is_admin && (
+          {!!is_admin && (
             <Section title="Administration (admin only)">
               {all_keybindings['ADMIN']?.filter(filterSearch).map((kb) => (
                 <KeybindingPreference key={kb.name} keybind={kb} />
               ))}
             </Section>
           )}
-        </Grid.Column>
-        <Grid.Column>
+        </Stack.Item>
+        <Stack.Item grow>
           <Section title="Abilities">
             <LabeledList.Item>
               <h3>Human</h3>
@@ -126,9 +126,15 @@ export const KeybindSettings = (props, context) => {
             {all_keybindings['XENO']?.filter(filterSearch).map((kb) => (
               <KeybindingPreference key={kb.name} keybind={kb} />
             ))}
+            <LabeledList.Item>
+              <h3>Psionic</h3>
+            </LabeledList.Item>
+            {all_keybindings['PSIONIC']?.filter(filterSearch).map((kb) => (
+              <KeybindingPreference key={kb.name} keybind={kb} />
+            ))}
           </Section>
-        </Grid.Column>
-      </Grid>
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };

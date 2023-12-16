@@ -175,6 +175,18 @@
 	max_rounds = 100
 
 //-------------------------------------------------------
+//DP-27
+
+/obj/item/ammo_magazine/rifle/dpm
+	name = "\improper Degtyaryov drum AP magazine (7.62x39mm)"
+	desc = "A drum magazine for the Degtyaryov machine gun."
+	caliber = CALIBER_762X39
+	icon_state = "dp27"
+	default_ammo = /datum/ammo/bullet/rifle/ap
+	max_rounds = 47
+	icon_state_mini = "mag_rifle"
+
+//-------------------------------------------------------
 //M16 RIFLE
 
 /obj/item/ammo_magazine/rifle/m16
@@ -303,49 +315,49 @@
 //SPOTTING RIFLE AMMUNITION
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle
-	name = "\improper SR-153 magazine (12x7mm)"
+	name = "\improper SG-153 magazine (12x7mm)"
 	desc = "A magazine filled with 12x7mm lethal smart rounds, these will do nothing other than pack a big punch."
 	caliber = CALIBER_12x7
-	icon_state = "sr153"
+	icon_state = "sg153"
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/spottingrifle
 	max_rounds = 5
 	icon_state_mini = "mag_sg29"
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact
-	name = "\improper SR-153 high impact magazine (12x7mm)"
+	name = "\improper SG-153 high impact magazine (12x7mm)"
 	desc = "A magazine filled with 12x7mm high impact smart rounds, these will likely stagger and slow anything they hit."
-	icon_state = "sr153_hi"
+	icon_state = "sg153_hi"
 	default_ammo = /datum/ammo/bullet/spottingrifle/highimpact
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/heavyrubber
-	name = "\improper SR-153 heavy rubber magazine (12x7mm)"
+	name = "\improper SG-153 heavy rubber magazine (12x7mm)"
 	desc = "A magazine filled with 12x7mm heavy rubber smart rounds, these will likely stun and displace anything they hit."
-	icon_state = "sr153_hr"
+	icon_state = "sg153_hr"
 	default_ammo = /datum/ammo/bullet/spottingrifle/heavyrubber
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/plasmaloss
-	name = "\improper SR-153 tanglefoot magazine (12x7mm)"
+	name = "\improper SG-153 tanglefoot magazine (12x7mm)"
 	desc = "A magazine filled with 12x7mm smart rounds tipped with 'Tanglefoot' poison, these rounds will drain the energy out of targets they hit."
-	icon_state = "sr153_hr"
+	icon_state = "sg153_hr"
 	default_ammo = /datum/ammo/bullet/spottingrifle/plasmaloss
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten
-	name = "\improper SR-153 tungsten magazine (12x7mm)"
+	name = "\improper SG-153 tungsten magazine (12x7mm)"
 	desc = "A magazine filled with 12x7mm tungsten smart rounds, these rounds will massively knock back any target it hits."
-	icon_state = "sr153_tg"
+	icon_state = "sg153_tg"
 	default_ammo = /datum/ammo/bullet/spottingrifle/tungsten
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary
-	name = "\improper SR-153 incendiary magazine (12x7mm)"
+	name = "\improper SG-153 incendiary magazine (12x7mm)"
 	desc = "A magazine filled with 12x7mm incendiary smart rounds, these rounds will set alight anything they hit."
-	icon_state = "sr153_ic"
+	icon_state = "sg153_ic"
 	default_ammo = /datum/ammo/bullet/spottingrifle/incendiary
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/flak
-	name = "\improper SR-153 flak magazine (12x7mm)"
+	name = "\improper SG-153 flak magazine (12x7mm)"
 	desc = "A magazine filled with 12x7mm flak smart rounds, these rounds will airburst on contact with an organic target, causing damage in a small area near the target."
-	icon_state = "sr153_fl"
+	icon_state = "sg153_fl"
 	default_ammo = /datum/ammo/bullet/spottingrifle/flak
 
 
@@ -412,7 +424,7 @@
 	icon_state = "t21"
 	icon_state_mini = "mag_rifle"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
-	max_rounds = 30
+	max_rounds = 40
 
 //ALF-51B
 
@@ -610,3 +622,18 @@
 	icon_state = "ml41_frag"
 	default_ammo = /datum/ammo/bullet/shotgun/frag
 	max_rounds = 12
+
+//-------------------------------------------------------
+//L-88 Assault Carbine
+/obj/item/ammo_magazine/rifle/icc_assaultcarbine
+	name = "\improper L-88 assault carbine magazine (5.56x45mm)"
+	desc = "A magazine filled with 5.56x45mm rifle rounds for the L-88 series of firearms."
+	caliber = CALIBER_556X45
+	icon_state = "aug"
+	icon_state_mini = "mag_rifle"
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 30
+
+/obj/item/ammo_magazine/rifle/icc_assaultcarbine/export
+	name = "\improper EM-88 assault carbine magazine (5.56x45mm)"
+	desc = "A magazine filled with 5.56x45mm rifle rounds for the EM-88 series of firearms."

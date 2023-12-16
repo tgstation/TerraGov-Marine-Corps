@@ -113,7 +113,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		return FALSE
 	var/hit_area = affecting.display_name
 
-	var/damage = I.force + round(I.force * 0.3 * user.skills.getRating(SKILL_MELEE_WEAPONS)) //30% bonus per melee level
+	var/damage = I.force + round(I.force * MELEE_SKILL_DAM_BUFF * user.skills.getRating(SKILL_MELEE_WEAPONS))
 	if(user != src)
 		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
 		if(!damage)
@@ -201,11 +201,13 @@ Contains most of the procs that are called when a mob is attacked by something
 	//Melee weapon embedded object code.
 	if(affecting.limb_status & LIMB_DESTROYED)
 		hit_report += "(delimbed [affecting.display_name])"
-	else if(I.damtype == BRUTE && !(I.flags_item & (NODROP|DELONDROP)))
+	else if(I.damtype == BRUTE && !(HAS_TRAIT(I, TRAIT_NODROP) || (I.flags_item & DELONDROP)))
 		if (percentage_penetration && weapon_sharp && prob(I.embedding.embed_chance))
+			user.dropItemToGround(I, TRUE)
 			I.embed_into(src, affecting)
 			hit_report += "(embedded in [affecting.display_name])"
 
+	record_melee_damage(user, applied_damage, affecting.limb_status & LIMB_DESTROYED)
 	log_combat(user, src, "attacked", I, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)]) [hit_report.Join(" ")]")
 	if(damage && !user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
 		var/turf/T = get_turf(src)
@@ -241,7 +243,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			throw_mode_off()
 			if(living_thrower)
 				log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: caught)")
-			return
+			return TRUE
 
 		throw_damage = thrown_item.throwforce * speed * 0.2
 
@@ -258,7 +260,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			visible_message(span_notice(" \The [thrown_item] misses [src] narrowly!"), null, null, 5)
 			if(living_thrower)
 				log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: missed)")
-			return
+			return FALSE
 
 		if(thrown_item.thrower != src)
 			throw_damage = check_shields(COMBAT_MELEE_ATTACK, throw_damage, MELEE)
@@ -267,13 +269,13 @@ Contains most of the procs that are called when a mob is attacked by something
 				visible_message(span_danger("[src] deflects \the [thrown_item]!"))
 				if(living_thrower)
 					log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: shield blocked)")
-				return
+				return TRUE
 
 		var/datum/limb/affecting = get_limb(zone)
 
 		if(affecting.limb_status & LIMB_DESTROYED)
 			log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: target limb missing)")
-			return
+			return FALSE
 
 		thrown_item.stop_throw() // Hit the limb.
 		var/applied_damage = modify_by_armor(throw_damage, MELEE, thrown_item.penetration, zone)
@@ -281,7 +283,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(applied_damage <= 0)
 			visible_message(span_notice("\The [thrown_item] bounces on [src]'s armor!"), null, null, 5)
 			log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: armor blocked)")
-			return
+			return TRUE
 
 		visible_message(span_warning("[src] has been hit in the [affecting.display_name] by \the [thrown_item]."), null, null, 5)
 
@@ -306,14 +308,15 @@ Contains most of the procs that are called when a mob is attacked by something
 		throw_at(get_edge_target_turf(src, get_dir(AM.throw_source, src)), 1, speed * 0.5)
 		hit_report += "(thrown away)"
 
-	if(!living_thrower)
-		return
-	log_combat(living_thrower, src, "thrown at", AM, "[hit_report.Join(" ")]")
-	if(throw_damage && !living_thrower.mind?.bypass_ff && !mind?.bypass_ff && living_thrower.faction == faction)
-		var/turf/T = get_turf(src)
-		living_thrower.ff_check(throw_damage, src)
-		log_ffattack("[key_name(living_thrower)] hit [key_name(src)] with \the [AM] (thrown) in [AREACOORD(T)] [hit_report.Join(" ")].")
-		msg_admin_ff("[ADMIN_TPMONTY(living_thrower)] hit [ADMIN_TPMONTY(src)] with \the [AM] (thrown) in [ADMIN_VERBOSEJMP(T)] [hit_report.Join(" ")].")
+	if(living_thrower)
+		log_combat(living_thrower, src, "thrown at", AM, "[hit_report.Join(" ")]")
+		if(throw_damage && !living_thrower.mind?.bypass_ff && !mind?.bypass_ff && living_thrower.faction == faction)
+			var/turf/T = get_turf(src)
+			living_thrower.ff_check(throw_damage, src)
+			log_ffattack("[key_name(living_thrower)] hit [key_name(src)] with \the [AM] (thrown) in [AREACOORD(T)] [hit_report.Join(" ")].")
+			msg_admin_ff("[ADMIN_TPMONTY(living_thrower)] hit [ADMIN_TPMONTY(src)] with \the [AM] (thrown) in [ADMIN_VERBOSEJMP(T)] [hit_report.Join(" ")].")
+
+	return TRUE
 
 
 /mob/living/carbon/human/resist_fire(datum/source)
@@ -387,7 +390,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		to_chat(user, span_warning("You cannot resolve yourself to destroy [src]'s heart, as [p_they()] can still be saved!"))
 		return
 	to_chat(user, span_notice("You start to remove [src]'s heart, preventing [p_them()] from rising again!"))
-	if(!do_after(user, 2 SECONDS, TRUE, src))
+	if(!do_after(user, 2 SECONDS, NONE, src))
 		return
 	if(!internal_organs_by_name["heart"])
 		to_chat(user, span_notice("The heart is no longer here!"))
@@ -436,7 +439,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [affecting.display_name]."))
 
 	add_overlay(GLOB.welding_sparks)
-	while(do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && I.use_tool(src, user, volume = 50, amount = 2))
+	while(do_after(user, repair_time, NONE, src, BUSY_ICON_BUILD) && I.use_tool(src, user, volume = 50, amount = 2))
 		user.visible_message(span_warning("\The [user] patches some dents on [src]'s [affecting.display_name]."), \
 			span_warning("You patch some dents on \the [src]'s [affecting.display_name]."))
 		if(affecting.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE))

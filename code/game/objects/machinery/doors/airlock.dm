@@ -255,7 +255,7 @@
 	if(hasPower())
 		X.visible_message(span_warning("\The [X] digs into \the [src] and begins to pry it open."), \
 		span_warning("We dig into \the [src] and begin to pry it open."), null, 5)
-		if(!do_after(X, 4 SECONDS, FALSE, src, BUSY_ICON_HOSTILE) && !X.lying_angle)
+		if(!do_after(X, 4 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE) && !X.lying_angle)
 			return FALSE
 	if(locked)
 		to_chat(X, span_warning("\The [src] is bolted down tight."))
@@ -350,7 +350,7 @@
 			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, PROC_REF(weld_checks))))
 				return
 
-			repair_damage(max_integrity)
+			repair_damage(max_integrity, user)
 			DISABLE_BITFIELD(machine_stat, BROKEN)
 			user.visible_message(span_notice("[user.name] has repaired [src]."), \
 								span_notice("You finish repairing the airlock."))
@@ -374,7 +374,7 @@
 			span_notice("You fumble around figuring out how to deconstruct [src]."))
 
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		if(width > 1)
@@ -384,7 +384,7 @@
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
 
-		if(!do_after(user,40, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, span_notice("You removed the airlock electronics!"))

@@ -43,6 +43,8 @@
 	var/fire_mode = GUN_FIREMODE_AUTOMATIC
 	///how many seconds automatic rearming takes
 	var/rearm_time = 2 SECONDS
+	/// smoke effect for when the gun fires
+	var/smoke_effect = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/Initialize(mapload)
 	. = ..()
@@ -69,7 +71,7 @@
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
 		playsound(chassis.loc, windup_sound, 30, TRUE)
-		if(!do_after(source, windup_delay, TRUE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
+		if(!do_after(source, windup_delay, NONE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
 			return
 		windup_checked = WEAPON_WINDUP_CHECKED
@@ -165,8 +167,8 @@
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
 		return AUTOFIRE_CONTINUE
 
-	var/type_to_spawn = (initial(ammotype.flags_ammo_behavior) & AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
-	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src))
+	var/type_to_spawn = CHECK_BITFIELD(initial(ammotype.flags_ammo_behavior), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
+	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammotype.hitscan_effect_icon))
 	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammotype])
 
 	apply_weapon_modifiers(projectile_to_fire, current_firer)
@@ -202,6 +204,15 @@
 	muzzle_flash.applied = TRUE
 
 	addtimer(CALLBACK(src, PROC_REF(remove_flash), muzzle_flash), 0.2 SECONDS)
+	if(smoke_effect)
+		var/x_component = sin(firing_angle) * 40
+		var/y_component = cos(firing_angle) * 40
+		var/obj/effect/abstract/particle_holder/gun_smoke = new(get_turf(src), /particles/firing_smoke)
+		gun_smoke.particles.velocity = list(x_component, y_component)
+		gun_smoke.particles.position = list(flash_offsets[mech_slot][dir2text_short(chassis.dir)][1] - 16, flash_offsets[mech_slot][dir2text_short(chassis.dir)][2])
+		addtimer(VARSET_CALLBACK(gun_smoke.particles, count, 0), 5)
+		addtimer(VARSET_CALLBACK(gun_smoke.particles, drift, 0), 3)
+		QDEL_IN(gun_smoke, 0.6 SECONDS)
 	return AUTOFIRE_CONTINUE|AUTOFIRE_SUCCESS
 
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/reset_light_range(lightrange)
@@ -225,6 +236,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic
 	name = "general ballistic weapon"
 	fire_sound = 'sound/weapons/guns/fire/gunshot.ogg'
+	smoke_effect = TRUE
 	///ammo left in the mag
 	var/projectiles
 	///ammo left total
@@ -259,7 +271,7 @@
 	. = ..()
 	if(action == "reload")
 		var/mob/occupant = usr
-		if(occupant && !do_after(occupant, rearm_time, FALSE, chassis, BUSY_ICON_GENERIC))
+		if(occupant && !do_after(occupant, rearm_time, IGNORE_HELD_ITEM, chassis, BUSY_ICON_GENERIC))
 			return FALSE
 		rearm()
 		return TRUE
@@ -296,7 +308,7 @@
 	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
 	if(LAZYACCESS(current_firer.do_actions, src) || projectiles_cache < 1)
 		return
-	if(!do_after(current_firer, rearm_time, FALSE, chassis, BUSY_ICON_GENERIC))
+	if(!do_after(current_firer, rearm_time, IGNORE_HELD_ITEM, chassis, BUSY_ICON_GENERIC))
 		return
 	rearm()
 
@@ -386,6 +398,17 @@
 	O.throw_at(target, missile_range, missile_speed, source, FALSE)
 	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), equip_cooldown)
 	chassis.use_power(energy_drain)
+	if(smoke_effect)
+		var/firing_angle = Get_Angle(get_turf(src), target)
+		var/x_component = sin(firing_angle) * 40
+		var/y_component = cos(firing_angle) * 40
+		var/obj/effect/abstract/particle_holder/gun_smoke = new(get_turf(src), /particles/firing_smoke)
+		gun_smoke.particles.velocity = list(x_component, y_component)
+		var/mech_slot = chassis.equip_by_category[MECHA_R_ARM] == src ? MECHA_R_ARM : MECHA_L_ARM
+		gun_smoke.particles.position = list(flash_offsets[mech_slot][dir2text_short(chassis.dir)][1] - 16, flash_offsets[mech_slot][dir2text_short(chassis.dir)][2])
+		addtimer(VARSET_CALLBACK(gun_smoke.particles, count, 0), 5)
+		addtimer(VARSET_CALLBACK(gun_smoke.particles, drift, 0), 3)
+		QDEL_IN(gun_smoke, 0.6 SECONDS)
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.update_ammo_hud(src, hud_icons, projectiles)
 	if(projectiles > 0)

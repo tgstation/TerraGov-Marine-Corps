@@ -64,27 +64,32 @@
 //bitflags that were previously under flags_atom, these only apply to items.
 //clothing specific stuff uses flags_inventory.
 //flags_item
-#define NODROP (1<<0)	// Cannot be dropped/unequipped at all, only deleted.
-#define NOBLUDGEON (1<<1)	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
-#define DELONDROP (1<<2)	// Deletes on drop instead of falling on the floor.
-#define TWOHANDED (1<<3)	// The item is twohanded.
-#define WIELDED (1<<4)	// The item is wielded with both hands.
-#define ITEM_ABSTRACT (1<<5)	//The item is abstract (grab, powerloader_clamp, etc)
-#define DOES_NOT_NEED_HANDS (1<<6)	//Dont need hands to use it
-#define SYNTH_RESTRICTED (1<<7)	//Prevents synths from wearing items with this flag
-#define IMPEDE_JETPACK (1<<8)  //Reduce the range of jetpack
-#define CAN_BUMP_ATTACK (1<<9)	 //Item triggers bump attack
-#define IS_DEPLOYABLE (1<<10) //Item can be deployed into a machine
-#define DEPLOY_ON_INITIALIZE (1<<11)
-#define IS_DEPLOYED (1<<12) //If this is on an item, said item is currently deployed
-#define DEPLOYED_NO_PICKUP  (1<<13) //Disables deployed item pickup
-#define DEPLOYED_NO_ROTATE  (1<<14) //Disables deployed item rotation abilities to rotate.
-#define DEPLOYED_NO_ROTATE_ANCHORED (1<<15) //Disables deployed item rotation if anchored.
-#define DEPLOYED_WRENCH_DISASSEMBLE (1<<16) //If this is on an item, the item can only be disassembled using a wrench once deployed.
-#define DEPLOYED_ANCHORED_FIRING_ONLY (1<<17) //Disables firing deployable if it is not anchored.
-#define FULLY_WIELDED (1<<18) //If the item is properly wielded. Used for guns
+#define NOBLUDGEON (1<<0)	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
+#define DELONDROP (1<<1)	// Deletes on drop instead of falling on the floor.
+#define TWOHANDED (1<<2)	// The item is twohanded.
+#define WIELDED (1<<3)	// The item is wielded with both hands.
+#define ITEM_ABSTRACT (1<<4)	//The item is abstract (grab, powerloader_clamp, etc)
+#define DOES_NOT_NEED_HANDS (1<<5)	//Dont need hands to use it
+#define SYNTH_RESTRICTED (1<<6)	//Prevents synths from wearing items with this flag
+#define IMPEDE_JETPACK (1<<7)  //Reduce the range of jetpack
+#define CAN_BUMP_ATTACK (1<<8)	 //Item triggers bump attack
+#define IS_DEPLOYABLE (1<<9) //Item can be deployed into a machine
+#define DEPLOY_ON_INITIALIZE (1<<10)
+#define IS_DEPLOYED (1<<11) //If this is on an item, said item is currently deployed
+#define DEPLOYED_NO_PICKUP  (1<<12) //Disables deployed item pickup
+#define DEPLOYED_NO_ROTATE  (1<<13) //Disables deployed item rotation abilities to rotate.
+#define DEPLOYED_NO_ROTATE_ANCHORED (1<<14) //Disables deployed item rotation if anchored.
+#define DEPLOYED_WRENCH_DISASSEMBLE (1<<15) //If this is on an item, the item can only be disassembled using a wrench once deployed.
+#define DEPLOYED_ANCHORED_FIRING_ONLY (1<<16) //Disables firing deployable if it is not anchored.
+#define FULLY_WIELDED (1<<17) //If the item is properly wielded. Used for guns
 ///If a holster has underlay sprites
-#define HAS_UNDERLAY (1<<19)
+#define HAS_UNDERLAY (1<<18)
+///is this item equipped into an inventory slot or hand of a mob?
+#define IN_INVENTORY (1<<19)
+
+//flags_storage
+///If a storage container can be restocked into a vendor
+#define BYPASS_VENDOR_CHECK (1<<0)
 
 //==========================================================================================
 
@@ -282,6 +287,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			. = ITEM_SLOT_FEET
 		if(SLOT_WEAR_SUIT)
 			. = ITEM_SLOT_OCLOTHING
+		if(SLOT_S_STORE)
+			. = ITEM_SLOT_SUITSTORE
 		if(SLOT_W_UNIFORM)
 			. = ITEM_SLOT_ICLOTHING
 		if(SLOT_R_STORE)
@@ -422,6 +429,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_IN_BACKPACK\
 	)
 
+///Each slot you can draw from, used and messed with in your preferences.
 #define SLOT_DRAW_ORDER list(\
 	SLOT_IN_HOLSTER,\
 	SLOT_IN_S_HOLSTER,\
@@ -531,8 +539,12 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return SLOT_IN_HEAD
 		if("Left Pocket")
 			return SLOT_L_STORE
+		if("Left Pocket Inside")
+			return SLOT_IN_L_POUCH
 		if("Right Pocket")
 			return SLOT_R_STORE
+		if("Right Pocket Inside")
+			return SLOT_IN_R_POUCH
 		if("Webbing")
 			return SLOT_IN_ACCESSORY
 		if("Belt Inside")
@@ -543,6 +555,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return SLOT_IN_S_HOLSTER
 		if("Back Holster")
 			return SLOT_IN_B_HOLSTER
+		if("Active Storage")
+			return SLOT_IN_STORAGE
 
 /proc/slot_flag_to_fluff(slot)
 	switch(slot)
@@ -564,8 +578,12 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Helmet"
 		if(SLOT_L_STORE)
 			return "Left Pocket"
+		if(SLOT_IN_L_POUCH)
+			return "Left Pocket Inside"
 		if(SLOT_R_STORE)
 			return "Right Pocket"
+		if(SLOT_IN_R_POUCH)
+			return "Right Pocket Inside"
 		if(SLOT_IN_ACCESSORY)
 			return "Webbing"
 		if(SLOT_IN_HOLSTER)
@@ -574,3 +592,6 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Suit Storage Holster"
 		if(SLOT_IN_B_HOLSTER)
 			return "Back Holster"
+		if(SLOT_IN_STORAGE)
+			return "Active Storage"
+

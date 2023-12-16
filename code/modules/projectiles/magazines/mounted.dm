@@ -42,7 +42,7 @@
 
 /obj/item/ammo_magazine/standard_mmg
 	name = "MG-27 box magazine (10x27m Caseless)"
-	desc = "A box of 100 10x27mm caseless rounds for the MG-27 medium machinegun."
+	desc = "A box of 150 10x27mm caseless rounds for the MG-27 medium machinegun."
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "mag"
@@ -169,26 +169,60 @@
 	item_state = "ac_flak"
 	default_ammo = /datum/ammo/bullet/auto_cannon/flak
 
-/obj/item/ammo_magazine/heavy_laser
+/obj/item/cell/lasgun/heavy_laser
 	name = "heavy-duty weapon laser cell"
-	desc = "A cell with enough charge to contain 15 heavy laser shots for the TE-9001. This cannot be recharged."
+	desc = "A cell with enough charge to contain energy for the TE-9001. This cannot be recharged."
 	w_class = WEIGHT_CLASS_BULKY
-	flags_magazine = NONE
-	max_rounds = 15
-	default_ammo = /datum/ammo/energy/lasgun/marine/heavy_laser
+	maxcharge = 225
 	reload_delay = 5 SECONDS
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "hl_mag"
 
-/obj/item/ammo_magazine/heavy_rr
-	name = "RR-15 HE shell (75mm Shell)"
-	desc = "A 75mm HE shell for the RR-15 mounted heavy recoilless rifle."
+/obj/item/ammo_magazine/heavy_isg
+	name = "FK-88 shell (155mm Shell)"
+	desc = "A 15cm shell for the FK-88 mounted flak gun. How did you even get this?"
+	icon = 'icons/Marine/marine-fkgun.dmi'
+	icon_state = "isg_ammo"
+	item_state = "isg_ammo"
 	w_class = WEIGHT_CLASS_BULKY
-	icon = 'icons/Marine/marine-hmg.dmi'
-	icon_state = "75shell"
-	item_state = "75shell"
 	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
-	caliber = CALIBER_75MM
+	caliber = CALIBER_15CM
 	max_rounds = 1
-	default_ammo = /datum/ammo/rocket/heavy_rr
-	reload_delay = 10 SECONDS
+	reload_delay = 8 SECONDS
+	default_ammo = /datum/ammo/rocket/heavy_isg
+
+/obj/item/ammo_magazine/heavy_isg/he
+	name = "FK-88 HE shell (155mm Shell)"
+	desc = "A 15cm HE shell for the FK-88 mounted flak gun. Activate in hand to swap between unguided and guided modes."
+	default_ammo = /datum/ammo/rocket/heavy_isg
+	var/guided = TRUE
+
+/obj/item/ammo_magazine/heavy_isg/he/attack_hand_alternate(mob/living/user)
+	if(guided)
+		default_ammo = /datum/ammo/rocket/heavy_isg/unguided
+		balloon_alert(user, "You swap the shell to unguided form")
+		guided = FALSE
+	else
+		default_ammo = /datum/ammo/rocket/heavy_isg
+		balloon_alert(user, "You swap the shell to guided form")
+		guided = TRUE
+
+/obj/item/ammo_magazine/heavy_isg/sabot
+	name = "FK-88 APFDS shell (155mm Shell)"
+	desc = "A 15cm APFDS shell for the FK-88 mounted flak gun containing a large metal dart fired at hypersonic speeds, will pierce through basically anything and onto the other side with ease. Requires a minimum range before it stabilizes to properly hit anything, will rip a clean hole through basically anything."
+	icon_state = "isg_ammo_sabot"
+	default_ammo = /datum/ammo/bullet/heavy_isg_apfds
+
+///Default ammo for the ML-91 and its export variants.
+/obj/item/ammo_magazine/icc_hmg
+	name = "KRD-61ES magazine (10x30mm Caseless)"
+	desc = "A box of 300, 10x30mm caseless tungsten rounds for the KRD-61ESmounted heavy smartgun."
+	w_class = WEIGHT_CLASS_NORMAL
+	icon = 'icons/Marine/marine-mmg.dmi'
+	icon_state = "kord_mag"
+	flags_magazine = NONE
+	caliber = CALIBER_10X30
+	max_rounds = 300
+	default_ammo = /datum/ammo/bullet/machinegun
+	reload_delay = 5 SECONDS
+	icon_state_mini = "mag_hmg"

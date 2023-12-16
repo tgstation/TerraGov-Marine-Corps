@@ -92,9 +92,9 @@
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
 	if(HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
 		return FALSE
-	if(upgrade == XENO_UPGRADE_THREE)
+	if(upgrade == XENO_UPGRADE_NORMAL)
 		return hive.purchases.upgrades_by_name[GLOB.tier_to_primo_upgrade[xeno_caste.tier]].times_bought
-	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_FOUR)
+	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_PRIMO)
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
@@ -215,7 +215,7 @@
 	// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	upgrade_stored += 1 + (stored_larva/6) + hive.get_upgrade_boost() //Do this regardless of whether we can upgrade so age accrues at primo
+	upgrade_stored += 1 + (stored_larva/6) + hive.get_evolution_boost() //Do this regardless of whether we can upgrade so age accrues at primo
 	if(!upgrade_possible())
 		return
 	if(upgrade_stored < xeno_caste.upgrade_threshold)
@@ -250,10 +250,8 @@
 /mob/living/carbon/xenomorph/throw_impact(atom/hit_atom, speed)
 	set waitfor = FALSE
 
-	// TODO: remove charge_type check
-	if(!xeno_caste.charge_type || stat || (!throwing && usedPounce)) //No charge type, unconscious or dead, or not throwing but used pounce.
-		..() //Do the parent instead.
-		return FALSE
+	if(stat || !usedPounce)
+		return ..()
 
 	if(isobj(hit_atom)) //Deal with smacking into dense objects. This overwrites normal throw code.
 		var/obj/O = hit_atom
@@ -267,7 +265,7 @@
 			return FALSE
 		stop_throw() //Resert throwing since something was hit.
 		return TRUE
-	stop_throw() //Resert throwing since something was hit.
+
 	return ..() //Do the parent otherwise, for turfs.
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_alpha)
@@ -370,11 +368,6 @@
 				break
 	SEND_SIGNAL(src, COMSIG_XENO_AUTOFIREDELAY_MODIFIED, xeno_caste.spit_delay + ammo?.added_spit_delay)
 
-/mob/living/carbon/xenomorph/proc/handle_decay()
-	if(prob(7+(3*tier)+(3*upgrade_as_number()))) // higher level xenos decay faster, higher plasma storage.
-		use_plasma(min(rand(1,2), plasma_stored))
-
-
 
 // this mess will be fixed by obj damage refactor
 /atom/proc/acid_spray_act(mob/living/carbon/xenomorph/X)
@@ -454,7 +447,7 @@
 /mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, datum/reagent/toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4)
 	if(!C?.can_sting() || !toxin)
 		return FALSE
-	if(!do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
+	if(!do_after(src, channel_time, NONE, C, BUSY_ICON_HOSTILE))
 		return FALSE
 	var/i = 1
 	to_chat(C, span_danger("You feel a tiny prick."))
@@ -467,7 +460,7 @@
 			return FALSE
 		do_attack_animation(C)
 		C.reagents.add_reagent(toxin, transfer_amount)
-	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
+	while(i++ < count && do_after(src, channel_time, NONE, C, BUSY_ICON_HOSTILE))
 	return TRUE
 
 /atom/proc/can_sting()
@@ -564,3 +557,6 @@
 		return
 	set_light_range_power_color(range, power, color)
 	set_light_on(TRUE)
+
+/mob/living/carbon/xenomorph/on_eord(turf/destination)
+	revive(TRUE)

@@ -43,7 +43,6 @@
 /obj/effect/soundplayer
 	anchored = TRUE
 	opacity = FALSE
-	density = TRUE
 	icon_state = "speaker"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/datum/looping_sound/alarm_loop/deltalarm
@@ -178,7 +177,7 @@
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	light_system = MOVABLE_LIGHT
-	blocks_emissive = NONE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 
 /obj/effect/dummy/lighting_obj/Initialize(mapload, _color, _range, _power, _duration)
 	. = ..()

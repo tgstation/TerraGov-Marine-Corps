@@ -52,6 +52,9 @@
 /obj/effect/landmark/newplayer_start/New() //This can't be Initialize() or players will start in a wrong loc at roundstart.
 	GLOB.newplayer_start += src
 
+/obj/effect/landmark/newplayer_start/Destroy()
+	GLOB.newplayer_start -= src
+	return ..()
 
 /obj/effect/landmark/start/latejoin
 	icon_state = "latejoin"
@@ -463,17 +466,100 @@
 //Combat patrol spawn in spots
 /obj/effect/landmark/patrol_point
 	name = "Patrol exit point"
-	//ID to link with an associated start point
+	///ID to link with an associated start point
 	var/id = null
+	///Faction this belongs to for minimap purposes
+	var/faction = FACTION_TERRAGOV
+	///minimap icon state
+	var/minimap_icon = "patrol_1"
 
 /obj/effect/landmark/patrol_point/Initialize(mapload)
 	. = ..()
 	//adds the exit points to the glob, and the start points link to them in lateinit
 	GLOB.patrol_point_list += src
+	if(!(SSticker?.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS))
+		return
+	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips.dmi', null, minimap_icon))
 
 /obj/effect/landmark/patrol_point/Destroy()
 	GLOB.patrol_point_list -= src
 	return ..()
+
+/obj/effect/landmark/patrol_point/tgmc_11
+	name = "TGMC exit point 11"
+	id = "TGMC_11"
+
+/obj/effect/landmark/patrol_point/tgmc_12
+	name = "TGMC exit point 12"
+	id = "TGMC_12"
+
+/obj/effect/landmark/patrol_point/tgmc_13
+	name = "TGMC exit point 13"
+	id = "TGMC_13"
+
+/obj/effect/landmark/patrol_point/tgmc_14
+	name = "TGMC exit point 14"
+	id = "TGMC_14"
+
+/obj/effect/landmark/patrol_point/tgmc_21
+	name = "TGMC exit point 21"
+	id = "TGMC_21"
+	minimap_icon = "patrol_2"
+
+/obj/effect/landmark/patrol_point/tgmc_22
+	name = "TGMC exit point 22"
+	id = "TGMC_22"
+	minimap_icon = "patrol_2"
+
+/obj/effect/landmark/patrol_point/tgmc_23
+	name = "TGMC exit point 23"
+	id = "TGMC_23"
+	minimap_icon = "patrol_2"
+
+/obj/effect/landmark/patrol_point/tgmc_24
+	name = "TGMC exit point 24"
+	id = "TGMC_24"
+	minimap_icon = "patrol_2"
+
+/obj/effect/landmark/patrol_point/som
+	faction = FACTION_SOM
+	minimap_icon = "som_patrol_1"
+
+/obj/effect/landmark/patrol_point/som/som_11
+	name = "SOM exit point 11"
+	id = "SOM_11"
+
+/obj/effect/landmark/patrol_point/som/som_12
+	name = "SOM exit point 12"
+	id = "SOM_12"
+
+/obj/effect/landmark/patrol_point/som/som_13
+	name = "SOM exit point 13"
+	id = "SOM_13"
+
+/obj/effect/landmark/patrol_point/som/som_14
+	name = "SOM exit point 14"
+	id = "SOM_14"
+
+/obj/effect/landmark/patrol_point/som/som_21
+	name = "SOM exit point 21"
+	id = "SOM_21"
+	minimap_icon = "som_patrol_2"
+
+/obj/effect/landmark/patrol_point/som/som_22
+	name = "SOM exit point 22"
+	id = "SOM_22"
+	minimap_icon = "som_patrol_2"
+
+/obj/effect/landmark/patrol_point/som/som_23
+	name = "SOM exit point 23"
+	id = "SOM_23"
+	minimap_icon = "som_patrol_2"
+
+/obj/effect/landmark/patrol_point/som/som_24
+	name = "SOM exit point 24"
+	id = "SOM_24"
+	minimap_icon = "som_patrol_2"
 
 /obj/effect/landmark/eord_roomba
 	name = "EORD roomba spawn point"

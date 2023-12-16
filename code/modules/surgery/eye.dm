@@ -40,11 +40,12 @@
 
 /datum/surgery_step/eye/cut_open/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] has separated the cornea on [target]'s eyes with \the [tool].") , \
-	span_notice("You have separated the cornea on [target]'s eyes with \the [tool]."),)
+	span_notice("You have separated the cornea on [target]'s eyes with \the [tool]."))
 	target.balloon_alert_to_viewers("Success")
 	var/datum/internal_organ/eyes/E = target.internal_organs_by_name["eyes"]
 	E.eye_surgery_stage = 1
 	target.disabilities |= NEARSIGHTED // code\#define\mobs.dm
+	return ..()
 
 /datum/surgery_step/eye/cut_open/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	var/datum/internal_organ/eyes/E = target.internal_organs_by_name["eyes"]
@@ -79,6 +80,7 @@
 	target.balloon_alert_to_viewers("Success")
 	var/datum/internal_organ/eyes/E = target.internal_organs_by_name["eyes"]
 	E.eye_surgery_stage = 2
+	return ..()
 
 /datum/surgery_step/eye/lift_eyes/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	var/datum/internal_organ/eyes/eyes = target.internal_organs_by_name["eyes"]
@@ -111,6 +113,7 @@
 	target.balloon_alert_to_viewers("Success")
 	var/datum/internal_organ/eyes/E = target.internal_organs_by_name["eyes"]
 	E.eye_surgery_stage = 3
+	return ..()
 
 /datum/surgery_step/eye/mend_eyes/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	var/datum/internal_organ/eyes/E = target.internal_organs_by_name["eyes"]
@@ -147,6 +150,7 @@
 	var/datum/internal_organ/eyes/E = target.internal_organs_by_name["eyes"]
 	E.damage = 0
 	E.eye_surgery_stage = 0
+	return ..()
 
 
 /datum/surgery_step/eye/cauterize/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)

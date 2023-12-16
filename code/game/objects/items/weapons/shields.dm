@@ -65,13 +65,13 @@
 
 		visible_message(span_notice("[user] begins to restore the structural integrity of [src]."))
 
-		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
+		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 			return
 
 		if(!metal_sheets.use(1))
 			return
 
-		repair_damage(max_integrity * 0.2)
+		repair_damage(max_integrity * 0.2, user)
 		visible_message(span_notice("[user] restores the structural integrity of [src]."))
 
 	else if(istype(I, /obj/item/weapon) && world.time >= cooldown)
@@ -173,6 +173,10 @@
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("shoved", "bashed")
 	var/on_force = 10
+
+/obj/item/weapon/shield/energy/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/strappable)
 
 /obj/item/weapon/shield/energy/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)

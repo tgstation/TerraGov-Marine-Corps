@@ -2932,9 +2932,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
 "auc" = (
@@ -5187,7 +5184,7 @@
 /turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/treatment)
 "aFs" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/treatment)
 "aFt" = (
@@ -15445,11 +15442,11 @@
 /area/ice_colony/underground/crew/leisure)
 "bNC" = (
 /obj/structure/rack,
-/obj/item/storage/box/flashbangs{
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour{
 	pixel_x = 3;
 	pixel_y = -2
 	},
-/obj/item/storage/box/flashbangs,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
 /turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
@@ -18609,10 +18606,7 @@
 "diw" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/turf_underlay/icefloor,
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/exterior/underground/caves/rock)
 "dka" = (
@@ -18925,13 +18919,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
-"dKp" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/command)
 "dKq" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /obj/structure/cable,
@@ -19832,10 +19819,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "ffU" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som/som_11,
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
@@ -19903,10 +19887,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/storage)
 "fkg" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
 "fkU" = (
@@ -20672,10 +20653,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/rock)
 "grl" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
+/obj/effect/landmark/patrol_point/tgmc_14,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "grm" = (
@@ -21524,10 +21502,7 @@
 "hyV" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/turf_underlay/icefloor,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/exterior/surface/landing_pad2)
 "hzW" = (
@@ -23432,9 +23407,6 @@
 	},
 /obj/structure/cable,
 /obj/effect/landmark/excavation_site_spawner,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment/garbledradio)
@@ -23447,7 +23419,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "ksV" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/treatment/garbledradio)
 "ksZ" = (
@@ -23979,10 +23951,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research/field_gear)
 "liR" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating,
 /area/ice_colony/surface/mining)
 "ljf" = (
@@ -24233,10 +24202,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/maintenance/central)
 "lCm" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/landing_pad2)
 "lCB" = (
@@ -25048,10 +25014,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "mBK" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
+/obj/effect/landmark/patrol_point/tgmc_12,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "mBR" = (
@@ -27166,7 +27129,9 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
 "pCL" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/machinery/atmospherics/components/unary/cryo_cell{
+	dir = 1
+	},
 /turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/treatment)
 "pDQ" = (
@@ -27662,10 +27627,7 @@
 	},
 /area/ice_colony/underground/hallway/north_west/garbledradio)
 "qms" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/tile/dark,
 /area/ice_colony/exterior/surface/landing_pad2)
 "qnr" = (
@@ -28623,10 +28585,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "rzp" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
+/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "rzD" = (
@@ -30079,7 +30038,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "tqS" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment/garbledradio)
 "trk" = (
@@ -30928,10 +30887,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
 "uyG" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "uyJ" = (
@@ -31438,10 +31394,7 @@
 	},
 /area/ice_colony/underground/hallway/south_east/garbledradio)
 "vdh" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
 "vdi" = (
@@ -31703,10 +31656,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "vuk" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "vvy" = (
@@ -32633,10 +32583,7 @@
 "wLj" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/turf_underlay/icefloor,
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/exterior/underground/caves/rock)
 "wLI" = (
@@ -32697,10 +32644,7 @@
 /turf/open/floor/tile/dark/purple2,
 /area/ice_colony/surface/research)
 "wPB" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/landing_pad2)
 "wPH" = (
@@ -33469,10 +33413,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "xGL" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating,
 /area/ice_colony/surface/mining)
 "xGZ" = (
@@ -64129,7 +64070,7 @@ auX
 sdW
 iPL
 haC
-dKp
+aua
 iPL
 haC
 apL
@@ -64551,7 +64492,7 @@ cXX
 mId
 auX
 odY
-dKp
+aua
 mId
 auX
 auS
@@ -64763,7 +64704,7 @@ jos
 asd
 auX
 pDQ
-dKp
+aua
 apL
 uoG
 cIs
@@ -65607,7 +65548,7 @@ aug
 aqw
 haC
 haC
-dKp
+aua
 ltl
 uLL
 kWN
@@ -65819,7 +65760,7 @@ aJe
 nZl
 aqC
 haC
-dKp
+aua
 haC
 haC
 haC

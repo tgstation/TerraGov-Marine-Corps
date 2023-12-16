@@ -40,7 +40,8 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	icon_state = "beanie_cargo"
 	flags_inv_hide = HIDETOPHAIR
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
@@ -53,7 +54,8 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	icon_state = "beret"
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 	flags_item_map_variant = NONE
@@ -122,7 +124,8 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 	var/flipped_cap = FALSE
 	var/base_cap_icon
@@ -179,7 +182,8 @@
 	icon_state = "ornamented_cap"
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
-		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',)
+		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi'
+	)
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 	flags_armor_features = ARMOR_NO_DECAP
 
@@ -188,6 +192,9 @@
 	desc = "A nice slouch hat worn by some TGMC troopers while on planets with hot weather, or just for style. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "slouch_hat"
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
+	item_icons = list(
+		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
+	)
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 
 /obj/item/clothing/head/headband
@@ -197,7 +204,8 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	icon_state = "headband"
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 	flags_armor_features = ARMOR_NO_DECAP
@@ -225,7 +233,8 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 
 /obj/item/clothing/head/cmo
 	name = "\improper Chief Medical hat"
@@ -316,7 +325,8 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	siemens_coefficient = 2
 	//anti_hug = 2
 	flags_armor_protection = HEAD
@@ -338,7 +348,8 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	icon_state = "freelancer_helmet"
 	siemens_coefficient = 2
 	flags_armor_protection = HEAD
@@ -348,14 +359,28 @@
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
 	flags_armor_features = ARMOR_NO_DECAP
-	attachments_by_slot = list(ATTACHMENT_SLOT_HEAD_MODULE)
-	attachments_allowed = list(/obj/item/armor_module/module/binoculars)
-	starting_attachments = list(/obj/item/armor_module/module/binoculars)
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_STORAGE,
+		ATTACHMENT_SLOT_HEAD_MODULE,
+	)
+	attachments_allowed = list(
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/storage/helmet,
+	)
+	starting_attachments = list(
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/storage/helmet,
+	)
 
 /obj/item/clothing/head/frelancer/beret
 	name = "\improper armored Freelancer beret"
 	icon_state = "freelancer_beret"
-	starting_attachments = list()
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/helmet,
+	)
+	starting_attachments = list(
+		/obj/item/armor_module/storage/helmet,
+	)
 
 /obj/item/clothing/head/militia
 	name = "\improper armored militia cowl"
@@ -364,7 +389,8 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	icon_state = "rebel_hood"
 	siemens_coefficient = 2
 	flags_armor_protection = HEAD|CHEST
@@ -393,7 +419,8 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "commissar_cap"
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)
@@ -405,7 +432,8 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "straw_hat"
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)

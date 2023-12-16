@@ -8,7 +8,6 @@
 	if(length(observers))
 		for(var/mob/dead/observes AS in observers)
 			observes.reset_perspective(null)
-	clear_client_in_contents() //Gotta do this here as well as Logout, since client will be null by the time it gets there, cause of that ghostize
 	ghostize()
 	clear_fullscreens()
 	if(mind)
@@ -16,6 +15,9 @@
 		mind = null
 	if(hud_used)
 		QDEL_NULL(hud_used)
+	if(s_active)
+		s_active.hide_from(src)
+	unset_machine()
 	for(var/a in actions)
 		var/datum/action/action_to_remove = a
 		action_to_remove.remove_action(src)
@@ -30,9 +32,9 @@
 	prepare_huds()
 	. = ..()
 	if(islist(skills))
-		skills = getSkills(arglist(skills))
+		set_skills(getSkills(arglist(skills)))
 	else if(!skills)
-		skills = getSkills()
+		set_skills(getSkills())
 	else if(!istype(skills, /datum/skills))
 		stack_trace("Invalid type [skills.type] found in .skills during /mob Initialize()")
 	update_config_movespeed()
@@ -213,8 +215,8 @@
  * set del_on_fail to have it delete W if it fails to equip
  * unset redraw_mob to prevent the mob from being redrawn at the end.
  */
-/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, redraw_mob = TRUE, permanent = FALSE, override_nodrop = FALSE)
-	if(!istype(W))
+/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, redraw_mob = TRUE, override_nodrop = FALSE)
+	if(!istype(W) || QDELETED(W)) //This qdeleted is to prevent stupid behavior with things that qdel during init, like say stacks
 		return FALSE
 	if(!W.mob_can_equip(src, slot, warning, override_nodrop))
 		if(del_on_fail)
@@ -224,20 +226,16 @@
 			to_chat(src, span_warning("You are unable to equip that."))
 		return FALSE
 	if(W.equip_delay_self && !ignore_delay)
-		if(!do_after(src, W.equip_delay_self, TRUE, W, BUSY_ICON_FRIENDLY))
+		if(!do_after(src, W.equip_delay_self, NONE, W, BUSY_ICON_FRIENDLY))
 			to_chat(src, "You stop putting on \the [W]")
 			return FALSE
 		equip_to_slot(W, slot) //This proc should not ever fail.
-		if(permanent)
-			W.flags_item |= NODROP
-			//This will unwield items -without- triggering lights.
+		//This will unwield items -without- triggering lights.
 		if(CHECK_BITFIELD(W.flags_item, TWOHANDED))
 			W.unwield(src)
 		return TRUE
 	else
 		equip_to_slot(W, slot) //This proc should not ever fail.
-		if(permanent)
-			W.flags_item |= NODROP
 		//This will unwield items -without- triggering lights.
 		if(CHECK_BITFIELD(W.flags_item, TWOHANDED))
 			W.unwield(src)
@@ -251,12 +249,12 @@
 	return
 
 ///This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
-/mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = FALSE, override_nodrop = FALSE)
-	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, permanent, override_nodrop)
+/mob/proc/equip_to_slot_or_del(obj/item/W, slot, override_nodrop = FALSE)
+	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, override_nodrop)
 
 /// Tries to equip an item to the slot provided, otherwise tries to put it in hands, if hands are full the item is deleted
-/mob/proc/equip_to_slot_or_hand(obj/item/W, slot, permanent = FALSE, override_nodrop = FALSE)
-	if(!equip_to_slot_if_possible(W, slot, TRUE, FALSE, FALSE, FALSE, permanent, override_nodrop))
+/mob/proc/equip_to_slot_or_hand(obj/item/W, slot, override_nodrop = FALSE)
+	if(!equip_to_slot_if_possible(W, slot, TRUE, FALSE, FALSE, FALSE, override_nodrop))
 		put_in_any_hand_if_possible(W, TRUE, FALSE)
 
 ///Attempts to store an item in a valid location based on SLOT_EQUIP_ORDER
@@ -455,6 +453,16 @@
 /mob/GenerateTag()
 	tag = "mob_[next_mob_id++]"
 
+/mob/serialize_list(list/options, list/semvers)
+	. = ..()
+
+	.["tag"] = tag
+	.["name"] = name
+	.["ckey"] = ckey
+	.["key"] = key
+
+	SET_SERIALIZATION_SEMVER(semvers, "1.0.0")
+	return .
 
 /mob/proc/get_paygrade()
 	return ""
@@ -569,25 +577,8 @@
 			if(istype(B) && B.buckled_bodybag)
 				conga_line += B.buckled_bodybag
 			end_of_conga = TRUE //Only mobs can continue the cycle.
-	var/area/new_area = get_area(destination)
 	for(var/atom/movable/AM in conga_line)
-		var/move_dir = get_dir(AM, destination)
-		var/oldLoc
-		if(AM.loc)
-			oldLoc = AM.loc
-			AM.loc.Exited(AM, move_dir)
-		AM.loc = destination
-		AM.loc.Entered(AM, oldLoc)
-		var/area/old_area
-		if(oldLoc)
-			old_area = get_area(oldLoc)
-		if(new_area && old_area != new_area)
-			new_area.Entered(AM, oldLoc)
-		if(oldLoc)
-			AM.Moved(oldLoc, move_dir)
-		var/mob/M = AM
-		if(istype(M))
-			M.reset_perspective(destination)
+		AM.forceMove(destination)
 	return TRUE
 
 
@@ -690,6 +681,9 @@
 /mob/proc/update_joined_player_list(newname, oldname)
 	if(newname == oldname)
 		return
+	if(!istext(newname) && !isnull(newname))
+		stack_trace("[src] attempted to change its name from [oldname] to the non string value [newname]")
+		return FALSE
 	if(oldname)
 		GLOB.joined_player_list -= oldname
 	if(newname)
@@ -777,13 +771,28 @@
 	remove_all_indicators()
 	. = stat //old stat
 	stat = new_stat
+	if(. == DEAD && client)
+		//This would go on on_revive() but that is a mob/living proc
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
+		personal_statistics.times_revived++
 	SEND_SIGNAL(src, COMSIG_MOB_STAT_CHANGED, ., new_stat)
 
-///clears the client mob in our client_mobs_in_contents list
-/mob/proc/clear_client_in_contents()
-	if(client?.movingmob)
-		LAZYREMOVE(client.movingmob.client_mobs_in_contents, src)
-		client.movingmob = null
+/// Cleanup proc that's called when a mob loses a client, either through client destroy or logout
+/// Logout happens post client del, so we can't just copypaste this there. This keeps things clean and consistent
+/mob/proc/become_uncliented()
+	if(!canon_client)
+		return
+
+	for(var/foo in canon_client.player_details.post_logout_callbacks)
+		var/datum/callback/CB = foo
+		CB.Invoke()
+
+	if(canon_client?.movingmob)
+		LAZYREMOVE(canon_client.movingmob.client_mobs_in_contents, src)
+		canon_client.movingmob = null
+
+	clear_important_client_contents()
+	canon_client = null
 
 /mob/onTransitZ(old_z, new_z)
 	. = ..()
@@ -806,3 +815,7 @@
 	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + pointed_atom.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + pointed_atom.pixel_y, time = 1.7, easing = EASE_OUT)
 	SEND_SIGNAL(src, COMSIG_POINT_TO_ATOM, pointed_atom)
 	return TRUE
+
+/// Side effects of being sent to the end of round deathmatch zone
+/mob/proc/on_eord(turf/destination)
+	return

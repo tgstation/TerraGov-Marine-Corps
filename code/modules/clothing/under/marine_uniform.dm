@@ -209,6 +209,9 @@
 	icon_state = "XO_jumpsuit"
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
+/obj/item/clothing/under/marine/officer/exec/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
 /obj/item/clothing/under/marine/officer/command
 	name = "captain uniform"
 	desc = "A special-issue, well-ironed, kevlar-weaved, hazmat-tested, EMF-augmented uniform worth of a TerraGov Naval Captain. Even looking at it the wrong way could result in being court-martialed."
@@ -430,7 +433,7 @@
 	adjustment_variants = list()
 
 /obj/item/clothing/under/som
-	name = "\improper SoM uniform"
+	name = "\improper SOM officer uniform"
 	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies."
 	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "som_uniform"
@@ -447,7 +450,7 @@
 
 
 /obj/item/clothing/under/som/medic
-	name = "\improper SoM medical uniform"
+	name = "\improper SOM medical uniform"
 	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies. This one has medical markings."
 	icon_state = "som_uniform_medic"
 	item_state = "som_uniform_medic"
@@ -456,7 +459,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
 /obj/item/clothing/under/som/veteran
-	name = "\improper SoM veteran uniform"
+	name = "\improper SOM veteran uniform"
 	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies. This one has markings indicating specialist status."
 	icon_state = "som_uniform_veteran"
 	item_state = "som_uniform_veteran"
@@ -465,13 +468,29 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
 
 /obj/item/clothing/under/som/leader
-	name = "\improper SoM leader uniform"
+	name = "\improper SOM leader uniform"
 	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies. This one has leadership markings."
 	icon_state = "som_uniform_leader"
 	item_state = "som_uniform_leader"
 
 /obj/item/clothing/under/som/leader/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
+
+/obj/item/clothing/under/som/officer
+	name = "\improper SOM officer uniform"
+	desc = "The distinct black uniform of a SOM officer. Usually worn by junior officers"
+	icon_state = "som_officer_uniform"
+	item_state = "som_officer_uniform"
+	adjustment_variants = list()
+
+/obj/item/clothing/under/som/officer/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/som/officer/senior
+	name = "\improper SOM officer uniform"
+	desc = "The distinct jacketed black uniform of a SOM officer. Usually worn by senior officers"
+	icon_state = "som_senior_officer_uniform"
+	item_state = "som_senior_officer_uniform"
 
 /obj/item/clothing/under/icc
 	name = "\improper Modelle/30 uniform"
@@ -494,7 +513,11 @@
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
-	flags_item = NODROP|DELONDROP
+	flags_item = DELONDROP
+
+/obj/item/clothing/under/sectoid/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, SECTOID_TRAIT)
 
 /obj/item/clothing/under/marine/robotic
 	name = "robotic armor suit mount"
@@ -509,3 +532,6 @@
 	if(!isrobot(user))
 		to_chat(user, span_warning("You can't equip this as it requires mounting screws on your body!"))
 		return FALSE
+
+/obj/item/clothing/under/marine/robotic/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)

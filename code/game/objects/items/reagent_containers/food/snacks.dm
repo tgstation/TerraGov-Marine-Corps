@@ -19,7 +19,7 @@
 	if(reagents)
 		qdel(reagents)
 	reagents = new (max_vol, new_flags)
-	reagents.my_atom = src
+	reagents.my_atom = WEAKREF(src)
 	for(var/rid in init_reagents)
 		var/amount = list_reagents[rid]
 		if(rid == /datum/reagent/consumable/nutriment)
@@ -93,7 +93,7 @@
 				balloon_alert_to_viewers("tries to feed [M] but can't")
 				return FALSE
 
-			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
+			if(!do_after(user, 3 SECONDS, NONE, M, BUSY_ICON_FRIENDLY))
 				return
 
 			var/rgt_list_text = get_reagent_list_text()
@@ -114,8 +114,11 @@
 					var/temp_bitesize = max(reagents.total_volume /2, bitesize)
 					reagents.trans_to(M, temp_bitesize)
 					*/
+					//Why is bitesize used instead of an actual portion???
+					record_reagent_consumption(bitesize, reagents.reagent_list, user, M)
 					reagents.trans_to(M, bitesize)
 				else
+					record_reagent_consumption(reagents.total_volume, reagents.reagent_list, user, M)
 					reagents.trans_to(M, reagents.total_volume)
 				bitecount++
 				On_Consume(M)
@@ -355,7 +358,9 @@
 	tastes = list("egg" = 1)
 
 /obj/item/reagent_containers/food/snacks/egg/throw_impact(atom/hit_atom)
-	..()
+	. = ..()
+	if(!.)
+		return
 	new/obj/effect/decal/cleanable/egg_smudge(src.loc)
 	src.reagents.reaction(hit_atom, TOUCH)
 	src.visible_message(span_warning(" [src.name] has been squashed."),span_warning(" You hear a smack."))
@@ -1480,7 +1485,23 @@
 	icon_state = "barcardine"
 	wrapper = /obj/item/trash/barcardine
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/coco = 2, /datum/reagent/medicine/tramadol = 1, /datum/reagent/medicine/tramadol = 1)
-	tastes = list("cough syrup" = 1)
+	tastes = list ("cough syrup" = 1)
+
+/obj/item/reagent_containers/food/snacks/wrapped/berrybar
+	name = "Berry Bars"
+	desc = "Berry-licious bars! These are a new invention from the world health association for outer-rim colonies. <i>\"Bit of berry to keep the bars away!\"</i>"
+	icon_state = "berrybar"
+	wrapper = /obj/item/trash/berrybar
+	list_reagents = list(
+		/datum/reagent/consumable/nutriment = 1,
+		/datum/reagent/consumable/drink/berryjuice = 1,
+		/datum/reagent/medicine/tramadol = 10,
+		/datum/reagent/medicine/bicaridine = 10,
+		/datum/reagent/medicine/kelotane = 10,
+		/datum/reagent/medicine/tricordrazine = 10,
+	)
+	tastes = list("delicious processed berries" = 1)
+	bitesize = 9
 
 /obj/item/reagent_containers/food/snacks/wrapped/proteinbar
 	name = "Protein Bar"
@@ -1620,7 +1641,7 @@
 
 /obj/item/reagent_containers/food/snacks/lollipop/tricord
 	name = "Tricord-pop"
-	desc = "A lolipop laced with tricordazine, a slow healing reagent. Can be eaten or put in the mask slot."
+	desc = "A lolipop laced with tricordrazine, a slow healing reagent. Can be eaten or put in the mask slot."
 	list_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/medicine/tricordrazine = 10)
 	tastes = list("cough syrup" = 1, "artificial sweetness" = 1)
 

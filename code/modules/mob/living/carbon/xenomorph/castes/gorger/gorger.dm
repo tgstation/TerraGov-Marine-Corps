@@ -10,7 +10,7 @@
 	pixel_x = -16
 	old_x = -16
 	tier = XENO_TIER_THREE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	mob_size = MOB_SIZE_BIG
 	bubble_icon = "alienroyal"
 

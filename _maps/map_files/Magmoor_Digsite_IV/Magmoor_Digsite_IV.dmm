@@ -1303,10 +1303,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "aVO" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
+/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
 "aWn" = (
@@ -2383,10 +2380,7 @@
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing)
 "bFL" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/southwest)
 "bGc" = (
@@ -2701,7 +2695,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 8;
 	name = "\improper Arrivals"
@@ -2974,10 +2967,7 @@
 /turf/open/lavaland/basalt/dirt/autosmoothing,
 /area/magmoor/compound/northeast)
 "ccP" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northwest)
 "cdc" = (
@@ -3312,12 +3302,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
@@ -3351,10 +3335,7 @@
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/cave/north)
 "cqk" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northwest)
 "cqt" = (
@@ -4495,7 +4476,7 @@
 	},
 /area/magmoor/civilian/rnr)
 "diw" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
@@ -4736,10 +4717,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/compound)
 "dqQ" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/southwest)
 "drq" = (
@@ -4891,10 +4869,7 @@
 /area/magmoor/medical/cmo)
 "dvL" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/southeast)
 "dvQ" = (
@@ -5502,10 +5477,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/mining)
 "dRf" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/southeast)
 "dRi" = (
@@ -5895,10 +5867,7 @@
 /turf/open/floor/plating,
 /area/magmoor/cave/north)
 "ehk" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northwest)
 "ehH" = (
@@ -6432,10 +6401,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/mining)
 "eAy" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/southwest)
 "eAF" = (
@@ -7935,10 +7901,7 @@
 	},
 /area/magmoor/compound/east)
 "fCS" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/southeast)
 "fCT" = (
@@ -8059,10 +8022,7 @@
 /turf/open/floor/tile/purple,
 /area/magmoor/civilian/jani)
 "fHt" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
+/obj/effect/landmark/patrol_point/tgmc_12,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northeast)
 "fHE" = (
@@ -8864,12 +8824,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
-"glQ" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/southeast)
 "gmb" = (
 /turf/open/floor/tile/blue/whitebluecorner,
 /area/magmoor/civilian/clean)
@@ -9808,10 +9762,7 @@
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "gXO" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/southeast)
 "gYy" = (
@@ -12024,10 +11975,7 @@
 	},
 /area/magmoor/landing)
 "iLE" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
 "iLH" = (
@@ -12512,7 +12460,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/lobby)
 "jfk" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
@@ -14019,7 +13967,7 @@
 /turf/open/floor/plating,
 /area/magmoor/civilian/cook)
 "kfD" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
@@ -14747,9 +14695,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
 /obj/effect/landmark/excavation_site_spawner,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/ai_node,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/research/rnd/lobby)
@@ -15295,11 +15240,11 @@
 /area/magmoor/cave/rock)
 "lbB" = (
 /obj/structure/rack,
-/obj/item/storage/box/flashbangs{
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour{
 	pixel_x = 3;
 	pixel_y = -2
 	},
-/obj/item/storage/box/flashbangs,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -15904,7 +15849,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northwest)
 "lzj" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -16433,10 +16378,7 @@
 	},
 /area/magmoor/civilian/cryostasis)
 "lTG" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/southwest)
 "lTN" = (
@@ -17359,9 +17301,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/docking_port/stationary/crashmode,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -18638,7 +18577,7 @@
 /area/magmoor/medical/storage)
 "nFZ" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC,
+/obj/machinery/prop/computer/PC,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -18811,7 +18750,7 @@
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/compound)
 "nPS" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -21496,10 +21435,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/lobby)
 "pHz" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
+/obj/effect/landmark/patrol_point/tgmc_14,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
 "pHD" = (
@@ -21943,10 +21879,7 @@
 /turf/open/floor/tile/white,
 /area/magmoor/civilian/pool)
 "pWp" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northwest)
 "pWV" = (
@@ -22336,9 +22269,6 @@
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
 "qlX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -26555,7 +26485,7 @@
 /area/magmoor/engi)
 "tzc" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer,
+/obj/machinery/prop/computer,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -28470,7 +28400,7 @@
 /turf/open/floor/plating/ground/concrete/edge,
 /area/magmoor/compound/north)
 "uNO" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -74588,13 +74518,13 @@ iLH
 iLH
 iLH
 iLH
-iLH
-iLH
-iLH
-iLH
-iLH
-iLH
-glQ
+lbz
+kae
+kae
+kae
+ngh
+ngh
+lbz
 oGr
 oGr
 oGr
@@ -74822,12 +74752,12 @@ ngh
 ngh
 ngh
 ngh
-ngh
-ngh
-ngh
-kae
-kae
-glQ
+oGr
+oGr
+oGr
+oGr
+oGr
+oGr
 oGr
 oGr
 oGr

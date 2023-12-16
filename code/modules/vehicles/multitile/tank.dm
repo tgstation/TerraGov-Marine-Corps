@@ -127,7 +127,7 @@
 	M.visible_message(span_warning("[M] starts pulling [occupant] out of \the [src]."),
 	span_warning("You start pulling [occupant] out of \the [src]. (this will take a while...)"), null, 6)
 	var/fumbling_time = 20 SECONDS - 2 SECONDS * M.skills.getRating(SKILL_POLICE) - 2 SECONDS * M.skills.getRating(SKILL_LARGE_VEHICLE)
-	if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_HOSTILE))
+	if(!do_after(M, fumbling_time, NONE, src, BUSY_ICON_HOSTILE))
 		return
 	exit_tank(occupant, TRUE, TRUE)
 	M.visible_message(span_warning("[M] forcibly pulls [occupant] out of [src]."),
@@ -163,7 +163,7 @@
 		to_chat(M, span_warning("That seat is already taken."))
 		return
 	var/obj/item/offhand = M.get_inactive_held_item()
-	if(offhand && !(offhand.flags_item & (NODROP|DELONDROP|ITEM_ABSTRACT)))
+	if(offhand && !(HAS_TRAIT(offhand, TRAIT_NODROP) || (offhand.flags_item & (DELONDROP|ITEM_ABSTRACT))))
 		to_chat(M, span_warning("You need your hands free to climb on [src]."))
 		return
 
@@ -171,11 +171,13 @@
 		M.visible_message(span_notice("[M] fumbles around figuring out how to get into the [src]."),
 		span_notice("You fumble around figuring out how to get into [src]."))
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * M.skills.getRating(SKILL_LARGE_VEHICLE)
-		if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
+		if(!do_after(M, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED) || \
+			(offhand && !(HAS_TRAIT(offhand, TRAIT_NODROP) || (offhand.flags_item & DELONDROP))))
 			return
 
 	to_chat(M, span_notice("You start climbing into [src]."))
-	if(!do_after(M, 10 SECONDS, TRUE, src, BUSY_ICON_GENERIC) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
+	if(!do_after(M, 10 SECONDS, NONE, src, BUSY_ICON_GENERIC) || \
+		(offhand && !(HAS_TRAIT(offhand, TRAIT_NODROP) || (offhand.flags_item & DELONDROP))))
 		return
 	if(occupant)
 		to_chat(M, span_warning("Someone got into the [lowertext(slot)]'s seat before you could."))

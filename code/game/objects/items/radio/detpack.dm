@@ -85,7 +85,7 @@
 			user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
 			span_notice("You fumble around figuring out how to use [src]."))
 			var/fumbling_time = 30
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 
 			if(prob((SKILL_ENGINEER_METAL - user.skills.getRating(SKILL_ENGINEER)) * 20))
@@ -95,7 +95,7 @@
 		user.visible_message(span_notice("[user] begins disarming [src] with [I]."),
 		span_notice("You begin disarming [src] with [I]."))
 
-		if(!do_after(user, 30, TRUE, src, BUSY_ICON_FRIENDLY))
+		if(!do_after(user, 30, NONE, src, BUSY_ICON_FRIENDLY))
 			return
 
 		user.visible_message(span_notice("[user] disarms [src]."),
@@ -111,7 +111,7 @@
 	if(plant_target)
 		user.visible_message(span_notice("[user] begins unsecuring [src] from [plant_target]."),
 		span_notice("You begin unsecuring [src] from [plant_target]."))
-		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 30, NONE, src, BUSY_ICON_BUILD))
 			return
 		user.visible_message(span_notice("[user] unsecures [src] from [plant_target]."),
 		span_notice("You unsecure [src] from [plant_target]."))
@@ -136,8 +136,9 @@
 	if(!signal || !on)
 		return
 
-	var/turf/location = get_turf(signal.source)
-	if(location.z != z)
+	var/turf/source_location = get_turf(signal.source)
+	var/turf/det_location = get_turf(src)
+	if(source_location.z != det_location.z)
 		return
 
 	if(signal.data["code"] != code)
@@ -148,7 +149,7 @@
 			return
 		armed = TRUE
 		//bombtick()
-		log_explosion("[key_name(usr)] triggered [src] explosion at [AREACOORD(loc)].")
+		log_bomber(usr, "triggered", src)
 		detonation_pending = addtimer(CALLBACK(src, PROC_REF(do_detonate)), timer SECONDS, TIMER_STOPPABLE)
 		if(timer > 10)
 			sound_timer = addtimer(CALLBACK(src, PROC_REF(do_play_sound_normal)), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
@@ -197,7 +198,7 @@
 		return FALSE
 
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
-		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 
 	return TRUE
@@ -209,29 +210,29 @@
 		return
 
 	var/dat = {"
-<A href='?src=\ref[src];power=1'>Turn [on ? "Off" : "On"]</A><BR>
+<A href='?src=[text_ref(src)];power=1'>Turn [on ? "Off" : "On"]</A><BR>
 <B>Current Detonation Mode:</B> [det_mode ? "Demolition" : "Breach"]<BR>
-<A href='?src=\ref[src];det_mode=1'><B>Set Detonation Mode:</B> [det_mode ? "Breach" : "Demolition"]</A><BR>
+<A href='?src=[text_ref(src)];det_mode=1'><B>Set Detonation Mode:</B> [det_mode ? "Breach" : "Demolition"]</A><BR>
 <B>Frequency/Code for Detpack:</B><BR>
-<A href='byond://?src=\ref[src];freq=-10'>-</A>
-<A href='byond://?src=\ref[src];freq=-2'>-</A>
+<A href='byond://?src=[text_ref(src)];freq=-10'>-</A>
+<A href='byond://?src=[text_ref(src)];freq=-2'>-</A>
 [format_frequency(src.frequency)]
-<A href='byond://?src=\ref[src];freq=2'>+</A>
-<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
+<A href='byond://?src=[text_ref(src)];freq=2'>+</A>
+<A href='byond://?src=[text_ref(src)];freq=10'>+</A><BR>
 <B>Signal Code:</B><BR>
-<A href='byond://?src=\ref[src];code=-5'>-</A>
-<A href='byond://?src=\ref[src];code=-1'>-</A> [code]
-<A href='byond://?src=\ref[src];code=1'>+</A>
-<A href='byond://?src=\ref[src];code=5'>+</A><BR>
+<A href='byond://?src=[text_ref(src)];code=-5'>-</A>
+<A href='byond://?src=[text_ref(src)];code=-1'>-</A> [code]
+<A href='byond://?src=[text_ref(src)];code=1'>+</A>
+<A href='byond://?src=[text_ref(src)];code=5'>+</A><BR>
 <B>Timer (Max 300 seconds, Min 5 seconds):</B><BR>
-<A href='byond://?src=\ref[src];timer=-50'>-</A>
-<A href='byond://?src=\ref[src];timer=-10'>-</A>
-<A href='byond://?src=\ref[src];timer=-5'>-</A>
-<A href='byond://?src=\ref[src];timer=-1'>-</A> [timer]
-<A href='byond://?src=\ref[src];timer=1'>+</A>
-<A href='byond://?src=\ref[src];timer=5'>+</A>
-<A href='byond://?src=\ref[src];timer=10'>+</A>
-<A href='byond://?src=\ref[src];timer=50'>+</A><BR>"}
+<A href='byond://?src=[text_ref(src)];timer=-50'>-</A>
+<A href='byond://?src=[text_ref(src)];timer=-10'>-</A>
+<A href='byond://?src=[text_ref(src)];timer=-5'>-</A>
+<A href='byond://?src=[text_ref(src)];timer=-1'>-</A> [timer]
+<A href='byond://?src=[text_ref(src)];timer=1'>+</A>
+<A href='byond://?src=[text_ref(src)];timer=5'>+</A>
+<A href='byond://?src=[text_ref(src)];timer=10'>+</A>
+<A href='byond://?src=[text_ref(src)];timer=50'>+</A><BR>"}
 
 	var/datum/browser/popup = new(user, "detpack")
 	popup.set_content(dat)
@@ -257,13 +258,13 @@
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
-		if(!do_after(user, 5 SECONDS, TRUE, target, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, 5 SECONDS, NONE, target, BUSY_ICON_UNSKILLED))
 			return
 
 	user.visible_message(span_warning("[user] is trying to plant [name] on [target]!"),
 	span_warning("You are trying to plant [name] on [target]!"))
 
-	if(do_after(user, 3 SECONDS, TRUE, target, BUSY_ICON_HOSTILE))
+	if(do_after(user, 3 SECONDS, NONE, target, BUSY_ICON_HOSTILE))
 		if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
 			to_chat(user, "[span_warning("There is already a device attached to [target]")].")
 			return
@@ -340,15 +341,13 @@
 	//Time to go boom
 	playsound(src.loc, 'sound/weapons/ring.ogg', 200, FALSE)
 	boom = TRUE
+	var/turf/det_location = get_turf(plant_target)
+	plant_target.ex_act(EXPLODE_DEVASTATE)
+	plant_target = null
 	if(det_mode == TRUE) //If we're on demolition mode, big boom.
-		explosion(plant_target, 3, 5, 6, 0, 6)
+		explosion(det_location, 3, 5, 6, 0, 6)
 	else //if we're not, focused boom.
-		explosion(plant_target, 2, 2, 3, 0, 3, throw_range = FALSE)
-	if(plant_target)
-		if(isobj(plant_target))
-			plant_target = null
-			if(!istype(plant_target,/obj/vehicle/multitile/root/cm_armored))
-				qdel(plant_target)
+		explosion(det_location, 2, 2, 3, 0, 3, throw_range = FALSE)
 	qdel(src)
 
 

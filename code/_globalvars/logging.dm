@@ -25,53 +25,23 @@ GLOBAL_PROTECT(##log_var_name);\
 	SHOULD_CALL_PARENT(TRUE)
 	return
 
-DECLARE_LOG_NAMED(world_game_log, "game", START_LOG)
-DECLARE_LOG_NAMED(world_mecha_log, "mecha", DONT_START_LOG)
-DECLARE_LOG_NAMED(world_asset_log, "asset", DONT_START_LOG)
-DECLARE_LOG_NAMED(world_runtime_log, "runtime", START_LOG)
-DECLARE_LOG_NAMED(world_debug_log, "debug", START_LOG)
-DECLARE_LOG_NAMED(world_qdel_log, "qdel", DONT_START_LOG)
-DECLARE_LOG_NAMED(world_attack_log, "attack", START_LOG)
-DECLARE_LOG_NAMED(world_href_log, "href", START_LOG)
-DECLARE_LOG_NAMED(world_mob_tag_log, "mob_tag", START_LOG)
+// All individual log files.
+// These should be used where the log category cannot easily be a json log file.
 DECLARE_LOG_NAMED(config_error_log, "config_error", DONT_START_LOG)
-DECLARE_LOG_NAMED(sql_error_log, "sql_error", START_LOG)
-DECLARE_LOG_NAMED(world_telecomms_log, "tcomms", START_LOG)
-DECLARE_LOG_NAMED(world_speech_indicators_log, "speech_indicators", DONT_START_LOG)
-DECLARE_LOG_NAMED(world_manifest_log, "manifest", START_LOG)
-DECLARE_LOG_NAMED(world_paper_log, "paper", START_LOG)
-DECLARE_LOG_NAMED(filter_log, "filter", DONT_START_LOG)
-DECLARE_LOG_NAMED(tgui_log, "tgui", DONT_START_LOG)
+
+#ifdef REFERENCE_DOING_IT_LIVE
+DECLARE_LOG_NAMED(harddel_log, "harddels", START_LOG)
+#endif
 
 #if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
 DECLARE_LOG_NAMED(test_log, "tests", START_LOG)
 #endif
 
-GLOBAL_LIST_EMPTY(admin_log)
-GLOBAL_PROTECT(admin_log)
-GLOBAL_LIST_EMPTY(adminprivate_log)
-GLOBAL_PROTECT(adminprivate_log)
-GLOBAL_LIST_EMPTY(asay_log)
-GLOBAL_PROTECT(asay_log)
-GLOBAL_LIST_EMPTY(msay_log)
-GLOBAL_PROTECT(msay_log)
-GLOBAL_LIST_EMPTY(dsay_log)
-GLOBAL_PROTECT(dsay_log)
+/// All admin related log lines minus their categories
+GLOBAL_LIST_EMPTY(admin_activities)
+GLOBAL_PROTECT(admin_activities)
 
-GLOBAL_LIST_EMPTY(game_log)
-GLOBAL_PROTECT(game_log)
-GLOBAL_LIST_EMPTY(access_log)
-GLOBAL_PROTECT(access_log)
-GLOBAL_LIST_EMPTY(manifest_log)
-GLOBAL_PROTECT(manifest_log)
-GLOBAL_LIST_EMPTY(say_log)
-GLOBAL_PROTECT(say_log)
-GLOBAL_LIST_EMPTY(telecomms_log)
-GLOBAL_PROTECT(telecomms_log)
-
-GLOBAL_LIST_EMPTY(attack_log)
-GLOBAL_PROTECT(attack_log)
-GLOBAL_LIST_EMPTY(ffattack_log)
-GLOBAL_PROTECT(ffattack_log)
-GLOBAL_LIST_EMPTY(explosion_log)
-GLOBAL_PROTECT(explosion_log)
+#undef DECLARE_LOG
+#undef DECLARE_LOG_NAMED
+#undef START_LOG
+#undef DONT_START_LOG

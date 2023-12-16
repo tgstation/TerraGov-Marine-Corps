@@ -100,7 +100,7 @@
 		to_chat(user, span_notice("Not with a missile inside!"))
 		return
 	to_chat(user, span_notice("You begin taking apart the empty tube frame..."))
-	if(!do_after(user, 10, TRUE, src))
+	if(!do_after(user, 10, NONE, src))
 		return
 	user.visible_message("[user] deconstructs the rocket tube frame.",span_notice("You take apart the empty frame."))
 	var/obj/item/stack/sheet/metal/metal = new(get_turf(user))
@@ -188,6 +188,12 @@
 	desc = "A high explosive-anti tank shell for the RL-160 recoilless rifle. Fires a penetrating shot with no explosion. It will do moderate damage to all types of enemies, but does not sunder their armor. Requires specialized storage to carry."
 	icon_state = "shell_heat"
 	default_ammo = /datum/ammo/rocket/recoilless/heat
+
+/obj/item/ammo_magazine/rocket/recoilless/heam
+	name = "\improper 67mm HEAM shell"
+	desc = "A high explosive-anti mechg shell for the RL-160 recoilless rifle. Fires a penetrating shot designed specifically to penetrate mech armor, but suffers from poor accuracy against other targets. Requires specialized storage to carry."
+	icon_state = "shell_heat"
+	default_ammo = /datum/ammo/rocket/recoilless/heat/mech
 
 /obj/item/ammo_magazine/rocket/recoilless/smoke
 	name = "\improper 67mm Chemical (Smoke) shell"

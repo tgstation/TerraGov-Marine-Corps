@@ -108,6 +108,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Cleanup old state vars, start the movement towards our new target
 /datum/ai_behavior/proc/change_action(next_action, atom/next_target, special_distance_to_maintain)
+	if(QDELETED(mob_parent))
+		return
 	cleanup_current_action(next_action)
 	#ifdef TESTING
 	switch(next_action)
@@ -324,6 +326,8 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 
 /// Move the ai and schedule the next move
 /datum/ai_behavior/proc/scheduled_move()
+	if(QDELETED(mob_parent))
+		return
 	if(!atom_to_walk_to)
 		registered_for_move = FALSE
 		return
@@ -367,10 +371,10 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	else
 		step_dir = get_dir(mob_parent, atom_to_walk_to)
 	var/turf/next_turf = get_step(mob_parent, step_dir)
-	if(next_turf.flags_atom & AI_BLOCKED || (!mob_parent.Move(next_turf, step_dir) && !(SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, step_dir) & COMSIG_OBSTACLE_DEALT_WITH)))
+	if(next_turf?.flags_atom & AI_BLOCKED || (!mob_parent.Move(next_turf, step_dir) && !(SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, step_dir) & COMSIG_OBSTACLE_DEALT_WITH)))
 		step_dir = pick(LeftAndRightOfDir(step_dir))
 		next_turf = get_step(mob_parent, step_dir)
-		if(next_turf.flags_atom & AI_BLOCKED)
+		if(next_turf?.flags_atom & AI_BLOCKED)
 			return
 		if(mob_parent.Move(get_step(mob_parent, step_dir), step_dir) && ISDIAGONALDIR(step_dir))
 			mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown

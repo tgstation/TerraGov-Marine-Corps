@@ -1,19 +1,18 @@
 // ***************************************
 // *********** Stomp
 // ***************************************
-/datum/action/xeno_action/activable/stomp
+/datum/action/ability/activable/xeno/stomp
 	name = "Stomp"
 	action_icon_state = "stomp"
 	desc = "Knocks all adjacent targets away and down."
-	ability_name = "stomp"
-	plasma_cost = 100
-	cooldown_timer = 20 SECONDS
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	ability_cost = 100
+	cooldown_duration = 20 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_STOMP,
 	)
 
-/datum/action/xeno_action/activable/stomp/use_ability(atom/A)
+/datum/action/ability/activable/xeno/stomp/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	succeed_activate()
 	add_cooldown()
@@ -45,15 +44,15 @@
 			M.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
 			M.Paralyze(0.5 SECONDS)
 
-/datum/action/xeno_action/activable/stomp/ai_should_start_consider()
+/datum/action/ability/activable/xeno/stomp/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/stomp/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/stomp/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -62,25 +61,24 @@
 // ***************************************
 // *********** Cresttoss
 // ***************************************
-/datum/action/xeno_action/activable/cresttoss
+/datum/action/ability/activable/xeno/cresttoss
 	name = "Crest Toss"
 	action_icon_state = "cresttoss"
-	desc = "Fling an adjacent target over and behind you. Also works over barricades."
-	ability_name = "crest toss"
-	plasma_cost = 75
-	cooldown_timer = 12 SECONDS
+	desc = "Fling an adjacent target over and behind you, or away from you while on harm intent. Also works over barricades."
+	ability_cost = 75
+	cooldown_duration = 12 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CRESTTOSS,
 	)
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 
-/datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
+/datum/action/ability/activable/xeno/cresttoss/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, span_xenowarning("<b>We can now crest toss again.</b>"))
 	playsound(X, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	return ..()
 
-/datum/action/xeno_action/activable/cresttoss/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/cresttoss/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -94,15 +92,19 @@
 		if(L.stat == DEAD || isnestedhost(L)) //no bully
 			return FALSE
 
-/datum/action/xeno_action/activable/cresttoss/use_ability(atom/movable/A)
+/datum/action/ability/activable/xeno/cresttoss/use_ability(atom/movable/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	X.face_atom(A) //Face towards the target so we don't look silly
-	var/facing = get_dir(X, A)
+	var/facing
 	var/toss_distance = X.xeno_caste.crest_toss_distance
-	var/turf/T = X.loc
-	var/turf/temp = X.loc
+	var/turf/throw_origin = get_turf(X)
+	var/turf/target_turf = throw_origin //throw distance is measured from the xeno itself
 	var/big_mob_message
 
+	if(!X.issamexenohive(A)) //xenos should be able to fling xenos into xeno passable areas!
+		for(var/obj/effect/forcefield/fog/fog in throw_origin)
+			A.balloon_alert(X, "Cannot, fog")
+			return fail_activate()
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.mob_size >= MOB_SIZE_BIG) //Penalize toss distance for big creatures
@@ -113,32 +115,16 @@
 		big_mob_message = ", struggling mightily to heft its bulk"
 
 	if(X.a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
-		for(var/x in 1 to toss_distance)
-			temp = get_step(T, facing)
-			if (!temp)
-				break
-			T = temp
+		facing = get_dir(X, A)
 	else
 		facing = get_dir(A, X)
-		var/turf/throw_origin = get_step(T, facing)
-		if(isclosedturf(throw_origin)) //Make sure the victim can actually go to the target turf
-			to_chat(X, span_xenowarning("We try to fling [A] behind us, but there's no room!"))
-			return fail_activate()
-		if(!X.issamexenohive(A)) //xenos should be able to fling xenos into xeno passable areas!
-			for(var/obj/effect/forcefield/fog/fog in T)
-				A.balloon_alert(X, "cannot, fog")
-				return fail_activate()
-		for(var/obj/O in throw_origin)
-			if(!O.CanPass(A, get_turf(X)) && !istype(O, /obj/structure/barricade)) //Ignore barricades because they will once thrown anyway
-				to_chat(X, span_xenowarning("We try to fling [A] behind us, but there's no room!"))
-				return fail_activate()
 
-		A.forceMove(throw_origin) //Move the victim behind us before flinging
-		for(var/x = 0, x < toss_distance, x++)
-			temp = get_step(T, facing)
-			if (!temp)
-				break
-			T = temp //Throw target
+	var/turf/temp
+	for(var/x in 1 to toss_distance)
+		temp = get_step(target_turf, facing)
+		if(!temp)
+			break
+		target_turf = temp
 
 	X.icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
 
@@ -147,7 +133,8 @@
 
 	succeed_activate()
 
-	A.throw_at(T, toss_distance, 1, X, TRUE)
+	A.forceMove(throw_origin)
+	A.throw_at(target_turf, toss_distance, 1, X, TRUE, TRUE)
 
 	//Handle the damage
 	if(!X.issamexenohive(A) && isliving(A)) //Friendly xenos don't take damage.
@@ -160,15 +147,15 @@
 	add_cooldown()
 	addtimer(CALLBACK(X, TYPE_PROC_REF(/mob, update_icons)), 3)
 
-/datum/action/xeno_action/activable/cresttoss/ai_should_start_consider()
+/datum/action/ability/activable/xeno/cresttoss/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/cresttoss/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/cresttoss/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -177,23 +164,22 @@
 // ***************************************
 // *********** Advance
 // ***************************************
-/datum/action/xeno_action/activable/advance
+/datum/action/ability/activable/xeno/advance
 	name = "Rapid Advance"
 	action_icon_state = "crest_defense"
 	desc = "Charges up the crushers charge in place, then unleashes the full bulk of the crusher at the target location. Does not crush in diagonal directions."
-	ability_name = "rapid advance"
-	plasma_cost = 175
-	cooldown_timer = 30 SECONDS
+	ability_cost = 175
+	cooldown_duration = 30 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE,
 	)
 
-/datum/action/xeno_action/activable/advance/on_cooldown_finish()
+/datum/action/ability/activable/xeno/advance/on_cooldown_finish()
 	to_chat(owner, span_xenowarning("<b>We can now rapidly charge forward again.</b>"))
 	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	return ..()
 
-/datum/action/xeno_action/activable/advance/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/advance/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -202,17 +188,17 @@
 		return FALSE
 
 
-/datum/action/xeno_action/activable/advance/use_ability(atom/A)
+/datum/action/ability/activable/xeno/advance/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	X.face_atom(A)
 	X.set_canmove(FALSE)
-	if(!do_after(X, 10, TRUE, X, BUSY_ICON_DANGER))
+	if(!do_after(X, 10, NONE, X, BUSY_ICON_DANGER))
 		if(!X.stat)
 			X.set_canmove(TRUE)
 		return fail_activate()
 	X.set_canmove(TRUE)
 
-	var/datum/action/xeno_action/ready_charge/charge = X.actions_by_path[/datum/action/xeno_action/ready_charge]
+	var/datum/action/ability/xeno_action/ready_charge/charge = X.actions_by_path[/datum/action/ability/xeno_action/ready_charge]
 	var/aimdir = get_dir(X,A)
 	if(charge)
 		charge.charge_on(FALSE)
@@ -229,13 +215,13 @@
 	succeed_activate()
 	add_cooldown()
 
-/datum/action/xeno_action/activable/advance/ai_should_start_consider()
+/datum/action/ability/activable/xeno/advance/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/advance/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/advance/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
-	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE

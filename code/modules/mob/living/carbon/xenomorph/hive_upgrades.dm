@@ -156,7 +156,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		return FALSE
 
 /datum/hive_upgrade/building/on_buy(mob/living/carbon/xenomorph/buyer)
-	if(!do_after(buyer, building_time, TRUE, buyer, BUSY_ICON_BUILD))
+	if(!do_after(buyer, building_time, NONE, buyer, BUSY_ICON_BUILD))
 		return FALSE
 
 	if(!can_buy(buyer, FALSE))
@@ -200,19 +200,19 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 
 /datum/hive_upgrade/building/evotower
 	name = "Evolution Tower"
-	desc = "Constructs a tower that increases the rate of evolution point generation by 1.25 times per tower."
+	desc = "Constructs a tower that increases the rate of evolution point and maturity point generation by 1.2 times per tower."
 	psypoint_cost = 300
 	icon = "evotower"
 	flags_upgrade = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/evotower
 
-/datum/hive_upgrade/building/maturitytower
-	name = "Maturity Tower"
-	desc = "Constructs a tower that increases the rate of maturity point generation by 1.2 times per tower."
+/datum/hive_upgrade/building/psychictower
+	name = "Psychic Relay"
+	desc = "Constructs a tower that increases the slots of higher tier Xenomorphs."
 	psypoint_cost = 300
 	icon = "maturitytower"
 	flags_upgrade = ABILITY_NUCLEARWAR
-	building_type = /obj/structure/xeno/maturitytower
+	building_type = /obj/structure/xeno/psychictower
 
 /datum/hive_upgrade/building/pherotower
 	name = "Pheromone Tower"
@@ -277,7 +277,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	return TRUE
 
 /datum/hive_upgrade/defence/turret/on_buy(mob/living/carbon/xenomorph/buyer)
-	if(!do_after(buyer, build_time, TRUE, buyer, BUSY_ICON_BUILD))
+	if(!do_after(buyer, build_time, NONE, buyer, BUSY_ICON_BUILD))
 		return FALSE
 
 	if(!can_buy(buyer, FALSE))

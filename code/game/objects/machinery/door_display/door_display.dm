@@ -83,9 +83,9 @@
 	data += " <b> [id]</b><br/>"
 
 	if(open)
-		data += "<a href='?src=\ref[src];open=0'>Close Door</a><br/>"
+		data += "<a href='?src=[text_ref(src)];open=0'>Close Door</a><br/>"
 	else
-		data += "<a href='?src=\ref[src];open=1'>Open Door</a><br/>"
+		data += "<a href='?src=[text_ref(src)];open=1'>Open Door</a><br/>"
 
 	var/datum/browser/popup = new(user, "computer", "<div align='center'>Door controls</div>", 300, 240)
 	popup.set_content(data)
@@ -142,17 +142,17 @@
 	data += " <b> [id]</b><br/><br/>"
 
 	if(open_shutter)
-		data += "<a href='?src=\ref[src];shutter=0'>Close Shutter</a><br/>"
+		data += "<a href='?src=[text_ref(src)];shutter=0'>Close Shutter</a><br/>"
 	else
-		data += "<a href='?src=\ref[src];shutter=1'>Open Shutter</a><br/>"
+		data += "<a href='?src=[text_ref(src)];shutter=1'>Open Shutter</a><br/>"
 
 	if(!open_shutter)
 		data += "[span_linkoff("Open Door")]<br/>"
 	else
 		if (open)
-			data += "<a href='?src=\ref[src];open=0'>Close Door</a><br/>"
+			data += "<a href='?src=[text_ref(src)];open=0'>Close Door</a><br/>"
 		else
-			data += "<a href='?src=\ref[src];open=1'>Open Door</a><br/>"
+			data += "<a href='?src=[text_ref(src)];open=1'>Open Door</a><br/>"
 
 	data += "<br/>"
 
@@ -160,7 +160,7 @@
 		if(F.last_flash + 150 > world.time)
 			data += span_linkoff("Flash Charging")
 		else
-			data += "<a href='?src=\ref[src];flasher=1'>Activate Flash</a>"
+			data += "<a href='?src=[text_ref(src)];flasher=1'>Activate Flash</a>"
 
 	var/datum/browser/popup = new(user, "computer", "<div align='center'>Door controls</div>", 300, 240)
 	popup.set_content(data)

@@ -133,6 +133,9 @@
 		bencher.adjust_nutrition(weight_to_lose)
 		finishmessage = pick("You no longer feel overweight.","You clothes are no longer too tight.","YOU BECOME LESS FAT!")
 	to_chat(user, finishmessage)
+	if(user.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+		personal_statistics.weights_lifted++
 
 ///proc to undo the cqc buff granted by the bench
 /obj/structure/benchpress/proc/undo_buff(datum/weakref/user_ref)

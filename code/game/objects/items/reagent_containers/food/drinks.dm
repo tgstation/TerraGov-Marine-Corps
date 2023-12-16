@@ -33,6 +33,7 @@
 				to_chat(M, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
 				return
 			to_chat(M,span_notice("You swallow a gulp from \the [src]."))
+			record_reagent_consumption(min(gulp_size, reagents.total_volume), reagents.reagent_list, user)
 			if(reagents.total_volume)
 				reagents.reaction(M, INGEST)
 				reagents.trans_to(M, gulp_size)
@@ -44,13 +45,14 @@
 				to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 				return
 			M.visible_message(span_warning("[user] attempts to feed [M] \the [src]."))
-			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
+			if(!do_after(user, 3 SECONDS, NONE, M, BUSY_ICON_FRIENDLY))
 				return
 			M.visible_message(span_warning("[user] feeds [M] \the [src]."))
 
 			var/rgt_list_text = get_reagent_list_text()
 
 			log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
+			record_reagent_consumption(min(gulp_size, reagents.total_volume), reagents.reagent_list, user, M)
 
 			if(reagents.total_volume)
 				reagents.reaction(M, INGEST)

@@ -63,3 +63,34 @@
 	name = "\improper Style Pattern Hotaru leg plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All leg plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Hotaru armor piece."
 	greyscale_config = /datum/greyscale_config/armor_mk1/hotaru
+
+/obj/item/armor_module/armor/legs/marine/dashe
+	name = "\improper Style Pattern Dashe leg plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Dashe armor piece."
+	greyscale_config = /datum/greyscale_config/armor_mk1/dashe
+
+// Hardsuit Leg Plates
+
+// Base Hardsuit Legs
+/obj/item/armor_module/armor/legs/marine/hardsuit_legs
+	name = "\improper FleckTex Base leg plates"
+	desc = "Designed for use with the FleckTex WY-01 Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Base armor piece."
+	starting_attachments = list(/obj/item/armor_module/armor/secondary_color/leg)
+	attachments_allowed = list(/obj/item/armor_module/armor/secondary_color/leg)
+	attachments_by_slot = list(ATTACHMENT_SLOT_KNEE_SECONDARY_COLOR)
+	greyscale_config = /datum/greyscale_config/hardsuit_variant
+
+/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markfive
+	name = "\improper FleckTex Mark V Breacher leg plates"
+	desc = "Designed for use with the FleckTex WY-01 Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Mark V armor piece."
+	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markfive
+
+/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markthree
+	name = "\improper FleckTex Mark III Marauder leg plates"
+	desc = "Designed for use with the FleckTex WY-01 Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Mark III armor piece."
+	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markthree
+
+/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markone
+	name = "\improper FleckTex Mark I Raider leg plates"
+	desc = "Designed for use with the FleckTex WY-01 Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Mark I armor piece."
+	greyscale_config = /datum/greyscale_config/hardsuit_variant

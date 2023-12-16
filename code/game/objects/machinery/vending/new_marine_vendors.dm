@@ -11,6 +11,9 @@
 
 	idle_power_usage = 60
 	active_power_usage = 3000
+	light_range = 1.5
+	light_power = 0.5
+	light_color = LIGHT_COLOR_BLUE
 
 	var/gives_webbing = FALSE
 	var/vendor_role //to be compared with job.type to only allow those to use that machine.
@@ -26,13 +29,28 @@
 	///The faction of that vendor, can be null
 	var/faction
 
+/obj/machinery/marine_selector/Initialize(mapload)
+	. = ..()
+	update_icon()
+
 /obj/machinery/marine_selector/update_icon()
+	. = ..()
+	if(is_operational())
+		set_light(initial(light_range))
+	else
+		set_light(0)
+
+/obj/machinery/marine_selector/update_icon_state()
 	if(is_operational())
 		icon_state = initial(icon_state)
 	else
 		icon_state = "[initial(icon_state)]-off"
 
-
+/obj/machinery/marine_selector/update_overlays()
+	. = ..()
+	if(!is_operational())
+		return
+	. += emissive_appearance(icon, "[icon_state]_emissive")
 
 /obj/machinery/marine_selector/can_interact(mob/user)
 	. = ..()
@@ -175,6 +193,7 @@
 					vended_items += new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad, vendor_role)
 					if(istype(H.job, /datum/job/terragov/squad/leader))
 						vended_items += new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
+						vended_items += new /obj/item/squad_transfer_tablet(loc)
 
 			for (var/obj/item/vended_item in vended_items)
 				vended_item.on_vend(usr, faction, auto_equip = TRUE)
@@ -182,8 +201,6 @@
 			if(use_points && (item_category in I.marine_points))
 				I.marine_points[item_category] -= cost
 			. = TRUE
-
-	updateUsrDialog()
 
 /obj/machinery/marine_selector/clothes
 	name = "GHMME Automated Closet"

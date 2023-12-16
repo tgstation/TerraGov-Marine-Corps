@@ -116,8 +116,12 @@
 	name = "\improper M-70 powerpack"
 	desc = "A heavy reinforced backpack with an array of ultradensity energy cells, linked to a miniature radioisotope thermoelectric generator for continuous power generation. Used to power the largest man portable volkite weaponry. Click drag cells to the powerpack to recharge."
 	icon = 'icons/obj/items/storage/storage.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
+	)
 	icon_state = "volkite_powerpack"
-	charge_overlay = "volkite_back"
+	charge_overlay = null
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BACK
 	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
@@ -127,6 +131,24 @@
 	self_recharge = TRUE
 	charge_amount = 100
 	charge_delay = 2 SECONDS
+	light_range = 0.1
+	light_power = 0.1
+	light_color = LIGHT_COLOR_ORANGE
+
+/obj/item/cell/lasgun/volkite/powerpack/Initialize(mapload)
+	. = ..()
+	turn_light(null, TRUE)
+
+/obj/item/cell/lasgun/volkite/powerpack/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	set_light_on(toggle_on)
+
+/obj/item/cell/lasgun/volkite/powerpack/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	. = ..()
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
+	standing.overlays.Add(emissive_overlay)
 
 ///Handles draining power from the powerpack, returns the value of the charge drained to MouseDrop where it's added to the cell.
 /obj/item/cell/lasgun/volkite/powerpack/proc/use_charge(mob/user, amount = 0, mention_charge = TRUE)

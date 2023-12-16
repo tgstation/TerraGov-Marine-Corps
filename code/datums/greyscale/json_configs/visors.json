@@ -53,6 +53,12 @@
 			"icon_state": "hotaru"
 		}
 	],
+	"dashe_visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "dashe"
+		}
+	],
 	"eva_visor": [
 		{
 			"type": "hyperscale",
@@ -129,6 +135,24 @@
 		{
 			"type": "hyperscale",
 			"icon_state": "assault_old"
+		}
+	],
+	"fourvisor_visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "fourvisor"
+		}
+	],
+	"markone_visor": [
+	{
+		"type": "hyperscale",
+		"icon_state": "markone"
+	}
+],
+	"foureye_visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "foureye"
 		}
 	]
 }

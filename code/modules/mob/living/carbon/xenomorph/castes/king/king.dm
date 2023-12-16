@@ -15,7 +15,7 @@
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6
 	tier = XENO_TIER_FOUR //King, like queen, doesn't count towards population limit.
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	bubble_icon = "alienroyal"
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/hijack,
@@ -23,29 +23,28 @@
 
 /mob/living/carbon/xenomorph/king/Initialize(mapload)
 	. = ..()
-	SSmonitor.stats.king++
 	playsound(loc, 'sound/voice/xenos_roaring.ogg', 75, 0)
 
 /mob/living/carbon/xenomorph/king/generate_name()
-	switch(upgrade)
-		if(XENO_UPGRADE_ZERO)
-			name = "[hive.prefix]King ([nicknumber])"	 //Young
-		if(XENO_UPGRADE_ONE)
-			name = "[hive.prefix]Elder King ([nicknumber])"	 //Mature
-		if(XENO_UPGRADE_TWO)
-			name = "[hive.prefix]Elder Emperor ([nicknumber])"	 //Elder
-		if(XENO_UPGRADE_THREE)
-			name = "[hive.prefix]Ancient Emperor ([nicknumber])" //Ancient
-		if(XENO_UPGRADE_FOUR)
-			name = "[hive.prefix]Primordial Emperor ([nicknumber])"
+	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
+	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
+	switch(playtime_mins)
+		if(0 to 600)
+			name = prefix + "Hatchling King ([nicknumber])"
+		if(601 to 1500)
+			name = prefix + "Young King ([nicknumber])"
+		if(1501 to 4200)
+			name = prefix + "Mature Emperor ([nicknumber])"
+		if(4201 to 10500)
+			name = prefix + "Elder Emperor ([nicknumber])"
+		if(10501 to INFINITY)
+			name = prefix + "Ancient Emperor ([nicknumber])"
+		else
+			name = prefix + "Hatchling King ([nicknumber])"
 
 	real_name = name
 	if(mind)
 		mind.name = name
-
-/mob/living/carbon/xenomorph/king/on_death()
-	. = ..()
-	SSmonitor.stats.king--
 
 /mob/living/carbon/xenomorph/king/death_cry()
 	playsound(loc, 'sound/voice/alien_king_died.ogg', 75, 0)
