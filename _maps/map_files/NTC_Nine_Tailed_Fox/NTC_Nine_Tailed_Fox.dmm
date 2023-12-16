@@ -659,6 +659,16 @@
 /obj/item/weapon/gun/sentry/big_sentry/premade{
 	dir = 4
 	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -703,9 +713,6 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/light/mainship/small{
-	dir = 4
-	},
 /turf/open/floor/grass,
 /area/mainship/hull/upper_hull)
 "aHQ" = (
@@ -983,6 +990,7 @@
 /obj/machinery/computer/communications{
 	dir = 4
 	},
+/obj/item/clothing/mask/cigarette/emergency,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -2727,9 +2735,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
-/turf/open/floor/mainship/green{
-	dir = 8
-	},
+/turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
 	name = "\improper Field Commander's Office";
@@ -3206,9 +3212,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/mainship/green{
-	dir = 1
-	},
+/turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
 	name = "\improper Field Commander's Office";
@@ -4955,7 +4959,7 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
 	name = "\improper Field Commander's Office";
@@ -5004,6 +5008,16 @@
 /obj/item/weapon/gun/sentry/big_sentry/premade/radial{
 	name = "\improper ST-571 sentry gun"
 	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/barricade/metal,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -5233,7 +5247,19 @@
 	name = "Shipside Medbay"
 	})
 "eTD" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade,
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/item/weapon/gun/sentry/big_sentry/premade/radial{
+	name = "\improper ST-571 sentry gun"
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -5699,7 +5725,7 @@
 	})
 "fnl" = (
 /obj/structure/cable,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
 	name = "\improper Field Commander's Office";
@@ -6940,6 +6966,24 @@
 /obj/docking_port/stationary/marine_dropship/hangar/one,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
+"gqM" = (
+/obj/item/weapon/gun/sentry/big_sentry/premade{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "grj" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
@@ -7202,9 +7246,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
-/turf/open/floor/mainship/green{
-	dir = 10
-	},
+/turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
 	name = "\improper Field Commander's Office";
@@ -7294,7 +7336,7 @@
 	on = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
 	name = "\improper Field Commander's Office";
@@ -7710,6 +7752,16 @@
 	dir = 1
 	},
 /area/mainship/squads)
+"hbk" = (
+/obj/machinery/door/airlock/mainship/maint{
+	req_one_access = list(40)
+	},
+/turf/open/floor/mainship/floor,
+/area/deltastation/command/heads_quarters/hos{
+	outside = 0;
+	name = "\improper Field Commander's Office";
+	ceiling = 2
+	})
 "hbA" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/red,
@@ -7984,6 +8036,22 @@
 /obj/structure/window/framed/prison/cell,
 /turf/open/floor/plating,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
+"hlS" = (
+/obj/item/weapon/gun/sentry/big_sentry/premade,
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "hmj" = (
 /obj/structure/flora/ausbushes/sunnybush,
 /turf/open/floor/grass,
@@ -9075,7 +9143,17 @@
 "iwi" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
-/obj/item/weapon/gun/sentry/big_sentry/premade,
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal,
+/obj/item/weapon/gun/sentry/big_sentry/premade/radial,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -9455,7 +9533,7 @@
 "iOH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
 	name = "\improper Field Commander's Office";
@@ -11382,7 +11460,7 @@
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "kFp" = (
 /obj/machinery/light/mainship,
-/turf/open/floor/mainship/green,
+/turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
 	name = "\improper Field Commander's Office";
@@ -11421,7 +11499,7 @@
 	})
 "kGw" = (
 /obj/machinery/holopad,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
 	name = "\improper Field Commander's Office";
@@ -11731,7 +11809,7 @@
 "kQt" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship/green{
-	dir = 1
+	dir = 9
 	},
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
@@ -12011,11 +12089,6 @@
 "lbs" = (
 /obj/item/stack/sheet/mineral/diamond,
 /obj/item/stack/sheet/mineral/gold,
-/obj/item/spacecash/bundle{
-	worth = 5000000;
-	desc = "They are worth 5000000 dollars.";
-	icon_state = "spacecash500"
-	},
 /obj/structure/safe,
 /obj/item/disk/nuclear/green,
 /turf/open/floor/wood,
@@ -12659,6 +12732,16 @@
 /obj/item/weapon/gun/sentry/big_sentry/premade{
 	dir = 4
 	},
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -12772,6 +12855,15 @@
 	pixel_y = 10
 	},
 /obj/structure/table/woodentable,
+/obj/item/spacecash/bundle{
+	worth = 5000000;
+	desc = "They are worth 5000000 dollars.";
+	icon_state = "spacecash500"
+	},
+/obj/item/reagent_containers/hypospray/autoinjector/spacedrugs,
+/obj/item/reagent_containers/hypospray/autoinjector/spacedrugs,
+/obj/item/reagent_containers/hypospray/autoinjector/spacedrugs,
+/obj/item/reagent_containers/hypospray/autoinjector/spacedrugs,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -14146,9 +14238,7 @@
 "mTQ" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
-/turf/open/floor/mainship/green{
-	dir = 9
-	},
+/turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
 	name = "\improper Field Commander's Office";
@@ -14538,7 +14628,7 @@
 /obj/item/whistle,
 /obj/item/megaphone,
 /obj/item/ammo_magazine/packet/acp,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
 	name = "\improper Field Commander's Office";
@@ -14927,7 +15017,19 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
 "nOT" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade,
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/item/weapon/gun/sentry/big_sentry/premade/radial{
+	name = "\improper ST-571 sentry gun"
+	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -16831,6 +16933,24 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/basketball)
+"pEo" = (
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal,
+/obj/item/weapon/gun/sentry/big_sentry/premade/radial{
+	name = "\improper ST-571 sentry gun"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "pFf" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -17011,10 +17131,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "pPN" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/mainship/green,
+/turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
 	name = "\improper Field Commander's Office";
@@ -17383,10 +17500,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/bed/chair/nometal{
-	dir = 4
-	},
-/turf/open/floor/mainship/green,
+/turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
 	name = "\improper Field Commander's Office";
@@ -17491,6 +17605,16 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
+"qna" = (
+/obj/structure/bed/chair/comfy{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/deltastation/command/heads_quarters/hos{
+	outside = 0;
+	name = "\improper Field Commander's Office";
+	ceiling = 2
+	})
 "qnh" = (
 /obj/machinery/light{
 	dir = 4
@@ -18863,6 +18987,22 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
+"rDi" = (
+/obj/item/weapon/gun/sentry/big_sentry/premade,
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "rDw" = (
 /obj/machinery/door/airlock/mainship/generic/corporate{
 	name = "CEO's Office";
@@ -19149,9 +19289,7 @@
 "rTO" = (
 /obj/structure/flora/pottedplant/twentytwo,
 /obj/machinery/firealarm,
-/turf/open/floor/mainship/green{
-	dir = 1
-	},
+/turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
 	name = "\improper Field Commander's Office";
@@ -19215,7 +19353,10 @@
 	},
 /area/mainship/hull/upper_hull)
 "rYm" = (
-/turf/open/floor/mainship/floor,
+/obj/structure/bed/chair/comfy{
+	dir = 8
+	},
+/turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
 	name = "\improper Field Commander's Office";
@@ -21106,15 +21247,20 @@
 	outside = 1
 	})
 "tPj" = (
-/obj/machinery/door/airlock/mainship/command/FCDRquarters{
-	dir = 2
+/obj/item/weapon/gun/sentry/big_sentry/premade,
+/obj/structure/barricade/metal{
+	dir = 4
 	},
-/obj/structure/cable,
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal,
 /turf/open/floor/mainship/mono,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
 	})
 "tPq" = (
 /obj/effect/landmark/start/job/squadengineer,
@@ -21167,14 +21313,12 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "tRq" = (
-/obj/structure/bed/chair/office/dark,
 /obj/structure/cable,
 /obj/machinery/keycard_auth{
 	pixel_y = 25
 	},
-/turf/open/floor/mainship/green{
-	dir = 1
-	},
+/obj/structure/bed/chair/comfy,
+/turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
 	name = "\improper Field Commander's Office";
@@ -21314,7 +21458,9 @@
 /area/mainship/living/officer_study)
 "tZK" = (
 /obj/machinery/loadout_vendor,
-/turf/open/floor/mainship/green,
+/turf/open/floor/mainship/green{
+	dir = 10
+	},
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
 	name = "\improper Field Commander's Office";
@@ -22496,6 +22642,16 @@
 "vkC" = (
 /obj/item/weapon/gun/sentry/big_sentry/premade,
 /obj/machinery/camera/autoname,
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -23682,6 +23838,24 @@
 /area/outpost/cargo{
 	outside = 1
 	})
+"woW" = (
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/item/weapon/gun/sentry/big_sentry/premade/radial{
+	name = "\improper ST-571 sentry gun"
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "wpa" = (
 /turf/closed/wall/mainship/outer,
 /area/sulaco/engineering/lower_engineering{
@@ -24249,6 +24423,22 @@
 /obj/machinery/computer/secure_data,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
+"wSM" = (
+/obj/item/weapon/gun/sentry/big_sentry/premade,
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "wSN" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -24293,7 +24483,7 @@
 	pixel_x = 4
 	},
 /obj/item/taperecorder,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
 	name = "\improper Field Commander's Office";
@@ -24768,6 +24958,7 @@
 /obj/machinery/power/apc/mainship{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/dorm1)
 "xpx" = (
@@ -25673,7 +25864,7 @@
 	req_role = /datum/job/terragov/command/ceo;
 	req_access = list(202);
 	max_points = 100;
-	points = 100
+	points = 10000
 	},
 /turf/open/floor/carpet{
 	dir = 5;
@@ -32403,7 +32594,7 @@ lnD
 hAA
 nsE
 lDI
-eTD
+tPj
 syL
 jrS
 aXE
@@ -32419,7 +32610,7 @@ kyS
 jrS
 aXE
 syL
-lDI
+gqM
 wDa
 aya
 xQf
@@ -35563,7 +35754,7 @@ fOz
 fOz
 fOz
 wDa
-eTD
+kyS
 kjD
 kyS
 mkZ
@@ -35927,7 +36118,7 @@ xRV
 xRV
 xRV
 rvw
-nOT
+wSM
 cyb
 bTq
 sMl
@@ -36773,7 +36964,7 @@ wDa
 wDa
 wDa
 wDa
-kyS
+pEo
 juD
 kyS
 cam
@@ -36844,7 +37035,7 @@ qBf
 dqF
 tkp
 tkp
-nOT
+rDi
 baz
 hXu
 gXZ
@@ -38296,7 +38487,7 @@ wiA
 umW
 tkp
 tkp
-nOT
+hlS
 dfL
 hXu
 gXZ
@@ -40884,7 +41075,7 @@ kjD
 mmS
 mmS
 mmS
-mmS
+hbk
 mmS
 mmS
 cam
@@ -41126,10 +41317,10 @@ kjD
 mmS
 mTQ
 cuj
-knL
+qna
 gFz
 mmS
-cam
+pEo
 euU
 kyS
 cam
@@ -41368,10 +41559,10 @@ kjD
 mmS
 tRq
 wWu
-rYm
+pPN
 qhO
 mmS
-cam
+kyS
 euU
 kyS
 cam
@@ -41611,7 +41802,7 @@ mmS
 cNo
 nqn
 rYm
-pPN
+qhO
 fij
 xjA
 euU
@@ -41849,7 +42040,7 @@ eAS
 xHJ
 hew
 hZA
-tPj
+mmS
 fnl
 gKT
 iOH
@@ -42093,7 +42284,7 @@ kyS
 kjD
 mmS
 rTO
-rYm
+pPN
 kGw
 kFp
 mmS
@@ -42335,11 +42526,11 @@ kyS
 xts
 mmS
 kQt
-rYm
-rYm
+knL
+knL
 tZK
 mmS
-eTD
+kyS
 xzp
 oDm
 mIH
@@ -43307,7 +43498,7 @@ rnp
 aBQ
 cNP
 mmS
-cam
+woW
 juD
 kyS
 eeT

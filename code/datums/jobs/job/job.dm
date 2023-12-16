@@ -277,28 +277,6 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(!SSticker.HasRoundStarted() && !(SSjob.ssjob_flags & SSJOB_OVERRIDE_JOBS_START) && previous_amount < total_positions)
 		LAZYADD(SSjob.occupations_reroll, src)
 
-/datum/job/return_spawn_type(datum/preferences/prefs)
-	switch(prefs?.species)
-		if("Combat Robot")
-			if(!(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY))
-				switch(prefs?.robot_type)
-					if("Basic")
-						return /mob/living/carbon/human/species/robot
-					if("Hammerhead")
-						return /mob/living/carbon/human/species/robot/alpharii
-					if("Chilvaris")
-						return /mob/living/carbon/human/species/robot/charlit
-					if("Ratcher")
-						return /mob/living/carbon/human/species/robot/deltad
-					if("Sterling")
-						return /mob/living/carbon/human/species/robot/bravada
-			to_chat(prefs.parent, span_danger("Robot species joins are currently disabled, your species has been defaulted to Human"))
-			return /mob/living/carbon/human
-		if("Vatborn")
-			return /mob/living/carbon/human/species/vatborn
-		else
-			return /mob/living/carbon/human
-
 // Spawning mobs.
 /mob/living/proc/apply_assigned_role_to_spawn(datum/job/assigned_role, /datum/language/dt, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	job = assigned_role
@@ -398,3 +376,25 @@ GLOBAL_PROTECT(exp_specialmap)
 		CRASH("Occupy xenomorph position was call with amount = [amount] and respawn =[respawn ? "TRUE" : "FALSE"] \n \
 		This would have created a negative larva situation")
 	return ..()
+
+/datum/job/return_spawn_type(datum/preferences/prefs)
+	switch(prefs?.species)
+		if("Combat Robot")
+			if(!(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY))
+				switch(prefs?.robot_type)
+					if("Basic")
+						return /mob/living/carbon/human/species/robot
+					if("Hammerhead")
+						return /mob/living/carbon/human/species/robot/alpharii
+					if("Chilvaris")
+						return /mob/living/carbon/human/species/robot/charlit
+					if("Ratcher")
+						return /mob/living/carbon/human/species/robot/deltad
+					if("Sterling")
+						return /mob/living/carbon/human/species/robot/bravada
+			to_chat(prefs.parent, span_danger("Robot species joins are currently disabled, your species has been defaulted to Human"))
+			return /mob/living/carbon/human
+		if("Vatborn")
+			return /mob/living/carbon/human/species/vatborn
+		else
+			return /mob/living/carbon/human
