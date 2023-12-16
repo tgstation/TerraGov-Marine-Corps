@@ -1,0 +1,4 @@
+author: "DeltaFire15"
+delete-after: True
+changes:
+  - bugfix: "The antenna module now actually does what it says it does."
