@@ -523,9 +523,9 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/specialist
 	name = SQUAD_SPECIALIST
 	cqc = SKILL_CQC_MASTER
-	construction = SKILL_CONSTRUCTION_METAL
-	engineer = SKILL_ENGINEER_PLASTEEL
-	medical = SKILL_MEDICAL_NOVICE
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	engineer = SKILL_ENGINEER_ENGI
+	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
 	leadership = SKILL_LEAD_BEGINNER
 	police = SKILL_POLICE_MP
@@ -544,7 +544,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = COMMAND_DOLL
 	cqc = SKILL_CQC_MASTER
 	construction = SKILL_CONSTRUCTION_PLASTEEL
-	engineer = SKILL_ENGINEER_PLASTEEL
+	engineer = SKILL_ENGINEER_ENGI
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_TRAINED
 	leadership = SKILL_LEAD_EXPERT
