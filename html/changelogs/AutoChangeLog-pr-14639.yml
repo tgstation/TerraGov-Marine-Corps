@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - qol: "Rebound unique action to C by default (instead of space)"
