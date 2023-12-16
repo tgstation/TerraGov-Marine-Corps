@@ -1,4 +1,4 @@
-/obj/structure/window/framed:
+*/obj/structure/window/framed:
   banned_neighbors:
   - /obj/structure/window_frame
   - /obj/structure/window/frame
