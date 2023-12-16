@@ -39,7 +39,7 @@
 		leader = H
 		selected_job = SSjob.GetJobType(/datum/job/som/ert/leader/breacher)
 		H.apply_assigned_role_to_spawn(selected_job)
-		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a member of the Sons of Mars assigned to lead this elite breaching team, sent to response to the NTC distress signal sent out nearby. Lead your team with conviction and crush the Terra Gov scum!")]</p>")
+		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a member of the Sons of Mars assigned to lead this elite breaching team, sent to response to the NTC distress signal sent out nearby. Lead your team with conviction and crush the NTF scum!")]</p>")
 		return
 	if(medics < max_medics)
 		selected_job = SSjob.GetJobType(/datum/job/som/ert/medic/breacher)
@@ -56,4 +56,4 @@
 
 	selected_job = SSjob.GetJobType(/datum/job/som/ert/breacher)
 	H.apply_assigned_role_to_spawn(selected_job)
-	to_chat(H, span_notice("You are a member of the Sons of Mars assigned to this elite breaching team, sent to response to the NTC distress signal sent out nearby. Your duty is to destroy all Terra Gov dogs you find. Show no mercy!"))
+	to_chat(H, span_notice("You are a member of the Sons of Mars assigned to this elite breaching team, sent to response to the NTC distress signal sent out nearby. Your duty is to destroy all NTF dogs you find. Show no mercy!"))

@@ -3294,6 +3294,8 @@
 /area/mainship/groundhq/ntf/hallways/bathroom)
 "cPi" = (
 /obj/machinery/loadout_vendor,
+/obj/machinery/power/apc/mainship,
+/obj/structure/cable,
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
@@ -10451,8 +10453,6 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/job/squadspecialist,
-/obj/structure/cable,
-/obj/machinery/power/apc/mainship,
 /obj/structure/closet/secure_closet/personal/walllocker,
 /turf/open/floor/wood,
 /area/mainship/squads/specialist)
@@ -18976,6 +18976,7 @@
 	name = "Ship Floor 1 Hallways"
 	})
 "rxT" = (
+/obj/structure/cable,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
@@ -19276,6 +19277,7 @@
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "rOZ" = (
+/obj/structure/cable,
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
@@ -39729,7 +39731,7 @@ kyS
 juD
 mKo
 gaG
-eKG
+jkr
 eKG
 dCP
 mKo
@@ -39971,7 +39973,7 @@ kyS
 juD
 mKo
 wnq
-eKG
+jkr
 eKG
 tJc
 mKo
@@ -40213,7 +40215,7 @@ rRI
 pmp
 mKo
 eWs
-eKG
+jkr
 qFX
 tJc
 mKo

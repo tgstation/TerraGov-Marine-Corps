@@ -318,7 +318,7 @@
 
 /obj/item/explosive/grenade/smokebomb/acid
 	name = "\improper M40-A Acid smoke grenade"
-	desc = "A grenade set to release a cloud of extremely acidic smoke developed by Ninetails, supposedly derived from xenomorphs. Has a shiny acid resistant shell. Its use is considered a warcrime under several treaties, none of which Terra Gov is a signatory to."
+	desc = "A grenade set to release a cloud of extremely acidic smoke developed by Ninetails, supposedly derived from xenomorphs. Has a shiny acid resistant shell. Its use is considered a warcrime under several treaties, back at the old world that is..."
 	icon_state = "grenade_acid"
 	item_state = "grenade_acid"
 	hud_state = "grenade_acid"
