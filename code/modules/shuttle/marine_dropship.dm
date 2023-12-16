@@ -1507,7 +1507,7 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer_small"
 	screen_overlay = "shuttle"
-	resistance_flags = RESIST_ALL
+//	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	shuttleId = SHUTTLE_ALAMO
 	possible_destinations = "lz1;lz2;alamo"
