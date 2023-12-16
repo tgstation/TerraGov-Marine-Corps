@@ -111,6 +111,9 @@
 /obj/machinery/door/poddoor/shutters/mainship/cic/armory{
 	id = "brig_armory"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
@@ -342,6 +345,9 @@
 /obj/structure/largecrate/supply/supplies/plasteel,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
+"ask" = (
+/turf/closed/wall/mainship/white,
+/area/mainship/groundhq/ntf/shipboard/brig_cells)
 "asD" = (
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/operating_room_four)
@@ -7043,6 +7049,11 @@
 	})
 "gsn" = (
 /obj/structure/closet/swimsuit,
+/obj/item/clothing/under/shorts/black,
+/obj/item/clothing/under/shorts/blue,
+/obj/item/clothing/under/shorts/green,
+/obj/item/clothing/under/shorts/grey,
+/obj/item/clothing/under/shorts/red,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "gsM" = (
@@ -9245,7 +9256,7 @@
 	name = "\improper Solitary Cell";
 	req_access = list(5)
 	},
-/turf/open/floor/prison,
+/turf/open/floor/mainship/sterile/white,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "izY" = (
 /obj/machinery/light,
@@ -10314,6 +10325,9 @@
 /turf/open/floor/mainship/ntlogo/nt3,
 /area/mainship/squads)
 "jEg" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
@@ -20053,6 +20067,9 @@
 /area/campaign/jungle_outpost/outpost/req{
 	name = "\improper Shipside Req"
 	})
+"sBA" = (
+/turf/open/floor/mainship/sterile/white,
+/area/mainship/groundhq/ntf/shipboard/brig_cells)
 "sBC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -23009,7 +23026,7 @@
 /obj/structure/bed,
 /obj/item/clothing/suit/straight_jacket,
 /obj/item/clothing/mask/muzzle,
-/turf/open/floor/prison,
+/turf/open/floor/mainship/sterile/white,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "vrA" = (
 /obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
@@ -36497,9 +36514,9 @@ nBV
 pin
 pin
 pin
-nER
+gVE
 pin
-pin
+jZf
 grj
 jZf
 nBV
@@ -38917,9 +38934,9 @@ dLW
 pin
 pin
 pin
-vjs
+gVE
 pin
-pin
+uXc
 uNu
 uXc
 dLW
@@ -56864,7 +56881,7 @@ aPj
 fdT
 cLu
 aPj
-tXd
+sBA
 vrv
 aPj
 mra
@@ -57106,9 +57123,9 @@ aPj
 vgM
 umi
 aPj
-tXd
-tXd
-aPj
+sBA
+sBA
+ask
 bTT
 ikg
 kQC
