@@ -129,7 +129,6 @@
 			/obj/item/ammo_magazine/flamer_tank/large = 16,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/ammo_magazine/flamer_tank/water = -1,
-			/obj/item/jetpack_marine = 3,
 			/obj/item/bodybag/tarp = 10,
 		),
 		"Heavy Weapons" = list(
@@ -337,7 +336,6 @@
 			/obj/item/ammo_magazine/flamer_tank/large = 30,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/ammo_magazine/flamer_tank/water = -1,
-			/obj/item/jetpack_marine = 3,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,
