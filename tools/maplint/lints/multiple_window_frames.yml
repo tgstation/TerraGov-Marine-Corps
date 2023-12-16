@@ -1,0 +1,3 @@
+/obj/structure/window_frame:
+  banned_neighbors:
+    /obj/structure/window_frame
