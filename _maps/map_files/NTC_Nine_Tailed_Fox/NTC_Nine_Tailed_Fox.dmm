@@ -1822,8 +1822,14 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
 "bEn" = (
-/obj/structure/window/framed/mainship/requisitions,
-/turf/open/floor/mainship,
+/obj/structure/table/fancywoodentable,
+/obj/item/toy/plush/rouny,
+/obj/effect/spawner/random/misc/plushie,
+/obj/item/toy/deck/kotahi,
+/obj/item/toy/deck,
+/obj/item/toy/dice/d20,
+/obj/item/toy/dice,
+/turf/open/floor/wood,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
@@ -2705,12 +2711,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/closet/secure_closet/brig{
-	id = "Cell 4";
-	name = "Cell 4"
-	},
 /turf/open/floor/mainship/red{
-	dir = 8
+	dir = 10
 	},
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
@@ -3461,13 +3463,14 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "cYd" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/mainship,
+/obj/structure/curtain/open/shower,
+/obj/machinery/shower{
+	pixel_y = 15
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
@@ -4171,6 +4174,15 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
+"dLZ" = (
+/obj/effect/ai_node,
+/turf/open/floor/carpet{
+	dir = 5;
+	icon_state = "carpetside"
+	},
+/area/mainship/shipboard/port_missiles{
+	name = "Shipside Corpsec Office"
+	})
 "dMb" = (
 /obj/structure/dropship_equipment/cas/weapon/heavygun,
 /obj/machinery/camera/autoname/mainship{
@@ -4505,14 +4517,11 @@
 /turf/closed/wall/mainship,
 /area/mainship/command/self_destruct)
 "eeM" = (
-/obj/structure/toilet{
-	dir = 4;
-	pixel_y = 7
+/obj/structure/closet/cabinet,
+/turf/open/floor/carpet{
+	dir = 10;
+	icon_state = "carpetside"
 	},
-/obj/machinery/shower{
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
@@ -4718,14 +4727,7 @@
 	name = "Ship Floor 3 Hallways"
 	})
 "epR" = (
-/obj/machinery/door/airlock/mainship/security{
-	name = "\improper Interrogation Room";
-	dir = 2;
-	req_access = list(5)
-	},
-/turf/open/floor/mainship/red{
-	dir = 4
-	},
+/turf/open/floor/wood,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
@@ -5234,6 +5236,17 @@
 /obj/effect/ai_node,
 /turf/open/shuttle/escapepod/eleven,
 /area/mainship/command/self_destruct)
+"eSv" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/structure/toilet{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/shipboard/port_missiles{
+	name = "Shipside Corpsec Office"
+	})
 "eSQ" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -6862,13 +6875,14 @@
 	name = "Ship Floor 1 Hallways"
 	})
 "gkh" = (
-/obj/structure/bed,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/bed,
 /obj/item/bedsheet/hos,
-/turf/open/floor/mainship/red{
-	dir = 8
+/turf/open/floor/carpet{
+	dir = 9;
+	icon_state = "carpetside"
 	},
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
@@ -9078,9 +9092,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
 "itf" = (
-/turf/open/floor/mainship/red{
-	dir = 9
-	},
+/obj/machinery/vending/marineFood,
+/turf/closed/wall/mainship,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
@@ -11184,7 +11197,8 @@
 /area/mainship/squads)
 "kpg" = (
 /obj/machinery/camera/autoname,
-/turf/open/floor/mainship,
+/obj/structure/bed/chair/sofa/corner,
+/turf/open/floor/wood,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
@@ -12223,11 +12237,11 @@
 	name = "CEO Office"
 	})
 "ldc" = (
-/obj/machinery/flasher{
-	id = "Ship Cell 1";
-	name = "Cell 1 Flash"
+/obj/machinery/vending/coffee,
+/turf/open/floor/carpet{
+	dir = 6;
+	icon_state = "carpetside"
 	},
-/turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
@@ -13121,6 +13135,12 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/deltastation/engineering/engine_smes{
 	outside = 0
+	})
+"lPe" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/mainship/shipboard/port_missiles{
+	name = "Shipside Corpsec Office"
 	})
 "lPC" = (
 /obj/machinery/computer/cloning_console/vats,
@@ -17413,10 +17433,8 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "pZu" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/turf/open/floor/mainship,
+/obj/item/radio/intercom/general,
+/turf/open/floor/wood,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
@@ -18850,9 +18868,7 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/turf/open/floor/mainship/red{
-	dir = 4
-	},
+/turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
@@ -18914,9 +18930,8 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "rvk" = (
-/obj/structure/table/reinforced,
 /obj/effect/ai_node,
-/turf/open/floor/mainship,
+/turf/open/floor/wood,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
@@ -19756,10 +19771,10 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/window/reinforced/tinted{
+/obj/structure/bed/chair/sofa/left{
 	dir = 8
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/wood,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
@@ -20147,11 +20162,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/tankerbunks)
 "sIK" = (
-/obj/machinery/door/window/secure/brig/cell_1{
-	id = "Ship Cell 1";
-	name = "Ship Cell 1";
-	req_access = list(5)
-	},
+/obj/structure/mineral_door/wood,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
@@ -22582,11 +22593,9 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "uZs" = (
-/obj/machinery/door/airlock/mainship/security{
-	name = "\improper Interrogation Room";
-	req_access = list(5)
-	},
-/turf/open/floor/mainship,
+/obj/structure/bed/chair/sofa/right,
+/obj/item/toy/plush/carp,
+/turf/open/floor/wood,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
@@ -24077,6 +24086,10 @@
 	dir = 1
 	},
 /obj/machinery/camera/autoname,
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 4";
+	name = "Cell 4"
+	},
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -24497,10 +24510,9 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "wRj" = (
-/obj/machinery/flasher_button{
-	id = "Ship Cell 1"
-	},
-/turf/closed/wall/mainship,
+/obj/structure/window/framed/mainship/requisitions,
+/obj/structure/curtain/open/black,
+/turf/open/floor/plating,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
@@ -32572,7 +32584,7 @@ piZ
 asa
 aYd
 cYd
-dIf
+eSv
 aYd
 gkh
 eeM
@@ -32814,9 +32826,9 @@ cKJ
 odL
 aYd
 rvk
-dIf
-aYd
-bYH
+epR
+lPe
+dLZ
 ldc
 aYd
 kGl
@@ -33056,10 +33068,10 @@ iSM
 pnK
 aYd
 pZu
-dIf
-aYd
+epR
+itf
 sIK
-rPs
+wRj
 aYd
 mMj
 dIf
@@ -33299,8 +33311,8 @@ yfC
 aYd
 uZs
 bEn
-wRj
-itf
+rPs
+dIf
 csL
 aYd
 mDV
@@ -33541,7 +33553,7 @@ abG
 aYd
 kpg
 smk
-epR
+rPs
 wOb
 rqa
 aYd
