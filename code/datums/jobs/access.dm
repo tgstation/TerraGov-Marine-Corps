@@ -259,6 +259,12 @@
 			. = size ? "CDR" : "Commander"
 		if("O6")
 			. = size ? "CPT" : "Captain"
+		if("COL")
+			. = size ? "COL" : "Colonel"
+		if("MGEN")
+			. = size ? "MGEN" : "Major General"
+		if("GEN")
+			. = size ? "GEN" : "General"
 		if("O7")
 			. = size ? "COMM" : "Commodore"
 		if("O8")

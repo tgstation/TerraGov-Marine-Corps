@@ -89,7 +89,7 @@
 
 
 /area/centcom/valhalla/crew_quarters/captain
-	name = "\improper Captain's Office"
+	name = "\improper Commander's Office"
 	icon_state = "captain"
 
 /area/centcom/valhalla/crew_quarters/heads/hop

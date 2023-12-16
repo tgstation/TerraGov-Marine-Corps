@@ -102,8 +102,8 @@
 	icon_state = "gold"
 
 /obj/item/clothing/tie/medal/gold/captain
-	name = "medal of captaincy"
-	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain to NTC, and their undisputable authority over their crew."
+	name = "medal of exceptional loyalty"
+	desc = "A golden medal awarded exclusively to those promoted to the rank of commander. It signifies the codified responsibilities of a commander to NTC, and their undisputable authority over their crew."
 
 /obj/item/clothing/tie/medal/gold/heroism
 	name = "medal of exceptional heroism"

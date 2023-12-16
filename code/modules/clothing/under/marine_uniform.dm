@@ -281,8 +281,8 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
 /obj/item/clothing/under/marine/officer/command
-	name = "captain uniform"
-	desc = "A special-issue, well-ironed, kevlar-weaved, hazmat-tested, EMF-augmented uniform worth of a NTC Naval Captain. Even looking at it the wrong way could result in being court-martialed."
+	name = "commander uniform"
+	desc = "A special-issue, well-ironed, kevlar-weaved, hazmat-tested, EMF-augmented uniform worth of a NTC Commander. Even looking at it the wrong way could result in being court-martialed."
 	icon_state = "CO_jumpsuit"
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 

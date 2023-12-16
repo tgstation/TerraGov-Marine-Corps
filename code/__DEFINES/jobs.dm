@@ -48,7 +48,7 @@
 /// Job has a TTS volume bonus
 #define JOB_FLAG_LOUDER_TTS (1<<15)
 
-#define CAPTAIN "Captain"
+#define CAPTAIN "Commander"
 #define EXECUTIVE_OFFICER "Executive Officer" //Currently disabled.
 #define FIELD_COMMANDER "Field Commander"
 #define CORPSEC_COMMANDER "Corpsec Commander"

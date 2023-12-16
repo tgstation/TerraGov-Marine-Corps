@@ -3048,7 +3048,7 @@
 	dir = 4
 	},
 /area/sulaco/command{
-	name = "Captain's Room";
+	name = "Commander's Room";
 	outside = 0
 	})
 "cGI" = (
@@ -12552,6 +12552,13 @@
 	},
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
+/obj/item/weapon/gun/rifle/m412/elite,
+/obj/item/ammo_magazine/rifle/ap,
+/obj/item/ammo_magazine/rifle/ap,
+/obj/item/ammo_magazine/rifle/ap,
+/obj/item/ammo_magazine/rifle/ap,
+/obj/item/ammo_magazine/rifle/ap,
+/obj/item/ammo_magazine/rifle/ap,
 /turf/open/floor/carpet/side{
 	dir = 9
 	},
@@ -20384,7 +20391,8 @@
 /area/mainship/medical/lower_medical)
 "tcV" = (
 /obj/machinery/door/airlock/mainship/command/CPToffice{
-	dir = 2
+	dir = 2;
+	name = "\improper Commander's Office"
 	},
 /obj/structure/cable,
 /obj/machinery/door/firedoor/mainship{
@@ -22198,7 +22206,9 @@
 /turf/open/floor/plating,
 /area/mainship/command/telecomms)
 "uTq" = (
-/obj/machinery/door/airlock/mainship/command/CPTstudy,
+/obj/machinery/door/airlock/mainship/command/CPTstudy{
+	name = "\improper Commander's Study"
+	},
 /turf/open/floor/mainship/mono,
 /area/sulaco/command{
 	name = "Captain's Room";
@@ -24065,6 +24075,10 @@
 "wMI" = (
 /obj/structure/closet/secure_closet/captain,
 /obj/item/disk/nuclear/red,
+/obj/item/clothing/shoes/marine/sneakingboots,
+/obj/item/clothing/under/spec_operative,
+/obj/item/armor_module/module/valkyrie_autodoc,
+/obj/item/clothing/suit/modular/xenonauten/bulletresistant,
 /turf/open/floor/wood,
 /area/sulaco/command{
 	name = "Captain's Room";

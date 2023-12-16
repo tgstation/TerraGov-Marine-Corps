@@ -4,13 +4,12 @@
 	supervisors = "the acting captain"
 	exp_type_department = EXP_TYPE_COMMAND
 
-
 //Captain
 /datum/job/terragov/command/captain
 	title = CAPTAIN
 	req_admin_notify = TRUE
-	paygrade = "O6"
-	comm_title = "CPT"
+	paygrade = "COL"
+	comm_title = "CMDR"
 	supervisors = "NTC high command"
 	selection_color = "#ccccff"
 	total_positions = 1
@@ -38,19 +37,16 @@
 		<b>You answer to</b> NTC High Command<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Lead the NTC platoon and complete your mission. Support the marines and communicate with your command staff, execute orders.
+		<b>Duty</b>: Lead the NTF platoon and complete your mission. Support the marines and communicate with your command staff, execute orders.
 	"}
 	minimap_icon = "captain"
 
 /datum/job/terragov/command/captain/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"As the captain of the [SSmapping.configs[SHIP_MAP].map_name] you are held by higher standard and are expected to act competently.
-While you may support Ninetails, you report to the NTC High Command, not the corporate office.
-Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
+	to_chat(M, {"As the Commander of the [SSmapping.configs[SHIP_MAP].map_name] you are held by higher standard and are expected to act competently.
+While you may support Ninetails, you report to the NTC High Command, the corporate office.
 Your first order of business should be briefing the marines on the mission they are about to undertake.
-You should not be voluntarily leaving your vessel under any circumstances. A captain goes down with their ship.
-If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do.
-Godspeed, captain! And remember, you are not above the law."})
+And remember, you are not above the law."})
 
 /datum/job/terragov/command/captain/after_spawn(mob/living/new_mob, mob/user, latejoin)
 	. = ..()
@@ -62,11 +58,11 @@ Godspeed, captain! And remember, you are not above the law."})
 		return
 	switch(playtime_mins)
 		if(0 to 1500) // starting
-			new_human.wear_id.paygrade = "O6"
+			new_human.wear_id.paygrade = "COL"
 		if(1501 to 7500) // 25hrs
-			new_human.wear_id.paygrade = "O7"
+			new_human.wear_id.paygrade = "MGEN"
 		if(7501 to INFINITY) //125 hrs
-			new_human.wear_id.paygrade = "O8"
+			new_human.wear_id.paygrade = "GEN"
 
 /datum/job/terragov/command/captain/campaign
 	outfit = /datum/outfit/job/command/captain/campaign
@@ -468,7 +464,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
-	skills_type = /datum/skills/specialist
+	skills_type = /datum/skills/specialist/commanddoll
 	outfit = /datum/outfit/job/command/commanddoll
 	multiple_outfits = TRUE
 	outfits = list(

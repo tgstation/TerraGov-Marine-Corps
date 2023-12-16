@@ -20,7 +20,7 @@
 	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 50, ENERGY = 25, BOMB = 50, BIO = 100, FIRE = 25, ACID = 25)
 
 /obj/item/clothing/suit/space/captain
-	name = "Captain's armor"
+	name = "Commander's armor"
 	desc = "A bulky, heavy-duty piece of exclusive Ninetails armor. YOU are in charge!"
 	icon_state = "caparmor"
 	w_class = WEIGHT_CLASS_BULKY

@@ -4,7 +4,6 @@
 	paygrade = "C"
 	outfit = /datum/outfit/job/other/colonist
 
-
 /datum/outfit/job/other/colonist
 	name = "Colonist"
 	jobtype = /datum/job/colonist
@@ -121,7 +120,6 @@
 	w_uniform = /obj/item/clothing/under/rank/prisoner
 	shoes = /obj/item/clothing/shoes/orange
 	ears = /obj/item/radio/headset/mainship
-
 /datum/job/other/prisonersom
 	title = "SOM Prisoner"
 	paygrade = "Psnr"
@@ -138,7 +136,7 @@
 	id = /obj/item/card/id
 	w_uniform = /obj/item/clothing/under/rank/prisoner
 	shoes = /obj/item/clothing/shoes/orange
-	ears = /obj/item/radio/headset/mainship
+	ears = /obj/item/radio/headset
 
 /datum/job/worker
 	title = "Worker"
@@ -167,7 +165,6 @@
 	to_chat(M, {"\nYou are a standard worker with wide access among the ship,
 	you can use a worker locker to get equipped and use your access to do your job properly,
 	you should not sabotage the station with this access."})
-
 
 //Morale officer
 /datum/job/worker/moraleofficer

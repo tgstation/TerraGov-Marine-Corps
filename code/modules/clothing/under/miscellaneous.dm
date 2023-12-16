@@ -11,7 +11,7 @@
 	item_state = "w_suit"
 
 /obj/item/clothing/under/captain_fly
-	name = "rogue captains uniform"
+	name = "rogue commander's uniform"
 	desc = "For the man who doesn't care because he's still free."
 	icon_state = "captain_fly"
 
@@ -240,8 +240,8 @@
 
 
 /obj/item/clothing/under/dress/dress_cap
-	name = "captain's dress uniform"
-	desc = "Feminine fashion for the style concious captain."
+	name = "commander's dress uniform"
+	desc = "Feminine fashion for the style concious commander."
 	icon_state = "dress_cap"
 	flags_armor_protection = CHEST|GROIN|ARMS
 
@@ -314,8 +314,8 @@
 	flags_armor_protection = CHEST|GROIN
 
 /obj/item/clothing/under/captainformal
-	name = "captain's formal uniform"
-	desc = "A captain's formal-wear, for special occasions."
+	name = "commander's formal uniform"
+	desc = "A commander's formal-wear, for special occasions."
 	icon_state = "captain_formal"
 	item_state = "by_suit"
 

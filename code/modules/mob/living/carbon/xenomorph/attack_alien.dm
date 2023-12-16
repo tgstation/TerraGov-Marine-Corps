@@ -41,7 +41,7 @@
 	var/damage_to_deal = clamp(disarmdamage, 0, maxHealth - stamina_loss)
 	var/sound = 'sound/weapons/alien_knockdown.ogg'
 
-	if ishumanbasic(src)
+	if ishuman(src)
 		if(IsParalyzed())
 			X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 			X.visible_message(null, "<span class='info'>We could not do much to [src], they are already down.</span>", null)
@@ -69,7 +69,7 @@
 					X.visible_message("<span class='danger'>[X] slams [src] to the ground!</span>",
 					"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
 					Paralyze(20 SECONDS)
-	else if(!ishumanbasic(src))
+	else if(!ishuman(src))
 		if(randn <= 40)
 			if(!IsParalyzed())
 				X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
