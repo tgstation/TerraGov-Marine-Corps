@@ -378,8 +378,8 @@
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = -0.9
 	slowdown= -0.5
-	gas_transfer_coefficient = -1
-	permeability_coefficient = -1
+	gas_transfer_coefficient = -0.5
+	permeability_coefficient = -0.5
 
 /obj/item/clothing/under/spec_operative/equipped(mob/user, i_clothing)
 	. = ..()
