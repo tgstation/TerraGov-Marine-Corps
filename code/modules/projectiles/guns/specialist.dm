@@ -440,6 +440,52 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/minigun/valhalla
 	obj_flags = NONE
 
+//Mounted version of the minigun for the wheelchair
+/obj/item/weapon/gun/minigun_wheelchair
+	name = "\improper Modified MG-100 Vindicator Minigun"
+	desc = "A minigun that's been modified to be mounted on a wheelchair. As a result, it is more controllable and fed externally by an ammo reservoir."
+
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "minigun"
+	item_state = "minigun"
+	fire_animation = "minigun_fire"
+	max_shells = 1000 //codex
+	caliber = CALIBER_762X51 //codex
+	load_method = MAGAZINE //codex
+	fire_sound = 'sound/weapons/guns/fire/minigun.ogg'
+	unload_sound = 'sound/weapons/guns/interact/minigun_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/minigun_wheelchair
+	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_wheelchair)
+	w_class = WEIGHT_CLASS_HUGE
+	force = 20
+	wield_delay = 12
+	gun_skill_category = SKILL_FIREARMS
+	flags_item = 0	//To remove wielding
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	reciever_flags = AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE|AMMO_RECIEVER_MAGAZINES
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	fire_delay = 0.15 SECONDS
+	windup_delay = 0.7 SECONDS
+	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
+	scatter = 5
+	damage_falloff_mult = 0.5
+	movement_acc_penalty_mult = 0
+
+	//A reference to whatever this gun is mounted to for dropped()
+	var/mount
+
+//This will account for cases like if the user's hand is cut off, return it to the object it was mounted on
+/obj/item/weapon/gun/minigun_wheelchair/dropped(mob/user)
+	. = ..()
+	forceMove(mount)
+
+//So that it displays the minigun on the mob as if always wielded
+/obj/item/weapon/gun/minigun_wheelchair/update_item_state()
+	item_state = "[base_gun_icon]_w"
+
 // SG minigun
 
 /obj/item/weapon/gun/minigun/smart_minigun
