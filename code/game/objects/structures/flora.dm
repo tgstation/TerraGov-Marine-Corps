@@ -166,7 +166,7 @@
 		to_chat(X, "Destroying this tree now wouldn't dampen the tallhosts' Christmas spirit, if only you had damaged it earlier...")
 		return
 	X.visible_message(span_notice("[X] begins to cut down [src] with their claws."),span_notice("You begin to cut down [src] with your claws."), "You hear the sound of slashing and hacking.")
-	if(!do_after(X, 1 MINUTES , TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(X, 1 MINUTES))
 		return
 	X.visible_message(span_notice("[X] fells [src] with their claws!"),span_notice("You fell [src] with the claws!."), "You hear the sound of a tree falling.")
 	playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 10 , 0, 0)
