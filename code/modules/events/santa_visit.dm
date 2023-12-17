@@ -2,7 +2,7 @@
 /datum/round_event_control/santa_visit
 	name = "Santa Visit"
 	typepath = /datum/round_event/santa_visit
-	weight = 10
+	weight = 7
 	earliest_start = 30 MINUTES
 	max_occurrences = 1
 
@@ -76,7 +76,7 @@
 ///proc for spawning elves around christmas tree
 /datum/round_event/santa_visit/proc/place_elves()
 	for(var/placedelves = 1 to maxelves)
-		if(prob(20))
+		if(prob(35))
 			continue
 		var/turf/target = locate(christmastreeturf.x + rand(-3, 3), christmastreeturf.y + rand(-3, 3), christmastreeturf.z)
 		var/mob/living/carbon/human/spawnedhuman = new /mob/living/carbon/human(target)
