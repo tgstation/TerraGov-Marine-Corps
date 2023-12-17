@@ -88,6 +88,10 @@
 	weapon = new /obj/item/weapon/gun/minigun_wheelchair
 	weapon.mount = src
 
+/obj/vehicle/ridden/wheelchair/weaponized/obj_destruction(damage_flag)
+	weapon.Destroy()
+	. = ..()
+
 //The wheelchair speed is actually on the component, delay_multiplier does nothing
 /obj/vehicle/ridden/wheelchair/weaponized/make_ridable()
 	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/wheelchair/weaponized)
