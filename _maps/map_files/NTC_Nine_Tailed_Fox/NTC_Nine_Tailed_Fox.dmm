@@ -8921,10 +8921,10 @@
 /obj/structure/table/reinforced,
 /obj/item/attachable/reddot,
 /obj/item/weapon/gun/shotgun/combat/masterkey,
-/obj/item/ammo_magazine/minisentry,
 /obj/item/attachable/scope/mini,
 /obj/item/attachable/lasersight,
 /obj/item/attachable/compensator,
+/obj/item/ammo_magazine/minisentry,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -18960,6 +18960,13 @@
 	dir = 8
 	},
 /area/mainship/squads)
+"rwt" = (
+/obj/machinery/vending/weapon,
+/turf/closed/wall/mainship,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "rwx" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
@@ -21920,7 +21927,6 @@
 	storage_capacity = 80;
 	req_access = list(200)
 	},
-/obj/item/storage/box/explosive_mines,
 /obj/item/weapon/gun/launcher/rocket/oneuse,
 /obj/item/ammo_magazine/rifle/ap,
 /obj/item/ammo_magazine/rifle/ap,
@@ -21931,19 +21937,18 @@
 /obj/item/ammo_magazine/rifle/ap,
 /obj/item/ammo_magazine/rifle/ap,
 /obj/item/storage/belt/marine,
-/obj/item/storage/pouch/medkit/firstaid,
 /obj/item/armor_module/storage/uniform/holster,
 /obj/item/weapon/gun/rifle/m412/elite,
-/obj/item/storage/pouch/grenade/combat_patrol,
-/obj/item/clothing/shoes/marine/sneakingboots,
 /obj/item/ammo_magazine/rifle/ap,
 /obj/item/ammo_magazine/rifle/ap,
 /obj/item/ammo_magazine/rifle/ap,
-/obj/item/clothing/under/spec_operative/tback,
 /obj/item/clothing/under/spec_operative,
 /obj/item/clothing/glasses/thermal/m64_thermal_goggles,
-/obj/item/armor_module/module/valkyrie_autodoc,
 /obj/item/armor_module/storage/medical,
+/obj/item/storage/box/explosive_mines/large,
+/obj/item/armor_module/module/eshield,
+/obj/item/storage/pouch/shotgun,
+/obj/item/storage/pouch/grenade,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -66548,7 +66553,7 @@ cWh
 wXq
 deV
 qnG
-qnG
+rwt
 exf
 lbs
 qnG
