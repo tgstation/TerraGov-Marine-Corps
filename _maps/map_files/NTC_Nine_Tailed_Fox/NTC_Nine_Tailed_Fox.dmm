@@ -2180,7 +2180,6 @@
 	dir = 1
 	},
 /obj/machinery/light/mainship/small,
-/obj/effect/landmark/corpsespawner/marine/regular,
 /obj/item/weapon/gun/pistol/standard_heavypistol/suppressed,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/mainship/floor,
@@ -5087,7 +5086,6 @@
 	outside = 1
 	})
 "eMw" = (
-/obj/effect/landmark/corpsespawner/marine/burst,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/surgery_hallway{
