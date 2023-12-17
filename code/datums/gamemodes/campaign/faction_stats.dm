@@ -204,6 +204,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 /datum/faction_stats/proc/return_to_base()
 	for(var/mob/living/carbon/human/human_mob AS in GLOB.alive_human_list_faction[faction])
 		var/mob/dead/observer/ghost = human_mob.ghostize()
+		if(human_mob.job.job_cost) //We don't refund ally roles
+			human_mob.job.add_job_positions(1)
 		qdel(human_mob)
 		var/datum/game_mode/mode = SSticker.mode
 		mode.player_respawn(ghost) //auto open the respawn screen
