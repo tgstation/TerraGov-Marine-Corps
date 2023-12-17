@@ -540,7 +540,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "aCD" = (
-/obj/machinery/door/airlock/mainship/secure/free_access,
+/obj/machinery/door/airlock/mainship/secure/locked,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
@@ -1579,7 +1579,8 @@
 	})
 "bsl" = (
 /obj/machinery/door/airlock/mainship/maint{
-	dir = 2
+	dir = 2;
+	req_one_access = list(40)
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -1990,7 +1991,7 @@
 	outside = 0
 	})
 "bJW" = (
-/obj/machinery/door/airlock/mainship/secure/free_access{
+/obj/machinery/door/airlock/mainship/secure/locked{
 	dir = 2
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -2232,7 +2233,9 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "bVF" = (
-/obj/machinery/door/airlock/mainship/maint,
+/obj/machinery/door/airlock/mainship/maint{
+	locked = 1
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
@@ -4100,7 +4103,7 @@
 /turf/open/floor/plating,
 /area/mainship/command/cic)
 "dHB" = (
-/obj/machinery/door/airlock/mainship/secure/free_access{
+/obj/machinery/door/airlock/mainship/secure/locked{
 	dir = 2
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -6258,13 +6261,12 @@
 	name = "Shipside Medbay"
 	})
 "fLi" = (
-/obj/structure/window/framed/mainship,
 /obj/machinery/computer/shuttle/shuttle_control/elevator{
-	dir = 4;
-	pixel_x = -15;
-	possible_destinations = "floor3"
+	pixel_y = 20;
+	possible_destinations = "floor3";
+	density = 0
 	},
-/turf/open/floor/mainship/stripesquare,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
@@ -6853,17 +6855,9 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "giP" = (
-/obj/structure/sign/fixedinplace/security,
-/obj/structure/sign/fixedinplace/medical{
-	pixel_y = 7;
-	dir = 1
-	},
-/obj/structure/sign/fixedinplace/supply{
-	pixel_y = -6;
-	dir = 8
-	},
+/obj/structure/sign/fixedinplace/evac,
 /turf/closed/wall/mainship,
-/area/mainship/squads)
+/area/mainship/command/telecomms)
 "gjt" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/bed/stool{
@@ -7795,15 +7789,17 @@
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "hbQ" = (
-/obj/structure/window/framed/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/elevator{
+/obj/machinery/vending/cola,
+/obj/structure/sign/fixedinplace/evac{
 	dir = 4;
-	pixel_x = -15;
-	possible_destinations = "floor1"
+	pixel_y = 30
 	},
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/bow_hallway{
-	name = "Ship Floor 1 Hallways"
+/obj/structure/sign/fixedinplace/security{
+	pixel_y = 38
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/aft_hallway{
+	name = "Ship Floor 3 Hallways"
 	})
 "hbR" = (
 /obj/effect/soundplayer,
@@ -7884,14 +7880,15 @@
 	},
 /area/mainship/command/cic)
 "hcV" = (
-/obj/structure/window/framed/mainship,
 /obj/machinery/computer/shuttle/shuttle_control/elevator{
-	pixel_y = -15;
-	possible_destinations = "floor1"
+	dir = 4;
+	pixel_x = 20;
+	possible_destinations = "floor3";
+	density = 0
 	},
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/bow_hallway{
-	name = "Ship Floor 1 Hallways"
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/aft_hallway{
+	name = "Ship Floor 3 Hallways"
 	})
 "hdt" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -7923,16 +7920,17 @@
 	name = "Ship Floor 1 Hallways"
 	})
 "heO" = (
-/obj/structure/window/framed/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/elevator{
-	dir = 4;
-	pixel_x = -15;
-	possible_destinations = "floor2"
+/obj/structure/sign/fixedinplace/supply{
+	pixel_y = -6;
+	dir = 8
 	},
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/port_umbilical{
-	name = "Ship Floor 2 Hallways"
-	})
+/obj/structure/sign/fixedinplace/security,
+/obj/structure/sign/fixedinplace/medical{
+	pixel_y = 7;
+	dir = 1
+	},
+/turf/closed/wall/mainship,
+/area/mainship/squads)
 "hfs" = (
 /obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/mainship/mono,
@@ -10547,10 +10545,15 @@
 	name = "CEO Office"
 	})
 "jKu" = (
-/obj/effect/soundplayer,
-/obj/structure/sign/fixedinplace/evac,
-/turf/closed/wall/mainship,
-/area/mainship/command/telecomms)
+/obj/machinery/computer/shuttle/shuttle_control/elevator{
+	pixel_y = 20;
+	possible_destinations = "floor1";
+	density = 0
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "jKQ" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
@@ -11093,7 +11096,7 @@
 	},
 /area/mainship/groundhq/ntf/engineering/ce_room)
 "klh" = (
-/obj/machinery/door/airlock/mainship/secure/free_access,
+/obj/machinery/door/airlock/mainship/secure/locked,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -13267,16 +13270,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
-"lVa" = (
-/obj/structure/window/framed/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/elevator{
-	pixel_y = -15;
-	possible_destinations = "floor3"
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/aft_hallway{
-	name = "Ship Floor 3 Hallways"
-	})
 "lWk" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -15150,7 +15143,7 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "nPi" = (
-/obj/machinery/door/airlock/mainship/secure/free_access{
+/obj/machinery/door/airlock/mainship/secure/locked{
 	dir = 2
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -18385,13 +18378,15 @@
 	name = "Shipside Medbay"
 	})
 "qPn" = (
-/obj/machinery/vending/coffee,
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/computer/shuttle/shuttle_control/elevator{
+	dir = 4;
+	pixel_x = 20;
+	possible_destinations = "floor2";
+	density = 0
 	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway{
-	name = "Ship Floor 3 Hallways"
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "qPp" = (
 /obj/machinery/telecomms/bus/preset_four,
@@ -19334,7 +19329,9 @@
 /turf/closed/wall/mainship,
 /area/mainship/hallways/dorm1)
 "rQX" = (
-/obj/machinery/door/airlock/mainship/maint,
+/obj/machinery/door/airlock/mainship/maint{
+	req_one_access = list(40)
+	},
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -21173,6 +21170,11 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "tDV" = (
+/obj/machinery/computer/shuttle/shuttle_control/elevator{
+	pixel_y = 20;
+	possible_destinations = "floor2";
+	density = 0
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads)
 "tED" = (
@@ -21377,6 +21379,14 @@
 "tNN" = (
 /turf/closed/wall/mainship,
 /area/chapel/office)
+"tOh" = (
+/obj/machinery/door/airlock/mainship/maint{
+	locked = 1;
+	req_one_access = list(40)
+	},
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
+/turf/open/floor/mainship/black/full,
+/area/mainship/command/self_destruct)
 "tOx" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -21507,7 +21517,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/airlock/mainship/maint,
+/obj/machinery/door/airlock/mainship/maint{
+	locked = 1
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -22353,14 +22365,6 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/squads)
-"uMq" = (
-/obj/structure/window/framed/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/elevator{
-	pixel_y = -15;
-	possible_destinations = "floor2"
-	},
-/turf/open/floor/mainship/stripesquare,
 /area/mainship/squads)
 "uMy" = (
 /obj/machinery/vending/MarineMed/Blood,
@@ -25274,7 +25278,7 @@
 	name = "Security Checkpoint"
 	})
 "xxJ" = (
-/obj/machinery/door/airlock/mainship/secure/free_access,
+/obj/machinery/door/airlock/mainship/secure/locked,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -25751,15 +25755,18 @@
 	name = "Shipside Medbay"
 	})
 "xXg" = (
-/obj/structure/sign/fixedinplace/evac{
-	dir = 4
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/computer/shuttle/shuttle_control/elevator{
+	dir = 4;
+	pixel_x = 20;
+	possible_destinations = "floor1";
+	density = 0
 	},
-/obj/structure/sign/fixedinplace/security{
-	pixel_y = 7
-	},
-/turf/closed/wall/mainship,
-/area/mainship/hallways/aft_hallway{
-	name = "Ship Floor 3 Hallways"
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
 	})
 "xXl" = (
 /obj/structure/bed/chair/office/dark{
@@ -38035,7 +38042,7 @@ oES
 oES
 oES
 bpS
-oES
+xXg
 jIk
 olZ
 wDa
@@ -38277,7 +38284,7 @@ xqB
 xqB
 gSq
 eeu
-hbQ
+lMh
 xxJ
 lMh
 wDa
@@ -38640,7 +38647,7 @@ hXu
 dfL
 hXu
 hXu
-hid
+qPn
 qqe
 hid
 ali
@@ -38880,17 +38887,17 @@ pjb
 rwi
 qzZ
 qzZ
-qzZ
-jKu
-heO
+giP
+rwi
+wqO
 klh
 wqO
-giP
+pvZ
 dUR
 kQs
 uSQ
 dUR
-pvZ
+heO
 pvZ
 pvZ
 pvZ
@@ -39006,8 +39013,8 @@ eeu
 tZN
 tZN
 tZN
-hcV
-kVN
+lMh
+jKu
 kyS
 nOc
 kyS
@@ -39246,7 +39253,7 @@ iIz
 iIz
 eeu
 pWA
-pWA
+tOh
 pWA
 pWA
 eeu
@@ -39611,7 +39618,7 @@ qzZ
 fnY
 fnY
 fnY
-uMq
+uPv
 tDV
 xwc
 eqD
@@ -62659,7 +62666,7 @@ ibZ
 vum
 phE
 uBd
-wJU
+hcV
 sht
 vrA
 aKB
@@ -62901,11 +62908,11 @@ uBd
 wSN
 keA
 uiY
-fLi
+kzp
 aCD
 kzp
 ybU
-qPn
+jmZ
 qZo
 ePE
 hNy
@@ -63630,8 +63637,8 @@ pvr
 paa
 paa
 paa
-lVa
-wJU
+kzp
+fLi
 qZo
 qZo
 hNy
@@ -63872,8 +63879,8 @@ pvr
 ybU
 bVF
 ybU
-xXg
-pOj
+ybU
+hbQ
 qZo
 leF
 hNy

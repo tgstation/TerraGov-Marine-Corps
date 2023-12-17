@@ -2,9 +2,38 @@
 "a" = (
 /turf/open/shuttle/elevator/grating,
 /area/shuttle/dropship/minielevator)
+"c" = (
+/obj/machinery/door/airlock/mainship/secure/free_access{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 1
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/shuttle/dropship/minielevator)
+"d" = (
+/obj/machinery/door/airlock/mainship/secure/free_access,
+/obj/machinery/door/poddoor/shutters/transit,
+/turf/open/floor/mainship/stripesquare,
+/area/shuttle/dropship/minielevator)
+"i" = (
+/obj/structure/window/framed/mainship,
+/obj/machinery/door/poddoor/shutters/transit,
+/turf/open/floor/mainship/stripesquare,
+/area/shuttle/dropship/minielevator)
 "t" = (
 /obj/docking_port/mobile/shuttle/elevator,
 /turf/open/shuttle/elevator/grating,
+/area/shuttle/dropship/minielevator)
+"B" = (
+/turf/closed/wall/mainship,
+/area/shuttle/dropship/minielevator)
+"C" = (
+/obj/structure/window/framed/mainship,
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 1
+	},
+/turf/open/floor/mainship/stripesquare,
 /area/shuttle/dropship/minielevator)
 "G" = (
 /obj/machinery/computer/shuttle/shuttle_control/elevator{
@@ -13,19 +42,52 @@
 	},
 /turf/open/shuttle/elevator/grating,
 /area/shuttle/dropship/minielevator)
+"S" = (
+/obj/machinery/status_display,
+/turf/closed/wall/mainship,
+/area/shuttle/dropship/minielevator)
+"T" = (
+/obj/machinery/door/airlock/mainship/maint,
+/obj/machinery/door/poddoor/shutters/transit,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/dropship/minielevator)
+"U" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/shuttle/dropship/minielevator)
 
 (1,1,1) = {"
-a
-a
-a
+U
+i
+d
+i
+B
 "}
 (2,1,1) = {"
+S
+a
+a
+a
+C
+"}
+(3,1,1) = {"
+B
 G
 t
 a
+c
 "}
-(3,1,1) = {"
+(4,1,1) = {"
+B
 a
 a
 a
+C
+"}
+(5,1,1) = {"
+B
+B
+T
+B
+B
 "}

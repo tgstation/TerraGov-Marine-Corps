@@ -372,15 +372,14 @@
 	desc = "An extremely expensive sneaking suit created by an Ninetails Corporation for high risk missions, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher. This uniform allows you to crawl through vents with ALT-CLICK"
 	icon_state = "syndicate"
 	item_state = "syndicate"
-	resistance_flags = UNACIDABLE
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 50, ENERGY = 50, BOMB = 70, BIO = 70, FIRE = 70, ACID = 50)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 40, ENERGY = 40, BOMB = 40, BIO = 50, FIRE = 60, ACID = 40)
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
-	siemens_coefficient = 0
+	siemens_coefficient = -0.9
 	slowdown= -0.5
-	gas_transfer_coefficient = 0.01
-	permeability_coefficient = 0.01
+	gas_transfer_coefficient = -1
+	permeability_coefficient = -1
 
 /obj/item/clothing/under/spec_operative/equipped(mob/user, i_clothing)
 	. = ..()
@@ -402,7 +401,6 @@
 	name = "executive suit"
 	desc = "An extremely expensive looking formal uniform with a short, side split skirt that seems to have toughened, kevlar or maybe another material fabric... Reminds you of john wick's suit."
 	icon_state = "charcoal_suit_skirt"
-	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 60, ENERGY = 70, BOMB = 70, BIO = 70, FIRE = 70, ACID = 50)
 
 /obj/item/clothing/under/techpriest
 	name = "Techpriest Robes"

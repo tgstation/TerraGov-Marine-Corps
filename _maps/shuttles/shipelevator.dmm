@@ -2,51 +2,69 @@
 "a" = (
 /turf/open/shuttle/elevator/grating,
 /area/shuttle/dropship/elevator)
-"A" = (
-/obj/docking_port/mobile/shuttle/shipelevator{
-	port_direction = 1
+"d" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 1
 	},
+/turf/open/shuttle/elevator/grating,
+/area/shuttle/dropship/elevator)
+"i" = (
+/obj/machinery/door/poddoor/shutters/transit,
+/turf/open/shuttle/elevator,
+/area/shuttle/dropship/elevator)
+"j" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 1
+	},
+/turf/open/shuttle/elevator,
+/area/shuttle/dropship/elevator)
+"A" = (
+/obj/docking_port/mobile/shuttle/shipelevator,
 /obj/machinery/computer/shuttle/shuttle_control/shipelevator{
 	pixel_y = -15
 	},
 /turf/closed/wall/mainship/outer/reinforced,
+/area/shuttle/dropship/elevator)
+"F" = (
+/obj/machinery/door/poddoor/shutters/transit,
+/turf/open/shuttle/elevator/grating,
 /area/shuttle/dropship/elevator)
 "Q" = (
 /turf/open/shuttle/elevator,
 /area/shuttle/dropship/elevator)
 
 (1,1,1) = {"
-Q
-Q
-a
-Q
-Q
+j
+i
+F
+i
+j
 "}
 (2,1,1) = {"
-Q
+j
 Q
 a
 Q
-Q
+j
 "}
 (3,1,1) = {"
-a
+d
 a
 A
 a
-a
+d
 "}
 (4,1,1) = {"
-Q
+j
 Q
 a
 Q
-Q
+j
 "}
 (5,1,1) = {"
-Q
-Q
-a
-Q
-Q
+j
+i
+F
+i
+j
 "}
