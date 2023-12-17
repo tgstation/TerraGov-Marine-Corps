@@ -91,3 +91,88 @@
 ///Attempts to add an available item to a loadout
 /datum/individual_stats/proc/attempt_equip_loadout_item(datum/loadout_item/new_item, role)
 	loadouts[role].attempt_equip_loadout_item(new_item)
+
+
+//UI stuff//
+
+/datum/individual_stats/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(ui)
+		return
+	ui = new(user, src, "IndividualStats")
+	ui.open()
+
+/datum/individual_stats/ui_state(mob/user)
+	return GLOB.conscious_state //will need to kill this later probably
+
+/datum/individual_stats/ui_data(mob/user)
+	. = ..()
+	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
+	if(!istype(current_mode))
+		CRASH("campaign_mission loaded without campaign game mode")
+
+	var/list/data = list()
+
+	var/list/perks_data = list()
+	for(var/job in perks)
+		for(var/datum/perk/perk AS in perks[job])
+			var/list/perk_data = list()
+			perk_data["name"] = perk.name
+			perk_data["job"] = job
+			perk_data["desc"] = perk.desc
+			perk_data["cost"] = perk.unlock_cost
+			perk_data["icon"] = perk.ui_icon
+			perks_data += list(perk_data)
+	data["perks_data"] = perks_data
+
+	data["currency"] = currency
+
+/datum/individual_stats/ui_static_data(mob/user)
+	. = ..()
+	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
+	if(!istype(current_mode))
+		CRASH("campaign_mission loaded without campaign game mode")
+
+	var/list/data = list()
+
+	var/ui_theme
+	switch(faction)
+		if(FACTION_SOM)
+			ui_theme = "som"
+		else
+			ui_theme = "ntos"
+	data["ui_theme"] = ui_theme
+
+	data["faction"] = faction
+
+	//replace below
+	data["icons"] = GLOB.campaign_icons
+	data["mission_icons"] = GLOB.campaign_mission_icons
+
+	return data
+
+/datum/individual_stats/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+
+	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
+	if(!istype(current_mode))
+		CRASH("campaign_mission loaded without campaign game mode")
+
+	var/mob/living/user = usr
+
+	switch(action) //insert shit here
+		if("set_attrition_points")
+			return TRUE
+
+///Opens up the players campaign status UI
+/mob/living/proc/open_individual_stats_ui()
+	set name = "Campaign Status"
+	set desc = "Check the your individual stats and loadout."
+	set category = "IC"
+
+	var/datum/individual_stats/your_faction = GLOB.faction_stats_datums[faction]
+	if(!your_faction)
+		return
+	your_faction.interact(src)

@@ -15,6 +15,8 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	var/name = "base perk name"
 	///Brief description of the perk
 	var/desc = "desc here"
+	///UI icon for this perk
+	var/ui_icon
 	///Cost to purchase this perk
 	var/unlock_cost = 0
 	///Job types that this perk is available to. no list implies this works for any job
