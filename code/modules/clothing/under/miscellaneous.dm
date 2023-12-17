@@ -372,9 +372,9 @@
 	desc = "An extremely expensive sneaking suit created by an Ninetails Corporation for high risk missions, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher. This uniform allows you to crawl through vents with ALT-CLICK"
 	icon_state = "syndicate"
 	item_state = "syndicate"
-	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 40, ENERGY = 40, BOMB = 40, BIO = 50, FIRE = 60, ACID = 40)
-	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 20, ENERGY = 20, BOMB = 40, BIO = 50, FIRE = 50, ACID = 30)
+	flags_cold_protection = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = -0.9
 	slowdown= -0.5
