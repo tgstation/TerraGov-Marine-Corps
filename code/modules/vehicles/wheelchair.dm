@@ -90,7 +90,7 @@
 
 /obj/vehicle/ridden/wheelchair/weaponized/obj_destruction(damage_flag)
 	weapon.Destroy()
-	. = ..()
+	return ..()
 
 //The wheelchair speed is actually on the component, delay_multiplier does nothing
 /obj/vehicle/ridden/wheelchair/weaponized/make_ridable()
@@ -122,7 +122,7 @@
 	if(is_occupant(user) && !user.is_holding(weapon))
 		user.put_in_active_hand(weapon)
 	else
-		. = ..()
+		..()
 
 //If the user drags the wheelchair to themselves, unload the gun
 /obj/vehicle/ridden/wheelchair/weaponized/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)

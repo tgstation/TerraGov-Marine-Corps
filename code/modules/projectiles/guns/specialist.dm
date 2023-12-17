@@ -477,6 +477,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	//A reference to whatever this gun is mounted to for dropped()
 	var/mount
 
+/obj/item/weapon/gun/minigun_wheelchair/Destroy()
+	mount = null
+	return ..()
+
 //This will account for cases like if the user's hand is cut off, return it to the object it was mounted on
 /obj/item/weapon/gun/minigun_wheelchair/dropped(mob/user)
 	. = ..()
