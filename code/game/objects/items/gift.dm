@@ -74,7 +74,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	. = ..()
 	if(present_receiver)
 		. += "This present is addressed to [present_receiver_name]."
-	if(HAS_TRAIT(M, TRAIT_SANTA_CLAUS) || HAS_TRAIT(M, TRAIT_CHRISTMAS_ELF)) //santa can reveal the owner of a present just by looking at it
+	if(HAS_TRAIT(user, TRAIT_SANTA_CLAUS) || HAS_TRAIT(user, TRAIT_CHRISTMAS_ELF)) //santa can reveal the owner of a present just by looking at it
 		if(present_receiver == null && !freepresent)
 			get_recipient()
 
