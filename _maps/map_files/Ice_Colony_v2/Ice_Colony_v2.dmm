@@ -2927,6 +2927,13 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
+"aua" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/command)
 "auc" = (
 /obj/structure/closet/secure_closet/personal,
 /turf/open/floor/wood,
@@ -16727,6 +16734,10 @@
 "bUi" = (
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/storage)
+"bUj" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/central)
 "bUk" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -18609,6 +18620,10 @@
 /obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/surface/excavation/storage)
+"dlO" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/valley/southwest)
 "dmv" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/west)
@@ -18904,13 +18919,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
-"dKp" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/command)
 "dKq" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /obj/structure/cable,
@@ -19433,10 +19441,6 @@
 	dir = 1
 	},
 /area/ice_colony/underground/command/center)
-"ezU" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth/darkfrostwall,
-/area/space)
 "eAl" = (
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
@@ -19706,8 +19710,8 @@
 /area/ice_colony/underground/security/armory)
 "eWT" = (
 /obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/ice_colony/exterior/surface/clearing/north)
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/hallway/north_west/garbledradio)
 "eXk" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/junction/flipped{
@@ -21024,6 +21028,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
+"gOB" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/ice_colony/exterior/surface/valley/south/excavation)
 "gOC" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -21347,7 +21355,7 @@
 	},
 /area/ice_colony/surface/storage_unit/power)
 "hqp" = (
-/obj/machinery/miner/damaged/platinum,
+/obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "hqr" = (
@@ -21564,9 +21572,6 @@
 /obj/effect/spawner/random/engineering/shovel,
 /turf/open/floor/plating,
 /area/ice_colony/surface/research)
-"hHB" = (
-/turf/closed/mineral/smooth/darkfrostwall,
-/area/space)
 "hHV" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -21677,6 +21682,10 @@
 "hRD" = (
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/ice_colony/underground/medical/lobby/garbledradio)
+"hTb" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/engineering/garbledradio)
 "hVt" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -22042,6 +22051,10 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/beta)
+"iBw" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/ice_colony/exterior/surface/clearing/south)
 "iBD" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/weed_node,
@@ -23384,6 +23397,10 @@
 	dir = 8
 	},
 /area/ice_colony/underground/requesition)
+"kqC" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/valley/south)
 "kqN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -24955,6 +24972,10 @@
 /obj/item/lightstick/anchored,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/landing_pad2)
+"mxl" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/ice_colony/exterior/surface/clearing/south)
 "mxE" = (
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/landing_pad_external)
@@ -25043,6 +25064,10 @@
 /obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment/garbledradio)
+"mFk" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/east)
 "mFq" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -25246,6 +25271,10 @@
 	dir = 9
 	},
 /area/ice_colony/exterior/surface/taxiway)
+"mTO" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/ice_colony/exterior/surface/clearing/north)
 "mUY" = (
 /obj/structure/rack,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25688,6 +25717,10 @@
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/medical/hallway)
+"nyt" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/clearing/north)
 "nyC" = (
 /obj/effect/spawner/random/misc/structure/closet/tool,
 /turf/open/floor/tile/dark/brown2{
@@ -25949,6 +25982,10 @@
 	dir = 6
 	},
 /area/ice_colony/surface/command)
+"nRj" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/clearing/pass)
 "nRL" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -26792,6 +26829,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hangar)
+"pac" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating,
+/area/ice_colony/exterior/underground/caves/open)
 "pax" = (
 /obj/effect/ai_node,
 /obj/machinery/landinglight/lz2{
@@ -26942,6 +26983,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
+"pnD" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating,
+/area/ice_colony/underground/maintenance/north)
 "poW" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -27084,7 +27129,9 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
 "pCL" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/machinery/atmospherics/components/unary/cryo_cell{
+	dir = 1
+	},
 /turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/treatment)
 "pDQ" = (
@@ -27202,6 +27249,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research)
+"pKn" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves)
 "pLi" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/ai_node,
@@ -27304,10 +27355,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/command/pv1)
-"pSk" = (
-/obj/effect/landmark/weed_node,
-/turf/closed/mineral/smooth/darkfrostwall,
-/area/space)
 "pTk" = (
 /obj/structure/cable,
 /obj/structure/sign/greencross{
@@ -27686,6 +27733,10 @@
 	dir = 8
 	},
 /area/ice_colony/surface/research)
+"qun" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/requesition)
 "quF" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -28080,6 +28131,10 @@
 	dir = 5
 	},
 /area/ice_colony/underground/hallway/north_west/garbledradio)
+"ram" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/south)
 "raD" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/decal/cleanable/blood/gibs,
@@ -29261,6 +29316,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
+"stD" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open/garbledradio)
 "stS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
@@ -32114,10 +32173,6 @@
 "wmD" = (
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/west)
-"wmF" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/smooth/darkfrostwall,
-/area/space)
 "wmY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -33529,6 +33584,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/hallway/south_east)
+"xRR" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/ice_colony/exterior/surface/valley/west)
 "xSc" = (
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/exterior/surface/landing_pad2)
@@ -37158,7 +37217,7 @@ xJX
 qbo
 qbo
 qbo
-qbo
+stD
 qbo
 qbo
 qbo
@@ -38682,7 +38741,7 @@ qbo
 omc
 qbo
 qbo
-qbo
+stD
 wpf
 qbo
 qbo
@@ -39138,7 +39197,7 @@ uHw
 ePo
 wIE
 qIQ
-wIE
+pac
 wIE
 ePo
 ePo
@@ -39713,7 +39772,7 @@ mpQ
 mec
 abu
 mpQ
-mpQ
+qun
 mpQ
 qaE
 mpQ
@@ -42970,7 +43029,7 @@ dSq
 dSq
 dSq
 dSq
-hHB
+dSq
 aaa
 "}
 (44,1,1) = {"
@@ -43110,7 +43169,7 @@ kya
 bhj
 bgH
 bgH
-bgH
+pnD
 bgH
 bgH
 bgH
@@ -43182,7 +43241,7 @@ bLk
 bLk
 dSq
 dSq
-hHB
+dSq
 aaa
 "}
 (45,1,1) = {"
@@ -43394,7 +43453,7 @@ bPz
 bLk
 dSq
 dSq
-hHB
+dSq
 aaa
 "}
 (46,1,1) = {"
@@ -43606,7 +43665,7 @@ bPz
 bLk
 dSq
 dSq
-hHB
+dSq
 aaa
 "}
 (47,1,1) = {"
@@ -43818,7 +43877,7 @@ bPA
 bLk
 dSq
 dSq
-hHB
+dSq
 aaa
 "}
 (48,1,1) = {"
@@ -44030,7 +44089,7 @@ bPz
 bLk
 dSq
 dSq
-hHB
+dSq
 aaa
 "}
 (49,1,1) = {"
@@ -44242,7 +44301,7 @@ bPC
 bLk
 bQf
 bQf
-hHB
+dSq
 aaa
 "}
 (50,1,1) = {"
@@ -44454,7 +44513,7 @@ xFb
 bNt
 bQk
 bQk
-hHB
+dSq
 aaa
 "}
 (51,1,1) = {"
@@ -44666,7 +44725,7 @@ bPD
 bNt
 bPg
 bPg
-hHB
+dSq
 aaa
 "}
 (52,1,1) = {"
@@ -44878,7 +44937,7 @@ bPI
 bNt
 eSd
 bPg
-hHB
+dSq
 aaa
 "}
 (53,1,1) = {"
@@ -44963,7 +45022,7 @@ uqz
 uqz
 uqz
 uqz
-uqz
+xRR
 uqz
 uqz
 uqz
@@ -45090,7 +45149,7 @@ mGw
 bPZ
 vGO
 bPg
-hHB
+dSq
 aaa
 "}
 (54,1,1) = {"
@@ -45302,7 +45361,7 @@ bPJ
 bNt
 bQm
 bPg
-hHB
+dSq
 aaa
 "}
 (55,1,1) = {"
@@ -45514,7 +45573,7 @@ bNt
 bNt
 vgL
 eSd
-hHB
+dSq
 aaa
 "}
 (56,1,1) = {"
@@ -45726,7 +45785,7 @@ bPK
 bNv
 gJD
 bPg
-hHB
+dSq
 aaa
 "}
 (57,1,1) = {"
@@ -45938,7 +45997,7 @@ bKq
 bNv
 vgL
 eSd
-hHB
+dSq
 aaa
 "}
 (58,1,1) = {"
@@ -46150,7 +46209,7 @@ bPN
 bNv
 vgL
 bPg
-hHB
+dSq
 aaa
 "}
 (59,1,1) = {"
@@ -46362,7 +46421,7 @@ bPO
 bNv
 vgL
 eSd
-hHB
+dSq
 aaa
 "}
 (60,1,1) = {"
@@ -46574,7 +46633,7 @@ bPP
 bNv
 vgL
 bPg
-hHB
+dSq
 aaa
 "}
 (61,1,1) = {"
@@ -46734,7 +46793,7 @@ uYv
 uYv
 cIO
 pCj
-pCj
+eWT
 pCj
 loW
 pCj
@@ -46786,7 +46845,7 @@ mEU
 bQa
 qfM
 bPg
-hHB
+dSq
 aaa
 "}
 (62,1,1) = {"
@@ -46998,7 +47057,7 @@ bKL
 bNv
 bQm
 bPg
-hHB
+dSq
 aaa
 "}
 (63,1,1) = {"
@@ -47210,7 +47269,7 @@ eqW
 bNv
 qee
 eSd
-hHB
+dSq
 aaa
 "}
 (64,1,1) = {"
@@ -47422,7 +47481,7 @@ bPS
 bNv
 rvr
 bPg
-hHB
+dSq
 aaa
 "}
 (65,1,1) = {"
@@ -47634,7 +47693,7 @@ bNv
 bNv
 sXy
 owj
-hHB
+dSq
 aaa
 "}
 (66,1,1) = {"
@@ -47846,7 +47905,7 @@ cqA
 cqA
 iXO
 wWT
-wmF
+tvD
 lju
 "}
 (67,1,1) = {"
@@ -48058,7 +48117,7 @@ bOj
 bOj
 rys
 fnv
-hHB
+dSq
 aaa
 "}
 (68,1,1) = {"
@@ -48270,7 +48329,7 @@ wOy
 wOy
 jcL
 duU
-ezU
+snG
 iVh
 "}
 (69,1,1) = {"
@@ -48482,7 +48541,7 @@ wWA
 bOk
 iXO
 bPg
-hHB
+dSq
 aaa
 "}
 (70,1,1) = {"
@@ -48694,7 +48753,7 @@ wWA
 bOk
 rvr
 bPg
-hHB
+dSq
 aaa
 "}
 (71,1,1) = {"
@@ -48874,7 +48933,7 @@ nqu
 qGt
 qGt
 qGt
-qGt
+bUj
 oSG
 nuV
 qGt
@@ -48906,7 +48965,7 @@ wWA
 bOk
 rvr
 eSd
-hHB
+dSq
 aaa
 "}
 (72,1,1) = {"
@@ -48974,7 +49033,7 @@ nsF
 nsF
 hCU
 nsF
-nsF
+nyt
 ipS
 kmY
 wGw
@@ -49013,7 +49072,7 @@ reX
 kNP
 sHc
 bgR
-vlr
+dlO
 vlr
 vlr
 vlr
@@ -49041,7 +49100,7 @@ xJX
 hKV
 vCr
 eAl
-eAl
+kqC
 bVW
 eAl
 eAl
@@ -49118,7 +49177,7 @@ wWA
 bOk
 rvr
 bPg
-hHB
+dSq
 aaa
 "}
 (73,1,1) = {"
@@ -49330,7 +49389,7 @@ wWA
 bOk
 rvr
 fnv
-hHB
+dSq
 aaa
 "}
 (74,1,1) = {"
@@ -49542,7 +49601,7 @@ wWA
 fXU
 jHT
 fnv
-hHB
+dSq
 aaa
 "}
 (75,1,1) = {"
@@ -49754,7 +49813,7 @@ wWA
 fXU
 iXO
 wWT
-hHB
+dSq
 aaa
 "}
 (76,1,1) = {"
@@ -49959,14 +50018,14 @@ bqx
 boJ
 rXg
 wWA
-fnv
+ram
 wWA
 wWA
 wWA
 jeb
 iXO
 fnv
-hHB
+dSq
 aaa
 "}
 (77,1,1) = {"
@@ -50178,7 +50237,7 @@ wWA
 jeb
 rvr
 fnv
-hHB
+dSq
 aaa
 "}
 (78,1,1) = {"
@@ -50390,7 +50449,7 @@ pty
 tMO
 lup
 ffZ
-ezU
+snG
 iVh
 "}
 (79,1,1) = {"
@@ -50602,7 +50661,7 @@ fVL
 fnv
 rvr
 bPg
-hHB
+dSq
 aaa
 "}
 (80,1,1) = {"
@@ -50814,7 +50873,7 @@ bNA
 owj
 ibd
 eSd
-hHB
+dSq
 aaa
 "}
 (81,1,1) = {"
@@ -51026,7 +51085,7 @@ bNA
 fnv
 iXO
 cqA
-wmF
+tvD
 aaa
 "}
 (82,1,1) = {"
@@ -51238,7 +51297,7 @@ bNA
 fnv
 iXO
 fnv
-hHB
+dSq
 lju
 "}
 (83,1,1) = {"
@@ -51450,7 +51509,7 @@ bNA
 fnv
 iXO
 fnv
-hHB
+dSq
 aaa
 "}
 (84,1,1) = {"
@@ -51662,7 +51721,7 @@ bNA
 bOk
 jHT
 wWT
-hHB
+dSq
 aaa
 "}
 (85,1,1) = {"
@@ -51807,7 +51866,7 @@ bhv
 bci
 ctm
 bbJ
-bbJ
+gOB
 fEi
 bhj
 bgH
@@ -51874,7 +51933,7 @@ bPT
 mYa
 bQq
 bPg
-hHB
+dSq
 aaa
 "}
 (86,1,1) = {"
@@ -52086,7 +52145,7 @@ bNA
 bRs
 bPg
 bPg
-hHB
+dSq
 aaa
 "}
 (87,1,1) = {"
@@ -52298,7 +52357,7 @@ bNA
 kPn
 bQr
 bQr
-hHB
+dSq
 aaa
 "}
 (88,1,1) = {"
@@ -52510,7 +52569,7 @@ bNA
 kPn
 eSd
 bPg
-hHB
+dSq
 aaa
 "}
 (89,1,1) = {"
@@ -52722,7 +52781,7 @@ bNA
 bQb
 bQb
 bLj
-hHB
+dSq
 aaa
 "}
 (90,1,1) = {"
@@ -52934,7 +52993,7 @@ brn
 brn
 bsW
 bLj
-hHB
+dSq
 aaa
 "}
 (91,1,1) = {"
@@ -53146,7 +53205,7 @@ uPy
 uPy
 uPy
 bLj
-hHB
+dSq
 aaa
 "}
 (92,1,1) = {"
@@ -53358,7 +53417,7 @@ dHu
 kme
 uPy
 bLj
-hHB
+dSq
 aaa
 "}
 (93,1,1) = {"
@@ -53570,7 +53629,7 @@ bsv
 bsv
 btb
 bLj
-hHB
+dSq
 aaa
 "}
 (94,1,1) = {"
@@ -53782,7 +53841,7 @@ bCg
 bCg
 bCg
 bQw
-hHB
+dSq
 aaa
 "}
 (95,1,1) = {"
@@ -53994,7 +54053,7 @@ exo
 ehJ
 exo
 bQw
-hHB
+dSq
 aaa
 "}
 (96,1,1) = {"
@@ -54206,7 +54265,7 @@ tub
 nzG
 bRT
 bQw
-hHB
+dSq
 aaa
 "}
 (97,1,1) = {"
@@ -54418,7 +54477,7 @@ bPU
 bKR
 bQs
 bQw
-hHB
+dSq
 aaa
 "}
 (98,1,1) = {"
@@ -54630,7 +54689,7 @@ bCg
 bCg
 bCg
 bQw
-hHB
+dSq
 aaa
 "}
 (99,1,1) = {"
@@ -54749,7 +54808,7 @@ aKC
 aKC
 vPZ
 aXE
-aKC
+mxl
 aKC
 aKC
 exj
@@ -54842,7 +54901,7 @@ gOA
 vkt
 qsq
 bQw
-hHB
+dSq
 aaa
 "}
 (100,1,1) = {"
@@ -55054,8 +55113,8 @@ oBz
 oBz
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (101,1,1) = {"
 aaa
@@ -55220,7 +55279,7 @@ bZv
 njX
 nBW
 nBW
-nBW
+hTb
 glC
 hfh
 bJu
@@ -55266,8 +55325,8 @@ bTZ
 bTN
 gOA
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (102,1,1) = {"
 aaa
@@ -55478,8 +55537,8 @@ bOV
 hwO
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (103,1,1) = {"
 aaa
@@ -55690,8 +55749,8 @@ bOV
 hwO
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (104,1,1) = {"
 aaa
@@ -55902,8 +55961,8 @@ bOV
 efV
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (105,1,1) = {"
 aaa
@@ -55992,7 +56051,7 @@ vVu
 aob
 oNA
 fcb
-wTF
+nRj
 wTF
 wTF
 gwW
@@ -56114,8 +56173,8 @@ bOV
 hwO
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (106,1,1) = {"
 aaa
@@ -56326,8 +56385,8 @@ bOV
 hwO
 gOA
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (107,1,1) = {"
 aaa
@@ -56538,8 +56597,8 @@ bOV
 hwO
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (108,1,1) = {"
 aaa
@@ -56750,8 +56809,8 @@ bOV
 uzL
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (109,1,1) = {"
 aaa
@@ -56962,8 +57021,8 @@ bOX
 hwO
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (110,1,1) = {"
 aaa
@@ -57174,8 +57233,8 @@ bOX
 hwO
 gOA
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (111,1,1) = {"
 aaa
@@ -57386,8 +57445,8 @@ bOX
 hwO
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (112,1,1) = {"
 aaa
@@ -57598,8 +57657,8 @@ bOX
 efV
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (113,1,1) = {"
 aaa
@@ -57810,8 +57869,8 @@ bOX
 hwO
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (114,1,1) = {"
 aaa
@@ -57848,7 +57907,7 @@ xJX
 mqj
 mqj
 mqj
-mqj
+jPw
 mqj
 mqj
 mqj
@@ -58022,8 +58081,8 @@ bOX
 hwO
 gOA
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (115,1,1) = {"
 aaa
@@ -58234,8 +58293,8 @@ bOX
 hwO
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (116,1,1) = {"
 aaa
@@ -58446,8 +58505,8 @@ bOX
 hwO
 gOA
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (117,1,1) = {"
 aaa
@@ -58658,8 +58717,8 @@ bOX
 uzL
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (118,1,1) = {"
 aaa
@@ -58870,8 +58929,8 @@ bOX
 hwO
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (119,1,1) = {"
 aaa
@@ -59082,8 +59141,8 @@ bCg
 hwO
 gOA
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (120,1,1) = {"
 aaa
@@ -59294,8 +59353,8 @@ bCg
 hwO
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (121,1,1) = {"
 aaa
@@ -59458,7 +59517,7 @@ cTu
 njX
 uSg
 bwK
-bwK
+pKn
 bwK
 bwK
 uSg
@@ -59506,8 +59565,8 @@ bCg
 cak
 gOA
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (122,1,1) = {"
 aaa
@@ -59567,7 +59626,7 @@ nsF
 nsF
 nsF
 wkf
-wkf
+mTO
 wkf
 wkf
 hlm
@@ -59718,8 +59777,8 @@ bCg
 hwO
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (123,1,1) = {"
 aaa
@@ -59908,7 +59967,7 @@ uSg
 hKV
 bFH
 bFH
-bFH
+mFk
 bFH
 bFH
 bFH
@@ -59930,8 +59989,8 @@ bCg
 hwO
 gOA
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (124,1,1) = {"
 aaa
@@ -60034,7 +60093,7 @@ aKC
 exj
 exj
 exj
-exj
+iBw
 aKC
 aKC
 hhd
@@ -60142,8 +60201,8 @@ bCg
 uzL
 gOA
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (125,1,1) = {"
 aaa
@@ -60354,8 +60413,8 @@ bCg
 hwO
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (126,1,1) = {"
 aaa
@@ -60566,8 +60625,8 @@ bCg
 baK
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (127,1,1) = {"
 aaa
@@ -60778,8 +60837,8 @@ bCg
 baM
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (128,1,1) = {"
 aaa
@@ -60990,8 +61049,8 @@ bSJ
 qJg
 gOA
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (129,1,1) = {"
 aaa
@@ -61202,8 +61261,8 @@ rIK
 bST
 oBz
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (130,1,1) = {"
 aaa
@@ -61414,8 +61473,8 @@ lKo
 lKo
 lKo
 bQw
-hHB
-hHB
+dSq
+aaa
 "}
 (131,1,1) = {"
 aaa
@@ -61626,8 +61685,8 @@ ePo
 ePo
 ePo
 ePo
-hHB
-hHB
+dSq
+aaa
 "}
 (132,1,1) = {"
 aaa
@@ -61838,8 +61897,8 @@ ePo
 oKP
 ePo
 ePo
-hHB
-hHB
+dSq
+aaa
 "}
 (133,1,1) = {"
 aaa
@@ -62011,7 +62070,7 @@ qbo
 qbo
 qbo
 qbo
-qbo
+stD
 ePo
 ePo
 ePo
@@ -62050,8 +62109,8 @@ emN
 emN
 nGZ
 emN
-hHB
-hHB
+snG
+aaa
 "}
 (134,1,1) = {"
 aaa
@@ -62262,8 +62321,8 @@ ePo
 ePo
 ePo
 hKV
-hHB
-hHB
+dSq
+aaa
 "}
 (135,1,1) = {"
 aaa
@@ -62474,8 +62533,8 @@ ePo
 ePo
 hKV
 ePo
-hHB
-hHB
+dSq
+aaa
 "}
 (136,1,1) = {"
 aaa
@@ -62686,8 +62745,8 @@ ePo
 ePo
 vYE
 ePo
-pSk
-hHB
+pPK
+aaa
 "}
 (137,1,1) = {"
 aaa
@@ -62898,8 +62957,8 @@ iBD
 ePo
 gLN
 ePo
-hHB
-hHB
+dSq
+aaa
 "}
 (138,1,1) = {"
 aaa
@@ -63110,8 +63169,8 @@ ePo
 ePo
 ePo
 ePo
-hHB
-hHB
+dSq
+aaa
 "}
 (139,1,1) = {"
 aaa
@@ -63322,8 +63381,8 @@ ePo
 vYE
 ePo
 uSg
-hHB
-hHB
+dSq
+aaa
 "}
 (140,1,1) = {"
 aaa
@@ -63534,8 +63593,8 @@ ePo
 ePo
 ePo
 uSg
-hHB
-hHB
+dSq
+aaa
 "}
 (141,1,1) = {"
 aaa
@@ -63587,7 +63646,7 @@ atV
 atV
 atV
 atV
-dKp
+aua
 auy
 atV
 atV
@@ -63617,7 +63676,7 @@ azE
 oNA
 wTF
 wTF
-wTF
+nRj
 wTF
 bkz
 oNA
@@ -63746,8 +63805,8 @@ ePo
 uQB
 uSg
 uQB
-hHB
-hHB
+dSq
+aaa
 "}
 (142,1,1) = {"
 aaa
@@ -63958,8 +64017,8 @@ psJ
 xxV
 tbJ
 xxV
-hHB
-hHB
+snG
+aaa
 "}
 (143,1,1) = {"
 aaa
@@ -64011,7 +64070,7 @@ auX
 sdW
 iPL
 haC
-dKp
+aua
 iPL
 haC
 apL
@@ -64170,8 +64229,8 @@ ePo
 uQB
 uSg
 uQB
-hHB
-hHB
+dSq
+aaa
 "}
 (144,1,1) = {"
 aaa
@@ -64381,9 +64440,9 @@ igm
 igm
 uQB
 uSg
-bwK
-hHB
-hHB
+uQB
+dSq
+aaa
 "}
 (145,1,1) = {"
 aaa
@@ -64433,7 +64492,7 @@ cXX
 mId
 auX
 odY
-dKp
+aua
 mId
 auX
 auS
@@ -64593,9 +64652,9 @@ oKP
 ePo
 ePo
 ePo
-bwK
-hHB
-hHB
+uQB
+dSq
+aaa
 "}
 (146,1,1) = {"
 aaa
@@ -64645,7 +64704,7 @@ jos
 asd
 auX
 pDQ
-dKp
+aua
 apL
 uoG
 cIs
@@ -64805,8 +64864,8 @@ ePo
 ePo
 ePo
 ePo
-bwK
-hHB
+uQB
+dSq
 aaa
 "}
 (147,1,1) = {"
@@ -65018,7 +65077,7 @@ ePo
 ePo
 ePo
 uQB
-hHB
+dSq
 aaa
 "}
 (148,1,1) = {"
@@ -65230,7 +65289,7 @@ vYE
 ePo
 ePo
 uQB
-hHB
+dSq
 aaa
 "}
 (149,1,1) = {"
@@ -65442,7 +65501,7 @@ ePo
 ePo
 ePo
 uQB
-hHB
+dSq
 aaa
 "}
 (150,1,1) = {"
@@ -65489,7 +65548,7 @@ aug
 aqw
 haC
 haC
-dKp
+aua
 ltl
 uLL
 kWN
@@ -65654,7 +65713,7 @@ ePo
 ePo
 ePo
 uQB
-hHB
+dSq
 aaa
 "}
 (151,1,1) = {"
@@ -65701,7 +65760,7 @@ aJe
 nZl
 aqC
 haC
-dKp
+aua
 haC
 haC
 haC
@@ -65866,7 +65925,7 @@ ePo
 ePo
 uQB
 uQB
-hHB
+dSq
 aaa
 "}
 (152,1,1) = {"
@@ -66078,7 +66137,7 @@ ePo
 ePo
 uQB
 uQB
-hHB
+dSq
 aaa
 "}
 (153,1,1) = {"
@@ -66290,7 +66349,7 @@ ePo
 ePo
 uQB
 uQB
-hHB
+dSq
 aaa
 "}
 (154,1,1) = {"
@@ -66502,7 +66561,7 @@ ePo
 ePo
 uQB
 uQB
-hHB
+dSq
 aaa
 "}
 (155,1,1) = {"
@@ -66714,7 +66773,7 @@ ePo
 uQB
 uQB
 uQB
-hHB
+dSq
 aaa
 "}
 (156,1,1) = {"
@@ -66926,7 +66985,7 @@ ePo
 uQB
 uQB
 uQB
-hHB
+dSq
 aaa
 "}
 (157,1,1) = {"
@@ -67138,7 +67197,7 @@ uQB
 uQB
 uQB
 uQB
-hHB
+dSq
 aaa
 "}
 (158,1,1) = {"
@@ -67350,7 +67409,7 @@ uQB
 uQB
 uQB
 uQB
-hHB
+dSq
 aaa
 "}
 (159,1,1) = {"
@@ -67382,7 +67441,7 @@ wkf
 xCs
 wkf
 mqj
-eWT
+jPw
 wkf
 wkf
 xCs
@@ -67562,7 +67621,7 @@ uQB
 uQB
 uQB
 uQB
-hHB
+dSq
 aaa
 "}
 (160,1,1) = {"
@@ -67774,7 +67833,7 @@ uQB
 uQB
 uQB
 uQB
-hHB
+dSq
 aaa
 "}
 (161,1,1) = {"
@@ -67986,7 +68045,7 @@ xxV
 xxV
 xxV
 uQB
-hHB
+dSq
 aaa
 "}
 (162,1,1) = {"
@@ -68198,7 +68257,7 @@ uQB
 uQB
 xxV
 uQB
-hHB
+dSq
 aaa
 "}
 (163,1,1) = {"
@@ -68410,7 +68469,7 @@ uQB
 uQB
 xxV
 uQB
-hHB
+dSq
 aaa
 "}
 (164,1,1) = {"
@@ -68622,7 +68681,7 @@ ePo
 uQB
 xxV
 uQB
-hHB
+dSq
 aaa
 "}
 (165,1,1) = {"
@@ -68834,7 +68893,7 @@ ePo
 uQB
 xxV
 uQB
-hHB
+dSq
 aaa
 "}
 (166,1,1) = {"
@@ -69046,7 +69105,7 @@ ePo
 uyG
 xxV
 uQB
-hHB
+dSq
 aaa
 "}
 (167,1,1) = {"
@@ -69258,7 +69317,7 @@ ePo
 ePo
 xxV
 uQB
-hHB
+dSq
 aaa
 "}
 (168,1,1) = {"
@@ -69470,7 +69529,7 @@ vYE
 ePo
 xxV
 uQB
-hHB
+dSq
 aaa
 "}
 (169,1,1) = {"
@@ -69682,7 +69741,7 @@ ePo
 ePo
 xxV
 uQB
-hHB
+dSq
 aaa
 "}
 (170,1,1) = {"
@@ -69894,7 +69953,7 @@ ePo
 vBp
 xxV
 uQB
-hHB
+dSq
 aaa
 "}
 (171,1,1) = {"
@@ -70106,7 +70165,7 @@ xxV
 xxV
 xxV
 uQB
-hHB
+dSq
 aaa
 "}
 (172,1,1) = {"
@@ -70196,7 +70255,7 @@ fIR
 uXx
 xnK
 uUO
-xnK
+hqp
 xnK
 sZv
 sZv
@@ -70318,7 +70377,7 @@ uQB
 uQB
 uQB
 uQB
-hHB
+dSq
 aaa
 "}
 (173,1,1) = {"
@@ -70530,7 +70589,7 @@ dSq
 dSq
 dSq
 dSq
-hHB
+dSq
 aaa
 "}
 (174,1,1) = {"
