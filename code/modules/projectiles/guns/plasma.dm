@@ -16,7 +16,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle
 	name = "\improper PL-38 plasma rifle"
-	desc = "Introducing the PL-38 Plasma Rifle, a versatile weapon for any combat situation. With its sleek design and advanced features, the PL-38 is the perfect addition to any soldier's arsenal. This powerful plasma rifle is built for speed and accuracy, allowing you to take out your enemies with ease. Its advanced targeting system and high-powered scope make it easy to acquire and track targets, while its marksman and standard firemodes give you the flexibility to adapt to any situation. Constructed from high-quality materials, the PL-38 is built to withstand even the toughest of combat environments. Whether you're on the front lines of battle or engaging in covert operations, the PL-38 Plasma Rifle is the weapon of choice for any soldier looking for a reliable and powerful plasma rifle."
+	desc = "The PL-96 Plasma Cannon is an experimental addition to the TerraGov Marine Corps arsenal, rumored to be the child of some back door contract deals, it is a versatile weapon if you mind the rather cheap cooling systems. It has a normal beam mode similar to a rifle, a hipower mode that easily pierces through soft targets, and a blast mode that will easily melt through the armor of anything hit by it."
 	icon_state = "plasma_rifle"
 	item_state = "plasma_rifle"
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -31,8 +31,8 @@
 	accuracy_mult = 1.1
 	scatter = -2
 
-	fire_delay = 0.15 SECONDS
-	heat_per_fire = 3
+	fire_delay = 0.2 SECONDS
+	heat_per_fire = 3.3
 	cool_amount = 2.5
 	rounds_per_shot = 10
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
@@ -94,7 +94,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon
 	name = "\improper PL-96 plasma cannon"
-	desc = "The PL-96 Plasma Cannon is an experimental addition to the TerraGov Marine Corps arsenal, rumored to be the child of some back door planning, it is an increibly devastating weapon to behold if you mind the incredibly poor cooling mechanisms and unwieldiness of the whole package. It has a normal beam mode similar to a machinegun, a fire glob mode that leaves devastating flames in the aftermath, and a Charge mode nicknamed the 'Femur breaker' due to its incredible mobility and armor hampering upon hitting a target."
+	desc = "The PL-96 Plasma Cannon is an experimental addition to the TerraGov Marine Corps arsenal, rumored to be the child of some back door contract deals, is an absolutely increibly devastating weapon to behold... if you mind the incredibly poor cooling mechanisms and unwieldiness of the whole package. It has a normal beam mode similar to a machinegun, a fire glob mode that leaves devastating flames in the aftermath, and a Charge mode nicknamed the 'Femur breaker' due to its incredible armor shattering potiential upon hitting a target."
 	icon_state = "plasma_cannon"
 	item_state = "plasma_cannon"
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -157,8 +157,8 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 1 SECONDS
 	heat_per_fire = 50
-	rounds_per_shot = 200
-	windup_delay = 2 SECONDS
+	rounds_per_shot = 150
+	windup_delay = 1 SECONDS
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_fire"
 

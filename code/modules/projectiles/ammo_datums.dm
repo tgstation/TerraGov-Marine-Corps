@@ -3267,7 +3267,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 10
 	damage_falloff = 1
 	shell_speed = 4
-	var/shatter_duration = 5 SECONDS
+	var/shatter_duration = 15 SECONDS
 
 /datum/ammo/energy/plasma/cannon_heavy/on_hit_mob(mob/M, obj/projectile/proj)
 	if(!isliving(M))
@@ -3278,6 +3278,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/plasma/cannon_glob
 	name = "Plasma Glob"
+	damage = 10
+	penetration = 100
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ENERGY|AMMO_INCENDIARY
 	shell_speed = 2
 	icon_state = "plasma_big"
