@@ -149,3 +149,7 @@
   ivanmixo:
   - qol: Rebound unique action to C by default (instead of space)
   - rscdel: Pizza doesn't net cas points anymore
+2023-12-18:
+  ivanmixo:
+  - code_imp: Fix more 515 regex fuckup
+  - bugfix: Miners, gens and other stuff should actually show up on minimap now
