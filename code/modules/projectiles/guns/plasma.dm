@@ -69,7 +69,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 0.2 SECONDS
 	heat_per_fire = 3.3
-	rounds_per_shot = 10
+	rounds_per_shot = 2.5
 	radial_icon_state = "plasma_weak"
 
 /datum/lasrifle/base/plasma_rifle_mode/rifle_marksman
@@ -79,7 +79,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 0.25 SECONDS
 	heat_per_fire = 10
-	rounds_per_shot = 20
+	rounds_per_shot = 12.5
 	radial_icon_state = "plasma_strong"
 
 /datum/lasrifle/base/plasma_rifle_mode/rifle_blast
@@ -147,7 +147,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 0.15 SECONDS
 	heat_per_fire = 2
-	rounds_per_shot = 5
+	rounds_per_shot = 2
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_cannon"
 
@@ -157,7 +157,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 1 SECONDS
 	heat_per_fire = 50
-	rounds_per_shot = 150
+	rounds_per_shot = 100
 	windup_delay = 1 SECONDS
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_fire"
