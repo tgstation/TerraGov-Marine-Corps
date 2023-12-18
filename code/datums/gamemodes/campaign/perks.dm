@@ -6,6 +6,34 @@ GLOBAL_LIST_INIT_TYPED(campaign_perk_list, /datum/perk, init_glob_perk_list()) /
 		var/datum/perk/perk = new perk_type
 		.[perk.type] = perk
 
+//List of all loadout_item datums by job, excluding ones that must be unlocked
+GLOBAL_LIST_INIT(campaign_perks_by_role, init_campaign_perks_by_role())
+
+/proc/init_campaign_perks_by_role()
+	. = list(
+	SQUAD_MARINE = list(),
+	SQUAD_ENGINEER = list(),
+	SQUAD_CORPSMAN = list(),
+	SQUAD_SMARTGUNNER = list(),
+	SQUAD_LEADER = list(),
+	FIELD_COMMANDER = list(),
+	STAFF_OFFICER = list(),
+	CAPTAIN = list(),
+	SOM_SQUAD_MARINE = list(),
+	SOM_SQUAD_ENGINEER = list(),
+	SOM_SQUAD_CORPSMAN = list(),
+	SOM_SQUAD_VETERAN = list(),
+	SOM_SQUAD_LEADER = list(),
+	SOM_FIELD_COMMANDER = list(),
+	SOM_STAFF_OFFICER = list(),
+	SOM_COMMANDER = list(),
+)
+	for(var/role in .)
+		for(var/datum/perk/perk AS in GLOB.campaign_perk_list)
+			if(!(role in perk.jobs_supported))
+				continue
+			.[role] += perk
+
 /*
 Will need a way to org perks (and other stuff) by faction and/or specific role.
 Needed both for a purchase list and effected list (if one perk impacts multiple roles, unless we keep everything entirely separate)
@@ -16,7 +44,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	///Brief description of the perk
 	var/desc = "desc here"
 	///UI icon for this perk
-	var/ui_icon
+	var/ui_icon = "militia" //PLACEHOLDER
 	///Cost to purchase this perk
 	var/unlock_cost = 0
 	///Job types that this perk is available to. no list implies this works for any job
@@ -81,18 +109,21 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/cqc
 	cqc = 1
+	jobs_supported = list(SQUAD_MARINE)
 
 /datum/perk/skill_mod/cqc_two
 	cqc = 2
 
 /datum/perk/skill_mod/melee
 	melee_weapons = 1
+	jobs_supported = list(SQUAD_MARINE)
 
 /datum/perk/skill_mod/melee_two
 	melee_weapons = 2
 
 /datum/perk/skill_mod/pistols
 	pistols = 1
+	jobs_supported = list(SQUAD_MARINE)
 
 /datum/perk/skill_mod/shotguns
 	shotguns = 1

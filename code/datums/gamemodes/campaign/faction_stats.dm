@@ -138,6 +138,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	if(!ishuman(new_member))
 		return
 	add_verb(new_member, /mob/living/proc/open_faction_stats_ui)
+	add_verb(new_member, /mob/living/proc/open_individual_stats_ui)
 	if(!individual_stat_list[new_member.key])
 		individual_stat_list[new_member.key] = new /datum/individual_stats(new_member, faction, accumulated_mission_reward)
 	else

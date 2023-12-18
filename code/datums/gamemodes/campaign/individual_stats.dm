@@ -115,13 +115,15 @@
 
 	var/list/perks_data = list()
 	for(var/job in perks)
-		for(var/datum/perk/perk AS in perks[job])
+		for(var/datum/perk/perk AS in GLOB.campaign_perks_by_role[job])
 			var/list/perk_data = list()
 			perk_data["name"] = perk.name
 			perk_data["job"] = job
+			perk_data["type"] = perk.type
 			perk_data["desc"] = perk.desc
 			perk_data["cost"] = perk.unlock_cost
 			perk_data["icon"] = perk.ui_icon
+			perk_data["currently_active"] = (perk in perks[job]) //check this is fine
 			perks_data += list(perk_data)
 	data["perks_data"] = perks_data
 
@@ -163,16 +165,27 @@
 	var/mob/living/user = usr
 
 	switch(action) //insert shit here
-		if("set_attrition_points")
+		if("unlock_perk")
+			var/unlocked_perk = text2path(params["selected_perk"])
+			if(!unlocked_perk)
+				return
+			if(!GLOB.campaign_perk_list[unlocked_perk])
+				return
+			var/datum/perk/perk = GLOB.campaign_perk_list[unlocked_perk]
+			purchase_perk(perk)
 			return TRUE
 
 ///Opens up the players campaign status UI
 /mob/living/proc/open_individual_stats_ui()
-	set name = "Campaign Status"
+	set name = "Individual Stats"
 	set desc = "Check the your individual stats and loadout."
 	set category = "IC"
 
-	var/datum/individual_stats/your_faction = GLOB.faction_stats_datums[faction]
+	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[faction]
 	if(!your_faction)
 		return
-	your_faction.interact(src)
+
+	var/datum/individual_stats/stats = your_faction.individual_stat_list[key]
+	if(!stats)
+		return
+	stats.interact(src)
