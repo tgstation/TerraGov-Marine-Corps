@@ -10,6 +10,7 @@
 	map_light_levels = list(225, 150, 100, 75)
 	objectives_total = 1
 	min_destruction_amount = 1
+	max_game_time = 15 MINUTES
 	shutter_open_delay = list(
 		MISSION_STARTING_FACTION = 60 SECONDS,
 		MISSION_HOSTILE_FACTION = 0,
