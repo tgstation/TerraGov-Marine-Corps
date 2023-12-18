@@ -41,7 +41,8 @@
 "G" = (
 /obj/machinery/computer/shuttle/shuttle_control/elevator{
 	pixel_y = 15;
-	density = 0
+	density = 0;
+	max_integrity = 5000
 	},
 /turf/open/shuttle/elevator/grating,
 /area/shuttle/dropship/minielevator{
