@@ -1,4 +1,5 @@
 // -- generate override code computer
+//TODO: Make a parent computer to remove all the nuke disk copy paste
 /obj/item/circuitboard/computer/nt_access
 	name = "circuit board (nuke disk generator)"
 	build_path = /obj/machinery/computer/nt_access
