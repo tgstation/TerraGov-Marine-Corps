@@ -76,7 +76,7 @@
 	max_integrity = 400
 
 	///Reference to the mounted weapon
-	var/obj/item/weapon/gun/minigun_wheelchair/weapon
+	var/obj/item/weapon/gun/minigun/wheelchair/weapon
 
 /obj/vehicle/ridden/wheelchair/weaponized/examine(mob/user)
 	. = ..()
@@ -85,11 +85,11 @@
 
 /obj/vehicle/ridden/wheelchair/weaponized/Initialize(mapload)
 	. = ..()
-	weapon = new /obj/item/weapon/gun/minigun_wheelchair
+	weapon = new /obj/item/weapon/gun/minigun/wheelchair
 	weapon.mount = src
 
 /obj/vehicle/ridden/wheelchair/weaponized/obj_destruction(damage_flag)
-	weapon.Destroy()
+	QDEL_NULL(weapon)
 	return ..()
 
 //The wheelchair speed is actually on the component, delay_multiplier does nothing
@@ -122,7 +122,7 @@
 	if(is_occupant(user) && !user.is_holding(weapon))
 		user.put_in_active_hand(weapon)
 	else
-		..()
+		return ..()
 
 //If the user drags the wheelchair to themselves, unload the gun
 /obj/vehicle/ridden/wheelchair/weaponized/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
