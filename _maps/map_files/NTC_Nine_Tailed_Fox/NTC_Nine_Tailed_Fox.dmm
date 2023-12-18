@@ -10936,13 +10936,6 @@
 	outside = 0;
 	name = "Security Checkpoint"
 	})
-"keD" = (
-/obj/structure/cable,
-/mob/living/simple_animal/corgi/walten,
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/upper_medical{
-	name = "Shipside Medbay"
-	})
 "keH" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -22850,7 +22843,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "vmy" = (
-/mob/living/simple_animal/catslug/newt,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/purple/side{
@@ -38242,9 +38234,9 @@ nwr
 gsf
 tej
 jba
+uTe
+uTe
 nkx
-uTe
-uTe
 vFS
 cMb
 tmd
@@ -39973,7 +39965,7 @@ axx
 oGW
 kMH
 aNT
-keD
+aNT
 aNT
 aNT
 aNT
@@ -66286,7 +66278,7 @@ kmK
 lAK
 qnG
 pbZ
-qnG
+rwt
 qnG
 oaL
 jLv
@@ -66526,7 +66518,7 @@ cWh
 wXq
 deV
 qnG
-rwt
+qnG
 exf
 lbs
 qnG

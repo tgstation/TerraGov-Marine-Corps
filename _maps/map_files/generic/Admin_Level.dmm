@@ -1689,9 +1689,7 @@
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/crew_quarters/bar)
 "cjh" = (
-/obj/structure/displaycase{
-	req_access = null
-	},
+/obj/structure/displaycase,
 /turf/open/floor/grimy,
 /area/centcom/valhalla/crew_quarters/captain)
 "cjO" = (
@@ -4610,7 +4608,6 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/mob/living/simple_animal/chicken,
 /turf/open/floor/grass,
 /area/centcom/valhalla/hydroponics)
 "fYx" = (
@@ -5501,7 +5498,6 @@
 /obj/item/reagent_containers/food/drinks/cans/thirteenloko,
 /obj/item/clothing/gloves/insulated,
 /obj/item/clothing/gloves/insulated,
-/mob/living/simple_animal/parrot/Poly,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/engineering)
 "hkw" = (
@@ -7888,16 +7884,6 @@
 /obj/machinery/status_display,
 /turf/closed/wall,
 /area/centcom/valhalla/crew_quarters/heads/hop)
-"krG" = (
-/obj/effect/turf_decal/tile/gray{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/gray{
-	dir = 8
-	},
-/mob/living/simple_animal/corgi/ranger,
-/turf/open/floor/tile/neutral/full,
-/area/centcom/valhalla/security/brig)
 "krJ" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -10028,9 +10014,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla/quartermaster/miningdock)
 "noI" = (
-/obj/machinery/sleeper{
-	dir = 4
-	},
+/obj/machinery/sleeper,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/medical/medbay)
 "noL" = (
@@ -10896,12 +10880,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/scorched,
 /area/centcom/valhalla/starboard)
-"oul" = (
-/mob/living/simple_animal/hostile/retaliate/goat{
-	name = "Pete"
-	},
-/turf/open/floor/freezer,
-/area/centcom/valhalla/crew_quarters/kitchen)
 "oun" = (
 /obj/machinery/seed_extractor,
 /turf/open/floor/tile/dark/gray,
@@ -17788,7 +17766,6 @@
 /area/centcom/valhalla/quartermaster/storage)
 "wZJ" = (
 /obj/structure/sign/botany,
-/mob/living/simple_animal/cow,
 /turf/open/floor/grass,
 /area/centcom/valhalla/hydroponics)
 "xaB" = (
@@ -26579,7 +26556,7 @@ cKm
 ivi
 jdm
 ivi
-krG
+hGj
 ivi
 hGj
 ivi
@@ -31570,7 +31547,7 @@ xom
 rdX
 wuZ
 jij
-oul
+dAC
 cCt
 wuZ
 uko
