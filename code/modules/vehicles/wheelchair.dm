@@ -88,7 +88,7 @@
 	weapon = new /obj/item/weapon/gun/minigun/wheelchair
 	weapon.mount = src
 
-/obj/vehicle/ridden/wheelchair/weaponized/obj_destruction(damage_flag)
+/obj/vehicle/ridden/wheelchair/weaponized/Destroy()
 	QDEL_NULL(weapon)
 	return ..()
 
