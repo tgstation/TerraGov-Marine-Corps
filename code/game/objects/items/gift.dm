@@ -74,19 +74,25 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	. = ..()
 	if(present_receiver)
 		. += "This present is addressed to [present_receiver_name]."
+	if(HAS_TRAIT(M, TRAIT_SANTA_CLAUS) || HAS_TRAIT(M, TRAIT_CHRISTMAS_ELF)) //santa can reveal the owner of a present just by looking at it
+		if(present_receiver == null && !freepresent)
+			get_recipient()
 
 /obj/item/a_gift/attack_self(mob/M)
+	if(present_receiver == null && !freepresent)
+		to_chat(M, span_warning("You start unwrapping the present, trying to locate any sign of who the present belongs to..."))
+		if(!do_after(M, 4 SECONDS))
+			return
+		get_recipient() //generate owner of gift
 	if(HAS_TRAIT(M, TRAIT_SANTA_CLAUS) || HAS_TRAIT(M, TRAIT_CHRISTMAS_ELF))
 		to_chat(M, "You're supposed to deliver presents, not open them.")
-		return
-	if(present_receiver == null && !freepresent)
-		get_recipient() //generate owner of gift
-	to_chat(M, span_warning("You start unwrapping the present, trying to locate any sign of who the present belongs to..."))
-	if(!do_after(M, 4 SECONDS))
 		return
 	if(!freepresent && present_receiver != M)
 		switch(tgui_alert(M, "This present is addressed to [present_receiver_name]. Open it anyways?", "Continue?", list("Yes", "No")))
 			if("Yes")
+				if(!do_after(M, 1.5 SECONDS))
+					to_chat(M, span_warning("You start unwrapping the present..."))
+					return
 				M.visible_message(span_notice("[M] tears into [present_receiver_name]'s gift with reckless abandon!"))
 				M.balloon_alert_to_viewers("Open's [present_receiver_name]'s gift" ,ignored_mobs = M)
 				log_game("[M] has opened a present that belonged to [present_receiver_name] at [AREACOORD(loc)]")
