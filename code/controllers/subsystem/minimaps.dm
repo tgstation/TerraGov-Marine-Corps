@@ -41,11 +41,9 @@ SUBSYSTEM_DEF(minimaps)
 	var/list/hashed_minimaps = list()
 
 /datum/controller/subsystem/minimaps/Initialize()
+	initialized = TRUE
 	for(var/datum/space_level/z_level AS in SSmapping.z_list)
 		load_new_z(null, z_level)
-	//RegisterSignal(SSdcs, COMSIG_GLOB_NEW_Z, PROC_REF(load_new_z))
-
-	initialized = TRUE
 
 	return SS_INIT_SUCCESS
 

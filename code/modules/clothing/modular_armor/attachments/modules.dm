@@ -645,7 +645,7 @@
 	SIGNAL_HANDLER
 	if(comms_setup != COMMS_SETUP)
 		return
-	inplace_interference[1] = max(0, inplace_interference - 1)
+	inplace_interference[1] = max(0, inplace_interference[1] - 1)
 
 /obj/item/armor_module/module/antenna/activate(mob/living/user)
 	if(comms_setup == COMMS_SETTING)
