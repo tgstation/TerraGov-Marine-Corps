@@ -43,14 +43,6 @@
 	charge_amount = 25 // 10%, 1 shot
 	charge_delay = 2 SECONDS
 
-/obj/item/cell/lasgun/plasma
-	name = "\improper WML plasma battery"
-	desc = "A plasma containment cell produced by the Kongjian corporation. It doesn't seem to have an expiry date."
-	charge_overlay = "plasma"
-	icon_state = "plasma"
-	icon_state_mini = "mag_plasma"
-	maxcharge = 1000
-
 /obj/item/cell/lasgun/M43/practice
 	name = "\improper M43-P lasgun battery"
 	desc = "A specialized high density battery used to power the M43-P practice lasgun. It lacks any potential to harm someone, but it has the ability to recharge."
@@ -204,3 +196,24 @@
 	slowdown = 0
 	maxcharge = 2400
 	self_recharge = FALSE
+
+/obj/item/cell/lasgun/plasma_powerpack
+	name = "\improper WML plasma backpack"
+	desc = "A plasma containment backpack used by the TerraGov Marine Corps for plasma guns. It doesn't seem to have an expiry date on it."
+	icon = 'icons/obj/items/storage/storage.dmi'
+	icon_state = "marine_plaspack"
+	icon_state_mini = "mag_plasma"
+	charge_overlay = null
+	flags_equip_slot = ITEM_SLOT_BACK
+	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
+	w_class = WEIGHT_CLASS_HUGE
+	maxcharge = 1000
+
+/obj/item/cell/lasgun/plasma_powerpack/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/weapon/gun) && loc == user)
+		var/obj/item/weapon/gun/gun = I
+		if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_MAGAZINES))
+			return
+		gun.reload(src, user)
+		return

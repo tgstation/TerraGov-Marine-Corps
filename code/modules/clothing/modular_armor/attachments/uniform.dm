@@ -157,9 +157,7 @@
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/pistol,
 		/obj/item/cell/lasgun/lasrifle,
-		/obj/item/cell/lasgun/plasma,
 	)
 
 /obj/item/armor_module/storage/uniform/holster/armpit

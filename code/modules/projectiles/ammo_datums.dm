@@ -3204,10 +3204,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 3
 
 /datum/ammo/energy/plasma/rifle_standard
-	damage = 15
-	penetration = 10
-	sundering = 0.5
-	damage_falloff = 0.25
+	damage = 25
+	penetration = 15
+	sundering = 0.75
+	damage_falloff = 1
 
 /datum/ammo/energy/plasma/rifle_marksman
 	icon_state = "plasma_big"
@@ -3219,41 +3219,53 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0.15
 	accurate_range = 25
 
-/datum/ammo/energy/plasma/rifle_overcharge
-	icon_state = "plasma_ball_big"
-	hud_state = "plasma_sphere"
-	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ENERGY|AMMO_SUNDERING|AMMO_INCENDIARY
-	damage = 50
-	penetration = 20
-	sundering = 4
-	max_range = 50
-	damage_falloff = 0.25
-	shell_speed = 3.5
-	var/shatter_duration = 5 SECONDS
+/datum/ammo/energy/plasma/rifle_blast
+	name = "plasma blast ball"
+	icon_state = "plasma_ball_small"
+	hud_state = "plasma_blast"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY
+	bonus_projectiles_type = /datum/ammo/energy/plasma/rifle_blast/additional
+	bonus_projectiles_amount = 4
+	bonus_projectiles_scatter = 3
+	accurate_range = 4
+	max_range = 6
+	damage = 30
+	damage_falloff = 1
+	///Number of melting stacks to apply when hitting mobs
+	var/melt_stacks = 1
 
-/datum/ammo/energy/plasma/rifle_overcharge/on_hit_turf(turf/T, obj/projectile/proj)
-	reflect(T, proj, 5)
-
-/datum/ammo/energy/plasma/rifle_overcharge/on_hit_obj(obj/O, obj/projectile/proj)
-	reflect(get_turf(O), proj, 5)
-
-/datum/ammo/energy/plasma/rifle_overcharge/do_at_max_range(turf/T, obj/projectile/proj)
-	explosion(T, 0, 2, 1, 0, throw_range = 0)
-
-/datum/ammo/energy/plasma/rifle_overcharge/on_hit_mob(mob/M, obj/projectile/proj)
-	explosion(get_turf(M), 0, 2, 1, 0, throw_range = 0)
+/datum/ammo/energy/plasma/rifle_blast/melting/on_hit_mob(mob/M, obj/projectile/proj)
 	if(!isliving(M))
 		return
+
 	var/mob/living/living_victim = M
-	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
+	var/datum/status_effect/stacking/melting/debuff = living_victim.has_status_effect(STATUS_EFFECT_MELTING)
+
+	if(debuff)
+		debuff.add_stacks(melt_stacks)
+	else
+		living_victim.apply_status_effect(STATUS_EFFECT_MELTING, melt_stacks)
+
+/datum/ammo/energy/plasma/rifle_blast/additional
+	name = "additional plasma blast"
+	accurate_range = 4
+	max_range = 10
+	damage = 25
+	damage_falloff = 1
+
+/datum/ammo/energy/plasma/cannon_standard
+	damage = 20
+	penetration = 15
+	sundering = 0.75
+	damage_falloff = 0.75
 
 /datum/ammo/energy/plasma/cannon_heavy
 	icon_state = "plasma_ball_big"
 	hud_state = "plasma_sphere"
-	damage = 130
-	penetration = 35
+	damage = 120
+	penetration = 40
 	sundering = 10
-	damage_falloff = 0.25
+	damage_falloff = 1
 	shell_speed = 4
 	var/shatter_duration = 5 SECONDS
 
@@ -3264,38 +3276,28 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
 
 
-/datum/ammo/energy/plasma/cannon_flamer
-	//copy paste of flamer standard code kuro fix this
+/datum/ammo/energy/plasma/cannon_glob
+	name = "Plasma Glob"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ENERGY|AMMO_INCENDIARY
+	shell_speed = 2
 	icon_state = "plasma_big"
 	hud_state = "flame"
-	damage_type = BURN
-	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_FLAME|AMMO_EXPLOSIVE
-	armor_type = "fire"
-	max_range = 7
-	damage = 31
-	damage_falloff = 0
-	incendiary_strength = 30 //Firestacks cap at 20, but that's after armor.
-	bullet_color = LIGHT_COLOR_FIRE
-	var/fire_color = "green"
-	var/burntime = 13
-	var/burnlevel = 25
 
-/datum/ammo/energy/plasma/cannon_flamer/drop_flame(turf/T)
-	if(!istype(T))
-		return
-	T.ignite(burntime, burnlevel, fire_color)
+/datum/ammo/energy/plasma/cannon_glob/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
 
-/datum/ammo/energy/plasma/cannon_flamer/on_hit_mob(mob/M, obj/projectile/P)
-	drop_flame(get_turf(M))
+/datum/ammo/energy/plasma/cannon_glob/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(O.density ? P.loc : O.loc)
 
-/datum/ammo/energy/plasma/cannon_flamer/on_hit_obj(obj/O, obj/projectile/P)
-	drop_flame(get_turf(O))
+/datum/ammo/energy/plasma/cannon_glob/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
 
-/datum/ammo/energy/plasma/cannon_flamer/on_hit_turf(turf/T, obj/projectile/P)
-	drop_flame(get_turf(T))
+/datum/ammo/energy/plasma/cannon_glob/do_at_max_range(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
 
-/datum/ammo/energy/plasma/cannon_flamer/do_at_max_range(turf/T, obj/projectile/P)
-	drop_flame(get_turf(T))
+/datum/ammo/energy/plasma/cannon_glob/drop_nade(turf/T)
+	flame_radius(2, T)
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
 /datum/ammo/energy/xeno
 	barricade_clear_distance = 0

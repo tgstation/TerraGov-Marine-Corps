@@ -208,7 +208,6 @@
 		/obj/item/weapon/gun/pistol,
 		/obj/item/weapon/gun/revolver,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
 	)
 	draw_mode = 1
