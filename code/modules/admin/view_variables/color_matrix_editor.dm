@@ -27,6 +27,7 @@
 	var/map_name = "color_matrix_proxy_[REF(src)]"
 
 	proxy_view = new
+	proxy_view.appearance = view
 	proxy_view.name = "screen"
 	proxy_view.assigned_map = map_name
 	proxy_view.screen_loc = "[map_name]:1,1"
@@ -39,6 +40,10 @@
 			instance.blend_mode = instance.blend_mode_override
 		instance.screen_loc = "[map_name]:CENTER"
 		proxy_plane_masters += instance
+
+/datum/color_matrix_editor/Destroy(force, ...)
+	QDEL_NULL(proxy_view)
+	return ..()
 
 /datum/color_matrix_editor/ui_state(mob/user)
 	return GLOB.admin_state

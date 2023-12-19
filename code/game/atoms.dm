@@ -699,6 +699,8 @@ directive is properly returned.
 	VV_DROPDOWN_OPTION(VV_HK_ADD_REAGENT, "Add reagent")
 	VV_DROPDOWN_OPTION(VV_HK_MODIFY_FILTERS, "Modify Filters")
 	VV_DROPDOWN_OPTION(VV_HK_MODIFY_GREYSCALE_COLORS, "Modify Greyscale Colors")
+	VV_DROPDOWN_OPTION(VV_HK_EDIT_COLOR_MATRIX, "Edit Color as Matrix")
+	VV_DROPDOWN_OPTION(VV_HK_TEST_MATRIXES, "Test Matrices")
 
 /atom/vv_do_topic(list/href_list)
 	. = ..()
@@ -805,6 +807,16 @@ directive is properly returned.
 			return
 		var/datum/greyscale_modify_menu/menu = new(usr)
 		menu.ui_interact(usr)
+
+	if(href_list[VV_HK_EDIT_COLOR_MATRIX])
+		if(!check_rights(R_VAREDIT))
+			return
+		usr.client?.open_color_matrix_editor(src)
+
+	if(href_list[VV_HK_TEST_MATRIXES])
+		if(!check_rights(R_VAREDIT))
+			return
+		usr.client?.open_matrix_tester(src)
 
 /atom/vv_get_header()
 	. = ..()

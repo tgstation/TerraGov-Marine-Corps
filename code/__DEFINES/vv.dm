@@ -93,6 +93,8 @@
 #define VV_HK_MODIFY_GREYSCALE_COLORS "modify_greyscale_colors"
 #define VV_HK_MODIFY_GREYSCALE "modify_greyscale"
 #define VV_HK_AUTO_RENAME "auto_rename"
+#define VV_HK_EDIT_COLOR_MATRIX "edit_color_matrix"
+#define VV_HK_TEST_MATRIXES "test_matrixes"
 
 // /atom/movable
 #define VV_HK_FOLLOW "follow"
