@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Campaign: Players still on their home z-level will be teleported to spawn instead of ghosted at mission end"
