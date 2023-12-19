@@ -706,3 +706,5 @@ SIGNATURE: ________________________"}
 				elf_signer.real_name = elf_signer.name
 				var/datum/job/J = SSjob.GetJobType(/datum/job/santa/contractspawn)
 				elf_signer.apply_assigned_role_to_spawn(J)
+				var/datum/action/innate/elf_recall/recallingelf = new(elf_signer)
+				recallingelf.give_action(elf_signer)

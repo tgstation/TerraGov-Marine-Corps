@@ -65,6 +65,8 @@
 	H.apply_assigned_role_to_spawn(J)
 	H.name = "Elf [rand(1,999)]"
 	H.real_name = H.name
+	var/datum/action/innate/elf_recall/recallingelf = new(H)
+	recallingelf.give_action(H)
 	print_backstory(H)
 	if(GLOB.round_statistics.number_of_grinches >= 1)
 		to_chat(H, span_notice("You are a member of Santa's loyal workforce, assist Santa in purging the marine ship of </b>all life</b>, human and xeno!"))
@@ -188,6 +190,7 @@
 
 /datum/action/innate/elf_swap/Activate()
 	var/list/elflist = list()
+	var/storedzlevel
 	var/mob/living/carbon/human/santamob = usr
 	for(var/mob/living/carbon/human/elves in GLOB.alive_human_list)
 		if(HAS_TRAIT(elves, TRAIT_CHRISTMAS_ELF))
@@ -198,11 +201,43 @@
 	if(!do_after(santamob, 5 SECONDS))
 		to_chat(santamob, "You stop preparing to switch places with a lowly elf...")
 		return
+	storedzlevel = santamob.z
 	var/turf/elfturf = get_turf(swappedelf)
 	var/turf/santaturf = get_turf(santamob)
 	santamob.forceMove(elfturf)
 	swappedelf.forceMove(santaturf)
 	swappedelf.Stun(3 SECONDS)
-	santamob.Stun(3 SECONDS)
-	to_chat(santamob, "You struggle to get your bearings after the swap...")
+	if(storedzlevel = santamob.z)
+		santamob.Stun(3 SECONDS)
+		to_chat(santamob, "You struggle to get your bearings after the swap...")
+	else
+		santamob.Stun(45 SECONDS)
+		to_chat(santamob, "The strain of travelling across such a great distance unbalances you...")
 	to_chat(swappedelf, "As the world reels around you, you struggle to get your bearings...")
+
+/datum/action/innate/elf_recall
+	name = "Return to Santa"
+	action_icon_state = "elf_recall"
+
+/datum/action/innate/elf_recall/Activate()
+	var/list/santalist = list()
+	var/mob/living/carbon/human/elfmob = usr
+	for(var/mob/living/carbon/human/santas in GLOB.humans_by_zlevel["[elfmob.z]"])
+		if(HAS_TRAIT(santas, TRAIT_SANTA_CLAUS))
+			santalist += santas
+	if(!length(santalist))
+		to_chat(elfmob, "You can't find Santa! There is nobody to return to...")
+		return
+	to_chat(elfmob, "You on concentrate on gathering enough magic to return to Santa...")
+	if(!do_after(elfmob, 10 SECONDS))
+		to_chat(elfmob, "You decide there are more important things to do...")
+		return
+	var/mob/living/carbon/human/selectedsanta = pick(santalist)
+	elfmob.forceMove(get_turf(selectedsanta))
+
+/datum/action/innate/santa_illusion
+	name = "Create Doppelganger"
+	action_icon_state = "santa_doppelganger"
+
+/datum/action/innate/santa_illusion/Activate()
+	var/mob/living/carbon/human/santamob = usr

@@ -84,6 +84,8 @@
 		spawnedhuman.real_name = spawnedhuman.name
 		var/datum/job/J = SSjob.GetJobType(/datum/job/santa/elf/eventspawn)
 		spawnedhuman.apply_assigned_role_to_spawn(J)
+		var/datum/action/innate/elf_recall/recallingelf = new(spawnedhuman)
+		recallingelf.give_action(spawnedhuman)
 		spawnedhuman.offer_mob()
 
 ///sets the target for this event, and notifies the hive
