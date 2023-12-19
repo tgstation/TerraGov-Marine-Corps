@@ -72,11 +72,11 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 /obj/item/a_gift/examine(mob/user)
 	. = ..()
-	if(present_receiver)
-		. += "This present is addressed to [present_receiver_name]."
 	if(HAS_TRAIT(user, TRAIT_SANTA_CLAUS) || HAS_TRAIT(user, TRAIT_CHRISTMAS_ELF)) //santa can reveal the owner of a present just by looking at it
 		if(present_receiver == null && !freepresent)
 			get_recipient()
+	if(present_receiver)
+		. += "This present is addressed to [present_receiver_name]."
 
 /obj/item/a_gift/attack_self(mob/M)
 	if(present_receiver == null && !freepresent)
