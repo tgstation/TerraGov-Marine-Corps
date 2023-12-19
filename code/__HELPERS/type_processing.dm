@@ -1,4 +1,4 @@
-///
+///Turns a list of typepaths into 'fancy' titles for admins.
 /proc/make_types_fancy(list/types)
 	if(ispath(types))
 		types = list(types)
@@ -35,19 +35,27 @@
 				break
 		.[typename] = type
 
+///Generates a static list of 'fancy' atom types, or returns that if its already been generated.
 /proc/get_fancy_list_of_atom_types()
 	var/static/list/pre_generated_list
-	if (!pre_generated_list) //init
+	if(!pre_generated_list) //init
 		pre_generated_list = make_types_fancy(typesof(/atom))
 	return pre_generated_list
 
+///Generates a static list of 'fancy' datum types, excluding everything atom, or returns that if its already been generated.
 /proc/get_fancy_list_of_datum_types()
 	var/static/list/pre_generated_list
-	if (!pre_generated_list) //init
+	if(!pre_generated_list) //init
 		pre_generated_list = make_types_fancy(sort_list(typesof(/datum) - typesof(/atom)))
 	return pre_generated_list
 
-/proc/filter_fancy_list(list/L, filter as text)
+/**
+ * Takes a given fancy list and filters out a given filter text.
+ * Args:
+ * fancy_list - The list provided we filter.
+ * filter - the text we use to filter fancy_list
+ */
+/proc/filter_fancy_list(list/fancy_list, filter as text)
 	var/list/matches = new
 	var/end_len = -1
 	var/list/endcheck = splittext(filter, "!")
@@ -55,11 +63,12 @@
 		filter = endcheck[1]
 		end_len = length_char(filter)
 
-	for(var/key in L)
-		var/value = L[key]
+	for(var/key in fancy_list)
+		var/value = fancy_list[key]
 		if(findtext("[key]", filter, -end_len) || findtext("[value]", filter, -end_len))
 			matches[key] = value
 	return matches
 
+///Splits the type with parenthesis between each word so admins visually tell it is a typepath.
 /proc/return_typenames(type)
 	return splittext("[type]", "/")

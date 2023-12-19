@@ -297,6 +297,7 @@
 	return {"<html><head><meta http-equiv="refresh" content="0;URL='[url]'"/></head><body onLoad="parent.location='[url]'"></body></html>"}
 
 //word of warning: using a matrix like this as a color value will simplify it back to a string after being set
+///Takes a hex color provided as string and returns the proper color matrix using hex2num.
 /proc/color_hex2color_matrix(string)
 	var/length = length(string)
 	if((length != 7 && length != 9) || length != length_char(string))
@@ -311,7 +312,8 @@
 		return color_matrix_identity()
 	return list(r,0,0,0, 0,g,0,0, 0,0,b,0, 0,0,0,a, 0,0,0,0)
 
-//will drop all values not on the diagonal
+///will drop all values not on the diagonal
+///returns a hex color
 /proc/color_matrix2color_hex(list/the_matrix)
 	if(!istype(the_matrix) || the_matrix.len != 20)
 		return "#ffffffff"
