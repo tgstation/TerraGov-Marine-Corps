@@ -12,6 +12,9 @@
 	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid)
 	spawn_object = /obj/structure/barricade/sandbags
 
+/obj/effect/landmark/campaign_structure/barricade/sandbags/som
+	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid/som)
+
 /obj/effect/landmark/campaign_structure/barricade/concrete
 	name = "fire_support_raid_concrete"
 	icon_state = "concrete_0"

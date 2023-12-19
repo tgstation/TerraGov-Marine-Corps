@@ -95,6 +95,6 @@
 	map_traits = list(ZTRAIT_AWAY = TRUE)
 	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
 	map_light_levels = list(225, 150, 100, 75)
-	objectives_total = 8
-	min_destruction_amount = 6
+	objectives_total = 5
+	min_destruction_amount = 3
 	hostile_faction_additional_rewards = "Protect our fire support options to ensure continued access to mortar support. Combat robots and fire support is available if you successfully defend this outpost."
