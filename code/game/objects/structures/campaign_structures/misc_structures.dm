@@ -16,6 +16,7 @@
 	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid/som)
 
 /obj/effect/landmark/campaign_structure/barricade/sandbags/asat
+	name = "ASAT_capture_sandbags"
 	mission_types = list(/datum/campaign_mission/capture_mission/asat)
 
 /obj/effect/landmark/campaign_structure/barricade/concrete
