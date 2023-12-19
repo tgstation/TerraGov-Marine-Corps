@@ -153,3 +153,12 @@
   ivanmixo:
   - code_imp: Fix more 515 regex fuckup
   - bugfix: Miners, gens and other stuff should actually show up on minimap now
+2023-12-19:
+  Helg2:
+  - rscadd: You can now ping the baneling pod as AI.
+  Lumipharon:
+  - balance: Made the timings for the base rescue mission easier for SOM
+  - balance: 'Campaign: All players are ghosted at the end of a mission'
+  ivanmixo:
+  - bugfix: Fixed export denied personal stat
+  - bugfix: Fixed a supply beacon runtime
