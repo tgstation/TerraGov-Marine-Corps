@@ -773,10 +773,6 @@
 	},
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/living)
-"di" = (
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
-/turf/open/floor/plating/ground/dirt2,
-/area/campaign/jungle_outpost/ground/jungle/south_west)
 "dj" = (
 /obj/structure/morgue{
 	dir = 8
@@ -4044,12 +4040,6 @@
 /obj/effect/spawner/random/misc/folder,
 /turf/open/floor/tile/blue/taupeblue,
 /area/campaign/jungle_outpost/outpost/command)
-"qZ" = (
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
-/turf/open/floor/plating/ground/dirtgrassborder2{
-	dir = 4
-	},
-/area/campaign/jungle_outpost/ground/jungle)
 "ra" = (
 /obj/structure/platform{
 	dir = 4
@@ -6684,7 +6674,6 @@
 /obj/effect/landmark/campaign_structure/barricade/sandbags{
 	dir = 8
 	},
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/landing)
 "BP" = (
@@ -17322,7 +17311,7 @@ eU
 vZ
 vZ
 vZ
-di
+vZ
 vZ
 vZ
 vZ
@@ -23332,7 +23321,7 @@ cX
 fQ
 uB
 oM
-qZ
+oM
 oM
 oM
 oM

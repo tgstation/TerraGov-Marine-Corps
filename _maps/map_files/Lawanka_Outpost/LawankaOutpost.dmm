@@ -707,10 +707,6 @@
 	dir = 10
 	},
 /area/lawankaoutpost/colony/biologics)
-"aCd" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade/radial,
-/turf/open/ground/grass/weedable,
-/area/lawankaoutpost/outside/northwest)
 "aCh" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/ground/grass/weedable,
@@ -6707,13 +6703,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/cargo)
-"fzN" = (
-/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
-	dir = 8
-	},
-/obj/item/weapon/gun/sentry/big_sentry/premade/radial,
-/turf/open/floor/tile/white,
-/area/lawankaoutpost/colony/operations_hall)
 "fAa" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -7223,13 +7212,6 @@
 	dir = 10
 	},
 /area/lawankaoutpost/colony/mining)
-"fTF" = (
-/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
-	dir = 1
-	},
-/obj/item/weapon/gun/sentry/big_sentry/premade/radial,
-/turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
 "fTL" = (
 /obj/machinery/disposal,
 /turf/open/floor/freezer,
@@ -21177,13 +21159,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupeblue,
 /area/lawankaoutpost/colony/northdorms)
-"rro" = (
-/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
-	dir = 4
-	},
-/obj/item/weapon/gun/sentry/big_sentry/premade/radial,
-/turf/open/floor/tile/white,
-/area/lawankaoutpost/colony/operations_hall)
 "rrz" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -21587,7 +21562,6 @@
 /obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
 	dir = 4
 	},
-/obj/item/weapon/gun/sentry/big_sentry/premade/radial,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lawankaoutpost/outside/northwest)
 "rGI" = (
@@ -25874,13 +25848,6 @@
 "vjm" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/outside/southeast)
-"vjx" = (
-/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
-	dir = 8
-	},
-/obj/item/weapon/gun/sentry/big_sentry/premade/radial,
-/turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
 "vjE" = (
 /turf/open/floor/grayscale/black,
 /area/lawankaoutpost/colony/operations_kitchen)
@@ -47370,7 +47337,7 @@ prY
 xQt
 xQt
 xQt
-aCd
+xQt
 qjr
 nTr
 xQt
@@ -55009,7 +54976,7 @@ oya
 tBQ
 ktu
 eWC
-fzN
+eWC
 eWC
 ktu
 xdJ
@@ -63255,7 +63222,7 @@ cgK
 xdJ
 gKu
 sOi
-rro
+sOi
 sOi
 gKu
 tBQ
@@ -72242,7 +72209,7 @@ wEk
 wEk
 uWt
 xvl
-vjx
+cEu
 puk
 cvN
 sDW
@@ -73306,7 +73273,7 @@ qDC
 sXl
 wEk
 wEk
-fTF
+tLE
 wEk
 wEk
 wEk

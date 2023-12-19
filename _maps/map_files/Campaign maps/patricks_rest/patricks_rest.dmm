@@ -512,10 +512,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/patricks_rest/surface/landing_pad)
-"co" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade/radial,
-/turf/open/floor/plating/ground/concrete,
-/area/patricks_rest/ground/colonys)
 "cp" = (
 /obj/structure/kitchenspike,
 /turf/open/floor/freezer,
@@ -884,11 +880,6 @@
 	},
 /turf/closed/wall/mainship,
 /area/patricks_rest/surface/building/hydro)
-"dZ" = (
-/obj/structure/cable,
-/obj/item/weapon/gun/sentry/big_sentry/premade/radial,
-/turf/open/floor/plating/ground/concrete,
-/area/patricks_rest/ground/colonyse)
 "eb" = (
 /obj/structure/desertdam/decals/road/line{
 	dir = 4
@@ -6808,7 +6799,6 @@
 /obj/effect/landmark/campaign_structure/barricade/sandbags/som{
 	dir = 8
 	},
-/obj/item/weapon/gun/sentry/big_sentry/premade/radial,
 /turf/open/floor/plating/ground/concrete/edge,
 /area/patricks_rest/ground/colonyn)
 "FR" = (
@@ -7790,10 +7780,6 @@
 	},
 /turf/open/floor/prison/red/full,
 /area/patricks_rest/surface/building/residential_cent)
-"Ky" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade/radial,
-/turf/open/ground/grass/weedable/patch/grassyellow,
-/area/patricks_rest/ground/colonye)
 "Kz" = (
 /obj/machinery/photocopier,
 /turf/open/floor/prison/blue/plate{
@@ -8182,10 +8168,6 @@
 	},
 /turf/open/shuttle/dropship/three,
 /area/patricks_rest/surface/landing_pad)
-"Mm" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade/radial,
-/turf/open/ground/grass/weedable/patch/grassyellow,
-/area/patricks_rest/ground/colonycent)
 "Mn" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#7a8c54";
@@ -23883,7 +23865,7 @@ UR
 wz
 tz
 Km
-co
+Km
 Km
 Km
 Km
@@ -24498,7 +24480,7 @@ HK
 Qz
 wk
 Pg
-Mm
+GX
 ME
 PL
 PL
@@ -29550,7 +29532,7 @@ wG
 wG
 wG
 Ax
-dZ
+nP
 nP
 DN
 dD
@@ -32168,7 +32150,7 @@ Jz
 Jz
 Jz
 IX
-Ky
+IX
 IX
 IX
 IX
