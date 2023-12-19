@@ -541,6 +541,7 @@
 	item_state = GUN_ICONSTATE_LOADED
 	w_class = WEIGHT_CLASS_NORMAL
 	flags_equip_slot = ITEM_SLOT_BELT
+	gun_skill_category = SKILL_PISTOLS
 	max_shots = 30 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
 	ammo_level_icon = null
@@ -869,6 +870,7 @@
 	icon_state = GUN_ICONSTATE_LOADED
 	item_state = GUN_ICONSTATE_LOADED
 	w_class = WEIGHT_CLASS_BULKY
+	gun_skill_category = SKILL_HEAVY_WEAPONS
 	max_shots = 150 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser
 	rounds_per_shot = 4
@@ -1108,6 +1110,7 @@
 	icon_state = "vx12"
 	item_state = "vx12"
 	w_class = WEIGHT_CLASS_NORMAL
+	gun_skill_category = SKILL_PISTOLS
 	max_shots = 15
 	rounds_per_shot = 36
 	ammo_datum_type = /datum/ammo/energy/volkite/medium
@@ -1241,6 +1244,7 @@
 		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
 	)
 	ammo_level_icon = null
+	gun_skill_category = SKILL_HEAVY_WEAPONS
 	max_shots = 120
 	ammo_datum_type = /datum/ammo/energy/volkite/heavy
 	rounds_per_shot = 30
