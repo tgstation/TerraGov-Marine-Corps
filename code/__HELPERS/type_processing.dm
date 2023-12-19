@@ -1,5 +1,6 @@
+///
 /proc/make_types_fancy(list/types)
-	if (ispath(types))
+	if(ispath(types))
 		types = list(types)
 	. = list()
 	for(var/type in types)
@@ -40,13 +41,11 @@
 		pre_generated_list = make_types_fancy(typesof(/atom))
 	return pre_generated_list
 
-
 /proc/get_fancy_list_of_datum_types()
 	var/static/list/pre_generated_list
 	if (!pre_generated_list) //init
 		pre_generated_list = make_types_fancy(sort_list(typesof(/datum) - typesof(/atom)))
 	return pre_generated_list
-
 
 /proc/filter_fancy_list(list/L, filter as text)
 	var/list/matches = new
