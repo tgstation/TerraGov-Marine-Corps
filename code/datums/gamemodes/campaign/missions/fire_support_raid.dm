@@ -7,8 +7,8 @@
 	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
-	objectives_total = 10
-	min_destruction_amount = 7
+	objectives_total = 9
+	min_destruction_amount = 6
 	shutter_open_delay = list(
 		MISSION_STARTING_FACTION = 90 SECONDS,
 		MISSION_HOSTILE_FACTION = 0,
