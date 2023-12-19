@@ -2886,7 +2886,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/turf/open/floor/mainship/sterile,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
 	})
@@ -5001,24 +5001,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/groundhq/ntf/hallways/bathroom)
-"eJq" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade/radial{
-	name = "\improper ST-571 sentry gun"
-	},
-/obj/structure/barricade/metal{
-	dir = 8
-	},
-/obj/structure/barricade/metal{
-	dir = 1
-	},
-/obj/structure/barricade/metal{
-	dir = 4
-	},
-/obj/structure/barricade/metal,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/port_umbilical{
-	name = "Ship Floor 2 Hallways"
-	})
 "eJH" = (
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
@@ -5258,22 +5240,6 @@
 	},
 /area/mainship/medical/upper_medical{
 	name = "Shipside Medbay"
-	})
-"eTD" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade,
-/obj/structure/barricade/metal{
-	dir = 4
-	},
-/obj/structure/barricade/metal{
-	dir = 1
-	},
-/obj/structure/barricade/metal{
-	dir = 8
-	},
-/obj/structure/barricade/metal,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/bow_hallway{
-	name = "Ship Floor 1 Hallways"
 	})
 "eTF" = (
 /obj/machinery/disposal,
@@ -17469,9 +17435,6 @@
 /area/mainship/living/cafeteria_starboard)
 "qdU" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
-	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "qeo" = (
@@ -19032,7 +18995,6 @@
 /turf/open/floor/mainship/black/full,
 /area/mainship/squads/general)
 "rBF" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade,
 /obj/structure/barricade/metal,
 /obj/structure/barricade/metal{
 	dir = 8
@@ -19042,6 +19004,9 @@
 	},
 /obj/structure/barricade/metal{
 	dir = 1
+	},
+/obj/item/weapon/gun/sentry/big_sentry/premade/radial{
+	name = "\improper ST-571 sentry gun"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
@@ -21379,24 +21344,6 @@
 /area/outpost/cargo{
 	outside = 1
 	})
-"tPj" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade{
-	dir = 4
-	},
-/obj/structure/barricade/metal{
-	dir = 4
-	},
-/obj/structure/barricade/metal{
-	dir = 1
-	},
-/obj/structure/barricade/metal{
-	dir = 8
-	},
-/obj/structure/barricade/metal,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/bow_hallway{
-	name = "Ship Floor 1 Hallways"
-	})
 "tPq" = (
 /obj/effect/landmark/start/job/squadengineer,
 /obj/effect/landmark/start/job/squadengineer,
@@ -21729,14 +21676,6 @@
 /obj/structure/cable,
 /turf/open/floor/grass,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
-"ugG" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
-	},
-/turf/open/floor/mainship/black{
-	dir = 8
-	},
-/area/mainship/command/self_destruct)
 "uhf" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -22785,23 +22724,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/telecomms)
-"vkC" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade,
-/obj/machinery/camera/autoname,
-/obj/structure/barricade/metal{
-	dir = 4
-	},
-/obj/structure/barricade/metal{
-	dir = 1
-	},
-/obj/structure/barricade/metal{
-	dir = 8
-	},
-/obj/structure/barricade/metal,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/bow_hallway{
-	name = "Ship Floor 1 Hallways"
-	})
 "vkH" = (
 /obj/structure/rack,
 /obj/structure/ob_ammo/ob_fuel,
@@ -32727,8 +32649,8 @@ lnD
 lnD
 hAA
 nsE
-lDI
-eTD
+kyS
+kyS
 syL
 jrS
 aXE
@@ -32744,7 +32666,7 @@ kyS
 jrS
 aXE
 syL
-tPj
+kyS
 wDa
 aya
 xQf
@@ -33695,7 +33617,7 @@ kmh
 kmh
 kmh
 fbt
-kyS
+tgQ
 tKP
 kyS
 wDa
@@ -37780,7 +37702,7 @@ cMb
 nAP
 pOC
 ePf
-vkC
+hew
 kjD
 utK
 kyS
@@ -38647,7 +38569,7 @@ hXu
 hXu
 dfL
 ali
-eJq
+hXu
 jsH
 aFj
 nDi
@@ -41550,7 +41472,7 @@ eYJ
 ici
 hdB
 pfC
-tZq
+iwi
 gKN
 svO
 wft
@@ -41662,7 +41584,7 @@ qOz
 qOz
 pBR
 qOz
-ugG
+qOz
 qOz
 kUg
 eeu
@@ -41792,7 +41714,7 @@ pvZ
 pvZ
 pvZ
 pvZ
-iwi
+tZq
 gKN
 jTz
 wft
