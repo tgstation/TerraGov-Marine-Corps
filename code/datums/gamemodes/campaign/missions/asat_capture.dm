@@ -39,8 +39,8 @@
 	starting_faction_additional_rewards = "Additional ICC support, ability to counteract TGMC drop pod usage"
 	hostile_faction_additional_rewards = "Preserve the ability to use drop pods uncontested"
 
-	objectives_total = 5
-	min_capture_amount = 3
+	objectives_total = 6
+	min_capture_amount = 4
 
 /datum/campaign_mission/capture_mission/asat/load_pre_mission_bonuses()
 	. = ..()
