@@ -21,9 +21,9 @@ const CampaignTabs = [
 export type MissionData = {
   faction_rewards_data;
   typepath?: string;
-  name: string;
+  name?: string;
 
-  map_name: string;
+  map_name?: string;
   starting_faction?: string;
   hostile_faction?: string;
   winning_faction?: string;
