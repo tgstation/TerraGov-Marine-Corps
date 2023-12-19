@@ -203,15 +203,12 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 ///Returns all faction members back to base after the mission is completed
 /datum/faction_stats/proc/return_to_base()
 	for(var/mob/living/carbon/human/human_mob AS in GLOB.alive_human_list_faction[faction])
-		if(!human_mob.job.job_cost) //asset based roles are one use
-			human_mob.ghostize()
-			qdel(human_mob)
-			continue
-		human_mob.revive(TRUE)
-		human_mob.overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
-		human_mob.overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
-		human_mob.forceMove(pick(GLOB.spawns_by_job[human_mob.job.type]))
-		human_mob.Stun(1 SECONDS) //so you don't accidentally shoot your team etc
+		var/mob/dead/observer/ghost = human_mob.ghostize()
+		if(human_mob.job.job_cost) //We don't refund ally roles
+			human_mob.job.add_job_positions(1)
+		qdel(human_mob)
+		var/datum/game_mode/mode = SSticker.mode
+		mode.player_respawn(ghost) //auto open the respawn screen
 
 ///Generates status tab info for the mission
 /datum/faction_stats/proc/get_status_tab_items(mob/source, list/items)
