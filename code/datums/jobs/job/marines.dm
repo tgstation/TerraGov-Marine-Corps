@@ -470,6 +470,6 @@ You are also in charge of communicating with command and letting them know about
 	head = /obj/item/clothing/head/helmet/swat
 	ears = /obj/item/radio/headset/mainship/marine
 	w_uniform = /obj/item/clothing/under/rank/security/corp
-	wear_suit = /obj/item/clothing/suit/armor/bulletproof
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/bulletresistant
 	shoes = /obj/item/clothing/shoes/swat
 	gloves =/obj/item/clothing/gloves/swat

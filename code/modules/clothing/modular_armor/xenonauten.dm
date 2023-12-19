@@ -123,7 +123,7 @@
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
 	flags_item = NONE
 	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 50, ENERGY = 40, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
-	slowdown = 0.25
+	slowdown = 0
 
 	greyscale_config = /datum/greyscale_config/xenonaut/pilot
 
@@ -150,13 +150,11 @@
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/bulletresistant
-	name = "\improper NTC Bullet-resistant Armor"
+	name = "\improper NTC bullet-resistant vest"
 	desc = "A set of armor that excels in protecting the wearer against high-velocity solid projectiles. This one has bullet resistant padding on the limbs aswell."
 	blood_overlay_type = "armor"
-	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 45, ENERGY = 40, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
+	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 35, ENERGY = 30, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 5)
-	siemens_coefficient = 0.7
-	permeability_coefficient = 0.9
 	slowdown = 0
 
 	greyscale_config = /datum/greyscale_config/xenonaut/bulletproof
