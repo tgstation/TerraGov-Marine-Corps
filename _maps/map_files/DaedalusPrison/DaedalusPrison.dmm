@@ -129,12 +129,6 @@
 	dir = 1
 	},
 /area/daedalusprison/inside/chapel)
-"age" = (
-/obj/structure/fence,
-/obj/effect/landmark/weed_node,
-/obj/structure/platform/rockcliff/icycliff,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/outside/southwest)
 "agG" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/ice,
@@ -810,7 +804,7 @@
 /area/daedalusprison/inside/cargo)
 "aKH" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/platform{
+/obj/structure/platform/nondense{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -1670,13 +1664,6 @@
 	dir = 9
 	},
 /area/daedalusprison/inside/lobby)
-"bzZ" = (
-/obj/structure/fence,
-/obj/structure/platform/rockcliff/icycliff{
-	dir = 10
-	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/outside/southwest)
 "bAc" = (
 /obj/structure/table/mainship,
 /obj/item/tool/analyzer/plant_analyzer,
@@ -2789,6 +2776,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/inside/cargo)
+"cyz" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/rustyplating,
+/area/daedalusprison/inside/substation)
 "cyC" = (
 /obj/item/shard,
 /obj/effect/ai_node,
@@ -2811,6 +2802,13 @@
 /obj/structure/cable,
 /turf/open/floor/tile/green/full,
 /area/daedalusprison/inside/hydroponics)
+"czz" = (
+/obj/structure/fence,
+/obj/structure/platform/rockcliff/icycliff/nondense{
+	dir = 5
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/daedalusprison/outside/southwest)
 "czL" = (
 /obj/machinery/space_heater,
 /obj/effect/landmark/weed_node,
@@ -2886,18 +2884,11 @@
 /turf/open/floor/prison,
 /area/daedalusprison/inside/security/secbreakroom)
 "cCb" = (
-/obj/structure/platform{
+/obj/structure/platform/nondense{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/daedalusprison/outside/southwest)
-"cCq" = (
-/obj/structure/fence,
-/obj/structure/platform/rockcliff/icycliff{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/outside/south)
 "cCU" = (
 /obj/effect/spawner/random/misc/trash,
 /obj/effect/landmark/weed_node,
@@ -3358,7 +3349,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/daedalusprison/inside/garage)
 "daH" = (
-/obj/structure/platform{
+/obj/structure/platform/nondense{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -4250,13 +4241,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/daedalusprison/inside/security/interrogation)
-"dNa" = (
-/obj/structure/fence,
-/obj/structure/platform/rockcliff/icycliff{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/outside/southwest)
 "dNI" = (
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/prison/bright_clean/two,
@@ -4448,6 +4432,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/inside/cargo)
+"dVo" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating,
+/area/daedalusprison/inside/easternhalls)
 "dVz" = (
 /turf/open/floor/plating/ground/ice,
 /area/daedalusprison/caves/southwest/garbledradio)
@@ -5441,13 +5429,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/daedalusprison/inside/staffbreakroom)
-"eLD" = (
-/obj/structure/fence,
-/obj/structure/platform/rockcliff/icycliff{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/outside/southwest)
 "eLL" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/whitepurple/corner{
@@ -6681,10 +6662,6 @@
 	},
 /turf/open/floor/prison,
 /area/daedalusprison/inside/easternhalls)
-"fPN" = (
-/obj/structure/closet/secure_closet/engineering_electrical,
-/turf/open/floor/rustyplating,
-/area/daedalusprison/inside/substation)
 "fPW" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
@@ -7658,14 +7635,6 @@
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/prison,
 /area/daedalusprison/inside/habitation)
-"gNX" = (
-/obj/structure/fence,
-/obj/effect/landmark/weed_node,
-/obj/structure/platform/rockcliff/icycliff{
-	dir = 9
-	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/outside/south)
 "gOC" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -7823,14 +7792,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/kitchen,
 /area/daedalusprison/inside/kitchen)
-"gWM" = (
-/obj/structure/fence,
-/obj/effect/landmark/weed_node,
-/obj/structure/platform/rockcliff/icycliff{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/outside/south)
 "gXB" = (
 /obj/structure/sink,
 /obj/machinery/light{
@@ -8764,10 +8725,6 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/daedalusprison/inside/engineering)
-"hSo" = (
-/obj/machinery/vending/engivend,
-/turf/open/floor/plating,
-/area/daedalusprison/inside/substation)
 "hSL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -8854,7 +8811,8 @@
 	},
 /area/daedalusprison/inside/security/office)
 "hVR" = (
-/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
+/obj/structure/cable,
+/obj/machinery/power/monitor,
 /turf/open/floor/plating,
 /area/daedalusprison/inside/substation)
 "hWe" = (
@@ -10021,13 +9979,6 @@
 /obj/structure/prop/mainship/gelida/miner,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/daedalusprison/outside/northeast)
-"iVu" = (
-/obj/structure/fence,
-/obj/structure/platform/rockcliff/icycliff{
-	dir = 10
-	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/outside/south)
 "iVY" = (
 /obj/structure/barricade/metal,
 /turf/open/floor/prison/darkred{
@@ -10125,8 +10076,15 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/concrete,
 /area/daedalusprison/inside/basketball)
+"jaq" = (
+/obj/structure/fence,
+/obj/structure/platform/rockcliff/icycliff/nondense{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/daedalusprison/outside/southwest)
 "jaw" = (
-/obj/structure/platform{
+/obj/structure/platform/nondense{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -10303,12 +10261,6 @@
 /obj/structure/bed/chair/office/dark/west,
 /turf/open/floor/tile/dark/purple2/corner,
 /area/daedalusprison/inside/secoffices)
-"jgS" = (
-/obj/structure/fence,
-/obj/effect/landmark/weed_node,
-/obj/structure/platform/rockcliff/icycliff,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/outside/south)
 "jgT" = (
 /obj/structure/table/mainship,
 /turf/open/floor/prison,
@@ -10835,6 +10787,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/purple2/corner,
 /area/daedalusprison/inside/colonydorms)
+"jDY" = (
+/obj/structure/fence,
+/obj/structure/platform/rockcliff/icycliff/nondense{
+	dir = 6
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/daedalusprison/outside/south)
 "jDZ" = (
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/tile/dark/red2/corner,
@@ -11008,8 +10967,8 @@
 	},
 /area/daedalusprison/inside/medical)
 "jMj" = (
-/obj/machinery/power/monitor,
 /obj/structure/cable,
+/obj/machinery/power/geothermal,
 /turf/open/floor/plating,
 /area/daedalusprison/inside/substation)
 "jMm" = (
@@ -11539,6 +11498,13 @@
 	dir = 4
 	},
 /area/daedalusprison/inside/security/secbreakroom)
+"kkn" = (
+/obj/structure/fence,
+/obj/structure/platform/rockcliff/icycliff/nondense{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/daedalusprison/outside/southwest)
 "kkz" = (
 /obj/machinery/door/poddoor/shutters{
 	dir = 2;
@@ -11611,6 +11577,10 @@
 /obj/structure/bed/chair,
 /turf/open/floor/wood,
 /area/daedalusprison/inside/centralhalls)
+"kqd" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/daedalusprison/caves/south)
 "kqj" = (
 /obj/item/lightstick/red/anchored,
 /obj/effect/landmark/weed_node,
@@ -13243,13 +13213,6 @@
 	dir = 4
 	},
 /area/daedalusprison/inside/engineering)
-"lLB" = (
-/obj/structure/fence,
-/obj/structure/platform/rockcliff/icycliff{
-	dir = 5
-	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/outside/southwest)
 "lMk" = (
 /obj/machinery/space_heater,
 /turf/open/floor/prison/red,
@@ -13346,6 +13309,11 @@
 	},
 /turf/open/floor/prison/plate,
 /area/daedalusprison/inside/easternhalls)
+"lRF" = (
+/obj/structure/fence,
+/obj/structure/platform/rockcliff/icycliff/nondense,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/daedalusprison/outside/south)
 "lRI" = (
 /obj/machinery/light{
 	dir = 1
@@ -13604,9 +13572,12 @@
 /turf/open/floor/prison/plate,
 /area/daedalusprison/inside/mining)
 "mer" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison/whitegreen/full,
-/area/daedalusprison/inside/medical)
+/obj/structure/fence,
+/obj/structure/platform/rockcliff/icycliff/nondense{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/daedalusprison/outside/south)
 "meR" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -13641,11 +13612,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/floor,
 /area/daedalusprison/caves/research)
-"mfy" = (
-/obj/structure/fence,
-/obj/structure/platform/rockcliff/icycliff,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/outside/south)
 "mfQ" = (
 /obj/machinery/vending/security,
 /obj/machinery/light{
@@ -13694,8 +13660,11 @@
 /turf/open/floor/tile/dark/purple2/corner,
 /area/daedalusprison/inside/colonydorms)
 "mhx" = (
-/obj/machinery/vending/tool,
-/turf/open/floor/plating,
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	dir = 4
+	},
+/turf/open/floor/rustyplating,
 /area/daedalusprison/inside/substation)
 "mhC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -14665,6 +14634,14 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/daedalusprison/inside/freezer)
+"mWt" = (
+/obj/structure/fence,
+/obj/effect/landmark/weed_node,
+/obj/structure/platform/rockcliff/icycliff/nondense{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/daedalusprison/outside/south)
 "mXh" = (
 /obj/structure/filingcabinet,
 /obj/machinery/light,
@@ -14959,9 +14936,7 @@
 "nmO" = (
 /obj/structure/fence,
 /obj/effect/landmark/weed_node,
-/obj/structure/platform/rockcliff/icycliff{
-	dir = 1
-	},
+/obj/structure/platform/rockcliff/icycliff/nondense,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/daedalusprison/outside/southwest)
 "nmV" = (
@@ -15611,6 +15586,13 @@
 	},
 /turf/open/floor/tile/white,
 /area/daedalusprison/inside/southmeetingroom)
+"nPJ" = (
+/obj/structure/fence,
+/obj/structure/platform/rockcliff/icycliff/nondense{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/daedalusprison/outside/south)
 "nPM" = (
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/prison/darkred,
@@ -15703,7 +15685,7 @@
 	},
 /area/daedalusprison/inside/centralhalls)
 "nUH" = (
-/obj/structure/platform{
+/obj/structure/platform/nondense{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -16440,7 +16422,8 @@
 /turf/open/floor/prison/darkred/full,
 /area/daedalusprison/inside/centralhalls)
 "oFp" = (
-/obj/structure/closet/secure_closet/engineering_electrical,
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/daedalusprison/inside/substation)
 "oFt" = (
@@ -16650,8 +16633,7 @@
 /area/daedalusprison/inside/pmcdropship)
 "oNg" = (
 /obj/structure/cable,
-/obj/machinery/power/apc,
-/obj/effect/landmark/weed_node,
+/obj/machinery/power/geothermal,
 /turf/open/floor/rustyplating,
 /area/daedalusprison/inside/substation)
 "oNi" = (
@@ -17146,6 +17128,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/green/full,
 /area/daedalusprison/inside/hydroponics)
+"pfu" = (
+/obj/structure/fence,
+/obj/structure/platform/rockcliff/icycliff/nondense{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/daedalusprison/outside/south)
 "pfG" = (
 /obj/machinery/space_heater,
 /obj/machinery/light{
@@ -17426,7 +17415,7 @@
 	},
 /area/daedalusprison/inside/prisongarden)
 "prV" = (
-/turf/closed/wall,
+/turf/closed/wall/r_wall,
 /area/daedalusprison/inside/engineering)
 "prY" = (
 /obj/effect/decal/cleanable/glass,
@@ -17546,7 +17535,7 @@
 /area/daedalusprison/inside/habitation)
 "pvv" = (
 /obj/machinery/colony_floodlight_switch,
-/turf/closed/wall,
+/turf/closed/wall/r_wall,
 /area/daedalusprison/inside/engineering)
 "pvM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -17584,13 +17573,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/daedalusprison/caves/northeast)
-"pyJ" = (
-/obj/structure/fence,
-/obj/structure/platform/rockcliff/icycliff{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/outside/south)
 "pyL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/bullet,
@@ -17695,6 +17677,12 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/daedalusprison/inside/medical/treatment)
+"pCA" = (
+/obj/structure/fence,
+/obj/effect/landmark/weed_node,
+/obj/structure/platform/rockcliff/icycliff/nondense,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/daedalusprison/outside/south)
 "pCP" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/purple2/corner,
@@ -18251,13 +18239,6 @@
 /obj/item/storage/surgical_tray,
 /turf/open/floor/prison/sterilewhite,
 /area/daedalusprison/inside/medical)
-"qfu" = (
-/obj/structure/fence,
-/obj/structure/platform/rockcliff/icycliff{
-	dir = 5
-	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/outside/south)
 "qfz" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark2,
@@ -18373,13 +18354,6 @@
 	dir = 1
 	},
 /area/daedalusprison/inside/security/office)
-"qkW" = (
-/obj/structure/fence,
-/obj/structure/platform/rockcliff/icycliff{
-	dir = 6
-	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/outside/south)
 "qkZ" = (
 /turf/open/floor,
 /area/daedalusprison/inside/garden)
@@ -18638,7 +18612,7 @@
 /area/daedalusprison/inside/sportstorage)
 "qvj" = (
 /obj/structure/fence,
-/obj/structure/platform/rockcliff/icycliff,
+/obj/structure/platform/rockcliff/icycliff/nondense,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/daedalusprison/outside/south)
 "qvZ" = (
@@ -18961,13 +18935,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/inside/cargo)
-"qNs" = (
-/obj/structure/fence,
-/obj/structure/platform/rockcliff/icycliff{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/outside/south)
 "qOl" = (
 /obj/item/stack/tile,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -19075,6 +19042,11 @@
 "qUH" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark,
+/area/daedalusprison/inside/medical)
+"qVb" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/sterilewhite,
 /area/daedalusprison/inside/medical)
 "qVp" = (
 /obj/structure/curtain/medical,
@@ -19306,11 +19278,11 @@
 /turf/open/floor/tile/dark/purple2/corner,
 /area/daedalusprison/inside/colonydorms)
 "rgK" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/mechanical,
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/daedalusprison/inside/substation)
 "rgM" = (
@@ -19778,6 +19750,14 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/daedalusprison/inside/medical)
+"rBq" = (
+/obj/structure/fence,
+/obj/effect/landmark/weed_node,
+/obj/structure/platform/rockcliff/icycliff/nondense{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/daedalusprison/outside/southwest)
 "rBD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -20265,8 +20245,8 @@
 /turf/open/floor/prison,
 /area/daedalusprison/inside/mechanicshop)
 "rSQ" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/podhatch/floor,
 /area/daedalusprison/inside/engineering)
 "rSU" = (
@@ -20598,6 +20578,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
 /area/daedalusprison/inside/medical)
+"sku" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/sterilewhite,
+/area/daedalusprison/inside/freezer)
 "skx" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
@@ -21768,6 +21752,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/daedalusprison/inside/cafeteria)
+"tei" = (
+/obj/structure/fence,
+/obj/effect/landmark/weed_node,
+/obj/structure/platform/rockcliff/icycliff/nondense{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/daedalusprison/outside/south)
 "tey" = (
 /turf/closed/shuttle/dropship2/finright,
 /area/daedalusprison/inside/pmcdropship)
@@ -22003,7 +21995,7 @@
 "tsG" = (
 /obj/structure/fence,
 /obj/structure/fence,
-/obj/structure/platform/rockcliff/icycliff{
+/obj/structure/platform/rockcliff/icycliff/nondense{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer2,
@@ -22290,11 +22282,6 @@
 	dir = 4
 	},
 /area/daedalusprison/inside/habitation)
-"tFM" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/electrical,
-/turf/open/floor/plating,
-/area/daedalusprison/inside/substation)
 "tFP" = (
 /obj/structure/sink{
 	pixel_y = 15
@@ -22359,7 +22346,7 @@
 /area/daedalusprison/inside/abandonedstorage)
 "tIu" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/platform{
+/obj/structure/platform/nondense{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -23038,6 +23025,18 @@
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/wood,
 /area/daedalusprison/inside/library)
+"ums" = (
+/obj/structure/fence,
+/obj/structure/platform/rockcliff/icycliff/nondense,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/daedalusprison/outside/southwest)
+"umw" = (
+/obj/structure/fence,
+/obj/structure/platform/rockcliff/icycliff/nondense{
+	dir = 10
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/daedalusprison/outside/southwest)
 "umG" = (
 /obj/machinery/disposal,
 /obj/machinery/light,
@@ -23049,7 +23048,7 @@
 /turf/open/floor/prison/kitchen,
 /area/daedalusprison/inside/kitchen)
 "unB" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/inside/engineering)
 "unE" = (
@@ -24717,13 +24716,6 @@
 	dir = 9
 	},
 /area/daedalusprison/inside/lobby)
-"vJa" = (
-/obj/structure/fence,
-/obj/structure/platform/rockcliff/icycliff{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/outside/southwest)
 "vJe" = (
 /obj/structure/girder,
 /turf/open/floor/plating,
@@ -25277,6 +25269,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/prison,
 /area/daedalusprison/inside/medical/treatment)
+"whf" = (
+/obj/structure/fence,
+/obj/structure/platform/rockcliff/icycliff/nondense{
+	dir = 10
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/daedalusprison/outside/south)
 "whX" = (
 /obj/machinery/space_heater,
 /turf/open/floor/tile/dark/red2/corner,
@@ -25314,6 +25313,13 @@
 	dir = 8
 	},
 /area/daedalusprison/inside/medical)
+"wiW" = (
+/obj/structure/fence,
+/obj/structure/platform/rockcliff/icycliff/nondense{
+	dir = 5
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/daedalusprison/outside/south)
 "wjl" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -25347,11 +25353,6 @@
 /obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/daedalusprison/outside/northeast)
-"wjS" = (
-/obj/structure/fence,
-/obj/structure/platform/rockcliff/icycliff,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/outside/southwest)
 "wjT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/corpsespawner/prisoner,
@@ -25651,6 +25652,13 @@
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/caves/nukestorage)
+"wsy" = (
+/obj/structure/fence,
+/obj/structure/platform/rockcliff/icycliff/nondense{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/daedalusprison/outside/southwest)
 "wsK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/bullet,
@@ -26866,6 +26874,10 @@
 	dir = 1
 	},
 /area/daedalusprison/inside/mining)
+"xvj" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/plate,
+/area/daedalusprison/inside/habitation)
 "xvs" = (
 /obj/structure/girder,
 /turf/open/floor/plating,
@@ -27265,7 +27277,7 @@
 /area/daedalusprison/inside/mining)
 "xNg" = (
 /obj/structure/fence,
-/obj/structure/platform/rockcliff/icycliff,
+/obj/structure/platform/rockcliff/icycliff/nondense,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/daedalusprison/outside/southwest)
 "xNm" = (
@@ -38404,7 +38416,7 @@ cOM
 qTg
 wbt
 fNQ
-sTw
+xvj
 eFJ
 lxu
 fNQ
@@ -38653,7 +38665,7 @@ sLx
 sLx
 iuq
 kIn
-dNa
+kkn
 dmP
 fir
 dmP
@@ -38865,7 +38877,7 @@ sLx
 kIn
 kIn
 kIn
-dNa
+kkn
 dmP
 dmP
 dmP
@@ -39077,7 +39089,7 @@ sLx
 kIn
 kIn
 kIn
-dNa
+kkn
 dmP
 dmP
 dmP
@@ -39285,11 +39297,11 @@ rUP
 rUP
 rUP
 dmP
-wjS
+ums
 kIn
 kIn
 kIn
-dNa
+kkn
 dmP
 dmP
 dmP
@@ -39326,8 +39338,8 @@ prV
 prV
 prV
 prV
-unB
-unB
+prV
+prV
 prV
 prV
 prV
@@ -39497,11 +39509,11 @@ gNR
 dmP
 fLA
 dmP
-wjS
+ums
 kIn
 iuq
 kIn
-dNa
+kkn
 dmP
 fir
 nmg
@@ -39709,11 +39721,11 @@ eFJ
 dmP
 dmP
 dmP
-wjS
+ums
 kIn
 kIn
 kIn
-dNa
+kkn
 dmP
 dmP
 dmP
@@ -39741,7 +39753,7 @@ dmP
 dmP
 dmP
 dmP
-unB
+prV
 iwG
 kiJ
 mTG
@@ -39749,7 +39761,7 @@ xpm
 fNy
 quw
 mxu
-unB
+prV
 fir
 dmP
 dmP
@@ -39921,11 +39933,11 @@ eFJ
 dmP
 dmP
 dmP
-wjS
+ums
 kIn
 kIn
 kIn
-dNa
+kkn
 dmP
 dmP
 dmP
@@ -39953,7 +39965,7 @@ dmP
 dmP
 dmP
 dmP
-unB
+prV
 jdu
 fNy
 mTG
@@ -39961,7 +39973,7 @@ imU
 xea
 fNy
 fjP
-unB
+prV
 dmP
 nmg
 dmP
@@ -40133,11 +40145,11 @@ gNR
 dmP
 nmg
 dmP
-wjS
+ums
 kIn
 kIn
 kIn
-dNa
+kkn
 dmP
 dmP
 nmg
@@ -40345,11 +40357,11 @@ eFJ
 dmP
 fir
 vXI
-wjS
+ums
 kIn
 iuq
 kIn
-dNa
+kkn
 dmP
 fir
 dmP
@@ -40561,7 +40573,7 @@ xNg
 jaw
 jaw
 jaw
-dNa
+kkn
 dmP
 dmP
 dmP
@@ -42469,7 +42481,7 @@ xNg
 cCb
 cCb
 cCb
-dNa
+kkn
 oTh
 fqx
 fqx
@@ -42677,11 +42689,11 @@ gNR
 fir
 nmg
 vXI
-age
+nmO
 kIn
 kIn
 sEf
-nmO
+rBq
 dmP
 vXI
 fqx
@@ -42889,11 +42901,11 @@ eFJ
 dmP
 dmP
 dmP
-wjS
+ums
 kIn
 kIn
 kIn
-dNa
+kkn
 dmP
 vXI
 fqx
@@ -43101,11 +43113,11 @@ eFJ
 dmP
 dmP
 dmP
-wjS
+ums
 kIn
 kIn
 kIn
-dNa
+kkn
 dmP
 vXI
 vXI
@@ -43313,11 +43325,11 @@ gNR
 dmP
 nmg
 dmP
-wjS
+ums
 kIn
 kIn
 kIn
-dNa
+kkn
 dmP
 dmP
 vXI
@@ -43525,11 +43537,11 @@ eFJ
 fir
 dmP
 nmg
-age
-kIn
-kIn
-kIn
 nmO
+kIn
+kIn
+kIn
+rBq
 dmP
 dmP
 nmg
@@ -43737,11 +43749,11 @@ eFJ
 dmP
 dmP
 dmP
-wjS
+ums
 kIn
 kIn
 kIn
-dNa
+kkn
 dmP
 dmP
 dmP
@@ -43949,24 +43961,24 @@ ntm
 dmP
 dmP
 dmP
-wjS
+ums
 kIn
 kIn
 kIn
-lLB
-eLD
-eLD
-eLD
-eLD
-eLD
-eLD
-eLD
-eLD
-eLD
-eLD
-eLD
-eLD
-eLD
+czz
+wsy
+wsy
+wsy
+wsy
+wsy
+wsy
+wsy
+wsy
+wsy
+wsy
+wsy
+wsy
+wsy
 tsG
 ovt
 ijy
@@ -44161,7 +44173,7 @@ ntm
 dmP
 dmP
 nmg
-wjS
+ums
 kIn
 kIn
 kIn
@@ -44180,7 +44192,7 @@ kIn
 kIn
 kIn
 kIn
-dNa
+kkn
 fqx
 vXI
 vXI
@@ -44373,7 +44385,7 @@ fWP
 fir
 dmP
 dmP
-age
+nmO
 kIn
 kIn
 kIn
@@ -44392,7 +44404,7 @@ kIn
 iuq
 kIn
 kIn
-dNa
+kkn
 gUI
 kIn
 vXI
@@ -44585,7 +44597,7 @@ fWP
 dmP
 dmP
 dmP
-wjS
+ums
 kIn
 kIn
 kIn
@@ -44604,7 +44616,7 @@ kIn
 kIn
 kIn
 kIn
-dNa
+kkn
 fqx
 kIn
 vXI
@@ -44797,26 +44809,26 @@ hBM
 dmP
 dmP
 dmP
-vJa
-vJa
-vJa
-vJa
-vJa
-vJa
-vJa
-vJa
-vJa
-vJa
-vJa
-vJa
-vJa
-vJa
-vJa
-bzZ
+ovt
+jaq
+jaq
+jaq
+jaq
+jaq
+jaq
+jaq
+jaq
+jaq
+jaq
+jaq
+jaq
+jaq
+jaq
+umw
 kIn
 kIn
 kIn
-dNa
+kkn
 fqx
 kIn
 kIn
@@ -44994,9 +45006,9 @@ fly
 sGj
 fnz
 kJF
+jMj
+fLW
 mhx
-hSo
-mOT
 hVR
 way
 rFc
@@ -45024,11 +45036,11 @@ dmP
 dmP
 nmg
 vXI
-wjS
+ums
 kIn
 kIn
 kIn
-dNa
+kkn
 ijy
 kIn
 sEf
@@ -45207,7 +45219,7 @@ xmh
 pst
 kJF
 oNg
-aMl
+fke
 rqb
 fke
 way
@@ -45240,7 +45252,7 @@ xNg
 tIu
 jaw
 jaw
-dNa
+kkn
 uFk
 ijy
 fqx
@@ -45842,7 +45854,7 @@ rog
 skZ
 pst
 kJF
-tFM
+oFp
 aMl
 mOT
 nIV
@@ -46266,7 +46278,7 @@ uGX
 ibE
 stv
 kJF
-fPN
+cyz
 wCZ
 uCz
 cRx
@@ -47148,7 +47160,7 @@ qvj
 daH
 daH
 daH
-pyJ
+pfu
 qqi
 qqi
 qqi
@@ -47356,11 +47368,11 @@ fWP
 qqi
 qqi
 tCL
-mfy
+lRF
 prx
 prx
 prx
-pyJ
+pfu
 qqi
 qqi
 qqi
@@ -47568,11 +47580,11 @@ ntm
 qqi
 bUI
 qqi
-mfy
+lRF
 prx
 prx
 prx
-pyJ
+pfu
 qqi
 qqi
 bUI
@@ -47780,11 +47792,11 @@ ntm
 kaT
 qqi
 qqi
-mfy
+lRF
 dqa
 prx
 prx
-pyJ
+pfu
 kaT
 qqi
 qqi
@@ -47992,11 +48004,11 @@ ntm
 qqi
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 prx
-pyJ
+pfu
 qqi
 qqi
 qqi
@@ -48204,18 +48216,18 @@ ntm
 qqi
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 prx
-qfu
-qNs
-qNs
-qNs
-qNs
-qNs
-qNs
-qNs
+wiW
+nPJ
+nPJ
+nPJ
+nPJ
+nPJ
+nPJ
+nPJ
 aok
 sHV
 gnq
@@ -48416,7 +48428,7 @@ fWP
 qqi
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 prx
@@ -48628,7 +48640,7 @@ fWP
 kaT
 qqi
 qqi
-mfy
+lRF
 dqa
 prx
 prx
@@ -48840,7 +48852,7 @@ ntm
 qqi
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 prx
@@ -49053,18 +49065,18 @@ qqi
 qqi
 qqi
 piI
-cCq
-cCq
-cCq
-cCq
-cCq
-cCq
-cCq
-iVu
+mer
+mer
+mer
+mer
+mer
+mer
+mer
+whf
 prx
 prx
 prx
-pyJ
+pfu
 qqi
 aok
 rJU
@@ -49272,11 +49284,11 @@ qqi
 qqi
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 prx
-pyJ
+pfu
 qqi
 aok
 qmP
@@ -49484,11 +49496,11 @@ qqi
 kaT
 qqi
 bUI
-mfy
+lRF
 dqa
 prx
 tmQ
-pyJ
+pfu
 kaT
 aok
 fvS
@@ -49696,11 +49708,11 @@ qqi
 qqi
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 prx
-pyJ
+pfu
 qqi
 aok
 aok
@@ -49908,11 +49920,11 @@ qqi
 qqi
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 prx
-pyJ
+pfu
 qqi
 qqi
 qqi
@@ -50120,11 +50132,11 @@ qqi
 qqi
 qqi
 bUI
-mfy
+lRF
 prx
 prx
 tmQ
-pyJ
+pfu
 qqi
 tCL
 qqi
@@ -50332,11 +50344,11 @@ qqi
 kaT
 qqi
 qqi
-mfy
+lRF
 dqa
 prx
 prx
-pyJ
+pfu
 kaT
 prx
 prx
@@ -50544,11 +50556,11 @@ qqi
 qqi
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 prx
-pyJ
+pfu
 tCL
 prx
 bnV
@@ -50756,11 +50768,11 @@ qqi
 qqi
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 prx
-pyJ
+pfu
 tCL
 prx
 prx
@@ -50968,11 +50980,11 @@ qqi
 qqi
 qqi
 bUI
-mfy
+lRF
 prx
 prx
 tmQ
-pyJ
+pfu
 qqi
 prx
 tCL
@@ -51015,7 +51027,7 @@ dKa
 nls
 nls
 dKa
-nls
+kqd
 liI
 sLx
 sLx
@@ -51180,11 +51192,11 @@ qqi
 kaT
 qqi
 qqi
-mfy
+lRF
 dqa
 prx
 prx
-pyJ
+pfu
 aiF
 qqi
 qqi
@@ -51392,11 +51404,11 @@ qqi
 qqi
 qqi
 bUI
-mfy
+lRF
 prx
 prx
 prx
-pyJ
+pfu
 qqi
 qqi
 qqi
@@ -51604,11 +51616,11 @@ qqi
 qqi
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 prx
-pyJ
+pfu
 qqi
 qqi
 qqi
@@ -51816,11 +51828,11 @@ qqi
 qqi
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 prx
-pyJ
+pfu
 qqi
 qqi
 qqi
@@ -52028,11 +52040,11 @@ qqi
 kaT
 qqi
 qqi
-mfy
+lRF
 dqa
 prx
 prx
-pyJ
+pfu
 kaT
 qqi
 tCL
@@ -52240,11 +52252,11 @@ qqi
 qqi
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 prx
-pyJ
+pfu
 qqi
 qqi
 tCL
@@ -52452,11 +52464,11 @@ qqi
 qqi
 qqi
 tCL
-mfy
+lRF
 prx
 prx
 tmQ
-pyJ
+pfu
 qqi
 qqi
 bTE
@@ -52668,7 +52680,7 @@ qvj
 nUH
 nUH
 nUH
-pyJ
+pfu
 tCL
 tCL
 awf
@@ -53903,7 +53915,7 @@ uRM
 wGH
 aVl
 aVl
-xtT
+sku
 uRM
 eas
 lTj
@@ -54576,7 +54588,7 @@ qvj
 aKH
 daH
 daH
-pyJ
+pfu
 kaT
 bUI
 qqi
@@ -54784,11 +54796,11 @@ qqi
 qqi
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 prx
-pyJ
+pfu
 qqi
 qqi
 qqi
@@ -54996,11 +55008,11 @@ qqi
 qqi
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 prx
-pyJ
+pfu
 qqi
 qqi
 qqi
@@ -55208,11 +55220,11 @@ qqi
 qqi
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 prx
-pyJ
+pfu
 aZi
 qqi
 qqi
@@ -55418,13 +55430,13 @@ anb
 qqi
 qqi
 dvf
-qNs
-qNs
-qkW
+nPJ
+nPJ
+jDY
 dqa
 prx
 prx
-pyJ
+pfu
 kaT
 qqi
 qqi
@@ -55629,14 +55641,14 @@ nxa
 anb
 qqi
 qqi
-mfy
+lRF
 tmQ
 prx
 prx
 prx
 prx
 prx
-pyJ
+pfu
 qqi
 swm
 wAa
@@ -55841,14 +55853,14 @@ aLJ
 anb
 qqi
 qqi
-mfy
+lRF
 prx
 tmQ
 prx
 prx
 prx
 prx
-pyJ
+pfu
 qqi
 lKJ
 dxq
@@ -56053,14 +56065,14 @@ xty
 daj
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 prx
 prx
 prx
 prx
-pyJ
+pfu
 qqi
 qea
 vXp
@@ -56265,13 +56277,13 @@ oeb
 daj
 qqi
 qqi
-jgS
+pCA
 prx
 prx
 prx
-gNX
-cCq
-cCq
+tei
+mer
+mer
 piI
 kaT
 bUI
@@ -56477,11 +56489,11 @@ daj
 daj
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 prx
-pyJ
+pfu
 qqi
 qqi
 qqi
@@ -56689,11 +56701,11 @@ nwh
 quO
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 prx
-pyJ
+pfu
 qqi
 qqi
 qqi
@@ -56901,11 +56913,11 @@ nFx
 cEK
 qqi
 qqi
-jgS
+pCA
 prx
 tmQ
 prx
-gWM
+mWt
 qqi
 qqi
 qqi
@@ -57113,11 +57125,11 @@ uzZ
 quO
 qqi
 qqi
-mfy
+lRF
 prx
 tmQ
 prx
-pyJ
+pfu
 qqi
 qqi
 qqi
@@ -57325,11 +57337,11 @@ daj
 daj
 qqi
 qqi
-mfy
+lRF
 prx
 prx
 tmQ
-pyJ
+pfu
 qqi
 qqi
 qqi
@@ -59154,8 +59166,8 @@ sLx
 sLx
 sLx
 jXr
-wfw
-mer
+qVb
+qzZ
 wZA
 rOL
 jEN
@@ -63859,7 +63871,7 @@ utS
 rTc
 vBb
 hCI
-hCG
+dVo
 fEg
 hCG
 gLx
