@@ -120,9 +120,6 @@
 	})
 "agx" = (
 /obj/structure/table/reinforced,
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
 /obj/item/folder/red,
 /obj/item/folder/red,
 /obj/item/clipboard,
@@ -7588,7 +7585,7 @@
 	req_access = list(5)
 	},
 /obj/machinery/door/poddoor/shutters/mainship/cic/armory{
-	id = "brig_armory"
+	id = "brig_armory2"
 	},
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -7769,8 +7766,12 @@
 /obj/item/tool/pen,
 /obj/item/clipboard,
 /obj/machinery/door_control/old/cic/armory{
-	id = "brig_armory";
+	id = "brig_armory2";
 	pixel_x = -8
+	},
+/obj/machinery/computer/marine_card{
+	dir = 4;
+	pixel_x = 5
 	},
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -8309,11 +8310,16 @@
 	name = "Research"
 	})
 "hIK" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 8
+/obj/structure/ladder{
+	id = "NTFbrigLadder";
+	height = 1
 	},
-/turf/open/floor/mainship/mono,
-/area/mainship/groundhq/ntf/shipboard/brig_cells)
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/mainship/shipboard/port_missiles{
+	name = "Shipside Corpsec Office"
+	})
 "hJe" = (
 /obj/effect/decal/cleanable/blood/gibs/robot/limb,
 /obj/machinery/computer/mech_builder{
@@ -14504,7 +14510,7 @@
 	name = "kevlar-weave infused bulletproof window"
 	},
 /obj/machinery/door/poddoor/shutters/mainship/cic/armory{
-	id = "brig_armory"
+	id = "brig_armory2"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -15128,10 +15134,11 @@
 	})
 "nQf" = (
 /obj/machinery/door/airlock/mainship/security{
-	req_access = null;
-	req_one_access = list(40)
+	dir = 1;
+	name = "\improper Corpsec Warden Office";
+	req_access = list(5)
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/wood,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "nQu" = (
 /obj/structure/table/mainship,
@@ -16860,6 +16867,16 @@
 	outside = 0;
 	name = "CEO Office"
 	})
+"pte" = (
+/obj/structure/cable,
+/obj/structure/ladder{
+	id = "NTFbrigLadder";
+	height = 2
+	},
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/mainship/groundhq/ntf/shipboard/brig)
 "pui" = (
 /obj/structure/sink{
 	dir = 8
@@ -17231,9 +17248,6 @@
 /area/mainship/living/cryo_cells)
 "pTL" = (
 /obj/structure/table/reinforced,
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
 /obj/item/taperecorder,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -17894,10 +17908,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "qxX" = (
-/obj/structure/closet/secure_closet/injection,
-/turf/open/floor/mainship/red{
-	dir = 4
+/obj/machinery/door_control{
+	id = "brig_armory";
+	name = "Brig Armory";
+	req_one_access = list(40)
 	},
+/turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
@@ -20208,7 +20224,6 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/groundhq/ntf/engineering/engine_core)
 "sMS" = (
-/obj/machinery/computer/prisoner,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "sNc" = (
@@ -21804,6 +21819,10 @@
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
+"ujT" = (
+/obj/machinery/computer/prisoner,
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/shipboard/brig)
 "ukK" = (
 /obj/effect/landmark/start/job/cmo,
 /obj/structure/cable,
@@ -33552,7 +33571,7 @@ wOb
 rqa
 aYd
 fNY
-qxX
+mnN
 jEg
 gXC
 aYd
@@ -34274,7 +34293,7 @@ aYd
 aYd
 wwb
 mnN
-mnN
+hIK
 mnN
 mnN
 lHg
@@ -35002,7 +35021,7 @@ sIF
 wZy
 oGg
 sIF
-dIf
+qxX
 dIf
 aYd
 aYm
@@ -59997,7 +60016,7 @@ mmj
 rSv
 wdS
 cdT
-hIK
+cRm
 kES
 cRm
 lAL
@@ -60474,13 +60493,13 @@ pXX
 kQG
 mmj
 mmj
-ngI
+mmj
 gUh
 ngI
 mmj
 dDK
 aFJ
-aFJ
+pte
 aFJ
 aFJ
 dDK
@@ -62665,7 +62684,7 @@ bRl
 dej
 mmj
 bRl
-nQf
+bRl
 mmj
 ybU
 ybU
@@ -62905,7 +62924,7 @@ mmj
 bbu
 gYV
 gUv
-bRl
+nQf
 sMS
 qUW
 mmj
@@ -63144,7 +63163,7 @@ ybP
 jUb
 qZo
 bRl
-kQG
+ujT
 xpx
 gUv
 bRl
