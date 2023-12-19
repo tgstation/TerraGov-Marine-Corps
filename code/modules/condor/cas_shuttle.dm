@@ -27,9 +27,9 @@
 	///Action to stop the eye
 	var/datum/action/innate/camera_off/cas/off_action
 	///Number for how much fuel we have left, this x15 seconds is how much time we have while flying
-	var/fuel_left = 40
+	var/fuel_left = 100
 	///How much fuel we can hold maximum
-	var/fuel_max = 40
+	var/fuel_max = 100
 	///Our currently selected weapon we will fire
 	var/obj/structure/dropship_equipment/cas/weapon/active_weapon
 	///Minimap for the pilot to know where the marines have ran off to

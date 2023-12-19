@@ -4,16 +4,13 @@
 /area/shuttle/dropship/minielevator{
 	ceiling = 2
 	})
-"c" = (
-/obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
-	dir = 2
-	},
-/turf/open/shuttle/elevator/grating,
-/area/shuttle/dropship/minielevator{
-	ceiling = 2
-	})
 "d" = (
-/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/obj/structure/prop/mainship/railing{
+	dir = 1
+	},
+/obj/machinery/light/mainship{
+	dir = 4
+	},
 /turf/open/shuttle/elevator/grating,
 /area/shuttle/dropship/minielevator{
 	ceiling = 2
@@ -21,6 +18,17 @@
 "i" = (
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /turf/open/floor/mainship/stripesquare,
+/area/shuttle/dropship/minielevator{
+	ceiling = 2
+	})
+"k" = (
+/obj/machinery/computer/shuttle/shuttle_control/elevator{
+	density = 0;
+	max_integrity = 5000;
+	dir = 4;
+	pixel_x = 15
+	},
+/turf/open/shuttle/elevator/grating,
 /area/shuttle/dropship/minielevator{
 	ceiling = 2
 	})
@@ -44,60 +52,41 @@
 	ceiling = 2
 	})
 "G" = (
-/obj/machinery/computer/shuttle/shuttle_control/elevator{
-	pixel_y = 15;
-	density = 0;
-	max_integrity = 5000
+/obj/structure/prop/mainship/railing{
+	dir = 1
 	},
 /turf/open/shuttle/elevator/grating,
 /area/shuttle/dropship/minielevator{
 	ceiling = 2
 	})
-"S" = (
-/obj/machinery/status_display,
-/turf/closed/wall/mainship,
-/area/shuttle/dropship/minielevator{
-	ceiling = 2
-	})
-"U" = (
-/obj/effect/soundplayer,
-/turf/closed/wall/mainship,
-/area/shuttle/dropship/minielevator{
-	ceiling = 2
-	})
 
 (1,1,1) = {"
-U
 i
-d
 i
-C
+i
+B
 "}
 (2,1,1) = {"
-S
-a
+G
 a
 a
 C
 "}
 (3,1,1) = {"
-B
 G
 t
 a
-c
+C
 "}
 (4,1,1) = {"
-B
+d
 a
-a
-a
+k
 C
 "}
 (5,1,1) = {"
 B
-B
-d
+i
 B
 B
 "}
