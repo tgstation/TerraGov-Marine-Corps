@@ -72,19 +72,22 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 /obj/item/a_gift/examine(mob/user)
 	. = ..()
-	if(HAS_TRAIT(user, TRAIT_SANTA_CLAUS) || HAS_TRAIT(user, TRAIT_CHRISTMAS_ELF)) //santa can reveal the owner of a present just by looking at it
+	if(HAS_TRAIT(user, TRAIT_SANTA_CLAUS)) //santa can reveal the owner of a present just by looking at it
 		if(present_receiver == null && !freepresent)
 			get_recipient()
 	if(present_receiver)
 		. += "This present is addressed to [present_receiver_name]."
 
 /obj/item/a_gift/attack_self(mob/M)
-	if(present_receiver == null && !freepresent)
+	if(present_receiver == null && !freepresent && !HAS_TRAIT(M, TRAIT_SANTA_CLAUS))
 		to_chat(M, span_warning("You start unwrapping the present, trying to locate any sign of who the present belongs to..."))
 		if(!do_after(M, 4 SECONDS))
 			return
 		get_recipient() //generate owner of gift
 	if(HAS_TRAIT(M, TRAIT_SANTA_CLAUS) || HAS_TRAIT(M, TRAIT_CHRISTMAS_ELF))
+		if(present_receiver == null && !freepresent)
+			get_recipient()
+		to_chat(M, "This present is addressed to [present_receiver_name].")
 		to_chat(M, "You're supposed to deliver presents, not open them.")
 		return
 	if(!freepresent && present_receiver != M)
