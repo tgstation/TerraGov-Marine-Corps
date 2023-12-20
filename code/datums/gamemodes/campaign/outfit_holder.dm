@@ -15,8 +15,8 @@
 	role = new_role
 	loadout = new /datum/outfit/quick
 	for(var/slot in GLOB.campaign_loadout_slots)
-		equipped_things[slot] = null
-		available_list[slot] = list()
+		equipped_things["[slot]"] = null
+		available_list["[slot]"] = list()
 	for(var/datum/loadout_item/loadout_option AS in GLOB.campaign_loadout_items_by_role[role])
 		available_list[loadout_option.item_slot] += loadout_option
 
@@ -45,7 +45,7 @@
 
 ///Actually adds an item to a loadout
 /datum/outfit_holder/proc/equip_loadout_item(datum/loadout_item/new_item)
-	var/slot_bit = new_item.item_slot
+	var/slot_bit = "[new_item.item_slot]"
 	loadout_cost -= equipped_things[slot_bit].purchase_cost
 	equipped_things[slot_bit] = new_item //adds the datum
 	loadout_cost += equipped_things[slot_bit].purchase_cost
@@ -88,7 +88,7 @@
 /datum/outfit_holder/proc/check_full_loadout()
 	. = TRUE
 	for(var/slot in equipped_things)
-		var/datum/loadout_item/thing_to_check = equipped_things[slot]
+		var/datum/loadout_item/thing_to_check = equipped_things["[slot]"]
 		if(!thing_to_check)
 			continue
 		if(length(thing_to_check.item_whitelist) && !thing_to_check.whitelist_check(src))
@@ -103,24 +103,24 @@
 //returns ther datum, not the item. Currently unused
 ///Returns an item type in a particular loadout slot
 /datum/outfit_holder/proc/find_item(slot)
-	return equipped_things[slot]
+	return equipped_things["[slot]"]
 
 ///Fully populates the loadout
 /datum/outfit_holder/proc/populate_loadout() //this might be redundant, maybe just use it for the initial default since we don't need the checks in that case
-	loadout.wear_suit = equipped_things[ITEM_SLOT_OCLOTHING]
-	loadout.w_uniform = equipped_things[ITEM_SLOT_ICLOTHING]
-	loadout.gloves = equipped_things[ITEM_SLOT_GLOVES]
-	loadout.glasses = equipped_things[ITEM_SLOT_EYES]
-	loadout.ears = equipped_things[ITEM_SLOT_EARS]
-	loadout.mask = equipped_things[ITEM_SLOT_MASK]
-	loadout.head = equipped_things[ITEM_SLOT_HEAD]
-	loadout.shoes = equipped_things[ITEM_SLOT_FEET]
-	loadout.id = equipped_things[ITEM_SLOT_ID]
-	loadout.belt = equipped_things[ITEM_SLOT_BELT]
-	loadout.back = equipped_things[ITEM_SLOT_BACK]
-	loadout.r_store = equipped_things[ITEM_SLOT_R_POCKET]
-	loadout.l_store = equipped_things[ITEM_SLOT_L_POCKET]
-	loadout.suit_store = equipped_things[ITEM_SLOT_SUITSTORE]
+	loadout.wear_suit = equipped_things["[ITEM_SLOT_OCLOTHING]"]
+	loadout.w_uniform = equipped_things["[ITEM_SLOT_ICLOTHING]"]
+	loadout.gloves = equipped_things["[ITEM_SLOT_GLOVES]"]
+	loadout.glasses = equipped_things["[ITEM_SLOT_EYES]"]
+	loadout.ears = equipped_things["[ITEM_SLOT_EARS]"]
+	loadout.mask = equipped_things["[ITEM_SLOT_MASK]"]
+	loadout.head = equipped_things["[ITEM_SLOT_HEAD]"]
+	loadout.shoes = equipped_things["[ITEM_SLOT_FEET]"]
+	loadout.id = equipped_things["[ITEM_SLOT_ID]"]
+	loadout.belt = equipped_things["[ITEM_SLOT_BELT]"]
+	loadout.back = equipped_things["[ITEM_SLOT_BACK]"]
+	loadout.r_store = equipped_things["[ITEM_SLOT_R_POCKET]"]
+	loadout.l_store = equipped_things["[ITEM_SLOT_L_POCKET]"]
+	loadout.suit_store = equipped_things["[ITEM_SLOT_SUITSTORE]"]
 
 ////////////////////////////LOADOUT ITSELF////////////////
 
