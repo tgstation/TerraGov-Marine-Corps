@@ -4,7 +4,13 @@
 	skills_type = /datum/skills/crafty
 	faction = FACTION_CLF
 	shadow_languages = list(/datum/language/xenocommon)
+	job_category = JOB_CAT_MARINE
 
+/datum/job/clf/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"As a CLF member you are a ex NTC worker, now a servant of Xenomorphs, they are superior, evolved beings that you must serve.
+You can understand but not speak xeno language but they can understand your language already, Obey your Xenomorph masters.
+Your primary goal is to serve the hive, and ultimate goal is to liberate the colonies from all occupational forces so the Xenos may reclaim the lands, and breed your kind forever."})
 
 //CLF Standard
 /datum/job/clf/standard
@@ -553,8 +559,8 @@
 	multiple_outfits = FALSE
 
 /datum/outfit/job/clf/breeder
-	name = "CLF Standard"
-	jobtype = /datum/job/clf/standard
+	name = "CLF Breeder"
+	jobtype = /datum/job/clf/breeder
 
 	id = /obj/item/card/id/silver
 	ears = /obj/item/radio/headset/distress/dutch

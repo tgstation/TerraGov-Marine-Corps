@@ -101,7 +101,7 @@
 #define JOB_CAT_MEDICAL "Medical"
 #define JOB_CAT_ENGINEERING "Engineering"
 #define JOB_CAT_CIVILIAN "Civilian"
-#define JOB_CAT_MARINE "Marine"
+#define JOB_CAT_MARINE "Military"
 #define JOB_CAT_XENO "Xenomorph"
 #define JOB_CAT_UNASSIGNED "Unassigned"
 

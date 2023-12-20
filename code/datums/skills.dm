@@ -418,6 +418,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
 	police = SKILL_POLICE_MP
+	smartgun = SKILL_SMART_TRAINED
 
 /datum/skills/pilot
 	name = PILOT_OFFICER

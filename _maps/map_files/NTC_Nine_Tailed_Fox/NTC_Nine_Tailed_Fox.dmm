@@ -2015,6 +2015,16 @@
 	dir = 4
 	},
 /area/mainship/living/basketball)
+"bLk" = (
+/obj/machinery/button/door{
+	id = "captainshutters";
+	name = "shutter button"
+	},
+/turf/closed/wall/mainship,
+/area/sulaco/command{
+	name = "Captain's Room";
+	outside = 0
+	})
 "bMc" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname{
@@ -4874,7 +4884,7 @@
 /obj/item/radio/intercom/general{
 	dir = 8
 	},
-/turf/open/floor/mainship/cargo,
+/turf/open/floor/mainship/mono,
 /area/outpost/cargo{
 	outside = 1
 	})
@@ -5102,7 +5112,6 @@
 /turf/open/floor/plating,
 /area/mainship/medical/operating_room_four)
 "eMu" = (
-/obj/structure/cable,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
@@ -7953,15 +7962,16 @@
 /obj/machinery/door/firedoor/multi_tile{
 	dir = 1
 	},
-/obj/machinery/door/airlock/multi_tile/mainship/marine/requisitions{
-	dir = 1
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "qm_warehouse";
+	name = "\improper Warehouse Shutters"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -11576,6 +11586,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "kGd" = (
@@ -12852,13 +12863,11 @@
 	name = "Ship Floor 1 Hallways"
 	})
 "lDQ" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/clipboard,
-/obj/item/paper{
-	pixel_x = 5
+/obj/machinery/door/poddoor/shutters{
+	id = "qm_warehouse";
+	name = "\improper Warehouse Shutters"
 	},
-/obj/item/tool/pen,
-/turf/open/floor/mainship/green,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "lDY" = (
 /turf/open/floor/plating/icefloor/warnplate{
@@ -14464,6 +14473,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "mYR" = (
@@ -15956,7 +15966,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "owk" = (
-/obj/structure/cable,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
@@ -16520,7 +16529,6 @@
 /turf/closed/wall/mainship/outer,
 /area/mainship/living/cryo_cells)
 "oYi" = (
-/obj/structure/cable,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
@@ -16999,6 +17007,17 @@
 /obj/structure/largecrate/supply/explosives,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
+"pyA" = (
+/obj/machinery/door/poddoor/shutters/mainship{
+	name = "\improper Privacy Shutters";
+	dir = 2;
+	id = "captainshutters"
+	},
+/turf/open/floor/plating,
+/area/sulaco/command{
+	name = "Captain's Room";
+	outside = 0
+	})
 "pyC" = (
 /obj/machinery/door_control/mainship/ammo{
 	id = "lowercargohold2";
@@ -20447,6 +20466,11 @@
 /area/mainship/living/cafeteria_starboard)
 "sRd" = (
 /obj/structure/table/mainship/nometal,
+/obj/item/clipboard,
+/obj/item/paper{
+	pixel_x = 5
+	},
+/obj/item/tool/pen,
 /turf/open/floor/mainship/green{
 	dir = 6
 	},
@@ -20534,7 +20558,6 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "sUW" = (
-/obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
@@ -22391,6 +22414,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "uLL" = (
@@ -24011,13 +24035,12 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "wnH" = (
-/obj/machinery/light{
-	dir = 4
+/obj/machinery/door/airlock/mainship/marine/requisitions{
+	dir = 2
 	},
-/turf/open/floor/mainship/cargo,
-/area/outpost/cargo{
-	outside = 1
-	})
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "woS" = (
 /turf/open/floor/mainship/orange/full,
 /area/outpost/cargo{
@@ -24312,6 +24335,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "wIw" = (
@@ -36621,7 +36645,7 @@ kyS
 eGC
 slL
 slL
-slL
+bLk
 slL
 uTq
 slL
@@ -36861,7 +36885,7 @@ icG
 ePf
 kyS
 kjD
-unY
+pyA
 wMI
 rdh
 fzz
@@ -37103,7 +37127,7 @@ reL
 ePf
 kyS
 kjD
-unY
+pyA
 lxq
 nTM
 qSk
@@ -41028,10 +41052,10 @@ qbv
 urx
 qsM
 kXk
-vZa
-fXH
+wgI
+lDQ
 hgf
-vZa
+wgI
 vZa
 vZa
 vZa
@@ -42734,10 +42758,10 @@ jjk
 jjk
 eUM
 ecl
-fXH
-lDQ
-vZa
-urx
+ecl
+ecl
+wnH
+qbv
 wQM
 urx
 urx
@@ -43467,8 +43491,8 @@ coD
 ixQ
 urx
 urx
-izo
-qqS
+urx
+gBG
 blT
 bVJ
 uNX
@@ -43692,24 +43716,24 @@ urx
 qXF
 urx
 aNn
-izo
-izo
-izo
-izo
-ewq
-wnH
-izo
-izo
-izo
-izo
-izo
-izo
 urx
-fgO
+urx
+urx
+urx
+ewq
+aNn
+urx
+urx
+urx
+urx
+urx
+urx
+urx
+urx
 ixQ
 ixQ
 lzd
-urx
+fgO
 urx
 blT
 izB
