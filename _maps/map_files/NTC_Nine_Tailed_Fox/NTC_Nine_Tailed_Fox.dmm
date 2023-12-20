@@ -2015,16 +2015,6 @@
 	dir = 4
 	},
 /area/mainship/living/basketball)
-"bLk" = (
-/obj/machinery/button/door{
-	id = "captainshutters";
-	name = "shutter button"
-	},
-/turf/closed/wall/mainship,
-/area/sulaco/command{
-	name = "Captain's Room";
-	outside = 0
-	})
 "bMc" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname{
@@ -4356,6 +4346,12 @@
 /obj/item/tool/pen/blue,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/command/corporateliaison)
+"dTM" = (
+/obj/structure/largecrate/supply/supplies/sandbags,
+/turf/open/floor/mainship/cargo,
+/area/outpost/cargo{
+	outside = 1
+	})
 "dUo" = (
 /turf/open/floor/carpet{
 	dir = 9;
@@ -5338,6 +5334,12 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
+"eUp" = (
+/obj/structure/largecrate/supply/supplies/tables_racks,
+/turf/open/floor/mainship/cargo,
+/area/outpost/cargo{
+	outside = 1
+	})
 "eUr" = (
 /obj/structure/bed/chair/office/dark,
 /obj/effect/landmark/start/job/security_officer,
@@ -11828,6 +11830,7 @@
 "kOV" = (
 /obj/machinery/light,
 /obj/effect/ai_node,
+/obj/structure/largecrate/supply/weapons/standard_atgun,
 /turf/open/floor/mainship/cargo,
 /area/outpost/cargo{
 	outside = 1
@@ -13804,6 +13807,13 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/hallways/dorm2)
+"mrq" = (
+/obj/machinery/door/airlock/mainship/marine/requisitions{
+	dir = 2
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "mrB" = (
 /turf/closed/wall/mainship,
 /area/mainship/engineering/port_atmos)
@@ -14382,6 +14392,12 @@
 	},
 /area/mainship/medical/upper_medical{
 	name = "Shipside Medbay"
+	})
+"mRT" = (
+/obj/structure/largecrate/supply/weapons/sentries,
+/turf/open/floor/mainship/cargo,
+/area/outpost/cargo{
+	outside = 1
 	})
 "mTQ" = (
 /obj/structure/cable,
@@ -15853,6 +15869,12 @@
 	dir = 4
 	},
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
+"osb" = (
+/obj/structure/largecrate/supply/supplies/plasteel,
+/turf/open/floor/mainship/cargo,
+/area/outpost/cargo{
+	outside = 1
+	})
 "ose" = (
 /obj/machinery/shower{
 	dir = 1
@@ -16287,6 +16309,12 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/living/tankerbunks)
+"oJG" = (
+/obj/structure/largecrate/supply/ammo/standard_hmg,
+/turf/open/floor/mainship/cargo,
+/area/outpost/cargo{
+	outside = 1
+	})
 "oJT" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/green,
@@ -17007,17 +17035,6 @@
 /obj/structure/largecrate/supply/explosives,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
-"pyA" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	name = "\improper Privacy Shutters";
-	dir = 2;
-	id = "captainshutters"
-	},
-/turf/open/floor/plating,
-/area/sulaco/command{
-	name = "Captain's Room";
-	outside = 0
-	})
 "pyC" = (
 /obj/machinery/door_control/mainship/ammo{
 	id = "lowercargohold2";
@@ -17787,6 +17804,12 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
+"qpP" = (
+/obj/structure/largecrate/guns/russian,
+/turf/open/floor/mainship/cargo,
+/area/outpost/cargo{
+	outside = 1
+	})
 "qqa" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating/plating_catwalk,
@@ -22339,6 +22362,16 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/grass,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
+"uEQ" = (
+/obj/machinery/button/door{
+	id = "captainshutters";
+	name = "shutter button"
+	},
+/turf/closed/wall/mainship,
+/area/sulaco/command{
+	name = "Captain's Room";
+	outside = 0
+	})
 "uEV" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
@@ -24035,12 +24068,16 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "wnH" = (
-/obj/machinery/door/airlock/mainship/marine/requisitions{
-	dir = 2
+/obj/machinery/door/poddoor/shutters/mainship{
+	name = "\improper Privacy Shutters";
+	dir = 2;
+	id = "captainshutters"
 	},
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
+/turf/open/floor/plating,
+/area/sulaco/command{
+	name = "Captain's Room";
+	outside = 0
+	})
 "woS" = (
 /turf/open/floor/mainship/orange/full,
 /area/outpost/cargo{
@@ -36645,7 +36682,7 @@ kyS
 eGC
 slL
 slL
-bLk
+uEQ
 slL
 uTq
 slL
@@ -36885,7 +36922,7 @@ icG
 ePf
 kyS
 kjD
-pyA
+wnH
 wMI
 rdh
 fzz
@@ -37127,7 +37164,7 @@ reL
 ePf
 kyS
 kjD
-pyA
+wnH
 lxq
 nTM
 qSk
@@ -40830,7 +40867,7 @@ oXj
 bmB
 urx
 izo
-izo
+fCs
 blT
 nje
 nje
@@ -41057,12 +41094,12 @@ lDQ
 hgf
 wgI
 vZa
-vZa
-vZa
-vZa
-vZa
-vZa
-vZa
+lZb
+lZb
+lZb
+lZb
+lZb
+lZb
 vZa
 lZb
 lZb
@@ -41072,7 +41109,7 @@ fmE
 phx
 urx
 izo
-izo
+fCs
 blT
 cRa
 bNn
@@ -41313,8 +41350,8 @@ urx
 fmE
 urx
 urx
-izo
-izo
+lMs
+eUp
 blT
 cRa
 izB
@@ -41792,12 +41829,12 @@ lDY
 ecl
 qZG
 eVM
-vZa
+lZb
 urx
 fmE
 urx
 urx
-izo
+dTM
 kOV
 blT
 bQE
@@ -42034,13 +42071,13 @@ uuz
 ecl
 fXH
 kCB
-vZa
+lZb
 urx
 fmE
 urx
 urx
 izo
-izo
+mRT
 blT
 bVJ
 uNX
@@ -42276,12 +42313,12 @@ uuz
 hTK
 iap
 saQ
-vZa
+lZb
 urx
 fmE
 urx
 urx
-izo
+qpP
 izo
 blT
 qjj
@@ -42760,13 +42797,13 @@ eUM
 ecl
 ecl
 ecl
-wnH
+mrq
 qbv
 wQM
 urx
 urx
 izo
-izo
+osb
 blT
 bVJ
 uNX
@@ -43008,7 +43045,7 @@ ixQ
 urx
 urx
 izo
-izo
+nwv
 blT
 qjj
 tAl
@@ -43249,7 +43286,7 @@ urx
 ixQ
 urx
 urx
-izo
+oJG
 izo
 blT
 bQE
@@ -43476,11 +43513,11 @@ vZa
 fXH
 bwF
 vZa
-vZa
-vZa
-vZa
-vZa
-vZa
+lZb
+lZb
+lZb
+lZb
+lZb
 vZa
 vZa
 qgb
