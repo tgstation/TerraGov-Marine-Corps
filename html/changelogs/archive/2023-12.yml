@@ -162,3 +162,8 @@
   ivanmixo:
   - bugfix: Fixed export denied personal stat
   - bugfix: Fixed a supply beacon runtime
+2023-12-20:
+  Lumipharon:
+  - bugfix: Fixes an uncommon BSOD on the campaign status screen
+  - qol: 'Campaign: Players still on their home z-level will be teleported to spawn
+      instead of ghosted at mission end'
