@@ -8900,10 +8900,6 @@
 /area/outpost/cargo{
 	outside = 1
 	})
-"iev" = (
-/obj/machinery/camera/autoname,
-/turf/open/floor/wood,
-/area/mainship/living/officer_study)
 "ifh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9714,6 +9710,7 @@
 	dir = 1;
 	on = 1
 	},
+/obj/effect/landmark/itemspawner/waiter,
 /turf/open/floor/freezer,
 /area/mainship/groundhq/ntf/living/captain_mess{
 	name = "Kitchen"
@@ -11971,13 +11968,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/basketball)
-"kRG" = (
-/obj/structure/cable,
-/obj/machinery/camera/autoname/mainship{
-	dir = 1
-	},
-/turf/open/floor/prison/kitchen,
-/area/mainship/living/officer_study)
 "kRO" = (
 /obj/machinery/door/airlock/mainship/command/cic{
 	dir = 2
@@ -24751,6 +24741,27 @@
 	name = "CEO Office"
 	})
 "wXt" = (
+/obj/item/reagent_containers/food/snacks/grown/tomato,
+/obj/item/reagent_containers/food/snacks/grown/tomato,
+/obj/item/reagent_containers/food/snacks/grown/tomato,
+/obj/item/reagent_containers/food/snacks/grown/tomato,
+/obj/item/reagent_containers/food/snacks/grown/tomato,
+/obj/item/reagent_containers/food/snacks/grown/tomato,
+/obj/item/reagent_containers/food/snacks/grown/tomato,
+/obj/item/reagent_containers/food/snacks/grown/tomato,
+/obj/item/reagent_containers/food/snacks/grown/tomato,
+/obj/item/reagent_containers/food/snacks/grown/tomato,
+/obj/structure/closet/crate/freezer,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/grown/potato,
 /turf/open/floor/freezer,
 /area/mainship/groundhq/ntf/living/captain_mess{
 	name = "Kitchen"
@@ -25266,7 +25277,17 @@
 	name = "Ship Floor 1 Hallways"
 	})
 "xtY" = (
-/obj/effect/landmark/itemspawner/waiter,
+/obj/item/reagent_containers/food/snacks/meat/monkey,
+/obj/item/reagent_containers/food/snacks/meat/monkey,
+/obj/item/reagent_containers/food/snacks/meat/monkey,
+/obj/item/reagent_containers/food/snacks/meat/monkey,
+/obj/item/reagent_containers/food/snacks/meat/monkey,
+/obj/item/reagent_containers/food/snacks/flour,
+/obj/item/reagent_containers/food/snacks/flour,
+/obj/item/reagent_containers/food/snacks/flour,
+/obj/item/reagent_containers/food/snacks/flour,
+/obj/item/reagent_containers/food/snacks/flour,
+/obj/structure/closet/crate/freezer,
 /turf/open/floor/freezer,
 /area/mainship/groundhq/ntf/living/captain_mess{
 	name = "Kitchen"
@@ -25836,6 +25857,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "xWt" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "xWP" = (
@@ -37875,7 +37899,7 @@ nwr
 nwr
 nwr
 uiM
-iev
+uTe
 jAQ
 pAd
 hhd
@@ -39330,7 +39354,7 @@ uiM
 bbZ
 iEX
 fud
-kRG
+smP
 aBL
 cha
 gYA
@@ -60575,7 +60599,7 @@ uXI
 qiV
 fAP
 iTM
-xtY
+alb
 uXI
 nhA
 aFH
@@ -61056,7 +61080,7 @@ efM
 roJ
 rsH
 uXI
-alb
+xtY
 wXt
 lJF
 aJk
@@ -68166,7 +68190,7 @@ nwr
 nwr
 nwr
 nwr
-aKU
+xak
 nwr
 nwr
 nwr
