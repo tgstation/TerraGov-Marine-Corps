@@ -6318,8 +6318,8 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/specialist)
 "fMN" = (
-/turf/open/floor/mainship/black{
-	dir = 5
+/turf/open/floor/mainship/black/corner{
+	dir = 1
 	},
 /area/mainship/living/tankerbunks)
 "fMW" = (
