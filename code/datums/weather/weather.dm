@@ -105,15 +105,16 @@
 	weather_duration = rand(weather_duration_lower, weather_duration_upper)
 	SSweather.processing |= src
 	update_areas()
-	for(var/mob/M AS in GLOB.player_list)
-		var/turf/mob_turf = get_turf(M)
-		if(mob_turf && (mob_turf.z in impacted_z_levels))
-			if(telegraph_message)
-				to_chat(M, telegraph_message)
-			if(M?.client?.prefs?.toggles_sound & SOUND_WEATHER)
-				continue
-			if(telegraph_sound)
-				SEND_SOUND(M, sound(telegraph_sound, volume = 60))
+	for(var/mob/impacted_mob AS in GLOB.player_list)
+		var/turf/impacted_mob_turf = get_turf(impacted_mob)
+		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
+			continue
+		if(telegraph_message)
+			to_chat(impacted_mob, telegraph_message)
+		if(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER)
+			continue
+		if(telegraph_sound)
+			SEND_SOUND(impacted_mob, sound(telegraph_sound, volume = 60))
 	addtimer(CALLBACK(src, PROC_REF(start)), telegraph_duration)
 
 /**
@@ -128,14 +129,16 @@
 		return
 	stage = MAIN_STAGE
 	update_areas()
-	for(var/num in impacted_z_levels)
-		for(var/mob/M AS in GLOB.humans_by_zlevel["[num]"])
-			if(weather_message)
-				to_chat(M, weather_message)
-			if(M?.client?.prefs?.toggles_sound & SOUND_WEATHER)
-				continue
-			if(weather_sound)
-				SEND_SOUND(M, sound(weather_sound))
+	for(var/mob/impacted_mob AS in GLOB.player_list)
+		var/turf/impacted_mob_turf = get_turf(impacted_mob)
+		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
+			continue
+		if(weather_message)
+			to_chat(impacted_mob, weather_message)
+		if(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER)
+			continue
+		if(weather_sound)
+			SEND_SOUND(impacted_mob, sound(weather_sound))
 	addtimer(CALLBACK(src, PROC_REF(wind_down)), weather_duration)
 
 /**
@@ -150,14 +153,16 @@
 		return
 	stage = WIND_DOWN_STAGE
 	update_areas()
-	for(var/num in impacted_z_levels)
-		for(var/mob/M AS in GLOB.humans_by_zlevel["[num]"])
-			if(end_message)
-				to_chat(M, end_message)
-			if(M.client?.prefs.toggles_sound & SOUND_WEATHER)
-				continue
-			if(end_sound)
-				SEND_SOUND(M, sound(end_sound))
+	for(var/mob/impacted_mob AS in GLOB.player_list)
+		var/turf/impacted_mob_turf = get_turf(impacted_mob)
+		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
+			continue
+		if(end_message)
+			to_chat(impacted_mob, end_message)
+		if(impacted_mob.client?.prefs.toggles_sound & SOUND_WEATHER)
+			continue
+		if(end_sound)
+			SEND_SOUND(impacted_mob, sound(end_sound))
 	addtimer(CALLBACK(src, PROC_REF(end)), end_duration)
 
 /**

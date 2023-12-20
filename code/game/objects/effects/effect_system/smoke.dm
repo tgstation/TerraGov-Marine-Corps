@@ -10,6 +10,8 @@
 	anchored = TRUE
 	layer = FLY_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	pass_flags = PASS_AIR
+	resistance_flags = UNACIDABLE|PLASMACUTTER_IMMUNE|PROJECTILE_IMMUNE|CRUSHER_IMMUNE
 	var/amount = 3
 	var/lifetime = 5
 	///time in decisecond for a smoke to spread one tile.
@@ -22,7 +24,7 @@
 	///Delay in ticks before this smoke can affect a given mob again, applied in living's effect_smoke
 	var/minimum_effect_delay = 1 SECONDS
 	///The original source of the smoke. Used for smoke spread checks
-	var/origin
+	var/atom/movable/origin
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
@@ -53,28 +55,16 @@
 	if(lifetime && CHECK_BITFIELD(smoke_traits, SMOKE_CAMO))
 		apply_smoke_effect(get_turf(src))
 		LAZYCLEARLIST(cloud?.smoked_mobs)
-		INVOKE_ASYNC(src, PROC_REF(fade_out))
 	if(CHECK_BITFIELD(smoke_traits, SMOKE_CHEM) && LAZYLEN(cloud?.smoked_mobs)) //so the whole cloud won't stop working somehow
 		var/obj/effect/particle_effect/smoke/neighbor = pick(cloud.smokes - src)
 		neighbor.chemical_effect()
 	STOP_PROCESSING(SSobj, src)
+	origin = null
 	if(cloud)
 		LAZYREMOVE(cloud.smokes, src)
 		if(cloud.single_use && !LAZYLEN(cloud.smokes))
 			qdel(cloud)
 	return ..()
-
-/obj/effect/particle_effect/smoke/proc/fade_out(frames = 16)
-	if(alpha == 0) //Handle already transparent case
-		return
-	if(frames == 0)
-		frames = 1 //We will just assume that by 0 frames, the coder meant "during one frame".
-	var/step = alpha / frames
-	for(var/i in 1 to frames)
-		alpha -= step
-		if(alpha < 160)
-			set_opacity(FALSE) //if we were blocking view, we aren't now because we're fading out
-		stoplag()
 
 /obj/effect/particle_effect/smoke/process()
 	lifetime--
@@ -83,6 +73,17 @@
 		return FALSE
 	apply_smoke_effect(get_turf(src))
 	return TRUE
+
+/obj/effect/particle_effect/smoke/ex_act(severity)
+	if(lifetime <= 3)
+		qdel(src)
+		return
+
+	opacity = FALSE
+	alpha = 0
+	animate(src, 7 SECONDS, easing = CIRCULAR_EASING|EASE_IN, alpha = initial(alpha))
+	addtimer(VARSET_CALLBACK(src, opacity, initial(opacity)), 5 SECONDS)
+
 
 /obj/effect/particle_effect/smoke/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
 	SIGNAL_HANDLER
@@ -211,17 +212,19 @@
 
 /datum/effect_system/smoke_spread/set_up(radius = 2, loca, smoke_time)
 	if(isturf(loca))
-		location = loca
+		location = WEAKREF(loca)
 	else
-		location = get_turf(loca)
+		location = WEAKREF(get_turf(loca))
 	range = radius
 	if(smoke_time)
 		lifetime = smoke_time
 
 /datum/effect_system/smoke_spread/start()
-	if(!QDELETED(holder))
-		location = get_turf(holder)
-	new smoke_type(location, range, lifetime)
+	var/atom/_holder = get_holder()
+	var/turf/_location = location?.resolve()
+	if(!QDELETED(_holder))
+		_location = get_turf(_holder)
+	new smoke_type(_location, range, lifetime)
 
 /////////////////////////////////////////////
 // Bad smoke
@@ -256,6 +259,12 @@
 	opacity = FALSE
 	color = "#DBCBB9"
 	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS|SMOKE_PLASMALOSS|SMOKE_FOUL
+
+/obj/effect/particle_effect/smoke/phosphorus/mustard
+	opacity = TRUE
+	color = COLOR_LIGHT_ORANGE
+	lifetime = 40
+	strength = 2
 
 ///////////////////////////////////////////
 // Plasma draining smoke
@@ -295,6 +304,13 @@
 	lifetime = 6
 	expansion_speed = 3
 	smoke_traits = SMOKE_XENO
+
+/obj/effect/particle_effect/smoke/xeno/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(S.smoke_traits & SMOKE_PLASMALOSS)
+		lifetime -= 2
 
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno/burn
@@ -364,6 +380,9 @@
 /datum/effect_system/smoke_spread/phosphorus
 	smoke_type = /obj/effect/particle_effect/smoke/phosphorus
 
+/datum/effect_system/smoke_spread/mustard
+	smoke_type = /obj/effect/particle_effect/smoke/phosphorus/mustard
+
 /datum/effect_system/smoke_spread/plasmaloss
 	smoke_type = /obj/effect/particle_effect/smoke/plasmaloss
 
@@ -375,9 +394,11 @@
 	var/strength = 1
 
 /datum/effect_system/smoke_spread/xeno/start()
-	if(QDELETED(location) && !QDELETED(holder))
-		location = get_turf(holder)
-	var/obj/effect/particle_effect/smoke/xeno/S = new smoke_type(location, range, lifetime, src)
+	var/atom/_holder = get_holder()
+	var/turf/_location = location?.resolve()
+	if(QDELETED(_location) && !QDELETED(_holder))
+		location = WEAKREF(get_turf(get_holder()))
+	var/obj/effect/particle_effect/smoke/xeno/S = new smoke_type(_location, range, lifetime, src)
 	S.strength = strength
 
 /datum/effect_system/smoke_spread/xeno/acid
@@ -422,7 +443,8 @@
 	return ..()
 
 /datum/effect_system/smoke_spread/chem
-	var/obj/chemholder
+	///The holder for this reagent
+	var/atom/movable/chemholder
 	smoke_type = /obj/effect/particle_effect/smoke/chem
 
 /datum/effect_system/smoke_spread/chem/New()
@@ -430,11 +452,15 @@
 	chemholder = new()
 	chemholder.create_reagents(500)
 
+/datum/effect_system/smoke_spread/chem/Destroy()
+	QDEL_NULL(chemholder)
+	return ..()
+
 /datum/effect_system/smoke_spread/chem/set_up(datum/reagents/carry, radius = 1, loca, smoke_time, silent = FALSE)
 	if(isturf(loca))
-		location = loca
+		location = WEAKREF(loca)
 	else
-		location = get_turf(loca)
+		location = WEAKREF(get_turf(loca))
 	range = radius
 	if(smoke_time)
 		lifetime = smoke_time
@@ -448,14 +474,17 @@
 		if(contained)
 			contained = "\[[contained]\]"
 
-		message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained].")
-		log_game("A chemical smoke reaction has taken place in ([AREACOORD(location)])[contained].")
+		var/turf/_location = location?.resolve()
+		if(_location)
+			message_admins("Smoke: ([ADMIN_VERBOSEJMP(_location)])[contained].")
+			log_game("A chemical smoke reaction has taken place in ([AREACOORD(_location)])[contained].")
 
 /datum/effect_system/smoke_spread/chem/start()
 	var/mixcolor = mix_color_from_reagents(chemholder.reagents.reagent_list)
-	if(QDELETED(location) && !QDELETED(holder))
-		location = get_turf(holder)
-	var/obj/effect/particle_effect/smoke/chem/S = new smoke_type(location, range, lifetime, src)
+	var/turf/_location = location?.resolve()
+	if(QDELETED(_location) && !QDELETED(holder))
+		location = WEAKREF(get_turf(holder))
+	var/obj/effect/particle_effect/smoke/chem/S = new smoke_type(location?.resolve(), range, lifetime, src)
 
 	if(chemholder.reagents.total_volume > 1) // can't split 1 very well
 		chemholder.reagents.copy_to(S, chemholder.reagents.total_volume)

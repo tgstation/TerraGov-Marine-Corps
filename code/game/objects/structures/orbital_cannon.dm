@@ -14,7 +14,7 @@
 	bound_height = 64
 	bound_y = 64
 	resistance_flags = RESIST_ALL
-	flags_pass = NONE
+	allow_pass_flags = NONE
 	var/obj/structure/orbital_tray/tray
 	var/chambered_tray = FALSE
 	var/loaded_tray = FALSE
@@ -38,6 +38,11 @@
 	tray = O
 	tray.linked_ob = src
 
+/obj/structure/orbital_cannon/Destroy()
+	if(tray)
+		tray.linked_ob = null
+		tray = null
+	return ..()
 
 /obj/structure/orbital_cannon/update_icon_state()
 	if(chambered_tray)
@@ -167,9 +172,10 @@
 /obj/structure/orbital_cannon/proc/handle_ob_firing_effects(target, ob_sound = 'sound/effects/OB_incoming.ogg')
 	flick("OBC_firing",src)
 	playsound(loc, 'sound/effects/obfire.ogg', 100, FALSE, 20, 4)
-	for(var/i in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
-		var/mob/M = i
+	for(var/mob/M AS in hearers(WARHEAD_FALLING_SOUND_RANGE, target))
 		M.playsound_local(target, ob_sound, falloff = 2)
+
+	new /obj/effect/temp_visual/ob_impact(target, tray.warhead)
 
 /obj/structure/orbital_cannon/proc/fire_ob_cannon(turf/T, mob/user)
 	set waitfor = FALSE
@@ -321,7 +327,7 @@
 
 
 /obj/structure/ob_ammo/obj_destruction(damage_amount, damage_type, damage_flag)
-	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2, small_animation = TRUE)
+	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2)
 	return ..()
 
 
@@ -340,7 +346,7 @@
 
 /obj/structure/ob_ammo/warhead/explosive/warhead_impact(turf/target, inaccuracy_amt = 0)
 	. = ..()
-	explosion(target, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt)
+	explosion(target, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 0, 15 - inaccuracy_amt)
 
 
 
@@ -373,7 +379,7 @@
 	var/total_amt = max(25 - inaccuracy_amt, 20)
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
-		explosion(U, 1, 4, 6, 6, throw_range = 0, adminlog = FALSE, small_animation = TRUE) //rocket barrage
+		explosion(U, 1, 4, 6, 0, 6, throw_range = 0, adminlog = FALSE) //rocket barrage
 		sleep(0.1 SECONDS)
 
 /obj/structure/ob_ammo/warhead/plasmaloss
@@ -406,10 +412,18 @@
 	name = "\improper Orbital Cannon Console"
 	desc = "The console controlling the orbital cannon loading systems."
 	icon_state = "ob_console"
+	screen_overlay = "ob_console_screen"
 	dir = WEST
 	flags_atom = ON_BORDER|CONDUCT
 	var/orbital_window_page = 0
 
+/obj/machinery/computer/orbital_cannon_console/Initialize(mapload)
+	. = ..()
+
+	var/static/list/connections = list(
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 
 /obj/machinery/computer/orbital_cannon_console/ex_act()
@@ -428,7 +442,7 @@
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use the console."),
 		span_notice("You fumble around figuring out how to use the console."))
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return
 
 	var/dat
@@ -444,7 +458,7 @@
 			dat += "- Cluster Orbital Warhead: <b>[GLOB.marine_main_ship?.ob_type_fuel_requirements[3]] Solid Fuel blocks.</b><BR>"
 			dat += "- Plasma drain Orbital Warhead: <b>[GLOB.marine_main_ship?.ob_type_fuel_requirements[4]] Solid Fuel blocks.</b><BR>"
 
-			dat += "<BR><BR><A href='?src=\ref[src];back=1'><font size=3>Back</font></A><BR>"
+			dat += "<BR><BR><A href='?src=[text_ref(src)];back=1'><font size=3>Back</font></A><BR>"
 		else
 			var/tray_status = "unloaded"
 			if(GLOB.marine_main_ship.orbital_cannon.chambered_tray)
@@ -458,12 +472,12 @@
 				dat += "No Warhead Detected<BR>"
 			dat += "[GLOB.marine_main_ship.orbital_cannon.tray.fuel_amt] Solid Fuel Block\s Detected<BR><HR>"
 
-			dat += "<A href='?src=\ref[src];load_tray=1'><font size=3>Load Tray</font></A><BR>"
-			dat += "<A href='?src=\ref[src];unload_tray=1'><font size=3>Unload Tray</font></A><BR>"
-			dat += "<A href='?src=\ref[src];chamber_tray=1'><font size=3>Chamber Tray Payload</font></A><BR>"
-			dat += "<BR><A href='?src=\ref[src];check_req=1'><font size=3>Check Fuel Requirements</font></A><BR>"
+			dat += "<A href='?src=[text_ref(src)];load_tray=1'><font size=3>Load Tray</font></A><BR>"
+			dat += "<A href='?src=[text_ref(src)];unload_tray=1'><font size=3>Unload Tray</font></A><BR>"
+			dat += "<A href='?src=[text_ref(src)];chamber_tray=1'><font size=3>Chamber Tray Payload</font></A><BR>"
+			dat += "<BR><A href='?src=[text_ref(src)];check_req=1'><font size=3>Check Fuel Requirements</font></A><BR>"
 
-		dat += "<HR><BR><A href='?src=\ref[src];close=1'><font size=3>Close</font></A><BR>"
+		dat += "<HR><BR><A href='?src=[text_ref(src)];close=1'><font size=3>Close</font></A><BR>"
 
 
 	var/datum/browser/popup = new(user, "orbital_console", "<div align='center'>Orbital Cannon System Control Console</div>", 500, 350)
@@ -508,6 +522,7 @@
 	resistance_flags = RESIST_ALL
 	var/cannon_busy = FALSE
 	var/last_firing = 0 //stores the last time it was fired to check when we can fire again
+	var/last_firing_ai = 0 //same thing as last_firing but only cares when the AI last fired
 	var/obj/structure/ship_ammo/railgun/rail_gun_ammo
 
 /obj/structure/ship_rail_gun/Initialize(mapload)
@@ -518,15 +533,18 @@
 	rail_gun_ammo.max_ammo_count = 8000 //200 uses or 15 full minutes of firing.
 	rail_gun_ammo.ammo_count = 8000
 
-/obj/structure/ship_rail_gun/proc/fire_rail_gun(turf/T, mob/user)
-	if(cannon_busy)
+/obj/structure/ship_rail_gun/proc/fire_rail_gun(turf/T, mob/user, ignore_cooldown = FALSE, ai_operation = FALSE)
+	if(cannon_busy && !ignore_cooldown)
 		return
 	if(!rail_gun_ammo?.ammo_count)
 		to_chat(user, span_warning("[src] has ran out of ammo."))
 		return
 	flick("Railgun_firing",src)
 	cannon_busy = TRUE
-	last_firing = world.time
+	if(ai_operation)
+		last_firing_ai = world.time
+	else
+		last_firing = world.time
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
 	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 	var/turf/target = locate(T.x + rand(-4, 4), T.y + rand(-4, 4), T.z)

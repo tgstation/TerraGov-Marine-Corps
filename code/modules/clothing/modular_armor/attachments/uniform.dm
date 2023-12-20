@@ -28,6 +28,7 @@
 		/obj/item/stack/sheet,
 		/obj/item/stack/sandbags,
 		/obj/item/stack/snow,
+		/obj/item/cell/lasgun/volkite/powerpack,
 	)
 
 /obj/item/armor_module/storage/uniform/black_vest
@@ -75,6 +76,7 @@
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/tweezers,
+		/obj/item/tweezers_advanced,
 		/obj/item/bodybag,
 		/obj/item/roller,
 		/obj/item/whistle,
@@ -93,6 +95,7 @@
 		/obj/item/tool/surgery,
 		/obj/item/stack/nanopaste,
 		/obj/item/tweezers,
+		/obj/item/tweezers_advanced,
 	)
 
 /obj/item/storage/internal/surgery_webbing/Initialize(mapload)
@@ -115,28 +118,33 @@
 	icon_state = "holster"
 	storage = /obj/item/storage/internal/holster
 
-/obj/item/armor_module/storage/uniform/holster/freelancer
-
 /obj/item/armor_module/storage/uniform/holster/freelancer/Initialize(mapload)
 	. = ..()
+	new /obj/item/ammo_magazine/pistol/g22(storage)
+	new /obj/item/ammo_magazine/pistol/g22(storage)
+	new /obj/item/ammo_magazine/pistol/g22(storage)
 	new /obj/item/weapon/gun/pistol/g22(storage)
-	new /obj/item/ammo_magazine/pistol/g22(storage)
-	new /obj/item/ammo_magazine/pistol/g22(storage)
-	new /obj/item/ammo_magazine/pistol/g22(storage)
 
 /obj/item/armor_module/storage/uniform/holster/vp/Initialize(mapload)
 	. = ..()
+	new /obj/item/ammo_magazine/pistol/vp70(storage)
+	new /obj/item/ammo_magazine/pistol/vp70(storage)
+	new /obj/item/ammo_magazine/pistol/vp70(storage)
 	new /obj/item/weapon/gun/pistol/vp70(storage)
-	new /obj/item/ammo_magazine/pistol/vp70(storage)
-	new /obj/item/ammo_magazine/pistol/vp70(storage)
-	new /obj/item/ammo_magazine/pistol/vp70(storage)
 
 /obj/item/armor_module/storage/uniform/holster/highpower/Initialize(mapload)
 	. = ..()
+	new /obj/item/ammo_magazine/pistol/highpower(storage)
+	new /obj/item/ammo_magazine/pistol/highpower(storage)
+	new /obj/item/ammo_magazine/pistol/highpower(storage)
 	new /obj/item/weapon/gun/pistol/highpower(storage)
-	new /obj/item/ammo_magazine/pistol/highpower(storage)
-	new /obj/item/ammo_magazine/pistol/highpower(storage)
-	new /obj/item/ammo_magazine/pistol/highpower(storage)
+
+/obj/item/armor_module/storage/uniform/holster/deathsquad/Initialize(mapload)
+	. = ..()
+	new /obj/item/ammo_magazine/revolver/mateba(storage)
+	new /obj/item/ammo_magazine/revolver/mateba(storage)
+	new /obj/item/ammo_magazine/revolver/mateba(storage)
+	new /obj/item/weapon/gun/revolver/mateba(storage)
 
 /obj/item/storage/internal/holster
 	storage_slots = 4

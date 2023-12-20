@@ -56,7 +56,7 @@
 
 			H.visible_message(span_danger("[H] is trying perform CPR on [src]!"), null, null, 4)
 
-			if(!do_mob(H, src, HUMAN_STRIP_DELAY, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+			if(!do_after(H, HUMAN_STRIP_DELAY, NONE, src, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 				return TRUE
 
 			if(health > get_death_threshold() && health < get_crit_threshold())
@@ -118,7 +118,7 @@
 			var/list/hit_report = list()
 			if(damage >= 5 && prob(50))
 				visible_message(span_danger("[H] has weakened [src]!"), null, null, 5)
-				apply_effect(modify_by_armor(3, MELEE, def_zone = target_zone), WEAKEN)
+				apply_effect(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
 				hit_report += "(KO)"
 
 			damage += attack.damage
@@ -162,10 +162,10 @@
 						var/turf/target = pick(turfs)
 						return W.afterattack(target,src)
 
-			var/randn = rand(1, 100) + skills.getRating(SKILL_CQC) * 5 - H.skills.getRating(SKILL_CQC) * 5
+			var/randn = rand(1, 100) + skills.getRating(SKILL_CQC) * CQC_SKILL_DISARM_MOD - H.skills.getRating(SKILL_CQC) * CQC_SKILL_DISARM_MOD
 
 			if (randn <= 25)
-				apply_effect(modify_by_armor(3, MELEE, def_zone = target_zone), WEAKEN)
+				apply_effect(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				visible_message(span_danger("[H] has pushed [src]!"), null, null, 5)
 				log_combat(user, src, "pushed")
@@ -234,6 +234,15 @@
 			if(100 to INFINITY)
 				status += "mutilated"
 
+		if((org.limb_status & LIMB_BLEEDING) && (brutedamage > 0 && burndamage > 0))
+			status += ", bleeding"
+		else if((org.limb_status & LIMB_BLEEDING) && (brutedamage > 0 || burndamage > 0))
+			status += " and bleeding"
+		else if(org.limb_status & LIMB_BLEEDING)
+			status += "bleeding"
+
+
+
 		if(brutedamage > 0 && burndamage > 0)
 			status += " and "
 
@@ -271,6 +280,7 @@
 			treat += "(Salved)"
 		var/msg = "My [org.display_name] is [status]. [treat]"
 		final_msg += status=="OK" ? span_notice(msg) : span_warning (msg)
+
 
 	switch(staminaloss)
 		if(1 to 30)

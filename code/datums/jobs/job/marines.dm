@@ -33,6 +33,8 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/squad/corpsman = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/squad/engineer = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
@@ -40,23 +42,12 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 		<b>Difficulty</b>: Easy<br /><br />
 		<b>You answer to the</b> acting Squad Leader<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
 		TerraGov’s Squad Marines make up the bread and butter of Terra's fighting forces. They are fitted with the standard arsenal that the TGMC offers, and they can take up a variety of roles, being a sniper, a pyrotechnician, a machinegunner, rifleman and more. They’re often high in numbers and divided into squads, but they’re the lowest ranking individuals, with a low degree of skill, not adapt to engineering or medical roles. Still, they are not limited to the arsenal they can take on the field to deal whatever threat that lurks against Terra.
 		<br /><br />
 		<b>Duty</b>: Carry out orders made by your acting Squad Leader, deal with any threats that oppose the TGMC.
 	"}
 	minimap_icon = "private"
-
-/datum/job/terragov/squad/standard/rebel
-	title = REBEL_SQUAD_MARINE
-	faction = FACTION_TERRAGOV_REBEL
-	access = list(ACCESS_MARINE_PREP_REBEL)
-	outfit = /datum/outfit/job/marine/standard/rebel
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
 
 /datum/job/terragov/squad/standard/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -80,8 +71,8 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 
 /datum/job/terragov/squad/standard/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are a rank-and-file soldier of the TGMC, and that is your strength.
-What you lack alone, you gain standing shoulder to shoulder with the men and women of the corps. Ooh-rah!"})
+	to_chat(M, {"\nYou are a rank-and-file marine of the TGMC, and that is your strength.
+What you lack alone, you gain standing shoulder to shoulder with the men and women of the TerraGov Marine Corps. Ooh-rah!"})
 
 
 /datum/outfit/job/marine/standard
@@ -89,17 +80,13 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	jobtype = /datum/job/terragov/squad/standard
 
 	id = /obj/item/card/id/dogtag
-	back = /obj/item/storage/backpack/marine/satchel
-
-/datum/outfit/job/marine/standard/rebel
-	jobtype = /datum/job/terragov/squad/standard/rebel
 
 //Squad Engineer
 /datum/job/terragov/squad/engineer
 	title = SQUAD_ENGINEER
 	paygrade = "E3"
 	comm_title = "Eng"
-	total_positions = 12
+	total_positions = 4
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_ENGINEERING)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_ENGINEERING)
 	skills_type = /datum/skills/combat_engineer
@@ -109,31 +96,21 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM,
+		/datum/job/terragov/squad/corpsman = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
+	job_points_needed = 5
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Squad Leader<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
 		A mastermind of on-field construction, often regarded as the answer on whether the FOB succeeds or not, Squad Engineers are the people who construct the Forward Operating Base (FOB) and guard whatever threat that endangers the marines. In addition to this, they are also in charge of repairing power generators on the field as well as mining drills for requisitions. They have a high degree of engineering skill, meaning they can deploy and repair barricades faster than regular marines.
 		<br /><br />
 		<b>Duty</b>: Construct and reinforce the FOB that has been ordered by your acting Squad Leader, fix power generators and mining drills in the AO and stay on guard for any dangers that threaten your FOB.
 	"}
 	minimap_icon = "engi"
-
-/datum/job/terragov/squad/engineer/rebel
-	title = REBEL_SQUAD_ENGINEER
-	faction = FACTION_TERRAGOV_REBEL
-	outfit = /datum/outfit/job/marine/engineer/rebel
-	access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ENGPREP_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
-	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ENGPREP_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_REMOTEBUILD_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
 
 /datum/job/terragov/squad/engineer/radio_help_message(mob/M)
 	. = ..()
@@ -146,10 +123,6 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	jobtype = /datum/job/terragov/squad/engineer
 
 	id = /obj/item/card/id/dogtag/engineer
-	back = /obj/item/storage/backpack/marine/satchel
-
-/datum/outfit/job/marine/engineer/rebel
-	jobtype = /datum/job/terragov/squad/engineer/rebel
 
 /datum/job/terragov/squad/engineer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -164,15 +137,17 @@ Your squaddies will look to you when it comes to construction in the field of ba
 			new_human.wear_id.paygrade = "E3"
 		if(1501 to 6000) // 25 hrs
 			new_human.wear_id.paygrade = "E4"
-		if(6001 to INFINITY) // 100 hrs
+		if(6001 to 60000) // 100 hrs
 			new_human.wear_id.paygrade = "E5"
+		if(60001 to INFINITY) // 1000 hrs
+			new_human.wear_id.paygrade = "E9" //If you play way too much TGMC. 1000 hours.
 
 //Squad Corpsman
 /datum/job/terragov/squad/corpsman
 	title = SQUAD_CORPSMAN
 	paygrade = "E3"
 	comm_title = "Med"
-	total_positions = 16
+	total_positions = 5
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/combat_medic
@@ -184,29 +159,19 @@ Your squaddies will look to you when it comes to construction in the field of ba
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM,
+		/datum/job/terragov/squad/engineer = SMARTIE_POINTS_REGULAR,
 	)
+	job_points_needed = 5
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Squad Leader<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
 		Corpsman are the vital line between life and death of a marine’s life should a marine be wounded in battle, if provided they do not run away. While marines treat themselves, it is the corpsmen who will treat injuries beyond what a normal person can do. With a higher degree of medical skill compared to a normal marine, they are capable of doing medical actions faster and reviving with defibrillators will heal more on each attempt. They can also perform surgery, in an event if there are no acting medical officers onboard.
 		<br /><br />
 		<b>Duty</b>: Tend the injuries of your fellow marines or related personnel, keep them at fighting strength. Evacuate those who are incapacitated or rendered incapable of fighting due to severe wounds or larvae infections.
 	"}
 	minimap_icon = "medic"
-
-/datum/job/terragov/squad/corpsman/rebel
-	title = REBEL_SQUAD_CORPSMAN
-	faction = FACTION_TERRAGOV_REBEL
-	outfit = /datum/outfit/job/marine/corpsman/rebel
-	access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDPREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL)
-	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDPREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
-	jobworth = list(
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM,
-	)
 
 /datum/job/terragov/squad/corpsman/radio_help_message(mob/M)
 	. = ..()
@@ -218,10 +183,6 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	jobtype = /datum/job/terragov/squad/corpsman
 
 	id = /obj/item/card/id/dogtag/corpsman
-	back = /obj/item/storage/backpack/marine/corpsman
-
-/datum/outfit/job/marine/corpsman/rebel
-	jobtype = /datum/job/terragov/squad/corpsman/rebel
 
 /datum/job/terragov/squad/corpsman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -236,8 +197,10 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 			new_human.wear_id.paygrade = "E3"
 		if(1501 to 6000) // 25 hrs
 			new_human.wear_id.paygrade = "E4"
-		if(6001 to INFINITY) // 100 hrs
+		if(6001 to 60000) // 100 hrs
 			new_human.wear_id.paygrade = "E5"
+		if(60001 to INFINITY) // 1000 hrs
+			new_human.wear_id.paygrade = "E9" //If you play way too much TGMC. 1000 hours.
 
 //Squad Smartgunner
 /datum/job/terragov/squad/smartgunner
@@ -253,25 +216,20 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
+		/datum/job/terragov/squad/corpsman = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/squad/engineer = SMARTIE_POINTS_REGULAR,
 	)
 	job_points_needed = 10 //Redefined via config.
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Squad Leader<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
 		When it comes to heavy firepower during the early stages of an operation, TGMC has provided the squad with Smartgunners. They are those who trained to operate the SG-29 Smart Machine Gun, an IFF heavy weapon that provides cover fire even directly behind the marines. Squad Smartgunners are best when fighting behind marines, as they can act as shields or during a hectic crossfire.
 		<br /><br />
 		<b>Duty</b>: Be the backline of your pointmen, provide heavy weapons support with your smart machine gun.
 	"}
 	minimap_icon = "smartgunner"
-
-/datum/job/terragov/squad/smartgunner/rebel
-	title = REBEL_SQUAD_SMARTGUNNER
-	faction = FACTION_TERRAGOV_REBEL
-	outfit = /datum/outfit/job/marine/smartgunner/rebel
-	access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_SMARTPREP_REBEL)
-	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_SMARTPREP_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
 
 /datum/job/terragov/squad/smartgunner/radio_help_message(mob/M)
 	. = ..()
@@ -290,18 +248,16 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 			new_human.wear_id.paygrade = "E3"
 		if(1501 to 6000) // 25 hrs
 			new_human.wear_id.paygrade = "E4"
-		if(6001 to INFINITY) // 100 hrs
+		if(6001 to 60000) // 100 hrs
 			new_human.wear_id.paygrade = "E5"
+		if(60001 to INFINITY) // 1000 hrs
+			new_human.wear_id.paygrade = "E9" //If you play way too much TGMC. 1000 hours.
 
 /datum/outfit/job/marine/smartgunner
 	name = SQUAD_SMARTGUNNER
 	jobtype = /datum/job/terragov/squad/smartgunner
 
 	id = /obj/item/card/id/dogtag/smartgun
-	back = /obj/item/storage/backpack/marine/satchel
-
-/datum/outfit/job/marine/smartgunner/rebel
-	jobtype = /datum/job/terragov/squad/smartgunner/rebel
 
 //Squad Specialist
 /datum/job/terragov/squad/specialist
@@ -335,7 +291,6 @@ You can serve a variety of roles, so choose carefully."})
 	jobtype = /datum/job/terragov/squad/specialist
 
 	id = /obj/item/card/id/dogtag
-	back = /obj/item/storage/backpack/marine/satchel
 	head = /obj/item/clothing/head/helmet/specrag
 
 //Squad Leader
@@ -353,10 +308,12 @@ You can serve a variety of roles, so choose carefully."})
 	outfit = /datum/outfit/job/marine/leader
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_LOUDER_TTS
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_HIGH,
+		/datum/job/terragov/squad/corpsman = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/squad/engineer = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
@@ -364,39 +321,23 @@ You can serve a variety of roles, so choose carefully."})
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
 		Squad Leaders are basically the boss of any able-bodied squad. Though while they are not trained compared to engineers, corpsmen and smartgunners, they are (usually) capable of leading the squad. They have access to command assets such as a ship railgun, orbital bombardment as examples.
 		<br /><br />
 		<b>Duty</b>: Be a responsible leader of your squad, make sure your squad communicates frequently all the time and ensure they are working together for the task at hand. Stay safe, as you’re a valuable leader.
 	"}
 	minimap_icon = "leader"
 
-/datum/job/terragov/squad/leader/rebel
-	title = REBEL_SQUAD_LEADER
-	faction = FACTION_TERRAGOV_REBEL
-	outfit = /datum/outfit/job/marine/leader/rebel
-	access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_LEADER_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
-	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_LEADER_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
-	jobworth = list(
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_HIGH,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
-
 /datum/job/terragov/squad/leader/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou are responsible for the men and women of your squad. Make sure they are on task, working together, and communicating.
 You are also in charge of communicating with command and letting them know about the situation first hand. Keep out of harm's way."})
-
 
 /datum/outfit/job/marine/leader
 	name = SQUAD_LEADER
 	jobtype = /datum/job/terragov/squad/leader
 
 	id = /obj/item/card/id/dogtag/leader
-	back = /obj/item/storage/backpack/marine/satchel
-
-/datum/outfit/job/marine/leader/rebel
-	jobtype = /datum/job/terragov/squad/leader/rebel
 
 /datum/job/terragov/squad/leader/after_spawn(mob/living/carbon/C, mob/user, latejoin = FALSE)
 	. = ..()
@@ -409,8 +350,10 @@ You are also in charge of communicating with command and letting them know about
 			new_human.wear_id.paygrade = "E5"
 		if(1501 to 7500) // 25 hrs
 			new_human.wear_id.paygrade = "E6"
-		if(7501 to INFINITY) // 125 hrs
+		if(7501 to 60000) // 125 hrs
 			new_human.wear_id.paygrade = "E7"
+		if(60001 to INFINITY) // 1000 hrs
+			new_human.wear_id.paygrade = "E9E" //If you play way too much TGMC. 1000 hours.
 	if(!latejoin)
 		return
 	if(!new_human.assigned_squad)
@@ -439,16 +382,6 @@ You are also in charge of communicating with command and letting them know about
 	)
 	minimap_icon = "private"
 
-/datum/job/terragov/squad/vatgrown/rebel
-	faction = FACTION_TERRAGOV_REBEL
-	outfit = /datum/outfit/job/marine/vatgrown/rebel
-	access = list(ACCESS_MARINE_PREP_REBEL)
-	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
-
 /datum/job/terragov/squad/vatgrown/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/carbon/human/species/vatgrown
 
@@ -456,6 +389,3 @@ You are also in charge of communicating with command and letting them know about
 	name = SQUAD_VATGROWN
 	jobtype = /datum/job/terragov/squad/vatgrown
 	id = /obj/item/card/id/dogtag
-
-/datum/outfit/job/marine/vatgrown/rebel
-	jobtype = /datum/job/terragov/squad/vatgrown/rebel

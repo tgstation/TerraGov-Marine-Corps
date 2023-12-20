@@ -63,7 +63,7 @@
 		num -= val * 16 ** power
 		switch(val)
 			if(9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
-				hex += text("[]", val)
+				hex += "[val]"
 			if(10)
 				hex += "A"
 			if(11)
@@ -79,7 +79,7 @@
 			else
 		power--
 	while(length(hex) < placeholder)
-		hex = text("0[]", hex)
+		hex = "0[hex]"
 	return hex
 
 //Turns a direction into text

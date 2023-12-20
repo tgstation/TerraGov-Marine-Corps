@@ -184,15 +184,13 @@
 		victim.blind_eyes(5)
 		victim.Stun(10 SECONDS)
 		victim.Paralyze(10 SECONDS)
-		//victim.Unconscious(10)
-		//victim.drop_held_item()
 		return
 	else if( eyes_covered ) // Mouth cover is better than eye cover, except it's actually the opposite.
 		if(show_message)
 			to_chat(victim, span_danger("Your [safe_thing] protects you from most of the pepperspray!"))
 		if(!(victim.species && (victim.species.species_flags & NO_PAIN)))
 			if(prob(10))
-				victim.Stun(20)
+				victim.Stun(2 SECONDS)
 		victim.blur_eyes(5)
 		return
 	else // Oh dear :D
@@ -305,7 +303,7 @@
 /datum/reagent/consumable/psilocybin/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(2, TOX)
 	if(prob(60))
-		L.Unconscious(60)
+		L.Unconscious(6 SECONDS)
 	L.setDrowsyness(max(L.drowsyness, 30))
 
 /datum/reagent/consumable/sprinkles

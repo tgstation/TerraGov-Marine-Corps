@@ -11,7 +11,7 @@
 
 /obj/item/minelayer/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/minelayer, 1 SECONDS)
+	AddComponent(/datum/component/deployable_item, /obj/machinery/deployable/minelayer, 1 SECONDS)
 
 /obj/machinery/deployable/minelayer
 	anchored = TRUE

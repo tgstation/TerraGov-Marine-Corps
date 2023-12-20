@@ -77,7 +77,7 @@
 
 /obj/item/camera_film
 	name = "film cartridge"
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/device.dmi'
 	desc = "A camera film cartridge. Insert it into a camera to reload it."
 	icon_state = "film"
 	item_state = "electropack"
@@ -159,12 +159,12 @@
 
 	var/n_name = stripped_input(usr, "What would you like to label the photo?", "Photo Labelling")
 	if((loc == usr || loc.loc && loc.loc == usr) && usr.stat == CONSCIOUS && !usr.incapacitated())
-		name = "photo[(n_name ? text("- '[n_name]'") : null)]"
+		name = "photo[(n_name ? "- '[n_name]'" : null)]"
 
 
 /obj/item/camera
 	name = "camera"
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/device.dmi'
 	desc = "A polaroid camera."
 	icon_state = "camera"
 	item_state = "camera"

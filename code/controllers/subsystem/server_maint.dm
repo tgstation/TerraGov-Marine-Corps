@@ -6,6 +6,7 @@ SUBSYSTEM_DEF(server_maint)
 	flags = SS_POST_FIRE_TIMING
 	priority = FIRE_PRIORITY_SERVER_MAINT
 	init_order = INIT_ORDER_SERVER_MAINT
+	init_stage = INITSTAGE_EARLY
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 	var/list/currentrun
 	var/cleanup_ticker = 0
@@ -15,10 +16,10 @@ SUBSYSTEM_DEF(server_maint)
 	world.hub_password = ""
 
 
-/datum/controller/subsystem/server_maint/Initialize(timeofday)
+/datum/controller/subsystem/server_maint/Initialize()
 	if(CONFIG_GET(flag/hub))
 		world.update_hub_visibility(TRUE)
-	return ..()
+	return SS_INIT_SUCCESS
 
 
 /datum/controller/subsystem/server_maint/fire(resumed = FALSE)
@@ -62,13 +63,17 @@ SUBSYSTEM_DEF(server_maint)
 				cleanup_ticker++
 			if(30)
 				var/found = FALSE
-				for(var/level in GLOB.observers_by_zlevel)
-					if(listclearnulls(GLOB.observers_by_zlevel["[level]"]))
+				for(var/list/zlevel AS in SSmobs.dead_players_by_zlevel)
+					if(listclearnulls(zlevel))
 						found = TRUE
 				if(found)
-					log_world("Found a null in observers_by_zlevel!")
+					log_world("Found a null in dead_players_by_zlevel!")
 				cleanup_ticker++
 			if(35)
+				if(listclearnulls(GLOB.dead_mob_list))
+					log_world("Found a null in GLOB.dead_mob_list!")
+				cleanup_ticker++
+			if(40)
 				cleanup_ticker = 0
 			else
 				cleanup_ticker++

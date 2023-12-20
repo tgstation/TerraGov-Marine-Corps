@@ -1,13 +1,17 @@
 /datum/element/shrapnel_removal
 	element_flags = ELEMENT_BESPOKE
 	argument_hash_start_idx = 2
+	///Channel time per shrap removal
 	var/do_after_time
+	///Fumble time for unskilled users
+	var/fumble_duration
 
-/datum/element/shrapnel_removal/Attach(datum/target, duration)
+/datum/element/shrapnel_removal/Attach(datum/target, duration, fumble_time)
 	. = ..()
 	if(!isitem(target) || (duration < 1))
 		return ELEMENT_INCOMPATIBLE
 	do_after_time = duration
+	fumble_duration = fumble_time ? fumble_time : do_after_time
 	RegisterSignal(target, COMSIG_ITEM_ATTACK, PROC_REF(on_attack))
 
 /datum/element/shrapnel_removal/Detach(datum/source, force)
@@ -25,6 +29,8 @@
 		return
 	var/mob/living/carbon/human/target = M
 	var/datum/limb/targetlimb = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(target, user) : target.get_limb(user.zone_selected)
+	if(!targetlimb) //radial_medical can return null
+		return
 	if(!has_shrapnel(targetlimb))
 		M.balloon_alert(user, "There is nothing in limb!")
 		return
@@ -32,17 +38,17 @@
 	if(skill < SKILL_MEDICAL_PRACTICED)
 		user.visible_message(span_notice("[user] fumbles around with the [removaltool]."),
 		span_notice("You fumble around figuring out how to use [removaltool]."))
-		if(!do_after(user, do_after_time * (SKILL_MEDICAL_PRACTICED - skill), TRUE, target, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumble_duration * (SKILL_MEDICAL_PRACTICED - skill), NONE, target, BUSY_ICON_UNSKILLED))
 			return
 	user.visible_message(span_notice("[user] starts searching for shrapnel in [target] with the [removaltool]."), span_notice("You start searching for shrapnel in [target] with the [removaltool]."))
-	if(!do_after(user, do_after_time, TRUE, target, BUSY_ICON_MEDICAL))
+	if(!do_after(user, do_after_time, NONE, target, BUSY_ICON_MEDICAL))
 		to_chat(user, span_notice("You stop searching for shrapnel in [target]"))
 		return
 	remove_shrapnel(user, target, targetlimb, skill)
 	//iterates over the rest of the patient's limbs, attempting to remove shrapnel
 	for(targetlimb AS in target.limbs)
 		while(has_shrapnel(targetlimb))
-			if(!do_after(user, do_after_time, TRUE, target, BUSY_ICON_MEDICAL))
+			if(!do_after(user, do_after_time, NONE, target, BUSY_ICON_MEDICAL))
 				to_chat(user, span_notice("You stop searching for shrapnel in [target]"))
 				return
 			remove_shrapnel(user, target, targetlimb, skill)

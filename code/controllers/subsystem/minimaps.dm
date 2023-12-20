@@ -10,6 +10,10 @@
  * actual updating of marker locations is handled by [/datum/controller/subsystem/minimaps/proc/on_move]
  * and zlevel changes are handled in [/datum/controller/subsystem/minimaps/proc/on_z_change]
  * tracking of the actual atoms you want to be drawn on is done by means of datums holding info pertaining to them with [/datum/hud_displays]
+ *
+ * Todo
+ * *: add fetching of images to allow stuff like adding/removing xeno crowns easily
+ * *: add a system for viscontents so things like minimap draw are more responsive
  */
 SUBSYSTEM_DEF(minimaps)
 	name = "Minimaps"
@@ -23,81 +27,28 @@ SUBSYSTEM_DEF(minimaps)
 	var/list/image/images_by_source = list()
 	///the update target datums, sorted by update flag type
 	var/list/update_targets = list()
-	///Nonassoc list of targets we want to be stripped of their overlays during the SS fire
-	var/list/atom/update_targets_unsorted = list()
+	///Nonassoc list of updators we want to have their overlays reapplied
+	var/list/datum/minimap_updator/update_targets_unsorted = list()
 	///Assoc list of removal callbacks to invoke to remove images from the raw lists
 	var/list/datum/callback/removal_cbs = list()
 	///list of holders for data relating to tracked zlevel and tracked atum
 	var/list/datum/minimap_updator/updators_by_datum = list()
 	///assoc list of hash = image of images drawn by players
 	var/list/image/drawn_images = list()
-	///list of callbacks we need to invoke late because Initialize happens early
-	var/list/datum/callback/earlyadds = list()
+	///list of callbacks we need to invoke late because Initialize happens early, or a Z-level was loaded after init
+	var/list/list/datum/callback/earlyadds = list()
 	///assoc list of minimap objects that are hashed so we have to update as few as possible
 	var/list/hashed_minimaps = list()
 
-/datum/controller/subsystem/minimaps/Initialize(start_timeofday)
-	for(var/level=1 to length(SSmapping.z_list))
-		minimaps_by_z["[level]"] = new /datum/hud_displays
-		if(!is_mainship_level(level) && !is_ground_level(level))
-			continue
-		var/icon/icon_gen = new('icons/UI_icons/minimap.dmi') //480x480 blank icon template for drawing on the map
-		for(var/xval = 1 to world.maxx)
-			for(var/yval = 1 to world.maxy) //Scan all the turfs and draw as needed
-				var/turf/location = locate(xval,yval,level)
-				if(isspaceturf(location))
-					continue
-				if(location.density)
-					icon_gen.DrawBox(location.minimap_color, xval, yval)
-					continue
-				var/atom/movable/alttarget = (locate(/obj/machinery/door) in location) || (locate(/obj/structure/fence) in location)
-				if(alttarget)
-					icon_gen.DrawBox(alttarget.minimap_color, xval, yval)
-					continue
-				var/area/turfloc = location.loc
-				if(turfloc.minimap_color)
-					icon_gen.DrawBox(BlendRGB(location.minimap_color, turfloc.minimap_color, 0.5), xval, yval)
-					continue
-				icon_gen.DrawBox(location.minimap_color, xval, yval)
-		icon_gen.Scale(480*2,480*2) //scale it up x2 to make it easer to see
-		icon_gen.Crop(1, 1, min(icon_gen.Width(), 480), min(icon_gen.Height(), 480)) //then cut all the empty pixels
-
-		//generation is done, now we need to center the icon to someones view, this can be left out if you like it ugly and will halve SSinit time
-		//calculate the offset of the icon
-		var/largest_x = 0
-		var/smallest_x = SCREEN_PIXEL_SIZE
-		var/largest_y = 0
-		var/smallest_y = SCREEN_PIXEL_SIZE
-		for(var/xval=1 to SCREEN_PIXEL_SIZE step 2) //step 2 is twice as fast :)
-			for(var/yval=1 to SCREEN_PIXEL_SIZE step 2) //keep in mind 1 wide giant straight lines will offset wierd but you shouldnt be mapping those anyway right???
-				if(!icon_gen.GetPixel(xval, yval))
-					continue
-				if(xval > largest_x)
-					largest_x = xval
-				else if(xval < smallest_x)
-					smallest_x = xval
-				if(yval > largest_y)
-					largest_y = yval
-				else if(yval < smallest_y)
-					smallest_y = yval
-
-		minimaps_by_z["[level]"].x_offset = FLOOR((SCREEN_PIXEL_SIZE-largest_x-smallest_x)/2, 1)
-		minimaps_by_z["[level]"].y_offset = FLOOR((SCREEN_PIXEL_SIZE-largest_y-smallest_y)/2, 1)
-
-		icon_gen.Shift(EAST, minimaps_by_z["[level]"].x_offset)
-		icon_gen.Shift(NORTH, minimaps_by_z["[level]"].y_offset)
-
-		minimaps_by_z["[level]"].hud_image = icon_gen //done making the image!
-
+/datum/controller/subsystem/minimaps/Initialize()
 	initialized = TRUE
+	for(var/datum/space_level/z_level AS in SSmapping.z_list)
+		load_new_z(null, z_level)
 
-	for(var/i=1 to length(earlyadds)) //lateload icons
-		earlyadds[i].Invoke()
-	earlyadds = null //then clear them
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/minimaps/stat_entry(msg)
-	msg = "Upd:[length(update_targets_unsorted)] Mark: [length(removal_cbs)]"
+	msg = "Upd:[length(update_targets_unsorted)] Mark:[length(removal_cbs)]"
 	return ..()
 
 /datum/controller/subsystem/minimaps/Recover()
@@ -111,26 +62,83 @@ SUBSYSTEM_DEF(minimaps)
 
 /datum/controller/subsystem/minimaps/fire(resumed)
 	var/static/iteration = 0
-	if(!iteration) //on first iteration clear all overlays
-		for(var/iter=1 to length(update_targets_unsorted))
-			update_targets_unsorted[iter].overlays.Cut() //clear all the old overlays, no we cant cache it because they wont update
-	//checks last fired flag to make sure under high load that things are performed in stages
 	var/depthcount = 0
-	for(var/flag in update_targets)
+	for(var/datum/minimap_updator/updator AS in update_targets_unsorted)
 		if(depthcount < iteration) //under high load update in chunks
 			depthcount++
 			continue
-		for(var/datum/minimap_updator/updator AS in update_targets[flag])
-			//assignment is crazy fast compared to += and it automatically copies for overlays
-			if(length(updator.minimap.overlays))
-				updator.minimap.overlays += minimaps_by_z["[updator.ztarget]"].images_raw[flag]
-			else
-				updator.minimap.overlays = minimaps_by_z["[updator.ztarget]"].images_raw[flag]
+		updator.minimap.overlays = updator.raw_blips
 		depthcount++
 		iteration++
 		if(MC_TICK_CHECK)
 			return
 	iteration = 0
+
+///Creates a minimap for a particular z level
+/datum/controller/subsystem/minimaps/proc/load_new_z(datum/dcs, datum/space_level/z_level)
+	SIGNAL_HANDLER
+
+	var/level = z_level.z_value
+	minimaps_by_z["[level]"] = new /datum/hud_displays
+	if(!is_mainship_level(level) && !is_ground_level(level) && !is_away_level(level)) //todo: maybe move this around
+		return
+	var/icon/icon_gen = new('icons/UI_icons/minimap.dmi') //480x480 blank icon template for drawing on the map
+	for(var/xval = 1 to world.maxx)
+		for(var/yval = 1 to world.maxy) //Scan all the turfs and draw as needed
+			var/turf/location = locate(xval,yval,level)
+			if(isspaceturf(location))
+				continue
+			if(location.density)
+				icon_gen.DrawBox(location.minimap_color, xval, yval)
+				continue
+			var/atom/movable/alttarget = (locate(/obj/machinery/door) in location) || (locate(/obj/structure/fence) in location)
+			if(alttarget)
+				icon_gen.DrawBox(alttarget.minimap_color, xval, yval)
+				continue
+			var/area/turfloc = location.loc
+			if(turfloc.minimap_color)
+				icon_gen.DrawBox(BlendRGB(location.minimap_color, turfloc.minimap_color, 0.5), xval, yval)
+				continue
+			icon_gen.DrawBox(location.minimap_color, xval, yval)
+	icon_gen.Scale(480*2,480*2) //scale it up x2 to make it easer to see
+	icon_gen.Crop(1, 1, min(icon_gen.Width(), 480), min(icon_gen.Height(), 480)) //then cut all the empty pixels
+
+	//generation is done, now we need to center the icon to someones view,
+	//this can be left out if you like it ugly and will halve SSinit time
+
+	//calculate the offset of the icon
+	var/largest_x = 0
+	var/smallest_x = SCREEN_PIXEL_SIZE
+	var/largest_y = 0
+	var/smallest_y = SCREEN_PIXEL_SIZE
+	for(var/xval=1 to SCREEN_PIXEL_SIZE step 2) //step 2 is twice as fast :)
+		for(var/yval=1 to SCREEN_PIXEL_SIZE step 2) //keep in mind 1 wide giant straight lines will offset wierd but you shouldnt be mapping those anyway right???
+			if(!icon_gen.GetPixel(xval, yval))
+				continue
+			if(xval > largest_x)
+				largest_x = xval
+			else if(xval < smallest_x)
+				smallest_x = xval
+			if(yval > largest_y)
+				largest_y = yval
+			else if(yval < smallest_y)
+				smallest_y = yval
+
+	minimaps_by_z["[level]"].x_offset = FLOOR((SCREEN_PIXEL_SIZE-largest_x-smallest_x)/2, 1)
+	minimaps_by_z["[level]"].y_offset = FLOOR((SCREEN_PIXEL_SIZE-largest_y-smallest_y)/2, 1)
+
+	icon_gen.Shift(EAST, minimaps_by_z["[level]"].x_offset)
+	icon_gen.Shift(NORTH, minimaps_by_z["[level]"].y_offset)
+
+	minimaps_by_z["[level]"].hud_image = icon_gen //done making the image!
+
+	//lateload icons
+	if(!earlyadds["[level]"])
+		return
+
+	for(var/datum/callback/callback AS in earlyadds["[level]"])
+		callback.Invoke()
+	earlyadds["[level]"] = null //then clear them
 
 /**
  * Adds an atom to the processing updators that will have blips drawn on them
@@ -143,21 +151,22 @@ SUBSYSTEM_DEF(minimaps)
 	var/datum/minimap_updator/holder = new(target, ztarget)
 	for(var/flag in bitfield2list(flags))
 		LAZYADD(update_targets["[flag]"], holder)
+		holder.raw_blips += minimaps_by_z["[ztarget]"].images_raw["[flag]"]
 	updators_by_datum[target] = holder
-	update_targets_unsorted += target
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(remove_updator))
+	update_targets_unsorted += holder
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_updator))
 
 /**
  * Removes a atom from the subsystems updating overlays
  */
 /datum/controller/subsystem/minimaps/proc/remove_updator(atom/target)
 	SIGNAL_HANDLER
-	UnregisterSignal(target, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(target, COMSIG_QDELETING)
 	var/datum/minimap_updator/holder = updators_by_datum[target]
 	updators_by_datum -= target
 	for(var/key in update_targets)
 		LAZYREMOVE(update_targets[key], holder)
-	update_targets_unsorted -= target
+	update_targets_unsorted -= holder
 
 /**
  * Holder datum for a zlevels data, concerning the overlays and the drawn level itself
@@ -191,76 +200,131 @@ SUBSYSTEM_DEF(minimaps)
 	var/atom/minimap
 	///Target zlevel we want to be updating to
 	var/ztarget = 0
+	/// list of overlays we update
+	var/raw_blips
 
 /datum/minimap_updator/New(minimap, ztarget)
 	..()
 	src.minimap = minimap
 	src.ztarget = ztarget
+	raw_blips = list()
 
 /**
  * Adds an atom we want to track with blips to the subsystem
  * Arguments:
  * * target: atom we want to track
- * * zlevel: zlevel we want this atom to be tracked for
  * * hud_flags: tracked HUDs we want this atom to be displayed on
- * * iconstate: iconstate for the blip we want to be used for this tracked atom
- * * icon: icon file we want to use for this blip, 'icons/UI_icons/map_blips.dmi' by default
- * * overlay_iconstates: list of iconstates to use as overlay. Used for xeno leader icons.
+ * * marker: image or mutable_appearance we want to be using on the map
  */
-/datum/controller/subsystem/minimaps/proc/add_marker(atom/target, zlevel, hud_flags = NONE, iconstate, icon = 'icons/UI_icons/map_blips.dmi', list/overlay_list)
-	if(!isatom(target) || !zlevel || !hud_flags || !iconstate || !icon)
+/datum/controller/subsystem/minimaps/proc/add_marker(atom/target, hud_flags = NONE, image/blip)
+	if(!isatom(target) || !hud_flags || !blip)
 		CRASH("Invalid marker added to subsystem")
-	if(!initialized)
-		earlyadds += CALLBACK(src, PROC_REF(add_marker), target, zlevel, hud_flags, iconstate, icon)
+
+	if(!initialized || !(minimaps_by_z["[target.z]"])) //the minimap doesn't exist yet, z level was probably loaded after init
+		for(var/datum/callback/callback AS in earlyadds["[target.z]"])
+			if(callback.arguments[1] == target)
+				return
+		LAZYADDASSOC(earlyadds, "[target.z]", CALLBACK(src, PROC_REF(add_marker), target, hud_flags, blip))
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_earlyadd), override = TRUE) //Override required for late z-level loading to prevent hard dels where an atom is initiated during z load, but is qdel'd before it finishes
 		return
 
-	var/image/blip = image(icon, iconstate, pixel_x = MINIMAP_PIXEL_FROM_WORLD(target.x) + minimaps_by_z["[zlevel]"].x_offset, pixel_y = MINIMAP_PIXEL_FROM_WORLD(target.y) + minimaps_by_z["[zlevel]"].y_offset)
+	var/turf/target_turf = get_turf(target)
 
-	blip.overlays = overlay_list
+	blip.pixel_x = MINIMAP_PIXEL_FROM_WORLD(target_turf.x) + minimaps_by_z["[target_turf.z]"].x_offset
+	blip.pixel_y = MINIMAP_PIXEL_FROM_WORLD(target_turf.y) + minimaps_by_z["[target_turf.z]"].y_offset
 
 	images_by_source[target] = blip
 	for(var/flag in bitfield2list(hud_flags))
-		minimaps_by_z["[zlevel]"].images_assoc["[flag]"][target] = blip
-		minimaps_by_z["[zlevel]"].images_raw["[flag]"] += blip
+		minimaps_by_z["[target_turf.z]"].images_assoc["[flag]"][target] = blip
+		minimaps_by_z["[target_turf.z]"].images_raw["[flag]"] += blip
+		for(var/datum/minimap_updator/updator AS in update_targets["[flag]"])
+			if(target_turf.z == updator.ztarget)
+				updator.raw_blips += blip
 	if(ismovableatom(target))
 		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_change))
 		blip.RegisterSignal(target, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/image, minimap_on_move))
-	removal_cbs[target] = CALLBACK(src, PROC_REF(removeimage), blip, target)
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(remove_marker))
+	removal_cbs[target] = CALLBACK(src, PROC_REF(removeimage), blip, target, hud_flags)
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_marker), override = TRUE) //override for atoms that were on a late loaded z-level, overrides the remove_earlyadd above
 
-
+///Removes the object from the earlyadds list, in case it was qdel'd before the z-level was fully loaded
+/datum/controller/subsystem/minimaps/proc/remove_earlyadd(atom/source)
+	SIGNAL_HANDLER
+	remove_marker(source)
+	for(var/datum/callback/callback in earlyadds["[source.z]"])
+		if(callback.arguments[1] != source)
+			continue
+		earlyadds["[source.z]"] -= callback
+		UnregisterSignal(source, COMSIG_QDELETING)
+		return
 
 /**
  * removes an image from raw tracked lists, invoked by callback
  */
-/datum/controller/subsystem/minimaps/proc/removeimage(image/blip, atom/target)
-	for(var/flag in GLOB.all_minimap_flags)
-		minimaps_by_z["[target.z]"].images_raw["[flag]"] -= blip
+/datum/controller/subsystem/minimaps/proc/removeimage(image/blip, atom/target, hud_flags)
+	var/turf/target_turf = get_turf(target)
+	for(var/flag in bitfield2list(hud_flags))
+		minimaps_by_z["[target_turf.z]"].images_raw["[flag]"] -= blip
+		for(var/datum/minimap_updator/updator AS in update_targets["[flag]"])
+			if(updator.ztarget == target_turf.z)
+				updator.raw_blips -= blip
 	blip.UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
 	removal_cbs -= target
 
 /**
  * Called on zlevel change of a blip-atom so we can update the image lists as needed
+ *
+ * TODO gross amount of assoc usage and unneeded ALL FLAGS iteration
  */
 /datum/controller/subsystem/minimaps/proc/on_z_change(atom/movable/source, oldz, newz)
 	SIGNAL_HANDLER
+	var/image/blip
 	for(var/flag in GLOB.all_minimap_flags)
 		if(!minimaps_by_z["[oldz]"]?.images_assoc["[flag]"][source])
 			continue
-		minimaps_by_z["[newz]"].images_assoc["[flag]"][source] = minimaps_by_z["[oldz]"].images_assoc["[flag]"][source]
-		minimaps_by_z["[oldz]"].images_raw["[flag]"] -= minimaps_by_z["[oldz]"].images_assoc["[flag]"][source]
-		minimaps_by_z["[newz]"].images_raw["[flag]"] += minimaps_by_z["[oldz]"].images_assoc["[flag]"][source]
+		if(!blip)
+			blip = minimaps_by_z["[oldz]"].images_assoc["[flag]"][source]
+		// todo maybe make update_targets also sort by zlevel?
+		for(var/datum/minimap_updator/updator AS in update_targets["[flag]"])
+			if(updator.ztarget == oldz)
+				updator.raw_blips -= blip
+			else if(updator.ztarget == newz)
+				updator.raw_blips += blip
+		minimaps_by_z["[newz]"].images_assoc["[flag]"][source] = blip
 		minimaps_by_z["[oldz]"].images_assoc["[flag]"] -= source
+
+		minimaps_by_z["[newz]"].images_raw["[flag]"] += blip
+		minimaps_by_z["[oldz]"].images_raw["[flag]"] -= blip
 
 /**
  * Simple proc, updates overlay position on the map when a atom moves
  */
 /image/proc/minimap_on_move(atom/movable/source, oldloc)
 	SIGNAL_HANDLER
-	if(!source.z)
-		return //this can happen legitimately when you go into pipes, it shouldnt but thats how it is
-	pixel_x = MINIMAP_PIXEL_FROM_WORLD(source.x) + SSminimaps.minimaps_by_z["[source.z]"].x_offset
-	pixel_y = MINIMAP_PIXEL_FROM_WORLD(source.y) + SSminimaps.minimaps_by_z["[source.z]"].y_offset
+	if(isturf(source.loc))
+		pixel_x = MINIMAP_PIXEL_FROM_WORLD(source.x) + SSminimaps.minimaps_by_z["[source.z]"].x_offset
+		pixel_y = MINIMAP_PIXEL_FROM_WORLD(source.y) + SSminimaps.minimaps_by_z["[source.z]"].y_offset
+		return
+
+	var/atom/movable/movable_loc = source.loc
+	source.override_minimap_tracking(source.loc)
+	pixel_x = MINIMAP_PIXEL_FROM_WORLD(movable_loc.x) + SSminimaps.minimaps_by_z["[movable_loc.z]"].x_offset
+	pixel_y = MINIMAP_PIXEL_FROM_WORLD(movable_loc.y) + SSminimaps.minimaps_by_z["[movable_loc.z]"].y_offset
+
+///Used to handle minimap tracking inside other movables
+/atom/movable/proc/override_minimap_tracking(atom/movable/loc)
+	var/image/blip = SSminimaps.images_by_source[src]
+	blip.RegisterSignal(loc, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/image, minimap_on_move))
+	RegisterSignal(loc, COMSIG_ATOM_EXITED, PROC_REF(cancel_override_minimap_tracking))
+
+///Stops minimap override tracking
+/atom/movable/proc/cancel_override_minimap_tracking(atom/movable/source, atom/movable/mover)
+	SIGNAL_HANDLER
+	if(mover != src)
+		return
+	var/image/blip = SSminimaps.images_by_source[src]
+	blip.UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(source, COMSIG_ATOM_EXITED)
+
 
 /**
  * Removes an atom and it's blip from the subsystem
@@ -269,9 +333,10 @@ SUBSYSTEM_DEF(minimaps)
 	SIGNAL_HANDLER
 	if(!removal_cbs[source]) //already removed
 		return
-	UnregisterSignal(source, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_Z_CHANGED))
+	UnregisterSignal(source, list(COMSIG_QDELETING, COMSIG_MOVABLE_Z_CHANGED))
+	var/turf/source_turf = get_turf(source)
 	for(var/flag in GLOB.all_minimap_flags)
-		minimaps_by_z["[source.z]"].images_assoc["[flag]"] -= source
+		minimaps_by_z["[source_turf.z]"].images_assoc["[flag]"] -= source
 	images_by_source -= source
 	removal_cbs[source].Invoke()
 	removal_cbs -= source
@@ -324,6 +389,10 @@ SUBSYSTEM_DEF(minimaps)
 	icon = SSminimaps.minimaps_by_z["[target]"].hud_image
 	SSminimaps.add_to_updaters(src, flags, target)
 
+/atom/movable/screen/minimap/Destroy()
+	SSminimaps.hashed_minimaps -= src
+	return ..()
+
 /**
  * lets the user get coordinates by clicking the actual map
  * Returns a list(x_coord, y_coord)
@@ -369,10 +438,11 @@ SUBSYSTEM_DEF(minimaps)
 ///updates the screen loc of the locator so that it's on the movers location on the minimap
 /atom/movable/screen/minimap_locator/proc/update(atom/movable/mover, atom/oldloc, direction)
 	SIGNAL_HANDLER
-	var/x_coord = mover.x * 2
-	var/y_coord = mover.y * 2
-	x_coord += SSminimaps.minimaps_by_z["[mover.z]"].x_offset
-	y_coord += SSminimaps.minimaps_by_z["[mover.z]"].y_offset
+	var/turf/mover_turf = get_turf(mover)
+	var/x_coord = mover_turf.x * 2
+	var/y_coord = mover_turf.y * 2
+	x_coord += SSminimaps.minimaps_by_z["[mover_turf.z]"].x_offset
+	y_coord += SSminimaps.minimaps_by_z["[mover_turf.z]"].y_offset
 	// + 1 because tiles start at 1
 	var/x_tile = FLOOR(x_coord/32, 1) + 1
 	// -3 to center the image
@@ -405,9 +475,13 @@ SUBSYSTEM_DEF(minimaps)
 	///Sets a fixed z level to be tracked by this minimap action instead of being influenced by the owner's / locator override's z level.
 	var/default_overwatch_level = 0
 
-/datum/action/minimap/New(Target)
+/datum/action/minimap/New(Target, new_minimap_flags, new_marker_flags)
 	. = ..()
 	locator = new
+	if(new_minimap_flags)
+		minimap_flags = new_minimap_flags
+	if(new_marker_flags)
+		marker_flags = new_marker_flags
 
 /datum/action/minimap/Destroy()
 	map = null
@@ -419,6 +493,8 @@ SUBSYSTEM_DEF(minimaps)
 	. = ..()
 	if(!map)
 		return
+	if(!locator_override && ismovableatom(owner.loc))
+		override_locator(owner.loc)
 	var/atom/movable/tracking = locator_override ? locator_override : owner
 	if(minimap_displayed)
 		owner.client.screen -= map
@@ -439,37 +515,51 @@ SUBSYSTEM_DEF(minimaps)
 	var/atom/movable/tracking = locator_override ? locator_override : owner
 	var/atom/movable/new_track = to_track ? to_track : owner
 	if(locator_override)
-		UnregisterSignal(locator_override, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(locator_override, COMSIG_QDELETING)
 	if(owner)
 		UnregisterSignal(tracking, COMSIG_MOVABLE_Z_CHANGED)
 	if(!minimap_displayed)
 		locator_override = to_track
 		if(to_track)
-			RegisterSignal(to_track, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/datum/action/minimap, clear_locator_override))
+			RegisterSignal(to_track, COMSIG_QDELETING, TYPE_PROC_REF(/datum/action/minimap, clear_locator_override))
+			if(owner.loc == to_track)
+				RegisterSignal(to_track, COMSIG_ATOM_EXITED, TYPE_PROC_REF(/datum/action/minimap, on_exit_check))
 		if(owner)
 			RegisterSignal(new_track, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
-			if(tracking.z != new_track.z)
-				on_owner_z_change(new_track, tracking.z, new_track.z)
+			var/turf/old_turf = get_turf(tracking)
+			if(!old_turf.z || old_turf.z != new_track.z)
+				on_owner_z_change(new_track, old_turf.z, new_track.z)
 		return
 	locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 	locator_override = to_track
 	if(to_track)
-		RegisterSignal(to_track, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/datum/action/minimap, clear_locator_override))
+		RegisterSignal(to_track, COMSIG_QDELETING, TYPE_PROC_REF(/datum/action/minimap, clear_locator_override))
+		if(owner.loc == to_track)
+			RegisterSignal(to_track, COMSIG_ATOM_EXITED, TYPE_PROC_REF(/datum/action/minimap, on_exit_check))
 	RegisterSignal(new_track, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
-	if(tracking.z != new_track.z)
-		on_owner_z_change(new_track, tracking.z, new_track.z)
+	var/turf/old_turf = get_turf(tracking)
+	if(old_turf.z != new_track.z)
+		on_owner_z_change(new_track, old_turf.z, new_track.z)
 	locator.RegisterSignal(new_track, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/minimap_locator, update))
 	locator.update(new_track)
+
+///checks if we should clear override if the owner exits this atom
+/datum/action/minimap/proc/on_exit_check(datum/source, atom/movable/mover)
+	SIGNAL_HANDLER
+	if(mover && mover != owner)
+		return
+	clear_locator_override()
 
 ///CLears the locator override in case the override target is deleted
 /datum/action/minimap/proc/clear_locator_override()
 	SIGNAL_HANDLER
-	UnregisterSignal(locator_override, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(locator_override, list(COMSIG_QDELETING, COMSIG_ATOM_EXITED))
 	if(owner)
 		UnregisterSignal(locator_override, COMSIG_MOVABLE_Z_CHANGED)
 		RegisterSignal(owner, COMSIG_MOVABLE_Z_CHANGED)
-		if(locator_override.z != owner.z)
-			on_owner_z_change(owner, locator_override.z, owner.z)
+		var/turf/owner_turf = get_turf(owner)
+		if(owner_turf.z != locator_override.z)
+			on_owner_z_change(owner, locator_override.z, owner_turf.z)
 	if(minimap_displayed)
 		locator.UnregisterSignal(locator_override, COMSIG_MOVABLE_MOVED)
 		locator.RegisterSignal(owner, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/minimap_locator, update))
@@ -553,18 +643,18 @@ SUBSYSTEM_DEF(minimaps)
 		KEYBINDING_NORMAL = COMSIG_KB_TOGGLE_EXTERNAL_MINIMAP,
 	)
 
+/datum/action/minimap/marine/external/som
+	minimap_flags = MINIMAP_FLAG_MARINE_SOM
+	marker_flags = MINIMAP_FLAG_MARINE_SOM
+
 /datum/action/minimap/ai	//I'll keep this as seperate type despite being identical so it's easier if people want to make different aspects different.
 	minimap_flags = MINIMAP_FLAG_MARINE
 	marker_flags = MINIMAP_FLAG_MARINE
-
-/datum/action/minimap/marine/rebel
-	minimap_flags = MINIMAP_FLAG_MARINE_REBEL
-	marker_flags = MINIMAP_FLAG_MARINE_REBEL
 
 /datum/action/minimap/som
 	minimap_flags = MINIMAP_FLAG_MARINE_SOM
 	marker_flags = MINIMAP_FLAG_MARINE_SOM
 
 /datum/action/minimap/observer
-	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_REBEL|MINIMAP_FLAG_MARINE_SOM|MINIMAP_FLAG_EXCAVATION_ZONE
+	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_SOM|MINIMAP_FLAG_EXCAVATION_ZONE
 	marker_flags = NONE

@@ -69,7 +69,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "ct" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "cB" = (
@@ -941,7 +941,7 @@
 /area/bigredv2/outside/medical)
 "zE" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/tile/green/whitegreen{
@@ -1253,9 +1253,8 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "IS" = (
-/obj/machinery/door/airlock/glass_medical{
-	id_tag = "mbayexit";
-	name = "Medbay Reception"
+/obj/machinery/door/airlock/glass{
+	dir = 1
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
@@ -1608,7 +1607,7 @@
 /area/bigredv2/outside/medical)
 "Rn" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "Ru" = (
@@ -1715,12 +1714,12 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "TT" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
 "Uf" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},

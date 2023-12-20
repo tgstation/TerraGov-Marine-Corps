@@ -93,18 +93,19 @@
 	return ..()
 
 
-GLOBAL_LIST_INIT(protected_objects, list(/obj/structure/table, /obj/structure/cable, /obj/structure/window))
+GLOBAL_LIST_INIT(protected_objects, list(/obj/structure/table, /obj/structure/cable, /obj/structure/window, /obj/structure/dropship_equipment, /obj/structure/barricade))
 
 
 /mob/living/simple_animal/hostile/mimic/copy
 	health = 100
 	maxHealth = 100
 	var/mob/living/creator = null // the creator
-	var/destroy_objects = 0
-	var/knockdown_people = 0
+	var/destroy_objects = FALSE
+	var/knockdown_people = FALSE
 	var/static/mutable_appearance/googly_eyes = mutable_appearance('icons/mob/mob.dmi', "googly_eyes")
 	var/overlay_googly_eyes = TRUE
 	var/idledamage = TRUE
+	var/paralyze_duration = 20 SECONDS
 
 
 /mob/living/simple_animal/hostile/mimic/copy/Initialize(mapload, obj/copy, mob/living/creator, destroy_original = 0, no_googlies = FALSE)
@@ -175,7 +176,7 @@ GLOBAL_LIST_INIT(protected_objects, list(/obj/structure/table, /obj/structure/ca
 			faction += "[REF(creator)]" // very unique
 		if(destroy_original)
 			qdel(O)
-		return 1
+		return TRUE
 
 
 /mob/living/simple_animal/hostile/mimic/copy/DestroySurroundings()
@@ -187,7 +188,7 @@ GLOBAL_LIST_INIT(protected_objects, list(/obj/structure/table, /obj/structure/ca
 	. = ..()
 	if(knockdown_people && . && prob(15) && iscarbon(target))
 		var/mob/living/carbon/C = target
-		C.Paralyze(20 SECONDS)
+		C.Paralyze(paralyze_duration)
 		C.visible_message(span_danger("\The [src] knocks down \the [C]!"), \
 				span_userdanger("\The [src] knocks you down!"))
 

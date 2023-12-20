@@ -17,3 +17,10 @@
 	var/mob/living/L = user.mob
 	L.resist()
 	return TRUE
+
+/datum/keybinding/living/attempt_jump
+	hotkey_keys = list("Space")
+	name = "Jump"
+	full_name = "Jump"
+	description = "Jumps, if your mob is capable of doing so."
+	keybind_signal = COMSIG_KB_LIVING_JUMP

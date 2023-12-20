@@ -47,9 +47,9 @@ SUBSYSTEM_DEF(shuttle)
 	/// safety to stop shuttles loading over each other
 	var/loading_shuttle = FALSE
 
-/datum/controller/subsystem/shuttle/Initialize(timeofday)
+/datum/controller/subsystem/shuttle/Initialize()
 	initial_load()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/shuttle/proc/initial_load()
 	for(var/s in stationary)
@@ -90,7 +90,6 @@ SUBSYSTEM_DEF(shuttle)
 				else
 					var/obj/docking_port/mobile/M = requester
 					M.transit_failure()
-					log_debug("[M.id] failed to get a transit zone")
 			if(MC_TICK_CHECK)
 				break
 
@@ -230,7 +229,6 @@ SUBSYSTEM_DEF(shuttle)
 	var/datum/turf_reservation/proposal = SSmapping.RequestBlockReservation(transit_width, transit_height, null, /datum/turf_reservation/transit, transit_path)
 
 	if(!istype(proposal))
-		log_debug("generate_transit_dock() failed to get a block reservation from mapping system")
 		return FALSE
 
 	var/turf/bottomleft = locate(proposal.bottom_left_coords[1], proposal.bottom_left_coords[2], proposal.bottom_left_coords[3])
@@ -257,7 +255,6 @@ SUBSYSTEM_DEF(shuttle)
 
 	var/turf/midpoint = locate(transit_x, transit_y, bottomleft.z)
 	if(!midpoint)
-		log_debug("generate_transit_dock() failed to get a midpoint")
 		return FALSE
 	var/area/shuttle/transit/A = new()
 	A.parallax_movedir = travel_dir

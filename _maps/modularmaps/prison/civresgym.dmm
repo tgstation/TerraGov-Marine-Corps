@@ -18,7 +18,7 @@
 /area/template_noop)
 "m" = (
 /obj/item/toy/inflatable_duck,
-/turf/open/nostromowater,
+/turf/open/liquid/water/sea,
 /area/template_noop)
 "n" = (
 /obj/machinery/light/small{
@@ -41,7 +41,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/template_noop)
 "x" = (
-/turf/open/nostromowater,
+/turf/open/liquid/water/sea,
 /area/template_noop)
 "C" = (
 /obj/machinery/light/small{

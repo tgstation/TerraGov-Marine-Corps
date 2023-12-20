@@ -14,7 +14,7 @@
 	flags_equip_slot = ITEM_SLOT_EYES
 	flags_armor_protection = EYES
 	var/deactive_state = "degoggles"
-	var/vision_flags = 0
+	var/vision_flags = NONE
 	var/darkness_view = 2 //Base human is 2
 	var/invis_view = SEE_INVISIBLE_LIVING
 	var/invis_override = 0 //Override to allow glasses to set higher than normal see_invis
@@ -333,6 +333,12 @@
 	else if(istype(I, /obj/item/clothing/glasses/meson))
 		var/obj/item/clothing/glasses/meson/sunglasses/P = new
 		to_chat(user, span_notice("You fasten the optical meson scaner to the inside of the glasses."))
+		qdel(I)
+		qdel(src)
+		user.put_in_hands(P)
+	else if(istype(I, /obj/item/clothing/glasses/night/m56_goggles))
+		var/obj/item/clothing/glasses/night/sunglasses/P = new
+		to_chat(user, span_notice("You fasten the KTLD sight to the inside of the glasses."))
 		qdel(I)
 		qdel(src)
 		user.put_in_hands(P)

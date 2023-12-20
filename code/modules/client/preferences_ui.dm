@@ -63,6 +63,8 @@
 			data["species"] = species || "Human"
 			data["good_eyesight"] = good_eyesight
 			data["citizenship"] = citizenship
+			data["tts_voice"] = tts_voice
+			data["tts_pitch"] = "[tts_pitch]"
 			data["religion"] = religion
 			data["h_style"] = h_style
 			data["grad_style"] = grad_style
@@ -95,12 +97,15 @@
 			data["alternate_option"] = alternate_option
 			data["special_occupation"] = be_special
 		if(GAME_SETTINGS)
+			data["is_admin"] = user.client?.holder ? TRUE : FALSE
 			data["ui_style_color"] = ui_style_color
 			data["ui_style"] = ui_style
 			data["ui_style_alpha"] = ui_style_alpha
 			data["windowflashing"] = windowflashing
 			data["auto_fit_viewport"] = auto_fit_viewport
 			data["mute_xeno_health_alert_messages"] = mute_xeno_health_alert_messages
+			data["sound_tts"] = sound_tts
+			data["volume_tts"] = volume_tts
 			data["tgui_fancy"] = tgui_fancy
 			data["tgui_lock"] = tgui_lock
 			data["tgui_input"] = tgui_input
@@ -118,14 +123,14 @@
 			data["widescreenpref"] = widescreenpref
 			data["radialmedicalpref"] = !!(toggles_gameplay & RADIAL_MEDICAL)
 			data["radialstackspref"] = !!(toggles_gameplay & RADIAL_STACKS)
+			data["radiallasersgunpref"] = !!(toggles_gameplay & RADIAL_LASERGUNS)
 			data["autointeractdeployablespref"] = !!(toggles_gameplay & AUTO_INTERACT_DEPLOYABLES)
 			data["scaling_method"] = scaling_method
 			data["pixel_size"] = pixel_size
 			data["parallax"] = parallax
 			data["fullscreen_mode"] = fullscreen_mode
-			data["quick_equip"] = list()
-			for(var/quick_equip_slots in quick_equip)
-				data["quick_equip"] += slot_flag_to_fluff(quick_equip_slots)
+			data["fast_mc_refresh"] = fast_mc_refresh
+			data["split_admin_tabs"] = split_admin_tabs
 		if(KEYBIND_SETTINGS)
 			data["is_admin"] = user.client?.holder ? TRUE : FALSE
 			data["key_bindings"] = list()
@@ -139,6 +144,13 @@
 					sentence = emote.message,
 					emote_type = (emote.spoken_emote ? "say" : "me"),
 					)
+		if(DRAW_ORDER)
+			data["draw_order"] = list()
+			for(var/slot in slot_draw_order_pref)
+				data["draw_order"] += slot_flag_to_fluff(slot)
+			data["quick_equip"] = list()
+			for(var/quick_equip_slots in quick_equip)
+				data["quick_equip"] += slot_flag_to_fluff(quick_equip_slots)
 	return data
 
 /datum/preferences/ui_static_data(mob/user)
@@ -185,6 +197,7 @@
 						"bold" = (job.job_flags & JOB_FLAG_BOLD_NAME_ON_SELECTION) ? TRUE : FALSE
 					)
 				)
+			.["overflow_job"] = SSjob?.overflow_role?.title
 			.["special_occupations"] = list(
 				"Latejoin Xenomorph" = BE_ALIEN,
 				"Xenomorph when unrevivable" = BE_ALIEN_UNREVIVABLE,
@@ -252,13 +265,15 @@
 
 		if("synthetic_type")
 			var/choice = tgui_input_list(ui.user, "What kind of synthetic do you want to play with?", "Synthetic type choice", SYNTH_TYPES)
-			if(choice)
-				synthetic_type = choice
+			if(!choice)
+				return
+			synthetic_type = choice
 
 		if("robot_type")
 			var/choice = tgui_input_list(ui.user, "What model of robot do you want to play with?", "Robot model choice", ROBOT_TYPES)
-			if(choice)
-				robot_type = choice
+			if(!choice)
+				return
+			robot_type = choice
 
 		if("xeno_name")
 			var/newValue = params["newValue"]
@@ -299,8 +314,9 @@
 
 		if("ethnicity")
 			var/choice = tgui_input_list(ui.user, "What ethnicity do you want to play with?", "Ethnicity choice", GLOB.ethnicities_list)
-			if(choice)
-				ethnicity = choice
+			if(!choice)
+				return
+			ethnicity = choice
 
 		if("species")
 			var/choice = tgui_input_list(ui.user, "What species do you want to play with?", "Species choice", get_playable_species())
@@ -398,8 +414,9 @@
 
 		if("ui")
 			var/choice = tgui_input_list(ui.user, "What UI style do you want?", "UI style choice", UI_STYLES)
-			if(choice)
-				ui_style = choice
+			if(!choice)
+				return
+			ui_style = choice
 
 		if("uicolor")
 			var/ui_style_color_new = input(user, "Choose your UI color, dark colors are not recommended!", "UI Color") as null|color
@@ -423,8 +440,9 @@
 
 				valid_hairstyles[hairstyle] = GLOB.hair_styles_list[hairstyle]
 			var/choice = tgui_input_list(ui.user, "What hair style do you want?", "Hair style choice", valid_hairstyles)
-			if(choice)
-				h_style = choice
+			if(!choice)
+				return
+			h_style = choice
 
 		if("haircolor")
 			var/new_color = input(user, "Choose your character's hair colour:", "Hair Color") as null|color
@@ -467,8 +485,9 @@
 				valid_facialhairstyles[facialhairstyle] = GLOB.facial_hair_styles_list[facialhairstyle]
 
 			var/choice = tgui_input_list(ui.user, "What facial hair style do you want?", "Facial hair style choice", valid_facialhairstyles)
-			if(choice)
-				f_style = choice
+			if(!choice)
+				return
+			f_style = choice
 
 		if("facialcolor")
 			var/facial_color = input(user, "Choose your character's facial-hair colour:", "Facial Hair Color") as null|color
@@ -488,13 +507,40 @@
 
 		if("citizenship")
 			var/choice = tgui_input_list(ui.user, "Where do you hail from?", "Place of Origin", CITIZENSHIP_CHOICES)
-			if(choice)
-				citizenship = choice
+			if(!choice)
+				return
+			citizenship = choice
 
 		if("religion")
 			var/choice = tgui_input_list(ui.user, "What religion do you belive in?", "Belief", RELIGION_CHOICES)
-			if(choice)
-				religion = choice
+			if(!choice)
+				return
+			religion = choice
+
+		if("tts_voice")
+			var/list/voices
+			if(SStts.tts_enabled)
+				voices = SStts.available_speakers
+			else if(fexists("data/cached_tts_voices.json"))
+				var/list/text_data = rustg_file_read("data/cached_tts_voices.json")
+				voices = json_decode(text_data)
+			if(!length(voices))
+				return
+			var/choice = tgui_input_list(ui.user, "What do you sound like?", "TTS", voices)
+			if(!choice)
+				return
+			tts_voice = choice
+			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_TRY_TTS))
+				return
+			TIMER_COOLDOWN_START(ui.user, COOLDOWN_TRY_TTS, 0.5 SECONDS)
+			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), ui.user.client, "Hello, this is my voice.", speaker = choice, local = TRUE, special_filters = isrobot(GLOB.all_species[species]) ? TTS_FILTER_SILICON : "", pitch = tts_pitch)
+
+		if("tts_pitch")
+			tts_pitch = clamp(text2num(params["newValue"]), -12, 12)
+			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_TRY_TTS))
+				return
+			TIMER_COOLDOWN_START(ui.user, COOLDOWN_TRY_TTS, 0.5 SECONDS)
+			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), ui.user.client, "Hello, this is my voice.", speaker = tts_voice, local = TRUE, special_filters = isrobot(GLOB.all_species[species]) ? TTS_FILTER_SILICON : "", pitch = tts_pitch)
 
 		if("squad")
 			var/new_squad = params["newValue"]
@@ -549,6 +595,19 @@
 		if("mute_xeno_health_alert_messages")
 			mute_xeno_health_alert_messages = !mute_xeno_health_alert_messages
 
+		if("sound_tts")
+			var/choice = tgui_input_list(ui.user, "What kind of TTS do you want?", "TTS choice", GLOB.all_tts_options)
+			if(!choice)
+				return
+			sound_tts = choice
+
+		if("volume_tts")
+			var/new_vol = text2num(params["newValue"])
+			if(!isnum(new_vol))
+				return
+			new_vol = round(new_vol)
+			volume_tts = clamp(new_vol, 0, 100)
+
 		if("tgui_fancy")
 			tgui_fancy = !tgui_fancy
 
@@ -599,6 +658,26 @@
 				return
 			quick_equip[editing_slot] = slot_fluff_to_flag(slot)
 			to_chat(src, span_notice("You will now equip/draw from the [slot] slot first."))
+
+		if("equip_slot_equip_position")
+			var/returned_item_list_position = slot_draw_order_pref.Find(slot_fluff_to_flag(params["changing_item"]))
+			if(isnull(returned_item_list_position))
+				return
+			var/direction = params["direction"]
+			if(!direction)
+				return
+			var/swapping_with = returned_item_list_position
+			switch(direction)
+				if("down")
+					if(returned_item_list_position == length(SLOT_DRAW_ORDER))
+						return
+					swapping_with += 1
+					slot_draw_order_pref.Swap(returned_item_list_position, swapping_with)
+				if("up")
+					if(returned_item_list_position == 1)
+						return
+					swapping_with -= 1
+					slot_draw_order_pref.Swap(swapping_with, returned_item_list_position)
 
 		if("show_typing")
 			show_typing = !show_typing
@@ -720,6 +799,9 @@
 		if("radialmedicalpref")
 			toggles_gameplay ^= RADIAL_MEDICAL
 
+		if("radiallasersgunpref")
+			toggles_gameplay ^= RADIAL_LASERGUNS
+
 		if("radialstackspref")
 			toggles_gameplay ^= RADIAL_STACKS
 
@@ -757,6 +839,12 @@
 
 		if("unique_action_use_active_hand")
 			unique_action_use_active_hand = !unique_action_use_active_hand
+
+		if("fast_mc_refresh")
+			fast_mc_refresh = !fast_mc_refresh
+
+		if("split_admin_tabs")
+			split_admin_tabs = !split_admin_tabs
 
 		else //  Handle the unhandled cases
 			return

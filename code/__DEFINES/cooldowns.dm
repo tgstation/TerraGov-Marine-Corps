@@ -49,6 +49,7 @@
 #define COOLDOWN_ITEM_TRICK "cooldown_item_trick"
 #define COOLDOWN_RAVAGER_FLAMER_ACT "cooldown_ravager_flamer_act"
 #define COOLDOWN_DROPPOD_TARGETTING "cooldown_droppod_targetting"
+#define COOLDOWN_TRY_TTS "cooldown_try_tts"
 
 //Mecha cooldowns
 #define COOLDOWN_MECHA "mecha"
@@ -132,3 +133,14 @@
 #define COOLDOWN_RESET(cd_source, cd_index) cd_source.cd_index = 0
 
 #define COOLDOWN_TIMELEFT(cd_source, cd_index) (max(0, cd_source.cd_index - world.time))
+
+//railgun cooldown define
+#define COOLDOWN_RAILGUN_FIRE 300 SECONDS
+
+//AI bioscan cooldown define
+#define COOLDOWN_AI_BIOSCAN 10 MINUTES
+
+//ping cooldown define
+#define COOLDOWN_AI_PING_NORMAL 45 SECONDS
+#define COOLDOWN_AI_PING_LOW 30 SECONDS
+#define COOLDOWN_AI_PING_EXTRA_LOW 15 SECONDS

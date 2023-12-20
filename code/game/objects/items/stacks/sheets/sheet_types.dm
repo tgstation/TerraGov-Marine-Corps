@@ -63,6 +63,7 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 	desc = "Sheets made out of metal. It has been dubbed Metal Sheets."
 	singular_name = "metal sheet"
 	icon_state = "sheet-metal"
+	item_state = "sheet-metal"
 	flags_item = NOBLUDGEON
 	throwforce = 14
 	flags_atom = CONDUCT
@@ -116,7 +117,7 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 	singular_name = "plasteel sheet"
 	desc = "This sheet is an alloy of iron and phoron."
 	icon_state = "sheet-plasteel"
-	item_state = "sheet-metal"
+	item_state = "sheet-plasteel"
 	flags_item = NOBLUDGEON
 	throwforce = 15
 	flags_atom = CONDUCT
@@ -155,11 +156,21 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("wooden crate", /obj/structure/largecrate/packed, 5, time = 2 SECONDS, on_floor = TRUE) \
 	))
 
+GLOBAL_LIST_INIT(wood_radial_images, list(
+	"recipes" = image('icons/Marine/barricades.dmi', icon_state = "plus"),
+	"barricade" = image('icons/Marine/barricades.dmi', icon_state = "wooden"),
+	"chair" = image('icons/obj/objects.dmi', icon_state = "wooden_chair"),
+	"tile" = image('icons/obj/stack_objects.dmi', icon_state = "tile-wood"),
+	"crate" = image('icons/obj/structures/crates.dmi', icon_state = "secure_crate")
+	))
+
+
 /obj/item/stack/sheet/wood
 	name = "wooden plank"
 	desc = "One can only guess that this is a bunch of wood."
 	singular_name = "wood plank"
 	icon_state = "sheet-wood"
+	item_state = "sheet-wood"
 	merge_type = /obj/item/stack/sheet/wood
 	number_of_extra_variants = 3
 
@@ -179,6 +190,31 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 /obj/item/stack/sheet/wood/Initialize(mapload, amount)
 	. = ..()
 	recipes = GLOB.wood_recipes
+
+/obj/item/stack/sheet/wood/select_radial(mob/user)
+	if(user.get_active_held_item() != src)
+		return
+	if(!can_interact(user))
+		return TRUE
+
+	add_fingerprint(usr, "topic")
+
+	var/choice = show_radial_menu(user, src, GLOB.wood_radial_images, require_near = TRUE)
+
+	switch (choice)
+		if("recipes")
+			return TRUE
+		if("barricade")
+			create_object(user, new/datum/stack_recipe("wooden barricade", /obj/structure/barricade/wooden, 5, time = 5 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE), 1)
+		if("chair")
+			create_object(user, new/datum/stack_recipe("wooden chair", /obj/structure/bed/chair/wood/normal, 1, time = 1 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), 1)
+		if("tile")
+			create_object(user, new/datum/stack_recipe("wood floor tile", /obj/item/stack/tile/wood, 1, 4, 20), 1)
+		if("crate")
+			create_object(user, new/datum/stack_recipe("wooden crate", /obj/structure/largecrate/packed, 5, time = 2 SECONDS, on_floor = TRUE), 1)
+
+	return FALSE
+
 
 /*
 * Cloth
@@ -224,17 +260,16 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 	new/datum/stack_recipe_list("smg boxes",list( \
 		new/datum/stack_recipe("SMG-90 mag box", /obj/item/storage/box/visual/magazine/compact/standard_smg), \
 		new/datum/stack_recipe("MP-19 mag box", /obj/item/storage/box/visual/magazine/compact/standard_machinepistol), \
-		new/datum/stack_recipe("PPSh drum mag box", /obj/item/storage/box/visual/magazine/compact/ppsh), \
 		new/datum/stack_recipe("Pepperball canister box", /obj/item/storage/box/visual/magazine/compact/pepperball), \
 		)), \
 	new/datum/stack_recipe_list("rifle boxes",list( \
 		new/datum/stack_recipe("AR-12 mag box", /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle), \
 		new/datum/stack_recipe("AR-18 mag box", /obj/item/storage/box/visual/magazine/compact/standard_carbine), \
 		new/datum/stack_recipe("AR-21 mag box", /obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle), \
-		new/datum/stack_recipe("AR-11 mag box", /obj/item/storage/box/visual/magazine/compact/tx11), \
+		new/datum/stack_recipe("AR-11 mag box", /obj/item/storage/box/visual/magazine/compact/ar11), \
 		new/datum/stack_recipe("Martini Henry packet box", /obj/item/storage/box/visual/magazine/compact/martini), \
 		new/datum/stack_recipe("TE cell box", /obj/item/storage/box/visual/magazine/compact/lasrifle/marine), \
-		new/datum/stack_recipe("SH-15 mag box", /obj/item/storage/box/visual/magazine/compact/tx15), \
+		new/datum/stack_recipe("SH-15 mag box", /obj/item/storage/box/visual/magazine/compact/sh15), \
 		)), \
 	new/datum/stack_recipe_list("marksmen rifle boxes",list( \
 		new/datum/stack_recipe("DMR-37 mag box", /obj/item/storage/box/visual/magazine/compact/standard_dmr), \

@@ -27,6 +27,8 @@
 	var/hud_state_empty = "grenade_empty"
 	///Light impact range when exploding
 	var/light_impact_range = 4
+	///Weak impact range when exploding
+	var/weak_impact_range = 0
 
 
 /obj/item/explosive/grenade/Initialize(mapload)
@@ -38,17 +40,16 @@
 		return
 
 	if(!user.dextrous)
-		to_chat(user, span_warning("You don't have the dexterity to do this!"))
+		balloon_alert(user, "not enough dexterity")
 		return
 
 	if(issynth(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		to_chat(user, span_warning("Your programming prevents you from operating this device!"))
+		balloon_alert(user, "can't, against your programming")
 		return
 
 	activate(user)
 
-	user.visible_message(span_warning("[user] primes \a [name]!"), \
-	span_warning("You prime \a [name]!"))
+	balloon_alert_to_viewers("primes grenade")
 	if(initial(dangerous) && ishumanbasic(user))
 		var/nade_sound = user.gender == FEMALE ? get_sfx("female_fragout") : get_sfx("male_fragout")
 
@@ -70,8 +71,9 @@
 		return
 
 	if(user)
-		log_explosion("[key_name(user)] primed [src] at [AREACOORD(user.loc)].")
-		log_combat(user, src, "primed")
+		log_bomber(user, "primed", src)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+		personal_statistics.grenades_primed++
 
 	icon_state = initial(icon_state) + "_active"
 	active = TRUE
@@ -81,15 +83,16 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
 		update_icon()
 	addtimer(CALLBACK(src, PROC_REF(prime)), det_time)
+	return TRUE
 
 /obj/item/explosive/grenade/update_overlays()
 	. = ..()
-	if(dangerous)
-		overlays += new /obj/effect/overlay/danger
+	if(active && dangerous)
+		. += new /obj/effect/overlay/danger
 
 
 /obj/item/explosive/grenade/proc/prime()
-	explosion(loc, light_impact_range = src.light_impact_range, small_animation = TRUE)
+	explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range)
 	qdel(src)
 
 /obj/item/explosive/grenade/flamer_fire_act(burnlevel)
@@ -141,14 +144,3 @@
 		strength = victim.modify_by_armor(strength, BIO, 25)
 		victim.apply_radiation(strength, sound_level)
 	qdel(src)
-
-///Applies the actual effects of the rad grenade
-/obj/item/explosive/grenade/rad/proc/irradiate(mob/living/victim, strength)
-	var/effective_strength = max(victim.modify_by_armor(strength, BIO), strength * 0.25)
-	victim.adjustCloneLoss(effective_strength)
-	victim.adjustStaminaLoss(effective_strength * 7)
-	victim.adjust_stagger(effective_strength / 2)
-	victim.add_slowdown(effective_strength / 2)
-	victim.blur_eyes(effective_strength) //adds a visual indicator that you've just been irradiated
-	victim.adjust_radiation(effective_strength * 20) //Radiation status effect, duration is in deciseconds
-	to_chat(victim, span_warning("Your body tingles as you suddenly feel the strength drain from your body!"))

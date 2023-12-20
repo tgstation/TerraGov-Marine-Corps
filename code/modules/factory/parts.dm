@@ -117,6 +117,15 @@ GLOBAL_LIST_INIT(sadar_ammo_recipe, list(
 	. = ..()
 	recipe = GLOB.sadar_ammo_recipe
 
+/obj/item/factory_part/sadar_unguided
+	name = "SADAR HE unguided missile assembly"
+	desc = "An unfinished squat missile with less electrical bits."
+	result = /obj/item/ammo_magazine/rocket/sadar/unguided
+
+/obj/item/factory_part/sadar_unguided/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.sadar_ammo_recipe
+
 GLOBAL_LIST_INIT(recoilless_missile_recipe, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
@@ -211,6 +220,15 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	result = /obj/item/ammo_magazine/standard_smartmachinegun
 
 /obj/item/factory_part/smartgunner_machinegun_magazine/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
+/obj/item/factory_part/smartgunner_targetrifle_magazine
+	name = "\improper IFF magazines box"
+	desc = "A box with unfinished smart-rounds inside and empty magazines inside."
+	result = /obj/item/ammo_magazine/rifle/standard_smarttargetrifle
+
+/obj/item/factory_part/smartgunner_targetrifle_magazine/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.IFF_ammo
 
@@ -456,7 +474,10 @@ GLOBAL_LIST_INIT(module, list(
 /obj/item/factory_part/module_surt
 	name = "\improper Surt pyrotechnical insulation system"
 	desc = "An unfinished Surt pyrotechnical insulation system module."
-	result = /obj/item/armor_module/module/fire_proof
+	result = list(
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/fire_proof_helmet,
+	)
 
 /obj/item/factory_part/module_surt/Initialize(mapload)
 	. = ..()
@@ -488,6 +509,15 @@ GLOBAL_LIST_INIT(mortar_shell, list(
 	. = ..()
 	recipe = GLOB.mortar_shell
 
+/obj/item/factory_part/mortar_shell_tfoot
+	name = "mortar shell"
+	desc = "An unfinished flare mortar shell."
+	result = /obj/item/mortal_shell/plasmaloss
+
+/obj/item/factory_part/mortar_shell_tfoot/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.mortar_shell
+
 /obj/item/factory_part/mortar_shell_flare
 	name = "mortar shell"
 	desc = "An unfinished flare mortar shell."
@@ -497,14 +527,16 @@ GLOBAL_LIST_INIT(mortar_shell, list(
 	. = ..()
 	recipe = GLOB.mortar_shell
 
-/obj/item/factory_part/mortar_shell_tfoot
+/obj/item/factory_part/mortar_shell_smoke
 	name = "mortar shell"
-	desc = "An unfinished flare mortar shell."
-	result = /obj/item/mortal_shell/plasmaloss
+	desc = "An unfinished smoke mortar shell."
+	result = /obj/item/mortal_shell/smoke
 
-/obj/item/factory_part/mortar_shell_tfoot/Initialize(mapload)
+/obj/item/factory_part/mortar_shell_smoke/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.mortar_shell
+
+
 
 GLOBAL_LIST_INIT(mlrs_rocket, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
@@ -539,3 +571,20 @@ GLOBAL_LIST_INIT(thermobaric_wp_recipe, list(
 /obj/item/factory_part/thermobaric_wp/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.thermobaric_wp_recipe
+
+GLOBAL_LIST_INIT(drop_pod_recipe, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "hotplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FORMER, STEP_ICON_STATE = "barrelplate"),
+	))
+
+/obj/item/factory_part/drop_pod
+	name = "TGMC Zeus orbital drop pod assembly"
+	desc = "An incomplete Zeus orbital drop pod assembly"
+	result = /obj/structure/droppod
+
+/obj/item/factory_part/drop_pod/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.drop_pod_recipe
+

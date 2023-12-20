@@ -25,7 +25,7 @@
 		if(ismultitool(O))
 			to_chat(user, span_warning("Resetting circuitry..."))
 			playsound(user, 'sound/machines/lockreset.ogg', 25, 1)
-			if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+			if(do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
 				locked = FALSE
 				to_chat(user, "<span class = 'caution'>You disable the locking modules.</span>")
 				update_icon()
@@ -67,19 +67,22 @@
 			else
 				localopened = !localopened
 				if(localopened)
-					icon_state = text("fireaxe[][][][]opening",hasaxe,src.localopened,src.hitstaken,src.smashed)
-					spawn(10) update_icon()
+					icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]opening"
+					spawn(10)
+					update_icon()
 				else
-					icon_state = text("fireaxe[][][][]closing",hasaxe,src.localopened,src.hitstaken,src.smashed)
-					spawn(10) update_icon()
+					icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]closing"
+					spawn(10)
+					update_icon()
 	else
 		if(src.smashed)
 			return
 		if(ismultitool(O))
 			if(localopened)
 				localopened = 0
-				icon_state = text("fireaxe[][][][]closing",hasaxe,src.localopened,src.hitstaken,src.smashed)
-				spawn(10) update_icon()
+				icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]closing"
+				spawn(10)
+				update_icon()
 				return
 			else
 				to_chat(user, span_warning("Resetting circuitry..."))
@@ -87,18 +90,20 @@
 				src.locked = 1
 				to_chat(user, span_notice("You re-enable the locking modules."))
 				playsound(user, 'sound/machines/lockenable.ogg', 25, 1)
-				if(do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
+				if(do_after(user,20, NONE, src, BUSY_ICON_BUILD))
 					locked = TRUE
 					to_chat(user, "<span class = 'caution'> You re-enable the locking modules.</span>")
 				return
 		else
 			localopened = !localopened
 			if(localopened)
-				icon_state = text("fireaxe[][][][]opening",hasaxe,src.localopened,src.hitstaken,src.smashed)
-				spawn(10) update_icon()
+				icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]opening"
+				spawn(10)
+				update_icon()
 			else
-				icon_state = text("fireaxe[][][][]closing",hasaxe,src.localopened,src.hitstaken,src.smashed)
-				spawn(10) update_icon()
+				icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]closing"
+				spawn(10)
+				update_icon()
 
 
 
@@ -123,20 +128,24 @@
 			else
 				localopened = !localopened
 				if(localopened)
-					src.icon_state = text("fireaxe[][][][]opening",hasaxe,src.localopened,src.hitstaken,src.smashed)
-					spawn(10) update_icon()
+					src.icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]opening"
+					spawn(10)
+					update_icon()
 				else
-					src.icon_state = text("fireaxe[][][][]closing",hasaxe,src.localopened,src.hitstaken,src.smashed)
-					spawn(10) update_icon()
+					src.icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]closing"
+					spawn(10)
+					update_icon()
 
 	else
 		localopened = !localopened //I'm pretty sure we don't need an if(src.smashed) in here. In case I'm wrong and it fucks up teh cabinet, **MARKER**. -Agouri
 		if(localopened)
-			src.icon_state = text("fireaxe[][][][]opening",hasaxe,src.localopened,src.hitstaken,src.smashed)
-			spawn(10) update_icon()
+			src.icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]opening"
+			spawn(10)
+			update_icon()
 		else
-			src.icon_state = text("fireaxe[][][][]closing",hasaxe,src.localopened,src.hitstaken,src.smashed)
-			spawn(10) update_icon()
+			src.icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]closing"
+			spawn(10)
+			update_icon()
 
 /obj/structure/closet/fireaxecabinet/verb/toggle_openness() //nice name, huh? HUH?! -Erro //YEAH -Agouri
 	set name = "Open/Close"
@@ -186,7 +195,7 @@
 	var/hasaxe = 0
 	if(fireaxe)
 		hasaxe = 1
-	icon_state = text("fireaxe[][][][]",hasaxe,src.localopened,src.hitstaken,src.smashed)
+	icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]"
 
 /obj/structure/closet/fireaxecabinet/open()
 	return

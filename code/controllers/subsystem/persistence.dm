@@ -9,6 +9,7 @@
 
 //Season names
 #define SEASONAL_GUNS "seasonal_guns"
+#define SEASONAL_HEAVY "seasonal_heavy"
 
 SUBSYSTEM_DEF(persistence)
 	name = "Persistence"
@@ -18,6 +19,7 @@ SUBSYSTEM_DEF(persistence)
 	///Stores how long each season should last
 	var/list/seasons_durations = list(
 		SEASONAL_GUNS = 24 HOURS,
+		SEASONAL_HEAVY = 24 HOURS,
 	)
 	///Stores the current season for each season group
 	var/list/season_progress = list()
@@ -30,9 +32,17 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/rifle_seasonal_one,
 		/datum/season_datum/weapons/guns/pistol_seasonal_two,
 		/datum/season_datum/weapons/guns/rifle_seasonal_two,
+		/datum/season_datum/weapons/guns/rifle_seasonal_three,
 		/datum/season_datum/weapons/guns/copsandrobbers_seasonal,
 		/datum/season_datum/weapons/guns/shotgun_seasonal,
-		)
+		/datum/season_datum/weapons/guns/lever_seasonal,
+		),
+		SEASONAL_HEAVY = list(
+		/datum/season_datum/weapons/guns/heavy_defualt,
+		/datum/season_datum/weapons/guns/heavy_ff,
+		/datum/season_datum/weapons/guns/heavy_autorail,
+		/datum/season_datum/weapons/guns/heavy_shock,
+		),
 	)
 	///The saved list of custom outfits names
 	var/list/custom_loadouts = list()
@@ -43,23 +53,29 @@ SUBSYSTEM_DEF(persistence)
 /datum/controller/subsystem/persistence/Initialize()
 	LoadSeasonalItems()
 	load_custom_loadouts_list()
-	load_last_civil_war_round_time()
-	return ..()
+	load_last_game_mode_round_time()
+	return SS_INIT_SUCCESS
 
 ///Stores data at the end of the round
 /datum/controller/subsystem/persistence/proc/CollectData()
 	save_custom_loadouts_list()
-	save_last_civil_war_round_time()
+	save_last_game_mode_round_time()
 	save_player_number()
 	return
 
-///Loads the last civil war round date
-/datum/controller/subsystem/persistence/proc/load_last_civil_war_round_time()
+///Loads the last gamemode's round date
+/datum/controller/subsystem/persistence/proc/load_last_game_mode_round_time()
 	var/json_file = file("data/last_modes_round_date.json")
 	if(!fexists(json_file))
 		last_modes_round_date = list()
 		return
 	last_modes_round_date = json_decode(file2text(json_file))
+
+///Save the date of the last gamemode's round
+/datum/controller/subsystem/persistence/proc/save_last_game_mode_round_time()
+	var/json_file = file("data/last_modes_round_date.json")
+	fdel(json_file)
+	WRITE_FILE(json_file, json_encode(last_modes_round_date))
 
 ///Loads the list of custom outfits names
 /datum/controller/subsystem/persistence/proc/load_custom_loadouts_list()
@@ -80,12 +96,6 @@ SUBSYSTEM_DEF(persistence)
 		return FALSE
 	var/datum/loadout/loadout = jatum_deserialize(loadout_json)
 	return loadout
-
-///Save the date of the last civil war round
-/datum/controller/subsystem/persistence/proc/save_last_civil_war_round_time()
-	var/json_file = file("data/last_modes_round_date.json")
-	fdel(json_file)
-	WRITE_FILE(json_file, json_encode(last_modes_round_date))
 
 ///Saves the list of custom outfits names
 /datum/controller/subsystem/persistence/proc/save_custom_loadouts_list()
@@ -190,15 +200,9 @@ SUBSYSTEM_DEF(persistence)
 	var/list/item_list = list()
 
 /datum/season_datum/weapons/guns/rifle_seasonal_one
-	name = "AK47, M16 and Storm Weapons"
-	description = "Old Earth guns. Antique and obsolete, but no less deadly"
+	name = "Old Earth"
+	description = "Ancient Earth guns. Antique and obsolete, but no less deadly"
 	item_list = list(
-		/obj/item/weapon/gun/rifle/mpi_km= -1,
-		/obj/item/ammo_magazine/rifle/mpi_km/plum = -1,
-		/obj/item/ammo_magazine/packet/pwarsaw = -1,
-		/obj/item/weapon/gun/rifle/m16 = -1,
-		/obj/item/ammo_magazine/rifle/m16 = -1,
-		/obj/item/ammo_magazine/packet/pnato = -1,
 		/obj/item/weapon/gun/rifle/mkh = -1,
 		/obj/item/ammo_magazine/rifle/mkh = -1,
 		/obj/item/weapon/gun/smg/ppsh = -1,
@@ -206,6 +210,8 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/smg/ppsh/extended = -1,
 		/obj/item/weapon/gun/rifle/garand = -1,
 		/obj/item/ammo_magazine/rifle/garand = -1,
+		/obj/item/weapon/gun/pistol/m1911 = -1,
+		/obj/item/ammo_magazine/pistol/m1911 = -1,
 		)
 
 /datum/season_datum/weapons/guns/rifle_seasonal_two
@@ -221,6 +227,18 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/packet/pwarsaw = -1,
 		/obj/item/weapon/gun/rifle/alf_machinecarbine = -1,
 		/obj/item/ammo_magazine/rifle/alf_machinecarbine = -1,
+		)
+
+/datum/season_datum/weapons/guns/rifle_seasonal_three
+	name = "Cold War"
+	description = "Hot guns from the Cold War"
+	item_list = list(
+		/obj/item/weapon/gun/rifle/mpi_km= -1,
+		/obj/item/ammo_magazine/rifle/mpi_km/plum = -1,
+		/obj/item/ammo_magazine/packet/pwarsaw = -1,
+		/obj/item/weapon/gun/rifle/m16 = -1,
+		/obj/item/ammo_magazine/rifle/m16 = -1,
+		/obj/item/ammo_magazine/packet/pnato = -1,
 		)
 
 /datum/season_datum/weapons/guns/pistol_seasonal_one
@@ -253,8 +271,8 @@ SUBSYSTEM_DEF(persistence)
 		)
 
 /datum/season_datum/weapons/guns/copsandrobbers_seasonal
-	name = "SWAT and terrorists"
-	description = "Three classic SMGs, and no one's favorite burst revolver."
+	name = "SWAT and Terrorists"
+	description = "Four classic SMGs, and no one's favorite burst revolver."
 	item_list = list(
 		/obj/item/weapon/gun/smg/uzi = -1,
 		/obj/item/ammo_magazine/smg/uzi = -1,
@@ -263,6 +281,8 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/storage/holster/m25 = -1,
 		/obj/item/weapon/gun/smg/mp7 = -1,
 		/obj/item/ammo_magazine/smg/mp7 = -1,
+		/obj/item/weapon/gun/smg/skorpion = -1,
+		/obj/item/ammo_magazine/smg/skorpion = -1,
 		/obj/item/weapon/gun/revolver/cmb = -1,
 		/obj/item/ammo_magazine/revolver/cmb = -1,
 		)
@@ -275,3 +295,65 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/weapon/gun/shotgun/pump = -1,
 		/obj/item/weapon/gun/shotgun/pump/cmb = -1,
 		)
+
+/datum/season_datum/weapons/guns/lever_seasonal
+	name = "Lever Actions"
+	description = "Try and win the modern west with these"
+	item_list = list(
+		/obj/item/weapon/gun/shotgun/pump/lever = -1,
+		/obj/item/weapon/gun/shotgun/pump/lever/mbx900 = -1,
+		/obj/item/ammo_magazine/shotgun/mbx900 = -1,
+		/obj/item/ammo_magazine/shotgun/mbx900/buckshot = -1,
+		/obj/item/ammo_magazine/shotgun/mbx900/tracking = -1,
+		)
+
+// Heavy Weapons Seasonals //
+
+/datum/season_datum/weapons/guns/heavy_defualt
+	name = "Default Heavy Weapons"
+	description = "The generic set of roundstart TGMC heavy weapons, TAT and RR."
+	item_list = list(
+		/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
+		/obj/item/storage/holster/backholster/rpg/full = 2,
+		/obj/item/ammo_magazine/rocket/recoilless = 4,
+		/obj/item/ammo_magazine/rocket/recoilless/light = 4,
+		/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
+		/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
+		/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
+		/obj/item/ammo_magazine/rocket/recoilless/plasmaloss = 16,
+	)
+
+/datum/season_datum/weapons/guns/heavy_ff
+	name = "Fire and Forget Heavy Weapons"
+	description = "TAT, Thermobarics and Disposables for roundstart vendors."
+	item_list = list(
+		/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
+		/obj/item/weapon/gun/launcher/rocket/m57a4/t57/unloaded = 2,
+		/obj/item/ammo_magazine/rocket/m57a4 = 8,
+		/obj/structure/largecrate/supply/explosives/disposable = 1,
+	)
+
+/datum/season_datum/weapons/guns/heavy_autorail
+	name = "Wall and Armor Shredder Weapons"
+	description = "Flak gun and Railgun for roundstart vendors."
+	item_list = list(
+		/obj/structure/largecrate/supply/weapons/standard_flakgun = 1,
+		/obj/item/weapon/gun/rifle/railgun/unloaded = 2,
+		/obj/item/ammo_magazine/railgun = 12,
+		/obj/item/ammo_magazine/railgun/smart = 6,
+	)
+
+/datum/season_datum/weapons/guns/heavy_shock
+	name = "Shock Weapons"
+	description = "RR and MLRS for roundstart vendors."
+	item_list = list(
+		/obj/item/storage/holster/backholster/rpg/full = 2,
+		/obj/item/ammo_magazine/rocket/recoilless = 4,
+		/obj/item/ammo_magazine/rocket/recoilless/light = 4,
+		/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
+		/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
+		/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
+		/obj/item/ammo_magazine/rocket/recoilless/plasmaloss = 16,
+		/obj/structure/closet/crate/mortar_ammo/mlrs_kit = 2,
+		/obj/item/storage/box/mlrs_rockets_gas = 4,
+	)

@@ -8,7 +8,7 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 /obj/item/minimap_tablet
 	name = "minimap tablet"
 	desc = "A drawing tablet with included touch pen. While high command may treat you like a child, being able to plan effectively might be a worthy trade."
-	icon = 'icons/obj/items/req_tablet.dmi'
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "req_tablet_off"
 	/// List of references to the tools we will be using to shape what the map looks like
 	var/list/atom/movable/screen/drawing_tools = list(
@@ -93,7 +93,7 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 	if(SSminimaps.initialized)
 		set_zlevel(zlevel, minimap_flag)
 		return
-	SSminimaps.earlyadds += CALLBACK(src, PROC_REF(set_zlevel), zlevel, minimap_flag)
+	LAZYADDASSOC(SSminimaps.earlyadds, "[zlevel]", CALLBACK(src, PROC_REF(set_zlevel), zlevel, minimap_flag))
 
 ///Setter for the offsets of the x and y of drawing based on the input z, and the drawn_image
 /atom/movable/screen/minimap_tool/proc/set_zlevel(zlevel, minimap_flag)
@@ -340,7 +340,9 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 	textbox.maptext = label_text
 
 	labelled_turfs += target
-	SSminimaps.add_marker(target, zlevel, minimap_flag, "label", 'icons/UI_icons/map_blips.dmi', list(textbox))
+	var/image/blip = image('icons/UI_icons/map_blips.dmi', null, "label")
+	blip.overlays += textbox
+	SSminimaps.add_marker(target, minimap_flag, blip)
 	log_minimap_drawing("[key_name(source)] has added the label [label_text] at [c_x], [c_y]")
 
 /atom/movable/screen/minimap_tool/clear

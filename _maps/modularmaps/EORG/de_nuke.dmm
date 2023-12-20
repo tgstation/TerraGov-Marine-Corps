@@ -36,6 +36,11 @@
 	color = "#888888"
 	},
 /area/deathmatch)
+"fv" = (
+/obj/machinery/door/poddoor/railing,
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/asteroidplating,
+/area/deathmatch)
 "fF" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
@@ -51,10 +56,11 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "jb" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	color = "#888888";
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "jc" = (
 /obj/machinery/door/poddoor/railing{
@@ -64,6 +70,10 @@
 	dir = 1
 	},
 /area/deathmatch)
+"jm" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/asteroidplating,
+/area/deathmatch)
 "jJ" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -71,7 +81,7 @@
 	},
 /area/deathmatch)
 "jM" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/deathmatch)
 "jP" = (
@@ -103,7 +113,7 @@
 /turf/open/floor/grime,
 /area/deathmatch)
 "nt" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
 	},
@@ -139,14 +149,19 @@
 /obj/structure/window/framed/wood,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
+"qH" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/grime,
+/area/deathmatch)
 "rv" = (
 /obj/machinery/door/poddoor/railing,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "rF" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "sr" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
@@ -192,10 +207,6 @@
 	dir = 9
 	},
 /area/deathmatch)
-"vW" = (
-/obj/structure/platform,
-/turf/open/floor/plating/asteroidfloor,
-/area/deathmatch)
 "wl" = (
 /obj/structure/cargo_container/ch_red{
 	dir = 4
@@ -222,10 +233,15 @@
 /obj/machinery/door/poddoor/railing{
 	dir = 1
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	color = "#888888";
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
+/area/deathmatch)
+"xE" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "zr" = (
 /obj/structure/cargo_container{
@@ -239,7 +255,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "zQ" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
 "Ab" = (
@@ -247,6 +263,12 @@
 /turf/open/floor/plating/asteroidplating{
 	color = "#888888"
 	},
+/area/deathmatch)
+"Aw" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/closed/wall,
 /area/deathmatch)
 "Ax" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
@@ -266,15 +288,23 @@
 /area/deathmatch)
 "De" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Do" = (
 /obj/effect/landmark/deathmatch,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
+/area/deathmatch)
+"Ei" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "Fc" = (
 /obj/structure/table/reinforced,
@@ -316,7 +346,7 @@
 	},
 /area/deathmatch)
 "Jn" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "JT" = (
@@ -347,16 +377,18 @@
 /area/deathmatch)
 "LA" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "LY" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	color = "#888888";
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Mn" = (
 /turf/open/floor/plating/asteroidfloor,
@@ -381,10 +413,11 @@
 /obj/machinery/door/poddoor/railing{
 	dir = 2
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	color = "#888888";
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "PF" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -405,7 +438,7 @@
 /area/deathmatch)
 "QR" = (
 /obj/structure/platform{
-	dir = 8
+	dir = 9
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
@@ -414,11 +447,6 @@
 	dir = 2
 	},
 /turf/open/floor/plating/asteroidwarning,
-/area/deathmatch)
-"TU" = (
-/obj/structure/platform,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "Uc" = (
 /obj/machinery/door/poddoor/railing{
@@ -451,6 +479,13 @@
 	},
 /turf/closed/wall,
 /area/deathmatch)
+"WO" = (
+/obj/effect/landmark/deathmatch,
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/deathmatch)
 "Xe" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
@@ -476,9 +511,10 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "YO" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "ZA" = (
 /obj/structure/table/reinforced,
@@ -1083,7 +1119,7 @@ od
 Sf
 Fp
 Fp
-Fp
+jm
 Fp
 Fp
 wH
@@ -1449,7 +1485,7 @@ XY
 zB
 VU
 JT
-JT
+qH
 JT
 VU
 jU
@@ -1635,8 +1671,8 @@ dj
 Ax
 od
 Mn
-vW
-od
+Mn
+Aw
 od
 od
 od
@@ -1683,8 +1719,8 @@ od
 od
 od
 My
-TU
-Mn
+MV
+Ei
 Mn
 Mn
 Wj
@@ -1779,8 +1815,8 @@ MV
 Mn
 Mn
 Mn
-vW
 Mn
+Ei
 od
 Mn
 Wj
@@ -1826,7 +1862,7 @@ Mn
 Mn
 od
 Mn
-vW
+Mn
 QR
 Mn
 od
@@ -1874,8 +1910,8 @@ Mn
 Mn
 od
 Mn
-vW
-My
+Mn
+WO
 ZA
 od
 Fp
@@ -1922,8 +1958,8 @@ My
 Mn
 od
 Mn
-vW
 Mn
+Ei
 QO
 od
 Fp
@@ -1970,14 +2006,14 @@ bi
 sr
 od
 MV
-vW
-od
+Mn
+Aw
 od
 od
 Fp
 wI
 Fp
-Fp
+jm
 Fp
 Fp
 Fp
@@ -2140,7 +2176,7 @@ dj
 Go
 dj
 dj
-dj
+xE
 dj
 dj
 dj
@@ -2265,7 +2301,7 @@ od
 Fp
 Fp
 rv
-rv
+fv
 rv
 Fp
 Fp

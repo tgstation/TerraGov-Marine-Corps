@@ -40,6 +40,8 @@
 #define JOB_FLAG_CAN_SEE_ORDERS (1<<12) //Able to see rally and CIC orders
 #define JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP (1<<13) //Will appear on all minimaps, including squad minimaps
 #define JOB_FLAG_SHOW_OPEN_POSITIONS (1<<14) //You can only see how many positions are opened, and not how many positions are fullfilled
+/// Job has a TTS volume bonus
+#define JOB_FLAG_LOUDER_TTS (1<<15)
 
 #define CAPTAIN "Captain"
 #define EXECUTIVE_OFFICER "Executive Officer" //Currently disabled.
@@ -61,31 +63,23 @@
 #define SQUAD_CORPSMAN "Squad Corpsman"
 #define SQUAD_ENGINEER "Squad Engineer"
 #define SQUAD_MARINE "Squad Marine"
+#define SQUAD_ROBOT "Squad Robot"
 #define SQUAD_VATGROWN "Squad VatGrown"
 #define SILICON_AI "AI"
 
-#define REBEL_CAPTAIN "Rebel Captain"
-#define REBEL_EXECUTIVE_OFFICER "Rebel Executive Officer" //Currently disabled.
-#define REBEL_FIELD_COMMANDER "Rebel Field Commander"
-#define REBEL_STAFF_OFFICER "Rebel Staff Officer"
-#define REBEL_PILOT_OFFICER "Rebel Pilot Officer"
-#define REBEL_REQUISITIONS_OFFICER "Rebel Requisitions Officer"
-#define REBEL_CHIEF_SHIP_ENGINEER "Rebel Chief Ship Engineer"
-#define REBEL_CHIEF_MEDICAL_OFFICER "Rebel Chief Medical Officer"
-#define REBEL_SYNTHETIC "Rebel Synthetic"
-#define REBEL_SHIP_TECH "Rebel Ship Technician"
-#define REBEL_MEDICAL_DOCTOR "Rebel Medical Doctor"
-#define REBEL_MEDICAL_RESEARCHER "Rebel Medical Researcher"
-#define REBEL_SQUAD_LEADER "Rebel Squad Leader"
-#define REBEL_SQUAD_SPECIALIST "Rebel Squad Specialist"
-#define REBEL_SQUAD_SMARTGUNNER "Rebel Squad Smartgunner"
-#define REBEL_SQUAD_CORPSMAN "Rebel Squad Corpsman"
-#define REBEL_SQUAD_ENGINEER "Rebel Squad Engineer"
-#define REBEL_SQUAD_MARINE "Rebel Squad Marine"
-#define REBEL_SQUAD_VATGROWN "Rebel Squad VatGrown"
-#define REBEL_SILICON_AI "Rebel AI"
+//SOM
+#define SOM_COMMANDER "SOM Commander"
+#define SOM_FIELD_COMMANDER "SOM Field Commander"
+#define SOM_STAFF_OFFICER "SOM Staff Officer"
+#define SOM_PILOT_OFFICER "SOM Pilot Officer"
+#define SOM_MECH_PILOT "SOM Mech Pilot"
+#define SOM_REQUISITIONS_OFFICER "SOM Requisitions Officer"
+#define SOM_CHIEF_ENGINEER "SOM Chief Engineer"
+#define SOM_CHIEF_MEDICAL_OFFICER "SOM Chief Medical Officer"
+#define SOM_TECH "SOM Technician"
+#define SOM_MEDICAL_DOCTOR "SOM Medical Doctor"
+#define SOM_CHEF "SOM chef"
 
-//SOM - very placeholder for now
 #define SOM_SQUAD_LEADER "SOM Squad Leader"
 #define SOM_SQUAD_CORPSMAN "SOM Squad Medic"
 #define SOM_SQUAD_ENGINEER "SOM Squad Engineer"
@@ -109,6 +103,8 @@
 #define ROLE_ERT "Emergency Response Team"
 #define ROLE_VALHALLA "Valhalla"
 
+#define ROLE_FALLEN(role) ("Fallen " + ##role)
+
 GLOBAL_LIST_EMPTY(jobs_command)
 GLOBAL_LIST_INIT(jobs_officers, list(CAPTAIN, FIELD_COMMANDER, STAFF_OFFICER, PILOT_OFFICER, MECH_PILOT, CORPORATE_LIAISON, SYNTHETIC, SILICON_AI))
 GLOBAL_LIST_INIT(jobs_support, list(PILOT_OFFICER, MECH_PILOT, REQUISITIONS_OFFICER, SYNTHETIC, SILICON_AI))
@@ -116,13 +112,13 @@ GLOBAL_LIST_INIT(jobs_engineering, list(CHIEF_SHIP_ENGINEER, SHIP_TECH))
 GLOBAL_LIST_INIT(jobs_requisitions, list(REQUISITIONS_OFFICER))
 GLOBAL_LIST_INIT(jobs_medical, list(CHIEF_MEDICAL_OFFICER, MEDICAL_DOCTOR, MEDICAL_RESEARCHER))
 GLOBAL_LIST_INIT(jobs_marines, list(SQUAD_LEADER, SQUAD_SMARTGUNNER, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_MARINE))
-GLOBAL_LIST_INIT(jobs_som, list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_CORPSMAN, SOM_SQUAD_LEADER))
+GLOBAL_LIST_INIT(jobs_som, list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_CORPSMAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER, SOM_STAFF_OFFICER, SOM_COMMANDER))
 GLOBAL_LIST_INIT(jobs_regular_all, list(CAPTAIN, FIELD_COMMANDER, STAFF_OFFICER, PILOT_OFFICER, MECH_PILOT, REQUISITIONS_OFFICER, CHIEF_SHIP_ENGINEER, \
 CHIEF_MEDICAL_OFFICER, SYNTHETIC, SILICON_AI, CORPORATE_LIAISON, SHIP_TECH, \
 MEDICAL_DOCTOR, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SMARTGUNNER, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_MARINE, \
-SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_CORPSMAN, SOM_SQUAD_LEADER))
+SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_CORPSMAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER, SOM_STAFF_OFFICER, SOM_COMMANDER))
 GLOBAL_LIST_INIT(jobs_xenos, list(ROLE_XENOMORPH, ROLE_XENO_QUEEN))
-GLOBAL_LIST_INIT(jobs_fallen_marine, typecacheof(list(/datum/job/fallen/marine)))
+GLOBAL_LIST_INIT(jobs_fallen_marine, typecacheof(list(/datum/job/fallen/marine), TRUE))
 
 //Playtime tracking system, see jobs_exp.dm
 #define EXP_TYPE_LIVING "Living"

@@ -77,7 +77,7 @@
 
 
 /mob/living/carbon/proc/do_vomit()
-	adjust_stagger(3)
+	adjust_stagger(3 SECONDS)
 	add_slowdown(3)
 
 	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
@@ -110,12 +110,12 @@
 		shaker.visible_message("<span class='notice'>[shaker] shakes [src] trying to get [p_them()] up!",
 			"<span class='notice'>You shake [src] trying to get [p_them()] up!", null, 4)
 
-		AdjustUnconscious(-60)
-		AdjustStun(-60)
+		AdjustUnconscious(-6 SECONDS)
+		AdjustStun(-6 SECONDS)
 		if(IsParalyzed())
 			if(staminaloss)
 				adjustStaminaLoss(-20, FALSE)
-		AdjustParalyzed(-60)
+		AdjustParalyzed(-6 SECONDS)
 
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
 		return
@@ -151,10 +151,7 @@
 
 ///Throws active held item at target in params
 /mob/proc/throw_item(atom/target)
-	SHOULD_CALL_PARENT(TRUE)
-	SEND_SIGNAL(src, COMSIG_MOB_THROW, target)
-	return TRUE
-
+	return
 
 /mob/living/carbon/throw_item(atom/target)
 	. = ..()
@@ -169,8 +166,8 @@
 	var/atom/movable/thrown_thing
 	var/obj/item/I = get_active_held_item()
 
-	if(!I || (I.flags_item & NODROP))
-		return FALSE
+	if(!I || HAS_TRAIT(I, TRAIT_NODROP))
+		return
 
 	var/spin_throw = TRUE
 	if(isgrabitem(I))
@@ -180,21 +177,30 @@
 	thrown_thing = I.on_thrown(src, target)
 
 	//actually throw it!
-	if (thrown_thing)
-		visible_message(span_warning("[src] has thrown [thrown_thing]."), null, null, 5)
+	if(!thrown_thing)
+		return
 
-		if(!lastarea)
-			lastarea = get_area(src.loc)
-		if(isspaceturf(loc))
-			inertia_dir = get_dir(target, src)
-			step(src, inertia_dir)
+	var/list/throw_modifiers = list()
+	throw_modifiers["targetted_throw"] = TRUE
+	throw_modifiers["range_modifier"] = 0
+	throw_modifiers["speed_modifier"] = 0
+	SEND_SIGNAL(src, COMSIG_MOB_THROW, target, thrown_thing, throw_modifiers)
 
-		playsound(src, 'sound/effects/throw.ogg', 30, 1)
-		thrown_thing.throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src, spin_throw)
+	if(!lastarea)
+		lastarea = get_area(src.loc)
+	if(isspaceturf(loc))
+		inertia_dir = get_dir(target, src)
+		step(src, inertia_dir)
+
+	visible_message(span_warning("[src] has thrown [thrown_thing]."), null, null, 5)
+
+	playsound(src, 'sound/effects/throw.ogg', 30, 1)
+
+	thrown_thing.throw_at(target, thrown_thing.throw_range + throw_modifiers["range_modifier"], max(1, thrown_thing.throw_speed + throw_modifiers["speed_modifier"]), src, spin_throw, !throw_modifiers["targetted_throw"], throw_modifiers["targetted_throw"])
 
 ///Called by the carbon throw_item() proc. Returns null if the item negates the throw, or a reference to the thing to suffer the throw else.
 /obj/item/proc/on_thrown(mob/living/carbon/user, atom/target)
-	if((flags_item & ITEM_ABSTRACT) || (flags_item & NODROP))
+	if((flags_item & ITEM_ABSTRACT) || HAS_TRAIT(src, TRAIT_NODROP))
 		return
 	user.dropItemToGround(src, TRUE)
 	return src
@@ -202,23 +208,6 @@
 /mob/living/carbon/fire_act(exposed_temperature, exposed_volume)
 	. = ..()
 	adjust_bodytemperature(100, 0, BODYTEMP_HEAT_DAMAGE_LIMIT_ONE+10)
-
-
-/mob/living/carbon/show_inv(mob/living/carbon/user)
-	user.set_interaction(src)
-	var/dat = {"
-	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=[SLOT_WEAR_MASK]'>[(wear_mask ? wear_mask : "Nothing")]</A>
-	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=[SLOT_L_HAND]'>[(l_hand ? l_hand  : "Nothing")]</A>
-	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=[SLOT_R_HAND]'>[(r_hand ? r_hand : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='?src=\ref[src];item=[SLOT_BACK]'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
-	<BR>[(handcuffed ? "<A href='?src=\ref[src];item=[SLOT_HANDCUFFED]'>Handcuffed</A>" : "<A href='?src=\ref[src];item=handcuffs'>Not Handcuffed</A>")]
-	<BR>[(internal ? "<A href='?src=\ref[src];internal=1'>Remove Internal</A>" : "")]
-	<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>
-	<BR>"}
-
-	var/datum/browser/popup = new(user, "mob[REF(src)]", "<div align='center'>[src]</div>", 325, 500)
-	popup.set_content(dat)
-	popup.open()
 
 //generates realistic-ish pulse output based on preset levels
 /mob/living/carbon/human/proc/get_pulse(method)	//method 0 is for hands, 1 is for machines, more accurate
@@ -245,12 +234,14 @@
 	set name = "Sleep"
 	set category = "IC"
 
+	if(species.species_flags & ROBOTIC_LIMBS)
+		to_chat(src, span_warning("Your artificial body does not require sleep."))
+		return
 	if(IsSleeping())
 		to_chat(src, span_warning("You are already sleeping"))
 		return
 	if(tgui_alert(src, "You sure you want to sleep for a while?", "Sleep", list("Yes","No")) == "Yes")
 		SetSleeping(40 SECONDS) //Short nap
-
 
 /mob/living/carbon/Bump(atom/movable/AM)
 	if(now_pushing)
@@ -298,7 +289,7 @@
 
 
 /mob/living/carbon/proc/equip_preference_gear(client/C)
-	if(!C?.prefs || !istype(back, /obj/item/storage/backpack))
+	if(!C?.prefs)
 		return
 
 	var/datum/preferences/P = C.prefs
@@ -311,9 +302,8 @@
 		var/datum/gear/G = GLOB.gear_datums[i]
 		if(!G || !gear.Find(i))
 			continue
-		equip_to_slot_or_del(new G.path, SLOT_IN_BACKPACK)
-
-
+		if(!equip_to_slot_or_del(new G.path, G.slot)) //try to put in the slot it says its supposed to go, if you can't: put it in a bag
+			equip_to_slot_or_del(new G.path, SLOT_IN_BACKPACK)
 
 /mob/living/carbon/human/update_sight()
 	if(!client)

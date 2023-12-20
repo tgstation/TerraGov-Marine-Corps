@@ -35,6 +35,8 @@
 	var/max_storage_space = 14
 	///The number of storage slots in this container.
 	var/storage_slots = 7
+	///Defines how many versions of the sprites that gets progressively emptier as they get closer to "_0" in .dmi.
+	var/sprite_slots = null
 	var/atom/movable/screen/storage/boxes = null
 	///storage UI
 	var/atom/movable/screen/storage/storage_start = null
@@ -74,7 +76,8 @@
 	var/list/obj/item/storage/refill_types
 	///What sound gets played when the item is tactical refilled
 	var/refill_sound = null
-
+	///Flags for specifically storage items
+	var/flags_storage = NONE
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(!ishuman(usr))
@@ -375,7 +378,7 @@
 
 ///This proc return 1 if the item can be picked up and 0 if it can't. Set the warning to stop it from printing messages
 /obj/item/storage/proc/can_be_inserted(obj/item/W as obj, warning = TRUE)
-	if(!istype(W) || (W.flags_item & NODROP))
+	if(!istype(W) || HAS_TRAIT(W, TRAIT_NODROP))
 		return //Not an item
 
 	if(loc == W)
@@ -447,10 +450,10 @@
 		return FALSE
 
 	if(!alert_user)
-		return do_after(user, access_delay, TRUE, src, ignore_turf_checks=TRUE)
+		return do_after(user, access_delay, IGNORE_USER_LOC_CHANGE, src)
 
 	to_chat(user, "<span class='notice'>You begin to [taking_out ? "take" : "put"] [accessed] [taking_out ? "out of" : "into"] [src]")
-	if(!do_after(user, access_delay, TRUE, src, ignore_turf_checks=TRUE))
+	if(!do_after(user, access_delay, IGNORE_USER_LOC_CHANGE, src))
 		to_chat(user, span_warning("You fumble [accessed]!"))
 		return FALSE
 	return TRUE
@@ -485,10 +488,7 @@
 		if (user.s_active != src)
 			user.client?.screen -= item
 		if(!prevent_warning)
-			var/visidist = item.w_class >= 3 ? 3 : 1
-			user.visible_message(span_notice("[user] puts [item] into [src]."),\
-								span_notice("You put \the [item] into [src]."),\
-								null, visidist)
+			insertion_message(item, user)
 	orient2hud()
 	for(var/mob/M in can_see_content())
 		show_to(M)
@@ -499,6 +499,13 @@
 		if(istype(item, limited_type))
 			storage_type_limits[limited_type] -= 1
 	return TRUE
+
+///Output a message when an item is inserted into a storage object
+/obj/item/storage/proc/insertion_message(obj/item/item, mob/user)
+	var/visidist = item.w_class >= WEIGHT_CLASS_NORMAL ? 3 : 1
+	user.visible_message(span_notice("[user] puts \a [item] into \the [name]."),\
+						span_notice("You put \the [item] into \the [name]."),\
+						null, visidist)
 
 ///Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
 /obj/item/storage/proc/remove_from_storage(obj/item/item, atom/new_location, mob/user)
@@ -568,7 +575,7 @@
 
 	user.balloon_alert(user, "Refilling.")
 
-	if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+	if(!do_after(user, 15, NONE, src, BUSY_ICON_GENERIC))
 		return
 
 	playsound(user.loc, refill_sound, 15, 1, 6)
@@ -713,29 +720,21 @@
 	for(var/mob/M in content_watchers)
 		hide_from(M)
 	if(boxes)
-		qdel(boxes)
-		boxes = null
+		QDEL_NULL(boxes)
 	if(storage_start)
-		qdel(storage_start)
-		storage_start = null
+		QDEL_NULL(storage_start)
 	if(storage_continue)
-		qdel(storage_continue)
-		storage_continue = null
+		QDEL_NULL(storage_continue)
 	if(storage_end)
-		qdel(storage_end)
-		storage_end = null
+		QDEL_NULL(storage_end)
 	if(stored_start)
-		qdel(stored_start)
-		stored_start = null
-	if(src.stored_continue)
-		qdel(src.stored_continue)
-		src.stored_continue = null
+		QDEL_NULL(stored_start)
+	if(stored_continue)
+		QDEL_NULL(stored_continue)
 	if(stored_end)
-		qdel(stored_end)
-		stored_end = null
+		QDEL_NULL(stored_end)
 	if(closer)
-		qdel(closer)
-		closer = null
+		QDEL_NULL(closer)
 	. = ..()
 
 /obj/item/storage/emp_act(severity)
@@ -765,7 +764,7 @@
 		close(M)
 
 	// Now make the cardboard
-	to_chat(user, span_notice("You fold [src] flat."))
+	to_chat(user, span_notice("You break down the [src]."))
 	new foldable(get_turf(src))
 	qdel(src)
 //BubbleWrap END
@@ -839,6 +838,7 @@
 
 
 /obj/item/storage/AltClick(mob/user)
+	. = ..()
 	attempt_draw_object(user)
 
 /obj/item/storage/AltRightClick(mob/user)
@@ -846,17 +846,53 @@
 		open(user)
 
 /obj/item/storage/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	attempt_draw_object(user)
 
-///attempts to get the first possible object from this container
-/obj/item/storage/proc/attempt_draw_object(mob/living/user)
+/obj/item/storage/CtrlClick(mob/living/user)
+	. = ..()
+	attempt_draw_object(user, TRUE)
+
+/**
+ * Attempts to get the first possible object from this container
+ *
+ * Arguments:
+ * * mob/living/user - The mob attempting to draw from this container
+ * * start_from_left - If true we draw the leftmost object instead of the rightmost. FALSE by default.
+ */
+/obj/item/storage/proc/attempt_draw_object(mob/living/user, start_from_left = FALSE)
 	if(!ishuman(user) || user.incapacitated() || isturf(loc))
 		return
 	if(!length(contents))
 		return balloon_alert(user, "Empty")
 	if(user.get_active_held_item())
 		return //User is already holding something.
-	var/obj/item/drawn_item = contents[length(contents)]
+	var/obj/item/drawn_item = start_from_left ? contents[1] : contents[length(contents)]
 	drawn_item.attack_hand(user)
 
 /obj/item/storage/proc/PopulateContents()
+	return
+
+/obj/item/storage/update_icon_state()
+	if(!sprite_slots)
+		icon_state = initial(icon_state)
+		return
+
+	var/total_weight = 0
+
+	if(!storage_slots)
+		for(var/obj/item/i in contents)
+			total_weight += i.w_class
+		total_weight = ROUND_UP(total_weight / max_storage_space * sprite_slots)
+	else
+		total_weight = ROUND_UP(length(contents) / storage_slots * sprite_slots)
+
+	if(!total_weight)
+		icon_state = initial(icon_state) + "_e"
+		return
+	if(sprite_slots > total_weight)
+		icon_state = initial(icon_state) + "_" + num2text(total_weight)
+	else
+		icon_state = initial(icon_state)

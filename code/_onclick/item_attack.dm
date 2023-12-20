@@ -49,7 +49,7 @@
 /atom/proc/attackby(obj/item/I, mob/user, params)
 	SIGNAL_HANDLER_DOES_SLEEP
 	add_fingerprint(user, "attackby", I)
-	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, I, user, params) & COMPONENT_NO_AFTERATTACK)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY, I, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
 	return FALSE
 
@@ -83,8 +83,8 @@
 	user.visible_message(span_warning("[user] hits [src] with [I]!"),
 		span_warning("You hit [src] with [I]!"), visible_message_flags = COMBAT_MESSAGE)
 	log_combat(user, src, "attacked", I)
-	var/power = I.force + round(I.force * 0.3 * user.skills.getRating(SKILL_MELEE_WEAPONS)) //30% bonus per melee level
-	take_damage(power, I.damtype, "melee")
+	var/power = I.force + round(I.force * MELEE_SKILL_DAM_BUFF * user.skills.getRating(SKILL_MELEE_WEAPONS))
+	take_damage(power, I.damtype, MELEE)
 	return TRUE
 
 
@@ -109,7 +109,7 @@
 	playsound(attached_clamp.linked_powerloader, 'sound/machines/hydraulics_2.ogg', 40, 1)
 	attached_clamp.update_icon()
 	user.visible_message(span_notice("[user] grabs [attached_clamp.loaded] with [attached_clamp]."),
-	span_notice("You grab [attached_clamp.loaded] with [src]."))
+	span_notice("You grab [attached_clamp.loaded] with [attached_clamp]."))
 
 /mob/living/attacked_by(obj/item/I, mob/living/user, def_zone)
 
@@ -127,7 +127,7 @@
 
 	user.do_attack_animation(src, used_item = I)
 
-	var/power = I.force + round(I.force * 0.3 * user.skills.getRating(SKILL_MELEE_WEAPONS)) //30% bonus per melee level
+	var/power = I.force + round(I.force * MELEE_SKILL_DAM_BUFF * user.skills.getRating(SKILL_MELEE_WEAPONS))
 
 	switch(I.damtype)
 		if(BRUTE)
@@ -143,6 +143,7 @@
 
 	UPDATEHEALTH(src)
 
+	record_melee_damage(user, power)
 	log_combat(user, src, "attacked", I, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)]) (RAW DMG: [power])")
 	if(power && !user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
 		var/turf/T = get_turf(src)
@@ -286,7 +287,7 @@
 
 /atom/proc/attackby_alternate(obj/item/I, mob/user, params)
 	add_fingerprint(user, "attackby_alternate", I)
-	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY_ALTERNATE, I, user, params) & COMPONENT_NO_AFTERATTACK)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY_ALTERNATE, I, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
 	return FALSE
 
@@ -354,7 +355,7 @@
 
 	user.do_attack_animation(src, used_item = I)
 
-	var/power = I.force + round(I.force * 0.3 * user.skills.getRating(SKILL_MELEE_WEAPONS)) //30% bonus per melee level
+	var/power = I.force + round(I.force * MELEE_SKILL_DAM_BUFF * user.skills.getRating(SKILL_MELEE_WEAPONS))
 
 	switch(I.damtype)
 		if(BRUTE)
@@ -368,6 +369,7 @@
 
 	UPDATEHEALTH(src)
 
+	record_melee_damage(user, power)
 	log_combat(user, src, "attacked", I, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)]) (RAW DMG: [power])")
 	if(power && !user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
 		var/turf/T = get_turf(src)

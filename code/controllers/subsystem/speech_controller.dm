@@ -1,3 +1,6 @@
+/*!
+ * Todo replace me with VERB_MANAGER_SUBSYSTEM_DEF, see TG
+ */
 SUBSYSTEM_DEF(speech_controller)
 	name = "Speech Controller"
 	wait = 1
@@ -32,7 +35,7 @@ SUBSYSTEM_DEF(speech_controller)
 	for(var/list/say_to_process AS in says_to_process)
 
 		var/mob/mob_to_speak = say_to_process[MOB_INDEX]//index 1 is the mob, 2 is the message, 3 is the message category
-		var/message = say_to_process[MESSAGE_INDEX]
+		var/message = say_to_process[MESSAGE_INDEX_SPEECH]
 		var/message_category = say_to_process[CATEGORY_INDEX]
 
 		process_single_say(mob_to_speak, message, message_category)

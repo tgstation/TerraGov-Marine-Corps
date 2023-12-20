@@ -38,11 +38,11 @@
 
 	update_parent_overlay()
 
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(start_handle_attachment)) //For attaching.
-	RegisterSignal(parent, list(COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT_GUN, COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT), PROC_REF(attach_without_user))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(start_handle_attachment)) //For attaching.
+	RegisterSignals(parent, list(COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT_GUN, COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT), PROC_REF(attach_without_user))
 
 	RegisterSignal(parent, COMSIG_CLICK_ALT, PROC_REF(start_detach)) //For Detaching
-	RegisterSignal(parent, COMSIG_PARENT_QDELETING, PROC_REF(clean_references)) //Dels attachments.
+	RegisterSignal(parent, COMSIG_QDELETING, PROC_REF(clean_references)) //Dels attachments.
 	RegisterSignal(parent, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, PROC_REF(apply_custom))
 	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, PROC_REF(remove_overlay))
 
@@ -157,7 +157,7 @@
 			span_notice("You begin fumbling about, trying to attach [attachment] to [parent]."), null, 4)
 			do_after_icon_type = BUSY_ICON_UNSKILLED
 
-	if(!do_after(user, attach_delay, TRUE, parent, do_after_icon_type))
+	if(!do_after(user, attach_delay, NONE, parent, do_after_icon_type))
 		return FALSE
 	user.visible_message(span_notice("[user] attaches [attachment] to [parent]."),
 	span_notice("You attach [attachment] to [parent]."), null, 4)
@@ -191,11 +191,7 @@
 	SIGNAL_HANDLER
 	var/mob/living/living_user = user
 
-	if(living_user.get_active_held_item() != parent && living_user.get_inactive_held_item() != parent)
-		to_chat(living_user, span_warning("You must be holding [parent] to field strip it!"))
-		return
-	if((living_user.get_active_held_item() == parent && living_user.get_inactive_held_item()) || (living_user.get_inactive_held_item() == parent && living_user.get_active_held_item()))
-		to_chat(living_user, span_warning("You need a free hand to field strip [parent]!"))
+	if(!detach_check(living_user))
 		return
 
 	var/list/attachments_to_remove = list()
@@ -214,11 +210,24 @@
 
 	INVOKE_ASYNC(src, PROC_REF(do_detach), living_user, attachments_to_remove)
 
+///Checks if you are actually able to detach an item or not
+/datum/component/attachment_handler/proc/detach_check(mob/user)
+	if(user.get_active_held_item() != parent && user.get_inactive_held_item() != parent)
+		to_chat(user, span_warning("You must be holding [parent] to field strip it!"))
+		return FALSE
+	if((user.get_active_held_item() == parent && user.get_inactive_held_item()) || (user.get_inactive_held_item() == parent && user.get_active_held_item()))
+		to_chat(user, span_warning("You need a free hand to field strip [parent]!"))
+		return FALSE
+	return TRUE
+
 ///Does the detach, shows the user the removable attachments and handles the do_after.
 /datum/component/attachment_handler/proc/do_detach(mob/living/user, list/attachments_to_remove)
 	//If there is only one attachment to remove, then that will be the attachment_to_remove. If there is more than one it gives the user a list to select from.
 	var/obj/item/attachment_to_remove = length(attachments_to_remove) == 1 ? attachments_to_remove[1] : tgui_input_list(user, "Choose an attachment", "Choose attachment", attachments_to_remove)
 	if(!attachment_to_remove)
+		return
+
+	if(!detach_check(user))
 		return
 
 	var/list/attachment_data
@@ -246,7 +255,7 @@
 			span_notice("You begin fumbling about, trying to detach [attachment_to_remove] from [parent]."), null, 4)
 			do_after_icon_type = BUSY_ICON_UNSKILLED
 
-	if(!do_after(user, detach_delay, TRUE, parent, do_after_icon_type))
+	if(!do_after(user, detach_delay, NONE, parent, do_after_icon_type))
 		return
 
 	user.visible_message(span_notice("[user] detaches [attachment_to_remove] to [parent]."),
@@ -298,9 +307,12 @@
 
 		var/icon = attachment_data[OVERLAY_ICON]
 		var/icon_state = attachment.icon_state
-		if(attachment_data[OVERLAY_ICON] == attachment.icon)
+		if(attachment.greyscale_colors && attachment.greyscale_config)
+			icon = attachment.icon
 			icon_state = attachment.icon_state + "_a"
-		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
+		else if(attachment_data[OVERLAY_ICON] == attachment.icon)
+			icon_state = attachment.icon_state + "_a"
+		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON) || CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_DIFFERENT_MOB_ICON_STATE))
 			icon_state = attachment.icon_state
 			icon = attachment.icon
 			overlay = image(icon, parent_item, icon_state)
@@ -345,7 +357,9 @@
 		var/icon = attachment.icon
 		var/icon_state = attachment.icon_state
 		var/suffix = ""
-		if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
+		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_DIFFERENT_MOB_ICON_STATE))
+			suffix = "_m"
+		else if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SEPERATE_MOB_OVERLAY))
 				if(attachment_data[MOB_OVERLAY_ICON] != attachment_data[OVERLAY_ICON])
 					icon = attachment_data[MOB_OVERLAY_ICON]

@@ -34,11 +34,6 @@
 	update_action_button_icons()
 	update_icons(FALSE)
 
-/mob/living/carbon/xenomorph/handle_status_effects()
-	. = ..()
-	handle_stagger() // 1 each time
-	handle_slowdown() // 0.4 each time
-
 /mob/living/carbon/xenomorph/handle_fire()
 	. = ..()
 	if(.)
@@ -46,14 +41,13 @@
 			adjust_fire_stacks(-1)	//Passively lose firestacks when not on fire while resting and having firestacks built up.
 		return
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
-		SEND_SIGNAL(src, COMSIG_XENOMORPH_FIRE_BURNING)
 		apply_damage((fire_stacks + 3), BURN, blocked = FIRE)
 
 /mob/living/carbon/xenomorph/proc/handle_living_health_updates()
 	if(health < 0)
 		handle_critical_health_updates()
 		return
-	if((health >= maxHealth) || xeno_caste.hardcore || on_fire) //can't regenerate.
+	if((health >= maxHealth) || on_fire) //can't regenerate.
 		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
 		return
 	var/turf/T = loc
@@ -153,6 +147,11 @@
 
 	gain_plasma(plasma_mod[1])
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
+
+/mob/living/carbon/xenomorph/can_receive_aura(aura_type, atom/source, datum/aura_bearer/bearer)
+	. = ..()
+	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Xenos on fire cannot receive pheros.
+		return FALSE
 
 /mob/living/carbon/xenomorph/finish_aura_cycle()
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Has to be here to prevent desyncing between phero and life, despite making more sense in handle_fire()

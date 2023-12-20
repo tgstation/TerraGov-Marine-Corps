@@ -17,7 +17,7 @@
 
 /datum/ai_behavior/xeno/start_ai()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, TYPE_PROC_REF(/datum/ai_behavior, deal_with_obstacle))
-	RegisterSignal(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), PROC_REF(refresh_abilities))
+	RegisterSignals(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), PROC_REF(refresh_abilities))
 	RegisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(check_for_critical_health))
 	return ..()
 
@@ -37,8 +37,8 @@
 		if(!action.ai_should_use(atom_to_walk_to))
 			continue
 		//xeno_action/activable is activated with a different proc for keybinded actions, so we gotta use the correct proc
-		if(istype(action, /datum/action/xeno_action/activable))
-			var/datum/action/xeno_action/activable/xeno_action = action
+		if(istype(action, /datum/action/ability/activable/xeno))
+			var/datum/action/ability/activable/xeno/xeno_action = action
 			xeno_action.use_ability(atom_to_walk_to)
 		else
 			action.action_activate()
@@ -172,7 +172,7 @@
 				RegisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/ai_behavior, look_for_new_state))
 				return
 			if(ismachinery(atom_to_walk_to))
-				RegisterSignal(atom_to_walk_to, COMSIG_PARENT_PREQDELETED, TYPE_PROC_REF(/datum/ai_behavior, look_for_new_state))
+				RegisterSignal(atom_to_walk_to, COMSIG_PREQDELETED, TYPE_PROC_REF(/datum/ai_behavior, look_for_new_state))
 				return
 
 	return ..()
@@ -185,7 +185,7 @@
 				UnregisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH)
 				return
 			if(ismachinery(atom_to_walk_to))
-				UnregisterSignal(atom_to_walk_to, COMSIG_PARENT_PREQDELETED)
+				UnregisterSignal(atom_to_walk_to, COMSIG_PREQDELETED)
 				return
 
 	return ..()

@@ -36,8 +36,8 @@
 /area/space)
 "ai" = (
 /obj/structure/rack,
-/obj/item/storage/belt/gun/revolver,
-/obj/item/storage/belt/gun/pistol/m4a3/officer,
+/obj/item/storage/holster/belt/revolver,
+/obj/item/storage/holster/belt/pistol/m4a3/officer,
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
@@ -124,8 +124,8 @@
 "ax" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
-/obj/item/storage/belt/gun/pistol/m4a3/full,
-/obj/item/storage/belt/gun/pistol/m4a3/officer,
+/obj/item/storage/holster/belt/pistol/m4a3/full,
+/obj/item/storage/holster/belt/pistol/m4a3/officer,
 /turf/open/floor/tile/dark/red2/corner,
 /area/bigredv2/caves/south)
 "ay" = (
@@ -214,7 +214,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "aQ" = (
 /obj/structure/table,
-/obj/item/storage/belt/gun/pistol,
+/obj/item/storage/holster/belt/pistol,
 /turf/open/floor/tile/dark/red2/corner,
 /area/bigredv2/caves/south)
 "aR" = (
@@ -231,8 +231,8 @@
 "aU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
-/obj/item/storage/belt/gun/pistol/m4a3/full,
-/obj/item/storage/belt/gun/pistol/m4a3/officer,
+/obj/item/storage/holster/belt/pistol/m4a3/full,
+/obj/item/storage/holster/belt/pistol/m4a3/officer,
 /turf/open/floor/tile/dark/red2/corner,
 /area/bigredv2/caves/south)
 "aV" = (

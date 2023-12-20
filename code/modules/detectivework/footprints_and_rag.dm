@@ -12,7 +12,7 @@
 	name = "damp rag"
 	desc = "For cleaning up messes, you suppose."
 	w_class = WEIGHT_CLASS_TINY
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/janitor.dmi'
 	icon_state = "rag"
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list(5)
@@ -35,7 +35,7 @@
 		return
 	if(istype(A) && (src in user))
 		user.visible_message("[user] starts to wipe down [A] with [src]!")
-		if(do_after(user,30, TRUE, A, , BUSY_ICON_GENERIC))
+		if(do_after(user, 3 SECONDS, NONE, A, , BUSY_ICON_GENERIC))
 			user.visible_message("[user] finishes wiping off the [A]!")
 			A.clean_blood()
 

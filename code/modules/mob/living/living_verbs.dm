@@ -19,7 +19,7 @@
 	else if(do_actions)
 		to_chat(src, span_warning("You are still in the process of standing up."))
 		return
-	else if(do_mob(src, src, 2 SECONDS, ignore_flags = (IGNORE_LOC_CHANGE|IGNORE_HAND)))
+	else if(do_after(src, 2 SECONDS, IGNORE_LOC_CHANGE|IGNORE_HELD_ITEM, src))
 		get_up()
 
 /mob/living/proc/get_up()
@@ -68,30 +68,9 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has ghosted.")
 	ghostize(FALSE)
 
-/mob/living/verb/point_to(atom/A)
-	set name = "Point To"
-	set category = "Object"
-
-	if(!isturf(loc))
+/mob/living/point_to(atom/pointed_atom as mob|obj|turf in view(client.view, src))
+	if(!..())
 		return FALSE
-
-	if(!A.mouse_opacity) //Can't click it? can't point at it.
+	if(incapacitated() || HAS_TRAIT(src, TRAIT_FAKEDEATH))
 		return FALSE
-
-	if(incapacitated() || HAS_TRAIT(src, TRAIT_FAKEDEATH)) //Incapacitated, can't point.
-		return FALSE
-
-	var/tile = get_turf(A)
-	if(!tile)
-		return FALSE
-
-	if(next_move > world.time)
-		return FALSE
-
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_POINT))
-		return FALSE
-
-	next_move = world.time + 2
-
-	point_to_atom(A, tile)
-	return TRUE
+	visible_message(span_infoplain("[span_name("[src]")] points at [pointed_atom]."), span_notice("You point at [pointed_atom]."))

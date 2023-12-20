@@ -90,6 +90,7 @@
 				injected += R.name
 			var/contained = english_list(injected)
 			log_combat(user, M, "splashed", src, "Reagents: [contained]")
+			record_reagent_consumption(reagents.total_volume, injected, user, M)
 
 			visible_message(span_warning("[target] has been splashed with something by [user]!"))
 			reagents.reaction(target, TOUCH)

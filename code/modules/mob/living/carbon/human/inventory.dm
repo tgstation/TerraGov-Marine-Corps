@@ -9,19 +9,23 @@
 	if(incapacitated() || lying_angle)
 		return
 
-	var/slot_requested = client?.prefs?.quick_equip[quick_equip_slot]
+	var/slot_requested = client?.prefs?.quick_equip[quick_equip_slot] || VALID_EQUIP_SLOTS
 	var/obj/item/I = get_active_held_item()
 	if(!I) //draw item
 		if(next_move > world.time)
 			return
-		if(slot_requested)
+
+		if(slot_requested) //Equips from quick_equip 1-5
 			if(draw_from_slot_if_possible(slot_requested))
 				next_move = world.time + 1
 				return
-		for(var/slot in SLOT_DRAW_ORDER)
+
+		var/list/slot_to_draw = client?.prefs?.slot_draw_order_pref || SLOT_DRAW_ORDER //Equips from draw order in prefs
+		for(var/slot in slot_to_draw)
 			if(draw_from_slot_if_possible(slot))
 				next_move = world.time + 1
 				return
+
 	else //store item
 		if(s_active?.attackby(I, src)) //stored in currently open storage
 			return TRUE
@@ -243,11 +247,14 @@
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible()
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
-/mob/living/carbon/human/equip_to_slot(obj/item/W, slot)
+/mob/living/carbon/human/equip_to_slot(obj/item/W, slot, bitslot = FALSE)
 	if(!slot)
 		return
 	if(!istype(W))
 		return
+	if(bitslot)
+		var/oldslot = slot
+		slot = slotbit2slotdefine(oldslot)
 	if(!has_limb_for_slot(slot))
 		return
 
@@ -269,6 +276,8 @@
 	W.loc = src
 	W.layer = ABOVE_HUD_LAYER
 	W.plane = ABOVE_HUD_PLANE
+
+	W.forceMove(src)
 
 	var/obj/item/selected_slot //the item in the specific slot we're trying to insert into, if applicable
 
@@ -464,6 +473,39 @@
 		if(SLOT_IN_HEAD)
 			return head
 
+/mob/living/carbon/human/get_item_by_slot_bit(slot_bit)
+	switch(slot_bit)
+		if(ITEM_SLOT_OCLOTHING)
+			return wear_suit
+		if(ITEM_SLOT_ICLOTHING)
+			return w_uniform
+		if(ITEM_SLOT_GLOVES)
+			return gloves
+		if(ITEM_SLOT_EYES)
+			return glasses
+		if(ITEM_SLOT_EARS)
+			return wear_ear
+		if(ITEM_SLOT_MASK)
+			return wear_mask
+		if(ITEM_SLOT_HEAD)
+			return head
+		if(ITEM_SLOT_FEET)
+			return shoes
+		if(ITEM_SLOT_ID)
+			return wear_id
+		if(ITEM_SLOT_BELT)
+			return belt
+		if(ITEM_SLOT_BACK)
+			return back
+		if(ITEM_SLOT_R_POCKET)
+			return r_store
+		if(ITEM_SLOT_L_POCKET)
+			return l_store
+		if(ITEM_SLOT_SUITSTORE)
+			return s_store
+		if(ITEM_SLOT_HANDCUFF)
+			return handcuffed
+
 /mob/living/carbon/human/get_equipped_slot(obj/equipped_item)
 	if(..())
 		return
@@ -494,46 +536,18 @@
 		. = SLOT_S_STORE
 
 /mob/living/carbon/human/stripPanelUnequip(obj/item/I, mob/M, slot_to_process)
-	if(I.flags_item & ITEM_ABSTRACT)
-		return
-	if(I.flags_item & NODROP)
-		to_chat(src, span_warning("You can't remove \the [I.name], it appears to be stuck!"))
+	if(!I.canStrip(M))
 		return
 	log_combat(src, M, "attempted to remove [key_name(I)] ([slot_to_process])")
 
 	M.visible_message(span_danger("[src] tries to remove [M]'s [I.name]."), \
 					span_userdanger("[src] tries to remove [M]'s [I.name]."), null, 5)
-	if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_HOSTILE))
+	if(do_after(src, HUMAN_STRIP_DELAY, NONE, M, BUSY_ICON_HOSTILE))
 		if(Adjacent(M) && I && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)
 			log_combat(src, M, "removed [key_name(I)] ([slot_to_process])")
 			if(isidcard(I))
 				message_admins("[ADMIN_TPMONTY(src)] took the [I] of [ADMIN_TPMONTY(M)].")
-
-	if(M)
-		if(interactee == M && Adjacent(M))
-			M.show_inv(src)
-
-
-/mob/living/carbon/human/stripPanelEquip(obj/item/I, mob/M, slot_to_process)
-	if(I && !(I.flags_item & ITEM_ABSTRACT))
-		if(I.flags_item & NODROP)
-			to_chat(src, span_warning("You can't put \the [I.name] on [M], it's stuck to your hand!"))
-			return
-		if(!I.mob_can_equip(M, slot_to_process, TRUE))
-			to_chat(src, span_warning("You can't put \the [I.name] on [M]!"))
-			return
-		visible_message(span_notice("[src] tries to put [I] on [M]."), null , null, 5)
-		if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC))
-			if(!M.get_item_by_slot(slot_to_process))
-				if(I.mob_can_equip(M, slot_to_process, TRUE))//Placing an item on the mob
-					dropItemToGround(I)
-					if(!QDELETED(I)) //Might be self-deleted?
-						M.equip_to_slot_if_possible(I, slot_to_process, 1, 0, 1, 1)
-
-	if(M)
-		if(interactee == M && Adjacent(M))
-			M.show_inv(src)
 
 
 /mob/living/carbon/human/proc/equipOutfit(outfit, visualsOnly = FALSE)

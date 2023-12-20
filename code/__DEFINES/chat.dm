@@ -3,6 +3,11 @@
  * SPDX-License-Identifier: MIT
  */
 
+/// How many chat payloads to keep in history
+#define CHAT_RELIABILITY_HISTORY_SIZE 5
+/// How many resends to allow before giving up
+#define CHAT_RELIABILITY_MAX_RESENDS 3
+
 #define MESSAGE_TYPE_SYSTEM "system"
 #define MESSAGE_TYPE_LOCALCHAT "localchat"
 #define MESSAGE_TYPE_RADIO "radio"
@@ -14,6 +19,7 @@
 #define MESSAGE_TYPE_COMBAT "combat"
 #define MESSAGE_TYPE_ADMINCHAT "adminchat"
 #define MESSAGE_TYPE_MENTORCHAT "mentorchat"
+#define MESSAGE_TYPE_PRAYER "prayer"
 #define MESSAGE_TYPE_ADMINLOG "adminlog"
 #define MESSAGE_TYPE_STAFFLOG "stafflog"
 #define MESSAGE_TYPE_ATTACKLOG "attacklog"

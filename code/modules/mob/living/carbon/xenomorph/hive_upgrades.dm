@@ -156,7 +156,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		return FALSE
 
 /datum/hive_upgrade/building/on_buy(mob/living/carbon/xenomorph/buyer)
-	if(!do_after(buyer, building_time, TRUE, buyer, BUSY_ICON_BUILD))
+	if(!do_after(buyer, building_time, NONE, buyer, BUSY_ICON_BUILD))
 		return FALSE
 
 	if(!can_buy(buyer, FALSE))
@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a silo that generates xeno larvas over time. Requires open space and time to place."
 	psypoint_cost = SILO_PRICE
 	icon = "larvasilo"
-	flags_upgrade = ABILITY_DISTRESS
+	flags_upgrade = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/silo
 
 /datum/hive_upgrade/building/silo/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
@@ -200,26 +200,26 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 
 /datum/hive_upgrade/building/evotower
 	name = "Evolution Tower"
-	desc = "Constructs a tower that increases the rate of evolution point generation by 1.25 times per tower."
+	desc = "Constructs a tower that increases the rate of evolution point and maturity point generation by 1.2 times per tower."
 	psypoint_cost = 300
 	icon = "evotower"
-	flags_upgrade = ABILITY_DISTRESS
+	flags_upgrade = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/evotower
 
-/datum/hive_upgrade/building/maturitytower
-	name = "Maturity Tower"
-	desc = "Constructs a tower that increases the rate of maturity point generation by 1.2 times per tower."
+/datum/hive_upgrade/building/psychictower
+	name = "Psychic Relay"
+	desc = "Constructs a tower that increases the slots of higher tier Xenomorphs."
 	psypoint_cost = 300
 	icon = "maturitytower"
-	flags_upgrade = ABILITY_DISTRESS
-	building_type = /obj/structure/xeno/maturitytower
+	flags_upgrade = ABILITY_NUCLEARWAR
+	building_type = /obj/structure/xeno/psychictower
 
 /datum/hive_upgrade/building/pherotower
 	name = "Pheromone Tower"
 	desc = "Constructs a tower that emanates a selectable type of pheromone."
 	psypoint_cost = 150
 	icon = "pherotower"
-	flags_upgrade = ABILITY_DISTRESS
+	flags_upgrade = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/pherotower
 	building_loc = 0 //This results in spawning the structure under the user.
 	building_time = 5 SECONDS
@@ -229,7 +229,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a spawner that generates ai xenos over time"
 	psypoint_cost = 600
 	icon = "spawner"
-	flags_upgrade = ABILITY_DISTRESS
+	flags_upgrade = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/spawner
 
 /datum/hive_upgrade/defence
@@ -240,7 +240,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Places a acid spitting resin turret under you. Must be at least 6 tiles away from other turrets, not near fog and on a weeded area."
 	icon = "acidturret"
 	psypoint_cost = XENO_TURRET_PRICE
-	flags_gamemode = ABILITY_DISTRESS
+	flags_gamemode = ABILITY_NUCLEARWAR
 	///How long to build one turret
 	var/build_time = 10 SECONDS
 	///What type of turret is built
@@ -277,7 +277,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	return TRUE
 
 /datum/hive_upgrade/defence/turret/on_buy(mob/living/carbon/xenomorph/buyer)
-	if(!do_after(buyer, build_time, TRUE, buyer, BUSY_ICON_BUILD))
+	if(!do_after(buyer, build_time, NONE, buyer, BUSY_ICON_BUILD))
 		return FALSE
 
 	if(!can_buy(buyer, FALSE))
@@ -301,21 +301,13 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/xenos
 	category = "Xenos"
 
-/datum/hive_upgrade/xenos/smart_minions
-	name = GHOSTS_CAN_TAKE_MINIONS
-	desc = "Allow ghosts to take control of minions"
-	icon = "smartminions"
-	flags_gamemode = ABILITY_DISTRESS
-	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
-	psypoint_cost = 500
-
 /datum/hive_upgrade/primordial
 	category = "Xenos"
 	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
 
 /datum/hive_upgrade/primordial/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
-	if(!isxenoqueen(buyer) && !isxenoshrike(buyer))
+	if(!isxenoqueen(buyer) && !isxenoshrike(buyer) && !isxenoking(buyer))
 		if(!silent)
 			to_chat(buyer, span_xenonotice("You must be a ruler to buy this!"))
 		return FALSE

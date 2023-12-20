@@ -201,7 +201,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/road)
 "br" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
@@ -273,6 +273,9 @@
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 5
 	},
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "bM" = (
@@ -321,12 +324,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
-"ch" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "ci" = (
 /obj/structure/window,
 /obj/effect/ai_node,
@@ -478,14 +475,11 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "do" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
+/obj/effect/landmark/patrol_point/tgmc_14,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "dq" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
 "ds" = (
@@ -596,6 +590,12 @@
 /obj/item/stack/sheet/mineral/phoron/medium_stack,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
+"eq" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "er" = (
 /obj/item/storage/backpack/marine/radiopack,
 /obj/item/storage/backpack/marine/radiopack,
@@ -687,6 +687,12 @@
 /obj/structure/table/rusticwoodentable,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
+"fd" = (
+/obj/structure/platform{
+	dir = 10
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "ff" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -694,6 +700,18 @@
 "fk" = (
 /obj/effect/landmark/start/job/squadcorpsman,
 /obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
+"fn" = (
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/platform{
+	dir = 5
+	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "fo" = (
@@ -726,6 +744,9 @@
 /area/oscar_outpost/base)
 "fA" = (
 /obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
+	dir = 4
+	},
 /turf/open/floor/plating/asteroidfloor,
 /area/oscar_outpost)
 "fC" = (
@@ -771,6 +792,12 @@
 /obj/item/reagent_containers/food/condiment/saltshaker,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
+"fQ" = (
+/obj/structure/platform{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost)
 "fR" = (
 /obj/structure/barricade/metal{
 	dir = 1
@@ -845,6 +872,9 @@
 	dir = 4
 	},
 /obj/structure/barricade/metal,
+/obj/structure/platform{
+	dir = 6
+	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "gp" = (
@@ -900,6 +930,7 @@
 /area/oscar_outpost/base)
 "gu" = (
 /obj/structure/barricade/metal,
+/obj/structure/platform,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "gw" = (
@@ -1008,6 +1039,12 @@
 "hb" = (
 /obj/structure/barricade/plasteel,
 /obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/base)
+"hc" = (
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "hl" = (
@@ -1157,9 +1194,18 @@
 /turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "ig" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
+"ij" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "ik" = (
 /obj/machinery/factory/heater{
 	anchored = 1
@@ -1239,13 +1285,6 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "iU" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 8
-	},
 /obj/structure/platform_decoration{
 	dir = 5
 	},
@@ -1315,6 +1354,18 @@
 /obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
+"jm" = (
+/obj/structure/platform{
+	dir = 9
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
+"jn" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "jw" = (
 /obj/item/ammo_magazine/tl102/hsg_nest,
 /obj/item/ammo_magazine/tl102/hsg_nest,
@@ -1370,12 +1421,6 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
-"jF" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "jM" = (
 /obj/structure/closet/crate,
 /obj/item/toy/prize/deathripley,
@@ -1750,6 +1795,9 @@
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 10
 	},
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "mQ" = (
@@ -1781,6 +1829,15 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/village/fairgrounds)
+"nf" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "nh" = (
 /obj/structure/sign/poster,
 /turf/closed/mineral/smooth,
@@ -1802,6 +1859,12 @@
 	},
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
+"nm" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost)
 "no" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
@@ -1871,22 +1934,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
-"nH" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/platform_decoration{
-	dir = 9
-	},
-/obj/structure/platform_decoration{
-	dir = 6
-	},
-/turf/open/liquid/lava,
-/area/oscar_outpost)
 "nM" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/dirt,
@@ -1927,9 +1974,23 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
-"nZ" = (
-/obj/machinery/landinglight/ds1,
-/turf/open/floor/plating/asteroidfloor,
+"oc" = (
+/obj/structure/prop/mainship/gelida/miner,
+/obj/structure/prop/mainship/gelida/miner{
+	pixel_y = 16
+	},
+/obj/structure/prop/mainship/gelida/miner{
+	pixel_y = 32
+	},
+/obj/structure/prop/mainship/gelida/miner{
+	pixel_y = 48
+	},
+/obj/structure/prop/mainship/gelida/miner{
+	pixel_y = 64
+	},
+/obj/effect/forcefield,
+/obj/structure/platform,
+/turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "oe" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -2009,10 +2070,10 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/fairgrounds)
 "oN" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/effect/landmark/start/job/squadmarine,
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidfloor,
 /area/oscar_outpost)
 "oO" = (
@@ -2136,6 +2197,13 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
+"pC" = (
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/oscar_outpost)
 "pG" = (
 /obj/machinery/vending/medical,
 /obj/structure/cable,
@@ -2180,11 +2248,11 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
 "pX" = (
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
 /obj/structure/barricade/sandbags{
 	dir = 8;
 	name = "trench lining";
@@ -2206,6 +2274,13 @@
 /obj/machinery/floodlight/outpost/oscar,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/underground)
+"qb" = (
+/obj/structure/platform{
+	dir = 8;
+	layer = 2.7
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "qe" = (
 /obj/machinery/optable,
 /obj/machinery/light{
@@ -2219,7 +2294,7 @@
 "qh" = (
 /obj/structure/cable,
 /obj/effect/spawner/random/engineering/toolbox,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /obj/structure/table/mainship,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
@@ -2270,13 +2345,6 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/road)
-"qu" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "qw" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/phone,
@@ -2410,6 +2478,12 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
+"rb" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/oscar_outpost)
 "re" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/coffee{
@@ -2436,6 +2510,24 @@
 /obj/structure/closet/crate,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
+"ro" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
+"rr" = (
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "rt" = (
 /obj/structure/table/rusticwoodentable,
 /obj/effect/spawner/random/weaponry/explosive/grenade{
@@ -2455,6 +2547,9 @@
 	dir = 8
 	},
 /obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/obj/structure/platform{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -2607,8 +2702,14 @@
 /obj/machinery/floodlight/outpost/oscar,
 /turf/open/ground/grass,
 /area/oscar_outpost/village/fairgrounds)
+"sx" = (
+/obj/effect/ai_node,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "sz" = (
-/obj/structure/platform,
 /obj/effect/forcefield,
 /obj/machinery/atmospherics/components/unary/outlet_injector,
 /turf/open/liquid/lava,
@@ -2786,7 +2887,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "tF" = (
-/obj/machinery/floodlight/combat,
+/obj/machinery/floodlight,
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
 "tG" = (
@@ -2817,7 +2918,6 @@
 	},
 /obj/machinery/door/window{
 	dir = 2;
-	name = "broken sunglasses";
 	pixel_y = 9
 	},
 /obj/structure/window{
@@ -2848,11 +2948,15 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
-"tZ" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 8
+"uc" = (
+/obj/machinery/light{
+	dir = 4
 	},
-/turf/open/floor/plating/asteroidfloor,
+/obj/structure/platform{
+	dir = 8;
+	layer = 2.7
+	},
+/turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "ue" = (
 /obj/structure/window,
@@ -2862,10 +2966,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
-"uf" = (
-/obj/item/storage/box/loot/howitzer_pack,
-/turf/open/floor,
-/area/oscar_outpost/village/central)
 "uh" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/effect/ai_node,
@@ -2935,6 +3035,12 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
+"uB" = (
+/obj/structure/platform{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost)
 "uD" = (
 /obj/structure/closet/crate,
 /obj/machinery/light{
@@ -2996,12 +3102,6 @@
 	dir = 1
 	},
 /area/oscar_outpost/outside/road)
-"va" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "vp" = (
 /obj/structure/barricade/metal{
 	dir = 8
@@ -3041,13 +3141,6 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "vv" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/structure/platform_decoration,
 /obj/structure/platform_decoration{
 	dir = 5
 	},
@@ -3067,7 +3160,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "vy" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
 "vz" = (
@@ -3154,6 +3247,9 @@
 /obj/machinery/atmospherics/pipe/manifold/general{
 	dir = 1
 	},
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "wc" = (
@@ -3195,6 +3291,11 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
+"wp" = (
+/obj/effect/ai_node,
+/obj/structure/platform,
+/turf/open/floor/plating,
+/area/oscar_outpost)
 "wr" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
@@ -3262,6 +3363,14 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
+"wZ" = (
+/obj/effect/ai_node,
+/obj/structure/platform{
+	dir = 8;
+	layer = 2.7
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "xa" = (
 /obj/structure/table/mainship,
 /obj/structure/window,
@@ -3311,18 +3420,8 @@
 	dir = 1
 	},
 /area/oscar_outpost)
-"xi" = (
-/obj/structure/platform_decoration,
-/obj/structure/platform_decoration{
-	dir = 8
-	},
-/turf/open/liquid/lava,
-/area/oscar_outpost)
 "xj" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "xk" = (
@@ -3391,10 +3490,6 @@
 /obj/item/stack/medical/heal_pack/ointment,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
-"xx" = (
-/obj/effect/landmark/sensor_tower,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/road)
 "xy" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship/open{
@@ -3449,6 +3544,13 @@
 /obj/item/clothing/under/color/green,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
+"xR" = (
+/obj/effect/ai_node,
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost)
 "xT" = (
 /obj/structure/barricade/sandbags{
 	dir = 4;
@@ -3539,6 +3641,16 @@
 	dir = 8
 	},
 /area/oscar_outpost)
+"yv" = (
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/platform{
+	dir = 8;
+	layer = 2.7
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "yz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -3595,8 +3707,14 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
+"yM" = (
+/obj/structure/platform{
+	dir = 6
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "yQ" = (
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -3620,12 +3738,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
-"za" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "zc" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -3709,12 +3821,6 @@
 	dir = 4
 	},
 /area/oscar_outpost/village/central)
-"zq" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "zu" = (
 /obj/structure/barricade/sandbags{
 	dir = 4;
@@ -4012,6 +4118,10 @@
 /obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor,
 /area/oscar_outpost/village)
+"AM" = (
+/obj/structure/platform,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "AP" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -4022,6 +4132,9 @@
 "AS" = (
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 4
+	},
+/obj/structure/platform{
+	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
@@ -4062,10 +4175,10 @@
 /area/oscar_outpost/village/south)
 "Bb" = (
 /obj/structure/closet/crate,
-/obj/item/tool/extinguisher,
-/obj/item/tool/extinguisher,
-/obj/item/tool/extinguisher,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Be" = (
@@ -4088,7 +4201,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Bh" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -4099,19 +4212,9 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "Bl" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
-"Bn" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "Bo" = (
 /obj/item/storage/belt/lifesaver/full,
 /obj/item/clothing/glasses/hud/health,
@@ -4235,12 +4338,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/south)
-"BO" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "BP" = (
 /obj/structure/closet/crate,
 /obj/item/reagent_containers/glass/bottle/tricordrazine,
@@ -4255,11 +4352,6 @@
 /obj/item/reagent_containers/glass/bottle/tricordrazine,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village)
-"BQ" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/oscar_outpost)
 "BR" = (
 /obj/machinery/chem_dispenser,
 /obj/effect/spawner/random/medical/beaker/bluespace,
@@ -4427,10 +4519,7 @@
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
 "CF" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "CH" = (
@@ -4566,6 +4655,12 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
+"Dp" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost)
 "Ds" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/ground/grass,
@@ -4712,6 +4807,9 @@
 /obj/structure/barricade/metal{
 	dir = 8
 	},
+/obj/structure/platform{
+	dir = 9
+	},
 /turf/open/floor/plating,
 /area/oscar_outpost)
 "Ec" = (
@@ -4817,6 +4915,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/platform,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "Es" = (
@@ -4833,6 +4932,9 @@
 /area/oscar_outpost/outside/west)
 "Ex" = (
 /obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/platform{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -4952,16 +5054,13 @@
 /obj/item/explosive/grenade/m15,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
-"Ff" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "Fg" = (
 /obj/structure/barricade/metal{
 	dir = 8
+	},
+/obj/structure/platform{
+	dir = 8;
+	layer = 2.7
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
@@ -5119,7 +5218,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "FR" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/structure/sign/safety/medical_supplies{
 	dir = 1
 	},
@@ -5196,8 +5295,6 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
 "Gl" = (
-/obj/item/storage/box/minisentry,
-/obj/item/storage/box/minisentry,
 /obj/structure/rack,
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
@@ -5437,6 +5534,9 @@
 /obj/structure/barricade/metal{
 	dir = 8
 	},
+/obj/structure/platform{
+	dir = 10
+	},
 /turf/open/floor/plating,
 /area/oscar_outpost)
 "Hd" = (
@@ -5446,7 +5546,7 @@
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
 "He" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -5622,6 +5722,12 @@
 /obj/item/trash/buritto,
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
+"HV" = (
+/obj/structure/platform{
+	dir = 5
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "HX" = (
 /obj/machinery/door/window{
 	dir = 8
@@ -5660,6 +5766,10 @@
 /obj/structure/cable,
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
+/area/oscar_outpost)
+"Ij" = (
+/obj/structure/platform,
+/turf/open/floor/plating,
 /area/oscar_outpost)
 "Ik" = (
 /obj/structure/bed,
@@ -5714,7 +5824,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Ir" = (
-/obj/item/weapon/gun/launcher/rocket/heavy_rr{
+/obj/item/weapon/gun/heavy_isg{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -5852,10 +5962,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "IH" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "II" = (
@@ -6167,6 +6274,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/platform{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/oscar_outpost)
 "JR" = (
@@ -6344,12 +6454,6 @@
 /turf/open/floor/plating,
 /area/oscar_outpost)
 "KQ" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/structure/platform_decoration{
 	dir = 9
 	},
@@ -6437,6 +6541,13 @@
 "Li" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/oscar_outpost/outside/rock)
+"Lj" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/platform,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "Lk" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/closed/wall/r_wall,
@@ -6781,13 +6892,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
-"Ms" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "Mt" = (
 /obj/structure/bed/chair/office,
 /turf/open/floor/wood,
@@ -6823,6 +6927,15 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
+"ME" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "MH" = (
 /obj/item/stool{
 	pixel_y = 20
@@ -6930,13 +7043,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
-"Ns" = (
-/obj/structure/platform_decoration{
-	dir = 8
-	},
-/obj/structure/platform_decoration,
-/turf/open/liquid/lava,
-/area/oscar_outpost)
 "Nu" = (
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
@@ -6975,24 +7081,7 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
-"NF" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform,
-/turf/open/liquid/lava,
-/area/oscar_outpost)
 "NG" = (
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/structure/platform_decoration{
 	dir = 9
 	},
@@ -7002,15 +7091,6 @@
 /turf/open/liquid/lava,
 /area/oscar_outpost)
 "NH" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/platform{
-	dir = 8
-	},
 /obj/structure/platform_decoration{
 	dir = 9
 	},
@@ -7084,7 +7164,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "Oi" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "Ol" = (
@@ -7111,7 +7191,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Or" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -7211,11 +7291,6 @@
 /obj/item/stack/sheet/plasteel/large_stack,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
-"OH" = (
-/obj/structure/platform,
-/obj/effect/forcefield,
-/turf/open/liquid/lava,
-/area/oscar_outpost)
 "OI" = (
 /obj/structure/closet/crate,
 /obj/item/clothing/under/color/white,
@@ -7226,7 +7301,7 @@
 /area/oscar_outpost/village/central)
 "OK" = (
 /obj/structure/table/rusticwoodentable,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -7403,12 +7478,6 @@
 /obj/structure/cable,
 /turf/closed/wall,
 /area/oscar_outpost/village/south)
-"Pw" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/open/liquid/lava,
-/area/oscar_outpost)
 "Px" = (
 /obj/item/ammo_magazine/rifle/m16,
 /obj/item/attachable/bayonet,
@@ -7495,15 +7564,6 @@
 /obj/structure/largecrate/supply/weapons/flamers,
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
-"PJ" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/liquid/lava,
-/area/oscar_outpost)
 "PK" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -7637,10 +7697,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Qk" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
+/obj/effect/landmark/patrol_point/tgmc_12,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "Ql" = (
@@ -7925,12 +7982,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
-"Ru" = (
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "Rv" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -7966,12 +8017,6 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
-"RF" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "RH" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
@@ -7993,16 +8038,6 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "RK" = (
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/structure/platform_decoration{
 	dir = 6
 	},
@@ -8012,13 +8047,6 @@
 /turf/open/liquid/lava,
 /area/oscar_outpost)
 "RM" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 8
-	},
 /obj/structure/platform_decoration{
 	dir = 10
 	},
@@ -8028,25 +8056,12 @@
 /turf/open/liquid/lava,
 /area/oscar_outpost)
 "RN" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/platform{
-	dir = 8
-	},
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/liquid/lava,
 /area/oscar_outpost)
 "RO" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 8
-	},
 /obj/structure/platform_decoration{
 	dir = 6
 	},
@@ -8054,10 +8069,6 @@
 	dir = 10
 	},
 /turf/open/liquid/lava,
-/area/oscar_outpost)
-"RP" = (
-/obj/machinery/landinglight/ds1/delayone,
-/turf/open/floor/plating/asteroidfloor,
 /area/oscar_outpost)
 "RV" = (
 /obj/machinery/sleeper,
@@ -8494,6 +8505,9 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/structure/platform{
+	dir = 8
+	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "Tv" = (
@@ -8520,6 +8534,12 @@
 	},
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
+"TB" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "TD" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
@@ -8554,10 +8574,6 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village/fairgrounds)
-"TI" = (
-/obj/item/storage/box/loot/mortar_pack,
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/village/fairgrounds)
 "TJ" = (
 /obj/structure/table/rusticwoodentable,
 /obj/item/reagent_containers/food/snacks/sliceable/cheesewheel{
@@ -8580,10 +8596,6 @@
 	},
 /area/oscar_outpost/outside/road)
 "TS" = (
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/structure/platform_decoration{
 	dir = 6
 	},
@@ -8649,13 +8661,6 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "Uf" = (
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/structure/platform_decoration{
-	dir = 8
-	},
 /obj/structure/platform_decoration{
 	dir = 10
 	},
@@ -8677,15 +8682,6 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
-"Uk" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform_decoration{
-	dir = 1
-	},
-/turf/open/liquid/lava,
-/area/oscar_outpost)
 "Uo" = (
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
@@ -8694,18 +8690,6 @@
 /obj/item/weapon/gun/launcher/rocket/oneuse,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
-"Up" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/structure/platform_decoration{
-	dir = 5
-	},
-/turf/open/liquid/lava,
-/area/oscar_outpost)
 "Ur" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -8744,28 +8728,6 @@
 /obj/structure/bed,
 /turf/open/floor/carpet,
 /area/oscar_outpost/village/east)
-"UB" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/liquid/lava,
-/area/oscar_outpost)
-"UC" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/platform_decoration{
-	dir = 6
-	},
-/obj/structure/platform_decoration{
-	dir = 9
-	},
-/turf/open/liquid/lava,
-/area/oscar_outpost)
 "UF" = (
 /obj/machinery/light{
 	dir = 1
@@ -8785,15 +8747,6 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
-"UJ" = (
-/obj/structure/platform_decoration{
-	dir = 1
-	},
-/obj/structure/platform_decoration{
-	dir = 4
-	},
-/turf/open/liquid/lava,
-/area/oscar_outpost)
 "UK" = (
 /obj/machinery/light{
 	dir = 4
@@ -8879,14 +8832,14 @@
 	},
 /area/oscar_outpost/outside/west)
 "Vl" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "Vm" = (
 /obj/effect/landmark/start/job/squadcorpsman,
+/obj/machinery/landinglight/lz1{
+	dir = 8
+	},
 /turf/open/floor/plating/asteroidfloor,
 /area/oscar_outpost)
 "Vn" = (
@@ -8951,18 +8904,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
-"Vz" = (
-/obj/structure/girder,
-/obj/structure/girder,
-/turf/open/floor/plating,
-/area/oscar_outpost)
-"VB" = (
-/obj/structure/platform{
-	dir = 8;
-	layer = 2.7
-	},
-/turf/open/liquid/lava,
-/area/oscar_outpost)
 "VC" = (
 /obj/structure/barricade/metal{
 	dir = 4
@@ -8974,6 +8915,9 @@
 	dir = 8
 	},
 /obj/effect/ai_node,
+/obj/structure/platform{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/oscar_outpost)
 "VG" = (
@@ -9038,11 +8982,11 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
 "Wc" = (
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
 /obj/structure/barricade/sandbags{
 	dir = 8;
 	name = "trench lining";
@@ -9057,7 +9001,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/floodlight/combat,
+/obj/machinery/floodlight,
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
 "Wg" = (
@@ -9181,6 +9125,18 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
+"WF" = (
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/platform{
+	dir = 9
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "WL" = (
 /obj/item/bedsheet/captain,
 /obj/item/stack/sheet/metal,
@@ -9226,6 +9182,18 @@
 /obj/item/bedsheet/clown,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/south)
+"WY" = (
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "WZ" = (
 /turf/closed/mineral/smooth,
 /area/oscar_outpost/outside/rock)
@@ -9254,6 +9222,23 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
+"Xc" = (
+/obj/structure/prop/mainship/gelida/miner,
+/obj/structure/prop/mainship/gelida/miner{
+	pixel_y = 16
+	},
+/obj/structure/prop/mainship/gelida/miner{
+	pixel_y = 32
+	},
+/obj/structure/prop/mainship/gelida/miner{
+	pixel_y = 48
+	},
+/obj/structure/prop/mainship/gelida/miner{
+	pixel_y = 64
+	},
+/obj/structure/platform,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "Xd" = (
 /obj/structure/sign/poster,
 /turf/closed/wall/mainship,
@@ -9455,6 +9440,12 @@
 /obj/structure/closet/secure_closet/medical3,
 /turf/open/floor/mainship/sterile/corner,
 /area/oscar_outpost/village/central)
+"XP" = (
+/obj/structure/platform{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost)
 "XQ" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/curtain/medical,
@@ -9489,6 +9480,18 @@
 "XY" = (
 /obj/structure/barricade/metal{
 	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
+"Yb" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/obj/structure/platform{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
@@ -9589,10 +9592,7 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
 "Yw" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
+/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "Yx" = (
@@ -9621,7 +9621,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/central)
 "YC" = (
-/obj/machinery/cloning_console/vats,
+/obj/machinery/computer/cloning_console/vats,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/central)
 "YD" = (
@@ -9677,10 +9677,6 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/road)
-"YK" = (
-/obj/machinery/landinglight/ds1/delaythree,
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "YN" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/random/weaponry/gun/shotgun,
@@ -9759,12 +9755,6 @@
 "YX" = (
 /obj/machinery/vending/marineFood,
 /turf/open/floor/tile/dark,
-/area/oscar_outpost)
-"Zf" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/liquid/lava,
 /area/oscar_outpost)
 "Zh" = (
 /turf/closed/wall,
@@ -9850,7 +9840,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "Zq" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -9877,9 +9867,6 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "Zs" = (
-/obj/structure/platform_decoration{
-	dir = 4
-	},
 /obj/structure/platform_decoration{
 	dir = 1
 	},
@@ -9933,7 +9920,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "ZC" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/plating/asteroidfloor,
 /area/oscar_outpost)
 "ZE" = (
@@ -11018,8 +11005,8 @@ zX
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11027,8 +11014,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11036,8 +11023,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11045,8 +11032,7 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
 XG
 XG
 XG
@@ -11054,8 +11040,9 @@ XG
 XG
 XG
 XG
-OH
-OP
+XG
+Wg
+hc
 OP
 OP
 CP
@@ -11270,17 +11257,8 @@ zX
 XV
 TV
 TV
-TV
-Pw
+Ij
 XG
-XG
-XG
-XG
-XV
-TV
-TV
-TV
-Pw
 XG
 XG
 XG
@@ -11288,8 +11266,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11297,8 +11275,17 @@ XG
 XV
 TV
 TV
+Ij
+XG
+XG
+XG
+XG
+XG
+XV
 TV
-Pw
+TV
+Ij
+XG
 XG
 XG
 XG
@@ -11522,8 +11509,8 @@ GD
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11531,8 +11518,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11540,8 +11527,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11549,8 +11536,7 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
 XG
 XG
 XG
@@ -11558,7 +11544,8 @@ XG
 XG
 XG
 XG
-OH
+XG
+Wg
 AS
 OP
 OP
@@ -11774,8 +11761,8 @@ GD
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11783,8 +11770,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11792,8 +11779,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11801,8 +11788,7 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
 XG
 XG
 XG
@@ -11810,7 +11796,8 @@ XG
 XG
 XG
 XG
-OH
+XG
+Wg
 wb
 zf
 Tx
@@ -12026,8 +12013,8 @@ GD
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12035,8 +12022,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12044,8 +12031,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12053,8 +12040,7 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
 XG
 XG
 XG
@@ -12062,7 +12048,8 @@ XG
 XG
 XG
 XG
-OH
+XG
+Wg
 wb
 zf
 Lx
@@ -12278,8 +12265,8 @@ GD
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12287,8 +12274,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12296,8 +12283,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12305,8 +12292,7 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
 XG
 XG
 XG
@@ -12314,7 +12300,8 @@ XG
 XG
 XG
 XG
-OH
+XG
+Wg
 wb
 zf
 Tx
@@ -12530,8 +12517,8 @@ FU
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12539,8 +12526,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12548,8 +12535,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12557,8 +12544,7 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
 XG
 XG
 XG
@@ -12566,7 +12552,8 @@ XG
 XG
 XG
 XG
-OH
+XG
+Wg
 wb
 zf
 Tx
@@ -12782,8 +12769,8 @@ FU
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12791,8 +12778,17 @@ XG
 XV
 TV
 TV
+Ij
+XG
+XG
+XG
+XG
+XG
+XV
 TV
-Pw
+nm
+XP
+XG
 XG
 XG
 XG
@@ -12800,17 +12796,7 @@ XG
 XV
 TV
 TV
-TV
-Pw
-XG
-XG
-XG
-XG
-XV
-TV
-TV
-TV
-Pw
+Ij
 XG
 XG
 XG
@@ -12818,7 +12804,8 @@ XG
 XG
 XG
 XG
-OH
+XG
+Wg
 wb
 zf
 Tx
@@ -13034,25 +13021,7 @@ FU
 XV
 TV
 TV
-TV
-Pw
-XG
-XG
-XG
-XG
-XV
-TV
-TV
-TV
-Pw
-XG
-XG
-XG
-XG
-XV
-TV
-XG
-XG
+Ij
 XG
 XG
 XG
@@ -13061,8 +13030,25 @@ XG
 XV
 TV
 TV
+Ij
+XG
+XG
+XG
+XG
+XG
+XV
+Ij
+XG
+XG
+XG
+XG
+XG
+XG
+XG
+XV
 TV
-Pw
+TV
+Ij
 XG
 XG
 XG
@@ -13070,7 +13056,8 @@ XG
 XG
 XG
 XG
-OH
+XG
+Wg
 mO
 zf
 Tx
@@ -13536,41 +13523,41 @@ hQ
 DB
 Zn
 Ng
-bk
+AM
 KQ
-Ns
-Zf
-Zf
-Ns
+XG
+XG
+XG
+XG
 TS
-OY
+ij
 Ng
-OY
+Lj
 KQ
-Ns
-Zf
-Zf
-Ns
+XG
+XG
+XG
+XG
 TS
-OY
+ij
 Ng
-OY
+Lj
 KQ
-Ns
-Zf
-Zf
-Ns
+XG
+XG
+XG
+XG
 TS
-OY
+ij
 Vu
 Er
 KQ
-Ns
-Zf
-Zf
-Ns
+XG
+XG
+XG
+XG
 TS
-XY
+rr
 XY
 qn
 CM
@@ -13789,38 +13776,38 @@ Yp
 Zn
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+fQ
+XG
+uB
+fQ
+XG
+uB
 bk
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+fQ
+XG
+uB
+fQ
+XG
+uB
 bk
 Vu
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+fQ
+XG
+uB
+fQ
+XG
+uB
 bk
 Vw
 XY
-TV
-NF
+fQ
+XG
 Eb
 Hc
-NF
+XG
 Eb
 bk
 XY
@@ -14293,38 +14280,38 @@ Yp
 mr
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 TV
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 TV
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 TV
 XY
-TV
-NF
+Ij
+XG
 Ex
-TV
-NF
+Ij
+XG
 Ex
 bk
 KZ
@@ -14545,38 +14532,38 @@ Yp
 Zn
 Ng
 Km
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 bk
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 bk
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 bk
 Pm
-TV
-NF
+Ij
+XG
 Ex
-TV
-NF
+Ij
+XG
 Ex
 bk
 XY
@@ -15049,38 +15036,38 @@ Em
 Zn
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Vw
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Vw
 XY
-TV
-NF
+Ij
+XG
 Ex
-TV
-NF
+Ij
+XG
 Ex
 AB
 Pm
@@ -15301,38 +15288,38 @@ Yp
 Zn
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 AB
 TV
 AB
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Vw
 XY
-TV
-NF
+Ij
+XG
 Ex
-TV
-NF
+Ij
+XG
 Ex
 bk
 XY
@@ -15361,25 +15348,25 @@ QY
 bk
 xe
 PG
-Ru
-Ru
-RF
-Bn
 Zq
-PG
-RF
-zq
 Zq
-Ru
-Ff
-zq
 Zq
-Ru
-RF
-zq
+fA
 Zq
-Ru
-RF
+Zq
+Zq
+Zq
+Zq
+Zq
+fA
+Zq
+Zq
+Zq
+Zq
+Zq
+Zq
+Zq
+Zq
 fA
 Zq
 PG
@@ -15805,37 +15792,37 @@ Ev
 Zn
 Ng
 bk
-TV
+Ij
 NG
-TV
-TV
+Dp
+Ij
 RK
-TV
+Dp
 bk
 jZ
 bk
-jZ
+wp
 NG
-TV
-TV
+Dp
+Ij
 RK
-TV
+Dp
 bk
 Vw
 bk
-TV
+Ij
 NG
-TV
-TV
+Dp
+Ij
 RK
-TV
+Dp
 bk
 jZ
 XY
-jZ
+wp
 NG
 Ex
-TV
+Ij
 RK
 Ex
 bk
@@ -15864,7 +15851,7 @@ jN
 bk
 AB
 xe
-RP
+ZC
 IV
 IV
 IV
@@ -15886,7 +15873,7 @@ IV
 IV
 wE
 IV
-jF
+Bh
 pP
 YO
 Li
@@ -16058,10 +16045,10 @@ Zn
 Ng
 AB
 bk
-Wm
+ro
 qx
 bk
-Wm
+ro
 bk
 AB
 Ng
@@ -16070,16 +16057,16 @@ qx
 Tu
 bk
 bk
-Wm
+ro
 qx
 AB
 Ng
 AB
 bk
-Wm
+ro
 bk
 bk
-UK
+Yb
 bk
 AB
 Ng
@@ -16116,7 +16103,7 @@ Ko
 bk
 bk
 xe
-nZ
+ZC
 IV
 IV
 IV
@@ -16138,7 +16125,7 @@ IV
 IV
 IV
 IV
-ch
+Bh
 pP
 YO
 Li
@@ -16368,7 +16355,7 @@ bk
 bk
 bk
 xe
-YK
+ZC
 IV
 IV
 IV
@@ -16872,7 +16859,7 @@ WZ
 bk
 bk
 xe
-RP
+ZC
 IV
 IV
 IV
@@ -16894,7 +16881,7 @@ IV
 IV
 IV
 wr
-jF
+Bh
 pP
 Ie
 Li
@@ -17124,7 +17111,7 @@ WZ
 bk
 bk
 xe
-nZ
+ZC
 IV
 IV
 IV
@@ -17146,7 +17133,7 @@ IV
 IV
 IV
 wr
-ch
+Bh
 pP
 YO
 Li
@@ -17376,7 +17363,7 @@ Nd
 bk
 AB
 xe
-YK
+ZC
 IV
 IV
 IV
@@ -17398,7 +17385,7 @@ IV
 IV
 IV
 IV
-va
+Bh
 pP
 Nv
 Li
@@ -17570,25 +17557,25 @@ Zn
 Ng
 bk
 bk
-OY
+ME
 PD
 bk
-OY
+ME
 bk
 bk
 Ng
 AB
 PD
-OY
+ME
 bk
 bk
-AB
+sx
 PD
 bk
 Ng
 bk
 bk
-AB
+sx
 bk
 bk
 rx
@@ -17597,10 +17584,10 @@ bk
 Ng
 KZ
 bk
-bk
+jn
 JS
 CQ
-bk
+jn
 XY
 bk
 AB
@@ -17821,37 +17808,37 @@ eg
 mr
 Ng
 bk
-TV
+Ij
 iU
-TV
-TV
+Dp
+Ij
 RM
-TV
+Dp
 bk
 Ng
 bk
-TV
+Ij
 iU
-TV
-TV
+Dp
+Ij
 RM
-jZ
+xR
 bk
 IF
 bk
-jZ
+wp
 iU
-TV
-TV
+Dp
+Ij
 iU
-TV
+Dp
 bk
 Ng
 XY
-TV
+Ij
 RM
 Ex
-TV
+Ij
 iU
 Ex
 AB
@@ -17880,7 +17867,7 @@ bk
 bk
 bk
 xe
-RP
+ZC
 IV
 IV
 IV
@@ -17902,7 +17889,7 @@ IV
 IV
 wE
 IV
-jF
+Bh
 pP
 YO
 Li
@@ -18080,7 +18067,7 @@ TV
 XG
 FG
 bk
-Vz
+Vw
 bk
 TV
 XG
@@ -18132,7 +18119,7 @@ AJ
 YO
 bk
 xe
-nZ
+ZC
 IV
 IV
 IV
@@ -18154,7 +18141,7 @@ IV
 IV
 IV
 IV
-ch
+Bh
 pP
 YO
 Li
@@ -18325,38 +18312,38 @@ Yp
 Zn
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 TV
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 TV
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Vw
 XY
-TV
-NF
+Ij
+XG
 Ex
-TV
-NF
+Ij
+XG
 Ex
 bk
 bk
@@ -18385,26 +18372,26 @@ Lo
 bk
 xe
 PG
-PG
-PG
-tZ
-qu
 He
-PG
-tZ
-BO
 He
-za
-Ms
-BO
+He
+pC
+He
+He
+He
+He
+He
+He
+pC
+He
 Vm
-za
-tZ
-BO
 He
-za
-PG
-fA
+He
+He
+He
+He
+He
+pC
 He
 PG
 pP
@@ -18577,38 +18564,38 @@ eg
 Zn
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 AB
 bk
 AB
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 bk
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 AB
 bk
 Ol
-TV
-NF
+Ij
+XG
 Ex
-TV
-NF
+Ij
+XG
 Ex
 bk
 bk
@@ -18907,7 +18894,7 @@ bk
 bk
 bk
 bk
-BQ
+YO
 YO
 YO
 YO
@@ -19081,38 +19068,38 @@ BU
 BU
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Vw
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 TV
 XY
-TV
-NF
+Ij
+XG
 Ex
-TV
-NF
+Ij
+XG
 Ex
 bk
 bk
@@ -19333,38 +19320,38 @@ Gy
 FU
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 TV
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Ng
 XY
-TV
-NF
+Ij
+XG
 Ex
-TV
-NF
+Ij
+XG
 Ex
 bk
 bk
@@ -19837,37 +19824,37 @@ Gy
 FU
 Ng
 bk
-TV
+Ij
 NG
-TV
-TV
+Dp
+Ij
 NG
-TV
+Dp
 bk
 TV
 bk
-TV
+Ij
 NG
-TV
-TV
+Dp
+Ij
 NG
-TV
+Dp
 bk
 bk
 bk
-TV
+Ij
 NG
-TV
-TV
+Dp
+Ij
 NG
-TV
+Dp
 bk
 Vw
 XY
-TV
+Ij
 NG
 Ex
-TV
+Ij
 NG
 Ex
 bk
@@ -20090,37 +20077,37 @@ FU
 Ng
 AB
 bk
-Wm
+uc
 qx
 bk
-Wm
+uc
 bk
 AB
 Ng
 bk
 qx
-Wm
+uc
 bk
 bk
-AB
+wZ
 qx
 bk
 Yl
 bk
 bk
-bk
+qb
 AB
 bk
-Wm
+uc
 qx
 AB
 Vw
 Tk
 se
-nx
+yv
 gC
 Ye
-nx
+yv
 gC
 kE
 bk
@@ -20342,11 +20329,11 @@ FU
 Ng
 Ng
 uh
-Ng
-Ng
-Ng
-Ng
-Ng
+rb
+rb
+rb
+rb
+rb
 Gp
 Ng
 Ng
@@ -20369,11 +20356,11 @@ Ng
 Ng
 Ng
 Gp
-Ng
-Ng
-Ng
-Ng
-Ng
+rb
+rb
+rb
+rb
+rb
 Gp
 Gp
 Ng
@@ -20593,13 +20580,13 @@ Gy
 FU
 Vp
 bk
-bk
+AM
 NH
-PJ
-PJ
+XG
+XG
 RN
 Uf
-bk
+eq
 bk
 bk
 PD
@@ -20622,11 +20609,11 @@ bk
 XY
 gu
 vv
-PJ
+XG
 RN
-PJ
+XG
 RO
-XY
+rr
 bk
 Ng
 WZ
@@ -20846,13 +20833,13 @@ FU
 Vp
 bk
 bk
-bk
-bk
-bk
-bk
-NF
-bk
-bk
+TB
+TB
+TB
+fd
+XG
+HV
+jn
 bk
 bk
 bk
@@ -20871,10 +20858,10 @@ bk
 bk
 bk
 bk
-Tk
+WY
 gm
-NF
-JS
+XG
+WF
 Fg
 Fg
 Fg
@@ -21101,10 +21088,10 @@ bk
 NW
 NW
 NW
-Sm
-Uk
-UB
-UB
+Xc
+XG
+XG
+XG
 Wg
 NW
 NW
@@ -21122,9 +21109,9 @@ bk
 NW
 NW
 NW
-tx
-Up
-UB
+oc
+vv
+XG
 Zs
 Wg
 NW
@@ -21353,8 +21340,8 @@ bk
 NW
 bk
 bk
-Sm
-Pw
+Xc
+XG
 XG
 XG
 Wg
@@ -21374,8 +21361,8 @@ bk
 NW
 bk
 bk
-tx
-Pw
+oc
+XG
 XG
 XG
 Wg
@@ -21605,10 +21592,10 @@ bk
 NW
 NW
 NW
-Sm
+Xc
 KQ
-Ns
-Zf
+XG
+XG
 Wg
 NW
 NW
@@ -21626,10 +21613,10 @@ bk
 NW
 NW
 NW
-tx
+oc
 KQ
-xi
-Zf
+XG
+XG
 Wg
 NW
 NW
@@ -21858,9 +21845,9 @@ bk
 Fp
 bk
 bk
-bk
-UC
-bk
+fd
+RK
+jm
 bk
 bk
 Fp
@@ -21879,9 +21866,9 @@ bk
 Fp
 bk
 bk
-bk
-nH
-JS
+fd
+NG
+WF
 bk
 bk
 Fp
@@ -22111,7 +22098,7 @@ bk
 bk
 Oi
 bk
-bk
+nf
 bk
 bk
 bk
@@ -22132,7 +22119,7 @@ bk
 bk
 bk
 bk
-bk
+nf
 XY
 bk
 bk
@@ -22362,9 +22349,9 @@ bk
 Fp
 bk
 bk
-bk
+yM
 iU
-bk
+HV
 bk
 bk
 Fp
@@ -22383,9 +22370,9 @@ bk
 Fp
 bk
 bk
-bk
+yM
 iU
-Tk
+fn
 bk
 bk
 Fp
@@ -22613,10 +22600,10 @@ bk
 NW
 NW
 NW
-Sm
-Up
-UJ
-VB
+Xc
+vv
+XG
+XG
 Wp
 NW
 NW
@@ -22634,10 +22621,10 @@ bk
 NW
 NW
 NW
-tx
-Up
-UJ
-VB
+oc
+vv
+XG
+XG
 Wg
 NW
 NW
@@ -22865,8 +22852,8 @@ bk
 NW
 bk
 bk
-Sm
-Pw
+Xc
+XG
 XG
 XG
 Wg
@@ -22886,8 +22873,8 @@ bk
 NW
 bk
 bk
-tx
-Pw
+oc
+XG
 XG
 XG
 Wg
@@ -23117,10 +23104,10 @@ bk
 NW
 NW
 NW
-Sm
+Xc
 KQ
-Zf
-Zf
+XG
+XG
 Wg
 NW
 NW
@@ -23138,10 +23125,10 @@ bk
 NW
 NW
 NW
-tx
+oc
 KQ
-Zf
-Zf
+XG
+XG
 Wg
 NW
 NW
@@ -23370,16 +23357,9 @@ bk
 bk
 bk
 bk
-bk
-bk
-bk
-bk
-bk
-bk
-bk
-bk
-AB
-bk
+TB
+TB
+TB
 bk
 bk
 bk
@@ -23392,8 +23372,15 @@ bk
 bk
 bk
 bk
+AB
 bk
 bk
+bk
+bk
+bk
+TB
+TB
+TB
 bk
 bk
 bk
@@ -24618,7 +24605,7 @@ ZL
 DU
 DU
 DU
-xx
+DU
 DU
 DU
 DU
@@ -35724,7 +35711,7 @@ DU
 GY
 Uh
 ZG
-uf
+Pa
 ap
 YE
 Uh
@@ -41026,7 +41013,7 @@ lg
 Ta
 Ta
 Se
-TI
+Xj
 Gq
 Ta
 Ta
@@ -42790,7 +42777,7 @@ Ta
 Ta
 Ta
 Se
-TI
+Xj
 Gq
 Ta
 Ta

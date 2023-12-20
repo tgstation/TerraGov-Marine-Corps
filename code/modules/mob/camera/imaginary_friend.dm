@@ -45,6 +45,8 @@
 /mob/camera/imaginary_friend/Initialize(mapload, mob/owner)
 	. = ..()
 
+	if(!owner)
+		return INITIALIZE_HINT_QDEL
 	src.owner = owner
 	copy_known_languages_from(owner, TRUE)
 
@@ -85,7 +87,8 @@
 
 
 /mob/camera/imaginary_friend/Destroy()
-	owner.client?.images.Remove(human_image)
+	if(owner?.client)
+		owner.client?.images.Remove(human_image)
 
 	client?.images.Remove(human_image)
 
@@ -135,8 +138,6 @@
 	med_squad_mobhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 	H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 	med_squad_mobhud ? H.add_hud_to(src) : H.remove_hud_from(src)
-	H = GLOB.huds[DATA_HUD_SQUAD_REBEL]
-	med_squad_mobhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 	H = GLOB.huds[DATA_HUD_SQUAD_SOM]
 	med_squad_mobhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 	to_chat(src, span_notice("You have [med_squad_mobhud ? "enabled" : "disabled"] the Human Status HUD."))
@@ -148,6 +149,9 @@
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, "You cannot send IC messages (muted).")
+			return
+		if(is_banned_from(ckey, "IC"))
+			to_chat(src, span_warning("You are banned from IC chat."))
 			return
 
 		if(client.handle_spam_prevention(message, MUTE_IC))

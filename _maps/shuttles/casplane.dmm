@@ -94,6 +94,13 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
+"uS" = (
+/obj/structure/caspart/nineteen,
+/obj/structure/caspart/nineteen{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
 "vr" = (
 /obj/structure/caspart/fourteen{
 	dir = 4
@@ -411,7 +418,7 @@ hf
 Xu
 SA
 Qb
-OM
+uS
 "}
 (9,1,1) = {"
 Zj

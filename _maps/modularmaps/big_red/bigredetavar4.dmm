@@ -76,12 +76,12 @@
 /area/bigredv2/outside/general_offices)
 "fW" = (
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "gl" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "gm" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
@@ -181,7 +181,7 @@
 "lf" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "lo" = (
 /obj/machinery/washing_machine,
 /obj/item/clothing/under/darkred,
@@ -190,7 +190,7 @@
 "lC" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "lN" = (
 /obj/structure/barricade/wooden{
 	dir = 8
@@ -615,7 +615,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "FO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -711,7 +711,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "Kz" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
 "KI" = (
@@ -783,7 +783,7 @@
 "ND" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/machinery/light{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -796,9 +796,9 @@
 /area/bigredv2/outside/general_offices)
 "Oj" = (
 /obj/machinery/door/airlock/mainship/generic{
-	locked = 1;
 	name = "\improper Dormitories Bedroom"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -811,7 +811,7 @@
 /area/bigredv2/outside/general_offices)
 "OD" = (
 /turf/open/floor/plating,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "OG" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -889,7 +889,7 @@
 "Sj" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "Sl" = (
 /obj/structure/bed/fancy,
 /obj/effect/landmark/weed_node,
@@ -932,7 +932,7 @@
 /area/bigredv2/outside/general_offices)
 "TI" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "TN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -986,7 +986,7 @@
 /area/bigredv2/outside/general_offices)
 "VW" = (
 /obj/machinery/light{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -1037,7 +1037,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/ne)
 "XC" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)

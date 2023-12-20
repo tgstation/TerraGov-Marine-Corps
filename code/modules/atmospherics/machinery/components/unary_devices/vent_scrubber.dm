@@ -14,8 +14,6 @@
 	level = 1
 	layer = ATMOS_DEVICE_LAYER
 	flags_atom = SHUTTLE_IMMUNE
-
-	var/id_tag = null
 	var/scrubbing = SCRUBBING //0 = siphoning, 1 = scrubbing
 
 	var/filter_types = list()///datum/gas/carbon_dioxide)
@@ -24,12 +22,6 @@
 	var/list/turf/adjacent_turfs = list()
 
 	pipe_state = "scrubber"
-
-/obj/machinery/atmospherics/components/unary/vent_scrubber/New()
-	. = ..()
-	if(!id_tag)
-		id_tag = assign_uid_vents()
-
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/auto_use_power()
 	if(!on || welded || !is_operational() || !powered(power_channel))
@@ -82,7 +74,7 @@
 			return FALSE
 		if(!(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)))
 			return FALSE
-		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, src, BUSY_ICON_BUILD))
+		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_VLOW_MOD, NONE, src, BUSY_ICON_BUILD))
 			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Vents require much less charge
 			welded = FALSE
 			update_icon()
@@ -97,7 +89,7 @@
 			span_notice("You start welding [src] with [WT]."))
 			add_overlay(GLOB.welding_sparks)
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-			if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) && WT.remove_fuel(1, user))
+			if(do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) && WT.remove_fuel(1, user))
 				playsound(get_turf(src), 'sound/items/welder2.ogg', 25, 1)
 				if(!welded)
 					user.visible_message(span_notice("[user] welds [src] shut."), \
@@ -138,7 +130,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return
-	if(!welded || !(do_after(X, 2 SECONDS, FALSE, src, BUSY_ICON_HOSTILE)))
+	if(!welded || !(do_after(X, 2 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE)))
 		return
 	X.visible_message("[X] furiously claws at [src]!", "We manage to clear away the stuff blocking the scrubber.", "You hear loud scraping noises.")
 	welded = FALSE
@@ -162,6 +154,14 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on
 	on = TRUE
 	icon_state = "scrub_map_on-2"
+
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/Initialize(mapload)
+	. = ..()
+	GLOB.atmospumps += src
+
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/Destroy()
+	. = ..()
+	GLOB.atmospumps -= src
 
 #undef SIPHONING
 #undef SCRUBBING

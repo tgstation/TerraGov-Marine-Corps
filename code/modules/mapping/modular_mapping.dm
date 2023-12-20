@@ -401,76 +401,6 @@
 	template_width = 18
 	template_height = 9
 
-/datum/map_template/modular/bigred/lz1one
-	name = "Big red landing zone one"
-	mappath = "_maps/modularmaps/big_red/bigredlzvar1.dmm"
-	modular_id = "brlz1"
-	template_width = 85
-	template_height = 38
-
-/datum/map_template/modular/bigred/lz1two
-	name = "Big red landing zone one"
-	mappath = "_maps/modularmaps/big_red/bigredlzvar2.dmm"
-	modular_id = "brlz1"
-	template_width = 85
-	template_height = 38
-
-/datum/map_template/modular/bigred/lz1three
-	name = "Big red landing zone one"
-	mappath = "_maps/modularmaps/big_red/bigredlzvar3.dmm"
-	modular_id = "brlz1"
-	template_width = 85
-	template_height = 38
-
-/datum/map_template/modular/bigred/lz1four
-	name = "Big red landing zone one"
-	mappath = "_maps/modularmaps/big_red/bigredlzvar4.dmm"
-	modular_id = "brlz1"
-	template_width = 85
-	template_height = 38
-
-/datum/map_template/modular/bigred/lz1five
-	name = "Big red landing zone one"
-	mappath = "_maps/modularmaps/big_red/bigredlzvar5.dmm"
-	modular_id = "brlz1"
-	template_width = 85
-	template_height = 38
-
-/datum/map_template/modular/bigred/lz1six
-	name = "Big red landing zone one"
-	mappath = "_maps/modularmaps/big_red/bigredlzvar6.dmm"
-	modular_id = "brlz1"
-	template_width = 85
-	template_height = 38
-
-/datum/map_template/modular/bigred/lz1seven
-	name = "Big red landing zone one"
-	mappath = "_maps/modularmaps/big_red/bigredlzvar7.dmm"
-	modular_id = "brlz1"
-	template_width = 85
-	template_height = 38
-
-/datum/map_template/modular/bigred/lz1eight
-	name = "Big red landing zone one"
-	mappath = "_maps/modularmaps/big_red/bigredlzvar8.dmm"
-	modular_id = "brlz1"
-	template_width = 85
-	template_height = 38
-
-/datum/map_template/modular/bigred/lz2one
-	name = "Big red landing zone two"
-	mappath = "_maps/modularmaps/big_red/bigredlz2var1.dmm"
-	modular_id = "brlz2"
-	template_width = 43
-	template_height = 38
-
-/datum/map_template/modular/bigred/lz2two
-	name = "Big red landing zone two"
-	mappath = "_maps/modularmaps/big_red/bigredlz2var2.dmm"
-	modular_id = "brlz2"
-	template_width = 43
-	template_height = 38
-
 /datum/map_template/modular/bigred/medbayone
 	name = "Big red medbay"
 	mappath = "_maps/modularmaps/big_red/bigredmedbayvar1.dmm"
@@ -668,7 +598,7 @@
 	template_height = 24
 
 /datum/map_template/modular/bigred/medbaypassageone
-	name = "Big red nedbay passage"
+	name = "Big red medbaypassage"
 	mappath = "_maps/modularmaps/big_red/bigredmedbaypassagevar1.dmm"
 	modular_id = "brmedbaypassage"
 	template_width = 6
@@ -1132,14 +1062,14 @@
 	mappath = "_maps/modularmaps/big_red/barracks.dmm"
 	modular_id = "broperations"
 	template_width = 29
-	template_height = 25
+	template_height = 24
 
 /datum/map_template/modular/bigred/operations
 	name = "Big red administration"
 	mappath = "_maps/modularmaps/big_red/operation.dmm"
 	modular_id = "broperations"
 	template_width = 29
-	template_height = 25
+	template_height = 24
 
 /datum/map_template/modular/oscaroutposttopone
 	name = "Oscar outpost map top half"

@@ -55,7 +55,6 @@
 	parent.AddComponent(/datum/component/suit_autodoc, 4 MINUTES, tricord, tricord, tricord, tricord, tramadol, 0.5)
 	parent.AddElement(/datum/element/limb_support, supported_limbs)
 
-
 /obj/item/armor_module/module/valkyrie_autodoc/on_detach(obj/item/detaching_from, mob/user)
 	qdel(parent.GetComponent(/datum/component/suit_autodoc))
 	parent.RemoveElement(/datum/element/limb_support, supported_limbs)
@@ -75,10 +74,10 @@
 /obj/item/armor_module/module/fire_proof
 	name = "\improper Surt Pyrotechnical Insulation System"
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
-	desc = "Designed for mounting on modular armor. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniacs' first stop to survival. Will impact mobility."
+	desc = "Designed for mounting on modular armor. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniac's first stop to survival. Will impact mobility."
 	icon_state = "mod_fire"
 	item_state = "mod_fire_a"
-	soft_armor = list(FIRE = 35)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 35, ACID = 0)
 	slowdown = 0.4
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_fire_xn")
@@ -98,6 +97,17 @@
 	desc = "Designed for mounting on modular SOM armor. Provides excellent resistance to fire and prevents combustion. As it is not a sealed system, it does not completely protect the user from the heat of fire. Will impact mobility."
 	icon_state = "mod_fire_som"
 	item_state = "mod_fire_som_a"
+
+/obj/item/armor_module/module/fire_proof_helmet
+
+	name = "\improper Surt Pyrotechnical Insulation Helmet System"
+	desc = "Designed for mounting on a modular helmet. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniac's first stop to survival."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "mod_fire_head"
+	item_state = "mod_fire_head_a"
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 35, ACID = 0)
+	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "mod_fire_head_xn")
 
 /**
  * Extra armor module
@@ -159,7 +169,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_biohazard"
 	item_state = "mod_biohazard_a"
-	soft_armor = list("bio" = 40, ACID = 30)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 40, FIRE = 0, ACID = 30)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_biohazard_xn")
@@ -187,7 +197,7 @@
 	desc = "Designed for mounting on modular armor. This older model provides minor resistance to acid, biological, and radiological attacks. Pairing this with a Mimir helmet module and mask will make the user impervious to xeno gas clouds. Will impact mobility."
 	icon_state = "mod_biohazard"
 	item_state = "mod_biohazard_a"
-	soft_armor = list("bio" = 15, ACID = 15)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, FIRE = 0, ACID = 15)
 	slowdown = 0.2
 
 //SOM version
@@ -196,14 +206,14 @@
 	desc = "Designed for mounting on modular SOM armor. This module appears to be designed to protect the user from the effects of radiological attacks, although also provides improved resistance against other environmental threats such as acid and gas. Pairing this with a Mithridatius helmet module and mask will make the user impervious to gas clouds. Will impact mobility."
 	icon_state = "mithridatius"
 	item_state = "mithridatius_a"
-	soft_armor = list(BIO = 25, ACID = 20)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 25, FIRE = 0, ACID = 20)
 
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet
 	name = "Mark 2 Mimir Environmental Helmet System"
 	desc = "Designed for mounting on a modular helmet. This newer model provides great resistance to acid, biological, and even radiological attacks. Pairing this with a Mimir suit module and mask will make the user impervious to xeno gas clouds."
 	icon_state = "mimir_head"
 	item_state = "mimir_head_a"
-	soft_armor = list("bio" = 40, ACID = 30)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 40, FIRE = 0, ACID = 30)
 	slowdown = 0
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "mimir_head_xn")
@@ -211,7 +221,7 @@
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1 //gas protection
 	name = "Mark 1 Mimir Environmental Helmet System"
 	desc = "Designed for mounting on a modular helmet. This older model provides minor resistance to acid and biological attacks. Pairing this with a Mimir suit module and mask will make the user impervious to xeno gas clouds."
-	soft_armor = list("bio" = 15, ACID = 15)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, FIRE = 0, ACID = 15)
 
 //Explosive defense armor
 /obj/item/armor_module/module/hlin_explosive_armor
@@ -220,7 +230,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_boomimmune"
 	item_state = "mod_boomimmune_a"
-	soft_armor = list("bomb" = 40)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 40, BIO = 0, FIRE = 0, ACID = 0)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_bombimmune_xn")
@@ -321,11 +331,11 @@
 	. = ..()
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_equip))
 	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, PROC_REF(handle_unequip))
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(parent_examine))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(parent_examine))
 
 
 /obj/item/armor_module/module/eshield/on_detach(obj/item/detaching_from, mob/user)
-	UnregisterSignal(parent, list(COMSIG_ITEM_UNEQUIPPED, COMSIG_ITEM_EQUIPPED, COMSIG_PARENT_EXAMINE))
+	UnregisterSignal(parent, list(COMSIG_ITEM_UNEQUIPPED, COMSIG_ITEM_EQUIPPED, COMSIG_ATOM_EXAMINE))
 	return ..()
 
 ///Called to give extra info on parent examine.
@@ -377,11 +387,11 @@
 		shield_health = shield_left
 		switch(shield_left / max_shield_health)
 			if(0 to 0.33)
-				affected.add_filter("eshield", 1, outline_filter(1, shield_color_low))
+				affected.add_filter("eshield", 2, outline_filter(1, shield_color_low))
 			if(0.33 to 0.66)
-				affected.add_filter("eshield", 1, outline_filter(1, shield_color_mid))
+				affected.add_filter("eshield", 2, outline_filter(1, shield_color_mid))
 			if(0.66 to 1)
-				affected.add_filter("eshield", 1, outline_filter(1, shield_color_full))
+				affected.add_filter("eshield", 2, outline_filter(1, shield_color_full))
 		spark_system.start()
 	else
 		shield_health = 0
@@ -420,7 +430,7 @@
 		return
 	var/mob/living/affected = parent.loc
 	affected.remove_filter("eshield")
-	affected.add_filter("eshield", 1, outline_filter(1, new_color))
+	affected.add_filter("eshield", 2, outline_filter(1, new_color))
 
 //original Martian design, donutsteel
 /obj/item/armor_module/module/eshield/som
@@ -599,9 +609,13 @@
 	. = ..()
 	parent.AddComponent(/datum/component/blur_protection)
 
+#define COMMS_OFF 0
+#define COMMS_SETTING 1
+#define COMMS_SETUP 2
+
 /obj/item/armor_module/module/antenna
 	name = "Antenna helmet module"
-	desc = "Designed for mounting on a modular Helmet. This module is able to provide a readout of the user's coordinates and connect to the shipside supply console."
+	desc = "Designed for mounting on a modular Helmet. This module is able to shield against the interference of caves, allowing for normal messaging in shallow caves, and only minor interference when deep."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "antenna_head"
 	item_state = "antenna_head_a"
@@ -609,24 +623,54 @@
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	prefered_slot = SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
-	/// Reference to the datum used by the supply drop console
-	var/datum/supply_beacon/beacon_datum
+	///If the comms system is configured.
+	var/comms_setup = FALSE
+	///ID of the startup timer
+	var/startup_timer_id
+
+/obj/item/armor_module/module/antenna/handle_actions(datum/source, mob/user, slot)
+	if(slot != prefered_slot)
+		UnregisterSignal(user, COMSIG_CAVE_INTERFERENCE_CHECK)
+		comms_setup = COMMS_OFF
+		if(startup_timer_id)
+			deltimer(startup_timer_id)
+			startup_timer_id = null
+	else
+		RegisterSignal(user, COMSIG_CAVE_INTERFERENCE_CHECK, PROC_REF(on_interference_check))
+		start_sync(user)
+	return ..()
+
+///Handles interacting with caves checking for if anything is reducing (or increasing) interference.
+/obj/item/armor_module/module/antenna/proc/on_interference_check(source, list/inplace_interference)
+	SIGNAL_HANDLER
+	if(comms_setup != COMMS_SETUP)
+		return
+	inplace_interference[1] = max(0, inplace_interference[1] - 1)
 
 /obj/item/armor_module/module/antenna/activate(mob/living/user)
-	var/turf/location = get_turf(src)
-	if(beacon_datum)
-		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
-		QDEL_NULL(beacon_datum)
-		user.show_message(span_warning("The [src] beeps and states, \"Your last position is no longer accessible by the supply console"), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
+	if(comms_setup == COMMS_SETTING)
+		to_chat(user, span_notice("Your Antenna module is still in the process of starting up!"))
 		return
-	if(!is_ground_level(user.z))
-		to_chat(user, span_warning("You have to be on the planet to use this or it won't transmit."))
-		return FALSE
-	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)
-	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, PROC_REF(clean_beacon_datum))
-	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
+	if(comms_setup == COMMS_SETUP)
+		var/turf/location = get_turf(user)
+		user.show_message(span_notice("The [src] beeps and states, \"Uplink data: LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
+		return
 
-/// Signal handler to nullify beacon datum
-/obj/item/armor_module/module/antenna/proc/clean_beacon_datum()
-	SIGNAL_HANDLER
-	beacon_datum = null
+///Begins the startup sequence.
+/obj/item/armor_module/module/antenna/proc/start_sync(mob/living/user)
+	if(comms_setup != COMMS_OFF) //Guh?
+		return
+	to_chat(user, span_notice("Setting up Antenna communication relay. Please wait."))
+	comms_setup = COMMS_SETTING
+	startup_timer_id = addtimer(CALLBACK(src, PROC_REF(finish_startup), user), ANTENNA_SYNCING_TIME, TIMER_STOPPABLE)
+
+///Finishes startup, rendering the module effective.
+/obj/item/armor_module/module/antenna/proc/finish_startup(mob/living/user)
+	comms_setup = COMMS_SETUP
+	user.show_message(span_notice("[src] beeps twice and states: \"Antenna configuration complete. Relay system active.\""), EMOTE_AUDIBLE, span_notice("[src] vibrates twice."))
+	startup_timer_id = null
+
+
+#undef COMMS_OFF
+#undef COMMS_SETTING
+#undef COMMS_SETUP

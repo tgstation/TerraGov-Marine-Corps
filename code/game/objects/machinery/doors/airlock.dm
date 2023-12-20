@@ -33,7 +33,8 @@
 	var/hasShocked = 0 //Prevents multiple shocks from happening
 	var/secured_wires = 0	//for mapping use
 	var/no_panel = 0 //the airlock has no panel that can be screwdrivered open
-	var/emergency = FALSE
+	///used to determine various abandoned door effects
+	var/abandoned = FALSE
 	smoothing_groups = list(SMOOTH_GROUP_AIRLOCK)
 
 /obj/machinery/door/airlock/bumpopen(mob/living/user) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
@@ -56,6 +57,32 @@
 			return
 	return ..(user)
 
+/obj/machinery/door/airlock/Initialize()
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/door/airlock/LateInitialize()
+	. = ..()
+	if(!abandoned)
+		return
+	var/outcome = rand(1,40)
+	switch(outcome)
+		if(1 to 9)
+			var/turf/here = get_turf(src)
+			for(var/turf/closed/T in range(2, src))
+				here.PlaceOnTop(T.type)
+				return
+			here.PlaceOnTop(/turf/closed/wall)
+			return
+		if(9 to 11)
+			lights = FALSE
+			locked = TRUE
+		if(12 to 15)
+			locked = TRUE
+		if(16 to 23)
+			welded = TRUE
+		if(24 to 30)
+			machine_stat ^= PANEL_OPEN
 
 /obj/machinery/door/airlock/proc/isElectrified()
 	if(secondsElectrified != MACHINE_NOT_ELECTRIFIED)
@@ -159,6 +186,8 @@
 /obj/machinery/door/airlock/update_icon()
 	if(overlays) overlays.Cut()
 	if(density)
+		if(emergency && hasPower())
+			overlays += image(icon, "emergency_access_on")
 		if(locked && lights)
 			icon_state = "door_locked"
 		else
@@ -226,7 +255,7 @@
 	if(hasPower())
 		X.visible_message(span_warning("\The [X] digs into \the [src] and begins to pry it open."), \
 		span_warning("We dig into \the [src] and begin to pry it open."), null, 5)
-		if(!do_after(X, 4 SECONDS, FALSE, src, BUSY_ICON_HOSTILE) && !X.lying_angle)
+		if(!do_after(X, 4 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE) && !X.lying_angle)
 			return FALSE
 	if(locked)
 		to_chat(X, span_warning("\The [src] is bolted down tight."))
@@ -321,7 +350,7 @@
 			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, PROC_REF(weld_checks))))
 				return
 
-			repair_damage(max_integrity)
+			repair_damage(max_integrity, user)
 			DISABLE_BITFIELD(machine_stat, BROKEN)
 			user.visible_message(span_notice("[user.name] has repaired [src]."), \
 								span_notice("You finish repairing the airlock."))
@@ -345,7 +374,7 @@
 			span_notice("You fumble around figuring out how to deconstruct [src]."))
 
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		if(width > 1)
@@ -355,7 +384,7 @@
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
 
-		if(!do_after(user,40, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, span_notice("You removed the airlock electronics!"))
@@ -528,7 +557,7 @@
 				message = "unshocked"
 			else
 				message = "temp shocked for [secondsElectrified] seconds"
-		LAZYADD(shockedby, text("\[[time_stamp()]\] [key_name(user)] - ([uppertext(message)])"))
+		LAZYADD(shockedby, "\[[time_stamp()]\] [key_name(user)] - ([uppertext(message)])")
 		log_combat(user, src, message)
 
 

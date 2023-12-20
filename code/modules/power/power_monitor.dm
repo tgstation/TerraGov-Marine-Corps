@@ -4,8 +4,7 @@
 	name = "power monitoring computer"
 	desc = "It monitors power levels across the station."
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "power"
-
+	icon_state = "computer"
 	//computer stuff
 	density = TRUE
 	anchored = TRUE
@@ -13,6 +12,11 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 300
 	active_power_usage = 300
+	light_range = 1
+	light_power = 0.5
+	light_color = LIGHT_COLOR_EMISSIVE_YELLOW
+	///screen overlay icon
+	var/screen_overlay = "power"
 
 /obj/machinery/power/monitor/core
 	name = "Core Power Monitoring"
@@ -28,6 +32,7 @@
 		attached = locate() in T
 	if(attached)
 		powernet = attached.powernet
+	update_icon()
 
 
 /obj/machinery/power/monitor/interact(mob/user)
@@ -36,8 +41,8 @@
 		return
 
 	var/t
-	t += "<BR><HR><A href='?src=\ref[src];update=1'>Refresh</A>"
-	t += "<BR><HR><A href='?src=\ref[src];close=1'>Close</A>"
+	t += "<BR><HR><A href='?src=[text_ref(src)];update=1'>Refresh</A>"
+	t += "<BR><HR><A href='?src=[text_ref(src)];close=1'>Close</A>"
 
 	if(!powernet)
 		t += span_warning(" No connection")
@@ -74,16 +79,28 @@
 	popup.open(FALSE)
 	onclose(user, "powcomp")
 
-
 /obj/machinery/power/monitor/update_icon()
-	if(machine_stat & BROKEN)
-		icon_state = "broken"
+	. = ..()
+	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
+		set_light(0)
 	else
-		if(machine_stat & NOPOWER)
-			icon_state = "power0"
-		else
-			icon_state = initial(icon_state)
+		set_light(initial(light_range))
 
+/obj/machinery/power/monitor/update_icon_state()
+	if(machine_stat & (BROKEN|DISABLED))
+		icon_state = "[initial(icon_state)]_broken"
+	else
+		icon_state = initial(icon_state)
+
+
+/obj/machinery/power/monitor/update_overlays()
+	. = ..()
+	if(!screen_overlay)
+		return
+	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
+		return
+	. += emissive_appearance(icon, screen_overlay, alpha = src.alpha)
+	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
 
 //copied from computer.dm
 /obj/machinery/power/monitor/attackby(obj/item/I, mob/user, params)
@@ -91,7 +108,7 @@
 
 	if(isscrewdriver(I) && circuit)
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		var/obj/structure/computerframe/A = new(loc)

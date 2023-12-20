@@ -87,9 +87,6 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
-"Bh" = (
-/turf/closed/mineral/smooth,
-/area/lv624/ground/caves/central1)
 "BU" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/silver{
@@ -194,10 +191,10 @@
 /area/lv624/ground/caves/rock)
 "UY" = (
 /turf/open/floor,
-/area/lv624/ground/caves/central1)
+/area/lv624/ground/caves/central1/garbledradio)
 "WQ" = (
 /turf/closed/wall/r_wall,
-/area/lv624/ground/caves/central1)
+/area/lv624/ground/caves/central1/garbledradio)
 "Yi" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -3005,7 +3002,7 @@ KW
 KW
 KW
 Za
-Bh
+KW
 UY
 UY
 UY

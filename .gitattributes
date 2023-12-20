@@ -1,50 +1,37 @@
-# merger hooks, run tools/hooks/install.bat or install.sh to set up
-*.dmm merge=dmm
-*.dmi merge=dmi
-
-
 # force line endings
 * text eol=lf
 
-# dm stuff
+# text
+*.bat text eol=lf
+*.cjs text eol=lf
 *.dm text eol=lf
-*.dmm text eol=lf
 *.dme text eol=lf
 *.dmf text eol=lf
-
-*.json text eol=lf
-*.txt text eol=lf
-
-# tools
-*.sh text eol=lf
-*.bat text eol=lf
-*.yml text eol=lf
-*.toml text eol=lf
-*.py text eol=lf
-*.md text eol=lf
-
-# tgui
 *.js text eol=lf
-*.scss text eol=lf
-*.cjs text eol=lf
+*.json text eol=lf
+*.md text eol=lf
 *.ps1 text eol=lf
+*.py text eol=lf
+*.scss text eol=lf
+*.sh text eol=lf
+*.toml text eol=lf
+*.txt text eol=lf
+*.yml text eol=lf
 
-# definitely don't convert these
-*.dmi binary
-
-*.ogg binary
-*.wav binary
-
-*.png binary
-*.jpg binary
-*.jpeg binary
-
+# binary
+*.dll binary
 *.eot binary
-*.woff binary
+*.exe binary
+*.jpeg binary
+*.jpg binary
+*.ogg binary
+*.pdb binary
+*.png binary
 *.ttf binary
+*.wav binary
+*.woff binary
 *.woff2 binary
 
-*.dll binary
-*.pdb binary
-
-*.exe binary
+# merger hooks, run tools/hooks/install.bat or install.sh to set up
+*.dmm text eol=lf merge=dmm
+*.dmi binary merge=dmi

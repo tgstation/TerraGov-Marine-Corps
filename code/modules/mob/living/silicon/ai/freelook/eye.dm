@@ -16,7 +16,7 @@
 	var/ai_detector_color = "#FF0000"
 
 
-/mob/camera/aiEye/Initialize(mapload)
+/mob/camera/aiEye/Initialize(mapload, cameranet, new_faction)
 	. = ..()
 	GLOB.aiEyes += src
 	setLoc(loc, TRUE)
@@ -41,8 +41,10 @@
 	holder.icon_state = icon_state_on
 	hud_list[hud_type] = holder
 
-///
-
+/mob/camera/aiEye/hud/Destroy()
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
+	squad_hud.remove_from_hud(src)
+	return ..()
 
 /mob/camera/aiEye/proc/get_visible_turfs()
 	if(!isturf(loc))
@@ -189,10 +191,10 @@
 		ai.relay_speech(message, speaker, message_language, raw_message, radio_freq, spans, message_mode)
 
 /mob/camera/aiEye/proc/register_facedir_signals(mob/user)
-	RegisterSignal(user, COMSIG_KB_MOB_FACENORTH_DOWN, .verb/northface)
-	RegisterSignal(user, COMSIG_KB_MOB_FACEEAST_DOWN, .verb/eastface)
-	RegisterSignal(user, COMSIG_KB_MOB_FACESOUTH_DOWN, .verb/southface)
-	RegisterSignal(user, COMSIG_KB_MOB_FACEWEST_DOWN, .verb/westface)
+	RegisterSignal(user, COMSIG_KB_MOB_FACENORTH_DOWN, VERB_REF(northface))
+	RegisterSignal(user, COMSIG_KB_MOB_FACEEAST_DOWN, VERB_REF(eastface))
+	RegisterSignal(user, COMSIG_KB_MOB_FACESOUTH_DOWN, VERB_REF(southface))
+	RegisterSignal(user, COMSIG_KB_MOB_FACEWEST_DOWN, VERB_REF(westface))
 
 /mob/camera/aiEye/proc/unregister_facedir_signals(mob/user)
 	UnregisterSignal(user, list(COMSIG_KB_MOB_FACENORTH_DOWN, COMSIG_KB_MOB_FACEEAST_DOWN, COMSIG_KB_MOB_FACESOUTH_DOWN, COMSIG_KB_MOB_FACEWEST_DOWN))

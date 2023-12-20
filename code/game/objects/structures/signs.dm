@@ -22,14 +22,9 @@
 			pixel_x = -30
 
 /obj/structure/sign/ex_act(severity)
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			qdel(src)
-		if(EXPLODE_HEAVY)
-			qdel(src)
-		if(EXPLODE_LIGHT)
-			qdel(src)
-
+	if(severity == EXPLODE_WEAK)
+		return
+	qdel(src)
 
 /obj/structure/sign/attackby(obj/item/I, mob/user, params)	//deconstruction
 	. = ..()

@@ -1,6 +1,5 @@
 /obj/item/reagent_containers/hypospray/autoinjector
 	name = "generic autoinjector"
-	//desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."
 	desc = "An autoinjector containing... table salt? <i>\"For any client assistance, please contact the coderbus\" is written on the back.</i>"
 	icon_state = "autoinjector"
 	item_state = "hypo"
@@ -67,7 +66,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/quickclot
 	name = "quick-clot autoinjector"
-	desc = "An autoinjector loaded with three doses of quick-clot, a chemical designed to pause all bleeding. Renew doses as needed."
+	desc = "An autoinjector loaded with 3 doses of quick-clot, a chemical designed to pause all bleeding. Renew doses as needed."
 	icon_state = "autoinjector-7"
 	list_reagents = list(/datum/reagent/medicine/quickclot = 30)
 	description_overlay = "Qk"
@@ -166,7 +165,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/alkysine
 	name = "alkysine autoinjector"
-	desc = "An auto-injector loaded with 3 doses of alkysine, long-living medicine for fixing brain damage."
+	desc = "An auto-injector loaded with 3 doses of alkysine, long-living medicine for fixing brain and ear damage."
 	icon_state = "autoinjector-12"
 	volume = 15
 	amount_per_transfer_from_this = 5
@@ -259,12 +258,13 @@
 	desc = "An autoinjector loaded with a single use of Russian Red. Restores a significant amount of stamina and heals a large amount of damage, but causes slight permanent damage."
 	icon_state = "Redwood"
 	amount_per_transfer_from_this = 15
-	volume = 15
+	volume = 30
 	list_reagents = list(
-		/datum/reagent/medicine/russian_red = 10,
-		/datum/reagent/medicine/ryetalyn = 5,
+		/datum/reagent/medicine/russian_red = 20,
+		/datum/reagent/medicine/oxycodone = 10,
 	)
 	description_overlay = "Rr"
+	free_refills = FALSE
 
 /obj/item/reagent_containers/hypospray/autoinjector/polyhexanide
 	name = "polyhexanide autoinjector"
@@ -296,9 +296,11 @@
 	name = "elite autoinjector"
 	desc = "An elite auto-injector loaded with a strong and versatile combination of chemicals, healing most types of damage. Issued almost excusively to the infamous Nanotrasen deathsquads"
 	icon_state = "autoinjector-7"
+	volume = 37.5
+	amount_per_transfer_from_this = 12.4
 	list_reagents = list(
-		/datum/reagent/medicine/russian_red = 15,
-		/datum/reagent/medicine/rezadone = 15,
+		/datum/reagent/medicine/russian_red = 30,
+		/datum/reagent/medicine/rezadone = 7.2,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/medicalnanites
@@ -308,6 +310,7 @@
 	amount_per_transfer_from_this = 1
 	volume = 1
 	list_reagents = list(/datum/reagent/medicine/research/medicalnanites = 1)
+	free_refills = FALSE
 
 /obj/item/reagent_containers/hypospray/autoinjector/pain //made for debugging
 	name = "liquid pain autoinjector"
@@ -317,3 +320,20 @@
 	volume = 100
 
 	list_reagents = list(/datum/reagent/toxin/pain = 100)
+/obj/item/reagent_containers/hypospray/autoinjector/spacedrugs //CL goodie
+	name = "space drugs autoinjector"
+	desc = "An auto-injector loaded with sweet, sweet space drugs... Hard to get as a marine."
+	icon_state = "autoinjector-1"
+	amount_per_transfer_from_this = 25
+	volume = 25
+
+	list_reagents = list(/datum/reagent/space_drugs = 25)
+/obj/item/reagent_containers/hypospray/autoinjector/mindbreaker //made for debugging
+	name = "mindbreaker toxin autoinjector"
+	desc = "An auto-injector loaded with the hardest, deadliest drug around. May cure PTSD. May cause it."
+	icon_state = "Toxic"
+	amount_per_transfer_from_this = 30
+	volume = 30
+
+	list_reagents = list(/datum/reagent/toxin/mindbreaker = 50)
+

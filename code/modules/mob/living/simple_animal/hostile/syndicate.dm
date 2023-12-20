@@ -90,7 +90,7 @@
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/blade1.ogg'
 	armour_penetration = 35
-	status_flags = 0
+	status_flags = NONE
 	projectile_deflect_chance = 50
 
 

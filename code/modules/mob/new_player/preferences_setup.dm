@@ -11,6 +11,7 @@
 	good_eyesight = pick(list(FALSE, TRUE))
 	citizenship = pick(CITIZENSHIP_CHOICES)
 	religion = pick(RELIGION_CHOICES)
+	tts_voice = random_tts_voice()
 	randomize_hair_color("hair")
 	randomize_hair_color("grad")
 	randomize_hair_color("facial")
@@ -18,7 +19,7 @@
 	randomize_species_specific()
 	underwear = rand(1, length(GLOB.underwear_m))
 	undershirt = rand(1, length(GLOB.undershirt_f))
-	backpack = 2
+	backpack = rand(BACK_NOTHING, BACK_SATCHEL)
 	age = rand(AGE_MIN,AGE_MAX)
 	if(H)
 		copy_to(H, TRUE)
@@ -135,7 +136,6 @@
 	if(!previewJob)
 		var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 		copy_to(mannequin)
-		COMPILE_OVERLAYS(mannequin)
 		parent.show_character_previews(new /mutable_appearance(mannequin))
 		unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 		return
@@ -151,7 +151,6 @@
 		mannequin.job = previewJob
 		previewJob.equip_dummy(mannequin, preference_source = parent)
 
-	COMPILE_OVERLAYS(mannequin)
 	parent.show_character_previews(new /mutable_appearance(mannequin))
 	unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 
@@ -207,10 +206,12 @@
 	character.citizenship = citizenship
 	character.religion = religion
 
+	character.voice = tts_voice
+	character.pitch = tts_pitch
+
 	character.moth_wings = moth_wings
 	character.underwear = underwear
 	character.undershirt = undershirt
-	character.backpack = backpack
 
 	character.update_body()
 	character.update_hair()

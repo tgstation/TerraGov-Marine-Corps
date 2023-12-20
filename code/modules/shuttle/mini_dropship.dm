@@ -1,7 +1,7 @@
 /obj/docking_port/stationary/marine_dropship/minidropship
 	name = "Minidropship hangar pad"
 	id = SHUTTLE_TADPOLE
-	roundstart_template = /datum/map_template/shuttle/minidropship
+	roundstart_template = null
 
 /obj/docking_port/mobile/marine_dropship/minidropship
 	name = "Tadpole"
@@ -16,6 +16,7 @@
 	name = "Tadpole navigation computer"
 	desc = "Used to designate a precise transit location for the Tadpole."
 	icon_state = "shuttlecomputer"
+	screen_overlay = "shuttlecomputer_screen"
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
 	density = FALSE
 	interaction_flags = INTERACT_OBJ_UI
@@ -42,8 +43,6 @@
 	var/origin_port_id = SHUTTLE_TADPOLE
 	/// The user of the ui
 	var/mob/living/ui_user
-	/// If this computer was damaged by a xeno
-	var/damaged = FALSE
 	/// How long before you can launch tadpole after a landing
 	var/launching_delay = 10 SECONDS
 	///Minimap for use while in landing cam mode
@@ -52,7 +51,7 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
 	..()
 	start_processing()
-	set_light(3,3)
+	set_light(3,3, LIGHT_COLOR_RED)
 	land_action = new
 	tadmap = new
 	return INITIALIZE_HINT_LATELOAD
@@ -71,9 +70,7 @@
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/give_actions(mob/living/user)
 	if(!user)
-		if(!current_user)
-			return
-		user = current_user
+		return
 
 	for(var/datum/action/action_from_shuttle_docker AS in actions)
 		action_from_shuttle_docker.remove_action(user)
@@ -83,7 +80,7 @@
 		off_action.target = user
 		off_action.give_action(user)
 		actions += off_action
-	
+
 	if(tadmap)
 		tadmap.target = user
 		tadmap.give_action(user)
@@ -112,15 +109,12 @@
 		to_transit = FALSE
 		next_fly_state = destination_fly_state
 		return
-	give_actions()
 	if(fly_state == SHUTTLE_ON_GROUND)
 		TIMER_COOLDOWN_START(src, COOLDOWN_TADPOLE_LAUNCHING, launching_delay)
 	if(fly_state != SHUTTLE_IN_ATMOSPHERE)
 		return
 	shuttle_port.assigned_transit.reserved_area.set_turf_type(/turf/open/space/transit/atmos)
 	open_prompt = TRUE
-	if(ui_user?.Adjacent(src))
-		open_prompt(ui_user, GLOB.minidropship_start_loc)
 
 ///The action of taking off and sending the shuttle to the atmosphere
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/take_off()
@@ -161,20 +155,20 @@
 
 /// Toggle the vision between small nightvision and turf vision
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/toggle_nvg()
-	if(!check_hovering_spot(eyeobj.loc))
+	if(!check_hovering_spot(eyeobj?.loc))
 		to_chat(ui_user, span_warning("Can not toggle night vision mode in caves"))
 		return
 	nvg_vision_mode = !nvg_vision_mode
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	. = ..()
-	if(damaged)
+	if(machine_stat & BROKEN)
 		return
 	if(X.status_flags & INCORPOREAL)
 		return
 	X.visible_message("[X] begins to slash delicately at the computer",
 	"We start slashing delicately at the computer. This will take a while.")
-	if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+	if(!do_after(X, 10 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
 	visible_message("The inner wiring is visible, it can be slashed!")
 	X.visible_message("[X] continue to slash at the computer",
@@ -182,13 +176,14 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+	if(!do_after(X, 10 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
 	visible_message("The wiring is destroyed, nobody will be able to repair this computer!")
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MINI_DROPSHIP_DESTROYED, src)
 	var/datum/effect_system/spark_spread/s2 = new /datum/effect_system/spark_spread
 	s2.set_up(3, 1, src)
 	s2.start()
-	damaged = TRUE
+	set_broken()
 	open_prompt = FALSE
 	clean_ui_user()
 
@@ -205,7 +200,7 @@
 		visible_message("Autopilot detects loss of helm control. Halting take off!")
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/can_interact(mob/user)
-	if(damaged)
+	if(machine_stat & BROKEN)
 		to_chat(user, span_warning("The [src] blinks and lets out a crackling noise. Its broken!"))
 		return
 	return ..()
@@ -221,7 +216,7 @@
 
 	if(!ui)
 		ui_user = user
-		RegisterSignal(ui_user, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(clean_ui_user))
+		RegisterSignals(ui_user, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(clean_ui_user))
 		ui = new(user, src, "Minidropship", name)
 		ui.open()
 
@@ -234,7 +229,7 @@
 	SIGNAL_HANDLER
 	if(ui_user)
 		remove_eye_control(ui_user)
-		UnregisterSignal(ui_user, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED))
+		UnregisterSignal(ui_user, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
 		ui_user = null
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_data(mob/user)

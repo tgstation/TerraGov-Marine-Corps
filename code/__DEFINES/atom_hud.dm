@@ -9,11 +9,11 @@
 #define XENO_EMBRYO_HUD "xeno_embryo_hud" // xeno larval stage.
 #define HEALTH_HUD_XENO "xeno_health_hud" //health HUD for xenos
 #define SQUAD_HUD_TERRAGOV "squad_hud_terragov" //squad hud showing who's leader, corpsman, etc for each squad.
-#define SQUAD_HUD_REBEL "squad_hud_rebel" //squad hud showing who's leader, corpsman, etc for each squad.
 #define SQUAD_HUD_SOM "squad_hud_som" //squad hud showing who's leader, corpsman, etc for each squad.
 #define PLASMA_HUD "xeno_plasma_hud" //indicates the plasma level of xenos.
 #define PHEROMONE_HUD "xeno_pheromone_hud" //indicates which pheromone is active on a xeno.
 #define QUEEN_OVERWATCH_HUD "xeno_overwatch_hud" //indicates which xeno the queen is overwatching.
+#define XENO_RANK_HUD "xeno_rank_hud" //indicates the current rank of the xeno
 #define ORDER_HUD "human_order_hud" //shows what orders are applied to marines
 #define PAIN_HUD "pain_hud" //displays human pain / preceived health.
 #define ARMOR_SUNDER_HUD "armor_sunder_hud" //displays how much sunder has been applied.
@@ -24,6 +24,8 @@
 #define XENO_DEBUFF_HUD "xeno_debuff_hud" // displays xeno debuffs; part of /datum/atom_hud/xeno_debuff
 #define HEART_STATUS_HUD "heart_status_hud" // display if revivable, along with blood level
 #define XENO_FIRE_HUD "xeno_fire_hud" // displays how many fire stacks a xeno has
+#define XENO_BLESSING_HUD "xeno_blessing_hud" //indicates what blessings the xeno has
+#define XENO_EVASION_HUD "xeno_extra_hud" // displays anything extra or additional such as runner's evasion duration
 
 #define ADD_HUD_TO_COOLDOWN 20 //cooldown for being shown the images for any particular data hud
 
@@ -46,10 +48,9 @@
 #define DATA_HUD_ORDER 11
 #define DATA_HUD_MEDICAL_PAIN 12
 #define DATA_HUD_XENO_TACTICAL 13
-#define DATA_HUD_SQUAD_REBEL 14
-#define DATA_HUD_SQUAD_SOM 15
-#define DATA_HUD_XENO_DEBUFF 16
-#define DATA_HUD_XENO_HEART 17
+#define DATA_HUD_SQUAD_SOM 14
+#define DATA_HUD_XENO_DEBUFF 15
+#define DATA_HUD_XENO_HEART 16
 
 
 // Notification action types
@@ -57,3 +58,6 @@
 #define NOTIFY_ATTACK "attack"
 #define NOTIFY_ORBIT "orbit"
 #define NOTIFY_JOIN_AS_LARVA "join_as_larva"
+
+// AI notify action types
+#define NOTIFY_AI_ALERT "aijump"

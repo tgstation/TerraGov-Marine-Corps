@@ -105,6 +105,7 @@
 	base_lighting_alpha = 255
 
 	ambience = list()
+	requires_power = FALSE
 
 
 GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)

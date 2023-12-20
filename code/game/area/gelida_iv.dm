@@ -16,6 +16,7 @@
 	icon_state = "cliff_blocked" //because this is a PARENT TYPE and you should not be using it and should also be changing the icon!!!
 	ceiling = CEILING_NONE
 	outside = TRUE
+	always_unpowered = TRUE
 
 /area/gelida/oob
 	name = "gelida - Out Of Bounds"
@@ -336,6 +337,8 @@
 /area/gelida/outdoors/w_rockies
 	name = "West Colony - Rockies"
 	icon_state = "away2"
+	ceiling = CEILING_UNDERGROUND
+	always_unpowered = TRUE
 
 /area/gelida/outdoors/p_n_rockies
 	name = "North Processor - Rockies"
@@ -359,6 +362,7 @@
 	outside = FALSE
 	ceiling = CEILING_DEEP_UNDERGROUND
 	minimap_color = MINIMAP_AREA_CAVES
+	always_unpowered = TRUE
 
 //ATMOS
 /area/gelida/atmos
@@ -413,19 +417,46 @@
 	name = "Atmospheric Processor - Filtration System"
 	icon_state = "mechbay"
 
+/area/gelida/powergen
+	name = "Underground Power Generation"
+	icon_state = "ass_line"
+	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
+	outside = FALSE
+
+/area/gelida/powergen/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
+/area/gelida/cavestructuretwo
+	name = "Underground Abandoned Structure"
+	icon_state = "garage"
+	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_CAVES
+	outside = FALSE
+
 /area/gelida/caves
 	outside = FALSE
 	ceiling = CEILING_DEEP_UNDERGROUND
 	minimap_color = MINIMAP_AREA_CAVES
+	always_unpowered = TRUE
 
 /area/gelida/caves/west_caves
 	name = "Western Caves"
 	icon_state = "yellow"
 
+/area/gelida/caves/west_caves/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/gelida/caves/central_caves
 	name = "Central Caves"
 	icon_state = "purple"
 
+/area/gelida/caves/central_caves/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/gelida/caves/east_caves
 	name = "Eastern Caves"
 	icon_state = "blue-red"
+
+/area/gelida/caves/east_caves/garbledradio
+	ceiling = CEILING_UNDERGROUND

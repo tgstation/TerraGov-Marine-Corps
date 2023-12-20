@@ -332,9 +332,27 @@
 		/obj/effect/spawner/random/food_or_drink/beer = 5,
 	)
 
+/obj/effect/spawner/random/food_or_drink/beer/whiskeyoutpost
+	loot = list(
+		/obj/item/reagent_containers/food/drinks/bottle/whiskey = 95,
+		/obj/effect/spawner/random/food_or_drink/beer = 5,
+	)
+
 /obj/effect/spawner/random/food_or_drink/wine
 	icon_state = "random_winebottle"
 	loot = list(
 		/obj/item/reagent_containers/food/drinks/bottle/wine = 95,
 		/obj/effect/spawner/random/food_or_drink/beer = 5,
+	)
+
+/obj/effect/spawner/random/food_or_drink/bread
+	name = "Random bread spawner"
+	icon_state = "random_bread"
+	loot = list(
+		/obj/item/reagent_containers/food/snacks/baguette = 45,
+		/obj/item/reagent_containers/food/snacks/sandwiches/bread = 10,
+		/obj/item/reagent_containers/food/snacks/sliceable/sandwiches/meatbread = 5,
+		/obj/item/reagent_containers/food/snacks/sandwiches/meatbreadslice = 5,
+		/obj/item/reagent_containers/food/snacks/sandwiches/toastedsandwich = 5,
+		/obj/effect/spawner/random/food_or_drink/burger = 5,
 	)

@@ -8,6 +8,15 @@
 	width = 11
 	height = 21
 
+/obj/docking_port/stationary/marine_dropship/Initialize()
+	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/docking_port/stationary/marine_dropship/LateInitialize()
+	for(var/obj/machinery/landinglight/light AS in GLOB.landing_lights)
+		if(light.id == id)
+			light.linked_port = src
+
 /obj/docking_port/stationary/marine_dropship/on_crash()
 	for(var/obj/machinery/power/apc/A AS in GLOB.apcs_list) //break APCs
 		if(!is_mainship_level(A.z))
@@ -29,7 +38,7 @@
 		else
 			to_chat(M, span_warning("The floor jolts under your feet!"))
 			shake_camera(M, 10, 1)
-			M.Paralyze(60)
+			M.Paralyze(6 SECONDS)
 		CHECK_TICK
 
 	for(var/i in GLOB.ai_list)
@@ -64,7 +73,7 @@
 	var/turf/right = locate(C.x + leftright, C.y, C.z)
 
 	for(var/turf/T in range(3, rear)+range(3, left)+range(3, right)+range(2, front))
-		T.empty(/turf/open/floor/plating)
+		T.empty(/turf/open/floor/plating, ignore_typecache = typecacheof(/mob))
 
 	SSmonitor.process_human_positions()
 	SSevacuation.initial_human_on_ship = SSmonitor.human_on_ship
@@ -105,11 +114,6 @@
 	name = "Shipside 'Alamo' Hangar Pad"
 	id = SHUTTLE_ALAMO
 	roundstart_template = /datum/map_template/shuttle/dropship_one
-
-/obj/docking_port/stationary/marine_dropship/hangar/rebel
-	name = "Shipside 'Triumph' Hangar Pad"
-	id = SHUTTLE_TRIUMPH
-	roundstart_template = /datum/map_template/shuttle/dropship_three
 
 /obj/docking_port/stationary/marine_dropship/hangar/two
 	name = "Shipside 'Normandy' Hangar Pad"
@@ -241,7 +245,9 @@
 		if(cycle_timer)
 			deltimer(cycle_timer)
 		cycle_timer = addtimer(CALLBACK(src, PROC_REF(prepare_going_to_previous_destination)), rechargeTime + time_between_cycle SECONDS - 20 SECONDS, TIMER_STOPPABLE)
-
+	for(var/obj/machinery/landinglight/light AS in GLOB.landing_lights)
+		if(light.linked_port == destination)
+			light.turn_off()
 	return ..()
 
 ///Announce that the dropship will departure soon
@@ -270,11 +276,6 @@
 	dwidth = 4
 	height = 13
 	width = 9
-
-/obj/docking_port/mobile/marine_dropship/three
-	name = "Triumph"
-	id = SHUTTLE_TRIUMPH
-	control_flags = SHUTTLE_REBEL_PRIMARY_DROPSHIP
 
 // queen calldown
 
@@ -319,7 +320,10 @@
 /obj/docking_port/mobile/marine_dropship/on_prearrival()
 	. = ..()
 	if(hijack_state == HIJACK_STATE_CRASHING)
-		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT." , "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg')
+		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT.", "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg')
+	for(var/obj/machinery/landinglight/light AS in GLOB.landing_lights)
+		if(light.linked_port == destination)
+			light.turn_on()
 
 
 /obj/docking_port/mobile/marine_dropship/getStatusText()
@@ -355,7 +359,7 @@
 		return
 
 	to_chat(src, span_warning("You begin calling down the shuttle."))
-	if(!do_after(src, 80, FALSE, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+	if(!do_after(src, 80, IGNORE_HELD_ITEM, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 		to_chat(src, span_warning("You stop."))
 		return
 
@@ -418,15 +422,17 @@
 		if(D.hijack_state != HIJACK_STATE_NORMAL)
 			return FALSE
 		to_chat(user, span_warning("We begin overriding the shuttle lockdown. This will take a while..."))
-		if(!do_after(user, 30 SECONDS, FALSE, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+		if(!do_after(user, 30 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 			to_chat(user, span_warning("We cease overriding the shuttle lockdown."))
 			return FALSE
 		if(!is_ground_level(D.z))
 			to_chat(user, span_warning("The bird has left meanwhile, try again."))
 			return FALSE
 		D.unlock_all()
-		D.set_hijack_state(HIJACK_STATE_UNLOCKED)
-		D.do_start_hijack_timer(GROUND_LOCKDOWN_TIME)
+		if(D.mode != SHUTTLE_IGNITING)
+			D.set_hijack_state(HIJACK_STATE_UNLOCKED)
+			D.do_start_hijack_timer(GROUND_LOCKDOWN_TIME)
+			to_chat(user, span_warning("We were unable to prevent the bird from flying as it is already taking off."))
 		D.silicon_lock_airlocks(TRUE)
 		to_chat(user, span_warning("We have overriden the shuttle lockdown!"))
 		playsound(user, "alien_roar", 50)
@@ -483,6 +489,7 @@
 /obj/machinery/computer/shuttle/marine_dropship
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "console"
+	screen_overlay = "console_emissive"
 	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	possible_destinations = "lz1;lz2;alamo"
@@ -490,19 +497,24 @@
 /obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		return
+	#ifndef TESTING
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
 		to_chat(X, span_xenowarning("It's too early to do this!"))
 		return
+	#endif
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
 		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [SSmapping.configs[SHIP_MAP].map_name]</A><br>"
-		M.unlock_all()
 		dat += "<A href='?src=[REF(src)];abduct=1'>Capture the [M]</A><br>"
+		M.unlock_all()
+		M.silicon_lock_airlocks(TRUE)
 		if(M.hijack_state != HIJACK_STATE_CALLED_DOWN)
-			to_chat(X, span_xenowarning("We corrupt the bird's controls, unlocking the doors and preventing it from flight."))
-			M.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
-			M.do_start_hijack_timer()
+			to_chat(X, span_xenowarning("We corrupt the bird's controls, unlocking the doors[(M.mode != SHUTTLE_IGNITING) ? "and preventing it from flying." : ", but we are unable to prevent it from flying as it is already taking off!"]"))
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED, src)
+			if(M.mode != SHUTTLE_IGNITING)
+				M.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
+				M.do_start_hijack_timer()
 
 	var/datum/browser/popup = new(X, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
@@ -752,12 +764,6 @@
 	icon_state = "console2"
 	possible_destinations = "lz1;lz2;alamo;normandy"
 
-/obj/machinery/computer/shuttle/marine_dropship/three
-	name = "\improper 'Triumph' flight controls"
-	desc = "The flight controls for the 'Triumph' Dropship."
-	possible_destinations = "lz1;triumph"
-	req_one_access = list(ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_LEADER_REBEL)
-
 /obj/machinery/door/poddoor/shutters/transit/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
 	if(SSmapping.level_has_any_trait(z, list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND)))
@@ -832,6 +838,10 @@
 	density = TRUE
 	resistance_flags = RESIST_ALL
 	opacity = TRUE
+	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
+
+/obj/structure/dropship_piece/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
 
 /obj/structure/dropship_piece/ex_act(severity)
 	return
@@ -923,7 +933,6 @@
 /obj/structure/dropship_piece/one/engine/rightbottom
 	icon_state = "brown_engine_rb"
 
-
 /obj/structure/dropship_piece/one/rearwing/lefttop
 	icon_state = "brown_rearwing_lt"
 
@@ -939,18 +948,22 @@
 /obj/structure/dropship_piece/one/rearwing/leftlbottom
 	icon_state = "brown_rearwing_llb"
 	opacity = FALSE
+	allow_pass_flags = PASSABLE
 
 /obj/structure/dropship_piece/one/rearwing/rightrbottom
 	icon_state = "brown_rearwing_rrb"
 	opacity = FALSE
+	allow_pass_flags = PASSABLE
 
 /obj/structure/dropship_piece/one/rearwing/leftllbottom
 	icon_state = "brown_rearwing_lllb"
 	opacity = FALSE
+	allow_pass_flags = PASSABLE
 
 /obj/structure/dropship_piece/one/rearwing/rightrrbottom
 	icon_state = "brown_rearwing_rrrb"
 	opacity = FALSE
+	allow_pass_flags = PASSABLE
 
 
 
@@ -984,7 +997,7 @@
 	icon_state = "shuttle_glass1"
 	resistance_flags = NONE
 	opacity = FALSE
-	flags_pass = PASSLASER
+	allow_pass_flags = PASS_GLASS
 
 /obj/structure/dropship_piece/glasstwo
 	icon = 'icons/turf/dropship2.dmi'
@@ -995,11 +1008,12 @@
 	icon_state = "shuttle_glass2"
 	resistance_flags = NONE
 	opacity = FALSE
-	flags_pass = PASSLASER
+	allow_pass_flags = PASS_GLASS
 
 /obj/structure/dropship_piece/singlewindow/tadpole
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "shuttle_single_window"
+	allow_pass_flags = PASS_GLASS
 	resistance_flags = NONE
 	opacity = FALSE
 
@@ -1009,7 +1023,7 @@
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
 	layer = BELOW_OBJ_LAYER
-	flags_pass = NONE
+	allow_pass_flags = NONE
 
 /obj/structure/dropship_piece/tadpole/cockpit/left
 	icon_state = "blue_cockpit_fl"
@@ -1256,7 +1270,8 @@
 /obj/machinery/computer/shuttle/shuttle_control
 	name = "shuttle control console"
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "shuttle"
+	icon_state = "computer_small"
+	screen_overlay = "shuttle"
 	///Able to auto-relink to any shuttle with at least one of the flags in common if shuttleId is invalid.
 	var/compatible_control_flags = NONE
 
@@ -1303,8 +1318,8 @@
 		return TRUE
 
 	if(!(params["destination"] in valid_destinations()))
-		log_admin("[key_name(usr)] may be attempting a href dock exploit on [src] with target location \"[params["destination"]]\"")
-		message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href dock exploit on [src] with target location \"[params["destination"]]\"")
+		log_admin("[key_name(usr)] may be attempting a href dock exploit on [src] with target location \"[html_encode(params["destination"])]\"")
+		message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href dock exploit on [src] with target location \"[html_encode(params["destination"])]\"")
 		return TRUE
 
 	var/previous_status = M.mode
@@ -1348,6 +1363,32 @@
 			data["destinations"] += list(dataset)
 	return data
 
+/obj/machinery/computer/shuttle/shuttle_control/attack_ghost(mob/dead/observer/user)
+	var/list/all_destinations = splittext(possible_destinations,";")
+
+	if(length(all_destinations) < 2)
+		return
+
+	// Getting all valid destinations into an assoc list with "name" = "portid"
+	var/list/port_assoc = list()
+	for(var/destination in all_destinations)
+		for(var/obj/docking_port/port AS in SSshuttle.stationary)
+			if(destination != port.id)
+				continue
+			port_assoc["[port.name]"] = destination
+
+	var/list/destinations = list()
+	for(var/destination in port_assoc)
+		destinations += destination
+	var/input = tgui_input_list(user, "Choose a port to teleport to:", "Ghost Shuttle teleport", destinations, null, 0)
+	if(!input)
+		return
+	var/obj/docking_port/mobile/target_port = SSshuttle.getDock(port_assoc[input])
+
+	if(!target_port || QDELETED(target_port) || !target_port.loc)
+		return
+	user.forceMove(get_turf(target_port))
+
 /// Relinks the shuttleId in the console to a valid shuttle currently existing. Will only relink to a shuttle with a matching control_flags flag. Returns true if successfully relinked
 /obj/machinery/computer/shuttle/shuttle_control/proc/RelinkShuttleId(forcedId)
 	var/newId = null
@@ -1388,7 +1429,8 @@
 	name = "\improper 'Alamo' dropship console"
 	desc = "The remote controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texans to rally to the flag."
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "shuttle"
+	icon_state = "computer_small"
+	screen_overlay = "shuttle"
 	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	shuttleId = SHUTTLE_ALAMO
@@ -1402,24 +1444,12 @@
 	shuttleId = SHUTTLE_NORMANDY
 	possible_destinations = "lz1;lz2;alamo;normandy"
 
-/obj/machinery/computer/shuttle/shuttle_control/dropship/rebel
-	name = "\improper 'Triumph' dropship console"
-	desc = "The remote controls for the 'Triumph' Dropship."
-	shuttleId = SHUTTLE_TRIUMPH
-	possible_destinations = "lz1;triumph"
-	compatible_control_flags = SHUTTLE_REBEL_PRIMARY_DROPSHIP
-
-/obj/machinery/computer/shuttle/shuttle_control/dropship/loyalist
-	name = "\improper 'Alamo' dropship console"
-	desc = "The remote controls for the 'Alamo' Dropship."
-	shuttleId = SHUTTLE_ALAMO
-	possible_destinations = "lz2;alamo"
-
 /obj/machinery/computer/shuttle/shuttle_control/canterbury
 	name = "\improper 'Canterbury' shuttle console"
 	desc = "The remote controls for the 'Canterbury' shuttle."
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "shuttle"
+	icon_state = "computer_small"
+	screen_overlay = "shuttle"
 	resistance_flags = RESIST_ALL
 	shuttleId = SHUTTLE_CANTERBURY
 	possible_destinations = "canterbury_loadingdock"

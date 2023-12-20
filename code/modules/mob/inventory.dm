@@ -23,16 +23,18 @@
 
 /**
  * Checks if this mob is holding a certain type of item in hands
- * returns TRUEif found FALSE if not
+ * returns the item if found
  * Args:
  * * typepath: typepath to check for
  */
 /mob/proc/is_holding_item_of_type(typepath)
-	if(istype(get_active_held_item(), typepath))
-		return TRUE
-	if(istype(get_inactive_held_item(), typepath))
-		return TRUE
-	return FALSE
+	var/obj/held_item = get_active_held_item()
+	if(istype(held_item, typepath))
+		return held_item
+	held_item = get_inactive_held_item()
+	if(istype(held_item, typepath))
+		return held_item
+	return
 
 /**
 	Puts the item into your l_hand if possible and calls all necessary triggers/updates.
@@ -127,7 +129,7 @@
 	* obj/item/W is the item you are trying to equip
 	* del_on_fail if true will delete the item instead of dropping it to the floor
 
-	Returns TURE if it was able to put the thing into one of our hands.
+	Returns TRUE if it was able to put the thing into one of our hands.
 */
 /mob/proc/put_in_hands(obj/item/W, del_on_fail = FALSE)
 	W.do_pickup_animation(src)
@@ -147,6 +149,47 @@
 	W.plane = initial(W.plane)
 	W.dropped(src)
 	return FALSE
+
+/// Returns if we're able to put something in a hand of a mob
+/mob/proc/can_put_in_hand(I, hand_index)
+	if(!put_in_hand_check(I))
+		return FALSE
+	if(!index_to_hand(hand_index))
+		return FALSE
+	return !get_item_for_held_index(hand_index)
+
+///Puts an item in a specific hand index (so left or right)
+/mob/proc/put_in_hand(obj/item/I, hand_index, del_on_fail)
+	if(!hand_index)
+		return put_in_hands(I, del_on_fail)
+	switch(hand_index)
+		if(1)
+			return put_in_l_hand(I)
+		else
+			return put_in_r_hand(I)
+
+///Proc that checks if we can put something into someone's hands
+/mob/proc/put_in_hand_check(obj/item/I, hand_index)
+	return FALSE					//nonliving mobs don't have hands
+
+/mob/living/put_in_hand_check(obj/item/I, hand_index)
+	if((I.flags_item & ITEM_ABSTRACT))
+		return FALSE
+	return TRUE
+
+///returns the hand based on index (1 for left hand, 2 for right)
+/mob/proc/index_to_hand(hand_index)
+	return
+
+///gets an item by hand index
+/mob/proc/get_item_for_held_index(hand_index)
+	if(!hand_index)
+		return
+	switch(hand_index)
+		if(1)
+			return l_hand
+		else
+			return r_hand
 
 /**
 	Helper proc used by the drop_item verb and on screen button.
@@ -244,8 +287,8 @@
 	if(!I)
 		return
 
-	if((I.flags_item & NODROP) && !force)
-		return FALSE //UnEquip() only fails if item has NODROP
+	if(HAS_TRAIT(I, TRAIT_NODROP) && !force)
+		return FALSE //UnEquip() only fails if item has TRAIT_NODROP
 
 	doUnEquip(I)
 
@@ -274,28 +317,34 @@
 		return ITEM_UNEQUIP_DROPPED
 	return ITEM_UNEQUIP_FAIL
 
+/**
+ * Used to return a list of equipped items on a mob; does not include held items (use get_all_gear)
+ *
+ * Argument(s):
+ * * Optional - include_pockets (TRUE/FALSE), whether or not to include the pockets and suit storage in the returned list
+ * * Optional - include_accessories (TRUE/FALSE), whether or not to include the accessories in the returned list
+ */
 
-//Outdated but still in use apparently. This should at least be a human proc.
-//this is still in use please fix this mess
-/mob/proc/get_equipped_items()
-	var/list/items = new/list()
+/mob/living/proc/get_equipped_items(include_pockets = FALSE, include_accessories = FALSE)
+	var/list/items = list()
+	for(var/obj/item/item_contents in contents)
+		if(item_contents.flags_item & IN_INVENTORY)
+			items += item_contents
+	items -= get_active_held_item()
+	items -= get_inactive_held_item()
+	return items
 
-	if(hasvar(src,"back")) if(src:back) items += src:back
-	if(hasvar(src,"belt")) if(src:belt) items += src:belt
-	if(hasvar(src,"wear_ear")) if(src:wear_ear) items += src:wear_ear
-	if(hasvar(src,"glasses")) if(src:glasses) items += src:glasses
-	if(hasvar(src,"gloves")) if(src:gloves) items += src:gloves
-	if(hasvar(src,"head")) if(src:head) items += src:head
-	if(hasvar(src,"shoes")) if(src:shoes) items += src:shoes
-	if(hasvar(src,"wear_id")) if(src:wear_id) items += src:wear_id
-	if(hasvar(src,"wear_mask")) if(src:wear_mask) items += src:wear_mask
-	if(hasvar(src,"wear_suit")) if(src:wear_suit) items += src:wear_suit
-//	if(hasvar(src,"w_radio")) if(src:w_radio) items += src:w_radio  commenting this out since headsets go on your ears now PLEASE DON'T BE MAD KEELIN
-	if(hasvar(src,"w_uniform")) if(src:w_uniform) items += src:w_uniform
+/**
+ * Used to return a list of equipped items on a human mob; does not include held items (use get_all_gear)
+ *
+ * Argument(s):
+ * * Optional - include_pockets (TRUE/FALSE), whether or not to include the pockets and suit storage in the returned list
+ */
 
-	//if(hasvar(src,"l_hand")) if(src:l_hand) items += src:l_hand
-	//if(hasvar(src,"r_hand")) if(src:r_hand) items += src:r_hand
-
+/mob/living/carbon/human/get_equipped_items(include_pockets = FALSE)
+	var/list/items = ..()
+	if(!include_pockets)
+		items -= list(l_store, r_store)
 	return items
 
 ///Find the slot an item is equipped to and returns its slot define
@@ -316,26 +365,26 @@
 
 
 /mob/living/carbon/proc/check_obscured_slots()
-	var/list/obscured = list()
+	var/obscured = NONE
 	var/hidden_slots = NONE
 
 	for(var/obj/item/I in get_equipped_items())
 		hidden_slots |= I.flags_inv_hide
 
 	if(hidden_slots & HIDEMASK)
-		obscured |= SLOT_WEAR_MASK
+		obscured |= ITEM_SLOT_MASK
 	if(hidden_slots & HIDEEYES)
-		obscured |= SLOT_GLASSES
+		obscured |= ITEM_SLOT_EYES
 	if(hidden_slots & HIDEEARS)
-		obscured |= SLOT_EARS
+		obscured |= ITEM_SLOT_EARS
 	if(hidden_slots & HIDEGLOVES)
-		obscured |= SLOT_GLOVES
+		obscured |= ITEM_SLOT_GLOVES
 	if(hidden_slots & HIDEJUMPSUIT)
-		obscured |= SLOT_WEAR_SUIT
+		obscured |= ITEM_SLOT_ICLOTHING
 	if(hidden_slots & HIDESHOES)
-		obscured |= SLOT_SHOES
+		obscured |= ITEM_SLOT_FEET
 	if(hidden_slots & HIDESUITSTORAGE)
-		obscured |= SLOT_S_STORE
+		obscured |= ITEM_SLOT_SUITSTORE
 
 	return obscured
 
@@ -367,12 +416,12 @@
 /mob/proc/stripPanelUnequip(obj/item/I, mob/M)
 	return
 
-// The mob is trying to place an item on someone
-/mob/proc/stripPanelEquip(obj/item/I, mob/M)
-	return
-
 //returns the item in a given slot
 /mob/proc/get_item_by_slot(slot_id)
+	return
+
+//returns the item in a given bit slot
+/mob/proc/get_item_by_slot_bit(slot_bit)
 	return
 
 //placeholder until tg inventory system

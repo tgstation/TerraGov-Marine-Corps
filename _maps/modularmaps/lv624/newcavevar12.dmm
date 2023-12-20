@@ -162,7 +162,7 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "EZ" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "Fa" = (

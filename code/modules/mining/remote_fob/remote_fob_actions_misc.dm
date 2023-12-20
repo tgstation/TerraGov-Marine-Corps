@@ -62,7 +62,7 @@
 			continue
 		fobdrone.balloon_alert(owner, "No space here for a barricade")
 		return
-	if(!do_after(fobdrone, 1.5 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
+	if(!do_after(fobdrone, 1.5 SECONDS, IGNORE_HELD_ITEM, buildplace, BUSY_ICON_BUILD))
 		return
 	console.metal_remaining -= 4
 	cade = new /obj/structure/barricade/metal(buildplace)
@@ -103,7 +103,7 @@
 			continue
 		fobdrone.balloon_alert(owner, "No space here for a barricade")
 		return
-	if(!do_after(fobdrone, 1.5 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
+	if(!do_after(fobdrone, 1.5 SECONDS, IGNORE_HELD_ITEM, buildplace, BUSY_ICON_BUILD))
 		return
 	console.plasteel_remaining -= 5
 	cade = new /obj/structure/barricade/plasteel(buildplace)
@@ -131,33 +131,6 @@
 		return
 	console.do_wiring = !console.do_wiring
 	to_chat(owner, span_notice("Will now [console.do_wiring ? "do wiring" : "stop wiring"]."))
-
-/datum/action/innate/remote_fob/sentry
-	name = "Place Sentry"
-	action_icon_state = "sentry"
-
-/datum/action/innate/remote_fob/sentry/Activate()
-	. = ..()
-	if(. || !check_spot())
-		return
-	var/turf/buildplace = get_turf(fobdrone)
-	var/obj/structure/barricade/cade = /obj/structure/barricade
-	if(console.sentry_remaining < 1)
-		to_chat(owner, span_warning("You need to redeem a Sentry voucher to place one."))
-		return
-	if(is_blocked_turf(buildplace))
-		for(var/obj/thing in buildplace)
-			if(istype(thing, cade))
-				break
-			else
-				to_chat(owner, span_warning("No space here for a sentry."))
-				return
-	if(!do_after(fobdrone, 3 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
-		return
-	console.sentry_remaining -= 1
-	var/obj/item/weapon/gun/sentry/big_sentry/premade/new_gun = new(buildplace)
-	new_gun.loc.setDir(fobdrone.dir)
-
 /datum/action/innate/remote_fob/eject_metal_action
 	name = "Eject All Metal"
 	action_icon_state = "fobpc-eject_m"

@@ -24,7 +24,7 @@
 	toggle()
 
 /obj/structure/curtain/attack_alien(mob/living/carbon/xenomorph/attackingxeno, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
-	if(!do_after(attackingxeno, XENO_CURTAIN_PULL_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(attackingxeno, XENO_CURTAIN_PULL_DELAY, NONE, src, BUSY_ICON_FRIENDLY))
 		return
 	attackingxeno.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	attackingxeno.visible_message(span_danger("\The [attackingxeno] pulls [src] down and slices it apart!"), \

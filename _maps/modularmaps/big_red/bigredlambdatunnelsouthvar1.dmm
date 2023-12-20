@@ -7,47 +7,47 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "n" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "p" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "t" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "w" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "y" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "B" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "H" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "I" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "J" = (
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "M" = (
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "P" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 
 (1,1,1) = {"
 M

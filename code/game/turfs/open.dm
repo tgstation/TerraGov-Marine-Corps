@@ -2,10 +2,10 @@
 /turf/open
 	plane = FLOOR_PLANE
 	minimap_color = MINIMAP_AREA_COLONY
+	resistance_flags = PROJECTILE_IMMUNE|UNACIDABLE
 	var/allow_construction = TRUE //whether you can build things like barricades on this turf.
 	var/slayer = 0 //snow layer
 	var/wet = 0 //whether the turf is wet (only used by floors).
-	var/has_catwalk = FALSE
 	var/shoefootstep = FOOTSTEP_FLOOR
 	var/barefootstep = FOOTSTEP_HARD
 	var/mediumxenofootstep = FOOTSTEP_HARD
@@ -46,6 +46,21 @@
 /turf/open/examine(mob/user)
 	. = ..()
 	. += ceiling_desc()
+
+///Checks if anything should override the turf's normal footstep sounds
+/turf/open/proc/get_footstep_override(footstep_type)
+	var/list/footstep_overrides = list()
+	SEND_SIGNAL(src, COMSIG_FIND_FOOTSTEP_SOUND, footstep_overrides)
+	if(!length(footstep_overrides))
+		return
+
+	var/override_sound
+	var/index = 0
+	for(var/i in footstep_overrides)
+		if(footstep_overrides[i] > index)
+			override_sound = i
+			index = footstep_overrides[i]
+	return override_sound
 
 // Beach
 
@@ -141,24 +156,6 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
 
-// NECESSARY FOR LAGMOOR EXPERIENCE
-// Colony tiles
-/turf/open/floor/concrete
-	name = "concrete"
-	icon = 'icons/turf/concrete.dmi'
-	icon_state = "concrete0"
-	mediumxenofootstep = FOOTSTEP_CONCRETE
-	barefootstep = FOOTSTEP_CONCRETE
-	shoefootstep = FOOTSTEP_CONCRETE
-
-/turf/open/floor/concrete/ex_act() //Fixes black tile explosion issue
-
-/turf/open/floor/concrete/lines
-	icon_state = "concrete_lines"
-
-/turf/open/floor/concrete/edge
-	icon_state = "concrete_edge"
-
 /turf/open/floor/plating/heatinggrate
 	icon_state = "heatinggrate"
 
@@ -224,9 +221,9 @@
 /turf/open/lavaland/basalt
 	name = "basalt"
 	icon_state = "basalt"
-	shoefootstep = FOOTSTEP_SAND
-	barefootstep = FOOTSTEP_SAND
-	mediumxenofootstep = FOOTSTEP_SAND
+	shoefootstep = FOOTSTEP_GRAVEL
+	barefootstep = FOOTSTEP_GRAVEL
+	mediumxenofootstep = FOOTSTEP_GRAVEL
 
 /turf/open/lavaland/basalt/cave
 	name = "cave"
@@ -306,7 +303,7 @@
 	if(deconstructing)
 		return
 	deconstructing = TRUE
-	if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(X, 10 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		deconstructing = FALSE
 		return
 	deconstructing = FALSE

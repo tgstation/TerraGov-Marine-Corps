@@ -91,7 +91,10 @@
 ///Adds or removes underlay sprites, checks holstered_item to see which underlay to add
 /obj/item/storage/holster/proc/update_underlays()
 	if(holstered_item && !holstered_item_underlay)
-		holstered_item_underlay = image(icon, src, holstered_item.icon_state)
+		if(holstered_item.greyscale_config && holstered_item.greyscale_colors)
+			holstered_item_underlay = image(SSgreyscale.GetColoredIconByType(holstered_item.greyscale_config, holstered_item.greyscale_colors), "belt")
+		else
+			holstered_item_underlay = image(icon, src, holstered_item.icon_state)
 		underlays += holstered_item_underlay
 	else
 		underlays -= holstered_item_underlay
@@ -154,9 +157,9 @@
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact,
 	)
-	bypass_w_limit = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle,)
+	bypass_w_limit = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle)
 	///only one RR per bag
-	storage_type_limits = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle = 1,)
+	storage_type_limits = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle = 1)
 	can_hold = list(
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
@@ -185,6 +188,15 @@
 	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
 	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+
+/obj/item/storage/holster/backholster/rpg/heam/Initialize(mapload)
+	. = ..()
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle/heam(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/rpg/som
@@ -219,6 +231,130 @@
 	new /obj/item/ammo_magazine/rocket/som/rad(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/som/rad(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+
+/obj/item/storage/holster/backholster/rpg/som/heat/Initialize(mapload)
+	. = ..()
+	new /obj/item/ammo_magazine/rocket/som/heat(src)
+	new /obj/item/ammo_magazine/rocket/som/heat(src)
+	new /obj/item/ammo_magazine/rocket/som/heat(src)
+	new /obj/item/ammo_magazine/rocket/som/heat(src)
+	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/som/heat(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+
+/obj/item/storage/holster/backholster/mortar
+	name = "\improper TGMC mortar bag"
+	desc = "This backpack can hold 11 80mm mortar shells, in addition to the mortar itself."
+	icon_state = "marinepackt"
+	w_class = WEIGHT_CLASS_BULKY
+	max_w_class = WEIGHT_CLASS_NORMAL
+	storage_slots = null
+	max_storage_space = 30
+	access_delay = 0
+	holsterable_allowed = list(/obj/item/mortar_kit)
+	bypass_w_limit = list(/obj/item/mortar_kit)
+	storage_type_limits = list(/obj/item/mortar_kit = 1)
+	can_hold = list(
+		/obj/item/mortal_shell/he,
+		/obj/item/mortal_shell/incendiary,
+		/obj/item/mortal_shell/smoke,
+		/obj/item/mortal_shell/flare,
+		/obj/item/mortal_shell/plasmaloss,
+		/obj/item/mortar_kit,
+	)
+
+	sprite_sheets = list(
+		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Sterling Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Chilvaris Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Hammerhead Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		)
+
+
+/obj/item/storage/holster/backholster/mortar/full/Initialize()
+	. = ..()
+	var/obj/item/new_item = new /obj/item/mortar_kit(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+
+/obj/item/storage/holster/backholster/flamer
+	name = "\improper TGMC flamethrower bag"
+	desc = "This backpack can carry its accompanying flamethrower as well as a modest general storage capacity. Automatically refuels it's accompanying flamethrower."
+	icon_state = "pyro_bag"
+	w_class = WEIGHT_CLASS_BULKY
+	storage_slots = null
+	max_storage_space = 16
+	max_w_class = WEIGHT_CLASS_NORMAL
+	access_delay = 0
+	holsterable_allowed = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer)
+	bypass_w_limit = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer)
+	storage_type_limits = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer = 1)
+	///The internal fuel tank
+	var/obj/item/ammo_magazine/flamer_tank/internal/tank
+
+	sprite_sheets = list(
+		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Sterling Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Chilvaris Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Hammerhead Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		)
+
+/obj/item/storage/holster/backholster/flamer/Initialize(mapload)
+	. = ..()
+	tank = new
+	update_icon()
+
+/obj/item/storage/holster/backholster/flamer/MouseDrop_T(obj/item/W, mob/living/user)
+	. = ..()
+	if(istype(W,/obj/item/ammo_magazine/flamer_tank))
+		refuel(W, user)
+
+/obj/item/storage/holster/backholster/flamer/afterattack(obj/O as obj, mob/user as mob, proximity)
+	. = ..()
+	//uses the tank's proc to refuel
+	if(istype(O, /obj/structure/reagent_dispensers/fueltank))
+		tank.afterattack(O, user)
+	if(istype(O,/obj/item/ammo_magazine/flamer_tank))
+		refuel(O, user)
+
+/obj/item/storage/holster/backholster/flamer/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
+	. = ..()
+	if(holstered_item == item)
+		var/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/flamer = item
+		refuel(flamer.chamber_items[1], user)
+		flamer.update_ammo_count()
+
+/* Used to refuel the attached FL-86 flamer when it is put into the backpack
+ *
+ * param1 - The flamer tank, the actual tank we are refilling
+ * param2 - The person wearing the backpack
+*/
+/obj/item/storage/holster/backholster/flamer/proc/refuel(obj/item/ammo_magazine/flamer_tank/flamer_tank, mob/living/user)
+	if(!istype(flamer_tank,/obj/item/ammo_magazine/flamer_tank))
+		return
+	if(get_dist(user, flamer_tank) > 1)
+		return
+	if(flamer_tank.current_rounds >= flamer_tank.max_rounds)
+		to_chat(user, span_warning("[flamer_tank] is already full."))
+		return
+	if(tank.current_rounds <= 0)
+		to_chat(user, span_warning("The [tank] is empty!"))
+		return
+	var/liquid_transfer_amount = min(tank.current_rounds, flamer_tank.max_rounds - flamer_tank.current_rounds)
+	tank.current_rounds -= liquid_transfer_amount
+	flamer_tank.current_rounds += liquid_transfer_amount
+	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+	to_chat(user, span_notice("[flamer_tank] is refilled with [lowertext(tank.caliber)]."))
+	update_icon()
+
+/obj/item/storage/holster/backholster/flamer/examine(mob/user)
+	. = ..()
+	. += "[tank.current_rounds] units of fuel left!"
+
+/obj/item/storage/holster/backholster/flamer/full/Initialize(mapload)
+	. = ..()
+	var/flamer = new /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), flamer)
 
 //one slot holsters
 
@@ -275,12 +411,12 @@
 	desc = "A large leather scabbard used to carry a sword. Appears to be a reproduction, rather than original. It can be strapped to the waist or armor."
 	icon_state = "officer_sheath"
 	flags_equip_slot = ITEM_SLOT_BELT
-	holsterable_allowed = list(/obj/item/weapon/claymore/mercsword/officersword)
-	can_hold = list(/obj/item/weapon/claymore/mercsword/officersword)
+	holsterable_allowed = list(/obj/item/weapon/claymore/mercsword/machete/officersword)
+	can_hold = list(/obj/item/weapon/claymore/mercsword/machete/officersword)
 
 /obj/item/storage/holster/blade/officer/full/Initialize(mapload)
 	. = ..()
-	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/officersword(src)
+	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/machete/officersword(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 //guns
@@ -382,9 +518,12 @@
 	if(!istype(I, /obj/item/weapon/gun/grenade_launcher/single_shot/flare))
 		return ..()
 	var/obj/item/weapon/gun/grenade_launcher/single_shot/flare/flare_gun = I
+	if(flare_gun.in_chamber)
+		return
 	for(var/obj/item/flare in contents)
+		remove_from_storage(flare, get_turf(user), user)
+		user.put_in_any_hand_if_possible(flare)
 		flare_gun.reload(flare, user)
-		orient2hud()
 		return
 
 /obj/item/storage/holster/flarepouch/full/Initialize(mapload)
@@ -426,23 +565,9 @@
 	name = "generic pistol belt"
 	desc = "A pistol belt that is not a revolver belt"
 
-/obj/item/storage/holster/belt/pistol/attackby_alternate(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/weapon/gun/pistol))
-		return ..()
-	var/obj/item/weapon/gun/pistol/gun = I
-	for(var/obj/item/ammo_magazine/mag in contents)
-		if(!(mag.type in gun.allowed_ammo_types))
-			continue
-		if(user.l_hand && user.r_hand || length(gun.chamber_items))
-			gun.tactical_reload(mag, user)
-		else
-			gun.reload(mag, user)
-		orient2hud()
-		return
-
-/obj/item/storage/holster/belt/pistol/examine(mob/user, distance, infix, suffix)
+/obj/item/storage/holster/belt/pistol/Initialize(mapload, ...)
 	. = ..()
-	. += span_notice("To perform a reload with the amunition inside, disable right click and right click on the belt with an empty pistol.")
+	AddComponent(/datum/component/tac_reload_storage)
 
 /obj/item/storage/holster/belt/pistol/m4a3
 	name = "\improper M4A3 holster rig"
@@ -533,10 +658,32 @@
 		/obj/item/cell/lasgun/volkite/small,
 	)
 
+/obj/item/storage/holster/belt/pistol/m4a3/som/serpenta/Initialize(mapload, ...)
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
 /obj/item/storage/holster/belt/pistol/m4a3/som/fancy
 	name = "\improper S19-B holster rig"
 	desc = "A quality pistol belt of a style typically seen worn by SOM officers. It looks old, but well looked after."
 	icon_state = "som_belt_pistol_fancy"
+
+/obj/item/storage/holster/belt/pistol/m4a3/som/fancy/fieldcommander/Initialize(mapload)
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta/custom(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/pistol/stand
 	name = "\improper M276 pattern M4A3 holster rig"

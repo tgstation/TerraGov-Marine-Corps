@@ -61,6 +61,8 @@
 	var/list/species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetics", "Vat-Grown", "Vatborn") // Restrict some styles to specific species
 	var/do_colouration = TRUE	// Whether or not the accessory can be affected by colouration
 
+	var/datum/greyscale_config/greyscale_config
+
 
 /*
 ////////////////////////////
@@ -1305,10 +1307,17 @@
 	name = "Soul Patch"
 	icon_state = "facial_soulpatch"
 
+/datum/sprite_accessory/facial_hair/rough_man
+	name = "Rough Man"
+	icon_state = "facial_roughman"
+
 /datum/sprite_accessory/facial_hair/broken_man
 	name = "Broken Man"
-	icon_state = "facial_brokenman"
+	icon_state = "facial_brokenman_s"
+	greyscale_config = /datum/greyscale_config/broken_man
 
+	
+	
 //skin styles - WIP
 //going to have to re-integrate this with surgery
 //let the icon_state hold an icon preview for now

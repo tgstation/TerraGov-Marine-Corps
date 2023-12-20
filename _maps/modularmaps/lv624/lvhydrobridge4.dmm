@@ -3,6 +3,11 @@
 /obj/structure/catwalk,
 /turf/open/liquid/water/river,
 /area/lv624/ground/river2)
+"b" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/liquid/water/river/deep,
+/area/lv624/ground/river2)
 "c" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
@@ -31,6 +36,12 @@
 	},
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor,
+/area/lv624/ground/river2)
+"l" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "n" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -66,11 +77,20 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
 /obj/structure/cable,
-/turf/open/liquid/water/river,
+/turf/open/liquid/water/river/deep,
+/area/lv624/ground/river2)
+"v" = (
+/turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "w" = (
 /obj/structure/grille/smoothing,
 /turf/open/floor/plating,
+/area/lv624/ground/river2)
+"x" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "A" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -112,12 +132,16 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/river2)
+"L" = (
+/obj/structure/catwalk,
+/turf/open/liquid/water/river/deep,
+/area/lv624/ground/river2)
 "N" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/gibs,
-/turf/open/liquid/water/river,
+/turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "P" = (
 /turf/open/liquid/water/river,
@@ -127,7 +151,7 @@
 /area/lv624/ground/river2)
 "V" = (
 /obj/structure/grille/broken,
-/turf/open/liquid/water/river,
+/turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "W" = (
 /turf/closed/wall,
@@ -155,10 +179,10 @@
 (1,1,1) = {"
 X
 a
-a
-P
-P
-P
+L
+v
+v
+v
 V
 a
 a
@@ -168,9 +192,9 @@ a
 D
 W
 r
-P
-P
-P
+v
+v
+v
 c
 w
 W
@@ -179,9 +203,9 @@ W
 (3,1,1) = {"
 C
 A
-e
-P
-P
+l
+v
+v
 P
 e
 A
@@ -192,9 +216,9 @@ A
 q
 d
 d
-p
+b
 u
-p
+b
 p
 d
 d
@@ -204,9 +228,9 @@ d
 H
 K
 R
-P
-P
-P
+v
+v
+v
 P
 P
 R
@@ -216,9 +240,9 @@ R
 Z
 k
 N
-F
-P
-P
+x
+v
+v
 P
 F
 F
@@ -229,8 +253,8 @@ t
 W
 W
 V
-P
-P
+v
+v
 P
 J
 W
@@ -239,11 +263,11 @@ W
 (8,1,1) = {"
 X
 a
-a
-P
-P
+L
+v
+v
 V
-a
+L
 a
 a
 a

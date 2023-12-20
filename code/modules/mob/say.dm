@@ -50,10 +50,31 @@
 				to_chat(src, span_danger("You cannot talk in deadchat (muted)."))
 				return
 			if(client?.prefs && !(client.prefs.toggles_chat & CHAT_DEAD))
-				to_chat(usr, span_warning("You have deadchat muted."))
+				to_chat(src, span_warning("You have deadchat muted."))
+				return
+			if(is_banned_from(ckey, "Deadchat"))
+				to_chat(src, span_warning("You are banned from deadchat."))
 				return
 			if(client.handle_spam_prevention(message, MUTE_DEADCHAT))
 				return
+
+	var/list/filter_result = is_ooc_filtered(message)
+	if(!CAN_BYPASS_FILTER(usr) && filter_result)
+		REPORT_CHAT_FILTER_TO_USER(usr, filter_result)
+		log_filter("Deadchat", message, filter_result)
+		return
+
+	// Protect filter bypassers from themselves.
+	// Demote hard filter results to soft filter results if necessary due to the danger of accidentally speaking in OOC.
+	var/list/soft_filter_result = filter_result || is_soft_ooc_filtered(message)
+
+	if(soft_filter_result)
+		if(tgui_alert(usr,"Your message contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to say it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+			log_filter("Soft Deadchat", message, soft_filter_result)
+			return
+		message_admins("[ADMIN_LOOKUPFLW(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[message]\"")
+		log_admin_private("[key_name(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[message]\"")
+		log_filter("Soft Deadchat (PASSED)", message, soft_filter_result)
 
 	var/name = "GHOST" // Just defined incase its empty
 	var/alt_name = ""
@@ -75,7 +96,7 @@
 		displayed_key = null
 
 	deadchat_broadcast(rendered, source, follow_target = src, speaker_key = displayed_key)
-
+	create_chat_message(src, /datum/language/common, message)
 
 /mob/living/proc/get_message_mode(message)
 	var/key = message[1]
@@ -87,8 +108,6 @@
 		return MODE_HEADSET
 	else if((length(message) > (length(key) + 1)) && (key in GLOB.department_radio_prefixes))
 		var/key_symbol = lowertext(message[length(key) + 1])
-		if(faction == FACTION_TERRAGOV_REBEL)
-			return GLOB.department_radio_keys_rebel[key_symbol]
 		if(faction == FACTION_SOM)
 			return GLOB.department_radio_keys_som[key_symbol]
 		return GLOB.department_radio_keys[key_symbol]

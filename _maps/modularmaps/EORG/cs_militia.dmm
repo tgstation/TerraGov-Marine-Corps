@@ -1,10 +1,14 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"as" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/wood,
+/area/deathmatch)
 "aB" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
 "bl" = (
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/obj/structure/flora/desert/grass/three,
+/obj/structure/flora/desert/grass,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "bE" = (
@@ -27,8 +31,15 @@
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
+"cR" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
+/area/deathmatch)
 "dg" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "ds" = (
@@ -74,10 +85,6 @@
 /obj/structure/closet/secure_closet/freezer,
 /turf/open/floor/wood,
 /area/deathmatch)
-"jg" = (
-/obj/structure/flora/desert/grass/seven,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/deathmatch)
 "kv" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 6
@@ -102,7 +109,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "oE" = (
-/obj/structure/flora/desert/cactus/multiple/eleven,
+/obj/structure/flora/desert/cactus/multiple,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "pl" = (
@@ -161,9 +168,6 @@
 	id = "cs_militia_1";
 	pixel_y = 8
 	},
-/obj/structure/platform{
-	dir = 4
-	},
 /turf/open/floor/plating/asteroidplating{
 	color = "#888888"
 	},
@@ -214,11 +218,11 @@
 	},
 /area/deathmatch)
 "xg" = (
-/obj/structure/flora/desert/grass/three,
+/obj/structure/flora/desert/grass,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "xp" = (
-/obj/structure/flora/desert/grass/seven,
+/obj/structure/flora/desert/grass,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
 "xA" = (
@@ -289,6 +293,12 @@
 	dir = 10
 	},
 /area/deathmatch)
+"CF" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
+/area/deathmatch)
 "Dq" = (
 /obj/structure/platform{
 	dir = 4
@@ -353,15 +363,6 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/deathmatch)
-"IO" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/effect/landmark/deathmatch,
-/turf/open/floor/plating/asteroidplating{
-	color = "#888888"
-	},
 /area/deathmatch)
 "Jj" = (
 /obj/structure/window/framed/wood,
@@ -469,17 +470,8 @@
 /area/deathmatch)
 "Vo" = (
 /obj/effect/landmark/deathmatch,
-/obj/structure/flora/desert/grass/three,
+/obj/structure/flora/desert/grass,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/deathmatch)
-"Vq" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/effect/landmark/deathmatch,
-/turf/open/floor/plating/asteroidplating{
-	color = "#888888"
-	},
 /area/deathmatch)
 "Vu" = (
 /obj/structure/ladder{
@@ -521,6 +513,10 @@
 "XA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"XG" = (
+/obj/effect/landmark/eord_roomba,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "Yq" = (
@@ -671,7 +667,7 @@ kv
 uR
 uR
 uR
-jg
+xg
 uR
 Gk
 uR
@@ -739,8 +735,8 @@ Uv
 WC
 WC
 WC
-Dq
-Vq
+WV
+NB
 WV
 WC
 Uv
@@ -765,7 +761,7 @@ Uv
 uR
 uR
 Gk
-uR
+XG
 uR
 rf
 Gx
@@ -787,8 +783,8 @@ Uv
 WC
 WV
 WV
-WV
-WV
+GB
+GB
 WV
 WC
 Uv
@@ -808,7 +804,7 @@ Uv
 aB
 kv
 uR
-jg
+xg
 uR
 rf
 uR
@@ -951,7 +947,7 @@ kv
 uR
 oE
 uR
-jg
+xg
 uR
 QI
 Or
@@ -977,7 +973,7 @@ Uv
 Uv
 Uv
 WC
-WV
+CF
 WC
 Uv
 Uv
@@ -1106,7 +1102,7 @@ QI
 LT
 LT
 LT
-LT
+as
 LT
 LT
 LT
@@ -1193,7 +1189,7 @@ Uv
 uR
 uR
 uR
-jg
+xg
 uR
 Yq
 pl
@@ -1342,7 +1338,7 @@ oE
 Gk
 uR
 uR
-jg
+xg
 QI
 uN
 uN
@@ -1353,8 +1349,8 @@ QI
 QI
 Uv
 WC
-WV
-WV
+Dq
+Dq
 WV
 WV
 WV
@@ -1401,8 +1397,8 @@ QI
 QI
 Uv
 WC
-GB
-IO
+WV
+NB
 hw
 WC
 WC
@@ -1434,7 +1430,7 @@ Uv
 Uv
 Uv
 Uv
-jg
+xg
 uR
 uR
 uR
@@ -1555,7 +1551,7 @@ Uv
 Uv
 Uv
 WC
-hw
+cR
 WC
 Uv
 Uv
@@ -1671,7 +1667,7 @@ uR
 Gk
 uR
 uR
-uR
+XG
 YW
 gK
 LT
@@ -1696,8 +1692,8 @@ WV
 WV
 WV
 WV
-WV
-WV
+Dq
+Dq
 WV
 hw
 WC
@@ -1744,8 +1740,8 @@ hw
 WC
 WC
 WV
-GB
-GB
+WV
+WV
 WC
 WC
 WC
@@ -1999,7 +1995,7 @@ Uv
 mY
 uR
 uR
-jg
+xg
 uR
 uR
 uR
@@ -2103,7 +2099,7 @@ Yw
 bP
 uR
 uR
-jg
+xg
 uR
 oE
 uR
@@ -2133,7 +2129,7 @@ WC
 WC
 WV
 sv
-Vq
+NB
 WC
 Uv
 "}
@@ -2176,12 +2172,12 @@ WV
 WV
 WV
 WV
-WV
+CF
 WV
 hw
 WV
-WV
-WV
+GB
+GB
 WC
 Uv
 "}
@@ -2404,7 +2400,7 @@ uR
 uR
 uR
 uR
-jg
+xg
 uR
 uR
 uR
@@ -2488,13 +2484,13 @@ rf
 Uv
 Uv
 uR
-jg
+xg
 uR
 Bs
 pl
 pl
 kv
-uR
+XG
 uR
 xg
 uR
@@ -2639,7 +2635,7 @@ uR
 uR
 uR
 uR
-jg
+xg
 uR
 rf
 uR

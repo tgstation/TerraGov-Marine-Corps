@@ -50,11 +50,33 @@
 	loot_subtype_path = /obj/item/book/manual
 	loot = list()
 
+/obj/effect/spawner/random/misc/table_lighting
+	name = "Random table lighting spawner"
+	icon_state = "random_lamp"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/item/flashlight/lamp = 100,
+		/obj/item/flashlight/lamp/green = 5,
+		/obj/item/flashlight/lantern = 3,
+		/obj/item/flashlight/combat = 3,
+		/obj/item/flashlight/pen = 3,
+		/obj/item/flashlight/lamp/menorah = 1,
+	)
+
+/obj/effect/spawner/random/misc/earmuffs
+	name = "Random earmuffs spawner"
+	icon_state = "random_earmuffs"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/item/clothing/ears/earmuffs,
+		/obj/item/clothing/ears/earmuffs/gold,
+		/obj/item/clothing/ears/earmuffs/green,
+	)
+
 /obj/effect/spawner/random/misc/cigarettes
 	name = "Random cigarette spawner"
 	icon_state = "random_cigarette"
 	spawn_random_offset = TRUE
-	spawn_scatter_radius = 1
 	loot = list(
 		/obj/item/storage/fancy/cigarettes/dromedaryco = 30,
 		/obj/item/storage/fancy/cigarettes/kpack = 25,
@@ -62,6 +84,33 @@
 		/obj/item/storage/fancy/cigarettes/luckystars = 25,
 		/obj/item/storage/fancy/chemrettes = 15,
 		/obj/item/storage/fancy/cigar = 15,
+	)
+
+/obj/effect/spawner/random/misc/soap
+	name = "Random soap spawner"
+	icon_state = "random_soap"
+	spawn_loot_chance = 50
+	loot = list(
+		/obj/item/tool/soap,
+		/obj/item/tool/soap/deluxe,
+		/obj/item/tool/soap/nanotrasen,
+		/obj/item/tool/soap/syndie,
+	)
+
+/obj/effect/spawner/random/misc/soap/regularweighted
+	loot = list(
+		/obj/item/tool/soap = 40,
+		/obj/item/tool/soap/deluxe = 15,
+		/obj/item/tool/soap/nanotrasen = 10,
+		/obj/item/tool/soap/syndie = 1,
+	)
+
+/obj/effect/spawner/random/misc/soap/deluxeweighted
+	loot = list(
+		/obj/item/tool/soap/deluxe = 40,
+		/obj/item/tool/soap = 15,
+		/obj/item/tool/soap/nanotrasen = 10,
+		/obj/item/tool/soap/syndie = 1,
 	)
 
 //random plushie spawner
@@ -91,6 +140,18 @@
 
 /obj/effect/spawner/random/misc/plushie/nospawnninetynine
 	spawn_loot_chance = 1
+
+/obj/effect/spawner/random/misc/gnome
+	name = "Random gnome spawner"
+	icon_state = "random_gnome"
+	spawn_loot_chance = 15
+	loot = list(
+		/obj/item/toy/plush/gnome = 25,
+		/obj/item/toy/plush/gnome/living = 1,
+	)
+
+/obj/effect/spawner/random/misc/gnome/fiftyfifty
+	spawn_loot_chance = 50
 
 /obj/effect/spawner/random/misc/plant
 	name = "Random potted plant spawner"
@@ -200,6 +261,7 @@
 		/obj/item/trash/chunk,
 		/obj/item/trash/barcardine,
 		/obj/item/trash/mre,
+		/obj/item/trash/berrybar,
 	)
 
 /obj/effect/spawner/random/misc/greytide

@@ -16,6 +16,21 @@
 		duration = set_duration
 	return ..()
 
+//STAGGERED
+/datum/status_effect/incapacitating/stagger
+	id = "stagger"
+
+/datum/status_effect/incapacitating/stagger/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_STAGGERED, TRAIT_STATUS_EFFECT(id))
+	owner.adjust_mob_scatter(5)
+
+/datum/status_effect/incapacitating/stagger/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_STAGGERED, TRAIT_STATUS_EFFECT(id))
+	owner.adjust_mob_scatter(-5)
+
 //STUN
 /datum/status_effect/incapacitating/stun
 	id = "stun"
@@ -40,9 +55,11 @@
 	. = ..()
 	if(!.)
 		return
+	ADD_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
 	ADD_TRAIT(owner, TRAIT_FLOORED, TRAIT_STATUS_EFFECT(id))
 
 /datum/status_effect/incapacitating/knockdown/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
 	REMOVE_TRAIT(owner, TRAIT_FLOORED, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
@@ -166,13 +183,13 @@
 	. = ..()
 	if(!.)
 		return
-	owner.disabilities |= BLIND
-	owner.blind_eyes(1)
+	//Robots and synths are generally resistant to blinding, so we apply an overlay directly instead
+	owner.overlay_fullscreen("repair-mode", /atom/movable/screen/fullscreen/blind)
 	ADD_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, TRAIT_STATUS_EFFECT(id))
 
 /datum/status_effect/incapacitating/repair_mode/on_remove()
-	owner.disabilities &= ~BLIND
+	owner.clear_fullscreen("repair-mode")
 	REMOVE_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TRAIT_STATUS_EFFECT(id))
 	return ..()
@@ -374,6 +391,8 @@
 	. = ..()
 	if(!.)
 		return
+	if(HAS_TRAIT(owner, TRAIT_SLOWDOWNIMMUNE))
+		return
 	owner.add_movespeed_modifier(MOVESPEED_ID_HARVEST_TRAM_SLOWDOWN, TRUE, 0, NONE, TRUE, debuff_slowdown)
 
 /datum/status_effect/incapacitating/harvester_slowdown/on_remove()
@@ -416,11 +435,19 @@
 /datum/status_effect/spacefreeze/tick()
 	owner.adjustFireLoss(40)
 
+/datum/status_effect/spacefreeze/light
+	id = "spacefreeze_light"
+
+/datum/status_effect/spacefreeze/light/tick()
+	if(owner.stat == DEAD)
+		return
+	owner.adjustFireLoss(10)
+
 ///irradiated mob
 /datum/status_effect/incapacitating/irradiated
 	id = "irradiated"
 	status_type = STATUS_EFFECT_REFRESH
-	tick_interval = 20
+	tick_interval = 2 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/irradiated
 	///Some effects only apply to carbons
 	var/mob/living/carbon/carbon_owner
@@ -510,7 +537,7 @@
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
 	if(stacks >= 20)
 		debuff_owner.adjust_slowdown(1)
-		debuff_owner.adjust_stagger(1)
+		debuff_owner.adjust_stagger(1 SECONDS)
 
 /// Called when the debuff's owner uses the Resist action for this debuff.
 /datum/status_effect/stacking/intoxicated/proc/call_resist_debuff()
@@ -521,12 +548,275 @@
 /datum/status_effect/stacking/intoxicated/proc/resist_debuff()
 	if(length(debuff_owner.do_actions))
 		return
-	if(!do_after(debuff_owner, 5 SECONDS, TRUE, debuff_owner, BUSY_ICON_GENERIC))
-		debuff_owner.balloon_alert("Interrupted")
+	if(!do_after(debuff_owner, 5 SECONDS, NONE, debuff_owner, BUSY_ICON_GENERIC))
+		debuff_owner?.balloon_alert(debuff_owner, "Interrupted")
 		return
-	playsound(debuff_owner.loc, 'sound/effects/slosh.ogg', 30)
-	debuff_owner.balloon_alert("Succeeded")
+	if(!debuff_owner)
+		return
+	playsound(debuff_owner, 'sound/effects/slosh.ogg', 30)
+	debuff_owner.balloon_alert(debuff_owner, "Succeeded")
 	stacks -= SENTINEL_INTOXICATED_RESIST_REDUCTION
 	if(stacks > 0)
 		resist_debuff() // We repeat ourselves as long as the debuff persists.
 		return
+
+
+// ***************************************
+// *********** dread
+// ***************************************
+/atom/movable/screen/alert/status_effect/dread
+	name = "Dread"
+	desc = "A dreadful presence. You are slowed down until this expires."
+	icon_state = "dread"
+
+/datum/status_effect/dread
+	id = "dread"
+	status_type = STATUS_EFFECT_REPLACE
+	tick_interval = 2 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/dread
+
+/datum/status_effect/dread/on_creation(mob/living/new_owner, set_duration)
+	owner = new_owner
+	duration = set_duration
+	return ..()
+
+/datum/status_effect/dread/tick()
+	. = ..()
+	var/mob/living/living_owner = owner
+	living_owner.do_jitter_animation(250)
+
+/datum/status_effect/dread/on_apply()
+	. = ..()
+	if(!.)
+		return
+	owner.add_movespeed_modifier(MOVESPEED_ID_XENO_DREAD, TRUE, 0, NONE, TRUE, 0.4)
+
+/datum/status_effect/dread/on_remove()
+	owner.remove_movespeed_modifier(MOVESPEED_ID_XENO_DREAD)
+	return ..()
+
+// ***************************************
+// *********** Melting
+// ***************************************
+///amount of damage done per tick by the melting status effect
+#define STATUS_EFFECT_MELTING_DAMAGE 5
+///Sunder inflicted per tick by the melting status effect
+#define STATUS_EFFECT_MELTING_SUNDER_DAMAGE 3
+
+/datum/status_effect/stacking/melting
+	id = "melting"
+	tick_interval = 1 SECONDS
+	max_stacks = 30
+	consumed_on_threshold = FALSE
+	alert_type = /atom/movable/screen/alert/status_effect/melting
+	///Owner of the debuff is limited to carbons.
+	var/mob/living/carbon/debuff_owner
+	///Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/status_effect/stacking/melting/can_gain_stacks()
+	if(owner.status_flags & GODMODE)
+		return FALSE
+	return ..()
+
+/datum/status_effect/stacking/melting/on_creation(mob/living/new_owner, stacks_to_apply)
+	if(new_owner.status_flags & GODMODE)
+		qdel(src)
+		return
+	if(new_owner.has_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING))
+		return
+
+	. = ..()
+	debuff_owner = new_owner
+	debuff_owner.balloon_alert(debuff_owner, "Melting!")
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
+	particle_holder = new(debuff_owner, /particles/melting_status)
+	particle_holder.particles.spawning = 1 + round(stacks / 2)
+
+/datum/status_effect/stacking/melting/on_remove()
+	debuff_owner = null
+	QDEL_NULL(particle_holder)
+	return ..()
+
+/datum/status_effect/stacking/melting/tick()
+	. = ..()
+	if(!debuff_owner)
+		return
+
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	particle_holder.particles.spawning = 1 + round(stacks / 2)
+
+	debuff_owner.apply_damage(STATUS_EFFECT_MELTING_DAMAGE, BURN, null, FIRE)
+
+	if(!isxeno(debuff_owner))
+		return
+	var/mob/living/carbon/xenomorph/xenomorph_owner = debuff_owner
+	xenomorph_owner.adjust_sunder(STATUS_EFFECT_MELTING_SUNDER_DAMAGE)
+
+/atom/movable/screen/alert/status_effect/melting
+	name = "Melting"
+	desc = "You are melting away!"
+	icon_state = "melting"
+
+/particles/melting_status
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "drip"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 4
+	lifespan = 10
+	fade = 8
+	velocity = list(0, 0)
+	position = generator(GEN_SPHERE, 16, 16, NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(-0.1, 0), list(0.1, 0))
+	gravity = list(0, -0.4)
+	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(1, 1), NORMAL_RAND)
+	friction = -0.05
+	color = "#cc5200"
+
+// ***************************************
+// *********** Microwave
+// ***************************************
+///amount of damage done per tick by the microwave status effect
+#define MICROWAVE_STATUS_DAMAGE_MULT 4
+///duration of the microwave effect. Refreshed on application
+#define MICROWAVE_STATUS_DURATION 5 SECONDS
+
+/datum/status_effect/stacking/microwave
+	id = "microwaved"
+	tick_interval = 1 SECONDS
+	max_stacks = 5
+	stack_decay = 0
+	consumed_on_threshold = FALSE
+	alert_type = /atom/movable/screen/alert/status_effect/microwave
+	///Owner of the debuff is limited to carbons.
+	var/mob/living/carbon/debuff_owner
+	///Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+	COOLDOWN_DECLARE(cooldown_microwave_status)
+
+/datum/status_effect/stacking/microwave/can_gain_stacks()
+	if(owner.status_flags & GODMODE)
+		return FALSE
+	return ..()
+
+/datum/status_effect/stacking/microwave/on_creation(mob/living/new_owner, stacks_to_apply)
+	if(new_owner.status_flags & GODMODE)
+		qdel(src)
+		return
+	debuff_owner = new_owner
+	debuff_owner.balloon_alert(debuff_owner, "microwaved!")
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
+	particle_holder = new(debuff_owner, /particles/microwave_status)
+	COOLDOWN_START(src, cooldown_microwave_status, MICROWAVE_STATUS_DURATION)
+	return ..()
+
+/datum/status_effect/stacking/microwave/on_remove()
+	debuff_owner = null
+	QDEL_NULL(particle_holder)
+	return ..()
+
+/datum/status_effect/stacking/microwave/add_stacks(stacks_added)
+	. = ..()
+	particle_holder.particles.spawning = stacks * 6
+	if(stacks_added > 0 && stacks >= max_stacks) //proc is run even if stacks are not actually added
+		COOLDOWN_START(src, cooldown_microwave_status, MICROWAVE_STATUS_DURATION)
+
+/datum/status_effect/stacking/microwave/tick()
+	. = ..()
+	if(COOLDOWN_CHECK(src, cooldown_microwave_status))
+		return qdel(src)
+
+	if(!debuff_owner)
+		return
+
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+
+	debuff_owner.adjustFireLoss(stacks * MICROWAVE_STATUS_DAMAGE_MULT * (debuff_owner.mob_size > MOB_SIZE_HUMAN ? 1 : 0.5)) //this shreds humans otherwise
+
+/atom/movable/screen/alert/status_effect/microwave
+	name = "Microwave"
+	desc = "You are burning from the inside!"
+	icon_state = "microwave"
+
+/particles/microwave_status
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "x"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 4
+	lifespan = 10
+	fade = 8
+	velocity = list(0, 0)
+	position = generator(GEN_SPHERE, 16, 16, NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(-0.1, 0), list(0.1, 0))
+	gravity = list(0, -0.4)
+	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(1, 1), NORMAL_RAND)
+	friction = -0.05
+	color = "#a7cc00"
+
+
+// ***************************************
+// *********** Shatter
+// ***************************************
+///Percentage reduction of armor removed by the shatter status effect
+#define SHATTER_STATUS_EFFECT_ARMOR_MULT 0.2
+
+/datum/status_effect/shatter
+	id = "shatter"
+	alert_type = /atom/movable/screen/alert/status_effect/shatter
+	duration = 10 SECONDS
+	status_type = STATUS_EFFECT_REPLACE
+	///A holder for the exact armor modified by this status effect
+	var/datum/armor/armor_modifier
+	///Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/status_effect/shatter/on_creation(mob/living/new_owner, set_duration)
+	if(new_owner.status_flags & GODMODE)
+		qdel(src)
+		return
+
+	owner = new_owner
+	if(set_duration)
+		duration = set_duration
+
+	particle_holder = new(owner, /particles/shattered_status)
+	return ..()
+
+/datum/status_effect/shatter/on_apply()
+	. = ..()
+	if(!.)
+		return
+	armor_modifier = owner.soft_armor.scaleAllRatings(SHATTER_STATUS_EFFECT_ARMOR_MULT)
+	owner.soft_armor = owner.soft_armor.detachArmor(armor_modifier)
+
+/datum/status_effect/shatter/on_remove()
+	owner.soft_armor = owner.soft_armor.attachArmor(armor_modifier)
+	armor_modifier = null
+	QDEL_NULL(particle_holder)
+	return ..()
+
+/atom/movable/screen/alert/status_effect/shatter
+	name = "Shattered"
+	desc = "Your armor has been shattered!"
+	icon_state = "shatter"
+
+/particles/shattered_status
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "x"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 4
+	lifespan = 10
+	fade = 8
+	velocity = list(0, 0)
+	position = generator(GEN_SPHERE, 16, 16, NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(-0.1, 0), list(0.1, 0))
+	gravity = list(0, -0.4)
+	scale = generator(GEN_VECTOR, list(0.6, 0.6), list(1, 1), NORMAL_RAND)
+	friction = -0.05
+	color = "#818181"

@@ -12,19 +12,32 @@
 	///used for plasmacutter deconstruction
 	var/open_turf_type = /turf/open/floor/plating
 
+/turf/closed/Initialize(mapload)
+	. = ..()
+	add_debris_element()
+
+/turf/closed/hitby(atom/movable/AM, speed = 5)
+	AM.stop_throw()
+	AM.turf_collision(src, speed)
+	return TRUE
+
 /turf/closed/mineral
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
-	minimap_color = NONE
+	minimap_color = MINIMAP_BLACK
+	resistance_flags = UNACIDABLE
+
+/turf/closed/mineral/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_ROCK, -10, 5, 1)
 
 /turf/closed/mineral/Initialize(mapload)
 	. = ..()
 	for(var/direction in GLOB.cardinals)
 		var/turf/turf_to_check = get_step(src, direction)
 		if(!isnull(turf_to_check) && !turf_to_check.density)
-			var/image/rock_side = image(icon, "[icon_state]_side", dir = turn(direction, 180))
+			var/image/rock_side = image(icon, "[icon_state]_side", dir = REVERSE_DIR(direction))
 			switch(direction)
 				if(NORTH)
 					rock_side.pixel_y += world.icon_size
@@ -37,6 +50,23 @@
 			if(!isspaceturf(turf_to_check))
 				minimap_color = MINIMAP_SOLID
 			overlays += rock_side
+
+/turf/closed/mineral/attack_alien(mob/living/carbon/xenomorph/xeno_user, isrightclick = FALSE)
+	. = ..()
+	if(isxenobehemoth(xeno_user))
+		xeno_user.do_attack_animation(src)
+		playsound(src, 'sound/effects/behemoth/earth_pillar_eating.ogg', 10, TRUE)
+		xeno_user.visible_message(span_xenowarning("\The [xeno_user] eats away at the [src.name]!"), \
+		span_xenonotice(pick(
+			"We eat away at the stone. It tastes good, as expected of our primary diet.",
+			"Mmmmm... Delicious rock. A fitting meal for the hardiest of creatures.",
+			"This boulder -- its flavor fills us with glee. Our palate is thoroughly satisfied.",
+			"These minerals are tasty! We want more!",
+			"Eating this stone makes us think; is our hide tougher? It is. It must be...",
+			"A delectable flavor. Just one bite is not enough...",
+			"One bite, two bites... why not just finish the whole rock?",
+			"The stone. The rock. The boulder. Its name matters not when we consume it.",
+			"Delicious, delectable, simply exquisite. Just a few more minerals and it'd be perfect...")), null, 5)
 
 /turf/closed/mineral/smooth
 	name = "rock"
@@ -52,6 +82,7 @@
 	open_turf_type = /turf/open/floor/plating/ground/mars/random/dirt
 
 /turf/closed/mineral/smooth/indestructible
+	name = "tough rock"
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
@@ -80,7 +111,7 @@
 	icon_state = "darkfrostwall-0"
 	walltype = "darkfrostwall"
 	base_icon_state = "darkfrostwall"
-	resistance_flags = PLASMACUTTER_IMMUNE
+	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
 
 /turf/closed/mineral/smooth/darkfrostwall/indestructible
 	resistance_flags = RESIST_ALL
@@ -136,12 +167,16 @@
 	icon = 'icons/turf/walls/jungle.dmi'
 	icon_state = "junglewall-0"
 	desc = "Some thick jungle."
+	resistance_flags = UNACIDABLE
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_FLORA)
 	canSmoothWith = list(SMOOTH_GROUP_FLORA)
 	base_icon_state = "junglewall"
 	walltype = "junglewall"
 	open_turf_type = /turf/open/ground/jungle/clear
+
+/turf/closed/gm/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_LEAF, -10, 5)
 
 /turf/closed/gm/tree
 	name = "dense jungle trees"
@@ -156,8 +191,8 @@
 
 /turf/closed/gm/dense
 	name = "dense jungle wall"
-	resistance_flags = PLASMACUTTER_IMMUNE
-	minimap_color = NONE
+	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
+	minimap_color = MINIMAP_BLACK
 	icon_state = "wall-dense"
 
 /turf/closed/gm/dense/Initialize(mapload)
@@ -189,7 +224,7 @@
 	for(var/direction in GLOB.cardinals)
 		var/turf/turf_to_check = get_step(src, direction)
 		if(istype(turf_to_check, /turf/open))
-			var/image/rock_side = image(icon, "[icon_state]_side", dir = turn(direction, 180))
+			var/image/rock_side = image(icon, "[icon_state]_side", dir = REVERSE_DIR(direction))
 			switch(direction)
 				if(NORTH)
 					rock_side.pixel_y += world.icon_size
@@ -209,6 +244,9 @@
 	icon_state = "Single"
 	desc = "It is very thick."
 	open_turf_type = /turf/open/floor/plating/ground/ice
+
+/turf/closed/ice/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SNOW, -10, 5, 1)
 
 /turf/closed/ice/single
 	icon_state = "Single"
@@ -259,12 +297,12 @@
 
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(CHECK_BITFIELD(resistance_flags, RESIST_ALL) || CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE))
+		if(CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE))
 			to_chat(user, span_warning("[P] can't cut through this!"))
 			return
 		else if(!P.start_cut(user, name, src))
 			return
-		else if(!do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
+		else if(!do_after(user, PLASMACUTTER_CUT_DELAY, NONE, src, BUSY_ICON_FRIENDLY))
 			return
 		else
 			P.cut_apart(user, name, src) //purely a cosmetic effect
@@ -304,8 +342,11 @@
 /turf/closed/ice_rock
 	name = "Icy rock"
 	icon = 'icons/turf/rockwall.dmi'
-	resistance_flags = PLASMACUTTER_IMMUNE
+	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
 	open_turf_type = /turf/open/floor/plating/ground/ice
+
+/turf/closed/ice_rock/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SNOW, -10, 5, 1)
 
 /turf/closed/ice_rock/single
 	icon_state = "single"
@@ -366,6 +407,9 @@
 	plane = FLOOR_PLANE
 	resistance_flags = PLASMACUTTER_IMMUNE
 
+/turf/closed/shuttle/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
+
 /turf/closed/shuttle/re_corner/notdense
 	icon_state = "re_cornergrass"
 	density = FALSE
@@ -419,16 +463,29 @@
 	plane = GAME_PLANE
 
 /turf/closed/shuttle/ert/engines/left
-	icon_state = "ertshuttle_exterior_engine_left"
+	icon_state = "leftengine_1"
+
+/turf/closed/shuttle/ert/engines/left/two
+	icon_state = "leftengine_2"
+
+/turf/closed/shuttle/ert/engines/left/three
+	icon_state = "leftengine_3"
 
 /turf/closed/shuttle/ert/engines/right
-	icon_state = "ertshuttle_exterior_engine_right"
+	icon_state = "rightengine_1"
+
+/turf/closed/shuttle/ert/engines/right/two
+	icon_state = "rightengine_2"
+
+/turf/closed/shuttle/ert/engines/right/three
+	icon_state = "rightengine_3"
 
 /turf/closed/shuttle/dropship1
 	name = "\improper Alamo"
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 	plane = GAME_PLANE
+	resistance_flags = RESIST_ALL|PLASMACUTTER_IMMUNE
 
 /turf/closed/shuttle/dropship1/transparent
 	opacity = FALSE
@@ -448,6 +505,7 @@
 /turf/closed/shuttle/dropship1/window
 	icon_state = "shuttle_window_glass"
 	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship1/panel
 	icon_state = "shuttle_interior_panel"
@@ -485,6 +543,7 @@
 /turf/closed/shuttle/dropship1/interiorwindow
 	icon_state = "shuttle_interior_inwards"
 	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship1/interiormisc
 	icon_state = "shuttle_interior_threeside"
@@ -638,6 +697,7 @@
 /turf/closed/shuttle/dropship2/window
 	icon_state = "shuttle_window_glass"
 	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/panel
 	icon_state = "shuttle_interior_panel"
@@ -695,6 +755,8 @@
 
 /turf/closed/shuttle/dropship2/singlewindow
 	icon_state = "shuttle_single_window"
+	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/singlewindow/tadpole
 	icon_state = "shuttle_single_window"
@@ -723,18 +785,24 @@
 
 /turf/closed/shuttle/dropship2/glassone
 	icon_state = "shuttle_glass1"
+	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glassone/tadpole
 	icon_state = "shuttle_glass1"
 	resistance_flags = NONE
 	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glasstwo
 	icon_state = "shuttle_glass2"
+	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glasstwo/tadpole
 	icon_state = "shuttle_glass2"
 	resistance_flags = NONE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glassthree
 	icon_state = "shuttle_glass3"

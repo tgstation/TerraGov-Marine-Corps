@@ -1,7 +1,7 @@
 /obj/item/hud_tablet
 	name = "hud tablet"
 	desc = "A tablet with a live feed to a number of headset cameras"
-	icon = 'icons/obj/items/req_tablet.dmi'
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "req_tablet_off"
 	req_access = list(ACCESS_NT_CORPORATE)
 	flags_equip_slot = ITEM_SLOT_POCKET

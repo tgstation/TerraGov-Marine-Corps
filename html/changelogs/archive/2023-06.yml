@@ -1,0 +1,430 @@
+2023-06-01:
+  Lumipharon:
+  - bugfix: Field Commander robots now spawn with robot equipment
+  - code_imp: Adds support for species specific outfits
+2023-06-02:
+  CCorvet:
+  - qol: By default, cades are wired
+  Lumipharon:
+  - balance: Some minor tweaks to medic and SL loadouts
+  RipGrayson:
+  - qol: The AI can now issue an alert for a specific xeno or xeno structure by middle
+      clicking them.
+  ivanmixo:
+  - bugfix: Fixed `COMSIG_MOB_CLICKON` sleeping when climbing, this should fix crate
+      climbing/pulling
+  - rscadd: Made the strip menu into a TGUI iteration
+  - rscadd: You can also untighten/tighten shield straps from the menu now!
+  - bugfix: Handcuff overlays should no longer be buggy
+2023-06-03:
+  BlueHNT:
+  - rscadd: Added big combatmix hypo
+  - rscadd: Added big isotonic hypo [replaced]
+  - rscadd: Added capability to hold syringe cases in the belt [limited by the amount
+      of cases on ship]
+  - rscdel: Removed old dexalin hypo [replaced]
+  - qol: Moved the bottles up to the first slots
+  - balance: Made imialky small due to the combat mix being added
+  QualityVan:
+  - bugfix: Dropping a gun won't make all the ammo fall out of attachments
+  chizzy376:
+  - bugfix: you should no longer bump into invisible objects on Desparity
+2023-06-04:
+  Lewdcifer:
+  - balance: AMR slowdown removed, bullet penetration bonus from laser removed.
+  Lumipharon:
+  - bugfix: fixed issues with having multiple deployables at once
+  - bugfix: fixed an issue with variant outfits
+  - bugfix: fixed an exploit with powerfists
+  - balance: Reduced Psylance effectiveness against mechs slightly
+  - bugfix: fixed hive threat rewards not working some times
+  RipGrayson:
+  - balance: Moved the cave disk generator on Gelida closer to the entrance
+  - balance: Added a couple more miners on Gelida
+  - balance: Added a few rocks in Gelida LZ2 exclusion zone
+  - bugfix: Fixed the lava on Magmoor smoothing oddly with certain border turfs
+  - bugfix: Fixed the boxing ring on Pillar of Spring being permanently lit
+  - bugfix: Fixed an area just outside caves on Gelida being unbuildable on start
+  - bugfix: Fixed a couple camera blindspots on PoS
+  - bugfix: Fixed a broken containment sign in PoS
+  - bugfix: Fixed a broken floodlight typepath in Whiskey Outpost
+  - bugfix: Fixed a misnamed door on Magmoor
+  - bugfix: Fixed an improper door in Big Red medbay
+  - bugfix: Fixed a camera blindspot on Theseus
+  - bugfix: Fixed a broken typepath on the basketball EORG
+  - bugfix: The AI ping sound should no longer destroy the ears of whoever receives
+      it
+  ivanmixo:
+  - code_imp: Addressed more stuff that should be TYPE_PROC_REF
+2023-06-05:
+  Zar000:
+  - balance: rebalanced flare acid resistance
+  - refactor: refactored acid code
+  tyeagg:
+  - bugfix: gun attachments now rotate with the gun
+2023-06-06:
+  Lumipharon:
+  - bugfix: fixed a few missing sprites
+  QualityVan:
+  - bugfix: Power pouches disconnect from guns properly when one is dropped
+  - bugfix: Dropping your gun while blind resets any active scope
+  irRegularGuy646:
+  - bugfix: tactical explosive vest now has the correct armour and slowdown stats
+  ivanmixo:
+  - code_imp: Murdered all instances of the text byond proc
+  - qol: The specialized job vendors now actually indicated the backpacks are not
+      the normal IMP
+  - qol: The gear you equip now gets spawned on you instead of your bag, or failing
+      that it'll spawn in your bag
+  - bugfix: The back slot pref actually works now
+  - code_imp: Made all soft armors use defines instead of strings
+  - balance: Alamo shouldn't delete you if you stand near the doors when it crashes
+  - bugfix: Fixed AI nodes being deleted when turfs get emptied
+  - bugfix: The GL54 razor nade magazines have the correct name in req now
+2023-06-08:
+  Lumipharon:
+  - bugfix: fixed a an issue with trying to click on one of King's overlays
+  Mrrpip:
+  - rscadd: Adds a shower and map table to the Sulaco medbay. Stop stinking.
+  Pariah919:
+  - balance: AMR Flak now does slowdown and has a higher airburst multiplier, but
+      has reduced sundering. AMR Incend does a bit more damage even if it is still
+      less than normal ammo as well as slightly more pen.
+2023-06-09:
+  Lumipharon:
+  - rscadd: Added a variety of new laser weapon firemodes
+  - balance: Various laser weapon rebalances, mainly aimed at making some firemodes
+      more ammo efficient
+  - bugfix: fixed bouncing bullets being mega janky
+  QuarianCommando:
+  - imageadd: added las pouch sprite for the TEX rifle.
+  - imageadd: added las pouch sprite for the tesla rifle.
+  - balance: Tesla rifle can now use las pouches.
+  ivanmixo:
+  - bugfix: Fixed hard armor getter proc
+  - bugfix: Fixed gear preferences not showing everything
+  novaepee:
+  - rscadd: move Theseus' ship armaments closer to CIC
+2023-06-11:
+  ivanmixo:
+  - bugfix: Fixed some runtiming balloon alerts
+  - bugfix: Fixed poly tts runtime
+2023-06-12:
+  Pariah919:
+  - bugfix: Jungle walls are now unacidable again.
+  - balance: Early synth is now properly slower and tankier than late synth.
+  ivanmixo:
+  - bugfix: Fixed one shot rocket launchers not clearing their chambered items after
+      firing
+  - bugfix: Fixed up fire interactions with evasion and stealth, they are actually
+      consistent now
+  - bugfix: Fixed a hugger timer runtime
+  - bugfix: Fixed reloading runtiming if you try to load a non magazine into a gun
+  - bugfix: Fixed drone link double del
+2023-06-13:
+  Lumipharon:
+  - bugfix: Laser carbine does 1 sunder per shot on autoburst instead of 1.5
+  RikuTheKiller:
+  - balance: Deconstructing xeno structures as a xeno now takes 1s instead of 4s.
+  ivanmixo:
+  - bugfix: Fixed roomba no client tts runtime
+  - rscdel: Deleted the last of old legacy nanoui code
+  - code_imp: Made item straps an element
+  - bugfix: Fixed slight issue in hivemind prompt
+  - bugfix: Fixed hive tracker no client runtime
+  - bugfix: Fixed warrior punch invalid param runtime
+  - bugfix: Fixed clamp dropship attach point runtime
+2023-06-14:
+  Blundir:
+  - rscadd: king has hive message, call of the burrowed abilities
+  - rscadd: drone can instantly evolve into king when pop is high enough
+  - rscadd: king can hijack dropship
+  - rscadd: king has evolve timer after his death (similar to the queen)
+  - rscadd: king has ability to buy primordial upgrades
+  - rscadd: king stops hive collapse timer
+  - rscadd: shrike can now send hive messages
+  - rscadd: hive message now specifies which t4 caste sent the message
+  - soundadd: king has his own sound when spawning (similar to the queen)
+  - soundadd: king has his own sound when sending a hive message
+  Lumipharon:
+  - qol: Improved minimap readability with a black background
+  - balance: Silo larva gen now scales down with the ratio of marines to xenos, where
+      xeno numbers are high
+  - bugfix: Hunter sneak attack correctly applies AP again
+  QualityVan:
+  - balance: Vali armor and weapons can load reagents from pills
+  cheapcents:
+  - imageadd: changes several melee weapon sprites
+  ivanmixo:
+  - bugfix: Fixed crew monitor signal runtime
+2023-06-15:
+  Lumipharon:
+  - bugfix: Lava and fire can no longer be made to do 0 damage due to the hold order
+  - qol: added a codex entry for the blink drive
+  XElectricX:
+  - rscadd: Portable reagent dispenser for transporting large amounts of liquids
+  - bugfix: Deployables no longer repeat their examine text
+  - qol: Nanomed has a new chemistry equipment tab
+  forestbbbbbbb:
+  - refactor: nuke uses timers
+2023-06-16:
+  Bobthe28th:
+  - bugfix: Medical items show overlays when vended into storage
+  Lumipharon:
+  - balance: Resin holes can no longer chain stun
+  Pariah919:
+  - rscadd: MLRS 'X-50' Gas rockets.
+  - rscadd: Added new service headgear, beret/ushanka by Ocelot. Campaign Hat by Fitz.
+  forestbbbbbbb:
+  - rscadd: hivemind core can be tracked on the hive status
+  ivanmixo:
+  - bugfix: Plasma pistol doesn't keep a "round" in chamber
+  - bugfix: Fixed a shield bug
+  - bugfix: Fixed another runtime related to dropping a magazine with an underbarrel
+  - bugfix: Fixed some crusher rapid advance bugs
+  novaepee:
+  - rscadd: add spaceacillin autoinjector to marinemed
+  - balance: squad marine can have easier access to spaceacillin, which makes it easier
+      for them to deal with infection
+2023-06-17:
+  Pariah919:
+  - rscadd: Pepperball gun has a coaxial water gun now.
+  QualityVan:
+  - rscadd: EX-62 incendiary charge, available to engineers and through req.
+  - bugfix: You can attach plastic explosives to resin walls
+  - bugfix: Plastic explosives update their sprite properly
+  tyeagg:
+  - rscadd: particles to illum flares
+  - imageadd: new illum flare sprite
+2023-06-18:
+  KerbalCitizen:
+  - rscadd: Added 30 RR autoinjectors to Marinemed vendor, which cannot be restocked.
+  Lumipharon:
+  - bugfix: fixed projectile penetration not working against walls
+  RikuTheKiller:
+  - balance: Quickbuild now uses a shared pool of points.
+  - bugfix: Doors are now destroyed in 1 second just like everything else.
+  Tanker:
+  - rscadd: Added a lightweight medical belt for marines to use.
+  forestbbbbbbb:
+  - bugfix: the ghost notification for the nuke prints seconds correctly
+  ivanmixo:
+  - bugfix: Made get_limb just return the limb if its passed one, this fixes a hard
+      armor runtime
+  - bugfix: Weather sounds should work properly for everyone now
+  - bugfix: Fixed a platform runtime
+  novaepee:
+  - rscadd: give acid rain a siren warning like sand storm
+2023-06-19:
+  Blundir:
+  - rscadd: warlock's shield changes transparency depending on integrity
+  - rscadd: healthud now has a robot icon for robots
+  KerbalCitizen:
+  - rscadd: Medium general pouch to white clothing vendor, which has 2 slots for normal
+      sized items.
+  Lumipharon:
+  - bugfix: fixed a visual issue with tesla inhand sprites
+  - imageadd: Recoilless rifle shells now have visible projectile sprites
+  - code_imp: Fixed some wacky footstep code
+  - bugfix: fixed a couple of issues with human total armour calculations
+  - bugfix: fixed a deployable gun exploit
+  - rscadd: Adds a jump mechanic, to leap over obstacles like window frames
+  - balance: Platforms are dense again, in light of the ability to jump over them
+  Pariah919:
+  - spellcheck: 5.56 and 7.62 boxes now have their dots in their name and description.
+  Wayland-Smithy:
+  - bugfix: King's roar no longer misses things moving towards the King,
+  ivanmixo:
+  - bugfix: You can't put dogs or other nonhumans into the autodoc anymore. Stop it.
+  - bugfix: Fixed a debris runtime
+  - bugfix: Fixed weather messages not appearing if you have weather sounds off
+  novaepee:
+  - rscdel: remove easy plat miner in Gelida IV
+  - balance: remove easy plat miner in Gelida IV
+  - balance: Buff defiler's tentacle by decreasing plasma cost; a primo defiler with
+      full plasma can use emit gas, reagent slash, tentacle, and defile in one full
+      plasma
+  tyeagg:
+  - rscadd: light to hitscan lasers
+  - bugfix: disabler shots being invisible
+  - rscdel: smoke effect from minirockets
+2023-06-20:
+  Ben10083:
+  - bugfix: TA-40L standard rockets are orderable from requisitions again.
+  - bugfix: Attempting to link multiple deployables to AI no longer breaks the system.
+  Blundir:
+  - rscadd: if burst groundside larva has no player, it'd automatically burrow and
+      give a larva point
+  Wayland-Smithy:
+  - rscadd: Added a signal for jump landings on turfs, and implemented for squeak
+      toys.
+  Zar000:
+  - refactor: refactored defiler emit gas code
+  coldironwarrior:
+  - balance: ' Theseus can now support up to 4 squads roundstart'
+  - balance: Pillar of Spring can now support up to 4 squads roundstart
+  ivanmixo:
+  - bugfix: Sandstorm actually uses all the sound variations
+  - bugfix: Acid rain telegraph and start/end messages work properly
+  - bugfix: You don't get the weather messages if you aren't on the weather's Z level
+      anymore
+  - code_imp: Mousedrop_T children call parent
+  novaepee:
+  - bugfix: change soldiers to marines in some item and description
+2023-06-21:
+  Blundir:
+  - bugfix: fixed cases when damage from space turfs could've been negated
+  - rscadd: xenomorph active hide action icon has a purple border now
+  Lumipharon:
+  - bugfix: fixed objects and turfs frequently not taking armour into account when
+      being damaged
+  coldironwarrior:
+  - bugfix: removed misplaced engine in Minerva's OB room
+  ivanmixo:
+  - bugfix: Fixed a ssmonitor runtime
+  - bugfix: Resting via bind as a xeno now respects the use flags of the rest action
+  - bugfix: Fixed a tweezer runtime
+  - bugfix: Fixed a mounted gun runtime
+  novaepee:
+  - imagedel: revert new combat and bayonet knife and machette
+2023-06-22:
+  Blundir:
+  - rscadd: evolution points tick even if xeno has no client/soul
+  Lumipharon:
+  - bugfix: fixed some mobs like runner losing passtable after jumping
+  - balance: Comms and req no longer function in deep caves
+  - code_imp: Reworked some code in xeno explosion code
+  - bugfix: Xenos should correctly get staggered by explosions
+  MacBlaze1:
+  - qol: reworked CIC overwatch consoles to use TGUI and be nicer
+2023-06-23:
+  Ben10083:
+  - qol: MLRS now can be loaded directly from it's respective rocket storage boxes
+      by interacting with it with the box in hand.
+  KerbalCitizen:
+  - balance: Changes russian red autoinjectors to 20u RR and 10u oxycodone with 15u
+      dose from 10u RR and 5u ryetalyn on 15u dose.
+  Ocelot and Elsa:
+  - rscadd: fingerless gloves
+  Pariah919:
+  - balance: SG-85 now has 20%~ less slowdown when wielded, and has identical windup
+      to req minigun.
+  - bugfix: Sticky resin now spits out thin sticky resin again rather than normal
+      sticky resin.
+  ivanmixo:
+  - bugfix: Thin sticky resin once more doesn't refund points
+  - bugfix: Fixed defiler being able to change smoke reagent mid smoking
+  - bugfix: Fixed a fire overlay runtime
+  novaepee:
+  - rscadd: blood vendor and Terra Experimental cell field charger can use TTS!
+  - rscadd: more sentences in preexisting product_slogan for vendors that already
+      have TTS so that they don't repeat the same joke
+2023-06-24:
+  Lumipharon:
+  - imageadd: added some mapping assets
+  - code_imp: some misc code cleanup
+  - bugfix: Minor jumping visual fix in some situations
+  - balance: V-34 does slightly lower damage and close range, and slightly better
+      damage at longer range
+  - balance: V-41 damage and accuracy slightly lowered, movement penalty slightly
+      increased
+  - bugfix: fixed SOM biohazard helmet not being gas proof
+  - bugfix: fixed laser rifle medic missing some cells
+  - refactor: Refactors floor turf code
+  ivanmixo:
+  - bugfix: Marine boots have noslip again
+2023-06-25:
+  IrkallaEpsilon:
+  - bugfix: Added the part that the description of the explosive vest that says you
+      cannot use strapped on shields.
+  Lumipharon:
+  - bugfix: fixed a locker runtime
+  - qol: Added a few balloon alerts for some construction steps
+  ivanmixo:
+  - bugfix: Fixed ghost rail flashlight
+  - rscdel: Deleted civil war from the code
+  - bugfix: Fixed an intoxication status effect runtime
+  novaepee:
+  - rscadd: 5 colors, the Squad Colors, to modular armor for Hyperscale
+  - code_imp: alphabetize color list
+  - rscadd: Expand morgue and medical supply room in Pillar of Spring Medbay.
+  - rscadd: Adjust Pillar of Spring requisition to have marines make orders right
+      after they leave prep.
+  - rscadd: Add crates nearby vendors close to Pillar of Spring Alamo landing zone.
+  - rscadd: Add more easter eggs in PoS, making a total of eight easter eggs!
+2023-06-26:
+  coldironwarrior:
+  - bugfix: Combat robots spawning in roles that have roundstart gear will now have
+      that gear equipped, along with a robotic armor mount
+  ivanmixo:
+  - bugfix: Fixed new character slots/characters being uneditable in prefs
+  - code_imp: Fixed more type definitions in params
+2023-06-27:
+  Ben10083:
+  - spellcheck: Fix grammar mistake in SOM general armor storage module
+  Lumipharon:
+  - bugfix: Leap abilities will no longer incur water slowdown for leaping over water
+  - bugfix: fixed damaged wood or carpet tiles not showing up correctly
+  - bugfix: Fixed welding floor tiles not doing eye damage to the unprotected
+  - bugfix: fixed some deployable weapon bugs that could curse you to eternal aim
+      mode penalties
+  Tanker:
+  - balance: Smart Minions is now enabled by default.
+  ivanmixo:
+  - code_imp: Converted instances of new/list to the list wrapper
+  - rscadd: Hivemind and silicon chat now have automatic capitalization and end of
+      dot punctuation
+  - balance: Fixed stacking repairs on cades if they were low hp enough to get them
+      to full hp in a short time
+  - balance: AI loses door control of alamo when xenos touch the alamo console
+  - bugfix: Alamo should no longer get locked shipside if your manual hijack ends
+      just as the alamo is taking off
+  novaepee:
+  - bugfix: siren playing in normal rain in LV-624
+  tyeagg:
+  - rscadd: particle explosions
+  - rscdel: effect system for explosions
+  - imageadd: more smoke icons
+  - code_imp: removed the small anim arg from explosions
+2023-06-28:
+  Ben10083:
+  - rscadd: Impact Hud now stays at the impact site for slightly longer.
+  Lumipharon:
+  - refactor: refactored how pass flags work
+  - bugfix: All dropship windows are now correctly transparent and allow lasers through
+  - qol: You can throw thing past far more objects as you would realistically expect
+  - qol: Deployable structures such as turrets now display their hud to the faction
+      that actually deployed it, instead of just marines
+  - code_imp: Improved some faction related code
+  - bugfix: Suicides no longer show as defibbable on the minimap
+  - balance: The focus order now reduces the fire rate penalty of aimmode
+  - bugfix: fixed ID's not correctly showing info such as blood type
+  - admin: Fixed some issues with the rank and equip button
+  MacBlaze1:
+  - qol: mortars now automatically set save binoculars to them, linking with saved
+      binoculars, and keeping track of them, no more need to use a binocular on a
+      mortar before firing.
+  hyper2snyper:
+  - rscadd: Hyperscale system added to greyscale.
+  - rscadd: Hyperscales Jaeger Mk1, Mk2, Robot armor, Style line, Xenonaut.
+  ivanmixo:
+  - bugfix: Fixed the TTS docker not working properly
+  tyeagg:
+  - bugfix: smart pipe mapping helper runtiming
+2023-06-29:
+  Pariah919:
+  - rscadd: Added new grenade types to the AGLS, it now has Flare/Tangle/Cloak grenade
+      types.
+  - balance: AGLS now has longer zoom when scoping in.
+2023-06-30:
+  Lumipharon:
+  - bugfix: fixed some DNR bugs
+  - code_imp: jump element changed to a component
+  - admin: Added an Alter Gravity button to the fun menu
+  ivanmixo:
+  - bugfix: Fixed some rock walls and cas parts being acidable
+  novaepee:
+  - rscadd: Trooper Armor
+  - code_imp: have to update hyperscale in light of chest_no_color and leg_no_color
+      to all DMI. You are all truly welcome.
+  - rscadd: 4 new armor color and 3 new visor colors

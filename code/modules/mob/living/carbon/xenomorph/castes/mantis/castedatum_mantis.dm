@@ -29,11 +29,11 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 14, BULLET = 5, LASER = 5, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 5, ACID = 0)
+	soft_armor = list(MELEE = 15, BULLET = 5, LASER = 5, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 5, ACID = 0)
 
 	minimap_icon = "xenominion"
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/activable/ravage/slow,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/activable/xeno/ravage/slow,
 	)

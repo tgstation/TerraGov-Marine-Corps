@@ -24,7 +24,8 @@
 	anchored = TRUE
 	coverage = 30
 	layer = ABOVE_MOB_LAYER
-	resistance_flags = INDESTRUCTIBLE | DROPSHIP_IMMUNE
+	resistance_flags = RESIST_ALL | DROPSHIP_IMMUNE
+	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
 	///How many sheets of material we have stored
 	var/stored_mineral = 0
 	///Current status of the miner
@@ -69,7 +70,8 @@
  * * For a miner starting broken, it should be overridden and immediately return instead, as broken miners will automatically set their minimap marker during their first process()
  **/
 /obj/machinery/miner/proc/init_marker()
-	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on")
+	var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on"
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon))
 
 /obj/machinery/miner/update_icon()
 	switch(miner_status)
@@ -95,11 +97,11 @@
 		user.visible_message(span_notice("[user] fumbles around figuring out how to install the module on [src]."),
 		span_notice("You fumble around figuring out how to install the module on [src]."))
 		var/fumbling_time = 15 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	user.visible_message(span_notice("[user] begins attaching a module to [src]'s sockets."))
 	to_chat(user, span_info("You begin installing the [upgrade] on the miner."))
-	if(!do_after(user, 15 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 15 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return FALSE
 	switch(upgrade.uptype)
 		if(MINER_RESISTANT)
@@ -141,7 +143,7 @@
 			return FALSE
 		to_chat(user, span_info("You begin uninstalling the [miner_upgrade_type] from the miner!"))
 		user.visible_message(span_notice("[user] begins dismantling the [miner_upgrade_type] from the miner."))
-		if(!do_after(user, 30 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 30 SECONDS, NONE, src, BUSY_ICON_BUILD))
 			return FALSE
 		user.visible_message(span_notice("[user] dismantles the [miner_upgrade_type] from the miner!"))
 		var/obj/item/upgrade
@@ -159,7 +161,6 @@
 				required_ticks = initial(required_ticks)
 			if(MINER_AUTOMATED)
 				upgrade = new /obj/item/minerupgrade/automatic
-				stop_processing()
 		upgrade.forceMove(user.loc)
 		miner_upgrade_type = null
 		update_icon()
@@ -172,13 +173,13 @@
 		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s internals."),
 		span_notice("You fumble around figuring out [src]'s internals."))
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(weldingtool, /obj/item/tool/weldingtool/proc/isOn)))
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(weldingtool, /obj/item/tool/weldingtool/proc/isOn)))
 			return FALSE
 	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 	user.visible_message(span_notice("[user] starts welding [src]'s internal damage."),
 	span_notice("You start welding [src]'s internal damage."))
 	add_overlay(GLOB.welding_sparks)
-	if(!do_after(user, 200, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(weldingtool, /obj/item/tool/weldingtool/proc/isOn)))
+	if(!do_after(user, 200, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(weldingtool, /obj/item/tool/weldingtool/proc/isOn)))
 		cut_overlay(GLOB.welding_sparks)
 		return FALSE
 	if(miner_status != MINER_DESTROYED )
@@ -190,6 +191,7 @@
 	user.visible_message(span_notice("[user] welds [src]'s internal damage."),
 	span_notice("You weld [src]'s internal damage."))
 	cut_overlay(GLOB.welding_sparks)
+	record_miner_repair(user)
 	return TRUE
 
 /obj/machinery/miner/wirecutter_act(mob/living/user, obj/item/I)
@@ -199,12 +201,12 @@
 		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s wiring."),
 		span_notice("You fumble around figuring out [src]'s wiring."))
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
 	user.visible_message(span_notice("[user] starts securing [src]'s wiring."),
 	span_notice("You start securing [src]'s wiring."))
-	if(!do_after(user, 120, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 120, NONE, src, BUSY_ICON_BUILD))
 		return FALSE
 	if(miner_status != MINER_MEDIUM_DAMAGE)
 		return FALSE
@@ -213,6 +215,7 @@
 	set_miner_status()
 	user.visible_message(span_notice("[user] secures [src]'s wiring."),
 	span_notice("You secure [src]'s wiring."))
+	record_miner_repair(user)
 	return TRUE
 
 /obj/machinery/miner/wrench_act(mob/living/user, obj/item/I)
@@ -222,12 +225,12 @@
 		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s tubing and plating."),
 		span_notice("You fumble around figuring out [src]'s tubing and plating."))
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 	user.visible_message(span_notice("[user] starts repairing [src]'s tubing and plating."),
 	span_notice("You start repairing [src]'s tubing and plating."))
-	if(!do_after(user, 150, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 150, NONE, src, BUSY_ICON_BUILD))
 		return FALSE
 	if(miner_status != MINER_SMALL_DAMAGE)
 		return FALSE
@@ -238,6 +241,7 @@
 	span_notice("You repair [src]'s tubing and plating."))
 	start_processing()
 	faction = user.faction
+	record_miner_repair(user)
 	return TRUE
 
 /obj/machinery/miner/examine(mob/user)
@@ -283,7 +287,8 @@
 	if(miner_status != MINER_RUNNING || mineral_value == 0)
 		stop_processing()
 		SSminimaps.remove_marker(src)
-		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off")
+		var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off"
+		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon))
 		return
 	if(add_tick >= required_ticks)
 		if(miner_upgrade_type == MINER_AUTOMATED)
@@ -316,7 +321,9 @@
 		span_notice("We can't slash through [src]'s reinforced plating!"))
 		return
 	while(miner_status != MINER_DESTROYED)
-		if(!do_after(X, 3 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+		if(X.do_actions)
+			return balloon_alert(X, "busy")
+		if(!do_after(X, 1.5 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 			return
 		X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 		X.visible_message(span_danger("[X] slashes \the [src]!"), \
@@ -324,6 +331,9 @@
 		playsound(loc, "alien_claw_metal", 25, TRUE)
 		miner_integrity -= 25
 		set_miner_status()
+		if(miner_status == MINER_DESTROYED && X.client)
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[X.ckey]
+			personal_statistics.miner_sabotages_performed++
 
 /obj/machinery/miner/proc/set_miner_status()
 	var/health_percent = round((miner_integrity / max_miner_integrity) * 100)
@@ -340,7 +350,8 @@
 		if(100 to INFINITY)
 			start_processing()
 			SSminimaps.remove_marker(src)
-			SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on")
+			var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on"
+			SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon))
 			miner_status = MINER_RUNNING
 	update_icon()
 

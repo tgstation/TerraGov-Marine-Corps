@@ -42,7 +42,7 @@
 			"path" = value
 		)
 
-	var/ref = "\ref[value]"
+	var/ref = text_ref(value)
 	var/existing_ref = seen_references[ref]
 	if(existing_ref)
 		return list(
@@ -148,7 +148,6 @@
 	try
 		structure = json_decode(json)
 	catch
-		log_debug("Jatum failed to deserialize, the json in question was : [json]")
 		return
 	if(!structure)
 		CRASH("Invalid JSON!")

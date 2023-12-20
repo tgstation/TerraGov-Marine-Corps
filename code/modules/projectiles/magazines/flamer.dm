@@ -12,7 +12,7 @@
 	w_class = WEIGHT_CLASS_NORMAL //making sure you can't sneak this onto your belt.
 	caliber = CALIBER_FUEL_THICK //Ultra Thick Napthal Fuel, from the lore book.
 	flags_magazine = NONE
-	icon_state_mini = "tank"
+	icon_state_mini = "tank_light"
 
 	default_ammo = /datum/ammo/flamethrower
 
@@ -73,7 +73,7 @@
 	max_rounds = 75
 	current_rounds = 75
 	reload_delay = 3 SECONDS
-	icon_state_mini = "tank_orange"
+	icon_state_mini = "tank_red"
 
 /obj/item/ammo_magazine/flamer_tank/large/X
 	name = "large flamethrower tank (X)"
@@ -82,6 +82,13 @@
 	default_ammo = /datum/ammo/flamethrower/blue
 	icon_state_mini = "tank_blue"
 	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
+
+/obj/item/ammo_magazine/flamer_tank/large/X/deathsquad
+	name = "Gargantuan flamethrower X-tank"
+	desc = "Using Bluespace technology, Nanotrasen has managed to fit in way more x-fuel than you would ever hope to need in a single lifetime into this specialized tank."
+	max_rounds = 225
+	current_rounds = 225
+	reload_delay = 2 SECONDS
 
 /obj/item/ammo_magazine/flamer_tank/backtank
 	name = "back fuel tank"
@@ -119,3 +126,13 @@
 
 	default_ammo = /datum/ammo/water
 	dispenser_type = /obj/structure/reagent_dispensers/watertank
+
+//The engineer pyro bag internal fuel tank
+/obj/item/ammo_magazine/flamer_tank/internal
+	name = "internal fuel tank"
+	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, you shouldn't see this though."
+	icon_state = ""
+	max_rounds = 280
+	current_rounds = 280
+	reload_delay = 0 SECONDS
+

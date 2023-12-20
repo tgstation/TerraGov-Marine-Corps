@@ -39,7 +39,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "cg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
@@ -57,7 +57,7 @@
 /area/bigredv2/outside/general_offices)
 "cy" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -214,9 +214,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	locked = 1;
 	name = "\improper Dormitories"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "iZ" = (
@@ -284,7 +284,7 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "mp" = (
 /obj/structure/sign/safety/EVA{
 	dir = 1
@@ -339,7 +339,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "oh" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
@@ -377,7 +377,7 @@
 "pF" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "pL" = (
 /obj/structure/table,
 /obj/effect/landmark/weed_node,
@@ -433,7 +433,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/bar)
 "rH" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
 "rN" = (
@@ -538,9 +538,9 @@
 "wo" = (
 /obj/machinery/door/airlock/mainship/maint/free_access{
 	dir = 1;
-	locked = 1;
 	name = "\improper Dormitories Tool Storage Maintenance"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "wD" = (
@@ -628,11 +628,11 @@
 "Av" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	locked = 1;
 	name = "\improper Dormitories EVA"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "AR" = (
@@ -657,7 +657,7 @@
 /area/bigredv2/outside/general_offices)
 "By" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -798,13 +798,13 @@
 /area/bigredv2/outside/general_offices)
 "GP" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "GV" = (
 /obj/machinery/door/airlock/mainship/maint/free_access{
-	locked = 1;
 	name = "\improper Dormitories EVA Maintenance"
 	},
 /obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "Iz" = (
@@ -836,9 +836,9 @@
 "JR" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	locked = 1;
 	name = "\improper Dormitories Bedroom"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "JY" = (
@@ -929,7 +929,7 @@
 "Oq" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "Ox" = (
 /obj/item/clothing/under/brown,
 /turf/open/floor/freezer,
@@ -1033,7 +1033,7 @@
 "TC" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "TL" = (
 /obj/structure/barricade/metal{
 	dir = 8
@@ -1112,7 +1112,7 @@
 /area/bigredv2/outside/general_offices)
 "VO" = (
 /turf/open/floor/plating,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "Wv" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
@@ -1162,7 +1162,7 @@
 /area/bigredv2/outside/general_offices)
 "ZR" = (
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "ZS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4

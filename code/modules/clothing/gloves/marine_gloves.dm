@@ -22,6 +22,31 @@
 	icon_state = "gloves_marine_black"
 	item_state = "black"
 
+/obj/item/clothing/gloves/marine/fingerless
+	name = "fingerless marine combat gloves"
+	desc = "Standard issue marine tactical gloves but fingerless! It reads: 'knit by Marine Widows Association'."
+	icon_state = "gloves_marine_fingerless"
+	item_state = "fingerless"
+
+/obj/item/clothing/gloves/marine/hyperscale
+	name = "8E Chameleon TGMC combat gloves"
+	desc = "Standard issue marine tactical gloves BUT colorable with a facepaint! It reads: 'knit by Marine Widows Association'."
+	icon_state = "hyperscale_glove_inhand"
+	item_state = "hyperscale_glove_mob"
+	item_icons = list(slot_gloves = /datum/greyscale_config/marine_uniform)
+	greyscale_colors = ARMOR_PALETTE_BLACK
+	greyscale_config = /datum/greyscale_config/marine_uniform
+	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
+
+
+/obj/item/clothing/gloves/marine/hyperscale/color_item(obj/item/facepaint/paint, mob/user)
+	. = ..()
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/human = user
+	human.regenerate_icons()
+
 /obj/item/clothing/gloves/marine/insulated
 	name = "insulated marine combat gloves"
 	desc = "Insulated marine tactical gloves that protect against electrical shocks."
@@ -79,20 +104,25 @@
 	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/gloves/marine/som
-	name = "\improper SoM gloves"
+	name = "\improper SOM gloves"
 	desc = "Gloves with origins dating back to the old mining colonies, they look pretty tough."
 	icon_state = "som"
 
 /obj/item/clothing/gloves/marine/som/insulated
-	name = "\improper Insulated SoM gloves"
+	name = "\improper Insulated SOM gloves"
 	desc = "Gloves with origins dating back to the old mining colonies. These ones appear to have an electrically insulating layer built into them."
 	siemens_coefficient = 0
 
 /obj/item/clothing/gloves/marine/som/veteran
-	name = "\improper SoM veteran gloves"
+	name = "\improper SOM veteran gloves"
 	desc = "Gloves with origins dating back to the old mining colonies. These ones seem tougher than normal."
 	icon_state = "som_veteran"
 	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 15, ENERGY = 20, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
+
+/obj/item/clothing/gloves/marine/som/officer
+	name = "\improper SOM gloves"
+	desc = "Black gloves commonly worn by SOM officers."
+	icon_state = "som_officer_gloves"
 
 /obj/item/clothing/gloves/marine/icc
 	name = "\improper ICC gloves"

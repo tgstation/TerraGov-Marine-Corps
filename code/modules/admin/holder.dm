@@ -84,7 +84,7 @@
 	var/client/C
 	if((C = owner) || (C = GLOB.directory[target]))
 		disassociate()
-		C.verbs += /client/proc/readmin
+		add_verb(C, /client/proc/readmin)
 
 
 /datum/admins/proc/associate(client/C)
@@ -105,7 +105,8 @@
 	owner = C
 	owner.holder = src
 	owner.add_admin_verbs()
-	owner.verbs -= /client/proc/readmin
+	remove_verb(owner, /client/proc/readmin)
+	owner.init_verbs()
 	GLOB.admins |= C
 
 
@@ -287,6 +288,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/jump_key,
 	/datum/admins/proc/secrets_panel,
 	/datum/admins/proc/remove_from_tank,
+	/datum/admins/proc/delete_squad,
 	/datum/admins/proc/game_panel,
 	/datum/admins/proc/mode_panel,
 	/datum/admins/proc/job_slots,
@@ -295,6 +297,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/check_fingerprints,
 	/client/proc/smite,
 	/client/proc/show_traitor_panel,
+	/client/proc/cmd_select_equipment,
 	/client/proc/validate_objectives,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context,
@@ -349,12 +352,15 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/delete_all,
 	/datum/admins/proc/generate_powernets,
 	/datum/admins/proc/debug_mob_lists,
+	/client/proc/debugstatpanel,
 	/datum/admins/proc/delete_atom,
-	/datum/admins/proc/SDQL2_query,
 	/datum/admins/proc/restart_controller,
+	/client/proc/debug_controller,
 	/datum/admins/proc/check_contents,
 	/datum/admins/proc/reestablish_db_connection,
+	/client/proc/reestablish_tts_connection,
 	/datum/admins/proc/view_runtimes,
+	/client/proc/SDQL2_query,
 	/client/proc/toggle_cdn
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
@@ -408,7 +414,6 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/play_cinematic,
 	/datum/admins/proc/set_tip,
 	/datum/admins/proc/ghost_interact,
-	/client/proc/toggle_buildmode,
 	/client/proc/force_event,
 	/client/proc/toggle_events,
 	/client/proc/run_weather,
@@ -418,6 +423,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/spatial_agent,
 	/datum/admins/proc/set_xeno_stat_buffs,
 	/datum/admins/proc/check_bomb_impacts,
+	/datum/admins/proc/adjust_gravity,
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 GLOBAL_PROTECT(admin_verbs_fun)
@@ -480,6 +486,7 @@ GLOBAL_PROTECT(admin_verbs_sound)
 	/datum/admins/proc/spawn_atom,
 	/client/proc/get_togglebuildmode,
 	/client/proc/mass_replace,
+	/client/proc/toggle_admin_tads,
 	)
 GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 GLOBAL_PROTECT(admin_verbs_spawn)
@@ -489,7 +496,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 	/datum/admins/proc/logs_server,
 	/datum/admins/proc/logs_current,
 	/datum/admins/proc/logs_folder,
-	/datum/admins/proc/log_panel,
+	/client/proc/log_viewer_new
 	)
 GLOBAL_LIST_INIT(admin_verbs_log, world.AVlog())
 GLOBAL_PROTECT(admin_verbs_log)
@@ -497,41 +504,41 @@ GLOBAL_PROTECT(admin_verbs_log)
 /client/proc/add_admin_verbs()
 	if(holder)
 		var/rights = holder.rank.rights
-		verbs += GLOB.admin_verbs_default
+		add_verb(src, GLOB.admin_verbs_default)
 		if(rights & R_ADMIN)
-			verbs += GLOB.admin_verbs_admin
+			add_verb(src, GLOB.admin_verbs_admin)
 		if(rights & R_MENTOR)
-			verbs += GLOB.admin_verbs_mentor
+			add_verb(src, GLOB.admin_verbs_mentor)
 		if(rights & R_BAN)
-			verbs += GLOB.admin_verbs_ban
+			add_verb(src, GLOB.admin_verbs_ban)
 		if(rights & R_ASAY)
-			verbs += GLOB.admin_verbs_asay
+			add_verb(src, GLOB.admin_verbs_asay)
 		if(rights & R_FUN)
-			verbs += GLOB.admin_verbs_fun
+			add_verb(src, GLOB.admin_verbs_fun)
 		if(rights & R_SERVER)
-			verbs += GLOB.admin_verbs_server
+			add_verb(src, GLOB.admin_verbs_server)
 		if(rights & R_DEBUG)
-			verbs += GLOB.admin_verbs_debug
+			add_verb(src, GLOB.admin_verbs_debug)
 		if(rights & R_RUNTIME)
-			verbs += GLOB.admin_verbs_runtimes
+			add_verb(src, GLOB.admin_verbs_runtimes)
 		if(rights & R_PERMISSIONS)
-			verbs += GLOB.admin_verbs_permissions
+			add_verb(src, GLOB.admin_verbs_permissions)
 		if(rights & R_DBRANKS)
-			verbs += GLOB.admin_verbs_permissions
+			add_verb(src, GLOB.admin_verbs_permissions)
 		if(rights & R_SOUND)
-			verbs += GLOB.admin_verbs_sound
+			add_verb(src, GLOB.admin_verbs_sound)
 		if(rights & R_COLOR)
-			verbs += GLOB.admin_verbs_color
+			add_verb(src, GLOB.admin_verbs_color)
 		if(rights & R_VAREDIT)
-			verbs += GLOB.admin_verbs_varedit
+			add_verb(src, GLOB.admin_verbs_varedit)
 		if(rights & R_SPAWN)
-			verbs += GLOB.admin_verbs_spawn
+			add_verb(src, GLOB.admin_verbs_spawn)
 		if(rights & R_LOG)
-			verbs += GLOB.admin_verbs_log
+			add_verb(src, GLOB.admin_verbs_log)
 
 
 /client/proc/remove_admin_verbs()
-	verbs.Remove(
+	remove_verb(src, list(
 		GLOB.admin_verbs_default,
 		GLOB.admin_verbs_admin,
 		GLOB.admin_verbs_mentor,
@@ -546,7 +553,7 @@ GLOBAL_PROTECT(admin_verbs_log)
 		GLOB.admin_verbs_varedit,
 		GLOB.admin_verbs_spawn,
 		GLOB.admin_verbs_log,
-		)
+	))
 
 
 /proc/is_mentor(client/C)
@@ -609,55 +616,6 @@ GLOBAL_PROTECT(admin_verbs_log)
 				num++
 				i = 0
 	GLOB.stealthminID["[ckey]"] = "@[num2text(num)]"
-
-
-/proc/WrapAdminProcCall(datum/target, procname, list/arguments)
-	if(target && procname == "Del")
-		to_chat(usr, "Calling Del() is not allowed")
-		return
-
-	if(target != GLOBAL_PROC && !target.CanProcCall(procname))
-		to_chat(usr, "Proccall on [target.type]/proc/[procname] is disallowed!")
-		return
-
-	var/current_caller = GLOB.AdminProcCaller
-	var/ckey = usr ? usr.client.ckey : GLOB.AdminProcCaller
-	if(!ckey)
-		CRASH("WrapAdminProcCall with no ckey: [target] [procname] [english_list(arguments)]")
-
-	if(current_caller && current_caller != ckey)
-		if(!GLOB.AdminProcCallSpamPrevention[ckey])
-			to_chat(usr, span_adminnotice("Another set of admin called procs are still running, your proc will be run after theirs finish."))
-			GLOB.AdminProcCallSpamPrevention[ckey] = TRUE
-			UNTIL(!GLOB.AdminProcCaller)
-			to_chat(usr, span_adminnotice("Running your proc"))
-			GLOB.AdminProcCallSpamPrevention -= ckey
-		else
-			UNTIL(!GLOB.AdminProcCaller)
-
-	GLOB.LastAdminCalledProc = procname
-	if(target != GLOBAL_PROC)
-		GLOB.LastAdminCalledTargetRef = "[REF(target)]"
-
-	GLOB.AdminProcCaller = ckey	//if this runtimes, too bad for you
-	++GLOB.AdminProcCallCount
-	. = world.WrapAdminProcCall(target, procname, arguments)
-	if(--GLOB.AdminProcCallCount == 0)
-		GLOB.AdminProcCaller = null
-
-
-/world/proc/WrapAdminProcCall(datum/target, procname, list/arguments)
-	if(target == GLOBAL_PROC)
-		return call(procname)(arglist(arguments))
-	else if(target != world)
-		return call(target, procname)(arglist(arguments))
-	else
-		log_admin_private("[key_name(usr)] attempted to call world/proc/[procname] with arguments: [english_list(arguments)]")
-
-
-/proc/IsAdminAdvancedProcCall()
-	return usr?.client && GLOB.AdminProcCaller == usr.client.ckey
-
 
 /proc/GenTgsStealthKey()
 	var/num = (rand(0,1000))

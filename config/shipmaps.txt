@@ -23,17 +23,14 @@ endmap
 map pillar_of_spring
 endmap
 
-map risingstar
-endmap
-
 map sulaco
 endmap
 
-map minerva
-endmap
-
-map twin_pillars
+map arachne
 endmap
 
 map combat_patrol_base
+endmap
+
+map iteron
 endmap

@@ -13,7 +13,7 @@
 		<b>Difficulty</b>: Variable<br /><br />
 		<b>You answer to the</b> acting Hive leader<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
 		<b>Duty</b>: Spread the hive, obey the will of your Hive Leader and the Queen Mother. Kill or capture those who get into your way. Protect the hive whenever possible. Amass your numbers.
 	"}
 	/**
@@ -36,7 +36,7 @@
 	Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the queen!')")
 
 /datum/job/xenomorph/handle_special_preview(client/parent)
-	parent.show_character_previews(image('icons/Xeno/1x1_Xenos.dmi', icon_state = "Bloody Larva", dir = SOUTH))
+	parent.show_character_previews(image('icons/Xeno/castes/larva.dmi', icon_state = "Bloody Larva", dir = SOUTH))
 	return TRUE
 
 /datum/job/xenomorph/add_job_positions(amount)
@@ -52,7 +52,7 @@
 
 /datum/job/xenomorph/after_spawn(mob/living/carbon/xenomorph/xeno, mob/M, latejoin)
 	. = ..()
-	SSminimaps.add_marker(xeno, xeno.z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno.xeno_caste.minimap_icon)
+	SSminimaps.add_marker(xeno, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, xeno.xeno_caste.minimap_icon))
 
 /datum/job/xenomorph/queen
 	title = ROLE_XENO_QUEEN
@@ -61,13 +61,13 @@
 	selection_color = "#8972AA"
 	display_order = JOB_DISPLAY_ORDER_XENO_QUEEN
 	exp_requirements = XP_REQ_EXPERIENCED
-	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_HIDE_CURRENT_POSITIONS
+	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_HIDE_CURRENT_POSITIONS|JOB_FLAG_LOUDER_TTS
 	jobworth = list(/datum/job/survivor/rambo = SURVIVOR_POINTS_REGULAR)
 	html_description = {"
 		<b>Difficulty</b>: Soul crushing<br /><br />
 		<b>You answer to the</b> Queen Mother<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
 		<b>Duty</b>: Lead the hive and ensure success isn’t snatched away by your enemies. Manage the supply of psypoints
 	"}
 
@@ -83,5 +83,5 @@
 	Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the hive!')")
 
 /datum/job/xenomorph/queen/handle_special_preview(client/parent)
-	parent.show_character_previews(image('icons/Xeno/1x1_Xenos.dmi', icon_state = "Larva", dir = SOUTH))
+	parent.show_character_previews(image('icons/Xeno/castes/larva.dmi', icon_state = "Larva", dir = SOUTH))
 	return TRUE

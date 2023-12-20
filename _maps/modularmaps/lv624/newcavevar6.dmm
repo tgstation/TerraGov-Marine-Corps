@@ -359,7 +359,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "Au" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "AF" = (
@@ -446,9 +446,6 @@
 /obj/machinery/computer/atmos_alert,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
-"GG" = (
-/turf/closed/mineral/smooth,
-/area/lv624/ground/caves/central1)
 "GP" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
@@ -590,7 +587,7 @@
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "Rd" = (
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Re" = (
@@ -650,7 +647,7 @@
 /area/lv624/ground/caves/central2)
 "Ui" = (
 /turf/open/floor,
-/area/lv624/ground/caves/central1)
+/area/lv624/ground/caves/central1/garbledradio)
 "Un" = (
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
@@ -664,7 +661,7 @@
 /area/lv624/ground/caves/central2)
 "UW" = (
 /turf/closed/wall/r_wall,
-/area/lv624/ground/caves/central1)
+/area/lv624/ground/caves/central1/garbledradio)
 "Vc" = (
 /obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/dark2,
@@ -3555,7 +3552,7 @@ aa
 aa
 aa
 aI
-GG
+aa
 Ui
 Ui
 Ui

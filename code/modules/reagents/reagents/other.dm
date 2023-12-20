@@ -3,7 +3,7 @@
 	reagent_state = LIQUID
 	color = "#A10808"
 	taste_description = "iron"
-	data = new/list("blood_DNA"=null,"blood_type"=null,"blood_colour"= "#A10808", "trace_chem"=null)
+	data = list("blood_DNA"=null,"blood_type"=null,"blood_colour"= "#A10808", "trace_chem"=null)
 
 
 /datum/reagent/blood/reaction_turf(turf/T, volume)//splash the blood all over the place

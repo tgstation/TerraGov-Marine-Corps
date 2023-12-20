@@ -1,12 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/turf/open/space/basic,
-/area/space)
 "c" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "d" = (
@@ -42,10 +36,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "u" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
 "w" = (
@@ -57,17 +48,11 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
 "B" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "C" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "E" = (
@@ -87,6 +72,10 @@
 "K" = (
 /turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
+"L" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
 "M" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/weed_node,
@@ -469,7 +458,7 @@ l
 l
 l
 l
-l
+L
 d
 Q
 Q
@@ -1637,13 +1626,13 @@ l
 Q
 Q
 K
-b
-b
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
+K
+K
 "}
 (35,1,1) = {"
 Q
@@ -1682,13 +1671,13 @@ Q
 Q
 Q
 K
-b
-b
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
+K
+K
 "}
 (36,1,1) = {"
 Q
@@ -1727,13 +1716,13 @@ Q
 Q
 Q
 K
-b
-b
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
+K
+K
 "}
 (37,1,1) = {"
 l
@@ -1772,13 +1761,13 @@ Q
 Q
 Q
 K
-b
-b
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
+K
+K
 "}
 (38,1,1) = {"
 l
@@ -1817,13 +1806,13 @@ Q
 Q
 Q
 K
-b
-b
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
+K
+K
 "}
 (39,1,1) = {"
 l
@@ -1862,13 +1851,13 @@ Q
 Q
 Q
 K
-b
-b
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
+K
+K
 "}
 (40,1,1) = {"
 l
@@ -1907,13 +1896,13 @@ Q
 Q
 Q
 K
-b
-b
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
+K
+K
 "}
 (41,1,1) = {"
 N
@@ -1952,11 +1941,11 @@ Q
 Q
 Q
 K
-b
-b
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
+K
+K
 "}

@@ -35,6 +35,7 @@
 	default_ammo = /datum/ammo/bullet/sniper/elite
 	caliber = CALIBER_10X99
 	icon_state = "m42c"
+	icon_state_mini = "mag_rifle_big_white"
 	max_rounds = 6
 
 
@@ -99,7 +100,7 @@
 		to_chat(user, span_notice("Not with a missile inside!"))
 		return
 	to_chat(user, span_notice("You begin taking apart the empty tube frame..."))
-	if(!do_after(user, 10, TRUE, src))
+	if(!do_after(user, 10, NONE, src))
 		return
 	user.visible_message("[user] deconstructs the rocket tube frame.",span_notice("You take apart the empty frame."))
 	var/obj/item/stack/sheet/metal/metal = new(get_turf(user))
@@ -188,6 +189,12 @@
 	icon_state = "shell_heat"
 	default_ammo = /datum/ammo/rocket/recoilless/heat
 
+/obj/item/ammo_magazine/rocket/recoilless/heam
+	name = "\improper 67mm HEAM shell"
+	desc = "A high explosive-anti mechg shell for the RL-160 recoilless rifle. Fires a penetrating shot designed specifically to penetrate mech armor, but suffers from poor accuracy against other targets. Requires specialized storage to carry."
+	icon_state = "shell_heat"
+	default_ammo = /datum/ammo/rocket/recoilless/heat/mech
+
 /obj/item/ammo_magazine/rocket/recoilless/smoke
 	name = "\improper 67mm Chemical (Smoke) shell"
 	desc = "A chemical shell for the RL-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains thick concealing smoke. Requires specialized storage to carry."
@@ -248,6 +255,7 @@
 	icon_state = "quad_rocket"
 	max_rounds = 4
 	default_ammo = /datum/ammo/rocket/wp/quad/ds
+	reload_delay = 2 SECONDS
 
 /obj/item/ammo_magazine/internal/launcher/rocket/m57a4
 	desc = "The internal tube of an RL-57 thermobaric launcher."
@@ -303,6 +311,36 @@
 	default_ammo = /datum/ammo/rocket/wp/quad/som
 	bonus_overlay = "rpg_incendiary"
 
+//ICC RPG
+/obj/item/ammo_magazine/rocket/icc
+	name = "\improper 84mm high-explosive tube"
+	desc = "A high explosive warhead for MP-IRL rocket launcher. Causes a strong explosion over a respectable area."
+	icon_state = "iccrpg_he"
+	default_ammo = /datum/ammo/rocket/som
+	reload_delay = 2 SECONDS
+	bonus_overlay = "iccrpg_he"
+
+/obj/item/ammo_magazine/rocket/icc/light
+	name = "\improper 84mm light-explosive tube"
+	desc = "A light explosive warhead for the MP-IRL rocket launcher. Causes a light explosion over a large area but low impact damage."
+	icon_state = "iccrpg_le"
+	default_ammo = /datum/ammo/rocket/som/light
+	reload_delay = 1 SECONDS
+	bonus_overlay = "iccrpg_le"
+
+/obj/item/ammo_magazine/rocket/icc/heat
+	name = "\improper 84mm HEAT tube"
+	desc = "A high explosive anti armor warhead for the MP-IRL rocket launcher. Designed to punch through the toughest armor."
+	icon_state = "iccrpg_heat"
+	default_ammo = /datum/ammo/rocket/som/heat
+	bonus_overlay = "iccrpg_heat"
+
+/obj/item/ammo_magazine/rocket/icc/thermobaric
+	name = "\improper 84mm thermobaric tube"
+	desc = "A thermobaric warhead for the MP-IRL rocket launcher. Causes a powerful fuel air explosion over a moderate area."
+	icon_state = "iccrpg_thermobaric"
+	default_ammo = /datum/ammo/rocket/som/thermobaric
+	bonus_overlay = "iccrpg_thermobaric"
 
 // railgun
 
@@ -321,12 +359,14 @@
 	name = "railgun canister (High Velocity Armor Piericing)"
 	desc = "A canister holding a tungsten projectile to be used inside a railgun. HVAP is written across the canister. This round has less punching power than other railgun canister types, but will leave a sizeable hole in the targets armor."
 	icon_state = "railgun_hvap"
+	icon_state_mini = "mag_railgun_blue"
 	default_ammo = /datum/ammo/bullet/railgun/hvap
 
 /obj/item/ammo_magazine/railgun/smart
 	name = "railgun canister (Smart Armor Piericing)"
 	desc = "A canister holding a tungsten projectile to be used inside a railgun. SAP is written across the canister. This round has poor punching power due to low velocity for the smart ammunition, but will leave a target significantly staggered and stunned due to the impact."
 	icon_state = "railgun_smart"
+	icon_state_mini = "mag_railgun_green"
 	default_ammo = /datum/ammo/bullet/railgun/smart
 
 // pepperball
@@ -397,5 +437,5 @@
 	default_ammo = /datum/ammo/bullet/coilgun
 	max_rounds = 5
 	reload_delay = 10
-	icon_state_mini = "mag_railgun"
+	icon_state_mini = "mag_dmr"
 

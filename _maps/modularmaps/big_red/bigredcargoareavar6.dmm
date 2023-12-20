@@ -21,8 +21,9 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/virology)
 "be" = (
-/obj/machinery/light{
-	dir = 1
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -248,6 +249,11 @@
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
+"tc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/nw)
 "th" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -276,7 +282,7 @@
 /area/bigredv2/caves/northwest)
 "tZ" = (
 /obj/machinery/light{
-	dir = 1;
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -327,6 +333,13 @@
 "yi" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
+"ys" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "yD" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -443,7 +456,7 @@
 /area/space)
 "Dy" = (
 /obj/machinery/light{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -540,7 +553,7 @@
 /area/bigredv2/outside/nw)
 "Js" = (
 /obj/machinery/light{
-	dir = 1;
+	dir = 1
 	},
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/plating,
@@ -1224,7 +1237,7 @@ Bz
 Bz
 Bz
 WI
-be
+tZ
 WG
 WG
 wx
@@ -1415,7 +1428,7 @@ nS
 nS
 nS
 WI
-WG
+be
 WG
 WG
 wx
@@ -1439,7 +1452,7 @@ nS
 nS
 UX
 WI
-WG
+rH
 En
 WG
 WG
@@ -1463,7 +1476,7 @@ nS
 nS
 nS
 WI
-be
+ys
 WG
 WG
 WG
@@ -1487,7 +1500,7 @@ nS
 nS
 SJ
 WI
-WG
+rH
 WG
 WG
 WG
@@ -1511,7 +1524,7 @@ QF
 QF
 dg
 WI
-WG
+rH
 WG
 WG
 WG
@@ -1535,7 +1548,7 @@ fw
 MA
 fw
 yD
-tw
+tc
 Cp
 WG
 WG

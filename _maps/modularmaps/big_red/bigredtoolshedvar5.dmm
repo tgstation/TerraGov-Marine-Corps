@@ -43,6 +43,8 @@
 /obj/structure/table/holotable,
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/effect/spawner/random/engineering/tech_supply,
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "h" = (
@@ -221,7 +223,7 @@
 /area/bigredv2/outside/c)
 "Q" = (
 /obj/structure/table/holotable,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "R" = (

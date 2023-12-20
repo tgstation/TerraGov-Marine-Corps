@@ -1,5 +1,7 @@
 /mob/dead/observer/Login()
 	. = ..()
+	SSmobs.dead_players_by_zlevel[z] += src
+	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(observer_z_changed))
 
 	client.prefs.load_preferences()
 	ghost_medhud = client.prefs.ghost_hud & GHOST_HUD_MED
@@ -16,8 +18,6 @@
 		H.add_hud_to(src)
 	if(ghost_squadhud)
 		H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
-		H.add_hud_to(src)
-		H = GLOB.huds[DATA_HUD_SQUAD_REBEL]
 		H.add_hud_to(src)
 		H = GLOB.huds[DATA_HUD_SQUAD_SOM]
 		H.add_hud_to(src)
@@ -39,6 +39,9 @@
 		if(!actions_by_path[path])
 			var/datum/action/observer_action/A = new path()
 			A.give_action(src)
+
+	client.AddComponent(/datum/component/larva_queue)
+
 	if(!actions_by_path[/datum/action/minimap/observer])
 		var/datum/action/minimap/observer/mini = new
 		mini.give_action(src)

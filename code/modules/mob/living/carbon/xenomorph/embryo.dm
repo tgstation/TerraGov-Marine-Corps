@@ -1,7 +1,7 @@
 /obj/item/alien_embryo
 	name = "alien embryo"
 	desc = "All slimy and yucky."
-	icon = 'icons/Xeno/1x1_Xenos.dmi'
+	icon = 'icons/Xeno/castes/larva.dmi'
 	icon_state = "Embryo"
 	var/grinder_datum = /datum/reagent/consumable/larvajelly //good ol cookin
 	var/grinder_amount = 5
@@ -220,7 +220,7 @@
 	log_combat(src, null, "chestbursted as a larva.")
 	log_game("[key_name(src)] chestbursted as a larva at [AREACOORD(src)].")
 
-	if((locate(/obj/structure/bed/nest) in loc) && hive.living_xeno_queen?.z == loc.z)
+	if(((locate(/obj/structure/bed/nest) in loc) && hive.living_xeno_ruler?.z == loc.z) || (!mind))
 		burrow()
 
 	victim.death()

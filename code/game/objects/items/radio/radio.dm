@@ -114,8 +114,8 @@
 	var/dat
 
 
-	dat += "Microphone: [broadcasting ? "<A href='byond://?src=\ref[src];talk=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];talk=1'>Disengaged</A>"]<BR>"
-	dat += "Speaker: [listening ? "<A href='byond://?src=\ref[src];listen=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];listen=1'>Disengaged</A>"]<BR>"
+	dat += "Microphone: [broadcasting ? "<A href='byond://?src=[text_ref(src)];talk=0'>Engaged</A>" : "<A href='byond://?src=[text_ref(src)];talk=1'>Disengaged</A>"]<BR>"
+	dat += "Speaker: [listening ? "<A href='byond://?src=[text_ref(src)];listen=0'>Engaged</A>" : "<A href='byond://?src=[text_ref(src)];listen=1'>Disengaged</A>"]<BR>"
 	dat += "Frequency: [format_frequency(frequency)]"
 
 	for(var/ch_name in channels)
@@ -130,7 +130,7 @@
 	var/list = !!(chan_stat & FREQ_LISTENING) != 0
 	return {"
 			<B>[chan_name]</B><br>
-			Speaker: <A href='byond://?src=\ref[src];ch_name=[chan_name];listen=[!list]'>[list ? "Engaged" : "Disengaged"]</A><BR>
+			Speaker: <A href='byond://?src=[text_ref(src)];ch_name=[chan_name];listen=[!list]'>[list ? "Engaged" : "Disengaged"]</A><BR>
 			"}
 
 
@@ -164,7 +164,7 @@
 		set_frequency(new_frequency)
 
 	else if(href_list["talk"])
-		broadcasting = text2num(href_list["talk"])
+		set_broadcasting(text2num(href_list["talk"]))
 
 	else if(href_list["listen"])
 		var/chan_name = href_list["ch_name"]
@@ -291,6 +291,23 @@
 		signal.broadcast()
 		return
 
+	var/area/A = get_area(src)
+	var/radio_disruption = CAVE_NO_INTERFERENCE
+	if(!isnull(A) && (A.ceiling >= CEILING_UNDERGROUND) && !(A.flags_area & ALWAYS_RADIO))
+		radio_disruption = CAVE_MINOR_INTERFERENCE
+		if(A.ceiling >= CEILING_DEEP_UNDERGROUND)
+			radio_disruption = CAVE_FULL_INTERFERENCE
+
+	var/list/inplace_interference = list(radio_disruption)
+	SEND_SIGNAL(talking_movable, COMSIG_CAVE_INTERFERENCE_CHECK, inplace_interference)
+	radio_disruption = inplace_interference[1]
+
+	switch(radio_disruption)
+		if(CAVE_MINOR_INTERFERENCE)
+			signal.data["compression"] += rand(20, 40)
+		if(CAVE_FULL_INTERFERENCE)
+			return
+
 	// All non-independent radios make an attempt to use the subspace system first
 	signal.send_to_receivers()
 
@@ -318,7 +335,7 @@
 /obj/item/radio/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	. = ..()
 	if(radio_freq || !broadcasting || get_dist(src, speaker) > canhear_range)
-		return
+		return FALSE
 
 	if(message_mode == MODE_WHISPER || message_mode == MODE_WHISPER_CRIT)
 		// radios don't pick up whispers very well
@@ -326,9 +343,9 @@
 	else if(ismob(speaker) && loc == speaker)
 		var/mob/M = speaker
 		if(M.l_hand == src && message_mode != MODE_L_HAND)
-			return
+			return FALSE
 		else if(M.r_hand == src && message_mode != MODE_R_HAND)
-			return
+			return FALSE
 
 	talk_into(speaker, raw_message, , spans, language = message_language)
 
@@ -338,6 +355,24 @@
 	if(!(RADIO_NO_Z_LEVEL_RESTRICTION in levels))
 		var/turf/position = get_turf(src)
 		if(!position || !(position.z in levels))
+			return FALSE
+		var/radio_disruption = CAVE_NO_INTERFERENCE
+		var/area/A = get_area(src)
+		if(A?.ceiling >= CEILING_UNDERGROUND && !(A.flags_area & ALWAYS_RADIO))
+			radio_disruption = CAVE_MINOR_INTERFERENCE //Unused for this case but may aswell create parity on what the value of the var is.
+			if(A.ceiling >= CEILING_DEEP_UNDERGROUND)
+				radio_disruption = CAVE_FULL_INTERFERENCE
+		var/list/potential_owners = get_nested_locs(src) //Sometimes not equipped, sometimes not even equippable, sometimes in storage, this feels like it's an okay way to do it.
+		var/mob/living/found_owner
+		for(var/mob/living/candidate in potential_owners)
+			found_owner = candidate
+			break
+
+		if(found_owner)
+			var/inplace_interference = list(radio_disruption)
+			SEND_SIGNAL(found_owner, COMSIG_CAVE_INTERFERENCE_CHECK, inplace_interference)
+			radio_disruption = inplace_interference[1]
+		if(radio_disruption == CAVE_FULL_INTERFERENCE)
 			return FALSE
 
 	// allow checks: are we listening on that frequency?

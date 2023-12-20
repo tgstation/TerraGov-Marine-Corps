@@ -552,7 +552,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "EB" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "EF" = (
@@ -815,6 +815,10 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"TN" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/se)
 "Uc" = (
 /obj/effect/ai_node,
 /turf/open/floor,
@@ -1419,7 +1423,7 @@ Jk
 "}
 (17,1,1) = {"
 zy
-Db
+TN
 Db
 Db
 EP

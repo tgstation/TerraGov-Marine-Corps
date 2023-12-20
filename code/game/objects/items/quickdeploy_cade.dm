@@ -12,8 +12,8 @@
 	. += "This QuikDeploy system seems to deploy a [thing_to_deploy.name]."
 
 /obj/item/quikdeploy/attack_self(mob/user)
-	to_chat(user, "<span class='warning'>You start to deploy onto the tile in front of you...")
-	if(!do_after(usr, delay, TRUE, src, BUSY_ICON_BUILD))
+	balloon_alert_to_viewers("Starts to deploy barricade")
+	if(!do_after(usr, delay, NONE, src, BUSY_ICON_BUILD))
 		to_chat(user, "<span class='warning'>You decide against deploying something here.")
 		return
 	if(can_place(user)) //can_place() handles sending the error and success messages to the user
@@ -40,25 +40,25 @@
 
 	var/turf/mystery_turf = user.loc
 	if(!isopenturf(mystery_turf))
-		to_chat(user, span_warning("We can't build here!"))
+		balloon_alert(user, "Can't build here")
 		return FALSE
 
 	var/turf/open/placement_loc = mystery_turf
 	if(placement_loc.density || !placement_loc.allow_construction) //We shouldn't be building here.
-		to_chat(user, span_warning("We can't build here!"))
+		balloon_alert(user, "Can't build here")
 		return FALSE
 
 	for(var/obj/thing in user.loc)
 		if(!thing.density) //not dense, move on
 			continue
 		if(!(thing.flags_atom & ON_BORDER)) //dense and non-directional, end
-			to_chat(user, span_warning("No space here for a barricade."))
+			balloon_alert(user, "No space")
 			return FALSE
 		if(thing.dir != user.dir)
 			continue
-		to_chat(user, span_warning("No space here for a barricade."))
+		balloon_alert(user, "No space")
 		return FALSE
-	to_chat(user, "<span class='notice'>You plop down the barricade in front of you.")
+	balloon_alert_to_viewers("Places barricade")
 	return TRUE
 
 /obj/item/quikdeploy/cade/plasteel

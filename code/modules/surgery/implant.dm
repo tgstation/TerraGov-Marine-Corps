@@ -47,6 +47,7 @@
 		user.visible_message(span_notice("[user] could not find anything inside [target]'s [affected.display_name], and pulls \the [tool] out."), \
 		span_notice("You could not find anything inside [target]'s [affected.display_name]."))
 		target.balloon_alert_to_viewers("Nothing found")
+	return ..()
 
 /datum/surgery_step/implant_removal/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!"), \
