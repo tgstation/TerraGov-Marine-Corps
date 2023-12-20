@@ -29,7 +29,7 @@ export type IndividualData = {
   mission_icons?: string[];
 };
 
-export const CampaignMenu = (props, context) => {
+export const IndividualStats = (props, context) => {
   const { act, data } = useBackend<IndividualData>(context);
   const [selectedTab, setSelectedTab] = useLocalState(
     context,
@@ -37,9 +37,9 @@ export const CampaignMenu = (props, context) => {
     TAB_LOADOUT
   );
 
-  const [purchasedPerk, setPurchasedPerk] = useLocalState<PerkData | null>(
+  const [unlockedPerk, setPurchasedPerk] = useLocalState<PerkData | null>(
     context,
-    'purchasedPerk',
+    'unlockedPerk',
     null
   );
 
@@ -50,17 +50,17 @@ export const CampaignMenu = (props, context) => {
       width={700}
       height={600}>
       <Window.Content>
-        {purchasedPerk ? (
+        {unlockedPerk ? (
           <Modal width="500px">
             <Section
               textAlign="center"
-              title={'Purchase ' + purchasedPerk.name + '?'}>
+              title={'Purchase ' + unlockedPerk.name + '?'}>
               <Stack justify="space-around">
                 <Stack.Item>
                   <Button
                     onClick={() => {
                       act('unlock_perk', {
-                        selected_perk: purchasedPerk.type,
+                        selected_perk: unlockedPerk.type,
                       });
                       setPurchasedPerk(null);
                     }}

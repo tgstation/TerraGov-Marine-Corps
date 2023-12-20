@@ -123,11 +123,13 @@
 			perk_data["desc"] = perk.desc
 			perk_data["cost"] = perk.unlock_cost
 			perk_data["icon"] = perk.ui_icon
-			perk_data["currently_active"] = (perk in perks[job]) //check this is fine
+			perk_data["currently_active"] = !!(perk in perks[job])
 			perks_data += list(perk_data)
 	data["perks_data"] = perks_data
 
 	data["currency"] = currency
+
+	return data
 
 /datum/individual_stats/ui_static_data(mob/user)
 	. = ..()
@@ -187,5 +189,6 @@
 
 	var/datum/individual_stats/stats = your_faction.individual_stat_list[key]
 	if(!stats)
-		return
+		//return
+		stats = your_faction.individual_stat_list[null] //PLACEHOLDER. KEY IS NOT SET WHEN THE STAT DATUM IS MADE, FIX PLS.
 	stats.interact(src)

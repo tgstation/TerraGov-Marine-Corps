@@ -4,7 +4,7 @@ GLOBAL_LIST_INIT_TYPED(campaign_perk_list, /datum/perk, init_glob_perk_list()) /
 	. = list()
 	for(var/perk_type in subtypesof(/datum/perk))
 		var/datum/perk/perk = new perk_type
-		.[perk.type] = perk
+		.[perk_type] = perk
 
 //List of all loadout_item datums by job, excluding ones that must be unlocked
 GLOBAL_LIST_INIT(campaign_perks_by_role, init_campaign_perks_by_role())
@@ -29,7 +29,8 @@ GLOBAL_LIST_INIT(campaign_perks_by_role, init_campaign_perks_by_role())
 	SOM_COMMANDER = list(),
 )
 	for(var/role in .)
-		for(var/datum/perk/perk AS in GLOB.campaign_perk_list)
+		for(var/i in GLOB.campaign_perk_list)
+			var/datum/perk/perk = GLOB.campaign_perk_list[i]
 			if(!(role in perk.jobs_supported))
 				continue
 			.[role] += perk
@@ -108,22 +109,26 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	-engineer, -construction, -leadership, -medical, -surgery, -pilot, -police, -powerloader, -large_vehicle, -stamina))
 
 /datum/perk/skill_mod/cqc
+	name = "CQC +1"
 	cqc = 1
-	jobs_supported = list(SQUAD_MARINE)
+	jobs_supported = list(SQUAD_MARINE, SOM_SQUAD_MARINE)
 
 /datum/perk/skill_mod/cqc_two
+	name = "CQC +2"
 	cqc = 2
 
 /datum/perk/skill_mod/melee
+	name = "Melee +1"
 	melee_weapons = 1
-	jobs_supported = list(SQUAD_MARINE)
+	jobs_supported = list(SQUAD_MARINE, SOM_SQUAD_MARINE)
 
 /datum/perk/skill_mod/melee_two
 	melee_weapons = 2
 
 /datum/perk/skill_mod/pistols
+	name = "Pistols +1"
 	pistols = 1
-	jobs_supported = list(SQUAD_MARINE)
+	jobs_supported = list(SQUAD_MARINE, SOM_SQUAD_MARINE)
 
 /datum/perk/skill_mod/shotguns
 	shotguns = 1
