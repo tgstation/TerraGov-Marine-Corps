@@ -272,7 +272,7 @@ Make the NTC proud!"})
 	id = /obj/item/card/id/gold
 	belt = /obj/item/storage/holster/belt/mateba/officer/full
 	ears = /obj/item/radio/headset/mainship/mcom
-	w_uniform = /obj/item/clothing/under/spec_operative/armoredsuit
+	w_uniform = /obj/item/clothing/under/marine/spec_operative/armoredsuit
 	shoes = /obj/item/clothing/shoes/marine/sneakingboots
 	gloves = /obj/item/clothing/gloves/marine/officer
 	r_store = /obj/item/storage/pouch/general/large/command
@@ -514,7 +514,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 	id = /obj/item/card/id/card/silver/commanddoll
 	ears = /obj/item/radio/headset/mainship/mcom
-	w_uniform = /obj/item/clothing/under/spec_operative/tback
+	w_uniform = /obj/item/clothing/under/marine/spec_operative/tback
 	shoes = /obj/item/clothing/shoes/marine/sneakingboots
 	r_store = /obj/item/storage/pouch/general/large
 

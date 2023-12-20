@@ -502,8 +502,8 @@
 "aBQ" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/shoes/marine/sneakingboots,
-/obj/item/clothing/under/spec_operative,
-/obj/item/clothing/under/spec_operative/tback,
+/obj/item/clothing/under/marine/spec_operative,
+/obj/item/clothing/under/marine/spec_operative/tback,
 /turf/open/floor/carpet/side{
 	dir = 4
 	},
@@ -21982,7 +21982,7 @@
 /obj/item/ammo_magazine/rifle/ap,
 /obj/item/ammo_magazine/rifle/ap,
 /obj/item/ammo_magazine/rifle/ap,
-/obj/item/clothing/under/spec_operative,
+/obj/item/clothing/under/marine/spec_operative,
 /obj/item/clothing/glasses/thermal/m64_thermal_goggles,
 /obj/item/armor_module/storage/medical,
 /obj/item/storage/box/explosive_mines/large,
@@ -24436,7 +24436,7 @@
 /obj/structure/closet/secure_closet/captain,
 /obj/item/disk/nuclear/red,
 /obj/item/clothing/shoes/marine/sneakingboots,
-/obj/item/clothing/under/spec_operative,
+/obj/item/clothing/under/marine/spec_operative,
 /obj/item/armor_module/module/valkyrie_autodoc,
 /obj/item/clothing/suit/modular/xenonauten/bulletresistant,
 /turf/open/floor/wood,
