@@ -61,9 +61,10 @@
 
 /obj/item/explosive/grenade/afterattack(atom/target, mob/user, has_proximity, click_parameters)
 	. = ..()
-	if(!active)
+	if(!active || user.next_move > world.time)
 		return
-	user.throw_item(target)
+	if(user.throw_item(target))
+		user.changeNext_move(CLICK_CD_THROWING)
 
 /obj/item/explosive/grenade/proc/activate(mob/user)
 	if(active)
