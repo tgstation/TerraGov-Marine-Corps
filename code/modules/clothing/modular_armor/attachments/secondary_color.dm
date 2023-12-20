@@ -15,11 +15,11 @@
 	if(!attaching_to)
 		return
 	RegisterSignal(attaching_to, COMSIG_ITEM_VARIANT_CHANGE, PROC_REF(on_variant_change))
-	// if(greyscale_config)
-	// 	return
-	// greyscale_config = attaching_to.greyscale_config
-	// update_icon()
-	// update_greyscale()
+	if(greyscale_config)
+		return
+	greyscale_config = attaching_to.greyscale_config
+	update_icon()
+	update_greyscale()
 
 /obj/item/armor_module/armor/secondary_color/on_detach(obj/item/detaching_from, mob/user)
 	. = ..()
@@ -44,7 +44,7 @@
 	current_variant = "normal"
 	icon_state_variants = list(
 		"normal",
-		"webbing",
+		"hardsuit webbing",
 	)
 
 /obj/item/armor_module/armor/secondary_color/leg

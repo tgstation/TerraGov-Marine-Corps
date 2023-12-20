@@ -108,10 +108,6 @@
 		parent_obj:gunattachment = attachment
 
 	on_attach?.Invoke(attachment, attacker)
-	if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_GREYSCALE_PARENT_COPY))
-		attachment.greyscale_config = parent_obj.greyscale_config
-		attachment.update_icon()
-		attachment.update_greyscale()
 	if(attachment_data[ON_ATTACH])
 		var/datum/callback/attachment_on_attach = CALLBACK(attachment, attachment_data[ON_ATTACH])
 		attachment_on_attach.Invoke(parent, attacker)
