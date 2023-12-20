@@ -701,7 +701,7 @@ Fight for NTC, and attempt to achieve all objectives given to you."})
 	wear_suit = /obj/item/clothing/suit/modular/robot/heavy/shield
 	r_store = /obj/item/storage/pouch/magazine/large
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/mag_harness
-	back = /obj/item/jetpack_marine/heavy
+	back = /obj/item/jetpack_marine
 
 /datum/outfit/job/tgmc/campaign_robot/jetpack/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
