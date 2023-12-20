@@ -52,18 +52,17 @@
 /datum/individual_stats/proc/purchase_perk(datum/perk/new_perk)
 	if(!istype(new_perk))
 		return
-	//insert 'we already got this' check here, unless we have a 'purchasable list'
-	if(use_funds(new_perk.unlock_cost))
+	if(currency < new_perk.unlock_cost)
 		return
 
-	if(!length(new_perk.jobs_supported))
-		for(var/job in perks)
-			perks[job] += new_perk
-	else
-		for(var/supported_job in new_perk.jobs_supported)
-			if(!perks[supported_job])
-				continue
-			perks[supported_job] += new_perk
+	for(var/supported_job in new_perk.jobs_supported)
+		if(!perks[supported_job])
+			continue
+		if(new_perk in perks[supported_job])
+			return //we already have it. We'll probs do a much nicer check later
+		perks[supported_job] += new_perk
+
+	use_funds(new_perk.unlock_cost)
 
 ///Adds an item if able
 /datum/individual_stats/proc/unlock_loadout_item(datum/loadout_item/new_item)
