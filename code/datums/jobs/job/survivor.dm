@@ -6,7 +6,6 @@
 	display_order = JOB_DISPLAY_ORDER_SURVIVOR
 	total_positions = -1
 	skills_type = /datum/skills/civilian/survivor
-	faction = FACTION_TERRAGOV
 
 /datum/job/survivor/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()

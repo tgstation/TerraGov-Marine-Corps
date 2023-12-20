@@ -343,7 +343,8 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "ask" = (
-/turf/closed/wall/mainship/white,
+/obj/machinery/camera/autoname,
+/turf/open/floor/mainship/sterile/white,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "asD" = (
 /turf/closed/wall/mainship/white,
@@ -363,18 +364,21 @@
 /turf/open/floor/engine,
 /area/mainship/engineering/port_atmos)
 "avf" = (
-/obj/machinery/light{
-	dir = 4
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment/corner,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
 	},
-/obj/machinery/vending/tool,
 /turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/area/mainship/squads/req)
 "avt" = (
 /obj/item/reagent_containers/jerrycan,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"avA" = (
+/obj/structure/supply_drop,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "awG" = (
 /obj/structure/bed/chair/wood/wings,
 /obj/structure/cable,
@@ -578,14 +582,12 @@
 	name = "Research"
 	})
 "aDW" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 4
 	},
-/obj/effect/landmark/start/job/requisitionsofficer,
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/area/mainship/squads/req)
 "aEo" = (
 /obj/structure/toilet{
 	dir = 8
@@ -1084,6 +1086,14 @@
 /obj/docking_port/stationary/marine_dropship/hangar/two,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
+"aXA" = (
+/obj/machinery/line_nexter{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo,
+/area/outpost/cargo{
+	outside = 1
+	})
 "aXE" = (
 /obj/machinery/light{
 	dir = 8
@@ -1124,17 +1134,14 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "aYD" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 2;
-	id = "supply_elevator_railing"
+/obj/structure/table/mainship/nometal,
+/obj/item/clipboard,
+/obj/item/paper{
+	pixel_x = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/mainship/floor,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/item/tool/pen,
+/turf/open/floor/mainship/green,
+/area/mainship/squads/req)
 "aYI" = (
 /obj/machinery/light/mainship,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1549,11 +1556,9 @@
 	ceiling = 2
 	})
 "brX" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/mainship/cargo,
-/area/outpost/cargo{
-	outside = 1
-	})
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/squads/req)
 "bsl" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2;
@@ -1640,14 +1645,12 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "bwF" = (
-/obj/machinery/light/mainship{
-	dir = 1
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "supply_elevator_railing"
 	},
-/obj/vehicle/unmanned/droid/ripley,
-/turf/open/floor/mech_bay_recharge_floor,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "bwQ" = (
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
@@ -1708,17 +1711,21 @@
 /turf/open/floor/grass,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "byY" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
 	},
+/obj/machinery/door/airlock/multi_tile/mainship/marine/requisitions{
+	dir = 1
+	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/plating/plating_catwalk,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "bzX" = (
 /obj/structure/largecrate/supply/explosives/mortar_he,
 /turf/open/floor/mainship/orange/full,
@@ -1794,6 +1801,13 @@
 /obj/item/healthanalyzer,
 /obj/item/storage/firstaid/adv,
 /obj/item/storage/firstaid/adv,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/explosive/grenade/chem_grenade/cleaner,
+/obj/item/explosive/grenade/chem_grenade/cleaner,
+/obj/item/explosive/grenade/chem_grenade/cleaner,
+/obj/item/explosive/grenade/chem_grenade/cleaner,
+/obj/item/explosive/grenade/chem_grenade/cleaner,
 /turf/open/floor/mainship/red,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "bDc" = (
@@ -2503,6 +2517,13 @@
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating,
 /area/mainship/engineering/port_atmos)
+"ciy" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal,
+/turf/open/floor/mainship/green,
+/area/mainship/squads/req)
 "ciJ" = (
 /obj/structure/table/mainship,
 /obj/machinery/keycard_auth,
@@ -2591,25 +2612,9 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "cnT" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/table/mainship,
-/obj/item/clipboard,
-/obj/item/paper{
-	pixel_x = 5
-	},
-/obj/item/tool/pen,
-/obj/item/storage/box/MRE{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/whistle,
-/obj/machinery/door_control/old/req,
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
+/turf/open/floor/plating,
+/area/mainship/squads/req)
 "coD" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -3119,6 +3124,14 @@
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
+"cJY" = (
+/obj/structure/rack,
+/obj/item/pizzabox/meat,
+/obj/item/facepaint/green,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/mainship/squads/req)
 "cKq" = (
 /obj/structure/bed/chair/wood/wings,
 /turf/open/floor/tile/chapel{
@@ -3504,12 +3517,17 @@
 	},
 /area/mainship/living/officer_study)
 "dbh" = (
-/obj/structure/closet/emcloset,
-/obj/machinery/light,
-/turf/open/floor/plating/plating_catwalk,
-/area/outpost/cargo{
-	outside = 1
-	})
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "supply_elevator_railing"
+	},
+/obj/machinery/holopad,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "dbC" = (
 /obj/effect/landmark/start/job/requisitionsofficer,
 /turf/open/floor/wood,
@@ -4214,11 +4232,13 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "dPA" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship/orange,
-/area/outpost/cargo{
-	outside = 1
-	})
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	id = "qm_warehouse";
+	name = "\improper Warehouse Shutters"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "dQa" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/marine_card,
@@ -4445,15 +4465,10 @@
 	outside = 0
 	})
 "ecl" = (
-/obj/structure/table/mainship,
-/obj/item/folder/black_random,
-/obj/item/tool/hand_labeler,
-/obj/item/tool/stamp/denied,
-/obj/item/tool/stamp/qm,
+/obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/area/mainship/squads/req)
 "ecq" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -4478,6 +4493,20 @@
 	outside = 0;
 	name = "CEO Office"
 	})
+"ecN" = (
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/tool/extinguisher,
+/obj/item/tool/extinguisher/mini,
+/obj/structure/rack,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/lightreplacer,
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/green,
+/area/mainship/squads/req)
 "edj" = (
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/grass,
@@ -4660,16 +4689,15 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "enB" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 8;
-	id = "supply_elevator_railing"
+/obj/machinery/door_control/mainship/req{
+	id = "qm_warehouse";
+	name = "Requisition Warehouse Shutters"
 	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 4
+/obj/machinery/computer/mech_bay_power_console,
+/turf/open/floor/mainship/green{
+	dir = 1
 	},
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/area/mainship/squads/req)
 "enH" = (
 /obj/machinery/crema_switch{
 	pixel_x = -24
@@ -4931,6 +4959,11 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
+"eCG" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/mainship/squads/req)
 "eEo" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/grass,
@@ -4952,6 +4985,12 @@
 	outside = 0;
 	name = "CEO Office"
 	})
+"eFp" = (
+/obj/machinery/cic_maptable,
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/mainship/squads/req)
 "eFx" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner,
@@ -5032,11 +5071,14 @@
 /turf/open/floor/plating,
 /area/mainship/medical/operating_room_four)
 "eMu" = (
-/obj/machinery/computer/supplycomp,
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/machinery/power/apc{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/mainship/squads/req)
 "eMv" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/orange/full,
@@ -5272,11 +5314,18 @@
 	name = "Ship Floor 3 Hallways"
 	})
 "eUM" = (
-/obj/machinery/vending/weapon,
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/structure/rack,
+/obj/item/tool/wrench,
+/obj/item/tool/crowbar,
+/obj/item/tool/screwdriver,
+/obj/item/paper/factoryhowto,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/mainship/squads/req)
 "eUZ" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -5285,17 +5334,8 @@
 	outside = 0
 	})
 "eVM" = (
-/obj/structure/rack,
-/obj/item/storage/firstaid/fire{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/firstaid/regular,
-/obj/item/storage/firstaid/adv,
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/turf/open/floor/plating/icefloor/warnplate,
+/area/mainship/squads/req)
 "eVS" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom{
 	name = "\improper Showers"
@@ -5378,10 +5418,16 @@
 /turf/open/floor/tile/chapel,
 /area/mainship/living/chapel)
 "eYU" = (
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "supply_elevator_railing"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo/arrow,
+/area/mainship/squads/req)
 "eZt" = (
 /turf/open/floor/mainship/red/full,
 /area/mainship/hull/upper_hull)
@@ -5491,11 +5537,10 @@
 	},
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "fen" = (
-/obj/structure/largecrate/guns/merc,
-/turf/open/floor/mainship/cargo,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/mainship/squads/req)
 "fep" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -5721,13 +5766,9 @@
 /area/mainship/hull/lower_hull)
 "fnC" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/port_umbilical{
-	name = "Ship Floor 2 Hallways"
-	})
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "fnN" = (
 /turf/open/floor/mainship/black{
 	dir = 5
@@ -5776,14 +5817,8 @@
 	name = "Shipside Corpsec Office"
 	})
 "fqs" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/outpost/cargo{
-	outside = 1
-	})
+/turf/open/floor/mainship/empty,
+/area/mainship/squads/req)
 "fqR" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
@@ -6453,12 +6488,12 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/general)
 "fTP" = (
-/obj/structure/table/mainship,
-/obj/item/pizzabox/meat,
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/structure/rack,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/tool/weldpack,
+/turf/open/floor/mainship/green,
+/area/mainship/squads/req)
 "fTV" = (
 /obj/machinery/light/mainship/small{
 	dir = 1
@@ -6535,13 +6570,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "fXH" = (
-/obj/machinery/floodlight/landing,
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
-/area/outpost/cargo{
-	outside = 1
-	})
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro,
+/turf/open/floor/plating,
+/area/mainship/squads/req)
 "fXK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6679,11 +6711,11 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "gcQ" = (
-/obj/machinery/computer/ordercomp,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/area/mainship/squads/req)
 "gcW" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -6711,20 +6743,16 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation/pod/one)
 "geZ" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "supply_elevator_railing"
+	},
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
 	},
-/obj/vehicle/ridden/motorbike{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "gfq" = (
 /obj/structure/cable,
 /obj/machinery/light/mainship,
@@ -6806,6 +6834,14 @@
 /obj/structure/sign/fixedinplace/evac,
 /turf/closed/wall/mainship,
 /area/mainship/command/telecomms)
+"gjm" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/green{
+	dir = 6
+	},
+/area/mainship/squads/req)
 "gjt" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/bed/stool{
@@ -7167,10 +7203,9 @@
 /obj/structure/sign/ROsign{
 	dir = 1
 	},
-/obj/machinery/door/poddoor/shutters/mainship/req/ro,
 /turf/open/floor/plating,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "gDR" = (
 /obj/structure/cable,
@@ -7251,6 +7286,10 @@
 	dir = 8
 	},
 /area/mainship/squads/general)
+"gIp" = (
+/obj/structure/closet/secure_closet/req_officer,
+/turf/open/floor/mainship/cargo,
+/area/mainship/squads/req)
 "gJr" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -7375,14 +7414,9 @@
 	name = "Research"
 	})
 "gNg" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 8;
-	id = "supply_elevator_railing"
-	},
-/turf/open/floor/mainship/floor,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/vehicle/ridden/powerloader,
+/turf/open/floor/mainship/cargo,
+/area/mainship/squads/req)
 "gOo" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/layer1{
 	dir = 1
@@ -7467,7 +7501,9 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "gRL" = (
-/obj/machinery/door/airlock/mainship/maint,
+/obj/machinery/door/airlock/mainship/maint{
+	req_one_access = null
+	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "gRR" = (
@@ -7519,9 +7555,7 @@
 	})
 "gTE" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -7537,14 +7571,11 @@
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "gUf" = (
-/obj/effect/landmark/start/job/shiptech,
-/obj/structure/bed/chair/office/dark{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
 	},
 /turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/area/mainship/squads/req)
 "gUh" = (
 /obj/machinery/door/airlock/mainship/security{
 	name = "\improper Corpsec Office";
@@ -7570,8 +7601,8 @@
 	dir = 4
 	},
 /turf/closed/wall/mainship,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "gUV" = (
 /obj/structure/window/reinforced{
@@ -8039,6 +8070,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/airoom)
+"hpy" = (
+/mob/living/simple_animal/cat/martin,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "hqD" = (
 /obj/machinery/light,
 /obj/structure/cable,
@@ -8145,6 +8180,12 @@
 /obj/structure/sign/evac,
 /turf/open/floor/plating/mainship,
 /area/mainship/living/evacuation)
+"hxj" = (
+/obj/structure/cable,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/mainship/squads/req)
 "hxt" = (
 /obj/machinery/power/smes{
 	output_level = 200000
@@ -8310,9 +8351,10 @@
 /turf/open/floor/mainship/green,
 /area/mainship/living/basketball)
 "hJY" = (
+/obj/structure/cable,
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
+	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_umbilical{
@@ -8432,21 +8474,20 @@
 "hRY" = (
 /obj/machinery/vending/nanomed,
 /turf/closed/wall/mainship,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "hSa" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/airlock/mainship/marine/requisitions,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/plating/plating_catwalk,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
+/turf/open/floor/plating,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "hSz" = (
 /obj/machinery/door_control/unmeltable{
@@ -9090,13 +9131,10 @@
 	},
 /area/mainship/squads/general)
 "ive" = (
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
-	},
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "ivx" = (
 /obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
@@ -9235,27 +9273,18 @@
 /turf/closed/wall/mainship,
 /area/mainship/squads/general)
 "iAB" = (
-/obj/machinery/gear{
-	id = "supply_elevator_gear"
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
 	},
-/obj/structure/disposalpipe/segment/corner{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/area/mainship/squads/req)
 "iAH" = (
 /obj/structure/noticeboard,
 /obj/structure/sign/ROsign{
 	dir = 1
 	},
 /turf/closed/wall/mainship,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "iBn" = (
 /turf/open/floor/mainship/tcomms,
@@ -9391,13 +9420,11 @@
 	},
 /area/mainship/command/self_destruct)
 "iIC" = (
-/obj/machinery/computer/mech_bay_power_console,
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/green{
-	dir = 1
+	dir = 4
 	},
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/area/mainship/squads/req)
 "iIE" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -9469,21 +9496,20 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "iMc" = (
-/obj/machinery/door/poddoor/railing{
-	id = "supply_elevator_railing"
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
 	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/floor,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "iNO" = (
-/obj/structure/largecrate/supply/supplies/metal,
-/turf/open/floor/mainship/cargo,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/machinery/computer/supplycomp,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/mainship/squads/req)
 "iNP" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 6
@@ -9834,11 +9860,14 @@
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
 "jdU" = (
-/obj/structure/closet/secure_closet/req_officer,
-/turf/open/floor/mainship/cargo,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/mainship/squads/req)
 "jeb" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -9916,16 +9945,13 @@
 	name = "Kitchen"
 	})
 "jjk" = (
-/obj/machinery/light{
-	dir = 8
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1;
+	on = 1
 	},
-/obj/machinery/line_nexter{
-	dir = 1
-	},
-/turf/open/floor/mainship/cargo,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "jjI" = (
 /obj/machinery/door/airlock/mainship/marine/general/corps,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -9982,11 +10008,15 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/hull/upper_hull)
 "jmu" = (
-/obj/structure/largecrate/supply/supplies/water,
-/turf/open/floor/mainship/cargo,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/machinery/door/window/secure/req{
+	dir = 8
+	},
+/obj/machinery/door/window,
+/obj/structure/table/reinforced,
+/obj/item/tool/hand_labeler,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "jmW" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/camera_advanced/overwatch/charlie,
@@ -10189,6 +10219,11 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
+"jyw" = (
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/mainship/squads/req)
 "jyM" = (
 /obj/machinery/marine_selector/gear/specialist,
 /obj/machinery/light{
@@ -10201,6 +10236,10 @@
 "jAh" = (
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"jAx" = (
+/obj/structure/disposalpipe/segment,
+/turf/closed/wall/mainship,
+/area/mainship/squads/req)
 "jAP" = (
 /obj/machinery/light{
 	dir = 1
@@ -10558,6 +10597,18 @@
 /area/mainship/medical/upper_medical{
 	name = "Shipside Medbay"
 	})
+"jNG" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "supply_elevator_railing"
+	},
+/obj/machinery/floodlight/landing,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 4
+	},
+/area/mainship/squads/req)
 "jOl" = (
 /obj/machinery/vending/MarineMed,
 /obj/machinery/camera/autoname/mainship{
@@ -10677,13 +10728,13 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "jTM" = (
-/obj/machinery/gear{
-	id = "supply_elevator_gear"
+/obj/structure/cable,
+/obj/structure/table/mainship/nometal,
+/obj/machinery/door_control/old/req,
+/turf/open/floor/mainship/green{
+	dir = 4
 	},
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/area/mainship/squads/req)
 "jUb" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -10726,15 +10777,10 @@
 	},
 /area/mainship/squads/general)
 "jVB" = (
-/obj/structure/largecrate/supply/ammo/standard_ammo,
-/obj/machinery/firealarm{
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/area/mainship/squads/req)
 "jVP" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -10895,6 +10941,14 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
+"keo" = (
+/obj/item/stack/conveyor/thirty,
+/obj/structure/rack,
+/obj/item/conveyor_switch_construct,
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/mainship/squads/req)
 "keA" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
@@ -10991,7 +11045,9 @@
 /obj/item/clothing/suit/apron/overalls,
 /obj/item/storage/bag/plants,
 /obj/item/storage/bag/plants,
-/obj/structure/closet/secure_closet/hydroponics,
+/obj/structure/closet/secure_closet/hydroponics{
+	req_access = null
+	},
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "kiN" = (
@@ -11222,12 +11278,18 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/upper_hull)
 "ksU" = (
-/obj/structure/reagent_dispensers/fueltank,
-/obj/item/tool/extinguisher,
-/turf/open/floor/mainship/cargo,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/misc/paperbin,
+/obj/item/storage/fancy/cigar,
+/obj/item/tool/lighter/zippo,
+/obj/item/tool/pen,
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/mainship/green{
+	dir = 10
+	},
+/area/mainship/squads/req)
 "ktg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -11373,9 +11435,10 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "kyy" = (
-/turf/open/floor/mainship/empty,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
+/obj/machinery/floodlight,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "kyS" = (
 /turf/open/floor/mainship/mono,
@@ -11485,11 +11548,15 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "kFL" = (
-/obj/machinery/vending/cargo_supply,
-/turf/open/floor/mainship/cargo,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/structure/rack,
+/obj/item/storage/firstaid/fire{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/adv,
+/turf/open/floor/mainship/green,
+/area/mainship/squads/req)
 "kGd" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/groundhq/ntf/engineering/upper_engine_monitoring)
@@ -11646,7 +11713,7 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "kMv" = (
-/turf/open/floor/prison/darkred{
+/turf/open/floor/prison/darkyellow{
 	dir = 10
 	},
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
@@ -11763,22 +11830,12 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "kPG" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
-	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/item/tool/hand_labeler,
-/obj/item/tool/hand_labeler,
-/obj/item/tool/hand_labeler,
-/obj/machinery/door/window/secure/req{
-	dir = 2
-	},
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
+/turf/open/floor/plating,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "kPY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -12005,14 +12062,15 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "kXk" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 1;
-	id = "supply_elevator_railing"
+/obj/machinery/light/mainship{
+	dir = 1
 	},
-/turf/open/floor/mainship/cargo/arrow,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/obj/vehicle/unmanned/droid/ripley,
+/turf/open/floor/mech_bay_recharge_floor,
+/area/mainship/squads/req)
 "kXC" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -12464,6 +12522,17 @@
 /area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
+"loM" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "supply_elevator_railing"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "lqb" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -12529,12 +12598,16 @@
 	name = "CC Office"
 	})
 "ltJ" = (
-/obj/structure/closet/firecloset,
-/obj/machinery/light,
-/turf/open/floor/plating/plating_catwalk,
-/area/outpost/cargo{
-	outside = 1
-	})
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "supply_elevator_railing"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "ltZ" = (
 /obj/machinery/power/apc,
 /obj/structure/cable,
@@ -12719,14 +12792,12 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "lDb" = (
-/obj/machinery/power/apc/mainship{
+/obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/structure/closet/secure_closet/shiptech,
+/turf/open/floor/mainship/cargo,
+/area/mainship/squads/req)
 "lDw" = (
 /obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
 	dir = 2;
@@ -12763,26 +12834,25 @@
 	name = "Ship Floor 1 Hallways"
 	})
 "lDQ" = (
-/obj/structure/rack,
-/obj/item/tool/pickaxe/plasmacutter,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/tool/pickaxe/plasmacutter,
-/obj/item/storage/belt/utility/full,
-/obj/item/storage/belt/utility/full,
-/obj/item/tool/weldpack,
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
+/obj/structure/cable,
+/turf/open/floor/stairs/rampbottom,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
 	})
 "lDY" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk,
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/effect/landmark/start/job/requisitionsofficer,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/area/mainship/squads/req)
 "lEy" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -13287,13 +13357,8 @@
 	name = "Ship Floor 3 Hallways"
 	})
 "lZb" = (
-/obj/machinery/floodlight/landing,
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
-/area/outpost/cargo{
-	outside = 1
-	})
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "mag" = (
 /obj/structure/prop/mainship/sensor_computer3,
 /turf/open/floor/mainship/mono,
@@ -13340,9 +13405,12 @@
 	},
 /area/mainship/groundhq/ntf/command/corporateliaison)
 "mdx" = (
-/turf/closed/wall/mainship,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
+/obj/machinery/light{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "mdQ" = (
 /obj/structure/ship_ammo/cas/heavygun,
@@ -13870,12 +13938,13 @@
 	},
 /area/mainship/command/cic)
 "myJ" = (
-/obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro,
-/turf/open/floor/plating,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/obj/item/reagent_containers/jerrycan,
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 4
+	},
+/area/mainship/squads/req)
 "myO" = (
 /obj/machinery/vending/security,
 /turf/open/floor/mainship/red{
@@ -14358,14 +14427,11 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "mXH" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
 	},
-/obj/structure/closet/secure_closet/shiptech,
-/turf/open/floor/mainship/cargo,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "mYR" = (
 /turf/open/floor/mainship/black{
 	dir = 4
@@ -14466,10 +14532,9 @@
 "ngD" = (
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro,
 /turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "ngI" = (
 /obj/structure/window/framed/mainship/toughened{
@@ -14571,16 +14636,13 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "nkv" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment/corner{
+/obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/outpost/cargo{
+	outside = 1
 	})
 "nkx" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
@@ -14979,11 +15041,11 @@
 	name = "Ship Floor 1 Hallways"
 	})
 "nJz" = (
-/obj/structure/supply_drop,
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/structure/cable,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
+/area/mainship/squads/req)
 "nJF" = (
 /turf/closed/wall/mainship/research/containment/wall/corner,
 /area/mainship/medical/surgery_hallway{
@@ -15860,14 +15922,12 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "owk" = (
-/obj/structure/table/mainship,
-/obj/structure/paper_bin,
-/obj/item/storage/fancy/cigar,
-/obj/item/tool/lighter/zippo,
-/obj/item/tool/pen,
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo,
+/area/outpost/cargo{
+	outside = 1
 	})
 "oxM" = (
 /obj/structure/closet/lasertag/blue,
@@ -16373,15 +16433,14 @@
 	name = "Ship Floor 3 Hallways"
 	})
 "oUt" = (
-/obj/structure/table/mainship,
-/obj/machinery/cell_charger,
-/obj/machinery/light{
-	dir = 8
+/obj/machinery/computer/camera_advanced/overwatch/req,
+/obj/machinery/light/mainship{
+	dir = 1
 	},
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/turf/open/floor/mainship/green{
+	dir = 9
+	},
+/area/mainship/squads/req)
 "oVg" = (
 /obj/effect/attach_point/electronics/dropship1,
 /turf/open/floor/plating,
@@ -16434,12 +16493,9 @@
 /turf/closed/wall/mainship/outer,
 /area/mainship/living/cryo_cells)
 "oYi" = (
-/obj/machinery/light/small,
-/obj/structure/largecrate/guns,
-/turf/open/floor/mainship/cargo,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/machinery/status_display,
+/turf/closed/wall/mainship,
+/area/mainship/squads/req)
 "oYl" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/junction,
@@ -17050,11 +17106,12 @@
 /turf/open/floor/wood,
 /area/mainship/living/cryo_cells)
 "pKW" = (
-/obj/structure/largecrate/supply/supplies/sandbags,
-/turf/open/floor/mainship/cargo,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/mainship/squads/req)
 "pLo" = (
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/bow_hallway{
@@ -17283,12 +17340,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/synthdorms)
 "pXo" = (
-/obj/machinery/computer/supplydrop_console,
-/obj/structure/table/mainship,
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/machinery/vending/weapon,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/mainship/squads/req)
 "pXz" = (
 /obj/machinery/marine_selector/clothes/medic,
 /obj/machinery/light/mainship,
@@ -17488,15 +17544,14 @@
 	name = "Ship Floor 1 Hallways"
 	})
 "qgb" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 1;
-	id = "supply_elevator_railing"
+/obj/vehicle/ridden/motorbike{
+	dir = 4
 	},
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/mainship/floor,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/machinery/firealarm{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/squads/req)
 "qgo" = (
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
@@ -17736,11 +17791,23 @@
 	outside = 1
 	})
 "qsO" = (
-/obj/item/reagent_containers/jerrycan,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/machinery/gear{
+	id = "supply_elevator_gear"
+	},
+/obj/structure/cable,
+/obj/machinery/door_control/mainship/req{
+	dir = 1;
+	id = "qm_warehouse";
+	name = "Requisition Warehouse Shutters"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
 /turf/open/floor/mainship/mono,
-/area/outpost/cargo{
-	outside = 1
-	})
+/area/mainship/squads/req)
 "qsW" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -18195,11 +18262,14 @@
 	},
 /area/mainship/living/cryo_cells)
 "qMJ" = (
-/obj/machinery/cic_maptable,
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "supply_elevator_railing"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "qMQ" = (
 /turf/open/floor/mainship/green{
 	dir = 6
@@ -18454,6 +18524,26 @@
 	dir = 1
 	},
 /area/mainship/groundhq/ntf/shipboard/brig)
+"qWt" = (
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/tool/extinguisher,
+/obj/item/tool/extinguisher/mini,
+/obj/structure/rack,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/lightreplacer,
+/obj/item/xeno_iff_tag,
+/obj/item/xeno_iff_tag,
+/obj/item/xeno_iff_tag,
+/obj/item/xeno_iff_tag,
+/obj/item/xeno_iff_tag,
+/obj/item/storage/box/monkeycubes,
+/obj/item/storage/box/monkeycubes,
+/turf/open/floor/mainship/green{
+	dir = 1
+	},
+/area/mainship/squads/req)
 "qWQ" = (
 /obj/effect/landmark/start/job/crash/squadmarine,
 /obj/effect/landmark/start/job/crash/squadmarine,
@@ -18624,6 +18714,10 @@
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"reQ" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/green/corner,
+/area/mainship/squads/req)
 "reV" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
@@ -18798,6 +18892,16 @@
 /obj/item/camera,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
+"rrb" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "rso" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -18842,6 +18946,18 @@
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/upper_engine_monitoring)
+"rtZ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/mainship/squads/req)
 "ruW" = (
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/mainship/tcomms,
@@ -19093,6 +19209,10 @@
 	},
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/hallways/hangar)
+"rGW" = (
+/obj/machinery/holopad,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "rGZ" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 1
@@ -19350,6 +19470,7 @@
 /area/mainship/hull/upper_hull)
 "rWA" = (
 /obj/item/radio/intercom/general,
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/outpost/cargo{
 	outside = 1
@@ -19449,13 +19570,11 @@
 	outside = 0
 	})
 "saQ" = (
-/obj/structure/barricade/metal{
-	dir = 1
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/mainship/green{
+	dir = 4
 	},
-/turf/open/floor/mainship/cargo,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/area/mainship/squads/req)
 "sbt" = (
 /obj/structure/cable,
 /obj/machinery/light/small{
@@ -19575,6 +19694,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/upper_engine_monitoring)
+"seX" = (
+/obj/machinery/vending/nanomed,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/outpost/cargo{
+	outside = 1
+	})
 "sfc" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -19943,20 +20069,11 @@
 	},
 /area/mainship/squads/general)
 "syO" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 2;
-	id = "supply_elevator_railing"
-	},
-/obj/structure/disposalpipe/segment/corner{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/mainship/floor,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/structure/closet/crate/ammo,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/mainship/cargo,
+/area/mainship/squads/req)
 "szL" = (
 /obj/machinery/door/airlock/multi_tile/mainship/maint{
 	dir = 1
@@ -19976,13 +20093,10 @@
 	},
 /area/mainship/squads/general)
 "sAS" = (
-/obj/machinery/light{
-	dir = 4
-	},
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/area/mainship/squads/req)
 "sBA" = (
 /turf/open/floor/mainship/sterile/white,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
@@ -20057,6 +20171,16 @@
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
 	})
+"sGb" = (
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
+	},
+/obj/machinery/door/airlock/multi_tile/mainship/marine/requisitions{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "sGu" = (
 /obj/machinery/door/airlock/mainship/generic/corporate{
 	name = "CEO's Office"
@@ -20305,23 +20429,14 @@
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
 "sRd" = (
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/tool/extinguisher,
-/obj/item/tool/extinguisher/mini,
-/obj/structure/rack,
-/obj/item/flashlight,
-/obj/item/flashlight,
-/obj/item/lightreplacer,
-/obj/item/xeno_iff_tag,
-/obj/item/xeno_iff_tag,
-/obj/item/xeno_iff_tag,
-/obj/item/xeno_iff_tag,
-/obj/item/xeno_iff_tag,
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	id = "qm_warehouse";
+	name = "\improper Warehouse Shutters"
+	},
 /turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/area/mainship/squads/req)
 "sRg" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -20821,11 +20936,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/upper_engine_monitoring)
 "tnt" = (
-/obj/structure/largecrate/supply/generator,
-/turf/open/floor/mainship/cargo,
-/area/outpost/cargo{
-	outside = 1
-	})
+/turf/open/floor/plating,
+/area/mainship/squads/req)
 "tnM" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood,
@@ -20991,6 +21103,13 @@
 /area/outpost/cargo{
 	outside = 1
 	})
+"tzH" = (
+/obj/machinery/holopad,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "tzS" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/food_or_drink/sugary_snack,
@@ -21006,19 +21125,10 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "tzZ" = (
-/obj/structure/disposalpipe/segment/corner{
-	dir = 4
-	},
-/obj/structure/disposaloutlet/retrieval{
-	dir = 4
-	},
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
-	},
-/turf/open/floor/mainship/cargo,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "tAl" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -21225,6 +21335,16 @@
 /obj/structure/prop/mainship/railing/corner,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
+"tKi" = (
+/obj/effect/landmark/start/job/shiptech,
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/mainship/squads/req)
 "tKv" = (
 /obj/structure/cable,
 /obj/machinery/power/terminal,
@@ -21516,17 +21636,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "tYF" = (
-/obj/structure/table/mainship,
-/obj/item/stack/sheet/glass/reinforced{
-	amount = 30
-	},
-/obj/item/stack/sheet/cardboard{
-	amount = 30
-	},
-/obj/item/stack/sheet/wood/large_stack,
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
+/obj/structure/closet/crate/construction,
+/turf/open/floor/plating,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "tYK" = (
 /obj/structure/mirror,
@@ -21632,18 +21745,14 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
 "ueP" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 5
 	},
-/obj/item/reagent_containers/jerrycan,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+/obj/machinery/gear{
+	id = "supply_elevator_gear"
 	},
-/turf/open/floor/plating/plating_catwalk,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "ufx" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -21893,6 +22002,16 @@
 	},
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
+"usj" = (
+/obj/item/folder/black_random,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/stamp/denied,
+/obj/item/tool/stamp/qm,
+/obj/structure/table/mainship/nometal,
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/mainship/squads/req)
 "usu" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -21938,10 +22057,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "uuz" = (
-/obj/structure/largecrate/supply/supplies/mre,
-/turf/open/floor/mainship/cargo,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
+/turf/open/floor/plating,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "uuB" = (
 /obj/item/toy/beach_ball/basketball,
@@ -22047,12 +22165,10 @@
 	},
 /area/mainship/living/basketball)
 "uyy" = (
-/obj/machinery/light/small,
-/obj/structure/largecrate/guns/russian,
-/turf/open/floor/mainship/cargo,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/turf/open/floor/mainship/green{
+	dir = 1
+	},
+/area/mainship/squads/req)
 "uyE" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/garden,
 /obj/machinery/door/firedoor/multi_tile,
@@ -22105,14 +22221,11 @@
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/lower_medical)
 "uAb" = (
-/obj/structure/cable,
-/obj/machinery/camera/autoname{
-	dir = 4
+/obj/machinery/door/poddoor/railing{
+	id = "supply_elevator_railing"
 	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/port_umbilical{
-	name = "Ship Floor 2 Hallways"
-	})
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "uAd" = (
 /obj/structure/sink{
 	dir = 4
@@ -22269,14 +22382,21 @@
 	},
 /area/mainship/living/chapel)
 "uLw" = (
-/obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
 	},
-/turf/open/floor/plating,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/structure/table/mainship/nometal,
+/obj/machinery/cell_charger,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/mainship/squads/req)
 "uLL" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
@@ -22358,19 +22478,10 @@
 	outside = 0
 	})
 "uRk" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 2;
-	id = "supply_elevator_railing"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 1
-	},
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/status_display,
+/turf/closed/wall/mainship,
+/area/mainship/squads/req)
 "uRI" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -22425,11 +22536,15 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "uSY" = (
-/obj/machinery/vending/lasgun,
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "supply_elevator_railing"
+	},
+/obj/machinery/computer/ordercomp,
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 1
+	},
+/area/mainship/squads/req)
 "uTe" = (
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
@@ -23137,12 +23252,23 @@
 /area/mainship/medical/upper_medical{
 	name = "Shipside Medbay"
 	})
+"vAe" = (
+/obj/structure/table/mainship/nometal,
+/turf/open/floor/mainship/green{
+	dir = 6
+	},
+/area/mainship/squads/req)
 "vAL" = (
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/structure/table/mainship/nometal,
+/obj/item/stack/sheet/wood/large_stack,
+/obj/item/stack/sheet/glass/reinforced{
+	amount = 30
+	},
+/obj/item/stack/sheet/cardboard{
+	amount = 50
+	},
+/turf/open/floor/mainship/green,
+/area/mainship/squads/req)
 "vBk" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 8
@@ -23291,6 +23417,16 @@
 /area/deltastation/engineering/engine_smes{
 	outside = 0
 	})
+"vIf" = (
+/obj/machinery/gear{
+	id = "supply_elevator_gear"
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "vIh" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/cargo,
@@ -23385,6 +23521,15 @@
 /obj/item/reagent_containers/food/snacks/grown/poppy,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_garden)
+"vOw" = (
+/obj/machinery/door/poddoor/railing{
+	id = "supply_elevator_railing"
+	},
+/obj/machinery/floodlight/landing,
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 8
+	},
+/area/mainship/squads/req)
 "vOP" = (
 /obj/structure/ship_ammo/cas/minirocket/illumination,
 /turf/open/floor/plating,
@@ -23402,11 +23547,12 @@
 	name = "CEO Office"
 	})
 "vQq" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer/supplydrop_console,
+/turf/open/floor/mainship/green{
+	dir = 1
+	},
+/area/mainship/squads/req)
 "vQG" = (
 /obj/machinery/power/apc/mainship{
 	dir = 8
@@ -23502,13 +23648,8 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/port_garden)
 "vZa" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship/orange{
-	dir = 1
-	},
-/area/outpost/cargo{
-	outside = 1
-	})
+/turf/closed/wall/mainship,
+/area/mainship/squads/req)
 "vZm" = (
 /obj/structure/ship_ammo/cas/rocket/keeper,
 /turf/open/floor/mainship/mono,
@@ -23670,17 +23811,9 @@
 /turf/open/floor/mainship_hull,
 /area/mainship/hull/upper_hull)
 "wgI" = (
-/obj/machinery/door/poddoor/railing{
-	id = "supply_elevator_railing"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 8
-	},
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "wgN" = (
 /obj/machinery/door/airlock/mainship/generic/corporate,
 /turf/open/floor/wood,
@@ -24190,17 +24323,14 @@
 	name = "CEO Office"
 	})
 "wFM" = (
-/obj/item/frame/table,
-/obj/item/frame/table,
-/obj/item/frame/table,
-/obj/structure/rack,
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/machinery/gear{
+	id = "supply_elevator_gear"
 	},
 /turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/area/mainship/squads/req)
 "wIw" = (
 /obj/effect/landmark/start/job/cmo,
 /obj/structure/cable,
@@ -24351,11 +24481,16 @@
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "wNY" = (
-/obj/docking_port/stationary/supply,
-/turf/open/floor/mainship/empty,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "supply_elevator_railing"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "wOb" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
@@ -24365,6 +24500,12 @@
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
+"wOf" = (
+/obj/machinery/vending/cargo_supply,
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/mainship/squads/req)
 "wOv" = (
 /obj/machinery/door/poddoor/mainship/umbilical/south{
 	dir = 2
@@ -24405,15 +24546,11 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "wPZ" = (
-/obj/machinery/gear{
-	id = "supply_elevator_gear"
-	},
+/obj/structure/closet/crate/weapon,
+/obj/structure/cable,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/mono,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/turf/open/floor/mainship/cargo,
+/area/mainship/squads/req)
 "wQw" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship,
@@ -24694,17 +24831,13 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "xdp" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 2;
-	id = "supply_elevator_railing"
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
-/turf/open/floor/mainship/floor,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "xdJ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -24757,6 +24890,12 @@
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
 	})
+"xgf" = (
+/obj/structure/cable,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
+	},
+/area/mainship/squads/req)
 "xgj" = (
 /obj/structure/bed/chair/sofa/corner{
 	dir = 8
@@ -25210,6 +25349,15 @@
 "xyd" = (
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/hallways/hangar)
+"xyp" = (
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "xyA" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -25451,14 +25599,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "xMy" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 1;
-	id = "supply_elevator_railing"
-	},
-/turf/open/floor/mainship/floor,
-/area/campaign/jungle_outpost/outpost/req{
-	name = "\improper Shipside Req"
-	})
+/obj/docking_port/stationary/supply,
+/turf/open/floor/mainship/empty,
+/area/mainship/squads/req)
 "xMN" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
@@ -34439,17 +34582,17 @@ xMV
 sqH
 tjv
 sqH
-mdx
-mdx
-mdx
-mdx
-mdx
-mdx
-mdx
-mdx
-mdx
-mdx
-mdx
+bJK
+bJK
+bJK
+bJK
+bJK
+bJK
+bJK
+bJK
+bJK
+bJK
+bJK
 gUM
 sIF
 sIF
@@ -34678,21 +34821,21 @@ wfY
 edp
 wke
 xMV
-uAb
-xlD
+lau
+ljl
 hXu
-uLw
-owk
-fTP
-jdU
-mXH
-lDQ
-oUt
-kFL
-tzZ
-jVB
-lDb
-pKW
+ive
+uuz
+uuz
+uuz
+uuz
+uuz
+uuz
+uuz
+uuz
+uuz
+uuz
+uuz
 sIF
 tYK
 iGg
@@ -34920,21 +35063,21 @@ min
 oSa
 fRN
 vHZ
-cyb
+rtT
 hJY
 hXu
-uLw
-ecl
-aDW
-iAB
-iMc
-iMc
-wgI
-iMc
-iMc
-wPZ
-nkv
-iNO
+ive
+hXu
+uuz
+uuz
+uuz
+uuz
+uuz
+uuz
+uuz
+hXu
+uuz
+uuz
 sIF
 uRM
 gSb
@@ -35162,21 +35305,21 @@ pTu
 gaq
 pTu
 pTu
+hXu
 ljl
 hXu
-avf
-uLw
-lDY
-vAL
-syO
-kyy
-kyy
-kyy
-kyy
-kyy
-xMy
-byY
-fen
+ive
+hXu
+uuz
+hXu
+uuz
+hXu
+uuz
+uuz
+uuz
+uuz
+uuz
+uuz
 sIF
 bkI
 sIF
@@ -35404,21 +35547,21 @@ rte
 gZb
 hnC
 pTu
+hXu
 ljl
-gcQ
 mdx
 iAH
-cnT
-eMu
-aYD
-kyy
-kyy
-kyy
-kyy
-kyy
-xMy
-byY
-uyy
+hXu
+hXu
+hXu
+uuz
+uuz
+uuz
+uuz
+hXu
+uuz
+uuz
+uuz
 sIF
 ejv
 ejv
@@ -35646,21 +35789,21 @@ fBZ
 qWQ
 hnC
 pTu
+hXu
 ljl
 hXu
-jjk
 kPG
-gUf
-eYU
-uRk
+hXu
+hXu
+uuz
+uuz
+tYF
+uuz
 kyy
-kyy
-wNY
-kyy
-kyy
-kXk
-ueP
-uSY
+hXu
+uuz
+hXu
+uuz
 sIF
 sIF
 sIF
@@ -35888,21 +36031,21 @@ kbR
 mFZ
 hnC
 pTu
-ljl
 hXu
-saQ
+rrb
+hXu
 ive
-qMJ
-eYU
-aYD
-kyy
-kyy
-kyy
-kyy
-kyy
-qgb
-geZ
-oYi
+hXu
+uuz
+hXu
+uuz
+uuz
+uuz
+uuz
+uuz
+uuz
+uuz
+hXu
 sIF
 fHv
 aTZ
@@ -36130,21 +36273,21 @@ bHY
 aas
 hnC
 pTu
+hXu
 ljl
 hXu
-saQ
 ive
-iIC
-vQq
-xdp
-kyy
-kyy
-kyy
-kyy
-kyy
-xMy
-byY
-jmu
+uuz
+hXu
+uuz
+uuz
+uuz
+uuz
+uuz
+uuz
+uuz
+hXu
+hXu
 sIF
 tSl
 moF
@@ -36372,20 +36515,20 @@ nlC
 oIc
 qeM
 pTu
+hXu
 ljl
-ksD
-saQ
+hXu
 ive
-bwF
-eYU
-jTM
-gNg
-gNg
-enB
-gNg
-gNg
-jTM
-byY
+hXu
+uuz
+hXu
+uuz
+uuz
+hXu
+uuz
+hXu
+uuz
+uuz
 uuz
 sIF
 fAL
@@ -36614,21 +36757,21 @@ dik
 dWv
 cDw
 pTu
+hXu
 ljl
 hXu
-saQ
 ive
-eVM
-sRd
-wFM
-tYF
-nJz
-pXo
-eUM
-sAS
-ksU
-byY
-eYU
+uuz
+hXu
+uuz
+uuz
+uuz
+uuz
+uuz
+uuz
+hXu
+hXu
+uuz
 sIF
 lnT
 oWs
@@ -36856,19 +36999,19 @@ lvc
 jql
 pTu
 pTu
+hXu
 ljl
 hXu
-eYU
-mdx
+bJK
 gDp
-myJ
-myJ
-myJ
-mdx
-mdx
+ive
+ive
+ive
+bJK
+bJK
 hRY
-mdx
-myJ
+bJK
+ive
 hSa
 ngD
 fyt
@@ -37098,8 +37241,8 @@ gXZ
 hXu
 lLi
 uIj
-fnC
-ksD
+bye
+xyp
 hXu
 baz
 hXu
@@ -37341,7 +37484,7 @@ neU
 hcn
 bAa
 gTE
-neU
+iMc
 neU
 neU
 neU
@@ -38738,7 +38881,7 @@ kwl
 eRO
 izo
 qsl
-izo
+nEl
 nEl
 fCs
 izo
@@ -39206,13 +39349,13 @@ aya
 mFm
 aya
 qbv
-urx
-urx
-urx
-urx
-urx
-urx
-urx
+wFM
+uAb
+uAb
+vOw
+uAb
+uAb
+ueP
 urx
 urx
 urx
@@ -39448,13 +39591,13 @@ aya
 uXo
 aya
 vgl
-qbv
+bwF
 fqs
-rso
-rso
-rso
-rso
-rso
+fqs
+fqs
+fqs
+fqs
+wNY
 bko
 rso
 rso
@@ -39689,13 +39832,13 @@ cam
 aya
 mFm
 aya
-urx
-urx
-qsM
-urx
-urx
-urx
-urx
+qbv
+bwF
+fqs
+fqs
+fqs
+fqs
+fqs
 ltJ
 jCB
 qEd
@@ -39931,14 +40074,14 @@ cam
 aya
 mFm
 aya
-urx
-urx
-qsM
-urx
-coD
-urx
-urx
-urx
+qbv
+uSY
+fqs
+fqs
+xMy
+fqs
+fqs
+eYU
 urx
 urx
 urx
@@ -40173,13 +40316,13 @@ cam
 aya
 mFm
 aya
-urx
-urx
-qsM
-urx
-urx
-urx
-urx
+qbv
+bwF
+fqs
+fqs
+fqs
+fqs
+fqs
 dbh
 jCB
 eTR
@@ -40415,14 +40558,14 @@ cam
 aya
 uXo
 aya
-urx
-urx
-qsM
-dIJ
-dIJ
-dIJ
-dIJ
-dIJ
+qbv
+bwF
+fqs
+fqs
+fqs
+fqs
+fqs
+ltJ
 wMn
 dIJ
 dIJ
@@ -40657,13 +40800,13 @@ cam
 aya
 mFm
 aya
-urx
-urx
-qsM
-urx
-urx
-urx
-urx
+qbv
+vIf
+loM
+qMJ
+jNG
+qMJ
+geZ
 qsO
 urx
 urx
@@ -40899,25 +41042,25 @@ cam
 aya
 tYs
 aya
-urx
+qbv
 urx
 qsM
-urx
-sVq
+brX
+vZa
 lZb
-uhY
-uhY
-uhY
-uhY
-uhY
-uhY
-uhY
-uhY
-uhY
-uhY
-lZb
-rsv
-urx
+byY
+vZa
+vZa
+vZa
+vZa
+vZa
+vZa
+vZa
+vZa
+vZa
+fXH
+fXH
+brX
 urx
 fmE
 phx
@@ -41141,25 +41284,25 @@ cam
 aya
 fnB
 aya
-chO
+nkv
 urx
 qsM
-sVq
-izo
-iKR
-izo
-izo
-izo
-iKR
-izo
-izo
-izo
-izo
-izo
-izo
-izo
-izo
-xPo
+jAx
+oUt
+jyw
+rtZ
+eFp
+eUM
+keo
+wOf
+qgb
+gNg
+uLw
+lDb
+gIp
+usj
+ksU
+oYi
 urx
 fmE
 urx
@@ -41386,22 +41529,22 @@ aya
 rWA
 urx
 qsM
-kkx
-izo
-vTs
-izo
-izo
-izo
-vTs
-izo
-izo
-lMs
-izo
-izo
-izo
-izo
-izo
-xPo
+uRk
+vQq
+mXH
+avf
+sAS
+sAS
+wPZ
+syO
+myJ
+aDW
+sAS
+sAS
+tzZ
+lDY
+ciy
+vZa
 urx
 fmE
 urx
@@ -41625,25 +41768,25 @@ cam
 aya
 uXo
 aya
-urx
+qbv
 urx
 qsM
-kkx
-izo
-quO
-izo
-jYD
-izo
-quO
-izo
-izo
-qsl
-izo
-izo
-nEl
-izo
-izo
-xPo
+sRd
+avA
+gcQ
+nJz
+iAB
+iAB
+iAB
+iAB
+iAB
+iAB
+iAB
+eCG
+wgI
+hpy
+fTP
+vZa
 urx
 fmE
 urx
@@ -41867,25 +42010,25 @@ wDa
 wDa
 uIU
 wDa
-pmd
+seX
 urx
 qsM
 dPA
-izo
-izo
-eRO
-izo
-izo
-izo
-izo
+uyy
+gcQ
+hxj
 tnt
-izo
-brX
-izo
-izo
-izo
-izo
-xPo
+tnt
+tnt
+tnt
+tnt
+tnt
+tnt
+eVM
+wgI
+lZb
+kFL
+vZa
 urx
 fmE
 urx
@@ -42108,25 +42251,25 @@ kyS
 xEm
 iue
 juD
-fQo
-urx
+lDQ
+qbv
 urx
 qsM
-kkx
-izo
-izo
-izo
-izo
-izo
-izo
-izo
-izo
-izo
-izo
-izo
-izo
-izo
-izo
+dPA
+uyy
+tzH
+pKW
+tnt
+tnt
+tnt
+cnT
+tnt
+tnt
+tnt
+eVM
+ecl
+rGW
+ecN
 vZa
 urx
 fmE
@@ -42354,22 +42497,22 @@ iue
 urx
 urx
 qsM
-kkx
-izo
-izo
-izo
-izo
-izo
-izo
-izo
-iKR
-iKR
-jYD
-izo
-eRO
-izo
-izo
-xPo
+dPA
+uyy
+gcQ
+hxj
+tnt
+tnt
+tnt
+tnt
+tnt
+tnt
+tnt
+eVM
+wgI
+lZb
+vAL
+vZa
 urx
 iAm
 urx
@@ -42596,22 +42739,22 @@ iTU
 fXQ
 jXk
 caK
-kkx
-izo
-izo
-izo
-izo
-qsl
-izo
-izo
-vTs
-vTs
-izo
-izo
-izo
-izo
-izo
-xPo
+sRd
+qWt
+gcQ
+xgf
+jVB
+jVB
+jVB
+jVB
+jVB
+jVB
+jVB
+fen
+wgI
+lZb
+aYD
+vZa
 urx
 wQM
 urx
@@ -42838,22 +42981,22 @@ udM
 urx
 urx
 urx
-rJs
-izo
-izo
-izo
-izo
-izo
-izo
-izo
-quO
-quO
-izo
-izo
-izo
-izo
-izo
-tzm
+vZa
+enB
+gUf
+xdp
+fnC
+fnC
+fnC
+jjk
+wgI
+wgI
+reQ
+jTM
+tKi
+iNO
+vAe
+brX
 urx
 ixQ
 urx
@@ -43080,22 +43223,22 @@ wDa
 qFI
 bFL
 urx
-urx
-rJs
+vZa
+kXk
+lZb
+wgI
+pXo
+jdU
+iIC
+saQ
+cJY
+eMu
+gjm
+vZa
+jmu
 fXH
-ehv
-ehv
-ehv
-ehv
-ehv
-ehv
-ehv
-ehv
-ehv
-ehv
 fXH
-tzm
-urx
+fXH
 urx
 ixQ
 urx
@@ -43322,22 +43465,22 @@ aya
 urx
 bFL
 urx
-urx
-urx
-urx
-urx
-urx
-urx
-urx
-urx
-urx
-coD
-urx
-urx
-urx
-urx
-urx
-urx
+brX
+vZa
+lZb
+sGb
+vZa
+vZa
+vZa
+vZa
+vZa
+vZa
+vZa
+vZa
+aXA
+owk
+owk
+owk
 coD
 ixQ
 urx
@@ -56799,7 +56942,7 @@ aPj
 fdT
 cLu
 aPj
-sBA
+ask
 vrv
 aPj
 mra
@@ -57043,7 +57186,7 @@ umi
 aPj
 sBA
 sBA
-ask
+aPj
 bTT
 ikg
 kQC
@@ -57755,7 +57898,7 @@ aPj
 nan
 mkW
 aPj
-xjK
+aPj
 oel
 inS
 tXd
@@ -59213,7 +59356,7 @@ waQ
 aPj
 rDe
 nhR
-aPj
+xjK
 cRm
 vgM
 lTm
