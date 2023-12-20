@@ -413,6 +413,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/so
 	name = STAFF_OFFICER
 	construction = SKILL_CONSTRUCTION_PLASTEEL
+	engineer = SKILL_ENGINEER_PLASTEEL
 	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
@@ -423,6 +424,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	pilot = SKILL_PILOT_TRAINED
 	powerloader = SKILL_POWERLOADER_PRO
 	leadership = SKILL_LEAD_TRAINED
+	engineer = SKILL_ENGINEER_PLASTEEL
+	construction = SKILL_CONSTRUCTION_PLASTEEL
 
 /datum/skills/mech_pilot
 	name = MECH_PILOT
