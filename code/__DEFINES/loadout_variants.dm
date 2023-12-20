@@ -47,6 +47,9 @@
 #define MARK_THREE_WEBBING "mark_three_webbing"
 #define MARK_ONE_WEBBING "mark_one_webbing"
 
+// In loadout code, _item_representation.dm:16 requires each second value in the list to be UNIQUE, or it will simply use the first identical value it finds
+// you can see there's multiple duplicates of webbing. In this case, it causes LEATHER_JACKET_WEBBING to be used instead for hardsuits instead of MARK_FIVE_WEBBING.
+// Fixing this would likely require wiping loadouts.
 ///saved loadout key = icon_state, AGAIN DO NOT EDIT THE KEYS IT WILL BREAK LOADOUTS
 GLOBAL_LIST_INIT(loadout_variant_keys, list(
 	NORMAL = "normal",

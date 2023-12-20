@@ -85,8 +85,6 @@
 	colorable_colors = ARMOR_PALETTES_LIST
 	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
 	starting_attachments = list(/obj/item/armor_module/armor/secondary_color/chest/webbing)
-	attachments_allowed = list(/obj/item/armor_module/armor/secondary_color/chest/webbing)
-	attachments_by_slot = list(ATTACHMENT_SLOT_CHEST_SECONDARY_COLOR)
 
 /obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markfive
 	name = "\improper FleckTex Mark V Breacher chestplates"
