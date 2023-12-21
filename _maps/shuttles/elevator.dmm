@@ -59,32 +59,43 @@
 /area/shuttle/dropship/minielevator{
 	ceiling = 2
 	})
+"H" = (
+/obj/machinery/status_display,
+/turf/closed/wall/mainship,
+/area/shuttle/dropship/minielevator{
+	ceiling = 2
+	})
 
 (1,1,1) = {"
+B
 i
 i
 i
 B
 "}
 (2,1,1) = {"
+H
 G
 a
 a
 C
 "}
 (3,1,1) = {"
+B
 G
 t
 a
 C
 "}
 (4,1,1) = {"
+B
 d
 a
 k
 C
 "}
 (5,1,1) = {"
+B
 B
 i
 B
