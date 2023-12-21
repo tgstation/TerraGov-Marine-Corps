@@ -8,8 +8,10 @@
 	var/currency = 0
 
 	var/list/valid_jobs = list()
-	///Player perks
-	var/list/list/datum/perk/perks = list()
+	///Single list of unlocked perks for easy reference
+	var/list/unlocked_perks = list()
+	///Unlocked perks organised by jobs effected
+	var/list/list/datum/perk/perks_by_job = list()
 	///Unlocked items
 	var/list/list/datum/loadout_item/unlocked_items = list() //probs some initial list here based on class etc.
 	///List of loadouts by role
@@ -28,13 +30,14 @@
 			continue
 		valid_jobs += job_type::title
 		loadouts[job_type::title] = new /datum/outfit_holder(job_type::title)
-		perks[job_type::title] = list()
+		perks_by_job[job_type::title] = list()
 		unlocked_items[job_type::title] = list()
 
 /datum/individual_stats/Destroy(force, ...)
 	ckey = null
 	current_mob = null
-	perks = null
+	unlocked_perks = null
+	perks_by_job = null
 	unlocked_items = null
 	return ..()
 
@@ -55,17 +58,21 @@
 /datum/individual_stats/proc/purchase_perk(datum/perk/new_perk)
 	if(!istype(new_perk))
 		return
-	if(currency < new_perk.unlock_cost)
+	if(new_perk in unlocked_perks)
+		return
+	if(length(new_perk.prereq_perks))
+		for(var/prereq in new_perk.prereq_perks)
+			if(prereq in unlocked_perks)
+				continue
+			return
+	if(use_funds(new_perk.unlock_cost))
 		return
 
+	unlocked_perks += new_perk
 	for(var/supported_job in new_perk.jobs_supported)
-		if(!perks[supported_job])
+		if(!perks_by_job[supported_job])
 			continue
-		if(new_perk in perks[supported_job])
-			return //we already have it. We'll probs do a much nicer check later
-		perks[supported_job] += new_perk
-
-	use_funds(new_perk.unlock_cost)
+		perks_by_job[supported_job] += new_perk
 
 ///Adds an item if able
 /datum/individual_stats/proc/unlock_loadout_item(datum/loadout_item/new_item)
@@ -87,7 +94,7 @@
 /datum/individual_stats/proc/apply_perks()
 	if(!current_mob || QDELETED(current_mob))
 		return
-	for(var/datum/perk/perk AS in perks[current_mob.job.title])
+	for(var/datum/perk/perk AS in perks_by_job[current_mob.job.title])
 		perk.apply_perk(current_mob)
 
 ///Attempts to add an available item to a loadout
@@ -116,7 +123,7 @@
 	var/list/data = list()
 
 	var/list/perks_data = list()
-	for(var/job in perks)
+	for(var/job in perks_by_job)
 		for(var/datum/perk/perk AS in GLOB.campaign_perks_by_role[job])
 			var/list/perk_data = list()
 			perk_data["name"] = perk.name
@@ -125,7 +132,7 @@
 			perk_data["desc"] = perk.desc
 			perk_data["cost"] = perk.unlock_cost
 			perk_data["icon"] = perk.ui_icon
-			perk_data["currently_active"] = !!(perk in perks[job])
+			perk_data["currently_active"] = !!(perk in perks_by_job[job])
 			perks_data += list(perk_data)
 	data["perks_data"] = perks_data
 
