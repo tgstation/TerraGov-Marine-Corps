@@ -68,6 +68,22 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/proc/remove_perk(mob/living/carbon/owner)
 	return
 
+/datum/perk/hp_boost
+	name = "Improved constitution"
+	desc = "+10 max health."
+	all_jobs = TRUE
+	///How much this perk increases your maxhp by
+	var/health_mod = 10
+
+/datum/perk/hp_boost/apply_perk(mob/living/carbon/owner)
+	owner.maxHealth += health_mod
+
+/datum/perk/hp_boost/remove_perk(mob/living/carbon/owner)
+	owner.maxHealth -= health_mod
+
+/datum/perk/hp_boost/two
+	name = "Extreme constitution"
+	desc = "An additional +10 max health."
 
 //perks that give a trait
 /datum/perk/trait
@@ -85,7 +101,6 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	desc = "Quiet when running, silent when walking."
 	traits = list(TRAIT_LIGHT_STEP)
 	all_jobs = TRUE
-
 
 //skill modifying perks
 /datum/perk/skill_mod
