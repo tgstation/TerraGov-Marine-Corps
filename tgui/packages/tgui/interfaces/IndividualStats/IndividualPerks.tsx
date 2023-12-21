@@ -84,13 +84,15 @@ export const IndividualPerks = (props, context) => {
                   <Flex.Item fontSize="150%" grow={1}>
                     {selectedPerk.name}
                   </Flex.Item>
-                  <Flex.Item alight="right" position="end">
-                    <Button
-                      onClick={() => setPurchasedPerk(selectedPerk)}
-                      icon={'check'}>
-                      Unlock
-                    </Button>
-                  </Flex.Item>
+                  {!selectedPerk.currently_active && (
+                    <Flex.Item alight="right" position="end">
+                      <Button
+                        onClick={() => setPurchasedPerk(selectedPerk)}
+                        icon={'check'}>
+                        Unlock
+                      </Button>
+                    </Flex.Item>
+                  )}
                 </Flex>
               </Box>
             ) : (
