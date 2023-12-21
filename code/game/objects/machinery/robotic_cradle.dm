@@ -39,13 +39,7 @@
 	return ..()
 
 /obj/machinery/robotic_cradle/update_icon_state()
-	if(machine_stat & NOPOWER)
-		icon_state = "borgcharger0"
-		return
-	if(repairing)
-		icon_state = "borgcharger1"
-		return
-	if(occupant)
+	if(repairing && occupant && !(machine_stat & NOPOWER))
 		icon_state = "borgcharger1"
 		return
 	icon_state = "borgcharger0"
@@ -70,6 +64,8 @@
 
 	if(!repairing)
 		return
+
+	update_icon()
 
 //This proc handles the actual repair once the timer is up, ejection of the healed robot and radio message of ejection.
 /obj/machinery/robotic_cradle/proc/repair_op()
@@ -127,8 +123,8 @@
 			reason = "Reason for discharge: Destruction of linked CRADLE Engineering System. Alerting security advised."
 	radio.talk_into(src, "<b>Patient: [occupant] has been released from [src] at: [get_area(src)]. [reason]</b>", RADIO_CHANNEL_MEDICAL)
 	occupant = null
-	update_icon()
 	stop_processing()
+	update_icon()
 
 //This proc is what a robot calls when they try to enter a cradle on their own.
 /obj/machinery/robotic_cradle/proc/move_inside_wrapper(mob/living/dropped, mob/dragger)
@@ -142,13 +138,6 @@
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(dragger, span_notice("[src] is non-functional!"))
 		return
-
-	if(dragger.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-		dropped.visible_message(span_notice("[dropped] fumbles around figuring out how to get into \the [src]."),
-		span_notice("You fumble around figuring out how to get into \the [src]."))
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * dragger.skills.getRating(SKILL_ENGINEER) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(dropped, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
-			return
 
 	dropped.visible_message(span_notice("[dropped] starts climbing into \the [src]."),
 	span_notice("You start climbing into \the [src]."))
@@ -243,13 +232,6 @@
 		to_chat(user, span_warning("Subject is biological, cannot repair."))
 		return
 
-	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-		user.visible_message(span_notice("[user] fumbles around figuring out how to put [M] into [src]."),
-		span_notice("You fumble around figuring out how to put [M] into [src]."))
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.skills.getRating(SKILL_ENGINEER) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(user, fumbling_time, NONE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
-			return
-
 	visible_message("[user] starts putting [M] into [src].", 3)
 
 	if(!do_after(user, 10, IGNORE_HELD_ITEM, M, BUSY_ICON_GENERIC) || QDELETED(src))
@@ -264,7 +246,7 @@
 
 	M.forceMove(src)
 	occupant = M
-	icon_state = "pod_1"
+	icon_state = "borgcharger1"
 	var/implants = list(/obj/item/implant/neurostim)
 	var/mob/living/carbon/human/H = occupant
 	med_scan(H, null, implants, TRUE)
@@ -301,22 +283,5 @@
 	if(usr == occupant)
 		if(repairing)
 			to_chat(usr, span_warning("There's no way you're getting out while this thing is operating on you!"))
-			return
-		else
-			visible_message("[usr] engages the internal release mechanism, and climbs out of \the [src].")
-	if(usr.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-		usr.visible_message(span_notice("[usr] fumbles around figuring out how to use [src]."),
-		span_notice("You fumble around figuring out how to use [src]."))
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.skills.getRating(SKILL_ENGINEER) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(usr, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED) || !occupant)
-			return
-	if(repairing)
-		repairing = 0
-		if(usr.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI) //Untrained people will fail to terminate the repair properly.
-			visible_message("\The [src] malfunctions as [usr] aborts the rapair in progress.")
-			occupant.take_limb_damage(rand(30,50),rand(30,50))
-			log_game("[key_name(usr)] ejected [key_name(occupant)] from the cradle during repair causing damage.")
-			message_admins("[ADMIN_TPMONTY(usr)] ejected [ADMIN_TPMONTY(occupant)] from the cradle during repair causing damage.")
-			go_out(CRADLE_NOTICE_IDIOT_EJECT)
 			return
 	go_out()
