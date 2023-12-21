@@ -39,6 +39,6 @@
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/activable/xeno/xeno_spit,
 	)

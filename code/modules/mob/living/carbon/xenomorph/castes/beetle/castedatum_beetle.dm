@@ -34,6 +34,6 @@
 	minimap_icon = "xenominion"
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/activable/forward_charge/unprecise,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/activable/xeno/forward_charge/unprecise,
 	)

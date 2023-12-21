@@ -93,6 +93,7 @@
 	if(gib)
 		victim.gib()
 	victim = null
+	STOP_PROCESSING(SSslowprocess, src)
 
 /obj/structure/cocoon/attacked_by(obj/item/I, mob/living/user, def_zone)
 	if(!anchored && victim)
@@ -103,7 +104,7 @@
 		busy = TRUE
 		var/channel = SSsounds.random_available_channel()
 		playsound(user, "sound/effects/cutting_cocoon.ogg", 30, channel = channel)
-		if(!do_after(user, 8 SECONDS, TRUE, src))
+		if(!do_after(user, 8 SECONDS, NONE, src))
 			busy = FALSE
 			user.stop_sound_channel(channel)
 			return

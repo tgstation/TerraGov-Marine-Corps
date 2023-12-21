@@ -84,7 +84,7 @@
 				return
 
 			to_chat(user, span_notice("You start climbing into the cockpit..."))
-			if(!do_after(user, 2 SECONDS, TRUE, src))
+			if(!do_after(user, 2 SECONDS, NONE, src))
 				return
 
 			user.visible_message(span_notice("[user] climbs into the plane cockpit!"), span_notice("You get in the seat!"))
@@ -135,7 +135,7 @@
 			to_chat(occupant, span_notice("Getting out of the cockpit while flying seems like a bad idea to you."))
 			return
 		to_chat(occupant, span_notice("You start getting out of the cockpit."))
-		if(!do_after(occupant, 2 SECONDS, TRUE, src))
+		if(!do_after(occupant, 2 SECONDS, NONE, src))
 			return
 	set_cockpit_overlay("cockpit_opening")
 	addtimer(CALLBACK(src, PROC_REF(set_cockpit_overlay), "cockpit_open"), 7)

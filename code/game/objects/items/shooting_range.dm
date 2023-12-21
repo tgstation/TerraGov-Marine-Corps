@@ -40,7 +40,7 @@
 		return
 	var/obj/item/target/targetcushion = I
 	to_chat(user, "You start fitting the target onto the stake.")
-	if(!do_after(user, TARGETTING_DUMMY_USE_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, TARGETTING_DUMMY_USE_DELAY, NONE, src, BUSY_ICON_FRIENDLY))
 		return
 	if(istype(targetcushion, /obj/item/target/default))
 		new /obj/structure/target_stake/occupied(loc)
@@ -64,7 +64,7 @@
 /obj/structure/target_stake/occupied/welder_act(mob/living/user, obj/item/I)
 	. = ..()
 	var/obj/item/tool/weldingtool/usedwelder = I
-	if(!do_after(user, TARGETTING_DUMMY_WELD_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, TARGETTING_DUMMY_WELD_DELAY, NONE, src, BUSY_ICON_FRIENDLY))
 		return
 	if(usedwelder.remove_fuel(2, user))
 		overlays.Cut()
@@ -82,7 +82,7 @@
 
 /obj/structure/target_stake/occupied/attack_hand(mob/living/user)
 	to_chat(user, "You start removing the target from the stake.")
-	if(!do_after(user, TARGETTING_DUMMY_USE_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, TARGETTING_DUMMY_USE_DELAY, NONE, src, BUSY_ICON_FRIENDLY))
 		return
 	///create new target stake to create the illusion of a new one
 	new /obj/structure/target_stake(loc)

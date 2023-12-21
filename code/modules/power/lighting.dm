@@ -39,7 +39,7 @@
 		if(stage == 1)
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, "You begin deconstructing [src].")
-			if(!do_after(usr, 30, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(usr, 30, NONE, src, BUSY_ICON_BUILD))
 				return
 			new /obj/item/stack/sheet/metal(get_turf(loc), sheets_refunded)
 			user.visible_message("[user] deconstructs [src].", \

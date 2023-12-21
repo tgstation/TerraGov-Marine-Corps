@@ -226,3 +226,168 @@
 2023-11-13:
   Lewdcifer:
   - bugfix: Fixed some weird behavior in the larva queue.
+2023-11-14:
+  Barnet2:
+  - rscdel: Removed all Big Red LZ modulars, replaces them with a static LZ for each
+      spot.
+  Lewdcifer:
+  - bugfix: Fixed an issue with the Runner HUD not updating properly when cancelled.
+  - bugfix: Fixes a runtime related to AI movement.
+  Pariah919:
+  - balance: You no longer need to wind up the FK-88 to fire.
+  Xander3359:
+  - balance: Light medical belt holds pill bottles
+  - imageadd: Harvesters will now have a visual based on whichever reagent is loaded
+  - code_imp: Harvesters now have sprites + code in their own separate file
+  ZeWaka:
+  - bugfix: Spiderlings and some assorted damage rolls should now actually work instead
+      of being super weird
+  novaepee:
+  - rscdel: remove miniscope on recoilless rocket
+  vvvv-vvvv:
+  - bugfix: Fix orders not being shown in chat
+2023-11-15:
+  vvvv-vvvv:
+  - bugfix: Fix SOM breacher ERT scaling the amount of specs incorrectly
+  - bugfix: Fix player-controlled puppets being able to feed on non-adjacent humans
+  - qol: You can now toggle auto aim mode while trying to wield a gun
+2023-11-16:
+  Barnet2:
+  - bugfix: Icy Caves now has one APC per area and passes unit tests.
+  Xander3359:
+  - qol: Flamethrower backtank can be refilled from welding kits
+  - imageadd: Ports deathsquad sprites from TG
+  psykzz:
+  - admin: add flags_area to bitfields for VV.
+2023-11-17:
+  Lumipharon:
+  - imageadd: drop pods are now emissive
+2023-11-18:
+  Lumipharon:
+  - bugfix: Getting decapped should no longer bypass the respawn timer
+  yyzsong:
+  - rscadd: adds refills for unguided sadar rockets and SG-62 magazines to req
+2023-11-19:
+  Lumipharon:
+  - imageadd: Updated some map blips, mainly for HvH
+  Pariah919:
+  - rscadd: Added new Heavy Laser fire modes.
+  Xander3359:
+  - code_imp: made chem colors defines
+  vvvv-vvvv:
+  - bugfix: Fix custom squad members not showing in manifest
+  - bugfix: Fix evolving when the game hasn't started
+  - refactor: Refactor NODROP into TRAIT_NODROP
+2023-11-20:
+  Barnet2:
+  - qol: Reduced xeno rank playtime requirements
+  Scarlet-Oduko:
+  - qol: Allows grenades to be self stickied, instead of having to be applies by others
+  - balance: Self-applied stickies allowing one to use them directly
+  Xander3359:
+  - balance: Russian red is 30% less effective
+  - imageadd: Adds camera emissives
+  vvvv-vvvv:
+  - admin: Added JSON logging. Use the new View-Round-Logs verb for a nicer UI
+2023-11-21:
+  Lewdcifer:
+  - imageadd: Added a new unique icon for Behemoth on the minimap. It is now used
+      instead of borrowing the Crusher's.
+  Xander3359:
+  - qol: reagent pouch defaults to draw mode enabled (left click to draw)
+2023-11-22:
+  Helg2:
+  - bugfix: pouches now properly update, for real this time.
+  Lumipharon:
+  - rscadd: Added a heavy lift jetpack to HvH, capable of travelling further with
+      a heavy load, or smashing directly into mobs
+  - qol: Jetpacks say how long is left on CD if you try use it
+  - code_imp: minor code improvements for jetpacks
+  - bugfix: fixed a few campaign bugs
+  - qol: 3rd party faction are not locked behind the 30 min respawn timer in campaign,
+      when between missions
+  - balance: Replaced packets with pill bottles for all marine use
+  - bugfix: fixed huggers not hugging people in some cases
+  ivanmixo:
+  - bugfix: Cocoon doesn't try to process after it releases its victim
+  - bugfix: Fixed lobby button runtimes and bugs (you shouldn't get 'Unknown Character'
+      anymore)
+  - bugfix: TTS mask runtime fix
+  - bugfix: Fixed SSresinshaping and ping not returning their stat panel entry
+  novaepee:
+  - rscadd: update alky meds' desc to include healing ear damage
+  vvvv-vvvv:
+  - bugfix: Fix lascarbine spread pointblanks shooting past the target
+  yyzsong:
+  - balance: kills portaflashers
+2023-11-23:
+  Lumipharon:
+  - code_imp: Removed some hardcoded limitations around max health
+  - imageadd: acidwells are now emissive
+  - balance: stalemates no longer provide insane amounts of larva
+  novaepee:
+  - spellcheck: fixed desactived to deactivated in camera code
+2023-11-24:
+  Barnet2:
+  - code_imp: Re-organized the Slumbridge area file.
+  - bugfix: CAS can now no longer hit inside of Slumbridge caves in PC'd tiles.
+  Lumipharon:
+  - code_imp: some code clean up for living mob init
+2023-11-25:
+  Lumipharon:
+  - bugfix: Can no longer teleport to the objective on Base Rescue in campaign
+  - balance: Ship railgun is no longer available in Crash
+  Pariah919:
+  - rscdel: Vali spear has been removed.
+2023-11-27:
+  Pariah919:
+  - balance: Amount of free roundstart HEDPs reduced to 200 from 600.
+  - balance: Most grenade boxes are now cheaper, lower tier grenades have went from
+      500 to 310, and higher tier grenades to 350. Razorburn and white phos are untouched.
+  TiviPlus:
+  - rscdel: Removes the context menu toggle
+  ivanmixo:
+  - bugfix: Fixed some AI runtimes
+  - bugfix: Fixed a bunch of spiderling runtimes
+  - bugfix: Xenos should no longer have quickbuild outside of prep
+  yyzsong:
+  - bugfix: fixes the names of the FK-88 and ATR-22 ammos in req
+  - rscadd: adds hand labelers and KOTAHI decks to valhalla weapons vendors
+  - bugfix: Unguided rockets are now unlimited in valhalla (whoops)
+  - rscdel: removes the valhalla reqtorio section
+2023-11-28:
+  Lewdcifer:
+  - balance: Removed Russian Red pill bottles and packets from most vendors (including
+      the Tadpole med vendor) except Valhalla's.
+  - balance: Russian Red storage options have been replaced in first aid kits where
+      appropriate.
+  - balance: Reduced the amount of Russian Red autoinjectors in normal vendors from
+      30 to 10.
+  Lumipharon:
+  - bugfix: fixed embedded objects not being correctly put into the victim in some
+      cases
+  dopamiin0:
+  - balance: The dropship fabricator now recieves 10% of the value of exports, rather
+      than 5%.
+  efzapa:
+  - imageadd: Added working coffee sprite
+  - spellcheck: Updated Red Comrade Cigarette description.
+  vvvv-vvvv:
+  - bugfix: Fix some computer emissives
+  - bugfix: Fix tadpole being able to land on disks
+2023-11-29:
+  coldironwarrior:
+  - rscadd: 'adds two new armor colors: mountbatten pink and yellow (replaces the
+      old "yellow" which is now "olive")'
+  - bugfix: fixed a few color names
+2023-11-30:
+  Xander3359:
+  - rscadd: Harvesters can use tricordrazine, which applies a shatter effect
+  - balance: All chems in a harvester will do the same damage bonus
+  - balance: Bicaridine in a harvester will have more healing if you finish the channel
+      with higher medical skill
+  ivanmixo:
+  - bugfix: Fixed valhalla loadout vendor not working in hvh
+  yyzsong:
+  - rscadd: Adds the FK-88 and TAT shells to valhalla
+  - rscadd: Adds soap and sterilizer spray to valhalla

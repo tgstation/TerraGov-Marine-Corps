@@ -47,7 +47,7 @@
 				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 				user.visible_message(span_notice("[user] starts adding cables to [src]."),
 				span_notice("You start adding cables to [src]."))
-				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || state != 1 || QDELETED(C))
+				if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD) || state != 1 || QDELETED(C))
 					return
 
 				if(!C.use(5))

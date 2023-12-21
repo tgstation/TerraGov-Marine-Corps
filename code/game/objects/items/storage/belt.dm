@@ -95,6 +95,7 @@
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/pill,
 		/obj/item/reagent_containers/syringe,
+		/obj/item/storage/pill_bottle,
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/stack/medical,
 		/obj/item/reagent_containers/hypospray/autoinjector,
@@ -720,7 +721,7 @@
 
 
 			to_chat(user, span_notice("You start refilling [src] with [M]."))
-			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+			if(!do_after(user, 1.5 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 				return
 
 			for(var/x in 1 to (storage_slots - length(contents)))

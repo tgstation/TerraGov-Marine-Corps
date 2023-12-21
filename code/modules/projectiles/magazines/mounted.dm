@@ -169,13 +169,11 @@
 	item_state = "ac_flak"
 	default_ammo = /datum/ammo/bullet/auto_cannon/flak
 
-/obj/item/ammo_magazine/heavy_laser
+/obj/item/cell/lasgun/heavy_laser
 	name = "heavy-duty weapon laser cell"
-	desc = "A cell with enough charge to contain 15 heavy laser shots for the TE-9001. This cannot be recharged."
+	desc = "A cell with enough charge to contain energy for the TE-9001. This cannot be recharged."
 	w_class = WEIGHT_CLASS_BULKY
-	flags_magazine = NONE
-	max_rounds = 15
-	default_ammo = /datum/ammo/energy/lasgun/marine/heavy_laser
+	maxcharge = 225
 	reload_delay = 5 SECONDS
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "hl_mag"
@@ -214,3 +212,17 @@
 	desc = "A 15cm APFDS shell for the FK-88 mounted flak gun containing a large metal dart fired at hypersonic speeds, will pierce through basically anything and onto the other side with ease. Requires a minimum range before it stabilizes to properly hit anything, will rip a clean hole through basically anything."
 	icon_state = "isg_ammo_sabot"
 	default_ammo = /datum/ammo/bullet/heavy_isg_apfds
+
+///Default ammo for the ML-91 and its export variants.
+/obj/item/ammo_magazine/icc_hmg
+	name = "KRD-61ES magazine (10x30mm Caseless)"
+	desc = "A box of 300, 10x30mm caseless tungsten rounds for the KRD-61ESmounted heavy smartgun."
+	w_class = WEIGHT_CLASS_NORMAL
+	icon = 'icons/Marine/marine-mmg.dmi'
+	icon_state = "kord_mag"
+	flags_magazine = NONE
+	caliber = CALIBER_10X30
+	max_rounds = 300
+	default_ammo = /datum/ammo/bullet/machinegun
+	reload_delay = 5 SECONDS
+	icon_state_mini = "mag_hmg"

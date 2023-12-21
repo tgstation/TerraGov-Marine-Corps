@@ -609,9 +609,13 @@
 	. = ..()
 	parent.AddComponent(/datum/component/blur_protection)
 
+#define COMMS_OFF 0
+#define COMMS_SETTING 1
+#define COMMS_SETUP 2
+
 /obj/item/armor_module/module/antenna
 	name = "Antenna helmet module"
-	desc = "Designed for mounting on a modular Helmet. This module is able to provide a readout of the user's coordinates and connect to the shipside supply console."
+	desc = "Designed for mounting on a modular Helmet. This module is able to shield against the interference of caves, allowing for normal messaging in shallow caves, and only minor interference when deep."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "antenna_head"
 	item_state = "antenna_head_a"
@@ -619,34 +623,54 @@
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	prefered_slot = SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
-	/// Reference to the datum used by the supply drop console
-	var/datum/supply_beacon/beacon_datum
+	///If the comms system is configured.
+	var/comms_setup = FALSE
+	///ID of the startup timer
+	var/startup_timer_id
 
-/obj/item/armor_module/module/antenna/Destroy()
-	if(beacon_datum)
-		UnregisterSignal(beacon_datum, COMSIG_QDELETING)
-		QDEL_NULL(beacon_datum)
+/obj/item/armor_module/module/antenna/handle_actions(datum/source, mob/user, slot)
+	if(slot != prefered_slot)
+		UnregisterSignal(user, COMSIG_CAVE_INTERFERENCE_CHECK)
+		comms_setup = COMMS_OFF
+		if(startup_timer_id)
+			deltimer(startup_timer_id)
+			startup_timer_id = null
+	else
+		RegisterSignal(user, COMSIG_CAVE_INTERFERENCE_CHECK, PROC_REF(on_interference_check))
+		start_sync(user)
 	return ..()
 
-/obj/item/armor_module/module/antenna/activate(mob/living/user)
-	var/turf/location = get_turf(src)
-	if(beacon_datum)
-		UnregisterSignal(beacon_datum, COMSIG_QDELETING)
-		QDEL_NULL(beacon_datum)
-		user.show_message(span_warning("The [src] beeps and states, \"Your last position is no longer accessible by the supply console"), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
-		return
-	if(!is_ground_level(user.z))
-		to_chat(user, span_warning("You have to be on the planet to use this or it won't transmit."))
-		return FALSE
-	var/area/A = get_area(user)
-	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
-		to_chat(user, span_warning("This won't work if you're standing deep underground."))
-		return FALSE
-	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)
-	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
-	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
-
-/// Signal handler to nullify beacon datum
-/obj/item/armor_module/module/antenna/proc/clean_beacon_datum()
+///Handles interacting with caves checking for if anything is reducing (or increasing) interference.
+/obj/item/armor_module/module/antenna/proc/on_interference_check(source, list/inplace_interference)
 	SIGNAL_HANDLER
-	beacon_datum = null
+	if(comms_setup != COMMS_SETUP)
+		return
+	inplace_interference[1] = max(0, inplace_interference[1] - 1)
+
+/obj/item/armor_module/module/antenna/activate(mob/living/user)
+	if(comms_setup == COMMS_SETTING)
+		to_chat(user, span_notice("Your Antenna module is still in the process of starting up!"))
+		return
+	if(comms_setup == COMMS_SETUP)
+		var/turf/location = get_turf(user)
+		user.show_message(span_notice("The [src] beeps and states, \"Uplink data: LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
+		return
+
+///Begins the startup sequence.
+/obj/item/armor_module/module/antenna/proc/start_sync(mob/living/user)
+	if(comms_setup != COMMS_OFF) //Guh?
+		return
+	to_chat(user, span_notice("Setting up Antenna communication relay. Please wait."))
+	comms_setup = COMMS_SETTING
+	startup_timer_id = addtimer(CALLBACK(src, PROC_REF(finish_startup), user), ANTENNA_SYNCING_TIME, TIMER_STOPPABLE)
+
+///Finishes startup, rendering the module effective.
+/obj/item/armor_module/module/antenna/proc/finish_startup(mob/living/user)
+	comms_setup = COMMS_SETUP
+	user.show_message(span_notice("[src] beeps twice and states: \"Antenna configuration complete. Relay system active.\""), EMOTE_AUDIBLE, span_notice("[src] vibrates twice."))
+	startup_timer_id = null
+
+
+#undef COMMS_OFF
+#undef COMMS_SETTING
+#undef COMMS_SETUP
