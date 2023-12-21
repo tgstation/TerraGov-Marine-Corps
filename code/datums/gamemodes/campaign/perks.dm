@@ -153,6 +153,11 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	name = "Melee specialisation"
 	prereq_perks = list(/datum/perk/skill_mod/melee)
 
+/datum/perk/skill_mod/firearms
+	name = "Adanced firearm training"
+	firearms = 1
+	all_jobs = TRUE
+
 /datum/perk/skill_mod/pistols
 	name = "Adanced pistol training"
 	pistols = 1
