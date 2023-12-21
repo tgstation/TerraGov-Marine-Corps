@@ -15,31 +15,15 @@ GLOBAL_LIST_INIT_TYPED(campaign_loadout_item_type_list, /datum/loadout_item, ini
 GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_role())
 
 /proc/init_campaign_loadout_items_by_role()
-	. = list(
-	SQUAD_MARINE = list(),
-	SQUAD_ENGINEER = list(),
-	SQUAD_CORPSMAN = list(),
-	SQUAD_SMARTGUNNER = list(),
-	SQUAD_LEADER = list(),
-	FIELD_COMMANDER = list(),
-	STAFF_OFFICER = list(),
-	CAPTAIN = list(),
-	SOM_SQUAD_MARINE = list(),
-	SOM_SQUAD_ENGINEER = list(),
-	SOM_SQUAD_CORPSMAN = list(),
-	SOM_SQUAD_VETERAN = list(),
-	SOM_SQUAD_LEADER = list(),
-	SOM_FIELD_COMMANDER = list(),
-	SOM_STAFF_OFFICER = list(),
-	SOM_COMMANDER = list(),
-)
-	for(var/role in .)
+	. = list()
+	for(var/job in GLOB.campaign_jobs)
+		.[job] = list()
 		for(var/datum/loadout_item/option AS in GLOB.campaign_loadout_item_type_list)
 			if(!option.round_start_option)
 				continue
-			if(option.jobs_supported && !(role in option.jobs_supported))
+			if(option.jobs_supported && !(job in option.jobs_supported))
 				continue
-			.[role] += option
+			.[job] += option
 
 //represents an equipable item
 //Are singletons

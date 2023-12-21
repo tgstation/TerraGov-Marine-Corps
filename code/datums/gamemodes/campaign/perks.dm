@@ -10,30 +10,14 @@ GLOBAL_LIST_INIT_TYPED(campaign_perk_list, /datum/perk, init_glob_perk_list()) /
 GLOBAL_LIST_INIT(campaign_perks_by_role, init_campaign_perks_by_role())
 
 /proc/init_campaign_perks_by_role()
-	. = list(
-	SQUAD_MARINE = list(),
-	SQUAD_ENGINEER = list(),
-	SQUAD_CORPSMAN = list(),
-	SQUAD_SMARTGUNNER = list(),
-	SQUAD_LEADER = list(),
-	FIELD_COMMANDER = list(),
-	STAFF_OFFICER = list(),
-	CAPTAIN = list(),
-	SOM_SQUAD_MARINE = list(),
-	SOM_SQUAD_ENGINEER = list(),
-	SOM_SQUAD_CORPSMAN = list(),
-	SOM_SQUAD_VETERAN = list(),
-	SOM_SQUAD_LEADER = list(),
-	SOM_FIELD_COMMANDER = list(),
-	SOM_STAFF_OFFICER = list(),
-	SOM_COMMANDER = list(),
-)
-	for(var/role in .)
+	. = list()
+	for(var/job in GLOB.campaign_jobs)
+		.[job] = list()
 		for(var/i in GLOB.campaign_perk_list)
 			var/datum/perk/perk = GLOB.campaign_perk_list[i]
-			if(!(role in perk.jobs_supported))
+			if(!(job in perk.jobs_supported))
 				continue
-			.[role] += perk
+			.[job] += perk
 
 /*
 Will need a way to org perks (and other stuff) by faction and/or specific role.
