@@ -262,10 +262,10 @@
 	succeed_activate()
 
 	playsound(owner_xeno.loc, 'sound/effects/bang.ogg', 25, 0)
-	owner_xeno.visible_message(span_xenodanger("[owner_xeno] smashes into the ground!"), \
-	span_xenodanger("We smash into the ground!"))
+	owner_xeno.visible_message(span_xenodanger("[owner_xeno] smashes her fists into the ground into the ground!"), \
+	span_xenodanger("We smash our fists into the ground!"))
 	owner_xeno.create_stomp() //Adds the visual effect. Wom wom wom
-	for(var/mob/living/M in range(3, get_turf(owner_xeno)))
+	for(var/mob/living/M in range(3))
 		if(M.stat == DEAD)
 			continue
 		var/distance = get_dist(M, owner_xeno)
@@ -274,16 +274,14 @@
 			var/heal_amount = M.maxHealth * GORGER_OPPOSE_HEAL
 			HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
 			adjustOverheal(target_xeno, heal_amount)
-			continue
 		else if(distance == 0) //if we're right on top of them, they take actual damage
 			M.take_overall_damage(12, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
 			to_chat(M, span_highdanger("[owner_xeno] slams her fists into you, crushing you to the ground!"))
-			M.Paralyze(2 SECONDS)
 			shake_camera(M, 3, 3)
 		else if(distance <= 1) //marines will only be staggerslowed if they're one tile away from you
 			shake_camera(M, 2, 2)
 			to_chat(M, span_highdanger("Blood swells up from the ground around you!"))
-			M.adjust_stagger(2)
+			M.adjust_stagger(20)
 			M.adjust_slowdown(3)
 
 
