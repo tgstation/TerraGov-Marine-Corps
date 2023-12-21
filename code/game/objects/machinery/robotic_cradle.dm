@@ -149,7 +149,6 @@
 	dropped.stop_pulling()
 	dropped.forceMove(src)
 	occupant = dropped
-	icon_state = "pod_0"
 	var/implants = list(/obj/item/implant/neurostim)
 	var/mob/living/carbon/human/H = occupant
 	var/doc_dat
