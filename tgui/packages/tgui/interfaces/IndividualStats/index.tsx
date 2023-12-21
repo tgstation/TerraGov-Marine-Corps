@@ -25,6 +25,7 @@ export type IndividualData = {
   perks_data: PerkData[];
   currency: number;
   faction: string;
+  jobs: string[];
   icons?: string[];
   mission_icons?: string[];
 };
@@ -35,6 +36,11 @@ export const IndividualStats = (props, context) => {
     context,
     'selectedTab',
     TAB_LOADOUT
+  );
+  const [selectedJob, setSelectedJob] = useLocalState(
+    context,
+    'selectedJob',
+    data.jobs[0]
   );
 
   const [unlockedPerk, setPurchasedPerk] = useLocalState<PerkData | null>(
@@ -81,6 +87,20 @@ export const IndividualStats = (props, context) => {
             </Section>
           </Modal>
         ) : null}
+        <Tabs fluid>
+          {data.jobs.map((jobname) => {
+            return (
+              <Tabs.Tab
+                key={jobname}
+                selected={jobname === selectedJob}
+                fontSize="130%"
+                textAlign="center"
+                onClick={() => setSelectedJob(jobname)}>
+                {jobname}
+              </Tabs.Tab>
+            );
+          })}
+        </Tabs>
         <Tabs fluid>
           {CampaignTabs.map((tabname) => {
             return (

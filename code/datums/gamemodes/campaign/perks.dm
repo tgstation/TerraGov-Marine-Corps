@@ -111,7 +111,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/skill_mod/cqc
 	name = "CQC +1"
 	cqc = 1
-	jobs_supported = list(SQUAD_MARINE, SOM_SQUAD_MARINE)
+	jobs_supported = list(SQUAD_MARINE, SOM_SQUAD_MARINE, SQUAD_ENGINEER)
 
 /datum/perk/skill_mod/cqc_two
 	name = "CQC +2"
@@ -120,7 +120,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/skill_mod/melee
 	name = "Melee +1"
 	melee_weapons = 1
-	jobs_supported = list(SQUAD_MARINE, SOM_SQUAD_MARINE)
+	jobs_supported = list(SQUAD_MARINE, SOM_SQUAD_MARINE, SQUAD_LEADER)
 
 /datum/perk/skill_mod/melee_two
 	melee_weapons = 2
@@ -128,7 +128,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/skill_mod/pistols
 	name = "Pistols +1"
 	pistols = 1
-	jobs_supported = list(SQUAD_MARINE, SOM_SQUAD_MARINE)
+	jobs_supported = list(SQUAD_MARINE, SOM_SQUAD_MARINE, SQUAD_CORPSMAN)
 
 /datum/perk/skill_mod/shotguns
 	shotguns = 1

@@ -10,6 +10,11 @@ export const IndividualPerks = (props, context) => {
     'unlockedPerk',
     null
   );
+  const [selectedJob, setSelectedJob] = useLocalState(
+    context,
+    'selectedJob',
+    data.jobs[0]
+  );
   const [selectedPerk, setSelectedPerk] = useLocalState(
     context,
     'selectedPerk',
@@ -28,35 +33,37 @@ export const IndividualPerks = (props, context) => {
     <Stack>
       <Stack.Item>
         <Stack vertical>
-          {perks_data.map((perk) => (
-            <Stack.Item key={perk.name}>
-              <Button
-                width={'180px'}
-                onClick={() => setSelectedPerk(perk)}
-                color={
-                  selectedPerk.name === perk.name
-                    ? 'orange'
-                    : perk.currently_active > 0
-                      ? 'blue'
-                      : perk.currently_active < 0
-                        ? 'red'
-                        : 'grey'
-                }>
-                <Flex align="center">
-                  {!!perk.icon && (
-                    <PerkIcon
-                      icon={
-                        selectedPerk.name === perk.name
-                          ? perk.icon + '_red'
-                          : perk.icon + '_blue'
-                      }
-                    />
-                  )}
-                  {perk.name}
-                </Flex>
-              </Button>
-            </Stack.Item>
-          ))}
+          {perks_data
+            .filter((perk) => perk.job === selectedJob)
+            .map((perk) => (
+              <Stack.Item key={perk.name}>
+                <Button
+                  width={'180px'}
+                  onClick={() => setSelectedPerk(perk)}
+                  color={
+                    selectedPerk.name === perk.name
+                      ? 'orange'
+                      : perk.currently_active > 0
+                        ? 'blue'
+                        : perk.currently_active < 0
+                          ? 'red'
+                          : 'grey'
+                  }>
+                  <Flex align="center">
+                    {!!perk.icon && (
+                      <PerkIcon
+                        icon={
+                          selectedPerk.name === perk.name
+                            ? perk.icon + '_red'
+                            : perk.icon + '_blue'
+                        }
+                      />
+                    )}
+                    {perk.name}
+                  </Flex>
+                </Button>
+              </Stack.Item>
+            ))}
         </Stack>
       </Stack.Item>
       <Stack.Item>

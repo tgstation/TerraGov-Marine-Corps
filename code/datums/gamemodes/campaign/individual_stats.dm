@@ -6,6 +6,8 @@
 	var/mob/living/carbon/current_mob //will we actually need this?
 	///whatever cash/xp/placeholdershit. fun tokens
 	var/currency = 0
+
+	var/list/valid_jobs = list()
 	///Player perks
 	var/list/list/datum/perk/perks = list()
 	///Unlocked items
@@ -24,6 +26,7 @@
 	for(var/datum/job/job_type AS in SSticker.mode.valid_job_types)
 		if(job_type::faction != faction)
 			continue
+		valid_jobs += job_type::title
 		loadouts[job_type::title] = new /datum/outfit_holder(job_type::title)
 		perks[job_type::title] = list()
 		unlocked_items[job_type::title] = list()
@@ -147,6 +150,7 @@
 	data["ui_theme"] = ui_theme
 
 	data["faction"] = faction
+	data["jobs"] = valid_jobs
 
 	//replace below
 	data["icons"] = GLOB.campaign_icons
