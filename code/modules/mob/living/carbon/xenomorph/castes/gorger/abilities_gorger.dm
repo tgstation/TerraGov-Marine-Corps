@@ -281,7 +281,7 @@
 		else if(distance <= 1) //marines will only be staggerslowed if they're one tile away from you
 			shake_camera(M, 2, 2)
 			to_chat(M, span_highdanger("Blood swells up from the ground around you!"))
-			M.adjust_stagger(20)
+			M.adjust_stagger(2 SECONDS)
 			M.adjust_slowdown(3)
 
 
