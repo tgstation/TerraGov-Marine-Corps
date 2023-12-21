@@ -129,3 +129,176 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	item_whitelist = list(
 		ITEM_SLOT_OCLOTHING = /obj/item/clothing/suit/modular/xenonauten/mimir
 	)
+
+
+
+
+//uniform
+/datum/loadout_item/uniform
+	item_slot = ITEM_SLOT_ICLOTHING
+
+/datum/loadout_item/uniform/marine_standard
+	name = "TGMC uniform"
+	desc = "item desc here"
+	item_typepath = /obj/item/clothing/under/marine/black_vest
+	jobs_supported = list(SQUAD_MARINE)
+
+/datum/loadout_item/uniform/marine_corpsman
+	name = "TGMC corpsman fatigues"
+	desc = "item desc here"
+	item_typepath = /obj/item/clothing/under/marine/corpsman/corpman_vest
+	jobs_supported = list(SQUAD_MARINE)
+
+//gloves
+/datum/loadout_item/gloves
+	item_slot = ITEM_SLOT_GLOVES
+
+/datum/loadout_item/uniform/marine_gloves
+	name = "Standard combat gloves"
+	desc = "item desc here"
+	item_typepath = /obj/item/clothing/gloves/marine
+	jobs_supported = list(SQUAD_MARINE)
+
+/datum/loadout_item/uniform/marine_black_gloves
+	name = "Black combat gloves"
+	desc = "item desc here"
+	item_typepath = /obj/item/clothing/gloves/marine/black
+	jobs_supported = list(SQUAD_MARINE)
+
+//eyes
+/datum/loadout_item/eyes
+	item_slot = ITEM_SLOT_EYES
+
+/datum/loadout_item/eyes/health_hud
+	name = "HealthMate HUD"
+	desc = "item desc here"
+	item_typepath = /obj/item/clothing/glasses/hud/health
+	jobs_supported = list(SQUAD_MARINE)
+
+/datum/loadout_item/eyes/mesons
+	name = "optical meson scanner"
+	desc = "item desc here"
+	item_typepath = /obj/item/clothing/glasses/meson
+	jobs_supported = list(SQUAD_MARINE)
+
+//ears
+/datum/loadout_item/ears
+	item_slot = ITEM_SLOT_EARS
+
+/datum/loadout_item/ears/marine_standard
+	name = "Standard headset"
+	desc = "item desc here"
+	item_typepath = /obj/item/radio/headset/mainship/marine
+	jobs_supported = list(SQUAD_MARINE)
+
+//mask
+/datum/loadout_item/mask
+	item_slot = ITEM_SLOT_MASK
+
+/datum/loadout_item/mask/standard
+	name = "Standard gas mask"
+	desc = "item desc here"
+	item_typepath = /obj/item/clothing/mask/gas
+	jobs_supported = list(SQUAD_MARINE)
+
+/datum/loadout_item/mask/tactical
+	name = "Tactical gas mask"
+	desc = "item desc here"
+	item_typepath = /obj/item/clothing/mask/gas/tactical
+	jobs_supported = list(SQUAD_MARINE)
+
+//feet
+/datum/loadout_item/feet
+	item_slot = ITEM_SLOT_FEET
+
+/datum/loadout_item/feet/marine_boots
+	name = "Combat boots"
+	desc = "item desc here"
+	item_typepath = /obj/item/clothing/shoes/marine/full
+	jobs_supported = list(SQUAD_MARINE)
+
+/datum/loadout_item/feet/marine_brown_boots
+	name = "Brown combat boots"
+	desc = "item desc here"
+	item_typepath = /obj/item/clothing/shoes/marine/brown/full
+	jobs_supported = list(SQUAD_MARINE)
+
+//belt
+/datum/loadout_item/belt
+	item_slot = ITEM_SLOT_BELT
+
+/datum/loadout_item/belt/t12_ammo
+	name = "T12 ammo belt"
+	desc = "item desc here"
+	item_typepath = /obj/item/storage/belt/marine/t12
+	jobs_supported = list(SQUAD_MARINE)
+
+/datum/loadout_item/belt/te_cell_ammo //will likely be loaded in post equip later
+	name = "TE cell ammo belt"
+	desc = "item desc here"
+	item_typepath = /obj/item/storage/belt/marine/te_cells
+	jobs_supported = list(SQUAD_MARINE)
+
+//back
+/datum/loadout_item/back
+	item_slot = ITEM_SLOT_BACK
+
+/datum/loadout_item/back/marine_satchel
+	name = "Satchel"
+	desc = "item desc here"
+	item_typepath = /obj/item/storage/backpack/marine/satchel
+	jobs_supported = list(SQUAD_MARINE)
+
+/datum/loadout_item/back/flamer_tank
+	name = "Flame tank"
+	desc = "item desc here"
+	item_typepath = /obj/item/ammo_magazine/flamer_tank/backtank
+	jobs_supported = list(SQUAD_MARINE)
+
+//r_pocket
+/datum/loadout_item/r_pocket
+	item_slot = ITEM_SLOT_R_POCKET
+
+/datum/loadout_item/r_pocket/standard_first_aid
+	name = "First aid pouch"
+	desc = "item desc here"
+	item_typepath = /obj/item/storage/pouch/firstaid/combat_patrol
+	jobs_supported = list(SQUAD_MARINE)
+
+/datum/loadout_item/r_pocket/marine_standard_grenades
+	name = "Standard grenade pouch"
+	desc = "item desc here"
+	item_typepath = /obj/item/storage/pouch/grenade/combat_patrol
+	jobs_supported = list(SQUAD_MARINE)
+
+//l_pocket
+/datum/loadout_item/l_pocket
+	item_slot = ITEM_SLOT_L_POCKET
+
+/datum/loadout_item/l_pocket/standard_first_aid
+	name = "First aid pouch"
+	desc = "item desc here"
+	item_typepath = /obj/item/storage/pouch/firstaid/combat_patrol
+	jobs_supported = list(SQUAD_MARINE)
+
+/datum/loadout_item/l_pocket/marine_standard_grenades
+	name = "Standard grenade pouch"
+	desc = "item desc here"
+	item_typepath = /obj/item/storage/pouch/grenade/combat_patrol
+	jobs_supported = list(SQUAD_MARINE)
+
+//suit_store
+/datum/loadout_item/suit_store
+	item_slot = ITEM_SLOT_SUITSTORE
+
+/datum/loadout_item/suit_store/standard_rifle
+	name = "AR12"
+	desc = "item desc here"
+	item_typepath = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
+	jobs_supported = list(SQUAD_MARINE)
+
+/datum/loadout_item/suit_store/laser_rifle
+	name = "Laser rifle"
+	desc = "item desc here"
+	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
+	jobs_supported = list(SQUAD_MARINE)
