@@ -59,12 +59,6 @@
 /area/shuttle/dropship/minielevator{
 	ceiling = 2
 	})
-"H" = (
-/obj/machinery/status_display,
-/turf/closed/wall/mainship,
-/area/shuttle/dropship/minielevator{
-	ceiling = 2
-	})
 
 (1,1,1) = {"
 B
@@ -74,7 +68,7 @@ i
 B
 "}
 (2,1,1) = {"
-H
+B
 G
 a
 a

@@ -214,9 +214,10 @@
 	ceiling = 2
 	})
 "vE" = (
-/obj/effect/attach_point/electronics/dropship2{
+/obj/effect/attach_point/weapon/dropship2{
 	pixel_y = -10
 	},
+/obj/structure/dropship_piece/two/weapon/rightleft,
 /turf/template_noop,
 /area/shuttle/dropship/normandy{
 	ceiling = 2
@@ -225,6 +226,7 @@
 /obj/effect/attach_point/weapon/dropship2{
 	pixel_y = -10
 	},
+/obj/structure/dropship_piece/two/weapon/leftright,
 /turf/template_noop,
 /area/shuttle/dropship/normandy{
 	ceiling = 2
@@ -246,6 +248,10 @@
 	})
 "yT" = (
 /obj/structure/dropship_piece/two/wing/right/top,
+/obj/effect/attach_point/electronics/dropship2{
+	pixel_y = -10
+	},
+/obj/structure/dropship_piece/two/weapon/leftright,
 /turf/template_noop,
 /area/shuttle/dropship/normandy{
 	ceiling = 2
@@ -462,7 +468,6 @@
 	ceiling = 2
 	})
 "Wg" = (
-/obj/structure/dropship_piece/two/weapon/leftleft,
 /turf/closed/shuttle/dropship2/rearcorner/alt{
 	dir = 1
 	},
@@ -470,7 +475,6 @@
 	ceiling = 2
 	})
 "Wk" = (
-/obj/structure/dropship_piece/two/weapon/rightright,
 /turf/closed/shuttle/dropship2/rearcorner{
 	dir = 1
 	},
@@ -503,6 +507,7 @@
 /obj/effect/attach_point/electronics/dropship2{
 	pixel_y = -10
 	},
+/obj/structure/dropship_piece/two/weapon/rightleft,
 /turf/template_noop,
 /area/shuttle/dropship/normandy{
 	ceiling = 2
