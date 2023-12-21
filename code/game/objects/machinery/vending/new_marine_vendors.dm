@@ -738,7 +738,7 @@
 
 /obj/effect/vendor_bundle/basic_specialist/tback
 	gear_to_spawn = list(
-		/obj/item/clothing/under/marine/spec_operative/tback,
+		/obj/item/clothing/under/spec_operative/tback,
 		/obj/item/clothing/shoes/marine/sneakingboots,
 		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,

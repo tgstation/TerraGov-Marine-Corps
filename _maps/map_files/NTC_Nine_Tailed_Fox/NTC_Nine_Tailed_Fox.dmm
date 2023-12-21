@@ -503,7 +503,7 @@
 /obj/structure/closet/cabinet,
 /obj/item/clothing/shoes/marine/sneakingboots,
 /obj/item/clothing/under/marine/spec_operative,
-/obj/item/clothing/under/marine/spec_operative/tback,
+/obj/item/clothing/under/spec_operative/tback,
 /turf/open/floor/carpet/side{
 	dir = 4
 	},

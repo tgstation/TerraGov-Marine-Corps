@@ -191,19 +191,6 @@
 	UnregisterSignal(unequipper, COMSIG_LIVING_ADD_VENTCRAWL)
 	REMOVE_TRAIT(unequipper, TRAIT_CAN_VENTCRAWL, ARMOR_TRAIT)
 
-/obj/item/clothing/under/marine/spec_operative/tback
-	name = "NTC Spec-Ops Tactical T-Back Leotard"
-	desc = "An extremely expensive sneaking leotard with extra skin-showing properties created by an Ninetails Corporation for high risk missions with high risk clothes, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher. This leotard allows you to crawl through vents with ALT-CLICK"
-	icon = 'icons/obj/clothing/uniforms/uniforms.dmi'
-	icon_state = "swim_black"
-
-/obj/item/clothing/under/marine/spec_operative/armoredsuit
-	name = "executive suit"
-	desc = "An extremely expensive looking formal uniform with a short, side split skirt that seems to have toughened, kevlar or maybe another material fabric... Reminds you of john wick's suit."
-	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 40, BIO = 50, FIRE = 50, ACID = 30)
-	icon = 'icons/obj/clothing/uniforms/uniforms.dmi'
-	icon_state = "charcoal_suit_skirt"
-
 /obj/item/clothing/under/marine/mp
 	name = "military police uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented military police uniform. You suspect it's not as robust-proof as advertised."
