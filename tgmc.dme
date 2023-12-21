@@ -1081,6 +1081,7 @@
 #include "code\game\objects\structures\campaign_structures\capture_objectives.dm"
 #include "code\game\objects\structures\campaign_structures\deploy_blockers.dm"
 #include "code\game\objects\structures\campaign_structures\destroy_objectives.dm"
+#include "code\game\objects\structures\campaign_structures\misc_structures.dm"
 #include "code\game\objects\structures\crates_lockers\closets.dm"
 #include "code\game\objects\structures\crates_lockers\crates.dm"
 #include "code\game\objects\structures\crates_lockers\largecrate.dm"
