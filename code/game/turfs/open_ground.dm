@@ -31,12 +31,6 @@
 /turf/open/ground/grass/beach/corner2
 	icon_state = "grassbeach_corner2"
 
-/turf/open/ground/grass/beach/cornernew
-	icon_state = "grassbeach2"
-
-/turf/open/ground/grass/beach/cornernew2
-	icon_state = "gbcorner2"
-
 /turf/open/ground/coast
 	name = "coastline"
 	icon_state = "beach"
