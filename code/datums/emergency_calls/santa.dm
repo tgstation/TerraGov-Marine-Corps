@@ -79,7 +79,7 @@
 
 /datum/action/innate/summon_present/Activate()
 	var/mob/living/carbon/human/santamob = usr
-	to_chat(santamob, "You begin rifling through your bag, looking for a present.")
+	to_chat(santamob, span_notice("You begin rifling through your bag, looking for a present."))
 	if(!do_after(santamob, 7 SECONDS))
 		to_chat(santamob, "You give up looking for a present.")
 		return
@@ -92,7 +92,7 @@
 
 /datum/action/innate/summon_present_bomb/Activate()
 	var/mob/living/carbon/human/santamob = usr
-	to_chat(santamob, "You begin rifling through your bag, looking for a present bomb.")
+	to_chat(santamob, span_warning("You begin rifling through your bag, looking for a present bomb."))
 	if(!do_after(santamob, 3 SECONDS))
 		to_chat(santamob, "You stop searching for a present grenade.")
 		return
@@ -105,9 +105,9 @@
 
 /datum/action/innate/rejuv_self/Activate()
 	var/mob/living/carbon/human/santamob = usr
-	to_chat(santamob, "You begin summoning Christmas magic to heal your rounds.")
+	to_chat(santamob, span_notice("You begin summoning Christmas magic to heal your rounds."))
 	if(!do_after(santamob, 2 MINUTES))
-		to_chat(santamob, "With a burst of holiday spirit you heal your wounds, you're as good as new!")
+		to_chat(santamob, span_notice("With a burst of holiday spirit you heal your wounds, you're as good as new!"))
 		return
 	santamob.revive()
 
@@ -117,7 +117,7 @@
 
 /datum/action/innate/summon_elves/Activate()
 	var/mob/living/carbon/human/santamob = usr
-	to_chat(santamob, "You begin summoning your faithful workers to your side.")
+	to_chat(santamob, span_notice("You begin summoning your faithful workers to your side."))
 	if(!do_after(santamob, 15 SECONDS))
 		to_chat(santamob, "You decide not to summon your elves, they aren't much of a help anyway")
 		return
@@ -162,7 +162,7 @@
 				blessedelf.set_stat(UNCONSCIOUS)
 				blessedelf.emote("gasp")
 		else //if the elf is alive heal them some
-			to_chat(blessedelf, "You feel the chill of Christmas magic and your wounds are healed!")
+			to_chat(blessedelf, span_notice("You feel the chill of Christmas magic and your wounds are healed!"))
 			blessedelf.setOxyLoss(0)
 			blessedelf.adjustBruteLoss(-30)
 			blessedelf.adjustFireLoss(-30)
@@ -174,11 +174,11 @@
 
 /datum/action/innate/summon_paperwork/Activate()
 	var/mob/living/carbon/human/santamob = usr
-	to_chat(santamob, "You begin producing a binding employment contract.")
+	to_chat(santamob, span_notice("You begin producing a binding employment contract."))
 	if(!do_after(santamob, 3 SECONDS))
 		to_chat(santamob, "You stop producing a contract.")
 		return
-	to_chat(santamob, "With a flourish, you produce an employment contract and a pen.")
+	to_chat(santamob, span_notice("With a flourish, you produce an employment contract and a pen."))
 	var/obj/item/paper/santacontract/newcontract = new (get_turf(santamob))
 	santamob.put_in_hands(newcontract)
 	var/obj/item/tool/pen/newpen = new (get_turf(santamob))
@@ -196,10 +196,14 @@
 		if(HAS_TRAIT(elves, TRAIT_CHRISTMAS_ELF))
 			elflist += elves
 	var/mob/living/carbon/human/swappedelf = tgui_input_list(santamob , "Choose an elf to swap with", "Elf swapping", elflist)
-	to_chat(santamob, "You begin summoning your Christmas magic to swap places with an elf...")
-	to_chat(swappedelf, "You feel odd, as though you're in two places at once...")
+	to_chat(santamob, span_notice("You begin summoning your Christmas magic to swap places with an elf..."))
+	to_chat(swappedelf, span_notice("You feel odd, as though you're in two places at once..."))
+	if(HAS_TRAIT(santamob, TRAIT_TELEPORTED_ACROSS_ZLEVELS))
+		if(swappedelf.z != santamob.z)
+			to_chat(santamob, span_warning("You teleported too great a distance recently, you'll need to wait before teleporting that far again..."))
+			return
 	if(!do_after(santamob, 5 SECONDS))
-		to_chat(santamob, "You stop preparing to switch places with a lowly elf...")
+		to_chat(santamob, span_notice("You stop preparing to switch places with a lowly elf..."))
 		return
 	storedzlevel = santamob.z
 	var/turf/elfturf = get_turf(swappedelf)
@@ -207,13 +211,15 @@
 	santamob.forceMove(elfturf)
 	swappedelf.forceMove(santaturf)
 	swappedelf.Stun(3 SECONDS)
-	if(storedzlevel = santamob.z)
+	if(storedzlevel == santamob.z)
 		santamob.Stun(3 SECONDS)
-		to_chat(santamob, "You struggle to get your bearings after the swap...")
+		to_chat(santamob, span_notice("You struggle to get your bearings after the swap..."))
 	else
-		santamob.Stun(45 SECONDS)
-		to_chat(santamob, "The strain of travelling across such a great distance unbalances you...")
-	to_chat(swappedelf, "As the world reels around you, you struggle to get your bearings...")
+		santamob.Stun(20 SECONDS)
+		ADD_TRAIT(santamob, TRAIT_TELEPORTED_ACROSS_ZLEVELS, TRAIT_SANTA_CLAUS)
+		addtimer(CALLBACK(santamob, TYPE_PROC_REF(/mob/living/carbon/human, remove_teleport_trait), santamob), 3 MINUTES) //extremely snowflaky proc, viewer beware
+		to_chat(santamob, span_warning("The strain of travelling across such a great distance unbalances you..."))
+	to_chat(swappedelf, span_notice("As the world reels around you, you struggle to get your bearings..."))
 
 /datum/action/innate/elf_recall
 	name = "Return to Santa"
@@ -226,18 +232,11 @@
 		if(HAS_TRAIT(santas, TRAIT_SANTA_CLAUS))
 			santalist += santas
 	if(!length(santalist))
-		to_chat(elfmob, "You can't find Santa! There is nobody to return to...")
+		to_chat(elfmob, span_warning("You can't find Santa! There is nobody to return to..."))
 		return
-	to_chat(elfmob, "You on concentrate on gathering enough magic to return to Santa...")
+	to_chat(elfmob, span_notice("You on concentrate on gathering enough magic to return to Santa..."))
 	if(!do_after(elfmob, 10 SECONDS))
 		to_chat(elfmob, "You decide there are more important things to do...")
 		return
 	var/mob/living/carbon/human/selectedsanta = pick(santalist)
 	elfmob.forceMove(get_turf(selectedsanta))
-
-/datum/action/innate/santa_illusion
-	name = "Create Doppelganger"
-	action_icon_state = "santa_doppelganger"
-
-/datum/action/innate/santa_illusion/Activate()
-	var/mob/living/carbon/human/santamob = usr

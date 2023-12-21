@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 /obj/item/explosive/grenade/gift/attack_self(mob/user)
 	if(HAS_TRAIT(user, TRAIT_SANTA_CLAUS)) //santa uses the present as a grenade
-		to_chat(user, "This present is now live, toss it at somebody naughty!")
+		to_chat(user, span_warning("This present is now live, toss it at somebody naughty!"))
 		. = ..()
 	else //anyone else opening the present gets an explosion, yes this also affects elves
 		explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range)
@@ -87,8 +87,8 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	if(HAS_TRAIT(M, TRAIT_SANTA_CLAUS) || HAS_TRAIT(M, TRAIT_CHRISTMAS_ELF))
 		if(present_receiver == null && !freepresent)
 			get_recipient()
-		to_chat(M, "This present is addressed to [present_receiver_name].")
-		to_chat(M, "You're supposed to deliver presents, not open them.")
+		to_chat(M, span_notice("This present is addressed to [present_receiver_name]."))
+		to_chat(M, span_warning("You're supposed to deliver presents, not open them."))
 		return
 	if(!freepresent && present_receiver != M)
 		switch(tgui_alert(M, "This present is addressed to [present_receiver_name]. Open it anyways?", "Continue?", list("Yes", "No")))
@@ -96,7 +96,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 				if(!do_after(M, 1.5 SECONDS))
 					to_chat(M, span_warning("You start unwrapping the present..."))
 					return
-				M.visible_message(span_notice("[M] tears into [present_receiver_name]'s gift with reckless abandon!"))
+				M.visible_message(span_warning("[M] tears into [present_receiver_name]'s gift with reckless abandon!"))
 				M.balloon_alert_to_viewers("Open's [present_receiver_name]'s gift" ,ignored_mobs = M)
 				log_game("[M] has opened a present that belonged to [present_receiver_name] at [AREACOORD(loc)]")
 				if(prob(70) || HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
