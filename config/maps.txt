@@ -77,3 +77,7 @@ endmap
 map slumbridge
   minplayers 35
 endmap
+
+map riptide
+minplayers 20
+endmap
