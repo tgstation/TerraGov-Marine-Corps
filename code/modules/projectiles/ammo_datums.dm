@@ -697,6 +697,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 70
 	penetration = 20
 	sundering = 1.25
+	handful_amount = 7
 
 /datum/ammo/bullet/rifle/repeater/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, max_range = 3, slowdown = 2, stagger = 1 SECONDS)

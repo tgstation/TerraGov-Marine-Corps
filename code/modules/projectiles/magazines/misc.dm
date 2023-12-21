@@ -204,8 +204,8 @@
 	icon_state_mini = "ammo_packet_blue"
 	default_ammo = /datum/ammo/bullet/rifle/repeater
 	w_class = WEIGHT_CLASS_SMALL
-	current_rounds = 50
-	max_rounds = 50
+	current_rounds = 49
+	max_rounds = 49
 
 /obj/item/ammo_magazine/packet/pthreeightyacp
 	name = "packet of .380 ACP"
