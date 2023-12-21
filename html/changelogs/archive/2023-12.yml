@@ -167,3 +167,14 @@
   - bugfix: Fixes an uncommon BSOD on the campaign status screen
   - qol: 'Campaign: Players still on their home z-level will be teleported to spawn
       instead of ghosted at mission end'
+2023-12-21:
+  Lumipharon:
+  - bugfix: Corrected the type of gun skill associated with some energy weapons
+  - balance: Small changes to combat robot loadouts in campaign
+  - balance: Made fire support and ASAT capture missions in campaign easier for the
+      defending team
+  Wisemonster:
+  - bugfix: Harvester weapons will no longer allow chems to be inserted into them
+      while they are full.
+  ivanmixo:
+  - balance: Added a delay to throwing

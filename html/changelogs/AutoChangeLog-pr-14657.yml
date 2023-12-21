@@ -1,4 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - bugfix: "Harvester weapons will no longer allow chems to be inserted into them while they are full."
