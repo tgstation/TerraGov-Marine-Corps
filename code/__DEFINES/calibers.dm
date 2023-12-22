@@ -61,6 +61,7 @@
 #define CALIBER_20MM "20x28mm grenade"
 #define CALIBER_40MM "40mm grenade"
 #define CALIBER_84MM "84mm rocket"
+#define CALIBER_50MM "50mm shell"
 #define CALIBER_67MM "67mm shell"
 #define CALIBER_68MM "68mm rocket"
 #define CALIBER_37MM "37mm"

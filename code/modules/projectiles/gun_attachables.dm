@@ -754,6 +754,16 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/scope/unremovable
 	flags_attach_features = ATTACH_ACTIVATION
 
+/obj/item/attachable/scope/unremovable/baby_mortar
+	name = "TA-11 Sight System"
+	desc = "An unremovable ranging system of a TA-11 Mortar System."
+	aim_speed_mod = 0
+	wield_delay_mod = 0
+	zoom_tile_offset = 13
+	zoom_viewsize = 12
+	scoped_accuracy_mod = SCOPE_RAIL_MINI
+	zoom_slowdown = 0.50
+
 /obj/item/attachable/scope/unremovable/flaregun
 	name = "long range ironsights"
 	desc = "An unremovable set of long range ironsights for a flaregun."
