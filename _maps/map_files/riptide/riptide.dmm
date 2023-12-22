@@ -2387,10 +2387,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood/variable/mosaic,
 /area/riptide/inside/beachden)
-"crQ" = (
-/obj/item/ammo_magazine/heavy_laser,
-/turf/open/floor/wood,
-/area/riptide/caves/piratecove)
 "crS" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -2694,7 +2690,6 @@
 	dir = 1;
 	pixel_y = 3
 	},
-/obj/item/ammo_magazine/heavy_laser,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/riptide/caves/piratecove)
@@ -55428,7 +55423,7 @@ eBi
 uFz
 axh
 cCG
-crQ
+xNl
 xNl
 iBb
 taJ
@@ -55787,7 +55782,7 @@ uFz
 axh
 axh
 dRX
-crQ
+xNl
 gJy
 pQp
 xTh
