@@ -242,6 +242,8 @@
 	var/visible_icon = 0
 	var/image/user_image = null
 
+/mob/camera/aiEye/remote/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, sound/S, distance_multiplier, mob/sound_reciever)
+	return ..(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S, distance_multiplier, eye_user)
 
 /mob/camera/aiEye/remote/update_remote_sight(mob/living/user)
 	user.see_invisible = SEE_INVISIBLE_LIVING
