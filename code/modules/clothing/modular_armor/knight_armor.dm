@@ -88,7 +88,7 @@
 	icon_state = "knight_heavy_three"
 	item_icons = list(slot_head_str = 'icons/mob/modular/knight_armor.dmi')
 	item_state = "knight_heavy_three"
-	worn_y_offset = 8
+	worn_y_offset = 3
 	greyscale_config = null
 	flags_inv_hide = HIDEALLHAIR
 
