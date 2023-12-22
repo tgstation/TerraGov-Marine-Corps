@@ -4096,8 +4096,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/pepperball/pepperball_mini
 	damage = 10
-	drain_multiplier = 0.025
-	plasma_drain = 25
+	//drain_multiplier = 0.025
+	plasma_drain = 10
 
 /datum/ammo/alloy_spike
 	name = "alloy spike"
