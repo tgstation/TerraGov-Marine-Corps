@@ -20,7 +20,7 @@
 	greyscale_config = null
 
 /obj/item/clothing/head/modular/m10x/knight_light_one
-	icon = 'icons/mob/modular/knight_armor.dmi'
+	icon = 'icons/mob/modular/knight_helmets.dmi'
 	icon_state = "knight_light_one"
 	item_icons = list(slot_head_str = 'icons/mob/modular/knight_armor.dmi')
 	item_state = "knight_light_one"
@@ -28,7 +28,7 @@
 	flags_inv_hide = HIDEALLHAIR
 
 /obj/item/clothing/head/modular/m10x/knight_light_two
-	icon = 'icons/mob/modular/knight_armor.dmi'
+	icon = 'icons/mob/modular/knight_helmets.dmi'
 	icon_state = "knight_light_two"
 	item_icons = list(slot_head_str = 'icons/mob/modular/knight_armor.dmi')
 	item_state = "knight_light_two"
@@ -36,7 +36,7 @@
 	flags_inv_hide = HIDEALLHAIR
 
 /obj/item/clothing/head/modular/m10x/knight_light_three
-	icon = 'icons/mob/modular/knight_armor.dmi'
+	icon = 'icons/mob/modular/knight_helmets.dmi'
 	icon_state = "knight_light_three"
 	item_icons = list(slot_head_str = 'icons/mob/modular/knight_armor.dmi')
 	item_state = "knight_light_three"
@@ -44,7 +44,7 @@
 	flags_inv_hide = HIDEALLHAIR
 
 /obj/item/clothing/head/modular/m10x/knight_medium_one
-	icon = 'icons/mob/modular/knight_armor.dmi'
+	icon = 'icons/mob/modular/knight_helmets.dmi'
 	icon_state = "knight_medium_one"
 	item_icons = list(slot_head_str = 'icons/mob/modular/knight_armor.dmi')
 	item_state = "knight_medium_one"
@@ -52,7 +52,7 @@
 	flags_inv_hide = HIDEALLHAIR
 
 /obj/item/clothing/head/modular/m10x/knight_medium_two
-	icon = 'icons/mob/modular/knight_armor.dmi'
+	icon = 'icons/mob/modular/knight_helmets.dmi'
 	icon_state = "knight_medium_two"
 	item_icons = list(slot_head_str = 'icons/mob/modular/knight_armor.dmi')
 	item_state = "knight_medium_two"
@@ -60,7 +60,7 @@
 	flags_inv_hide = HIDEALLHAIR
 
 /obj/item/clothing/head/modular/m10x/knight_medium_three
-	icon = 'icons/mob/modular/knight_armor.dmi'
+	icon = 'icons/mob/modular/knight_helmets.dmi'
 	icon_state = "knight_medium_three"
 	item_icons = list(slot_head_str = 'icons/mob/modular/knight_armor.dmi')
 	item_state = "knight_medium_three"
@@ -68,7 +68,7 @@
 	flags_inv_hide = HIDEALLHAIR
 
 /obj/item/clothing/head/modular/m10x/knight_heavy_one
-	icon = 'icons/mob/modular/knight_armor.dmi'
+	icon = 'icons/mob/modular/knight_helmets.dmi'
 	icon_state = "knight_heavy_one"
 	item_icons = list(slot_head_str = 'icons/mob/modular/knight_armor.dmi')
 	item_state = "knight_heavy_one"
@@ -76,7 +76,7 @@
 	flags_inv_hide = HIDEALLHAIR
 
 /obj/item/clothing/head/modular/m10x/knight_heavy_two
-	icon = 'icons/mob/modular/knight_armor.dmi'
+	icon = 'icons/mob/modular/knight_helmets.dmi'
 	icon_state = "knight_heavy_two"
 	item_icons = list(slot_head_str = 'icons/mob/modular/knight_armor.dmi')
 	item_state = "knight_heavy_two"
@@ -84,11 +84,11 @@
 	flags_inv_hide = HIDEALLHAIR
 
 /obj/item/clothing/head/modular/m10x/knight_heavy_three
-	icon = 'icons/mob/modular/knight_armor.dmi'
+	icon = 'icons/mob/modular/knight_helmets.dmi'
 	icon_state = "knight_heavy_three"
 	item_icons = list(slot_head_str = 'icons/mob/modular/knight_armor.dmi')
 	item_state = "knight_heavy_three"
-	item_state.pixel_y = 8
+	worn_y_offset = 8
 	greyscale_config = null
 	flags_inv_hide = HIDEALLHAIR
 
