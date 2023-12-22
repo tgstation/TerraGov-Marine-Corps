@@ -15094,9 +15094,7 @@
 "oFD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/medevac_beacon{
-	anchored = 1;
-	faction = "Neutral";
-	icon_state = "med_beacon1"
+	faction = null
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
