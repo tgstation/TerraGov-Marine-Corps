@@ -114,31 +114,8 @@
 /datum/individual_stats/ui_state(mob/user)
 	return GLOB.conscious_state //will need to kill this later probably
 
-/datum/individual_stats/ui_data(mob/user)
-	. = ..()
-	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
-	if(!istype(current_mode))
-		CRASH("campaign_mission loaded without campaign game mode")
-
-	var/list/data = list()
-
-	var/list/perks_data = list()
-	for(var/job in perks_by_job)
-		for(var/datum/perk/perk AS in GLOB.campaign_perks_by_role[job])
-			var/list/perk_data = list()
-			perk_data["name"] = perk.name
-			perk_data["job"] = job
-			perk_data["type"] = perk.type
-			perk_data["desc"] = perk.desc
-			perk_data["cost"] = perk.unlock_cost
-			perk_data["icon"] = perk.ui_icon
-			perk_data["currently_active"] = !!(perk in perks_by_job[job])
-			perks_data += list(perk_data)
-	data["perks_data"] = perks_data
-
-	data["currency"] = currency
-
-	return data
+//datum/individual_stats/ui_data(mob/user)
+	//. = ..()
 
 /datum/individual_stats/ui_static_data(mob/user)
 	. = ..()
@@ -158,10 +135,26 @@
 
 	data["faction"] = faction
 	data["jobs"] = valid_jobs
+	data["currency"] = currency
 
 	//replace below
 	data["icons"] = GLOB.campaign_icons
 	data["mission_icons"] = GLOB.campaign_mission_icons
+
+	//perk stuff
+	var/list/perks_data = list()
+	for(var/job in perks_by_job)
+		for(var/datum/perk/perk AS in GLOB.campaign_perks_by_role[job])
+			var/list/perk_data = list()
+			perk_data["name"] = perk.name
+			perk_data["job"] = job
+			perk_data["type"] = perk.type
+			perk_data["desc"] = perk.desc
+			perk_data["cost"] = perk.unlock_cost
+			perk_data["icon"] = perk.ui_icon
+			perk_data["currently_active"] = !!(perk in perks_by_job[job])
+			perks_data += list(perk_data)
+	data["perks_data"] = perks_data
 
 	return data
 
