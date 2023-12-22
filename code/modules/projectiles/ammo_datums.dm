@@ -4076,18 +4076,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 10//Short range, allows most guns to outrange it for suppressive fire reasons, and gives xenos more leeway to flee.
 	damage_type = STAMINA
 	armor_type = "bio"
-	damage = 20
+	damage = 15
 	penetration = 100
 	shrapnel_chance = 0
 	///percentage of xenos total plasma to drain when hit by a pepperball
-	var/drain_multiplier = 0.025
+	//var/drain_multiplier = 0.025
 	///Flat plasma to drain, unaffected by caste plasma amount.
-	var/plasma_drain = 2
+	var/plasma_drain = 15
 
 /datum/ammo/bullet/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/X = victim
-		X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
+		//X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
 		X.use_plasma(plasma_drain)
 		if(X.plasma_stored <= 1)
 			X.apply_effect(15 SECONDS, WEAKEN)//can now be used to riot control xenos when they abuse the hospitality of NTC
