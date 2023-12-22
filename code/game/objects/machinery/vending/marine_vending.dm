@@ -306,7 +306,6 @@
 			/obj/item/ammo_magazine/pistol/standard_heavypistol = -1,
 			/obj/item/weapon/gun/revolver/standard_revolver = -1,
 			/obj/item/ammo_magazine/revolver/standard_revolver = -1,
-			/obj/item/weapon/gun/revolver/standard_magnum = -1,
 			/obj/item/ammo_magazine/revolver/standard_magnum = -1,
 			/obj/item/weapon/gun/pistol/standard_pocketpistol = -1,
 			/obj/item/ammo_magazine/pistol/standard_pocketpistol = -1,
