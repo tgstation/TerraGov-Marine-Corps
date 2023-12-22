@@ -734,8 +734,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range = 15
 	damage = 40
-	penetration = 20
-	sundering = 10
+	penetration = 40
+	sundering = 5
 	bullet_color = COLOR_SOFT_RED
 
 /datum/ammo/bullet/rifle/tx8/incendiary
@@ -751,8 +751,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "high velocity impact bullet"
 	hud_state = "hivelo_impact"
 	damage = 30
-	penetration = 10
-	sundering = 12.5
+	penetration = 20
+	sundering = 6.5
 
 /datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, max_range = 14, slowdown = 1, knockback = 1)
