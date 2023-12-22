@@ -40,6 +40,15 @@
 	set_light_range_power_color(glow, 4, color)
 
 // ***************************************
+// *********** Life overrides
+// ***************************************
+/mob/living/carbon/xenomorph/boiler/get_status_tab_items()
+	. = ..()
+	. += "Stored corrosive acid globules: [corrosive_ammo]"
+	. += "Stored neurotoxic globules: [neuro_ammo]"
+
+
+// ***************************************
 // *********** Init
 // ***************************************
 /mob/living/carbon/xenomorph/boiler/Initialize(mapload)
