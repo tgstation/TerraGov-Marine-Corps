@@ -22167,9 +22167,7 @@
 "vpe" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/door_control{
-	desc = "A remote control-switch for a door. There is a little sticky note attached that reads, "Emergency use only".";
-	id = "CMOSafe";
-	name = "Scuffed Button"
+	id = "CMOSafe"
 	},
 /turf/open/floor/tile/cmo,
 /area/riptide/inside/medical/offices)
