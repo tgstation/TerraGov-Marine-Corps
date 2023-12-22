@@ -18,7 +18,7 @@
 		equipped_things["[slot]"] = null
 		available_list["[slot]"] = list()
 	for(var/datum/loadout_item/loadout_option AS in GLOB.campaign_loadout_items_by_role[role])
-		available_list[loadout_option.item_slot] += loadout_option
+		available_list["[loadout_option.item_slot]"] += loadout_option
 
 /datum/outfit_holder/Destroy(force, ...)
 	equipped_things = null
@@ -33,9 +33,9 @@
 
 ///Adds a new loadout_item to the available list
 /datum/outfit_holder/proc/add_new_option(datum/loadout_item/new_item)
-	if(new_item in available_list[new_item.item_slot])
+	if(new_item in available_list["[new_item.item_slot]"])
 		return
-	available_list[new_item.item_slot] += new_item
+	available_list["[new_item.item_slot]"] += new_item
 
 ///Tries to add a datum if valid
 /datum/outfit_holder/proc/attempt_equip_loadout_item(datum/loadout_item/new_item)

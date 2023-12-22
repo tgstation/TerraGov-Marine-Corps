@@ -156,6 +156,46 @@
 			perks_data += list(perk_data)
 	data["perks_data"] = perks_data
 
+	//loadout stuff
+	var/list/equipped_loadouts_data = list() //shit currently equipped to ALL job outfits
+	var/list/available_loadouts_data = list() //all available shit. note this currently does not include non purchased stuff
+	for(var/i in loadouts)
+		var/datum/outfit_holder/outfit = loadouts[i]
+		for(var/slot in outfit.equipped_things)
+			var/datum/loadout_item/loadout_item = outfit.equipped_things[slot]
+			if(!loadout_item) //will probably be able to remove this eventually
+				continue
+			var/list/current_loadout_item_data = list()
+			current_loadout_item_data["name"] = loadout_item.name
+			current_loadout_item_data["job"] = outfit.role
+			current_loadout_item_data["slot"] = GLOB.inventory_slots_to_string["[loadout_item.item_slot]"]
+			current_loadout_item_data["type"] = loadout_item.type
+			current_loadout_item_data["desc"] = loadout_item.desc
+			current_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
+			current_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost
+			//current_loadout_item_data["item_whitelist"] = loadout_item.item_whitelist //TODO: need data to be a list of strings, or reference this in some other way
+			//current_loadout_item_data["item_blacklist"] = loadout_item.item_blacklist
+			//current_loadout_item_data["icon"] = loadout_item.ui_icon //likely end up using actual icon state
+			equipped_loadouts_data += list(current_loadout_item_data)
+
+		for(var/slot in outfit.available_list)
+			for(var/datum/loadout_item/loadout_item AS in outfit.available_list[slot])
+				var/list/available_loadout_item_data = list()
+				available_loadout_item_data["name"] = loadout_item.name
+				available_loadout_item_data["job"] = outfit.role
+				available_loadout_item_data["slot"] = GLOB.inventory_slots_to_string["[loadout_item.item_slot]"]
+				available_loadout_item_data["type"] = loadout_item.type
+				available_loadout_item_data["desc"] = loadout_item.desc
+				available_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
+				available_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost //todo: do related
+				//available_loadout_item_data["item_whitelist"] = loadout_item.item_whitelist
+				//available_loadout_item_data["item_blacklist"] = loadout_item.item_blacklist
+				//available_loadout_item_data["icon"] = loadout_item.ui_icon //likely end up using actual icon state
+				available_loadouts_data += list(available_loadout_item_data)
+
+	data["equipped_loadouts_data"] = equipped_loadouts_data
+	data["available_loadouts_data"] = available_loadouts_data
+
 	return data
 
 /datum/individual_stats/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
