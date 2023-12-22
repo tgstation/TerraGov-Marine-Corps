@@ -1,7 +1,7 @@
 {
     "map_name": "riptide",
     "map_path": "map_files/riptide",
-    "map_file": "LV624.dmm",
+    "map_file": "riptide.dmm",
 	"disk_sets": {
 		"set1": 1,
 		"set2": 1,
