@@ -16,16 +16,23 @@
 	var/travelling_time = 10 SECONDS
 	///type of equipment that accept this type of ammo.
 	var/equipment_type
+	///current ammo count
 	var/ammo_count
+	///maximum ammo count. does NOT determine starting ammo
 	var/max_ammo_count
-	var/ammo_name = "rounds" //what to call the ammo in the ammo transfering message
+	///what to call the ammo in the ammo transfering message
+	var/ammo_name = "rounds"
 	var/ammo_id
 	///whether the ammo inside this magazine can be transfered to another magazine.
 	var/transferable_ammo = FALSE
 	///sound played mere seconds before impact
 	var/warning_sound = 'sound/machines/hydraulics_2.ogg'
+	///voiceline to play half a second after the weapon is fired
+	var/firing_voiceline
+	///how much ammo to use up per firing sequence
 	var/ammo_used_per_firing = 1
-	var/point_cost = 0 //how many points it costs to build this with the fabricator, set to 0 if unbuildable.
+	///how many points it costs to build this with the fabricator, set to 0 if unbuildable.
+	var/point_cost = 0
 	///Type of ammo
 	var/ammo_type
 
@@ -211,12 +218,12 @@
 	transferable_ammo = TRUE
 	ammo_used_per_firing = 200
 	point_cost = 100
+	ammo_type = CAS_30MM
+	cas_effect = /obj/effect/overlay/blinking_laser/heavygun
 	///Radius of the square that the bullets will strafe
 	var/bullet_spread_range = 2
 	///Width of the square we are attacking, so you can make rectangular attacks later
 	var/attack_width = 3
-	ammo_type = CAS_30MM
-	cas_effect = /obj/effect/overlay/blinking_laser/heavygun
 
 /obj/structure/ship_ammo/cas/heavygun/examine(mob/user)
 	. = ..()
@@ -322,10 +329,10 @@
 	ammo_used_per_firing = 10
 	warning_sound = 'sound/effects/nightvision.ogg'
 	point_cost = 150
-	///The length of the beam that will come out of when we fire do both ends xxxoxxx where o is where you click
-	var/laze_radius = 4
 	ammo_type = CAS_LASER_BATTERY
 	cas_effect = /obj/effect/overlay/blinking_laser/laser
+	///The length of the beam that will come out of when we fire do both ends xxxoxxx where o is where you click
+	var/laze_radius = 4
 
 /obj/structure/ship_ammo/cas/laser_battery/examine(mob/user)
 	. = ..()
@@ -378,6 +385,7 @@
 	max_ammo_count = 1
 	ammo_name = "rocket"
 	ammo_id = ""
+	firing_voiceline = 'sound/voice/plane_vws/shot_missile.ogg'
 	bound_width = 64
 	bound_height = 32
 	travelling_time = 4 SECONDS
@@ -508,6 +516,7 @@
 	ammo_count = 6
 	max_ammo_count = 6
 	ammo_name = "minirocket"
+	firing_voiceline = 'sound/voice/plane_vws/shot_missile.ogg'
 	travelling_time = 2 SECONDS
 	transferable_ammo = TRUE
 	point_cost = 175
@@ -589,6 +598,7 @@
 	point_cost = 50 // Not a real rocket, so its cheap
 	travelling_time = 4 SECONDS
 	cas_effect = /obj/effect/overlay/blinking_laser/flare
+	firing_voiceline = 'sound/voice/plane_vws/shot_flare.ogg'
 	devastating_explosion_range = 0
 	heavy_explosion_range = 0
 	light_explosion_range = 0
