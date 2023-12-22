@@ -225,6 +225,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	psypoint_cost = 150
 	icon = "pherotower"
 	flags_upgrade = ABILITY_NUCLEARWAR
+	flags_upgrade = UPGRADE_FLAG_USES_TACTICAL
 	building_type = /obj/structure/xeno/pherotower
 	building_loc = 0 //This results in spawning the structure under the user.
 	building_time = 5 SECONDS
