@@ -4082,7 +4082,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	///percentage of xenos total plasma to drain when hit by a pepperball
 	var/drain_multiplier = 0.025
 	///Flat plasma to drain, unaffected by caste plasma amount.
-	var/plasma_drain = 25
+	var/plasma_drain = 2
 
 /datum/ammo/bullet/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	if(isxeno(victim))
