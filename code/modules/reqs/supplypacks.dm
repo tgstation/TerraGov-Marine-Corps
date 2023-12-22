@@ -653,6 +653,11 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/rifle/standard_smarttargetrifle)
 	cost = 35
 
+/datum/supply_packs/weapons/smart_minigun_ammo
+	name = "SG-62 ammo bin"
+	contains = list(/obj/item/ammo_magazine/packet/smart_targetrifle)
+	cost = 50
+
 /datum/supply_packs/weapons/spotting_rifle_ammo
 	name = "SG-153 spotting rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle)
