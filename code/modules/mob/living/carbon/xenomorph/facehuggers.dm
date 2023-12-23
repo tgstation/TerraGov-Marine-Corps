@@ -601,7 +601,7 @@
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/target)
 	ADD_TRAIT(src, TRAIT_NODROP, HUGGER_TRAIT)
-	var/as_planned = target?.wear_mask == src ? TRUE : FALSE
+	var/as_planned = target?.wear_mask == src || target?.wear_under == src ? TRUE : FALSE
 	if((target.can_be_facehugged(src, FALSE, FALSE) || target.faction == FACTION_CLF) && !sterile && as_planned) //is hugger still on face and can they still be impregnated
 		if(!(locate(/obj/item/alien_embryo) in target))
 			var/obj/item/alien_embryo/embryo = new(target)
