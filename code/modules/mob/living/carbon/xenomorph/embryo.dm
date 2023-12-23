@@ -17,6 +17,7 @@
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/admin = FALSE
 	var/emerge_target = 1
+	var/emerge_target_flavor = "throat"
 
 
 /obj/item/alien_embryo/Initialize(mapload)
@@ -156,20 +157,20 @@
 	switch(birth_owner.emerge_target)
 		if("1")
 			playsound(victim, 'modular_skyrat/sound/weapons/gagging.ogg', 25, TRUE)
-			return "throat"
+			birth_owner.emerge_target_flavor = "throat"
 		if("2")
 			victim.emote_burstscream()
 			if(victim.gender==FEMALE)
-				return "pussy"
+				birth_owner.emerge_target_flavor ="pussy"
 			else
-				return "ass"
+				birth_owner.emerge_target_flavor = "ass"
 		if("3")
 			victim.emote_burstscream()
-			return "ass"
+			birth_owner.emerge_target_flavor = "ass"
 
 	victim.Unconscious(10 SECONDS)
 	victim.visible_message("<span class='danger'>\The [victim] starts shaking uncontrollably!</span>", \
-								"<span class='danger'>You feel something wiggling in your [birth_owner.emerge_target]!</span>")
+								"<span class='danger'>You feel something wiggling in your [birth_owner.emerge_target_flavor]!</span>")
 	victim.jitter(150)
 
 	addtimer(CALLBACK(src, PROC_REF(burst), victim), 3 SECONDS)
@@ -191,7 +192,7 @@
 		forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
 	var/obj/item/alien_embryo/AE = locate() in victim
 	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25)
-	victim.visible_message("<span class='danger'>The Larva forces its way out of [victim]'s [AE.emerge_target]!</span>")
+	victim.visible_message("<span class='danger'>The Larva forces its way out of [victim]'s [AE.emerge_target_flavor]!</span>")
 	GLOB.round_statistics.total_larva_burst++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_larva_burst")
 

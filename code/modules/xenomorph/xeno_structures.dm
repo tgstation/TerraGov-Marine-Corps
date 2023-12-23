@@ -814,7 +814,7 @@ TUNNEL
 //*******************
 //Corpse recyclinging
 //*******************
-/obj/structure/xeno/resin/silo/attackby(obj/item/I, mob/user, params)
+/obj/structure/xeno/silo/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(!istype(I, /obj/item/grab))
@@ -846,13 +846,13 @@ TUNNEL
 	shake(4 SECONDS)
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.add_job_points(3) //4.5 corpses per burrowed; 8 points per larva
+	xeno_job.add_job_points(4.5) //4.5 corpses per burrowed; 8 points per larva
 
 	log_combat(victim, user, "was consumed by a resin silo")
 	log_game("[key_name(victim)] was consumed by a resin silo at [AREACOORD(victim.loc)].")
 
 /// Make the silo shake
-/obj/structure/xeno/resin/silo/proc/shake(duration)
+/obj/structure/xeno/silo/proc/shake(duration)
 	/// How important should be the shaking movement
 	var/offset = prob(50) ? -2 : 2
 	/// Track the last position of the silo for the animation
@@ -865,7 +865,7 @@ TUNNEL
 	addtimer(CALLBACK(src, .proc/stop_shake, old_pixel_x), duration)
 
 /// Stop the shaking animation
-/obj/structure/xeno/resin/silo/proc/stop_shake(old_px)
+/obj/structure/xeno/silo/proc/stop_shake(old_px)
 	animate(src)
 	pixel_x = old_px
 

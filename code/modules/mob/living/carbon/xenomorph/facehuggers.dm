@@ -455,8 +455,8 @@
 		return FALSE
 
 	if(check_mask)
-		if(wear_under)
-			var/obj/item/W = wear_under
+		if(w_uniform)
+			var/obj/item/W = w_uniform
 			if(HAS_TRAIT(W, TRAIT_NODROP))
 				return FALSE
 			if(istype(W, /obj/item/clothing/mask/facehugger))
@@ -521,10 +521,10 @@
 			return FALSE
 
 		if(attempt_lewd_attach(H))
-			var/obj/item/clothing/under/U = H.wear_under
+			var/obj/item/clothing/under/U = H.w_uniform
 			H.dropItemToGround(H.w_uniform)
 			if(H.w_uniform)
-				visible_message("<span class='warning'>[src] rips [H]'s [U.name] off and latches onto their pelvis!</span>")
+				visible_message("<span class='warning'>[src] rips into [H]'s [U.name] and latches onto their pelvis!</span>")
 			else
 				visible_message("<span class='warning'>[src] latches onto [H]'s pelvis!</span>")
 			H.equip_to_slot(src, SLOT_W_UNIFORM)
@@ -584,7 +584,7 @@
 		reset_attach_status(FALSE)
 		return
 	if(!sterile && !issynth(user))
-		var/stamina_dmg = 200//user.maxHealth + user.max_stamina
+		var/stamina_dmg = user.maxHealth + user.max_stamina
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
 	if(targethole == 1)
 		user.Unconscious(20 SECONDS)
@@ -593,15 +593,15 @@
 			playsound(loc, hugsound, 25, 0)
 	else
 		user.emote("scream")
-		user.ParalyzeNoChain(4 SECONDS)
-		user.SetConfused(16 SECONDS)
+		user.ParalyzeNoChain(5 SECONDS)
+		user.SetConfused(10 SECONDS)
 	attached = TRUE
 	go_idle(FALSE, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(Impregnate), user), IMPREGNATION_TIME)
 
-/obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/target)
+/obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/human/target)
 	ADD_TRAIT(src, TRAIT_NODROP, HUGGER_TRAIT)
-	var/as_planned = target?.wear_mask == src || target?.wear_under == src ? TRUE : FALSE
+	var/as_planned = target?.wear_mask == src  || target?.w_uniform == src
 	if((target.can_be_facehugged(src, FALSE, FALSE) || target.faction == FACTION_CLF) && !sterile && as_planned) //is hugger still on face and can they still be impregnated
 		if(!(locate(/obj/item/alien_embryo) in target))
 			var/obj/item/alien_embryo/embryo = new(target)
