@@ -26,6 +26,7 @@
 	item_state = "knight_light_one"
 	greyscale_config = null
 	flags_inv_hide = HIDEALLHAIR
+	attachments_allowed = NONE
 
 /obj/item/clothing/head/modular/m10x/knight_light_two
 	icon = 'icons/mob/modular/knight_helmets.dmi'
@@ -34,6 +35,7 @@
 	item_state = "knight_light_two"
 	greyscale_config = null
 	flags_inv_hide = HIDEALLHAIR
+	attachments_allowed = NONE
 
 /obj/item/clothing/head/modular/m10x/knight_light_three
 	icon = 'icons/mob/modular/knight_helmets.dmi'
@@ -42,6 +44,7 @@
 	item_state = "knight_light_three"
 	greyscale_config = null
 	flags_inv_hide = HIDEALLHAIR
+	attachments_allowed = NONE
 
 /obj/item/clothing/head/modular/m10x/knight_medium_one
 	icon = 'icons/mob/modular/knight_helmets.dmi'
@@ -50,6 +53,7 @@
 	item_state = "knight_medium_one"
 	greyscale_config = null
 	flags_inv_hide = HIDEALLHAIR
+	attachments_allowed = NONE
 
 /obj/item/clothing/head/modular/m10x/knight_medium_two
 	icon = 'icons/mob/modular/knight_helmets.dmi'
@@ -58,6 +62,7 @@
 	item_state = "knight_medium_two"
 	greyscale_config = null
 	flags_inv_hide = HIDEALLHAIR
+	attachments_allowed = NONE
 
 /obj/item/clothing/head/modular/m10x/knight_medium_three
 	icon = 'icons/mob/modular/knight_helmets.dmi'
@@ -66,6 +71,7 @@
 	item_state = "knight_medium_three"
 	greyscale_config = null
 	flags_inv_hide = HIDEALLHAIR
+	attachments_allowed = NONE
 
 /obj/item/clothing/head/modular/m10x/knight_heavy_one
 	icon = 'icons/mob/modular/knight_helmets.dmi'
@@ -74,6 +80,7 @@
 	item_state = "knight_heavy_one"
 	greyscale_config = null
 	flags_inv_hide = HIDEALLHAIR
+	attachments_allowed = NONE
 
 /obj/item/clothing/head/modular/m10x/knight_heavy_two
 	icon = 'icons/mob/modular/knight_helmets.dmi'
@@ -82,6 +89,7 @@
 	item_state = "knight_heavy_two"
 	greyscale_config = null
 	flags_inv_hide = HIDEALLHAIR
+	attachments_allowed = NONE
 
 /obj/item/clothing/head/modular/m10x/knight_heavy_three
 	icon = 'icons/mob/modular/knight_helmets.dmi'
@@ -91,6 +99,7 @@
 	worn_y_offset = 3
 	greyscale_config = null
 	flags_inv_hide = HIDEALLHAIR
+	attachments_allowed = NONE
 
 
 
