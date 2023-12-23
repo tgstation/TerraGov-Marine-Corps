@@ -811,6 +811,63 @@ TUNNEL
 		if(80 to 100)
 			. += span_info("It appears in good shape, pulsating healthily.")
 
+//*******************
+//Corpse recyclinging
+//*******************
+/obj/structure/xeno/resin/silo/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(!istype(I, /obj/item/grab))
+		return
+
+	var/obj/item/grab/G = I
+	if(!iscarbon(G.grabbed_thing))
+		return
+	var/mob/living/carbon/victim = G.grabbed_thing
+	if(!ishuman(victim)) //humans and monkeys only for now
+		to_chat(user, "<span class='notice'>[src] can only process humanoid anatomies!</span>")
+		return
+
+	if(victim.stat != DEAD)
+		to_chat(user, "<span class='notice'>[victim] is not dead!</span>")
+		return
+
+	if(issynth(victim))
+		to_chat(user, "<span class='notice'>[victim] has no useful biomass for us.</span>")
+		return
+
+	visible_message("[user] starts putting [victim] into [src].", 3)
+
+	if(!do_after(user, 20, FALSE, victim, BUSY_ICON_DANGER) || QDELETED(src))
+		return
+
+	victim.forceMove(src)
+
+	shake(4 SECONDS)
+
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	xeno_job.add_job_points(3) //4.5 corpses per burrowed; 8 points per larva
+
+	log_combat(victim, user, "was consumed by a resin silo")
+	log_game("[key_name(victim)] was consumed by a resin silo at [AREACOORD(victim.loc)].")
+
+/// Make the silo shake
+/obj/structure/xeno/resin/silo/proc/shake(duration)
+	/// How important should be the shaking movement
+	var/offset = prob(50) ? -2 : 2
+	/// Track the last position of the silo for the animation
+	var/old_pixel_x = pixel_x
+	/// Sound played when shaking
+	var/shake_sound = rand(1, 100) == 1 ? 'sound/machines/blender.ogg' : 'sound/machines/juicer.ogg'
+	if(prob(1))
+		playsound(src, shake_sound, 25, TRUE)
+	animate(src, pixel_x = pixel_x + offset, time = 2, loop = -1) //start shaking
+	addtimer(CALLBACK(src, .proc/stop_shake, old_pixel_x), duration)
+
+/// Stop the shaking animation
+/obj/structure/xeno/resin/silo/proc/stop_shake(old_px)
+	animate(src)
+	pixel_x = old_px
 
 /obj/structure/xeno/silo/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
 	. = ..()

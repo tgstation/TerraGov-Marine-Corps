@@ -8557,7 +8557,7 @@
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/mainship/droppod,
 /obj/structure/cable,
-/turf/open/floor/plating/platebotc,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
 "hSz" = (
 /obj/machinery/door_control/unmeltable{

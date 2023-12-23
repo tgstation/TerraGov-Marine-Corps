@@ -23,9 +23,11 @@
 	flags_armor_protection = FACE|EYES
 	flags_atom = CRITICAL_ATOM
 	flags_item = NOBLUDGEON
-	throw_range = 1
+	throw_range = 7
 	worn_layer = FACEHUGGER_LAYER
 	layer = FACEHUGGER_LAYER
+	item_state_slots = list(slot_w_uniform_str = "facehugger_crotch")
+	item_icons = list(slot_w_uniform_str = 'icons/Xeno/Effects.dmi')
 
 	///Whether the hugger is dead, active or inactive
 	var/stat = CONSCIOUS
@@ -61,6 +63,8 @@
 	var/about_to_jump = FALSE
 	///Time to become active after moving into the facehugger's space.
 	var/proximity_time = 0.75 SECONDS
+	///chosen hole to use by hugger, just flavor for now
+	var/targethole = 1
 
 /obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber, input_source)
 	. = ..()
@@ -451,6 +455,14 @@
 		return FALSE
 
 	if(check_mask)
+		if(wear_under)
+			var/obj/item/W = wear_under
+			if(HAS_TRAIT(W, TRAIT_NODROP))
+				return FALSE
+			if(istype(W, /obj/item/clothing/mask/facehugger))
+				var/obj/item/clothing/mask/facehugger/hugger = W
+				if(hugger.stat != DEAD)
+					return FALSE
 		if(wear_mask)
 			var/obj/item/W = wear_mask
 			if(HAS_TRAIT(W, TRAIT_NODROP))
@@ -508,6 +520,16 @@
 			visible_message(span_warning("[src] looks for a face to hug on [H], but finds none!"))
 			return FALSE
 
+		if(attempt_lewd_attach(H))
+			var/obj/item/clothing/under/U = H.wear_under
+			H.dropItemToGround(H.w_uniform)
+			if(H.w_uniform)
+				visible_message("<span class='warning'>[src] rips [H]'s [U.name] off and latches onto their pelvis!</span>")
+			else
+				visible_message("<span class='warning'>[src] latches onto [H]'s pelvis!</span>")
+			H.equip_to_slot(src, SLOT_W_UNIFORM)
+			return TRUE
+
 		if(H.head)
 			var/obj/item/clothing/head/D = H.head
 			if(istype(D))
@@ -545,18 +567,34 @@
 	M.equip_to_slot(src, SLOT_WEAR_MASK)
 	return TRUE
 
+/obj/item/clothing/mask/facehugger/proc/attempt_lewd_attach(mob/living/target)
+	targethole = rand(1, 3)
+	if(targethole > 1)
+		return TRUE
+	else
+		return FALSE
+
+/obj/item/clothing/mask/facehugger/unequipped(mob/living/user, slot)
+	. = ..()
+	reset_attach_status(FALSE)
+
 /obj/item/clothing/mask/facehugger/equipped(mob/living/user, slot)
 	. = ..()
-	if(slot != SLOT_WEAR_MASK || stat == DEAD)
+	if(slot != SLOT_WEAR_MASK && slot != SLOT_W_UNIFORM || stat == DEAD)
 		reset_attach_status(FALSE)
 		return
-	if(ishuman(user))
-		var/hugsound = user.gender == FEMALE ? get_sfx("female_hugged") : get_sfx("male_hugged")
-		playsound(loc, hugsound, 25, 0)
 	if(!sterile && !issynth(user))
-		var/stamina_dmg = 150 //user.maxHealth + user.max_stamina
+		var/stamina_dmg = 200//user.maxHealth + user.max_stamina
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
-	user.Unconscious(20 SECONDS)
+	if(targethole == 1)
+		user.Unconscious(20 SECONDS)
+		if(ishuman(user))
+			var/hugsound = user.gender == FEMALE ? get_sfx("female_hugged") : get_sfx("male_hugged")
+			playsound(loc, hugsound, 25, 0)
+	else
+		user.emote("scream")
+		user.ParalyzeNoChain(4 SECONDS)
+		user.SetConfused(16 SECONDS)
 	attached = TRUE
 	go_idle(FALSE, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(Impregnate), user), IMPREGNATION_TIME)
@@ -568,6 +606,7 @@
 		if(!(locate(/obj/item/alien_embryo) in target))
 			var/obj/item/alien_embryo/embryo = new(target)
 			embryo.hivenumber = hivenumber
+			embryo.emerge_target = targethole
 			GLOB.round_statistics.now_pregnant++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
 			if(source?.client)
@@ -583,7 +622,13 @@
 
 	if(as_planned)
 		if(sterile || target.status_flags & XENO_HOST)
-			target.visible_message(span_danger("[src] falls limp after fucking [target]!"))
+			switch(targethole)
+				if(1)
+					target.visible_message("<span class='danger'>[src] falls limp after fucking [target]'s face with it's proboscis!</span>")
+				if(2)
+					target.visible_message("<span class='danger'>[src] falls limp after fucking [target]'s ass!</span>")
+				if(3)
+					target.visible_message("<span class='danger'>[src] falls limp after fucking [target.gender==MALE ? "itself on [target]'s cock" : "[target]'s vagina"]!</span>")
 			if(ismonkey(target))
 				target.apply_damage(15, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
 		else //Huggered but not impregnated, deal damage.
@@ -614,7 +659,7 @@
 	REMOVE_TRAIT(src, TRAIT_NODROP, HUGGER_TRAIT)
 	attached = FALSE
 	if(isliving(loc) && forcedrop) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
-		var/mob/living/carbon/human/M = loc
+		var/mob/living/M = loc
 		M.dropItemToGround(src)
 	update_icon()
 
