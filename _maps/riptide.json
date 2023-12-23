@@ -8,8 +8,7 @@
         "set3": 1
     },
     "armor": "black",
-	"quickbuilds": 2000,
-	"announce_text": "We have received a faint distress signal originating from a sandy island with a dense jungle. The ship has jumped within range of what looks like a beach resort. TGMC, gear up, don't forget your sunscreen and get ready to respond!",
-	"traits":[{
-	}]
+    "quickbuilds": 2000,
+    "announce_text": "We have received a faint distress signal originating from a sandy island with a dense jungle. The ship has jumped within range of what looks like a beach resort. TGMC, gear up, don't forget your sunscreen and get ready to respond!",
+    "traits": [{}]
 }
