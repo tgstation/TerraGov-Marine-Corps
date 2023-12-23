@@ -1,4 +1,4 @@
-/***
+/**
  * Mecha Equipment
  * All mech equippables are currently childs of this
  */
