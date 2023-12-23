@@ -1169,6 +1169,20 @@
 			/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markone = -1,
 			/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markone = -1,
 		),
+		"Knight Armor" = list(
+			/obj/item/clothing/suit/modular/xenonauten/light/knight = -1,
+			/obj/item/clothing/suit/modular/xenonauten/knight = -1,
+			/obj/item/clothing/suit/modular/xenonauten/heavy/knight = -1,
+			/obj/item/clothing/head/modular/m10x/knight_light_one = -1,
+			/obj/item/clothing/head/modular/m10x/knight_light_two = -1,
+			/obj/item/clothing/head/modular/m10x/knight_light_three = -1,
+			/obj/item/clothing/head/modular/m10x/knight_medium_one = -1,
+			/obj/item/clothing/head/modular/m10x/knight_medium_two = -1,
+			/obj/item/clothing/head/modular/m10x/knight_medium_three = -1,
+			/obj/item/clothing/head/modular/m10x/knight_heavy_one = -1,
+			/obj/item/clothing/head/modular/m10x/knight_heavy_two = -1,
+			/obj/item/clothing/head/modular/m10x/knight_heavy_three = -1,
+		),
 	)
 
 	prices = list()
