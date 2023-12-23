@@ -2438,6 +2438,9 @@
 	dir = 1
 	},
 /obj/machinery/loadout_vendor,
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "ccJ" = (
@@ -2739,6 +2742,15 @@
 /turf/open/floor/wood,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
+	})
+"cte" = (
+/obj/machinery/light,
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/outpost/cargo{
+	outside = 1
 	})
 "ctw" = (
 /turf/open/floor/mainship/sterile/corner{
@@ -5488,6 +5500,9 @@
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
 "faP" = (
@@ -6547,6 +6562,14 @@
 	},
 /turf/open/floor/mainship/black,
 /area/mainship/command/self_destruct)
+"fTX" = (
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
+	dir = 1
+	},
+/turf/closed/wall/mainship,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "fUI" = (
 /obj/structure/sink,
 /obj/structure/mirror,
@@ -6972,8 +6995,10 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
-/turf/open/floor/mainship/floor,
-/area/campaign/jungle_outpost/outpost/living/bathroom)
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "goU" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/green{
@@ -10893,6 +10918,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
@@ -11719,6 +11745,12 @@
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
 	base_lighting_alpha = 0
+	})
+"kLi" = (
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/mainship/mono,
+/area/outpost/cargo{
+	outside = 1
 	})
 "kMd" = (
 /obj/structure/cable,
@@ -12719,6 +12751,14 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/mainship/hull/lower_hull)
+"lxf" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/outpost/cargo{
+	outside = 1
+	})
 "lxq" = (
 /obj/item/clothing/under/redpyjamas{
 	pixel_y = 5
@@ -12837,17 +12877,7 @@
 	name = "Ship Floor 1 Hallways"
 	})
 "lDI" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade{
-	dir = 4
-	},
-/obj/structure/barricade/metal,
-/obj/structure/barricade/metal{
-	dir = 8
-	},
-/obj/structure/barricade/metal{
-	dir = 1
-	},
-/obj/structure/barricade/metal{
+/obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -14086,6 +14116,13 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
+	})
+"mEI" = (
+/obj/machinery/vending/cola,
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/aft_hallway{
+	name = "Ship Floor 3 Hallways"
 	})
 "mEW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -17910,6 +17947,9 @@
 	name = "Ship Floor 3 Hallways"
 	})
 "qtl" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/engineering/lower_engineering)
 "qtw" = (
@@ -18605,6 +18645,12 @@
 	dir = 1
 	},
 /area/mainship/groundhq/ntf/shipboard/brig)
+"qWq" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/shipboard/brig_cells)
 "qWQ" = (
 /obj/effect/landmark/start/job/crash/squadmarine,
 /obj/effect/landmark/start/job/crash/squadmarine,
@@ -20335,6 +20381,21 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
+"sMi" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/landinglight/tadpole{
+	dir = 4;
+	pixel_x = -4
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "sMl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/poddoor/mainship/ammo{
@@ -23341,6 +23402,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
 	on = 1
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/workerprep)
@@ -32847,7 +32911,7 @@ lnD
 lnD
 lnD
 lOQ
-lnD
+sMi
 lnD
 lnD
 hAA
@@ -33369,7 +33433,7 @@ urx
 urx
 oZv
 urx
-urx
+lxf
 urx
 urx
 urx
@@ -36526,7 +36590,7 @@ uhY
 uhY
 uhY
 rsv
-gBG
+cte
 jCB
 jCB
 blT
@@ -36962,7 +37026,7 @@ nUT
 nUT
 gkJ
 ojf
-goL
+rUZ
 sfV
 bTu
 gkJ
@@ -37230,7 +37294,7 @@ cam
 aya
 uXo
 aya
-urx
+kLi
 kkx
 izo
 izo
@@ -37444,7 +37508,7 @@ kyS
 kyS
 aXE
 kyS
-kyS
+lDI
 kyS
 kyS
 kyS
@@ -37943,7 +38007,7 @@ kyS
 kyS
 kyS
 juD
-kyS
+goL
 kyS
 kyS
 kyS
@@ -39612,7 +39676,7 @@ klh
 duO
 klh
 klh
-klh
+fTX
 kyS
 tKP
 uzt
@@ -41791,7 +41855,7 @@ qOz
 qOz
 kUg
 eeu
-kyS
+goL
 kjD
 fLi
 xHJ
@@ -59158,7 +59222,7 @@ tLW
 ktX
 dQB
 tMv
-pOj
+mEI
 jUb
 xpf
 rQF
@@ -59172,7 +59236,7 @@ aPj
 aPj
 gRL
 aPj
-cRm
+qWq
 oPM
 aPj
 cRm
@@ -64474,7 +64538,7 @@ cSI
 qZo
 qZo
 qZo
-qZo
+mvu
 qZo
 pLC
 eQZ
@@ -64483,7 +64547,7 @@ edj
 ocW
 hNy
 hvJ
-qZo
+wWc
 lwu
 iie
 puX
