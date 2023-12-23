@@ -918,16 +918,16 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 
 	if(!is_usable())
-		owner.dropItemToGround(c_hand)
-		owner.emote("me", 1, "drops what [owner.p_they()] [owner.p_were()] holding in [owner.p_their()] [hand_name], [owner.p_their()] [display_name] unresponsive!")
+		if(owner.dropItemToGround(c_hand))
+			owner.emote("me", 1, "drops what [owner.p_they()] [owner.p_were()] holding in [owner.p_their()] [hand_name], [owner.p_their()] [display_name] unresponsive!")
 	else if(is_broken() && prob(15))
-		owner.dropItemToGround(c_hand)
-		var/emote_scream = owner.species?.species_flags & NO_PAIN ? "" : pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-		owner.emote("me", 1, "[emote_scream]drops what [owner.p_they()] [owner.p_were()] holding in [owner.p_their()] [hand_name]!")
+		if(owner.dropItemToGround(c_hand))
+			var/emote_scream = owner.species?.species_flags & NO_PAIN ? "" : pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
+			owner.emote("me", 1, "[emote_scream]drops what [owner.p_they()] [owner.p_were()] holding in [owner.p_their()] [hand_name]!")
 	else if(is_malfunctioning() && prob(20))
-		owner.dropItemToGround(c_hand)
-		owner.emote("me", 1, "drops what [owner.p_they()] [owner.p_were()] holding, [owner.p_their()] [hand_name] malfunctioning!")
-		new /datum/effect_system/spark_spread(owner, owner, 5, 0, TRUE, 1 SECONDS)
+		if(owner.dropItemToGround(c_hand))
+			owner.emote("me", 1, "drops what [owner.p_they()] [owner.p_were()] holding, [owner.p_their()] [hand_name] malfunctioning!")
+			new /datum/effect_system/spark_spread(owner, owner, 5, 0, TRUE, 1 SECONDS)
 
 ///applies a splint stack to this limb. should probably be more generic but #notit
 /datum/limb/proc/apply_splints(obj/item/stack/medical/splint/S, applied_health, mob/living/user, mob/living/carbon/human/target)
