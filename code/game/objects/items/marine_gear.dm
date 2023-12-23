@@ -167,7 +167,7 @@
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/mre_pack/xmas1
-	name = "\improper Xmas Prepared Meal:sugar cookies"
+	name = "\improper Xmas Prepared Meal (sugar cookies)"
 	desc = "Delicious Sugar Cookies"
 	icon_state = "mreCookies"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 9, /datum/reagent/consumable/sugar = 1)
@@ -175,7 +175,7 @@
 	tastes = list("cookies" = 1, "artificial flavoring" = 1)
 
 /obj/item/reagent_containers/food/snacks/mre_pack/xmas2
-	name = "\improper Xmas Prepared Meal:gingerbread cookie"
+	name = "\improper Xmas Prepared Meal (gingerbread cookie)"
 	desc = "A cookie without a soul."
 	icon_state = "mreGingerbread"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 9, /datum/reagent/consumable/sugar = 1)
@@ -183,7 +183,7 @@
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/mre_pack/xmas3
-	name = "\improper Xmas Prepared Meal:fruitcake"
+	name = "\improper Xmas Prepared Meal (fruitcake)"
 	desc = "Also known as ''the Commander''."
 	icon_state = "mreFruitcake"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 9, /datum/reagent/consumable/sugar = 1)

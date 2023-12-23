@@ -850,6 +850,9 @@
 	isshared = TRUE
 	product_ads = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;You should have joined the Air Force if you wanted better food.;1200 calories in just a few bites!;Get that tabaso sauce to make it tasty!;Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork.; 9 Flavors of Protein!; You'll never guess the mystery flavor!"
 	products = list(
+		/obj/item/reagent_containers/food/snacks/mre_pack/xmas1 = 25,
+		/obj/item/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
+		/obj/item/reagent_containers/food/snacks/mre_pack/xmas3 = 25,
 		/obj/item/reagent_containers/food/snacks/protein_pack = -1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal1 = -1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal2 = -1,
@@ -857,9 +860,6 @@
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal4 = -1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = -1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = -1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/xmas1 = 25,
-		/obj/item/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
-		/obj/item/reagent_containers/food/snacks/mre_pack/xmas3 = 25,
 		/obj/item/storage/box/MRE = -1,
 		/obj/item/reagent_containers/food/drinks/flask/marine = -1,
 	)

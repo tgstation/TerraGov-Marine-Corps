@@ -1,7 +1,7 @@
 //Santa is back in town
 /datum/emergency_call/santa
 	name = "Santa's Workshop"
-	base_probability = 36
+	base_probability = 42
 	alignement_factor = 0
 
 
