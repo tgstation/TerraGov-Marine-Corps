@@ -4,11 +4,11 @@
 #define CLICK_CD_RANGE 4
 #define CLICK_CD_CLICK_ABILITY 6
 #define CLICK_CD_MELEE 8
+#define CLICK_CD_THROWING 4
 #define CLICK_CD_HANDCUFFED 10
 #define CLICK_CD_GRABBING 10
 #define CLICK_CD_RESIST 10
 #define CLICK_CD_LONG 20
-#define CLICK_CD_RESIST_PSYCHIC_GRAB 30
 #define CLICK_CD_BREAKOUT 100
 
 //Grab levels
@@ -219,3 +219,10 @@
 #define X_FIRE_LAYER 1
 #define X_TOTAL_LAYERS 9
 /////////////////////////////////
+
+//Cave comms defines
+#define CAVE_NO_INTERFERENCE 0 //! No impact on comms.
+#define CAVE_MINOR_INTERFERENCE 1 //! Scrambles outgoing messages, no impact on incoming.
+#define CAVE_FULL_INTERFERENCE 2 //! Prevents incoming and outgoing messages.
+
+#define ANTENNA_SYNCING_TIME 30 SECONDS //! Time needed to initially configure an antenna module after equipping.

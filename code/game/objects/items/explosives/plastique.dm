@@ -57,7 +57,7 @@
 	user.visible_message(span_warning("[user] is trying to plant [name] on [target]!"),
 	span_warning("You are trying to plant [name] on [target]!"))
 
-	if(do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_HOSTILE))
+	if(do_after(user, 2 SECONDS, NONE, target, BUSY_ICON_HOSTILE))
 		if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
 			to_chat(user, "[span_warning("There is already a device attached to [target]")].")
 			return
@@ -94,9 +94,7 @@
 		armed = TRUE
 		timer = target.plastique_time_mod(timer)
 
-		log_combat(user, target, "attached [src] to")
-		message_admins("[ADMIN_TPMONTY(user)] planted [src] on [target] at [ADMIN_VERBOSEJMP(target.loc)] with [timer] second fuse.")
-		log_explosion("[key_name(user)] planted [src] at [AREACOORD(user.loc)] with [timer] second fuse.")
+		log_bomber(user, "planted", src, "on [target] with a [timer] second fuse", message_admins = TRUE)
 
 		user.visible_message(span_warning("[user] plants [name] on [target]!"),
 		span_warning("You plant [name] on [target]! Timer counting down from [timer]."))
@@ -113,13 +111,7 @@
 
 /obj/item/explosive/plastique/attack_hand(mob/living/user)
 	if(armed)
-		to_chat(user, "<font color='warning'>Disarm [src] first to remove it!</font>")
-		return
-	return ..()
-
-/obj/item/explosive/plastique/attackby(obj/item/I, mob/user, params)
-	if(ismultitool(I) && armed)
-		if(!do_after(user, 2 SECONDS, TRUE, plant_target, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 2 SECONDS, NONE, plant_target, BUSY_ICON_HOSTILE))
 			return
 
 		if(ismovableatom(plant_target))
@@ -144,6 +136,7 @@
 		alarm_sounded = FALSE
 		plant_target = null
 		update_icon()
+	return ..()
 
 ///Handles the actual explosion effects
 /obj/item/explosive/plastique/proc/detonate()

@@ -247,7 +247,6 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/previous_amount = total_positions
 	total_positions += amount
 	manage_job_lists(previous_amount)
-	log_debug("[amount] positions were added to [src]. It has [total_positions] positions and [current_positions] were taken")
 	return TRUE
 
 /datum/job/proc/remove_job_positions(amount)
@@ -280,7 +279,7 @@ GLOBAL_PROTECT(exp_specialmap)
 // Spawning mobs.
 /mob/living/proc/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	job = assigned_role
-	skills = getSkillsType(job.return_skills_type(player?.prefs))
+	set_skills(getSkillsType(job.return_skills_type(player?.prefs)))
 	faction = job.faction
 	job.announce(src)
 	GLOB.round_statistics.total_humans_created[faction]++

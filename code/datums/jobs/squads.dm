@@ -227,7 +227,6 @@
 	new_squaddie.update_action_buttons()
 	new_squaddie.update_inv_head()
 	new_squaddie.update_inv_wear_suit()
-	log_manifest("[key_name(new_squaddie)] has been assigned as [name] [new_squaddie.job.title].")
 	return TRUE
 
 

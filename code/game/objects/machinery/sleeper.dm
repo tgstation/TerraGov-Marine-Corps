@@ -65,8 +65,8 @@
 					t1 = "<font color='#487553'>Unconscious</font>"
 				if(2)
 					t1 = "<font color='#b54646'>*dead*</font>"
-				else
-			dat += "[occupant.health > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"]\tHealth %: [occupant.health] ([t1])</FONT><BR>"
+			var/health_ratio = occupant.health * 100 / occupant.maxHealth
+			dat += "[health_ratio > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"]\tHealth %: [health_ratio] ([t1])</FONT><BR>"
 			if(ishuman(occupant))
 				if(connected.filtering)
 					dat += "<A href='?src=[text_ref(src)];togglefilter=1'>Stop Dialysis</A><BR>"
@@ -394,7 +394,8 @@
 			if(2)
 				t1 = "*dead*"
 			else
-		to_chat(user, "[occupant.health > 50 ? "<font color='#487553'> " : "<font color='#b54646'> "]\t Health %: [occupant.health] ([t1])</font>")
+		var/health_ratio = occupant.health * 100 / occupant.maxHealth
+		to_chat(user, "[health_ratio > 50 ? "<font color='#487553'> " : "<font color='#b54646'> "]\t Health %: [health_ratio] ([t1])</font>")
 		to_chat(user, "[occupant.bodytemperature > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"]\t -Core Temperature: [occupant.bodytemperature-T0C]&deg;C ([occupant.bodytemperature*1.8-459.67]&deg;F)</FONT><BR>")
 		to_chat(user, "[occupant.getBruteLoss() < 60 ? "<font color='#487553'> " : "<font class='#b54646'> "]\t -Brute Damage %: [occupant.getBruteLoss()]</font>")
 		to_chat(user, "[occupant.getOxyLoss() < 60 ? "<span color='#487553'> " : "<font color='#b54646'> "]\t -Respiratory Damage %: [occupant.getOxyLoss()]</font>")

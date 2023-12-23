@@ -1,6 +1,7 @@
 /obj/item/proc/embed_into(mob/living/target, target_zone, silent)
 	if(!target.embed_item(src, target_zone, silent))
 		return FALSE
+	forceMove(target)
 	embedded_into = target
 	RegisterSignal(embedded_into, COMSIG_MOVABLE_MOVED, PROC_REF(embedded_on_carrier_move))
 	RegisterSignals(src, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED), PROC_REF(embedded_on_move))
@@ -191,7 +192,7 @@
 
 	balloon_alert(user, "attempts to grip [selection]")
 
-	if(!do_after(user, selection.embedding.embedded_unsafe_removal_time, TRUE, src, BUSY_ICON_GENERIC) || QDELETED(selection) || !(selection in embedded_objects))
+	if(!do_after(user, selection.embedding.embedded_unsafe_removal_time, NONE, src, BUSY_ICON_GENERIC) || QDELETED(selection) || !(selection in embedded_objects))
 		return
 
 	if(self)

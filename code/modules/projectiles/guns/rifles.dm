@@ -975,7 +975,6 @@
 	default_ammo_type = /obj/item/ammo_magazine/standard_gpmg
 	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_gpmg)
 	attachable_allowed = list(
-		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight/under,
@@ -1017,7 +1016,7 @@
 	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/reddot)
 
 /obj/item/weapon/gun/rifle/standard_gpmg/machinegunner
-	starting_attachment_types = list(/obj/item/attachable/stock/t60stock, /obj/item/attachable/foldable/bipod, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel)
+	starting_attachment_types = list(/obj/item/attachable/stock/t60stock, /obj/item/attachable/foldable/bipod, /obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel)
 
 //-------------------------------------------------------
 //M41AE2 Heavy Pulse Rifle
@@ -1687,7 +1686,7 @@
 	unload_sound = 'sound/weapons/guns/interact/t21_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/t21_reload.ogg'
 	caliber = CALIBER_10X25_CASELESS //codex
-	max_shells = 30 //codex
+	max_shells = 40 //codex
 	force = 20
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_skirmishrifle
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_skirmishrifle)

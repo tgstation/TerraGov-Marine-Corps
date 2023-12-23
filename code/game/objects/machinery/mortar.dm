@@ -213,7 +213,7 @@
 		span_notice("You start loading \a [mortar_shell.name] into [src]."))
 		playsound(loc, reload_sound, 50, 1)
 		busy = TRUE
-		if(!do_after(user, reload_time, TRUE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, reload_time, NONE, src, BUSY_ICON_HOSTILE))
 			busy = FALSE
 			return
 
@@ -629,7 +629,7 @@
 		span_notice("You start loading \a [mortar_shell.name] into [src]."))
 		playsound(loc, reload_sound, 50, 1)
 		busy = TRUE
-		if(!do_after(user, reload_time, TRUE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, reload_time, NONE, src, BUSY_ICON_HOSTILE))
 			busy = FALSE
 			return
 

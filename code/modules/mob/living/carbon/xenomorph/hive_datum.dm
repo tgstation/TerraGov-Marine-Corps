@@ -203,7 +203,7 @@
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/xeno_user = user
 		var/datum/xeno_caste/caste = xeno_user.xeno_caste
-		.["user_purchase_perms"] = (/datum/action/xeno_action/blessing_menu in caste.actions)
+		.["user_purchase_perms"] = (/datum/action/ability/xeno_action/blessing_menu in caste.actions)
 
 /datum/hive_status/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -1023,7 +1023,6 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	log_game("[key_name(xeno_candidate)] has joined as [new_xeno] at [AREACOORD(new_xeno.loc)].")
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	log_debug("A larva was spawned, it was [larva_already_reserved ? "already" : "not"] reserved. There is now [xeno_job.total_positions] total xeno positions and [xeno_job.current_positions] were taken.")
 	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(new_xeno)].")
 
 	xeno_candidate.mob.mind.transfer_to(new_xeno, TRUE)

@@ -2724,11 +2724,6 @@
 /obj/machinery/light,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
-"axF" = (
-/obj/structure/barricade/wooden,
-/obj/structure/barricade/wooden,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/n)
 "axP" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -12289,12 +12284,6 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
-"mlh" = (
-/obj/machinery/flasher/portable,
-/turf/open/floor/tile/vault{
-	dir = 8
-	},
-/area/bigredv2/outside/marshal_office)
 "mmd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -35442,7 +35431,7 @@ gCQ
 gzM
 gzM
 acp
-mlh
+pUl
 nQj
 pUl
 nQj
@@ -36988,7 +36977,7 @@ gzM
 gzM
 gzM
 gzM
-axF
+aqO
 aqO
 gzM
 gQv

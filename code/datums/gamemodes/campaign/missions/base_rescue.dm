@@ -10,6 +10,7 @@
 	map_light_levels = list(225, 150, 100, 75)
 	objectives_total = 1
 	min_destruction_amount = 1
+	max_game_time = 15 MINUTES
 	shutter_open_delay = list(
 		MISSION_STARTING_FACTION = 60 SECONDS,
 		MISSION_HOSTILE_FACTION = 0,
@@ -144,6 +145,11 @@
 		icon_state = initial(icon_state)
 	else
 		icon_state = "[initial(icon_state)]_open"
+
+/obj/structure/weapon_x_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X != occupant)
+		return
+	release_occupant()
 
 ///Releases the occupant and tries to find a ghost
 /obj/structure/weapon_x_pod/proc/attempt_open(source, color)
