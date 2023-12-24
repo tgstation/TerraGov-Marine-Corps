@@ -3213,7 +3213,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "plasma_big"
 	hud_state = "plasma_blast"
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
-	damage = 45
+	damage = 30
 	penetration = 20
 	sundering = 2
 	damage_falloff = 0.15
