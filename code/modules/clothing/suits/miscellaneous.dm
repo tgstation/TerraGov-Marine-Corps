@@ -49,6 +49,10 @@
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 60, BULLET = 90, LASER = 60, ENERGY = 20, BOMB = 25, BIO = 10, FIRE = 20, ACID = 20)
 
+/obj/item/clothing/suit/hgpirate/noarmor
+	name = "tattered pirate captain coat"
+	flags_item = NONE
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/suit/cyborg_suit
 	name = "cyborg suit"
