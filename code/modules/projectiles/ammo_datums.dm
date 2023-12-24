@@ -3277,7 +3277,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 /datum/ammo/energy/plasma/cannon_glob
-	name = "Plasma Glob"
+	name = "plasma glob"
 	damage = 10
 	penetration = 100
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ENERGY|AMMO_INCENDIARY
