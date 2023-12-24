@@ -3260,6 +3260,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0.75
 
 /datum/ammo/energy/plasma/cannon_heavy
+	name = "plasma heavy glob"
 	icon_state = "plasma_ball_big"
 	hud_state = "plasma_sphere"
 	damage = 120
@@ -3267,7 +3268,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 10
 	damage_falloff = 1
 	shell_speed = 4
-	var/shatter_duration = 15 SECONDS
+	///shatter effection duration when hitting mobs
+	var/shatter_duration = 10 SECONDS
 
 /datum/ammo/energy/plasma/cannon_heavy/on_hit_mob(mob/M, obj/projectile/proj)
 	if(!isliving(M))

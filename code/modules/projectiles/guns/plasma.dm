@@ -16,7 +16,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle
 	name = "\improper PL-38 plasma rifle"
-	desc = "The PL-96 Plasma Cannon is an experimental addition to the TerraGov Marine Corps arsenal, rumored to be the child of some back door contract deals, it is a versatile weapon if you mind the rather cheap cooling systems. It has a normal beam mode similar to a rifle, a hipower mode that easily pierces through soft targets, and a blast mode that will easily melt through the armor of anything hit by it."
+	desc = "The PL-38 Plasma Rifle is an experimental addition to the TerraGov Marine Corps arsenal, rumored to be the child of some back door contract deals, it is a versatile weapon if you mind the rather cheap cooling systems. It has a normal beam mode similar to a rifle, a hipower mode that easily pierces through soft targets, and a blast mode that will easily melt through the armor of anything hit by it."
 	icon_state = "plasma_rifle"
 	item_state = "plasma_rifle"
 	flags_equip_slot = ITEM_SLOT_BACK
