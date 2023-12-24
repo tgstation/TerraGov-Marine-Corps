@@ -1158,7 +1158,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	airburst_multiplier = 0.5
 
 /datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/projectile/proj)
-	staggerstun(victim, proj,  max_range = 30, slowdown = 2)
+	staggerstun(victim, proj,  max_range = 30)
 	airburst(victim, proj)
 
 /datum/ammo/bullet/sniper/svd
