@@ -2,7 +2,7 @@
 /datum/round_event_control/santa_visit
 	name = "Santa Visit"
 	typepath = /datum/round_event/santa_visit
-	weight = 30
+	weight = 55
 	earliest_start = 30 MINUTES
 	max_occurrences = 1
 
