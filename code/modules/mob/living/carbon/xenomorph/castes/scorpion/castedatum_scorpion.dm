@@ -41,5 +41,5 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/activable/xeno/xeno_spit,
-		/datum/action/ability/activable/xeno/corrosive_acid/drone
+		/datum/action/ability/activable/xeno/corrosive_acid/drone,
 	)
