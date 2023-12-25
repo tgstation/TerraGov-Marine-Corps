@@ -11,12 +11,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"aF" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
 "bp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -3022,7 +3016,7 @@ dO
 IX
 vo
 IX
-aF
+IX
 dO
 dO
 Jd

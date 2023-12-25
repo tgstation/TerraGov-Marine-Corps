@@ -558,9 +558,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 8
-	},
 /turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
@@ -4794,9 +4791,6 @@
 "zq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 8
 	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 1

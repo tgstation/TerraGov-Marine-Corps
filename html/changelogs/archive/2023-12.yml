@@ -181,3 +181,15 @@
 2023-12-22:
   yyzsong:
   - balance: Emplaced guns (such as the mg27) may now be jumped over.
+2023-12-23:
+  Helg2:
+  - bugfix: deleted some garbage on Big Red.
+  ivanmixo:
+  - bugfix: You cannot melt sticky resin anymore
+2023-12-25:
+  Pariah919:
+  - rscadd: Added new SG-62 Ammo Boxes to refill mags with. 200 rounds per box.
+  TiviPlus:
+  - rscadd: Added some voicelines to CAS
+  yyzsong:
+  - code_imp: shrike code comment now says 3x3 instead of 2x3
