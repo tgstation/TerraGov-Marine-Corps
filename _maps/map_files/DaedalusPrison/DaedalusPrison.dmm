@@ -7680,10 +7680,6 @@
 /obj/item/organ/xenos/eggsac,
 /turf/open/shuttle/dropship/floor,
 /area/daedalusprison/inside/pmcdropship)
-"gsZ" = (
-/obj/structure/window/framed/prison/reinforced,
-/turf/open/space/basic,
-/area/daedalusprison/inside/execution)
 "gto" = (
 /obj/machinery/disposal,
 /turf/open/floor/tile/green/greentaupe{
@@ -61039,7 +61035,7 @@ hMi
 sUN
 rCV
 aHK
-gsZ
+ups
 cpA
 nKy
 nKy
@@ -61251,7 +61247,7 @@ hMi
 sUN
 rCV
 gMD
-gsZ
+ups
 wXk
 pmT
 oNm
@@ -61463,7 +61459,7 @@ txc
 eJd
 eGz
 ryH
-gsZ
+ups
 wXk
 wXk
 wXk
@@ -61675,7 +61671,7 @@ adP
 cEQ
 egI
 ryH
-gsZ
+ups
 wXk
 kIV
 pNJ
