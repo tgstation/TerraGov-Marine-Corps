@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - bugfix: "Fixes the Magnum being available in Crash outside of the SL vendor."
