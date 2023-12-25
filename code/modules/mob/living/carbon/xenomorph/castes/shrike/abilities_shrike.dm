@@ -180,7 +180,7 @@
 			lower_left = locate(owner.x + 1, owner.y - 1, owner.z)
 			upper_right = locate(owner.x + 3, owner.y + 1, owner.z)
 
-	for(var/turf/affected_tile in block(lower_left, upper_right)) //everything in the 2x3 block is found.
+	for(var/turf/affected_tile in block(lower_left, upper_right)) //everything in the 3x3 block is found.
 		affected_tile.Shake(duration = 0.5 SECONDS)
 		for(var/i in affected_tile)
 			var/atom/movable/affected = i

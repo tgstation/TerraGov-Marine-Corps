@@ -178,3 +178,11 @@
       while they are full.
   ivanmixo:
   - balance: Added a delay to throwing
+2023-12-22:
+  yyzsong:
+  - balance: Emplaced guns (such as the mg27) may now be jumped over.
+2023-12-23:
+  Helg2:
+  - bugfix: deleted some garbage on Big Red.
+  ivanmixo:
+  - bugfix: You cannot melt sticky resin anymore
