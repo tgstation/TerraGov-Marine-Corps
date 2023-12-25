@@ -8,11 +8,13 @@
 	var/list/ability_list = list()
 	///If the mob parent can heal itself and so should flee
 	var/can_heal = TRUE
+	var/can_attack = TRUE
 
 /datum/ai_behavior/xeno/New(loc, parent_to_assign, escorted_atom, can_heal = TRUE)
 	..()
 	refresh_abilities()
-	mob_parent.a_intent = INTENT_HARM //Killing time
+	if(can_attack == TRUE)
+		mob_parent.a_intent = INTENT_HARM //Killing time
 	src.can_heal = can_heal
 
 /datum/ai_behavior/xeno/start_ai()
@@ -165,6 +167,8 @@
 	mob_parent.UnarmedAttack(attacked, TRUE)
 
 /datum/ai_behavior/xeno/register_action_signals(action_type)
+	if(can_attack == FALSE)
+		return ..()
 	switch(action_type)
 		if(MOVING_TO_ATOM)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(attack_target))
@@ -174,7 +178,6 @@
 			if(ismachinery(atom_to_walk_to))
 				RegisterSignal(atom_to_walk_to, COMSIG_PREQDELETED, TYPE_PROC_REF(/datum/ai_behavior, look_for_new_state))
 				return
-
 	return ..()
 
 /datum/ai_behavior/xeno/unregister_action_signals(action_type)
@@ -243,3 +246,9 @@
 /datum/ai_behavior/xeno/ranged
 	distance_to_maintain = 5
 	minimum_health = 0.3
+
+/datum/ai_behavior/xeno/hiveling
+	can_attack = FALSE
+	distance_to_maintain = 5
+	minimum_health = 0 //if it checks for health, itll cause bugs cause bozo cant rest
+	sidestep_prob = 10

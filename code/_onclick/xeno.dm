@@ -39,3 +39,11 @@
 
 /atom/proc/attack_hivemind(mob/living/carbon/xenomorph/hivemind/attacker)
 	return
+
+/mob/living/carbon/xenomorph/hiveling/UnarmedAttack(atom/A, has_proximity, modifiers)
+	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
+		return
+	A.attack_hiveling(src)
+
+/atom/proc/attack_hiveling(mob/living/carbon/xenomorph/hiveling/attacker)
+	return

@@ -99,3 +99,9 @@
 /mob/living/carbon/xenomorph/nymph/ai/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
+
+/mob/living/carbon/xenomorph/hiveling/ai
+
+/mob/living/carbon/xenomorph/hiveling/ai/Initialize()
+	. = ..()
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/hiveling)

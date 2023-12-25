@@ -203,3 +203,9 @@
 /* Hivelord walls, they start off stronger */
 /turf/closed/wall/resin/regenerating/thick
 	max_integrity = 250
+
+
+/* Hiveling walls, they take 3 boot knife hits to kill on creation versus 5+*/
+/turf/closed/wall/resin/regenerating/weak
+	max_integrity = 85
+
