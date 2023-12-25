@@ -65,8 +65,6 @@
 	if(!repairing)
 		return
 
-	update_icon()
-
 //This proc handles the actual repair once the timer is up, ejection of the healed robot and radio message of ejection.
 /obj/machinery/robotic_cradle/proc/repair_op()
 	if(QDELETED(occupant) || occupant.stat == DEAD)
