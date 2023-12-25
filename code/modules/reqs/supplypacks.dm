@@ -961,6 +961,18 @@ EXPLOSIVES
 	cost = 60
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/explosives/baby_mortar
+	name = "T-11K Knee Mortar"
+	contains = list(/obj/item/weapon/gun/baby_mortar)
+	cost = 125
+
+/datum/supply_packs/explosives/baby_mortar_ammo
+	name = "TA-11K knee mortar HE shell"
+	contains = list(/obj/item/ammo_magazine/baby_mortar)
+	cost = 2
+	available_against_xeno_only = TRUE
+
+
 /datum/supply_packs/explosives/ai_target_module
 	name = "AI artillery targeting module"
 	contains = list(/obj/item/ai_target_beacon)

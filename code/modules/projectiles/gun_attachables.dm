@@ -757,6 +757,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/scope/unremovable/baby_mortar
 	name = "TA-11 Sight System"
 	desc = "An unremovable ranging system of a TA-11 Mortar System."
+	icon_state = "sniperscope_invisible"
 	aim_speed_mod = 0
 	wield_delay_mod = 0
 	zoom_tile_offset = 13

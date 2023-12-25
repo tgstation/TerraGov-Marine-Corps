@@ -222,36 +222,6 @@ The Grenade Launchers
 	allowed_ammo_types = list(/obj/item/explosive/grenade/chem_grenade)
 	req_access = list(ACCESS_MARINE_BRIG)
 
-/obj/item/weapon/gun/baby_mortar
-	name = "\improper TA-11 knee mortar"
-	desc = "A manual, crew-operated mortar system intended to rain down 50mm shells on anything it's aimed at, typically best known as a 'Knee' mortar. Due to recent advancements in tech, it can be actually fired from your kneecaps, so it does not need to be set down first to fire. Has a light payload, but an extremely high rate of fire. Is aimed like a regular weapon, has a high minimum range and is aimed like a normal weapon."
-	icon = 'icons/Marine/mortar.dmi' //Its a mortar, it goes in mortars.
-	icon_state = "baby_mortar"
-	item_state = "baby_mortar"
-	caliber = CALIBER_50MM
-	max_shells = 1 //codex
-	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
-	wield_delay = 0.2 SECONDS
-	aim_slowdown = 1
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
-	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/baby_mortar
-	)
-	attachable_allowed = list(/obj/item/attachable/scope/unremovable/baby_mortar)
-	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/baby_mortar)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-	fire_delay = 3 SECONDS
-	windup_delay = 1 SECONDS
-	max_chamber_items = 1
-
-/obj/item/weapon/gun/baby_mortar/able_to_fire(mob/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(get_dist(target, gun_user) <= 7)
-		to_chat(gun_user, span_warning("[src] beeps a warning noise. You are too close!"))
-		return FALSE
-
 /obj/item/weapon/gun/grenade_launcher/single_shot/flare
 	name = "flare gun"
 	desc = "A gun that fires flares. Replace with flares. Simple! Equipped with long range irons."

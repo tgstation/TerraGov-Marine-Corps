@@ -853,3 +853,28 @@
 	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
 	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
+/obj/item/storage/holster/belt/mortar_belt
+	name = "TA-10 mortar belt"
+	desc = "A belt that holds a TA-10 50mm Mortar, rangefinder and a lot of ammo for it."
+	icon_state = "mortar_holster"
+	item_state = "m4a3_holster"
+	storage_type_limits = list(
+		/obj/item/binoculars = 1,
+		/obj/item/compass = 1,
+	)
+	storage_slots = 24
+	max_storage_space = 49
+	holsterable_allowed = list(/obj/item/weapon/gun/baby_mortar)
+
+	can_hold = list(
+		/obj/item/ammo_magazine/baby_mortar,
+		/obj/item/weapon/gun/baby_mortar,
+		/obj/item/compass,
+		/obj/item/binoculars,
+	)
+
+/obj/item/storage/holster/belt/mortar_belt/full/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/baby_mortar(src)
+	new /obj/item/binoculars/tactical/range(src)

@@ -2601,6 +2601,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	new /obj/effect/temp_visual/above_flare(T)
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
 
+/datum/ammo/mortar/baby
+	name = "60mm shell"
+
+/datum/ammo/mortar/baby/drop_nade(turf/T)
+	explosion(T, 0, 1, 2, 3, 0)
+	playsound(T, 'sound/weapons/guns/misc/babymortar_whistle.ogg')
+
 /datum/ammo/mortar/howi
 	name = "150mm shell"
 	icon_state = "howi"

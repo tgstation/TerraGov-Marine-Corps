@@ -440,10 +440,12 @@
 	icon_state_mini = "mag_dmr"
 
 /obj/item/ammo_magazine/baby_mortar
-	name = "50mm mortar"
+	name = "50mm high-explosive mortar shell"
 	desc = "A two piece mortar shell."
+	w_class = WEIGHT_CLASS_TINY
 	caliber = CALIBER_50MM
+	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
 	icon_state = "knee_he"
-	default_ammo = /datum/ammo/mortar
+	default_ammo = /datum/ammo/mortar/baby
 	max_rounds = 1
-	reload_delay = 20
+	reload_delay = 0.15 SECONDS
