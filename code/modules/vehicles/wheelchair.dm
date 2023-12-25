@@ -67,9 +67,7 @@
 /obj/vehicle/ridden/wheelchair/proc/make_ridable()
 	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/wheelchair)
 
-
-
-/* Battlechair - A wheelchair with a mounted minigun */
+// Battlechair - A wheelchair with a mounted minigun
 /obj/vehicle/ridden/wheelchair/weaponized
 	name = "\improper Battlechair"
 	desc = "A sturdy wheelchair fitted with a minigun. Your legs may have failed you, but your weapon won't."
@@ -80,8 +78,9 @@
 
 /obj/vehicle/ridden/wheelchair/weaponized/examine(mob/user)
 	. = ..()
-	. += span_notice("Drag to yourself to unload the mounted weapon.")
+	. += "It has a [weapon.name] attached."
 	. += "Ammo: [span_bold("[weapon.rounds]/[weapon.max_rounds]")]"
+	. += span_notice("Drag to yourself to unload the mounted weapon.")
 
 /obj/vehicle/ridden/wheelchair/weaponized/Initialize(mapload)
 	. = ..()
@@ -110,11 +109,6 @@
 	. = ..()
 	if(istype(M))
 		REMOVE_TRAIT(weapon, TRAIT_NODROP, WHEELCHAIR_TRAIT)
-		/*
-		doUnEquip doesn't work so
-		Also the gun's dropped() has the code that returns it to the chair
-		It was necessary to do this to account for edge cases like the user's arm being cut off; no need for an extra forceMove() here
-		*/
 		M.dropItemToGround(weapon)
 
 //If the rider doesn't have the weapon equipped and clicks the wheelchair, equip them with it instead of unbuckling

@@ -464,7 +464,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	movement_acc_penalty_mult = 0
 
 	//A reference to whatever this gun is mounted to for dropped()
-	var/mount
+	var/obj/mount
 
 /obj/item/weapon/gun/minigun/wheelchair/Destroy()
 	mount = null
@@ -473,6 +473,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 //This will account for cases like if the user's hand is cut off, return it to the object it was mounted on
 /obj/item/weapon/gun/minigun/wheelchair/dropped(mob/user)
 	. = ..()
+	visible_message(span_warning("[src] violently snaps back into it's place in [mount]!"))
 	forceMove(mount)
 
 //So that it displays the minigun on the mob as if always wielded
