@@ -3,7 +3,6 @@
 	display_name = "Hiveling"
 	upgrade_name = ""
 	caste_desc = ""
-	wound_type = ""
 
 	caste_type_path = /mob/living/carbon/xenomorph/hiveling
 
