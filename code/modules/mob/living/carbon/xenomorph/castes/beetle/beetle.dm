@@ -13,6 +13,15 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	pull_speed = -2
 
+// ***************************************
+// *********** Icon
+// ***************************************
+/mob/living/carbon/xenomorph/beetle/handle_special_state()
+	if(crest_defense)
+		icon_state = "[xeno_caste.caste_name] Crest"
+		return TRUE
+	return FALSE
+
 /mob/living/carbon/xenomorph/beetle/Bump(atom/A)
 	if(!throwing || !throw_source || !thrower)
 		return ..()

@@ -21,19 +21,25 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 260
+	max_health = 250
 
 	// *** Flags *** //
 	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
 	caste_traits = null
 
+	// *** Beetle Abilities *** //
+	crest_defense_armor = 25
+	crest_defense_slowdown = 1
+
 	// *** Defense *** //
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 25, ENERGY = 20, BOMB = 20, BIO = 20, FIRE = 30, ACID = 20)
+	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 25, BIO = 25, FIRE = 25, ACID = 25)
 
 	minimap_icon = "xenominion"
+
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/activable/xeno/forward_charge/unprecise,
+		/datum/action/ability/xeno_action/toggle_crest_defense,
 	)
