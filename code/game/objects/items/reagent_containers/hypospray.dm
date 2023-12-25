@@ -70,6 +70,9 @@
 	if(!reagents.total_volume)
 		balloon_alert(user, "Hypospray is Empty.")
 		return
+	if(is_species(A, /datum/species/robot) || is_species(A, /datum/species/synthetic) || is_species(A, /datum/species/early_synthetic))
+		A.balloon_alert(user, "Can't inject (robot)")
+		return
 	if(!A.is_injectable() && !ismob(A))
 		A.balloon_alert(user, "Can't fill.")
 		return
