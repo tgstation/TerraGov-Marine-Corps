@@ -2111,10 +2111,9 @@ FACTORY
 	contains = list(/obj/item/factory_refill/smartgunner_machinegun_magazine_refill)
 	cost = 250
 
-
 /datum/supply_packs/factory/smartgun_targetrifle_refill
-	name = "SG-62 ammo drum parts refill"
-	contains = list(/datum/supply_packs/factory/smartgun_magazine_refill)
+	name = "SG-62 ammo magazine parts refill"
+	contains = list(/obj/item/factory_refill/smartgunner_targetrifle_magazine_refill)
 	cost = 250
 
 /datum/supply_packs/factory/autosniper_magazine_refill
