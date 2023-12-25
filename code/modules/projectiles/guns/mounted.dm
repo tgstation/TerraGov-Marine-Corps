@@ -679,9 +679,7 @@
 	aim_slowdown = 1
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_ROTATE_ANCHORED
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
-	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/baby_mortar
-	)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/baby_mortar)
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/baby_mortar)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/baby_mortar)
 	deployable_item = /obj/machinery/deployable/mounted/baby_mortar
