@@ -2724,11 +2724,6 @@
 /obj/machinery/light,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
-"axF" = (
-/obj/structure/barricade/wooden,
-/obj/structure/barricade/wooden,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/n)
 "axP" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -36982,7 +36977,7 @@ gzM
 gzM
 gzM
 gzM
-axF
+aqO
 aqO
 gzM
 gQv

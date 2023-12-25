@@ -276,6 +276,12 @@
 	for(var/i in GLOB.quick_loadouts)
 		var/datum/outfit/quick/outfit = GLOB.quick_loadouts[i]
 		outfit.quantity = initial(outfit.quantity)
+	for(var/mob/living/carbon/human/corpse AS in GLOB.dead_human_list) //clean up all the bodies and refund normal roles if required
+		if(corpse.z != mission_z_level)
+			continue
+		if(!HAS_TRAIT(corpse, TRAIT_UNDEFIBBABLE) && corpse.job.job_cost)
+			corpse.job.add_job_positions(1)
+		qdel(corpse)
 
 ///Unregisters all signals when the mission finishes
 /datum/campaign_mission/proc/unregister_mission_signals()

@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(advanced_pathfinding)
-	name = "Advanced_pathfinding"
+	name = "Advanced Pathfinding"
 	priority = FIRE_PRIORITY_ADVANCED_PATHFINDING
 	wait = 1 SECONDS
 	///List of ai_behaviour datum asking for a tile pathfinding
