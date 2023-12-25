@@ -108,6 +108,8 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/beetle,
 	/mob/living/carbon/xenomorph/mantis,
 	/mob/living/carbon/xenomorph/scorpion,
+	/mob/living/carbon/xenomorph/nymph,
+	/mob/living/carbon/xenomorph/hiveling,
 	/mob/living/carbon/xenomorph/spiderling,
 	))
 GLOBAL_LIST_INIT(xeno_types_tier_one, list(/mob/living/carbon/xenomorph/runner, /mob/living/carbon/xenomorph/drone, /mob/living/carbon/xenomorph/sentinel, /mob/living/carbon/xenomorph/defender, /mob/living/carbon/xenomorph/baneling))
