@@ -87,7 +87,7 @@
 			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 			personal_statistics.weeds_planted++
 		weednode_countdown += 4 //reset the countdown to 4
-		return succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? planting_node/2 : planting_node)
+		return succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? cost_per_node/2 : cost_per_node)
 	new /obj/alien/weeds(T)
 	playsound(T, "alien_resin_move_2", 35) //louder cause its placement
 	weednode_countdown -= 1 //ticks down the countdown by 1
