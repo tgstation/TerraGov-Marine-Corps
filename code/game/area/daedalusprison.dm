@@ -99,10 +99,6 @@
 	name = "Northern Grounds"
 	icon_state = "north"
 
-/area/daedalusprison/outside/northwest
-	name = "Northwestern Grounds"
-	icon_state = "northwest"
-
 //Inside area parent, not used.
 /area/daedalusprison/inside
 	name = "Inside"
@@ -155,21 +151,26 @@
 	icon_state = "decontamination"
 	minimap_color = MINIMAP_AREA_CELL_MED
 
-/area/daedalusprison/inside/habitation
-	name = "Prison Habitation"
-	icon_state = "cells_med_w"
+/area/daedalusprison/inside/habitationnorth
+	name = "Prison North Habitation"
+	icon_state = "cells_med_n"
 	minimap_color = MINIMAP_AREA_CELL_MED
+
+/area/daedalusprison/inside/habitationsouth
+	name = "Prison South Habitation"
+	icon_state = "cells_med_s"
+	minimap_color = MINIMAP_AREA_CELL_MED
+
+/area/daedalusprison/inside/studyroom
+	name = "Prison Study Room"
+	icon_state = "library"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/daedalusprison/inside/mining
 	name = "Prison Mineral Processing"
 	icon_state = "mining"
+	ceiling = CEILING_OBSTRUCTED
 	minimap_color = MINIMAP_AREA_CELL_MED
-
-/area/daedalusprison/inside/abandonedstorage
-	name = "Abandoned Storage"
-	icon_state = "auxstorage"
-	minimap_color = MINIMAP_AREA_REQ
-	always_unpowered = TRUE
 
 /area/daedalusprison/inside/westernbooth
 	name = "Prison Western Security Booth"
