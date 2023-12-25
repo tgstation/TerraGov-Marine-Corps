@@ -17,7 +17,7 @@
 
 /datum/action/ability/activable/xeno/weedwalker
 	name = "Weed Walker"
-	action_icon_state = "spawn_pod"
+	action_icon_state = "weedwalker_off"
 	ability_cost = 75
 	desc = "Spread weeds while you move, placing a pod every 5 tiles"
 	var/cost_per_tile = 25
@@ -32,11 +32,16 @@
 		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 		to_chat(owner, span_xenonotice("We will no longer automatically spread weeds as we move."))
 		weeding_active = FALSE
+		action_icon_state = "weedwalker_off"
+		update_button_icon()
 		return
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(weeding_tiles_on_move))
 	to_chat(owner, span_xenonotice("We will now automatically spread weeds as we move."))
 	weeding_active = TRUE
+	action_icon_state = "weedwalker_on"
+	update_button_icon()
 	return ..()
+
 
 ///Used for performing automatic weeding
 /datum/action/ability/activable/xeno/weedwalker/proc/weeding_tiles_on_move(datum/source)
