@@ -92,6 +92,13 @@
 /area/riptide/caves/south/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
+/area/riptide/caves/syndicatemining
+	name = "Abandoned Quarry"
+	icon_state = "security_sub"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
+	always_unpowered = FALSE
+
 //Outside Area
 /area/riptide/outside
 	name = "Colony Grounds"
