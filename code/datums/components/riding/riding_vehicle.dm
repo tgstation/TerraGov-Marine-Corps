@@ -124,7 +124,7 @@
 	set_vehicle_dir_layer(WEST, OBJ_LAYER)
 
 /datum/component/riding/vehicle/wheelchair/weaponized
-	vehicle_move_delay = 2.5
+	vehicle_move_delay = 5
 
 /datum/component/riding/vehicle/motorbike
 	vehicle_move_delay = 2

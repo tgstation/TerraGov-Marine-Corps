@@ -451,6 +451,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_wheelchair)
 	obj_flags = NONE	//Do not affect autobalance
 	flags_item = NONE	//To remove wielding
+	flags_equip_slot = NONE
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE|AMMO_RECIEVER_MAGAZINES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)

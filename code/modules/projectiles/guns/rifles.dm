@@ -517,7 +517,12 @@
 	scatter = 0
 	fire_delay = 0.2 SECONDS
 
-
+/obj/item/weapon/gun/rifle/m41a/magharness
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/m41a,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
+	)
 
 //-------------------------------------------------------
 

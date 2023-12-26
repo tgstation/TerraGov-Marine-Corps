@@ -434,6 +434,7 @@
 	icon_state = "minigun"
 	flags_atom = CONDUCT
 	flags_magazine = MAGAZINE_REFILLABLE
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	default_ammo = /datum/ammo/bullet/minigun
 	current_rounds = 1000
