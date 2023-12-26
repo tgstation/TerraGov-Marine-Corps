@@ -21745,7 +21745,6 @@
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/plasmaloss,
 /obj/structure/ob_ammo/warhead/plasmaloss,
-/obj/structure/ob_ammo/warhead/plasmaloss,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -22264,7 +22263,6 @@
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/cluster,
 /obj/structure/ob_ammo/warhead/cluster,
-/obj/structure/ob_ammo/warhead/cluster,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -22617,7 +22615,6 @@
 /area/sulaco/research)
 "sgH" = (
 /obj/structure/rack,
-/obj/structure/ob_ammo/warhead/explosive,
 /obj/structure/ob_ammo/warhead/explosive,
 /obj/structure/ob_ammo/warhead/explosive,
 /obj/machinery/light/mainship/small{
@@ -25020,7 +25017,6 @@
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/incendiary,
 /obj/structure/ob_ammo/warhead/incendiary,
-/obj/structure/ob_ammo/warhead/incendiary,
 /obj/machinery/camera/autoname,
 /turf/open/floor/prison/red{
 	dir = 1
@@ -25838,6 +25834,12 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
 "wjX" = (
+/obj/structure/rack,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
 /turf/open/floor/prison/red{
 	dir = 4
 	},
@@ -25916,6 +25918,17 @@
 /obj/machinery/firealarm{
 	dir = 8
 	},
+/obj/structure/rack,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
 /turf/open/floor/prison/red{
 	dir = 4
 	},
