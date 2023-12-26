@@ -24,6 +24,7 @@
 	l_store = /obj/item/storage/pouch/medkit/firstaid
 	r_store = /obj/item/storage/holster/flarepouch/full
 	suit_store = /obj/item/weapon/gun/rifle/m41a/magharness
+	ears = /obj/item/radio/headset/distress/retired
 
 /datum/outfit/job/retired/post_equip(mob/living/carbon/human/H, visualsOnly)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_BELT)
