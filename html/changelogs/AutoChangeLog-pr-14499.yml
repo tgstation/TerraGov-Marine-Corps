@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - qol: "Misc fixes to both crash ships"
+  - balance: "The HSG nest has been removed from crash ships"
