@@ -171,6 +171,11 @@
 /// Handles the playing of the Orbital Bombardment incoming sound and other visual and auditory effects of the cannon, usually a spiraling whistle noise but can be overridden.
 /obj/structure/orbital_cannon/proc/handle_ob_firing_effects(target, ob_sound = 'sound/effects/OB_incoming.ogg')
 	flick("OBC_firing",src)
+	for(var/mob/living/current_mob AS in GLOB.mob_living_list)
+		if(!current_mob || !is_mainship_level(current_mob.z))
+			continue
+		shake_camera(current_mob, 0.7 SECONDS)
+		to_chat(current_mob, span_warning("The deck of the [SSmapping.configs[SHIP_MAP].map_name] shudders as it's orbital cannon opens fire."))
 	playsound(loc, 'sound/effects/obfire.ogg', 100, FALSE, 20, 4)
 	for(var/mob/M AS in hearers(WARHEAD_FALLING_SOUND_RANGE, target))
 		M.playsound_local(target, ob_sound, falloff = 2)
