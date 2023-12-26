@@ -2099,6 +2099,12 @@
 	screen_overlay = "solar"
 	broken_icon = "computer_blue_broken"
 
+/obj/structure/prop/sandman
+	name = "sandman"
+	desc = "Contrary to popular belief, you can't enter these."
+	icon = 'icons/obj/structures/jungle.dmi'
+	icon_state = "sandman"
+
 /obj/structure/prop/mainship/errorprop
 	name = "ERROR"
 	desc = "If you see this object in game you should ahelp, something has broken."
