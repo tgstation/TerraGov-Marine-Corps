@@ -9616,9 +9616,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "mgE" = (
-/obj/structure/rack,
-/obj/item/pizzabox/meat,
-/obj/item/facepaint/green,
+/obj/machinery/vending/marineFood,
 /turf/open/floor/mainship/green{
 	dir = 4
 	},
@@ -11743,6 +11741,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "oSs" = (
+/obj/structure/rack,
+/obj/item/pizzabox/meat,
+/obj/item/facepaint/green,
 /obj/machinery/light/mainship{
 	dir = 4
 	},

@@ -16623,9 +16623,7 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint3)
 "ktu" = (
-/obj/machinery/air_alarm{
-	dir = 4
-	},
+/obj/machinery/vending/marineFood,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "ktX" = (
@@ -17572,6 +17570,12 @@
 /obj/structure/cable,
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_1)
+"lFQ" = (
+/obj/machinery/air_alarm{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/sulaco/cargo)
 "lGM" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/warning{
@@ -51125,7 +51129,7 @@ rvC
 vvG
 qZW
 nPU
-wsa
+lFQ
 hCz
 uDh
 whV
