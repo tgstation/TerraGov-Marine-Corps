@@ -377,9 +377,6 @@
 /obj/effect/decal/cleanable/generic,
 /turf/open/floor/tile/dark,
 /area/riptide/inside/medical/offices)
-"apS" = (
-/turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/riptide/caves/rock)
 "apW" = (
 /turf/open/floor/plating/ground/mars/random/cave/darker{
 	dir = 1
@@ -5710,10 +5707,6 @@
 	},
 /turf/open/floor/wood/darker,
 /area/riptide/inside/beachbar)
-"eEX" = (
-/obj/structure/mine_structure/wooden/support_wall/t_bar/above,
-/turf/open/floor/wood,
-/area/riptide/caves/sea)
 "eFd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -6828,7 +6821,7 @@
 /obj/structure/flora/ausbushes/reedbush,
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/liquid/water/river/desertdam/clean/shallow,
-/area/riptide/caves/sea)
+/area/riptide/caves/north2)
 "fAY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -7898,7 +7891,7 @@
 "gpQ" = (
 /obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/wood,
-/area/riptide/caves/sea)
+/area/riptide/caves/north2)
 "gpV" = (
 /turf/open/floor/iron/dark/textured_half,
 /area/riptide/caves/pmc/lobby)
@@ -9455,7 +9448,7 @@
 /obj/structure/flora/jungle/vines,
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/liquid/water/river/desertdam/clean/shallow,
-/area/riptide/caves/sea)
+/area/riptide/caves/north2)
 "hHc" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -10103,7 +10096,7 @@
 /obj/structure/flora/jungle/vines/heavy,
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/liquid/water/river/desertdam/clean/shallow,
-/area/riptide/caves/sea)
+/area/riptide/caves/north2)
 "iny" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/grate/alternate,
@@ -10710,9 +10703,6 @@
 "iON" = (
 /turf/open/floor/plating/dmg1,
 /area/riptide/caves/central/garbledradio)
-"iPd" = (
-/turf/open/liquid/water/river/desertdam/clean/shallow,
-/area/riptide/caves/sea)
 "iPg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -12145,7 +12135,7 @@
 /obj/structure/flora/jungle/vines,
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/wood,
-/area/riptide/caves/sea)
+/area/riptide/caves/north2)
 "jXn" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -12162,7 +12152,7 @@
 /obj/structure/flora/jungle/vines,
 /obj/structure/mine_structure/wooden/support_wall/t_bar/above,
 /turf/open/floor/wood,
-/area/riptide/caves/sea)
+/area/riptide/caves/north2)
 "jXJ" = (
 /turf/open/floor/plating,
 /area/riptide/inside/syndicatehead)
@@ -14254,7 +14244,7 @@
 "lCd" = (
 /obj/structure/flora/jungle/vines,
 /turf/open/liquid/water/river/desertdam/clean/shallow,
-/area/riptide/caves/sea)
+/area/riptide/caves/north2)
 "lCj" = (
 /obj/structure/flora/ausbushes/genericbush{
 	pixel_x = 3;
@@ -17364,7 +17354,7 @@
 "nXU" = (
 /obj/structure/flora/jungle/vines/heavy,
 /turf/open/liquid/water/river/desertdam/clean/shallow,
-/area/riptide/caves/sea)
+/area/riptide/caves/north2)
 "nYs" = (
 /obj/effect/decal/cleanable/generic,
 /obj/structure/nuke_disk_candidate{
@@ -21295,7 +21285,7 @@
 /obj/structure/flora/jungle/vines/heavy,
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/liquid/water/river/desertdam/clean/shallow,
-/area/riptide/caves/sea)
+/area/riptide/caves/north2)
 "rcQ" = (
 /turf/open/shuttle/dropship/five,
 /area/riptide/caves/tram)
@@ -21439,7 +21429,7 @@
 "rhE" = (
 /obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/riptide/caves/rock)
+/area/riptide/caves/north2)
 "rhH" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship,
@@ -22973,10 +22963,6 @@
 "srI" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/riptide/caves/tram)
-"srL" = (
-/obj/structure/flora/ausbushes/reedbush,
-/turf/open/liquid/water/river/desertdam/clean/shallow,
-/area/riptide/caves/sea)
 "srU" = (
 /obj/item/radio/off{
 	name = "handheld radio"
@@ -24453,7 +24439,7 @@
 "tEz" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/wood,
-/area/riptide/caves/sea)
+/area/riptide/caves/north2)
 "tED" = (
 /obj/structure/catwalk,
 /turf/open/liquid/water/river,
@@ -25115,7 +25101,7 @@
 "uef" = (
 /obj/structure/flora/jungle/vines,
 /turf/open/floor/wood,
-/area/riptide/caves/sea)
+/area/riptide/caves/north2)
 "uem" = (
 /obj/structure/flora/ausbushes/genericbush{
 	pixel_x = 3;
@@ -25402,7 +25388,7 @@
 /obj/structure/flora/jungle/vines,
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/floor/wood,
-/area/riptide/caves/sea)
+/area/riptide/caves/north2)
 "ute" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
@@ -25563,7 +25549,7 @@
 "uzR" = (
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/liquid/water/river/desertdam/clean/shallow,
-/area/riptide/caves/sea)
+/area/riptide/caves/north2)
 "uAf" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -62678,13 +62664,13 @@ sTP
 sTP
 sTP
 sTP
-eEX
-hil
-iPd
-iPd
-iPd
-iPd
-iPd
+ltQ
+juD
+uFz
+uFz
+uFz
+uFz
+uFz
 sQe
 xCu
 nyr
@@ -62859,10 +62845,10 @@ sTP
 sTP
 sQe
 uef
-iPd
-iPd
-iPd
-iPd
+uFz
+uFz
+uFz
+uFz
 lCd
 sQe
 sTP
@@ -63037,12 +63023,12 @@ sTP
 sTP
 sTP
 sQe
-hil
-hil
-srL
+juD
+juD
+jFR
 uzR
-iPd
-iPd
+uFz
+uFz
 lCd
 sTP
 sTP
@@ -63216,13 +63202,13 @@ sTP
 sTP
 sTP
 sQe
-hil
-hil
-iPd
-iPd
-iPd
-srL
-iPd
+juD
+juD
+uFz
+uFz
+uFz
+jFR
+uFz
 sTP
 sTP
 ivV
@@ -63393,16 +63379,16 @@ sTP
 sTP
 sTP
 sTP
-apS
+rip
 sTP
-hil
-hil
-iPd
-iPd
-iPd
-iPd
-iPd
-apS
+juD
+juD
+uFz
+uFz
+uFz
+uFz
+uFz
+rip
 sTP
 sTP
 nyr
@@ -63571,18 +63557,18 @@ sTP
 sTP
 sTP
 sTP
-apS
-apS
+rip
+rip
 sTP
-hil
-hil
+juD
+juD
 uzR
-srL
-iPd
-iPd
-iPd
-apS
-apS
+jFR
+uFz
+uFz
+uFz
+rip
+rip
 sTP
 nyr
 nUU
@@ -63750,18 +63736,18 @@ sTP
 sTP
 sTP
 sTP
-apS
-apS
-iPd
-eEX
-hil
-eEX
-iPd
-iPd
-srL
-iPd
-iPd
-apS
+rip
+rip
+uFz
+ltQ
+juD
+ltQ
+uFz
+uFz
+jFR
+uFz
+uFz
+rip
 sTP
 nyr
 aWy
@@ -63929,18 +63915,18 @@ sTP
 sTP
 sTP
 sTP
-apS
-apS
-iPd
-iPd
+rip
+rip
+uFz
+uFz
 tEz
-hil
-srL
-iPd
+juD
+jFR
+uFz
 uzR
-iPd
-iPd
-apS
+uFz
+uFz
+rip
 sTP
 sTP
 nyr
@@ -64101,24 +64087,24 @@ aQL
 rip
 rip
 rip
-apS
-apS
+rip
+rip
 sTP
 sTP
 sTP
 sTP
 sTP
 sTP
-apS
-srL
-iPd
+rip
+jFR
+uFz
 uef
 uef
-srL
-iPd
-iPd
-srL
-iPd
+jFR
+uFz
+uFz
+jFR
+uFz
 sTP
 sTP
 sTP
@@ -64280,9 +64266,9 @@ rip
 dNe
 rip
 rip
-apS
-apS
-apS
+rip
+rip
+rip
 sTP
 sTP
 sTP
@@ -64295,9 +64281,9 @@ uef
 uef
 lCd
 lCd
-srL
-iPd
-iPd
+jFR
+uFz
+uFz
 sTP
 sTP
 sTP
@@ -64460,9 +64446,9 @@ egy
 rip
 sTP
 sTP
-apS
-apS
-apS
+rip
+rip
+rip
 sTP
 sTP
 sTP
@@ -64640,8 +64626,8 @@ aQL
 sTP
 sTP
 sTP
-apS
-apS
+rip
+rip
 sTP
 sTP
 sTP
@@ -64819,9 +64805,9 @@ rip
 sTP
 sTP
 sTP
-apS
-apS
-apS
+rip
+rip
+rip
 sTP
 xCu
 xCu
@@ -64999,8 +64985,8 @@ sTP
 sTP
 sTP
 sTP
-apS
-apS
+rip
+rip
 sTP
 xCu
 rhE
@@ -65178,11 +65164,11 @@ sTP
 sTP
 sTP
 sTP
-apS
-apS
-apS
-apS
-apS
+rip
+rip
+rip
+rip
+rip
 rhE
 lCd
 jXB
@@ -65358,9 +65344,9 @@ sTP
 sTP
 sTP
 sTP
-apS
-apS
-apS
+rip
+rip
+rip
 rhE
 rhE
 hGT
@@ -65536,9 +65522,9 @@ sTP
 sTP
 sTP
 sTP
-apS
-apS
-apS
+rip
+rip
+rip
 sTP
 wBN
 wBN
@@ -65715,8 +65701,8 @@ rip
 sTP
 sTP
 sTP
-apS
-apS
+rip
+rip
 sTP
 sTP
 wBN
@@ -65893,13 +65879,13 @@ rip
 rip
 rip
 sTP
-apS
-apS
+rip
+rip
 sTP
 sTP
 sTP
-apS
-apS
+rip
+rip
 lCd
 uef
 uef
@@ -66072,20 +66058,20 @@ rip
 rip
 rip
 rip
-apS
-apS
+rip
+rip
 sTP
 sTP
 sTP
 sTP
-apS
-iPd
-hil
-hil
-iPd
-iPd
-iPd
-iPd
+rip
+uFz
+juD
+juD
+uFz
+uFz
+uFz
+uFz
 xCu
 sTP
 sTP
@@ -66252,19 +66238,19 @@ aQL
 rip
 rip
 rip
-apS
-apS
+rip
+rip
 sTP
 sTP
 sTP
 sTP
-iPd
-eEX
-hil
-iPd
-iPd
-iPd
-iPd
+uFz
+ltQ
+juD
+uFz
+uFz
+uFz
+uFz
 sTP
 sTP
 sTP
@@ -66432,7 +66418,7 @@ rip
 dNe
 rip
 rip
-apS
+rip
 sTP
 sTP
 sTP
