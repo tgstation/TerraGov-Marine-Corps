@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - qol: "The rear attach points will now layer under items, rather than over them."

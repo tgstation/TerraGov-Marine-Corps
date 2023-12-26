@@ -1,0 +1,5 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - spellcheck: "Updated the description of Doctor's Delight in the Nanotrasen Medplus to describe it's effects."
+  - balance: "Moves the Doctor's Delight reagent bottle to the Valhalla tab of the vendor"

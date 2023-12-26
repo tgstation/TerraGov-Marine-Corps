@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Stun batons should not ominously float above everything in the game after someone without access tries to pick it up anymore"

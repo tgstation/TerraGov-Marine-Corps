@@ -80,4 +80,8 @@ endmap
 
 map riptide
 minplayers 20
+
+map daedalusprison
+	minplayers 35
+
 endmap

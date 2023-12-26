@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - rscdel: "A few cape styles have been removed. (Overlord+Variants, Jacket, Star)"
+  - rscdel: "Style line jaeger has been removed. (Kabuto, Overlord, Hotaru)"
