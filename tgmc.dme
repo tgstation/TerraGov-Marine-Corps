@@ -598,6 +598,7 @@
 #include "code\game\area\area.dm"
 #include "code\game\area\bigred.dm"
 #include "code\game\area\centcom.dm"
+#include "code\game\area\daedalusprison.dm"
 #include "code\game\area\deltastation.dm"
 #include "code\game\area\gelida_iv.dm"
 #include "code\game\area\general.dm"

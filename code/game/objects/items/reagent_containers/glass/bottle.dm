@@ -245,6 +245,6 @@
 
 /obj/item/reagent_containers/glass/bottle/doctor_delight
 	name = "\improper Doctor's Delight bottle"
-	desc = "A small bottle. Contains Doctor's Delight."
+	desc = "A small bottle. Contains Doctor's Delight - functions similar to tricordrazine, but is weaker and makes the patient hungry."
 	icon_state = "bottle3"
 	list_reagents = list(/datum/reagent/consumable/drink/doctor_delight = 60)
