@@ -121,7 +121,6 @@
 	suit_store = /obj/item/weapon/claymore/mercsword/commissar_sword
 	gloves = /obj/item/clothing/gloves/marine/commissar
 	head = /obj/item/clothing/head/commissar
-	glasses = /obj/item/clothing/glasses
 	l_store = /obj/item/storage/pouch/medkit/firstaid
 	r_store = /obj/item/storage/pouch/magazine/pistol/large/mateba
 	back = /obj/item/storage/backpack/lightpack
