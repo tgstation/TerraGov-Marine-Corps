@@ -7836,11 +7836,6 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/north2)
-"goo" = (
-/obj/structure/flora/jungle/bush,
-/obj/machinery/miner/damaged,
-/turf/open/ground/grass/weedable,
-/area/riptide/outside/northislands)
 "gos" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -34193,7 +34188,7 @@ pdT
 soJ
 iBx
 uOQ
-goo
+uOQ
 iNR
 qeS
 uOQ
