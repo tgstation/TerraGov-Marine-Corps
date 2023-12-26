@@ -45,7 +45,7 @@
 				to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 				return
 			M.visible_message(span_warning("[user] attempts to feed [M] \the [src]."))
-			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
+			if(!do_after(user, 3 SECONDS, NONE, M, BUSY_ICON_FRIENDLY))
 				return
 			M.visible_message(span_warning("[user] feeds [M] \the [src]."))
 
