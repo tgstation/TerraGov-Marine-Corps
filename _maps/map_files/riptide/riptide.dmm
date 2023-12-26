@@ -953,9 +953,7 @@
 /turf/open/floor,
 /area/riptide/caves/pmc/lobby)
 "aQh" = (
-/obj/structure/mineral_door/wood{
-	icon_state = "metal"
-	},
+/obj/structure/mineral_door/wood,
 /turf/open/floor/wood/alt_four,
 /area/riptide/inside/abandonedcottage)
 "aQl" = (
@@ -5860,9 +5858,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/riptide/inside/syndicatefoyer)
 "eMu" = (
-/obj/structure/mineral_door/wood{
-	icon_state = "metal"
-	},
+/obj/structure/mineral_door/wood,
 /obj/effect/ai_node,
 /turf/open/floor/wood/alt_four,
 /area/riptide/inside/abandonedcottage)
@@ -7058,9 +7054,7 @@
 /area/riptide/outside/westbeach)
 "fJc" = (
 /obj/structure/curtain/open/temple,
-/obj/structure/mineral_door/wood{
-	icon_state = "metal"
-	},
+/obj/structure/mineral_door/wood,
 /obj/structure/cable,
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/tikihut)
@@ -15291,9 +15285,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/riptide/outside/volcano)
 "mtY" = (
-/obj/structure/mineral_door/wood{
-	icon_state = "metal"
-	},
+/obj/structure/mineral_door/wood,
 /turf/open/floor/wood/alt_nine,
 /area/riptide/outside/northislands)
 "mut" = (
@@ -19914,9 +19906,7 @@
 /turf/closed/wall/r_wall,
 /area/riptide/caves/pmc/rnd)
 "pZY" = (
-/obj/structure/mineral_door/wood{
-	icon_state = "metal"
-	},
+/obj/structure/mineral_door/wood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -22319,9 +22309,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/eastbeach)
 "rSC" = (
-/obj/structure/mineral_door/wood{
-	icon_state = "metal"
-	},
+/obj/structure/mineral_door/wood,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/riptide/inside/luxurybar)
@@ -26899,9 +26887,7 @@
 /turf/open/floor,
 /area/riptide/caves/pmc/lobby)
 "vDm" = (
-/obj/structure/mineral_door/wood{
-	icon_state = "metal"
-	},
+/obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
 /area/riptide/outside/beachlztwo)
 "vDB" = (
@@ -27533,9 +27519,7 @@
 /turf/open/floor/wood/alt_nine,
 /area/riptide/outside/beachlztwo)
 "wgE" = (
-/obj/structure/mineral_door/wood{
-	icon_state = "metal"
-	},
+/obj/structure/mineral_door/wood,
 /turf/open/floor/wood/alt_nine,
 /area/riptide/outside/beachlztwo)
 "wha" = (
@@ -28853,9 +28837,7 @@
 /turf/open/ground,
 /area/riptide/outside/eastbeach)
 "xnN" = (
-/obj/structure/mineral_door/wood{
-	icon_state = "metal"
-	},
+/obj/structure/mineral_door/wood,
 /turf/open/floor/plating,
 /area/riptide/inside/tikihut)
 "xnU" = (
@@ -42470,7 +42452,7 @@ tPI
 tPI
 wRn
 wRn
-eGU
+wRn
 eGU
 jkJ
 cgQ
@@ -42648,7 +42630,7 @@ wKf
 puS
 tPI
 aCu
-wRn
+aCu
 wRn
 vgU
 vgU
