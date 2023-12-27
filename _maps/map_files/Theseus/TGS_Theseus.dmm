@@ -10041,10 +10041,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "ggn" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_starboard)
 "ggr" = (
@@ -18964,10 +18964,10 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "vao" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_port)
 "vaF" = (

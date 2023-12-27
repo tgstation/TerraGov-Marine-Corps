@@ -736,6 +736,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"rb" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
 "su" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
@@ -1221,7 +1225,7 @@ Uo
 Uo
 al
 Mj
-ac
+rb
 ab
 bU
 bU

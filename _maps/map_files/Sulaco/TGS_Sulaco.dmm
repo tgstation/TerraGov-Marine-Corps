@@ -17267,7 +17267,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "lpg" = (
-/obj/machinery/vending/sovietsoda,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
 "lpw" = (

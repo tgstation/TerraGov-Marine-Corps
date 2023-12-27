@@ -1446,8 +1446,8 @@
 /turf/open/floor/mainship/green,
 /area/mainship/squads/req)
 "bNe" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /obj/item/coin/iron,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "bNh" = (
