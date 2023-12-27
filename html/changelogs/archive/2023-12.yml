@@ -214,3 +214,18 @@
   - bugfix: Fix emote spam when losing grasp of NODROP items
   yyzsong:
   - bugfix: SG-62 reqtorio should work properly now.
+2023-12-27:
+  Lumipharon:
+  - bugfix: 'Campaign: Fixes the drop pod refresh asset not correctly replacing the
+      specialty pods'
+  Xander3359:
+  - rscadd: Beginner loadout vendor
+  - rscadd: 8 Beginner loadouts
+  - rscadd: 3 Engineer Loudouts
+  - rscadd: 2 Corpsman Loadouts
+  - rscadd: 2 Smartgunner Loadouts
+  ivanmixo:
+  - qol: Misc fixes to both crash ships
+  - balance: The HSG nest has been removed from crash ships
+  yyzsong:
+  - balance: Standardizes shipmap OB and solid fuel count
