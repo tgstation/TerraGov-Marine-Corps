@@ -174,8 +174,10 @@
 	for(var/mob/living/current_mob AS in GLOB.mob_living_list)
 		if(!current_mob || !is_mainship_level(current_mob.z))
 			continue
+		if(get_dist(src, current_mob) > 20)
+			current_mob.playsound_local(current_mob, 'sound/effects/obalarm.ogg', 25)
 		shake_camera(current_mob, 0.7 SECONDS)
-		to_chat(current_mob, span_warning("The deck of the [SSmapping.configs[SHIP_MAP].map_name] shudders as it's orbital cannon opens fire."))
+		to_chat(current_mob, span_warning("The deck of the [SSmapping.configs[SHIP_MAP].map_name] shudders as her orbital cannon opens fire."))
 	playsound(loc, 'sound/effects/obfire.ogg', 100, FALSE, 20, 4)
 	for(var/mob/M AS in hearers(WARHEAD_FALLING_SOUND_RANGE, target))
 		M.playsound_local(target, ob_sound, falloff = 2)
