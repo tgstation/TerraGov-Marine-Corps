@@ -8810,6 +8810,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
+"hzX" = (
+/obj/machinery/quick_vendor/beginner,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/general)
 "hAo" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -20419,7 +20423,7 @@
 /turf/open/floor/mainship/sterile/purple/side,
 /area/mainship/medical/upper_medical)
 "qUJ" = (
-/obj/machinery/vending/uniform_supply,
+/obj/machinery/quick_vendor/beginner,
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
@@ -28767,7 +28771,7 @@
 /turf/open/floor/mainship/green,
 /area/mainship/squads/req)
 "ygU" = (
-/obj/machinery/vending/armor_supply,
+/obj/machinery/quick_vendor/beginner,
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
@@ -38949,7 +38953,7 @@ xJg
 xTJ
 urw
 ejm
-lqg
+hzX
 lbd
 xJg
 xTJ
@@ -39153,7 +39157,7 @@ xJg
 xTJ
 urw
 ejm
-lqg
+hzX
 lbd
 xJg
 xTJ

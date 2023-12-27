@@ -5005,12 +5005,7 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "gzY" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
+/obj/machinery/quick_vendor/beginner,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "gAA" = (

@@ -12814,6 +12814,10 @@
 	dir = 6
 	},
 /area/mainship/shipboard/port_point_defense)
+"laz" = (
+/obj/machinery/quick_vendor/beginner,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/delta)
 "laL" = (
 /obj/machinery/atmospherics/components/binary/pump/on,
 /turf/open/floor/mainship/orange{
@@ -15935,6 +15939,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
+"qaa" = (
+/obj/machinery/quick_vendor/beginner,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/alpha)
 "qae" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -62053,7 +62061,7 @@ bdC
 kUl
 abg
 kMY
-brj
+qaa
 oDF
 puB
 vTf
@@ -62087,7 +62095,7 @@ cbn
 mmE
 bZQ
 awz
-ktN
+laz
 sVt
 vJr
 gQc
@@ -62310,7 +62318,7 @@ aWH
 bSQ
 abg
 bjP
-brj
+qaa
 oWI
 ahU
 oaW
@@ -62344,7 +62352,7 @@ cbn
 mmE
 tBV
 iLV
-ktN
+laz
 mMr
 vJr
 ccT
@@ -63595,7 +63603,7 @@ aWH
 blS
 aaf
 kMY
-brj
+qaa
 oDF
 puB
 vTf
@@ -63629,7 +63637,7 @@ cbn
 mmE
 bZQ
 awz
-ktN
+laz
 ada
 vJr
 xpE
@@ -63852,7 +63860,7 @@ aWH
 wJn
 aaf
 kMY
-brj
+qaa
 oWI
 ahU
 oaW
@@ -63886,7 +63894,7 @@ cbn
 mmE
 tBV
 iLV
-ktN
+laz
 ada
 vJr
 ezg

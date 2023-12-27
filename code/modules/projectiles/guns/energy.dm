@@ -704,6 +704,13 @@
 		/obj/item/attachable/gyro,
 	)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/beginner
+	starting_attachment_types = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/bayonet,
+	)
+
 /datum/lasrifle/energy_carbine_mode/auto_burst
 	rounds_per_shot = 12
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/carbine
