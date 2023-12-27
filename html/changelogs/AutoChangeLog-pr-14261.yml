@@ -1,0 +1,8 @@
+author: "Xander3359"
+delete-after: True
+changes:
+  - rscadd: "Beginner loadout vendor"
+  - rscadd: "8 Beginner loadouts"
+  - rscadd: "3 Engineer Loudouts"
+  - rscadd: "2 Corpsman Loadouts"
+  - rscadd: "2 Smartgunner Loadouts"
