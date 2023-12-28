@@ -128,6 +128,9 @@
 
 	placed_overlay_iconstate = "tx7"
 
+/obj/item/weapon/gun/pistol/plasma_pistol/beginner
+	starting_attachment_types = list(/obj/item/weapon/gun/shotgun/combat/masterkey, /obj/item/attachable/reddot, /obj/item/attachable/lasersight)
+
 /obj/item/weapon/gun/pistol/plasma_pistol/can_attach(obj/item/attaching_to, mob/attacher)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_RAIL])
 		return TRUE
@@ -225,6 +228,10 @@
 
 /obj/item/weapon/gun/pistol/standard_heavypistol/tactical
 	starting_attachment_types = list(/obj/item/attachable/reddot)
+
+/obj/item/weapon/gun/pistol/standard_heavypistol/beginner
+	starting_attachment_types = list(/obj/item/attachable/lace, /obj/item/attachable/reddot)
+
 //-------------------------------------------------------
 //P-1911
 
@@ -547,6 +554,9 @@
 
 /obj/item/weapon/gun/pistol/vp70/tactical
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight, /obj/item/attachable/compensator)
+
+/obj/item/weapon/gun/pistol/vp70/beginner
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight, /obj/item/attachable/lace)
 
 //-------------------------------------------------------
 //VP78

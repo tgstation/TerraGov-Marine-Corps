@@ -193,3 +193,39 @@
   - rscadd: Added some voicelines to CAS
   yyzsong:
   - code_imp: shrike code comment now says 3x3 instead of 2x3
+2023-12-26:
+  Barnet2:
+  - bugfix: Fixes the Magnum being available in Crash outside of the SL vendor.
+  - rscadd: Added a new map, Daedalus Prison. Requires 35 people to play.
+  Pariah919:
+  - rscdel: A few cape styles have been removed. (Overlord+Variants, Jacket, Star)
+  - rscdel: Style line jaeger has been removed. (Kabuto, Overlord, Hotaru)
+  Wisemonster:
+  - qol: The rear attach points will now layer under items, rather than over them.
+  - spellcheck: Updated the description of Doctor's Delight in the Nanotrasen Medplus
+      to describe it's effects.
+  - balance: Moves the Doctor's Delight reagent bottle to the Valhalla tab of the
+      vendor
+  ivanmixo:
+  - rscadd: Adds an ozelomelyn hugger
+  - bugfix: Stun batons should not ominously float above everything in the game after
+      someone without access tries to pick it up anymore
+  vvvv-vvvv:
+  - bugfix: Fix emote spam when losing grasp of NODROP items
+  yyzsong:
+  - bugfix: SG-62 reqtorio should work properly now.
+2023-12-27:
+  Lumipharon:
+  - bugfix: 'Campaign: Fixes the drop pod refresh asset not correctly replacing the
+      specialty pods'
+  Xander3359:
+  - rscadd: Beginner loadout vendor
+  - rscadd: 8 Beginner loadouts
+  - rscadd: 3 Engineer Loudouts
+  - rscadd: 2 Corpsman Loadouts
+  - rscadd: 2 Smartgunner Loadouts
+  ivanmixo:
+  - qol: Misc fixes to both crash ships
+  - balance: The HSG nest has been removed from crash ships
+  yyzsong:
+  - balance: Standardizes shipmap OB and solid fuel count
