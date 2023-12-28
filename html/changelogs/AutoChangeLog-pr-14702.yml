@@ -1,0 +1,4 @@
+author: "Helg2"
+delete-after: True
+changes:
+  - bugfix: "Imperial Commissar now has a proper coat. But you probably won't even see it somewhere except eord."
