@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - rscadd: "Added the SG-85 powerpack to req"
+  - bugfix: "Fixes SG-85 ammo bins not being in req"

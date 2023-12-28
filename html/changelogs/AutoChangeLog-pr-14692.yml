@@ -1,0 +1,5 @@
+author: "ClosetedSkeletonGH"
+delete-after: True
+changes:
+  - qol: "Scorpions can now be given plasma"
+  - rscadd: "Scorpions can put weak acid on obj's"

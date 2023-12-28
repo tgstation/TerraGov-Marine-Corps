@@ -4,6 +4,7 @@
 	use_power = 0
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
+	allow_pass_flags = PASSABLE
 
 	///Spark system for making sparks
 	var/datum/effect_system/spark_spread/spark_system

@@ -91,6 +91,12 @@
 ///If a storage container can be restocked into a vendor
 #define BYPASS_VENDOR_CHECK (1<<0)
 
+//flags_id
+///If you can get buy a loadout
+#define CAN_BUY_LOADOUT (1<<0)
+///If you have used the GHMME
+#define USED_GHMME (1<<1)
+
 //==========================================================================================
 
 //flags_inv_hide

@@ -1,0 +1,4 @@
+author: "Lewdcifer"
+delete-after: True
+changes:
+  - rscdel: "Reverted all changes related to Hyperscale 3."
