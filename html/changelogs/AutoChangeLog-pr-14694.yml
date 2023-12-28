@@ -1,0 +1,5 @@
+author: "ClosetedSkeletonGH"
+delete-after: True
+changes:
+  - balance: "mantis swipe no longer has a huge delay, mantis has slightly less plasma"
+  - qol: "mantis can now be given plasma by teammtes"
