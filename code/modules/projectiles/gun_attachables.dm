@@ -26,10 +26,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = null
 	item_state = null
 
-	greyscale_config = null
-	greyscale_colors = GUN_PALETTE_BLACK
-	colorable_colors = GUN_PALETTE_LIST
-
 	///Determines the amount of pixels to move the icon state for the overlay. in the x direction
 	var/pixel_shift_x = 16
 	///Determines the amount of pixels to move the icon state for the overlay. in the y direction
@@ -184,14 +180,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 				icon_state = variants_by_parent_type[selection]
 
 	update_icon()
-	if(!greyscale_colors || !greyscale_config)
-		return
-	RegisterSignal(master_gun, COMSIG_ITEM_SECONDARY_COLOR, PROC_REF(handle_color))
-
-///Sends a list of available colored attachments to be colored when the parent is right clicked with paint.
-/obj/item/attachable/proc/handle_color(datum/source, mob/user, list/obj/item/secondaries)
-	SIGNAL_HANDLER
-	secondaries += src
 
 ///Called when the attachment is detached from something. If the thing is a gun, it returns its stats to what they were before being attached.
 /obj/item/attachable/proc/on_detach(detaching_item, mob/user)
@@ -211,9 +199,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun = null
 	icon_state = initial(icon_state)
 	update_icon()
-	if(!greyscale_config || !greyscale_colors)
-		return
-	UnregisterSignal(master_gun, COMSIG_ITEM_SECONDARY_COLOR)
 
 ///Handles the modifiers to the parent gun
 /obj/item/attachable/proc/apply_modifiers(attaching_item, mob/user, attaching)
@@ -1007,8 +992,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "SG-29 stock"
 	desc = "A standard machinegun stock."
 	icon_state = "sg29stock"
-	greyscale_config = /datum/greyscale_config/gun_attachment
-	colorable_allowed = PRESET_COLORS_ALLOWED
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
@@ -1037,8 +1020,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "\improper SR-127 stock"
 	desc = "A irremovable SR-127 sniper rifle stock."
 	icon_state = "tl127stock"
-	greyscale_config = /datum/greyscale_config/gun_attachment
-	colorable_allowed = PRESET_COLORS_ALLOWED
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
@@ -1102,8 +1083,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "MG-60 stock"
 	desc = "A irremovable MG-60 general purpose machinegun stock."
 	icon_state = "t60stock"
-	greyscale_config = /datum/greyscale_config/gun_attachment
-	colorable_allowed = PRESET_COLORS_ALLOWED
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
@@ -1183,8 +1162,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "vertical grip"
 	desc = "A custom-built improved foregrip for better accuracy, moderately faster aimed movement speed, less recoil, and less scatter when wielded especially during burst fire. \nHowever, it also increases weapon size, slightly increases wield delay and makes unwielded fire more cumbersome."
 	icon_state = "verticalgrip"
-	greyscale_config = /datum/greyscale_config/gun_attachment
-	colorable_allowed = PRESET_COLORS_ALLOWED
 	wield_delay_mod = 0.2 SECONDS
 	size_mod = 1
 	slot = ATTACHMENT_SLOT_UNDER
@@ -1203,8 +1180,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "angled grip"
 	desc = "A custom-built improved foregrip for less recoil, and faster wielding time. \nHowever, it also increases weapon size, and slightly hinders unwielded firing."
 	icon_state = "angledgrip"
-	greyscale_config = /datum/greyscale_config/gun_attachment
-	colorable_allowed = PRESET_COLORS_ALLOWED
 	wield_delay_mod = -0.3 SECONDS
 	size_mod = 1
 	slot = ATTACHMENT_SLOT_UNDER
@@ -1320,9 +1295,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 				icon_state = variants_by_parent_type[selection]
 
 	update_icon()
-	if(!greyscale_config || !greyscale_colors)
-		return
-	RegisterSignal(master_gun, COMSIG_ITEM_SECONDARY_COLOR, PROC_REF(handle_color))
 
 /obj/item/attachable/foldable/on_detach(detaching_item, mob/user)
 	if(!isgun(detaching_item))
@@ -1340,9 +1312,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun = null
 	icon_state = initial(icon_state)
 	update_icon()
-	if(!greyscale_config || !greyscale_colors)
-		return
-	UnregisterSignal(master_gun, COMSIG_ITEM_SECONDARY_COLOR)
 
 /obj/item/attachable/foldable/activate(mob/living/user, turn_off)
 	if(user && deploy_time && !do_after(user, deploy_time, NONE, src, BUSY_ICON_BAR))
@@ -1430,8 +1399,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A non-standard heavy stock for the SH-35 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
 	icon = 'icons/Marine/attachments_64.dmi'
 	icon_state = "t35stock"
-	greyscale_config = /datum/greyscale_config/gun_attachment_64
-	colorable_allowed = PRESET_COLORS_ALLOWED
 	flags_attach_features = ATTACH_ACTIVATION
 	wield_delay_mod = 0.2 SECONDS
 	accuracy_mod = 0.15
