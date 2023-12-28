@@ -272,18 +272,6 @@
 	SIGNAL_HANDLER
 	if(!(new_member.faction in factions))
 		return
-	add_verb(new_member, /mob/living/proc/open_faction_stats_ui)
 
 	var/datum/action/campaign_overview/overview = new
 	overview.give_action(new_member)
-
-///Opens up the players campaign status UI
-/mob/living/proc/open_faction_stats_ui()
-	set name = "Campaign Status"
-	set desc = "Check the status of your faction in the campaign."
-	set category = "IC"
-
-	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[faction]
-	if(!your_faction)
-		return
-	your_faction.interact(src)
