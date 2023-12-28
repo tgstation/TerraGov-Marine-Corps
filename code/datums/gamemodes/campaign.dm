@@ -122,6 +122,8 @@
 			continue
 		stat_list[i].get_status_tab_items(source, items)
 
+/datum/game_mode/hvh/campaign/ghost_verbs(mob/dead/observer/observer)
+	return list(/datum/action/campaign_overview)
 
 ///sets up the newly selected mission
 /datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission)

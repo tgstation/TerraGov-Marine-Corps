@@ -464,3 +464,14 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				to_chat(faction_member, "<span class='warning'>[user] has purchased the [initial(selected_asset.name)] campaign asset.")
 			update_static_data_for_all_viewers()
 			return TRUE
+
+//overview for campaign gamemode
+/datum/action/campaign_overview
+	name = "Campaign overview"
+	action_icon_state = "campaign_overview"
+
+/datum/action/campaign_overview/action_activate()
+	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[owner.faction]
+	if(!your_faction)
+		return
+	your_faction.interact(owner)
