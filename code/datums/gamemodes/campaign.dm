@@ -272,6 +272,9 @@
 		return
 	add_verb(new_member, /mob/living/proc/open_faction_stats_ui)
 
+	var/datum/action/campaign_overview/overview = new
+	overview.give_action(new_member)
+
 ///Opens up the players campaign status UI
 /mob/living/proc/open_faction_stats_ui()
 	set name = "Campaign Status"

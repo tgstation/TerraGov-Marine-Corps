@@ -101,3 +101,26 @@
 /datum/action/observer_action/campaign_respawn/action_activate()
 	var/datum/game_mode/mode = SSticker.mode
 	mode.player_respawn(owner)
+
+//overview for campaign gamemode
+/datum/action/observer_action/campaign_overview
+	name = "Campaign overview"
+	action_icon_state = "campaign_overview"
+
+/datum/action/observer_action/campaign_overview/action_activate()
+	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[owner.faction]
+	if(!your_faction)
+		return
+	your_faction.interact(owner)
+
+
+
+/datum/action/campaign_overview
+	name = "Campaign overview"
+	action_icon_state = "campaign_overview"
+
+/datum/action/campaign_overview/action_activate()
+	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[owner.faction]
+	if(!your_faction)
+		return
+	your_faction.interact(owner)

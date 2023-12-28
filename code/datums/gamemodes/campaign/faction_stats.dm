@@ -254,6 +254,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	ui.open()
 
 /datum/faction_stats/ui_state(mob/user)
+	if(isobserver(user))
+		return GLOB.always_state
 	return GLOB.conscious_state
 
 /datum/faction_stats/ui_static_data(mob/living/user)
@@ -376,6 +378,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		CRASH("campaign_mission loaded without campaign game mode")
 
 	var/mob/living/user = usr
+	if(!istype(user))
+		return
 
 	switch(action)
 		if("set_attrition_points")
