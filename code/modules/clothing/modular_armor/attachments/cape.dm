@@ -126,6 +126,27 @@
 				"none",
 			),
 		),
+		"overlord" = list(
+			HOOD = FALSE,
+			HIGHLIGHT_VARIANTS = list(
+				"overlord",
+				"none",
+			),
+		),
+		"overlord (alt 1)" = list(
+			HOOD = FALSE,
+			HIGHLIGHT_VARIANTS = list(
+				"overlord (alt)",
+				"none",
+			),
+		),
+		"overlord (alt 2)" = list(
+			HOOD = FALSE,
+			HIGHLIGHT_VARIANTS = list(
+				"overlord (alt 2)",
+				"none",
+			),
+		),
 		"shoal" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
@@ -147,6 +168,13 @@
 				"none",
 			),
 		),
+		"star" = list(
+			HOOD = FALSE,
+			HIGHLIGHT_VARIANTS = list(
+				"star",
+				"none",
+			),
+		),
 		"rapier (right)" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
@@ -158,6 +186,13 @@
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
 				"rapier (left)",
+				"none",
+			),
+		),
+		"jacket" = list(
+			HOOD = FALSE,
+			HIGHLIGHT_VARIANTS = list(
+				"jacket",
 				"none",
 			),
 		),

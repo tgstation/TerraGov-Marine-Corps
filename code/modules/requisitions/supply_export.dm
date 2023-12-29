@@ -15,7 +15,7 @@
 
 /**
  * Getter proc for the point value of this object
- * 
+ *
  * Returns:
  * * A list where the first value is the number of req points and the second number is the number of cas points.
  */
@@ -37,17 +37,17 @@
 /mob/living/carbon/xenomorph/get_export_value()
 	switch(tier)
 		if(XENO_TIER_MINION)
-			. = list(50, 5)
+			. = list(15, 5)
 		if(XENO_TIER_ZERO)
-			. = list(70, 7)
+			. = list(50, 5)
 		if(XENO_TIER_ONE)
-			. = list(150, 15)
+			. = list(75, 10)
 		if(XENO_TIER_TWO)
-			. = list(300, 30)
+			. = list(150, 15)
 		if(XENO_TIER_THREE)
-			. = list(500, 50)
+			. = list(250, 25)
 		if(XENO_TIER_FOUR)
-			. = list(1000, 100)
+			. = list(500, 50)
 	return
 
 //I hate it but it's how it was so I'm not touching it further than this

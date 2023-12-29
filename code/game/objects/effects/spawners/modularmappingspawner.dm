@@ -240,3 +240,9 @@
 	mapid = "EORG"
 	spawner_height = 46
 	spawner_width = 46
+
+/************GROUNDHQ**********/
+/obj/effect/spawner/modularmap/factionbase/ntcgroundhq
+	mapid = "ntcgroundhq"
+	spawner_height = 105
+	spawner_width = 166

@@ -328,18 +328,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/suppressor
 	name = "suppressor"
-	desc = "A small tube with exhaust ports to expel noise and gas.\nDoes not completely silence a weapon, but does make it much quieter and a little more accurate and stable at the cost of bullet speed."
+	desc = "A small tube with exhaust ports to expel noise and gas.\nDoes not completely silence a weapon, but does make it much quieter and a little more accurate and stable while wielding properly at the cost of one-handed accuracy."
 	icon_state = "suppressor"
 	slot = ATTACHMENT_SLOT_MUZZLE
 	silence_mod = TRUE
 	pixel_shift_y = 16
-	attach_shell_speed_mod = -1
 	accuracy_mod = 0.1
-	recoil_mod = -2
+	recoil_mod = -3
 	scatter_mod = -2
-	recoil_unwielded_mod = -3
-	scatter_unwielded_mod = -2
-	damage_falloff_mod = 0.1
+	recoil_unwielded_mod = 1
+	scatter_unwielded_mod = 2
+	damage_falloff_mod = -0.1
 
 /obj/item/attachable/suppressor/unremovable
 	flags_attach_features = NONE
@@ -388,7 +387,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/bayonetknife
 	name = "M-22 bayonet"
-	desc = "A sharp knife that is the standard issue combat knife of the TerraGov Marine Corps can be attached to a variety of weapons at will or used as a standard knife."
+	desc = "A sharp knife that is the standard issue combat knife of the Nine Tailed Fox can be attached to a variety of weapons at will or used as a standard knife."
 	icon_state = "bayonetknife"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
@@ -438,9 +437,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/heavy_barrel
 	name = "barrel charger"
-	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile speed and reduces damage falloff."
+	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile speed and reduces damage falloff. This increases the recoil significantly."
 	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "hbarrel"
+	recoil_mod = 0.6
+	recoil_unwielded_mod = 0.8
 	attach_shell_speed_mod = 2
 	accuracy_mod = -0.05
 	damage_falloff_mod = -0.2
@@ -657,7 +658,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/magnetic_harness
 	name = "magnetic harness"
-	desc = "A magnetically attached harness kit that attaches to the rail mount of a weapon. When dropped, the weapon will sling to a TGMC armor."
+	desc = "A magnetically attached harness kit that attaches to the rail mount of a weapon. When dropped, the weapon will sling to a NTC armor."
 	icon_state = "magnetic"
 	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 13
@@ -711,7 +712,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/scope/nightvision
 	name = "T-46 Night vision scope"
 	icon_state = "nvscope"
-	desc = "A rail-mounted night vision scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment."
+	desc = "A rail-mounted night vision scope developed by Roh-Easy industries for the NTC. Allows zoom by activating the attachment."
 	has_nightvision = TRUE
 
 /obj/item/attachable/scope/optical
@@ -808,7 +809,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		return FALSE
 	if(CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED) && user.dir != master_gun.loc.dir)
 		user.setDir(master_gun.loc.dir)
-	if(!do_after(user, scope_delay, NONE, src, BUSY_ICON_BAR))
+	if(!do_after(user, scope_delay, TRUE, src, BUSY_ICON_BAR))
 		return FALSE
 	zoom(user)
 	update_icon()
@@ -1228,7 +1229,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	else
 		if(user.do_actions)
 			return
-		if(!do_after(user, 0.5 SECONDS, NONE, src, BUSY_ICON_BAR))
+		if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_BAR))
 			return
 		to_chat(user, span_notice("You deploy the [src]."))
 		ADD_TRAIT(master_gun, TRAIT_NODROP, PISTOL_LACE_TRAIT)
@@ -1309,7 +1310,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	update_icon()
 
 /obj/item/attachable/foldable/activate(mob/living/user, turn_off)
-	if(user && deploy_time && !do_after(user, deploy_time, NONE, src, BUSY_ICON_BAR))
+	if(user && deploy_time && !do_after(user, deploy_time, TRUE, src, BUSY_ICON_BAR))
 		return FALSE
 
 	folded = !folded
@@ -1349,7 +1350,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/foldable/t19stock
 	name = "\improper MP-19 machinepistol stock"
-	desc = "A submachinegun stock distributed in small numbers to TGMC forces. Compatible with the MP-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
+	desc = "A submachinegun stock distributed in small numbers to NTC forces. Compatible with the MP-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	flags_attach_features = ATTACH_ACTIVATION
 	wield_delay_mod = 0.1 SECONDS
 	melee_mod = 5

@@ -39,7 +39,7 @@
 		if(0)
 			return ALL_ACCESS
 		if(1)
-			return list(ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_MECH, ACCESS_MARINE_BRIDGE)//command
+			return list(ACCESS_MARINE_CAPTAIN, ACCESS_CEO, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_DOLLPREP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_MECH, ACCESS_MARINE_BRIDGE)//command
 		if(2)
 			return list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_REMOTEBUILD)//engineering and maintenance
 		if(3)
@@ -49,7 +49,7 @@
 		if(5)
 			return list(ACCESS_MARINE_WO, ACCESS_MARINE_ARMORY, ACCESS_MARINE_BRIG)//security
 		if(6)
-			return list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER)//spess mahreens
+			return list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER,)//spess mahreens
 		if(7)
 			return list(ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)//squads
 		if(8)
@@ -102,6 +102,8 @@
 			return "FOB Construction Drone"
 		if(ACCESS_MARINE_CAPTAIN)
 			return "Captain's Quarters"
+		if(ACCESS_CEO)
+			return "CEO Office"
 		if(ACCESS_MARINE_COMMANDER)
 			return "Field Commander's Quarters"
 		if(ACCESS_MARINE_LOGISTICS)
@@ -114,6 +116,8 @@
 			return "Marine Squad Engineering"
 		if(ACCESS_MARINE_MEDPREP)
 			return "Marine Squad Medical"
+		if(ACCESS_MARINE_SPECPREP)
+			return "Marine Specialist Prep"
 		if(ACCESS_MARINE_SMARTPREP)
 			return "Marine Smartgunner"
 		if(ACCESS_MARINE_LEADER)
@@ -246,15 +250,21 @@
 		if("O1")
 			. = size ? "ENS" : "Ensign"
 		if("O2")
-			. = size ? "LTJG" : "Lieutenant Junior Grade"
+			. = size ? "2LT" : "Second Lieutenant"
 		if("O3")
-			. = size ? "LT" : "Lieutenant"
+			. = size ? "LT" : "First Lieutenant"
 		if("O4")
 			. = size ? "LCDR" : "Lieutenant Commander"
 		if("O5")
 			. = size ? "CDR" : "Commander"
 		if("O6")
 			. = size ? "CPT" : "Captain"
+		if("COL")
+			. = size ? "COL" : "Colonel"
+		if("MGEN")
+			. = size ? "MGEN" : "Major General"
+		if("GEN")
+			. = size ? "GEN" : "General"
 		if("O7")
 			. = size ? "COMM" : "Commodore"
 		if("O8")
@@ -277,6 +287,8 @@
 			. = size ? "PO1" : "Petty Officer First Class"
 		if("CPO")
 			. = size ? "CPO" : "Chief Petty Officer"
+		if("CEO")
+			. = size ? "CEO " : "Chief Executive Officer"
 		if("MO4")
 			. = size ? "MAJ" : "Major"
 		if("MO5")
@@ -317,6 +329,8 @@
 			. = size ? "FRE" : "Freelancer Veteran"
 		if("FRE4")
 			. = size ? "FRE" : "Freelancer Leader"
+		if("CLF0")
+			. = size ? "CLF" : "CLF Breeding Slave"
 		if("CLF1")
 			. = size ? "CLF" : "CLF Standard"
 		if("CLF2")

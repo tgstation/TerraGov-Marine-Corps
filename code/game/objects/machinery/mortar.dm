@@ -59,6 +59,8 @@
 		/obj/item/mortal_shell/smoke,
 		/obj/item/mortal_shell/flare,
 		/obj/item/mortal_shell/plasmaloss,
+		/obj/item/mortal_shell/smoke/satrapine,
+		/obj/item/mortal_shell/smoke/sleep,
 	)
 
 	use_power = NO_POWER_USE
@@ -213,7 +215,7 @@
 		span_notice("You start loading \a [mortar_shell.name] into [src]."))
 		playsound(loc, reload_sound, 50, 1)
 		busy = TRUE
-		if(!do_after(user, reload_time, NONE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, reload_time, TRUE, src, BUSY_ICON_HOSTILE))
 			busy = FALSE
 			return
 
@@ -557,7 +559,7 @@
 
 /obj/item/mortar_kit/mlrs
 	name = "\improper TA-40L multiple rocket launcher system"
-	desc = "A manual, crew-operated and towable multiple rocket launcher system piece used by the TerraGov Marine Corps, it is meant to saturate an area with munitions to total up to large amounts of firepower, it thus has high scatter when firing to accomplish such a task. Fires in only bursts of up to 16 rockets, it can hold 32 rockets in total. Uses 60mm Rockets."
+	desc = "A manual, crew-operated and towable multiple rocket launcher system piece used by the Nine Tailed Fox, it is meant to saturate an area with munitions to total up to large amounts of firepower, it thus has high scatter when firing to accomplish such a task. Fires in only bursts of up to 16 rockets, it can hold 32 rockets in total. Uses 60mm Rockets."
 	icon_state = "mlrs"
 	max_integrity = 400
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
@@ -629,7 +631,7 @@
 		span_notice("You start loading \a [mortar_shell.name] into [src]."))
 		playsound(loc, reload_sound, 50, 1)
 		busy = TRUE
-		if(!do_after(user, reload_time, NONE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, reload_time, TRUE, src, BUSY_ICON_HOSTILE))
 			busy = FALSE
 			return
 
@@ -677,6 +679,18 @@
 	desc = "An 80mm mortar shell, loaded with smoke dispersal agents. Can be fired at marines more-or-less safely. Way slimmer than your typical 80mm."
 	icon_state = "mortar_ammo_smk"
 	ammo_type = /datum/ammo/mortar/smoke
+
+/obj/item/mortal_shell/smoke/satrapine
+	name = "\improper 80mm nerve gas mortar shell"
+	desc = "An 80mm mortar shell, loaded with nerve gas smoke dispersal agents. Can be fired at marines more-or-less safely. Way slimmer than your typical 80mm."
+	icon_state = "mortar_ammo_nerve"
+	ammo_type = /datum/ammo/mortar/smoke/satrapine
+
+/obj/item/mortal_shell/smoke/sleep
+	name = "\improper 80mm sleep gas mortar shell"
+	desc = "An 80mm mortar shell, loaded with sleep gas smoke dispersal agents. Can be fired at marines more-or-less safely. Way slimmer than your typical 80mm."
+	icon_state = "mortar_ammo_sleep"
+	ammo_type = /datum/ammo/mortar/smoke/sleep
 
 /obj/item/mortal_shell/plasmaloss
 	name = "\improper 80mm tangle mortar shell"
@@ -795,6 +809,17 @@
 	new /obj/item/mortal_shell/smoke(src)
 	new /obj/item/mortal_shell/smoke(src)
 	new /obj/item/mortal_shell/smoke(src)
+	new /obj/item/mortal_shell/smoke/sleep(src)
+	new /obj/item/mortal_shell/smoke/sleep(src)
+	new /obj/item/mortal_shell/smoke/sleep(src)
+	new /obj/item/mortal_shell/smoke/sleep(src)
+	new /obj/item/mortal_shell/smoke/sleep(src)
+	new /obj/item/mortal_shell/smoke/satrapine(src)
+	new /obj/item/mortal_shell/smoke/satrapine(src)
+	new /obj/item/mortal_shell/smoke/satrapine(src)
+	new /obj/item/mortal_shell/smoke/satrapine(src)
+	new /obj/item/mortal_shell/smoke/satrapine(src)
+	new /obj/item/mortal_shell/smoke/satrapine(src)
 	new /obj/item/mortal_shell/flare(src)
 	new /obj/item/mortal_shell/flare(src)
 	new /obj/item/mortal_shell/flare(src)

@@ -95,6 +95,7 @@
 	var/obj/item/r_hand //Living
 	var/obj/item/storage/s_active //Carbon
 	var/obj/item/clothing/mask/wear_mask //Carbon
+	var/obj/item/clothing/under/wear_under //Carbon
 	///the current turf being examined in the stat panel
 	var/turf/listed_turf
 	///Has enough dexterity to interact with advanced objects?

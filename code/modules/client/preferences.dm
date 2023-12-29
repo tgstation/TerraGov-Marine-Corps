@@ -122,6 +122,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/sec_record = ""
 	var/gen_record = ""
 	var/exploit_record = ""
+	var/xeno_desc = ""
+	var/profile_pic = ""
 
 	var/list/exp = list()
 	var/list/menuoptions = list()
@@ -263,4 +265,3 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	job_preferences[job.title] = level
 	return TRUE
-

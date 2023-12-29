@@ -3,7 +3,7 @@
 
 /obj/item/implant/cloak
 	name = "cloak implant"
-	desc = "A top of the line nanotrasen implant, designed for infiltration."
+	desc = "A top of the line Ninetails implant, designed for infiltration."
 	icon_state = "gripper"
 	flags_implant = GRANT_ACTIVATION_ACTION
 	cooldown_time = 0
@@ -12,7 +12,7 @@
 /obj/item/implant/cloak/get_data()
 	return {"
 	<b>Implant Specifications:</b><BR>
-	<b>Name:</b> Nanotrasen CD-64 CloakMate Implant<BR>
+	<b>Name:</b> Ninetails CD-64 CloakMate Implant<BR>
 	<HR>
 	<b>Implant Details:</b><BR>
 	<b>Function:</b> Upon activation, this implant decreases the reflection rate of light in order to reduce user visibility.<BR>
@@ -43,7 +43,7 @@
 /obj/item/implant/cloak/proc/stealth_user()
 	apply_wibbly_filters(implant_owner)
 	playsound(implant_owner, 'sound/effects/seedling_chargeup.ogg', 100, TRUE)
-	if(!do_after(implant_owner, 3 SECONDS, IGNORE_HELD_ITEM, implant_owner))
+	if(!do_after(implant_owner, 3 SECONDS, FALSE, implant_owner))
 		to_chat(implant_owner, span_warning(" WARNING. Implant activation failed; Error code 423: Subject cancelled activation."))
 		remove_wibbly_filters(implant_owner)
 		return

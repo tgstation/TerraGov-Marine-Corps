@@ -648,7 +648,7 @@
 	visible_message(span_notice("[src] starts lifting [target] onto [p_their()] back..."),
 	span_notice("You start to lift [target] onto your back..."))
 	var/delay = 5 SECONDS - LERP(0 SECONDS, 4 SECONDS, skills.getPercent(SKILL_MEDICAL, SKILL_MEDICAL_MASTER))
-	if(!do_after(src, delay, NONE, target, target_display = BUSY_ICON_HOSTILE))
+	if(!do_mob(src, target, delay, target_display = BUSY_ICON_HOSTILE))
 		visible_message(span_warning("[src] fails to fireman carry [target]!"))
 		return
 	//Second check to make sure they're still valid to be carried
@@ -749,7 +749,7 @@
 
 	to_chat(usr, "You must[self ? "" : " both"] remain still until counting is finished.")
 
-	if(!do_after(usr, 6 SECONDS, NONE, src))
+	if(!do_mob(usr, src, 6 SECONDS))
 		to_chat(usr, span_warning("You failed to check the pulse. Try again."))
 		return
 

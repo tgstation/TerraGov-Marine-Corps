@@ -11,7 +11,7 @@
 	item_state = "w_suit"
 
 /obj/item/clothing/under/captain_fly
-	name = "rogue captains uniform"
+	name = "rogue commander's uniform"
 	desc = "For the man who doesn't care because he's still free."
 	icon_state = "captain_fly"
 
@@ -32,7 +32,7 @@
 
 /obj/item/clothing/under/rank/prisoner
 	name = "prison jumpsuit"
-	desc = "It's standardised Nanotrasen prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
+	desc = "It's standardised NTC prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
 	icon_state = "prisoner"
 	item_state = "prisoner"
 	has_sensor = LOCKED_SENSORS
@@ -240,8 +240,8 @@
 
 
 /obj/item/clothing/under/dress/dress_cap
-	name = "captain's dress uniform"
-	desc = "Feminine fashion for the style concious captain."
+	name = "commander's dress uniform"
+	desc = "Feminine fashion for the style concious commander."
 	icon_state = "dress_cap"
 	flags_armor_protection = CHEST|GROIN|ARMS
 
@@ -314,8 +314,8 @@
 	flags_armor_protection = CHEST|GROIN
 
 /obj/item/clothing/under/captainformal
-	name = "captain's formal uniform"
-	desc = "A captain's formal-wear, for special occasions."
+	name = "commander's formal uniform"
+	desc = "A commander's formal-wear, for special occasions."
 	icon_state = "captain_formal"
 	item_state = "by_suit"
 
@@ -367,21 +367,6 @@
 	desc = "The very image of a working man. Not that you're probably doing work."
 	icon_state = "mechanic_s"
 
-/obj/item/clothing/under/spec_operative
-	name = "Special Operations Uniform"
-	desc = "Created by an unknown corporation for high risk missions, made with several layers of a unknown nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them."
-	icon_state = "pilot_spec"
-	item_state = "pilot_spec"
-	resistance_flags = UNACIDABLE
-	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 70, BIO = 70, FIRE = 70, ACID = 70)
-	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
-	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
-	siemens_coefficient = 0
-	slowdown= -1
-	gas_transfer_coefficient = 0.01
-	permeability_coefficient = 0.01
-
 /obj/item/clothing/under/techpriest
 	name = "Techpriest Robes"
 	desc = "Praise the omnissiah!"
@@ -389,3 +374,34 @@
 	item_state = "tp_bodyrobes"
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 
+
+/obj/item/clothing/under/spec_operative
+	name = "Old NTC Spec-Ops Uniform"
+	desc = "An extremely expensive sneaking suit created by an Ninetails Corporation for high risk missions, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher. This uniform allows you to crawl through vents with ALT-CLICK"
+	icon_state = "syndicate"
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 20, ENERGY = 20, BOMB = 40, BIO = 50, FIRE = 50, ACID = 30)
+	flags_cold_protection = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	slowdown= -0.5
+
+/obj/item/clothing/under/spec_operative/equipped(mob/user, i_clothing)
+	. = ..()
+	RegisterSignal(user, COMSIG_LIVING_ADD_VENTCRAWL)
+	ADD_TRAIT(user, TRAIT_CAN_VENTCRAWL, ARMOR_TRAIT)
+
+/obj/item/clothing/under/spec_operative/unequipped(mob/unequipper, i_clothing)
+	. = ..()
+	UnregisterSignal(unequipper, COMSIG_LIVING_ADD_VENTCRAWL)
+	REMOVE_TRAIT(unequipper, TRAIT_CAN_VENTCRAWL, ARMOR_TRAIT)
+
+/obj/item/clothing/under/spec_operative/tback
+	name = "NTC Spec-Ops Tactical T-Back Leotard"
+	desc = "An extremely expensive sneaking leotard with extra skin-showing properties created by an Ninetails Corporation for high risk missions with high risk clothes, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher. This leotard allows you to crawl through vents with ALT-CLICK"
+	icon_state = "swim_black"
+
+/obj/item/clothing/under/spec_operative/armoredsuit
+	name = "executive suit"
+	desc = "An extremely expensive looking formal uniform with a short, side split skirt that seems to have toughened, kevlar or maybe another material fabric... Reminds you of john wick's suit."
+	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 40, BIO = 50, FIRE = 50, ACID = 30)
+	icon_state = "charcoal_suit_skirt"

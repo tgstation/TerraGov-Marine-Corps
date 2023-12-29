@@ -46,7 +46,7 @@
 		AI.anchored = FALSE
 		CHECK_TICK
 
-	GLOB.enter_allowed = FALSE //No joining after dropship crash
+	//GLOB.enter_allowed = FALSE //No joining after dropship crash
 
 	//clear areas around the shuttle with explosions
 	var/turf/C = return_center_turf()
@@ -123,6 +123,31 @@
 	dwidth = 4
 	height = 13
 	width = 9
+
+/obj/docking_port/stationary/marine_dropship/shipelevator/floor1
+	name = "Floor 1"
+	id = "elevatorfloor1"
+	roundstart_template = /datum/map_template/shuttle/shipelevator
+
+/obj/docking_port/stationary/marine_dropship/shipelevator/floor2
+	name = "Floor 2"
+	id = "elevatorfloor2"
+	roundstart_template = null
+
+/obj/docking_port/stationary/marine_dropship/elevator/floor1
+	name = "Floor 1"
+	id = "floor1"
+	roundstart_template = /datum/map_template/shuttle/elevator
+
+/obj/docking_port/stationary/marine_dropship/elevator/floor2
+	name = "Floor 2"
+	id = "floor2"
+	roundstart_template = null
+
+/obj/docking_port/stationary/marine_dropship/elevator/floor3
+	name = "Floor 3"
+	id = "floor3"
+	roundstart_template = null
 
 #define HIJACK_STATE_NORMAL "hijack_state_normal"
 #define HIJACK_STATE_CALLED_DOWN "hijack_state_called_down"
@@ -277,8 +302,59 @@
 	height = 13
 	width = 9
 
-// queen calldown
 
+/obj/machinery/computer/shuttle/shuttle_control/shipelevator
+	name = "Elevator Control Console"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "computer_small"
+	screen_overlay = "shuttle"
+	possible_destinations = "elevatorfloor2;elevatorfloor1"
+	shuttleId = SHUTTLE_SHIPELEVATOR
+
+/obj/docking_port/mobile/shuttle/shipelevator
+	name = "Ship Elevator"
+	id = SHUTTLE_SHIPELEVATOR
+	callTime = 0 SECONDS
+	rechargeTime = 2 SECONDS
+	dheight = 2
+	dwidth = 2
+	height = 5
+	width = 5
+	ignitionTime = 0.5
+	shuttle_flags = GAMEMODE_IMMUNE
+	ignition_sound = 'sound/effects/escape_pod_launch.ogg'
+	landing_sound = 'sound/effects/droppod_impact.ogg'
+	prearrivalTime = 0.05
+	port_direction = 1
+	dir = 2
+
+/obj/machinery/computer/shuttle/shuttle_control/elevator
+	name = "Elevator Control Console"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "computer_small"
+	screen_overlay = "shuttle"
+	possible_destinations = "floor3;floor2;floor1"
+	shuttleId = SHUTTLE_ELEVATOR
+
+/obj/docking_port/mobile/shuttle/elevator
+	name = "elevator"
+	id = SHUTTLE_ELEVATOR
+	callTime = 0 SECONDS
+	rechargeTime = 2 SECONDS
+	dheight = 1
+	dwidth = 1
+	height = 3
+	width = 3
+	ignitionTime = 0.5
+	shuttle_flags = GAMEMODE_IMMUNE
+	ignition_sound = 'sound/effects/escape_pod_launch.ogg'
+	landing_sound = 'sound/effects/droppod_impact.ogg'
+	prearrivalTime = 0.5
+	port_direction = 1
+	dir = 2
+
+
+// queen calldown
 /obj/docking_port/mobile/marine_dropship/afterShuttleMove(turf/oldT, rotation)
 	. = ..()
 	if(hijack_state != HIJACK_STATE_CALLED_DOWN)
@@ -359,7 +435,7 @@
 		return
 
 	to_chat(src, span_warning("You begin calling down the shuttle."))
-	if(!do_after(src, 80, IGNORE_HELD_ITEM, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+	if(!do_after(src, 80, FALSE, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 		to_chat(src, span_warning("You stop."))
 		return
 
@@ -422,7 +498,7 @@
 		if(D.hijack_state != HIJACK_STATE_NORMAL)
 			return FALSE
 		to_chat(user, span_warning("We begin overriding the shuttle lockdown. This will take a while..."))
-		if(!do_after(user, 30 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+		if(!do_after(user, 30 SECONDS, FALSE, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 			to_chat(user, span_warning("We cease overriding the shuttle lockdown."))
 			return FALSE
 		if(!is_ground_level(D.z))
@@ -766,7 +842,7 @@
 
 /obj/machinery/door/poddoor/shutters/transit/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
-	if(SSmapping.level_has_any_trait(z, list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND)))
+	if(SSmapping.level_has_any_trait(z, list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_ANTAG_MAIN_SHIP, ZTRAIT_GROUND)))
 		open()
 	else
 		close()
@@ -1431,12 +1507,11 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer_small"
 	screen_overlay = "shuttle"
-	resistance_flags = RESIST_ALL
+//	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	shuttleId = SHUTTLE_ALAMO
 	possible_destinations = "lz1;lz2;alamo"
 	compatible_control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
-
 
 /obj/machinery/computer/shuttle/shuttle_control/dropship/two
 	name = "\improper 'Normandy' dropship console"

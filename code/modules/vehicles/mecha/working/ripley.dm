@@ -4,7 +4,7 @@
 	icon_state = "ripley"
 	base_icon_state = "ripley"
 	silicon_icon_state = "ripley-empty"
-	move_delay = 1.5 //Move speed, lower is faster.
+	move_delay = 1 //Move speed, lower is faster.
 	max_temperature = 20000
 	max_integrity = 200
 	ui_x = 1200
@@ -21,7 +21,7 @@
 	enclosed = FALSE //Normal ripley has an open cockpit design
 	enter_delay = 10 //can enter in a quarter of the time of other mechs
 	exit_delay = 10
-	/// Custom Ripley step and turning sounds (from TGMC)
+	/// Custom Ripley step and turning sounds (from NTC)
 	stepsound = 'sound/mecha/powerloader_step.ogg'
 	turnsound = 'sound/mecha/powerloader_turn2.ogg'
 	equip_by_category = list(
@@ -38,9 +38,9 @@
 	/// How much things Ripley can carry in their Cargo Compartment
 	var/cargo_capacity = 15
 	/// How fast the mech is in low pressure
-	var/fast_pressure_step_in = 1.5
+	var/fast_pressure_step_in = 0.5
 	/// How fast the mech is in normal pressure
-	var/slow_pressure_step_in = 2
+	var/slow_pressure_step_in = 1
 
 /obj/vehicle/sealed/mecha/working/ripley/generate_actions() //isnt allowed to have internal air
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/mech_eject)
@@ -62,8 +62,8 @@
 	icon_state = "ripleymkii"
 	base_icon_state = "ripleymkii"
 	fast_pressure_step_in = 2 //step_in while in low pressure conditions
-	slow_pressure_step_in = 4 //step_in while in normal pressure conditions
-	move_delay = 4
+	slow_pressure_step_in = 3 //step_in while in normal pressure conditions
+	move_delay = 2
 	max_temperature = 30000
 	max_integrity = 250
 	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_TEMP_CONTROL|MECHA_INT_TANK_BREACH|MECHA_INT_CONTROL_LOST|MECHA_INT_SHORT_CIRCUIT
@@ -87,7 +87,7 @@
 	base_icon_state = "deathripley"
 	fast_pressure_step_in = 2 //step_in while in low pressure conditions
 	slow_pressure_step_in = 3 //step_in while in normal pressure conditions
-	move_delay = 4
+	move_delay = 2
 	lights_power = 7
 	wreckage = /obj/structure/mecha_wreckage/ripley/deathripley
 	step_energy_drain = 0
@@ -199,7 +199,7 @@
 
 /obj/vehicle/sealed/mecha/working/ripley/resisted_against(mob/living/user, obj/O)
 	to_chat(user, span_notice("You lean on the back of [O] and start pushing so it falls out of [src]."))
-	if(do_after(user, 30 SECONDS, target = O))
+	if(do_after(user, 300, target = O))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || O.loc != src )
 			return
 		to_chat(user, span_notice("You successfully pushed [O] out of [src]!"))

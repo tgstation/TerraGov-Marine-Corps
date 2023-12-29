@@ -9,7 +9,7 @@
 	throw_range = 4
 	w_class = WEIGHT_CLASS_SMALL
 	var/is_collapsed = TRUE
-	var/country_name = "TGMC" //presume it is prefaced with 'the'
+	var/country_name = "NTC" //presume it is prefaced with 'the'
 
 /obj/item/flag_base/examine(mob/user)
 	. = ..()
@@ -18,7 +18,7 @@
 
 /obj/item/flag_base/attack_self(mob/user)
 	to_chat(user, "<span class='warning'>You start to deploy the flag between your feet...")
-	if(!do_after(usr, 1 SECONDS, NONE, src, BUSY_ICON_BUILD))
+	if(!do_after(usr, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		to_chat(user, "<span class='warning'>You decide against deploying the flag here.")
 		return
 
@@ -30,7 +30,7 @@
 
 /obj/item/flag_base/attack_hand(mob/living/user)
 	if(!is_collapsed)
-		if(!do_after(usr, 1 SECONDS, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(usr, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 			to_chat(user, "<span class='warning'>You decide against removing the flag here.")
 			return
 		is_collapsed = TRUE
@@ -48,8 +48,8 @@
 		icon_state = "flag_collapsed"
 
 /obj/item/flag_base/tgmc_flag
-	name = "Flag of TGMC"
-	country_name = "TGMC"
+	name = "Flag of NTC"
+	country_name = "NTC"
 
 /obj/item/flag_base/upp_flag
 	name = "Flag of UPP"

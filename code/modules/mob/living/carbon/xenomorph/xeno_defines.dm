@@ -98,6 +98,8 @@
 	var/spit_delay = 6 SECONDS
 	///list of datum projectile types the xeno can use.
 	var/list/spit_types
+	///list of various chemical stings xenos can use
+	var/list/sting_types
 
 	// *** Acid spray *** //
 	///Number of tiles of the acid spray cone extends outward to. Not recommended to go beyond 4.
@@ -300,6 +302,10 @@
 	var/plasma_stored = 0
 	var/time_of_birth
 
+	var/xeno_desc = ""
+	///Profile picture set by player
+	var/profile_pic = ""
+
 	///A mob the xeno ate
 	var/mob/living/carbon/eaten_mob
 	///How much evolution they have stored
@@ -344,6 +350,8 @@
 	var/tier = XENO_TIER_ONE
 
 	var/emotedown = 0
+
+	var/list/datum/action/xeno_abilities = list()
 	///which resin structure to build when we secrete resin
 	var/selected_resin = /turf/closed/wall/resin/regenerating
 	///which reagent to slash with using reagent slash

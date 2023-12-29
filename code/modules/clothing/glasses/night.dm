@@ -86,7 +86,7 @@
 
 /obj/item/clothing/glasses/night/optgoggles
 	name = "\improper Optical imager ballistic goggles"
-	desc = "Standard issue TGMC goggles. This pair has been fitted with an internal optical imaging scanner."
+	desc = "Standard issue NTC goggles. This pair has been fitted with an internal optical imaging scanner."
 	icon_state = "optgoggles"
 	item_state = "optgoggles"
 	deactive_state = "degoggles_optgoggles"
@@ -105,5 +105,5 @@
 
 /obj/item/clothing/glasses/night/optgoggles/prescription
 	name = "\improper Optical imager prescription ballistic goggles"
-	desc = "Standard issue TGMC prescription goggles. This pair has been fitted with an internal optical imaging scanner."
+	desc = "Standard issue NTC prescription goggles. This pair has been fitted with an internal optical imaging scanner."
 	prescription = TRUE

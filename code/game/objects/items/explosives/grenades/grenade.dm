@@ -71,7 +71,8 @@
 		return
 
 	if(user)
-		log_bomber(user, "primed", src)
+		log_explosion("[key_name(user)] primed [src] at [AREACOORD(user.loc)].")
+		log_combat(user, src, "primed")
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.grenades_primed++
 

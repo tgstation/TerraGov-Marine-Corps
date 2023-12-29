@@ -120,28 +120,28 @@
 	user.status_flags &= ~GODMODE
 
 /obj/structure/patrol_point/tgmc_11
-	id = "TGMC_11"
+	id = "NTC_11"
 
 /obj/structure/patrol_point/tgmc_12
-	id = "TGMC_12"
+	id = "NTC_12"
 
 /obj/structure/patrol_point/tgmc_13
-	id = "TGMC_13"
+	id = "NTC_13"
 
 /obj/structure/patrol_point/tgmc_14
-	id = "TGMC_14"
+	id = "NTC_14"
 
 /obj/structure/patrol_point/tgmc_21
-	id = "TGMC_21"
+	id = "NTC_21"
 
 /obj/structure/patrol_point/tgmc_22
-	id = "TGMC_22"
+	id = "NTC_22"
 
 /obj/structure/patrol_point/tgmc_23
-	id = "TGMC_23"
+	id = "NTC_23"
 
 /obj/structure/patrol_point/tgmc_24
-	id = "TGMC_24"
+	id = "NTC_24"
 
 /obj/structure/patrol_point/som_11
 	id = "SOM_11"

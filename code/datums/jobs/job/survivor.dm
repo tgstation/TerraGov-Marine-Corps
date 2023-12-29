@@ -4,8 +4,8 @@
 	access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
 	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
 	display_order = JOB_DISPLAY_ORDER_SURVIVOR
+	total_positions = -1
 	skills_type = /datum/skills/civilian/survivor
-	faction = FACTION_TERRAGOV
 
 /datum/job/survivor/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
@@ -54,7 +54,7 @@
 	. = ..()
 	to_chat(M, {"In whatever case you have been through, you are here to survive and get yourself rescued.
 You appreciate the support of TerraGov and Nanotrasen should you be rescued.
-You are not hostile to TGMC, nor you should oppose or disrupt their objective, unless an admin says otherwise.
+You are not hostile to NTC, nor you should oppose or disrupt their objective, unless an admin says otherwise.
 If you find any other survivors in the area, cooperate with them to increase your chances of survival.
 Depending on the job you've undertook, you may have additional skills to help others when needed.
 Good luck, but do not expect to survive."})
@@ -280,13 +280,16 @@ Good luck, but do not expect to survive."})
 	title = "Survivor"
 	skills_type = /datum/skills/civilian/survivor/master
 	outfit = /datum/outfit/job/survivor/rambo
-	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN
 
 /datum/outfit/job/survivor/rambo
 	name = "Survivor"
 	jobtype = /datum/job/survivor/rambo
+
+	id = /obj/item/card/id
 	w_uniform = /obj/item/clothing/under/color/grey
 	wear_suit = /obj/item/clothing/suit/armor/rugged
 	shoes = /obj/item/clothing/shoes/ruggedboot
 	back = /obj/item/storage/backpack/satchel/rugged
 	gloves = /obj/item/clothing/gloves/ruggedgloves
+	r_store = /obj/item/flashlight

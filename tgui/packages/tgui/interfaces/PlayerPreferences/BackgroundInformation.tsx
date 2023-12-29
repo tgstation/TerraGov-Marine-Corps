@@ -10,6 +10,8 @@ export const BackgroundInformation = (props, context) => {
     gen_record,
     sec_record,
     exploit_record,
+    xeno_desc,
+    profile_pic,
   } = data;
 
   const [characterDesc, setCharacterDesc] = useLocalState(
@@ -37,6 +39,16 @@ export const BackgroundInformation = (props, context) => {
     'exploitsDesc' + slot,
     exploit_record
   );
+  const [xenoDesc, setXenoDesc] = useLocalState(
+    context,
+    'xenoDesc' + slot,
+    xeno_desc
+  );
+  const [profilePic, setProfilePic] = useLocalState(
+    context,
+    'profilePic' + slot,
+    profile_pic
+  );
   return (
     <Section title="Background information">
       <Section
@@ -56,9 +68,33 @@ export const BackgroundInformation = (props, context) => {
         }>
         <TextArea
           key="character"
-          height="100px"
+          height="200px"
+          maxLength={12000}
           value={characterDesc}
           onChange={(e, value) => setCharacterDesc(value)}
+        />
+      </Section>
+      <Section
+        title="Xenomorph Description"
+        buttons={
+          <Box>
+            <Button
+              icon="save"
+              disabled={xenoDesc === xeno_desc}
+              onClick={() => act('xeno_desc', { xenoDesc })}>
+              Save
+            </Button>
+            <Button icon="times" onClick={() => setXenoDesc(xeno_desc)}>
+              Reset
+            </Button>
+          </Box>
+        }>
+        <TextArea
+          key="xeno"
+          height="200px"
+          maxLength={12000}
+          value={xenoDesc}
+          onChange={(e, value) => setXenoDesc(value)}
         />
       </Section>
 
@@ -164,6 +200,31 @@ export const BackgroundInformation = (props, context) => {
               maxLength={1024}
               value={exploitsDesc}
               onChange={(e, value) => setExploitsDesc(value)}
+            />
+          </Section>
+        </Stack.Item>
+        <Stack.Item grow>
+          <Section
+            title="Profile Picture Link"
+            buttons={
+              <Box>
+                <Button
+                  icon="save"
+                  disabled={profilePic === profile_pic}
+                  onClick={() => act('profile_pic', { profilePic })}>
+                  Save
+                </Button>
+                <Button icon="times" onClick={() => setProfilePic(profile_pic)}>
+                  Reset
+                </Button>
+              </Box>
+            }>
+            <TextArea
+              key="profilepic"
+              height="100px"
+              maxLength={2048}
+              value={profilePic}
+              onChange={(e, value) => setProfilePic(value)}
             />
           </Section>
         </Stack.Item>

@@ -13,24 +13,38 @@ Format:
 endmap
 
 map debugdalus
+disabled
+endmap
+
+map theseus
+disabled
+endmap
+
+map ntc_nine_tailed_fox
 	default
 	voteweight 0
 endmap
 
-map theseus
+map eagle
+        voteweight 0
 endmap
 
 map pillar_of_spring
+disabled
 endmap
 
 map sulaco
+disabled
 endmap
 
 map arachne
+disabled
 endmap
 
 map combat_patrol_base
+disabled
 endmap
 
 map iteron
+disabled
 endmap

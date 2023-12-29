@@ -12,6 +12,34 @@
 	height = 9
 	rechargeTime = 0
 
+/obj/docking_port/stationary/marine_dropship/minidropship/som
+	name = "SOM Minidropship hangar pad"
+	id = SHUTTLE_SOMTADPOLE
+	roundstart_template = /datum/map_template/shuttle/minidropship/old
+
+/obj/docking_port/mobile/marine_dropship/minidropship/som
+	name = "SOM Tadpole"
+	id = SHUTTLE_SOMTADPOLE
+	dwidth = 0
+	dheight = 0
+	width = 7
+	height = 9
+	rechargeTime = 0
+
+/obj/docking_port/stationary/marine_dropship/minidropship/clf
+	name = "CLF Van Parking Spot"
+	id = SHUTTLE_CLFTADPOLE
+	roundstart_template = /datum/map_template/shuttle/minidropship/old
+
+/obj/docking_port/mobile/marine_dropship/minidropship/clf
+	name = "CLF Van"
+	id = SHUTTLE_CLFTADPOLE
+	dwidth = 0
+	dheight = 0
+	width = 7
+	height = 9
+	rechargeTime = 0
+
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship
 	name = "Tadpole navigation computer"
 	desc = "Used to designate a precise transit location for the Tadpole."
@@ -47,6 +75,18 @@
 	var/launching_delay = 10 SECONDS
 	///Minimap for use while in landing cam mode
 	var/datum/action/minimap/marine/external/tadmap
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/som
+	name = "SOM Tadpole navigation computer"
+	shuttleId = SHUTTLE_SOMTADPOLE
+	req_one_access = null
+	networks = list(SOM_CAMERA_NETWORK)
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/clf
+	name = "CLF Van Controls"
+	shuttleId = SHUTTLE_CLFTADPOLE
+	req_one_access = null
+	networks = null
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
 	..()
@@ -168,7 +208,7 @@
 		return
 	X.visible_message("[X] begins to slash delicately at the computer",
 	"We start slashing delicately at the computer. This will take a while.")
-	if(!do_after(X, 10 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+	if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
 	visible_message("The inner wiring is visible, it can be slashed!")
 	X.visible_message("[X] continue to slash at the computer",
@@ -176,7 +216,7 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	if(!do_after(X, 10 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+	if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
 	visible_message("The wiring is destroyed, nobody will be able to repair this computer!")
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MINI_DROPSHIP_DESTROYED, src)

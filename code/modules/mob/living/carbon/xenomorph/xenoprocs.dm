@@ -444,14 +444,32 @@
 	to_chat(src, span_notice("You have [xeno_mobhud ? "enabled" : "disabled"] the Xeno Status HUD."))
 
 
-/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, datum/reagent/toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4)
+/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, list/toxin = list(/datum/reagent/toxin/xeno_neurotoxin), channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4)
 	if(!C?.can_sting() || !toxin)
 		return FALSE
-	if(!do_after(src, channel_time, NONE, C, BUSY_ICON_HOSTILE))
+	if(!length(toxin) && islist(toxin))
+		return FALSE
+	if(!islist(toxin))
+		toxin = list(toxin)
+	var/chemical_string = ""
+	// populate the string and fill the assoc list transfer amounts
+	for(var/chem in toxin)
+		var/datum/reagent/chemical = chem
+		toxin[chemical] = transfer_amount
+		var/string_append = ", "
+		// use and if we're before the last chemical
+		var/last_chem = toxin[length(toxin)]
+		var/last_chem_index = toxin.Find(last_chem)
+		if(length(toxin) > 1 && chem == toxin[last_chem_index - 1])
+			string_append = " and "
+		else if(chem == toxin[last_chem_index])
+			string_append = ""
+		chemical_string += "[initial(chemical.name)][string_append]"
+	if(!do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 		return FALSE
 	var/i = 1
 	to_chat(C, span_danger("You feel a tiny prick."))
-	to_chat(src, span_xenowarning("Our stinger injects our victim with [initial(toxin.name)]!"))
+	to_chat(src, span_xenowarning("Our stinger injects our victim with [chemical_string]!"))
 	playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
 	playsound(C, "alien_drool", 15, TRUE)
 	do
@@ -459,8 +477,8 @@
 		if(IsStaggered())
 			return FALSE
 		do_attack_animation(C)
-		C.reagents.add_reagent(toxin, transfer_amount)
-	while(i++ < count && do_after(src, channel_time, NONE, C, BUSY_ICON_HOSTILE))
+		C.reagents.add_reagent_list(toxin, transfer_amount)
+	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 	return TRUE
 
 /atom/proc/can_sting()

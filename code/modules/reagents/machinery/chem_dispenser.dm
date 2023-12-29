@@ -488,8 +488,8 @@
 	)
 
 	emagged_message = list(
-		"You disable the 'nanotrasen-are-cheap-bastards' lock, enabling hidden and very expensive boozes.",
-		"You re-enable the 'nanotrasen-are-cheap-bastards' lock, disabling hidden and very expensive boozes.",
+		"You disable the 'Ninetails-are-cheap-bastards' lock, enabling hidden and very expensive boozes.",
+		"You re-enable the 'Ninetails-are-cheap-bastards' lock, disabling hidden and very expensive boozes.",
 	)
 	emagged_reagents = list(
 		/datum/reagent/consumable/ethanol/goldschlager,

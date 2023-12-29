@@ -212,8 +212,9 @@
 	description = "An effective hypnotic used to treat insomnia."
 	color = COLOR_TOXIN_SLEEPTOXIN
 	toxpwr = 0
-	overdose_threshold = REAGENTS_OVERDOSE
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	custom_metabolism = REAGENTS_METABOLISM
+	overdose_threshold = REAGENTS_OVERDOSE*2
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*2
 	scannable = TRUE
 	taste_description = "cough syrup"
 	trait_flags = BRADYCARDICS
@@ -229,7 +230,7 @@
 				L.Sleeping(10 SECONDS)
 			L.drowsyness = max(L.drowsyness, 20)
 		if(11 to 80)
-			L.Sleeping(10 SECONDS) //previously knockdown, no good for a soporific.
+			L.Sleeping(30 SECONDS) //previously knockdown, no good for a soporific.
 			L.drowsyness = max(L.drowsyness, 30)
 		if(81 to INFINITY)
 			L.adjustDrowsyness(2)
@@ -293,7 +294,7 @@
 	name = "Potassium Chlorophoride"
 	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery. Not safe to eat!"
 	color = COLOR_TOXIN_POTASSIUM_CHLORIDE
-	toxpwr = 2
+	toxpwr = 1
 
 /datum/reagent/toxin/potassium_chlorophoride/on_mob_life(mob/living/L, metabolism)
 	if(L.stat != UNCONSCIOUS)
@@ -634,6 +635,51 @@
 		to_chat(L, span_warning("Your veins feel like water..") )
 		return ..()
 
+/datum/reagent/toxin/xeno_aphrotoxin
+	name = "Aphrotoxin"
+	description = "An aphrodisiac mixed with larva growth toxin made naturally be some xenos, it is used to disorient hosts and prepare them for breeding. Also to boost larva growth."
+	reagent_state = LIQUID
+	color = COLOR_TOXIN_APHROTOXIN
+	overdose_threshold = 10000
+	custom_metabolism = REAGENTS_METABOLISM
+	scannable = TRUE
+	toxpwr = 0
+
+/datum/reagent/toxin/xeno_aphrotoxin/on_mob_life(mob/living/L, metabolism)
+	switch(current_cycle)
+		if(1 to 6)
+			if(prob(10))
+				to_chat(L, span_warning("You feel your [L.gender==MALE ? "cock throb a little," : "vagina get a bit wet,"] distracting you.") )
+				L.AdjustConfused(2 SECONDS)
+		if(7 to 10)
+			if(prob(15))
+				L.emote("blink")
+				L.blur_eyes(5)
+				to_chat(L, span_warning("You feel your [L.gender==MALE ? "cock harden." : "vagina drip down your legs."] your knees feel weak!") )
+				L.AdjustConfused(3 SECONDS)
+			if(prob(20))
+				L.AdjustConfused(2 SECONDS)
+		if(11 to 80)
+			if(prob(15))
+				L.emote("blush")
+				L.blur_eyes(5)
+			if(prob(15))
+				to_chat(L, span_warning("You feel your [L.gender==MALE ? "cock throb with need!" : "vagina drool like a waterfall!"] Your legs tremble and go limp.") )
+				L.Paralyze(2 SECONDS)
+				L.AdjustConfused(3 SECONDS)
+			if(prob(25))
+				L.AdjustConfused(2 SECONDS)
+		if(81 to INFINITY)
+			if(prob(15))
+				L.emote("moan")
+				L.blur_eyes(5)
+			if(prob(15))
+				to_chat(L, span_warning("You feel your [L.gender==MALE ? "cock throb hard as steel!" : "vagina drool like rain, burn like fire!"] ypır legs give up as you orgasm violently!") )
+				L.Paralyze(5 SECONDS)
+				L.AdjustConfused(6 SECONDS)
+			if(prob(30))
+				L.AdjustConfused(2 SECONDS)
+	return ..()
 /datum/reagent/zombium
 	name = "Zombium"
 	description = "Powerful chemical able to raise the dead, origin is likely from an unidentified bioweapon."

@@ -93,7 +93,7 @@
 				balloon_alert_to_viewers("tries to feed [M] but can't")
 				return FALSE
 
-			if(!do_after(user, 3 SECONDS, NONE, M, BUSY_ICON_FRIENDLY))
+			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
 				return
 
 			var/rgt_list_text = get_reagent_list_text()
@@ -1342,7 +1342,7 @@
 
 /obj/item/reagent_containers/food/snacks/packaged_burrito
 	name = "Packaged Burrito"
-	desc = "A hard microwavable burrito. There's no time given for how long to cook it. Packaged by the Nanotrasen Corporation."
+	desc = "A hard microwavable burrito. There's no time given for how long to cook it. Packaged by the Ninetails Corporation."
 	icon = 'icons/obj/items/food/mre.dmi'
 	icon_state = "burrito"
 	bitesize = 2
@@ -1360,7 +1360,7 @@
 
 /obj/item/reagent_containers/food/snacks/packaged_hdogs
 	name = "Packaged Hotdog"
-	desc = "A singular squishy, room temperature, hot dog. There's no time given for how long to cook it, so you assume its probably good to go. Packaged by the Nanotrasen Corporation."
+	desc = "A singular squishy, room temperature, hot dog. There's no time given for how long to cook it, so you assume its probably good to go. Packaged by the Ninetails Corporation."
 	icon = 'icons/obj/items/food/mre.dmi'
 	icon_state = "hot_dogs"
 	bitesize = 2

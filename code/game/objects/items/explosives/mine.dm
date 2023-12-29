@@ -10,7 +10,7 @@ Stepping directly on the mine will also blow it up
 */
 /obj/item/explosive/mine
 	name = "\improper M20 Claymore anti-personnel mine"
-	desc = "The M20 Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps."
+	desc = "The M20 Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the Nine Tailed Fox."
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "m20"
 	force = 5
@@ -73,7 +73,7 @@ Stepping directly on the mine will also blow it up
 
 	if(armed)
 		return
-	if(!do_after(user, 10, NONE, src, BUSY_ICON_HOSTILE))
+	if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
 		user.visible_message(span_notice("[user] stops deploying [src]."), \
 	span_notice("You stop deploying \the [src]."))
 		return
@@ -108,7 +108,7 @@ Stepping directly on the mine will also blow it up
 	user.visible_message(span_notice("[user] starts disarming [src]."), \
 	span_notice("You start disarming [src]."))
 
-	if(!do_after(user, 8 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 8 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
 		user.visible_message("<span class='warning'>[user] stops disarming [src].", \
 		"<span class='warning'>You stop disarming [src].")
 		return
@@ -227,12 +227,12 @@ Stepping directly on the mine will also blow it up
 /// PMC specific mine, with IFF for PMC units
 /obj/item/explosive/mine/pmc
 	name = "\improper M20P Claymore anti-personnel mine"
-	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps. It has been modified for use by the NT PMC forces."
+	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the Nine Tailed Fox. It has been modified for use by the NT PMC forces."
 	icon_state = "m20p"
 
 /obj/item/explosive/mine/anti_tank
 	name = "\improper M92 Valiant anti-tank mine"
-	desc = "The M92 Valiant is a anti-tank mine designed by Armat Systems for use by the TerraGov Marine Corps against heavy armour, both tanks and mechs."
+	desc = "The M92 Valiant is a anti-tank mine designed by Armat Systems for use by the Nine Tailed Fox against heavy armour, both tanks and mechs."
 	icon_state = "m92"
 	target_mode = MINE_VEHICLE_ONLY
 

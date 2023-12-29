@@ -45,14 +45,18 @@
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/blink,
-		/datum/action/ability/activable/xeno/banish,
-		/datum/action/ability/xeno_action/recall,
-		/datum/action/ability/activable/xeno/rewind,
-		/datum/action/ability/xeno_action/portal,
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/psychic_whisper,
+		/datum/action/xeno_action/psychic_influence,
+		/datum/action/xeno_action/activable/impregnate,
+		/datum/action/xeno_action/watch_xeno,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/activable/blink,
+		/datum/action/xeno_action/activable/banish,
+		/datum/action/xeno_action/recall,
+		/datum/action/xeno_action/activable/rewind,
+		/datum/action/xeno_action/portal,
 	)
 
 /datum/xeno_caste/wraith/normal
@@ -65,14 +69,17 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
-		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/blink,
-		/datum/action/ability/activable/xeno/banish,
-		/datum/action/ability/xeno_action/recall,
-		/datum/action/ability/xeno_action/portal,
-		/datum/action/ability/activable/xeno/rewind,
-		/datum/action/ability/xeno_action/timestop,
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/psychic_whisper,
+		/datum/action/xeno_action/psychic_influence,
+		/datum/action/xeno_action/activable/impregnate,
+		/datum/action/xeno_action/watch_xeno,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/activable/blink,
+		/datum/action/xeno_action/activable/banish,
+		/datum/action/xeno_action/recall,
+		/datum/action/xeno_action/portal,
+		/datum/action/xeno_action/activable/rewind,
+		/datum/action/xeno_action/timestop,
 	)
-

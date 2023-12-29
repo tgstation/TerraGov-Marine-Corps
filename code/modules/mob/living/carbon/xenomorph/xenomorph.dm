@@ -157,13 +157,13 @@
 	switch(playtime_mins)
 		if(0 to 600)
 			rank_name = "Hatchling"
-		if(601 to 1500) //10 hours
+		if(601 to 3000)
 			rank_name = "Young"
-		if(1501 to 4200) //25 hours
+		if(3001 to 9000)
 			rank_name = "Mature"
-		if(4201 to 10500) //70 hours
+		if(9001 to 18000)
 			rank_name = "Elder"
-		if(10501 to INFINITY) //175 hours
+		if(18001 to INFINITY)
 			rank_name = "Ancient"
 		else
 			rank_name = "Hatchling"
@@ -190,13 +190,13 @@
 	switch(playtime_mins)
 		if(0 to 600)
 			return 0
-		if(601 to 1500)
+		if(601 to 3000)
 			return 1
-		if(1501 to 4200)
+		if(3001 to 9000)
 			return 2
-		if(4201 to 10500)
+		if(9001 to 18000)
 			return 3
-		if(10501 to INFINITY)
+		if(18001 to INFINITY)
 			return 4
 		else
 			return 0
@@ -244,6 +244,11 @@
 	. = ..()
 	. += xeno_caste.caste_desc
 
+	if(xeno_desc)
+		. += "<span class='info'>[xeno_desc]</span>"
+	if(profile_pic)
+		. += "<span class='info'><img src=[profile_pic]/></span>"
+
 	if(stat == DEAD)
 		. += "It is DEAD. Kicked the bucket. Off to that great hive in the sky."
 	else if(stat == UNCONSCIOUS)
@@ -266,6 +271,7 @@
 		var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 		. += "It appears to belong to the [hive.prefix]hive"
 	return
+
 
 /mob/living/carbon/xenomorph/Destroy()
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
@@ -299,15 +305,12 @@
 		return FALSE //Incorporeal things can't grab or be grabbed.
 	if(AM.anchored)
 		return FALSE //We cannot grab anchored items.
-	if(!isliving(AM) && AM.drag_windup && !do_after(src, AM.drag_windup, NONE, AM, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = src.health))))
+	if(!isliving(AM) && AM.drag_windup && !do_after(src, AM.drag_windup, TRUE, AM, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = src.health))))
 		return //If the target is not a living mob and has a drag_windup defined, calls a do_after. If all conditions are met, it returns. If the user takes damage during the windup, it breaks the channel.
 	var/mob/living/L = AM
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
-		if(L.stat == DEAD) //Can't drag dead human bodies.
-			to_chat(usr,span_xenowarning("This looks gross, better not touch it."))
-			return FALSE
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
 	do_attack_animation(L, ATTACK_EFFECT_GRAB)
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
@@ -448,24 +451,14 @@
 		return
 	loc_weeds_type = null
 
-/**  Handles logic for the xeno moving to a new weeds tile.
-Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change */
+/// Handles logic for the xeno moving to a new weeds tile
 /mob/living/carbon/xenomorph/proc/handle_weeds_on_movement(datum/source)
 	SIGNAL_HANDLER
 	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
-	if(loc_weeds_type == found_weed?.type)
-		return FALSE
 	loc_weeds_type = found_weed?.type
-	return TRUE
-
-/mob/living/carbon/xenomorph/hivemind/handle_weeds_on_movement(datum/source)
-	. = ..()
-	if(!.)
-		return
-	update_icon()
 
 /mob/living/carbon/xenomorph/lay_down()
-	var/datum/action/ability/xeno_action/xeno_resting/resting_action = actions_by_path[/datum/action/ability/xeno_action/xeno_resting]
+	var/datum/action/xeno_action/xeno_resting/resting_action = actions_by_path[/datum/action/xeno_action/xeno_resting]
 	if(!resting_action || !resting_action.can_use_action())
 		return
 	return ..()

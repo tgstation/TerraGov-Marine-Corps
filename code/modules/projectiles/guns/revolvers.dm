@@ -59,7 +59,7 @@
 
 /obj/item/weapon/gun/revolver/standard_revolver
 	name = "\improper R-44 combat revolver"
-	desc = "The R-44 standard combat revolver, produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to an error in the cylinder rotation system the fire rate of the gun is much faster than intended, it ended up being billed as a feature of the system."
+	desc = "The R-44 standard combat revolver, produced by Archercorp. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to an error in the cylinder rotation system the fire rate of the gun is much faster than intended, it ended up being billed as a feature of the system."
 	icon_state = "tp44"
 	item_state = "tp44"
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_r44.ogg'
@@ -158,7 +158,7 @@
 
 /obj/item/weapon/gun/revolver/mateba
 	name = "\improper R-24 'Mateba' autorevolver"
-	desc = "The R-24 is the rather rare autorevolver used by the TGMC issued in rather small numbers to backline personnel and officers it uses recoil to spin the cylinder. Uses heavy .454 rounds."
+	desc = "The R-24 is the rather rare autorevolver used by the NTC issued in rather small numbers to backline personnel and officers it uses recoil to spin the cylinder. Uses heavy .454 rounds."
 	icon_state = "mateba"
 	item_state = "mateba"
 	fire_animation = "mateba_fire"
@@ -207,7 +207,7 @@
 
 /obj/item/weapon/gun/revolver/cmb
 	name = "\improper CMB autorevolver"
-	desc = "An automatic revolver chambered in .357 magnum. Commonly issued to Nanotrasen security. It has a burst mode. Currently in trial with other revolvers across Terra and other colonies."
+	desc = "An automatic revolver chambered in .357 magnum. Commonly issued to Ninetails security. It has a burst mode. Currently in trial with other revolvers across Terra and other colonies."
 	icon_state = "cmb"
 	item_state = "cmb"
 	caliber = CALIBER_357 //codex
@@ -274,7 +274,7 @@
 
 /obj/item/weapon/gun/revolver/standard_magnum
 	name = "\improper R-76 KC magnum"
-	desc = "The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
+	desc = "The R-76 magnum is an absolute beast of a handgun used by the NTC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t76"
 	item_state = "t76"
@@ -330,19 +330,19 @@
 	)
 
 /obj/item/weapon/gun/revolver/standard_magnum/fancy/gold
-	desc = "A gold plated R-76 magnum, to ensure it's incredibly expensive as well as incredibly impractical. The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
+	desc = "A gold plated R-76 magnum, to ensure it's incredibly expensive as well as incredibly impractical. The R-76 magnum is an absolute beast of a handgun used by the NTC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
 	icon_state = "g_t76"
 	item_state = "g_t76"
 	fire_animation = "g_t76_fire"
 
 /obj/item/weapon/gun/revolver/standard_magnum/fancy/silver
-	desc = "A silver plated R-76 magnum, to ensure it's incredibly expensive as well as incredibly impractical. The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
+	desc = "A silver plated R-76 magnum, to ensure it's incredibly expensive as well as incredibly impractical. The R-76 magnum is an absolute beast of a handgun used by the NTC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
 	icon_state = "s_t76"
 	item_state = "s_t76"
 	fire_animation = "s_t76_fire"
 
 /obj/item/weapon/gun/revolver/standard_magnum/fancy/nickle
-	desc = "A nickle plated R-76 magnum, for a more tasteful finish. The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
+	desc = "A nickle plated R-76 magnum, for a more tasteful finish. The R-76 magnum is an absolute beast of a handgun used by the NTC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
 	icon_state = "n_t76"
 	item_state = "n_t76"
 	fire_animation = "n_t76_fire"

@@ -226,7 +226,7 @@
 			to_chat(src, span_warning("You are unable to equip that."))
 		return FALSE
 	if(W.equip_delay_self && !ignore_delay)
-		if(!do_after(src, W.equip_delay_self, NONE, W, BUSY_ICON_FRIENDLY))
+		if(!do_after(src, W.equip_delay_self, TRUE, W, BUSY_ICON_FRIENDLY))
 			to_chat(src, "You stop putting on \the [W]")
 			return FALSE
 		equip_to_slot(W, slot) //This proc should not ever fail.
@@ -453,16 +453,6 @@
 /mob/GenerateTag()
 	tag = "mob_[next_mob_id++]"
 
-/mob/serialize_list(list/options, list/semvers)
-	. = ..()
-
-	.["tag"] = tag
-	.["name"] = name
-	.["ckey"] = ckey
-	.["key"] = key
-
-	SET_SERIALIZATION_SEMVER(semvers, "1.0.0")
-	return .
 
 /mob/proc/get_paygrade()
 	return ""

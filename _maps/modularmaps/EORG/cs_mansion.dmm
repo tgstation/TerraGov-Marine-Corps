@@ -592,7 +592,7 @@
 /area/deathmatch)
 "An" = (
 /obj/structure/prop/mainship/ship_memorial{
-	desc = "A ship memorial dedicated to the triumphs of the TGMC and the fallen marines of this ship. On the left there are grand tales of victory etched into the slab. On the right there is a list of famous marines who have fallen in combat serving the TGMC. There seems to be an etch of three spikes on the free space below."
+	desc = "A ship memorial dedicated to the triumphs of the NTC and the fallen marines of this ship. On the left there are grand tales of victory etched into the slab. On the right there is a list of famous marines who have fallen in combat serving the NTC. There seems to be an etch of three spikes on the free space below."
 	},
 /turf/open/floor/grime,
 /area/deathmatch)

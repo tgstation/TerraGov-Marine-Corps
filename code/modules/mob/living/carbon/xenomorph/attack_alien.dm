@@ -34,6 +34,72 @@
 	span_warning("We shove [src]!"), null, 5)
 	return TRUE
 
+/mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
+	var/randn = rand(1, 100)
+	var/stamina_loss = getStaminaLoss()
+	var/disarmdamage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier + 20
+	var/damage_to_deal = clamp(disarmdamage, 0, maxHealth - stamina_loss)
+	var/sound = 'sound/weapons/alien_knockdown.ogg'
+
+	if ishuman(src)
+		if(IsParalyzed())
+			X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
+			X.visible_message(null, "<span class='info'>We could not do much to [src], they are already down.</span>", null)
+			sound = 'sound/weapons/punchmiss.ogg'
+		else
+			X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
+			if(pulling)
+				X.visible_message("<span class='danger'>[X] has broken [src]'s grip on [pulling]!</span>",
+				"<span class='danger'>We break [src]'s grip on [pulling]!</span>", null, 5)
+				sound = 'sound/weapons/thudswoosh.ogg'
+				stop_pulling()
+			else if(prob(25) && drop_held_item())
+				X.visible_message("<span class='danger'>[X] has disarmed [src]!</span>",
+				"<span class='danger'>We disarm [src]!</span>", null, 5)
+				sound = 'sound/weapons/thudswoosh.ogg'
+				return
+			apply_damage(damage_to_deal, STAMINA)
+			X.visible_message("<span class='danger'>[X] shoves and presses [src] down!</span>",
+			"<span class='danger'>We shove and press [src] down!</span>", null, 5)
+			Stagger(2 SECONDS)
+			if(stamina_loss >= maxHealth)
+				if(!IsParalyzed())
+					apply_damage(90, STAMINA)
+					visible_message(null, "<span class='danger'>You are too weakened to keep resisting [X], you slump to the ground!</span>")
+					X.visible_message("<span class='danger'>[X] slams [src] to the ground!</span>",
+					"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
+					Paralyze(20 SECONDS)
+	else if(!ishuman(src))
+		if(randn <= 40)
+			if(!IsParalyzed())
+				X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
+				X.visible_message("<span class='danger'>[X] shoves and presses [src] down!</span>",
+				"<span class='danger'>We shove and press [src] down!</span>", null, 5)
+				visible_message(null, "<span class='danger'>You are too weakened to keep resisting [X], you slump to the ground!</span>")
+				X.visible_message("<span class='danger'>[X] slams [src] to the ground!</span>",
+				"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
+				Paralyze(8 SECONDS)
+			else if(IsParalyzed())
+				X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
+				X.visible_message(null, "<span class='info'>We could not do much to [src], they are already down.</span>", null)
+				sound = 'sound/weapons/punchmiss.ogg'
+		else if(randn > 40)
+			X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
+			sound = 'sound/weapons/punchmiss.ogg'
+			X.visible_message("<span class='danger'>[X] attempted to disarm [src] but they resist!</span>",
+			"<span class='danger'>We attempt to disarm [src] but it resisted!</span>", null, 5)
+			Stagger(2 SECONDS)
+
+
+	log_combat(X, src, "disarmed")
+	playsound(loc, sound, 25, TRUE, 7)
+//	else;
+//		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE, 7)
+//		X.visible_message("<span class='danger'>[X] attempted to disarm [src]!</span>",
+//		"<span class='danger'>We attempt to disarm [src]!</span>", null, 5)
+//		return
+
+
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
 	return !(status_flags & INCORPOREAL)
 
@@ -201,17 +267,26 @@
 	switch(X.a_intent)
 		if(INTENT_HELP)
 			if(on_fire)
-				X.visible_message(span_danger("[X] stares at [src]."), span_notice("We stare at the roasting [src], toasty."), null, 5)
-				return FALSE
-			X.visible_message(span_notice("\The [X] caresses [src] with its scythe-like arm."), \
-			span_notice("We caress [src] with our scythe-like arm."), null, 5)
-			return FALSE
+				fire_stacks = max(fire_stacks - 1, 0)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+				X.visible_message(span_danger("[X] tries to put out the fire on [src]!"), \
+					span_warning("We try to put out the fire on [src]!"), null, 5)
+				if(fire_stacks <= 0)
+					X.visible_message(span_danger("[X] has successfully extinguished the fire on [src]!"), \
+						span_notice("We extinguished the fire on [src]."), null, 5)
+					ExtinguishMob()
+				return TRUE
+			X.visible_message(span_notice("\The [X] caresses \the [src] with its scythe-like arm."), \
+			span_notice("We caress \the [src] with our scythe-like arm."), null, 5)
 
 		if(INTENT_GRAB)
 			return attack_alien_grab(X)
 
-		if(INTENT_HARM, INTENT_DISARM)
+		if(INTENT_HARM)
 			return attack_alien_harm(X)
+
+		if(INTENT_DISARM)
+			return attack_alien_disarm(X)
 	return FALSE
 
 /mob/living/attack_larva(mob/living/carbon/xenomorph/larva/M)

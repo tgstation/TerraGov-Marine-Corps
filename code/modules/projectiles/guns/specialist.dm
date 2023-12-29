@@ -230,7 +230,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/rifle/sniper/elite
 	name = "\improper SR-42 anti-tank sniper rifle"
-	desc = "A high end mag-rail heavy sniper rifle from Nanotrasen chambered in the heaviest ammo available, 10x99mm Caseless."
+	desc = "A high end mag-rail heavy sniper rifle from Ninetails chambered in the heaviest ammo available, 10x99mm Caseless."
 	icon_state = "m42c"
 	item_state = "m42c"
 	max_shells = 6 //codex
@@ -440,11 +440,52 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/minigun/valhalla
 	obj_flags = NONE
 
+//Mounted version of the minigun for the wheelchair
+/obj/item/weapon/gun/minigun/wheelchair
+	name = "\improper Modified MG-100 Vindicator Minigun"
+	desc = "A minigun that's been modified to be mounted on a wheelchair. As a result, it is more controllable and fed externally by an ammo reservoir."
+
+	max_shells = 1000 //codex
+	reload_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/minigun_wheelchair
+	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_wheelchair)
+	obj_flags = NONE	//Do not affect autobalance
+	flags_item = NONE	//To remove wielding
+	flags_equip_slot = NONE
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	reciever_flags = AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE|AMMO_RECIEVER_MAGAZINES
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	actions_types = list()
+	attachable_allowed = list()
+
+	recoil = 0
+	recoil_unwielded = 0
+
+	windup_delay = 0.7 SECONDS
+	movement_acc_penalty_mult = 0
+
+	//A reference to whatever this gun is mounted to for dropped()
+	var/obj/mount
+
+/obj/item/weapon/gun/minigun/wheelchair/Destroy()
+	mount = null
+	return ..()
+
+//This will account for cases like if the user's hand is cut off, return it to the object it was mounted on
+/obj/item/weapon/gun/minigun/wheelchair/dropped(mob/user)
+	. = ..()
+	visible_message(span_warning("[src] violently snaps back into it's place in [mount]!"))
+	forceMove(mount)
+
+//So that it displays the minigun on the mob as if always wielded
+/obj/item/weapon/gun/minigun/wheelchair/update_item_state()
+	item_state = "[base_gun_icon]_w"
+
 // SG minigun
 
 /obj/item/weapon/gun/minigun/smart_minigun
 	name = "\improper SG-85 smart handheld gatling gun"
-	desc = "A true monster of providing supportive suppresing fire, the SG-85 is the TGMC's IFF-capable minigun for heavy fire support duty. Boasting a higher firerate than any other handheld weapon. It is chambered in 10x26 caseless."
+	desc = "A true monster of providing supportive suppresing fire, the SG-85 is the NTC's IFF-capable minigun for heavy fire support duty. Boasting a higher firerate than any other handheld weapon. It is chambered in 10x26 caseless."
 	icon_state = "minigun_sg"
 	item_state = "minigun_sg"
 	fire_animation = "minigun_sg_fire"
@@ -476,26 +517,44 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/rifle/pepperball
 	name = "\improper PB-12 pepperball gun"
-	desc = "The PB-12 is ostensibly riot control device used by the TGMC in spiffy colors, working through a SAN ball that sends a short acting neutralizing chemical to knock out it's target, or weaken them. Guranteed to work on just about everything. Uses SAN Ball Holders as magazines."
+	desc = "The PB-12 is ostensibly riot control device used by the NTC in spiffy colors, working through a SAN ball that sends a short acting neutralizing chemical to knock out it's target, or weaken them. Guranteed to work on just about everything. Uses SAN Ball Holders as magazines."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "pepperball"
 	item_state = "pepperball"
-	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
-	max_shells = 100 //codex
+	flags_equip_slot = ITEM_SLOT_BACK
+	max_shells = 70 //codex
 	caliber = CALIBER_PEPPERBALL
 	fire_sound = "gun_fb12" // idk why i called it "fb-12", ah too late now
 	default_ammo_type = /obj/item/ammo_magazine/rifle/pepperball
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball)
-	force = 30 // two shots weeds as it has no bayonet
-	wield_delay = 0.5 SECONDS // Very fast to put up.
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	force = 20 // two shots weeds as it has no bayonet
+	wield_delay = 0.8 SECONDS // Very fast to put up.
+	attachable_offset = list("muzzle_x" = 35, "muzzle_y" = 16,"rail_x" = 12, "rail_y" = 20, "under_x" = 28, "under_y" = 12, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
-		/obj/item/attachable/flashlight,
 		/obj/item/weapon/gun/flamer/hydro_cannon/pepperball,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/magnetic_harness,
-	) // One
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/angledgrip,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+	)
 
 	starting_attachment_types = list(/obj/item/weapon/gun/flamer/hydro_cannon/pepperball)
 
@@ -511,8 +570,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	accuracy_mult = 1
 	recoil = 0
 	accuracy_mult_unwielded = 0.75
-	scatter = -1
-	scatter_unwielded = 2
+	scatter = 1
+	recoil_unwielded = 1
+	scatter_unwielded = 10
+	damage_falloff_mult = 1.2
+	movement_acc_penalty_mult = 1.5
 
 	placed_overlay_iconstate = "pepper"
 
@@ -634,7 +696,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/launcher/rocket/sadar
 	name = "\improper RL-152 sadar rocket launcher"
-	desc = "The RL-152 is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the RL-152 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
+	desc = "The RL-152 is the primary anti-armor weapon of the NTC. Used to take out light-tanks and enemy structures, the RL-152 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "sadar"
 	item_state = "sadar"
@@ -759,7 +821,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/launcher/rocket/recoillessrifle
 	name = "\improper RL-160 recoilless rifle"
-	desc = "The RL-160 recoilless rifle is a long range explosive ordanance device used by the TGMC used to fire explosive shells at far distances. Uses a variety of 67mm shells designed for various purposes."
+	desc = "The RL-160 recoilless rifle is a long range explosive ordanance device used by the NTC used to fire explosive shells at far distances. Uses a variety of 67mm shells designed for various purposes."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t160"
 	item_state = "t160"
@@ -840,7 +902,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 // Do a short windup, swap the extension status of the rocket if successful, then swap the flags.
 /obj/item/weapon/gun/launcher/rocket/oneuse/unique_action(mob/living/user)
 	playsound(user, 'sound/weapons/guns/misc/oneuse_deploy.ogg', 25, 1)
-	if(!do_after(user, 20, NONE, src, BUSY_ICON_DANGER))
+	if(!do_after(user, 20, TRUE, src, BUSY_ICON_DANGER))
 		return
 	extended = !extended
 	if(!extended)

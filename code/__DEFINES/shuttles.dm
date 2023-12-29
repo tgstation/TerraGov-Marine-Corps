@@ -101,6 +101,8 @@
 #define SHUTTLE_ALAMO "alamo"
 #define SHUTTLE_NORMANDY "normandy"
 #define SHUTTLE_TADPOLE "minidropship"
+#define SHUTTLE_CLFTADPOLE "minidropshipclf"
+#define SHUTTLE_SOMTADPOLE "minidropshipsom"
 #define SHUTTLE_CANTERBURY "tgs_canterbury"
 #define SHUTTLE_CAS "casplane"
 #define SHUTTLE_CAS_DOCK "cas_dock"
@@ -113,4 +115,6 @@
 #define SHUTTLE_DISTRESS "distress"
 #define SHUTTLE_ESCAPE_POD "escape_pod"
 #define SHUTTLE_SUPPLY "supply"
+#define SHUTTLE_SHIPELEVATOR "shipelevator"
+#define SHUTTLE_ELEVATOR "elevator"
 

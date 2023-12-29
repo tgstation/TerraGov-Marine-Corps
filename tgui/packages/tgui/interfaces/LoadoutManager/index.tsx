@@ -82,9 +82,9 @@ const JobTabs = (props: LoadoutTabData) => {
         <Flex.Item>
           <Tabs>
             <Tabs.Tab
-              selected={job === 'Squad Marine'}
-              onClick={() => setJob('Squad Marine')}>
-              Squad Marine
+              selected={job === 'Squad Operative'}
+              onClick={() => setJob('Squad Operative')}>
+              Squad Operative
             </Tabs.Tab>
             <Tabs.Tab
               selected={job === 'Squad Engineer'}
@@ -120,7 +120,7 @@ export const LoadoutManager = (props, context) => {
   const { act, data } = useBackend<LoadoutManagerData>(context);
   const { loadout_list } = data;
 
-  const [job, setJob] = useLocalState(context, 'job', 'Squad Marine');
+  const [job, setJob] = useLocalState(context, 'job', 'Squad Operative');
   const [saveNewLoadout, setSaveNewLoadout] = useLocalState(
     context,
     'saveLoadout',

@@ -203,7 +203,7 @@
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/xeno_user = user
 		var/datum/xeno_caste/caste = xeno_user.xeno_caste
-		.["user_purchase_perms"] = (/datum/action/ability/xeno_action/blessing_menu in caste.actions)
+		.["user_purchase_perms"] = (/datum/action/xeno_action/blessing_menu in caste.actions)
 
 /datum/hive_status/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -884,6 +884,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/add_xeno(mob/living/carbon/xenomorph/X)
 	. = ..()
 	orphan_hud_timer?.apply_to(X)
+	X.AddComponent(/datum/component/xeno_iff, CLF_IFF)
 
 /datum/hive_status/normal/remove_xeno(mob/living/carbon/xenomorph/X)
 	. = ..()
@@ -1023,6 +1024,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	log_game("[key_name(xeno_candidate)] has joined as [new_xeno] at [AREACOORD(new_xeno.loc)].")
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	log_debug("A larva was spawned, it was [larva_already_reserved ? "already" : "not"] reserved. There is now [xeno_job.total_positions] total xeno positions and [xeno_job.current_positions] were taken.")
 	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(new_xeno)].")
 
 	xeno_candidate.mob.mind.transfer_to(new_xeno, TRUE)
@@ -1034,7 +1036,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/normal/on_shuttle_hijack(obj/docking_port/mobile/marine_dropship/hijacked_ship)
-	GLOB.xeno_enter_allowed = FALSE
+	//GLOB.xeno_enter_allowed = FALSE
 	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
 	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, PROC_REF(on_hijack_depart))
 
@@ -1573,4 +1575,10 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/human/get_xeno_hivenumber()
 	if(faction == FACTION_ZOMBIE)
 		return FACTION_ZOMBIE
+	if(faction == FACTION_CLF)
+		return XENO_HIVE_NORMAL
 	return FALSE
+
+/obj/machinery/deployable/mounted/sentry/get_xeno_hivenumber()
+	if(iff_signal == CLF_IFF)
+		return XENO_HIVE_NORMAL

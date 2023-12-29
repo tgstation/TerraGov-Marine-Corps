@@ -77,7 +77,8 @@ The Grenade Launchers
 	var/turf/user_turf = get_turf(src)
 	grenade_to_launch.forceMove(user_turf)
 	gun_user?.visible_message(span_danger("[gun_user] fired a grenade!"), span_warning("You fire [src]!"))
-	log_bomber(gun_user, "fired a grenade ([grenade_to_launch]) from", src, "at [AREACOORD(user_turf)]")
+	log_explosion("[key_name(gun_user)] fired a grenade ([grenade_to_launch]) from [src] at [AREACOORD(user_turf)].")
+	log_combat(gun_user, src, "fired a grenade ([grenade_to_launch]) from [src]")
 	play_fire_sound(loc)
 	grenade_to_launch.launched_det_time()
 	grenade_to_launch.launched = TRUE
@@ -108,7 +109,7 @@ The Grenade Launchers
 
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher
 	name = "\improper GL-70 grenade launcher"
-	desc = "The GL-70 is the standard grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
+	desc = "The GL-70 is the standard grenade launcher used by the Nine Tailed Fox for area denial and big explosions."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t70"
 	item_state = "t70"
@@ -203,7 +204,7 @@ The Grenade Launchers
 
 /obj/item/weapon/gun/grenade_launcher/single_shot
 	name = "\improper GL-81 grenade launcher"
-	desc = "A lightweight, single-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
+	desc = "A lightweight, single-shot grenade launcher used by the Nine Tailed Fox for area denial and big explosions."
 	icon_state = "m81"
 	item_state = "m81"
 	max_shells = 1 //codex
@@ -220,7 +221,7 @@ The Grenade Launchers
 
 /obj/item/weapon/gun/grenade_launcher/single_shot/riot
 	name = "\improper GL-81 riot grenade launcher"
-	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by Nanotrasen security during riots."
+	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by Ninetails security during riots."
 	default_ammo_type = null
 	allowed_ammo_types = list(/obj/item/explosive/grenade/chem_grenade)
 	req_access = list(ACCESS_MARINE_BRIG)
@@ -243,5 +244,5 @@ The Grenade Launchers
 
 /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine
 	name = "M30E2 flare gun"
-	desc = "A very tiny flaregun that fires flares equipped with long range irons, the mass amounts of markings on the back and barrel denote it as owned by the TGMC."
+	desc = "A very tiny flaregun that fires flares equipped with long range irons, the mass amounts of markings on the back and barrel denote it as owned by the NTC."
 	icon_state = "marine_flaregun"

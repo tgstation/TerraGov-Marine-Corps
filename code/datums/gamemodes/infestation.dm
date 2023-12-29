@@ -60,7 +60,7 @@
 			return
 		bioscanning_ai.last_ai_bioscan = world.time
 		to_chat(bioscanning_ai, span_warning("Scanning for hostile lifeforms..."))
-		if(!do_after(usr, AI_SCAN_DELAY, NONE, usr, BUSY_ICON_GENERIC)) //initial windup time until firing begins
+		if(!do_after(usr, AI_SCAN_DELAY, TRUE, usr, BUSY_ICON_GENERIC)) //initial windup time until firing begins
 			bioscanning_ai.last_ai_bioscan = 0
 			return
 
@@ -277,8 +277,8 @@
 				xeno_candidate = TRUE
 				break
 	if(!xeno_candidate && !bypass_checks)
-		to_chat(world, "<b>Unable to start [name].</b> No xeno candidate found.")
-		return FALSE
+		to_chat(world, "WARNING: No xeno candidate found.")
+		return TRUE
 
 /datum/game_mode/infestation/pre_setup()
 	. = ..()

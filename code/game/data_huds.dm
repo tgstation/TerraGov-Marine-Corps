@@ -88,7 +88,7 @@
 
 //med hud used by medical hud glasses
 /datum/atom_hud/medical/advanced
-
+	hud_icons = list(HEALTH_HUD, STATUS_HUD, HEALTH_HUD_XENO)
 
 //HUD used by the synth, separate typepath so it's not accidentally removed.
 /datum/atom_hud/medical/advanced/synthetic
@@ -187,6 +187,7 @@
 	var/static/image/neurotox_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin")
 	var/static/image/hemodile_image = image('icons/mob/hud.dmi', icon_state = "hemodile")
 	var/static/image/transvitox_image = image('icons/mob/hud.dmi', icon_state = "transvitox")
+	var/static/image/aphrotoxin_image = image('icons/mob/hud.dmi', icon_state = "aphrotoxin")
 	var/static/image/sanguinal_image = image('icons/mob/hud.dmi', icon_state = "sanguinal")
 	var/static/image/ozelomelyn_image = image('icons/mob/hud.dmi', icon_state = "ozelomelyn")
 	var/static/image/intoxicated_image = image('icons/mob/hud.dmi', icon_state = "intoxicated")
@@ -194,6 +195,7 @@
 	var/static/image/neurotox_high_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin_high")
 	var/static/image/hemodile_high_image = image('icons/mob/hud.dmi', icon_state = "hemodile_high")
 	var/static/image/transvitox_high_image = image('icons/mob/hud.dmi', icon_state = "transvitox_high")
+	var/static/image/aphrotoxin_high_image = image('icons/mob/hud.dmi', icon_state = "aphrotoxin_high")
 	var/static/image/hunter_silence_image = image('icons/mob/hud.dmi', icon_state = "silence_debuff")
 	var/static/image/sanguinal_high_image = image('icons/mob/hud.dmi', icon_state = "sanguinal_high")
 	var/static/image/intoxicated_high_image = image('icons/mob/hud.dmi', icon_state = "intoxicated_high")
@@ -207,6 +209,7 @@
 		var/transvitox_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)
 		var/sanguinal_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal)
 		var/ozelomelyn_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn)
+		var/aphrotoxin_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_aphrotoxin)
 
 		if(neurotox_amount > 10) //Blinking image for particularly high concentrations
 			xeno_reagent.overlays += neurotox_high_image
@@ -220,6 +223,11 @@
 			xeno_reagent.overlays += hemodile_high_image
 		else if(hemodile_amount > 0)
 			xeno_reagent.overlays += hemodile_image
+
+		if(aphrotoxin_amount > 20)
+			xeno_reagent.overlays += aphrotoxin_high_image
+		else if(aphrotoxin_amount > 0)
+			xeno_reagent.overlays += aphrotoxin_image
 
 		if(transvitox_amount > 10)
 			xeno_reagent.overlays += transvitox_high_image

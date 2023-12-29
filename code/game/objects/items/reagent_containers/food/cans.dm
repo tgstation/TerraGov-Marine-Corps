@@ -30,15 +30,15 @@
 //DRINKS
 
 /obj/item/reagent_containers/food/drinks/cans/cola
-	name = "\improper TGM Cola"
-	desc = "A can of artificial flavors, sweeteners, and coloring, at least it's carbonated. Canned by Nanotrasen."
+	name = "\improper NT Cola"
+	desc = "A can of artificial flavors, sweeteners, and coloring, at least it's carbonated. Canned by Ninetails."
 	icon_state = "tgm_cola"
 	center_of_mass = list("x"=16, "y"=10)
 	list_reagents = list(/datum/reagent/consumable/drink/cold/space_cola = 30)
 
 /obj/item/reagent_containers/food/drinks/cans/waterbottle
-	name = "\improper Nanotrasen bottled spring water"
-	desc = "Overpriced 'Spring' water. Bottled by Nanotrasen."
+	name = "\improper Ninetails bottled spring water"
+	desc = "Overpriced 'Spring' water. Bottled by Ninetails."
 	icon_state = "bottled_water"
 	center_of_mass = list("x"=15, "y"=8)
 	list_reagents = list(/datum/reagent/water = 30)
@@ -157,8 +157,8 @@
 	list_reagents = list(/datum/reagent/consumable/drink/suoto/cherry = 25, /datum/reagent/consumable/ethanol = 25)
 
 /obj/item/reagent_containers/food/drinks/cans/aspen
-	name = "\improper Nanotrasen Aspen Beer"
-	desc = "Pretty good when you get past the fact that it tastes like piss. Canned by Nanotrasen."
+	name = "\improper Ninetails Aspen Beer"
+	desc = "Pretty good when you get past the fact that it tastes like piss. Canned by Ninetails."
 	icon_state = "6_pack_1"
 	center_of_mass = list("x"=16, "y"=10)
 	list_reagents = list(/datum/reagent/consumable/ethanol/nt_beer = 50)

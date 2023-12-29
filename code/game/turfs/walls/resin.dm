@@ -15,7 +15,7 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
 	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES)
-	soft_armor = list(MELEE = 0, BULLET = 70, LASER = 60, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 60, LASER = 60, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	resistance_flags = UNACIDABLE
 
 /turf/closed/wall/resin/add_debris_element()
@@ -95,7 +95,7 @@
 		return
 	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
 	span_xenonotice("We start to tear down \the [src]."))
-	if(!do_after(X, 1 SECONDS, NONE, X, BUSY_ICON_GENERIC))
+	if(!do_after(X, 1 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
 		return
 	if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the wall already gone
 		return

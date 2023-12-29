@@ -1,4 +1,4 @@
-/datum/action/ability/activable/xeno/ravage/slow
+/datum/action/xeno_action/activable/ravage/slow
 	///How long is the windup before ravaging
-	cooldown_duration = 30 SECONDS
-	ability_cost = 250
+	cooldown_timer = 30 SECONDS
+	plasma_cost = 250

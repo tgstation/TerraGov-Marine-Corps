@@ -453,10 +453,10 @@
 		return FALSE
 
 	if(!alert_user)
-		return do_after(user, access_delay, IGNORE_USER_LOC_CHANGE, src)
+		return do_after(user, access_delay, TRUE, src, ignore_turf_checks=TRUE)
 
 	to_chat(user, "<span class='notice'>You begin to [taking_out ? "take" : "put"] [accessed] [taking_out ? "out of" : "into"] [src]")
-	if(!do_after(user, access_delay, IGNORE_USER_LOC_CHANGE, src))
+	if(!do_after(user, access_delay, TRUE, src, ignore_turf_checks=TRUE))
 		to_chat(user, span_warning("You fumble [accessed]!"))
 		return FALSE
 	return TRUE
@@ -578,7 +578,7 @@
 
 	user.balloon_alert(user, "Refilling.")
 
-	if(!do_after(user, 15, NONE, src, BUSY_ICON_GENERIC))
+	if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
 		return
 
 	playsound(user.loc, refill_sound, 15, 1, 6)

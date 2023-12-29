@@ -72,8 +72,8 @@
 ///called when an AI is requested by a holopad
 #define COMSIG_GLOB_HOLOPAD_AI_CALLED "!holopad_calling"
 
-///Opens the TGMC shipside shutters on campaign
-#define COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_TGMC "!open_campaign_shutters_tgmc"
+///Opens the NTC shipside shutters on campaign
+#define COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_NTC "!open_campaign_shutters_tgmc"
 ///Opens the SOM shipside shutters on campaign
 #define COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_SOM "!open_campaign_shutters_som"
 ///Sent when a new campaign mission is loaded
@@ -119,6 +119,10 @@
 #define COMSIG_QDELETING "parent_qdeleting"
 /// generic topic handler (usr, href_list)
 #define COMSIG_TOPIC "handle_topic"
+
+/// generic topic handler (usr, href_list)
+#define COMSIG_COMBAT_LOG "combat_log"
+	#define DONT_LOG (1<<0)
 
 /// fires on the target datum when an element is attached to it (/datum/element)
 #define COMSIG_ELEMENT_ATTACH "element_attach"
@@ -760,6 +764,7 @@
 #define COMSIG_XENOABILITY_ACID_DASH "xenoability_acid_dash"
 #define COMSIG_XENOABILITY_XENO_SPIT "xenoability_xeno_spit"
 #define COMSIG_XENOABILITY_HIDE "xenoability_hide"
+#define COMSIG_XENOABILITY_LARVAL_GROWTH_STING "xenoability_larval_growth_sting"
 #define COMSIG_XENOABILITY_NEUROTOX_STING "xenoability_neurotox_sting"
 #define COMSIG_XENOABILITY_OZELOMELYN_STING "xenoability_ozelomelyn_sting"
 #define COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS "xenoability_inject_egg_neurogas"
@@ -773,7 +778,7 @@
 #define COMSIG_XENOABILITY_DRAIN_STING "xenoability_drain_sting"
 #define COMSIG_XENOABILITY_TOXIC_GRENADE "xenoability_toxic_grenade"
 
-#define COMSIG_XENOABILITY_ACIDIC_SALVE "xenoability_acidic_salve"
+#define COMSIG_XENOABILITY_RESIN_SALVE "xenoability_resin_salve"
 #define COMSIG_XENOABILITY_ESSENCE_LINK "xenoability_essence_link"
 #define COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE "xenoability_essence_link_remove"
 #define COMSIG_XENOABILITY_ENHANCEMENT "xenoability_enhancement"
@@ -838,6 +843,8 @@
 
 #define COMSIG_XENOABILITY_SCREECH "xenoability_screech"
 #define COMSIG_XENOABILITY_PSYCHIC_WHISPER "xenoability_psychic_whisper"
+#define COMSIG_XENOABILITY_IMPREGNATE "xenoability_impregnate"
+#define COMSIG_XENOABILITY_PSYCHIC_INFLUENCE "xenoability_psychic_influence"
 #define COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM "xenoability_toggle_queen_zoom"
 #define COMSIG_XENOABILITY_XENO_LEADERS "xenoability_xeno_leaders"
 #define COMSIG_XENOABILITY_QUEEN_HEAL "xenoability_queen_heal"
@@ -845,6 +852,7 @@
 #define COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE "xenoability_queen_hive_message"
 #define COMSIG_XENOABILITY_DEEVOLVE "xenoability_deevolve"
 #define COMSIG_XENOABILITY_QUEEN_BULWARK "xenoability_queen_bulwark"
+#define COMSIG_XENOABILITY_QUEEN_LARVAL_GROWTH "xenoability_queen_larval_growth"
 
 #define COMSIG_XENOABILITY_LAY_HIVEMIND "xenoability_lay_hivemind"
 #define COMSIG_XENOABILITY_LAY_EGG "xenoability_lay_egg"

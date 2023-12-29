@@ -118,7 +118,7 @@
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 	)
 	icon_state = "helmet"
-	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 	max_integrity = 5
 	var/list/helmet_overlays
 	flags_inventory = BLOCKSHARPOBJ
@@ -232,7 +232,7 @@
 	name = "\improper M30 tactical helmet"
 	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is used by pilots in the TGN. This one is in gunmetal blue."
 	icon_state = "helmetp2"
-	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
@@ -247,7 +247,7 @@
 /obj/item/clothing/head/helmet/marine/mech_pilot
 	name = "\improper M12C pattern neurolink helmet"
 	icon_state = "mech_pilot_helmet"
-	desc = "A lightweight helmet with a small port in the back. Offers lower response times for TGMC mech pilots by integrating them directly into their mech suit's systems, though it certainly doesn't make them smarter."
+	desc = "A lightweight helmet with a small port in the back. Offers lower response times for NTC mech pilots by integrating them directly into their mech suit's systems, though it certainly doesn't make them smarter."
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/head/helmet/marine/riot
@@ -307,7 +307,7 @@
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/commando
 	name = "\improper PMC commando helmet"
-	desc = "A fully enclosed, armored helmet made for Nanotrasen elite commandos."
+	desc = "A fully enclosed, armored helmet made for Corporate elite commandos."
 	icon_state = "commando_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	soft_armor = list(MELEE = 95, BULLET = 120, LASER = 200, ENERGY = 200, BOMB = 90, BIO = 100, FIRE = 90, ACID = 95)
@@ -373,7 +373,7 @@
 
 /obj/item/clothing/head/helmet/specrag
 	name = "specialist head-rag"
-	desc = "A hat worn by heavy-weapons operators to block sweat."
+	desc = "A hat worn by specialist operators to block sweat."
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
@@ -381,7 +381,7 @@
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 	)
 	icon_state = "spec"
-	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 10, BIO = 0, FIRE = 15, ACID = 15)
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
 
@@ -426,7 +426,7 @@
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 	)
 	item_state = "som_helmet"
-	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = NONE

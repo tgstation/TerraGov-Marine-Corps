@@ -10668,7 +10668,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/garage)
 "hTM" = (
-/obj/machinery/computer/sleep_console,
+/obj/machinery/sleep_console,
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/medical)
 "hUc" = (
@@ -13779,7 +13779,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "kiW" = (
-/obj/machinery/computer/body_scanconsole,
+/obj/machinery/body_scanconsole,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -23802,9 +23802,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "roD" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell{
-	dir = 1
-	},
+/obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/tile/dark2{
 	dir = 4
 	},
@@ -24721,7 +24719,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "saH" = (
 /obj/structure/showcase{
-	desc = "The display model for a NanoTrasen generation one synthetic. It almost feels like the eyes on this one follow you.";
+	desc = "The display model for a Ninetails generation one synthetic. It almost feels like the eyes on this one follow you.";
 	name = "Display synthetic"
 	},
 /obj/structure/window/reinforced,

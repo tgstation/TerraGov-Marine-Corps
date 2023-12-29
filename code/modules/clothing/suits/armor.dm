@@ -73,7 +73,7 @@
 	icon_state = "bulletproof"
 	item_state = "bulletproof"
 	blood_overlay_type = "armor"
-	flags_armor_protection = CHEST
+	flags_armor_protection = CHEST|GROIN
 	soft_armor = list(MELEE = 30, BULLET = 55, LASER = 0, ENERGY = 0, BOMB = 30, BIO = 0, FIRE = 0, ACID = 15)
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 5)
 	siemens_coefficient = 0.7
@@ -93,7 +93,7 @@
 	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
 	icon_state = "riot"
 	item_state = "swat"
-	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
+	flags_armor_protection = CHEST|GROIN|FEET|LEGS|ARMS
 	slowdown = 1.2
 	soft_armor = list(MELEE = 65, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 10, ACID = 10)
 	flags_inventory = BLOCKSHARPOBJ
@@ -235,7 +235,7 @@
 	item_state = "hos"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	flags_item = SYNTH_RESTRICTED
-	soft_armor = list(MELEE = 65, BULLET = 30, LASER = 50, ENERGY = 10, BOMB = 25, BIO = 0, FIRE = 10, ACID = 10)
+	soft_armor = list(MELEE = 65, BULLET = 50, LASER = 50, ENERGY = 40, BOMB = 55, BIO = 30, FIRE = 30, ACID = 30)
 	flags_inventory = NONE
 	flags_inv_hide = HIDEJUMPSUIT
 	siemens_coefficient = 0.6

@@ -28,6 +28,8 @@ type BackgroundInformationData = {
   gen_record: string;
   sec_record: string;
   exploit_record: string;
+  xeno_desc: string;
+  profile_pic: string;
 };
 
 type GameSettingData = {

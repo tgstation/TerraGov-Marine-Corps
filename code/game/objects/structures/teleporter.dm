@@ -57,10 +57,6 @@
 	var/obj/machinery/deployable/teleporter/deployed_linked_teleporter = kit.linked_teleporter.loc
 	var/obj/item/teleporter_kit/linked_kit = deployed_linked_teleporter.get_internal_item()
 
-	if(deployed_linked_teleporter.z != z)
-		to_chat(user, span_warning("[src] and [deployed_linked_teleporter] are too far apart!"))
-		return
-
 	if(!deployed_linked_teleporter.powered() && (!linked_kit?.cell || linked_kit.cell.charge < TELEPORTING_COST))
 		to_chat(user, span_warning("[deployed_linked_teleporter] is not powered!"))
 		return
@@ -109,7 +105,7 @@
 	if(!kit.cell)
 		to_chat(user, span_warning("There is no cell to remove!"))
 		return
-	if(!do_after(user, 2 SECONDS, NONE, src))
+	if(!do_after(user, 2 SECONDS, TRUE, src))
 		return FALSE
 	playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 	to_chat(user , span_notice("You remove [kit.cell] from \the [src]."))
@@ -128,7 +124,7 @@
 	if(kit?.cell)
 		to_chat(user , span_warning("There is already a cell inside, use a crowbar to remove it."))
 		return FALSE
-	if(!do_after(user, 2 SECONDS, NONE, src))
+	if(!do_after(user, 2 SECONDS, TRUE, src))
 		return FALSE
 	user.temporarilyRemoveItemFromInventory(I)
 	I.forceMove(kit)

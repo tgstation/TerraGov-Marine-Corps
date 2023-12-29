@@ -26,6 +26,14 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	dheight = 2
 	height = 5
 
+/obj/docking_port/stationary/supplyhq
+	id = "supply_hq"
+	roundstart_template = /datum/map_template/shuttle/supplyhq
+	width = 5
+	dwidth = 2
+	dheight = 2
+	height = 5
+
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
 	id = SHUTTLE_SUPPLY
@@ -597,7 +605,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	return SU.interact(user)
 
 /obj/item/storage/backpack/marine/radiopack
-	name = "\improper TGMC radio operator backpack"
+	name = "\improper NTC radio operator backpack"
 	desc = "A backpack that resembles the ones old-age radio operator marines would use. It has a supply ordering console installed on it, and a retractable antenna to receive supply drops."
 	icon_state = "radiopack"
 	item_state = "radiopack"

@@ -371,7 +371,7 @@
 
 /obj/item/bodybag/tarp
 	name = "\improper V1 thermal-dampening tarp (folded)"
-	desc = "A tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
+	desc = "A tarp carried by NTC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_folded"
 	w_class = WEIGHT_CLASS_SMALL
@@ -407,7 +407,7 @@
 /obj/structure/closet/bodybag/tarp
 	name = "\improper V1 thermal-dampening tarp"
 	bag_name = "V1 thermal-dampening tarp"
-	desc = "An active camo tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camouflage, and smell dampening."
+	desc = "An active camo tarp carried by NTC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camouflage, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_closed"
 	icon_closed = "jungletarp_closed"

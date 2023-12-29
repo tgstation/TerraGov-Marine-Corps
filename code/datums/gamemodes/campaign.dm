@@ -60,14 +60,13 @@
 	if(!respawnee?.client)
 		return
 
-	if(!(respawnee.faction in factions) && (current_mission?.mission_state == MISSION_STATE_ACTIVE))
+	if(!(respawnee.faction in factions))
 		return respawnee.respawn()
 
-	var/respawn_delay = CAMPAIGN_RESPAWN_TIME + stat_list[respawnee.faction]?.respawn_delay_modifier
+	var/respawn_delay = CAMPAIGN_RESPAWN_TIME + stat_list[respawnee.faction].respawn_delay_modifier
 	if((player_death_times[respawnee.key] + respawn_delay) > world.time)
 		to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.key] + respawn_delay - world.time) / 10)] seconds remaining.<spawn>")
 		return
-
 	attempt_attrition_respawn(respawnee)
 
 /datum/game_mode/hvh/campaign/intro_sequence()
@@ -75,7 +74,7 @@
 	var/op_name_faction_two = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == factions[1])
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_faction_one]</u></span><br>" + "Fight to restore peace and order across the planet, and check the SOM threat.<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "TGMC Rapid Reaction Battalion<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/rapid_response)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_faction_one]</u></span><br>" + "Fight to restore peace and order across the planet, and check the SOM threat.<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "NTC Rapid Reaction Battalion<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/rapid_response)
 		else if(human.faction == factions[2])
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_faction_two]</u></span><br>" + "Fight to liberate the people of Palmaria from the yoke of TerraGov oppression!<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "SOM 4th Special Assault Force<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/saf_four)
 
@@ -108,8 +107,8 @@
 /datum/game_mode/hvh/campaign/declare_completion() //todo: update fluff message
 	. = ..()
 	to_chat(world, span_round_header("|[round_finished]|"))
-	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on Palmaria."))
+	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal NTC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
+	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the NTC and SOM, and their struggle on Palmaria."))
 
 /datum/game_mode/hvh/campaign/get_status_tab_items(datum/dcs, mob/source, list/items)
 	. = ..()

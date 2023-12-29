@@ -629,16 +629,16 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!istype(H))
 			return
 
-		var/input = input("Please enter a message to reply to [key_name(H)].", "Outgoing message from TGMC", "") as message|null
+		var/input = input("Please enter a message to reply to [key_name(H)].", "Outgoing message from NTC", "") as message|null
 		if(!input)
 			return
 
-		to_chat(H, span_boldnotice("Please stand by for a message from TGMC:<br/>[input]"))
+		to_chat(H, span_boldnotice("Please stand by for a message from NTC:<br/>[input]"))
 		var/sound/S = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN)
 		SEND_SOUND(H, S)
 
-		log_admin("[key_name(usr)] replied to [ADMIN_TPMONTY(H)]'s TGMC message with: [input].")
-		message_admins("[ADMIN_TPMONTY(usr)] replied to [ADMIN_TPMONTY(H)]'s' TGMC message with: [input]")
+		log_admin("[key_name(usr)] replied to [ADMIN_TPMONTY(H)]'s NTC message with: [input].")
+		message_admins("[ADMIN_TPMONTY(usr)] replied to [ADMIN_TPMONTY(H)]'s' NTC message with: [input]")
 
 
 	if(href_list["deny"])
@@ -917,7 +917,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!dep)
 			return
 
-		var/department = input("Which department do you want to reply AS?", "Fax Message") as null|anything in list("TGMC High Command", "TGMC Provost General", "Nanotrasen")
+		var/department = input("Which department do you want to reply AS?", "Fax Message") as null|anything in list("NTC Human Resources", "NTC Management", "NTC Secretary")
 		if(!department)
 			return
 
@@ -1240,6 +1240,174 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		log_admin("[key_name(usr)] created [number] [english_list(paths)] at [AREACOORD(usr.loc)].")
 		message_admins("[ADMIN_TPMONTY(usr)] created [number] [english_list(paths)] at [ADMIN_VERBOSEJMP(usr.loc)].")
+
+
+	else if(href_list["admin_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.admin_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "admin_log", "<div align='center'>Admin Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["adminprivate_log"])
+		if(!check_rights(R_BAN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.adminprivate_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "adminprivate_log", "<div align='center'>Adminprivate Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["asay_log"])
+		if(!check_rights(R_ASAY))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.asay_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "asay_log", "<div align='center'>Asay Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["msay_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.msay_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "msay_log", "<div align='center'>Msay Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["say_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.say_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "say_log", "<div align='center'>Say Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["telecomms_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.telecomms_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "telecomms_log", "<div align='center'>Telecomms Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["game_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.game_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "game_log", "<div align='center'>Game Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["manifest_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.manifest_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "manifest_log", "<div align='center'>Manifest Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["access_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.access_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "access_log", "<div align='center'>Access Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["attack_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.attack_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "attack_log", "<div align='center'>Attack Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["ffattack_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.ffattack_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "ffattack_log", "<div align='center'>FF Attack Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["explosion_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.explosion_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "explosion_log", "<div align='center'>Explosion Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
 
 
 	else if(href_list["viewruntime"])

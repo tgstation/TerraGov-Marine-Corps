@@ -45,6 +45,7 @@
 		var/mob/living/carbon/human/_deployer = deployer
 		var/obj/item/card/id/id = _deployer.get_idcard(TRUE)
 		iff_signal = id?.iff_signal
+		get_xeno_hivenumber()
 
 	knockdown_threshold = gun?.knockdown_threshold ? gun.knockdown_threshold : initial(gun.knockdown_threshold)
 	range = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ?  gun.turret_range - 2 : gun.turret_range
@@ -75,7 +76,7 @@
 		return
 	var/marker_flags
 	switch(iff_signal)
-		if(TGMC_LOYALIST_IFF)
+		if(NTC_LOYALIST_IFF)
 			marker_flags = MINIMAP_FLAG_MARINE
 		if(SOM_IFF)
 			marker_flags = MINIMAP_FLAG_MARINE_SOM
@@ -136,7 +137,7 @@
 	user.visible_message(span_notice("[user] begins to set [src] upright."),
 		span_notice("You begin to set [src] upright.</span>"))
 
-	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return
 
 	user.visible_message(span_notice("[user] sets [src] upright."),
@@ -287,7 +288,7 @@
 	RegisterSignal(gun, COMSIG_MOB_GUN_FIRED, PROC_REF(check_next_shot))
 	update_minimap_icon()
 
-///Bonks the sentry onto its side. This currently is used here, and in /living/carbon/xeno/warrior/mob_abilities in punch
+///Bonks the sentry onto its side. This currently is used here, and in /living/carbon/xeno/warrior/xeno_abilities in punch
 /obj/machinery/deployable/mounted/sentry/proc/knock_down()
 	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
@@ -556,7 +557,7 @@
 		return
 	set_on(FALSE)
 	user.balloon_alert(user, "You start disassembling [attached_item]")
-	if(!do_after(user, attached_item.undeploy_time, NONE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, attached_item.undeploy_time, TRUE, src, BUSY_ICON_BUILD))
 		set_on(TRUE)
 		return
 

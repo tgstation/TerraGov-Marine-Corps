@@ -8,7 +8,7 @@
 /obj/item/implant/neurostim/get_data()
 	return {"
 	<b>Implant Specifications:</b><BR>
-	<b>Name:</b> Nanotrasen NX-35 Neurostimulator Implant<BR>
+	<b>Name:</b> Ninetails NX-35 Neurostimulator Implant<BR>
 	<HR>
 	<b>Implant Details:</b><BR>
 	<b>Function:</b> Stimulates and regulates sensorimotor function to optimize performance. Benefits include improved balance, and improved resistance to overstimulation and disoritentation.<BR>

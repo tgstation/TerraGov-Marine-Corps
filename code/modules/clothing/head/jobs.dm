@@ -10,7 +10,7 @@
 
 //Captain: This probably shouldn't be space-worthy
 /obj/item/clothing/head/caphat
-	name = "captain's hat"
+	name = "Commander's hat"
 	icon_state = "captain"
 	desc = "It's good being the king."
 	item_state = "caphat"
@@ -19,7 +19,7 @@
 
 //Captain: This probably shouldn't be space-worthy
 /obj/item/clothing/head/helmet/cap
-	name = "captain's cap"
+	name = "Commander's cap"
 	desc = "You fear to wear it for the negligence it brings."
 	icon_state = "capcap"
 	flags_inventory = NONE

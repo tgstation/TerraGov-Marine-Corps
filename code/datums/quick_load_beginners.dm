@@ -30,8 +30,8 @@
 	Wields the AR-12, a versatile all-rounder assault rifle with a powerful underbarrel grenade launcher attached. \
 	Also carries the strong P-23 sidearm and a variety of flares, medical equipment, and more for every situation."
 
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/hodgrenades
-	head = /obj/item/clothing/head/modular/m10x/hod
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten
+	head = /obj/item/clothing/head/modular/m10x
 	w_uniform = /obj/item/clothing/under/marine/holster
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/medic
 	l_hand = /obj/item/paper/tutorial/beginner_rifleman

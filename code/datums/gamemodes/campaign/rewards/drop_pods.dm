@@ -50,7 +50,7 @@
 /datum/campaign_asset/droppod_disable
 	name = "Disable drop pods"
 	desc = "Prevents the enemy from using drop pods in the current or next mission"
-	detailed_desc = "Ground to Space weapon systems are activated to prevent TGMC close orbit support ships from positioning themselves for drop pod orbital assaults during the current or next mission."
+	detailed_desc = "Ground to Space weapon systems are activated to prevent NTC close orbit support ships from positioning themselves for drop pod orbital assaults during the current or next mission."
 	ui_icon = "droppod_broken"
 	uses = 2
 	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_ACTIVE_MISSION_ONLY

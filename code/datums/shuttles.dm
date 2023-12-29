@@ -113,6 +113,10 @@
 	shuttle_id = SHUTTLE_NORMANDY
 	name = "Normandy"
 
+/datum/map_template/shuttle/shipelevator
+	shuttle_id = SHUTTLE_SHIPELEVATOR
+	name = "Elevator"
+
 /datum/map_template/shuttle/cas
 	shuttle_id = SHUTTLE_CAS
 	name = "Condor Jet"
@@ -128,8 +132,20 @@
 
 /datum/map_template/shuttle/minidropship/old
 	suffix = "_big"
-	description = "Tadpole-01, the old model barely in service for TGMC, replaced by the newer Tadpole-03. Much like an APC, is pretty armored. Very lacking in firing angle."
+	description = "Tadpole-01, the old model barely in service for NTC, replaced by the newer Tadpole-03. Much like an APC, is pretty armored. Very lacking in firing angle."
 	display_name = "Tadpole Carrier Model"
+
+/datum/map_template/shuttle/minidropship/som
+	suffix = "_som"
+	description = "Tadpole-01, the old model barely in service for NTC, replaced by the newer Tadpole-03. Much like an APC, is pretty armored. Very lacking in firing angle."
+	display_name = "Tadpole Carrier Model"
+	admin_enable = FALSE
+
+/datum/map_template/shuttle/minidropship/clf
+	suffix = "_clf"
+	description = "Tadpole-01, the old model barely in service for NTC, replaced by the newer Tadpole-03. Much like an APC, is pretty armored. Very lacking in firing angle."
+	display_name = "Tadpole Carrier Model"
+	admin_enable = FALSE
 
 /datum/map_template/shuttle/minidropship/food
 	suffix = "_food"
@@ -174,7 +190,7 @@
 	shuttle_id = SHUTTLE_DISTRESS_UPP
 	name = "Distress UPP"
 
-/datum/map_template/shuttle/small_ert/ufo 
+/datum/map_template/shuttle/small_ert/ufo
 	shuttle_id = SHUTTLE_DISTRESS_UFO
 	name = "Small UFO"
 
@@ -185,6 +201,19 @@
 /datum/map_template/shuttle/supply
 	shuttle_id = SHUTTLE_SUPPLY
 	name = SHUTTLE_SUPPLY
+
+/datum/map_template/shuttle/supplyhq
+	shuttle_id = "supplyhq"
+	name = "HQ Supply Shuttle"
+
+
+/datum/map_template/shuttle/shipelevator
+	shuttle_id = SHUTTLE_SHIPELEVATOR
+	name = "Ship Elevator"
+
+/datum/map_template/shuttle/elevator
+	shuttle_id = SHUTTLE_ELEVATOR
+	name = "Elevator"
 
 /datum/map_template/shuttle/tgs_canterbury
 	shuttle_id = SHUTTLE_CANTERBURY

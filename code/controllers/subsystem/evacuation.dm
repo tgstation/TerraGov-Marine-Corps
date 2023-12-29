@@ -82,7 +82,7 @@ SUBSYSTEM_DEF(evacuation)
 		return FALSE
 	if(!override && flags_scuttle & (FLAGS_EVACUATION_DENY|FLAGS_SDEVAC_TIMELOCK))
 		return FALSE
-	GLOB.enter_allowed = FALSE
+	//GLOB.enter_allowed = FALSE
 	evac_time = world.time
 	evac_status = EVACUATION_STATUS_INITIATING
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EVACUATION_STARTED)
@@ -105,7 +105,7 @@ SUBSYSTEM_DEF(evacuation)
 /datum/controller/subsystem/evacuation/proc/cancel_evacuation()
 	if(evac_status != EVACUATION_STATUS_INITIATING)
 		return FALSE
-	GLOB.enter_allowed = TRUE
+	//GLOB.enter_allowed = TRUE
 	evac_time = null
 	evac_status = EVACUATION_STATUS_STANDING_BY
 	priority_announce("Evacuation has been cancelled.", "Priority Alert", sound = 'sound/AI/evacuate_cancelled.ogg')
@@ -178,7 +178,7 @@ SUBSYSTEM_DEF(evacuation)
 			return FALSE
 
 	priority_announce("DANGER. DANGER. Self destruct system activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
-	GLOB.enter_allowed = FALSE
+	//GLOB.enter_allowed = FALSE
 	dest_status = NUKE_EXPLOSION_IN_PROGRESS
 	playsound(dest_master, 'sound/machines/alarm.ogg', 75, 0, 30)
 	var/sound/S = sound(pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'), channel = CHANNEL_CINEMATIC)

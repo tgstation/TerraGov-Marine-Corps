@@ -23,7 +23,7 @@
 
 	barometer_predictable = TRUE
 
-	probability = 40
+	probability = 10
 	repeatable = FALSE
 
 	var/datum/looping_sound/acidrain/sound_active_acidrain = new(list(), FALSE, TRUE)
@@ -47,12 +47,13 @@
 	. = ..()
 	sound_active_acidrain.stop()
 
-/datum/weather/acid_rain/weather_act(mob/living/L)
+/datum/weather/acid_rain/weather_act(mob/living/carbon/human/L)
 	if(L.stat == DEAD)
 		return
-	if(prob(L.modify_by_armor(100, ACID)))
-		L.adjustFireLoss(7)
-		to_chat(L, span_boldannounce("You feel the acid rain melting you away!"))
+	if(!isxeno(L))
+		if(prob(L.modify_by_armor(100, ACID)))
+			L.adjustFireLoss(7)
+			to_chat(L, span_boldannounce("You feel the acid rain melting you away!"))
 	L.clean_mob()
 	if(L.fire_stacks > -20)
 		L.fire_stacks = max(-20, L.fire_stacks - 1)

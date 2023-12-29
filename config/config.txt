@@ -5,25 +5,25 @@ $include dbconfig.txt
 $include resources.txt
 
 ## Server name: This appears at the top of the screen in-game.
-SERVER_NAME Something
+SERVER_NAME SoL|NTF vs Alien MRP/ERP +18 | TGMC downstream, new lore.
 
 ## Hosted by name for unix platforms.
-HOSTEDBY yournamehere
+HOSTEDBY VideNoir
 
 ## The title of the main window.
-TITLE Change Me
+TITLE Nine Tailed Fox vs Alien
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
-#HUB
+HUB
 
 ## Optional URL for faster resource downloading.
 #RESOURCE_URL url
 
 ## Add a # infront of this if you want to use the SQL based admin system, the legacy system uses admins.txt and files in the data folder. You need to set up your database to use the SQL based system.
-ADMIN_LEGACY_SYSTEM
+#ADMIN_LEGACY_SYSTEM
 
 ## Add a # infront of this to disable the shutdown server verb.
-ALLOW_SHUTDOWN
+#ALLOW_SHUTDOWN
 
 ## Uncomment to have the changelog file automatically open when a user connects and hasn't seen the latest changelog
 #AGGRESSIVE_CHANGELOG
@@ -52,7 +52,7 @@ LOCALHOST_RANK
 
 SEE_OWN_NOTES
 
-AUTOMUTE_ON
+#AUTOMUTE_ON
 
 PROTECT_LEGACY_ADMINS
 
@@ -160,7 +160,7 @@ NOTIFY_NEW_ACCOUNT_AGE 7
 ##Note: all EXP tracking/restriction require database to be enabled.
 
 ## Unhash this to track player playtime in the database.
-#USE_EXP_TRACKING
+USE_EXP_TRACKING
 
 ## Allows admins to bypass job playtime requirements.
 #USE_EXP_RESTRICTIONS_ADMIN_BYPASS
@@ -201,8 +201,8 @@ GUEST_BAN
 CHECK_RANDOMIZER
 
 ## Uncomment these to set a custom respawn timer; the delay is in ticks.
-#MARINE_RESPAWN 18000
-#XENO_RESPAWN 1200
+MARINE_RESPAWN 30
+XENO_RESPAWN 30
 
 ## Automatic balance system
 IS_AUTOMATIC_BALANCE_ON
@@ -212,7 +212,7 @@ IS_AUTOMATIC_BALANCE_ON
 ##  15x15 would be the standard square view. 21x15 is what goonstation uses for widescreen.
 ##  Setting this to something different from DEFAULT_VIEW_SQUARE will enable widescreen toggles
 ##	Do note that changing this value will affect the title screen. The title screen will have to be updated manually if this is changed.
-DEFAULT_VIEW 19x15
+DEFAULT_VIEW 21x15
 
 ##Default view size, in tiles. Should *always* be square.
 ## The alternative square viewport size if you're using a widescreen view size
@@ -241,3 +241,10 @@ CACHE_ASSETS 0
 ## Useful for developers to debug potential spritesheet issues to determine where the issue is cropping up (either in DM-side sprite generation or in the TGUI-side display of said spritesheet).
 ## Will only seek to waste disk space if ran on production.
 #SAVE_SPRITESHEETS
+
+
+##flags
+log_whisper
+log_emote
+log_looc
+log_say

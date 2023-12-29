@@ -10,6 +10,10 @@
 	icon_state = "CAP"
 	job = /datum/job/terragov/command/captain
 
+/obj/effect/landmark/start/job/ceo
+	icon_state = "CAP"
+	job = /datum/job/terragov/command/ceo
+
 /obj/effect/landmark/start/job/captain/campaign
 	icon_state = "CAP"
 	job = /datum/job/terragov/command/captain/campaign
@@ -18,9 +22,17 @@
 	icon_state = "FC"
 	job = /datum/job/terragov/command/fieldcommander
 
+/obj/effect/landmark/start/job/corpseccommander
+	icon_state = "FC"
+	job = /datum/job/terragov/command/corpseccommander
+
 /obj/effect/landmark/start/job/fieldcommander/campaign
 	icon_state = "FC"
 	job = /datum/job/terragov/command/fieldcommander/campaign
+
+/obj/effect/landmark/start/job/security_officer
+	icon_state = "PFC"
+	job = /datum/job/terragov/security/security_officer
 
 /obj/effect/landmark/start/job/staffofficer
 	icon_state = "IO"
@@ -100,7 +112,7 @@
 
 /obj/effect/landmark/start/job/survivor
 	icon_state = "Shaft Miner"
-	job = /datum/job/survivor/rambo
+	job = /datum/job/survivor/civilian
 
 /obj/effect/landmark/start/job/fallen
 	job = /datum/job/fallen/marine
@@ -144,3 +156,35 @@
 /obj/effect/landmark/start/job/som/staff_officer
 	icon_state = "som_staff_officer"
 	job = /datum/job/som/command/staffofficer
+
+/obj/effect/landmark/start/job/clf/leader
+	icon_state = "Shaft Miner"
+	job = /datum/job/clf/leader
+
+/obj/effect/landmark/start/job/clf/medic
+	icon_state = "Shaft Miner"
+	job = /datum/job/clf/medic
+
+/obj/effect/landmark/start/job/clf/specialist
+	icon_state = "Shaft Miner"
+	job = /datum/job/clf/specialist
+
+/obj/effect/landmark/start/job/clf/standard
+	icon_state = "Shaft Miner"
+	job = /datum/outfit/job/clf/standard
+
+/obj/effect/landmark/start/job/clf/breeder
+	icon_state = "Shaft Miner"
+	job = /datum/outfit/job/clf/breeder
+
+/obj/effect/landmark/start/job/prisoner
+	icon_state = "Shaft Miner"
+	job = /datum/job/other/prisoner
+
+/obj/effect/landmark/start/job/worker
+	icon_state = "Shaft Miner"
+	job = /datum/job/worker
+
+/obj/effect/landmark/start/job/prisonersom
+	icon_state = "Shaft Miner"
+	job = /datum/job/other/prisonersom

@@ -50,15 +50,16 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 		if(vent_found_parent && (length(vent_found_parent.members) || vent_found_parent.other_atmosmch))
 			visible_message(span_notice("[stealthy ? "[src] begins climbing into the ventilation system..." : ""]"),span_notice("You begin climbing into the ventilation system..."))
 
-			if(!do_after(src, crawl_time, IGNORE_HELD_ITEM, vent_found, BUSY_ICON_GENERIC) || !client || !canmove)
+			if(!do_after(src, crawl_time, FALSE, vent_found, BUSY_ICON_GENERIC) || !client || !canmove)
 				return
 
 			/// TODO istype(src) stupidity
 			if(iscarbon(src))//It must have atleast been 1 to get this far
 				var/failed = FALSE
 				var/list/items_list = get_equipped_items() //include_pockets = TRUE)
-				if(length(items_list))
-					failed = TRUE
+				if(!ishuman(src))
+					if(length(items_list))
+						failed = TRUE
 				if(failed)
 					to_chat(src, span_warning("You can't crawl around in the ventilation ducts with items!"))
 					return

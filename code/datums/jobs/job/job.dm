@@ -71,6 +71,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	///string; typepath for the icon that this job will show on the minimap
 	var/minimap_icon
+	var/list/shadow_languages = list()
 
 /datum/job/New()
 	if(outfit)
@@ -247,6 +248,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/previous_amount = total_positions
 	total_positions += amount
 	manage_job_lists(previous_amount)
+	log_debug("[amount] positions were added to [src]. It has [total_positions] positions and [current_positions] were taken")
 	return TRUE
 
 /datum/job/proc/remove_job_positions(amount)
@@ -275,11 +277,12 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(!SSticker.HasRoundStarted() && !(SSjob.ssjob_flags & SSJOB_OVERRIDE_JOBS_START) && previous_amount < total_positions)
 		LAZYADD(SSjob.occupations_reroll, src)
 
-
 // Spawning mobs.
-/mob/living/proc/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
+/mob/living/proc/apply_assigned_role_to_spawn(datum/job/assigned_role, /datum/language/dt, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	job = assigned_role
 	set_skills(getSkillsType(job.return_skills_type(player?.prefs)))
+	for(var/shadowlang AS in assigned_role.shadow_languages)
+		language_holder.grant_language(shadowlang, TRUE)
 	faction = job.faction
 	job.announce(src)
 	GLOB.round_statistics.total_humans_created[faction]++
@@ -322,6 +325,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	hud_set_job(faction)
 
 ///finds and equips a valid outfit for a specified job and species
+
 /mob/living/carbon/human/proc/equip_role_outfit(datum/job/assigned_role)
 	if(!assigned_role.multiple_outfits)
 		assigned_role.outfit.equip(src)
@@ -372,3 +376,25 @@ GLOBAL_PROTECT(exp_specialmap)
 		CRASH("Occupy xenomorph position was call with amount = [amount] and respawn =[respawn ? "TRUE" : "FALSE"] \n \
 		This would have created a negative larva situation")
 	return ..()
+
+/datum/job/return_spawn_type(datum/preferences/prefs)
+	switch(prefs?.species)
+		if("Combat Robot")
+			if(!(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY))
+				switch(prefs?.robot_type)
+					if("Basic")
+						return /mob/living/carbon/human/species/robot
+					if("Hammerhead")
+						return /mob/living/carbon/human/species/robot/alpharii
+					if("Chilvaris")
+						return /mob/living/carbon/human/species/robot/charlit
+					if("Ratcher")
+						return /mob/living/carbon/human/species/robot/deltad
+					if("Sterling")
+						return /mob/living/carbon/human/species/robot/bravada
+			to_chat(prefs.parent, span_danger("Robot species joins are currently disabled, your species has been defaulted to Human"))
+			return /mob/living/carbon/human
+		if("Vatborn")
+			return /mob/living/carbon/human/species/vatborn
+		else
+			return /mob/living/carbon/human

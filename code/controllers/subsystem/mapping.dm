@@ -195,6 +195,10 @@ SUBSYSTEM_DEF(mapping)
 	INIT_ANNOUNCE("Loading [ship_map.map_name]...")
 	LoadGroup(FailedZs, ship_map.map_name, ship_map.map_path, ship_map.map_file, ship_map.traits, ZTRAITS_MAIN_SHIP)
 
+	var/datum/map_config/antag_map = configs[ANTAG_MAP]
+	INIT_ANNOUNCE("Loading [antag_map.map_name]...")
+	LoadGroup(FailedZs, antag_map.map_name, antag_map.map_path, antag_map.map_file, antag_map.traits, ZTRAITS_ANTAG_SHIP)
+
 	if(SSdbcore.Connect())
 		var/datum/db_query/query_round_map_name = SSdbcore.NewQuery({"
 			UPDATE [format_table_name("round")] SET map_name = :map_name WHERE id = :round_id
@@ -314,6 +318,7 @@ SUBSYSTEM_DEF(mapping)
 			if(reserve.Reserve(width, height, i))
 				return reserve
 		//If we didn't return at this point, theres a good chance we ran out of room on the exisiting reserved z levels, so lets try a new one
+		log_debug("Ran out of space in existing transit levels, adding a new one")
 		num_of_res_levels += 1
 		var/datum/space_level/newReserved = add_new_zlevel("Transit/Reserved [num_of_res_levels]", list(ZTRAIT_RESERVED = TRUE))
 		initialize_reserved_level(newReserved.z_value)
@@ -323,11 +328,13 @@ SUBSYSTEM_DEF(mapping)
 		CRASH("Despite adding a fresh reserved zlevel still failed to get a reservation")
 	else
 		if(!level_trait(z, ZTRAIT_RESERVED))
+			log_debug("Cannot block reserve on a non-ZTRAIT_RESERVED level")
 			qdel(reserve)
 			return
 		else
 			if(reserve.Reserve(width, height, z))
 				return reserve
+	log_debug("unknown reservation failure")
 	QDEL_NULL(reserve)
 
 //This is not for wiping reserved levels, use wipe_reservations() for that.

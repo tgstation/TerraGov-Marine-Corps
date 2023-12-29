@@ -4,7 +4,7 @@
 	///How much of this loadout there is. infinite by default
 	var/quantity = -1
 	///What job this loadout is associated with. Used for tabs and access.
-	var/jobtype = "Squad Marine"
+	var/jobtype = "Squad Operative"
 
 
 /datum/outfit/quick/equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -88,17 +88,17 @@
 	H.update_body()
 	return TRUE
 
-////TGMC/////
+////NTC/////
 
-//Base TGMC outfit
+//Base NTC outfit
 /datum/outfit/quick/tgmc
-	name = "TGMC base"
-	desc = "This is the base typepath for all TGMC quick vendor outfits. You shouldn't see this."
+	name = "NTC base"
+	desc = "This is the base typepath for all NTC quick vendor outfits. You shouldn't see this."
 
-//Base TGMC marine outfit
+//Base NTC marine outfit
 /datum/outfit/quick/tgmc/marine
-	name = "TGMC Squad Marine"
-	jobtype = "Squad Marine"
+	name = "NTC Squad Operative"
+	jobtype = "Squad Operative"
 
 	ears = /obj/item/radio/headset/mainship/marine
 	w_uniform = /obj/item/clothing/under/marine/black_vest
@@ -280,7 +280,7 @@
 
 /datum/outfit/quick/tgmc/marine/standard_machinegunner
 	name = "MG-60 Machinegunner"
-	desc = "The old reliable workhorse of the TGMC. Equipped with an MG-60 machinegun with bipod, heavy armor and some basic construction supplies. Good for holding ground and providing firesupport, and the cost of some mobility."
+	desc = "The old reliable workhorse of the NTC. Equipped with an MG-60 machinegun with bipod, heavy armor and some basic construction supplies. Good for holding ground and providing firesupport, and the cost of some mobility."
 
 	belt = /obj/item/storage/belt/sparepouch
 	suit_store = /obj/item/weapon/gun/rifle/standard_gpmg/machinegunner
@@ -487,7 +487,6 @@
 /datum/outfit/quick/tgmc/marine/machete
 	name = "Assault Marine"
 	desc = "This doesn't look standard issue... Equipped with a SMG-25 submachine gun, machete and heavy lift jetpack, along with light armor upgraded with a 'svallin' shield module. It's not clear why this is here, nevertheless it has excellent mobility, and would likely be devastating against anyone you manage to actually reach."
-
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/shield
 	back = /obj/item/jetpack_marine/heavy
 	belt = /obj/item/storage/holster/blade/machete/full
@@ -527,9 +526,9 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
 
 
-//Base TGMC engineer outfit
+//Base NTC engineer outfit
 /datum/outfit/quick/tgmc/engineer
-	name = "TGMC Squad Engineer"
+	name = "NTC Squad Engineer"
 	jobtype = "Squad Engineer"
 
 	ears = /obj/item/radio/headset/mainship/marine
@@ -625,9 +624,9 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
 
-//Base TGMC corpsman outfit
+//Base NTC corpsman outfit
 /datum/outfit/quick/tgmc/corpsman
-	name = "TGMC Squad Corpsman"
+	name = "NTC Squad Corpsman"
 	jobtype = "Squad Corpsman"
 
 	belt = /obj/item/storage/belt/lifesaver/quick
@@ -813,9 +812,9 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_R_POUCH)
 
-//Base TGMC smartgunner outfit
+//Base NTC smartgunner outfit
 /datum/outfit/quick/tgmc/smartgunner
-	name = "TGMC Squad Smartgunner"
+	name = "NTC Squad Smartgunner"
 	jobtype = "Squad Smartgunner"
 
 	belt = /obj/item/belt_harness/marine
@@ -908,9 +907,9 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact, SLOT_IN_ACCESSORY)
 
-//Base TGMC leader outfit
+//Base NTC leader outfit
 /datum/outfit/quick/tgmc/leader
-	name = "TGMC Squad Leader"
+	name = "NTC Squad Leader"
 	jobtype = "Squad Leader"
 
 	ears = /obj/item/radio/headset/mainship/marine

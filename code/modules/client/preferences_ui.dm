@@ -72,6 +72,8 @@
 		if(BACKGROUND_INFORMATION)
 			data["slot"] = default_slot
 			data["flavor_text"] = flavor_text
+			data["xeno_desc"] = xeno_desc
+			data["profile_pic"] = profile_pic
 			data["med_record"] = med_record
 			data["gen_record"] = gen_record
 			data["sec_record"] = sec_record
@@ -583,6 +585,18 @@
 			if(!new_record)
 				return
 			flavor_text = new_record
+
+		if("xeno_desc")
+			var/new_record = trim(html_encode(params["xenoDesc"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			xeno_desc = new_record
+
+		if("profile_pic")
+			var/new_record = trim(html_encode(params["profile_pic"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			profile_pic = new_record
 
 		if("windowflashing")
 			windowflashing = !windowflashing

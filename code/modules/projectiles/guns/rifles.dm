@@ -27,7 +27,7 @@
 
 /obj/item/weapon/gun/rifle/standard_carbine
 	name = "\improper AR-18 Kauser carbine"
-	desc = "The Keckler and Hoch AR-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Uses 10x24mm caseless ammunition."
+	desc = "The Keckler and Hoch AR-18 carbine is one of the standard rifles used by the Nine Tailed Fox. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Uses 10x24mm caseless ammunition."
 	icon_state = "t18"
 	item_state = "t18"
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_ar18.ogg'
@@ -112,7 +112,7 @@
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle
 	name = "\improper AR-12 K&H assault rifle"
-	desc = "The Keckler and Hoch AR-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the AR-18 carbine replaced it. It is, however, still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
+	desc = "The Keckler and Hoch AR-12 assault rifle used to be the Nine Tailed Fox standard issue rifle before the AR-18 carbine replaced it. It is, however, still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
 	icon_state = "t12"
 	item_state = "t12"
 	fire_sound = "gun_ar12"
@@ -190,7 +190,7 @@
 
 /obj/item/weapon/gun/rifle/standard_dmr
 	name = "\improper DMR-37 SCA designated marksman rifle"
-	desc = "The San Cristo Arms DMR-37 is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27mm caseless caliber."
+	desc = "The San Cristo Arms DMR-37 is the Nine Tailed Fox designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27mm caseless caliber."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t37"
 	item_state = "t37"
@@ -270,7 +270,7 @@
 
 /obj/item/weapon/gun/rifle/standard_br
 	name = "\improper BR-64 SCA battle rifle"
-	desc = "The San Cristo Arms BR-64 is the TerraGov Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and medium range stopping power with bursts. It is mostly used by people who prefer a bigger round than the average. Uses 10x26.5smm caseless caliber."
+	desc = "The San Cristo Arms BR-64 is the Nine Tailed Fox main battle rifle. It is known for its consistent ability to perform well at most ranges, and medium range stopping power with bursts. It is mostly used by people who prefer a bigger round than the average. Uses 10x26.5smm caseless caliber."
 	icon_state = "t64"
 	item_state = "t64"
 	icon = 'icons/Marine/gun64.dmi'
@@ -452,7 +452,7 @@
 	burst_amount = 1
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
-	damage_mult = 1.5
+	damage_mult = 1.3
 	scatter = -2
 	force = 20
 
@@ -504,7 +504,12 @@
 	scatter = 0
 	fire_delay = 0.2 SECONDS
 
-
+/obj/item/weapon/gun/rifle/m41a/magharness
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/m41a,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
+	)
 
 //-------------------------------------------------------
 
@@ -857,7 +862,7 @@
 
 /obj/item/weapon/gun/rifle/standard_lmg
 	name = "\improper MG-42 Kauser light machine gun"
-	desc = "The Kauser MG-42 is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
+	desc = "The Kauser MG-42 is the NTC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
 
 	icon_state = "t42"
 	item_state = "t42"
@@ -912,7 +917,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	gun_skill_category = SKILL_HEAVY_WEAPONS
 	starting_attachment_types = list(/obj/item/attachable/stock/t42stock)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 20, "under_x" = 16, "under_y" = 14, "stock_x" = 0, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 17,"rail_x" = 20, "rail_y" = 20, "under_x" = 16, "under_y" = 14, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 2
@@ -937,7 +942,7 @@
 
 /obj/item/weapon/gun/rifle/standard_gpmg
 	name = "\improper MG-60 Raummetall general purpose machine gun"
-	desc = "The Raummetall MG-60 general purpose machinegun is the TGMC's current standard GPMG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies, or in rare cases for marching fire. It uses 10x26mm boxes."
+	desc = "The Raummetall MG-60 general purpose machinegun is the NTC's current standard GPMG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies, or in rare cases for marching fire. It uses 10x26mm boxes."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t60"
 	item_state = "t60"
@@ -1188,7 +1193,7 @@
 
 /obj/item/weapon/gun/rifle/standard_autoshotgun
 	name = "\improper Zauer SH-15 automatic shotgun"
-	desc = "The Zauer SH-15 Automatic Assault Shotgun, this is a Terran Armories variant. Another iteration of the ZX series of firearms though it has been since regulated as part of the TGMC arsenal, hence the SH designation. It took over the various shotgun models as the semi-automatic shotgun provided to the TGMC. It is rifled, and loads primarily longer ranged munitions, being incompatible with buckshot shells. Takes 12-round 16 gauge magazines."
+	desc = "The Zauer SH-15 Automatic Assault Shotgun, this is a Archercorp variant. Another iteration of the ZX series of firearms though it has been since regulated as part of the NTC arsenal, hence the SH designation. It took over the various shotgun models as the semi-automatic shotgun provided to the NTC. It is rifled, and loads primarily longer ranged munitions, being incompatible with buckshot shells. Takes 12-round 16 gauge magazines."
 	icon_state = "tx15"
 	item_state = "tx15"
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh15.ogg'
@@ -1249,7 +1254,7 @@
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun
 	name = "\improper SG-29 Raummetall-KT smart machine gun"
-	desc = "The Raummetall-KT SG-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	desc = "The Raummetall-KT SG-29 is the NTC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	icon_state = "sg29"
 	item_state = "sg29"
 	caliber = CALIBER_10x26_CASELESS //codex
@@ -1308,7 +1313,7 @@
 
 /obj/item/weapon/gun/rifle/standard_smarttargetrifle
 	name = "\improper SG-62 Kauser-KT smart target rifle"
-	desc = "The Kauser-KT SG-62 is a IFF-capable rifle used by the TerraGov Marine Corps, coupled with a spotting rifle that is also IFF capable of applying various bullets with specialized ordnance, this is a gun with many answers to many situations... if you have the right ammo loaded. Requires special training and it cannot turn off IFF. It uses high velocity 10x27mm for the rifle and 12x66mm ammunition for the underslung rifle."
+	desc = "The Kauser-KT SG-62 is a IFF-capable rifle used by the Nine Tailed Fox, coupled with a spotting rifle that is also IFF capable of applying various bullets with specialized ordnance, this is a gun with many answers to many situations... if you have the right ammo loaded. Requires special training and it cannot turn off IFF. It uses high velocity 10x27mm for the rifle and 12x66mm ammunition for the underslung rifle."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "sg62"
 	item_state = "sg62"
@@ -1438,7 +1443,7 @@
 
 /obj/item/weapon/gun/rifle/chambered
 	name = "\improper SR-127 Bauer bolt action rifle"
-	desc = "The Bauer SR-127 is the standard issue bolt action rifle used by the TGMC. Known for its long range accuracy and use by marksmen despite its age and lack of IFF, though careful aim allows fire support from behind. It has an irremoveable scope. Uses 8.6×70mm box magazines."
+	desc = "The Bauer SR-127 is the standard issue bolt action rifle used by the NTC. Known for its long range accuracy and use by marksmen despite its age and lack of IFF, though careful aim allows fire support from behind. It has an irremoveable scope. Uses 8.6×70mm box magazines."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tl127"
 	item_state = "tl127"
@@ -1512,7 +1517,7 @@
 
 /obj/item/weapon/gun/rifle/standard_autosniper
 	name = "\improper SR-81 Kauser-KT automatic sniper rifle"
-	desc = "The Kauser-KT SR-81 is the TerraGov Marine Corps's automatic sniper rifle usually married to it's iconic NVG/KTLD scope combo. It is notable for its high rate of fire for its class, and has decent performance in any range. Uses 8.6x70mm caseless with specialized pressures for IFF fire."
+	desc = "The Kauser-KT SR-81 is the Nine Tailed Fox's automatic sniper rifle usually married to it's iconic NVG/KTLD scope combo. It is notable for its high rate of fire for its class, and has decent performance in any range. Uses 8.6x70mm caseless with specialized pressures for IFF fire."
 	icon_state = "t81"
 	item_state = "t81"
 	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'
@@ -1559,7 +1564,7 @@
 
 /obj/item/weapon/gun/rifle/tx11
 	name = "\improper AR-11 K&H combat rifle"
-	desc = "The Keckler and Hoch AR-11 is the former standard issue rifle of the TGMC. Most of them have been mothballed into storage long ago, but some still pop up in marine or mercenary hands. It is known for its large magazine size and great burst fire, but rather awkward to use, especially during combat. It uses 4.92×34mm caseless HV ammunition."
+	desc = "The Keckler and Hoch AR-11 is the former standard issue rifle of the NTC. Most of them have been mothballed into storage long ago, but some still pop up in marine or mercenary hands. It is known for its large magazine size and great burst fire, but rather awkward to use, especially during combat. It uses 4.92×34mm caseless HV ammunition."
 	icon_state = "tx11"
 	item_state = "tx11"
 	caliber = CALIBER_492X34_CASELESS //codex
@@ -2146,7 +2151,7 @@
 	fire_delay = 0.15 SECONDS
 	accuracy_mult = 0.75
 	scatter = 12
-	recoil = 1.5
+	recoil = 2
 	wield_delay = 0.4 SECONDS
 	aim_slowdown = 0.3
 	movement_acc_penalty_mult = 4
@@ -2555,7 +2560,7 @@
 
 /obj/item/weapon/gun/rifle/icc_assaultcarbine/export
 	name = "\improper L&S EM-88 assault carbine"
-	desc = "An aged, reliable, but outdated bullpup rifle usually seen within ICC space due to being surplused long ago, some of these surplus models sometimes find themselves within TGMC space via underhanded means. It's best used in close quarters when you need to quickly clear corners at rapid pace, has an integral foregrip and unmagnified scope to increase accuracy and reduce drag. Chambered in 5.56x45mm NATO."
+	desc = "An aged, reliable, but outdated bullpup rifle usually seen within ICC space due to being surplused long ago, some of these surplus models sometimes find themselves within NTC space via underhanded means. It's best used in close quarters when you need to quickly clear corners at rapid pace, has an integral foregrip and unmagnified scope to increase accuracy and reduce drag. Chambered in 5.56x45mm NATO."
 	icon_state = "l88_export"
 	item_state = "l88_export"
 	default_ammo_type = /obj/item/ammo_magazine/rifle/icc_assaultcarbine/export

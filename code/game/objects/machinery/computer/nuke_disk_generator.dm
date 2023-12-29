@@ -13,7 +13,7 @@
 	interaction_flags = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/nuke_disk_generator
 
-	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
+	resistance_flags = DROPSHIP_IMMUNE
 
 	///Time needed for the machine to generate the disc
 	var/segment_time = 1.5 MINUTES
@@ -43,7 +43,7 @@
 		"Booting up terminal-  -Terminal running",
 		"Establishing link to offsite mainframe- Link established",
 		"WARNING, DIRECTORY CORRUPTED, running search algorithms- nuke_fission_timing.exe found",
-		"Invalid credentials, upgrading permissions through TGMC military override- Permissions upgraded, nuke_fission_timing.exe available",
+		"Invalid credentials, upgrading permissions through NTC military override- Permissions upgraded, nuke_fission_timing.exe available",
 		"Downloading nuke_fission_timing.exe to removable storage- nuke_fission_timing.exe downloaded to floppy disk, getting ready to print",
 		"Program downloaded to disk. Have a nice day."
 	)
@@ -142,7 +142,7 @@
 				busy = TRUE
 
 				usr.visible_message("[usr] started a program to generate a new copy of the program.", "You started a program to generate a new copy of the program.")
-				if(!do_after(usr, printing_time, NONE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
+				if(!do_after(usr, printing_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
 					busy = FALSE
 					return
 
@@ -155,7 +155,7 @@
 			busy = TRUE
 
 			usr.visible_message("[usr] started a program to generate a nuclear disk code.", "You started a program to generate a nuclear disk code.")
-			if(!do_after(usr, start_time, NONE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
+			if(!do_after(usr, start_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
 				busy = FALSE
 				return
 

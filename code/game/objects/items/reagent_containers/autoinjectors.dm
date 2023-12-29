@@ -294,7 +294,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/elite //only deathsquad should be able to get this
 	name = "elite autoinjector"
-	desc = "An elite auto-injector loaded with a strong and versatile combination of chemicals, healing most types of damage. Issued almost excusively to the infamous Nanotrasen deathsquads"
+	desc = "An elite auto-injector loaded with a strong and versatile combination of chemicals, healing most types of damage. Issued almost excusively to the infamous Ninetails deathsquads"
 	icon_state = "autoinjector-7"
 	volume = 37.5
 	amount_per_transfer_from_this = 12.4

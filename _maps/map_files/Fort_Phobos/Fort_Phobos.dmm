@@ -42,7 +42,9 @@
 /obj/structure/reagent_dispensers/watertank,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/plating/ground/concrete/lines,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "au" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -107,7 +109,9 @@
 /area/mainship/patrol_base/som/prep)
 "bk" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "bl" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -264,8 +268,7 @@
 "cS" = (
 /turf/open/floor/mainship/white{
 	dir = 8
-	},
-/area/mainship/patrol_base/som/hanger)
+	})
 "cY" = (
 /obj/machinery/light{
 	dir = 1
@@ -273,7 +276,9 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "dl" = (
 /obj/structure/stairs/seamless,
 /turf/open/floor/mainship/office,
@@ -289,13 +294,17 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete/lines,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "dy" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 4
 	},
 /turf/closed/shuttle/dropship_regular/top_corner/alt,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "dA" = (
 /obj/structure/stairs/seamless/edge{
 	dir = 8
@@ -303,7 +312,9 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "dK" = (
 /obj/structure/sign/securearea{
 	dir = 1
@@ -379,11 +390,15 @@
 "ei" = (
 /obj/machinery/door/poddoor/mainship/open,
 /turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "el" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "en" = (
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
@@ -408,7 +423,9 @@
 "ev" = (
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "ey" = (
 /obj/machinery/shower{
 	dir = 8
@@ -439,21 +456,21 @@
 "eO" = (
 /turf/open/floor/mainship/white{
 	dir = 10
-	},
-/area/mainship/patrol_base/som/hanger)
+	})
 "eR" = (
 /obj/structure/somcas/four/left,
 /turf/open/floor/mainship_hull/gray,
 /area/mainship/patrol_base/som)
 "eT" = (
-/turf/open/floor/mainship/white/full,
-/area/mainship/patrol_base/som/hanger)
+/turf/open/floor/mainship/white/full)
 "eU" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "eW" = (
 /obj/machinery/computer/som_two,
 /obj/machinery/light/red{
@@ -477,7 +494,9 @@
 	dir = 8
 	},
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "ft" = (
 /obj/structure/somcas/left{
 	dir = 8
@@ -488,30 +507,37 @@
 /obj/structure/window/framed/prison/reinforced/nonshutter_hull,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som/command)
+"fE" = (
+/turf/closed/wall/r_wall/prison_unmeltable)
 "fN" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 4
 	},
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "fS" = (
 /obj/structure/stairs/seamless/platform{
 	dir = 8
 	},
 /turf/open/floor/mainship/white{
 	dir = 4
-	},
-/area/mainship/patrol_base/som/hanger)
+	})
 "fX" = (
 /obj/structure/patrol_point/som_21,
 /turf/open/shuttle/elevator/grating,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "fY" = (
 /obj/structure/platform{
 	dir = 4
 	},
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "fZ" = (
 /turf/closed/shuttle/dropship2/window,
 /area/mainship/patrol_base/som)
@@ -551,8 +577,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/mainship/white/full,
-/area/mainship/patrol_base/som/hanger)
+/turf/open/floor/mainship/white/full)
 "gI" = (
 /turf/open/floor/mainship/green{
 	dir = 6
@@ -594,8 +619,7 @@
 "gT" = (
 /turf/open/floor/mainship/white{
 	dir = 1
-	},
-/area/mainship/patrol_base/som/hanger)
+	})
 "gW" = (
 /obj/structure/prop/mainship/doorblocker/patrol_base/wide_left{
 	dir = 8
@@ -649,17 +673,20 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "hw" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "hz" = (
 /obj/structure/stairs/seamless,
-/turf/open/floor/mainship/white,
-/area/mainship/patrol_base/som/hanger)
+/turf/open/floor/mainship/white)
 "hD" = (
 /obj/machinery/camera/autoname/mainship/somship{
 	dir = 8
@@ -718,7 +745,9 @@
 /area/mainship/patrol_base/som/prep)
 "ix" = (
 /turf/open/floor/mainship/red,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "iz" = (
 /obj/structure/prop/mainship/prop_so/som,
 /turf/open/floor/mainship/silver,
@@ -728,7 +757,9 @@
 /area/mainship/patrol_base/som/barracks)
 "iD" = (
 /turf/open/floor/plating/ground/concrete/lines,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "iE" = (
 /obj/machinery/telecomms/server/presets/engineering/som,
 /turf/open/floor/mainship,
@@ -761,13 +792,14 @@
 /area/mainship/patrol_base/som)
 "iY" = (
 /turf/closed/shuttle/dropship_regular/backwall,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "je" = (
 /obj/structure/stairs/seamless/platform_vert{
 	dir = 4
 	},
-/turf/open/floor/mainship/white,
-/area/mainship/patrol_base/som/hanger)
+/turf/open/floor/mainship/white)
 "jg" = (
 /obj/structure/prop/mainship/doorblocker/patrol_base/som{
 	dir = 8
@@ -882,7 +914,9 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "kZ" = (
 /obj/machinery/telecomms/bus/preset_two,
 /turf/open/floor/mainship,
@@ -930,8 +964,7 @@
 /obj/structure/platform/metalplatform{
 	dir = 10
 	},
-/turf/open/floor/mainship/white/full,
-/area/mainship/patrol_base/som/hanger)
+/turf/open/floor/mainship/white/full)
 "lE" = (
 /obj/effect/decal/cleanable/blood/oil/streak{
 	dir = 1
@@ -960,7 +993,9 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "mj" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
@@ -968,8 +1003,7 @@
 /area/mainship/patrol_base/som)
 "mk" = (
 /obj/machinery/light,
-/turf/open/floor/mainship/white/full,
-/area/mainship/patrol_base/som/hanger)
+/turf/open/floor/mainship/white/full)
 "mo" = (
 /obj/machinery/light{
 	dir = 1
@@ -1017,8 +1051,7 @@
 /obj/structure/stairs/seamless/platform_vert{
 	dir = 8
 	},
-/turf/open/floor/mainship/white,
-/area/mainship/patrol_base/som/hanger)
+/turf/open/floor/mainship/white)
 "mT" = (
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/mainship,
@@ -1028,7 +1061,9 @@
 	dir = 8
 	},
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "nc" = (
 /obj/structure/table/mainship,
 /obj/effect/decal/cleanable/blood/xtracks,
@@ -1051,7 +1086,9 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "ny" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/space)
@@ -1069,8 +1106,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/mainship/white/full,
-/area/mainship/patrol_base/som/hanger)
+/turf/open/floor/mainship/white/full)
 "nM" = (
 /obj/structure/stairs/seamless{
 	dir = 4
@@ -1078,7 +1114,9 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "nO" = (
 /obj/item/toy/beach_ball/basketball,
 /obj/effect/turf_decal/warning_stripes,
@@ -1102,7 +1140,9 @@
 /turf/closed/shuttle/dropship_regular/top_corner/alt{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "nU" = (
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
@@ -1174,12 +1214,13 @@
 /obj/structure/platform/metalplatform{
 	dir = 5
 	},
-/turf/open/floor/mainship/white/full,
-/area/mainship/patrol_base/som/hanger)
+/turf/open/floor/mainship/white/full)
 "oM" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/red,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "oN" = (
 /turf/open/floor/mainship/silver{
 	dir = 1
@@ -1198,7 +1239,9 @@
 	dir = 2
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "pt" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -1223,8 +1266,7 @@
 	},
 /turf/open/floor/mainship/white{
 	dir = 8
-	},
-/area/mainship/patrol_base/som/hanger)
+	})
 "pR" = (
 /obj/structure/benchpress,
 /turf/open/floor/plating/ground/concrete,
@@ -1371,7 +1413,9 @@
 	},
 /obj/effect/attach_point/crew_weapon/minidropship,
 /turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "qV" = (
 /obj/machinery/light{
 	dir = 8
@@ -1385,7 +1429,9 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "rv" = (
 /obj/structure/prop/mainship/doorblocker/patrol_base/som{
 	dir = 8
@@ -1412,7 +1458,9 @@
 	dir = 6
 	},
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "rE" = (
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som/barracks)
@@ -1425,7 +1473,9 @@
 "rK" = (
 /obj/structure/patrol_point/som_23,
 /turf/open/shuttle/elevator/grating,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "rL" = (
 /obj/structure/ship_ammo/railgun,
 /turf/open/floor/mainship/red{
@@ -1443,8 +1493,7 @@
 	},
 /turf/open/floor/mainship/white{
 	dir = 4
-	},
-/area/mainship/patrol_base/som/hanger)
+	})
 "rX" = (
 /obj/structure/ship_ammo/cas/rocket/fatty,
 /turf/open/floor/plating/ground/concrete,
@@ -1453,13 +1502,17 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 6
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "sd" = (
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 2
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "se" = (
 /obj/structure/window/framed/prison/reinforced/nonshutter_hull,
 /obj/structure/platform,
@@ -1494,8 +1547,7 @@
 	},
 /turf/open/floor/mainship/white{
 	dir = 8
-	},
-/area/mainship/patrol_base/som/hanger)
+	})
 "sB" = (
 /turf/open/floor/mainship/red{
 	dir = 8
@@ -1526,7 +1578,9 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "tt" = (
 /obj/machinery/telecomms/processor/preset_four/som,
 /turf/open/floor/mainship,
@@ -1570,7 +1624,9 @@
 	dir = 8
 	},
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "tV" = (
 /obj/structure/ship_ammo/cas/rocket/fatty,
 /turf/open/floor/mainship/red{
@@ -1579,7 +1635,9 @@
 /area/mainship/patrol_base/som)
 "ua" = (
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "ue" = (
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/mainship/red{
@@ -1618,7 +1676,9 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "ul" = (
 /obj/effect/turf_decal/siding{
 	dir = 9
@@ -1697,8 +1757,7 @@
 /obj/structure/platform/metalplatform{
 	dir = 6
 	},
-/turf/open/floor/mainship/white/full,
-/area/mainship/patrol_base/som/hanger)
+/turf/open/floor/mainship/white/full)
 "uL" = (
 /obj/effect/turf_decal/trimline/red/line{
 	dir = 4
@@ -1710,8 +1769,7 @@
 "uN" = (
 /turf/open/floor/mainship/white{
 	dir = 9
-	},
-/area/mainship/patrol_base/som/hanger)
+	})
 "uV" = (
 /obj/effect/turf_decal/trimline/blue/corner{
 	dir = 1
@@ -1777,8 +1835,7 @@
 	},
 /turf/open/floor/mainship/white{
 	dir = 4
-	},
-/area/mainship/patrol_base/som/hanger)
+	})
 "vI" = (
 /obj/effect/turf_decal/trimline/blue/arrow_cw{
 	dir = 8
@@ -1866,12 +1923,13 @@
 /turf/open/floor/freezer,
 /area/mainship/patrol_base/som/barracks)
 "wG" = (
-/turf/open/floor/bcircuit/anim,
-/area/mainship/patrol_base/som/hanger)
+/turf/open/floor/bcircuit/anim)
 "wI" = (
 /obj/structure/patrol_point/som_24,
 /turf/open/shuttle/elevator/grating,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "wL" = (
 /obj/machinery/light{
 	dir = 4
@@ -1881,7 +1939,9 @@
 "wN" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/mainship/red,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "wQ" = (
 /obj/effect/landmark/start/job/som/squadcorpsman,
 /turf/open/floor/mainship/office,
@@ -1978,7 +2038,9 @@
 /turf/closed/shuttle/dropship_regular/interior_corner{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "xR" = (
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/prison/arrow/clean{
@@ -2028,7 +2090,15 @@
 "yh" = (
 /obj/structure/window/framed/mainship/escapeshuttle,
 /turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
+"yk" = (
+/obj/structure/window/framed/prison/reinforced/nonshutter_hull,
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "yo" = (
 /obj/effect/spawner/random/misc/soap/deluxeweighted,
 /turf/open/floor/freezer,
@@ -2056,7 +2126,9 @@
 /turf/closed/shuttle/dropship_regular/top_corner{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "yz" = (
 /obj/structure/table/mainship,
 /turf/open/floor/tile/dark,
@@ -2103,7 +2175,9 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "zs" = (
 /obj/machinery/door/poddoor/campaign/som{
 	dir = 1
@@ -2115,7 +2189,9 @@
 "zu" = (
 /obj/structure/platform,
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "zy" = (
 /obj/structure/toilet{
 	dir = 1;
@@ -2144,10 +2220,14 @@
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "zI" = (
 /turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "zM" = (
 /obj/structure/prop/mainship/prop_sominf{
 	dir = 8
@@ -2182,7 +2262,9 @@
 	dir = 5
 	},
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "zV" = (
 /obj/effect/landmark/campaign/mech_spawner/som,
 /obj/effect/turf_decal/warning_stripes/thick/autosmooth,
@@ -2219,7 +2301,9 @@
 "Av" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner,
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Aw" = (
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
@@ -2255,12 +2339,16 @@
 /turf/closed/shuttle/dropship_regular/backhatch{
 	dir = 4
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "AU" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 5
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "AV" = (
 /obj/structure/barricade/guardrail{
 	dir = 4
@@ -2391,8 +2479,7 @@
 /obj/structure/platform/metalplatform{
 	dir = 1
 	},
-/turf/open/floor/mainship/white/full,
-/area/mainship/patrol_base/som/hanger)
+/turf/open/floor/mainship/white/full)
 "Cn" = (
 /obj/structure/sign/safety/high_radiation{
 	dir = 1
@@ -2404,8 +2491,7 @@
 /area/mainship/patrol_base/som)
 "Cr" = (
 /obj/structure/window/framed/prison/reinforced/nonshutter_hull,
-/turf/open/floor/mainship/white/full,
-/area/mainship/patrol_base/som/hanger)
+/turf/open/floor/mainship/white/full)
 "Cw" = (
 /turf/open/floor/tile/dark,
 /area/mainship/patrol_base/som)
@@ -2507,13 +2593,14 @@
 	dir = 1
 	},
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Dw" = (
 /obj/structure/stairs/seamless/platform,
 /turf/open/floor/mainship/white{
 	dir = 8
-	},
-/area/mainship/patrol_base/som/hanger)
+	})
 "Dx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
@@ -2620,8 +2707,7 @@
 "EC" = (
 /turf/open/floor/mainship/white{
 	dir = 4
-	},
-/area/mainship/patrol_base/som/hanger)
+	})
 "EE" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -2663,7 +2749,9 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "EW" = (
 /obj/structure/platform_decoration{
 	dir = 1
@@ -2685,8 +2773,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/mainship/white/full,
-/area/mainship/patrol_base/som/hanger)
+/turf/open/floor/mainship/white/full)
 "Fy" = (
 /obj/machinery/door/poddoor/mainship/indestructible,
 /turf/open/shuttle/dropship/floor,
@@ -2723,8 +2810,7 @@
 "Ga" = (
 /turf/open/floor/mainship/white{
 	dir = 5
-	},
-/area/mainship/patrol_base/som/hanger)
+	})
 "Gd" = (
 /obj/structure/ship_ammo/cas/heavygun/highvelocity,
 /turf/open/floor/mainship/red{
@@ -2736,7 +2822,9 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Gj" = (
 /obj/structure/stairs/seamless/edge{
 	dir = 1
@@ -2747,20 +2835,26 @@
 /area/mainship/patrol_base/som)
 "Gk" = (
 /turf/closed/shuttle/dropship_regular/top_corner,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Gs" = (
 /obj/structure/stairs/seamless{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Gu" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
 	},
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "GH" = (
 /obj/effect/landmark/campaign/mech_spawner/som,
 /obj/machinery/light{
@@ -2806,7 +2900,9 @@
 /turf/closed/shuttle/dropship_regular/backhatch{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "GX" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
@@ -2852,7 +2948,9 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "HL" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -2914,8 +3012,7 @@
 /obj/structure/platform/metalplatform{
 	dir = 9
 	},
-/turf/open/floor/mainship/white/full,
-/area/mainship/patrol_base/som/hanger)
+/turf/open/floor/mainship/white/full)
 "Il" = (
 /obj/structure/stairs/seamless/edge_vert{
 	dir = 8
@@ -2947,7 +3044,9 @@
 	dir = 1
 	},
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Iw" = (
 /obj/structure/prop/nt_computer,
 /turf/open/floor/mainship/silver{
@@ -2962,7 +3061,9 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "IJ" = (
 /obj/machinery/telecomms/processor/preset_three/som,
 /turf/open/floor/mainship,
@@ -3030,7 +3131,9 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "JD" = (
 /obj/effect/turf_decal/trimline/red/line{
 	dir = 1
@@ -3053,7 +3156,9 @@
 	dir = 8
 	},
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "JZ" = (
 /turf/closed/shuttle/dropship2/window{
 	dir = 1
@@ -3148,7 +3253,9 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Ld" = (
 /obj/structure/prop/mainship/doorblocker/patrol_base/som,
 /turf/open/floor/mainship/mono,
@@ -3158,7 +3265,9 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Lm" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/mainship/red,
@@ -3200,7 +3309,9 @@
 "LY" = (
 /obj/structure/patrol_point/som_11,
 /turf/open/shuttle/elevator/grating,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Md" = (
 /obj/structure/prop/mainship/prop_tech/som{
 	dir = 4
@@ -3340,7 +3451,9 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Nw" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -3352,7 +3465,9 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "NF" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
@@ -3361,7 +3476,9 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "NG" = (
 /obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/mainship/red{
@@ -3399,7 +3516,9 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "NZ" = (
 /obj/structure/prop/mainship/sensor_computer2,
 /obj/machinery/light{
@@ -3435,8 +3554,7 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/som)
 "Ol" = (
-/turf/open/floor/mainship/white,
-/area/mainship/patrol_base/som/hanger)
+/turf/open/floor/mainship/white)
 "On" = (
 /turf/open/floor/mainship/red/corner{
 	dir = 4
@@ -3495,7 +3613,9 @@
 "OM" = (
 /obj/structure/stairs/seamless,
 /turf/open/floor/plating/ground/concrete/lines,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "ON" = (
 /obj/structure/largecrate/supply/weapons,
 /turf/open/floor/plating/ground/concrete/lines,
@@ -3530,7 +3650,9 @@
 /area/mainship/patrol_base/som/barracks)
 "Pj" = (
 /turf/closed/mineral/smooth/indestructible,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Pl" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /obj/effect/turf_decal/trimline/red/line{
@@ -3541,7 +3663,9 @@
 "Pn" = (
 /obj/structure/patrol_point/som_14,
 /turf/open/shuttle/elevator/grating,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Po" = (
 /obj/machinery/light{
 	dir = 8
@@ -3623,7 +3747,9 @@
 	},
 /obj/machinery/light,
 /turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Qi" = (
 /obj/structure/prop/mainship/prop_so/som{
 	dir = 1
@@ -3639,14 +3765,18 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Qr" = (
 /obj/machinery/telecomms/processor/preset_one/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/som)
 "Qu" = (
 /turf/open/shuttle/elevator/grating,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Qw" = (
 /obj/machinery/telecomms/server/presets/yankee,
 /turf/open/floor/mainship,
@@ -3660,7 +3790,9 @@
 "QC" = (
 /obj/structure/window/framed/prison/reinforced/nonshutter_hull,
 /turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "QG" = (
 /obj/structure/somcas/left,
 /turf/open/floor/mainship_hull/gray,
@@ -3670,11 +3802,15 @@
 	dir = 1
 	},
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "QO" = (
 /obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "QT" = (
 /obj/structure/closet/secure_closet/guncabinet/mp_armory,
 /turf/open/floor/mainship/red{
@@ -3691,7 +3827,9 @@
 "Rg" = (
 /obj/structure/patrol_point/som_12,
 /turf/open/shuttle/elevator/grating,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Rh" = (
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/mainship,
@@ -3720,7 +3858,9 @@
 /area/mainship/patrol_base/som)
 "Rq" = (
 /turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Rt" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -3750,7 +3890,9 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "RO" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/mainship/patrol_base/som/command)
@@ -3816,7 +3958,9 @@
 /area/mainship/patrol_base/som)
 "St" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Sy" = (
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som/command)
@@ -3825,7 +3969,9 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete/lines,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "SR" = (
 /obj/structure/stairs/seamless,
 /turf/open/floor/mainship/office,
@@ -3851,7 +3997,9 @@
 /turf/open/floor/mainship/red{
 	dir = 6
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Ti" = (
 /obj/structure/somcas/one/left{
 	dir = 4
@@ -3873,7 +4021,9 @@
 /area/mainship/patrol_base/som)
 "Ty" = (
 /turf/closed/shuttle/dropship_regular/backhatch,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Tz" = (
 /obj/machinery/computer/camera_advanced/overwatch/som/whiskey,
 /turf/open/floor/mainship/red{
@@ -3884,7 +4034,9 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "TE" = (
 /obj/machinery/telecomms/processor/preset_two/som,
 /turf/open/floor/mainship,
@@ -3898,7 +4050,9 @@
 "TM" = (
 /obj/structure/prop/mainship/hangar_stencil,
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "TN" = (
 /obj/machinery/telecomms/server/presets/whiskey,
 /turf/open/floor/mainship,
@@ -3922,7 +4076,9 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "TU" = (
 /obj/structure/sink{
 	dir = 4
@@ -3932,11 +4088,15 @@
 "TV" = (
 /obj/structure/largecrate/random/barrel/green,
 /turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Ud" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Ug" = (
 /obj/machinery/cic_maptable/drawable/big/som{
 	pixel_x = -3
@@ -3973,7 +4133,9 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Uz" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/plating/ground/concrete,
@@ -3996,8 +4158,7 @@
 /obj/machinery/door/poddoor/two_tile_hor/teleporter,
 /turf/open/floor/mainship/white{
 	dir = 9
-	},
-/area/mainship/patrol_base/som/hanger)
+	})
 "Va" = (
 /turf/open/floor/mainship/red,
 /area/mainship/patrol_base/som/command)
@@ -4006,7 +4167,9 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Vh" = (
 /obj/structure/platform_decoration{
 	dir = 4
@@ -4021,7 +4184,9 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Vp" = (
 /obj/structure/dropship_piece/two/corner/rearright{
 	dir = 1
@@ -4042,7 +4207,9 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "VN" = (
 /obj/structure/prop/mainship/prop_sominf,
 /turf/open/floor/mainship/office,
@@ -4071,7 +4238,9 @@
 /area/mainship/patrol_base/som/command)
 "VU" = (
 /turf/closed/shuttle/dropship_regular/interior_corner,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Wa" = (
 /obj/structure/table/black,
 /turf/open/floor/mainship/red{
@@ -4083,7 +4252,9 @@
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Wc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -4126,7 +4297,9 @@
 "Wn" = (
 /obj/structure/patrol_point/som_13,
 /turf/open/shuttle/elevator/grating,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Wo" = (
 /obj/structure/platform_decoration{
 	dir = 4
@@ -4137,7 +4310,9 @@
 "WA" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "WB" = (
 /obj/structure/prop/vehicle/truck,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -4207,8 +4382,7 @@
 "Xg" = (
 /turf/open/floor/mainship/white{
 	dir = 6
-	},
-/area/mainship/patrol_base/som/hanger)
+	})
 "Xk" = (
 /obj/structure/stairs/seamless/platform{
 	dir = 4
@@ -4229,7 +4403,9 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "Xs" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -4241,13 +4417,17 @@
 	dir = 8
 	},
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "XS" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "XV" = (
 /obj/structure/dropship_piece/two/corner/rearleft{
 	dir = 1
@@ -4325,7 +4505,9 @@
 /area/mainship/patrol_base/som/prep)
 "Yy" = (
 /turf/open/floor/mainship_hull/gray,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "YA" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 8
@@ -4334,7 +4516,9 @@
 "YN" = (
 /obj/structure/patrol_point/som_22,
 /turf/open/shuttle/elevator/grating,
-/area/mainship/patrol_base/som/hanger)
+/area/mainship/groundhq/som/patrol_base/hangar{
+	name = "SOM hangar"
+	})
 "YO" = (
 /obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/plating/plating_catwalk,
@@ -4418,8 +4602,7 @@
 /area/mainship/patrol_base/som)
 "ZM" = (
 /obj/structure/teleporter_array,
-/turf/open/floor/bcircuit/anim,
-/area/mainship/patrol_base/som/hanger)
+/turf/open/floor/bcircuit/anim)
 
 (1,1,1) = {"
 Uk
@@ -8502,12 +8685,12 @@ St
 St
 St
 St
-RO
-RO
-fy
-fy
-RO
-RO
+St
+St
+yk
+yk
+St
+St
 JC
 Gs
 Gs
@@ -12998,18 +13181,18 @@ tB
 dW
 Hq
 vz
-St
-St
-St
-St
-St
-St
-St
-St
-St
-St
-St
-St
+fE
+fE
+fE
+fE
+fE
+fE
+fE
+fE
+fE
+fE
+fE
+fE
 vz
 vz
 QT
@@ -13119,8 +13302,8 @@ vz
 nB
 qj
 Hq
-St
-St
+fE
+fE
 Fc
 eT
 gF
@@ -13131,8 +13314,8 @@ gF
 eT
 eT
 mk
-St
-St
+fE
+fE
 vz
 XX
 Ax
@@ -13241,7 +13424,7 @@ vz
 NZ
 ao
 Hq
-St
+fE
 gF
 eT
 eT
@@ -13254,7 +13437,7 @@ eT
 eT
 eT
 gF
-St
+fE
 vz
 ue
 bZ
@@ -13376,7 +13559,7 @@ cS
 eO
 eT
 eT
-St
+fE
 vz
 vz
 Jl
@@ -13498,7 +13681,7 @@ lD
 Ol
 eT
 eT
-St
+fE
 vz
 KG
 Wd
@@ -13864,7 +14047,7 @@ eT
 hz
 eT
 mk
-St
+fE
 vz
 Cn
 xb
@@ -14230,7 +14413,7 @@ uK
 Ol
 eT
 eT
-St
+fE
 vz
 ur
 YX
@@ -14352,7 +14535,7 @@ EC
 Xg
 eT
 eT
-St
+fE
 vz
 vz
 vz
@@ -14461,7 +14644,7 @@ vz
 DH
 dW
 AO
-St
+fE
 nH
 eT
 eT
@@ -14474,7 +14657,7 @@ eT
 eT
 eT
 nH
-St
+fE
 vz
 vz
 vz
@@ -14583,8 +14766,8 @@ vz
 Or
 qj
 dW
-St
-St
+fE
+fE
 Fc
 eT
 nH
@@ -14595,8 +14778,8 @@ nH
 eT
 eT
 mk
-St
-St
+fE
+fE
 Aw
 Aw
 Aw
@@ -14706,18 +14889,18 @@ ut
 ao
 dW
 vz
-St
-St
-St
-St
-St
-St
-St
-St
-St
-St
-St
-St
+fE
+fE
+fE
+fE
+fE
+fE
+fE
+fE
+fE
+fE
+fE
+fE
 vz
 Aw
 Aw

@@ -143,7 +143,7 @@
 
 ///RR bag
 /obj/item/storage/holster/backholster/rpg
-	name = "\improper TGMC rocket bag"
+	name = "\improper NTC rocket bag"
 	desc = "This backpack can hold 4 67mm shells, in addition to a recoiless launcher."
 	icon_state = "marine_rocket"
 	w_class = WEIGHT_CLASS_HUGE
@@ -239,7 +239,7 @@
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/mortar
-	name = "\improper TGMC mortar bag"
+	name = "\improper NTC mortar bag"
 	desc = "This backpack can hold 11 80mm mortar shells, in addition to the mortar itself."
 	icon_state = "marinepackt"
 	w_class = WEIGHT_CLASS_BULKY
@@ -254,6 +254,8 @@
 		/obj/item/mortal_shell/he,
 		/obj/item/mortal_shell/incendiary,
 		/obj/item/mortal_shell/smoke,
+		/obj/item/mortal_shell/smoke/satrapine,
+		/obj/item/mortal_shell/smoke/sleep,
 		/obj/item/mortal_shell/flare,
 		/obj/item/mortal_shell/plasmaloss,
 		/obj/item/mortar_kit,
@@ -274,7 +276,7 @@
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/flamer
-	name = "\improper TGMC flamethrower bag"
+	name = "\improper NTC flamethrower bag"
 	desc = "This backpack can carry its accompanying flamethrower as well as a modest general storage capacity. Automatically refuels it's accompanying flamethrower."
 	icon_state = "pyro_bag"
 	w_class = WEIGHT_CLASS_BULKY
@@ -452,7 +454,7 @@
 
 /obj/item/storage/holster/m25
 	name = "\improper M276 pattern M25 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the M25 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
+	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is designed for the M25 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
 	icon_state = "m25_holster"
 	icon = 'icons/obj/clothing/belts.dmi'
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -469,7 +471,7 @@
 
 /obj/item/storage/holster/t19
 	name = "\improper M276 pattern MP-19 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the MP-19 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
+	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is designed for the MP-19 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
 	icon_state = "t19_holster"
 	icon = 'icons/obj/clothing/belts.dmi'
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -684,7 +686,7 @@
 
 /obj/item/storage/holster/belt/pistol/stand
 	name = "\improper M276 pattern M4A3 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
+	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
@@ -692,12 +694,12 @@
 
 /obj/item/storage/holster/belt/pistol/standard_pistol
 	name = "\improper T457 pattern pistol holster rig"
-	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
+	desc = "The T457 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips."
 	icon_state = "tp14_holster"
 
 /obj/item/storage/holster/belt/revolver/standard_revolver
 	name = "\improper T457 pattern revolver holster rig"
-	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
+	desc = "The T457 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips."
 	icon_state = "tp44_holster"
 	bypass_w_limit = list(
 		/obj/item/weapon/gun/revolver,
@@ -709,7 +711,7 @@
 
 /obj/item/storage/holster/belt/m44
 	name = "\improper M276 pattern M44 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the M44 magnum revolver, along with three pouches for speedloaders."
+	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is for the M44 magnum revolver, along with three pouches for speedloaders."
 	icon_state = "m44_holster"
 	max_storage_space = 16
 	max_w_class = WEIGHT_CLASS_BULKY
@@ -731,7 +733,7 @@
 
 /obj/item/storage/holster/belt/mateba
 	name = "\improper M276 pattern Mateba holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders."
+	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders."
 	icon_state = "mateba_holster"
 	max_storage_space = 16
 	bypass_w_limit = list(

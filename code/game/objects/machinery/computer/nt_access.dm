@@ -49,10 +49,10 @@
 	. = ..()
 	update_icon()
 	update_minimap_icon()
-	GLOB.campaign_structures += src
+	GLOB.campaign_objectives += src
 
 /obj/machinery/computer/nt_access/Destroy()
-	GLOB.campaign_structures -= src
+	GLOB.campaign_objectives -= src
 	return ..()
 
 /obj/machinery/computer/nt_access/process()
@@ -139,7 +139,7 @@
 			busy = TRUE
 
 			usr.visible_message("[usr] started a program to generate a security override code.", "You started a program to generate a security override code.")
-			if(!do_after(usr, start_time, NONE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
+			if(!do_after(usr, start_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
 				busy = FALSE
 				return
 

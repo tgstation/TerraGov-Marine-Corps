@@ -662,6 +662,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return limb_name
 	return null
 
+///Amputates the limb in the specified limb zone
+/mob/living/carbon/human/proc/amputate_limb(limb_zone)
+	var/datum/limb/limb_to_drop = get_limb(limb_zone)
+	limb_to_drop?.droplimb(TRUE, TRUE)
+
 //Handles dismemberment
 /datum/limb/proc/droplimb(amputation, delete_limb = FALSE)
 	if(limb_status & LIMB_DESTROYED)
@@ -948,7 +953,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	target.balloon_alert_to_viewers("Splinting [display_name]...")
 
-	if(!do_after(user, delay, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(extra_splint_checks), applied_health)))
+	if(!do_mob(user, target, delay, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(extra_splint_checks), applied_health)))
 		return FALSE
 
 	target.balloon_alert_to_viewers("Splinted [display_name]")

@@ -32,7 +32,7 @@ OPERATIONS
 	containertype = /obj/structure/closet/crate
 
 /datum/supply_packs/imports/loot_pack
-	name = "TGMC Loot Pack"
+	name = "NTC Loot Pack"
 	notes = "Contains a random, but curated set of items, these packs are valued around 150 to 200 points. Some items can only be acquired from these. Spend responsibly."
 	contains = list(/obj/item/loot_box/tgmclootbox)
 	cost = 1000
@@ -79,10 +79,14 @@ OPERATIONS
 
 /datum/supply_packs/operations/xeno_iff_tag
 	name = "Xenomorph IFF tag crate" //Intended for corrupted or friendly rounies as rounds sometimes turn out. Avoid abuse or I'll have to admin-only it, which is no fun!
-	notes = "Contains an IFF tag used to mark a xenomorph as friendly to IFF systems. Warning: Nanotrasen is not responsible for incidents related to attaching this to hostile entities."
-	contains = list(/obj/item/xeno_iff_tag)
+	notes = "Contains an IFF tag used to mark a xenomorph as friendly to IFF systems. Warning: Ninetails is not responsible for incidents related to attaching this to hostile entities."
+	contains = list(
+		/obj/item/xeno_iff_tag,
+		/obj/item/xeno_iff_tag,
+		/obj/item/xeno_iff_tag,
+	)
 	access = ACCESS_MARINE_BRIDGE //Better be safe.
-	cost = 130
+	cost = 50
 
 /datum/supply_packs/operations/deployable_camera
 	name = "3 Deployable Cameras"
@@ -919,6 +923,18 @@ EXPLOSIVES
 	contains = list(/obj/item/mortal_shell/smoke, /obj/item/mortal_shell/smoke)
 	cost = 5
 
+
+/datum/supply_packs/explosives/mortar_ammo_satrepine
+	name = "T-50S mortar satrepine smoke shell (x2)"
+	contains = list(/obj/item/mortal_shell/smoke/satrapine, /obj/item/mortal_shell/smoke/satrapine)
+	cost = 10
+
+
+/datum/supply_packs/explosives/mortar_ammo_sleep
+	name = "T-50S mortar sleep smoke shell (x2)"
+	contains = list(/obj/item/mortal_shell/smoke/sleep, /obj/item/mortal_shell/smoke/sleep)
+	cost = 10
+
 /datum/supply_packs/explosives/mortar_ammo_plasmaloss
 	name = "T-50S mortar tanglefoot shell"
 	contains = list(/obj/item/mortal_shell/plasmaloss)
@@ -1021,7 +1037,7 @@ ARMOR
 	cost = B17_PRICE
 
 /datum/supply_packs/armor/scout_cloak
-	name = "Scout Cloak"
+	name = "NT-Cyberghost"
 	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak/scout)
 	cost = 500
 
@@ -2102,7 +2118,7 @@ FACTORY
 	cost = 300
 
 /datum/supply_packs/factory/pizzarefill
-	name = "Nanotrasen \"Eat healthy!\" margerita pizza kit refill"
+	name = "Ninetails \"Eat healthy!\" margerita pizza kit refill"
 	contains = list(/obj/item/factory_refill/pizza_refill)
 	cost = 290 //allows a one point profit if all pizzas are processed and sold back to ASRS
 

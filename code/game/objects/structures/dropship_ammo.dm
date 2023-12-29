@@ -451,7 +451,7 @@
 
 /obj/structure/ship_ammo/cas/rocket/fatty
 	name = "\improper SM-17 'Fatty'"
-	desc = "The SM-17 'Fatty' is the most devestating rocket in TGMC arsenal, only second after its big cluster brother in Orbital Cannon. These rocket are also known for highest number of Friendly-on-Friendly incidents due to secondary cluster explosions as well as range of these explosions, TGMC recommends pilots to encourage usage of signal flares or laser for 'Fatty' support. Moving this will require some sort of lifter."
+	desc = "The SM-17 'Fatty' is the most devestating rocket in NTC arsenal, only second after its big cluster brother in Orbital Cannon. These rocket are also known for highest number of Friendly-on-Friendly incidents due to secondary cluster explosions as well as range of these explosions, NTC recommends pilots to encourage usage of signal flares or laser for 'Fatty' support. Moving this will require some sort of lifter."
 	icon_state = "fatty"
 	ammo_id = "f"
 	point_cost = 325

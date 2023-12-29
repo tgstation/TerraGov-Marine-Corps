@@ -31,7 +31,7 @@
 
 
 /datum/fluff_email/mainship/thermalcloak
-	title = "M68 Thermal Cloak.."
+	title = "M68-B Thermal Cloak.."
 	entry_text = {"<html>
 					Are you sure these things are safe, man? I just tried one on during a training exercise back at Bernice 378, took a wrong turn,
 					and wound up on an outdoor firing range being used by another Battalion (5th "Hammerheads" I think?). Now typically, somebody would have spotted me,
@@ -102,6 +102,6 @@
 					<br>
 					I do have some concerns though, the combat robots have begun to develop... quirks? I think that their processors are
 					especially strained by the new software, I swear I even heard one of them cuss when I was running through its combat logs.
-					I've even heard rumors of the robots forming a secret religion praising a "Machine God", probably just bored squad marines though.
+					I've even heard rumors of the robots forming a secret religion praising a "Machine God", probably just bored Squad Operatives though.
 				</html>
 				"}

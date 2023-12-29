@@ -12,6 +12,7 @@
 		SQUAD_ENGINEER = 0,
 		SQUAD_CORPSMAN = 0,
 		SQUAD_SMARTGUNNER = 0,
+		SQUAD_SPECIALIST = 0,
 		SQUAD_LEADER = 0,
 		SQUAD_ROBOT = 0, //for campaign
 	)
@@ -227,6 +228,7 @@
 	new_squaddie.update_action_buttons()
 	new_squaddie.update_inv_head()
 	new_squaddie.update_inv_wear_suit()
+	log_manifest("[key_name(new_squaddie)] has been assigned as [name] [new_squaddie.job.title].")
 	return TRUE
 
 
@@ -394,7 +396,7 @@
 	if(faction == FACTION_SOM)
 		preferred_squad = LAZYACCESSASSOC(SSjob.squads_by_name, faction, player.client.prefs.preferred_squad_som)
 	else
-		preferred_squad = LAZYACCESSASSOC(SSjob.squads_by_name, faction, player.client.prefs.preferred_squad) //TGMC and rebels use the same squads
+		preferred_squad = LAZYACCESSASSOC(SSjob.squads_by_name, faction, player.client.prefs.preferred_squad) //NTC and rebels use the same squads
 	if(available_squads.Find(preferred_squad) && preferred_squad?.assign_initial(player, job, latejoin))
 		return TRUE
 	if(strict)

@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		CRASH("staggerstun called without a mob target")
 	if(!isliving(victim))
 		return
-	if(get_dist_euclide(proj.starting_turf, victim) > max_range)
+	if(proj.distance_travelled > max_range)
 		return
 	var/impact_message = ""
 	if(isxeno(victim))
@@ -382,13 +382,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/tranq
 	name = "tranq bullet"
 	hud_state = "pistol_tranq"
-	damage = 25
+	armor_type = "bullet"
+	damage = 75
 	damage_type = STAMINA
+	shell_speed = 1.8
+	shrapnel_chance = 0.2
 
 /datum/ammo/bullet/pistol/tranq/on_hit_mob(mob/victim, obj/projectile/proj)
 	if(iscarbon(victim))
 		var/mob/living/carbon/carbon_victim = victim
-		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/potassium_chlorophoride, 1)
+		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/sleeptoxin, 3, no_overdose = TRUE)
 
 /datum/ammo/bullet/pistol/hollow
 	name = "hollowpoint pistol bullet"
@@ -2594,6 +2597,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	smoke.set_up(10, T, 11)
 	smoke.start()
 
+
+/datum/ammo/mortar/smoke/satrapine
+	smoketype = /datum/effect_system/smoke_spread/satrapine
+
+/datum/ammo/mortar/smoke/sleep
+	smoketype = /datum/effect_system/smoke_spread/sleepy
 /datum/ammo/mortar/smoke/plasmaloss
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
 
@@ -2654,7 +2663,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/mortar/rocket/minelayer/drop_nade(turf/T)
 	var/obj/item/explosive/mine/mine = new /obj/item/explosive/mine(T)
-	mine.deploy_mine(null, TGMC_LOYALIST_IFF)
+	mine.deploy_mine(null, NTC_LOYALIST_IFF)
 
 /datum/ammo/mortar/rocket/smoke
 	///the smoke effect at the point of detonation
@@ -3193,7 +3202,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/xeno
 	barricade_clear_distance = 0
 	///Plasma cost to fire this projectile
-	var/ability_cost
+	var/plasma_cost
 	///Particle type used when this ammo is used
 	var/particles/channel_particle
 	///The colour the xeno glows when using this ammo type
@@ -3209,7 +3218,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 7
 	hitscan_effect_icon = "beam_cult"
 	icon_state = "psy_blast"
-	ability_cost = 230
+	plasma_cost = 230
 	channel_particle = /particles/warlock_charge/psy_blast
 	glow_color = "#9e1f1f"
 	///The AOE for drop_nade
@@ -3274,7 +3283,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 12
 	hitscan_effect_icon = "beam_hcult"
 	icon_state = "psy_lance"
-	ability_cost = 300
+	plasma_cost = 300
 	channel_particle = /particles/warlock_charge/psy_blast/psy_lance
 	glow_color = "#CB0166"
 
@@ -3409,7 +3418,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 10
 	sundering = 2
-	fire_burst_damage = 15
+	fire_burst_damage = 10
 
 	//inherited, could use some changes
 	ping = "ping_s"
@@ -3424,10 +3433,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/volkite/medium
 	max_range = 25
 	accurate_range = 12
-	damage = 30
+	damage = 25
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	fire_burst_damage = 20
+	fire_burst_damage = 15
 
 /datum/ammo/energy/volkite/medium/custom
 	deflagrate_multiplier = 2
@@ -3435,8 +3444,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/volkite/heavy
 	max_range = 35
 	accurate_range = 12
-	damage = 25
-	fire_burst_damage = 20
+	damage = 20
+	fire_burst_damage = 15
 
 /datum/ammo/energy/volkite/light
 	max_range = 25
@@ -3792,7 +3801,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
  * * Returns: TRUE on success, FALSE on failure.
 **/
 /datum/ammo/xeno/boiler_gas/proc/enhance_trap(obj/structure/xeno/trap/trap, mob/living/carbon/xenomorph/user_xeno)
-	if(!do_after(user_xeno, 2 SECONDS, NONE, trap))
+	if(!do_after(user_xeno, 2 SECONDS, TRUE, trap))
 		return FALSE
 	trap.set_trap_type(TRAP_SMOKE_NEURO)
 	trap.smoke = new /datum/effect_system/smoke_spread/xeno/neuro/medium
@@ -3880,7 +3889,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	reagent_transfer_amount = 0
 
 /datum/ammo/xeno/boiler_gas/corrosive/enhance_trap(obj/structure/xeno/trap/trap, mob/living/carbon/xenomorph/user_xeno)
-	if(!do_after(user_xeno, 3 SECONDS, NONE, trap))
+	if(!do_after(user_xeno, 3 SECONDS, TRUE, trap))
 		return FALSE
 	trap.set_trap_type(TRAP_SMOKE_ACID)
 	trap.smoke = new /datum/effect_system/smoke_spread/xeno/acid
@@ -4068,27 +4077,31 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pepperball"
 	hud_state_empty = "pepperball_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC
-	accurate_range = 15
+	accurate_range = 10//Short range, allows most guns to outrange it for suppressive fire reasons, and gives xenos more leeway to flee.
 	damage_type = STAMINA
 	armor_type = "bio"
-	damage = 70
-	penetration = 0
+	damage = 20
+	shell_speed = 1.8
 	shrapnel_chance = 0
 	///percentage of xenos total plasma to drain when hit by a pepperball
-	var/drain_multiplier = 0.05
+	var/drain_multiplier = 0.025
 	///Flat plasma to drain, unaffected by caste plasma amount.
-	var/plasma_drain = 25
+	//var/plasma_drain = 25
 
 /datum/ammo/bullet/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/X = victim
 		X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
-		X.use_plasma(plasma_drain)
+		//X.use_plasma(plasma_drain)
+		if(X.plasma_stored <= 1)
+			X.Paralyze(15 SECONDS)//can now be used to riot control xenos when they abuse the hospitality of NTC
+
+
 
 /datum/ammo/bullet/pepperball/pepperball_mini
-	damage = 40
-	drain_multiplier = 0.03
-	plasma_drain = 15
+	damage = 15
+	drain_multiplier = 0.015
+	//plasma_drain = 15
 
 /datum/ammo/alloy_spike
 	name = "alloy spike"

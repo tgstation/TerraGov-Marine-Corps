@@ -1,9 +1,10 @@
 // ***************************************
 // *********** Toxic Spit
 // ***************************************
-/datum/action/ability/activable/xeno/xeno_spit/toxic_spit
+/datum/action/xeno_action/activable/xeno_spit/toxic_spit
 	name = "Toxic Spit"
 	desc = "Spit a toxin at your target up to 7 tiles away, inflicting the Intoxicated debuff and dealing damage over time."
+	ability_name = "toxic spit"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_SPIT,
 	)
@@ -33,13 +34,14 @@
 // ***************************************
 // *********** Toxic Slash
 // ***************************************
-/datum/action/ability/xeno_action/toxic_slash
+/datum/action/xeno_action/toxic_slash
 	name = "Toxic Slash"
 	action_icon_state = "neuroclaws_off"
 	desc = "Imbue your claws with acid for a short duration, inflicting lasting effects on your victims."
-	cooldown_duration = 10 SECONDS
-	ability_cost = 100
-	//use_state_flags = ABILITY_USE_BUCKLED
+	ability_name = "toxic slash"
+	cooldown_timer = 10 SECONDS
+	plasma_cost = 100
+	//use_state_flags = XACT_USE_BUCKLED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_SLASH,
 	)
@@ -52,7 +54,7 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
-/datum/action/ability/xeno_action/toxic_slash/action_activate()
+/datum/action/xeno_action/toxic_slash/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	intoxication_stacks = SENTINEL_TOXIC_SLASH_STACKS_PER + xeno_owner.xeno_caste.additional_stacks
@@ -69,7 +71,7 @@
 	add_cooldown()
 
 ///Called when Toxic Slash is active.
-/datum/action/ability/xeno_action/toxic_slash/proc/toxic_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
+/datum/action/xeno_action/toxic_slash/proc/toxic_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/mob/living/carbon/xeno_target = target
@@ -86,7 +88,7 @@
 		toxic_slash_deactivate(xeno_owner)
 
 ///Called when Toxic Slash expires.
-/datum/action/ability/xeno_action/toxic_slash/proc/toxic_slash_deactivate(mob/living/carbon/xenomorph/xeno_owner)
+/datum/action/xeno_action/toxic_slash/proc/toxic_slash_deactivate(mob/living/carbon/xenomorph/xeno_owner)
 	UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING)
 	remaining_slashes = 0
 	deltimer(ability_duration) // Delete the timer so we don't have mismatch issues, and so we don't potentially try to deactivate the ability twice
@@ -96,7 +98,7 @@
 	xeno_owner.playsound_local(xeno_owner, 'sound/voice/hiss5.ogg', 25)
 	action_icon_state = "neuroclaws_off"
 
-/datum/action/ability/xeno_action/toxic_slash/on_cooldown_finish()
+/datum/action/xeno_action/toxic_slash/on_cooldown_finish()
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	owner.balloon_alert(owner, "Toxic Slash ready")
 	return ..()
@@ -123,19 +125,20 @@
 // ***************************************
 // *********** Drain Sting
 // ***************************************
-/datum/action/ability/activable/xeno/drain_sting
+/datum/action/xeno_action/activable/drain_sting
 	name = "Drain Sting"
 	action_icon_state = "neuro_sting"
 	desc = "Sting your victim, draining them and gaining benefits if they are Intoxicated."
-	cooldown_duration = 25 SECONDS
-	ability_cost = 75
-	target_flags = ABILITY_MOB_TARGET
-	use_state_flags = ABILITY_USE_BUCKLED
+	ability_name = "drain sting"
+	cooldown_timer = 25 SECONDS
+	plasma_cost = 75
+	target_flags = XABB_MOB_TARGET
+	use_state_flags = XACT_USE_BUCKLED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN_STING,
 	)
 
-/datum/action/ability/activable/xeno/drain_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/xeno_action/activable/drain_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -154,7 +157,7 @@
 		target.balloon_alert(owner, "Not intoxicated")
 		return FALSE
 
-/datum/action/ability/activable/xeno/drain_sting/use_ability(atom/A)
+/datum/action/xeno_action/activable/drain_sting/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/mob/living/carbon/xeno_target = A
 	var/datum/status_effect/stacking/intoxicated/debuff = xeno_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
@@ -176,7 +179,7 @@
 	GLOB.round_statistics.sentinel_drain_stings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "sentinel_drain_stings")
 
-/datum/action/ability/activable/xeno/drain_sting/on_cooldown_finish()
+/datum/action/xeno_action/activable/drain_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
 	owner.balloon_alert(owner, "Drain Sting ready")
 	return ..()
@@ -192,17 +195,17 @@
 // ***************************************
 // *********** Toxic Grenade
 // ***************************************
-/datum/action/ability/activable/xeno/toxic_grenade
+/datum/action/xeno_action/activable/toxic_grenade
 	name = "Toxic grenade"
 	action_icon_state = "gas mine"
 	desc = "Throws a lump of compressed acidic gases, which will inflict damage over time and Intoxicate victims."
-	ability_cost = 200
-	cooldown_duration = 50 SECONDS
+	plasma_cost = 200
+	cooldown_timer = 50 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_GRENADE,
 	)
 
-/datum/action/ability/activable/xeno/toxic_grenade/use_ability(atom/A)
+/datum/action/xeno_action/activable/toxic_grenade/use_ability(atom/A)
 	. = ..()
 	succeed_activate()
 	add_cooldown()

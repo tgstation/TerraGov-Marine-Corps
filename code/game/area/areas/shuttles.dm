@@ -32,6 +32,12 @@
 /area/shuttle/dropship/alamo
 	name = "Dropship Alamo"
 
+/area/shuttle/dropship/elevator
+	name = "Ship Elevator"
+
+/area/shuttle/dropship/minielevator
+	name = "Elevator"
+
 /area/shuttle/dropship/normandy
 	name = "Dropship Normandy"
 

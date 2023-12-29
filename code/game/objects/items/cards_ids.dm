@@ -94,7 +94,7 @@
 	var/dorm = 0		// determines if this ID has claimed a dorm already
 	var/paygrade = null  // Marine's paygrade
 
-	var/assigned_fireteam = "" //which fire team this ID belongs to, only used by squad marines.
+	var/assigned_fireteam = "" //which fire team this ID belongs to, only used by Squad Operatives.
 	/// Iff bitfield to determines hit and misses
 	var/iff_signal = NONE
 
@@ -247,7 +247,7 @@
 	desc = "A marine dog tag."
 	icon_state = "dogtag"
 	item_state = "dogtag"
-	iff_signal = TGMC_LOYALIST_IFF
+	iff_signal = NTC_LOYALIST_IFF
 	var/dogtag_taken = FALSE
 
 /obj/item/card/id/dogtag/update_icon_state()
@@ -286,6 +286,16 @@
 		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
 	)
 
+/obj/item/card/id/dogtag/specialist
+	marine_points = list(
+		CAT_SPSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/card/silver/commanddoll
+	marine_points = list(
+		CAT_CDSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
 /obj/item/card/id/dogtag/engineer
 	marine_points = list(
 		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
@@ -308,6 +318,7 @@
 
 /obj/item/card/id/dogtag/full
 	marine_points = list(
+		CAT_SPSUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
 		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,

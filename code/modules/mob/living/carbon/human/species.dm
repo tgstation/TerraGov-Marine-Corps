@@ -345,7 +345,6 @@
 	special_death_message = "<big>You have perished.</big><br><small>But it is not the end of you yet... if you still have your body with your head still attached, wait until somebody can resurrect you...</small>"
 	joinable_roundstart = TRUE
 
-
 /datum/species/human/vatborn
 	name = "Vatborn"
 	name_plural = "Vatborns"
@@ -414,7 +413,7 @@
 	namepool = /datum/namepool/robotic
 
 	unarmed_type = /datum/unarmed_attack/punch/strong
-	total_health = 100
+	total_health = 150
 	slowdown = SHOES_SLOWDOWN //because they don't wear boots.
 
 	cold_level_1 = -1
@@ -428,16 +427,16 @@
 	body_temperature = 350
 
 	inherent_traits = list(TRAIT_NON_FLAMMABLE, TRAIT_IMMEDIATE_DEFIB)
-	species_flags = NO_BREATHE|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
+	species_flags = NO_BREATHE|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD|ROBOTIC_LIMBS|IS_INSULATED
 
 	no_equip = list(
-		SLOT_W_UNIFORM,
-		SLOT_HEAD,
-		SLOT_WEAR_MASK,
-		SLOT_WEAR_SUIT,
+//		SLOT_W_UNIFORM,
+//		SLOT_HEAD,
+//		SLOT_WEAR_MASK,
+//		SLOT_WEAR_SUIT,
 		SLOT_SHOES,
-		SLOT_GLOVES,
-		SLOT_GLASSES,
+//		SLOT_GLOVES,
+//		SLOT_GLASSES,
 	)
 	blood_color = "#2d2055" //"oil" color
 	hair_color = "#00000000"
@@ -551,7 +550,7 @@
 
 	body_temperature = 350
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD|HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
 
 	blood_color = "#EEEEEE"
 
@@ -604,7 +603,7 @@
 
 	body_temperature = 350
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD|HAS_UNDERWEAR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
 
 	blood_color = "#EEEEEE"
 	hair_color = "#000000"
@@ -643,7 +642,7 @@
 	name = "Monkey"
 	name_plural = "Monkeys"
 	icobase = 'icons/mob/human_races/r_monkey.dmi'
-	species_flags = HAS_NO_HAIR|NO_STAMINA|DETACHABLE_HEAD
+	species_flags = HAS_NO_HAIR|DETACHABLE_HEAD
 	inherent_traits = list(TRAIT_CAN_VENTCRAWL)
 	reagent_tag = IS_MONKEY
 	eyes = "blank_eyes"

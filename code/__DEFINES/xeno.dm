@@ -24,12 +24,14 @@
 #define RESIN_WALL "resin wall"
 #define STICKY_RESIN "sticky resin"
 #define RESIN_DOOR "resin door"
+#define RESIN_NEST "resin nest"
 
 //Xeno reagents defines
 #define DEFILER_NEUROTOXIN "Neurotoxin"
 #define DEFILER_HEMODILE "Hemodile"
 #define DEFILER_TRANSVITOX "Transvitox"
 #define DEFILER_OZELOMELYN "Ozelomelyn"
+#define DEFILER_APHROTOXIN "Aphrotoxin"
 
 //Baneling specific reagent define
 #define BANELING_ACID "Sulphuric acid"
@@ -87,6 +89,7 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
 		/datum/reagent/toxin/xeno_neurotoxin,
+		/datum/reagent/toxin/xeno_aphrotoxin,
 		))
 
 //List of toxins improving defile's damage
@@ -96,6 +99,7 @@ GLOBAL_LIST_INIT(defiler_toxins_typecache_list, typecacheof(list(
 		/datum/reagent/toxin/xeno_transvitox,
 		/datum/reagent/toxin/xeno_neurotoxin,
 		/datum/reagent/toxin/xeno_sanguinal,
+		/datum/reagent/toxin/xeno_aphrotoxin,
 		/datum/status_effect/stacking/intoxicated,
 		)))
 
@@ -105,6 +109,7 @@ GLOBAL_LIST_INIT(baneling_chem_type_list, list(
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
 		/datum/reagent/toxin/xeno_neurotoxin,
+		/datum/reagent/toxin/xeno_aphrotoxin,
 		/datum/reagent/toxin/acid,
 		))
 
@@ -128,7 +133,9 @@ GLOBAL_LIST_INIT(plant_images_list, list(
 GLOBAL_LIST_INIT(resin_images_list, list(
 		RESIN_WALL = image('icons/Xeno/actions.dmi', icon_state = RESIN_WALL),
 		STICKY_RESIN = image('icons/Xeno/actions.dmi', icon_state = STICKY_RESIN),
-		RESIN_DOOR = image('icons/Xeno/actions.dmi', icon_state = RESIN_DOOR)
+		RESIN_DOOR = image('icons/Xeno/actions.dmi', icon_state = RESIN_DOOR),
+		RESIN_NEST = image('icons/Xeno/actions.dmi', icon_state = "nest"),
+		RESIN_LIGHTTOWER = image('icons/Xeno/actions.dmi', icon_state = "lighttower")
 		))
 
 //List of puppeteer order images

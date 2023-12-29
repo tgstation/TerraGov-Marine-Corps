@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY_TYPED(custom_updating_encryptkeys, /obj/item/encryptionkey)
 
 
 /obj/item/encryptionkey/PMC
-	name = "\improper Nanotrasen encryption key"
+	name = "\improper Ninetails encryption key"
 	channels = list(RADIO_CHANNEL_PMC = TRUE)
 	independent = TRUE
 
@@ -122,6 +122,11 @@ GLOBAL_LIST_EMPTY_TYPED(custom_updating_encryptkeys, /obj/item/encryptionkey)
 /obj/item/encryptionkey/icc
 	name = "\improper ICC encryption key"
 	channels = list(RADIO_CHANNEL_ICC = TRUE)
+	independent = TRUE
+
+/obj/item/encryptionkey/retired
+	name = "\improper retirement home encryption key"
+	channels = list(RADIO_CHANNEL_RETIRED = TRUE)
 	independent = TRUE
 
 /obj/item/encryptionkey/sectoid

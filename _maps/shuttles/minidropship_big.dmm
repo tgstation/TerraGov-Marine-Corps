@@ -100,6 +100,10 @@
 /obj/structure/table/mainship,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
+"w" = (
+/obj/structure/largecrate/supply/ammo/standard_ammo,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
 "x" = (
 /obj/machinery/telecomms/relay/preset/telecomms/onboard,
 /turf/closed/wall/mainship/outer/canterbury,
@@ -143,6 +147,10 @@
 /obj/machinery/holopad,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
+"K" = (
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
 "L" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -161,6 +169,12 @@
 /turf/closed/shuttle/ert/engines/right{
 	dir = 1
 	},
+/area/shuttle/minidropship)
+"R" = (
+/obj/item/stack/barbed_wire{
+	amount = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "S" = (
 /obj/structure/barricade/plasteel{
@@ -220,7 +234,7 @@ b
 A
 b
 b
-b
+E
 E
 b
 b
@@ -232,7 +246,7 @@ f
 Z
 b
 s
-c
+w
 k
 n
 i
@@ -243,9 +257,9 @@ y
 c
 D
 o
-c
-J
 g
+J
+K
 C
 "}
 (5,1,1) = {"
@@ -254,7 +268,7 @@ v
 u
 b
 m
-c
+R
 t
 L
 i
@@ -264,7 +278,7 @@ b
 A
 b
 b
-b
+S
 S
 b
 x

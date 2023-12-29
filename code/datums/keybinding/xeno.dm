@@ -13,6 +13,12 @@
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	hotkey_keys = list("J")
 
+/datum/keybinding/xeno/larval_growth_sting
+	name = "larval_growth_sting"
+	full_name = "Larval Growth Sting"
+	description = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker. Has harmful effects for non-infected hosts while stabilizing larva-infected hosts."
+	keybind_signal = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
+
 /datum/keybinding/xeno/regurgitate
 	name = "regurgitate"
 	full_name = "Regurgitate / Cocoon"
@@ -162,6 +168,12 @@
 	full_name = "Psychic Whisper"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WHISPER
+
+/datum/keybinding/xeno/impregnate
+	name = "Impregnate"
+	full_name = "Impregnate"
+	description = "Infect an adjacent host with a larva without needing a hugger."
+	keybind_signal = COMSIG_XENOABILITY_IMPREGNATE
 
 /datum/keybinding/xeno/lay_egg
 	name = "lay_egg"
@@ -454,11 +466,11 @@
 	description = "Inject an egg with neurogas, killing the little one inside"
 	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
 
-/datum/keybinding/xeno/acidic_salve
-	name = "acidic_salve"
-	full_name = "Drone: Acidic Salve"
+/datum/keybinding/xeno/resin_salve
+	name = "resin_salve"
+	full_name = "Drone: Resin Salve"
 	description = "Heal a xenomorph with this."
-	keybind_signal = COMSIG_XENOABILITY_ACIDIC_SALVE
+	keybind_signal = COMSIG_XENOABILITY_RESIN_SALVE
 	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/essence_link
@@ -484,10 +496,10 @@
 
 /datum/keybinding/xeno/devour
 	name = "devour"
-	full_name = "Gorger: Devour"
+	full_name = "Devour"
 	description = "Devour your victim to be able to carry it faster."
 	keybind_signal = COMSIG_XENOABILITY_DEVOUR
-	hotkey_keys = list("X")
+	hotkey_keys = null
 
 /datum/keybinding/xeno/drain
 	name = "drain"

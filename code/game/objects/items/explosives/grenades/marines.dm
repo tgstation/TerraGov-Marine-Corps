@@ -31,7 +31,7 @@
 
 /obj/item/explosive/grenade/m15
 	name = "\improper M15 fragmentation grenade"
-	desc = "An outdated TGMC fragmentation grenade. With decades of service in the TGMC, the old M15 Fragmentation Grenade is slowly being replaced with the slightly safer M40 HEDP. It is set to detonate in 4 seconds."
+	desc = "An outdated NTC fragmentation grenade. With decades of service in the NTC, the old M15 Fragmentation Grenade is slowly being replaced with the slightly safer M40 HEDP. It is set to detonate in 4 seconds."
 	icon_state = "grenade_ex"
 	item_state = "grenade_ex"
 	hud_state = "grenade_frag"
@@ -307,7 +307,7 @@
 //neuro xeno nade
 /obj/item/explosive/grenade/smokebomb/neuro
 	name = "\improper M40-N Neurotoxin smoke grenade"
-	desc = "A smoke grenade containing a concentrated neurotoxin developed by Nanotrasen, supposedly derived from xenomorphs. Banned in some sectors as a chemical weapon, but classed as a less lethal riot control tool by the TGMC."
+	desc = "A smoke grenade containing a concentrated neurotoxin developed by Ninetails, supposedly derived from xenomorphs. Banned in some sectors as a chemical weapon, but classed as a less lethal riot control tool by the NTC."
 	icon_state = "grenade_neuro"
 	item_state = "grenade_neuro"
 	hud_state = "grenade_neuro"
@@ -318,7 +318,7 @@
 
 /obj/item/explosive/grenade/smokebomb/acid
 	name = "\improper M40-A Acid smoke grenade"
-	desc = "A grenade set to release a cloud of extremely acidic smoke developed by Nanotrasen, supposedly derived from xenomorphs. Has a shiny acid resistant shell. Its use is considered a warcrime under several treaties, none of which Terra Gov is a signatory to."
+	desc = "A grenade set to release a cloud of extremely acidic smoke developed by Ninetails, supposedly derived from xenomorphs. Has a shiny acid resistant shell. Its use is considered a warcrime under several treaties, back at the old world that is..."
 	icon_state = "grenade_acid"
 	item_state = "grenade_acid"
 	hud_state = "grenade_acid"
@@ -438,7 +438,7 @@
 
 /obj/item/explosive/grenade/flare
 	name = "\improper M40 FLDP grenade"
-	desc = "A TGMC standard issue flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand."
+	desc = "A NTC standard issue flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand."
 	icon_state = "flare_grenade"
 	item_state = "flare_grenade"
 	det_time = 0
@@ -541,11 +541,6 @@
 		set_light_on(FALSE)
 
 /obj/item/explosive/grenade/flare/throw_impact(atom/hit_atom, speed)
-	if(isopenturf(hit_atom))
-		var/obj/alien/weeds/node/N = locate() in loc
-		if(N)
-			qdel(N)
-			turn_off()
 	. = ..()
 	if(!.)
 		return
@@ -561,6 +556,12 @@
 		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE) && !L.on_fire)
 			L.apply_damage(randfloat(throwforce * 0.75, throwforce * 1.25), BURN, target_zone, FIRE, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
 
+	// Flares instantly burn out nodes when thrown at them.
+	var/obj/alien/weeds/node/N = locate() in loc
+	if(N)
+		qdel(N)
+		turn_off()
+
 /obj/item/explosive/grenade/flare/civilian
 	name = "flare"
 	desc = "A NT standard emergency flare. There are instructions on the side, it reads 'pull cord, make light'."
@@ -569,7 +570,7 @@
 
 /obj/item/explosive/grenade/flare/cas
 	name = "\improper M50 CFDP signal flare"
-	desc = "A TGMC signal flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand. When activated, provides a target for CAS pilots."
+	desc = "A NTC signal flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand. When activated, provides a target for CAS pilots."
 	icon_state = "cas_flare_grenade"
 	item_state = "cas_flare_grenade"
 	hud_state = "grenade_frag"

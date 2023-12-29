@@ -338,6 +338,10 @@ SUBSYSTEM_DEF(job)
 			if(length(GLOB.latejoinsom))
 				SendToAtom(M, pick(GLOB.latejoinsom))
 				return
+		if(FACTION_CLF)
+			if(length(GLOB.latejoinclf))
+				SendToAtom(M, pick(GLOB.latejoinclf))
+				return
 		else
 			if(length(GLOB.latejoin))
 				SendToAtom(M, pick(GLOB.latejoin))
@@ -346,7 +350,7 @@ SUBSYSTEM_DEF(job)
 	CRASH("Unable to send mob [M] to late join!")
 
 /datum/controller/subsystem/job/proc/JobDebug(message)
-	log_job_debug(message)
+	log_manifest(message)
 
 
 /datum/controller/subsystem/job/proc/set_active_joinable_occupations_by_category()

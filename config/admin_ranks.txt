@@ -1,3 +1,8 @@
+Name = Host
+Include = EVERYTHING
+Exclude =
+Edit = EVERYTHING
+
 Name = Admin
 Include = EVERYTHING
 Exclude =
