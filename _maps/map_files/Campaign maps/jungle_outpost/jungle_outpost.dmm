@@ -42,7 +42,7 @@
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/req/depot)
 "aj" = (
-/obj/structure/bed/chair/wheelchair{
+/obj/vehicle/ridden/wheelchair{
 	dir = 8
 	},
 /turf/open/floor/tile/blue/whiteblue{
@@ -12049,7 +12049,7 @@
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/landing/storage)
 "YQ" = (
-/obj/structure/bed/chair/wheelchair{
+/obj/vehicle/ridden/wheelchair{
 	dir = 8
 	},
 /obj/machinery/light{
