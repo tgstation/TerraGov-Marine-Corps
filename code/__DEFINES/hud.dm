@@ -1,17 +1,24 @@
-/*
-	These defines specificy screen locations.  For more information, see the byond documentation on the screen_loc var.
+//HUD styles.  Index order defines how they are cycled in F12.
+/// Standard hud
+#define HUD_STYLE_STANDARD 1
+/// Reduced hud (just hands and intent switcher)
+#define HUD_STYLE_REDUCED 2
+/// No hud (for screenshots)
+#define HUD_STYLE_NOHUD 3
 
-	The short version:
+/// Used in show_hud(); Please ensure this is the same as the maximum index.
+#define HUD_VERSIONS 3
 
-	Everything is encoded as strings because apparently that's how Byond rolls.
+//defines for datum/hud
+#define HUD_SL_LOCATOR_COOLDOWN 0.5 SECONDS
+#define HUD_SL_LOCATOR_PROCESS_COOLDOWN 10 SECONDS
 
-	"1,1" is the bottom left square of the user's screen.  This aligns perfectly with the turf grid.
-	"1:2,3:4" is the square (1,3) with pixel offsets (+2, +4); slightly right and slightly above the turf grid.
-	Pixel offsets are used so you don't perfectly hide the turf under them, that would be crappy.
-
-	The size of the user's screen is defined by client.view (indirectly by WORLD_VIEW), in our case "15x15".
-	Therefore, the top right corner (except during admin shenanigans) is at "15,15"
-*/
+// Consider these images/atoms as part of the UI/HUD (apart of the appearance_flags)
+/// Used for progress bars and chat messages
+#define APPEARANCE_UI_IGNORE_ALPHA (RESET_COLOR|RESET_TRANSFORM|NO_CLIENT_COLOR|RESET_ALPHA|PIXEL_SCALE)
+/// Used for HUD objects
+#define APPEARANCE_UI (RESET_COLOR|RESET_TRANSFORM|NO_CLIENT_COLOR|PIXEL_SCALE)
+#define APPEARANCE_UI_TRANSFORM (RESET_COLOR|NO_CLIENT_COLOR|RESET_ALPHA|PIXEL_SCALE)
 
 //Lower left, persistant menu
 #define ui_inventory "WEST:6,1:5"
@@ -93,3 +100,9 @@
 #define ui_ai_bioscan "SOUTH:6,WEST+6"
 #define ui_ai_multicam "SOUTH:6,WEST+17"
 #define ui_ai_add_multicam "SOUTH:6,WEST+18"
+
+// Plane group keys, used to group swaths of plane masters that need to appear in subwindows
+/// The primary group, holds everything on the main window
+#define PLANE_GROUP_MAIN "main"
+/// A secondary group, used when a client views a generic window
+#define PLANE_GROUP_POPUP_WINDOW(screen) "popup-[REF(screen)]"
