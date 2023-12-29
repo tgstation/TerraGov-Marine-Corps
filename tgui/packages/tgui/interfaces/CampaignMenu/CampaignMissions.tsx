@@ -2,13 +2,12 @@ import { CampaignData, MissionData, MissionIcon } from './index';
 import { useBackend, useLocalState } from '../../backend';
 import { LabeledList, Button, Stack, Section, Table, Box, Flex } from '../../components';
 
-export const CampaignMissions = (props, context) => {
-  const { act, data } = useBackend<CampaignData>(context);
+export const CampaignMissions = (props) => {
+  const { act, data } = useBackend<CampaignData>();
   const { available_missions } = data;
   const [selectedNewMission, setSelectedNewMission] =
-    useLocalState<MissionData | null>(context, 'selectedNewMission', null);
+    useLocalState<MissionData | null>('selectedNewMission', null);
   const [selectedMission, setSelectedMission] = useLocalState(
-    context,
     'selectedMission',
     available_missions[0]
   );
