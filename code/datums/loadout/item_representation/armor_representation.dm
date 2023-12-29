@@ -173,6 +173,8 @@
 	if(!.)
 		return
 	var/obj/item/armor_module/module = .
+	if(colors && CHECK_BITFIELD(module.flags_attach_features, ATTACH_GREYSCALE_PARENT_COPY))
+		module.set_greyscale_colors(colors)
 	for(var/datum/item_representation/armor_module/armor_attachement AS in attachments)
 		armor_attachement.install_on_armor(seller, module, user)
 

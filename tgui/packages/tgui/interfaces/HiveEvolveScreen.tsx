@@ -41,8 +41,8 @@ const CasteView = (props) => {
   );
 };
 
-export const HiveEvolveScreen = (props, context) => {
-  const { act, data } = useBackend(context);
+export const HiveEvolveScreen = (props) => {
+  const { act, data } = useBackend();
 
   const { name, evolution, abilities, evolves_to, can_evolve } =
     data as ByondData;

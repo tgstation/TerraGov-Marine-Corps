@@ -2,13 +2,12 @@ import { CampaignData, FactionReward, AssetIcon } from './index';
 import { useBackend, useLocalState } from '../../backend';
 import { LabeledList, Button, Stack, Section, Flex, Box } from '../../components';
 
-export const CampaignPurchase = (props, context) => {
-  const { act, data } = useBackend<CampaignData>(context);
+export const CampaignPurchase = (props) => {
+  const { act, data } = useBackend<CampaignData>();
   const { purchasable_rewards_data } = data;
   const [purchasedAsset, setPurchasedAsset] =
-    useLocalState<FactionReward | null>(context, 'purchasedAsset', null);
+    useLocalState<FactionReward | null>('purchasedAsset', null);
   const [selectedReward, setSelectedReward] = useLocalState(
-    context,
     'selectedReward',
     purchasable_rewards_data[0]
   );
