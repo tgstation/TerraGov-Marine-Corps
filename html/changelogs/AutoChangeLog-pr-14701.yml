@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - bugfix: "Fixed being able to hold a nodrop inventory item by click-dragging it."
