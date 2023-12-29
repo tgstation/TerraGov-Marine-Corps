@@ -551,7 +551,7 @@
 // ***************************************
 // *********** Earth Riser
 // ***************************************
-#define EARTH_RISER_WIND_UP 1.5 SECONDS
+#define EARTH_RISER_WIND_UP 1.6 SECONDS
 #define EARTH_RISER_ENHANCED_WIND_UP 1 SECONDS
 #define EARTH_RISER_RANGE 3
 #define EARTH_RISER_ENHANCED_RANGE 5
