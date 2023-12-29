@@ -111,6 +111,8 @@
 	if(QDELETED(owner))
 		return
 	ability_cost_override = ability_cost_override? ability_cost_override : ability_cost
+	if(SEND_SIGNAL(owner, COMSIG_ABILITY_SUCCEED_ACTIVATE, src, ability_cost_override) & SUCCEED_ACTIVATE_CANCEL)
+		return
 	if(ability_cost_override > 0)
 		var/mob/living/carbon/carbon_owner = owner
 		carbon_owner.deduct_ability_cost(ability_cost_override)
