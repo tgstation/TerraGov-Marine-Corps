@@ -444,18 +444,18 @@ What you lack in equipment and military training you make up in bravery and conv
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
-		/datum/outfit/job/freelancer/standard/campaign,
 		/datum/outfit/job/freelancer/standard/one/campaign,
 		/datum/outfit/job/freelancer/standard/two/campaign,
+		/datum/outfit/job/freelancer/standard/three/campaign,
 	)
-
-/datum/outfit/job/freelancer/standard/campaign
-	ears = /obj/item/radio/headset/mainship
 
 /datum/outfit/job/freelancer/standard/one/campaign
 	ears = /obj/item/radio/headset/mainship
 
 /datum/outfit/job/freelancer/standard/two/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/freelancer/standard/three/campaign
 	ears = /obj/item/radio/headset/mainship
 
 
@@ -474,15 +474,15 @@ What you lack in equipment and military training you make up in bravery and conv
 	comm_title = "FL"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	outfits = list(
-		/datum/outfit/job/freelancer/grenadier/campaign,
 		/datum/outfit/job/freelancer/grenadier/one/campaign,
+		/datum/outfit/job/freelancer/grenadier/two/campaign,
 	)
 	job_cost = 0
 
-/datum/outfit/job/freelancer/grenadier/campaign
+/datum/outfit/job/freelancer/grenadier/one/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/grenadier/one/campaign
+/datum/outfit/job/freelancer/grenadier/two/campaign
 	ears = /obj/item/radio/headset/mainship
 
 /datum/job/freelancer/leader/campaign_bonus
@@ -490,15 +490,15 @@ What you lack in equipment and military training you make up in bravery and conv
 	comm_title = "FL"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	outfits = list(
-		/datum/outfit/job/freelancer/leader/campaign,
 		/datum/outfit/job/freelancer/leader/one/campaign,
+		/datum/outfit/job/freelancer/leader/two/campaign,
 	)
 	job_cost = 0
 
-/datum/outfit/job/freelancer/leader/campaign
+/datum/outfit/job/freelancer/leader/one/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/leader/one/campaign
+/datum/outfit/job/freelancer/leader/two/campaign
 	ears = /obj/item/radio/headset/mainship
 
 //PMC
