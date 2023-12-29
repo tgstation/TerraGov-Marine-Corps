@@ -44,7 +44,7 @@
 	current_variant = "normal"
 	icon_state_variants = list(
 		"normal",
-		"hardsuit webbing",
+		"webbing",
 	)
 
 /obj/item/armor_module/armor/secondary_color/leg
