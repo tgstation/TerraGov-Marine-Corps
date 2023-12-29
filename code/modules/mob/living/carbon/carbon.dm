@@ -157,11 +157,11 @@
 	. = ..()
 	throw_mode_off()
 	if(is_ventcrawling) //NOPE
-		return
+		return FALSE
 	if(stat || !target)
-		return
+		return FALSE
 	if(target.type == /atom/movable/screen)
-		return
+		return FALSE
 
 	var/atom/movable/thrown_thing
 	var/obj/item/I = get_active_held_item()
@@ -197,6 +197,8 @@
 	playsound(src, 'sound/effects/throw.ogg', 30, 1)
 
 	thrown_thing.throw_at(target, thrown_thing.throw_range + throw_modifiers["range_modifier"], max(1, thrown_thing.throw_speed + throw_modifiers["speed_modifier"]), src, spin_throw, !throw_modifiers["targetted_throw"], throw_modifiers["targetted_throw"])
+
+	return TRUE
 
 ///Called by the carbon throw_item() proc. Returns null if the item negates the throw, or a reference to the thing to suffer the throw else.
 /obj/item/proc/on_thrown(mob/living/carbon/user, atom/target)

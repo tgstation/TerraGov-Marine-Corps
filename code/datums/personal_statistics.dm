@@ -422,7 +422,8 @@ The alternative is scattering them everywhere under their respective objects whi
 	if(!ckey)
 		return FALSE
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
-	personal_statistics.recycle_points_denied += trash.get_export_value()
+	var/list/exported_value = trash.get_export_value()
+	personal_statistics.recycle_points_denied += exported_value[1]
 	return TRUE
 
 ///Separate record keeping proc to reduce copy pasta

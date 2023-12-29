@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - bugfix: "Fixed mineral doors not showing correct coloring in map preview"

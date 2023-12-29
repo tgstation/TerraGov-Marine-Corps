@@ -299,7 +299,6 @@
 		return FALSE
 
 /datum/action/ability/activable/xeno/snatch/use_ability(atom/A)
-	succeed_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!do_after(owner, 0.5 SECONDS, IGNORE_HELD_ITEM, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		return FALSE
@@ -323,6 +322,7 @@
 	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(owner_turned))
 	owner.add_movespeed_modifier(MOVESPEED_ID_SNATCH, TRUE, 0, NONE, TRUE, 2)
 	owner_turned(null, null, owner.dir)
+	succeed_activate()
 	add_cooldown()
 
 ///Signal handler to update the item overlay when the owner is changing dir

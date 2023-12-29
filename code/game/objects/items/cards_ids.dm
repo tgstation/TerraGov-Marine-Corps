@@ -77,6 +77,8 @@
 	var/access = list()
 	var/registered_name = "Unknown" // The name registered_name on the card
 	flags_equip_slot = ITEM_SLOT_ID
+	///Miscelaneous ID flags
+	var/flags_id = CAN_BUY_LOADOUT
 
 	var/blood_type = "\[UNSET\]"
 
@@ -85,8 +87,6 @@
 
 	///What category of items can you buy - used for armor and poucehs
 	var/marine_buy_choices = list()
-
-	var/can_buy_loadout = TRUE
 
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system
 	var/assignment = null	//can be alt title or the actual job
