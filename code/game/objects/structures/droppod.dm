@@ -620,3 +620,12 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /obj/structure/drop_pod_launcher/leader
 	pod_type = /obj/structure/droppod/leader
+
+/obj/structure/drop_pod_launcher/mech
+	pod_type = /obj/structure/droppod/nonmob/mech_pod
+
+/obj/structure/drop_pod_launcher/supply
+	pod_type = /obj/structure/droppod/nonmob/supply_pod
+
+/obj/structure/drop_pod_launcher/sentry
+	pod_type = /obj/structure/droppod/nonmob/turret_pod
