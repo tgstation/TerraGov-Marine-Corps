@@ -1,4 +1,5 @@
-import { useBackend, useLocalState } from '../backend';
+import { useState } from 'react';
+import { useBackend } from '../backend';
 import { Button, Collapsible, Input, NoticeBox, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
@@ -30,14 +31,10 @@ type LogEntryData = {
 
 const CATEGORY_ALL = 'all';
 
-export const LogViewer = (_: any, context: any) => {
-  const { data, act } = useBackend<LogViewerData>(context);
+export const LogViewer = (_: any) => {
+  const { data, act } = useBackend<LogViewerData>();
 
-  const [activeCategory, setActiveCategory] = useLocalState(
-    context,
-    'activeCategory',
-    ''
-  );
+  const [activeCategory, setActiveCategory] = useState('');
 
   let viewerData: LogViewerCategoryData = {
     entry_count: 0,
@@ -82,13 +79,9 @@ type CategoryBarProps = {
   setActive: (active: string) => void;
 };
 
-const CategoryBar = (props: CategoryBarProps, context: any) => {
+const CategoryBar = (props: CategoryBarProps) => {
   const sorted = [...props.options].sort();
-  const [categorySearch, setCategorySearch] = useLocalState(
-    context,
-    'categorySearch',
-    ''
-  );
+  const [categorySearch, setCategorySearch] = useState('');
 
   return (
     <Section
@@ -117,21 +110,22 @@ const CategoryBar = (props: CategoryBarProps, context: any) => {
           selected={props.active === CATEGORY_ALL}
           onClick={() => props.setActive(CATEGORY_ALL)}
         />
-        {sorted.map((category) => {
-          if (!category.toLowerCase().includes(categorySearch.toLowerCase())) {
-            return null;
-          }
-          return (
-            <Stack.Item key={category}>
-              <Button
-                textAlign="left"
-                content={category}
-                selected={category === props.active}
-                onClick={() => props.setActive(category)}
-              />
-            </Stack.Item>
-          );
-        })}
+        {sorted
+          .filter((cat) =>
+            cat.toLowerCase().includes(categorySearch.toLowerCase())
+          )
+          .map((category) => {
+            return (
+              <Stack.Item key={category}>
+                <Button
+                  textAlign="left"
+                  content={category}
+                  selected={category === props.active}
+                  onClick={() => props.setActive(category)}
+                />
+              </Stack.Item>
+            );
+          })}
       </Stack>
     </Section>
   );
@@ -151,18 +145,10 @@ const validateRegExp = (str: string) => {
   }
 };
 
-const CategoryViewer = (props: CategoryViewerProps, context: any) => {
-  const [search, setSearch] = useLocalState(context, 'search', '');
-  let [searchRegex, setSearchRegex] = useLocalState(
-    context,
-    'searchRegex',
-    false
-  );
-  let [caseSensitive, setCaseSensitive] = useLocalState(
-    context,
-    'caseSensitive',
-    false
-  );
+const CategoryViewer = (props: CategoryViewerProps) => {
+  const [search, setSearch] = useState('');
+  let [searchRegex, setSearchRegex] = useState(false);
+  let [caseSensitive, setCaseSensitive] = useState(false);
   if (!search && searchRegex) {
     setSearchRegex(false);
     searchRegex = false;

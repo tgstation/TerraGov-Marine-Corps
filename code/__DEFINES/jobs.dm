@@ -152,7 +152,6 @@ GLOBAL_LIST_INIT(jobs_fallen_marine, typecacheof(list(/datum/job/fallen/marine),
 #define LARVA_POINTS_SHIPSIDE 1
 #define LARVA_POINTS_SHIPSIDE_STRONG 1.5
 #define LARVA_POINTS_REGULAR 3.25
-#define LARVA_POINTS_STRONG 6
 
 #define SURVIVOR_POINTS_REGULAR 1
 

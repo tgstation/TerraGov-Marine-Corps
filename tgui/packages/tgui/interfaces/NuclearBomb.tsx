@@ -15,8 +15,8 @@ type NuclearBombData = {
   blue: boolean;
 };
 
-export const NuclearBomb = (props, context) => {
-  const { data } = useBackend<NuclearBombData>(context);
+export const NuclearBomb = (props) => {
+  const { data } = useBackend<NuclearBombData>();
   return (
     <Window width={450} height={450}>
       <Window.Content scrollable>
@@ -26,8 +26,8 @@ export const NuclearBomb = (props, context) => {
   );
 };
 
-const NuclearBombContent = (props, context) => {
-  const { act, data } = useBackend<NuclearBombData>(context);
+const NuclearBombContent = (props) => {
+  const { act, data } = useBackend<NuclearBombData>();
   const {
     status,
     time,

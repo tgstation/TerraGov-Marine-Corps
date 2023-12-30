@@ -5,12 +5,12 @@ import { Window } from '../../layouts';
 import { ResearchData, ResearchResource, RewardTier } from './Types';
 import { hexToRGB, objectToArray } from './Utility';
 
-export const Research = (props, context) => {
-  const { act, data } = useBackend<ResearchData>(context);
+export const Research = (props) => {
+  const { act, data } = useBackend<ResearchData>();
   const { acquired_points, anchored, researching, init_resource } = data;
 
   return (
-    <Window resizable width={400} height={600}>
+    <Window width={400} height={600}>
       <Window.Content
         scrollable
         align="stretch"
@@ -19,7 +19,7 @@ export const Research = (props, context) => {
         }>
         <Button
           style={{
-            'margin': '0.2em',
+            margin: '0.2em',
           }}
           content={anchored ? 'Release' : 'Lock'}
           disabled={researching}
@@ -71,8 +71,8 @@ const constructResourceInfo = (
           overflow="hidden"
           position="relative"
           style={{
-            'display': 'flex',
-            'justify-content': 'center',
+            display: 'flex',
+            justifyContent: 'center',
           }}>
           <Box
             as="img"
@@ -80,10 +80,9 @@ const constructResourceInfo = (
                 ${icon}`}
             color="transparent"
             style={{
-              'vertical-align': 'middle',
-              'width': '190px',
+              verticalAlign: 'middle',
+              width: '190px',
               transform: 'scale(2) translate(0, -10%)',
-              '-ms-interpolation-mode': 'nearest-neighbor',
             }}
           />
         </Flex.Item>

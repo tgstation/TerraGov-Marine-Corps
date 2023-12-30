@@ -46,11 +46,16 @@
 
 /datum/status_effect/mindmeld/on_remove()
 	link_target.balloon_alert(link_target, "mindmeld inactive")
+	REMOVE_TRAIT(link_target, TRAIT_MINDMELDED, TRAIT_STATUS_EFFECT(id))
 	UnregisterSignal(link_target, COMSIG_MOB_DEATH)
-	toggle_buff(FALSE)
+	check_range()
 	return ..()
 
 /datum/status_effect/mindmeld/tick()
+	check_range()
+
+///Checks if mob is in buff range and toggles as required
+/datum/status_effect/mindmeld/proc/check_range()
 	var/within_range = get_dist(link_target, link_partner) <= max_range
 	if(within_range != was_within_range)
 		was_within_range = within_range
@@ -66,7 +71,7 @@
 		return
 	link_target.adjust_mob_accuracy(accuracy_mod)
 	link_target.maxHealth += health_mod
-	link_target.add_movespeed_modifier(MOVESPEED_ID_MINDMELD, TRUE, 0, NONE, FALSE, speed_mod) //todo replace the id with anew one
+	link_target.add_movespeed_modifier(MOVESPEED_ID_MINDMELD, TRUE, 0, NONE, FALSE, speed_mod)
 	toggle_particles(TRUE)
 
 /// Toggles particles on or off, adjusting their positioning to fit the buff's owner.

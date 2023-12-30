@@ -2,16 +2,14 @@ import { CampaignData, FactionReward, AssetIcon } from './index';
 import { useBackend, useLocalState } from '../../backend';
 import { LabeledList, Button, Stack, Section, Box, Flex } from '../../components';
 
-export const CampaignAssets = (props, context) => {
-  const { act, data } = useBackend<CampaignData>(context);
+export const CampaignAssets = (props) => {
+  const { act, data } = useBackend<CampaignData>();
   const { faction_rewards_data } = data;
   const [selectedAsset, setSelectedAsset] = useLocalState<FactionReward | null>(
-    context,
     'selectedAsset',
     null
   );
   const [selectedReward, setSelectedReward] = useLocalState(
-    context,
     'selectedReward',
     faction_rewards_data[0]
   );

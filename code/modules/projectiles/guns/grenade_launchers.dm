@@ -130,6 +130,9 @@ The Grenade Launchers
 	fire_delay = 1.2 SECONDS
 	max_chamber_items = 5
 
+/obj/item/weapon/gun/grenade_launcher/multinade_launcher/beginner
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher/unloaded
 	default_ammo_type = null
 
