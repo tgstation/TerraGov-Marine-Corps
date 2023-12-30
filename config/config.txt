@@ -5,7 +5,7 @@ $include dbconfig.txt
 $include resources.txt
 
 ## Server name: This appears at the top of the screen in-game.
-SERVER_NAME SoL|NTF vs Alien MRP/ERP +18 | TGMC downstream, new lore.
+SERVER_NAME SoL|NTF vs Alien M/ERP +18|TGMC NSFW downstream
 
 ## Hosted by name for unix platforms.
 HOSTEDBY VideNoir
