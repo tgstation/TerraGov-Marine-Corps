@@ -1,4 +1,0 @@
-author: "Artur Lang"
-delete-after: True
-changes:
-  - bugfix: "Hardsuit secondary colours not being saved by loadout vendor\n:cl:"
