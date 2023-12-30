@@ -1,7 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - code_imp: "Port VV Stuff from TG"
-  - admin: "osay"
-  - admin: "VV Panel should be fully functional with new options in the dropdown menu"
-  - admin: "Added tagging/marking datums from TG"

@@ -1,4 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - rscadd: "Firing the OB will play an alarm for those outside of hearing distance of the cannon and on ship, shake the ship, and send out a flavor message."
