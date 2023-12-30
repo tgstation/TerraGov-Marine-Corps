@@ -362,17 +362,19 @@
 	edge = 1
 	sharp = IS_SHARP_ITEM_BIG
 	flags_atom = CONDUCT
-	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	resistance_flags = UNACIDABLE
 	attack_speed = 12 //Default is 7.
+
+/obj/item/weapon/twohanded/glaive/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
+	return ..()
 
 /obj/item/weapon/twohanded/glaive/damaged
 	name = "war glaive"
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon. This one is ancient and has suffered serious acid damage, making it near-useless."
 	force = 18
 	force_wielded = 28
-
 /obj/item/weapon/twohanded/rocketsledge
 	name = "rocket sledge"
 	desc = "Fitted with a rocket booster at the head, the rocket sledge would deliver a tremendously powerful impact, easily crushing your enemies. Uses fuel to power itself. Press AltClick to tighten your grip. Press Spacebar to change modes."

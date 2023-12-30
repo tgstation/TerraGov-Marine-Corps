@@ -5,83 +5,6 @@
 		return splittext(trim(file2text(filename)),seperator)
 	return splittext(file2text(filename),seperator)
 
-//Returns an integer given a hex input
-/proc/hex2num(hex)
-	if(!istext(hex))
-		return
-
-	var/num = 0
-	var/power = 0
-	var/i = length(hex)
-
-	while(i > 0)
-		var/char = copytext(hex, i, i + 1)
-		switch(char)
-			if("9", "8", "7", "6", "5", "4", "3", "2", "1")
-				num += text2num(char) * 16 ** power
-			if("a", "A")
-				num += 16 ** power * 10
-			if("b", "B")
-				num += 16 ** power * 11
-			if("c", "C")
-				num += 16 ** power * 12
-			if("d", "D")
-				num += 16 ** power * 13
-			if("e", "E")
-				num += 16 ** power * 14
-			if("f", "F")
-				num += 16 ** power * 15
-			else
-				return
-		power++
-		i--
-	return num
-
-
-//Returns the hex value of a number given a value assumed to be a base-ten value
-/proc/num2hex(num, placeholder)
-	if(placeholder == null)
-		placeholder = 2
-
-	if(!isnum(num))
-		return
-
-	if(num == 0)
-		var/final = ""
-		for(var/i in 1 to placeholder)
-			final = "[final]0"
-		return final
-
-	var/hex = ""
-	var/i = 0
-	while(16 ** i < num)
-		i++
-	var/power = null
-	power = i - 1
-	while(power >= 0)
-		var/val = round(num / 16 ** power)
-		num -= val * 16 ** power
-		switch(val)
-			if(9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
-				hex += "[val]"
-			if(10)
-				hex += "A"
-			if(11)
-				hex += "B"
-			if(12)
-				hex += "C"
-			if(13)
-				hex += "D"
-			if(14)
-				hex += "E"
-			if(15)
-				hex += "F"
-			else
-		power--
-	while(length(hex) < placeholder)
-		hex = "0[hex]"
-	return hex
-
 //Turns a direction into text
 /proc/num2dir(direction)
 	switch(direction)
@@ -372,3 +295,26 @@
 /// for use inside of browse() calls to html assets that might be loaded on a cdn.
 /proc/url2htmlloader(url)
 	return {"<html><head><meta http-equiv="refresh" content="0;URL='[url]'"/></head><body onLoad="parent.location='[url]'"></body></html>"}
+
+//word of warning: using a matrix like this as a color value will simplify it back to a string after being set
+///Takes a hex color provided as string and returns the proper color matrix using hex2num.
+/proc/color_hex2color_matrix(string)
+	var/length = length(string)
+	if((length != 7 && length != 9) || length != length_char(string))
+		return color_matrix_identity()
+	var/r = hex2num(copytext(string, 2, 4))/255
+	var/g = hex2num(copytext(string, 4, 6))/255
+	var/b = hex2num(copytext(string, 6, 8))/255
+	var/a = 1
+	if(length == 9)
+		a = hex2num(copytext(string, 8, 10))/255
+	if(!isnum(r) || !isnum(g) || !isnum(b) || !isnum(a))
+		return color_matrix_identity()
+	return list(r,0,0,0, 0,g,0,0, 0,0,b,0, 0,0,0,a, 0,0,0,0)
+
+///will drop all values not on the diagonal
+///returns a hex color
+/proc/color_matrix2color_hex(list/the_matrix)
+	if(!istype(the_matrix) || the_matrix.len != 20)
+		return "#ffffffff"
+	return rgb(the_matrix[1]*255, the_matrix[6]*255, the_matrix[11]*255, the_matrix[16]*255)

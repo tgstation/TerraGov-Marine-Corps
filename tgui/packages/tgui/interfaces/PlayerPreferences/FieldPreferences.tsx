@@ -1,8 +1,8 @@
 import { useBackend } from '../../backend';
 import { Button, Input, LabeledList } from '../../components';
 
-export const TextFieldPreference = (props, context) => {
-  const { act, data } = useBackend<any>(context);
+export const TextFieldPreference = (props) => {
+  const { act, data } = useBackend<any>();
   const { label, value, action, extra, onFocus, noAction } = props;
   const itemLabel = label || value;
 
@@ -22,8 +22,8 @@ export const TextFieldPreference = (props, context) => {
   );
 };
 
-export const SelectFieldPreference = (props, context) => {
-  const { act, data, config } = useBackend<any>(context);
+export const SelectFieldPreference = (props) => {
+  const { act, data, config } = useBackend<any>();
   const { label, value, action } = props;
   const itemLabel = label || value;
 
@@ -34,8 +34,8 @@ export const SelectFieldPreference = (props, context) => {
   );
 };
 
-export const ToggleFieldPreference = (props, context) => {
-  const { act, data } = useBackend<any>(context);
+export const ToggleFieldPreference = (props) => {
+  const { act, data } = useBackend<any>();
   const {
     label,
     value,
@@ -68,8 +68,8 @@ export const ToggleFieldPreference = (props, context) => {
   );
 };
 
-export const LoopingSelectionPreference = (props, context) => {
-  const { act } = useBackend<PlayerPreferencesData>(context);
+export const LoopingSelectionPreference = (props) => {
+  const { act } = useBackend<PlayerPreferencesData>();
   const { label, value, action } = props;
 
   return (
