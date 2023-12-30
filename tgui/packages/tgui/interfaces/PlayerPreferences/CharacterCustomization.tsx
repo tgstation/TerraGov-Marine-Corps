@@ -4,8 +4,8 @@ import { Button, Section, Flex, LabeledList, Box, ColorBox } from '../../compone
 import { TextFieldPreference, ToggleFieldPreference, SelectFieldPreference } from './FieldPreferences';
 import { ProfilePicture } from './ProfilePicture';
 
-export const CharacterCustomization = (props, context) => {
-  const { act, data } = useBackend<CharacterCustomizationData>(context);
+export const CharacterCustomization = (props) => {
+  const { act, data } = useBackend<CharacterCustomizationData>();
   const {
     random_name,
     r_hair,

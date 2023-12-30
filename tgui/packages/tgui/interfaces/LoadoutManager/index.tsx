@@ -1,11 +1,12 @@
-import { useBackend, useLocalState } from '../../backend';
+import { useState } from 'react';
+import { useBackend } from '../../backend';
 import { Box, Stack, Button, Section, LabeledList, Tabs, Flex } from '../../components';
 import { Window } from '../../layouts';
 import { LoadoutListData, LoadoutTabData, LoadoutManagerData, LoadoutItemData } from './Types';
 import { NameInputModal } from './NameInputModal';
 
-const LoadoutItem = (props: LoadoutItemData, context) => {
-  const { act } = useBackend(context);
+const LoadoutItem = (props: LoadoutItemData) => {
+  const { act } = useBackend();
   const { loadout } = props;
 
   return (
@@ -82,9 +83,9 @@ const JobTabs = (props: LoadoutTabData) => {
         <Flex.Item>
           <Tabs>
             <Tabs.Tab
-              selected={job === 'Squad Operative'}
-              onClick={() => setJob('Squad Operative')}>
-              Squad Operative
+              selected={job === 'Squad Marine'}
+              onClick={() => setJob('Squad Marine')}>
+              Squad Marine
             </Tabs.Tab>
             <Tabs.Tab
               selected={job === 'Squad Engineer'}
@@ -116,21 +117,13 @@ const JobTabs = (props: LoadoutTabData) => {
   );
 };
 
-export const LoadoutManager = (props, context) => {
-  const { act, data } = useBackend<LoadoutManagerData>(context);
+export const LoadoutManager = (props) => {
+  const { act, data } = useBackend<LoadoutManagerData>();
   const { loadout_list } = data;
 
-  const [job, setJob] = useLocalState(context, 'job', 'Squad Operative');
-  const [saveNewLoadout, setSaveNewLoadout] = useLocalState(
-    context,
-    'saveLoadout',
-    false
-  );
-  const [importNewLoadout, setImportNewLoadout] = useLocalState(
-    context,
-    'importLoadout',
-    false
-  );
+  const [job, setJob] = useState('Squad Marine');
+  const [saveNewLoadout, setSaveNewLoadout] = useState(false);
+  const [importNewLoadout, setImportNewLoadout] = useState(false);
 
   return (
     <Window title="Loadout Manager" width={700} height={400}>

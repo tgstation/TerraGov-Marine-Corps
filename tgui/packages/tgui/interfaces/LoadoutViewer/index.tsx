@@ -5,8 +5,8 @@ import { SlotSelector } from './Slots';
 import { Loadout } from '../LoadoutManager/Types';
 import { LoadoutViewerData } from './Types';
 
-const LoadoutNavigator = (props: Loadout, context) => {
-  const { act } = useBackend(context);
+const LoadoutNavigator = (props: Loadout) => {
+  const { act } = useBackend();
   const { name, job } = props;
 
   return (
@@ -53,8 +53,8 @@ const LoadoutNavigator = (props: Loadout, context) => {
   );
 };
 
-export const LoadoutViewer = (props, context) => {
-  const { data } = useBackend<LoadoutViewerData>(context);
+export const LoadoutViewer = (props) => {
+  const { data } = useBackend<LoadoutViewerData>();
 
   const { loadout, items } = data;
 

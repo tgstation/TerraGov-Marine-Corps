@@ -70,6 +70,10 @@
 	if(!reagents.total_volume)
 		balloon_alert(user, "Hypospray is Empty.")
 		return
+	var/mob/living/carbon/C = A
+	if((C.species.species_flags & NO_CHEM_METABOLIZATION) || (C.species.species_flags & IS_SYNTHETIC))
+		C.balloon_alert(user, "Can't inject (robot)")
+		return
 	if(!A.is_injectable() && !ismob(A))
 		A.balloon_alert(user, "Can't fill.")
 		return

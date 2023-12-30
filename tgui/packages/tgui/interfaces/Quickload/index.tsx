@@ -3,12 +3,11 @@ import { Stack, Button, Section, Box, LabeledList, Modal, Tabs, Flex } from '../
 import { Window } from '../../layouts';
 import { LoadoutListData, LoadoutTabData, LoadoutManagerData, LoadoutItemData } from './Types';
 
-const LoadoutItem = (props: LoadoutItemData, context) => {
-  const { act } = useBackend(context);
+const LoadoutItem = (props: LoadoutItemData) => {
+  const { act } = useBackend();
   const { loadout } = props;
 
   const [showDesc, setShowDesc] = useLocalState<String | null>(
-    context,
     'showDesc',
     null
   );
@@ -53,9 +52,9 @@ const LoadoutList = (props: LoadoutListData) => {
   );
 };
 
-const JobTabs = (props: LoadoutTabData, context) => {
+const JobTabs = (props: LoadoutTabData) => {
   const { job, setJob } = props;
-  const { data } = useBackend<any>(context);
+  const { data } = useBackend<any>();
   const categories_to_use = data.vendor_categories;
   return (
     <Section>
@@ -83,15 +82,15 @@ const JobTabs = (props: LoadoutTabData, context) => {
   );
 };
 
-export const Quickload = (props, context) => {
-  const { act, data } = useBackend<LoadoutManagerData>(context);
+export const Quickload = (props) => {
+  const { act, data } = useBackend<LoadoutManagerData>();
   const { loadout_list } = data;
   const ui_theme_to_use = data.ui_theme;
   const default_job_tab = data.vendor_categories[0];
 
-  const [showDesc, setShowDesc] = useLocalState(context, 'showDesc', null);
+  const [showDesc, setShowDesc] = useLocalState('showDesc', null);
 
-  const [job, setJob] = useLocalState(context, 'job', default_job_tab);
+  const [job, setJob] = useLocalState('job', default_job_tab);
 
   return (
     <Window

@@ -1980,7 +1980,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				change = input("Select the hair color.", "Edit Appearance") as null|color
 				if(!change || !istype(H))
 					return
-				previous = "#[num2hex(H.r_hair)][num2hex(H.g_hair)][num2hex(H.b_hair)]"
+				previous = "#[num2hex(H.r_hair, 2)][num2hex(H.g_hair, 2)][num2hex(H.b_hair, 2)]"
 				H.r_hair = hex2num(copytext(change, 2, 4))
 				H.g_hair = hex2num(copytext(change, 4, 6))
 				H.b_hair = hex2num(copytext(change, 6, 8))
@@ -1994,7 +1994,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				change = input("Select the facial hair color.", "Edit Appearance") as null|color
 				if(!change || !istype(H))
 					return
-				previous = "#[num2hex(H.r_facial)][num2hex(H.g_facial)][num2hex(H.b_facial)]"
+				previous = "#[num2hex(H.r_facial, 2)][num2hex(H.g_facial, 2)][num2hex(H.b_facial, 2)]"
 				H.r_facial = hex2num(copytext(change, 2, 4))
 				H.g_facial = hex2num(copytext(change, 4, 6))
 				H.b_facial = hex2num(copytext(change, 6, 8))
@@ -2002,7 +2002,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				change = input("Select the eye color.", "Edit Appearance") as null|color
 				if(!change || !istype(H))
 					return
-				previous = "#[num2hex(H.r_eyes)][num2hex(H.g_eyes)][num2hex(H.b_eyes)]"
+				previous = "#[num2hex(H.r_eyes, 2)][num2hex(H.g_eyes, 2)][num2hex(H.b_eyes, 2)]"
 				H.r_eyes = hex2num(copytext(change, 2, 4))
 				H.g_eyes = hex2num(copytext(change, 4, 6))
 				H.b_eyes = hex2num(copytext(change, 6, 8))
@@ -2010,7 +2010,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				change = input("Select the body color.", "Edit Appearance") as null|color
 				if(!change || !istype(H))
 					return
-				previous = "#[num2hex(H.r_skin)][num2hex(H.g_skin)][num2hex(H.b_skin)]"
+				previous = "#[num2hex(H.r_skin, 2)][num2hex(H.g_skin, 2)][num2hex(H.b_skin, 2)]"
 				H.r_skin = hex2num(copytext(change, 2, 4))
 				H.g_skin = hex2num(copytext(change, 4, 6))
 				H.b_skin = hex2num(copytext(change, 6, 8))
@@ -2315,3 +2315,32 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/logtext = "[key_name(usr)] has cancelled an OB with the timerid [timerid_to_cancel]"
 		message_admins(logtext)
 		log_admin(logtext)
+
+	else if(href_list["tag_datum"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/datum/datum_to_tag = locate(href_list["tag_datum"])
+		if(!datum_to_tag)
+			return
+		return add_tagged_datum(datum_to_tag)
+
+	else if(href_list["del_tag"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/datum/datum_to_remove = locate(href_list["del_tag"])
+		if(!datum_to_remove)
+			return
+		return remove_tagged_datum(datum_to_remove)
+
+	else if(href_list["show_tags"])
+		if(!check_rights(R_ADMIN))
+			return
+		return display_tags()
+
+	else if(href_list["mark_datum"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/datum/datum_to_mark = locate(href_list["mark_datum"])
+		if(!datum_to_mark)
+			return
+		return usr.client?.mark_datum(datum_to_mark)
