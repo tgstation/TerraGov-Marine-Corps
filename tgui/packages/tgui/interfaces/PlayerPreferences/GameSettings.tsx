@@ -26,8 +26,8 @@ const ParallaxNumToString = (integer) => {
   return returnval;
 };
 
-export const GameSettings = (props, context) => {
-  const { act, data } = useBackend<GameSettingData>(context);
+export const GameSettings = (props) => {
+  const { act, data } = useBackend<GameSettingData>();
   const { ui_style_color, scaling_method, pixel_size, parallax, is_admin } =
     data;
   return (

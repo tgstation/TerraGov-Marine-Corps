@@ -47,18 +47,12 @@
 /obj/item/weapon/gun/pistol/standard_pistol
 	name = "\improper P-14 pistol"
 	desc = "The P-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 21-round 9mm magazines."
-	icon_state = GUN_ICONSTATE_LOADED
-	item_state = GUN_ICONSTATE_LOADED
+	icon_state = "tp14"
+	item_state = "tp14"
 	caliber = CALIBER_9X19 //codex
 	max_shells = 21 //codex
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_p14.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
-	greyscale_config = /datum/greyscale_config/gun/pistol
-	colorable_allowed = PRESET_COLORS_ALLOWED
-	item_icons = list(
-		slot_l_hand_str = /datum/greyscale_config/gun_inhand/tp14,
-		slot_r_hand_str = /datum/greyscale_config/gun_inhand/r_hand/tp14,
-	)
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pistol)
 
@@ -78,8 +72,8 @@
 /obj/item/weapon/gun/pistol/plasma_pistol
 	name = "\improper PP-7 plasma pistol"
 	desc = "An experimental weapon designed to set the terrain and targets on fire. It hums with power as magnetic fields coil round each other."
-	icon_state = GUN_ICONSTATE_LOADED
-	item_state = GUN_ICONSTATE_LOADED
+	icon_state = "tx7"
+	item_state = "tx7"
 	caliber = CALIBER_PLASMA
 	max_shots = 10
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
@@ -88,12 +82,6 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/plasma_pistol)
 	type_of_casings = null
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
-	greyscale_config = /datum/greyscale_config/gun/pistol/tx7
-	colorable_allowed = PRESET_COLORS_ALLOWED
-	item_icons = list(
-		slot_l_hand_str = /datum/greyscale_config/gun_inhand/tx7,
-		slot_r_hand_str = /datum/greyscale_config/gun_inhand/r_hand/tx7,
-	)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
@@ -127,6 +115,9 @@
 	wield_delay_mod = 0.2 SECONDS
 
 	placed_overlay_iconstate = "tx7"
+
+/obj/item/weapon/gun/pistol/plasma_pistol/beginner
+	starting_attachment_types = list(/obj/item/weapon/gun/shotgun/combat/masterkey, /obj/item/attachable/reddot, /obj/item/attachable/lasersight)
 
 /obj/item/weapon/gun/pistol/plasma_pistol/can_attach(obj/item/attaching_to, mob/attacher)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_RAIL])
@@ -179,20 +170,14 @@
 /obj/item/weapon/gun/pistol/standard_heavypistol
 	name = "\improper P-23 service pistol"
 	desc = "A standard P-23 chambered in .45 ACP. Has a smaller magazine capacity, but packs a better punch. Has an irremovable laser sight. Uses .45 magazines."
-	icon_state = GUN_ICONSTATE_LOADED
-	item_state = GUN_ICONSTATE_LOADED
+	icon_state = "tp23"
+	item_state = "tp23"
 	caliber = CALIBER_45ACP //codex
 	max_shells = 14 //codex
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_p23.ogg'
 	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
-	greyscale_config = /datum/greyscale_config/gun/pistol/tp23
-	colorable_allowed = PRESET_COLORS_ALLOWED
-	item_icons = list(
-		slot_l_hand_str = /datum/greyscale_config/gun_inhand/tp23,
-		slot_r_hand_str = /datum/greyscale_config/gun_inhand/r_hand/tp23,
-	)
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_heavypistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_heavypistol)
 	attachable_allowed = list(
@@ -225,6 +210,10 @@
 
 /obj/item/weapon/gun/pistol/standard_heavypistol/tactical
 	starting_attachment_types = list(/obj/item/attachable/reddot)
+
+/obj/item/weapon/gun/pistol/standard_heavypistol/beginner
+	starting_attachment_types = list(/obj/item/attachable/lace, /obj/item/attachable/reddot)
+
 //-------------------------------------------------------
 //P-1911
 
@@ -547,6 +536,9 @@
 
 /obj/item/weapon/gun/pistol/vp70/tactical
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight, /obj/item/attachable/compensator)
+
+/obj/item/weapon/gun/pistol/vp70/beginner
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight, /obj/item/attachable/lace)
 
 //-------------------------------------------------------
 //VP78

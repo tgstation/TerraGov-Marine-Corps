@@ -41,6 +41,7 @@
 #define MARK_THREE_WEBBING "mark_three_webbing"
 #define MARK_ONE_WEBBING "mark_one_webbing"
 
+// Each key AND value HAS to be unique.
 ///saved loadout key = icon_state, AGAIN DO NOT EDIT THE KEYS IT WILL BREAK LOADOUTS
 GLOBAL_LIST_INIT(loadout_variant_keys, list(
 	NORMAL = "normal",
