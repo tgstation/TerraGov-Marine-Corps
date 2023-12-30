@@ -129,7 +129,7 @@ export const Mortar = (props) => {
                     <Table.Cell key={'coords_one_' + i}>
                       {coordsinput}
                     </Table.Cell>
-                  )
+                  ),
                 )}
               </Table.Row>
               <Table.Row>
@@ -155,7 +155,7 @@ export const Mortar = (props) => {
                     <Table.Cell key={'coords_two_' + i}>
                       {coordsinput}
                     </Table.Cell>
-                  )
+                  ),
                 )}
               </Table.Row>
               <Table.Row>
@@ -181,7 +181,7 @@ export const Mortar = (props) => {
                     <Table.Cell key={'coords_three_' + i}>
                       {coordsinput}
                     </Table.Cell>
-                  )
+                  ),
                 )}
               </Table.Row>
             </Table>

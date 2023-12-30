@@ -21,7 +21,7 @@ export const SquadSelector = (props) => {
   const [selectedSquad, setSelectedSquad] = useState('');
 
   const selectedSquadEntry = active_squads?.find(
-    (i) => i.name === selectedSquad
+    (i) => i.name === selectedSquad,
   );
 
   return (
@@ -38,7 +38,8 @@ export const SquadSelector = (props) => {
                     backgroundColor={
                       selectedSquad === squad.name ? null : squad.color
                     }
-                    selected={selectedSquad === squad.name}>
+                    selected={selectedSquad === squad.name}
+                  >
                     {squad.name}
                     <Box contents={squad.leader} />
                   </Button>
@@ -58,10 +59,12 @@ export const SquadSelector = (props) => {
                         act('join', {
                           squad_id: selectedSquadEntry?.id,
                         })
-                      }>
+                      }
+                    >
                       Join
                     </Button>
-                  }>
+                  }
+                >
                   <Stack>
                     <Stack.Item>
                       <Box

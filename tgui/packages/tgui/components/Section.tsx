@@ -68,7 +68,8 @@ export const Section = forwardRef(
           computeBoxClassName(rest),
         ])}
         {...computeBoxProps(rest)}
-        ref={ref}>
+        ref={ref}
+      >
         {hasTitle && (
           <div className="Section__title">
             <span className="Section__titleText">{title}</span>
@@ -82,5 +83,5 @@ export const Section = forwardRef(
         </div>
       </div>
     );
-  }
+  },
 );

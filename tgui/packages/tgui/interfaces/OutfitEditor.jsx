@@ -27,7 +27,8 @@ export const OutfitEditor = (props) => {
                   overflow: 'hidden',
                   whiteSpace: 'nowrap',
                   textOverflow: 'ellipsis',
-                }}>
+                }}
+              >
                 <Button
                   ml={0.5}
                   color="transparent"
@@ -63,7 +64,8 @@ export const OutfitEditor = (props) => {
                 />
               </Stack.Item>
             </Stack>
-          }>
+          }
+        >
           <Box textAlign="center">
             <Stack mb={2}>
               <OutfitSlot name="Headgear" icon="hard-hat" slot="head" />
@@ -126,7 +128,8 @@ const OutfitSlot = (props) => {
         height={2}
         bold
         // todo: intuitive way to clear items
-        onClick={(e) => act(e.ctrlKey ? 'ctrlClick' : 'click', { slot })}>
+        onClick={(e) => act(e.ctrlKey ? 'ctrlClick' : 'click', { slot })}
+      >
         <Icon name={icon} rotation={iconRot} />
         {name}
       </Button>
@@ -155,7 +158,8 @@ const OutfitSlot = (props) => {
           whiteSpace: 'nowrap',
           textOverflow: 'ellipsis',
         }}
-        title={currItem?.path}>
+        title={currItem?.path}
+      >
         {currItem?.name || 'Empty'}
       </Box>
     </Stack.Item>
