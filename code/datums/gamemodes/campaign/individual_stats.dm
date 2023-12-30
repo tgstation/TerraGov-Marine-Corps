@@ -173,6 +173,7 @@
 			current_loadout_item_data["desc"] = loadout_item.desc
 			current_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
 			current_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost
+			current_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit) //is this item valid based on the current loadout
 			//current_loadout_item_data["item_whitelist"] = loadout_item.item_whitelist //TODO: need data to be a list of strings, or reference this in some other way
 			//current_loadout_item_data["item_blacklist"] = loadout_item.item_blacklist
 			//current_loadout_item_data["icon"] = loadout_item.ui_icon //likely end up using actual icon state
@@ -188,6 +189,7 @@
 				available_loadout_item_data["desc"] = loadout_item.desc
 				available_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
 				available_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost //todo: do related
+				available_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit) //is this item valid based on the current loadout
 				//available_loadout_item_data["item_whitelist"] = loadout_item.item_whitelist
 				//available_loadout_item_data["item_blacklist"] = loadout_item.item_blacklist
 				//available_loadout_item_data["icon"] = loadout_item.ui_icon //likely end up using actual icon state
