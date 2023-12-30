@@ -62,18 +62,18 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	return TRUE
 
 ///checks if a loadout has required whitelist items
-/datum/loadout_item/proc/whitelist_check(datum/outfit_holder/outfit_holder) //TODO unfuck all the [slot] stuff as they're number defines...
-	for(var/slot in item_whitelist)
-		var/type_to_check = outfit_holder.equipped_things[slot]?.item_typepath
-		if(!type_to_check || type_to_check != item_whitelist[slot])
+/datum/loadout_item/proc/whitelist_check(datum/outfit_holder/outfit_holder)
+	for(var/whitelist_item in item_whitelist)
+		var/type_to_check = outfit_holder.equipped_things["[item_whitelist[whitelist_item]]"]?.item_typepath
+		if(!type_to_check || type_to_check != whitelist_item)
 			return FALSE
 	return TRUE
 
 ///Checks if a loadout has any blacklisted items
 /datum/loadout_item/proc/blacklist_check(datum/outfit_holder/outfit_holder)
-	for(var/slot in item_blacklist)
-		var/type_to_check = outfit_holder.equipped_things[slot]?.item_typepath
-		if(type_to_check == item_blacklist[slot]) //!type_to_check || do we need this?
+	for(var/blacklist_item in item_blacklist)
+		var/type_to_check = outfit_holder.equipped_things["[item_blacklist[blacklist_item]]"]?.item_typepath
+		if(type_to_check == blacklist_item)
 			return FALSE
 	return TRUE
 
@@ -121,7 +121,8 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	item_typepath = /obj/item/clothing/head/modular/m10x/surt
 	jobs_supported = list(SQUAD_MARINE)
 	item_whitelist = list(
-		ITEM_SLOT_OCLOTHING = /obj/item/clothing/suit/modular/xenonauten/heavy/surt
+		//"[ITEM_SLOT_OCLOTHING]" = /obj/item/clothing/suit/modular/xenonauten/heavy/surt
+		/obj/item/clothing/suit/modular/xenonauten/heavy/surt = ITEM_SLOT_OCLOTHING,
 	)
 
 /datum/loadout_item/helmet/mimir
@@ -130,7 +131,8 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	item_typepath = /obj/item/clothing/head/modular/m10x/mimir
 	jobs_supported = list(SQUAD_CORPSMAN)
 	item_whitelist = list(
-		ITEM_SLOT_OCLOTHING = /obj/item/clothing/suit/modular/xenonauten/mimir
+		//"[ITEM_SLOT_OCLOTHING]" = /obj/item/clothing/suit/modular/xenonauten/mimir
+		/obj/item/clothing/suit/modular/xenonauten/mimir = ITEM_SLOT_OCLOTHING,
 	)
 
 
