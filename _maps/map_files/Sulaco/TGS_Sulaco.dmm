@@ -16177,7 +16177,6 @@
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "jQS" = (
 /obj/machinery/camera/autoname,
-/obj/machinery/door_control/mainship/droppod,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -16442,6 +16441,13 @@
 /obj/machinery/disposal,
 /turf/open/floor/prison,
 /area/sulaco/bar)
+"khS" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/machinery/door_control/mainship/droppod,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "kio" = (
 /obj/structure/cable,
 /turf/open/floor/prison,
@@ -17356,7 +17362,10 @@
 	id = "tcomwind";
 	name = "Telecomms Window Control"
 	},
-/obj/item/toy/plush/rouny,
+/obj/item/toy/plush/rouny{
+	pixel_y = 9;
+	pixel_x = -1
+	},
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "lvm" = (
@@ -23988,6 +23997,9 @@
 /obj/item/tool/pen,
 /obj/effect/spawner/random/misc/paperbin,
 /obj/machinery/firealarm,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -24734,6 +24746,12 @@
 /area/sulaco/cargo)
 "uPy" = (
 /obj/structure/window/framed/mainship/white,
+/obj/machinery/door/poddoor/shutters/opened/medbay{
+	dir = 2
+	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/medbay/chemistry)
 "uQi" = (
@@ -62162,7 +62180,7 @@ tur
 xca
 xca
 xHm
-aSk
+khS
 aPF
 igo
 dtI
