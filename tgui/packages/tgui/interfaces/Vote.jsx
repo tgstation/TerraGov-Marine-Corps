@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Box, Icon, Stack, Button, Section, NoticeBox, LabeledList, Collapsible } from '../components';
+import { Box, Button, Collapsible, Icon, LabeledList, NoticeBox, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 export const Vote = (props) => {

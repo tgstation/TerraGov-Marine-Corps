@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { AnimatedNumber, Button, Box, NoticeBox, LabeledList, ProgressBar, Section } from '../components';
+import { AnimatedNumber, Box, Button, LabeledList, NoticeBox, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
 type NuclearBombData = {

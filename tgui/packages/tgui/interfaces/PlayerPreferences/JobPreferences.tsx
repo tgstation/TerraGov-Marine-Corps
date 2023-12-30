@@ -1,6 +1,7 @@
 import { useState } from 'react';
+
 import { useBackend } from '../../backend';
-import { Section, LabeledList, Modal, Button, Box, Stack, Flex } from '../../components';
+import { Box, Button, Flex, LabeledList, Modal, Section, Stack } from '../../components';
 
 export const JobPreferences = (props) => {
   const { act, data } = useBackend<JobPreferencesData>();

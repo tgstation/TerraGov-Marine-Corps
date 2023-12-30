@@ -1,7 +1,8 @@
-import { useBackend } from '../../backend';
 import { capitalize } from 'common/string';
-import { Button, Section, Flex, LabeledList, Box, ColorBox } from '../../components';
-import { TextFieldPreference, ToggleFieldPreference, SelectFieldPreference } from './FieldPreferences';
+
+import { useBackend } from '../../backend';
+import { Box, Button, ColorBox, Flex, LabeledList, Section } from '../../components';
+import { SelectFieldPreference, TextFieldPreference, ToggleFieldPreference } from './FieldPreferences';
 import { ProfilePicture } from './ProfilePicture';
 
 export const CharacterCustomization = (props) => {

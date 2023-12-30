@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { Box, Section, Stack, LabeledList, Button, Table } from '../../components';
+import { Box, Button, LabeledList, Section, Stack, Table } from '../../components';
 import { TableCell, TableRow } from '../../components/Table';
 
 export const DrawOrder = (props) => {

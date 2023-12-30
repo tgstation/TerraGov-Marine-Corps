@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Section, ProgressBar, Box, LabeledList, NoticeBox } from '../components';
+import { Box, LabeledList, NoticeBox, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
 export const MedScanner = (props) => {

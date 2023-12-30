@@ -1,7 +1,8 @@
-import { Stack, Box, Button, TextArea, Dropdown } from '../components';
-import { Window } from '../layouts';
-import { useBackend } from '../backend';
 import { useState } from 'react';
+
+import { useBackend } from '../backend';
+import { Box, Button, Dropdown, Stack, TextArea } from '../components';
+import { Window } from '../layouts';
 
 type SquadManagerData = {
   active_squads?: SquadData[];

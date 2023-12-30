@@ -1,7 +1,8 @@
+import { toFixed } from 'common/math';
+
 import { useBackend } from '../../backend';
 import { Button, LabeledList } from '../../components';
 import { OperatorData } from './data';
-import { toFixed } from 'common/math';
 
 export const PowerModulesPane = (props) => {
   const { act, data } = useBackend<OperatorData>();

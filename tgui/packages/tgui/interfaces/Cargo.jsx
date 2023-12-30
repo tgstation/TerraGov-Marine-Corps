@@ -1,8 +1,9 @@
-import { Fragment } from 'react';
-import { useBackend, useLocalState } from '../backend';
-import { Button, Flex, Divider, Collapsible, AnimatedNumber, Box, Section, LabeledList, Icon, Input, Table, Stack } from '../components';
-import { Window } from '../layouts';
 import { map } from 'common/collections';
+import { Fragment } from 'react';
+
+import { useBackend, useLocalState } from '../backend';
+import { AnimatedNumber, Box, Button, Collapsible, Divider, Flex, Icon, Input, LabeledList, Section, Stack, Table } from '../components';
+import { Window } from '../layouts';
 
 const category_icon = {
   'Operations': 'parachute-box',

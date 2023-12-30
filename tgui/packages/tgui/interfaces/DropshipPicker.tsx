@@ -1,6 +1,6 @@
-import { useBackend } from '../backend';
 import { resolveAsset } from '../assets';
-import { Button, Section, Box, Flex } from '../components';
+import { useBackend } from '../backend';
+import { Box, Button, Flex, Section } from '../components';
 import { Window } from '../layouts';
 
 type DropshipEntry = {

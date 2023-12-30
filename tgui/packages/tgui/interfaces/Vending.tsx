@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../backend';
-import { Button, Section, Box, LabeledList, ProgressBar, Modal, Divider, Tabs, Stack } from '../components';
+import { Box, Button, Divider, LabeledList, Modal, ProgressBar, Section, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
 
 type VendingData = {

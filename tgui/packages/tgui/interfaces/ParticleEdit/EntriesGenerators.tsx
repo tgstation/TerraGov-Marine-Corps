@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-no-undef */
 import { useBackend, useLocalState } from '../../backend';
-import { Button, LabeledList, NumberInput, ColorBox, Input, Stack } from '../../components';
-import { EntryGeneratorNumbersListProps, FloatGeneratorColorProps, FloatGeneratorProps, ParticleUIData, P_DATA_GENERATOR, RandToNumber } from './data';
-import { isStringArray } from './helpers';
+import { Button, ColorBox, Input, LabeledList, NumberInput, Stack } from '../../components';
+import { EntryGeneratorNumbersListProps, FloatGeneratorColorProps, FloatGeneratorProps, P_DATA_GENERATOR, ParticleUIData, RandToNumber } from './data';
 import { GeneratorListEntry } from './Generators';
+import { isStringArray } from './helpers';
 
 export const FloatGenerator = (props: FloatGeneratorProps) => {
   const { act, data } = useBackend<ParticleUIData>();

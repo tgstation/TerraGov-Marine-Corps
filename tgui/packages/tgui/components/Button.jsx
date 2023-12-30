@@ -7,10 +7,11 @@
 import { KEY_ENTER, KEY_ESCAPE, KEY_SPACE } from 'common/keycodes';
 import { classes } from 'common/react';
 import { Component, createRef } from 'react';
+
+import { globalEvents } from '../events';
 import { Box, computeBoxClassName, computeBoxProps } from './Box';
 import { Icon } from './Icon';
 import { Tooltip } from './Tooltip';
-import { globalEvents } from '../events';
 
 export const Button = (props) => {
   const {

@@ -1,7 +1,8 @@
-import { useBackend, useLocalState } from '../../backend';
 import { classes } from 'common/react';
-import { Button, Section, Box, Stack, Collapsible, Tabs, Divider } from '../../components';
-import { MechVendData, equipTabs, MechWeapon, MechArmor, MechPower, MechUtility, MECHA_ARMOR, MECHA_POWER, MECHA_UTILITY } from './data';
+
+import { useBackend, useLocalState } from '../../backend';
+import { Box, Button, Collapsible, Divider, Section, Stack, Tabs } from '../../components';
+import { equipTabs, MECHA_ARMOR, MECHA_POWER, MECHA_UTILITY, MechArmor, MechPower, MechUtility, MechVendData, MechWeapon } from './data';
 
 const SelectedEquipment = (props) => {
   const { act, data } = useBackend<MechVendData>();

@@ -1,6 +1,7 @@
 import { useState } from 'react';
+
 import { useBackend, useLocalState } from '../backend';
-import { Button, Section, Box, ProgressBar, LabeledList, Modal } from '../components';
+import { Box, Button, LabeledList, Modal, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
 export const MarineSelector = (props) => {

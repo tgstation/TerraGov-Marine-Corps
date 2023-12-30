@@ -3,9 +3,9 @@ import { useBackend, useLocalState } from '../../backend';
 import { Button, LabeledList, Section } from '../../components';
 import { Window } from '../../layouts';
 import { ParticleUIData } from './data';
+import { EntryCoord, EntryFloat, EntryGradient, EntryIcon, EntryIconState, EntryTransform } from './EntriesBasic';
+import { EntryGeneratorNumbersList, FloatGenerator, FloatGeneratorColor } from './EntriesGenerators';
 import { ShowDesc } from './Tutorial';
-import { EntryFloat, EntryCoord, EntryGradient, EntryTransform, EntryIcon, EntryIconState } from './EntriesBasic';
-import { FloatGenerator, FloatGeneratorColor, EntryGeneratorNumbersList } from './EntriesGenerators';
 
 export const ParticleEdit = (props) => {
   const { act, data } = useBackend<ParticleUIData>();

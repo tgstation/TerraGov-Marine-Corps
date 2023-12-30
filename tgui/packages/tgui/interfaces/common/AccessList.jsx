@@ -1,6 +1,7 @@
 import { sortBy } from 'common/collections';
+
 import { useLocalState } from '../../backend';
-import { Button, Flex, Stack, Section, Tabs } from '../../components';
+import { Button, Flex, Section, Stack, Tabs } from '../../components';
 
 const diffMap = {
   0: {

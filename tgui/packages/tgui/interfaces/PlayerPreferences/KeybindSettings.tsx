@@ -1,6 +1,7 @@
 import { useState } from 'react';
+
 import { useBackend } from '../../backend';
-import { Button, Input, Section, LabeledList, Box, Stack } from '../../components';
+import { Box, Button, Input, LabeledList, Section, Stack } from '../../components';
 import { TextInputModal } from './TextInputModal';
 
 const KEY_MODS = {

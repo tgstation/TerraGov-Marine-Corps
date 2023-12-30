@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Section, Box, ProgressBar } from '../components';
+import { Box, Button, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
 export const PortableVendor = (props) => {

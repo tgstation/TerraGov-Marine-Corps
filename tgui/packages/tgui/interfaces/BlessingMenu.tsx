@@ -1,8 +1,9 @@
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
-import { Button, Section, Box, LabeledList, Divider, Tabs, Stack, Collapsible, Flex } from '../components';
 import { classes } from 'common/react';
 import { useState } from 'react';
+
+import { useBackend } from '../backend';
+import { Box, Button, Collapsible, Divider, Flex, LabeledList, Section, Stack, Tabs } from '../components';
+import { Window } from '../layouts';
 
 type BlessingData = {
   user: string;

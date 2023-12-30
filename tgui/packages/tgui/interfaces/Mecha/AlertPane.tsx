@@ -1,6 +1,6 @@
 import { useBackend } from '../../backend';
-import { Stack, Button, Box } from '../../components';
-import { OperatorData, InternalDamageToDamagedDesc, InternalDamageToNormalDesc } from './data';
+import { Box, Button, Stack } from '../../components';
+import { InternalDamageToDamagedDesc, InternalDamageToNormalDesc, OperatorData } from './data';
 
 export const AlertPane = (props) => {
   const { act, data } = useBackend<OperatorData>();

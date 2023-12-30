@@ -1,9 +1,9 @@
 import { useBackend, useLocalState } from '../../backend';
+import { Box, Button, Modal, Section, Stack, Tabs } from '../../components';
 import { Window } from '../../layouts';
-import { Box, Modal, Tabs, Button, Stack, Section } from '../../components';
-import { CampaignOverview } from './CampaignOverview';
-import { CampaignMissions } from './CampaignMissions';
 import { CampaignAssets } from './CampaignAssets';
+import { CampaignMissions } from './CampaignMissions';
+import { CampaignOverview } from './CampaignOverview';
 import { CampaignPurchase } from './CampaignPurchase';
 
 const TAB_OVERVIEW = 'Overview';

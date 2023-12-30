@@ -1,8 +1,8 @@
 import { useBackend } from '../../backend';
+import { Button, Flex, Section, Stack } from '../../components';
 import { Window } from '../../layouts';
-import { Button, Section, Stack, Flex } from '../../components';
-import { SlotSelector } from './Slots';
 import { Loadout } from '../LoadoutManager/Types';
+import { SlotSelector } from './Slots';
 import { LoadoutViewerData } from './Types';
 
 const LoadoutNavigator = (props: Loadout) => {

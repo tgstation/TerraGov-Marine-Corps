@@ -1,10 +1,11 @@
-import { useLocalState } from '../../backend';
 import { classes } from 'common/react';
-import { Button, Section, Box, Modal, Divider, Tabs, Stack, LabeledList } from '../../components';
+
+import { useLocalState } from '../../backend';
+import { Box, Button, Divider, LabeledList, Modal, Section, Stack, Tabs } from '../../components';
 import { Window } from '../../layouts';
+import { MechWeapon, tabs } from './data';
 import { MechAssembly } from './MechAssembly';
 import { MechWeapons } from './MechWeapons';
-import { tabs, MechWeapon } from './data';
 
 export const MechVendor = (props) => {
   const [showDesc, setShowDesc] = useLocalState<MechWeapon | null>(
