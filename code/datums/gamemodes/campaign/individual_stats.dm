@@ -172,11 +172,11 @@
 			current_loadout_item_data["type"] = loadout_item.type
 			current_loadout_item_data["desc"] = loadout_item.desc
 			current_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
-			current_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost
+			current_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost  //todo: do related
 			current_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit) //is this item valid based on the current loadout
-			//current_loadout_item_data["item_whitelist"] = loadout_item.item_whitelist //TODO: need data to be a list of strings, or reference this in some other way
+			//current_loadout_item_data["item_whitelist"] = loadout_item.item_whitelist //TODO: Decide if this is needed. Mechanically is not needed, but typepaths as string are likely needed for player info
 			//current_loadout_item_data["item_blacklist"] = loadout_item.item_blacklist
-			//current_loadout_item_data["icon"] = loadout_item.ui_icon //likely end up using actual icon state
+			current_loadout_item_data["icon"] = loadout_item.icon_state //todo: Figure out if this works from a ui perspective, or if an 'ui_icon' is needed like assets
 			equipped_loadouts_data += list(current_loadout_item_data)
 
 		for(var/slot in outfit.available_list)
@@ -188,11 +188,11 @@
 				available_loadout_item_data["type"] = loadout_item.type
 				available_loadout_item_data["desc"] = loadout_item.desc
 				available_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
-				available_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost //todo: do related
-				available_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit) //is this item valid based on the current loadout
+				available_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost
+				available_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit)
 				//available_loadout_item_data["item_whitelist"] = loadout_item.item_whitelist
 				//available_loadout_item_data["item_blacklist"] = loadout_item.item_blacklist
-				//available_loadout_item_data["icon"] = loadout_item.ui_icon //likely end up using actual icon state
+				available_loadout_item_data["icon"] = loadout_item.icon_state
 				available_loadouts_data += list(available_loadout_item_data)
 
 	data["equipped_loadouts_data"] = equipped_loadouts_data
