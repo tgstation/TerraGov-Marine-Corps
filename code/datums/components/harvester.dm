@@ -120,7 +120,7 @@
 		user.balloon_alert(user, "incompatible reagent, check description")
 		return
 
-	if(loaded_reagents[reagent_to_load] > max_loadable_reagent_amount)
+	if(loaded_reagents[reagent_to_load] >= max_loadable_reagent_amount)
 		user.balloon_alert(user, "full")
 		return
 

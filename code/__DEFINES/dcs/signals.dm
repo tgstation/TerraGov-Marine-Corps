@@ -28,7 +28,8 @@
 
 /// from /obj/machinery/setAnchored(): (machine, anchoredstate)
 #define COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE "!machinery_anchored_change"
-
+/// called after a successful var edit somewhere in the world: (list/args)
+#define COMSIG_GLOB_VAR_EDIT "!var_edit"
 /// called after an explosion happened : (epicenter, devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, took, orig_dev_range, orig_heavy_range, orig_light_range)
 #define COMSIG_GLOB_EXPLOSION "!explosion"
 
@@ -107,24 +108,6 @@
 #define COMSIG_CAMPAIGN_DISABLER_ACTIVATION "campaign_disabler_activation"
 
 //////////////////////////////////////////////////////////////////
-
-// /datum signals
-/// when a component is added to a datum: (/datum/component)
-#define COMSIG_COMPONENT_ADDED "component_added"
-/// before a component is removed from a datum because of RemoveComponent: (/datum/component)
-#define COMSIG_COMPONENT_REMOVING "component_removing"
-/// before a datum's Destroy() is called: (force), returning a nonzero value will cancel the qdel operation
-#define COMSIG_PREQDELETED "parent_preqdeleted"
-/// just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called
-#define COMSIG_QDELETING "parent_qdeleting"
-/// generic topic handler (usr, href_list)
-#define COMSIG_TOPIC "handle_topic"
-
-/// fires on the target datum when an element is attached to it (/datum/element)
-#define COMSIG_ELEMENT_ATTACH "element_attach"
-/// fires on the target datum when an element is attached to it  (/datum/element)
-#define COMSIG_ELEMENT_DETACH "element_detach"
-
 // /datum/component signals
 #define COMSIG_AUTOFIRE_ONMOUSEDOWN "autofire_onmousedown"
 	#define COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS (1<<0)
@@ -675,11 +658,7 @@
 
 #define COMSIG_KB_ACTIVATED (1<<0)
 #define COMSIG_KB_NOT_ACTIVATED (1<<1) //used in unique action
-#define COMSIG_KB_ADMIN_ASAY_DOWN "keybinding_admin_asay_down"
-#define COMSIG_KB_ADMIN_MSAY_DOWN "keybinding_admin_msay_down"
-#define COMSIG_KB_ADMIN_DSAY_DOWN "keybinding_admin_dsay_down"
 #define COMSIG_KB_CARBON_HOLDRUNMOVEINTENT_DOWN "keybinding_carbon_holdrunmoveintent_down"
-#define COMSIG_KB_ADMIN_TOGGLEBUILDMODE_DOWN "keybinding_admin_togglebuildmode_down"
 #define COMSIG_KB_CARBON_TOGGLETHROWMODE_DOWN "keybinding_carbon_togglethrowmode_down"
 #define COMSIG_KB_CARBON_TOGGLEREST_DOWN "kebinding_carbon_togglerest_down"
 #define COMSIG_KB_CARBON_SELECTHELPINTENT_DOWN "keybinding_carbon_selecthelpintent_down"
@@ -722,6 +701,13 @@
 #define COMSIG_KB_MOVEMENT_SOUTH_DOWN "keybinding_movement_south_down"
 #define COMSIG_KB_MOVEMENT_WEST_DOWN "keybinding_movement_west_down"
 #define COMSIG_KB_MOVEMENT_EAST_DOWN "keybinding_movement_east_down"
+
+//Admin
+#define COMSIG_KB_ADMIN_ASAY_DOWN "keybinding_admin_asay_down"
+#define COMSIG_KB_ADMIN_DSAY_DOWN "keybinding_admin_dsay_down"
+#define COMSIG_KB_ADMIN_MSAY_DOWN "keybinding_admin_msay_down"
+#define COMSIG_KB_ADMIN_TOGGLEBUILDMODE_DOWN "keybinding_admin_togglebuildmode_down"
+#define COMSIG_KB_ADMIN_VIEWTAGS_DOWN "keybinding_admin_viewtags_down"
 
 // mob keybinds
 #define COMSIG_KB_HOLD_RUN_MOVE_INTENT_UP "keybinding_hold_run_move_intent_up"
@@ -933,6 +919,15 @@
 #define COMSIG_XENOABILITY_SEISMIC_FRACTURE "xenoability_seismic_fracture"
 #define COMSIG_XENOABILITY_PRIMAL_WRATH "xenoability_primal_wrath"
 
+//sectoid abilities
+#define COMSIG_ABILITY_MINDMELD "ability_mindmeld"
+#define COMSIG_ABILITY_MINDFRAY "ability_mindfray"
+#define COMSIG_ABILITY_REKNIT_FORM "ability_reknit_form"
+#define COMSIG_ABILITY_FUSE "ability_fuse"
+#define COMSIG_ABILITY_STASIS "ability_stasis"
+#define COMSIG_ABILITY_TELEKINESIS "ability_telekinesis"
+#define COMSIG_ABILITY_REANIMATE "ability_reanimate"
+
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
 #define COMSIG_PARRY_TRIGGER "parry_trigger"
@@ -1033,9 +1028,6 @@
 #define COMSIG_ESCORTED_ATOM_CHANGING "escorted_atom_changing"
 #define COMSIG_POINT_TO_ATOM "point_to_atom"
 
-/// from datum ui_act (usr, action)
-#define COMSIG_UI_ACT "COMSIG_UI_ACT"
-
 /// From reequip components
 #define COMSIG_REEQUIP_FAILURE "reequip failure"
 
@@ -1056,3 +1048,4 @@
 #define COMSIG_PUPPET_CHANGE_ORDER "puppetchangeorder"
 #define COMSIG_PUPPET_CHANGE_ALL_ORDER "puppetglobalorder"
 
+#define COMSIG_CAVE_INTERFERENCE_CHECK "cave_interference_check" //! Cave comms interference check signal.

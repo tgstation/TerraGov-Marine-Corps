@@ -296,6 +296,16 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/turf/return_turf = get_turf(portal)
 	if(!return_turf)
 		return_turf = locate(backup_coordinates[1], backup_coordinates[2], backup_coordinates[3])
+	if(banishment_target.density)
+		var/list/cards = GLOB.cardinals.Copy()
+		for(var/mob/living/displacing in return_turf)
+			if(displacing.stat == DEAD) //no.
+				continue
+			shuffle(cards) //direction should vary.
+			for(var/card AS in cards)
+				if(step(displacing, card))
+					to_chat(displacing, span_warning("A sudden force pushes you away from [return_turf]!"))
+					break
 	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
 	banishment_target.status_flags = initial(banishment_target.status_flags) //Remove stasis and temp invulerability
 	banishment_target.forceMove(return_turf)
@@ -659,6 +669,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/target_initial_brute_damage = 0
 	/// Initial sunder of the target
 	var/target_initial_sunder = 0
+	/// Initial fire stacks of the target
+	var/target_initial_fire_stacks = 0
+	/// Initial on_fire value
+	var/target_initial_on_fire = FALSE
 	/// How far can you rewind someone
 	var/range = 5
 
@@ -690,6 +704,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	last_target_locs_list = list(get_turf(A))
 	target_initial_brute_damage = targeted.getBruteLoss()
 	target_initial_burn_damage = targeted.getFireLoss()
+	target_initial_fire_stacks = targeted.fire_stacks
+	target_initial_on_fire = targeted.on_fire
 	if(isxeno(A))
 		var/mob/living/carbon/xenomorph/xeno_target = targeted
 		target_initial_sunder = xeno_target.sunder
@@ -732,7 +748,12 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		targeted.status_flags &= ~(INCORPOREAL|GODMODE)
 		REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
 		targeted.heal_overall_damage(targeted.getBruteLoss() - target_initial_brute_damage, targeted.getFireLoss() - target_initial_burn_damage, updating_health = TRUE)
-		if(isxeno(target))
+		if(target_initial_on_fire && target_initial_fire_stacks >= 0)
+			targeted.fire_stacks = target_initial_fire_stacks
+			targeted.IgniteMob()
+		else
+			targeted.ExtinguishMob()
+		if(isxeno(targeted))
 			var/mob/living/carbon/xenomorph/xeno_target = targeted
 			xeno_target.sunder = target_initial_sunder
 		targeted.remove_filter("rewind_blur")

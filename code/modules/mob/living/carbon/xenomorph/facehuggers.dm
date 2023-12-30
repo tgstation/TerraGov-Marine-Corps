@@ -683,30 +683,44 @@
 	combat_hugger = TRUE
 	flags_equip_slot = NONE
 
-
-/obj/item/clothing/mask/facehugger/combat/neuro
-	name = "neuro hugger"
+/obj/item/clothing/mask/facehugger/combat/chem_injector
 	desc = "This strange creature has a single prominent sharp proboscis."
-	color = COLOR_DARK_ORANGE
 	impact_time = 1 SECONDS
 	activate_time = 1.5 SECONDS
 	jump_cooldown = 1.5 SECONDS
 	proximity_time = 0.5 SECONDS
+	///The type of chemical we inject
+	var/datum/reagent/toxin/injected_chemical_type
+	///The amount of chemical we should inject, in units
+	var/amount_injected = 10
 
-/obj/item/clothing/mask/facehugger/combat/neuro/Attach(mob/M, mob/user)
+/obj/item/clothing/mask/facehugger/combat/chem_injector/Attach(mob/living/carbon/M, mob/user)
 	if(!combat_hugger_check_target(M))
 		return FALSE
 
-	var/mob/living/victim = M
 	do_attack_animation(M)
-	victim.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO) //This should prevent sprinting
-	victim.apply_damage(1, BRUTE, sharp = TRUE, updating_health = TRUE) //Token brute for the injection
-	victim.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 10, no_overdose = TRUE)
-	playsound(victim, 'sound/effects/spray3.ogg', 25, 1)
-	victim.visible_message(span_danger("[src] penetrates [victim] with its sharp probscius!"),span_danger("[src] penetrates you with a sharp probscius before falling down!"))
+	M.apply_damage(1, BRUTE, sharp = TRUE, updating_health = TRUE) //Token brute for the injection
+	M.reagents.add_reagent(injected_chemical_type, amount_injected, no_overdose = TRUE)
+	playsound(M, 'sound/effects/spray3.ogg', 25, 1)
+	M.visible_message(span_danger("[src] penetrates [M] with its sharp probscius!"), span_danger("[src] penetrates you with a sharp probscius before falling down!"))
 	leaping = FALSE
 	go_idle() //We're a bit slow on the recovery
 	return TRUE
+
+/obj/item/clothing/mask/facehugger/combat/chem_injector/neuro
+	name = "neurotoxin hugger"
+	color = COLOR_DARK_ORANGE
+	injected_chemical_type = /datum/reagent/toxin/xeno_neurotoxin
+
+/obj/item/clothing/mask/facehugger/combat/chem_injector/neuro/Attach(mob/living/carbon/M)
+	if(!..())
+		return
+	M.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO) //This should prevent sprinting
+
+/obj/item/clothing/mask/facehugger/combat/chem_injector/ozelomelyn
+	name = "ozelomelyn hugger"
+	injected_chemical_type = /datum/reagent/toxin/xeno_ozelomelyn
+	color = COLOR_MAGENTA
 
 /obj/item/clothing/mask/facehugger/combat/acid
 	name = "acid hugger"

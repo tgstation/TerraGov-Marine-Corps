@@ -2,8 +2,8 @@ import { CampaignData, MissionIcon } from './index';
 import { useBackend } from '../../backend';
 import { LabeledList, Button, Section, Table, ProgressBar, Box, Flex } from '../../components';
 
-export const CampaignOverview = (props, context) => {
-  const { act, data } = useBackend<CampaignData>(context);
+export const CampaignOverview = (props) => {
+  const { act, data } = useBackend<CampaignData>();
   const {
     current_mission,
     active_attrition_points,

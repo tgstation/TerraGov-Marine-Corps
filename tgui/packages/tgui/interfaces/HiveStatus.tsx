@@ -1,4 +1,5 @@
-import { useBackend, useLocalState } from '../backend';
+import { useState } from 'react';
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { Button, Flex, Divider, Box, Section, ProgressBar, Tooltip, Collapsible } from '../components';
 import { round } from 'common/math';
@@ -84,8 +85,8 @@ type DeathTimer = {
   end_time: number;
 };
 
-export const HiveStatus = (_props, context) => {
-  const { act, data } = useBackend<InputPack>(context);
+export const HiveStatus = (_props) => {
+  const { act, data } = useBackend<InputPack>();
   const {
     hive_name,
     user_ref,
@@ -99,7 +100,6 @@ export const HiveStatus = (_props, context) => {
     <Window
       theme="xeno"
       title={hive_name + ' Hive Status'}
-      resizable
       width={800}
       height={800}>
       <Window.Content scrollable>
@@ -136,16 +136,13 @@ export const HiveStatus = (_props, context) => {
   );
 };
 
-const CachedCollapsible = (
-  props: {
-    title: string;
-    open: boolean;
-    children?: JSX.Element;
-    onClickXeno: any;
-  },
-  context
-) => {
-  const { data } = useBackend<InputPack>(context);
+const CachedCollapsible = (props: {
+  title: string;
+  open: boolean;
+  children?: JSX.Element;
+  onClickXeno: any;
+}) => {
+  const { data } = useBackend<InputPack>();
   const { user_xeno } = data;
 
   if (!user_xeno) {
@@ -173,8 +170,8 @@ const CachedCollapsible = (
   );
 };
 
-const BlessingsButton = (_props, context) => {
-  const { act, data } = useBackend<InputPack>(context);
+const BlessingsButton = (_props) => {
+  const { act, data } = useBackend<InputPack>();
   const { user_purchase_perms, user_ref } = data;
 
   if (!user_purchase_perms) {
@@ -192,8 +189,8 @@ const BlessingsButton = (_props, context) => {
   );
 };
 
-const GeneralInfo = (_props, context) => {
-  const { data } = useBackend<InputPack>(context);
+const GeneralInfo = (_props) => {
+  const { data } = useBackend<InputPack>();
   const {
     hive_larva_burrowed,
     hive_strategic_psy_points,
@@ -289,10 +286,12 @@ const DeadXenoTimerCountdowns = (props: {
 
 const bar_text_width = 10.25;
 
-const XenoCountdownBar = (
-  props: { time: number; max: number; tooltip: string; left_side: string },
-  _context
-) => {
+const XenoCountdownBar = (props: {
+  time: number;
+  max: number;
+  tooltip: string;
+  left_side: string;
+}) => {
   if (props.time === 0) {
     return <Box />;
   }
@@ -313,8 +312,8 @@ const XenoCountdownBar = (
   );
 };
 
-const LarvaBar = (_props, context) => {
-  const { data } = useBackend<InputPack>(context);
+const LarvaBar = (_props) => {
+  const { data } = useBackend<InputPack>();
   const { hive_larva_current, hive_larva_threshold, hive_larva_rate } = data;
 
   return (
@@ -336,8 +335,8 @@ const LarvaBar = (_props, context) => {
   );
 };
 
-const MaturityBar = (_props, context) => {
-  const { data } = useBackend<InputPack>(context);
+const MaturityBar = (_props) => {
+  const { data } = useBackend<InputPack>();
   const { user_xeno, user_maturity, user_next_mat_level } = data;
 
   if (!user_xeno || user_next_mat_level === 0) {
@@ -365,8 +364,8 @@ const MaturityBar = (_props, context) => {
   );
 };
 
-const EvolutionBar = (_props, context) => {
-  const { act, data } = useBackend<InputPack>(context);
+const EvolutionBar = (_props) => {
+  const { act, data } = useBackend<InputPack>();
   const { static_info, user_ref, user_xeno, user_index, user_evolution } = data;
 
   const max = static_info[user_index].evolution_max;
@@ -405,8 +404,8 @@ type PyramidCalc = {
   total: number; // Total xeno count for this tier.
 };
 
-const PopulationPyramid = (_props, context) => {
-  const { act, data } = useBackend<InputPack>(context);
+const PopulationPyramid = (_props) => {
+  const { act, data } = useBackend<InputPack>();
   const {
     hive_max_tier_two,
     hive_max_tier_three,
@@ -419,14 +418,8 @@ const PopulationPyramid = (_props, context) => {
     user_show_empty,
     user_show_compact,
   } = data;
-
-  const [showEmpty, toggleEmpty] = useLocalState(context, 'showEmpty', true);
-
-  const [showCompact, toggleCompact] = useLocalState(
-    context,
-    'showCompact',
-    false
-  );
+  const [showEmpty, toggleEmpty] = useState(true);
+  const [showCompact, toggleCompact] = useState(false);
 
   const primos: boolean[] = []; // Index is tier.
   const pyramid_data: PyramidCalc[] = [];
@@ -463,7 +456,7 @@ const PopulationPyramid = (_props, context) => {
     hive_total++;
   });
 
-  const ShowButtons = (_props, _context) => {
+  const ShowButtons = (_props) => {
     if (!user_xeno) {
       // Observers will not be able to cache empty toggle.
       return (
@@ -519,7 +512,7 @@ const PopulationPyramid = (_props, context) => {
               : 0 + tier === 3
                 ? hive_max_tier_three
                 : 0;
-          const TierSlots = (_props, _context) => {
+          const TierSlots = (_props) => {
             return (
               <Box
                 as="span"
@@ -587,7 +580,7 @@ const PopulationPyramid = (_props, context) => {
                 {tier_info.index.map((value, idx) => {
                   const count = tier_info.caste[idx];
                   if (!empty_display && count === 0) {
-                    return <Box />;
+                    return <Box key={tier} />;
                   }
                   const static_entry = static_info[value];
                   return (
@@ -601,7 +594,6 @@ const PopulationPyramid = (_props, context) => {
                         src={`data:image/jpeg;base64,${static_entry.minimap}`}
                         style={{
                           transform: 'scale(3) translateX(-3.5px)',
-                          '-ms-interpolation-mode': 'nearest-neighbor',
                         }}
                       />
                       {static_entry.name}
@@ -612,7 +604,7 @@ const PopulationPyramid = (_props, context) => {
               <Flex>
                 {tier_info.caste.map((count, idx) => {
                   if (!empty_display && count === 0) {
-                    return <Box />;
+                    return <Box key={tier} />;
                   }
                   const static_entry = static_info[tier_info.index[idx]];
                   return (
@@ -656,8 +648,8 @@ const default_sort: sort_by = {
   down: true,
 };
 
-const XenoList = (_props, context) => {
-  const { act, data } = useBackend<InputPack>(context);
+const XenoList = (_props) => {
+  const { act, data } = useBackend<InputPack>();
   const {
     xeno_info,
     static_info,
@@ -667,13 +659,9 @@ const XenoList = (_props, context) => {
     user_tracked,
   } = data;
 
-  const [sortingBy, setSortBy] = useLocalState(
-    context,
-    'sortingBy',
-    default_sort
-  );
+  const [sortingBy, setSortBy] = useState(default_sort);
 
-  const SortingButton = (props: { text: string; tip?: string }, _context) => {
+  const SortingButton = (props: { text: string; tip?: string }) => {
     return (
       <Button
         ml={-1}
@@ -697,7 +685,7 @@ const XenoList = (_props, context) => {
     );
   };
 
-  const HeaderDivider = (props: { order: number }, _context) => {
+  const HeaderDivider = (props: { order: number }) => {
     return (
       <Flex.Item order={props.order}>
         <Divider />
@@ -842,7 +830,6 @@ const XenoList = (_props, context) => {
                     src={`data:image/jpeg;base64,${static_entry.minimap}`}
                     style={{
                       transform: 'scale(2) translateX(2px)', // Upscaled from 7x7 to 14x14.
-                      '-ms-interpolation-mode': 'nearest-neighbor',
                     }}
                   />
                 </Flex.Item>
@@ -850,8 +837,8 @@ const XenoList = (_props, context) => {
                 <Flex.Item
                   width={name_width}
                   style={{
-                    'overflow': 'hidden',
-                    'text-overflow': 'ellipsis',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
                   }}>
                   <Button
                     italic={
@@ -860,8 +847,8 @@ const XenoList = (_props, context) => {
                     nowrap
                     verticalAlignContent="middle"
                     style={{
-                      'overflow': 'hidden', // hiding overflow prevents the button being slightly scrollable
-                      'margin-top': '-3px', // magic number, lines up button text with other cols
+                      overflow: 'hidden', // hiding overflow prevents the button being slightly scrollable
+                      marginTop: '-3px', // magic number, lines up button text with other cols
                     }}
                     backgroundColor="transparent"
                     tooltip={
@@ -908,8 +895,8 @@ const XenoList = (_props, context) => {
                   grow
                   nowrap
                   style={{
-                    'overflow': 'hidden',
-                    'text-overflow': 'ellipsis',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
                   }}>
                   {entry.location}
                 </Flex.Item>
@@ -929,8 +916,8 @@ type ActionButtonProps = {
   can_transfer_plasma: boolean;
 };
 
-const ActionButtons = (props: ActionButtonProps, context) => {
-  const { act } = useBackend<InputPack>(context);
+const ActionButtons = (props: ActionButtonProps) => {
+  const { act } = useBackend<InputPack>();
   const observing = props.target_ref === props.watched_xeno;
 
   const overwatch_button = (
@@ -995,8 +982,8 @@ const ActionButtons = (props: ActionButtonProps, context) => {
   );
 };
 
-const StructureList = (_props, context) => {
-  const { act, data } = useBackend<InputPack>(context);
+const StructureList = (_props) => {
+  const { act, data } = useBackend<InputPack>();
 
   const { user_ref, hive_structures, user_tracked } = data;
 
@@ -1087,8 +1074,8 @@ const StructureList = (_props, context) => {
                   grow
                   nowrap
                   style={{
-                    'overflow': 'hidden',
-                    'text-overflow': 'ellipsis',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
                   }}>
                   {entry.location}
                 </Flex.Item>

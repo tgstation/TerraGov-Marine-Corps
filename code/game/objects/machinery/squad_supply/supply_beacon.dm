@@ -117,7 +117,8 @@
 /obj/item/beacon/supply_beacon/onTransitZ(old_z,new_z)
 	. = ..()
 	//Assumes doMove sets loc before onTransitZ
-	beacon_datum.drop_location = loc
+	if(beacon_datum)
+		beacon_datum.drop_location = loc
 
 /obj/item/beacon/supply_beacon/activate(mob/living/carbon/human/H)
 	var/area/A = get_area(H)

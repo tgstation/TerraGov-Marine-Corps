@@ -95,7 +95,7 @@
 /turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/patrol_base)
 "bG" = (
-/obj/structure/drop_pod_launcher,
+/obj/structure/drop_pod_launcher/supply,
 /obj/structure/droppod/nonmob/supply_pod,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)
@@ -793,10 +793,10 @@
 	},
 /area/mainship/patrol_base)
 "js" = (
-/obj/structure/drop_pod_launcher,
 /obj/machinery/light/mainship{
 	dir = 8
 	},
+/obj/structure/drop_pod_launcher/mech,
 /obj/structure/droppod/nonmob/mech_pod,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)
@@ -817,15 +817,15 @@
 	},
 /area/mainship/patrol_base)
 "jL" = (
-/obj/structure/drop_pod_launcher,
+/obj/structure/drop_pod_launcher/sentry,
 /obj/structure/droppod/nonmob/turret_pod,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)
 "jU" = (
-/obj/structure/drop_pod_launcher,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/structure/drop_pod_launcher/mech,
 /obj/structure/droppod/nonmob/mech_pod,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)
@@ -1064,7 +1064,7 @@
 	},
 /area/mainship/patrol_base)
 "nz" = (
-/obj/structure/drop_pod_launcher,
+/obj/structure/drop_pod_launcher/mech,
 /obj/structure/droppod/nonmob/mech_pod,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)

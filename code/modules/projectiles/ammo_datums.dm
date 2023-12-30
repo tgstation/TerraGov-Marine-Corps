@@ -1299,6 +1299,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 50
+	max_range = 40
 	penetration = 25
 	sundering = 5
 	shell_speed = 4
@@ -3963,7 +3964,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hugger_type = /obj/item/clothing/mask/facehugger/combat/slash
 
 /datum/ammo/xeno/hugger/neuro
-	hugger_type = /obj/item/clothing/mask/facehugger/combat/neuro
+	hugger_type = /obj/item/clothing/mask/facehugger/combat/chem_injector/neuro
+
+/datum/ammo/xeno/hugger/ozelomelyn
+	hugger_type = /obj/item/clothing/mask/facehugger/combat/chem_injector/ozelomelyn
 
 /datum/ammo/xeno/hugger/resin
 	hugger_type = /obj/item/clothing/mask/facehugger/combat/resin
