@@ -14,7 +14,7 @@ HOSTEDBY VideNoir
 TITLE Nine Tailed Fox vs Alien
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
-HUB
+#HUB
 
 ## Optional URL for faster resource downloading.
 #RESOURCE_URL url
@@ -61,11 +61,11 @@ PROTECT_LEGACY_RANKS
 ## Add your own URLs here.
 #FORUMURL
 #WIKIURL
-#RULESURL
-#DISCORDURL
+RULESURL https://discord.gg/cDNZXUWjmJ
+DISCORDURL https://discord.gg/cDNZXUWjmJ
 #DONATIONURL
-#GITHUBURL
-#BANAPPEALS
+GITHUBURL https://github.com/EaglePhntm/NTFvsAlien
+BANAPPEALS https://discord.gg/cDNZXUWjmJ
 
 ## Uncomment to enable global ban DB using the provided URL. The API should expect to receive a ckey at the end of the URL.
 ## More API details can be found here: https://centcom.melonmesa.com

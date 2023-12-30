@@ -1162,7 +1162,7 @@
 //Xeno Larval Growth Sting
 /datum/action/xeno_action/activable/larval_growth_sting
 	name = "Larval Growth Sting"
-	action_icon_state = "drone_sting"
+	action_icon_state = "larval_growth"
 	desc = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker. Has harmful effects for non-infected hosts while stabilizing larva-infected hosts."
 	ability_name = "larval growth sting"
 	plasma_cost = 150
@@ -1429,8 +1429,8 @@
 
 /datum/action/xeno_action/activable/impregnate
 	name = "Impregnate"
-	action_icon_state = "drone_sting"
-	desc = "Infect your victim with a young one without a facehugger. This will burn them a bit."
+	action_icon_state = "impregnate"
+	desc = "Infect your victim with a young one without a facehugger. This will burn them a bit due to acidic release."
 	cooldown_timer = 30 SECONDS
 	use_state_flags = ABILITY_USE_STAGGERED
 	plasma_cost = 50
@@ -1452,7 +1452,7 @@
 		if(implanted_embryos >= MAX_LARVA_PREGNANCIES)
 			to_chat(owner, span_warning("This host is already full of young ones."))
 			return FALSE
-	if(!ishuman(A))
+	if(!ishuman(A) && !isxeno(A))
 		to_chat(owner, span_warning("This one wouldn't be able to bear a young one."))
 		return FALSE
 	if(owner.do_actions) //can't use if busy
@@ -1469,37 +1469,52 @@
 /datum/action/xeno_action/activable/impregnate/use_ability(mob/living/A)
 	var/channel = SSsounds.random_available_channel()
 	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/carbon/human/victim = A
-	var/hivenumber = XENO_HIVE_NORMAL
-	hivenumber = X.hivenumber
-	X.face_atom(victim)
-	X.do_jitter_animation()
-	A.do_jitter_animation()
-	to_chat(owner, span_warning("We will cum in 7 seconds! Do not walk away until it is done."))
-	playsound(X, 'sound/effects/alien_plapping.ogg', 40, channel = channel)
-	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
-		to_chat(owner, span_warning("We stop fucking \the [victim]. They probably was loose anyways."))
-		X.stop_sound_channel(channel)
-		return fail_activate()
-	owner.visible_message(span_warning("[X] fucks [victim]!"), span_warning("We fuck [victim]!"), span_warning("You hear slapping."), 5, victim)
-	if(victim.stat == CONSCIOUS)
-		to_chat(victim, span_warning("[X] fucks you!"))
-	victim.apply_damage(25, BURN, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
-	if(ismonkey(victim))
-		victim.apply_damage(25, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
-	var/obj/item/alien_embryo/embryo = new(victim)
-	embryo.hivenumber = hivenumber
-	if(victim.gender==FEMALE)
-		embryo.emerge_target_flavor = "pussy"
-	else
-		embryo.emerge_target_flavor = "ass"
-	GLOB.round_statistics.now_pregnant++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[X.ckey]
-	personal_statistics.impregnations++
-	add_cooldown()
-	succeed_activate()
-
+	if(ishuman(A))
+		var/mob/living/carbon/human/victim = A
+		var/hivenumber = XENO_HIVE_NORMAL
+		hivenumber = X.hivenumber
+		X.face_atom(victim)
+		X.do_jitter_animation()
+		A.do_jitter_animation()
+		to_chat(owner, span_warning("We will cum in 7 seconds! Do not walk away until it is done."))
+		playsound(X, 'sound/effects/alien_plapping.ogg', 40, channel = channel)
+		if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
+			to_chat(owner, span_warning("We stop fucking \the [victim]. They probably was loose anyways."))
+			X.stop_sound_channel(channel)
+			return fail_activate()
+		owner.visible_message(span_warning("[X] fucks [victim]!"), span_warning("We fuck [victim]!"), span_warning("You hear slapping."), 5, victim)
+		if(victim.stat == CONSCIOUS)
+			to_chat(victim, span_warning("[X] fucks you!"))
+		victim.apply_damage(25, BURN, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
+		if(ismonkey(victim))
+			victim.apply_damage(25, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
+		var/obj/item/alien_embryo/embryo = new(victim)
+		embryo.hivenumber = hivenumber
+		if(victim.gender==FEMALE)
+			embryo.emerge_target_flavor = "pussy"
+		else
+			embryo.emerge_target_flavor = "ass"
+		GLOB.round_statistics.now_pregnant++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[X.ckey]
+		personal_statistics.impregnations++
+		add_cooldown()
+		succeed_activate()
+	if(isxeno(A))
+		var/mob/living/carbon/xenomorph/victim = A
+		X.face_atom(A)
+		X.do_jitter_animation()
+		A.do_jitter_animation()
+		to_chat(X, span_warning("We will cum in 7 seconds! Do not walk away until it is done. Though this has no purpose but fun as Xenomorph cant bear larvas."))
+		playsound(X, 'sound/effects/alien_plapping.ogg', 40, channel = channel)
+		if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
+			to_chat(X, span_warning("We stop fucking \the [victim]. They probably was loose anyways."))
+			X.stop_sound_channel(channel)
+			return fail_activate()
+		X.visible_message(span_warning("[X] fucks [victim]!"), span_warning("We fuck [victim]!"), span_warning("You hear slapping."), 5, victim)
+		if(victim.stat == CONSCIOUS)
+			to_chat(victim, span_warning("[X] fucks you!"))
+		succeed_activate()
 /////////////////////////////////
 // Cocoon
 /////////////////////////////////

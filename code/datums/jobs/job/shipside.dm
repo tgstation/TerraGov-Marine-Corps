@@ -503,11 +503,6 @@ You are in charge of logistics and the overwatch system. You are also in line to
 			new_human.wear_id.paygrade = "O3"
 		if(2501 to INFINITY) // 50 hrs
 			new_human.wear_id.paygrade = "O4"
-
-/datum/job/terragov/command/commanddoll/campaign
-	outfit = /datum/job/terragov/command/commanddoll/campaign
-	multiple_outfits = FALSE
-
 /datum/outfit/job/command/commanddoll
 	name = COMMAND_DOLL
 	jobtype = /datum/job/terragov/command/commanddoll

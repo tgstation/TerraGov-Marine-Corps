@@ -1412,13 +1412,15 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "bmi" = (
-/obj/structure/safe,
-/obj/item/stack/sheet/mineral/diamond,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/weapon/gun/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
+/obj/structure/closet/cabinet,
+/obj/item/portable_vendor/corporate,
+/obj/item/clothing/under/suit_jacket/female,
+/obj/item/clothing/suit/armor/bulletproof,
+/obj/item/clipboard,
+/obj/item/clothing/under/liaison_suit/suspenders,
+/obj/item/clothing/under/liaison_suit/outing,
+/obj/item/clothing/under/liaison_suit,
+/obj/item/clothing/under/liaison_suit/formal,
 /turf/open/floor/carpet{
 	icon_state = "carpetside"
 	},
@@ -5622,8 +5624,7 @@
 /area/mainship/hull/lower_hull)
 "fdT" = (
 /obj/machinery/light{
-	dir = 8;
-	id = "celllights"
+	dir = 8
 	},
 /turf/open/floor/mainship/red{
 	dir = 8
@@ -5765,6 +5766,7 @@
 /obj/item/tool/plantspray/weeds,
 /obj/item/seeds/goldappleseed,
 /obj/machinery/light,
+/obj/effect/spawner/random/machinery/hydrotray,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/command/corporateliaison)
 "fiD" = (
@@ -11573,18 +11575,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "kxh" = (
-/obj/item/weapon/gun/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
-/obj/structure/closet/cabinet,
-/obj/item/clothing/under/liaison_suit/formal,
-/obj/item/clothing/under/liaison_suit,
-/obj/item/clothing/under/liaison_suit/outing,
-/obj/item/clothing/under/liaison_suit/suspenders,
-/obj/item/clipboard,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/attachable/suppressor,
-/obj/item/portable_vendor/corporate,
-/obj/item/clothing/under/suit_jacket/female,
 /turf/open/floor/carpet{
 	dir = 5;
 	icon_state = "carpetside"
@@ -15316,7 +15306,6 @@
 	name = "Ship Floor 1 Hallways"
 	})
 "nNX" = (
-/obj/structure/table/reinforced,
 /obj/structure/table/reinforced,
 /obj/machinery/faxmachine/warden,
 /obj/machinery/light{
@@ -21905,7 +21894,6 @@
 	})
 "tTm" = (
 /obj/structure/table/mainship,
-/obj/structure/table/mainship,
 /obj/machinery/computer/secure_data,
 /turf/open/floor/mainship/red{
 	dir = 4
@@ -22420,6 +22408,15 @@
 /turf/closed/wall/mainship,
 /area/mainship/command/self_destruct)
 "uuQ" = (
+/obj/structure/safe,
+/obj/item/stack/sheet/mineral/diamond,
+/obj/item/stack/sheet/mineral/gold,
+/obj/item/weapon/gun/pistol/vp70,
+/obj/item/ammo_magazine/pistol/vp70,
+/obj/item/ammo_magazine/pistol/vp70,
+/obj/item/ammo_magazine/pistol/vp70,
+/obj/item/ammo_magazine/pistol/vp70,
+/obj/item/attachable/suppressor,
 /turf/open/floor/carpet{
 	dir = 10;
 	icon_state = "carpetside"

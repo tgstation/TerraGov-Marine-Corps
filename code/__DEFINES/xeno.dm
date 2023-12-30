@@ -25,6 +25,7 @@
 #define STICKY_RESIN "sticky resin"
 #define RESIN_DOOR "resin door"
 #define RESIN_NEST "resin nest"
+#define LIGHT_TOWER "light tower"
 
 //Xeno reagents defines
 #define DEFILER_NEUROTOXIN "Neurotoxin"
@@ -134,8 +135,8 @@ GLOBAL_LIST_INIT(resin_images_list, list(
 		RESIN_WALL = image('icons/Xeno/actions.dmi', icon_state = RESIN_WALL),
 		STICKY_RESIN = image('icons/Xeno/actions.dmi', icon_state = STICKY_RESIN),
 		RESIN_DOOR = image('icons/Xeno/actions.dmi', icon_state = RESIN_DOOR),
-		RESIN_NEST = image('icons/Xeno/actions.dmi', icon_state = "nest"),
-		RESIN_LIGHTTOWER = image('icons/Xeno/actions.dmi', icon_state = "lighttower")
+		RESIN_NEST = image('icons/Xeno/actions.dmi', icon_state = RESIN_NEST),
+		RESIN_LIGHTTOWER = image('icons/Xeno/actions.dmi', icon_state = LIGHT_TOWER)
 		))
 
 //List of puppeteer order images

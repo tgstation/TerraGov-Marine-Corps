@@ -490,15 +490,20 @@
 // removed hollow examine from humans
 	if(HAS_TRAIT(src, TRAIT_HOLLOW))
 		if(isxeno(user))
-			msg += "<span style='font-weight: bold; color: purple;'>[t_He] [t_is] hollow. Useless.</span>\n"
+			msg += "<span style='font-weight: bold; color: purple;'>[t_He] [t_is] was hollowed before. Useless.</span>\n"
 //		else
 //			msg += "[span_warning("<b>[t_He] is hollowed out!</b>")]\n"
 
 	if(isxeno(user))
+		var/embryocount
+		for(var/obj/item/alien_embryo/implanted in contents)
+			embryocount ++
+			if(!implanted)
+				break
 		if(species.species_flags & IS_SYNTHETIC)
 			msg += "[span_xenowarning("You sense [t_he] [t_is] not organic.")]\n"
 		if(status_flags & XENO_HOST)
-			msg += "[t_He] [t_is] impregnated and[reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly) > 0 ? "" : " not"] inoculated with Larval Accelerant.\n"
+			msg += "[t_He] [t_is] impregnated with [embryocount] larva(s) and [t_he] [t_is][reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly) > 0 ? "" : " not"]inoculated with Larval Accelerant.\n"
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine))
 				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine)] doses of Tricordrazine [t_is] still inside the infected host, healing this one slowly.\n"
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline))
@@ -516,11 +521,10 @@
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
 			msg += "Transvitox: Converts burns to toxin over time, as well as causing incoming brute damage to deal additional toxin damage. Both effects intensifying with each xeno-based toxin present. Toxin damage is capped at 180.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_aphrotoxin))
-			msg += "Aphrotoxin: A strong aphrodisiac and larval growth toxin, will cause legs to go weak and boost larva growth. Metabolizes faster than most toxins, but the growth effect does not.\n"
-		if(status_flags & !XENO_HOST)
-		else
+			msg += "Aphrotoxin: A strong aphrodisiac and larval growth toxin, will cause legs to go weak and boost larva growth.\n"
+		if(embryocount < 1)
 			if(reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
-				msg += "Growth toxin: Makes the little ones grow faster while affected.\n"
+				msg += "Growth toxin: Makes the little ones grow faster while affected, but the host has no little ones inside..\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn))
 			msg += "Ozelomelyn: Rapidly purges all medicine in the body, causes toxin damage capped at 40. Metabolizes very quickly.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal))

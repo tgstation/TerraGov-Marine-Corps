@@ -912,6 +912,7 @@
 			/obj/item/storage/pill_bottle/dylovene = -1,
 			/obj/item/storage/pill_bottle/paracetamol = -1,
 			/obj/item/storage/pill_bottle/isotonic = -1,
+			/obj/item/storage/pill_bottle/aphrotoxin = 5,
 			/obj/item/storage/pill_bottle = -1,
 		),
 		"Auto Injector" = list(
@@ -931,6 +932,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20,
 			/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 10,
+			/obj/item/reagent_containers/hypospray/autoinjector/aphrotoxin = 10,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,

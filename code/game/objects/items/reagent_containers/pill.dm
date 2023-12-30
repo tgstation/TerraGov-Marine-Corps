@@ -245,3 +245,8 @@
 	//pill_desc = "An ultrazine pill. A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
 	list_reagents = list(/datum/reagent/medicine/ultrazine = 5)
 	pill_id = 21
+
+/obj/item/reagent_containers/pill/aphrotoxin
+	pill_desc = "An Aphrotoxin pill. Produced from xenomorphs. Causes weakness on the legs and intense lust."
+	list_reagents = list(/datum/reagent/toxin/xeno_aphrotoxin = 10)
+	pill_id = 22

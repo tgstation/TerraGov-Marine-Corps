@@ -4489,7 +4489,6 @@
 "faw" = (
 /obj/machinery/light{
 	dir = 8;
-	id = "celllights"
 	},
 /turf/open/floor/mainship/red{
 	dir = 8

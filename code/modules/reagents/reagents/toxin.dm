@@ -641,45 +641,127 @@
 	reagent_state = LIQUID
 	color = COLOR_TOXIN_APHROTOXIN
 	overdose_threshold = 10000
-	custom_metabolism = REAGENTS_METABOLISM
 	scannable = TRUE
 	toxpwr = 0
+	var/mob/living/carbon/debuff_owner
+	var/obj/effect/abstract/particle_holder/particle_holder
+	var/mob/living/carbon/human/debuff_ownerhuman
+
+/particles/aphrodisiac
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "heart"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 4
+	lifespan = 9
+	fade = 10
+	grow = 0.2
+	velocity = list(0, 0)
+	position = generator(GEN_CIRCLE, 10, 10, NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(0, -0.15), list(0, 0.15))
+	gravity = list(0, 0.4)
+	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(0.9,0.9), NORMAL_RAND)
+	rotation = 0
+	color = "#b002db"
 
 /datum/reagent/toxin/xeno_aphrotoxin/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 6)
 			if(prob(10))
 				to_chat(L, span_warning("You feel your [L.gender==MALE ? "cock throb a little," : "vagina get a bit wet,"] distracting you.") )
-				L.AdjustConfused(2 SECONDS)
+				L.AdjustConfused(1 SECONDS)
+				L.adjustStaminaLoss(5)
 		if(7 to 10)
 			if(prob(15))
 				L.emote("blink")
-				L.blur_eyes(5)
 				to_chat(L, span_warning("You feel your [L.gender==MALE ? "cock harden." : "vagina drip down your legs."] your knees feel weak!") )
-				L.AdjustConfused(3 SECONDS)
-			if(prob(20))
 				L.AdjustConfused(2 SECONDS)
+				L.adjustStaminaLoss(10)
+			if(prob(20))
+				L.AdjustConfused(1 SECONDS)
 		if(11 to 80)
 			if(prob(15))
 				L.emote("blush")
-				L.blur_eyes(5)
 			if(prob(15))
-				to_chat(L, span_warning("You feel your [L.gender==MALE ? "cock throb with need!" : "vagina drool like a waterfall!"] Your legs tremble and go limp.") )
-				L.Paralyze(2 SECONDS)
+				to_chat(L, span_warning("You feel your [L.gender==MALE ? "cock throb with need!" : "vagina drool like a waterfall!"] Your legs tremble, too weak to walk.") )
+				L.do_jitter_animation(200, 2 SECONDS)
+				L.AdjustImmobilized(2 SECONDS)
 				L.AdjustConfused(3 SECONDS)
+				L.adjustStaminaLoss(15)
 			if(prob(25))
 				L.AdjustConfused(2 SECONDS)
 		if(81 to INFINITY)
 			if(prob(15))
 				L.emote("moan")
-				L.blur_eyes(5)
 			if(prob(15))
-				to_chat(L, span_warning("You feel your [L.gender==MALE ? "cock throb hard as steel!" : "vagina drool like rain, burn like fire!"] ypır legs give up as you orgasm violently!") )
-				L.Paralyze(5 SECONDS)
-				L.AdjustConfused(6 SECONDS)
+				to_chat(L, span_warning("You feel your [L.gender==MALE ? "cock throb hard as steel!" : "vagina drool like rain, burn like fire!"] ypır legs give up as you come near orgasm!") )
+				L.do_jitter_animation(400, 3 SECONDS)
+				L.ParalyzeNoChain(3 SECONDS)
+				L.AdjustConfused(5 SECONDS)
+				L.adjustStaminaLoss(20)
 			if(prob(30))
-				L.AdjustConfused(2 SECONDS)
+				L.AdjustConfused(3 SECONDS)
 	return ..()
+
+/// Called when the debuff's owner uses the Resist action for this debuff.
+/datum/reagent/toxin/xeno_aphrotoxin/proc/call_resist_debuff()
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(resist_debuff)) // grilled cheese sandwich
+
+/// Resisting the debuff will allow the debuff's owner to remove some stacks from themselves.
+/datum/reagent/toxin/xeno_aphrotoxin/proc/resist_debuff()
+	var/channel = SSsounds.random_available_channel()
+	if(length(debuff_owner.do_actions))
+		return
+	if(debuff_ownerhuman.w_uniform)
+		debuff_ownerhuman.balloon_alert(debuff_owner, "Undress first.")
+		return
+	playsound(debuff_owner, "sound/effects/squelch2.ogg", 30, channel = channel)
+	debuff_ownerhuman.visible_message(span_warning("[debuff_ownerhuman] begins to [debuff_ownerhuman.gender==MALE ? "jack off" : "rub her slit"]!"), span_warning("You begin to [debuff_ownerhuman.gender==MALE ? "jack off" : "rub your vagina"]."), span_warning("You hear slapping."), 5)
+	if(!do_after(debuff_owner, 10 SECONDS, TRUE, debuff_owner, BUSY_ICON_GENERIC))
+		debuff_owner?.balloon_alert(debuff_owner, "Interrupted")
+		debuff_owner.stop_sound_channel(channel)
+		return
+	if(!debuff_owner)
+		return
+	debuff_owner.emote("moan")
+	debuff_owner.visible_message(span_warning("[debuff_owner] cums on the floor!"), span_warning("You cum on the floor."), span_warning("You hear a splatter."), 5)
+	debuff_owner.balloon_alert(debuff_owner, "Orgasmed.")
+	debuff_owner.adjustStaminaLoss(100)
+	if(debuff_owner.gender == MALE)
+		new /obj/effect/decal/cleanable/blood/splatter/cum(debuff_owner.loc)
+	else
+		new /obj/effect/decal/cleanable/blood/splatter/girlcum(debuff_owner.loc)
+	playsound(debuff_owner.loc, "sound/effects/splat.ogg", 30)
+	debuff_owner.reagents.remove_reagent(/datum/reagent/toxin/xeno_aphrotoxin, 6)
+	debuff_owner.reagents.remove_reagent(/datum/reagent/consumable/larvajelly, 3)
+	if(debuff_owner.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_aphrotoxin) > 0)
+		resist_debuff() // We repeat ourselves as long as the debuff persists.
+		return
+
+/datum/reagent/toxin/xeno_aphrotoxin/on_mob_add(mob/living/L)
+	if(L.status_flags & GODMODE)
+		qdel(src)
+		return
+	. = ..()
+	debuff_ownerhuman = L
+	debuff_owner = L
+	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
+	L.balloon_alert(L, "Aphrotoxin")
+	particle_holder = new(L, /particles/aphrodisiac)
+	particle_holder.particles.spawning = 1 + round(debuff_owner.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_aphrotoxin) / 4)
+	particle_holder.pixel_x = -2
+	particle_holder.pixel_y = 0
+	if(HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT) || (debuff_owner.get_soft_armor(BIO) >= 65))
+		custom_metabolism = REAGENTS_METABOLISM
+
+/datum/reagent/toxin/xeno_aphrotoxin/on_mob_delete()
+	UnregisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST)
+	debuff_owner = null
+	QDEL_NULL(particle_holder)
+	return ..()
+
 /datum/reagent/zombium
 	name = "Zombium"
 	description = "Powerful chemical able to raise the dead, origin is likely from an unidentified bioweapon."

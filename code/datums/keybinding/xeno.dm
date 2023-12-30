@@ -172,7 +172,7 @@
 /datum/keybinding/xeno/impregnate
 	name = "Impregnate"
 	full_name = "Impregnate"
-	description = "Infect an adjacent host with a larva without needing a hugger."
+	description = "Infect an adjacent host with a larva without needing a hugger. This will burn them a bit due to acidic release."
 	keybind_signal = COMSIG_XENOABILITY_IMPREGNATE
 
 /datum/keybinding/xeno/lay_egg

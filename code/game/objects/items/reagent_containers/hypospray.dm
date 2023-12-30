@@ -489,6 +489,14 @@
 	)
 	description_overlay = "Hy"
 
+/obj/item/reagent_containers/hypospray/advanced/aphrotoxin
+	name = "Aphrotoxin hypospray"
+	desc = "A hypospray loaded with Aphrotoxin. produced from xenomorphs. Causes weakness on the legs and intense lust."
+	amount_per_transfer_from_this = 5
+	list_reagents = list(
+		/datum/reagent/toxin/xeno_aphrotoxin = 60,
+	)
+	description_overlay = "Apr"
 /obj/item/reagent_containers/hypospray/advanced/nanoblood
 	name = "nanoblood hypospray"
 	desc = "A hypospray loaded with nanoblood. A chemical which rapidly restores blood at the cost of minor toxic damage."

@@ -802,6 +802,11 @@
 	injected_chemical_type = /datum/reagent/toxin/xeno_ozelomelyn
 	color = COLOR_MAGENTA
 
+/obj/item/clothing/mask/facehugger/combat/chem_injector/aphrotoxin
+	name = "aphrotoxin hugger"
+	injected_chemical_type = /datum/reagent/toxin/xeno_aphrotoxin
+	color = COLOR_PINK
+
 /obj/item/clothing/mask/facehugger/combat/acid
 	name = "acid hugger"
 	desc = "This repulsive looking thing is bloated with throbbing, putrescent green sacks of flesh."

@@ -224,7 +224,7 @@
 		else if(hemodile_amount > 0)
 			xeno_reagent.overlays += hemodile_image
 
-		if(aphrotoxin_amount > 20)
+		if(aphrotoxin_amount > 15)
 			xeno_reagent.overlays += aphrotoxin_high_image
 		else if(aphrotoxin_amount > 0)
 			xeno_reagent.overlays += aphrotoxin_image

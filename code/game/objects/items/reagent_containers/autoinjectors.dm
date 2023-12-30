@@ -188,6 +188,15 @@
 	list_reagents = list(/datum/reagent/hypervene = 9)
 	description_overlay = "Hy"
 
+/obj/item/reagent_containers/hypospray/autoinjector/aphrotoxin
+	name = "Aphrotoxin autoinjector"
+	desc = "An auto-injector loaded with 3 uses of aphrotoxin, produced from xenomorphs. Causes weakness on the legs and intense lust."
+	icon_state = "Mystery"
+	amount_per_transfer_from_this = 10
+	volume = 50
+	list_reagents = list(/datum/reagent/toxin/xeno_aphrotoxin = 30)
+	description_overlay = "Apr"
+
 /obj/item/reagent_containers/hypospray/autoinjector/virilyth //not accessible during normal play, only for valhalla
 	name = "virilyth autoinjector"
 	desc = "A large auto-injector freshly loaded with virilynth."
