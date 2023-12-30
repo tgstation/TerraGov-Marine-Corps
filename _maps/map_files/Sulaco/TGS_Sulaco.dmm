@@ -17579,10 +17579,10 @@
 	},
 /area/sulaco/command/eva)
 "lGX" = (
-/obj/machinery/marine_selector/clothes,
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
+/obj/machinery/quick_vendor/beginner,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "lHY" = (
@@ -21745,7 +21745,6 @@
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/plasmaloss,
 /obj/structure/ob_ammo/warhead/plasmaloss,
-/obj/structure/ob_ammo/warhead/plasmaloss,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -22264,7 +22263,6 @@
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/cluster,
 /obj/structure/ob_ammo/warhead/cluster,
-/obj/structure/ob_ammo/warhead/cluster,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -22617,7 +22615,6 @@
 /area/sulaco/research)
 "sgH" = (
 /obj/structure/rack,
-/obj/structure/ob_ammo/warhead/explosive,
 /obj/structure/ob_ammo/warhead/explosive,
 /obj/structure/ob_ammo/warhead/explosive,
 /obj/machinery/light/mainship/small{
@@ -25020,7 +25017,6 @@
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/incendiary,
 /obj/structure/ob_ammo/warhead/incendiary,
-/obj/structure/ob_ammo/warhead/incendiary,
 /obj/machinery/camera/autoname,
 /turf/open/floor/prison/red{
 	dir = 1
@@ -25692,6 +25688,12 @@
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/engineering/atmos)
+"waM" = (
+/obj/machinery/quick_vendor/beginner,
+/turf/open/floor/prison/green{
+	dir = 1
+	},
+/area/sulaco/marine)
 "waW" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
 	dir = 8
@@ -25838,6 +25840,12 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
 "wjX" = (
+/obj/structure/rack,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
 /turf/open/floor/prison/red{
 	dir = 4
 	},
@@ -25916,6 +25924,17 @@
 /obj/machinery/firealarm{
 	dir = 8
 	},
+/obj/structure/rack,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
 /turf/open/floor/prison/red{
 	dir = 4
 	},
@@ -26590,6 +26609,10 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
+"xsg" = (
+/obj/machinery/quick_vendor/beginner,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "xss" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/metal/large_stack,
@@ -45973,7 +45996,7 @@ yfM
 yfM
 vjG
 fXb
-xPc
+waM
 aLJ
 xJd
 ayl
@@ -46501,7 +46524,7 @@ dmj
 mmI
 oJO
 aLk
-mAk
+xsg
 euR
 qXN
 qXN
@@ -47015,7 +47038,7 @@ dmj
 xJd
 wYX
 aLk
-mAk
+xsg
 euR
 fRw
 qXN

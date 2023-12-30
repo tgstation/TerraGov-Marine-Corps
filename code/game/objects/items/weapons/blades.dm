@@ -30,6 +30,7 @@
 	edge = 1
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	hitsound = 'sound/weapons/bladeslice.ogg'
 
 /obj/item/weapon/claymore/Initialize(mapload)
 	. = ..()
@@ -96,10 +97,6 @@
 	force = 80
 	attack_speed = 10
 	w_class = WEIGHT_CLASS_BULKY
-
-/obj/item/weapon/claymore/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
-	return ..()
 
 /obj/item/weapon/katana
 	name = "katana"
