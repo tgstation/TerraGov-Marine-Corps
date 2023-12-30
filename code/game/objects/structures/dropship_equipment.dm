@@ -104,7 +104,7 @@
 	pixel_y = 32
 
 /obj/effect/attach_point/crew_weapon
-	name = "rear attach point"
+	name = "interior attach point"
 	base_category = DROPSHIP_CREW_WEAPON
 	density = FALSE
 	layer = BELOW_OBJ_LAYER
