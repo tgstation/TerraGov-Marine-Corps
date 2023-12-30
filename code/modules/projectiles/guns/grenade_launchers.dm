@@ -40,6 +40,8 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/smokebomb/neuro,
 		/obj/item/explosive/grenade/smokebomb/acid,
 		/obj/item/explosive/grenade/smokebomb/satrapine,
+		/obj/item/explosive/grenade/smokebomb/aphrotoxin,
+		/obj/item/explosive/grenade/smokebomb/sleep,
 		/obj/item/explosive/grenade/phosphorus,
 		/obj/item/explosive/grenade/phosphorus/upp,
 		/obj/item/explosive/grenade/impact,

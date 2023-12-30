@@ -304,6 +304,17 @@
 
 ///chemical grenades
 
+/obj/item/explosive/grenade/smokebomb/sleep
+	name = "\improper NT-1 Knock-out smoke grenade"
+	desc = "A non-lethal smoke grenade containing anesthetic agents to knock people out."
+	icon_state = "grenade_smoke_som"
+	item_state = "grenade_smoke_som"
+	hud_state = "grenade_smoke_som"
+	det_time = 4 SECONDS
+	dangerous = TRUE
+	smoketype = /datum/effect_system/smoke_spread/sleepy
+	smokeradius = 6
+
 //neuro xeno nade
 /obj/item/explosive/grenade/smokebomb/neuro
 	name = "\improper M40-N Neurotoxin smoke grenade"
@@ -326,6 +337,17 @@
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/xeno/acid
 	smokeradius = 5
+
+/obj/item/explosive/grenade/smokebomb/aphrotoxin
+	name = "\improper NT-2 Aphrotoxin gas grenade"
+	desc = "A gas grenade containing a strong aphrodisiac synthesized from xenomorphs, causes intense lust, weakness on legs and stumbling around."
+	icon_state = "grenade_aphro"
+	item_state = "grenade_aphro"
+	hud_state = "grenade_aphro"
+	det_time = 4 SECONDS
+	dangerous = TRUE
+	smoketype = /datum/effect_system/smoke_spread/xeno/aphrotoxin
+	smokeradius = 6
 
 /obj/item/explosive/grenade/smokebomb/satrapine
 	name = "satrapine smoke grenade"
