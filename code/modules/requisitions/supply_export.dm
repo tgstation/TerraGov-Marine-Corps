@@ -6,7 +6,7 @@
 
 	SSpoints.supply_points[faction_selling] += points[1]
 	SSpoints.dropship_points += points[2]
-	return new /datum/export_report(points, name, faction_selling)
+	return new /datum/export_report(points[1], name, faction_selling)
 
 /mob/living/carbon/human/supply_export(faction_selling)
 	if(!can_sell_human_body(src, faction_selling))

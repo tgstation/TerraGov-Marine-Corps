@@ -61,17 +61,6 @@ Key procs
 		update_movespeed(FALSE)
 	return TRUE
 
-///Handles the special case of editing the movement var
-/mob/vv_edit_var(var_name, var_value)
-	var/slowdown_edit = (var_name == NAMEOF(src, cached_multiplicative_slowdown))
-	var/diff
-	if(slowdown_edit && isnum(cached_multiplicative_slowdown) && isnum(var_value))
-		remove_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT)
-		diff = var_value - cached_multiplicative_slowdown
-	. = ..()
-	if(. && slowdown_edit && isnum(diff))
-		add_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT, TRUE, 100, NONE, TRUE, diff)
-
 ///Is there a movespeed modifier for this mob
 /mob/proc/has_movespeed_modifier(id)
 	return LAZYACCESS(movespeed_modification, id)

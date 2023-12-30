@@ -243,7 +243,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(!(job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
 		CRASH("add_job_positions called for a non-joinable job")
 	if(total_positions == -1)
-		CRASH("add_job_positions called with [amount] amount for a job set to overflow")
+		return TRUE
 	var/previous_amount = total_positions
 	total_positions += amount
 	manage_job_lists(previous_amount)

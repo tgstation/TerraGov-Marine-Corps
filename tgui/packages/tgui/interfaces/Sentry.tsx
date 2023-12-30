@@ -14,8 +14,8 @@ type SentryData = {
   alerts_on: boolean;
   radial_mode: boolean;
 };
-export const Sentry = (props, context) => {
-  const { act, data } = useBackend<SentryData>(context);
+export const Sentry = (props) => {
+  const { act, data } = useBackend<SentryData>();
   const {
     name,
     rounds,

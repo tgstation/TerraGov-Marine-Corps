@@ -5,8 +5,8 @@ type DropControlData = {
   pods: number;
 };
 
-export const DroppodControl = (props, context) => {
-  const { act, data } = useBackend<DropControlData>(context);
+export const DroppodControl = (props) => {
+  const { act, data } = useBackend<DropControlData>();
   return (
     <Window width={450} height={250}>
       <Window.Content scrollable>
