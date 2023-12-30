@@ -28,6 +28,7 @@
 #define ATTACH_NO_HANDS (1<<5)
 #define ATTACH_BYPASS_ALLOWED_LIST (1<<6)
 #define ATTACH_DIFFERENT_MOB_ICON_STATE (1<<7)
+#define ATTACH_GREYSCALE_PARENT_COPY (1<<8)
 
 //gun attachment slot defines
 #define ATTACHMENT_SLOT_RAIL "rail"

@@ -8825,6 +8825,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
+"hzX" = (
+/obj/machinery/quick_vendor/beginner,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/general)
 "hAo" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -10379,6 +10383,8 @@
 /area/mainship/hallways/starboard_ert)
 "iNg" = (
 /obj/structure/rack,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
@@ -13177,6 +13183,7 @@
 /area/mainship/engineering/engine_core)
 "kWB" = (
 /obj/structure/rack,
+/obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
@@ -20468,7 +20475,7 @@
 /turf/open/floor/mainship/sterile/purple/side,
 /area/mainship/medical/upper_medical)
 "qUJ" = (
-/obj/machinery/vending/uniform_supply,
+/obj/machinery/quick_vendor/beginner,
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
@@ -24358,6 +24365,8 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/weapon_room)
 "ush" = (
@@ -28819,7 +28828,7 @@
 /turf/open/floor/mainship/green,
 /area/mainship/squads/req)
 "ygU" = (
-/obj/machinery/vending/armor_supply,
+/obj/machinery/quick_vendor/beginner,
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
@@ -39001,7 +39010,7 @@ xJg
 xTJ
 urw
 ejm
-lqg
+hzX
 lbd
 xJg
 xTJ
@@ -39205,7 +39214,7 @@ xJg
 xTJ
 urw
 ejm
-lqg
+hzX
 lbd
 xJg
 xTJ

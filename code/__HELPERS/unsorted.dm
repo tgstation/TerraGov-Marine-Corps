@@ -21,8 +21,6 @@
 
 #undef DELTA_CALC
 
-#define UNTIL(X) while(!(X)) stoplag()
-
 /**
  * NAMEOF: Compile time checked variable name to string conversion
  * evaluates to a string equal to "X", but compile errors if X isn't a var on datum.

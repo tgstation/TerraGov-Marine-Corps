@@ -2,8 +2,8 @@ import { useLocalState } from '../../backend';
 import { Box, Button, LabeledList, Section, Modal, Stack } from '../../components';
 import { resolveAsset } from '../../assets';
 
-export const ShowDesc = (props, context) => {
-  const [desc, setdesc] = useLocalState(context, 'desc', '');
+export const ShowDesc = (props) => {
+  const [desc, setdesc] = useLocalState('desc', '');
   return (
     <Modal
       width={'60em'}
@@ -284,7 +284,7 @@ const VarExplanation = {
                 src={resolveAsset('num')}
                 width={15}
                 style={{
-                  'transform': 'translateY(-20%)',
+                  transform: 'translateY(-20%)',
                 }}
               />
             </Stack.Item>
@@ -303,7 +303,7 @@ const VarExplanation = {
                 src={resolveAsset('vector')}
                 width={15}
                 style={{
-                  'transform': 'translateY(-35%)',
+                  transform: 'translateY(-35%)',
                 }}
               />
             </Stack.Item>
@@ -322,7 +322,7 @@ const VarExplanation = {
                 src={resolveAsset('box')}
                 width={15}
                 style={{
-                  'transform': 'translateY(-10%)',
+                  transform: 'translateY(-10%)',
                 }}
               />
             </Stack.Item>
@@ -356,7 +356,7 @@ const VarExplanation = {
                 src={resolveAsset('circle')}
                 width={15}
                 style={{
-                  'transform': 'translateY(-30%)',
+                  transform: 'translateY(-30%)',
                 }}
               />
             </Stack.Item>
@@ -376,7 +376,7 @@ const VarExplanation = {
                 src={resolveAsset('sphere')}
                 width={15}
                 style={{
-                  'transform': 'translateY(15%)',
+                  transform: 'translateY(15%)',
                 }}
               />
             </Stack.Item>
@@ -409,7 +409,7 @@ const VarExplanation = {
                 src={resolveAsset('cube')}
                 width={15}
                 style={{
-                  'transform': 'translateY(-10%)',
+                  transform: 'translateY(-10%)',
                 }}
               />
             </Stack.Item>

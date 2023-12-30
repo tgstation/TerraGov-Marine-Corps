@@ -502,6 +502,10 @@ GLOBAL_LIST_INIT(bitfields, list(
 	"flags_storage" = list(
 		"BYPASS_VENDOR_CHECK" = BYPASS_VENDOR_CHECK,
 	),
+	"flags_id" = list(
+		"CAN_BUY_LOADOUT" = CAN_BUY_LOADOUT,
+		"USED_GHMME" = USED_GHMME,
+	),
 	"ghost_hud" = list(
 		"GHOST_HUD_MED" = GHOST_HUD_MED,
 		"GHOST_HUD_SEC" = GHOST_HUD_SEC,

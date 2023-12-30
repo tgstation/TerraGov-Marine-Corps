@@ -275,7 +275,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_STRONG,
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 	)
 	job_points_needed = 10 //Redefined via config.
 

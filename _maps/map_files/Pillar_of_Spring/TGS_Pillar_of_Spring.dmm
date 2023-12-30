@@ -8262,6 +8262,15 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"kMf" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/quick_vendor/beginner,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/squads/general)
 "kMi" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/effect/ai_node,
@@ -8575,10 +8584,11 @@
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/ob_ammo/ob_fuel,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -8616,14 +8626,10 @@
 /turf/open/floor/mainship_hull,
 /area/space)
 "lgL" = (
-/obj/machinery/marine_selector/clothes,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
+/obj/machinery/quick_vendor/beginner,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "lgM" = (
@@ -58081,17 +58087,17 @@ xmJ
 xmJ
 mng
 bYP
-fLM
+kMf
 eMz
 eMz
 lgL
 eUy
-fLM
+kMf
 eMz
 eMz
 lgL
 bYP
-fLM
+kMf
 eMz
 eMz
 lgL

@@ -18,8 +18,8 @@ type DropshipPickerData = {
   shuttles: DropshipEntry[];
 };
 
-export const DropshipPicker = (_props, context) => {
-  const { act, data } = useBackend<DropshipPickerData>(context);
+export const DropshipPicker = (_props) => {
+  const { act, data } = useBackend<DropshipPickerData>();
 
   return (
     <Window width={510} height={500} title={'Dropship Selector'}>
@@ -53,8 +53,8 @@ export const DropshipPicker = (_props, context) => {
   );
 };
 
-const ShuttleSelection = (props, context) => {
-  const { act, data } = useBackend<DropshipPickerData>(context);
+const ShuttleSelection = (props) => {
+  const { act, data } = useBackend<DropshipPickerData>();
 
   return (
     <Section title="Available Models" fill>
