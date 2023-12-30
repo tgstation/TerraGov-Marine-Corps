@@ -62,9 +62,9 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	return TRUE
 
 ///checks if a loadout has required whitelist items
-/datum/loadout_item/proc/whitelist_check(datum/outfit_holder/outfit_holder)
+/datum/loadout_item/proc/whitelist_check(datum/outfit_holder/outfit_holder) //TODO unfuck all the [slot] stuff as they're number defines...
 	for(var/slot in item_whitelist)
-		var/type_to_check = outfit_holder.equipped_things[slot].item_typepath
+		var/type_to_check = outfit_holder.equipped_things[slot]?.item_typepath
 		if(!type_to_check || type_to_check != item_whitelist[slot])
 			return FALSE
 	return TRUE
@@ -72,8 +72,8 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 ///Checks if a loadout has any blacklisted items
 /datum/loadout_item/proc/blacklist_check(datum/outfit_holder/outfit_holder)
 	for(var/slot in item_blacklist)
-		var/type_to_check = outfit_holder.equipped_things[slot].item_typepath
-		if(type_to_check == item_blacklist[slot])
+		var/type_to_check = outfit_holder.equipped_things[slot]?.item_typepath
+		if(type_to_check == item_blacklist[slot]) //!type_to_check || do we need this?
 			return FALSE
 	return TRUE
 

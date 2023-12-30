@@ -112,7 +112,7 @@
 	ui.open()
 
 /datum/individual_stats/ui_state(mob/user)
-	return GLOB.conscious_state //will need to kill this later probably
+	return GLOB.conscious_state //will need to kill this later probably. see current changes to campaign overview
 
 //datum/individual_stats/ui_data(mob/user)
 	//. = ..()
