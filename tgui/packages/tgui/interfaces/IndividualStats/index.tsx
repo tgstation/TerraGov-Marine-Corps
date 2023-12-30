@@ -30,21 +30,18 @@ export type IndividualData = {
   mission_icons?: string[];
 };
 
-export const IndividualStats = (props, context) => {
-  const { act, data } = useBackend<IndividualData>(context);
+export const IndividualStats = (props) => {
+  const { act, data } = useBackend<IndividualData>();
   const [selectedTab, setSelectedTab] = useLocalState(
-    context,
     'selectedTab',
     TAB_LOADOUT
   );
   const [selectedJob, setSelectedJob] = useLocalState(
-    context,
     'selectedJob',
     data.jobs[0]
   );
 
   const [unlockedPerk, setPurchasedPerk] = useLocalState<PerkData | null>(
-    context,
     'unlockedPerk',
     null
   );
@@ -121,9 +118,8 @@ export const IndividualStats = (props, context) => {
   );
 };
 
-const CampaignContent = (props, context) => {
+const CampaignContent = (props) => {
   const [selectedTab, setSelectedTab] = useLocalState(
-    context,
     'selectedTab',
     TAB_LOADOUT
   );
@@ -138,15 +134,12 @@ const CampaignContent = (props, context) => {
 };
 
 /** Generates a small icon for buttons based on ICONMAP */
-export const PerkIcon = (
-  props: {
-    icon: PerkData['icon'];
-    icon_width?: string;
-    icon_height?: string;
-  },
-  context
-) => {
-  const { data } = useBackend<IndividualData>(context);
+export const PerkIcon = (props: {
+  icon: PerkData['icon'];
+  icon_width?: string;
+  icon_height?: string;
+}) => {
+  const { data } = useBackend<IndividualData>();
   const { icons = [] } = data;
   const { icon, icon_width, icon_height } = props;
   if (!icon || !icons[icon]) {
