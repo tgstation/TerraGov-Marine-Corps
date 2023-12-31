@@ -203,7 +203,7 @@
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/xeno_user = user
 		var/datum/xeno_caste/caste = xeno_user.xeno_caste
-		.["user_purchase_perms"] = (/datum/action/xeno_action/blessing_menu in caste.actions)
+		.["user_purchase_perms"] = (/datum/action/ability/xeno_action/blessing_menu in caste.actions)
 
 /datum/hive_status/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()

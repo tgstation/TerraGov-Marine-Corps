@@ -56,76 +56,76 @@
 		return FALSE
 	var/flags_to_check = use_state_flags|override_flags
 
-	if(!(flags_to_check & XACT_IGNORE_COOLDOWN) && !action_cooldown_check())
+	if(!(flags_to_check & ABILITY_IGNORE_COOLDOWN) && !action_cooldown_check())
 		if(!silent)
 			X.balloon_alert(X, "Wait [cooldown_remaining()] sec")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_INCAP) && X.incapacitated())
+	if(!(flags_to_check & ABILITY_USE_INCAP) && X.incapacitated())
 		if(!silent)
 			X.balloon_alert(X, "Cannot while incapacitated")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_LYING) && X.lying_angle)
+	if(!(flags_to_check & ABILITY_USE_LYING) && X.lying_angle)
 		if(!silent)
 			X.balloon_alert(X, "Cannot while lying down")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_BUCKLED) && X.buckled)
+	if(!(flags_to_check & ABILITY_USE_BUCKLED) && X.buckled)
 		if(!silent)
 			X.balloon_alert(X, "Cannot while buckled")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_STAGGERED) && X.IsStaggered())
+	if(!(flags_to_check & ABILITY_USE_STAGGERED) && X.IsStaggered())
 		if(!silent)
 			X.balloon_alert(X, "Cannot while staggered")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_FORTIFIED) && X.fortify)
+	if(!(flags_to_check & ABILITY_USE_FORTIFIED) && X.fortify)
 		if(!silent)
 			X.balloon_alert(X, "Cannot while fortified")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_CRESTED) && X.crest_defense)
+	if(!(flags_to_check & ABILITY_USE_CRESTED) && X.crest_defense)
 		if(!silent)
 			X.balloon_alert(X, "Cannot while in crest defense")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_ROOTED) && HAS_TRAIT_FROM(X, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
+	if(!(flags_to_check & ABILITY_USE_ROOTED) && HAS_TRAIT_FROM(X, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
 		if(!silent)
 			X.balloon_alert(X, "Cannot while rooted")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_NOTTURF) && !isturf(X.loc))
+	if(!(flags_to_check & ABILITY_USE_NOTTURF) && !isturf(X.loc))
 		if(!silent)
 			X.balloon_alert(X, "Cannot do this here")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_BUSY) && X.do_actions)
+	if(!(flags_to_check & ABILITY_USE_BUSY) && X.do_actions)
 		if(!silent)
 			X.balloon_alert(X, "Cannot, busy")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_AGILITY) && X.agility)
+	if(!(flags_to_check & ABILITY_USE_AGILITY) && X.agility)
 		if(!silent)
 			X.balloon_alert(X, "Cannot in agility mode")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_BURROWED) && HAS_TRAIT(X, TRAIT_BURROWED))
+	if(!(flags_to_check & ABILITY_USE_BURROWED) && HAS_TRAIT(X, TRAIT_BURROWED))
 		if(!silent)
 			X.balloon_alert(X, "Cannot while burrowed")
 		return FALSE
 
-	if(!(flags_to_check & XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
+	if(!(flags_to_check & ABILITY_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
 		if(!silent)
 			X.balloon_alert(X, "Need [plasma_cost - X.plasma_stored] more plasma")
 		return FALSE
-	if(!(flags_to_check & XACT_USE_CLOSEDTURF) && isclosedturf(get_turf(X)))
+	if(!(flags_to_check & ABILITY_USE_CLOSEDTURF) && isclosedturf(get_turf(X)))
 		if(!silent)
 			//Not converted to balloon alert as xeno.dm's balloon alert is simultaneously called and will overlap.
 			to_chat(owner, span_warning("We can't do this while in a solid object!"))
 		return FALSE
-	if(!(flags_to_check & XACT_USE_CLOSEDTURF) && isclosedturf(get_turf(X)))
+	if(!(flags_to_check & ABILITY_USE_CLOSEDTURF) && isclosedturf(get_turf(X)))
 		if(!silent)
 			//Not converted to balloon alert as xeno.dm's balloon alert is simultaneously called and will overlap.
 			to_chat(owner, span_warning("We can't do this while in a solid object!"))
@@ -187,7 +187,7 @@
 	button.cut_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
 
 /datum/action/xeno_action/handle_button_status_visuals()
-	if(!can_use_action(TRUE, XACT_IGNORE_COOLDOWN))
+	if(!can_use_action(TRUE, ABILITY_IGNORE_COOLDOWN))
 		button.color = "#80000080" // rgb(128,0,0,128)
 	else if(!action_cooldown_check())
 		button.color = "#f0b400c8" // rgb(240,180,0,200)
@@ -219,8 +219,8 @@
 
 /datum/action/xeno_action/activable/keybind_activation()
 	. = COMSIG_KB_ACTIVATED
-	if(CHECK_BITFIELD(keybind_flags, XACT_KEYBIND_USE_ABILITY))
-		if(can_use_ability(null, FALSE, XACT_IGNORE_SELECTED_ABILITY))
+	if(CHECK_BITFIELD(keybind_flags, ABILITY_KEYBIND_USE_ABILITY))
+		if(can_use_ability(null, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
 			use_ability()
 		return
 
@@ -252,7 +252,7 @@
 
 /datum/action/xeno_action/activable/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if(selecting)
-		return ..(silent, XACT_IGNORE_COOLDOWN|XACT_IGNORE_PLASMA|XACT_USE_STAGGERED)
+		return ..(silent, ABILITY_IGNORE_COOLDOWN|ABILITY_IGNORE_PLASMA|ABILITY_USE_STAGGERED)
 	return ..()
 
 ///override this
@@ -263,10 +263,10 @@
 	var/flags_to_check = use_state_flags|override_flags
 
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_SELECTED_ABILITY) && X.selected_ability != src)
+	if(!CHECK_BITFIELD(flags_to_check, ABILITY_IGNORE_SELECTED_ABILITY) && X.selected_ability != src)
 		return FALSE
 	. = can_use_action(silent, override_flags)
-	if(!CHECK_BITFIELD(flags_to_check, XACT_TARGET_SELF) && A == owner)
+	if(!CHECK_BITFIELD(flags_to_check, ABILITY_TARGET_SELF) && A == owner)
 		return FALSE
 
 /datum/action/xeno_action/activable/proc/can_activate()

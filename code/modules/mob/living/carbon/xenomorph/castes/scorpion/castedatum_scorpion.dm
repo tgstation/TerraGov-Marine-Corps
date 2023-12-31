@@ -39,7 +39,7 @@
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/activable/xeno_spit,
-		/datum/action/xeno_action/activable/corrosive_acid/drone,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/activable/xeno/xeno_spit,
+		/datum/action/ability/activable/xeno/corrosive_acid/drone,
 	)
