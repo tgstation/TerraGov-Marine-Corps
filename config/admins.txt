@@ -1,7 +1,3 @@
 #ckey = Rank
 Zeldazackman = Host
 CrimsonQuiver = Host
-Foxichkin = Admin
-Nightmare6669 = Admin
-Dwarfwarrior417 = Admin
-GeneralPantsu = Admin
