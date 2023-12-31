@@ -71,6 +71,7 @@
 	heat_per_fire = 3.3
 	rounds_per_shot = 2.5
 	radial_icon_state = "plasma_weak"
+	message_to_user = "You set the plasma rifle's charge mode to standard fire."
 
 /datum/lasrifle/base/plasma_rifle_mode/rifle_marksman
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_heavy.ogg'
@@ -81,6 +82,7 @@
 	heat_per_fire = 10
 	rounds_per_shot = 12.5
 	radial_icon_state = "plasma_strong"
+	message_to_user = "You set the plasma rifle's charge mode to piercing fire."
 
 /datum/lasrifle/base/plasma_rifle_mode/rifle_blast
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_blast.ogg'
@@ -91,10 +93,11 @@
 	heat_per_fire = 33
 	rounds_per_shot = 50
 	radial_icon_state = "plasma_multi"
+	message_to_user = "You set the plasma rifle's charge mode to blast fire."
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon
 	name = "\improper PL-96 plasma cannon"
-	desc = "The PL-96 Plasma Cannon is an experimental addition to the TerraGov Marine Corps arsenal, rumored to be the child of some back door contract deals, is an absolutely increibly devastating weapon to behold... if you mind the incredibly poor cooling mechanisms and unwieldiness of the whole package. It has a normal beam mode similar to a machinegun, a fire glob mode that leaves devastating flames in the aftermath, and a Charge mode nicknamed the 'Femur breaker' due to its incredible armor shattering potiential upon hitting a target."
+	desc = "The PL-96 Plasma Cannon is an experimental addition to the TerraGov Marine Corps arsenal, rumored to be the child of some back door contract deals, is an absolutely incredibly devastating weapon to behold... if you mind the incredibly poor cooling mechanisms and unwieldiness of the whole package. It has a normal beam mode similar to a machinegun, a fire glob mode that leaves devastating flames in the aftermath, and a Charge mode nicknamed the 'Femur breaker' due to its incredible armor shattering potiential upon hitting a target."
 	icon_state = "plasma_cannon"
 	item_state = "plasma_cannon"
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -134,11 +137,7 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
-		/obj/item/weapon/gun/shotgun/combat/masterkey,
-		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/motiondetector,
-		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
 /datum/lasrifle/base/plasma_rifle_mode/cannon_standard
@@ -150,6 +149,7 @@
 	rounds_per_shot = 2
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_cannon"
+	message_to_user = "You set the plasma cannon's charge mode to standard fire."
 
 /datum/lasrifle/base/plasma_rifle_mode/cannon_heavy
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_blast.ogg'
@@ -161,6 +161,7 @@
 	windup_delay = 1 SECONDS
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_fire"
+	message_to_user = "You set the plasma cannon's charge mode to heavy."
 
 /datum/lasrifle/base/plasma_rifle_mode/cannon_glob
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
@@ -171,3 +172,4 @@
 	rounds_per_shot = 100
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_strong"
+	message_to_user = "You set the plasma cannon's charge mode to fire glob mode."
