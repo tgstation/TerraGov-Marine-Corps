@@ -63,6 +63,7 @@
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/activable/tail_stab,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/scatter_spit,

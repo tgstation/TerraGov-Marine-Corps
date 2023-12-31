@@ -5,5 +5,3 @@ Foxichkin = Admin
 Nightmare6669 = Admin
 Dwarfwarrior417 = Admin
 GeneralPantsu = Admin
-ACESTOACES = Admin
-Kpw274 = Admin
