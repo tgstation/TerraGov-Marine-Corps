@@ -186,3 +186,93 @@
   - bugfix: deleted some garbage on Big Red.
   ivanmixo:
   - bugfix: You cannot melt sticky resin anymore
+2023-12-25:
+  Pariah919:
+  - rscadd: Added new SG-62 Ammo Boxes to refill mags with. 200 rounds per box.
+  TiviPlus:
+  - rscadd: Added some voicelines to CAS
+  yyzsong:
+  - code_imp: shrike code comment now says 3x3 instead of 2x3
+2023-12-26:
+  Barnet2:
+  - bugfix: Fixes the Magnum being available in Crash outside of the SL vendor.
+  - rscadd: Added a new map, Daedalus Prison. Requires 35 people to play.
+  Pariah919:
+  - rscdel: A few cape styles have been removed. (Overlord+Variants, Jacket, Star)
+  - rscdel: Style line jaeger has been removed. (Kabuto, Overlord, Hotaru)
+  Wisemonster:
+  - qol: The rear attach points will now layer under items, rather than over them.
+  - spellcheck: Updated the description of Doctor's Delight in the Nanotrasen Medplus
+      to describe it's effects.
+  - balance: Moves the Doctor's Delight reagent bottle to the Valhalla tab of the
+      vendor
+  ivanmixo:
+  - rscadd: Adds an ozelomelyn hugger
+  - bugfix: Stun batons should not ominously float above everything in the game after
+      someone without access tries to pick it up anymore
+  vvvv-vvvv:
+  - bugfix: Fix emote spam when losing grasp of NODROP items
+  yyzsong:
+  - bugfix: SG-62 reqtorio should work properly now.
+2023-12-27:
+  Lumipharon:
+  - bugfix: 'Campaign: Fixes the drop pod refresh asset not correctly replacing the
+      specialty pods'
+  Xander3359:
+  - rscadd: Beginner loadout vendor
+  - rscadd: 8 Beginner loadouts
+  - rscadd: 3 Engineer Loudouts
+  - rscadd: 2 Corpsman Loadouts
+  - rscadd: 2 Smartgunner Loadouts
+  ivanmixo:
+  - qol: Misc fixes to both crash ships
+  - balance: The HSG nest has been removed from crash ships
+  yyzsong:
+  - balance: Standardizes shipmap OB and solid fuel count
+2023-12-29:
+  Barnet2:
+  - balance: FC is now worth one marine in terms of larva points.
+  ClosetedSkeletonGH:
+  - balance: mantis swipe no longer has a huge delay, mantis has slightly less plasma
+  - qol: mantis can now be given plasma by teammtes
+  - qol: Scorpions can now be given plasma
+  - rscadd: Scorpions can put weak acid on obj's
+  Helg2:
+  - bugfix: Imperial Commissar now has a proper coat. But you probably won't even
+      see it somewhere except eord.
+  Lewdcifer:
+  - rscdel: Reverted all changes related to Hyperscale 3.
+  RipGrayson:
+  - bugfix: Fixed mineral doors not showing correct coloring in map preview
+  ivanmixo:
+  - rscadd: Added the SG-85 powerpack to req
+  - bugfix: Fixes SG-85 ammo bins not being in req
+  - bugfix: You don't fall over from a broken leg if buckled anymore
+  - bugfix: You dont sell things for /list points anymore
+2023-12-30:
+  Artur Lang:
+  - bugfix: 'Hardsuit secondary colours not being saved by loadout vendor
+
+      :cl:'
+  Barnet2:
+  - rscadd: Firing the OB will play an alarm for those outside of hearing distance
+      of the cannon and on ship, shake the ship, and send out a flavor message.
+  DeltaFire15:
+  - bugfix: Health analyzer SSD information is no longer wrong.
+  Lumipharon:
+  - code_imp: cleaned up an unneeded crash message
+  - bugfix: fixed a couple of issues with mindmeld
+  - bugfix: fixed a incorrect define
+  - bugfix: fixed some freelancer loadouts in campaign
+  - bugfix: fixed campaign mission end ghostise not working correctly
+  RipGrayson:
+  - bugfix: Fixed being able to hold a nodrop inventory item by click-dragging it.
+  Wisemonster:
+  - bugfix: Synths/Robots no longer can be injected with hypos.
+  Xander3359:
+  - code_imp: Port VV Stuff from TG
+  - admin: osay
+  - admin: VV Panel should be fully functional with new options in the dropdown menu
+  - admin: Added tagging/marking datums from TG
+  blackdav123:
+  - balance: Swapped claymore and machete sounds.

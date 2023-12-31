@@ -1,8 +1,8 @@
 import { useBackend } from '../../backend';
 import { Button, Section, LabeledList, Box, Stack } from '../../components';
 
-export const GearCustomization = (props, context) => {
-  const { act, data } = useBackend<GearCustomizationData>(context);
+export const GearCustomization = (props) => {
+  const { act, data } = useBackend<GearCustomizationData>();
 
   const { gearsets, gear, clothing, underwear, undershirt, backpack, gender } =
     data;
@@ -33,7 +33,7 @@ export const GearCustomization = (props, context) => {
       title="Custom Gear"
       buttons={
         <>
-          <Box as="span" style={{ 'margin-right': '10px' }}>
+          <Box as="span" style={{ marginRight: '10px' }}>
             Points: {currentPoints} / 5
           </Box>
           <Button

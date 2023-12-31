@@ -309,6 +309,37 @@
 	. += "---"
 	.["Player Panel"] = "?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
 
+/mob/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if(NAMEOF(src, control_object))
+			var/obj/O = var_value
+			if(!istype(O) || (O.obj_flags & DANGEROUS_POSSESSION))
+				return FALSE
+		if(NAMEOF(src, machine))
+			set_machine(var_value)
+			. = TRUE
+		if(NAMEOF(src, focus))
+			set_focus(var_value)
+			. = TRUE
+		if(NAMEOF(src, stat))
+			set_stat(var_value)
+			. = TRUE
+
+	if(!isnull(.))
+		datum_flags |= DF_VAR_EDITED
+		return
+
+	var/slowdown_edit = (var_name == NAMEOF(src, cached_multiplicative_slowdown))
+	var/diff
+	if(slowdown_edit && isnum(cached_multiplicative_slowdown) && isnum(var_value))
+		remove_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT)
+		diff = var_value - cached_multiplicative_slowdown
+
+	. = ..()
+
+	if(. && slowdown_edit && isnum(diff))
+		update_movespeed()
+
 
 /client/verb/changes()
 	set name = "Changelog"
