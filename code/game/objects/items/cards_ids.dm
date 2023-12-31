@@ -215,7 +215,7 @@
 	registered_name = "Syndicate"
 	assignment = "Syndicate Overlord"
 	access = list(ACCESS_ILLEGAL_PIRATE)
-
+	iff_signal = SOM_IFF
 
 /obj/item/card/id/captains_spare
 	name = "captain's spare ID"
@@ -225,6 +225,7 @@
 	registered_name = CAPTAIN
 	assignment = CAPTAIN
 	access = ALL_MARINE_ACCESS
+	iff_signal = NTC_LOYALIST_IFF
 
 
 /obj/item/card/id/equipped(mob/living/carbon/human/H, slot)

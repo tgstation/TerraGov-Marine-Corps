@@ -36,7 +36,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	jobtype = /datum/job/clf/standard
 
 	id = /obj/item/card/id/silver
-	ears = /obj/item/radio/headset/distress/dutch
+	ears = /obj/item/radio/headset/mainship/clf
 	w_uniform = /obj/item/clothing/under/colonist
 	shoes = /obj/item/clothing/shoes/marine/clf/full
 	wear_suit = /obj/item/clothing/suit/storage/faction/militia
@@ -52,7 +52,6 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_SUIT)
 
-	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
@@ -210,7 +209,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/lifesaver/full/upp
-	ears = /obj/item/radio/headset/distress/dutch
+	ears = /obj/item/radio/headset/mainship/clf
 	head = /obj/item/clothing/head/tgmcberet/bloodred
 	w_uniform = /obj/item/clothing/under/colonist
 	shoes = /obj/item/clothing/shoes/marine/clf/full
@@ -230,7 +229,6 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
@@ -315,7 +313,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
-	ears = /obj/item/radio/headset/distress/dutch
+	ears = /obj/item/radio/headset/mainship/clf
 	w_uniform = /obj/item/clothing/under/colonist/webbing
 	shoes = /obj/item/clothing/shoes/black
 	wear_suit = /obj/item/clothing/suit/storage/faction/militia
@@ -332,7 +330,6 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/medium_stack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
@@ -420,7 +417,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
-	ears = /obj/item/radio/headset/distress/dutch
+	ears = /obj/item/radio/headset/mainship/clf/com
 	w_uniform = /obj/item/clothing/under/colonist/webbing
 	shoes = /obj/item/clothing/shoes/black
 	wear_suit = /obj/item/clothing/suit/storage/faction/militia
@@ -435,11 +432,9 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 /datum/outfit/job/clf/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/medium_stack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
@@ -563,7 +558,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	jobtype = /datum/job/clf/breeder
 
 	id = /obj/item/card/id/silver
-	ears = /obj/item/radio/headset/distress/dutch
+	ears = /obj/item/radio/headset/mainship/clf
 	w_uniform = /obj/item/clothing/under/swimsuit/purple
 	shoes = /obj/item/clothing/shoes/sandal
 	belt = /obj/item/storage/holster/t19/full

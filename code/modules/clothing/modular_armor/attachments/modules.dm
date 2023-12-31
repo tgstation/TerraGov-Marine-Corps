@@ -544,7 +544,7 @@
 
 /obj/item/armor_module/module/welding/superior/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
-	parent.AddComponent(/datum/component/clothing_tint, TINT_4, active)
+	parent.AddComponent(/datum/component/clothing_tint, TINT_2, active)
 
 /obj/item/armor_module/module/binoculars
 	name = "Binocular Helmet Module"

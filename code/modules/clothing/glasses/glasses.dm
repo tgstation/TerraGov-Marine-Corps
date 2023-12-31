@@ -277,7 +277,7 @@
 
 /obj/item/clothing/glasses/welding/superior/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/clothing_tint, TINT_4)
+	AddComponent(/datum/component/clothing_tint, TINT_2)
 
 //sunglasses
 

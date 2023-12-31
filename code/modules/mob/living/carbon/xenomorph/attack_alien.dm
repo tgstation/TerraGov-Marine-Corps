@@ -68,7 +68,7 @@
 					visible_message(null, "<span class='danger'>You are too weakened to keep resisting [X], you slump to the ground!</span>")
 					X.visible_message("<span class='danger'>[X] slams [src] to the ground!</span>",
 					"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
-					Paralyze(20 SECONDS)
+					Paralyze(15 SECONDS)
 	else if(!ishuman(src))
 		if(randn <= 40)
 			if(!IsParalyzed())
