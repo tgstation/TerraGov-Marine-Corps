@@ -9464,6 +9464,19 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
+"iCy" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/door_control/mainship/req{
+	dir = 1;
+	id = "qm_warehouse";
+	name = "Requisition Warehouse Shutters"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/outpost/cargo{
+	outside = 1
+	})
 "iCK" = (
 /obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/mainship/red{
@@ -18097,7 +18110,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door_control/mainship/req{
-	dir = 1;
+	dir = 8;
 	id = "qm_warehouse";
 	name = "Requisition Warehouse Shutters"
 	},
@@ -41957,7 +41970,7 @@ mFm
 aya
 rWA
 urx
-qsM
+iCy
 laA
 jmu
 mXH

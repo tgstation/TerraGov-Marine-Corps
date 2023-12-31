@@ -58,6 +58,7 @@
 		usr.stop_sound_channel(channel)
 		return
 	if(!usr)
+		usr.stop_sound_channel(channel)
 		return
 	usr.emote("moan")
 	usr.visible_message(span_warning("[usr] cums!"), span_warning("You cum."), span_warning("You hear a splatter."), 5)

@@ -732,6 +732,7 @@
 		clothesundoed = 0
 		return
 	if(!debuff_owner)
+		usr.stop_sound_channel(channel)
 		return
 	debuff_owner.emote("moan")
 	debuff_owner.visible_message(span_warning("[debuff_owner] cums on the floor!"), span_warning("You cum on the floor."), span_warning("You hear a splatter."), 5)
