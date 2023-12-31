@@ -283,7 +283,6 @@
 	light_system = MOVABLE_LIGHT
 
 	var/hivenumber = XENO_HIVE_NORMAL
-
 	var/datum/hive_status/hive
 
 	///State tracking of hive status toggles
@@ -427,5 +426,6 @@
 
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM
+	var/blunt_stab = FALSE
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
