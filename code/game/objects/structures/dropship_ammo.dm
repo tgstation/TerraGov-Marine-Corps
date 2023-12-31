@@ -374,7 +374,7 @@
 	T.ignite(5, 30) //short but intense
 
 
-//Rockets
+//Rockets are defined by being one shot and done, and generally having solid payloads and low travel times.
 
 /obj/structure/ship_ammo/cas/rocket
 	name = "abstract rocket"
@@ -395,37 +395,58 @@
 /obj/structure/ship_ammo/cas/rocket/detonate_on(turf/impact, attackdir = NORTH)
 	qdel(src)
 
+//ATGMs, defined by 3 second travel time and low explosion sizes. Higher quality ones might land faster or do insane things like being able to be blindfired..
 
-//this one is air-to-air only
+// The widowmaker is defined by being the fastest ATGM on offer, however it suffers in explosive potiential due to being so fast.
 /obj/structure/ship_ammo/cas/rocket/widowmaker
-	name = "\improper AIM-224 'Widowmaker'"
-	desc = "The AIM-224 is the latest in air to air missile technology. Earning the nickname of 'Widowmaker' from various dropship pilots after improvements to its guidence warhead prevents it from being jammed leading to its high kill rate. Not well suited for ground bombardment, but its high velocity makes it reach its target quickly. Moving this will require some sort of lifter."
+	name = "\improper AGM-224 'Widowmaker'"
+	desc = "The AGM-224 is the latest in air to ground missile technology. Earning the nickname of 'Widowmaker' from various pilots after improvements allow it to land at incredibly high speeds, at the cost of explosive payload. Well suited for ground bombardment, but its high velocity makes it reach its target quickly. Moving this will require some sort of lifter."
 	icon_state = "single"
-	travelling_time = 3 SECONDS //not powerful, but reaches target fast
+	travelling_time = 2 SECONDS //The epitome of ATGMs.
 	ammo_id = ""
-	point_cost = 225
+	point_cost = 400
 	devastating_explosion_range = 2
-	heavy_explosion_range = 4
-	light_explosion_range = 7
+	heavy_explosion_range = 3
 	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/widowmaker
 
 /obj/structure/ship_ammo/cas/rocket/widowmaker/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
+	explosion(impact, devastating_explosion_range, heavy_explosion_range)
+	qdel(src)
+
+/obj/structure/ship_ammo/cas/rocket/keeper
+	name = "\improper AGM-67 'Keeper II"
+	desc = "The AGM-67 'Keeper II' is the latest in a generation of laser guided weaponry that spans all the way back to the 20th century. Earning its nickname from a contract that developed its guidance system and the various uses of it during peacekeeping conflicts. Its payload is designed to devastate armored targets. Moving this will require some sort of lifter."
+	icon_state = "keeper"
+	ammo_id = "k"
+	point_cost = 300
+	devastating_explosion_range = 2
+	heavy_explosion_range = 4
+	travelling_time = 3 SECONDS
+	prediction_type = CAS_AMMO_EXPLOSIVE
+
+/obj/structure/ship_ammo/cas/rocket/keeper/detonate_on(turf/impact, attackdir = NORTH)
+	impact.ceiling_debris_check(3)
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range)
 	qdel(src)
 
+
+// High yield missiles are defined by having... high yields and high travel time, usually around six seconds.
+
+//The Banshee is defined by combining both explosive and fire into one, literally. At the cost of some outer payload yield.
 /obj/structure/ship_ammo/cas/rocket/banshee
-	name = "\improper AGM-227 'Banshee'"
-	desc = "The AGM-227 missile is a mainstay of the overhauled dropship fleet against any mobile or armored ground targets. It's earned the nickname of 'Banshee' from the sudden wail that it emitts right before hitting a target. Useful to clear out large areas. Moving this will require some sort of lifter."
+	name = "\improper PGHM-227 'Banshee'"
+	desc = "The PGHM-227 missile is a mainstay of the fleet against any mobile or armored ground targets. It's earned the nickname of 'Banshee' from the sudden wail that it emitts right before hitting a target. Useful to clear out large areas. Moving this will require some sort of lifter."
 	icon_state = "banshee"
 	ammo_id = "b"
-	point_cost = 225
+	point_cost = 200
 	devastating_explosion_range = 2
 	heavy_explosion_range = 4
-	light_explosion_range = 7
+	light_explosion_range = 5
 	fire_range = 7
 	prediction_type = CAS_AMMO_INCENDIARY
+	travelling_time = 6 SECONDS
 	cas_effect = /obj/effect/overlay/blinking_laser/banshee
 
 /obj/structure/ship_ammo/cas/rocket/banshee/detonate_on(turf/impact, attackdir = NORTH)
@@ -433,32 +454,18 @@
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, flame_range = fire_range) //more spread out, with flames
 	qdel(src)
 
-/obj/structure/ship_ammo/cas/rocket/keeper
-	name = "\improper GBU-67 'Keeper II'"
-	desc = "The GBU-67 'Keeper II' is the latest in a generation of laser guided weaponry that spans all the way back to the 20th century. Earning its nickname from a shortening of 'Peacekeeper' which comes from the program that developed its guidance system and the various uses of it during peacekeeping conflicts. Its payload is designed to devastate armored targets. Moving this will require some sort of lifter."
-	icon_state = "keeper"
-	ammo_id = "k"
-	point_cost = 300
-	devastating_explosion_range = 4
-	heavy_explosion_range = 4
-	light_explosion_range = 5
-	prediction_type = CAS_AMMO_EXPLOSIVE
-
-/obj/structure/ship_ammo/cas/rocket/keeper/detonate_on(turf/impact, attackdir = NORTH)
-	impact.ceiling_debris_check(3)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range) //tighter blast radius, but more devastating near center
-	qdel(src)
-
+//The fatty is well.. Fat.
 /obj/structure/ship_ammo/cas/rocket/fatty
-	name = "\improper SM-17 'Fatty'"
-	desc = "The SM-17 'Fatty' is the most devestating rocket in TGMC arsenal, only second after its big cluster brother in Orbital Cannon. These rocket are also known for highest number of Friendly-on-Friendly incidents due to secondary cluster explosions as well as range of these explosions, TGMC recommends pilots to encourage usage of signal flares or laser for 'Fatty' support. Moving this will require some sort of lifter."
+	name = "\improper PHGM-17 'Fatty'"
+	desc = "The PHGM-17 'Fatty' is the most devestating rocket in TGMC arsenal, only second after its big cluster brother in Orbital Cannon. These rocket are also known for highest number of Friendly-on-Friendly incidents due to secondary cluster explosions as well as range of these explosions, TGMC recommends pilots to encourage usage of signal flares or laser for 'Fatty' support. Moving this will require some sort of lifter."
 	icon_state = "fatty"
 	ammo_id = "f"
-	point_cost = 325
+	point_cost = 300
 	devastating_explosion_range = 2
 	heavy_explosion_range = 3
 	light_explosion_range = 4
 	prediction_type = CAS_AMMO_EXPLOSIVE
+	travelling_time = 6 SECONDS
 	cas_effect = /obj/effect/overlay/blinking_laser/fatty
 
 /obj/structure/ship_ammo/cas/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
@@ -482,6 +489,26 @@
 		explosion(detonation_target, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE)
 	qdel(src)
 
+// This is the "Default" heavy rocket.
+/obj/structure/ship_ammo/cas/rocket/monarch
+	name = "\improper PHGM-7 'Monarch"
+	desc = "The PHGM-7 'Monarch' is a well tried and tested dumb rocket design due to being a mere dumb rocket. Its payload is designed to devastate areas for cheap. Moving this will require some sort of lifter."
+	icon_state = "keeper"
+	ammo_id = "k"
+	point_cost = 250
+	devastating_explosion_range = 2
+	heavy_explosion_range = 5
+	light_explosion_range = 7
+	travelling_time = 6 SECONDS
+	prediction_type = CAS_AMMO_EXPLOSIVE
+	cas_effect = /obj/effect/overlay/blinking_laser/fatty
+
+/obj/structure/ship_ammo/cas/rocket/keeper/detonate_on(turf/impact, attackdir = NORTH)
+	impact.ceiling_debris_check(3)
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range)
+	qdel(src)
+
+// High speed missiles are defined by having solid deploy times.
 /obj/structure/ship_ammo/cas/rocket/napalm
 	name = "\improper XN-99 'Napalm'"
 	desc = "The XN-99 'Napalm' is an incendiary rocket used to turn specific targeted areas into giant balls of fire for a long time. Moving this will require some sort of lifter."
@@ -505,7 +532,7 @@
 	qdel(src)
 
 
-//minirockets
+//Minirockets are effectively just da small rockets.
 
 /obj/structure/ship_ammo/cas/minirocket
 	name = "mini rocket stack"
@@ -612,3 +639,28 @@
 
 /obj/structure/ship_ammo/cas/minirocket/illumination/proc/drop_cas_flare(turf/impact)
 	new /obj/effect/temp_visual/above_flare(impact)
+
+// Bomblets are small and numerious, with small paylods but high quantity.
+/obj/structure/ship_ammo/cas/bomblet
+	name = "T1-50lb stack"
+	desc = "A large litter of explosive bomblets. Moving this will require some sort of lifter."
+	icon_state = "minirocket"
+	icon = 'icons/Marine/mainship_props.dmi'
+	equipment_type = /obj/structure/dropship_equipment/cas/weapon/bomblet_pod
+	ammo_count = 40
+	max_ammo_count = 40
+	ammo_name = "bomblet"
+	firing_voiceline = 'sound/voice/plane_vws/shot_missile.ogg'
+	travelling_time = 10 SECONDS
+	transferable_ammo = TRUE
+	point_cost = 250 // You get a LOT of bomblets.
+	ammo_type = CAS_BOMBLET
+	light_explosion_range = 2
+	heavy_explosion_range = 0
+	prediction_type = CAS_AMMO_HARMLESS
+	cas_effect = /obj/effect/overlay/blinking_laser/minirocket
+
+
+/obj/structure/ship_ammo/cas/bomblet/detonate_on(turf/impact, attackdir = NORTH)
+	impact.ceiling_debris_check(2)
+	explosion(impact, heavy_explosion_range, light_explosion_range, adminlog = FALSE)//no messaging admin, that'd spam them.

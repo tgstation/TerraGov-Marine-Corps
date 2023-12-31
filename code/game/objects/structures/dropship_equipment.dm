@@ -866,3 +866,23 @@
 	deployed_table.layer = ABOVE_OBJ_LAYER + 0.01 //make sure its directly ABOVE the layer
 	deployed_table.loc = loc
 	icon_state = "table2-idle"
+
+/obj/structure/dropship_equipment/cas/weapon/bomblet_pod
+	name = "bomblet  pod"
+	icon_state = "bomblet_pod"
+	desc = "A mini rocket pod capable of launching several types of up to 40 smaller bombs, generally called 'Bomblet's. Moving this will require some sort of lifter."
+	icon = 'icons/Marine/mainship_props64.dmi'
+	firing_sound = 'sound/weapons/gunship_rocketpod.ogg'
+	firing_delay = 0.5 SECONDS
+	point_cost =
+	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
+	ammo_type_used = CAS_BOMBLET
+
+/obj/structure/dropship_equipment/cas/weapon/bomblet_pod/update_icon()
+	if(ammo_equipped?.ammo_count)
+		icon_state = "bomblet_pod_loaded"
+	else
+		if(ship_base)
+			icon_state = "bomblet_pod_installed"
+		else
+			icon_state = "bomblet_pod_pod"
