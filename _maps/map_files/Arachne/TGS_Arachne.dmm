@@ -3684,8 +3684,8 @@
 	pixel_y = 2
 	},
 /obj/machinery/door_control/old/req{
-	pixel_x = -7;
-	pixel_y = -2
+	pixel_y = -2;
+	pixel_x = -4
 	},
 /turf/open/floor/mainship/green{
 	dir = 1
