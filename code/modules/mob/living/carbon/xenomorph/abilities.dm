@@ -1324,3 +1324,232 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	X.hive.purchases.interact(X)
 	return succeed_activate()
+
+// ***************************************
+// *********** Tail Stab
+// ***************************************
+//totally not stolen from punch code
+/datum/action/ability/activable/xeno/tail_stab
+	name = "Tail Stab"
+	action_icon_state = "tail_attack"
+	desc = "Strike a target within two tiles with a sharp tail for armor-piercing damage, stagger and slowdown. Deals double AP, damage, stagger and slowdown to grappled targets, structures and machinery."
+	ability_cost = 30
+	cooldown_duration = 10 SECONDS
+	use_state_flags = ABILITY_USE_AGILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_STAB,
+	)
+	target_flags = ABILITY_MOB_TARGET|ABILITY_MOB_TARGET
+	var/range = 2
+	var/punch_description = "swift tail-jab!"
+
+/datum/action/ability/activable/xeno/tail_stab/on_cooldown_finish()
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, span_xenodanger("We gather our strength to stab again."))
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	return ..()
+
+/datum/action/ability/activable/xeno/tail_stab/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+
+	if(!line_of_sight(owner, A, range))
+		if(!silent)
+			to_chat(owner, span_xenodanger("Our target must be closer!"))
+		return FALSE
+
+	if(A.resistance_flags & (INDESTRUCTIBLE|CRUSHER_IMMUNE)) //no bolting down indestructible airlocks
+		if(!silent)
+			to_chat(owner, span_xenodanger("We cannot damage this target!"))
+		return FALSE
+
+	if(isxeno(A))
+		if(!silent)
+			owner.visible_message(span_xenowarning("\The [owner] swipes their tail through the air!"), span_xenowarning("We swipe our tail through the air!"))
+			add_cooldown(1 SECONDS)
+			playsound(owner, "alien_tail_swipe", 50, TRUE)
+			owner.do_attack_animation(A, ATTACK_EFFECT_REDSTAB)
+		return FALSE
+
+	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isvehicle(A))
+		if(!silent)
+			owner.visible_message(span_xenowarning("\The [owner] swipes their tail through the air!"), span_xenowarning("We swipe our tail through the air!"))
+			add_cooldown(1 SECONDS)
+			playsound(owner, "alien_tail_swipe", 50, TRUE)
+			owner.do_attack_animation(A, ATTACK_EFFECT_REDSTAB)
+		return FALSE
+
+	if(isliving(A))
+		var/mob/living/L = A
+		if(L.stat == DEAD)
+			if(!silent)
+				to_chat(owner, span_xenodanger("We don't care about the dead!"))
+			return FALSE
+
+/datum/action/ability/activable/xeno/tail_stab/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
+	var/target_zone = check_zone(X.zone_selected)
+
+	if(!A.tail_stab_act(X, damage, target_zone))
+		return fail_activate()
+
+	succeed_activate()
+	if(istype(A, /obj/machinery/light))
+		add_cooldown(1 SECONDS)
+	else
+		add_cooldown()
+
+/atom/proc/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
+	return TRUE
+
+/obj/machinery/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2) //Break open the machine
+	X.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
+	X.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+	if(!CHECK_BITFIELD(resistance_flags, UNACIDABLE) || resistance_flags == (UNACIDABLE|XENO_DAMAGEABLE)) //If it's acidable or we can't acid it but it has the xeno damagable flag, we can damage it
+		attack_generic(X, damage * 2, BRUTE, "", FALSE) //Deals 2 times regular damage to machines
+	X.visible_message(span_xenodanger("\The [X] pierces [src] with a [punch_description]"), \
+		span_xenodanger("We pierce [src] with a [punch_description]"), visible_message_flags = COMBAT_MESSAGE)
+	playsound(src, "alien_tail_swipe", 50, TRUE)
+	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 25, 1)
+	Shake(duration = 0.5 SECONDS)
+
+	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
+
+	if(wires) //If it has wires, break em
+		var/allcut = wires.is_all_cut()
+		if(!allcut)
+			wires.cut_all()
+			visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!"), null, null, 5)
+	update_icon()
+	return TRUE
+
+/obj/machinery/computer/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2) //Break open the machine
+	set_disabled() //Currently only computers use this; falcon punch away its density
+	return ..()
+
+/obj/machinery/light/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
+	. = ..()
+	attack_alien(X) //Smash it
+
+/obj/machinery/camera/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
+	. = ..()
+	var/datum/effect_system/spark_spread/sparks = new //Avoid the slash text, go direct to sparks
+	sparks.set_up(2, 0, src)
+	sparks.attach(src)
+	sparks.start()
+
+	deactivate()
+	visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!")) //Smash it
+
+/obj/machinery/power/apc/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
+	. = ..()
+	beenhit += 2
+
+/obj/machinery/vending/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
+	. = ..()
+	if(tipped_level < 2) //Knock it down if it isn't
+		X.visible_message(span_danger("\The [X] pulls \the [src] down while retracting it's tail!"), \
+		span_danger("You pull \the [src] down with your tail!"), null, 5)
+		tip_over()
+
+/obj/structure/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "devastating tail-jab!", stagger_stacks = 2, slowdown_stacks = 2) //Smash structures
+	. = ..()
+	X.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
+	X.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+	attack_alien(X, damage * 2, BRUTE, "", FALSE) //Deals 2 times regular damage to structures
+	X.visible_message(span_xenodanger("\The [X] stab [src] with a [punch_description]"), \
+		span_xenodanger("We stab [src] with a [punch_description]"), visible_message_flags = COMBAT_MESSAGE)
+	playsound(src, "alien_tail_swipe", 50, TRUE)
+	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 25, 1)
+	Shake(duration = 0.5 SECONDS)
+
+/obj/vehicle/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "devastating tail-jab!", stagger_stacks = 2, slowdown_stacks = 2)
+	. = ..()
+	X.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
+	X.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+	attack_generic(X, damage * 2, BRUTE, "", FALSE) //Deals 2 times regular damage to vehicles
+	X.visible_message(span_xenodanger("\The [X] stabs [src] with a [punch_description]"), \
+		span_xenodanger("We stab [src] with a [punch_description]"), visible_message_flags = COMBAT_MESSAGE)
+	playsound(src, "alien_tail_swipe", 50, TRUE)
+	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
+	Shake(duration = 0.5 SECONDS)
+	return TRUE
+
+/mob/living/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
+	. = ..()
+	if(pulledby == X) //If we're being grappled
+		damage *= 2
+		slowdown_stacks *= 2
+		stagger_stacks *= 2
+		ParalyzeNoChain(0.5 SECONDS)
+		X.stop_pulling()
+		punch_description = "devastating tail-jab!"
+
+	if(iscarbon(src))
+		var/mob/living/carbon/carbon_victim = src
+		var/datum/limb/L = carbon_victim.get_limb(target_zone)
+
+		if (!L || (L.limb_status & LIMB_DESTROYED))
+			L = carbon_victim.get_limb(BODY_ZONE_CHEST)
+		if(pulledby == X)
+			apply_damage(damage, BRUTE, L, MELEE, IS_SHARP_ITEM_ACCURATE, TRUE, TRUE, 25)
+		else
+			apply_damage(damage, BRUTE, L, MELEE, IS_SHARP_ITEM_ACCURATE, TRUE, TRUE, 50)
+	else
+		apply_damage(damage, BRUTE, blocked = MELEE)
+
+	if(push)
+		var/facing = get_dir(X, src)
+
+		if(loc == X.loc) //If they're sharing our location we still hit
+			facing = X.dir
+
+		var/turf/T = X.loc
+		var/turf/temp = X.loc
+
+		for (var/x in 1 to 2)
+			temp = get_step(T, facing)
+			if (!temp)
+				break
+			T = temp
+
+	var/target_location_feedback = get_living_limb_descriptive_name(target_zone)
+	if(X.blunt_stab)
+		punch_description = "heavy tail-jab!"
+		X.visible_message(span_xenodanger("\The [X] smacks [src] in the [target_location_feedback] with a [punch_description]"), \
+			span_xenodanger("We hit [src] in the [target_location_feedback] with a [punch_description]"), visible_message_flags = COMBAT_MESSAGE)
+		playsound(src, "alien_tail_swipe", 50, TRUE)
+		playsound(src, "punch", 50, TRUE)
+	else
+		X.visible_message(span_xenodanger("\The [X] stabs [src] in the [target_location_feedback] with a [punch_description]"), \
+			span_xenodanger("We stab [src] in the [target_location_feedback] with a [punch_description]"), visible_message_flags = COMBAT_MESSAGE)
+		playsound(src, "alien_tail_swipe", 50, TRUE)
+		playsound(src,"alien_bite", 50, 1)
+		src.add_splatter_floor(loc)
+	X.face_atom(src) //Face the target so you don't look like an idiot
+	X.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
+	X.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+
+	adjust_stagger(stagger_stacks SECONDS)
+	add_slowdown(slowdown_stacks)
+	adjust_blurriness(slowdown_stacks) //Cosmetic eye blur SFX
+
+	shake_camera(src, 2, 1)
+	Shake(duration = 0.5 SECONDS)
+
+/datum/action/ability/activable/xeno/tail_stab/ai_should_start_consider()
+	return TRUE
+
+/datum/action/ability/activable/xeno/tail_stab/ai_should_use(atom/target)
+	if(!iscarbon(target))
+		return FALSE
+	if(get_dist(target, owner) > 2)
+		return FALSE
+	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
+	return TRUE

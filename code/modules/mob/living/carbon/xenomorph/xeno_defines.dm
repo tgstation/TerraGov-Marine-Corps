@@ -419,5 +419,6 @@
 
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM
+	var/blunt_stab = FALSE
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
