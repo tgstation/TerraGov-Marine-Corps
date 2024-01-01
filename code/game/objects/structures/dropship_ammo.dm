@@ -517,7 +517,7 @@
 	light_explosion_range = 7
 	travelling_time = 6 SECONDS
 	prediction_type = CAS_AMMO_EXPLOSIVE
-	cas_effect = /obj/effect/overlay/blinking_laser/fatty
+	cas_effect = /obj/effect/overlay/blinking_laser/monarch
 
 // High speed missiles are defined by their four second deploy time, solid yield.
 
@@ -532,7 +532,7 @@
 	heavy_explosion_range = 4
 	light_explosion_range = 6
 	prediction_type = CAS_AMMO_EXPLOSIVE
-	cas_effect = /obj/effect/overlay/blinking_laser/fatty
+	cas_effect = /obj/effect/overlay/blinking_laser/swansong
 
 //Minirockets are effectively just da small rockets.
 /obj/structure/ship_ammo/cas/minirocket
@@ -660,7 +660,7 @@
 	heavy_explosion_range = 3
 	light_explosion_range = 4
 	prediction_type = CAS_AMMO_EXPLOSIVE
-	cas_effect = /obj/effect/overlay/blinking_laser/minirocket
+	cas_effect = /obj/effect/overlay/blinking_laser/bomb
 
 
 /obj/structure/ship_ammo/cas/bomblet/detonate_on(turf/impact, attackdir = NORTH)
@@ -676,12 +676,12 @@
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/bomb_pod
 	ammo_count = 4
 	max_ammo_count = 4
-	ammo_name = "bomblet"
+	ammo_name = "bomb_400"
 	point_cost = 300 // Bombs are numerous.
 	heavy_explosion_range = 4
 	light_explosion_range = 5
 	prediction_type = CAS_AMMO_EXPLOSIVE
-	cas_effect = /obj/effect/overlay/blinking_laser/minirocket
+	cas_effect = /obj/effect/overlay/blinking_laser/bomb
 
 // The mother of all bombs, Jack.
 /obj/structure/ship_ammo/cas/bomb/moab
@@ -693,20 +693,21 @@
 	devastating_explosion_range = 6
 	heavy_explosion_range = 8
 	light_explosion_range = 0
-	ammo_name = "moab"
+	ammo_name = "bomb_1000"
 	travelling_time = 14 SECONDS
 	point_cost = 700 // This is literally a minituare OB.
+	cas_effect = /obj/effect/overlay/blinking_laser/bomb_fat
 
 // Bomblets are small and numerious, with small paylods but high quantity.
 /obj/structure/ship_ammo/cas/bomblet
 	name = "AOE-50lb stack"
 	desc = "A large litter of explosive bomblets, will only fit in a bomblet pod. Moving this will require some sort of lifter."
-	icon_state = "minirocket"
+	icon_state = "bomb_50"
 	icon = 'icons/Marine/mainship_props.dmi'
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/bomblet_pod
 	ammo_count = 40
 	max_ammo_count = 40
-	ammo_name = "bomblet_50"
+	ammo_name = "bomb_50"
 	firing_voiceline = 'sound/voice/plane_vws/shot_missile.ogg'
 	travelling_time = 10 SECONDS
 	transferable_ammo = TRUE
@@ -715,7 +716,7 @@
 	light_explosion_range = 2
 	heavy_explosion_range = 0
 	prediction_type = CAS_AMMO_EXPLOSIVE
-	cas_effect = /obj/effect/overlay/blinking_laser/minirocket
+	cas_effect = /obj/effect/overlay/blinking_laser/bomblet
 
 
 /obj/structure/ship_ammo/cas/bomblet/detonate_on(turf/impact, attackdir = NORTH)
@@ -728,7 +729,7 @@
 	icon_state = "bomblet_75"
 	ammo_count = 20
 	max_ammo_count = 20
-	ammo_name = "bomblet"
+	ammo_name = "bomb_75"
 	firing_voiceline = 'sound/voice/plane_vws/shot_missile.ogg'
 	travelling_time = 12 SECONDS
 	point_cost = 300 // You get a LOT of bomblets.
