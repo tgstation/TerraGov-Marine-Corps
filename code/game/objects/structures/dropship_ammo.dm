@@ -275,7 +275,7 @@
 	name = "high-velocity 30mm ammo crate"
 	icon_state = "30mm_crate_hv"
 	desc = "A crate full of 30mm high-velocity bullets used on the dropship heavy guns. Moving this will require some sort of lifter."
-	travelling_time = 3 SECONDS
+	travelling_time = 2 SECONDS
 	point_cost = 225
 
 
