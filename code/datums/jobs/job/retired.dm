@@ -62,6 +62,7 @@
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
 	belt = /obj/item/storage/holster/blade/officer/full
 	suit_store = /obj/item/storage/holster/belt/mateba/full
+	back = /obj/item/ammo_magazine/minigun_wheelchair
 
 /datum/outfit/job/retired/leader/post_equip(mob/living/carbon/human/H, visualsOnly)
 	H.equip_to_slot_or_del(new /obj/item/storage/fancy/chemrettes, SLOT_IN_SUIT)

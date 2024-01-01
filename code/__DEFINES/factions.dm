@@ -1,6 +1,5 @@
 #define FACTION_NEUTRAL "Neutral"
 #define FACTION_TERRAGOV "Nine Tailed Fox"
-#define FACTION_RETIRED "NTC Retiree Force"
 #define FACTION_XENO "Xeno"
 #define FACTION_ZOMBIE "Zombie"
 #define FACTION_CLF "Colonial Liberation Force"

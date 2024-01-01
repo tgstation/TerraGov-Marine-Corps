@@ -47,7 +47,7 @@
 		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the TGMC retired veteran expedition leader! Lead your fellow veterans to one last hurrah!</notice></p>")
 		return
 
-	var/obj/structure/bed/chair/wheelchair/new_wheelchair = new(H.drop_location())
+	var/obj/vehicle/ridden/wheelchair/new_wheelchair = new(H.drop_location())
 	new_wheelchair.buckle_mob(H, TRUE)
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/retired)
