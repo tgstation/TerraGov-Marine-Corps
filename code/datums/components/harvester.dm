@@ -125,7 +125,7 @@
 		return
 
 	user.balloon_alert(user, "filling up...")
-	if(!do_after(user, 1 SECONDS, TRUE, source, BUSY_ICON_BAR, null, PROGRESS_BRASS))
+	if(!do_after(user, 1 SECONDS, NONE, source, BUSY_ICON_BAR, null, PROGRESS_BRASS))
 		return
 
 	if(!loaded_reagents[reagent_to_load])
@@ -160,7 +160,7 @@
 		return
 
 	to_chat(user, span_rose("You start filling up the small chambers along the blade's edge."))
-	if(!do_after(user, 2 SECONDS, TRUE, source, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
+	if(!do_after(user, 2 SECONDS, IGNORE_USER_LOC_CHANGE, source, BUSY_ICON_BAR))
 		to_chat(user, span_rose("Due to the sudden movement, the safety mechanism siphons the substance back."))
 		return
 
