@@ -66,6 +66,9 @@ export const IndividualStats = (props) => {
     null
   );
 
+  const [equipPotentialItem, setEquippedItem] =
+    useLocalState<LoadoutItemData | null>('equipPotentialItem', null);
+
   return (
     <Window
       theme={data.ui_theme}
@@ -95,6 +98,37 @@ export const IndividualStats = (props) => {
                 <Stack.Item>
                   <Button
                     onClick={() => setPurchasedPerk(null)}
+                    icon={'times'}
+                    color="red">
+                    No
+                  </Button>
+                </Stack.Item>
+              </Stack>
+            </Section>
+          </Modal>
+        ) : null}
+        {equipPotentialItem ? (
+          <Modal width="500px">
+            <Section
+              textAlign="center"
+              title={'Equip ' + equipPotentialItem.name + '?'}>
+              <Stack justify="space-around">
+                <Stack.Item>
+                  <Button
+                    onClick={() => {
+                      act('equip_item', {
+                        selected_item: equipPotentialItem.type,
+                      });
+                      setEquippedItem(null);
+                    }}
+                    icon={'check'}
+                    color="green">
+                    Yes
+                  </Button>
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    onClick={() => setEquippedItem(null)}
                     icon={'times'}
                     color="red">
                     No

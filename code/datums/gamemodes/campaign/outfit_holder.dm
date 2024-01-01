@@ -56,7 +56,7 @@
 	loadout_cost += equipped_things[slot_bit].purchase_cost
 	check_full_loadout() //checks all datums to see if this makes anything invalid
 
-	switch(slot_bit) //adds it to the loadout itself
+	switch(new_item.item_slot) //adds it to the loadout itself
 		if(ITEM_SLOT_OCLOTHING)
 			loadout.wear_suit = new_item.item_typepath
 		if(ITEM_SLOT_ICLOTHING)

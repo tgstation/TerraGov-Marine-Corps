@@ -175,8 +175,6 @@
 			current_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
 			current_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost  //todo: do related
 			current_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit) //is this item valid based on the current loadout. Don't think we need !! but check
-			//current_loadout_item_data["item_whitelist"] = loadout_item.item_whitelist //TODO: Decide if this is needed. Mechanically is not needed, but typepaths as string are likely needed for player info
-			//current_loadout_item_data["item_blacklist"] = loadout_item.item_blacklist
 			current_loadout_item_data["icon"] = loadout_item.item_typepath::icon_state //todo: Figure out if this works from a ui perspective, or if an 'ui_icon' is needed like assets
 			equipped_item_ui_data["slot"] = slot
 			equipped_item_ui_data["item_type"] = current_loadout_item_data
@@ -193,18 +191,11 @@
 				available_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
 				available_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost
 				available_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit)
-				//available_loadout_item_data["item_whitelist"] = loadout_item.item_whitelist
-				//available_loadout_item_data["item_blacklist"] = loadout_item.item_blacklist
 				available_loadout_item_data["icon"] = loadout_item.item_typepath::icon_state
 				available_loadouts_data += list(available_loadout_item_data)
 
 	data["equipped_loadouts_data"] = equipped_loadouts_data
 	data["available_loadouts_data"] = available_loadouts_data
-
-	//var/list/outfit_slots = list()
-	//for(var/slot in GLOB.campaign_loadout_slots)
-	//	outfit_slots += GLOB.inventory_slots_to_string["[slot]"]
-	//data["outfit_slots"] = outfit_slots
 
 	return data
 
@@ -219,7 +210,7 @@
 
 	var/mob/living/user = usr
 
-	switch(action) //insert shit here
+	switch(action)
 		if("unlock_perk")
 			var/unlocked_perk = text2path(params["selected_perk"])
 			if(!unlocked_perk)
@@ -228,7 +219,20 @@
 				return
 			var/datum/perk/perk = GLOB.campaign_perk_list[unlocked_perk]
 			purchase_perk(perk)
+			update_static_data(user)
 			return TRUE
+		if("equip_item")
+			var/equipped_item_type = text2path(params["selected_item"])
+			if(!equipped_item_type)
+				return
+			for(var/job in GLOB.campaign_loadout_items_by_role)
+				for(var/datum/loadout_item/item AS in GLOB.campaign_loadout_items_by_role[job])
+					if(!istype(item, equipped_item_type))
+						continue
+					loadouts[job].attempt_equip_loadout_item(item)
+					update_static_data(user)
+					return TRUE
+			return FALSE
 
 ///Opens up the players campaign status UI
 /mob/living/proc/open_individual_stats_ui()
