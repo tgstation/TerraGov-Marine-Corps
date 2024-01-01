@@ -1630,7 +1630,7 @@
 /datum/action/ability/activable/xeno/tail_stab
 	name = "Tail Stab"
 	action_icon_state = "tail_attack"
-	desc = "Strike a target with a sharp tail for armor-piercing damage, stagger and slowdown. Deals double AP, damage, stagger and slowdown to grappled targets. Deals triple damage to structures and machinery."
+	desc = "Strike a target with a sharp tail for armor-piercing damage, stagger and slowdown. Deals double AP, damage, stagger and slowdown to grappled targets and to structures and machinery."
 
 	ability_cost = 30
 	cooldown_duration = 10 SECONDS
@@ -1691,8 +1691,6 @@
 	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
 	var/target_zone = check_zone(X.zone_selected)
 
-	if(X.empower())
-		damage *= 1.5
 	if(!A.tail_stab_act(X, damage, target_zone))
 		return fail_activate()
 
@@ -1709,7 +1707,7 @@
 	X.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
 	X.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 	if(!CHECK_BITFIELD(resistance_flags, UNACIDABLE) || resistance_flags == (UNACIDABLE|XENO_DAMAGEABLE)) //If it's acidable or we can't acid it but it has the xeno damagable flag, we can damage it
-		attack_generic(X, damage * 3, BRUTE, "", FALSE) //Deals 3 times regular damage to machines
+		attack_generic(X, damage * 2, BRUTE, "", FALSE) //Deals 2 times regular damage to machines
 	X.visible_message(span_xenodanger("\The [X] pierces [src] with a [punch_description]"), \
 		span_xenodanger("We pierce [src] with a [punch_description]"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, "alien_tail_swipe", 50, TRUE)
@@ -1747,7 +1745,7 @@
 
 /obj/machinery/power/apc/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
 	. = ..()
-	beenhit += 3
+	beenhit += 2
 
 /obj/machinery/vending/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
 	. = ..()
@@ -1760,7 +1758,7 @@
 	. = ..()
 	X.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
 	X.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
-	attack_alien(X, damage * 3, BRUTE, "", FALSE) //Deals 3 times regular damage to structures
+	attack_alien(X, damage * 2, BRUTE, "", FALSE) //Deals 2 times regular damage to structures
 	X.visible_message(span_xenodanger("\The [X] stab [src] with a [punch_description]"), \
 		span_xenodanger("We stab [src] with a [punch_description]"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, "alien_tail_swipe", 50, TRUE)
@@ -1771,7 +1769,7 @@
 	. = ..()
 	X.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
 	X.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
-	attack_generic(X, damage * 3, BRUTE, "", FALSE) //Deals 3 times regular damage to vehicles
+	attack_generic(X, damage * 2, BRUTE, "", FALSE) //Deals 2 times regular damage to vehicles
 	X.visible_message(span_xenodanger("\The [X] stabs [src] with a [punch_description]"), \
 		span_xenodanger("We stab [src] with a [punch_description]"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, "alien_tail_swipe", 50, TRUE)
@@ -1799,7 +1797,6 @@
 			apply_damage(damage, BRUTE, L, MELEE, IS_SHARP_ITEM_ACCURATE, TRUE, TRUE, 25)
 		else
 			apply_damage(damage, BRUTE, L, MELEE, IS_SHARP_ITEM_ACCURATE, TRUE, TRUE, 50)
-			emote("scream")
 	else
 		apply_damage(damage, BRUTE, blocked = MELEE)
 
