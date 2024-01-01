@@ -118,6 +118,7 @@ export const IndividualStats = (props) => {
                     onClick={() => {
                       act('equip_item', {
                         selected_item: equipPotentialItem.type,
+                        selected_job: equipPotentialItem.job,
                       });
                       setEquippedItem(null);
                     }}

@@ -225,14 +225,25 @@
 			var/equipped_item_type = text2path(params["selected_item"])
 			if(!equipped_item_type)
 				return
-			for(var/job in GLOB.campaign_loadout_items_by_role)
-				for(var/datum/loadout_item/item AS in GLOB.campaign_loadout_items_by_role[job])
-					if(!istype(item, equipped_item_type))
-						continue
-					loadouts[job].attempt_equip_loadout_item(item)
-					update_static_data(user)
-					return TRUE
-			return FALSE
+			var/equipped_item_job = params["selected_job"]
+			if(!equipped_item_job)
+				return
+			for(var/datum/loadout_item/item AS in GLOB.campaign_loadout_items_by_role[equipped_item_job])
+				if(!istype(item, equipped_item_type))
+					continue
+				loadouts[equipped_item_job].attempt_equip_loadout_item(item)
+				update_static_data(user)
+				return TRUE
+		if("equip_outfit")
+			var/job = text2path(params["outfit_job"])
+			if(!job)
+				return
+			var/insufficient_credits = use_funds(loadouts[job].loadout_cost)
+			if(insufficient_credits)
+				to_chat(user, "<span class='warning'>Requires [insufficient_credits] more credits.")
+				return
+			loadouts[job].equip_loadout(user)
+			update_static_data(user)
 
 ///Opens up the players campaign status UI
 /mob/living/proc/open_individual_stats_ui()
