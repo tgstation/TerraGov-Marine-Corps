@@ -112,7 +112,9 @@
 	ui.open()
 
 /datum/individual_stats/ui_state(mob/user)
-	return GLOB.conscious_state //will need to kill this later probably. see current changes to campaign overview
+	if(isobserver(user))
+		return GLOB.always_state
+	return GLOB.conscious_state
 
 //datum/individual_stats/ui_data(mob/user)
 	//. = ..()
@@ -246,18 +248,18 @@
 			loadouts[job].equip_loadout(user)
 			update_static_data(user)
 
-///Opens up the players campaign status UI
-/mob/living/proc/open_individual_stats_ui()
-	set name = "Individual Stats"
-	set desc = "Check the your individual stats and loadout."
-	set category = "IC"
+//loadout/perk UI for campaign gamemode
+/datum/action/campaign_loadout
+	name = "Loadout menu"
+	action_icon_state = "individual_stats"
 
-	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[faction]
+/datum/action/campaign_loadout/action_activate()
+	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[owner.faction]
 	if(!your_faction)
 		return
 
-	var/datum/individual_stats/stats = your_faction.individual_stat_list[key]
+	var/datum/individual_stats/stats = your_faction.individual_stat_list[owner.key]
 	if(!stats)
 		//return
 		stats = your_faction.individual_stat_list[null] //PLACEHOLDER. KEY IS NOT SET WHEN THE STAT DATUM IS MADE, FIX PLS.
-	stats.interact(src)
+	stats.interact(owner)

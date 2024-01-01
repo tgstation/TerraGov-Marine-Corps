@@ -41,6 +41,7 @@
 	. = ..()
 	for(var/faction in factions)
 		stat_list[faction] = new /datum/faction_stats(faction)
+	RegisterSignal(SSdcs, COMSIG_LIVING_JOB_SET, PROC_REF(register_faction_member))
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_MOB_DEATH, COMSIG_MOB_GHOSTIZE), PROC_REF(set_death_time))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(cut_death_list_timer))
 	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, intro_sequence)), SSticker.round_start_time + 1 MINUTES)
@@ -122,7 +123,7 @@
 		stat_list[i].get_status_tab_items(source, items)
 
 /datum/game_mode/hvh/campaign/ghost_verbs(mob/dead/observer/observer)
-	return list(/datum/action/campaign_overview)
+	return list(/datum/action/campaign_overview, /datum/action/campaign_loadout)
 
 ///sets up the newly selected mission
 /datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission)
@@ -274,3 +275,6 @@
 
 	var/datum/action/campaign_overview/overview = new
 	overview.give_action(new_member)
+
+	var/datum/action/campaign_loadout/loadouts = new
+	loadouts.give_action(new_member)
