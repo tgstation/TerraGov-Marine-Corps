@@ -1,6 +1,6 @@
 import { useBackend, useLocalState } from '../../backend';
+import { Box, Button, Modal, Section, Stack, Tabs } from '../../components';
 import { Window } from '../../layouts';
-import { Box, Modal, Tabs, Button, Stack, Section } from '../../components';
 import { IndividualLoadouts } from './IndividualLoadouts';
 import { IndividualPerks } from './IndividualPerks';
 
@@ -54,16 +54,16 @@ export const IndividualStats = (props) => {
   const { act, data } = useBackend<IndividualData>();
   const [selectedTab, setSelectedTab] = useLocalState(
     'selectedTab',
-    TAB_LOADOUT
+    TAB_LOADOUT,
   );
   const [selectedJob, setSelectedJob] = useLocalState(
     'selectedJob',
-    data.jobs[0]
+    data.jobs[0],
   );
 
   const [unlockedPerk, setPurchasedPerk] = useLocalState<PerkData | null>(
     'unlockedPerk',
-    null
+    null,
   );
 
   const [equipPotentialItem, setEquippedItem] =
@@ -74,13 +74,15 @@ export const IndividualStats = (props) => {
       theme={data.ui_theme}
       title={'Prep screen'}
       width={700}
-      height={600}>
+      height={600}
+    >
       <Window.Content>
         {unlockedPerk ? (
           <Modal width="500px">
             <Section
               textAlign="center"
-              title={'Purchase ' + unlockedPerk.name + '?'}>
+              title={'Purchase ' + unlockedPerk.name + '?'}
+            >
               <Stack justify="space-around">
                 <Stack.Item>
                   <Button
@@ -91,7 +93,8 @@ export const IndividualStats = (props) => {
                       setPurchasedPerk(null);
                     }}
                     icon={'check'}
-                    color="green">
+                    color="green"
+                  >
                     Yes
                   </Button>
                 </Stack.Item>
@@ -99,7 +102,8 @@ export const IndividualStats = (props) => {
                   <Button
                     onClick={() => setPurchasedPerk(null)}
                     icon={'times'}
-                    color="red">
+                    color="red"
+                  >
                     No
                   </Button>
                 </Stack.Item>
@@ -111,7 +115,8 @@ export const IndividualStats = (props) => {
           <Modal width="500px">
             <Section
               textAlign="center"
-              title={'Equip ' + equipPotentialItem.name + '?'}>
+              title={'Equip ' + equipPotentialItem.name + '?'}
+            >
               <Stack justify="space-around">
                 <Stack.Item>
                   <Button
@@ -123,7 +128,8 @@ export const IndividualStats = (props) => {
                       setEquippedItem(null);
                     }}
                     icon={'check'}
-                    color="green">
+                    color="green"
+                  >
                     Yes
                   </Button>
                 </Stack.Item>
@@ -131,7 +137,8 @@ export const IndividualStats = (props) => {
                   <Button
                     onClick={() => setEquippedItem(null)}
                     icon={'times'}
-                    color="red">
+                    color="red"
+                  >
                     No
                   </Button>
                 </Stack.Item>
@@ -147,7 +154,8 @@ export const IndividualStats = (props) => {
                 selected={jobname === selectedJob}
                 fontSize="130%"
                 textAlign="center"
-                onClick={() => setSelectedJob(jobname)}>
+                onClick={() => setSelectedJob(jobname)}
+              >
                 {jobname}
               </Tabs.Tab>
             );
@@ -161,7 +169,8 @@ export const IndividualStats = (props) => {
                 selected={tabname === selectedTab}
                 fontSize="130%"
                 textAlign="center"
-                onClick={() => setSelectedTab(tabname)}>
+                onClick={() => setSelectedTab(tabname)}
+              >
                 {tabname}
               </Tabs.Tab>
             );
@@ -176,7 +185,7 @@ export const IndividualStats = (props) => {
 const CampaignContent = (props) => {
   const [selectedTab, setSelectedTab] = useLocalState(
     'selectedTab',
-    TAB_LOADOUT
+    TAB_LOADOUT,
   );
   switch (selectedTab) {
     case TAB_LOADOUT:

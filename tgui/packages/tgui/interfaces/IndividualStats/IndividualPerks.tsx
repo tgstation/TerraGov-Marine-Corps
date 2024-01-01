@@ -1,21 +1,28 @@
-import { IndividualData, PerkData, PerkIcon } from './index';
 import { useBackend, useLocalState } from '../../backend';
-import { LabeledList, Button, Stack, Section, Flex, Box } from '../../components';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  Section,
+  Stack,
+} from '../../components';
+import { IndividualData, PerkData, PerkIcon } from './index';
 
 export const IndividualPerks = (props) => {
   const { act, data } = useBackend<IndividualData>();
   const { perks_data } = data;
   const [unlockedPerk, setPurchasedPerk] = useLocalState<PerkData | null>(
     'unlockedPerk',
-    null
+    null,
   );
   const [selectedJob, setSelectedJob] = useLocalState(
     'selectedJob',
-    data.jobs[0]
+    data.jobs[0],
   );
   const [selectedPerk, setSelectedPerk] = useLocalState(
     'selectedPerk',
-    perks_data[0]
+    perks_data[0],
   );
   perks_data.sort((a, b) => {
     const used_asset_a = a.currently_active;
@@ -45,7 +52,8 @@ export const IndividualPerks = (props) => {
                         : perk.currently_active < 0
                           ? 'red'
                           : 'grey'
-                  }>
+                  }
+                >
                   <Flex align="center">
                     {!!perk.icon && (
                       <PerkIcon
@@ -85,7 +93,8 @@ export const IndividualPerks = (props) => {
                     <Flex.Item alight="right" position="end">
                       <Button
                         onClick={() => setPurchasedPerk(selectedPerk)}
-                        icon={'check'}>
+                        icon={'check'}
+                      >
                         Unlock
                       </Button>
                     </Flex.Item>
@@ -95,7 +104,8 @@ export const IndividualPerks = (props) => {
             ) : (
               'No perk selected'
             )
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Name">
               {selectedPerk?.name}
