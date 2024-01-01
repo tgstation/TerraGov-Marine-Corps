@@ -1,10 +1,10 @@
 import { useBackend } from '../backend';
 import {
   AnimatedNumber,
-  Button,
   Box,
-  NoticeBox,
+  Button,
   LabeledList,
+  NoticeBox,
   ProgressBar,
   Section,
 } from '../components';

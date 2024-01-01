@@ -1,14 +1,15 @@
+import { toFixed } from 'common/math';
+
 import { useBackend } from '../../backend';
 import {
-  Stack,
-  Button,
-  Section,
   Box,
-  ProgressBar,
+  Button,
   LabeledList,
+  ProgressBar,
+  Section,
+  Stack,
 } from '../../components';
 import { KelvinZeroCelcius, OperatorData } from './data';
-import { toFixed } from 'common/math';
 
 export const MechStatPane = (props) => {
   const { act, data } = useBackend<OperatorData>();

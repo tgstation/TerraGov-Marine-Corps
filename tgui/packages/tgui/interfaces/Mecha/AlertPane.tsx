@@ -1,9 +1,9 @@
 import { useBackend } from '../../backend';
-import { Stack, Button, Box } from '../../components';
+import { Box, Button, Stack } from '../../components';
 import {
-  OperatorData,
   InternalDamageToDamagedDesc,
   InternalDamageToNormalDesc,
+  OperatorData,
 } from './data';
 
 export const AlertPane = (props) => {

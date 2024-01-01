@@ -1,14 +1,14 @@
-import { CampaignData, MissionIcon } from './index';
 import { useBackend } from '../../backend';
 import {
-  LabeledList,
+  Box,
   Button,
+  Flex,
+  LabeledList,
+  ProgressBar,
   Section,
   Table,
-  ProgressBar,
-  Box,
-  Flex,
 } from '../../components';
+import { CampaignData, MissionIcon } from './index';
 
 export const CampaignOverview = (props) => {
   const { act, data } = useBackend<CampaignData>();

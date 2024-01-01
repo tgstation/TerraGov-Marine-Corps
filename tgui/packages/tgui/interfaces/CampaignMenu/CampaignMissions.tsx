@@ -1,14 +1,14 @@
-import { CampaignData, MissionData, MissionIcon } from './index';
 import { useBackend, useLocalState } from '../../backend';
 import {
-  LabeledList,
-  Button,
-  Stack,
-  Section,
-  Table,
   Box,
+  Button,
   Flex,
+  LabeledList,
+  Section,
+  Stack,
+  Table,
 } from '../../components';
+import { CampaignData, MissionData, MissionIcon } from './index';
 
 export const CampaignMissions = (props) => {
   const { act, data } = useBackend<CampaignData>();

@@ -1,6 +1,7 @@
 import { useState } from 'react';
+
 import { useBackend } from '../../backend';
-import { Button, Section, TextArea, Box, Stack } from '../../components';
+import { Box, Button, Section, Stack, TextArea } from '../../components';
 
 export const BackgroundInformation = (props) => {
   const { act, data } = useBackend<BackgroundInformationData>();

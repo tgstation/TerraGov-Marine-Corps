@@ -1,5 +1,6 @@
 import { toFixed } from 'common/math';
 import { toTitleCase } from 'common/string';
+
 import { useBackend } from '../backend';
 import {
   AnimatedNumber,

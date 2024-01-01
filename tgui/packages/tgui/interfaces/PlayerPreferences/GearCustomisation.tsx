@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { Button, Section, LabeledList, Box, Stack } from '../../components';
+import { Box, Button, LabeledList, Section, Stack } from '../../components';
 
 export const GearCustomization = (props) => {
   const { act, data } = useBackend<GearCustomizationData>();

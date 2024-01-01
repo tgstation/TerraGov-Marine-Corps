@@ -1,20 +1,20 @@
 import { useBackend, useLocalState } from '../../backend';
 import {
-  Stack,
-  Button,
-  Section,
   Box,
+  Button,
+  Flex,
   LabeledList,
   Modal,
+  Section,
+  Stack,
   Tabs,
-  Flex,
 } from '../../components';
 import { Window } from '../../layouts';
 import {
-  LoadoutListData,
-  LoadoutTabData,
-  LoadoutManagerData,
   LoadoutItemData,
+  LoadoutListData,
+  LoadoutManagerData,
+  LoadoutTabData,
 } from './Types';
 
 const LoadoutItem = (props: LoadoutItemData) => {

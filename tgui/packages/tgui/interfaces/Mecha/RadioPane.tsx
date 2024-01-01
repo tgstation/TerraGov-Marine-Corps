@@ -1,7 +1,8 @@
-import { useBackend } from '../../backend';
-import { Button, NumberInput, LabeledList } from '../../components';
-import { OperatorData } from './data';
 import { toFixed } from 'common/math';
+
+import { useBackend } from '../../backend';
+import { Button, LabeledList, NumberInput } from '../../components';
+import { OperatorData } from './data';
 
 export const RadioPane = (props) => {
   const { act, data } = useBackend<OperatorData>();

@@ -1,6 +1,6 @@
 import { useBackend } from '../../backend';
 import { Box, Button, ProgressBar, Section, Tooltip } from '../../components';
-import { OperatorData, MechaUtility } from './data';
+import { MechaUtility, OperatorData } from './data';
 
 const UtilityName = (props: { name: string }) => {
   const { name } = props;

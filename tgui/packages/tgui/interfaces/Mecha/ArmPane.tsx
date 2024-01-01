@@ -1,11 +1,12 @@
 import { toFixed } from 'common/math';
+
 import { useBackend } from '../../backend';
 import {
   Button,
   LabeledList,
-  Stack,
-  Section,
   ProgressBar,
+  Section,
+  Stack,
 } from '../../components';
 import { MechWeapon, OperatorData } from './data';
 

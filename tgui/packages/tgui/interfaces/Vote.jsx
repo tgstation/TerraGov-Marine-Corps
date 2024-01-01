@@ -1,13 +1,13 @@
 import { useBackend } from '../backend';
 import {
   Box,
-  Icon,
-  Stack,
   Button,
-  Section,
-  NoticeBox,
-  LabeledList,
   Collapsible,
+  Icon,
+  LabeledList,
+  NoticeBox,
+  Section,
+  Stack,
 } from '../components';
 import { Window } from '../layouts';
 

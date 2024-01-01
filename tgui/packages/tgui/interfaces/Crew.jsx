@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Section, Box, Table } from '../components';
+import { Box, Button, Section, Table } from '../components';
 import { Window } from '../layouts';
 
 export const Crew = (props) => {

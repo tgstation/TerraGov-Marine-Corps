@@ -1,4 +1,5 @@
 import { capitalize } from 'common/string';
+
 import { useBackend, useLocalState } from '../../backend';
 import {
   Box,

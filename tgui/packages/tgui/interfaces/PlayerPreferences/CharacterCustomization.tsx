@@ -1,17 +1,18 @@
-import { useBackend } from '../../backend';
 import { capitalize } from 'common/string';
+
+import { useBackend } from '../../backend';
 import {
+  Box,
   Button,
-  Section,
+  ColorBox,
   Flex,
   LabeledList,
-  Box,
-  ColorBox,
+  Section,
 } from '../../components';
 import {
+  SelectFieldPreference,
   TextFieldPreference,
   ToggleFieldPreference,
-  SelectFieldPreference,
 } from './FieldPreferences';
 import { ProfilePicture } from './ProfilePicture';
 

@@ -1,22 +1,23 @@
 import { useState } from 'react';
+
 import { useBackend } from '../../backend';
 import {
   Box,
-  Stack,
   Button,
-  Section,
-  LabeledList,
-  Tabs,
   Flex,
+  LabeledList,
+  Section,
+  Stack,
+  Tabs,
 } from '../../components';
 import { Window } from '../../layouts';
-import {
-  LoadoutListData,
-  LoadoutTabData,
-  LoadoutManagerData,
-  LoadoutItemData,
-} from './Types';
 import { NameInputModal } from './NameInputModal';
+import {
+  LoadoutItemData,
+  LoadoutListData,
+  LoadoutManagerData,
+  LoadoutTabData,
+} from './Types';
 
 const LoadoutItem = (props: LoadoutItemData) => {
   const { act } = useBackend();

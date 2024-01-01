@@ -1,12 +1,13 @@
 import { useState } from 'react';
+
 import { useBackend, useLocalState } from '../backend';
 import {
-  Button,
-  Section,
   Box,
-  ProgressBar,
+  Button,
   LabeledList,
   Modal,
+  ProgressBar,
+  Section,
 } from '../components';
 import { Window } from '../layouts';
 

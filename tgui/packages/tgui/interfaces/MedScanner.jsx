@@ -1,10 +1,10 @@
 import { useBackend } from '../backend';
 import {
-  Section,
-  ProgressBar,
   Box,
   LabeledList,
   NoticeBox,
+  ProgressBar,
+  Section,
 } from '../components';
 import { Window } from '../layouts';
 

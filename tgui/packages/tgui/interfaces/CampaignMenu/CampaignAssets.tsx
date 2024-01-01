@@ -1,13 +1,13 @@
-import { CampaignData, FactionReward, AssetIcon } from './index';
 import { useBackend, useLocalState } from '../../backend';
 import {
-  LabeledList,
-  Button,
-  Stack,
-  Section,
   Box,
+  Button,
   Flex,
+  LabeledList,
+  Section,
+  Stack,
 } from '../../components';
+import { AssetIcon, CampaignData, FactionReward } from './index';
 
 export const CampaignAssets = (props) => {
   const { act, data } = useBackend<CampaignData>();

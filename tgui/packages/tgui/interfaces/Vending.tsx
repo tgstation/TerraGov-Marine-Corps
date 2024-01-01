@@ -1,14 +1,14 @@
 import { useBackend, useLocalState } from '../backend';
 import {
-  Button,
-  Section,
   Box,
-  LabeledList,
-  ProgressBar,
-  Modal,
+  Button,
   Divider,
-  Tabs,
+  LabeledList,
+  Modal,
+  ProgressBar,
+  Section,
   Stack,
+  Tabs,
 } from '../components';
 import { Window } from '../layouts';
 

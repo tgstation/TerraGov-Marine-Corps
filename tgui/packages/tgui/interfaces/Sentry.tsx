@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, LabeledList, Section, ProgressBar } from '../components';
+import { Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
 type SentryData = {

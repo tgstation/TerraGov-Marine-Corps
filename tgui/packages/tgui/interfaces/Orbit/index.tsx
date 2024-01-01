@@ -14,6 +14,7 @@ import {
   Stack,
 } from 'tgui/components';
 import { Window } from 'tgui/layouts';
+
 import { getDisplayColor, getDisplayName, isJobOrNameMatch } from './helpers';
 import type { Observable, OrbitData } from './types';
 

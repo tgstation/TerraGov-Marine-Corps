@@ -1,7 +1,8 @@
-import { Stack, Box, Button, Section } from '../components';
-import { Window } from '../layouts';
-import { useBackend } from '../backend';
 import { useState } from 'react';
+
+import { useBackend } from '../backend';
+import { Box, Button, Section, Stack } from '../components';
+import { Window } from '../layouts';
 
 type SquadSelectorData = {
   active_squads: SquadEntry[];

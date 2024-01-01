@@ -1,17 +1,18 @@
-import { useState } from 'react';
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
-import {
-  Button,
-  Flex,
-  Divider,
-  Box,
-  Section,
-  ProgressBar,
-  Tooltip,
-  Collapsible,
-} from '../components';
 import { round } from 'common/math';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
+import {
+  Box,
+  Button,
+  Collapsible,
+  Divider,
+  Flex,
+  ProgressBar,
+  Section,
+  Tooltip,
+} from '../components';
+import { Window } from '../layouts';
 
 type InputPack = {
   // ------- Hive info --------

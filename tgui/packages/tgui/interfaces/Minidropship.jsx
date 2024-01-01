@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Section, Box } from '../components';
+import { Box, Button, Section } from '../components';
 import { Window } from '../layouts';
 
 export const Minidropship = (_props) => {

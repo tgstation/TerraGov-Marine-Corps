@@ -1,11 +1,11 @@
 import { useBackend } from '../backend';
 import {
   Button,
-  Section,
-  LabeledList,
-  ProgressBar,
   Divider,
+  LabeledList,
   NumberInput,
+  ProgressBar,
+  Section,
 } from '../components';
 import { Window } from '../layouts';
 

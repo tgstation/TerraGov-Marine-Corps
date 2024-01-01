@@ -1,13 +1,14 @@
 import { useState } from 'react';
+
 import { useBackend } from '../../backend';
 import {
-  Section,
+  Box,
+  Button,
+  Flex,
   LabeledList,
   Modal,
-  Button,
-  Box,
+  Section,
   Stack,
-  Flex,
 } from '../../components';
 
 export const JobPreferences = (props) => {

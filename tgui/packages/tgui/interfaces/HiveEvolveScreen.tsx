@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Section, ProgressBar, Collapsible } from '../components';
+import { Button, Collapsible, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
 const EvolveProgress = (props) => (
