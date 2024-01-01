@@ -34,7 +34,8 @@ export const SquadManager = (props) => {
                     height={'120%'}
                     pt={0.5}
                     pl={1}
-                    width={'90px'}>
+                    width={'90px'}
+                  >
                     {squad.name}
                     <Box contents={squad.leader} />
                   </Box>
@@ -64,7 +65,8 @@ export const SquadManager = (props) => {
                           color: squadColor,
                           desc: squadDesc,
                         })
-                      }>
+                      }
+                    >
                       Create
                     </Button>
                   </Stack.Item>

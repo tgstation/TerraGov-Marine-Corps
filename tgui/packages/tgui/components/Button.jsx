@@ -85,7 +85,8 @@ export const Button = (props) => {
           return;
         }
       }}
-      {...computeBoxProps(rest)}>
+      {...computeBoxProps(rest)}
+    >
       <div className="Button__content">
         {icon && iconPosition !== 'right' && (
           <Icon
@@ -248,7 +249,8 @@ export class ButtonInput extends Component {
           'Button--color--' + color,
         ])}
         {...rest}
-        onClick={() => this.setInInput(true)}>
+        onClick={() => this.setInInput(true)}
+      >
         {icon && <Icon name={icon} rotation={iconRotation} spin={iconSpin} />}
         <div>{content}</div>
         <input
@@ -310,7 +312,7 @@ export class ButtonKeybind extends Component {
     const { keysDown } = this.state;
 
     const listOfKeys = Object.keys(keysDown).filter(
-      (isTrue) => keysDown[isTrue]
+      (isTrue) => keysDown[isTrue],
     );
 
     onFinish(listOfKeys);
@@ -374,8 +376,8 @@ export class ButtonKeybind extends Component {
         content={
           focused
             ? Object.keys(keysDown)
-              .filter((isTrue) => keysDown[isTrue])
-              .join('+') || content
+                .filter((isTrue) => keysDown[isTrue])
+                .join('+') || content
             : content
         }
         selected={focused}

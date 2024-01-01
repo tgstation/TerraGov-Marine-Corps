@@ -52,20 +52,23 @@ export const SlotSelector = (props: LoadoutSlotData) => {
                         style={{
                           width: BUTTON_DIMENSION_WIDTH,
                           height: BUTTON_DIMENSION_HEIGHT,
-                        }}>
+                        }}
+                      >
                         <Box
                           style={{
                             position: 'relative',
                             width: '100%',
                             height: '100%',
-                          }}>
+                          }}
+                        >
                           <Button
                             onClick={() => {
                               act('selectSlot', {
                                 key: keyAtSpot,
                               });
                             }}
-                            tooltip={tooltip}>
+                            tooltip={tooltip}
+                          >
                             {slot.image && (
                               <Box
                                 as="img"
@@ -87,7 +90,8 @@ export const SlotSelector = (props: LoadoutSlotData) => {
                                 position: 'relative',
                                 width: '60px',
                                 height: '60px',
-                              }}>
+                              }}
+                            >
                               {item.icons.map((iconinfo) => (
                                 <Box
                                   key={iconinfo.icon}

@@ -11,27 +11,32 @@ export const Crew = (props) => {
         <Section title="Supplypod bay">
           <Button
             onClick={() => act('bay', { bay: 1 })}
-            disabled={data.bayNumber === 1}>
+            disabled={data.bayNumber === 1}
+          >
             Bay #1
           </Button>
           <Button
             onClick={() => act('bay', { bay: 2 })}
-            disabled={data.bayNumber === 2}>
+            disabled={data.bayNumber === 2}
+          >
             Bay #2
           </Button>
           <Button
             onClick={() => act('bay', { bay: 3 })}
-            disabled={data.bayNumber === 3}>
+            disabled={data.bayNumber === 3}
+          >
             Bay #3
           </Button>
           <Button
             onClick={() => act('bay', { bay: 4 })}
-            disabled={data.bayNumber === 4}>
+            disabled={data.bayNumber === 4}
+          >
             Bay #4
           </Button>
           <Button
             onClick={() => act('bay', { bay: 5 })}
-            disabled={data.bayNumber === 5}>
+            disabled={data.bayNumber === 5}
+          >
             Bay #5
           </Button>
         </Section>

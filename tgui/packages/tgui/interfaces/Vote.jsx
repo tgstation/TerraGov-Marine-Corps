@@ -1,5 +1,14 @@
 import { useBackend } from '../backend';
-import { Box, Icon, Stack, Button, Section, NoticeBox, LabeledList, Collapsible } from '../components';
+import {
+  Box,
+  Icon,
+  Stack,
+  Button,
+  Section,
+  NoticeBox,
+  LabeledList,
+  Collapsible,
+} from '../components';
 import { Window } from '../layouts';
 
 export const Vote = (props) => {
@@ -52,28 +61,32 @@ const StartVoteOptions = (props) => {
               <Stack.Item>
                 <Button
                   disabled={vote_happening || !allow_vote_groundmap}
-                  onClick={() => act('groundmap')}>
+                  onClick={() => act('groundmap')}
+                >
                   Ground Map
                 </Button>
               </Stack.Item>
               <Stack.Item>
                 <Button
                   disabled={vote_happening || !allow_vote_shipmap}
-                  onClick={() => act('shipmap')}>
+                  onClick={() => act('shipmap')}
+                >
                   Ship Map
                 </Button>
               </Stack.Item>
               <Stack.Item>
                 <Button
                   disabled={vote_happening || !allow_vote_restart}
-                  onClick={() => act('restart')}>
+                  onClick={() => act('restart')}
+                >
                   Restart
                 </Button>
               </Stack.Item>
               <Stack.Item>
                 <Button
                   disabled={vote_happening || !allow_vote_mode}
-                  onClick={() => act('gamemode')}>
+                  onClick={() => act('gamemode')}
+                >
                   Gamemode
                 </Button>
               </Stack.Item>
@@ -108,7 +121,8 @@ const VoteOptions = (props) => {
                     mr={!allow_vote_groundmap ? 1 : 1.6}
                     color="red"
                     checked={!!allow_vote_groundmap}
-                    onClick={() => act('toggle_groundmap')}>
+                    onClick={() => act('toggle_groundmap')}
+                  >
                     Groundmap vote{' '}
                     {allow_vote_groundmap ? 'Enabled' : 'Disabled'}
                   </Button.Checkbox>
@@ -120,7 +134,8 @@ const VoteOptions = (props) => {
                     mr={!allow_vote_shipmap ? 1 : 1.6}
                     color="red"
                     checked={!!allow_vote_shipmap}
-                    onClick={() => act('toggle_shipmap')}>
+                    onClick={() => act('toggle_shipmap')}
+                  >
                     Shipmap vote {allow_vote_shipmap ? 'Enabled' : 'Disabled'}
                   </Button.Checkbox>
                 )}
@@ -131,7 +146,8 @@ const VoteOptions = (props) => {
                     mr={!allow_vote_restart ? 1 : 1.6}
                     color="red"
                     checked={!!allow_vote_restart}
-                    onClick={() => act('toggle_restart')}>
+                    onClick={() => act('toggle_restart')}
+                  >
                     Restart vote {allow_vote_restart ? 'Enabled' : 'Disabled'}
                   </Button.Checkbox>
                 )}
@@ -142,7 +158,8 @@ const VoteOptions = (props) => {
                     mr={!allow_vote_mode ? 1 : 1.6}
                     color="red"
                     checked={!!allow_vote_mode}
-                    onClick={() => act('toggle_gamemode')}>
+                    onClick={() => act('toggle_gamemode')}
+                  >
                     Gamemode vote {allow_vote_mode ? 'Enabled' : 'Disabled'}
                   </Button.Checkbox>
                 )}
@@ -202,10 +219,12 @@ const ChoicesPanel = (props) => {
                       }
                       onClick={() => {
                         act('vote', { index: choice.num_index });
-                      }}>
+                      }}
+                    >
                       Vote
                     </Button>
-                  }>
+                  }
+                >
                   {selected_choice.includes(choice.num_index) && (
                     <Icon
                       alignSelf="right"

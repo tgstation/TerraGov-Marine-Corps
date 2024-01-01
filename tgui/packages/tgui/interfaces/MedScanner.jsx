@@ -1,5 +1,11 @@
 import { useBackend } from '../backend';
-import { Section, ProgressBar, Box, LabeledList, NoticeBox } from '../components';
+import {
+  Section,
+  ProgressBar,
+  Box,
+  LabeledList,
+  NoticeBox,
+} from '../components';
 import { Window } from '../layouts';
 
 export const MedScanner = (props) => {
@@ -75,7 +81,8 @@ export const MedScanner = (props) => {
                     good: [-Infinity, 50],
                     average: [50, 100],
                     bad: [100, Infinity],
-                  }}>
+                  }}
+                >
                   Brute:{total_brute}
                 </ProgressBar>
               </Box>
@@ -88,7 +95,8 @@ export const MedScanner = (props) => {
                     good: [-Infinity, 50],
                     average: [50, 100],
                     bad: [100, Infinity],
-                  }}>
+                  }}
+                >
                   Burn:{total_burn}
                 </ProgressBar>
               </Box>
@@ -101,7 +109,8 @@ export const MedScanner = (props) => {
                     good: [-Infinity, 50],
                     average: [50, 100],
                     bad: [100, Infinity],
-                  }}>
+                  }}
+                >
                   Toxin:{toxin}
                 </ProgressBar>
               </Box>
@@ -114,7 +123,8 @@ export const MedScanner = (props) => {
                     good: [-Infinity, 50],
                     average: [50, 100],
                     bad: [100, Infinity],
-                  }}>
+                  }}
+                >
                   Oxygen:{oxy}
                 </ProgressBar>
               </Box>
@@ -127,7 +137,8 @@ export const MedScanner = (props) => {
                     good: [-Infinity, 50],
                     average: [50, 100],
                     bad: [100, Infinity],
-                  }}>
+                  }}
+                >
                   {species === 'robot' ? 'Integrity' : 'Cloneloss'}:{clone}
                 </ProgressBar>
               </Box>
@@ -145,7 +156,8 @@ export const MedScanner = (props) => {
                   <Box
                     inline
                     color={chemical.dangerous ? 'red' : 'white'}
-                    bold={chemical.dangerous}>
+                    bold={chemical.dangerous}
+                  >
                     {chemical.amount + 'u ' + chemical.name}
                   </Box>
                   <Box inline width={'5px'} />
@@ -180,7 +192,8 @@ export const MedScanner = (props) => {
                                 good: [-Infinity, 20],
                                 average: [20, 50],
                                 bad: [50, Infinity],
-                              }}>
+                              }}
+                            >
                               Brute:{limb.brute}
                             </ProgressBar>
                           </Box>
@@ -197,7 +210,8 @@ export const MedScanner = (props) => {
                                 good: [-Infinity, 20],
                                 average: [20, 50],
                                 bad: [50, Infinity],
-                              }}>
+                              }}
+                            >
                               Burn:{limb.burn}
                             </ProgressBar>
                           </Box>
@@ -235,7 +249,8 @@ export const MedScanner = (props) => {
                             color={
                               limb.limb_status === 'Splinted' ? 'green' : 'red'
                             }
-                            bold={1}>
+                            bold={1}
+                          >
                             {limb.limb_status}
                           </Box>
                           <Box inline width={'5px'} />
@@ -286,11 +301,13 @@ export const MedScanner = (props) => {
               {damaged_organs.map((organ) => (
                 <LabeledList.Item
                   key={organ.name}
-                  label={organ.name[0].toUpperCase() + organ.name.slice(1)}>
+                  label={organ.name[0].toUpperCase() + organ.name.slice(1)}
+                >
                   <Box
                     inline
                     color={organ.status === 'Bruised' ? 'orange' : 'red'}
-                    bold={1}>
+                    bold={1}
+                  >
                     {organ.status + ' with ' + organ.damage + ' damage'}
                   </Box>
                 </LabeledList.Item>

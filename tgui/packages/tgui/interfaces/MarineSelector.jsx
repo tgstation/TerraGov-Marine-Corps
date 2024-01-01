@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { useBackend, useLocalState } from '../backend';
-import { Button, Section, Box, ProgressBar, LabeledList, Modal } from '../components';
+import {
+  Button,
+  Section,
+  Box,
+  ProgressBar,
+  LabeledList,
+  Modal,
+} from '../components';
 import { Window } from '../layouts';
 
 export const MarineSelector = (props) => {
@@ -17,7 +24,7 @@ export const MarineSelector = (props) => {
     .filter(
       (category) =>
         category.entries.length > 0 &&
-        (showEmpty || category.remaining > 0 || category.remaining_points > 0)
+        (showEmpty || category.remaining > 0 || category.remaining_points > 0),
     );
 
   return (
@@ -37,11 +44,13 @@ export const MarineSelector = (props) => {
               <Button
                 icon="power-off"
                 selected={showEmpty}
-                onClick={() => setShowEmpty(!showEmpty)}>
+                onClick={() => setShowEmpty(!showEmpty)}
+              >
                 Show Empty Categories
               </Button>
             </>
-          }>
+          }
+        >
           Make selections in each of the categories below to get equipped.
           Surplus of some of the equipment found in this machine may be found in
           surplus vendors nearby.
@@ -82,7 +91,8 @@ const ItemCategory = (props) => {
               good: [1, Infinity],
               average: [0.1, 1],
               bad: [-Infinity, 0.1],
-            }}>
+            }}
+          >
             {remaining + '/' + total + ' Choices'}
           </ProgressBar>
         )) ||
@@ -93,11 +103,13 @@ const ItemCategory = (props) => {
               good: [0.67, Infinity],
               average: [0.33, 0.67],
               bad: [-Infinity, 0.33],
-            }}>
+            }}
+          >
             {remaining_points + '/' + total_points + ' Points'}
           </ProgressBar>
         ))
-      }>
+      }
+    >
       <LabeledList>
         {entries.map((display_record) => {
           return (
@@ -179,13 +191,15 @@ const ItemLine = (props) => {
           <Button
             disabled={cant_buy || prod_cost > remaining_points}
             onClick={() => act('vend', { vend: prod_index })}
-            selected={prod_color === 'white'}>
+            selected={prod_color === 'white'}
+          >
             Vend
           </Button>
         </>
       }
       label={prod_name}
-      labelColor="white">
+      labelColor="white"
+    >
       {!!prod_desc && <Button onClick={() => setShowDesc(prod_desc)}>?</Button>}
     </LabeledList.Item>
   );

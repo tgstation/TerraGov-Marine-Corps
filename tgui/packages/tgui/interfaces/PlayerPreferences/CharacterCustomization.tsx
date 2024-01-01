@@ -1,7 +1,18 @@
 import { useBackend } from '../../backend';
 import { capitalize } from 'common/string';
-import { Button, Section, Flex, LabeledList, Box, ColorBox } from '../../components';
-import { TextFieldPreference, ToggleFieldPreference, SelectFieldPreference } from './FieldPreferences';
+import {
+  Button,
+  Section,
+  Flex,
+  LabeledList,
+  Box,
+  ColorBox,
+} from '../../components';
+import {
+  TextFieldPreference,
+  ToggleFieldPreference,
+  SelectFieldPreference,
+} from './FieldPreferences';
 import { ProfilePicture } from './ProfilePicture';
 
 export const CharacterCustomization = (props) => {
@@ -31,10 +42,10 @@ export const CharacterCustomization = (props) => {
   };
   const genders = ['male', 'female', 'plural', 'neuter'];
   const genderToName = {
-    'male': 'Male',
-    'female': 'Female',
-    'neuter': 'Object',
-    'plural': 'Other',
+    male: 'Male',
+    female: 'Female',
+    neuter: 'Object',
+    plural: 'Other',
   };
   return (
     <>
@@ -79,7 +90,8 @@ export const CharacterCustomization = (props) => {
           <Button color="bad" icon="power-off" onClick={() => act('random')}>
             Randomize everything
           </Button>
-        }>
+        }
+      >
         <Flex>
           <Flex.Item>
             <LabeledList>

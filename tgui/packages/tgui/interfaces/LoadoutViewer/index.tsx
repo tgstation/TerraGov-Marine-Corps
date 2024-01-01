@@ -19,7 +19,8 @@ const LoadoutNavigator = (props: Loadout) => {
           <Button
             onClick={() => {
               act('equipLoadout');
-            }}>
+            }}
+          >
             Equip Loadout
           </Button>
         </Flex.Item>
@@ -30,7 +31,8 @@ const LoadoutNavigator = (props: Loadout) => {
           <Button.Confirm
             onClick={() => {
               act('overwriteLoadout');
-            }}>
+            }}
+          >
             Overwrite Loadout
           </Button.Confirm>
         </Flex.Item>
@@ -41,7 +43,8 @@ const LoadoutNavigator = (props: Loadout) => {
           <Button.Confirm
             onClick={() => {
               act('deleteLoadout');
-            }}>
+            }}
+          >
             Delete Loadout
           </Button.Confirm>
         </Flex.Item>
