@@ -15,7 +15,12 @@
 	role = new_role
 	loadout = new /datum/outfit/quick
 	for(var/slot in GLOB.campaign_loadout_slots)
-		equipped_things["[slot]"] = null
+		for(var/datum/loadout_item/loadout_item AS in GLOB.campaign_loadout_items_by_role[role])
+			if(!loadout_item.default_item)
+				continue
+			if(loadout_item.item_slot != slot)
+				continue
+			equipped_things["[slot]"] = loadout_item
 		available_list["[slot]"] = list()
 	for(var/datum/loadout_item/loadout_option AS in GLOB.campaign_loadout_items_by_role[role])
 		available_list["[loadout_option.item_slot]"] += loadout_option

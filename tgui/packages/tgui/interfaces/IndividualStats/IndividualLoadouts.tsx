@@ -2,9 +2,10 @@ import { IndividualData, PerkData, PerkIcon } from './index';
 import { useBackend, useLocalState } from '../../backend';
 import { LabeledList, Button, Stack, Section, Flex, Box } from '../../components';
 
-export const IndividualPerks = (props) => {
+export const IndividualLoadouts = (props) => {
   const { act, data } = useBackend<IndividualData>();
   const { perks_data } = data;
+  const { equipped_loadouts_data } = data;
   const [unlockedPerk, setPurchasedPerk] = useLocalState<PerkData | null>(
     'unlockedPerk',
     null
@@ -16,6 +17,10 @@ export const IndividualPerks = (props) => {
   const [selectedPerk, setSelectedPerk] = useLocalState(
     'selectedPerk',
     perks_data[0]
+  );
+  const [selectedLoadoutItem, setselectedLoadoutItem] = useLocalState(
+    'selectedLoadoutItem',
+    equipped_loadouts_data[0]
   );
   perks_data.sort((a, b) => {
     const used_asset_a = a.currently_active;
@@ -30,33 +35,40 @@ export const IndividualPerks = (props) => {
     <Stack>
       <Stack.Item>
         <Stack vertical>
-          {perks_data
-            .filter((perk) => perk.job === selectedJob)
-            .map((perk) => (
-              <Stack.Item key={perk.name}>
+          {equipped_loadouts_data
+            .filter(
+              (equippeditem) => equippeditem.item_type.job === selectedJob
+            )
+            .map((equippeditem) => (
+              <Stack.Item
+                key={
+                  equippeditem.item_type ? equippeditem.item_type.name : 'null'
+                }>
                 <Button
                   width={'180px'}
-                  onClick={() => setSelectedPerk(perk)}
+                  onClick={() => setselectedLoadoutItem(equippeditem)}
                   color={
-                    selectedPerk.name === perk.name
+                    selectedLoadoutItem.item_type.name ===
+                    equippeditem.item_type.name
                       ? 'orange'
-                      : perk.currently_active > 0
+                      : equippeditem.item_type.valid_choice > 0
                         ? 'blue'
-                        : perk.currently_active < 0
+                        : equippeditem.item_type.valid_choice < 0
                           ? 'red'
                           : 'grey'
                   }>
                   <Flex align="center">
-                    {!!perk.icon && (
+                    {!!equippeditem.item_type.icon && (
                       <PerkIcon
                         icon={
-                          selectedPerk.name === perk.name
-                            ? perk.icon + '_red'
-                            : perk.icon + '_blue'
+                          selectedLoadoutItem.item_type.name ===
+                          equippeditem.item_type.name
+                            ? equippeditem.item_type.icon + '_red'
+                            : equippeditem.item_type.icon + '_blue'
                         }
                       />
                     )}
-                    {perk.name}
+                    {equippeditem.item_type.name}
                   </Flex>
                 </Button>
               </Stack.Item>
@@ -108,6 +120,41 @@ export const IndividualPerks = (props) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
+      </Stack.Item>
+      <Stack.Item>
+        <Stack vertical>
+          {perks_data
+            .filter((perk) => perk.job === selectedJob)
+            .map((perk) => (
+              <Stack.Item key={perk.name}>
+                <Button
+                  width={'180px'}
+                  onClick={() => setSelectedPerk(perk)}
+                  color={
+                    selectedPerk.name === perk.name
+                      ? 'orange'
+                      : perk.currently_active > 0
+                        ? 'blue'
+                        : perk.currently_active < 0
+                          ? 'red'
+                          : 'grey'
+                  }>
+                  <Flex align="center">
+                    {!!perk.icon && (
+                      <PerkIcon
+                        icon={
+                          selectedPerk.name === perk.name
+                            ? perk.icon + '_red'
+                            : perk.icon + '_blue'
+                        }
+                      />
+                    )}
+                    {perk.name}
+                  </Flex>
+                </Button>
+              </Stack.Item>
+            ))}
+        </Stack>
       </Stack.Item>
     </Stack>
   );

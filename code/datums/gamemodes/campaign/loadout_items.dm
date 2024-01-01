@@ -36,7 +36,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	///Item desc
 	var/desc = "item desc here"
 	///Typepath of the actual item this datum represents
-	var/item_typepath
+	var/obj/item/item_typepath
 	///inventory slot it is intended to go into
 	var/item_slot
 	///Available at round start or must be unlocked somehow
@@ -51,7 +51,14 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	var/list/item_whitelist
 	///assoc list by slot of items blacklisted for this to be equipped
 	var/list/item_blacklist
+
+	var/default_item = FALSE
 	//do we need a post equip gear list?
+
+/datum/loadout_item/New()
+	. = ..()
+	if(default_item)
+		jobs_supported = GLOB.campaign_jobs
 
 ///Attempts to add an item to a loadout
 /datum/loadout_item/proc/item_checks(datum/outfit_holder/outfit_holder)
@@ -81,6 +88,11 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/suit_slot
 	item_slot = ITEM_SLOT_OCLOTHING
 
+/datum/loadout_item/suit_slot/empty
+	name = "no suit"
+	desc = ""
+	default_item = TRUE
+
 /datum/loadout_item/suit_slot/heavy_shield
 	name = "item name here"
 	desc = "item desc here"
@@ -102,6 +114,11 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 //helmets
 /datum/loadout_item/helmet
 	item_slot = ITEM_SLOT_HEAD
+
+/datum/loadout_item/helmet/empty
+	name = "no helmet"
+	desc = ""
+	default_item = TRUE
 
 /datum/loadout_item/helmet/standard
 	name = "item name here"
@@ -142,6 +159,11 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/uniform
 	item_slot = ITEM_SLOT_ICLOTHING
 
+/datum/loadout_item/uniform/empty
+	name = "no uniform"
+	desc = ""
+	default_item = TRUE
+
 /datum/loadout_item/uniform/marine_standard
 	name = "TGMC uniform"
 	desc = "item desc here"
@@ -158,13 +180,18 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/gloves
 	item_slot = ITEM_SLOT_GLOVES
 
-/datum/loadout_item/uniform/marine_gloves
+/datum/loadout_item/gloves/empty
+	name = "no gloves"
+	desc = ""
+	default_item = TRUE
+
+/datum/loadout_item/gloves/marine_gloves
 	name = "Standard combat gloves"
 	desc = "item desc here"
 	item_typepath = /obj/item/clothing/gloves/marine
 	jobs_supported = list(SQUAD_MARINE)
 
-/datum/loadout_item/uniform/marine_black_gloves
+/datum/loadout_item/gloves/marine_black_gloves
 	name = "Black combat gloves"
 	desc = "item desc here"
 	item_typepath = /obj/item/clothing/gloves/marine/black
@@ -173,6 +200,11 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 //eyes
 /datum/loadout_item/eyes
 	item_slot = ITEM_SLOT_EYES
+
+/datum/loadout_item/eyes/empty
+	name = "no eyewear"
+	desc = ""
+	default_item = TRUE
 
 /datum/loadout_item/eyes/health_hud
 	name = "HealthMate HUD"
@@ -190,6 +222,11 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/ears
 	item_slot = ITEM_SLOT_EARS
 
+/datum/loadout_item/ears/empty
+	name = "no headset"
+	desc = ""
+	default_item = TRUE
+
 /datum/loadout_item/ears/marine_standard
 	name = "Standard headset"
 	desc = "item desc here"
@@ -199,6 +236,11 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 //mask
 /datum/loadout_item/mask
 	item_slot = ITEM_SLOT_MASK
+
+/datum/loadout_item/mask/empty
+	name = "no mask"
+	desc = ""
+	default_item = TRUE
 
 /datum/loadout_item/mask/standard
 	name = "Standard gas mask"
@@ -216,6 +258,11 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/feet
 	item_slot = ITEM_SLOT_FEET
 
+/datum/loadout_item/feet/empty
+	name = "no footwear"
+	desc = ""
+	default_item = TRUE
+
 /datum/loadout_item/feet/marine_boots
 	name = "Combat boots"
 	desc = "item desc here"
@@ -231,6 +278,11 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 //belt
 /datum/loadout_item/belt
 	item_slot = ITEM_SLOT_BELT
+
+/datum/loadout_item/belt/empty
+	name = "no belt"
+	desc = ""
+	default_item = TRUE
 
 /datum/loadout_item/belt/t12_ammo
 	name = "T12 ammo belt"
@@ -248,6 +300,11 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/back
 	item_slot = ITEM_SLOT_BACK
 
+/datum/loadout_item/back/empty
+	name = "no backpack"
+	desc = ""
+	default_item = TRUE
+
 /datum/loadout_item/back/marine_satchel
 	name = "Satchel"
 	desc = "item desc here"
@@ -263,6 +320,11 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 //r_pocket
 /datum/loadout_item/r_pocket
 	item_slot = ITEM_SLOT_R_POCKET
+
+/datum/loadout_item/r_pocket/empty
+	name = "no right pocket"
+	desc = ""
+	default_item = TRUE
 
 /datum/loadout_item/r_pocket/standard_first_aid
 	name = "First aid pouch"
@@ -280,6 +342,11 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/l_pocket
 	item_slot = ITEM_SLOT_L_POCKET
 
+/datum/loadout_item/l_pocket/empty
+	name = "no left pocket"
+	desc = ""
+	default_item = TRUE
+
 /datum/loadout_item/l_pocket/standard_first_aid
 	name = "First aid pouch"
 	desc = "item desc here"
@@ -295,6 +362,11 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 //suit_store
 /datum/loadout_item/suit_store
 	item_slot = ITEM_SLOT_SUITSTORE
+
+/datum/loadout_item/suit_store/empty
+	name = "no suit stored"
+	desc = ""
+	default_item = TRUE
 
 /datum/loadout_item/suit_store/standard_rifle
 	name = "AR12"

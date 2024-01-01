@@ -1,7 +1,7 @@
 import { useBackend, useLocalState } from '../../backend';
 import { Window } from '../../layouts';
 import { Box, Modal, Tabs, Button, Stack, Section } from '../../components';
-import { CampaignOverview } from './CampaignOverview';
+import { IndividualLoadouts } from './IndividualLoadouts';
 import { IndividualPerks } from './IndividualPerks';
 
 const TAB_LOADOUT = 'Loadout';
@@ -16,7 +16,7 @@ export type PerkData = {
   desc: string;
   cost: number;
   icon?: string;
-  currently_active?: number;
+  currently_active: number;
   is_debuff?: number;
 };
 
@@ -28,6 +28,26 @@ export type IndividualData = {
   jobs: string[];
   icons?: string[];
   mission_icons?: string[];
+  equipped_loadouts_data: EquippedItemData[];
+  available_loadouts_data: LoadoutItemData[];
+  outfit_slots: string[];
+};
+
+export type EquippedItemData = {
+  slot: string;
+  item_type: LoadoutItemData;
+};
+
+export type LoadoutItemData = {
+  name: string;
+  job: string;
+  slot: string;
+  type: string;
+  desc: string;
+  purchase_cost: number;
+  unlock_cost: number;
+  valid_choice: number;
+  icon?: string;
 };
 
 export const IndividualStats = (props) => {
@@ -125,7 +145,7 @@ const CampaignContent = (props) => {
   );
   switch (selectedTab) {
     case TAB_LOADOUT:
-      return <IndividualPerks />;
+      return <IndividualLoadouts />;
     case TAB_PERKS:
       return <IndividualPerks />;
     default:

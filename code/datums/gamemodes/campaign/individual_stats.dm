@@ -163,9 +163,10 @@
 		var/datum/outfit_holder/outfit = loadouts[i]
 		for(var/slot in outfit.equipped_things)
 			var/datum/loadout_item/loadout_item = outfit.equipped_things[slot]
-			if(!loadout_item) //will probably be able to remove this eventually
+			if(!loadout_item) //will probably be able to remove this eventually. Probably now, that we have defaults
 				continue
-			var/list/current_loadout_item_data = list()
+			var/list/equipped_item_ui_data = list() //slot + equipped item data
+			var/list/current_loadout_item_data = list() //equipped item data
 			current_loadout_item_data["name"] = loadout_item.name
 			current_loadout_item_data["job"] = outfit.role
 			current_loadout_item_data["slot"] = GLOB.inventory_slots_to_string["[loadout_item.item_slot]"]
@@ -173,11 +174,13 @@
 			current_loadout_item_data["desc"] = loadout_item.desc
 			current_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
 			current_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost  //todo: do related
-			current_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit) //is this item valid based on the current loadout
+			current_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit) //is this item valid based on the current loadout. Don't think we need !! but check
 			//current_loadout_item_data["item_whitelist"] = loadout_item.item_whitelist //TODO: Decide if this is needed. Mechanically is not needed, but typepaths as string are likely needed for player info
 			//current_loadout_item_data["item_blacklist"] = loadout_item.item_blacklist
-			current_loadout_item_data["icon"] = loadout_item.icon_state //todo: Figure out if this works from a ui perspective, or if an 'ui_icon' is needed like assets
-			equipped_loadouts_data += list(current_loadout_item_data)
+			current_loadout_item_data["icon"] = loadout_item.item_typepath::icon_state //todo: Figure out if this works from a ui perspective, or if an 'ui_icon' is needed like assets
+			equipped_item_ui_data["slot"] = slot
+			equipped_item_ui_data["item_type"] = current_loadout_item_data
+			equipped_loadouts_data += list(equipped_item_ui_data)
 
 		for(var/slot in outfit.available_list)
 			for(var/datum/loadout_item/loadout_item AS in outfit.available_list[slot])
@@ -192,11 +195,16 @@
 				available_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit)
 				//available_loadout_item_data["item_whitelist"] = loadout_item.item_whitelist
 				//available_loadout_item_data["item_blacklist"] = loadout_item.item_blacklist
-				available_loadout_item_data["icon"] = loadout_item.icon_state
+				available_loadout_item_data["icon"] = loadout_item.item_typepath::icon_state
 				available_loadouts_data += list(available_loadout_item_data)
 
 	data["equipped_loadouts_data"] = equipped_loadouts_data
 	data["available_loadouts_data"] = available_loadouts_data
+
+	//var/list/outfit_slots = list()
+	//for(var/slot in GLOB.campaign_loadout_slots)
+	//	outfit_slots += GLOB.inventory_slots_to_string["[slot]"]
+	//data["outfit_slots"] = outfit_slots
 
 	return data
 
