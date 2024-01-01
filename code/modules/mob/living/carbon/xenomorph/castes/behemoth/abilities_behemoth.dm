@@ -278,7 +278,7 @@
 		owner.balloon_alert(owner, "Use [initial(name)] again to cancel")
 		return ..()
 	current_charges = clamp(current_charges+1, 0, maximum_charges)
-	owner.balloon_alert(owner, "[initial(name)] ready[current_charges > 1? " ([current_charges]/[maximum_charges])" : ""]")
+	owner.balloon_alert(owner, "[initial(name)] ready[current_charges > 1 ? " ([current_charges]/[maximum_charges])" : ""]")
 	update_button_icon()
 	if(current_charges < maximum_charges)
 		cooldown_timer = addtimer(CALLBACK(src, PROC_REF(on_cooldown_finish)), cooldown_duration, TIMER_STOPPABLE)
@@ -590,7 +590,7 @@
 	var/list/obj/structure/earth_pillar/active_pillars = list()
 
 /datum/action/ability/activable/xeno/earth_riser/on_cooldown_finish()
-	owner.balloon_alert(owner, "[initial(name)] ready[maximum_pillars > 1? " ([length(active_pillars)]/[maximum_pillars])" : ""]")
+	owner.balloon_alert(owner, "[initial(name)] ready[maximum_pillars > 1 ? " ([length(active_pillars)]/[maximum_pillars])" : ""]")
 	return ..()
 
 /datum/action/ability/activable/xeno/earth_riser/give_action(mob/living/L)
@@ -634,7 +634,7 @@
 	var/turf/target_turf = get_turf(target)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/datum/action/ability/xeno_action/primal_wrath/primal_wrath_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/primal_wrath]
-	if(!line_of_sight(owner, target, primal_wrath_action?.ability_active? EARTH_RISER_ENHANCED_RANGE : EARTH_RISER_RANGE) || LinkBlocked(owner_turf, target_turf))
+	if(!line_of_sight(owner, target, primal_wrath_action?.ability_active? EARTH_RISER_ENHANCED_RANGE : EARTH_RISER_RANGE))
 		owner.balloon_alert(owner, "Out of range")
 		return
 	var/datum/action/ability/xeno_action/ready_charge/behemoth_roll/behemoth_roll_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/ready_charge/behemoth_roll]
