@@ -3882,7 +3882,7 @@
 /turf/open/floor/mainship/research,
 /area/mainship/medical/upper_medical)
 "drL" = (
-/obj/structure/bed/chair/wheelchair{
+/obj/vehicle/ridden/wheelchair{
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
@@ -7875,7 +7875,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
 "gMi" = (
-/obj/structure/bed/chair/wheelchair{
+/obj/vehicle/ridden/wheelchair{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
@@ -13583,7 +13583,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "lqi" = (
-/obj/structure/bed/chair/wheelchair{
+/obj/vehicle/ridden/wheelchair{
 	dir = 1
 	},
 /obj/machinery/holopad,
