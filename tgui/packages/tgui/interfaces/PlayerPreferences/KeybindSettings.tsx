@@ -1,12 +1,20 @@
 import { useState } from 'react';
+
 import { useBackend } from '../../backend';
-import { Button, Input, Section, LabeledList, Box, Stack } from '../../components';
+import {
+  Box,
+  Button,
+  Input,
+  LabeledList,
+  Section,
+  Stack,
+} from '../../components';
 import { TextInputModal } from './TextInputModal';
 
 const KEY_MODS = {
-  'SHIFT': true,
-  'ALT': true,
-  'CONTROL': true,
+  SHIFT: true,
+  ALT: true,
+  CONTROL: true,
 };
 
 export const KeybindSettings = (props) => {
@@ -25,7 +33,8 @@ export const KeybindSettings = (props) => {
     <Button
       icon="power-off"
       color="bad"
-      onClick={() => act('reset-keybindings')}>
+      onClick={() => act('reset-keybindings')}
+    >
       Reset keybindings
     </Button>
   );
@@ -54,53 +63,55 @@ export const KeybindSettings = (props) => {
       <Stack>
         <Stack.Item grow>
           <Section title="Main">
-            {all_keybindings['MOVEMENT']?.filter(filterSearch).map((kb) => (
-              <KeybindingPreference key={kb.name} keybind={kb} />
-            ))}
+            {all_keybindings['MOVEMENT']
+              ?.filter(filterSearch)
+              .map((kb) => <KeybindingPreference key={kb.name} keybind={kb} />)}
             {all_keybindings['COMMUNICATION']
               ?.filter(filterSearch)
-              .map((kb) => (
-                <KeybindingPreference key={kb.name} keybind={kb} />
-              ))}
-            {all_keybindings['MOB']?.filter(filterSearch).map((kb) => (
-              <KeybindingPreference key={kb.name} keybind={kb} />
-            ))}
+              .map((kb) => <KeybindingPreference key={kb.name} keybind={kb} />)}
+            {all_keybindings['MOB']
+              ?.filter(filterSearch)
+              .map((kb) => <KeybindingPreference key={kb.name} keybind={kb} />)}
 
-            {all_keybindings['CLIENT']?.filter(filterSearch).map((kb) => (
-              <KeybindingPreference key={kb.name} keybind={kb} />
-            ))}
+            {all_keybindings['CLIENT']
+              ?.filter(filterSearch)
+              .map((kb) => <KeybindingPreference key={kb.name} keybind={kb} />)}
 
-            {all_keybindings['LIVING']?.filter(filterSearch).map((kb) => (
-              <KeybindingPreference key={kb.name} keybind={kb} />
-            ))}
+            {all_keybindings['LIVING']
+              ?.filter(filterSearch)
+              .map((kb) => <KeybindingPreference key={kb.name} keybind={kb} />)}
 
-            {all_keybindings['CARBON']?.filter(filterSearch).map((kb) => (
-              <KeybindingPreference key={kb.name} keybind={kb} />
-            ))}
+            {all_keybindings['CARBON']
+              ?.filter(filterSearch)
+              .map((kb) => <KeybindingPreference key={kb.name} keybind={kb} />)}
 
-            {all_keybindings['MISC']?.filter(filterSearch).map((kb) => (
-              <KeybindingPreference key={kb.name} keybind={kb} />
-            ))}
+            {all_keybindings['MISC']
+              ?.filter(filterSearch)
+              .map((kb) => <KeybindingPreference key={kb.name} keybind={kb} />)}
           </Section>
           <Section title="Emotes">
-            {all_keybindings['EMOTE']?.filter(filterSearch).map((kb) => (
-              <KeybindingPreference key={kb.name} keybind={kb} />
-            ))}
+            {all_keybindings['EMOTE']
+              ?.filter(filterSearch)
+              .map((kb) => <KeybindingPreference key={kb.name} keybind={kb} />)}
           </Section>
           <Section title="Custom emotes">
-            {all_keybindings['CUSTOM_EMOTE']?.filter(filterSearch).map((kb) => (
-              <CustomSentence
-                key={kb.name}
-                keybind={kb}
-                setCaptureSentence={setCaptureSentence}
-              />
-            ))}
+            {all_keybindings['CUSTOM_EMOTE']
+              ?.filter(filterSearch)
+              .map((kb) => (
+                <CustomSentence
+                  key={kb.name}
+                  keybind={kb}
+                  setCaptureSentence={setCaptureSentence}
+                />
+              ))}
           </Section>
           {!!is_admin && (
             <Section title="Administration (admin only)">
-              {all_keybindings['ADMIN']?.filter(filterSearch).map((kb) => (
-                <KeybindingPreference key={kb.name} keybind={kb} />
-              ))}
+              {all_keybindings['ADMIN']
+                ?.filter(filterSearch)
+                .map((kb) => (
+                  <KeybindingPreference key={kb.name} keybind={kb} />
+                ))}
             </Section>
           )}
         </Stack.Item>
@@ -109,21 +120,21 @@ export const KeybindSettings = (props) => {
             <LabeledList.Item>
               <h3>Human</h3>
             </LabeledList.Item>
-            {all_keybindings['HUMAN']?.filter(filterSearch).map((kb) => (
-              <KeybindingPreference key={kb.name} keybind={kb} />
-            ))}
+            {all_keybindings['HUMAN']
+              ?.filter(filterSearch)
+              .map((kb) => <KeybindingPreference key={kb.name} keybind={kb} />)}
             <LabeledList.Item>
               <h3>Xenomorph</h3>
             </LabeledList.Item>
-            {all_keybindings['XENO']?.filter(filterSearch).map((kb) => (
-              <KeybindingPreference key={kb.name} keybind={kb} />
-            ))}
+            {all_keybindings['XENO']
+              ?.filter(filterSearch)
+              .map((kb) => <KeybindingPreference key={kb.name} keybind={kb} />)}
             <LabeledList.Item>
               <h3>Psionic</h3>
             </LabeledList.Item>
-            {all_keybindings['PSIONIC']?.filter(filterSearch).map((kb) => (
-              <KeybindingPreference key={kb.name} keybind={kb} />
-            ))}
+            {all_keybindings['PSIONIC']
+              ?.filter(filterSearch)
+              .map((kb) => <KeybindingPreference key={kb.name} keybind={kb} />)}
           </Section>
         </Stack.Item>
       </Stack>
@@ -217,7 +228,8 @@ const CustomSentence = (props) => {
       />
       <Button
         onClick={() => setCaptureSentence({ name: keybind.name })}
-        tooltip={currentSentence && currentSentence.sentence}>
+        tooltip={currentSentence && currentSentence.sentence}
+      >
         Choose a custom sentence
       </Button>
       {current &&

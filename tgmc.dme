@@ -1125,7 +1125,6 @@
 #include "code\game\objects\structures\stool_bed_chair_nest\chairs.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\janicart.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\stools.dm"
-#include "code\game\objects\structures\stool_bed_chair_nest\wheelchair.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\xeno_nest.dm"
 #include "code\game\turfs\baseturf_skipover.dm"
 #include "code\game\turfs\closed.dm"

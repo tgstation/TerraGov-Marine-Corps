@@ -1,5 +1,13 @@
 import { useBackend } from '../../backend';
-import { AnimatedNumber, Box, Button, Divider, Flex, Section, Table } from '../../components';
+import {
+  AnimatedNumber,
+  Box,
+  Button,
+  Divider,
+  Flex,
+  Section,
+  Table,
+} from '../../components';
 import { TableRow } from '../../components/Table';
 import { Window } from '../../layouts';
 import { ResearchData, ResearchResource, RewardTier } from './Types';
@@ -16,7 +24,8 @@ export const Research = (props) => {
         align="stretch"
         backgroundColor={
           init_resource ? hexToRGB(init_resource.colour, 0.5) : ''
-        }>
+        }
+      >
         <Button
           style={{
             margin: '0.2em',
@@ -51,7 +60,7 @@ export const Research = (props) => {
 const constructResourceInfo = (
   resource: ResearchResource,
   act: Function,
-  researching: boolean
+  researching: boolean,
 ) => {
   const { name, colour, icon } = resource;
 
@@ -73,7 +82,8 @@ const constructResourceInfo = (
           style={{
             display: 'flex',
             justifyContent: 'center',
-          }}>
+          }}
+        >
           <Box
             as="img"
             src={`data:image/jpeg;base64,

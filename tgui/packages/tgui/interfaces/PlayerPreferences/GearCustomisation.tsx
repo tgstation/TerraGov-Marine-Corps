@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { Button, Section, LabeledList, Box, Stack } from '../../components';
+import { Box, Button, LabeledList, Section, Stack } from '../../components';
 
 export const GearCustomization = (props) => {
   const { act, data } = useBackend<GearCustomizationData>();
@@ -25,7 +25,7 @@ export const GearCustomization = (props) => {
 
   const currentPoints = gear.reduce(
     (total, name) => total + gearsets[name].cost,
-    0
+    0,
   );
 
   return (
@@ -43,7 +43,8 @@ export const GearCustomization = (props) => {
             onClick={() => act('loadoutclear')}
           />
         </>
-      }>
+      }
+    >
       <Stack>
         <Stack.Item grow>
           <Section title={'Head'}>
@@ -51,7 +52,8 @@ export const GearCustomization = (props) => {
               {bySlot['Head']?.map((item) => (
                 <LabeledList.Item
                   key={item.name}
-                  label={`${item.name} (${item.cost})`}>
+                  label={`${item.name} (${item.cost})`}
+                >
                   <Button.Checkbox
                     inline
                     content={'Equipped'}
@@ -74,7 +76,8 @@ export const GearCustomization = (props) => {
                 <LabeledList.Item
                   key={item.name}
                   label={`${item.name}
-                  (${item.cost})`}>
+                  (${item.cost})`}
+                >
                   <Button.Checkbox
                     inline
                     content={'Equipped'}
@@ -98,7 +101,8 @@ export const GearCustomization = (props) => {
               {bySlot['Mouth']?.map((item) => (
                 <LabeledList.Item
                   key={item.name}
-                  label={`${item.name} (${item.cost})`}>
+                  label={`${item.name} (${item.cost})`}
+                >
                   <Button.Checkbox
                     inline
                     content={'Equipped'}

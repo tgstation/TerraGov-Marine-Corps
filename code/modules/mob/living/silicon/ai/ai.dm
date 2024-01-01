@@ -382,7 +382,8 @@
 
 	. += "Current alert level: [GLOB.marine_main_ship.get_security_level()]"
 
-	. += "Number of living marines: [SSticker.mode.count_humans_and_xenos()[1]]"
+	if(SSticker.mode)
+		. += "Number of living marines: [SSticker.mode.count_humans_and_xenos()[1]]"
 
 	if(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE > world.time)
 		. += "Railgun status: Cooling down, next fire in [(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE - world.time)/10] seconds."

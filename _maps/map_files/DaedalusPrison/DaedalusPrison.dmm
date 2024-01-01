@@ -6508,7 +6508,7 @@
 /turf/open/floor/prison/red,
 /area/daedalusprison/inside/habitationnorth)
 "fqU" = (
-/obj/structure/bed/chair/wheelchair{
+/obj/vehicle/ridden/wheelchair{
 	dir = 1
 	},
 /turf/open/floor/prison/whitegreen{
@@ -9528,7 +9528,7 @@
 	},
 /area/daedalusprison/inside/hydroponics)
 "idq" = (
-/obj/structure/bed/chair/wheelchair{
+/obj/vehicle/ridden/wheelchair{
 	dir = 1
 	},
 /turf/open/floor/prison/whitegreen,
@@ -24433,7 +24433,7 @@
 /turf/open/floor/prison/kitchen,
 /area/daedalusprison/inside/prisonshower)
 "tWj" = (
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -28157,7 +28157,7 @@
 /turf/open/floor/wood,
 /area/daedalusprison/inside/chapel)
 "wVy" = (
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},

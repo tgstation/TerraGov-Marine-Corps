@@ -1,5 +1,12 @@
 import { useBackend } from '../backend';
-import { Button, Section, LabeledList, ProgressBar, Divider, NumberInput } from '../components';
+import {
+  Button,
+  Divider,
+  LabeledList,
+  NumberInput,
+  ProgressBar,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 export const SupplyDropConsole = (_props) => {
@@ -47,7 +54,8 @@ export const SupplyDropConsole = (_props) => {
                 content="Update"
                 onClick={() => act('refresh_pad')}
               />
-            }>
+            }
+          >
             {data.supplies_count} item(s) found on the supply pad.
             <Divider />
             {data.current_beacon.name
@@ -62,7 +70,8 @@ export const SupplyDropConsole = (_props) => {
                 good: [-Infinity, 0.33],
                 average: [0.33, 0.67],
                 bad: [0.67, Infinity],
-              }}>
+              }}
+            >
               {Math.ceil(timeLeft / 10)} sec(s)
             </ProgressBar>
           </Section>

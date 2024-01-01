@@ -1,6 +1,6 @@
-import { Window } from '../layouts';
 import { useBackend } from '../backend';
-import { Section, Button, Box } from '../components';
+import { Box, Button, Section } from '../components';
+import { Window } from '../layouts';
 type DropControlData = {
   pods: number;
 };
