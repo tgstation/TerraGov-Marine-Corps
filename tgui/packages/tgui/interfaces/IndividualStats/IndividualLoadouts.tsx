@@ -66,7 +66,10 @@ export const IndividualLoadouts = (props) => {
               >
                 <Button
                   width={'180px'}
-                  onClick={() => setselectedLoadoutItem(equippeditem)}
+                  onClick={() => {
+                    setselectedLoadoutItem(equippeditem);
+                    setselectedPossibleItem(equippeditem.item_type);
+                  }}
                   color={
                     selectedLoadoutItem.item_type.name ===
                     equippeditem.item_type.name
