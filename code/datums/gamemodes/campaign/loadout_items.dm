@@ -32,9 +32,9 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 //Are singletons
 /datum/loadout_item
 	///Item name
-	var/name = "item name here"
+	var/name
 	///Item desc
-	var/desc = "item desc here"
+	var/desc
 	///Typepath of the actual item this datum represents
 	var/obj/item/item_typepath
 	///inventory slot it is intended to go into
@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	var/list/item_whitelist
 	///assoc list by slot of items blacklisted for this to be equipped
 	var/list/item_blacklist
-
+	///Default item for this slot
 	var/default_item = FALSE
 	//do we need a post equip gear list?
 
@@ -94,19 +94,19 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	default_item = TRUE
 
 /datum/loadout_item/suit_slot/heavy_shield
-	name = "item name here"
+	name = "Heavy shielded"
 	desc = "item desc here"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/shield
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/suit_slot/heavy_surt
-	name = "item name here"
+	name = "Heavy Surt"
 	desc = "item desc here"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/surt
 	jobs_supported = list(SQUAD_MARINE)
 
 /datum/loadout_item/suit_slot/medium_mimir
-	name = "item name here"
+	name = "Medium Mimir"
 	desc = "item desc here"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/mimir
 	jobs_supported = list(SQUAD_CORPSMAN)
