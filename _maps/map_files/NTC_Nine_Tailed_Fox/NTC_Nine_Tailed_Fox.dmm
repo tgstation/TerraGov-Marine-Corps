@@ -9742,12 +9742,6 @@
 /obj/item/tool/kitchen/utensil/fork,
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
-"iQE" = (
-/obj/machinery/door/airlock/mainship/command/cic{
-	dir = 2
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/living/cryo_cells)
 "iQP" = (
 /obj/structure/bed/chair/sofa/left{
 	dir = 8
@@ -21883,8 +21877,9 @@
 	ceiling = 2
 	})
 "tSd" = (
+/obj/effect/landmark/start/job/chiefshipengineer,
 /obj/effect/landmark/start/job/corpseccommander,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
 "tSl" = (
 /obj/structure/drop_pod_launcher,
@@ -36708,9 +36703,9 @@ vlw
 dqF
 fZP
 dqF
-iQE
+pTu
+hnC
 tSd
-nsp
 bHY
 aas
 hnC
