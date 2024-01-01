@@ -1,5 +1,13 @@
 import { useBackend, useLocalState } from '../../backend';
-import { Box, Button, Modal, Section, Stack, Tabs } from '../../components';
+import {
+  Box,
+  Button,
+  LabeledList,
+  Modal,
+  Section,
+  Stack,
+  Tabs,
+} from '../../components';
 import { Window } from '../../layouts';
 import { IndividualLoadouts } from './IndividualLoadouts';
 import { IndividualPerks } from './IndividualPerks';
@@ -162,6 +170,13 @@ export const IndividualStats = (props) => {
             );
           })}
         </Tabs>
+        <Stack fontSize="150%">
+          <LabeledList>
+            <LabeledList.Item label={'Credits'}>
+              {data.currency}
+            </LabeledList.Item>
+          </LabeledList>
+        </Stack>
         <Tabs fluid>
           {CampaignTabs.map((tabname) => {
             return (

@@ -5,7 +5,7 @@
 	///currently occupied mob - if any
 	var/mob/living/carbon/current_mob //will we actually need this?
 	///whatever cash/xp/placeholdershit. fun tokens
-	var/currency = 0
+	var/currency = 10
 
 	var/list/valid_jobs = list()
 	///Single list of unlocked perks for easy reference
