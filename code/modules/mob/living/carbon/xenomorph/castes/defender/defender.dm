@@ -13,6 +13,7 @@
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_NORMAL
 	pull_speed = -2
+	blunt_stab = TRUE
 
 // ***************************************
 // *********** Icon

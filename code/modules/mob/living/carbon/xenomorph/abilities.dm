@@ -1631,7 +1631,7 @@
 /datum/action/ability/activable/xeno/tail_stab
 	name = "Tail Stab"
 	action_icon_state = "tail_attack"
-	desc = "Strike a target within two tiles with a sharp tail for armor-piercing damage, stagger and slowdown. Deals double AP, damage, stagger and slowdown to grappled targets and to structures and machinery."
+	desc = "Strike a target within two tiles with a sharp tail for armor-piercing damage, stagger and slowdown. Deals double AP, damage, stagger and slowdown to grappled targets, structures and machinery."
 	ability_cost = 30
 	cooldown_duration = 10 SECONDS
 	use_state_flags = ABILITY_USE_AGILITY
@@ -1640,7 +1640,7 @@
 	)
 	target_flags = ABILITY_MOB_TARGET|ABILITY_MOB_TARGET
 	var/range = 2
-	var/punch_description = "swift tail-jab!"
+	var/stab_description = "swift tail-jab!"
 
 /datum/action/ability/activable/xeno/tail_stab/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -1700,16 +1700,20 @@
 	else
 		add_cooldown()
 
-/atom/proc/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
+/atom/proc/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, stab_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
 	return TRUE
 
-/obj/machinery/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2) //Break open the machine
+/obj/machinery/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, stab_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2) //Break open the machine
 	X.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
 	X.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 	if(!CHECK_BITFIELD(resistance_flags, UNACIDABLE) || resistance_flags == (UNACIDABLE|XENO_DAMAGEABLE)) //If it's acidable or we can't acid it but it has the xeno damagable flag, we can damage it
 		attack_generic(X, damage * 2, BRUTE, "", FALSE) //Deals 2 times regular damage to machines
-	X.visible_message(span_xenodanger("\The [X] pierces [src] with a [punch_description]"), \
-		span_xenodanger("We pierce [src] with a [punch_description]"), visible_message_flags = COMBAT_MESSAGE)
+	if(X.blunt_stab)
+		X.visible_message(span_xenodanger("\The [X] smash [src] with a [stab_description]"), \
+			span_xenodanger("We smash [src] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)
+	else
+		X.visible_message(span_xenodanger("\The [X] pierces [src] with a [stab_description]"), \
+			span_xenodanger("We pierce [src] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, "alien_tail_swipe", 50, TRUE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 25, 1)
 	Shake(duration = 0.5 SECONDS)
@@ -1725,15 +1729,15 @@
 	update_icon()
 	return TRUE
 
-/obj/machinery/computer/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2) //Break open the machine
+/obj/machinery/computer/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, stab_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2) //Break open the machine
 	set_disabled() //Currently only computers use this; falcon punch away its density
 	return ..()
 
-/obj/machinery/light/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
+/obj/machinery/light/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, stab_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
 	. = ..()
 	attack_alien(X) //Smash it
 
-/obj/machinery/camera/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
+/obj/machinery/camera/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, stab_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
 	. = ..()
 	var/datum/effect_system/spark_spread/sparks = new //Avoid the slash text, go direct to sparks
 	sparks.set_up(2, 0, src)
@@ -1743,41 +1747,49 @@
 	deactivate()
 	visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!")) //Smash it
 
-/obj/machinery/power/apc/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
+/obj/machinery/power/apc/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, stab_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
 	. = ..()
 	beenhit += 2
 
-/obj/machinery/vending/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
+/obj/machinery/vending/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, stab_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
 	. = ..()
 	if(tipped_level < 2) //Knock it down if it isn't
 		X.visible_message(span_danger("\The [X] pulls \the [src] down while retracting it's tail!"), \
 		span_danger("You pull \the [src] down with your tail!"), null, 5)
 		tip_over()
 
-/obj/structure/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "devastating tail-jab!", stagger_stacks = 2, slowdown_stacks = 2) //Smash structures
+/obj/structure/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, stab_description = "devastating tail-jab!", stagger_stacks = 2, slowdown_stacks = 2) //Smash structures
 	. = ..()
 	X.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
 	X.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 	attack_alien(X, damage * 2, BRUTE, "", FALSE) //Deals 2 times regular damage to structures
-	X.visible_message(span_xenodanger("\The [X] stab [src] with a [punch_description]"), \
-		span_xenodanger("We stab [src] with a [punch_description]"), visible_message_flags = COMBAT_MESSAGE)
+	if(X.blunt_stab)
+		X.visible_message(span_xenodanger("\The [X] smash [src] with a [stab_description]"), \
+			span_xenodanger("We smash [src] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)
+	else
+		X.visible_message(span_xenodanger("\The [X] stab [src] with a [stab_description]"), \
+			span_xenodanger("We stab [src] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, "alien_tail_swipe", 50, TRUE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 25, 1)
 	Shake(duration = 0.5 SECONDS)
 
-/obj/vehicle/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "devastating tail-jab!", stagger_stacks = 2, slowdown_stacks = 2)
+/obj/vehicle/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, stab_description = "devastating tail-jab!", stagger_stacks = 2, slowdown_stacks = 2)
 	. = ..()
 	X.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
 	X.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 	attack_generic(X, damage * 2, BRUTE, "", FALSE) //Deals 2 times regular damage to vehicles
-	X.visible_message(span_xenodanger("\The [X] stabs [src] with a [punch_description]"), \
-		span_xenodanger("We stab [src] with a [punch_description]"), visible_message_flags = COMBAT_MESSAGE)
+	if(X.blunt_stab)
+		X.visible_message(span_xenodanger("\The [X] smash [src] with a [stab_description]"), \
+			span_xenodanger("We smash [src] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)
+	else
+		X.visible_message(span_xenodanger("\The [X] stabs [src] with a [stab_description]"), \
+			span_xenodanger("We stab [src] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, "alien_tail_swipe", 50, TRUE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
 	Shake(duration = 0.5 SECONDS)
 	return TRUE
 
-/mob/living/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
+/mob/living/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, stab_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
 	. = ..()
 	if(pulledby == X) //If we're being grappled
 		damage *= 2
@@ -1785,7 +1797,7 @@
 		stagger_stacks *= 2
 		ParalyzeNoChain(0.5 SECONDS)
 		X.stop_pulling()
-		punch_description = "devastating tail-jab!"
+		stab_description = "devastating tail-jab!"
 
 	if(iscarbon(src))
 		var/mob/living/carbon/carbon_victim = src
@@ -1817,14 +1829,14 @@
 
 	var/target_location_feedback = get_living_limb_descriptive_name(target_zone)
 	if(X.blunt_stab)
-		punch_description = "heavy tail-jab!"
-		X.visible_message(span_xenodanger("\The [X] smacks [src] in the [target_location_feedback] with a [punch_description]"), \
-			span_xenodanger("We hit [src] in the [target_location_feedback] with a [punch_description]"), visible_message_flags = COMBAT_MESSAGE)
+		stab_description = "heavy tail-jab!"
+		X.visible_message(span_xenodanger("\The [X] smacks [src] in the [target_location_feedback] with a [stab_description]"), \
+			span_xenodanger("We hit [src] in the [target_location_feedback] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)
 		playsound(src, "alien_tail_swipe", 50, TRUE)
 		playsound(src, "punch", 50, TRUE)
 	else
-		X.visible_message(span_xenodanger("\The [X] stabs [src] in the [target_location_feedback] with a [punch_description]"), \
-			span_xenodanger("We stab [src] in the [target_location_feedback] with a [punch_description]"), visible_message_flags = COMBAT_MESSAGE)
+		X.visible_message(span_xenodanger("\The [X] stabs [src] in the [target_location_feedback] with a [stab_description]"), \
+			span_xenodanger("We stab [src] in the [target_location_feedback] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)
 		playsound(src, "alien_tail_swipe", 50, TRUE)
 		playsound(src,"alien_bite", 50, 1)
 		src.add_splatter_floor(loc)
