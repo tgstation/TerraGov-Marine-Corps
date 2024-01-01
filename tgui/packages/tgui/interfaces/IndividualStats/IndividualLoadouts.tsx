@@ -40,7 +40,7 @@ export const IndividualLoadouts = (props) => {
   return (
     <Stack>
       <Stack.Item>
-        <Stack vertical padding={'35px'}>
+        <Stack>
           <Button
             color={'green'}
             width={'180px'}
@@ -59,49 +59,55 @@ export const IndividualLoadouts = (props) => {
           </Button>
         </Stack>
         <Stack vertical>
-          {equipped_loadouts_data
-            .filter(
-              (equippeditem) => equippeditem.item_type.job === selectedJob,
-            )
-            .map((equippeditem) => (
-              <Stack.Item
-                key={
-                  equippeditem.item_type ? equippeditem.item_type.name : 'null'
-                }
-              >
-                <Button
-                  width={'180px'}
-                  onClick={() => {
-                    setselectedLoadoutItem(equippeditem);
-                    setselectedPossibleItem(equippeditem.item_type);
-                  }}
-                  color={
-                    selectedLoadoutItem.item_type.name ===
-                    equippeditem.item_type.name
-                      ? 'orange'
-                      : equippeditem.item_type.valid_choice > 0
-                        ? 'blue'
-                        : equippeditem.item_type.valid_choice < 0
-                          ? 'red'
-                          : 'grey'
+          <LabeledList>
+            {equipped_loadouts_data
+              .filter(
+                (equippeditem) => equippeditem.item_type.job === selectedJob,
+              )
+              .map((equippeditem) => (
+                <Stack.Item
+                  key={
+                    equippeditem.item_type
+                      ? equippeditem.item_type.name
+                      : 'null'
                   }
                 >
-                  <Flex align="center">
-                    {!!equippeditem.item_type.icon && (
-                      <PerkIcon
-                        icon={
-                          selectedLoadoutItem.item_type.name ===
-                          equippeditem.item_type.name
-                            ? equippeditem.item_type.icon + '_red'
-                            : equippeditem.item_type.icon + '_blue'
-                        }
-                      />
-                    )}
-                    {equippeditem.item_type.name}
-                  </Flex>
-                </Button>
-              </Stack.Item>
-            ))}
+                  <LabeledList.Item label={equippeditem.slot_text}>
+                    <Button
+                      width={'180px'}
+                      onClick={() => {
+                        setselectedLoadoutItem(equippeditem);
+                        setselectedPossibleItem(equippeditem.item_type);
+                      }}
+                      color={
+                        selectedLoadoutItem.item_type.name ===
+                        equippeditem.item_type.name
+                          ? 'orange'
+                          : equippeditem.item_type.valid_choice > 0
+                            ? 'blue'
+                            : equippeditem.item_type.valid_choice < 0
+                              ? 'red'
+                              : 'grey'
+                      }
+                    >
+                      <Flex align="center">
+                        {!!equippeditem.item_type.icon && (
+                          <PerkIcon
+                            icon={
+                              selectedLoadoutItem.item_type.name ===
+                              equippeditem.item_type.name
+                                ? equippeditem.item_type.icon + '_red'
+                                : equippeditem.item_type.icon + '_blue'
+                            }
+                          />
+                        )}
+                        {equippeditem.item_type.name}
+                      </Flex>
+                    </Button>
+                  </LabeledList.Item>
+                </Stack.Item>
+              ))}
+          </LabeledList>
         </Stack>
       </Stack.Item>
       <Stack.Item>
@@ -135,7 +141,7 @@ export const IndividualLoadouts = (props) => {
                 </Flex>
               </Box>
             ) : (
-              'No perk selected'
+              'No item selected'
             )
           }
         >
@@ -153,6 +159,9 @@ export const IndividualLoadouts = (props) => {
         </Section>
       </Stack.Item>
       <Stack.Item>
+        <Stack fontSize="150%" textAlign="center" mt={'12px'} mb={'28px'}>
+          Equipment options
+        </Stack>
         <Stack vertical>
           {available_loadouts_data
             .filter((potentialitem) => potentialitem.job === selectedJob)

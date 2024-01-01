@@ -35,6 +35,7 @@ export type IndividualData = {
 
 export type EquippedItemData = {
   slot: string;
+  slot_text: string;
   item_type: LoadoutItemData;
 };
 
@@ -73,7 +74,7 @@ export const IndividualStats = (props) => {
     <Window
       theme={data.ui_theme}
       title={'Prep screen'}
-      width={700}
+      width={850}
       height={600}
     >
       <Window.Content>

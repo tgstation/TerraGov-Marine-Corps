@@ -121,19 +121,19 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	default_item = TRUE
 
 /datum/loadout_item/helmet/standard
-	name = "item name here"
+	name = "M10X"
 	desc = "item desc here"
 	item_typepath = /obj/item/clothing/head/modular/m10x
 	jobs_supported = list(SQUAD_MARINE)
 
 /datum/loadout_item/helmet/leader
-	name = "item name here"
+	name = "M11X"
 	desc = "item desc here"
 	item_typepath = /obj/item/clothing/head/modular/m10x/leader
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/helmet/surt
-	name = "item name here"
+	name = "M10X-Surt"
 	desc = "item desc here"
 	item_typepath = /obj/item/clothing/head/modular/m10x/surt
 	jobs_supported = list(SQUAD_MARINE)
@@ -143,7 +143,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	)
 
 /datum/loadout_item/helmet/mimir
-	name = "item name here"
+	name = "M10X-Mimir"
 	desc = "item desc here"
 	item_typepath = /obj/item/clothing/head/modular/m10x/mimir
 	jobs_supported = list(SQUAD_CORPSMAN)

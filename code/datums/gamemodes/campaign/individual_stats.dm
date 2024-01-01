@@ -177,6 +177,7 @@
 			current_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit) //is this item valid based on the current loadout. Don't think we need !! but check
 			current_loadout_item_data["icon"] = loadout_item.item_typepath::icon_state //todo: Figure out if this works from a ui perspective, or if an 'ui_icon' is needed like assets
 			equipped_item_ui_data["slot"] = slot
+			equipped_item_ui_data["slot_text"] = GLOB.inventory_slots_to_string["[slot]"]
 			equipped_item_ui_data["item_type"] = current_loadout_item_data
 			equipped_loadouts_data += list(equipped_item_ui_data)
 
