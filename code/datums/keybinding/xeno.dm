@@ -115,7 +115,12 @@
 	description = "Causes your sprite to hide behind certain objects and under tables. Not the same as stealth. Does not use plasma."
 	keybind_signal = COMSIG_XENOABILITY_HIDE
 	hotkey_keys = list("C")
-
+/datum/keybinding/xeno/tail_stab
+	name = "tail_stab"
+	full_name = "Tail Stab"
+	description = "Allows the xeno to launch a 2 range attack with some armor piercing and bonus damage on grab or to structures."
+	keybind_signal = COMSIG_XENOABILITY_TAIL_STAB
+	hotkey_keys = list("ShiftE")
 /datum/keybinding/xeno/neurotox_sting
 	name = "neurotox_sting"
 	full_name = "Neurotoxin Sting"

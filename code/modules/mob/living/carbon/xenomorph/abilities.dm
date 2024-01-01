@@ -1627,11 +1627,11 @@
 // ***************************************
 // *********** Tail Stab
 // ***************************************
+//totally not stolen from punch code
 /datum/action/ability/activable/xeno/tail_stab
 	name = "Tail Stab"
 	action_icon_state = "tail_attack"
-	desc = "Strike a target with a sharp tail for armor-piercing damage, stagger and slowdown. Deals double AP, damage, stagger and slowdown to grappled targets and to structures and machinery."
-
+	desc = "Strike a target within two tiles with a sharp tail for armor-piercing damage, stagger and slowdown. Deals double AP, damage, stagger and slowdown to grappled targets and to structures and machinery."
 	ability_cost = 30
 	cooldown_duration = 10 SECONDS
 	use_state_flags = ABILITY_USE_AGILITY
@@ -1719,7 +1719,7 @@
 
 	if(wires) //If it has wires, break em
 		var/allcut = wires.is_all_cut()
-		if(!allcut) //Considered prohibiting this vs airlocks, but tbh, I can see clever warriors using this to keep airlocks bolted open or closed as is most advantageous
+		if(!allcut)
 			wires.cut_all()
 			visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!"), null, null, 5)
 	update_icon()
@@ -1779,7 +1779,7 @@
 
 /mob/living/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
 	. = ..()
-	if(pulledby == X) //If we're being grappled by the Warrior punching us, it's gonna do extra damage and debuffs; combolicious
+	if(pulledby == X) //If we're being grappled
 		damage *= 2
 		slowdown_stacks *= 2
 		stagger_stacks *= 2
@@ -1803,7 +1803,7 @@
 	if(push)
 		var/facing = get_dir(X, src)
 
-		if(loc == X.loc) //If they're sharing our location we still want to punch them away
+		if(loc == X.loc) //If they're sharing our location we still hit
 			facing = X.dir
 
 		var/turf/T = X.loc
