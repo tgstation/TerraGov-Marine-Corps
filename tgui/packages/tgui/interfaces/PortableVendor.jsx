@@ -14,7 +14,8 @@ export const PortableVendor = (props) => {
               average: [0, 0.5],
               bad: [-Infinity, 0],
             }}
-            value={data.current_points / data.max_points}>
+            value={data.current_points / data.max_points}
+          >
             {data.current_points + '/' + data.max_points}
           </ProgressBar>
         )}
@@ -23,9 +24,8 @@ export const PortableVendor = (props) => {
             {display_record.prod_color ? (
               <Button
                 disabled={!display_record.prod_available}
-                onClick={() =>
-                  act('vend', { vend: display_record.prod_index })
-                }>
+                onClick={() => act('vend', { vend: display_record.prod_index })}
+              >
                 {display_record.prod_name}
               </Button>
             ) : (

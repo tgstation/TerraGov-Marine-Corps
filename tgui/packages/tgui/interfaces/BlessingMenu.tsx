@@ -1,6 +1,16 @@
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { Button, Section, Box, LabeledList, Divider, Tabs, Stack, Collapsible, Flex } from '../components';
+import {
+  Button,
+  Section,
+  Box,
+  LabeledList,
+  Divider,
+  Tabs,
+  Stack,
+  Collapsible,
+  Flex,
+} from '../components';
 import { classes } from 'common/react';
 import { useState } from 'react';
 
@@ -21,17 +31,17 @@ type UpgradeData = {
 };
 
 const categoryIcons = {
-  'Buildings': 'gopuram',
-  'Defences': 'user-shield',
-  'Xenos': 'khanda',
-  'Primordial': 'skull', // wolf-pack-battalion
+  Buildings: 'gopuram',
+  Defences: 'user-shield',
+  Xenos: 'khanda',
+  Primordial: 'skull', // wolf-pack-battalion
 };
 
 export const BlessingMenu = (props) => {
   const { data } = useBackend<BlessingData>();
   const { psypoints, categories } = data;
   const [selectedCategory, setSelectedCategory] = useState(
-    categories.length ? categories[0] : null
+    categories.length ? categories[0] : null,
   );
 
   return (
@@ -39,7 +49,8 @@ export const BlessingMenu = (props) => {
       theme="xeno"
       title={'Queen Mothers Blessings'}
       width={500}
-      height={600}>
+      height={600}
+    >
       <Window.Content scrollable>
         <Section title={'Psychic points: ' + (psypoints ? psypoints : 0)}>
           {categories.length > 0 && (
@@ -52,11 +63,13 @@ export const BlessingMenu = (props) => {
                         m={0.5}
                         grow={categoryname.length}
                         basis="content"
-                        key={categoryname}>
+                        key={categoryname}
+                      >
                         <Tabs.Tab
                           icon={categoryIcons[categoryname]}
                           selected={categoryname === selectedCategory}
-                          onClick={() => setSelectedCategory(categoryname)}>
+                          onClick={() => setSelectedCategory(categoryname)}
+                        >
                           {categoryname}
                         </Tabs.Tab>
                       </Stack.Item>
@@ -134,10 +147,12 @@ const UpgradeEntry = (props: UpgradeEntryProps) => {
           mr={1}
           tooltip={upgrade_cost + ' points'}
           disabled={upgrade_cost > psy_points}
-          onClick={() => act('buy', { buyname: upgrade_name })}>
+          onClick={() => act('buy', { buyname: upgrade_name })}
+        >
           Claim Blessing
         </Button>
-      }>
+      }
+    >
       <UpgradeView
         name={upgrade_name}
         desc={upgrade_desc}

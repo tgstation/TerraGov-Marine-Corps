@@ -14,7 +14,8 @@ export const SmartVend = (props) => {
             !!data.isdryer && (
               <Button
                 icon={data.drying ? 'stop' : 'tint'}
-                onClick={() => act('Dry')}>
+                onClick={() => act('Dry')}
+              >
                 {data.drying ? 'Stop drying' : 'Dry'}
               </Button>
             )
@@ -38,14 +39,14 @@ export const SmartVend = (props) => {
                     <Table.Cell>
                       <Button
                         disabled={value < 1}
-                        onClick={() =>
-                          act('Release', { name: key, amount: 1 })
-                        }>
+                        onClick={() => act('Release', { name: key, amount: 1 })}
+                      >
                         One
                       </Button>
                       <Button
                         disabled={value <= 1}
-                        onClick={() => act('Release', { name: key })}>
+                        onClick={() => act('Release', { name: key })}
+                      >
                         Many
                       </Button>
                     </Table.Cell>

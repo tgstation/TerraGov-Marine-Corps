@@ -1,6 +1,15 @@
 import { useLocalState } from '../../backend';
 import { classes } from 'common/react';
-import { Button, Section, Box, Modal, Divider, Tabs, Stack, LabeledList } from '../../components';
+import {
+  Button,
+  Section,
+  Box,
+  Modal,
+  Divider,
+  Tabs,
+  Stack,
+  LabeledList,
+} from '../../components';
 import { Window } from '../../layouts';
 import { MechAssembly } from './MechAssembly';
 import { MechWeapons } from './MechWeapons';
@@ -9,7 +18,7 @@ import { tabs, MechWeapon } from './data';
 export const MechVendor = (props) => {
   const [showDesc, setShowDesc] = useLocalState<MechWeapon | null>(
     'showDesc',
-    null
+    null,
   );
   const [selectedTab, setSelectedTab] = useLocalState('selectedTab', tabs[0]);
 
@@ -21,7 +30,8 @@ export const MechVendor = (props) => {
             title={showDesc.name}
             buttons={
               <Button content="Dismiss" onClick={() => setShowDesc(null)} />
-            }>
+            }
+          >
             <Stack>
               <Stack.Item>
                 <Box
@@ -105,7 +115,8 @@ export const MechVendor = (props) => {
                   key={tabname}
                   selected={tabname === selectedTab}
                   fontSize="130%"
-                  onClick={() => setSelectedTab(tabname)}>
+                  onClick={() => setSelectedTab(tabname)}
+                >
                   {tabname}
                 </Tabs.Tab>
               );

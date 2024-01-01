@@ -35,7 +35,7 @@ export const SelectEquipment = (props) => {
   const [searchText, setSearchText] = useLocalState('searchText', '');
   const searchFilter = createSearch(
     searchText,
-    (entry) => entry.name + entry.path
+    (entry) => entry.name + entry.path,
   );
 
   const visibleOutfits = flow([
@@ -44,7 +44,7 @@ export const SelectEquipment = (props) => {
     sortBy(
       (entry) => !entry.favorite,
       (entry) => !entry.priority,
-      (entry) => entry.name
+      (entry) => entry.name,
     ),
   ])(outfits);
 
@@ -111,7 +111,8 @@ const DisplayTabs = (props) => {
         <Tabs.Tab
           key={category}
           selected={tab === category}
-          onClick={() => setTab(category)}>
+          onClick={() => setTab(category)}
+        >
           {category}
         </Tabs.Tab>
       ))}
@@ -152,7 +153,8 @@ const OutfitDisplay = (props) => {
           color="transparent"
           icon="plus"
           fluid
-          onClick={() => act('customoutfit')}>
+          onClick={() => act('customoutfit')}
+        >
           Create a custom outfit...
         </Button>
       )}
@@ -189,7 +191,8 @@ const CurrentlySelectedDisplay = (props) => {
             overflow: 'hidden',
             whiteSpace: 'nowrap',
             textOverflow: 'ellipsis',
-          }}>
+          }}
+        >
           {entry?.name}
         </Box>
       </Stack.Item>
@@ -202,7 +205,8 @@ const CurrentlySelectedDisplay = (props) => {
             act('applyoutfit', {
               path: current_outfit,
             })
-          }>
+          }
+        >
           Confirm
         </Button>
       </Stack.Item>

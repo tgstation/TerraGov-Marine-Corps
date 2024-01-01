@@ -9813,7 +9813,7 @@
 /area/mainship/hallways/port_hallway)
 "fQp" = (
 /obj/machinery/firealarm,
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -19010,7 +19010,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "vfD" = (
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},

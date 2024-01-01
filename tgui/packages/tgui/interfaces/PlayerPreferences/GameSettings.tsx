@@ -1,6 +1,17 @@
 import { useBackend } from '../../backend';
-import { Button, Section, LabeledList, Stack, ColorBox } from '../../components';
-import { ToggleFieldPreference, TextFieldPreference, SelectFieldPreference, LoopingSelectionPreference } from './FieldPreferences';
+import {
+  Button,
+  Section,
+  LabeledList,
+  Stack,
+  ColorBox,
+} from '../../components';
+import {
+  ToggleFieldPreference,
+  TextFieldPreference,
+  SelectFieldPreference,
+  LoopingSelectionPreference,
+} from './FieldPreferences';
 
 const ParallaxNumToString = (integer) => {
   let returnval = '';

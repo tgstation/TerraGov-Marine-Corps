@@ -1,0 +1,9 @@
+2024-01-01:
+  DeltaFire15:
+  - bugfix: Injectors can inject (valid) non-carbon things again.
+  Wisemonster:
+  - balance: Weeds and xenos can no longer hide under rear attach points
+  - spellcheck: Renamed rear attach points to interior attach points
+  ivanmixo:
+  - code_imp: Refactored wheelchairs
+  - balance: Some minor wheelchair balance, check the PR for more details
