@@ -974,3 +974,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			items += "Xeno respawn timer: READY"
 		else
 			items += "Xeno respawn timer: [(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]"
+
+///Returns a list of verbs to give ghosts in this gamemode
+/datum/game_mode/proc/ghost_verbs(mob/dead/observer/observer)
+	return

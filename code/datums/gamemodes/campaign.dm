@@ -121,6 +121,8 @@
 			continue
 		stat_list[i].get_status_tab_items(source, items)
 
+/datum/game_mode/hvh/campaign/ghost_verbs(mob/dead/observer/observer)
+	return list(/datum/action/campaign_overview)
 
 ///sets up the newly selected mission
 /datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission)
@@ -263,3 +265,12 @@
 	if(!job.special_check_latejoin(candidate.client))
 		return FALSE
 	return TRUE
+
+///Sets up newly spawned players with the campaign status verb
+/datum/game_mode/hvh/campaign/proc/register_faction_member(datum/source, mob/living/carbon/human/new_member)
+	SIGNAL_HANDLER
+	if(!(new_member.faction in factions))
+		return
+
+	var/datum/action/campaign_overview/overview = new
+	overview.give_action(new_member)

@@ -283,6 +283,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	ui.open()
 
 /datum/faction_stats/ui_state(mob/user)
+	if(isobserver(user))
+		return GLOB.always_state
 	return GLOB.conscious_state
 
 /datum/faction_stats/ui_static_data(mob/living/user)
@@ -405,6 +407,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		CRASH("campaign_mission loaded without campaign game mode")
 
 	var/mob/living/user = usr
+	if(!istype(user))
+		return
 
 	switch(action)
 		if("set_attrition_points")
@@ -490,13 +494,13 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			update_static_data_for_all_viewers()
 			return TRUE
 
-///Opens up the players campaign status UI
-/mob/living/proc/open_faction_stats_ui()
-	set name = "Campaign Status"
-	set desc = "Check the status of your faction in the campaign."
-	set category = "IC"
+//overview for campaign gamemode
+/datum/action/campaign_overview
+	name = "Campaign overview"
+	action_icon_state = "campaign_overview"
 
-	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[faction]
+/datum/action/campaign_overview/action_activate()
+	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[owner.faction]
 	if(!your_faction)
 		return
-	your_faction.interact(src)
+	your_faction.interact(owner)
