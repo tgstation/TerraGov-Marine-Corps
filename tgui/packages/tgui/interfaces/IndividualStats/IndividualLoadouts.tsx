@@ -13,10 +13,6 @@ export const IndividualLoadouts = (props) => {
     'selectedJob',
     data.jobs[0]
   );
-  const [selectedPerk, setSelectedPerk] = useLocalState(
-    'selectedPerk',
-    perks_data[0]
-  );
   const [selectedLoadoutItem, setselectedLoadoutItem] = useLocalState(
     'selectedLoadoutItem',
     equipped_loadouts_data[0]
@@ -37,6 +33,18 @@ export const IndividualLoadouts = (props) => {
   return (
     <Stack>
       <Stack.Item>
+        <Stack vertical>
+          <Button
+            color={'orange'}
+            width={'180px'}
+            onClick={() =>
+              act('equip_outfit', {
+                outfit_job: selectedJob,
+              })
+            }>
+            equip outfit
+          </Button>
+        </Stack>
         <Stack vertical>
           {equipped_loadouts_data
             .filter(

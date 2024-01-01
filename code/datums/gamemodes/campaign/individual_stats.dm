@@ -235,8 +235,8 @@
 				update_static_data(user)
 				return TRUE
 		if("equip_outfit")
-			var/job = text2path(params["outfit_job"])
-			if(!job)
+			var/job = params["outfit_job"]
+			if(!job || !loadouts[job])
 				return
 			var/insufficient_credits = use_funds(loadouts[job].loadout_cost)
 			if(insufficient_credits)
