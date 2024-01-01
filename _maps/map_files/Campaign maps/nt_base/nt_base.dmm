@@ -23331,7 +23331,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/security)
 "qZL" = (
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4

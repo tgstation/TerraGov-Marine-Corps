@@ -1,4 +1,10 @@
-import { addScrollableNode, canStealFocus, KeyEvent, removeScrollableNode, setupGlobalEvents } from './events';
+import {
+  addScrollableNode,
+  canStealFocus,
+  KeyEvent,
+  removeScrollableNode,
+  setupGlobalEvents,
+} from './events';
 
 describe('focusEvents', () => {
   afterEach(() => {

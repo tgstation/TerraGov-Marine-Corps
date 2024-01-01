@@ -93,7 +93,8 @@ const SnowflakeEjector = (props: { module: MechaUtility }) => {
         {cargo.map((item) => (
           <div
             key={props.module.ref}
-            className="UtilityModulePane__SnowflakeEjector__entry">
+            className="UtilityModulePane__SnowflakeEjector__entry"
+          >
             <UtilityName name={item.name} />
             <Button
               onClick={() =>
@@ -102,7 +103,8 @@ const SnowflakeEjector = (props: { module: MechaUtility }) => {
                   cargoref: item.ref,
                   gear_action: 'eject',
                 })
-              }>
+              }
+            >
               {'Eject'}
             </Button>
           </div>
@@ -119,7 +121,8 @@ const SnowflakeExtinguisher = (props: { module: MechaUtility }) => {
       <ProgressBar
         value={props.module.snowflake.reagents}
         minValue={0}
-        maxValue={props.module.snowflake.total_reagents}>
+        maxValue={props.module.snowflake.total_reagents}
+      >
         {props.module.snowflake.reagents}
       </ProgressBar>
       <Button

@@ -36,7 +36,8 @@ export const DropshipPicker = (_props) => {
             />
             <Section
               title={'Description - ' + (data.name ? data.name : 'None')}
-              fill>
+              fill
+            >
               <Box>{data.desc !== null ? data.desc : 'Pick a ship!'}</Box>
             </Section>
           </Flex.Item>
@@ -45,7 +46,8 @@ export const DropshipPicker = (_props) => {
           color={'bad'}
           width={'100%'}
           disabled={data.current_ref === null}
-          onClick={() => act('confirm')}>
+          onClick={() => act('confirm')}
+        >
           {'CONFIRM SELECTION'}
         </Button>
       </Window.Content>
@@ -63,7 +65,8 @@ const ShuttleSelection = (props) => {
           key={shuttle.ref}
           selected={shuttle.ref === data.current_ref}
           width={'100%'}
-          onClick={() => act('pickship', { ref: shuttle.ref })}>
+          onClick={() => act('pickship', { ref: shuttle.ref })}
+        >
           {shuttle.name}
         </Button>
       ))}

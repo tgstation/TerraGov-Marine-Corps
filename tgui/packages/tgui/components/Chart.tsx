@@ -31,7 +31,7 @@ const normalizeData = (
   data: Point[],
   scale: number[],
   rangeX?: Range,
-  rangeY?: Range
+  rangeY?: Range,
 ) => {
   if (data.length === 0) {
     return [];
@@ -138,7 +138,8 @@ class LineChart extends Component<Props> {
               right: 0,
               bottom: 0,
               overflow: 'hidden',
-            }}>
+            }}
+          >
             <polyline
               transform={`scale(1, -1) translate(0, -${viewBox[1]})`}
               fill={fillColor}

@@ -20,7 +20,7 @@ export const suspendRenderer = () => {
 };
 
 type CreateRenderer = <T extends unknown[] = [unknown]>(
-  getVNode?: (...args: T) => any
+  getVNode?: (...args: T) => any,
 ) => (...args: T) => void;
 
 // prettier-ignore

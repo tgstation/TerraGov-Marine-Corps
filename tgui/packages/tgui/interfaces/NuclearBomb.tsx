@@ -1,5 +1,13 @@
 import { useBackend } from '../backend';
-import { AnimatedNumber, Box, Button, LabeledList, NoticeBox, ProgressBar, Section } from '../components';
+import {
+  AnimatedNumber,
+  Box,
+  Button,
+  LabeledList,
+  NoticeBox,
+  ProgressBar,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 type NuclearBombData = {
@@ -54,7 +62,8 @@ const NuclearBombContent = (props) => {
                 good: [0.6, Infinity],
                 average: [0.2, 0.6],
                 bad: [-Infinity, 0.2],
-              }}>
+              }}
+            >
               <AnimatedNumber value={time_left} />s
             </ProgressBar>
           </LabeledList.Item>

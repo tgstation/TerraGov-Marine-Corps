@@ -81,7 +81,8 @@ export const IconStack = (props: IconStackProps) => {
   return (
     <span
       className={classes(['IconStack', className, computeBoxClassName(rest)])}
-      {...computeBoxProps(rest)}>
+      {...computeBoxProps(rest)}
+    >
       {children}
     </span>
   );

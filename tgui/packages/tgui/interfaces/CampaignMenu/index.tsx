@@ -77,12 +77,12 @@ export const CampaignMenu = (props) => {
   const { act, data } = useBackend<CampaignData>();
   const [selectedTab, setSelectedTab] = useLocalState(
     'selectedTab',
-    TAB_OVERVIEW
+    TAB_OVERVIEW,
   );
 
   const [selectedAsset, setSelectedAsset] = useLocalState<FactionReward | null>(
     'selectedAsset',
-    null
+    null,
   );
   const [purchasedAsset, setPurchasedAsset] =
     useLocalState<FactionReward | null>('purchasedAsset', null);
@@ -94,13 +94,15 @@ export const CampaignMenu = (props) => {
       theme={data.ui_theme}
       title={data.faction + ' Mission Control'}
       width={700}
-      height={600}>
+      height={600}
+    >
       <Window.Content>
         {selectedAsset ? (
           <Modal width="500px">
             <Section
               textAlign="center"
-              title={'Activate ' + selectedAsset.name + '?'}>
+              title={'Activate ' + selectedAsset.name + '?'}
+            >
               <Stack justify="space-around">
                 <Stack.Item>
                   <Button
@@ -111,7 +113,8 @@ export const CampaignMenu = (props) => {
                       setSelectedAsset(null);
                     }}
                     icon={'check'}
-                    color="green">
+                    color="green"
+                  >
                     Yes
                   </Button>
                 </Stack.Item>
@@ -119,7 +122,8 @@ export const CampaignMenu = (props) => {
                   <Button
                     onClick={() => setSelectedAsset(null)}
                     icon={'times'}
-                    color="red">
+                    color="red"
+                  >
                     No
                   </Button>
                 </Stack.Item>
@@ -131,7 +135,8 @@ export const CampaignMenu = (props) => {
           <Modal width="500px">
             <Section
               textAlign="center"
-              title={'Purchase ' + purchasedAsset.name + '?'}>
+              title={'Purchase ' + purchasedAsset.name + '?'}
+            >
               <Stack justify="space-around">
                 <Stack.Item>
                   <Button
@@ -142,7 +147,8 @@ export const CampaignMenu = (props) => {
                       setPurchasedAsset(null);
                     }}
                     icon={'check'}
-                    color="green">
+                    color="green"
+                  >
                     Yes
                   </Button>
                 </Stack.Item>
@@ -150,7 +156,8 @@ export const CampaignMenu = (props) => {
                   <Button
                     onClick={() => setPurchasedAsset(null)}
                     icon={'times'}
-                    color="red">
+                    color="red"
+                  >
                     No
                   </Button>
                 </Stack.Item>
@@ -162,7 +169,8 @@ export const CampaignMenu = (props) => {
           <Modal width="500px">
             <Section
               textAlign="center"
-              title={'Select ' + selectedNewMission.name + '?'}>
+              title={'Select ' + selectedNewMission.name + '?'}
+            >
               <Stack justify="space-around">
                 <Stack.Item>
                   <Button
@@ -173,7 +181,8 @@ export const CampaignMenu = (props) => {
                       setSelectedNewMission(null);
                     }}
                     icon={'check'}
-                    color="green">
+                    color="green"
+                  >
                     Yes
                   </Button>
                 </Stack.Item>
@@ -181,7 +190,8 @@ export const CampaignMenu = (props) => {
                   <Button
                     onClick={() => setSelectedNewMission(null)}
                     icon={'times'}
-                    color="red">
+                    color="red"
+                  >
                     No
                   </Button>
                 </Stack.Item>
@@ -197,7 +207,8 @@ export const CampaignMenu = (props) => {
                 selected={tabname === selectedTab}
                 fontSize="130%"
                 textAlign="center"
-                onClick={() => setSelectedTab(tabname)}>
+                onClick={() => setSelectedTab(tabname)}
+              >
                 {tabname}
               </Tabs.Tab>
             );
@@ -212,7 +223,7 @@ export const CampaignMenu = (props) => {
 const CampaignContent = (props) => {
   const [selectedTab, setSelectedTab] = useLocalState(
     'selectedTab',
-    TAB_OVERVIEW
+    TAB_OVERVIEW,
   );
   switch (selectedTab) {
     case TAB_OVERVIEW:

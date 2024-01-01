@@ -42,7 +42,8 @@ const WeaponSelection = (props) => {
               onClick={() =>
                 act('equip_interact', { equip_interact: equipment.eqp_tag })
               }
-              disabled={!equipment.is_interactable}>
+              disabled={!equipment.is_interactable}
+            >
               {equipment.name}
             </Button>
           </Box>

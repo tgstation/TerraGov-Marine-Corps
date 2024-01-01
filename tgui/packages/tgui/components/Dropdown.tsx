@@ -173,7 +173,8 @@ export class Dropdown extends Component<Props, State> {
           ])}
           onClick={() => {
             this.setSelected(value);
-          }}>
+          }}
+        >
           {displayText}
         </div>
       );
@@ -326,7 +327,8 @@ export class Dropdown extends Component<Props, State> {
                 onClick(event);
               }
             }}
-            {...rest}>
+            {...rest}
+          >
             {icon && (
               <Icon
                 name={icon}
@@ -339,7 +341,8 @@ export class Dropdown extends Component<Props, State> {
               className="Dropdown__selected-text"
               style={{
                 overflow: clipSelectedText ? 'hidden' : 'visible',
-              }}>
+              }}
+            >
               {this.state.selected || displayText}
             </span>
             {nochevron || (

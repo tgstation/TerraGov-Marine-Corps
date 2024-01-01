@@ -1,5 +1,15 @@
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Divider, LabeledList, Modal, ProgressBar, Section, Stack, Tabs } from '../components';
+import {
+  Box,
+  Button,
+  Divider,
+  LabeledList,
+  Modal,
+  ProgressBar,
+  Section,
+  Stack,
+  Tabs,
+} from '../components';
 import { Window } from '../layouts';
 
 type VendingData = {
@@ -47,7 +57,7 @@ export const Vending = (props) => {
 
   const [selectedTab, setSelectedTab] = useLocalState(
     'selectedTab',
-    tabs.length ? tabs[0] : null
+    tabs.length ? tabs[0] : null,
   );
 
   return (
@@ -55,7 +65,8 @@ export const Vending = (props) => {
       title={vendor_name || 'Vending Machine'}
       width={500}
       height={600}
-      theme={ui_theme}>
+      theme={ui_theme}
+    >
       {showDesc ? (
         <Modal width="400px">
           <Box>{showDesc}</Box>
@@ -76,7 +87,8 @@ export const Vending = (props) => {
               <Button
                 icon="power-off"
                 selected={showEmpty}
-                onClick={() => setShowEmpty(!showEmpty)}>
+                onClick={() => setShowEmpty(!showEmpty)}
+              >
                 Show sold-out items
               </Button>
               <Button
@@ -86,7 +98,8 @@ export const Vending = (props) => {
                 onClick={() => act('vacuum')}
               />
             </>
-          }>
+          }
+        >
           {tabs.length > 0 && (
             <Section lineHeight={1.75} textAlign="center">
               <Tabs>
@@ -97,10 +110,12 @@ export const Vending = (props) => {
                         m={0.5}
                         grow={tabname.length}
                         basis={'content'}
-                        key={tabname}>
+                        key={tabname}
+                      >
                         <Tabs.Tab
                           selected={tabname === selectedTab}
-                          onClick={() => setSelectedTab(tabname)}>
+                          onClick={() => setSelectedTab(tabname)}
+                        >
                           {tabname}
                         </Tabs.Tab>
                       </Stack.Item>
@@ -162,7 +177,7 @@ const ProductEntry = (props: VendingProductEntryProps) => {
 
   const [showDesc, setShowDesc] = useLocalState<String | null>(
     'showDesc',
-    null
+    null,
   );
 
   return (
@@ -179,7 +194,8 @@ const ProductEntry = (props: VendingProductEntryProps) => {
                   good: [10, Infinity],
                   average: [5, 10],
                   bad: [0, 5],
-                }}>
+                }}
+              >
                 {stock} left
               </ProgressBar>
             </Box>
@@ -191,14 +207,16 @@ const ProductEntry = (props: VendingProductEntryProps) => {
               currently_vending.product_name === product_name
             }
             onClick={() => act('vend', { vend: prod_ref })}
-            disabled={!stock}>
+            disabled={!stock}
+          >
             <Box color={product_color} bold={1}>
               Vend
             </Box>
           </Button>
         </>
       }
-      label={product_name}>
+      label={product_name}
+    >
       {!!prod_desc && <Button onClick={() => setShowDesc(prod_desc)}>?</Button>}
     </LabeledList.Item>
   );
@@ -211,7 +229,7 @@ const Products = (props) => {
 
   const [selectedTab, setSelectedTab] = useLocalState(
     'selectedTab',
-    tabs.length ? tabs[0] : null
+    tabs.length ? tabs[0] : null,
   );
 
   const [showEmpty, setShowEmpty] = useLocalState('showEmpty', false);
@@ -251,7 +269,7 @@ const Hacked = (props) => {
 
   const [selectedTab, setSelectedTab] = useLocalState(
     'selectedTab',
-    tabs.length ? tabs[0] : null
+    tabs.length ? tabs[0] : null,
   );
 
   return (
@@ -283,7 +301,7 @@ const Premium = (props) => {
 
   const [selectedTab, setSelectedTab] = useLocalState(
     'selectedTab',
-    tabs.length ? tabs[0] : null
+    tabs.length ? tabs[0] : null,
   );
 
   return (
@@ -295,7 +313,8 @@ const Premium = (props) => {
             Remove
           </Button>
         )
-      }>
+      }
+    >
       {!!coin && (
         <LabeledList>
           {coin_records

@@ -1,7 +1,14 @@
 import { toFixed } from 'common/math';
 
 import { useBackend } from '../backend';
-import { Box, Button, ByondUi, NumberInput, Section, Stack } from '../components';
+import {
+  Box,
+  Button,
+  ByondUi,
+  NumberInput,
+  Section,
+  Stack,
+} from '../components';
 import { Window } from '../layouts';
 
 type Data = {

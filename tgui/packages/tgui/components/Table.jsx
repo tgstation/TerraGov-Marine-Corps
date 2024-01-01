@@ -18,7 +18,8 @@ export const Table = (props) => {
         className,
         computeBoxClassName(rest),
       ])}
-      {...computeBoxProps(rest)}>
+      {...computeBoxProps(rest)}
+    >
       <tbody>{children}</tbody>
     </table>
   );

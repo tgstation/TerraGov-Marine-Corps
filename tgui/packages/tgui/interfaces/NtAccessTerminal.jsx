@@ -1,5 +1,12 @@
 import { useBackend } from '../backend';
-import { Box, Button, NoticeBox, ProgressBar, Section, Stack } from '../components';
+import {
+  Box,
+  Button,
+  NoticeBox,
+  ProgressBar,
+  Section,
+  Stack,
+} from '../components';
 import { Window } from '../layouts';
 
 export const NtAccessTerminal = (props) => {

@@ -23,7 +23,8 @@ export const ColorBox = (props) => {
   return (
     <div
       className={classes(['ColorBox', className, computeBoxClassName(rest)])}
-      {...computeBoxProps(rest)}>
+      {...computeBoxProps(rest)}
+    >
       {content || '.'}
     </div>
   );

@@ -1,5 +1,13 @@
 import { useBackend } from '../../backend';
-import { Box, Button, Flex, LabeledList, ProgressBar, Section, Table } from '../../components';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  ProgressBar,
+  Section,
+  Table,
+} from '../../components';
 import { CampaignData, MissionIcon } from './index';
 
 export const CampaignOverview = (props) => {
@@ -42,7 +50,8 @@ export const CampaignOverview = (props) => {
               Current Mission overview
             </Flex>
           </Box>
-        }>
+        }
+      >
         <LabeledList>
           <LabeledList.Item label="Mission">{name}</LabeledList.Item>
           <LabeledList.Item label="Map name">{map_name}</LabeledList.Item>
@@ -96,7 +105,8 @@ export const CampaignOverview = (props) => {
           <LabeledList.Item label="Victory Points">
             <ProgressBar
               color="green"
-              value={victory_points / max_victory_points}>
+              value={victory_points / max_victory_points}
+            >
               {victory_points} / {max_victory_points}
             </ProgressBar>
           </LabeledList.Item>

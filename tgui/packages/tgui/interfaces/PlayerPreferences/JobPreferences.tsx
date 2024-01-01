@@ -1,7 +1,15 @@
 import { useState } from 'react';
 
 import { useBackend } from '../../backend';
-import { Box, Button, Flex, LabeledList, Modal, Section, Stack } from '../../components';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  Modal,
+  Section,
+  Stack,
+} from '../../components';
 
 export const JobPreferences = (props) => {
   const { act, data } = useBackend<JobPreferencesData>();
@@ -75,7 +83,8 @@ export const JobPreferences = (props) => {
         <Button color="bad" icon="power-off" onClick={() => act('jobreset')}>
           Reset everything!
         </Button>
-      }>
+      }
+    >
       {shownDescription && (
         <Modal width="500px" min-height="300px">
           <Box dangerouslySetInnerHTML={{ __html: shownDescription }} />

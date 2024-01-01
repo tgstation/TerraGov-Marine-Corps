@@ -5,7 +5,15 @@ import { Component, Fragment } from 'react';
 
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
-import { Box, Button, Dropdown, Icon, Section, Stack, Table } from '../components';
+import {
+  Box,
+  Button,
+  Dropdown,
+  Icon,
+  Section,
+  Stack,
+  Table,
+} from '../components';
 import { Window } from '../layouts';
 
 const icons = {
@@ -65,7 +73,7 @@ export class Changelog extends Component {
 
     if (attemptNumber > maxAttempts) {
       return this.setData(
-        'Failed to load data after ' + maxAttempts + ' attempts'
+        'Failed to load data after ' + maxAttempts + ' attempts',
       );
     }
 
@@ -95,7 +103,7 @@ export class Changelog extends Component {
 
     if (dates) {
       dates.forEach((date) =>
-        this.dateChoices.push(dateformat(date, 'mmmm yyyy', true))
+        this.dateChoices.push(dateformat(date, 'mmmm yyyy', true)),
       );
       this.setSelectedDate(this.dateChoices[0]);
       this.getData(dates[0]);
@@ -125,7 +133,7 @@ export class Changelog extends Component {
               window.scrollTo(
                 0,
                 document.body.scrollHeight ||
-                  document.documentElement.scrollHeight
+                  document.documentElement.scrollHeight,
               );
               return this.getData(dates[index]);
             }}
@@ -144,7 +152,7 @@ export class Changelog extends Component {
               window.scrollTo(
                 0,
                 document.body.scrollHeight ||
-                  document.documentElement.scrollHeight
+                  document.documentElement.scrollHeight,
               );
               return this.getData(dates[index]);
             }}
@@ -166,7 +174,7 @@ export class Changelog extends Component {
               window.scrollTo(
                 0,
                 document.body.scrollHeight ||
-                  document.documentElement.scrollHeight
+                  document.documentElement.scrollHeight,
               );
               return this.getData(dates[index]);
             }}
@@ -245,7 +253,8 @@ export class Changelog extends Component {
             href={
               'https://github.com/tgstation/TerraGov-Marine-Corps/blob/master' +
               '/code/__DEFINES/tgs.dm'
-            }>
+            }
+          >
             code/__DEFINES/tgs.dm
           </a>
           {' and '}
@@ -253,7 +262,8 @@ export class Changelog extends Component {
             href={
               'https://github.com/tgstation/TerraGov-Marine-Corps/blob/master' +
               '/code/modules/tgs/LICENSE'
-            }>
+            }
+          >
             code/modules/tgs/LICENSE
           </a>
           {' for the MIT license.'}
@@ -263,7 +273,8 @@ export class Changelog extends Component {
           <a
             href={
               'https://github.com/tgstation/TerraGov-Marine-Corps/commit/92ee94da6e144d4420c1ec4f83a4ee785d61dc9b'
-            }>
+            }
+          >
             -this commit-
           </a>
           {'is CC-BY-NC 3.0, unless specified.'}
@@ -292,7 +303,8 @@ export class Changelog extends Component {
                               className={classes([
                                 'Changelog__Cell',
                                 'Changelog__Cell--Icon',
-                              ])}>
+                              ])}
+                            >
                               <Icon
                                 color={
                                   icons[changeType]

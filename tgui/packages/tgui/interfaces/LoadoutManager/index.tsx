@@ -1,10 +1,23 @@
 import { useState } from 'react';
 
 import { useBackend } from '../../backend';
-import { Box, Button, Flex, LabeledList, Section, Stack, Tabs } from '../../components';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  Section,
+  Stack,
+  Tabs,
+} from '../../components';
 import { Window } from '../../layouts';
 import { NameInputModal } from './NameInputModal';
-import { LoadoutItemData, LoadoutListData, LoadoutManagerData, LoadoutTabData } from './Types';
+import {
+  LoadoutItemData,
+  LoadoutListData,
+  LoadoutManagerData,
+  LoadoutTabData,
+} from './Types';
 
 const LoadoutItem = (props: LoadoutItemData) => {
   const { act } = useBackend();
@@ -42,7 +55,8 @@ const LoadoutItem = (props: LoadoutItemData) => {
                   loadout_name: loadout.name,
                   loadout_job: loadout.job,
                 });
-              }}>
+              }}
+            >
               Select Loadout
             </Button>
           </>
@@ -85,27 +99,32 @@ const JobTabs = (props: LoadoutTabData) => {
           <Tabs>
             <Tabs.Tab
               selected={job === 'Squad Marine'}
-              onClick={() => setJob('Squad Marine')}>
+              onClick={() => setJob('Squad Marine')}
+            >
               Squad Marine
             </Tabs.Tab>
             <Tabs.Tab
               selected={job === 'Squad Engineer'}
-              onClick={() => setJob('Squad Engineer')}>
+              onClick={() => setJob('Squad Engineer')}
+            >
               Squad Engineer
             </Tabs.Tab>
             <Tabs.Tab
               selected={job === 'Squad Corpsman'}
-              onClick={() => setJob('Squad Corpsman')}>
+              onClick={() => setJob('Squad Corpsman')}
+            >
               Squad Corpsman
             </Tabs.Tab>
             <Tabs.Tab
               selected={job === 'Squad Smartgunner'}
-              onClick={() => setJob('Squad Smartgunner')}>
+              onClick={() => setJob('Squad Smartgunner')}
+            >
               Squad Smartgunner
             </Tabs.Tab>
             <Tabs.Tab
               selected={job === 'Squad Leader'}
-              onClick={() => setJob('Squad Leader')}>
+              onClick={() => setJob('Squad Leader')}
+            >
               Squad Leader
             </Tabs.Tab>
           </Tabs>

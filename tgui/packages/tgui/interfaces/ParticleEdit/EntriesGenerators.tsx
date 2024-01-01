@@ -1,7 +1,21 @@
 /* eslint-disable react/jsx-no-undef */
 import { useBackend, useLocalState } from '../../backend';
-import { Button, ColorBox, Input, LabeledList, NumberInput, Stack } from '../../components';
-import { EntryGeneratorNumbersListProps, FloatGeneratorColorProps, FloatGeneratorProps, P_DATA_GENERATOR, ParticleUIData, RandToNumber } from './data';
+import {
+  Button,
+  ColorBox,
+  Input,
+  LabeledList,
+  NumberInput,
+  Stack,
+} from '../../components';
+import {
+  EntryGeneratorNumbersListProps,
+  FloatGeneratorColorProps,
+  FloatGeneratorProps,
+  P_DATA_GENERATOR,
+  ParticleUIData,
+  RandToNumber,
+} from './data';
 import { GeneratorListEntry } from './Generators';
 import { isStringArray } from './helpers';
 
@@ -111,7 +125,7 @@ export const FloatGeneratorColor = (props: FloatGeneratorColorProps) => {
 };
 
 export const EntryGeneratorNumbersList = (
-  props: EntryGeneratorNumbersListProps
+  props: EntryGeneratorNumbersListProps,
 ) => {
   const { act, data } = useBackend<ParticleUIData>();
   const [desc, setdesc] = useLocalState('desc', '');
@@ -136,11 +150,11 @@ export const EntryGeneratorNumbersList = (
                 var_mod: !isStringArray(input) ? P_DATA_GENERATOR : null,
                 new_value: !isStringArray(input)
                   ? [
-                    'sphere',
-                    [0, 0, 0],
-                    [1, 1, 1],
-                    RandToNumber['UNIFORM_RAND'],
-                  ]
+                      'sphere',
+                      [0, 0, 0],
+                      [1, 1, 1],
+                      RandToNumber['UNIFORM_RAND'],
+                    ]
                   : [1, 1, 1],
               })
             }

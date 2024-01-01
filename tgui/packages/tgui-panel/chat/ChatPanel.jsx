@@ -27,7 +27,7 @@ export class ChatPanel extends Component {
     chatRenderer.mount(this.ref.current);
     chatRenderer.events.on(
       'scrollTrackingChanged',
-      this.handleScrollTrackingChange
+      this.handleScrollTrackingChange,
     );
     this.componentDidUpdate();
   }
@@ -35,7 +35,7 @@ export class ChatPanel extends Component {
   componentWillUnmount() {
     chatRenderer.events.off(
       'scrollTrackingChanged',
-      this.handleScrollTrackingChange
+      this.handleScrollTrackingChange,
     );
   }
 
@@ -64,7 +64,8 @@ export class ChatPanel extends Component {
           <Button
             className="Chat__scrollButton"
             icon="arrow-down"
-            onClick={() => chatRenderer.scrollToBottom()}>
+            onClick={() => chatRenderer.scrollToBottom()}
+          >
             Scroll to bottom
           </Button>
         )}
