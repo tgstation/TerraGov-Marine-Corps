@@ -1,5 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - code_imp: "Refactored wheelchairs"
-  - balance: "Some minor wheelchair balance, check the PR for more details"
