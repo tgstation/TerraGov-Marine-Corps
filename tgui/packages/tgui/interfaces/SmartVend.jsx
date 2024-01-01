@@ -1,6 +1,7 @@
-import { useBackend } from '../backend';
-import { Button, Section, Table, NoticeBox } from '../components';
 import { map } from 'common/collections';
+
+import { useBackend } from '../backend';
+import { Button, NoticeBox, Section, Table } from '../components';
 import { Window } from '../layouts';
 
 export const SmartVend = (props) => {
@@ -14,7 +15,8 @@ export const SmartVend = (props) => {
             !!data.isdryer && (
               <Button
                 icon={data.drying ? 'stop' : 'tint'}
-                onClick={() => act('Dry')}>
+                onClick={() => act('Dry')}
+              >
                 {data.drying ? 'Stop drying' : 'Dry'}
               </Button>
             )
@@ -38,14 +40,14 @@ export const SmartVend = (props) => {
                     <Table.Cell>
                       <Button
                         disabled={value < 1}
-                        onClick={() =>
-                          act('Release', { name: key, amount: 1 })
-                        }>
+                        onClick={() => act('Release', { name: key, amount: 1 })}
+                      >
                         One
                       </Button>
                       <Button
                         disabled={value <= 1}
-                        onClick={() => act('Release', { name: key })}>
+                        onClick={() => act('Release', { name: key })}
+                      >
                         Many
                       </Button>
                     </Table.Cell>

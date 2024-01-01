@@ -1,6 +1,7 @@
 import { useState } from 'react';
+
 import { useBackend } from '../../backend';
-import { Button, Section, TextArea, Box, Stack } from '../../components';
+import { Box, Button, Section, Stack, TextArea } from '../../components';
 
 export const BackgroundInformation = (props) => {
   const { act, data } = useBackend<BackgroundInformationData>();
@@ -26,14 +27,16 @@ export const BackgroundInformation = (props) => {
             <Button
               icon="save"
               disabled={characterDesc === flavor_text}
-              onClick={() => act('flavor_text', { characterDesc })}>
+              onClick={() => act('flavor_text', { characterDesc })}
+            >
               Save
             </Button>
             <Button icon="times" onClick={() => setCharacterDesc(flavor_text)}>
               Reset
             </Button>
           </Box>
-        }>
+        }
+      >
         <TextArea
           key="character"
           height="100px"
@@ -51,14 +54,16 @@ export const BackgroundInformation = (props) => {
                 <Button
                   icon="save"
                   disabled={medicalDesc === med_record}
-                  onClick={() => act('med_record', { medicalDesc })}>
+                  onClick={() => act('med_record', { medicalDesc })}
+                >
                   Save
                 </Button>
                 <Button icon="times" onClick={() => setMedicalDesc(med_record)}>
                   Reset
                 </Button>
               </Box>
-            }>
+            }
+          >
             <TextArea
               height="100px"
               maxLength={1024}
@@ -75,16 +80,19 @@ export const BackgroundInformation = (props) => {
                 <Button
                   icon="save"
                   disabled={employmentDesc === gen_record}
-                  onClick={() => act('gen_record', { employmentDesc })}>
+                  onClick={() => act('gen_record', { employmentDesc })}
+                >
                   Save
                 </Button>
                 <Button
                   icon="times"
-                  onClick={() => setEmploymentDesc(gen_record)}>
+                  onClick={() => setEmploymentDesc(gen_record)}
+                >
                   Reset
                 </Button>
               </Box>
-            }>
+            }
+          >
             <TextArea
               height="100px"
               maxLength={1024}
@@ -103,16 +111,19 @@ export const BackgroundInformation = (props) => {
                 <Button
                   icon="save"
                   disabled={securityDesc === sec_record}
-                  onClick={() => act('sec_record', { securityDesc })}>
+                  onClick={() => act('sec_record', { securityDesc })}
+                >
                   Save
                 </Button>
                 <Button
                   icon="times"
-                  onClick={() => setSecurityDesc(sec_record)}>
+                  onClick={() => setSecurityDesc(sec_record)}
+                >
                   Reset
                 </Button>
               </Box>
-            }>
+            }
+          >
             <TextArea
               height="100px"
               maxLength={1024}
@@ -129,16 +140,19 @@ export const BackgroundInformation = (props) => {
                 <Button
                   icon="save"
                   disabled={exploitsDesc === exploit_record}
-                  onClick={() => act('exploit_record', { exploitsDesc })}>
+                  onClick={() => act('exploit_record', { exploitsDesc })}
+                >
                   Save
                 </Button>
                 <Button
                   icon="times"
-                  onClick={() => setExploitsDesc(exploit_record)}>
+                  onClick={() => setExploitsDesc(exploit_record)}
+                >
                   Reset
                 </Button>
               </Box>
-            }>
+            }
+          >
             <TextArea
               height="100px"
               maxLength={1024}

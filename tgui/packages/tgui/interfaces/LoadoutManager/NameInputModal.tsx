@@ -1,6 +1,7 @@
+import { useState } from 'react';
+
 import { Button, Flex, Modal, TextArea } from '../../components';
 import { NameInputModalData } from './Types';
-import { useState } from 'react';
 
 export const NameInputModal = (props: NameInputModalData) => {
   const { label, button_text, onSubmit, onBack } = props;

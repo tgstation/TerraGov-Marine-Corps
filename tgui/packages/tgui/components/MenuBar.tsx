@@ -6,8 +6,9 @@
 
 import { classes } from 'common/react';
 import { Component, createRef, ReactNode, RefObject } from 'react';
-import { Box } from './Box';
+
 import { logger } from '../logging';
+import { Box } from './Box';
 import { Icon } from './Icon';
 
 type MenuProps = {
@@ -53,7 +54,8 @@ class Menu extends Component<MenuProps> {
         className={'MenuBar__menu'}
         style={{
           width: width,
-        }}>
+        }}
+      >
         {children}
       </div>
     );
@@ -106,14 +108,16 @@ class MenuBarButton extends Component<MenuBarDropdownProps> {
           ])}
           {...rest}
           onClick={disabled ? () => null : onClick}
-          onMouseOver={onMouseOver}>
+          onMouseOver={onMouseOver}
+        >
           <span className="MenuBar__MenuBarButton-text">{display}</span>
         </Box>
         {open && (
           <Menu
             width={openWidth}
             menuRef={this.menuRef}
-            onOutsideClick={onOutsideClick}>
+            onOutsideClick={onOutsideClick}
+          >
             {children}
           </Menu>
         )}
@@ -169,7 +173,8 @@ export const Dropdown = (props: MenuBarItemProps) => {
         if (openOnHover) {
           setOpenMenuBar(entry);
         }
-      }}>
+      }}
+    >
       {children}
     </MenuBarButton>
   );
@@ -185,7 +190,8 @@ const MenuItemToggle = (props) => {
         'MenuBar__MenuItemToggle',
         'MenuBar__hover',
       ])}
-      onClick={() => onClick(value)}>
+      onClick={() => onClick(value)}
+    >
       <div className="MenuBar__MenuItemToggle__check">
         {checked && <Icon size={1.3} name="check" />}
       </div>
@@ -205,7 +211,8 @@ const MenuItem = (props) => {
         'MenuBar__MenuItem',
         'MenuBar__hover',
       ])}
-      onClick={() => onClick(value)}>
+      onClick={() => onClick(value)}
+    >
       {displayText}
     </Box>
   );

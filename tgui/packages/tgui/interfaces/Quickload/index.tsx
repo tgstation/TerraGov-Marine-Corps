@@ -1,7 +1,21 @@
 import { useBackend, useLocalState } from '../../backend';
-import { Stack, Button, Section, Box, LabeledList, Modal, Tabs, Flex } from '../../components';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  Modal,
+  Section,
+  Stack,
+  Tabs,
+} from '../../components';
 import { Window } from '../../layouts';
-import { LoadoutListData, LoadoutTabData, LoadoutManagerData, LoadoutItemData } from './Types';
+import {
+  LoadoutItemData,
+  LoadoutListData,
+  LoadoutManagerData,
+  LoadoutTabData,
+} from './Types';
 
 const LoadoutItem = (props: LoadoutItemData) => {
   const { act } = useBackend();
@@ -9,7 +23,7 @@ const LoadoutItem = (props: LoadoutItemData) => {
 
   const [showDesc, setShowDesc] = useLocalState<String | null>(
     'showDesc',
-    null
+    null,
   );
 
   return (
@@ -19,11 +33,13 @@ const LoadoutItem = (props: LoadoutItemData) => {
         <Button
           onClick={() => {
             act('selectLoadout', { loadout_outfit: loadout.outfit });
-          }}>
+          }}
+        >
           Select Loadout
         </Button>
       }
-      label={loadout.name}>
+      label={loadout.name}
+    >
       {!!loadout.desc && (
         <Button onClick={() => setShowDesc(loadout.desc)}>?</Button>
       )}
@@ -68,7 +84,8 @@ const JobTabs = (props: LoadoutTabData) => {
               <Tabs.Tab
                 key={i}
                 selected={job === role.jobs}
-                onClick={() => setJob(role)}>
+                onClick={() => setJob(role)}
+              >
                 {role}
               </Tabs.Tab>
             ))}
@@ -97,7 +114,8 @@ export const Quickload = (props) => {
       title="Quick Equip vendor"
       width={700}
       height={400}
-      theme={ui_theme_to_use}>
+      theme={ui_theme_to_use}
+    >
       {showDesc && (
         <Modal width="400px">
           <Box>{showDesc}</Box>
