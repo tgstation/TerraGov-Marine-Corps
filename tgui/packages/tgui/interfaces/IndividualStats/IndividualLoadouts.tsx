@@ -128,7 +128,7 @@ export const IndividualLoadouts = (props) => {
                   <Flex.Item fontSize="150%" grow={1}>
                     {selectedPossibleItem.name}
                   </Flex.Item>
-                  {selectedPossibleItem.valid_choice && (
+                  {selectedPossibleItem.valid_choice ? (
                     <Flex.Item alight="right" position="end">
                       <Button
                         onClick={() => setEquippedItem(selectedPossibleItem)}
@@ -137,7 +137,7 @@ export const IndividualLoadouts = (props) => {
                         Equip
                       </Button>
                     </Flex.Item>
-                  )}
+                  ) : null}
                 </Flex>
               </Box>
             ) : (
