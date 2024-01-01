@@ -1475,7 +1475,7 @@
 		to_chat(owner, span_warning("We will cum in 7 seconds! Do not walk away until it is done."))
 		playsound(X, 'sound/effects/alien_plapping.ogg', 40, channel = channel)
 		if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
-			to_chat(owner, span_warning("We stop fucking \the [victim]. They probably was loose anyways."))
+			to_chat(owner, span_warning("We stop fucking \the [victim]. They probably were loose anyways."))
 			X.stop_sound_channel(channel)
 			return fail_activate()
 		owner.visible_message(span_warning("[X] fucks [victim]!"), span_warning("We fuck [victim]!"), span_warning("You hear slapping."), 5, victim)
@@ -1504,7 +1504,7 @@
 		to_chat(X, span_warning("We will cum in 7 seconds! Do not walk away until it is done. Though this has no purpose but fun as Xenomorph cant bear larvas."))
 		playsound(X, 'sound/effects/alien_plapping.ogg', 40, channel = channel)
 		if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
-			to_chat(X, span_warning("We stop fucking \the [victim]. They probably was loose anyways."))
+			to_chat(X, span_warning("We stop fucking \the [victim]. They probably were loose anyways."))
 			X.stop_sound_channel(channel)
 			return fail_activate()
 		X.visible_message(span_warning("[X] fucks [victim]!"), span_warning("We fuck [victim]!"), span_warning("You hear slapping."), 5, victim)
@@ -1630,9 +1630,9 @@
 /datum/action/ability/activable/xeno/tail_stab
 	name = "Tail Stab"
 	action_icon_state = "tail_attack"
-	desc = "Strike a target with a sharp tail for damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals triple damage to structures and machinery."
+	desc = "Strike a target with a sharp tail for armor-piercing damage, stagger and slowdown. Deals double AP, damage, stagger and slowdown to grappled targets. Deals triple damage to structures and machinery."
 
-	ability_cost = 24
+	ability_cost = 30
 	cooldown_duration = 10 SECONDS
 	use_state_flags = ABILITY_USE_AGILITY
 	keybinding_signals = list(
@@ -1782,7 +1782,7 @@
 /mob/living/tail_stab_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "swift tail-stab!", stagger_stacks = 2, slowdown_stacks = 2)
 	. = ..()
 	if(pulledby == X) //If we're being grappled by the Warrior punching us, it's gonna do extra damage and debuffs; combolicious
-		damage *= 1.5
+		damage *= 2
 		slowdown_stacks *= 2
 		stagger_stacks *= 2
 		ParalyzeNoChain(0.5 SECONDS)
@@ -1795,7 +1795,11 @@
 
 		if (!L || (L.limb_status & LIMB_DESTROYED))
 			L = carbon_victim.get_limb(BODY_ZONE_CHEST)
-		apply_damage(damage, BRUTE, L, MELEE)
+		if(pulledby == X)
+			apply_damage(damage, BRUTE, L, MELEE, IS_SHARP_ITEM_ACCURATE, TRUE, TRUE, 25)
+		else
+			apply_damage(damage, BRUTE, L, MELEE, IS_SHARP_ITEM_ACCURATE, TRUE, TRUE, 50)
+			emote("scream")
 	else
 		apply_damage(damage, BRUTE, blocked = MELEE)
 

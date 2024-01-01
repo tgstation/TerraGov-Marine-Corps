@@ -53,6 +53,7 @@
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/xeno_action/ready_charge/bull_charge,
 		/datum/action/ability/activable/xeno/bull_charge,
 		/datum/action/ability/activable/xeno/bull_charge/headbutt,
