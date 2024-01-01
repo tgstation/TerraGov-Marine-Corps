@@ -241,6 +241,9 @@
 			var/job = params["outfit_job"]
 			if(!job || !loadouts[job])
 				return
+			if(!loadouts[job].check_full_loadout())
+				to_chat(user, "<span class='warning'>Invalid loadout.")
+				return
 			var/insufficient_credits = use_funds(loadouts[job].loadout_cost)
 			if(insufficient_credits)
 				to_chat(user, "<span class='warning'>Requires [insufficient_credits] more credits.")

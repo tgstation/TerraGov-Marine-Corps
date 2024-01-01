@@ -44,7 +44,7 @@
 
 ///Tries to add a datum if valid
 /datum/outfit_holder/proc/attempt_equip_loadout_item(datum/loadout_item/new_item)
-	if(!new_item.item_checks())
+	if(!new_item.item_checks(src))
 		return FALSE
 	return equip_loadout_item(new_item)
 

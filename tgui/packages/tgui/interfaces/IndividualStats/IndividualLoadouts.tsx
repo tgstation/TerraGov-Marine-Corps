@@ -11,7 +11,6 @@ import { IndividualData, LoadoutItemData, PerkIcon } from './index';
 
 export const IndividualLoadouts = (props) => {
   const { act, data } = useBackend<IndividualData>();
-  const { perks_data } = data;
   const { equipped_loadouts_data } = data;
   const { available_loadouts_data } = data;
   const [equipPotentialItem, setEquippedItem] =
@@ -28,14 +27,6 @@ export const IndividualLoadouts = (props) => {
     'selectedPossibleItem',
     available_loadouts_data[0],
   );
-  perks_data.sort((a, b) => {
-    const used_asset_a = a.currently_active;
-    const used_asset_b = b.currently_active;
-    if (used_asset_a && used_asset_b) return 0;
-    if (used_asset_a && !used_asset_b) return -1;
-    if (!used_asset_a && used_asset_b) return 1;
-    return 0;
-  });
 
   return (
     <Stack>
@@ -85,9 +76,7 @@ export const IndividualLoadouts = (props) => {
                           ? 'orange'
                           : equippeditem.item_type.valid_choice > 0
                             ? 'blue'
-                            : equippeditem.item_type.valid_choice < 0
-                              ? 'red'
-                              : 'grey'
+                            : 'red'
                       }
                     >
                       <Flex align="center">
