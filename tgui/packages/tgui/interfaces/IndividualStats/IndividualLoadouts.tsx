@@ -40,17 +40,22 @@ export const IndividualLoadouts = (props) => {
   return (
     <Stack>
       <Stack.Item>
-        <Stack vertical>
+        <Stack vertical padding={'35px'}>
           <Button
-            color={'orange'}
+            color={'green'}
             width={'180px'}
+            height={'35px'}
+            fontSize="150%"
+            textAlign="center"
+            mt={'10px'}
+            mb={'18px'}
             onClick={() =>
               act('equip_outfit', {
                 outfit_job: selectedJob,
               })
             }
           >
-            equip outfit
+            Equip outfit
           </Button>
         </Stack>
         <Stack vertical>
