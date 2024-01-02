@@ -419,6 +419,7 @@
 
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM
+	/// The type of tail they have to use in tail stab or other reasons, blunt stab false means they have the usual sharp xeno tail.
 	var/blunt_stab = FALSE
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
