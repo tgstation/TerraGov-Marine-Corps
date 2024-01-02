@@ -406,7 +406,7 @@
 	icon_state = "single"
 	travelling_time = 2 SECONDS //The epitome of ATGMs.
 	ammo_id = "widow"
-	point_cost = 400
+	point_cost = 300
 	devastating_explosion_range = 2
 	heavy_explosion_range = 3
 	prediction_type = CAS_AMMO_EXPLOSIVE
@@ -417,7 +417,7 @@
 	desc = "The AGM-67 'Keeper II' is the latest in a generation of laser guided weaponry that spans all the way back to the 20th century. Earning its nickname from a contract that developed its guidance system and the various uses of it during peacekeeping conflicts. Its payload is designed to devastate armored targets. Moving this will require some sort of lifter."
 	icon_state = "keeper"
 	ammo_id = "k"
-	point_cost = 300
+	point_cost = 225
 	devastating_explosion_range = 2
 	heavy_explosion_range = 4
 	travelling_time = 3 SECONDS
@@ -429,7 +429,7 @@
 	desc = "The AGM-99 'Napalm' is an incendiary rocket used to turn specific targeted areas into giant balls of fire for quite a long time, it has a smaller outer explosive payload than other AGMs, however. Moving this will require some sort of lifter."
 	icon_state = "napalm"
 	ammo_id = "n"
-	point_cost = 225
+	point_cost = 275
 	devastating_explosion_range = 2
 	heavy_explosion_range = 3
 	light_explosion_range = 4
@@ -456,7 +456,7 @@
 	desc = "The PGHM-227 missile is a mainstay of the fleet against any mobile or armored ground targets. It's earned the nickname of 'Banshee' from the sudden wail that it emitts right before hitting a target. Useful to clear out large areas. Moving this will require some sort of lifter."
 	icon_state = "banshee"
 	ammo_id = "b"
-	point_cost = 200
+	point_cost = 275
 	devastating_explosion_range = 2
 	heavy_explosion_range = 4
 	light_explosion_range = 5
@@ -509,10 +509,10 @@
 /obj/structure/ship_ammo/cas/rocket/monarch
 	name = "\improper PHGM-7 'Monarch"
 	desc = "The PHGM-7 'Monarch' is a well tried and tested dumb rocket design due to being a mere dumb rocket. Its payload is designed to devastate areas for cheap. Moving this will require some sort of lifter."
-	icon_state = "keeper"
+	icon_state = "monarch"
 	ammo_id = "m"
 	point_cost = 250
-	devastating_explosion_range = 2
+	devastating_explosion_range = 3
 	heavy_explosion_range = 5
 	light_explosion_range = 7
 	travelling_time = 6 SECONDS
@@ -527,7 +527,7 @@
 	desc = "The PLGM-7 'Swansong' is the bogstandard air to ground missile load of the Navy. Named after barely dodging discontinuation dozens of times to more expensive design types. Moving this will require some sort of lifter."
 	icon_state = "swansong"
 	ammo_id = "s"
-	point_cost = 225
+	point_cost = 200
 	devastating_explosion_range = 2
 	heavy_explosion_range = 4
 	light_explosion_range = 6
@@ -654,7 +654,7 @@
 	firing_voiceline = 'sound/voice/plane_vws/shot_missile.ogg'
 	travelling_time = 12 SECONDS
 	transferable_ammo = TRUE
-	point_cost = 300 // Bombs are numerous.
+	point_cost = 200 // Bombs are numerous.
 	ammo_type = CAS_BOMB
 	devastating_explosion_range = 0
 	heavy_explosion_range = 3
@@ -677,7 +677,7 @@
 	ammo_count = 4
 	max_ammo_count = 4
 	ammo_name = "bomb_400"
-	point_cost = 300 // Bombs are numerous.
+	point_cost = 225 // Bombs are numerous.
 	heavy_explosion_range = 4
 	light_explosion_range = 5
 	prediction_type = CAS_AMMO_EXPLOSIVE
@@ -695,7 +695,7 @@
 	light_explosion_range = 0
 	ammo_name = "bomb_1000"
 	travelling_time = 14 SECONDS
-	point_cost = 700 // This is literally a minituare OB.
+	point_cost = 600 // This is literally a minituare OB.
 	cas_effect = /obj/effect/overlay/blinking_laser/bomb_fat
 
 // Bomblets are small and numerious, with small paylods but high quantity.
@@ -711,7 +711,7 @@
 	firing_voiceline = 'sound/voice/plane_vws/shot_missile.ogg'
 	travelling_time = 10 SECONDS
 	transferable_ammo = TRUE
-	point_cost = 250 // You get a LOT of bomblets.
+	point_cost = 150
 	ammo_type = CAS_BOMBLET
 	light_explosion_range = 2
 	heavy_explosion_range = 0
@@ -732,6 +732,6 @@
 	ammo_name = "bomb_75"
 	firing_voiceline = 'sound/voice/plane_vws/shot_missile.ogg'
 	travelling_time = 12 SECONDS
-	point_cost = 300 // You get a LOT of bomblets.
+	point_cost = 175
 	light_explosion_range = 3
 	prediction_type = CAS_AMMO_EXPLOSIVE
