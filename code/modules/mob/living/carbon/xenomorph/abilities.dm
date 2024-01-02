@@ -1557,6 +1557,8 @@
 	if(xeno.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno.ckey]
 		personal_statistics.tail_stabs++
+		GLOB.round_statistics.tail_stabs++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "tail_stabs")
 
 /datum/action/ability/activable/xeno/tail_stab/ai_should_start_consider()
 	return TRUE
