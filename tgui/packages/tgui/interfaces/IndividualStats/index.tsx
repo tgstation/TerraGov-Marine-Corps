@@ -39,6 +39,12 @@ export type IndividualData = {
   equipped_loadouts_data: EquippedItemData[];
   available_loadouts_data: LoadoutItemData[];
   outfit_slots: string[];
+  outfit_cost_data: OutfitCostData[];
+};
+
+export type OutfitCostData = {
+  job: string;
+  outfit_cost: number;
 };
 
 export type EquippedItemData = {

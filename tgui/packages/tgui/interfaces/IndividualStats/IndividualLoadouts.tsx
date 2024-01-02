@@ -101,7 +101,14 @@ export const IndividualLoadouts = (props) => {
         </Stack>
       </Stack.Item>
       <Stack.Item>
+        <Section vertical title={selectedJob + ' loadout'}>
+          Equip cost:{' '}
+          {data.outfit_cost_data
+            .filter((outfit_type) => outfit_type.job === selectedJob)
+            .map((outfit_type) => outfit_type.outfit_cost)}
+        </Section>
         <Section
+          vertical
           title={
             selectedPossibleItem ? (
               <Box>

@@ -161,8 +161,15 @@
 	//loadout stuff
 	var/list/equipped_loadouts_data = list() //shit currently equipped to ALL job outfits
 	var/list/available_loadouts_data = list() //all available shit. note this currently does not include non purchased stuff
-	for(var/i in loadouts)
-		var/datum/outfit_holder/outfit = loadouts[i]
+	var/list/outfit_cost_data = list() //Current cost of all outfits
+	for(var/job in loadouts)
+		var/datum/outfit_holder/outfit = loadouts[job]
+
+		var/list/outfit_cost_list = list()
+		outfit_cost_list["job"] = job
+		outfit_cost_list["outfit_cost"] = outfit.loadout_cost
+		outfit_cost_data += list(outfit_cost_list)
+
 		for(var/slot in outfit.equipped_things)
 			var/datum/loadout_item/loadout_item = outfit.equipped_things[slot]
 			if(!loadout_item) //will probably be able to remove this eventually. Probably now, that we have defaults
@@ -199,6 +206,7 @@
 
 	data["equipped_loadouts_data"] = equipped_loadouts_data
 	data["available_loadouts_data"] = available_loadouts_data
+	data["outfit_cost_data"] = outfit_cost_data
 
 	return data
 
