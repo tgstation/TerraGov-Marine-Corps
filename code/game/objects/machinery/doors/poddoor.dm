@@ -98,7 +98,6 @@
 /obj/machinery/door/poddoor/telecomms
 	name = "Telecomms Emergency Window"
 	id = "tcomwind"
-	opacity = FALSE
 
 /obj/machinery/door/poddoor/two_tile_hor
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'

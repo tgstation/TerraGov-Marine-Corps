@@ -10041,10 +10041,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "ggn" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_starboard)
 "ggr" = (
@@ -18255,6 +18255,10 @@
 	},
 /turf/open/floor/mainship/ai,
 /area/mainship/command/airoom)
+"tOe" = (
+/obj/machinery/vending/marineFood,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "tPb" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -18968,10 +18972,10 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "vao" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_port)
 "vaF" = (
@@ -63872,7 +63876,7 @@ bnF
 bpx
 pqU
 iWe
-iWe
+gaR
 jMY
 iWe
 gzg
@@ -65159,7 +65163,7 @@ bro
 sic
 bGk
 avZ
-gaR
+tOe
 byh
 otD
 bKU
