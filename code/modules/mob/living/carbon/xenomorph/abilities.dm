@@ -1368,11 +1368,6 @@
 			to_chat(owner, span_xenodanger("Our target must be closer!"))
 		return FALSE
 
-	if(!line_of_sight(owner, A))
-		if(!silent)
-			to_chat(owner, span_xenodanger("Something is in our way!"))
-		return FALSE
-
 	if(A.resistance_flags & (INDESTRUCTIBLE|CRUSHER_IMMUNE) || istype(A, /obj/machinery/autodoc)) //no bolting down indestructible airlocks or damaging autodocs.
 		if(!silent)
 			to_chat(owner, span_xenodanger("We cannot damage this target!"))
@@ -1422,6 +1417,10 @@
 	return TRUE
 
 /obj/machinery/tail_stab_act(mob/living/carbon/xenomorph/xeno, damage, target_zone, penetration, structure_damage_multiplier, stab_description = "swift tail-stab!", disorientamount) //Break open the machine
+	if(line_of_sight(xeno, src, 1))
+		xeno.face_atom(src) //Face the target if adjacent so you dont look dumb.
+	else
+		xeno.face_away_from_atom(src) //Face away from the target so your tail may reach if not adjacent
 	xeno.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
 	xeno.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 	if(!CHECK_BITFIELD(resistance_flags, UNACIDABLE) || resistance_flags == (UNACIDABLE|XENO_DAMAGEABLE)) //If it's acidable or we can't acid it but it has the xeno damagable flag, we can damage it
@@ -1432,8 +1431,9 @@
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 25, 1)
 	Shake(duration = 0.5 SECONDS)
 
-	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
+	if(!istype(src, /obj/machinery/power/apc))
+		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+			ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
 
 	if(!istype(src, /obj/machinery/power/apc))
 		if(wires) //If it has wires, break em except APCs cause they got beenhit count.
@@ -1465,15 +1465,29 @@
 /obj/machinery/power/apc/tail_stab_act(mob/living/carbon/xenomorph/xeno, damage, target_zone, penetration, structure_damage_multiplier,  stab_description = "swift tail-stab!", disorientamount)
 	. = ..()
 
-	beenhit += structure_damage_multiplier
 	var/allcut = wires.is_all_cut()
-	if(beenhit >= 4 && !allcut)
-		if(!allcut)
+	if(beenhit >= pick(3, 4)) //wow it is actually be a challenge to kill apcs from afar with a tail, compared to woyer.
+		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+			ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
+			update_icon()
+			visible_message(span_danger("\The [src]'s cover swings open, exposing the wires!"), null, null, 5)
+			if(prob(50))
+				electrocute_mob(xeno, get_area(src), src, 0.7, FALSE) //sticking your tail thoughtlessly inside an APC may not be a good idea.
+				xeno.Knockdown(1 SECONDS)
+				xeno.visible_message(span_danger("\The [xeno] gets shocked by \the [src]!"), \
+					span_danger("You get shocked by \the [src]!"), null, 5)
+				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+				s.set_up(5, 1, src)
+				s.start()
+		else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && !allcut)
 			wires.cut_all()
 			visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!"), null, null, 5)
 			if(xeno.client)
 				var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno.ckey]
 				personal_statistics.apcs_slashed++
+	else
+		beenhit += structure_damage_multiplier
+	xeno.changeNext_move(CLICK_CD_MELEE)
 	update_icon()
 
 /obj/machinery/vending/tail_stab_act(mob/living/carbon/xenomorph/xeno, damage, target_zone, penetration, structure_damage_multiplier,  stab_description = "swift tail-stab!", disorientamount)
@@ -1485,6 +1499,10 @@
 
 /obj/structure/tail_stab_act(mob/living/carbon/xenomorph/xeno, damage, target_zone, penetration, structure_damage_multiplier,  stab_description = "devastating tail-jab!", disorientamount) //Smash structures
 	. = ..()
+	if(line_of_sight(xeno, src, 1))
+		xeno.face_atom(src) //Face the target if adjacent so you dont look dumb.
+	else
+		xeno.face_away_from_atom(src) //Face away from the target so your tail may reach if not adjacent
 	xeno.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
 	xeno.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 	attack_alien(xeno, damage * structure_damage_multiplier, BRUTE, "", FALSE)
@@ -1496,6 +1514,10 @@
 
 /obj/vehicle/tail_stab_act(mob/living/carbon/xenomorph/xeno, damage, target_zone, penetration, structure_damage_multiplier, stab_description = "devastating tail-jab!", disorientamount)
 	. = ..()
+	if(line_of_sight(xeno, src, 1))
+		xeno.face_atom(src) //Face the target if adjacent so you dont look dumb.
+	else
+		xeno.face_away_from_atom(src) //Face away from the target so your tail may reach if not adjacent
 	xeno.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
 	xeno.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 	attack_generic(xeno, damage * structure_damage_multiplier, BRUTE, "", FALSE)
@@ -1543,7 +1565,10 @@
 		playsound(src, "alien_tail_swipe", 50, TRUE)
 		playsound(src,"alien_bite", 25, TRUE)
 		src.add_splatter_floor(loc)
-	xeno.face_atom(src) //Face the target so you don't look like an idiot
+	if(line_of_sight(xeno, src, 1))
+		xeno.face_atom(src) //Face the target if adjacent so you dont look dumb.
+	else
+		xeno.face_away_from_atom(src) //Face away from the target so your tail may reach if not adjacent
 	xeno.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
 	xeno.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 
