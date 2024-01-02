@@ -1,3 +1,5 @@
+import { classes } from 'common/react';
+
 import { useBackend, useLocalState } from '../../backend';
 import {
   Box,
@@ -40,17 +42,16 @@ export const CampaignMissions = (props) => {
               >
                 <Flex align="center">
                   <Flex.Item pt={'3px'}>
-                    {!!mission.mission_icon && (
-                      <MissionIcon
-                        icon={
-                          selectedMission.name === mission.name
-                            ? mission.mission_icon + '_yellow'
-                            : mission.mission_critical
-                              ? mission.mission_icon + '_red'
-                              : mission.mission_icon + '_blue'
-                        }
-                      />
-                    )}
+                    <Box
+                      className={classes([
+                        'campaign_missions24x24',
+                        selectedMission.name === mission.name
+                          ? mission.mission_icon + '_yellow'
+                          : mission.mission_critical
+                            ? mission.mission_icon + '_red'
+                            : mission.mission_icon + '_blue',
+                      ])}
+                    />
                   </Flex.Item>
                   <Flex.Item>{mission.name}</Flex.Item>
                 </Flex>

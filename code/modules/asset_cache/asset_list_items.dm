@@ -147,6 +147,12 @@
 /datum/asset/spritesheet/hivestatus/create_spritesheets()
 	InsertAll("", 'icons/UI_Icons/hive_status_icons.dmi')
 
+/datum/asset/spritesheet/campaign_missions
+	name = "campaign_missions"
+
+/datum/asset/spritesheet/campaign_missions/create_spritesheets()
+	InsertAll("", 'icons/UI_Icons/mission_icons.dmi')
+
 /datum/asset/simple/particle_editor
 	assets = list(
 		"motion" = 'icons/ui_icons/particle_editor/motion.png',
