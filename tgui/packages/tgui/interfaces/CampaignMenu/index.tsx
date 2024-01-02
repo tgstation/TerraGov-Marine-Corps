@@ -70,7 +70,6 @@ export type CampaignData = {
   max_victory_points: number;
   faction: string;
   icons?: string[];
-  mission_icons?: string[];
 };
 
 export const CampaignMenu = (props) => {

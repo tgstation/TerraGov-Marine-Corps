@@ -366,7 +366,6 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	data["max_victory_points"] = CAMPAIGN_MAX_VICTORY_POINTS
 	data["faction"] = faction
 	data["icons"] = GLOB.campaign_icons
-	data["mission_icons"] = GLOB.campaign_mission_icons
 
 	return data
 
