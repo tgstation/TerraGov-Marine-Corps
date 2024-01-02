@@ -1,0 +1,5 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - rscadd: "Marine Food Vendors are now present in all requisition areas."
+  - qol: "All ships now have cigarette vendors guaranteed to spawn in"
