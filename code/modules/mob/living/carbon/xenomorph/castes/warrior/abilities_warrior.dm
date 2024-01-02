@@ -349,7 +349,7 @@
 /datum/action/ability/activable/xeno/punch
 	name = "Punch"
 	action_icon_state = "punch"
-	desc = "Strike a target, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
+	desc = "Strike a target, inflicting stamina damage, stagger and slowdown. Deals more damage, double stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
 	ability_cost = 12
 	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(

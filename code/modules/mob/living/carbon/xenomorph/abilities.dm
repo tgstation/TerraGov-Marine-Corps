@@ -1332,7 +1332,7 @@
 /datum/action/ability/activable/xeno/tail_stab
 	name = "Tail Stab"
 	action_icon_state = "tail_attack"
-	desc = "Strike a target within two tiles with a sharp tail for armor-piercing damage, stagger and slowdown. Deals double AP, damage, stagger and slowdown to grappled targets, structures and machinery."
+	desc = "Strike a target within two tiles with a sharp tail for armor-piercing damage, stagger and slowdown. Deals more AP, damage, stagger and slowdown to grappled targets, structures and machinery."
 	ability_cost = 30
 	cooldown_duration = 10 SECONDS
 	use_state_flags = ABILITY_USE_AGILITY
@@ -1531,9 +1531,9 @@
 /mob/living/tail_stab_act(mob/living/carbon/xenomorph/xeno, damage, target_zone, penetration, structure_damage_multiplier, stab_description = "swift tail-stab!", disorientamount)
 	. = ..()
 	if(pulledby == xeno) //If we're being grappled
-		damage *= 2
+		damage *= 1.5
 		disorientamount *= 2
-		penetration *= 2
+		penetration *= 1.5
 		ParalyzeNoChain(0.5 SECONDS)
 		xeno.stop_pulling()
 		stab_description = "devastating tail-jab!"
