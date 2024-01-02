@@ -1638,16 +1638,16 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_STAB,
 	)
-	target_flags = ABILITY_MOB_TARGET|ABILITY_MOB_TARGET
-	//the length of our tail, better not change this.
+	target_flags = ABILITY_TURF_TARGET|ABILITY_MOB_TARGET
+	///the length of our tail, better not change this.
 	var/range = 2
-	//our style.
+	///our stabbing style.
 	var/stab_description = "swift tail-jab!"
-	//the flat armor penetration damage, doubled when grabbed. Blunt tailed xenos wont have sharpness but will have 1.2x more penetration, like maces from most games i guess.
+	///the flat armor penetration damage, doubled when grabbed. Blunt tailed xenos wont have sharpness but will have 1.2x more penetration, like maces from most games i guess.
 	var/penetration = 25
-	//the multiplier for damage against structures.
+	///the multiplier for damage against structures.
 	var/structure_damage_multiplier = 2
-	//how much we want to blur eyes, slowdown and stagger.
+	///how much we want to blur eyes, slowdown and stagger.
 	var/disorientamount = 2
 
 
@@ -1667,7 +1667,7 @@
 			to_chat(owner, span_xenodanger("Our target must be closer!"))
 		return FALSE
 
-	if(A.resistance_flags & (INDESTRUCTIBLE|CRUSHER_IMMUNE) || istype(A, /obj/machinery/autodoc)) //no bolting down indestructible airlocks or damaging autodocs.
+	if(A.resistance_flags & (INDESTRUCTIBLE|CRUSHER_IMMUNE)) //no bolting down indestructible airlocks.
 		if(!silent)
 			to_chat(owner, span_xenodanger("We cannot damage this target!"))
 		return FALSE

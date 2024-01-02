@@ -14355,7 +14355,6 @@
 	})
 "mIO" = (
 /obj/machinery/firealarm,
-/obj/structure/bed/chair/wheelchair,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -24484,7 +24483,7 @@
 	outside = 0
 	})
 "wsn" = (
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
@@ -40978,7 +40977,7 @@ xHJ
 xHJ
 iqf
 iFL
-rOw
+wsn
 haE
 kyS
 vqb
@@ -42914,7 +42913,7 @@ xtg
 xHJ
 dGt
 iFL
-wsn
+rOw
 xHJ
 kyS
 kjD
