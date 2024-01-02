@@ -7,3 +7,12 @@
   ivanmixo:
   - code_imp: Refactored wheelchairs
   - balance: Some minor wheelchair balance, check the PR for more details
+2024-01-02:
+  Helg2:
+  - qol: AI can now click maptable again to close it if it's open.
+  Lumipharon:
+  - bugfix: fixed unrelenting force causing shuffle issues in certain directions
+  - bugfix: fixed some storage exploits
+  - qol: The campaign status screen is now accessible via action button instead of
+      verb
+  - qol: The campaign status screen is now accessible to ghosts of the right faction

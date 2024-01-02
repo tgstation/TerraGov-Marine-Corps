@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "The campaign status screen is now accessible via action button instead of verb"
-  - qol: "The campaign status screen is now accessible to ghosts of the right faction"
