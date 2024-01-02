@@ -1362,7 +1362,7 @@
 	. = ..()
 	if(!.)
 		return
-
+	//i could not make it so the mob turns away if at range here, for some reason, the xeno one for example or empty tile.
 	if(!line_of_sight(owner, A, range))
 		if(!silent)
 			to_chat(owner, span_xenodanger("Our target must be closer!"))
@@ -1373,7 +1373,7 @@
 			to_chat(owner, span_xenodanger("We cannot damage this target!"))
 		return FALSE
 
-	if(isxeno(A))
+	if(isxeno(A) && A.issamexenohive(owner))
 		if(!silent)
 			owner.visible_message(span_xenowarning("\The [owner] swipes their tail through the air!"), span_xenowarning("We swipe our tail through the air!"))
 			add_cooldown(1 SECONDS)
