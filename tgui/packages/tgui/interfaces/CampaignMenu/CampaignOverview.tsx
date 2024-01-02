@@ -1,3 +1,5 @@
+import { classes } from 'common/react';
+
 import { useBackend } from '../../backend';
 import {
   Box,
@@ -8,7 +10,7 @@ import {
   Section,
   Table,
 } from '../../components';
-import { CampaignData, MissionIcon } from './index';
+import { CampaignData } from './index';
 
 export const CampaignOverview = (props) => {
   const { act, data } = useBackend<CampaignData>();
@@ -40,13 +42,13 @@ export const CampaignOverview = (props) => {
         title={
           <Box>
             <Flex fontSize="150%" align="center">
-              {
-                <MissionIcon
-                  icon={mission_icon + '_green'}
-                  icon_width={'48px'}
-                  icon_height={'48px'}
-                />
-              }
+              <Flex.Item
+                mr={1.5}
+                className={classes([
+                  'campaign_missions48x48',
+                  mission_icon + '_green' + '_big',
+                ])}
+              />
               Current Mission overview
             </Flex>
           </Box>

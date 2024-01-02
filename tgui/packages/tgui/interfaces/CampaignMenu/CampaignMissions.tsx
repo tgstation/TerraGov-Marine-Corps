@@ -67,13 +67,11 @@ export const CampaignMissions = (props) => {
               <Box>
                 <Flex align="center">
                   <Flex.Item
+                    mr={1.5}
                     className={classes([
-                      'campaign_missions24x24',
-                      selectedMission.mission_icon + '_yellow',
+                      'campaign_missions48x48',
+                      selectedMission.mission_icon + '_yellow' + '_big',
                     ])}
-                    style={{
-                      transform: 'scale(2)',
-                    }}
                   />
                   <Flex.Item fontSize="150%" grow={1}>
                     {selectedMission.name}

@@ -265,30 +265,3 @@ export const AssetIcon = (props: {
     />
   );
 };
-
-/** Generates a small icon for buttons based on ICONMAP for missions */
-export const MissionIcon = (props: {
-  icon: MissionData['mission_icon'];
-  icon_width?: string;
-  icon_height?: string;
-}) => {
-  const { data } = useBackend<CampaignData>();
-  const { mission_icons = [] } = data;
-  const { icon, icon_width, icon_height } = props;
-  if (!icon || !mission_icons[icon]) {
-    return null;
-  }
-
-  return (
-    <Box
-      width={icon_width ? icon_width : '24px'}
-      height={icon_height ? icon_height : '24px'}
-      as="img"
-      mr={1.5}
-      src={`data:image/jpeg;base64,${mission_icons[icon]}`}
-      style={{
-        transform: 'scale(1)',
-      }}
-    />
-  );
-};

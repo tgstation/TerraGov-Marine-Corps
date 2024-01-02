@@ -151,7 +151,15 @@
 	name = "campaign_missions"
 
 /datum/asset/spritesheet/campaign_missions/create_spritesheets()
-	InsertAll("", 'icons/UI_Icons/mission_icons.dmi')
+	var/icon_file = 'icons/UI_Icons/mission_icons.dmi'
+	for(var/icon_name in GLOB.campaign_mission_icons)
+		var/icon/iconNormal = icon(icon_file, icon_name, SOUTH)
+		Insert(icon_name, iconNormal)
+
+		var/icon/iconBig = icon(icon_file, icon_name, SOUTH)
+		iconBig.Scale(iconBig.Width()*2, iconBig.Height()*2)
+		Insert("[icon_name]_big", iconBig)
+
 
 /datum/asset/simple/particle_editor
 	assets = list(
