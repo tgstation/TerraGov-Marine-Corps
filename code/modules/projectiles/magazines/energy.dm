@@ -197,6 +197,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	slowdown = 0
 	maxcharge = 2400
+	cell_type = /obj/item/cell/lasgun/lasrifle
 	self_recharge = FALSE
 
 /obj/item/cell/lasgun/plasma_powerpack
