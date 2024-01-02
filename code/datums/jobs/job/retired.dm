@@ -5,7 +5,7 @@
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/fo //they're old, they know their stuff
-	faction = FACTION_RETIRED
+	faction = FACTION_TERRAGOV
 	outfit = /datum/outfit/job/retired
 
 /datum/outfit/job/retired
@@ -67,3 +67,18 @@
 /datum/outfit/job/retired/leader/post_equip(mob/living/carbon/human/H, visualsOnly)
 	H.equip_to_slot_or_del(new /obj/item/storage/fancy/chemrettes, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_SUIT)
+
+/datum/job/retired/augmented
+	title = "TGMC augmented veteran"
+	outfit = /datum/outfit/job/retired/augmented
+
+/datum/outfit/job/retired/augmented
+	name = "TGMC augmented veteran"
+	jobtype = /datum/job/retired/augmented
+
+/datum/outfit/job/retired/augmented/post_equip(mob/living/carbon/human/H, visualsOnly)
+	. = ..() // Same gear as the regular outfit, but we give them some robot limbs
+	for(var/i in 1 to 2)
+		var/datum/limb/picked_limb = H.get_limb(pick_n_take(list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)))
+		picked_limb.robotize()
+
