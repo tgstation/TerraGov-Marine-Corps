@@ -63,37 +63,38 @@ export const IndividualLoadouts = (props) => {
                       : 'null'
                   }
                 >
-                  <LabeledList.Item label={equippeditem.slot_text}>
-                    <Button
-                      width={'180px'}
-                      onClick={() => {
-                        setselectedLoadoutItem(equippeditem);
-                        setselectedPossibleItem(equippeditem.item_type);
-                      }}
-                      color={
-                        selectedLoadoutItem.item_type.name ===
-                        equippeditem.item_type.name
-                          ? 'orange'
-                          : equippeditem.item_type.valid_choice > 0
-                            ? 'blue'
-                            : 'red'
-                      }
-                    >
-                      <Flex align="center">
-                        {!!equippeditem.item_type.icon && (
-                          <PerkIcon
-                            icon={
-                              selectedLoadoutItem.item_type.name ===
-                              equippeditem.item_type.name
-                                ? equippeditem.item_type.icon + '_red'
-                                : equippeditem.item_type.icon + '_blue'
-                            }
-                          />
-                        )}
-                        {equippeditem.item_type.name}
-                      </Flex>
-                    </Button>
-                  </LabeledList.Item>
+                  <Flex mt="3px" ml="3px" Align="center">
+                    {equippeditem.slot_text}
+                  </Flex>
+                  <Button
+                    width={'180px'}
+                    onClick={() => {
+                      setselectedLoadoutItem(equippeditem);
+                      setselectedPossibleItem(equippeditem.item_type);
+                    }}
+                    color={
+                      selectedLoadoutItem.item_type.name ===
+                      equippeditem.item_type.name
+                        ? 'orange'
+                        : equippeditem.item_type.valid_choice > 0
+                          ? 'blue'
+                          : 'red'
+                    }
+                  >
+                    <Flex align="center">
+                      {!!equippeditem.item_type.icon && (
+                        <PerkIcon
+                          icon={
+                            selectedLoadoutItem.item_type.name ===
+                            equippeditem.item_type.name
+                              ? equippeditem.item_type.icon + '_red'
+                              : equippeditem.item_type.icon + '_blue'
+                          }
+                        />
+                      )}
+                      {equippeditem.item_type.name}
+                    </Flex>
+                  </Button>
                 </Stack.Item>
               ))}
           </LabeledList>

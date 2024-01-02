@@ -24,7 +24,7 @@
 	ckey = new_mob.key
 	current_mob = new_mob
 	faction = new_faction
-	currency = new_currency
+	currency += new_currency
 	for(var/datum/job/job_type AS in SSticker.mode.valid_job_types)
 		if(job_type::faction != faction)
 			continue
