@@ -1,0 +1,4 @@
+author: "Helg2"
+delete-after: True
+changes:
+  - bugfix: "[Magmoor] Canterbury now won't crash directly into the xeno's silo."
