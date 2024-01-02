@@ -95,19 +95,19 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 
 /datum/loadout_item/suit_slot/heavy_shield
 	name = "Heavy shielded"
-	desc = "item desc here"
+	desc = "Heavy armor with a Svallin shield module. Provides excellent protection but lower mobility."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/shield
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/suit_slot/heavy_surt
 	name = "Heavy Surt"
-	desc = "item desc here"
+	desc = "Heavy armor with a Surt fireproof module. Provides excellent protection and almost total fire immunity, but has poor mobility."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/surt
 	jobs_supported = list(SQUAD_MARINE)
 
 /datum/loadout_item/suit_slot/medium_mimir
 	name = "Medium Mimir"
-	desc = "item desc here"
+	desc = "Medium armor with a Mimir environmental protection module. Provides respectable armor and total immunity to chemical attacks, and improved radiological protection. Has modest mobility."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/mimir
 	jobs_supported = list(SQUAD_CORPSMAN)
 
@@ -122,19 +122,19 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 
 /datum/loadout_item/helmet/standard
 	name = "M10X"
-	desc = "item desc here"
+	desc = "A standard TGMC combat helmet. Apply to head for best results."
 	item_typepath = /obj/item/clothing/head/modular/m10x
 	jobs_supported = list(SQUAD_MARINE)
 
 /datum/loadout_item/helmet/leader
 	name = "M11X"
-	desc = "item desc here"
+	desc = "An upgraded helmet for protecting upgraded brains."
 	item_typepath = /obj/item/clothing/head/modular/m10x/leader
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/helmet/surt
 	name = "M10X-Surt"
-	desc = "item desc here"
+	desc = "A standard combat helmet with a Surt fireproof module."
 	item_typepath = /obj/item/clothing/head/modular/m10x/surt
 	jobs_supported = list(SQUAD_MARINE)
 	item_whitelist = list(
@@ -144,7 +144,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 
 /datum/loadout_item/helmet/mimir
 	name = "M10X-Mimir"
-	desc = "item desc here"
+	desc = "A standard combat helmet with a Mimir environmental protection module."
 	item_typepath = /obj/item/clothing/head/modular/m10x/mimir
 	jobs_supported = list(SQUAD_CORPSMAN)
 	item_whitelist = list(
