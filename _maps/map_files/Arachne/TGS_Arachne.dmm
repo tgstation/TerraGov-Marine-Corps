@@ -28246,21 +28246,13 @@
 /turf/open/floor/wood,
 /area/mainship/living/bridgebunks)
 "xIn" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/facepaint/green{
-	pixel_x = -7;
-	pixel_y = 2
-	},
-/obj/item/tool/hand_labeler{
-	pixel_x = 7;
-	pixel_y = 7
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/machinery/vending/marineFood,
 /turf/open/floor/mainship/green{
 	dir = 2
 	},
