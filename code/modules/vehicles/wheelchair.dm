@@ -7,6 +7,7 @@
 	max_integrity = 100
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 30, FIRE = 60, ACID = 60) //Wheelchairs aren't super tough yo
 	density = FALSE //Thought I couldn't fix this one easily, phew
+	drag_delay = 1 //pulling something on wheels is easy
 	/// Run speed delay is multiplied with this for vehicle move delay.
 	var/delay_multiplier = 6.7
 	/// This variable is used to specify which overlay icon is used for the wheelchair, ensures wheelchair can cover your legs

@@ -1,0 +1,4 @@
+author: "Helg2"
+delete-after: True
+changes:
+  - qol: "AI can now click maptable again to close it if it's open."

@@ -203,7 +203,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 ///Returns all faction members back to base after the mission is completed
 /datum/faction_stats/proc/return_to_base(datum/campaign_mission/completed_mission)
 	for(var/mob/living/carbon/human/human_mob AS in GLOB.alive_human_list_faction[faction])
-		if(human_mob.z != completed_mission.mission_z_level && human_mob.job.job_cost)
+		if((human_mob.z != completed_mission.mission_z_level.z_value) && human_mob.job.job_cost)
 			human_mob.revive(TRUE)
 			human_mob.overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
 			human_mob.overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
@@ -254,6 +254,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	ui.open()
 
 /datum/faction_stats/ui_state(mob/user)
+	if(isobserver(user))
+		return GLOB.always_state
 	return GLOB.conscious_state
 
 /datum/faction_stats/ui_static_data(mob/living/user)
@@ -376,6 +378,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		CRASH("campaign_mission loaded without campaign game mode")
 
 	var/mob/living/user = usr
+	if(!istype(user))
+		return
 
 	switch(action)
 		if("set_attrition_points")
@@ -460,3 +464,14 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				to_chat(faction_member, "<span class='warning'>[user] has purchased the [initial(selected_asset.name)] campaign asset.")
 			update_static_data_for_all_viewers()
 			return TRUE
+
+//overview for campaign gamemode
+/datum/action/campaign_overview
+	name = "Campaign overview"
+	action_icon_state = "campaign_overview"
+
+/datum/action/campaign_overview/action_activate()
+	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[owner.faction]
+	if(!your_faction)
+		return
+	your_faction.interact(owner)

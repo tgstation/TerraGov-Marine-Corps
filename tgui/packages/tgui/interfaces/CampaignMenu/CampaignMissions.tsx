@@ -1,16 +1,23 @@
-import { CampaignData, MissionData, MissionIcon } from './index';
 import { useBackend, useLocalState } from '../../backend';
-import { LabeledList, Button, Stack, Section, Table, Box, Flex } from '../../components';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  Section,
+  Stack,
+  Table,
+} from '../../components';
+import { CampaignData, MissionData, MissionIcon } from './index';
 
-export const CampaignMissions = (props, context) => {
-  const { act, data } = useBackend<CampaignData>(context);
+export const CampaignMissions = (props) => {
+  const { act, data } = useBackend<CampaignData>();
   const { available_missions } = data;
   const [selectedNewMission, setSelectedNewMission] =
-    useLocalState<MissionData | null>(context, 'selectedNewMission', null);
+    useLocalState<MissionData | null>('selectedNewMission', null);
   const [selectedMission, setSelectedMission] = useLocalState(
-    context,
     'selectedMission',
-    available_missions[0]
+    available_missions[0],
   );
 
   return (
@@ -29,7 +36,8 @@ export const CampaignMissions = (props, context) => {
                     : mission.mission_critical
                       ? 'red'
                       : 'blue'
-                }>
+                }
+              >
                 <Flex align="center">
                   <Flex.Item pt={'3px'}>
                     {!!mission.mission_icon && (
@@ -72,7 +80,8 @@ export const CampaignMissions = (props, context) => {
                   <Flex.Item alight="right" position="end">
                     <Button
                       onClick={() => setSelectedNewMission(selectedMission)}
-                      icon={'check'}>
+                      icon={'check'}
+                    >
                       Select
                     </Button>
                   </Flex.Item>
@@ -81,7 +90,8 @@ export const CampaignMissions = (props, context) => {
             ) : (
               'No Mission selected'
             )
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Map name">
               {selectedMission?.map_name}

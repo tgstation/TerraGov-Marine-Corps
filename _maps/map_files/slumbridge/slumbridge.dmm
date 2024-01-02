@@ -2785,7 +2785,7 @@
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
 "caS" = (
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /turf/open/floor/prison/sterilewhite,
 /area/slumbridge/inside/prison/outerringsouth)
 "cbt" = (
@@ -3089,7 +3089,7 @@
 /area/slumbridge/inside/houses/dorms)
 "cnf" = (
 /obj/machinery/light,
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /turf/open/floor/prison/sterilewhite,
 /area/slumbridge/inside/prison/outerringsouth)
 "cni" = (

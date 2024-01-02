@@ -1,9 +1,17 @@
-import { CampaignData, MissionIcon } from './index';
 import { useBackend } from '../../backend';
-import { LabeledList, Button, Section, Table, ProgressBar, Box, Flex } from '../../components';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  ProgressBar,
+  Section,
+  Table,
+} from '../../components';
+import { CampaignData, MissionIcon } from './index';
 
-export const CampaignOverview = (props, context) => {
-  const { act, data } = useBackend<CampaignData>(context);
+export const CampaignOverview = (props) => {
+  const { act, data } = useBackend<CampaignData>();
   const {
     current_mission,
     active_attrition_points,
@@ -42,7 +50,8 @@ export const CampaignOverview = (props, context) => {
               Current Mission overview
             </Flex>
           </Box>
-        }>
+        }
+      >
         <LabeledList>
           <LabeledList.Item label="Mission">{name}</LabeledList.Item>
           <LabeledList.Item label="Map name">{map_name}</LabeledList.Item>
@@ -96,7 +105,8 @@ export const CampaignOverview = (props, context) => {
           <LabeledList.Item label="Victory Points">
             <ProgressBar
               color="green"
-              value={victory_points / max_victory_points}>
+              value={victory_points / max_victory_points}
+            >
               {victory_points} / {max_victory_points}
             </ProgressBar>
           </LabeledList.Item>

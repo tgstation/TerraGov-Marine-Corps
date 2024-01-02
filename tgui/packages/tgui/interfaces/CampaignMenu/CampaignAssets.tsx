@@ -1,19 +1,24 @@
-import { CampaignData, FactionReward, AssetIcon } from './index';
 import { useBackend, useLocalState } from '../../backend';
-import { LabeledList, Button, Stack, Section, Box, Flex } from '../../components';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  Section,
+  Stack,
+} from '../../components';
+import { AssetIcon, CampaignData, FactionReward } from './index';
 
-export const CampaignAssets = (props, context) => {
-  const { act, data } = useBackend<CampaignData>(context);
+export const CampaignAssets = (props) => {
+  const { act, data } = useBackend<CampaignData>();
   const { faction_rewards_data } = data;
   const [selectedAsset, setSelectedAsset] = useLocalState<FactionReward | null>(
-    context,
     'selectedAsset',
-    null
+    null,
   );
   const [selectedReward, setSelectedReward] = useLocalState(
-    context,
     'selectedReward',
-    faction_rewards_data[0]
+    faction_rewards_data[0],
   );
   faction_rewards_data.sort((a, b) => {
     const used_asset_a = a.uses_remaining;
@@ -45,7 +50,8 @@ export const CampaignAssets = (props, context) => {
                           : reward.uses_remaining < 0
                             ? 'red'
                             : 'grey'
-                }>
+                }
+              >
                 <Flex align="center">
                   {!!reward.icon && (
                     <AssetIcon
@@ -92,7 +98,8 @@ export const CampaignAssets = (props, context) => {
                   <Flex.Item alight="right" position="end">
                     <Button
                       onClick={() => setSelectedAsset(selectedReward)}
-                      icon={'check'}>
+                      icon={'check'}
+                    >
                       Select
                     </Button>
                   </Flex.Item>
@@ -101,7 +108,8 @@ export const CampaignAssets = (props, context) => {
             ) : (
               'No asset selected'
             )
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Name">
               {selectedReward?.name}
