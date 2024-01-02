@@ -52,6 +52,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/delimbs = 0
 	var/internal_injuries = 0
 	var/internal_injuries_inflicted = 0
+	var/tail_stabs = 0
 
 	//Medical
 	var/self_heals = 0

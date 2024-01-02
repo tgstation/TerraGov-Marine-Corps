@@ -33,6 +33,13 @@
 	keybind_signal = COMSIG_XENOABILITY_BLESSINGSMENU
 	hotkey_keys = list("P")
 
+/datum/keybinding/xeno/tail_stab
+	name = "tail_stab"
+	full_name = "Tail Stab"
+	description = "Allows the xeno to launch a 2 range attack with some armor piercing and bonus damage on grab or to structures."
+	keybind_signal = COMSIG_XENOABILITY_TAIL_STAB
+	hotkey_keys = list("ShiftE")
+
 /datum/keybinding/xeno/drop_weeds
 	name = "drop_weeds"
 	full_name = "Drop Weed"
