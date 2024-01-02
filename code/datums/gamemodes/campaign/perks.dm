@@ -29,7 +29,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	///Brief description of the perk
 	var/desc = "desc here"
 	///UI icon for this perk
-	var/ui_icon = "militia" //PLACEHOLDER
+	var/ui_icon
 	///Cost to purchase this perk
 	var/unlock_cost = 0
 	///Job types that this perk is available to. no list implies this works for any job
@@ -55,6 +55,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/hp_boost
 	name = "Improved constitution"
 	desc = "+10 max health."
+	ui_icon = "health_1"
 	all_jobs = TRUE
 	///How much this perk increases your maxhp by
 	var/health_mod = 10
@@ -68,6 +69,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/hp_boost/two
 	name = "Extreme constitution"
 	desc = "An additional +10 max health."
+	ui_icon = "health_2"
 
 //perks that give a trait
 /datum/perk/trait
@@ -83,6 +85,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/trait/quiet
 	name = "Light footed"
 	desc = "Quiet when running, silent when walking."
+	ui_icon = "soft_footed"
 	traits = list(TRAIT_LIGHT_STEP)
 	all_jobs = TRUE
 
@@ -121,77 +124,93 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/cqc
 	name = "Hand to hand expertise"
+	ui_icon = "cqc_1"
 	cqc = 1
 	all_jobs = TRUE
 
 /datum/perk/skill_mod/cqc/two
 	name = "Hand to hand specialisation"
+	ui_icon = "cqc_2"
 	prereq_perks = list(/datum/perk/skill_mod/cqc)
 
 /datum/perk/skill_mod/melee
 	name = "Melee expertise"
+	ui_icon = "melee_1"
 	melee_weapons = 1
 	all_jobs = TRUE
 
 /datum/perk/skill_mod/melee/two
 	name = "Melee specialisation"
+	ui_icon = "melee_2"
 	prereq_perks = list(/datum/perk/skill_mod/melee)
 
 /datum/perk/skill_mod/firearms
 	name = "Adanced firearm training"
+	ui_icon = "firearms"
 	firearms = 1
 	all_jobs = TRUE
 
 /datum/perk/skill_mod/pistols
 	name = "Adanced pistol training"
+	ui_icon = "pistols"
 	pistols = 1
 	all_jobs = TRUE
 
 /datum/perk/skill_mod/shotguns
 	name = "Adanced shotgun training"
+	ui_icon = "shotguns"
 	shotguns = 1
 	all_jobs = TRUE
 
 /datum/perk/skill_mod/rifles
 	name = "Adanced rifle training"
+	ui_icon = "rifles"
 	rifles = 1
 	all_jobs = TRUE
 
 /datum/perk/skill_mod/smgs
 	name = "Adanced SMG training"
+	ui_icon = "smgs"
 	smgs = 1
 	all_jobs = TRUE
 
 /datum/perk/skill_mod/heavy_weapons
 	name = "Heavy weapon specialisation"
+	ui_icon = "heavy"
 	heavy_weapons = 1
 	all_jobs = TRUE
 
 /datum/perk/skill_mod/smartgun
 	name = "Adanced smartgun training"
+	ui_icon = "smartguns"
 	smartgun = 1
 	jobs_supported = list(SQUAD_SMARTGUNNER, CAPTAIN)
 
 /datum/perk/skill_mod/construction
 	name = "Adanced construction training"
+	ui_icon = "construction"
 	construction = 1
 	all_jobs = TRUE
 
 /datum/perk/skill_mod/leadership
 	name = "Adanced leadership training"
+	ui_icon = "leadership"
 	leadership = 1
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
 
 /datum/perk/skill_mod/medical
 	name = "Adanced medical training"
+	ui_icon = "medical"
 	medical = 1
 	all_jobs = TRUE
 
 /datum/perk/skill_mod/stamina
 	name = "Improved stamina"
+	ui_icon = "stamina_1"
 	stamina = 1
 	all_jobs = TRUE
 
 /datum/perk/skill_mod/stamina/two
 	name = "Extreme stamina"
+	ui_icon = "stamina_2"
 	prereq_perks = list(/datum/perk/skill_mod/stamina)

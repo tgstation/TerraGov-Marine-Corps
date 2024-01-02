@@ -34,7 +34,7 @@ export type IndividualData = {
   currency: number;
   faction: string;
   jobs: string[];
-  icons?: string[];
+  perk_icons?: string[];
   mission_icons?: string[];
   equipped_loadouts_data: EquippedItemData[];
   available_loadouts_data: LoadoutItemData[];
@@ -226,9 +226,9 @@ export const PerkIcon = (props: {
   icon_height?: string;
 }) => {
   const { data } = useBackend<IndividualData>();
-  const { icons = [] } = data;
+  const { perk_icons = [] } = data;
   const { icon, icon_width, icon_height } = props;
-  if (!icon || !icons[icon]) {
+  if (!icon || !perk_icons[icon]) {
     return null;
   }
 
@@ -238,7 +238,7 @@ export const PerkIcon = (props: {
       height={icon_height ? icon_height : '18px'}
       as="img"
       mr={1.5}
-      src={`data:image/jpeg;base64,${icons[icon]}`}
+      src={`data:image/jpeg;base64,${perk_icons[icon]}`}
       style={{
         transform: 'scale(1)',
         '-ms-interpolation-mode': 'nearest-neighbor',

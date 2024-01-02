@@ -42,7 +42,8 @@ export const IndividualPerks = (props) => {
             .map((perk) => (
               <Stack.Item key={perk.name}>
                 <Button
-                  width={'180px'}
+                  width={'220px'}
+                  height={'22px'}
                   onClick={() => setSelectedPerk(perk)}
                   color={
                     selectedPerk.name === perk.name
@@ -54,7 +55,7 @@ export const IndividualPerks = (props) => {
                           : 'grey'
                   }
                 >
-                  <Flex align="center">
+                  <Flex align="center" mt="1px">
                     {!!perk.icon && (
                       <PerkIcon
                         icon={

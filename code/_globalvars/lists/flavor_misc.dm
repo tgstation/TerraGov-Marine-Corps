@@ -206,6 +206,28 @@ GLOBAL_LIST_INIT(campaign_mission_icon_types, list(
 	"final_tgmc",
 ))
 
+GLOBAL_LIST_INIT(campaign_perk_icon_types, list(
+	"health_1",
+	"soft_footed",
+	"health_2",
+	"cqc_1",
+	"cqc_2",
+	"melee_1",
+	"melee_2",
+	"pistols",
+	"shotguns",
+	"rifles",
+	"smgs",
+	"heavy",
+	"construction",
+	"medical",
+	"stamina_1",
+	"stamina_2",
+	"leadership",
+	"smartguns",
+	"firearms",
+))
+
 GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())
 
 /proc/init_minimap_icons()
@@ -230,3 +252,12 @@ GLOBAL_LIST_INIT(campaign_mission_icons, init_campaign_mission_icons())
 	for(var/icon_state in GLOB.campaign_mission_icon_types)
 		for(var/colour in colours)
 			.["[icon_state]_[colour]"] = icon2base64(icon('icons/UI_icons/mission_icons.dmi', "[icon_state]_[colour]", frame = 1))
+
+GLOBAL_LIST_INIT(campaign_perk_icons, init_campaign_perk_icons())
+
+/proc/init_campaign_perk_icons()
+	. = list()
+	var/list/colours = list("green", "orange", "grey", "red", "blue")
+	for(var/icon_state in GLOB.campaign_perk_icon_types)
+		for(var/colour in colours)
+			.["[icon_state]_[colour]"] = icon2base64(icon('icons/UI_icons/campaign_perks.dmi', "[icon_state]_[colour]", frame = 1))

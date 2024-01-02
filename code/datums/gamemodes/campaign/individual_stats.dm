@@ -140,7 +140,7 @@
 	data["currency"] = currency
 
 	//replace below
-	data["icons"] = GLOB.campaign_icons
+	data["perk_icons"] = GLOB.campaign_perk_icons
 	data["mission_icons"] = GLOB.campaign_mission_icons
 
 	//perk stuff
