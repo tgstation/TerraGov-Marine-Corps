@@ -254,6 +254,15 @@
 			var/job = params["outfit_job"]
 			if(!job || !loadouts[job])
 				return
+			if(!istype(user) || user.stat)
+				to_chat(user, "<span class='warning'>Must be alive to do this!")
+				return
+			if(user.job.title != job)
+				to_chat(user, "<span class='warning'>Invalid job. This outfit is for [job].")
+				return
+			if(!is_mainship_level(user.z))
+				to_chat(user, "<span class='warning'>You can't equip a new loadout in the field!")
+				return
 			if(!loadouts[job].check_full_loadout())
 				to_chat(user, "<span class='warning'>Invalid loadout.")
 				update_static_data(user) //in case quantity of an item ran out. Probably able to drill down on this better.
