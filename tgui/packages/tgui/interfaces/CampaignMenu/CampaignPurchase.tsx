@@ -50,7 +50,6 @@ export const CampaignPurchase = (props) => {
               >
                 <Flex align="center">
                   <Flex.Item
-                    mt={'1px'}
                     mr={1.5}
                     className={classes([
                       'campaign_assets18x18',
