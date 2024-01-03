@@ -125,7 +125,10 @@
 	var/obj/item/item_clicked_on = get_active_held_item()
 
 	if(item_clicked_on == target)
-		item_clicked_on.attack_self(src)
+		if(modifiers["right"])
+			item_clicked_on.attack_self_alternate(src)
+		else
+			item_clicked_on.attack_self(src)
 		update_inv_l_hand()
 		update_inv_r_hand()
 		return
