@@ -55,17 +55,20 @@
 	currency -= amount
 
 ///Adds a perk if able
-/datum/individual_stats/proc/purchase_perk(datum/perk/new_perk)
+/datum/individual_stats/proc/purchase_perk(datum/perk/new_perk, mob/user)
 	if(!istype(new_perk))
 		return
 	if(new_perk in unlocked_perks)
+		to_chat(user, "<span class='warning'>Perk already purchased.")
 		return
 	if(length(new_perk.prereq_perks))
 		for(var/prereq in new_perk.prereq_perks)
 			if(prereq in unlocked_perks)
 				continue
+			to_chat(user, "<span class='warning'>One or more prerequisites missing for this perk.")
 			return
 	if(use_funds(new_perk.unlock_cost))
+		to_chat(user, "<span class='warning'>Insufficient funds for this perk.")
 		return
 
 	unlocked_perks += new_perk
@@ -231,7 +234,7 @@
 			if(!GLOB.campaign_perk_list[unlocked_perk])
 				return
 			var/datum/perk/perk = GLOB.campaign_perk_list[unlocked_perk]
-			purchase_perk(perk)
+			purchase_perk(perk, user)
 			update_static_data(user)
 			return TRUE
 		if("equip_item")

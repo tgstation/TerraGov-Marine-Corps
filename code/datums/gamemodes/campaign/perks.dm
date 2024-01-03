@@ -143,6 +143,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	name = "Melee specialisation"
 	ui_icon = "melee_2"
 	prereq_perks = list(/datum/perk/skill_mod/melee)
+	unlock_cost = 11 //test only
 
 /datum/perk/skill_mod/firearms
 	name = "Advanced firearm training"

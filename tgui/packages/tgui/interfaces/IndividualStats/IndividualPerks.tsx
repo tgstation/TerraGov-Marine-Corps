@@ -52,7 +52,9 @@ export const IndividualPerks = (props) => {
                       ? 'orange'
                       : perk.currently_active > 0
                         ? 'blue'
-                        : 'grey'
+                        : perk.cost > data.currency
+                          ? 'red'
+                          : 'grey'
                   }
                 >
                   <Flex align="center" mt="1px">
@@ -64,7 +66,9 @@ export const IndividualPerks = (props) => {
                           ? perk.icon + '_orange'
                           : perk.currently_active > 0
                             ? perk.icon + '_blue'
-                            : perk.icon + '_grey',
+                            : perk.cost > data.currency
+                              ? perk.icon + '_red'
+                              : perk.icon + '_grey',
                       ])}
                     />
                     {perk.name}
