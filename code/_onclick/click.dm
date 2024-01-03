@@ -46,56 +46,56 @@
  * * item/afterattack(atom, user, adjacent, params) - used both ranged and adjacent when not handled by attackby
  * * mob/RangedAttack(atom, params) - used only ranged, only used for tk and laser eyes but could be changed
  */
-/mob/proc/ClickOn(atom/A, location, params)
+/mob/proc/ClickOn(atom/target, location, params)
 
 	if(world.time <= next_click)
 		return
 	next_click = world.time + 1
 
-	if(check_click_intercept(params, A))
+	if(check_click_intercept(params, target))
 		return
 
 	if(notransform)
 		return
 
-	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CLICK_CANCELED)
+	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, target, params) & COMSIG_MOB_CLICK_CANCELED)
 		return
 
 	var/list/modifiers = params2list(params)
-	if(isnull(location) && A.plane == CLICKCATCHER_PLANE) //Checks if the intended target is in deep darkness and adjusts A based on params.
-		A = params2turf(modifiers["screen-loc"], get_turf(client.eye), client)
+	if(isnull(location) && target.plane == CLICKCATCHER_PLANE) //Checks if the intended target is in deep darkness and adjusts target based on params.
+		target = params2turf(modifiers["screen-loc"], get_turf(client.eye), client)
 		modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
 		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
 		params = list2params(modifiers)
 
 	//Right clicking
-	if(modifiers["right"] && modifiers["ctrl"] && CtrlRightClickOn(A))
+	if(modifiers["right"] && modifiers["ctrl"] && CtrlRightClickOn(target))
 		return
-	if(modifiers["right"] && modifiers["shift"] && ShiftRightClickOn(A))
+	if(modifiers["right"] && modifiers["shift"] && ShiftRightClickOn(target))
 		return
-	if(modifiers["right"] && modifiers["alt"] && AltRightClickOn(A))
+	if(modifiers["right"] && modifiers["alt"] && AltRightClickOn(target))
 		return
-	if(modifiers["right"] && RightClickOn(A))
+	if(modifiers["right"] && RightClickOn(target))
 		return
 
 	//Middle clicking
-	if(modifiers["middle"] && modifiers["ctrl"] && CtrlMiddleClickOn(A))
+	if(modifiers["middle"] && modifiers["ctrl"] && CtrlMiddleClickOn(target))
 		return
-	if(modifiers["middle"] && modifiers["shift"] && ShiftMiddleClickOn(A))
+	if(modifiers["middle"] && modifiers["shift"] && ShiftMiddleClickOn(target))
 		return
-	if(modifiers["middle"] && modifiers["alt"] && AltMiddleClickOn(A))
+	if(modifiers["middle"] && modifiers["alt"] && AltMiddleClickOn(target))
 		return
-	if(modifiers["middle"] && MiddleClickOn(A))
+	if(modifiers["middle"] && MiddleClickOn(target))
 		return
 
 	//Left clicking
-	if(modifiers["ctrl"] && modifiers["shift"] && CtrlShiftClickOn(A))
+	if(modifiers["ctrl"] && modifiers["shift"] && CtrlShiftClickOn(target))
 		return
-	if(modifiers["ctrl"] && CtrlClickOn(A))
+	if(modifiers["ctrl"] && CtrlClickOn(target))
 		return
-	if(modifiers["shift"] && ShiftClickOn(A))
+	if(modifiers["shift"] && ShiftClickOn(target))
 		return
-	if(modifiers["alt"] && AltClickOn(A))
+	if(modifiers["alt"] && AltClickOn(target))
 		return
 
 
@@ -103,28 +103,28 @@
 	if(incapacitated(TRUE))
 		return
 
-	face_atom(A)
+	face_atom(target)
 
 	if(next_move > world.time)
 		return
 
-	if(!modifiers["catcher"] && A.IsObscured())
+	if(!modifiers["catcher"] && target.IsObscured())
 		return
 
 
 	if(restrained())
 		changeNext_move(CLICK_CD_HANDCUFFED)
-		RestrainedClickOn(A)
+		RestrainedClickOn(target)
 		return
 
 	if(in_throw_mode)
-		if(throw_item(A))
+		if(throw_item(target))
 			changeNext_move(CLICK_CD_THROWING)
 		return
 
 	var/obj/item/item_clicked_on = get_active_held_item()
 
-	if(item_clicked_on == A)
+	if(item_clicked_on == target)
 		item_clicked_on.attack_self(src)
 		update_inv_l_hand()
 		update_inv_r_hand()
@@ -132,11 +132,11 @@
 
 	//These are always reachable.
 	//User itself, current loc, and user inventory
-	if(A in DirectAccess())
+	if(target in DirectAccess())
 		if(item_clicked_on)
-			item_clicked_on.melee_attack_chain(src, A, params, modifiers["right"])
+			item_clicked_on.melee_attack_chain(src, target, params, modifiers["right"])
 		else
-			UnarmedAttack(A, FALSE, modifiers)
+			UnarmedAttack(target, FALSE, modifiers)
 		return
 
 	//Can't reach anything else in lockers or other weirdness
@@ -144,20 +144,20 @@
 		return
 
 	//Standard reach turf to turf or reaching inside storage
-	if(CanReach(A, item_clicked_on))
+	if(CanReach(target, item_clicked_on))
 		if(item_clicked_on)
-			item_clicked_on.melee_attack_chain(src, A, params, modifiers["right"])
+			item_clicked_on.melee_attack_chain(src, target, params, modifiers["right"])
 		else
-			UnarmedAttack(A, TRUE, modifiers)
+			UnarmedAttack(target, TRUE, modifiers)
 	else
 		if(item_clicked_on)
-			var/proximity = A.Adjacent(src)
-			if(!proximity || !A.attackby(item_clicked_on, src, params))
-				item_clicked_on.afterattack(A, src, proximity, params)
+			var/proximity = target.Adjacent(src)
+			if(!proximity || !target.attackby(item_clicked_on, src, params))
+				item_clicked_on.afterattack(target, src, proximity, params)
 		else
-			if(A.Adjacent(src))
-				A.attack_hand(src)
-			RangedAttack(A, params)
+			if(target.Adjacent(src))
+				target.attack_hand(src)
+			RangedAttack(target, params)
 
 
 /atom/movable/proc/CanReach(atom/ultimate_target, obj/item/tool, view_only = FALSE)
@@ -289,102 +289,79 @@
 	return
 
 /**
- * Left Clicking
+ * Right Clicking
  */
 
-///Called when a owner mob CTRL + Leftmouseclicks an atom
-/mob/proc/CtrlClickOn(atom/target)
-	switch(SEND_SIGNAL(src, COMSIG_MOB_CTRL_LEFT_CLICK, target))
+///Called when a owner mob Rightmouseclicks an atom
+/mob/proc/RightClickOn(atom/target)
+	switch(SEND_SIGNAL(src, COMSIG_MOB_RIGHT_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
-	target.CtrlClick(src)
-	return TRUE
+	return target.RightClick(src)
 
-///Called when a mob CTRL + Leftmouseclicks this atom
-/atom/proc/CtrlClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_CTRL_LEFT_CLICK, user)
+///Called when a mob Rightmouseclicks this atom
+/atom/proc/RightClick(mob/user)
+	SEND_SIGNAL(src, COMSIG_MIDDLE_CLICK, user)
 
-/atom/movable/CtrlClick(mob/user)
-	. = ..()
-	var/mob/living/L = user
-	if(istype(L))
-		L.start_pulling(src)
-
-/mob/living/carbon/human/CtrlClick(mob/user)
-	if(!ishuman(user) || !Adjacent(user) || user.incapacitated())
-		return ..()
-
-	if(world.time < user.next_move)
-		return FALSE
-	var/mob/living/carbon/human/H = user
-	H.start_pulling(src)
-
-///Called when a owner mob SHIFT + Leftmouseclicks an atom
-/mob/proc/ShiftClickOn(atom/target)
-	switch(SEND_SIGNAL(src, COMSIG_MOB_SHIFT_LEFT_CLICK, target))
-		if(COMSIG_MOB_CLICK_CANCELED)
-			return FALSE
-		if(COMSIG_MOB_CLICK_HANDLED)
-			return TRUE
-	target.ShiftClick(src)
-	return TRUE
-
-///Called when a mob SHIFT + Leftmouseclicks this atom
-/atom/proc/ShiftClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_SHIFT_LEFT_CLICK, user)
-
-/mob/living/carbon/human/ShiftClickOn(atom/A)
-	if(client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING)
-		return ..()
+/mob/living/carbon/human/RightClickOn(atom/target)
 	var/obj/item/held_thing = get_active_held_item()
 
-	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_SHIFTCLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
+	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_RIGHTCLICKON, target, src) & COMPONENT_ITEM_CLICKON_BYPASS)
 		return FALSE
 	return ..()
 
-/mob/living/carbon/xenomorph/ShiftClickOn(atom/A)
-	if(!selected_ability || (client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING))
-		return ..()
-	A = ability_target(A)
-	if(selected_ability.can_use_ability(A))
-		selected_ability.use_ability(A)
-	return TRUE
+/mob/living/carbon/xenomorph/RightClickOn(atom/A)
+	. = ..()
+	if(selected_ability) //If we have a selected ability that we can use, return TRUE
+		A = ability_target(A)
+		if(selected_ability.can_use_ability(A))
+			selected_ability.use_ability(A)
+			return !CHECK_BITFIELD(selected_ability.use_state_flags, ABILITY_DO_AFTER_ATTACK)
 
-///Called when a owner mob ALT + Leftmouseclicks an atom
-/mob/proc/AltClickOn(atom/target)
-	switch(SEND_SIGNAL(src, COMSIG_MOB_ALT_LEFT_CLICK, target))
+///Called when a owner mob CTRL + Rightmouseclicks an atom
+/mob/proc/CtrlRightClickOn(atom/target)
+	switch(SEND_SIGNAL(src, COMSIG_MOB_CTRL_RIGHT_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
-	target.AltClick(src)
-	return TRUE
+	return target.CtrlRightClick(src)
 
-///Called when a mob ALT + Leftmouseclicks this atom
-/atom/proc/AltClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_ALT_LEFT_CLICK, user)
-	var/turf/T = get_turf(src)
-	if(T && (isturf(loc) || isturf(src)) && user.TurfAdjacent(T))
-		user.set_listed_turf(T)
-	return TRUE
+///Called when a mob CTRL + Rightmouseclicks this atom
+/atom/proc/CtrlRightClick(mob/user)
+	SEND_SIGNAL(src, COMSIG_CTRL_MIDDLE_CLICK, user)
 
-///Called when a owner mob CTRL + SHIFT + Leftmouseclicks an atom
-/mob/proc/CtrlShiftClickOn(atom/target)
-	switch(SEND_SIGNAL(src, COMSIG_MOB_CTRL_SHIFT_LEFT_CLICK, target))
+///Called when a owner mob SHIFT + Rightmouseclicks an atom
+/mob/proc/ShiftRightClickOn(atom/target)
+	switch(SEND_SIGNAL(src, COMSIG_MOB_SHIFT_RIGHT_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
-	target.CtrlShiftClick(src)
-	return TRUE
+	return target.ShiftRightClick(src)
 
-///Called when a mob CTRL + SHIFT + Leftmouseclicks this atom
-/atom/proc/CtrlShiftClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_CTRL_SHIFT_LEFT_CLICK, user)
+///Called when a mob SHIFT + Rightmouseclicks this atom
+/atom/proc/ShiftRightClick(mob/user)
+	SEND_SIGNAL(src, COMSIG_SHIFT_MIDDLE_CLICK, user)
 
-///////////////Middle Clicking
+///Called when a owner mob ALT + Rightmouseclicks an atom
+/mob/proc/AltRightClickOn(atom/target)
+	switch(SEND_SIGNAL(src, COMSIG_MOB_ALT_RIGHT_CLICK, target))
+		if(COMSIG_MOB_CLICK_CANCELED)
+			return FALSE
+		if(COMSIG_MOB_CLICK_HANDLED)
+			return TRUE
+	return target.AltRightClick(src)
+
+///Called when a mob ALT + Rightmouseclicks this atom
+/atom/proc/AltRightClick(mob/user)
+	SEND_SIGNAL(src, COMSIG_ALT_MIDDLE_CLICK, user)
+
+/**
+ * Middle Clicking
+ */
 
 ///Called when a owner mob Middlemouseclicks an atom
 /mob/proc/MiddleClickOn(atom/target)
@@ -393,8 +370,7 @@
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
-	target.MiddleClick(src)
-	return TRUE
+	return target.MiddleClick(src)
 
 ///Called when a mob Middlemouseclicks this atom
 /atom/proc/MiddleClick(mob/user)
@@ -441,8 +417,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
-	target.CtrlMiddleClick(src)
-	return TRUE
+	return target.CtrlMiddleClick(src)
 
 ///Called when a mob CTRL + Middlemouseclicks this atom
 /atom/proc/CtrlMiddleClick(mob/user)
@@ -456,8 +431,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
 	point_to(target)
-	target.ShiftMiddleClick(src)
-	return TRUE
+	return target.ShiftMiddleClick(src)
 
 ///Called when a mob SHIFT + Middlemouseclicks this atom
 /atom/proc/ShiftMiddleClick(mob/user)
@@ -470,100 +444,103 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
-	target.AltMiddleClick(src)
-	return TRUE
+	return target.AltMiddleClick(src)
 
 ///Called when a mob ALT + Middlemouseclicks this atom
 /atom/proc/AltMiddleClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_ALT_RIGHT_CLICK, user)
 
-//////////////////Right Clicking
+/**
+ * Left Clicking
+ */
 
-///Called when a owner mob Rightmouseclicks an atom
-/mob/proc/RightClickOn(atom/target)
-	switch(SEND_SIGNAL(src, COMSIG_MOB_RIGHT_CLICK, target))
+///Called when a owner mob CTRL + Leftmouseclicks an atom
+/mob/proc/CtrlClickOn(atom/target)
+	switch(SEND_SIGNAL(src, COMSIG_MOB_CTRL_LEFT_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
-	target.RightClick(src)
+	return target.CtrlClick(src)
 
-	var/obj/item/item_clicked_on = get_active_held_item()
+///Called when a mob CTRL + Leftmouseclicks this atom
+/atom/proc/CtrlClick(mob/user)
+	SEND_SIGNAL(src, COMSIG_CTRL_LEFT_CLICK, user)
 
-	if(item_clicked_on == target)
-		item_clicked_on.attack_self_alternate(src)
-		update_inv_l_hand()
-		update_inv_r_hand()
-		return TRUE
+/atom/movable/CtrlClick(mob/user)
+	. = ..()
+	var/mob/living/L = user
+	if(istype(L))
+		L.start_pulling(src)
 
-	return TRUE
+/mob/living/carbon/human/CtrlClick(mob/user)
+	if(!ishuman(user) || !Adjacent(user) || user.incapacitated())
+		return ..()
 
-///Called when a mob Rightmouseclicks this atom
-/atom/proc/RightClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_MIDDLE_CLICK, user)
+	if(world.time < user.next_move)
+		return FALSE
+	var/mob/living/carbon/human/H = user
+	H.start_pulling(src)
 
-/mob/living/carbon/human/RightClickOn(atom/target)
+///Called when a owner mob SHIFT + Leftmouseclicks an atom
+/mob/proc/ShiftClickOn(atom/target)
+	switch(SEND_SIGNAL(src, COMSIG_MOB_SHIFT_LEFT_CLICK, target))
+		if(COMSIG_MOB_CLICK_CANCELED)
+			return FALSE
+		if(COMSIG_MOB_CLICK_HANDLED)
+			return TRUE
+	return target.ShiftClick(src)
+
+///Called when a mob SHIFT + Leftmouseclicks this atom
+/atom/proc/ShiftClick(mob/user)
+	SEND_SIGNAL(src, COMSIG_SHIFT_LEFT_CLICK, user)
+
+/mob/living/carbon/human/ShiftClickOn(atom/A)
+	if(client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING)
+		return ..()
 	var/obj/item/held_thing = get_active_held_item()
 
-	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_RIGHTCLICKON, target, src) & COMPONENT_ITEM_CLICKON_BYPASS)
+	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_SHIFTCLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
 		return FALSE
 	return ..()
 
-/mob/living/carbon/xenomorph/RightClickOn(atom/A)
-	. = ..()
-	if(selected_ability) //If we have a selected ability that we can use, return TRUE
-		A = ability_target(A)
-		if(selected_ability.can_use_ability(A))
-			selected_ability.use_ability(A)
-			return !CHECK_BITFIELD(selected_ability.use_state_flags, ABILITY_DO_AFTER_ATTACK)
+/mob/living/carbon/xenomorph/ShiftClickOn(atom/A)
+	if(!selected_ability || (client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING))
+		return ..()
+	A = ability_target(A)
+	if(selected_ability.can_use_ability(A))
+		selected_ability.use_ability(A)
+	return TRUE
 
-///Called when a owner mob CTRL + Rightmouseclicks an atom
-/mob/proc/CtrlRightClickOn(atom/target)
-	switch(SEND_SIGNAL(src, COMSIG_MOB_CTRL_RIGHT_CLICK, target))
+///Called when a owner mob ALT + Leftmouseclicks an atom
+/mob/proc/AltClickOn(atom/target)
+	switch(SEND_SIGNAL(src, COMSIG_MOB_ALT_LEFT_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
-	target.CtrlRightClick(src)
+	return target.AltClick(src)
+
+///Called when a mob ALT + Leftmouseclicks this atom
+/atom/proc/AltClick(mob/user)
+	SEND_SIGNAL(src, COMSIG_ALT_LEFT_CLICK, user)
+	var/turf/T = get_turf(src)
+	if(T && (isturf(loc) || isturf(src)) && user.TurfAdjacent(T))
+		user.set_listed_turf(T)
 	return TRUE
 
-///Called when a mob CTRL + Rightmouseclicks this atom
-/atom/proc/CtrlRightClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_CTRL_MIDDLE_CLICK, user)
-
-///Called when a owner mob SHIFT + Rightmouseclicks an atom
-/mob/proc/ShiftRightClickOn(atom/target)
-	switch(SEND_SIGNAL(src, COMSIG_MOB_SHIFT_RIGHT_CLICK, target))
+///Called when a owner mob CTRL + SHIFT + Leftmouseclicks an atom
+/mob/proc/CtrlShiftClickOn(atom/target)
+	switch(SEND_SIGNAL(src, COMSIG_MOB_CTRL_SHIFT_LEFT_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
-	target.ShiftRightClick(src)
-	return TRUE
+	return target.CtrlShiftClick(src)
 
-///Called when a mob SHIFT + Rightmouseclicks this atom
-/atom/proc/ShiftRightClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_SHIFT_MIDDLE_CLICK, user)
-
-///Called when a owner mob ALT + Rightmouseclicks an atom
-/mob/proc/AltRightClickOn(atom/target)
-	switch(SEND_SIGNAL(src, COMSIG_MOB_ALT_RIGHT_CLICK, target))
-		if(COMSIG_MOB_CLICK_CANCELED)
-			return FALSE
-		if(COMSIG_MOB_CLICK_HANDLED)
-			return TRUE
-	target.AltRightClick(src)
-	return TRUE
-
-///Called when a mob ALT + Rightmouseclicks this atom
-/atom/proc/AltRightClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_ALT_MIDDLE_CLICK, user)
-
-
-
-
-
-
+///Called when a mob CTRL + SHIFT + Leftmouseclicks this atom
+/atom/proc/CtrlShiftClick(mob/user)
+	SEND_SIGNAL(src, COMSIG_CTRL_SHIFT_LEFT_CLICK, user)
 
 /mob/proc/TurfAdjacent(turf/T)
 	return T.Adjacent(src)
