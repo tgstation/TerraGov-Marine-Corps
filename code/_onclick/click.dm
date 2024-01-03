@@ -68,35 +68,37 @@
 		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
 		params = list2params(modifiers)
 
-	//Left clicking
-	if(modifiers["ctrl"] && CtrlClickOn(A))
-		return
-	if(modifiers["shift"] && ShiftClickOn(A))
-		return
-	if(modifiers["alt"] && AltClickOn(A))
-		return
-	if(modifiers["ctrl"] && modifiers["shift"] && CtrlShiftClickOn(A))
-		return
-
-	//Middle clicking
-	if(modifiers["middle"] && MiddleClickOn(A))
-		return
-	if(modifiers["middle"] && modifiers["ctrl"] && CtrlMiddleClickOn(A))
-		return
-	if(modifiers["middle"] && modifiers["shift"] && ShiftMiddleClickOn(A))
-		return
-	if(modifiers["middle"] && modifiers["alt"] && AltMiddleClickOn(A))
-		return
-
 	//Right clicking
-	if(modifiers["right"] && RightClickOn(A))
-		return
 	if(modifiers["right"] && modifiers["ctrl"] && CtrlRightClickOn(A))
 		return
 	if(modifiers["right"] && modifiers["shift"] && ShiftRightClickOn(A))
 		return
 	if(modifiers["right"] && modifiers["alt"] && AltRightClickOn(A))
 		return
+	if(modifiers["right"] && RightClickOn(A))
+		return
+
+	//Middle clicking
+	if(modifiers["middle"] && modifiers["ctrl"] && CtrlMiddleClickOn(A))
+		return
+	if(modifiers["middle"] && modifiers["shift"] && ShiftMiddleClickOn(A))
+		return
+	if(modifiers["middle"] && modifiers["alt"] && AltMiddleClickOn(A))
+		return
+	if(modifiers["middle"] && MiddleClickOn(A))
+		return
+
+	//Left clicking
+	if(modifiers["ctrl"] && modifiers["shift"] && CtrlShiftClickOn(A))
+		return
+	if(modifiers["ctrl"] && CtrlClickOn(A))
+		return
+	if(modifiers["shift"] && ShiftClickOn(A))
+		return
+	if(modifiers["alt"] && AltClickOn(A))
+		return
+
+
 
 	if(incapacitated(TRUE))
 		return
