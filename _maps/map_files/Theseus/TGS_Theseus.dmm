@@ -7677,6 +7677,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -10356,6 +10357,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
+"gJS" = (
+/obj/structure/dropship_equipment/cas/weapon/bomb_pod,
+/turf/open/floor/mainship/floor,
+/area/mainship/hallways/hangar)
 "gLI" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced/windowstake{
@@ -11075,6 +11080,17 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_umbilical)
+"hVR" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/ship_ammo/cas/bomb/fourhundred,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1;
+	pixel_y = 1
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "hVU" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -12223,17 +12239,10 @@
 "kaw" = (
 /obj/machinery/light/mainship,
 /obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/mainship/orange{
-	dir = 6
-	},
+/obj/structure/dropship_equipment/cas/weapon/bomblet_pod,
+/turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "kbP" = (
 /obj/machinery/processor{
@@ -17721,6 +17730,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_starboard)
+"sTv" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/ship_ammo/cas/bomblet,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "sVt" = (
 /turf/open/floor/mainship/purple{
 	dir = 1
@@ -41502,8 +41518,8 @@ ann
 ann
 bdj
 bhd
-aMR
-aMR
+hVR
+sTv
 bgb
 bOy
 bbR
@@ -42823,7 +42839,7 @@ uns
 uns
 uns
 qiO
-lvI
+qYe
 bgb
 fZA
 aVk
@@ -43080,7 +43096,7 @@ uns
 uns
 uns
 qiO
-qYe
+gJS
 bgb
 qae
 aVk

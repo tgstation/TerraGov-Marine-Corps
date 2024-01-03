@@ -7010,6 +7010,7 @@
 /area/mainship/medical/lounge)
 "fZU" = (
 /obj/machinery/light/mainship,
+/obj/structure/dropship_equipment/cas/weapon/bomblet_pod,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 1
 	},
@@ -21805,6 +21806,10 @@
 	dir = 8
 	},
 /area/mainship/medical/upper_medical)
+"rZa" = (
+/obj/structure/ship_ammo/cas/bomblet,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "rZc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/machinery/light/mainship{
@@ -22635,6 +22640,10 @@
 	dir = 1
 	},
 /area/mainship/hallways/port_ert)
+"sLf" = (
+/obj/structure/dropship_equipment/cas/weapon/bomb_pod,
+/turf/open/floor/mainship/red,
+/area/mainship/hallways/hangar)
 "sLm" = (
 /obj/machinery/flasher{
 	id = "Containment Cell 3";
@@ -26891,6 +26900,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/starboard_atmos)
+"wzy" = (
+/obj/structure/ship_ammo/cas/bomb/fourhundred,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "wzR" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -38498,7 +38511,7 @@ rIp
 twS
 hIO
 smT
-ngt
+sLf
 hnt
 hfk
 uJJ
@@ -40029,7 +40042,7 @@ oUe
 oHG
 nTG
 mGC
-mGC
+wzy
 mGC
 jfL
 jcy
@@ -40131,7 +40144,7 @@ oUe
 oHG
 nTG
 mGC
-mGC
+rZa
 mGC
 mGC
 mtP
