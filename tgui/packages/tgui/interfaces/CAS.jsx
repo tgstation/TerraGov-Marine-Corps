@@ -27,7 +27,8 @@ const WeaponSelection = (props) => {
               onClick={() =>
                 act('equip_interact', { equip_interact: equipment.eqp_tag })
               }
-              disabled={!equipment.is_interactable}>
+              disabled={!equipment.is_interactable}
+            >
               {equipment.name}
             </Button>
           </Box>
@@ -46,7 +47,8 @@ const FiringMode = (props) => {
     <>
       <Section
         title={'Weapon Selected: ' + data.selected_eqp}
-        buttons={<Button onClick={() => act('deselect')}>Deselect</Button>}>
+        buttons={<Button onClick={() => act('deselect')}>Deselect</Button>}
+      >
         {!data.selected_eqp_ammo_name ? (
           <Box color="bad">No ammo loaded</Box>
         ) : (
@@ -82,7 +84,8 @@ const FiringMode = (props) => {
                 disabled={!data.shuttle_mode}
                 onClick={() =>
                   act('open_fire', { open_fire: target.target_tag })
-                }>
+                }
+              >
                 {target.target_name}
               </Button>
             </Box>

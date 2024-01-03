@@ -1,6 +1,23 @@
+import {
+  KEY_1,
+  KEY_2,
+  KEY_3,
+  KEY_4,
+  KEY_5,
+  KEY_6,
+  KEY_A,
+  KEY_D,
+  KEY_DOWN,
+  KEY_ENTER,
+  KEY_LEFT,
+  KEY_RIGHT,
+  KEY_S,
+  KEY_SPACE,
+  KEY_UP,
+  KEY_W,
+} from '../../common/keycodes';
 import { useBackend } from '../backend';
-import { Button, ProgressBar, NoticeBox, Stack } from '../components';
-import { KEY_DOWN, KEY_ENTER, KEY_LEFT, KEY_RIGHT, KEY_SPACE, KEY_UP, KEY_W, KEY_D, KEY_S, KEY_A, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6 } from '../../common/keycodes';
+import { Button, NoticeBox, ProgressBar, Stack } from '../components';
 import { Window } from '../layouts';
 
 // _DEFINES/cas.dm
@@ -38,7 +55,8 @@ export const MarineCasship = (props) => {
     <Window
       width={590}
       height={data.plane_state === PLANE_STATE_ACTIVATED ? 170 : 285}
-      theme="ntos">
+      theme="ntos"
+    >
       <Window.Content
         onKeyDown={(event) => {
           const keyCode = window.event ? event.which : event.keyCode;
@@ -102,7 +120,8 @@ export const MarineCasship = (props) => {
             }
             act('cycle_attackdir', { newdir: newdir });
           }
-        }}>
+        }}
+      >
         {data.plane_state === PLANE_STATE_ACTIVATED ? (
           <EnginesOff />
         ) : (
@@ -233,7 +252,8 @@ const NormalOperation = (props) => {
                 onClick={() =>
                   act('change_weapon', { selection: equipment.eqp_tag })
                 }
-                color={equipment.eqp_tag === active_weapon_tag ? 'red' : null}>
+                color={equipment.eqp_tag === active_weapon_tag ? 'red' : null}
+              >
                 {equipment.ammo_name ? equipment.ammo_name : equipment.name}
               </Button>
             </Stack.Item>

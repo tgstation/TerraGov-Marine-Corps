@@ -1,0 +1,29 @@
+2024-01-01:
+  DeltaFire15:
+  - bugfix: Injectors can inject (valid) non-carbon things again.
+  Wisemonster:
+  - balance: Weeds and xenos can no longer hide under rear attach points
+  - spellcheck: Renamed rear attach points to interior attach points
+  ivanmixo:
+  - code_imp: Refactored wheelchairs
+  - balance: Some minor wheelchair balance, check the PR for more details
+2024-01-02:
+  Helg2:
+  - qol: AI can now click maptable again to close it if it's open.
+  Lumipharon:
+  - bugfix: fixed unrelenting force causing shuffle issues in certain directions
+  - bugfix: fixed some storage exploits
+  - qol: The campaign status screen is now accessible via action button instead of
+      verb
+  - qol: The campaign status screen is now accessible to ghosts of the right faction
+2024-01-03:
+  Barnet2:
+  - rscadd: Marine Food Vendors are now present in all requisition areas.
+  - qol: All ships now have cigarette vendors guaranteed to spawn in
+  Helg2:
+  - bugfix: '[Magmoor] Canterbury now won''t crash directly into the xeno''s silo.'
+  - rscadd: '[Arachne] Added more shutters here and there.'
+  - bugfix: Cleaned some parts of Sulaco. Like levitating button to droppods and transparent
+      telecomms shutters.
+  ivanmixo:
+  - bugfix: VV topic fix

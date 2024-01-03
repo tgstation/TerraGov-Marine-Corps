@@ -5,11 +5,12 @@
  * @license MIT
  */
 
+import { KEY_ENTER, KEY_ESCAPE, KEY_TAB } from 'common/keycodes';
 import { classes } from 'common/react';
 import { Component, createRef } from 'react';
+
 import { Box } from './Box';
 import { toInputValue } from './Input';
-import { KEY_ENTER, KEY_ESCAPE, KEY_TAB } from 'common/keycodes';
 
 export class TextArea extends Component {
   constructor(props) {
@@ -197,7 +198,8 @@ export class TextArea extends Component {
           noborder && 'TextArea--noborder',
           className,
         ])}
-        {...rest}>
+        {...rest}
+      >
         {!!displayedValue && (
           <Box position="absolute" width="100%" height="100%" overflow="hidden">
             <div
@@ -207,7 +209,8 @@ export class TextArea extends Component {
               ])}
               style={{
                 transform: `translateY(-${scrolledAmount}px)`,
-              }}>
+              }}
+            >
               {displayedValue}
             </div>
           </Box>

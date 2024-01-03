@@ -104,10 +104,11 @@
 	pixel_y = 32
 
 /obj/effect/attach_point/crew_weapon
-	name = "rear attach point"
+	name = "interior attach point"
 	base_category = DROPSHIP_CREW_WEAPON
 	density = FALSE
-	layer = BELOW_OBJ_LAYER
+	layer = HOLOPAD_LAYER //Keeps xenos from hiding under them
+	plane = FLOOR_PLANE //Doesn't layer under weeds unless it has this
 
 /obj/effect/attach_point/crew_weapon/dropship1
 	ship_tag = SHUTTLE_ALAMO

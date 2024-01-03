@@ -1,7 +1,8 @@
-import { useBackend } from '../../backend';
-import { Stack, Button, Box } from '../../components';
-import { OperatorData } from './data';
 import { classes } from 'common/react';
+
+import { useBackend } from '../../backend';
+import { Box, Button, Stack } from '../../components';
+import { OperatorData } from './data';
 
 export const ArmorPane = (props) => {
   const { act, data } = useBackend<OperatorData>();

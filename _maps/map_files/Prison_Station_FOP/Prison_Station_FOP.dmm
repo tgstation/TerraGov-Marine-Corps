@@ -6432,7 +6432,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/prison/medbay)
 "auV" = (
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -6441,7 +6441,7 @@
 	},
 /area/prison/medbay)
 "auW" = (
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /obj/item/tool/wrench,
 /turf/open/floor/prison/whitegreen{
 	dir = 5

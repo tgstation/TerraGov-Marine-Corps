@@ -377,7 +377,7 @@
 /area/sulaco/briefing)
 "abt" = (
 /obj/machinery/light/mainship,
-/obj/structure/bed/chair/wheelchair{
+/obj/vehicle/ridden/wheelchair{
 	dir = 4
 	},
 /obj/structure/sign/prop1,
@@ -642,7 +642,7 @@
 	},
 /area/sulaco/medbay/storage)
 "act" = (
-/obj/structure/bed/chair/wheelchair{
+/obj/vehicle/ridden/wheelchair{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
@@ -1123,7 +1123,7 @@
 	},
 /area/sulaco/medbay/surgery_one)
 "adR" = (
-/obj/structure/bed/chair/wheelchair{
+/obj/vehicle/ridden/wheelchair{
 	dir = 4
 	},
 /turf/open/floor/prison/whitegreen/corner{
@@ -14337,7 +14337,7 @@
 /obj/machinery/air_alarm{
 	dir = 4
 	},
-/obj/structure/bed/chair/wheelchair{
+/obj/vehicle/ridden/wheelchair{
 	dir = 4
 	},
 /turf/open/floor/prison/whitegreen/corner{
@@ -16185,7 +16185,6 @@
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "jQS" = (
 /obj/machinery/camera/autoname,
-/obj/machinery/door_control/mainship/droppod,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -16450,6 +16449,13 @@
 /obj/machinery/disposal,
 /turf/open/floor/prison,
 /area/sulaco/bar)
+"khS" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/machinery/door_control/mainship/droppod,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "kio" = (
 /obj/structure/cable,
 /turf/open/floor/prison,
@@ -16631,9 +16637,7 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint3)
 "ktu" = (
-/obj/machinery/air_alarm{
-	dir = 4
-	},
+/obj/machinery/vending/marineFood,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "ktX" = (
@@ -17281,7 +17285,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "lpg" = (
-/obj/machinery/vending/sovietsoda,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
 "lpw" = (
@@ -17368,7 +17372,10 @@
 	id = "tcomwind";
 	name = "Telecomms Window Control"
 	},
-/obj/item/toy/plush/rouny,
+/obj/item/toy/plush/rouny{
+	pixel_y = 9;
+	pixel_x = -1
+	},
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "lvm" = (
@@ -17584,6 +17591,12 @@
 /obj/structure/cable,
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_1)
+"lFQ" = (
+/obj/machinery/air_alarm{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/sulaco/cargo)
 "lGM" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/warning{
@@ -21984,7 +21997,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "rso" = (
-/obj/structure/bed/chair/wheelchair{
+/obj/vehicle/ridden/wheelchair{
 	dir = 4
 	},
 /obj/machinery/vending/nanomed{
@@ -23997,6 +24010,9 @@
 /obj/item/tool/pen,
 /obj/effect/spawner/random/misc/paperbin,
 /obj/machinery/firealarm,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -24743,6 +24759,12 @@
 /area/sulaco/cargo)
 "uPy" = (
 /obj/structure/window/framed/mainship/white,
+/obj/machinery/door/poddoor/shutters/opened/medbay{
+	dir = 2
+	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/medbay/chemistry)
 "uQi" = (
@@ -51151,7 +51173,7 @@ rvC
 vvG
 qZW
 nPU
-wsa
+lFQ
 hCz
 uDh
 whV
@@ -62201,7 +62223,7 @@ tur
 xca
 xca
 xHm
-aSk
+khS
 aPF
 igo
 dtI

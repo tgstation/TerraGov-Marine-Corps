@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Section, Box } from '../components';
+import { Box, Button, Section } from '../components';
 import { Window } from '../layouts';
 
 export const Minidropship = (_props) => {
@@ -42,7 +42,8 @@ const WeaponSelection = (props) => {
               onClick={() =>
                 act('equip_interact', { equip_interact: equipment.eqp_tag })
               }
-              disabled={!equipment.is_interactable}>
+              disabled={!equipment.is_interactable}
+            >
               {equipment.name}
             </Button>
           </Box>

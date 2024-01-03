@@ -1,4 +1,5 @@
 import { Component, createRef } from 'react';
+
 import { resolveAsset } from '../assets';
 import { Box } from './Box';
 
@@ -84,7 +85,8 @@ export class BodyZoneSelector extends Component<
           width: `${32 * scale}px`,
           height: `${32 * scale}px`,
           position: 'relative',
-        }}>
+        }}
+      >
         <Box
           as="img"
           src={resolveAsset(`body_zones.base_${theme}.png`)}

@@ -1,7 +1,8 @@
+import { toFixed } from 'common/math';
+
 import { useBackend } from '../../backend';
 import { Button, LabeledList } from '../../components';
 import { OperatorData } from './data';
-import { toFixed } from 'common/math';
 
 export const PowerModulesPane = (props) => {
   const { act, data } = useBackend<OperatorData>();
@@ -16,9 +17,10 @@ export const PowerModulesPane = (props) => {
             (module.snowflake.fuel === null
               ? ''
               : ': ' +
-              toFixed(module.snowflake.fuel * mineral_material_amount, 0.1) +
-              ' cm³')
-          }>
+                toFixed(module.snowflake.fuel * mineral_material_amount, 0.1) +
+                ' cm³')
+          }
+        >
           <Button
             content={(module.activated ? 'En' : 'Dis') + 'abled'}
             selected={module.activated}

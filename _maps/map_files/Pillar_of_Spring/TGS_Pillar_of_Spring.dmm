@@ -1453,8 +1453,8 @@
 /turf/open/floor/mainship/green,
 /area/mainship/squads/req)
 "bNe" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /obj/item/coin/iron,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "bNh" = (
@@ -9626,15 +9626,13 @@
 /turf/open/floor/mainship/sterile/purple/side,
 /area/mainship/medical/medical_science)
 "mgw" = (
-/obj/structure/bed/chair/wheelchair{
+/obj/vehicle/ridden/wheelchair{
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "mgE" = (
-/obj/structure/rack,
-/obj/item/pizzabox/meat,
-/obj/item/facepaint/green,
+/obj/machinery/vending/marineFood,
 /turf/open/floor/mainship/green{
 	dir = 4
 	},
@@ -11759,6 +11757,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "oSs" = (
+/obj/structure/rack,
+/obj/item/pizzabox/meat,
+/obj/item/facepaint/green,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
