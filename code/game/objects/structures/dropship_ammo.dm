@@ -402,10 +402,10 @@
 // The widowmaker is defined by being the fastest ATGM on offer, however it suffers in explosive potiential due to being so fast.
 /obj/structure/ship_ammo/cas/rocket/widowmaker
 	name = "\improper AGM-224 'Widowmaker'"
-	desc = "The AGM-224 is the latest in air to ground missile technology. Earning the nickname of 'Widowmaker' from various pilots after improvements allow it to land at incredibly high speeds, at the cost of explosive payload. Well suited for ground bombardment, but its high velocity makes it reach its target quickly. Moving this will require some sort of lifter."
+	desc = "The AGM-224 is the latest in air to ground missile technology. Earning the nickname of 'Widowmaker' from various pilots after improvements allow it to land at incredibly high speeds, at the cost of explosive payload. Well suited for ground bombardment, its high velocity making it reach its target quickly. Moving this will require some sort of lifter."
 	icon_state = "single"
 	travelling_time = 2 SECONDS //The epitome of ATGMs.
-	ammo_id = "widow"
+	ammo_id = ""
 	point_cost = 300
 	devastating_explosion_range = 2
 	heavy_explosion_range = 3
@@ -433,14 +433,14 @@
 	devastating_explosion_range = 2
 	heavy_explosion_range = 3
 	light_explosion_range = 4
-	fire_range = 5
+	fire_range = 3
 	travelling_time = 3 SECONDS
 	prediction_type = CAS_AMMO_INCENDIARY
-	cas_effect = /obj/effect/overlay/blinking_laser/incendiary
+	cas_effect = /obj/effect/overlay/blinking_laser/napalm
 
 /obj/structure/ship_ammo/cas/rocket/napalm/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range) //relatively weak
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range)
 	flame_radius(fire_range, impact, 60, 30) //cooking for a long time
 	var/datum/effect_system/smoke_spread/phosphorus/warcrime = new
 	warcrime.set_up(fire_range + 1, impact, 7)
@@ -507,7 +507,7 @@
 
 // This is the "Default" heavy rocket.
 /obj/structure/ship_ammo/cas/rocket/monarch
-	name = "\improper PHGM-7 'Monarch"
+	name = "\improper PHGM-7 'Monarch'"
 	desc = "The PHGM-7 'Monarch' is a well tried and tested dumb rocket design due to being a mere dumb rocket. Its payload is designed to devastate areas for cheap. Moving this will require some sort of lifter."
 	icon_state = "monarch"
 	ammo_id = "m"
@@ -523,7 +523,7 @@
 
 //The Swansong is the bogstandard missile, it missiles.
 /obj/structure/ship_ammo/cas/rocket/swansong
-	name = "\improper PLGM-50 'Swansong"
+	name = "\improper PLGM-50 'Swansong'"
 	desc = "The PLGM-7 'Swansong' is the bogstandard air to ground missile load of the Navy. Named after barely dodging discontinuation dozens of times to more expensive design types. Moving this will require some sort of lifter."
 	icon_state = "swansong"
 	ammo_id = "s"
@@ -651,7 +651,7 @@
 	ammo_count = 8
 	max_ammo_count = 8
 	ammo_name = "bomb_200"
-	firing_voiceline = 'sound/voice/plane_vws/shot_missile.ogg'
+	firing_voiceline = 'sound/voice/plane_vws/shot_bomb.ogg'
 	travelling_time = 12 SECONDS
 	transferable_ammo = TRUE
 	point_cost = 200 // Bombs are numerous.
@@ -663,7 +663,7 @@
 	cas_effect = /obj/effect/overlay/blinking_laser/bomb
 
 
-/obj/structure/ship_ammo/cas/bomblet/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/bomb/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE)//no messaging admin, that'd spam them.
 
@@ -708,7 +708,7 @@
 	ammo_count = 40
 	max_ammo_count = 40
 	ammo_name = "bomb_50"
-	firing_voiceline = 'sound/voice/plane_vws/shot_missile.ogg'
+	firing_voiceline = 'sound/voice/plane_vws/shot_bomb.ogg'
 	travelling_time = 10 SECONDS
 	transferable_ammo = TRUE
 	point_cost = 150
@@ -730,7 +730,6 @@
 	ammo_count = 20
 	max_ammo_count = 20
 	ammo_name = "bomb_75"
-	firing_voiceline = 'sound/voice/plane_vws/shot_missile.ogg'
 	travelling_time = 12 SECONDS
 	point_cost = 175
 	light_explosion_range = 3

@@ -898,7 +898,7 @@
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
 	ammo_type_used = CAS_BOMB
 
-/obj/structure/dropship_equipment/cas/weapon/bomb/update_icon()
+/obj/structure/dropship_equipment/cas/weapon/bomb_pod/update_icon()
 	if(ammo_equipped?.ammo_count)
 		icon_state = "bomb_pod_loaded"
 	else
