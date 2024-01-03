@@ -643,7 +643,7 @@
 
 // Bombs have a long travel time but are decently numerous, ranging in payloads from 200 to 1000lbs. Higher is bigger.
 /obj/structure/ship_ammo/cas/bomb
-	name = "AOE-200lb 'Tiny' stack"
+	name = "\improper AOE-200lb 'Tiny' stack"
 	desc = "A decent-sized payload of explosive bombs, will only fit in a full-sized bomb pod. Moving this will require some sort of lifter."
 	icon_state = "minirocket"
 	icon = 'icons/Marine/mainship_props.dmi'
@@ -669,7 +669,7 @@
 
 // Four hundos have no real gimmick beyond being a bigger payload.
 /obj/structure/ship_ammo/cas/bomb/fourhundred
-	name = "AOE-400lb 'Mighty' stack"
+	name = "\improper AOE-400lb 'Mighty' stack"
 	desc = "A decently-sized payload of explosive bombs, will only fit in a full-sized bomb pod. Moving this will require some sort of lifter."
 	icon_state = "bomb_400"
 	icon = 'icons/Marine/mainship_props.dmi'
@@ -685,7 +685,7 @@
 
 // The mother of all bombs, Jack.
 /obj/structure/ship_ammo/cas/bomb/moab
-	name = "AOE-1000lb 'MOAB' stack"
+	name = "\improper AOE-1000lb 'MOAB' stack"
 	desc = "A incredibly high yield payload bomb used to utterly ruin someone's day, generally termed as the 'Mother of all Bombs'. will only fit in a full-sized bomb pod. Moving this will require some sort of lifter."
 	icon_state = "bomb_1000"
 	ammo_count = 2
@@ -700,7 +700,7 @@
 
 // Bomblets are small and numerious, with small paylods but high quantity.
 /obj/structure/ship_ammo/cas/bomblet
-	name = "AOE-50lb 'Dandelions' stack"
+	name = "\improper AOE-50lb 'Dandelions' stack"
 	desc = "A large litter of explosive bomblets, will only fit in a bomblet pod. Moving this will require some sort of lifter."
 	icon_state = "bomb_50"
 	icon = 'icons/Marine/mainship_props.dmi'
@@ -724,7 +724,7 @@
 	explosion(impact, heavy_explosion_range, light_explosion_range, adminlog = FALSE)//no messaging admin, that'd spam them.
 
 /obj/structure/ship_ammo/cas/bomblet/medium
-	name = "AOE-75lb 'Poppies' stack"
+	name = "\improper AOE-75lb 'Poppies' stack"
 	desc = "A large litter of explosive bomblets. Moving this will require some sort of lifter."
 	icon_state = "bomblet_75"
 	ammo_count = 20

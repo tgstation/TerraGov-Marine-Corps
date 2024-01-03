@@ -882,11 +882,10 @@
 /obj/structure/dropship_equipment/cas/weapon/bomblet_pod/update_icon()
 	if(ammo_equipped?.ammo_count)
 		icon_state = "bomblet_pod_loaded"
+	else if(ship_base)
+		icon_state = "bomblet_pod_installed"
 	else
-		if(ship_base)
-			icon_state = "bomblet_pod_installed"
-		else
-			icon_state = "bomblet_pod"
+		icon_state = "bomblet_pod"
 
 /obj/structure/dropship_equipment/cas/weapon/bomb_pod
 	name = "bomb pod"
@@ -902,8 +901,7 @@
 /obj/structure/dropship_equipment/cas/weapon/bomb_pod/update_icon()
 	if(ammo_equipped?.ammo_count)
 		icon_state = "bomb_pod_loaded"
+	else if(ship_base)
+		icon_state = "bomb_pod_installed"
 	else
-		if(ship_base)
-			icon_state = "bomb_pod_installed"
-		else
-			icon_state = "bomb_pod"
+		icon_state = "bomb_pod"
