@@ -220,6 +220,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	desc = "item desc here"
 	item_typepath = /obj/item/clothing/glasses/meson
 	jobs_supported = list(SQUAD_MARINE)
+	purchase_cost = 12 //test only
 
 //ears
 /datum/loadout_item/ears
