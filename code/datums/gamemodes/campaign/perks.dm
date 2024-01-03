@@ -145,31 +145,31 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	prereq_perks = list(/datum/perk/skill_mod/melee)
 
 /datum/perk/skill_mod/firearms
-	name = "Adanced firearm training"
+	name = "Advanced firearm training"
 	ui_icon = "firearms"
 	firearms = 1
 	all_jobs = TRUE
 
 /datum/perk/skill_mod/pistols
-	name = "Adanced pistol training"
+	name = "Advanced pistol training"
 	ui_icon = "pistols"
 	pistols = 1
 	all_jobs = TRUE
 
 /datum/perk/skill_mod/shotguns
-	name = "Adanced shotgun training"
+	name = "Advanced shotgun training"
 	ui_icon = "shotguns"
 	shotguns = 1
 	all_jobs = TRUE
 
 /datum/perk/skill_mod/rifles
-	name = "Adanced rifle training"
+	name = "Advanced rifle training"
 	ui_icon = "rifles"
 	rifles = 1
 	all_jobs = TRUE
 
 /datum/perk/skill_mod/smgs
-	name = "Adanced SMG training"
+	name = "Advanced SMG training"
 	ui_icon = "smgs"
 	smgs = 1
 	all_jobs = TRUE
@@ -181,25 +181,25 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	all_jobs = TRUE
 
 /datum/perk/skill_mod/smartgun
-	name = "Adanced smartgun training"
+	name = "Advanced smartgun training"
 	ui_icon = "smartguns"
 	smartgun = 1
 	jobs_supported = list(SQUAD_SMARTGUNNER, CAPTAIN)
 
 /datum/perk/skill_mod/construction
-	name = "Adanced construction training"
+	name = "Advanced construction training"
 	ui_icon = "construction"
 	construction = 1
 	all_jobs = TRUE
 
 /datum/perk/skill_mod/leadership
-	name = "Adanced leadership training"
+	name = "Advanced leadership training"
 	ui_icon = "leadership"
 	leadership = 1
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
 
 /datum/perk/skill_mod/medical
-	name = "Adanced medical training"
+	name = "Advanced medical training"
 	ui_icon = "medical"
 	medical = 1
 	all_jobs = TRUE
