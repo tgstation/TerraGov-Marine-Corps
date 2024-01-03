@@ -13,8 +13,8 @@ import { IndividualData, LoadoutItemData } from './index';
 
 export const IndividualLoadouts = (props) => {
   const { act, data } = useBackend<IndividualData>();
-  const { equipped_loadouts_data } = data;
-  const { available_loadouts_data } = data;
+  const { equipped_loadouts_data, available_loadouts_data, outfit_cost_data } =
+    data;
   const [equipPotentialItem, setEquippedItem] =
     useLocalState<LoadoutItemData | null>('equipPotentialItem', null);
   const [selectedJob, setSelectedJob] = useLocalState(
@@ -28,6 +28,9 @@ export const IndividualLoadouts = (props) => {
   const [selectedPossibleItem, setselectedPossibleItem] = useLocalState(
     'selectedPossibleItem',
     available_loadouts_data[0],
+  );
+  const selectedOutfitCostData = outfit_cost_data.find(
+    (OutfitCostData) => OutfitCostData.job === selectedJob,
   );
 
   return (
@@ -112,10 +115,7 @@ export const IndividualLoadouts = (props) => {
       </Stack.Item>
       <Stack.Item>
         <Section vertical title={selectedJob + ' loadout'}>
-          Equip cost:{' '}
-          {data.outfit_cost_data
-            .filter((outfit_type) => outfit_type.job === selectedJob)
-            .map((outfit_type) => outfit_type.outfit_cost)}
+          Equip cost: {selectedOutfitCostData?.outfit_cost}
         </Section>
         <Section
           vertical
