@@ -335,7 +335,7 @@
 		animate(pixel_y = initial(xeno_owner.pixel_y), time = animation_time / 2, easing = CIRCULAR_EASING|EASE_IN)
 		return
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/atom, balloon_alert), owner, "Use [name] again to cancel"), LANDSLIDE_WIND_UP)
-	addtimer(CALLBACK(src, PROC_REF(RegisterSignals), owner, list(COMSIG_MOB_CLICK_RIGHT, COMSIG_MOB_CLICK_SHIFT, COMSIG_MOB_MIDDLE_CLICK), PROC_REF(cancel_charge)), LANDSLIDE_WIND_UP)
+	addtimer(CALLBACK(src, PROC_REF(RegisterSignals), owner, list(COMSIG_MOB_RIGHT_CLICK, COMSIG_MOB_SHIFT_LEFT_CLICK, COMSIG_MOB_MIDDLE_CLICK), PROC_REF(cancel_charge)), LANDSLIDE_WIND_UP)
 	addtimer(CALLBACK(src, PROC_REF(do_charge), owner_turf, direction, charge_damage, which_step), LANDSLIDE_WIND_UP)
 
 /// Cancels the ability.
@@ -493,7 +493,7 @@
 */
 /datum/action/ability/activable/xeno/landslide/proc/end_charge(reason)
 	ability_active = FALSE
-	UnregisterSignal(owner, COMSIG_MOB_CLICK_RIGHT, COMSIG_MOB_CLICK_SHIFT, COMSIG_MOB_MIDDLE_CLICK)
+	UnregisterSignal(owner, COMSIG_MOB_RIGHT_CLICK, COMSIG_MOB_SHIFT_LEFT_CLICK, COMSIG_MOB_MIDDLE_CLICK)
 	REMOVE_TRAIT(owner, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.behemoth_charging = FALSE

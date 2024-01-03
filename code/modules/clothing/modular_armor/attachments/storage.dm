@@ -32,17 +32,17 @@
 	equip_delay_self = parent.equip_delay_self
 	strip_delay = parent.strip_delay
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(access_storage))
-	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, PROC_REF(open_storage))	//Open storage if the armor is alt right clicked
+	RegisterSignal(parent, COMSIG_ALT_RIGHT_CLICK, PROC_REF(open_storage))	//Open storage if the armor is alt right clicked
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(insert_item))
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_GHOST, PROC_REF(open_storage))
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, PROC_REF(draw_from_storage))
-	RegisterSignal(parent, COMSIG_CLICK_CTRL, PROC_REF(left_draw_from_storage))
+	RegisterSignal(parent, COMSIG_CTRL_LEFT_CLICK, PROC_REF(left_draw_from_storage))
 	storage.master_item = parent
 
 /obj/item/armor_module/storage/on_detach(obj/item/detaching_from, mob/user)
 	equip_delay_self = initial(equip_delay_self)
 	strip_delay = initial(strip_delay)
-	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_CLICK_ALT_RIGHT, COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_ATTACK_GHOST, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, COMSIG_CLICK_CTRL))
+	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_ALT_RIGHT_CLICK, COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_ATTACK_GHOST, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, COMSIG_CTRL_LEFT_CLICK))
 	storage.master_item = src
 	return ..()
 

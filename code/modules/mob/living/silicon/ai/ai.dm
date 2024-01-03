@@ -102,7 +102,7 @@
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 	H.add_hud_to(src)
 
-	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, PROC_REF(send_order))
+	RegisterSignal(src, COMSIG_MOB_ALT_LEFT_CLICK, PROC_REF(send_order))
 	RegisterSignal(src, COMSIG_ORDER_SELECTED, PROC_REF(set_order))
 
 	///register the various signals we need for alerts
@@ -139,7 +139,7 @@
 	QDEL_NULL(builtInCamera)
 	QDEL_NULL(track)
 	UnregisterSignal(src, COMSIG_ORDER_SELECTED)
-	UnregisterSignal(src, COMSIG_MOB_CLICK_ALT)
+	UnregisterSignal(src, COMSIG_MOB_ALT_LEFT_CLICK)
 
 	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)

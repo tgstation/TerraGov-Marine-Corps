@@ -52,13 +52,13 @@
 	. = ..()
 	equipped_user = user
 	if(slot == SLOT_BACK)
-		RegisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT, PROC_REF(can_use))
+		RegisterSignal(user, COMSIG_MOB_ALT_RIGHT_CLICK, PROC_REF(can_use))
 		var/datum/action/item_action/toggle/action = new(src)
 		action.give_action(user)
 
 /obj/item/blink_drive/dropped(mob/user)
 	. = ..()
-	UnregisterSignal(user, list(COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_MOB_MIDDLE_CLICK))
+	UnregisterSignal(user, list(COMSIG_MOB_ALT_RIGHT_CLICK, COMSIG_MOB_MIDDLE_CLICK))
 	UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
 	selected = FALSE
 	equipped_user = null
