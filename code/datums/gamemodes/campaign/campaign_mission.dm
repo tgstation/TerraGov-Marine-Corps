@@ -284,6 +284,9 @@
 	for(var/i in GLOB.quick_loadouts)
 		var/datum/outfit/quick/outfit = GLOB.quick_loadouts[i]
 		outfit.quantity = initial(outfit.quantity)
+	for(var/job in GLOB.campaign_loadout_items_by_role)
+		for(var/datum/loadout_item/loadout_item AS in GLOB.campaign_loadout_items_by_role[job])
+			loadout_item.quantity = initial(loadout_item.quantity)
 	for(var/mob/living/carbon/human/corpse AS in GLOB.dead_human_list) //clean up all the bodies and refund normal roles if required
 		if(corpse.z != mission_z_level)
 			continue

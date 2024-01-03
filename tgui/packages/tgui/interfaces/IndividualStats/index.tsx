@@ -62,6 +62,7 @@ export type LoadoutItemData = {
   unlock_cost: number;
   valid_choice: number;
   icon?: string;
+  quantity: number;
 };
 
 export const IndividualStats = (props) => {

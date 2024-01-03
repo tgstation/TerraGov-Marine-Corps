@@ -45,6 +45,8 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	var/unlock_cost = 0
 	///Cost to use this option
 	var/purchase_cost = 0
+	///The amount of this available per mission. -1 for unlimited
+	var/quantity = -1
 	///Job types that this perk is available to
 	var/list/jobs_supported
 	///assoc list by slot of items required for this to be equipped
@@ -104,6 +106,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	desc = "Heavy armor with a Surt fireproof module. Provides excellent protection and almost total fire immunity, but has poor mobility."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/surt
 	jobs_supported = list(SQUAD_MARINE)
+	quantity = 1 //testing purposes only
 
 /datum/loadout_item/suit_slot/medium_mimir
 	name = "Medium Mimir"

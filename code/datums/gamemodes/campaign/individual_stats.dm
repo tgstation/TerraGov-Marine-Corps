@@ -98,8 +98,8 @@
 		perk.apply_perk(current_mob)
 
 ///Attempts to add an available item to a loadout
-/datum/individual_stats/proc/attempt_equip_loadout_item(datum/loadout_item/new_item, role)
-	loadouts[role].attempt_equip_loadout_item(new_item)
+///datum/individual_stats/proc/attempt_equip_loadout_item(datum/loadout_item/new_item, role)
+//	loadouts[role].attempt_equip_loadout_item(new_item)
 
 
 //UI stuff//
@@ -183,9 +183,12 @@
 			current_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost  //todo: do related
 			current_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit) //is this item valid based on the current loadout. Don't think we need !! but check
 			current_loadout_item_data["icon"] = loadout_item.item_typepath::icon_state //todo: Figure out if this works from a ui perspective, or if an 'ui_icon' is needed like assets
+			current_loadout_item_data["quantity"] = loadout_item.quantity //current amount. atm would not update other people's UI if quantity changes
+
+			equipped_item_ui_data["item_type"] = current_loadout_item_data
 			equipped_item_ui_data["slot"] = slot
 			equipped_item_ui_data["slot_text"] = GLOB.inventory_slots_to_string["[slot]"]
-			equipped_item_ui_data["item_type"] = current_loadout_item_data
+
 			equipped_loadouts_data += list(equipped_item_ui_data)
 
 		for(var/slot in outfit.available_list)
@@ -200,6 +203,7 @@
 				available_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost
 				available_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit)
 				available_loadout_item_data["icon"] = loadout_item.item_typepath::icon_state
+				available_loadout_item_data["quantity"] = loadout_item.quantity
 				available_loadouts_data += list(available_loadout_item_data)
 
 	data["equipped_loadouts_data"] = equipped_loadouts_data
@@ -249,6 +253,7 @@
 				return
 			if(!loadouts[job].check_full_loadout())
 				to_chat(user, "<span class='warning'>Invalid loadout.")
+				update_static_data(user) //in case quantity of an item ran out. Probably able to drill down on this better.
 				return
 			var/insufficient_credits = use_funds(loadouts[job].loadout_cost)
 			if(insufficient_credits)

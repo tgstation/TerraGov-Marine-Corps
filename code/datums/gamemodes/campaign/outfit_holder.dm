@@ -33,6 +33,12 @@
 
 ///Equips the loadout to a mob
 /datum/outfit_holder/proc/equip_loadout(mob/living/carbon/human/owner)
+	for(var/slot in equipped_things)
+		var/datum/loadout_item/thing_to_check = equipped_things["[slot]"]
+		if(!thing_to_check)
+			continue
+		if(thing_to_check.quantity > 0)
+			thing_to_check.quantity --
 	loadout.equip(owner)
 	//insert post equip magic here
 
@@ -54,7 +60,8 @@
 	loadout_cost -= equipped_things[slot_bit].purchase_cost
 	equipped_things[slot_bit] = new_item //adds the datum
 	loadout_cost += equipped_things[slot_bit].purchase_cost
-	check_full_loadout() //checks all datums to see if this makes anything invalid
+	//currently the below doesn't give any feedback, so unneeded here
+	//check_full_loadout() //checks all datums to see if this makes anything invalid
 
 	switch(new_item.item_slot) //adds it to the loadout itself
 		if(ITEM_SLOT_OCLOTHING)
@@ -96,12 +103,15 @@
 		var/datum/loadout_item/thing_to_check = equipped_things["[slot]"]
 		if(!thing_to_check)
 			continue
+		if(thing_to_check.quantity == 0)
+			return FALSE
+			//mark visually/early return here
 		if(length(thing_to_check.item_whitelist) && !thing_to_check.whitelist_check(src))
 			//mark visually here
-			. = FALSE
+			return FALSE
 		if(length(thing_to_check.item_blacklist) && !thing_to_check.blacklist_check(src))
 			//mark visually here
-			. = FALSE
+			return FALSE
 
 //2 procs below may be unneeded
 
