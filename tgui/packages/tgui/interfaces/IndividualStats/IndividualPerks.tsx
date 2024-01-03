@@ -1,3 +1,5 @@
+import { classes } from 'common/react';
+
 import { useBackend, useLocalState } from '../../backend';
 import {
   Box,
@@ -7,7 +9,7 @@ import {
   Section,
   Stack,
 } from '../../components';
-import { IndividualData, PerkData, PerkIcon } from './index';
+import { IndividualData, PerkData } from './index';
 
 export const IndividualPerks = (props) => {
   const { act, data } = useBackend<IndividualData>();
@@ -56,15 +58,15 @@ export const IndividualPerks = (props) => {
                   }
                 >
                   <Flex align="center" mt="1px">
-                    {!!perk.icon && (
-                      <PerkIcon
-                        icon={
-                          selectedPerk.name === perk.name
-                            ? perk.icon + '_red'
-                            : perk.icon + '_blue'
-                        }
-                      />
-                    )}
+                    <Flex.Item
+                      mr={1.5}
+                      className={classes([
+                        'campaign_perks18x18',
+                        selectedPerk.name === perk.name
+                          ? perk.icon + '_red'
+                          : perk.icon + '_blue',
+                      ])}
+                    />
                     {perk.name}
                   </Flex>
                 </Button>
@@ -78,15 +80,13 @@ export const IndividualPerks = (props) => {
             selectedPerk ? (
               <Box>
                 <Flex align="center">
-                  <Flex.Item>
-                    {
-                      <PerkIcon
-                        icon={selectedPerk.icon + '_orange'}
-                        icon_width={'36px'}
-                        icon_height={'36px'}
-                      />
-                    }
-                  </Flex.Item>
+                  <Flex.Item
+                    mr={1.5}
+                    className={classes([
+                      'campaign_perks36x36',
+                      selectedPerk.icon + '_orange' + '_big',
+                    ])}
+                  />
                   <Flex.Item fontSize="150%" grow={1}>
                     {selectedPerk.name}
                   </Flex.Item>

@@ -1,3 +1,5 @@
+import { classes } from 'common/react';
+
 import { useBackend, useLocalState } from '../../backend';
 import {
   Box,
@@ -7,7 +9,7 @@ import {
   Section,
   Stack,
 } from '../../components';
-import { IndividualData, LoadoutItemData, PerkIcon } from './index';
+import { IndividualData, LoadoutItemData } from './index';
 
 export const IndividualLoadouts = (props) => {
   const { act, data } = useBackend<IndividualData>();
@@ -83,13 +85,15 @@ export const IndividualLoadouts = (props) => {
                   >
                     <Flex align="center">
                       {!!equippeditem.item_type.icon && (
-                        <PerkIcon
-                          icon={
+                        <Flex.Item
+                          mr={1.5}
+                          className={classes([
+                            'campaign_perks18x18',
                             selectedLoadoutItem.item_type.name ===
                             equippeditem.item_type.name
                               ? equippeditem.item_type.icon + '_red'
-                              : equippeditem.item_type.icon + '_blue'
-                          }
+                              : equippeditem.item_type.icon + '_blue',
+                          ])}
                         />
                       )}
                       {equippeditem.item_type.name}
@@ -113,15 +117,13 @@ export const IndividualLoadouts = (props) => {
             selectedPossibleItem ? (
               <Box>
                 <Flex align="center">
-                  <Flex.Item>
-                    {
-                      <PerkIcon
-                        icon={selectedPossibleItem.icon + '_orange'}
-                        icon_width={'36px'}
-                        icon_height={'36px'}
-                      />
-                    }
-                  </Flex.Item>
+                  <Flex.Item
+                    mr={1.5}
+                    className={classes([
+                      'campaign_perks36x36',
+                      selectedPossibleItem.icon + '_orange' + '_big',
+                    ])}
+                  />
                   <Flex.Item fontSize="150%" grow={1}>
                     {selectedPossibleItem.name}
                   </Flex.Item>
@@ -183,12 +185,14 @@ export const IndividualLoadouts = (props) => {
                 >
                   <Flex align="center">
                     {!!potentialitem.icon && (
-                      <PerkIcon
-                        icon={
+                      <Flex.Item
+                        mr={1.5}
+                        className={classes([
+                          'campaign_perks18x18',
                           selectedPossibleItem.name === potentialitem.name
                             ? potentialitem.icon + '_red'
-                            : potentialitem.icon + '_blue'
-                        }
+                            : potentialitem.icon + '_blue',
+                        ])}
                       />
                     )}
                     {potentialitem.name}

@@ -252,3 +252,12 @@ GLOBAL_LIST_INIT(campaign_mission_icons, init_campaign_mission_icons())
 	for(var/icon_state in GLOB.campaign_mission_icon_types)
 		for(var/colour in colours)
 			. += "[icon_state]_[colour]"
+
+GLOBAL_LIST_INIT(campaign_perk_icons, init_campaign_perk_icons())
+
+/proc/init_campaign_perk_icons()
+	. = list()
+	var/list/colours = list("green", "orange", "grey", "red", "blue")
+	for(var/icon_state in GLOB.campaign_perk_icon_types)
+		for(var/colour in colours)
+			. += "[icon_state]_[colour]"

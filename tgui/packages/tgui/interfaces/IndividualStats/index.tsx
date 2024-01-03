@@ -1,6 +1,5 @@
 import { useBackend, useLocalState } from '../../backend';
 import {
-  Box,
   Button,
   LabeledList,
   Modal,
@@ -217,32 +216,4 @@ const CampaignContent = (props) => {
     default:
       return null;
   }
-};
-
-/** Generates a small icon for buttons based on ICONMAP */
-export const PerkIcon = (props: {
-  icon: PerkData['icon'];
-  icon_width?: string;
-  icon_height?: string;
-}) => {
-  const { data } = useBackend<IndividualData>();
-  const { perk_icons = [] } = data;
-  const { icon, icon_width, icon_height } = props;
-  if (!icon || !perk_icons[icon]) {
-    return null;
-  }
-
-  return (
-    <Box
-      width={icon_width ? icon_width : '18px'}
-      height={icon_height ? icon_height : '18px'}
-      as="img"
-      mr={1.5}
-      src={`data:image/jpeg;base64,${perk_icons[icon]}`}
-      style={{
-        transform: 'scale(1)',
-        '-ms-interpolation-mode': 'nearest-neighbor',
-      }}
-    />
-  );
 };

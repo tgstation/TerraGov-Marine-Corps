@@ -103,6 +103,8 @@
 
 
 //UI stuff//
+/datum/individual_stats/ui_assets(mob/user)
+	return list(get_asset_datum(/datum/asset/spritesheet/campaign/perks))
 
 /datum/individual_stats/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -138,10 +140,6 @@
 	data["faction"] = faction
 	data["jobs"] = valid_jobs
 	data["currency"] = currency
-
-	//replace below
-	data["perk_icons"] = GLOB.campaign_perk_icons
-	data["mission_icons"] = GLOB.campaign_mission_icons
 
 	//perk stuff
 	var/list/perks_data = list()
