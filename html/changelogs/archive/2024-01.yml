@@ -16,3 +16,14 @@
   - qol: The campaign status screen is now accessible via action button instead of
       verb
   - qol: The campaign status screen is now accessible to ghosts of the right faction
+2024-01-03:
+  Barnet2:
+  - rscadd: Marine Food Vendors are now present in all requisition areas.
+  - qol: All ships now have cigarette vendors guaranteed to spawn in
+  Helg2:
+  - bugfix: '[Magmoor] Canterbury now won''t crash directly into the xeno''s silo.'
+  - rscadd: '[Arachne] Added more shutters here and there.'
+  - bugfix: Cleaned some parts of Sulaco. Like levitating button to droppods and transparent
+      telecomms shutters.
+  ivanmixo:
+  - bugfix: VV topic fix
