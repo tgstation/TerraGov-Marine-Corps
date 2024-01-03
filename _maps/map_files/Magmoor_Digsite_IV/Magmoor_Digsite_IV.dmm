@@ -17107,16 +17107,6 @@
 	dir = 1
 	},
 /area/magmoor/civilian/arrival/east)
-"mAx" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/wood,
-/area/magmoor/civilian/bar)
 "mAB" = (
 /obj/structure/bed/chair/sofa/corner{
 	dir = 1
@@ -45377,10 +45367,10 @@ lCK
 lCK
 eYR
 azG
-xRq
+xOp
 dio
 oOH
-xOp
+xRq
 sfx
 xXN
 lCK
@@ -48407,7 +48397,7 @@ oAR
 ehQ
 mlP
 ehQ
-mAx
+cnO
 ehQ
 ehQ
 oMm
@@ -48640,7 +48630,7 @@ cAw
 ehQ
 fLe
 ehQ
-mAx
+cnO
 dIR
 ehQ
 wYc
@@ -48873,7 +48863,7 @@ vSf
 ehQ
 ehQ
 ehQ
-mAx
+cnO
 mlP
 ehQ
 mAI
@@ -49106,7 +49096,7 @@ aGz
 ehQ
 ehQ
 ehQ
-mAx
+cnO
 ehQ
 ehQ
 pNn
@@ -49339,7 +49329,7 @@ tjh
 mlP
 tct
 lfP
-mAx
+cnO
 ehQ
 ehQ
 cSj
@@ -49572,7 +49562,7 @@ lpK
 ehQ
 wEz
 bzj
-mAx
+cnO
 mlP
 ehQ
 nSi
@@ -50970,7 +50960,7 @@ qlY
 ehQ
 ehQ
 ehQ
-mAx
+cnO
 mlP
 hfz
 naO
@@ -51203,7 +51193,7 @@ lxq
 prR
 dIR
 ehQ
-mAx
+cnO
 ehQ
 hfz
 cZW
@@ -51436,7 +51426,7 @@ jdR
 mlP
 ehQ
 ehQ
-mAx
+cnO
 ehQ
 hfz
 jjQ
@@ -51669,7 +51659,7 @@ inQ
 rVY
 ehQ
 ehQ
-mAx
+cnO
 ehQ
 ehQ
 hfz
