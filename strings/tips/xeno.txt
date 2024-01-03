@@ -1,7 +1,6 @@
 As a xeno, you can freely melt barricades while in boiler or defiler gas as long as you can click on the right spot. The gas is also a really good hiding spot to launch ambushes from without marines being aware of you.
 As a xeno, always thank your drones and hivelords for supporting the hive!
 As a xeno, you can drag any item, but you must wait through an actionbar before you can do so!
-As a xeno, do not fight as a young xenomorph.
 Most alien deaths are caused by over-aggression. Rein yourself in, or you may find yourself dying round after round.
 As a xeno, if you have difficulty clicking marines, try using bump slash. You can use movement keys to slash marines. That said, clicking marines to slash them is faster than bump slashing!
 It is EXTREMELY IMPORTANT that you as a xenomorph have your abilities set up on keybinds. Ask for help if you don't know how in XOOC or mentorhelp.
@@ -16,7 +15,6 @@ The King has the strongest pheromones, followed by the Queen, praetorians, Hivem
 Some xenos can recycle the bodies of their fallen hive members. Use this to your advantage to prevent marines from getting points for their Requisitions orders!
 As a xeno, you can pounce past window frames and barricades without barbed wires.
 As a xeno, pouncing into a barricade with barbed wire causes you to bounce off the barricade.
-As a xeno, aging from young to mature gives you the most benefit, further aging has diminishing returns.
 As a xeno, remember that neurotoxin injected can overdose, killing a marine quickly.
 As a xeno, you can crawl through holes in walls made by acid by SpecialClicking (Default: CTRL+click) on them or click-dragging yourself on them. If you're too big to pass through, you'll damage the wall instead.
 As a xeno, you can climb over window frames by jumping (Default: Spacebar), SpecialClicking (Default: CTRL+click) on them, or click-dragging yourself on them.
