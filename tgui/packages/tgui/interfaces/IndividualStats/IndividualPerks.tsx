@@ -52,9 +52,7 @@ export const IndividualPerks = (props) => {
                       ? 'orange'
                       : perk.currently_active > 0
                         ? 'blue'
-                        : perk.currently_active < 0
-                          ? 'red'
-                          : 'grey'
+                        : 'grey'
                   }
                 >
                   <Flex align="center" mt="1px">
@@ -63,8 +61,10 @@ export const IndividualPerks = (props) => {
                       className={classes([
                         'campaign_perks18x18',
                         selectedPerk.name === perk.name
-                          ? perk.icon + '_red'
-                          : perk.icon + '_blue',
+                          ? perk.icon + '_orange'
+                          : perk.currently_active > 0
+                            ? perk.icon + '_blue'
+                            : perk.icon + '_grey',
                       ])}
                     />
                     {perk.name}

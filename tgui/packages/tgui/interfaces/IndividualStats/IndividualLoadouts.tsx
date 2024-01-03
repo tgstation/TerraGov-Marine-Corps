@@ -78,9 +78,11 @@ export const IndividualLoadouts = (props) => {
                       selectedLoadoutItem.item_type.name ===
                       equippeditem.item_type.name
                         ? 'orange'
-                        : equippeditem.item_type.valid_choice > 0
-                          ? 'blue'
-                          : 'red'
+                        : equippeditem.item_type.valid_choice === 0
+                          ? 'red'
+                          : equippeditem.item_type.quantity === 0
+                            ? 'red'
+                            : 'blue'
                     }
                   >
                     <Flex align="center">
@@ -91,8 +93,12 @@ export const IndividualLoadouts = (props) => {
                             'campaign_perks18x18',
                             selectedLoadoutItem.item_type.name ===
                             equippeditem.item_type.name
-                              ? equippeditem.item_type.icon + '_red'
-                              : equippeditem.item_type.icon + '_blue',
+                              ? equippeditem.item_type.icon + '_orange'
+                              : equippeditem.item_type.valid_choice === 0
+                                ? equippeditem.item_type.icon + '_red'
+                                : equippeditem.item_type.quantity === 0
+                                  ? equippeditem.item_type.icon + '_red'
+                                  : equippeditem.item_type.icon + '_blue',
                           ])}
                         />
                       )}
@@ -181,11 +187,11 @@ export const IndividualLoadouts = (props) => {
                   color={
                     selectedPossibleItem.name === potentialitem.name
                       ? 'orange'
-                      : potentialitem.valid_choice > 0
-                        ? 'blue'
-                        : potentialitem.valid_choice < 0
+                      : potentialitem.valid_choice === 0
+                        ? 'red'
+                        : potentialitem.quantity === 0
                           ? 'red'
-                          : 'grey'
+                          : 'blue'
                   }
                 >
                   <Flex align="center">
@@ -195,8 +201,12 @@ export const IndividualLoadouts = (props) => {
                         className={classes([
                           'campaign_perks18x18',
                           selectedPossibleItem.name === potentialitem.name
-                            ? potentialitem.icon + '_red'
-                            : potentialitem.icon + '_blue',
+                            ? potentialitem + '_orange'
+                            : potentialitem.valid_choice === 0
+                              ? potentialitem + '_red'
+                              : potentialitem.quantity === 0
+                                ? potentialitem + '_red'
+                                : potentialitem + '_blue',
                         ])}
                       />
                     )}
