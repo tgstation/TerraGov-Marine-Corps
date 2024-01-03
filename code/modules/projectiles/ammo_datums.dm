@@ -3300,7 +3300,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(T.density ? P.loc : T)
 
 /datum/ammo/energy/plasma/cannon_glob/drop_nade(turf/T)
-	flame_radius(2, T)
+	flame_radius(2, T, burn_intensity = 3, burn_duration = 3)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
 /datum/ammo/energy/xeno

@@ -135,8 +135,6 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope/marine,
-		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/motiondetector,
 	)
 
@@ -168,7 +166,7 @@
 	ammo_datum_type = /datum/ammo/energy/plasma/cannon_glob
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 1.5 SECONDS
-	heat_per_fire = 35
+	heat_per_fire = 50
 	rounds_per_shot = 100
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_strong"

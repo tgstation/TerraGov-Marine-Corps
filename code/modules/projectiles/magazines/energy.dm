@@ -211,6 +211,7 @@
 	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_HUGE
 	maxcharge = 1000
+	reload_delay = 0.25 SECONDS
 
 /obj/item/cell/lasgun/plasma_powerpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
