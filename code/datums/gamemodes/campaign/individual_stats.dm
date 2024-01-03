@@ -257,6 +257,10 @@
 			if(!istype(user) || user.stat)
 				to_chat(user, "<span class='warning'>Must be alive to do this!")
 				return
+			var/obj/item/card/id/user_id = user.get_idcard()
+			if(!(user_id.flags_id & CAN_BUY_LOADOUT))
+				to_chat(user, "<span class='warning'>You have already selected a loadout for this mission.")
+				return
 			if(user.job.title != job)
 				to_chat(user, "<span class='warning'>Invalid job. This outfit is for [job].")
 				return
@@ -272,6 +276,7 @@
 				to_chat(user, "<span class='warning'>Requires [insufficient_credits] more credits.")
 				return
 			loadouts[job].equip_loadout(user)
+			//user_id.flags_id &= ~CAN_BUY_LOADOUT //disabled for testing
 			update_static_data(user)
 
 //loadout/perk UI for campaign gamemode
