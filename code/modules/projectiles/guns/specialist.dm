@@ -440,10 +440,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/minigun/valhalla
 	obj_flags = NONE
 
-//Mounted version of the minigun for the wheelchair
-/obj/item/weapon/gun/minigun/wheelchair
+//A minigun that requires only one hand. Meant for use with vehicles
+/obj/item/weapon/gun/minigun/one_handed
 	name = "\improper Modified MG-100 Vindicator Minigun"
-	desc = "A minigun that's been modified to be mounted on a wheelchair. As a result, it is more controllable and fed externally by an ammo reservoir."
+	desc = "A minigun that's been modified to be used one handed. Intended for use mounted on a vehicle."
 
 	max_shells = 1000 //codex
 	reload_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
@@ -464,21 +464,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	windup_delay = 0.7 SECONDS
 	movement_acc_penalty_mult = 0
 
-	//A reference to whatever this gun is mounted to for dropped()
-	var/obj/mount
-
-/obj/item/weapon/gun/minigun/wheelchair/Destroy()
-	mount = null
-	return ..()
-
-//This will account for cases like if the user's hand is cut off, return it to the object it was mounted on
-/obj/item/weapon/gun/minigun/wheelchair/dropped(mob/user)
-	. = ..()
-	visible_message(span_warning("[src] violently snaps back into it's place in [mount]!"))
-	forceMove(mount)
-
 //So that it displays the minigun on the mob as if always wielded
-/obj/item/weapon/gun/minigun/wheelchair/update_item_state()
+/obj/item/weapon/gun/minigun/one_handed/update_item_state()
 	item_state = "[base_gun_icon]_w"
 
 // SG minigun
