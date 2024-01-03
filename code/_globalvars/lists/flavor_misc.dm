@@ -220,7 +220,7 @@ GLOBAL_LIST_INIT(campaign_asset_icons, init_campaign_asset_icons())
 	var/list/colours = list("green", "orange", "grey", "red", "blue")
 	for(var/icon_state in GLOB.campaign_icon_types)
 		for(var/colour in colours)
-			.["[icon_state]_[colour]"] = icon2base64(icon('icons/UI_icons/campaign/asset_icons.dmi', "[icon_state]_[colour]", frame = 1))
+			. += "[icon_state]_[colour]"
 
 GLOBAL_LIST_INIT(campaign_mission_icons, init_campaign_mission_icons())
 

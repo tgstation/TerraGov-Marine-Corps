@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../../backend';
-import { Box, Button, Modal, Section, Stack, Tabs } from '../../components';
+import { Button, Modal, Section, Stack, Tabs } from '../../components';
 import { Window } from '../../layouts';
 import { CampaignAssets } from './CampaignAssets';
 import { CampaignMissions } from './CampaignMissions';
@@ -69,7 +69,6 @@ export type CampaignData = {
   victory_points: number;
   max_victory_points: number;
   faction: string;
-  icons?: string[];
 };
 
 export const CampaignMenu = (props) => {
@@ -236,31 +235,4 @@ const CampaignContent = (props) => {
     default:
       return null;
   }
-};
-
-/** Generates a small icon for buttons based on ICONMAP */
-export const AssetIcon = (props: {
-  icon: FactionReward['icon'];
-  icon_width?: string;
-  icon_height?: string;
-}) => {
-  const { data } = useBackend<CampaignData>();
-  const { icons = [] } = data;
-  const { icon, icon_width, icon_height } = props;
-  if (!icon || !icons[icon]) {
-    return null;
-  }
-
-  return (
-    <Box
-      width={icon_width ? icon_width : '18px'}
-      height={icon_height ? icon_height : '18px'}
-      as="img"
-      mr={1.5}
-      src={`data:image/jpeg;base64,${icons[icon]}`}
-      style={{
-        transform: 'scale(1)',
-      }}
-    />
-  );
 };
