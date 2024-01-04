@@ -5,7 +5,7 @@ $include dbconfig.txt
 $include resources.txt
 
 ## Server name: This appears at the top of the screen in-game.
-SERVER_NAME SoL|NTF vs Alien M/ERP +18|TGMC NSFW downstream
+SERVER_NAME SoL|NTF vs Alien M/ERP +18
 
 ## Hosted by name for unix platforms.
 HOSTEDBY VideNoir
@@ -14,7 +14,7 @@ HOSTEDBY VideNoir
 TITLE Nine Tailed Fox vs Alien
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
-#HUB
+HUB
 
 ## Optional URL for faster resource downloading.
 #RESOURCE_URL url
@@ -130,18 +130,18 @@ MINUTE_TOPIC_LIMIT 100
 
 ## Deny all new connections by ckeys we haven't seen before (exempts admins and only denies the connection if the database is enabled and connected)
 ##	Requires database
-#PANIC_BUNKER
+PANIC_BUNKER
 
 ## Uncomment to enable the interview system for players who are below the living hour requirement instead of explicitly blocking them from the server
 ## Note this requires the PANIC_BUNKER to be enabled to do anything.
-#PANIC_BUNKER_INTERVIEW
+PANIC_BUNKER_INTERVIEW
 
 ## If a player connects during a bunker with less then or this amount of living time (Minutes), we deny the connection
-#PANIC_BUNKER_LIVING 90
+PANIC_BUNKER_LIVING 90
 
 ## The message the Panic Bunker gives when someone is rejected by it
 ## %minutes% is replaced with PANIC_BUNKER_LIVING on runtime, remove it if you don't want this
-#PANIC_BUNKER_MESSAGE Sorry, but the server is currently not accepting connections from players with less than %minutes% minutes of living time.
+PANIC_BUNKER_MESSAGE Sorry, but the server is currently not accepting connections from players with less than %minutes% minutes of living time. It is whitelisted. Apply at Discord alternatively https://discord.gg/rZ9Wy9DDtr
 
 ## If panic bunker is on and a player is rejected (see above), attempt to send them to this connected server (see below) instead.
 ##	You probably want this to be the same as CROSS_SERVER_ADDRESS
@@ -163,13 +163,13 @@ NOTIFY_NEW_ACCOUNT_AGE 7
 USE_EXP_TRACKING
 
 ## Allows admins to bypass job playtime requirements.
-#USE_EXP_RESTRICTIONS_ADMIN_BYPASS
+USE_EXP_RESTRICTIONS_ADMIN_BYPASS
 
 ## Use XP restrictions for command roles
-#USE_EXP_RESTRICTIONS_COMMAND
+USE_EXP_RESTRICTIONS_COMMAND
 
 ## Use playtime in hours restrictions for command
-#USE_EXP_RESTRICTIONS_COMMAND_HOURS
+USE_EXP_RESTRICTIONS_COMMAND_HOURS
 
 ##Note: all population caps can be used with each other if desired.
 
