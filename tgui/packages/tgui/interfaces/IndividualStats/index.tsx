@@ -181,6 +181,7 @@ export const IndividualStats = (props) => {
                         unlocked_item: unlockPotentialItem.type,
                         selected_job: unlockPotentialItem.job,
                       });
+                      unlockPotentialItem.unlocked = 1;
                       setUnlockedItem(null);
                     }}
                     icon={'check'}
