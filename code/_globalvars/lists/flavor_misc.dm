@@ -258,6 +258,7 @@ GLOBAL_LIST_INIT(campaign_mission_icons, init_campaign_mission_icons())
 
 GLOBAL_LIST_INIT(campaign_perk_icons, init_campaign_perk_icons())
 
+///Populates campaign_perk_icons
 /proc/init_campaign_perk_icons()
 	. = list()
 	var/list/colours = list("green", "orange", "grey", "red", "blue")
@@ -267,6 +268,7 @@ GLOBAL_LIST_INIT(campaign_perk_icons, init_campaign_perk_icons())
 
 GLOBAL_LIST_INIT(campaign_loadout_item_icons, init_campaign_loadout_item_icons())
 
+///Populates campaign_loadout_item_icons
 /proc/init_campaign_loadout_item_icons()
 	. = list()
 	var/list/colours = list("green", "orange", "grey", "red", "blue")
