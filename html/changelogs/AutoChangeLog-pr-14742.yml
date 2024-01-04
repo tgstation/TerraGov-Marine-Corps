@@ -1,0 +1,4 @@
+author: "AusarAtkin"
+delete-after: True
+changes:
+  - qol: "Add larva to valhalla vendor"

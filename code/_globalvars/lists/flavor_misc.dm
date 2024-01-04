@@ -208,25 +208,28 @@ GLOBAL_LIST_INIT(campaign_mission_icon_types, list(
 
 GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())
 
+///Populates minimap_icons
 /proc/init_minimap_icons()
 	. = list()
 	for(var/icon_state in GLOB.playable_icons)
 		.[icon_state] = icon2base64(icon('icons/UI_icons/map_blips.dmi', icon_state, frame = 1))
 
-GLOBAL_LIST_INIT(campaign_icons, init_campaign_icons())
+GLOBAL_LIST_INIT(campaign_asset_icons, init_campaign_asset_icons())
 
-/proc/init_campaign_icons()
+///Populates campaign_asset_icons
+/proc/init_campaign_asset_icons()
 	. = list()
 	var/list/colours = list("green", "orange", "grey", "red", "blue")
 	for(var/icon_state in GLOB.campaign_icon_types)
 		for(var/colour in colours)
-			.["[icon_state]_[colour]"] = icon2base64(icon('icons/UI_icons/campaign_icons.dmi', "[icon_state]_[colour]", frame = 1))
+			. += "[icon_state]_[colour]"
 
 GLOBAL_LIST_INIT(campaign_mission_icons, init_campaign_mission_icons())
 
+///Populates campaign_mission_icons
 /proc/init_campaign_mission_icons()
 	. = list()
 	var/list/colours = list("green", "yellow", "grey", "red", "blue")
 	for(var/icon_state in GLOB.campaign_mission_icon_types)
 		for(var/colour in colours)
-			.["[icon_state]_[colour]"] = icon2base64(icon('icons/UI_icons/mission_icons.dmi', "[icon_state]_[colour]", frame = 1))
+			. += "[icon_state]_[colour]"

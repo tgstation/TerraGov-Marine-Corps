@@ -245,6 +245,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	update_static_data_for_all_viewers()
 
 //UI stuff//
+/datum/faction_stats/ui_assets(mob/user)
+	return list(get_asset_datum(/datum/asset/spritesheet/campaign/missions), get_asset_datum(/datum/asset/spritesheet/campaign/assets))
 
 /datum/faction_stats/ui_interact(mob/living/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -363,8 +365,6 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	data["victory_points"] = victory_points
 	data["max_victory_points"] = CAMPAIGN_MAX_VICTORY_POINTS
 	data["faction"] = faction
-	data["icons"] = GLOB.campaign_icons
-	data["mission_icons"] = GLOB.campaign_mission_icons
 
 	return data
 
