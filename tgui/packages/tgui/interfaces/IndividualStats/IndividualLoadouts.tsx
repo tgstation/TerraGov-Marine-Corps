@@ -217,7 +217,14 @@ export const IndividualLoadouts = (props) => {
               <Stack.Item key={potentialitem.name}>
                 <Button
                   width={'180px'}
-                  onClick={() => setselectedPossibleItem(potentialitem)}
+                  onClick={() =>
+                    selectedPossibleItem === potentialitem
+                      ? act('equip_item', {
+                          selected_item: selectedPossibleItem.type,
+                          selected_job: selectedPossibleItem.job,
+                        })
+                      : setselectedPossibleItem(potentialitem)
+                  }
                   color={
                     selectedPossibleItem.name === potentialitem.name
                       ? 'orange'
