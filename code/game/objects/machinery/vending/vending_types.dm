@@ -321,6 +321,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
 			/obj/item/reagent_containers/glass/bottle/toxin = -1,
 			/obj/item/reagent_containers/glass/bottle/doctor_delight = -1,
+			/obj/item/alien_embryo = -1,
 		),
 	)
 

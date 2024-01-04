@@ -18,6 +18,7 @@
 	icon_state = "pt_belt"
 	item_state = "pt_belt_a"
 	slot = ATTACHMENT_SLOT_BELT
+	flags_attach_features = ATTACH_NO_HANDS
 
 /**
  * Shoulder lamp strength module
