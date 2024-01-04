@@ -208,6 +208,7 @@ GLOBAL_LIST_INIT(campaign_mission_icon_types, list(
 
 GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())
 
+///Populates minimap_icons
 /proc/init_minimap_icons()
 	. = list()
 	for(var/icon_state in GLOB.playable_icons)
@@ -215,6 +216,7 @@ GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())
 
 GLOBAL_LIST_INIT(campaign_asset_icons, init_campaign_asset_icons())
 
+///Populates campaign_asset_icons
 /proc/init_campaign_asset_icons()
 	. = list()
 	var/list/colours = list("green", "orange", "grey", "red", "blue")
@@ -224,6 +226,7 @@ GLOBAL_LIST_INIT(campaign_asset_icons, init_campaign_asset_icons())
 
 GLOBAL_LIST_INIT(campaign_mission_icons, init_campaign_mission_icons())
 
+///Populates campaign_mission_icons
 /proc/init_campaign_mission_icons()
 	. = list()
 	var/list/colours = list("green", "yellow", "grey", "red", "blue")
