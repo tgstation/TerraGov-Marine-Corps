@@ -100,7 +100,7 @@ export const IndividualLoadouts = (props) => {
                         <Flex.Item
                           mr={1.5}
                           className={classes([
-                            'campaign_perks18x18',
+                            'campaign_loadout_items18x18',
                             selectedLoadoutItem.item_type.name ===
                             equippeditem.item_type.name
                               ? equippeditem.item_type.icon + '_orange'
@@ -139,7 +139,7 @@ export const IndividualLoadouts = (props) => {
                   <Flex.Item
                     mr={1.5}
                     className={classes([
-                      'campaign_perks36x36',
+                      'campaign_loadout_items36x36',
                       selectedPossibleItem.icon + '_orange' + '_big',
                     ])}
                   />
@@ -212,14 +212,14 @@ export const IndividualLoadouts = (props) => {
                       <Flex.Item
                         mr={1.5}
                         className={classes([
-                          'campaign_perks18x18',
+                          'campaign_loadout_items18x18',
                           selectedPossibleItem.name === potentialitem.name
-                            ? potentialitem + '_orange'
+                            ? potentialitem.icon + '_orange'
                             : potentialitem.valid_choice === 0
-                              ? potentialitem + '_red'
+                              ? potentialitem.icon + '_red'
                               : potentialitem.quantity === 0
-                                ? potentialitem + '_red'
-                                : potentialitem + '_blue',
+                                ? potentialitem.icon + '_red'
+                                : potentialitem.icon + '_blue',
                         ])}
                       />
                     )}

@@ -139,7 +139,7 @@ GLOBAL_LIST_INIT(playable_squad_icons, list(
 	"smartgunner",
 ))
 
-GLOBAL_LIST_INIT(campaign_icon_types, list(
+GLOBAL_LIST_INIT(campaign_asset_icon_types, list(
 	"b18",
 	"gorgon",
 	"medkit",
@@ -240,7 +240,7 @@ GLOBAL_LIST_INIT(campaign_asset_icons, init_campaign_asset_icons())
 /proc/init_campaign_asset_icons()
 	. = list()
 	var/list/colours = list("green", "orange", "grey", "red", "blue")
-	for(var/icon_state in GLOB.campaign_icon_types)
+	for(var/icon_state in GLOB.campaign_asset_icon_types)
 		for(var/colour in colours)
 			. += "[icon_state]_[colour]"
 
@@ -259,5 +259,14 @@ GLOBAL_LIST_INIT(campaign_perk_icons, init_campaign_perk_icons())
 	. = list()
 	var/list/colours = list("green", "orange", "grey", "red", "blue")
 	for(var/icon_state in GLOB.campaign_perk_icon_types)
+		for(var/colour in colours)
+			. += "[icon_state]_[colour]"
+
+GLOBAL_LIST_INIT(campaign_loadout_item_icons, init_campaign_loadout_item_icons())
+
+/proc/init_campaign_loadout_item_icons()
+	. = list()
+	var/list/colours = list("green", "orange", "grey", "red", "blue")
+	for(var/icon_state in GLOB.campaign_asset_icon_types) //placeholder
 		for(var/colour in colours)
 			. += "[icon_state]_[colour]"

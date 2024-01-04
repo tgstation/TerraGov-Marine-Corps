@@ -107,7 +107,7 @@
 
 //UI stuff//
 /datum/individual_stats/ui_assets(mob/user)
-	return list(get_asset_datum(/datum/asset/spritesheet/campaign/perks))
+	return list(get_asset_datum(/datum/asset/spritesheet/campaign/perks), get_asset_datum(/datum/asset/spritesheet/campaign/loadout_items))
 
 /datum/individual_stats/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -185,7 +185,7 @@
 			current_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
 			current_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost  //todo: do related
 			current_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit) //is this item valid based on the current loadout. Don't think we need !! but check
-			current_loadout_item_data["icon"] = loadout_item.item_typepath::icon_state //todo: Figure out if this works from a ui perspective, or if an 'ui_icon' is needed like assets
+			current_loadout_item_data["icon"] = loadout_item.ui_icon //todo: Figure out if this works from a ui perspective, or if an 'ui_icon' is needed like assets
 			current_loadout_item_data["quantity"] = loadout_item.quantity //current amount. atm would not update other people's UI if quantity changes
 
 			equipped_item_ui_data["item_type"] = current_loadout_item_data
@@ -205,7 +205,7 @@
 				available_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
 				available_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost
 				available_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit)
-				available_loadout_item_data["icon"] = loadout_item.item_typepath::icon_state
+				available_loadout_item_data["icon"] = loadout_item.ui_icon
 				available_loadout_item_data["quantity"] = loadout_item.quantity
 				available_loadouts_data += list(available_loadout_item_data)
 

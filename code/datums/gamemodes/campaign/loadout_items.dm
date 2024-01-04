@@ -37,6 +37,8 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	var/desc
 	///Typepath of the actual item this datum represents
 	var/obj/item/item_typepath
+	///UI icon for this item
+	var/ui_icon = "b18" //placeholder
 	///inventory slot it is intended to go into
 	var/item_slot
 	///Available at round start or must be unlocked somehow
@@ -333,12 +335,14 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/r_pocket/standard_first_aid
 	name = "First aid pouch"
 	desc = "item desc here"
+	ui_icon = "medkit"
 	item_typepath = /obj/item/storage/pouch/firstaid/combat_patrol
 	jobs_supported = list(SQUAD_MARINE)
 
 /datum/loadout_item/r_pocket/marine_standard_grenades
 	name = "Standard grenade pouch"
 	desc = "item desc here"
+	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/combat_patrol
 	jobs_supported = list(SQUAD_MARINE)
 
@@ -354,12 +358,14 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/l_pocket/standard_first_aid
 	name = "First aid pouch"
 	desc = "item desc here"
+	ui_icon = "medkit"
 	item_typepath = /obj/item/storage/pouch/firstaid/combat_patrol
 	jobs_supported = list(SQUAD_MARINE)
 
 /datum/loadout_item/l_pocket/marine_standard_grenades
 	name = "Standard grenade pouch"
 	desc = "item desc here"
+	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/combat_patrol
 	jobs_supported = list(SQUAD_MARINE)
 
@@ -375,11 +381,13 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/suit_store/standard_rifle
 	name = "AR12"
 	desc = "item desc here"
+	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
 	jobs_supported = list(SQUAD_MARINE)
 
 /datum/loadout_item/suit_store/laser_rifle
 	name = "Laser rifle"
 	desc = "item desc here"
+	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
 	jobs_supported = list(SQUAD_MARINE)
