@@ -552,35 +552,37 @@
 				icon_state = "temp-3"
 			else
 				icon_state = "temp-4"
-	else
-		var/temp_step
-		if(human_mymob.bodytemperature >= human_mymob.species.body_temperature)
-			temp_step = (human_mymob.species.heat_level_1 - human_mymob.species.body_temperature) / 4
+		return
 
-			if(human_mymob.bodytemperature >= human_mymob.species.heat_level_1)
-				icon_state = "temp4"
-			else if(human_mymob.bodytemperature >= human_mymob.species.body_temperature + temp_step * 3)
-				icon_state = "temp3"
-			else if(human_mymob.bodytemperature >= human_mymob.species.body_temperature + temp_step * 2)
-				icon_state = "temp2"
-			else if(human_mymob.bodytemperature >= human_mymob.species.body_temperature + temp_step * 1)
-				icon_state = "temp1"
-			else
-				icon_state = "temp0"
+	var/temp_step
+	if(human_mymob.bodytemperature >= human_mymob.species.body_temperature)
+		temp_step = (human_mymob.species.heat_level_1 - human_mymob.species.body_temperature) / 4
 
-		else if(human_mymob.bodytemperature < human_mymob.species.body_temperature)
-			temp_step = (human_mymob.species.body_temperature - human_mymob.species.cold_level_1)/4
+		if(human_mymob.bodytemperature >= human_mymob.species.heat_level_1)
+			icon_state = "temp4"
+		else if(human_mymob.bodytemperature >= human_mymob.species.body_temperature + temp_step * 3)
+			icon_state = "temp3"
+		else if(human_mymob.bodytemperature >= human_mymob.species.body_temperature + temp_step * 2)
+			icon_state = "temp2"
+		else if(human_mymob.bodytemperature >= human_mymob.species.body_temperature + temp_step * 1)
+			icon_state = "temp1"
+		else
+			icon_state = "temp0"
+		return
 
-			if(human_mymob.bodytemperature <= human_mymob.species.cold_level_1)
-				icon_state = "temp-4"
-			else if(human_mymob.bodytemperature <= human_mymob.species.body_temperature - temp_step * 3)
-				icon_state = "temp-3"
-			else if(human_mymob.bodytemperature <= human_mymob.species.body_temperature - temp_step * 2)
-				icon_state = "temp-2"
-			else if(human_mymob.bodytemperature <= human_mymob.species.body_temperature - temp_step * 1)
-				icon_state = "temp-1"
-			else
-				icon_state = "temp0"
+	if(human_mymob.bodytemperature < human_mymob.species.body_temperature)
+		temp_step = (human_mymob.species.body_temperature - human_mymob.species.cold_level_1)/4
+
+		if(human_mymob.bodytemperature <= human_mymob.species.cold_level_1)
+			icon_state = "temp-4"
+		else if(human_mymob.bodytemperature <= human_mymob.species.body_temperature - temp_step * 3)
+			icon_state = "temp-3"
+		else if(human_mymob.bodytemperature <= human_mymob.species.body_temperature - temp_step * 2)
+			icon_state = "temp-2"
+		else if(human_mymob.bodytemperature <= human_mymob.species.body_temperature - temp_step * 1)
+			icon_state = "temp-1"
+		else
+			icon_state = "temp0"
 
 /atom/movable/screen/oxygen
 	name = "oxygen"
