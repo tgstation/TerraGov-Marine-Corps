@@ -36,6 +36,9 @@
 ///Behaviour on buckle. Puts the gun in the buckled mob's hands.
 /datum/component/mounted_weapon/proc/on_buckle(datum/source, mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	SIGNAL_HANDLER
+	var/obj/vehicle/parent_vehicle = source
+	if(!parent_vehicle.is_driver(buckling_mob))	
+		return
 	if(!buckling_mob.put_in_active_hand(mounted_gun) && !buckling_mob.put_in_inactive_hand(mounted_gun))
 		to_chat(buckling_mob, span_warning("Could not equip weapon! Click [parent] with a free hand to equip."))
 		return
@@ -64,7 +67,7 @@
 /datum/component/mounted_weapon/proc/on_attack_hand(datum/source, mob/user)
 	SIGNAL_HANDLER
 	var/obj/vehicle/parent_vehicle = source
-	if(parent_vehicle.is_occupant(user) && !user.is_holding(mounted_gun))
+	if(parent_vehicle.is_driver(user) && !user.is_holding(mounted_gun))
 		user.put_in_active_hand(mounted_gun)
 		return COMPONENT_NO_ATTACK_HAND
 
