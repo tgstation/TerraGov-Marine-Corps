@@ -46,6 +46,12 @@ export const IndividualLoadouts = (props) => {
             textAlign="center"
             mt={'10px'}
             mb={'18px'}
+            tooltip={
+              selectedOutfitCostData.outfit_cost > data.currency
+                ? 'Insufficient credits'
+                : 'Equip Loadout'
+            }
+            disabled={selectedOutfitCostData.outfit_cost > data.currency}
             onClick={() =>
               act('equip_outfit', {
                 outfit_job: selectedJob,
