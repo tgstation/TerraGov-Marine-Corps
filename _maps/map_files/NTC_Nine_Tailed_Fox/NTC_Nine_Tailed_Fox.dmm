@@ -2542,6 +2542,10 @@
 	name = "Captain's Room";
 	outside = 0
 	})
+"chm" = (
+/obj/structure/dropship_equipment/electronics/spotlights,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "chO" = (
 /obj/machinery/light{
 	dir = 1
@@ -3003,7 +3007,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "cBT" = (
-/obj/structure/dropship_equipment/shuttle/sentry_holder,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -4484,7 +4487,6 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/tankerbunks)
 "dZY" = (
-/obj/structure/dropship_equipment/electronics/spotlights,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/orange{
 	dir = 8
@@ -9035,7 +9037,6 @@
 /obj/item/attachable/scope/mini,
 /obj/item/attachable/lasersight,
 /obj/item/attachable/compensator,
-/obj/item/ammo_magazine/minisentry,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -10588,10 +10589,8 @@
 	name = "CEO Office"
 	})
 "jHE" = (
-/obj/structure/dropship_equipment/shuttle/flare_launcher,
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
+/obj/structure/dropship_equipment/electronics/spotlights,
+/turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "jIk" = (
 /obj/structure/disposalpipe/segment,
@@ -11282,6 +11281,8 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced/fabric,
+/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+/obj/item/stack/medical/heal_pack/advanced/burn_pack,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -11294,10 +11295,10 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "knb" = (
-/obj/structure/dropship_equipment/electronics/spotlights,
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/structure/dropship_equipment/shuttle/sentry_holder,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "kni" = (
 /obj/structure/cable,
@@ -12885,15 +12886,6 @@
 	},
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
-/obj/item/weapon/gun/rifle/m412/elite,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/storage/holster/belt/mateba/officer/full,
-/obj/item/ammo_magazine/packet/mateba,
 /turf/open/floor/carpet/side{
 	dir = 9
 	},
@@ -13256,6 +13248,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/structure/dropship_equipment/shuttle/sentry_holder,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "lNx" = (
@@ -19214,12 +19207,9 @@
 	},
 /area/mainship/squads/general)
 "rwt" = (
-/obj/machinery/vending/weapon,
-/turf/closed/wall/mainship,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
-	})
+/obj/structure/dropship_equipment/shuttle/sentry_holder,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "rwx" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
@@ -22252,9 +22242,6 @@
 "uqp" = (
 /obj/item/storage/box/visual/grenade/impact,
 /obj/item/shotgunbox/buckshot,
-/obj/item/storage/box/crate/loot/infiltration_pack_spec{
-	name = "\improper infiltrator gear"
-	},
 /obj/structure/closet/secure_closet/guncabinet{
 	storage_capacity = 80;
 	req_access = list(200)
@@ -22269,18 +22256,19 @@
 /obj/item/ammo_magazine/rifle/ap,
 /obj/item/ammo_magazine/rifle/ap,
 /obj/item/storage/belt/marine,
-/obj/item/armor_module/storage/uniform/holster,
 /obj/item/weapon/gun/rifle/m412/elite,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/clothing/under/marine/spec_operative,
 /obj/item/clothing/glasses/thermal/m64_thermal_goggles,
 /obj/item/armor_module/storage/medical,
 /obj/item/storage/box/explosive_mines/large,
-/obj/item/armor_module/module/eshield,
 /obj/item/storage/pouch/shotgun,
-/obj/item/storage/pouch/grenade,
+/obj/item/ammo_magazine/rifle/ap,
+/obj/item/ammo_magazine/rifle/ap,
+/obj/item/ammo_magazine/minisentry,
+/obj/item/armor_module/module/valkyrie_autodoc,
+/obj/item/clothing/suit/modular/xenonauten/bulletresistant,
+/obj/item/tweezers_advanced,
+/obj/item/storage/backpack/marine/satchel/scout_cloak/scout,
+/obj/item/explosive/grenade/smokebomb,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -23782,7 +23770,6 @@
 	name = "Shipside Medbay"
 	})
 "vJr" = (
-/obj/structure/dropship_equipment/shuttle/flare_launcher,
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/orange{
@@ -24951,6 +24938,14 @@
 /obj/item/clothing/mask/balaclava,
 /obj/item/clothing/under/suit_jacket/charcoal,
 /obj/item/clothing/under/suit_jacket/female,
+/obj/item/weapon/gun/pistol/g22/tranq,
+/obj/item/ammo_magazine/pistol/g22tranq,
+/obj/item/ammo_magazine/pistol/g22tranq,
+/obj/item/ammo_magazine/pistol/g22tranq,
+/obj/item/ammo_magazine/pistol/g22tranq,
+/obj/item/ammo_magazine/pistol/g22tranq,
+/obj/item/ammo_magazine/pistol/g22tranq,
+/obj/item/armor_module/storage/uniform/holster,
 /turf/open/floor/carpet{
 	icon_state = "carpetside"
 	},
@@ -26301,11 +26296,8 @@
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "ycY" = (
-/obj/structure/dropship_equipment/shuttle/sentry_holder,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
+/obj/structure/dropship_equipment/shuttle/flare_launcher,
+/turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "yds" = (
 /obj/machinery/marine_selector/gear/medic,
@@ -36473,10 +36465,10 @@ tIk
 tIk
 tIk
 tIk
-tIk
-tIk
-tIk
-tIk
+rwt
+kEG
+chm
+rwt
 tIk
 tIk
 tIk
@@ -39861,7 +39853,7 @@ xot
 txM
 cFt
 dmN
-dmN
+knb
 dmN
 dmN
 dmN
@@ -39869,8 +39861,8 @@ lMB
 dmN
 dmN
 dZY
-ycY
-ycY
+dZY
+dZY
 vJr
 imb
 jJw
@@ -40354,8 +40346,8 @@ tIk
 tIk
 kcJ
 kcJ
-kcJ
-kcJ
+ycY
+ycY
 vhS
 jJw
 jJw
@@ -40594,7 +40586,7 @@ sxz
 hbg
 eZM
 xyd
-kcJ
+jHE
 lcB
 ycC
 hcG
@@ -40836,10 +40828,10 @@ hYS
 jpB
 hYS
 hYS
-knb
 cBT
 cBT
-jHE
+cBT
+cBT
 hrt
 jJw
 jJw
@@ -44158,7 +44150,7 @@ nwr
 nwr
 nwr
 nwr
-wgC
+nwr
 siW
 ggd
 ggd
@@ -66749,7 +66741,7 @@ kmK
 lAK
 qnG
 pbZ
-rwt
+qnG
 qnG
 oaL
 jLv
