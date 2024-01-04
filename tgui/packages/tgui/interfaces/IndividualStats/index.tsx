@@ -63,6 +63,7 @@ export type LoadoutItemData = {
   valid_choice: number;
   icon?: string;
   quantity: number;
+  requirements?: string;
 };
 
 export const IndividualStats = (props) => {

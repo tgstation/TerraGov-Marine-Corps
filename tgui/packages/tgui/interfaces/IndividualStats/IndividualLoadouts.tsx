@@ -178,6 +178,11 @@ export const IndividualLoadouts = (props) => {
                 {selectedPossibleItem.quantity}
               </LabeledList.Item>
             )}
+            {!selectedPossibleItem.requirements ? null : (
+              <LabeledList.Item label="Requirements">
+                {selectedPossibleItem.requirements}
+              </LabeledList.Item>
+            )}
           </LabeledList>
         </Section>
       </Stack.Item>

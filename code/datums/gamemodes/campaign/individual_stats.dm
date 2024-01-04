@@ -187,6 +187,7 @@
 			current_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit) //is this item valid based on the current loadout. Don't think we need !! but check
 			current_loadout_item_data["icon"] = loadout_item.ui_icon //todo: Figure out if this works from a ui perspective, or if an 'ui_icon' is needed like assets
 			current_loadout_item_data["quantity"] = loadout_item.quantity //current amount. atm would not update other people's UI if quantity changes
+			current_loadout_item_data["requirements"] = loadout_item.req_desc //Additional desc covering special reqs such as blacklist/whitelist
 
 			equipped_item_ui_data["item_type"] = current_loadout_item_data
 			equipped_item_ui_data["slot"] = slot
@@ -207,6 +208,7 @@
 				available_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit)
 				available_loadout_item_data["icon"] = loadout_item.ui_icon
 				available_loadout_item_data["quantity"] = loadout_item.quantity
+				available_loadout_item_data["requirements"] = loadout_item.req_desc
 				available_loadouts_data += list(available_loadout_item_data)
 
 	data["equipped_loadouts_data"] = equipped_loadouts_data

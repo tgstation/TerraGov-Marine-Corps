@@ -35,6 +35,8 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	var/name
 	///Item desc
 	var/desc
+	///Addition desc for special reqs such as black/whitelist
+	var/req_desc
 	///Typepath of the actual item this datum represents
 	var/obj/item/item_typepath
 	///UI icon for this item
@@ -140,6 +142,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/helmet/surt
 	name = "M10X-Surt"
 	desc = "A standard combat helmet with a Surt fireproof module."
+	req_desc = "Requires a suit with a Surt module."
 	item_typepath = /obj/item/clothing/head/modular/m10x/surt
 	jobs_supported = list(SQUAD_MARINE)
 	item_whitelist = list(
