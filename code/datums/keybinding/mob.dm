@@ -201,7 +201,7 @@
 	SIGNAL_HANDLER
 	var/mob/user = source
 	user.examinate(A)
-	return COMSIG_MOB_CLICK_HANDLED
+	return COMSIG_MOB_CLICK_CANCELED
 
 /datum/keybinding/mob/toggle_move_intent
 	hotkey_keys = list("5")
