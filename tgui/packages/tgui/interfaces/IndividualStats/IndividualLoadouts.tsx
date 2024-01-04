@@ -17,6 +17,9 @@ export const IndividualLoadouts = (props) => {
     data;
   const [equipPotentialItem, setEquippedItem] =
     useLocalState<LoadoutItemData | null>('equipPotentialItem', null);
+
+  const [unlockPotentialItem, setUnlockedItem] =
+    useLocalState<LoadoutItemData | null>('equipPotentialItem', null);
   const [selectedJob, setSelectedJob] = useLocalState(
     'selectedJob',
     data.jobs[0],
@@ -146,16 +149,26 @@ export const IndividualLoadouts = (props) => {
                   <Flex.Item fontSize="150%" grow={1}>
                     {selectedPossibleItem.name}
                   </Flex.Item>
-                  {selectedPossibleItem.valid_choice ? (
+                  {!selectedPossibleItem.unlocked ? (
                     <Flex.Item alight="right" position="end">
                       <Button
+                        onClick={() => setUnlockedItem(selectedPossibleItem)}
+                        icon={'check'}
+                      >
+                        Unlock
+                      </Button>
+                    </Flex.Item>
+                  ) : (
+                    <Flex.Item alight="right" position="end">
+                      <Button
+                        disabled={!selectedPossibleItem.valid_choice}
                         onClick={() => setEquippedItem(selectedPossibleItem)}
                         icon={'check'}
                       >
                         Equip
                       </Button>
                     </Flex.Item>
-                  ) : null}
+                  )}
                 </Flex>
               </Box>
             ) : (
@@ -205,11 +218,13 @@ export const IndividualLoadouts = (props) => {
                   color={
                     selectedPossibleItem.name === potentialitem.name
                       ? 'orange'
-                      : potentialitem.valid_choice === 0
-                        ? 'red'
-                        : potentialitem.quantity === 0
+                      : !potentialitem.unlocked
+                        ? 'grey'
+                        : !potentialitem.valid_choice
                           ? 'red'
-                          : 'blue'
+                          : potentialitem.quantity === 0
+                            ? 'red'
+                            : 'blue'
                   }
                 >
                   <Flex align="center">
@@ -220,11 +235,13 @@ export const IndividualLoadouts = (props) => {
                           'campaign_loadout_items18x18',
                           selectedPossibleItem.name === potentialitem.name
                             ? potentialitem.icon + '_orange'
-                            : potentialitem.valid_choice === 0
-                              ? potentialitem.icon + '_red'
-                              : potentialitem.quantity === 0
+                            : !potentialitem.unlocked
+                              ? potentialitem.icon + '_grey'
+                              : !potentialitem.valid_choice
                                 ? potentialitem.icon + '_red'
-                                : potentialitem.icon + '_blue',
+                                : potentialitem.quantity === 0
+                                  ? potentialitem.icon + '_red'
+                                  : potentialitem.icon + '_blue',
                         ])}
                       />
                     )}

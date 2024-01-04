@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT_TYPED(campaign_loadout_item_type_list, /datum/loadout_item, ini
 			continue
 		.[item_type.type] = item_type
 
-//List of all loadout_item datums by job, excluding ones that must be unlocked
+//List of all loadout_item datums by job, excluding ones that must be unlocked //now including those
 GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_role())
 
 /proc/init_campaign_loadout_items_by_role()
@@ -29,8 +29,8 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 		.[job] = list()
 		for(var/i in GLOB.campaign_loadout_item_type_list)
 			var/datum/loadout_item/option = GLOB.campaign_loadout_item_type_list[i]
-			if(!(option.loadout_item_flags & LOADOUT_ITEM_ROUNDSTART_OPTION))
-				continue
+			//if(!(option.loadout_item_flags & LOADOUT_ITEM_ROUNDSTART_OPTION) && !(option.loadout_item_flags & LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE))
+			//	continue
 			if(option.jobs_supported && !(job in option.jobs_supported))
 				continue
 			.[job] += option
@@ -399,3 +399,5 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
 	jobs_supported = list(SQUAD_MARINE)
+	unlock_cost = 2
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE

@@ -87,6 +87,9 @@ export const IndividualStats = (props) => {
   const [equipPotentialItem, setEquippedItem] =
     useLocalState<LoadoutItemData | null>('equipPotentialItem', null);
 
+  const [unlockPotentialItem, setUnlockedItem] =
+    useLocalState<LoadoutItemData | null>('equipPotentialItem', null);
+
   return (
     <Window
       theme={data.ui_theme}
@@ -154,6 +157,41 @@ export const IndividualStats = (props) => {
                 <Stack.Item>
                   <Button
                     onClick={() => setEquippedItem(null)}
+                    icon={'times'}
+                    color="red"
+                  >
+                    No
+                  </Button>
+                </Stack.Item>
+              </Stack>
+            </Section>
+          </Modal>
+        ) : null}
+        {unlockPotentialItem ? (
+          <Modal width="500px">
+            <Section
+              textAlign="center"
+              title={'Unlock ' + unlockPotentialItem.name + '?'}
+            >
+              <Stack justify="space-around">
+                <Stack.Item>
+                  <Button
+                    onClick={() => {
+                      act('unlock_item', {
+                        unlocked_item: unlockPotentialItem.type,
+                        selected_job: unlockPotentialItem.job,
+                      });
+                      setUnlockedItem(null);
+                    }}
+                    icon={'check'}
+                    color="green"
+                  >
+                    Yes
+                  </Button>
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    onClick={() => setUnlockedItem(null)}
                     icon={'times'}
                     color="red"
                   >

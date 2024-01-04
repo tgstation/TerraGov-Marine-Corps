@@ -18,6 +18,7 @@
 	loadout = new /datum/outfit/quick
 	for(var/slot in GLOB.campaign_loadout_slots)
 		available_list["[slot]"] = list()
+		purchasable_list["[slot]"] = list()
 		for(var/datum/loadout_item/loadout_item AS in GLOB.campaign_loadout_items_by_role[role])
 			if(loadout_item.item_slot != slot)
 				continue

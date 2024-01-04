@@ -161,8 +161,7 @@
 
 	//loadout stuff
 	var/list/equipped_loadouts_data = list() //shit currently equipped to ALL job outfits
-	var/list/available_loadouts_data = list() //all available loadout options
-	var/list/purchasable_loadouts_data = list() //all purchasable loadout options.
+	var/list/available_loadouts_data = list() //all available AND purchasable loadout options
 	var/list/outfit_cost_data = list() //Current cost of all outfits
 	for(var/job in loadouts)
 		var/datum/outfit_holder/outfit = loadouts[job]
@@ -228,11 +227,10 @@
 				purchasable_loadout_item_data["quantity"] = loadout_item.quantity
 				purchasable_loadout_item_data["requirements"] = loadout_item.req_desc
 				purchasable_loadout_item_data["unlocked"] = FALSE
-				purchasable_loadouts_data += list(purchasable_loadout_item_data)
+				available_loadouts_data += list(purchasable_loadout_item_data)
 
 	data["equipped_loadouts_data"] = equipped_loadouts_data
 	data["available_loadouts_data"] = available_loadouts_data
-	data["purchasable_loadouts_data"] = purchasable_loadouts_data
 	data["outfit_cost_data"] = outfit_cost_data
 
 	return data
@@ -270,6 +268,23 @@
 				if(!istype(item, equipped_item_type))
 					continue
 				loadouts[equipped_item_job].attempt_equip_loadout_item(item)
+				update_static_data(user)
+				return TRUE
+		if("unlock_item")
+			var/equipped_item_type = text2path(params["unlocked_item"])
+			if(!equipped_item_type)
+				return
+			var/equipped_item_job = params["selected_job"]
+			if(!equipped_item_job)
+				return
+			for(var/datum/loadout_item/item AS in GLOB.campaign_loadout_items_by_role[equipped_item_job])
+				if(!istype(item, equipped_item_type))
+					continue
+				var/insufficient_credits = use_funds(item.unlock_cost)
+				if(insufficient_credits)
+					to_chat(user, "<span class='warning'>Requires [insufficient_credits] more credits.")
+					return
+				loadouts[equipped_item_job].unlock_new_option(item)
 				update_static_data(user)
 				return TRUE
 		if("equip_outfit")
