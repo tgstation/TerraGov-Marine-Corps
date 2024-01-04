@@ -29,9 +29,10 @@ export const IndividualLoadouts = (props) => {
     'selectedPossibleItem',
     available_loadouts_data[0],
   );
-  const selectedOutfitCostData = outfit_cost_data.find(
-    (OutfitCostData) => OutfitCostData.job === selectedJob,
-  );
+  const selectedOutfitCostData =
+    outfit_cost_data.find(
+      (OutfitCostData) => OutfitCostData.job === selectedJob,
+    ) || outfit_cost_data[0];
 
   return (
     <Stack>
@@ -114,8 +115,14 @@ export const IndividualLoadouts = (props) => {
         </Stack>
       </Stack.Item>
       <Stack.Item>
-        <Section vertical title={selectedJob + ' loadout'}>
-          Equip cost: {selectedOutfitCostData?.outfit_cost}
+        <Section
+          vertical
+          title={selectedJob + ' loadout'}
+          textColor={
+            selectedOutfitCostData.outfit_cost < data.currency ? 'white' : 'red'
+          }
+        >
+          Equip cost: {selectedOutfitCostData.outfit_cost}
         </Section>
         <Section
           vertical
