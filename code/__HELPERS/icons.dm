@@ -967,7 +967,7 @@ ColorTone(rgb, tone)
 	WRITE_FILE(dummySave["dummy"], icon)
 	var/iconData = dummySave.ExportText("dummy")
 	var/list/partial = splittext(iconData, "{")
-	. = replacetext(copytext_char(partial[2], 3, -5), "\n", "") //if cleanup fails we want to still return the correct base64
+	return replacetext(copytext_char(partial[2], 3, -5), "\n", "") //if cleanup fails we want to still return the correct base64
 
 ///given a text string, returns whether it is a valid dmi icons folder path
 /proc/is_valid_dmi_file(icon_path)
