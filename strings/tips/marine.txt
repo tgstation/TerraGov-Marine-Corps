@@ -92,8 +92,10 @@ As an engineer, repair the mining wells. These mining machines will mine phoron 
 As an engineer, placing turrets on open spaces and without defenses is a poor choice.
 As a corpsman, the MEDEVAC stretcher needs to be linked to an active, powered beacon for it to teleport the patient.
 As a corpsman, you can prevent anyone from moving your MEDEVAC beacon by locking it with your ID.
+As a corpsman,  if there's no medbay staff, put MEDEVAC in the hallway right outside the medbay door since autodoc will drain medbay's APC and a risk that power goes out, preventing you from MEDEVACing your patient.
 As a corpsman, the marines are counting on you to fix them up.
 As a corpsman, scan before you treat and you can't be beat.
+As a corpsman, if you see nanites in their system, DO NOT give them hypervene.
 As a corpsman or doctor, remember that your HUD will tell you how much time is left to defibrillate a patient. From highest to lowest: yellow, orange and red.
 As a corpsman, remember to bring extra kelotane or dermaline to heal burn damage. Xenos love acid and burning marines.
 As a corpsman, hypervene is useful. Use it to purge deadly xenomorph toxins.
@@ -156,7 +158,7 @@ Medbay may sometimes run out of power. To avoid this, scream at your nearest eng
 Doctor's Delight is one of the few healing chemicals that cannot be overdosed.
 Nanites are often not worth the risks.
 You can fit more than water in a canteen.
-15u from a standard inaprovaline injector will instantly heal 30% of all damage on someone in critical condition. They are in a critical state when they are laying on the ground, look asleep, and are gasping for air!
+15u from a standard inaprovaline injector will instantly heal 30% of all damage on someone in critical condition. Marines in critical state will be laying on the ground, sleeping, and gasping for air!
 There is a bazaar of weapons and tactics. Don't be afraid to find your niche!
 Always stick to your squad, or at least have a buddy.
 Walking to and from the FOB by yourself is an easy way to die.
