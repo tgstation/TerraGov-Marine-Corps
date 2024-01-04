@@ -1,3 +1,5 @@
+import { classes } from 'common/react';
+
 import { useBackend, useLocalState } from '../../backend';
 import {
   Box,
@@ -7,7 +9,7 @@ import {
   Section,
   Stack,
 } from '../../components';
-import { AssetIcon, CampaignData, FactionReward } from './index';
+import { CampaignData, FactionReward } from './index';
 
 export const CampaignAssets = (props) => {
   const { act, data } = useBackend<CampaignData>();
@@ -53,23 +55,23 @@ export const CampaignAssets = (props) => {
                 }
               >
                 <Flex align="center">
-                  {!!reward.icon && (
-                    <AssetIcon
-                      icon={
-                        selectedReward.name === reward.name
-                          ? reward.icon + '_red'
-                          : reward.currently_active
-                            ? reward.icon + '_orange'
-                            : reward.is_debuff
-                              ? reward.icon + '_red'
-                              : reward.uses_remaining > 0
-                                ? reward.icon + '_blue'
-                                : reward.uses_remaining < 0
-                                  ? reward.icon + '_red'
-                                  : reward.icon + '_grey'
-                      }
-                    />
-                  )}
+                  <Flex.Item
+                    mr={1.5}
+                    className={classes([
+                      'campaign_assets18x18',
+                      selectedReward.name === reward.name
+                        ? reward.icon + '_red'
+                        : reward.currently_active
+                          ? reward.icon + '_orange'
+                          : reward.is_debuff
+                            ? reward.icon + '_red'
+                            : reward.uses_remaining > 0
+                              ? reward.icon + '_blue'
+                              : reward.uses_remaining < 0
+                                ? reward.icon + '_red'
+                                : reward.icon + '_grey',
+                    ])}
+                  />
                   {reward.name}
                 </Flex>
               </Button>
@@ -83,15 +85,13 @@ export const CampaignAssets = (props) => {
             selectedReward ? (
               <Box>
                 <Flex align="center">
-                  <Flex.Item>
-                    {
-                      <AssetIcon
-                        icon={selectedReward.icon + '_orange'}
-                        icon_width={'36px'}
-                        icon_height={'36px'}
-                      />
-                    }
-                  </Flex.Item>
+                  <Flex.Item
+                    mr={1.5}
+                    className={classes([
+                      'campaign_assets36x36',
+                      selectedReward.icon + '_orange' + '_big',
+                    ])}
+                  />
                   <Flex.Item fontSize="150%" grow={1}>
                     {selectedReward.name}
                   </Flex.Item>
