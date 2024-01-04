@@ -149,7 +149,9 @@
 
 /datum/asset/spritesheet/campaign
 	name = "campaign_base"
+	///The dmi file used for this spritesheet
 	var/icon_sheet
+	///The list of icon names to use for this sprite sheet
 	var/list/icon_names
 
 /datum/asset/spritesheet/campaign/create_spritesheets()
