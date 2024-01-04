@@ -115,7 +115,7 @@ Ammo is infinite, but carrying ammo is finite. Bring a box with you.
 The RO works very hard. Be nice to them.
 While using aim mode, bipods and red-dot-sights allow you to shoot faster.
 Chemrette cigarettes can be very useful.
-Sleeping will slowly heal cloneloss.
+Sleeping will slowly heal cloneloss. To faciliate this, a bed and a blanket will increase healing off cloneloss.
 As a mech-pilot, speed is not very important.
 As a mech-pilot, keep a close eye on your teamates. You lead the front!
 As a mech-pilot, the only weapon that has IFF is the sniper, everything else can friendly-fire marines.
