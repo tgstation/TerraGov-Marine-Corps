@@ -88,7 +88,7 @@ export const IndividualStats = (props) => {
     useLocalState<LoadoutItemData | null>('equipPotentialItem', null);
 
   const [unlockPotentialItem, setUnlockedItem] =
-    useLocalState<LoadoutItemData | null>('equipPotentialItem', null);
+    useLocalState<LoadoutItemData | null>('unlockPotentialItem', null);
 
   return (
     <Window
