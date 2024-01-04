@@ -188,6 +188,7 @@
 			current_loadout_item_data["icon"] = loadout_item.ui_icon //todo: Figure out if this works from a ui perspective, or if an 'ui_icon' is needed like assets
 			current_loadout_item_data["quantity"] = loadout_item.quantity //current amount. atm would not update other people's UI if quantity changes
 			current_loadout_item_data["requirements"] = loadout_item.req_desc //Additional desc covering special reqs such as blacklist/whitelist
+			current_loadout_item_data["unlocked"] = TRUE
 
 			equipped_item_ui_data["item_type"] = current_loadout_item_data
 			equipped_item_ui_data["slot"] = slot
