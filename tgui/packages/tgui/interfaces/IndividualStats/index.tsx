@@ -84,8 +84,10 @@ export const IndividualStats = (props) => {
     null,
   );
 
-  const [equipPotentialItem, setEquippedItem] =
-    useLocalState<LoadoutItemData | null>('equipPotentialItem', null);
+  const [equipOutfit, setEquippedOutfit] = useLocalState<OutfitCostData | null>(
+    'equipOutfit',
+    null,
+  );
 
   const [unlockPotentialItem, setUnlockedItem] =
     useLocalState<LoadoutItemData | null>('unlockPotentialItem', null);
@@ -132,21 +134,17 @@ export const IndividualStats = (props) => {
             </Section>
           </Modal>
         ) : null}
-        {equipPotentialItem ? (
+        {equipOutfit ? (
           <Modal width="500px">
-            <Section
-              textAlign="center"
-              title={'Equip ' + equipPotentialItem.name + '?'}
-            >
+            <Section textAlign="center" title={'Equip loadout?'}>
               <Stack justify="space-around">
                 <Stack.Item>
                   <Button
                     onClick={() => {
-                      act('equip_item', {
-                        selected_item: equipPotentialItem.type,
-                        selected_job: equipPotentialItem.job,
+                      act('equip_outfit', {
+                        outfit_job: equipOutfit.job,
                       });
-                      setEquippedItem(null);
+                      setEquippedOutfit(null);
                     }}
                     icon={'check'}
                     color="green"
@@ -156,7 +154,7 @@ export const IndividualStats = (props) => {
                 </Stack.Item>
                 <Stack.Item>
                   <Button
-                    onClick={() => setEquippedItem(null)}
+                    onClick={() => setEquippedOutfit(null)}
                     icon={'times'}
                     color="red"
                   >

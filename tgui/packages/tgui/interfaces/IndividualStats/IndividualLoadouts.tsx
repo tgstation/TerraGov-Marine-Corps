@@ -9,14 +9,16 @@ import {
   Section,
   Stack,
 } from '../../components';
-import { IndividualData, LoadoutItemData } from './index';
+import { IndividualData, LoadoutItemData, OutfitCostData } from './index';
 
 export const IndividualLoadouts = (props) => {
   const { act, data } = useBackend<IndividualData>();
   const { equipped_loadouts_data, available_loadouts_data, outfit_cost_data } =
     data;
-  const [equipPotentialItem, setEquippedItem] =
-    useLocalState<LoadoutItemData | null>('equipPotentialItem', null);
+  const [equipOutfit, setEquippedOutfit] = useLocalState<OutfitCostData | null>(
+    'equipOutfit',
+    null,
+  );
 
   const [unlockPotentialItem, setUnlockedItem] =
     useLocalState<LoadoutItemData | null>('unlockPotentialItem', null);
@@ -55,11 +57,7 @@ export const IndividualLoadouts = (props) => {
                 : 'Equip Loadout'
             }
             disabled={selectedOutfitCostData.outfit_cost > data.currency}
-            onClick={() =>
-              act('equip_outfit', {
-                outfit_job: selectedJob,
-              })
-            }
+            onClick={() => setEquippedOutfit(selectedOutfitCostData)}
           >
             Equip outfit
           </Button>
@@ -162,7 +160,12 @@ export const IndividualLoadouts = (props) => {
                     <Flex.Item alight="right" position="end">
                       <Button
                         disabled={!selectedPossibleItem.valid_choice}
-                        onClick={() => setEquippedItem(selectedPossibleItem)}
+                        onClick={() =>
+                          act('equip_item', {
+                            selected_item: selectedPossibleItem.type,
+                            selected_job: selectedPossibleItem.job,
+                          })
+                        }
                         icon={'check'}
                       >
                         Equip
