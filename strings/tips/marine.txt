@@ -1,7 +1,7 @@
 Go to Valhalla to experiment with loadouts and weapons. You don't reset your respawn time in Valhalla!
 Catch larval facehuggers by having an empty hand and throw mode on.
 Standing in a corner on harm intent stops you from behing shuffled, unless you're a marine and a xenomorph on help intent walks into you.
-Jumping will allow you to throw grenades farther, and over allies. Yeet that grenades to xenomorphs!
+Jumping will allow you to throw grenades farther, and over allies. Yeet those grenades to xenomorphs!
 Hunger will slow you down. A single protein bar will fill many, if not every, people. Take an extra protein bar too much and you become slower (ironic) and fat.
 If you are low on blood, eating food can help you replenish missing blood.
 Roll on snow to instantly extinguish fire.
@@ -19,7 +19,7 @@ Resin structures are weaker to melee than they are to bullets. Take out your kni
 Always clear weeds and alien structures as you advance. A resin maze forces marines to engage in CQC against xenomorphs, which decreases your survival rate. That said, this increases your PB chances!
 Always check for traps beneath loose objects on weeds - it could save your FACE!
 As a human, you can do almost anything if you put your mind to it; it just takes time.
-You can link plasteel barricades together using a crowbar. Click one, and then click one adjacent. Repeat as needed.
+Any marines can link plasteel barricades together using a crowbar. Click one, and then click one adjacent. Repeat as needed.
 A lone marine is a dead marine and a happy xeno. Stick together!
 Be mindful when using hand grenades. Getting stunned or knocked over after priming a grenade will drop it at your feet. This is obviously very dangerous for not only you, but your friends as well.
 Watch out for friendly fire and marines not in aim mode. Make sure you're not walking into anyone's firing line, and make sure no one else is in yours!
