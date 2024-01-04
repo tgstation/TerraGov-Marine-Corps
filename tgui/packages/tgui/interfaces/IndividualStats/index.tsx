@@ -37,6 +37,7 @@ export type IndividualData = {
   mission_icons?: string[];
   equipped_loadouts_data: EquippedItemData[];
   available_loadouts_data: LoadoutItemData[];
+  purchasable_loadouts_data: LoadoutItemData[];
   outfit_slots: string[];
   outfit_cost_data: OutfitCostData[];
 };
@@ -64,6 +65,7 @@ export type LoadoutItemData = {
   icon?: string;
   quantity: number;
   requirements?: string;
+  unlocked: number;
 };
 
 export const IndividualStats = (props) => {

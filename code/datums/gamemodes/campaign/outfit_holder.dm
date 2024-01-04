@@ -9,25 +9,30 @@
 	var/loadout_cost = 0
 	///Items available to be equipped
 	var/list/list/datum/loadout_item/available_list = list() //only used for ui data purposes
+	///Items available to be purchased
+	var/list/list/datum/loadout_item/purchasable_list = list() //only used for ui data purposes
 
 /datum/outfit_holder/New(new_role)
 	. = ..()
 	role = new_role
 	loadout = new /datum/outfit/quick
 	for(var/slot in GLOB.campaign_loadout_slots)
+		available_list["[slot]"] = list()
 		for(var/datum/loadout_item/loadout_item AS in GLOB.campaign_loadout_items_by_role[role])
-			if(!loadout_item.default_item)
-				continue
 			if(loadout_item.item_slot != slot)
 				continue
-			equipped_things["[slot]"] = loadout_item
-		available_list["[slot]"] = list()
-	for(var/datum/loadout_item/loadout_option AS in GLOB.campaign_loadout_items_by_role[role])
-		available_list["[loadout_option.item_slot]"] += loadout_option
+			if(loadout_item.loadout_item_flags & LOADOUT_ITEM_DEFAULT_CHOICE)
+				equipped_things["[slot]"] = loadout_item
+			if(loadout_item.loadout_item_flags & LOADOUT_ITEM_ROUNDSTART_OPTION)
+				available_list["[loadout_item.item_slot]"] += loadout_item
+				continue
+			if(loadout_item.loadout_item_flags & LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE)
+				purchasable_list["[loadout_item.item_slot]"] += loadout_item
 
 /datum/outfit_holder/Destroy(force, ...)
 	equipped_things = null
 	available_list = null
+	purchasable_list = null
 	QDEL_NULL(loadout)
 	return ..()
 
@@ -43,10 +48,19 @@
 	//insert post equip magic here
 
 ///Adds a new loadout_item to the available list
-/datum/outfit_holder/proc/add_new_option(datum/loadout_item/new_item)
+/datum/outfit_holder/proc/unlock_new_option(datum/loadout_item/new_item)
 	if(new_item in available_list["[new_item.item_slot]"])
 		return
 	available_list["[new_item.item_slot]"] += new_item
+	purchasable_list["[new_item.item_slot]"] -= new_item
+
+///Adds a new loadout_item to the purchasable list
+/datum/outfit_holder/proc/allow_new_option(datum/loadout_item/new_item)
+	if(new_item in purchasable_list["[new_item.item_slot]"])
+		return
+	if(new_item in available_list["[new_item.item_slot]"])
+		return
+	purchasable_list["[new_item.item_slot]"] += new_item
 
 ///Tries to add a datum if valid
 /datum/outfit_holder/proc/attempt_equip_loadout_item(datum/loadout_item/new_item)

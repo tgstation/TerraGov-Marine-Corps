@@ -91,7 +91,7 @@
 		if(!unlocked_items[supported_job])
 			continue
 		unlocked_items[supported_job] += new_item
-		loadouts[supported_job].add_new_option(new_item)
+		loadouts[supported_job].unlock_new_option(new_item)
 
 ///Applies all perks to a mob
 /datum/individual_stats/proc/apply_perks()
@@ -161,7 +161,8 @@
 
 	//loadout stuff
 	var/list/equipped_loadouts_data = list() //shit currently equipped to ALL job outfits
-	var/list/available_loadouts_data = list() //all available shit. note this currently does not include non purchased stuff
+	var/list/available_loadouts_data = list() //all available loadout options
+	var/list/purchasable_loadouts_data = list() //all purchasable loadout options.
 	var/list/outfit_cost_data = list() //Current cost of all outfits
 	for(var/job in loadouts)
 		var/datum/outfit_holder/outfit = loadouts[job]
@@ -209,10 +210,29 @@
 				available_loadout_item_data["icon"] = loadout_item.ui_icon
 				available_loadout_item_data["quantity"] = loadout_item.quantity
 				available_loadout_item_data["requirements"] = loadout_item.req_desc
+				available_loadout_item_data["unlocked"] = TRUE
 				available_loadouts_data += list(available_loadout_item_data)
+
+		for(var/slot in outfit.purchasable_list)
+			for(var/datum/loadout_item/loadout_item AS in outfit.purchasable_list[slot])
+				var/list/purchasable_loadout_item_data = list()
+				purchasable_loadout_item_data["name"] = loadout_item.name
+				purchasable_loadout_item_data["job"] = outfit.role
+				purchasable_loadout_item_data["slot"] = GLOB.inventory_slots_to_string["[loadout_item.item_slot]"]
+				purchasable_loadout_item_data["type"] = loadout_item.type
+				purchasable_loadout_item_data["desc"] = loadout_item.desc
+				purchasable_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
+				purchasable_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost
+				purchasable_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit)
+				purchasable_loadout_item_data["icon"] = loadout_item.ui_icon
+				purchasable_loadout_item_data["quantity"] = loadout_item.quantity
+				purchasable_loadout_item_data["requirements"] = loadout_item.req_desc
+				purchasable_loadout_item_data["unlocked"] = FALSE
+				purchasable_loadouts_data += list(purchasable_loadout_item_data)
 
 	data["equipped_loadouts_data"] = equipped_loadouts_data
 	data["available_loadouts_data"] = available_loadouts_data
+	data["purchasable_loadouts_data"] = purchasable_loadouts_data
 	data["outfit_cost_data"] = outfit_cost_data
 
 	return data

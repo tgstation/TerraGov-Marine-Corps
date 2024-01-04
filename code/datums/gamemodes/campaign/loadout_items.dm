@@ -1,3 +1,10 @@
+///Available by default
+#define LOADOUT_ITEM_ROUNDSTART_OPTION (1<<0)
+///This is the default option for this slot
+#define LOADOUT_ITEM_DEFAULT_CHOICE (1<<1)
+///Available for unlock by default
+#define LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE (1<<2)
+
 GLOBAL_LIST_INIT(campaign_loadout_slots, list(ITEM_SLOT_OCLOTHING, ITEM_SLOT_ICLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_EYES, ITEM_SLOT_EARS, \
 ITEM_SLOT_MASK, ITEM_SLOT_HEAD, ITEM_SLOT_FEET, ITEM_SLOT_ID, ITEM_SLOT_BELT, ITEM_SLOT_BACK, ITEM_SLOT_R_POCKET, ITEM_SLOT_L_POCKET, ITEM_SLOT_SUITSTORE))
 
@@ -22,7 +29,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 		.[job] = list()
 		for(var/i in GLOB.campaign_loadout_item_type_list)
 			var/datum/loadout_item/option = GLOB.campaign_loadout_item_type_list[i]
-			if(!option.round_start_option)
+			if(!(option.loadout_item_flags & LOADOUT_ITEM_ROUNDSTART_OPTION))
 				continue
 			if(option.jobs_supported && !(job in option.jobs_supported))
 				continue
@@ -43,8 +50,8 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	var/ui_icon = "b18" //placeholder
 	///inventory slot it is intended to go into
 	var/item_slot
-	///Available at round start or must be unlocked somehow
-	var/round_start_option = TRUE
+
+	var/loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 	///Cost to unlock this option
 	var/unlock_cost = 0
 	///Cost to use this option
@@ -57,13 +64,11 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	var/list/item_whitelist
 	///assoc list by slot of items blacklisted for this to be equipped
 	var/list/item_blacklist
-	///Default item for this slot
-	var/default_item = FALSE
 	//do we need a post equip gear list?
 
 /datum/loadout_item/New()
 	. = ..()
-	if(default_item)
+	if(loadout_item_flags & LOADOUT_ITEM_DEFAULT_CHOICE)
 		jobs_supported = GLOB.campaign_jobs
 
 ///Attempts to add an item to a loadout
@@ -97,7 +102,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/suit_slot/empty
 	name = "no suit"
 	desc = ""
-	default_item = TRUE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/heavy_shield
 	name = "Heavy shielded"
@@ -125,7 +130,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/helmet/empty
 	name = "no helmet"
 	desc = ""
-	default_item = TRUE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/helmet/standard
 	name = "M10X"
@@ -170,7 +175,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/uniform/empty
 	name = "no uniform"
 	desc = ""
-	default_item = TRUE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/uniform/marine_standard
 	name = "TGMC uniform"
@@ -191,7 +196,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/gloves/empty
 	name = "no gloves"
 	desc = ""
-	default_item = TRUE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/gloves/marine_gloves
 	name = "Standard combat gloves"
@@ -212,7 +217,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/eyes/empty
 	name = "no eyewear"
 	desc = ""
-	default_item = TRUE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/eyes/health_hud
 	name = "HealthMate HUD"
@@ -234,7 +239,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/ears/empty
 	name = "no headset"
 	desc = ""
-	default_item = TRUE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/ears/marine_standard
 	name = "Standard headset"
@@ -249,7 +254,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/mask/empty
 	name = "no mask"
 	desc = ""
-	default_item = TRUE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/mask/standard
 	name = "Standard gas mask"
@@ -270,7 +275,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/feet/empty
 	name = "no footwear"
 	desc = ""
-	default_item = TRUE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/feet/marine_boots
 	name = "Combat boots"
@@ -291,7 +296,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/belt/empty
 	name = "no belt"
 	desc = ""
-	default_item = TRUE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/belt/t12_ammo
 	name = "T12 ammo belt"
@@ -312,7 +317,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/back/empty
 	name = "no backpack"
 	desc = ""
-	default_item = TRUE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/back/marine_satchel
 	name = "Satchel"
@@ -333,7 +338,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/r_pocket/empty
 	name = "no right pocket"
 	desc = ""
-	default_item = TRUE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/r_pocket/standard_first_aid
 	name = "First aid pouch"
@@ -356,7 +361,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/l_pocket/empty
 	name = "no left pocket"
 	desc = ""
-	default_item = TRUE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/l_pocket/standard_first_aid
 	name = "First aid pouch"
@@ -379,7 +384,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/suit_store/empty
 	name = "no suit stored"
 	desc = ""
-	default_item = TRUE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_store/standard_rifle
 	name = "AR12"
