@@ -37,14 +37,7 @@
  * Standard mob ClickOn()
  * Handles exceptions: Buildmode, middle click, modified clicks, mech actions
  *
- * After that, mostly just check your state, check whether you're holding an item,
- * check whether you're adjacent to the target, then pass off the click to whoever
- * is receiving it.
- * The most common are:
- * * mob/UnarmedAttack(atom, adjacent, params) - used here only when adjacent, with no item in hand; in the case of humans, checks gloves
- * * atom/attackby(item, user, params) - used only when adjacent
- * * item/afterattack(atom, user, adjacent, params) - used both ranged and adjacent when not handled by attackby
- * * mob/RangedAttack(atom, params) - used only ranged, only used for tk and laser eyes but could be changed
+ * Does a few checks to make sure you are allowed to click, after which we look at modifiers and call the appropriate click proc
  */
 /mob/proc/ClickOn(atom/target, location, params)
 
@@ -96,7 +89,7 @@
 		return
 	if(modifiers["right"])
 		RightClickOn(target)
-		//return
+		return
 
 	//Middle clicking
 	if(modifiers["middle"] && modifiers["ctrl"])
@@ -125,17 +118,34 @@
 	if(modifiers["alt"])
 		AltClickOn(target)
 		return
+	//If there's no modifiers, we simply left click
+	LeftClickOn(target)
 
-	//Strictly left-clicking with no other modifiers
+/**
+ *
+ * Just checks your state, check whether you're holding an item,
+ * check whether you're adjacent to the target, then pass off the click to whoever
+ * is receiving it.
+ * The most common are:
+ * * mob/UnarmedAttack(atom, adjacent, params) - used here only when adjacent, with no item in hand; in the case of humans, checks gloves
+ * * atom/attackby(item, user, params) - used only when adjacent
+ * * item/afterattack(atom, user, adjacent, params) - used both ranged and adjacent when not handled by attackby
+ * * mob/RangedAttack(atom, params) - used only ranged, only used for tk and laser eyes but could be changed
+ */
+/mob/proc/item_click(atom/target, params)
 	if(in_throw_mode)
 		if(throw_item(target))
 			changeNext_move(CLICK_CD_THROWING)
-		return
+		return TRUE
 
+	var/list/modifiers = params2list(params)
 	var/obj/item/item_clicked_on = get_active_held_item()
 
 	if(item_clicked_on == target)
-		item_clicked_on.attack_self(src)
+		if(modifiers["right"])
+			item_clicked_on.attack_self_alternate(src)
+		else
+			item_clicked_on.attack_self(src)
 		update_inv_l_hand()
 		update_inv_r_hand()
 		return
@@ -143,8 +153,8 @@
 	//These are always reachable.
 	//User itself, current loc, and user inventory
 	if(target in DirectAccess())
-		if(item_clicked_on)
-			item_clicked_on.melee_attack_chain(src, target, params, modifiers["right"])
+		if(target)
+			target.melee_attack_chain(src, target, params, modifiers["right"])
 		else
 			UnarmedAttack(target, FALSE, modifiers)
 		return
@@ -310,12 +320,7 @@
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
 
-	var/obj/item/item_clicked_on = get_active_held_item()
-
-	if(item_clicked_on == target)
-		item_clicked_on.attack_self_alternate(src)
-		update_inv_l_hand()
-		update_inv_r_hand()
+	if(item_click(target, "right"))
 		return
 
 	return target.RightClick(src)
@@ -389,6 +394,10 @@
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
+
+	if(item_click(target, "middle"))
+		return
+
 	return target.MiddleClick(src)
 
 ///Called when a mob Middlemouseclicks this atom
@@ -472,6 +481,22 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 /**
  * Left Clicking
  */
+
+///Called when a owner mob Leftmouseclicks an atom
+/mob/proc/LeftClickOn(atom/target)
+	switch(SEND_SIGNAL(src, COMSIG_MOB_LEFT_CLICK, target))
+		if(COMSIG_MOB_CLICK_CANCELED)
+			return FALSE
+		if(COMSIG_MOB_CLICK_HANDLED)
+			return TRUE
+
+	if(item_click(target, "left"))
+		return
+
+	return target.LeftClick(src)
+
+/atom/proc/LeftClick(mob/user)
+	SEND_SIGNAL(src, COMSIG_LEFT_CLICK, user)
 
 ///Called when a owner mob CTRL + Leftmouseclicks an atom
 /mob/proc/CtrlClickOn(atom/target)

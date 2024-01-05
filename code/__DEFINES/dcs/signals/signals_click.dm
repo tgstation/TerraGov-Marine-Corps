@@ -6,6 +6,8 @@
 #define COMSIG_CLICK "atom_click"
 
 //Left Clicks
+///from base of atom/LeftClick(): (/mob)
+#define COMSIG_LEFT_CLICK "atom_left_click"
 ///from base of atom/CtrlClick(): (/mob)
 #define COMSIG_CTRL_LEFT_CLICK "atom_ctrl_click"
 ///from base of atom/ShiftClick(): (/mob)
@@ -50,6 +52,8 @@
 	#define COMSIG_MOB_CLICK_HANDLED (1<<1)
 
 //Left Clicks
+///from base of mob/LeftClick(): (/mob)
+#define COMSIG_MOB_LEFT_CLICK "mob_left_click"
 ///from base of mob/CtrlClick(): (/mob)
 #define COMSIG_MOB_CTRL_LEFT_CLICK "mob_ctrl_click"
 ///from base of mob/ShiftClick(): (/mob)
