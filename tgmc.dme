@@ -588,6 +588,7 @@
 #include "code\datums\wires\radio.dm"
 #include "code\datums\wires\spaceship.dm"
 #include "code\datums\wires\vending.dm"
+#include "code\game\alternate_appearance.dm"
 #include "code\game\blood.dm"
 #include "code\game\buckling.dm"
 #include "code\game\communications.dm"

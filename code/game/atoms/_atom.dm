@@ -121,6 +121,8 @@
 
 	///vis overlays managed by SSvis_overlays to automaticaly turn them like other overlays.
 	var/list/managed_vis_overlays
+	///The list of alternate appearances for this atom
+	var/list/alternate_appearances
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -141,6 +143,11 @@ directive is properly returned.
 
 	if(isturf(loc))
 		loc.fingerprints = fingerprints
+
+	if(alternate_appearances)
+		for(var/K in alternate_appearances)
+			var/datum/atom_hud/alternate_appearance/AA = alternate_appearances[K]
+			AA.remove_from_hud(src)
 
 	return ..()
 
@@ -983,9 +990,14 @@ directive is properly returned.
 /atom/proc/prepare_huds()
 	hud_list = new
 	for(var/hud in hud_possible) //Providing huds.
-		var/image/new_hud = image('icons/mob/hud.dmi', src, "")
-		new_hud.appearance_flags = KEEP_APART
-		hud_list[hud] = new_hud
+		var/hint = hud_possible[hud]
+		switch(hint)
+			if(HUD_LIST_LIST)
+				hud_list[hud] = list()
+			else
+				var/image/I = image('icons/mob/hud.dmi', src, "")
+				I.appearance_flags = RESET_COLOR|RESET_TRANSFORM
+				hud_list[hud] = I
 
 /**
  * If this object has lights, turn it on/off.
