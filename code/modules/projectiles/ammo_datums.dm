@@ -4082,7 +4082,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/X = victim
-		if(!x.HAS_TRAIT(CASTE_PLASMADRAIN_IMMUNE))
+		if(!(X.xeno_caste.caste_flags & CASTE_PLASMADRAIN_IMMUNE))
 			X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
 			X.use_plasma(plasma_drain)
 
