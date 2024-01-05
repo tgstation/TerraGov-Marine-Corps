@@ -95,9 +95,19 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 			return FALSE
 	return TRUE
 
+///Any post equip things related to this item
+/datum/loadout_item/proc/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+
 //suits
 /datum/loadout_item/suit_slot
 	item_slot = ITEM_SLOT_OCLOTHING
+
+/datum/loadout_item/suit_slot/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/isotonic, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclot, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/empty
 	name = "no suit"
@@ -126,6 +136,10 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 //helmets
 /datum/loadout_item/helmet
 	item_slot = ITEM_SLOT_HEAD
+
+/datum/loadout_item/helmet/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_HEAD)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
 
 /datum/loadout_item/helmet/empty
 	name = "no helmet"
@@ -298,16 +312,10 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	desc = ""
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
-/datum/loadout_item/belt/t12_ammo
-	name = "T12 ammo belt"
+/datum/loadout_item/belt/ammo_belt
+	name = "ammo belt"
 	desc = "item desc here"
-	item_typepath = /obj/item/storage/belt/marine/t12
-	jobs_supported = list(SQUAD_MARINE)
-
-/datum/loadout_item/belt/te_cell_ammo //will likely be loaded in post equip later
-	name = "TE cell ammo belt"
-	desc = "item desc here"
-	item_typepath = /obj/item/storage/belt/marine/te_cells
+	item_typepath = /obj/item/storage/belt/marine
 	jobs_supported = list(SQUAD_MARINE)
 
 //back
@@ -386,14 +394,53 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	desc = ""
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
-/datum/loadout_item/suit_store/standard_rifle
+/datum/loadout_item/suit_store/main_gun
+	var/ammo_type
+
+/datum/loadout_item/suit_store/main_gun/New()
+	. = ..()
+	if(ammo_type)
+		return
+	var/obj/item/weapon/gun/weapon_type = item_typepath
+	ammo_type = weapon_type::default_ammo_type
+
+/datum/loadout_item/suit_store/main_gun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
+
+/datum/loadout_item/suit_store/main_gun/tgmc_standard_rifleman
 	name = "AR12"
 	desc = "item desc here"
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
 	jobs_supported = list(SQUAD_MARINE)
 
-/datum/loadout_item/suit_store/laser_rifle
+/datum/loadout_item/suit_store/main_gun/tgmc_standard_rifleman/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	. = ..()
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_ACCESSORY)
+
+	if(istype(wearer.back, /obj/item/storage))
+		wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/standard_heavypistol/tactical(wearer), SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	if(istype(wearer.back, /obj/item/storage/backpack))
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/suit_store/main_gun/laser_rifle
 	name = "Laser rifle"
 	desc = "item desc here"
 	ui_icon = "lasergun"

@@ -39,13 +39,14 @@
 
 ///Equips the loadout to a mob
 /datum/outfit_holder/proc/equip_loadout(mob/living/carbon/human/owner)
+	loadout.equip(owner)
 	for(var/slot in equipped_things)
 		var/datum/loadout_item/thing_to_check = equipped_things["[slot]"]
 		if(!thing_to_check)
 			continue
 		if(thing_to_check.quantity > 0)
 			thing_to_check.quantity --
-	loadout.equip(owner)
+		thing_to_check.post_equip(owner, loadout)
 	//insert post equip magic here
 
 ///Adds a new loadout_item to the available list
