@@ -9348,7 +9348,7 @@
 /area/patricks_rest/surface/building/residential_cent)
 "RL" = (
 /obj/structure/closet/crate/mass_produced_crate/supply,
-/obj/item/stack/sheet/glass/large_stack,
+/obj/item/stack/sheet/glass/glass/large_stack,
 /turf/open/floor/prison/darkbrown/full,
 /area/patricks_rest/surface/building/ore_storage)
 "RN" = (

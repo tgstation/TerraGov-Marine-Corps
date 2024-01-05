@@ -14025,7 +14025,7 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced,
-/obj/item/stack/sheet/glass{
+/obj/item/stack/sheet/glass/glass{
 	amount = 50;
 	pixel_x = 3;
 	pixel_y = 3
@@ -14557,7 +14557,7 @@
 /obj/machinery/light/mainship/small{
 	dir = 1
 	},
-/obj/item/stack/sheet/glass{
+/obj/item/stack/sheet/glass/glass{
 	amount = 50;
 	pixel_x = 3;
 	pixel_y = 3

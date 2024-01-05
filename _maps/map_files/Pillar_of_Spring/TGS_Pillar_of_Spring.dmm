@@ -13278,7 +13278,7 @@
 /area/mainship/squads/req)
 "qHv" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/stack/sheet/glass{
+/obj/item/stack/sheet/glass/glass{
 	amount = 50;
 	pixel_x = 3;
 	pixel_y = 3
