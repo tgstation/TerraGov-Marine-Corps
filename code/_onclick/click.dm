@@ -79,47 +79,47 @@
 
 	//Right clicking
 	if(modifiers["right"] && modifiers["ctrl"])
-		CtrlRightClickOn(target)
+		CtrlRightClickOn(target, params)
 		return
 	if(modifiers["right"] && modifiers["shift"])
-		ShiftRightClickOn(target)
+		ShiftRightClickOn(target, params)
 		return
 	if(modifiers["right"] && modifiers["alt"])
-		AltRightClickOn(target)
+		AltRightClickOn(target, params)
 		return
 	if(modifiers["right"])
-		RightClickOn(target)
+		RightClickOn(target, params)
 		return
 
 	//Middle clicking
 	if(modifiers["middle"] && modifiers["ctrl"])
-		CtrlMiddleClickOn(target)
+		CtrlMiddleClickOn(target, params)
 		return
 	if(modifiers["middle"] && modifiers["shift"])
-		ShiftMiddleClickOn(target)
+		ShiftMiddleClickOn(target, params)
 		return
 	if(modifiers["middle"] && modifiers["alt"])
-		AltMiddleClickOn(target)
+		AltMiddleClickOn(target, params)
 		return
 	if(modifiers["middle"])
-		MiddleClickOn(target)
+		MiddleClickOn(target, params)
 		return
 
 	//Left clicking
 	if(modifiers["ctrl"] && modifiers["shift"])
-		CtrlShiftClickOn(target)
+		CtrlShiftClickOn(target, params)
 		return
 	if(modifiers["ctrl"])
-		CtrlClickOn(target)
+		CtrlClickOn(target, params)
 		return
 	if(modifiers["shift"])
-		ShiftClickOn(target)
+		ShiftClickOn(target, params)
 		return
 	if(modifiers["alt"])
-		AltClickOn(target)
+		AltClickOn(target, params)
 		return
 	//If there's no modifiers, we simply left click
-	LeftClickOn(target)
+	LeftClickOn(target, params)
 
 /**
  *
@@ -148,16 +148,16 @@
 			item_clicked_on.attack_self(src)
 		update_inv_l_hand()
 		update_inv_r_hand()
-		return
+		return TRUE
 
 	//These are always reachable.
 	//User itself, current loc, and user inventory
 	if(target in DirectAccess())
-		if(target)
-			target.melee_attack_chain(src, target, params, modifiers["right"])
+		if(item_clicked_on)
+			item_clicked_on.melee_attack_chain(src, target, params, modifiers["right"])
 		else
 			UnarmedAttack(target, FALSE, modifiers)
-		return
+		return TRUE
 
 	//Can't reach anything else in lockers or other weirdness
 	if(!loc.AllowClick())
@@ -313,14 +313,14 @@
  */
 
 ///Called when a owner mob Rightmouseclicks an atom
-/mob/proc/RightClickOn(atom/target)
+/mob/proc/RightClickOn(atom/target, params)
 	switch(SEND_SIGNAL(src, COMSIG_MOB_RIGHT_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
 
-	if(item_click(target, "right"))
+	if(item_click(target, params))
 		return
 
 	return target.RightClick(src)
@@ -329,7 +329,7 @@
 /atom/proc/RightClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_RIGHT_CLICK, user)
 
-/mob/living/carbon/human/RightClickOn(atom/target)
+/mob/living/carbon/human/RightClickOn(atom/target, params)
 	var/obj/item/held_thing = get_active_held_item()
 
 	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_RIGHTCLICKON, target, src) & COMPONENT_ITEM_CLICKON_BYPASS)
@@ -345,7 +345,7 @@
 			return !CHECK_BITFIELD(selected_ability.use_state_flags, ABILITY_DO_AFTER_ATTACK)
 
 ///Called when a owner mob CTRL + Rightmouseclicks an atom
-/mob/proc/CtrlRightClickOn(atom/target)
+/mob/proc/CtrlRightClickOn(atom/target, params)
 	switch(SEND_SIGNAL(src, COMSIG_MOB_CTRL_RIGHT_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
@@ -358,7 +358,7 @@
 	SEND_SIGNAL(src, COMSIG_CTRL_RIGHT_CLICK, user)
 
 ///Called when a owner mob SHIFT + Rightmouseclicks an atom
-/mob/proc/ShiftRightClickOn(atom/target)
+/mob/proc/ShiftRightClickOn(atom/target, params)
 	switch(SEND_SIGNAL(src, COMSIG_MOB_SHIFT_RIGHT_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
@@ -371,7 +371,7 @@
 	SEND_SIGNAL(src, COMSIG_SHIFT_RIGHT_CLICK, user)
 
 ///Called when a owner mob ALT + Rightmouseclicks an atom
-/mob/proc/AltRightClickOn(atom/target)
+/mob/proc/AltRightClickOn(atom/target, params)
 	switch(SEND_SIGNAL(src, COMSIG_MOB_ALT_RIGHT_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
@@ -388,14 +388,14 @@
  */
 
 ///Called when a owner mob Middlemouseclicks an atom
-/mob/proc/MiddleClickOn(atom/target)
+/mob/proc/MiddleClickOn(atom/target, params)
 	switch(SEND_SIGNAL(src, COMSIG_MOB_MIDDLE_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
 
-	if(item_click(target, "middle"))
+	if(item_click(target, params))
 		return
 
 	return target.MiddleClick(src)
@@ -439,7 +439,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 		selected_ability.use_ability(A)
 
 ///Called when a owner mob CTRL + Middlemouseclicks an atom
-/mob/proc/CtrlMiddleClickOn(atom/target)
+/mob/proc/CtrlMiddleClickOn(atom/target, params)
 	switch(SEND_SIGNAL(src, COMSIG_MOB_CTRL_MIDDLE_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
@@ -452,7 +452,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	SEND_SIGNAL(src, COMSIG_CTRL_MIDDLE_CLICK, user)
 
 ///Called when a owner mob SHIFT + Middlemouseclicks an atom
-/mob/proc/ShiftMiddleClickOn(atom/target)
+/mob/proc/ShiftMiddleClickOn(atom/target, params)
 	switch(SEND_SIGNAL(src, COMSIG_MOB_SHIFT_MIDDLE_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
@@ -466,7 +466,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	SEND_SIGNAL(src, COMSIG_SHIFT_MIDDLE_CLICK, user)
 
 ///Called when a owner mob ALT + Middlemouseclicks an atom
-/mob/proc/AltMiddleClickOn(atom/target)
+/mob/proc/AltMiddleClickOn(atom/target, params)
 	switch(SEND_SIGNAL(src, COMSIG_MOB_ALT_MIDDLE_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
@@ -483,14 +483,14 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
  */
 
 ///Called when a owner mob Leftmouseclicks an atom
-/mob/proc/LeftClickOn(atom/target)
+/mob/proc/LeftClickOn(atom/target, params)
 	switch(SEND_SIGNAL(src, COMSIG_MOB_LEFT_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
 
-	if(item_click(target, "left"))
+	if(item_click(target, params))
 		return
 
 	return target.LeftClick(src)
@@ -499,7 +499,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	SEND_SIGNAL(src, COMSIG_LEFT_CLICK, user)
 
 ///Called when a owner mob CTRL + Leftmouseclicks an atom
-/mob/proc/CtrlClickOn(atom/target)
+/mob/proc/CtrlClickOn(atom/target, params)
 	switch(SEND_SIGNAL(src, COMSIG_MOB_CTRL_LEFT_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
@@ -527,7 +527,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	return H.start_pulling(src)
 
 ///Called when a owner mob SHIFT + Leftmouseclicks an atom
-/mob/proc/ShiftClickOn(atom/target)
+/mob/proc/ShiftClickOn(atom/target, params)
 	switch(SEND_SIGNAL(src, COMSIG_MOB_SHIFT_LEFT_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
@@ -557,7 +557,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	return TRUE
 
 ///Called when a owner mob ALT + Leftmouseclicks an atom
-/mob/proc/AltClickOn(atom/target)
+/mob/proc/AltClickOn(atom/target, params)
 	switch(SEND_SIGNAL(src, COMSIG_MOB_ALT_LEFT_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
@@ -574,7 +574,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	return TRUE
 
 ///Called when a owner mob CTRL + SHIFT + Leftmouseclicks an atom
-/mob/proc/CtrlShiftClickOn(atom/target)
+/mob/proc/CtrlShiftClickOn(atom/target, params)
 	switch(SEND_SIGNAL(src, COMSIG_MOB_CTRL_SHIFT_LEFT_CLICK, target))
 		if(COMSIG_MOB_CLICK_CANCELED)
 			return FALSE
