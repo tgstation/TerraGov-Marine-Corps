@@ -55,7 +55,7 @@
 	currency -= amount
 
 ///Adds a perk if able
-/datum/individual_stats/proc/purchase_perk(datum/perk/new_perk, mob/user)
+/datum/individual_stats/proc/purchase_perk(datum/perk/new_perk, mob/living/user)
 	if(!istype(new_perk))
 		return
 	if(new_perk in unlocked_perks)
@@ -76,6 +76,10 @@
 		if(!perks_by_job[supported_job])
 			continue
 		perks_by_job[supported_job] += new_perk
+
+	if(!istype(user)) //we immediately apply the perk where possible
+		return
+	new_perk.apply_perk(user)
 
 ///Adds an item if able
 /datum/individual_stats/proc/unlock_loadout_item(datum/loadout_item/new_item)
