@@ -51,9 +51,10 @@
 ///Adds a new loadout_item to the available list
 /datum/outfit_holder/proc/unlock_new_option(datum/loadout_item/new_item)
 	if(new_item in available_list["[new_item.item_slot]"])
-		return
+		return FALSE
 	available_list["[new_item.item_slot]"] += new_item
 	purchasable_list["[new_item.item_slot]"] -= new_item
+	return TRUE
 
 ///Adds a new loadout_item to the purchasable list
 /datum/outfit_holder/proc/allow_new_option(datum/loadout_item/new_item)
@@ -67,7 +68,8 @@
 /datum/outfit_holder/proc/attempt_equip_loadout_item(datum/loadout_item/new_item)
 	if(!new_item.item_checks(src))
 		return FALSE
-	return equip_loadout_item(new_item)
+	equip_loadout_item(new_item)
+	return TRUE
 
 ///Actually adds an item to a loadout
 /datum/outfit_holder/proc/equip_loadout_item(datum/loadout_item/new_item)

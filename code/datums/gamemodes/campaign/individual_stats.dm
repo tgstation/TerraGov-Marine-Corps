@@ -56,20 +56,21 @@
 
 ///Adds a perk if able
 /datum/individual_stats/proc/purchase_perk(datum/perk/new_perk, mob/living/user)
+	. = TRUE
 	if(!istype(new_perk))
-		return
+		return FALSE
 	if(new_perk in unlocked_perks)
 		to_chat(user, "<span class='warning'>Perk already purchased.")
-		return
+		return FALSE
 	if(length(new_perk.prereq_perks))
 		for(var/prereq in new_perk.prereq_perks)
 			if(prereq in unlocked_perks)
 				continue
 			to_chat(user, "<span class='warning'>One or more prerequisites missing for this perk.")
-			return
+			return FALSE
 	if(use_funds(new_perk.unlock_cost))
 		to_chat(user, "<span class='warning'>Insufficient funds for this perk.")
-		return
+		return FALSE
 
 	unlocked_perks += new_perk
 	for(var/supported_job in new_perk.jobs_supported)
@@ -264,7 +265,9 @@
 			if(!GLOB.campaign_perk_list[unlocked_perk])
 				return
 			var/datum/perk/perk = GLOB.campaign_perk_list[unlocked_perk]
-			purchase_perk(perk, user)
+			if(purchase_perk(perk, user))
+				return
+			user.playsound_local(user, 'sound/effects/menu_click.ogg', 50)
 			return TRUE
 		if("equip_item")
 			var/equipped_item_type = text2path(params["selected_item"])
@@ -276,7 +279,9 @@
 			for(var/datum/loadout_item/item AS in GLOB.campaign_loadout_items_by_role[equipped_item_job])
 				if(!istype(item, equipped_item_type))
 					continue
-				loadouts[equipped_item_job].attempt_equip_loadout_item(item)
+				if(!loadouts[equipped_item_job].attempt_equip_loadout_item(item))
+					return
+				user.playsound_local(user, 'sound/effects/menu_click.ogg', 50)
 				return TRUE
 		if("unlock_item")
 			var/equipped_item_type = text2path(params["unlocked_item"])
@@ -292,7 +297,9 @@
 				if(insufficient_credits)
 					to_chat(user, "<span class='warning'>Requires [insufficient_credits] more credits.")
 					return
-				loadouts[equipped_item_job].unlock_new_option(item)
+				if(!loadouts[equipped_item_job].unlock_new_option(item))
+					return
+				user.playsound_local(user, 'sound/effects/menu_click.ogg', 50)
 				return TRUE
 		if("equip_outfit")
 			var/job = params["outfit_job"]
@@ -319,7 +326,9 @@
 				to_chat(user, "<span class='warning'>Requires [insufficient_credits] more credits.")
 				return
 			loadouts[job].equip_loadout(user)
+			user.playsound_local(user, 'sound/effects/menu_click.ogg', 50)
 			//user_id.flags_id &= ~CAN_BUY_LOADOUT //disabled for testing
+			return TRUE
 
 //loadout/perk UI for campaign gamemode
 /datum/action/campaign_loadout
