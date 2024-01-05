@@ -105,20 +105,20 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/heavy_shield
-	name = "Heavy shielded"
+	name = "Heavy shielded armor"
 	desc = "Heavy armor with a Svallin shield module. Provides excellent protection but lower mobility."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/shield
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/suit_slot/heavy_surt
-	name = "Heavy Surt"
+	name = "Heavy Surt armor"
 	desc = "Heavy armor with a Surt fireproof module. Provides excellent protection and almost total fire immunity, but has poor mobility."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/surt
 	jobs_supported = list(SQUAD_MARINE)
 	quantity = 1 //testing purposes only
 
 /datum/loadout_item/suit_slot/medium_mimir
-	name = "Medium Mimir"
+	name = "Medium Mimir armor"
 	desc = "Medium armor with a Mimir environmental protection module. Provides respectable armor and total immunity to chemical attacks, and improved radiological protection. Has modest mobility."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/mimir
 	jobs_supported = list(SQUAD_CORPSMAN)
@@ -133,19 +133,19 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/helmet/standard
-	name = "M10X"
+	name = "M10X helmet"
 	desc = "A standard TGMC combat helmet. Apply to head for best results."
 	item_typepath = /obj/item/clothing/head/modular/m10x
 	jobs_supported = list(SQUAD_MARINE)
 
 /datum/loadout_item/helmet/leader
-	name = "M11X"
+	name = "M11X helmet"
 	desc = "An upgraded helmet for protecting upgraded brains."
 	item_typepath = /obj/item/clothing/head/modular/m10x/leader
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/helmet/surt
-	name = "M10X-Surt"
+	name = "M10X-Surt helmet"
 	desc = "A standard combat helmet with a Surt fireproof module."
 	req_desc = "Requires a suit with a Surt module."
 	item_typepath = /obj/item/clothing/head/modular/m10x/surt
@@ -156,7 +156,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	)
 
 /datum/loadout_item/helmet/mimir
-	name = "M10X-Mimir"
+	name = "M10X-Mimir helmet"
 	desc = "A standard combat helmet with a Mimir environmental protection module."
 	item_typepath = /obj/item/clothing/head/modular/m10x/mimir
 	jobs_supported = list(SQUAD_CORPSMAN)
@@ -184,7 +184,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	jobs_supported = list(SQUAD_MARINE)
 
 /datum/loadout_item/uniform/marine_corpsman
-	name = "TGMC corpsman fatigues"
+	name = "corpsman fatigues"
 	desc = "item desc here"
 	item_typepath = /obj/item/clothing/under/marine/corpsman/corpman_vest
 	jobs_supported = list(SQUAD_MARINE)
@@ -348,7 +348,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	jobs_supported = list(SQUAD_MARINE)
 
 /datum/loadout_item/r_pocket/marine_standard_grenades
-	name = "Standard grenade pouch"
+	name = "Standard grenades"
 	desc = "item desc here"
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/combat_patrol
@@ -371,7 +371,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	jobs_supported = list(SQUAD_MARINE)
 
 /datum/loadout_item/l_pocket/marine_standard_grenades
-	name = "Standard grenade pouch"
+	name = "Standard grenades"
 	desc = "item desc here"
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/combat_patrol

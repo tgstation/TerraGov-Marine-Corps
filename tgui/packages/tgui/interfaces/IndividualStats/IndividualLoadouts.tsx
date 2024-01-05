@@ -42,84 +42,158 @@ export const IndividualLoadouts = (props) => {
   return (
     <Stack>
       <Stack.Item>
-        <Stack>
-          <Button
-            color={'green'}
-            width={'180px'}
-            height={'35px'}
+        <Section>
+          <Stack>
+            <Button
+              color={'green'}
+              width={'180px'}
+              height={'35px'}
+              fontSize="150%"
+              textAlign="center"
+              mt={'10px'}
+              mb={'18px'}
+              tooltip={
+                selectedOutfitCostData.outfit_cost > data.currency
+                  ? 'Insufficient credits'
+                  : 'Equip Loadout'
+              }
+              disabled={selectedOutfitCostData.outfit_cost > data.currency}
+              onClick={() => setEquippedOutfit(selectedOutfitCostData)}
+            >
+              Equip outfit
+            </Button>
+          </Stack>
+          <Stack vertical>
+            <LabeledList>
+              {equipped_loadouts_data
+                .filter(
+                  (equippeditem) => equippeditem.item_type.job === selectedJob,
+                )
+                .map((equippeditem) => (
+                  <Stack.Item
+                    key={
+                      equippeditem.item_type
+                        ? equippeditem.item_type.name
+                        : 'null'
+                    }
+                  >
+                    <Button
+                      width={'260px'}
+                      mt="5px"
+                      mr="3px"
+                      ml="3px"
+                      onClick={() => {
+                        setselectedLoadoutItem(equippeditem);
+                        setselectedPossibleItem(equippeditem.item_type);
+                      }}
+                      color={
+                        selectedLoadoutItem.item_type.name ===
+                        equippeditem.item_type.name
+                          ? 'orange'
+                          : equippeditem.item_type.valid_choice === 0
+                            ? 'red'
+                            : equippeditem.item_type.quantity === 0
+                              ? 'red'
+                              : 'blue'
+                      }
+                    >
+                      <Flex align="center">
+                        {!!equippeditem.item_type.icon && (
+                          <Flex.Item
+                            mr={1.5}
+                            width={'18px'}
+                            className={classes([
+                              'campaign_loadout_items18x18',
+                              selectedLoadoutItem.item_type.name ===
+                              equippeditem.item_type.name
+                                ? equippeditem.item_type.icon + '_orange'
+                                : equippeditem.item_type.valid_choice === 0
+                                  ? equippeditem.item_type.icon + '_red'
+                                  : equippeditem.item_type.quantity === 0
+                                    ? equippeditem.item_type.icon + '_red'
+                                    : equippeditem.item_type.icon + '_blue',
+                            ])}
+                          />
+                        )}
+                        <Flex.Item bold={1} width={'90px'}>
+                          {equippeditem.slot_text + ':'}
+                        </Flex.Item>
+                        <Flex.Item>{equippeditem.item_type.name}</Flex.Item>
+                      </Flex>
+                    </Button>
+                  </Stack.Item>
+                ))}
+            </LabeledList>
+          </Stack>
+        </Section>
+      </Stack.Item>
+      <Stack.Item>
+        <Section>
+          <Stack
             fontSize="150%"
+            bold={1}
             textAlign="center"
-            mt={'10px'}
-            mb={'18px'}
-            tooltip={
-              selectedOutfitCostData.outfit_cost > data.currency
-                ? 'Insufficient credits'
-                : 'Equip Loadout'
-            }
-            disabled={selectedOutfitCostData.outfit_cost > data.currency}
-            onClick={() => setEquippedOutfit(selectedOutfitCostData)}
+            mt={'12px'}
+            mb={'28px'}
           >
-            Equip outfit
-          </Button>
-        </Stack>
-        <Stack vertical>
-          <LabeledList>
-            {equipped_loadouts_data
+            Equipment options
+          </Stack>
+          <Stack vertical>
+            {available_loadouts_data
+              .filter((potentialitem) => potentialitem.job === selectedJob)
               .filter(
-                (equippeditem) => equippeditem.item_type.job === selectedJob,
+                (potentialitem) =>
+                  potentialitem.slot === selectedLoadoutItem.item_type.slot,
               )
-              .map((equippeditem) => (
-                <Stack.Item
-                  key={
-                    equippeditem.item_type
-                      ? equippeditem.item_type.name
-                      : 'null'
-                  }
-                >
-                  <Flex mt="3px" ml="3px" Align="center">
-                    {equippeditem.slot_text}
-                  </Flex>
+              .map((potentialitem) => (
+                <Stack.Item key={potentialitem.name}>
                   <Button
                     width={'180px'}
                     onClick={() => {
-                      setselectedLoadoutItem(equippeditem);
-                      setselectedPossibleItem(equippeditem.item_type);
+                      setselectedPossibleItem(potentialitem);
+                      selectedPossibleItem.unlocked &&
+                        act('equip_item', {
+                          selected_item: potentialitem.type,
+                          selected_job: potentialitem.job,
+                        });
                     }}
                     color={
-                      selectedLoadoutItem.item_type.name ===
-                      equippeditem.item_type.name
+                      selectedPossibleItem.name === potentialitem.name
                         ? 'orange'
-                        : equippeditem.item_type.valid_choice === 0
-                          ? 'red'
-                          : equippeditem.item_type.quantity === 0
+                        : !potentialitem.unlocked
+                          ? 'grey'
+                          : !potentialitem.valid_choice
                             ? 'red'
-                            : 'blue'
+                            : potentialitem.quantity === 0
+                              ? 'red'
+                              : 'blue'
                     }
                   >
                     <Flex align="center">
-                      {!!equippeditem.item_type.icon && (
+                      {!!potentialitem.icon && (
                         <Flex.Item
                           mr={1.5}
                           className={classes([
                             'campaign_loadout_items18x18',
-                            selectedLoadoutItem.item_type.name ===
-                            equippeditem.item_type.name
-                              ? equippeditem.item_type.icon + '_orange'
-                              : equippeditem.item_type.valid_choice === 0
-                                ? equippeditem.item_type.icon + '_red'
-                                : equippeditem.item_type.quantity === 0
-                                  ? equippeditem.item_type.icon + '_red'
-                                  : equippeditem.item_type.icon + '_blue',
+                            selectedPossibleItem.name === potentialitem.name
+                              ? potentialitem.icon + '_orange'
+                              : !potentialitem.unlocked
+                                ? potentialitem.icon + '_grey'
+                                : !potentialitem.valid_choice
+                                  ? potentialitem.icon + '_red'
+                                  : potentialitem.quantity === 0
+                                    ? potentialitem.icon + '_red'
+                                    : potentialitem.icon + '_blue',
                           ])}
                         />
                       )}
-                      {equippeditem.item_type.name}
+                      {potentialitem.name}
                     </Flex>
                   </Button>
                 </Stack.Item>
               ))}
-          </LabeledList>
-        </Stack>
+          </Stack>
+        </Section>
       </Stack.Item>
       <Stack.Item>
         <Section
@@ -201,66 +275,6 @@ export const IndividualLoadouts = (props) => {
             )}
           </LabeledList>
         </Section>
-      </Stack.Item>
-      <Stack.Item>
-        <Stack fontSize="150%" textAlign="center" mt={'12px'} mb={'28px'}>
-          Equipment options
-        </Stack>
-        <Stack vertical>
-          {available_loadouts_data
-            .filter((potentialitem) => potentialitem.job === selectedJob)
-            .filter(
-              (potentialitem) =>
-                potentialitem.slot === selectedLoadoutItem.item_type.slot,
-            )
-            .map((potentialitem) => (
-              <Stack.Item key={potentialitem.name}>
-                <Button
-                  width={'180px'}
-                  onClick={() =>
-                    selectedPossibleItem === potentialitem
-                      ? act('equip_item', {
-                          selected_item: selectedPossibleItem.type,
-                          selected_job: selectedPossibleItem.job,
-                        })
-                      : setselectedPossibleItem(potentialitem)
-                  }
-                  color={
-                    selectedPossibleItem.name === potentialitem.name
-                      ? 'orange'
-                      : !potentialitem.unlocked
-                        ? 'grey'
-                        : !potentialitem.valid_choice
-                          ? 'red'
-                          : potentialitem.quantity === 0
-                            ? 'red'
-                            : 'blue'
-                  }
-                >
-                  <Flex align="center">
-                    {!!potentialitem.icon && (
-                      <Flex.Item
-                        mr={1.5}
-                        className={classes([
-                          'campaign_loadout_items18x18',
-                          selectedPossibleItem.name === potentialitem.name
-                            ? potentialitem.icon + '_orange'
-                            : !potentialitem.unlocked
-                              ? potentialitem.icon + '_grey'
-                              : !potentialitem.valid_choice
-                                ? potentialitem.icon + '_red'
-                                : potentialitem.quantity === 0
-                                  ? potentialitem.icon + '_red'
-                                  : potentialitem.icon + '_blue',
-                        ])}
-                      />
-                    )}
-                    {potentialitem.name}
-                  </Flex>
-                </Button>
-              </Stack.Item>
-            ))}
-        </Stack>
       </Stack.Item>
     </Stack>
   );

@@ -38,45 +38,47 @@ export const IndividualPerks = (props) => {
   return (
     <Stack>
       <Stack.Item>
-        <Stack vertical>
-          {perks_data
-            .filter((perk) => perk.job === selectedJob)
-            .map((perk) => (
-              <Stack.Item key={perk.name}>
-                <Button
-                  width={'220px'}
-                  height={'22px'}
-                  onClick={() => setSelectedPerk(perk)}
-                  color={
-                    selectedPerk.name === perk.name
-                      ? 'orange'
-                      : perk.currently_active > 0
-                        ? 'blue'
-                        : perk.cost > data.currency
-                          ? 'red'
-                          : 'grey'
-                  }
-                >
-                  <Flex align="center" mt="1px">
-                    <Flex.Item
-                      mr={1.5}
-                      className={classes([
-                        'campaign_perks18x18',
-                        selectedPerk.name === perk.name
-                          ? perk.icon + '_orange'
-                          : perk.currently_active > 0
-                            ? perk.icon + '_blue'
-                            : perk.cost > data.currency
-                              ? perk.icon + '_red'
-                              : perk.icon + '_grey',
-                      ])}
-                    />
-                    {perk.name}
-                  </Flex>
-                </Button>
-              </Stack.Item>
-            ))}
-        </Stack>
+        <Section>
+          <Stack vertical>
+            {perks_data
+              .filter((perk) => perk.job === selectedJob)
+              .map((perk) => (
+                <Stack.Item key={perk.name}>
+                  <Button
+                    width={'220px'}
+                    height={'22px'}
+                    onClick={() => setSelectedPerk(perk)}
+                    color={
+                      selectedPerk.name === perk.name
+                        ? 'orange'
+                        : perk.currently_active > 0
+                          ? 'blue'
+                          : perk.cost > data.currency
+                            ? 'red'
+                            : 'grey'
+                    }
+                  >
+                    <Flex align="center" mt="1px">
+                      <Flex.Item
+                        mr={1.5}
+                        className={classes([
+                          'campaign_perks18x18',
+                          selectedPerk.name === perk.name
+                            ? perk.icon + '_orange'
+                            : perk.currently_active > 0
+                              ? perk.icon + '_blue'
+                              : perk.cost > data.currency
+                                ? perk.icon + '_red'
+                                : perk.icon + '_grey',
+                        ])}
+                      />
+                      {perk.name}
+                    </Flex>
+                  </Button>
+                </Stack.Item>
+              ))}
+          </Stack>
+        </Section>
       </Stack.Item>
       <Stack.Item>
         <Section
