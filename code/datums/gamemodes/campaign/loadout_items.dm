@@ -199,7 +199,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/gloves/marine_gloves
-	name = "Standard combat gloves"
+	name = "Combat gloves"
 	desc = "item desc here"
 	item_typepath = /obj/item/clothing/gloves/marine
 	jobs_supported = list(SQUAD_MARINE)
