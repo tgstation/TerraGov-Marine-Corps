@@ -145,7 +145,7 @@
 ///Adds additional text for the component when examining the item it is attached to
 /datum/component/chem_booster/proc/examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
-	examine_text += span_notice("The chemical system currently holds [resource_storage_current]u of green blood. Its' enhancement level is set to [boost_amount].")
+	examine_text += span_notice("The chemical system currently holds [resource_storage_current]u of green blood. Its enhancement level is set to [boost_amount].")
 	examine_text += get_meds_beaker_contents()
 
 ///Disables active functions and cleans up actions when the suit is unequipped
