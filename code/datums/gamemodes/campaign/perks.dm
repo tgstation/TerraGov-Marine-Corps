@@ -70,6 +70,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	name = "Extreme constitution"
 	desc = "An additional +10 max health."
 	ui_icon = "health_2"
+	prereq_perks = list(/datum/perk/hp_boost)
 
 //perks that give a trait
 /datum/perk/trait
