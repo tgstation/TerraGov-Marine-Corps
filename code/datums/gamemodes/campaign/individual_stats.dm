@@ -125,27 +125,13 @@
 		return GLOB.always_state
 	return GLOB.conscious_state
 
-//datum/individual_stats/ui_data(mob/user)
-	//. = ..()
-
-/datum/individual_stats/ui_static_data(mob/user)
-	. = ..()
+/datum/individual_stats/ui_data(mob/user)
 	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
 	if(!istype(current_mode))
 		CRASH("campaign_mission loaded without campaign game mode")
 
 	var/list/data = list()
 
-	var/ui_theme
-	switch(faction)
-		if(FACTION_SOM)
-			ui_theme = "som"
-		else
-			ui_theme = "ntos"
-	data["ui_theme"] = ui_theme
-
-	data["faction"] = faction
-	data["jobs"] = valid_jobs
 	data["currency"] = currency
 
 	//perk stuff
@@ -240,6 +226,25 @@
 
 	return data
 
+/datum/individual_stats/ui_static_data(mob/user)
+	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
+	if(!istype(current_mode))
+		CRASH("campaign_mission loaded without campaign game mode")
+
+	var/list/data = list()
+
+	var/ui_theme
+	switch(faction)
+		if(FACTION_SOM)
+			ui_theme = "som"
+		else
+			ui_theme = "ntos"
+	data["ui_theme"] = ui_theme
+	data["faction"] = faction
+	data["jobs"] = valid_jobs
+
+	return data
+
 /datum/individual_stats/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
@@ -260,7 +265,6 @@
 				return
 			var/datum/perk/perk = GLOB.campaign_perk_list[unlocked_perk]
 			purchase_perk(perk, user)
-			update_static_data(user)
 			return TRUE
 		if("equip_item")
 			var/equipped_item_type = text2path(params["selected_item"])
@@ -273,7 +277,6 @@
 				if(!istype(item, equipped_item_type))
 					continue
 				loadouts[equipped_item_job].attempt_equip_loadout_item(item)
-				update_static_data(user)
 				return TRUE
 		if("unlock_item")
 			var/equipped_item_type = text2path(params["unlocked_item"])
@@ -290,7 +293,6 @@
 					to_chat(user, "<span class='warning'>Requires [insufficient_credits] more credits.")
 					return
 				loadouts[equipped_item_job].unlock_new_option(item)
-				update_static_data(user)
 				return TRUE
 		if("equip_outfit")
 			var/job = params["outfit_job"]
@@ -311,7 +313,6 @@
 				return
 			if(!loadouts[job].check_full_loadout())
 				to_chat(user, "<span class='warning'>Invalid loadout.")
-				update_static_data(user) //in case quantity of an item ran out. Probably able to drill down on this better.
 				return
 			var/insufficient_credits = use_funds(loadouts[job].loadout_cost)
 			if(insufficient_credits)
@@ -319,7 +320,6 @@
 				return
 			loadouts[job].equip_loadout(user)
 			//user_id.flags_id &= ~CAN_BUY_LOADOUT //disabled for testing
-			update_static_data(user)
 
 //loadout/perk UI for campaign gamemode
 /datum/action/campaign_loadout
