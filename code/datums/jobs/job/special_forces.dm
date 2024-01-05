@@ -180,6 +180,7 @@
 	belt = /obj/item/storage/belt/lifesaver/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/specops/medic
 	head = /obj/item/clothing/head/modular/m10x
+	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/smg/m25/elite/suppressed
