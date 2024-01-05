@@ -119,6 +119,9 @@
 	///Cooldown for telling someone they're buckled
 	COOLDOWN_DECLARE(buckle_message_cooldown)
 
+	///vis overlays managed by SSvis_overlays to automaticaly turn them like other overlays.
+	var/list/managed_vis_overlays
+
 /*
 We actually care what this returns, since it can return different directives.
 Not specifically here, but in other variations of this. As a general safety,

@@ -323,6 +323,7 @@
 #include "code\controllers\subsystem\time_track.dm"
 #include "code\controllers\subsystem\timer.dm"
 #include "code\controllers\subsystem\tts.dm"
+#include "code\controllers\subsystem\vis_overlays.dm"
 #include "code\controllers\subsystem\vote.dm"
 #include "code\controllers\subsystem\weather.dm"
 #include "code\controllers\subsystem\weeds.dm"
