@@ -188,7 +188,7 @@
 	return ..()
 
 
-/obj/structure/closet/bodybag/update_icon()
+/obj/structure/closet/bodybag/update_icon_state()
 	if(!opened)
 		icon_state = icon_closed
 		for(var/mob/living/L in contents)
