@@ -27,3 +27,15 @@
       telecomms shutters.
   ivanmixo:
   - bugfix: VV topic fix
+2024-01-05:
+  AusarAtkin:
+  - qol: Add larva to valhalla vendor
+  Lumipharon:
+  - admin: Only headmins and above can delete clients
+  - code_imp: Some backend improvements to campaign overview UI
+  Wisemonster:
+  - qol: The chameleon badge, cape, kama, and reflective belt can be attached to uniforms
+      that are being worn.
+  Xander3359:
+  - admin: move osay to admin category and view tags to debug category
+  - code_imp: Lowercasify "Vars"

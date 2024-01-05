@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "The \"Alt-click to rotate\" bit should pop up properly when examining now"
+  - code_imp: "Fixed some weird implementations of the examine signal"
