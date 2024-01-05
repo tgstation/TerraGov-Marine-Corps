@@ -39,9 +39,6 @@
 	///How much does this atom block the explosion's shock wave.
 	var/explosion_block = 0
 
-	///overlays managed by update_overlays() to prevent removing overlays that weren't added by the same proc
-	var/list/managed_overlays
-
 	var/datum/component/orbiter/orbiters
 	var/datum/proximity_monitor/proximity_monitor
 
@@ -355,32 +352,6 @@ directive is properly returned.
 				. += span_notice("\The [src] is full!")
 
 	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE, user, .)
-
-
-/// Updates the icon of the atom
-/atom/proc/update_icon()
-	var/signalOut = SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_ICON)
-
-	if(!(signalOut & COMSIG_ATOM_NO_UPDATE_ICON_STATE))
-		update_icon_state()
-
-	if(!(signalOut & COMSIG_ATOM_NO_UPDATE_OVERLAYS))
-		var/list/new_overlays = update_overlays()
-		if(managed_overlays)
-			cut_overlay(managed_overlays)
-			managed_overlays = null
-		if(length(new_overlays))
-			managed_overlays = new_overlays
-			add_overlay(new_overlays)
-
-/// Updates the icon state of the atom
-/atom/proc/update_icon_state()
-
-/// Updates the overlays of the atom
-/atom/proc/update_overlays()
-	SHOULD_CALL_PARENT(TRUE)
-	. = list()
-	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, .)
 
 /// Checks if the colors given are different and if so causes a greyscale icon update
 /// The colors argument can be either a list or the full color string
