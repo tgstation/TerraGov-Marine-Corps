@@ -697,3 +697,167 @@
 	desc = "A piece of ICCGF body armor, worn by specialized infantry. Most Infantry actions in the ICC forces are done by adhoc personnel due to constant shortages of manpower, however most real Infantry divisions are of high quality, and are better known as 'Guardsmen'.  Protects well from most sources, and will entirely protect from explosions."
 	icon_state = "icc_guard"
 	soft_armor = list(MELEE = 60, BULLET = 65, LASER = 40, ENERGY = 60, BOMB = 85, BIO = 10, FIRE = 55, ACID = 40)
+
+//===========================SPEC OPS================================
+
+/obj/item/clothing/suit/storage/marine/specops
+	name = "\improper Ballistic vest"
+	desc = "Civilian type armor, made to combat both melee and projectiles."
+	icon = 'icons/mob/clothing/suits/ert_suits.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
+	)
+	icon_state = "specops_vest"
+	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 20, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_armor_protection = CHEST|GROIN
+	flags_armor_features = NONE
+
+/obj/item/clothing/suit/storage/marine/specops/support
+	name = "\improper Ballistic vest"
+	desc = "Civilian type armor, made to combat both melee and projectiles."
+	icon_state = "specops_vest_drone"
+
+/obj/item/clothing/suit/storage/marine/specops/medic
+	name = "\improper Ballistic vest"
+	desc = "Civilian type armor, made to combat both melee and projectiles."
+	icon_state = "specops_vest_medic"
+
+/obj/item/clothing/suit/storage/marine/specops/leader
+	name = "\improper Ballistic vest"
+	desc = "Civilian type armor, made to combat both melee and projectiles."
+	icon_state = "specops_vest_leader"
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+
+//===========================MARINE VERSION================================
+
+/obj/item/clothing/suit/storage/marine/ballistic
+	name = "\improper Crasher multi-threat ballistic armor"
+	desc = "A reused design of a old body armor system from the 21st century."
+	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 20, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_armor_protection = CHEST|GROIN
+	icon = 'icons/mob/clothing/suits/marine_armor.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi'
+	)
+	icon_state = "ballistic_vest"
+	flags_armor_features = NONE
+
+	allowed = list(
+		/obj/item/weapon/gun,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/flashlight,
+		/obj/item/ammo_magazine,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/weapon/baton,
+		/obj/item/restraints/handcuffs,
+		/obj/item/explosive/grenade,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/storage/belt/sparepouch,
+		/obj/item/storage/holster/blade,
+		/obj/item/storage/holster/belt,
+		/obj/item/weapon/energy/sword,
+	)
+
+/obj/item/clothing/suit/storage/marine/ballistic/jungle
+	name = "\improper Crasher multi-threat jungle ballistic armor"
+	desc = "A reused design of a old body armor system from the 21st century."
+	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 20, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_armor_protection = CHEST|GROIN
+	icon = 'icons/mob/clothing/suits/marine_armor.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi'
+	)
+	icon_state = "m_ballistic_vest"
+	flags_armor_features = NONE
+
+	allowed = list(
+		/obj/item/weapon/gun,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/flashlight,
+		/obj/item/ammo_magazine,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/weapon/baton,
+		/obj/item/restraints/handcuffs,
+		/obj/item/explosive/grenade,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/storage/belt/sparepouch,
+		/obj/item/storage/holster/blade,
+		/obj/item/storage/holster/belt,
+		/obj/item/weapon/energy/sword,
+	)
+
+/obj/item/clothing/suit/storage/marine/ballistic/desert
+	name = "\improper Crasher multi-threat desert ballistic armor"
+	desc = "A reused design of a old body armor system from the 21st century."
+	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 20, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_armor_protection = CHEST|GROIN
+	icon = 'icons/mob/clothing/suits/marine_armor.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi'
+	)
+	icon_state = "d_ballistic_vest"
+	flags_armor_features = NONE
+
+	allowed = list(
+		/obj/item/weapon/gun,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/flashlight,
+		/obj/item/ammo_magazine,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/weapon/baton,
+		/obj/item/restraints/handcuffs,
+		/obj/item/explosive/grenade,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/storage/belt/sparepouch,
+		/obj/item/storage/holster/blade,
+		/obj/item/storage/holster/belt,
+		/obj/item/weapon/energy/sword,
+	)
+
+/obj/item/clothing/suit/storage/marine/ballistic/snow
+	name = "\improper Crasher multi-threat snow ballistic armor"
+	desc = "A reused design of a old body armor system from the 21st century."
+	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 20, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_armor_protection = CHEST|GROIN
+	icon = 'icons/mob/clothing/suits/marine_armor.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi'
+	)
+	icon_state = "s_ballistic_vest"
+	flags_armor_features = NONE
+
+	attachments_allowed = list()
+
+
+	allowed = list(
+		/obj/item/weapon/gun,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/flashlight,
+		/obj/item/ammo_magazine,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/weapon/baton,
+		/obj/item/restraints/handcuffs,
+		/obj/item/explosive/grenade,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/storage/belt/sparepouch,
+		/obj/item/storage/holster/blade,
+		/obj/item/storage/holster/belt,
+		/obj/item/weapon/energy/sword,
+	)
