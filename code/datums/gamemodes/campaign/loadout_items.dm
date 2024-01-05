@@ -395,6 +395,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_store/main_gun
+	///Ammo type this gun will use
 	var/ammo_type
 
 /datum/loadout_item/suit_store/main_gun/New()
