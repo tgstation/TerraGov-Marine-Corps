@@ -221,28 +221,13 @@ export const IndividualLoadouts = (props) => {
                   <Flex.Item fontSize="150%" grow={1}>
                     {selectedPossibleItem.name}
                   </Flex.Item>
-                  {!selectedPossibleItem.unlocked ? (
+                  {!selectedPossibleItem.unlocked && (
                     <Flex.Item alight="right" position="end">
                       <Button
                         onClick={() => setUnlockedItem(selectedPossibleItem)}
                         icon={'check'}
                       >
                         Unlock
-                      </Button>
-                    </Flex.Item>
-                  ) : (
-                    <Flex.Item alight="right" position="end">
-                      <Button
-                        disabled={!selectedPossibleItem.valid_choice}
-                        onClick={() =>
-                          act('equip_item', {
-                            selected_item: selectedPossibleItem.type,
-                            selected_job: selectedPossibleItem.job,
-                          })
-                        }
-                        icon={'check'}
-                      >
-                        Equip
                       </Button>
                     </Flex.Item>
                   )}
