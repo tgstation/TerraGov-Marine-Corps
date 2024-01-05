@@ -94,7 +94,8 @@
 	return ..()
 
 
-/obj/structure/closet/bodybag/proc/update_name()
+/obj/structure/closet/bodybag/update_name(updates)
+	. = ..()
 	if(opened)
 		name = bag_name
 	else
