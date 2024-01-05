@@ -474,7 +474,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	. = ..()
 	var/mob/living/L = user
 	if(istype(L))
-		L.start_pulling(src)
+		return L.start_pulling(src)
 
 /mob/living/carbon/human/CtrlClick(mob/user)
 	if(!ishuman(user) || !Adjacent(user) || user.incapacitated())
@@ -483,7 +483,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	if(world.time < user.next_move)
 		return FALSE
 	var/mob/living/carbon/human/H = user
-	H.start_pulling(src)
+	return H.start_pulling(src)
 
 ///Called when a owner mob SHIFT + Leftmouseclicks an atom
 /mob/proc/ShiftClickOn(atom/target)
