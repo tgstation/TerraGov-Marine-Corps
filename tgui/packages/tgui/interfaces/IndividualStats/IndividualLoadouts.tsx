@@ -151,7 +151,7 @@ export const IndividualLoadouts = (props) => {
                     width={'180px'}
                     onClick={() => {
                       setselectedPossibleItem(potentialitem);
-                      selectedPossibleItem.unlocked &&
+                      potentialitem.unlocked &&
                         act('equip_item', {
                           selected_item: potentialitem.type,
                           selected_job: potentialitem.job,
