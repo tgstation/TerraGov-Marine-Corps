@@ -68,38 +68,6 @@
 		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
 		params = list2params(modifiers)
 
-	//Right clicking
-	if(modifiers["right"] && modifiers["ctrl"] && CtrlRightClickOn(target))
-		return
-	if(modifiers["right"] && modifiers["shift"] && ShiftRightClickOn(target))
-		return
-	if(modifiers["right"] && modifiers["alt"] && AltRightClickOn(target))
-		return
-	if(modifiers["right"] && RightClickOn(target))
-		return
-
-	//Middle clicking
-	if(modifiers["middle"] && modifiers["ctrl"] && CtrlMiddleClickOn(target))
-		return
-	if(modifiers["middle"] && modifiers["shift"] && ShiftMiddleClickOn(target))
-		return
-	if(modifiers["middle"] && modifiers["alt"] && AltMiddleClickOn(target))
-		return
-	if(modifiers["middle"] && MiddleClickOn(target))
-		return
-
-	//Left clicking
-	if(modifiers["ctrl"] && modifiers["shift"] && CtrlShiftClickOn(target))
-		return
-	if(modifiers["ctrl"] && CtrlClickOn(target))
-		return
-	if(modifiers["shift"] && ShiftClickOn(target))
-		return
-	if(modifiers["alt"] && AltClickOn(target))
-		return
-
-
-
 	if(incapacitated(TRUE))
 		return
 
@@ -111,12 +79,54 @@
 	if(!modifiers["catcher"] && target.IsObscured())
 		return
 
-
 	if(restrained())
 		changeNext_move(CLICK_CD_HANDCUFFED)
 		RestrainedClickOn(target)
 		return
 
+	//Right clicking
+	if(modifiers["right"] && modifiers["ctrl"])
+		CtrlRightClickOn(target)
+		return
+	if(modifiers["right"] && modifiers["shift"])
+		ShiftRightClickOn(target)
+		return
+	if(modifiers["right"] && modifiers["alt"])
+		AltRightClickOn(target)
+		return
+	if(modifiers["right"])
+		RightClickOn(target)
+		//return
+
+	//Middle clicking
+	if(modifiers["middle"] && modifiers["ctrl"])
+		CtrlMiddleClickOn(target)
+		return
+	if(modifiers["middle"] && modifiers["shift"])
+		ShiftMiddleClickOn(target)
+		return
+	if(modifiers["middle"] && modifiers["alt"])
+		AltMiddleClickOn(target)
+		return
+	if(modifiers["middle"])
+		MiddleClickOn(target)
+		return
+
+	//Left clicking
+	if(modifiers["ctrl"] && modifiers["shift"])
+		CtrlShiftClickOn(target)
+		return
+	if(modifiers["ctrl"])
+		CtrlClickOn(target)
+		return
+	if(modifiers["shift"])
+		ShiftClickOn(target)
+		return
+	if(modifiers["alt"])
+		AltClickOn(target)
+		return
+
+	//Strictly left-clicking with no other modifiers
 	if(in_throw_mode)
 		if(throw_item(target))
 			changeNext_move(CLICK_CD_THROWING)
@@ -125,10 +135,7 @@
 	var/obj/item/item_clicked_on = get_active_held_item()
 
 	if(item_clicked_on == target)
-		if(modifiers["right"])
-			item_clicked_on.attack_self_alternate(src)
-		else
-			item_clicked_on.attack_self(src)
+		item_clicked_on.attack_self(src)
 		update_inv_l_hand()
 		update_inv_r_hand()
 		return
@@ -302,11 +309,20 @@
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
+
+	var/obj/item/item_clicked_on = get_active_held_item()
+
+	if(item_clicked_on == target)
+		item_clicked_on.attack_self_alternate(src)
+		update_inv_l_hand()
+		update_inv_r_hand()
+		return
+
 	return target.RightClick(src)
 
 ///Called when a mob Rightmouseclicks this atom
 /atom/proc/RightClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_MIDDLE_CLICK, user)
+	SEND_SIGNAL(src, COMSIG_RIGHT_CLICK, user)
 
 /mob/living/carbon/human/RightClickOn(atom/target)
 	var/obj/item/held_thing = get_active_held_item()
@@ -334,7 +350,7 @@
 
 ///Called when a mob CTRL + Rightmouseclicks this atom
 /atom/proc/CtrlRightClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_CTRL_MIDDLE_CLICK, user)
+	SEND_SIGNAL(src, COMSIG_CTRL_RIGHT_CLICK, user)
 
 ///Called when a owner mob SHIFT + Rightmouseclicks an atom
 /mob/proc/ShiftRightClickOn(atom/target)
@@ -347,7 +363,7 @@
 
 ///Called when a mob SHIFT + Rightmouseclicks this atom
 /atom/proc/ShiftRightClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_SHIFT_MIDDLE_CLICK, user)
+	SEND_SIGNAL(src, COMSIG_SHIFT_RIGHT_CLICK, user)
 
 ///Called when a owner mob ALT + Rightmouseclicks an atom
 /mob/proc/AltRightClickOn(atom/target)
@@ -360,7 +376,7 @@
 
 ///Called when a mob ALT + Rightmouseclicks this atom
 /atom/proc/AltRightClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_ALT_MIDDLE_CLICK, user)
+	SEND_SIGNAL(src, COMSIG_ALT_RIGHT_CLICK, user)
 
 /**
  * Middle Clicking
@@ -377,7 +393,7 @@
 
 ///Called when a mob Middlemouseclicks this atom
 /atom/proc/MiddleClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_RIGHT_CLICK, user)
+	SEND_SIGNAL(src, COMSIG_MIDDLE_CLICK, user)
 
 /mob/living/carbon/human/MiddleClickOn(atom/A)
 	. = ..()
@@ -424,7 +440,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 
 ///Called when a mob CTRL + Middlemouseclicks this atom
 /atom/proc/CtrlMiddleClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_CTRL_RIGHT_CLICK, user)
+	SEND_SIGNAL(src, COMSIG_CTRL_MIDDLE_CLICK, user)
 
 ///Called when a owner mob SHIFT + Middlemouseclicks an atom
 /mob/proc/ShiftMiddleClickOn(atom/target)
@@ -438,7 +454,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 
 ///Called when a mob SHIFT + Middlemouseclicks this atom
 /atom/proc/ShiftMiddleClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_SHIFT_RIGHT_CLICK, user)
+	SEND_SIGNAL(src, COMSIG_SHIFT_MIDDLE_CLICK, user)
 
 ///Called when a owner mob ALT + Middlemouseclicks an atom
 /mob/proc/AltMiddleClickOn(atom/target)
@@ -451,7 +467,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 
 ///Called when a mob ALT + Middlemouseclicks this atom
 /atom/proc/AltMiddleClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_ALT_RIGHT_CLICK, user)
+	SEND_SIGNAL(src, COMSIG_ALT_MIDDLE_CLICK, user)
 
 /**
  * Left Clicking
