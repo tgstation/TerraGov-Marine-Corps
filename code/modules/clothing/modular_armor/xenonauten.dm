@@ -192,7 +192,7 @@
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/bulletresistant
-	name = "\improper NTC bullet-resistant vest"
+	name = "\improper NTC bullet-resistant armor"
 	desc = "A set of armor that excels in protecting the wearer against high-velocity solid projectiles. This one has bullet resistant padding on the limbs aswell."
 	blood_overlay_type = "armor"
 	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 35, ENERGY = 30, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
