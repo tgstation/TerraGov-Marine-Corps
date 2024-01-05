@@ -1638,7 +1638,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_STAB,
 	)
-	target_flags = ABILITY_TURF_TARGET|ABILITY_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 	///the length of our tail, better not change this.
 	var/range = 2
 	///our stabbing style.
