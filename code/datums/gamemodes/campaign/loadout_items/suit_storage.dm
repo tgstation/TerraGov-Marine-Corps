@@ -19,12 +19,23 @@
 
 /datum/loadout_item/suit_store/main_gun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
+	if(!ammo_type)
+		return
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
+
+	if(loadout.l_store == /obj/item/storage/pouch/magazine/large)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
+	if(loadout.r_store == /obj/item/storage/pouch/magazine/large)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
 
 /datum/loadout_item/suit_store/main_gun/marine
 	jobs_supported = list(SQUAD_MARINE)
@@ -706,6 +717,7 @@
 	item_typepath = /obj/item/weapon/gun/rifle/standard_autoshotgun/engineer
 
 /datum/loadout_item/suit_store/main_gun/engineer/auto_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx15_slug, SLOT_IN_BELT)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx15_slug, SLOT_IN_BELT)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx15_slug, SLOT_IN_BELT)
@@ -718,3 +730,100 @@
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
+
+//Smartgunner
+
+/datum/loadout_item/suit_store/main_gun/smartgunner
+	jobs_supported = list(SQUAD_SMARTGUNNER)
+
+/datum/loadout_item/suit_store/main_gun/smartgunner/smartmachinegun
+	name = "SG-29"
+	desc = "The Raummetall-KT SG-29 is the TGMC's current standard IFF-capable medium machine gun. \
+	It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. \
+	Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	ui_icon = "ballistic"
+	item_typepath = /obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol
+
+/datum/loadout_item/suit_store/main_gun/smartgunner/smartmachinegun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	. = ..()
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(wearer), SLOT_IN_BACKPACK)
+
+	if(istype(wearer.back, /obj/item/storage/backpack))
+		wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
+
+	if(loadout.belt == /obj/item/storage/belt/sparepouch)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
+
+	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+
+/datum/loadout_item/suit_store/main_gun/smartgunner/smart_minigun
+	name = "SG-85"
+	desc = "A true monster of providing supportive suppresing fire, the SG-85 is the TGMC's IFF-capable minigun for heavy fire support duty. \
+	Boasting a higher firerate than any other handheld weapon. It is chambered in 10x26 caseless."
+	req_desc = "Requires a powerback for power and ammo."
+	ui_icon = "ballistic"
+	item_typepath = /obj/item/weapon/gun/minigun/smart_minigun/motion_detector
+	item_whitelist = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun = ITEM_SLOT_BACK)
+
+/datum/loadout_item/suit_store/main_gun/smartgunner/smart_minigun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	. = ..()
+	if(loadout.belt == /obj/item/storage/belt/sparepouch)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/smart_minigun, SLOT_IN_BELT)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/smart_minigun, SLOT_IN_BELT)
+		wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/standard_machinepistol/compact(wearer), SLOT_IN_BELT)
+
+		wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_ACCESSORY)
+
+	else
+		wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+
+/datum/loadout_item/suit_store/main_gun/smartgunner/smarttargetrifle
+	name = "SG-62"
+	desc = "The Kauser-KT SG-62 is a IFF-capable rifle used by the TerraGov Marine Corps, coupled with a spotting rifle that is also IFF capable of applying various bullets with specialized ordnance, \
+	this is a gun with many answers to many situations... if you have the right ammo loaded. \
+	Requires special training and it cannot turn off IFF. It uses high velocity 10x27mm for the rifle and 12x66mm ammunition for the underslung rifle."
+	ui_icon = "ballistic"
+	item_typepath = /obj/item/weapon/gun/rifle/standard_smarttargetrifle/motion
+
+/datum/loadout_item/suit_store/main_gun/smartgunner/smarttargetrifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	. = ..()
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(wearer), SLOT_IN_BACKPACK)
+
+	if(istype(wearer.back, /obj/item/storage/backpack))
+		wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+
+	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten, SLOT_IN_ACCESSORY)

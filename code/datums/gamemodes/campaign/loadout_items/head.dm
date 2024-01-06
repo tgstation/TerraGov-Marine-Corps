@@ -14,7 +14,7 @@
 	name = "M10X helmet"
 	desc = "A standard TGMC combat helmet. Apply to head for best results."
 	item_typepath = /obj/item/clothing/head/modular/m10x
-	jobs_supported = list(SQUAD_MARINE)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER)
 
 /datum/loadout_item/helmet/leader
 	name = "M11X helmet"

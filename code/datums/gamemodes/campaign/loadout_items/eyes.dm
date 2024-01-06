@@ -14,7 +14,7 @@
 
 /datum/loadout_item/eyes/health_hud
 	name = "HealthMate HUD"
-	desc = "item desc here"
+	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status. The projector can be attached to compatable eyewear."
 	item_typepath = /obj/item/clothing/glasses/hud/health
 	jobs_supported = list(SQUAD_CORPSMAN, SQUAD_LEADER, FIELD_COMMANDER)
 
@@ -30,3 +30,9 @@
 	desc = "Protects the eyes from welders, approved by the mad scientist association."
 	item_typepath = /obj/item/clothing/glasses/welding
 	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER)
+
+/datum/loadout_item/eyes/smartgun_imagers
+	name = "KTLD sight"
+	desc = "A headset and goggles system made to pair with any KTLD weapon, such as the SG type weapons. Has a low-res short range imager, allowing for view of terrain."
+	item_typepath = /obj/item/clothing/glasses/night/m56_goggles
+	jobs_supported = list(SQUAD_SMARTGUNNER)

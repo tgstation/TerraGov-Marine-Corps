@@ -17,19 +17,19 @@
 	name = "Light shielded armor"
 	desc = "Light armor with a Svallin shield module. Provides excellent mobility but lower protection."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/light/shield
-	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/suit_slot/medium_shield
 	name = "Medium shielded armor"
 	desc = "Medium armor with a Svallin shield module. Provides balanced mobility and protection."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/shield
-	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/suit_slot/heavy_shield
 	name = "Heavy shielded armor"
 	desc = "Heavy armor with a Svallin shield module. Provides excellent protection but lower mobility."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/shield
-	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/suit_slot/heavy_surt
 	name = "Heavy Surt armor"
@@ -41,14 +41,17 @@
 /datum/loadout_item/suit_slot/heavy_tyr
 	name = "Heavy Tyr armor"
 	desc = "Heavy armor with a Tyr extra armor module. Provides incredible protection at the cost of with further reduced mobility."
-	req_desc = "Requires a ALF-51B."
+	req_desc = "Requires a ALF-51B or SMG-25."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two
-	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER) //todo: probably make a separate instance for SG's
-	quantity = 1 //testing purposes only
+	jobs_supported = list(SQUAD_MARINE)
 	item_whitelist = list(
 		/obj/item/weapon/gun/rifle/alf_machinecarbine/assault = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/smg/m25/magharness = ITEM_SLOT_SUITSTORE,
 	)
+
+/datum/loadout_item/suit_slot/heavy_tyr/smartgunner //no whitelist
+	jobs_supported = list(SQUAD_SMARTGUNNER)
+	item_whitelist = null
 
 //corpsman
 /datum/loadout_item/suit_slot/medium_mimir

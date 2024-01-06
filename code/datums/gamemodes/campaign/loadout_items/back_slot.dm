@@ -10,7 +10,7 @@
 	name = "Satchel"
 	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel. Carries less than a backpack, but items can be drawn instantly."
 	item_typepath = /obj/item/storage/backpack/marine/satchel
-	jobs_supported = list(SQUAD_MARINE)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/back/marine_backpack
 	name = "Backpack"
@@ -104,3 +104,13 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_BACKPACK)
+
+//smartgunner
+/datum/loadout_item/back/sg_minigun_powerpack
+	name = "SG-85 powerpack"
+	desc = "A reinforced backpack heavy with the IFF altered ammunition, onboard micro generator, and extensive cooling system which enables the SG-85 gatling gun to operate. \
+	Use the SG-85 on the backpack itself to connect them."
+	req_desc = "Requires an SG-85."
+	item_typepath = /obj/item/ammo_magazine/minigun_powerpack/smartgun
+	jobs_supported = list(SQUAD_SMARTGUNNER)
+	item_whitelist = list(/obj/item/weapon/gun/minigun/smart_minigun/motion_detector = ITEM_SLOT_SUITSTORE)

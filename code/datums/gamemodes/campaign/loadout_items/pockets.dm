@@ -49,10 +49,14 @@
 
 /datum/loadout_item/r_pocket/magazine
 	name = "Magazine pouch"
-	desc = "This pouch can contain three ammo magazines."
+	desc = "A pouch containing three ammo magazines."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/magazine/large
-	jobs_supported = list(SQUAD_CORPSMAN)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	item_blacklist = list(
+		/obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/minigun/smart_minigun/motion_detector = ITEM_SLOT_SUITSTORE,
+	)
 
 /datum/loadout_item/r_pocket/tools
 	name = "Tool pouch"
@@ -112,10 +116,14 @@
 
 /datum/loadout_item/l_pocket/magazine
 	name = "Magazine pouch"
-	desc = "This pouch can contain three ammo magazines."
+	desc = "A pouch containing three ammo magazines."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/magazine/large
-	jobs_supported = list(SQUAD_CORPSMAN)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	item_blacklist = list(
+		/obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/minigun/smart_minigun/motion_detector = ITEM_SLOT_SUITSTORE,
+	)
 
 /datum/loadout_item/l_pocket/tools
 	name = "Tool pouch"
