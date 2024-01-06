@@ -445,6 +445,7 @@
 	update_icon()
 
 /obj/item/weapon/twohanded/rocketsledge/update_icon_state()
+	. = ..()
 	if ((reagents.get_reagent_amount(/datum/reagent/fuel) > fuel_used) && (CHECK_BITFIELD(flags_item, WIELDED)))
 		icon_state = "rocketsledge_w"
 	else

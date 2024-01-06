@@ -473,6 +473,7 @@
 	update_icon()
 
 /obj/item/tool/handheld_charger/update_icon_state()
+	. = ..()
 	if(cell)
 		icon_state = initial(icon_state)
 	else

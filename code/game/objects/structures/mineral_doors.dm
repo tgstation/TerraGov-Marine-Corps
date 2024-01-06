@@ -75,7 +75,8 @@
 	update_icon()
 	addtimer(VARSET_CALLBACK(src, switching_states, FALSE), 1 SECONDS)
 
-/obj/structure/mineral_door/update_icon()
+/obj/structure/mineral_door/update_icon_state()
+	. = ..()
 	if(open)
 		icon_state = "[base_icon_state][smoothing_flags ? "-[smoothing_junction]" : ""]-open"
 	else

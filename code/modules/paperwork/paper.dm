@@ -51,9 +51,8 @@
 	update_icon()
 	updateinfolinks()
 
-/obj/item/paper/update_icon()
-	if(icon_state == "paper_talisman")
-		return
+/obj/item/paper/update_icon_state()
+	. = ..()
 	if(info)
 		icon_state = "paper_words"
 		return
@@ -354,8 +353,10 @@
 	icon_state = "commendation"
 	fields = 5
 
-/obj/item/paper/commendation/update_icon() //it looks fancy and we want it to stay fancy.
-	return
+/obj/item/paper/commendation/update_icon_state() //it looks fancy and we want it to stay fancy.
+	. = ..()
+	icon_state = initial(icon_state)
+
 /*Let this be a lesson about pre-made forms.
 
 when building your paper, use the above parsed pen code in parsepencode(). no square bracket anything in the info field.
@@ -432,8 +433,10 @@ then, for every time you included a field, increment fields. */
 	name = "paper scrap"
 	icon_state = "scrap"
 
-/obj/item/paper/crumpled/update_icon()
-	return
+/obj/item/paper/crumpled/update_icon_state()
+	. = ..()
+	icon_state = initial(icon_state)
+
 
 /obj/item/paper/crumpled/bloody/
 	icon_state = "scrap_bloodied"

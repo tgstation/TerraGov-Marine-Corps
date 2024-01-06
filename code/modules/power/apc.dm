@@ -212,48 +212,63 @@
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		. += span_info("The wiring is exposed.")
 
-//Update the APC icon to show the three base states
-//Also add overlays for indicator lights
-/obj/machinery/power/apc/update_icon() //TODO JESUS CHRIST THIS IS SHIT
-	var/update = check_updates()	//Returns 0 if no need to update icons.
-									//1 if we need to update the icon_state
-									//2 if we need to update the overlays
+///Updates our lighting, based on state
+/obj/machinery/power/apc/proc/update_lighting()
+	var/update = check_updates()
 	if(!update)
 		return
+	if((update & 2) && CHECK_BITFIELD(update_state, UPSTATE_ALLGOOD))
+		switch(charging)
+			if(APC_NOT_CHARGING)
+				set_light_color(LIGHT_COLOR_RED)
+			if(APC_CHARGING)
+				set_light_color(LIGHT_COLOR_BLUE)
+			if(APC_FULLY_CHARGED)
+				set_light_color(LIGHT_COLOR_GREEN)
+		set_light(initial(light_range))
 
-	set_light(0)
-	overlays.Cut()
+/obj/machinery/power/apc/update_icon() //TODO This entire way the APCs update their icons is shit, it should be redone entirely to something more modern
+	. = ..()
+	update_lighting()
+
+/obj/machinery/power/apc/update_icon_state()
+	. = ..()
+	var/update = check_updates()	
+
+	if(!update)
+		return
 
 	if(update & 1)
 		var/broken = CHECK_BITFIELD(update_state, UPSTATE_BROKE) ? "-b" : ""
 		var/status = (CHECK_BITFIELD(update_state, UPSTATE_WIREEXP) && !CHECK_BITFIELD(update_state, UPSTATE_OPENED1)) ? "-wires" : broken
 		icon_state = "apc[opened][status]"
 
+/obj/machinery/power/apc/update_overlays()
+	var/update = check_updates()	//Returns 0 if no need to update icons.
+									//1 if we need to update the icon_state
+									//2 if we need to update the overlays
+	if(!update) 
+		return
+
+	. = ..()
+
 	if(update & 2)
 		if(CHECK_BITFIELD(update_overlay, APC_UPOVERLAY_CELL_IN))
-			overlays += "apco-cell"
+			. += "apco-cell"
 		else if(CHECK_BITFIELD(update_state, UPSTATE_ALLGOOD))
-			overlays += emissive_appearance(icon, "apcox-[locked]")
-			overlays += mutable_appearance(icon, "apcox-[locked]")
-			overlays += emissive_appearance(icon, "apco3-[charging]")
-			overlays += mutable_appearance(icon, "apco3-[charging]")
+			. += emissive_appearance(icon, "apcox-[locked]")
+			. += mutable_appearance(icon, "apcox-[locked]")
+			. += emissive_appearance(icon, "apco3-[charging]")
+			. += mutable_appearance(icon, "apco3-[charging]")
 			var/operating = CHECK_BITFIELD(update_overlay, APC_UPOVERLAY_OPERATING)
-			overlays += emissive_appearance(icon, "apco0-[operating ? equipment : 0]")
-			overlays += mutable_appearance(icon, "apco0-[operating ? equipment : 0]")
-			overlays += emissive_appearance(icon, "apco1-[operating ? lighting : 0]")
-			overlays += mutable_appearance(icon, "apco1-[operating ? lighting : 0]")
-			overlays += emissive_appearance(icon, "apco2-[operating ? environ : 0]")
-			overlays += mutable_appearance(icon, "apco2-[operating ? environ : 0]")
+			. += emissive_appearance(icon, "apco0-[operating ? equipment : 0]")
+			. += mutable_appearance(icon, "apco0-[operating ? equipment : 0]")
+			. += emissive_appearance(icon, "apco1-[operating ? lighting : 0]")
+			. += mutable_appearance(icon, "apco1-[operating ? lighting : 0]")
+			. += emissive_appearance(icon, "apco2-[operating ? environ : 0]")
+			. += mutable_appearance(icon, "apco2-[operating ? environ : 0]")
 
-			switch(charging)
-				if(APC_NOT_CHARGING)
-					set_light_color(LIGHT_COLOR_RED)
-				if(APC_CHARGING)
-					set_light_color(LIGHT_COLOR_BLUE)
-				if(APC_FULLY_CHARGED)
-					set_light_color(LIGHT_COLOR_GREEN)
-			set_light(initial(light_range))
-
+//This in particular needs to be done away with entirely
 /obj/machinery/power/apc/proc/check_updates()
 
 	var/last_update_state = update_state

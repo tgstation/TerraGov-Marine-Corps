@@ -66,6 +66,7 @@
 
 
 /obj/vehicle/train/cargo/update_icon()
+	. = ..()
 	if(open)
 		icon_state = initial(icon_state) + "_open"
 	else

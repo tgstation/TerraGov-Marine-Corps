@@ -44,6 +44,7 @@
 	set_light(initial(light_range))
 
 /obj/item/radio/intercom/update_icon_state()
+	. = ..()
 	if(!on)
 		icon_state = "intercom_unpowered"
 	else

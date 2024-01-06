@@ -115,6 +115,7 @@
 	return ..()
 
 /obj/structure/cocoon/update_icon_state()
+	. = ..()
 	if(anchored)
 		icon_state = "xeno_cocoon"
 		return

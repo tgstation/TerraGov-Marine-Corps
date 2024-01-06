@@ -100,7 +100,8 @@
 		clear_hugger_source()
 	return ..()
 
-/obj/item/clothing/mask/facehugger/update_icon()
+/obj/item/clothing/mask/facehugger/update_icon_state()
+	. = ..()
 	if(stat == DEAD)
 		var/fertility = sterile ? "impregnated" : "dead"
 		icon_state = "[initial(icon_state)]_[fertility]"

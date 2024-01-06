@@ -44,6 +44,7 @@
 
 
 /obj/item/defibrillator/update_icon_state()
+	. = ..()
 	icon_state = "defib"
 	if(ready)
 		icon_state += "_out"
@@ -368,5 +369,5 @@
 		defibrillate(target, user)
 
 /obj/item/defibrillator/gloves/update_icon_state()
-	return
-
+	. = ..()
+	icon_state = initial(icon_state)

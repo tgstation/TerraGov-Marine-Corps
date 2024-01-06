@@ -1214,9 +1214,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(damage < 1)
 		return FALSE
 
-	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		current_bulletholes++
-
 	if(prob(30))
 		visible_message(span_warning("[src] is damaged by [proj]!"), visible_message_flags = COMBAT_MESSAGE)
 	take_damage(damage)

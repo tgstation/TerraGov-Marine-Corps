@@ -125,6 +125,7 @@
 	turn_light(user, !light_on)
 
 /obj/machinery/deployable/floodlight/update_icon_state()
+	. = ..()
 	icon_state = "floodlightcombat_deployed" + (light_on ? "_on" : "_off")
 
 /obj/item/deployable_floodlight

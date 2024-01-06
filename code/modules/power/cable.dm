@@ -124,6 +124,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 ///////////////////////////////////
 
 /obj/structure/cable/update_icon_state()
+	. = ..()
 	if(!linked_dirs)
 		icon_state = "l[cable_layer]-noconnection"
 	else
@@ -635,7 +636,8 @@ GLOBAL_LIST(cable_radial_layer_list)
 	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER|VIS_UNDERLAY
 
 /obj/structure/cable/multilayer/update_icon_state()
-	return
+	. = ..()
+	icon_state = initial(icon_state)
 
 /obj/structure/cable/multilayer/update_icon()
 

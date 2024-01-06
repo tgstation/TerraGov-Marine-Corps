@@ -822,7 +822,8 @@
 	. = ..()
 	update_icon()
 
-/obj/machinery/vending/lasgun/update_icon()
+/obj/machinery/vending/lasgun/update_icon_state()
+	. = ..()
 	if(machine_max_charge)
 		switch(machine_current_charge / max(1,machine_max_charge))
 			if(0.7 to 1)

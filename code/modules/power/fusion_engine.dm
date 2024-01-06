@@ -318,7 +318,8 @@
 	else
 		. += span_info("There is no fuel cell in the receptacle.")
 
-/obj/machinery/power/fusion_engine/update_icon()
+/obj/machinery/power/fusion_engine/update_icon_state()
+	. = ..()
 	switch(buildstate)
 		if(FUSION_ENGINE_NO_DAMAGE)
 			if(fusion_cell?.fuel_amount > 0)
@@ -384,6 +385,7 @@
 	update_icon()
 
 /obj/item/fuel_cell/update_icon()
+	. = ..()
 	switch(get_fuel_percent())
 		if(-INFINITY to 0)
 			icon_state = "cell-empty"

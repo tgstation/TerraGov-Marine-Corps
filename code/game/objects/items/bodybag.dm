@@ -68,6 +68,8 @@
 	var/obj/item/bodybag/foldedbag_instance = null
 	var/obj/structure/bed/roller/roller_buckled //the roller bed this bodybag is attached to.
 	var/mob/living/bodybag_occupant
+	///Should the name of the person inside be displayed?
+	var/display_name = TRUE
 
 
 /obj/structure/closet/bodybag/Initialize(mapload, foldedbag)
@@ -96,6 +98,8 @@
 
 /obj/structure/closet/bodybag/update_name(updates)
 	. = ..()
+	if(!display_name)
+		return
 	if(opened)
 		name = bag_name
 	else
@@ -190,6 +194,7 @@
 
 
 /obj/structure/closet/bodybag/update_icon_state()
+	. = ..()
 	if(!opened)
 		icon_state = icon_closed
 		for(var/mob/living/L in contents)
@@ -417,6 +422,7 @@
 	close_sound = 'sound/effects/vegetation_walk_2.ogg'
 	foldedbag_path = /obj/item/bodybag/tarp
 	closet_stun_delay = 0.5 SECONDS //Short delay to prevent ambushes from being too degenerate.
+	display_name = FALSE
 	var/serial_number //Randomized serial number used to stop point macros and such.
 
 
@@ -453,11 +459,6 @@
 /obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(mob/source, gibbing)
 	SIGNAL_HANDLER
 	open()
-
-
-/obj/structure/closet/bodybag/tarp/update_name()
-	return //Shouldn't be revealing who's inside.
-
 
 /obj/structure/closet/bodybag/tarp/MouseDrop(over_object, src_location, over_location)
 	. = ..()

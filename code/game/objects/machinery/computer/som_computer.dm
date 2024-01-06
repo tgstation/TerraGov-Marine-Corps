@@ -13,6 +13,7 @@
 		pixel_y = 10
 
 /obj/machinery/computer/som/update_icon_state()
+	. = ..()
 	if(machine_stat & (BROKEN|DISABLED))
 		icon_state = "[initial(icon_state)]_broken"
 	else if(machine_stat & NOPOWER)

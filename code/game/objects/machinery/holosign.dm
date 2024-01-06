@@ -17,6 +17,7 @@
 	update_icon()
 
 /obj/machinery/holosign/update_icon_state()
+	. = ..()
 	if(!lit)
 		icon_state = "sign_off"
 	else

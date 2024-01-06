@@ -38,6 +38,7 @@
 	icon_state = "bunkbed"
 
 /obj/structure/bed/update_icon_state()
+	. = ..()
 	if(!base_bed_icon)
 		return
 	if(LAZYLEN(buckled_mobs) || buckled_bodybag)

@@ -271,7 +271,8 @@
 	new /obj/item/armor_module/storage/uniform/holster/armpit(src)
 
 
-/obj/structure/closet/secure_closet/detective/update_icon()
+/obj/structure/closet/secure_closet/detective/update_icon_state()
+	. = ..()
 	if(broken)
 		icon_state = icon_broken
 	else
@@ -357,6 +358,7 @@
 
 
 /obj/structure/closet/secure_closet/wall/update_icon()
+	. = ..()
 	if(broken)
 		icon_state = icon_broken
 	else

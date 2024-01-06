@@ -239,6 +239,7 @@
 
 
 /area/update_icon_state()
+	. = ..()
 	var/I //More important == bottom. Fire normally takes priority over everything.
 	if(flags_alarm_state && (!requires_power || power_environ)) //It either doesn't require power or the environment is powered. And there is an alarm.
 		if(flags_alarm_state & ALARM_WARNING_READY)

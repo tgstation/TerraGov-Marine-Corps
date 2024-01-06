@@ -23,7 +23,8 @@
 	QDEL_NULL(connected)
 	return ..()
 
-/obj/structure/morgue/update_icon()
+/obj/structure/morgue/update_icon_state()
+	. = ..()
 	if (morgue_open)
 		icon_state = "[morgue_type]0"
 	else

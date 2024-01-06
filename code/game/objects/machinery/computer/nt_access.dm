@@ -70,6 +70,7 @@
 	visible_message("<b>[src]</b> shuts down as it loses power. Any running programs will now exit")
 
 /obj/machinery/computer/nt_access/update_icon_state()
+	. = ..()
 	icon_state = initial(icon_state)
 
 /obj/machinery/computer/nt_access/attackby(obj/item/I, mob/living/user, params)

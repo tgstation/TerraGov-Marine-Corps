@@ -203,7 +203,7 @@ GLOBAL_LIST_INIT(ghost_forms, list("Default" = GHOST_DEFAULT_FORM, "Ghost Ian 1"
 		return
 
 	var/mob/dead/observer/O = mob
-	O.update_icon(GLOB.ghost_forms[new_form])
+	O.pick_form(GLOB.ghost_forms[new_form])
 
 
 GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE, GHOST_ORBIT_TRIANGLE, GHOST_ORBIT_SQUARE, GHOST_ORBIT_HEXAGON, GHOST_ORBIT_PENTAGON))
