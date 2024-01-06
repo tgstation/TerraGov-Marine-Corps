@@ -12,14 +12,14 @@
 	desc = "Standard marine first-aid pouch. Contains a basic set of medical supplies."
 	ui_icon = "medkit"
 	item_typepath = /obj/item/storage/pouch/firstaid/combat_patrol
-	jobs_supported = list(SQUAD_MARINE)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/r_pocket/marine_standard_grenades
 	name = "Standard grenades"
 	desc = "A pouch carrying a set of six standard support grenades."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/combat_patrol
-	jobs_supported = list(SQUAD_MARINE)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/r_pocket/shotgun
 	name = "Buckshot shells"
@@ -47,6 +47,13 @@
 	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_R_POUCH)
 	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, SLOT_IN_R_POUCH)
 
+/datum/loadout_item/r_pocket/magazine
+	name = "Magazine pouch"
+	desc = "This pouch can contain three ammo magazines."
+	ui_icon = "grenade"
+	item_typepath = /obj/item/storage/pouch/magazine/large
+	jobs_supported = list(SQUAD_CORPSMAN)
+
 //l_pocket
 /datum/loadout_item/l_pocket
 	item_slot = ITEM_SLOT_L_POCKET
@@ -61,14 +68,14 @@
 	desc = "Standard marine first-aid pouch. Contains a basic set of medical supplies."
 	ui_icon = "medkit"
 	item_typepath = /obj/item/storage/pouch/firstaid/combat_patrol
-	jobs_supported = list(SQUAD_MARINE)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/l_pocket/marine_standard_grenades
 	name = "Grenade pouch"
 	desc = "A pouch carrying a set of six standard support grenades. Includes smoke grenades of both lethal and nonlethal varieties, as well as stun grenades."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/combat_patrol
-	jobs_supported = list(SQUAD_MARINE)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/l_pocket/shotgun
 	name = "Flechette shells"
@@ -95,3 +102,10 @@
 	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags_empty/half, SLOT_IN_L_POUCH)
 	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_L_POUCH)
 	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, SLOT_IN_L_POUCH)
+
+/datum/loadout_item/l_pocket/magazine
+	name = "Magazine pouch"
+	desc = "This pouch can contain three ammo magazines."
+	ui_icon = "grenade"
+	item_typepath = /obj/item/storage/pouch/magazine/large
+	jobs_supported = list(SQUAD_CORPSMAN)

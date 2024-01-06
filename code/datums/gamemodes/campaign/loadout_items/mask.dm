@@ -10,10 +10,10 @@
 	name = "Standard gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	item_typepath = /obj/item/clothing/mask/gas
-	jobs_supported = list(SQUAD_MARINE)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/mask/tactical
 	name = "Tactical gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air. This one is supposedly more tactical than the standard model."
 	item_typepath = /obj/item/clothing/mask/gas/tactical
-	jobs_supported = list(SQUAD_MARINE)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)

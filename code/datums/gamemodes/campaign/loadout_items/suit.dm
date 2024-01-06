@@ -48,10 +48,14 @@
 	item_whitelist = list(
 		/obj/item/weapon/gun/rifle/alf_machinecarbine/assault = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/smg/m25/magharness = ITEM_SLOT_SUITSTORE,
-	) //testing purposes only
+	)
 
 /datum/loadout_item/suit_slot/medium_mimir
 	name = "Medium Mimir armor"
 	desc = "Medium armor with a Mimir environmental protection module. Provides respectable armor and total immunity to chemical attacks, and improved radiological protection. Has modest mobility."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/mimir
 	jobs_supported = list(SQUAD_CORPSMAN)
+
+/datum/loadout_item/suit_slot/medium_mimir/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)

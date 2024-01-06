@@ -80,8 +80,6 @@
 	loadout_cost -= equipped_things[slot_bit].purchase_cost
 	equipped_things[slot_bit] = new_item //adds the datum
 	loadout_cost += equipped_things[slot_bit].purchase_cost
-	//currently the below doesn't give any feedback, so unneeded here
-	//check_full_loadout() //checks all datums to see if this makes anything invalid
 
 	switch(new_item.item_slot) //adds it to the loadout itself
 		if(ITEM_SLOT_OCLOTHING)

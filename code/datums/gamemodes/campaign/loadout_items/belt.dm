@@ -39,3 +39,10 @@
 	desc = "A large leather scabbard carrying a M2132 machete. It can be strapped to the back, waist or armor. Extremely dangerous against human opponents - if you can get close enough."
 	item_typepath = /obj/item/storage/holster/blade/machete/full
 	jobs_supported = list(SQUAD_MARINE)
+
+//medic
+/datum/loadout_item/belt/lifesaver
+	name = "Lifesaver bag"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
+	item_typepath = /obj/item/storage/belt/lifesaver/quick
+	jobs_supported = list(SQUAD_CORPSMAN)

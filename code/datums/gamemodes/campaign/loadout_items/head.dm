@@ -28,9 +28,7 @@
 	req_desc = "Requires a suit with a Surt module."
 	item_typepath = /obj/item/clothing/head/modular/m10x/surt
 	jobs_supported = list(SQUAD_MARINE)
-	item_whitelist = list(
-		/obj/item/clothing/suit/modular/xenonauten/heavy/surt = ITEM_SLOT_OCLOTHING,
-	)
+	item_whitelist = list(/obj/item/clothing/suit/modular/xenonauten/heavy/surt = ITEM_SLOT_OCLOTHING)
 
 /datum/loadout_item/helmet/tyr
 	name = "M10X-Tyr helmet"
@@ -38,9 +36,7 @@
 	req_desc = "Requires a suit with a Tyr module."
 	item_typepath = /obj/item/clothing/head/modular/m10x/tyr
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER)
-	item_whitelist = list(
-		/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two = ITEM_SLOT_OCLOTHING,
-	)
+	item_whitelist = list(/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two = ITEM_SLOT_OCLOTHING)
 
 /datum/loadout_item/helmet/mimir
 	name = "M10X-Mimir helmet"
@@ -48,6 +44,8 @@
 	req_desc = "Requires a suit with a Mimir module."
 	item_typepath = /obj/item/clothing/head/modular/m10x/mimir
 	jobs_supported = list(SQUAD_CORPSMAN)
-	item_whitelist = list(
-		/obj/item/clothing/suit/modular/xenonauten/mimir = ITEM_SLOT_OCLOTHING,
-	)
+	item_whitelist = list(/obj/item/clothing/suit/modular/xenonauten/mimir = ITEM_SLOT_OCLOTHING)
+
+/datum/loadout_item/helmet/mimir/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/isotonic, SLOT_IN_HEAD)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/neuraline, SLOT_IN_HEAD)

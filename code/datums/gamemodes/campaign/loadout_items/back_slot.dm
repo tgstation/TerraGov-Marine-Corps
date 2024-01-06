@@ -38,3 +38,15 @@
 		/obj/item/weapon/gun/smg/m25/magharness = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/rifle/alf_machinecarbine/assault = ITEM_SLOT_SUITSTORE,
 	)
+
+/datum/loadout_item/back/corpsman_satchel
+	name = "Medical satchel"
+	desc = "A heavy-duty satchel carried by some TGMC corpsmen. You can recharge defibrillators by plugging them in. Carries less than a backpack, but items can be drawn instantly."
+	item_typepath = /obj/item/storage/backpack/marine/corpsman/satchel
+	jobs_supported = list(SQUAD_CORPSMAN)
+
+/datum/loadout_item/back/corpsman_backpack
+	name = "Medical backpack"
+	desc = "The standard-issue backpack worn by TGMC corpsmen. You can recharge defibrillators by plugging them in. Carries more than a satchel but has a draw delay."
+	item_typepath = /obj/item/storage/backpack/marine/corpsman
+	jobs_supported = list(SQUAD_CORPSMAN)

@@ -47,3 +47,11 @@
 	desc = "item desc here"
 	item_typepath = /obj/item/clothing/under/marine/corpsman/corpman_vest
 	jobs_supported = list(SQUAD_CORPSMAN)
+
+/datum/loadout_item/uniform/marine_corpsman/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/tweezers_advanced, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/nanoblood, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/spaceacillin, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/combat_advanced, SLOT_IN_ACCESSORY)

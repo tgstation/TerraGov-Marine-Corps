@@ -29,8 +29,6 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 		.[job] = list()
 		for(var/i in GLOB.campaign_loadout_item_type_list)
 			var/datum/loadout_item/option = GLOB.campaign_loadout_item_type_list[i]
-			//if(!(option.loadout_item_flags & LOADOUT_ITEM_ROUNDSTART_OPTION) && !(option.loadout_item_flags & LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE))
-			//	continue
 			if(option.jobs_supported && !(job in option.jobs_supported))
 				continue
 			.[job] += option
@@ -50,7 +48,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	var/ui_icon = "b18" //placeholder
 	///inventory slot it is intended to go into
 	var/item_slot
-
+	///Behavior flags for loadout items
 	var/loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 	///Cost to unlock this option
 	var/unlock_cost = 0
@@ -64,7 +62,6 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	var/list/item_whitelist
 	///assoc list by slot of items blacklisted for this to be equipped
 	var/list/item_blacklist
-	//do we need a post equip gear list?
 
 /datum/loadout_item/New()
 	. = ..()
