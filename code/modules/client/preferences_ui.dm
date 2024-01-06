@@ -74,6 +74,7 @@
 			data["flavor_text"] = flavor_text
 			data["xeno_desc"] = xeno_desc
 			data["profile_pic"] = profile_pic
+			data["xenoprofile_pic"] = xenoprofile_pic
 			data["med_record"] = med_record
 			data["gen_record"] = gen_record
 			data["sec_record"] = sec_record
@@ -593,10 +594,16 @@
 			xeno_desc = new_record
 
 		if("profile_pic")
-			var/new_record = trim(html_encode(params["profile_pic"]), MAX_MESSAGE_LEN)
+			var/new_record = trim(html_encode(params["profilePic"]), MAX_MESSAGE_LEN)
 			if(!new_record)
 				return
 			profile_pic = new_record
+
+		if("xenoprofile_pic")
+			var/new_record = trim(html_encode(params["xenoprofilePic"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			xenoprofile_pic = new_record
 
 		if("windowflashing")
 			windowflashing = !windowflashing

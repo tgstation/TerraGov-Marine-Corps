@@ -456,6 +456,7 @@
 	READ_FILE(S["flavor_text"], flavor_text)
 	READ_FILE(S["xeno_desc"], xeno_desc)
 	READ_FILE(S["profile_pic"], profile_pic)
+	READ_FILE(S["xenoprofile_pic"], xenoprofile_pic)
 
 
 	be_special = sanitize_integer(be_special, NONE, MAX_BITFLAG, initial(be_special))
@@ -524,6 +525,7 @@
 	flavor_text = sanitize_text(flavor_text, initial(flavor_text))
 	xeno_desc = sanitize_text(xeno_desc, initial(xeno_desc))
 	profile_pic = sanitize_text(profile_pic, initial(profile_pic))
+	xenoprofile_pic = sanitize_text(xenoprofile_pic, initial(xenoprofile_pic))
 
 	if(!synthetic_name)
 		synthetic_name = "David"
@@ -616,6 +618,7 @@
 	flavor_text = sanitize_text(flavor_text, initial(flavor_text))
 	xeno_desc = sanitize_text(xeno_desc, initial(xeno_desc))
 	profile_pic = sanitize_text(profile_pic, initial(profile_pic))
+	xenoprofile_pic = sanitize_text(xenoprofile_pic, initial(xenoprofile_pic))
 
 	WRITE_FILE(S["be_special"], be_special)
 
@@ -676,6 +679,7 @@
 	WRITE_FILE(S["flavor_text"], flavor_text)
 	WRITE_FILE(S["xeno_desc"], xeno_desc)
 	WRITE_FILE(S["profile_pic"], profile_pic)
+	WRITE_FILE(S["xenoprofile_pic"], xenoprofile_pic)
 
 	return TRUE
 

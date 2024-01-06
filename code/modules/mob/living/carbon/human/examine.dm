@@ -486,6 +486,8 @@
 				msg += "<a href='?src=[text_ref(src)];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
 
 	msg += "[flavor_text]<br>"
+	if(profile_pic)
+		msg += "<span class='info'><img src=[profile_pic]/></span>"
 
 // removed hollow examine from humans
 	if(HAS_TRAIT(src, TRAIT_HOLLOW))

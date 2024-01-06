@@ -16,8 +16,8 @@
 
 	if(client.prefs?.xeno_desc)
 		xeno_desc = client.prefs.xeno_desc
-	if(client.prefs?.profile_pic)
-		profile_pic = client.prefs.profile_pic
+	if(client.prefs?.xenoprofile_pic)
+		xenoprofile_pic = client.prefs.xenoprofile_pic
 
 	hud_update_rank()
 	generate_name()
