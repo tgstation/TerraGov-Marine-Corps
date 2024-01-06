@@ -122,6 +122,19 @@
 	desc = "Some semen or something, yuck. It seems to have dried."
 	color = adjust_brightness(color, -75)
 
+/obj/effect/decal/cleanable/blood/splatter/xenocum
+	name = "xeno cum"
+	basecolor = "#b9ffcb"
+	desc = "Some acidic xeno semen or something, yuck."
+	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
+	amount = 2
+
+/obj/effect/decal/cleanable/blood/splatter/xenocum/dry()
+	name = "dried [name]"
+	desc = "Some semen or something, yuck. It seems to have dried."
+	color = adjust_brightness(color, -75)
+
+
 /obj/effect/decal/cleanable/blood/splatter/girlcum
 	name = "pussyjuice"
 	basecolor = "#999999"

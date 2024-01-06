@@ -49,7 +49,7 @@
 /mob/verb/Climax()
 	set name = "Climax"
 	set category = "IC"
-	if(isliving(src))
+	if(stat != DEAD)
 		var/channel = SSsounds.random_available_channel()
 		if(length(usr.do_actions))
 			return
@@ -68,6 +68,8 @@
 			new /obj/effect/decal/cleanable/blood/splatter/cum(usr.loc)
 		else
 			new /obj/effect/decal/cleanable/blood/splatter/girlcum(usr.loc)
+		if(isxeno(usr))
+			new /obj/effect/decal/cleanable/blood/splatter/xenocum(usr.loc)
 		playsound(usr.loc, "sound/effects/splat.ogg", 30)
 	else
 		to_chat(usr, span_warning("You must be living to do that."))
