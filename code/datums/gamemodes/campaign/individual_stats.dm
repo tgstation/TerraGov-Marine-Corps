@@ -105,11 +105,6 @@
 	for(var/datum/perk/perk AS in perks_by_job[current_mob.job.title])
 		perk.apply_perk(current_mob)
 
-///Attempts to add an available item to a loadout
-///datum/individual_stats/proc/attempt_equip_loadout_item(datum/loadout_item/new_item, role)
-//	loadouts[role].attempt_equip_loadout_item(new_item)
-
-
 //UI stuff//
 /datum/individual_stats/ui_assets(mob/user)
 	return list(get_asset_datum(/datum/asset/spritesheet/campaign/perks), get_asset_datum(/datum/asset/spritesheet/campaign/loadout_items))
@@ -279,8 +274,6 @@
 			for(var/datum/loadout_item/item AS in GLOB.campaign_loadout_items_by_role[equipped_item_job])
 				if(!istype(item, equipped_item_type))
 					continue
-				//if(!loadouts[equipped_item_job].attempt_equip_loadout_item(item))
-				//	return
 				loadouts[equipped_item_job].equip_loadout_item(item)
 				user.playsound_local(user, 'sound/effects/menu_click.ogg', 50)
 				return TRUE
