@@ -217,6 +217,7 @@ export const BackgroundInformation = (props) => {
               value={profilePic}
               onChange={(e, value) => setProfilePic(value)}
             />
+            <img src={profile_pic} />
           </Section>
         </Stack.Item>
         <Stack.Item grow>
@@ -246,6 +247,7 @@ export const BackgroundInformation = (props) => {
               value={xenoprofilePic}
               onChange={(e, value) => setXenoProfilePic(value)}
             />
+            <img src={xenoprofile_pic} />
           </Section>
         </Stack.Item>
       </Stack>
