@@ -1,9 +1,9 @@
 import { useBackend, useLocalState } from '../../backend';
+import { Button, Modal, Section, Stack, Tabs } from '../../components';
 import { Window } from '../../layouts';
-import { Box, Modal, Tabs, Button, Stack, Section } from '../../components';
-import { CampaignOverview } from './CampaignOverview';
-import { CampaignMissions } from './CampaignMissions';
 import { CampaignAssets } from './CampaignAssets';
+import { CampaignMissions } from './CampaignMissions';
+import { CampaignOverview } from './CampaignOverview';
 import { CampaignPurchase } from './CampaignPurchase';
 
 const TAB_OVERVIEW = 'Overview';
@@ -21,9 +21,9 @@ const CampaignTabs = [
 export type MissionData = {
   faction_rewards_data;
   typepath?: string;
-  name: string;
+  name?: string;
 
-  map_name: string;
+  map_name?: string;
   starting_faction?: string;
   hostile_faction?: string;
   winning_faction?: string;
@@ -69,40 +69,38 @@ export type CampaignData = {
   victory_points: number;
   max_victory_points: number;
   faction: string;
-  icons?: string[];
-  mission_icons?: string[];
 };
 
-export const CampaignMenu = (props, context) => {
-  const { act, data } = useBackend<CampaignData>(context);
+export const CampaignMenu = (props) => {
+  const { act, data } = useBackend<CampaignData>();
   const [selectedTab, setSelectedTab] = useLocalState(
-    context,
     'selectedTab',
-    TAB_OVERVIEW
+    TAB_OVERVIEW,
   );
 
   const [selectedAsset, setSelectedAsset] = useLocalState<FactionReward | null>(
-    context,
     'selectedAsset',
-    null
+    null,
   );
   const [purchasedAsset, setPurchasedAsset] =
-    useLocalState<FactionReward | null>(context, 'purchasedAsset', null);
+    useLocalState<FactionReward | null>('purchasedAsset', null);
   const [selectedNewMission, setSelectedNewMission] =
-    useLocalState<MissionData | null>(context, 'selectedNewMission', null);
+    useLocalState<MissionData | null>('selectedNewMission', null);
 
   return (
     <Window
       theme={data.ui_theme}
       title={data.faction + ' Mission Control'}
       width={700}
-      height={600}>
+      height={600}
+    >
       <Window.Content>
         {selectedAsset ? (
           <Modal width="500px">
             <Section
               textAlign="center"
-              title={'Activate ' + selectedAsset.name + '?'}>
+              title={'Activate ' + selectedAsset.name + '?'}
+            >
               <Stack justify="space-around">
                 <Stack.Item>
                   <Button
@@ -113,7 +111,8 @@ export const CampaignMenu = (props, context) => {
                       setSelectedAsset(null);
                     }}
                     icon={'check'}
-                    color="green">
+                    color="green"
+                  >
                     Yes
                   </Button>
                 </Stack.Item>
@@ -121,7 +120,8 @@ export const CampaignMenu = (props, context) => {
                   <Button
                     onClick={() => setSelectedAsset(null)}
                     icon={'times'}
-                    color="red">
+                    color="red"
+                  >
                     No
                   </Button>
                 </Stack.Item>
@@ -133,7 +133,8 @@ export const CampaignMenu = (props, context) => {
           <Modal width="500px">
             <Section
               textAlign="center"
-              title={'Purchase ' + purchasedAsset.name + '?'}>
+              title={'Purchase ' + purchasedAsset.name + '?'}
+            >
               <Stack justify="space-around">
                 <Stack.Item>
                   <Button
@@ -144,7 +145,8 @@ export const CampaignMenu = (props, context) => {
                       setPurchasedAsset(null);
                     }}
                     icon={'check'}
-                    color="green">
+                    color="green"
+                  >
                     Yes
                   </Button>
                 </Stack.Item>
@@ -152,7 +154,8 @@ export const CampaignMenu = (props, context) => {
                   <Button
                     onClick={() => setPurchasedAsset(null)}
                     icon={'times'}
-                    color="red">
+                    color="red"
+                  >
                     No
                   </Button>
                 </Stack.Item>
@@ -164,7 +167,8 @@ export const CampaignMenu = (props, context) => {
           <Modal width="500px">
             <Section
               textAlign="center"
-              title={'Select ' + selectedNewMission.name + '?'}>
+              title={'Select ' + selectedNewMission.name + '?'}
+            >
               <Stack justify="space-around">
                 <Stack.Item>
                   <Button
@@ -175,7 +179,8 @@ export const CampaignMenu = (props, context) => {
                       setSelectedNewMission(null);
                     }}
                     icon={'check'}
-                    color="green">
+                    color="green"
+                  >
                     Yes
                   </Button>
                 </Stack.Item>
@@ -183,7 +188,8 @@ export const CampaignMenu = (props, context) => {
                   <Button
                     onClick={() => setSelectedNewMission(null)}
                     icon={'times'}
-                    color="red">
+                    color="red"
+                  >
                     No
                   </Button>
                 </Stack.Item>
@@ -199,7 +205,8 @@ export const CampaignMenu = (props, context) => {
                 selected={tabname === selectedTab}
                 fontSize="130%"
                 textAlign="center"
-                onClick={() => setSelectedTab(tabname)}>
+                onClick={() => setSelectedTab(tabname)}
+              >
                 {tabname}
               </Tabs.Tab>
             );
@@ -211,11 +218,10 @@ export const CampaignMenu = (props, context) => {
   );
 };
 
-const CampaignContent = (props, context) => {
+const CampaignContent = (props) => {
   const [selectedTab, setSelectedTab] = useLocalState(
-    context,
     'selectedTab',
-    TAB_OVERVIEW
+    TAB_OVERVIEW,
   );
   switch (selectedTab) {
     case TAB_OVERVIEW:
@@ -229,66 +235,4 @@ const CampaignContent = (props, context) => {
     default:
       return null;
   }
-};
-
-/** Generates a small icon for buttons based on ICONMAP */
-export const AssetIcon = (
-  props: {
-    icon: FactionReward['icon'];
-    icon_width?: string;
-    icon_height?: string;
-  },
-  context
-) => {
-  const { data } = useBackend<CampaignData>(context);
-  const { icons = [] } = data;
-  const { icon, icon_width, icon_height } = props;
-  if (!icon || !icons[icon]) {
-    return null;
-  }
-
-  return (
-    <Box
-      width={icon_width ? icon_width : '18px'}
-      height={icon_height ? icon_height : '18px'}
-      as="img"
-      mr={1.5}
-      src={`data:image/jpeg;base64,${icons[icon]}`}
-      style={{
-        transform: 'scale(1)',
-        '-ms-interpolation-mode': 'nearest-neighbor',
-      }}
-    />
-  );
-};
-
-/** Generates a small icon for buttons based on ICONMAP for missions */
-export const MissionIcon = (
-  props: {
-    icon: MissionData['mission_icon'];
-    icon_width?: string;
-    icon_height?: string;
-  },
-  context
-) => {
-  const { data } = useBackend<CampaignData>(context);
-  const { mission_icons = [] } = data;
-  const { icon, icon_width, icon_height } = props;
-  if (!icon || !mission_icons[icon]) {
-    return null;
-  }
-
-  return (
-    <Box
-      width={icon_width ? icon_width : '24px'}
-      height={icon_height ? icon_height : '24px'}
-      as="img"
-      mr={1.5}
-      src={`data:image/jpeg;base64,${mission_icons[icon]}`}
-      style={{
-        transform: 'scale(1)',
-        '-ms-interpolation-mode': 'nearest-neighbor',
-      }}
-    />
-  );
 };
