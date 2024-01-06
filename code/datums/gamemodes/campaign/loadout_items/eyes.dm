@@ -20,10 +20,10 @@
 
 /datum/loadout_item/eyes/mesons
 	name = "Optical meson scanner"
-	desc = "item desc here"
+	desc = "Used to shield the user's eyes from harmful electromagnetic emissions, also used as general safety goggles. \
+	Not adequate as welding protection. Allows the user to see structural information about their surroundings."
 	item_typepath = /obj/item/clothing/glasses/meson
 	jobs_supported = list(SQUAD_ENGINEER)
-	purchase_cost = 12 //test only
 
 /datum/loadout_item/eyes/welding
 	name = "Welding goggles"
