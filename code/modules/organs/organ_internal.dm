@@ -42,7 +42,7 @@
 		return
 	var/mob/living/carbon/human/human = carbon_mob
 	var/datum/limb/limb = human.get_limb(parent_limb)
-	LAZYDISTINCTADD(limb.internal_organs, src)
+	LAZYOR(limb.internal_organs, src)
 
 ///Signal handler to prevent hard del
 /datum/internal_organ/proc/clean_owner()

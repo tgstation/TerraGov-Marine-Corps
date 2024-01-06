@@ -122,6 +122,8 @@
 			continue
 		stat_list[i].get_status_tab_items(source, items)
 
+/datum/game_mode/hvh/campaign/ghost_verbs(mob/dead/observer/observer)
+	return list(/datum/action/campaign_overview)
 
 ///sets up the newly selected mission
 /datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission)
@@ -270,15 +272,6 @@
 	SIGNAL_HANDLER
 	if(!(new_member.faction in factions))
 		return
-	add_verb(new_member, /mob/living/proc/open_faction_stats_ui)
 
-///Opens up the players campaign status UI
-/mob/living/proc/open_faction_stats_ui()
-	set name = "Campaign Status"
-	set desc = "Check the status of your faction in the campaign."
-	set category = "IC"
-
-	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[faction]
-	if(!your_faction)
-		return
-	your_faction.interact(src)
+	var/datum/action/campaign_overview/overview = new
+	overview.give_action(new_member)

@@ -170,7 +170,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	else
 		assignment = "Unassigned"
 
-	var/id = add_leading("[num2hex(randfloat(1, 1.6777215E7))]", 6, "0")	//this was the best they could come up with? A large random number? *sigh* - actual 4407 code lol
+	var/id = add_leading("[num2hex(randfloat(1, 1.6777215E7), 2)]", 6, "0")	//this was the best they could come up with? A large random number? *sigh* - actual 4407 code lol
 
 	//General Record
 	var/datum/data/record/G = new()
