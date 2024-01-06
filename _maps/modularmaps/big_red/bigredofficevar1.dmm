@@ -905,7 +905,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/bigredv2/outside/e)
+/area/bigredv2/outside/office_complex)
 "Nq" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
