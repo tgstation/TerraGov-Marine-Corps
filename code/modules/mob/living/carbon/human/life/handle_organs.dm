@@ -48,7 +48,7 @@
 					E.germ_level++
 
 	//Hard to stay upright
-	if(leg_tally > 0 && prob(2.5 * leg_tally))
+	if(leg_tally > 0 && prob(2.5 * leg_tally) && !is_buckled())
 		if(!(species.species_flags & NO_PAIN))
 			emote("pain")
 		visible_message(span_warning("[src] collapses to the ground!"),	\

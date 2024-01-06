@@ -12150,13 +12150,13 @@
 	},
 /area/ice_colony/underground/medical/storage)
 "bzn" = (
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/storage)
 "bzo" = (
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /turf/open/floor/tile/red/whitered{
 	dir = 5
 	},

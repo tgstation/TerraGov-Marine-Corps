@@ -104,9 +104,11 @@
 	pixel_y = 32
 
 /obj/effect/attach_point/crew_weapon
-	name = "rear attach point"
+	name = "interior attach point"
 	base_category = DROPSHIP_CREW_WEAPON
 	density = FALSE
+	layer = HOLOPAD_LAYER //Keeps xenos from hiding under them
+	plane = FLOOR_PLANE //Doesn't layer under weeds unless it has this
 
 /obj/effect/attach_point/crew_weapon/dropship1
 	ship_tag = SHUTTLE_ALAMO
@@ -642,9 +644,12 @@
 	bound_height = 64
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE|FIRE_MISSION_ONLY
 	screen_mode = 1
-	COOLDOWN_DECLARE(last_fired) //used for weapon cooldown after use.
+	///used for weapon cooldown after use
+	COOLDOWN_DECLARE(last_fired)
+	///primary firing sound on the plane
 	var/firing_sound
-	var/firing_delay = 20 //delay between firing. 2 seconds by default
+	///delay between firing.
+	var/firing_delay = 2 SECONDS
 
 /obj/structure/dropship_equipment/cas/weapon/update_equipment()
 	if(ship_base)
@@ -681,12 +686,17 @@
 /obj/structure/dropship_equipment/cas/weapon/proc/open_fire(obj/selected_target, attackdir)
 	var/turf/target_turf = get_turf(selected_target)
 	if(firing_sound)
-		playsound(loc, firing_sound, 70, 1)
+		playsound(loc, firing_sound, 70, TRUE)
 	var/obj/structure/ship_ammo/SA = ammo_equipped //necessary because we nullify ammo_equipped when firing big rockets
 	var/ammo_travelling_time = SA.travelling_time //how long the rockets/bullets take to reach the ground target.
 	var/ammo_warn_sound = SA.warning_sound
 	deplete_ammo()
 	COOLDOWN_START(src, last_fired, firing_delay)
+
+	if((SA.max_ammo_count > 1) && (SA.ammo_count <= 0))
+		playsound(loc, 'sound/voice/plane_vws/ammunition_zero.ogg', 70, FALSE)
+	else if(SA.firing_voiceline)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), loc, SA.firing_voiceline, 80, FALSE), 5)
 
 	if(ammo_warn_sound)
 		playsound(target_turf, ammo_warn_sound, 70, 1)

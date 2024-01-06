@@ -289,11 +289,11 @@
 	return (GLOB.cameranet && GLOB.cameranet.checkTurfVis(get_turf_pixel(A)))
 
 /mob/living/silicon/ai/proc/relay_speech(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
-	raw_message = lang_treat(speaker, message_language, raw_message, spans, message_mode)
 	var/start = "Relayed Speech: "
 	var/namepart = "[speaker.GetVoice()][speaker.get_alt_name()]"
 	var/hrefpart = "<a href='?src=[REF(src)];track=[html_encode(namepart)]'>"
 	var/jobpart
+	var/speech_part = lang_treat(speaker, message_language, raw_message, spans, message_mode)
 
 	if(iscarbon(speaker))
 		var/mob/living/carbon/S = speaker
@@ -302,8 +302,10 @@
 	else
 		jobpart = "Unknown"
 
-	var/rendered = "<i><span class='game say'>[start][span_name("[hrefpart][namepart] ([jobpart])</a> ")][span_message("[raw_message]")]</span></i>"
 
+	var/rendered = "<i><span class='game say'>[start][span_name("[hrefpart][namepart] ([jobpart])</a> ")][span_message("[speech_part]")]</span></i>"
+
+	create_chat_message(speaker, message_language, raw_message, spans, message_mode)
 	show_message(rendered, 2)
 
 
@@ -382,7 +384,8 @@
 
 	. += "Current alert level: [GLOB.marine_main_ship.get_security_level()]"
 
-	. += "Number of living marines: [SSticker.mode.count_humans_and_xenos()[1]]"
+	if(SSticker.mode)
+		. += "Number of living marines: [SSticker.mode.count_humans_and_xenos()[1]]"
 
 	if(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE > world.time)
 		. += "Railgun status: Cooling down, next fire in [(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE - world.time)/10] seconds."

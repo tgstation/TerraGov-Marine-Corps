@@ -169,6 +169,30 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/healthanalyzer(src)
 
+/obj/item/storage/belt/lifesaver/beginner/Initialize(mapload, ...) //For beginner vendor
+	. = ..()
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/meralyne(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/dermaline(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
+	new /obj/item/storage/pill_bottle/inaprovaline(src)
+	new /obj/item/storage/pill_bottle/isotonic(src)
+	new /obj/item/storage/pill_bottle/spaceacillin(src)
+	new /obj/item/storage/pill_bottle/alkysine(src)
+	new /obj/item/storage/pill_bottle/imidazoline(src)
+	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/storage/pill_bottle/hypervene(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/healthanalyzer(src)
+
 /obj/item/storage/belt/lifesaver/full/upp
 	name ="\improper Type 41 pattern lifesaver bag"
 	desc = "The Type 41 load rig is the standard-issue LBE of the UPP military. This configuration mounts a satchel filled with a range of injectors and light medical supplies, common among medics and partisans."
@@ -339,7 +363,7 @@
 		/obj/item/storage/syringe_case,
 	)
 
-/obj/item/storage/belt/hypospraybelt/Initialize(mapload)  //The belt, with all it's magic inside!
+/obj/item/storage/belt/hypospraybelt/full/Initialize(mapload)  //The belt, with all it's magic inside!
 	. = ..()
 	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
 	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
@@ -358,6 +382,31 @@
 	new /obj/item/reagent_containers/hypospray/advanced/imialky(src)
 	new /obj/item/reagent_containers/hypospray/advanced/hypervene(src)
 	new /obj/item/healthanalyzer(src)
+
+/obj/item/storage/belt/hypospraybelt/beginner/Initialize(mapload)
+	. = ..()
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/kelotane(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/tramadol(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/combatmix(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/dylovene(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/isotonic(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/spaceacillin(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/quickclot(src)
+	new /obj/item/reagent_containers/hypospray/advanced/imialky(src)
+	new /obj/item/reagent_containers/hypospray/advanced/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/advanced/peridaxonplus(src)
+	new /obj/item/reagent_containers/hypospray/advanced/quickclotplus(src)
+	new /obj/item/storage/syringe_case/meraderm(src)
+	new /obj/item/storage/syringe_case/meraderm(src)
+	new /obj/item/reagent_containers/hypospray/advanced/meraderm(src)
+
 
 /obj/item/storage/belt/security
 	name = "\improper M276 pattern security rig"
