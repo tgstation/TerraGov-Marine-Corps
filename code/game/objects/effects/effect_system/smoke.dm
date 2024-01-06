@@ -281,7 +281,7 @@
 	if(!.)
 		return
 	if(S.smoke_traits & SMOKE_PURGER)
-		lifetime -= 2
+		lifetime -= 4
 
 //////////////////////////////////////
 // FLASHBANG SMOKE
@@ -307,7 +307,7 @@
 	if(!.)
 		return
 	if(S.smoke_traits & SMOKE_PURGER)
-		lifetime -= 2
+		lifetime -= 4
 
 
 ///////////////////////////////////////////
@@ -335,7 +335,7 @@
 	if(!.)
 		return
 	if(S.smoke_traits & SMOKE_PURGER)
-		lifetime -= 2
+		lifetime -= 4
 
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno/burn
