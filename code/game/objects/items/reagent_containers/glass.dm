@@ -283,14 +283,17 @@
 	update_icon()
 
 
-/obj/item/reagent_containers/glass/bucket/janibucket/update_icon()
-	..()
+/obj/item/reagent_containers/glass/bucket/janibucket/update_icon_state()
+	. = ..()
 	if(reagents.total_volume)
 		var/percent = round((reagents.total_volume / volume) * 100)
 		switch(percent)
-			if(0 to 9)			icon_state = "janibucket"
-			if(10 to 65) 		icon_state = "janibucket_half"
-			if(66 to INFINITY)	icon_state = "janibucket_full"
+			if(0 to 9)			
+				icon_state = "janibucket"
+			if(10 to 65) 		
+				icon_state = "janibucket_half"
+			if(66 to INFINITY)	
+				icon_state = "janibucket_full"
 	else
 		icon_state = "janibucket"
 

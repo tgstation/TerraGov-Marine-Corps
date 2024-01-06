@@ -510,7 +510,7 @@
 	SIGNAL_HANDLER
 	set_gun_user(null)
 
-/obj/item/weapon/gun/update_icon(mob/user)
+/obj/item/weapon/gun/update_icon()
 	. = ..()
 
 	for(var/datum/action/action AS in actions)

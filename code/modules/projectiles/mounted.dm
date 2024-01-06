@@ -18,7 +18,7 @@
 	var/has_anchored_sprite = FALSE
 
 ///generates the icon based on how much ammo it has.
-/obj/machinery/deployable/mounted/update_icon_state(mob/user)
+/obj/machinery/deployable/mounted/update_icon_state()
 	. = ..()
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	if(gun && (!length(gun.chamber_items) || !gun.chamber_items[gun.current_chamber_position]))

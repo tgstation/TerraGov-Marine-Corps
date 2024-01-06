@@ -357,7 +357,7 @@
 	large = FALSE
 
 
-/obj/structure/closet/secure_closet/wall/update_icon()
+/obj/structure/closet/secure_closet/wall/update_icon_state()
 	. = ..()
 	if(broken)
 		icon_state = icon_broken

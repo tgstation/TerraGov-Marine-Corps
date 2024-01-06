@@ -182,11 +182,9 @@
 
 
 /obj/structure/morgue/crematorium/update_icon()
+	. = ..()
 	if(cremating)
 		icon_state = "[morgue_type]_active"
-	else
-		..()
-
 
 /obj/structure/morgue/crematorium/proc/cremate(mob/user)
 	set waitfor = 0

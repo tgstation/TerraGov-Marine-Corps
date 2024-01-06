@@ -85,7 +85,8 @@
 					if(!ST.slayer)
 						return
 					ST.slayer -= 1
-					ST.update_icon(1,0)
+					ST.update_appearance()
+					ST.update_sides()
 					balloon_alert(user, "Digs up snow")
 				else
 					balloon_alert(user, "Digs up dirt")

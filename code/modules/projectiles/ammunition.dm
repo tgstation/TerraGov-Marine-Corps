@@ -436,7 +436,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			var/S = min(bullet_amount, AM.max_rounds - AM.current_rounds)
 			AM.current_rounds += S
 			bullet_amount -= S
-			AM.update_icon(S)
+			AM.update_icon()
 			update_icon()
 			if(AM.current_rounds == AM.max_rounds)
 				to_chat(user, span_notice("You refill [AM]."))

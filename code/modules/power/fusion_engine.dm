@@ -384,7 +384,7 @@
 	fuel_amount = rand(0,100)
 	update_icon()
 
-/obj/item/fuel_cell/update_icon()
+/obj/item/fuel_cell/update_icon_state()
 	. = ..()
 	switch(get_fuel_percent())
 		if(-INFINITY to 0)
