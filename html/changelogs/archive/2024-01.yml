@@ -39,3 +39,13 @@
   Xander3359:
   - admin: move osay to admin category and view tags to debug category
   - code_imp: Lowercasify "Vars"
+2024-01-06:
+  Lumipharon:
+  - code_imp: Fix icon2base64 for real
+  Pariah919:
+  - balance: Readds AMR lase hit slowdown.
+  ivanmixo:
+  - bugfix: The "Alt-click to rotate" bit should pop up properly when examining now
+  - code_imp: Fixed some weird implementations of the examine signal
+  - qol: AI eyes can hear stuff the camera eye hears
+  - qol: AI eyes can see runechat from mobs (and objects) talking around them
