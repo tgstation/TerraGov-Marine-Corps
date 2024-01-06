@@ -249,7 +249,7 @@ export const IndividualLoadouts = (props) => {
               {selectedPossibleItem?.purchase_cost}
             </LabeledList.Item>
             {selectedPossibleItem.quantity === -1 ? null : (
-              <LabeledList.Item label="Quantity remaining">
+              <LabeledList.Item label="Quantity">
                 {selectedPossibleItem.quantity}
               </LabeledList.Item>
             )}
