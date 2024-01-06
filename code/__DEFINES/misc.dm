@@ -13,11 +13,6 @@
 //Force the config directory to be something other than "config"
 #define OVERRIDE_CONFIG_DIRECTORY_PARAMETER "config-directory"
 
-// Consider these images/atoms as part of the UI/HUD
-#define APPEARANCE_UI_IGNORE_ALPHA (RESET_COLOR|RESET_TRANSFORM|NO_CLIENT_COLOR|RESET_ALPHA|PIXEL_SCALE)
-#define APPEARANCE_UI (RESET_COLOR|RESET_TRANSFORM|NO_CLIENT_COLOR|PIXEL_SCALE)
-#define APPEARANCE_UI_TRANSFORM (RESET_COLOR|NO_CLIENT_COLOR|RESET_ALPHA|PIXEL_SCALE)
-
 //dirt type for each turf types.
 #define NO_DIRT 0
 #define DIRT_TYPE_GROUND 1
@@ -34,12 +29,6 @@
 //stages of shoe tying-ness
 #define SHOES_TIED 1
 #define SHOES_KNOTTED 2
-
-//subtypesof(), typesof() without the parent path
-#define subtypesof(typepath) ( typesof(typepath) - typepath )
-
-/// Takes a datum as input, returns its ref string
-#define text_ref(datum) ref(datum)
 
 #define RESIZE_DEFAULT_SIZE 1
 

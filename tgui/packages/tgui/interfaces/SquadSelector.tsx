@@ -1,6 +1,8 @@
-import { Stack, Box, Button, Section } from '../components';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
+import { Box, Button, Section, Stack } from '../components';
 import { Window } from '../layouts';
-import { useBackend, useLocalState } from '../backend';
 
 type SquadSelectorData = {
   active_squads: SquadEntry[];
@@ -14,17 +16,13 @@ type SquadEntry = {
   color: string;
 };
 
-export const SquadSelector = (props, context) => {
-  const { act, data } = useBackend<SquadSelectorData>(context);
+export const SquadSelector = (props) => {
+  const { act, data } = useBackend<SquadSelectorData>();
   const { active_squads } = data;
-  const [selectedSquad, setSelectedSquad] = useLocalState<string>(
-    context,
-    'selectedSquad',
-    ''
-  );
+  const [selectedSquad, setSelectedSquad] = useState('');
 
   const selectedSquadEntry = active_squads?.find(
-    (i) => i.name === selectedSquad
+    (i) => i.name === selectedSquad,
   );
 
   return (
@@ -41,7 +39,8 @@ export const SquadSelector = (props, context) => {
                     backgroundColor={
                       selectedSquad === squad.name ? null : squad.color
                     }
-                    selected={selectedSquad === squad.name}>
+                    selected={selectedSquad === squad.name}
+                  >
                     {squad.name}
                     <Box contents={squad.leader} />
                   </Button>
@@ -61,10 +60,12 @@ export const SquadSelector = (props, context) => {
                         act('join', {
                           squad_id: selectedSquadEntry?.id,
                         })
-                      }>
+                      }
+                    >
                       Join
                     </Button>
-                  }>
+                  }
+                >
                   <Stack>
                     <Stack.Item>
                       <Box

@@ -508,9 +508,6 @@ window.replaceHtml = function (inline_html) {
       + "<!-- tgui:inline-html-end -->"
   );
 };
-
-// Signal tgui that we're ready to receive updates
-Byond.sendMessage('ready');
 </script>
 
 <style>
@@ -655,5 +652,9 @@ Nanotrasen (c) 2525-2563
   </div>
 </noscript>
 
+<script>
+// Signal tgui that we're ready to receive updates
+Byond.sendMessage('ready');
+</script>
 </body>
 </html>
