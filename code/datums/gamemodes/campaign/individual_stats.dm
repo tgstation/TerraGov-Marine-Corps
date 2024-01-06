@@ -279,8 +279,9 @@
 			for(var/datum/loadout_item/item AS in GLOB.campaign_loadout_items_by_role[equipped_item_job])
 				if(!istype(item, equipped_item_type))
 					continue
-				if(!loadouts[equipped_item_job].attempt_equip_loadout_item(item))
-					return
+				//if(!loadouts[equipped_item_job].attempt_equip_loadout_item(item))
+				//	return
+				loadouts[equipped_item_job].equip_loadout_item(item)
 				user.playsound_local(user, 'sound/effects/menu_click.ogg', 50)
 				return TRUE
 		if("unlock_item")

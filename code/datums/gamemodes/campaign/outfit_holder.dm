@@ -20,6 +20,8 @@
 		available_list["[slot]"] = list()
 		purchasable_list["[slot]"] = list()
 		for(var/datum/loadout_item/loadout_item AS in GLOB.campaign_loadout_items_by_role[role])
+			if(!loadout_item.name) //various parent types
+				continue
 			if(loadout_item.item_slot != slot)
 				continue
 			if(loadout_item.loadout_item_flags & LOADOUT_ITEM_DEFAULT_CHOICE)
