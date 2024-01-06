@@ -1,5 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - qol: "AI eyes can hear stuff the camera eye hears"
-  - qol: "AI eyes can see runechat from mobs (and objects) talking around them"
