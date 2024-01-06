@@ -381,6 +381,11 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_pepperball"
 
+/obj/item/ammo_magazine/rifle/pepperball/purger
+	name = "pepperball canister (PAC balls)"
+	desc = "A canister holding a projectile to be used inside a pepperball gun. The projectiles within contain a gas upon popping that will rapidly remove certain types of gasses in the area, such as xenomorph gasses, tanglefoot and or sataprine."
+	default_ammo = /datum/ammo/bullet/pepperball/purger
+
 /obj/item/ammo_magazine/rifle/pepperball/pepperball_mini
 	name = "small pepperball canister (SAN balls)"
 	desc = "A small canister for use with the miniature pepperball gun."

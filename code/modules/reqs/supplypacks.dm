@@ -782,6 +782,11 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	cost = 10
 
+/datum/supply_packs/weapons/pepperball_purger_ammo
+	name = "Pepperball PAC Ball Canister"
+	contains = list(/obj/item/ammo_magazine/rifle/pepperball/purger)
+	cost = 5
+
 /*******************************************************************************
 EXPLOSIVES
 *******************************************************************************/

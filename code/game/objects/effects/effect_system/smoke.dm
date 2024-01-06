@@ -276,6 +276,13 @@
 	color = "#791697"
 	smoke_traits = SMOKE_PLASMALOSS
 
+/obj/effect/particle_effect/smoke/plasmaloss/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(S.smoke_traits & SMOKE_PURGER)
+		lifetime -= 2
+
 //////////////////////////////////////
 // FLASHBANG SMOKE
 ////////////////////////////////////
@@ -295,6 +302,24 @@
 	strength = 1.5
 	smoke_traits = SMOKE_SATRAPINE|SMOKE_GASP|SMOKE_COUGH
 
+/obj/effect/particle_effect/smoke/satrapine/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(S.smoke_traits & SMOKE_PURGER)
+		lifetime -= 2
+
+
+///////////////////////////////////////////
+// Gas removal smoke
+//////////////////////////////////////////
+
+/obj/effect/particle_effect/smoke/purge_gas
+	alpha = 25
+	opacity = FALSE
+	color = "#030101"
+	smoke_traits = SMOKE_PURGER
+
 /////////////////////////////////////////
 // BOILER SMOKES
 /////////////////////////////////////////
@@ -309,7 +334,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(S.smoke_traits & SMOKE_PLASMALOSS)
+	if(S.smoke_traits & SMOKE_PURGER)
 		lifetime -= 2
 
 //Xeno acid smoke.
@@ -388,6 +413,9 @@
 
 /datum/effect_system/smoke_spread/satrapine
 	smoke_type = /obj/effect/particle_effect/smoke/satrapine
+
+/datum/effect_system/smoke_spread/purge_gas
+	smoke_type = /obj/effect/particle_effect/smoke/purge_gas
 
 /datum/effect_system/smoke_spread/xeno
 	smoke_type = /obj/effect/particle_effect/smoke/xeno

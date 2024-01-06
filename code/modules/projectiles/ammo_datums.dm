@@ -4082,6 +4082,35 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
 		X.use_plasma(plasma_drain)
 
+
+/datum/ammo/bullet/pepperball/purger
+	name = "bursting pepperball"
+	damage = 30
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_EXPLOSIVE
+	plasma_drain = 15
+	drain_multiplier = 0
+	/// Smoke type created when projectile detonates.
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/purge_gas
+	/// Radius this smoke will encompass on detonation.
+
+/datum/ammo/bullet/pepperball/purger/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(2, T)
+	smoke.start()
+
+/datum/ammo/bullet/pepperball/purger/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+
+/datum/ammo/bullet/pepperball/purger/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(O.density ? P.loc : O.loc)
+
+/datum/ammo/bullet/pepperball/purger/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/bullet/pepperball/purger/do_at_max_range(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
+
 /datum/ammo/bullet/pepperball/pepperball_mini
 	damage = 40
 	drain_multiplier = 0.03
