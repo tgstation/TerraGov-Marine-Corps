@@ -18,9 +18,17 @@
 	item_typepath = /obj/item/clothing/gloves/marine/black
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
+//corpsman
 /datum/loadout_item/gloves/defib_gloves
 	name = "Defib gloves"
 	desc = "Advanced medical gloves, these include small electrodes to defibrilate a patiant. No more bulky units!"
 	purchase_cost = 1
 	item_typepath = /obj/item/defibrillator/gloves
 	jobs_supported = list(SQUAD_CORPSMAN)
+
+//engineer
+/datum/loadout_item/gloves/insulated
+	name = "Insulated gloves"
+	desc = "Insulated marine tactical gloves that protect against electrical shocks."
+	item_typepath = /obj/item/clothing/gloves/marine/insulated
+	jobs_supported = list(SQUAD_ENGINEER)

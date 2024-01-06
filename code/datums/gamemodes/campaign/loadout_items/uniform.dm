@@ -42,9 +42,10 @@
 	item_typepath = /obj/item/clothing/under/marine/orion_fatigue/black_vest
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
 
+//corpsman
 /datum/loadout_item/uniform/marine_corpsman
 	name = "corpsman fatigues"
-	desc = "item desc here"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat corpsman fatigues. You suspect it's not as robust-proof as advertised."
 	item_typepath = /obj/item/clothing/under/marine/corpsman/corpman_vest
 	jobs_supported = list(SQUAD_CORPSMAN)
 
@@ -55,3 +56,15 @@
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/nanoblood, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/spaceacillin, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/combat_advanced, SLOT_IN_ACCESSORY)
+
+//engineer
+/datum/loadout_item/uniform/marine_engineer
+	name = "Engineer fatigues"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat engineer fatigues. You suspect it's not as robust-proof as advertised."
+	req_desc = "Requires a tool pouch. You ARE an engineer, right?"
+	item_typepath = /obj/item/clothing/under/marine/engineer/black_vest
+	jobs_supported = list(SQUAD_ENGINEER)
+	item_whitelist = list(
+		/obj/item/storage/pouch/tools/full = ITEM_SLOT_L_POCKET,
+		/obj/item/storage/pouch/tools/full = ITEM_SLOT_R_POCKET,
+	)

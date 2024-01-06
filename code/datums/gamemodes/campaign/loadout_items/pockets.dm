@@ -15,7 +15,7 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/r_pocket/marine_standard_grenades
-	name = "Standard grenades"
+	name = "Grenade pouch"
 	desc = "A pouch carrying a set of six standard support grenades."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/combat_patrol
@@ -53,6 +53,13 @@
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/magazine/large
 	jobs_supported = list(SQUAD_CORPSMAN)
+
+/datum/loadout_item/r_pocket/tools
+	name = "Tool pouch"
+	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool."
+	ui_icon = "grenade"
+	item_typepath = /obj/item/storage/pouch/tools/full
+	jobs_supported = list(SQUAD_ENGINEER)
 
 //l_pocket
 /datum/loadout_item/l_pocket
@@ -109,3 +116,10 @@
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/magazine/large
 	jobs_supported = list(SQUAD_CORPSMAN)
+
+/datum/loadout_item/l_pocket/tools
+	name = "Tool pouch"
+	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool."
+	ui_icon = "grenade"
+	item_typepath = /obj/item/storage/pouch/tools/full
+	jobs_supported = list(SQUAD_ENGINEER)

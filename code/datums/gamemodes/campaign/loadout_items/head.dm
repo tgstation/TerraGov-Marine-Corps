@@ -38,6 +38,7 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER)
 	item_whitelist = list(/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two = ITEM_SLOT_OCLOTHING)
 
+//corpsman
 /datum/loadout_item/helmet/mimir
 	name = "M10X-Mimir helmet"
 	desc = "A standard combat helmet with a Mimir environmental protection module."
@@ -49,3 +50,14 @@
 /datum/loadout_item/helmet/mimir/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/isotonic, SLOT_IN_HEAD)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/neuraline, SLOT_IN_HEAD)
+
+//engineer
+/datum/loadout_item/helmet/engineer
+	name = "M10X-W helmet"
+	desc = "A standard combat helmet with a welding module."
+	item_typepath = /obj/item/clothing/head/modular/m10x/welding
+	jobs_supported = list(SQUAD_ENGINEER)
+
+/datum/loadout_item/helmet/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)

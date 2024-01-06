@@ -18,6 +18,13 @@
 	item_typepath = /obj/item/storage/backpack/marine
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
+/datum/loadout_item/back/combat_pack
+	name = "Combat pack"
+	desc = "A small lightweight pack for expeditions and short-range operations. Has the storage capacity of a backpack but no draw delay."
+	purchase_cost = 1
+	item_typepath = /obj/item/storage/backpack/lightpack
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+
 /datum/loadout_item/back/flamer_tank
 	name = "Flame tank"
 	desc = "A specialized fuel tank for use with the FL-84 flamethrower and FL-240 incinerator unit."
@@ -39,6 +46,8 @@
 		/obj/item/weapon/gun/rifle/alf_machinecarbine/assault = ITEM_SLOT_SUITSTORE,
 	)
 
+
+//corpsman
 /datum/loadout_item/back/corpsman_satchel
 	name = "Medical satchel"
 	desc = "A heavy-duty satchel carried by some TGMC corpsmen. You can recharge defibrillators by plugging them in. Carries less than a backpack, but items can be drawn instantly."
@@ -50,3 +59,48 @@
 	desc = "The standard-issue backpack worn by TGMC corpsmen. You can recharge defibrillators by plugging them in. Carries more than a satchel but has a draw delay."
 	item_typepath = /obj/item/storage/backpack/marine/corpsman
 	jobs_supported = list(SQUAD_CORPSMAN)
+
+//engineer
+/datum/loadout_item/back/engineerpack
+	name = "Sentry welderpack"
+	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling. Loaded with 2 point defense sentries, excellent for defending areas or establishing killboxes."
+	item_typepath = /obj/item/storage/backpack/marine/engineerpack
+	jobs_supported = list(SQUAD_ENGINEER)
+
+/datum/loadout_item/back/engineerpack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	. = ..()
+	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/sentry/mini/combat_patrol, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/sentry/mini/combat_patrol, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/minisentry, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/minisentry, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/back/tgmc_rocket_bag
+	name = "Rocket bag"
+	desc = "This backpack holds 4 67mm shells, in addition to a recoiless launcher. Has a draw delay."
+	purchase_cost = 2
+	quantity = 2
+	item_typepath = /obj/item/storage/holster/backholster/rpg/low_impact
+	jobs_supported = list(SQUAD_ENGINEER)
+
+/datum/loadout_item/back/tech_backpack
+	name = "Demolition backpack"
+	desc = "The standard-issue backpack worn by TGMC technicians. Filled with a tremendous amount of detpacks, C4, claymores and grenades. Has a draw delay."
+	item_typepath = /obj/item/storage/backpack/marine/tech
+	jobs_supported = list(SQUAD_ENGINEER)
+
+/datum/loadout_item/back/tech_backpack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	. = ..()
+	wearer.equip_to_slot_or_del(new /obj/item/minelayer, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_BACKPACK)

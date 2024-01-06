@@ -707,7 +707,7 @@
 
 /obj/item/storage/backpack/marine/engineerpack
 	name = "\improper TGMC technician welderpack"
-	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling and use,"
+	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling."
 	icon_state = "engineerpack"
 	item_state = "engineerpack"
 	var/max_fuel = 260
