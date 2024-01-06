@@ -487,7 +487,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	default_ammo_type = /obj/item/ammo_magazine/rifle/pepperball
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rifle/pepperball,
-		/obj/item/ammo_magazine/rifle/pepperball/purger
+		/obj/item/ammo_magazine/rifle/pepperball/purger,
 		)
 	force = 30 // two shots weeds as it has no bayonet
 	wield_delay = 0.5 SECONDS // Very fast to put up.
