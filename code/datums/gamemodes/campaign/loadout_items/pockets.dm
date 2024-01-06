@@ -12,7 +12,12 @@
 	desc = "Standard marine first-aid pouch. Contains a basic set of medical supplies."
 	ui_icon = "medkit"
 	item_typepath = /obj/item/storage/pouch/firstaid/combat_patrol
-	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_SMARTGUNNER)
+
+/datum/loadout_item/r_pocket/standard_first_aid/improved
+	desc = "Standard marine first-aid pouch. Contains a improved set of medical supplies."
+	item_typepath = /obj/item/storage/pouch/firstaid/combat_patrol_leader
+	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/r_pocket/marine_standard_grenades
 	name = "Grenade pouch"
@@ -79,7 +84,12 @@
 	desc = "Standard marine first-aid pouch. Contains a basic set of medical supplies."
 	ui_icon = "medkit"
 	item_typepath = /obj/item/storage/pouch/firstaid/combat_patrol
-	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_SMARTGUNNER)
+
+/datum/loadout_item/l_pocket/standard_first_aid/improved
+	desc = "Standard marine first-aid pouch. Contains a improved set of medical supplies."
+	item_typepath = /obj/item/storage/pouch/firstaid/combat_patrol_leader
+	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/l_pocket/marine_standard_grenades
 	name = "Grenade pouch"

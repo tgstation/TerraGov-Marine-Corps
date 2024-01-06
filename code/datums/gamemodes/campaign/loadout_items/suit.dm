@@ -53,6 +53,19 @@
 	jobs_supported = list(SQUAD_SMARTGUNNER)
 	item_whitelist = null
 
+/datum/loadout_item/suit_slot/medium_valk
+	name = "Medium Valkyrie armor"
+	desc = "Medium armor with a Valkyrie automedical module. Provides respectable protection, powerful automatic medical assistance, but modest mobility."
+	item_typepath = /obj/item/clothing/suit/modular/xenonauten/valk
+	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
+
+/datum/loadout_item/suit_slot/heavy_valk
+	name = "Heavy Valkyrie armor"
+	desc = "Heavy armor with a Valkyrie automedical module. Provides excellent protection, powerful automatic medical assistance, but reduced mobility."
+	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/leader
+	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
+
+
 //corpsman
 /datum/loadout_item/suit_slot/medium_mimir
 	name = "Medium Mimir armor"

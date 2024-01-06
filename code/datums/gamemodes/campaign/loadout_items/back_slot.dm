@@ -10,20 +10,24 @@
 	name = "Satchel"
 	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel. Carries less than a backpack, but items can be drawn instantly."
 	item_typepath = /obj/item/storage/backpack/marine/satchel
-	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER)
 
 /datum/loadout_item/back/marine_backpack
 	name = "Backpack"
 	desc = "The standard-issue pack of the TGMC forces. Designed to slug gear into the battlefield. Carries more than a satchel but has a draw delay."
 	item_typepath = /obj/item/storage/backpack/marine
-	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER)
 
 /datum/loadout_item/back/combat_pack
 	name = "Combat pack"
 	desc = "A small lightweight pack for expeditions and short-range operations. Has the storage capacity of a backpack but no draw delay."
 	purchase_cost = 1
 	item_typepath = /obj/item/storage/backpack/lightpack
-	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER)
+
+/datum/loadout_item/back/combat_pack/free
+	purchase_cost = 0
+	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/back/flamer_tank
 	name = "Flame tank"
