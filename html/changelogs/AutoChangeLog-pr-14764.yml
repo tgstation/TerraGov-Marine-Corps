@@ -1,0 +1,4 @@
+author: "Helg2"
+delete-after: True
+changes:
+  - qol: "Overheal is now located after the main health in status tab."
