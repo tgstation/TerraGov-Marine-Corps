@@ -96,22 +96,12 @@
 			return
 		return TRUE
 
-//do we need this?
-///Adds an item if able
-/datum/individual_stats/proc/make_available_loadout_item(datum/loadout_item/new_item)
-	if(!istype(new_item))
-		return
-	//insert 'we already got this' check here, unless we have a 'purchasable list'
-	if(use_funds(new_item.unlock_cost))
-		return
-	if(!length(new_item.jobs_supported))
-		CRASH("loadout_item loaded with no supported jobs")
-
-	for(var/supported_job in new_item.jobs_supported)
-		if(!unlocked_items[supported_job])
+///Adds an item to the unlockable list for a job
+/datum/individual_stats/proc/make_available_loadout_item(item_type, job_type, mob/user)
+	for(var/datum/loadout_item/item AS in GLOB.campaign_loadout_items_by_role[job_type])
+		if(!istype(item, item_type))
 			continue
-		unlocked_items[supported_job] += new_item
-		loadouts[supported_job].unlock_new_option(new_item)
+		loadouts[job_type].allow_new_option(item)
 
 ///Applies all perks to a mob
 /datum/individual_stats/proc/apply_perks()
@@ -275,7 +265,7 @@
 			if(!GLOB.campaign_perk_list[unlocked_perk])
 				return
 			var/datum/perk/perk = GLOB.campaign_perk_list[unlocked_perk]
-			if(purchase_perk(perk, user))
+			if(!purchase_perk(perk, user))
 				return
 			user.playsound_local(user, 'sound/effects/menu_click.ogg', 50)
 			return TRUE
