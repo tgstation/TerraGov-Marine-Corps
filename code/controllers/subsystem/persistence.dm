@@ -39,8 +39,8 @@ SUBSYSTEM_DEF(persistence)
 		),
 		SEASONAL_HEAVY = list(
 		/datum/season_datum/weapons/guns/heavy_defualt,
-		//datum/season_datum/weapons/guns/heavy_ff,
-		//datum/season_datum/weapons/guns/heavy_autorail,
+		/datum/season_datum/weapons/guns/heavy_ff,
+		/datum/season_datum/weapons/guns/heavy_autorail,
 		/datum/season_datum/weapons/guns/heavy_shock,
 		),
 	)
