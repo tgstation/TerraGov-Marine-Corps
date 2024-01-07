@@ -224,6 +224,10 @@
 	AddElement(/datum/element/strappable)
 	special_attack = new(src, force_wielded, penetration)
 
+/obj/item/weapon/twohanded/fireaxe/som/Destroy()
+	QDEL_NULL(special_attack)
+	return ..()
+
 /obj/item/weapon/twohanded/fireaxe/som/wield(mob/user)
 	. = ..()
 	if(!.)

@@ -171,7 +171,7 @@
 
 /datum/action/ability/activable/Destroy()
 	var/mob/living/carbon/carbon_owner = owner
-	if(carbon_owner.selected_ability == src)
+	if(carbon_owner?.selected_ability == src)
 		deselect()
 	return ..()
 
