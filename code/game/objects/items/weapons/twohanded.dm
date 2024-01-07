@@ -239,12 +239,11 @@
 	toggle_item_bump_attack(user, FALSE)
 	special_attack.remove_action(user)
 
-// ***************************************
-// *********** Ravage
-// ***************************************
+//Special attack
 /datum/action/ability/activable/axe_sweep
 	name = "Sweeping blow"
-	action_icon_state = "ravage"
+	action_icon = 'icons/mob/actions.dmi'
+	action_icon_state = "axe_sweep"
 	desc = "A powerful sweeping blow that hits foes in the direction you are facing. Cannot stun."
 	ability_cost = 12
 	cooldown_duration = 6 SECONDS
@@ -291,6 +290,7 @@
 
 	carbon_owner.face_atom(A)
 	activate_particles(carbon_owner.dir)
+	playsound(owner, "sound/effects/alien_tail_swipe3.ogg", 50, 0, 5)
 
 	var/list/atom/movable/atoms_to_ravage = get_step(owner, owner.dir).contents.Copy()
 	atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
@@ -313,7 +313,6 @@
 		playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, 0, 5)
 		shake_camera(human_victim, 2, 1)
 
-	playsound(owner, "sound/effects/spin.ogg", 50, 0, 5)
 	succeed_activate()
 	add_cooldown()
 
