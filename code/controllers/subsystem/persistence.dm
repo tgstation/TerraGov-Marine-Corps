@@ -39,8 +39,8 @@ SUBSYSTEM_DEF(persistence)
 		),
 		SEASONAL_HEAVY = list(
 		/datum/season_datum/weapons/guns/heavy_defualt,
-		/datum/season_datum/weapons/guns/heavy_ff,
-		/datum/season_datum/weapons/guns/heavy_autorail,
+		//datum/season_datum/weapons/guns/heavy_ff,
+		//datum/season_datum/weapons/guns/heavy_autorail,
 		/datum/season_datum/weapons/guns/heavy_shock,
 		),
 	)
@@ -314,7 +314,7 @@ SUBSYSTEM_DEF(persistence)
 	description = "The generic set of roundstart TGMC heavy weapons, TAT and RR."
 	item_list = list(
 		/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
-		/obj/item/storage/holster/backholster/rpg/full = 2,
+		/obj/item/storage/holster/backholster/rpg/low_impact = 2,
 		/obj/item/ammo_magazine/rocket/recoilless = 4,
 		/obj/item/ammo_magazine/rocket/recoilless/light = 4,
 		/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
@@ -347,7 +347,7 @@ SUBSYSTEM_DEF(persistence)
 	name = "Shock Weapons"
 	description = "RR and MLRS for roundstart vendors."
 	item_list = list(
-		/obj/item/storage/holster/backholster/rpg/full = 2,
+		/obj/item/storage/holster/backholster/rpg/low_impact = 2,
 		/obj/item/ammo_magazine/rocket/recoilless = 4,
 		/obj/item/ammo_magazine/rocket/recoilless/light = 4,
 		/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
