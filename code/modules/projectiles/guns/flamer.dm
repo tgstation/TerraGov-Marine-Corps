@@ -77,7 +77,7 @@
 	///Damage multiplier for mobs caught in the initial stream of fire.
 	var/mob_flame_damage_mod = 2
 	///how wide of a cone the flamethrower produces on wide mode.
-	var/cone_angle = 55
+	var/cone_angle = 50
 
 /obj/item/weapon/gun/flamer/Initialize(mapload)
 	. = ..()
