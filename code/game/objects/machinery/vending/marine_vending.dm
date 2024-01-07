@@ -344,7 +344,6 @@
 			/obj/item/explosive/grenade/sticky = 125,
 			/obj/item/explosive/grenade/incendiary = 50,
 			/obj/item/explosive/grenade/smokebomb/cloak = 25,
-			/obj/item/explosive/grenade/smokebomb/drain = 10,
 			/obj/item/explosive/grenade/mirage = 100,
 			/obj/item/storage/box/m94 = 200,
 			/obj/item/storage/box/m94/cas = 50,

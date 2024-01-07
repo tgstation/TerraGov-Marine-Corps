@@ -543,7 +543,7 @@
 	var/obj/machinery/nuclearbomb/nuke = thing
 	if(!nuke.timer)
 		CRASH("hive_status's setup_nuke_hud_timer called with invalid nuke object")
-	nuke_hud_timer = new(null, get_all_xenos() , nuke.timer, "Nuke ACTIVE: ${timer}")
+	nuke_hud_timer = new(null, null, get_all_xenos() , nuke.timer, "Nuke ACTIVE: ${timer}")
 
 /datum/hive_status/Destroy(force, ...)
 	. = ..()

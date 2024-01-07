@@ -46,11 +46,11 @@
 	. = ..()
 	var/atom/movable/screen/using
 
-	using = new /atom/movable/screen/ghost/follow_ghosts()
+	using = new /atom/movable/screen/ghost/follow_ghosts(null, src)
 	using.screen_loc = ui_ghost_slot2
 	static_inventory += using
 
-	using = new /atom/movable/screen/ghost/reenter_corpse()
+	using = new /atom/movable/screen/ghost/reenter_corpse(null, src)
 	using.screen_loc = ui_ghost_slot3
 	static_inventory += using
 

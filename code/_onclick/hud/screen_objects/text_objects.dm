@@ -25,6 +25,7 @@
 
 /atom/movable/screen/text/screen_timer/Initialize(
 		mapload,
+		datum/hud/hud_owner,
 		list/mobs,
 		timer,
 		text,

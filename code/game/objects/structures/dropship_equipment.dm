@@ -716,7 +716,7 @@
 
 /obj/structure/dropship_equipment/cas/weapon/heavygun
 	name = "\improper GAU-21 30mm cannon"
-	desc = "A dismounted GAU-21 'Rattler' 30mm rotary cannon. It seems to be missing its feed links and has exposed connection wires. Capable of firing 5200 rounds a minute, feared by many for its power. Earned the nickname 'Rattler' from the vibrations it would cause on dropships in its inital production run. Moving this will require some sort of lifter."
+	desc = "A dismounted GAU-21 'Rattler' 30mm rotary cannon. Capable of firing 5200 rounds a minute, feared by many for its power. Earned the nickname 'Rattler' from the vibrations it would cause on ships in its inital production run. Moving this will require some sort of lifter."
 	icon_state = "30mm_cannon"
 	firing_sound = 'sound/weapons/gunship_chaingun.ogg'
 	point_cost = 300
@@ -867,3 +867,41 @@
 	deployed_table.layer = ABOVE_OBJ_LAYER + 0.01 //make sure its directly ABOVE the layer
 	deployed_table.loc = loc
 	icon_state = "table2-idle"
+
+/obj/structure/dropship_equipment/cas/weapon/bomblet_pod
+	name = "bomblet pod"
+	icon_state = "bomblet_pod"
+	desc = "A pnuematic thrower machine capable of up to 40 smaller bombs, generally  called 'bomblets'. Moving this will require some sort of lifter."
+	icon = 'icons/Marine/mainship_props64.dmi'
+	firing_sound = 'sound/weapons/gunship_rocketpod.ogg'
+	firing_delay = 0.5 SECONDS
+	point_cost = 450
+	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
+	ammo_type_used = CAS_BOMBLET
+
+/obj/structure/dropship_equipment/cas/weapon/bomblet_pod/update_icon_state()
+	if(ammo_equipped?.ammo_count)
+		icon_state = "bomblet_pod_loaded"
+	else if(ship_base)
+		icon_state = "bomblet_pod_installed"
+	else
+		icon_state = "bomblet_pod"
+
+/obj/structure/dropship_equipment/cas/weapon/bomb_pod
+	name = "bomb pod"
+	icon_state = "bomb_pod"
+	desc = "A bomb pod capable of launching several large bombs. Moving this will require some sort of lifter."
+	icon = 'icons/Marine/mainship_props64.dmi'
+	firing_sound = 'sound/weapons/gunship_rocketpod.ogg'
+	firing_delay = 2 SECONDS
+	point_cost = 450
+	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
+	ammo_type_used = CAS_BOMB
+
+/obj/structure/dropship_equipment/cas/weapon/bomb_pod/update_icon_state()
+	if(ammo_equipped?.ammo_count)
+		icon_state = "bomb_pod_loaded"
+	else if(ship_base)
+		icon_state = "bomb_pod_installed"
+	else
+		icon_state = "bomb_pod"

@@ -92,6 +92,7 @@
 		updateStamina(feedback)
 
 /mob/living/proc/updateStamina(feedback = TRUE)
+	hud_used?.staminas?.update_icon()
 	if(staminaloss < max(health * 1.5,0) || !(COOLDOWN_CHECK(src, last_stamina_exhaustion))) //If we're on cooldown for stamina exhaustion, don't bother
 		return
 
@@ -104,21 +105,6 @@
 	add_slowdown(STAMINA_EXHAUSTION_DEBUFF_STACKS)
 	adjust_blurriness(STAMINA_EXHAUSTION_DEBUFF_STACKS)
 	COOLDOWN_START(src, last_stamina_exhaustion, LIVING_STAMINA_EXHAUSTION_COOLDOWN - (skills.getRating(SKILL_STAMINA) * STAMINA_SKILL_COOLDOWN_MOD)) //set the cooldown.
-
-
-/mob/living/carbon/human/updateStamina(feedback = TRUE)
-	. = ..()
-	if(!hud_used?.staminas)
-		return
-	if(stat == DEAD)
-		hud_used.staminas.icon_state = "stamloss200"
-		return
-	var/relative_stamloss = getStaminaLoss()
-	if(relative_stamloss < 0 && max_stamina)
-		relative_stamloss = round(((relative_stamloss * 14) / max_stamina), 1)
-	else
-		relative_stamloss = round(((relative_stamloss * 7) / (maxHealth * 2)), 1)
-	hud_used.staminas.icon_state = "stamloss[relative_stamloss]"
 
 /// Adds an entry to our stamina_regen_modifiers and updates stamina_regen_multiplier
 /mob/living/proc/add_stamina_regen_modifier(mod_name, mod_value)
