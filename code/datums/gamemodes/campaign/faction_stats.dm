@@ -245,6 +245,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	update_static_data_for_all_viewers()
 
 //UI stuff//
+/datum/faction_stats/ui_assets(mob/user)
+	return list(get_asset_datum(/datum/asset/spritesheet/campaign/missions), get_asset_datum(/datum/asset/spritesheet/campaign/assets))
 
 /datum/faction_stats/ui_interact(mob/living/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -254,6 +256,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	ui.open()
 
 /datum/faction_stats/ui_state(mob/user)
+	if(isobserver(user))
+		return GLOB.always_state
 	return GLOB.conscious_state
 
 /datum/faction_stats/ui_static_data(mob/living/user)
@@ -361,8 +365,6 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	data["victory_points"] = victory_points
 	data["max_victory_points"] = CAMPAIGN_MAX_VICTORY_POINTS
 	data["faction"] = faction
-	data["icons"] = GLOB.campaign_icons
-	data["mission_icons"] = GLOB.campaign_mission_icons
 
 	return data
 
@@ -376,6 +378,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		CRASH("campaign_mission loaded without campaign game mode")
 
 	var/mob/living/user = usr
+	if(!istype(user))
+		return
 
 	switch(action)
 		if("set_attrition_points")
@@ -460,3 +464,14 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				to_chat(faction_member, "<span class='warning'>[user] has purchased the [initial(selected_asset.name)] campaign asset.")
 			update_static_data_for_all_viewers()
 			return TRUE
+
+//overview for campaign gamemode
+/datum/action/campaign_overview
+	name = "Campaign overview"
+	action_icon_state = "campaign_overview"
+
+/datum/action/campaign_overview/action_activate()
+	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[owner.faction]
+	if(!your_faction)
+		return
+	your_faction.interact(owner)

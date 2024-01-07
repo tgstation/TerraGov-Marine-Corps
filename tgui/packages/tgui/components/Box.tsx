@@ -6,6 +6,7 @@
 
 import { BooleanLike, classes } from 'common/react';
 import { createElement, ReactNode } from 'react';
+
 import { CSS_COLORS } from '../constants';
 
 export type BoxProps = {
@@ -262,6 +263,6 @@ export const Box = (props: BoxProps) => {
       ...computedProps,
       className: computedClassName,
     },
-    children
+    children,
   );
 };

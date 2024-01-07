@@ -1,12 +1,4 @@
-// CREDITS
-/*
-Initial code credit for this goes to Uristqwerty.
-Debugging, functionality, all comments and porting by Giacom.
-
-Everything about freelook (or what we can put in here) will be stored here.
-
-
-WHAT IS THIS?
+# WHAT IS THIS?
 
 This is a replacement for the current camera movement system, of the AI. Before this, the AI had to move between cameras and could
 only see what the cameras could see. Not only this but the cameras could see through walls, which created problems.
@@ -17,7 +9,7 @@ This creates several features, such as.. no more see-through-wall cameras, easie
 the AI only being able to track mobs which are visible to a camera, only trackable mobs appearing on the mob list and many more.
 
 
-HOW IT WORKS
+# HOW IT WORKS
 
 It works by first creating a camera network datum. Inside of this camera network are "chunks" (which will be
 explained later) and "cameras". The cameras list is kept up to date by obj/machinery/camera/Initialize(mapload) and Destroy().
@@ -27,7 +19,7 @@ These turfs are then sorted out based on what the cameras can and cannot see. If
 the 16x16 block, it is listed as an "obscured" turf. Meaning the AI won't be able to see it.
 
 
-HOW IT UPDATES
+# HOW IT UPDATES
 
 The camera network uses a streaming method in order to effeciently update chunks. Since the server will have doors opening, doors closing,
 turf being destroyed and other lag inducing stuff, we want to update it under certain conditions and not every tick.
@@ -41,10 +33,15 @@ measures, such as an UPDATE_BUFFER which stops a chunk from updating too many ti
 sight; for example, we don't update glass airlocks or floors.
 
 
-WHERE IS EVERYTHING?
+# WHERE IS EVERYTHING?
 
 cameranet.dm	=	Everything about the cameranet datum.
 chunk.dm		=	Everything about the chunk datum.
 eye.dm			=	Everything about the AI and the AIEye.
 
-*/
+## CREDITS
+
+Initial code credit for this goes to Uristqwerty.
+Debugging, functionality, all comments and porting by Giacom.
+
+Everything about freelook (or what we can put in here) will be stored here.

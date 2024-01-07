@@ -1,0 +1,7 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - rscadd: "Two new type of missiles, the Swansong and Monarch."
+  - rscadd: "CAS bombs and bomblets. 200, 400, and 1000lb bombs. 50lb and 75lb bombs."
+  - balance: "CAS Missiles have been entirely rebalanced into classes."
+  - balance: "The classes are ATGM (3s/AGM), Heavy(6s/PGHM), Normal (4s/PGLM)."

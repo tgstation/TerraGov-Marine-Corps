@@ -675,7 +675,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "eN" = (
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "eT" = (

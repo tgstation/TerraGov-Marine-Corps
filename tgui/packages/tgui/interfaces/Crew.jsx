@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Section, Box, Table } from '../components';
+import { Box, Button, Section, Table } from '../components';
 import { Window } from '../layouts';
 
 export const Crew = (props) => {
@@ -48,7 +48,8 @@ export const Crew = (props) => {
             <Button
               key={location.id}
               selected={location.zlevel === data.zlevel}
-              onClick={() => act('zlevel', { zlevel: location.zlevel })}>
+              onClick={() => act('zlevel', { zlevel: location.zlevel })}
+            >
               {location.label}
             </Button>
           ))}
@@ -60,7 +61,8 @@ export const Crew = (props) => {
                 <Table.Cell key={header.id}>
                   <Button
                     icon={header.icon}
-                    onClick={() => act('sortkey', { sortkey: header.sortkey })}>
+                    onClick={() => act('sortkey', { sortkey: header.sortkey })}
+                  >
                     {header.label}
                   </Button>
                 </Table.Cell>
@@ -77,7 +79,8 @@ export const Crew = (props) => {
                       : crewmember.status === 1
                         ? 'average'
                         : 'bad'
-                  }>
+                  }
+                >
                   {crewmember.status === 0
                     ? 'Living'
                     : crewmember.status === 1

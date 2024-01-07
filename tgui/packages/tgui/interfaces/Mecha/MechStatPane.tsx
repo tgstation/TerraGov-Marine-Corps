@@ -1,7 +1,15 @@
-import { useBackend } from '../../backend';
-import { Stack, Button, Section, Box, ProgressBar, LabeledList } from '../../components';
-import { KelvinZeroCelcius, OperatorData } from './data';
 import { toFixed } from 'common/math';
+
+import { useBackend } from '../../backend';
+import {
+  Box,
+  Button,
+  LabeledList,
+  ProgressBar,
+  Section,
+  Stack,
+} from '../../components';
+import { KelvinZeroCelcius, OperatorData } from './data';
 
 export const MechStatPane = (props) => {
   const { act, data } = useBackend<OperatorData>();
@@ -45,7 +53,8 @@ export const MechStatPane = (props) => {
             <LabeledList.Item label="Safety">
               <Button
                 color={weapons_safety ? 'red' : ''}
-                onClick={() => act('toggle_safety')}>
+                onClick={() => act('toggle_safety')}
+              >
                 {weapons_safety ? 'Dis' : 'En'}able
               </Button>
             </LabeledList.Item>
@@ -58,7 +67,8 @@ export const MechStatPane = (props) => {
             <LabeledList.Item label="Air Source">
               <Button
                 disabled={!airtank_present}
-                onClick={() => act('toggle_airsource')}>
+                onClick={() => act('toggle_airsource')}
+              >
                 {air_source}
               </Button>
             </LabeledList.Item>
@@ -66,7 +76,8 @@ export const MechStatPane = (props) => {
               <Box
                 color={
                   cabin_pressure > cabin_dangerous_highpressure ? 'red' : null
-                }>
+                }
+              >
                 {cabin_pressure} kPa
               </Box>
             </LabeledList.Item>
@@ -90,7 +101,8 @@ export const MechStatPane = (props) => {
                 onClick={() => act('toggle_maintenance')}
                 selected={
                   mecha_flags & mechflag_keys['ADDING_MAINT_ACCESS_POSSIBLE']
-                }>
+                }
+              >
                 {mecha_flags & mechflag_keys['ADDING_MAINT_ACCESS_POSSIBLE']
                   ? 'En'
                   : 'Dis'}
@@ -100,9 +112,8 @@ export const MechStatPane = (props) => {
             <LabeledList.Item label="ID reader panel">
               <Button
                 onClick={() => act('toggle_id_panel')}
-                selected={
-                  mecha_flags & mechflag_keys['ADDING_ACCESS_POSSIBLE']
-                }>
+                selected={mecha_flags & mechflag_keys['ADDING_ACCESS_POSSIBLE']}
+              >
                 {mecha_flags & mechflag_keys['ADDING_ACCESS_POSSIBLE']
                   ? 'En'
                   : 'Dis'}
@@ -112,7 +123,8 @@ export const MechStatPane = (props) => {
             <LabeledList.Item label="Port connection">
               <Button
                 onClick={() => act('toggle_port')}
-                selected={port_connected}>
+                selected={port_connected}
+              >
                 {port_connected ? 'C' : 'Disc'}onnected
               </Button>
             </LabeledList.Item>

@@ -1,6 +1,15 @@
-import { CampaignData, FactionReward, AssetIcon } from './index';
+import { classes } from 'common/react';
+
 import { useBackend, useLocalState } from '../../backend';
-import { LabeledList, Button, Stack, Section, Flex, Box } from '../../components';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  Section,
+  Stack,
+} from '../../components';
+import { CampaignData, FactionReward } from './index';
 
 export const CampaignPurchase = (props) => {
   const { act, data } = useBackend<CampaignData>();
@@ -9,7 +18,7 @@ export const CampaignPurchase = (props) => {
     useLocalState<FactionReward | null>('purchasedAsset', null);
   const [selectedReward, setSelectedReward] = useLocalState(
     'selectedReward',
-    purchasable_rewards_data[0]
+    purchasable_rewards_data[0],
   );
   purchasable_rewards_data.sort((a, b) => {
     const used_asset_a = a.uses_remaining;
@@ -37,17 +46,18 @@ export const CampaignPurchase = (props) => {
                       : reward.uses_remaining < 0
                         ? 'red'
                         : 'grey'
-                }>
+                }
+              >
                 <Flex align="center">
-                  {!!reward.icon && (
-                    <AssetIcon
-                      icon={
-                        selectedReward.name === reward.name
-                          ? reward.icon + '_red'
-                          : reward.icon + '_blue'
-                      }
-                    />
-                  )}
+                  <Flex.Item
+                    mr={1.5}
+                    className={classes([
+                      'campaign_assets18x18',
+                      selectedReward.name === reward.name
+                        ? reward.icon + '_red'
+                        : reward.icon + '_blue',
+                    ])}
+                  />
                   {reward.name}
                 </Flex>
               </Button>
@@ -61,22 +71,21 @@ export const CampaignPurchase = (props) => {
             selectedReward ? (
               <Box>
                 <Flex align="center">
-                  <Flex.Item>
-                    {
-                      <AssetIcon
-                        icon={selectedReward.icon + '_orange'}
-                        icon_width={'36px'}
-                        icon_height={'36px'}
-                      />
-                    }
-                  </Flex.Item>
+                  <Flex.Item
+                    mr={1.5}
+                    className={classes([
+                      'campaign_assets36x36',
+                      selectedReward.icon + '_orange' + '_big',
+                    ])}
+                  />
                   <Flex.Item fontSize="150%" grow={1}>
                     {selectedReward.name}
                   </Flex.Item>
                   <Flex.Item alight="right" position="end">
                     <Button
                       onClick={() => setPurchasedAsset(selectedReward)}
-                      icon={'check'}>
+                      icon={'check'}
+                    >
                       Select
                     </Button>
                   </Flex.Item>
@@ -85,7 +94,8 @@ export const CampaignPurchase = (props) => {
             ) : (
               'No asset selected'
             )
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Name">
               {selectedReward?.name}
