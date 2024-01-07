@@ -44,7 +44,7 @@ export const BlessingMenu = (props) => {
   const { data } = useBackend<BlessingData>();
   const { strategicpoints, tacticalpoints, categories } = data;
   const [selectedCategory, setSelectedCategory] = useState(
-    categories.length ? categories[0] : null
+    categories.length ? categories[0] : null,
   );
 
   return (
