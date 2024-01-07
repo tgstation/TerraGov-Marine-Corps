@@ -4,9 +4,9 @@
 	var/ckey
 	///currently occupied mob - if any
 	var/mob/living/carbon/current_mob //will we actually need this?
-	///whatever cash/xp/placeholdershit. fun tokens
-	var/currency = 10
-
+	///Credits. You buy stuff with it
+	var/currency = 1000 //test only
+	///List of job types based on faction
 	var/list/valid_jobs = list()
 	///Single list of unlocked perks for easy reference
 	var/list/unlocked_perks = list()

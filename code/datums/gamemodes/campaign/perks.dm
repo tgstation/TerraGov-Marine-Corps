@@ -58,11 +58,12 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/hp_boost
 	name = "Improved constitution"
-	desc = "+10 max health."
+	desc = "+15 max health."
 	ui_icon = "health_1"
 	all_jobs = TRUE
+	unlock_cost = 40
 	///How much this perk increases your maxhp by
-	var/health_mod = 10
+	var/health_mod = 15
 
 /datum/perk/hp_boost/apply_perk(mob/living/carbon/owner)
 	owner.maxHealth += health_mod
@@ -72,9 +73,10 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/hp_boost/two
 	name = "Extreme constitution"
-	desc = "An additional +10 max health."
+	desc = "An additional +15 max health."
 	ui_icon = "health_2"
 	prereq_perks = list(/datum/perk/hp_boost)
+	unlock_cost = 50
 
 //perks that give a trait
 /datum/perk/trait
@@ -93,6 +95,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	ui_icon = "soft_footed"
 	traits = list(TRAIT_LIGHT_STEP)
 	all_jobs = TRUE
+	unlock_cost = 20
 
 //skill modifying perks
 /datum/perk/skill_mod
@@ -132,10 +135,12 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	ui_icon = "cqc_1"
 	cqc = 1
 	all_jobs = TRUE
+	unlock_cost = 15
 
 /datum/perk/skill_mod/cqc/two
 	name = "Hand to hand specialisation"
 	ui_icon = "cqc_2"
+	unlock_cost = 20
 	prereq_perks = list(/datum/perk/skill_mod/cqc)
 
 /datum/perk/skill_mod/melee
@@ -143,24 +148,28 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	ui_icon = "melee_1"
 	melee_weapons = 1
 	all_jobs = TRUE
+	unlock_cost = 10
 
 /datum/perk/skill_mod/melee/two
 	name = "Melee specialisation"
 	ui_icon = "melee_2"
 	prereq_perks = list(/datum/perk/skill_mod/melee)
-	unlock_cost = 11 //test only
+	unlock_cost = 15
 
 /datum/perk/skill_mod/firearms
 	name = "Advanced firearm training"
 	ui_icon = "firearms"
 	firearms = 1
 	all_jobs = TRUE
+	unlock_cost = 30
 
 /datum/perk/skill_mod/pistols
 	name = "Advanced pistol training"
 	ui_icon = "pistols"
 	pistols = 1
 	all_jobs = TRUE
+	prereq_perks = list(/datum/perk/skill_mod/firearms)
+	unlock_cost = 20
 
 /datum/perk/skill_mod/shotguns
 	name = "Advanced shotgun training"
@@ -168,6 +177,8 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	ui_icon = "shotguns"
 	shotguns = 1
 	all_jobs = TRUE
+	prereq_perks = list(/datum/perk/skill_mod/firearms)
+	unlock_cost = 30
 
 /datum/perk/skill_mod/shotguns/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(!owner_stats)
@@ -179,50 +190,63 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	ui_icon = "rifles"
 	rifles = 1
 	all_jobs = TRUE
+	prereq_perks = list(/datum/perk/skill_mod/firearms)
+	unlock_cost = 50
 
 /datum/perk/skill_mod/smgs
 	name = "Advanced SMG training"
 	ui_icon = "smgs"
 	smgs = 1
 	all_jobs = TRUE
+	prereq_perks = list(/datum/perk/skill_mod/firearms)
+	unlock_cost = 25
 
 /datum/perk/skill_mod/heavy_weapons
 	name = "Heavy weapon specialisation"
 	ui_icon = "heavy"
 	heavy_weapons = 1
 	all_jobs = TRUE
+	prereq_perks = list(/datum/perk/skill_mod/firearms)
+	unlock_cost = 50
 
 /datum/perk/skill_mod/smartgun
 	name = "Advanced smartgun training"
 	ui_icon = "smartguns"
 	smartgun = 1
 	jobs_supported = list(SQUAD_SMARTGUNNER, CAPTAIN)
+	prereq_perks = list(/datum/perk/skill_mod/firearms)
+	unlock_cost = 40
 
 /datum/perk/skill_mod/construction
 	name = "Advanced construction training"
 	ui_icon = "construction"
 	construction = 1
 	all_jobs = TRUE
+	unlock_cost = 30
 
 /datum/perk/skill_mod/leadership
 	name = "Advanced leadership training"
 	ui_icon = "leadership"
 	leadership = 1
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
+	unlock_cost = 60
 
 /datum/perk/skill_mod/medical
 	name = "Advanced medical training"
 	ui_icon = "medical"
 	medical = 1
 	all_jobs = TRUE
+	unlock_cost = 30
 
 /datum/perk/skill_mod/stamina
 	name = "Improved stamina"
 	ui_icon = "stamina_1"
 	stamina = 1
 	all_jobs = TRUE
+	unlock_cost = 30
 
 /datum/perk/skill_mod/stamina/two
 	name = "Extreme stamina"
 	ui_icon = "stamina_2"
 	prereq_perks = list(/datum/perk/skill_mod/stamina)
+	unlock_cost = 40
