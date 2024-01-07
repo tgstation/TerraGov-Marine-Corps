@@ -341,12 +341,14 @@
 	return ..()
 
 ///Called to give extra info on parent examine.
-/obj/item/armor_module/module/eshield/proc/parent_examine(datum/source, mob/examiner)
+/obj/item/armor_module/module/eshield/proc/parent_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	to_chat(examiner, span_notice("Recharge Rate: [recharge_rate/2] health per second\nCurrent Shield Health: [shield_health]\nMaximum Shield Health: [max_shield_health]\n"))
+	examine_list += span_notice("Recharge Rate: [recharge_rate/2] health per second")
+	examine_list += span_notice("Current Shield Health: [shield_health]")
+	examine_list += span_notice("Maximum Shield Health: [max_shield_health]")
 	if(!recharge_timer)
 		return
-	to_chat(examiner, span_warning("Charging is delayed! It will start recharging again in [timeleft(recharge_timer) / 10] seconds!"))
+	examine_list += span_warning("Charging is delayed! It will start recharging again in [timeleft(recharge_timer) / 10] seconds!")
 
 ///Handles starting the shield when the parent is equiped to the correct slot.
 /obj/item/armor_module/module/eshield/proc/handle_equip(datum/source, mob/equipper, slot)

@@ -522,13 +522,13 @@ SUBSYSTEM_DEF(minimaps)
 		locator_override = to_track
 		if(to_track)
 			RegisterSignal(to_track, COMSIG_QDELETING, TYPE_PROC_REF(/datum/action/minimap, clear_locator_override))
-			if(owner.loc == to_track)
+			if(owner && owner.loc == to_track)
 				RegisterSignal(to_track, COMSIG_ATOM_EXITED, TYPE_PROC_REF(/datum/action/minimap, on_exit_check))
 		if(owner)
 			RegisterSignal(new_track, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
 			var/turf/old_turf = get_turf(tracking)
-			if(!old_turf.z || old_turf.z != new_track.z)
-				on_owner_z_change(new_track, old_turf.z, new_track.z)
+			if(!old_turf || !old_turf.z || old_turf.z != new_track.z)
+				on_owner_z_change(new_track, old_turf?.z, new_track?.z)
 		return
 	locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 	locator_override = to_track
