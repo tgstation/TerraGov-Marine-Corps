@@ -44,7 +44,7 @@ export const BlessingMenu = (props) => {
   const { data } = useBackend<BlessingData>();
   const { strategicpoints, tacticalpoints, categories } = data;
   const [selectedCategory, setSelectedCategory] = useState(
-    categories.length ? categories[0] : null,
+    categories.length ? categories[0] : null
   );
 
   return (
@@ -61,7 +61,8 @@ export const BlessingMenu = (props) => {
             (strategicpoints ? strategicpoints : 0) +
             ' | Strategic Psychic points: ' +
             (tacticalpoints ? tacticalpoints : 0)
-          }>
+          }
+        >
           {categories.length > 0 && (
             <Section lineHeight={1.75} textAlign="center">
               <Tabs>
