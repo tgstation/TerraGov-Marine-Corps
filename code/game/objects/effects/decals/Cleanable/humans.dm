@@ -46,10 +46,8 @@
 		deltimer(drying_timer)
 	return ..()
 
-///Updates the color of the blood
-/obj/effect/decal/cleanable/blood/proc/update_color()
-	if(basecolor == "rainbow")
-		basecolor = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
+/obj/effect/decal/cleanable/blood/update_icon_state()
+	. = ..()
 	color = basecolor
 
 /obj/effect/decal/cleanable/blood/proc/on_cross(datum/source, mob/living/carbon/human/perp, oldloc, oldlocs)
@@ -169,13 +167,10 @@
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6")
 	var/fleshcolor = "#FFC896"
 
-/obj/effect/decal/cleanable/blood/gibs/update_color()
-	if(!fleshcolor || fleshcolor == "rainbow")
-		fleshcolor = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
-	update_icon()
-
 /obj/effect/decal/cleanable/blood/gibs/update_icon_state()
 	. = ..()
+	if(!fleshcolor)
+		fleshcolor = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
 	var/icon/blood = new(base_icon,"[icon_state]",dir)
 	if(basecolor == "rainbow")
 		basecolor = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"

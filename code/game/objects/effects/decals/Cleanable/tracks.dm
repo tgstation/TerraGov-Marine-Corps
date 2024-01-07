@@ -116,9 +116,6 @@
 	if(updated)
 		update_icon()
 
-/obj/effect/decal/cleanable/blood/tracks/update_color()
-	color = "#FFFFFF"
-
 /obj/effect/decal/cleanable/blood/tracks/update_overlays()
 	. = ..()
 	var/truedir=0

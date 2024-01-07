@@ -6,9 +6,6 @@
 	basecolor="#030303"
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6", "gib7")
 
-/obj/effect/decal/cleanable/blood/gibs/robot/update_color()
-	color = "#FFFFFF"
-
 /obj/effect/decal/cleanable/blood/gibs/robot/dry()	//pieces of robots do not dry up like
 	return
 
@@ -20,7 +17,7 @@
 			if (i > 0)
 				if (prob(40))
 					var/obj/effect/decal/cleanable/blood/oil/streak = new(src.loc)
-					streak.update_color()
+					streak.update_icon()
 				else if (prob(10))
 					var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 					s.set_up(3, 1, src)

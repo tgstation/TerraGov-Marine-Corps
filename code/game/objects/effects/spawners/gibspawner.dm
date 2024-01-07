@@ -55,7 +55,7 @@
 				if(bloodcolor)
 					gib.basecolor = bloodcolor
 
-				gib.update_color()
+				gib.update_icon()
 
 				var/list/directions = gibdirections[i]
 				if(length(directions))

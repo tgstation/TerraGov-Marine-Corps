@@ -37,7 +37,6 @@
 
 ///Checks if we're on, if so a light turns on
 /obj/item/radio/intercom/proc/check_light()
-	. = ..()
 	if(!on)
 		set_light(0)
 		return
