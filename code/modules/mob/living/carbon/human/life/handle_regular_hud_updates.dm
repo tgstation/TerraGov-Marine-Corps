@@ -12,19 +12,6 @@
 		clear_fullscreen("brute")
 		clear_fullscreen("oxy")
 		clear_fullscreen("crit")
-
-		if(!hud_used)
-			return
-		if(hud_used.nutrition_icon)
-			hud_used.nutrition_icon.icon_state = "nutrition1"
-		if(hud_used.toxin_icon)
-			hud_used.toxin_icon.icon_state = "tox0"
-		if(hud_used.oxygen_icon)
-			hud_used.oxygen_icon.icon_state = "oxy0"
-		if(hud_used.fire_icon)
-			hud_used.fire_icon.icon_state = "fire0"
-		if(hud_used.bodytemp_icon)
-			hud_used.bodytemp_icon.icon_state = "temp0"
 		return
 
 	if(stat == UNCONSCIOUS && health <= get_crit_threshold())
@@ -102,86 +89,17 @@
 	if(!hud_used)
 		return
 
-	if(hud_used.nutrition_icon)
-		switch(nutrition)
-			if(NUTRITION_OVERFED to INFINITY)
-				hud_used.nutrition_icon.icon_state = "nutrition0"
-			if(NUTRITION_HUNGRY to NUTRITION_OVERFED) //Not-hungry.
-				hud_used.nutrition_icon.icon_state = "nutrition1" //Empty icon.
-			if(NUTRITION_STARVING to NUTRITION_HUNGRY)
-				hud_used.nutrition_icon.icon_state = "nutrition3"
-			else
-				hud_used.nutrition_icon.icon_state = "nutrition4"
+	hud_used?.nutrition_icon?.update_icon()
 
-	if(hud_used.pressure_icon)
-		hud_used.pressure_icon.icon_state = "pressure[pressure_alert]"
+	hud_used?.pressure_icon?.update_icon()
 
-	if(hud_used.toxin_icon)
-		if(hal_screwyhud == 4)
-			hud_used.toxin_icon.icon_state = "tox1"
-		else
-			hud_used.toxin_icon.icon_state = "tox0"
-	if(hud_used.oxygen_icon)
-		if(hal_screwyhud == 3 || oxygen_alert)
-			hud_used.oxygen_icon.icon_state = "oxy1"
-		else
-			hud_used.oxygen_icon.icon_state = "oxy0"
-	if(hud_used.fire_icon)
-		if(fire_alert)
-			hud_used.fire_icon.icon_state = "fire[fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.
-		else
-			hud_used.fire_icon.icon_state = "fire0"
+	hud_used?.toxin_icon?.update_icon()
 
-	if(hud_used.bodytemp_icon)
-		if(!species)
-			switch(bodytemperature) //310.055 optimal body temp
-				if(370 to INFINITY)
-					hud_used.bodytemp_icon.icon_state = "temp4"
-				if(350 to 370)
-					hud_used.bodytemp_icon.icon_state = "temp3"
-				if(335 to 350)
-					hud_used.bodytemp_icon.icon_state = "temp2"
-				if(320 to 335)
-					hud_used.bodytemp_icon.icon_state = "temp1"
-				if(300 to 320)
-					hud_used.bodytemp_icon.icon_state = "temp0"
-				if(295 to 300)
-					hud_used.bodytemp_icon.icon_state = "temp-1"
-				if(280 to 295)
-					hud_used.bodytemp_icon.icon_state = "temp-2"
-				if(260 to 280)
-					hud_used.bodytemp_icon.icon_state = "temp-3"
-				else
-					hud_used.bodytemp_icon.icon_state = "temp-4"
-		else
-			var/temp_step
-			if(bodytemperature >= species.body_temperature)
-				temp_step = (species.heat_level_1 - species.body_temperature) / 4
+	hud_used?.oxygen_icon?.update_icon()
 
-				if(bodytemperature >= species.heat_level_1)
-					hud_used.bodytemp_icon.icon_state = "temp4"
-				else if(bodytemperature >= species.body_temperature + temp_step * 3)
-					hud_used.bodytemp_icon.icon_state = "temp3"
-				else if(bodytemperature >= species.body_temperature + temp_step * 2)
-					hud_used.bodytemp_icon.icon_state = "temp2"
-				else if(bodytemperature >= species.body_temperature + temp_step * 1)
-					hud_used.bodytemp_icon.icon_state = "temp1"
-				else
-					hud_used.bodytemp_icon.icon_state = "temp0"
+	hud_used?.fire_icon?.update_icon()
 
-			else if(bodytemperature < species.body_temperature)
-				temp_step = (species.body_temperature - species.cold_level_1)/4
-
-				if(bodytemperature <= species.cold_level_1)
-					hud_used.bodytemp_icon.icon_state = "temp-4"
-				else if(bodytemperature <= species.body_temperature - temp_step * 3)
-					hud_used.bodytemp_icon.icon_state = "temp-3"
-				else if(bodytemperature <= species.body_temperature - temp_step * 2)
-					hud_used.bodytemp_icon.icon_state = "temp-2"
-				else if(bodytemperature <= species.body_temperature - temp_step * 1)
-					hud_used.bodytemp_icon.icon_state = "temp-1"
-				else
-					hud_used.bodytemp_icon.icon_state = "temp0"
+	hud_used?.bodytemp_icon?.update_icon()
 
 
 /mob/living/carbon/human/handle_healths_hud_updates()
