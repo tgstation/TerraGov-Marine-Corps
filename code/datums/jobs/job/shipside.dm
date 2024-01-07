@@ -69,7 +69,7 @@ Godspeed, captain! And remember, you are not above the law."})
 			new_human.wear_id.paygrade = "O8"
 
 /datum/job/terragov/command/captain/campaign
-	outfit = /datum/outfit/job/command/captain/campaign
+	outfit = /datum/outfit/job/command/captain_campaign
 	multiple_outfits = FALSE
 
 /datum/outfit/job/command/captain
@@ -96,9 +96,11 @@ Godspeed, captain! And remember, you are not above the law."})
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/leadership
 
-/datum/outfit/job/command/captain/campaign
-	r_store = /obj/item/storage/pouch/general/large
-	l_store = /obj/item/binoculars/fire_support/campaign
+/datum/outfit/job/command/captain_campaign
+	name = CAPTAIN
+	jobtype = /datum/job/terragov/command/captain
+
+	id = /obj/item/card/id/gold
 
 //Field Commander
 /datum/job/terragov/command/fieldcommander
@@ -256,7 +258,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 			new_human.wear_id.paygrade = "O5"
 
 /datum/job/terragov/command/staffofficer/campaign
-	outfit = /datum/outfit/job/command/staffofficer/campaign
+	outfit = /datum/outfit/job/command/staffofficer_campaign
 	multiple_outfits = FALSE
 
 /datum/outfit/job/command/staffofficer
@@ -283,8 +285,11 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/binoculars/tactical
 
-/datum/outfit/job/command/staffofficer/campaign
-	l_store = /obj/item/binoculars/fire_support/campaign
+/datum/outfit/job/command/staffofficer_campaign
+	name = STAFF_OFFICER
+	jobtype = /datum/job/terragov/command/staffofficer
+
+	id = /obj/item/card/id/silver
 
 //Pilot Officer
 /datum/job/terragov/command/pilot

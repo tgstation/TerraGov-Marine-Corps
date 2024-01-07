@@ -42,7 +42,7 @@
 	name = "Dress White Cap"
 	desc = "The dress white cap for your dress uniform. Pride is your shield, because this isn't."
 	item_typepath = /obj/item/clothing/head/white_dress
-	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
 
 //corpsman
 /datum/loadout_item/helmet/mimir
@@ -74,3 +74,17 @@
 	desc = "A beret with the field commander insignia emblazoned on it. It commands loyalty and bravery in all who gaze upon it."
 	item_typepath = /obj/item/clothing/head/tgmcberet/fc
 	jobs_supported = list(FIELD_COMMANDER)
+
+//Staff officer
+/datum/loadout_item/helmet/field_commander_beret
+	name = "Officer cap"
+	desc = "A hat usually worn by officers in the TGMC. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
+	item_typepath = /obj/item/clothing/head/tgmccap/ro
+	jobs_supported = list(STAFF_OFFICER)
+
+//Staff officer
+/datum/loadout_item/helmet/captain_beret
+	name = "Captains Beret"
+	desc = "A beret worn by ship's captains. You thought it would have been more fancy."
+	item_typepath = /obj/item/clothing/head/tgmcberet/tan
+	jobs_supported = list(CAPTAIN)

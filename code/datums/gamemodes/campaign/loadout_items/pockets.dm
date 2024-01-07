@@ -70,6 +70,13 @@
 	item_typepath = /obj/item/storage/pouch/tools/full
 	jobs_supported = list(SQUAD_ENGINEER)
 
+/datum/loadout_item/r_pocket/general
+	name = "General pouch"
+	desc = "A general purpose pouch used to carry small items."
+	ui_icon = "grenade"
+	item_typepath = /obj/item/storage/pouch/general/large
+	jobs_supported = list(STAFF_OFFICER, CAPTAIN)
+
 //l_pocket
 /datum/loadout_item/l_pocket
 	item_slot = ITEM_SLOT_L_POCKET
@@ -141,3 +148,10 @@
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/tools/full
 	jobs_supported = list(SQUAD_ENGINEER)
+
+/datum/loadout_item/l_pocket/general
+	name = "General pouch"
+	desc = "A general purpose pouch used to carry small items."
+	ui_icon = "grenade"
+	item_typepath = /obj/item/storage/pouch/general/large
+	jobs_supported = list(STAFF_OFFICER, CAPTAIN)

@@ -17,4 +17,4 @@
 	name = "Command headset"
 	desc = "A command headset, allowing for communication with all squads and access to the tactical minimap. You're in for a bad time if you don't use this."
 	item_typepath = /obj/item/radio/headset/mainship/mcom
-	jobs_supported = list(FIELD_COMMANDER)
+	jobs_supported = list(FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)

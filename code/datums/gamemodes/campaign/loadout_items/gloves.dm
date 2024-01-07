@@ -28,7 +28,7 @@
 	name = "White dress gloves"
 	desc = "Fancy white gloves to go with your white dress uniform."
 	item_typepath = /obj/item/clothing/gloves/white
-	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
 
 //corpsman
 /datum/loadout_item/gloves/defib_gloves
@@ -50,4 +50,11 @@
 	name = "Officer gloves"
 	desc = "Shiny and impressive. They look expensive."
 	item_typepath = /obj/item/clothing/gloves/marine/officer
-	jobs_supported = list(FIELD_COMMANDER)
+	jobs_supported = list(FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
+
+//captain
+/datum/loadout_item/gloves/captain_gloves
+	name = "Captain's gloves"
+	desc = "You may like these gloves, but THEY think you are unworthy of them."
+	item_typepath = /obj/item/clothing/gloves/marine/techofficer/captain
+	jobs_supported = list(CAPTAIN)

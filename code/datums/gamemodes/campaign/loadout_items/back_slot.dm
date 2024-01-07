@@ -10,7 +10,7 @@
 	name = "Satchel"
 	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel. Carries less than a backpack, but items can be drawn instantly."
 	item_typepath = /obj/item/storage/backpack/marine/satchel
-	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, STAFF_OFFICER, CAPTAIN)
 
 /datum/loadout_item/back/marine_backpack
 	name = "Backpack"

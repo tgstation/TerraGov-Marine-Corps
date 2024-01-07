@@ -47,7 +47,7 @@
 	desc = "A standard-issue TerraGov Marine Corps white dress uniform. \
 	The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. Doesn't seem to fit perfectly around the waist though."
 	item_typepath = /obj/item/clothing/under/marine/whites
-	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
 
 //corpsman
 /datum/loadout_item/uniform/marine_corpsman
@@ -82,3 +82,17 @@
 	desc = "A special-issue, kevlar-weaved, hazmat-tested, EMF-augmented worn by a field-grade officer of the TGMC. You suspect it's not as robust-proof as advertised."
 	item_typepath = /obj/item/clothing/under/marine/officer/exec/webbing
 	jobs_supported = list(FIELD_COMMANDER)
+
+//Staff officer
+/datum/loadout_item/uniform/staff_officer
+	name = "SO uniform"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented staff officer uniform. Do the navy proud."
+	item_typepath = /obj/item/clothing/under/marine/officer/bridge
+	jobs_supported = list(STAFF_OFFICER)
+
+//Captain
+/datum/loadout_item/uniform/captain_officer
+	name = "Captain uniform"
+	desc = "A special-issue, well-ironed, kevlar-weaved, hazmat-tested, EMF-augmented uniform worth of a TerraGov Naval Captain. Even looking at it the wrong way could result in being court-martialed."
+	item_typepath = /obj/item/clothing/under/marine/officer/command
+	jobs_supported = list(CAPTAIN)

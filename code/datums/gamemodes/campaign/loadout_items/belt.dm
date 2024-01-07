@@ -83,3 +83,18 @@
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 	jobs_supported = list(FIELD_COMMANDER)
 	item_blacklist = list(/obj/item/storage/holster/belt/pistol/m4a3/fieldcommander = ITEM_SLOT_SUITSTORE)
+
+//staff officer
+/datum/loadout_item/belt/so_pistol
+	name = "RT-3 pistol"
+	desc = "An RT-3 target pistol, a common sight throughout the bubble. Fires 9mm in magazines. Comes in a holster to fit on your waist."
+	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/officer
+	jobs_supported = list(STAFF_OFFICER)
+
+//captain
+/datum/loadout_item/belt/smart_pistol
+	name = "SP-13 pistol"
+	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. A cutting-edge miniaturization technology allows mounting of a KTLD IFF system on the pistol, \
+	albeit at high manufactoring cost and the usual specialized training required to use such a pistol. Unique design feature high-capacity mag on top of the barrel, with integrated sight."
+	item_typepath = /obj/item/storage/holster/belt/pistol/smart_pistol/full
+	jobs_supported = list(CAPTAIN)

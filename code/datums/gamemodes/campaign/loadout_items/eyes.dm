@@ -16,7 +16,7 @@
 	name = "HealthMate HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status. The projector can be attached to compatable eyewear."
 	item_typepath = /obj/item/clothing/glasses/hud/health
-	jobs_supported = list(SQUAD_CORPSMAN, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_CORPSMAN, SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
 
 /datum/loadout_item/eyes/mesons
 	name = "Optical meson scanner"
