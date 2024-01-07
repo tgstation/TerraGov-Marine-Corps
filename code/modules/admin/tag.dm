@@ -52,7 +52,7 @@
 
 /// Display all of the tagged datums
 /datum/admins/proc/display_tags()
-	set category = "Admin.Game"
+	set category = "Debug"
 	set name = "View Tags"
 
 	var/datum/admins/holdersrc = src

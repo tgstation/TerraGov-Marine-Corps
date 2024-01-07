@@ -803,12 +803,8 @@ below 100 is not dizzy
 	hand = !hand
 	SEND_SIGNAL(src, COMSIG_CARBON_SWAPPED_HANDS)
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
-		hud_used.l_hand_hud_object.update_icon(hand)
-		hud_used.r_hand_hud_object.update_icon(!hand)
-		if(hand)	//This being 1 means the left hand is in use
-			hud_used.l_hand_hud_object.add_overlay("hand_active")
-		else
-			hud_used.r_hand_hud_object.add_overlay("hand_active")
+		hud_used.l_hand_hud_object.update_icon()
+		hud_used.r_hand_hud_object.update_icon()
 	return
 
 ///Swap to the hand clicked on the hud

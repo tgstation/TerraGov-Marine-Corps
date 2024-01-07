@@ -353,7 +353,7 @@ SUBSYSTEM_DEF(minimaps)
 	var/hash = "[zlevel]-[flags]"
 	if(hashed_minimaps[hash])
 		return hashed_minimaps[hash]
-	var/atom/movable/screen/minimap/map = new(null, zlevel, flags)
+	var/atom/movable/screen/minimap/map = new(null, null, zlevel, flags)
 	if (!map.icon) //Don't wanna save an unusable minimap for a z-level.
 		CRASH("Empty and unusable minimap generated for '[zlevel]-[flags]'") //Can be caused by atoms calling this proc before minimap subsystem initializing.
 	hashed_minimaps[hash] = map
@@ -381,7 +381,7 @@ SUBSYSTEM_DEF(minimaps)
 	///assoc list of mob choices by clicking on coords. only exists fleetingly for the wait loop in [/proc/get_coords_from_click]
 	var/list/mob/choices_by_mob
 
-/atom/movable/screen/minimap/Initialize(mapload, target, flags)
+/atom/movable/screen/minimap/Initialize(mapload, datum/hud/hud_owner, target, flags)
 	. = ..()
 	if(!SSminimaps.minimaps_by_z["[target]"])
 		return
@@ -522,13 +522,13 @@ SUBSYSTEM_DEF(minimaps)
 		locator_override = to_track
 		if(to_track)
 			RegisterSignal(to_track, COMSIG_QDELETING, TYPE_PROC_REF(/datum/action/minimap, clear_locator_override))
-			if(owner.loc == to_track)
+			if(owner && owner.loc == to_track)
 				RegisterSignal(to_track, COMSIG_ATOM_EXITED, TYPE_PROC_REF(/datum/action/minimap, on_exit_check))
 		if(owner)
 			RegisterSignal(new_track, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
 			var/turf/old_turf = get_turf(tracking)
-			if(!old_turf.z || old_turf.z != new_track.z)
-				on_owner_z_change(new_track, old_turf.z, new_track.z)
+			if(!old_turf || !old_turf.z || old_turf.z != new_track.z)
+				on_owner_z_change(new_track, old_turf?.z, new_track?.z)
 		return
 	locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 	locator_override = to_track

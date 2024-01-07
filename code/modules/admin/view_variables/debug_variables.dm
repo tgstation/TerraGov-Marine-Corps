@@ -17,10 +17,10 @@
 	var/name_part = VV_HTML_ENCODE(name)
 	if(level > 0 || islist(owner)) //handling keys in assoc lists
 		if(istype(name,/datum))
-			name_part = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(name)]'>[VV_HTML_ENCODE(name)] [REF(name)]</a>"
+			name_part = "<a href='?_src_=vars;[HrefToken()];vars=[REF(name)]'>[VV_HTML_ENCODE(name)] [REF(name)]</a>"
 		else if(islist(name))
 			var/list/list_value = name
-			name_part = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(name)]'> /list ([length(list_value)]) [REF(name)]</a>"
+			name_part = "<a href='?_src_=vars;[HrefToken()];vars=[REF(name)]'> /list ([length(list_value)]) [REF(name)]</a>"
 
 	. = "[.][name_part] = "
 
@@ -69,9 +69,9 @@
 		var/list/items = list()
 
 		// This is becuse some lists either dont count as lists or a locate on their ref will return null
-		var/link_vars = "Vars=[REF(value)]"
+		var/link_vars = "vars=[REF(value)]"
 		if(name in GLOB.vv_special_lists)
-			link_vars = "Vars=[REF(owner)];special_varname=[name]"
+			link_vars = "vars=[REF(owner)];special_varname=[name]"
 
 		if (!(display_flags & VV_ALWAYS_CONTRACT_LIST) && list_value.len > 0 && list_value.len <= (IS_NORMAL_LIST(list_value) ? VV_NORMAL_LIST_NO_EXPAND_THRESHOLD : VV_SPECIAL_LIST_NO_EXPAND_THRESHOLD))
 			for (var/i in 1 to list_value.len)
@@ -103,13 +103,13 @@
 
 /datum/proc/debug_variable_value(name, level, datum/owner, sanitize, display_flags)
 	if("[src]" != "[type]") // If we have a name var, let's use it.
-		return "<a href='?_src_=vars;[HrefToken()];Vars=[REF(src)]'>[src] [type] [REF(src)]</a>"
+		return "<a href='?_src_=vars;[HrefToken()];vars=[REF(src)]'>[src] [type] [REF(src)]</a>"
 	else
-		return "<a href='?_src_=vars;[HrefToken()];Vars=[REF(src)]'>[type] [REF(src)]</a>"
+		return "<a href='?_src_=vars;[HrefToken()];vars=[REF(src)]'>[type] [REF(src)]</a>"
 
 /datum/weakref/debug_variable_value(name, level, datum/owner, sanitize, display_flags)
 	. = ..()
-	return "[.] <a href='?_src_=vars;[HrefToken()];Vars=[reference]'>(Resolve)</a>"
+	return "[.] <a href='?_src_=vars;[HrefToken()];vars=[reference]'>(Resolve)</a>"
 
 /matrix/debug_variable_value(name, level, datum/owner, sanitize, display_flags)
 	return {"<span class='value'>

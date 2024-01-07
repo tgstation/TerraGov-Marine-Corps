@@ -51,7 +51,7 @@
 #define ADMIN_JMP(src) "(<a href='?_src_=holder;[HrefToken(TRUE)];observecoordjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)"
 #define ADMIN_JMP_USER(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];observecoordjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)"
 #define ADMIN_PP(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(user)]'>PP</a>)"
-#define ADMIN_VV(atom) "(<a href='?_src_=vars;[HrefToken(forceGlobal = TRUE)];Vars=[REF(atom)]'>VV</a>)"
+#define ADMIN_VV(atom) "(<a href='?_src_=vars;[HrefToken(forceGlobal = TRUE)];vars=[REF(atom)]'>VV</a>)"
 #define ADMIN_SM(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];subtlemessage=[REF(user)]'>SM</a>)"
 #define ADMIN_IF(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];imginaryfriend=[REF(user)]'>IF</a>)"
 #define ADMIN_TP(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];traitorpanel=[REF(user)]'>TP</a>)"
