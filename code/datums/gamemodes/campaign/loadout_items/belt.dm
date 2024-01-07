@@ -66,3 +66,20 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
 	item_typepath = /obj/item/storage/belt/lifesaver/quick
 	jobs_supported = list(SQUAD_CORPSMAN)
+
+//FC
+/datum/loadout_item/belt/officer_sword
+	name = "Officers sword"
+	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. \
+	Well made and extremely sharp, despite its probable non-combat purpose. Comes in a leather scabbard that an attached to your waist or armor."
+	item_typepath = /obj/item/storage/holster/blade/officer/full
+	jobs_supported = list(FIELD_COMMANDER)
+	item_blacklist = list(/obj/item/storage/holster/blade/officer/full = ITEM_SLOT_SUITSTORE)
+
+/datum/loadout_item/belt/fc_pistol
+	name = "P-1911A1-C pistol"
+	desc = "A handgun that has received several modifications. It seems to have been lovingly taken care of and passed down for generations. \
+	Lacks an auto magazine eject feature. Comes in a holster that fits on your waist or armor."
+	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
+	jobs_supported = list(FIELD_COMMANDER)
+	item_blacklist = list(/obj/item/storage/holster/belt/pistol/m4a3/fieldcommander = ITEM_SLOT_SUITSTORE)

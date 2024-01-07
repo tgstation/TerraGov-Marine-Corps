@@ -38,6 +38,12 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER)
 	item_whitelist = list(/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two = ITEM_SLOT_OCLOTHING)
 
+/datum/loadout_item/helmet/white_dress
+	name = "Dress White Cap"
+	desc = "The dress white cap for your dress uniform. Pride is your shield, because this isn't."
+	item_typepath = /obj/item/clothing/head/white_dress
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+
 //corpsman
 /datum/loadout_item/helmet/mimir
 	name = "M10X-Mimir helmet"
@@ -61,3 +67,10 @@
 /datum/loadout_item/helmet/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
+
+//FC
+/datum/loadout_item/helmet/field_commander_beret
+	name = "FC beret"
+	desc = "A beret with the field commander insignia emblazoned on it. It commands loyalty and bravery in all who gaze upon it."
+	item_typepath = /obj/item/clothing/head/tgmcberet/fc
+	jobs_supported = list(FIELD_COMMANDER)

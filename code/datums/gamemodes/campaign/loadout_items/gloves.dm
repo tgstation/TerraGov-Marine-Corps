@@ -18,6 +18,18 @@
 	item_typepath = /obj/item/clothing/gloves/marine/black
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
+/datum/loadout_item/gloves/marine_fingerless
+	name = "Fingerless gloves"
+	desc = "Standard issue marine tactical gloves but fingerless! It reads: 'knit by Marine Widows Association'."
+	item_typepath = /obj/item/clothing/gloves/marine/fingerless
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+
+/datum/loadout_item/gloves/white_dress
+	name = "White dress gloves"
+	desc = "Fancy white gloves to go with your white dress uniform."
+	item_typepath = /obj/item/clothing/gloves/white
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+
 //corpsman
 /datum/loadout_item/gloves/defib_gloves
 	name = "Defib gloves"
@@ -32,3 +44,10 @@
 	desc = "Insulated marine tactical gloves that protect against electrical shocks."
 	item_typepath = /obj/item/clothing/gloves/marine/insulated
 	jobs_supported = list(SQUAD_ENGINEER)
+
+//FC
+/datum/loadout_item/gloves/officer_gloves
+	name = "Officer gloves"
+	desc = "Shiny and impressive. They look expensive."
+	item_typepath = /obj/item/clothing/gloves/marine/officer
+	jobs_supported = list(FIELD_COMMANDER)

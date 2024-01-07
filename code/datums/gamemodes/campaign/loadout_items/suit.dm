@@ -65,6 +65,11 @@
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/leader
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
 
+/datum/loadout_item/suit_slot/white_dress
+	name = "White dress jacket"
+	desc = "The perfect white jacket to go with your white dress uniform. WARNING: Incompatible with almost all weapons."
+	item_typepath = /obj/item/clothing/suit/white_dress_jacket
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
 //corpsman
 /datum/loadout_item/suit_slot/medium_mimir

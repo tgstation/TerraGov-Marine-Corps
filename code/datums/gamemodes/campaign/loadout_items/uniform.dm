@@ -42,6 +42,13 @@
 	item_typepath = /obj/item/clothing/under/marine/orion_fatigue/black_vest
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
 
+/datum/loadout_item/uniform/white_dress
+	name = "white dress uniform"
+	desc = "A standard-issue TerraGov Marine Corps white dress uniform. \
+	The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. Doesn't seem to fit perfectly around the waist though."
+	item_typepath = /obj/item/clothing/under/marine/whites
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+
 //corpsman
 /datum/loadout_item/uniform/marine_corpsman
 	name = "corpsman fatigues"
@@ -68,3 +75,10 @@
 		/obj/item/storage/pouch/tools/full = ITEM_SLOT_L_POCKET,
 		/obj/item/storage/pouch/tools/full = ITEM_SLOT_R_POCKET,
 	)
+
+//FC
+/datum/loadout_item/uniform/field_commander
+	name = "FC uniform"
+	desc = "A special-issue, kevlar-weaved, hazmat-tested, EMF-augmented worn by a field-grade officer of the TGMC. You suspect it's not as robust-proof as advertised."
+	item_typepath = /obj/item/clothing/under/marine/officer/exec/webbing
+	jobs_supported = list(FIELD_COMMANDER)
