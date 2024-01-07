@@ -25,7 +25,7 @@
 	idle_power_usage = 15
 	active_power_usage = 10000 // It rebuilds you from nothing...
 
-	//This var is in reference to the radio the cradle uses to speak to the craw.
+	//This var is in reference to the radio the cradle uses to speak to the craw
 	var/obj/item/radio/headset/mainship/doc/radio
 
 /obj/machinery/robotic_cradle/Initialize(mapload)
