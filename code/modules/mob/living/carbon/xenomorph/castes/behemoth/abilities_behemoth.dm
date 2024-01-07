@@ -648,7 +648,7 @@
 	if(primal_wrath_action?.ability_active)
 		wind_up_duration = EARTH_RISER_ENHANCED_WIND_UP
 		affected_turfs = range(EARTH_RISER_ENHANCED_RADIUS, target_turf)
-		addtimer(CALLBACK(src, GLOBAL_PROC_REF(behemoth_area_attack), xeno_owner, affected_turfs), wind_up_duration + 0.5 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(behemoth_area_attack), xeno_owner, affected_turfs), wind_up_duration + 0.5 SECONDS)
 	do_warning(xeno_owner, affected_turfs, wind_up_duration)
 	addtimer(CALLBACK(src, PROC_REF(do_ability), target_turf, primal_wrath_action?.ability_active), wind_up_duration)
 	add_cooldown(wind_up_duration + 0.1 SECONDS)
@@ -796,7 +796,7 @@
 		behemoth_area_attack(owner, turfs_to_attack, enhanced)
 	else
 		do_warning(owner, turfs_to_attack, wind_up)
-		addtimer(CALLBACK(src, GLOBAL_PROC_REF(behemoth_area_attack), owner, turfs_to_attack, enhanced), wind_up)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(behemoth_area_attack), owner, turfs_to_attack, enhanced), wind_up)
 	if(!enhanced)
 		return
 	new /obj/effect/temp_visual/shockwave/enhanced(get_turf(owner), SEISMIC_FRACTURE_ATTACK_RADIUS, owner.dir)
