@@ -107,7 +107,7 @@
 				return FALSE
 
 			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
-			var/max_dmg = H.melee_damage + (H.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+			var/max_dmg = max(H.melee_damage + (H.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD), 3)
 			var/damage = rand(1, max_dmg)
 
 			var/target_zone = ran_zone(H.zone_selected)
