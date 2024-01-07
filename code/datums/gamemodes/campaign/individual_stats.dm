@@ -72,6 +72,7 @@
 		to_chat(user, "<span class='warning'>Insufficient funds for this perk.")
 		return FALSE
 
+	new_perk.unlock_bonus(user, src)
 	unlocked_perks += new_perk
 	for(var/supported_job in new_perk.jobs_supported)
 		if(!perks_by_job[supported_job])
@@ -82,8 +83,22 @@
 		return
 	new_perk.apply_perk(user)
 
+///Unlocks a loadout item for use
+/datum/individual_stats/proc/unlock_loadout_item(item_type, job_type, mob/user, cost_override)
+	for(var/datum/loadout_item/item AS in GLOB.campaign_loadout_items_by_role[job_type])
+		if(!istype(item, item_type))
+			continue
+		var/insufficient_credits = use_funds(isnum(cost_override) ? cost_override : item.unlock_cost)
+		if(insufficient_credits)
+			to_chat(user, "<span class='warning'>Requires [insufficient_credits] more credits.")
+			return
+		if(!loadouts[job_type].unlock_new_option(item))
+			return
+		return TRUE
+
+//do we need this?
 ///Adds an item if able
-/datum/individual_stats/proc/unlock_loadout_item(datum/loadout_item/new_item)
+/datum/individual_stats/proc/make_available_loadout_item(datum/loadout_item/new_item)
 	if(!istype(new_item))
 		return
 	//insert 'we already got this' check here, unless we have a 'purchasable list'
@@ -284,17 +299,10 @@
 			var/equipped_item_job = params["selected_job"]
 			if(!equipped_item_job)
 				return
-			for(var/datum/loadout_item/item AS in GLOB.campaign_loadout_items_by_role[equipped_item_job])
-				if(!istype(item, equipped_item_type))
-					continue
-				var/insufficient_credits = use_funds(item.unlock_cost)
-				if(insufficient_credits)
-					to_chat(user, "<span class='warning'>Requires [insufficient_credits] more credits.")
-					return
-				if(!loadouts[equipped_item_job].unlock_new_option(item))
-					return
-				user.playsound_local(user, 'sound/effects/menu_click.ogg', 50)
-				return TRUE
+			if(!unlock_loadout_item(equipped_item_type, equipped_item_job, user))
+				return
+			user.playsound_local(user, 'sound/effects/menu_click.ogg', 50)
+			return TRUE
 		if("equip_outfit")
 			var/job = params["outfit_job"]
 			if(!job || !loadouts[job])

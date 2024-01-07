@@ -44,6 +44,10 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	if(all_jobs)
 		jobs_supported = GLOB.campaign_jobs
 
+///Any one off bonuses for unlocking this perk
+/datum/perk/proc/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	return
+
 ///Applies perk benefits
 /datum/perk/proc/apply_perk(mob/living/carbon/owner)
 	return
@@ -160,9 +164,15 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/shotguns
 	name = "Advanced shotgun training"
+	desc = "Improved shotgun performance. Unlocks access to a shotgun secondary weapon in the backslot."
 	ui_icon = "shotguns"
 	shotguns = 1
 	all_jobs = TRUE
+
+/datum/perk/skill_mod/shotguns/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	if(!owner_stats)
+		return
+	owner_stats?.unlock_loadout_item(owner_stats.faction == FACTION_SOM ? /datum/loadout_item/back/som_shotgun : /datum/loadout_item/back/marine_shotgun, owner_stats.faction == FACTION_SOM ? SOM_SQUAD_MARINE : SQUAD_MARINE, owner, 0)
 
 /datum/perk/skill_mod/rifles
 	name = "Advanced rifle training"
