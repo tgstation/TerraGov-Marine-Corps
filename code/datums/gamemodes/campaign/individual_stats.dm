@@ -63,11 +63,16 @@
 		to_chat(user, "<span class='warning'>Perk already purchased.")
 		return FALSE
 	if(length(new_perk.prereq_perks))
+		var/perk_found
 		for(var/prereq in new_perk.prereq_perks)
-			if(prereq in unlocked_perks)
-				continue
-			to_chat(user, "<span class='warning'>One or more prerequisites missing for this perk.")
-			return FALSE
+			perk_found = FALSE
+			for(var/datum/perk/perk AS in unlocked_perks)
+				if(perk.type != prereq)
+					continue
+				perk_found = TRUE
+			if(!perk_found)
+				to_chat(user, "<span class='warning'>One or more prerequisites missing for this perk.")
+				return FALSE
 	if(use_funds(new_perk.unlock_cost))
 		to_chat(user, "<span class='warning'>Insufficient funds for this perk.")
 		return FALSE

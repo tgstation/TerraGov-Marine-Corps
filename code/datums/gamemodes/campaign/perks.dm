@@ -97,6 +97,15 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	all_jobs = TRUE
 	unlock_cost = 20
 
+/datum/perk/trait/axe_master
+	name = "Axe master"
+	desc = "You are able to wield a breaching axe with considerable skill. Grants access to a special sweep attack when wielded."
+	ui_icon = "soft_footed"
+	traits = list(TRAIT_AXE_EXPERT)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	unlock_cost = 20
+	prereq_perks = list(/datum/perk/skill_mod/melee/two)
+
 //skill modifying perks
 /datum/perk/skill_mod
 	var/cqc
