@@ -106,6 +106,15 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	unlock_cost = 20
 	prereq_perks = list(/datum/perk/skill_mod/melee/two)
 
+/datum/perk/trait/sword_master
+	name = "Sword master"
+	desc = "You are able to wield a sword with considerable skill. Grants access to a special lunge attack when wielding any sword."
+	ui_icon = "soft_footed"
+	traits = list(TRAIT_SWORD_EXPERT)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, FIELD_COMMANDER)
+	unlock_cost = 20
+	prereq_perks = list(/datum/perk/skill_mod/melee/two)
+
 //skill modifying perks
 /datum/perk/skill_mod
 	var/cqc
