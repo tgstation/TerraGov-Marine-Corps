@@ -59,7 +59,7 @@
 //Special attack
 /datum/action/ability/activable/weapon_skill/sword_lunge
 	name = "Lunging strike"
-	action_icon_state = "axe_sweep"
+	action_icon_state = "sword_lunge"
 	desc = "A powerful leaping strike. Cannot stun."
 	ability_cost = 12
 	cooldown_duration = 6 SECONDS
