@@ -1045,7 +1045,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS_ADVANCED)
 		SSpoints.xeno_strategic_points_by_hive[hivenumber] = SILO_PRICE //Give a free silo when going shipside and a turret
-		SSpoints.xeno_tactical_points_by_hive[hivenumber] = XENO_TURRET_PRICE
+		SSpoints.xeno_tactical_points_by_hive[hivenumber] = (XENO_TURRET_PRICE*4)
 
 
 /datum/hive_status/normal/proc/on_hijack_depart(datum/source, new_mode)
