@@ -23,11 +23,8 @@
 
 /datum/action/ability/activable/item_toggle/use_ability(atom/target)
 	holder_item.ui_action_click(owner, src, target)
-
-/datum/action/ability/activable/item_toggle/can_use_action()
-	if(QDELETED(owner) || owner.incapacitated() || owner.lying_angle)
-		return FALSE
-	return TRUE
+	succeed_activate()
+	add_cooldown()
 
 /datum/action/ability/activable/item_toggle/update_button_icon()
 	if(visual_references[VREF_MUTABLE_LINKED_OBJ])

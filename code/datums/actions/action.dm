@@ -75,7 +75,7 @@ KEYBINDINGS
 	if(value)
 		if(owner)
 			SEND_SIGNAL(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE, owner)
-		RegisterSignals(owner, list(COMSIG_ACTION_EXCLUSIVE_TOGGLE, COMSIG_ITEM_EXCLUSIVE_TOGGLE), PROC_REF(deselect))
+		RegisterSignal(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE, PROC_REF(deselect))
 		switch(action_type)
 			if(ACTION_SELECT)
 				button.add_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
@@ -84,7 +84,7 @@ KEYBINDINGS
 		toggled = TRUE
 		return
 	if(owner)
-		UnregisterSignal(owner, list(COMSIG_ACTION_EXCLUSIVE_TOGGLE, COMSIG_ITEM_EXCLUSIVE_TOGGLE))
+		UnregisterSignal(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE)
 	switch(action_type)
 		if(ACTION_SELECT)
 			button.cut_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])

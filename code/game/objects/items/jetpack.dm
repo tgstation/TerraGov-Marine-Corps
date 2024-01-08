@@ -34,11 +34,11 @@
 	action_icon_state = "axe_sweep"
 	desc = "Briefly fly using your jetpack."
 	keybind_flags = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
-	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_BLINKDRIVE)
+	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_JETPACK)
 
-/datum/action/ability/activable/item_toggle/New(Target, obj/item/holder)
+/datum/action/ability/activable/item_toggle/jetpack/New(Target, obj/item/holder)
 	. = ..()
-	var/obj/item/jetpack_marine/jetpack = holder
+	var/obj/item/jetpack_marine/jetpack = Target
 	cooldown_duration = jetpack.cooldown_time
 
 /datum/action/ability/activable/item_toggle/jetpack/can_use_ability(silent, override_flags, selecting)

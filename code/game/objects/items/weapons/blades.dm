@@ -45,8 +45,8 @@
 
 /obj/item/weapon/claymore/equipped(mob/user, slot)
 	. = ..()
-	//if(HAS_TRAIT(user, TRAIT_SWORD_EXPERT))
-	special_attack.give_action(user)
+	if(HAS_TRAIT(user, TRAIT_SWORD_EXPERT))
+		special_attack.give_action(user)
 
 /obj/item/weapon/claymore/dropped(mob/user)
 	. = ..()
