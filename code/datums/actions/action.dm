@@ -73,6 +73,9 @@ KEYBINDINGS
 	if(value == toggled)
 		return
 	if(value)
+		if(owner)
+			SEND_SIGNAL(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE, owner)
+		RegisterSignals(owner, list(COMSIG_ACTION_EXCLUSIVE_TOGGLE, COMSIG_ITEM_EXCLUSIVE_TOGGLE), PROC_REF(deselect))
 		switch(action_type)
 			if(ACTION_SELECT)
 				button.add_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
@@ -80,12 +83,23 @@ KEYBINDINGS
 				button.add_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
 		toggled = TRUE
 		return
+	if(owner)
+		UnregisterSignal(owner, list(COMSIG_ACTION_EXCLUSIVE_TOGGLE, COMSIG_ITEM_EXCLUSIVE_TOGGLE))
 	switch(action_type)
 		if(ACTION_SELECT)
 			button.cut_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
 		if(ACTION_TOGGLE)
 			button.cut_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
 	toggled = FALSE
+
+///Setting this action as the active action
+/datum/action/proc/select()
+	set_toggle(TRUE)
+
+///Deselecting this action for use
+/datum/action/proc/deselect()
+	SIGNAL_HANDLER
+	set_toggle(FALSE)
 
 ///A handler used to update the maptext and show the change immediately.
 /datum/action/proc/update_map_text(key_string, key_signal)
