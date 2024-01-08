@@ -76,7 +76,8 @@
 /obj/item/weapon/claymore/mercsword/machete/equipped(mob/user, slot)
 	. = ..()
 	toggle_item_bump_attack(user, TRUE)
-	special_attack.give_action(user)
+	if(HAS_TRAIT(user, TRAIT_SWORD_EXPERT))
+		special_attack.give_action(user)
 
 /obj/item/weapon/claymore/mercsword/machete/dropped(mob/user)
 	. = ..()
