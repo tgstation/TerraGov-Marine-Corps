@@ -1330,7 +1330,7 @@ ENGINEERING
 
 /datum/supply_packs/engineering/glass50
 	name = "50 glass sheets"
-	contains = list(/obj/item/stack/sheet/glass/large_stack)
+	contains = list(/obj/item/stack/sheet/glass/glass/large_stack)
 	cost = 100
 
 /datum/supply_packs/engineering/wood50
