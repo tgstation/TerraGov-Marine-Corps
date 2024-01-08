@@ -7,7 +7,7 @@
 	full_name = "Breaching axe: Axe sweep"
 	description = "A powerful sweeping blow that hits foes in the direction you are facing. Cannot stun."
 	keybind_signal = COMSIG_WEAPONABILITY_AXESWEEP
-	hotkey_keys = list("R")
+	hotkey_keys = list("G")
 
 /datum/keybinding/weapon/axe_sweep_select
 	name = "Axe sweep select"
@@ -15,9 +15,9 @@
 	description = "Selected axe sweep, a powerful sweeping blow that hits foes in the direction you are facing. Cannot stun."
 	keybind_signal = COMSIG_WEAPONABILITY_AXESWEEP_SELECT
 
-/datum/keybinding/weapon/machete_lunge
+/datum/keybinding/weapon/sword_lunge
 	name = "Lunging strike"
-	full_name = "Machete: Lunging strike"
+	full_name = "Sword: Lunging strike"
 	description = "Dash a short distance to inflict a staggering blow on an opponent. Cannot stun."
-	keybind_signal = COMSIG_WEAPONABILITY_MACHETELUNGE
-	hotkey_keys = list("R")
+	keybind_signal = COMSIG_WEAPONABILITY_SWORDLUNGE
+	hotkey_keys = list("G")
