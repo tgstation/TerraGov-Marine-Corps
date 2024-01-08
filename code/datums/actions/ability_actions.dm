@@ -241,8 +241,9 @@
 ///Deselecting this ability for use
 /datum/action/ability/activable/deselect()
 	. = ..()
-	var/mob/living/carbon/carbon_owner = owner
-	carbon_owner.selected_ability = null
+	if(owner)
+		var/mob/living/carbon/carbon_owner = owner
+		carbon_owner.selected_ability = null
 	on_deselection()
 
 ///Any effects on selecting this ability
