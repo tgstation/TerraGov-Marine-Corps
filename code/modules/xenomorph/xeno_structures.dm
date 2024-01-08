@@ -1637,3 +1637,27 @@ TUNNEL
 		X.alpha = initial(X.alpha)
 		balloon_alert(X, "Effect wears off")
 		to_chat(X, span_xenowarning("The effect of [src] wears off!"))
+
+/obj/structure/xeno/acid_pool
+	name = "acid pool"
+	desc = "A pool of weak viscous acid that solidifies quickly when removed from it's pool. Swimming is not reccomended due to the lack of lifeguard."
+	icon = 'icons/Xeno/3x3building.dmi'
+	icon_state = "pool"
+	bound_width = 96
+	bound_height = 64
+	max_integrity = 400
+
+/obj/structure/xeno/acid_pool/Initialize(mapload, _hivenumber)
+	. = ..()
+	START_PROCESSING(SSprocessing, src)
+
+/obj/structure/xeno/acid_pool/process()
+	for(var/atom/location AS in locs)
+		for(var/mob/living/carbon/xenomorph/xeno in location)
+			if(xeno.stat == DEAD)
+				continue
+			if(!xeno.lying_angle)
+				continue
+			if(GLOB.hive_datums[hivenumber] != xeno.hive)
+				continue
+			xeno.adjust_sunder(-1)
