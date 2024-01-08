@@ -966,6 +966,10 @@
 #define COMSIG_KB_DEFENDORDER "keybind_defendorder"
 #define COMSIG_KB_RETREATORDER "keybind_retreatorder"
 
+//Item toggle keybinds
+#define COMSIG_ITEM_TOGGLE_JETPACK "item_toggle_jetpack"
+#define COMSIG_ITEM_TOGGLE_BLINKDRIVE "item_toggle_blinkdrive"
+
 //Weapon related ability keybinds
 #define COMSIG_WEAPONABILITY_AXESWEEP "weaponability_axesweep"
 #define COMSIG_WEAPONABILITY_AXESWEEP_SELECT "weaponability_axesweep_select"
