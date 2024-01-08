@@ -135,22 +135,14 @@
 /obj/item/weapon/claymore/mercsword/machete/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/strappable)
-	special_attack = new(src, force, penetration)
-
-/obj/item/weapon/claymore/mercsword/machete/Destroy()
-	QDEL_NULL(special_attack)
-	return ..()
 
 /obj/item/weapon/claymore/mercsword/machete/equipped(mob/user, slot)
 	. = ..()
 	toggle_item_bump_attack(user, TRUE)
-	if(HAS_TRAIT(user, TRAIT_SWORD_EXPERT))
-		special_attack.give_action(user)
 
 /obj/item/weapon/claymore/mercsword/machete/dropped(mob/user)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
-	special_attack.remove_action(user)
 
 /obj/item/weapon/claymore/mercsword/machete/alt
 	name = "machete"
