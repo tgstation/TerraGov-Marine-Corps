@@ -647,7 +647,10 @@
 	var/list/turf/affected_turfs = list(target_turf)
 	if(primal_wrath_action?.ability_active)
 		wind_up_duration = EARTH_RISER_ENHANCED_WIND_UP
-		affected_turfs = range(EARTH_RISER_ENHANCED_RADIUS, target_turf)
+		for(var/turf/affected_turf in orange(EARTH_RISER_ENHANCED_RADIUS, target_turf))
+			if(isclosedturf(affected_turf))
+				continue
+			affected_turfs += affected_turf
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(behemoth_area_attack), xeno_owner, affected_turfs), wind_up_duration + 0.5 SECONDS)
 	do_warning(xeno_owner, affected_turfs, wind_up_duration)
 	addtimer(CALLBACK(src, PROC_REF(do_ability), target_turf, primal_wrath_action?.ability_active), wind_up_duration)
