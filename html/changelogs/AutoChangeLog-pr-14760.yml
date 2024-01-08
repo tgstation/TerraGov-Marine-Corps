@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes:
+  - bugfix: "glass can't turn into other glass types by merging it into a reinforced/phoron glass stack"
