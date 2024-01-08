@@ -455,7 +455,7 @@
 	adjustment_variants = list()
 
 /obj/item/clothing/under/som
-	name = "\improper SOM officer uniform"
+	name = "\improper SOM uniform"
 	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies."
 	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "som_uniform"
@@ -500,7 +500,7 @@
 
 /obj/item/clothing/under/som/officer
 	name = "\improper SOM officer uniform"
-	desc = "The distinct black uniform of a SOM officer. Usually worn by junior officers"
+	desc = "The distinct black uniform of a SOM officer. Usually worn by junior officers."
 	icon_state = "som_officer_uniform"
 	item_state = "som_officer_uniform"
 	adjustment_variants = list()
@@ -510,7 +510,7 @@
 
 /obj/item/clothing/under/som/officer/senior
 	name = "\improper SOM officer uniform"
-	desc = "The distinct jacketed black uniform of a SOM officer. Usually worn by senior officers"
+	desc = "The distinct jacketed black uniform of a SOM officer. Usually worn by senior officers."
 	icon_state = "som_senior_officer_uniform"
 	item_state = "som_senior_officer_uniform"
 

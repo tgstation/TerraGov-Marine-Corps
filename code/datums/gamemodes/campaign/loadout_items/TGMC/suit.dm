@@ -34,9 +34,10 @@
 /datum/loadout_item/suit_slot/heavy_surt
 	name = "Heavy Surt armor"
 	desc = "Heavy armor with a Surt fireproof module. Provides excellent protection and almost total fire immunity, but has poor mobility."
+	req_desc = "Requires a FL-84 flamethrower."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/surt
 	jobs_supported = list(SQUAD_MARINE)
-	quantity = 1 //testing purposes only
+	item_whitelist = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide = ITEM_SLOT_SUITSTORE)
 
 /datum/loadout_item/suit_slot/heavy_tyr
 	name = "Heavy Tyr armor"

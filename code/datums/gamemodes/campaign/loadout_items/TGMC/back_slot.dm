@@ -60,6 +60,7 @@
 	purchase_cost = 2
 	item_typepath = /obj/item/weapon/gun/shotgun/pump/t35/standard
 	jobs_supported = list(SQUAD_MARINE)
+	loadout_item_flags = NONE
 
 /datum/loadout_item/back/marine_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -132,21 +133,3 @@
 	item_typepath = /obj/item/ammo_magazine/minigun_powerpack/smartgun
 	jobs_supported = list(SQUAD_SMARTGUNNER)
 	item_whitelist = list(/obj/item/weapon/gun/minigun/smart_minigun/motion_detector = ITEM_SLOT_SUITSTORE)
-
-
-//SOM//
-
-//special unlockable
-/datum/loadout_item/back/som_shotgun
-	name = "V-51"
-	desc = "A powerful close quarters tool when someone wants something more suited for close range than most people. A powerful secondary weapon to devastate opponents at close range. \
-	Supplied with an addition box of buckshot, provided you have somewhere to store the shells. \
-	Uses 12 gauge shells. Requires a pump, which is the Unique Action key."
-	ui_icon = "ballistic"
-	purchase_cost = 2
-	item_typepath = /obj/item/weapon/gun/shotgun/som/standard
-	jobs_supported = list(SOM_SQUAD_MARINE)
-
-/datum/loadout_item/back/som_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, SLOT_R_HAND)
