@@ -61,18 +61,109 @@
 	force = 75
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
+	///Special attack action granted to users with the right trait
+	var/datum/action/ability/activable/machete_lunge/special_attack
 
 /obj/item/weapon/claymore/mercsword/machete/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/strappable)
+	special_attack = new(src, force, penetration)
+
+/obj/item/weapon/claymore/mercsword/machete/Destroy()
+	QDEL_NULL(special_attack)
+	return ..()
 
 /obj/item/weapon/claymore/mercsword/machete/equipped(mob/user, slot)
 	. = ..()
 	toggle_item_bump_attack(user, TRUE)
+	special_attack.give_action(user)
 
 /obj/item/weapon/claymore/mercsword/machete/dropped(mob/user)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
+	special_attack.remove_action(user)
+
+//Special attack
+/datum/action/ability/activable/machete_lunge
+	name = "Lunging strike"
+	action_icon = 'icons/mob/actions.dmi'
+	action_icon_state = "axe_sweep"
+	desc = "A powerful leaping strike. Cannot stun."
+	ability_cost = 12
+	cooldown_duration = 6 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_WEAPONABILITY_MACHETELUNGE,
+	)
+	///Damage of this attack
+	var/damage
+	///Penetration of this attack
+	var/penetration
+
+/datum/action/ability/activable/machete_lunge/New(Target, _damage, _penetration)
+	. = ..()
+	damage = _damage
+	penetration = _penetration
+
+/datum/action/ability/activable/machete_lunge/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+	var/mob/living/carbon/carbon_owner = owner
+	if(carbon_owner.getStaminaLoss() > -ability_cost)
+		if(!silent)
+			A.balloon_alert(owner, "Catch your breath!")
+		return FALSE
+
+/datum/action/ability/activable/machete_lunge/succeed_activate(ability_cost_override)
+	if(QDELETED(owner))
+		return
+	ability_cost_override = ability_cost_override? ability_cost_override : ability_cost
+	if(ability_cost_override > 0)
+		var/mob/living/carbon/carbon_owner = owner
+		carbon_owner.adjustStaminaLoss(ability_cost_override)
+
+/datum/action/ability/activable/machete_lunge/use_ability(atom/A)
+	var/mob/living/carbon/carbon_owner = owner
+
+	RegisterSignal(carbon_owner, COMSIG_MOVABLE_MOVED, PROC_REF(movement_fx))
+	RegisterSignal(carbon_owner, COMSIG_MOVABLE_IMPACT, PROC_REF(lunge_impact))
+	RegisterSignal(carbon_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
+
+	carbon_owner.visible_message(span_danger("[carbon_owner] charges towards \the [A]!"))
+	carbon_owner.throw_at(A, 2, 1, carbon_owner)
+	succeed_activate()
+	add_cooldown()
+
+///Create an after image
+/datum/action/ability/activable/machete_lunge/proc/movement_fx()
+	SIGNAL_HANDLER
+	new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(owner), owner)
+
+///Unregisters signals after lunge complete
+/datum/action/ability/activable/machete_lunge/proc/charge_complete()
+	SIGNAL_HANDLER
+	UnregisterSignal(owner, list(COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED))
+
+///Sig handler for atom impacts during lunge
+/datum/action/ability/activable/machete_lunge/proc/lunge_impact(datum/source, obj/target, speed)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(do_lunge_impact), source, target)
+	charge_complete()
+
+///Actual effects of lunge impact
+/datum/action/ability/activable/machete_lunge/proc/do_lunge_impact(datum/source, obj/target)
+	var/mob/living/carbon/carbon_owner = source
+	if(!ishuman(target))
+		var/obj/obj_victim = target
+		obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, armour_penetration = penetration)
+		if(!obj_victim.anchored)
+			obj_victim.knockback(carbon_owner, 1, 2)
+	else
+		var/mob/living/carbon/human/human_victim = target
+		human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration)
+		human_victim.adjust_stagger(1 SECONDS)
+		playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, 0, 5)
+		shake_camera(human_victim, 2, 1)
 
 /obj/item/weapon/claymore/mercsword/machete/alt
 	name = "machete"

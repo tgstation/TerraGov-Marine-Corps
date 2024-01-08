@@ -965,9 +965,10 @@
 #define COMSIG_KB_DEFENDORDER "keybind_defendorder"
 #define COMSIG_KB_RETREATORDER "keybind_retreatorder"
 
-//Item related ability keybinds
-#define COMSIG_ITEMABILITY_AXESWEEP "itemability_axesweep"
-#define COMSIG_ITEMABILITY_AXESWEEP_SELECT "itemability_axesweep_select"
+//Weapon related ability keybinds
+#define COMSIG_WEAPONABILITY_AXESWEEP "weaponability_axesweep"
+#define COMSIG_WEAPONABILITY_AXESWEEP_SELECT "weaponability_axesweep_select"
+#define COMSIG_WEAPONABILITY_MACHETELUNGE "weaponability_machetelunge"
 
 // human modules signals for keybindings
 #define COMSIG_KB_VALI_CONFIGURE "keybinding_vali_configure"
