@@ -120,11 +120,13 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/proc/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	SHOULD_CALL_PARENT(TRUE)
 	if((flags_upgrade & UPGRADE_FLAG_ONETIME) && times_bought)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("You have already bought this blessing!"))
 		return FALSE
 	var/points_requirement = (flags_upgrade & UPGRADE_FLAG_USES_TACTICAL) ? SSpoints.xeno_tactical_points_by_hive[buyer.hivenumber] : SSpoints.xeno_strategic_points_by_hive[buyer.hivenumber]
 	if(points_requirement < psypoint_cost)
 		if(!silent)
-			to_chat(buyer, span_xenowarning("You need [points_requirement] more [(flags_upgrade & UPGRADE_FLAG_USES_TACTICAL) ? "tacrical" : "strategic"] points to request this blessing!"))
+			to_chat(buyer, span_xenowarning("You need [points_requirement] more [(flags_upgrade & UPGRADE_FLAG_USES_TACTICAL) ? "tactical" : "strategic"] points to request this blessing!"))
 		return FALSE
 	return TRUE
 
@@ -180,7 +182,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a silo that generates xeno larvas over time. Requires open space and time to place."
 	psypoint_cost = SILO_PRICE
 	icon = "larvasilo"
-	flags_upgrade = ABILITY_NUCLEARWAR
+	flags_gamemode = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/silo
 
 /datum/hive_upgrade/building/silo/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
@@ -208,7 +210,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a tower that increases the rate of evolution point and maturity point generation by 1.2 times per tower."
 	psypoint_cost = 300
 	icon = "evotower"
-	flags_upgrade = ABILITY_NUCLEARWAR
+	flags_gamemode = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/evotower
 
 /datum/hive_upgrade/building/psychictower
@@ -216,7 +218,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a tower that increases the slots of higher tier Xenomorphs."
 	psypoint_cost = 300
 	icon = "maturitytower"
-	flags_upgrade = ABILITY_NUCLEARWAR
+	flags_gamemode = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/psychictower
 
 /datum/hive_upgrade/building/pherotower
@@ -224,7 +226,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a tower that emanates a selectable type of pheromone."
 	psypoint_cost = 150
 	icon = "pherotower"
-	flags_upgrade = ABILITY_NUCLEARWAR
+	flags_gamemode = ABILITY_NUCLEARWAR
 	flags_upgrade = UPGRADE_FLAG_USES_TACTICAL
 	building_type = /obj/structure/xeno/pherotower
 	building_loc = 0 //This results in spawning the structure under the user.
@@ -235,7 +237,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a spawner that generates ai xenos over time"
 	psypoint_cost = 600
 	icon = "spawner"
-	flags_upgrade = ABILITY_NUCLEARWAR
+	flags_gamemode = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/spawner
 
 /datum/hive_upgrade/defence
