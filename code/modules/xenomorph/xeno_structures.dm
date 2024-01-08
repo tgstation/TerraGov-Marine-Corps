@@ -1650,6 +1650,11 @@ TUNNEL
 /obj/structure/xeno/acid_pool/Initialize(mapload, _hivenumber)
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
+	update_icon()
+
+/obj/structure/xeno/acid_pool/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, "pool_emissive")
 
 /obj/structure/xeno/acid_pool/process()
 	for(var/atom/location AS in locs)
