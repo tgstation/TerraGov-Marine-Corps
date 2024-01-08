@@ -215,7 +215,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	attack_speed = 15
 	///Special attack action granted to users with the right trait
-	var/datum/action/ability/activable/axe_sweep/special_attack
+	var/datum/action/ability/activable/weapon_skill/axe_sweep/special_attack
 
 /obj/item/weapon/twohanded/fireaxe/som/Initialize(mapload)
 	. = ..()
@@ -244,49 +244,21 @@
 	special_attack.remove_action(user)
 
 //Special attack
-/datum/action/ability/activable/axe_sweep
+/datum/action/ability/activable/weapon_skill/axe_sweep
 	name = "Sweeping blow"
-	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "axe_sweep"
 	desc = "A powerful sweeping blow that hits foes in the direction you are facing. Cannot stun."
 	ability_cost = 12
 	cooldown_duration = 6 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_ITEMABILITY_AXESWEEP,
-		KEYBINDING_ALTERNATE = COMSIG_ITEMABILITY_AXESWEEP_SELECT,
+		KEYBINDING_NORMAL = COMSIG_WEAPONABILITY_AXESWEEP,
+		KEYBINDING_ALTERNATE = COMSIG_WEAPONABILITY_AXESWEEP_SELECT,
 	)
-	///Damage of this attack
-	var/damage
-	///Penetration of this attack
-	var/penetration
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
-/datum/action/ability/activable/axe_sweep/New(Target, _damage, _penetration)
-	. = ..()
-	damage = _damage
-	penetration = _penetration
-
-/datum/action/ability/activable/axe_sweep/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return
-	var/mob/living/carbon/carbon_owner = owner
-	if(carbon_owner.getStaminaLoss() > -ability_cost)
-		if(!silent)
-			A.balloon_alert(owner, "Catch your breath!")
-		return FALSE
-
-/datum/action/ability/activable/axe_sweep/succeed_activate(ability_cost_override)
-	if(QDELETED(owner))
-		return
-	ability_cost_override = ability_cost_override? ability_cost_override : ability_cost
-	if(ability_cost_override > 0)
-		var/mob/living/carbon/carbon_owner = owner
-		carbon_owner.adjustStaminaLoss(ability_cost_override)
-
-/datum/action/ability/activable/axe_sweep/use_ability(atom/A)
+/datum/action/ability/activable/weapon_skill/axe_sweep/use_ability(atom/A)
 	var/mob/living/carbon/carbon_owner = owner
 
 	carbon_owner.emote("roar")
@@ -321,7 +293,7 @@
 	add_cooldown()
 
 /// Handles the activation and deactivation of particles, as well as their appearance.
-/datum/action/ability/activable/axe_sweep/proc/activate_particles(direction)
+/datum/action/ability/activable/weapon_skill/axe_sweep/proc/activate_particles(direction)
 	particle_holder = new(get_turf(owner), /particles/ravager_slash)
 	QDEL_NULL_IN(src, particle_holder, 5)
 	particle_holder.particles.rotation += dir2angle(direction)
