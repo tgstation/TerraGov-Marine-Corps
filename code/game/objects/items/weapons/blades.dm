@@ -75,6 +75,7 @@
 	RegisterSignal(carbon_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 
 	carbon_owner.visible_message(span_danger("[carbon_owner] charges towards \the [A]!"))
+	playsound(owner, "sound/effects/alien_tail_swipe2.ogg", 50, 0, 4)
 	carbon_owner.throw_at(A, 2, 1, carbon_owner)
 	succeed_activate()
 	add_cooldown()
