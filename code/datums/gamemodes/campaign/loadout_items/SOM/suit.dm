@@ -28,6 +28,7 @@
 	desc = "M-31 combat armor with a Hades fireproof module. Provides excellent protection and almost total fire immunity, but has poor mobility."
 	req_desc = "Requires a V-62 incinerator."
 	item_typepath = /obj/item/clothing/suit/modular/som/heavy/pyro
+	jobs_supported = list(SOM_SQUAD_MARINE)
 	item_whitelist = list(/obj/item/weapon/gun/flamer/som/mag_harness = ITEM_SLOT_SUITSTORE)
 
 /datum/loadout_item/suit_slot/som_heavy_tyr
