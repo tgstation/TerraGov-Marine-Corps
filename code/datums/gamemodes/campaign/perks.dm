@@ -107,7 +107,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	prereq_perks = list(/datum/perk/skill_mod/melee/two)
 
 /datum/perk/trait/axe_master/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
-	if(!is_type(owner_stats))
+	if(!istype(owner_stats))
 		return
 	owner_stats.unlock_loadout_item(/datum/loadout_item/back/boarding_axe, SOM_SQUAD_MARINE, owner, 0)
 	owner_stats.unlock_loadout_item(/datum/loadout_item/back/boarding_axe, SOM_SQUAD_VETERAN, owner, 0)
@@ -123,7 +123,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	prereq_perks = list(/datum/perk/skill_mod/melee/two)
 
 /datum/perk/trait/sword_master/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
-	if(!is_type(owner_stats))
+	if(!istype(owner_stats))
 		return
 	owner_stats.unlock_loadout_item(/datum/loadout_item/back/machete, SQUAD_MARINE, owner, 0)
 	owner_stats.unlock_loadout_item(/datum/loadout_item/back/machete, SQUAD_LEADER, owner, 0)
