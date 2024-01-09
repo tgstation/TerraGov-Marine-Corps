@@ -99,21 +99,34 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/trait/axe_master
 	name = "Axe master"
-	desc = "You are able to wield a breaching axe with considerable skill. Grants access to a special sweep attack when wielded."
+	desc = "You are able to wield a breaching axe with considerable skill. Grants access to a special sweep attack when wielded, and allows some roles to select an axe as a back stored weapon."
 	ui_icon = "soft_footed"
 	traits = list(TRAIT_AXE_EXPERT)
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 	unlock_cost = 20
 	prereq_perks = list(/datum/perk/skill_mod/melee/two)
 
+/datum/perk/trait/axe_master/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	if(!is_type(owner_stats))
+		return
+	owner_stats.unlock_loadout_item(/datum/loadout_item/back/boarding_axe, SOM_SQUAD_MARINE, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/back/boarding_axe, SOM_SQUAD_VETERAN, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/back/boarding_axe, SOM_FIELD_COMMANDER, owner, 0)
+
 /datum/perk/trait/sword_master
 	name = "Sword master"
-	desc = "You are able to wield a sword with considerable skill. Grants access to a special lunge attack when wielding any sword."
+	desc = "You are able to wield a sword with considerable skill. Grants access to a special lunge attack when wielding any sword, and allows some roles to select a machete as a back stored weapon."
 	ui_icon = "soft_footed"
 	traits = list(TRAIT_SWORD_EXPERT)
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, FIELD_COMMANDER)
 	unlock_cost = 20
 	prereq_perks = list(/datum/perk/skill_mod/melee/two)
+
+/datum/perk/trait/sword_master/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	if(!is_type(owner_stats))
+		return
+	owner_stats.unlock_loadout_item(/datum/loadout_item/back/machete, SQUAD_MARINE, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/back/machete, SQUAD_LEADER, owner, 0)
 
 //skill modifying perks
 /datum/perk/skill_mod
@@ -199,9 +212,9 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	unlock_cost = 30
 
 /datum/perk/skill_mod/shotguns/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
-	if(!owner_stats)
+	if(!is_type(owner_stats))
 		return
-	owner_stats?.unlock_loadout_item(owner_stats.faction == FACTION_SOM ? /datum/loadout_item/back/som_shotgun : /datum/loadout_item/back/marine_shotgun, owner_stats.faction == FACTION_SOM ? SOM_SQUAD_MARINE : SQUAD_MARINE, owner, 0)
+	owner_stats.unlock_loadout_item(owner_stats.faction == FACTION_SOM ? /datum/loadout_item/back/som_shotgun : /datum/loadout_item/back/marine_shotgun, owner_stats.faction == FACTION_SOM ? SOM_SQUAD_MARINE : SQUAD_MARINE, owner, 0)
 
 /datum/perk/skill_mod/rifles
 	name = "Advanced rifle training"

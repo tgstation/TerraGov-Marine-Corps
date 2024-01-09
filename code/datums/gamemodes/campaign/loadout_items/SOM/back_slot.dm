@@ -70,11 +70,11 @@
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 	//item_whitelist = list(/obj/item/weapon/gun/minigun/smart_minigun/motion_detector = ITEM_SLOT_SUITSTORE)
 
-/datum/loadout_item/back/boarding_axe //make this an unlockable like shotgun
+/datum/loadout_item/back/boarding_axe
 	name = "Boarding axe"
 	desc = "A SOM boarding axe, effective at breaching doors as well as skulls. When wielded it can be used to block as well as attack."
 	//req_desc = "Requires an SG-85."
 	item_typepath = /obj/item/weapon/twohanded/fireaxe/som
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_FIELD_COMMANDER)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_FIELD_COMMANDER)
 	item_blacklist = list(/obj/item/weapon/twohanded/fireaxe/som = ITEM_SLOT_SUITSTORE)
 	loadout_item_flags = NONE
