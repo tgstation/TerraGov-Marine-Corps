@@ -28,6 +28,8 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	var/name = "base perk name"
 	///Brief description of the perk
 	var/desc = "desc here"
+	///Addition desc for special reqs such as other perks
+	var/req_desc
 	///UI icon for this perk
 	var/ui_icon
 	///Cost to purchase this perk
@@ -74,6 +76,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/hp_boost/two
 	name = "Extreme constitution"
 	desc = "An additional +15 max health."
+	req_desc = "Requires Improved constitution."
 	ui_icon = "health_2"
 	prereq_perks = list(/datum/perk/hp_boost)
 	unlock_cost = 50
@@ -100,6 +103,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/trait/axe_master
 	name = "Axe master"
 	desc = "You are able to wield a breaching axe with considerable skill. Grants access to a special sweep attack when wielded, and allows some roles to select an axe as a back stored weapon."
+	req_desc = "Requires Melee specialisation."
 	ui_icon = "soft_footed"
 	traits = list(TRAIT_AXE_EXPERT)
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
@@ -116,6 +120,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/trait/sword_master
 	name = "Sword master"
 	desc = "You are able to wield a sword with considerable skill. Grants access to a special lunge attack when wielding any sword, and allows some roles to select a machete as a back stored weapon."
+	req_desc = "Requires Melee specialisation."
 	ui_icon = "soft_footed"
 	traits = list(TRAIT_SWORD_EXPERT)
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, FIELD_COMMANDER)
@@ -163,6 +168,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/cqc
 	name = "Hand to hand expertise"
+	desc = "Improved unarmed damage and stun chance."
 	ui_icon = "cqc_1"
 	cqc = 1
 	all_jobs = TRUE
@@ -170,12 +176,15 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/cqc/two
 	name = "Hand to hand specialisation"
+	desc = "Greatly improved unarmed damage and stun chance."
+	req_desc = "Requires Hand to hand expertise."
 	ui_icon = "cqc_2"
 	unlock_cost = 20
 	prereq_perks = list(/datum/perk/skill_mod/cqc)
 
 /datum/perk/skill_mod/melee
 	name = "Melee expertise"
+	desc = "Improved damage with melee weapons."
 	ui_icon = "melee_1"
 	melee_weapons = 1
 	all_jobs = TRUE
@@ -183,12 +192,15 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/melee/two
 	name = "Melee specialisation"
+	desc = "Greatly improved damage with melee weapons."
+	req_desc = "Requires Melee expertise."
 	ui_icon = "melee_2"
 	prereq_perks = list(/datum/perk/skill_mod/melee)
 	unlock_cost = 15
 
 /datum/perk/skill_mod/firearms
 	name = "Advanced firearm training"
+	desc = "Improved handling for all firearms. A prerequisite for all gun skills perks."
 	ui_icon = "firearms"
 	firearms = 1
 	all_jobs = TRUE
@@ -196,6 +208,8 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/pistols
 	name = "Advanced pistol training"
+	desc = "Improved damage with pistol type firearms."
+	req_desc = "Requires Advanced firearm training."
 	ui_icon = "pistols"
 	pistols = 1
 	all_jobs = TRUE
@@ -204,7 +218,8 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/shotguns
 	name = "Advanced shotgun training"
-	desc = "Improved shotgun performance. Unlocks access to a shotgun secondary weapon in the backslot."
+	desc = "Improved damage with pistol type firearms. Unlocks access to a shotgun secondary weapon in the backslot."
+	req_desc = "Requires Advanced firearm training."
 	ui_icon = "shotguns"
 	shotguns = 1
 	all_jobs = TRUE
@@ -218,6 +233,8 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/rifles
 	name = "Advanced rifle training"
+	desc = "Improved damage with rifle type firearms."
+	req_desc = "Requires Advanced firearm training."
 	ui_icon = "rifles"
 	rifles = 1
 	all_jobs = TRUE
@@ -226,6 +243,8 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/smgs
 	name = "Advanced SMG training"
+	desc = "Improved damage with SMG type firearms."
+	req_desc = "Requires Advanced firearm training."
 	ui_icon = "smgs"
 	smgs = 1
 	all_jobs = TRUE
@@ -234,6 +253,8 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/heavy_weapons
 	name = "Heavy weapon specialisation"
+	desc = "Improved damage with heavy weapon type firearms."
+	req_desc = "Requires Advanced firearm training."
 	ui_icon = "heavy"
 	heavy_weapons = 1
 	all_jobs = TRUE
@@ -242,6 +263,8 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/smartgun
 	name = "Advanced smartgun training"
+	desc = "Improved damage with smartguns type firearms."
+	req_desc = "Requires Advanced firearm training."
 	ui_icon = "smartguns"
 	smartgun = 1
 	jobs_supported = list(SQUAD_SMARTGUNNER, CAPTAIN)
@@ -250,6 +273,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/construction
 	name = "Advanced construction training"
+	desc = "Faster construction times when building. Some items may no longer have a penalty delay when constructing."
 	ui_icon = "construction"
 	construction = 1
 	all_jobs = TRUE
@@ -257,6 +281,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/leadership
 	name = "Advanced leadership training"
+	desc = "Improved bonuses when issuing orders."
 	ui_icon = "leadership"
 	leadership = 1
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
@@ -264,6 +289,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/medical
 	name = "Advanced medical training"
+	desc = "Faster at applying medical items. Some items may no longer have a penalty delay."
 	ui_icon = "medical"
 	medical = 1
 	all_jobs = TRUE
@@ -271,6 +297,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/stamina
 	name = "Improved stamina"
+	desc = "Improved stamina regen rate, and reduces the delay before stamina begins to regenerate."
 	ui_icon = "stamina_1"
 	stamina = 1
 	all_jobs = TRUE
@@ -278,6 +305,8 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/stamina/two
 	name = "Extreme stamina"
+	desc = "Greatly stamina regen rate, and further reduces the delay before stamina begins to regenerate."
+	req_desc = "Requires Improved stamina."
 	ui_icon = "stamina_2"
 	prereq_perks = list(/datum/perk/skill_mod/stamina)
 	unlock_cost = 40

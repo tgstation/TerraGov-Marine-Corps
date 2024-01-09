@@ -123,6 +123,11 @@ export const IndividualPerks = (props) => {
             <LabeledList.Item label="Cost">
               {selectedPerk?.cost}
             </LabeledList.Item>
+            {selectedPerk.requirements && (
+              <LabeledList.Item label="Requirements">
+                {selectedPerk.requirements}
+              </LabeledList.Item>
+            )}
           </LabeledList>
         </Section>
       </Stack.Item>

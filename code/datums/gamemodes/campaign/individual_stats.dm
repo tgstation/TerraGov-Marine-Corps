@@ -149,6 +149,7 @@
 			perk_data["job"] = job
 			perk_data["type"] = perk.type
 			perk_data["desc"] = perk.desc
+			perk_data["requirements"] = perk.req_desc
 			perk_data["cost"] = perk.unlock_cost
 			perk_data["icon"] = perk.ui_icon
 			perk_data["currently_active"] = !!(perk in perks_by_job[job])

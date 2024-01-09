@@ -21,6 +21,7 @@ export type PerkData = {
   job: string;
   type: string;
   desc: string;
+  requirements?: string;
   cost: number;
   icon?: string;
   currently_active: number;
