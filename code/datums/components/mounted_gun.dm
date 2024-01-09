@@ -51,7 +51,7 @@
 ///Behaviour on mouse drop. If the user has clickdragged the chair to themselves they will unload it.
 /datum/component/vehicle_mounted_weapon/proc/on_mousedrop(datum/source, atom/over, mob/user)
 	SIGNAL_HANDLER
-	if(!istype(user, /mob/living) || over != usr || !in_range(source, user))
+	if(!isliving(user) || over != usr || !in_range(source, user))
 		return
 
 	mounted_gun.unload(user)
