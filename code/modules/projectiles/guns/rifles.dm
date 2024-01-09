@@ -75,7 +75,6 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 5, "rail_y" = 19, "under_x" = 18, "under_y" = 14, "stock_x" = 0, "stock_y" = 13)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 2
 
@@ -160,7 +159,6 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/stock/t12stock)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 17,"rail_x" = 0, "rail_y" = 23, "under_x" = 17, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 2
 
@@ -710,9 +708,6 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 17, "under_x" = 32, "under_y" = 14, "stock_x" = 13, "stock_y" = 9)
 	starting_attachment_types = list(/obj/item/attachable/stock/dpm)
-	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.25 SECONDS
-	aim_speed_modifier = 0.75
 
 	fire_delay = 0.45 SECONDS
 	damage_mult = 2
@@ -913,9 +908,7 @@
 	gun_skill_category = SKILL_HEAVY_WEAPONS
 	starting_attachment_types = list(/obj/item/attachable/stock/t42stock)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 20, "under_x" = 16, "under_y" = 14, "stock_x" = 0, "stock_y" = 13)
-	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.1 SECONDS
-	aim_speed_modifier = 2
+
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
@@ -984,9 +977,6 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t60stock)
 	gun_skill_category = SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 21,"rail_x" = 6, "rail_y" = 23, "under_x" = 26, "under_y" = 15, "stock_x" = 8, "stock_y" = 13)
-	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.15 SECONDS
-	aim_speed_modifier = 5.3
 
 	fire_delay = 0.15 SECONDS
 	damage_falloff_mult = 0.5
@@ -1125,9 +1115,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 24, "under_x" = 34, "under_y" = 16, "stock_x" = 19, "stock_y" = 13)
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
-	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.15 SECONDS
-	aim_speed_modifier = 2
+
 
 	fire_delay = 0.25 SECONDS
 	burst_amount = 3
@@ -1590,8 +1578,6 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/stock/tx11, /obj/item/attachable/scope/mini/tx11)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 6, "rail_y" = 20, "under_x" = 20, "under_y" = 12, "stock_x" = 17, "stock_y" = 14)
-	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.15 SECONDS
 
 	fire_delay = 0.25 SECONDS
 	burst_amount = 3
@@ -1672,9 +1658,6 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 46, "muzzle_y" = 16,"rail_x" = 18, "rail_y" = 19, "under_x" = 34, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
-	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.15 SECONDS
-	aim_speed_modifier = 2.5
 
 	fire_delay = 0.25 SECONDS
 	burst_amount = 1
@@ -1861,7 +1844,6 @@
 	default_ammo_type = /obj/item/ammo_magazine/rifle/tx54
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
-	actions_types = list(/datum/action/item_action/aim_mode)
 	starting_attachment_types = list()
 
 //-------------------------------------------------------
