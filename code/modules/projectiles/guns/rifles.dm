@@ -708,6 +708,9 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 17, "under_x" = 32, "under_y" = 14, "stock_x" = 13, "stock_y" = 9)
 	starting_attachment_types = list(/obj/item/attachable/stock/dpm)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.25 SECONDS
+	aim_speed_modifier = 0.75
 
 	fire_delay = 0.45 SECONDS
 	damage_mult = 2
@@ -1115,7 +1118,9 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 24, "under_x" = 34, "under_y" = 16, "stock_x" = 19, "stock_y" = 13)
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
-
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.15 SECONDS
+	aim_speed_modifier = 2
 
 	fire_delay = 0.25 SECONDS
 	burst_amount = 3
@@ -1844,6 +1849,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/rifle/tx54
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
+	actions_types = list(/datum/action/item_action/aim_mode)
 	starting_attachment_types = list()
 
 //-------------------------------------------------------
