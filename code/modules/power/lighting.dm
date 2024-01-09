@@ -125,6 +125,7 @@
 	name = "light fixture"
 	icon = 'icons/obj/lighting.dmi'
 	var/base_state = "tube"		// base description and icon_state
+	base_icon_state = "tube"
 	icon_state = "tube1"
 	desc = "A lighting fixture."
 	anchored = TRUE
@@ -140,12 +141,20 @@
 	var/bulb_colour = COLOR_WHITE
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = FALSE
+	///what's the duration that the light switches between on and off while flickering
+	var/flicker_time = 2 SECONDS
 	var/light_type = /obj/item/light_bulb/tube		// the type of light item
 	var/fitting = "tube"
 	///count of number of times switched on/off. this is used to calc the probability the light burns out
 	var/switchcount = 0
 	/// true if rigged to explode
 	var/rigged = FALSE
+	///holds the state of our flickering
+	var/light_flicker_state = FALSE
+	///if true randomize the time we turn on and off
+	var/random_flicker = FALSE
+	var/flicker_time_upper_max = 10 SECONDS
+	var/flicker_time_lower_min = 0.2 SECONDS
 
 /obj/machinery/light/mainship
 	base_state = "tube"
@@ -165,6 +174,7 @@
 	brightness = 4
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light_bulb/bulb
+	base_icon_state = "bulb"
 
 /obj/machinery/light/red
 	base_state = "tubered"
@@ -394,25 +404,45 @@
 	var/area/A = get_area(src)
 	return A.lightswitch && A.power_light
 
-/obj/machinery/light/proc/flicker(amount = rand(10, 20))
-	if(flickering)
+///flicker lights on and off
+/obj/machinery/light/proc/flicker(toggle_flicker = FALSE)
+	if(!has_power())
+		addtimer(CALLBACK(src, PROC_REF(flicker)), flicker_time)
 		return
-	flickering = TRUE
-	spawn(0)
-		if(light_on && status == LIGHT_OK)
-			for(var/i = 0; i < amount; i++)
-				if(status != LIGHT_OK)
-					break
-				update(FALSE)
-				sleep(rand(5, 15))
-			update(FALSE)
+	if(toggle_flicker)
+		if(status != LIGHT_OK)
+			return
+		flickering = flickering? FALSE : TRUE
+	if(random_flicker)
+		flicker_time = rand(flicker_time_lower_min, flicker_time_upper_max)
+	if(status != LIGHT_OK)
 		flickering = FALSE
+		return
+	light_flicker_state = light_flicker_state? FALSE : TRUE
+	if(light_flicker_state == FALSE)
+		if(base_icon_state == "tube")
+			flick("tube_flick_off", src)
+		else
+			flick("bulb_flick_off", src)
+		//delay the power change long enough to get the flick() animation off
+		addtimer(CALLBACK(src, PROC_REF(flicker_power_state)), 0.3 SECONDS)
+	else
+		if(base_icon_state == "tube")
+			flick("tube_flick_on", src)
+		else
+			flick("bulb_flick_on", src)
+		addtimer(CALLBACK(src, PROC_REF(flicker_power_state)), 0.3 SECONDS)
+		flicker_time = flicker_time * 2 //for effect it's best if the amount of time we spend off is more than the time we spend on
+	if(!flickering)
+		return
+	addtimer(CALLBACK(src, PROC_REF(flicker)), flicker_time)
 
-// ai attack - make lights flicker, because why not
-
-/obj/machinery/light/attack_ai(mob/user)
-	flicker(1)
-
+///proc to toggle power on and off for light
+/obj/machinery/light/proc/flicker_power_state(turn_on = TRUE, turn_off = FALSE)
+	if(light_flicker_state == FALSE)
+		update()
+	else
+		turn_light(null, FALSE)
 
 //Xenos smashing lights
 /obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)

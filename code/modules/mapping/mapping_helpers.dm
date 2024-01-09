@@ -198,6 +198,22 @@
 		return
 	apc.do_break()
 
+/obj/effect/mapping_helpers/apc_unlocked
+	name = "apc unlocked interface helper"
+	icon_state = "apc_unlocked_interface_helper"
+
+/obj/effect/mapping_helpers/apc_unlocked/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/power/apc/apc = locate(/obj/machinery/power/apc) in loc
+	if(!apc)
+		stack_trace("### MAP WARNING, [src] failed to find an apc at [AREACOORD(src)]")
+		return
+	if(apc.coverlocked == FALSE|| apc.locked == FALSE)
+		var/area/apc_area = get_area(apc)
+		log_mapping("[src] at [AREACOORD(src)] [(apc_area.type)] tried to unlock the [apc] but it's already unlocked!")
+	apc.coverlocked = FALSE
+	apc.locked = FALSE
+
 /obj/effect/mapping_helpers/broken_apc/lowchance
 	breakchance = 25
 
@@ -207,6 +223,21 @@
 /obj/effect/mapping_helpers/airlock_autoname
 	name = "airlock autoname helper"
 	icon_state = "airlock_autoname_helper"
+
+/obj/effect/mapping_helpers/airlock/hackProof
+	name = "airlock block ai control helper"
+	icon_state = "airlock_cutaiwire"
+
+/obj/effect/mapping_helpers/airlock/hackProof/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+	if(!airlock)
+		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+		return
+	if(airlock.aiControlDisabled)
+		log_mapping("[src] at [AREACOORD(src)] tried to make [airlock] hackproof but it's already hackproof!")
+	else
+		airlock.hackProof = TRUE
 
 /obj/effect/mapping_helpers/airlock_autoname/Initialize(mapload)
 	. = ..()
@@ -340,6 +371,196 @@
 
 	qdel(src)
 
+/obj/effect/mapping_helpers/light
+	layer = DOOR_HELPER_LAYER
+
+/obj/effect/mapping_helpers/light/broken
+	name = "airlock block ai control helper"
+	icon_state = "airlock_cutaiwire"
+
+/obj/effect/mapping_helpers/light/broken/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
+	if(!light)
+		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
+		return
+	if(light.status == LIGHT_BROKEN || light.status == LIGHT_EMPTY)
+		log_mapping("[src] at [AREACOORD(src)] tried to make [light] broken, but it couldn't be done!")
+	else
+		light.broken()
+
+/obj/effect/mapping_helpers/light
+	layer = DOOR_HELPER_LAYER
+
+/obj/effect/mapping_helpers/light/turnedoff
+	name = "airlock block ai control helper"
+	icon_state = "airlock_cutaiwire"
+
+/obj/effect/mapping_helpers/light/turnedoff/Initialize(mapload)
+	. = ..()
+	var/area/area = get_area(src)
+
+	area.lightswitch = area.lightswitch ? FALSE : TRUE
+	area.update_icon()
+
+/obj/effect/mapping_helpers/light/flickering
+	name = "airlock block ai control helper"
+	icon_state = "airlock_cutaiwire"
+
+/obj/effect/mapping_helpers/light/flickering/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
+	if(!light)
+		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
+		return
+	if(light.flickering == TRUE || light.status != LIGHT_OK)
+		log_mapping("[src] at [AREACOORD(src)] tried to make [light] flicker, but it couldn't be done!")
+	else
+		light.flicker(TRUE)
+
+///enable random flickering on lights, to make this effect happen the light has be flickering in the first place
+/obj/effect/mapping_helpers/light/flickering/enable_random_flickering
+	name = "airlock block ai control helper"
+	icon_state = "airlock_cutaiwire"
+
+/obj/effect/mapping_helpers/light/flickering/enable_random_flickering/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
+	if(!light)
+		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
+		return
+	if(light.random_flicker == TRUE || light.status != LIGHT_OK)
+		log_mapping("[src] at [AREACOORD(src)] tried to make [light] randomly flicker, but it couldn't be done!")
+	else
+		light.random_flicker = TRUE
+
+/obj/effect/mapping_helpers/light/flickering/flicker_random_settings
+	name = "airlock block ai control helper"
+	icon_state = "airlock_cutaiwire"
+	var/flicker_time_upper_max = 10 SECONDS
+	var/flicker_time_lower_min = 0.2 SECONDS
+
+/obj/effect/mapping_helpers/light/flickering/flicker_random_settings/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
+	if(!light)
+		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
+		return
+	if(light.flickering == TRUE || light.status != LIGHT_OK)
+		if(flicker_time_lower_min > flicker_time_upper_max)
+			CRASH("Invalid random flicker setting for light at [AREACOORD(src)]")
+	else
+		light.flicker_time_upper_max = flicker_time_upper_max
+		light.flicker_time_lower_min = flicker_time_lower_min
+
+/obj/effect/mapping_helpers/light/flickering/flicker_random_settings/lowset
+	flicker_time_upper_max = 3 SECONDS
+	flicker_time_lower_min = 0.2 SECONDS
+
+/obj/effect/mapping_helpers/light/flickering/flicker_random_settings/highset
+	flicker_time_upper_max = 3 SECONDS
+	flicker_time_lower_min = 0.2 SECONDS
+
+///this is mutually exclusive with random flickering
+/obj/effect/mapping_helpers/light/flickering/flicker_interval_setting
+	name = "airlock block ai control helper"
+	icon_state = "airlock_cutaiwire"
+	var/flicker_duration = 2 SECONDS
+
+/obj/effect/mapping_helpers/light/flickering/flicker_interval_setting/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
+	if(!light)
+		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
+		return
+	light.flicker_time = flicker_duration
+
+/obj/effect/mapping_helpers/light/flickering/flicker_interval_setting/highset
+	flicker_duration = 4 SECONDS
+
+/obj/effect/mapping_helpers/light/flickering/flicker_interval_setting/lowset
+	flicker_duration = 1 SECONDS
+
+/obj/effect/mapping_helpers/light/power
+	name = "airlock block ai control helper"
+	icon_state = "airlock_cutaiwire"
+	var/lighting_power = 1
+
+/obj/effect/mapping_helpers/light/power/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
+	if(!light)
+		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
+		return
+	light.bulb_power = lighting_power
+	light.update()
+
+/obj/effect/mapping_helpers/light/power/dim
+	lighting_power = 0.5
+
+/obj/effect/mapping_helpers/light/power/bright
+	lighting_power = 2.0
+
+/obj/effect/mapping_helpers/light/color
+	name = "airlock block ai control helper"
+	icon_state = "airlock_cutaiwire"
+	var/lighting_color = LIGHT_COLOR_WHITE
+
+/obj/effect/mapping_helpers/light/color/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
+	if(!light)
+		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
+		return
+	light.light_color = lighting_color
+	light.update()
+
+/obj/effect/mapping_helpers/light/color/red
+	light_color = LIGHT_COLOR_RED
+
+/obj/effect/mapping_helpers/light/color/blue
+	light_color = LIGHT_COLOR_ORANGE
+
+/obj/effect/mapping_helpers/light/bulb_colour
+	name = "airlock block ai control helper"
+	icon_state = "airlock_cutaiwire"
+	var/bulb_colour = LIGHT_COLOR_WHITE
+
+/obj/effect/mapping_helpers/light/bulb_colour/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
+	if(!light)
+		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
+		return
+	light.bulb_colour = bulb_colour
+	light.update()
+
+/obj/effect/mapping_helpers/light/bulb_colour/red
+	bulb_colour = LIGHT_COLOR_RED
+
+/obj/effect/mapping_helpers/light/bulb_colour/blue
+	bulb_colour = LIGHT_COLOR_BLUE
+
+/obj/effect/mapping_helpers/light/brightness
+	name = "airlock block ai control helper"
+	icon_state = "airlock_cutaiwire"
+	var/brightness_intensity = 4
+
+/obj/effect/mapping_helpers/light/brightness/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
+	if(!light)
+		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
+		return
+	light.brightness = brightness_intensity
+	light.update()
+
+/obj/effect/mapping_helpers/light/brightness/dim
+	brightness_intensity = 3
+
+/obj/effect/mapping_helpers/light/brightness/bright
+	brightness_intensity = 6
+
 /// spawn the pipe
 /obj/effect/mapping_helpers/simple_pipes/proc/spawn_pipe(direction, type)
 	var/obj/machinery/atmospherics/pipe/pipe = new type(get_turf(src), TRUE, text2dir(direction))
@@ -347,6 +568,18 @@
 	pipe.piping_layer = piping_layer
 	pipe.update_layer()
 	pipe.paint(pipe_color)
+
+/obj/effect/mapping_helpers/airlock/unres
+	name = "airlock unrestricted side helper"
+	icon_state = "airlock_unres_helper"
+
+/obj/effect/mapping_helpers/airlock/unres/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+	if(!airlock)
+		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+		return
+	airlock.unres_sides ^= dir
 
 //	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 //	if(airlock)

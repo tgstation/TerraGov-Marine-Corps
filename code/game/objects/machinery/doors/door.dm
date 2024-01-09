@@ -21,6 +21,7 @@
 	var/operating = FALSE
 	var/autoclose = FALSE
 	var/glass = FALSE
+	var/unres_sides
 	var/normalspeed = TRUE
 	var/locked = FALSE
 	var/welded = FALSE
@@ -100,11 +101,13 @@
 		user = null
 
 	if(density)
-		if(allowed(user) || emergency)
+		if(allowed(user) || emergency || unrestricted_side(user))
 			open()
 		else
 			flick("door_deny", src)
 
+/obj/machinery/door/proc/unrestricted_side(mob/opener) //Allows for specific side of airlocks to be unrestrected (IE, can exit maint freely, but need access to enter)
+	return get_dir(src, opener) & unres_sides
 
 /obj/machinery/door/attack_hand(mob/living/user)
 	. = ..()
