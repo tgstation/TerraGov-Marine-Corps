@@ -2,7 +2,14 @@
 	name = "Infantry helmet"
 	desc = "The standard combat helmet worn by SOM combat troops. Made using advanced polymers to provide very effective protection without compromising visibility."
 	item_typepath = /obj/item/clothing/head/modular/som
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN)
+	jobs_supported = list(SOM_SQUAD_MARINE)
+
+/datum/loadout_item/helmet/som_standard/medic
+	jobs_supported = list(SOM_SQUAD_CORPSMAN)
+
+/datum/loadout_item/helmet/som_standard/medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_HEAD)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_HEAD)
 
 /datum/loadout_item/helmet/som_veteran
 	name = "Veteran helmet"
@@ -46,10 +53,6 @@
 	item_typepath = /obj/item/clothing/head/modular/som/bio
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/mithridatius = ITEM_SLOT_OCLOTHING)
-
-/datum/loadout_item/helmet/som_mimir/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/isotonic, SLOT_IN_HEAD)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/neuraline, SLOT_IN_HEAD)
 
 /datum/loadout_item/helmet/som_engineer
 	name = "Engineering helmet"

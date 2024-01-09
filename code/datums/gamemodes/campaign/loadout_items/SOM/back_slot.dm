@@ -13,7 +13,7 @@
 
 /datum/loadout_item/back/som_combat_pack/free
 	purchase_cost = 0
-	jobs_supported = list(SOM_SQUAD_ENGINEER, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	jobs_supported = list(SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 
 /datum/loadout_item/back/som_flamer_tank
 	name = "Flame tank"

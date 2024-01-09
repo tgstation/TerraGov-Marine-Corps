@@ -96,7 +96,7 @@
 	desc = "A pouch specialized for holding shotgun ammo. Contains Flechette shells."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/shotgun/som
-	jobs_supported = list(SOM_SQUAD_MARINE)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN)
 
 /datum/loadout_item/l_pocket/som_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_L_POUCH)

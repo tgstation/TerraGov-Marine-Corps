@@ -98,11 +98,8 @@
 	jobs_supported = list(SOM_SQUAD_CORPSMAN)
 
 /datum/loadout_item/suit_slot/som_medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
-	wearer.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_SUIT)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/medium_stack, SLOT_IN_SUIT)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/half_stack, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/som_medic/light
 	name = "Light armor"
