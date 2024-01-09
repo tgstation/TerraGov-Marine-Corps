@@ -532,7 +532,7 @@
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		target = pick(view(3,target))
 	var/mob/living/livinguser = user
-	if(!(livinguser in return_controllers_with_flag(VEHICLE_CONTROL_EQUIPMENT)))
+	if(!is_equipment_controller(user))
 		balloon_alert(user, "wrong seat for equipment!")
 		return
 	var/obj/item/mecha_parts/mecha_equipment/selected

@@ -89,4 +89,8 @@
 
 /obj/vehicle/ridden/wheelchair/weaponized/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/mounted_weapon, /obj/item/weapon/gun/minigun/one_handed)
+	AddComponent(/datum/component/vehicle_mounted_weapon, /obj/item/weapon/gun/minigun/one_handed)
+
+/obj/vehicle/ridden/wheelchair/weaponized/auto_assign_occupant_flags(mob/M)
+	. = ..()
+	add_control_flags(M, VEHICLE_CONTROL_EQUIPMENT)
