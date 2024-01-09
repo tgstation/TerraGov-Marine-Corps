@@ -74,7 +74,7 @@
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 	item_whitelist = list(
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness = ITEM_SLOT_SUITSTORE,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor = ITEM_SLOT_SUITSTORE
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor = ITEM_SLOT_SUITSTORE,
 	)
 
 /datum/loadout_item/belt/som_lifesaver
