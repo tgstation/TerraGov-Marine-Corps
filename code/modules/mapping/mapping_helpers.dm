@@ -226,7 +226,7 @@
 
 /obj/effect/mapping_helpers/airlock/hackProof
 	name = "airlock block ai control helper"
-	icon_state = "airlock_cutaiwire"
+	icon_state = "hackproof"
 
 /obj/effect/mapping_helpers/airlock/hackProof/Initialize(mapload)
 	. = ..()
@@ -372,11 +372,12 @@
 	qdel(src)
 
 /obj/effect/mapping_helpers/light
+	name = "generic placeholder for light map helpers, do not place in game"
 	layer = DOOR_HELPER_LAYER
 
 /obj/effect/mapping_helpers/light/broken
-	name = "airlock block ai control helper"
-	icon_state = "airlock_cutaiwire"
+	name = "light broken map helper"
+	icon_state = "light_flicker_broken"
 
 /obj/effect/mapping_helpers/light/broken/Initialize(mapload)
 	. = ..()
@@ -389,12 +390,9 @@
 	else
 		light.broken()
 
-/obj/effect/mapping_helpers/light
-	layer = DOOR_HELPER_LAYER
-
 /obj/effect/mapping_helpers/light/turnedoff
-	name = "airlock block ai control helper"
-	icon_state = "airlock_cutaiwire"
+	name = "light area turnoff helper"
+	icon_state = "light_flicker_area_off"
 
 /obj/effect/mapping_helpers/light/turnedoff/Initialize(mapload)
 	. = ..()
@@ -404,8 +402,8 @@
 	area.update_icon()
 
 /obj/effect/mapping_helpers/light/flickering
-	name = "airlock block ai control helper"
-	icon_state = "airlock_cutaiwire"
+	name = "light flickering helper"
+	icon_state = "light_flicker"
 
 /obj/effect/mapping_helpers/light/flickering/Initialize(mapload)
 	. = ..()
@@ -420,8 +418,8 @@
 
 ///enable random flickering on lights, to make this effect happen the light has be flickering in the first place
 /obj/effect/mapping_helpers/light/flickering/enable_random_flickering
-	name = "airlock block ai control helper"
-	icon_state = "airlock_cutaiwire"
+	name = "light enable random flicker timing helper"
+	icon_state = "light_flicker_random"
 
 /obj/effect/mapping_helpers/light/flickering/enable_random_flickering/Initialize(mapload)
 	. = ..()
@@ -435,8 +433,8 @@
 		light.random_flicker = TRUE
 
 /obj/effect/mapping_helpers/light/flickering/flicker_random_settings
-	name = "airlock block ai control helper"
-	icon_state = "airlock_cutaiwire"
+	name = "light random flicker settings helper"
+	icon_state = "light_flicker_random_settings"
 	var/flicker_time_upper_max = 10 SECONDS
 	var/flicker_time_lower_min = 0.2 SECONDS
 
@@ -446,9 +444,8 @@
 	if(!light)
 		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
 		return
-	if(light.flickering == TRUE || light.status != LIGHT_OK)
-		if(flicker_time_lower_min > flicker_time_upper_max)
-			CRASH("Invalid random flicker setting for light at [AREACOORD(src)]")
+	if(flicker_time_lower_min > flicker_time_upper_max)
+		CRASH("Invalid random flicker setting for light at [AREACOORD(src)]")
 	else
 		light.flicker_time_upper_max = flicker_time_upper_max
 		light.flicker_time_lower_min = flicker_time_lower_min
@@ -463,8 +460,8 @@
 
 ///this is mutually exclusive with random flickering
 /obj/effect/mapping_helpers/light/flickering/flicker_interval_setting
-	name = "airlock block ai control helper"
-	icon_state = "airlock_cutaiwire"
+	name = "light flickering interval helper
+	icon_state = "light_flicker_interval"
 	var/flicker_duration = 2 SECONDS
 
 /obj/effect/mapping_helpers/light/flickering/flicker_interval_setting/Initialize(mapload)
@@ -482,8 +479,8 @@
 	flicker_duration = 1 SECONDS
 
 /obj/effect/mapping_helpers/light/power
-	name = "airlock block ai control helper"
-	icon_state = "airlock_cutaiwire"
+	name = "light power helper"
+	icon_state = "light_flicker_power"
 	var/lighting_power = 1
 
 /obj/effect/mapping_helpers/light/power/Initialize(mapload)
@@ -502,8 +499,8 @@
 	lighting_power = 2.0
 
 /obj/effect/mapping_helpers/light/color
-	name = "airlock block ai control helper"
-	icon_state = "airlock_cutaiwire"
+	name = "light color mapping helper"
+	icon_state = "light_flicker_color"
 	var/lighting_color = LIGHT_COLOR_WHITE
 
 /obj/effect/mapping_helpers/light/color/Initialize(mapload)
@@ -522,8 +519,8 @@
 	light_color = LIGHT_COLOR_ORANGE
 
 /obj/effect/mapping_helpers/light/bulb_colour
-	name = "airlock block ai control helper"
-	icon_state = "airlock_cutaiwire"
+	name = "light bulb color helper"
+	icon_state = "light_flicker_color_bulb"
 	var/bulb_colour = LIGHT_COLOR_WHITE
 
 /obj/effect/mapping_helpers/light/bulb_colour/Initialize(mapload)
@@ -542,8 +539,8 @@
 	bulb_colour = LIGHT_COLOR_BLUE
 
 /obj/effect/mapping_helpers/light/brightness
-	name = "airlock block ai control helper"
-	icon_state = "airlock_cutaiwire"
+	name = "light brightness mapping helper"
+	icon_state = "light_flicker_brightness"
 	var/brightness_intensity = 4
 
 /obj/effect/mapping_helpers/light/brightness/Initialize(mapload)
