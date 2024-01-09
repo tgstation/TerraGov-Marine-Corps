@@ -460,7 +460,7 @@
 
 ///this is mutually exclusive with random flickering
 /obj/effect/mapping_helpers/light/flickering/flicker_interval_setting
-	name = "light flickering interval helper
+	name = "light flickering interval helper"
 	icon_state = "light_flicker_interval"
 	var/flicker_duration = 2 SECONDS
 
