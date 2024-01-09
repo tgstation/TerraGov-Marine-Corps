@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - rscdel: "Removes the HE GL54 nades from req"
