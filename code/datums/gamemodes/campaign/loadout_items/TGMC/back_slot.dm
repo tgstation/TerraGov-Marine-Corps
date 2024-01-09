@@ -71,6 +71,7 @@
 	desc = "A large leather scabbard carrying a M2132 machete. It can be strapped to the back, waist or armor. Extremely dangerous against human opponents - if you can get close enough."
 	item_typepath = /obj/item/storage/holster/blade/machete/full
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER)
+	loadout_item_flags = NONE
 
 //corpsman
 /datum/loadout_item/back/corpsman_satchel
