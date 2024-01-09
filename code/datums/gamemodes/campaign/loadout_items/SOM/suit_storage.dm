@@ -301,7 +301,7 @@
 
 //Engineer
 /datum/loadout_item/suit_store/main_gun/som_engineer
-	jobs_supported = list(SOM_SQUAD_MARINE)
+	jobs_supported = list(SOM_SQUAD_ENGINEER)
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)

@@ -8,6 +8,7 @@
 		/obj/item/weapon/twohanded/fireaxe/som = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/flamer/som/mag_harness = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/shotgun/som/standard = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/shotgun/som/flechette = ITEM_SLOT_SUITSTORE,
 	)
 
 /datum/loadout_item/belt/som_sparepouch

@@ -72,7 +72,6 @@
 	item_typepath = /obj/item/clothing/under/marine/engineer/black_vest
 	jobs_supported = list(SQUAD_ENGINEER)
 	item_whitelist = list(
-		/obj/item/storage/pouch/tools/full = ITEM_SLOT_L_POCKET,
 		/obj/item/storage/pouch/tools/full = ITEM_SLOT_R_POCKET,
 	)
 

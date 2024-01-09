@@ -54,6 +54,7 @@
 		/obj/item/weapon/twohanded/fireaxe/som = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/flamer/som/mag_harness = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/shotgun/som/standard = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/shotgun/som/flechette = ITEM_SLOT_SUITSTORE,
 	)
 
 /datum/loadout_item/r_pocket/som_tools
@@ -128,13 +129,6 @@
 		/obj/item/weapon/gun/flamer/som/mag_harness = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/shotgun/som/standard = ITEM_SLOT_SUITSTORE,
 	)
-
-/datum/loadout_item/l_pocket/som_tools
-	name = "Tool pouch"
-	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool."
-	ui_icon = "grenade"
-	item_typepath = /obj/item/storage/pouch/tools/som/full
-	jobs_supported = list(SOM_SQUAD_ENGINEER)
 
 /datum/loadout_item/l_pocket/som_general
 	name = "General pouch"

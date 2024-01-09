@@ -39,8 +39,7 @@
 	item_typepath = /obj/item/clothing/under/som/webbing
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
 	item_whitelist = list(
-		/obj/item/storage/pouch/tools/full = ITEM_SLOT_L_POCKET,
-		/obj/item/storage/pouch/tools/full = ITEM_SLOT_R_POCKET,
+		/obj/item/storage/pouch/tools/som/full = ITEM_SLOT_R_POCKET,
 	)
 
 /datum/loadout_item/uniform/som_officer
