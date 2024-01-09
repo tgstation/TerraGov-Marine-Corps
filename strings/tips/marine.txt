@@ -1,4 +1,5 @@
 Go to Valhalla to experiment with loadouts and weapons. You don't reset your respawn time in Valhalla!
+Fire disables pheromones, use this information to your advantage.
 Catch larval facehuggers by having an empty hand and throw mode on.
 Standing in a corner on harm intent stops you from behing shuffled, unless you're a marine and a xenomorph on help intent walks into you.
 Jumping will allow you to throw grenades farther, and over allies. Yeet those grenades to xenomorphs!
@@ -58,6 +59,11 @@ Stasis bags prevents brain death timer from ticking, meaning that if corpsmen ha
 In the Crash gamemode, cooperate as a marine! Work as a squad to capture the disks and to detonate the nuclear bomb.
 In the Crash gamemode, remember that your objective is to secure all three disks, put the disks into the nuclear device and head home while the bomb is active. Xenos will keep on respawning until all of the marines are dead.
 While securing a FOB or securing a disk site, do not wander around outside! You will risk death by xenos who are comfy in sieging down the place.
+Spaceacillin loses effectiveness against severe wound infections. Polyhexanide will pick where it left off at, at the cost of some toxin damage and drowsiness.
+Any marine can use bicardine loaded in a vali weapon to heal brute damage on corpses. No armor system required!
+Russian Red and Neuraline injectors share the same healing property as Inaprovaline, however will also heal severe organ damage.
+Wash your hands before surgery, in the field or shipside.
+An entire MRE can fit in your boot.
 As an ERT member, stay with your teammates! Don't cower or seperate from them.
 As a marine, say '*medic' to call out for medical attention. You can keybind this in game preferences.
 As a human, hold and press Alt key (by default) to sprint, you will drain stamina while doing so.
@@ -79,6 +85,7 @@ As a corpsman or engineer, your number one priority is NOT hunting down xenomorp
 As a doctor, the cryotubes are excellent at dealing with basic damage.
 As a doctor, the cryotubes heal internal bleeding and fractures, although slowly.
 As a doctor, surgery time from fastest to slowest is: by hand, Autodoc manual, Autodoc automatic.
+As a doctor, autodoc drains a lot of energy, which can black out medbay that can prevent MEDEVAC from working!
 As a doctor, the white webbing vest fits on your scrubs and can hold surgical tools.
 As a doctor, wear the surgical apron to help prevent infection while doing surgery.
 As a doctor, you've got access to the chemistry machine. Experiment to find the best medications.
@@ -90,6 +97,16 @@ As an engineer, det packs can be set on demolition mode for an explosive trap.
 As an engineer, you build barricades the fastest.
 As an engineer, repair the mining wells. These mining machines will mine phoron or platinum that can be used for requisitions, earning them more points!
 As an engineer, placing turrets on open spaces and without defenses is a poor choice.
+You can use a Terra experimental cell as a discount battery!
+You can upgrade metal barricades with metal in hand!
+Bring at least 1 cell and 1 power control modules to fix APC for disks or intel.
+Acid Upgrade prevents xenos from spewing acid all over undefended barricade.
+You can electrified razor wire, just place wire under razor and connect them to ACTIVE power source like phoron generator.
+Razor wire can stop charge from crusher, but it needs to be fully repaired for it to actually stop one.
+ALWAYS keep a 1-tile distance from barricade you fixing, unless you want to be a dinner for nearby fishing warrior.
+If you are sure barricade will fail and cause a breach, just make barricade behind that one, and move it forward, no need to risk your life in a breach.
+RO lazy? Lack of materials keeps begin a pain in the back? Don't worry anymore, there are plenty of chairs and tables around the area of operation!
+You can use a handheld cell charger to recharge both batteries and Terra experimental cells.
 As a corpsman, the MEDEVAC stretcher needs to be linked to an active, powered beacon for it to teleport the patient.
 As a corpsman, you can prevent anyone from moving your MEDEVAC beacon by locking it with your ID.
 As a corpsman,  if there's no medbay staff, put MEDEVAC in the hallway right outside the medbay door since autodoc will drain medbay's APC and a risk that power goes out, preventing you from MEDEVACing your patient.
