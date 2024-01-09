@@ -212,7 +212,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	unlock_cost = 30
 
 /datum/perk/skill_mod/shotguns/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
-	if(!is_type(owner_stats))
+	if(!istype(owner_stats))
 		return
 	owner_stats.unlock_loadout_item(owner_stats.faction == FACTION_SOM ? /datum/loadout_item/back/som_shotgun : /datum/loadout_item/back/marine_shotgun, owner_stats.faction == FACTION_SOM ? SOM_SQUAD_MARINE : SQUAD_MARINE, owner, 0)
 
