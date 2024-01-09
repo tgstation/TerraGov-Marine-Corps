@@ -33,7 +33,7 @@
 		else
 			return get_limb(BODY_ZONE_PRECISE_R_HAND)
 
-/mob/Living/carbon/put_in_hand_check(obj/item/I, hand_index)
+/mob/living/carbon/put_in_hand_check(obj/item/I, hand_index)
 	if(!index_to_hand(hand_index))
 		return FALSE
 	return ..()

@@ -11689,7 +11689,7 @@
 /area/bigredv2/outside/marshal_office)
 "kOk" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/stack/sheet/glass,
+/obj/item/stack/sheet/glass/glass,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "kPA" = (
@@ -12839,7 +12839,7 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stock_parts/smes_coil,
-/obj/item/stack/sheet/glass{
+/obj/item/stack/sheet/glass/glass{
 	amount = 30
 	},
 /turf/open/floor,

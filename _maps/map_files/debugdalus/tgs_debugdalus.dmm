@@ -629,7 +629,7 @@
 "acX" = (
 /obj/item/storage/box/crate/sentry,
 /obj/structure/rack,
-/obj/item/stack/sheet/glass{
+/obj/item/stack/sheet/glass/glass{
 	amount = 50;
 	pixel_x = 3;
 	pixel_y = 3
@@ -2310,6 +2310,10 @@
 "bOu" = (
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
+"bXE" = (
+/obj/structure/ship_ammo/cas/bomb/fourhundred,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "bXN" = (
 /obj/structure/cable,
 /obj/structure/closet/secure_closet/medical_doctor,
@@ -2531,6 +2535,11 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"kQa" = (
+/obj/machinery/light,
+/obj/structure/dropship_equipment/cas/weapon/bomb_pod,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "lcb" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship,
@@ -2615,6 +2624,10 @@
 /obj/machinery/cic_maptable,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
+"nRd" = (
+/obj/structure/ship_ammo/cas/bomblet,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "oNT" = (
 /obj/machinery/light{
 	dir = 1
@@ -2785,6 +2798,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
+"ttO" = (
+/obj/structure/dropship_equipment/cas/weapon/bomblet_pod,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "tQD" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
@@ -3990,7 +4007,7 @@ xBy
 ldZ
 bgb
 rmt
-dwY
+bXE
 dwY
 dwY
 dwY
@@ -4050,7 +4067,7 @@ ljw
 dwY
 bgb
 acJ
-dwY
+nRd
 dwY
 dwY
 dwY
@@ -4117,7 +4134,7 @@ gUp
 dwY
 dwY
 dwY
-dwY
+ttO
 aji
 agd
 agt
@@ -4177,7 +4194,7 @@ afg
 dwY
 dwY
 dwY
-ldZ
+kQa
 aji
 aji
 aji

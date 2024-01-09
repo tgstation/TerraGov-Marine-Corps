@@ -10914,6 +10914,10 @@
 /obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint3)
+"dal" = (
+/obj/structure/ship_ammo/cas/bomb/fourhundred,
+/turf/open/floor/plating,
+/area/sulaco/hangar/cas)
 "dde" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/bright_clean,
@@ -14025,7 +14029,7 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced,
-/obj/item/stack/sheet/glass{
+/obj/item/stack/sheet/glass/glass{
 	amount = 50;
 	pixel_x = 3;
 	pixel_y = 3
@@ -14557,7 +14561,7 @@
 /obj/machinery/light/mainship/small{
 	dir = 1
 	},
-/obj/item/stack/sheet/glass{
+/obj/item/stack/sheet/glass/glass{
 	amount = 50;
 	pixel_x = 3;
 	pixel_y = 3
@@ -15313,6 +15317,10 @@
 /obj/machinery/light/mainship,
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
+"iNr" = (
+/obj/structure/dropship_equipment/cas/weapon/bomblet_pod,
+/turf/open/floor/plating,
+/area/sulaco/hangar/cas)
 "iNC" = (
 /obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/prison,
@@ -16804,6 +16812,10 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
+"kJu" = (
+/obj/structure/ship_ammo/cas/bomblet,
+/turf/open/floor/plating,
+/area/sulaco/hangar/cas)
 "kKg" = (
 /obj/structure/cable,
 /obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
@@ -25872,6 +25884,10 @@
 	dir = 4
 	},
 /area/mainship/shipboard/weapon_room)
+"wkH" = (
+/obj/structure/dropship_equipment/cas/weapon/bomb_pod,
+/turf/open/floor/plating,
+/area/sulaco/hangar/cas)
 "wkI" = (
 /obj/machinery/light/mainship/small,
 /obj/effect/ai_node,
@@ -57070,8 +57086,8 @@ fsb
 pwv
 jIo
 dKl
-pwv
-pwv
+kJu
+dal
 pwv
 pwv
 pwv
@@ -57320,7 +57336,7 @@ cdy
 rpN
 ddK
 pwv
-pwv
+iNr
 pwv
 qct
 pwv
@@ -57577,7 +57593,7 @@ dZG
 qAV
 ddK
 pwv
-pwv
+wkH
 pwv
 qct
 pwv
