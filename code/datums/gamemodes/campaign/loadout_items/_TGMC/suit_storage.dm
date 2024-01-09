@@ -76,8 +76,6 @@
 	As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
-	unlock_cost = 2
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
 /datum/loadout_item/suit_store/main_gun/marine/laser_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
