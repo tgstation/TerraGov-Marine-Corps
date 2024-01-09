@@ -150,7 +150,7 @@
 		var/mob/living/carbon/human/new_guest = locate() in contents
 		if(new_guest)
 			bodybag_occupant = new_guest
-		update_name()
+		update_appearance()
 		return TRUE
 	return FALSE
 
@@ -159,7 +159,7 @@
 	. = ..()
 	if(bodybag_occupant)
 		bodybag_occupant = null
-	update_name()
+	update_appearance()
 
 
 /obj/structure/closet/bodybag/MouseDrop(over_object, src_location, over_location)
