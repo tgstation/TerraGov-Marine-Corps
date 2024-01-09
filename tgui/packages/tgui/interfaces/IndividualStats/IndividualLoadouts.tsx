@@ -248,12 +248,12 @@ export const IndividualLoadouts = (props) => {
             <LabeledList.Item label="Equip cost">
               {selectedPossibleItem?.purchase_cost}
             </LabeledList.Item>
-            {selectedPossibleItem.quantity === -1 ? null : (
+            {selectedPossibleItem.quantity !== -1 && (
               <LabeledList.Item label="Quantity">
                 {selectedPossibleItem.quantity}
               </LabeledList.Item>
             )}
-            {!selectedPossibleItem.requirements ? null : (
+            {selectedPossibleItem.requirements && (
               <LabeledList.Item label="Requirements">
                 {selectedPossibleItem.requirements}
               </LabeledList.Item>
