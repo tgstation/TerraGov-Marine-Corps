@@ -423,7 +423,7 @@
 	name = "V-51"
 	desc = "The V-51 is the main shotgun utilised by the Sons of Mars. Slower firing than some other semi automatic shotguns, but packs more of a kick. Loaded with flechette rounds."
 	ui_icon = "ballistic"
-	item_typepath = /obj/item/storage/belt/shotgun/som/flechette
+	item_typepath = /obj/item/weapon/gun/shotgun/som/support
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/flechette_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
