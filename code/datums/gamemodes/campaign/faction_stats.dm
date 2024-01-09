@@ -122,7 +122,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	for(var/i = 1 to CAMPAIGN_STANDARD_MISSION_QUANTITY)
 		generate_new_mission()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(mission_end))
-	RegisterSignal(SSdcs, COMSIG_LIVING_JOB_SET, PROC_REF(register_faction_member))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED, COMSIG_GLOB_PLAYER_LATE_SPAWNED), PROC_REF(register_faction_member))
 
 	faction_portrait = GLOB.faction_to_portrait[faction] ? GLOB.faction_to_portrait[faction] : /atom/movable/screen/text/screen_text/picture/potrait/unknown
 
@@ -133,9 +133,9 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 ///Sets up newly spawned players with the campaign status verb
 /datum/faction_stats/proc/register_faction_member(datum/source, mob/living/carbon/human/new_member)
 	SIGNAL_HANDLER
-	if(new_member.faction != faction)
-		return
 	if(!ishuman(new_member))
+		return
+	if(new_member.faction != faction)
 		return
 	if(!individual_stat_list[new_member.key])
 		individual_stat_list[new_member.key] = new /datum/individual_stats(new_member, faction, accumulated_mission_reward)

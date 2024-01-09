@@ -339,6 +339,5 @@
 
 	var/datum/individual_stats/stats = your_faction.individual_stat_list[owner.key]
 	if(!stats)
-		//return
-		stats = your_faction.individual_stat_list[null] //PLACEHOLDER. KEY IS NOT SET WHEN THE STAT DATUM IS MADE, FIX PLS.
+		CRASH("Attempted to load Individual stat datum without one existing for [owner] key [owner.key]")
 	stats.interact(owner)
