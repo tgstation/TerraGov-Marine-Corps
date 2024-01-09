@@ -6275,9 +6275,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
 "eSp" = (
-/obj/item/stack/sheet/glass{
-	amount = 30
-	},
 /obj/structure/rack,
 /turf/open/floor/plating/warning{
 	dir = 8
@@ -11987,9 +11984,6 @@
 	})
 "kyP" = (
 /obj/structure/rack,
-/obj/item/stack/sheet/glass{
-	amount = 30
-	},
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "kzi" = (

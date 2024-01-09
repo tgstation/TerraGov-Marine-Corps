@@ -1,0 +1,6 @@
+{
+    "map_name": "Antag Map",
+    "map_path": "map_files/antagmap",
+    "map_file": "antagmap.dmm",
+    "traits": [{"Antag Ship": true}]
+}

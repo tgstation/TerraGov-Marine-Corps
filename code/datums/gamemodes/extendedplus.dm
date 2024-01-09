@@ -46,13 +46,12 @@
 		/datum/job/som/requisitions/officer = 1,
 		/datum/job/som/medical/professor = 1,
 		/datum/job/som/medical/medicalofficer = 1,
-		/datum/job/som/civilian/chef = 1,
 		/datum/job/som/squad/medic = 2,
 		/datum/job/som/squad/engineer = 2,
 		/datum/job/som/squad/leader = 2,
 		/datum/job/som/squad/veteran = 2,
 		/datum/job/som/squad/standard = 6,
-		/datum/job/other/prisonersom = -1,
+		/datum/job/other/prisonersom = 3,
 		/datum/job/clf/leader = 2,
 		/datum/job/clf/specialist = 4,
 		/datum/job/clf/medic = 4,
@@ -123,6 +122,8 @@
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
+		if(prob(25))
+			new /obj/effect/landmark/start/job/survivor(corpse)
 
 
 	for(var/mob/living/carbon/xenomorph/larva/xeno in GLOB.alive_xeno_list)

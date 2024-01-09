@@ -1,7 +1,6 @@
 //#define LOWMEMORYMODE //uncomment this to load centcom and runtime station and thats it.
 
 #include "map_files\generic\Admin_Level.dmm"
-//#include "map_files\mars_territory_canora_desert\mars_territory_canora_desert.dmm"
 
 #ifndef LOWMEMORYMODE
 	#ifdef ALL_MAPS
