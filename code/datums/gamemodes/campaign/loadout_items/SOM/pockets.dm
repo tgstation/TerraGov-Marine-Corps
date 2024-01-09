@@ -17,6 +17,23 @@
 	item_typepath = /obj/item/storage/pouch/grenade/som/combat_patrol
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 
+/datum/loadout_item/r_pocket/war_crime_grenades
+	name = "Warcrime grenades"
+	desc = "A pouch carrying a set of rad and satrapine grenades. Extremely hazardous."
+	ui_icon = "grenade"
+	req_desc = "Requires a suit with a Mithridatius environmental protection module."
+	item_typepath = /obj/item/storage/pouch/grenade/som
+	jobs_supported = list(SOM_SQUAD_VETERAN)
+	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/mithridatius = ITEM_SLOT_OCLOTHING)
+
+/datum/loadout_item/r_pocket/war_crime_grenades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_R_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_R_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_R_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, SLOT_IN_R_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, SLOT_IN_R_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, SLOT_IN_R_POUCH)
+
 /datum/loadout_item/r_pocket/som_shotgun
 	name = "Buckshot shells"
 	desc = "A pouch specialized for holding shotgun ammo. Contains buckshot shells."
@@ -90,6 +107,23 @@
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/som/combat_patrol
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+
+/datum/loadout_item/l_pocket/war_crime_grenades
+	name = "Warcrime grenades"
+	desc = "A pouch carrying a set of rad and satrapine grenades. Extremely hazardous."
+	ui_icon = "grenade"
+	req_desc = "Requires a suit with a Mithridatius environmental protection module."
+	item_typepath = /obj/item/storage/pouch/grenade/som
+	jobs_supported = list(SOM_SQUAD_VETERAN)
+	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/mithridatius = ITEM_SLOT_OCLOTHING)
+
+/datum/loadout_item/l_pocket/war_crime_grenades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_L_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_L_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_L_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, SLOT_IN_L_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, SLOT_IN_L_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, SLOT_IN_L_POUCH)
 
 /datum/loadout_item/l_pocket/som_shotgun
 	name = "Flechette shells"

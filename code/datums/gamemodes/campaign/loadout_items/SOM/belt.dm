@@ -69,10 +69,13 @@
 /datum/loadout_item/belt/sawn_off
 	name = "Sawn-off shotgun"
 	desc = "A double barreled shotgun whose barrel has been artificially shortened to reduce range for further CQC potiential."
-	req_desc = "Requires a volkite culverin."
+	req_desc = "Requires a VX-42 culverin or VX-33 caliver with powerpack."
 	item_typepath = /obj/item/weapon/gun/shotgun/double/sawn
 	jobs_supported = list(SOM_SQUAD_VETERAN)
-	item_whitelist = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness = ITEM_SLOT_SUITSTORE)
+	item_whitelist = list(
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor = ITEM_SLOT_SUITSTORE
+	)
 
 /datum/loadout_item/belt/som_lifesaver
 	name = "S17 lifesaver bag"

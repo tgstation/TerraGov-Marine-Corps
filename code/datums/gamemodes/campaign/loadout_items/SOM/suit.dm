@@ -4,6 +4,11 @@
 	item_typepath = /obj/item/clothing/suit/modular/som/light/shield
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 
+/datum/loadout_item/suit_slot/som_som_light_shield
+	jobs_supported = list(SOM_SQUAD_VETERAN)
+	req_desc = "Requires a blink drive."
+	item_whitelist = list(/obj/item/blink_drive = ITEM_SLOT_BACK)
+
 /datum/loadout_item/suit_slot/som_medium_shield
 	name = "Medium Aegis armor"
 	desc = "M-21 battle armor with a Aegis shield module. Provides balanced mobility and protection."
@@ -42,8 +47,9 @@
 	)
 
 /datum/loadout_item/suit_slot/som_heavy_tyr/veteran
+	req_desc = "Requires a VX-32 charger and boarding shield."
 	jobs_supported = list(SOM_SQUAD_VETERAN)
-	item_whitelist = list()//todo
+	item_whitelist = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet = ITEM_SLOT_SUITSTORE)
 
 /datum/loadout_item/suit_slot/gorgon
 	name = "Gorgon armor"
@@ -60,16 +66,14 @@
 	item_typepath = /obj/item/clothing/suit/modular/som/heavy/leader/officer
 	jobs_supported = list(SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 
-//corpsman
 /datum/loadout_item/suit_slot/som_heavy_mimir
 	name = "Heavy Mith armor"
-	desc = "M-21 combat armor with a Mithridatius 'Mith' environmental protection module. Provides excellent armor and total immunity to chemical attacks, and improved radiological protection. Has lower mobility."
+	desc = "M-31 combat armor with a Mithridatius 'Mith' environmental protection module. Provides excellent armor and total immunity to chemical attacks, and improved radiological protection. Has lower mobility."
+	req_desc = "Requires a helmet with a Mithridatius environmental protection module."
 	item_typepath = /obj/item/clothing/suit/modular/som/heavy/mithridatius
 	jobs_supported = list(SOM_SQUAD_VETERAN)
-
-/datum/loadout_item/suit_slot/som_heavy_mimir/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
-	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)
+	item_whitelist = list(/obj/item/clothing/head/modular/som/bio = ITEM_SLOT_HEAD)
+	quantity = 3
 
 //engineer
 /datum/loadout_item/suit_slot/som_engineer

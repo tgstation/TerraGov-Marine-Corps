@@ -28,12 +28,13 @@
 	desc = "A portable Bluespace Displacement Drive, otherwise known as a blink drive. \
 	Can teleport the user across short distances with a degree of unreliability, with potentially fatal results. \
 	Teleporting past 5 tiles, to tiles out of sight or rapid use of the drive add variance to the teleportation destination."
-	req_desc = "Requires a SMG-25 or ALF-51B."
+	req_desc = "Requires an energy sword or V-21 SMG."
 	item_typepath = /obj/item/blink_drive
 	jobs_supported = list(SOM_SQUAD_VETERAN)
+	quantity = 2
 	item_whitelist = list(
-		/obj/item/weapon/gun/smg/m25/magharness = ITEM_SLOT_SUITSTORE,
-		/obj/item/weapon/gun/rifle/alf_machinecarbine/assault = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/energy/sword/som = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/smg/som/veteran = ITEM_SLOT_SUITSTORE,
 	)
 
 /datum/loadout_item/back/som_shotgun
@@ -65,10 +66,13 @@
 	name = "M-70 powerpack"
 	desc = "A heavy reinforced backpack with an array of ultradensity energy cells, linked to a miniature radioisotope thermoelectric generator for continuous power generation. \
 	Used to power the largest man portable volkite weaponry. Click drag cells to the powerpack to recharge."
-	//req_desc = "Requires an SG-85."
+	req_desc = "Requires a VX-42 culverin or VX-33 caliver."
 	item_typepath = /obj/item/cell/lasgun/volkite/powerpack
 	jobs_supported = list(SOM_SQUAD_VETERAN)
-	//item_whitelist = list(/obj/item/weapon/gun/minigun/smart_minigun/motion_detector = ITEM_SLOT_SUITSTORE)
+	item_whitelist = list(
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor = ITEM_SLOT_SUITSTORE,
+		)
 
 /datum/loadout_item/back/boarding_axe
 	name = "Boarding axe"

@@ -17,6 +17,10 @@
 	item_typepath = /obj/item/clothing/head/modular/som/veteran
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 
+/datum/loadout_item/helmet/som_veteran/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
+
 /datum/loadout_item/helmet/gorgon
 	name = "Gorgon pattern helmet"
 	desc = "Made for use with Gorgon pattern assault armor, providing superior protection. Typically seen on SOM leaders or their most elite combat units."
