@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - bugfix: "Some CAS bombs were broken in the CAS update icon wise, this should fix them."
