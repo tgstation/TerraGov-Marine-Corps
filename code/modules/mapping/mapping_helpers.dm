@@ -565,28 +565,13 @@
 
 /obj/effect/mapping_helpers/airlock/cyclelink_helper/Initialize(mapload)
 	. = ..()
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 	if(!airlock)
 		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
-	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
-	//if(airlock)
-	//	if(airlock.cyclelinkeddir)
-	//		log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried to set [airlock] cyclelinkeddir, but it's already set!")
-	//	else
-	//		airlock.cyclelinkeddir = dir
-	//else
-		//log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
-	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 	if(airlock.cyclelinkeddir)
-		log_mapping("[src] at [AREACOORD(src)] tried to set [airlock] cyclelinkeddir, but it's already set!")
+		log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried to set [airlock] cyclelinkeddir, but it's already set!")
 	else
 		airlock.cyclelinkeddir = dir
-
-//	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
-//	if(airlock)
-//		airlock.unres_sides ^= dir
-//	else
-//		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
-
 
 //needs to do its thing before spawn_rivers() is called
 /*
