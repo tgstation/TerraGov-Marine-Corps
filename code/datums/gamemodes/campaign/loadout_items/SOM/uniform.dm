@@ -42,11 +42,17 @@
 		/obj/item/storage/pouch/tools/som/full = ITEM_SLOT_R_POCKET,
 	)
 
+/datum/loadout_item/uniform/som_field_commander
+	name = "Officer uniform"
+	desc = "The distinct black uniform befitting a SOM field officer."
+	item_typepath = /obj/item/clothing/under/som/officer/webbing
+	jobs_supported = list(SOM_FIELD_COMMANDER)
+
 /datum/loadout_item/uniform/som_officer
 	name = "Officer uniform"
 	desc = "The distinct black uniform of a SOM officer. Usually worn by junior officers."
-	item_typepath = /obj/item/clothing/under/som/officer/webbing
-	jobs_supported = list(SOM_FIELD_COMMANDER, SOM_STAFF_OFFICER)
+	item_typepath = /obj/item/clothing/under/som/officer
+	jobs_supported = list(SOM_STAFF_OFFICER)
 
 /datum/loadout_item/uniform/som_senior_officer
 	name = "Officer uniform"
