@@ -488,7 +488,7 @@
 		return
 	if(!isturf(loc))
 		return
-	var/dir_to_proj = get_dir(hit_atom, old_throw_source)
+	var/dir_to_proj = angle_to_cardinal_dir(Get_Angle(hit_atom, old_throw_source))
 	if(ISDIAGONALDIR(dir_to_proj))
 		var/list/cardinals = list(turn(dir_to_proj, 45), turn(dir_to_proj, -45))
 		for(var/direction in cardinals)
@@ -497,8 +497,8 @@
 				cardinals -= direction
 		dir_to_proj = pick(cardinals)
 
-	var/perpendicular_angle = Get_Angle(hit_atom, get_step(hit_atom, dir_to_proj))
-	var/new_angle = (perpendicular_angle + (perpendicular_angle - Get_Angle(old_throw_source, src) - 180) + rand(-10, 10))
+	var/perpendicular_angle = Get_Angle(hit_atom, get_step(hit_atom, ISDIAGONALDIR(dir_to_proj) ? get_dir(hit_atom, old_throw_source) - dir_to_proj : dir_to_proj))
+	var/new_angle = (perpendicular_angle + (perpendicular_angle - Get_Angle(old_throw_source, (loc == old_throw_source ? hit_atom : src)) - 180) + rand(-10, 10))
 
 	if(new_angle < -360)
 		new_angle += 720 //north is 0 instead of 360
