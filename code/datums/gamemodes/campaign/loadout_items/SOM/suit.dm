@@ -2,7 +2,7 @@
 	name = "Light Aegis armor"
 	desc = "M-11 scout armor with a Aegis shield module. Provides excellent mobility but lower protection."
 	item_typepath = /obj/item/clothing/suit/modular/som/light/shield
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	jobs_supported = list(SOM_SQUAD_MARINE)
 
 /datum/loadout_item/suit_slot/som_som_light_shield
 	jobs_supported = list(SOM_SQUAD_VETERAN)
@@ -19,7 +19,7 @@
 	name = "Heavy Aegis armor"
 	desc = "M-31 combat armor with a Aegis shield module. Provides excellent protection but lower mobility."
 	item_typepath = /obj/item/clothing/suit/modular/som/heavy/shield
-	jobs_supported = list(SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	jobs_supported = list(SOM_SQUAD_VETERAN)
 
 /datum/loadout_item/suit_slot/som_heavy_shield/breacher
 	jobs_supported = list(SOM_SQUAD_MARINE)
@@ -55,8 +55,8 @@
 	name = "Gorgon armor"
 	desc = "M-35 'Gorgon' armor with integrated Apollo automedical module. Provides outstanding protection without severely limiting mobility. \
 	Typically seen on SOM leaders or their most elite combat units due to the significant construction and maintenance requirements."
-	item_typepath = /obj/item/clothing/suit/modular/som/heavy/leader
-	jobs_supported = list(SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	item_typepath = /obj/item/clothing/suit/modular/som/heavy/leader/valk
+	jobs_supported = list(SOM_SQUAD_LEADER)
 
 /datum/loadout_item/suit_slot/gorgon/fc
 	name = "Gorgon armor"
@@ -64,7 +64,7 @@
 	Typically seen on SOM leaders or their most elite combat units due to the significant construction and maintenance requirements. \
 	The gold markings on this one signify it is worn by a high ranking field officer"
 	item_typepath = /obj/item/clothing/suit/modular/som/heavy/leader/officer
-	jobs_supported = list(SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	jobs_supported = list(SOM_FIELD_COMMANDER)
 
 /datum/loadout_item/suit_slot/som_heavy_mimir
 	name = "Heavy Mith armor"

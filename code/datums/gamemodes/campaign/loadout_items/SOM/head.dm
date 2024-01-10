@@ -27,6 +27,10 @@
 	item_typepath = /obj/item/clothing/head/modular/som/leader
 	jobs_supported = list(SOM_SQUAD_LEADER)
 
+/datum/loadout_item/helmet/gorgon/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
+
 /datum/loadout_item/helmet/gorgon/fc
 	name = "Gorgon pattern helmet"
 	desc = "Made for use with Gorgon pattern assault armor, providing superior protection. This one has gold markings indicating it belongs to a high ranking field officer."
@@ -50,6 +54,10 @@
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN)
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/lorica = ITEM_SLOT_OCLOTHING)
 
+/datum/loadout_item/helmet/som_tyr/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
+
 /datum/loadout_item/helmet/som_mimir
 	name = "Biohazard helmet"
 	desc = "A standard combat helmet with a Mithridatius 'Mith' environmental protection module."
@@ -57,6 +65,10 @@
 	item_typepath = /obj/item/clothing/head/modular/som/bio
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/mithridatius = ITEM_SLOT_OCLOTHING)
+
+/datum/loadout_item/helmet/som_mimir/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
 
 /datum/loadout_item/helmet/som_engineer
 	name = "Engineering helmet"

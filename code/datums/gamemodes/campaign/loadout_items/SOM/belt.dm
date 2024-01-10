@@ -88,7 +88,7 @@
 	desc = "The 'serpenta' is pistol typically seen in the hands of SOM officers and some NCOs, and is quite dangerous for it's size. \
 	Comes in a holster that fits on your waist or armor."
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/som/serpenta
-	jobs_supported = list(SOM_STAFF_OFFICER)
+	jobs_supported = list(SOM_SQUAD_LEADER, SOM_STAFF_OFFICER)
 	item_blacklist = list(/obj/item/storage/holster/belt/pistol/m4a3/som/serpenta = ITEM_SLOT_SUITSTORE)
 
 /datum/loadout_item/belt/som_officer_pistol_custom
