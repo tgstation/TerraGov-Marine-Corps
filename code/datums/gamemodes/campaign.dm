@@ -275,6 +275,3 @@
 
 	var/datum/action/campaign_overview/overview = new
 	overview.give_action(new_member)
-
-	var/datum/action/campaign_loadout/loadouts = new
-	loadouts.give_action(new_member)

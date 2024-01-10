@@ -1,9 +1,7 @@
 /datum/individual_stats
 	interaction_flags = INTERACT_UI_INTERACT
-	///ckey associated with this datum
-	var/ckey
 	///currently occupied mob - if any
-	var/mob/living/carbon/current_mob //will we actually need this?
+	var/mob/living/carbon/current_mob
 	///Credits. You buy stuff with it
 	var/currency = 1000 //test only
 	///List of job types based on faction
@@ -13,7 +11,7 @@
 	///Unlocked perks organised by jobs effected
 	var/list/list/datum/perk/perks_by_job = list()
 	///Unlocked items
-	var/list/list/datum/loadout_item/unlocked_items = list() //probs some initial list here based on class etc.
+	var/list/list/datum/loadout_item/unlocked_items = list()
 	///List of loadouts by role
 	var/list/datum/outfit_holder/loadouts = list()
 	///The faction associated with these stats
@@ -21,7 +19,6 @@
 
 /datum/individual_stats/New(mob/living/carbon/new_mob, new_faction, new_currency)
 	. = ..()
-	ckey = new_mob.key
 	current_mob = new_mob
 	faction = new_faction
 	currency += new_currency
@@ -34,14 +31,13 @@
 		unlocked_items[job_type::title] = list()
 
 /datum/individual_stats/Destroy(force, ...)
-	ckey = null
 	current_mob = null
 	unlocked_perks = null
 	perks_by_job = null
 	unlocked_items = null
 	return ..()
 
-///uses some funtokens, returns the amount missing, if insufficient funds
+///Applies cash
 /datum/individual_stats/proc/give_funds(amount)
 	currency += amount
 	if(!current_mob)
@@ -115,7 +111,7 @@
 	for(var/datum/perk/perk AS in perks_by_job[current_mob.job.title])
 		perk.apply_perk(current_mob)
 
-//UI stuff//
+//UI stuff
 /datum/individual_stats/ui_assets(mob/user)
 	return list(get_asset_datum(/datum/asset/spritesheet/campaign/perks), get_asset_datum(/datum/asset/spritesheet/campaign/loadout_items))
 
@@ -157,7 +153,7 @@
 	data["perks_data"] = perks_data
 
 	//loadout stuff
-	var/list/equipped_loadouts_data = list() //shit currently equipped to ALL job outfits
+	var/list/equipped_loadouts_data = list() //items currently equipped to ALL job outfits
 	var/list/available_loadouts_data = list() //all available AND purchasable loadout options
 	var/list/outfit_cost_data = list() //Current cost of all outfits
 	for(var/job in loadouts)
@@ -170,7 +166,7 @@
 
 		for(var/slot in outfit.equipped_things)
 			var/datum/loadout_item/loadout_item = outfit.equipped_things[slot]
-			if(!loadout_item) //will probably be able to remove this eventually. Probably now, that we have defaults
+			if(!loadout_item)
 				continue
 			var/list/equipped_item_ui_data = list() //slot + equipped item data
 			var/list/current_loadout_item_data = list() //equipped item data
@@ -180,11 +176,11 @@
 			current_loadout_item_data["type"] = loadout_item.type
 			current_loadout_item_data["desc"] = loadout_item.desc
 			current_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
-			current_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost  //todo: do related
-			current_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit) //is this item valid based on the current loadout. Don't think we need !! but check
-			current_loadout_item_data["icon"] = loadout_item.ui_icon //todo: Figure out if this works from a ui perspective, or if an 'ui_icon' is needed like assets
-			current_loadout_item_data["quantity"] = loadout_item.quantity //current amount. atm would not update other people's UI if quantity changes
-			current_loadout_item_data["requirements"] = loadout_item.req_desc //Additional desc covering special reqs such as blacklist/whitelist
+			current_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost
+			current_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit)
+			current_loadout_item_data["icon"] = loadout_item.ui_icon
+			current_loadout_item_data["quantity"] = loadout_item.quantity
+			current_loadout_item_data["requirements"] = loadout_item.req_desc
 			current_loadout_item_data["unlocked"] = TRUE
 
 			equipped_item_ui_data["item_type"] = current_loadout_item_data
@@ -332,6 +328,10 @@
 /datum/action/campaign_loadout
 	name = "Loadout menu"
 	action_icon_state = "individual_stats"
+
+/datum/action/campaign_loadout/give_action(mob/M)
+	. = ..()
+	stats.current_mob = M
 
 /datum/action/campaign_loadout/action_activate()
 	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[owner.faction]

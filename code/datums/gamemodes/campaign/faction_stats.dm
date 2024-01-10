@@ -141,7 +141,10 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		individual_stat_list[new_member.key] = new /datum/individual_stats(new_member, faction, accumulated_mission_reward)
 	else
 		individual_stat_list[new_member.key].current_mob = new_member
-		individual_stat_list[new_member.key].apply_perks() //ugly, probs needs to be handled internally but we'll clean up later
+		individual_stat_list[new_member.key].apply_perks()
+
+	var/datum/action/campaign_loadout/loadouts = new
+	loadouts.give_action(new_member)
 
 ///Randomly adds a new mission to the available pool
 /datum/faction_stats/proc/generate_new_mission()

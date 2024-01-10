@@ -8,9 +8,9 @@
 	///Cost of the loadout to equip
 	var/loadout_cost = 0
 	///Items available to be equipped
-	var/list/list/datum/loadout_item/available_list = list() //only used for ui data purposes
+	var/list/list/datum/loadout_item/available_list = list()
 	///Items available to be purchased
-	var/list/list/datum/loadout_item/purchasable_list = list() //only used for ui data purposes
+	var/list/list/datum/loadout_item/purchasable_list = list()
 
 /datum/outfit_holder/New(new_role)
 	. = ..()
@@ -49,7 +49,6 @@
 		if(thing_to_check.quantity > 0)
 			thing_to_check.quantity --
 		thing_to_check.post_equip(owner, loadout)
-	//insert post equip magic here
 
 ///Adds a new loadout_item to the available list
 /datum/outfit_holder/proc/unlock_new_option(datum/loadout_item/new_item)
@@ -123,34 +122,7 @@
 			continue
 		if(thing_to_check.quantity == 0)
 			return FALSE
-			//mark visually/early return here
 		if(length(thing_to_check.item_whitelist) && !thing_to_check.whitelist_check(src))
-			//mark visually here
 			return FALSE
 		if(length(thing_to_check.item_blacklist) && !thing_to_check.blacklist_check(src))
-			//mark visually here
 			return FALSE
-
-//2 procs below may be unneeded
-
-//returns ther datum, not the item. Currently unused
-///Returns an item type in a particular loadout slot
-/datum/outfit_holder/proc/find_item(slot)
-	return equipped_things["[slot]"]
-
-///Fully populates the loadout
-/datum/outfit_holder/proc/populate_loadout() //this might be redundant, maybe just use it for the initial default since we don't need the checks in that case
-	loadout.wear_suit = equipped_things["[ITEM_SLOT_OCLOTHING]"]
-	loadout.w_uniform = equipped_things["[ITEM_SLOT_ICLOTHING]"]
-	loadout.gloves = equipped_things["[ITEM_SLOT_GLOVES]"]
-	loadout.glasses = equipped_things["[ITEM_SLOT_EYES]"]
-	loadout.ears = equipped_things["[ITEM_SLOT_EARS]"]
-	loadout.mask = equipped_things["[ITEM_SLOT_MASK]"]
-	loadout.head = equipped_things["[ITEM_SLOT_HEAD]"]
-	loadout.shoes = equipped_things["[ITEM_SLOT_FEET]"]
-	loadout.id = equipped_things["[ITEM_SLOT_ID]"]
-	loadout.belt = equipped_things["[ITEM_SLOT_BELT]"]
-	loadout.back = equipped_things["[ITEM_SLOT_BACK]"]
-	loadout.r_store = equipped_things["[ITEM_SLOT_R_POCKET]"]
-	loadout.l_store = equipped_things["[ITEM_SLOT_L_POCKET]"]
-	loadout.suit_store = equipped_things["[ITEM_SLOT_SUITSTORE]"]

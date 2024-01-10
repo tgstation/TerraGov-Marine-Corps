@@ -97,4 +97,5 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	return role_post_equip(wearer, loadout)
 
 ///A separate post equip proc for role specific code. Split for more flexible parent overriding
-/datum/loadout_item/proc/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)	return
+/datum/loadout_item/proc/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	return
