@@ -80,5 +80,5 @@ endmap
 
 
 map daedalusprison
-	minplayers 35
+	minplayers 50
 endmap
