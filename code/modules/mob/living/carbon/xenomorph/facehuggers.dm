@@ -1,5 +1,5 @@
 ///After how much time of being active we die
-#define FACEHUGGER_DEATH 120 SECONDS
+#define FACEHUGGER_DEATH 5 MINUTES
 ///Time it takes to impregnate someone
 #define IMPREGNATION_TIME 10 SECONDS
 

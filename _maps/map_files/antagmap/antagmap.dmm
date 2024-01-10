@@ -457,7 +457,6 @@
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 4
 	},
-/obj/structure/patrol_point/som_22,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "fe" = (
@@ -1210,7 +1209,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/obj/structure/patrol_point/som_23,
+/obj/structure/patrol_point/som_24,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "mM" = (
@@ -3322,6 +3321,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
+/obj/structure/patrol_point/som_24,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "IV" = (
@@ -3529,7 +3529,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/patrol_point/som_13,
+/obj/structure/patrol_point/som_11,
 /turf/open/floor/plating/plating_catwalk,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay"
@@ -3943,7 +3943,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/patrol_point/som_13,
+/obj/structure/patrol_point/som_12,
 /turf/open/floor/plating/plating_catwalk,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay"
@@ -4491,13 +4491,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/general/som)
 "Uw" = (
-/obj/item/stack/barbed_wire{
-	amount = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay"
-	})
+/obj/effect/teleporter_linker,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
 "UF" = (
 /obj/structure/bed/chair,
 /obj/effect/turf_decal/trimline/dark_blue,
@@ -4523,7 +4519,6 @@
 /area/mainship/groundhq/clf/medical/lounge)
 "UR" = (
 /obj/effect/decal/cleanable/blood/splatter/xenocum,
-/obj/effect/teleporter_linker,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "UT" = (
@@ -5632,7 +5627,7 @@ sR
 ji
 JI
 Qi
-Uw
+Ou
 HD
 OT
 JA
@@ -8058,7 +8053,7 @@ qo
 fb
 UR
 ma
-IC
+Uw
 IC
 ko
 ko

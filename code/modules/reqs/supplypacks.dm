@@ -42,6 +42,11 @@ OPERATIONS
 	contains = list(/obj/item/beacon/supply_beacon)
 	cost = 100
 
+/datum/supply_packs/operations/monkeyboxes
+	name = "Monkey Cube"
+	contains = list(/obj/item/storage/box/monkeycubes)
+	cost = 500
+
 /datum/supply_packs/operations/fulton_extraction_pack
 	name = "Fulton extraction pack"
 	contains = list(/obj/item/fulton_extraction_pack)
