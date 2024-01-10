@@ -94,11 +94,8 @@
 /turf/closed/wall/mainship/gray,
 /area/canora_desert/surface/building/som_prison)
 "bl" = (
-/obj/docking_port/stationary/marine_dropship/minidropship/clf{
-	name = "CLF Parking Spot";
-	roundstart_template = /datum/map_template/shuttle/minidropship/clf
-	},
-/turf/open/floor/plating,
+/obj/effect/decal/cleanable/blood/splatter/girlcum,
+/turf/open/floor/mainship/mono,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "bv" = (
 /obj/structure/bed/chair/comfy/brown,
@@ -159,6 +156,12 @@
 	name = "CLF primary hallway";
 	outside = 0;
 	ceiling = 6
+	})
+"bZ" = (
+/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
+/turf/open/floor/mainship/mono,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
 	})
 "cb" = (
 /obj/structure/table,
@@ -262,6 +265,18 @@
 /obj/effect/turf_decal/tile/transparent/dark_green/anticorner/contrasted,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/medical/lounge)
+"db" = (
+/obj/structure/dropship_piece/two/weapon/leftleft{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/effect/attach_point/weapon/minidropship{
+	equipment_offset_y = 25
+	},
+/turf/closed/wall/mainship/outer/canterbury,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "dc" = (
 /turf/closed/mineral/smooth,
 /area/mainship/groundhq/clf/living/grunt_rnr/two)
@@ -293,6 +308,13 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"dF" = (
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1
+	},
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "dJ" = (
 /obj/effect/landmark/start/job/clf/specialist,
 /obj/effect/turf_decal/trimline/dark_blue/filled/shrink_cw,
@@ -431,6 +453,13 @@
 	},
 /turf/open/floor/grass,
 /area/canora_desert/surface/building/som_prison)
+"fb" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 4
+	},
+/obj/structure/patrol_point/som_22,
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
 "fe" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/table/holotable,
@@ -506,6 +535,10 @@
 /obj/structure/bed,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/medical/lounge)
+"gk" = (
+/obj/machinery/computer,
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
 "gn" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -528,6 +561,14 @@
 	dir = 1
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"gA" = (
+/obj/effect/decal/cleanable/blood/splatter/cum,
+/turf/open/floor/plating/asteroidfloor,
+/area/mainship/groundhq/clf/medical/lounge)
+"gD" = (
+/obj/effect/decal/cleanable/blood/splatter/cum,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
 "gE" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mech_bay_recharge_floor,
@@ -758,6 +799,21 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/canora_desert/surface/building/som_engineering)
+"ji" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/obj/machinery/camera/autoname/mainship/dropship_two{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/transparent/dark_blue/anticorner/contrasted,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "jj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/dark_red/filled/warning{
@@ -882,6 +938,12 @@
 "ko" = (
 /turf/closed/mineral/smooth,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"kq" = (
+/obj/machinery/cic_maptable/som_maptable,
+/turf/open/floor/plating/plating_catwalk,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "kv" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -902,6 +964,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/hallways/aft_hallway)
+"kE" = (
+/obj/effect/decal/cleanable/blood/splatter/girlcum,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
 "kJ" = (
 /obj/machinery/light/small,
 /obj/effect/turf_decal/trimline/dark_blue,
@@ -941,6 +1007,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/line{
 	dir = 1
 	},
+/obj/effect/decal/cleanable/blood/splatter/girlcum,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "lm" = (
@@ -978,6 +1045,7 @@
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "lF" = (
 /obj/structure/table/woodentable,
+/obj/effect/decal/cleanable/blood/splatter/cum,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "lG" = (
@@ -1012,6 +1080,18 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
+"lP" = (
+/obj/structure/dropship_piece/two/weapon/rightright{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/effect/attach_point/weapon/minidropship{
+	equipment_offset_y = 25
+	},
+/turf/closed/wall/mainship/outer/canterbury,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "lS" = (
 /obj/item/tool/mop,
 /obj/item/reagent_containers/glass/bucket,
@@ -1030,7 +1110,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/canora_desert/surface/building/command)
 "ma" = (
-/turf/open/floor/plating,
+/turf/open/floor/mainship/mono,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "mf" = (
 /obj/structure/cable,
@@ -1066,6 +1146,11 @@
 /area/canora_desert/surface/building/som_engimedmaint{
 	name = "SOM FC's Office"
 	})
+"mp" = (
+/obj/alien/egg/hugger,
+/obj/effect/decal/cleanable/blood/splatter/girlcum,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
 "mr" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark/corner{
 	dir = 4
@@ -1120,6 +1205,14 @@
 /obj/item/storage/donut_box,
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command)
+"mL" = (
+/obj/effect/ai_node,
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/structure/patrol_point/som_23,
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
 "mM" = (
 /obj/structure/table/reinforced/prison,
 /obj/effect/turf_decal/trimline/dark_blue/line,
@@ -1187,6 +1280,10 @@
 "nu" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
+"nw" = (
+/obj/machinery/cic_maptable,
+/turf/open/floor/mainship/mono,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "nx" = (
 /obj/structure/cable,
@@ -1277,6 +1374,11 @@
 /obj/machinery/vending/som/uniform_supply,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general/som)
+"pa" = (
+/turf/closed/shuttle/ert/engines/left{
+	dir = 4
+	},
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
 "pd" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
@@ -1361,6 +1463,7 @@
 	pixel_y = 7;
 	pixel_x = 15
 	},
+/obj/effect/decal/cleanable/blood/splatter/girlcum,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "pL" = (
@@ -1430,8 +1533,7 @@
 	name = "SOM FC's Office"
 	})
 "qo" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating,
+/turf/closed/wall,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "qu" = (
 /obj/machinery/autodoc,
@@ -1492,6 +1594,15 @@
 /obj/machinery/light,
 /turf/open/shuttle/plating,
 /area/canora_desert/surface/building/som_mechbay)
+"rF" = (
+/obj/effect/landmark/start/job/clf/medic,
+/obj/effect/turf_decal/trimline/dark_blue/line,
+/obj/effect/turf_decal/trimline/dark_blue/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/splatter/xenocum,
+/turf/open/floor/plating/asteroidfloor,
+/area/mainship/groundhq/clf/living/grunt_rnr)
 "rL" = (
 /obj/structure/bed/alien,
 /obj/item/bedsheet/blue,
@@ -1564,6 +1675,12 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"sR" = (
+/obj/structure/table/mainship,
+/turf/open/floor/plating/plating_catwalk,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "sS" = (
 /obj/structure/cable,
 /obj/structure/table,
@@ -1772,6 +1889,13 @@
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay"
 	})
+"uJ" = (
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1
+	},
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "uN" = (
 /obj/structure/table/reinforced,
 /obj/machinery/photocopier{
@@ -1906,6 +2030,7 @@
 /area/canora_desert/surface/building/som_torturechamber)
 "wm" = (
 /obj/effect/landmark/start/latejoinclf,
+/obj/effect/decal/cleanable/blood/splatter/girlcum,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "wn" = (
@@ -1989,6 +2114,11 @@
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay"
 	})
+"wM" = (
+/obj/alien/egg/hugger,
+/obj/effect/decal/cleanable/blood/splatter/xenocum,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
 "wO" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2028,6 +2158,7 @@
 "wX" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/start/latejoinclf,
+/obj/effect/decal/cleanable/blood/splatter/xenocum,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "xa" = (
@@ -2198,6 +2329,7 @@
 	pixel_x = 12;
 	pixel_y = 7
 	},
+/obj/effect/decal/cleanable/blood/splatter/cum,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "zf" = (
@@ -2233,6 +2365,10 @@
 /obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/white,
 /area/canora_desert/surface/building/som_medical)
+"zG" = (
+/obj/structure/window/framed/colony,
+/turf/open/floor/plating,
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
 "zJ" = (
 /obj/machinery/recharger,
 /turf/open/floor/plating/asteroidfloor,
@@ -2254,6 +2390,14 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/canora_desert/surface/building/som_medical)
+"zU" = (
+/obj/machinery/camera/autoname/mainship/dropship_two,
+/obj/structure/bed/chair/dropship/passenger,
+/obj/machinery/vending/nanomed/tadpolemed,
+/turf/open/floor/mainship/mono,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "Aa" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
@@ -2306,6 +2450,17 @@
 /obj/machinery/camera/autoname/mainship/somship,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general/som)
+"AM" = (
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlocksom"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "AN" = (
 /turf/closed/wall/brick,
 /area/mainship/groundhq/clf/hallways/stern_hallway{
@@ -2328,6 +2483,10 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/canora_desert/surface/building/som_admiral)
+"AY" = (
+/obj/effect/decal/cleanable/blood/splatter/xenocum,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
 "Bi" = (
 /obj/structure/stairs/seamless/platform{
 	dir = 1
@@ -2350,6 +2509,12 @@
 "Br" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"Bt" = (
+/obj/machinery/holopad,
+/turf/open/floor/plating/plating_catwalk,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "Bv" = (
 /obj/structure/holowindow{
 	dir = 1
@@ -2513,6 +2678,15 @@
 	},
 /turf/open/floor/plating/scorched,
 /area/canora_desert/surface/building/som_mechbay)
+"CA" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/structure/patrol_point/som_11,
+/turf/open/floor/mainship/mono,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "CC" = (
 /obj/machinery/vending/sovietsoda,
 /turf/open/floor/mainship/office,
@@ -2584,8 +2758,20 @@
 /obj/machinery/light/small,
 /obj/effect/turf_decal/trimline/dark_blue,
 /obj/effect/ai_node,
+/obj/effect/decal/cleanable/blood/splatter/girlcum,
 /turf/open/floor/plating/asteroidwarning/down,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"CZ" = (
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlocksom"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "Dg" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -2717,6 +2903,12 @@
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay"
 	})
+"EF" = (
+/obj/effect/attach_point/crew_weapon/minidropship,
+/turf/open/floor/plating/plating_catwalk,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "EG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -2739,6 +2931,13 @@
 /turf/open/floor/iron/grimy,
 /area/canora_desert/surface/building/som_engimedmaint{
 	name = "SOM FC's Office"
+	})
+"EO" = (
+/turf/closed/shuttle/ert/engines/right/two{
+	dir = 1
+	},
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
 	})
 "ER" = (
 /obj/structure/bed/chair/east{
@@ -2810,6 +3009,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/shrink_ccw{
 	dir = 1
 	},
+/obj/effect/decal/cleanable/blood/splatter/cum,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "FT" = (
@@ -2824,6 +3024,16 @@
 /area/canora_desert/surface/building/som_engimedmaint{
 	name = "SOM FC's Office"
 	})
+"FY" = (
+/obj/structure/barricade/plasteel,
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 2;
+	id = "minidropship_podlocksom"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "Ga" = (
 /obj/structure/largecrate/guns/russian,
 /turf/open/floor/plating/asteroidfloor,
@@ -2836,8 +3046,8 @@
 	name = "SOM Hangar Bay"
 	})
 "Go" = (
-/obj/structure/cable,
-/turf/closed/mineral/smooth/indestructible,
+/obj/effect/forcefield/fog,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/rock)
 "Gw" = (
 /obj/structure/curtain/shower,
@@ -2948,6 +3158,15 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/clf/hallways/bathroom)
+"HD" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/structure/patrol_point/som_12,
+/turf/open/floor/mainship/mono,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "HE" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -2978,6 +3197,14 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/som_medical)
+"HO" = (
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
+"HW" = (
+/obj/structure/window/framed/colony,
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
 "Ia" = (
 /obj/effect/turf_decal/siding/wideplating_new/light{
 	dir = 9
@@ -3094,6 +3321,12 @@
 /obj/structure/curtain/black,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general/som)
+"IU" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
 "IV" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
@@ -3150,12 +3383,31 @@
 /obj/structure/closet/secure_closet/medical2,
 /turf/open/floor/mainship/sterile,
 /area/canora_desert/surface/building/som_medical)
+"Jr" = (
+/obj/machinery/door/airlock/mainship/command{
+	dir = 1;
+	req_access = list(204)
+	},
+/turf/open/floor/mainship/mono,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "Jv" = (
 /obj/structure/closet/secure_closet/guncabinet/mp_armory{
 	req_access = list(204)
 	},
 /turf/open/floor/mainship/office,
 /area/canora_desert/surface/building/command)
+"JA" = (
+/obj/structure/barricade/plasteel,
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 2;
+	id = "minidropship_podlocksom"
+	},
+/turf/open/floor/mainship/mono,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "JC" = (
 /turf/closed/wall/mainship/research/containment/wall/connect_s1{
 	name = "white wall"
@@ -3169,10 +3421,7 @@
 	name = "SOM Hangar Bay"
 	})
 "JI" = (
-/obj/docking_port/stationary/marine_dropship/minidropship/som{
-	roundstart_template = /datum/map_template/shuttle/minidropship/som
-	},
-/turf/open/floor/plating,
+/turf/closed/wall/mainship/outer/canterbury,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay"
 	})
@@ -3276,6 +3525,18 @@
 	},
 /turf/open/floor/mainship/sterile/white,
 /area/canora_desert/surface/building/som_restrooms)
+"KW" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/patrol_point/som_13,
+/turf/open/floor/plating/plating_catwalk,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "Lg" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -3284,6 +3545,12 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"Li" = (
+/obj/machinery/computer,
+/turf/open/floor/plating/plating_catwalk,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "Lm" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 8
@@ -3344,6 +3611,12 @@
 /area/canora_desert/surface/building/som_engimedmaint{
 	name = "SOM FC's Office"
 	})
+"LU" = (
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass{
+	dir = 2
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
 "LW" = (
 /obj/structure/table/reinforced/prison,
 /obj/effect/turf_decal/trimline/dark_blue/line,
@@ -3389,13 +3662,31 @@
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/wood/alt_three,
 /area/canora_desert/surface/building/som_torturechamber)
+"MJ" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/obj/machinery/door_control{
+	dir = 4;
+	id = "minidropship_podlocksom";
+	name = "inner door-control";
+	pixel_x = -25;
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/tile/transparent/dark_blue/anticorner/contrasted{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "MK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship/office,
 /area/canora_desert/surface/building/command)
 "MS" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/plating/plating_catwalk,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay"
 	})
@@ -3648,6 +3939,18 @@
 	},
 /turf/open/floor/grayscale/edge,
 /area/mainship/groundhq/clf/hallways/bathroom)
+"OT" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/patrol_point/som_13,
+/turf/open/floor/plating/plating_catwalk,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "Pg" = (
 /obj/structure/bed/chair/sofa/corsat,
 /obj/machinery/light/small{
@@ -3749,6 +4052,15 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"Qi" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -10
+	},
+/turf/open/floor/mainship/mono,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "Qp" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/warning{
 	dir = 1
@@ -3849,6 +4161,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/iron/grimy,
 /area/canora_desert/surface/building/som_admiral)
+"RC" = (
+/obj/structure/bed/alien,
+/obj/effect/landmark/start/job/clf/breeder,
+/obj/effect/decal/cleanable/blood/splatter/xenocum,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
 "RH" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/warning{
 	dir = 4
@@ -4153,6 +4471,11 @@
 	dir = 10
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"Uo" = (
+/turf/closed/shuttle/ert/engines/right{
+	dir = 4
+	},
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
 "Ur" = (
 /turf/closed/wall/brick,
 /area/mainship/groundhq/clf/living/grunt_rnr)
@@ -4170,6 +4493,14 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/general/som)
+"Uw" = (
+/obj/item/stack/barbed_wire{
+	amount = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "UF" = (
 /obj/structure/bed/chair,
 /obj/effect/turf_decal/trimline/dark_blue,
@@ -4193,6 +4524,10 @@
 /obj/structure/closet/secure_closet/medical3/colony,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/medical/lounge)
+"UR" = (
+/obj/effect/decal/cleanable/blood/splatter/xenocum,
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
 "UT" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark/corner{
 	dir = 1
@@ -4215,6 +4550,7 @@
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "Va" = (
 /obj/structure/bed/chair/sofa/left,
+/obj/effect/decal/cleanable/blood/splatter/cum,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "Vb" = (
@@ -4463,6 +4799,13 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
+"Xt" = (
+/turf/closed/shuttle/ert/engines/left/two{
+	dir = 1
+	},
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "XD" = (
 /obj/structure/window/framed/mainship/toughened{
 	name = "kevlar-weave infused bulletproof window"
@@ -4547,6 +4890,12 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/canora_desert/surface/building/som_admiral)
+"YD" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/turf/closed/wall/mainship/outer/canterbury,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay"
+	})
 "YG" = (
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/som_prison)
@@ -5154,13 +5503,13 @@ uh
 pd
 Gl
 Gl
+db
+uJ
 Gl
 Gl
-Gl
-Gl
-Gl
-Gl
-Gl
+JI
+Xt
+uJ
 Fh
 uW
 gL
@@ -5184,15 +5533,15 @@ cn
 Dk
 ey
 pd
-Gl
-Gl
-Gl
-Gl
-Gl
-Gl
-Gl
-Gl
-Gl
+JI
+bZ
+JI
+JI
+AM
+AM
+JI
+JI
+JI
 Fh
 uW
 gL
@@ -5216,15 +5565,15 @@ xF
 Dk
 ZY
 pd
-Gl
-Gl
-Gl
-Gl
-Gl
-Gl
-Gl
-Gl
-Gl
+bZ
+kq
+MJ
+JI
+zU
+Ou
+CA
+KW
+JA
 Fh
 uW
 gL
@@ -5248,15 +5597,15 @@ xF
 Dk
 yw
 pd
-Gl
-Gl
-Gl
-Gl
-JI
-Gl
-Gl
+bZ
+Li
+Ou
+Jr
+Ou
+EF
+Bt
 MS
-Gl
+FY
 Oa
 fG
 gL
@@ -5280,15 +5629,15 @@ xF
 Dk
 iY
 pd
-Gl
-Gl
-MS
-Gl
-Gl
-Gl
-Gl
-Gl
-Gl
+bZ
+sR
+ji
+JI
+Qi
+Uw
+HD
+OT
+JA
 Fh
 uW
 gL
@@ -5312,15 +5661,15 @@ xF
 Dk
 uh
 pd
-Gl
-Gl
-Gl
-Gl
-Gl
-Gl
-Gl
-Gl
-Gl
+JI
+bZ
+JI
+JI
+CZ
+CZ
+JI
+YD
+JI
 Fh
 uW
 gL
@@ -5346,13 +5695,13 @@ ae
 pd
 Gl
 Gl
+lP
+dF
 Gl
 Gl
-Gl
-Gl
-Gl
-Gl
-Gl
+JI
+EO
+dF
 Fh
 uW
 gL
@@ -6591,7 +6940,7 @@ xa
 rL
 Kr
 Aw
-Jf
+gA
 zJ
 Tf
 LF
@@ -6619,7 +6968,7 @@ tT
 aF
 Ur
 gz
-lb
+rF
 kJ
 Kr
 vU
@@ -7577,21 +7926,21 @@ tT
 (93,1,1) = {"
 tT
 aF
-ma
-ma
-ma
-ma
-ma
-ma
-ma
-ma
-ma
+ko
+IC
+IC
+IC
+IC
+IC
+IC
+IC
+IC
 ko
 IC
 ko
 ko
-FH
-FH
+mp
+wM
 ko
 ko
 IC
@@ -7609,22 +7958,22 @@ tT
 (94,1,1) = {"
 tT
 aF
+ko
+IC
+Uo
 ma
-ma
-ma
-ma
-ma
-ma
-ma
-ma
-ma
+LU
+pa
+IC
+IC
+IC
 ko
 IC
 IC
 sH
-IC
+kE
 cG
-IC
+gD
 IC
 sx
 aF
@@ -7641,23 +7990,23 @@ tT
 (95,1,1) = {"
 tT
 aF
-ma
-ma
-ma
-ma
-ma
-ma
-ma
-ma
-ma
+ko
+sx
+qo
+IU
+IU
+qo
+IC
+IC
+IC
 ko
 ko
 NQ
-IC
-pq
+AY
+RC
 wm
 pq
-IC
+AY
 cG
 aF
 JW
@@ -7673,22 +8022,22 @@ Kc
 (96,1,1) = {"
 tT
 aF
-ma
-ma
-ma
-ma
+ko
+ko
+HW
+mL
 bl
-ma
-ma
-qo
-ma
+HO
+IC
+sx
+ko
 ko
 ko
 xi
 pE
 pq
 wm
-pq
+RC
 cG
 IC
 aF
@@ -7705,15 +8054,15 @@ Kc
 (97,1,1) = {"
 tT
 aF
-ma
-ma
+ko
+ko
 qo
+fb
+UR
 ma
-ma
-ma
-ma
-ma
-ma
+IC
+IC
+ko
 ko
 ko
 Va
@@ -7721,8 +8070,8 @@ ze
 pq
 wX
 pq
-IC
-IC
+kE
+gD
 aF
 aF
 gW
@@ -7737,23 +8086,23 @@ Kc
 (98,1,1) = {"
 tT
 aF
-ma
-ma
-ma
-ma
-ma
-ma
-ma
-ma
-ma
+ko
+ko
+zG
+gk
+nw
+zG
+ko
+ko
+ko
 ko
 ko
 NQ
 lF
-IC
+kE
 cG
 IC
-IC
+AY
 FH
 aF
 aF
@@ -7769,15 +8118,15 @@ Kc
 (99,1,1) = {"
 tT
 aF
-ma
-ma
-ma
-ma
-ma
-ma
-ma
-ma
-ma
+ko
+ko
+qo
+HW
+HW
+qo
+ko
+ko
+ko
 ko
 ko
 fn
@@ -7804,9 +8153,9 @@ tT
 tT
 tT
 Go
-tT
 Go
-tT
+Go
+Go
 tT
 tT
 tT
