@@ -105,8 +105,8 @@
 	human_user.update_inv_back()
 	update_icon()
 	new /obj/effect/temp_visual/smoke(get_turf(human_user))
-	human_user.fly_at(A, calculate_range(human_user), speed)
 	RegisterSignal(human_user, COMSIG_MOVABLE_POST_THROW, PROC_REF(reset_flame))
+	human_user.fly_at(A, calculate_range(human_user), speed)
 	return TRUE
 
 ///Calculate the max range of the jetpack, changed by some item slowdown
