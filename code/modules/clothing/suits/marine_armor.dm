@@ -701,7 +701,7 @@
 //===========================SPEC OPS================================
 
 /obj/item/clothing/suit/storage/marine/specops
-	name = "\improper Ballistic vest"
+	name = "Ballistic vest"
 	desc = "Civilian type armor, made to combat both melee and projectiles."
 	icon = 'icons/mob/clothing/suits/ert_suits.dmi'
 	item_icons = list(
@@ -714,19 +714,20 @@
 	flags_armor_features = NONE
 
 /obj/item/clothing/suit/storage/marine/specops/support
-	name = "\improper Ballistic vest"
+	name = "Ballistic vest"
 	desc = "Civilian type armor, made to combat both melee and projectiles."
 	icon_state = "specops_vest_drone"
 
 /obj/item/clothing/suit/storage/marine/specops/medic
-	name = "\improper Ballistic vest"
+	name = "Ballistic vest"
 	desc = "Civilian type armor, made to combat both melee and projectiles."
 	icon_state = "specops_vest_medic"
 
 /obj/item/clothing/suit/storage/marine/specops/leader
-	name = "\improper Ballistic vest"
-	desc = "Civilian type armor, made to combat both melee and projectiles."
+	name = "Ballistic vest"
+	desc = "Civilian type armor, made to combat both melee and projectiles. Comes with tactical elbow pads."
 	icon_state = "specops_vest_leader"
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 40, ENERGY = 35, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 
 //===========================MARINE VERSION================================

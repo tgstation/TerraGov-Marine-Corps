@@ -524,6 +524,7 @@
 	item_icons = list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
 	)
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
 	item_state = "specops_uniform"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	has_sensor = 0
