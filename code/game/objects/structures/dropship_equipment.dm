@@ -886,6 +886,7 @@
 	ammo_type_used = CAS_BOMBLET
 
 /obj/structure/dropship_equipment/cas/weapon/bomblet_pod/update_icon_state()
+	. = ..()
 	if(ammo_equipped?.ammo_count)
 		icon_state = "bomblet_pod_loaded"
 	else if(ship_base)
@@ -905,6 +906,7 @@
 	ammo_type_used = CAS_BOMB
 
 /obj/structure/dropship_equipment/cas/weapon/bomb_pod/update_icon_state()
+	. = ..()
 	if(ammo_equipped?.ammo_count)
 		icon_state = "bomb_pod_loaded"
 	else if(ship_base)
