@@ -257,6 +257,10 @@
 		user.heal_overall_damage(5, 0, updating_health = TRUE)
 		return
 
+	if(target.stat = DEAD)
+		to_chat(user, span_rose("[target] is already dead."))
+		return
+
 	to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 
