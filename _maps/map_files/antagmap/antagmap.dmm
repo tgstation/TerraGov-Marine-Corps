@@ -226,7 +226,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/space/basic,
+/turf/open/floor/wood/alt_three,
 /area/canora_desert/surface/building/som_torturechamber)
 "cG" = (
 /obj/alien/weeds/node/resting,
@@ -2275,7 +2275,7 @@
 /obj/machinery/door/airlock/mainship/command/FCDRoffice{
 	req_access = list(209)
 	},
-/turf/open/floor/mainship/office,
+/turf/open/floor/wood/alt_three,
 /area/canora_desert/surface/building/som_engimedmaint{
 	name = "SOM FC's Office"
 	})
