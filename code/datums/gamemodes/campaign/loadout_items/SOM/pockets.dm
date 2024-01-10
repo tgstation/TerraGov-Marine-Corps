@@ -86,7 +86,7 @@
 	desc = "A general purpose pouch used to carry small items."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/general/som
-	jobs_supported = list(STAFF_OFFICER, CAPTAIN)
+	jobs_supported = list(SOM_STAFF_OFFICER, SOM_COMMANDER)
 
 //l_pocket
 /datum/loadout_item/l_pocket/som_standard_first_aid
@@ -169,4 +169,4 @@
 	desc = "A general purpose pouch used to carry small items."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/general/som
-	jobs_supported = list(STAFF_OFFICER, CAPTAIN)
+	jobs_supported = list(SOM_STAFF_OFFICER, SOM_COMMANDER)
