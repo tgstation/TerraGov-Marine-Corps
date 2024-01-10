@@ -35,9 +35,6 @@
 
 	print_backstory(H)
 
-	H.amputate_limb(BODY_ZONE_L_LEG)
-	H.amputate_limb(BODY_ZONE_R_LEG)
-
 	if(!leader)
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/retired/leader)
@@ -47,9 +44,17 @@
 		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the TGMC retired veteran expedition leader! Lead your fellow veterans to one last hurrah!</notice></p>")
 		return
 
+	if(prob(30))
+		var/datum/job/J = SSjob.GetJobType(/datum/job/retired/augmented)
+		H.apply_assigned_role_to_spawn(J)
+		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are an augmented TGMC veteran, you may have had a few limbs replaced with synthetic versions, but at least you can walk! Follow the expedition leader and relive your glory days!</notice></p>")
+		return
+
+	H.amputate_limb(BODY_ZONE_L_LEG)
+	H.amputate_limb(BODY_ZONE_R_LEG)
 	var/obj/vehicle/ridden/wheelchair/new_wheelchair = new(H.drop_location())
 	new_wheelchair.buckle_mob(H, TRUE)
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/retired)
 	H.apply_assigned_role_to_spawn(J)
-	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are TGMC veteran, follow the expedition leader and relive your glory days!</notice></p>")
+	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a TGMC veteran, follow the expedition leader and relive your glory days!</notice></p>")

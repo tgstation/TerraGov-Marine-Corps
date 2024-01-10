@@ -645,7 +645,7 @@
 /obj/structure/ship_ammo/cas/bomb
 	name = "\improper AOE-200lb 'Tiny' stack"
 	desc = "A decent-sized payload of explosive bombs, will only fit in a full-sized bomb pod. Moving this will require some sort of lifter."
-	icon_state = "minirocket"
+	icon_state = "bomb_200"
 	icon = 'icons/Marine/mainship_props.dmi'
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/bomb_pod
 	ammo_count = 8
@@ -672,7 +672,6 @@
 	name = "\improper AOE-400lb 'Mighty' stack"
 	desc = "A decently-sized payload of explosive bombs, will only fit in a full-sized bomb pod. Moving this will require some sort of lifter."
 	icon_state = "bomb_400"
-	icon = 'icons/Marine/mainship_props.dmi'
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/bomb_pod
 	ammo_count = 4
 	max_ammo_count = 4
@@ -726,7 +725,7 @@
 /obj/structure/ship_ammo/cas/bomblet/medium
 	name = "\improper AOE-75lb 'Poppies' stack"
 	desc = "A large litter of explosive bomblets. Moving this will require some sort of lifter."
-	icon_state = "bomblet_75"
+	icon_state = "bomb_75"
 	ammo_count = 20
 	max_ammo_count = 20
 	ammo_name = "bomb_75"

@@ -76,3 +76,14 @@
   ivanmixo:
   - bugfix: Various fixes to the strip menu, check the PR
   - rscdel: Removes the HE GL54 nades from req
+2024-01-10:
+  DeltaFire15:
+  - bugfix: It should be less likely for you to go DNR in cases where you shouldn't
+      be DNR.
+  Dikozda:
+  - spellcheck: fix typo in jelly message
+  Pariah919:
+  - bugfix: Some CAS bombs were broken in the CAS update icon wise, this should fix
+      them.
+  XElectricX, ivanmixo:
+  - rscadd: Added a TGMC retired veteran ERT

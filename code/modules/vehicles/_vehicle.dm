@@ -92,6 +92,10 @@
 /obj/vehicle/proc/is_driver(mob/M)
 	return is_occupant(M) && occupants[M] & VEHICLE_CONTROL_DRIVE
 
+///Is the passed mob an equipment controller?
+/obj/vehicle/proc/is_equipment_controller(mob/M)
+	return is_occupant(M) && occupants[M] & VEHICLE_CONTROL_EQUIPMENT
+
 /obj/vehicle/proc/is_occupant(mob/M)
 	return !isnull(LAZYACCESS(occupants, M))
 

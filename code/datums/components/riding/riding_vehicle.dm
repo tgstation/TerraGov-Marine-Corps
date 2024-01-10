@@ -130,7 +130,7 @@
 	if(!right_hand?.is_usable() || user.get_item_for_held_index(2))
 		working_hands--
 	if(!working_hands)
-		to_chat(user, span_warning("You have no arms to propel [src]!"))
+		to_chat(user, span_warning("You have no arms to propel [movable_parent]!"))
 		return COMPONENT_DRIVER_BLOCK_MOVE // No hands to drive your chair? Tough luck!
 	return ..()
 
