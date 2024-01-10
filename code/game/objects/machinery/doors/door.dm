@@ -30,6 +30,8 @@
 	var/list/fillers
 	//used for determining emergency access
 	var/emergency = FALSE
+	var/cyclelinkeddir = 0
+	var/obj/machinery/door/airlock/cyclelinkedairlock
 
 	//Multi-tile doors
 	dir = EAST
@@ -102,6 +104,9 @@
 
 	if(density)
 		if(allowed(user) || emergency || unrestricted_side(user))
+			if(cyclelinkedairlock)
+				if(!emergency && !cyclelinkedairlock.emergency && allowed(user))
+					cyclelinkedairlock.close()
 			open()
 		else
 			flick("door_deny", src)

@@ -101,25 +101,6 @@
 /obj/effect/mapping_helpers/airlock
 	layer = DOOR_HELPER_LAYER
 
-/obj/effect/mapping_helpers/airlock/cyclelink_helper
-	name = "airlock cyclelink helper"
-	icon_state = "airlock_cyclelink_helper"
-
-/obj/effect/mapping_helpers/airlock/cyclelink_helper/Initialize(mapload)
-	. = ..()
-	if(!mapload)
-		log_world("### MAP WARNING, [src] spawned outside of mapload!")
-		return
-	//var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
-	//if(airlock)
-	//	if(airlock.cyclelinkeddir)
-	//		log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried to set [airlock] cyclelinkeddir, but it's already set!")
-	//	else
-	//		airlock.cyclelinkeddir = dir
-	//else
-		//log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
-
-
 /obj/effect/mapping_helpers/airlock/locked
 	name = "airlock lock helper"
 	icon_state = "airlock_locked_helper"
@@ -577,6 +558,28 @@
 		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 		return
 	airlock.unres_sides ^= dir
+
+/obj/effect/mapping_helpers/airlock/cyclelink_helper
+	name = "airlock cyclelink helper"
+	icon_state = "airlock_cyclelink_helper"
+
+/obj/effect/mapping_helpers/airlock/cyclelink_helper/Initialize(mapload)
+	. = ..()
+	if(!airlock)
+		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+	//if(airlock)
+	//	if(airlock.cyclelinkeddir)
+	//		log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried to set [airlock] cyclelinkeddir, but it's already set!")
+	//	else
+	//		airlock.cyclelinkeddir = dir
+	//else
+		//log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+	if(airlock.cyclelinkeddir)
+		log_mapping("[src] at [AREACOORD(src)] tried to set [airlock] cyclelinkeddir, but it's already set!")
+	else
+		airlock.cyclelinkeddir = dir
 
 //	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 //	if(airlock)
