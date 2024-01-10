@@ -60,7 +60,6 @@ In the Crash gamemode, cooperate as a marine! Work as a squad to capture the dis
 In the Crash gamemode, remember that your objective is to secure all three disks, put the disks into the nuclear device and head home while the bomb is active. Xenos will keep on respawning until all of the marines are dead.
 While securing a FOB or securing a disk site, do not wander around outside! You will risk death by xenos who are comfy in sieging down the place.
 Spaceacillin loses effectiveness against severe wound infections. Polyhexanide will pick where it left off at, at the cost of some toxin damage and drowsiness.
-Any marine can use bicardine loaded in a vali weapon to heal brute damage on corpses. No armor system required!
 Russian Red and Neuraline injectors share the same healing property as Inaprovaline, however will also heal severe organ damage.
 Wash your hands before surgery, in the field or shipside.
 An entire MRE can fit in your boot.
