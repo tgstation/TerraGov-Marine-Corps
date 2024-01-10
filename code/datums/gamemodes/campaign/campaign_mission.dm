@@ -376,8 +376,8 @@
 
 ///applies mission cash bonuses to both factions
 /datum/campaign_mission/proc/apply_cash_reward(start_team_cash, hostile_team_cash)
-	mode.stat_list[starting_faction].total_attrition_points += start_team_cash
-	mode.stat_list[hostile_faction].total_attrition_points += hostile_team_cash
+	mode.stat_list[starting_faction].apply_cash(start_team_cash)
+	mode.stat_list[hostile_faction].apply_cash(hostile_team_cash)
 
 ///checks how many marines and SOM are still alive
 /datum/campaign_mission/proc/count_humans(list/z_levels = SSmapping.levels_by_trait(ZTRAIT_AWAY), count_flags) //todo: make new Z's not away levels, or ensure ground and away is consistant in behavior
