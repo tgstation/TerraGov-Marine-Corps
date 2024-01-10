@@ -2092,11 +2092,8 @@
 /turf/open/floor/wood/alt_three,
 /area/canora_desert/surface/building/som_torturechamber)
 "wB" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/mainship/mono,
+/obj/effect/teleporter_linker,
+/turf/open/floor/plating/plating_catwalk,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay"
 	})
@@ -4526,6 +4523,7 @@
 /area/mainship/groundhq/clf/medical/lounge)
 "UR" = (
 /obj/effect/decal/cleanable/blood/splatter/xenocum,
+/obj/effect/teleporter_linker,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "UT" = (
@@ -5601,7 +5599,7 @@ bZ
 Li
 Ou
 Jr
-Ou
+wB
 EF
 Bt
 MS
@@ -5730,10 +5728,10 @@ eN
 wI
 He
 He
+He
 MX
 Pn
 Tj
-wB
 en
 uW
 gL
