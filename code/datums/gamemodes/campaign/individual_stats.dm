@@ -3,7 +3,7 @@
 	///currently occupied mob - if any
 	var/mob/living/carbon/current_mob
 	///Credits. You buy stuff with it
-	var/currency = 1000 //test only
+	var/currency = 30
 	///List of job types based on faction
 	var/list/valid_jobs = list()
 	///Single list of unlocked perks for easy reference
@@ -321,7 +321,7 @@
 				return
 			loadouts[job].equip_loadout(user)
 			user.playsound_local(user, 'sound/effects/menu_click.ogg', 50)
-			//user_id.flags_id &= ~CAN_BUY_LOADOUT //disabled for testing
+			user_id.flags_id &= ~CAN_BUY_LOADOUT
 			return TRUE
 
 //loadout/perk UI for campaign gamemode
