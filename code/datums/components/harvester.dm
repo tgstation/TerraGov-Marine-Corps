@@ -261,6 +261,10 @@
 		to_chat(user, span_rose("[target] is already dead."))
 		return
 
+	if((target.species.species_flags & NO_CHEM_METABOLIZATION))
+		to_chat(user, span_rose("[target] Cannot process chemicals."))
+		return
+
 	to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 
