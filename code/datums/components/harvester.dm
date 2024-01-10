@@ -261,7 +261,11 @@
 		to_chat(user, span_rose("[target] is already dead."))
 		return
 
-	if((target.species.species_flags & NO_CHEM_METABOLIZATION))
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/carbon_target = target
+
+	if((carbon_target.species.species_flags & NO_CHEM_METABOLIZATION))
 		to_chat(user, span_rose("[target] Cannot process chemicals."))
 		return
 
