@@ -257,7 +257,7 @@
 		user.heal_overall_damage(5, 0, updating_health = TRUE)
 		return
 
-	if(target.stat = DEAD)
+	if(target.stat == DEAD)
 		to_chat(user, span_rose("[target] is already dead."))
 		return
 
