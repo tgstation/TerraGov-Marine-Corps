@@ -331,6 +331,13 @@
 
 /datum/action/campaign_loadout/give_action(mob/M)
 	. = ..()
+	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[owner.faction]
+	if(!your_faction)
+		return
+
+	var/datum/individual_stats/stats = your_faction.individual_stat_list[owner.key]
+	if(!stats)
+		CRASH("Attempted to load Individual stat datum without one existing for [owner] key [owner.key]")
 	stats.current_mob = M
 
 /datum/action/campaign_loadout/action_activate()
