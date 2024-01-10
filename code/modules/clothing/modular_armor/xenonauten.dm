@@ -191,6 +191,12 @@
 		/obj/item/weapon/energy/sword,
 	)
 
+/obj/item/clothing/suit/modular/xenonauten/light/bikini
+	name = "\improper NTC-B bikini armpr"
+	desc = "A NTC-B vest, a set... of extra-light bikini armor? with modular attachments made to work in many enviroments. This one seems to be a bikini variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	greyscale_config = /datum/greyscale_config/xenonaut/bikini
+	slowdown = 0
+	soft_armor = list(MELEE = 35, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 40, BIO = 40, FIRE = 50, ACID = 40)
 /obj/item/clothing/suit/modular/xenonauten/bulletresistant
 	name = "\improper NTC bullet-resistant armor"
 	desc = "A set of armor that excels in protecting the wearer against high-velocity solid projectiles. This one has bullet resistant padding on the limbs aswell."
@@ -200,33 +206,6 @@
 	slowdown = 0
 
 	greyscale_config = /datum/greyscale_config/xenonaut/bulletproof
-
-	allowed = list(
-		/obj/item/weapon/gun/,
-		/obj/item/flashlight,
-		/obj/item/storage/holster/blade,
-		/obj/item/storage/holster/belt/pistol/m4a3,
-		/obj/item/storage/holster/belt/m44,
-	)
-
-	allowed = list(
-		/obj/item/weapon/gun,
-		/obj/item/tank/emergency_oxygen,
-		/obj/item/flashlight,
-		/obj/item/ammo_magazine,
-		/obj/item/storage/fancy/cigarettes,
-		/obj/item/tool/lighter,
-		/obj/item/weapon/baton,
-		/obj/item/restraints/handcuffs,
-		/obj/item/explosive/grenade,
-		/obj/item/binoculars,
-		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/holster/blade,
-		/obj/item/storage/holster/belt,
-		/obj/item/weapon/energy/sword,
-	)
 
 //Xenonauten helmets
 /obj/item/clothing/head/modular/m10x

@@ -24,17 +24,25 @@
 	/// What is allowed to be equipped in suit storage
 	allowed = list(
 		/obj/item/weapon/gun,
-		/obj/item/instrument,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/flashlight,
+		/obj/item/ammo_magazine,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/weapon/baton,
+		/obj/item/restraints/handcuffs,
+		/obj/item/explosive/grenade,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/storage/holster/belt/pistol/m4a3,
+		/obj/item/storage/holster/belt/m44,
+		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
-		/obj/item/weapon/claymore,
 		/obj/item/storage/holster/belt,
-		/obj/item/storage/belt/knifepouch,
-		/obj/item/weapon/twohanded,
-		/obj/item/tool/pickaxe/plasmacutter,
-		/obj/item/tool/shovel/etool,
 		/obj/item/weapon/energy/sword,
 	)
+
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	w_class = WEIGHT_CLASS_BULKY
 	equip_delay_self = 2 SECONDS
