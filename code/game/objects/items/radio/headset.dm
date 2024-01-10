@@ -597,7 +597,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = /obj/item/encryptionkey/dutch
 	frequency = FREQ_COLONIST
 
-
 /obj/item/radio/headset/distress/pmc
 	name = "contractor headset"
 	keyslot = /obj/item/encryptionkey/PMC
@@ -649,21 +648,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "retirement home headset"
 	keyslot = /obj/item/encryptionkey/retired
 	frequency = FREQ_RETIRED
-
-/obj/item/radio/headset/mainship/clf
-	frequency = FREQ_COLONIST
-	faction = FACTION_CLF
-	headset_hud_on = TRUE
-	minimap_type = /datum/action/minimap/clf
-
-/obj/item/radio/headset/mainship/clf/com
-	frequency = FREQ_COLONIST
-	faction = FACTION_CLF
-	icon_state = "com_headset_alt"
-	headset_hud_on = TRUE
-	minimap_type = /datum/action/minimap/clf
-	use_command = TRUE
-	command = TRUE
 
 //SOM headsets
 
