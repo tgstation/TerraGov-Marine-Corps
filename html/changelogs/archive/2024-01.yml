@@ -49,3 +49,41 @@
   - code_imp: Fixed some weird implementations of the examine signal
   - qol: AI eyes can hear stuff the camera eye hears
   - qol: AI eyes can see runechat from mobs (and objects) talking around them
+2024-01-08:
+  Helg2:
+  - qol: Overheal is now located after the main health in status tab.
+  Pariah919:
+  - rscadd: Two new type of missiles, the Swansong and Monarch.
+  - rscadd: CAS bombs and bomblets. 200, 400, and 1000lb bombs. 50lb and 75lb bombs.
+  - balance: CAS Missiles have been entirely rebalanced into classes.
+  - balance: The classes are ATGM (3s/AGM), Heavy(6s/PGHM), Normal (4s/PGLM).
+  - balance: You can no longer attach lasguns nor tesla to lasgun pouches for magazine
+      use.
+  - balance: Marines can no longer access handheld tanglefoot grenades, all other
+      forms of tangle (AGLS, Mortar, etc) are untouched.
+  ivanmixo:
+  - refactor: Cleaned up hud icons and overlays
+  yyzsong:
+  - balance: Ravager, Gorger, and puppeteer will no longer be affected by pepperball
+2024-01-09:
+  Helg2:
+  - bugfix: '[Icy Caves] Added missing pipe for the second landing zone.'
+  Lumipharon:
+  - balance: CQC skill now does +5 max damage instead of +1
+  SplinterGP:
+  - bugfix: glass can't turn into other glass types by merging it into a reinforced/phoron
+      glass stack
+  ivanmixo:
+  - bugfix: Various fixes to the strip menu, check the PR
+  - rscdel: Removes the HE GL54 nades from req
+2024-01-10:
+  DeltaFire15:
+  - bugfix: It should be less likely for you to go DNR in cases where you shouldn't
+      be DNR.
+  Dikozda:
+  - spellcheck: fix typo in jelly message
+  Pariah919:
+  - bugfix: Some CAS bombs were broken in the CAS update icon wise, this should fix
+      them.
+  XElectricX, ivanmixo:
+  - rscadd: Added a TGMC retired veteran ERT

@@ -195,7 +195,7 @@
 		if(reinf)
 			new /obj/item/stack/sheet/glass/reinforced(loc, 2)
 		else
-			new /obj/item/stack/sheet/glass(loc, 2)
+			new /obj/item/stack/sheet/glass/glass(loc, 2)
 	else
 		new shardtype(loc)
 		if(is_full_window())

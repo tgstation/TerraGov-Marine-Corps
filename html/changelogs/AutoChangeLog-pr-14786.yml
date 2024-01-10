@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - qol: "Spatial agent glasses have all huds now"

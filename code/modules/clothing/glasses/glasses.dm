@@ -358,22 +358,6 @@
 	name = "prescription sunglasses"
 	prescription = TRUE
 
-/obj/item/clothing/glasses/sunglasses/sa
-	name = "spatial agent's sunglasses"
-	desc = "Glasses worn by a spatial agent."
-	eye_protection = 2
-	darkness_view = 8
-	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
-	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-
-/obj/item/clothing/glasses/sunglasses/sa/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/clothing_tint, TINT_NONE)
-
-/obj/item/clothing/glasses/sunglasses/sa/nodrop
-	desc = "Glasses worn by a spatial agent. cannot be dropped"
-	flags_item = DELONDROP
-
 /obj/item/clothing/glasses/sunglasses/sechud
 	name = "HUDSunglasses"
 	desc = "Sunglasses with a HUD."
