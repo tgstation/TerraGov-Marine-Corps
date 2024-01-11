@@ -1,3 +1,5 @@
+GLOBAL_VAR_INIT(max_larva_count_per_mob, 3) //Added for adminbus reasons
+
 //Some mob defines below
 #define AI_CAMERA_LUMINOSITY 6
 ///Comment out if you don't want VOX to be enabled and have players download the voice sounds.
@@ -611,7 +613,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CARRIER_HUGGER_THROW_DISTANCE 7
 #define CARRIER_SLASH_HUGGER_DAMAGE 25
 ///how many can be beared at once
-#define MAX_LARVA_PREGNANCIES 3
+#define MAX_LARVA_PREGNANCIES GLOB.max_larva_count_per_mob
 //Defiler defines
 #define DEFILER_GAS_CHANNEL_TIME 0.5 SECONDS
 #define DEFILER_GAS_DELAY 1 SECONDS
