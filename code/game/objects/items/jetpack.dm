@@ -29,33 +29,6 @@
 	///Controlling action
 	var/datum/action/ability/activable/item_toggle/jetpack/toggle_action
 
-/datum/action/ability/activable/item_toggle/jetpack
-	name = "Use jetpack"
-	action_icon_state = "axe_sweep"
-	desc = "Briefly fly using your jetpack."
-	keybind_flags = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
-	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_JETPACK)
-
-/datum/action/ability/activable/item_toggle/jetpack/New(Target, obj/item/holder)
-	. = ..()
-	var/obj/item/jetpack_marine/jetpack = Target
-	cooldown_duration = jetpack.cooldown_time
-
-/datum/action/ability/activable/item_toggle/jetpack/can_use_ability(silent, override_flags, selecting)
-	var/mob/living/carbon/carbon_owner = owner
-	if(carbon_owner.incapacitated() || carbon_owner.lying_angle)
-		return FALSE
-	var/obj/item/jetpack_marine/jetpack = holder_item
-	if(jetpack.fuel_left < FUEL_USE)
-		carbon_owner.balloon_alert(carbon_owner, "No fuel")
-		return
-	return ..()
-
-//////////////
-
-
-
-
 /obj/item/jetpack_marine/Initialize(mapload)
 	. = ..()
 	toggle_action = new(src)
@@ -193,6 +166,27 @@
 	balloon_alert(user, "Refilled")
 	update_icon()
 
+/datum/action/ability/activable/item_toggle/jetpack
+	name = "Use jetpack"
+	action_icon_state = "axe_sweep"
+	desc = "Briefly fly using your jetpack."
+	keybind_flags = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
+	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_JETPACK)
+
+/datum/action/ability/activable/item_toggle/jetpack/New(Target, obj/item/holder)
+	. = ..()
+	var/obj/item/jetpack_marine/jetpack = Target
+	cooldown_duration = jetpack.cooldown_time
+
+/datum/action/ability/activable/item_toggle/jetpack/can_use_ability(silent, override_flags, selecting)
+	var/mob/living/carbon/carbon_owner = owner
+	if(carbon_owner.incapacitated() || carbon_owner.lying_angle)
+		return FALSE
+	var/obj/item/jetpack_marine/jetpack = holder_item
+	if(jetpack.fuel_left < FUEL_USE)
+		carbon_owner.balloon_alert(carbon_owner, "No fuel")
+		return
+	return ..()
 
 /obj/item/jetpack_marine/heavy
 	name = "heavy lift jetpack"
