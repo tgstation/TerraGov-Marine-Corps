@@ -107,6 +107,8 @@
 
 /obj/effect/countdown/action_cooldown/attach(atom/A)
 	var/atom/movable/screen/action_button/button = A
+	if(istype(button))
+		return qdel(src)
 	attached_to = button
 	button.vis_contents += src
 	attached_action = button.source_action
