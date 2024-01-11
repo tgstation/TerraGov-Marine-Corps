@@ -122,6 +122,8 @@
 	var/new_val = round(attached_action.cooldown_remaining(), 0.1)
 	if(new_val == displayed_text)
 		return
+	if(new_val >= 10) //avoid cropping, and deciseconds don't really matter if you're 10+ seconds away
+		new_val = floor(new_val)
 	displayed_text = new_val
 
 	if(displayed_text)
