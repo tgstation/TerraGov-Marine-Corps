@@ -81,6 +81,7 @@
 		/datum/action/ability/xeno_action/hive_message,
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/activable/xeno/command_minions,
+		/datum/action/ability/activable/psionic_interact, //Psychics for all the psykers!
 	)
 
 

@@ -34,6 +34,7 @@
 		/datum/action/ability/activable/xeno/psy_blast,
 		/datum/action/ability/activable/xeno/psychic_shield,
 		/datum/action/ability/activable/xeno/transfer_plasma/drone,
+		/datum/action/ability/activable/psionic_interact,
 	)
 
 /datum/xeno_caste/warlock/normal

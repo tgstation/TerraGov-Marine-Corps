@@ -75,6 +75,7 @@
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/xeno_action/rally_minion,
 		/datum/action/ability/xeno_action/blessing_menu,
+		/datum/action/ability/activable/psionic_interact,
 	)
 
 /datum/xeno_caste/shrike/normal
