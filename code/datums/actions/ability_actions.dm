@@ -17,15 +17,14 @@
 	var/target_flags = NONE
 	/// flags to restrict an ability to certain gamemode
 	var/gamemode_flags = ABILITY_ALL_GAMEMODE
+	///Cooldown map text holder
+	var/obj/effect/countdown/action_cooldown/countdown
 
 /datum/action/ability/New(Target)
 	. = ..()
 	if(ability_cost)
 		name = "[name] ([ability_cost])"
-	var/image/cooldown_image = image('icons/effects/progressicons.dmi', null, "busy_clock", ACTION_LAYER_CLOCK)
-	cooldown_image.pixel_y = 7
-	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
-	visual_references[VREF_IMAGE_XENO_CLOCK] = cooldown_image
+	countdown = new(button, src)
 
 /datum/action/ability/give_action(mob/living/L)
 	. = ..()
@@ -139,7 +138,7 @@
 	if(cooldown_timer || !cooldown_length) // stop doubling up or waiting on zero
 		return
 	cooldown_timer = addtimer(CALLBACK(src, PROC_REF(on_cooldown_finish)), cooldown_length, TIMER_STOPPABLE)
-	button.add_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
+	countdown.start()
 
 ///Time remaining on cooldown
 /datum/action/ability/proc/cooldown_remaining()
@@ -150,7 +149,7 @@
 	cooldown_timer = null
 	if(!button)
 		CRASH("no button object on finishing ability action cooldown")
-	button.cut_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
+	countdown.stop()
 	update_button_icon()
 
 ///Any changes when a xeno with this ability evolves
