@@ -63,12 +63,12 @@
 /////////////////////////////////
 
 /datum/action/ability/activable/xeno/impregnatequeen
-	name = "Queenly Impregnation"
+	name = "Royal Treatment"
 	action_icon_state = "impregnate"
-	desc = "Infect your victim with a young one without a facehugger. This will burn them a LOT due to acidic release, and injure them severely otherwise..."
-	cooldown_duration = 5 SECONDS
+	desc = "Directly use your ovipositor to lay larva directly within a host. This is especially violent, and only grows moreso with each larva inserted; The Queenmother warns this method can easily kill a host, so be careful!"
+	cooldown_duration = 2.5 SECONDS
 	use_state_flags = ABILITY_USE_STAGGERED
-	ability_cost = 150
+	ability_cost = 200
 	gamemode_flags = ABILITY_NUCLEARWAR
 	target_flags = ABILITY_HUMAN_TARGET
 	keybinding_signals = list(
@@ -119,8 +119,8 @@
 		owner.visible_message(span_warning("[X] fucks [victim]!"), span_warning("We fuck [victim]!"), span_warning("You hear slapping."), 5, victim)
 		if(victim.stat == CONSCIOUS)
 			to_chat(victim, span_warning("[X] fucks you!"))
-		victim.apply_damage(35, BURN, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //The Queen is more acidic
-		victim.apply_damage(35, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //And too large for most hosts.
+		victim.apply_damage(5, BURN, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //The Queen is made for stuffing hosts...
+		victim.apply_damage(5, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //But she's a tad large. Those hips will hurt!
 		if(ismonkey(victim))
 			victim.apply_damage(95, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //They CERTAINLY aren't fitting in a monkey.
 		var/implanted_embryos = 0
@@ -128,9 +128,12 @@
 			implanted_embryos++
 			if(implanted_embryos >= MAX_LARVA_PREGNANCIES)
 				to_chat(owner, span_danger("This Host is way too full! You begin to overstuff them..."))
-				victim.apply_damage(15*(implanted_embryos/3), BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //Too many larvae!
+				victim.apply_damage(5*(implanted_embryos/3), BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //Too many larvae!
+				victim.apply_damage(5*(implanted_embryos/4), BURN, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //Too many larvae!
 				if(implanted_embryos >= (MAX_LARVA_PREGNANCIES*2))
 					victim.apply_damage(15*(implanted_embryos/2), CLONE, updating_health = TRUE) //WAY too many larvae and life-sustaining drugs!
+					victim.apply_damage(5*(implanted_embryos/2), BURN, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //But as it builds up...
+					victim.apply_damage(5*(implanted_embryos/2), BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //It'll get worse!
 		var/obj/item/alien_embryo/embryo = new(victim)
 		embryo.hivenumber = hivenumber
 		if(victim.gender==FEMALE)
