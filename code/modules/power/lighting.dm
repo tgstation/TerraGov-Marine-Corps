@@ -155,6 +155,7 @@
 	var/random_flicker = FALSE
 	var/flicker_time_upper_max = 10 SECONDS
 	var/flicker_time_lower_min = 0.2 SECONDS
+	var/datum/looping_sound/lightambient
 
 /obj/machinery/light/mainship
 	base_state = "tube"
@@ -252,6 +253,7 @@
 	turn_light(null, (A.lightswitch && A.power_light))
 
 /obj/machinery/light/Destroy()
+	QDEL_NULL(lightambient)
 	GLOB.nightfall_toggleable_lights -= src
 	return ..()
 
@@ -413,6 +415,18 @@
 		if(status != LIGHT_OK)
 			return
 		flickering = flickering? FALSE : TRUE
+		if(flickering)
+			lightambient = pick(/datum/looping_sound/flickeringlightone,
+			/datum/looping_sound/flickeringlighttwo,
+			/datum/looping_sound/flickeringlightthree,
+			/datum/looping_sound/flickeringlightfour,
+			/datum/looping_sound/flickeringlightfive,
+			/datum/looping_sound/flickeringlightsix,
+			)
+			lightambient = new(null, FALSE)
+			lightambient.start(src)
+		else
+			lightambient.stop(src)
 	if(random_flicker)
 		flicker_time = rand(flicker_time_lower_min, flicker_time_upper_max)
 	if(status != LIGHT_OK)
@@ -440,8 +454,10 @@
 ///proc to toggle power on and off for light
 /obj/machinery/light/proc/flicker_power_state(turn_on = TRUE, turn_off = FALSE)
 	if(light_flicker_state == FALSE)
+		pick(playsound(loc, 'sound/effects/lightfizz.ogg', 35, TRUE), playsound(loc, 'sound/effects/lightfizz2.ogg', 35, TRUE), playsound(loc, 'sound/effects/lightfizz3.ogg', 35, TRUE), playsound(loc, 'sound/effects/lightfizz4.ogg', 35, TRUE), playsound(loc, 'sound/effects/lightfizz5.ogg', 35, TRUE), playsound(loc, 'sound/effects/lightfizz6.ogg', 35, TRUE))
 		update()
 	else
+		pick(playsound(loc, 'sound/effects/lightfizz.ogg', 35, TRUE), playsound(loc, 'sound/effects/lightfizz2.ogg', 35, TRUE), playsound(loc, 'sound/effects/lightfizz3.ogg', 35, TRUE), playsound(loc, 'sound/effects/lightfizz4.ogg', 35, TRUE), playsound(loc, 'sound/effects/lightfizz5.ogg', 35, TRUE), playsound(loc, 'sound/effects/lightfizz6.ogg', 35, TRUE))
 		turn_light(null, FALSE)
 
 //Xenos smashing lights
