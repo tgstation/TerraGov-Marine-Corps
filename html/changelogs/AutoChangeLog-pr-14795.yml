@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - qol: "Defiler egg injection has more feedback now"
+  - bugfix: "Opening the defiler egg mid progress bar makes the injection fail"

@@ -81,5 +81,5 @@ map slumbridge
 endmap
 
 map daedalusprison
-	minplayers 1
+				minplayers 1
 endmap

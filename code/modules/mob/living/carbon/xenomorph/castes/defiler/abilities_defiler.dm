@@ -337,6 +337,11 @@
 			span_xenodanger("Our stinger retracts, leaving the egg and little one alive."))
 		return fail_activate()
 
+	if(alien_egg.maturity_stage != alien_egg.stage_ready_to_burst)
+		alien_egg.balloon_alert(X, "Egg not mature")
+		return fail_activate()
+
+	alien_egg.balloon_alert_to_viewers("Injected")
 	succeed_activate()
 	add_cooldown()
 

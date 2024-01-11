@@ -336,7 +336,7 @@
 		return
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED && is_ground_level(owner.z))
 		if(!silent)
-			owner.balloon_alert("too early")
+			owner.balloon_alert(owner, "too early")
 		return FALSE
 
 /datum/action/ability/xeno_action/zero_form_beam/action_activate()
