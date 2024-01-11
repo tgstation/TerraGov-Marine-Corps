@@ -245,7 +245,7 @@
 // ***************************************
 
 /datum/action/ability/activable/xeno/oppose
-	name = "oppose"
+	name = "Oppose"
 	action_icon_state = "rejuvenation"
 	desc = "Violently suffuse the nearby ground with stored blood, staggering nearby marines and healing nearby xenomorphs."
 	cooldown_duration = 30 SECONDS
