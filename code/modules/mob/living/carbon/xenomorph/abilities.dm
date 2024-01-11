@@ -1510,6 +1510,7 @@
 		X.visible_message(span_warning("[X] fucks [victim]!"), span_warning("We fuck [victim]!"), span_warning("You hear slapping."), 5, victim)
 		if(victim.stat == CONSCIOUS)
 			to_chat(victim, span_warning("[X] fucks you!"))
+			victim.emote("moan")
 		succeed_activate()
 /////////////////////////////////
 // Cocoon
@@ -1644,7 +1645,7 @@
 	///our stabbing style.
 	var/stab_description = "swift tail-jab!"
 	///the flat armor penetration damage, doubled when grabbed. Blunt tailed xenos wont have sharpness but will have 1.2x more penetration, like maces from most games i guess.
-	var/penetration = 25
+	var/penetration = 10
 	///the multiplier for damage against structures.
 	var/structure_damage_multiplier = 2
 	///how much we want to blur eyes, slowdown and stagger.
@@ -1830,9 +1831,12 @@
 /mob/living/tail_stab_act(mob/living/carbon/xenomorph/xeno, damage, target_zone, penetration, structure_damage_multiplier, stab_description = "swift tail-stab!", disorientamount)
 	. = ..()
 	if(pulledby == xeno) //If we're being grappled
+		if(!do_after(xeno, 0.5 SECONDS, IGNORE_HELD_ITEM|IGNORE_USER_LOC_CHANGE, src, BUSY_ICON_DANGER, PROGRESS_GENERIC))
+			to_chat(xeno, span_warning("We need to hold [src] in place longer for a precise stab!"))
+			return
 		damage *= 1.5
 		disorientamount *= 2
-		penetration *= 1.5
+		penetration *= 2
 		ParalyzeNoChain(0.5 SECONDS)
 		xeno.stop_pulling()
 		stab_description = "devastating tail-jab!"
@@ -1844,7 +1848,8 @@
 		if (!selectedlimb || (selectedlimb.limb_status & LIMB_DESTROYED))
 			selectedlimb = carbon_victim.get_limb(BODY_ZONE_CHEST)
 		if(xeno.blunt_stab)
-			penetration *= 1.2 //not sharp but slightly more penetration, structure_damage_multiplier, like maces in most games i guess.
+			penetration *= 1.2 //not as sharp but slightly more penetration, like maces in most games i guess.
+			damage -= 0.4
 			apply_damage(damage, BRUTE, selectedlimb, MELEE, IS_NOT_SHARP_ITEM, FALSE, TRUE, penetration)
 		else
 			apply_damage(damage, BRUTE, selectedlimb, MELEE, IS_SHARP_ITEM_ACCURATE, TRUE, TRUE, penetration)
