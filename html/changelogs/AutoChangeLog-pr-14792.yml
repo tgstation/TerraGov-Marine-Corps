@@ -1,0 +1,5 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - balance: "Daedalus Prison: Removed two miners, more preweed, medical cannot be landed in by tad, and outskirt cave walls are actually pcable"
+  - spellcheck: "Darkfrost hull walls are now named \"tough rock\""

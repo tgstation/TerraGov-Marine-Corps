@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - refactor: "Cleaned up hud icons and overlays"

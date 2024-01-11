@@ -710,7 +710,7 @@
 /atom/movable/screen/ammo/proc/add_hud(mob/living/user, datum/ammo_owner)
 	if(isnull(ammo_owner))
 		CRASH("/atom/movable/screen/ammo/proc/add_hud() has been called from [src] without the required param of ammo_owner")
-	user?.client.screen += src
+	user?.client?.screen += src
 
 ///wrapper to removing this ammo hud from the users screen
 /atom/movable/screen/ammo/proc/remove_hud(mob/living/user)

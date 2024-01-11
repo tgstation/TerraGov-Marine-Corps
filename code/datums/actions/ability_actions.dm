@@ -143,6 +143,7 @@
 		return
 	cooldown_timer = addtimer(CALLBACK(src, PROC_REF(on_cooldown_finish)), cooldown_length, TIMER_STOPPABLE)
 	button.add_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
+	update_button_icon()
 
 ///Time remaining on cooldown
 /datum/action/ability/proc/cooldown_remaining()
@@ -189,7 +190,7 @@
 	if(carbon_owner.selected_ability == src)
 		return
 	if(carbon_owner.selected_ability)
-		carbon_owner.selected_ability.deselect()
+		carbon_owner.selected_ability.deselect() //todo: make jetpack/blinkdrive etc activatables
 	select()
 
 /datum/action/ability/activable/keybind_activation()

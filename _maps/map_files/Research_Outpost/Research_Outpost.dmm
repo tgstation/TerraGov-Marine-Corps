@@ -2943,7 +2943,7 @@
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/item/stack/sheet/glass/large_stack,
+/obj/item/stack/sheet/glass/glass/large_stack,
 /obj/item/stack/sheet/mineral/phoron/medium_stack,
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science/research)

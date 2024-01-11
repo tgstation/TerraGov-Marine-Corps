@@ -9485,6 +9485,9 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "Xc" = (
