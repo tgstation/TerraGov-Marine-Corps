@@ -24,46 +24,11 @@
 	range = 8
 	falloff = 1
 
-/datum/looping_sound/flickeringlightone
-	mid_sounds = list('sound/effects/lightbuzzloop.ogg' = 1)
-	mid_length = 35 SECONDS
-	volume = 24
-	range = 8
-	falloff = 1
-
-/datum/looping_sound/flickeringlighttwo
-	mid_sounds = list('sound/effects/lightbuzzloop2.ogg' = 1)
-	mid_length = 35 SECONDS
-	volume = 24
-	range = 8
-	falloff = 1
-
-/datum/looping_sound/flickeringlightthree
-	mid_sounds = list('sound/effects/lightbuzzloop3.ogg' = 1)
-	mid_length = 35 SECONDS
-	volume = 24
-	range = 8
-	falloff = 1
-
-/datum/looping_sound/flickeringlightfour
-	mid_sounds = list('sound/effects/lightbuzzloop4.ogg' = 1)
-	mid_length = 35 SECONDS
-	volume = 24
-	range = 8
-	falloff = 1
-
-/datum/looping_sound/flickeringlightfive
-	mid_sounds = list('sound/effects/lightbuzzloop5.ogg' = 1)
-	mid_length = 35 SECONDS
-	volume = 24
-	range = 8
-	falloff = 1
-
-/datum/looping_sound/flickeringlightsix
+/datum/looping_sound/flickeringambient
 	mid_sounds = list('sound/effects/lightbuzzloop6.ogg' = 1)
-	mid_length = 35 SECONDS
-	volume = 24
-	range = 8
+	mid_length = 5 SECONDS
+	volume = 25
+	range = 5
 	falloff = 1
 
 /datum/looping_sound/geiger
