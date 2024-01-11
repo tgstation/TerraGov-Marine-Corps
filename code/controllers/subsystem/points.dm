@@ -12,8 +12,10 @@ SUBSYSTEM_DEF(points)
 	var/dropship_points = 0
 	///Assoc list of supply points
 	var/supply_points = list()
-	///Assoc list of xeno points: xeno_points_by_hive["hivenum"]
-	var/list/xeno_points_by_hive = list()
+	///Assoc list of xeno strategic points: xeno_strategic_points_by_hive["hivenum"]
+	var/list/xeno_strategic_points_by_hive = list()
+	///Assoc list of xeno tactical points: xeno_tactical_points_by_hive["hivenum"]
+	var/list/xeno_tactical_points_by_hive = list()
 
 	var/ordernum = 1					//order number given to next order
 
@@ -78,12 +80,17 @@ SUBSYSTEM_DEF(points)
 	for(var/key in supply_points)
 		supply_points[key] += SUPPLY_POINT_RATE / (1 MINUTES / wait)
 
-///Add amount of psy points to the selected hive only if the gamemode support psypoints
-/datum/controller/subsystem/points/proc/add_psy_points(hivenumber, amount)
+///Add amount of strategic psy points to the selected hive only if the gamemode support psypoints
+/datum/controller/subsystem/points/proc/add_strategic_psy_points(hivenumber, amount)
 	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_PSY_POINTS))
 		return
-	xeno_points_by_hive[hivenumber] += amount
+	xeno_strategic_points_by_hive[hivenumber] += amount
 
+///Add amount of tactical psy points to the selected hive only if the gamemode support psypoints
+/datum/controller/subsystem/points/proc/add_tactical_psy_points(hivenumber, amount)
+	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_PSY_POINTS))
+		return
+	xeno_tactical_points_by_hive[hivenumber] += amount
 
 /datum/controller/subsystem/points/proc/approve_request(datum/supply_order/O, mob/living/user)
 	var/cost = 0
