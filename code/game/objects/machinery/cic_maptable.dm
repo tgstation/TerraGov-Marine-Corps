@@ -86,6 +86,12 @@
 	interactees -= user
 	user?.client?.screen -= map
 
+/obj/machinery/cic_maptable/attack_ai(mob/living/silicon/ai/user)
+	if(!(user in interactees))
+		interact(user)
+	else
+		user.unset_interaction()
+
 /obj/machinery/cic_maptable/droppod_maptable
 	name = "Athena tactical map console"
 	desc = "A map that display the planetside AO, specialized in revealing potential areas to drop pod. This is especially useful to see where the frontlines and marines are at so that anyone droppodding can decide where to land. Pray that your land nav skills are robust to not get lost!"

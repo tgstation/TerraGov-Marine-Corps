@@ -230,6 +230,21 @@
 	attack_speed = 3 // should make reloading less painful
 	icon_state_mini = "bullets"
 
+/obj/item/ammo_magazine/handful/repeater
+	name = "handful of heavy impact rifle bullet (.45-70 Government)"
+	icon_state = "bullet"
+	current_rounds = 8
+	max_rounds = 8
+	default_ammo = /datum/ammo/bullet/rifle/repeater
+	caliber = CALIBER_4570
+
+/obj/item/ammo_magazine/handful/slug
+	name = "handful of shotgun slug (12 gauge)"
+	icon_state = "shotgun slug"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/slug
+	caliber = CALIBER_12G
+
 /obj/item/ammo_magazine/handful/buckshot
 	name = "handful of shotgun buckshot shells (12g)"
 	icon_state = "shotgun buckshot shell"

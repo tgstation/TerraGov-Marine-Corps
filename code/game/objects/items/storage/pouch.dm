@@ -824,7 +824,6 @@
 	draw_mode = 0
 	can_hold = list(/obj/item/ammo_magazine/handful)
 
-
 /obj/item/storage/pouch/shotgun/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/M = I

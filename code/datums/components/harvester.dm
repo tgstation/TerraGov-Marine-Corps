@@ -75,19 +75,17 @@
 ///Adds additional text for the component when examining the item
 /datum/component/harvester/proc/examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	var/output = ""
 	if(length(loaded_reagents))
-		output += "It currently holds:<br>"
+		examine_list += "It currently holds:<br>"
 		for(var/datum/reagent/reagent_type AS in loaded_reagents)
-			output += "<span style='color:[initial(reagent_type.color)];font-weight:bold'>[initial(reagent_type.name)]</span> - [loaded_reagents[reagent_type]]\n"
+			examine_list += "<span style='color:[initial(reagent_type.color)];font-weight:bold'>[initial(reagent_type.name)]</span> - [loaded_reagents[reagent_type]]\n"
 	else
-		output += "The internal storage is empty\n"
+		examine_list += "The internal storage is empty"
 
-	output += "<b>Compatible chemicals:</b>\n"
+	examine_list += "<b>Compatible chemicals:</b>"
 	for(var/datum/reagent/reagent AS in loadable_reagents)
-		output += "<span style='color:[initial(reagent.color)];font-weight:bold'>[initial(reagent.name)]</span>\n"
+		examine_list += "<span style='color:[initial(reagent.color)];font-weight:bold'>[initial(reagent.name)]</span>\n"
 
-	to_chat(user, output)
 
 ///Adds mechanics info to the weapon
 /datum/component/harvester/proc/get_mechanics_info(datum/source, list/mechanics_text)

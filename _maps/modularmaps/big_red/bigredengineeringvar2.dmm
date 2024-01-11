@@ -564,7 +564,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/caves/southwest)
 "Ge" = (
-/obj/item/stack/sheet/glass,
+/obj/item/stack/sheet/glass/glass,
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)

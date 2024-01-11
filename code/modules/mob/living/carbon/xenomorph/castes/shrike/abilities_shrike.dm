@@ -180,23 +180,26 @@
 			lower_left = locate(owner.x + 1, owner.y - 1, owner.z)
 			upper_right = locate(owner.x + 3, owner.y + 1, owner.z)
 
-	for(var/turf/affected_tile in block(lower_left, upper_right)) //everything in the 2x3 block is found.
+	var/list/things_to_throw = list()
+	for(var/turf/affected_tile in block(lower_left, upper_right)) //everything in the 3x3 block is found.
 		affected_tile.Shake(duration = 0.5 SECONDS)
-		for(var/i in affected_tile)
-			var/atom/movable/affected = i
+		for(var/atom/movable/affected AS in affected_tile)
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
 				affected.Shake(duration = 0.5 SECONDS)
 				continue
-			if(ishuman(affected)) //if they're human, they also should get knocked off their feet from the blast.
+			if(ishuman(affected))
 				var/mob/living/carbon/human/H = affected
-				if(H.stat == DEAD) //unless they are dead, then the blast mysteriously ignores them.
+				if(H.stat == DEAD)
 					continue
-				H.apply_effects(2 SECONDS, 2 SECONDS) 	// Stun
+				H.apply_effects(2 SECONDS, 2 SECONDS)
 				shake_camera(H, 2, 1)
-			var/throwlocation = affected.loc //first we get the target's location
-			for(var/x in 1 to 6)
-				throwlocation = get_step(throwlocation, owner.dir) //then we find where they're being thrown to, checking tile by tile.
-			affected.throw_at(throwlocation, 6, 1, owner, TRUE)
+			things_to_throw += affected
+
+	for(var/atom/movable/affected AS in things_to_throw)
+		var/throwlocation = affected.loc
+		for(var/x in 1 to 6)
+			throwlocation = get_step(throwlocation, owner.dir)
+		affected.throw_at(throwlocation, 6, 1, owner, TRUE)
 
 	owner.visible_message(span_xenowarning("[owner] sends out a huge blast of psychic energy!"), \
 	span_xenowarning("We send out a huge blast of psychic energy!"))

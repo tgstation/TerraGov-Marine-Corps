@@ -667,6 +667,13 @@
 /obj/structure/bed/chair/wood/wings,
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
+"aPM" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/ship_ammo/cas/bomb/fourhundred,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "aQj" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -1446,8 +1453,8 @@
 /turf/open/floor/mainship/green,
 /area/mainship/squads/req)
 "bNe" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /obj/item/coin/iron,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "bNh" = (
@@ -7149,6 +7156,10 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar/droppod)
+"jhO" = (
+/obj/structure/dropship_equipment/cas/weapon/bomb_pod,
+/turf/open/floor/mainship/floor,
+/area/mainship/hallways/hangar)
 "jiE" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -8262,6 +8273,15 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"kMf" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/quick_vendor/beginner,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/squads/general)
 "kMi" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/effect/ai_node,
@@ -8575,10 +8595,11 @@
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/ob_ammo/ob_fuel,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -8616,14 +8637,10 @@
 /turf/open/floor/mainship_hull,
 /area/space)
 "lgL" = (
-/obj/machinery/marine_selector/clothes,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
+/obj/machinery/quick_vendor/beginner,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "lgM" = (
@@ -9609,15 +9626,13 @@
 /turf/open/floor/mainship/sterile/purple/side,
 /area/mainship/medical/medical_science)
 "mgw" = (
-/obj/structure/bed/chair/wheelchair{
+/obj/vehicle/ridden/wheelchair{
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "mgE" = (
-/obj/structure/rack,
-/obj/item/pizzabox/meat,
-/obj/item/facepaint/green,
+/obj/machinery/vending/marineFood,
 /turf/open/floor/mainship/green{
 	dir = 4
 	},
@@ -11742,6 +11757,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "oSs" = (
+/obj/structure/rack,
+/obj/item/pizzabox/meat,
+/obj/item/facepaint/green,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
@@ -12005,6 +12023,10 @@
 	},
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
+"pha" = (
+/obj/structure/ship_ammo/cas/bomblet,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "phr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -13271,7 +13293,7 @@
 /area/mainship/squads/req)
 "qHv" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/stack/sheet/glass{
+/obj/item/stack/sheet/glass/glass{
 	amount = 50;
 	pixel_x = 3;
 	pixel_y = 3
@@ -15078,6 +15100,13 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/lower_engineering)
+"sZZ" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/dropship_equipment/cas/weapon/bomblet_pod,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "tbT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -52883,7 +52912,7 @@ fwq
 kcJ
 fwq
 dpY
-fwq
+sZZ
 tyN
 wEZ
 tyN
@@ -54686,7 +54715,7 @@ lET
 tyN
 rYr
 tyN
-fwq
+aPM
 fwq
 skU
 fmN
@@ -55196,7 +55225,7 @@ hcF
 hcF
 agP
 hcF
-hcF
+jhO
 tyN
 lvi
 tyN
@@ -55206,7 +55235,7 @@ bFX
 fPH
 hEa
 uzm
-dpY
+pha
 dpY
 dpY
 lue
@@ -58081,17 +58110,17 @@ xmJ
 xmJ
 mng
 bYP
-fLM
+kMf
 eMz
 eMz
 lgL
 eUy
-fLM
+kMf
 eMz
 eMz
 lgL
 bYP
-fLM
+kMf
 eMz
 eMz
 lgL
