@@ -617,13 +617,13 @@
 		flags_atom &= ~DIRLOCK
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
-	if(loc)
-		stop_throw(flying, original_layer)
-		SEND_SIGNAL(loc, COMSIG_TURF_THROW_ENDED_HERE, src)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
+	stop_throw(flying, original_layer)
 
-/// Annul all throw var to ensure a clean exit out of throw state
+///Clean up all throw vars
 /atom/movable/proc/stop_throw(flying = FALSE, original_layer)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
+	if(loc)
+		SEND_SIGNAL(loc, COMSIG_TURF_THROW_ENDED_HERE, src)
 	set_throwing(FALSE)
 	if(flying)
 		set_flying(FALSE, original_layer)
@@ -1201,10 +1201,7 @@
 	grab_state = newstate
 
 ///Toggles AM between throwing states
-/atom/movable/proc/set_throwing(new_throwing, flying)
-	if(new_throwing == throwing)
-		return
-	. = throwing
+/atom/movable/proc/set_throwing(new_throwing)
 	throwing = new_throwing
 	if(throwing)
 		pass_flags |= PASS_THROW
