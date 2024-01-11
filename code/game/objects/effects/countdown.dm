@@ -99,6 +99,7 @@
 	pixel_x = 5
 	pixel_y = 8
 	appearance_flags = KEEP_APART|RESET_COLOR
+	///The action this countdown is associated with
 	var/datum/action/ability/attached_action
 
 /obj/effect/countdown/action_cooldown/Destroy()
@@ -108,7 +109,8 @@
 /obj/effect/countdown/action_cooldown/attach(atom/A)
 	var/atom/movable/screen/action_button/button = A
 	if(istype(button))
-		return qdel(src)
+		qdel(src)
+		return
 	attached_to = button
 	button.vis_contents += src
 	attached_action = button.source_action
@@ -121,6 +123,7 @@
 /obj/effect/countdown/action_cooldown/process()
 	if(QDELETED(attached_to))
 		qdel(src)
+		return
 	var/new_val = round(attached_action.cooldown_remaining(), 0.1)
 	if(new_val == displayed_text)
 		return
