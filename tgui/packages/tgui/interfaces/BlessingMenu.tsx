@@ -17,7 +17,8 @@ import { Window } from '../layouts';
 
 type BlessingData = {
   user: string;
-  psypoints: number;
+  strategicpoints: number;
+  tacticalpoints: number;
   upgrades: UpgradeData[];
   categories: string[];
 };
@@ -29,6 +30,7 @@ type UpgradeData = {
   category: string;
   cost: number;
   times_bought: number;
+  istactical: boolean;
 };
 
 const categoryIcons = {
@@ -40,7 +42,7 @@ const categoryIcons = {
 
 export const BlessingMenu = (props) => {
   const { data } = useBackend<BlessingData>();
-  const { psypoints, categories } = data;
+  const { strategicpoints, tacticalpoints, categories } = data;
   const [selectedCategory, setSelectedCategory] = useState(
     categories.length ? categories[0] : null,
   );
@@ -53,7 +55,14 @@ export const BlessingMenu = (props) => {
       height={600}
     >
       <Window.Content scrollable>
-        <Section title={'Psychic points: ' + (psypoints ? psypoints : 0)}>
+        <Section
+          title={
+            'Strategic Psychic points: ' +
+            (strategicpoints ? strategicpoints : 0) +
+            ' | Strategic Psychic points: ' +
+            (tacticalpoints ? tacticalpoints : 0)
+          }
+        >
           {categories.length > 0 && (
             <Section lineHeight={1.75} textAlign="center">
               <Tabs>
@@ -90,7 +99,7 @@ export const BlessingMenu = (props) => {
 
 const Upgrades = (props: { selectedCategory: string | null }) => {
   const { data } = useBackend<BlessingData>();
-  const { psypoints, upgrades } = data;
+  const { strategicpoints, tacticalpoints, upgrades } = data;
   const { selectedCategory } = props;
 
   return (
@@ -103,7 +112,9 @@ const Upgrades = (props: { selectedCategory: string | null }) => {
             .filter((record) => record.category === selectedCategory)
             .map((upgrade) => (
               <UpgradeEntry
-                psy_points={psypoints}
+                psy_points={
+                  upgrade.istactical ? tacticalpoints : strategicpoints
+                }
                 upgrade_name={upgrade.name}
                 key={upgrade.name}
                 upgrade_desc={upgrade.desc}
@@ -160,6 +171,7 @@ const UpgradeEntry = (props: UpgradeEntryProps) => {
         timesbought={upgrade_times_bought}
         iconstate={upgradeicon}
         cost={upgrade_cost}
+        psy_points={psy_points}
       />
     </Collapsible>
   );
@@ -171,13 +183,12 @@ type UpgradeViewEntryProps = {
   timesbought: number;
   iconstate: string;
   cost: number;
+  psy_points: number;
 };
 
 const UpgradeView = (props: UpgradeViewEntryProps) => {
   const { data } = useBackend<BlessingData>();
-  const { psypoints } = data;
-
-  const { name, desc, timesbought, iconstate, cost } = props;
+  const { name, desc, timesbought, iconstate, cost, psy_points } = props;
 
   return (
     <Flex align="center">
@@ -195,7 +206,7 @@ const UpgradeView = (props: UpgradeViewEntryProps) => {
             transform: 'scale(2) translate(0px, 10%)',
           }}
         />
-        <Box bold mt={5} color={psypoints > cost ? 'good' : 'bad'}>
+        <Box bold mt={5} color={psy_points > cost ? 'good' : 'bad'}>
           {'Cost: ' + cost}
         </Box>
         <Box bold my={0.5} color={timesbought >= 1 ? 'good' : ''}>

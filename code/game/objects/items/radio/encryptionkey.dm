@@ -124,6 +124,11 @@ GLOBAL_LIST_EMPTY_TYPED(custom_updating_encryptkeys, /obj/item/encryptionkey)
 	channels = list(RADIO_CHANNEL_ICC = TRUE)
 	independent = TRUE
 
+/obj/item/encryptionkey/retired
+	name = "\improper retirement home encryption key"
+	channels = list(RADIO_CHANNEL_RETIRED = TRUE)
+	independent = TRUE
+
 /obj/item/encryptionkey/sectoid
 	name = "\improper alien encryption key"
 	channels = list(RADIO_CHANNEL_SECTOID = TRUE)

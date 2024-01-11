@@ -6914,7 +6914,7 @@
 	amount = 25
 	},
 /obj/item/storage/briefcase/inflatable,
-/obj/item/stack/sheet/glass/large_stack,
+/obj/item/stack/sheet/glass/glass/large_stack,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/repair_bay)
 "bVF" = (
@@ -17183,7 +17183,7 @@
 /area/mainship/hull/starboard_hull)
 "rYA" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/stack/sheet/glass/large_stack,
+/obj/item/stack/sheet/glass/glass/large_stack,
 /obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)

@@ -629,7 +629,7 @@
 "acX" = (
 /obj/item/storage/box/crate/sentry,
 /obj/structure/rack,
-/obj/item/stack/sheet/glass{
+/obj/item/stack/sheet/glass/glass{
 	amount = 50;
 	pixel_x = 3;
 	pixel_y = 3
