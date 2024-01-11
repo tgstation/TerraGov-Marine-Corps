@@ -41,10 +41,8 @@
 	minimap_icon = "defiler"
 
 	actions = list(
-		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/xeno_action/psychic_whisper,
-		/datum/action/ability/xeno_action/psychic_influence,
-		/datum/action/ability/activable/xeno/impregnate,
+
+
 		/datum/action/ability/activable/xeno/larval_growth_sting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
@@ -85,10 +83,8 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
-		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/xeno_action/psychic_whisper,
-		/datum/action/ability/xeno_action/psychic_influence,
-		/datum/action/ability/activable/xeno/impregnate,
+
+
 		/datum/action/ability/activable/xeno/larval_growth_sting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,

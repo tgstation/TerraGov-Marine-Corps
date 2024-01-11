@@ -51,10 +51,8 @@
 	minimap_icon = "xenoqueen"
 
 	actions = list(
-		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/xeno_action/psychic_whisper,
-		/datum/action/ability/xeno_action/psychic_influence,
-		/datum/action/ability/activable/xeno/impregnate,
+
+
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
@@ -83,6 +81,8 @@
 		/datum/action/ability/xeno_action/hive_message,
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/activable/xeno/command_minions,
+		/datum/action/ability/activable/psionic_interact, //Psychics for all the psykers!
+		/datum/action/ability/activable/xeno/impregnatequeen //So the Queen doesn't want to end themselves.
 	)
 
 
@@ -96,10 +96,8 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
-		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/xeno_action/psychic_whisper,
-		/datum/action/ability/xeno_action/psychic_influence,
-		/datum/action/ability/activable/xeno/impregnate,
+
+
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
@@ -130,4 +128,5 @@
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/activable/xeno/command_minions,
 		/datum/action/ability/xeno_action/ready_charge/queen_charge,
+		/datum/action/ability/activable/xeno/impregnatequeen //So the Queen doesn't want to end themselves.
 	)

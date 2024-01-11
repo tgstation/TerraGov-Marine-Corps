@@ -49,10 +49,8 @@
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/xeno_action/psychic_whisper,
-		/datum/action/ability/xeno_action/psychic_influence,
-		/datum/action/ability/activable/xeno/impregnate,
+
+
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/devour,
@@ -77,6 +75,7 @@
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/xeno_action/rally_minion,
 		/datum/action/ability/xeno_action/blessing_menu,
+		/datum/action/ability/activable/psionic_interact,
 	)
 
 /datum/xeno_caste/shrike/normal
@@ -89,10 +88,8 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
-		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/xeno_action/psychic_whisper,
-		/datum/action/ability/xeno_action/psychic_influence,
-		/datum/action/ability/activable/xeno/impregnate,
+
+
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/devour,
