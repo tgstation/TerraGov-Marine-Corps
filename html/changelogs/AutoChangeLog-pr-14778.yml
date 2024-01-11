@@ -1,4 +1,0 @@
-author: "DeltaFire15"
-delete-after: True
-changes:
-  - bugfix: "It should be less likely for you to go DNR in cases where you shouldn't be DNR."

@@ -488,7 +488,7 @@
 		return
 	if(!isturf(loc))
 		return
-	var/dir_to_proj = get_dir(hit_atom, old_throw_source)
+	var/dir_to_proj = angle_to_cardinal_dir(Get_Angle(hit_atom, old_throw_source))
 	if(ISDIAGONALDIR(dir_to_proj))
 		var/list/cardinals = list(turn(dir_to_proj, 45), turn(dir_to_proj, -45))
 		for(var/direction in cardinals)
@@ -497,8 +497,8 @@
 				cardinals -= direction
 		dir_to_proj = pick(cardinals)
 
-	var/perpendicular_angle = Get_Angle(hit_atom, get_step(hit_atom, dir_to_proj))
-	var/new_angle = (perpendicular_angle + (perpendicular_angle - Get_Angle(old_throw_source, src) - 180) + rand(-10, 10))
+	var/perpendicular_angle = Get_Angle(hit_atom, get_step(hit_atom, ISDIAGONALDIR(dir_to_proj) ? get_dir(hit_atom, old_throw_source) - dir_to_proj : dir_to_proj))
+	var/new_angle = (perpendicular_angle + (perpendicular_angle - Get_Angle(old_throw_source, (loc == old_throw_source ? hit_atom : src)) - 180) + rand(-10, 10))
 
 	if(new_angle < -360)
 		new_angle += 720 //north is 0 instead of 360
@@ -617,13 +617,13 @@
 		flags_atom &= ~DIRLOCK
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
-	if(loc)
-		stop_throw(flying, original_layer)
-		SEND_SIGNAL(loc, COMSIG_TURF_THROW_ENDED_HERE, src)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
+	stop_throw(flying, original_layer)
 
-/// Annul all throw var to ensure a clean exit out of throw state
+///Clean up all throw vars
 /atom/movable/proc/stop_throw(flying = FALSE, original_layer)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
+	if(loc)
+		SEND_SIGNAL(loc, COMSIG_TURF_THROW_ENDED_HERE, src)
 	set_throwing(FALSE)
 	if(flying)
 		set_flying(FALSE, original_layer)
@@ -1201,10 +1201,7 @@
 	grab_state = newstate
 
 ///Toggles AM between throwing states
-/atom/movable/proc/set_throwing(new_throwing, flying)
-	if(new_throwing == throwing)
-		return
-	. = throwing
+/atom/movable/proc/set_throwing(new_throwing)
 	throwing = new_throwing
 	if(throwing)
 		pass_flags |= PASS_THROW
