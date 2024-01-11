@@ -21298,14 +21298,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
-"rCt" = (
-/obj/machinery/light/mainship{
-	dir = 1
-	},
-/turf/open/floor/mainship/red{
-	dir = 4
-	},
-/area/mainship/hallways/hangar)
 "rDe" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -25868,6 +25860,14 @@
 /obj/structure/droppod/leader,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar/droppod)
+"vEk" = (
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/mainship/hallways/hangar)
 "vED" = (
 /obj/structure/prop/mainship/name_stencil/T,
 /turf/open/floor/mainship_hull,
@@ -38470,7 +38470,7 @@ eju
 hAy
 tIN
 lry
-rCt
+kAs
 cZF
 mMV
 lqe
@@ -38572,7 +38572,7 @@ eju
 rIp
 twS
 hIO
-daV
+vEk
 sLf
 hnt
 hfk
