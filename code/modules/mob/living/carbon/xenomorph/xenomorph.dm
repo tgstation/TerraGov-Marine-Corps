@@ -156,17 +156,17 @@
 	var/rank_name
 	switch(playtime_mins)
 		if(0 to 600)
-			rank_name = "Hatchling"
-		if(601 to 1500) //10 hours
 			rank_name = "Young"
-		if(1501 to 4200) //25 hours
+		if(601 to 1500) //10 hours
 			rank_name = "Mature"
-		if(4201 to 10500) //70 hours
+		if(1501 to 4200) //25 hours
 			rank_name = "Elder"
-		if(10501 to INFINITY) //175 hours
+		if(4201 to 10500) //70 hours
 			rank_name = "Ancient"
+		if(10501 to INFINITY) //175 hours
+			rank_name = "Prime"
 		else
-			rank_name = "Hatchling"
+			rank_name = "Young"
 	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
 	name = prefix + "[rank_name ? "[rank_name] " : ""][xeno_caste.display_name] ([nicknumber])"
 

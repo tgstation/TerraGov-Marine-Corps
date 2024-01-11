@@ -139,6 +139,7 @@
 		return
 	cooldown_timer = addtimer(CALLBACK(src, PROC_REF(on_cooldown_finish)), cooldown_length, TIMER_STOPPABLE)
 	countdown.start()
+	update_button_icon()
 
 ///Time remaining on cooldown
 /datum/action/ability/proc/cooldown_remaining()

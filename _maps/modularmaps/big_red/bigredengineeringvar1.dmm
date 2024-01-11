@@ -366,7 +366,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "wg" = (
-/obj/item/stack/sheet/glass,
+/obj/item/stack/sheet/glass/glass,
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)

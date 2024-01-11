@@ -113,6 +113,7 @@
 #define WEIGHTBENCH_TRAIT "weightbench"
 #define BOILER_ROOTED_TRAIT "boiler_rooted"
 #define STRAPPABLE_ITEM_TRAIT "strappable_item"
+#define MOUNTED_TRAIT "mounted"
 #define VALI_TRAIT "vali"
 #define HELDGLOVE_TRAIT "heldglove"
 #define SECTOID_TRAIT "sectoid"
