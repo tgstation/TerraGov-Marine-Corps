@@ -52,6 +52,9 @@
 		qdel(src)
 		return PROCESS_KILL
 
+	if(affected_mob.stat == DEAD) //No more corpsefucking for infinite larva, thanks
+		return FALSE
+
 	if(loc != affected_mob)
 		var/obj/item/alien_embryo/remainingembryo = locate() in affected_mob
 		if(!remainingembryo)
@@ -63,7 +66,7 @@
 		affected_mob = null
 		return PROCESS_KILL
 
-	if(affected_mob.stat == DEAD)
+	if(affected_mob.stat == DEAD) //Runs after the first proc, which should entirely null the need for the check in initiate_burst, but to be safe...
 		for(var/mob/living/carbon/xenomorph/larva/L in affected_mob.contents)
 			L?.initiate_burst(affected_mob)
 			if(!L)
@@ -76,6 +79,8 @@
 
 
 /obj/item/alien_embryo/proc/process_growth()
+	if(affected_mob.stat == DEAD) //No more corpsefucking for infinite larva, thanks
+		return FALSE
 
 	if(stage <= 4)
 		counter += 2.5 //Free burst time in ~7/8 min.
@@ -166,8 +171,8 @@
 	var/obj/item/alien_embryo/birth_owner = locate() in victim
 	if(birth_owner.emerge_target == 1)
 		playsound(victim, 'modular_skyrat/sound/weapons/gagging.ogg', 25, TRUE)
-	else
-		victim.emote_burstscream()
+//	else
+		//victim.emote_burstscream()
 	victim.Paralyze(15 SECONDS)
 	victim.visible_message("<span class='danger'>\The [victim] starts shaking uncontrollably!</span>", \
 								"<span class='danger'>You feel something wiggling in your [birth_owner.emerge_target_flavor]!</span>")
@@ -189,7 +194,7 @@
 	else
 		forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
 	var/obj/item/alien_embryo/AE = locate() in victim
-	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25)
+	//playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25) //NTF-Edit. SUuuper loud.
 	victim.visible_message("<span class='danger'>The Larva forces its way out of [victim]'s [AE.emerge_target_flavor]!</span>")
 	GLOB.round_statistics.total_larva_burst++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_larva_burst")
