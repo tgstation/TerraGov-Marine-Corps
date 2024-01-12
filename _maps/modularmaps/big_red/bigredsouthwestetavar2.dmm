@@ -66,13 +66,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"gG" = (
-/obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside)
 "hJ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -106,6 +99,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "oH" = (
 /obj/effect/landmark/weed_node,
+/obj/item/tool/extinguisher,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "oL" = (
@@ -2774,7 +2768,7 @@ NJ
 VX
 MK
 MK
-gG
+MK
 NW
 LR
 tI

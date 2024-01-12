@@ -6766,6 +6766,10 @@
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "byl" = (
 /obj/machinery/photocopier,
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bys" = (
@@ -6847,6 +6851,7 @@
 	dir = 1;
 	name = "\improper Eta Lab Robotics"
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bza" = (
@@ -6934,9 +6939,11 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzJ" = (
-/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzM" = (
 /obj/structure/closet,
@@ -6962,7 +6969,6 @@
 	dir = 1;
 	name = "\improper Eta Lab Security Office"
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzS" = (
@@ -7001,9 +7007,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAg" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/apc/drained{
-	dir = 1
-	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
@@ -9033,6 +9037,7 @@
 "eQK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
@@ -11689,7 +11694,7 @@
 /area/bigredv2/outside/marshal_office)
 "kOk" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/stack/sheet/glass/glass,
+/obj/item/stack/sheet/glass,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "kPA" = (
@@ -12839,7 +12844,7 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stock_parts/smes_coil,
-/obj/item/stack/sheet/glass/glass{
+/obj/item/stack/sheet/glass{
 	amount = 30
 	},
 /turf/open/floor,
@@ -13573,7 +13578,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "pmM" = (
@@ -14177,6 +14181,7 @@
 "qMW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "qNa" = (
@@ -15740,7 +15745,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "uqF" = (
@@ -16618,7 +16622,6 @@
 	on = 1
 	},
 /obj/effect/landmark/excavation_site_spawner,
-/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "wiq" = (
@@ -39474,8 +39477,8 @@ ljD
 ply
 bzR
 whE
-bzJ
-bAg
+aVC
+aVC
 mRs
 aaa
 aaa
@@ -39900,9 +39903,9 @@ sqr
 vpT
 vpT
 acx
-vpT
+bzJ
 eQK
-fdl
+bAg
 byZ
 qMW
 dgG

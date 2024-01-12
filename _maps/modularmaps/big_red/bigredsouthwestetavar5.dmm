@@ -25,6 +25,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "cU" = (
+/obj/item/tool/extinguisher,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "eI" = (
@@ -131,13 +132,6 @@
 	dir = 4
 	},
 /turf/open/ground/jungle/clear,
-/area/bigredv2/outside/nanotrasen_lab/inside)
-"or" = (
-/obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "oL" = (
 /obj/structure/closet/crate/secure,
@@ -2852,7 +2846,7 @@ vY
 KR
 vX
 vX
-or
+vX
 kg
 cG
 NX

@@ -286,13 +286,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/south)
-"CS" = (
-/obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside)
 "CT" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/technology_scanner,
@@ -464,6 +457,7 @@
 /area/bigredv2/caves/south)
 "Rw" = (
 /obj/effect/landmark/weed_node,
+/obj/item/tool/extinguisher,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "RW" = (
@@ -2847,7 +2841,7 @@ HP
 if
 nk
 nk
-CS
+nk
 Qr
 RW
 rl

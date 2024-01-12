@@ -128,6 +128,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "kq" = (
 /obj/effect/landmark/weed_node,
+/obj/item/tool/extinguisher,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "kv" = (
@@ -493,13 +494,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rock)
-"KK" = (
-/obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside)
 "KR" = (
 /obj/effect/landmark/xeno_resin_door,
 /obj/effect/turf_decal/sandedge{
@@ -3022,7 +3016,7 @@ PE
 dM
 NK
 NK
-KK
+NK
 YK
 Yp
 hf

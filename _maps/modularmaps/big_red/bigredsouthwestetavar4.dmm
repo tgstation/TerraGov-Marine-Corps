@@ -40,6 +40,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "cs" = (
 /obj/effect/landmark/weed_node,
+/obj/item/tool/extinguisher,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "cX" = (
@@ -343,13 +344,6 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside)
-"DG" = (
-/obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "En" = (
 /obj/effect/landmark/xeno_resin_door,
@@ -2865,7 +2859,7 @@ Jd
 Ca
 PW
 PW
-DG
+PW
 Qt
 Ap
 VM
