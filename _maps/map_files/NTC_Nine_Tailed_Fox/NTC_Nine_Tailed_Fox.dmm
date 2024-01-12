@@ -18549,6 +18549,10 @@
 	dir = 2
 	},
 /obj/structure/cable,
+/obj/machinery/door/poddoor/mainship/open/cic{
+	id = "shipside_cic_lockdown";
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/sulaco/engineering/lower_engineering{
 	name = "Lower Power"
