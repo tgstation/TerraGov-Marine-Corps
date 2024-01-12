@@ -183,6 +183,7 @@
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
+		/obj/item/cell/lasgun/plasma_powerpack,
 	)
 
 /obj/item/armor_module/storage/general/som

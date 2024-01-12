@@ -50,6 +50,7 @@
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/magnetic_harness,
@@ -165,7 +166,7 @@
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/cannon_glob
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	fire_delay = 1.5 SECONDS
+	fire_delay = 2 SECONDS
 	heat_per_fire = 50
 	rounds_per_shot = 100
 	icon_state = "plasma_cannon"
