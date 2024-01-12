@@ -8361,6 +8361,15 @@
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
 	})
+"hFY" = (
+/obj/structure/cable,
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/mainship/groundhq/ntf/shipboard/brig)
 "hGq" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -25698,9 +25707,6 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/security_officer,
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -60930,7 +60936,7 @@ gUh
 ngI
 mmj
 dDK
-aFJ
+hFY
 pte
 aFJ
 aFJ
