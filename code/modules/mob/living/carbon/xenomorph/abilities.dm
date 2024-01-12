@@ -925,16 +925,12 @@
 		if(!silent)
 			to_chat(owner, span_warning("Our sting won't affect this target!"))
 		return FALSE
+
 	if(!owner.Adjacent(A))
 		var/mob/living/carbon/xenomorph/X = owner
 		if(!silent && world.time > (X.recent_notice + X.notice_delay)) //anti-notice spam
 			to_chat(X, span_warning("We can't reach this target!"))
 			X.recent_notice = world.time //anti-notice spam
-		return FALSE
-	var/mob/living/carbon/C = A
-	if (isnestedhost(C))
-		if(!silent)
-			to_chat(owner, span_warning("Ashamed, we reconsider bullying the poor, nested host with our stinger."))
 		return FALSE
 
 /datum/action/ability/activable/xeno/neurotox_sting/on_cooldown_finish()
@@ -1485,7 +1481,21 @@
 		victim.apply_damage(25, BURN, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
 		if(ismonkey(victim))
 			victim.apply_damage(25, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
+		if(A.stat == DEAD)
+			to_chat(owner, span_warning("We impregnate \the [victim] with a dormant larva."))
 		var/obj/item/alien_embryo/embryo = new(victim)
+		if(prob(5))
+			to_chat(owner, span_warning("We sense we impregnated \the [victim] with TWINS!."))
+			var/obj/item/alien_embryo/embryo2 = new(victim)
+			embryo2.hivenumber = hivenumber
+			if(victim.gender==FEMALE)
+				embryo2.emerge_target_flavor = "pussy"
+			else
+				embryo2.emerge_target_flavor = "ass"
+			GLOB.round_statistics.now_pregnant++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[X.ckey]
+			personal_statistics.impregnations++
 		embryo.hivenumber = hivenumber
 		if(victim.gender==FEMALE)
 			embryo.emerge_target_flavor = "pussy"
@@ -1646,7 +1656,7 @@
 	///our stabbing style.
 	var/stab_description = "swift tail-jab!"
 	///the flat armor penetration damage, doubled when grabbed. Blunt tailed xenos wont have sharpness but will have 1.2x more penetration, like maces from most games i guess.
-	var/penetration = 10
+	var/penetration = 15
 	///the multiplier for damage against structures.
 	var/structure_damage_multiplier = 2
 	///how much we want to blur eyes, slowdown and stagger.
@@ -1704,7 +1714,10 @@
 
 	if(!A.tail_stab_act(xeno, damage, target_zone, penetration, structure_damage_multiplier, stab_description, disorientamount))
 		return fail_activate()
-
+	if(line_of_sight(xeno, A, 1))
+		xeno.face_atom(A) //Face the target if adjacent so you dont look dumb.
+	else
+		xeno.face_away_from_atom(A) //Face away from the target so your tail may reach if not adjacent
 	succeed_activate()
 	if(istype(A, /obj/machinery/light))
 		add_cooldown(1 SECONDS)
