@@ -27,9 +27,9 @@
 /datum/looping_sound/flickeringambient
 	mid_sounds = list('sound/effects/lightbuzzloop6.ogg' = 1)
 	mid_length = 5 SECONDS
-	volume = 25
-	range = 5
-	falloff = 1
+	volume = 50
+	range = 6
+	falloff = 2
 
 /datum/looping_sound/geiger
 	mid_sounds = list(

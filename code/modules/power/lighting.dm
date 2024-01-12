@@ -140,10 +140,12 @@
 	var/bulb_power = 1			// basically the light_power of the emitted light source
 	var/bulb_colour = COLOR_WHITE
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
+	///is our light flickering?
 	var/flickering = FALSE
 	///what's the duration that the light switches between on and off while flickering
 	var/flicker_time = 2 SECONDS
-	var/light_type = /obj/item/light_bulb/tube		// the type of light item
+	///the type of light item
+	var/light_type = /obj/item/light_bulb/tube
 	var/fitting = "tube"
 	///count of number of times switched on/off. this is used to calc the probability the light burns out
 	var/switchcount = 0
@@ -153,8 +155,11 @@
 	var/light_flicker_state = FALSE
 	///if true randomize the time we turn on and off
 	var/random_flicker = FALSE
+	///upper bounds of potential flicker time when randomized
 	var/flicker_time_upper_max = 10 SECONDS
+	///lower bounds of potential flicker time when randomized
 	var/flicker_time_lower_min = 0.2 SECONDS
+	///looping sound for flickering lights
 	var/datum/looping_sound/flickeringambient/lightambient
 
 /obj/machinery/light/mainship
@@ -194,6 +199,7 @@
 	brightness = 4
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light_bulb/bulb
+	base_icon_state = "bulb"
 
 /obj/machinery/light/spot
 	name = "spotlight"
@@ -322,6 +328,8 @@
 			. += "The [fitting] is burnt out."
 		if(LIGHT_BROKEN)
 			. += "The [fitting] has been smashed."
+	if(flickering)
+		. += "The fixture seems to be damaged and the cabling is partially broken."
 
 
 
@@ -413,10 +421,10 @@
 		return
 	if(toggle_flicker)
 		if(status != LIGHT_OK)
+			addtimer(CALLBACK(src, PROC_REF(flicker), TRUE), flicker_time)
 			return
-		flickering = flickering? FALSE : TRUE
+		flickering = !flickering
 		if(flickering)
-			lightambient = new(null, FALSE)
 			lightambient.start(src)
 		else
 			lightambient.stop(src)
@@ -425,20 +433,15 @@
 	if(status != LIGHT_OK)
 		lightambient.stop(src)
 		flickering = FALSE
+		addtimer(CALLBACK(src, PROC_REF(flicker), TRUE), flicker_time)
 		return
-	light_flicker_state = light_flicker_state? FALSE : TRUE
-	if(light_flicker_state == FALSE)
-		if(base_icon_state == "tube")
-			flick("tube_flick_off", src)
-		else
-			flick("bulb_flick_off", src)
+	light_flicker_state = !light_flicker_state
+	if(!light_flicker_state)
+		flick("[base_icon_state]_flick_off", src)
 		//delay the power change long enough to get the flick() animation off
 		addtimer(CALLBACK(src, PROC_REF(flicker_power_state)), 0.3 SECONDS)
 	else
-		if(base_icon_state == "tube")
-			flick("tube_flick_on", src)
-		else
-			flick("bulb_flick_on", src)
+		flick("[base_icon_state]_flick_on", src)
 		addtimer(CALLBACK(src, PROC_REF(flicker_power_state)), 0.3 SECONDS)
 		flicker_time = flicker_time * 2 //for effect it's best if the amount of time we spend off is more than the time we spend on
 	if(!flickering)
@@ -448,10 +451,10 @@
 ///proc to toggle power on and off for light
 /obj/machinery/light/proc/flicker_power_state(turn_on = TRUE, turn_off = FALSE)
 	if(light_flicker_state == FALSE)
-		pick(playsound(loc, 'sound/effects/lightfizz.ogg', 20, TRUE), playsound(loc, 'sound/effects/lightfizz2.ogg', 20, TRUE), playsound(loc, 'sound/effects/lightfizz3.ogg', 20, TRUE), playsound(loc, 'sound/effects/lightfizz4.ogg', 20, TRUE), playsound(loc, 'sound/effects/lightfizz5.ogg', 20, TRUE), playsound(loc, 'sound/effects/lightfizz6.ogg', 20, TRUE))
-		update()
+		pick(playsound(loc, 'sound/effects/lightfizz.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz2.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz3.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz4.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz5.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz6.ogg', 10, TRUE))
+		update(FALSE)
 	else
-		pick(playsound(loc, 'sound/effects/lightfizz.ogg', 20, TRUE), playsound(loc, 'sound/effects/lightfizz2.ogg', 20, TRUE), playsound(loc, 'sound/effects/lightfizz3.ogg', 20, TRUE), playsound(loc, 'sound/effects/lightfizz4.ogg', 20, TRUE), playsound(loc, 'sound/effects/lightfizz5.ogg', 20, TRUE), playsound(loc, 'sound/effects/lightfizz6.ogg', 20, TRUE))
+		pick(playsound(loc, 'sound/effects/lightfizz.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz2.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz3.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz4.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz5.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz6.ogg', 10, TRUE))
 		turn_light(null, FALSE)
 
 //Xenos smashing lights

@@ -86,10 +86,11 @@
 		if(24 to 30)
 			machine_stat ^= PANEL_OPEN
 
+///connect potential airlocks to each other for cycling
 /obj/machinery/door/airlock/proc/cyclelinkairlock()
-	if (cyclelinkedairlock)
-		cyclelinkedairlock.cyclelinkedairlock = null
-		cyclelinkedairlock = null
+	if (cycle_linked_airlock)
+		cycle_linked_airlock.cycle_linked_airlock = null
+		cycle_linked_airlock = null
 	if (!cyclelinkeddir)
 		return
 	var/limit = world.view
@@ -104,8 +105,8 @@
 	while(!FoundDoor && limit)
 	if (!FoundDoor)
 		return
-	FoundDoor.cyclelinkedairlock = src
-	cyclelinkedairlock = FoundDoor
+	FoundDoor.cycle_linked_airlock = src
+	cycle_linked_airlock = FoundDoor
 
 /obj/machinery/door/airlock/proc/isElectrified()
 	if(secondsElectrified != MACHINE_NOT_ELECTRIFIED)

@@ -395,6 +395,7 @@
 	if(light.flickering == TRUE || light.status != LIGHT_OK)
 		log_mapping("[src] at [AREACOORD(src)] tried to make [light] flicker, but it couldn't be done!")
 	else
+		light.lightambient = new(null, FALSE)
 		light.flicker(TRUE)
 
 ///enable random flickering on lights, to make this effect happen the light has be flickering in the first place
@@ -433,11 +434,11 @@
 
 /obj/effect/mapping_helpers/light/flickering/flicker_random_settings/lowset
 	flicker_time_upper_max = 3 SECONDS
-	flicker_time_lower_min = 0.2 SECONDS
+	flicker_time_lower_min = 0.4 SECONDS
 
 /obj/effect/mapping_helpers/light/flickering/flicker_random_settings/highset
-	flicker_time_upper_max = 3 SECONDS
-	flicker_time_lower_min = 0.2 SECONDS
+	flicker_time_upper_max = 6 SECONDS
+	flicker_time_lower_min = 3 SECONDS
 
 ///this is mutually exclusive with random flickering
 /obj/effect/mapping_helpers/light/flickering/flicker_interval_setting
