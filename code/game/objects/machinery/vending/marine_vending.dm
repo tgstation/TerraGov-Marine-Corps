@@ -2075,9 +2075,9 @@
 
 /obj/machinery/vending/som/lasgun/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_icon_state()
 
-/obj/machinery/vending/som/lasgun/update_icon()
+/obj/machinery/vending/som/lasgun/update_icon_state()
 	if(machine_max_charge)
 		switch(machine_current_charge / max(1,machine_max_charge))
 			if(0.7 to 1)

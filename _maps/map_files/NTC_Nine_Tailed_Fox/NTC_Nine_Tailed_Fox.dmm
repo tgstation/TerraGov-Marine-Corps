@@ -3751,11 +3751,9 @@
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "djg" = (
-/obj/machinery/bot/roomba{
-	name = "NTC roomba"
-	},
+/obj/machinery/bot/roomba,
 /turf/open/floor/mainship/black{
-	dir = 4
+	dir = 8
 	},
 /area/mainship/squads/general)
 "djm" = (
@@ -5235,15 +5233,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
-"ePv" = (
-/obj/effect/ai_node,
-/obj/machinery/bot/roomba{
-	name = "NTC roomba"
-	},
-/turf/open/floor/mainship/black{
-	dir = 4
-	},
-/area/mainship/squads/general)
 "ePE" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/grass,
@@ -6096,14 +6085,6 @@
 	dir = 8
 	},
 /area/mainship/hull/upper_hull)
-"fAI" = (
-/obj/machinery/bot/roomba,
-/turf/open/floor/mainship/sterile/side{
-	dir = 4
-	},
-/area/mainship/medical/upper_medical{
-	name = "Shipside Medbay"
-	})
 "fAL" = (
 /obj/structure/droppod,
 /obj/structure/drop_pod_launcher,
@@ -40184,7 +40165,7 @@ gAA
 vYS
 vYS
 mpq
-fAI
+ydF
 rOw
 dNM
 vYS
@@ -41509,7 +41490,7 @@ jhK
 kXT
 syM
 jhK
-djg
+kXT
 xoO
 kXT
 qtW
@@ -41520,7 +41501,7 @@ kXT
 kXT
 kXT
 xRm
-ePv
+xoO
 kXT
 kXT
 kXT
@@ -41758,7 +41739,7 @@ xwc
 xwc
 xwc
 wsn
-xwc
+djg
 xwc
 xwc
 xwc
