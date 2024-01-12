@@ -16600,10 +16600,6 @@
 /obj/docking_port/stationary/supply,
 /turf/open/floor/mainship/empty,
 /area/mainship/squads/req)
-"oVg" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "oWk" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 10
@@ -25929,10 +25925,6 @@
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
 	})
-"xLa" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "xLj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -34024,7 +34016,7 @@ tIk
 leX
 pin
 pin
-xLa
+pin
 pin
 pin
 eUf
@@ -34266,7 +34258,7 @@ tIk
 leX
 pin
 pin
-oVg
+pin
 pin
 pin
 bVA
@@ -35718,7 +35710,7 @@ tIk
 leX
 pin
 pin
-oVg
+pin
 pin
 pin
 bVA
@@ -35960,7 +35952,7 @@ hQn
 leX
 pin
 pin
-xLa
+pin
 pin
 pin
 msB
