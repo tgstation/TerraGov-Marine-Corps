@@ -389,9 +389,8 @@
 	reinf = TRUE
 	flags_atom = NONE
 
-/obj/structure/window/shuttle/update_icon() //icon_state has to be set manually
-	. = ..()
-	icon_state = initial(icon_state)
+/obj/structure/window/shuttle/update_icon_state()
+	return
 
 //Framed windows
 

@@ -636,8 +636,7 @@ GLOBAL_LIST(cable_radial_layer_list)
 	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER|VIS_UNDERLAY
 
 /obj/structure/cable/multilayer/update_icon_state()
-	. = ..()
-	icon_state = initial(icon_state)
+	return
 
 /obj/structure/cable/multilayer/update_icon()
 

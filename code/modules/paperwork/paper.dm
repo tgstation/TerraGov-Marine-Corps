@@ -354,8 +354,7 @@
 	fields = 5
 
 /obj/item/paper/commendation/update_icon_state() //it looks fancy and we want it to stay fancy.
-	. = ..()
-	icon_state = initial(icon_state)
+	return
 
 /*Let this be a lesson about pre-made forms.
 
@@ -434,8 +433,7 @@ then, for every time you included a field, increment fields. */
 	icon_state = "scrap"
 
 /obj/item/paper/crumpled/update_icon_state()
-	. = ..()
-	icon_state = initial(icon_state)
+	return
 
 
 /obj/item/paper/crumpled/bloody/

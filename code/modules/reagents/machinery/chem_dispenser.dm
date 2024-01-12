@@ -458,8 +458,7 @@
 	return b_o
 
 /obj/machinery/chem_dispenser/soda/update_icon_state()
-	. = ..()
-	icon_state = initial(icon_state)
+	return
 
 
 /obj/machinery/chem_dispenser/beer
@@ -520,8 +519,7 @@
 	return b_o
 
 /obj/machinery/chem_dispenser/beer/update_icon_state()
-	. = ..()
-	icon_state = initial(icon_state)
+	return
 
 /obj/machinery/chem_dispenser/valhalla
 	needs_medical_training = FALSE

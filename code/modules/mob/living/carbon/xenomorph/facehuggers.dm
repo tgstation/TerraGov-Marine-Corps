@@ -287,12 +287,12 @@
 	if(stat == DEAD || stat == UNCONSCIOUS || !isturf(loc)) //It's dead or inactive or not on a turf don't bother
 		return
 	about_to_jump = TRUE
-	update_overlays()
+	update_appearance()
 
 ///Remove the hugger's alert overlay
 /obj/item/clothing/mask/facehugger/proc/remove_danger_overlay()
 	about_to_jump = FALSE
-	update_overlays()
+	update_appearance()
 
 /obj/item/clothing/mask/facehugger/proc/check_lifecycle()
 

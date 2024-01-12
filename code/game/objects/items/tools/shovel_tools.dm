@@ -152,7 +152,7 @@
 	else
 		icon_state = "etool_c"
 		item_state = "etool_c"
-	..()
+	return ..()
 
 /obj/item/tool/shovel/etool/attack_self(mob/user as mob)
 	if(sharp)

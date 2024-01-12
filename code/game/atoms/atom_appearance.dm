@@ -40,6 +40,7 @@
 	. = NONE
 	updates &= ~SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_ICON, updates)
 	if(updates & UPDATE_ICON_STATE)
+		SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_ICON_STATE)
 		update_icon_state()
 		. |= UPDATE_ICON_STATE
 
@@ -102,8 +103,7 @@
 
 /// Updates the icon state of the atom
 /atom/proc/update_icon_state()
-	SHOULD_CALL_PARENT(TRUE)
-	return SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_ICON_STATE)
+
 
 /// Updates the overlays of the atom
 /atom/proc/update_overlays()
