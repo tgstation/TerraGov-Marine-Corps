@@ -72,8 +72,8 @@
 	gamemode_flags = ABILITY_NUCLEARWAR
 	target_flags = ABILITY_HUMAN_TARGET
 	var/lethaldamage
-	var/damagescaledivisor = 4 //The divisor that the damage form uses
-	var/damageperlarva = 15 //The base damage per larva
+	var/damagescaledivisor = 2.5 //The divisor that the damage form uses
+	var/damageperlarva = 20 //The base damage per larva
 	var/list/helpintenttext = list("caringly fuck", "carefully impregnate", "regally rail", "tantrically mate")
 	var/list/harmintenttext = list("roughly rut", "roughly rail", "harshly slam", "dangerously seed", "overly stuff")
 	var/list/damagetypes = list(BRUTE,BURN,TOX)
