@@ -747,6 +747,7 @@
 #define COMSIG_MECHABILITY_SKYFALL "mechability_skyfall"
 #define COMSIG_MECHABILITY_STRIKE "mechability_strike"
 
+#define COMSIG_ACTION_EXCLUSIVE_TOGGLE "action_exclusive_toggle"
 // xeno abilities for keybindings
 
 #define COMSIG_XENOABILITY_REST "xenoability_rest"
@@ -810,7 +811,7 @@
 #define COMSIG_XENOABILITY_DEVOUR "xenoability_devour"
 #define COMSIG_XENOABILITY_DRAIN "xenoability_drain"
 #define COMSIG_XENOABILITY_TRANSFUSION "xenoability_transfusion"
-#define COMSIG_XENOABILITY_REJUVENATE "xenoability_rejuvenate"
+#define COMSIG_XENOABILITY_OPPOSE "xenoability_oppose"
 #define COMSIG_XENOABILITY_PSYCHIC_LINK "xenoability_psychic_link"
 #define COMSIG_XENOABILITY_CARNAGE "xenoability_carnage"
 #define COMSIG_XENOABILITY_FEAST "xenoability_feast"
@@ -987,6 +988,10 @@
 #define COMSIG_KB_DEFENDORDER "keybind_defendorder"
 #define COMSIG_KB_RETREATORDER "keybind_retreatorder"
 
+//Weapon related ability keybinds
+#define COMSIG_WEAPONABILITY_AXESWEEP "weaponability_axesweep"
+#define COMSIG_WEAPONABILITY_AXESWEEP_SELECT "weaponability_axesweep_select"
+#define COMSIG_WEAPONABILITY_SWORDLUNGE "weaponability_swordlunge"
 
 // human modules signals for keybindings
 #define COMSIG_KB_VALI_CONFIGURE "keybinding_vali_configure"
