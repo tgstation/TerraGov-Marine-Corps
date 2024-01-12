@@ -27,6 +27,7 @@
 	return ..()
 
 /obj/item/explosive/plastique/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][plant_target ? "_set" : ""]"
 	if(armed)
 		icon_state = "[icon_state][alarm_sounded ? "_armed" : "_on"]"

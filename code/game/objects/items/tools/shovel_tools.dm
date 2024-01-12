@@ -85,7 +85,8 @@
 					if(!ST.slayer)
 						return
 					ST.slayer -= 1
-					ST.update_icon(1,0)
+					ST.update_appearance()
+					ST.update_sides()
 					balloon_alert(user, "Digs up snow")
 				else
 					balloon_alert(user, "Digs up dirt")
@@ -151,7 +152,7 @@
 	else
 		icon_state = "etool_c"
 		item_state = "etool_c"
-	..()
+	return ..()
 
 /obj/item/tool/shovel/etool/attack_self(mob/user as mob)
 	if(sharp)

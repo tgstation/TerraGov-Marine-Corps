@@ -185,6 +185,7 @@
 
 
 /atom/movable/screen/mov_intent/update_icon_state()
+	. = ..()
 	if(!hud?.mymob)
 		return
 
@@ -210,6 +211,7 @@
 	L.lay_down()
 
 /atom/movable/screen/rest/update_icon_state()
+	. = ..()
 	if(!isliving(hud?.mymob))
 		return
 	var/mob/living/L = hud?.mymob
@@ -229,6 +231,7 @@
 
 
 /atom/movable/screen/pull/update_icon_state()
+	. = ..()
 	if(!hud?.mymob)
 		return
 	if(hud.mymob.pulling)
@@ -422,6 +425,7 @@
 	mouse_opacity = MOUSE_OPACITY_ICON
 
 /atom/movable/screen/stamina_hud/update_icon_state()
+	. = ..()
 	if(!ishuman(hud?.mymob))
 		return
 	var/mob/living/carbon/human/mymob_human = hud.mymob
@@ -529,6 +533,7 @@
 	screen_loc = ui_temp
 
 /atom/movable/screen/bodytemp/update_icon_state()
+	. = ..()
 	if(!ishuman(hud?.mymob))
 		return
 	var/mob/living/carbon/human/human_mymob = hud.mymob
@@ -590,6 +595,7 @@
 	screen_loc = ui_oxygen
 
 /atom/movable/screen/oxygen/update_icon_state()
+	. = ..()
 	if(!ishuman(hud?.mymob))
 		return
 	var/mob/living/carbon/human/human_mymob = hud.mymob
@@ -604,6 +610,7 @@
 	screen_loc = ui_toxin
 
 /atom/movable/screen/toxin/update_icon_state()
+	. = ..()
 	if(!ishuman(hud?.mymob))
 		return
 	var/mob/living/carbon/human/human_mymob = hud.mymob
@@ -618,6 +625,7 @@
 	screen_loc = ui_pressure
 
 /atom/movable/screen/pressure/update_icon_state()
+	. = ..()
 	if(!ishuman(hud?.mymob))
 		return
 	var/mob/living/carbon/human/human_mymob = hud.mymob
@@ -629,6 +637,7 @@
 	screen_loc = ui_nutrition
 
 /atom/movable/screen/nutrition/update_icon_state()
+	. = ..()
 	if(!ishuman(hud?.mymob))
 		return
 	var/mob/living/carbon/human/human_mymob = hud.mymob
@@ -648,6 +657,7 @@
 	screen_loc = ui_fire
 
 /atom/movable/screen/fire/update_icon_state()
+	. = ..()
 	if(!ishuman(hud?.mymob))
 		return
 	var/mob/living/carbon/human/human_mymob = hud.mymob

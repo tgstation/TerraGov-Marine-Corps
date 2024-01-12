@@ -76,7 +76,8 @@
 		visible_message(span_danger("[O] plows straight through [src]!"))
 		deconstruct(FALSE)
 
-/obj/structure/table/update_icon()
+/obj/structure/table/update_icon_state()
+	. = ..()
 	if(flipped)
 		var/ttype = 0
 		var/tabledirs = 0

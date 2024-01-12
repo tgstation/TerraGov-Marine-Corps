@@ -108,12 +108,22 @@
 	user.drop_held_item()
 	qdel(src)
 
-/obj/item/ammo_magazine/rocket/update_icon()
-	overlays.Cut()
+/obj/item/ammo_magazine/rocket/update_name(updates)
+	. = ..()
 	if(current_rounds > 0)
 		return
 	name = "empty rocket frame"
+
+/obj/item/ammo_magazine/rocket/update_desc(updates)
+	. = ..()
+	if(current_rounds > 0)
+		return
 	desc = "A spent rocket rube. Activate it to deconstruct it and receive some materials."
+
+/obj/item/ammo_magazine/rocket/update_icon_state()
+	. = ..()
+	if(current_rounds > 0)
+		return
 	icon_state = istype(src, /obj/item/ammo_magazine/rocket/m57a4) ? "quad_rocket_e" : "rocket_e"
 
 //-------------------------------------------------------

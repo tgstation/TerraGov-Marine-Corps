@@ -42,7 +42,8 @@ Stepping directly on the mine will also blow it up
 	return ..()
 
 /// Update the icon, adding "_armed" if appropriate to the icon_state.
-/obj/item/explosive/mine/update_icon()
+/obj/item/explosive/mine/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][armed ? "_armed" : ""]"
 
 /// On explosion mines trigger their own explosion, assuming there were not deleted straight away (larger explosions or probability)

@@ -70,6 +70,7 @@
 		return ..()
 
 /obj/item/storage/holster/update_icon_state()
+	. = ..()
 	if(holstered_item)
 		icon_state = initial(icon_state) + "_full"
 	else

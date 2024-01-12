@@ -26,6 +26,7 @@
 	update_icon()
 
 /obj/item/clothing/shoes/marine/update_icon_state()
+	. = ..()
 	icon_state = initial(icon_state)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		return

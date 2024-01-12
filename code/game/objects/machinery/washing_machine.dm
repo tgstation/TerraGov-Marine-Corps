@@ -67,7 +67,8 @@
 		usr.loc = src.loc
 
 
-/obj/machinery/washing_machine/update_icon()
+/obj/machinery/washing_machine/update_icon_state()
+	. = ..()
 	icon_state = "wm_[state][panel]"
 
 

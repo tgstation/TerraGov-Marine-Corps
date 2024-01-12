@@ -141,6 +141,7 @@
 	return ..()
 
 /obj/structure/weapon_x_pod/update_icon_state()
+	. = ..()
 	if(occupant)
 		icon_state = initial(icon_state)
 	else

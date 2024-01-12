@@ -56,6 +56,7 @@
 
 
 /obj/item/stack/update_icon_state()
+	. = ..()
 	if(!number_of_extra_variants)
 		return
 	var/ratio = round((amount * (number_of_extra_variants + 1)) / max_amount)

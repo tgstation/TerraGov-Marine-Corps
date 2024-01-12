@@ -17,16 +17,17 @@
 	. = ..()
 	update_icon()
 
-
-/obj/structure/closet/crate/secure/update_icon()
-	overlays.Cut()
+/obj/structure/closet/crate/secure/update_icon_state()
+	. = ..()
 	if(opened)
 		icon_state = icon_opened
 	else
 		icon_state = locked ? icon_locked : icon_unlocked
-	if(welded)
-		overlays += overlay_welded
 
+/obj/structure/closet/crate/secure/update_overlays()
+	. = ..()
+	if(welded)
+		. += overlay_welded
 
 /obj/structure/closet/crate/secure/can_open()
 	return !locked

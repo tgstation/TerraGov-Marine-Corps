@@ -101,6 +101,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		set_light(0)
 
 /obj/structure/droppod/update_icon_state()
+	. = ..()
 	if(drop_state == DROPPOD_ACTIVE)
 		icon_state = initial(icon_state)
 	else if(operation_started && launch_allowed)
@@ -386,6 +387,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	return ..()
 
 /obj/structure/droppod/nonmob/update_icon_state()
+	. = ..()
 	if(drop_state == DROPPOD_ACTIVE)
 		icon_state = initial(icon_state)
 	else if(stored_object)

@@ -36,7 +36,8 @@
 		fill_firstaid_kit()
 
 
-/obj/item/storage/firstaid/update_icon()
+/obj/item/storage/firstaid/update_icon_state()
+	. = ..()
 	if(!length(contents))
 		icon_state = icon_state += "_empty"
 	else

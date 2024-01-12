@@ -54,9 +54,6 @@
 	to_chat(user, span_notice("You refill [src] with [lowertext(caliber)]."))
 	update_icon()
 
-/obj/item/ammo_magazine/flamer_tank/update_icon()
-	return
-
 /obj/item/ammo_magazine/flamer_tank/large	// Extra thicc tank
 	name = "large flamerthrower tank"
 	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the FL-84 flamethrower."

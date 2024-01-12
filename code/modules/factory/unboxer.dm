@@ -54,6 +54,7 @@
 	balloon_alert(user, "Facing [dir2text(dir)]")
 
 /obj/machinery/unboxer/update_icon_state()
+	. = ..()
 	if(datum_flags & DF_ISPROCESSING)
 		icon_state = "unboxer"
 		return

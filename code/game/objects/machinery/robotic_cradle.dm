@@ -39,6 +39,7 @@
 	return ..()
 
 /obj/machinery/robotic_cradle/update_icon_state()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "borgcharger0"
 		return

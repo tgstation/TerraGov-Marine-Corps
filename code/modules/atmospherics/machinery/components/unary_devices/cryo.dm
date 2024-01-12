@@ -120,6 +120,7 @@
 		set_light(initial(light_range))
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_icon_state()
+	. = ..()
 	if(!on)
 		icon_state = "cell_off"
 	else

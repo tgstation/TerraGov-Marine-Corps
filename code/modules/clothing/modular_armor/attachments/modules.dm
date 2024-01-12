@@ -279,6 +279,7 @@
 	parent.update_icon()
 
 /obj/item/armor_module/module/chemsystem/update_icon_state()
+	. = ..()
 	if(chemsystem_is_active)
 		icon_state = "mod_chemsystem_active"
 		return

@@ -242,8 +242,9 @@
 		return
 	abstract_move(get_turf(xeno))
 
-/// Hivemind just doesn't have any icons to update, disabled for now
-/mob/living/carbon/xenomorph/hivemind/update_icon()
+/// handles hivemind updating with their respective weedtype
+/mob/living/carbon/xenomorph/hivemind/update_icon_state()
+	. = ..()
 	if(status_flags & INCORPOREAL)
 		icon_state = "hivemind_marker"
 		return

@@ -30,6 +30,11 @@
 		GLOB.dead_mob_list += src
 	set_focus(src)
 	prepare_huds()
+	for(var/v in GLOB.active_alternate_appearances)
+		if(!v)
+			continue
+		var/datum/atom_hud/alternate_appearance/AA = v
+		AA.onNewMob(src)
 	. = ..()
 	if(islist(skills))
 		set_skills(getSkills(arglist(skills)))

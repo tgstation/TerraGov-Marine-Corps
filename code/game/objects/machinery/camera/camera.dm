@@ -216,8 +216,8 @@
 			continue
 		to_chat(AI, span_notice("[src] has been deactivated at [myarea]"))
 
-
-/obj/machinery/camera/update_icon()
+/obj/machinery/camera/update_icon_state()
+	. = ..()
 	if(obj_integrity <= 0)
 		icon_state = "camera_assembly"
 	else
@@ -396,10 +396,6 @@
 /obj/machinery/camera/autoname/lz_camera/ex_act()
 	return
 
-
-/obj/machinery/camera/autoname/lz_camera/update_icon()
-	return
-
 //Thunderdome cameras
 /obj/machinery/camera/autoname/thunderdome
 	name = "thunderdome camera"
@@ -409,5 +405,6 @@
 //Special invisible cameras, to get even better angles without looking ugly
 /obj/machinery/camera/autoname/thunderdome/hidden
 
-/obj/machinery/camera/autoname/thunderdome/hidden/update_icon()
+/obj/machinery/camera/autoname/thunderdome/hidden/update_icon_state()
+	. = ..()
 	icon_state = "nothing"

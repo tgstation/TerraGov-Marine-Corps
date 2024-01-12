@@ -95,3 +95,26 @@
   - qol: Spatial agent glasses have all huds now
   yyzsong:
   - rscdel: Removes Big Red office variant 4
+2024-01-12:
+  Barnet2:
+  - balance: 'Daedalus Prison: Removed two miners, more preweed, medical cannot be
+      landed in by tad, and outskirt cave walls are actually pcable'
+  - spellcheck: Darkfrost hull walls are now named "tough rock"
+  Helg2:
+  - bugfix: fixed balloon alert for king's primo laser, which you probably won't even
+      see.
+  Lumipharon:
+  - bugfix: fixed abilities not updating their icon correctly on use in some cases
+  - bugfix: Fixed some instances where throw bounces would behave funnily
+  - bugfix: Harvester bicard no longer heals dead bodies or robots
+  - bugfix: fixed a couple of uncommon throw bugs
+  - balance: Adds weapon skill functionality, for a future campaign release
+  TiviPlus:
+  - rscadd: Psy points have been split into tactical and strategic psy points
+  ivanmixo:
+  - qol: Defiler egg injection has more feedback now
+  - bugfix: Opening the defiler egg mid progress bar makes the injection fail
+  yyzsong:
+  - rscadd: 'New Gorger primordial: Oppose. Staggers and slows nearby marines while
+      healing nearby xenomorphs, at a cost. Replaces current primordial ability, Rejuvenate'
+  - rscdel: Rejuvenate

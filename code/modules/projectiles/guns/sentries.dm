@@ -182,7 +182,7 @@
 	deployed_machine.max_integrity = max_integrity //Syncs new machine or structure integrity with that of the item.
 	deployed_machine.obj_integrity = obj_integrity
 
-	deployed_machine.update_icon_state()
+	deployed_machine.update_appearance()
 
 	forceMove(deployed_machine) //Moves the Item into the machine or structure
 

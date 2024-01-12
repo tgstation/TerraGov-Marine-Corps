@@ -18,6 +18,7 @@
 
 /mob/living/silicon/Initialize(mapload)
 	. = ..()
+	GLOB.silicon_mobs += src
 	radio = new(src)
 	if(SStts.tts_enabled)
 		voice = pick(SStts.available_speakers)
@@ -25,6 +26,7 @@
 
 /mob/living/silicon/Destroy()
 	QDEL_NULL(radio)
+	GLOB.silicon_mobs -= src
 	return ..()
 
 

@@ -901,6 +901,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	update_icon()
 
 /obj/item/weapon/gun/launcher/rocket/oneuse/update_icon_state()
+	. = ..()
 	if(extended)
 		icon_state = "[base_gun_icon]_extended"
 	else

@@ -473,6 +473,7 @@
 	update_icon()
 
 /obj/item/tool/handheld_charger/update_icon_state()
+	. = ..()
 	if(cell)
 		icon_state = initial(icon_state)
 	else
@@ -533,7 +534,7 @@
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
 	balloon_alert(user, "Removes the cell")
-	update_icon_state()
+	update_appearance()
 
 /obj/item/tool/handheld_charger/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
@@ -545,7 +546,7 @@
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
 	balloon_alert(user, "Removes the cell")
-	update_icon_state()
+	update_appearance()
 
 /obj/item/tool/handheld_charger/Destroy()
 	QDEL_NULL(cell)

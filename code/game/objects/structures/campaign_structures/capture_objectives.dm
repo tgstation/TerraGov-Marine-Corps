@@ -148,6 +148,7 @@
 	countdown.pixel_y = 90
 
 /obj/structure/campaign_objective/capture_objective/sensor_tower/update_icon_state()
+	. = ..()
 	icon_state = initial(icon_state)
 	if(!owning_faction)
 		switch(capturing_faction)

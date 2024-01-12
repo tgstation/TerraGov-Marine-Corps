@@ -465,7 +465,8 @@
 /turf/open/floor/plating/ground/snow/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	if(slayer > 0)
 		slayer -= 1
-		update_icon(1, 0)
+		update_appearance()
+		update_sides()
 	return ..()
 
 

@@ -53,6 +53,7 @@
 	update_icon()
 
 /obj/item/ammo_magazine/update_icon_state()
+	. = ..()
 	if(CHECK_BITFIELD(flags_magazine, MAGAZINE_HANDFUL))
 		setDir(current_rounds + round(current_rounds/3))
 		return
@@ -328,10 +329,16 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	pixel_y = rand(-2, 2)
 	icon_state = initial_icon_state += "[rand(1, number_of_states)]" //Set the icon to it.
 
-//This does most of the heavy lifting. It updates the icon and name if needed, then changes .dir to simulate new casings.
-/obj/item/ammo_casing/update_icon()
+//This does most of the heavy lifting. It updates the icon and name if needed 
+
+/obj/item/ammo_casing/update_name(updates)
+	. = ..()
+	if(max_casings >= current_casings && current_casings == 2)
+		name += "s" //In case there is more than one.
+
+/obj/item/ammo_casing/update_icon_state()
+	. = ..()
 	if(max_casings >= current_casings)
-		if(current_casings == 2) name += "s" //In case there is more than one.
 		if(round((current_casings-1)/8) > current_icon)
 			current_icon++
 			icon_state += "_[current_icon]"
@@ -339,9 +346,24 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		var/base_direction = current_casings - (current_icon * 8)
 		setDir(base_direction + round(base_direction)/3)
 		switch(current_casings)
-			if(3 to 5) w_class = WEIGHT_CLASS_SMALL //Slightly heavier.
-			if(9 to 10) w_class = WEIGHT_CLASS_NORMAL //Can't put it in your pockets and stuff.
+			if(3 to 5) 
+				w_class = WEIGHT_CLASS_SMALL //Slightly heavier.
+			if(9 to 10) 
+				w_class = WEIGHT_CLASS_NORMAL //Can't put it in your pockets and stuff.
 
+///changes .dir to simulate new casings, also sets the new w_class
+/obj/item/ammo_casing/proc/update_dir()
+	var/base_direction = current_casings - (current_icon * 8)
+	setDir(base_direction + round(base_direction)/3)
+	switch(current_casings)
+		if(3 to 5) 
+			w_class = WEIGHT_CLASS_SMALL //Slightly heavier.
+		if(9 to 10) 
+			w_class = WEIGHT_CLASS_NORMAL //Can't put it in your pockets and stuff.
+
+/obj/item/ammo_casing/update_icon()
+	update_dir()
+	return ..()
 
 //Making child objects so that locate() and istype() doesn't screw up.
 /obj/item/ammo_casing/bullet
@@ -375,6 +397,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/caliber = CALIBER_10X24_CASELESS
 
 /obj/item/big_ammo_box/update_icon_state()
+	. = ..()
 	if(bullet_amount)
 		icon_state = base_icon_state
 		return
@@ -413,7 +436,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			var/S = min(bullet_amount, AM.max_rounds - AM.current_rounds)
 			AM.current_rounds += S
 			bullet_amount -= S
-			AM.update_icon(S)
+			AM.update_icon()
 			update_icon()
 			if(AM.current_rounds == AM.max_rounds)
 				to_chat(user, span_notice("You refill [AM]."))
@@ -465,7 +488,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/caliber = CALIBER_12G
 
 
-/obj/item/shotgunbox/update_icon()
+/obj/item/shotgunbox/update_icon_state()
+	. = ..()
 	if(!deployed)
 		icon_state = "[initial(icon_state)]"
 	else if(current_rounds > 0)

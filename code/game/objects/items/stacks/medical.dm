@@ -188,22 +188,6 @@
 	skill_level_needed = SKILL_MEDICAL_PRACTICED
 	unskilled_delay = SKILL_TASK_EASY
 
-/obj/item/stack/medical/heal_pack/advanced/update_icon_state()
-	if(max_amount < 1 || amount > max_amount)
-		return
-	var/percentage = round(amount / max_amount) * 100
-	switch(percentage)
-		if(1 to 20)
-			setDir(SOUTH)
-		if(21 to 40)
-			setDir(EAST)
-		if(41 to 60)
-			setDir(SOUTHEAST)
-		if(61 to 80)
-			setDir(WEST)
-		if(81 to INFINITY)
-			setDir(NORTH)
-
 /obj/item/stack/medical/heal_pack/advanced/bruise_pack
 	name = "advanced trauma kit"
 	singular_name = "advanced trauma kit"

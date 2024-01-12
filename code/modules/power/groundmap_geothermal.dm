@@ -56,7 +56,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	return TRUE
 
 //We don't want to cut/update the power overlays every single proc. Just when it actually changes. This should save on CPU cycles. Efficiency!
-/obj/machinery/power/geothermal/update_icon()
+/obj/machinery/power/geothermal/update_icon_state()
 	. = ..()
 	switch(buildstate)
 		if(GEOTHERMAL_NO_DAMAGE)
@@ -82,6 +82,19 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is damaged. Use wirecutters and then a wrench to repair it."
 		if(GEOTHERMAL_LIGHT_DAMAGE)
 			icon_state = "wrench"
+			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is lightly damaged. Use a wrench to repair it."
+
+/obj/machinery/power/geothermal/update_desc(updates)
+	. = ..()
+	switch(buildstate)
+		if(GEOTHERMAL_NO_DAMAGE)
+			if(!is_on)
+				desc = "A thermoelectric generator sitting atop a borehole dug deep in the planet's surface. It generates energy by boiling the plasma steam that rises from the well.\nIt is old technology and has a large failure rate, and must be repaired frequently.\nIt is currently turned off and silent."
+		if(GEOTHERMAL_HEAVY_DAMAGE)
+			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, wirecutters, and then a wrench to repair it."
+		if(GEOTHERMAL_MEDIUM_DAMAGE)
+			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is damaged. Use wirecutters and then a wrench to repair it."
+		if(GEOTHERMAL_LIGHT_DAMAGE)
 			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is lightly damaged. Use a wrench to repair it."
 
 /obj/machinery/power/geothermal/update_overlays()
