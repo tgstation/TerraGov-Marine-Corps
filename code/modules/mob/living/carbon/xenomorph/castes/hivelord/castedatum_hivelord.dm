@@ -56,8 +56,10 @@
 	resin_max_range = 1 //Hivelord can place resin structures from 1 tile away
 
 	actions = list(
-
-
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/devour,
@@ -94,8 +96,10 @@
 	spit_types = list(/datum/ammo/xeno/sticky, /datum/ammo/xeno/sticky/globe)
 
 	actions = list(
-
-
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/activable/xeno/larval_growth_sting,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/devour,

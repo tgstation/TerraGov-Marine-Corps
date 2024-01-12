@@ -8361,12 +8361,6 @@
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
 	})
-"hFY" = (
-/obj/machinery/door/airlock/mainship/generic{
-	name = "\improper Synth Quarters"
-	},
-/turf/open/floor/wood,
-/area/mainship/hallways/synthdorms)
 "hGq" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -21798,7 +21792,7 @@
 	name = "\improper Synth Quarters"
 	},
 /obj/structure/cable,
-/turf/open/floor/wood,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/synthdorms)
 "tRl" = (
 /obj/structure/cable,
@@ -65044,7 +65038,7 @@ vRt
 iie
 rJx
 uXT
-uXT
+plq
 rJx
 iie
 fSl
@@ -65285,8 +65279,8 @@ qnG
 qnG
 qnG
 qnG
-hFY
 lwu
+tRf
 lwu
 lwu
 lwu
@@ -65527,8 +65521,8 @@ qnG
 jHt
 vFM
 qnG
-wJU
 qZo
+rWN
 xom
 qZo
 qZo

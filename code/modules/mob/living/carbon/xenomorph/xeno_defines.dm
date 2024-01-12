@@ -234,12 +234,6 @@
 	// How many of this caste may be alive at once
 	var/maximum_active_caste = INFINITY
 
-	var/givenbase = FALSE // Gives base abilities we want to give all Xenomorphs!
-	var/baseabilities = list(/datum/action/ability/xeno_action/psychic_whisper,
-		/datum/action/ability/xeno_action/psychic_influence,
-		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/activable/xeno/impregnate)
-
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
@@ -248,9 +242,6 @@
 	xenomorph.AddComponent(/datum/component/bump_attack)
 	if(can_flags & CASTE_CAN_RIDE_CRUSHER)
 		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, TYPE_PROC_REF(/mob/living/carbon/xenomorph, grabbed_self_attack))
-	if(!givenbase)
-		src.actions += baseabilities
-		givenbase = TRUE
 
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)

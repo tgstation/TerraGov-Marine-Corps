@@ -170,9 +170,9 @@
 	to_chat(src, span_danger("We start slithering out of [victim]!"))
 	var/obj/item/alien_embryo/birth_owner = locate() in victim
 	if(birth_owner.emerge_target == 1)
-		playsound(victim, 'modular_skyrat/sound/weapons/gagging.ogg', 25, TRUE)
-//	else
-		//victim.emote_burstscream()
+		playsound(victim, 'modular_skyrat/sound/weapons/gagging.ogg', 15, TRUE)
+	else
+		victim.emote_burstscream()
 	victim.Paralyze(15 SECONDS)
 	victim.visible_message("<span class='danger'>\The [victim] starts shaking uncontrollably!</span>", \
 								"<span class='danger'>You feel something wiggling in your [birth_owner.emerge_target_flavor]!</span>")

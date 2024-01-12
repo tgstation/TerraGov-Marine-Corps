@@ -43,8 +43,10 @@
 	crest_toss_distance = 6
 
 	actions = list(
-
-
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/devour,
@@ -74,8 +76,10 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
-
-
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/devour,

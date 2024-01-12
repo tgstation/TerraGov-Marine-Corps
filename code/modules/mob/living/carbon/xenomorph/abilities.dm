@@ -1489,8 +1489,10 @@
 			var/obj/item/alien_embryo/embryo2 = new(victim)
 			embryo2.hivenumber = hivenumber
 			if(victim.gender==FEMALE)
+				embryo2.emerge_target = 2
 				embryo2.emerge_target_flavor = "pussy"
 			else
+				embryo2.emerge_target = 3
 				embryo2.emerge_target_flavor = "ass"
 			GLOB.round_statistics.now_pregnant++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
@@ -1498,8 +1500,10 @@
 			personal_statistics.impregnations++
 		embryo.hivenumber = hivenumber
 		if(victim.gender==FEMALE)
+			embryo.emerge_target = 2
 			embryo.emerge_target_flavor = "pussy"
 		else
+			embryo.emerge_target = 3
 			embryo.emerge_target_flavor = "ass"
 		GLOB.round_statistics.now_pregnant++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")

@@ -44,8 +44,10 @@
 
 	// *** Abilities *** ///
 	actions = list(
-
-
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno/baneling,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/spawn_pod,
@@ -65,6 +67,9 @@
 	// *** Abilities *** ///
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno/baneling,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/spawn_pod,
