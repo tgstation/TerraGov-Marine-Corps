@@ -78,7 +78,8 @@
 	new /obj/item/tool/extinguisher(src)
 	new /obj/item/clothing/head/hardhat/red(src)
 
-/obj/structure/closet/firecloset/update_icon()
+/obj/structure/closet/firecloset/update_icon_state()
+	. = ..()
 	if(!opened)
 		icon_state = icon_closed
 	else

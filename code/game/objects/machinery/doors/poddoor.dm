@@ -48,7 +48,8 @@
 /obj/machinery/door/poddoor/try_to_activate_door(mob/user)
 	return
 
-/obj/machinery/door/poddoor/update_icon()
+/obj/machinery/door/poddoor/update_icon_state()
+	. = ..()
 	if(density)
 		icon_state = "pdoor1"
 	else

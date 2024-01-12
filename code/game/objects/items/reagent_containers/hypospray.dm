@@ -318,11 +318,31 @@
 	if(href_list["displayreagents"])
 		to_chat(usr, display_reagents())
 
+/obj/item/reagent_containers/hypospray/advanced/update_icon_state()
+	. = ..()
+	if(!reagents?.total_volume)
+		icon_state = "[initial(icon_state)]_0"
+		return
+	var/percent = round((reagents.total_volume / volume) * 100)
+	switch(percent)
+		if(0 to 9)
+			icon_state = initial(icon_state)
+		if(10 to 24)
+			icon_state = "[initial(icon_state)]_10"
+		if(25 to 49)
+			icon_state = "[initial(icon_state)]_25"
+		if(50 to 64)
+			icon_state = "[initial(icon_state)]_50"
+		if(65 to 79)
+			icon_state = "[initial(icon_state)]_65"
+		if(80 to 90)
+			icon_state = "[initial(icon_state)]_80"
+		if(91 to INFINITY)
+			icon_state = "[initial(icon_state)]_100"
 
 /obj/item/reagent_containers/hypospray/advanced/update_overlays()
 	. = ..()
 
-	overlays.Cut()
 	if(reagents.total_volume)
 		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "[icon_state]10")
 
@@ -332,37 +352,28 @@
 				filling.icon_state = "[initial(icon_state)]-10"
 			if(10 to 24)
 				filling.icon_state = "[initial(icon_state)]10"
-				icon_state = "[initial(icon_state)]_10"
 			if(25 to 49)
 				filling.icon_state = "[initial(icon_state)]25"
-				icon_state = "[initial(icon_state)]_25"
 			if(50 to 64)
 				filling.icon_state = "[initial(icon_state)]50"
-				icon_state = "[initial(icon_state)]_50"
 			if(65 to 79)
 				filling.icon_state = "[initial(icon_state)]65"
-				icon_state = "[initial(icon_state)]_65"
 			if(80 to 90)
 				filling.icon_state = "[initial(icon_state)]80"
-				icon_state = "[initial(icon_state)]_80"
 			if(91 to INFINITY)
 				filling.icon_state = "[initial(icon_state)]100"
-				icon_state = "[initial(icon_state)]_100"
 
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		overlays += filling
-
-	else
-		icon_state = "[initial(icon_state)]_0"
+		. += filling
 
 	if(ismob(loc))
 		var/injoverlay
 		switch(inject_mode)
-			if (HYPOSPRAY_INJECT_MODE_DRAW)
+			if(HYPOSPRAY_INJECT_MODE_DRAW)
 				injoverlay = "draw"
-			if (HYPOSPRAY_INJECT_MODE_INJECT)
+			if(HYPOSPRAY_INJECT_MODE_INJECT)
 				injoverlay = "inject"
-		add_overlay(injoverlay)
+		. += injoverlay
 
 /obj/item/reagent_containers/hypospray/advanced/examine(mob/user as mob)
 	. = ..()

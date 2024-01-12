@@ -110,17 +110,17 @@
 //icon update function
 // if NOPOWER, display blank
 // if BROKEN, display blue screen of death icon AI uses
-/obj/machinery/door_display/update_icon()
-	cut_overlays()
-	if (machine_stat & (NOPOWER))
+/obj/machinery/door_display/update_overlays()
+	. = ..()
+	if(machine_stat & (NOPOWER))
 		return
-	if (machine_stat & (BROKEN))
-		add_overlay("ai_bsod")
+	if(machine_stat & (BROKEN))
+		. += "ai_bsod"
 		return
 	if(open)
-		add_overlay("open")
+		. += "open"
 	else
-		add_overlay("closed")
+		. += "closed"
 
 //************ RESEARCH DOORS ****************\\
 // Research cells have flashers and shutters/pod doors.

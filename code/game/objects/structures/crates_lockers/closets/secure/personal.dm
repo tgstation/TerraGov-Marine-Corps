@@ -31,7 +31,8 @@
 	icon_broken = "cabinetdetective_broken"
 	icon_off = "cabinetdetective_broken"
 
-/obj/structure/closet/secure_closet/personal/cabinet/update_icon()
+/obj/structure/closet/secure_closet/personal/cabinet/update_icon_state()
+	. = ..()
 	if(broken)
 		icon_state = icon_broken
 	else

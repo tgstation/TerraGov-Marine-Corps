@@ -50,11 +50,11 @@
 			break
 
 
-/obj/structure/coatrack/update_icon()
-	overlays.Cut()
+/obj/structure/coatrack/update_overlays()
+	. = ..()
 	if(istype(coat, /obj/item/clothing/suit/storage/labcoat))
-		overlays += image(icon, icon_state = "coat_lab")
+		. += image(icon, icon_state = "coat_lab")
 	if(istype(coat, /obj/item/clothing/suit/storage/labcoat/cmo))
-		overlays += image(icon, icon_state = "coat_cmo")
+		. += image(icon, icon_state = "coat_cmo")
 	if(istype(coat, /obj/item/clothing/suit/storage/det_suit))
-		overlays += image(icon, icon_state = "coat_det")
+		. += image(icon, icon_state = "coat_det")

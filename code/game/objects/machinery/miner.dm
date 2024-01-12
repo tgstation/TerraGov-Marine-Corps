@@ -73,7 +73,8 @@
 	var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on"
 	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon))
 
-/obj/machinery/miner/update_icon()
+/obj/machinery/miner/update_icon_state()
+	. = ..()
 	switch(miner_status)
 		if(MINER_RUNNING)
 			icon_state = "mining_drill_active_[miner_upgrade_type]"
