@@ -12,6 +12,7 @@
 	var/underground_signal = FALSE
 
 /obj/item/beacon/update_icon_state()
+	. = ..()
 	icon_state = activated ? icon_activated : initial(icon_state)
 
 /obj/item/beacon/attack_self(mob/living/carbon/human/H)

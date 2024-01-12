@@ -137,7 +137,7 @@
 
 		pull_icon = new /atom/movable/screen/pull(null, src)
 		pull_icon.icon = ui_style
-		pull_icon.update_icon(owner)
+		pull_icon.update_icon()
 		hotkeybuttons += pull_icon
 
 	if(hud_data.has_warnings)

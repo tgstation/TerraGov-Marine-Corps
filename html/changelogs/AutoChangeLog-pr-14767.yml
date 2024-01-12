@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - code_imp: "Ported update_appearance, alternative_appearance and ssvisoverlays"
+  - refactor: "Refactored almost every instance of update_icon, update_icon_state and update_overlays"

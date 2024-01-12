@@ -322,15 +322,17 @@
 	else
 		balloon_alert(usr, "Can't do this")
 
-/obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
-	overlays.Cut()
+/obj/structure/closet/update_icon_state()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
+	. = ..()
 	if(!opened)
 		icon_state = icon_closed
-		if(welded)
-			overlays += image(icon, overlay_welded)
 	else
 		icon_state = icon_opened
 
+/obj/structure/closet/update_overlays()
+	. = ..()
+	if(!opened && welded)
+		. += image(icon, overlay_welded)
 
 /obj/structure/closet/resisted_against(datum/source)
 	container_resist(source)

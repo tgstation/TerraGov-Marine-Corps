@@ -268,7 +268,8 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/light/update_icon()
+/obj/machinery/light/update_icon_state()
+	. = ..()
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
 			icon_state = "[base_state][light_on]"

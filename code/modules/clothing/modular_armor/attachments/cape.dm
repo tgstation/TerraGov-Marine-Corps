@@ -167,6 +167,7 @@
 	var/hood = FALSE
 
 /obj/item/armor_module/armor/cape/update_icon_state()
+	. = ..()
 	var/obj/item/armor_module/highlight = attachments_by_slot[ATTACHMENT_SLOT_CAPE_HIGHLIGHT]
 	if(hood)
 		icon_state = initial(icon_state) + "_[current_variant]_h"
@@ -271,6 +272,7 @@
 	)
 
 /obj/item/armor_module/armor/cape_highlight/update_icon_state()
+	. = ..()
 	if(!parent)
 		return
 	var/obj/item/armor_module/armor/cape/cape_parent = parent

@@ -7,7 +7,8 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	icon_state = "deployable"
 	layer = ABOVE_ALL_MOB_LAYER//it flies after all
 
-/obj/machinery/camera/deployable/update_icon()
+/obj/machinery/camera/deployable/update_icon_state()
+	. = ..()
 	if(obj_integrity <= 0)
 		icon_state = "deployableoff"
 	else
