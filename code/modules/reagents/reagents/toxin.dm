@@ -758,6 +758,9 @@
 	if(L.status_flags & GODMODE)
 		qdel(src)
 		return
+	if(isxeno(L))
+		qdel(src)
+		return
 	. = ..()
 	debuff_ownerhuman = L
 	debuff_owner = L

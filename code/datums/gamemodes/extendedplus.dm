@@ -19,7 +19,7 @@
 		/datum/job/terragov/requisitions/officer = 2,
 		/datum/job/terragov/medical/professor = 1,
 		/datum/job/terragov/medical/medicalofficer = 6,
-		/datum/job/terragov/security/security_officer = 8,
+		/datum/job/terragov/security/security_officer = 6,
 		/datum/job/terragov/medical/researcher = 3,
 		/datum/job/terragov/civilian/liaison = 1,
 		/datum/job/terragov/silicon/synthetic = 4,
@@ -33,8 +33,8 @@
 		/datum/job/worker/moraleofficer = -1,
 		/datum/job/worker = -1,
 		/datum/job/survivor/rambo = -1,
-		/datum/job/other/prisoner = -1,
-		/datum/job/xenomorph = 8,
+		/datum/job/other/prisoner = 4,
+		/datum/job/xenomorph = 5,
 		/datum/job/xenomorph/queen = 1,
 		/datum/job/som/command/commander = 1,
 		/datum/job/som/command/fieldcommander = 1,
@@ -51,7 +51,7 @@
 		/datum/job/som/squad/leader = 2,
 		/datum/job/som/squad/veteran = 2,
 		/datum/job/som/squad/standard = 6,
-		/datum/job/other/prisonersom = 3,
+		/datum/job/other/prisonersom = 2,
 		/datum/job/clf/leader = 2,
 		/datum/job/clf/specialist = 4,
 		/datum/job/clf/medic = 4,
@@ -59,9 +59,9 @@
 		/datum/job/clf/breeder = -1
 	)
 	enable_fun_tads = TRUE
-	xenorespawn_time = 15 SECONDS
-	respawn_time = 15 SECONDS
-	bioscan_interval = 1 HOURS
+	xenorespawn_time = 2 MINUTES
+	respawn_time = 15 MINUTES
+	bioscan_interval = 30 MINUTES
 
 /datum/game_mode/infestation/can_start(bypass_checks = TRUE)
 	. = ..()

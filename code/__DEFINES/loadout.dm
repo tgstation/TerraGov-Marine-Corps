@@ -200,8 +200,8 @@ GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 GLOBAL_LIST_INIT(specialist_gear_listed_products, list(
 
 	/obj/effect/vendor_bundle/specialist = list(CAT_ESS, "Essential Specialist Set", 0, "white"),
-	/obj/item/storage/box/crate/heavy_armor = list(CAT_SPSUP, "Heavy Armor Pack", 25, "orange"),
-	/obj/item/storage/box/crate/heavy_grenadier = list(CAT_SPSUP, "Heavy Grenadier Pack", 20, "black"),
+	/obj/item/storage/box/crate/heavy_armor = list(CAT_SPSUP, "Heavy Armor Pack", 40, "orange"),
+	/obj/item/storage/box/crate/heavy_grenadier = list(CAT_SPSUP, "Heavy Grenadier Pack", 25, "black"),
 	/obj/item/storage/backpack/marine/satchel/scout_cloak/scout = list(CAT_SPSUP, "Scout Cloak", 15, "black"),
 	/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper = list(CAT_SPSUP, "Sniper Cloak", 15, "black"),
 	/obj/item/clothing/glasses/thermal/m64_thermal_goggles = list(CAT_SPSUP, "M64 Thermal Goggles", 15, "black"),

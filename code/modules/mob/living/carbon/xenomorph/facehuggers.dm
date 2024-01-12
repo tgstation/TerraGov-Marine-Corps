@@ -176,12 +176,18 @@
 	if(isxenocarrier(user))
 		var/mob/living/carbon/xenomorph/carrier/C = user
 		C.store_hugger(src)
+		return
 	if(ishuman(user))
 		if(stat == DEAD)
 			return
 		user.visible_message("<span class ='warning'>[user] crushes \the [src] in [user.p_their()] hand!", \
 		"<span class ='warning'>You crushes \the [src] in your hand!")
 		kill_hugger()
+	if(isxeno(user) && !issamexenohive(user) && stat != DEAD)
+		user.visible_message("<span class='xenowarning'>[user] crushes \the [src]",
+			"<span class='xenowarning'>We crush \the [src]")
+		kill_hugger()
+		return
 
 /obj/item/clothing/mask/facehugger/examine(mob/user)
 	. = ..()

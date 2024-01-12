@@ -122,6 +122,18 @@
 	desc = "Some semen or something, yuck. It seems to have dried."
 	color = adjust_brightness(color, -75)
 
+/obj/effect/decal/cleanable/blood/splatter/robotcum
+	name = "synthetic cum"
+	basecolor = "#272727"
+	desc = "It's literally oil-y cum."
+	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
+	amount = 2
+
+/obj/effect/decal/cleanable/blood/splatter/robotcum/dry()
+	name = "dried [name]"
+	desc = "It's literally oil-y cum. It seems to have dried."
+	color = adjust_brightness(color, -75)
+
 /obj/effect/decal/cleanable/blood/splatter/xenocum
 	name = "xeno cum"
 	basecolor = "#b9ffcb"

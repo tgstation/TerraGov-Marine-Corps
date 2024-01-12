@@ -64,10 +64,13 @@
 		usr.emote("moan")
 		usr.visible_message(span_warning("[usr] cums!"), span_warning("You cum."), span_warning("You hear a splatter."), 5)
 		usr.balloon_alert(usr, "Orgasmed.")
-		if(usr.gender == MALE)
-			new /obj/effect/decal/cleanable/blood/splatter/cum(usr.loc)
+		if(!isrobot(usr))
+			if(usr.gender == MALE)
+				new /obj/effect/decal/cleanable/blood/splatter/cum(usr.loc)
+			else
+				new /obj/effect/decal/cleanable/blood/splatter/girlcum(usr.loc)
 		else
-			new /obj/effect/decal/cleanable/blood/splatter/girlcum(usr.loc)
+			new /obj/effect/decal/cleanable/blood/splatter/robotcum(usr.loc)
 		if(isxeno(usr))
 			new /obj/effect/decal/cleanable/blood/splatter/xenocum(usr.loc)
 		playsound(usr.loc, "sound/effects/splat.ogg", 30)

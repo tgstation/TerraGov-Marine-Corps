@@ -652,6 +652,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
+/obj/effect/landmark/start/job/prisonersom,
 /turf/open/floor/prison/darkyellow/full,
 /area/canora_desert/surface/building/som_prison)
 "hz" = (
@@ -663,11 +664,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/canora_desert/surface/building/som_smaint)
 "hH" = (
-/obj/structure/bed,
-/obj/item/bedsheet/hos,
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
 	},
+/obj/machinery/cryopod/right,
 /turf/open/floor/prison/darkyellow/full,
 /area/canora_desert/surface/building/som_prison)
 "hP" = (
@@ -2006,6 +2006,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
+/obj/effect/landmark/start/job/prisonersom,
 /turf/open/floor/prison/darkyellow/full,
 /area/canora_desert/surface/building/som_prison)
 "wf" = (
