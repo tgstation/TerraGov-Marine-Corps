@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - rscdel: "Research Outpost is no longer votable when Nuclear War is selected."
