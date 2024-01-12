@@ -98,19 +98,16 @@
 	siemens_coefficient = 0.7
 	flags_armor_protection = FACE|EYES
 
-/obj/item/clothing/mask/gas/swat/mk2
-	name = "\improper SWAT mask MK.2"
-	desc = "A close-fitting tactical mask used by special operation operatives."
+/obj/item/clothing/mask/gas/specops
+	name = "Special Operations gasmask"
+	desc = "A close-fitting tactical mask that can be connected to an air supply. Based off an old design of gas masks."
 	icon = 'icons/mob/clothing/mask.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/mask.dmi'
 	)
-	icon_state = "swat_specops"
-	item_state = "swat_specops"
-	anti_hug = 1
+	icon_state = "specops"
+	item_state = "specops"
 	siemens_coefficient = 0.7
-	flags_armor_protection = FACE|EYES
-	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "syndicate mask"

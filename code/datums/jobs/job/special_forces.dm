@@ -19,7 +19,7 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
-	mask = /obj/item/clothing/mask/gas/swat/mk2
+	mask = /obj/item/clothing/mask/gas/specops
 	w_uniform = /obj/item/clothing/under/marine/specops
 	shoes = /obj/item/clothing/shoes/combat
 	wear_suit = /obj/item/clothing/suit/storage/marine/specops
@@ -78,7 +78,7 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
-	mask = /obj/item/clothing/mask/gas/swat/mk2
+	mask = /obj/item/clothing/mask/gas/specops
 	w_uniform = /obj/item/clothing/under/marine/specops
 	shoes = /obj/item/clothing/shoes/combat
 	wear_suit = /obj/item/clothing/suit/storage/marine/specops/support
@@ -133,7 +133,7 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
-	mask = /obj/item/clothing/mask/gas/swat/mk2
+	mask = /obj/item/clothing/mask/gas/specops
 	w_uniform = /obj/item/clothing/under/marine/specops
 	shoes = /obj/item/clothing/shoes/combat
 	wear_suit = /obj/item/clothing/suit/storage/marine/specops/support
@@ -238,7 +238,7 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
-	mask = /obj/item/clothing/mask/gas/swat/mk2
+	mask = /obj/item/clothing/mask/gas/specops
 	w_uniform = /obj/item/clothing/under/marine/specops
 	glasses = /obj/item/clothing/glasses/night
 	shoes = /obj/item/clothing/shoes/combat
