@@ -59,7 +59,7 @@
 
 
 /////////////////////////////////
-// Impregnate - Queen
+// Impregnate - Queen Variation - Harm intent = Lethal, Help = Gentle
 /////////////////////////////////
 
 /datum/action/ability/activable/xeno/impregnatequeen
@@ -71,6 +71,15 @@
 	ability_cost = 200
 	gamemode_flags = ABILITY_NUCLEARWAR
 	target_flags = ABILITY_HUMAN_TARGET
+	var/lethaldamage
+	var/damagescaledivisor = 4 //The divisor that the damage form uses
+	var/damageperlarva = 15 //The base damage per larva
+	var/list/helpintenttext = list("caringly fuck", "carefully impregnate", "regally rail", "tantrically mate")
+	var/list/harmintenttext = list("roughly rut", "roughly rail", "harshly slam", "dangerously seed", "overly stuff")
+	var/list/damagetypes = list(BRUTE,BURN,TOX)
+	var/sexverb
+	var/larvalbunch = 3
+	var/chancebunch = 20
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_IMPREGNATE,
 	)
@@ -84,8 +93,19 @@
 	var/implanted_embryos = 0
 	for(var/obj/item/alien_embryo/implanted in A.contents)
 		implanted_embryos++
-		if(implanted_embryos >= MAX_LARVA_PREGNANCIES)
-			to_chat(owner, span_warning("This host is already full of young ones... But you ignore it against your better judgement!"))
+	if(implanted_embryos >= MAX_LARVA_PREGNANCIES)
+		if(victim.a_intent == INTENT_HARM)
+			to_chat(X, span_warning("This host is already full of young ones... But you ignore it against your better judgement! Gripping the host tight, you continue..."))
+			lethaldamage = TRUE //Yep.
+		else
+			to_chat(X, span_warning("This host is already full of young ones, and you don't want to hurt them! You feel if you were more HARMFUL, you might be able to fit a few more larva inside though..."))
+			lethaldamage = FALSE //Nup.
+			return FALSE
+	switch(victim.a_intent)
+		if(INTENT_HARM)
+			sexverb = pick(harmintenttext)
+		if(INTENT_HELP)
+			sexverb = pick(helpintenttext)
 	if(!ishuman(A) && !isxeno(A))
 		to_chat(owner, span_warning("This one wouldn't be able to bear a young one."))
 		return FALSE
@@ -95,73 +115,82 @@
 		return FALSE
 	if(X.on_fire)
 		if(!silent)
-			to_chat(X, span_warning("We're too busy being on fire to do this!"))
+			to_chat(X, span_warning("We feel as if exposing our genitals while on fire is a bad idea..."))
 		return FALSE
-	X.visible_message(span_danger("[X] starts to fuck [victim]!"), \
-	span_danger("We start to fuck [victim]!"), null, 5)
+	X.visible_message(span_danger("[X] starts to [sexverb] [victim]!"), \
+	span_danger("We start to [sexverb] [victim]!"), null, 5)
 
+//RECODE HERE
 /datum/action/ability/activable/xeno/impregnatequeen/use_ability(mob/living/A)
 	var/channel = SSsounds.random_available_channel()
 	var/mob/living/carbon/xenomorph/X = owner
+	var/victimhole = "[A.gender == MALE ? "ass" : "pussy"]"
 	if(ishuman(A))
-		var/mob/living/carbon/human/victim = A
-		var/hivenumber = XENO_HIVE_NORMAL
-		hivenumber = X.hivenumber
-		X.face_atom(victim)
-		X.do_jitter_animation()
-		A.do_jitter_animation()
-		to_chat(owner, span_warning("We will cum shortly! Do not walk away until it is done."))
-		playsound(X, 'sound/effects/alien_plapping.ogg', 40, channel = channel)
-		if(!do_after(X, 1.5 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
-			to_chat(owner, span_warning("We stop fucking \the [victim]. They probably were loose anyways."))
-			X.stop_sound_channel(channel)
-			return fail_activate()
-		owner.visible_message(span_warning("[X] fucks [victim]!"), span_warning("We fuck [victim]!"), span_warning("You hear slapping."), 5, victim)
-		if(victim.stat == CONSCIOUS)
-			to_chat(victim, span_warning("[X] fucks you!"))
-		victim.apply_damage(5, BURN, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //The Queen is made for stuffing hosts...
-		victim.apply_damage(5, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //But she's a tad large. Those hips will hurt!
-		if(ismonkey(victim))
-			victim.apply_damage(95, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //They CERTAINLY aren't fitting in a monkey.
-		var/implanted_embryos = 0
-		for(var/obj/item/alien_embryo/implanted in A.contents)
-			implanted_embryos++
-			if(implanted_embryos >= MAX_LARVA_PREGNANCIES)
-				to_chat(owner, span_danger("This Host is way too full! You begin to overstuff them..."))
-				victim.apply_damage(5*(implanted_embryos/3), BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //Too many larvae!
-				victim.apply_damage(5*(implanted_embryos/4), BURN, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //Too many larvae!
-				if(implanted_embryos >= (MAX_LARVA_PREGNANCIES*2))
-					victim.apply_damage(15*(implanted_embryos/2), CLONE, updating_health = TRUE) //WAY too many larvae and life-sustaining drugs!
-					victim.apply_damage(5*(implanted_embryos/2), BURN, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //But as it builds up...
-					victim.apply_damage(5*(implanted_embryos/2), BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //It'll get worse!
-		var/obj/item/alien_embryo/embryo = new(victim)
-		embryo.hivenumber = hivenumber
-		if(victim.gender==FEMALE)
-			embryo.emerge_target_flavor = "pussy"
+		switch(A.a_intent)
+			if(INTENT_HARM)
+				sexverb = pick(harmintenttext)
+				lethaldamage = TRUE
+			if(INTENT_HELP)
+				sexverb = pick(helpintenttext)
+				lethaldamage = FALSE
+		if(A.stat == DEAD)
+			to_chat(owner, span_warning("Why would we sully our loins mating with the dead? Get a lesser being to do it for us..."))
+			return FALSE
+
+
+	if(ismonkey(A))
+		A.apply_damage(95, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //They CERTAINLY aren't fitting in a monkey.
+		to_chat(owner, span_warning("We stop trying to fuck \the [A]. They're simply too small to hold royal larva!"))
+		return FALSE
+
+
+	X.face_atom(A)
+	X.do_jitter_animation() //No need for the human to jostle too.
+	to_chat(owner, span_warning("We will impregnate this host shortly. Remain in proximity."))
+	playsound(X, 'sound/effects/alien_plapping.ogg', 40, channel = channel)
+	if(!do_after(X, 1.5 SECONDS, FALSE, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
+		to_chat(owner, span_warning("We stop [sexverb] \the [A]. They probably were loose anyways."))
+		X.stop_sound_channel(channel)
+		return fail_activate()
+
+	owner.visible_message(span_warning("[X] [sexverb]s [A]"), span_warning("We destroy [A]'s poor [victimhole]!"), span_warning("You hear harsh slapping."), 5, A)
+	if(A.stat == CONSCIOUS)
+		to_chat(A, span_warning("[X] thoroughly [sexverb]s you!"))
+
+	var/implanted_embryos = 0
+	for(var/obj/item/alien_embryo/implanted in A.contents)
+		implanted_embryos++
+	if(implanted_embryos >= MAX_LARVA_PREGNANCIES)
+		to_chat(owner, span_danger("This Host is way too full! You begin to overstuff them..."))
+		A.apply_damage((damagescaledivisor/damageperlarva)*implanted_embryos, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //Too many larvae!
+		if(A.stat == CONSCIOUS)
+			to_chat(A, span_highdanger("You're too full, you feel like you're going to burst apart! You might want to ask [X] to stop... If they'll listen.")) //Way too many.
+			if(implanted_embryos >= (MAX_LARVA_PREGNANCIES*2))
+				for(var/D in damagetypes)
+					A.apply_damage((damagescaledivisor/damageperlarva)*implanted_embryos, D, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //It'll get worse!
+		if(prob(chancebunch)) //Queen has a higher chance to lay in batches.
+			for(var/lcount=0, lcount<larvalbunch, lcount++)
+				var/obj/item/alien_embryo/larba = new(A)
+				larba.hivenumber = X.hivenumber
+				larba.emerge_target_flavor = victimhole
+			to_chat(owner, span_danger("You lay multiple larva at once!"))
+			to_chat(A, span_danger("You feel multiple larva being inserted at once!"))
 		else
-			embryo.emerge_target_flavor = "ass"
+			var/obj/item/alien_embryo/embryo = new(A)
+			embryo.hivenumber = X.hivenumber
+			embryo.emerge_target_flavor = victimhole
+
 		GLOB.round_statistics.now_pregnant++
-		SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant") //Only counts once to give Xenomorphs a fair chance.
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[X.ckey]
 		personal_statistics.impregnations++
+
 		add_cooldown()
 		succeed_activate()
-	if(isxeno(A))
-		var/mob/living/carbon/xenomorph/victim = A
-		X.face_atom(A)
-		X.do_jitter_animation()
-		A.do_jitter_animation()
-		to_chat(X, span_warning("We will cum in 1.5 seconds! Do not walk away until it is done. Though this has no purpose but fun as Xenomorph cant bear larvas... What a wasteful Queen you are."))
-		playsound(X, 'sound/effects/alien_plapping.ogg', 40, channel = channel)
-		if(!do_after(X, 1.5 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
-			to_chat(X, span_warning("We stop fucking \the [victim]. They probably were probably going to break anyways..."))
-			X.stop_sound_channel(channel)
-			return fail_activate()
-		X.visible_message(span_warning("[X] absolutely rails [victim]!"), span_warning("We claim [victim] for the Hive!"), span_warning("You hear slapping."), 5, victim)
-		if(victim.stat == CONSCIOUS)
-			to_chat(victim, span_warning("[X] thoroughly impregnates you!"))
-		succeed_activate()
 
+	if(isxeno(A))
+		to_chat(owner, span_danger("They aren't worth wasting your larva on."))
+		return FALSE
 
 // ***************************************
 // *********** Screech
