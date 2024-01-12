@@ -417,7 +417,7 @@
 ///flicker lights on and off
 /obj/machinery/light/proc/flicker(toggle_flicker = FALSE)
 	if(!has_power())
-		addtimer(CALLBACK(src, PROC_REF(flicker)), flicker_time)
+		lightambient.stop(src)
 		return
 	if(toggle_flicker)
 		if(status != LIGHT_OK)
@@ -581,6 +581,9 @@
 // called when area power state changes
 /obj/machinery/light/power_change()
 	var/area/A = get_area(src)
+	if(flickering)
+		lightambient.start(src)
+		addtimer(CALLBACK(src, PROC_REF(flicker)), flicker_time)
 	turn_light(null, (A.lightswitch && A.power_light))
 
 // called when on fire
