@@ -50,13 +50,13 @@
 
 /obj/item/jetpack_marine/dropped(mob/user)
 	. = ..()
-	UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_ITEM_EXCLUSIVE_TOGGLE, COMSIG_ACTION_EXCLUSIVE_TOGGLE))
+	UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_ALT_RIGHT_CLICK, COMSIG_ITEM_EXCLUSIVE_TOGGLE, COMSIG_ACTION_EXCLUSIVE_TOGGLE))
 	selected = FALSE
 	LAZYCLEARLIST(actions)
 
 /obj/item/jetpack_marine/ui_action_click(mob/user, datum/action/item_action/action)
 	if(selected)
-		UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_ITEM_EXCLUSIVE_TOGGLE, COMSIG_ACTION_EXCLUSIVE_TOGGLE))
+		UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_ALT_RIGHT_CLICK, COMSIG_ITEM_EXCLUSIVE_TOGGLE, COMSIG_ACTION_EXCLUSIVE_TOGGLE))
 		action.set_toggle(FALSE)
 	else
 		RegisterSignals(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_ALT_RIGHT_CLICK), PROC_REF(can_use_jetpack))
@@ -71,7 +71,7 @@
 	if(!selected)
 		return
 	selected = FALSE
-	UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_ITEM_EXCLUSIVE_TOGGLE, COMSIG_ACTION_EXCLUSIVE_TOGGLE))
+	UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_ALT_RIGHT_CLICK, COMSIG_ITEM_EXCLUSIVE_TOGGLE, COMSIG_ACTION_EXCLUSIVE_TOGGLE))
 	for(var/action in user.actions)
 		if (!istype(action, /datum/action/item_action))
 			continue
