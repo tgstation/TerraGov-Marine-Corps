@@ -84,26 +84,5 @@
 	primordial_message = "Not one tall will be left uninfected."
 
 	actions = list(
-		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/xeno_action/psychic_whisper,
-		/datum/action/ability/xeno_action/psychic_influence,
-		/datum/action/ability/activable/xeno/impregnate,
-		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/devour,
-		/datum/action/ability/activable/xeno/cocoon,
-		/datum/action/ability/activable/xeno/plant_weeds,
-		/datum/action/ability/activable/xeno/tail_stab,
-		/datum/action/ability/activable/xeno/throw_hugger,
-		/datum/action/ability/activable/xeno/call_younger,
-		/datum/action/ability/xeno_action/lay_egg,
-		/datum/action/ability/xeno_action/place_trap,
-		/datum/action/ability/xeno_action/spawn_hugger,
-		/datum/action/ability/xeno_action/pheromones,
-		/datum/action/ability/xeno_action/pheromones/emit_recovery,
-		/datum/action/ability/xeno_action/pheromones/emit_warding,
-		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
-		/datum/action/ability/xeno_action/carrier_panic,
-		/datum/action/ability/xeno_action/choose_hugger_type,
 		/datum/action/ability/xeno_action/build_hugger_turret,
 	)

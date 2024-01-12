@@ -82,21 +82,5 @@
 
 	// *** Abilities *** ///
 	actions = list(
-		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/xeno_action/psychic_whisper,
-		/datum/action/ability/xeno_action/psychic_influence,
-		/datum/action/ability/activable/xeno/impregnate,
-		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/devour,
-		/datum/action/ability/activable/xeno/cocoon,
-		/datum/action/ability/activable/xeno/web_spit,
-		/datum/action/ability/xeno_action/burrow,
-		/datum/action/ability/activable/xeno/leash_ball,
-		/datum/action/ability/xeno_action/create_spiderling,
-		/datum/action/ability/xeno_action/lay_egg,
-		/datum/action/ability/xeno_action/attach_spiderlings,
-		/datum/action/ability/activable/xeno/cannibalise,
-		/datum/action/ability/activable/xeno/spiderling_mark,
 		/datum/action/ability/activable/xeno/web_hook,
 	)

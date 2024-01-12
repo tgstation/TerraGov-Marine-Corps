@@ -73,17 +73,5 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
-		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/xeno_action/psychic_whisper,
-		/datum/action/ability/xeno_action/psychic_influence,
-		/datum/action/ability/activable/xeno/impregnate,
-		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/devour,
-		/datum/action/ability/activable/xeno/tail_stab,
-		/datum/action/ability/activable/xeno/corrosive_acid/drone,
-		/datum/action/ability/activable/xeno/xeno_spit/toxic_spit,
-		/datum/action/ability/xeno_action/toxic_slash,
-		/datum/action/ability/activable/xeno/drain_sting,
 		/datum/action/ability/activable/xeno/toxic_grenade,
 	)

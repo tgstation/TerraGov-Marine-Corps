@@ -85,26 +85,5 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
-		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/xeno_action/psychic_whisper,
-		/datum/action/ability/xeno_action/psychic_influence,
-		/datum/action/ability/activable/xeno/impregnate,
-		/datum/action/ability/activable/xeno/larval_growth_sting,
-		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/devour,
-		/datum/action/ability/activable/xeno/cocoon,
-		/datum/action/ability/activable/xeno/plant_weeds,
-		/datum/action/ability/activable/xeno/tail_stab,
-		/datum/action/ability/activable/xeno/defile,
-		/datum/action/ability/xeno_action/lay_egg,
-		/datum/action/ability/activable/xeno/inject_egg_neurogas,
-		/datum/action/ability/xeno_action/emit_neurogas,
-		/datum/action/ability/xeno_action/select_reagent,
-		/datum/action/ability/xeno_action/reagent_slash,
-		/datum/action/ability/xeno_action/pheromones,
-		/datum/action/ability/xeno_action/pheromones/emit_recovery,
-		/datum/action/ability/xeno_action/pheromones/emit_warding,
-		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 		/datum/action/ability/activable/xeno/tentacle,
 	)
