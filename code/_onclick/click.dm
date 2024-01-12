@@ -336,12 +336,12 @@
 		return FALSE
 	return ..()
 
-/mob/living/carbon/xenomorph/RightClickOn(atom/A)
+/mob/living/carbon/xenomorph/RightClickOn(atom/target)
 	. = ..()
 	if(selected_ability) //If we have a selected ability that we can use, return TRUE
-		A = ability_target(A)
-		if(selected_ability.can_use_ability(A))
-			selected_ability.use_ability(A)
+		target = ability_target(target)
+		if(selected_ability.can_use_ability(target))
+			selected_ability.use_ability(target)
 			return !CHECK_BITFIELD(selected_ability.use_state_flags, ABILITY_DO_AFTER_ATTACK)
 
 ///Called when a owner mob CTRL + Rightmouseclicks an atom
@@ -404,39 +404,39 @@
 /atom/proc/MiddleClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_MIDDLE_CLICK, user)
 
-/mob/living/carbon/human/MiddleClickOn(atom/A)
+/mob/living/carbon/human/MiddleClickOn(atom/target)
 	. = ..()
 	if(!(client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING))
 		return
 	var/obj/item/held_thing = get_active_held_item()
-	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_MIDDLECLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
+	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_MIDDLECLICKON, target, src) & COMPONENT_ITEM_CLICKON_BYPASS)
 		return FALSE
 
 	if(!selected_ability)
 		return FALSE
-	A = ability_target(A)
-	if(selected_ability.can_use_ability(A))
-		selected_ability.use_ability(A)
+	target = ability_target(target)
+	if(selected_ability.can_use_ability(target))
+		selected_ability.use_ability(target)
 
 #define TARGET_FLAGS_MACRO(flagname, typepath) \
-if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
-	. = locate(typepath) in get_turf(A);\
+if(selected_ability.target_flags & flagname && !istype(target, typepath)){\
+	. = locate(typepath) in get_turf(target);\
 	if(.){\
 		return;}}
 
-/mob/living/carbon/proc/ability_target(atom/A)
+/mob/living/carbon/proc/ability_target(atom/target)
 	TARGET_FLAGS_MACRO(ABILITY_MOB_TARGET, /mob/living)
 	if(selected_ability.target_flags & ABILITY_TURF_TARGET)
-		return get_turf(A)
-	return A
+		return get_turf(target)
+	return target
 
-/mob/living/carbon/xenomorph/MiddleClickOn(atom/A)
+/mob/living/carbon/xenomorph/MiddleClickOn(atom/target)
 	. = ..()
 	if(!(client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING) || !selected_ability)
 		return FALSE
-	A = ability_target(A)
-	if(selected_ability.can_use_ability(A))
-		selected_ability.use_ability(A)
+	target = ability_target(target)
+	if(selected_ability.can_use_ability(target))
+		selected_ability.use_ability(target)
 
 ///Called when a owner mob CTRL + Middlemouseclicks an atom
 /mob/proc/CtrlMiddleClickOn(atom/target, params)
@@ -539,21 +539,21 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 /atom/proc/ShiftClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_SHIFT_LEFT_CLICK, user)
 
-/mob/living/carbon/human/ShiftClickOn(atom/A)
+/mob/living/carbon/human/ShiftClickOn(atom/target)
 	if(client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING)
 		return ..()
 	var/obj/item/held_thing = get_active_held_item()
 
-	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_SHIFTCLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
+	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_SHIFTCLICKON, target, src) & COMPONENT_ITEM_CLICKON_BYPASS)
 		return FALSE
 	return ..()
 
-/mob/living/carbon/xenomorph/ShiftClickOn(atom/A)
+/mob/living/carbon/xenomorph/ShiftClickOn(atom/target)
 	if(!selected_ability || (client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING))
 		return ..()
-	A = ability_target(A)
-	if(selected_ability.can_use_ability(A))
-		selected_ability.use_ability(A)
+	target = ability_target(target)
+	if(selected_ability.can_use_ability(target))
+		selected_ability.use_ability(target)
 	return TRUE
 
 ///Called when a owner mob ALT + Leftmouseclicks an atom
