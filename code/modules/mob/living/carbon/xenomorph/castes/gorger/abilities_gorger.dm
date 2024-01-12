@@ -159,45 +159,52 @@
 	return can_use_ability(target, TRUE)
 
 // ***************************************
-// *********** Rejuvenate
+// *********** oppose
 // ***************************************
-#define REJUVENATE_MISCLICK_CD "rejuvenate_misclick"
-/datum/action/ability/activable/xeno/rejuvenate
-	name = "Rejuvenate"
+
+/datum/action/ability/activable/xeno/oppose
+	name = "Oppose"
 	action_icon_state = "rejuvenation"
-	desc = "Drains blood continuosly, slows you down and reduces damage taken, while restoring some health over time. Cancel by activating again."
-	cooldown_duration = 4 SECONDS
-	ability_cost = GORGER_REJUVENATE_COST
-	target_flags = ABILITY_MOB_TARGET
+	desc = "Violently suffuse the nearby ground with stored blood, staggering nearby marines and healing nearby xenomorphs."
+	cooldown_duration = 30 SECONDS
+	ability_cost = GORGER_OPPOSE_COST
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REJUVENATE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OPPOSE,
 	)
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
-	use_state_flags = ABILITY_USE_STAGGERED
 
-/datum/action/ability/activable/xeno/rejuvenate/can_use_ability(atom/A, silent, override_flags)
-	. = ..()
-	if(!.)
-		return
-	if(TIMER_COOLDOWN_CHECK(owner, REJUVENATE_MISCLICK_CD))
-		return FALSE
-
-/datum/action/ability/activable/xeno/rejuvenate/use_ability(atom/A)
+/datum/action/ability/activable/xeno/oppose/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_REJUVENATE))
-		owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_REJUVENATE)
-		add_cooldown()
-		return
-	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_REJUVENATE, GORGER_REJUVENATE_DURATION, owner_xeno.maxHealth * GORGER_REJUVENATE_THRESHOLD)
-	to_chat(owner_xeno, span_notice("We tap into our reserves for nourishment, our carapace thickening."))
+	add_cooldown()
 	succeed_activate()
-	TIMER_COOLDOWN_START(owner_xeno, REJUVENATE_MISCLICK_CD, 1 SECONDS)
 
-/datum/action/ability/activable/xeno/rejuvenate/ai_should_use(atom/target)
+	playsound(owner_xeno.loc, 'sound/effects/bang.ogg', 25, 0)
+	owner_xeno.visible_message(span_xenodanger("[owner_xeno] smashes her fists into the ground into the ground!"), \
+	span_xenodanger("We smash our fists into the ground!"))
+	owner_xeno.create_stomp() //Adds the visual effect. Wom wom wom
+	for(var/mob/living/M in range(3))
+		if(M.stat == DEAD)
+			continue
+		var/distance = get_dist(M, owner_xeno)
+		if(owner_xeno.issamexenohive(M))  //Xenos can be healed up to three tiles away from you
+			var/mob/living/carbon/xenomorph/target_xeno = M
+			var/heal_amount = M.maxHealth * GORGER_OPPOSE_HEAL
+			HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
+			adjustOverheal(target_xeno, heal_amount)
+		else if(distance == 0) //if we're right on top of them, they take actual damage
+			M.take_overall_damage(12, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
+			to_chat(M, span_highdanger("[owner_xeno] slams her fists into you, crushing you to the ground!"))
+			shake_camera(M, 3, 3)
+		else if(distance <= 1) //marines will only be staggerslowed if they're one tile away from you
+			shake_camera(M, 2, 2)
+			to_chat(M, span_highdanger("Blood swells up from the ground around you!"))
+			M.adjust_stagger(2 SECONDS)
+			M.adjust_slowdown(3)
+
+
+/datum/action/ability/activable/xeno/oppose/ai_should_use(atom/target)
 	return FALSE
-
-#undef REJUVENATE_MISCLICK_CD
 
 // ***************************************
 // *********** Psychic Link

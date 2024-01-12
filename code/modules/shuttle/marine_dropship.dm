@@ -295,8 +295,8 @@
 	name = "Normandy"
 	id = SHUTTLE_NORMANDY
 	control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
-	callTime = 28 SECONDS //smaller shuttle go whoosh
-	rechargeTime = 1.5 MINUTES
+	callTime = 18 SECONDS //smaller shuttle go whoosh
+	rechargeTime = 30 SECONDS
 	dheight = 6
 	dwidth = 4
 	height = 13

@@ -487,7 +487,7 @@
 
 	msg += "[flavor_text]<br>"
 	if(profile_pic)
-		msg += "<span class='info'><img src=[profile_pic]/></span>"
+		msg += "<span class='info'><img src=[profile_pic] width=250 height=250/></span>"
 
 // removed hollow examine from humans
 	if(HAS_TRAIT(src, TRAIT_HOLLOW))

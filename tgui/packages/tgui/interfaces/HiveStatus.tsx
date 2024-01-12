@@ -23,7 +23,8 @@ type InputPack = {
   hive_larva_threshold: number;
   hive_larva_rate: number;
   hive_larva_burrowed: number;
-  hive_psy_points: number;
+  hive_strategic_psy_points: number;
+  hive_tactical_psy_points: number;
   hive_orphan_collapse: number;
   hive_orphan_max: number;
   hive_minion_count: number;
@@ -209,7 +210,8 @@ const GeneralInfo = (_props) => {
   const { data } = useBackend<InputPack>();
   const {
     hive_larva_burrowed,
-    hive_psy_points,
+    hive_strategic_psy_points,
+    hive_tactical_psy_points,
     hive_orphan_collapse,
     hive_death_timers,
     hive_orphan_max,
@@ -220,18 +222,31 @@ const GeneralInfo = (_props) => {
     <Box className="Section">
       <Box className="Section__title">
         <Box as="span" className="Section__titleText">
-          Psy Points:
+          Psy Strategic Points:
           <Box
             as="span"
             color={
-              hive_psy_points < 600
+              hive_strategic_psy_points < 600
                 ? 'bad'
-                : hive_psy_points < 800
+                : hive_strategic_psy_points < 800
                   ? 'average'
                   : 'good'
             }
           >
-            {' ' + hive_psy_points + ' '}
+            {' ' + hive_strategic_psy_points + ' '}
+          </Box>
+          | Psy Tactical Points:
+          <Box
+            as="span"
+            color={
+              hive_tactical_psy_points < 100
+                ? 'bad'
+                : hive_tactical_psy_points < 300
+                  ? 'average'
+                  : 'good'
+            }
+          >
+            {' ' + hive_tactical_psy_points + ' '}
           </Box>
           | Burrowed Larva:
           <Box as="span" color={hive_larva_burrowed > 0 ? 'good' : 'bad'}>
