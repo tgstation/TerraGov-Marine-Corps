@@ -43,22 +43,29 @@
 		AM.forceMove(loc)
 	return ..()
 
-
-/obj/item/ashtray/update_icon()
+/obj/item/ashtray/update_desc(updates)
+	. = ..()
 	if(length(contents) >= max_butts)
-		icon_state = icon_full
 		desc = empty_desc + " It's stuffed full."
 		return
 
 	if(length(contents) >= max_butts / 2)
-		icon_state = icon_half
 		desc = empty_desc + " It's half-filled."
 		return
 
-	icon_state = icon_empty
 	desc = empty_desc
 
+/obj/item/ashtray/update_icon_state()
+	. = ..()
+	if(length(contents) >= max_butts)
+		icon_state = icon_full
+		return
 
+	if(length(contents) >= max_butts / 2)
+		icon_state = icon_half
+		return
+
+	icon_state = icon_empty
 
 /obj/item/ashtray/plastic
 	name = "plastic ashtray"

@@ -35,7 +35,8 @@
 		B += M.rating
 	heat_capacity = 5000 * ((B - 1) ** 2)
 
-/obj/machinery/atmospherics/components/unary/thermomachine/update_icon()
+/obj/machinery/atmospherics/components/unary/thermomachine/update_icon_state()
+	. = ..()
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		icon_state = icon_state_open
 	else if(on && is_operational())

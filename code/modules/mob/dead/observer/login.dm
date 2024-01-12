@@ -32,7 +32,7 @@
 
 	ghost_others = client.prefs.ghost_others
 
-	update_icon(client.prefs.ghost_form)
+	pick_form(client.prefs.ghost_form)
 	updateghostimages()
 
 	for(var/path in subtypesof(/datum/action/observer_action))

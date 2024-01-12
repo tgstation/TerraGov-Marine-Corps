@@ -100,7 +100,8 @@
 		clear_hugger_source()
 	return ..()
 
-/obj/item/clothing/mask/facehugger/update_icon()
+/obj/item/clothing/mask/facehugger/update_icon_state()
+	. = ..()
 	if(stat == DEAD)
 		var/fertility = sterile ? "impregnated" : "dead"
 		icon_state = "[initial(icon_state)]_[fertility]"
@@ -286,12 +287,12 @@
 	if(stat == DEAD || stat == UNCONSCIOUS || !isturf(loc)) //It's dead or inactive or not on a turf don't bother
 		return
 	about_to_jump = TRUE
-	update_overlays()
+	update_appearance(UPDATE_OVERLAYS)
 
 ///Remove the hugger's alert overlay
 /obj/item/clothing/mask/facehugger/proc/remove_danger_overlay()
 	about_to_jump = FALSE
-	update_overlays()
+	update_appearance(UPDATE_OVERLAYS)
 
 /obj/item/clothing/mask/facehugger/proc/check_lifecycle()
 
