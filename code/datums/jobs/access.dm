@@ -415,6 +415,10 @@
 			. = size ? "MERC" : "MERC Engineer"
 		if("VM")
 			. = size ? "VAT" : "VatGrown Marine"
+		if("Mk.V")
+			. = size ? "Mk.III" : "Mark V"
+		if("Mk.IV")
+			. = size ? "Mk.III" : "Mark IV"
 		if("Mk.III")
 			. = size ? "Mk.III" : "Mark III"
 		if("Mk.II")

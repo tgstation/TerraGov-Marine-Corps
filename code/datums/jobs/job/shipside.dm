@@ -1286,10 +1286,14 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	switch(playtime_mins)
 		if(0 to 600) //up to 10 hours
 			new_human.wear_id.paygrade = "Mk.I"
-		if(601 to 3000) // 10 to 50 hrs
+		if(601 to 2400)
 			new_human.wear_id.paygrade = "Mk.II"
-		if(3001 to INFINITY) // more than 50 hrs
+		if(2401 to 5400)
 			new_human.wear_id.paygrade = "Mk.III"
+		if(5401 to 7600)
+			new_human.wear_id.paygrade = "Mk.IV"
+		if(7601 to INFINITY)
+			new_human.wear_id.paygrade = "Mk.V"
 
 /datum/job/terragov/silicon/synthetic/radio_help_message(mob/M)
 	. = ..()
