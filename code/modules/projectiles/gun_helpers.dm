@@ -563,6 +563,16 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		return
 	balloon_alert(usr, "No usable underrail attachments")
 
+/mob/living/carbon/human/verb/toggle_auto_eject()
+	set category = "Weapons"
+	set name = "Toggle Automatic Magazine Ejection"
+	set desc = "Toggles the automatic unloading of the gun's magazine upon depletion."
+
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
+		return
+	G.toggle_auto_eject()
+
 ///Toggles weapons ejecting their magazines when they're empty. This one is one a gun level and is used via right clicking the gun.
 /obj/item/weapon/gun/verb/toggle_auto_eject()
 	set category = null
