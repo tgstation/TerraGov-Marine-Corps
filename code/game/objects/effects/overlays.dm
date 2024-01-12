@@ -390,3 +390,12 @@
 	icon_state = "spooky"
 	pixel_x = 16
 	pixel_y = 16
+
+/obj/effect/overlay/vis
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	anchored = TRUE
+	vis_flags = VIS_INHERIT_DIR
+	/// When detected to be unused it gets set to world.time, after a while it gets removed
+	var/unused = 0
+	/// Overlays which go unused for 2 minutes get cleaned up
+	var/cache_expiration = 2 MINUTES 

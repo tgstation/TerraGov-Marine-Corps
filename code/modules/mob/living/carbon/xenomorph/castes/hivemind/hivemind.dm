@@ -248,6 +248,7 @@
 
 /// handles hivemind updating with their respective weedtype
 /mob/living/carbon/xenomorph/hivemind/update_icon_state()
+	. = ..()
 	if(status_flags & INCORPOREAL)
 		icon_state = "hivemind_marker"
 		return

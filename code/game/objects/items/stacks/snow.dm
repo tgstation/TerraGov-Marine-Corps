@@ -61,7 +61,8 @@
 			return
 		var/turf/open/T = target
 		if(T.get_dirt_type() == DIRT_TYPE_SNOW)
-			if(T.slayer >= 3)
+			var/turf/open/floor/plating/ground/snow/snowy_turf = T
+			if(snowy_turf.slayer >= 3)
 				to_chat(user, "This ground is already full of snow.")
 				return
 			if(amount < 5)
@@ -70,11 +71,12 @@
 			to_chat(user, "You start putting some snow back on the ground.")
 			if(!do_after(user, 15, IGNORE_HELD_ITEM, target, BUSY_ICON_BUILD))
 				return
-			if(T.slayer >= 3)
+			if(snowy_turf.slayer >= 3)
 				return
 			to_chat(user, "You put a new snow layer on the ground.")
-			T.slayer += 1
-			T.update_icon(TRUE, FALSE)
+			snowy_turf.slayer += 1
+			snowy_turf.update_appearance()
+			snowy_turf.update_sides()
 			use(5)
 
 /obj/item/stack/snow/attack_self(mob/user)

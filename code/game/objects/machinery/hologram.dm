@@ -354,6 +354,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	update_icon()
 
 /obj/machinery/holopad/update_icon_state()
+	. = ..()
 	var/total_users = LAZYLEN(masters) + LAZYLEN(holo_calls)
 	if(ringing)
 		icon_state = "holopad_ringing"

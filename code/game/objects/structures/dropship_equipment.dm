@@ -508,6 +508,7 @@
 	update_icon()
 
 /obj/structure/dropship_equipment/shuttle/weapon_holder/update_icon_state()
+	. = ..()
 	if(ship_base)
 		icon_state = deployed_icon_state
 	else
@@ -723,7 +724,8 @@
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
 	ammo_type_used = CAS_30MM
 
-/obj/structure/dropship_equipment/cas/weapon/heavygun/update_icon()
+/obj/structure/dropship_equipment/cas/weapon/heavygun/update_icon_state()
+	. = ..()
 	if(ammo_equipped)
 		icon_state = "30mm_cannon_loaded[ammo_equipped.ammo_count?"1":"0"]"
 	else
@@ -754,7 +756,8 @@
 	ammo_equipped = null //nothing left to empty after firing
 	update_icon()
 
-/obj/structure/dropship_equipment/cas/weapon/rocket_pod/update_icon()
+/obj/structure/dropship_equipment/cas/weapon/rocket_pod/update_icon_state()
+	. = ..()
 	if(ammo_equipped?.ammo_count)
 		icon_state = "rocket_pod_loaded[ammo_equipped.ammo_id]"
 	else
@@ -774,7 +777,8 @@
 	point_cost = 450
 	ammo_type_used = CAS_MINI_ROCKET
 
-/obj/structure/dropship_equipment/cas/weapon/minirocket_pod/update_icon()
+/obj/structure/dropship_equipment/cas/weapon/minirocket_pod/update_icon_state()
+	. = ..()
 	if(ammo_equipped?.ammo_count)
 		icon_state = "minirocket_pod_loaded"
 	else
@@ -799,7 +803,8 @@
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
 	ammo_type_used = CAS_LASER_BATTERY
 
-/obj/structure/dropship_equipment/cas/weapon/laser_beam_gun/update_icon()
+/obj/structure/dropship_equipment/cas/weapon/laser_beam_gun/update_icon_state()
+	. = ..()
 	if(ammo_equipped?.ammo_count)
 		icon_state = "laser_beam_loaded"
 	else
@@ -820,7 +825,8 @@
 	equip_category = DROPSHIP_CREW_WEAPON //fits inside the central spot of the dropship
 	point_cost = 0
 
-/obj/structure/dropship_equipment/cas/weapon/launch_bay/update_icon()
+/obj/structure/dropship_equipment/cas/weapon/launch_bay/update_icon_state()
+	. = ..()
 	if(ammo_equipped?.ammo_count)
 		icon_state = "launch_bay_loaded"
 	else
@@ -880,6 +886,7 @@
 	ammo_type_used = CAS_BOMBLET
 
 /obj/structure/dropship_equipment/cas/weapon/bomblet_pod/update_icon_state()
+	. = ..()
 	if(ammo_equipped?.ammo_count)
 		icon_state = "bomblet_pod_loaded"
 	else if(ship_base)
@@ -899,6 +906,7 @@
 	ammo_type_used = CAS_BOMB
 
 /obj/structure/dropship_equipment/cas/weapon/bomb_pod/update_icon_state()
+	. = ..()
 	if(ammo_equipped?.ammo_count)
 		icon_state = "bomb_pod_loaded"
 	else if(ship_base)

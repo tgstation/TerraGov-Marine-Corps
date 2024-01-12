@@ -45,6 +45,7 @@
 	return ..()
 
 /obj/structure/orbital_cannon/update_icon_state()
+	. = ..()
 	if(chambered_tray)
 		icon_state = "OBC_chambered"
 		return
