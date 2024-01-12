@@ -38,6 +38,7 @@
 	icon_state = "bunkbed"
 
 /obj/structure/bed/update_icon_state()
+	. = ..()
 	if(!base_bed_icon)
 		return
 	if(LAZYLEN(buckled_mobs) || buckled_bodybag)
@@ -336,14 +337,14 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		linked_beacon.remove_stretcher(src)
 	return ..()
 
-/obj/structure/bed/medevac_stretcher/update_icon()
-	..()
-	overlays.Cut()
+/obj/structure/bed/medevac_stretcher/update_overlays()
+	. = ..()
+
 	if(stretcher_activated)
-		overlays += image("beacon_active_[density ? "up":"down"]")
+		. += image("beacon_active_[density ? "up":"down"]")
 
 	if(LAZYLEN(buckled_mobs) || buckled_bodybag)
-		overlays += image("icon_state"="stretcher_box","layer"=LYING_MOB_LAYER + 0.1)
+		. += image("icon_state"="stretcher_box","layer"=LYING_MOB_LAYER + 0.1)
 
 
 /obj/structure/bed/medevac_stretcher/verb/activate_medevac_displacer()

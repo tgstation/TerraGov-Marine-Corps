@@ -137,6 +137,7 @@
 	update_icon()
 
 /obj/machinery/deployable/teleporter/update_icon_state()
+	. = ..()
 	var/obj/item/teleporter_kit/kit = get_internal_item()
 	if(powered() || kit?.cell?.charge > TELEPORTING_COST)
 		icon_state = default_icon_state + "_on"

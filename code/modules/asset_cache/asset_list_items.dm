@@ -147,6 +147,37 @@
 /datum/asset/spritesheet/hivestatus/create_spritesheets()
 	InsertAll("", 'icons/UI_Icons/hive_status_icons.dmi')
 
+/datum/asset/spritesheet/campaign
+	name = "campaign_base"
+	///The dmi file used for this spritesheet
+	var/icon_sheet
+	///The list of icon names to use for this sprite sheet
+	var/list/icon_names
+
+/datum/asset/spritesheet/campaign/create_spritesheets()
+	for(var/icon_name in icon_names)
+		var/icon/iconNormal = icon(icon_sheet, icon_name, SOUTH)
+		Insert(icon_name, iconNormal)
+
+		var/icon/iconBig = icon(icon_sheet, icon_name, SOUTH)
+		iconBig.Scale(iconBig.Width()*2, iconBig.Height()*2)
+		Insert("[icon_name]_big", iconBig)
+
+/datum/asset/spritesheet/campaign/missions
+	name = "campaign_missions"
+	icon_sheet = 'icons/UI_Icons/campaign/mission_icons.dmi'
+
+/datum/asset/spritesheet/campaign/missions/New()
+	icon_names = GLOB.campaign_mission_icons
+	return ..()
+/datum/asset/spritesheet/campaign/assets
+	name = "campaign_assets"
+	icon_sheet = 'icons/UI_Icons/campaign/asset_icons.dmi'
+
+/datum/asset/spritesheet/campaign/assets/New()
+	icon_names = GLOB.campaign_asset_icons
+	return ..()
+
 /datum/asset/simple/particle_editor
 	assets = list(
 		"motion" = 'icons/ui_icons/particle_editor/motion.png',

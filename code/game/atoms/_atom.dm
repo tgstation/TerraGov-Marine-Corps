@@ -39,9 +39,6 @@
 	///How much does this atom block the explosion's shock wave.
 	var/explosion_block = 0
 
-	///overlays managed by update_overlays() to prevent removing overlays that weren't added by the same proc
-	var/list/managed_overlays
-
 	var/datum/component/orbiter/orbiters
 	var/datum/proximity_monitor/proximity_monitor
 
@@ -122,6 +119,11 @@
 	///Cooldown for telling someone they're buckled
 	COOLDOWN_DECLARE(buckle_message_cooldown)
 
+	///vis overlays managed by SSvis_overlays to automaticaly turn them like other overlays.
+	var/list/managed_vis_overlays
+	///The list of alternate appearances for this atom
+	var/list/alternate_appearances
+
 /*
 We actually care what this returns, since it can return different directives.
 Not specifically here, but in other variations of this. As a general safety,
@@ -141,6 +143,11 @@ directive is properly returned.
 
 	if(isturf(loc))
 		loc.fingerprints = fingerprints
+
+	if(alternate_appearances)
+		for(var/K in alternate_appearances)
+			var/datum/atom_hud/alternate_appearance/AA = alternate_appearances[K]
+			AA.remove_from_hud(src)
 
 	return ..()
 
@@ -356,32 +363,6 @@ directive is properly returned.
 				. += span_notice("\The [src] is full!")
 
 	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE, user, .)
-
-
-/// Updates the icon of the atom
-/atom/proc/update_icon()
-	var/signalOut = SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_ICON)
-
-	if(!(signalOut & COMSIG_ATOM_NO_UPDATE_ICON_STATE))
-		update_icon_state()
-
-	if(!(signalOut & COMSIG_ATOM_NO_UPDATE_OVERLAYS))
-		var/list/new_overlays = update_overlays()
-		if(managed_overlays)
-			cut_overlay(managed_overlays)
-			managed_overlays = null
-		if(length(new_overlays))
-			managed_overlays = new_overlays
-			add_overlay(new_overlays)
-
-/// Updates the icon state of the atom
-/atom/proc/update_icon_state()
-
-/// Updates the overlays of the atom
-/atom/proc/update_overlays()
-	SHOULD_CALL_PARENT(TRUE)
-	. = list()
-	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, .)
 
 /// Checks if the colors given are different and if so causes a greyscale icon update
 /// The colors argument can be either a list or the full color string
@@ -1012,9 +993,14 @@ directive is properly returned.
 /atom/proc/prepare_huds()
 	hud_list = new
 	for(var/hud in hud_possible) //Providing huds.
-		var/image/new_hud = image('icons/mob/hud.dmi', src, "")
-		new_hud.appearance_flags = KEEP_APART
-		hud_list[hud] = new_hud
+		var/hint = hud_possible[hud]
+		switch(hint)
+			if(HUD_LIST_LIST)
+				hud_list[hud] = list()
+			else
+				var/image/I = image('icons/mob/hud.dmi', src, "")
+				I.appearance_flags = RESET_COLOR|RESET_TRANSFORM
+				hud_list[hud] = I
 
 /**
  * If this object has lights, turn it on/off.

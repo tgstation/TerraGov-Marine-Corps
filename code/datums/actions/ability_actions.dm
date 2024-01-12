@@ -140,6 +140,7 @@
 		return
 	cooldown_timer = addtimer(CALLBACK(src, PROC_REF(on_cooldown_finish)), cooldown_length, TIMER_STOPPABLE)
 	button.add_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
+	update_button_icon()
 
 ///Time remaining on cooldown
 /datum/action/ability/proc/cooldown_remaining()
@@ -171,7 +172,7 @@
 
 /datum/action/ability/activable/Destroy()
 	var/mob/living/carbon/carbon_owner = owner
-	if(carbon_owner.selected_ability == src)
+	if(carbon_owner?.selected_ability == src)
 		deselect()
 	return ..()
 
@@ -186,7 +187,7 @@
 	if(carbon_owner.selected_ability == src)
 		return
 	if(carbon_owner.selected_ability)
-		carbon_owner.selected_ability.deselect()
+		carbon_owner.selected_ability.deselect() //todo: make jetpack/blinkdrive etc activatables
 	select()
 
 /datum/action/ability/activable/keybind_activation()
@@ -230,12 +231,16 @@
 ///Setting this ability as the active ability
 /datum/action/ability/activable/proc/select()
 	var/mob/living/carbon/carbon_owner = owner
+	SEND_SIGNAL(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE, owner)
+	RegisterSignals(owner, list(COMSIG_ACTION_EXCLUSIVE_TOGGLE, COMSIG_ITEM_EXCLUSIVE_TOGGLE), PROC_REF(deselect))
 	set_toggle(TRUE)
 	carbon_owner.selected_ability = src
 	on_selection()
 
 ///Deselecting this ability for use
 /datum/action/ability/activable/proc/deselect()
+	SIGNAL_HANDLER
+	UnregisterSignal(owner, list(COMSIG_ACTION_EXCLUSIVE_TOGGLE, COMSIG_ITEM_EXCLUSIVE_TOGGLE))
 	var/mob/living/carbon/carbon_owner = owner
 	set_toggle(FALSE)
 	carbon_owner.selected_ability = null

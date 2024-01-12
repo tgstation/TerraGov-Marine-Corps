@@ -8,9 +8,10 @@
 	var/icon_variants = 1
 
 /turf/open/ground/update_icon_state()
+	. = ..()
 	if(icon_variants < 2)
-		return initial(icon_state)
-	return "[initial(icon_state)]_[rand(1, icon_variants)]"
+		icon_state = initial(icon_state)
+	icon_state = "[initial(icon_state)]_[rand(1, icon_variants)]"
 
 /turf/open/ground/AfterChange()
 	. = ..()

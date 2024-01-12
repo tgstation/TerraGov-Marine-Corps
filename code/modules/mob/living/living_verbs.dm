@@ -45,11 +45,7 @@
 		if(!silent)
 			to_chat(src, span_notice("You get up."))
 		SEND_SIGNAL(src, COMSIG_XENOMORPH_UNREST)
-	update_resting()
-
-
-/mob/living/proc/update_resting()
-	hud_used?.rest_icon?.update_icon(src)
+	hud_used?.rest_icon?.update_icon()
 
 
 /mob/living/verb/ghost()

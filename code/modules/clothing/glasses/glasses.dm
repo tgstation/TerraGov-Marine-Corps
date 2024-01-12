@@ -88,7 +88,7 @@
 		qdel(src)
 		user.put_in_hands(P)
 
-		update_icon(user)
+		update_icon()
 
 
 /obj/item/clothing/glasses/monocle
@@ -123,7 +123,7 @@
 		qdel(src)
 		user.put_in_hands(P)
 
-		update_icon(user)
+		update_icon()
 
 /obj/item/clothing/glasses/regular/hipster
 	name = "prescription glasses"
@@ -191,7 +191,7 @@
 			qdel(src)
 			user.put_in_hands(S)
 
-		update_icon(user)
+		update_icon()
 
 /obj/item/clothing/glasses/m42_goggles
 	name = "\improper M42 scout sight"
@@ -343,7 +343,7 @@
 		qdel(src)
 		user.put_in_hands(P)
 
-		update_icon(user)
+		update_icon()
 
 /obj/item/clothing/glasses/sunglasses/fake/prescription
 	name = "prescription sunglasses"
@@ -357,22 +357,6 @@
 /obj/item/clothing/glasses/sunglasses/fake/big/prescription
 	name = "prescription sunglasses"
 	prescription = TRUE
-
-/obj/item/clothing/glasses/sunglasses/sa
-	name = "spatial agent's sunglasses"
-	desc = "Glasses worn by a spatial agent."
-	eye_protection = 2
-	darkness_view = 8
-	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
-	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-
-/obj/item/clothing/glasses/sunglasses/sa/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/clothing_tint, TINT_NONE)
-
-/obj/item/clothing/glasses/sunglasses/sa/nodrop
-	desc = "Glasses worn by a spatial agent. cannot be dropped"
-	flags_item = DELONDROP
 
 /obj/item/clothing/glasses/sunglasses/sechud
 	name = "HUDSunglasses"

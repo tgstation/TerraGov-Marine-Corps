@@ -898,10 +898,10 @@
 /obj/item/storage/belt/shotgun/martini
 	name = "martini henry ammo belt"
 	desc = "A belt good enough for holding all your .577/400 ball rounds."
-	icon_state = ".557_belt"
+	icon_state = "marini_belt"
 	storage_slots = 12
 	max_storage_space = 24
-
+	sprite_slots = 6
 	draw_mode = 1
 
 	flags_atom = DIRLOCK
@@ -910,23 +910,16 @@
 	. = ..()
 	update_icon()
 
-/obj/item/storage/belt/shotgun/martini/update_icon()
-	if(!length(contents))
-		icon_state = initial(icon_state) + "_e"
-		return
-	icon_state = initial(icon_state)
-
-	var/holding = round((length(contents) + 1) / 2)
-	setDir(holding + round(holding/3))
-
 /obj/item/storage/belt/shotgun/martini/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/ammo_magazine))
-		var/obj/item/ammo_magazine/new_mag = I
-		if(new_mag.caliber != CALIBER_557)
-			to_chat(user, span_notice("[src] can only be filled with .557/440 ball rifle rounds."))
-			return
-	. = ..()
-	update_icon()
+	if(!istype(I, /obj/item/ammo_magazine))
+		update_icon()
+		return ..()
+
+	var/obj/item/ammo_magazine/new_mag = I
+	if(new_mag.caliber != CALIBER_557)
+		to_chat(user, span_notice("[src] can only be filled with .557/440 ball rifle rounds."))
+		return
+
 
 /obj/item/storage/belt/shotgun/martini/attack_hand(mob/living/user)
 	if (loc != user)

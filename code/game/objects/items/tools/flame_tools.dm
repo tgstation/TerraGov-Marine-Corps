@@ -34,14 +34,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/wax = 800
 
 /obj/item/tool/candle/update_icon_state()
-	var/i
-	if(wax>150)
-		i = 1
-	else if(wax>80)
-		i = 2
+	. = ..()
+	if(wax > 150)
+		icon_state = "candle[1][heat ? "_lit" : ""]"
+	else if(wax > 80)
+		icon_state = "candle[2][heat ? "_lit" : ""]"
 	else
-		i = 3
-	icon_state = "candle[i][heat ? "_lit" : ""]"
+		icon_state = "candle[3][heat ? "_lit" : ""]"
 
 /obj/item/tool/candle/Destroy()
 	if(heat)

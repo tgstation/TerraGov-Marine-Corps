@@ -173,7 +173,9 @@
 	return FALSE					//nonliving mobs don't have hands
 
 /mob/living/put_in_hand_check(obj/item/I, hand_index)
-	if((I.flags_item & ITEM_ABSTRACT))
+	if((I.flags_item & ITEM_ABSTRACT) || !istype(I))
+		return FALSE
+	if(incapacitated() || lying_angle || (status_flags & INCORPOREAL))
 		return FALSE
 	return TRUE
 

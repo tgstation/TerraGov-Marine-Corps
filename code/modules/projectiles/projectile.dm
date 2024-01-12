@@ -875,6 +875,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(proj.shot_from && src == proj.shot_from.sniper_target(src))
 		damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
+		add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 
 	if(iscarbon(proj.firer))
 		var/mob/living/carbon/shooter_carbon = proj.firer
@@ -1213,9 +1214,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(damage < 1)
 		return FALSE
-
-	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		current_bulletholes++
 
 	if(prob(30))
 		visible_message(span_warning("[src] is damaged by [proj]!"), visible_message_flags = COMBAT_MESSAGE)

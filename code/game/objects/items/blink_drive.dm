@@ -58,22 +58,20 @@
 
 /obj/item/blink_drive/dropped(mob/user)
 	. = ..()
-	UnregisterSignal(user, list(COMSIG_MOB_ALT_RIGHT_CLICK, COMSIG_MOB_MIDDLE_CLICK))
-	UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
+	UnregisterSignal(user, list(COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_MOB_MIDDLE_CLICK, COMSIG_ACTION_EXCLUSIVE_TOGGLE, COMSIG_ITEM_EXCLUSIVE_TOGGLE))
 	selected = FALSE
 	equipped_user = null
 	LAZYCLEARLIST(actions)
 
 /obj/item/blink_drive/ui_action_click(mob/user, datum/action/item_action/action)
 	if(selected)
-		UnregisterSignal(user, COMSIG_MOB_MIDDLE_CLICK)
+		UnregisterSignal(user, list(COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_MOB_MIDDLE_CLICK, COMSIG_ACTION_EXCLUSIVE_TOGGLE, COMSIG_ITEM_EXCLUSIVE_TOGGLE))
 		action.set_toggle(FALSE)
-		UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
 	else
 		RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, PROC_REF(can_use))
 		action.set_toggle(TRUE)
 		SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
-		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, PROC_REF(unselect))
+		RegisterSignals(user, list(COMSIG_ACTION_EXCLUSIVE_TOGGLE, COMSIG_ITEM_EXCLUSIVE_TOGGLE), PROC_REF(unselect))
 	selected = !selected
 
 /obj/item/blink_drive/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
@@ -87,8 +85,7 @@
 	if(!selected)
 		return
 	selected = FALSE
-	UnregisterSignal(user, COMSIG_MOB_MIDDLE_CLICK)
-	UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
+	UnregisterSignal(user, list(COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_MOB_MIDDLE_CLICK, COMSIG_ACTION_EXCLUSIVE_TOGGLE, COMSIG_ITEM_EXCLUSIVE_TOGGLE))
 
 	for(var/action in user.actions)
 		if(!istype(action, /datum/action/item_action))

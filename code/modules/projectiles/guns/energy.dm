@@ -276,7 +276,7 @@
 	damage_falloff_mult = 0.25
 	fire_delay = 2
 	default_ammo_type = /obj/item/cell/lasgun/lasrifle
-	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle, /obj/item/cell/lasgun/volkite/powerpack/marine, /obj/item/cell/lasgun/lasrifle/recharger)
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle, /obj/item/cell/lasgun/lasrifle/recharger)
 	/// A list of available modes this gun can switch to
 	var/list/datum/lasrifle/mode_list = list()
 	/// The index of the current mode selected, used for non radial mode switches
@@ -372,7 +372,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	default_ammo_type = /obj/item/cell/lasgun/lasrifle
-	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle, /obj/item/cell/lasgun/volkite/powerpack/marine)
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_SHOWS_AMMO_REMAINING
 	muzzle_flash_color = COLOR_TESLA_BLUE
 	ammo_level_icon = "tesla"
@@ -1055,12 +1055,12 @@
 	light_power = 0.1
 	light_color = LIGHT_COLOR_ORANGE
 
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/update_icon(mob/user)
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/update_icon()
 	. = ..()
 	if(rounds)
-		turn_light(user, TRUE)
+		turn_light(null, TRUE)
 	else
-		turn_light(user, FALSE)
+		turn_light(null, FALSE)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/turn_light(mob/user, toggle_on)
 	. = ..()

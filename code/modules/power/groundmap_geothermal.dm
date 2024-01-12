@@ -56,7 +56,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	return TRUE
 
 //We don't want to cut/update the power overlays every single proc. Just when it actually changes. This should save on CPU cycles. Efficiency!
-/obj/machinery/power/geothermal/update_icon()
+/obj/machinery/power/geothermal/update_icon_state()
 	. = ..()
 	switch(buildstate)
 		if(GEOTHERMAL_NO_DAMAGE)
@@ -84,6 +84,19 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 			icon_state = "wrench"
 			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is lightly damaged. Use a wrench to repair it."
 
+/obj/machinery/power/geothermal/update_desc(updates)
+	. = ..()
+	switch(buildstate)
+		if(GEOTHERMAL_NO_DAMAGE)
+			if(!is_on)
+				desc = "A thermoelectric generator sitting atop a borehole dug deep in the planet's surface. It generates energy by boiling the plasma steam that rises from the well.\nIt is old technology and has a large failure rate, and must be repaired frequently.\nIt is currently turned off and silent."
+		if(GEOTHERMAL_HEAVY_DAMAGE)
+			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, wirecutters, and then a wrench to repair it."
+		if(GEOTHERMAL_MEDIUM_DAMAGE)
+			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is damaged. Use wirecutters and then a wrench to repair it."
+		if(GEOTHERMAL_LIGHT_DAMAGE)
+			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is lightly damaged. Use a wrench to repair it."
+
 /obj/machinery/power/geothermal/update_overlays()
 	. = ..()
 	if(corrupted)
@@ -105,7 +118,9 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 			return PROCESS_KILL
 		if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
 			//You get points proportional to the % of generators corrupted (for example, if 66% of generators are corrupted the hive gets 0.66 points per second)
-			SSpoints.add_psy_points(corrupted, GENERATOR_PSYCH_POINT_OUTPUT / GLOB.generators_on_ground)
+			var/points_generated = GENERATOR_PSYCH_POINT_OUTPUT / GLOB.generators_on_ground
+			SSpoints.add_strategic_psy_points(corrupted, points_generated)
+			SSpoints.add_tactical_psy_points(corrupted, points_generated*0.25)
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
 		return PROCESS_KILL

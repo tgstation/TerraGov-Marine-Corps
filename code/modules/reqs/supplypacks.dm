@@ -373,12 +373,6 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/rifle/tx54/smoke/tangle)
 	cost = 48
 
-/datum/supply_packs/weapons/tx54_he
-	name = "GL-54 HE grenade magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/tx54/he)
-	cost = 50
-	available_against_xeno_only = TRUE
-
 /datum/supply_packs/weapons/tx55
 	name = "AR-55 OICW Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/tx55)
@@ -870,13 +864,6 @@ EXPLOSIVES
 	contains = list(/obj/item/storage/box/visual/grenade/phosphorus)
 	cost = 700
 
-/datum/supply_packs/explosives/explosives_plasmadrain
-	name = "M40-T gas grenade box crate"
-	notes = "Contains 25 grenades"
-	contains = list(/obj/item/storage/box/visual/grenade/drain)
-	cost = 700
-	available_against_xeno_only = TRUE
-
 /datum/supply_packs/explosives/plastique
 	name = "C4 plastic explosive"
 	contains = list(/obj/item/explosive/plastique)
@@ -1343,7 +1330,7 @@ ENGINEERING
 
 /datum/supply_packs/engineering/glass50
 	name = "50 glass sheets"
-	contains = list(/obj/item/stack/sheet/glass/large_stack)
+	contains = list(/obj/item/stack/sheet/glass/glass/large_stack)
 	cost = 100
 
 /datum/supply_packs/engineering/wood50

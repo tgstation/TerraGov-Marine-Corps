@@ -2903,10 +2903,10 @@
 /area/oscar_outpost/outside/west)
 "tM" = (
 /obj/structure/closet/crate,
-/obj/item/stack/sheet/glass/large_stack,
-/obj/item/stack/sheet/glass/large_stack,
-/obj/item/stack/sheet/glass/large_stack,
-/obj/item/stack/sheet/glass/large_stack,
+/obj/item/stack/sheet/glass/glass/large_stack,
+/obj/item/stack/sheet/glass/glass/large_stack,
+/obj/item/stack/sheet/glass/glass/large_stack,
+/obj/item/stack/sheet/glass/glass/large_stack,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -8512,10 +8512,10 @@
 /area/oscar_outpost)
 "Tv" = (
 /obj/structure/closet/crate,
-/obj/item/stack/sheet/glass{
+/obj/item/stack/sheet/glass/glass{
 	amount = 30
 	},
-/obj/item/stack/sheet/glass{
+/obj/item/stack/sheet/glass/glass{
 	amount = 30
 	},
 /turf/open/floor/tile/dark,

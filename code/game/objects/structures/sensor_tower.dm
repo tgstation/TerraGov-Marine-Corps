@@ -36,6 +36,7 @@
 	update_icon()
 
 /obj/structure/sensor_tower/update_icon_state()
+	. = ..()
 	icon_state = initial(icon_state)
 	if(current_timer || activated)
 		icon_state += "_tgmc"

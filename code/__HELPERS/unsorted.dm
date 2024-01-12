@@ -137,6 +137,7 @@
 	else if(. >= 360)
 		. -= 360
 
+///Returns one of the 8 directions based on an angle
 /proc/angle_to_dir(angle)
 	switch(angle)
 		if(338 to 360, 0 to 22)
@@ -155,6 +156,18 @@
 			return WEST
 		if(293 to 337)
 			return NORTHWEST
+
+///Returns one of the 4 cardinal directions based on an angle
+/proc/angle_to_cardinal_dir(angle)
+	switch(angle)
+		if(316 to 360, 0 to 45)
+			return NORTH
+		if(46 to 135)
+			return EAST
+		if(136 to 225)
+			return SOUTH
+		if(226 to 315)
+			return WEST
 
 ///returns degrees between two angles
 /proc/get_between_angles(degree_one, degree_two)

@@ -41,6 +41,7 @@
 		set_light(0)
 
 /obj/machinery/marine_selector/update_icon_state()
+	. = ..()
 	if(is_operational())
 		icon_state = initial(icon_state)
 	else

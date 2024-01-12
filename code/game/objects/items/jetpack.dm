@@ -50,18 +50,18 @@
 
 /obj/item/jetpack_marine/dropped(mob/user)
 	. = ..()
-	UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_ALT_RIGHT_CLICK, COMSIG_ITEM_EXCLUSIVE_TOGGLE))
+	UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_ITEM_EXCLUSIVE_TOGGLE, COMSIG_ACTION_EXCLUSIVE_TOGGLE))
 	selected = FALSE
 	LAZYCLEARLIST(actions)
 
 /obj/item/jetpack_marine/ui_action_click(mob/user, datum/action/item_action/action)
 	if(selected)
-		UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_ALT_RIGHT_CLICK, COMSIG_ITEM_EXCLUSIVE_TOGGLE))
+		UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_ITEM_EXCLUSIVE_TOGGLE, COMSIG_ACTION_EXCLUSIVE_TOGGLE))
 		action.set_toggle(FALSE)
 	else
 		RegisterSignals(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_ALT_RIGHT_CLICK), PROC_REF(can_use_jetpack))
 		SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
-		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, PROC_REF(unselect))
+		RegisterSignals(user, list(COMSIG_ITEM_EXCLUSIVE_TOGGLE, COMSIG_ACTION_EXCLUSIVE_TOGGLE), PROC_REF(unselect))
 		action.set_toggle(TRUE)
 	selected = !selected
 
@@ -71,7 +71,7 @@
 	if(!selected)
 		return
 	selected = FALSE
-	UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_ALT_RIGHT_CLICK, COMSIG_ITEM_EXCLUSIVE_TOGGLE))
+	UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_ITEM_EXCLUSIVE_TOGGLE, COMSIG_ACTION_EXCLUSIVE_TOGGLE))
 	for(var/action in user.actions)
 		if (!istype(action, /datum/action/item_action))
 			continue
@@ -105,8 +105,8 @@
 	human_user.update_inv_back()
 	update_icon()
 	new /obj/effect/temp_visual/smoke(get_turf(human_user))
-	human_user.fly_at(A, calculate_range(human_user), speed)
 	RegisterSignal(human_user, COMSIG_MOVABLE_POST_THROW, PROC_REF(reset_flame))
+	human_user.fly_at(A, calculate_range(human_user), speed)
 	return TRUE
 
 ///Calculate the max range of the jetpack, changed by some item slowdown
