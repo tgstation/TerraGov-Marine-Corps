@@ -73,13 +73,13 @@
 	target_flags = ABILITY_HUMAN_TARGET
 	var/lethaldamage
 	var/damagescaledivisor = 2.5 //The divisor that the damage form uses
-	var/damageperlarva = 20 //The base damage per larva
+	var/damageperlarva = 20 //The base damage per larva. Is divided by damagescaledivider, then timesd by the amount of larvae present in the host past 6 larva
 	var/list/helpintenttext = list("caringly fuck", "carefully impregnate", "regally rail", "tantrically mate")
 	var/list/harmintenttext = list("roughly rut", "roughly rail", "harshly slam", "dangerously seed", "overly stuff")
 	var/list/damagetypes = list(BRUTE,BURN,TOX)
 	var/sexverb
-	var/larvalbunch = 3
-	var/chancebunch = 20
+	var/larvalbunch = 3 //How many can the Queen lay at once?
+	var/chancebunch = 35 //How often on a prob() will this occur...
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_IMPREGNATE,
 	)
@@ -90,6 +90,13 @@
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/victim = A
+	if(A.stat == DEAD)
+		to_chat(owner, span_warning("Why would we sully our loins mating with the dead? Get a lesser being to do it for us..."))
+		return FALSE
+	if(ismonkey(A))
+		A.apply_damage(95, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //They CERTAINLY aren't fitting in a monkey.
+		to_chat(owner, span_warning("We stop trying to fuck \the [A]. They're simply too small to hold royal larva!"))
+		return FALSE
 	var/implanted_embryos = 0
 	for(var/obj/item/alien_embryo/implanted in A.contents)
 		implanted_embryos++
@@ -133,13 +140,6 @@
 			if(INTENT_HELP)
 				sexverb = pick(helpintenttext)
 				lethaldamage = FALSE
-		if(A.stat == DEAD)
-			to_chat(owner, span_warning("Why would we sully our loins mating with the dead? Get a lesser being to do it for us..."))
-			return FALSE
-	if(ismonkey(A))
-		A.apply_damage(95, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //They CERTAINLY aren't fitting in a monkey.
-		to_chat(owner, span_warning("We stop trying to fuck \the [A]. They're simply too small to hold royal larva!"))
-		return FALSE
 	X.face_atom(A)
 	X.do_jitter_animation() //No need for the human to jostle too.
 	to_chat(owner, span_warning("We will impregnate this host shortly. Remain in proximity."))
@@ -157,12 +157,12 @@
 		implanted_embryos++
 	if(implanted_embryos >= MAX_LARVA_PREGNANCIES)
 		to_chat(owner, span_danger("This Host is way too full! You begin to overstuff them..."))
-		A.apply_damage((damagescaledivisor/damageperlarva)*implanted_embryos, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //Too many larvae!
+		A.apply_damage((damageperlarva/damagescaledivisor)*implanted_embryos, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //Too many larvae!
 		if(A.stat == CONSCIOUS)
 			to_chat(A, span_highdanger("You're too full, you feel like you're going to burst apart! You might want to ask [X] to stop... If they'll listen.")) //Way too many.
 			if(implanted_embryos >= (MAX_LARVA_PREGNANCIES*2))
 				for(var/D in damagetypes)
-					A.apply_damage((damagescaledivisor/damageperlarva)*implanted_embryos, D, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //It'll get worse!
+					A.apply_damage((damageperlarva/damagescaledivisor)*implanted_embryos, D, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //It'll get worse!
 	if(prob(chancebunch)) //Queen has a higher chance to lay in batches.
 		for(var/lcount=0, lcount<larvalbunch, lcount++)
 			var/obj/item/alien_embryo/larba = new(A)
