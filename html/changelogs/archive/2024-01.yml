@@ -118,3 +118,10 @@
   - rscadd: 'New Gorger primordial: Oppose. Staggers and slows nearby marines while
       healing nearby xenomorphs, at a cost. Replaces current primordial ability, Rejuvenate'
   - rscdel: Rejuvenate
+2024-01-13:
+  Barnet2:
+  - rscdel: Research Outpost is no longer votable when Nuclear War is selected.
+  ivanmixo:
+  - code_imp: Ported update_appearance, alternative_appearance and ssvisoverlays
+  - refactor: Refactored almost every instance of update_icon, update_icon_state and
+      update_overlays
