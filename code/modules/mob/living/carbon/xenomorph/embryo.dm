@@ -194,7 +194,7 @@
 	else
 		forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
 	var/obj/item/alien_embryo/AE = locate() in victim
-	//playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25) //NTF-Edit. SUuuper loud.
+	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 10)
 	victim.visible_message("<span class='danger'>The Larva forces its way out of [victim]'s [AE.emerge_target_flavor]!</span>")
 	GLOB.round_statistics.total_larva_burst++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_larva_burst")

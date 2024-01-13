@@ -434,6 +434,7 @@
 			/obj/item/facepaint/green = -1,
 		),
 		"OLD SCHOOL" = list(
+			/obj/item/clothing/head/modular/som/bio = -1
 			/obj/item/clothing/head/helmet/marine/som = -1,
 			/obj/item/clothing/suit/storage/marine/som = -1,
 		),
@@ -573,8 +574,6 @@
 		"Eyewear" = list(
 			/obj/item/clothing/glasses/regular = -1,
 			/obj/item/clothing/glasses/eyepatch = -1,
-			/obj/item/clothing/glasses/sunglasses/fake/big = -1,
-			/obj/item/clothing/glasses/sunglasses/fake/big/prescription = -1,
 			/obj/item/clothing/glasses/sunglasses/fake = -1,
 			/obj/item/clothing/glasses/sunglasses/fake/prescription = -1,
 			/obj/item/clothing/glasses/mgoggles = -1,
