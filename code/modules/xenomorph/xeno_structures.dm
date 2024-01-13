@@ -1640,7 +1640,7 @@ TUNNEL
 
 /obj/structure/xeno/acid_pool
 	name = "acid pool"
-	desc = "A pool of weak viscous acid that solidifies quickly when removed from it's pool. Swimming is not reccomended due to the lack of lifeguard."
+	desc = "A pool of weak viscous acid that solidifies quickly when removed from the pool. Swimming is not recommended due to the lack of a lifeguard."
 	icon = 'icons/Xeno/3x3building.dmi'
 	icon_state = "pool"
 	bound_width = 96
