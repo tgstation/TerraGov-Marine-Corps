@@ -490,7 +490,7 @@
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/tx8/scout
 	item_whitelist = list(/obj/item/clothing/suit/modular/xenonauten/light/shield = ITEM_SLOT_OCLOTHING)
-	purchase_cost = 2
+	purchase_cost = 100
 	quantity = 2
 
 /datum/loadout_item/suit_store/main_gun/marine/scout_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1047,7 +1047,7 @@
 	and an underslung assault rifle using 10x24mm caseless ammunition. Somewhat cumbersome to use due to its size and weight."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/tx55/combat_patrol
-	purchase_cost = 2
+	purchase_cost = 100
 	quantity = 2
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/oicw/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)

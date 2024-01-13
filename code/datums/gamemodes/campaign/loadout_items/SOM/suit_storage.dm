@@ -252,7 +252,7 @@
 	The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/magharness
-	purchase_cost = 2
+	purchase_cost = 75
 	quantity = 4
 
 /datum/loadout_item/suit_store/main_gun/som_marine/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -673,6 +673,7 @@
 	This one comes with a S-144 boarding shield, intended for use with M-31 Lorica combat armor for boarding actions."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
+	purchase_cost = 50
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/breacher/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/som, SLOT_L_HAND)
@@ -809,7 +810,7 @@
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
 	quantity = 2
-	purchase_cost = 3
+	purchase_cost = 100
 	item_whitelist = list(/obj/item/cell/lasgun/volkite/powerpack = ITEM_SLOT_BACK)
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/volkite_caliver_pack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -833,7 +834,7 @@
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness
 	quantity = 2
-	purchase_cost = 4
+	purchase_cost = 150
 	item_whitelist = list(/obj/item/cell/lasgun/volkite/powerpack = ITEM_SLOT_BACK)
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/volkite_culverin/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)

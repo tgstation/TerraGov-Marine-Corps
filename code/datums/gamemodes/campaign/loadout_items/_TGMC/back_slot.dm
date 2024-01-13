@@ -21,7 +21,7 @@
 /datum/loadout_item/back/combat_pack
 	name = "Combat pack"
 	desc = "A small lightweight pack for expeditions and short-range operations. Has the storage capacity of a backpack but no draw delay."
-	purchase_cost = 1
+	purchase_cost = 80
 	item_typepath = /obj/item/storage/backpack/lightpack
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER)
 
@@ -57,7 +57,7 @@
 	Supplied with an addition box of buckshot, provided you have somewhere to store the shells. \
 	Uses 12 gauge shells. Requires a pump, which is the Unique Action key."
 	ui_icon = "ballistic"
-	purchase_cost = 2
+	purchase_cost = 100
 	item_typepath = /obj/item/weapon/gun/shotgun/pump/t35/standard
 	jobs_supported = list(SQUAD_MARINE)
 	loadout_item_flags = NONE
@@ -105,7 +105,7 @@
 /datum/loadout_item/back/tgmc_rocket_bag
 	name = "Rocket bag"
 	desc = "This backpack holds 4 67mm shells, in addition to a recoiless launcher. Has a draw delay."
-	purchase_cost = 2
+	purchase_cost = 100
 	quantity = 2
 	item_typepath = /obj/item/storage/holster/backholster/rpg/low_impact
 	jobs_supported = list(SQUAD_ENGINEER)

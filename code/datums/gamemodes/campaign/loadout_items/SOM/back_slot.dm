@@ -7,7 +7,7 @@
 /datum/loadout_item/back/som_combat_pack
 	name = "Mining rucksack"
 	desc = "A rucksack with origins dating back to the mining colonies. Has the storage capacity of a backpack but no draw delay."
-	purchase_cost = 1
+	purchase_cost = 80
 	item_typepath = /obj/item/storage/backpack/lightpack/som
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN)
 
@@ -43,7 +43,7 @@
 	Supplied with an addition box of buckshot, provided you have somewhere to store the shells. \
 	Uses 12 gauge shells. Requires a pump, which is the Unique Action key."
 	ui_icon = "ballistic"
-	purchase_cost = 2
+	purchase_cost = 100
 	item_typepath = /obj/item/weapon/gun/shotgun/som/standard
 	jobs_supported = list(SOM_SQUAD_MARINE)
 	loadout_item_flags = NONE
@@ -56,7 +56,7 @@
 	name = "RPG bag"
 	desc = "This backpack holds 4 RPGs, in addition to a RPG launcher. Has a draw delay."
 	req_desc = "Requires a suit with a Mithridatius environmental protection module."
-	purchase_cost = 2
+	purchase_cost = 100
 	quantity = 2
 	item_typepath = /obj/item/storage/holster/backholster/rpg/som/war_crimes
 	jobs_supported = list(SOM_SQUAD_VETERAN)

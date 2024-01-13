@@ -34,7 +34,7 @@
 	desc = "A simple harness system available in many configurations. This version is designed to carry bulk quantities of grenades.."
 	item_typepath = /obj/item/storage/belt/grenade/som
 	jobs_supported = list(SOM_SQUAD_VETERAN)
-	purchase_cost = 2
+	purchase_cost = 80
 	quantity = 2
 
 /datum/loadout_item/belt/som_grenades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
