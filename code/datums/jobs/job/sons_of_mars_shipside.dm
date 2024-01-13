@@ -292,7 +292,7 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/vp70
-	ears = /obj/item/radio/headset/mainship/mcom
+	ears = /obj/item/radio/headset/mainship/mcom/som
 	w_uniform = /obj/item/clothing/under/marine/officer/pilot
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/pilot
 	shoes = /obj/item/clothing/shoes/marine/full
@@ -358,7 +358,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	id = /obj/item/card/id/dogtag
 	belt = /obj/item/storage/belt/utility/full
 	glasses = /obj/item/clothing/glasses/welding
-	ears = /obj/item/radio/headset/mainship/mcom
+	ears = /obj/item/radio/headset/mainship/mcom/som/som
 	w_uniform = /obj/item/clothing/under/marine/officer/mech
 	wear_suit = /obj/item/clothing/suit/storage/marine/mech_pilot
 	head = /obj/item/clothing/head/helmet/marine/mech_pilot
@@ -428,7 +428,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/utility/full
-	ears = /obj/item/radio/headset/mainship/mcom
+	ears = /obj/item/radio/headset/mainship/mcom/som
 	w_uniform = /obj/item/clothing/under/marine/officer/ce
 	wear_suit = /obj/item/clothing/suit/storage/marine/officer/req
 	shoes = /obj/item/clothing/shoes/marine/full
@@ -572,7 +572,7 @@ A happy base is a well-functioning base."})
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/holster/belt/m44/full
-	ears = /obj/item/radio/headset/mainship/mcom
+	ears = /obj/item/radio/headset/mainship/mcom/som
 	w_uniform = /obj/item/clothing/under/marine/officer/ro_suit
 	wear_suit = /obj/item/clothing/suit/storage/marine/officer/req
 	suit_store = /obj/item/weapon/gun/energy/taser
@@ -639,7 +639,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the SOM h
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/rig/medical
-	ears = /obj/item/radio/headset/mainship/mcom
+	ears = /obj/item/radio/headset/mainship/mcom/som
 	w_uniform = /obj/item/clothing/under/rank/medical/blue
 	wear_suit = /obj/item/clothing/suit/storage/labcoat/cmo
 	shoes = /obj/item/clothing/shoes/white

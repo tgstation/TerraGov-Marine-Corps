@@ -192,7 +192,7 @@
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/light/bikini
-	name = "\improper NTC-B bikini armpr"
+	name = "\improper NTC-B bikini armor"
 	desc = "A NTC-B vest, a set... of extra-light bikini armor? with modular attachments made to work in many enviroments. This one seems to be a bikini variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	greyscale_config = /datum/greyscale_config/xenonaut/bikini
 	slowdown = 0

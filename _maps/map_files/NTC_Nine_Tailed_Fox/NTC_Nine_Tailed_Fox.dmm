@@ -442,7 +442,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "azF" = (
-/obj/structure/dropship_equipment/shuttle/weapon_holder/machinegun,
+/obj/machinery/dropship_part_fabricator,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -612,7 +612,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/cargo/arrow,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
 	})
@@ -20980,8 +20980,8 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "tfc" = (
-/obj/structure/dropship_equipment/shuttle/operatingtable,
-/turf/open/floor/mainship/cargo,
+/obj/structure/dropship_equipment/shuttle/weapon_holder/machinegun,
+/turf/open/floor/mainship/cargo/arrow,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
 	})
@@ -34821,7 +34821,7 @@ xHV
 kjD
 kyS
 wDa
-azF
+mUE
 kyS
 kjD
 kyS
@@ -35063,8 +35063,8 @@ xHV
 kjD
 rZs
 wDa
-mUE
-kyS
+azF
+tfc
 kjD
 kyS
 tIn
@@ -35305,7 +35305,7 @@ xHV
 kjD
 kyS
 wDa
-tfc
+cam
 aEP
 prz
 xgc
