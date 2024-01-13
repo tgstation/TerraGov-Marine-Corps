@@ -23,11 +23,11 @@
 					if(30 to 100)
 						to_chat(src, span_notice("Spare blood gushes out of your ears and mouth. Must've had too much."))
 						bleed_range = 1
-					if(100 to 300)
+					if(100 to 1680)
 						visible_message(span_notice("Several jets of blood open up across [src]'s body and paint the surroundings red. How'd [p_they()] do that?"), \
 							span_notice("Several jets of blood open up across your body and paint your surroundings red. You feel like you aren't under as much pressure any more."))
 						bleed_range = 3
-					if(300 to INFINITY)
+					if(1680 to INFINITY)
 						visible_message(span_notice("The exorbitant amount of blood within [src]'s body can no longer be contained. A flash flood of blood covers everything. Wow..."), \
 							span_notice("The exorbitant amount of blood within your body can no longer be contained. The explosion of blood leaves barely any trace of you left..."))
 						bleed_range = 5
