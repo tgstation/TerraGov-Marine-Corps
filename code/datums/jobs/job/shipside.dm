@@ -1167,8 +1167,8 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	comm_title = "CL"
 	supervisors = "the NT corporate office"
 	total_positions = 1
-	access = list(ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
-	minimal_access = list(ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY)
+	access = ALL_MARINE_ACCESS
+	minimal_access = ALL_MARINE_ACCESS
 	skills_type = /datum/skills/civilian
 	display_order = JOB_DISPLAY_ORDER_CORPORATE_LIAISON
 	outfit = /datum/outfit/job/civilian/liaison
@@ -1212,7 +1212,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 /datum/job/terragov/civilian/liaison/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"As a representative of Ninetails Corporation you are expected to stay professional and loyal to the corporation at all times.
-You are not required to follow military orders; however, you cannot give military orders.
+You are expected to make sure the corporation is functioning as intended for Ninetails Corp's interests and good outlook. Running miners while at peace is usually more profitable than warring and wasting resources.
 Your primary job is to observe and report back your findings to Ninetails. Follow regular game rules unless told otherwise by your superiors.
 Use your office fax machine to communicate with corporate headquarters or to acquire new directives. You may not receive anything back (especially if the game staff is absent or otherwise busy), and this is normal."})
 
