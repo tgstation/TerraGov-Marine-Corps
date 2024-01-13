@@ -45,7 +45,7 @@ OPERATIONS
 /datum/supply_packs/operations/monkeyboxes
 	name = "Monkey Cube"
 	contains = list(/obj/item/storage/box/monkeycubes)
-	cost = 500
+	cost = 300
 
 /datum/supply_packs/operations/fulton_extraction_pack
 	name = "Fulton extraction pack"
