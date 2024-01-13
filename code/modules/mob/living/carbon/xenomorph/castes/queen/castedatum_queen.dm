@@ -98,5 +98,6 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
+		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/xeno_action/ready_charge/queen_charge,
 	)
