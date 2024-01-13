@@ -233,6 +233,15 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_METAL
 	medical = SKILL_MEDICAL_NOVICE
 
+/datum/skills/civilian/worker
+	name = "Survivor"
+	firearms = SKILL_FIREARMS_UNTRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	medical = SKILL_MEDICAL_COMPETENT
+	construction = SKILL_CONSTRUCTION_MASTER
+	engineer = SKILL_ENGINEER_ENGI
+	powerloader = SKILL_POWERLOADER_MASTER
+
 /datum/skills/civilian/survivor/master
 	name = "Survivor"
 	firearms = SKILL_FIREARMS_DEFAULT
