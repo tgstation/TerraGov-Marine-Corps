@@ -7040,7 +7040,6 @@
 /area/mainship/medical/lounge)
 "fZU" = (
 /obj/machinery/light/mainship,
-/obj/structure/dropship_equipment/cas/weapon/bomblet_pod,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 1
 	},
@@ -37550,7 +37549,7 @@ vkb
 vkb
 vkb
 eju
-dAd
+iwz
 hIO
 mHO
 mFV
@@ -37652,7 +37651,7 @@ vkb
 vkb
 eju
 eju
-iwz
+dAd
 hIO
 ssO
 ttX
