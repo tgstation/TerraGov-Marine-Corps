@@ -149,6 +149,7 @@
 			/obj/item/storage/box/visual/grenade = -1,
 		),
 		"Utility" = list(
+			/obj/item/radio/headset/mainship/mcom/som = -1,
 			/obj/item/flashlight/combat = -1,
 			/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine = -1,
 			/obj/item/tool/shovel/etool = -1,
