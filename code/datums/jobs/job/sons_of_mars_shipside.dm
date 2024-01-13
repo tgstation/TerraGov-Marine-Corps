@@ -358,7 +358,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	id = /obj/item/card/id/dogtag
 	belt = /obj/item/storage/belt/utility/full
 	glasses = /obj/item/clothing/glasses/welding
-	ears = /obj/item/radio/headset/mainship/mcom/som/som
+	ears = /obj/item/radio/headset/mainship/mcom/som
 	w_uniform = /obj/item/clothing/under/marine/officer/mech
 	wear_suit = /obj/item/clothing/suit/storage/marine/mech_pilot
 	head = /obj/item/clothing/head/helmet/marine/mech_pilot

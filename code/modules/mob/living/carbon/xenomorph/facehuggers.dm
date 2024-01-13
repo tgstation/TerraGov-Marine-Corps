@@ -1,5 +1,5 @@
 ///After how much time of being active we die
-#define FACEHUGGER_DEATH 5 MINUTES
+#define FACEHUGGER_DEATH 2 MINUTES
 ///Time it takes to impregnate someone
 #define IMPREGNATION_TIME 10 SECONDS
 
@@ -561,7 +561,7 @@
 				if(hugger.stat != DEAD)
 					var/mob/living/carbon/human/B
 					if(B.w_uniform)
-						var/obj/item/U = B.w_uniform
+						var/obj/item/clothing/under/U = B.w_uniform
 						if(istype(U, /obj/item/clothing/mask/facehugger))
 							var/obj/item/clothing/mask/facehugger/uniformhugger = U
 							if(uniformhugger.stat != DEAD)
@@ -597,6 +597,11 @@
 				targethole = rand(1, 3)
 	else
 		targethole = rand(1, 3)
+	if(target.wear_suit)
+		var/obj/item/clothing/suit/O = target.wear_suit
+		if(istype(O, /obj/item/clothing/suit/storage/marine/specialist))
+			targethole = 1
+			return FALSE
 	if(targethole > 1)
 		return TRUE
 	else
@@ -614,15 +619,16 @@
 	if(!sterile && !issynth(user))
 		var/stamina_dmg = user.maxHealth + user.max_stamina
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
+	playsound(src, 'sound/effects/alien_plapping.ogg', 5)
 	if(targethole == 1)
-		user.Unconscious(20 SECONDS)
+		user.Unconscious(15 SECONDS)
 		if(ishuman(user))
 			var/hugsound = user.gender == FEMALE ? get_sfx("female_hugged") : get_sfx("male_hugged")
 			playsound(loc, hugsound, 25, 0)
 	else
 		user.emote("scream")
-		user.ParalyzeNoChain(5 SECONDS)
-		user.SetConfused(10 SECONDS)
+		user.ParalyzeNoChain(3 SECONDS)
+		user.SetConfused(8 SECONDS)
 	attached = TRUE
 	go_idle(FALSE, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(Impregnate), user), IMPREGNATION_TIME)

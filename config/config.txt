@@ -244,6 +244,7 @@ CACHE_ASSETS 0
 
 
 ##flags
+allow_synthetic_gun_use
 log_whisper
 log_emote
 log_looc

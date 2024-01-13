@@ -84,7 +84,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_IMPREGNATE,
 	)
 
-/datum/action/ability/activable/xeno/impregnatequeen/can_use_ability(atom/A, silent, override_flags)
+/datum/action/ability/activable/xeno/impregnatequeen/can_use_ability(mob/living/A, silent, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
