@@ -241,7 +241,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	building_type = /obj/structure/xeno/spawner
 
 /datum/hive_upgrade/building/acid_pool
-	name = "Larva Pool"
+	name = "acid pool"
 	desc = "Constructs a pool that allows xenos to regenerate sunder in it while resting. Requires open space and time to place."
 	psypoint_cost = 200
 	icon = "pool"
