@@ -10516,8 +10516,8 @@
 	outside = 1
 	})
 "jFy" = (
-/obj/structure/droppod/leader,
 /obj/structure/drop_pod_launcher,
+/obj/structure/droppod/nonmob/turret_pod,
 /turf/open/shuttle/escapepod,
 /area/mainship/hallways/hangar/droppod)
 "jGg" = (
@@ -19768,6 +19768,13 @@
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"say" = (
+/obj/structure/drop_pod_launcher,
+/obj/structure/droppod/leader,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "saD" = (
 /obj/machinery/power/monitor/grid,
 /obj/structure/cable,
@@ -20469,9 +20476,8 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/tankerbunks)
 "sIK" = (
-/obj/structure/droppod/leader,
-/obj/structure/droppod/leader,
 /obj/structure/drop_pod_launcher,
+/obj/structure/droppod/leader,
 /turf/open/shuttle/escapepod,
 /area/mainship/hallways/hangar/droppod)
 "sJf" = (
@@ -35185,7 +35191,7 @@ hXu
 ive
 jFy
 nkv
-aYD
+sIK
 fAL
 aYD
 aYD
@@ -35669,7 +35675,7 @@ hXu
 ive
 jFy
 nkv
-aYD
+sIK
 aYD
 aYD
 aYD
@@ -36153,7 +36159,7 @@ gXZ
 kPG
 hcn
 nkv
-aYD
+sIK
 aYD
 aYD
 aYD
@@ -36403,7 +36409,7 @@ hcn
 hcn
 hcn
 hcn
-bye
+sIK
 sIF
 fHv
 aTZ
@@ -36637,7 +36643,7 @@ hXu
 ive
 jFy
 nkv
-aYD
+sIK
 aYD
 aYD
 aYD
@@ -36877,7 +36883,7 @@ hXu
 ljl
 hXu
 ive
-sIK
+jFy
 nkv
 nkv
 nkv
@@ -37121,7 +37127,7 @@ hXu
 ive
 jFy
 nkv
-aYD
+sIK
 aYD
 itf
 aYD
@@ -38079,7 +38085,7 @@ tkp
 kPZ
 ljl
 hXu
-sTX
+say
 sTX
 hXu
 uIj
@@ -38563,7 +38569,7 @@ tkp
 vcT
 ljl
 hXu
-sTX
+say
 sTX
 hXu
 uIj
