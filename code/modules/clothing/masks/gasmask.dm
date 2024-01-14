@@ -105,8 +105,8 @@
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/mask.dmi'
 	)
-	icon_state = "specops"
-	item_state = "specops"
+	icon_state = "specop"
+	item_state = "specop"
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/mask/gas/syndicate

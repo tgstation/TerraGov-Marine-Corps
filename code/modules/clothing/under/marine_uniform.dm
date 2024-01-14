@@ -520,7 +520,7 @@
 	name = "Tactical turtleneck"
 	desc = "A TGMC turtleneck issued to special operation units"
 	icon = 'icons/mob/clothing/uniforms/ert_uniforms.dmi'
-	icon_state = "specops_fatigues"
+	icon_state = "specops_uniform"
 	item_icons = list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
 	)
