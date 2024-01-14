@@ -2846,10 +2846,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "pulse bolt"
 	icon_state = "pulse2"
 	hud_state = "pulse"
-	damage = 45 // this is gotta hurt...
+	damage = 45
 	max_range = 40
-	penetration = 100
-	sundering = 100
+	penetration = 70
+	sundering = 70
 	bullet_color = COLOR_PULSE_BLUE
 
 /datum/ammo/energy/lasgun/M43/practice

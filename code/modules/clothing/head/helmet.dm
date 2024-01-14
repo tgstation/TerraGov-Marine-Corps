@@ -321,7 +321,7 @@
 	desc = "A fully enclosed, armored helmet made for Corporate elite commandos."
 	icon_state = "commando_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
-	soft_armor = list(MELEE = 95, BULLET = 120, LASER = 200, ENERGY = 200, BOMB = 90, BIO = 100, FIRE = 90, ACID = 95)
+	soft_armor = list(MELEE = 90, BULLET = 90, LASER = 90, ENERGY = 90, BOMB = 90, BIO = 100, FIRE = 90, ACID = 90)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ|BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	eye_protection = 2

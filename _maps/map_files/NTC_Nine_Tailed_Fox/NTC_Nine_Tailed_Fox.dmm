@@ -1310,14 +1310,6 @@
 	dir = 1
 	},
 /area/mainship/squads/specialist)
-"bfc" = (
-/obj/machinery/door/airlock/mainship/maint,
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/upper_hull)
 "bfy" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -6112,9 +6104,18 @@
 	name = "Kitchen"
 	})
 "fAV" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/prison,
-/area/mainship/groundhq/ntf/shipboard/brig_cells)
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 2;
+	id = "lowercargohold";
+	name = "\improper Cargo Hold"
+	},
+/turf/open/floor/stairs/rampbottom,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "fAZ" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
@@ -7300,15 +7301,18 @@
 /turf/open/floor/mainship/black/full,
 /area/mainship/command/self_destruct)
 "gEU" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
 	},
-/obj/structure/cable,
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 8
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 2;
+	id = "lowercargohold2";
+	name = "\improper Cargo Hold"
 	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hull/upper_hull)
+/turf/open/floor/stairs/rampbottom,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "gEY" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/mainship,
@@ -9807,6 +9811,11 @@
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 2;
+	id = "lowercargohold2";
+	name = "\improper Cargo Hold"
+	},
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -10843,6 +10852,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/vending/dinnerware,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
@@ -12108,8 +12118,8 @@
 	name = "Ship Floor 1 Hallways"
 	})
 "kSA" = (
-/obj/structure/bed/chair,
-/obj/effect/landmark/start/job/prisoner,
+/obj/machinery/microwave,
+/obj/structure/table/reinforced,
 /turf/open/floor/prison/darkyellow{
 	dir = 5
 	},
@@ -16101,10 +16111,7 @@
 	},
 /area/mainship/living/basketball)
 "oyb" = (
-/obj/structure/bed/chair{
-	dir = 1
-	},
-/obj/effect/landmark/start/job/prisoner,
+/obj/machinery/processor,
 /turf/open/floor/prison/darkyellow{
 	dir = 6
 	},
@@ -19746,8 +19753,8 @@
 	name = "CEO Office"
 	})
 "rZg" = (
-/obj/structure/bed/chair,
-/obj/effect/landmark/start/job/prisoner,
+/obj/structure/table/reinforced,
+/obj/machinery/reagentgrinder,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
@@ -22836,10 +22843,12 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/structure/cable,
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 2;
+	id = "lowercargohold2";
+	name = "\improper Cargo Hold"
+	},
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -24991,6 +25000,10 @@
 	})
 "wWk" = (
 /obj/structure/table/reinforced,
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 8
+	},
 /turf/open/floor/prison/darkyellow{
 	dir = 4
 	},
@@ -36321,9 +36334,9 @@ orA
 kjD
 kyS
 mkZ
-iue
-kjD
 fQo
+kjD
+fAV
 urx
 urx
 jJN
@@ -36565,7 +36578,7 @@ kyS
 mkZ
 iue
 hZA
-iue
+fAV
 urx
 urx
 rJs
@@ -36807,7 +36820,7 @@ oDm
 iyl
 sqx
 eNx
-iue
+fAV
 urx
 urx
 sVq
@@ -37047,9 +37060,9 @@ hew
 juD
 kyS
 mkZ
-iue
-juD
 udM
+juD
+fAV
 urx
 urx
 jJN
@@ -42613,7 +42626,7 @@ oWZ
 lDB
 kyS
 xEm
-iue
+fQo
 juD
 uSY
 qbv
@@ -42857,7 +42870,7 @@ kyS
 xEm
 iue
 nIU
-iue
+gEU
 urx
 urx
 qsM
@@ -43339,9 +43352,9 @@ hew
 juD
 kyS
 xEm
-iue
-juD
 udM
+juD
+gEU
 urx
 urx
 urx
@@ -56830,7 +56843,7 @@ aMa
 aMa
 aMa
 aMa
-qiT
+iSM
 oJY
 oJY
 oJY
@@ -57073,7 +57086,7 @@ cqi
 ybP
 aMa
 boT
-idg
+iSM
 rVF
 cBM
 iSM
@@ -58986,8 +58999,8 @@ snW
 oOa
 aPj
 rZg
-fAV
-mkW
+tXd
+oDJ
 jrx
 oel
 tXd
@@ -65542,7 +65555,7 @@ hqW
 siy
 qZo
 aMa
-bfc
+qgZ
 aMa
 kED
 mOc
@@ -67938,7 +67951,7 @@ qnG
 qnG
 qnG
 qnG
-gEU
+oaL
 aMa
 aMa
 ovK
@@ -68205,7 +68218,7 @@ kOX
 kOX
 aoH
 uzu
-idg
+iSM
 rVF
 iSM
 iSM

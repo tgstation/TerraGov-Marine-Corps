@@ -264,10 +264,10 @@
 
 /*===========================Death Commando============================*/
 /obj/item/clothing/suit/storage/marine/veteran/pmc/commando
-	name = "\improper PMC commando armor"
+	name = "\improper NTC commando armor"
 	desc = "A heavily armored suit built by who-knows-what for elite operations. It is a fully self-contained system and is heavily corrosion resistant."
 	icon_state = "commando_armor"
-	soft_armor = list(MELEE = 90, BULLET = 120, LASER = 200, ENERGY = 100, BOMB = 100, BIO = 100, FIRE = 100, ACID = 100)
+	soft_armor = list(MELEE = 90, BULLET = 90, LASER = 90, ENERGY = 90, BOMB = 90, BIO = 100, FIRE = 90, ACID = 90)
 	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE)
 	attachments_allowed = list(/obj/item/armor_module/storage/grenade)
 	starting_attachments = list(/obj/item/armor_module/storage/grenade)
