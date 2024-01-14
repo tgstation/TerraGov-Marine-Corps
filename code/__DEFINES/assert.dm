@@ -6,6 +6,7 @@
 		CRASH(assertion_message(__FILE__, __LINE__, #condition, ##message)) \
 	}
 
+///Used by ASSERT to add a more detailed context to CRASH messages
 /proc/assertion_message(file, line, condition, message)
 	if (!isnull(message))
 		message = " - [message]"

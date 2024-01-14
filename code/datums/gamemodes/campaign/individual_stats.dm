@@ -42,7 +42,7 @@
 	currency += amount
 	if(!current_mob)
 		return
-	to_chat(current_mob, "<span class='warning'>You have received a cash bonus of [amount].")
+	to_chat(current_mob, span_warning("You have received a cash bonus of [amount]."))
 
 ///uses some funtokens, returns the amount missing, if insufficient funds
 /datum/individual_stats/proc/use_funds(amount)
@@ -56,7 +56,7 @@
 	if(!istype(new_perk))
 		return FALSE
 	if(new_perk in unlocked_perks)
-		to_chat(user, "<span class='warning'>Perk already purchased.")
+		to_chat(user, span_warning("Perk already purchased."))
 		return FALSE
 	if(length(new_perk.prereq_perks))
 		var/perk_found
@@ -67,10 +67,10 @@
 					continue
 				perk_found = TRUE
 			if(!perk_found)
-				to_chat(user, "<span class='warning'>One or more prerequisites missing for this perk.")
+				to_chat(user, span_warning("One or more prerequisites missing for this perk."))
 				return FALSE
 	if(use_funds(new_perk.unlock_cost))
-		to_chat(user, "<span class='warning'>Insufficient funds for this perk.")
+		to_chat(user, span_warning("Insufficient funds for this perk."))
 		return FALSE
 
 	new_perk.unlock_bonus(user, src)
@@ -91,7 +91,7 @@
 			continue
 		var/insufficient_credits = use_funds(isnum(cost_override) ? cost_override : item.unlock_cost)
 		if(insufficient_credits)
-			to_chat(user, "<span class='warning'>Requires [insufficient_credits] more credits.")
+			to_chat(user, span_warning("Requires [insufficient_credits] more credits."))
 			return
 		if(!loadouts[job_type].unlock_new_option(item))
 			return
@@ -300,24 +300,24 @@
 			if(!job || !loadouts[job])
 				return
 			if(!istype(user) || user.stat)
-				to_chat(user, "<span class='warning'>Must be alive to do this!")
+				to_chat(user, span_warning("Must be alive to do this!"))
 				return
 			var/obj/item/card/id/user_id = user.get_idcard()
 			if(!(user_id.flags_id & CAN_BUY_LOADOUT))
-				to_chat(user, "<span class='warning'>You have already selected a loadout for this mission.")
+				to_chat(user, span_warning("You have already selected a loadout for this mission."))
 				return
 			if(user.job.title != job)
-				to_chat(user, "<span class='warning'>Invalid job. This outfit is for [job].")
+				to_chat(user, span_warning("Invalid job. This outfit is for [job]."))
 				return
 			if(!is_mainship_level(user.z))
-				to_chat(user, "<span class='warning'>You can't equip a new loadout in the field!")
+				to_chat(user, span_warning("You can't equip a new loadout in the field!"))
 				return
 			if(!loadouts[job].check_full_loadout())
-				to_chat(user, "<span class='warning'>Invalid loadout.")
+				to_chat(user, span_warning("Invalid loadout."))
 				return
 			var/insufficient_credits = use_funds(loadouts[job].loadout_cost)
 			if(insufficient_credits)
-				to_chat(user, "<span class='warning'>Requires [insufficient_credits] more credits.")
+				to_chat(user, span_warning("Requires [insufficient_credits] more credits."))
 				return
 			loadouts[job].equip_loadout(user)
 			user.playsound_local(user, 'sound/effects/menu_click.ogg', 50)
