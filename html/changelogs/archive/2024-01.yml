@@ -118,3 +118,20 @@
   - rscadd: 'New Gorger primordial: Oppose. Staggers and slows nearby marines while
       healing nearby xenomorphs, at a cost. Replaces current primordial ability, Rejuvenate'
   - rscdel: Rejuvenate
+2024-01-13:
+  Barnet2:
+  - rscdel: Research Outpost is no longer votable when Nuclear War is selected.
+  ivanmixo:
+  - code_imp: Ported update_appearance, alternative_appearance and ssvisoverlays
+  - refactor: Refactored almost every instance of update_icon, update_icon_state and
+      update_overlays
+2024-01-14:
+  RipGrayson:
+  - bugfix: Fixed some improper stairs on the EORG maps.
+  Wisemonster:
+  - balance: The Minion Spawner now uses tactical points instead of strategic.
+  Xander3359:
+  - rscdel: Removes the NVG-only smartgunner option.
+  - qol: Adds a "Smartguns/IFF" to the valhalla vendor
+  ivanmixo:
+  - bugfix: Fixed an exploit related to hudglasses

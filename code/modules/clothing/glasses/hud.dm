@@ -21,13 +21,13 @@
 		if(active)
 			activate_hud(user)
 	else if(affected_user)
-		deactivate_hud()
+		deactivate_hud(user)
 	return ..()
 
 
 /obj/item/clothing/glasses/hud/dropped(mob/user)
 	if(affected_user)
-		deactivate_hud()
+		deactivate_hud(user)
 	return ..()
 
 
@@ -52,24 +52,24 @@
 
 ///Activates the hud(s) these glasses have
 /obj/item/clothing/glasses/hud/proc/activate_hud(mob/living/carbon/human/user)
+	affected_user = user
 	if(islist(hud_type))
 		for(var/hud in hud_type)
 			var/datum/atom_hud/hud_datum = GLOB.huds[hud]
-			hud_datum.add_hud_to(user)
+			hud_datum.add_hud_to(affected_user)
 	else
 		var/datum/atom_hud/hud_datum = GLOB.huds[hud_type]
-		hud_datum.add_hud_to(user)
-	affected_user = user
+		hud_datum.add_hud_to(affected_user)
 
 ///Deactivates the hud(s) these glasses have
 /obj/item/clothing/glasses/hud/proc/deactivate_hud(mob/user)
 	if(islist(hud_type))
 		for(var/hud in hud_type)
 			var/datum/atom_hud/hud_datum = GLOB.huds[hud]
-			hud_datum.remove_hud_from(user)
+			hud_datum.remove_hud_from(affected_user)
 	else
 		var/datum/atom_hud/hud_datum = GLOB.huds[hud_type]
-		hud_datum.remove_hud_from(user)
+		hud_datum.remove_hud_from(affected_user)
 	affected_user = null
 
 
