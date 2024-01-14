@@ -1030,6 +1030,7 @@
 #include "code\game\objects\machinery\vending\beginner_vendor.dm"
 #include "code\game\objects\machinery\vending\loadout_vendor.dm"
 #include "code\game\objects\machinery\vending\marine_vending.dm"
+#include "code\game\objects\machinery\vending\som_vending.dm"
 #include "code\game\objects\machinery\vending\new_marine_vendors.dm"
 #include "code\game\objects\machinery\vending\quick_vendor.dm"
 #include "code\game\objects\machinery\vending\vending.dm"

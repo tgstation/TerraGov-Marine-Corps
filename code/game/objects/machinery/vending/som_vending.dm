@@ -10,15 +10,15 @@
 	isshared = TRUE
 
 	products = list(
-		"Rifles" = list (
+		"Rifles" = list(
 			/obj/item/weapon/gun/rifle/som_carbine = -1,
 			/obj/item/weapon/gun/rifle/mpi_km = -1,
 			/obj/item/ammo_magazine/rifle/mpi_km/carbine = -1,
-			/obj/item/ammo_magazine/rifle/mpi_km/black = 120,
-			/obj/item/ammo_magazine/rifle/mpi_km/extended = 60,
+			/obj/item/ammo_magazine/rifle/mpi_km/black = 60,
+			/obj/item/ammo_magazine/rifle/mpi_km/extended = 30,
 			/obj/item/ammo_magazine/rifle/som = -1,
-			/obj/item/ammo_magazine/rifle/som/ap = 30,
-			/obj/item/ammo_magazine/rifle/som/incendiary = 10,
+			/obj/item/ammo_magazine/rifle/som/ap = 25,
+			/obj/item/ammo_magazine/rifle/som/incendiary = 15,
 			/obj/item/weapon/gun/rifle/som = -1,
 		),
 		"Energy Weapons" = list(
@@ -32,12 +32,14 @@
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/som = -1,
 			/obj/item/ammo_magazine/smg/som = -1,
-			/obj/item/ammo_magazine/smg/som/ap = 30,
+			/obj/item/ammo_magazine/smg/som/ap = 20,
 			/obj/item/ammo_magazine/smg/som/incendiary = 10,
 		),
 		"Marksman" = list(
 			/obj/item/weapon/gun/rifle/sniper/svd = 1,
 			/obj/item/ammo_magazine/sniper/svd = 10,
+			/obj/item/weapon/gun/shotgun/pump/lever = -1,
+			/obj/item/ammo_magazine/packet/magnum = -1,
 		),
 		"Shotgun" = list(
 			/obj/item/ammo_magazine/shotgun/buckshot = -1,
@@ -45,7 +47,6 @@
 			/obj/item/ammo_magazine/shotgun/flechette = -1,
 			/obj/item/weapon/gun/shotgun/som = -1,
 			/obj/item/weapon/gun/shotgun/som/burst = 1,
-			/obj/item/weapon/gun/shotgun/pump/lever = -1,
 			/obj/item/weapon/gun/shotgun/double/sawn = 5,
 		),
 		"Machinegun" = list(
@@ -62,7 +63,7 @@
 			/obj/item/weapon/gun/pistol/som = -1,
 			/obj/item/ammo_magazine/pistol/som = -1,
 			/obj/item/ammo_magazine/pistol/som/extended = 30,
-			/obj/item/ammo_magazine/pistol/som/incendiary = 40,
+			/obj/item/ammo_magazine/pistol/som/incendiary = 20,
 		),
 		"Grenades" = list(
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
@@ -76,23 +77,27 @@
 			/obj/item/explosive/grenade/sticky/cloaker = 10,
 			/obj/item/explosive/grenade/smokebomb/drain = 10,
 			/obj/item/explosive/grenade/mirage = 20,
+			/obj/item/explosive/grenade/smokebomb/satrapine = 20,
 			/obj/item/storage/box/m94 = 200,
 			/obj/item/storage/box/m94/cas = 30,
 		),
 		"Specialized" = list(
-			/obj/item/weapon/gun/rifle/pepperball = 6,
+			/obj/item/weapon/gun/rifle/pepperball = 4,
 			/obj/item/ammo_magazine/rifle/pepperball = -1,
 			/obj/item/storage/holster/backholster/rpg/som = 4,
-			/obj/item/ammo_magazine/flamer_tank/large/som = 15,
+			/obj/item/ammo_magazine/flamer_tank/large/som = 10,
 			/obj/item/ammo_magazine/flamer_tank/water = -1,
 			/obj/item/bodybag/tarp = 10,
-			/obj/item/weapon/gun/launcher/rocket/som = 8,
-			/obj/item/weapon/gun/flamer/som = 10,
+			/obj/item/weapon/gun/launcher/rocket/som = 2,
+			/obj/item/ammo_magazine/rocket/som = 8,
+			/obj/item/ammo_magazine/rocket/som/light = 8,
+			/obj/item/ammo_magazine/rocket/som/incendiary = 8,
+			/obj/item/ammo_magazine/rocket/som/heat = 8,
+			/obj/item/weapon/gun/flamer/som = 4,
 		),
 		"Heavy Weapons" = list(
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope = 4,
-			/obj/item/cell/lasgun/volkite/turret = 8,
 			/obj/item/storage/box/tl102 = 1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 5,
@@ -150,7 +155,6 @@
 			/obj/item/storage/box/visual/grenade = -1,
 		),
 		"Utility" = list(
-			/obj/item/radio/headset/mainship/mcom/som = -1,
 			/obj/item/flashlight/combat = -1,
 			/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine = -1,
 			/obj/item/tool/shovel/etool = -1,
@@ -168,7 +172,7 @@
 
 /obj/machinery/vending/cargo_supply/som
 	name = "\improper Operational Supplies Vendor"
-	desc = "A large vendor for dispensing specialty and bulk supplies.."
+	desc = "A large vendor for dispensing specialty and bulk supplies. Restricted to cargo personnel only."
 	icon_state = "requisitionop"
 	icon_vend = "requisitionop-vend"
 	icon_deny = "requisitionop-deny"
@@ -286,9 +290,9 @@
 
 /obj/machinery/vending/som/lasgun/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_icon_state()
 
-/obj/machinery/vending/som/lasgun/update_icon()
+/obj/machinery/vending/som/lasgun/update_icon_state()
 	if(machine_max_charge)
 		switch(machine_current_charge / max(1,machine_max_charge))
 			if(0.7 to 1)
@@ -308,7 +312,6 @@
 	icon_state = "marinemed"
 	icon_vend = "marinemed-vend"
 	icon_deny = "marinemed-deny"
-	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;All natural chemicals!;This stuff saves lives.;Don't you want some?"
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
@@ -408,7 +411,7 @@
 		)
 	)
 /obj/machinery/vending/som/armor_supply
-	name = "\improper Surplus Armor Equipment Vendor"
+	name = "\improper High Quality Mining Equipment"
 	desc = "An automated equipment rack hooked up to a colossal storage of armor and accessories. Nanotrasen designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_armor"
 	icon_vend = "surplus-vend"
@@ -417,14 +420,9 @@
 	product_ads = "You are out of uniform, marine! Where is your armor? Don't have any? You expect me to believe that, maggot?;Why wear heavy armor and unable to chase the enemy when you can go light and zoom by your peers?;Thank your armor later when you didn't die!;I remember PAS, do you remember PAS?;Time to paint the rainbow!;So many selections to choose from!"
 	products = list(
 		"General Armors" = list(
-			/obj/item/clothing/head/modular/som/lorica = -1,
-			/obj/item/clothing/head/modular/som/hades = -1,
-			/obj/item/clothing/head/modular/som/bio = -1,
 			/obj/item/clothing/head/modular/som = -1,
 			/obj/item/clothing/head/modular/som/engineer = -1,
 			/obj/item/clothing/suit/modular/som = -1,
-			/obj/item/clothing/suit/modular/som/engineer = -1,
-			/obj/item/clothing/suit/modular/som/heavy = -1,
 		),
 		"Combat Drone" = list(
 			/obj/item/clothing/suit/modular/robot/light = -1,
@@ -441,6 +439,27 @@
 			/obj/item/clothing/head/helmet/marine/som = -1,
 			/obj/item/clothing/suit/storage/marine/som = -1,
 		),
+		"Armor modules" = list(
+			/obj/item/armor_module/storage/general = -1,
+			/obj/item/armor_module/storage/engineering = -1,
+			/obj/item/armor_module/storage/medical = -1,
+			/obj/item/armor_module/storage/injector = -1,
+			/obj/item/armor_module/storage/grenade = -1,
+			/obj/item/armor_module/module/welding = -1,
+			/obj/item/armor_module/module/binoculars = -1,
+			/obj/item/armor_module/module/artemis = -1,
+			/obj/item/armor_module/module/tyr_head = -1,
+			/obj/item/armor_module/module/antenna = -1,
+			/obj/item/armor_module/module/welding/som = 2,
+			/obj/item/armor_module/module/fire_proof/som = 3,
+			/obj/item/armor_module/module/fire_proof_helmet = 3,
+			/obj/item/armor_module/module/mimir_environment_protection/som = -1,
+			/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1 = -1,
+			/obj/item/armor_module/module/tyr_extra_armor/som = -1,
+			/obj/item/armor_module/module/better_shoulder_lamp = -1,
+			/obj/item/armor_module/module/chemsystem = -1,
+			/obj/item/armor_module/module/eshield/som = -1,
+		),
 	)
 
 	prices = list()
@@ -452,7 +471,6 @@
 	icon_vend = "surplus-vend"
 	icon_deny = "surplus_clothes-deny"
 	isshared = TRUE
-	product_ads = "Be the musician that you parents never approve you of.;You gotta look good when you're in the battlefield.;We have all types of hats here!;What did one hat say to the other on the hiking trip? I'll wait here, you go on ahead;Sometimes, a beret is better than a helmet.;Drip is the priority, marine."
 	products = list(
 		"Standard" = list(
 			/obj/item/clothing/under/marine/robotic = -1,
@@ -491,7 +509,7 @@
 		"Pouches" = list(
 			/obj/item/storage/pouch/grenade/som = -1,
 			/obj/item/storage/pouch/general/som = -1,
-			/obj/item/storage/pouch/magazine/large/som = -1
+			/obj/item/storage/pouch/magazine/large/som = -1,
 			/obj/item/storage/pouch/pistol/som = -1,
 			/obj/item/storage/pouch/shotgun/som = -1,
 			/obj/item/storage/pouch/construction/som = -1,
@@ -577,73 +595,37 @@
 		"Eyewear" = list(
 			/obj/item/clothing/glasses/regular = -1,
 			/obj/item/clothing/glasses/eyepatch = -1,
-			/obj/item/clothing/glasses/sunglasses/fake = -1,
-			/obj/item/clothing/glasses/sunglasses/fake/prescription = -1,
 			/obj/item/clothing/glasses/sunglasses/fake/big = -1,
 			/obj/item/clothing/glasses/sunglasses/fake/big/prescription = -1,
+			/obj/item/clothing/glasses/sunglasses/fake = -1,
+			/obj/item/clothing/glasses/sunglasses/fake/prescription = -1,
 			/obj/item/clothing/glasses/mgoggles = -1,
 			/obj/item/clothing/glasses/mgoggles/prescription = -1,
+		),
+		"Other" = list(
+			/obj/item/clothing/under/lewd/panties = -1,
+			/obj/item/clothing/under/lewd/chaps = -1,
+			/obj/item/clothing/under/lewd/corset = -1,
+			/obj/item/clothing/under/lewd/stripper = -1,
+			/obj/item/clothing/under/lewd/stripper/green = -1,
+			/obj/item/clothing/under/lewd/gear_harness = -1,
+			/obj/item/clothing/under/lewd/keyholesweater = -1,
+			/obj/item/clothing/under/lewd/stripper/mankini = -1,
+			/obj/item/clothing/under/swimsuit/black = -1,
+			/obj/item/clothing/under/swimsuit/blue = -1,
+			/obj/item/clothing/under/swimsuit/green = -1,
+			/obj/item/clothing/under/swimsuit/purple = -1,
+			/obj/item/clothing/under/swimsuit/red = -1,
+			/obj/item/clothing/under/sexymime = -1,
+			/obj/item/clothing/mask/gas/sexymime = -1,
+			/obj/item/clothing/under/sexyclown = -1,
+			/obj/item/clothing/mask/gas/sexyclown = -1,
+			/obj/item/clothing/under/shorts/grey = -1,
+			/obj/item/clothing/under/shorts/black = -1,
+			/obj/item/clothing/under/shorts/red = -1,
+			/obj/item/clothing/under/shorts/blue = -1,
+			/obj/item/clothing/under/shorts/green = -1,
 		),
 	)
 
 	prices = list()
-
-
-	resistance_flags = INDESTRUCTIBLE
-	use_power = NO_POWER_USE
-
-/obj/machinery/vending/som/mech_vendor
-	name = "\improper Mech equipment vendor"
-	faction = FACTION_SOM
-	desc = "An automated rack hooked up to a colossal storage of items."
-	icon_state = "requisitionop"
-	resistance_flags = INDESTRUCTIBLE
-	use_power = NO_POWER_USE
-	products = list(
-		"Weapon" = list(
-			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/pistol = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/burstpistol = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/smg = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/burstrifle = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/assault_rifle = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/shotgun = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/greyscale_lmg = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/light_cannon = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_rifle = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_projector = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_smg = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavy_cannon = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/minigun = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/grenadelauncher = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/flamethrower = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rpg = -1,
-			/obj/item/mecha_parts/mecha_equipment/laser_sword = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_spear = -1,
-		),
-		"Ammo" = list(
-			/obj/item/mecha_ammo/vendable/lmg = -1,
-			/obj/item/mecha_ammo/vendable/rifle = -1,
-			/obj/item/mecha_ammo/vendable/burstrifle = -1,
-			/obj/item/mecha_ammo/vendable/shotgun = -1,
-			/obj/item/mecha_ammo/vendable/lightcannon = -1,
-			/obj/item/mecha_ammo/vendable/heavycannon = -1,
-			/obj/item/mecha_ammo/vendable/smg = -1,
-			/obj/item/mecha_ammo/vendable/burstpistol = -1,
-			/obj/item/mecha_ammo/vendable/pistol = -1,
-			/obj/item/mecha_ammo/vendable/rpg = -1,
-			/obj/item/mecha_ammo/vendable/minigun = -1,
-			/obj/item/mecha_ammo/vendable/grenade = -1,
-			/obj/item/mecha_ammo/vendable/flamer = -1,
-		),
-		"Equipment" = list(
-			/obj/item/mecha_parts/mecha_equipment/armor/melee = -1,
-			/obj/item/mecha_parts/mecha_equipment/armor/acid = -1,
-			/obj/item/mecha_parts/mecha_equipment/armor/explosive = -1,
-			/obj/item/mecha_parts/mecha_equipment/generator/greyscale = -1,
-			/obj/item/mecha_parts/mecha_equipment/generator/greyscale/upgraded = -1,
-			/obj/item/mecha_parts/mecha_equipment/energy_optimizer = -1,
-			/obj/item/mecha_parts/mecha_equipment/melee_core = -1,
-			/obj/item/mecha_parts/mecha_equipment/ability/dash = -1,
-			/obj/item/mecha_parts/mecha_equipment/ability/smoke/cloak_smoke = -1,
-		),
-	)

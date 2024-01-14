@@ -13,7 +13,7 @@
 /turf/open/floor/iron/grimy,
 /area/canora_desert/surface/building/som_torturechamber)
 "ae" = (
-/obj/structure/dropship_equipment/shuttle/operatingtable,
+/obj/machinery/vending/cargo_supply/som,
 /turf/open/floor/mainship/cargo,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay"
@@ -2644,9 +2644,7 @@
 	},
 /area/canora_desert/surface/building/som_mechbay)
 "Cl" = (
-/obj/machinery/vending/SyndiMed{
-	req_one_access = null
-	},
+/obj/machinery/vending/SyndiMed,
 /turf/open/floor/mainship/sterile,
 /area/canora_desert/surface/building/som_medical)
 "Cm" = (
