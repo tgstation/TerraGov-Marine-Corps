@@ -180,7 +180,11 @@
 	if(!. && isxeno(mover) && !open)
 		toggle_state()
 		return TRUE
-
+	if(ishuman(mover))
+		var/mob/living/carbon/human/H = mover
+		if(!. && H.faction == FACTION_CLF && !open)
+			toggle_state()
+			return TRUE
 
 /obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	var/turf/cur_loc = M.loc
