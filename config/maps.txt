@@ -78,7 +78,10 @@ map slumbridge
   minplayers 35
 endmap
 
-
 map daedalusprison
 	minplayers 50
+endmap
+
+map metnal
+	minplayers 40
 endmap

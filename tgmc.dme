@@ -619,6 +619,7 @@
 #include "code\game\area\lawankaoutpost.dm"
 #include "code\game\area\lv624.dm"
 #include "code\game\area\magmoor_digsite.dm"
+#include "code\game\area\metnal.dm"
 #include "code\game\area\mainship.dm"
 #include "code\game\area\orion_outpost.dm"
 #include "code\game\area\oscaroutpost.dm"
