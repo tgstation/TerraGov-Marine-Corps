@@ -2032,6 +2032,7 @@
 #include "code\modules\vehicles\unmanned\unmanned_turrets.dm"
 #include "code\modules\vehicles\unmanned\unmanned_vehicle.dm"
 #include "code\modules\vehicles\unmanned\unmanned_vehicle_remote.dm"
+#include "code\modules\xenomorph\resin_gargoyle.dm"
 #include "code\modules\xenomorph\xeno_structures.dm"
 #include "code\ze_genesis_call\genesis_call.dm"
 #include "interface\interface.dm"
