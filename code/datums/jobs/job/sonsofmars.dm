@@ -224,7 +224,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	paygrade = "SOM_S1"
 	comm_title = "Vet"
 	total_positions = 8
-	skills_type = /datum/skills/crafty //smarter than the average bear
+	skills_type = /datum/skills/specialist
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SMARTGUNNER
 	minimap_icon = "smartgunner"
 	outfit = /datum/outfit/job/som/squad/veteran

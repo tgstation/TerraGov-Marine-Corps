@@ -1167,8 +1167,8 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	comm_title = "CL"
 	supervisors = "the NT corporate office"
 	total_positions = 1
-	access = ALL_MARINE_ACCESS
-	minimal_access = ALL_MARINE_ACCESS
+	access = ALL_ACCESS
+	minimal_access = ALL_ACCESS
 	skills_type = /datum/skills/civilian
 	display_order = JOB_DISPLAY_ORDER_CORPORATE_LIAISON
 	outfit = /datum/outfit/job/civilian/liaison

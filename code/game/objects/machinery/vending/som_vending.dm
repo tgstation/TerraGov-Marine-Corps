@@ -80,18 +80,19 @@
 			/obj/item/storage/box/m94/cas = 30,
 		),
 		"Specialized" = list(
-			/obj/item/weapon/gun/rifle/pepperball = 4,
+			/obj/item/weapon/gun/rifle/pepperball = 6,
 			/obj/item/ammo_magazine/rifle/pepperball = -1,
-			/obj/item/storage/holster/backholster/rpg/som = 1,
-			/obj/item/ammo_magazine/flamer_tank/large/som = 10,
+			/obj/item/storage/holster/backholster/rpg/som = 4,
+			/obj/item/ammo_magazine/flamer_tank/large/som = 15,
 			/obj/item/ammo_magazine/flamer_tank/water = -1,
 			/obj/item/bodybag/tarp = 10,
-			/obj/item/weapon/gun/launcher/rocket/som = 4,
+			/obj/item/weapon/gun/launcher/rocket/som = 8,
 			/obj/item/weapon/gun/flamer/som = 10,
 		),
 		"Heavy Weapons" = list(
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope = 4,
+			/obj/item/cell/lasgun/volkite/turret = 8,
 			/obj/item/storage/box/tl102 = 1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 5,
@@ -165,14 +166,13 @@
 	)
 
 
-/obj/machinery/vending/cargo_supply
+/obj/machinery/vending/cargo_supply/som
 	name = "\improper Operational Supplies Vendor"
-	desc = "A large vendor for dispensing specialty and bulk supplies. Restricted to cargo personnel only."
+	desc = "A large vendor for dispensing specialty and bulk supplies.."
 	icon_state = "requisitionop"
 	icon_vend = "requisitionop-vend"
 	icon_deny = "requisitionop-deny"
 	wrenchable = FALSE
-	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
 	products = list(
 		"Surplus Special Equipment" = list(
 			/obj/item/pinpointer = 1,
@@ -309,7 +309,6 @@
 	icon_vend = "marinemed-vend"
 	icon_deny = "marinemed-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;All natural chemicals!;This stuff saves lives.;Don't you want some?"
-	req_one_access = ALL_SOM_ACCESS
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
@@ -418,10 +417,14 @@
 	product_ads = "You are out of uniform, marine! Where is your armor? Don't have any? You expect me to believe that, maggot?;Why wear heavy armor and unable to chase the enemy when you can go light and zoom by your peers?;Thank your armor later when you didn't die!;I remember PAS, do you remember PAS?;Time to paint the rainbow!;So many selections to choose from!"
 	products = list(
 		"General Armors" = list(
+			/obj/item/clothing/head/modular/som/lorica = -1,
+			/obj/item/clothing/head/modular/som/hades = -1,
+			/obj/item/clothing/head/modular/som/bio = -1,
 			/obj/item/clothing/head/modular/som = -1,
 			/obj/item/clothing/head/modular/som/engineer = -1,
 			/obj/item/clothing/suit/modular/som = -1,
 			/obj/item/clothing/suit/modular/som/engineer = -1,
+			/obj/item/clothing/suit/modular/som/heavy = -1,
 		),
 		"Combat Drone" = list(
 			/obj/item/clothing/suit/modular/robot/light = -1,
@@ -435,7 +438,6 @@
 			/obj/item/facepaint/green = -1,
 		),
 		"OLD SCHOOL" = list(
-			/obj/item/clothing/head/modular/som/bio = -1
 			/obj/item/clothing/head/helmet/marine/som = -1,
 			/obj/item/clothing/suit/storage/marine/som = -1,
 		),
@@ -577,6 +579,8 @@
 			/obj/item/clothing/glasses/eyepatch = -1,
 			/obj/item/clothing/glasses/sunglasses/fake = -1,
 			/obj/item/clothing/glasses/sunglasses/fake/prescription = -1,
+			/obj/item/clothing/glasses/sunglasses/fake/big = -1,
+			/obj/item/clothing/glasses/sunglasses/fake/big/prescription = -1,
 			/obj/item/clothing/glasses/mgoggles = -1,
 			/obj/item/clothing/glasses/mgoggles/prescription = -1,
 		),
@@ -587,114 +591,6 @@
 
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
-
-/obj/machinery/vending/valhalla_req
-	name = "\improper TerraGovTech requisition vendor"
-	desc = "An automated rack hooked up to a colossal storage of items."
-	icon_state = "requisitionop"
-	resistance_flags = INDESTRUCTIBLE
-	use_power = NO_POWER_USE
-	products = list(
-		"Weapon" = list(
-			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = -1,
-			/obj/item/cell/lasgun/lasrifle/recharger = -1,
-			/obj/item/weapon/gun/rifle/railgun = -1,
-			/obj/item/ammo_magazine/railgun = -1,
-			/obj/item/ammo_magazine/railgun/smart = -1,
-			/obj/item/ammo_magazine/railgun/hvap = -1,
-			/obj/item/weapon/gun/rifle/tx8 = -1,
-			/obj/item/ammo_magazine/rifle/tx8 = -1,
-			/obj/item/ammo_magazine/rifle/tx8/impact = -1,
-			/obj/item/ammo_magazine/rifle/tx8/incendiary = -1,
-			/obj/item/ammo_magazine/packet/scout_rifle = -1,
-			/obj/item/weapon/gun/energy/lasgun/lasrifle/xray = -1,
-			/obj/item/weapon/gun/launcher/rocket/m57a4/t57 = -1,
-			/obj/item/ammo_magazine/rocket/m57a4 = -1,
-			/obj/item/weapon/gun/launcher/rocket/sadar/valhalla = -1,
-			/obj/item/ammo_magazine/rocket/sadar = -1,
-			/obj/item/ammo_magazine/rocket/sadar/unguided = -1,
-			/obj/item/ammo_magazine/rocket/sadar/ap = -1,
-			/obj/item/ammo_magazine/rocket/sadar/wp = -1,
-			/obj/item/ammo_magazine/rocket/sadar/wp/unguided = -1,
-			/obj/item/weapon/gun/shotgun/zx76 = -1,
-			/obj/item/ammo_magazine/shotgun/incendiary = -1,
-			/obj/item/weapon/gun/rifle/standard_autosniper = -1,
-			/obj/item/ammo_magazine/rifle/autosniper = -1,
-			/obj/item/weapon/gun/rifle/sniper/antimaterial = -1,
-			/obj/item/ammo_magazine/sniper = -1,
-			/obj/item/ammo_magazine/rifle/autosniper = -1,
-			/obj/item/weapon/gun/minigun/valhalla = -1,
-			/obj/item/ammo_magazine/minigun_powerpack = -1,
-			/obj/item/weapon/gun/rifle/standard_smartmachinegun = -1,
-			/obj/item/ammo_magazine/standard_smartmachinegun = -1,
-			/obj/item/weapon/gun/minigun/smart_minigun = -1,
-			/obj/item/ammo_magazine/minigun_powerpack/smartgun = -1,
-			/obj/item/ammo_magazine/packet/smart_minigun = -1,
-			/obj/item/weapon/gun/launcher/rocket/oneuse = -1,
-			/obj/item/storage/holster/belt/mateba/full = -1,
-			/obj/item/ammo_magazine/revolver/mateba = -1,
-			/obj/item/ammo_magazine/packet/mateba = -1,
-			/obj/item/ammo_magazine/rifle/chamberedrifle/flak = -1,
-			/obj/item/ammo_magazine/flamer_tank/backtank/X = -1,
-			/obj/item/weapon/twohanded/rocketsledge = -1,
-			/obj/item/explosive/grenade/training = -1,
-			/obj/item/explosive/grenade/impact = -1,
-			/obj/item/explosive/grenade/phosphorus = -1,
-			/obj/item/explosive/grenade/chem_grenade/metalfoam = -1,
-			/obj/item/explosive/grenade/smokebomb/neuro = -1,
-			/obj/item/explosive/grenade/smokebomb/acid = -1,
-			/obj/item/explosive/grenade/smokebomb/satrapine = -1,
-			/obj/item/weapon/gun/rifle/m412l1_hpr = -1,
-			/obj/item/ammo_magazine/m412l1_hpr = -1,
-			/obj/item/weapon/gun/rifle/famas = -1,
-			/obj/item/ammo_magazine/rifle/famas = -1,
-		),
-		"Mounted" = list(
-			/obj/item/weapon/gun/standard_auto_cannon = -1,
-			/obj/item/ammo_magazine/auto_cannon = -1,
-			/obj/item/ammo_magazine/auto_cannon/flak = -1,
-			/obj/item/weapon/gun/standard_minigun = -1,
-			/obj/item/ammo_magazine/heavy_minigun = -1,
-			/obj/item/weapon/gun/standard_agls = -1,
-			/obj/item/ammo_magazine/standard_agls = -1,
-			/obj/item/ammo_magazine/standard_agls/fragmentation = -1,
-			/obj/item/ammo_magazine/standard_agls/incendiary = -1,
-			/obj/item/ammo_magazine/standard_agls/flare = -1,
-			/obj/item/ammo_magazine/standard_agls/cloak = -1,
-			/obj/item/ammo_magazine/standard_agls/tanglefoot = -1,
-		),
-		"Equipment" = list(
-			/obj/item/clothing/glasses/hud/xenohud = -1,
-			/obj/item/clothing/mask/gas/swat = -1,
-			/obj/item/clothing/head/helmet/riot = -1,
-			/obj/item/clothing/suit/storage/marine/specialist/valhalla = -1,
-			/obj/item/clothing/head/helmet/marine/specialist = -1,
-			/obj/item/clothing/gloves/marine/specialist = -1,
-			/obj/item/clothing/suit/storage/marine/B17/valhalla = -1,
-			/obj/item/clothing/head/helmet/marine/grenadier = -1,
-			/obj/item/storage/backpack/marine/satchel/scout_cloak/scout = -1,
-			/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper = -1,
-			/obj/item/storage/belt/grenade/b17 = -1,
-			/obj/item/armor_module/module/valkyrie_autodoc = -1,
-			/obj/item/armor_module/module/fire_proof = -1,
-			/obj/item/armor_module/module/fire_proof_helmet = -1,
-			/obj/item/armor_module/module/tyr_extra_armor = -1,
-			/obj/item/armor_module/module/tyr_head = -1,
-			/obj/item/attachable/shoulder_mount = -1,
-			/obj/item/armor_module/module/mimir_environment_protection = -1,
-			/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet = -1,
-			/obj/item/armor_module/module/better_shoulder_lamp = -1,
-			/obj/item/armor_module/module/hlin_explosive_armor = -1,
-			/obj/item/attachable/heatlens = -1,
-			/obj/item/storage/backpack/lightpack = -1,
-			/obj/item/clothing/suit/storage/marine/riot = -1,
-			/obj/item/clothing/head/helmet/marine/riot = -1,
-			/obj/item/clothing/suit/storage/marine/boomvest = -1,
-			/obj/item/implanter/cloak = -1,
-			/obj/item/implanter/chem/blood = -1,
-			/obj/item/implanter/blade = -1,
-		),
-	)
 
 /obj/machinery/vending/som/mech_vendor
 	name = "\improper Mech equipment vendor"

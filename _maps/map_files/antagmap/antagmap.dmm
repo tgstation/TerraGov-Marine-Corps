@@ -1465,6 +1465,10 @@
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"pF" = (
+/obj/machinery/quick_vendor/som,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/general/som)
 "pL" = (
 /obj/machinery/light/red{
 	dir = 1
@@ -1552,6 +1556,10 @@
 "qX" = (
 /obj/machinery/camera/autoname/mainship/somship{
 	dir = 6
+	},
+/obj/machinery/vending/medical{
+	name = "Stolen Medicament Vendor";
+	req_access = list(206)
 	},
 /turf/open/floor/mainship/sterile,
 /area/canora_desert/surface/building/som_medical)
@@ -2378,9 +2386,6 @@
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "zQ" = (
-/obj/machinery/vending/medical{
-	name = "Stolen Medicament Vendor"
-	},
 /obj/structure/cable,
 /obj/machinery/light{
 	dir = 4
@@ -2445,6 +2450,7 @@
 	})
 "AJ" = (
 /obj/machinery/camera/autoname/mainship/somship,
+/obj/machinery/vending/marineFood/som,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general/som)
 "AM" = (
@@ -2638,7 +2644,9 @@
 	},
 /area/canora_desert/surface/building/som_mechbay)
 "Cl" = (
-/obj/machinery/vending/SyndiMed,
+/obj/machinery/vending/SyndiMed{
+	req_one_access = null
+	},
 /turf/open/floor/mainship/sterile,
 /area/canora_desert/surface/building/som_medical)
 "Cm" = (
@@ -5849,7 +5857,7 @@ py
 WK
 zn
 vf
-oL
+mV
 oL
 bE
 oL
@@ -5945,7 +5953,7 @@ jj
 We
 Sj
 vf
-mV
+pF
 aI
 cr
 aI
