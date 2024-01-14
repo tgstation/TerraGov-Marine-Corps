@@ -31,6 +31,11 @@
 		deltimer(cooldown_timer)
 	return ..()
 
+/datum/action/ability/Destroy()
+	if(cooldown_timer)
+		deltimer(cooldown_timer)
+	return ..()
+
 /datum/action/ability/give_action(mob/living/L)
 	. = ..()
 	var/mob/living/carbon/carbon_owner = L
