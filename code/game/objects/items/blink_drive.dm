@@ -19,13 +19,17 @@
 	light_color = LIGHT_COLOR_BLUE
 	///Number of teleport charges you currently have
 	var/charges = 3
-	///True if you can use shift click/middle click to use it
-	var/selected = FALSE
 	///The timer for recharging the drive
 	var/charge_timer
 	///The mob wearing the blink drive. Needed for item updates.
 	var/mob/equipped_user
+	///Controlling action
+	var/datum/action/ability/activable/item_toggle/blink_drive/blink_action
 	COOLDOWN_DECLARE(blink_stability_cooldown)
+
+/obj/item/blink_drive/Initialize(mapload)
+	. = ..()
+	blink_action = new(src)
 
 /obj/item/blink_drive/update_icon()
 	. = ..()
@@ -52,68 +56,28 @@
 	. = ..()
 	equipped_user = user
 	if(slot == SLOT_BACK)
-		RegisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT, PROC_REF(can_use))
-		var/datum/action/item_action/toggle/action = new(src)
-		action.give_action(user)
+		blink_action.give_action(user)
 
 /obj/item/blink_drive/dropped(mob/user)
 	. = ..()
-	UnregisterSignal(user, list(COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_MOB_MIDDLE_CLICK))
-	UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
-	selected = FALSE
+	blink_action.remove_action(user)
 	equipped_user = null
-	LAZYCLEARLIST(actions)
 
-/obj/item/blink_drive/ui_action_click(mob/user, datum/action/item_action/action)
-	if(selected)
-		UnregisterSignal(user, COMSIG_MOB_MIDDLE_CLICK)
-		action.set_toggle(FALSE)
-		UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
-	else
-		RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, PROC_REF(can_use))
-		action.set_toggle(TRUE)
-		SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
-		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, PROC_REF(unselect))
-	selected = !selected
 
 /obj/item/blink_drive/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
 	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
 	standing.overlays.Add(emissive_overlay)
 
-///Signal handler for making it impossible to use middleclick to use the blink drive
-/obj/item/blink_drive/proc/unselect(datum/source, mob/user)
-	SIGNAL_HANDLER
-	if(!selected)
-		return
-	selected = FALSE
-	UnregisterSignal(user, COMSIG_MOB_MIDDLE_CLICK)
-	UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
-
-	for(var/action in user.actions)
-		if(!istype(action, /datum/action/item_action))
-			continue
-		var/datum/action/item_action/iaction = action
-		if(iaction?.holder_item == src)
-			iaction.set_toggle(FALSE)
-
-///Check if we can use the blink drive and give feedback to the user
-/obj/item/blink_drive/proc/can_use(datum/source, atom/A)
-	SIGNAL_HANDLER
-	var/mob/living/carbon/human/human_user = usr
-	if(human_user.incapacitated() || human_user.lying_angle)
-		return
-	if(is_mainship_level(human_user.z))
-		human_user.balloon_alert(human_user, "can't use here")
-		return
-	if(charges <= 0)
-		human_user.balloon_alert(human_user, "no charge")
-		playsound(src, 'sound/items/blink_empty.ogg', 25, 1)
-		return
-	INVOKE_ASYNC(src, PROC_REF(teleport), A, human_user)
+/obj/item/blink_drive/ui_action_click(mob/user, datum/action/item_action/action, target)
+	teleport(target, user)
 
 ///Handles the actual teleportation
 /obj/item/blink_drive/proc/teleport(atom/A, mob/user)
+	if(charges <= 0)
+		user.balloon_alert(user, "no charge")
+		playsound(src, 'sound/items/blink_empty.ogg', 25, 1)
+		return
 	var/turf/target_turf = get_turf(A)
 
 	if(target_turf == user.loc)
@@ -219,3 +183,19 @@
 	traits += "<U>Shared use:</U><br>If the user has grabbed another mob when activating the drive, the grabbed mob will be teleported with them.<br>"
 
 	. += jointext(traits, "<br>")
+
+/datum/action/ability/activable/item_toggle/blink_drive
+	name = "Use Blink Drive"
+	action_icon_state = "axe_sweep"
+	desc = "Teleport a short distance instantly."
+	keybind_flags = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
+	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_BLINKDRIVE)
+
+/datum/action/ability/activable/item_toggle/blink_drive/can_use_ability(silent, override_flags, selecting)
+	var/mob/living/carbon/carbon_owner = owner
+	if(carbon_owner.incapacitated() || carbon_owner.lying_angle)
+		return FALSE
+	if(is_mainship_level(carbon_owner.z))
+		carbon_owner.balloon_alert(carbon_owner, "can't use here")
+		return FALSE
+	return ..()

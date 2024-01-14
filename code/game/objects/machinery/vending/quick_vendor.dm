@@ -131,6 +131,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		set_light(0)
 
 /obj/machinery/quick_vendor/update_icon_state()
+	. = ..()
 	if(is_operational())
 		icon_state = initial(icon_state)
 	else

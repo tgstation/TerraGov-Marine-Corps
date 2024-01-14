@@ -436,7 +436,7 @@
 			wires.cut_all()
 			visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!"), null, null, 5)
 
-	update_icon()
+	update_appearance()
 	return TRUE
 
 /obj/machinery/computer/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3) //Break open the machine
@@ -460,6 +460,7 @@
 /obj/machinery/power/apc/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
 	. = ..()
 	beenhit += 4 //Break it open instantly
+	update_appearance()
 
 /obj/machinery/vending/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
 	. = ..()

@@ -66,7 +66,8 @@
 		. += span_notice("There are no papers in the bin.")
 
 
-/obj/structure/paper_bin/update_icon()
+/obj/structure/paper_bin/update_icon_state()
+	. = ..()
 	if(amount < 1)
 		icon_state = "paper_bin0"
 	else

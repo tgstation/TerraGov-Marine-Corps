@@ -123,7 +123,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	SSmobs.dead_players_by_zlevel[old_z] -= src
 	SSmobs.dead_players_by_zlevel[new_z] += src
 
-/mob/dead/observer/update_icon(new_form)
+///Changes our sprite
+/mob/dead/observer/proc/pick_form(new_form)
 	if(client) //We update our preferences in case they changed right before update_icon was called.
 		ghost_others = client.prefs.ghost_others
 
@@ -133,7 +134,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			ghostimage_default.icon_state = new_form + "_nodir" //if this icon has dirs, the default ghostimage must use its nodir version or clients with the preference set to default sprites only will see the dirs
 		else
 			ghostimage_default.icon_state = new_form
-
 
 /mob/dead/observer/Topic(href, href_list)
 	. = ..()

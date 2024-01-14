@@ -185,6 +185,7 @@
 		update_flame_light(owner.fire_luminosity)
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay/update_icon_state()
+	. = ..()
 	if(!owner.on_fire)
 		icon_state = ""
 		return

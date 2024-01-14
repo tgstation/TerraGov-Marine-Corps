@@ -1055,12 +1055,12 @@
 	light_power = 0.1
 	light_color = LIGHT_COLOR_ORANGE
 
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/update_icon(mob/user)
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/update_icon()
 	. = ..()
 	if(rounds)
-		turn_light(user, TRUE)
+		turn_light(null, TRUE)
 	else
-		turn_light(user, FALSE)
+		turn_light(null, FALSE)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/turn_light(mob/user, toggle_on)
 	. = ..()

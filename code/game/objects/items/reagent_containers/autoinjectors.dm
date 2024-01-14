@@ -11,6 +11,7 @@
 	list_reagents = list(/datum/reagent/consumable/sodiumchloride = 30)
 
 /obj/item/reagent_containers/hypospray/autoinjector/update_icon_state()
+	. = ..()
 	if(!(reagents.total_volume) && is_drawable())
 		icon_state += "X"
 		name = "expended [name]" //So people can see what have been expended since we have smexy new sprites people aren't used too...

@@ -50,6 +50,7 @@
 	icon_state = "black"
 
 /obj/machinery/portable_atmospherics/canister/update_icon_state()
+	. = ..()
 	if(machine_stat & BROKEN)
 		icon_state = "[icon_state]-1"
 

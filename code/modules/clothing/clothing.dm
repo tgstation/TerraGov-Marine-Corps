@@ -187,7 +187,7 @@
 	set_light_on(toggle_on)
 	flags_armor_features ^= ARMOR_LAMP_ON
 	playsound(src, 'sound/items/flashlight.ogg', 15, TRUE)
-	update_icon(user)
+	update_icon()
 	update_action_button_icons()
 
 /obj/item/clothing/suit/update_clothing_icon()

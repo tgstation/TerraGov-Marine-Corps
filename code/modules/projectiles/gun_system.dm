@@ -496,7 +496,8 @@
 	else
 		RegisterSignal(gun_user, COMSIG_KB_UNIQUEACTION, PROC_REF(unique_action))
 	RegisterSignal(gun_user, COMSIG_QDELETING, PROC_REF(clean_gun_user))
-	RegisterSignals(gun_user, list(COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM), PROC_REF(stop_fire))
+	RegisterSignals(gun_user, list(COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM), PROC_REF(stop_fire))
+	RegisterSignal(gun_user, COMSIG_ITEM_UNZOOM, PROC_REF(on_unzoom))
 	RegisterSignal(gun_user, COMSIG_KB_RAILATTACHMENT, PROC_REF(activate_rail_attachment))
 	RegisterSignal(gun_user, COMSIG_KB_UNDERRAILATTACHMENT, PROC_REF(activate_underrail_attachment))
 	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, PROC_REF(unload_gun))
@@ -510,7 +511,7 @@
 	SIGNAL_HANDLER
 	set_gun_user(null)
 
-/obj/item/weapon/gun/update_icon(mob/user)
+/obj/item/weapon/gun/update_icon()
 	. = ..()
 
 	for(var/datum/action/action AS in actions)
@@ -750,6 +751,11 @@
 	SIGNAL_HANDLER
 	active_attachable?.clean_target()
 	target = get_turf(target)
+
+///Handles unzoom behavior
+/obj/item/weapon/gun/proc/on_unzoom(mob/user)
+	SIGNAL_HANDLER
+	stop_fire()
 
 ///Reset variables used in firing and remove the gun from the autofire system
 /obj/item/weapon/gun/proc/stop_fire()
@@ -1486,7 +1492,7 @@
 		num_of_casings--
 	if(num_of_casings)
 		casing.current_casings += num_of_casings
-		casing.update_icon()
+		casing.update_appearance()
 	playsound(current_turf, sound_to_play, 25, 1, 5)
 
 

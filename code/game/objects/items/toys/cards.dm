@@ -42,6 +42,7 @@
 		to_chat(user, "You place your cards on the bottom of the deck.")
 
 /obj/item/toy/deck/update_icon_state()
+	. = ..()
 	switch(length(cards))
 		if(52)
 			icon_state = "deck"
@@ -167,6 +168,8 @@
 
 	var/concealed = 0
 	var/list/cards = list()
+	///The last direction the person who dropped us was facing
+	var/last_direction = SOUTH
 
 /obj/item/toy/handcard/Initialize(mapload, card_type)
 	. = ..()
@@ -250,16 +253,22 @@
 			for(var/datum/playingcard/P in cards)
 				. += "-[P.name]"
 
-/obj/item/toy/handcard/update_icon(direction = 0)
+/obj/item/toy/handcard/update_name(updates)
+	. = ..()
 	if(length(cards) > 1)
 		name = "hand of cards"
-		desc = "Some playing cards."
 	else
 		name = "a playing card"
+	
+/obj/item/toy/handcard/update_desc(updates)
+	. = ..()
+	if(length(cards) > 1)
+		desc = "Some playing cards."
+	else
 		desc = "A playing card."
 
-	overlays.Cut()
-
+/obj/item/toy/handcard/update_overlays()
+	. = ..()
 	if(!length(cards))
 		return
 
@@ -268,14 +277,14 @@
 		var/image/I = new(src.icon, (concealed ? "card_back" : "[P.card_icon]") )
 		I.pixel_x += (-5+rand(10))
 		I.pixel_y += (-5+rand(10))
-		overlays += I
+		. += I
 		return
 
 	var/offset = FLOOR(20/length(cards), 1)
 
 	var/matrix/M = matrix()
-	if(direction)
-		switch(direction)
+	if(last_direction)
+		switch(last_direction)
 			if(NORTH)
 				M.Translate( 0,  0)
 			if(SOUTH)
@@ -290,7 +299,7 @@
 	for(var/datum/playingcard/P in cards)
 		var/image/I = new(src.icon, (concealed ? "card_back" : "[P.card_icon]") )
 		//I.pixel_x = origin+(offset*i)
-		switch(direction)
+		switch(last_direction)
 			if(SOUTH)
 				I.pixel_x = 8-(offset*i)
 			if(WEST)
@@ -300,15 +309,14 @@
 			else
 				I.pixel_x = -7+(offset*i)
 		I.transform = M
-		overlays += I
+		. += I
 		i++
 
 /obj/item/toy/handcard/dropped(mob/user as mob)
-	..()
+	. = ..()
 	if(locate(/obj/structure/table, loc))
-		src.update_icon(user.dir)
-	else
-		update_icon()
+		last_direction = user.dir
+	update_icon()
 
 /obj/item/toy/handcard/pickup(mob/user as mob)
 	src.update_icon()
@@ -362,7 +370,11 @@
 		cards += P
 
 /obj/item/toy/deck/kotahi/update_icon_state()
+	. = ..()
 	switch(length(cards))
-		if(107 to 108) icon_state = "deck"
-		if(37 to 106) icon_state = "deck_open"
-		if(0 to 36) icon_state = "deck_empty"
+		if(107 to 108) 
+			icon_state = "deck"
+		if(37 to 106) 
+			icon_state = "deck_open"
+		if(0 to 36) 
+			icon_state = "deck_empty"
