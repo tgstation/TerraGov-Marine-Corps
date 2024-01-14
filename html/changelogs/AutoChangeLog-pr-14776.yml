@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Jetpacks and blinkdrives now use activable actions, so have bindable hotkeys"
+  - code_imp: "Reworked some action code"
