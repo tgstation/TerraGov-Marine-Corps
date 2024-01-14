@@ -38,6 +38,7 @@
 			take_damage(50, BRUTE, BOMB)
 
 /obj/structure/xeno/trap/update_icon_state()
+	. = ..()
 	switch(trap_type)
 		if(TRAP_HUGGER)
 			icon_state = "traphugger"
