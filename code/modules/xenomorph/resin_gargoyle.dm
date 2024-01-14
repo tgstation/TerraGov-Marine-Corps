@@ -6,6 +6,7 @@
 	max_integrity = 100
 	///Bool if we're currently alerting
 	var/is_alerting = FALSE
+	//cd tracking for the alert
 	COOLDOWN_DECLARE(proxy_alert_cooldown)
 
 /obj/structure/xeno/resin_gargoyle/Initialize(mapload, _hivenumber, mob/living/carbon/xenomorph/creator)
@@ -54,6 +55,7 @@
 	. = ..()
 	icon_state = is_alerting ? "gargoyle_alarm" : "gargoyle"
 
+///resets minimap icon for the gargoyle
 /obj/structure/xeno/resin_gargoyle/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
 	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "gargoyle[is_alerting ? "_alarm" : ""]"))
