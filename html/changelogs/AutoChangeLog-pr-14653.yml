@@ -1,0 +1,6 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - rscadd: "Plasma guns, cannon and rifle, alongside the backpack used to power them, and the chargepacks used to power that."
+  - rscadd: "Added a variable to powerpacks to only allow charging certain cell types, currently only applied to plasma chargepacks however."
+  - balance: "TE Powerpacks only charge TE lasgun cells."

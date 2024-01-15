@@ -854,7 +854,7 @@
 /turf/open/floor/mainship_hull/gray,
 /area/mainship/patrol_base/som)
 "kH" = (
-/obj/machinery/quick_vendor/som,
+/obj/structure/prop/brokenvendor/brokenuniformvendor,
 /obj/machinery/camera/autoname/mainship/somship{
 	dir = 4
 	},
@@ -1091,7 +1091,7 @@
 /turf/open/floor/mainship/som/nw,
 /area/mainship/patrol_base/som/barracks)
 "nQ" = (
-/obj/machinery/quick_vendor/som,
+/obj/structure/prop/brokenvendor/brokenuniformvendor,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som/prep)
 "nR" = (
@@ -3295,7 +3295,7 @@
 /turf/open/floor/mainship/blue/full,
 /area/mainship/patrol_base/som/prep)
 "MZ" = (
-/obj/machinery/quick_vendor/som,
+/obj/structure/prop/brokenvendor/brokenuniformvendor,
 /obj/machinery/camera/autoname/mainship/somship{
 	dir = 8
 	},
@@ -3835,7 +3835,7 @@
 /turf/open/floor/wood,
 /area/mainship/patrol_base/som/barracks)
 "SZ" = (
-/obj/machinery/quick_vendor/som,
+/obj/structure/prop/brokenvendor/brokenuniformvendor,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -4317,7 +4317,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/som)
 "Yt" = (
-/obj/machinery/quick_vendor/som,
+/obj/structure/prop/brokenvendor/brokenuniformvendor,
 /obj/machinery/light{
 	dir = 8
 	},
