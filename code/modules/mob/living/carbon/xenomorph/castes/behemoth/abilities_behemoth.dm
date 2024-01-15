@@ -116,7 +116,7 @@
 	if(charge_ability_on)
 		charge_off()
 		return
-	if(!do_after(owner, BEHEMOTH_ROLL_WIND_UP, FALSE, owner, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE))
+	if(!do_after(owner, BEHEMOTH_ROLL_WIND_UP, IGNORE_HELD_ITEM, owner, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE))
 		return
 	charge_on()
 
@@ -246,7 +246,6 @@
 
 /datum/action/ability/activable/xeno/landslide
 	name = "Landslide"
-
 	action_icon_state = "landslide"
 	desc = "Rush forward in the selected direction, damaging enemies caught in a wide path."
 	ability_cost = 3 // This is deducted per step taken during the ability.
@@ -296,7 +295,7 @@
 /datum/action/ability/activable/xeno/landslide/on_cooldown_finish()
 	current_charges = min(maximum_charges, current_charges + 1)
 	update_button_icon()
-	owner.balloon_alert(owner, "[initial(name)] ready ([current_charges]/[maximum_charges])")
+	owner.balloon_alert(owner, "[name] ready ([current_charges]/[maximum_charges])")
 	if(current_charges < maximum_charges)
 		cooldown_timer = addtimer(CALLBACK(src, PROC_REF(on_cooldown_finish)), cooldown_duration, TIMER_STOPPABLE)
 		return
@@ -335,7 +334,7 @@
 		animate(pixel_y = xeno_owner.pixel_y + (LANDSLIDE_RANGE / 2), time = animation_time / 2, easing = CIRCULAR_EASING|EASE_OUT)
 		animate(pixel_y = initial(xeno_owner.pixel_y), time = animation_time / 2, easing = CIRCULAR_EASING|EASE_IN)
 		return
-	addtimer(CALLBACK(owner, TYPE_PROC_REF(/atom, balloon_alert), owner, "Use [initial(name)] again to cancel"), LANDSLIDE_WIND_UP)
+	addtimer(CALLBACK(owner, TYPE_PROC_REF(/atom, balloon_alert), owner, "Use [name] again to cancel"), LANDSLIDE_WIND_UP)
 	addtimer(CALLBACK(src, PROC_REF(RegisterSignals), owner, list(COMSIG_MOB_CLICK_RIGHT, COMSIG_MOB_CLICK_SHIFT, COMSIG_MOB_MIDDLE_CLICK), PROC_REF(cancel_charge)), LANDSLIDE_WIND_UP)
 	addtimer(CALLBACK(src, PROC_REF(do_charge), owner_turf, direction, charge_damage, which_step), LANDSLIDE_WIND_UP)
 
@@ -593,7 +592,6 @@
 
 /datum/action/ability/activable/xeno/earth_riser
 	name = "Earth Riser"
-
 	action_icon_state = "earth_riser"
 	desc = "Raise a pillar of earth at the selected location. This solid structure can be used for defense, and it interacts with other abilities for offensive usage. The pillar can be launched by click-dragging it in a direction. Alternate use destroys active pillars, starting with the oldest one."
 	ability_cost = 30
@@ -608,7 +606,7 @@
 	var/list/obj/structure/earth_pillar/active_pillars = list()
 
 /datum/action/ability/activable/xeno/earth_riser/on_cooldown_finish()
-	owner.balloon_alert(owner, "[initial(name)] ready ([length(active_pillars)]/[maximum_pillars])")
+	owner.balloon_alert(owner, "[name] ready ([length(active_pillars)]/[maximum_pillars])")
 	return ..()
 
 /datum/action/ability/activable/xeno/earth_riser/give_action(mob/living/L)
@@ -763,7 +761,6 @@
 
 /datum/action/ability/activable/xeno/seismic_fracture
 	name = "Seismic Fracture"
-
 	action_icon_state = "seismic_fracture"
 	desc = "Blast the earth around the selected location, inflicting heavy damage in a large radius."
 	ability_cost = 50
@@ -774,7 +771,7 @@
 	)
 
 /datum/action/ability/activable/xeno/seismic_fracture/on_cooldown_finish()
-	owner.balloon_alert(owner, "[initial(name)] ready")
+	owner.balloon_alert(owner, "[name] ready")
 	return ..()
 
 /datum/action/ability/activable/xeno/seismic_fracture/use_ability(atom/target)
@@ -972,7 +969,6 @@
 
 /datum/action/ability/xeno_action/primal_wrath
 	name = "Primal Wrath"
-
 	action_icon_state = "primal_wrath"
 	desc = "Unleash your wrath. Enhances your abilities, changing their functionality and allowing them to apply a damage over time debuff."
 	cooldown_duration = 1 SECONDS
@@ -1102,7 +1098,7 @@
 	addtimer(CALLBACK(src, PROC_REF(ability_check), affected_living, xeno_source), 0.1 SECONDS)
 
 /// Changes the cost of all actions to use Wrath instead of plasma.
-/datum/action/ability/xeno_action/primal_wrath/proc/change_cost(datum/source, datum/action/xeno_action/source_action, action_cost)
+/datum/action/ability/xeno_action/primal_wrath/proc/change_cost(datum/source, datum/action/source_action, action_cost)
 	SIGNAL_HANDLER
 	if(!ability_active || source_action == src)
 		return
