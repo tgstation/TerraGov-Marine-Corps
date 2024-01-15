@@ -1884,6 +1884,7 @@
 #include "code\modules\projectiles\guns\grenade_launchers.dm"
 #include "code\modules\projectiles\guns\mounted.dm"
 #include "code\modules\projectiles\guns\pistols.dm"
+#include "code\modules\projectiles\guns\plasma.dm"
 #include "code\modules\projectiles\guns\revolvers.dm"
 #include "code\modules\projectiles\guns\rifles.dm"
 #include "code\modules\projectiles\guns\sentries.dm"
