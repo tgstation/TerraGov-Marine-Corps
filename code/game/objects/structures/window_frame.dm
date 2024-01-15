@@ -166,6 +166,7 @@
 	basestate = "col_rwindow_frame"
 	base_icon_state = "col_rwindow_frame"
 
+/obj/structure/window_frame/prison/colony
 /obj/structure/window_frame/prison/reinforced
 	reinforced = TRUE
 	max_integrity = 300

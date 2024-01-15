@@ -618,7 +618,6 @@
 
 //Prison windows
 
-
 /obj/structure/window/framed/prison
 	name = "window"
 	icon = 'icons/obj/smooth_objects/wood_reinforced.dmi'
@@ -626,6 +625,14 @@
 	basestate = "wood_reinforced"
 	base_icon_state = "wood_reinforced"
 	window_frame = /obj/structure/window_frame/prison
+
+/obj/structure/window/framed/prison/colony
+	name = "window"
+	icon = 'icons/obj/smooth_objects/prison_rwindow.dmi'
+	icon_state = "window-reinforced"
+	base_icon_state = "prison_rwindow"
+	basestate = "prison_rwindow"
+	window_frame = /obj/structure/window_frame/prison/reinforced
 
 /obj/structure/window/framed/prison/reinforced
 	name = "reinforced window"
