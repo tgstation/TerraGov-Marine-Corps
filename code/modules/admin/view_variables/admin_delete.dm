@@ -2,6 +2,10 @@
 	var/atom/A = D
 	var/coords = ""
 	var/jmp_coords = ""
+	if(isclient(D) && !check_rights(R_DBRANKS))
+		log_admin_private("[key_name(usr)] has tried to delete a client [D]!")
+		message_admins("[ADMIN_TPMONTY(usr)] has tried to delete a client [D]!")
+		return
 	if(istype(A))
 		var/turf/T = get_turf(A)
 		if(T)

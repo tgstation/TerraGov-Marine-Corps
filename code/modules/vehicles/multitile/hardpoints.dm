@@ -920,7 +920,8 @@ Currently only has the tank hardpoints
 	max_rounds = 4
 	point_cost = 50
 
-/obj/item/ammo_magazine/tank/ltb_cannon/update_icon()
+/obj/item/ammo_magazine/tank/ltb_cannon/update_icon_state()
+	. = ..()
 	icon_state = "ltbcannon_[current_rounds]"
 
 
@@ -969,7 +970,8 @@ Currently only has the tank hardpoints
 	point_cost = 25
 
 
-/obj/item/ammo_magazine/tank/tank_glauncher/update_icon()
+/obj/item/ammo_magazine/tank/tank_glauncher/update_icon_state()
+	. = ..()
 	if(current_rounds >= max_rounds)
 		icon_state = "glauncher_2"
 	else if(current_rounds <= 0)
@@ -988,7 +990,8 @@ Currently only has the tank hardpoints
 	max_rounds = 6
 	point_cost = 5
 
-/obj/item/ammo_magazine/tank/tank_slauncher/update_icon()
+/obj/item/ammo_magazine/tank/tank_slauncher/update_icon_state()
+	. = ..()
 	icon_state = "slauncher_[current_rounds <= 0 ? "0" : "1"]"
 
 ///////////////

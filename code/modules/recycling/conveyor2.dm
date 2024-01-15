@@ -119,6 +119,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	update()
 
 /obj/machinery/conveyor/update_icon_state()
+	. = ..()
 	if(machine_stat & BROKEN)
 		icon_state = "conveyor-broken"
 	else
@@ -285,6 +286,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 // update the icon depending on the position
 
 /obj/machinery/conveyor_switch/update_icon_state()
+	. = ..()
 	if(position<0)
 		if(invert_icon)
 			icon_state = "switch-fwd"

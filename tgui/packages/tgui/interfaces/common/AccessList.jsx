@@ -1,6 +1,7 @@
 import { sortBy } from 'common/collections';
+
 import { useLocalState } from '../../backend';
-import { Button, Flex, Stack, Section, Tabs } from '../../components';
+import { Button, Flex, Section, Stack, Tabs } from '../../components';
 
 const diffMap = {
   0: {
@@ -29,13 +30,13 @@ export const AccessList = (props) => {
   } = props;
   const [selectedAccessName, setSelectedAccessName] = useLocalState(
     'accessName',
-    accesses[0]?.name
+    accesses[0]?.name,
   );
   const selectedAccess = accesses.find(
-    (access) => access.name === selectedAccessName
+    (access) => access.name === selectedAccessName,
   );
   const selectedAccessEntries = sortBy((entry) => entry.desc)(
-    selectedAccess?.accesses || []
+    selectedAccess?.accesses || [],
   );
 
   const checkAccessIcon = (accesses) => {
@@ -75,7 +76,8 @@ export const AccessList = (props) => {
             onClick={() => denyAll()}
           />
         </>
-      }>
+      }
+    >
       <Flex>
         <Flex.Item>
           <Tabs vertical>
@@ -90,7 +92,8 @@ export const AccessList = (props) => {
                   color={color}
                   icon={icon}
                   selected={access.name === selectedAccessName}
-                  onClick={() => setSelectedAccessName(access.name)}>
+                  onClick={() => setSelectedAccessName(access.name)}
+                >
                   {access.name}
                 </Tabs.Tab>
               );

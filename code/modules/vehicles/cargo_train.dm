@@ -65,7 +65,8 @@
 		verbs += /obj/vehicle/train/cargo/engine/verb/remove_key
 
 
-/obj/vehicle/train/cargo/update_icon()
+/obj/vehicle/train/cargo/update_icon_state()
+	. = ..()
 	if(open)
 		icon_state = initial(icon_state) + "_open"
 	else

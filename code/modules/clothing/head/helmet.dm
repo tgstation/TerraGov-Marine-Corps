@@ -162,7 +162,16 @@
 	. = ..()
 	helmet_overlays = list("damage","band","item") //To make things simple.
 
-/obj/item/clothing/head/helmet/marine/update_icon()
+/obj/item/clothing/head/helmet/marine/on_pocket_insertion()
+	. = ..()
+	update_helmet_overlays()
+
+/obj/item/clothing/head/helmet/marine/on_pocket_removal()
+	. = ..()
+	update_helmet_overlays()
+
+///Updates the helmet_overlays list, inserting and removing images from it as necesarry
+/obj/item/clothing/head/helmet/marine/proc/update_helmet_overlays()
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		return
 	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
@@ -201,9 +210,11 @@
 	var/mutable_appearance/M
 	for(var/i in helmet_overlays)
 		M = helmet_overlays[i]
-		if(M)
-			M = mutable_appearance('icons/mob/modular/modular_helmet_storage.dmi',M.icon_state)
-			standing.overlays += M
+		if(!M)
+			continue
+
+		M = mutable_appearance('icons/mob/modular/modular_helmet_storage.dmi', M.icon_state)
+		standing.overlays += M
 
 /obj/item/clothing/head/helmet/marine/specialist
 	name = "\improper B18 helmet"

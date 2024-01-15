@@ -1,7 +1,8 @@
-import { Stack, Box, Button, TextArea, Dropdown } from '../components';
-import { Window } from '../layouts';
-import { useBackend } from '../backend';
 import { useState } from 'react';
+
+import { useBackend } from '../backend';
+import { Box, Button, Dropdown, Stack, TextArea } from '../components';
+import { Window } from '../layouts';
 
 type SquadManagerData = {
   active_squads?: SquadData[];
@@ -34,7 +35,8 @@ export const SquadManager = (props) => {
                     height={'120%'}
                     pt={0.5}
                     pl={1}
-                    width={'90px'}>
+                    width={'90px'}
+                  >
                     {squad.name}
                     <Box contents={squad.leader} />
                   </Box>
@@ -64,7 +66,8 @@ export const SquadManager = (props) => {
                           color: squadColor,
                           desc: squadDesc,
                         })
-                      }>
+                      }
+                    >
                       Create
                     </Button>
                   </Stack.Item>

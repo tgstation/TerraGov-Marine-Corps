@@ -172,6 +172,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	else
 		return TRUE
 
+/obj/item/weapon/gun/rifle/sniper/antimaterial/on_unzoom(mob/user)
+	. = ..()
+	if(!targetmarker_primed && !laser_target)
+		return
+	laser_off(user)
+
 /obj/item/weapon/gun/rifle/sniper/antimaterial/proc/activate_laser_target(atom/target, mob/living/user)
 	laser_target = target
 	to_chat(user, span_danger("You focus your target marker on [target]!"))
@@ -203,7 +209,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		to_chat(user, span_warning("You must be zoomed in to use your target marker!"))
 		return TRUE
 	targetmarker_primed = TRUE //We prime the target laser
-	RegisterSignal(user, COMSIG_ITEM_UNZOOM, PROC_REF(laser_off))
 	if(user?.client)
 		user.client.click_intercept = src
 		to_chat(user, span_notice("<b>You activate your target marker and take careful aim.</b>"))
@@ -219,8 +224,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		STOP_PROCESSING(SSobj, src)
 		targetmarker_on = FALSE
 	targetmarker_primed = FALSE
-	if(user)
-		UnregisterSignal(user, COMSIG_ITEM_UNZOOM)
 	if(user?.client)
 		user.client.click_intercept = null
 		to_chat(user, span_notice("<b>You deactivate your target marker.</b>"))
@@ -439,6 +442,34 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/minigun/valhalla
 	obj_flags = NONE
+
+//A minigun that requires only one hand. Meant for use with vehicles
+/obj/item/weapon/gun/minigun/one_handed
+	name = "\improper Modified MG-100 Vindicator Minigun"
+	desc = "A minigun that's been modified to be used one handed. Intended for use mounted on a vehicle."
+
+	max_shells = 1000 //codex
+	reload_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/minigun_wheelchair
+	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_wheelchair)
+	obj_flags = NONE	//Do not affect autobalance
+	flags_item = NONE	//To remove wielding
+	flags_equip_slot = NONE
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	reciever_flags = AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE|AMMO_RECIEVER_MAGAZINES
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	actions_types = list()
+	attachable_allowed = list()
+
+	recoil = 0
+	recoil_unwielded = 0
+
+	windup_delay = 0.7 SECONDS
+	movement_acc_penalty_mult = 0
+
+//So that it displays the minigun on the mob as if always wielded
+/obj/item/weapon/gun/minigun/one_handed/update_item_state()
+	item_state = "[base_gun_icon]_w"
 
 // SG minigun
 
@@ -852,6 +883,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	update_icon()
 
 /obj/item/weapon/gun/launcher/rocket/oneuse/update_icon_state()
+	. = ..()
 	if(extended)
 		icon_state = "[base_gun_icon]_extended"
 	else

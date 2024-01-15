@@ -26,11 +26,12 @@
 	var/speed = 1
 	///True when jetpack has flame overlay
 	var/lit = FALSE
-	///True if you can use shift click/middle click to use it
-	var/selected = FALSE
+	///Controlling action
+	var/datum/action/ability/activable/item_toggle/jetpack/toggle_action
 
 /obj/item/jetpack_marine/Initialize(mapload)
 	. = ..()
+	toggle_action = new(src)
 	update_icon()
 
 /obj/item/jetpack_marine/examine(mob/user, distance, infix, suffix)
@@ -45,40 +46,14 @@
 /obj/item/jetpack_marine/equipped(mob/user, slot)
 	. = ..()
 	if(slot == SLOT_BACK)
-		var/datum/action/item_action/toggle/action = new(src)
-		action.give_action(user)
+		toggle_action.give_action(user)
 
 /obj/item/jetpack_marine/dropped(mob/user)
 	. = ..()
-	UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_ITEM_EXCLUSIVE_TOGGLE))
-	selected = FALSE
-	LAZYCLEARLIST(actions)
+	toggle_action.remove_action(user)
 
-/obj/item/jetpack_marine/ui_action_click(mob/user, datum/action/item_action/action)
-	if(selected)
-		UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_ITEM_EXCLUSIVE_TOGGLE))
-		action.set_toggle(FALSE)
-	else
-		RegisterSignals(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT), PROC_REF(can_use_jetpack))
-		SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
-		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, PROC_REF(unselect))
-		action.set_toggle(TRUE)
-	selected = !selected
-
-///Signal handler for making it impossible to use middleclick to use the jetpack
-/obj/item/jetpack_marine/proc/unselect(datum/source, mob/user)
-	SIGNAL_HANDLER
-	if(!selected)
-		return
-	selected = FALSE
-	UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_ITEM_EXCLUSIVE_TOGGLE))
-	for(var/action in user.actions)
-		if (!istype(action, /datum/action/item_action))
-			continue
-		var/datum/action/item_action/iaction = action
-		if(iaction?.holder_item == src)
-			iaction.set_toggle(FALSE)
-
+/obj/item/jetpack_marine/ui_action_click(mob/user, datum/action/item_action/action, target)
+	use_jetpack(target, user)
 
 ///remove the flame overlay
 /obj/item/jetpack_marine/proc/reset_flame(mob/living/carbon/human/human_user)
@@ -105,8 +80,8 @@
 	human_user.update_inv_back()
 	update_icon()
 	new /obj/effect/temp_visual/smoke(get_turf(human_user))
-	human_user.fly_at(A, calculate_range(human_user), speed)
 	RegisterSignal(human_user, COMSIG_MOVABLE_POST_THROW, PROC_REF(reset_flame))
+	human_user.fly_at(A, calculate_range(human_user), speed)
 	return TRUE
 
 ///Calculate the max range of the jetpack, changed by some item slowdown
@@ -121,21 +96,6 @@
 			return 3
 		if(1.2 to INFINITY)//heavy armor with shield and tyr mk2
 			return 2
-
-///Check if we can use the jetpack and give feedback to the users
-/obj/item/jetpack_marine/proc/can_use_jetpack(datum/source, atom/A)
-	SIGNAL_HANDLER
-	var/mob/living/carbon/human/human_user = usr
-	if(human_user.incapacitated() || human_user.lying_angle)
-		return
-	var/time_left = S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_JETPACK)
-	if(time_left)
-		balloon_alert(human_user, "[time_left * 0.1] seconds")
-		return
-	if(fuel_left < FUEL_USE)
-		balloon_alert(human_user, "No fuel")
-		return
-	INVOKE_ASYNC(src, PROC_REF(use_jetpack), A, human_user)
 
 /obj/item/jetpack_marine/update_overlays()
 	. = ..()
@@ -206,6 +166,27 @@
 	balloon_alert(user, "Refilled")
 	update_icon()
 
+/datum/action/ability/activable/item_toggle/jetpack
+	name = "Use jetpack"
+	action_icon_state = "axe_sweep"
+	desc = "Briefly fly using your jetpack."
+	keybind_flags = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
+	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_JETPACK)
+
+/datum/action/ability/activable/item_toggle/jetpack/New(Target, obj/item/holder)
+	. = ..()
+	var/obj/item/jetpack_marine/jetpack = Target
+	cooldown_duration = jetpack.cooldown_time
+
+/datum/action/ability/activable/item_toggle/jetpack/can_use_ability(silent, override_flags, selecting)
+	var/mob/living/carbon/carbon_owner = owner
+	if(carbon_owner.incapacitated() || carbon_owner.lying_angle)
+		return FALSE
+	var/obj/item/jetpack_marine/jetpack = holder_item
+	if(jetpack.fuel_left < FUEL_USE)
+		carbon_owner.balloon_alert(carbon_owner, "No fuel")
+		return
+	return ..()
 
 /obj/item/jetpack_marine/heavy
 	name = "heavy lift jetpack"

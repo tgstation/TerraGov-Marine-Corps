@@ -251,6 +251,7 @@
 	var/dogtag_taken = FALSE
 
 /obj/item/card/id/dogtag/update_icon_state()
+	. = ..()
 	if(dogtag_taken)
 		icon_state = initial(icon_state) + "_taken"
 		return

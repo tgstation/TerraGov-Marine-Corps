@@ -222,7 +222,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 		if(!silent)
 			to_chat(src, span_warning("Cannot place more than [max_multicams] multicamera windows."))
 		return
-	var/atom/movable/screen/movable/pic_in_pic/ai/C = new /atom/movable/screen/movable/pic_in_pic/ai()
+	var/atom/movable/screen/movable/pic_in_pic/ai/C = new()
 	C.set_view_size(3, 3, FALSE)
 	C.set_view_center(get_turf(eyeobj))
 	C.set_ai(src)

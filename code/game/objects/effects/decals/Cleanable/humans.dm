@@ -46,9 +46,8 @@
 		deltimer(drying_timer)
 	return ..()
 
-
-/obj/effect/decal/cleanable/blood/update_icon()
-	if(basecolor == "rainbow") basecolor = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
+/obj/effect/decal/cleanable/blood/update_icon_state()
+	. = ..()
 	color = basecolor
 
 /obj/effect/decal/cleanable/blood/proc/on_cross(datum/source, mob/living/carbon/human/perp, oldloc, oldlocs)
@@ -74,9 +73,6 @@
 	else if (hasfeet)//Or feet
 		perp.feet_blood_color = basecolor
 		perp.track_blood = max(amount,perp.track_blood)
-	else if (perp.buckled && istype(perp.buckled, /obj/structure/bed/chair/wheelchair))
-		var/obj/structure/bed/chair/wheelchair/W = perp.buckled
-		W.bloodiness = 4
 
 	perp.update_inv_shoes(1)
 	amount--
@@ -171,20 +167,22 @@
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6")
 	var/fleshcolor = "#FFC896"
 
-/obj/effect/decal/cleanable/blood/gibs/update_icon()
-
-	var/image/giblets = new(base_icon, "[icon_state]_flesh", dir)
-	if(!fleshcolor || fleshcolor == "rainbow")
+/obj/effect/decal/cleanable/blood/gibs/update_icon_state()
+	. = ..()
+	if(!fleshcolor)
 		fleshcolor = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
-	giblets.color = fleshcolor
-
 	var/icon/blood = new(base_icon,"[icon_state]",dir)
-	if(basecolor == "rainbow") basecolor = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
-	blood.Blend(basecolor,ICON_MULTIPLY)
+	if(basecolor == "rainbow")
+		basecolor = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
+	blood.Blend(basecolor, ICON_MULTIPLY)
 
 	icon = blood
-	overlays.Cut()
-	overlays += giblets
+
+/obj/effect/decal/cleanable/blood/gibs/update_overlays()
+	. = ..()
+	var/image/giblets = new(base_icon, "[icon_state]_flesh", dir)
+	giblets.color = fleshcolor
+	. += giblets
 
 /obj/effect/decal/cleanable/blood/gibs/up
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6","gibup1","gibup1","gibup1")

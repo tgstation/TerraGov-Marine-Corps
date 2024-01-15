@@ -29,6 +29,7 @@ GLOBAL_LIST_EMPTY(mob_living_list)				//all instances of /mob/living and subtype
 GLOBAL_LIST_EMPTY(alive_living_list)		//all alive /mob/living, including clientless.
 GLOBAL_LIST_EMPTY(offered_mob_list)				//all /mobs offered by admins
 GLOBAL_LIST_EMPTY(ai_list)
+GLOBAL_LIST_EMPTY(silicon_mobs) //all silicon mobs
 GLOBAL_LIST_INIT(simple_animals, list(list(),list(),list(),list())) // One for each AI_* status define
 GLOBAL_LIST_EMPTY(living_cameras)
 GLOBAL_LIST_EMPTY(aiEyes)

@@ -70,6 +70,7 @@
 
 
 /obj/item/detpack/update_icon_state()
+	. = ..()
 	icon_state = "detpack_[plant_target ? "set_" : ""]"
 	if(on)
 		icon_state = "[icon_state][armed ? "armed" : "on"]"

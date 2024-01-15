@@ -873,6 +873,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A marine standard mounted zoom sight scope made for the Terra Experimental laser sniper rifle otherwise known as TE-S abbreviated, allows zoom by activating the attachment."
 	icon_state = "tes"
 
+/obj/item/attachable/scope/unremovable/plasma_sniper_scope
+	name = "PL-02 sniper rifle rail scope"
+	desc = "A marine standard mounted zoom sight scope made for the PL-02 plasma sniper rifle, allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	icon_state = "plasma_scope"
+
 /obj/item/attachable/scope/mini
 	name = "mini rail scope"
 	icon_state = "miniscope"
@@ -1571,7 +1576,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			continue
 		QDEL_NULL(action_to_delete)
 		break
-	update_icon(user)
+	update_icon()
 	master_gun.base_gun_icon = initial(master_gun.icon_state)
 	master_gun.update_icon()
 	UnregisterSignal(detaching_item, list(COMSIG_ITEM_EQUIPPED, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, COMSIG_ATOM_ATTACKBY_ALTERNATE))
@@ -1756,7 +1761,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	activate(user)
 	new_action.set_toggle(TRUE)
 	new_action.update_button_icon()
-	update_icon(user)
+	update_icon()
 	RegisterSignal(master_gun, COMSIG_ITEM_REMOVED_INVENTORY, TYPE_PROC_REF(/obj/item/weapon/gun, drop_connected_mag))
 
 ///This is called when an attachment gun (src) detaches from a gun.
@@ -1775,7 +1780,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	UnregisterSignal(master_gun, COMSIG_ITEM_REMOVED_INVENTORY)
 	master_gun = null
 	attached_to:gunattachment = null
-	update_icon(user)
+	update_icon()
 
 ///This activates the weapon for use.
 /obj/item/weapon/gun/proc/activate(mob/user)

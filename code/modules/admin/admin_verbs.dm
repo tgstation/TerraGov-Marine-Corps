@@ -624,7 +624,7 @@
 			to_chat(C, msg)
 
 /client/proc/object_say(obj/O in world)
-	set category = "Admin.Events"
+	set category = "Admin"
 	set name = "OSay"
 	set desc = "Makes an object say something."
 	var/message = tgui_input_text(usr, "What do you want the message to be?", "Make Sound", encode = FALSE)

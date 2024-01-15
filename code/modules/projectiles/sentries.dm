@@ -572,4 +572,4 @@
 	internal_item = null
 
 	QDEL_NULL(src)
-	attached_item.update_icon_state()
+	attached_item.update_appearance()

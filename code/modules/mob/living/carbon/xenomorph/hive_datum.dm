@@ -80,8 +80,8 @@
 	.["hive_larva_rate"] = SSsilo.current_larva_spawn_rate
 	.["hive_larva_burrowed"] = xeno_job.total_positions - xeno_job.current_positions
 
-	var/psy_points = SSpoints.xeno_points_by_hive[hivenumber]
-	.["hive_psy_points"] = !isnull(psy_points) ? psy_points : 0
+	.["hive_strategic_psy_points"] = !isnull(SSpoints.xeno_strategic_points_by_hive[hivenumber]) ? SSpoints.xeno_strategic_points_by_hive[hivenumber] : 0
+	.["hive_tactical_psy_points"] = !isnull(SSpoints.xeno_tactical_points_by_hive[hivenumber]) ? SSpoints.xeno_tactical_points_by_hive[hivenumber] : 0
 
 	var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
 	.["hive_orphan_collapse"] = !isnull(hivemind_countdown) ? hivemind_countdown : 0
@@ -543,7 +543,7 @@
 	var/obj/machinery/nuclearbomb/nuke = thing
 	if(!nuke.timer)
 		CRASH("hive_status's setup_nuke_hud_timer called with invalid nuke object")
-	nuke_hud_timer = new(null, get_all_xenos() , nuke.timer, "Nuke ACTIVE: ${timer}")
+	nuke_hud_timer = new(null, null, get_all_xenos() , nuke.timer, "Nuke ACTIVE: ${timer}")
 
 /datum/hive_status/Destroy(force, ...)
 	. = ..()
@@ -1044,7 +1044,8 @@ to_chat will check for valid clients itself already so no need to double check f
 		qdel(structure)
 
 	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS_ADVANCED)
-		SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
+		SSpoints.xeno_strategic_points_by_hive[hivenumber] = SILO_PRICE //Give a free silo when going shipside and a turret
+		SSpoints.xeno_tactical_points_by_hive[hivenumber] = (XENO_TURRET_PRICE*4)
 
 
 /datum/hive_status/normal/proc/on_hijack_depart(datum/source, new_mode)

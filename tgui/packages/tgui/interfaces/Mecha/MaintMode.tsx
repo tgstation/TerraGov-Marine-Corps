@@ -1,6 +1,6 @@
-import { MaintData } from './data';
 import { useBackend, useLocalState } from '../../backend';
-import { Stack, Button, Box } from '../../components';
+import { Box, Button, Stack } from '../../components';
+import { MaintData } from './data';
 
 const MECHA_MAINT_PANELS = {
   main: {
