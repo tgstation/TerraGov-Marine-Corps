@@ -513,11 +513,7 @@
 /turf/open/floor/carpet/side{
 	dir = 4
 	},
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "aCg" = (
 /obj/machinery/newscaster,
 /turf/closed/wall/mainship,
@@ -1448,11 +1444,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "boD" = (
 /turf/closed/wall/mainship/research/containment/wall/south,
 /area/mainship/medical/surgery_hallway{
@@ -1558,11 +1550,7 @@
 /turf/open/floor/carpet/side{
 	dir = 9
 	},
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "brX" = (
 /turf/open/floor/plating,
 /area/mainship/squads/req)
@@ -2798,11 +2786,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "cum" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -3275,11 +3259,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/wood,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "cNq" = (
 /obj/structure/toilet{
 	dir = 4
@@ -3302,11 +3282,7 @@
 /turf/open/floor/carpet/side{
 	dir = 6
 	},
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "cNT" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -5054,11 +5030,7 @@
 /obj/structure/disposalpipe/segment/corner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "eFR" = (
 /obj/machinery/autodoc,
 /turf/open/floor/mainship/red{
@@ -5724,11 +5696,7 @@
 "fij" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall/mainship,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "fiw" = (
 /obj/item/seeds/goldappleseed,
 /obj/item/tool/minihoe,
@@ -5823,11 +5791,7 @@
 "fnl" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "fnB" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
@@ -6594,11 +6558,7 @@
 /turf/open/floor/carpet/side{
 	dir = 8
 	},
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "fVs" = (
 /obj/effect/landmark/start/job/crash/squadmarine,
 /obj/effect/landmark/start/job/crash/squadmarine,
@@ -7015,11 +6975,7 @@
 /turf/open/floor/mainship/green{
 	dir = 6
 	},
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "goZ" = (
 /obj/machinery/light,
 /obj/machinery/disposal,
@@ -7331,11 +7287,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "gFI" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2;
@@ -7422,11 +7374,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/wood,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "gLa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -9330,11 +9278,7 @@
 	req_one_access = list(40)
 	},
 /turf/open/floor/mainship/floor,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "izo" = (
 /turf/open/floor/mainship/cargo,
 /area/outpost/cargo{
@@ -9683,11 +9627,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "iPl" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/turf_decal/warning_stripes/thick/corner,
@@ -10541,11 +10481,7 @@
 /turf/open/floor/mainship/green{
 	dir = 5
 	},
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "jGi" = (
 /obj/structure/filingcabinet/medical,
 /turf/open/floor/carpet{
@@ -11245,11 +11181,7 @@
 /turf/open/floor/mainship/green{
 	dir = 4
 	},
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "kmh" = (
 /turf/open/floor/plating,
 /area/mainship/hallways/bow_hallway{
@@ -11323,11 +11255,7 @@
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "knM" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
@@ -11491,11 +11419,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "kvt" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -11683,11 +11607,7 @@
 "kFp" = (
 /obj/machinery/light/mainship,
 /turf/open/floor/wood,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "kFD" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1
@@ -11722,11 +11642,7 @@
 "kGw" = (
 /obj/machinery/holopad,
 /turf/open/floor/wood,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "kGx" = (
 /obj/structure/cable,
 /obj/structure/bed/chair/sofa{
@@ -12031,11 +11947,7 @@
 /turf/open/floor/mainship/green{
 	dir = 9
 	},
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "kQC" = (
 /obj/structure/curtain/open/black,
 /obj/structure/window/framed/mainship/toughened{
@@ -13778,11 +13690,7 @@
 /area/mainship/hallways/synthdorms)
 "mmS" = (
 /turf/closed/wall/mainship,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "mnh" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -14519,11 +14427,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
 /turf/open/floor/wood,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "mUq" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
@@ -14900,11 +14804,7 @@
 /obj/item/megaphone,
 /obj/item/ammo_magazine/packet/acp,
 /turf/open/floor/wood,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "nqF" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -16729,11 +16629,7 @@
 /turf/open/floor/carpet/side{
 	dir = 10
 	},
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "pba" = (
 /obj/effect/landmark/start/job/corpseccommander,
 /turf/open/floor/wood,
@@ -17393,11 +17289,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "pQl" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -17489,11 +17381,7 @@
 "pVg" = (
 /obj/machinery/door/airlock/mainship/command/FCDRoffice,
 /turf/open/floor/mainship/floor,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "pVs" = (
 /obj/machinery/chem_dispenser,
 /obj/item/radio/intercom/general,
@@ -18143,11 +18031,7 @@
 	id = "Lowershiplockdown"
 	},
 /turf/open/floor/mainship/mono,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "qxk" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/masks{
@@ -18957,11 +18841,7 @@
 "riY" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "rjv" = (
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -19054,11 +18934,7 @@
 /turf/open/floor/carpet/side{
 	dir = 4
 	},
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "rnH" = (
 /obj/structure/largecrate/supply/weapons/standard_smg,
 /turf/open/floor/mainship/cargo,
@@ -19647,11 +19523,7 @@
 /obj/structure/flora/pottedplant/twentytwo,
 /obj/machinery/firealarm,
 /turf/open/floor/wood,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "rUF" = (
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 9
@@ -19700,11 +19572,7 @@
 /turf/open/floor/carpet/side{
 	dir = 8
 	},
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "rXn" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/sterile/side{
@@ -19719,11 +19587,7 @@
 /area/mainship/hull/upper_hull)
 "rYm" = (
 /turf/open/floor/wood,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "rYC" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -20029,11 +19893,7 @@
 	dir = 4
 	},
 /turf/closed/wall/mainship,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "skM" = (
 /obj/structure/punching_bag,
 /turf/open/floor/mainship/green{
@@ -20644,11 +20504,7 @@
 /turf/open/floor/mainship/green{
 	dir = 4
 	},
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "sPj" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -21816,11 +21672,7 @@
 	},
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/wood,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "tSd" = (
 /obj/effect/landmark/start/job/chiefshipengineer,
 /obj/effect/landmark/start/job/corpseccommander,
@@ -21970,11 +21822,7 @@
 /turf/open/floor/mainship/green{
 	dir = 10
 	},
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "tZN" = (
 /turf/open/floor/elevatorshaft,
 /area/mainship/hallways/bow_hallway{
@@ -25013,11 +24861,7 @@
 	},
 /obj/item/taperecorder,
 /turf/open/floor/wood,
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "wWw" = (
 /obj/machinery/light{
 	dir = 8
@@ -25135,11 +24979,7 @@
 /turf/open/floor/carpet/side{
 	dir = 5
 	},
-/area/deltastation/command/heads_quarters/hos{
-	outside = 0;
-	name = "\improper Field Commander's Office";
-	ceiling = 2
-	})
+/area/mainship/ntf/fcroom)
 "xak" = (
 /obj/effect/step_trigger/teleporter/random{
 	affect_ghosts = 1;
