@@ -82,6 +82,8 @@
 
 	if(!istype(user)) //we immediately apply the perk where possible
 		return
+	if(!(user.job.title in new_perk.jobs_supported))
+		return
 	new_perk.apply_perk(user)
 
 ///Unlocks a loadout item for use
@@ -335,7 +337,7 @@
 	if(!your_faction)
 		return
 
-	var/datum/individual_stats/stats = get_player_stats(owner)
+	var/datum/individual_stats/stats = your_faction.get_player_stats(owner)
 	if(!stats)
 		return
 	stats.current_mob = M
@@ -344,7 +346,7 @@
 	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[owner.faction]
 	if(!your_faction)
 		return
-	var/datum/individual_stats/stats = get_player_stats(owner)
+	var/datum/individual_stats/stats = your_faction.get_player_stats(owner)
 	if(!stats)
 		return
 	stats.current_mob = owner //taking over ssd's creates a mismatch
