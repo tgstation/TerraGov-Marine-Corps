@@ -238,6 +238,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	psypoint_cost = 600
 	icon = "spawner"
 	flags_gamemode = ABILITY_NUCLEARWAR
+	flags_upgrade = UPGRADE_FLAG_USES_TACTICAL
 	building_type = /obj/structure/xeno/spawner
 
 /datum/hive_upgrade/building/acid_pool

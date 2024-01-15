@@ -291,10 +291,12 @@
 	var/fire_delay = 0
 	///Gives guns a burst amount, editable.
 	var/burst_amount = 0
+	///heat amount per shot
+	var/heat_per_fire = 0
 	///The gun firing sound of this mode
 	var/fire_sound = null
 	///What message it sends to the user when you switch to this mode.
-	var/message_to_user = ""
+	var/message_to_user = "" // todo delete me I'm useless
 	///Used to change the gun firemode, like automatic, semi-automatic and burst.
 	var/fire_mode = GUN_FIREMODE_SEMIAUTO
 	///what to change the gun icon_state to when switching to this mode.
@@ -308,6 +310,7 @@
 	///codex description
 	var/description = ""
 
+//TODO this proc should be generic so that you dont have to manually copy paste the default mode onto the item
 /obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
 	if(!user)
 		CRASH("switch_modes called with no user.")
@@ -344,6 +347,7 @@
 	fire_sound = initial(choice.fire_sound)
 	rounds_per_shot = initial(choice.rounds_per_shot)
 	windup_delay = initial(choice.windup_delay)
+	heat_per_fire = initial(choice.heat_per_fire)
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
@@ -365,7 +369,6 @@
 	desc = "A Terra Experimental energy rifle that fires balls of elecricity that shock all those near them, it is meant to drain the plasma of unidentified creatures from within, limiting their abilities. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts. Uses standard Terra Experimental (TE) power cells."
 	icon_state = "tesla"
 	item_state = "tesla"
-	icon = 'icons/Marine/gun64.dmi'
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
 	ammo_datum_type = /datum/ammo/energy/tesla
@@ -1055,12 +1058,12 @@
 	light_power = 0.1
 	light_color = LIGHT_COLOR_ORANGE
 
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/update_icon(mob/user)
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/update_icon()
 	. = ..()
 	if(rounds)
-		turn_light(user, TRUE)
+		turn_light(null, TRUE)
 	else
-		turn_light(user, FALSE)
+		turn_light(null, FALSE)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/turn_light(mob/user, toggle_on)
 	. = ..()

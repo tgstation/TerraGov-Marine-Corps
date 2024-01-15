@@ -24,6 +24,7 @@
 	qdel(src)
 
 /obj/effect/blip/edge_blip/update_icon_state()
+	. = ..()
 	icon_state = "edge_blip_[identifier]"
 
 /obj/effect/blip/close_blip
@@ -99,6 +100,7 @@
 		action.update_button_icon()
 
 /obj/item/attachable/motiondetector/update_icon_state()
+	. = ..()
 	icon_state = initial(icon_state) + (isnull(operator) ? "" : "_on")
 
 /obj/item/attachable/motiondetector/equipped(mob/user, slot)
