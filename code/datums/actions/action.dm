@@ -26,8 +26,6 @@ KEYBINDINGS
 	var/action_type = ACTION_CLICK
 	///Used for keeping track of the addition of the selected/active frames
 	var/toggled = FALSE
-	///Flags for action behavior
-	var/action_flags = NONE
 
 /datum/action/New(Target)
 	target = Target
