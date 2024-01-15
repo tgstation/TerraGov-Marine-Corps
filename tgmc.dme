@@ -642,9 +642,9 @@
 #include "code\game\mecha\mecha_parts.dm"
 #include "code\game\mecha\mecha_wreckage.dm"
 #include "code\game\objects\empulse.dm"
-#include "code\game\objects\items.dm
-#include "code\game\objects\metnal_objects.dm"
+#include "code\game\objects\items.dm"
 #include "code\game\objects\machinery.dm"
+#include "code\game\objects\metnal_objects.dm"
 #include "code\game\objects\obj_defense.dm"
 #include "code\game\objects\objs.dm"
 #include "code\game\objects\structures.dm"
