@@ -4322,7 +4322,6 @@
 "dRv" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
-/obj/effect/spawner/random/food_or_drink,
 /turf/open/floor/carpet{
 	dir = 5;
 	icon_state = "carpetside"
@@ -18253,11 +18252,10 @@
 	})
 "qBA" = (
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment/corner,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment{
+/obj/structure/disposalpipe/junction{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
