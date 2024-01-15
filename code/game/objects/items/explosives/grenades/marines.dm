@@ -441,6 +441,8 @@
 	desc = "A TGMC standard issue flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand."
 	icon_state = "flare_grenade"
 	item_state = "flare_grenade"
+	drag_delay = 1
+	drag_windup = 0
 	det_time = 0
 	throwforce = 1
 	dangerous = FALSE
