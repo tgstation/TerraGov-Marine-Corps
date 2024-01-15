@@ -218,7 +218,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/shotguns
 	name = "Advanced shotgun training"
-	desc = "Improved damage with pistol type firearms. Unlocks access to a shotgun secondary weapon in the backslot."
+	desc = "Improved damage with shotgun type firearms. Unlocks access to a shotgun secondary weapon in the backslot."
 	req_desc = "Requires Advanced firearm training."
 	ui_icon = "shotguns"
 	shotguns = 1
@@ -284,7 +284,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	desc = "Improved bonuses when issuing orders."
 	ui_icon = "leadership"
 	leadership = 1
-	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
+	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN, SOM_SQUAD_LEADER, SOM_STAFF_OFFICER, SOM_FIELD_COMMANDER, SOM_COMMANDER)
 	unlock_cost = 1100
 
 /datum/perk/skill_mod/medical
