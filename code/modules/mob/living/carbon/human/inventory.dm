@@ -505,6 +505,10 @@
 			return s_store
 		if(ITEM_SLOT_HANDCUFF)
 			return handcuffed
+		if(ITEM_SLOT_L_HAND)
+			return l_hand
+		if(ITEM_SLOT_R_HAND)
+			return r_hand
 
 /mob/living/carbon/human/get_equipped_slot(obj/equipped_item)
 	if(..())

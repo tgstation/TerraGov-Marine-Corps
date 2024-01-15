@@ -504,6 +504,14 @@
 	scatter = 0
 	fire_delay = 0.2 SECONDS
 
+/obj/item/weapon/gun/rifle/m41a/field_commander
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/m41a,
+		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/extended_barrel,
+	)
+
 /obj/item/weapon/gun/rifle/m41a/magharness
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/m41a,
@@ -1403,7 +1411,7 @@
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
 	max_shells = 20//codex stuff
-	ammo_datum_type = /datum/ammo/energy/plasma
+	ammo_datum_type = /datum/ammo/energy/sectoid_plasma
 	muzzleflash_iconstate = "muzzle_flash_pulse"
 	default_ammo_type = /obj/item/ammo_magazine/rifle/sectoid_rifle
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/sectoid_rifle)

@@ -125,3 +125,23 @@
   - code_imp: Ported update_appearance, alternative_appearance and ssvisoverlays
   - refactor: Refactored almost every instance of update_icon, update_icon_state and
       update_overlays
+2024-01-14:
+  RipGrayson:
+  - bugfix: Fixed some improper stairs on the EORG maps.
+  Wisemonster:
+  - balance: The Minion Spawner now uses tactical points instead of strategic.
+  Xander3359:
+  - rscdel: Removes the NVG-only smartgunner option.
+  - qol: Adds a "Smartguns/IFF" to the valhalla vendor
+  ivanmixo:
+  - bugfix: Fixed an exploit related to hudglasses
+2024-01-15:
+  Lumipharon:
+  - rscadd: Added a new perk system for Campaign mode
+  - rscadd: Added a new customisable loadout system for Campaign mode
+  - qol: Jetpacks and blinkdrives now use activable actions, so have bindable hotkeys
+  - code_imp: Reworked some action code
+  - bugfix: fixed an issue with AMR lase continuously trying to turn off
+  - qol: Ability type actions now display their cooldown remaining
+  ivanmixo:
+  - bugfix: Punching an APC as warrior should update the icon properly now

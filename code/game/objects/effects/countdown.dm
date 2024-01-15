@@ -88,3 +88,50 @@
 		return
 	var/obj/structure/campaign_objective/capture_objective/objective = attached_to
 	return objective.get_time_left()
+
+/obj/effect/countdown/action_cooldown
+	name = "cooldown"
+	color = "#d1d1d1"
+	invisibility = SEE_INVISIBLE_LIVING
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	layer = ABOVE_HUD_LAYER
+	plane = HUD_PLANE
+	pixel_x = 5
+	pixel_y = 8
+	appearance_flags = KEEP_APART|RESET_COLOR
+	///The action this countdown is associated with
+	var/datum/action/ability/attached_action
+
+/obj/effect/countdown/action_cooldown/Destroy()
+	attached_action = null
+	return ..()
+
+/obj/effect/countdown/action_cooldown/attach(atom/A)
+	var/atom/movable/screen/action_button/button = A
+	if(!istype(button))
+		qdel(src)
+		return
+	attached_to = button
+	button.vis_contents += src
+	attached_action = button.source_action
+
+/obj/effect/countdown/action_cooldown/start()
+	if(!started)
+		START_PROCESSING(SSfastprocess, src)
+		started = TRUE
+
+/obj/effect/countdown/action_cooldown/process()
+	if(QDELETED(attached_to))
+		qdel(src)
+		return
+	var/new_val = round(attached_action.cooldown_remaining(), 0.1)
+	if(new_val == displayed_text)
+		return
+	if(new_val >= 10) //avoid cropping, and deciseconds don't really matter if you're 10+ seconds away
+		new_val = floor(new_val)
+	displayed_text = new_val
+
+	if(displayed_text)
+		maptext = "<font size = [text_size]>[displayed_text]</font>"
+	else
+		maptext = null

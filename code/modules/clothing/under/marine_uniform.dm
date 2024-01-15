@@ -212,6 +212,9 @@
 		"Down" = "_d",
 	)
 
+/obj/item/clothing/under/marine/orion_fatigue/black_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
 /obj/item/clothing/under/marine/red_fatigue
 	name = "\improper Big Red fatigues"
 	desc = "Originated from Big Red. Designed for dry, low humid, and Mars-eqse environments, they're meant for recon, stealth, and evac operations. They come with a built in cassette player hearable only to the user to help pass time, during any possible long waits. They make you feel like one with the desert, forged by the beating Sun. Rumors had it that it can recycle your sweat and urine for drinkable water!"
@@ -220,6 +223,9 @@
 	adjustment_variants = list(
 		"Down" = "_d",
 	)
+
+/obj/item/clothing/under/marine/red_fatigue/black_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
 /obj/item/clothing/under/marine/lv_fatigue
 	name = "\improper LV-624 fatigues"
@@ -230,12 +236,19 @@
 		"Down" = "_d",
 	)
 
+/obj/item/clothing/under/marine/lv_fatigue/black_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
 /obj/item/clothing/under/marine/striped
 	name = "\improper Striped fatigues"
 	desc = "A simple set of camo pants and a striped shirt."
 	icon_state = "marine_striped"
 	item_state = "marine_striped"
 	adjustment_variants = list()
+
+/obj/item/clothing/under/marine/striped/black_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
 /obj/item/clothing/under/marine/black_suit
 	name = "\improper marine black suit"
 	desc = "A easy fitting black suit, somehow exactly your size."
@@ -530,7 +543,7 @@
 	adjustment_variants = list()
 
 /obj/item/clothing/under/som
-	name = "\improper SOM officer uniform"
+	name = "\improper SOM uniform"
 	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies."
 	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "som_uniform"
@@ -575,7 +588,7 @@
 
 /obj/item/clothing/under/som/officer
 	name = "\improper SOM officer uniform"
-	desc = "The distinct black uniform of a SOM officer. Usually worn by junior officers"
+	desc = "The distinct black uniform of a SOM officer. Usually worn by junior officers."
 	icon_state = "som_officer_uniform"
 	item_state = "som_officer_uniform"
 	adjustment_variants = list()
@@ -585,7 +598,7 @@
 
 /obj/item/clothing/under/som/officer/senior
 	name = "\improper SOM officer uniform"
-	desc = "The distinct jacketed black uniform of a SOM officer. Usually worn by senior officers"
+	desc = "The distinct jacketed black uniform of a SOM officer. Usually worn by senior officers."
 	icon_state = "som_senior_officer_uniform"
 	item_state = "som_senior_officer_uniform"
 
