@@ -37,7 +37,6 @@
 	req_desc = "Requires a FL-84 flamethrower."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/surt
 	jobs_supported = list(SQUAD_MARINE)
-	item_whitelist = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide = ITEM_SLOT_SUITSTORE)
 
 /datum/loadout_item/suit_slot/heavy_tyr
 	name = "Heavy Tyr armor"

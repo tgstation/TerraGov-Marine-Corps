@@ -68,11 +68,11 @@
 	)
 	///cash rewards for the mission type
 	var/list/cash_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(2000, 1000),
-		MISSION_OUTCOME_MINOR_VICTORY = list(1500, 1000),
+		MISSION_OUTCOME_MAJOR_VICTORY = list(1500, 1000),
+		MISSION_OUTCOME_MINOR_VICTORY = list(1200, 1000),
 		MISSION_OUTCOME_DRAW = list(1000, 1000),
-		MISSION_OUTCOME_MINOR_LOSS = list(1000, 1500),
-		MISSION_OUTCOME_MAJOR_LOSS = list(1000, 2000),
+		MISSION_OUTCOME_MINOR_LOSS = list(1000, 1200),
+		MISSION_OUTCOME_MAJOR_LOSS = list(1000, 1500),
 	)
 	/// Timer used to calculate how long till mission ends
 	var/game_timer
