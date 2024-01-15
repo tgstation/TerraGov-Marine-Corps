@@ -4858,6 +4858,7 @@
 /obj/machinery/power/smes{
 	output_level = 200000
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/groundhq/ntf/engineering/lower_engineering)
 "ety" = (
@@ -8282,9 +8283,7 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/living/evacuation)
 "hxt" = (
-/obj/machinery/power/smes{
-	output_level = 200000
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/deltastation/engineering/gravity_generator{
 	name = "\improper Lower Power";
@@ -9960,6 +9959,15 @@
 	dir = 6
 	},
 /area/mainship/living/tankerbunks)
+"iXO" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/sulaco/engineering/lower_engineering{
+	name = "Lower Power"
+	})
 "iYl" = (
 /obj/structure/cable,
 /obj/machinery/light/small,
@@ -11595,9 +11603,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "kBp" = (
-/obj/machinery/power/smes{
-	output_level = 200000
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/deltastation/engineering/main{
 	outside = 0
@@ -16531,9 +16537,6 @@
 /area/mainship/groundhq/ntf/command/corporateliaison)
 "oSa" = (
 /obj/structure/cable,
-/obj/machinery/power/terminal{
-	dir = 1
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/deltastation/engineering/engine_smes{
 	outside = 0
@@ -17446,12 +17449,11 @@
 /area/mainship/groundhq/ntf/hallways/bathroom)
 "pSz" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	dir = 8
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating/plating_catwalk,
-/area/sulaco/engineering/lower_engineering{
-	name = "Lower Power"
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
 	})
 "pTu" = (
 /turf/closed/wall/mainship,
@@ -18043,9 +18045,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "qsW" = (
-/obj/machinery/power/terminal{
-	dir = 1
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/sulaco/engineering/lower_engineering{
 	name = "Lower Power"
@@ -18066,6 +18065,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/engineering/lower_engineering)
 "qtw" = (
@@ -23442,9 +23442,6 @@
 /area/mainship/command/self_destruct)
 "vuk" = (
 /obj/structure/cable,
-/obj/machinery/power/terminal{
-	dir = 1
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/sulaco/engineering/lower_engineering{
 	name = "Lower Power"
@@ -24207,7 +24204,6 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "wke" = (
-/obj/structure/cable,
 /obj/machinery/light/small,
 /turf/open/floor/plating/plating_catwalk,
 /area/deltastation/engineering/engine_smes{
@@ -34831,7 +34827,7 @@ nje
 meS
 wpa
 wpa
-ftl
+iXO
 qsW
 xHV
 krS
@@ -35436,7 +35432,7 @@ wgC
 oFe
 sEQ
 spx
-min
+oSa
 oSa
 fRN
 vHZ
@@ -35556,9 +35552,9 @@ cRa
 ezq
 lHR
 wpa
-ftl
 vuk
-pSz
+vuk
+vuk
 qOE
 sSG
 vmy
@@ -41123,7 +41119,7 @@ btz
 ePf
 ePf
 ePf
-psf
+pSz
 ePf
 ePf
 scU
@@ -41245,7 +41241,7 @@ neE
 oap
 pPt
 kBp
-mJO
+kBp
 mOu
 ssV
 poC
@@ -41365,7 +41361,7 @@ ezq
 lHR
 oAa
 hxt
-dJp
+hxt
 wcR
 oAa
 scU
@@ -42091,8 +42087,8 @@ nje
 meS
 oAa
 oAa
-mjW
-dJp
+hxt
+hxt
 oAa
 oOz
 qOz
