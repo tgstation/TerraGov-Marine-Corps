@@ -343,6 +343,16 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla)
 	cost = 600
 
+/datum/supply_packs/weapons/plasma_rifle
+	name = "PL-38 Plasma Rifle"
+	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle)
+	cost = 250
+
+/datum/supply_packs/weapons/plasma_cannon
+	name = "PL-96 Plasma Cannon"
+	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon)
+	cost = 250
+
 /datum/supply_packs/weapons/tx54
 	name = "GL-54 airburst grenade launcher"
 	contains = list(/obj/item/weapon/gun/rifle/tx54)

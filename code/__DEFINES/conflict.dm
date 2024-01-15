@@ -42,7 +42,7 @@
 #define AMMO_XENO (1<<1)
 #define AMMO_UNWIELDY (1<<2) //poor accuracy against humans
 #define AMMO_ENERGY (1<<3) //Ammo will pass through windows and has damage reduced by smokes with SMOKE_NERF_BEAM
-#define AMMO_ROCKET (1<<4) //Ammo is more likely to continue past cover such as cades
+#define AMMO_ROCKET (1<<4) //Ammo is more likely to continue past cover such as cades //todo merge AMMO_ROCKET and AMMO_SNIPER
 #define AMMO_SNIPER (1<<5) //Ammo is more likely to continue past cover such as cades
 #define AMMO_INCENDIARY (1<<6) //Ammo will attempt to add firestacks and ignite a hit mob if it deals any damage. Armor applies, regardless of AMMO_IGNORE_ARMOR
 #define AMMO_SKIPS_ALIENS (1<<7)
@@ -50,7 +50,7 @@
 #define AMMO_IGNORE_ARMOR (1<<9) //Projectile direct damage will ignore both hard and soft armor
 #define AMMO_IGNORE_RESIST (1<<10) //Unused.
 #define AMMO_BALLISTIC (1<<11) //Generates blood splatters on mob hit
-#define AMMO_SUNDERING (1<<12)
+#define AMMO_SUNDERING (1<<12) // TODO useless flag just check if sundering != 0
 #define AMMO_SPECIAL_PROCESS (1<<13)
 #define AMMO_SENTRY (1<<14) //Used to identify ammo from sentry guns and other automated sources
 #define AMMO_FLAME (1<<15) //Used to identify flamethrower projectiles and similar projectiles

@@ -33,6 +33,9 @@
 /// called after an explosion happened : (epicenter, devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, took, orig_dev_range, orig_heavy_range, orig_light_range)
 #define COMSIG_GLOB_EXPLOSION "!explosion"
 
+#define COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED "!player_roundstart_spawned"
+#define COMSIG_GLOB_PLAYER_LATE_SPAWNED "!player_late_spawned"
+
 #define COMSIG_GLOB_MOB_LOGIN "!mob_login"
 #define COMSIG_GLOB_MOB_LOGOUT "!mob_logout"
 #define COMSIG_GLOB_MOB_DEATH "!mob_death"
