@@ -189,9 +189,8 @@
 		return
 	if(!owner)
 		return
-	SEND_SIGNAL(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE, owner)
-
 	if(toggled)
+		SEND_SIGNAL(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE, owner)
 		RegisterSignal(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE, PROC_REF(deselect))
 	else
 		UnregisterSignal(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE)
