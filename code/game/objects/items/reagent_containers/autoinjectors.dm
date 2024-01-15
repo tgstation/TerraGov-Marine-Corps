@@ -1,6 +1,5 @@
 /obj/item/reagent_containers/hypospray/autoinjector
 	name = "generic autoinjector"
-	//desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."
 	desc = "An autoinjector containing... table salt? <i>\"For any client assistance, please contact the coderbus\" is written on the back.</i>"
 	icon_state = "autoinjector"
 	item_state = "hypo"
@@ -12,6 +11,7 @@
 	list_reagents = list(/datum/reagent/consumable/sodiumchloride = 30)
 
 /obj/item/reagent_containers/hypospray/autoinjector/update_icon_state()
+	. = ..()
 	if(!(reagents.total_volume) && is_drawable())
 		icon_state += "X"
 		name = "expended [name]" //So people can see what have been expended since we have smexy new sprites people aren't used too...
@@ -67,7 +67,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/quickclot
 	name = "quick-clot autoinjector"
-	desc = "An autoinjector loaded with three doses of quick-clot, a chemical designed to pause all bleeding. Renew doses as needed."
+	desc = "An autoinjector loaded with 3 doses of quick-clot, a chemical designed to pause all bleeding. Renew doses as needed."
 	icon_state = "autoinjector-7"
 	list_reagents = list(/datum/reagent/medicine/quickclot = 30)
 	description_overlay = "Qk"
@@ -166,7 +166,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/alkysine
 	name = "alkysine autoinjector"
-	desc = "An auto-injector loaded with 3 doses of alkysine, long-living medicine for fixing brain damage."
+	desc = "An auto-injector loaded with 3 doses of alkysine, long-living medicine for fixing brain and ear damage."
 	icon_state = "autoinjector-12"
 	volume = 15
 	amount_per_transfer_from_this = 5

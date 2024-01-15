@@ -51,6 +51,9 @@
 		/obj/item/ammo_magazine/flamer_tank/backtank,
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
+	light_range = 0.1
+	light_power = 0.1
+	light_color = LIGHT_COLOR_ORANGE
 	///Max range of the flamer in tiles.
 	var/flame_max_range = 6
 	///Max resin wall penetration in tiles.
@@ -115,10 +118,11 @@
 		return
 	if(light)
 		ENABLE_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)
+		turn_light(null, TRUE)
 	else
 		DISABLE_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)
+		turn_light(null, FALSE)
 	playsound(src, CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT) ? 'sound/weapons/guns/interact/flamethrower_on.ogg' : 'sound/weapons/guns/interact/flamethrower_off.ogg', 25, 1)
-
 
 	if(CHECK_BITFIELD(flags_flamer_features, FLAMER_NO_LIT_OVERLAY))
 		return
@@ -134,6 +138,12 @@
 	lit_overlay.pixel_x += lit_overlay_offset_x
 	lit_overlay.pixel_y += lit_overlay_offset_y
 	. += lit_overlay
+
+/obj/item/weapon/gun/flamer/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	set_light_on(toggle_on)
 
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
 	. = ..()
@@ -304,6 +314,11 @@
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
 
+/obj/item/weapon/gun/flamer/som/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	. = ..()
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
+	standing.overlays.Add(emissive_overlay)
+
 /obj/item/weapon/gun/flamer/som/mag_harness
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide, /obj/item/attachable/magnetic_harness)
 
@@ -328,6 +343,13 @@
 		/obj/item/attachable/flamer_nozzle/long,
 	)
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock)
+
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/beginner
+	starting_attachment_types = list(
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/flamer_nozzle,
+		/obj/item/attachable/stock/t84stock,
+	)
 
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"
@@ -403,7 +425,7 @@
 ///Flamer windup called before firing
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/proc/do_windup()
 	windup_checked = WEAPON_WINDUP_CHECKING
-	if(!do_after(gun_user, 1 SECONDS, TRUE, src))
+	if(!do_after(gun_user, 1 SECONDS, IGNORE_USER_LOC_CHANGE, src))
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	windup_checked = WEAPON_WINDUP_CHECKED
@@ -443,7 +465,8 @@
 /turf/open/floor/plating/ground/snow/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	if(slayer > 0)
 		slayer -= 1
-		update_icon(1, 0)
+		update_appearance()
+		update_sides()
 	return ..()
 
 

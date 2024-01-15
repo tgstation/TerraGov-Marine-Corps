@@ -1,5 +1,7 @@
 /obj/machinery/computer/general_air_control
-	icon_state = "tank"
+	icon_state = "computer"
+	screen_overlay = "tank"
+	broken_icon = "computer_blue_broken"
 	var/frequency = 1439
 	var/list/sensors = list()
 
@@ -84,9 +86,6 @@
 
 
 /obj/machinery/computer/general_air_control/large_tank_control
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "tank"
-
 	frequency = 1441
 	var/input_tag
 	var/output_tag
@@ -197,9 +196,6 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 	addtimer(CALLBACK(src, PROC_REF(updateUsrDialog)), 5)
 
 /obj/machinery/computer/general_air_control/supermatter_core
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "tank"
-
 	frequency = 1438
 	var/input_tag
 	var/output_tag
@@ -311,7 +307,8 @@ Min Core Pressure: [pressure_limit] kPa<BR>"}
 
 /obj/machinery/computer/general_air_control/fuel_injection
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "atmos"
+	icon_state = "computer_small"
+	screen_overlay = "atmos"
 
 	var/device_tag
 	var/list/device_info

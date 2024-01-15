@@ -23,18 +23,18 @@
 			initialize_directions = WEST|EAST
 
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction/getNodeConnects()
-	return list(turn(dir, 180), dir)
+	return list(REVERSE_DIR(dir), dir)
 
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction/isConnectable(obj/machinery/atmospherics/target, given_layer, he_type_check)
 	if(dir == get_dir(target, src))
 		return ..(target, given_layer, FALSE) //we want a normal pipe instead
 	return ..(target, given_layer, TRUE)
 
-/obj/machinery/atmospherics/pipe/heat_exchanging/junction/update_icon()
+/obj/machinery/atmospherics/pipe/heat_exchanging/junction/update_icon_state()
+	. = ..()
 	icon_state = "pipe[nodes[1] ? "1" : "0"][nodes[2] ? "1" : "0"]-[piping_layer]"
 	update_layer()
 	update_alpha()
-
 
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction/layer1
 	piping_layer = 1

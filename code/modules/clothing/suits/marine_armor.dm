@@ -49,20 +49,18 @@
 	armor_overlays = list("lamp") //Just one for now, can add more later.
 	update_icon()
 
-/obj/item/clothing/suit/storage/marine/update_icon(mob/user)
-	var/image/I
-	I = armor_overlays["lamp"]
-	overlays -= I
-	qdel(I)
+/obj/item/clothing/suit/storage/marine/update_overlays()
+	. = ..()
 	if(flags_armor_features & ARMOR_LAMP_OVERLAY)
-		I = image(icon, src, flags_armor_features & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
+		var/image/I = image(icon, src, flags_armor_features & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
 		armor_overlays["lamp"] = I
-		overlays += I
+		. += I
 	else
 		armor_overlays["lamp"] = null
-	user?.update_inv_wear_suit()
 
-/obj/item/clothing/suit/storage/marine/apply_custom(mutable_appearance/standing)
+/obj/item/clothing/suit/storage/marine/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	if(inhands)
+		return
 	. = ..()
 	var/mutable_appearance/new_overlay
 	for(var/i in armor_overlays)
@@ -374,18 +372,14 @@
 	armor_overlays = list("lamp")
 	update_icon()
 
-/obj/item/clothing/suit/storage/faction/update_icon(mob/user)
-	var/image/I
-	I = armor_overlays["lamp"]
-	overlays -= I
-	qdel(I)
+/obj/item/clothing/suit/storage/faction/update_overlays()
+	. = ..()
 	if(flags_armor_features & ARMOR_LAMP_OVERLAY)
-		I = image(icon, src, flags_armor_features & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
+		var/image/I = image(icon, src, flags_armor_features & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
 		armor_overlays["lamp"] = I
-		overlays += I
-	else armor_overlays["lamp"] = null
-	if(user) user.update_inv_wear_suit()
-
+		. += I
+	else
+		armor_overlays["lamp"] = null
 
 /obj/item/clothing/suit/storage/faction/attack_self(mob/user)
 	if(!isturf(user.loc))

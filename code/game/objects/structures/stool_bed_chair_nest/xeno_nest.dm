@@ -54,7 +54,7 @@
 	user.visible_message(span_warning("[user] pins [buckling_mob] into [src], preparing the securing resin."),
 	span_warning("[user] pins [buckling_mob] into [src], preparing the securing resin."))
 
-	if(!do_mob(user, buckling_mob, 1 SECONDS, BUSY_ICON_HOSTILE))
+	if(!do_after(user, 1 SECONDS, NONE, buckling_mob, BUSY_ICON_HOSTILE))
 		return FALSE
 	if(QDELETED(src))
 		return FALSE

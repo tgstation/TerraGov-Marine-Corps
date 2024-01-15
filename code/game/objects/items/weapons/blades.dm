@@ -1,7 +1,6 @@
 /* Weapons
 * Contains:
 *		Claymore
-*		Harvester
 *		mercsword
 *		Energy Shield
 *		Energy Shield
@@ -31,51 +30,86 @@
 	edge = 1
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	///Special attack action granted to users with the right trait
+	var/datum/action/ability/activable/weapon_skill/sword_lunge/special_attack
 
 /obj/item/weapon/claymore/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/scalping)
+	special_attack = new(src, force, penetration)
+
+/obj/item/weapon/claymore/Destroy()
+	QDEL_NULL(special_attack)
+	return ..()
+
+/obj/item/weapon/claymore/equipped(mob/user, slot)
+	. = ..()
+	if(HAS_TRAIT(user, TRAIT_SWORD_EXPERT))
+		special_attack.give_action(user)
+
+/obj/item/weapon/claymore/dropped(mob/user)
+	. = ..()
+	special_attack.remove_action(user)
 
 /obj/item/weapon/claymore/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
 	return(BRUTELOSS)
 
-//vali weapons
+//Special attack
+/datum/action/ability/activable/weapon_skill/sword_lunge
+	name = "Lunging strike"
+	action_icon_state = "sword_lunge"
+	desc = "A powerful leaping strike. Cannot stun."
+	ability_cost = 12
+	cooldown_duration = 6 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_WEAPONABILITY_SWORDLUNGE,
+	)
 
-/obj/item/weapon/claymore/harvester
-	name = "\improper HP-S Harvester blade"
-	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' blade. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
-	icon_state = "energy_sword"
-	item_state = "energy_katana"
-	force = 60
-	attack_speed = 12
-	w_class = WEIGHT_CLASS_BULKY
+/datum/action/ability/activable/weapon_skill/sword_lunge/use_ability(atom/A)
+	var/mob/living/carbon/carbon_owner = owner
 
-	var/codex_info = {"<b>Reagent info:</b><BR>
-	Bicaridine - heals somebody else for 12.5 brute, or when used on yourself heal 6 brute and 30 stamina<BR>
-	Kelotane - set your target and any adjacent mobs aflame<BR>
-	Tramadol - slow your target for 1 second and deal 60% more armor-piercing damage<BR>
-	<BR>
-	<b>Tips:</b><BR>
-	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
-	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container. Can also be filled by pills.<BR>
-	> Press your unique action key (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
+	RegisterSignal(carbon_owner, COMSIG_MOVABLE_MOVED, PROC_REF(movement_fx))
+	RegisterSignal(carbon_owner, COMSIG_MOVABLE_IMPACT, PROC_REF(lunge_impact))
+	RegisterSignal(carbon_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 
-/obj/item/weapon/claymore/harvester/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/harvester)
+	carbon_owner.visible_message(span_danger("[carbon_owner] charges towards \the [A]!"))
+	playsound(owner, "sound/effects/alien_tail_swipe2.ogg", 50, 0, 4)
+	carbon_owner.throw_at(A, 2, 1, carbon_owner)
+	succeed_activate()
+	add_cooldown()
 
-/obj/item/weapon/claymore/harvester/equipped(mob/user, slot)
-	. = ..()
-	toggle_item_bump_attack(user, TRUE)
+///Create an after image
+/datum/action/ability/activable/weapon_skill/sword_lunge/proc/movement_fx()
+	SIGNAL_HANDLER
+	new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(owner), owner)
 
-/obj/item/weapon/claymore/harvester/dropped(mob/user)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)
+///Unregisters signals after lunge complete
+/datum/action/ability/activable/weapon_skill/sword_lunge/proc/charge_complete()
+	SIGNAL_HANDLER
+	UnregisterSignal(owner, list(COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED))
 
-/obj/item/weapon/claymore/harvester/get_mechanics_info()
-	. = ..()
-	. += jointext(codex_info, "<br>")
+///Sig handler for atom impacts during lunge
+/datum/action/ability/activable/weapon_skill/sword_lunge/proc/lunge_impact(datum/source, obj/target, speed)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(do_lunge_impact), source, target)
+	charge_complete()
+
+///Actual effects of lunge impact
+/datum/action/ability/activable/weapon_skill/sword_lunge/proc/do_lunge_impact(datum/source, obj/target)
+	var/mob/living/carbon/carbon_owner = source
+	if(!ishuman(target))
+		var/obj/obj_victim = target
+		obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, armour_penetration = penetration)
+		if(!obj_victim.anchored)
+			obj_victim.knockback(carbon_owner, 1, 2)
+	else
+		var/mob/living/carbon/human/human_victim = target
+		human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration)
+		human_victim.adjust_stagger(1 SECONDS)
+		playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, 0, 5)
+		shake_camera(human_victim, 2, 1)
 
 /obj/item/weapon/claymore/mercsword
 	name = "combat sword"
@@ -118,14 +152,13 @@
 
 //FC's sword.
 
-/obj/item/weapon/claymore/mercsword/officersword
+/obj/item/weapon/claymore/mercsword/machete/officersword
 	name = "\improper Officers sword"
 	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."
 	icon_state = "officer_sword"
 	item_state = "officer_sword"
-	force = 75
-	attack_speed = 12
-	w_class = WEIGHT_CLASS_BULKY
+	attack_speed = 11
+	penetration = 15
 
 /obj/item/weapon/claymore/mercsword/commissar_sword
 	name = "\improper commissars sword"
@@ -135,10 +168,6 @@
 	force = 80
 	attack_speed = 10
 	w_class = WEIGHT_CLASS_BULKY
-
-/obj/item/weapon/claymore/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
-	return ..()
 
 /obj/item/weapon/katana
 	name = "katana"
@@ -240,39 +269,6 @@
 							span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.")))
 	return (BRUTELOSS)
 
-/obj/item/weapon/combat_knife/harvester
-	name = "\improper HP-S Harvester knife"
-	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' knife. An advanced version of the HP-S Harvester blade, shrunken down to the size of the standard issue boot knife. It trades the harvester blades size and power for a smaller form, with the side effect of a miniscule chemical storage, yet it still keeps its ability to apply debilitating effects to its targets. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
-	icon_state = "vali_knife_icon"
-	item_state = "vali_knife"
-	force = 25
-	throwforce = 15
-	var/codex_info = {"<b>Reagent info:</b><BR>
-	Bicaridine - heals somebody else for 12.5 brute, or when used on yourself heal 6 brute and 30 stamina<BR>
-	Kelotane - set your target and any adjacent mobs aflame<BR>
-	Tramadol - slow your target for 1 second and deal 60% more armor-piercing damage<BR>
-	<BR>
-	<b>Tips:</b><BR>
-	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
-	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container. Can also be filled by pills.<BR>
-	> Press your unique action key (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
-
-/obj/item/weapon/combat_knife/harvester/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/harvester, 5)
-
-/obj/item/weapon/combat_knife/harvester/equipped(mob/user, slot)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)
-
-/obj/item/weapon/combat_knife/harvester/dropped(mob/user)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)
-
-/obj/item/weapon/combat_knife/harvester/get_mechanics_info()
-	. = ..()
-	. += jointext(codex_info, "<br>")
-
 /obj/item/weapon/combat_knife/upp
 	name = "\improper Type 30 survival knife"
 	icon_state = "upp_knife"
@@ -357,10 +353,9 @@
 	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, PROC_REF(post_throw))
 	AddComponent(/datum/component/automatedfire/autofire, throw_delay, _fire_mode = GUN_FIREMODE_AUTOMATIC, _callback_reset_fire = CALLBACK(src, PROC_REF(stop_fire)), _callback_fire = CALLBACK(src, PROC_REF(throw_knife)))
 
-/obj/item/stack/throwing_knife/update_icon()
+/obj/item/stack/throwing_knife/update_icon_state()
 	. = ..()
-	var/amount_to_show = amount > max_amount ? max_amount : amount
-	setDir(amount_to_show + round(amount_to_show / 3))
+	icon_state = "throwing_knife_[amount]"
 
 /obj/item/stack/throwing_knife/equipped(mob/user, slot)
 	. = ..()
@@ -419,7 +414,7 @@
 		throw_at(current_target, throw_range, throw_speed, living_user, TRUE)
 		current_target = null
 	else
-		var/obj/item/stack/throwing_knife/knife_to_throw = new(get_turf(src))
+		var/obj/item/stack/throwing_knife/knife_to_throw = new type(get_turf(src))
 		knife_to_throw.amount = 1
 		knife_to_throw.update_icon()
 		knife_to_throw.throw_at(current_target, throw_range, throw_speed, living_user, TRUE)

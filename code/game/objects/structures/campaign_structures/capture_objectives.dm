@@ -15,11 +15,18 @@
 	var/capturing_faction
 	///Timer holder for the current capture/decapture timer
 	var/capture_timer
+	///overhead timer
+	var/obj/effect/countdown/campaign_objective/countdown
+
+/obj/structure/campaign_objective/capture_objective/Initialize(mapload)
+	. = ..()
+	countdown = new(src)
 
 /obj/structure/campaign_objective/capture_objective/Destroy()
 	if(capture_timer)
 		deltimer(capture_timer)
 		capture_timer = null
+	QDEL_NULL(countdown)
 	return ..()
 
 /obj/structure/campaign_objective/capture_objective/update_control_minimap_icon()
@@ -57,7 +64,7 @@
 ///Starts the capture process
 /obj/structure/campaign_objective/capture_objective/proc/begin_capture(mob/living/user)
 	user.balloon_alert_to_viewers("Activating!")
-	if(!do_after(user, activation_time, TRUE, src))
+	if(!do_after(user, activation_time, NONE, src))
 		return
 	if(!capture_check(user))
 		return
@@ -66,12 +73,14 @@
 	if(capture_timer)
 		deltimer(capture_timer)
 		capture_timer = null
+		countdown.stop()
 	if(owning_faction == user.faction) //we already own it, we just stopped the enemy cap
 		capturing_faction = null
 		return
 	capturing_faction = user.faction
 	update_icon()
 	capture_timer = addtimer(CALLBACK(src, PROC_REF(do_capture), user), capture_delay, TIMER_STOPPABLE)
+	countdown.start()
 
 ///Checks if this objective can be captured
 /obj/structure/campaign_objective/capture_objective/proc/capture_check(mob/living/user)
@@ -95,6 +104,7 @@
 /obj/structure/campaign_objective/capture_objective/proc/do_capture(mob/living/user)
 	capturing_faction = null
 	capture_timer = null
+	countdown.stop()
 
 	if(owning_faction)
 		if(owning_faction == user.faction)
@@ -112,6 +122,10 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED, src, user)
 	update_icon()
 
+///Returns time left on the nuke in seconds
+/obj/structure/campaign_objective/capture_objective/proc/get_time_left()
+	return capture_timer ? round(timeleft(capture_timer) MILLISECONDS) : null
+
 //sensor tower
 /obj/effect/landmark/campaign_structure/sensor_tower
 	name = "sensor tower objective"
@@ -128,7 +142,13 @@
 	obj_flags = NONE
 	capture_flags = CAPTURE_OBJECTIVE_RECAPTURABLE
 
+/obj/structure/campaign_objective/capture_objective/sensor_tower/Initialize(mapload)
+	. = ..()
+	countdown.pixel_x = 5
+	countdown.pixel_y = 90
+
 /obj/structure/campaign_objective/capture_objective/sensor_tower/update_icon_state()
+	. = ..()
 	icon_state = initial(icon_state)
 	if(!owning_faction)
 		switch(capturing_faction)
@@ -150,7 +170,7 @@
 	name = "phoron crate objective"
 	icon = 'icons/obj/structures/campaign_structures.dmi'
 	icon_state = "orebox_phoron"
-	mission_types = list(/datum/campaign_mission/capture_mission)
+	mission_types = list(/datum/campaign_mission/capture_mission/phoron_capture)
 	spawn_object = /obj/structure/campaign_objective/capture_objective/fultonable
 
 /obj/structure/campaign_objective/capture_objective/fultonable
@@ -200,6 +220,13 @@
 	icon = 'icons/obj/structures/campaign_structures.dmi'
 	icon_state = "asat"
 	desc = "A sophisticated surface to space missile system designed for attacking orbiting satellites or spacecraft."
-	capture_delay = 45 SECONDS
 	capture_flags = CAPTURE_OBJECTIVE_RECAPTURABLE
-	owning_faction = FACTION_TERRAGOV //this could have a coded solution, but the mission is tgmc specific
+	///owning faction
+	var/faction = FACTION_TERRAGOV
+
+/obj/structure/campaign_objective/capture_objective/fultonable/asat_system/capture_check(mob/living/user)
+	//This is a 'defend' objective. The defending faction can't actually claim it for themselves, just decap it.
+	if((user.faction == faction) && !capturing_faction && !owning_faction)
+		user.balloon_alert(user, "Defend this objective!")
+		return FALSE
+	return ..()

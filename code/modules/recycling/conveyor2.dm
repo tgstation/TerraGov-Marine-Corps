@@ -119,6 +119,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	update()
 
 /obj/machinery/conveyor/update_icon_state()
+	. = ..()
 	if(machine_stat & BROKEN)
 		icon_state = "conveyor-broken"
 	else
@@ -225,9 +226,9 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	if(C)
 		C.set_operable(dir, id, 0)
 
-	C = locate() in get_step(src, turn(dir,180))
+	C = locate() in get_step(src, REVERSE_DIR(dir))
 	if(C)
-		C.set_operable(turn(dir,180), id, 0)
+		C.set_operable(REVERSE_DIR(dir), id, 0)
 
 
 //set the operable var if ID matches, propagating in the given direction
@@ -285,6 +286,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 // update the icon depending on the position
 
 /obj/machinery/conveyor_switch/update_icon_state()
+	. = ..()
 	if(position<0)
 		if(invert_icon)
 			icon_state = "switch-fwd"

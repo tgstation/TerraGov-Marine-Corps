@@ -25,7 +25,8 @@
 	update_icon()
 	updateUsrDialog()
 
-/obj/machinery/tank_part_fabricator/update_icon()
+/obj/machinery/tank_part_fabricator/update_icon_state()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "drone_fab_nopower"
 		return
@@ -154,7 +155,7 @@
 			to_chat(user, span_warning("[W] appears to be stuck to your hands."))
 	else if(iscrowbar(W) && machine_stat & (NOPOWER|BROKEN) && !QDELETED(loaded_mod))
 		user.visible_message(span_warning("[user] starts to pry [src]'s maintenance slot open."), span_notice("You start to pry [loaded_mod] out of [src]'s maintenance slot..."))
-		if(!do_after(user, 40, TRUE, src, BUSY_ICON_GENERIC) || QDELETED(loaded_mod))
+		if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_GENERIC) || QDELETED(loaded_mod))
 			return
 		user.visible_message("[user] pries [loaded_mod] out of [src].", span_notice("You retrieve [loaded_mod] from [src]."))
 		eject_tank_part()

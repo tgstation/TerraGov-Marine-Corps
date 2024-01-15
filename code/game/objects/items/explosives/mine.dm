@@ -42,7 +42,8 @@ Stepping directly on the mine will also blow it up
 	return ..()
 
 /// Update the icon, adding "_armed" if appropriate to the icon_state.
-/obj/item/explosive/mine/update_icon()
+/obj/item/explosive/mine/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][armed ? "_armed" : ""]"
 
 /// On explosion mines trigger their own explosion, assuming there were not deleted straight away (larger explosions or probability)
@@ -73,7 +74,7 @@ Stepping directly on the mine will also blow it up
 
 	if(armed)
 		return
-	if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
+	if(!do_after(user, 10, NONE, src, BUSY_ICON_HOSTILE))
 		user.visible_message(span_notice("[user] stops deploying [src]."), \
 	span_notice("You stop deploying \the [src]."))
 		return
@@ -108,7 +109,7 @@ Stepping directly on the mine will also blow it up
 	user.visible_message(span_notice("[user] starts disarming [src]."), \
 	span_notice("You start disarming [src]."))
 
-	if(!do_after(user, 8 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 8 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
 		user.visible_message("<span class='warning'>[user] stops disarming [src].", \
 		"<span class='warning'>You stop disarming [src].")
 		return
@@ -244,5 +245,5 @@ Stepping directly on the mine will also blow it up
 	QDEL_NULL(tripwire)
 	qdel(src)
 
-/obj/item/explosive/mine/ex_act()
+/obj/item/explosive/mine/anti_tank/ex_act()
 	qdel(src)

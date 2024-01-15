@@ -4,6 +4,7 @@
 	name = "supply drop console"
 	desc = "used by shipside staff to issue supply drops to squad beacons"
 	icon_state = "supplydrop"
+	screen_overlay = "supplydrop_screen"
 	interaction_flags = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/supplydrop
 	///Time between two supply drops
@@ -100,7 +101,7 @@
 				to_chat(usr, "[icon2html(src, usr)] [span_warning("There wasn't any supplies found on the squads supply pad. Double check the pad.")]")
 				return
 
-			if(!istype(supply_beacon.drop_location))
+			if(!istype(supply_beacon.drop_location) || !is_ground_level(supply_beacon.drop_location.z))
 				to_chat(usr, "[icon2html(src, usr)] [span_warning("The [supply_beacon.name] was not detected on the ground.")]")
 				return
 			if(isspaceturf(supply_beacon.drop_location) || supply_beacon.drop_location.density)
@@ -164,6 +165,10 @@
 
 	if(QDELETED(supply_beacon))
 		visible_message("[icon2html(supply_pad, usr)] [span_warning("Launch aborted! Supply beacon signal lost.")]")
+		return
+
+	if(!is_ground_level(supply_beacon.drop_location.z))
+		visible_message("[icon2html(supply_pad, usr)] [span_warning("Launch aborted! Supply beacon is not groundside.")]")
 		return
 
 	if(!length(supplies))

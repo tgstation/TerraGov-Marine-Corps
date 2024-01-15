@@ -6,6 +6,13 @@
 	icon_state_mini = "ammo_packet"
 	w_class = WEIGHT_CLASS_NORMAL
 
+/obj/item/ammo_magazine/packet/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(current_rounds <= 0)
+		balloon_alert(user, "Empty")
+		return
+	create_handful(user)
+
 /obj/item/ammo_magazine/packet/p10x24mm
 	name = "box of 10x24mm"
 	desc = "A box containing 150 rounds of 10x24mm caseless."
@@ -87,6 +94,15 @@
 	current_rounds = 500
 	max_rounds = 500
 	w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/ammo_magazine/packet/smart_targetrifle
+	name = "box of 10x27mm HV"
+	desc = "A box containing 200 rounds of 10x27mm smart rounds."
+	icon_state = "box_smarttargetrifle"
+	default_ammo = /datum/ammo/bullet/smarttargetrifle
+	caliber = CALIBER_10x27_CASELESS
+	current_rounds = 200
+	max_rounds = 200
 
 /obj/item/ammo_magazine/packet/scout_rifle
 	name = "Box of A19 high velocity bullets"

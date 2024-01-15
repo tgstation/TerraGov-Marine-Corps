@@ -65,17 +65,13 @@ it is used a lot in this framework.
 
 **Event handlers.**
 Event handlers are callbacks that you can attack to various element to
-listen for browser events. Inferno supports camelcase (`onClick`) and
-lowercase (`onclick`) event names.
+listen for browser events. React supports camelcase (`onClick`) event names.
 
 - Camel case names are what's called *synthetic* events, and are the
 **preferred way** of handling events in React, for efficiency and
 performance reasons. Please read
-[Inferno Event Handling](https://infernojs.org/docs/guides/event-handling)
+[React Event Handling](https://react.dev/learn/responding-to-events)
 to understand what this is about.
-- Lower case names are native browser events and should be used sparingly,
-for example when you need an explicit IE8 support. **DO NOT** use
-lowercase event handlers unless you really know what you are doing.
 
 ## `tgui/components`
 
@@ -370,7 +366,7 @@ dropdown when open. See Dropdown.tsx for more adcanced usage with DropdownEntry
 - `over: boolean` - Dropdown renders over instead of below
 - `color: string` - Color of dropdown button
 - `nochevron: boolean` - Whether or not the arrow on the right hand side of the dropdown button is visible
-- `displayText: string | number | InfernoNode` - Text to always display in place of the selected text
+- `displayText: string | number | ReactNode` - Text to always display in place of the selected text
 - `onClick: (e) => void` - Called when dropdown button is clicked
 - `onSelected: (value) => void` - Called when a value is picked from the list, `value` is the value that was picked
 
@@ -472,43 +468,6 @@ before any flex-related calculations are done. Has to be a length
   Setting basis to `0` breaks the loop and fixes all of the problems.
 - `align: string` - This allows the default alignment (or the one specified by
 align-items) to be overridden for individual flex items. See: [Flex](#flex).
-
-### `Grid`
-
-> **Deprecated:** This component is no longer recommended due to the variety
-> of bugs that come with table-based layouts.
-> We recommend using [Flex](#flex) instead.
-
-Helps you to divide horizontal space into two or more equal sections.
-It is essentially a single-row `Table`, but with some extra features.
-
-Example:
-
-```jsx
-<Grid>
-  <Grid.Column>
-    <Section title="Section 1">
-      Hello world!
-    </Section>
-  </Grid.Column>
-  <Grid.Column size={2}>
-    <Section title="Section 2">
-      Hello world!
-    </Section>
-  </Grid.Column>
-</Grid>
-```
-
-**Props:**
-
-- See inherited props: [Table](#table)
-
-### `Grid.Column`
-
-**Props:**
-
-- See inherited props: [Table.Cell](#tablecell)
-- `size: number` (default: 1) - Size of the column relative to other columns.
 
 ### `Icon`
 
@@ -665,7 +624,7 @@ to perform some sort of action), there is a way to do that:
 **Props:**
 
 - `className: string` - Applies a CSS class to the element.
-- `label: string|InfernoNode` - Item label.
+- `label: string|ReactNode` - Item label.
 - `labelWrap: boolean` - Lets the label wrap and makes it not take the minimum width.
 - `labelColor: string` - Sets the color of the label.
 - `color: string` - Sets the color of the content text.
@@ -760,7 +719,7 @@ Popper lets you position elements so that they don't go out of the bounds of the
 
 **Props:**
 
-- `popperContent: InfernoNode` - The content that will be put inside the popper.
+- `popperContent: ReactNode` - The content that will be put inside the popper.
 - `options?: { ... }` - An object of options to pass to `createPopper`. See [https://popper.js.org/docs/v2/constructors/#options], but the one you want most is `placement`. Valid placements are "bottom", "top", "left", and "right". You can affix "-start" and "-end" to achieve something like top left or top right respectively. You can also use "auto" (with an optional "-start" or "-end"), where a best fit will be chosen.
 - `additionalStyles: { ... }` - A map of CSS styles to add to the element that will contain the popper.
 

@@ -276,7 +276,7 @@
 	damage_falloff_mult = 0.25
 	fire_delay = 2
 	default_ammo_type = /obj/item/cell/lasgun/lasrifle
-	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle, /obj/item/cell/lasgun/volkite/powerpack/marine, /obj/item/cell/lasgun/lasrifle/recharger)
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle, /obj/item/cell/lasgun/lasrifle/recharger)
 	/// A list of available modes this gun can switch to
 	var/list/datum/lasrifle/mode_list = list()
 	/// The index of the current mode selected, used for non radial mode switches
@@ -291,10 +291,12 @@
 	var/fire_delay = 0
 	///Gives guns a burst amount, editable.
 	var/burst_amount = 0
+	///heat amount per shot
+	var/heat_per_fire = 0
 	///The gun firing sound of this mode
 	var/fire_sound = null
 	///What message it sends to the user when you switch to this mode.
-	var/message_to_user = ""
+	var/message_to_user = "" // todo delete me I'm useless
 	///Used to change the gun firemode, like automatic, semi-automatic and burst.
 	var/fire_mode = GUN_FIREMODE_SEMIAUTO
 	///what to change the gun icon_state to when switching to this mode.
@@ -308,6 +310,7 @@
 	///codex description
 	var/description = ""
 
+//TODO this proc should be generic so that you dont have to manually copy paste the default mode onto the item
 /obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
 	if(!user)
 		CRASH("switch_modes called with no user.")
@@ -344,6 +347,7 @@
 	fire_sound = initial(choice.fire_sound)
 	rounds_per_shot = initial(choice.rounds_per_shot)
 	windup_delay = initial(choice.windup_delay)
+	heat_per_fire = initial(choice.heat_per_fire)
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
@@ -365,14 +369,13 @@
 	desc = "A Terra Experimental energy rifle that fires balls of elecricity that shock all those near them, it is meant to drain the plasma of unidentified creatures from within, limiting their abilities. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts. Uses standard Terra Experimental (TE) power cells."
 	icon_state = "tesla"
 	item_state = "tesla"
-	icon = 'icons/Marine/gun64.dmi'
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
 	ammo_datum_type = /datum/ammo/energy/tesla
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	default_ammo_type = /obj/item/cell/lasgun/lasrifle
-	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle, /obj/item/cell/lasgun/volkite/powerpack/marine)
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_SHOWS_AMMO_REMAINING
 	muzzle_flash_color = COLOR_TESLA_BLUE
 	ammo_level_icon = "tesla"
@@ -533,13 +536,13 @@
 	item_state = "tep"
 	w_class = WEIGHT_CLASS_NORMAL
 	flags_equip_slot = ITEM_SLOT_BELT
+	gun_skill_category = SKILL_PISTOLS
 	max_shots = 30 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
 	ammo_level_icon = null
 	rounds_per_shot = 20
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -682,6 +685,13 @@
 		/obj/item/attachable/gyro,
 	)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/beginner
+	starting_attachment_types = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/bayonet,
+	)
+
 /datum/lasrifle/energy_carbine_mode/auto_burst
 	rounds_per_shot = 12
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/carbine
@@ -749,7 +759,6 @@
 	ammo_level_icon = "te"
 	icon_overlay_x_offset = -1
 	icon_overlay_y_offset = -3
-
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -841,13 +850,13 @@
 	icon_state = "tem"
 	item_state = "tem"
 	w_class = WEIGHT_CLASS_BULKY
+	gun_skill_category = SKILL_HEAVY_WEAPONS
 	max_shots = 150 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser
 	rounds_per_shot = 4
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	ammo_level_icon = "te"
-
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -950,9 +959,9 @@
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	icon_state = "tex"
 	item_state = "tex"
-	max_shots = 50 //codex stuff
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray/standard
-	rounds_per_shot = 12
+	max_shots = 40 //codex stuff
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
+	rounds_per_shot = 15
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -981,7 +990,7 @@
 	wield_delay = 0.5 SECONDS
 	scatter = 0
 	scatter_unwielded = 10
-	fire_delay = 0.25 SECONDS
+	fire_delay = 0.5 SECONDS
 	accuracy_mult_unwielded = 0.55
 	damage_falloff_mult = 0.3
 	mode_list = list(
@@ -990,9 +999,9 @@
 	)
 
 /datum/lasrifle/energy_rifle_mode/xray
-	rounds_per_shot = 12
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray/standard
-	fire_delay = 0.25 SECONDS
+	rounds_per_shot = 15
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
+	fire_delay = 0.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the xray rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -1045,6 +1054,27 @@
 	damage_falloff_mult = 0.9
 	fire_delay = 0.2 SECONDS
 	mode_list = list()
+	light_range = 0.1
+	light_power = 0.1
+	light_color = LIGHT_COLOR_ORANGE
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/update_icon()
+	. = ..()
+	if(rounds)
+		turn_light(null, TRUE)
+	else
+		turn_light(null, FALSE)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	set_light_on(toggle_on)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	. = ..()
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[item_state]_emissive")
+	standing.overlays.Add(emissive_overlay)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta
 	name = "\improper VX-12 Serpenta"
@@ -1052,6 +1082,7 @@
 	icon_state = "vx12"
 	item_state = "vx12"
 	w_class = WEIGHT_CLASS_NORMAL
+	gun_skill_category = SKILL_PISTOLS
 	max_shots = 15
 	rounds_per_shot = 36
 	ammo_datum_type = /datum/ammo/energy/volkite/medium
@@ -1185,6 +1216,7 @@
 		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
 	)
 	ammo_level_icon = null
+	gun_skill_category = SKILL_HEAVY_WEAPONS
 	max_shots = 120
 	ammo_datum_type = /datum/ammo/energy/volkite/heavy
 	rounds_per_shot = 30

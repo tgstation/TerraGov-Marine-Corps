@@ -35,7 +35,8 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_ACID_BLOOD|CASTE_EVOLUTION_ALLOWED
-	can_flags =CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_traits = null
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 0, BIO = 35, FIRE = 45, ACID = 35)
@@ -58,16 +59,16 @@
 	acid_spray_structure_damage = 45
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/place_acidwell,
-		/datum/action/xeno_action/activable/corrosive_acid/strong,
-		/datum/action/xeno_action/create_boiler_bomb,
-		/datum/action/xeno_action/activable/bombard,
-		/datum/action/xeno_action/toggle_long_range,
-		/datum/action/xeno_action/toggle_bomb,
-		/datum/action/xeno_action/activable/spray_acid/line/boiler,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/corrosive_acid/strong,
+		/datum/action/ability/xeno_action/create_boiler_bomb,
+		/datum/action/ability/activable/xeno/bombard,
+		/datum/action/ability/xeno_action/toggle_long_range,
+		/datum/action/ability/xeno_action/toggle_bomb,
+		/datum/action/ability/activable/xeno/spray_acid/line/boiler,
 	)
 
 /datum/xeno_caste/boiler/normal
@@ -83,14 +84,14 @@
 	spit_types = list(/datum/ammo/xeno/boiler_gas, /datum/ammo/xeno/boiler_gas/lance, /datum/ammo/xeno/boiler_gas/corrosive, /datum/ammo/xeno/boiler_gas/corrosive/lance)
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/place_acidwell,
-		/datum/action/xeno_action/activable/corrosive_acid/strong,
-		/datum/action/xeno_action/create_boiler_bomb,
-		/datum/action/xeno_action/activable/bombard,
-		/datum/action/xeno_action/toggle_long_range,
-		/datum/action/xeno_action/toggle_bomb,
-		/datum/action/xeno_action/activable/spray_acid/line/boiler,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/corrosive_acid/strong,
+		/datum/action/ability/xeno_action/create_boiler_bomb,
+		/datum/action/ability/activable/xeno/bombard,
+		/datum/action/ability/xeno_action/toggle_long_range,
+		/datum/action/ability/xeno_action/toggle_bomb,
+		/datum/action/ability/activable/xeno/spray_acid/line/boiler,
 	)

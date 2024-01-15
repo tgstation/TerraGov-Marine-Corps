@@ -65,7 +65,7 @@
 
 		visible_message(span_notice("[user] begins to restore the structural integrity of [src]."))
 
-		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
+		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 			return
 
 		if(!metal_sheets.use(1))
@@ -104,6 +104,7 @@
 	AddElement(/datum/element/strappable)
 
 /obj/item/weapon/shield/riot/marine/update_icon_state()
+	. = ..()
 	if(obj_integrity <= integrity_failure)
 		icon_state = initial(icon_state) + "_broken"
 	else

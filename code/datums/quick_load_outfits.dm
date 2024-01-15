@@ -388,7 +388,6 @@
 	name = "SH-35 Scout"
 	desc = "For getting too close for comfort. Equipped with a SH-35 shotgun with buckshot and flechette rounds, a MP-19 sidearm, a good amount of grenades and light armor with a cutting edge 'svallin' shield module. Provides for excellent mobility and devestating close range firepower, but will falter against sustained firepower."
 
-	belt = /obj/item/storage/belt/shotgun
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/shield
 	suit_store = /obj/item/weapon/gun/shotgun/pump/t35/standard
 	belt = /obj/item/storage/belt/shotgun/mixed
@@ -463,7 +462,7 @@
 
 	head = /obj/item/clothing/head/modular/m10x/tyr
 	glasses = /obj/item/clothing/glasses/welding
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_one
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two
 	suit_store = /obj/item/weapon/gun/smg/m25/magharness
 	belt = /obj/item/storage/belt/marine/secondary
 	r_hand = /obj/item/weapon/shield/riot/marine
@@ -486,10 +485,10 @@
 
 /datum/outfit/quick/tgmc/marine/machete
 	name = "Assault Marine"
-	desc = "This doesn't look standard issue... Equipped with a SMG-25 submachine gun, machete and jetpack, along with light armor upgraded with a 'svallin' shield module. It's not clear why this is here, nevertheless it has excellent mobility, and would likely be devastating against anyone you manage to actually reach."
+	desc = "This doesn't look standard issue... Equipped with a SMG-25 submachine gun, machete and heavy lift jetpack, along with light armor upgraded with a 'svallin' shield module. It's not clear why this is here, nevertheless it has excellent mobility, and would likely be devastating against anyone you manage to actually reach."
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/shield
-	back = /obj/item/jetpack_marine
+	back = /obj/item/jetpack_marine/heavy
 	belt = /obj/item/storage/holster/blade/machete/full
 	suit_store = /obj/item/weapon/gun/smg/m25/magharness
 
@@ -760,10 +759,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx15_flechette, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx15_slug, SLOT_IN_R_POUCH)
 
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_R_POUCH)
-
 /datum/outfit/quick/tgmc/corpsman/laser_medic
 	name = "Laser Rifle Corpsman"
 	desc = "Keeping everone else in the fight. Armed with an laser rifle with miniflamer, an impressive array of tools for healing your team, and a 'Mimir' biological protection module to allow you to continue operating in hazardous environments. With medivacs out of the question, you are the only thing standing between your buddies and an early grave."
@@ -823,7 +818,7 @@
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
 	w_uniform = /obj/item/clothing/under/marine/black_vest
 	shoes = /obj/item/clothing/shoes/marine/full
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_one
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two
 	gloves = /obj/item/clothing/gloves/marine
 	mask = /obj/item/clothing/mask/gas/tactical
 	head = /obj/item/clothing/head/modular/m10x/tyr
@@ -888,18 +883,11 @@
 	name = "SG62 Smart Machinegunner"
 	desc = "Flexibility and precision. Equipped with an SG-62 smart target rifle and heavy armor upgraded with a 'Tyr' extra armor mdule. The integrated spotting rifle comes with a variety of flexible ammo types, which combined with high damage, penetration and IFF, makes for a dangerous support loadout."
 
-	belt = /obj/item/storage/belt/marine
+	belt = /obj/item/storage/belt/marine/target_rifle
 	suit_store = /obj/item/weapon/gun/rifle/standard_smarttargetrifle/motion
 
 /datum/outfit/quick/tgmc/smartgunner/target_rifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle, SLOT_IN_BELT)
-
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten, SLOT_IN_BACKPACK)

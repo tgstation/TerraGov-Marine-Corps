@@ -3,17 +3,17 @@ import { BooleanLike } from 'common/react';
 export const KelvinZeroCelcius = 273.15;
 
 export const InternalDamageToDamagedDesc = {
-  'MECHA_INT_FIRE': 'Internal fire detected',
-  'MECHA_INT_TEMP_CONTROL': 'Temperature control inactive',
-  'MECHA_INT_TANK_BREACH': 'Air tank breach detected',
-  'MECHA_INT_CONTROL_LOST': 'Control module damaged',
+  MECHA_INT_FIRE: 'Internal fire detected',
+  MECHA_INT_TEMP_CONTROL: 'Temperature control inactive',
+  MECHA_INT_TANK_BREACH: 'Air tank breach detected',
+  MECHA_INT_CONTROL_LOST: 'Control module damaged',
 };
 
 export const InternalDamageToNormalDesc = {
-  'MECHA_INT_FIRE': 'No internal fires detected',
-  'MECHA_INT_TEMP_CONTROL': 'Temperature control active',
-  'MECHA_INT_TANK_BREACH': 'Air tank intact',
-  'MECHA_INT_CONTROL_LOST': 'Control module active',
+  MECHA_INT_FIRE: 'No internal fires detected',
+  MECHA_INT_TEMP_CONTROL: 'Temperature control active',
+  MECHA_INT_TANK_BREACH: 'Air tank intact',
+  MECHA_INT_CONTROL_LOST: 'Control module active',
 };
 
 export type AccessData = {
@@ -66,8 +66,8 @@ export type MaintData = {
 export type OperatorData = {
   name: string;
   integrity: number;
-  power_level: number | null;
-  power_max: number | null;
+  power_level: number;
+  power_max: number;
   mecha_flags: number;
   internal_damage: number;
   internal_damage_keys: string[];

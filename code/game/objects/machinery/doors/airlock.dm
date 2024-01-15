@@ -182,25 +182,27 @@
 	else
 		return 0
 
-
-/obj/machinery/door/airlock/update_icon()
-	if(overlays) overlays.Cut()
+/obj/machinery/door/airlock/update_icon_state()
+	. = ..()
 	if(density)
-		if(emergency && hasPower())
-			overlays += image(icon, "emergency_access_on")
 		if(locked && lights)
 			icon_state = "door_locked"
 		else
 			icon_state = "door_closed"
-		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) || welded)
-			overlays = list()
-			if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-				overlays += image(icon, "panel_open")
-			if(welded)
-				overlays += image(icon, "welded")
 	else
 		icon_state = "door_open"
-
+	
+/obj/machinery/door/airlock/update_overlays()
+	. = ..()
+	if(!density)
+		return
+	if(emergency && hasPower())
+		. += image(icon, "emergency_access_on")
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) || welded)
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+			. += image(icon, "panel_open")
+		if(welded)
+			. += image(icon, "welded")
 
 /obj/machinery/door/airlock/do_animate(animation)
 	switch(animation)
@@ -255,7 +257,7 @@
 	if(hasPower())
 		X.visible_message(span_warning("\The [X] digs into \the [src] and begins to pry it open."), \
 		span_warning("We dig into \the [src] and begin to pry it open."), null, 5)
-		if(!do_after(X, 4 SECONDS, FALSE, src, BUSY_ICON_HOSTILE) && !X.lying_angle)
+		if(!do_after(X, 4 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE) && !X.lying_angle)
 			return FALSE
 	if(locked)
 		to_chat(X, span_warning("\The [src] is bolted down tight."))
@@ -374,7 +376,7 @@
 			span_notice("You fumble around figuring out how to deconstruct [src]."))
 
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		if(width > 1)
@@ -384,7 +386,7 @@
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
 
-		if(!do_after(user,40, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, span_notice("You removed the airlock electronics!"))

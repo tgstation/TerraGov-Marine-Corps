@@ -76,6 +76,8 @@
 	var/list/obj/item/storage/refill_types
 	///What sound gets played when the item is tactical refilled
 	var/refill_sound = null
+	///Flags for specifically storage items
+	var/flags_storage = NONE
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(!ishuman(usr))
@@ -93,6 +95,9 @@
 
 	if(!istype(over_object, /atom/movable/screen))
 		return ..()
+
+	if(HAS_TRAIT(src, TRAIT_NODROP))
+		return
 
 	//Makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
 	//There's got to be a better way of doing this.
@@ -376,7 +381,7 @@
 
 ///This proc return 1 if the item can be picked up and 0 if it can't. Set the warning to stop it from printing messages
 /obj/item/storage/proc/can_be_inserted(obj/item/W as obj, warning = TRUE)
-	if(!istype(W) || (W.flags_item & NODROP))
+	if(!istype(W) || HAS_TRAIT(W, TRAIT_NODROP))
 		return //Not an item
 
 	if(loc == W)
@@ -448,10 +453,10 @@
 		return FALSE
 
 	if(!alert_user)
-		return do_after(user, access_delay, TRUE, src, ignore_turf_checks=TRUE)
+		return do_after(user, access_delay, IGNORE_USER_LOC_CHANGE, src)
 
 	to_chat(user, "<span class='notice'>You begin to [taking_out ? "take" : "put"] [accessed] [taking_out ? "out of" : "into"] [src]")
-	if(!do_after(user, access_delay, TRUE, src, ignore_turf_checks=TRUE))
+	if(!do_after(user, access_delay, IGNORE_USER_LOC_CHANGE, src))
 		to_chat(user, span_warning("You fumble [accessed]!"))
 		return FALSE
 	return TRUE
@@ -573,7 +578,7 @@
 
 	user.balloon_alert(user, "Refilling.")
 
-	if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+	if(!do_after(user, 15, NONE, src, BUSY_ICON_GENERIC))
 		return
 
 	playsound(user.loc, refill_sound, 15, 1, 6)
@@ -666,7 +671,7 @@
 	if(!allow_drawing_method)
 		verbs -= /obj/item/storage/verb/toggle_draw_mode
 
-	boxes = new
+	boxes = new()
 	boxes.name = "storage"
 	boxes.master = src
 	boxes.icon_state = "block"
@@ -674,21 +679,21 @@
 	boxes.layer = HUD_LAYER
 	boxes.plane = HUD_PLANE
 
-	storage_start = new /atom/movable/screen/storage(  )
+	storage_start = new /atom/movable/screen/storage()
 	storage_start.name = "storage"
 	storage_start.master = src
 	storage_start.icon_state = "storage_start"
 	storage_start.screen_loc = "7,7 to 10,8"
 	storage_start.layer = HUD_LAYER
 	storage_start.plane = HUD_PLANE
-	storage_continue = new /atom/movable/screen/storage(  )
+	storage_continue = new /atom/movable/screen/storage()
 	storage_continue.name = "storage"
 	storage_continue.master = src
 	storage_continue.icon_state = "storage_continue"
 	storage_continue.screen_loc = "7,7 to 10,8"
 	storage_continue.layer = HUD_LAYER
 	storage_continue.plane = HUD_PLANE
-	storage_end = new /atom/movable/screen/storage(  )
+	storage_end = new /atom/movable/screen/storage()
 	storage_end.name = "storage"
 	storage_end.master = src
 	storage_end.icon_state = "storage_end"
@@ -696,20 +701,20 @@
 	storage_end.layer = HUD_LAYER
 	storage_end.plane = HUD_PLANE
 
-	stored_start = new /obj //we just need these to hold the icon
+	stored_start = new /obj() //we just need these to hold the icon
 	stored_start.icon_state = "stored_start"
 	stored_start.layer = HUD_LAYER
 	stored_start.plane = HUD_PLANE
-	stored_continue = new /obj
+	stored_continue = new /obj()
 	stored_continue.icon_state = "stored_continue"
 	stored_continue.layer = HUD_LAYER
 	stored_continue.plane = HUD_PLANE
-	stored_end = new /obj
+	stored_end = new /obj()
 	stored_end.icon_state = "stored_end"
 	stored_end.layer = HUD_LAYER
 	stored_end.plane = HUD_PLANE
 
-	closer = new
+	closer = new()
 	closer.master = src
 
 /obj/item/storage/Destroy()
@@ -855,7 +860,7 @@
 
 /**
  * Attempts to get the first possible object from this container
- * 
+ *
  * Arguments:
  * * mob/living/user - The mob attempting to draw from this container
  * * start_from_left - If true we draw the leftmost object instead of the rightmost. FALSE by default.
@@ -874,6 +879,7 @@
 	return
 
 /obj/item/storage/update_icon_state()
+	. = ..()
 	if(!sprite_slots)
 		icon_state = initial(icon_state)
 		return

@@ -179,7 +179,7 @@
 	desc = "Goes great with a bottle of Bastion Burbon!"
 	icon_state = "donut_laugh"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/laughter = 3)
-	tastes = list("donut" = 3, "fizzy tutti frutti" = 1,)
+	tastes = list("donut" = 3, "fizzy tutti frutti" = 1)
 
 /obj/item/reagent_containers/food/snacks/donut/jelly/trumpet
 	name = "spaceman's jelly donut"

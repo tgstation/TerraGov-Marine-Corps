@@ -10,7 +10,7 @@
 	///list of plane masters to apply to owners
 	var/list/plane_masters = list()
 
-/atom/movable/screen/mech_view/Initialize(mapload, obj/vehicle/sealed/mecha/newowner)
+/atom/movable/screen/mech_view/Initialize(mapload, datum/hud/hud_owner, obj/vehicle/sealed/mecha/newowner)
 	. = ..()
 	owner = newowner
 	assigned_map = "mech_view_[REF(owner)]"

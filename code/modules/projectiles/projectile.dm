@@ -685,6 +685,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	hit_chance = min(hit_chance , hit_chance + 100 - proj.accuracy)
 	return prob(hit_chance)
 
+/obj/machinery/deployable/mounted/sentry/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(proj.iff_signal & iff_signal)
+		return FALSE
+	return ..()
+
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
 
@@ -870,6 +875,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(proj.shot_from && src == proj.shot_from.sniper_target(src))
 		damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
+		add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 
 	if(iscarbon(proj.firer))
 		var/mob/living/carbon/shooter_carbon = proj.firer
@@ -895,16 +901,14 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		record_projectile_damage(proj.firer, damage)	//Tally up whoever the shooter was
 
 	if(damage)
-		var/shrapnel_roll = do_shrapnel_roll(proj, damage)
-		if(shrapnel_roll)
+		if(do_shrapnel_roll(proj, damage))
 			feedback_flags |= (BULLET_FEEDBACK_SHRAPNEL|BULLET_FEEDBACK_SCREAM)
+			embed_projectile_shrapnel(proj)
 		else if(prob(damage * 0.25))
 			feedback_flags |= BULLET_FEEDBACK_SCREAM
 		bullet_message(proj, feedback_flags, damage)
 		proj.play_damage_effect(src)
 		apply_damage(damage, proj.ammo.damage_type, proj.def_zone, updating_health = TRUE) //This could potentially delete the source.
-		if(shrapnel_roll)
-			embed_projectile_shrapnel(proj)
 	else
 		bullet_message(proj, feedback_flags)
 
@@ -956,7 +960,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 		//If we have the the right kind of ammo, we can fire several projectiles at once.
 		if(ammo.bonus_projectiles_amount)
-			ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle)
+			ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle, target)
 
 	if(shooter.Adjacent(target) && ismob(target))
 		var/mob/mob_to_hit = target
@@ -1210,9 +1214,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(damage < 1)
 		return FALSE
-
-	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		current_bulletholes++
 
 	if(prob(30))
 		visible_message(span_warning("[src] is damaged by [proj]!"), visible_message_flags = COMBAT_MESSAGE)

@@ -19,6 +19,7 @@
 	var/busy = FALSE
 
 /obj/machinery/dropship_part_fabricator/update_icon_state()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "drone_fab_nopower"
 		return

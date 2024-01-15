@@ -120,10 +120,14 @@ By design, d1 is the smallest direction and d2 is the highest
 // General procedures
 ///////////////////////////////////
 
-/obj/structure/pipe_cleaner/update_icon()
+/obj/structure/pipe_cleaner/update_icon_state()
+	. = ..()
 	icon_state = "[d1]-[d2]"
+
+/obj/structure/pipe_cleaner/update_icon()
 	color = null
 	add_atom_colour(pipe_cleaner_color, FIXED_COLOUR_PRIORITY)
+	return ..()
 
 // Items usable on a pipe_cleaner :
 //   - Wirecutters : cut it duh !
@@ -206,11 +210,18 @@ By design, d1 is the smallest direction and d2 is the highest
 ///////////////////////////////////
 
 
-/obj/item/stack/pipe_cleaner_coil/update_icon()
+/obj/item/stack/pipe_cleaner_coil/update_icon_state()
+	. = ..()
 	icon_state = "[initial(item_state)][amount < 3 ? amount : ""]"
+
+/obj/item/stack/pipe_cleaner_coil/update_name(updates)
+	. = ..()
 	name = "pipe cleaner [amount < 3 ? "piece" : "coil"]"
+
+/obj/item/stack/pipe_cleaner_coil/update_icon()
 	color = null
 	add_atom_colour(pipe_cleaner_color, FIXED_COLOUR_PRIORITY)
+	return ..()
 
 /obj/item/stack/pipe_cleaner_coil/attack_hand(mob/user)
 	. = ..()
@@ -317,7 +328,7 @@ By design, d1 is the smallest direction and d2 is the highest
 			// pipe_cleaner is pointing at us, we're standing on an open tile
 			// so create a stub pointing at the clicked pipe_cleaner on our tile
 
-			var/fdirn = turn(dirn, 180)		// the opposite direction
+			var/fdirn = REVERSE_DIR(dirn)		// the opposite direction
 
 			for(var/obj/structure/pipe_cleaner/LC in U)		// check to make sure there's not a pipe_cleaner there already
 				if(LC.d1 == fdirn || LC.d2 == fdirn)

@@ -13,11 +13,6 @@
 //Force the config directory to be something other than "config"
 #define OVERRIDE_CONFIG_DIRECTORY_PARAMETER "config-directory"
 
-// Consider these images/atoms as part of the UI/HUD
-#define APPEARANCE_UI_IGNORE_ALPHA (RESET_COLOR|RESET_TRANSFORM|NO_CLIENT_COLOR|RESET_ALPHA|PIXEL_SCALE)
-#define APPEARANCE_UI (RESET_COLOR|RESET_TRANSFORM|NO_CLIENT_COLOR|PIXEL_SCALE)
-#define APPEARANCE_UI_TRANSFORM (RESET_COLOR|NO_CLIENT_COLOR|RESET_ALPHA|PIXEL_SCALE)
-
 //dirt type for each turf types.
 #define NO_DIRT 0
 #define DIRT_TYPE_GROUND 1
@@ -34,16 +29,6 @@
 //stages of shoe tying-ness
 #define SHOES_TIED 1
 #define SHOES_KNOTTED 2
-
-//subtypesof(), typesof() without the parent path
-#define subtypesof(typepath) ( typesof(typepath) - typepath )
-
-/// Takes a datum as input, returns its ref string, or a cached version of it
-/// This allows us to cache \ref creation, which ensures it'll only ever happen once per datum, saving string tree time
-/// It is slightly less optimal then a []'d datum, but the cost is massively outweighed by the potential savings
-/// It will only work for datums mind, for datum reasons
-/// : because of the embedded typecheck
-#define text_ref(datum) (isdatum(datum) ? (datum:cached_ref ||= "\ref[datum]") : ("\ref[datum]"))
 
 #define RESIZE_DEFAULT_SIZE 1
 

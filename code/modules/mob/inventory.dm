@@ -55,12 +55,12 @@
 	if(!l_hand)
 		W.forceMove(src)
 		l_hand = W
-		W.equipped(src,SLOT_L_HAND)
 		W.layer = ABOVE_HUD_LAYER
 		W.plane = ABOVE_HUD_PLANE
 		update_inv_l_hand()
 		W.pixel_x = initial(W.pixel_x)
 		W.pixel_y = initial(W.pixel_y)
+		W.equipped(src,SLOT_L_HAND)
 		return TRUE
 	return FALSE
 
@@ -83,12 +83,12 @@
 	if(!r_hand)
 		W.forceMove(src)
 		r_hand = W
-		W.equipped(src,SLOT_R_HAND)
 		W.layer = ABOVE_HUD_LAYER
 		W.plane = ABOVE_HUD_PLANE
 		update_inv_r_hand()
 		W.pixel_x = initial(W.pixel_x)
 		W.pixel_y = initial(W.pixel_y)
+		W.equipped(src,SLOT_R_HAND)
 		return TRUE
 	return FALSE
 
@@ -173,7 +173,9 @@
 	return FALSE					//nonliving mobs don't have hands
 
 /mob/living/put_in_hand_check(obj/item/I, hand_index)
-	if((I.flags_item & ITEM_ABSTRACT))
+	if((I.flags_item & ITEM_ABSTRACT) || !istype(I))
+		return FALSE
+	if(incapacitated() || lying_angle || (status_flags & INCORPOREAL))
 		return FALSE
 	return TRUE
 
@@ -287,8 +289,8 @@
 	if(!I)
 		return
 
-	if((I.flags_item & NODROP) && !force)
-		return FALSE //UnEquip() only fails if item has NODROP
+	if(HAS_TRAIT(I, TRAIT_NODROP) && !force)
+		return FALSE //UnEquip() only fails if item has TRAIT_NODROP
 
 	doUnEquip(I)
 

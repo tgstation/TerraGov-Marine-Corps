@@ -17,6 +17,10 @@
 	  */
 	var/gc_destroyed
 
+	/// Open uis owned by this datum
+	/// Lazy, since this case is semi rare
+	var/list/open_uis
+
 	/// Active timers with this datum as the target
 	var/list/_active_timers
 	/// Status traits attached to this datum. associative list of the form: list(trait name (string) = list(source1, source2, source3,...))
@@ -170,13 +174,20 @@
 	to_chat(target, txt_changed_vars())
 #endif
 
-///Return a LIST for serialize_datum to encode! Not the actual json!
-/datum/proc/serialize_list(list/options)
-	CRASH("Attempted to serialize datum [src] of type [type] without serialize_list being implemented!")
+/// Return a list of data which can be used to investigate the datum, also ensure that you set the semver in the options list
+/datum/proc/serialize_list(list/options, list/semvers)
+	SHOULD_CALL_PARENT(TRUE)
 
-///Accepts a LIST from deserialize_datum. Should return src or another datum.
+	. = list()
+	.["tag"] = tag
+
+	SET_SERIALIZATION_SEMVER(semvers, "1.0.0")
+	return .
+
+///Accepts a LIST from deserialize_datum. Should return whether or not the deserialization was successful.
 /datum/proc/deserialize_list(json, list/options)
-	CRASH("Attempted to deserialize datum [src] of type [type] without deserialize_list being implemented!")
+	SHOULD_CALL_PARENT(TRUE)
+	return TRUE
 
 ///Serializes into JSON. Does not encode type.
 /datum/proc/serialize_json(list/options)

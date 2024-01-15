@@ -86,11 +86,11 @@
 
 ///Actually activates the mitigation effect
 /datum/component/stun_mitigation/proc/activate_with_user()
-	RegisterSignal(affected, COMSIG_LIVING_PROJECTILE_STUN, PROC_REF(on_attack_stun_mitigation))
+	RegisterSignals(affected, list(COMSIG_LIVING_PROJECTILE_STUN, COMSIG_LIVING_JETPACK_STUN), PROC_REF(on_attack_stun_mitigation))
 
 ///Actually deactivates the mitigation effect
 /datum/component/stun_mitigation/proc/deactivate_with_user()
-	UnregisterSignal(affected, COMSIG_LIVING_PROJECTILE_STUN)
+	UnregisterSignal(affected, list(COMSIG_LIVING_PROJECTILE_STUN, COMSIG_LIVING_JETPACK_STUN))
 
 ///Handles removing the mitigation from a user
 /datum/component/stun_mitigation/proc/shield_detach_from_user()

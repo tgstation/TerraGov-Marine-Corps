@@ -1022,7 +1022,7 @@
 	},
 /area/oscar_outpost/outside/road)
 "lf" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
@@ -1072,7 +1072,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "lB" = (
-/obj/item/weapon/gun/heavy_laser{
+/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser{
 	dir = 1;
 	pixel_y = 7
 	},
@@ -1109,11 +1109,11 @@
 	},
 /area/oscar_outpost)
 "mx" = (
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "my" = (
@@ -1129,11 +1129,11 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "mA" = (
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
 /obj/structure/barricade/sandbags{
 	dir = 1;
 	name = "trench lining";
@@ -1865,7 +1865,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "uM" = (
-/obj/item/weapon/gun/launcher/rocket/heavy_rr{
+/obj/item/weapon/gun/heavy_isg{
 	dir = 1
 	},
 /turf/open/floor/engine/cult{
@@ -1991,11 +1991,11 @@
 	},
 /area/oscar_outpost)
 "wA" = (
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
 /obj/structure/barricade/sandbags{
 	dir = 1;
 	name = "trench lining";
@@ -2353,11 +2353,11 @@
 /area/oscar_outpost)
 "AU" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -2404,7 +2404,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
 "Ck" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "Cz" = (
@@ -2585,11 +2585,11 @@
 /area/oscar_outpost)
 "Dn" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -2906,7 +2906,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "Gj" = (
-/obj/item/weapon/gun/heavy_laser{
+/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser{
 	dir = 1;
 	pixel_y = 7
 	},
@@ -3003,11 +3003,11 @@
 	},
 /area/oscar_outpost/outside/east)
 "Ie" = (
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "Iw" = (
@@ -3936,7 +3936,7 @@
 	},
 /area/oscar_outpost/outside/northeast)
 "Rp" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "Rs" = (

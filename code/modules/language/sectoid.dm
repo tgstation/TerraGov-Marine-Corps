@@ -9,5 +9,11 @@
 	key = "p"
 	sentence_chance = 0
 	default_priority = 80
-	syllables = list("<font face='Wingdings'>wreh<font face='Verdana'>", "<font face='Wingdings'>breh<font face='Verdana'>", "<font face='Wingdings'>ayy<font face='Verdana'>", "<font face='Wingdings'>gji<font face='Verdana'>", "<font face='Wingdings'>pks<font face='Verdana'>", "<font face='Wingdings'>jok<font face='Verdana'>",)
+	syllables = list("<font face='Wingdings'>wreh<font face='Verdana'>",
+		"<font face='Wingdings'>breh<font face='Verdana'>",
+		"<font face='Wingdings'>ayy<font face='Verdana'>",
+		"<font face='Wingdings'>gji<font face='Verdana'>",
+		"<font face='Wingdings'>pks<font face='Verdana'>",
+		"<font face='Wingdings'>jok<font face='Verdana'>",
+	)
 	icon_state = "aphasia"

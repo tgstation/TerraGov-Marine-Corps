@@ -370,7 +370,7 @@
 	caliber = CALIBER_ALIEN
 	icon_state = "alien_rifle"
 	icon_state_mini = "mag_rifle_purple"
-	default_ammo = /datum/ammo/energy/plasma
+	default_ammo = /datum/ammo/energy/sectoid_plasma
 	max_rounds = 20
 
 //-------------------------------------------------------
@@ -424,7 +424,7 @@
 	icon_state = "t21"
 	icon_state_mini = "mag_rifle"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
-	max_rounds = 30
+	max_rounds = 40
 
 //ALF-51B
 

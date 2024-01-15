@@ -239,6 +239,7 @@
 			H.dropItemToGround(thing)
 	for(var/newtrait in inherent_traits)
 		ADD_TRAIT(H, newtrait, SPECIES_TRAIT)
+	H.maxHealth += total_health - (old_species ? old_species.total_health : initial(H.maxHealth))
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
@@ -718,6 +719,7 @@
 	eyes = "blank_eyes"
 	speech_verb_override = "transmits"
 	count_human = TRUE
+	total_health = 80
 
 	species_flags = HAS_NO_HAIR|NO_BREATHE|NO_POISON|NO_PAIN|USES_ALIEN_WEAPONS|NO_DAMAGE_OVERLAY
 
@@ -731,7 +733,6 @@
 
 	namepool = /datum/namepool/sectoid
 	special_death_message = "You have perished."
-
 
 /datum/species/moth
 	name = "Moth"

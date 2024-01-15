@@ -72,6 +72,23 @@
 		if(EXPLODE_WEAK)
 			take_damage(rand(15, 35), BRUTE, BOMB)
 
+/obj/structure/window/hitby(atom/movable/AM, speed = 5)
+	var/throw_damage = speed
+	var/mob/living/thrown_mob
+	if(isobj(AM))
+		var/obj/thrown_obj = AM
+		throw_damage = thrown_obj.throwforce
+	else if(isliving(AM))
+		thrown_mob = AM
+		throw_damage *= thrown_mob.mob_size * 8
+	take_damage(throw_damage)
+	if(obj_integrity > 0) //we only stop if we don't break the window
+		AM.stop_throw()
+		. = TRUE
+	if(thrown_mob)
+		thrown_mob.take_overall_damage(speed * 5, BRUTE, MELEE, !., FALSE, TRUE, 0, 4) //done here for dramatic effect, and to make the damage sharp if we broke the window
+
+
 //TODO: Make full windows a separate type of window.
 //Once a full window, it will always be a full window, so there's no point
 //having the same type for both.
@@ -178,7 +195,7 @@
 		if(reinf)
 			new /obj/item/stack/sheet/glass/reinforced(loc, 2)
 		else
-			new /obj/item/stack/sheet/glass(loc, 2)
+			new /obj/item/stack/sheet/glass/glass(loc, 2)
 	else
 		new shardtype(loc)
 		if(is_full_window())
@@ -228,9 +245,8 @@
 			INVOKE_NEXT_TICK(W, TYPE_PROC_REF(/atom/movable, update_icon))
 
 //merges adjacent full-tile windows into one (blatant ripoff from game/smoothwall.dm)
-/obj/structure/window/update_icon()
-	//A little cludge here, since I don't know how it will work with slim windows. Most likely VERY wrong.
-	//this way it will only update full-tile ones
+/obj/structure/window/update_icon_state()
+	. = ..()
 	if(!src)
 		return
 	if(!is_full_window())
@@ -373,7 +389,7 @@
 	reinf = TRUE
 	flags_atom = NONE
 
-/obj/structure/window/shuttle/update_icon() //icon_state has to be set manually
+/obj/structure/window/shuttle/update_icon_state()
 	return
 
 //Framed windows
@@ -404,11 +420,10 @@
 
 /obj/structure/window/framed/update_icon()
 	QUEUE_SMOOTH(src)
+	return ..()
 
-
-
-/obj/structure/window/framed/deconstruct(disassembled = TRUE)
-	if(window_frame)
+/obj/structure/window/framed/deconstruct(disassembled = TRUE, leave_frame = TRUE)
+	if(window_frame && leave_frame)
 		var/obj/structure/window_frame/WF = new window_frame(loc, TRUE)
 		WF.icon_state = "[WF.basestate][junction]_frame"
 		WF.setDir(dir)

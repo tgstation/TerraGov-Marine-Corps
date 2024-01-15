@@ -144,7 +144,7 @@
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest,)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
 
@@ -197,9 +197,9 @@
 //-------------------------------------------------------
 //TE-9001 mounted heavy laser
 
-/obj/item/weapon/gun/heavy_laser
+/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser
 	name = "\improper TE-9001 mounted heavy laser"
-	desc = "The TE-9001 mounted heavy laser is a non-IFF heavy laser that is powerful enough to start a sizeable fire on its impact, this weapon is exceptional at area denial."
+	desc = "The TE-9001 mounted heavy laser is a non-IFF heavy laser that is powerful enough to start a sizeable fire on its impact, this weapon is exceptional at area denial and has direct fire capability on the side."
 
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -209,7 +209,8 @@
 	fire_sound = 'sound/weapons/guns/fire/tank_flamethrower.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
-	default_ammo_type = /obj/item/ammo_magazine/heavy_laser
+	default_ammo_type = /obj/item/cell/lasgun/heavy_laser
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/heavy_laser
 
 	scatter = 10
 	deployed_scatter_change = -10
@@ -221,9 +222,9 @@
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest,)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	allowed_ammo_types = list(/obj/item/ammo_magazine/heavy_laser)
+	allowed_ammo_types = list(/obj/item/cell/lasgun/heavy_laser)
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
@@ -232,48 +233,99 @@
 	max_integrity = 400
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
-//-------------------------------------------------------
-//RR-15 mounted heavy recoilless rifle
+	mode_list = list(
+		"Standard" = /datum/lasrifle/heavy_laser/standard,
+		"Shatter Burst" = /datum/lasrifle/heavy_laser/burst,
+		"Ricochet" = /datum/lasrifle/heavy_laser/ricochet,
+	)
 
-/obj/item/weapon/gun/launcher/rocket/heavy_rr
-	name = "\improper RR-15 mounted heavy recoilless rifle"
-	desc = "The RR-15 mounted recoilless rifle is a non-IFF, modernized version of the L6 Wombat using 75mm. Reintroduced due to the rather close quarter nature of combat against xenomorphs, this thing will kill mostly anything on its way."
+/datum/lasrifle/heavy_laser/standard
+	rounds_per_shot = 15
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/heavy_laser
+	fire_delay = 0.7 SECONDS
+	burst_amount = 1
+	fire_sound = 'sound/weapons/guns/fire/tank_flamethrower.ogg'
+	message_to_user = "You set the heavy laser to glob mode."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	radial_icon_state = "laser_overcharge"
+	description = "Fires a laser glob that ignites things on hit."
+
+/datum/lasrifle/heavy_laser/burst
+	rounds_per_shot = 5
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/shatter/heavy_laser
+	fire_delay = 1 SECONDS
+	burst_amount = 3
+	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
+	message_to_user = "You set the heavy laser to burst fire mode."
+	fire_mode = GUN_FIREMODE_AUTOBURST
+	icon_state = "heavylaser"
+	description = "Fires a rapid pulse laser, dealing mediocre damage and shattering armor, but suffers from increased scatter and poorer falloff."
+
+/datum/lasrifle/heavy_laser/ricochet
+	rounds_per_shot = 15
+	fire_delay = 0.5 SECONDS
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/ricochet/four
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	message_to_user = "You set the heavy laser to ricochet mode."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "heavylaser"
+	radial_icon_state = "laser_ricochet"
+	description = "Fires an experiment laser pulse capable of bouncing off many wall surfaces. The laser increases in potency when bouncing, before collapsing entirely after exceeding its threshold."
+
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable
+	icon_state = "heavylaser_deployable"
+	flags_item = IS_DEPLOYABLE|TWOHANDED
+
+//-------------------------------------------------------
+//FK-88 mounted heavy infantry support gun
+
+/obj/item/weapon/gun/heavy_isg
+	name = "\improper FK-88 mounted flak gun"
+	desc = "The FK-88 is a big gun, offically meant to be used against large hostile wildlife or unruly crowds, this cannon will most definitely give a very bad day to anything that gets caught in its line of fire. Takes quite a while to dial in your shots. Uses 15cm shells."
 
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
-	icon = 'icons/Marine/marine-hmg.dmi'
-	icon_state = "heavyrr"
-
+	icon = 'icons/Marine/marine-fkgun.dmi'
+	icon_state = "isg"
 	fire_sound = 'sound/weapons/guns/fire/tank_cannon1.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 
-	default_ammo_type = /obj/item/ammo_magazine/heavy_rr
+	default_ammo_type = /obj/item/ammo_magazine/heavy_isg/he
 	max_shells = 1 //codex
-	caliber = CALIBER_75MM // codex
+	caliber = CALIBER_15CM // codex
 
 	scatter = 10
 	deployed_scatter_change = -10
-	windup_delay = 1 SECONDS
-	fire_delay = 3 SECONDS
+	fire_delay = 10 SECONDS
 
-	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE|DEPLOYED_ANCHORED_FIRING_ONLY
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	backblastdamage = FALSE
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	allowed_ammo_types = list(/obj/item/ammo_magazine/heavy_rr)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/heavy_isg/he,
+		/obj/item/ammo_magazine/heavy_isg/sabot,
+	)
 
-	deploy_time = 5 SECONDS
+	deploy_time = 6 SECONDS
 	undeploy_time = 3 SECONDS
-	deployable_item = /obj/machinery/deployable/mounted
+	deployable_item = /obj/machinery/deployable/mounted/moveable/isg
 
-	max_integrity = 600
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+	max_integrity = 800
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+
+/obj/machinery/deployable/mounted/moveable/isg
+	coverage = 90 // Has a shield.
+	anchor_time = 4 SECONDS
+	has_anchored_sprite = TRUE
+	pixel_x = -16
+	pixel_y = -11
 
 ///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/tl102/death
@@ -365,12 +417,10 @@
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/lasersight,
-		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/bayonetknife/som,
@@ -406,7 +456,7 @@
 
 
 /obj/item/weapon/gun/standard_mmg/machinegunner
-	starting_attachment_types = list(/obj/item/attachable/stock/t27, /obj/item/attachable/scope/unremovable/mmg, /obj/item/attachable/heavy_barrel)
+	starting_attachment_types = list(/obj/item/attachable/stock/t27, /obj/item/attachable/scope/unremovable/mmg)
 
 /obj/item/weapon/gun/clf_heavyrifle
 	name = "\improper PTR-41/1785 anti-mech gun"
@@ -615,3 +665,53 @@
 		gun_user?.record_war_crime()
 
 
+// Non-TGMC HMG
+
+/obj/item/weapon/gun/icc_hmg
+	name = "\improper KRD-61ES mounted heavy machinegun"
+	desc = "The KRD-61ES machinegun is the export variant of the ML-91 HMG. It's too heavy to be wielded or operated without the tripod. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
+	icon = 'icons/Marine/marine-mmg.dmi'
+	icon_state = "kord"
+
+	fire_sound = 'sound/weapons/guns/fire/hmg2.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+
+	scatter = 10
+	deployed_scatter_change = -10
+	accuracy_mult = 1.2 //it's got a bipod
+	fire_delay = 0.25 SECONDS
+
+	default_ammo_type = /obj/item/ammo_magazine/icc_hmg
+
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/icc_hmg,
+	)
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.05 SECONDS
+	aim_speed_modifier = 5
+
+	attachable_allowed = list(
+		/obj/item/attachable/scope/unremovable/tl102,
+	)
+
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/tl102,
+	)
+
+	deploy_time = 1.5 SECONDS
+	undeploy_time = 0.5 SECONDS
+	deployable_item = /obj/machinery/deployable/mounted
+
+	max_integrity = 200
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
+
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/icc_hmg,
+	)

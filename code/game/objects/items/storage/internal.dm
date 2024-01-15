@@ -55,7 +55,7 @@
 
 	var/obj/item/owner = master_item
 
-	if(owner.flags_item & NODROP)
+	if(HAS_TRAIT(owner, TRAIT_NODROP))
 		return FALSE
 
 	if(!istype(over_object, /atom/movable/screen))
@@ -80,7 +80,7 @@
 ///unequips items that require a do_after because they have an unequip time
 /obj/item/storage/internal/proc/unequip_item(mob/living/carbon/user, hand_to_put_in)
 	var/obj/item/owner = master_item
-	if(!do_after(user, owner.unequip_delay_self, TRUE, owner, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, owner.unequip_delay_self, NONE, owner, BUSY_ICON_FRIENDLY))
 		to_chat(user, "You stop taking off \the [owner]")
 		return
 	if(hand_to_put_in == "r_hand")

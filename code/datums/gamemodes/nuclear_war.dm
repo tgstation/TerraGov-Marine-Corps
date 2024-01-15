@@ -37,7 +37,8 @@
 /datum/game_mode/infestation/nuclear_war/post_setup()
 	. = ..()
 
-	SSpoints.add_psy_points(XENO_HIVE_NORMAL, 1400)
+	SSpoints.add_strategic_psy_points(XENO_HIVE_NORMAL, 1400)
+	SSpoints.add_tactical_psy_points(XENO_HIVE_NORMAL, 300)
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()

@@ -131,6 +131,15 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/caves/nanotrasen_lab)
+"aeA" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/lawankaoutpost/outside/southeast)
 "aeT" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_y = -3
@@ -267,6 +276,11 @@
 /obj/item/clothing/head/helmet/riot,
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/caves/nukestorage)
+"alq" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/northwest)
 "alw" = (
 /obj/structure/table,
 /obj/item/trash/plate,
@@ -506,7 +520,7 @@
 	},
 /area/lawankaoutpost/colony/operations_hall)
 "avX" = (
-/obj/machinery/prop/mainship/computer/dna,
+/obj/machinery/prop/computer/dna,
 /turf/open/floor,
 /area/lawankaoutpost/colony/hydroponics)
 "awn" = (
@@ -520,6 +534,18 @@
 	dir = 6
 	},
 /area/lawankaoutpost/colony/medbay)
+"awR" = (
+/obj/machinery/landinglight/lz2{
+	dir = 4
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "awT" = (
 /obj/structure/sign/botany{
 	dir = 1
@@ -1098,6 +1124,7 @@
 	dir = 2
 	},
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/operations_hall)
 "aVd" = (
@@ -1298,6 +1325,7 @@
 	pixel_y = -4
 	},
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/campaign_structure/tele_blocker,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/west)
 "bdf" = (
@@ -1587,6 +1615,9 @@
 /area/lawankaoutpost/colony/northdorms)
 "bso" = (
 /obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
 /turf/open/floor/tile/red/whitered,
 /area/lawankaoutpost/colony/operations_hall)
 "bsK" = (
@@ -1635,6 +1666,12 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/colony/hydroponics)
+"buU" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/northwest)
 "bvM" = (
 /obj/effect/decal/cleanable/blood/oil/streak,
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -1916,6 +1953,16 @@
 	dir = 8
 	},
 /area/lawankaoutpost/colony/operations_storage)
+"bFq" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/lawankaoutpost/colony/operations_hall)
 "bFS" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -8
@@ -1945,6 +1992,17 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/lawankaoutpost/colony/biologics)
+"bGQ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/lawankaoutpost/colony/operations_hall)
 "bGR" = (
 /obj/item/ammo_casing/shell,
 /obj/effect/landmark/dropship_start_location,
@@ -2184,6 +2242,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/cargo)
+"bTr" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/floor/tile/red/whitered,
+/area/lawankaoutpost/colony/operations_hall)
 "bTI" = (
 /obj/machinery/light{
 	light_color = "#da2f1b"
@@ -2791,8 +2853,8 @@
 /area/lawankaoutpost/colony/marshalls)
 "cqC" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
-	name = "\improper Mineral Processing";
-	dir = 1
+	dir = 1;
+	name = "\improper Mineral Processing"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
@@ -2908,6 +2970,10 @@
 	dir = 9
 	},
 /obj/effect/ai_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
 /turf/open/floor,
 /area/lawankaoutpost/colony/landingzonetwo)
 "cvR" = (
@@ -2935,6 +3001,16 @@
 /obj/item/trash/pistachios,
 /turf/open/floor/tile/blue/taupeblue,
 /area/lawankaoutpost/colony/robotics)
+"cyp" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/outside/northwest)
 "cyC" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/tile/dark/brown2{
@@ -3084,6 +3160,12 @@
 /obj/item/tool/minihoe,
 /turf/open/floor/tile/green/full,
 /area/lawankaoutpost/colony/hydroponics)
+"cEu" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/floor,
+/area/lawankaoutpost/colony/landingzonetwo)
 "cEA" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/landmark/weed_node,
@@ -3148,6 +3230,12 @@
 "cGs" = (
 /turf/open/floor/mainship/tcomms,
 /area/lawankaoutpost/colony/biologics)
+"cGD" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "cGJ" = (
 /obj/structure/flora/grass/tallgrass/hideable{
 	color = "#7a8c54"
@@ -3332,6 +3420,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lawankaoutpost/colony/biologics_storage)
+"cQO" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/northwest/garbledradio)
 "cRx" = (
 /obj/structure/closet/crate/hydroponics/prespawned,
 /turf/open/floor,
@@ -3556,6 +3648,14 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/northwest)
+"daw" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/tile/red/whitered{
+	dir = 8
+	},
+/area/lawankaoutpost/colony/operations_hall)
 "daB" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
@@ -3596,8 +3696,8 @@
 /area/lawankaoutpost/colony/northdorms)
 "dcs" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
-	name = "\improper Northern Dormitories";
-	dir = 1
+	dir = 1;
+	name = "\improper Northern Dormitories"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -3646,6 +3746,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/south)
+"ddW" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/lawankaoutpost/outside/southeast)
 "dea" = (
 /obj/machinery/light{
 	dir = 8
@@ -3661,8 +3768,8 @@
 /area/lawankaoutpost/colony/biologics)
 "del" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/noglass{
-	name = "\improper Women's Restroom";
-	dir = 1
+	dir = 1;
+	name = "\improper Women's Restroom"
 	},
 /turf/open/floor/freezer,
 /area/lawankaoutpost/colony/northdorms)
@@ -3745,6 +3852,14 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/northwest)
+"dhZ" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/tile/red/whitered{
+	dir = 9
+	},
+/area/lawankaoutpost/colony/operations_hall)
 "dir" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/blue/taupeblue,
@@ -3819,8 +3934,8 @@
 /area/lawankaoutpost/colony/mining)
 "dkI" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
-	name = "\improper Eta Lab Director's Office";
-	dir = 1
+	dir = 1;
+	name = "\improper Eta Lab Director's Office"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
@@ -4012,6 +4127,12 @@
 "dun" = (
 /turf/closed/wall/cult,
 /area/lawankaoutpost/caves/southwest)
+"duo" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "duN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -4167,8 +4288,8 @@
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "dDg" = (
 /obj/machinery/door/airlock/multi_tile/research{
-	name = "\improper Biological Research Facility";
-	dir = 1
+	dir = 1;
+	name = "\improper Biological Research Facility"
 	},
 /turf/open/floor,
 /area/lawankaoutpost/colony/biologics)
@@ -4293,6 +4414,13 @@
 "dJH" = (
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/operations_kitchen)
+"dJO" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/outside/southeast)
 "dJU" = (
 /turf/open/floor/tile/red/whitered{
 	dir = 9
@@ -4515,6 +4643,14 @@
 	dir = 4
 	},
 /area/lawankaoutpost/colony/mining)
+"dTG" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/northwest/garbledradio)
 "dUh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -4627,6 +4763,14 @@
 	dir = 5
 	},
 /area/lawankaoutpost/colony/operations_administration)
+"eag" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/floor/tile/red/whitered{
+	dir = 10
+	},
+/area/lawankaoutpost/colony/operations_hall)
 "eaq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -5086,6 +5230,9 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/operations_hall)
 "esN" = (
@@ -5391,6 +5538,7 @@
 /area/lawankaoutpost/colony/medbay)
 "eHv" = (
 /obj/structure/flora/ausbushes/ywflowers,
+/obj/effect/landmark/campaign_structure/asat_system,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/colony/operations_hall)
 "eHy" = (
@@ -5830,6 +5978,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lawankaoutpost/colony/recdorms)
+"eWC" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/floor/tile/white,
+/area/lawankaoutpost/colony/operations_hall)
 "eWO" = (
 /obj/structure/table,
 /obj/item/reagent_containers/dropper,
@@ -6014,6 +6168,15 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/southwest)
+"fhA" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/outside/northwest)
 "fhC" = (
 /obj/structure/flora/grass/tallgrass/hideable/tallgrasscorner{
 	color = "#7a8c54";
@@ -6082,8 +6245,8 @@
 /area/lawankaoutpost/outside/northeast)
 "fkb" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/noglass{
-	name = "\improper Men's Restroom";
-	dir = 1
+	dir = 1;
+	name = "\improper Men's Restroom"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6183,8 +6346,8 @@
 /area/lawankaoutpost/colony/marshalls)
 "fnT" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	name = "\improper Medical Clinic Storage";
-	dir = 1
+	dir = 1;
+	name = "\improper Medical Clinic Storage"
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -6259,8 +6422,8 @@
 /area/lawankaoutpost/colony/operations_administration)
 "fqj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
-	name = "\improper Operations Office";
-	dir = 2
+	dir = 2;
+	name = "\improper Operations Office"
 	},
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/operations_administration)
@@ -6286,6 +6449,15 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/operations_meeting)
+"fsi" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/lawankaoutpost/outside/southeast)
 "fst" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/tile/dark2,
@@ -6333,6 +6505,16 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/cargo)
+"ftP" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/lawankaoutpost/outside/southeast)
 "ftR" = (
 /obj/structure/cargo_container/ch_red{
 	dir = 1
@@ -6689,6 +6871,14 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/southdorms)
+"fHH" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/northwest)
 "fHP" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -6777,6 +6967,18 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/west/garbledradio)
+"fKB" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/floor/tile/red/whitered{
+	dir = 1
+	},
+/area/lawankaoutpost/colony/operations_hall)
 "fKE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6791,6 +6993,13 @@
 	dir = 6
 	},
 /area/lawankaoutpost/colony/cargo)
+"fKM" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/northwest)
 "fKR" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/sandstone,
@@ -6918,8 +7127,8 @@
 /area/lawankaoutpost/outside/central)
 "fPR" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering{
-	name = "\improper Engineering Break Room";
-	dir = 1
+	dir = 1;
+	name = "\improper Engineering Break Room"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -7227,8 +7436,8 @@
 /area/lawankaoutpost/colony/operations_hall)
 "gcX" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
-	name = "\improper Security Prep";
-	dir = 1
+	dir = 1;
+	name = "\improper Security Prep"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
@@ -7374,8 +7583,8 @@
 /area/lawankaoutpost/colony/operations_hall)
 "ghN" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/noglass{
-	name = "\improper Women's Restroom";
-	dir = 1
+	dir = 1;
+	name = "\improper Women's Restroom"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -7451,6 +7660,10 @@
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/operations_hall)
+"gjD" = (
+/obj/effect/landmark/campaign_structure/asat_system,
+/turf/open/floor,
+/area/lawankaoutpost/colony/landingzonetwo)
 "gjR" = (
 /turf/open/floor/freezer,
 /area/lawankaoutpost/colony/biologics)
@@ -7603,8 +7816,8 @@
 /area/lawankaoutpost/colony/biologics)
 "gqU" = (
 /obj/machinery/door/airlock/multi_tile/research{
-	name = "\improper Biological Research Facility";
-	dir = 1
+	dir = 1;
+	name = "\improper Biological Research Facility"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -7695,6 +7908,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/lawankaoutpost/colony/recdorms)
+"gtR" = (
+/obj/item/stool,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/lawankaoutpost/colony/operations_hall)
 "gtS" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -11;
@@ -7838,6 +8058,9 @@
 /area/lawankaoutpost/caves/southwest)
 "gCQ" = (
 /obj/effect/ai_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
 /turf/open/floor/tile/red/whitered{
 	dir = 5
 	},
@@ -8456,6 +8679,9 @@
 "hhr" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/outside/northwest)
 "hhw" = (
@@ -8895,6 +9121,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/colony/engineering)
+"hGO" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/floor/tile/red/whitered,
+/area/lawankaoutpost/colony/operations_hall)
 "hHa" = (
 /obj/structure/table,
 /obj/item/circuitboard/computer/powermonitor,
@@ -9043,8 +9276,8 @@
 /area/lawankaoutpost/colony/cargo)
 "hOl" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	name = "\improper Medical Clinic Operating Theatre";
-	dir = 1
+	dir = 1;
+	name = "\improper Medical Clinic Operating Theatre"
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -9198,6 +9431,15 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/outside/west)
+"hSj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/tile/red/whitered{
+	dir = 4
+	},
+/area/lawankaoutpost/colony/operations_hall)
 "hSl" = (
 /obj/structure/flora/ausbushes/pointybush,
 /turf/open/ground/grass/weedable,
@@ -9254,6 +9496,12 @@
 	},
 /turf/open/floor,
 /area/lawankaoutpost/colony/recdorms)
+"hTE" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/southeast)
 "hTN" = (
 /obj/structure/window_frame/colony/reinforced,
 /turf/open/floor/tile/dark2,
@@ -9285,10 +9533,23 @@
 	dir = 6
 	},
 /area/lawankaoutpost/colony/robotics)
+"hUA" = (
+/obj/effect/landmark/campaign_structure/asat_system,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop2/lz2)
 "hUT" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/lawankaoutpost/colony/operations_kitchen)
+"hVu" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/floor,
+/area/lawankaoutpost/colony/landingzonetwo)
 "hVC" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
@@ -9321,6 +9582,16 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/cargo)
+"hXl" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/tile/red/whitered{
+	dir = 8
+	},
+/area/lawankaoutpost/colony/operations_hall)
 "hXN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
@@ -9409,8 +9680,8 @@
 /area/lawankaoutpost/colony/operations_hall)
 "ibF" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric{
-	name = "\improper Morgue";
-	dir = 1
+	dir = 1;
+	name = "\improper Morgue"
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -9428,6 +9699,12 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/northeast)
+"icW" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/floor,
+/area/lawankaoutpost/colony/landingzonetwo)
 "idb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -9766,8 +10043,8 @@
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "isS" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/garden{
-	name = "\improper Hydroponics";
-	dir = 1
+	dir = 1;
+	name = "\improper Hydroponics"
 	},
 /turf/open/floor/tile/green/full,
 /area/lawankaoutpost/colony/hydroponics)
@@ -9791,6 +10068,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/outside/southeast)
+"ivi" = (
+/obj/item/stool,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/floor/tile/white,
+/area/lawankaoutpost/colony/operations_hall)
 "ivx" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -6;
@@ -9845,14 +10129,19 @@
 /area/lawankaoutpost/outside/central)
 "ixI" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "\improper Eta Storage";
-	dir = 1
+	dir = 1;
+	name = "\improper Eta Storage"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/caves/nanotrasen_lab)
+"ixS" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/northwest)
 "iya" = (
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/green/greentaupe,
@@ -10106,8 +10395,8 @@
 /area/lawankaoutpost/colony/mining)
 "iHn" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Robotics";
-	dir = 1
+	dir = 1;
+	name = "\improper Robotics"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -10411,8 +10700,8 @@
 /area/lawankaoutpost/colony/operations_kitchen)
 "iWB" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/noglass{
-	name = "\improper Men's Restroom";
-	dir = 1
+	dir = 1;
+	name = "\improper Men's Restroom"
 	},
 /turf/open/floor/freezer,
 /area/lawankaoutpost/colony/northdorms)
@@ -10503,6 +10792,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/green/full,
 /area/lawankaoutpost/colony/hydroponics)
+"iYK" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/lawankaoutpost/outside/southeast)
 "iZd" = (
 /obj/machinery/door/airlock/mainship/research/free_access{
 	dir = 1;
@@ -10707,6 +11003,12 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/engineering)
+"jfZ" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/southeast)
 "jgh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing,
@@ -10817,12 +11119,18 @@
 /obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
 /turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/lawankaoutpost/colony/operations_hall)
 "jjF" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "jjG" = (
@@ -10932,6 +11240,12 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/cargo)
+"jnP" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/lawankaoutpost/outside/southeast)
 "jnU" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/weed_node,
@@ -11158,6 +11472,9 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/operations_hall)
 "jAp" = (
@@ -11241,7 +11558,7 @@
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/southeast)
 "jEj" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -11423,6 +11740,12 @@
 /obj/effect/spawner/random/machinery/random_broken_computer/small,
 /turf/open/floor/tile/dark/red2,
 /area/lawankaoutpost/caves/nanotrasen_lab)
+"jLe" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/northwest)
 "jLu" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
@@ -11813,6 +12136,12 @@
 	},
 /turf/open/floor/freezer,
 /area/lawankaoutpost/colony/northdorms)
+"khx" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/tile/white,
+/area/lawankaoutpost/colony/operations_hall)
 "khB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -12114,6 +12443,15 @@
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/cargo)
+"kwA" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/floor/tile/red/whitered{
+	dir = 4
+	},
+/area/lawankaoutpost/colony/operations_hall)
 "kwI" = (
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/atmos)
@@ -12176,8 +12514,8 @@
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "\improper Medical Clinic Psychology";
-	dir = 1
+	dir = 1;
+	name = "\improper Medical Clinic Psychology"
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -12185,6 +12523,14 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/blue/taupeblue,
 /area/lawankaoutpost/colony/biologics)
+"kyD" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/tile/red/whitered{
+	dir = 1
+	},
+/area/lawankaoutpost/colony/operations_hall)
 "kyJ" = (
 /obj/item/ammo_casing/shell,
 /turf/open/floor/wood,
@@ -12377,6 +12723,15 @@
 	dir = 6
 	},
 /area/lawankaoutpost/colony/mining)
+"kHg" = (
+/obj/machinery/landinglight/lz2{
+	dir = 4
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "kHz" = (
 /obj/structure/flora/grass/tallgrass/hideable/tallgrasscorner{
 	color = "#7a8c54";
@@ -12878,7 +13233,7 @@
 /turf/open/floor/wood,
 /area/lawankaoutpost/colony/chapel)
 "lbk" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -12922,6 +13277,12 @@
 	},
 /turf/open/floor/wood,
 /area/lawankaoutpost/colony/bar)
+"ldp" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/northwest/garbledradio)
 "ldt" = (
 /obj/structure/table/reinforced,
 /obj/structure/paper_bin{
@@ -12936,6 +13297,15 @@
 /obj/structure/cable,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lawankaoutpost/colony/recdorms)
+"leg" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/floor/tile/red/whitered{
+	dir = 4
+	},
+/area/lawankaoutpost/colony/operations_hall)
 "lej" = (
 /obj/structure/flora/grass/tallgrass/hideable/tallgrasscorner{
 	color = "#7a8c54";
@@ -12950,6 +13320,17 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/northeast)
+"lfp" = (
+/obj/effect/spawner/random/misc/trash,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/lawankaoutpost/colony/operations_hall)
 "lfv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/white,
@@ -13278,8 +13659,8 @@
 /area/lawankaoutpost/colony/marshalls)
 "lqA" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
-	name = "\improper Southern Dormitories";
-	dir = 1
+	dir = 1;
+	name = "\improper Southern Dormitories"
 	},
 /turf/open/floor,
 /area/lawankaoutpost/colony/southdorms)
@@ -13966,6 +14347,13 @@
 "lTQ" = (
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/caves/nukestorage)
+"lTX" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/outside/southeast)
 "lUk" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -14066,8 +14454,8 @@
 /area/lawankaoutpost/colony/northdorms)
 "lXJ" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/noglass{
-	name = "\improper Women's Restroom";
-	dir = 1
+	dir = 1;
+	name = "\improper Women's Restroom"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -14141,7 +14529,7 @@
 /turf/open/floor/mainship/orange/full,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "mbV" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
 "mbW" = (
@@ -14314,6 +14702,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/northeast)
+"mnp" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/northwest)
 "mnw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -14460,6 +14854,12 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor,
 /area/lawankaoutpost/colony/mining)
+"msB" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/outside/southeast)
 "msI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -14782,8 +15182,8 @@
 /area/lawankaoutpost/colony/engineering)
 "mEF" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/garden{
-	name = "\improper Hydroponics";
-	dir = 1
+	dir = 1;
+	name = "\improper Hydroponics"
 	},
 /turf/open/floor/plating,
 /area/lawankaoutpost/colony/hydroponics)
@@ -15082,6 +15482,10 @@
 /obj/effect/turf_decal/warning_stripes,
 /obj/machinery/landinglight/lz2{
 	dir = 4
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
 	},
 /turf/open/floor/mech_bay_recharge_floor,
 /area/shuttle/drop2/lz2)
@@ -15434,6 +15838,13 @@
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/mining)
+"niT" = (
+/obj/item/stool,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/floor/tile/red/whitered,
+/area/lawankaoutpost/colony/operations_hall)
 "njc" = (
 /obj/effect/ai_node,
 /turf/open/floor,
@@ -15981,8 +16392,8 @@
 /area/lawankaoutpost/colony/medbay)
 "nDw" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "\improper Eta Lab";
-	dir = 1
+	dir = 1;
+	name = "\improper Eta Lab"
 	},
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/caves/nanotrasen_lab)
@@ -16041,6 +16452,12 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/northwest)
+"nFO" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/floor/tile/red/whitered{
+	dir = 6
+	},
+/area/lawankaoutpost/colony/operations_hall)
 "nFU" = (
 /turf/open/floor,
 /area/lawankaoutpost/colony/landingzoneone)
@@ -16169,6 +16586,19 @@
 /obj/structure/cargo_container/ch_green,
 /turf/open/floor,
 /area/lawankaoutpost/colony/landingzonetwo)
+"nKe" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/northwest/garbledradio)
+"nKi" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/lawankaoutpost/outside/southeast)
 "nKl" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -16177,8 +16607,8 @@
 /area/lawankaoutpost/colony/operations_administration)
 "nKn" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	name = "\improper Medical Clinic Scanner Room";
-	dir = 1
+	dir = 1;
+	name = "\improper Medical Clinic Scanner Room"
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -16369,6 +16799,14 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/northwest)
+"nTK" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/floor/tile/red/whitered{
+	dir = 8
+	},
+/area/lawankaoutpost/colony/operations_hall)
 "nTQ" = (
 /obj/structure/flora/grass/tallgrass/hideable/tallgrasscorner{
 	color = "#7a8c54";
@@ -16376,6 +16814,11 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/southwest)
+"nUc" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/northwest)
 "nUh" = (
 /obj/structure/window/reinforced,
 /turf/open/floor/tile/green/greentaupe,
@@ -17007,6 +17450,13 @@
 	dir = 6
 	},
 /area/lawankaoutpost/colony/biologics)
+"otm" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/northwest/garbledradio)
 "otD" = (
 /obj/machinery/door/airlock/maintenance{
 	dir = 1
@@ -17084,6 +17534,17 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lawankaoutpost/outside/west)
+"oxk" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/tile/red/whitered{
+	dir = 1
+	},
+/area/lawankaoutpost/colony/operations_hall)
 "oxl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
@@ -17285,7 +17746,7 @@
 	},
 /area/lawankaoutpost/colony/operations_hall)
 "oFP" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
@@ -17732,6 +18193,15 @@
 	dir = 8
 	},
 /area/lawankaoutpost/colony/operations_hall)
+"oXp" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "oXI" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/blue/whitebluecorner{
@@ -17946,6 +18416,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/outside/northeast)
+"pia" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/northwest)
 "pic" = (
 /obj/structure/table,
 /obj/item/laptop,
@@ -18103,6 +18580,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lawankaoutpost/colony/northdorms)
+"poD" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/floor/tile/white,
+/area/lawankaoutpost/colony/operations_hall)
 "poI" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
 	name = "\improper Operations Kitchen"
@@ -18193,8 +18677,8 @@
 /area/lawankaoutpost/colony/marshalls)
 "psq" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/garden{
-	name = "\improper Hydroponics Break Room";
-	dir = 1
+	dir = 1;
+	name = "\improper Hydroponics Break Room"
 	},
 /turf/open/floor,
 /area/lawankaoutpost/colony/hydroponics)
@@ -18253,6 +18737,13 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/atmos)
+"puk" = (
+/obj/structure/cable,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/floor,
+/area/lawankaoutpost/colony/landingzonetwo)
 "puu" = (
 /obj/structure/closet/coffin,
 /obj/item/grown/sunflower,
@@ -18478,6 +18969,15 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/marshalls)
+"pCE" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/floor,
+/area/lawankaoutpost/colony/landingzonetwo)
 "pCN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -18513,6 +19013,10 @@
 	},
 /turf/open/floor/freezer,
 /area/lawankaoutpost/colony/northdorms)
+"pEo" = (
+/obj/effect/landmark/campaign_structure/asat_system,
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/northwest)
 "pEq" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
@@ -18687,6 +19191,9 @@
 	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
 /turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
@@ -18706,8 +19213,8 @@
 /area/lawankaoutpost/outside/northeast)
 "pLT" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "\improper Medical Clinic Storage";
-	dir = 1
+	dir = 1;
+	name = "\improper Medical Clinic Storage"
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -18864,6 +19371,9 @@
 	pixel_y = -3
 	},
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/northwest)
 "pUx" = (
@@ -19208,6 +19718,10 @@
 /obj/structure/cargo_container/ch_green,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/cargo)
+"qjr" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/northwest)
 "qju" = (
 /obj/machinery/computer3/powermonitor,
 /turf/open/floor/tile/dark2,
@@ -19801,8 +20315,8 @@
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "qLJ" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	name = "\improper Basketball Court";
-	dir = 1
+	dir = 1;
+	name = "\improper Basketball Court"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
@@ -19817,7 +20331,7 @@
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/north)
 "qML" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/green/whitegreen,
 /area/lawankaoutpost/colony/medbay)
 "qMM" = (
@@ -20053,6 +20567,13 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/recdorms)
+"qWr" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/floor/tile/red/whitered{
+	dir = 8
+	},
+/area/lawankaoutpost/colony/operations_hall)
 "qWK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -20075,6 +20596,14 @@
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/operations_kitchen)
+"qXJ" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop2/lz2)
 "qXU" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -20089,8 +20618,8 @@
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "qYa" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering{
-	name = "\improper Engineering Break Room";
-	dir = 1
+	dir = 1;
+	name = "\improper Engineering Break Room"
 	},
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/engineering)
@@ -20190,6 +20719,15 @@
 	},
 /turf/open/floor/freezer,
 /area/lawankaoutpost/colony/southdorms)
+"rcl" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/northwest)
 "rcG" = (
 /obj/structure/table,
 /obj/effect/spawner/random/food_or_drink/packagedbar,
@@ -21019,6 +21557,13 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
 /area/lawankaoutpost/colony/bar)
+"rGl" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/lawankaoutpost/outside/northwest)
 "rGI" = (
 /obj/machinery/optable,
 /obj/effect/landmark/corpsespawner/colonist/burst,
@@ -21069,6 +21614,15 @@
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor,
 /area/lawankaoutpost/colony/biologics)
+"rJx" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/floor,
+/area/lawankaoutpost/colony/landingzonetwo)
 "rJM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
@@ -21229,6 +21783,7 @@
 /area/lawankaoutpost/colony/cargo)
 "rSS" = (
 /obj/machinery/camera/autoname/lz_camera,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
@@ -21250,8 +21805,8 @@
 /area/lawankaoutpost/outside/southeast)
 "rTK" = (
 /obj/machinery/door/airlock/colony/research{
-	name = "\improper Robotics";
-	dir = 1
+	dir = 1;
+	name = "\improper Robotics"
 	},
 /turf/open/floor,
 /area/lawankaoutpost/colony/robotics)
@@ -21565,8 +22120,8 @@
 /area/lawankaoutpost/outside/northwest)
 "sjb" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/noglass{
-	name = "\improper Men's Restroom";
-	dir = 1
+	dir = 1;
+	name = "\improper Men's Restroom"
 	},
 /obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
@@ -21962,6 +22517,10 @@
 	pixel_x = -6;
 	pixel_y = -5
 	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/northwest)
 "szb" = (
@@ -21972,8 +22531,8 @@
 /area/lawankaoutpost/colony/engineering)
 "szg" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "\improper Medical Clinic Cryo";
-	dir = 1
+	dir = 1;
+	name = "\improper Medical Clinic Cryo"
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -22079,6 +22638,13 @@
 	dir = 8
 	},
 /area/lawankaoutpost/colony/operations_storage)
+"sDp" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/northwest)
 "sDx" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
@@ -22318,10 +22884,23 @@
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/operations_hall)
+"sNv" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/northwest)
 "sNB" = (
 /obj/machinery/computer/telecomms/monitor,
 /turf/open/floor/bcircuit/anim,
 /area/lawankaoutpost/caves/nanotrasen_lab)
+"sOi" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/lawankaoutpost/colony/operations_hall)
 "sOu" = (
 /obj/structure/cargo_container,
 /turf/open/floor,
@@ -22358,6 +22937,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/central)
+"sPq" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "sPu" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -22408,6 +22991,14 @@
 	dir = 10
 	},
 /area/lawankaoutpost/caves/nanotrasen_lab)
+"sSO" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/northwest)
 "sSV" = (
 /obj/effect/ai_node,
 /turf/open/ground/grass/weedable,
@@ -22559,8 +23150,8 @@
 /area/lawankaoutpost/colony/medbay)
 "sZJ" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Chapel";
-	dir = 1
+	dir = 1;
+	name = "\improper Chapel"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22720,6 +23311,12 @@
 	dir = 4
 	},
 /area/lawankaoutpost/colony/marshalls)
+"tdZ" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/northwest/garbledradio)
 "ten" = (
 /turf/open/floor/tile/dark/brown2,
 /area/lawankaoutpost/colony/mining)
@@ -23555,6 +24152,14 @@
 	dir = 10
 	},
 /area/lawankaoutpost/colony/operations_hall)
+"tLs" = (
+/obj/structure/cable,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/floor/tile/red/whitered,
+/area/lawankaoutpost/colony/operations_hall)
 "tLu" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark/yellow2{
@@ -23568,6 +24173,12 @@
 	dir = 8
 	},
 /area/lawankaoutpost/colony/marshalls)
+"tLE" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor,
+/area/lawankaoutpost/colony/landingzonetwo)
 "tMc" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/tcomms,
@@ -24103,8 +24714,8 @@
 /area/lawankaoutpost/colony/bar)
 "unX" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering{
-	name = "\improper Engineering";
-	dir = 1
+	dir = 1;
+	name = "\improper Engineering"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -24148,8 +24759,8 @@
 /area/lawankaoutpost/outside/northeast)
 "upq" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
-	name = "\improper Operations Storage";
-	dir = 1
+	dir = 1;
+	name = "\improper Operations Storage"
 	},
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/colony/operations_storage)
@@ -24433,6 +25044,9 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/operations_hall)
 "uBn" = (
@@ -24457,6 +25071,12 @@
 	},
 /turf/open/floor/tile/green/full,
 /area/lawankaoutpost/colony/hydroponics)
+"uCo" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/floor/tile/red/whitered,
+/area/lawankaoutpost/colony/operations_hall)
 "uCz" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
@@ -24648,8 +25268,8 @@
 /area/lawankaoutpost/colony/operations_kitchen)
 "uKA" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/noglass{
-	name = "\improper Men's Restroom";
-	dir = 1
+	dir = 1;
+	name = "\improper Men's Restroom"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -24846,8 +25466,8 @@
 /area/lawankaoutpost/outside/north)
 "uTl" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "\improper Medical Clinic Scanner Room";
-	dir = 1
+	dir = 1;
+	name = "\improper Medical Clinic Scanner Room"
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -24962,6 +25582,17 @@
 	dir = 4
 	},
 /area/lawankaoutpost/colony/medbay)
+"uXH" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/floor/tile/red/whitered{
+	dir = 1
+	},
+/area/lawankaoutpost/colony/operations_hall)
 "uYc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -25326,8 +25957,8 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/colony/research{
-	name = "\improper Cargo";
-	dir = 1
+	dir = 1;
+	name = "\improper Cargo"
 	},
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/cargo)
@@ -26255,8 +26886,8 @@
 "wde" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/multi_tile/mainship/engineering{
-	name = "\improper Engineering Generators";
-	dir = 1
+	dir = 1;
+	name = "\improper Engineering Generators"
 	},
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/engineering)
@@ -26470,6 +27101,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/atmos)
+"wiv" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/outside/southeast)
 "wiz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -26606,6 +27243,15 @@
 /obj/mecha_wreckage/phazon,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/lawankaoutpost/colony/robotics)
+"wnK" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/southeast)
 "wnM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
@@ -26639,6 +27285,16 @@
 	},
 /turf/open/floor,
 /area/lawankaoutpost/colony/northdorms)
+"woK" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/tile/red/whitered{
+	dir = 5
+	},
+/area/lawankaoutpost/colony/operations_hall)
 "wpg" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -26733,6 +27389,7 @@
 /area/lawankaoutpost/colony/bar)
 "wuH" = (
 /obj/structure/cable,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
 /turf/open/floor/tile/red/whitered{
 	dir = 10
 	},
@@ -26746,7 +27403,7 @@
 	},
 /area/lawankaoutpost/colony/operations_hall)
 "wuR" = (
-/obj/machinery/prop/mainship/computer/dna,
+/obj/machinery/prop/computer/dna,
 /turf/open/floor/tile/purple/taupepurple/corner,
 /area/lawankaoutpost/colony/biologics)
 "wvk" = (
@@ -26826,6 +27483,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/lawankaoutpost/colony/bar)
+"wxM" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/northwest/garbledradio)
 "wxY" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/fence,
@@ -26874,8 +27538,8 @@
 /area/lawankaoutpost/colony/operations_kitchen)
 "wzv" = (
 /obj/machinery/door/airlock/colony/research{
-	name = "\improper Robotics";
-	dir = 1
+	dir = 1;
+	name = "\improper Robotics"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -26901,8 +27565,8 @@
 /area/lawankaoutpost/colony/engineering)
 "wAF" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
-	name = "\improper Dormitories Recreation";
-	dir = 1
+	dir = 1;
+	name = "\improper Dormitories Recreation"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -27154,8 +27818,8 @@
 /area/lawankaoutpost/outside/east)
 "wLT" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	name = "\improper Medical Clinic Cryo";
-	dir = 1
+	dir = 1;
+	name = "\improper Medical Clinic Cryo"
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -27294,6 +27958,15 @@
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lawankaoutpost/outside/south)
+"wVg" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/northwest/garbledradio)
 "wVs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -27317,6 +27990,7 @@
 /area/lawankaoutpost/caves/west/garbledradio)
 "wXb" = (
 /obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/operations_hall)
 "wXh" = (
@@ -27395,6 +28069,15 @@
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/wood,
 /area/lawankaoutpost/colony/bar)
+"xal" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/floor/tile/white,
+/area/lawankaoutpost/colony/operations_hall)
 "xap" = (
 /obj/structure/rack,
 /obj/machinery/light,
@@ -27402,8 +28085,8 @@
 /area/lawankaoutpost/colony/hydroponics)
 "xaD" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
-	name = "\improper Operations Office";
-	dir = 2
+	dir = 2;
+	name = "\improper Operations Office"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -27665,8 +28348,8 @@
 /area/lawankaoutpost/colony/biologics)
 "xhZ" = (
 /obj/machinery/door/airlock/multi_tile/research{
-	name = "\improper Biological Research Facility";
-	dir = 1
+	dir = 1;
+	name = "\improper Biological Research Facility"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -27956,6 +28639,15 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/outside/northwest)
+"xvl" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor,
+/area/lawankaoutpost/colony/landingzonetwo)
 "xvx" = (
 /obj/structure/closet/firecloset/full,
 /turf/open/floor/tile/red/whitered{
@@ -28010,6 +28702,12 @@
 /obj/structure/flora/ausbushes/palebush,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/south)
+"xxD" = (
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/lawankaoutpost/outside/southeast)
 "xxH" = (
 /obj/mecha_wreckage/seraph,
 /turf/open/floor/tile/dark/yellow2{
@@ -28266,6 +28964,13 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/marshalls)
+"xIg" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/northwest)
 "xIh" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = 2;
@@ -28674,6 +29379,13 @@
 	dir = 4
 	},
 /area/lawankaoutpost/colony/engineering)
+"xYP" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
+	dir = 1
+	},
+/turf/open/floor,
+/area/lawankaoutpost/colony/landingzonetwo)
 "xYV" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -45731,14 +46443,14 @@ ruO
 vyl
 qQS
 fVT
+tdZ
+tdZ
+tdZ
 knt
 knt
-knt
-knt
-knt
-knt
-knt
-knt
+tdZ
+tdZ
+tdZ
 xGW
 xGW
 oqq
@@ -45761,7 +46473,7 @@ xQt
 xQt
 hSX
 xQt
-hSX
+ixS
 xQt
 hSX
 xQt
@@ -45978,7 +46690,7 @@ nQk
 kGD
 xQt
 tyS
-nTr
+nUc
 xQt
 xQt
 amB
@@ -46192,10 +46904,10 @@ nTr
 hSX
 xQt
 xQt
-nQk
+alq
 xQt
 xQt
-xQt
+fKM
 xQt
 tJa
 qyn
@@ -46385,9 +47097,9 @@ fVT
 knt
 knt
 knt
-knt
-rOj
-knt
+wVg
+otm
+wxM
 knt
 rrz
 xGW
@@ -46409,7 +47121,7 @@ xQt
 xQt
 xQt
 noY
-xQt
+qjr
 xQt
 hSX
 xQt
@@ -46602,9 +47314,9 @@ fVT
 knt
 knt
 knt
+nKe
 knt
-knt
-knt
+cQO
 knt
 knt
 knt
@@ -46626,7 +47338,7 @@ xQt
 xQt
 xQt
 xQt
-xQt
+qjr
 nTr
 xQt
 xQt
@@ -46819,9 +47531,9 @@ tbi
 aFw
 ybI
 fyS
+dTG
 ybI
-ybI
-ybI
+ldp
 ybI
 ybI
 kfY
@@ -46843,7 +47555,7 @@ hSX
 nTr
 nTr
 xQt
-xQt
+qjr
 xQt
 xQt
 xQt
@@ -47060,7 +47772,7 @@ xQt
 xQt
 xQt
 hSX
-xQt
+qjr
 xQt
 xQt
 syL
@@ -47280,7 +47992,7 @@ xQt
 nQk
 xQt
 bzx
-xQt
+qjr
 dgc
 hSX
 xQt
@@ -47497,7 +48209,7 @@ xQt
 kGD
 xQt
 xQt
-xQt
+qjr
 xQt
 xQt
 nTr
@@ -47922,8 +48634,8 @@ xQt
 xQt
 xQt
 dhy
-nTr
-xQt
+sNv
+buU
 vXr
 wAJ
 xzM
@@ -48138,7 +48850,7 @@ xQt
 nTr
 hSX
 xQt
-xQt
+pEo
 xQt
 xQt
 mHu
@@ -49003,7 +49715,7 @@ oRz
 oRz
 xQt
 vrF
-xQt
+jLe
 xQt
 xQt
 hSX
@@ -49217,10 +49929,10 @@ mdJ
 oRz
 oRz
 xQt
-xQt
+pEo
 hSX
 xQt
-xQt
+jLe
 amB
 qUy
 xQt
@@ -49437,10 +50149,10 @@ xQt
 xQt
 hSX
 nTr
-xQt
-xQt
-hSX
-xQt
+rcl
+mnp
+xIg
+mnp
 xQt
 xQt
 vXr
@@ -49867,7 +50579,7 @@ hhr
 mdJ
 oRz
 xQt
-xQt
+qjr
 xQt
 xQt
 xQt
@@ -50077,14 +50789,14 @@ sBa
 xQt
 xQt
 qUy
-xQt
+jLe
 oRz
 oRz
-pXs
-mdJ
-sqp
-xQt
-nQk
+fhA
+cyp
+rGl
+mnp
+sSO
 nTr
 xQt
 vXr
@@ -50294,7 +51006,7 @@ nTr
 xQt
 hSX
 xQt
-xQt
+jLe
 oRz
 pXs
 pXs
@@ -50945,16 +51657,16 @@ amB
 gRP
 nTr
 xQt
-xQt
+jLe
 oRz
 qlY
 tnv
 oRz
 oRz
 xQt
-xQt
-bzx
-xQt
+mnp
+fHH
+mnp
 vXr
 rYL
 uaK
@@ -51162,7 +51874,7 @@ xQt
 nTr
 xQt
 xQt
-hSX
+sDp
 oRz
 qlY
 xiN
@@ -52035,11 +52747,11 @@ iGM
 cey
 jUl
 aym
-xQt
+mnp
 pUp
 uOd
 xQt
-amB
+pia
 vXr
 wbB
 uaK
@@ -54263,9 +54975,9 @@ oya
 oya
 tBQ
 ktu
-tBQ
-tBQ
-tBQ
+eWC
+eWC
+eWC
 ktu
 xdJ
 hlD
@@ -54912,12 +55624,12 @@ hvT
 mtb
 cLk
 dwP
-tBQ
-sNn
+eWC
+xal
 wIu
 xGz
 rVp
-eiK
+poD
 bso
 ooU
 vcg
@@ -57733,13 +58445,13 @@ wOY
 ppQ
 tBQ
 pUE
-tle
+uXH
 uBf
-qPW
+ivi
 tBQ
 qPW
 uBf
-tib
+tLs
 pUE
 tBQ
 ppQ
@@ -57947,10 +58659,10 @@ wmd
 bpN
 lTO
 fOq
-lkZ
+daw
 mwR
 lkZ
-dJU
+dhZ
 taI
 bpN
 lkZ
@@ -57959,7 +58671,7 @@ taI
 wuH
 lkZ
 lkZ
-cDj
+qWr
 lkZ
 lkZ
 fOq
@@ -57971,7 +58683,7 @@ pnt
 tBQ
 ktu
 lkZ
-cDj
+qWr
 oQm
 poI
 wQV
@@ -58164,7 +58876,7 @@ rPe
 oXj
 qKz
 rPe
-rPe
+hXl
 iXv
 hTU
 ykB
@@ -58173,10 +58885,10 @@ pjG
 exi
 oQM
 giX
-kif
+niT
 xRS
 etk
-rPe
+nTK
 rPe
 rPe
 xmK
@@ -58188,7 +58900,7 @@ rPe
 xmK
 soj
 rPe
-iXv
+eag
 hTU
 hTU
 ykk
@@ -58370,7 +59082,7 @@ sDx
 wQV
 nXK
 tBQ
-tle
+kyD
 agr
 tBQ
 bws
@@ -58381,7 +59093,7 @@ tBQ
 nsa
 jAe
 gfa
-tBQ
+khx
 cNE
 xka
 tle
@@ -58405,7 +59117,7 @@ iTw
 tBQ
 agr
 xdJ
-qUw
+bTr
 tBQ
 nXK
 wQV
@@ -58587,7 +59299,7 @@ wyD
 npJ
 smi
 qRW
-qsb
+woK
 aUq
 hNN
 avG
@@ -58601,7 +59313,7 @@ pYj
 avG
 qnp
 hTU
-ykB
+oxk
 sVw
 uSr
 ifp
@@ -58613,7 +59325,7 @@ qsb
 avG
 avG
 pLX
-aUq
+leg
 idR
 avG
 avG
@@ -58804,7 +59516,7 @@ wQV
 wQV
 tBQ
 chf
-pgp
+hSj
 eXn
 xdJ
 bKO
@@ -58824,13 +59536,13 @@ rIU
 rIU
 alw
 jgC
-cvR
+nFO
 bKO
 pgp
 bKO
 bKO
 bKO
-kai
+kwA
 bKO
 bKO
 bKO
@@ -59035,13 +59747,13 @@ ach
 aaP
 pZK
 fom
-atp
-djN
+fKB
+bGQ
 tBQ
 tBQ
-qPW
+gtR
 esE
-qUw
+hGO
 eZL
 tBQ
 tpG
@@ -62073,13 +62785,13 @@ ioK
 mAS
 fGC
 dJH
-tBQ
-oRu
+sOi
+lfp
 tle
 tBQ
 qUw
-gKu
-qUw
+bFq
+uCo
 pMi
 sWy
 hdr
@@ -62509,9 +63221,9 @@ cgK
 cgK
 xdJ
 gKu
-tBQ
-tBQ
-tBQ
+sOi
+sOi
+sOi
 gKu
 tBQ
 wgw
@@ -69541,16 +70253,16 @@ sKP
 sKP
 sKP
 sKP
-lYq
-vjm
-vjm
+aeA
+msB
+lTX
 pdy
 vjm
 vjm
-lYq
-sKP
-sKP
-sKP
+aeA
+jfZ
+jfZ
+jfZ
 xGW
 oqq
 oqq
@@ -69758,7 +70470,7 @@ sKP
 sKP
 tSX
 sSV
-lYq
+jnP
 vjm
 vjm
 gWW
@@ -69975,7 +70687,7 @@ sKP
 sKP
 sKP
 sKP
-ssU
+iYK
 vjm
 eXA
 pdy
@@ -70192,7 +70904,7 @@ xGW
 xGW
 sKP
 sKP
-lYq
+jnP
 vjm
 vjm
 vjm
@@ -70409,7 +71121,7 @@ llj
 llj
 llj
 mhj
-tWa
+ddW
 cop
 cop
 cop
@@ -71260,7 +71972,7 @@ uaC
 wEk
 wEk
 hYh
-wEk
+gjD
 wEk
 wEk
 xRX
@@ -71496,9 +72208,9 @@ lJa
 wEk
 wEk
 uWt
-wEk
-wEk
-xHR
+xvl
+cEu
+puk
 cvN
 sDW
 mSj
@@ -71713,10 +72425,10 @@ wEk
 wEk
 wEk
 hYh
-wEk
+tLE
 wEk
 xHR
-qip
+hVu
 hYh
 ciA
 wEk
@@ -71903,10 +72615,10 @@ vjm
 vjm
 lYq
 tZX
-ssU
-lYq
-ssU
-jlK
+ftP
+xxD
+nKi
+fsi
 uaC
 nuL
 cWF
@@ -72120,15 +72832,15 @@ vjm
 vjm
 vjm
 vjm
-vjm
+wiv
 vjm
 vjm
 qDC
 vCz
 wEk
 wEk
-wEk
-wEk
+pCE
+cEu
 wEk
 wEk
 cDI
@@ -72337,14 +73049,14 @@ eyS
 vjm
 vjm
 vjm
-eyS
+dJO
 vjm
 vjm
 qDC
 wEk
 wEk
 wEk
-hYh
+xYP
 wEk
 wEk
 wEk
@@ -72561,7 +73273,7 @@ qDC
 sXl
 wEk
 wEk
-wEk
+tLE
 wEk
 wEk
 wEk
@@ -72778,17 +73490,17 @@ qDC
 vCz
 wEk
 wEk
-wEk
+tLE
 wEk
 lTw
 fsf
 fsf
 fsf
 fsf
-fsf
-fsf
-fsf
-fsf
+awR
+kHg
+kHg
+kHg
 fsf
 fsf
 mTD
@@ -72988,23 +73700,23 @@ lYq
 lYq
 lYq
 vjm
-vjm
+wiv
 vjm
 vjm
 qDC
 wEk
 wEk
 wEk
-wEk
-wEk
+rJx
+icW
 xiR
 apz
 rxQ
 rxQ
 rxQ
+qXJ
 rxQ
-rxQ
-rxQ
+hUA
 rxQ
 rxQ
 rxQ
@@ -73205,7 +73917,7 @@ tSX
 sKP
 tZX
 lYq
-lYq
+jnP
 lYq
 lYq
 jlK
@@ -73219,13 +73931,13 @@ ojM
 jsZ
 prl
 bhj
+cGD
 jsZ
 jsZ
 jsZ
 jsZ
 jsZ
-jsZ
-jsZ
+sPq
 jsZ
 jsZ
 jsZ
@@ -73422,8 +74134,8 @@ sKP
 sKP
 sKP
 cDD
-sKP
-sKP
+wnK
+hTE
 sKP
 oHS
 uaC
@@ -73442,7 +74154,7 @@ jsZ
 jsZ
 jsZ
 jsZ
-jsZ
+sPq
 jsZ
 jsZ
 jsZ
@@ -73659,7 +74371,7 @@ jsZ
 jsZ
 jsZ
 jsZ
-jsZ
+sPq
 jsZ
 jsZ
 jsZ
@@ -73870,7 +74582,7 @@ ojM
 jsZ
 jsZ
 jsZ
-jsZ
+cGD
 jsZ
 jsZ
 jsZ
@@ -74087,12 +74799,12 @@ ojM
 jsZ
 jsZ
 jsZ
+oXp
 jsZ
 jsZ
-jsZ
-jsZ
-jsZ
-jsZ
+duo
+duo
+duo
 jjF
 jsZ
 jsZ

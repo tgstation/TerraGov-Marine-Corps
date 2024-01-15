@@ -77,8 +77,7 @@ The Grenade Launchers
 	var/turf/user_turf = get_turf(src)
 	grenade_to_launch.forceMove(user_turf)
 	gun_user?.visible_message(span_danger("[gun_user] fired a grenade!"), span_warning("You fire [src]!"))
-	log_explosion("[key_name(gun_user)] fired a grenade ([grenade_to_launch]) from [src] at [AREACOORD(user_turf)].")
-	log_combat(gun_user, src, "fired a grenade ([grenade_to_launch]) from [src]")
+	log_bomber(gun_user, "fired a grenade ([grenade_to_launch]) from", src, "at [AREACOORD(user_turf)]")
 	play_fire_sound(loc)
 	grenade_to_launch.launched_det_time()
 	grenade_to_launch.launched = TRUE
@@ -130,6 +129,9 @@ The Grenade Launchers
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 11, "stock_y" = 12)
 	fire_delay = 1.2 SECONDS
 	max_chamber_items = 5
+
+/obj/item/weapon/gun/grenade_launcher/multinade_launcher/beginner
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher/unloaded
 	default_ammo_type = null

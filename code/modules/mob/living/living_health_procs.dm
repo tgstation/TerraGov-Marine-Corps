@@ -92,6 +92,7 @@
 		updateStamina(feedback)
 
 /mob/living/proc/updateStamina(feedback = TRUE)
+	hud_used?.staminas?.update_icon()
 	if(staminaloss < max(health * 1.5,0) || !(COOLDOWN_CHECK(src, last_stamina_exhaustion))) //If we're on cooldown for stamina exhaustion, don't bother
 		return
 
@@ -103,25 +104,12 @@
 	adjust_stagger(STAMINA_EXHAUSTION_STAGGER_DURATION)
 	add_slowdown(STAMINA_EXHAUSTION_DEBUFF_STACKS)
 	adjust_blurriness(STAMINA_EXHAUSTION_DEBUFF_STACKS)
-	COOLDOWN_START(src, last_stamina_exhaustion, LIVING_STAMINA_EXHAUSTION_COOLDOWN) //set the cooldown.
-
-
-/mob/living/carbon/human/updateStamina(feedback = TRUE)
-	. = ..()
-	if(!hud_used?.staminas)
-		return
-	if(stat == DEAD)
-		hud_used.staminas.icon_state = "stamloss200"
-		return
-	var/relative_stamloss = getStaminaLoss()
-	if(relative_stamloss < 0 && max_stamina)
-		relative_stamloss = round(((relative_stamloss * 14) / max_stamina), 1)
-	else
-		relative_stamloss = round(((relative_stamloss * 7) / (maxHealth * 2)), 1)
-	hud_used.staminas.icon_state = "stamloss[relative_stamloss]"
+	COOLDOWN_START(src, last_stamina_exhaustion, LIVING_STAMINA_EXHAUSTION_COOLDOWN - (skills.getRating(SKILL_STAMINA) * STAMINA_SKILL_COOLDOWN_MOD)) //set the cooldown.
 
 /// Adds an entry to our stamina_regen_modifiers and updates stamina_regen_multiplier
 /mob/living/proc/add_stamina_regen_modifier(mod_name, mod_value)
+	if(stamina_regen_modifiers[mod_name] == mod_value)
+		return
 	stamina_regen_modifiers[mod_name] = mod_value
 	recalc_stamina_regen_multiplier()
 
@@ -138,6 +126,11 @@
 	for(var/mod_name in stamina_regen_modifiers)
 		stamina_regen_multiplier += stamina_regen_modifiers[mod_name]
 	stamina_regen_multiplier = max(stamina_regen_multiplier, 0)
+
+///Updates the mob's stamina modifiers if their stam skill changes
+/mob/living/proc/update_stam_skill_mod(datum/source)
+	SIGNAL_HANDLER
+	add_stamina_regen_modifier(SKILL_STAMINA, skills.getRating(SKILL_STAMINA) * STAMINA_SKILL_REGEN_MOD)
 
 /mob/living/proc/getCloneLoss()
 	return cloneloss
@@ -234,7 +227,7 @@
 
 ///Heal limbs until the total mob health went up by health_to_heal
 /mob/living/carbon/human/proc/heal_limbs(health_to_heal)
-	var/proportion_to_heal = (health_to_heal < (species.total_health - health)) ? (health_to_heal / (species.total_health - health)) : 1
+	var/proportion_to_heal = (health_to_heal < (maxHealth - health)) ? (health_to_heal / (maxHealth - health)) : 1
 	for(var/datum/limb/limb AS in limbs)
 		limb.heal_limb_damage(limb.brute_dam * proportion_to_heal, limb.burn_dam * proportion_to_heal, robo_repair = TRUE)
 	updatehealth()
@@ -390,7 +383,8 @@
 	ADD_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
 	if(should_zombify && (istype(wear_ear, /obj/item/radio/headset/mainship)))
 		var/obj/item/radio/headset/mainship/radio = wear_ear
-		radio.safety_protocol(src)
+		if(istype(radio))
+			radio.safety_protocol(src)
 	addtimer(CALLBACK(src, PROC_REF(finish_revive_to_crit), should_offer_to_ghost, should_zombify), 10 SECONDS)
 
 ///Check if we have a mind, and finish the revive if we do
@@ -420,3 +414,4 @@
 	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 	REMOVE_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
 	SSmobs.start_processing(src)
+

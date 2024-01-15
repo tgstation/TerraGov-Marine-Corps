@@ -1,23 +1,27 @@
 /datum/game_mode/hvh/campaign
 	name = "Campaign"
 	config_tag = "Campaign"
-	flags_round_type = MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY //any changes needed? MODE_LATE_OPENING_SHUTTER_TIMER handled by missions
+	flags_round_type = MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY
 	whitelist_ship_maps = list(MAP_ITERON)
 	whitelist_ground_maps = list(MAP_FORT_PHOBOS)
 	bioscan_interval = 3 MINUTES
 	valid_job_types = list(
-		/datum/job/terragov/command/fieldcommander/campaign = 1,
-		/datum/job/terragov/squad/engineer = 4,
+		/datum/job/terragov/squad/standard = -1,
 		/datum/job/terragov/squad/corpsman = 8,
+		/datum/job/terragov/squad/engineer = 4,
 		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/leader = 4,
-		/datum/job/terragov/squad/standard = -1,
-		/datum/job/som/command/fieldcommander = 1,
-		/datum/job/som/squad/leader = 4,
-		/datum/job/som/squad/veteran = 2,
-		/datum/job/som/squad/engineer = 4,
-		/datum/job/som/squad/medic = 8,
+		/datum/job/terragov/command/fieldcommander/campaign = 1,
+		/datum/job/terragov/command/staffofficer/campaign = 2,
+		/datum/job/terragov/command/captain/campaign = 1,
 		/datum/job/som/squad/standard = -1,
+		/datum/job/som/squad/medic = 8,
+		/datum/job/som/squad/engineer = 4,
+		/datum/job/som/squad/veteran = 2,
+		/datum/job/som/squad/leader = 4,
+		/datum/job/som/command/fieldcommander = 1,
+		/datum/job/som/command/staffofficer = 2,
+		/datum/job/som/command/commander = 1,
 	)
 	///The current mission type being played
 	var/datum/campaign_mission/current_mission
@@ -32,9 +36,6 @@
 	both TerraGov Marine Corp and the Sons of Mars forces are looking to intervene.")
 	to_chat(world, "<b>Fight for your faction across the planet, the campaign for Palmaria starts now!</b>")
 	to_chat(world, "<b>WIP, report bugs on the github!</b>")
-	to_chat(world, "<b>Respawns are via the respawn action button. Respawn at any time between missions. Respawn during missions if you have attrition available.</b>")
-	to_chat(world, "<b>See all details about your faction, missions and assets in the campaign status menu in the IC tab.</b>")
-	to_chat(world, "<b>The faction leader has a large responsibility for managing attrition and assets. Ahelp if you need a hand, as your team will suffer if you're not pressing buttons</b>")
 
 /datum/game_mode/hvh/campaign/pre_setup()
 	. = ..()
@@ -56,19 +57,27 @@
 		addtimer(CALLBACK(selected_faction, TYPE_PROC_REF(/datum/faction_stats, choose_faction_leader)), 90 SECONDS)
 
 /datum/game_mode/hvh/campaign/player_respawn(mob/respawnee)
-	if((player_death_times[respawnee.key] + CAMPAIGN_RESPAWN_TIME) > world.time)
-		to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.key] + CAMPAIGN_RESPAWN_TIME - world.time) / 10)] seconds remaining.<spawn>")
+	if(!respawnee?.client)
 		return
+
+	if(!(respawnee.faction in factions) && (current_mission?.mission_state == MISSION_STATE_ACTIVE))
+		return respawnee.respawn()
+
+	var/respawn_delay = CAMPAIGN_RESPAWN_TIME + stat_list[respawnee.faction]?.respawn_delay_modifier
+	if((player_death_times[respawnee.key] + respawn_delay) > world.time)
+		to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.key] + respawn_delay - world.time) / 10)] seconds remaining.<spawn>")
+		return
+
 	attempt_attrition_respawn(respawnee)
 
-/datum/game_mode/hvh/campaign/intro_sequence() //update this, new fluff message etc etc, make it faction generic
+/datum/game_mode/hvh/campaign/intro_sequence()
 	var/op_name_faction_one = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	var/op_name_faction_two = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == factions[1])
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_faction_one]</u></span><br>" + "Fight to restore peace and order across the planet, and check the SOM threat.<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/tdf)
-		else if(human.faction == factions[2]) //assuming only 2 factions
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_faction_two]</u></span><br>" + "Fight to liberate the people of Palmaria from the yoke of TerraGov oppression!<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/shokk)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_faction_one]</u></span><br>" + "Fight to restore peace and order across the planet, and check the SOM threat.<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "TGMC Rapid Reaction Battalion<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/rapid_response)
+		else if(human.faction == factions[2])
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_faction_two]</u></span><br>" + "Fight to liberate the people of Palmaria from the yoke of TerraGov oppression!<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "SOM 4th Special Assault Force<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/saf_four)
 
 /datum/game_mode/hvh/campaign/process()
 	if(round_finished)
@@ -113,6 +122,8 @@
 			continue
 		stat_list[i].get_status_tab_items(source, items)
 
+/datum/game_mode/hvh/campaign/ghost_verbs(mob/dead/observer/observer)
+	return list(/datum/action/campaign_overview, /datum/action/campaign_loadout)
 
 ///sets up the newly selected mission
 /datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission)
@@ -144,12 +155,6 @@
 
 ///respawns the player if attrition points are available
 /datum/game_mode/hvh/campaign/proc/attempt_attrition_respawn(mob/candidate)
-	if(!candidate?.client)
-		return
-
-	if(!(candidate.faction in factions))
-		return candidate.respawn()
-
 	var/list/dat = list("<div class='notice'>Mission Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
 	if(!GLOB.enter_allowed)
 		dat += "<div class='notice red'>You may no longer join the mission.</div><br>"
@@ -267,15 +272,6 @@
 	SIGNAL_HANDLER
 	if(!(new_member.faction in factions))
 		return
-	add_verb(new_member, /mob/living/proc/open_faction_stats_ui)
 
-///Opens up the players campaign status UI
-/mob/living/proc/open_faction_stats_ui()
-	set name = "Campaign Status"
-	set desc = "Check the status of your faction in the campaign."
-	set category = "IC"
-
-	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[faction]
-	if(!your_faction)
-		return
-	your_faction.interact(src)
+	var/datum/action/campaign_overview/overview = new
+	overview.give_action(new_member)

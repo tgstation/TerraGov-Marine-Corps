@@ -1,7 +1,9 @@
 /obj/machinery/computer/secure_data
 	name = "Security Records"
 	desc = "Used to view and edit personnel's security records"
-	icon_state = "security"
+	icon_state = "computer_small"
+	screen_overlay = "security"
+	broken_icon = "computer_small_red_broken"
 	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_NT_CORPORATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LOGISTICS)
 	circuit = /obj/item/circuitboard/computer/secure_data
 	var/obj/item/card/id/scan = null
@@ -359,7 +361,7 @@ What a mess.*/
 			if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active2 != a2))
 				return
 			var/counter = 1
-			while(active2.fields[text("com_[]", counter)])
+			while(active2.fields["com_[counter]"])
 				counter++
 			active2.fields["com_[counter]"] = "Made by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]"
 
@@ -376,8 +378,8 @@ What a mess.*/
 				temp += "<a href='?src=[text_ref(src)];choice=Clear Screen'>No</a>"
 
 		if ("Delete Entry")
-			if ((istype(active2, /datum/data/record) && active2.fields[text("com_[]", href_list["del_c"])]))
-				active2.fields[text("com_[]", href_list["del_c"])] = "<B>Deleted</B>"
+			if ((istype(active2, /datum/data/record) && active2.fields["com_[href_list["del_c"]]"]))
+				active2.fields["com_[href_list["del_c"]]"] = "<B>Deleted</B>"
 //RECORD CREATE
 		if ("New Record (Security)")
 			if ((istype(active1, /datum/data/record) && !( istype(active2, /datum/data/record) )))
@@ -578,3 +580,4 @@ What a mess.*/
 /obj/machinery/computer/secure_data/detective_computer
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "messyfiles"
+	screen_overlay = "messyfiles_screen"
