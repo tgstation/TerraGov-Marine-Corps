@@ -16,6 +16,7 @@
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/som/combat_patrol
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/r_pocket/war_crime_grenades
 	name = "Warcrime grenades"
@@ -80,6 +81,7 @@
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/tools/som/full
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/r_pocket/som_general
 	name = "General pouch"
@@ -95,11 +97,13 @@
 	ui_icon = "medkit"
 	item_typepath = /obj/item/storage/pouch/firstaid/som/combat_patrol
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/l_pocket/som_standard_first_aid/improved
 	desc = "Standard SOM first-aid pouch. Contains a improved set of medical supplies."
 	item_typepath = /obj/item/storage/pouch/firstaid/som/combat_patrol_leader
 	jobs_supported = list(SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/l_pocket/som_standard_grenades
 	name = "Grenade pouch"
@@ -156,13 +160,18 @@
 	desc = "A pouch containing three ammo magazines."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/magazine/large/som
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 	item_blacklist = list(
 		/obj/item/weapon/gun/rifle/som_mg/standard = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/twohanded/fireaxe/som = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/flamer/som/mag_harness = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/shotgun/som/standard = ITEM_SLOT_SUITSTORE,
 	)
+
+
+/datum/loadout_item/l_pocket/som_magazine/medic
+	jobs_supported = list(SOM_SQUAD_CORPSMAN)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/l_pocket/som_general
 	name = "General pouch"

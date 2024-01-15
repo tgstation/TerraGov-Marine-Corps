@@ -89,6 +89,7 @@
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/tools/full
 	jobs_supported = list(SQUAD_ENGINEER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/r_pocket/general
 	name = "General pouch"
