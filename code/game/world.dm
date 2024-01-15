@@ -74,6 +74,9 @@ GLOBAL_VAR(restart_counter)
 	// Init the debugger first so we can debug Master
 	init_debugger()
 
+	// Create the logger
+	logger = new
+
 	// THAT'S IT, WE'RE DONE, THE. FUCKING. END.
 	Master = new
 
@@ -150,6 +153,15 @@ GLOBAL_VAR(restart_counter)
 #endif
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), cb, 10 SECONDS))
 
+/// Returns a list of data about the world state, don't clutter
+/world/proc/get_world_state_for_logging()
+	var/data = list()
+	data["tick_usage"] = world.tick_usage
+	data["tick_lag"] = world.tick_lag
+	data["time"] = world.time
+	data["timestamp"] = rustg_unix_timestamp()
+	return data
+
 /world/proc/SetupLogs()
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
 	if(!override_dir)
@@ -167,7 +179,7 @@ GLOBAL_VAR(restart_counter)
 	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
 	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
 
-	_initialize_log_files() //TODO port log holder datum, this is a bandaid until that's done
+	logger.init_logging()
 
 	if(GLOB.round_id)
 		log_game("Round ID: [GLOB.round_id]")
