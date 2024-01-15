@@ -29,6 +29,8 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = 2,
+			/obj/item/cell/lasgun/plasma_powerpack = -1,
+			/obj/item/cell/lasgun/volkite/powerpack/plasma_chargepack = -1,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,
@@ -244,6 +246,10 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = 2,
+			/obj/item/cell/lasgun/plasma_powerpack = -1,
+			/obj/item/cell/lasgun/volkite/powerpack/plasma_chargepack = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle = 5,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon = 5,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,
@@ -440,6 +446,8 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = -1,
+			/obj/item/cell/lasgun/plasma_powerpack = -1,
+			/obj/item/cell/lasgun/volkite/powerpack/plasma_chargepack = -1,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,
