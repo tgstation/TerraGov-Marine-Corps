@@ -244,7 +244,7 @@
 
 /mob/new_player/proc/view_marines()
 	var/output = "<div align='center'>"
-	output += "<p><i>The <b>Nine Tailed Fox'</b> mission is to enforce space law for the purpose of defending Terra's orbit as well as other solar colonies around the galaxy under the conflict of the Independent Colonial Confederation and the intelligent xenomorph threat. \nThe NTC is composed by willing men and women from all kinds of social strata, hailing from all across the TerraGov systems. \nAs the vessel approaches to the ordered location on space, the cryostasis pods deactivate and awake you from your long-term stasis. Knowing that it's one of those days again, you hope that you'll make this out alive...</i></p>"
+	output += "<p><i>The <b>Nine Tailed Fox'</b> Ninetails Corporation, private security, data gathering, investigation, rnd, and cybernetics development specialized company first founded by Elizabeth Decker to work as a counterintel for another corp then developed itself to be on its own, it naturally clashed with the Japanese syndicate of the time due sharing their intel with the justice force until the unhinged leader who was soon to be executed, broke out of prison and in the following days planted a nuclear explosive in the sewers in the city centre where almost all that is living there are corporate citizens. The attack went unnoticed as a false intel indicated a bioweapon of sorts stashed away outside the city, most likely fabricated by the same group. The violent destruction of heart of the city caused so many deaths and Ninetails tower to be destroyed along with many other buildings. During the rebuilding times, the surviving space vessels of NTC was all that remains and the bank account, whatever it is worth. Other corps were not much different.</i></p>"
 	output += "</div>"
 
 	var/datum/browser/popup = new(src, "marines", "<div align='center'>Nine Tailed Fox</div>", 480, 280)
@@ -253,7 +253,7 @@
 
 /mob/new_player/proc/view_aliens()
 	var/output = "<div align='center'>"
-	output += "<p><i>Hailing from one of many unknown planets and other unlisted habitats, the <b>xenomorph threat</b> remains at large and still unclear. Extremely dangerous extraterrestrial lifeforms, part of the hive under the Queen Mother, had caught the NTC and NT colonies off-guard during their discovery in 2414. \nThey are divided into castes, each with their specialized roles equivalent to a traditional squad member in a human force, thanks to the xenomorph's lifecycle. \nAfter days of ravaging the current area, a metal hive was sighted by the Queen Mother and transported you on the ground. With your intent to spread the hive is in motion, you and your fellow sisters get to work...</i></p>"
+	output += "<p><i>Hailing from one of many unknown planets and other unlisted habitats, the <b>xenomorph threat</b> remains at large and still unclear. Extremely dangerous extraterrestrial lifeforms, part of the hive under the Queen Mother, had caught the NTC colonies off-guard during their discovery. \nThey are divided into castes, each with their specialized roles equivalent to a traditional squad member in a human force, thanks to the xenomorph's lifecycle. \nAfter days of ravaging the current area, a metal hive was sighted by the Queen Mother and transported you on the ground. With your intent to spread the hive is in motion, you and your fellow sisters get to work...</i></p>"
 	output += "</div>"
 
 	var/datum/browser/popup = new(src, "aliens", "<div align='center'>Xenomorph Hive</div>", 480, 280)
@@ -262,15 +262,8 @@
 
 /mob/new_player/proc/view_som()
 	var/output = "<div align='left'>"
-	output += "<p><i>The <b>Sons of Mars</b> are a fanatical group that trace their lineage back to the great Martian uprising. \
-	After TerraGov brutally crushed the rebellion, many Martians fled into deep space and most Terrans thought they would die in the great void. \
-	However, more than a century later their descendants emerged as the Sons of Mars, who are determined to reclaim their lost home and crush their hated enemy TerraGov.\
-	</i></p>"
+	output += "<p><i>The <b>Sons of Mars</b> Syndicate-funded, small private military group with experimental weaponry that originate from a mars labor camp of phantom city that rioted and took control of the station, most of their members are either criminals from the prison or this planet's desperate colonists who thought it would be a good idea to join syndicate funded terrorists, most likely by promises of a better life or fooling them they are here to do something greater, while their only goal is fighting the corporate, even if it means earth would be left broken. - Burn it all down even if it means losing everything you got. </i></p>"
 	output += "</div>"
-	output += "<p><i>The men and women that form the SOM are taught from birth of their dream of Mars, and hatred of TerraGov, and are fiercely proud of their history. \
-	As a society they have a single mindeded dedication towards reclaiming a home almost none of them have ever seen. What they lack in sheer manpower or resources compared to TerraGov, they make up for with advanced technology and bloody minded focus. \
-	Across the outer rim of colonised space, the SOM have worked to spread discontent and rebellion across TerraGov's many colonies, many of whom are receptive to the SOM's promises of freedom from TerraGov tyranny. \
-	Now the SOM feel their long promised revenge is almost at hand, and the threat of all out war looms over all human occupied space...</i></p>"
 
 	var/datum/browser/popup = new(src, "som", "<div align='center'>Sons of Mars</div>", 480, 430)
 	popup.set_content(output)

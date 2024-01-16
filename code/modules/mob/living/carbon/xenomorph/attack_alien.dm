@@ -37,8 +37,9 @@
 /mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	var/randn = rand(1, 100)
 	var/stamina_loss = getStaminaLoss()
-	var/disarmdamage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier + 20
-	var/damage_to_deal = clamp(disarmdamage, 0, maxHealth - stamina_loss)
+	var/disarmdamage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
+	var/maxdamagetodeal = maxHealth*2
+	var/damage_to_deal = clamp(disarmdamage, 0, maxdamagetodeal - stamina_loss)
 	var/sound = 'sound/weapons/alien_knockdown.ogg'
 
 	if ishuman(src)
@@ -58,13 +59,12 @@
 				"<span class='danger'>We disarm [src]!</span>", null, 5)
 				sound = 'sound/weapons/thudswoosh.ogg'
 				return
-			apply_damage(damage_to_deal, STAMINA)
+			apply_damage(damage_to_deal, STAMINA, BODY_ZONE_CHEST, MELEE)
 			X.visible_message("<span class='danger'>[X] shoves and presses [src] down!</span>",
 			"<span class='danger'>We shove and press [src] down!</span>", null, 5)
 			Stagger(2 SECONDS)
-			if(stamina_loss >= maxHealth)
+			if(stamina_loss >= maxdamagetodeal)
 				if(!IsParalyzed())
-					apply_damage(90, STAMINA)
 					visible_message(null, "<span class='danger'>You are too weakened to keep resisting [X], you slump to the ground!</span>")
 					X.visible_message("<span class='danger'>[X] slams [src] to the ground!</span>",
 					"<span class='danger'>We slam [src] to the ground!</span>", null, 5)

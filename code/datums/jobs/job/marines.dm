@@ -100,7 +100,6 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
-	job_points_needed = 5
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Squad Leader<br /><br />
@@ -161,7 +160,6 @@ Your squaddies will look to you when it comes to construction in the field of ba
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM,
 		/datum/job/terragov/squad/engineer = SMARTIE_POINTS_REGULAR,
 	)
-	job_points_needed = 5
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Squad Leader<br /><br />
@@ -219,7 +217,6 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 		/datum/job/terragov/squad/corpsman = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/squad/engineer = SMARTIE_POINTS_REGULAR,
 	)
-	job_points_needed = 10 //Redefined via config.
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Squad Leader<br /><br />

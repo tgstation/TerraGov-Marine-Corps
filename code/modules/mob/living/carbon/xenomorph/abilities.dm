@@ -1478,9 +1478,13 @@
 		owner.visible_message(span_warning("[X] fucks [victim]!"), span_warning("We fuck [victim]!"), span_warning("You hear slapping."), 5, victim)
 		if(victim.stat == CONSCIOUS)
 			to_chat(victim, span_warning("[X] fucks you!"))
-		victim.apply_damage(25, BURN, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
+		victim.reagents.remove_reagent(/datum/reagent/toxin/xeno_aphrotoxin, 12) // Remove aphrotoxin cause orgasm.
+		new /obj/effect/decal/cleanable/blood/splatter/xenocum(owner.loc)
+		var/impregdamagetodeal = (X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier) / 2
+		victim.apply_damage(15, BURN, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
+		victim.apply_damage(impregdamagetodeal, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
 		if(ismonkey(victim))
-			victim.apply_damage(25, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
+			victim.apply_damage(impregdamagetodeal, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
 		if(A.stat == DEAD)
 			to_chat(owner, span_warning("We impregnate \the [victim] with a dormant larva."))
 		var/obj/item/alien_embryo/embryo = new(victim)

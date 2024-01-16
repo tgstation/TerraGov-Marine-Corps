@@ -266,7 +266,6 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	exp_requirements = XP_REQ_EXPERT
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
-	job_points_needed = 80
 	html_description = {"
 		<b>Difficulty</b>:Very Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
