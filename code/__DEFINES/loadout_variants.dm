@@ -28,10 +28,10 @@
 #define CAPE_KILT_ALT "cape_kilt_alt"
 #define SOM_BLACK "SOM_black"
 #define CAPE_HIGHLIGHT_NORMAL_ALT "normal_alt"
-#define URBAN "ballistic_vest_urban"
-#define DESERT "ballistic_vest_desert"
-#define JUNGLE "ballistic_vest_jungle"
-#define SNOW "ballistic_vest_snow"
+#define BALLISTIC_VEST_URBAN "ballistic_vest_urban"
+#define BALLISTIC_VEST_DESERT "ballistic_vest_desert"
+#define BALLISTIC_VEST_JUNGLE "ballistic_vest_jungle"
+#define BALLISTIC_VEST_SNOW "ballistic_vest_snow"
 
 #define CAPE_HIGHLIGHT_NONE "cape_highlight_none"
 #define LEATHER_JACKET_WEBBING "leather_jacket_webbing"
@@ -84,8 +84,8 @@ GLOBAL_LIST_INIT(loadout_variant_keys, list(
 	MARK_ONE_WEBBING = "webbing",
 	FOUR_EYE_FACEPLATE = "Four Eye",
 	FOUR_EYE_FACEPLATE_VISOR = "Four Eye",
-	URBAN = "urban",
-	JUNGLE = "jungle",
-	DESERT = "desert",
-	SNOW = "snow",
+	BALLISTIC_VEST_URBAN = "urban",
+	BALLISTIC_VEST_JUNGLE = "jungle",
+	BALLISTIC_VEST_DESERT = "desert",
+	BALLISTIC_VEST_SNOW = "snow",
 ))

@@ -197,7 +197,7 @@
 		/obj/item/weapon/energy/sword,
 	)
 
-/obj/item/clothing/suit/storage/modular/xenonauten/ballistic
+/obj/item/clothing/suit/storage/ballistic
 	name = "\improper Crasher multi-threat ballistic armor"
 	desc = "A reused design of a old body armor system from the 21st century."
 	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 20, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
