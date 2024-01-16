@@ -12,6 +12,25 @@
 	name = "no suit"
 	desc = ""
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	jobs_supported = list(
+		SQUAD_MARINE,
+		SQUAD_CORPSMAN,
+		SQUAD_ENGINEER,
+		SQUAD_SMARTGUNNER,
+		SQUAD_LEADER,
+		FIELD_COMMANDER,
+		STAFF_OFFICER,
+		CAPTAIN,
+		SOM_SQUAD_MARINE,
+		SOM_SQUAD_CORPSMAN,
+		SOM_SQUAD_ENGINEER,
+		SOM_SQUAD_VETERAN,
+		SOM_SQUAD_LEADER,
+		SOM_FIELD_COMMANDER,
+		SOM_STAFF_OFFICER,
+		SOM_COMMANDER,
+	)
+
 
 /datum/loadout_item/suit_slot/light_shield
 	name = "Light shielded armor"
@@ -30,6 +49,7 @@
 	desc = "Heavy armor with a Svallin shield module. Provides excellent protection but lower mobility."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/shield
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/heavy_surt
 	name = "Heavy Surt armor"
@@ -49,8 +69,9 @@
 		/obj/item/weapon/gun/smg/m25/magharness = ITEM_SLOT_SUITSTORE,
 	)
 
-/datum/loadout_item/suit_slot/heavy_tyr/smartgunner //no whitelist
+/datum/loadout_item/suit_slot/heavy_tyr/smartgunner
 	jobs_supported = list(SQUAD_SMARTGUNNER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	item_whitelist = null
 
 /datum/loadout_item/suit_slot/medium_valk
@@ -64,6 +85,7 @@
 	desc = "Heavy armor with a Valkyrie automedical module. Provides excellent protection, powerful automatic medical assistance, but reduced mobility."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/leader
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/white_dress
 	name = "White dress jacket"
@@ -77,6 +99,7 @@
 	desc = "Medium armor with a Mimir environmental protection module. Provides respectable armor and total immunity to chemical attacks, and improved radiological protection. Has modest mobility."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/mimir
 	jobs_supported = list(SQUAD_CORPSMAN)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/medium_mimir/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
@@ -88,6 +111,7 @@
 	desc = "Medium armor with engineering storage. Provides balanced armor and mobility."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/engineer
 	jobs_supported = list(SQUAD_ENGINEER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/medium_engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)

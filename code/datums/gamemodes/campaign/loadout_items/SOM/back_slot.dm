@@ -3,6 +3,7 @@
 	desc = "A satchel with origins dating back to the mining colonies.. Carries less than a backpack, but items can be drawn instantly."
 	item_typepath = /obj/item/storage/backpack/satchel/som
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_STAFF_OFFICER, SOM_COMMANDER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/back/som_combat_pack
 	name = "Mining rucksack"
@@ -14,6 +15,7 @@
 /datum/loadout_item/back/som_combat_pack/free
 	purchase_cost = 0
 	jobs_supported = list(SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/back/som_flamer_tank
 	name = "Flame tank"

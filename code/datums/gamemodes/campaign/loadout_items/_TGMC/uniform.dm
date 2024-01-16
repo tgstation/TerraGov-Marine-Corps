@@ -5,12 +5,32 @@
 	name = "no uniform"
 	desc = ""
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	jobs_supported = list(
+		SQUAD_MARINE,
+		SQUAD_CORPSMAN,
+		SQUAD_ENGINEER,
+		SQUAD_SMARTGUNNER,
+		SQUAD_LEADER,
+		FIELD_COMMANDER,
+		STAFF_OFFICER,
+		CAPTAIN,
+		SOM_SQUAD_MARINE,
+		SOM_SQUAD_CORPSMAN,
+		SOM_SQUAD_ENGINEER,
+		SOM_SQUAD_VETERAN,
+		SOM_SQUAD_LEADER,
+		SOM_FIELD_COMMANDER,
+		SOM_STAFF_OFFICER,
+		SOM_COMMANDER,
+	)
+
 
 /datum/loadout_item/uniform/marine_standard
 	name = "TGMC uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform. You suspect it's not as robust-proof as advertised."
 	item_typepath = /obj/item/clothing/under/marine/black_vest
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/uniform/red_fatigue
 	name = "Big Red fatigues"
@@ -55,6 +75,7 @@
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat corpsman fatigues. You suspect it's not as robust-proof as advertised."
 	item_typepath = /obj/item/clothing/under/marine/corpsman/corpman_vest
 	jobs_supported = list(SQUAD_CORPSMAN)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/uniform/marine_corpsman/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_ACCESSORY)
@@ -71,6 +92,7 @@
 	req_desc = "Requires a tool pouch. You ARE an engineer, right?"
 	item_typepath = /obj/item/clothing/under/marine/engineer/black_vest
 	jobs_supported = list(SQUAD_ENGINEER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	item_whitelist = list(
 		/obj/item/storage/pouch/tools/full = ITEM_SLOT_R_POCKET,
 	)
@@ -81,6 +103,7 @@
 	desc = "A special-issue, kevlar-weaved, hazmat-tested, EMF-augmented worn by a field-grade officer of the TGMC. You suspect it's not as robust-proof as advertised."
 	item_typepath = /obj/item/clothing/under/marine/officer/exec/webbing
 	jobs_supported = list(FIELD_COMMANDER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 //Staff officer
 /datum/loadout_item/uniform/staff_officer
@@ -88,6 +111,7 @@
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented staff officer uniform. Do the navy proud."
 	item_typepath = /obj/item/clothing/under/marine/officer/bridge
 	jobs_supported = list(STAFF_OFFICER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 //Captain
 /datum/loadout_item/uniform/captain_officer
@@ -95,3 +119,4 @@
 	desc = "A special-issue, well-ironed, kevlar-weaved, hazmat-tested, EMF-augmented uniform worth of a TerraGov Naval Captain. Even looking at it the wrong way could result in being court-martialed."
 	item_typepath = /obj/item/clothing/under/marine/officer/command
 	jobs_supported = list(CAPTAIN)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
