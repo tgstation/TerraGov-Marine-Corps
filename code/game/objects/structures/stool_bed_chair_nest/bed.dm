@@ -791,7 +791,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	name = "folded security bedroll"
 	desc = "For when you need to deliver surprise buttsex to criminals."
 	icon_state = "bedroll_sec_o"
-	rollertype = /obj/item/roller/bedroll/sec
+	foldabletype = /obj/item/roller/bedroll/sec
 
 /obj/item/roller/bedroll/sec
 	name = "folded security bedroll"
