@@ -171,11 +171,12 @@
 
 
 /obj/machinery/vending/cargo_supply/som
-	name = "\improper Operational Supplies Vendor"
+	name = "\improper SOM Operational Supplies Vendor"
 	desc = "A large vendor for dispensing specialty and bulk supplies. Restricted to cargo personnel only."
 	icon_state = "requisitionop"
 	icon_vend = "requisitionop-vend"
 	icon_deny = "requisitionop-deny"
+	req_one_access = list(213)
 	wrenchable = FALSE
 	products = list(
 		"Surplus Special Equipment" = list(
@@ -189,10 +190,10 @@
 			/obj/item/explosive/plastique = 5,
 			/obj/item/fulton_extraction_pack = 2,
 			/obj/item/clothing/suit/storage/marine/boomvest = 20,
-			/obj/item/radio/headset/mainship/marine/alpha = -1,
-			/obj/item/radio/headset/mainship/marine/bravo = -1,
-			/obj/item/radio/headset/mainship/marine/charlie = -1,
-			/obj/item/radio/headset/mainship/marine/delta = -1,
+			/obj/item/radio/headset/mainship/som/zulu = -1,
+			/obj/item/radio/headset/mainship/som/yankee = -1,
+			/obj/item/radio/headset/mainship/som/xray = -1,
+			/obj/item/radio/headset/mainship/som/whiskey = -1,
 		),
 		"Mining Equipment" = list(
 			/obj/item/minerupgrade/automatic = 1,

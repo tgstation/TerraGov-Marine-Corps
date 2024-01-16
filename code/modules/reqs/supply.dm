@@ -34,6 +34,14 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	dheight = 2
 	height = 5
 
+/obj/docking_port/stationary/supplysom
+	id = "supply_som"
+	roundstart_template = /datum/map_template/shuttle/supplysom
+	width = 3
+	dwidth = 1
+	dheight = 0
+	height = 1
+
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
 	id = SHUTTLE_SUPPLY

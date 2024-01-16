@@ -4365,8 +4365,10 @@
 	name = "CC Office"
 	})
 "dUI" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 2
+/obj/machinery/door/poddoor/mainship/hangar{
+	max_integrity = 3000;
+	dir = 2;
+	id = ""
 	},
 /turf/open/floor/mainship/mono,
 /area/outpost/cargo{
@@ -24254,6 +24256,7 @@
 /area/mainship/hull/upper_hull)
 "wrI" = (
 /obj/machinery/flasher/portable,
+/obj/item/tool/wrench,
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "wrM" = (
