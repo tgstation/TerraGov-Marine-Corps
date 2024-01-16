@@ -311,7 +311,7 @@
 	//Checks if our "patient" is wearing a camera. Then it turns it on if it's off.
 	if(istype(H.wear_ear, /obj/item/radio/headset/mainship))
 		var/obj/item/radio/headset/mainship/cam_headset = H.wear_ear
-		if(!(cam_headset.camera.status))
+		if(!(cam_headset?.camera?.status))
 			cam_headset.camera.toggle_cam(null, FALSE)
 
 	REMOVE_TRAIT(H, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
