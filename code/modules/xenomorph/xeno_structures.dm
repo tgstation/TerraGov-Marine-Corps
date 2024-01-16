@@ -906,6 +906,10 @@ TUNNEL
 		var/mob/living/carbon/xenomorph/X = hostile
 		if(X.hive == GLOB.hive_datums[hivenumber]) //Trigger proxy alert only for hostile xenos
 			return
+	if(ishuman(hostile))
+		var/mob/living/carbon/human/human_triggerer = hostile
+		if(get_xeno_hivenumber(human_triggerer) == hivenumber)
+			return
 
 	warning = TRUE
 	update_minimap_icon()
@@ -1449,6 +1453,10 @@ TUNNEL
 	if(isxeno(hostile))
 		var/mob/living/carbon/xenomorph/X = hostile
 		if(X.hivenumber == hivenumber) //Trigger proxy alert only for hostile xenos
+			return
+	if(ishuman(hostile))
+		var/mob/living/carbon/human/human_triggerer = hostile
+		if(get_xeno_hivenumber(human_triggerer) == hivenumber)
 			return
 
 	warning = TRUE

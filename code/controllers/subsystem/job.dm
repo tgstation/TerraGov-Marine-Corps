@@ -333,6 +333,10 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/SendToLateJoin(mob/M, datum/job/assigned_role)
+	if(issurvivorjob(assigned_role))
+		if(length(GLOB.latejoinsurvivor))
+			SendToAtom(M, pick(GLOB.latejoinsurvivor))
+			return
 	switch(assigned_role.faction)
 		if(FACTION_SOM)
 			if(length(GLOB.latejoinsom))

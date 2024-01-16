@@ -769,3 +769,32 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		linked_beds_deployed -= stretcherbed
 		return TRUE
 	return FALSE
+
+//bedroll
+/obj/structure/bed/bedroll
+	name = "unfolded bedroll"
+	desc = "Perfect for those long missions, when there's nowhere else to sleep (or fuck)."
+	icon = 'icons/ntfcustom.dmi'
+	icon_state = "bedroll_o"
+	buckling_y = 0
+	foldabletype = /obj/item/roller/bedroll
+	accepts_bodybag = FALSE
+
+/obj/item/roller/bedroll
+	name = "folded bedroll"
+	desc = "A standard issue NTF bedroll, It has... suspicious white-ish stains on it."
+	icon = 'icons/ntfcustom.dmi'
+	icon_state = "bedroll"
+	rollertype = /obj/structure/bed/bedroll
+
+/obj/structure/bed/bedroll/sec
+	name = "folded security bedroll"
+	desc = "For when you need to deliver surprise buttsex to criminals."
+	icon_state = "bedroll_sec_o"
+	rollertype = /obj/item/roller/bedroll/sec
+
+/obj/item/roller/bedroll/sec
+	name = "folded security bedroll"
+	icon_state = "bedroll_sec"
+	desc = "Corpsec Standard issue bedroll to deliver express hole-gaping punishments with comfort of a bed for the slut/stud-curity."
+	rollertype = /obj/structure/bed/bedroll/sec

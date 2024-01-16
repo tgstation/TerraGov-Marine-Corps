@@ -16846,6 +16846,7 @@
 	output_level = 200000
 	},
 /obj/machinery/camera/autoname/mainship,
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/deltastation/engineering/gravity_generator{
 	name = "\improper Lower Power";
@@ -16924,16 +16925,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
-	})
-"psf" = (
-/obj/machinery/door/airlock/mainship/maint{
-	req_one_access = list(40)
-	},
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo{
-	static_lighting = 1;
-	base_lighting_alpha = 0
 	})
 "psv" = (
 /obj/structure/bed/chair/sofa{
@@ -35633,7 +35624,7 @@ btz
 btz
 btz
 ePf
-psf
+pSz
 ePf
 rdz
 tsU

@@ -390,6 +390,10 @@
 		return
 	if(living_triggerer.stat == DEAD) //We don't care about the dead
 		return
+	if(ishuman(hostile))
+		var/mob/living/carbon/human/human_triggerer = hostile
+		if(get_xeno_hivenumber(human_triggerer) == hivenumber)
+			return
 
 	if(isxeno(hostile))
 		var/mob/living/carbon/xenomorph/X = hostile

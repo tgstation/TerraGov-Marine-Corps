@@ -113,6 +113,7 @@
 #define LOG_CATEGORY_GAME_MOOC "game-mooc"
 #define LOG_CATEGORY_GAME_PRAYER "game-prayer"
 #define LOG_CATEGORY_GAME_SAY "game-say"
+#define LOG_CATEGORY_GAME_ROLEPLAY "game-rp"
 #define LOG_CATEGORY_GAME_TOPIC "game-topic"
 #define LOG_CATEGORY_GAME_VOTE "game-vote"
 #define LOG_CATEGORY_GAME_WHISPER "game-whisper"

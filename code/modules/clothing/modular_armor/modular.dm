@@ -23,7 +23,7 @@
 	flags_item = SYNTH_RESTRICTED|IMPEDE_JETPACK
 	/// What is allowed to be equipped in suit storage
 	allowed = list(
-		/obj/item/weapon/gun,
+		/obj/item/weapon,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
 		/obj/item/ammo_magazine,

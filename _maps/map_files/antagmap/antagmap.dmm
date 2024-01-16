@@ -308,6 +308,12 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"dC" = (
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway{
+	requires_power = 0
+	})
 "dF" = (
 /turf/closed/shuttle/ert/engines/right{
 	dir = 1
@@ -466,6 +472,13 @@
 /obj/item/tweezers_advanced,
 /turf/open/floor/iron/grimy,
 /area/canora_desert/surface/building/som_torturechamber)
+"fh" = (
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway{
+	requires_power = 0
+	})
 "fn" = (
 /obj/structure/bed/chair/sofa/corner,
 /turf/open/floor/plating/ground/dirt,
@@ -1287,6 +1300,11 @@
 	dir = 4
 	},
 /area/canora_desert/surface/building/som_mechbay)
+"ny" = (
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway{
+	requires_power = 0
+	})
 "nE" = (
 /obj/machinery/telecomms/processor/preset_four/som,
 /turf/open/floor/bcircuit/anim,
@@ -1329,6 +1347,12 @@
 	},
 /turf/open/floor/grayscale/edge,
 /area/mainship/groundhq/clf/hallways/bathroom)
+"oi" = (
+/obj/effect/spawner/random/engineering/structure/powergenerator,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway{
+	requires_power = 0
+	})
 "or" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -1543,6 +1567,15 @@
 /obj/structure/platform,
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command)
+"qB" = (
+/obj/item/stack/sheet/metal/large_stack,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway{
+	requires_power = 0
+	})
 "qI" = (
 /obj/machinery/iv_drip,
 /obj/machinery/light{
@@ -1768,6 +1801,12 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
+"tG" = (
+/obj/item/stack/sheet/plasteel/medium_stack,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway{
+	requires_power = 0
+	})
 "tO" = (
 /obj/machinery/vending/weapon/som,
 /turf/open/floor/carpet/side{
@@ -1860,6 +1899,12 @@
 /obj/structure/filingcabinet/medical,
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command)
+"ut" = (
+/obj/item/flashlight/lantern,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway{
+	requires_power = 0
+	})
 "uu" = (
 /obj/machinery/vending/boozeomat,
 /obj/machinery/light{
@@ -2768,6 +2813,16 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay"
+	})
+"Dc" = (
+/obj/item/bedsheet/brown,
+/obj/effect/decal/cleanable/blood/splatter/cum,
+/obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
+/obj/item/clothing/under/lewd/panties,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway{
+	requires_power = 0
 	})
 "Dg" = (
 /obj/structure/cable,
@@ -3984,6 +4039,12 @@
 /obj/effect/turf_decal/stripes/asteroid/box,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/mainship/groundhq/clf/living/grunt_rnr/two)
+"PE" = (
+/obj/item/stack/sheet/cloth,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway{
+	requires_power = 0
+	})
 "PI" = (
 /obj/structure/cable,
 /obj/machinery/power/smes/preset,
@@ -4561,6 +4622,12 @@
 /obj/structure/bed/bunkbed,
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/som_barracks)
+"Vk" = (
+/obj/structure/patrol_point/tgmc_13,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway{
+	requires_power = 0
+	})
 "Vm" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/canora_desert/surface/building/som_smaint)
@@ -4813,6 +4880,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/som_admiral)
+"XT" = (
+/obj/structure/patrol_point/tgmc_14,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway{
+	requires_power = 0
+	})
 "XW" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -7592,9 +7665,9 @@ gW
 gW
 gW
 gW
-aF
-aF
-aF
+tT
+tT
+tT
 tT
 tT
 "}
@@ -7624,11 +7697,11 @@ gW
 JW
 gW
 tY
-aF
-aF
-aF
-aF
 tT
+fh
+PE
+Vk
+Go
 "}
 (84,1,1) = {"
 tT
@@ -7656,11 +7729,11 @@ JW
 gW
 tY
 tY
-aF
-aF
-aF
-aF
 tT
+qB
+ny
+XT
+Go
 "}
 (85,1,1) = {"
 tT
@@ -7688,9 +7761,9 @@ ai
 gW
 tY
 aF
-aF
-aF
 tT
+ut
+dC
 tT
 tT
 "}
@@ -7720,9 +7793,9 @@ gW
 gW
 tY
 aF
-aF
-aF
-aF
+tT
+Dc
+tG
 tT
 tT
 "}
@@ -7754,7 +7827,7 @@ tY
 aF
 tT
 tT
-tT
+oi
 tT
 tT
 "}

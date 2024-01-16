@@ -74,6 +74,11 @@
 	GLOB.latejoinclf += loc
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/start/latejoinsurvivor/Initialize(mapload)
+	. = ..()
+	GLOB.latejoinsurvivor += loc
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/start/latejoin_gateway/Initialize(mapload)
 	. = ..()
 	GLOB.latejoin_gateway += loc
