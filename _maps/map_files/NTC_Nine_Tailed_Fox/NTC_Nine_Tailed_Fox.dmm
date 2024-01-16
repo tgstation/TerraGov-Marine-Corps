@@ -6461,6 +6461,16 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
+"fQR" = (
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 2
+	},
+/turf/open/floor/stairs/rampbottom,
+/area/mainship/hallways/hangar)
 "fRj" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -8373,6 +8383,15 @@
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
+"hIO" = (
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 2
+	},
+/turf/open/floor/stairs/rampbottom,
+/area/mainship/hallways/hangar)
 "hJe" = (
 /obj/effect/decal/cleanable/blood/gibs/robot/limb,
 /obj/machinery/computer/mech_builder{
@@ -15441,6 +15460,19 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
+"nYs" = (
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 2;
+	id = "cargohold";
+	name = "\improper Shuttle Bay"
+	},
+/turf/open/floor/stairs/rampbottom,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "nYw" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/wood,
@@ -16272,6 +16304,11 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 2;
+	id = "cargohold";
+	name = "\improper Shuttle Bay"
+	},
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -16600,6 +16637,9 @@
 	},
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 2
 	},
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/hallways/hangar)
@@ -23319,6 +23359,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 2
+	},
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/hallways/hangar)
 "vwi" = (
@@ -25826,6 +25869,11 @@
 	},
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 2;
+	id = "cargohold";
+	name = "\improper Shuttle Bay"
 	},
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/hallways/port_umbilical{
@@ -36268,7 +36316,7 @@ hXu
 oAK
 oHD
 kIS
-oHD
+nYs
 tIk
 tIk
 tIk
@@ -36510,7 +36558,7 @@ bTq
 sMl
 tJQ
 twA
-oHD
+nYs
 tIk
 tIk
 tIk
@@ -42802,7 +42850,7 @@ rGT
 kmD
 poQ
 kdx
-poQ
+fQR
 vFx
 kZY
 qFi
@@ -43044,7 +43092,7 @@ xyd
 kNU
 fSb
 ckh
-fSb
+hIO
 tIk
 tIk
 tIk
