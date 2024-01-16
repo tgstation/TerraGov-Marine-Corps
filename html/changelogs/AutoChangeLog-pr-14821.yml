@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Maptables with draw functionality are accessible to all users, but the draw features remain leadership locked"
