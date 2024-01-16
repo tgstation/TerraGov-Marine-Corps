@@ -194,7 +194,7 @@
 	if(carbon_owner.selected_ability == src)
 		return
 	if(carbon_owner.selected_ability)
-		carbon_owner.selected_ability.deselect() //todo: make jetpack/blinkdrive etc activatables
+		carbon_owner.selected_ability.deselect()
 	select()
 
 /datum/action/ability/activable/keybind_activation()

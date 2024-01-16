@@ -21,7 +21,7 @@
 /datum/loadout_item/back/combat_pack
 	name = "Combat pack"
 	desc = "A small lightweight pack for expeditions and short-range operations. Has the storage capacity of a backpack but no draw delay."
-	purchase_cost = 80
+	purchase_cost = 50
 	item_typepath = /obj/item/storage/backpack/lightpack
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER)
 
