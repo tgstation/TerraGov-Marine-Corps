@@ -413,6 +413,7 @@
 	item_state = "lootbox"
 
 	legendary_list = list(
+		/obj/item/storage/box/crate/loot/m25e_pack,
 		/obj/item/storage/box/crate/loot/operator_pack,
 		/obj/item/storage/box/crate/loot/heavy_pack,
 		/obj/item/storage/box/crate/loot/b18classic_pack,
@@ -879,6 +880,26 @@
 
 // Legendaries
 
+/obj/item/storage/box/crate/loot/m25e_pack/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/smg/m25/elite/suppressed(src)
+	new /obj/item/ammo_magazine/smg/m25/ap(src)
+	new /obj/item/ammo_magazine/smg/m25/ap(src)
+	new /obj/item/ammo_magazine/smg/m25/ap(src)
+	new /obj/item/ammo_magazine/smg/m25/ap(src)
+	new /obj/item/ammo_magazine/smg/m25/ap(src)
+	new /obj/item/ammo_magazine/smg/m25/ap(src)
+	new /obj/item/ammo_magazine/smg/m25/ap(src)
+	new /obj/item/ammo_magazine/smg/m25/extended(src)
+	new /obj/item/ammo_magazine/smg/m25/extended(src)
+	new /obj/item/ammo_magazine/smg/m25/extended(src)
+	new /obj/item/ammo_magazine/smg/m25/extended(src)
+	new /obj/item/ammo_magazine/smg/m25/extended(src)
+	new /obj/item/ammo_magazine/smg/m25/extended(src)
+	new /obj/item/ammo_magazine/smg/m25/extended(src)
+	new /obj/item/ammo_magazine/smg/m25/extended(src)
+	new /obj/item/clothing/glasses/night/m56_goggles(src)
+
 /obj/item/storage/box/crate/loot/operator_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/rifle/m412/elite(src)
@@ -886,12 +907,16 @@
 	new /obj/item/ammo_magazine/rifle/ap(src)
 	new /obj/item/ammo_magazine/rifle/ap(src)
 	new /obj/item/ammo_magazine/rifle/ap(src)
-	new /obj/item/ammo_magazine/rifle/ap(src)
-	new /obj/item/ammo_magazine/rifle/ap(src)
-	new /obj/item/ammo_magazine/rifle/ap(src)
-	new /obj/item/ammo_magazine/rifle/ap(src)
-	new /obj/item/ammo_magazine/rifle/ap(src)
-	new /obj/item/ammo_magazine/rifle/ap(src)
+	new /obj/item/ammo_magazine/rifle/extended(src)
+	new /obj/item/ammo_magazine/rifle/extended(src)
+	new /obj/item/ammo_magazine/rifle/extended(src)
+	new /obj/item/ammo_magazine/rifle/extended(src)
+	new /obj/item/ammo_magazine/rifle/extended(src)
+	new /obj/item/ammo_magazine/rifle/extended(src)
+	new /obj/item/ammo_magazine/rifle/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/incendiary(src)
+	new /obj/item/ammo_magazine/rifle(src)
 	new /obj/item/ammo_magazine/rifle(src)
 	new /obj/item/ammo_magazine/rifle(src)
 	new /obj/item/ammo_magazine/rifle(src)
