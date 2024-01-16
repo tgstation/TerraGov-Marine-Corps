@@ -439,7 +439,8 @@
 		/obj/item/storage/donut_box = 2,
 		/obj/item/clothing/under/lewd/stripper/slutcurity = -1,
 		/obj/item/storage/belt/security = -1,
-		/obj/item/explosive/grenade/smokebomb/sleep = 5,
+		/obj/item/explosive/grenade/smokebomb/sleep = 4,
+		/obj/item/roller/bedroll/sec = -1,
 	)
 
 /obj/machinery/vending/hydronutrients

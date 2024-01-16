@@ -13,7 +13,9 @@
 /turf/open/floor/iron/grimy,
 /area/canora_desert/surface/building/som_torturechamber)
 "ae" = (
-/obj/machinery/vending/cargo_supply/som,
+/obj/machinery/vending/cargo_supply/som{
+	req_one_access = list(204)
+	},
 /turf/open/floor/mainship/cargo,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay"
@@ -308,12 +310,6 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
-"dC" = (
-/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway{
-	requires_power = 0
-	})
 "dF" = (
 /turf/closed/shuttle/ert/engines/right{
 	dir = 1
@@ -410,6 +406,12 @@
 	dir = 10
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"eI" = (
+/obj/item/flashlight/lantern,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway{
+	requires_power = 0
+	})
 "eN" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -701,6 +703,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general/som)
+"ig" = (
+/obj/effect/spawner/random/engineering/structure/powergenerator,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway{
+	requires_power = 0
+	})
 "il" = (
 /obj/structure/table/reinforced,
 /obj/item/detective_scanner,
@@ -1347,12 +1355,6 @@
 	},
 /turf/open/floor/grayscale/edge,
 /area/mainship/groundhq/clf/hallways/bathroom)
-"oi" = (
-/obj/effect/spawner/random/engineering/structure/powergenerator,
-/turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway{
-	requires_power = 0
-	})
 "or" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -1801,12 +1803,6 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
-"tG" = (
-/obj/item/stack/sheet/plasteel/medium_stack,
-/turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway{
-	requires_power = 0
-	})
 "tO" = (
 /obj/machinery/vending/weapon/som,
 /turf/open/floor/carpet/side{
@@ -1899,12 +1895,6 @@
 /obj/structure/filingcabinet/medical,
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command)
-"ut" = (
-/obj/item/flashlight/lantern,
-/turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway{
-	requires_power = 0
-	})
 "uu" = (
 /obj/machinery/vending/boozeomat,
 /obj/machinery/light{
@@ -2813,16 +2803,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay"
-	})
-"Dc" = (
-/obj/item/bedsheet/brown,
-/obj/effect/decal/cleanable/blood/splatter/cum,
-/obj/effect/landmark/start/job/survivor,
-/obj/effect/landmark/start/latejoinsurvivor,
-/obj/item/clothing/under/lewd/panties,
-/turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway{
-	requires_power = 0
 	})
 "Dg" = (
 /obj/structure/cable,
@@ -4524,6 +4504,12 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/canora_desert/surface/building/som_admiral)
+"Uk" = (
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway{
+	requires_power = 0
+	})
 "Un" = (
 /obj/structure/bed/alien,
 /obj/item/bedsheet/blue,
@@ -4880,6 +4866,16 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/som_admiral)
+"XM" = (
+/obj/item/bedsheet/brown,
+/obj/effect/decal/cleanable/blood/splatter/cum,
+/obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
+/obj/item/clothing/under/lewd/panties,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway{
+	requires_power = 0
+	})
 "XT" = (
 /obj/structure/patrol_point/tgmc_14,
 /turf/open/floor/plating/ground/dirt,
@@ -4984,6 +4980,12 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/canora_desert/surface/building/som_medical)
+"Zb" = (
+/obj/item/stack/sheet/plasteel/medium_stack,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway{
+	requires_power = 0
+	})
 "Zo" = (
 /obj/machinery/computer/sleep_console{
 	dir = 8
@@ -7762,8 +7764,8 @@ gW
 tY
 aF
 tT
-ut
-dC
+eI
+Uk
 tT
 tT
 "}
@@ -7794,8 +7796,8 @@ gW
 tY
 aF
 tT
-Dc
-tG
+XM
+Zb
 tT
 tT
 "}
@@ -7827,7 +7829,7 @@ tY
 aF
 tT
 tT
-oi
+ig
 tT
 tT
 "}
