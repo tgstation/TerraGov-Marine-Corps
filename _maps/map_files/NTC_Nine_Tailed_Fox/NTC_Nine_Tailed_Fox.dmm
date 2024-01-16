@@ -11964,19 +11964,6 @@
 "kQG" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
-"kQJ" = (
-/obj/structure/window/framed/mainship/toughened{
-	name = "kevlar-weave infused bulletproof window"
-	},
-/obj/machinery/door/poddoor/shutters/opened/wy{
-	name = "wy2";
-	id = "wyoffice2"
-	},
-/turf/open/floor/mainship/mono,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
-	})
 "kQK" = (
 /obj/structure/benchpress,
 /turf/open/floor/mainship/mono,
@@ -24254,11 +24241,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
-"wrI" = (
-/obj/machinery/flasher/portable,
-/obj/item/tool/wrench,
-/turf/open/floor/mainship,
-/area/mainship/groundhq/ntf/shipboard/brig)
 "wrM" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
@@ -60279,7 +60261,7 @@ lGu
 kQG
 mmj
 qVP
-wrI
+rjv
 rjv
 cGI
 mmj
@@ -65109,7 +65091,7 @@ gHp
 qZo
 qnG
 qnG
-kQJ
+tNh
 tNh
 bwS
 qnG

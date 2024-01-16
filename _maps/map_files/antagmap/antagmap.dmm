@@ -5048,9 +5048,7 @@
 /obj/structure/prop/mainship/railing{
 	dir = 8
 	},
-/obj/machinery/vending/cargo_supply/som{
-	req_one_access = list(213)
-	},
+/obj/machinery/vending/cargo_supply/som,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
@@ -5416,9 +5414,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "Sa" = (
-/obj/docking_port/stationary/supplysom{
-	dheight = 0
-	},
+/obj/docking_port/stationary/supplysom,
 /turf/open/floor/mainship/empty,
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
@@ -5685,10 +5681,8 @@
 	name = "SOM Prisoner Contaiment"
 	})
 "TI" = (
-/obj/machinery/flasher/portable,
 /obj/machinery/power/apc,
 /obj/structure/cable,
-/obj/item/tool/wrench,
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/som_prison{
 	outside = 0;
