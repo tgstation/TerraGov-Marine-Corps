@@ -107,7 +107,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	ui_icon = "soft_footed"
 	traits = list(TRAIT_AXE_EXPERT)
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
-	unlock_cost = 400
+	unlock_cost = 450
 	prereq_perks = list(/datum/perk/skill_mod/melee/two)
 
 /datum/perk/trait/axe_master/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
@@ -124,7 +124,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	ui_icon = "soft_footed"
 	traits = list(TRAIT_SWORD_EXPERT)
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, FIELD_COMMANDER)
-	unlock_cost = 400
+	unlock_cost = 450
 	prereq_perks = list(/datum/perk/skill_mod/melee/two)
 
 /datum/perk/trait/sword_master/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
@@ -172,14 +172,14 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	ui_icon = "cqc_1"
 	cqc = 1
 	all_jobs = TRUE
-	unlock_cost = 300
+	unlock_cost = 250
 
 /datum/perk/skill_mod/cqc/two
 	name = "Hand to hand specialisation"
 	desc = "Greatly improved unarmed damage and stun chance."
 	req_desc = "Requires Hand to hand expertise."
 	ui_icon = "cqc_2"
-	unlock_cost = 400
+	unlock_cost = 350
 	prereq_perks = list(/datum/perk/skill_mod/cqc)
 
 /datum/perk/skill_mod/melee
@@ -188,7 +188,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	ui_icon = "melee_1"
 	melee_weapons = 1
 	all_jobs = TRUE
-	unlock_cost = 200
+	unlock_cost = 300
 
 /datum/perk/skill_mod/melee/two
 	name = "Melee specialisation"
@@ -196,7 +196,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	req_desc = "Requires Melee expertise."
 	ui_icon = "melee_2"
 	prereq_perks = list(/datum/perk/skill_mod/melee)
-	unlock_cost = 250
+	unlock_cost = 400
 
 /datum/perk/skill_mod/firearms
 	name = "Advanced firearm training"
@@ -218,7 +218,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/shotguns
 	name = "Advanced shotgun training"
-	desc = "Improved damage with pistol type firearms. Unlocks access to a shotgun secondary weapon in the backslot."
+	desc = "Improved damage with shotgun type firearms. Unlocks access to a shotgun secondary weapon in the backslot."
 	req_desc = "Requires Advanced firearm training."
 	ui_icon = "shotguns"
 	shotguns = 1
@@ -239,7 +239,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	rifles = 1
 	all_jobs = TRUE
 	prereq_perks = list(/datum/perk/skill_mod/firearms)
-	unlock_cost = 800
+	unlock_cost = 1000
 
 /datum/perk/skill_mod/smgs
 	name = "Advanced SMG training"
@@ -284,7 +284,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	desc = "Improved bonuses when issuing orders."
 	ui_icon = "leadership"
 	leadership = 1
-	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
+	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN, SOM_SQUAD_LEADER, SOM_STAFF_OFFICER, SOM_FIELD_COMMANDER, SOM_COMMANDER)
 	unlock_cost = 1100
 
 /datum/perk/skill_mod/medical

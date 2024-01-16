@@ -2062,6 +2062,7 @@
 #include "code\modules\vehicles\unmanned\unmanned_vehicle.dm"
 #include "code\modules\vehicles\unmanned\unmanned_vehicle_remote.dm"
 #include "code\modules\xenomorph\resin_gargoyle.dm"
+#include "code\modules\xenomorph\acid_pools.dm"
 #include "code\modules\xenomorph\_xeno_structure.dm"
 #include "code\modules\xenomorph\acidwell.dm"
 #include "code\modules\xenomorph\jellypod.dm"

@@ -3,6 +3,7 @@
 	desc = "A belt with origins traced to the M276 ammo belt and some old colony security. Holds 6 normal sized magazines."
 	item_typepath = /obj/item/storage/belt/marine/som
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	item_blacklist = list(
 		/obj/item/weapon/gun/rifle/som_mg/standard = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/twohanded/fireaxe/som = ITEM_SLOT_SUITSTORE,
@@ -82,6 +83,7 @@
 	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
 	item_typepath = /obj/item/storage/belt/lifesaver/som/quick
 	jobs_supported = list(SOM_SQUAD_CORPSMAN)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/belt/som_officer_pistol
 	name = "VX-12 Serpenta"
@@ -89,6 +91,7 @@
 	Comes in a holster that fits on your waist or armor."
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/som/serpenta
 	jobs_supported = list(SOM_SQUAD_LEADER, SOM_STAFF_OFFICER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	item_blacklist = list(/obj/item/storage/holster/belt/pistol/m4a3/som/serpenta = ITEM_SLOT_SUITSTORE)
 
 /datum/loadout_item/belt/som_officer_pistol_custom
@@ -97,4 +100,5 @@
 	This particular weapon appears to be a custom model with improved performance. Comes in a fancy holster that fits on your waist or armor."
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/som/fancy/fieldcommander
 	jobs_supported = list(SOM_FIELD_COMMANDER, SOM_COMMANDER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	item_blacklist = list(/obj/item/storage/holster/belt/pistol/m4a3/som/fancy/fieldcommander = ITEM_SLOT_SUITSTORE)
