@@ -307,6 +307,13 @@
 	H.handle_regular_hud_updates()
 	H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 	H.dead_ticks = 0 //We reset the DNR time
+
+	//Checks if our "patient" is wearing a camera. Then it turns it on if it's off.
+	if(istype(H.wear_ear, /obj/item/radio/headset/mainship))
+		var/obj/item/radio/headset/mainship/cam_headset = H.wear_ear
+		if(!(cam_headset.camera.status))
+			cam_headset.camera.toggle_cam(null, FALSE)
+
 	REMOVE_TRAIT(H, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(user.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
