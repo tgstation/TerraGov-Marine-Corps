@@ -99,3 +99,22 @@
 				continue
 			nearest_target = nearby_vehicle
 	return nearest_target
+
+/**
+ * This proc attempts to get an instance of an atom type within distance, with center as the center.
+ * Arguments
+ * * center - The center of the search
+ * * type - The type of atom we're looking for
+ * * distance - The distance we should search
+ * * list_to_search - The list to look through for the type
+ */
+/proc/cheap_get_atom(atom/center, type, distance, list/list_to_search)
+	var/turf/turf_center = get_turf(center)
+	if(!turf_center)
+		return
+	for(var/atom/near AS in list_to_search)
+		if(!istype(near, type))
+			continue
+		if(get_dist(turf_center, near) > distance)
+			continue
+		return near
