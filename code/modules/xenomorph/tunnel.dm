@@ -126,7 +126,17 @@ TUNNEL
 
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
 /obj/structure/xeno/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
-	var/obj/structure/xeno/tunnel/targettunnel = tgui_input_list(M, "Choose a tunnel to crawl to", "Tunnel", GLOB.xeno_tunnels_by_hive[hivenumber])
+	to_chat(M, span_notice("Select a tunnel to go to."))
+
+	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(z, MINIMAP_FLAG_XENO)
+	M.client.screen += map
+	var/list/polled_coords = map.get_coords_from_click(M)
+	M.client.screen -= map
+	var/turf/clicked_turf = locate(polled_coords[1], polled_coords[2], z)
+
+	///We find the tunnel, looking within 10 tiles of where the user clicked, excluding src
+	var/obj/structure/xeno/tunnel/targettunnel = cheap_get_atom(clicked_turf, /obj/structure/xeno/tunnel, 10, GLOB.xeno_tunnels_by_hive[hivenumber] - src)
+
 	if(QDELETED(src)) //Make sure we still exist in the event the player keeps the interface open
 		return
 	if(!M.Adjacent(src) && M.loc != src) //Make sure we're close enough to our tunnel; either adjacent to or in one
