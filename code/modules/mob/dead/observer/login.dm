@@ -56,6 +56,7 @@
 ///Loads any gamemode specific ghost actions
 /mob/dead/observer/proc/load_ghost_gamemode_actions()
 	SIGNAL_HANDLER
+	UnregisterSignal(SSdcs, COMSIG_GLOB_GAMEMODE_LOADED)
 	for(var/path in SSticker.mode.ghost_verbs())
 		if(!actions_by_path[path])
 			var/datum/action/action = new path()
