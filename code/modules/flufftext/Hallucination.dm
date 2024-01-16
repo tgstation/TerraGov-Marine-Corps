@@ -114,16 +114,6 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if(target.client)
 			target.client.images |= current_image
 
-/obj/effect/hallucination/simple/update_icon(new_state,new_icon,new_px=0,new_py=0)
-	icon_state = new_state
-	if(new_icon)
-		icon = new_icon
-	else
-		icon = initial(icon)
-	px = new_px
-	py = new_py
-	Show()
-
 /obj/effect/hallucination/simple/Moved(atom/OldLoc, Dir)
 	Show()
 
@@ -144,6 +134,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	name = "Mature Runner ([rand(100, 999)])"
 
 /obj/effect/hallucination/simple/xeno/throw_impact(atom/hit_atom, speed)
+	. = ..()
+	if(!.)
+		return
 	if(hit_atom == target && target.stat != DEAD)
 		target.Paralyze(3 SECONDS, TRUE, TRUE)
 		target.visible_message(span_danger("[target] flails around wildly."),span_xenowarning("\The [src] pounces at [target]!"))

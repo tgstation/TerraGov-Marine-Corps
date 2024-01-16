@@ -27,3 +27,28 @@
 		return
 	if(. == CONSCIOUS && layer != initial(layer))
 		layer = MOB_LAYER
+
+/mob/living/carbon/xenomorph/runner/UnarmedAttack(atom/A, has_proximity, modifiers)
+	/// Runner should not be able to slash while evading.
+	var/datum/action/ability/xeno_action/evasion/evasion_action = actions_by_path[/datum/action/ability/xeno_action/evasion]
+	if(evasion_action.evade_active)
+		balloon_alert(src, "Cannot slash while evading")
+		return
+	return ..()
+
+/mob/living/carbon/xenomorph/runner/med_hud_set_status()
+	. = ..()
+	hud_set_evasion()
+
+/mob/living/carbon/xenomorph/runner/proc/hud_set_evasion(duration)
+	var/image/holder = hud_list[XENO_EVASION_HUD]
+	if(!holder)
+		return
+	holder.overlays.Cut()
+	holder.icon_state = "hudblank"
+	if(stat == DEAD || !duration)
+		return
+	holder.icon_state = "evasion_duration[duration]"
+	holder.pixel_x = 24
+	holder.pixel_y = 24
+	hud_list[XENO_EVASION_HUD] = holder

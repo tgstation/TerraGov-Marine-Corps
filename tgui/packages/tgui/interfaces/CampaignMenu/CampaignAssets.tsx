@@ -1,19 +1,26 @@
-import { CampaignData, FactionReward, AssetIcon } from './index';
-import { useBackend, useLocalState } from '../../backend';
-import { LabeledList, Button, Stack, Section } from '../../components';
+import { classes } from 'common/react';
 
-export const CampaignAssets = (props, context) => {
-  const { act, data } = useBackend<CampaignData>(context);
+import { useBackend, useLocalState } from '../../backend';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  Section,
+  Stack,
+} from '../../components';
+import { CampaignData, FactionReward } from './index';
+
+export const CampaignAssets = (props) => {
+  const { act, data } = useBackend<CampaignData>();
   const { faction_rewards_data } = data;
   const [selectedAsset, setSelectedAsset] = useLocalState<FactionReward | null>(
-    context,
     'selectedAsset',
-    null
+    null,
   );
   const [selectedReward, setSelectedReward] = useLocalState(
-    context,
     'selectedReward',
-    faction_rewards_data[0]
+    faction_rewards_data[0],
   );
   faction_rewards_data.sort((a, b) => {
     const used_asset_a = a.uses_remaining;
@@ -45,10 +52,13 @@ export const CampaignAssets = (props, context) => {
                           : reward.uses_remaining < 0
                             ? 'red'
                             : 'grey'
-                }>
-                {!!reward.icon && (
-                  <AssetIcon
-                    icon={
+                }
+              >
+                <Flex align="center">
+                  <Flex.Item
+                    mr={1.5}
+                    className={classes([
+                      'campaign_assets18x18',
                       selectedReward.name === reward.name
                         ? reward.icon + '_red'
                         : reward.currently_active
@@ -59,11 +69,11 @@ export const CampaignAssets = (props, context) => {
                               ? reward.icon + '_blue'
                               : reward.uses_remaining < 0
                                 ? reward.icon + '_red'
-                                : reward.icon + '_grey'
-                    }
+                                : reward.icon + '_grey',
+                    ])}
                   />
-                )}
-                {reward.name}
+                  {reward.name}
+                </Flex>
               </Button>
             </Stack.Item>
           ))}
@@ -71,14 +81,35 @@ export const CampaignAssets = (props, context) => {
       </Stack.Item>
       <Stack.Item>
         <Section
-          title={selectedReward ? selectedReward.name : 'No reward selected'}
-          buttons={
-            <Button
-              onClick={() => setSelectedAsset(selectedReward)}
-              icon={'check'}>
-              Activate
-            </Button>
-          }>
+          title={
+            selectedReward ? (
+              <Box>
+                <Flex align="center">
+                  <Flex.Item
+                    mr={1.5}
+                    className={classes([
+                      'campaign_assets36x36',
+                      selectedReward.icon + '_orange' + '_big',
+                    ])}
+                  />
+                  <Flex.Item fontSize="150%" grow={1}>
+                    {selectedReward.name}
+                  </Flex.Item>
+                  <Flex.Item alight="right" position="end">
+                    <Button
+                      onClick={() => setSelectedAsset(selectedReward)}
+                      icon={'check'}
+                    >
+                      Select
+                    </Button>
+                  </Flex.Item>
+                </Flex>
+              </Box>
+            ) : (
+              'No asset selected'
+            )
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Name">
               {selectedReward?.name}

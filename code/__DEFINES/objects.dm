@@ -266,3 +266,6 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define DROPPOD_READY 1
 #define DROPPOD_ACTIVE 2
 #define DROPPOD_LANDED 3
+
+//cameras
+#define SOM_CAMERA_NETWORK "som_camera_network"

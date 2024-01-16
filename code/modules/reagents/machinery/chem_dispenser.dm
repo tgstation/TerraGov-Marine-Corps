@@ -339,7 +339,7 @@
 			beaker = I
 			balloon_alert(user, "Sets [I] on the machine")
 			update_icon()
-			updateUsrDialog()
+			ui_interact(user)
 			return
 
 		if(istype(I, /obj/item/reagent_containers/glass))
@@ -397,6 +397,7 @@
 		. += image(icon, "[initial(icon_state)]_nobat")
 
 /obj/machinery/chem_dispenser/update_icon_state()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "dispenser_nopower"
 		return
@@ -458,6 +459,7 @@
 
 /obj/machinery/chem_dispenser/soda/update_icon_state()
 	return
+
 
 /obj/machinery/chem_dispenser/beer
 	icon_state = "booze_dispenser"

@@ -18,7 +18,7 @@
 
 	// update iconstate and dpdir due to dir and type
 /obj/structure/disposalconstruct/proc/update()
-	var/flip = turn(dir, 180)
+	var/flip = REVERSE_DIR(dir)
 	var/left = turn(dir, 90)
 	var/right = turn(dir, -90)
 
@@ -123,7 +123,7 @@
 		to_chat(usr, "You must unfasten the pipe before flipping it.")
 		return
 
-	setDir(turn(dir, 180))
+	setDir(REVERSE_DIR(dir))
 	switch(ptype)
 		if(2)
 			ptype = 3
@@ -247,7 +247,7 @@
 			if(W.remove_fuel(0,user))
 				playsound(src.loc, 'sound/items/welder2.ogg', 25, 1)
 				to_chat(user, "Welding the [nicetype] in place.")
-				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
+				if(do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
 					to_chat(user, "The [nicetype] has been welded in place!")
 					update() // TODO: Make this neat
 					if(ispipe) // Pipe

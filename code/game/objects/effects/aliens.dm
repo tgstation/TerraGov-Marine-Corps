@@ -149,10 +149,11 @@
 	acid_damage = 175
 	icon_state = "acid_strong"
 
-/obj/effect/xenomorph/acid/Initialize(mapload, target, melting_rate)
+/obj/effect/xenomorph/acid/Initialize(mapload, target, melting_rate, existing_ticks)
 	. = ..()
 	acid_melt_multiplier = melting_rate
 	acid_t = target
+	ticks += existing_ticks
 	if(!acid_t)
 		return INITIALIZE_HINT_QDEL
 	layer = acid_t.layer

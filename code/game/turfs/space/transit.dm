@@ -89,9 +89,11 @@
 	transform = turn(matrix(), get_transit_angle(src))
 
 /turf/open/space/transit/update_icon_state()
+	. = ..()
 	icon_state = "speedspace_ns_[get_transit_state(src, available_icon_state_amounts)]"
 
 /turf/open/space/transit/atmos/update_icon_state()
+	. = ..()
 	icon_state = "Cloud_[get_transit_state(src, available_icon_state_amounts)]"
 
 /proc/get_transit_state(turf/T, available_icon_state_amounts)

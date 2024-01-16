@@ -43,20 +43,21 @@
 	resin_max_range = 4 //Hivemind can place resin structures from 4 tiles away
 
 	actions = list(
-		/datum/action/xeno_action/watch_xeno/hivemind,
-		/datum/action/xeno_action/change_form,
-		/datum/action/xeno_action/return_to_core,
-		/datum/action/xeno_action/teleport,
-		/datum/action/xeno_action/rally_hive/hivemind,
-		/datum/action/xeno_action/activable/command_minions,
-		/datum/action/xeno_action/activable/plant_weeds/ranged,
-		/datum/action/xeno_action/activable/psychic_cure/hivemind,
-		/datum/action/xeno_action/activable/transfer_plasma/hivemind,
-		/datum/action/xeno_action/pheromones/hivemind,
-		/datum/action/xeno_action/pheromones/emit_recovery,
-		/datum/action/xeno_action/pheromones/emit_warding,
-		/datum/action/xeno_action/pheromones/emit_frenzy,
-		/datum/action/xeno_action/activable/secrete_resin/hivemind,
+		/datum/action/ability/xeno_action/watch_xeno/hivemind,
+		/datum/action/ability/xeno_action/change_form,
+		/datum/action/ability/xeno_action/return_to_core,
+		/datum/action/ability/xeno_action/teleport,
+		/datum/action/ability/xeno_action/rally_hive/hivemind,
+		/datum/action/ability/activable/xeno/command_minions,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/activable/xeno/plant_weeds/ranged,
+		/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind,
+		/datum/action/ability/activable/xeno/transfer_plasma/hivemind,
+		/datum/action/ability/xeno_action/pheromones/hivemind,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+		/datum/action/ability/activable/xeno/secrete_resin/hivemind,
 	)
 
 /datum/xeno_caste/hivemind/on_caste_applied(mob/xenomorph)

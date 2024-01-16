@@ -67,7 +67,7 @@
 
 ///Actually begins the fire support attack
 /datum/fire_support/proc/start_fire_support(turf/target_turf)
-	cooldown_timer = addtimer(VARSET_CALLBACK(src, cooldown_timer, null), cooldown_duration)
+	cooldown_timer = addtimer(VARSET_CALLBACK(src, cooldown_timer, null), cooldown_duration, TIMER_STOPPABLE)
 	select_target(target_turf)
 
 	if(start_visual)

@@ -47,7 +47,7 @@
 	if(health < 0)
 		handle_critical_health_updates()
 		return
-	if((health >= maxHealth) || xeno_caste.hardcore || on_fire) //can't regenerate.
+	if((health >= maxHealth) || on_fire) //can't regenerate.
 		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
 		return
 	var/turf/T = loc

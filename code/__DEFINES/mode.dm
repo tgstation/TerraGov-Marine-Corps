@@ -48,6 +48,7 @@
 #define MODE_NO_PERMANENT_WOUNDS (1<<12)
 #define MODE_SILOS_SPAWN_MINIONS (1<<13)
 #define MODE_ALLOW_XENO_QUICKBUILD (1<<14)
+#define MODE_DISALLOW_RAILGUN (1<<15)
 
 #define MODE_INFESTATION_X_MAJOR "Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR "Marine Major Victory"

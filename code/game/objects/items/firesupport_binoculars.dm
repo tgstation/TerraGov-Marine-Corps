@@ -33,7 +33,12 @@
 
 /obj/item/binoculars/fire_support/examine(mob/user)
 	. = ..()
-	. += span_notice("They are currently set to [mode.name] targeting mode.")
+	if(!mode)
+		return
+	. += span_boldnotice("They are currently set to [mode.name] mode: [mode.uses == -1 ? "unlimited" : "[mode.uses]"] uses remaining.")
+	if(!mode.cooldown_timer)
+		return
+	. += span_warning("Available in [round(timeleft(mode.cooldown_timer) MILLISECONDS)] seconds.")
 
 /obj/item/binoculars/fire_support/Destroy()
 	if(laser)
@@ -157,7 +162,7 @@
 	to_chat(user, span_notice("INITIATING LASER TARGETING. Stand still."))
 	var/obj/effect/overlay/temp/laser_target/cas/CS = new (TU)
 	laser = CS
-	if(!do_after(user, target_acquisition_delay, TRUE, user, BUSY_ICON_HOSTILE))
+	if(!do_after(user, target_acquisition_delay, NONE, user, BUSY_ICON_HOSTILE))
 		return
 	if(!mode)
 		balloon_alert_to_viewers("Select a mode!")

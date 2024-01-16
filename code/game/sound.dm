@@ -62,18 +62,20 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		frequency = GET_RANDOM_FREQ // Same frequency for everybody
 	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/sound/S = sound(get_sfx(soundin))
-	for(var/i in GLOB.player_list)
+	for(var/i in GLOB.player_list+GLOB.aiEyes)
 		var/mob/M = i
-		if(!M.client)
+		if(!M.client && !istype(i, /mob/camera/aiEye))
 			continue
 		var/turf/T = get_turf(M)
 		if(!T || T.z != turf_source.z || get_dist(M, turf_source) > sound_range)
 			continue
-		M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S)
+		M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S, sound_reciever = M)
 
 //todo rename S to sound_to_use
-/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/S, distance_multiplier = 1)
-	if(!client)
+/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/S, distance_multiplier = 1, mob/sound_reciever)
+	if(!sound_reciever)
+		sound_reciever = src
+	if(!sound_reciever.client)
 		return FALSE
 
 	if(!S)
@@ -106,12 +108,12 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		S.falloff = falloff ? falloff : FALLOFF_SOUNDS * max(round(S.volume * 0.05), 1)
 
 	if(!is_global)
-		S.environment = 2
+		S.environment = SOUND_ENVIRONMENT_ROOM
 
-	SEND_SOUND(src, S)
+	SEND_SOUND(sound_reciever, S)
 
 
-/mob/living/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/S, distance_multiplier = 1)
+/mob/living/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/S, distance_multiplier = 1, mob/sound_reciever)
 	if(ear_deaf > 0)
 		return FALSE
 	return ..()
@@ -297,6 +299,12 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			S = pick('sound/voice/alien_queen_command.ogg','sound/voice/alien_queen_command2.ogg','sound/voice/alien_queen_command3.ogg')
 		if("alien_ventpass")
 			S = pick('sound/effects/alien_ventpass1.ogg', 'sound/effects/alien_ventpass2.ogg')
+		if("behemoth_step_sounds")
+			S = pick('sound/effects/alien_footstep_large1.ogg', 'sound/effects/alien_footstep_large2.ogg', 'sound/effects/alien_footstep_large3.ogg')
+		if("behemoth_rolling")
+			S = 'sound/effects/behemoth/behemoth_roll.ogg'
+		if("behemoth_earth_pillar_hit")
+			S = pick('sound/effects/behemoth/earth_pillar_hit_1.ogg', 'sound/effects/behemoth/earth_pillar_hit_2.ogg', 'sound/effects/behemoth/earth_pillar_hit_3.ogg', 'sound/effects/behemoth/earth_pillar_hit_4.ogg', 'sound/effects/behemoth/earth_pillar_hit_5.ogg', 'sound/effects/behemoth/earth_pillar_hit_6.ogg')
 
 		// Human
 		if("male_scream")

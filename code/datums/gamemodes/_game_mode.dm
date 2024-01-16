@@ -61,7 +61,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	///If the gamemode has a whitelist of valid ground maps. Whitelist overrides the blacklist
 	var/list/whitelist_ground_maps
 	///If the gamemode has a blacklist of disallowed ground maps
-	var/list/blacklist_ground_maps = list(MAP_DELTA_STATION, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS)
+	var/list/blacklist_ground_maps = list(MAP_DELTA_STATION, MAP_RESEARCH_OUTPOST, MAP_PRISON_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS)
 	///if fun tads are enabled by default
 	var/enable_fun_tads = FALSE
 
@@ -168,10 +168,11 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		var/mob/living = player.transfer_character()
 		if(!living)
 			continue
-
 		qdel(player)
 		living.client.init_verbs()
 		living.notransform = TRUE
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED, living)
+		log_manifest(living.ckey, living.mind, living)
 		livings += living
 
 	if(length(livings))
@@ -329,6 +330,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			var/mob/living/carbon/human/H = M
 			do_eord_respawn(H)
 
+		M.on_eord(picked)
 		to_chat(M, "<br><br><h1>[span_danger("Fight for your life!")]</h1><br><br>")
 		CHECK_TICK
 
@@ -582,6 +584,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	player.create_character()
 	SSjob.spawn_character(player, TRUE)
 	player.mind.transfer_to(player.new_character, TRUE)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PLAYER_LATE_SPAWNED, player.new_character)
+	log_manifest(player.new_character.ckey, player.new_character.mind, player.new_character, latejoin = TRUE)
 	var/datum/job/job = player.assigned_role
 	job.on_late_spawn(player.new_character)
 	player.new_character.client?.init_verbs()
@@ -899,13 +903,31 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 ///Generates nuke disk consoles from a list of valid locations
 /datum/game_mode/proc/generate_nuke_disk_spawners()
+	if(!length(SSmapping.configs[GROUND_MAP].disk_sets))
+		CRASH("Map Json invalid for generating nuke disks on this map - set up at least one disk set in it. Have you tried \"basic\", assuming only one disk set exists?")
+	var/chosen_disk_set = pickweight(SSmapping.configs[GROUND_MAP].disk_sets)
+	var/list/viable_disks = list()
+	var/list/forced_disks = list()
+	for(var/obj/structure/nuke_disk_candidate/candidate AS in GLOB.nuke_disk_spawn_locs)
+		if(chosen_disk_set in candidate.set_associations)
+			if(chosen_disk_set in candidate.force_for_sets)
+				forced_disks += candidate
+			else
+				viable_disks += candidate
+	if((length(viable_disks) + length(forced_disks)) < length(GLOB.nuke_disk_generator_types)) //Lets in maps with > 3 disks for a given set and just behaves like the previous rng in that case.
+		CRASH("Warning: Current map has too few nuke disk generators to correctly generate disks for set \">[chosen_disk_set]<\". Make sure both generators and json are set up correctly.")
+	if(length(forced_disks) > length(GLOB.nuke_disk_generator_types))
+		CRASH("Warning: Current map has too many forced disks for the current set type \">[chosen_disk_set]<\". Amount is [length(forced_disks)]. Please revisit your disk candidates.")
 	for(var/obj/machinery/computer/nuke_disk_generator AS in GLOB.nuke_disk_generator_types)
-		var/spawn_loc = pick(GLOB.nuke_disk_spawn_locs)
+		var/spawn_loc
+		if(length(forced_disks))
+			spawn_loc = pick_n_take(forced_disks)
+		else
+			spawn_loc = pick_n_take(viable_disks)
 		new nuke_disk_generator(get_turf(spawn_loc))
-		GLOB.nuke_disk_spawn_locs -= spawn_loc
 		qdel(spawn_loc)
 
-///Add gamemode related items to statpanel
+/// Add gamemode related items to statpanel
 /datum/game_mode/proc/get_status_tab_items(datum/dcs, mob/source, list/items)
 	SIGNAL_HANDLER
 	var/patrol_end_countdown = game_end_countdown()
@@ -915,21 +937,45 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(patrol_wave_countdown)
 		items += "Respawn wave timer: [patrol_wave_countdown]"
 
-	if(isobserver(source))
-		var/mob/dead/observer/observer_source = source
-		var/rulerless_countdown = get_hivemind_collapse_countdown()
-		if(rulerless_countdown)
-			items += "Orphan hivemind collapse timer: [rulerless_countdown]"
-		if(flags_round_type & MODE_INFESTATION)
-			if(observer_source.larva_position)
-				items += "Position in larva candidate queue: [observer_source.larva_position]"
-			var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-			var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-			if(stored_larva)
-				items += "Burrowed larva: [stored_larva]"
-	else if(isxeno(source))
-		var/mob/living/carbon/xenomorph/xeno_source = source
-		if(xeno_source.hivenumber == XENO_HIVE_NORMAL)
-			var/rulerless_countdown = get_hivemind_collapse_countdown()
-			if(rulerless_countdown)
-				items += "Orphan hivemind collapse timer: [rulerless_countdown]"
+	if (isobserver(source) || isxeno(source))
+		handle_collapse_timer(dcs, source, items)
+
+	if (source.can_wait_in_larva_queue())
+		handle_larva_timer(dcs, source, items)
+		handle_xeno_respawn_timer(dcs, source, items)
+
+/// Displays the orphan hivemind collapse timer, if applicable
+/datum/game_mode/proc/handle_collapse_timer(datum/dcs, mob/source, list/items)
+	if (isxeno(source))
+		var/mob/living/carbon/xenomorph/xeno = source
+		if(xeno.hivenumber != XENO_HIVE_NORMAL)
+			return // Don't show for non-normal hives
+	var/rulerless_countdown = get_hivemind_collapse_countdown()
+	if(rulerless_countdown)
+		items += "Orphan hivemind collapse timer: [rulerless_countdown]"
+
+/// Displays your position in the larva queue and how many burrowed larva there are, if applicable
+/datum/game_mode/proc/handle_larva_timer(datum/dcs, mob/source, list/items)
+	if(!(flags_round_type & MODE_INFESTATION))
+		return
+	var/larva_position = SEND_SIGNAL(source.client, COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION)
+	if (larva_position) // If non-zero, we're in queue
+		items += "Position in larva candidate queue: [larva_position]"
+
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	if(stored_larva)
+		items += "Burrowed larva: [stored_larva]"
+
+/// Displays your xeno respawn timer, if applicable
+/datum/game_mode/proc/handle_xeno_respawn_timer(datum/dcs, mob/source, list/items)
+	if(GLOB.respawn_allowed)
+		var/status_value = ((GLOB.key_to_time_of_xeno_death[source.key] ? GLOB.key_to_time_of_xeno_death[source.key] : -INFINITY)  + SSticker.mode?.xenorespawn_time - world.time) * 0.1 //If xeno_death is null, use -INFINITY
+		if(status_value <= 0)
+			items += "Xeno respawn timer: READY"
+		else
+			items += "Xeno respawn timer: [(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]"
+
+///Returns a list of verbs to give ghosts in this gamemode
+/datum/game_mode/proc/ghost_verbs(mob/dead/observer/observer)
+	return

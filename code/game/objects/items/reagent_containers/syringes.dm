@@ -66,16 +66,6 @@
 		return
 
 	if (user.a_intent == INTENT_HARM && ismob(target) && isliving(user))
-		var/mob/M = target
-		var/mob/living/L = user
-		if(M != L && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && M.skills.getRating(SKILL_CQC) >= SKILL_CQC_MP)
-			L.Paralyze(6 SECONDS)
-			log_combat(M, L, "blocked", addition="using their cqc skill (syringe injection)")
-			M.visible_message(span_danger("[M]'s reflexes kick in and knock [L] to the ground before they could use \the [src]'!"), \
-				span_warning("You knock [L] to the ground before they could inject you!"), null, 5)
-			playsound(L.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-			return
-
 		syringestab(target, user)
 		return
 
@@ -165,7 +155,7 @@
 					else
 						user.visible_message(span_danger("[user] begins hunting for an injection port on [target]'s suit!"))
 
-					if(!do_mob(user, target, injection_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+					if(!do_after(user, injection_time, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 						return
 
 					user.visible_message(span_warning("[user] injects [target] with the syringe!"))
@@ -195,32 +185,37 @@
 				update_icon()
 
 
-/obj/item/reagent_containers/syringe/update_icon()
+/obj/item/reagent_containers/syringe/update_icon_state()
+	. = ..()
 	if(mode == SYRINGE_BROKEN)
 		icon_state = "broken"
-		overlays.Cut()
 		return
+
 	var/rounded_vol = round(reagents.total_volume,5)
-	overlays.Cut()
-	if(ismob(loc))
-		var/injoverlay
-		switch(mode)
-			if (SYRINGE_DRAW)
-				injoverlay = "draw"
-			if (SYRINGE_INJECT)
-				injoverlay = "inject"
-		overlays += injoverlay
 	icon_state = "[rounded_vol]"
 	item_state = "syringe_[rounded_vol]"
 
+/obj/item/reagent_containers/syringe/update_overlays()
+	. = ..()
+	if(mode == SYRINGE_BROKEN)
+		return
+	if(ismob(loc))
+		var/injoverlay
+		switch(mode)
+			if(SYRINGE_DRAW)
+				injoverlay = "draw"
+			if(SYRINGE_INJECT)
+				injoverlay = "inject"
+		. += injoverlay
+
+	var/rounded_vol = round(reagents.total_volume,5)
 	if(reagents.total_volume)
 		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "syringe10")
 
 		filling.icon_state = "syringe[rounded_vol]"
 
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		overlays += filling
-
+		. += filling
 
 /obj/item/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
 
@@ -318,7 +313,7 @@
 
 			if(ismob(target) && target != user)
 				user.visible_message(span_danger("[user] is trying to inject [target] with a giant syringe!"))
-				if(!do_mob(user, target, 30 SECONDS, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+				if(!do_after(user, 30 SECONDS, NONE, target, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 					return
 				user.visible_message(span_warning("[user] injects [target] with a giant syringe!"))
 			spawn(5)

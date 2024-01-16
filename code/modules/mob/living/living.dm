@@ -98,11 +98,6 @@
 	set_armor_datum()
 	AddElement(/datum/element/gesture)
 	AddElement(/datum/element/keybinding_update)
-	stamina_regen_modifiers = list()
-	received_auras = list()
-	emitted_auras = list()
-	RegisterSignal(src, COMSIG_AURA_STARTED, PROC_REF(add_emitted_auras))
-	RegisterSignal(src, COMSIG_AURA_FINISHED, PROC_REF(remove_emitted_auras))
 
 /mob/living/Destroy()
 	for(var/datum/status_effect/effect AS in status_effects)
@@ -135,48 +130,8 @@
 	return
 
 
-/mob/proc/get_contents()
-	return
-
-
-//Recursive function to find everything a mob is holding.
-/mob/living/get_contents(obj/item/storage/Storage = null)
-	var/list/L = list()
-
-	if(Storage) //If it called itself
-		L += Storage.return_inv()
-
-		for(var/obj/item/gift/G in Storage.return_inv()) //Check for gift-wrapped items
-			L += G.gift
-			if(istype(G.gift, /obj/item/storage))
-				L += get_contents(G.gift)
-
-		for(var/obj/item/smallDelivery/D in Storage.return_inv()) //Check for package wrapped items
-			L += D.wrapped
-			if(istype(D.wrapped, /obj/item/storage)) //this should never happen
-				L += get_contents(D.wrapped)
-		return L
-
-	else
-
-		L += contents
-		for(var/obj/item/storage/S in contents)	//Check for storage items
-			L += get_contents(S)
-
-		for(var/obj/item/gift/G in contents) //Check for gift-wrapped items
-			L += G.gift
-			if(istype(G.gift, /obj/item/storage))
-				L += get_contents(G.gift)
-
-		for(var/obj/item/smallDelivery/D in contents) //Check for package wrapped items
-			L += D.wrapped
-			if(istype(D.wrapped, /obj/item/storage)) //this should never happen
-				L += get_contents(D.wrapped)
-		return L
-
-
 /mob/living/proc/check_contents_for(A)
-	var/list/L = get_contents()
+	var/list/L = GetAllContents()
 
 	for(var/obj/O in L)
 		if(O.type == A)
@@ -259,14 +214,6 @@
 
 /mob/living/proc/update_camera_location(oldLoc)
 	return
-
-
-/mob/living/vv_get_dropdown()
-	. = ..()
-	. += "---"
-	.["Add Language"] = "?_src_=vars;[HrefToken()];addlanguage=[REF(src)]"
-	.["Remove Language"] = "?_src_=vars;[HrefToken()];remlanguage=[REF(src)]"
-
 
 /mob/proc/resist_grab()
 	return //returning 1 means we successfully broke free
@@ -436,6 +383,9 @@
 		return
 	if(!client)
 		return
+	var/mob/mob_to_push = AM
+	if(istype(mob_to_push) && mob_to_push.lying_angle)
+		return
 	now_pushing = TRUE
 	var/dir_to_target = get_dir(src, AM)
 
@@ -456,7 +406,6 @@
 		if(force_push(AM, move_force, dir_to_target, push_anchored))
 			push_anchored = TRUE
 	if(ismob(AM))
-		var/mob/mob_to_push = AM
 		var/atom/movable/mob_buckle = mob_to_push.buckled
 		// If we can't pull them because of what they're buckled to, make sure we can push the thing they're buckled to instead.
 		// If neither are true, we're not pushing anymore.
@@ -588,15 +537,6 @@
 		return
 	else
 		smokecloak_off()
-
-/mob/living/proc/do_jitter_animation(jitteriness)
-	var/amplitude = min(4, (jitteriness/100) + 1)
-	var/pixel_x_diff = rand(-amplitude, amplitude)
-	var/pixel_y_diff = rand(-amplitude/3, amplitude/3)
-	var/final_pixel_x = initial(pixel_x)
-	var/final_pixel_y = initial(pixel_y)
-	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 2, loop = 6)
-	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 2)
 
 
 /*
@@ -784,33 +724,6 @@ below 100 is not dizzy
 	else
 		stop_pulling()
 
-
-/mob/living/vv_edit_var(var_name, var_value)
-	switch(var_name)
-		if("maxHealth")
-			if(!isnum(var_value) || var_value <= 0)
-				return FALSE
-		if("stat")
-			if((stat == DEAD) && (var_value < DEAD))//Bringing the dead back to life
-				GLOB.dead_mob_list -= src
-				GLOB.alive_living_list += src
-			if((stat < DEAD) && (var_value == DEAD))//Kill he
-				GLOB.alive_living_list -= src
-				GLOB.dead_mob_list += src
-	. = ..()
-	switch(var_name)
-		if("eye_blind")
-			set_blindness(var_value)
-		if("eye_blurry")
-			set_blurriness(var_value)
-		if("maxHealth")
-			updatehealth()
-		if("resize")
-			update_transform()
-		if("lighting_alpha")
-			sync_lighting_plane_alpha()
-
-
 /mob/living/can_interact_with(datum/D)
 	return D == src || D.Adjacent(src)
 
@@ -890,12 +803,8 @@ below 100 is not dizzy
 	hand = !hand
 	SEND_SIGNAL(src, COMSIG_CARBON_SWAPPED_HANDS)
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
-		hud_used.l_hand_hud_object.update_icon(hand)
-		hud_used.r_hand_hud_object.update_icon(!hand)
-		if(hand)	//This being 1 means the left hand is in use
-			hud_used.l_hand_hud_object.add_overlay("hand_active")
-		else
-			hud_used.r_hand_hud_object.add_overlay("hand_active")
+		hud_used.l_hand_hud_object.update_icon()
+		hud_used.r_hand_hud_object.update_icon()
 	return
 
 ///Swap to the hand clicked on the hud
@@ -974,3 +883,114 @@ below 100 is not dizzy
 		height *= gravity * 0.5
 
 	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = flags_pass)
+
+/mob/living/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if (NAMEOF(src, maxHealth))
+			if (!isnum(var_value) || var_value <= 0)
+				return FALSE
+		if(NAMEOF(src, health)) //this doesn't work. gotta use procs instead.
+			return FALSE
+		if(NAMEOF(src, stat))
+			if((stat == DEAD) && (var_value < DEAD))//Bringing the dead back to life
+				GLOB.dead_mob_list -= src
+				GLOB.alive_living_list += src
+			if((stat < DEAD) && (var_value == DEAD))//Kill he
+				GLOB.alive_living_list -= src
+				GLOB.dead_mob_list += src
+		if(NAMEOF(src, resting))
+			set_resting(var_value)
+			. = TRUE
+		if(NAMEOF(src, lying_angle))
+			set_lying_angle(var_value)
+			. = TRUE
+		if(NAMEOF(src, eye_blind))
+			set_blindness(var_value)
+		if(NAMEOF(src, eye_blurry))
+			set_blurriness(var_value)
+		if(NAMEOF(src, lighting_alpha))
+			sync_lighting_plane_alpha()
+		if(NAMEOF(src, resize))
+			if(var_value == 0) //prevents divisions of and by zero.
+				return FALSE
+			update_transform(var_value/resize)
+			. = TRUE
+
+	if(!isnull(.))
+		datum_flags |= DF_VAR_EDITED
+		return
+
+	. = ..()
+
+	switch(var_name)
+		if(NAMEOF(src, maxHealth))
+			updatehealth()
+
+/mob/living/vv_get_header()
+	. = ..()
+	var/refid = REF(src)
+	. += {"
+		<br><font size='1'>[VV_HREF_TARGETREF(refid, VV_HK_GIVE_DIRECT_CONTROL, "[ckey || "no ckey"]")] / [VV_HREF_TARGETREF_1V(refid, VV_HK_BASIC_EDIT, "[real_name || "no real name"]", NAMEOF(src, real_name))]</font>
+		<br><font size='1'>
+			BRUTE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brute' id='brute'>[getBruteLoss()]</a>
+			FIRE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=fire' id='fire'>[getFireLoss()]</a>
+			TOXIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=toxin' id='toxin'>[getToxLoss()]</a>
+			OXY:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen' id='oxygen'>[getOxyLoss()]</a>
+			CLONE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone' id='clone'>[getCloneLoss()]</a>
+			STAMINA:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[getStaminaLoss()]</a>
+		</font>
+	"}
+
+/mob/living/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", "---------")
+	VV_DROPDOWN_OPTION(VV_HK_ADD_LANGUAGE, "Add Language")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVE_LANGUAGE, "Remove Language")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPEECH_IMPEDIMENT, "Impede Speech (Slurring, stuttering, etc)")
+
+/mob/living/vv_do_topic(list/href_list)
+	. = ..()
+
+	if(!.)
+		return
+
+	if(href_list[VV_HK_ADD_LANGUAGE])
+		if(!check_rights(NONE))
+			return
+		var/choice = tgui_input_list(usr, "Grant which language?", "Languages", GLOB.all_languages)
+		if(!choice)
+			return
+		grant_language(choice)
+	if(href_list[VV_HK_REMOVE_LANGUAGE])
+		if(!check_rights(NONE))
+			return
+		var/choice = tgui_input_list(usr, "Remove which language?", "Known Languages", src.language_holder.languages)
+		if(!choice)
+			return
+		remove_language(choice)
+	if(href_list[VV_HK_GIVE_SPEECH_IMPEDIMENT])
+		if(!check_rights(NONE))
+			return
+		admin_give_speech_impediment(usr)
+
+/// Admin only proc for giving a certain speech impediment to this mob
+/mob/living/proc/admin_give_speech_impediment(mob/admin)
+	if(!admin || !check_rights(NONE))
+		return
+
+	var/list/impediments = list()
+	for(var/datum/status_effect/possible as anything in typesof(/datum/status_effect/speech))
+		if(!initial(possible.id))
+			continue
+
+		impediments[initial(possible.id)] = possible
+
+	var/chosen = tgui_input_list(admin, "What speech impediment?", "Impede Speech", impediments)
+	if(!chosen || !ispath(impediments[chosen], /datum/status_effect/speech) || QDELETED(src) || !check_rights(NONE))
+		return
+
+	var/duration = tgui_input_number(admin, "How long should it last (in seconds)? Max is infinite duration.", "Duration", 0, INFINITY, 0 SECONDS)
+	if(!isnum(duration) || duration <= 0 || QDELETED(src) || !check_rights(NONE))
+		return
+
+	adjust_timed_status_effect(duration * 1 SECONDS, impediments[chosen])

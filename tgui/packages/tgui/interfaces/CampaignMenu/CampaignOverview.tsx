@@ -1,9 +1,19 @@
-import { CampaignData } from './index';
-import { useBackend } from '../../backend';
-import { LabeledList, Button, Section, Table, ProgressBar } from '../../components';
+import { classes } from 'common/react';
 
-export const CampaignOverview = (props, context) => {
-  const { act, data } = useBackend<CampaignData>(context);
+import { useBackend } from '../../backend';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  ProgressBar,
+  Section,
+  Table,
+} from '../../components';
+import { CampaignData } from './index';
+
+export const CampaignOverview = (props) => {
+  const { act, data } = useBackend<CampaignData>();
   const {
     current_mission,
     active_attrition_points,
@@ -14,25 +24,47 @@ export const CampaignOverview = (props, context) => {
     faction,
   } = data;
   const {
+    name,
     map_name,
     objective_description,
     mission_brief,
+    mission_parameters,
     vp_major_reward,
     ap_major_reward,
     vp_minor_reward,
     ap_minor_reward,
     mission_rewards,
+    mission_icon,
   } = current_mission;
   return (
     <>
-      <Section title={'Mission Overview'}>
+      <Section
+        title={
+          <Box>
+            <Flex fontSize="150%" align="center">
+              <Flex.Item
+                mr={1.5}
+                className={classes([
+                  'campaign_missions48x48',
+                  mission_icon + '_green' + '_big',
+                ])}
+              />
+              Current Mission overview
+            </Flex>
+          </Box>
+        }
+      >
         <LabeledList>
+          <LabeledList.Item label="Mission">{name}</LabeledList.Item>
           <LabeledList.Item label="Map name">{map_name}</LabeledList.Item>
           <LabeledList.Item label="Objectives">
             {objective_description}
           </LabeledList.Item>
           <LabeledList.Item label="Mission Brief">
             {mission_brief}
+          </LabeledList.Item>
+          <LabeledList.Item label="Mission Parameters">
+            {mission_parameters}
           </LabeledList.Item>
           <LabeledList.Item label="Current Attrition">
             {active_attrition_points}
@@ -75,7 +107,8 @@ export const CampaignOverview = (props, context) => {
           <LabeledList.Item label="Victory Points">
             <ProgressBar
               color="green"
-              value={victory_points / max_victory_points}>
+              value={victory_points / max_victory_points}
+            >
               {victory_points} / {max_victory_points}
             </ProgressBar>
           </LabeledList.Item>

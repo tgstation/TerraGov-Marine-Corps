@@ -54,7 +54,11 @@
 	item_state = "alien_lens"
 	darkness_view = 7
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-	flags_item = NODROP|DELONDROP
+	flags_item = DELONDROP
+
+/obj/item/clothing/glasses/night/sectoid/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, SECTOID_TRAIT)
 
 /obj/item/clothing/glasses/night/m56_goggles
 	name = "\improper KTLD head mounted sight"
@@ -66,6 +70,19 @@
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
 	vision_flags = SEE_TURFS
+
+/obj/item/clothing/glasses/night/sunglasses
+	name = "\improper KTLD sunglasses"
+	desc = "A pair of designer sunglasses. This pair has been fitted with a KTLD head mounted sight."
+	icon = 'icons/obj/clothing/glasses.dmi'
+	icon_state = "m56sunglasses"
+	item_state = "m56sunglasses"
+	deactive_state = "degoggles_mesonsunglasses"
+	darkness_view = 5
+	toggleable = TRUE
+	actions_types = list(/datum/action/item_action/toggle)
+	vision_flags = SEE_TURFS
+	prescription = TRUE
 
 /obj/item/clothing/glasses/night/optgoggles
 	name = "\improper Optical imager ballistic goggles"

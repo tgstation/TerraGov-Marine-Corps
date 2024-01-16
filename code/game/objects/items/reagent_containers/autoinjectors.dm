@@ -12,6 +12,7 @@
 	flags_item = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/autoinjector/update_icon_state()
+	. = ..()
 	if(!(reagents.total_volume) && is_drawable())
 		icon_state += "X"
 		name = "expended [name]" //So people can see what have been expended since we have smexy new sprites people aren't used too...
@@ -169,7 +170,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/alkysine
 	name = "alkysine autoinjector"
-	desc = "An auto-injector loaded with 3 doses of alkysine, long-living medicine for fixing brain damage."
+	desc = "An auto-injector loaded with 3 doses of alkysine, long-living medicine for fixing brain and ear damage."
 	icon_state = "autoinjector-12"
 	volume = 15
 	amount_per_transfer_from_this = 5

@@ -59,6 +59,7 @@
 
 /obj/item/weapon/powerfist/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/strappable)
 	update_icon()
 
 /obj/item/weapon/powerfist/Destroy()
@@ -86,21 +87,6 @@
 	else
 		setting += 1
 	balloon_alert(user, "Power level [setting].")
-
-/obj/item/weapon/powerfist/AltClick(mob/user)
-	if(!can_interact(user))
-		return ..()
-	if(!ishuman(user))
-		return ..()
-	if(!(user.l_hand == src || user.r_hand == src))
-		return ..()
-	TOGGLE_BITFIELD(flags_item, NODROP)
-	if(CHECK_BITFIELD(flags_item, NODROP))
-		to_chat(user, span_warning("You feel the [src] clamp shut around your hand!"))
-		playsound(user, 'sound/weapons/fistclamp.ogg', 25, 1, 7)
-	else
-		to_chat(user, span_notice("You feel the [src] loosen around your hand!"))
-		playsound(user, 'sound/weapons/fistunclamp.ogg', 25, 1, 7)
 
 /obj/item/weapon/powerfist/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!cell)
@@ -180,3 +166,27 @@
 	cell = null
 	update_icon()
 	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, TRUE)
+
+/obj/item/weapon/brick
+	name = "brick"
+	desc = "It's a brick. Commonly used to hit things, occasionally used to build stuff instead."
+	icon_state = "brick"
+	force = 30
+	throwforce = 40
+	attack_verb = list("smacked", "whacked", "bonked", "bricked", "thwacked", "socked", "donked")
+	hitsound = 'sound/weapons/heavyhit.ogg'
+
+/obj/item/stack/throwing_knife/stone
+	name = "stone"
+	desc = "Capable of doing minor amounts of damage, these stones will annoy the hell out of the recipient."
+	icon_state = "stone"
+	force = 15
+	throwforce = 15
+	max_amount = 12
+	amount = 12
+	throw_delay = 0.3 SECONDS
+	attack_verb = list("smacked", "whacked", "bonked", "pelted", "thwacked", "cracked")
+	hitsound = 'sound/weapons/heavyhit.ogg'
+	singular_name = "stone"
+	flags_atom = DIRLOCK
+	sharp = IS_NOT_SHARP_ITEM

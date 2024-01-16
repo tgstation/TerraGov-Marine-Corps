@@ -80,12 +80,6 @@
 /obj/machinery/firealarm{
 	dir = 1
 	},
-/obj/item/radio/intercom{
-	dir = 4;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = -28
-	},
 /turf/open/floor/mainship/blue{
 	dir = 10
 	},
@@ -119,20 +113,13 @@
 	},
 /area/shuttle/canterbury/cic)
 "au" = (
-/obj/structure/rack,
-/obj/item/tool/shovel/etool,
-/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
-/obj/item/pizzabox/meat{
-	pixel_y = 8
-	},
-/obj/item/binoculars,
-/obj/item/facepaint/sniper,
 /obj/machinery/air_alarm,
 /obj/machinery/door_control{
 	dir = 4;
 	id = "port_umbilical_outer";
 	name = "outer door-control"
 	},
+/obj/structure/largecrate/supply/supplies/sandbags,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "av" = (
@@ -146,6 +133,13 @@
 	dir = 1
 	},
 /obj/item/stack/barbed_wire/full,
+/obj/item/stack/razorwire/full,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/plasteel/medium_stack,
+/obj/item/tool/wrench,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/tool/screwdriver,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aw" = (
@@ -157,25 +151,31 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "ax" = (
-/obj/structure/rack,
-/obj/item/stack/sheet/plasteel/medium_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/tool/wrench,
-/obj/item/tool/screwdriver,
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/structure/rack,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/tool/wrench,
+/obj/item/tool/screwdriver,
+/obj/item/tool/crowbar,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "ay" = (
-/obj/structure/largecrate/supply/supplies/sandbags,
 /obj/machinery/air_alarm,
 /obj/machinery/door_control{
 	dir = 8;
 	id = "starboard_umbilical_outer";
 	name = "outer door-control"
+	},
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/item/storage/belt/utility/full,
+/obj/item/clothing/suit/storage/hazardvest,
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "General Listening Channel"
 	},
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
@@ -191,7 +191,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aC" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "aD" = (
@@ -211,10 +211,6 @@
 /obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"aI" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade,
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
 "aJ" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
@@ -227,15 +223,21 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aL" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 1
-	},
 /obj/effect/landmark/start/job/crash/squadmarine,
+/obj/structure/bed/chair/dropship/passenger,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aN" = (
-/obj/effect/spawner/random/machinery/machine_frame,
-/turf/open/floor/mainship/cargo,
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "General Listening Channel";
+	dir = 4
+	},
+/obj/machinery/vending/tool,
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "aO" = (
 /obj/machinery/loadout_vendor/crash,
@@ -248,30 +250,14 @@
 /area/shuttle/canterbury)
 "aQ" = (
 /obj/machinery/fuelcell_recycler,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "aR" = (
 /obj/structure/window/framed/mainship/canterbury,
 /turf/open/floor/plating,
 /area/shuttle/canterbury)
 "aT" = (
-/obj/item/fuel_cell/full,
-/obj/item/fuel_cell/full,
-/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
-/obj/item/stack/sheet/glass{
-	amount = 50;
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/t_scanner,
-/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
-/obj/item/storage/backpack/marine/engineerpack,
-/obj/item/storage/belt/utility/full,
-/obj/item/flashlight,
-/obj/item/clothing/suit/storage/hazardvest,
-/obj/item/clothing/suit/storage/hazardvest,
-/obj/structure/table/mainship,
-/obj/item/facepaint/black,
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "aV" = (
@@ -297,12 +283,16 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/structure/rack,
+/obj/item/fuel_cell/random,
+/obj/item/fuel_cell/random,
+/obj/item/fuel_cell/random,
 /turf/open/floor/mainship/tcomms,
 /area/shuttle/canterbury)
 "bb" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access,
 /obj/structure/cable,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "bd" = (
 /obj/structure/window/reinforced/toughened{
@@ -312,7 +302,8 @@
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "be" = (
-/turf/open/floor/mainship,
+/obj/machinery/marine_selector/clothes/synth,
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bg" = (
 /obj/structure/cable,
@@ -332,7 +323,7 @@
 	name = "Core Power Monitoring"
 	},
 /obj/structure/cable,
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "bk" = (
 /obj/structure/window/reinforced/toughened{
@@ -342,9 +333,16 @@
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "bl" = (
-/obj/structure/closet/secure_closet/engineering_personal,
-/obj/item/tool/weldpack,
-/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/item/lightreplacer,
+/obj/item/clothing/glasses/welding,
+/obj/item/cell/high,
+/obj/machinery/cell_charger,
+/obj/item/radio,
+/obj/item/tool/crowbar,
+/obj/item/storage/box/crate/sentry,
+/obj/item/storage/box/crate/sentry,
+/obj/item/storage/box/crate/sentry,
+/obj/structure/rack,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "bn" = (
@@ -376,13 +374,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bt" = (
-/obj/item/lightreplacer,
-/obj/item/clothing/glasses/welding,
-/obj/item/cell/high,
-/obj/machinery/cell_charger,
-/obj/item/radio,
-/obj/item/tool/crowbar,
-/obj/structure/table/reinforced,
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bu" = (
@@ -433,9 +425,7 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "bC" = (
-/obj/item/fuel_cell/full,
-/obj/item/fuel_cell/random,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "bD" = (
 /obj/effect/landmark/start/job/crash/squadsmartgunner,
@@ -469,7 +459,7 @@
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bH" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bI" = (
@@ -572,28 +562,6 @@
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
-"ci" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/obj/effect/landmark/start/job/crash/squadmarine,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
-"ck" = (
-/obj/item/radio/intercom{
-	dir = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = -28
-	},
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/shuttle/canterbury)
 "cl" = (
 /obj/structure/shuttle/engine/propulsion/burst/left,
 /turf/open/floor/podhatch/floor,
@@ -690,10 +658,6 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "cN" = (
-/obj/item/storage/bag/trash,
-/obj/structure/closet/crate/trashcart,
-/obj/item/storage/bag/trash,
-/obj/item/storage/bag/trash,
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
@@ -751,23 +715,10 @@
 /obj/effect/landmark/start/job/crash/medicalofficer,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"cW" = (
-/obj/item/radio/intercom{
-	dir = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = -28
-	},
-/obj/structure/barricade/plasteel{
-	dir = 4
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/shuttle/canterbury)
 "cY" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/reagent_dispensers/fueltank,
 /obj/structure/barricade/plasteel,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
@@ -782,7 +733,6 @@
 /obj/machinery/air_alarm{
 	dir = 8
 	},
-/obj/structure/largecrate/supply/supplies/flares,
 /obj/structure/barricade/plasteel,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
@@ -796,6 +746,10 @@
 	},
 /turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
+"nN" = (
+/obj/machinery/quick_vendor/beginner,
+/turf/open/floor/mainship/red/full,
+/area/shuttle/canterbury)
 "pY" = (
 /obj/machinery/door/airlock/mainship/marine/canterbury{
 	dir = 8
@@ -803,13 +757,15 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "vY" = (
-/obj/machinery/vending/tool,
-/turf/open/floor/mainship/orange/full,
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "zE" = (
 /obj/structure/window/framed/mainship/canterbury,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "zN" = (
 /obj/machinery/vending/engivend,
@@ -827,11 +783,18 @@
 /obj/machinery/light/small,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"Cq" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/vending/cigarette,
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
 "Hv" = (
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
-/obj/machinery/loadout_vendor/crash,
+/obj/machinery/quick_vendor/beginner,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "KE" = (
@@ -839,12 +802,14 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "RS" = (
-/obj/machinery/vending/cigarette,
-/turf/open/floor/mainship/mono,
+/obj/structure/window/framed/mainship/canterbury,
+/turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "UG" = (
-/obj/machinery/marine_selector/clothes/synth,
-/turf/open/floor/mainship/cargo,
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "YI" = (
 /obj/machinery/iv_drip,
@@ -905,7 +870,7 @@ an
 au
 aA
 aA
-ck
+aA
 an
 aQ
 bC
@@ -927,10 +892,10 @@ aa
 an
 av
 aB
-aI
+aJ
 Bu
 an
-aR
+RS
 bb
 zE
 bo
@@ -951,7 +916,7 @@ ab
 ab
 cV
 aJ
-aL
+vY
 aN
 zN
 cv
@@ -976,7 +941,7 @@ cF
 aJ
 cR
 UG
-vY
+bC
 bg
 bl
 bo
@@ -1031,7 +996,7 @@ bO
 aJ
 aJ
 aJ
-aI
+aJ
 cZ
 co
 "}
@@ -1041,15 +1006,15 @@ ag
 aj
 as
 ab
-RS
+aL
 aJ
 aD
 aD
-be
+aD
 aD
 aJ
 aD
-ci
+aD
 aD
 aJ
 KE
@@ -1072,10 +1037,10 @@ Hv
 bd
 aJ
 bJ
-an
+Cq
 cH
 aJ
-cK
+nN
 bD
 bF
 an
@@ -1093,12 +1058,12 @@ cT
 an
 aV
 aD
-aD
+aJ
 bt
 br
 br
 aJ
-aD
+be
 cc
 cE
 an
@@ -1111,7 +1076,7 @@ aa
 an
 ax
 cQ
-aI
+aJ
 cU
 an
 aW
@@ -1135,7 +1100,7 @@ an
 ay
 aF
 aF
-cW
+aF
 an
 bp
 bq

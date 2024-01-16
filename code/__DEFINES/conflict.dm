@@ -4,11 +4,11 @@
 #define CLICK_CD_RANGE 4
 #define CLICK_CD_CLICK_ABILITY 6
 #define CLICK_CD_MELEE 8
+#define CLICK_CD_THROWING 4
 #define CLICK_CD_HANDCUFFED 10
 #define CLICK_CD_GRABBING 10
 #define CLICK_CD_RESIST 10
 #define CLICK_CD_LONG 20
-#define CLICK_CD_RESIST_PSYCHIC_GRAB 30
 #define CLICK_CD_BREAKOUT 100
 
 //Grab levels
@@ -42,7 +42,7 @@
 #define AMMO_XENO (1<<1)
 #define AMMO_UNWIELDY (1<<2) //poor accuracy against humans
 #define AMMO_ENERGY (1<<3) //Ammo will pass through windows and has damage reduced by smokes with SMOKE_NERF_BEAM
-#define AMMO_ROCKET (1<<4) //Ammo is more likely to continue past cover such as cades
+#define AMMO_ROCKET (1<<4) //Ammo is more likely to continue past cover such as cades //todo merge AMMO_ROCKET and AMMO_SNIPER
 #define AMMO_SNIPER (1<<5) //Ammo is more likely to continue past cover such as cades
 #define AMMO_INCENDIARY (1<<6) //Ammo will attempt to add firestacks and ignite a hit mob if it deals any damage. Armor applies, regardless of AMMO_IGNORE_ARMOR
 #define AMMO_SKIPS_ALIENS (1<<7)
@@ -50,7 +50,7 @@
 #define AMMO_IGNORE_ARMOR (1<<9) //Projectile direct damage will ignore both hard and soft armor
 #define AMMO_IGNORE_RESIST (1<<10) //Unused.
 #define AMMO_BALLISTIC (1<<11) //Generates blood splatters on mob hit
-#define AMMO_SUNDERING (1<<12)
+#define AMMO_SUNDERING (1<<12) // TODO useless flag just check if sundering != 0
 #define AMMO_SPECIAL_PROCESS (1<<13)
 #define AMMO_SENTRY (1<<14) //Used to identify ammo from sentry guns and other automated sources
 #define AMMO_FLAME (1<<15) //Used to identify flamethrower projectiles and similar projectiles
@@ -139,6 +139,7 @@
 //Define sniper laser multipliers
 
 #define SNIPER_LASER_DAMAGE_MULTIPLIER 1.5 //+50% damage vs the aimed target
+#define SNIPER_LASER_SLOWDOWN_STACKS 3 // Slowdown applied on hit vs the aimed target.
 
 //Define lasrifle
 #define ENERGY_STANDARD_AMMO_COST 20
@@ -219,3 +220,10 @@
 #define X_FIRE_LAYER 1
 #define X_TOTAL_LAYERS 9
 /////////////////////////////////
+
+//Cave comms defines
+#define CAVE_NO_INTERFERENCE 0 //! No impact on comms.
+#define CAVE_MINOR_INTERFERENCE 1 //! Scrambles outgoing messages, no impact on incoming.
+#define CAVE_FULL_INTERFERENCE 2 //! Prevents incoming and outgoing messages.
+
+#define ANTENNA_SYNCING_TIME 30 SECONDS //! Time needed to initially configure an antenna module after equipping.

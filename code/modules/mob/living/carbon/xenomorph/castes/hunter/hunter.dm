@@ -18,6 +18,15 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 
-/mob/living/carbon/xenomorph/hunter/apply_alpha_channel(image/I)
-	I.alpha = src.alpha
-	return I
+/mob/living/carbon/xenomorph/hunter/weapon_x
+	caste_base_type = /mob/living/carbon/xenomorph/hunter/weapon_x
+
+/mob/living/carbon/xenomorph/hunter/weapon_x/Initialize(mapload)
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(terminate_specimen))
+
+///Removed the xeno after the mission ends
+/mob/living/carbon/xenomorph/hunter/weapon_x/proc/terminate_specimen()
+	SIGNAL_HANDLER
+	qdel(src)
+

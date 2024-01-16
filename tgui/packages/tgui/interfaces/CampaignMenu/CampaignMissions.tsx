@@ -1,16 +1,25 @@
-import { CampaignData, MissionData, MissionIcon } from './index';
-import { useBackend, useLocalState } from '../../backend';
-import { LabeledList, Button, Stack, Section, Table } from '../../components';
+import { classes } from 'common/react';
 
-export const CampaignMissions = (props, context) => {
-  const { act, data } = useBackend<CampaignData>(context);
+import { useBackend, useLocalState } from '../../backend';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  Section,
+  Stack,
+  Table,
+} from '../../components';
+import { CampaignData, MissionData } from './index';
+
+export const CampaignMissions = (props) => {
+  const { act, data } = useBackend<CampaignData>();
   const { available_missions } = data;
   const [selectedNewMission, setSelectedNewMission] =
-    useLocalState<MissionData | null>(context, 'selectedNewMission', null);
+    useLocalState<MissionData | null>('selectedNewMission', null);
   const [selectedMission, setSelectedMission] = useLocalState(
-    context,
     'selectedMission',
-    available_missions[0]
+    available_missions[0],
   );
 
   return (
@@ -20,6 +29,7 @@ export const CampaignMissions = (props, context) => {
           {available_missions.map((mission) => (
             <Stack.Item key={mission.name}>
               <Button
+                height={'30px'}
                 width={'180px'}
                 onClick={() => setSelectedMission(mission)}
                 color={
@@ -28,19 +38,23 @@ export const CampaignMissions = (props, context) => {
                     : mission.mission_critical
                       ? 'red'
                       : 'blue'
-                }>
-                {!!mission.mission_icon && (
-                  <MissionIcon
-                    icon={
+                }
+              >
+                <Flex align="center">
+                  <Flex.Item
+                    mt={'3px'}
+                    mr={1.5}
+                    className={classes([
+                      'campaign_missions24x24',
                       selectedMission.name === mission.name
                         ? mission.mission_icon + '_yellow'
                         : mission.mission_critical
                           ? mission.mission_icon + '_red'
-                          : mission.mission_icon + '_blue'
-                    }
+                          : mission.mission_icon + '_blue',
+                    ])}
                   />
-                )}
-                {mission.name}
+                  <Flex.Item>{mission.name}</Flex.Item>
+                </Flex>
               </Button>
             </Stack.Item>
           ))}
@@ -48,14 +62,35 @@ export const CampaignMissions = (props, context) => {
       </Stack.Item>
       <Stack.Item>
         <Section
-          title={selectedMission ? selectedMission.name : 'No Mission selected'}
-          buttons={
-            <Button
-              onClick={() => setSelectedNewMission(selectedMission)}
-              icon={'check'}>
-              Select
-            </Button>
-          }>
+          title={
+            selectedMission ? (
+              <Box>
+                <Flex align="center">
+                  <Flex.Item
+                    mr={1.5}
+                    className={classes([
+                      'campaign_missions48x48',
+                      selectedMission.mission_icon + '_yellow' + '_big',
+                    ])}
+                  />
+                  <Flex.Item fontSize="150%" grow={1}>
+                    {selectedMission.name}
+                  </Flex.Item>
+                  <Flex.Item alight="right" position="end">
+                    <Button
+                      onClick={() => setSelectedNewMission(selectedMission)}
+                      icon={'check'}
+                    >
+                      Select
+                    </Button>
+                  </Flex.Item>
+                </Flex>
+              </Box>
+            ) : (
+              'No Mission selected'
+            )
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Map name">
               {selectedMission?.map_name}
@@ -64,7 +99,7 @@ export const CampaignMissions = (props, context) => {
               {selectedMission?.objective_description}
             </LabeledList.Item>
             <LabeledList.Item label="Mission Brief">
-              {selectedMission.mission_brief}
+              {selectedMission?.mission_brief}
             </LabeledList.Item>
           </LabeledList>
         </Section>
@@ -77,18 +112,18 @@ export const CampaignMissions = (props, context) => {
             </Table.Row>
             <Table.Row>
               <Table.Cell color="label">Major Victory</Table.Cell>
-              <Table.Cell>{selectedMission.vp_major_reward}</Table.Cell>
-              <Table.Cell>{selectedMission.ap_major_reward}</Table.Cell>
+              <Table.Cell>{selectedMission?.vp_major_reward}</Table.Cell>
+              <Table.Cell>{selectedMission?.ap_major_reward}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell color="label">Minor Victory</Table.Cell>
-              <Table.Cell>{selectedMission.vp_minor_reward}</Table.Cell>
-              <Table.Cell>{selectedMission.ap_minor_reward}</Table.Cell>
+              <Table.Cell>{selectedMission?.vp_minor_reward}</Table.Cell>
+              <Table.Cell>{selectedMission?.ap_minor_reward}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell color="label">Additional Rewards</Table.Cell>
               <Table.Cell colspan="2">
-                {selectedMission.mission_rewards}
+                {selectedMission?.mission_rewards}
               </Table.Cell>
             </Table.Row>
           </Table>

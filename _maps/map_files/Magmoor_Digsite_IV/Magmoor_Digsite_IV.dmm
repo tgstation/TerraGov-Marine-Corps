@@ -2695,7 +2695,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 8;
 	name = "\improper Arrivals"
@@ -3297,12 +3296,6 @@
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi/storage)
 "cnO" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -4483,7 +4476,7 @@
 	},
 /area/magmoor/civilian/rnr)
 "diw" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
@@ -12467,7 +12460,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/lobby)
 "jfk" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
@@ -12694,7 +12687,7 @@
 /turf/open/floor/carpet,
 /area/magmoor/command/conference)
 "jmq" = (
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -13974,7 +13967,7 @@
 /turf/open/floor/plating,
 /area/magmoor/civilian/cook)
 "kfD" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
@@ -14702,9 +14695,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
 /obj/effect/landmark/excavation_site_spawner,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/ai_node,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/research/rnd/lobby)
@@ -15859,7 +15849,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northwest)
 "lzj" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -17117,16 +17107,6 @@
 	dir = 1
 	},
 /area/magmoor/civilian/arrival/east)
-"mAx" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/wood,
-/area/magmoor/civilian/bar)
 "mAB" = (
 /obj/structure/bed/chair/sofa/corner{
 	dir = 1
@@ -17311,9 +17291,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/docking_port/stationary/crashmode,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -17774,7 +17751,7 @@
 	},
 /area/magmoor/medical/treatment)
 "mXY" = (
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /turf/open/floor/mainship/sterile/side{
 	dir = 6
 	},
@@ -18590,7 +18567,7 @@
 /area/magmoor/medical/storage)
 "nFZ" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC,
+/obj/machinery/prop/computer/PC,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -18763,7 +18740,7 @@
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/compound)
 "nPS" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -22282,9 +22259,6 @@
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
 "qlX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -26501,7 +26475,7 @@
 /area/magmoor/engi)
 "tzc" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer,
+/obj/machinery/prop/computer,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -28416,7 +28390,7 @@
 /turf/open/floor/plating/ground/concrete/edge,
 /area/magmoor/compound/north)
 "uNO" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -31758,7 +31732,7 @@
 /turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/south)
 "xkp" = (
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /turf/open/floor/mainship/sterile/side,
 /area/magmoor/medical/lobby)
 "xku" = (
@@ -45393,10 +45367,10 @@ lCK
 lCK
 eYR
 azG
-xRq
+xOp
 dio
 oOH
-xOp
+xRq
 sfx
 xXN
 lCK
@@ -48423,7 +48397,7 @@ oAR
 ehQ
 mlP
 ehQ
-mAx
+cnO
 ehQ
 ehQ
 oMm
@@ -48656,7 +48630,7 @@ cAw
 ehQ
 fLe
 ehQ
-mAx
+cnO
 dIR
 ehQ
 wYc
@@ -48889,7 +48863,7 @@ vSf
 ehQ
 ehQ
 ehQ
-mAx
+cnO
 mlP
 ehQ
 mAI
@@ -49122,7 +49096,7 @@ aGz
 ehQ
 ehQ
 ehQ
-mAx
+cnO
 ehQ
 ehQ
 pNn
@@ -49355,7 +49329,7 @@ tjh
 mlP
 tct
 lfP
-mAx
+cnO
 ehQ
 ehQ
 cSj
@@ -49588,7 +49562,7 @@ lpK
 ehQ
 wEz
 bzj
-mAx
+cnO
 mlP
 ehQ
 nSi
@@ -50986,7 +50960,7 @@ qlY
 ehQ
 ehQ
 ehQ
-mAx
+cnO
 mlP
 hfz
 naO
@@ -51219,7 +51193,7 @@ lxq
 prR
 dIR
 ehQ
-mAx
+cnO
 ehQ
 hfz
 cZW
@@ -51452,7 +51426,7 @@ jdR
 mlP
 ehQ
 ehQ
-mAx
+cnO
 ehQ
 hfz
 jjQ
@@ -51685,7 +51659,7 @@ inQ
 rVY
 ehQ
 ehQ
-mAx
+cnO
 ehQ
 ehQ
 hfz

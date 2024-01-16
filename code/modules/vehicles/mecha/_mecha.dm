@@ -196,7 +196,7 @@
 
 /obj/vehicle/sealed/mecha/Initialize(mapload)
 	. = ..()
-	ui_view = new(null, src)
+	ui_view = new(null, null, src)
 	if(enclosed)
 		internal_tank = new (src)
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(play_stepsound))
@@ -299,6 +299,32 @@
 /obj/vehicle/sealed/mecha/update_icon_state()
 	icon_state = get_mecha_occupancy_state()
 	return ..()
+
+/obj/vehicle/sealed/mecha/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
+	. = ..()
+	for(var/mob/living/future_pancake in loc)
+		if(future_pancake.mob_size > MOB_SIZE_HUMAN)
+			return
+		if(!future_pancake.lying_angle && future_pancake.mob_size == MOB_SIZE_HUMAN)
+			continue
+		run_over(future_pancake)
+
+///Crushing the mob underfoot
+/obj/vehicle/sealed/mecha/proc/run_over(mob/living/crushed)
+	playsound(src, 'sound/effects/splat.ogg', 50, TRUE)
+	add_mob_blood(crushed)
+	var/turf/below_us = get_turf(src)
+	below_us.add_mob_blood(crushed)
+
+	if(crushed.stat == DEAD)
+		return
+	log_combat(src, crushed, "stomped on", addition = "(DAMTYPE: [uppertext(BRUTE)])")
+	crushed.visible_message(
+		span_danger("[src] crushes [crushed]!"),
+		span_userdanger("[src] steps on you!"),
+	)
+	crushed.emote(pick("scream", "pain"))
+	crushed.take_overall_damage(rand(10, 30) * move_delay, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 2)
 
 /**
  * Toggles Weapons Safety
@@ -506,7 +532,7 @@
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		target = pick(view(3,target))
 	var/mob/living/livinguser = user
-	if(!(livinguser in return_controllers_with_flag(VEHICLE_CONTROL_EQUIPMENT)))
+	if(!is_equipment_controller(user))
 		balloon_alert(user, "wrong seat for equipment!")
 		return
 	var/obj/item/mecha_parts/mecha_equipment/selected

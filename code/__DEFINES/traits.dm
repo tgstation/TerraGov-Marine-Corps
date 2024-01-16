@@ -113,7 +113,14 @@
 #define WEIGHTBENCH_TRAIT "weightbench"
 #define BOILER_ROOTED_TRAIT "boiler_rooted"
 #define STRAPPABLE_ITEM_TRAIT "strappable_item"
+#define MOUNTED_TRAIT "mounted"
+#define VALI_TRAIT "vali"
+#define HELDGLOVE_TRAIT "heldglove"
+#define SECTOID_TRAIT "sectoid"
+#define HUGGER_TRAIT "hugger"
+#define PISTOL_LACE_TRAIT "pistol_lace"
 
+#define ABSTRACT_ITEM_TRAIT "abstract_item"
 /// A trait given by any status effect
 #define STATUS_EFFECT_TRAIT "status-effect"
 /// A trait given by a specific status effect (not sure why we need both but whatever!)
@@ -152,6 +159,12 @@
 #define TRAIT_HEAVY_STEP "heavy_step"
 ///indicates this mob was spawned by a corpse spawner
 #define TRAIT_MAPSPAWNED "mapspawned"
+///Mindmelded with another mob
+#define TRAIT_MINDMELDED "mindmelded"
+///You swing axe good
+#define TRAIT_AXE_EXPERT "axe_expert"
+///You swing sword good
+#define TRAIT_SWORD_EXPERT "sword_expert"
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
@@ -207,6 +220,7 @@
 #define TRAIT_GUN_RELOADING "reloading"
 
 // item traits
+#define TRAIT_NODROP "nodrop" // Cannot be dropped/unequipped at all, only deleted.
 #define TRAIT_T_RAY_VISIBLE "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
 #define TRAIT_STRAPPABLE "strappable"
 // turf traits

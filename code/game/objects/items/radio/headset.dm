@@ -129,6 +129,17 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
 
+	/// only headsets autoupdate squads cuz im lazy and dont want to redo this proc
+	if(keyslot?.custom_squad_factions || keyslot2?.custom_squad_factions)
+		for(var/key in GLOB.custom_squad_radio_freqs)
+			var/datum/squad/custom_squad = GLOB.custom_squad_radio_freqs[key]
+			if(!(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_TERRAGOV) && !(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_TERRAGOV) && custom_squad.faction == FACTION_TERRAGOV)
+				continue
+			if(!(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_SOM) && !(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_SOM) && custom_squad.faction == FACTION_SOM)
+				continue
+			channels[custom_squad.name] = TRUE
+			secure_radio_connections[custom_squad.name] = add_radio(src, custom_squad.radio_freq)
+
 /obj/item/radio/headset/AltClick(mob/living/user)
 	if(!istype(user) || !Adjacent(user) || user.incapacitated())
 		return
@@ -198,7 +209,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/proc/safety_protocol(mob/living/carbon/human/user)
 	balloon_alert_to_viewers("Explodes")
 	playsound(user, 'sound/effects/explosion_micro1.ogg', 50, 1)
-	user.ex_act(EXPLODE_LIGHT)
+	if(wearer)
+		wearer.ex_act(EXPLODE_LIGHT)
 	qdel(src)
 
 /obj/item/radio/headset/mainship/dropped(mob/living/carbon/human/user)
@@ -632,6 +644,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/distress/echo
 	name = "\improper Echo Task Force headset"
 	keyslot = /obj/item/encryptionkey/echo
+
+/obj/item/radio/headset/distress/retired
+	name = "retirement home headset"
+	keyslot = /obj/item/encryptionkey/retired
+	frequency = FREQ_RETIRED
 
 //SOM headsets
 

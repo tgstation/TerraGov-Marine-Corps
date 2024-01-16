@@ -240,7 +240,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	//get pixels to move the camera in an angle
 	var/mpx = sin(angle) * strength
 	var/mpy = cos(angle) * strength
-	animate(M.client, pixel_x = oldx+mpx, pixel_y = oldy+mpy, time = duration, flags = ANIMATION_RELATIVE)
+	animate(M.client, pixel_x = mpx-oldx, pixel_y = mpy-oldy, time = duration, flags = ANIMATION_RELATIVE)
 	animate(pixel_x = oldx, pixel_y = oldy, time = backtime_duration, easing = BACK_EASING)
 
 
@@ -343,37 +343,6 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 
 /mob/proc/get_standard_bodytemperature()
 	return BODYTEMP_NORMAL
-
-/mob/log_message(message, message_type, color=null, log_globally = TRUE)
-	if(!length(message))
-		stack_trace("Empty message")
-		return
-
-	// Cannot use the list as a map if the key is a number, so we stringify it (thank you BYOND)
-	var/smessage_type = num2text(message_type)
-
-	if(client?.player_details)
-		if(!islist(client.player_details.logging[smessage_type]))
-			client.player_details.logging[smessage_type] = list()
-
-	if(!islist(logging[smessage_type]))
-		logging[smessage_type] = list()
-
-	var/colored_message = message
-	if(color)
-		if(color[1] == "#")
-			colored_message = "<font color=[color]>[message]</font>"
-		else
-			colored_message = "<font color='[color]'>[message]</font>"
-
-	var/list/timestamped_message = list("[length(logging[smessage_type]) + 1]\[[stationTimestamp()]\] [key_name(src)] [loc_name(src)]" = colored_message)
-
-	logging[smessage_type] += timestamped_message
-
-	if(client?.player_details)
-		client.player_details.logging[smessage_type] += timestamped_message
-
-	return ..()
 
 
 /proc/notify_ghost(mob/dead/observer/O, message, ghost_sound = null, enter_link = null, enter_text = null, atom/source = null, mutable_appearance/alert_overlay = null, action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, notify_volume = 100, extra_large = FALSE) //Easy notification of a single ghosts.

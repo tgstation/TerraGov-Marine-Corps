@@ -1,25 +1,24 @@
 // ***************************************
 // *********** Acid spray
 // ***************************************
-/datum/action/xeno_action/activable/spray_acid/cone
+/datum/action/ability/activable/xeno/spray_acid/cone
 	name = "Spray Acid Cone"
 	action_icon_state = "spray_acid"
 	desc = "Spray a cone of dangerous acid at your target."
-	ability_name = "spray acid"
-	plasma_cost = 300
-	cooldown_timer = 40 SECONDS
+	ability_cost = 300
+	cooldown_duration = 40 SECONDS
 
-/datum/action/xeno_action/activable/spray_acid/cone/use_ability(atom/A)
+/datum/action/ability/activable/xeno/spray_acid/cone/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/turf/target = get_turf(A)
 
 	if(!istype(target)) //Something went horribly wrong. Clicked off edge of map probably
 		return
 
-	if(!do_after(X, 5, TRUE, target, BUSY_ICON_DANGER))
+	if(!do_after(X, 5, NONE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
-	if(!can_use_ability(A, TRUE, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(A, TRUE, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return fail_activate()
 
 	GLOB.round_statistics.praetorian_acid_sprays++
@@ -36,23 +35,23 @@
 	add_cooldown()
 	addtimer(CALLBACK(src, PROC_REF(reset_speed)), rand(2 SECONDS, 3 SECONDS))
 
-/datum/action/xeno_action/activable/spray_acid/cone/proc/reset_speed()
+/datum/action/ability/activable/xeno/spray_acid/cone/proc/reset_speed()
 	var/mob/living/carbon/xenomorph/spraying_xeno = owner
 	if(QDELETED(spraying_xeno))
 		return
 	spraying_xeno.remove_movespeed_modifier(type)
 
-/datum/action/xeno_action/activable/spray_acid/ai_should_start_consider()
+/datum/action/ability/activable/xeno/spray_acid/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/spray_acid/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/spray_acid/ai_should_use(atom/target)
 	if(owner.do_actions) //Chances are we're already spraying acid, don't override it
 		return FALSE
 	if(!iscarbon(target))
 		return FALSE
 	if(!line_of_sight(owner, target, 3))
 		return FALSE
-	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -68,7 +67,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 #define CONE_PART_MIDDLE_DIAG (1<<5)
 
 ///Start the acid cone spray in the correct direction
-/datum/action/xeno_action/activable/spray_acid/cone/proc/start_acid_spray_cone(turf/T, range)
+/datum/action/ability/activable/xeno/spray_acid/cone/proc/start_acid_spray_cone(turf/T, range)
 	var/facing = angle_to_dir(Get_Angle(owner, T))
 	owner.setDir(facing)
 	switch(facing)
@@ -79,7 +78,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			do_acid_cone_spray(owner.loc, range + 1, facing, CONE_PART_DIAG_LEFT|CONE_PART_DIAG_RIGHT, owner, TRUE)
 
 ///Check if it's possible to create a spray, and if yes, check if the spray must continue
-/datum/action/xeno_action/activable/spray_acid/cone/proc/do_acid_cone_spray(turf/T, distance_left, facing, direction_flag, source_spray, skip_timer = FALSE)
+/datum/action/ability/activable/xeno/spray_acid/cone/proc/do_acid_cone_spray(turf/T, distance_left, facing, direction_flag, source_spray, skip_timer = FALSE)
 	if(distance_left <= 0)
 		return
 	if(T.density)
@@ -109,7 +108,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 
 ///Call the next steps of the cone spray,
-/datum/action/xeno_action/activable/spray_acid/cone/proc/continue_acid_cone_spray(turf/current_turf, turf/next_normal_turf, distance_left, facing, direction_flag, spray)
+/datum/action/ability/activable/xeno/spray_acid/cone/proc/continue_acid_cone_spray(turf/current_turf, turf/next_normal_turf, distance_left, facing, direction_flag, spray)
 	if(CHECK_BITFIELD(direction_flag, CONE_PART_MIDDLE))
 		do_acid_cone_spray(next_normal_turf, distance_left - 1 , facing, CONE_PART_MIDDLE, spray)
 	if(CHECK_BITFIELD(direction_flag, CONE_PART_RIGHT))
@@ -127,13 +126,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 // ***************************************
 // *********** Acid dash
 // ***************************************
-/datum/action/xeno_action/activable/acid_dash
+/datum/action/ability/activable/xeno/acid_dash
 	name = "Acid Dash"
 	action_icon_state = "pounce"
 	desc = "Instantly dash, tackling the first marine in your path. If you manage to tackle someone, gain another weaker cast of the ability."
-	ability_name = "acid dash"
-	plasma_cost = 250
-	cooldown_timer = 30 SECONDS
+	ability_cost = 250
+	cooldown_duration = 30 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH,
 	)
@@ -146,13 +144,13 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	///The last tile we dashed through, used when swapping with a human
 	var/turf/last_turf
 
-/datum/action/xeno_action/activable/acid_dash/on_cooldown_finish()
+/datum/action/ability/activable/xeno/acid_dash/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("Our exoskeleton quivers as we get ready to use Acid Dash again."))
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 	return ..()
 
 ///Called when the dash is finished, handles cooldowns and recast. Clears signals too
-/datum/action/xeno_action/activable/acid_dash/proc/dash_complete()
+/datum/action/ability/activable/xeno/acid_dash/proc/dash_complete()
 	var/mob/living/carbon/xenomorph/X = owner
 	SIGNAL_HANDLER
 	if(recast_available)
@@ -161,13 +159,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	else
 		recast = FALSE
 		add_cooldown()
-
-	X.reset_allow_pass_flags()
+	X.pass_flags = initial(X.pass_flags)
 	recast_available = FALSE
 	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_MOVABLE_MOVED))
 
 ///Called whenever the owner hits a mob during the dash
-/datum/action/xeno_action/activable/acid_dash/proc/mob_hit(datum/source, mob/M)
+/datum/action/ability/activable/xeno/acid_dash/proc/mob_hit(datum/source, mob/M)
 	SIGNAL_HANDLER
 	if(recast || !ishuman(M)) //That's the recast, we don't stop for mobs
 		return COMPONENT_KEEP_THROWING
@@ -193,7 +190,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	recast_available = TRUE
 
 ///Called whenever the owner hits an object during the dash
-/datum/action/xeno_action/activable/acid_dash/proc/obj_hit(datum/source, obj/target, speed)
+/datum/action/ability/activable/xeno/acid_dash/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
 	if(istype(target, /obj/structure/table))
 		var/obj/structure/S = target
@@ -205,7 +202,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	dash_complete()
 
 ///Drops an acid puddle on the current owner's tile, will do 0 damage if the owner has no acid_spray_damage
-/datum/action/xeno_action/activable/acid_dash/proc/acid_steps(atom/A, atom/OldLoc, Dir, Forced)
+/datum/action/ability/activable/xeno/acid_dash/proc/acid_steps(atom/A, atom/OldLoc, Dir, Forced)
 	SIGNAL_HANDLER
 	last_turf = OldLoc
 	var/mob/living/carbon/xenomorph/X = owner
@@ -213,7 +210,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	for(var/obj/O in get_turf(X))
 		O.acid_spray_act(X)
 
-/datum/action/xeno_action/activable/acid_dash/use_ability(atom/A)
+/datum/action/ability/activable/xeno/acid_dash/use_ability(atom/A)
 	RegisterSignal(owner, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
 	RegisterSignal(owner, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(acid_steps)) //We drop acid on every tile we pass through

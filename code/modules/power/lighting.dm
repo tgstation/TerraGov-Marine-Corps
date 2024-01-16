@@ -39,7 +39,7 @@
 		if(stage == 1)
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, "You begin deconstructing [src].")
-			if(!do_after(usr, 30, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(usr, 30, NONE, src, BUSY_ICON_BUILD))
 				return
 			new /obj/item/stack/sheet/metal(get_turf(loc), sheets_refunded)
 			user.visible_message("[user] deconstructs [src].", \
@@ -166,6 +166,14 @@
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light_bulb/bulb
 
+/obj/machinery/light/red
+	base_state = "tubered"
+	icon_state = "tubered1"
+	light_color = LIGHT_COLOR_FLARE
+	brightness = 3
+	bulb_power = 0.5
+	bulb_colour = LIGHT_COLOR_FLARE
+
 // the smaller bulb light fixture
 
 /obj/machinery/light/small
@@ -210,11 +218,9 @@
 
 	switch(fitting)
 		if("tube")
-			brightness = 8
 			if(prob(2))
 				broken(TRUE)
 		if("bulb")
-			brightness = 4
 			if(prob(5))
 				broken(TRUE)
 
@@ -244,7 +250,8 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/light/update_icon()
+/obj/machinery/light/update_icon_state()
+	. = ..()
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
 			icon_state = "[base_state][light_on]"
@@ -570,7 +577,9 @@
 	var/brightness = 2 //how much light it gives off
 
 /obj/item/light_bulb/throw_impact(atom/hit_atom)
-	..()
+	. = ..()
+	if(!.)
+		return
 	shatter()
 
 /obj/item/light_bulb/tube

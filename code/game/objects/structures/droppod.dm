@@ -4,6 +4,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 #define DROPPOD_TRANSIT_TIME 10 SECONDS
 ///radius of dispersion for leader pods
 #define LEADER_POD_DISPERSION 5
+///radius of dispersion for pods for randomisation or obstacle avoidance
+#define DROPPOD_BASE_DISPERSION 1
 
 ///base marine drop pod. can be controlled by an attached [/obj/structure/droppod/leader] or [/obj/machinery/computer/droppod_control]
 /obj/structure/droppod
@@ -21,6 +23,9 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	coverage = 75
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
+	light_range = 1
+	light_power = 0.5
+	light_color = LIGHT_COLOR_EMISSIVE_GREEN
 	//todo make these just use a turf?
 	///X target coordinate
 	var/target_x = 1
@@ -88,13 +93,26 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	update_icon()
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED))
 
+/obj/structure/droppod/update_icon()
+	. = ..()
+	if(operation_started && launch_allowed)
+		set_light(initial(light_range))
+	else
+		set_light(0)
+
 /obj/structure/droppod/update_icon_state()
+	. = ..()
 	if(drop_state == DROPPOD_ACTIVE)
 		icon_state = initial(icon_state)
 	else if(operation_started && launch_allowed)
 		icon_state = initial(icon_state) + "_active"
 	else
 		icon_state = initial(icon_state) + "_inactive"
+
+/obj/structure/droppod/update_overlays()
+	. = ..()
+	if(operation_started && launch_allowed)
+		. += emissive_appearance(icon, "[icon_state]_emissive")
 
 /obj/structure/droppod/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	if(!in_range(user, src) || !in_range(M, src))
@@ -195,16 +213,21 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	if(drop_state != DROPPOD_READY)
 		return
 
+	var/turf/target = locate(target_x, target_y, target_z)
+	if(!commanded_drop) //we randomise the landing slightly, its already randomised for mass launch
+		target = find_new_target()
+		target_x = target.x
+		target_y = target.y
+
 	if(!checklanding(user))
 		return
 
 	for(var/mob/podder AS in buckled_mobs)
 		podder.forceMove(src)
 
-	var/turf/target = locate(target_x, target_y, target_z)
 	if(user)
 		log_game("[key_name(user)] launched pod [src] at [AREACOORD(target)]")
-	deadchat_broadcast("has been launched", src, turf_target = target)
+	deadchat_broadcast(" has been launched", src, turf_target = target)
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_notice("[user ? user : "unknown"] has launched [src] towards [target.loc] at X:[target_x] Y:[target_y]"))
 	reserved_area = SSmapping.RequestBlockReservation(3,3)
@@ -214,6 +237,22 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	update_icon()
 	flick("[icon_state]_closing", src)
 	addtimer(CALLBACK(src, PROC_REF(launch_pod), user), 2.5 SECONDS)
+
+///Find a new suitable target turf around the pods initial target
+/obj/structure/droppod/proc/find_new_target(mob/user)
+	var/scatter_radius = DROPPOD_BASE_DISPERSION + GLOB.current_orbit
+	var/turf/T0 = locate(target_x + scatter_radius, target_y + scatter_radius, target_z)
+	var/turf/T1 = locate(target_x - scatter_radius, target_y - scatter_radius, target_z)
+	var/list/block = block(T0,T1)
+	shuffle_inplace(block)
+	for(var/turf/attemptdrop AS in block)
+		if(!checklanding(optional_turf = attemptdrop))
+			continue
+		return attemptdrop
+
+	if(user)
+		to_chat(user, span_warning("[icon2html(src, user)] RECALCULATION FAILED!"))
+	return locate(target_x, target_y, target_z) //no other alt spots found, we return our original target
 
 ///actually launches the pod
 /obj/structure/droppod/proc/launch_pod(mob/user)
@@ -229,33 +268,21 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 	playsound(src, 'sound/effects/escape_pod_launch.ogg', 70)
 	playsound(src, 'sound/effects/droppod_launch.ogg', 70)
-	addtimer(CALLBACK(src, PROC_REF(finish_drop), user), DROPPOD_TRANSIT_TIME)
+	addtimer(CALLBACK(src, PROC_REF(finish_drop), user), ROUND_UP(DROPPOD_TRANSIT_TIME * ((GLOB.current_orbit + 3) / 6)))
 	forceMove(pick(reserved_area.reserved_turfs))
 	new /area/arrival(loc)	//adds a safezone so we dont suffocate on the way down, cleaned up with reserved turfs
 
 /// Moves the droppod into its target turf, which it updates if needed
 /obj/structure/droppod/proc/finish_drop(mob/user)
 	var/turf/targetturf = locate(target_x, target_y, target_z)
-	for(var/a in targetturf.contents)
-		var/atom/target = a
-		if(target.density)	//if theres something dense in the turf try to recalculate a new turf
-			if(user)
-				to_chat(user, span_warning("[icon2html(src, user)] WARNING! TARGET ZONE OCCUPIED! EVADING!"))
-				balloon_alert(user, "EVADING")
-			var/turf/T0 = locate(target_x + 2,target_y + 2, target_z)
-			var/turf/T1 = locate(target_x - 2,target_y - 2, target_z)
-			var/list/block = block(T0,T1) - targetturf
-			for(var/t in block)//Randomly selects a free turf in a 5x5 block around the target
-				var/turf/attemptdrop = t
-				if(!attemptdrop.density && !is_type_in_typecache(attemptdrop, GLOB.blocked_droppod_tiles))
-					targetturf = attemptdrop
-					break
-			if(targetturf.density)//We tried and failed, revert to the old one, which has a new dense obj but is at least not dense
-				if(user)
-					to_chat(user, span_warning("[icon2html(src, user)] RECALCULATION FAILED!"))
-				targetturf = locate(target_x, target_y, target_z)
-			break
-
+	for(var/atom/target AS in targetturf.contents)
+		if(!target.density)
+			continue
+		if(user)
+			to_chat(user, span_warning("[icon2html(src, user)] WARNING! TARGET ZONE OCCUPIED! EVADING!"))
+			balloon_alert(user, "EVADING")
+		targetturf = find_new_target(user)
+		break
 	forceMove(targetturf)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPPOD_LANDED, targetturf)
 	pixel_y = 500
@@ -282,6 +309,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	name = "\improper TGMC Zeus command drop pod"
 	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This one comes with command capabilities."
 	icon_state = "singlepod_red"
+	light_color = LIGHT_COLOR_EMISSIVE_RED
 
 /obj/structure/droppod/leader/buckle_mob(mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
 	if(buckling_mob.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_TRAINED)
@@ -304,7 +332,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	for(var/obj/structure/droppod/pod AS in GLOB.droppod_list)
 		if(LAZYLEN(pod.buckled_mobs) || LAZYLEN(pod.contents))
 			occupied_pods++
-	var/dispersion = max(LEADER_POD_DISPERSION, LEADER_POD_DISPERSION + ((occupied_pods - 10) / 5))
+	var/dispersion = LEADER_POD_DISPERSION + GLOB.current_orbit
+	dispersion = max(dispersion, dispersion + ((occupied_pods - 10) / 5))
 	var/turf/topright = locate(new_x + dispersion, new_y + dispersion, target_z)
 	var/turf/bottomleft = locate(new_x - dispersion, new_y - dispersion, target_z)
 	var/list/block = block(bottomleft, topright) - locate()
@@ -354,10 +383,11 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	var/obj/stored_object
 
 /obj/structure/droppod/nonmob/Destroy()
-	stored_object = null
+	unload_package()
 	return ..()
 
 /obj/structure/droppod/nonmob/update_icon_state()
+	. = ..()
 	if(drop_state == DROPPOD_ACTIVE)
 		icon_state = initial(icon_state)
 	else if(stored_object)
@@ -368,13 +398,36 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		icon_state = initial(icon_state) + "_inactive"
 
 /obj/structure/droppod/nonmob/completedrop(mob/user)
-	stored_object = null
+	unload_package()
 	return ..()
+
+///Handles loading an object into the pod
+/obj/structure/droppod/nonmob/proc/load_package(obj/package, mob/user)
+	if(stored_object)
+		return
+	if(!istype(package))
+		return
+	stored_object = package
+	package.forceMove(src)
+	RegisterSignal(package, COMSIG_MOVABLE_MOVED, PROC_REF(unload_package))
+	update_icon()
+
+///Handles removing the stored object from the pod
+/obj/structure/droppod/nonmob/proc/unload_package()
+	SIGNAL_HANDLER
+	if(!stored_object)
+		return
+	UnregisterSignal(stored_object, COMSIG_MOVABLE_MOVED)
+	if(stored_object.loc == src)
+		stored_object.forceMove(loc)
+	stored_object = null
+	update_icon()
 
 /obj/structure/droppod/nonmob/supply_pod
 	name = "\improper TGMC Zeus supply drop pod"
 	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This one is designed to carry supplies."
 	icon_state = "supplypod"
+	light_color = LIGHT_COLOR_EMISSIVE_ORANGE
 
 /obj/structure/droppod/nonmob/supply_pod/completedrop(mob/user)
 	layer = DOOR_OPEN_LAYER //so anything inside layers over it
@@ -382,33 +435,33 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /obj/structure/droppod/nonmob/supply_pod/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 	if(attached_clamp.loaded)
+		if(istype(attached_clamp.loaded, /obj/structure/droppod))
+			return //no recursive pods please
+		if(stored_object)
+			balloon_alert(user, "Occupied")
+			return
 		var/obj/structure/closet/clamped_closet = attached_clamp.loaded
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 30, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 			return
 		if(length(contents) || attached_clamp.loaded != clamped_closet || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
 			return
-		clamped_closet.forceMove(src)
-		stored_object = clamped_closet
-		update_icon()
+		load_package(clamped_closet)
 		attached_clamp.loaded = null
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		attached_clamp.update_icon()
 		to_chat(user, span_notice("You load [clamped_closet] into [src]."))
 	else if(stored_object)
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 30, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 			return
 		if(!stored_object || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
 			return
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-
-		stored_object.forceMove(attached_clamp.linked_powerloader)
-		attached_clamp.loaded = stored_object
-		attached_clamp.update_icon()
 		to_chat(user, span_notice("You've removed [stored_object] from [src] and loaded it into [attached_clamp]."))
-		stored_object = null
-		update_icon()
+		attached_clamp.loaded = stored_object
+		stored_object.forceMove(attached_clamp.linked_powerloader)
+		attached_clamp.update_icon()
 	else
 		return ..()
 
@@ -416,21 +469,40 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	name = "\improper TGMC Zeus sentry drop pod"
 	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This one carries a self deploying sentry system."
 	icon_state = "sentrypod"
+	light_color = LIGHT_COLOR_EMISSIVE_RED
 
 /obj/structure/droppod/nonmob/turret_pod/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/sentry/pod_sentry(src)
-	if(LAZYLEN(contents))
-		stored_object = contents[1]
-		update_icon()
+	if(!LAZYLEN(contents))
+		CRASH("Sentry pod spawned without a sentry!")
+	load_package(contents[1])
 
 /obj/structure/droppod/nonmob/mech_pod
 	name = "\improper TGMC Zeus mech drop pod"
 	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This is a larger model designed specifically to carry mechs."
 	icon = 'icons/obj/structures/big_droppod.dmi'
 	icon_state = "mechpod"
+	light_range = 2
+	light_color = LIGHT_COLOR_BLUE
 	pixel_x = -9
 	max_integrity = 150
+
+/obj/structure/droppod/nonmob/mech_pod/load_package(obj/package, mob/user)
+	. = ..()
+	if(!user)
+		return
+	for(var/datum/action/innate/action AS in interaction_actions)
+		action.give_action(user)
+
+/obj/structure/droppod/nonmob/mech_pod/unload_package()
+	var/obj/vehicle/sealed/mecha/stored_mech = stored_object
+	if(!istype(stored_mech))
+		return
+	for(var/mob/occupant AS in stored_mech.occupants)
+		for(var/datum/action/innate/action AS in interaction_actions)
+			action.remove_action(occupant)
+	return ..()
 
 /obj/structure/droppod/nonmob/mech_pod/ex_act(severity)
 	switch(severity)
@@ -440,17 +512,14 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 			take_damage(50, BRUTE, BOMB, 0)
 
 /obj/structure/droppod/nonmob/mech_pod/mech_shift_click(obj/vehicle/sealed/mecha/mecha_clicker, mob/living/user)
-	if(mecha_clicker.loc == src)
-		mecha_clicker.forceMove(loc)
-		update_icon()
+	if(mecha_clicker == stored_object)
+		unload_package()
 		return
-	if(!Adjacent(user))
+	if(stored_object)
 		return
-	mecha_clicker.forceMove(src)
-	stored_object = mecha_clicker
-	for(var/datum/action/innate/action AS in interaction_actions)
-		action.give_action(user)
-	update_icon()
+	if(!Adjacent(mecha_clicker))
+		return
+	load_package(mecha_clicker, user)
 
 /obj/structure/droppod/nonmob/mech_pod/change_targeted_z(datum/source, new_z)
 	. = ..()
@@ -458,19 +527,11 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		ejectee.forceMove(loc)
 
 /obj/structure/droppod/nonmob/mech_pod/dodrop(turf/targetturf, mob/user)
-	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, stored_object)
+	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, stored_object ? stored_object : null)
 	explosion(targetturf, 1, 2) //A mech just dropped onto your head from orbit
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
 	QDEL_NULL(reserved_area)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
-
-/obj/structure/droppod/nonmob/mech_pod/completedrop(mob/user)
-	if(stored_object)
-		var/obj/vehicle/sealed/mecha/stored_mech = stored_object
-		for(var/mob/occupant AS in stored_mech.occupants)
-			for(var/datum/action/innate/action AS in interaction_actions)
-				action.remove_action(occupant)
-	return ..()
 
 /datum/action/innate/launch_droppod
 	name = "Begin Launch"
@@ -561,3 +622,12 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /obj/structure/drop_pod_launcher/leader
 	pod_type = /obj/structure/droppod/leader
+
+/obj/structure/drop_pod_launcher/mech
+	pod_type = /obj/structure/droppod/nonmob/mech_pod
+
+/obj/structure/drop_pod_launcher/supply
+	pod_type = /obj/structure/droppod/nonmob/supply_pod
+
+/obj/structure/drop_pod_launcher/sentry
+	pod_type = /obj/structure/droppod/nonmob/turret_pod

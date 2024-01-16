@@ -13,6 +13,7 @@
 */
 
 GLOBAL_LIST_EMPTY(telecomms_list)
+GLOBAL_LIST_EMPTY(telecomms_freq_listening_list)
 
 /obj/machinery/telecomms
 	icon = 'icons/obj/machines/telecomms.dmi'
@@ -116,7 +117,9 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	. = ..()
 	for(var/obj/machinery/telecomms/T in (long_range_link ? GLOB.telecomms_list : urange(20, src, 1)))
 		add_automatic_link(T)
-
+	if(!GLOB.telecomms_freq_listening_list)
+		return
+	LAZYADDASSOC(GLOB.telecomms_freq_listening_list, type, freq_listening)
 
 /obj/machinery/telecomms/Destroy()
 	GLOB.telecomms_list -= src
@@ -141,7 +144,8 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 			return
 
 
-/obj/machinery/telecomms/update_icon()
+/obj/machinery/telecomms/update_icon_state()
+	. = ..()
 	if(on)
 		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			icon_state = "[initial(icon_state)]_o"

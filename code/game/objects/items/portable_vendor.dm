@@ -132,17 +132,15 @@
 			playsound(src, "sound/machines/fax.ogg", 5)
 			balloon_alert(user, "fabricating")
 			fabricating = TRUE
-			update_overlays()
+			update_appearance()
 			addtimer(CALLBACK(src, PROC_REF(do_vend), L[3], user), 1 SECONDS)
-
-	updateUsrDialog()
 
 /obj/item/portable_vendor/proc/do_vend(thing, mob/user)
 	var/obj/IT = new thing(get_turf(src))
 	if(loc == user)
 		user.put_in_hands(IT)
 	fabricating = FALSE
-	update_overlays()
+	update_appearance()
 
 /obj/item/portable_vendor/update_overlays()
 	. = ..()
@@ -163,7 +161,7 @@
 /obj/item/portable_vendor/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
-	update_overlays()
+	update_appearance()
 
 /obj/item/portable_vendor/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -175,7 +173,7 @@
 	T.visible_message(span_warning("[src] shudders as its internal components break apart!"))
 	broken = 1
 	STOP_PROCESSING(SSobj, src)
-	update_overlays()
+	update_appearance()
 
 	playsound(src, 'sound/effects/sparks4.ogg', 60, 1)
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread

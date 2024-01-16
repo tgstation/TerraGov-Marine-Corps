@@ -26,10 +26,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = null
 	item_state = null
 
-	greyscale_config = null
-	greyscale_colors = GUN_PALETTE_BLACK
-	colorable_colors = GUN_PALETTE_LIST
-
 	///Determines the amount of pixels to move the icon state for the overlay. in the x direction
 	var/pixel_shift_x = 16
 	///Determines the amount of pixels to move the icon state for the overlay. in the y direction
@@ -184,12 +180,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 				icon_state = variants_by_parent_type[selection]
 
 	update_icon()
-	RegisterSignal(master_gun, COMSIG_ITEM_SECONDARY_COLOR, PROC_REF(handle_color))
-
-///Sends a list of available colored attachments to be colored when the parent is right clicked with paint.
-/obj/item/attachable/proc/handle_color(datum/source, mob/user, list/obj/item/secondaries)
-	SIGNAL_HANDLER
-	secondaries += src
 
 ///Called when the attachment is detached from something. If the thing is a gun, it returns its stats to what they were before being attached.
 /obj/item/attachable/proc/on_detach(detaching_item, mob/user)
@@ -209,7 +199,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun = null
 	icon_state = initial(icon_state)
 	update_icon()
-	UnregisterSignal(master_gun, COMSIG_ITEM_SECONDARY_COLOR)
 
 ///Handles the modifiers to the parent gun
 /obj/item/attachable/proc/apply_modifiers(attaching_item, mob/user, attaching)
@@ -819,7 +808,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		return FALSE
 	if(CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED) && user.dir != master_gun.loc.dir)
 		user.setDir(master_gun.loc.dir)
-	if(!do_after(user, scope_delay, TRUE, src, BUSY_ICON_BAR))
+	if(!do_after(user, scope_delay, NONE, src, BUSY_ICON_BAR))
 		return FALSE
 	zoom(user)
 	update_icon()
@@ -883,6 +872,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "Terra Experimental laser sniper rifle rail scope"
 	desc = "A marine standard mounted zoom sight scope made for the Terra Experimental laser sniper rifle otherwise known as TE-S abbreviated, allows zoom by activating the attachment."
 	icon_state = "tes"
+
+/obj/item/attachable/scope/unremovable/plasma_sniper_scope
+	name = "PL-02 sniper rifle rail scope"
+	desc = "A marine standard mounted zoom sight scope made for the PL-02 plasma sniper rifle, allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	icon_state = "plasma_scope"
 
 /obj/item/attachable/scope/mini
 	name = "mini rail scope"
@@ -1168,8 +1162,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "vertical grip"
 	desc = "A custom-built improved foregrip for better accuracy, moderately faster aimed movement speed, less recoil, and less scatter when wielded especially during burst fire. \nHowever, it also increases weapon size, slightly increases wield delay and makes unwielded fire more cumbersome."
 	icon_state = "verticalgrip"
-	greyscale_config = /datum/greyscale_config/gun_attachment
-	colorable_allowed = PRESET_COLORS_ALLOWED
 	wield_delay_mod = 0.2 SECONDS
 	size_mod = 1
 	slot = ATTACHMENT_SLOT_UNDER
@@ -1188,8 +1180,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "angled grip"
 	desc = "A custom-built improved foregrip for less recoil, and faster wielding time. \nHowever, it also increases weapon size, and slightly hinders unwielded firing."
 	icon_state = "angledgrip"
-	greyscale_config = /datum/greyscale_config/gun_attachment
-	colorable_allowed = PRESET_COLORS_ALLOWED
 	wield_delay_mod = -0.3 SECONDS
 	size_mod = 1
 	slot = ATTACHMENT_SLOT_UNDER
@@ -1234,7 +1224,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/lace/activate(mob/living/user, turn_off)
 	if(lace_deployed)
-		DISABLE_BITFIELD(master_gun.flags_item, NODROP)
+		REMOVE_TRAIT(master_gun, TRAIT_NODROP, PISTOL_LACE_TRAIT)
 		to_chat(user, span_notice("You feel the [src] loosen around your wrist!"))
 		playsound(user, 'sound/weapons/fistunclamp.ogg', 25, 1, 7)
 		icon_state = "lace"
@@ -1243,10 +1233,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	else
 		if(user.do_actions)
 			return
-		if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_BAR))
+		if(!do_after(user, 0.5 SECONDS, NONE, src, BUSY_ICON_BAR))
 			return
 		to_chat(user, span_notice("You deploy the [src]."))
-		ENABLE_BITFIELD(master_gun.flags_item, NODROP)
+		ADD_TRAIT(master_gun, TRAIT_NODROP, PISTOL_LACE_TRAIT)
 		to_chat(user, span_warning("You feel the [src] shut around your wrist!"))
 		playsound(user, 'sound/weapons/fistclamp.ogg', 25, 1, 7)
 		icon_state = "lace-on"
@@ -1305,9 +1295,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 				icon_state = variants_by_parent_type[selection]
 
 	update_icon()
-	if(!greyscale_config || !greyscale_colors)
-		return
-	RegisterSignal(master_gun, COMSIG_ITEM_SECONDARY_COLOR, PROC_REF(handle_color))
 
 /obj/item/attachable/foldable/on_detach(detaching_item, mob/user)
 	if(!isgun(detaching_item))
@@ -1325,12 +1312,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun = null
 	icon_state = initial(icon_state)
 	update_icon()
-	if(!greyscale_config || !greyscale_colors)
-		return
-	UnregisterSignal(master_gun, COMSIG_ITEM_SECONDARY_COLOR)
 
 /obj/item/attachable/foldable/activate(mob/living/user, turn_off)
-	if(user && deploy_time && !do_after(user, deploy_time, TRUE, src, BUSY_ICON_BAR))
+	if(user && deploy_time && !do_after(user, deploy_time, NONE, src, BUSY_ICON_BAR))
 		return FALSE
 
 	folded = !folded
@@ -1393,6 +1377,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = 0.2
 	recoil_mod = -2
 	scatter_mod = -8
+	aim_speed_mod = 0.05
 
 /obj/item/attachable/foldable/icc_machinepistol
 	name = "\improper PL-38 machinepistol stock"
@@ -1414,8 +1399,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A non-standard heavy stock for the SH-35 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
 	icon = 'icons/Marine/attachments_64.dmi'
 	icon_state = "t35stock"
-	greyscale_config = /datum/greyscale_config/gun_attachment_64
-	colorable_allowed = PRESET_COLORS_ALLOWED
 	flags_attach_features = ATTACH_ACTIVATION
 	wield_delay_mod = 0.2 SECONDS
 	accuracy_mod = 0.15
@@ -1593,7 +1576,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			continue
 		QDEL_NULL(action_to_delete)
 		break
-	update_icon(user)
+	update_icon()
 	master_gun.base_gun_icon = initial(master_gun.icon_state)
 	master_gun.update_icon()
 	UnregisterSignal(detaching_item, list(COMSIG_ITEM_EQUIPPED, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, COMSIG_ATOM_ATTACKBY_ALTERNATE))
@@ -1778,7 +1761,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	activate(user)
 	new_action.set_toggle(TRUE)
 	new_action.update_button_icon()
-	update_icon(user)
+	update_icon()
 	RegisterSignal(master_gun, COMSIG_ITEM_REMOVED_INVENTORY, TYPE_PROC_REF(/obj/item/weapon/gun, drop_connected_mag))
 
 ///This is called when an attachment gun (src) detaches from a gun.
@@ -1797,7 +1780,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	UnregisterSignal(master_gun, COMSIG_ITEM_REMOVED_INVENTORY)
 	master_gun = null
 	attached_to:gunattachment = null
-	update_icon(user)
+	update_icon()
 
 ///This activates the weapon for use.
 /obj/item/weapon/gun/proc/activate(mob/user)

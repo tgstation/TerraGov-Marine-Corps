@@ -116,7 +116,7 @@
 	if(!ishuman(usr))
 		return
 	//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
-	if ((flags_item & NODROP) || loc != usr)
+	if(HAS_TRAIT(src, TRAIT_NODROP) || loc != usr)
 		return
 	if(usr.incapacitated() || usr.buckled || usr.lying_angle)
 		return
