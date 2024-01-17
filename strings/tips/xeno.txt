@@ -36,6 +36,7 @@ As a caste with acid, you can click directly on a lower-level acid puddle to upg
 As a drone or sentinel, your corrosive acid is very weak, but it's better than nothing.
 As a xeno, spread weeds as much as you can, especially near the front-line fighters.
 Before you evolve into the Hivemind as a drone, hide in a secure area! Once you evolve, you will create a core that cannot be moved.
+As a hivelord, build as many tunnels as you can to help mobilize the hive!
 As a carrier, you can hit a host directly with a thrown facehugger to have a high chance of infecting them near instantly. This will take time, however.
 As a carrier, you can hide traps beneath certain objects and items.
 As a carrier you can take out huggers from eggs and replace them with specialized huggers instead, such as a neurotox hugger.
