@@ -157,3 +157,29 @@
   - balance: TE Powerpacks only charge TE lasgun cells.
   ivanmixo:
   - code_imp: Readded bullet holes and made the code less bad
+2024-01-17:
+  Lumipharon:
+  - qol: Campaign loadouts have default options selected
+  - balance: adjusted a few campaign loadout and perk things
+  - qol: Maptables with draw functionality are accessible to all users, but the draw
+      features remain leadership locked
+  - bugfix: fixed some actions interacting with other actions incorrectly
+  - code_imp: cleaned up some more action code
+  - bugfix: Added some missing campaign landmarks to BR
+  Pariah919:
+  - balance: Runner can no longer slash in invasion.
+  TiviPlus:
+  - rscadd: Added acid pools, a sunder healing structure for xenos purchasable with
+      tactical psychic points
+  - rscdel: Removed split second delay on magharness
+  - bugfix: Fix flamer back tank disconnecting with magharness
+  - rscadd: Added resin gargoyles, a xeno structure that alerts xenos to nearby enemies
+  ivanmixo:
+  - qol: You can now click the tunnel you want to go to on the minimap instead of
+      picking from a list
+  - balance: The basic scout rifle ammo now deals 5 sunder down from 12, but has double
+      the armor penetration (30, up from 20)
+  - balance: The impact scout rifle ammo now deals 6.5 sunder (down from 12.5), but
+      has double the armor penetration (20, up from 10)
+  - rscdel: Removed longtad
+  - bugfix: Various runtime fixes, see the PR

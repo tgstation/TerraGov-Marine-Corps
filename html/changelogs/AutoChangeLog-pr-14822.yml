@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Various runtime fixes, see the PR"

@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - rscdel: "Removed split second delay on magharness"
-  - bugfix: "Fix flamer back tank disconnecting with magharness"
