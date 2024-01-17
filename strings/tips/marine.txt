@@ -108,7 +108,7 @@ RO lazy? Lack of materials keeps being a pain in the back? Don't worry any longe
 You can use a handheld cell charger to recharge both batteries and Terra experimental cells.
 As a corpsman, the MEDEVAC stretcher needs to be linked to an active, powered beacon for it to teleport the patient.
 As a corpsman, you can prevent anyone from moving your MEDEVAC beacon by locking it with your ID.
-As a corpsman,  if there's no medbay staff, put MEDEVAC in the hallway right outside the medbay door since autodoc will drain medbay's APC and a risk that power goes out, preventing you from MEDEVACing your patient.
+As a corpsman, if there's no medbay staff, put the MEDEVAC beacon in the hallway right outside the medbay door since  the autodoc will drain medbay's APC of power, therefore preventing you from MEDEVACing your patient.
 As a corpsman, the marines are counting on you to fix them up.
 As a corpsman, scan before you treat and you can't be beat.
 As a corpsman, if you see nanites in their system, DO NOT give them hypervene.
