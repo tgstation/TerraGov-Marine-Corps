@@ -96,7 +96,7 @@ As an engineer, det packs can be set on demolition mode for an explosive trap.
 As an engineer, you build barricades the fastest.
 As an engineer, repair the mining wells. These mining machines will mine phoron or platinum that can be used for requisitions, earning them more points!
 As an engineer, placing turrets on open spaces and without defenses is a poor choice.
-You can use a Terra experimental cell as a discount battery!
+You can use a Terra experimental cell as a discount power cell!
 You can upgrade metal barricades with metal in hand!
 Bring at least 1 cell and 1 power control modules to fix APC for disks or intel.
 Acid Upgrade prevents xenos from spewing acid all over undefended barricade.
