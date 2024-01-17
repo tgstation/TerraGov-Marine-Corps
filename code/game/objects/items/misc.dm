@@ -124,9 +124,10 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "modkit"
 
-/obj/item/Rosary
+/obj/item/rosary
 	name = "Rosary"
 	desc = "A small hematite-beaded silver rosary"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "rosary"
 	item_state = "rosary"
+	w_class = WEIGHT_CLASS_TINY
