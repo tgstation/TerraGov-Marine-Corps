@@ -14,12 +14,14 @@
 	desc = "M-21 battle armor with a Aegis shield module. Provides balanced mobility and protection."
 	item_typepath = /obj/item/clothing/suit/modular/som/shield
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/som_heavy_shield
 	name = "Heavy Aegis armor"
 	desc = "M-31 combat armor with a Aegis shield module. Provides excellent protection but lower mobility."
 	item_typepath = /obj/item/clothing/suit/modular/som/heavy/shield
 	jobs_supported = list(SOM_SQUAD_VETERAN)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/som_heavy_shield/breacher
 	jobs_supported = list(SOM_SQUAD_MARINE)
@@ -57,6 +59,7 @@
 	Typically seen on SOM leaders or their most elite combat units due to the significant construction and maintenance requirements."
 	item_typepath = /obj/item/clothing/suit/modular/som/heavy/leader/valk
 	jobs_supported = list(SOM_SQUAD_LEADER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/gorgon/fc
 	name = "Gorgon armor"
@@ -73,7 +76,7 @@
 	item_typepath = /obj/item/clothing/suit/modular/som/heavy/mithridatius
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 	item_whitelist = list(/obj/item/clothing/head/modular/som/bio = ITEM_SLOT_HEAD)
-	quantity = 3
+	quantity = 2
 
 //engineer
 /datum/loadout_item/suit_slot/som_engineer
@@ -81,6 +84,7 @@
 	desc = "M-21 battle armor with engineering storage. Provides balanced armor and mobility."
 	item_typepath = /obj/item/clothing/suit/modular/som/engineer
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/som_engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
@@ -100,6 +104,7 @@
 	desc = "M-21 battle armor with medical storage. Provides balanced armor and mobility."
 	item_typepath = /obj/item/clothing/suit/modular/som/medic
 	jobs_supported = list(SOM_SQUAD_CORPSMAN)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/som_medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)

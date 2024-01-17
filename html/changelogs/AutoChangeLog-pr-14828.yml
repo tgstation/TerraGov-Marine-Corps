@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed some actions interacting with other actions incorrectly"
+  - code_imp: "cleaned up some more action code"

@@ -20,6 +20,11 @@
 #define DIRT_TYPE_SNOW 3
 #define DIRT_TYPE_LAVALAND 4
 
+///How many variations of bullethole patterns there are
+#define BULLETHOLE_STATES 10
+///Maximum possible bullet holes in a closed turf
+#define BULLETHOLE_MAX 24 
+
 //wet floors
 
 #define FLOOR_WET_WATER 1

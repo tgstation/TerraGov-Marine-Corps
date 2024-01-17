@@ -1411,7 +1411,7 @@
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
 	max_shells = 20//codex stuff
-	ammo_datum_type = /datum/ammo/energy/plasma
+	ammo_datum_type = /datum/ammo/energy/sectoid_plasma
 	muzzleflash_iconstate = "muzzle_flash_pulse"
 	default_ammo_type = /obj/item/ammo_magazine/rifle/sectoid_rifle
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/sectoid_rifle)
