@@ -6,7 +6,7 @@ When placing resin walls, they start at 40% their max health then gain health ov
 Marines suffer no movement penalty for moving on standard or resting weeds, however sticky weeds slow them down significantly.
 As a xeno, you can freely melt barricades while in boiler or defiler gas as long as you can click on the right spot. The gas is also a really good hiding spot to launch ambushes from without marines being aware of you.
 As a xeno, always thank your drones and hivelords for supporting the hive!
-Robot healthbars are not directly one to one with their actual health. they will still have some fight left in them after it shows their health has hit critical.
+Robot healthbars are not directly one to one with their actual health. They will still have some fight left in them after it shows their health has hit critical.
 As a xeno, you can drag any item, but you must wait through an actionbar before you can do so! Carrier loves dragging items for their traps!
 Most alien deaths are caused by over-aggression. Rein yourself in, or you may find yourself dying round after round.
 As a xeno, if you have difficulty clicking marines, try using bump slash. You can use movement keys to slash marines. That said, clicking marines to slash them is faster than bump slashing!
