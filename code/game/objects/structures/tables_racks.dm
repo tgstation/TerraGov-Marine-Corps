@@ -560,5 +560,11 @@
 /obj/structure/rack/nometal
 	dropmetal = FALSE
 
+/obj/structure/rack/lectern
+	icon = 'icons/obj/machines/metnal_objects.dmi'
+	icon_state = "lectern"
+	dropmetal = FALSE
+	hit_sound = 'sound/effects/woodhit.ogg'
+
 #undef TABLE_STATUS_WEAKENED
 #undef TABLE_STATUS_FIRM

@@ -167,6 +167,11 @@
 	base_icon_state = "col_rwindow_frame"
 
 /obj/structure/window_frame/prison/colony
+	icon = 'icons/obj/smooth_objects/prison_window_frame.dmi'
+	icon_state = "prison_wframe-0"
+	basestate = "prison_wframe"
+	base_icon_state = "prison_wframe"
+
 /obj/structure/window_frame/prison/reinforced
 	reinforced = TRUE
 	max_integrity = 300

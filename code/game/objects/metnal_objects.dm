@@ -20,3 +20,6 @@
 	var/screen_overlay = "jukebox_emissive"
 
 	//work on this
+// knife flute here
+// lectern in tables_racks.dm
+// rosary in headgear so it can be used roundstart, i guess

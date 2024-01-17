@@ -22874,7 +22874,7 @@
 /area/daedalusprison/outside/north)
 "sGR" = (
 /obj/structure/nuke_disk_candidate{
-	set_associations = list("set1", "set2")
+	set_associations = list("set1","set2")
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/purple2/corner,
@@ -23189,7 +23189,7 @@
 /area/daedalusprison/inside/habitationnorth)
 "sSD" = (
 /obj/structure/nuke_disk_candidate{
-	set_associations = list("set1", "set2", "set3", "set4")
+	set_associations = list("set1","set2","set3","set4")
 	},
 /obj/machinery/light{
 	dir = 8
@@ -24621,7 +24621,7 @@
 /area/daedalusprison/inside/easternhalls)
 "udW" = (
 /obj/structure/nuke_disk_candidate{
-	set_associations = list("set2", "set3", "set4")
+	set_associations = list("set2","set3","set4")
 	},
 /obj/machinery/light{
 	dir = 1
