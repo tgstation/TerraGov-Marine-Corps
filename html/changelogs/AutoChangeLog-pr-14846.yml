@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - imageadd: "porting health analyzer from Paradise"
