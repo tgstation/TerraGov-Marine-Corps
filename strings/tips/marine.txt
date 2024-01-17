@@ -102,7 +102,7 @@ Bring at least 1 cell and 1 power control module to fix APCs for disks or intell
 The caustic upgrade prevents xenos from spewing acid all over an undefended barricade.
 You can electrify razor wire, just place wire under razor and connect them to an ACTIVE power source like a phoron generator.
 Razor wire can stop a crusher's charge, but it needs to be fully repaired for it to actually stop one.
-ALWAYS keep a 1-tile distance from barricade you fixing, unless you want to be a dinner for nearby fishing warrior.
+ALWAYS keep a 1-tile distance from barricade you're fixing, unless you want to be a dinner for nearby fishing xenomorph.
 If you are sure barricade will fail and cause a breach, just make barricade behind that one, and move it forward, no need to risk your life in a breach.
 RO lazy? Lack of materials keeps begin a pain in the back? Don't worry anymore, there are plenty of chairs and tables around the area of operation!
 You can use a handheld cell charger to recharge both batteries and Terra experimental cells.
