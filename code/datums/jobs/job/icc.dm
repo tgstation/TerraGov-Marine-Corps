@@ -213,6 +213,8 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_autoshotgun/frag, SLOT_IN_L_POUCH)
 
 /datum/outfit/job/icc/guard/icc_bagmg
+	wear_suit = /obj/item/clothing/suit/storage/marine/icc/guard/heavy
+	head = /obj/item/clothing/head/helmet/marine/icc/guard/heavy
 	suit_store = /obj/item/weapon/gun/rifle/icc_coilgun
 	back = /obj/item/storage/holster/icc_mg/full
 	belt = /obj/item/ammo_magazine/icc_mg/belt
