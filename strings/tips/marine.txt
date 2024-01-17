@@ -98,7 +98,7 @@ As an engineer, repair the mining wells. These mining machines will mine phoron 
 As an engineer, placing turrets on open spaces and without defenses is a poor choice.
 You can use a Terra experimental cell as a discount power cell!
 You can upgrade metal barricades by clicking them with metal!
-Bring at least 1 cell and 1 power control modules to fix APC for disks or intel.
+Bring at least 1 cell and 1 power control module to fix APCs for disks or intelligence computers.
 The caustic upgrade prevents xenos from spewing acid all over an undefended barricade.
 You can electrified razor wire, just place wire under razor and connect them to ACTIVE power source like phoron generator.
 Razor wire can stop charge from crusher, but it needs to be fully repaired for it to actually stop one.
