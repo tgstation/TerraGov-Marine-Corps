@@ -77,7 +77,6 @@ As a xeno, listen to the sound of your enemy's magazine! If it sounds hollow, it
 As a xeno, strike hard and fast.
 As a xeno, you are not disposable. However, sacrificing your life to save the Queen is widely respected.
 Hunter has AP and knockdown when striking from stealth, which can be chained with pounce for a longer stun.
-As a hunter you can swap places with one of your mirages by pressing the button again.
 Defiler can vent crawl.
 Spitter can vent crawl.
 Defiler has one of the highest slash damages among the entire hive, use it to your advantage.
@@ -89,4 +88,3 @@ As a boiler, you'll begin to glow with the more globules you have stored.
 If you see a red dot, RUN!
 Allowing marines to push caves only to block off their exit is hillariously effective.
 As a xeno, a Tier 3 unit takes up both a Tier 3 and Tier 2 slot.
-In crash, marines have landed when nuke disks appear on the map.
