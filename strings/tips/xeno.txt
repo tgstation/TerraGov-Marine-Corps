@@ -2,7 +2,7 @@ You can replace normal weed pods with sticky/resting weed pods, but cannot do th
 Stagger stops most xenomorphs from using abilities. Watch out for weapons that can stagger!
 Different castes have different pheromone strengths, with drone being the lowest and king being the highest.
 Pheromones do not stack, only the strongest applies.
-When placing resin walls, they start at 40% their max health then gain health over time until hitting their max health. For hivelords, they are start at 70%.
+When placing resin walls, they start at 40% their max health then gain health over time. Walls made by hivelords start at 70% health.
 Marines suffer no movement penalty for moving on standard or resting weeds, however sticky weeds slow them down significantly.
 As a xeno, you can freely melt barricades while in boiler or defiler gas as long as you can click on the right spot. The gas is also a really good hiding spot to launch ambushes from without marines being aware of you.
 As a xeno, always thank your drones and hivelords for supporting the hive!
