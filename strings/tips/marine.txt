@@ -111,7 +111,7 @@ As a corpsman, you can prevent anyone from moving your MEDEVAC beacon by locking
 As a corpsman, if there's no medbay staff, put the MEDEVAC beacon in the hallway right outside the medbay door since  the autodoc will drain medbay's APC of power, therefore preventing you from MEDEVACing your patient.
 As a corpsman, the marines are counting on you to fix them up.
 As a corpsman, scan before you treat and you can't be beat.
-As a corpsman, if you see nanites in their system, DO NOT give them hypervene.
+As a corpsman, if you see nanites in your patient's system, DO NOT give them hypervene.
 As a corpsman or doctor, remember that your HUD will tell you how much time is left to defibrillate a patient. From highest to lowest: yellow, orange and red.
 As a corpsman, remember to bring extra kelotane or dermaline to heal burn damage. Xenos love acid and burning marines.
 As a corpsman, hypervene is useful. Use it to purge deadly xenomorph toxins.
