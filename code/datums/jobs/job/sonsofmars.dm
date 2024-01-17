@@ -1,5 +1,5 @@
 /datum/job/som
-	job_category = JOB_CAT_MARINE
+	job_category = JOB_CAT_MARINESOM
 	access = ACCESS_SOM_DEFAULT
 	minimal_access = ACCESS_SOM_DEFAULT
 	faction = FACTION_SOM

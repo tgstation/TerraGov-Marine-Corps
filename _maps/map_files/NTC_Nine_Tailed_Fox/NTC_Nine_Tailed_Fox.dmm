@@ -20002,6 +20002,7 @@
 /obj/machinery/light/mainship/small{
 	dir = 8
 	},
+/obj/machinery/telecomms/server/presets/sec,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "spT" = (

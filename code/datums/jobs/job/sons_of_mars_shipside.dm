@@ -1,6 +1,6 @@
 //officer roles
 /datum/job/som/command
-	job_category = JOB_CAT_COMMAND
+	job_category = JOB_CAT_COMMANDSOM
 	selection_color = "#ddddff"
 	supervisors = "the acting captain"
 	exp_type_department = EXP_TYPE_COMMAND
@@ -77,8 +77,8 @@ Godspeed, commander! And remember, you are not above the law."})
 //Field Commander
 /datum/job/som/command/fieldcommander
 	title = SOM_FIELD_COMMANDER
-	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_COMMAND,ACCESS_SOM_SECURITY,ACCESS_SOM_ARMORY,ACCESS_SOM_SQUADLEADER,)
-	minimal_access = list(ALL_SOM_ACCESS, ALL_ANTAGONIST_ACCESS)
+	access = list(ALL_SOM_ACCESS,ALL_ANTAGONIST_ACCESS)
+	minimal_access = list(ALL_SOM_ACCESS,ALL_ANTAGONIST_ACCESS)
 	paygrade = "SOM_O3"
 	comm_title = "FCDR"
 	total_positions = 1
@@ -134,7 +134,7 @@ Make the SOM proud!"})
 //Staff Officer
 /datum/job/som/command/staffofficer
 	title = SOM_STAFF_OFFICER
-	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_COMMAND,ACCESS_SOM_ARMORY,ACCESS_SOM_SECURITY,ALL_ANTAGONIST_ACCESS)
+	access = list(ALL_SOM_ACCESS,ALL_ANTAGONIST_ACCESS)
 	minimal_access = list(ALL_SOM_ACCESS,ALL_ANTAGONIST_ACCESS)
 	paygrade = "SOM_W5"
 	comm_title = "SO"
@@ -192,8 +192,8 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	paygrade = "SOM_W2"
 	comm_title = "PO"
 	total_positions = 2
-	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_COMMAND,ALL_ANTAGONIST_ACCESS)
-	minimal_access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_ADMIRAL,ACCESS_SOM_ARMORY,ACCESS_SOM_SECURITY,ALL_ANTAGONIST_ACCESS)
+	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_COMMAND,ACCESS_SOM_ENGINEERING,ALL_ANTAGONIST_ACCESS)
+	minimal_access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_COMMAND,ACCESS_SOM_ENGINEERING,ALL_ANTAGONIST_ACCESS)
 	skills_type = /datum/skills/pilot
 	display_order = JOB_DISPLAY_ORDER_PILOT_OFFICER
 	outfit = /datum/outfit/job/som/command/pilot
@@ -260,7 +260,7 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	comm_title = "MCH"
 	total_positions = 0
 	skills_type = /datum/skills/mech_pilot
-	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MECHBAY,ALL_ANTAGONIST_ACCESS)
+	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MECHBAY,ACCESS_SOM_ENGINEERING,ALL_ANTAGONIST_ACCESS)
 	display_order = JOB_DISPLAY_ORDER_MECH_PILOT
 	outfit = /datum/outfit/job/som/command/mech_pilot
 	exp_requirements = XP_REQ_EXPERT
@@ -315,7 +315,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	gloves = /obj/item/clothing/gloves/marine
 
 /datum/job/som/engineering
-	job_category = JOB_CAT_ENGINEERING
+	job_category = JOB_CAT_ENGINEERINGSOM
 	selection_color = "#fff5cc"
 	supervisors = "the acting captain"
 	exp_type_department = EXP_TYPE_ENGINEERING
@@ -457,7 +457,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	back = /obj/item/storage/backpack/marine/engineerpack
 
 /datum/job/som/requisitions
-	job_category = JOB_CAT_REQUISITIONS
+	job_category = JOB_CAT_REQUISITIONSSOM
 	selection_color = "#BAAFD9"
 	supervisors = "the acting commander"
 	exp_type_department = EXP_TYPE_REQUISITIONS
@@ -531,7 +531,7 @@ A happy base is a well-functioning base."})
 	r_store = /obj/item/storage/pouch/general/large
 
 /datum/job/som/medical
-	job_category = JOB_CAT_MEDICAL
+	job_category = JOB_CAT_MEDICALSOM
 	access = ACCESS_SOM_MEDICAL
 	selection_color = "#BBFFBB"
 	exp_type_department = EXP_TYPE_MEDICAL
@@ -539,7 +539,7 @@ A happy base is a well-functioning base."})
 
 /datum/job/som/medical/professor
 	title = SOM_CHIEF_MEDICAL_OFFICER
-	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MEDICAL,ACCESS_SOM_COMMAND,ALL_ANTAGONIST_ACCESS)
+	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MEDICAL,ACCESS_SOM_ENGINEERING,ACCESS_SOM_COMMAND,ALL_ANTAGONIST_ACCESS)
 	req_admin_notify = TRUE
 	comm_title = "CMO"
 	paygrade = "CHO"
@@ -607,7 +607,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the SOM h
 //Medical Officer
 /datum/job/som/medical/medicalofficer
 	title = SOM_MEDICAL_DOCTOR
-	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MEDICAL, ALL_ANTAGONIST_ACCESS)
+	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MEDICAL,ALL_ANTAGONIST_ACCESS)
 	comm_title = "MD"
 	paygrade = "RES"
 	total_positions = 6

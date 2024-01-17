@@ -528,15 +528,6 @@
 	dir = 5
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
-"eV" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
-/turf/closed/wall/mainship/gray,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
 "eY" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -6811,7 +6802,7 @@ JV
 Yz
 ng
 Mu
-eV
+CT
 CT
 CT
 jd

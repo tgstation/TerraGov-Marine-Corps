@@ -465,7 +465,7 @@ You are also in charge of communicating with command and letting them know about
 	glasses = /obj/item/clothing/glasses/hud/security
 	belt = /obj/item/storage/belt/security
 	head = /obj/item/clothing/head/beret/sec
-	ears = /obj/item/radio/headset/mainship/marine
+	ears = /obj/item/radio/headset/mainship/marine/generic/sec
 	w_uniform = /obj/item/clothing/under/rank/security/corp
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/bulletresistant
 	shoes = /obj/item/clothing/shoes/swat

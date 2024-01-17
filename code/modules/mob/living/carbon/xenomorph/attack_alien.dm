@@ -38,8 +38,7 @@
 	var/randn = rand(1, 100)
 	var/stamina_loss = getStaminaLoss()
 	var/disarmdamage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
-	var/maxdamagetodeal = maxHealth*2
-	var/damage_to_deal = clamp(disarmdamage, 0, maxdamagetodeal - stamina_loss)
+	var/damage_to_deal = clamp(disarmdamage, 0, maxHealth - stamina_loss)
 	var/sound = 'sound/weapons/alien_knockdown.ogg'
 
 	if ishuman(src)
@@ -63,7 +62,7 @@
 			X.visible_message("<span class='danger'>[X] shoves and presses [src] down!</span>",
 			"<span class='danger'>We shove and press [src] down!</span>", null, 5)
 			Stagger(2 SECONDS)
-			if(stamina_loss >= maxdamagetodeal)
+			if(stamina_loss >= maxHealth)
 				if(!IsParalyzed())
 					visible_message(null, "<span class='danger'>You are too weakened to keep resisting [X], you slump to the ground!</span>")
 					X.visible_message("<span class='danger'>[X] slams [src] to the ground!</span>",
