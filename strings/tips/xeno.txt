@@ -47,7 +47,7 @@ As a ravager, rage mode will make you stagger immune, reset your armour, give yo
 As a spitter, boiler, praetorian, or the Queen, take advantage of unguarded barricades and defenses; melt or constantly spit acid on them if you can.
 As a ravager, stepping on a tile of fire will give you 50 fury. This has a one second cooldown between uses.
 As a ravager, don't get overconfident.
-As a ravager, you will regenerate your fury, up to a point.
+As a ravager, you will regenerate your rage, up to a point.
 As a ravager or gorger, you will not be affected by tanglefoot or the tesla rifle. However, pepperballs and the smartgunner's tanglefoot DMR ammo still will.
 As a gorger, your drain ability can be used on corpses to heal incredibly fast, and scales up with pheromones.
 As a gorger, you have very little armour. You do not have to consider sunder as much as other castes.
