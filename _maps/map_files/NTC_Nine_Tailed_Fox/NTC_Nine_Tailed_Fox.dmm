@@ -4605,6 +4605,7 @@
 	output_level = 200000
 	},
 /obj/machinery/camera/autoname,
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/deltastation/engineering/main{
 	outside = 0
