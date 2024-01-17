@@ -174,7 +174,7 @@ Medbay may sometimes run out of power. To avoid this, scream at your nearest eng
 Doctor's Delight is one of the few healing chemicals that cannot be overdosed.
 Nanites are often not worth the risks.
 You can fit more than water in a canteen.
-15u from a standard inaprovaline injector will instantly heal 30% of all damage on someone in critical condition. Marines in critical state will be laying on the ground, sleeping, and gasping for air!
+15u from a standard inaprovaline injector will instantly heal 30% of all damage on someone in critical condition. Marines in a critical state will be laying on the ground, sleeping, and gasping for air!
 There is a bazaar of weapons and tactics. Don't be afraid to find your niche!
 Always stick to your squad, or at least have a buddy.
 Walking to and from the FOB by yourself is an easy way to die.
