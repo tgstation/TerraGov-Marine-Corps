@@ -4,7 +4,7 @@ Catch larval facehuggers by having an empty hand and throw mode on.
 Standing in a corner on harm intent stops you from behing shuffled, unless you're a marine and a xenomorph on help intent walks into you.
 Jumping will allow you to throw grenades farther, and over allies. Yeet those grenades to xenomorphs!
 Hunger will slow you down. A single protein bar will fill many, if not every, people. Take an extra protein bar too much and you become slower (ironic) and fat.
-If you are low on blood, eating food can help you replenish missing blood.
+If you are low on blood, eating food can help you replenish blood.
 Roll on snow to instantly extinguish fire.
 Putting an instrument in your armor slot allows you to still be able to play it, charge into battle with song!
 Many maps spawn with free metal, plasteel and other important supplies in key spots. As a marine, remember to grab them and as a xeno, make sure to melt them.
