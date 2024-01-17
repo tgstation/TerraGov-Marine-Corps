@@ -32,6 +32,7 @@ export type IndividualData = {
   ui_theme: string;
   perks_data: PerkData[];
   currency: number;
+  current_job?: string;
   faction: string;
   jobs: string[];
   perk_icons?: string[];
@@ -77,7 +78,7 @@ export const IndividualStats = (props) => {
   );
   const [selectedJob, setSelectedJob] = useLocalState(
     'selectedJob',
-    data.jobs[0],
+    data.current_job ? data.current_job : data.jobs[0],
   );
 
   const [unlockedPerk, setPurchasedPerk] = useLocalState<PerkData | null>(
