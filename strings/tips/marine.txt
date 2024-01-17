@@ -84,7 +84,7 @@ As a corpsman or engineer, your number one priority is NOT hunting down xenomorp
 As a doctor, the cryotubes are excellent at dealing with basic damage.
 As a doctor, the cryotubes heal internal bleeding and fractures, although slowly.
 As a doctor, surgery time from fastest to slowest is: by hand, Autodoc manual, Autodoc automatic.
-As a doctor, autodoc drains a lot of energy, which can black out medbay that can prevent MEDEVAC from working!
+As a doctor, the autodoc drains a lot of energy, this can cause a power outage and prevent medevac beacons from working!
 As a doctor, the white webbing vest fits on your scrubs and can hold surgical tools.
 As a doctor, wear the surgical apron to help prevent infection while doing surgery.
 As a doctor, you've got access to the chemistry machine. Experiment to find the best medications.
