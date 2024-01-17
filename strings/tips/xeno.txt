@@ -43,7 +43,7 @@ As a hunter, you have almost perfect stealth if you stand still.
 As a hunter, entering stalk/walk mode while stealthing will make you more transparent.
 As a hunter, a second activation of your mirages ability will exchange your place with one of your mirages! Use this to get back in the fight, when marines start to ignore your mirages.
 As a ravager or the Queen, you are fire-resistant, NOT fireproof. You can still get lit on fire, but you take very little damage from it. As the King, however, you're fireproof until your armor is damaged by sunder.
-As a ravager, rage mode will make you stagger immune, reset your armour, give you additional fury and boost your speed for a time. Use it as an escape tool, especially if you're too low on fury to endure.
+As a ravager, rage mode will make you stagger immune, reset your armour, give you additional fury and boost your speed for a time. Use it as an escape tool, especially if you're too low on rage to endure.
 As a spitter, boiler, praetorian, or the Queen, take advantage of unguarded barricades and defenses; melt or constantly spit acid on them if you can.
 As a ravager, stepping on a tile of fire will give you 50 fury. This has a one second cooldown between uses.
 As a ravager, don't get overconfident.
