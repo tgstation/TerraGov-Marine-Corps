@@ -16,7 +16,7 @@ As a xeno, it is faster to re-fill an empty acid well than rolling on the ground
 As a xeno, acid wells extinguish fire and explode into an acid cloud when destroyed. The Queen, the Shrike, praetorians, boilers, and hivelords can make acid wells.
 The Queen, the King, the Shrike, and hivelord have access to Queen's Blessing, a menu for the hive to use psychic points to give xenomorphs a cutting edge in the battlefield.
 If you have acid spit, you can spit at a welding fuel tank to blow it up. If the welding fuel is near hostiles, you might give them a pleasant surprise!
-If something comes up in real life while you’re a xenomorph, head back to the silo and use the “ghost” command to let others take over your body. Your name will be cleared
+If something comes up in real life while you’re a xenomorph, head back to the silo and use the “ghost” command to let others take over your body.
 As a xeno, check hive status often.
 Some xenos have pheromones that can help the hive. Frenzy increases speed, Warding increases armor, and Recovery increases healing.
 The King has the strongest pheromones, followed by the Queen, praetorians, Hivemind, the Shrike and hivelords, defilers, and carriers. Drones have the weakest pheromones.
