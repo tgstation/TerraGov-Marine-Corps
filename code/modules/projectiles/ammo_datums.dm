@@ -4211,7 +4211,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
 			//X.use_plasma(plasma_drain)
 			if(X.plasma_stored <= 1)
-				X.Paralyze(15 SECONDS)//can now be used to riot control xenos when they abuse the hospitality of NTC
+				X.ParalyzeNoChain(12 SECONDS)//can now be used to riot control xenos when they abuse the hospitality of NTC
 
 /datum/ammo/bullet/pepperball/pepperball_mini
 	damage = 15
