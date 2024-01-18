@@ -5043,6 +5043,10 @@
 "eGq" = (
 /obj/effect/ai_node,
 /obj/machinery/floodlight/landing,
+/obj/structure/ladder{
+	id = "NTFCargoLadder";
+	height = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/outpost/cargo{
 	outside = 1
@@ -17243,13 +17247,6 @@
 /area/mainship/medical/upper_medical{
 	name = "Shipside Medbay"
 	})
-"pMI" = (
-/obj/structure/ladder{
-	id = "NTFCargoLadder";
-	height = 2
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "pMX" = (
 /obj/machinery/light{
 	dir = 8
@@ -20713,12 +20710,10 @@
 "sXv" = (
 /obj/structure/ladder{
 	id = "NTFCargoLadder";
-	height = 1
+	height = 2
 	},
-/turf/open/floor/mainship/mono,
-/area/outpost/cargo{
-	outside = 1
-	})
+/turf/open/floor/mainship/office,
+/area/mainship/hallways/hangar)
 "sXT" = (
 /obj/structure/closet/secure_closet/miner{
 	req_access = null
@@ -22136,6 +22131,9 @@
 /obj/item/tweezers_advanced,
 /obj/item/storage/backpack/marine/satchel/scout_cloak/scout,
 /obj/item/explosive/grenade/smokebomb,
+/obj/item/clothing/head/headband/snake,
+/obj/item/clothing/mask/gas,
+/obj/item/storage/pouch/medkit/medic,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -40203,7 +40201,7 @@ hYS
 tIk
 tIk
 kcJ
-kcJ
+sXv
 ycY
 ycY
 vhS
@@ -40213,7 +40211,7 @@ ssx
 jJw
 jJw
 bZO
-pMI
+tIk
 tIk
 dZk
 eOY
@@ -40333,7 +40331,7 @@ tPc
 fsT
 fsT
 shG
-sXv
+urx
 urx
 eNO
 dUI
