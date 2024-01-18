@@ -1,10 +1,10 @@
-/datum/loadout_item/suit_slot/som_som_light_shield
+/datum/loadout_item/suit_slot/som_light_shield
 	name = "Light Aegis armor"
 	desc = "M-11 scout armor with a Aegis shield module. Provides excellent mobility but lower protection."
 	item_typepath = /obj/item/clothing/suit/modular/som/light/shield
 	jobs_supported = list(SOM_SQUAD_MARINE)
 
-/datum/loadout_item/suit_slot/som_som_light_shield
+/datum/loadout_item/suit_slot/som_light_shield/veteran
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 	req_desc = "Requires a blink drive."
 	item_whitelist = list(/obj/item/blink_drive = ITEM_SLOT_BACK)

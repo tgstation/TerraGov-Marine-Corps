@@ -24,7 +24,7 @@ export const IndividualLoadouts = (props) => {
     useLocalState<LoadoutItemData | null>('unlockPotentialItem', null);
   const [selectedJob, setSelectedJob] = useLocalState(
     'selectedJob',
-    data.jobs[0],
+    data.current_job ? data.current_job : data.jobs[0],
   );
   const [selectedLoadoutItem, setselectedLoadoutItem] = useLocalState(
     'selectedLoadoutItem',

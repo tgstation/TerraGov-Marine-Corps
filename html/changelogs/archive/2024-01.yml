@@ -183,3 +183,22 @@
       has double the armor penetration (20, up from 10)
   - rscdel: Removed longtad
   - bugfix: Various runtime fixes, see the PR
+2024-01-18:
+  Lumipharon:
+  - bugfix: fixed an issue with ghost actions when observing before gamestart
+  - bugfix: fixed missing light armour for SOM squaddies in campaign
+  Pariah919:
+  - bugfix: You can no longer get plasma guns on crash.
+  - bugfix: You can find plasma guns in valhalla.
+  Wisemonster:
+  - balance: Reduced the price of the minion spawner from 600 to 400 tac points
+  Xander3359:
+  - qol: MarineMed pill bottles can be restocked.
+  - qol: Defibbing a dead marine will turn on their camera
+  ivanmixo:
+  - bugfix: Fixes the AMR for real now
+  - admin: Added a prompt to the reload admins verb
+  novaepee:
+  - imageadd: porting health analyzer from Paradise
+  the TGMC community:
+  - spellcheck: 2024 tips update
