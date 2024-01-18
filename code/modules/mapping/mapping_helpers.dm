@@ -494,7 +494,7 @@
 	. = ..()
 	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
 	if(!light)
-		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")s
+		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
 	light.brightness = brightness_intensity
 	light.update()
 
