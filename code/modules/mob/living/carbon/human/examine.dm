@@ -231,34 +231,32 @@
 			else
 				msg += "[span_deadsay("[t_He] [t_is] completely unresponsive to anything and has fallen asleep, as if affected by Space Sleep Disorder. [t_He] may snap out of it soon.")]\n"
 
-	msg += "<span class='warning'>"
-	var/temp = getBruteLoss()
-	if(temp)
-		if (temp < 25)
-			msg += "[t_He] [t_has] minor bruising.\n"
-		else if (temp < 50)
-			msg += "[t_He] [t_has] <b>moderate</b> bruising.\n"
+	var/total_brute = getBruteLoss()
+	var/total_burn = getFireLoss()
+	var/total_clone = getCloneLoss()
+	if(total_brute)
+		if (total_brute < 25)
+			msg += "[span_warning("[t_He] [t_has] minor bruising.")]\n"
+		else if (total_brute < 50)
+			msg += "[span_warning("[t_He] [t_has] <b>moderate</b> bruising.")]\n"
 		else
-			msg += "<B>[t_He] [t_has] severe bruising.</B>\n"
+			msg += "[span_warning("<B>[t_He] [t_has] severe bruising.</B>")]\n"
 
-		temp = getFireLoss()
-		if(temp)
-			if (temp < 25)
-				msg += "[t_He] [t_has] minor burns.\n"
-			else if (temp < 50)
-				msg += "[t_He] [t_has] <b>moderate</b> burns!\n"
-			else
-				msg += "<B>[t_He] [t_has] severe burns.</B>\n"
+	if(total_burn)
+		if (total_burn < 25)
+			msg += "[span_warning("[t_He] [t_has] minor burns.")]\n"
+		else if (total_burn < 50)
+			msg += "[span_warning("[t_He] [t_has] <b>moderate</b> burns.")]\n"
+		else
+			msg += "[span_warning("<B>[t_He] [t_has] severe burns.</B>")]\n"
 
-		temp = getCloneLoss()
-		if(temp)
-			if(temp < 25)
-				msg += "<span class='tinydeadsay'><i>[t_He] [t_is] slightly deformed.</i></span>\n"
-			else if (temp < 50)
-				msg += "<span class='deadsay'><i>[t_He] [t_is] <b>moderately</b> deformed, with growing clouds of cellular damage!</i></span>\n"
-			else
-				msg += "<span class='deadsay'><b><i>[t_He] [t_is] severely deformed, with streaks of sickening, deformed flesh on [t_his] skin!!</b></i></span>\n"
-	msg += "</span>"
+	if(total_clone)
+		if(total_clone < 25)
+			msg += "<span class='tinydeadsay'><i>[t_He] [t_is] slightly disfigured, with light signs of cellular damage.</i></span>\n"
+		else if (total_clone < 50)
+			msg += "[span_deadsay("<i>[t_He] [t_is] significantly disfigured, with growing clouds of cellular damage.</i>")]\n"
+		else
+			msg += "[span_deadsay("<b><i>[t_He] [t_is] absolutely fucked up, with streaks of sickening, deformed flesh on [t_his] skin.</b></i>")]\n"
 
 	if(fire_stacks > 0)
 		msg += "[t_He] [t_is] covered in something flammable.\n"
@@ -270,11 +268,87 @@
 	var/list/wound_flavor_text = list() //List mapping each limb's display_name to its wound description
 	var/list/is_destroyed = list()
 	var/list/is_bleeding = list()
-	for(var/datum/limb/temp AS in limbs)
-		if(temp.limb_status & LIMB_DESTROYED)
-			is_destroyed["[temp.display_name]"] = 1
-			wound_flavor_text["[temp.display_name]"] = "[span_boldwarning("<b>[t_He] [t_is] missing [t_his] [temp.display_name].</b>")]\n"
+	for(var/datum/limb/temp_limb AS in limbs)
+		if(temp_limb.limb_status & LIMB_DESTROYED)
+			is_destroyed["[temp_limb.display_name]"] = 1
+			wound_flavor_text["[temp_limb.display_name]"] = "[span_boldwarning("<b>[t_He] [t_is] missing [t_his] [temp_limb.display_name].</b>")]\n"
 			continue
+		if(temp_limb.limb_status & LIMB_ROBOT)
+			if(!(temp_limb.brute_dam + temp_limb.burn_dam))
+				if(!(species.species_flags & IS_SYNTHETIC))
+					wound_flavor_text["[temp_limb.display_name]"] = "[span_tinynotice("[t_He] [t_has] a robot [temp_limb.display_name].")]\n"
+					continue
+			else
+				wound_flavor_text["[temp_limb.display_name]"] = "<span class='warning'>[t_He] [t_has] a robot [temp_limb.display_name]. It has"
+			if(temp_limb.brute_dam)
+				switch(temp_limb.brute_dam)
+					if(0 to 20)
+						wound_flavor_text["[temp_limb.display_name]"] += " some dents"
+					if(21 to INFINITY)
+						wound_flavor_text["[temp_limb.display_name]"] += pick(" a lot of dents"," severe denting")
+			if(temp_limb.brute_dam && temp_limb.burn_dam)
+				wound_flavor_text["[temp_limb.display_name]"] += " and"
+			if(temp_limb.burn_dam)
+				switch(temp_limb.burn_dam)
+					if(0 to 20)
+						wound_flavor_text["[temp_limb.display_name]"] += " some burns"
+					if(21 to INFINITY)
+						wound_flavor_text["[temp_limb.display_name]"] += pick(" a lot of burns"," severe melting")
+			if(wound_flavor_text["[temp_limb.display_name]"])
+				wound_flavor_text["[temp_limb.display_name]"] += "!</span>\n"
+		else
+			if(temp_limb.limb_status & LIMB_BLEEDING)
+				is_bleeding["[temp_limb.display_name]"] = 1
+			var/healthy = TRUE
+			var/brute_desc = ""
+			switch(temp_limb.brute_dam)
+				if(0.01 to 5)
+					brute_desc = "minor scrapes"
+				if(5 to 20)
+					brute_desc = "some cuts"
+				if(20 to 50)
+					brute_desc = "major lacerations"
+				if(50 to INFINITY)
+					brute_desc = "gaping wounds"
+			if(brute_desc)
+				healthy = FALSE
+				brute_desc = (temp_limb.limb_wound_status & LIMB_WOUND_BANDAGED ? "bandaged " : "") + brute_desc
+
+			var/burn_desc = ""
+			switch(temp_limb.burn_dam)
+				if(0.01 to 5)
+					brute_desc = "minor burns"
+				if(5 to 20)
+					brute_desc = "some blisters"
+				if(20 to 50)
+					brute_desc = "major burns"
+				if(50 to INFINITY)
+					brute_desc = "charring"
+			if(burn_desc)
+				healthy = FALSE
+				burn_desc = (temp_limb.limb_wound_status & LIMB_WOUND_SALVED ? "salved " : "") + burn_desc
+
+			var/germ_desc = ""
+			switch(temp_limb.germ_level)
+				if(INFECTION_LEVEL_ONE to INFECTION_LEVEL_TWO - 1)
+					germ_desc = "mildly infected "
+				if(INFECTION_LEVEL_TWO to INFINITY)
+					germ_desc = "heavily infected "
+			if(germ_desc)
+				healthy = FALSE
+
+			var/overall_desc = ""
+			if(healthy)
+				overall_desc = span_tinynotice("[t_He] [t_has] a healthy [temp_limb.display_name].")
+			else
+				overall_desc = "[t_He] [t_has] a [germ_desc][temp_limb.display_name]"
+				if(brute_desc || burn_desc)
+					overall_desc += " with [brute_desc]"
+					if(brute_desc && burn_desc)
+						overall_desc += " and "
+					overall_desc += burn_desc
+				overall_desc = span_warning(overall_desc + ".")
+			wound_flavor_text["[temp_limb.display_name]"] = overall_desc + "\n"
 
 	//Handles the text strings being added to the actual description.
 	//If they have something that covers the limb, and it is not missing, put flavortext.  If it is covered but bleeding, add other flavortext.
@@ -353,9 +427,9 @@
 					msg += "[span_warning("[t_He] [t_has] blood soaking through [t_his] <b>sleeves!</b>")]\n"
 				else
 					if (display_arm_left)
-						msg += "[span_warning("[t_He] [t_has] soaking through [t_his] <b>left sleeve!</b>")]\n"
+						msg += "[span_warning("[t_He] [t_has] blood soaking through [t_his] <b>left sleeve!</b>")]\n"
 					if (display_arm_right)
-						msg += "[span_warning("[t_He] [t_has] soaking through [t_his] <b>right sleeve!</b>")]\n"
+						msg += "[span_warning("[t_He] [t_has] blood soaking through [t_his] <b>right sleeve!</b>")]\n"
 				if (display_hand_left && display_hand_right)
 					msg += "[span_warning("[t_He] [t_has] blood running out from under [t_his] <b>gloves!</b>")]\n"
 				else
