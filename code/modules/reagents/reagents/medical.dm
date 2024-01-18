@@ -593,8 +593,8 @@
 		if(1 to 9) // Extremely strong painkiller effect, could technically be used to escape high pain, but you'll pass out soon.. So..
 			L.reagent_pain_modifier += PAIN_REDUCTION_SUPER_HEAVY
 		if(10 to 40)
-			L.heal_overall_damage(7*effect_str, 7*effect_str)
-			L.adjustToxLoss(-2.5*effect_str)
+			L.heal_overall_damage(8*effect_str, 8*effect_str)
+			L.adjustToxLoss(-3.5*effect_str)
 			L.Sleeping(2 SECONDS)
 			L.adjustCloneLoss(0.2*effect_str)
 		if(41 to INFINITY)
