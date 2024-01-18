@@ -184,7 +184,7 @@
 	var/obj/machinery/power/apc/apc = locate(/obj/machinery/power/apc) in loc
 	if(!apc)
 		CRASH("### MAP WARNING, [src] failed to find an apc at [AREACOORD(src)]")
-	if(apc.coverlocked == FALSE|| apc.locked == FALSE)
+	if(!apc.coverlocked || !apc.locked)
 		var/area/apc_area = get_area(apc)
 		log_mapping("[src] at [AREACOORD(src)] [(apc_area.type)] tried to unlock the [apc] but it's already unlocked!")
 	apc.coverlocked = FALSE
@@ -399,7 +399,7 @@
 	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
 	if(!light)
 		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
-	if(light.random_flicker == TRUE || light.status != LIGHT_OK)
+	if(light.random_flicker || light.status != LIGHT_OK)
 		log_mapping("[src] at [AREACOORD(src)] tried to make [light] randomly flicker, but it couldn't be done!")
 	else
 		light.random_flicker = TRUE
