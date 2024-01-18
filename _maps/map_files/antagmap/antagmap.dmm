@@ -4,21 +4,6 @@
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
 "ad" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
-/turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
-"ae" = (
-/obj/machinery/door/poddoor/mainship/hangar{
-	max_integrity = 3000;
-	dir = 2;
-	id = ""
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay";
@@ -172,7 +157,8 @@
 	name = "SOM Mech Bay"
 	})
 "bJ" = (
-/obj/structure/cable,
+/obj/structure/droppod/leader,
+/obj/structure/drop_pod_launcher,
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay";
@@ -203,9 +189,7 @@
 	})
 "bZ" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 1
-	},
+/turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay";
 	outside = 0
@@ -782,9 +766,8 @@
 /turf/closed/wall/brick,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "hf" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
+/obj/structure/droppod/leader,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -853,9 +836,11 @@
 	requires_power = 0
 	})
 "il" = (
-/obj/structure/filingcabinet/medical,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4
+	},
+/obj/structure/bed/chair/comfy/brown{
+	dir = 8
 	},
 /turf/open/floor/mainship/office,
 /area/canora_desert/surface/building/command{
@@ -978,11 +963,7 @@
 	name = "SOM Mech Bay"
 	})
 "ji" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
+/turf/closed/wall/mainship/gray,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay";
 	outside = 0
@@ -1689,16 +1670,6 @@
 	},
 /turf/open/floor/grayscale/edge,
 /area/mainship/groundhq/clf/hallways/bathroom)
-"oi" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
 "or" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 2;
@@ -1763,9 +1734,8 @@
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "pd" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
+/obj/structure/droppod/leader,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -1933,10 +1903,17 @@
 	name = "CLF Armory"
 	})
 "qh" = (
-/obj/structure/closet/secure_closet/guncabinet/mp_armory{
-	req_access = list(204)
+/obj/structure/table/reinforced,
+/obj/item/newspaper,
+/obj/item/camera{
+	pixel_y = 10
 	},
-/turf/open/floor/mainship/office,
+/obj/structure/paper_bin{
+	pixel_y = 7
+	},
+/obj/item/tool/pen/blue,
+/obj/item/clipboard,
+/turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/command{
 	outside = 0;
 	name = "SOM Bridge"
@@ -2381,9 +2358,8 @@
 	name = "SOM Bridge"
 	})
 "uH" = (
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 1
-	},
+/obj/structure/window/framed/mainship/gray/toughened/hull,
+/turf/open/floor/plating,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay";
 	outside = 0
@@ -2832,20 +2808,6 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
-"xF" = (
-/obj/machinery/door/poddoor/mainship/hangar{
-	max_integrity = 3000;
-	dir = 2;
-	id = ""
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
 "xJ" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -2917,11 +2879,8 @@
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "yw" = (
-/obj/machinery/door/poddoor/mainship/hangar{
-	max_integrity = 3000;
-	dir = 2;
-	id = ""
-	},
+/obj/structure/droppod/nonmob,
+/obj/structure/drop_pod_launcher,
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay";
@@ -3857,16 +3816,6 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
-"Gl" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
 "Go" = (
 /obj/effect/forcefield/fog,
 /turf/open/floor/plating/ground/dirt,
@@ -4271,13 +4220,6 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
-"Jv" = (
-/obj/item/paper/crumpled,
-/turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
 "JA" = (
 /obj/machinery/holopad,
 /turf/open/floor/plating/plating_catwalk,
@@ -4609,9 +4551,6 @@
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "MI" = (
 /obj/effect/ai_node,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay";
@@ -4810,10 +4749,10 @@
 	outside = 0
 	})
 "NJ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
-	},
 /obj/effect/ai_node,
+/obj/machinery/computer/camera_advanced/overwatch/som/xray{
+	req_access = list(204)
+	},
 /turf/open/floor/mainship/office,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -5380,7 +5319,11 @@
 	outside = 0
 	})
 "RP" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/obj/structure/bed/chair/comfy/brown{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/som/staff_officer,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4
 	},
 /turf/open/floor/mainship/office,
@@ -6384,13 +6327,6 @@
 /obj/structure/cable,
 /turf/closed/wall/brick,
 /area/mainship/groundhq/clf/living/grunt_rnr)
-"ZE" = (
-/obj/effect/spawner/random/misc/structure/emcloset,
-/turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
 "ZI" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -6587,7 +6523,7 @@ iL
 db
 MK
 vy
-ad
+pe
 NJ
 dT
 KS
@@ -6595,9 +6531,9 @@ YI
 pu
 wa
 mT
-Jv
-oi
-qh
+dT
+uA
+pe
 vy
 MJ
 VF
@@ -6618,7 +6554,7 @@ IE
 Il
 SD
 vy
-ZE
+qh
 il
 dT
 Xf
@@ -6830,10 +6766,10 @@ VK
 CN
 CN
 Dk
-Dk
-Dk
-Dk
-Dk
+ji
+ji
+ji
+ji
 DN
 rS
 TY
@@ -6860,13 +6796,13 @@ VK
 VK
 CN
 CN
-RK
-xF
-RK
-xF
+Dk
+yw
+yw
+yw
 hf
-ji
-RK
+rS
+ad
 nm
 RK
 RK
@@ -6892,11 +6828,11 @@ VK
 CN
 CN
 uH
-yw
-uH
-yw
-uH
-bJ
+zU
+zU
+zU
+zU
+rS
 bZ
 YD
 YD
@@ -6924,10 +6860,10 @@ CN
 CN
 uH
 yw
-uH
 yw
-uH
+yw
 bJ
+rS
 bZ
 EF
 Ou
@@ -6953,12 +6889,12 @@ VK
 VK
 CN
 CN
-uH
-yw
-uH
-yw
-uH
-bJ
+Dk
+zU
+zU
+zU
+zU
+rS
 bZ
 Ou
 LA
@@ -6986,10 +6922,10 @@ CN
 CN
 uH
 yw
-uH
 yw
-uH
+yw
 bJ
+rS
 bZ
 Ou
 Wn
@@ -7016,11 +6952,11 @@ VK
 CN
 CN
 uH
-yw
-uH
-yw
-uH
-bJ
+zU
+zU
+zU
+zU
+rS
 bZ
 Ou
 Jr
@@ -7046,12 +6982,12 @@ VK
 VK
 CN
 CN
-uH
+Dk
 yw
-uH
 yw
-uH
+yw
 bJ
+rS
 bZ
 EF
 Ou
@@ -7078,11 +7014,11 @@ VK
 CN
 CN
 uH
-yw
-uH
-yw
-uH
-bJ
+zU
+zU
+zU
+zU
+rS
 bZ
 YD
 YD
@@ -7108,12 +7044,12 @@ VK
 VK
 CN
 CN
-lP
-ae
-lP
-ae
+uH
+yw
+yw
+yw
 pd
-Gl
+rS
 MI
 lP
 lP
@@ -7143,7 +7079,7 @@ Dk
 Dk
 Dk
 Dk
-Dk
+ji
 cN
 en
 en
