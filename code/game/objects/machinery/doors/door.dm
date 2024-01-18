@@ -29,9 +29,11 @@
 	var/not_weldable = FALSE // stops people welding the door if true
 	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
 	var/list/fillers
-	//used for determining emergency access
+	///used for determining emergency access
 	var/emergency = FALSE
-	var/cyclelinkeddir = 0
+	///bool for determining linked state
+	var/cyclelinkeddir = FALSE
+	///what airlock we are linked with
 	var/obj/machinery/door/airlock/cycle_linked_airlock
 
 	//Multi-tile doors
@@ -112,7 +114,7 @@
 		else
 			flick("door_deny", src)
 
-//Allows for specific sides of airlocks to be unrestricted (IE, can exit maint freely, but need access to enter)
+///Allows for specific sides of airlocks to be unrestricted (IE, can exit maint freely, but need access to enter)
 /obj/machinery/door/proc/unrestricted_side(mob/opener)
 	return get_dir(src, opener) & unres_sides
 

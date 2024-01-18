@@ -440,26 +440,6 @@
 	flicker_time_upper_max = 6 SECONDS
 	flicker_time_lower_min = 3 SECONDS
 
-///this is mutually exclusive with random flickering
-/obj/effect/mapping_helpers/light/flickering/flicker_interval_setting
-	name = "light flickering interval helper"
-	icon_state = "light_flicker_interval"
-	var/flicker_duration = 2 SECONDS
-
-/obj/effect/mapping_helpers/light/flickering/flicker_interval_setting/Initialize(mapload)
-	. = ..()
-	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
-	if(!light)
-		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
-		return
-	light.flicker_time = flicker_duration
-
-/obj/effect/mapping_helpers/light/flickering/flicker_interval_setting/highset
-	flicker_duration = 4 SECONDS
-
-/obj/effect/mapping_helpers/light/flickering/flicker_interval_setting/lowset
-	flicker_duration = 1 SECONDS
-
 /obj/effect/mapping_helpers/light/power
 	name = "light power helper"
 	icon_state = "light_flicker_power"
