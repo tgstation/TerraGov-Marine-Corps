@@ -19395,7 +19395,7 @@
 "oqV" = (
 /obj/machinery/door/airlock/mainship/command{
 	dir = 1;
-	name = "/improper Gift Shop"
+	name = "\improper Gift Shop"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
