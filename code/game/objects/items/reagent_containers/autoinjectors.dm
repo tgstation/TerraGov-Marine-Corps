@@ -256,7 +256,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/russian_red
 	name = "emergency autoinjector"
-	desc = "An autoinjector loaded with a single use of Russian Red. Restores a significant amount of stamina and heals a large amount of damage, but causes slight permanent damage."
+	desc = "An autoinjector loaded with a single use of Russian Red. Restores a significant amount of stamina and heals a large amount of damage, but causes slight permanent damage and unconciousness durning the process."
 	icon_state = "Redwood"
 	amount_per_transfer_from_this = 15
 	volume = 30

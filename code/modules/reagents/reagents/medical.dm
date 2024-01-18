@@ -572,7 +572,7 @@
 	name = "Russian Red"
 	description = "An emergency generic treatment with extreme side effects."
 	color = COLOR_REAGENT_RUSSIAN_RED
-	custom_metabolism = REAGENTS_METABOLISM * 5
+	custom_metabolism = REAGENTS_METABOLISM * 2
 	overdose_threshold = REAGENTS_OVERDOSE/2   //so it makes the OD threshold effectively 15 so two pills is too much but one is fine
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2.5 //and this makes the Critical OD 20
 	scannable = TRUE
@@ -581,7 +581,7 @@
 	var/mob/living/carbon/human/H = L
 	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
 		return
-	if(L.health < H.health_threshold_crit && volume > 9) //If you are in crit, and someone injects at least 9u into you, you will heal 20% of your physical damage instantly.
+	if(L.health < H.health_threshold_crit && volume > 9) //If you are in crit, and someone injects at least 9u into you, you will heal 20% of your physical damage instantly, but the timer is ticking on your knockout.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
 		L.adjustBruteLoss(-L.getBruteLoss(TRUE) * 0.20)
 		L.adjustFireLoss(-L.getFireLoss(TRUE) * 0.20)
@@ -589,12 +589,16 @@
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/russian_red/on_mob_life(mob/living/L, metabolism)
-	L.heal_overall_damage(7*effect_str, 7*effect_str)
-	L.adjustToxLoss(-2.5*effect_str)
-	L.adjustCloneLoss(0.7*effect_str)
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		C.setShock_Stage(min(C.shock_stage - 5*effect_str, 150)) //removes a target from deep paincrit instantly
+	switch(current_cycle)
+		if(1 to 9) // Extremely strong painkiller effect, could technically be used to escape high pain, but you'll pass out soon.. So..
+			L.reagent_pain_modifier += PAIN_REDUCTION_SUPER_HEAVY
+		if(10 to 40)
+			L.heal_overall_damage(7*effect_str, 7*effect_str)
+			L.adjustToxLoss(-2.5*effect_str)
+			L.Sleeping(2 SECONDS)
+			L.adjustCloneLoss(0.2*effect_str)
+		if(41 to INFINITY)
+			custom_metabolism *= 5 //Nothing really happens other than this removes itself. Rapidly.
 	return ..()
 
 /datum/reagent/medicine/russian_red/overdose_process(mob/living/L, metabolism)

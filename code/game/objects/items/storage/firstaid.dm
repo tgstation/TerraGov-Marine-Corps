@@ -455,7 +455,7 @@
 
 /obj/item/storage/pill_bottle/russian_red
 	name = "\improper Russian Red pill bottle"
-	desc = "Contains pills that heal all damage rapidly at the cost of small amounts of unhealable damage."
+	desc = "Contains pills that heal damage rapidly at the cost of small amounts of unhealable damage and the requirement of being asleep durning the process."
 	icon_state = "pill_canister"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/russian_red
 	greyscale_colors = "#3d0000#ffffff"
