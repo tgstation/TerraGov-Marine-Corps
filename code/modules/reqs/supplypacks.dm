@@ -1179,6 +1179,14 @@ MEDICAL
 	)
 	cost = 300
 
+/datum/supply_packs/medical/neuraline_injector
+	name = "Neuraline Injector (x2)"
+	contains = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/neuraline,
+		/obj/item/reagent_containers/hypospray/autoinjector/neuraline,
+	)
+	cost = 200
+
 /datum/supply_packs/medical/biomass
 	name = "biomass crate"
 	contains = list(
