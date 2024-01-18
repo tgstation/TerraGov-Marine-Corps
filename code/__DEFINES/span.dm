@@ -64,6 +64,8 @@
 #define span_scannerburn(str) ("<span class='scannerburn'>" + str + "</span>")
 #define span_scannerburnb(str) ("<span class='scannerburnb'>" + str + "</span>")
 #define span_season_additional_info(str) ("<span class='season_additional_info'>" + str + "</span>")
+#define span_announce_header(str) ("<span class='announce_header'>" + str + "</span>")
+#define span_announce_body(str) ("<span class='announce_body'>" + str + "</span>")
 #define span_seasons_announce(str) ("<span class='seasons_announce'>" + str + "</span>")
 #define span_suicide(str) ("<span class='suicide'>" + str + "</span>")
 #define span_tip(str) ("<span class='tip'>" + str + "</span>")

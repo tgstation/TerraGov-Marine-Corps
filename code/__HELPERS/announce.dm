@@ -11,18 +11,18 @@
 
 	switch(type)
 		if(ANNOUNCEMENT_REGULAR)
-			announcement += "<meta charset='UTF-8'><br><h2 class='alert'>[html_encode(title)]</h2>"
+			announcement += "<meta charset='UTF-8'><br><span class='announce_header'>[html_encode(title)]</span>"
 
 		if(ANNOUNCEMENT_PRIORITY)
-			announcement += "<meta charset='UTF-8'><h1 class='alert'>Priority Announcement</h1>"
+			announcement += "<meta charset='UTF-8'><span class='announce_header'>Priority Announcement</span>"
 			if(title && title != "Announcement")
-				announcement += "<meta charset='UTF-8'><br><h2 class='alert'>[html_encode(title)]</h2>"
+				announcement += "<meta charset='UTF-8'><br><span class='announce_header'>[html_encode(title)]</span>"
 
 		if(ANNOUNCEMENT_COMMAND)
-			announcement += "<meta charset='UTF-8'><h1 class='alert'>Command Announcement</h1>"
+			announcement += "<meta charset='UTF-8'><span class='announce_header'>Command Announcement</span>"
 
 
-	announcement += "<meta charset='UTF-8'><br>[span_alert("[html_encode(message)]")]<br>"
+	announcement += "<meta charset='UTF-8'><br><br>[span_announce_body("[html_encode(message)]")]<br>"
 	announcement += "<meta charset='UTF-8'><br>"
 
 	var/s = sound(sound, channel = CHANNEL_ANNOUNCEMENTS)

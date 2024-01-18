@@ -254,7 +254,7 @@ GLOBAL_REAL(Master, /datum/controller/master)
 
 
 	var/msg = "Initializations complete within [time] second[time == 1 ? "" : "s"]!"
-	to_chat(world, span_boldannounce("[msg]"))
+	to_chat(world, span_boldwarning("[msg]"))
 	log_world(msg)
 
 
