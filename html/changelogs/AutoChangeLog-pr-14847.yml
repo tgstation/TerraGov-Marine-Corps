@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - bugfix: "east facing mob sprite for sg-62"
