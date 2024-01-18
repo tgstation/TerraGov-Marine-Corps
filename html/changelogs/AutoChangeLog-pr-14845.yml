@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Campaign loadout UI defaults to the job tab for your current job"
