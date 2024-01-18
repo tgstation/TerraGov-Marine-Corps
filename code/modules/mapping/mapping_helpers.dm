@@ -112,8 +112,7 @@
 		return
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 	if(!airlock)
-		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 	if(airlock.locked)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already locked!")
 	airlock.locked = TRUE
@@ -131,8 +130,7 @@
 		return
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 	if(!airlock)
-		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 	if(airlock.abandoned)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to make [airlock] abandoned but it's already abandoned!")
 	airlock.abandoned = TRUE
@@ -150,8 +148,7 @@
 		return
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 	if(!airlock)
-		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 	if(airlock.welded)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already welded!")
 	airlock.welded = TRUE
@@ -173,8 +170,7 @@
 		return
 	var/obj/machinery/power/apc/apc = locate(/obj/machinery/power/apc) in loc
 	if(!apc)
-		stack_trace("### MAP WARNING, [src] failed to find an apc at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find an apc at [AREACOORD(src)]")
 	if(apc.machine_stat && (BROKEN)) //there's a small chance of APCs being broken on round start, just return if it's already happened
 		return
 	apc.do_break()
@@ -187,8 +183,7 @@
 	. = ..()
 	var/obj/machinery/power/apc/apc = locate(/obj/machinery/power/apc) in loc
 	if(!apc)
-		stack_trace("### MAP WARNING, [src] failed to find an apc at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find an apc at [AREACOORD(src)]")
 	if(apc.coverlocked == FALSE|| apc.locked == FALSE)
 		var/area/apc_area = get_area(apc)
 		log_mapping("[src] at [AREACOORD(src)] [(apc_area.type)] tried to unlock the [apc] but it's already unlocked!")
@@ -213,8 +208,7 @@
 	. = ..()
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 	if(!airlock)
-		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 	if(airlock.aiControlDisabled)
 		log_mapping("[src] at [AREACOORD(src)] tried to make [airlock] hackproof but it's already hackproof!")
 	else
@@ -227,8 +221,7 @@
 		return
 	var/obj/machinery/door/door = locate(/obj/machinery/door) in loc
 	if(!door)
-		stack_trace("### MAP WARNING, [src] failed to find a nameable door at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find a nameable door at [AREACOORD(src)]")
 	door.name = get_area_name(door)
 
 /obj/effect/mapping_helpers/airlock/unres
@@ -364,8 +357,7 @@
 	. = ..()
 	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
 	if(!light)
-		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
 	if(light.status == LIGHT_BROKEN || light.status == LIGHT_EMPTY)
 		log_mapping("[src] at [AREACOORD(src)] tried to make [light] broken, but it couldn't be done!")
 	else
@@ -390,9 +382,8 @@
 	. = ..()
 	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
 	if(!light)
-		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
-		return
-	if(light.flickering == TRUE || light.status != LIGHT_OK)
+		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
+	if(light.flickering || light.status != LIGHT_OK)
 		log_mapping("[src] at [AREACOORD(src)] tried to make [light] flicker, but it couldn't be done!")
 	else
 		light.lightambient = new(null, FALSE)
@@ -407,8 +398,7 @@
 	. = ..()
 	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
 	if(!light)
-		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
 	if(light.random_flicker == TRUE || light.status != LIGHT_OK)
 		log_mapping("[src] at [AREACOORD(src)] tried to make [light] randomly flicker, but it couldn't be done!")
 	else
@@ -424,13 +414,11 @@
 	. = ..()
 	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
 	if(!light)
-		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
 	if(flicker_time_lower_min > flicker_time_upper_max)
 		CRASH("Invalid random flicker setting for light at [AREACOORD(src)]")
-	else
-		light.flicker_time_upper_max = flicker_time_upper_max
-		light.flicker_time_lower_min = flicker_time_lower_min
+	light.flicker_time_upper_max = flicker_time_upper_max
+	light.flicker_time_lower_min = flicker_time_lower_min
 
 /obj/effect/mapping_helpers/light/flickering/flicker_random_settings/lowset
 	flicker_time_upper_max = 3 SECONDS
@@ -449,8 +437,7 @@
 	. = ..()
 	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
 	if(!light)
-		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
 	light.bulb_power = lighting_power
 	light.update()
 
@@ -469,8 +456,7 @@
 	. = ..()
 	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
 	if(!light)
-		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
 	light.light_color = lighting_color
 	light.update()
 
@@ -489,8 +475,7 @@
 	. = ..()
 	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
 	if(!light)
-		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
 	light.bulb_colour = bulb_colour
 	light.update()
 
@@ -509,8 +494,7 @@
 	. = ..()
 	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
 	if(!light)
-		stack_trace("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")s
 	light.brightness = brightness_intensity
 	light.update()
 
@@ -536,8 +520,7 @@
 	. = ..()
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 	if(!airlock)
-		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 	airlock.unres_sides ^= dir
 
 /obj/effect/mapping_helpers/airlock/cyclelink_helper

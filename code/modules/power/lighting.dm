@@ -451,7 +451,7 @@
 
 ///proc to toggle power on and off for light
 /obj/machinery/light/proc/flicker_power_state(turn_on = TRUE, turn_off = FALSE)
-	if(light_flicker_state == FALSE)
+	if(!light_flicker_state)
 		pick(playsound(loc, 'sound/effects/lightfizz.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz2.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz3.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz4.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz5.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz6.ogg', 10, TRUE))
 		update(FALSE)
 	else
