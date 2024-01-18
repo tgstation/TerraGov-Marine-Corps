@@ -219,41 +219,34 @@
 		icon_state = "door_open"
 
 /obj/machinery/door/airlock/update_overlays()
-	. = ..()
-	if(!density)
-		return
-	if(emergency && hasPower())
-		. += image(icon, "emergency_access_on")
-	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) || welded)
-		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-			. += image(icon, "panel_open")
-		if(welded)
-			. += image(icon, "welded")
-	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) || welded)
-		overlays = list()
-		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-			overlays += image(icon, "panel_open")
-		if(welded)
-			overlays += image(icon, "welded")
-	if(hasPower() && unres_sides)
-		for(var/heading in list(NORTH,SOUTH,EAST,WEST))
-			if(!(unres_sides & heading))
-				continue
-			var/image/access_overlay = image('icons/obj/doors/overlays.dmi', "unres_[heading]", layer = ABOVE_ALL_MOB_LAYER, pixel_y = -4)
-			switch(heading)
-				if(NORTH)
-					access_overlay.pixel_x = 0
-					access_overlay.pixel_y = 32
-				if(SOUTH)
-					access_overlay.pixel_x = 0
-					access_overlay.pixel_y = -32
-				if(EAST)
-					access_overlay.pixel_x = 32
-					access_overlay.pixel_y = 0
-				if(WEST)
-					access_overlay.pixel_x = -32
-					access_overlay.pixel_y = 0
-			overlays += access_overlay
+    . = ..()
+    if(!density)
+        return
+    if(emergency && hasPower())
+        . += image(icon, "emergency_access_on")
+    if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+        . += image(icon, "panel_open")
+    if(welded)
+        . += image(icon, "welded")
+    if(hasPower() && unres_sides)
+        for(var/heading in list(NORTH,SOUTH,EAST,WEST))
+            if(!(unres_sides & heading))
+                continue
+            var/image/access_overlay = image('icons/obj/doors/overlays.dmi', "unres_[heading]", layer = DOOR_HELPER_LAYER, pixel_y = -4)
+            switch(heading)
+                if(NORTH)
+                    access_overlay.pixel_x = 0
+                    access_overlay.pixel_y = 32
+                if(SOUTH)
+                    access_overlay.pixel_x = 0
+                    access_overlay.pixel_y = -32
+                if(EAST)
+                    access_overlay.pixel_x = 32
+                    access_overlay.pixel_y = 0
+                if(WEST)
+                    access_overlay.pixel_x = -32
+                    access_overlay.pixel_y = 0
+            . += access_overlay
 
 /obj/machinery/door/airlock/do_animate(animation)
 	switch(animation)
