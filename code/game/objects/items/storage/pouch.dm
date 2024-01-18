@@ -673,7 +673,7 @@
 		/obj/item/flashlight,
 		/obj/item/whistle,
 		/obj/item/binoculars,
-		/obj/item/beacon/supply_beacon,
+		/obj/item/supply_beacon,
 		/obj/item/compass,
 		/obj/item/deployable_camera,
 		/obj/item/hud_tablet,
