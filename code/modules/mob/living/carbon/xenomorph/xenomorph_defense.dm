@@ -27,7 +27,7 @@ Contains most of the procs that are called when a xeno is attacked by something
 	return ..()
 
 /mob/living/carbon/xenomorph/Paralyze(amount, updating, ignore_canstun)
-	amount *= 0.2 // replaces the old knock_down -5
+	amount *= 1 // replaces the old knock_down -5 NTF edit, 0.2 to 1
 	return ..()
 
 /mob/living/carbon/xenomorph/adjust_fire_stacks(add_fire_stacks)
