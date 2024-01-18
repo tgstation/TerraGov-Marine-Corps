@@ -19110,7 +19110,17 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "rwQ" = (
-/obj/machinery/implantchair,
+/obj/item/clothing/under/rank/prisoner,
+/obj/item/clothing/shoes/orange,
+/obj/item/clothing/under/rank/prisoner,
+/obj/item/clothing/under/rank/prisoner,
+/obj/item/clothing/under/rank/prisoner,
+/obj/item/clothing/under/rank/prisoner,
+/obj/item/clothing/shoes/orange,
+/obj/item/clothing/shoes/orange,
+/obj/item/clothing/shoes/orange,
+/obj/item/clothing/shoes/orange,
+/obj/structure/table/reinforced,
 /turf/open/floor/mainship/red,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "rxA" = (
