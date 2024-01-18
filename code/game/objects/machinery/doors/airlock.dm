@@ -219,15 +219,15 @@
 		icon_state = "door_open"
 
 /obj/machinery/door/airlock/update_overlays()
-    . = ..()
-    if(!density)
-        return
-    if(emergency && hasPower())
-        . += image(icon, "emergency_access_on")
-    if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-        . += image(icon, "panel_open")
-    if(welded)
-        . += image(icon, "welded")
+	. = ..()
+	if(!density)
+		return
+	if(emergency && hasPower())
+		. += image(icon, "emergency_access_on")
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		. += image(icon, "panel_open")
+	if(welded)
+		. += image(icon, "welded")
 	if(hasPower() && unres_sides)
 		for(var/heading in list(NORTH,SOUTH,EAST,WEST))
 			if(!(unres_sides & heading))
