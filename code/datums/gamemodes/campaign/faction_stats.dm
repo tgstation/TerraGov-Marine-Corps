@@ -137,14 +137,21 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		return
 	if(new_member.faction != faction)
 		return
-	if(!individual_stat_list[new_member.key])
-		individual_stat_list[new_member.key] = new /datum/individual_stats(new_member, faction, accumulated_mission_reward)
-	else
+	if(individual_stat_list[new_member.key])
 		individual_stat_list[new_member.key].current_mob = new_member
 		individual_stat_list[new_member.key].apply_perks()
-
+	else
+		get_player_stats(new_member)
 	var/datum/action/campaign_loadout/loadouts = new
 	loadouts.give_action(new_member)
+
+///Returns a users individual stat datum, generating a new one if required
+/datum/faction_stats/proc/get_player_stats(mob/user)
+	if(!user.key)
+		return
+	if(!individual_stat_list[user.key])
+		individual_stat_list[user.key] = new /datum/individual_stats(user, faction, accumulated_mission_reward)
+	return individual_stat_list[user.key]
 
 ///Randomly adds a new mission to the available pool
 /datum/faction_stats/proc/generate_new_mission()

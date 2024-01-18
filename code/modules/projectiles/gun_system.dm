@@ -458,7 +458,8 @@
 	. = ..()
 	set_gun_user(null)
 	active_attachable?.removed_from_inventory(user)
-	drop_connected_mag(null, user)
+	if(loc != user) // reequip component caught it with the signal
+		drop_connected_mag(null, user)
 
 ///Set the user in argument as gun_user
 /obj/item/weapon/gun/proc/set_gun_user(mob/user)

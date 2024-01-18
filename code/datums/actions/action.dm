@@ -71,26 +71,10 @@ KEYBINDINGS
 ///Depending on the action type , toggles the selected/active frame to show without allowing stacking multiple overlays
 /datum/action/proc/set_toggle(value)
 	if(value == toggled)
-		return
-	if(value)
-		if(owner)
-			SEND_SIGNAL(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE, owner)
-		RegisterSignal(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE, PROC_REF(deselect))
-		switch(action_type)
-			if(ACTION_SELECT)
-				button.add_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
-			if(ACTION_TOGGLE)
-				button.add_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
-		toggled = TRUE
-		return
-	if(owner)
-		UnregisterSignal(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE)
-	switch(action_type)
-		if(ACTION_SELECT)
-			button.cut_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
-		if(ACTION_TOGGLE)
-			button.cut_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
-	toggled = FALSE
+		return FALSE
+	toggled = value
+	update_button_icon()
+	return TRUE
 
 ///Setting this action as the active action
 /datum/action/proc/select()
@@ -134,6 +118,17 @@ KEYBINDINGS
 			button.add_overlay(action_appearence)
 	if(background_icon_state != button.icon_state)
 		button.icon_state = background_icon_state
+	switch(action_type)
+		if(ACTION_SELECT)
+			button.cut_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
+		if(ACTION_TOGGLE)
+			button.cut_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
+	if(toggled)
+		switch(action_type)
+			if(ACTION_SELECT)
+				button.add_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
+			if(ACTION_TOGGLE)
+				button.add_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
 	handle_button_status_visuals()
 	return TRUE
 

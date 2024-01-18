@@ -235,7 +235,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/building/spawner
 	name = "Spawner"
 	desc = "Constructs a spawner that generates ai xenos over time"
-	psypoint_cost = 600
+	psypoint_cost = 400
 	icon = "spawner"
 	flags_gamemode = ABILITY_NUCLEARWAR
 	flags_upgrade = UPGRADE_FLAG_USES_TACTICAL
@@ -329,6 +329,53 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	icon = "resinturret"
 	psypoint_cost = 50
 	turret_type = /obj/structure/xeno/xeno_turret/sticky
+
+/datum/hive_upgrade/defence/gargoyle
+	name = "Gargoyle"
+	desc = "Constructs a gargoyle that alerts you when enemies approach."
+	psypoint_cost = 25
+	icon = "gargoyle"
+	flags_gamemode = ABILITY_NUCLEARWAR
+	flags_upgrade = UPGRADE_FLAG_USES_TACTICAL
+
+/datum/hive_upgrade/defence/gargoyle/can_buy(mob/living/carbon/xenomorph/buyer, silent)
+	. = ..()
+	if(!.)
+		return
+	var/turf/buildloc = get_turf(buyer)
+	if(!buildloc)
+		return FALSE
+
+	if(!buildloc.is_weedable())
+		if(!silent)
+			to_chat(buyer, span_warning("We can't do that here."))
+		return FALSE
+
+	var/obj/alien/weeds/alien_weeds = locate() in buildloc
+
+	if(!alien_weeds)
+		if(!silent)
+			to_chat(buyer, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
+		return FALSE
+
+	if(!buildloc.check_alien_construction(buyer, silent) || !buildloc.check_disallow_alien_fortification(buyer, silent))
+		return FALSE
+
+/datum/hive_upgrade/defence/gargoyle/on_buy(mob/living/carbon/xenomorph/buyer)
+	if(!do_after(buyer, 3 SECONDS, NONE, buyer, BUSY_ICON_BUILD))
+		return FALSE
+
+	if(!can_buy(buyer, FALSE))
+		return FALSE
+
+	var/turf/buildloc = get_turf(buyer)
+
+	var/atom/built = new /obj/structure/xeno/resin_gargoyle(buildloc, buyer.hivenumber, buyer)
+	to_chat(buyer, span_notice("We build [built] for [psypoint_cost] psy points."))
+	log_game("[buyer] has built \a [built] in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
+	xeno_message("[buyer] has built \a [built] at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
+	return ..()
+
 
 /datum/hive_upgrade/xenos
 	category = "Xenos"

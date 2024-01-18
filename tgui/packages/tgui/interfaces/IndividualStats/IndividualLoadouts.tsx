@@ -24,7 +24,7 @@ export const IndividualLoadouts = (props) => {
     useLocalState<LoadoutItemData | null>('unlockPotentialItem', null);
   const [selectedJob, setSelectedJob] = useLocalState(
     'selectedJob',
-    data.jobs[0],
+    data.current_job ? data.current_job : data.jobs[0],
   );
   const [selectedLoadoutItem, setselectedLoadoutItem] = useLocalState(
     'selectedLoadoutItem',
@@ -90,9 +90,9 @@ export const IndividualLoadouts = (props) => {
                         selectedLoadoutItem.item_type.name ===
                         equippeditem.item_type.name
                           ? 'orange'
-                          : equippeditem.item_type.valid_choice === 0
-                            ? 'red'
-                            : equippeditem.item_type.quantity === 0
+                          : equippeditem.item_type.quantity === 0
+                            ? 'grey'
+                            : equippeditem.item_type.valid_choice === 0
                               ? 'red'
                               : 'blue'
                       }
@@ -107,9 +107,9 @@ export const IndividualLoadouts = (props) => {
                               selectedLoadoutItem.item_type.name ===
                               equippeditem.item_type.name
                                 ? equippeditem.item_type.icon + '_orange'
-                                : equippeditem.item_type.valid_choice === 0
-                                  ? equippeditem.item_type.icon + '_red'
-                                  : equippeditem.item_type.quantity === 0
+                                : equippeditem.item_type.quantity === 0
+                                  ? equippeditem.item_type.icon + '_grey'
+                                  : equippeditem.item_type.valid_choice === 0
                                     ? equippeditem.item_type.icon + '_red'
                                     : equippeditem.item_type.icon + '_blue',
                             ])}
@@ -160,13 +160,12 @@ export const IndividualLoadouts = (props) => {
                     color={
                       selectedPossibleItem.name === potentialitem.name
                         ? 'orange'
-                        : !potentialitem.unlocked
+                        : !potentialitem.unlocked ||
+                            potentialitem.quantity === 0
                           ? 'grey'
                           : !potentialitem.valid_choice
                             ? 'red'
-                            : potentialitem.quantity === 0
-                              ? 'red'
-                              : 'blue'
+                            : 'blue'
                     }
                   >
                     <Flex align="center">
@@ -177,13 +176,12 @@ export const IndividualLoadouts = (props) => {
                             'campaign_loadout_items18x18',
                             selectedPossibleItem.name === potentialitem.name
                               ? potentialitem.icon + '_orange'
-                              : !potentialitem.unlocked
+                              : !potentialitem.unlocked ||
+                                  potentialitem.quantity === 0
                                 ? potentialitem.icon + '_grey'
                                 : !potentialitem.valid_choice
                                   ? potentialitem.icon + '_red'
-                                  : potentialitem.quantity === 0
-                                    ? potentialitem.icon + '_red'
-                                    : potentialitem.icon + '_blue',
+                                  : potentialitem.icon + '_blue',
                           ])}
                         />
                       )}
@@ -200,7 +198,9 @@ export const IndividualLoadouts = (props) => {
           vertical
           title={selectedJob + ' loadout'}
           textColor={
-            selectedOutfitCostData.outfit_cost < data.currency ? 'white' : 'red'
+            selectedOutfitCostData.outfit_cost <= data.currency
+              ? 'white'
+              : 'red'
           }
         >
           Equip cost: {selectedOutfitCostData.outfit_cost}
@@ -250,7 +250,9 @@ export const IndividualLoadouts = (props) => {
             </LabeledList.Item>
             {selectedPossibleItem.quantity !== -1 && (
               <LabeledList.Item label="Quantity">
-                {selectedPossibleItem.quantity}
+                {selectedPossibleItem.quantity === 0
+                  ? 'None currently available'
+                  : selectedPossibleItem.quantity}
               </LabeledList.Item>
             )}
             {selectedPossibleItem.requirements && (

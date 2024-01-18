@@ -8852,6 +8852,10 @@
 /obj/effect/turf_decal/warning_stripes/box/threeside,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
+"euX" = (
+/obj/effect/landmark/campaign_structure/sensor_tower,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/se)
 "evb" = (
 /obj/structure/fence,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -14542,6 +14546,10 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
+"rtr" = (
+/obj/effect/landmark/campaign_structure/sensor_tower,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
 "rvj" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/cable,
@@ -14633,6 +14641,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
+"rEZ" = (
+/obj/effect/landmark/campaign_structure/sensor_tower,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/bigredv2/outside/s)
 "rFP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/glasses/welding,
@@ -15586,6 +15598,13 @@
 "tXa" = (
 /turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
+"tXe" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/campaign_structure/sensor_tower,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
 "tXP" = (
 /obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
@@ -29252,7 +29271,7 @@ aXK
 aZo
 roT
 nlp
-eVx
+tXe
 roT
 kuf
 nlp
@@ -39203,7 +39222,7 @@ aaa
 aaa
 aaa
 asJ
-asJ
+rtr
 tdx
 asJ
 asJ
@@ -39720,7 +39739,7 @@ tco
 wdV
 hLG
 hLG
-hLG
+rEZ
 xuH
 jNI
 mRs
@@ -49660,7 +49679,7 @@ scS
 scS
 dKR
 scS
-scS
+euX
 scS
 dKR
 scS
