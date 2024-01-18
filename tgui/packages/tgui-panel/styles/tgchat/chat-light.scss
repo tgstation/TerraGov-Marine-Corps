@@ -416,41 +416,45 @@ em {
 .deadsay {
   color: #5c00e6;
 }
+.tinydeadsay {
+  color: #5c00e6;
+  font-size: 85%;
+}
 
 .radio {
-  color: #158c15;
+  color: #1fc01f;
 }
 
 .deptradio {
-  color: #993399;
+  color: #b21ab2;
 }
 .comradio {
-  color: #004080;
+  color: #517ac5;
 }
 .syndradio {
-  color: #6d3f40;
+  color: #7f4648;
 }
 .centradio {
-  color: #5c5c8a;
+  color: #636399;
 }
 .airadio {
-  color: #ff00ff;
+  color: #b21ab2;
 }
 
 .casradio {
-  color: #a30000;
+  color: #d62946;
 }
 .engradio {
-  color: #a66300;
+  color: #e2772f;
 }
 .medradio {
-  color: #008160;
+  color: #25c5aa;
 }
 .sciradio {
-  color: #993399;
+  color: #993599;
 }
 .supradio {
-  color: #5f4519;
+  color: #c5851d;
 }
 
 .alpharadio {
@@ -497,7 +501,7 @@ em {
 }
 
 .alert {
-  color: #ff0000;
+  color: #c51e1e;
 }
 h1.alert,
 h2.alert {
@@ -552,21 +556,26 @@ h2.alert {
   font-weight: bold;
 }
 .warning {
-  color: #ff0000;
+  color: #c51e1e;
   font-style: italic;
 }
 .xenowarning {
   color: #2a623d;
   font-style: italic;
 }
+.boldwarning {
+  color: #c51e1e;
+  font-style: italic;
+  font-weight: bold;
+}
 .danger {
-  color: #ff0000;
+  color: #c51e1e;
   font-weight: bold;
 }
 .userdanger {
-  color: #ff0000;
+  color: #c51e1e;
   font-weight: bold;
-  font-size: 3em;
+  font-size: 185%;
 }
 .xenodanger {
   color: #2a623d;
@@ -577,9 +586,9 @@ h2.alert {
   font-weight: bold;
 }
 .highdanger {
-  color: #ff0000;
+  color: #c51e1e;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 185%;
 }
 .xenohighdanger {
   color: #2a623d;
@@ -598,15 +607,23 @@ h2.alert {
 }
 .xenoqueen {
   font-size: 1.4em;
+  font-style: italic;
+  font-weight: bold;
 }
 .xenoshrike {
   font-size: 1.2em;
+  font-style: italic;
+  font-weight: bold;
 }
 .xenohivemind {
   font-size: 1.2em;
+  font-style: italic;
+  font-weight: bold;
 }
 .xenoleader {
   font-size: 1.2em;
+  font-weight: bold;
+  font-style: italic;
 }
 .ordercic {
   font-weight: bold;
@@ -621,15 +638,15 @@ h2.alert {
 }
 
 .role_header {
-  color: #db0000;
+  color: #5f25ff;
   display: block;
   text-align: center;
   font-weight: bold;
-  font-family: trebuchet-ms;
+//font-family: trebuchet-ms;
   font-size: 1.5em;
 }
 .role_body {
-  color: #000099;
+  color: #5f25ff;
   display: block;
   text-align: center;
 }
@@ -642,7 +659,6 @@ h2.alert {
   color: #db0000;
   display: block;
   text-align: center;
-  font-family: courier;
   font-weight: bold;
   font-size: 2em;
 }
@@ -650,7 +666,6 @@ h2.alert {
   color: #001427;
   display: block;
   text-align: center;
-  font-family: trebuchet-ms;
   font-weight: bold;
   font-size: 1.5em;
 }
