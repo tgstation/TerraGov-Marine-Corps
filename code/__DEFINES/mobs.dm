@@ -488,8 +488,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_HIVEMIND_DETECTION_RANGE 10 //How far out (in tiles) can the hivemind detect hostiles
 #define XENO_HIVEMIND_DETECTION_COOLDOWN 1 MINUTES
 
-#define XENO_PARALYZE_NORMALIZATION_MULTIPLIER 0.5 //Multiplies an input to normalize xeno paralyze duration times.
-#define XENO_STUN_NORMALIZATION_MULTIPLIER 0.5 //Multiplies an input to normalize xeno stun duration times.
+#define XENO_PARALYZE_NORMALIZATION_MULTIPLIER 5 //Multiplies an input to normalize xeno paralyze duration times.
+#define XENO_STUN_NORMALIZATION_MULTIPLIER 3 //Multiplies an input to normalize xeno stun duration times.
 
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1
