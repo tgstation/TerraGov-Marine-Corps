@@ -26,4 +26,4 @@ endmode
 
 mode Campaign
 	requiredplayers 2
-endmode1
+endmode
