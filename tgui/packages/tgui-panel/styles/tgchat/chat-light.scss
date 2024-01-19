@@ -1058,3 +1058,40 @@ h2.alert {
   font-style: italic;
   border-bottom: 1px dashed #000;
 }
+
+.faction_alert {
+  background: #ffadad;
+  margin: 0.5em;
+  padding: 0.5em 0.5em 0.5em 0.2em;
+  color: #cecece;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 10px,
+    #ff9999 10px,
+    #ff9999 20px
+  );
+}
+.faction_alert_container {
+  background: #bb7f7f;
+  display: flex;
+  flex-direction: column;
+  margin: 0.5em;
+  padding: 0.5em 0.5em 0.5em 0.2em;
+}
+.faction_alert_title {
+  color: #000000;
+  padding: 0.5em 0 0 0.35em;
+  display: flex;
+  flex-direction: column;
+  font-size: 185%;
+}
+.faction_alert_text {
+  color: #0e0e0e;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  display: flex;
+  flex-direction: column;
+}

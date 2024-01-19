@@ -8,22 +8,22 @@
 		return
 
 	var/announcement
+	var/header
 
 	switch(type)
 		if(ANNOUNCEMENT_REGULAR)
-			announcement += "<meta charset='UTF-8'><br><span class='announce_header'>[html_encode(title)]</span>"
+			header += "[html_encode(title)]"
 
 		if(ANNOUNCEMENT_PRIORITY)
-			announcement += "<meta charset='UTF-8'><span class='announce_header'>Priority Announcement</span>"
+			header += "Priority Announcement"
 			if(title && title != "Announcement")
-				announcement += "<meta charset='UTF-8'><br><span class='announce_header'>[html_encode(title)]</span>"
+				header += "[html_encode(title)]"
 
 		if(ANNOUNCEMENT_COMMAND)
-			announcement += "<meta charset='UTF-8'><span class='announce_header'>Command Announcement</span>"
+			header += "Command Announcement"
 
 
-	announcement += "<meta charset='UTF-8'><br><br>[span_announce_body("[html_encode(message)]")]<br>"
-	announcement += "<meta charset='UTF-8'><br>"
+	announcement += "<meta charset='UTF-8'><span class='faction_alert'>[span_faction_alert_title("[html_encode(header)]")]<br><span class='faction_alert_container'>[span_faction_alert_text("[html_encode(message)]")]</span></span>"
 
 	var/s = sound(sound, channel = CHANNEL_ANNOUNCEMENTS)
 	for(var/i in receivers)
