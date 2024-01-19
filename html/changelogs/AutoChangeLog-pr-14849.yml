@@ -1,4 +1,4 @@
 author: "ivanmixo"
 delete-after: True
 changes:
-  - bugfix: "Various runtime fixes, see the PR"
+  - qol: "Widened the hive status tgui window"

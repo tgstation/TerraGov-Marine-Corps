@@ -197,6 +197,47 @@
 		/obj/item/weapon/energy/sword,
 	)
 
+/obj/item/clothing/suit/storage/ballistic
+	name = "\improper Crasher multi-threat ballistic armor"
+	desc = "A reused design of a old body armor system from the 21st century."
+	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 20, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_armor_protection = CHEST|GROIN
+	icon = 'icons/mob/clothing/suits/marine_armor.dmi'
+	icon_state = "ballistic_vest"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi'
+	)
+	equip_delay_self = 2 SECONDS
+
+	icon_state_variants = list(
+		"urban",
+		"jungle",
+		"desert",
+		"snow",
+	)
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED
+	current_variant = "urban"
+
+	allowed = list(
+		/obj/item/weapon/gun,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/flashlight,
+		/obj/item/ammo_magazine,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/weapon/baton,
+		/obj/item/restraints/handcuffs,
+		/obj/item/explosive/grenade,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/storage/belt/sparepouch,
+		/obj/item/storage/holster/blade,
+		/obj/item/storage/holster/belt,
+		/obj/item/weapon/energy/sword,
+	)
+
 //Xenonauten helmets
 /obj/item/clothing/head/modular/m10x
 	name = "\improper M10X pattern marine helmet"

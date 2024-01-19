@@ -235,7 +235,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/building/spawner
 	name = "Spawner"
 	desc = "Constructs a spawner that generates ai xenos over time"
-	psypoint_cost = 600
+	psypoint_cost = 400
 	icon = "spawner"
 	flags_gamemode = ABILITY_NUCLEARWAR
 	flags_upgrade = UPGRADE_FLAG_USES_TACTICAL

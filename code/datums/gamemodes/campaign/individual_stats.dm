@@ -135,7 +135,8 @@
 		CRASH("campaign_mission loaded without campaign game mode")
 
 	var/list/data = list()
-
+	var/mob/living/living_user = user
+	data["current_job"] = istype(living_user) ? living_user.job.title : null
 	data["currency"] = currency
 
 	//perk stuff

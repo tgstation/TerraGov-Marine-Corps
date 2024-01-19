@@ -1,5 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - balance: "The basic scout rifle ammo now deals 5 sunder down from 12, but has double the armor penetration (30, up from 20)"
-  - balance: "The impact scout rifle ammo now deals 6.5 sunder (down from 12.5), but has double the armor penetration (20, up from 10)"
