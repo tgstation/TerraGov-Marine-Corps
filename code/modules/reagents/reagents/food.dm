@@ -5,7 +5,7 @@
 
 /datum/reagent/consumable
 	name = "Consumable"
-	custom_metabolism = FOOD_METABOLISM
+	metabolization_rate = FOOD_METABOLISM
 	taste_description = "generic food"
 	taste_multi = 4
 	var/nutriment_factor = 1
@@ -19,7 +19,7 @@
 		C.adjust_nutrition(nutriment_factor*0.5*effect_str)
 	if(adj_temp)
 		L.adjust_bodytemperature(adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT, (adj_temp < 0 ? targ_temp : INFINITY), (adj_temp > 0 ? 0 : targ_temp))
-	holder.remove_reagent(type, custom_metabolism)
+	holder.remove_reagent(type, metabolization_rate)
 	return TRUE
 
 /datum/reagent/consumable/nutriment

@@ -8,7 +8,7 @@
 	reagent_state = LIQUID
 	color = COLOR_TOXIN_TOXIN
 	var/toxpwr = 0.7 // Toxins are really weak, but without being treated, last very long.
-	custom_metabolism = REAGENTS_METABOLISM * 0.5
+	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	taste_description = "bitterness"
 	taste_multi = 1.2
 
@@ -20,14 +20,14 @@
 /datum/reagent/toxin/hptoxin
 	name = "Toxin"
 	description = "A toxic chemical."
-	custom_metabolism = REAGENTS_METABOLISM * 5
+	metabolization_rate = REAGENTS_METABOLISM * 5
 	toxpwr = 1
 	taste_description = "alchemy" //just anti-pwr-game stuff, no sci-fi or anything
 
 /datum/reagent/toxin/sdtoxin
 	name = "Toxin"
 	description = "A toxic chemical."
-	custom_metabolism = REAGENTS_METABOLISM * 5
+	metabolization_rate = REAGENTS_METABOLISM * 5
 	toxpwr = 0
 	taste_description = "alchemy"
 
@@ -93,7 +93,7 @@
 	description = "A highly toxic chemical."
 	color = COLOR_TOXIN_CYANIDE
 	toxpwr = 3
-	custom_metabolism = REAGENTS_METABOLISM * 2
+	metabolization_rate = REAGENTS_METABOLISM * 2
 
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(2*effect_str)
@@ -248,7 +248,7 @@
 	reagent_state = SOLID
 	color = COLOR_TOXIN_CHLORALHYDRATE
 	toxpwr = 0
-	custom_metabolism = REAGENTS_METABOLISM * 0.5
+	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 
@@ -312,7 +312,7 @@
 /datum/reagent/toxin/pain
 	name = "Liquid Pain"
 	description = "This is a chemical used to simulate specific pain levels for testing. Pain is equal to the total volume."
-	custom_metabolism = 0
+	metabolization_rate = 0
 	toxpwr = 0
 	taste_description = "ow ow ow"
 
@@ -416,7 +416,7 @@
 	taste_description = "poor life choices, followed by burning agony"
 	reagent_state = LIQUID
 	color = COLOR_TOXIN_NANITES
-	custom_metabolism = REAGENTS_METABOLISM * 5
+	metabolization_rate = REAGENTS_METABOLISM * 5
 	medbayblacklist = TRUE
 	reactindeadmob = FALSE
 
@@ -443,7 +443,7 @@
 	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time."
 	reagent_state = LIQUID
 	color = COLOR_TOXIN_XENO_NEUROTOXIN
-	custom_metabolism = REAGENTS_METABOLISM * 2
+	metabolization_rate = REAGENTS_METABOLISM * 2
 	overdose_threshold = 10000 //Overdosing for neuro is what happens when you run out of stamina to avoid its oxy and toxin damage
 	scannable = TRUE
 	toxpwr = 0
@@ -490,7 +490,7 @@
 	description = "Impedes motor functions and muscle response, causing slower movement."
 	reagent_state = LIQUID
 	color = COLOR_TOXIN_XENO_HEMODILE
-	custom_metabolism = 0.4
+	metabolization_rate = 0.4
 	overdose_threshold = 10000
 	scannable = TRUE
 	toxpwr = 0
@@ -527,7 +527,7 @@
 	description = "Converts burn damage to toxin damage over time, and causes brute damage received to inflict extra toxin damage."
 	reagent_state = LIQUID
 	color = COLOR_TOXIN_XENO_TRANSVITOX
-	custom_metabolism = 0.4
+	metabolization_rate = 0.4
 	overdose_threshold = 10000
 	scannable = TRUE
 	toxpwr = 0
@@ -583,7 +583,7 @@
 	description = "Potent blood coloured toxin that causes constant bleeding and reacts with other xeno toxins to cause rapid tissue damage."
 	reagent_state = LIQUID
 	color = COLOR_TOXIN_XENO_SANGUINAL
-	custom_metabolism = 0.4
+	metabolization_rate = 0.4
 	overdose_threshold = 10000
 	scannable = TRUE
 	toxpwr = 0
@@ -617,7 +617,7 @@
 	description = "A potent Xenomorph chemical that quickly purges other chemicals in a bloodstream, causing small scale poisoning in a organism that won't progress. Appears to be strangely water based.."
 	reagent_state = LIQUID
 	color = COLOR_TOXIN_XENO_OZELOMELYN
-	custom_metabolism = 1.5 // metabolizes decently quickly. A sting does 15 at the same rate as neurotoxin.
+	metabolization_rate = 1.5 // metabolizes decently quickly. A sting does 15 at the same rate as neurotoxin.
 	overdose_threshold = 10000
 	scannable = TRUE
 	toxpwr = 0 // This is going to do slightly snowflake tox damage.
@@ -639,7 +639,7 @@
 	description = "Powerful chemical able to raise the dead, origin is likely from an unidentified bioweapon."
 	reagent_state = LIQUID
 	color = COLOR_TOXIN_ZOMBIUM
-	custom_metabolism = REAGENTS_METABOLISM * 0.25
+	metabolization_rate = REAGENTS_METABOLISM * 0.25
 	scannable = TRUE
 	overdose_threshold = 20
 	overdose_crit_threshold = 50
@@ -679,7 +679,7 @@
 	reagent_state = LIQUID
 	color = COLOR_TOXIN_SATRAPINE
 	overdose_threshold = 10000
-	custom_metabolism = REAGENTS_METABOLISM
+	metabolization_rate = REAGENTS_METABOLISM
 	scannable = TRUE
 	toxpwr = 0
 	purge_list = list(

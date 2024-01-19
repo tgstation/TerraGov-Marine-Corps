@@ -140,7 +140,7 @@
 /datum/reagent/consumable/laughter
 	name = "Laughter"
 	description = "Some say that this is the best medicine, but recent studies have proven that to be untrue."
-	custom_metabolism = INFINITY
+	metabolization_rate = INFINITY
 	color = "#FF4DD2"
 	taste_description = "laughter"
 
@@ -200,7 +200,7 @@
 	nutriment_factor = 0
 	overdose_threshold = REAGENTS_OVERDOSE * 2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 3
-	custom_metabolism = REAGENTS_METABOLISM * 5 //1u/tick
+	metabolization_rate = REAGENTS_METABOLISM * 5 //1u/tick
 	adj_dizzy = -5
 	adj_drowsy = -3
 	adj_sleepy = -2
@@ -240,7 +240,7 @@
 	nutriment_factor = 0
 	overdose_threshold = REAGENTS_OVERDOSE * 2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 3
-	custom_metabolism = REAGENTS_METABOLISM * 5 //1u/tick
+	metabolization_rate = REAGENTS_METABOLISM * 5 //1u/tick
 	adj_dizzy = -5
 	adj_drowsy = -3
 	adj_sleepy = -2
@@ -469,7 +469,7 @@
 	color = "#FF8CFF" // rgb: 255, 140, 255
 	taste_description = "homely fruit"
 	nutriment_factor = - 1
-	custom_metabolism = REAGENTS_METABOLISM * 0.25 //Twice the rate of paracetamol
+	metabolization_rate = REAGENTS_METABOLISM * 0.25 //Twice the rate of paracetamol
 	adj_dizzy = - 10
 
 /datum/reagent/consumable/drink/doctor_delight/on_mob_life(mob/living/L, metabolism)

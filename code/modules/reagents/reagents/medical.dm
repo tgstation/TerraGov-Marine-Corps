@@ -55,7 +55,7 @@
 	reagent_state = SOLID
 	color = COLOR_REAGENT_RYETALYN
 	scannable = TRUE
-	custom_metabolism = REAGENTS_METABOLISM * 0.125
+	metabolization_rate = REAGENTS_METABOLISM * 0.125
 	purge_list = list(/datum/reagent/toxin, /datum/reagent/zombium)
 	purge_rate = 5
 	overdose_threshold = REAGENTS_OVERDOSE
@@ -88,7 +88,7 @@
 	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller, good for enduring heavy labor."
 	color = COLOR_REAGENT_PARACETAMOL
 	scannable = TRUE
-	custom_metabolism = REAGENTS_METABOLISM * 0.125
+	metabolization_rate = REAGENTS_METABOLISM * 0.125
 	purge_list = list(/datum/reagent/medicine/kelotane, /datum/reagent/medicine/bicaridine)
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE*2
@@ -114,7 +114,7 @@
 	description = "A simple, yet effective painkiller."
 	color = COLOR_REAGENT_TRAMADOL
 	scannable = TRUE
-	custom_metabolism = REAGENTS_METABOLISM * 0.5
+	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
@@ -136,7 +136,7 @@
 	name = "Oxycodone"
 	description = "An effective and very addictive painkiller."
 	color = COLOR_REAGENT_OXYCODONE
-	custom_metabolism = REAGENTS_METABOLISM * 1.25
+	metabolization_rate = REAGENTS_METABOLISM * 1.25
 	overdose_threshold = REAGENTS_OVERDOSE * 0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
 	scannable = TRUE
@@ -178,7 +178,7 @@
 	name = "Hydrocodone"
 	description = "An effective but very short lasting painkiller only made by autodocs."
 	color = COLOR_REAGENT_HYDROCODONE
-	custom_metabolism = REAGENTS_METABOLISM * 2
+	metabolization_rate = REAGENTS_METABOLISM * 2
 	overdose_threshold = REAGENTS_OVERDOSE*0.6 //You aren't using this out of combat. And only the B18 makes it.
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
@@ -279,7 +279,7 @@
 	name = "Saline-Glucose"
 	description = "Saline-Glucose can be used to restore blood in a pinch."
 	color = COLOR_REAGENT_SALINE_GLUCOSE
-	custom_metabolism = REAGENTS_METABOLISM * 2
+	metabolization_rate = REAGENTS_METABOLISM * 2
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "salty water"
@@ -443,7 +443,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE/5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
 	scannable = TRUE
-	custom_metabolism = REAGENTS_METABOLISM * 0.5
+	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	purge_list = list(/datum/reagent/toxin/mindbreaker)
 	purge_rate = 5
 
@@ -484,7 +484,7 @@
 	name = "Neuraline"
 	description = "A chemical cocktail tailored to enhance or dampen specific neural processes."
 	color = COLOR_REAGENT_NEURALINE
-	custom_metabolism = REAGENTS_METABOLISM * 2
+	metabolization_rate = REAGENTS_METABOLISM * 2
 	overdose_threshold = 5
 	overdose_crit_threshold = 6
 	scannable = FALSE
@@ -532,7 +532,7 @@
 	name = "Hyronalin"
 	description = "Hyronalin is a medicinal drug used to counter the effect of toxin poisoning."
 	color = COLOR_REAGENT_HYRONALIN
-	custom_metabolism = REAGENTS_METABOLISM
+	metabolization_rate = REAGENTS_METABOLISM
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
@@ -551,7 +551,7 @@
 	name = "Arithrazine"
 	description = "Arithrazine is a component medicine capable of healing minor amounts of toxin poisoning."
 	color = COLOR_REAGENT_ARITHRAZINE
-	custom_metabolism = REAGENTS_METABOLISM
+	metabolization_rate = REAGENTS_METABOLISM
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 	scannable = TRUE
@@ -572,7 +572,7 @@
 	name = "Russian Red"
 	description = "An emergency generic treatment with extreme side effects."
 	color = COLOR_REAGENT_RUSSIAN_RED
-	custom_metabolism = REAGENTS_METABOLISM * 5
+	metabolization_rate = REAGENTS_METABOLISM * 5
 	overdose_threshold = REAGENTS_OVERDOSE/2   //so it makes the OD threshold effectively 15 so two pills is too much but one is fine
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2.5 //and this makes the Critical OD 20
 	scannable = TRUE
@@ -608,7 +608,7 @@
 	name = "Alkysine"
 	description = "Alkysine is a drug used to lessen the damage to neurological and auditory tissue after a catastrophic injury. Can heal brain and ear tissue."
 	color = COLOR_REAGENT_ALKYSINE
-	custom_metabolism = REAGENTS_METABOLISM * 0.25
+	metabolization_rate = REAGENTS_METABOLISM * 0.25
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
@@ -656,7 +656,7 @@
 	color = COLOR_REAGENT_PERIDAXON_PLUS
 	overdose_threshold = REAGENTS_OVERDOSE/30
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/25
-	custom_metabolism = REAGENTS_METABOLISM * 0.5
+	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	scannable = TRUE
 
 /datum/reagent/medicine/peridaxon_plus/on_mob_life(mob/living/L, metabolism)
@@ -737,7 +737,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE/2 //Was 4, now 6 //Now 15
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 	scannable = TRUE //scannable now.  HUZZAH.
-	custom_metabolism = REAGENTS_METABOLISM * 0.25
+	metabolization_rate = REAGENTS_METABOLISM * 0.25
 
 /datum/reagent/medicine/quickclot/on_mob_life(mob/living/L, metabolism)
 	L.blood_volume += 0.2
@@ -764,7 +764,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE/5 //6u
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5 //12u
 	scannable = TRUE
-	custom_metabolism = REAGENTS_METABOLISM * 2.5
+	metabolization_rate = REAGENTS_METABOLISM * 2.5
 	///The IB wound this dose of QCP will cure, if it lasts long enough
 	var/datum/wound/internal_bleeding/target_IB
 	///Ticks remaining before the target_IB is cured
@@ -861,7 +861,7 @@
 	name = "Ultrazine"
 	description = "A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
 	color = COLOR_REAGENT_ULTRAZINE
-	custom_metabolism = REAGENTS_METABOLISM * 0.0835
+	metabolization_rate = REAGENTS_METABOLISM * 0.0835
 	overdose_threshold = 10
 	overdose_crit_threshold = 20
 	addiction_threshold = 0.4 // Adios Addiction Virus
@@ -1029,7 +1029,7 @@
 	name = "Spaceacillin"
 	description = "An all-purpose antiviral agent."
 	color = COLOR_REAGENT_SPACEACILLIN
-	custom_metabolism = REAGENTS_METABOLISM * 0.05
+	metabolization_rate = REAGENTS_METABOLISM * 0.05
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
@@ -1044,7 +1044,7 @@
 	name = "Polyhexanide"
 	description = "A sterilizing agent designed for internal use. Powerful, but dangerous."
 	color = COLOR_REAGENT_POLYHEXANIDE
-	custom_metabolism = REAGENTS_METABOLISM * 2
+	metabolization_rate = REAGENTS_METABOLISM * 2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
@@ -1067,7 +1067,7 @@
 	name = "Larvaway"
 	description = "A proprietary blend of antibiotics and antifungal agents designed to inhibit the growth of xenomorph embryos. Builds up toxicity over time."
 	color = COLOR_REAGENT_LARVAWAY
-	custom_metabolism = REAGENTS_METABOLISM * 0.5
+	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	overdose_threshold = REAGENTS_OVERDOSE * 0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
 	scannable = TRUE
@@ -1123,7 +1123,7 @@
 	color = COLOR_REAGENT_HYPERVENE
 	overdose_threshold = REAGENTS_OVERDOSE * 0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
-	custom_metabolism = REAGENTS_METABOLISM * 5
+	metabolization_rate = REAGENTS_METABOLISM * 5
 	purge_list = list(/datum/reagent/medicine, /datum/reagent/toxin, /datum/reagent/zombium)
 	purge_rate = 5
 	scannable = TRUE
@@ -1153,7 +1153,7 @@
 	name = "Roulettium"
 	description = "The concentrated essence of unga. Unsafe to ingest in any quantity"
 	color = COLOR_REAGENT_ROULETTIUM
-	custom_metabolism = REAGENTS_METABOLISM * 0.5
+	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	taste_description = "Poor life choices"
 
 /datum/reagent/medicine/roulettium/on_mob_life(mob/living/L, metabolism)
@@ -1217,7 +1217,7 @@
 	name = "Quietus"
 	description = "This is a latent poison, designed to quickly and painlessly kill you in the event that you become unable to fight. Never washes out on it's own, must be purged."
 	color = COLOR_REAGENT_QUIETUS
-	custom_metabolism = 0
+	metabolization_rate = 0
 	scannable = TRUE
 	taste_description = "Victory"
 
@@ -1279,7 +1279,7 @@
 	name = "Medical nanites"
 	description = "These are a batch of construction nanites altered for in-vivo replication. They can heal wounds using the iron present in the bloodstream. Medical care is recommended during injection."
 	color = COLOR_REAGENT_MEDICALNANITES
-	custom_metabolism = 0
+	metabolization_rate = 0
 	scannable = TRUE
 	taste_description = "metal, followed by mild burning"
 	overdose_threshold = REAGENTS_OVERDOSE * 1.2 //slight buffer to keep you safe
@@ -1332,7 +1332,7 @@
 	name = "Stimulon"
 	description = "A chemical designed to boost running by driving your body beyond it's normal limits. Can have unpredictable side effects, caution recommended."
 	color = COLOR_REAGENT_STIMULON
-	custom_metabolism = 0
+	metabolization_rate = 0
 	scannable = TRUE
 
 /datum/reagent/medicine/research/stimulon/on_mob_add(mob/living/L, metabolism)

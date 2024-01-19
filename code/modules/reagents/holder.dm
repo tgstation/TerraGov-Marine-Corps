@@ -1,4 +1,4 @@
-#define CHEMICAL_QUANTISATION_LEVEL 0.0001 //stops floating point errors causing issues with checking reagent amounts
+#define REAGENT_TRANSFER_AMOUNT "amount"
 
 /datum/reagents
 	/// The reagents being held
@@ -146,32 +146,54 @@
  * Transfer some stuff from this holder to a target object
  *
  * Arguments:
- * * obj/target - Target to attempt transfer to
+ * * atom/target - Target to attempt transfer to
  * * amount - amount of reagent volume to transfer
  * * multiplier - multiplies amount of each reagent by this number
  * * preserve_data - if preserve_data=0, the reagents data will be lost. Usefull if you use data for some strange stuff and don't want it to be transferred.
  * * no_react - passed through to [/datum/reagents/proc/add_reagent]
- * * mob/transfered_by - used for logging
+ * * mob/transferred_by - used for logging
  * * remove_blacklisted - skips transferring of reagents with can_synth = FALSE
- * * method - passed through to [/datum/reagents/proc/react_single] and [/datum/reagent/proc/on_transfer]
- * * show_message - passed through to [/datum/reagents/proc/react_single]
- * * round_robin - if round_robin=TRUE, so transfer 5 from 15 water, 15 sugar and 15 plasma becomes 10, 15, 15 instead of 13.3333, 13.3333 13.3333. Good if you hate floating point errors
+ * * methods - passed through to [/datum/reagents/proc/expose] and [/datum/reagent/proc/on_transfer]
+ * * show_message - passed through to [/datum/reagents/proc/expose]
  */
-/datum/reagents/proc/trans_to(obj/target, amount = 1, multiplier=1, preserve_data=1, no_react = 0)//if preserve_data=0, the reagents data will be lost. Usefull if you use data for some strange stuff and don't want it to be transferred.
-	var/list/cached_reagents = reagent_list
-	if (!target || !total_volume)
-		return
-	if (amount < 0)
-		return
+/datum/reagents/proc/trans_to(
+	atom/target,
+	amount = 1,
+	multiplier = 1,
+	preserve_data = TRUE,
+	no_react = FALSE,
+	mob/transferred_by,
+	methods = NONE,
+	show_message = TRUE,
+)
+	if(QDELETED(target) || !total_volume)
+		return FALSE
 
-	var/datum/reagents/R
+	if(!IS_FINITE(amount))
+		stack_trace("non finite amount passed to trans_to [amount] amount of reagents")
+		return FALSE
+
+	var/list/cached_reagents = reagent_list
+
+	var/atom/target_atom
+	var/datum/reagents/target_holder
 	if(istype(target, /datum/reagents))
-		R = target
+		target_holder = target
+		target_atom = target_holder.my_atom
 	else
 		if(!target.reagents)
 			return
-		R = target.reagents
-	amount = min(min(amount, total_volume), R.maximum_volume-R.total_volume)
+		else
+			target_holder = target.reagents
+			target_atom = target
+
+	// Prevents small amount problems, as well as zero and below zero amounts.
+	amount = round(min(amount, total_volume, target_holder.maximum_volume - target_holder.total_volume), CHEMICAL_QUANTISATION_LEVEL)
+	if(amount <= 0)
+		return FALSE
+
+	var/list/transfer_log = list()
+
 	var/part = amount / total_volume
 	var/trans_data = null
 	for(var/reagent in cached_reagents)
@@ -179,33 +201,60 @@
 		var/transfer_amount = T.volume * part
 		if(preserve_data)
 			trans_data = copy_data(T)
-		R.add_reagent(T.type, transfer_amount * multiplier, trans_data, chem_temp, no_react = 1) //we only handle reaction after every reagent has been transfered.
+		target_holder.add_reagent(T.type, transfer_amount * multiplier, trans_data, chem_temp, no_react = 1) //we only handle reaction after every reagent has been transfered.
 		remove_reagent(T.type, transfer_amount)
+		transfer_log[T.type] = list(REAGENT_TRANSFER_AMOUNT = transfer_amount)
+
+	if(transferred_by && target_atom)
+		target_atom.add_fingerprint(transferred_by) //log prints so admins can figure out who touched it last.
+		log_combat(transferred_by, target_atom, "transferred reagents ([get_external_reagent_log_string(transfer_log)]) from [my_atom] to")
 
 	update_total()
-	R.update_total()
+	target_holder.update_total()
 	if(!no_react)
-		R.handle_reactions()
+		target_holder.handle_reactions()
 		src.handle_reactions()
 	return amount
 
-/// Copies the reagents to the target object
-/datum/reagents/proc/copy_to(obj/target, amount=1, multiplier=1, preserve_data=1)
+/**
+ * Copies the reagents to the target object
+ * Arguments
+ *
+ * * [target][obj] - the target to transfer reagents to
+ * * multiplier - multiplies each reagent amount by this number well byond their available volume before transfering. used to create reagents from thin air if you ever need to
+ * * preserve_data - preserve user data of all reagents after transfering
+ */
+/datum/reagents/proc/copy_to(
+	atom/target,
+	amount = 1,
+	multiplier = 1,
+	preserve_data = TRUE,
+)
+	if(QDELETED(target) || !total_volume)
+		return
+
+	if(!IS_FINITE(amount))
+		stack_trace("non finite amount passed to copy_to [amount] amount of reagents")
+		return FALSE
+
 	var/list/cached_reagents = reagent_list
 	if(!target || !total_volume)
 		return
 
-	var/datum/reagents/R
+	var/datum/reagents/target_holder
 	if(istype(target, /datum/reagents))
-		R = target
+		target_holder = target
 	else
 		if(!target.reagents)
 			return
-		R = target.reagents
+		target_holder = target.reagents
 
-	if(amount < 0)
+	// Prevents small amount problems, as well as zero and below zero amounts.
+	amount = round(min(amount, total_volume, target_holder.maximum_volume - target_holder.total_volume), CHEMICAL_QUANTISATION_LEVEL)
+	if(amount <= 0)
 		return
-	amount = min(min(amount, total_volume), R.maximum_volume-R.total_volume)
+
+	amount = min(min(amount, total_volume), target_holder.maximum_volume-target_holder.total_volume)
 	var/part = amount / total_volume
 	var/trans_data = null
 	for(var/reagent in cached_reagents)
@@ -213,11 +262,11 @@
 		var/copy_amount = T.volume * part
 		if(preserve_data)
 			trans_data = T.data
-		R.add_reagent(T.type, copy_amount * multiplier, trans_data)
+		target_holder.add_reagent(T.type, copy_amount * multiplier, trans_data)
 
 	src.update_total()
-	R.update_total()
-	R.handle_reactions()
+	target_holder.update_total()
+	target_holder.handle_reactions()
 	src.handle_reactions()
 	return amount
 
@@ -813,3 +862,36 @@
 				random_reagents += R
 	var/picked_reagent = pick(random_reagents)
 	return picked_reagent
+
+//===============================Logging==========================================
+/**
+ * Outputs a log-friendly list of reagents based on an external reagent list.
+ *
+ * Arguments:
+ * * external_list - Assoc list of (reagent_type) = list(REAGENT_TRANSFER_AMOUNT = amounts)
+ */
+/datum/reagents/proc/get_external_reagent_log_string(external_list)
+	if(!length(external_list))
+		return "no reagents"
+
+	var/list/data = list()
+
+	for(var/reagent_type in external_list)
+		var/list/qualities = external_list[reagent_type]
+		data += "[reagent_type] ([round(qualities[REAGENT_TRANSFER_AMOUNT], CHEMICAL_QUANTISATION_LEVEL)]u)"
+
+	return english_list(data)
+
+/// Outputs a log-friendly list of reagents based on the internal reagent_list.
+/datum/reagents/proc/get_reagent_log_string()
+	if(!length(reagent_list))
+		return "no reagents"
+
+	var/list/data = list()
+
+	for(var/datum/reagent/reagent as anything in reagent_list)
+		data += "[reagent.type] ([round(reagent.volume, CHEMICAL_QUANTISATION_LEVEL)]u)"
+
+	return english_list(data)
+
+#undef REAGENT_TRANSFER_AMOUNT

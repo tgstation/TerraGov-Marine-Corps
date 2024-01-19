@@ -219,7 +219,7 @@
 		if(istype(potential_toxin, /datum/reagent/consumable/ethanol) || istype(potential_toxin, /datum/reagent/toxin))
 			if(organ_status != ORGAN_HEALTHY)
 				owner.adjustToxLoss(0.3 * organ_status)
-			owner.reagents.remove_reagent(potential_toxin.type, potential_toxin.custom_metabolism * filter_rate * 0.1)
+			owner.reagents.remove_reagent(potential_toxin.type, potential_toxin.metabolization_rate * filter_rate * 0.1)
 
 	//Heal toxin damage slowly if not damaged. If broken, increase it instead.
 	owner.adjustToxLoss((2 - filter_rate) * 0.1)

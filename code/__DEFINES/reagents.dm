@@ -26,12 +26,22 @@
 #define OPENCONTAINER (REFILLABLE | DRAINABLE | TRANSPARENT)
 #define OPENCONTAINER_NOUNIT (REFILLABLE | DRAINABLE | AMOUNT_ESTIMEE)
 
+// Reagent exposure methods.
+/// Used for splashing.
+#define TOUCH (1<<0)
+/// Used for ingesting the reagents. Food, drinks, inhaling smoke.
+#define INGEST (1<<1)
+/// Used by foams, sprays, and blob attacks.
+#define VAPOR (1<<2)
+/// Used by medical patches and gels.
+#define PATCH (1<<3)
+/// Used for direct injection of reagents.
+#define INJECT (1<<4)
 
-#define TOUCH 1	// splashing
-#define INGEST 2	// ingestion
-#define VAPOR 3	// foam, spray, blob attack
-#define PATCH 4	// patches
-#define INJECT 5	// injection
+///The minimum volume of reagents than can be operated on.
+#define CHEMICAL_QUANTISATION_LEVEL 0.0001 //stops floating point errors causing issues with checking reagent amounts
+///Sanity check limit to clamp chems to sane amounts and prevent rounding errors during transfer.
+#define CHEMICAL_VOLUME_ROUNDING 0.01
 
 #define DEL_REAGENT 1	// reagent deleted (fully cleared)
 #define ADD_REAGENT 2	// reagent added
