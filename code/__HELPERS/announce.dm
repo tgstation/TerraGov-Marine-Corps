@@ -23,7 +23,7 @@
 			header += "Command Announcement"
 
 
-	announcement += "<meta charset='UTF-8'><span class='faction_alert'>[span_faction_alert_title("[html_encode(header)]")]<br><span class='faction_alert_container'>[span_faction_alert_text("[html_encode(message)]")]</span></span>"
+	announcement += "<meta charset='UTF-8'><span class='faction_alert'>[span_faction_alert_title("[header]")]<br><span class='faction_alert_container'>[span_faction_alert_text("[html_encode(message)]")]</span></span>"
 
 	var/s = sound(sound, channel = CHANNEL_ANNOUNCEMENTS)
 	for(var/i in receivers)
