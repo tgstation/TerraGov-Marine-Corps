@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - balance: "Radiopack and AI drone beacon don't work in deep caves anymore"
