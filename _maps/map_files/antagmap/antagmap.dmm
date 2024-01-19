@@ -2225,7 +2225,8 @@
 "tq" = (
 /obj/machinery/door_control/mainship/mech{
 	id = "mech_shutterssom";
-	req_one_access = list(207)
+	req_one_access = null;
+	req_access = list(207)
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/som/squads/req{
@@ -5142,7 +5143,8 @@
 /obj/machinery/door_control/mainship/mech{
 	dir = 4;
 	id = "mech_shutterssom";
-	req_one_access = list(207)
+	req_one_access = null;
+	req_access = list(207)
 	},
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
