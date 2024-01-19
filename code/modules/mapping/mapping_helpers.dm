@@ -101,25 +101,6 @@
 /obj/effect/mapping_helpers/airlock
 	layer = DOOR_HELPER_LAYER
 
-/obj/effect/mapping_helpers/airlock/cyclelink_helper
-	name = "airlock cyclelink helper"
-	icon_state = "airlock_cyclelink_helper"
-
-/obj/effect/mapping_helpers/airlock/cyclelink_helper/Initialize(mapload)
-	. = ..()
-	if(!mapload)
-		log_world("### MAP WARNING, [src] spawned outside of mapload!")
-		return
-	//var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
-	//if(airlock)
-	//	if(airlock.cyclelinkeddir)
-	//		log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried to set [airlock] cyclelinkeddir, but it's already set!")
-	//	else
-	//		airlock.cyclelinkeddir = dir
-	//else
-		//log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
-
-
 /obj/effect/mapping_helpers/airlock/locked
 	name = "airlock lock helper"
 	icon_state = "airlock_locked_helper"
@@ -131,8 +112,7 @@
 		return
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 	if(!airlock)
-		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 	if(airlock.locked)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already locked!")
 	airlock.locked = TRUE
@@ -150,8 +130,7 @@
 		return
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 	if(!airlock)
-		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 	if(airlock.abandoned)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to make [airlock] abandoned but it's already abandoned!")
 	airlock.abandoned = TRUE
@@ -169,8 +148,7 @@
 		return
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 	if(!airlock)
-		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 	if(airlock.welded)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already welded!")
 	airlock.welded = TRUE
@@ -192,11 +170,25 @@
 		return
 	var/obj/machinery/power/apc/apc = locate(/obj/machinery/power/apc) in loc
 	if(!apc)
-		stack_trace("### MAP WARNING, [src] failed to find an apc at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find an apc at [AREACOORD(src)]")
 	if(apc.machine_stat && (BROKEN)) //there's a small chance of APCs being broken on round start, just return if it's already happened
 		return
 	apc.do_break()
+
+/obj/effect/mapping_helpers/apc_unlocked
+	name = "apc unlocked interface helper"
+	icon_state = "apc_unlocked_interface_helper"
+
+/obj/effect/mapping_helpers/apc_unlocked/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/power/apc/apc = locate(/obj/machinery/power/apc) in loc
+	if(!apc)
+		CRASH("### MAP WARNING, [src] failed to find an apc at [AREACOORD(src)]")
+	if(!apc.coverlocked || !apc.locked)
+		var/area/apc_area = get_area(apc)
+		log_mapping("[src] at [AREACOORD(src)] [(apc_area.type)] tried to unlock the [apc] but it's already unlocked!")
+	apc.coverlocked = FALSE
+	apc.locked = FALSE
 
 /obj/effect/mapping_helpers/broken_apc/lowchance
 	breakchance = 25
@@ -208,6 +200,20 @@
 	name = "airlock autoname helper"
 	icon_state = "airlock_autoname_helper"
 
+/obj/effect/mapping_helpers/airlock/hackProof
+	name = "airlock block ai control helper"
+	icon_state = "hackproof"
+
+/obj/effect/mapping_helpers/airlock/hackProof/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+	if(!airlock)
+		CRASH("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+	if(airlock.aiControlDisabled)
+		log_mapping("[src] at [AREACOORD(src)] tried to make [airlock] hackproof but it's already hackproof!")
+	else
+		airlock.hackProof = TRUE
+
 /obj/effect/mapping_helpers/airlock_autoname/Initialize(mapload)
 	. = ..()
 	if(!mapload)
@@ -215,8 +221,7 @@
 		return
 	var/obj/machinery/door/door = locate(/obj/machinery/door) in loc
 	if(!door)
-		stack_trace("### MAP WARNING, [src] failed to find a nameable door at [AREACOORD(src)]")
-		return
+		CRASH("### MAP WARNING, [src] failed to find a nameable door at [AREACOORD(src)]")
 	door.name = get_area_name(door)
 
 /obj/effect/mapping_helpers/airlock/unres
@@ -340,6 +345,165 @@
 
 	qdel(src)
 
+/obj/effect/mapping_helpers/light
+	name = "generic placeholder for light map helpers, do not place in game"
+	layer = DOOR_HELPER_LAYER
+
+/obj/effect/mapping_helpers/light/broken
+	name = "light broken map helper"
+	icon_state = "light_flicker_broken"
+
+/obj/effect/mapping_helpers/light/broken/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
+	if(!light)
+		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
+	if(light.status == LIGHT_BROKEN || light.status == LIGHT_EMPTY)
+		log_mapping("[src] at [AREACOORD(src)] tried to make [light] broken, but it couldn't be done!")
+	else
+		light.broken()
+
+/obj/effect/mapping_helpers/light/turnedoff
+	name = "light area turnoff helper"
+	icon_state = "light_flicker_area_off"
+
+/obj/effect/mapping_helpers/light/turnedoff/Initialize(mapload)
+	. = ..()
+	var/area/area = get_area(src)
+
+	area.lightswitch = area.lightswitch ? FALSE : TRUE
+	area.update_icon()
+
+/obj/effect/mapping_helpers/light/flickering
+	name = "light flickering helper"
+	icon_state = "light_flicker"
+
+/obj/effect/mapping_helpers/light/flickering/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
+	if(!light)
+		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
+	if(light.flickering || light.status != LIGHT_OK)
+		log_mapping("[src] at [AREACOORD(src)] tried to make [light] flicker, but it couldn't be done!")
+	else
+		light.lightambient = new(null, FALSE)
+		light.flicker(TRUE)
+
+///enable random flickering on lights, to make this effect happen the light has be flickering in the first place
+/obj/effect/mapping_helpers/light/flickering/enable_random_flickering
+	name = "light enable random flicker timing helper"
+	icon_state = "light_flicker_random"
+
+/obj/effect/mapping_helpers/light/flickering/enable_random_flickering/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
+	if(!light)
+		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
+	if(light.random_flicker || light.status != LIGHT_OK)
+		log_mapping("[src] at [AREACOORD(src)] tried to make [light] randomly flicker, but it couldn't be done!")
+	else
+		light.random_flicker = TRUE
+
+/obj/effect/mapping_helpers/light/flickering/flicker_random_settings
+	name = "light random flicker settings helper"
+	icon_state = "light_flicker_random_settings"
+	var/flicker_time_upper_max = 10 SECONDS
+	var/flicker_time_lower_min = 0.2 SECONDS
+
+/obj/effect/mapping_helpers/light/flickering/flicker_random_settings/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
+	if(!light)
+		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
+	if(flicker_time_lower_min > flicker_time_upper_max)
+		CRASH("Invalid random flicker setting for light at [AREACOORD(src)]")
+	light.flicker_time_upper_max = flicker_time_upper_max
+	light.flicker_time_lower_min = flicker_time_lower_min
+
+/obj/effect/mapping_helpers/light/flickering/flicker_random_settings/lowset
+	flicker_time_upper_max = 3 SECONDS
+	flicker_time_lower_min = 0.4 SECONDS
+
+/obj/effect/mapping_helpers/light/flickering/flicker_random_settings/highset
+	flicker_time_upper_max = 6 SECONDS
+	flicker_time_lower_min = 3 SECONDS
+
+/obj/effect/mapping_helpers/light/power
+	name = "light power helper"
+	icon_state = "light_flicker_power"
+	var/lighting_power = 1
+
+/obj/effect/mapping_helpers/light/power/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
+	if(!light)
+		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
+	light.bulb_power = lighting_power
+	light.update()
+
+/obj/effect/mapping_helpers/light/power/dim
+	lighting_power = 0.5
+
+/obj/effect/mapping_helpers/light/power/bright
+	lighting_power = 2.0
+
+/obj/effect/mapping_helpers/light/color
+	name = "light color mapping helper"
+	icon_state = "light_flicker_color"
+	var/lighting_color = LIGHT_COLOR_WHITE
+
+/obj/effect/mapping_helpers/light/color/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
+	if(!light)
+		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
+	light.light_color = lighting_color
+	light.update()
+
+/obj/effect/mapping_helpers/light/color/red
+	light_color = LIGHT_COLOR_RED
+
+/obj/effect/mapping_helpers/light/color/blue
+	light_color = LIGHT_COLOR_ORANGE
+
+/obj/effect/mapping_helpers/light/bulb_colour
+	name = "light bulb color helper"
+	icon_state = "light_flicker_color_bulb"
+	var/bulb_colour = LIGHT_COLOR_WHITE
+
+/obj/effect/mapping_helpers/light/bulb_colour/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
+	if(!light)
+		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
+	light.bulb_colour = bulb_colour
+	light.update()
+
+/obj/effect/mapping_helpers/light/bulb_colour/red
+	bulb_colour = LIGHT_COLOR_RED
+
+/obj/effect/mapping_helpers/light/bulb_colour/blue
+	bulb_colour = LIGHT_COLOR_BLUE
+
+/obj/effect/mapping_helpers/light/brightness
+	name = "light brightness mapping helper"
+	icon_state = "light_flicker_brightness"
+	var/brightness_intensity = 4
+
+/obj/effect/mapping_helpers/light/brightness/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
+	if(!light)
+		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
+	light.brightness = brightness_intensity
+	light.update()
+
+/obj/effect/mapping_helpers/light/brightness/dim
+	brightness_intensity = 3
+
+/obj/effect/mapping_helpers/light/brightness/bright
+	brightness_intensity = 6
+
 /// spawn the pipe
 /obj/effect/mapping_helpers/simple_pipes/proc/spawn_pipe(direction, type)
 	var/obj/machinery/atmospherics/pipe/pipe = new type(get_turf(src), TRUE, text2dir(direction))
@@ -348,12 +512,30 @@
 	pipe.update_layer()
 	pipe.paint(pipe_color)
 
-//	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
-//	if(airlock)
-//		airlock.unres_sides ^= dir
-//	else
-//		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+/obj/effect/mapping_helpers/airlock/unres
+	name = "airlock unrestricted side helper"
+	icon_state = "airlock_unres_helper"
 
+/obj/effect/mapping_helpers/airlock/unres/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+	if(!airlock)
+		CRASH("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+	airlock.unres_sides ^= dir
+
+/obj/effect/mapping_helpers/airlock/cyclelink_helper
+	name = "airlock cyclelink helper"
+	icon_state = "airlock_cyclelink_helper"
+
+/obj/effect/mapping_helpers/airlock/cyclelink_helper/Initialize(mapload)
+	. = ..()
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+	if(!airlock)
+		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+	if(airlock.cyclelinkeddir)
+		log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried to set [airlock] cyclelinkeddir, but it's already set!")
+	else
+		airlock.cyclelinkeddir = dir
 
 //needs to do its thing before spawn_rivers() is called
 /*

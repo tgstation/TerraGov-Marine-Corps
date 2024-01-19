@@ -202,3 +202,12 @@
   - imageadd: porting health analyzer from Paradise
   the TGMC community:
   - spellcheck: 2024 tips update
+2024-01-19:
+  Lumipharon:
+  - bugfix: fixed defaults in campaign loadouts
+  - qol: Campaign loadout UI defaults to the job tab for your current job
+  RipGrayson:
+  - rscadd: Added more map helpers.
+  - imageadd: Added icons for the new map helpers.
+  novaepee:
+  - bugfix: east facing mob sprite for sg-62

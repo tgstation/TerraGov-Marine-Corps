@@ -1,0 +1,6 @@
+author: "SomrNetwork"
+delete-after: True
+changes:
+  - rscadd: "Crasher body armor in marine_armor.dmi"
+  - rscadd: "New swat mask for SpecOps"
+  - rscadd: "SpecOps Medic\n/ 🆑"
