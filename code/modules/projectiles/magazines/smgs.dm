@@ -55,6 +55,23 @@
 	icon_state_mini = "mag_t90"
 
 //-------------------------------------------------------
+//SMG-45 SMG ammo
+
+/obj/item/ammo_magazine/smg/standard_heavysmg
+	name = "\improper SMG-45 magazine (.45 ACP)"
+	desc = "A .45 ACP caseless submachinegun magazine."
+	default_ammo = /datum/ammo/bullet/smg/heavy
+	caliber = CALIBER_45ACP
+	icon_state = "t45"
+	max_rounds = 40
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/ammo_magazine/smg/standard_heavysmg/hollowpoint
+	name = "\improper SMG-45 hollowpoint magazine (.45 ACP)"
+	default_ammo = /datum/ammo/bullet/smg/hollow
+	icon_state = "t45_hp"
+
+//-------------------------------------------------------
 //SMG-27, based on the SMG-27, based on the M7.
 
 /obj/item/ammo_magazine/smg/mp7
