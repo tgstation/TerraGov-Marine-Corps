@@ -5044,7 +5044,6 @@
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "eGq" = (
 /obj/effect/ai_node,
-/obj/machinery/floodlight/landing,
 /obj/structure/ladder{
 	id = "NTFCargoLadder";
 	height = 1

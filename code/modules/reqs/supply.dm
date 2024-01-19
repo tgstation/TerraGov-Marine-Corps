@@ -418,21 +418,21 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		.["shopping_list"][SP.type] = list("count" = SSpoints.shopping_cart[SP.type])
 	if(supply_shuttle)
 		if(supply_shuttle?.mode == SHUTTLE_CALL)
-			if(is_mainship_level(supply_shuttle.destination.z))
+			if(is_mainship_level(supply_shuttle.destination.z) || is_antagmainship_level(supply_shuttle.destination.z))
 				.["elevator"] = "Raising"
 				.["elevator_dir"] = "up"
 			else
 				.["elevator"] = "Lowering"
 				.["elevator_dir"] = "down"
 		else if(supply_shuttle?.mode == SHUTTLE_IDLE)
-			if(is_mainship_level(supply_shuttle.z))
+			if(is_mainship_level(supply_shuttle.z) || is_antagmainship_level(supply_shuttle.z))
 				.["elevator"] = "Raised"
 				.["elevator_dir"] = "down"
 			else
 				.["elevator"] = "Lowered"
 				.["elevator_dir"] = "up"
 		else
-			if(is_mainship_level(supply_shuttle.z))
+			if(is_mainship_level(supply_shuttle.z) || is_antagmainship_level(supply_shuttle.z))
 				.["elevator"] = "Lowering"
 				.["elevator_dir"] = "down"
 			else
@@ -483,7 +483,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		if("send")
 			if(supply_shuttle.mode != SHUTTLE_IDLE)
 				return
-			if(is_mainship_level(supply_shuttle.z))
+			if(is_mainship_level(supply_shuttle.z) || is_antagmainship_level(supply_shuttle.z))
 				if (!supply_shuttle.check_blacklist())
 					to_chat(usr, "For safety reasons, the Automated Storage and Retrieval System cannot store live, friendlies, classified nuclear weaponry or homing beacons.")
 					playsound(supply_shuttle.return_center_turf(), 'sound/machines/buzz-two.ogg', 50, 0)
@@ -666,3 +666,37 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /obj/item/storage/backpack/marine/radiopack/proc/clean_beacon_datum()
 	SIGNAL_HANDLER
 	beacon_datum = null
+
+/obj/machinery/computer/supplycomp/som
+	shuttle_id = "supplysom"
+	faction = FACTION_SOM
+	home_id = "supply_som"
+	req_access = list(213)
+
+/obj/machinery/computer/supplycomp/clf
+	shuttle_id = "supplyclf"
+	faction = FACTION_CLF
+	home_id = "supply_clf"
+	req_access = null
+
+/obj/docking_port/mobile/supply/som
+	dir = 1
+	height = 1
+	home_id = "supply_som"
+	id = "supplysom"
+	name = "som supply shuttle"
+	dheight = 0
+	dwidth = 0
+	width = 3
+	faction = FACTION_SOM
+
+/obj/docking_port/mobile/supply/clf
+	dir = 1
+	height = 1
+	home_id = "supply_clf"
+	id = "supplyclf"
+	name = "clf supply shuttle"
+	dheight = 0
+	dwidth = 0
+	width = 3
+	faction = FACTION_CLF

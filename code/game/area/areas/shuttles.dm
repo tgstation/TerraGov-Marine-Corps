@@ -109,6 +109,12 @@
 
 /area/shuttle/supply
 	name = "Supply Shuttle"
+
+/area/shuttle/supply/som
+	name = "SOM Supply Shuttle"
+
+/area/shuttle/supply/clf
+	name = "CLF Supply Shuttle"
 //	blob_allowed = FALSE
 /*
 /area/shuttle/escape

@@ -1851,15 +1851,10 @@
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "pA" = (
-/obj/machinery/computer/supplycomp{
-	req_access = null;
-	home_id = "supply_clf";
-	faction = "Sons of Mars";
-	shuttle_id = "supplyclf"
-	},
 /obj/structure/prop/mainship/railing{
 	dir = 4
 	},
+/obj/machinery/computer/supplycomp/clf,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/squads/req)
 "pE" = (
@@ -2626,15 +2621,10 @@
 /turf/open/floor/grayscale/edge,
 /area/mainship/groundhq/clf/hallways/bathroom)
 "wg" = (
-/obj/machinery/computer/supplycomp{
-	req_access = list(213);
-	home_id = "supply_som";
-	faction = "Sons of Mars";
-	shuttle_id = "supplysom"
-	},
 /obj/structure/prop/mainship/railing{
 	dir = 4
 	},
+/obj/machinery/computer/supplycomp/som,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
