@@ -46,6 +46,9 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"aU" = (
+/turf/closed/wall/brick,
+/area/mainship/groundhq/clf/squads/req)
 "aV" = (
 /turf/closed/mineral/smooth,
 /area/deltastation/hallway/primary/tram{
@@ -1135,7 +1138,7 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/asteroid/box,
 /obj/machinery/floodlight/landing,
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
@@ -1232,6 +1235,13 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"lt" = (
+/obj/structure/rack,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/tool/weldpack,
+/turf/open/floor/mainship/cargo,
+/area/mainship/groundhq/clf/squads/req)
 "lu" = (
 /turf/open/floor/grayscale/edge,
 /area/mainship/groundhq/clf/hallways/bathroom)
@@ -1269,7 +1279,7 @@
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "lG" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/hyper,
+/obj/machinery/power/apc,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
@@ -1516,6 +1526,17 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"nb" = (
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/tool/extinguisher,
+/obj/item/tool/extinguisher/mini,
+/obj/structure/rack,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/lightreplacer,
+/turf/open/floor/mainship/cargo,
+/area/mainship/groundhq/clf/squads/req)
 "ng" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
@@ -1829,6 +1850,18 @@
 	dir = 8
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"pA" = (
+/obj/machinery/computer/supplycomp{
+	req_access = null;
+	home_id = "supply_clf";
+	faction = "Sons of Mars";
+	shuttle_id = "supplyclf"
+	},
+/obj/structure/prop/mainship/railing{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/mainship/groundhq/clf/squads/req)
 "pE" = (
 /obj/alien/weeds/node/resting,
 /obj/structure/table/woodentable,
@@ -2160,7 +2193,7 @@
 /obj/item/clothing/head/welding,
 /obj/item/clothing/head/welding,
 /obj/item/clothing/head/welding,
-/obj/machinery/power/apc/hyper,
+/obj/machinery/power/apc,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 8
 	},
@@ -2822,14 +2855,11 @@
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "xP" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
 	dir = 8
 	},
 /turf/closed/wall/brick,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/mainship/groundhq/clf/squads/req)
 "xR" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside/regular{
@@ -2919,6 +2949,15 @@
 	dir = 1
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"yY" = (
+/obj/item/fulton_extraction_pack,
+/obj/item/fulton_extraction_pack,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/turf/open/floor/plating/asteroidfloor,
+/area/mainship/groundhq/clf/squads/req)
 "ze" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/coffee{
@@ -3434,7 +3473,7 @@
 	dir = 8
 	},
 /turf/closed/wall/brick,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/mainship/groundhq/clf/squads/req)
 "CT" = (
 /turf/closed/wall/mainship/gray,
 /area/canora_desert/surface/building/som_admiral{
@@ -3823,9 +3862,12 @@
 "Gw" = (
 /obj/structure/curtain/shower,
 /obj/structure/cable,
-/obj/machinery/power/apc/hyper,
+/obj/machinery/power/apc,
 /turf/open/floor/grayscale/edge,
 /area/mainship/groundhq/clf/hallways/bathroom)
+"Gy" = (
+/turf/open/floor/plating/asteroidfloor,
+/area/mainship/groundhq/clf/squads/req)
 "Gz" = (
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
 	dir = 4
@@ -4119,6 +4161,13 @@
 	name = "SOM Admiral Quarters";
 	outside = 0
 	})
+"IQ" = (
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidwarning/down,
+/area/mainship/groundhq/clf/squads/req)
 "IS" = (
 /obj/machinery/camera/autoname/mainship/somship{
 	dir = 10
@@ -4450,7 +4499,7 @@
 "LC" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/dark_blue,
-/obj/machinery/power/apc/hyper,
+/obj/machinery/power/apc,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -4898,11 +4947,9 @@
 	name = "SOM Preparation"
 	})
 "Ow" = (
-/obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
-	dir = 8
-	},
-/turf/closed/wall/brick,
-/area/mainship/groundhq/clf/medical/lounge)
+/obj/structure/cable,
+/turf/open/floor/plating/asteroidfloor,
+/area/mainship/groundhq/clf/squads/req)
 "Ox" = (
 /obj/machinery/telecomms/receiver/preset_right/som,
 /turf/open/floor/bcircuit/anim,
@@ -5270,6 +5317,29 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"RG" = (
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/tool/extinguisher,
+/obj/item/tool/extinguisher/mini,
+/obj/structure/rack,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/lightreplacer,
+/obj/item/storage/box/monkeycubes,
+/obj/item/storage/box/monkeycubes,
+/obj/item/xeno_iff_tag/clf,
+/obj/item/xeno_iff_tag/clf,
+/obj/item/xeno_iff_tag/clf,
+/obj/item/xeno_iff_tag/clf,
+/obj/item/xeno_iff_tag/clf,
+/obj/item/xeno_iff_tag/clf,
+/obj/item/xeno_iff_tag/clf,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/groundhq/clf/squads/req)
 "RH" = (
 /obj/structure/barricade/plasteel,
 /obj/machinery/door/poddoor/mainship/open{
@@ -5449,7 +5519,7 @@
 	})
 "SG" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
@@ -5597,12 +5667,8 @@
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "TE" = (
-/obj/structure/bed/roller,
-/obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/turf/open/floor/mainship/empty,
+/area/mainship/groundhq/clf/squads/req)
 "TF" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -5965,6 +6031,15 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"Wy" = (
+/obj/structure/cable,
+/obj/structure/sign/safety/storage,
+/turf/open/floor/plating/asteroidfloor,
+/area/mainship/groundhq/clf/squads/req)
+"WG" = (
+/obj/docking_port/stationary/supplyclf,
+/turf/open/floor/mainship/empty,
+/area/mainship/groundhq/clf/squads/req)
 "WH" = (
 /obj/machinery/camera/autoname/mainship/somship{
 	dir = 6
@@ -5977,6 +6052,9 @@
 /area/mainship/groundhq/som/medical/lounge{
 	name = "SOM Medbay"
 	})
+"WJ" = (
+/turf/open/floor/plating/asteroidwarning/down,
+/area/mainship/groundhq/clf/squads/req)
 "WK" = (
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
@@ -5986,9 +6064,6 @@
 /obj/item/flashlight,
 /obj/item/flashlight,
 /obj/item/lightreplacer,
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
-	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
@@ -6145,6 +6220,16 @@
 	outside = 0;
 	name = "SOM Torture Chamber"
 	})
+"Yg" = (
+/obj/structure/rack,
+/obj/item/storage/firstaid/fire{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/adv,
+/turf/open/floor/mainship/cargo,
+/area/mainship/groundhq/clf/squads/req)
 "Yh" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -6169,7 +6254,7 @@
 /obj/effect/turf_decal/tile/transparent/dark_green/anticorner/contrasted{
 	dir = 1
 	},
-/obj/machinery/power/apc/hyper,
+/obj/machinery/power/apc,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/medical/lounge)
 "Yn" = (
@@ -6341,6 +6426,16 @@
 /area/mainship/squads/general/som{
 	name = "SOM Preparation"
 	})
+"ZU" = (
+/obj/vehicle/ridden/motorbike{
+	dir = 4
+	},
+/obj/item/reagent_containers/jerrycan,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/mainship/groundhq/clf/squads/req)
 "ZW" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/wood{
@@ -6350,6 +6445,13 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"ZX" = (
+/obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/asteroidfloor,
+/area/mainship/groundhq/clf/medical/lounge)
 "ZY" = (
 /obj/machinery/camera/autoname/mainship/somship{
 	dir = 4
@@ -8164,11 +8266,11 @@ BT
 mr
 VD
 JC
-aF
-aF
-aF
-tT
-tT
+aU
+aU
+aU
+aU
+aU
 tT
 aF
 aF
@@ -8195,11 +8297,11 @@ od
 OR
 kl
 JC
-aF
-aF
-aF
-tT
-tT
+lt
+ZU
+yY
+pA
+aU
 tT
 aF
 aF
@@ -8226,11 +8328,11 @@ wf
 UT
 kl
 JC
-aF
-aF
-aF
-aF
-tT
+Yg
+Gy
+WJ
+TE
+aU
 tT
 aF
 aF
@@ -8257,11 +8359,11 @@ VG
 By
 SY
 JC
-aF
-aF
-aF
-aF
-aF
+nb
+Gy
+WJ
+WG
+aU
 aF
 aF
 aF
@@ -8288,11 +8390,11 @@ JC
 Gw
 DP
 JC
-tT
-tT
-tT
-tT
-aF
+RG
+Ow
+IQ
+TE
+aU
 aF
 aF
 aF
@@ -8319,11 +8421,11 @@ JC
 lu
 Vu
 JC
-LF
-Ow
+aU
+Wy
 xP
 CR
-LF
+aU
 aF
 aF
 aF
@@ -8351,8 +8453,8 @@ lE
 Un
 Ur
 Ym
+ZX
 Og
-TE
 sh
 LF
 aF

@@ -66,6 +66,7 @@ map deltastation
 endmap
 
 map fort_phobos
+	minplayers 600
 endmap
 
 map desparity
@@ -81,5 +82,5 @@ map slumbridge
 endmap
 
 map daedalusprison
-				minplayers 1
+	minplayers 1
 endmap

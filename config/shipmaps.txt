@@ -17,7 +17,7 @@ disabled
 endmap
 
 map theseus
-disabled
+	minplayers 600
 endmap
 
 map ntc_nine_tailed_fox
@@ -30,21 +30,21 @@ map eagle
 endmap
 
 map pillar_of_spring
-disabled
+	minplayers 600
 endmap
 
 map sulaco
-disabled
+	minplayers 600
 endmap
 
 map arachne
-disabled
+	minplayers 600
 endmap
 
 map combat_patrol_base
-disabled
+	minplayers 600
 endmap
 
 map iteron
-disabled
+	minplayers 600
 endmap

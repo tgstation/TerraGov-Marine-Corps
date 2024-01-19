@@ -200,6 +200,10 @@
 	shuttle_id = "supplyhq"
 	name = "HQ Supply Shuttle"
 
+/datum/map_template/shuttle/supplyclf
+	shuttle_id = "supplyclf"
+	name = "Clf Supply Shuttle"
+
 /datum/map_template/shuttle/supplysom
 	shuttle_id = "supplysom"
 	name = "Som Supply Shuttle"
