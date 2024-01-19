@@ -1268,7 +1268,7 @@
 	caliber = CALIBER_10x26_CASELESS //codex
 	max_shells = 300 //codex
 	force = 30
-	aim_slowdown = 0.95
+	aim_slowdown = 0.85
 	wield_delay = 1.3 SECONDS
 	fire_sound = "gun_smartgun"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
