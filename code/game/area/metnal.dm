@@ -34,13 +34,6 @@
 	minimap_color = MINIMAP_AREA_ENGI_CAVE
 	always_unpowered = FALSE
 
-/area/metnal/caves/research
-	name = "Biohazard Research Facility"
-	icon_state = "research"
-	ceiling = CEILING_DEEP_UNDERGROUND_METAL
-	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
-	always_unpowered = FALSE
-
 /area/metnal/caves/northeast
 	name = "Northeastern Caves"
 	icon_state = "northeast2"
@@ -148,6 +141,19 @@
 	icon_state = "LP"
 	minimap_color = MINIMAP_AREA_LIVING
 
+
+// research areas
+/area/metnal/inside/research
+	name = "Research Center"
+	icon_state = "research"
+	minimap_color = MINIMAP_AREA_RESEARCH
+
+/area/metnal/inside/research
+	name = "Research Labs"
+	icon_state = "research"
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+
 // engineering areas
 /area/metnal/inside/engineering
 	name = "Engineering"
@@ -172,12 +178,6 @@
 	icon_state = "primarystorage"
 	minimap_color = MINIMAP_AREA_REQ
 
-/area/metnal/inside/colonyauxstorage
-	name = "Colony Auxillary Storage"
-	icon_state = "storage"
-	always_unpowered = TRUE
-	minimap_color = MINIMAP_AREA_REQ
-
 /area/metnal/inside/mining
 	name = "Mineral Processing"
 	icon_state = "mining"
@@ -189,19 +189,6 @@
 	icon_state = "storage"
 	minimap_color = MINIMAP_AREA_REQ
 
-/area/metnal/inside/centralhalls
-	name = "Central Halls"
-	icon_state = "hallC1"
-
-/area/metnal/inside/staffbreakroom
-	name = "Staff Breakroom"
-	icon_state = "Holodeck"
-	minimap_color = MINIMAP_AREA_LIVING
-
-/area/metnal/inside/janitorial
-	name = "Janitorial Room"
-	icon_state = "janitor"
-	minimap_color = MINIMAP_AREA_RESEARCH
 
 // cafeteria areas
 /area/metnal/inside/bar
@@ -216,25 +203,17 @@
 
 
 // other civilian areas
-/area/metnal/inside/sportstorage
-	name = "Sports Storage"
-	icon_state = "auxstorage"
-	minimap_color = MINIMAP_AREA_REQ
-
-/area/metnal/inside/basketball
-	name = "Basketball Court"
-	icon_state = "anog"
-	minimap_color = MINIMAP_AREA_ESCAPE
-
-/area/metnal/inside/gym
-	name = "Gym"
-	icon_state = "bluenew"
-	minimap_color = MINIMAP_AREA_ESCAPE
 
 /area/metnal/inside/chapel
 	name = "Chapel"
 	icon_state = "chapel"
 	minimap_color = MINIMAP_AREA_LIVING
+
+/area/metnal/inside/recreation
+	name = "The Intersection"
+	icon_state = "showroom"
+	minimap_color = MINIMAP_AREA_LIVING
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 // command areas
 /area/metnal/inside/northmeetingroom
@@ -247,32 +226,6 @@
 	name = "Security"
 	icon_state = "brig"
 	minimap_color = MINIMAP_AREA_SEC
-
-/area/metnal/inside/execution
-	name = "Maximum Security Rooms"
-	icon_state = "sec_backroom"
-	minimap_color = MINIMAP_AREA_SEC
-
-/area/metnal/inside/security/warden
-	name = "Warden Office"
-
-/area/metnal/inside/security/office
-	name = "Security Office"
-
-/area/metnal/inside/security/lobby
-	name = "Security Lobby"
-	icon_state = "red"
-	minimap_color = MINIMAP_AREA_SEC
-
-/area/metnal/inside/centralbooth
-	name = "Central Security Room"
-	icon_state = "brig"
-	minimap_color = MINIMAP_AREA_SEC
-
-/area/metnal/inside/recreation
-	name = "Prison Recreation"
-	icon_state = "showroom"
-	minimap_color = MINIMAP_AREA_LIVING
 
 // medbay areas
 /area/metnal/inside/meddesk

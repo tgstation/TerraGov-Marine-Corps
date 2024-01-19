@@ -561,7 +561,7 @@
 	dropmetal = FALSE
 
 /obj/structure/rack/lectern
-	icon = 'icons/obj/machines/metnal_objects.dmi'
+	icon = 'icons/obj/metnal_objects.dmi'
 	icon_state = "lectern"
 	dropmetal = FALSE
 	hit_sound = 'sound/effects/woodhit.ogg'
