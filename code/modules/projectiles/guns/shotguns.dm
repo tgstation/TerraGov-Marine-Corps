@@ -172,6 +172,7 @@
 	recoil = 2
 	recoil_unwielded = 4
 	aim_slowdown = 0.6
+	damage_mult = 0.7
 
 /obj/item/weapon/gun/shotgun/double/sawn
 	name = "sawn-off shotgun"
@@ -499,6 +500,7 @@
 	movement_acc_penalty_mult = 5
 
 	placed_overlay_iconstate = "wood"
+	damage_mult = 1
 
 //***********************************************************
 // Derringer
@@ -529,6 +531,7 @@
 	recoil_unwielded = 0
 	aim_slowdown = 0
 	wield_delay = 0.1 SECONDS
+	damage_mult = 1
 
 /obj/item/weapon/gun/shotgun/double/derringer/Initialize(mapload)
 	. = ..()
