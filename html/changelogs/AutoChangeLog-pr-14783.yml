@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - rscadd: "Added more map helpers."
-  - imageadd: "Added icons for the new map helpers."
