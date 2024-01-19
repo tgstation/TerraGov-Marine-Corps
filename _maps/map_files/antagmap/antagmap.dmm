@@ -2909,8 +2909,8 @@
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "yw" = (
-/obj/structure/droppod/nonmob,
 /obj/structure/drop_pod_launcher,
+/obj/structure/droppod,
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay";
