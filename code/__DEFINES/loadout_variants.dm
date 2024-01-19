@@ -28,10 +28,6 @@
 #define CAPE_KILT_ALT "cape_kilt_alt"
 #define SOM_BLACK "SOM_black"
 #define CAPE_HIGHLIGHT_NORMAL_ALT "normal_alt"
-#define BALLISTIC_VEST_URBAN "ballistic_vest_urban"
-#define BALLISTIC_VEST_DESERT "ballistic_vest_desert"
-#define BALLISTIC_VEST_JUNGLE "ballistic_vest_jungle"
-#define BALLISTIC_VEST_SNOW "ballistic_vest_snow"
 
 #define CAPE_HIGHLIGHT_NONE "cape_highlight_none"
 #define LEATHER_JACKET_WEBBING "leather_jacket_webbing"
@@ -44,6 +40,12 @@
 #define MARK_FIVE_WEBBING "mark_five_webbing"
 #define MARK_THREE_WEBBING "mark_three_webbing"
 #define MARK_ONE_WEBBING "mark_one_webbing"
+
+// Ballistic Vest Variants
+#define BALLISTIC_VEST_URBAN "ballistic_vest_urban"
+#define BALLISTIC_VEST_DESERT "ballistic_vest_desert"
+#define BALLISTIC_VEST_JUNGLE "ballistic_vest_jungle"
+#define BALLISTIC_VEST_SNOW "ballistic_vest_snow"
 
 // Each key AND value HAS to be unique.
 ///saved loadout key = icon_state, AGAIN DO NOT EDIT THE KEYS IT WILL BREAK LOADOUTS
