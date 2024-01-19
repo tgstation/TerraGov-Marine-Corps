@@ -789,7 +789,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/structure/bed/bedroll/sec
 	name = "deployed quik-clap bedroll"
-	desc = "For when you need to deliver surprise buttsex to criminals."
+	desc = "Corpsec Standard issue bedroll for when you need to deliver surprise buttsex to criminals."
 	icon_state = "bedroll_sec_o"
 	foldabletype = /obj/item/roller/bedroll/sec
 
