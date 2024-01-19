@@ -115,6 +115,8 @@
 		return
 	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
 		return
+	if(dir == NORTH)
+		return
 	. += emissive_appearance(icon, screen_overlay, alpha = src.alpha)
 	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
 
@@ -208,6 +210,7 @@
 
 	else
 		return attack_hand(user)
+	update_icon()
 
 
 /obj/machinery/computer/attack_hand(mob/living/user)

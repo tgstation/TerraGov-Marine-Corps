@@ -179,12 +179,12 @@ GLOBAL_LIST_INIT(commander_gear_listed_products, list(
 GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 	/obj/effect/vendor_bundle/smartgunner_pistol = list(CAT_ESS, "SP-13 smart pistol and KLTD Smart Goggles bundle", 0, "white"),
 	/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol = list(CAT_SGSUP, "SP-13 smart pistol ammo", 1, "black"),
-	/obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_SGSUP, "SG-29 Smart Machine Gun", 29, "orange"), //If a smartgunner buys a SG-29, then they will have 16 points to purchase 4 SG-29 drums
+	/obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_SGSUP, "SG-29 Smart Machine Gun", 21, "orange"), //If a smartgunner buys a SG-29, then they will have points to purchase 6 SG-29 drums
 	/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_SGSUP, "SG-29 Ammo Drum", 4, "black"),
 	/obj/item/weapon/gun/minigun/smart_minigun = list(CAT_SGSUP, "SG-85 Smart Handheld Gatling Gun", 27, "orange"), //If a smartgunner buys a SG-85, then they should be able to buy only 1 powerpack and 2 ammo bins
 	/obj/item/ammo_magazine/minigun_powerpack/smartgun = list(CAT_SGSUP, "SG-85 Powerpack", 10, "black"),
 	/obj/item/ammo_magazine/packet/smart_minigun = list(CAT_SGSUP, "SG-85 Ammo Bin", 4, "black"),
-	/obj/item/weapon/gun/rifle/standard_smarttargetrifle = list(CAT_SGSUP, "SG-62 Target Rifle", 15, "orange"), //If a SG buys a SG-62, they'll have 15 points left, should be enough to buy some mags and or extra SR ammo.
+	/obj/item/storage/box/crate/loot/targetrifle_pack_spec = list(CAT_SGSUP, "SG-62 Target Rifle (and fuckton of ammo)", 15, "orange"), //If a SG buys a SG-62, they'll have 15 points left, should be enough to buy some mags and or extra SR ammo.
 	/obj/item/ammo_magazine/rifle/standard_smarttargetrifle = list(CAT_SGSUP, "SG-62 Target Rifle Magazine", 1, "orange"),
 	/obj/item/ammo_magazine/packet/smart_targetrifle = list(CAT_SGSUP, "SG-62 Target Rifle Ammo Bin", 2, "black"),
 	/obj/item/ammo_magazine/rifle/standard_spottingrifle = list(CAT_SGSUP, "SG-153 Spotting Rifle Magazine", 1, "black"),
@@ -214,7 +214,7 @@ GLOBAL_LIST_INIT(specialist_gear_listed_products, list(
 	/obj/item/storage/box/crate/m42c_system_Jungle  = list(CAT_SPSUP, "Anti Material Rifle Pack (AMR + Mixed Ammo + Thermals)", 30, "black"),
 	/obj/item/storage/box/crate/loot/targetrifle_pack_spec = list(CAT_SPSUP, "SG-62 Target Rifle (SG-153 + Mixed Ammo) Pack", 15, "black"),
 	/obj/item/storage/box/crate/loot/infiltration_pack_spec = list(CAT_SPSUP, "Infiltrator Pack (Abduction gear + NVG + tranq pistol + scout cloak)", 25, "black"),
-	/obj/item/storage/box/crate/loot/smartpistol_spec = list(CAT_SPSUP, "Smartpistol Pack (Smartpistol + mags)", 10, "black"),
+	/obj/item/storage/box/crate/loot/smartpistol_spec = list(CAT_SPSUP, "Smartpistol Pack (Smartpistol + mags)", 5, "black"),
 	/obj/item/ammo_magazine/rifle/ap = list(CAT_SPSUP, "PR-412 Armor Piercing Magazine", 1, "black"),
 	/obj/item/ammo_magazine/rifle/incendiary = list(CAT_SPSUP, "PR-412 Incendiary Magazine", 1, "black"),
 	/obj/item/ammo_magazine/rifle/extended = list(CAT_SPSUP, "PR-412 Extended Magazine", 1, "black"),
@@ -235,21 +235,30 @@ GLOBAL_LIST_INIT(specialist_gear_listed_products, list(
 	/obj/item/ammo_magazine/sniper = list(CAT_SPSUP, "AMR Magazine", 1, "black"),
 	/obj/item/ammo_magazine/sniper/incendiary = list(CAT_SPSUP, "AMR Incendiary Magazine", 1, "black"),
 	/obj/item/ammo_magazine/sniper/flak = list(CAT_SPSUP, "AMR Flak Magazine", 1, "black"),
+	/obj/item/ammo_magazine/smg/m25/ap = list(CAT_SPSUP, "SMG-25 Armor penetrating magazine", 1, "black"),
+	/obj/item/ammo_magazine/smg/m25/extended = list(CAT_SPSUP, "SMG-25 Extended magazine", 1, "black"),
 	))
 
 
 GLOBAL_LIST_INIT(commanddoll_gear_listed_products, list(
 
-	/obj/effect/vendor_bundle/commanddoll = list(CAT_ESS, "Essential Command Doll Specialist Set", 0, "white"),
-	/obj/item/storage/box/crate/heavy_armor = list(CAT_CDSUP, "Heavy Armor Pack", 25, "orange"),
+	/obj/effect/vendor_bundle/commanddoll = list(CAT_ESS, "Essential Command Doll Set", 0, "white"),
+	/obj/item/armor_module/module/valkyrie_autodoc = list(CAT_CDSUP, "Valkyrie Autodoc Armor Module", 5, "black"),
+	/obj/item/armor_module/module/tyr_extra_armor = list(CAT_CDSUP, "Tyr2 Armor Module", 5, "black"),
+	/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet = list(CAT_CDSUP, "Mimir2 Helmet Module", 2, "black"),
+	/obj/item/armor_module/module/mimir_environment_protection = list(CAT_CDSUP, "Mimir2 Armor Module", 3, "black"),
+	/obj/item/armor_module/module/binoculars/artemis_mark_two = list(CAT_CDSUP, "Freyr2 Armor Module", 3, "black"),
+	/obj/item/armor_module/module/hod_head = list(CAT_CDSUP, "HOD Ballistic Helmet Module", 2, "black"),
+	/obj/item/armor_module/module/ballistic_armor = list(CAT_CDSUP, "HOD Ballistic Armor Module", 3, "black"),
 	/obj/item/storage/backpack/marine/satchel/scout_cloak/scout = list(CAT_CDSUP, "Scout Cloak", 15, "black"),
 	/obj/item/clothing/glasses/thermal/m64_thermal_goggles = list(CAT_CDSUP, "M64 Thermal Goggles", 15, "black"),
 	/obj/item/clothing/glasses/night/m56_goggles = list(CAT_CDSUP, "M64 Night Vision Goggles", 15, "orange"),
 	/obj/item/storage/box/crate/loot/operator_pack = list(CAT_CDSUP, "Operator Pack (PR-412E + AP-Mags + Scout Sight)", 30, "orange"),
+	/obj/item/storage/box/crate/loot/m25e_pack = list(CAT_CDSUP, "CQC Pack (SMG-25BE + AP-Mags + Thermal Sight)", 20, "orange"),
 	/obj/item/storage/box/crate/loot/scoutrifle_pack_spec = list(CAT_CDSUP, "Scout Rifle Pack (BR-8 + Mixed Mags + Packet +  Scout Sight)", 25, "orange"),
 	/obj/item/storage/box/crate/loot/targetrifle_pack_spec = list(CAT_CDSUP, "SG-62 Target Rifle (SG-153 + Mixed Ammo) Pack", 15, "black"),
 	/obj/item/storage/box/crate/loot/infiltration_pack_spec = list(CAT_CDSUP, "Nonlethal Pack (Abduction gear + NVG + tranq pistol + scout cloak)", 25, "black"),
-	/obj/item/storage/box/crate/loot/smartpistol_spec = list(CAT_CDSUP, "Smartpistol Pack (Smartpistol + mags)", 10, "black"),
+	/obj/item/storage/box/crate/loot/smartpistol_spec = list(CAT_CDSUP, "Smartpistol Pack (Smartpistol + mags)", 5, "black"),
 	/obj/item/ammo_magazine/rifle/ap = list(CAT_CDSUP, "PR-412 Armor Piercing Magazine", 1, "black"),
 	/obj/item/ammo_magazine/rifle/standard_smarttargetrifle = list(CAT_CDSUP, "SG-62 Target Rifle Magazine", 1, "black"),
 	/obj/item/ammo_magazine/rifle/standard_spottingrifle = list(CAT_CDSUP, "SG-153 Spotting Rifle Magazine", 1, "black"),
@@ -263,6 +272,8 @@ GLOBAL_LIST_INIT(commanddoll_gear_listed_products, list(
 	/obj/item/ammo_magazine/rifle/tx8/impact = list(CAT_CDSUP, "BR-8 High Velocity Impact Magazine", 1, "black"),
 	/obj/item/ammo_magazine/rifle/tx8/incendiary = list(CAT_CDSUP, "BR-8 High Velocity Incendiary Magazine", 1, "black"),
 	/obj/item/ammo_magazine/packet/scout_rifle = list(CAT_CDSUP, "Box of A19 high velocity bullets", 2, "black"),
+	/obj/item/ammo_magazine/smg/m25/ap = list(CAT_CDSUP, "SMG-25 Armor penetrating magazine", 1, "black"),
+	/obj/item/ammo_magazine/smg/m25/extended = list(CAT_CDSUP, "SMG-25 Extended magazine", 1, "black"),
 	))
 
 ///Assoc list linking the job title with their specific points vendor

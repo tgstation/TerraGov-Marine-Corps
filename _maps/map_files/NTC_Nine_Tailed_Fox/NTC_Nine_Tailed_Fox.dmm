@@ -4747,6 +4747,10 @@
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
 	})
+"enM" = (
+/obj/machinery/marine_selector/gear/commanddoll,
+/turf/open/floor/mainship/mono,
+/area/mainship/command/cic)
 "eoc" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
@@ -8501,7 +8505,7 @@
 	name = "Research"
 	})
 "hPa" = (
-/obj/machinery/vending/uniform_supply,
+/obj/machinery/vending/weapon,
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
 "hPr" = (
@@ -12168,7 +12172,7 @@
 /area/mainship/squads/general)
 "kXU" = (
 /obj/machinery/computer/camera_advanced{
-	dir = 8
+	dir = 1
 	},
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/mono,
@@ -23494,10 +23498,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "vBn" = (
-/obj/structure/closet/secure_closet/staff_officer,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/structure/closet/secure_closet/staff_officer,
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
 "vBJ" = (
@@ -24491,6 +24495,7 @@
 "wEj" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
+/obj/structure/closet/secure_closet/staff_officer,
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
 "wEL" = (
@@ -36514,7 +36519,7 @@ nhs
 vlw
 dqF
 fZP
-dqF
+enM
 pTu
 hnC
 tSd
@@ -36629,7 +36634,7 @@ nwr
 nwr
 nwr
 gsf
-soj
+hPa
 wqm
 pRW
 wNO
@@ -38568,8 +38573,8 @@ gsf
 tej
 jba
 uTe
-uTe
 nkx
+uTe
 vFS
 cMb
 tmd
