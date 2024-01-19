@@ -1287,6 +1287,7 @@
 		/datum/reagent/medicine/bicaridine,
 		/datum/reagent/medicine/kelotane,
 		/datum/reagent/medicine/tramadol,
+		/datum/reagent/medicine/oxycodone,
 		/datum/reagent/medicine/tricordrazine,
 		/datum/reagent/medicine/meralyne,
 		/datum/reagent/medicine/dermaline,
