@@ -77,6 +77,7 @@
 			/obj/item/explosive/grenade/smokebomb/drain = 10,
 			/obj/item/explosive/grenade/mirage = 20,
 			/obj/item/explosive/grenade/smokebomb/satrapine = 20,
+			/obj/item/explosive/grenade/flashbang/stun = 10,
 			/obj/item/storage/box/m94 = 200,
 			/obj/item/storage/box/m94/cas = 30,
 		),

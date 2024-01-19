@@ -130,6 +130,7 @@
 			/obj/item/explosive/grenade/smokebomb/acid = 15,
 			/obj/item/explosive/grenade/smokebomb/satrapine = 10,
 			/obj/item/explosive/grenade/smokebomb/aphrotoxin = 15,
+			/obj/item/explosive/grenade/flashbang/stun = 30,
 			/obj/item/explosive/grenade/smokebomb/sleep = 5,
 			/obj/item/storage/box/m94 = 200,
 			/obj/item/storage/box/m94/cas = 30,

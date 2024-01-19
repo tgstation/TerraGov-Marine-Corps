@@ -261,6 +261,7 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	total_positions = 0
 	skills_type = /datum/skills/mech_pilot
 	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MECHBAY,ACCESS_SOM_ENGINEERING,ALL_ANTAGONIST_ACCESS)
+	minimal_access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MECHBAY,ACCESS_SOM_ENGINEERING,ALL_ANTAGONIST_ACCESS)
 	display_order = JOB_DISPLAY_ORDER_MECH_PILOT
 	outfit = /datum/outfit/job/som/command/mech_pilot
 	exp_requirements = XP_REQ_EXPERT
