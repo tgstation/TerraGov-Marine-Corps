@@ -150,7 +150,7 @@
 		return fail_activate()
 	owner.visible_message(span_warning("[X] [sexverb]s [A]"), span_warning("We destroy [A]'s poor [victimhole]!"), span_warning("You hear harsh slapping."), 5, A)
 	A.apply_damage(5, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //Too many larvae!
-	A.reagents.remove_reagent(/datum/reagent/toxin/xeno_aphrotoxin, 15) // Remove aphrotoxin cause orgasm or otherwise genital action.
+	A.reagents.remove_reagent(/datum/reagent/toxin/xeno_aphrotoxin, 20) // Remove aphrotoxin cause orgasm or otherwise genital action.
 	new /obj/effect/decal/cleanable/blood/splatter/xenocum(owner.loc)
 	if(A.stat == CONSCIOUS)
 		to_chat(A, span_warning("[X] thoroughly [sexverb]s you!"))

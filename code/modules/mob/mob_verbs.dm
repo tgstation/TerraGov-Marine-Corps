@@ -74,7 +74,7 @@
 		if(isxeno(usr))
 			new /obj/effect/decal/cleanable/blood/splatter/xenocum(usr.loc)
 		playsound(usr.loc, "sound/effects/splat.ogg", 30)
-		usr.reagents.remove_reagent(/datum/reagent/toxin/xeno_aphrotoxin, 3) // Remove aphrotoxin cause orgasm. Less than when you resist because takes shorter.
+		usr.reagents.remove_reagent(/datum/reagent/toxin/xeno_aphrotoxin, 4) // Remove aphrotoxin cause orgasm. Less than when you resist because takes shorter.
 	else
 		to_chat(usr, span_warning("You must be living to do that."))
 		return

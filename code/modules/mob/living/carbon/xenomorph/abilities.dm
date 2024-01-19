@@ -1478,7 +1478,7 @@
 		owner.visible_message(span_warning("[X] fucks [victim]!"), span_warning("We fuck [victim]!"), span_warning("You hear slapping."), 5, victim)
 		if(victim.stat == CONSCIOUS)
 			to_chat(victim, span_warning("[X] fucks you!"))
-		victim.reagents.remove_reagent(/datum/reagent/toxin/xeno_aphrotoxin, 12) // Remove aphrotoxin cause orgasm.
+		victim.reagents.remove_reagent(/datum/reagent/toxin/xeno_aphrotoxin, 20) // Remove aphrotoxin cause orgasm.
 		new /obj/effect/decal/cleanable/blood/splatter/xenocum(owner.loc)
 		var/impregdamagetodeal = (X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier) / 2
 		victim.apply_damage(15, BURN, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)

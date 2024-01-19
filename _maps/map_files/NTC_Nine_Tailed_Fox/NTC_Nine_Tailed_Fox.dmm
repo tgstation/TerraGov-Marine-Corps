@@ -153,6 +153,10 @@
 	name = "\improper Corpsec Office";
 	req_access = list(5)
 	},
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	id = "prison_lockdown";
+	name = "prison lockdown"
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "ahJ" = (
@@ -1665,9 +1669,7 @@
 	name = "wy2";
 	id = "wyoffice2"
 	},
-/obj/structure/window/framed/mainship/toughened{
-	name = "kevlar-weave infused bulletproof window"
-	},
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -7828,6 +7830,12 @@
 	dir = 4;
 	pixel_x = 5
 	},
+/obj/machinery/door_control/old/cic/armory{
+	id = "prison_lockdown";
+	pixel_x = -8;
+	name = "Prison Lockdown";
+	pixel_y = 8
+	},
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "hbQ" = (
@@ -13189,14 +13197,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "lOq" = (
-/obj/structure/window/framed/mainship/toughened{
-	name = "kevlar-weave infused bulletproof window"
-	},
 /obj/machinery/door/poddoor/shutters/opened/wy{
 	name = "wy2";
 	id = "wyoffice2";
 	dir = 2
 	},
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -16853,6 +16859,7 @@
 /obj/item/cell/lasgun/lasrifle,
 /obj/item/weapon/gun/energy/taser,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/recharger,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "plq" = (
@@ -21590,13 +21597,11 @@
 /turf/closed/wall/mainship,
 /area/mainship/groundhq/ntf/hallways/bathroom)
 "tNh" = (
-/obj/structure/window/framed/mainship/toughened{
-	name = "kevlar-weave infused bulletproof window"
-	},
 /obj/machinery/door/poddoor/shutters/opened/wy{
 	name = "wy2";
-	id = "wyoffice2"
+	id = "wyoffice3"
 	},
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -62994,7 +62999,7 @@ bRl
 dej
 mmj
 bRl
-bRl
+mmj
 mmj
 ybU
 ybU
@@ -65149,8 +65154,8 @@ gHp
 qZo
 qnG
 qnG
-tNh
-tNh
+bwS
+bwS
 bwS
 qnG
 qnG
@@ -67811,9 +67816,9 @@ aMa
 shj
 qnG
 qnG
-cWh
-cWh
-cWh
+tNh
+tNh
+tNh
 qnG
 qnG
 qnG

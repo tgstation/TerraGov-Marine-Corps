@@ -436,6 +436,7 @@
 		/obj/item/tool/taperoll/police,
 		/obj/item/ammo_magazine/rifle/pepperball,
 		/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini,
+		/obj/item/weapon/stunprod,
 	)
 
 	cant_hold = list(

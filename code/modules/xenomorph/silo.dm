@@ -91,7 +91,7 @@
 			. += span_info("It appears in good shape, pulsating healthily.")
 
 //*******************
-//Corpse recyclinging
+//Corpse recyclinging and larva force burrow
 //*******************
 /obj/structure/xeno/silo/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -103,32 +103,52 @@
 	if(!iscarbon(G.grabbed_thing))
 		return
 	var/mob/living/carbon/victim = G.grabbed_thing
-	if(!ishuman(victim)) //humans and monkeys only for now
-		to_chat(user, "<span class='notice'>[src] can only process humanoid anatomies!</span>")
+	if(!ishuman(victim) && !isxenolarva(victim)) //humans and monkeys only for now
+		to_chat(user, "<span class='notice'>[src] can only process humanoid anatomies or larvas!</span>")
 		return
 
-	if(victim.stat != DEAD)
-		to_chat(user, "<span class='notice'>[victim] is not dead!</span>")
-		return
+	if(ishuman(victim))
+		if(victim.stat != DEAD)
+			to_chat(user, "<span class='notice'>[victim] is not dead!</span>")
+			return
 
-	if(issynth(victim))
-		to_chat(user, "<span class='notice'>[victim] has no useful biomass for us.</span>")
-		return
+		if(issynth(victim))
+			to_chat(user, "<span class='notice'>[victim] has no useful biomass for us.</span>")
+			return
 
-	visible_message("[user] starts putting [victim] into [src].", 3)
+		visible_message("[user] starts putting [victim] into [src].", 3)
 
-	if(!do_after(user, 20, FALSE, victim, BUSY_ICON_DANGER) || QDELETED(src))
-		return
+		if(!do_after(user, 20, FALSE, victim, BUSY_ICON_DANGER) || QDELETED(src))
+			return
 
-	victim.forceMove(src)
+		victim.forceMove(src)
 
-	shake(4 SECONDS)
+		shake(4 SECONDS)
 
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.add_job_points(4.5) //4.5 corpses per burrowed; 8 points per larva
+		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+		xeno_job.add_job_points(4.5) //4.5 corpses per burrowed; 8 points per larva
 
-	log_combat(victim, user, "was consumed by a resin silo")
-	log_game("[key_name(victim)] was consumed by a resin silo at [AREACOORD(victim.loc)].")
+		log_combat(victim, user, "was consumed by a resin silo")
+		log_game("[key_name(victim)] was consumed by a resin silo at [AREACOORD(victim.loc)].")
+
+	else
+		if(isxenolarva(victim))
+			if(victim.stat == DEAD)
+				to_chat(user, "<span class='notice'>[victim] is dead!</span>")
+				return
+			var/mob/living/carbon/xenomorph/larva/larba = G.grabbed_thing
+			if(isxenolarva(larba))
+				if(!larba.issamexenohive(user))
+					to_chat(user, "<span class='notice'>[larba] is not of our hive!</span>")
+					return
+
+			visible_message("[user] starts making [victim] burrow into [src].", 3)
+
+			if(!do_after(user, 1 SECONDS, FALSE, victim, BUSY_ICON_DANGER) || QDELETED(src))
+				return
+
+			larba.burrow()
+			shake(4 SECONDS)
 
 /// Make the silo shake
 /obj/structure/xeno/silo/proc/shake(duration)

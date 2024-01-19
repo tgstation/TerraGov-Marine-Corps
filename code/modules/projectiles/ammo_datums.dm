@@ -2737,8 +2737,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	accurate_range = 10
 	bullet_color = COLOR_VIVID_YELLOW
-/datum/ammo/energy/taser/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stun = 20 SECONDS)
+/datum/ammo/energy/taser/on_hit_mob(mob/living/M,obj/projectile/P)
+	M.ParalyzeNoChain(15 SECONDS)
+	M.add_slowdown(5)
+	M.do_jitter_animation(150, 14 SECONDS)
+	M.emote("scream")
 
 /datum/ammo/energy/tesla
 	name = "energy ball"
@@ -4196,7 +4199,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 10//Short range, allows most guns to outrange it for suppressive fire reasons, and gives xenos more leeway to flee.
 	damage_type = STAMINA
 	armor_type = "bio"
-	damage = 20
+	damage = 25
 	shell_speed = 1.8
 	shrapnel_chance = 0
 	///percentage of xenos total plasma to drain when hit by a pepperball
@@ -4210,8 +4213,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		if(!(X.xeno_caste.caste_flags & CASTE_PLASMADRAIN_IMMUNE))
 			X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
 			//X.use_plasma(plasma_drain)
-			if(X.plasma_stored <= 1)
-				X.ParalyzeNoChain(12 SECONDS)//can now be used to riot control xenos when they abuse the hospitality of NTC
+		else
+			X.jitter(100)
+			X.ParalyzeNoChain(4 SECONDS)
+		if(X.plasma_stored <= 1)
+			X.jitter(100)
+			X.ParalyzeNoChain(12 SECONDS)//can now be used to riot control xenos when they abuse the hospitality of NTC
+			to_chat(X, span_xenowarning("We feel our energy zapped out of us, maybe it's best we stop to talk?"))
 
 /datum/ammo/bullet/pepperball/pepperball_mini
 	damage = 15

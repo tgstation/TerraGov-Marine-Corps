@@ -746,7 +746,7 @@
 	else
 		new /obj/effect/decal/cleanable/blood/splatter/robotcum(usr.loc)
 	playsound(usr.loc, "sound/effects/splat.ogg", 30)
-	debuff_owner.reagents.remove_reagent(/datum/reagent/toxin/xeno_aphrotoxin, 6)
+	debuff_owner.reagents.remove_reagent(/datum/reagent/toxin/xeno_aphrotoxin, 10)
 	debuff_owner.reagents.remove_reagent(/datum/reagent/consumable/larvajelly, 3)
 	if(debuff_owner.getStaminaLoss() > 120)
 		if(prob(5))
@@ -768,6 +768,8 @@
 	debuff_ownerhuman = L
 	debuff_owner = L
 	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
+	L.adjust_mob_scatter(10)
+	L.adjust_mob_accuracy(-10)
 	L.balloon_alert(L, "Aphrotoxin")
 	particle_holder = new(L, /particles/aphrodisiac)
 	particle_holder.particles.spawning = 1 + round(debuff_owner.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_aphrotoxin) / 2)
@@ -778,6 +780,8 @@
 
 /datum/reagent/toxin/xeno_aphrotoxin/on_mob_delete()
 	UnregisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST)
+	debuff_owner.adjust_mob_scatter(-10)
+	debuff_owner.adjust_mob_accuracy(10)
 	debuff_owner = null
 	QDEL_NULL(particle_holder)
 	return ..()
