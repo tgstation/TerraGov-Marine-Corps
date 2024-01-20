@@ -54,8 +54,9 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	.["upgrades"] = list()
 	for(var/datum/hive_upgrade/upgrade AS in buyable_upgrades)
 		.["upgrades"] += list(list("name" = upgrade.name, "desc" = upgrade.desc, "category" = upgrade.category,\
-		"cost" = upgrade.psypoint_cost, "times_bought" = upgrade.times_bought, "iconstate" = upgrade.icon))
-	.["psypoints"] = SSpoints.xeno_points_by_hive[X.hive.hivenumber]
+		"cost" = upgrade.psypoint_cost, "times_bought" = upgrade.times_bought, "iconstate" = upgrade.icon, "istactical" =  (upgrade.flags_upgrade & UPGRADE_FLAG_USES_TACTICAL)))
+	.["strategicpoints"] = SSpoints.xeno_strategic_points_by_hive[X.hive.hivenumber]
+	.["tacticalpoints"] = SSpoints.xeno_tactical_points_by_hive[X.hive.hivenumber]
 
 /datum/hive_purchases/ui_static_data(mob/user)
 	. = ..()
@@ -102,7 +103,10 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
  */
 /datum/hive_upgrade/proc/on_buy(mob/living/carbon/xenomorph/buyer)
 	SHOULD_CALL_PARENT(TRUE)
-	SSpoints.xeno_points_by_hive[buyer.hivenumber] -= psypoint_cost
+	if(flags_upgrade & UPGRADE_FLAG_USES_TACTICAL)
+		SSpoints.xeno_tactical_points_by_hive[buyer.hivenumber] -= psypoint_cost
+	else
+		SSpoints.xeno_strategic_points_by_hive[buyer.hivenumber] -= psypoint_cost
 	times_bought++
 	return TRUE
 
@@ -116,10 +120,13 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/proc/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	SHOULD_CALL_PARENT(TRUE)
 	if((flags_upgrade & UPGRADE_FLAG_ONETIME) && times_bought)
-		return FALSE
-	if(SSpoints.xeno_points_by_hive[buyer.hivenumber] < psypoint_cost)
 		if(!silent)
-			to_chat(buyer, span_xenowarning("You need [psypoint_cost-SSpoints.xeno_points_by_hive[buyer.hivenumber]] more points to request this blessing!"))
+			to_chat(buyer, span_xenowarning("You have already bought this blessing!"))
+		return FALSE
+	var/points_requirement = (flags_upgrade & UPGRADE_FLAG_USES_TACTICAL) ? SSpoints.xeno_tactical_points_by_hive[buyer.hivenumber] : SSpoints.xeno_strategic_points_by_hive[buyer.hivenumber]
+	if(points_requirement < psypoint_cost)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("You need [points_requirement] more [(flags_upgrade & UPGRADE_FLAG_USES_TACTICAL) ? "tactical" : "strategic"] points to request this blessing!"))
 		return FALSE
 	return TRUE
 
@@ -156,7 +163,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		return FALSE
 
 /datum/hive_upgrade/building/on_buy(mob/living/carbon/xenomorph/buyer)
-	if(!do_after(buyer, building_time, TRUE, buyer, BUSY_ICON_BUILD))
+	if(!do_after(buyer, building_time, NONE, buyer, BUSY_ICON_BUILD))
 		return FALSE
 
 	if(!can_buy(buyer, FALSE))
@@ -175,7 +182,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a silo that generates xeno larvas over time. Requires open space and time to place."
 	psypoint_cost = SILO_PRICE
 	icon = "larvasilo"
-	flags_upgrade = ABILITY_NUCLEARWAR
+	flags_gamemode = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/silo
 
 /datum/hive_upgrade/building/silo/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
@@ -203,7 +210,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a tower that increases the rate of evolution point and maturity point generation by 1.2 times per tower."
 	psypoint_cost = 300
 	icon = "evotower"
-	flags_upgrade = ABILITY_NUCLEARWAR
+	flags_gamemode = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/evotower
 
 /datum/hive_upgrade/building/psychictower
@@ -211,7 +218,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a tower that increases the slots of higher tier Xenomorphs."
 	psypoint_cost = 300
 	icon = "maturitytower"
-	flags_upgrade = ABILITY_NUCLEARWAR
+	flags_gamemode = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/psychictower
 
 /datum/hive_upgrade/building/pherotower
@@ -219,7 +226,8 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a tower that emanates a selectable type of pheromone."
 	psypoint_cost = 150
 	icon = "pherotower"
-	flags_upgrade = ABILITY_NUCLEARWAR
+	flags_gamemode = ABILITY_NUCLEARWAR
+	flags_upgrade = UPGRADE_FLAG_USES_TACTICAL
 	building_type = /obj/structure/xeno/pherotower
 	building_loc = 0 //This results in spawning the structure under the user.
 	building_time = 5 SECONDS
@@ -227,10 +235,34 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/building/spawner
 	name = "Spawner"
 	desc = "Constructs a spawner that generates ai xenos over time"
-	psypoint_cost = 600
+	psypoint_cost = 400
 	icon = "spawner"
-	flags_upgrade = ABILITY_NUCLEARWAR
+	flags_gamemode = ABILITY_NUCLEARWAR
+	flags_upgrade = UPGRADE_FLAG_USES_TACTICAL
 	building_type = /obj/structure/xeno/spawner
+
+/datum/hive_upgrade/building/acid_pool
+	name = "acid pool"
+	desc = "Constructs a pool that allows xenos to regenerate sunder in it while resting. Requires open space and time to place."
+	psypoint_cost = 200
+	icon = "pool"
+	flags_gamemode = ABILITY_NUCLEARWAR
+	flags_upgrade = UPGRADE_FLAG_USES_TACTICAL
+	building_type = /obj/structure/xeno/acid_pool
+
+/datum/hive_upgrade/building/acid_pool/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return
+
+	var/turf/buildloc = get_step(buyer, building_loc)
+	if(!buildloc)
+		return FALSE
+
+	if(buildloc.density)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
+		return FALSE
 
 /datum/hive_upgrade/defence
 	category = "Defences"
@@ -241,6 +273,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	icon = "acidturret"
 	psypoint_cost = XENO_TURRET_PRICE
 	flags_gamemode = ABILITY_NUCLEARWAR
+	flags_upgrade = UPGRADE_FLAG_USES_TACTICAL
 	///How long to build one turret
 	var/build_time = 10 SECONDS
 	///What type of turret is built
@@ -277,7 +310,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	return TRUE
 
 /datum/hive_upgrade/defence/turret/on_buy(mob/living/carbon/xenomorph/buyer)
-	if(!do_after(buyer, build_time, TRUE, buyer, BUSY_ICON_BUILD))
+	if(!do_after(buyer, build_time, NONE, buyer, BUSY_ICON_BUILD))
 		return FALSE
 
 	if(!can_buy(buyer, FALSE))
@@ -297,6 +330,53 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	icon = "resinturret"
 	psypoint_cost = 50
 	turret_type = /obj/structure/xeno/xeno_turret/sticky
+
+/datum/hive_upgrade/defence/gargoyle
+	name = "Gargoyle"
+	desc = "Constructs a gargoyle that alerts you when enemies approach."
+	psypoint_cost = 25
+	icon = "gargoyle"
+	flags_gamemode = ABILITY_NUCLEARWAR
+	flags_upgrade = UPGRADE_FLAG_USES_TACTICAL
+
+/datum/hive_upgrade/defence/gargoyle/can_buy(mob/living/carbon/xenomorph/buyer, silent)
+	. = ..()
+	if(!.)
+		return
+	var/turf/buildloc = get_turf(buyer)
+	if(!buildloc)
+		return FALSE
+
+	if(!buildloc.is_weedable())
+		if(!silent)
+			to_chat(buyer, span_warning("We can't do that here."))
+		return FALSE
+
+	var/obj/alien/weeds/alien_weeds = locate() in buildloc
+
+	if(!alien_weeds)
+		if(!silent)
+			to_chat(buyer, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
+		return FALSE
+
+	if(!buildloc.check_alien_construction(buyer, silent) || !buildloc.check_disallow_alien_fortification(buyer, silent))
+		return FALSE
+
+/datum/hive_upgrade/defence/gargoyle/on_buy(mob/living/carbon/xenomorph/buyer)
+	if(!do_after(buyer, 3 SECONDS, NONE, buyer, BUSY_ICON_BUILD))
+		return FALSE
+
+	if(!can_buy(buyer, FALSE))
+		return FALSE
+
+	var/turf/buildloc = get_turf(buyer)
+
+	var/atom/built = new /obj/structure/xeno/resin_gargoyle(buildloc, buyer.hivenumber, buyer)
+	to_chat(buyer, span_notice("We build [built] for [psypoint_cost] psy points."))
+	log_game("[buyer] has built \a [built] in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
+	xeno_message("[buyer] has built \a [built] at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
+	return ..()
+
 
 /datum/hive_upgrade/xenos
 	category = "Xenos"

@@ -93,17 +93,6 @@
 		/obj/item/armor_module/armor/legs/marine/ranger,
 		/obj/item/armor_module/armor/arms/marine/ranger,
 
-		/obj/item/armor_module/armor/chest/marine/kabuto,
-		/obj/item/armor_module/armor/legs/marine/kabuto,
-		/obj/item/armor_module/armor/arms/marine/kabuto,
-
-		/obj/item/armor_module/armor/chest/marine/hotaru,
-		/obj/item/armor_module/armor/legs/marine/hotaru,
-		/obj/item/armor_module/armor/arms/marine/hotaru,
-
-		/obj/item/armor_module/armor/chest/marine/dashe,
-		/obj/item/armor_module/armor/arms/marine/dashe,
-		/obj/item/armor_module/armor/legs/marine/dashe,
 
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
@@ -156,7 +145,6 @@
 			return FALSE
 	return ..()
 
-
 /obj/item/clothing/suit/modular/attack_self(mob/user)
 	. = ..()
 	if(.)
@@ -205,6 +193,55 @@
 	item_state = "rownin_skeleton"
 	allowed_uniform_type = /obj/item/clothing/under
 	attachments_allowed = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/eshield,
+
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/general/som,
+		/obj/item/armor_module/storage/engineering/som,
+		/obj/item/armor_module/storage/medical/som,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+/obj/item/clothing/suit/modular/hardsuit_exoskeleton
+	name = "FleckTex WY-01 modular exoskeleton"
+	desc = "FleckTex Dynamics brand new modular hardsuit exoskeleton, designed for full compatiability with jaeger modules. Comes with pre-installed light armour-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
+	icon_state = "exoskeleton"
+	item_state = "exoskeleton"
+	greyscale_config = /datum/greyscale_config/exoskeleton
+	colorable_allowed = PRESET_COLORS_ALLOWED
+	colorable_colors = ARMOR_PALETTES_LIST
+	greyscale_colors = ARMOR_PALETTE_DRAB
+	allowed_uniform_type = /obj/item/clothing/under
+	attachments_allowed = list(
+
+		/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markfive,
+		/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markfive,
+		/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markfive,
+
+		/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markthree,
+		/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markthree,
+		/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markthree,
+
+		/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markone,
+		/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markone,
+		/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markone,
+
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,

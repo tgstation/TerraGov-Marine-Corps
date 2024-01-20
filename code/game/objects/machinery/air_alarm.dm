@@ -36,6 +36,7 @@
 	set_light(initial(light_range))
 
 /obj/machinery/air_alarm/update_icon_state()
+	. = ..()
 	if(machine_stat & (NOPOWER|BROKEN))
 		icon_state = "alarm_unpowered"
 	else
@@ -51,7 +52,7 @@
 	. = ..()
 	balloon_alert_to_viewers("[user] starts trying to pry [src] off the wall..")
 	playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-	if(!do_after(user, 5 SECONDS, TRUE, src))
+	if(!do_after(user, 5 SECONDS, NONE, src))
 		return
 
 	qdel(src)

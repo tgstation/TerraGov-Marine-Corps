@@ -225,10 +225,8 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 //Since the vics are 3x4 we need to swap between the two files with different dimensions
 //Also need to offset to center the tank about the root object
-/obj/vehicle/multitile/root/cm_armored/update_icon()
-
-	overlays.Cut()
-
+/obj/vehicle/multitile/root/cm_armored/update_icon_state()
+	. = ..()
 	//Assuming 3x3 with half block overlaps in the tank's direction
 	if(dir in list(NORTH, SOUTH))
 		pixel_x = -32
@@ -240,17 +238,20 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		pixel_y = -32
 		icon = 'icons/obj/vehicles/tank_EW.dmi'
 
+/obj/vehicle/multitile/root/cm_armored/update_overlays()
+	. = ..()
+
 	//Basic iteration that snags the overlay from the hardpoint module object
 	for(var/i in hardpoints)
 		var/obj/item/hardpoint/H = hardpoints[i]
 
 		if((i == HDPT_TREADS && !H) || (H && !H.obj_integrity)) //Treads not installed or broken
 			var/image/I = image(icon, icon_state = "damaged_hardpt_[i]")
-			overlays += I
+			. += I
 
 		if(H)
 			var/image/I = H.get_icon_image(0, 0, dir)
-			overlays += I
+			. += I
 
 //Hitboxes but with new names
 /obj/vehicle/multitile/hitbox/cm_armored
@@ -580,7 +581,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		user.visible_message(span_notice("[user] fumbles around figuring out what to do with [O] on the [src]."),
 		span_notice("You fumble around figuring out what to do with [O] on the [src]."))
 		var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_MASTER - user.skills.getRating(SKILL_ENGINEER))
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return
 
 	//Pick what to repair
@@ -647,7 +648,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	user.visible_message(span_notice("[user] starts repairing the [slot] slot on [src]."),
 		span_notice("You start repairing the [slot] slot on the [src]."))
 
-	if(!do_after(user, 30 * num_delays, TRUE, src, BUSY_ICON_BUILD, extra_checks = iswelder(O) ? CALLBACK(O, /obj/item/tool/weldingtool/proc/isOn) : null))
+	if(!do_after(user, 30 * num_delays, NONE, src, BUSY_ICON_BUILD, extra_checks = iswelder(O) ? CALLBACK(O, /obj/item/tool/weldingtool/proc/isOn) : null))
 		user.visible_message(span_notice("[user] stops repairing the [slot] slot on [src]."),
 			span_notice("You stop repairing the [slot] slot on the [src]."))
 		return
@@ -691,7 +692,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		user.visible_message(span_notice("[user] fumbles around figuring out what to do with [HP] on the [src]."),
 		span_notice("You fumble around figuring out what to do with [HP] on the [src]."))
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_MASTER - user.skills.getRating(SKILL_ENGINEER) )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return
 
 	var/obj/item/hardpoint/occupied = hardpoints[HP.slot]
@@ -717,7 +718,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		if(HDPT_TREADS)
 			num_delays = 7
 
-	if(!do_after(user, 30 * num_delays, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 30 * num_delays, NONE, src, BUSY_ICON_BUILD))
 		user.visible_message(span_warning("[user] stops installing \the [HP] on [src]."), span_warning("You stop installing \the [HP] on [src]."))
 		return
 
@@ -738,7 +739,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		user.visible_message(span_notice("[user] fumbles around figuring out what to do with [O] on the [src]."),
 		span_notice("You fumble around figuring out what to do with [O] on the [src]."))
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_MASTER - user.skills.getRating(SKILL_ENGINEER) )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return
 
 	var/slot = tgui_input_list(user, "Select a slot to try and remove", null, hardpoints)
@@ -768,7 +769,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		if(HDPT_TREADS)
 			num_delays = 7
 
-	if(!do_after(user, 30 * num_delays, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 30 * num_delays, NONE, src, BUSY_ICON_BUILD))
 		user.visible_message(span_warning("[user] stops removing \the [old] on [src]."), span_warning("You stop removing \the [old] on [src]."))
 		return
 	if(QDELETED(old) || old != hardpoints[slot])

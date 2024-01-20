@@ -49,13 +49,13 @@
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/corrosive_acid/drone,
-		/datum/action/xeno_action/activable/xeno_spit/toxic_spit,
-		/datum/action/xeno_action/toxic_slash,
-		/datum/action/xeno_action/activable/drain_sting,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/corrosive_acid/drone,
+		/datum/action/ability/activable/xeno/xeno_spit/toxic_spit,
+		/datum/action/ability/xeno_action/toxic_slash,
+		/datum/action/ability/activable/xeno/drain_sting,
 	)
 
 /datum/xeno_caste/sentinel/normal
@@ -68,12 +68,12 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/corrosive_acid/drone,
-		/datum/action/xeno_action/activable/xeno_spit/toxic_spit,
-		/datum/action/xeno_action/toxic_slash,
-		/datum/action/xeno_action/activable/drain_sting,
-		/datum/action/xeno_action/activable/toxic_grenade,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/corrosive_acid/drone,
+		/datum/action/ability/activable/xeno/xeno_spit/toxic_spit,
+		/datum/action/ability/xeno_action/toxic_slash,
+		/datum/action/ability/activable/xeno/drain_sting,
+		/datum/action/ability/activable/xeno/toxic_grenade,
 	)

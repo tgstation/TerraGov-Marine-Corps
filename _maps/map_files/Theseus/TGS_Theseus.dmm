@@ -6914,7 +6914,7 @@
 	amount = 25
 	},
 /obj/item/storage/briefcase/inflatable,
-/obj/item/stack/sheet/glass/large_stack,
+/obj/item/stack/sheet/glass/glass/large_stack,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/repair_bay)
 "bVF" = (
@@ -7677,6 +7677,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -9813,7 +9814,7 @@
 /area/mainship/hallways/port_hallway)
 "fQp" = (
 /obj/machinery/firealarm,
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -10041,10 +10042,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "ggn" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_starboard)
 "ggr" = (
@@ -10356,6 +10357,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
+"gJS" = (
+/obj/structure/dropship_equipment/cas/weapon/bomb_pod,
+/turf/open/floor/mainship/floor,
+/area/mainship/hallways/hangar)
 "gLI" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced/windowstake{
@@ -11075,6 +11080,17 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_umbilical)
+"hVR" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/ship_ammo/cas/bomb/fourhundred,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1;
+	pixel_y = 1
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "hVU" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -12223,17 +12239,10 @@
 "kaw" = (
 /obj/machinery/light/mainship,
 /obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/mainship/orange{
-	dir = 6
-	},
+/obj/structure/dropship_equipment/cas/weapon/bomblet_pod,
+/turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "kbP" = (
 /obj/machinery/processor{
@@ -12814,6 +12823,10 @@
 	dir = 6
 	},
 /area/mainship/shipboard/port_point_defense)
+"laz" = (
+/obj/machinery/quick_vendor/beginner,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/delta)
 "laL" = (
 /obj/machinery/atmospherics/components/binary/pump/on,
 /turf/open/floor/mainship/orange{
@@ -13935,7 +13948,6 @@
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/explosive,
 /obj/structure/ob_ammo/warhead/explosive,
-/obj/structure/ob_ammo/warhead/explosive,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -14022,7 +14034,6 @@
 /area/mainship/hallways/starboard_hallway)
 "mRZ" = (
 /obj/structure/rack,
-/obj/structure/ob_ammo/warhead/incendiary,
 /obj/structure/ob_ammo/warhead/incendiary,
 /obj/structure/ob_ammo/warhead/incendiary,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -15255,7 +15266,6 @@
 	dir = 4
 	},
 /obj/structure/ob_ammo/warhead/cluster,
-/obj/structure/ob_ammo/warhead/cluster,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -15938,6 +15948,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
+"qaa" = (
+/obj/machinery/quick_vendor/beginner,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/alpha)
 "qae" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -17169,7 +17183,7 @@
 /area/mainship/hull/starboard_hull)
 "rYA" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/stack/sheet/glass/large_stack,
+/obj/item/stack/sheet/glass/glass/large_stack,
 /obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
@@ -17716,6 +17730,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_starboard)
+"sTv" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/ship_ammo/cas/bomblet,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "sVt" = (
 /turf/open/floor/mainship/purple{
 	dir = 1
@@ -18250,6 +18271,10 @@
 	},
 /turf/open/floor/mainship/ai,
 /area/mainship/command/airoom)
+"tOe" = (
+/obj/machinery/vending/marineFood,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "tPb" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -18859,7 +18884,6 @@
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/plasmaloss,
 /obj/structure/ob_ammo/warhead/plasmaloss,
-/obj/structure/ob_ammo/warhead/plasmaloss,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -18964,10 +18988,10 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "vao" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_port)
 "vaF" = (
@@ -19006,7 +19030,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "vfD" = (
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
@@ -41498,8 +41522,8 @@ ann
 ann
 bdj
 bhd
-aMR
-aMR
+hVR
+sTv
 bgb
 bOy
 bbR
@@ -42819,7 +42843,7 @@ uns
 uns
 uns
 qiO
-lvI
+qYe
 bgb
 fZA
 aVk
@@ -43076,7 +43100,7 @@ uns
 uns
 uns
 qiO
-qYe
+gJS
 bgb
 qae
 aVk
@@ -62057,7 +62081,7 @@ bdC
 kUl
 abg
 kMY
-brj
+qaa
 oDF
 puB
 vTf
@@ -62091,7 +62115,7 @@ cbn
 mmE
 bZQ
 awz
-ktN
+laz
 sVt
 vJr
 gQc
@@ -62314,7 +62338,7 @@ aWH
 bSQ
 abg
 bjP
-brj
+qaa
 oWI
 ahU
 oaW
@@ -62348,7 +62372,7 @@ cbn
 mmE
 tBV
 iLV
-ktN
+laz
 mMr
 vJr
 ccT
@@ -63599,7 +63623,7 @@ aWH
 blS
 aaf
 kMY
-brj
+qaa
 oDF
 puB
 vTf
@@ -63633,7 +63657,7 @@ cbn
 mmE
 bZQ
 awz
-ktN
+laz
 ada
 vJr
 xpE
@@ -63856,7 +63880,7 @@ aWH
 wJn
 aaf
 kMY
-brj
+qaa
 oWI
 ahU
 oaW
@@ -63868,7 +63892,7 @@ bnF
 bpx
 pqU
 iWe
-iWe
+gaR
 jMY
 iWe
 gzg
@@ -63890,7 +63914,7 @@ cbn
 mmE
 tBV
 iLV
-ktN
+laz
 ada
 vJr
 ezg
@@ -65155,7 +65179,7 @@ bro
 sic
 bGk
 avZ
-gaR
+tOe
 byh
 otD
 bKU

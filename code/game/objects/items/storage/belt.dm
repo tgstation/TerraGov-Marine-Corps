@@ -169,6 +169,30 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/healthanalyzer(src)
 
+/obj/item/storage/belt/lifesaver/beginner/Initialize(mapload, ...) //For beginner vendor
+	. = ..()
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/meralyne(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/dermaline(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
+	new /obj/item/storage/pill_bottle/inaprovaline(src)
+	new /obj/item/storage/pill_bottle/isotonic(src)
+	new /obj/item/storage/pill_bottle/spaceacillin(src)
+	new /obj/item/storage/pill_bottle/alkysine(src)
+	new /obj/item/storage/pill_bottle/imidazoline(src)
+	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/storage/pill_bottle/hypervene(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/healthanalyzer(src)
+
 /obj/item/storage/belt/lifesaver/full/upp
 	name ="\improper Type 41 pattern lifesaver bag"
 	desc = "The Type 41 load rig is the standard-issue LBE of the UPP military. This configuration mounts a satchel filled with a range of injectors and light medical supplies, common among medics and partisans."
@@ -339,7 +363,7 @@
 		/obj/item/storage/syringe_case,
 	)
 
-/obj/item/storage/belt/hypospraybelt/Initialize(mapload)  //The belt, with all it's magic inside!
+/obj/item/storage/belt/hypospraybelt/full/Initialize(mapload)  //The belt, with all it's magic inside!
 	. = ..()
 	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
 	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
@@ -358,6 +382,31 @@
 	new /obj/item/reagent_containers/hypospray/advanced/imialky(src)
 	new /obj/item/reagent_containers/hypospray/advanced/hypervene(src)
 	new /obj/item/healthanalyzer(src)
+
+/obj/item/storage/belt/hypospraybelt/beginner/Initialize(mapload)
+	. = ..()
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/kelotane(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/tramadol(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/combatmix(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/dylovene(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/isotonic(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/spaceacillin(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/quickclot(src)
+	new /obj/item/reagent_containers/hypospray/advanced/imialky(src)
+	new /obj/item/reagent_containers/hypospray/advanced/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/advanced/peridaxonplus(src)
+	new /obj/item/reagent_containers/hypospray/advanced/quickclotplus(src)
+	new /obj/item/storage/syringe_case/meraderm(src)
+	new /obj/item/storage/syringe_case/meraderm(src)
+	new /obj/item/reagent_containers/hypospray/advanced/meraderm(src)
+
 
 /obj/item/storage/belt/security
 	name = "\improper M276 pattern security rig"
@@ -721,7 +770,7 @@
 
 
 			to_chat(user, span_notice("You start refilling [src] with [M]."))
-			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+			if(!do_after(user, 1.5 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 				return
 
 			for(var/x in 1 to (storage_slots - length(contents)))
@@ -849,10 +898,10 @@
 /obj/item/storage/belt/shotgun/martini
 	name = "martini henry ammo belt"
 	desc = "A belt good enough for holding all your .577/400 ball rounds."
-	icon_state = ".557_belt"
+	icon_state = "marini_belt"
 	storage_slots = 12
 	max_storage_space = 24
-
+	sprite_slots = 6
 	draw_mode = 1
 
 	flags_atom = DIRLOCK
@@ -861,23 +910,16 @@
 	. = ..()
 	update_icon()
 
-/obj/item/storage/belt/shotgun/martini/update_icon()
-	if(!length(contents))
-		icon_state = initial(icon_state) + "_e"
-		return
-	icon_state = initial(icon_state)
-
-	var/holding = round((length(contents) + 1) / 2)
-	setDir(holding + round(holding/3))
-
 /obj/item/storage/belt/shotgun/martini/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/ammo_magazine))
-		var/obj/item/ammo_magazine/new_mag = I
-		if(new_mag.caliber != CALIBER_557)
-			to_chat(user, span_notice("[src] can only be filled with .557/440 ball rifle rounds."))
-			return
-	. = ..()
-	update_icon()
+	if(!istype(I, /obj/item/ammo_magazine))
+		update_icon()
+		return ..()
+
+	var/obj/item/ammo_magazine/new_mag = I
+	if(new_mag.caliber != CALIBER_557)
+		to_chat(user, span_notice("[src] can only be filled with .557/440 ball rifle rounds."))
+		return
+
 
 /obj/item/storage/belt/shotgun/martini/attack_hand(mob/living/user)
 	if (loc != user)

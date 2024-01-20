@@ -135,7 +135,7 @@
 	X.visible_message(span_warning("\The [X] digs into \the [src] and begins to pry it open."), \
 	span_warning("We dig into \the [src] and begin to pry it open."), null, 5)
 
-	if(do_after(X, 30, FALSE, src, BUSY_ICON_BUILD))
+	if(do_after(X, 30, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 		if(blocked)
 			to_chat(X, span_warning("\The [src] is welded shut."))
 			return FALSE
@@ -212,7 +212,7 @@
 			return
 
 		balloon_alert_to_viewers("Starts [blocked ? "unwelding" : "welding"]")
-		if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 			balloon_alert_to_viewers("Stops welding")
 			return
 
@@ -235,7 +235,7 @@
 				"You hear metal strain.")
 		var/old_density = density
 
-		if(!do_after(user, 30, TRUE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 30, NONE, src, BUSY_ICON_HOSTILE))
 			return
 
 		if(blocked || density != old_density)
@@ -287,26 +287,29 @@
 			flick("door_closing", src)
 	playsound(loc, 'sound/machines/emergency_shutter.ogg', 25)
 
-
-/obj/machinery/door/firedoor/update_icon()
-	overlays.Cut()
+/obj/machinery/door/firedoor/update_icon_state()
+	. = ..()
 	if(density)
 		icon_state = "door_closed"
+	else
+		icon_state = "door_open"
+
+/obj/machinery/door/firedoor/update_overlays()
+	. = ..()
+	if(density)
 		if(blocked)
-			overlays += "welded"
+			. += "welded"
 		if(pdiff_alert)
-			overlays += "palert"
+			. += "palert"
 		if(dir_alerts)
 			for(var/d=1;d<=4;d++)
 				var/cdir = GLOB.cardinals[d]
 				for(var/i=1;i<=length(ALERT_STATES);i++)
 					if(dir_alerts[d] & (1<<(i-1)))
-						overlays += new/icon(icon,"alert_[ALERT_STATES[i]]", dir=cdir)
+						. += new/icon(icon,"alert_[ALERT_STATES[i]]", dir=cdir)
 	else
-		icon_state = "door_open"
 		if(blocked)
-			overlays += "welded_open"
-
+			. += "welded_open"
 
 /obj/machinery/door/firedoor/mainship
 	name = "\improper Emergency Shutter"

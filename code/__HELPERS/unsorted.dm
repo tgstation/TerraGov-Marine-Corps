@@ -21,8 +21,6 @@
 
 #undef DELTA_CALC
 
-#define UNTIL(X) while(!(X)) stoplag()
-
 /**
  * NAMEOF: Compile time checked variable name to string conversion
  * evaluates to a string equal to "X", but compile errors if X isn't a var on datum.
@@ -34,11 +32,7 @@
  * NAMEOF that actually works in static definitions because src::type requires src to be defined
  */
 
-#if DM_VERSION >= 515
 #define NAMEOF_STATIC(datum, X) (nameof(type::##X))
-#else
-#define NAMEOF_STATIC(datum, X) (#X || ##datum.##X)
-#endif
 
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
@@ -143,6 +137,7 @@
 	else if(. >= 360)
 		. -= 360
 
+///Returns one of the 8 directions based on an angle
 /proc/angle_to_dir(angle)
 	switch(angle)
 		if(338 to 360, 0 to 22)
@@ -161,6 +156,18 @@
 			return WEST
 		if(293 to 337)
 			return NORTHWEST
+
+///Returns one of the 4 cardinal directions based on an angle
+/proc/angle_to_cardinal_dir(angle)
+	switch(angle)
+		if(316 to 360, 0 to 45)
+			return NORTH
+		if(46 to 135)
+			return EAST
+		if(136 to 225)
+			return SOUTH
+		if(226 to 315)
+			return WEST
 
 ///returns degrees between two angles
 /proc/get_between_angles(degree_one, degree_two)
@@ -1099,11 +1106,11 @@ will handle it, but:
 	for(var/client/C in show_to)
 		C.images += I
 	animate(I, transform = 0, alpha = 255, time = 0.5 SECONDS, easing = ELASTIC_EASING)
-	addtimer(CALLBACK(GLOBAL_PROC, TYPE_PROC_REF(/, fade_out), I), duration - 0.5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_out), I), duration - 0.5 SECONDS)
 
 /proc/fade_out(image/I, list/show_to)
 	animate(I, alpha = 0, time = 0.5 SECONDS, easing = EASE_IN)
-	addtimer(CALLBACK(GLOBAL_PROC, TYPE_PROC_REF(/, remove_images_from_clients), I, show_to), 0.5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(remove_images_from_clients), I, show_to), 0.5 SECONDS)
 
 //takes an input_key, as text, and the list of keys already used, outputting a replacement key in the format of "[input_key] ([number_of_duplicates])" if it finds a duplicate
 //use this for lists of things that might have the same name, like mobs or objects, that you plan on giving to a player as input

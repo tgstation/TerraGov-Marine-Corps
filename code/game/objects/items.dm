@@ -1011,7 +1011,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 
 	user.visible_message(span_danger("[user] sprays water from [src]!"), \
-	span_warning("You spray water from [src]."),)
+	span_warning("You spray water from [src]."))
 
 	playsound(user.loc, 'sound/effects/extinguish.ogg', 52, 1, 7)
 
@@ -1123,10 +1123,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		var/datum/callback/tool_check = CALLBACK(src, PROC_REF(tool_check_callback), user, amount, extra_checks)
 
 		if(ismob(target))
-			if(do_mob(user, target, delay, extra_checks=tool_check))
+			if(do_after(user, delay, NONE, target, extra_checks = tool_check))
 				return
 
-		else if(!do_after(user, delay, target=target, extra_checks=tool_check))
+		else if(!do_after(user, delay, target = target, extra_checks = tool_check))
 			return
 
 	else if(extra_checks && !extra_checks.Invoke()) // Invoke the extra checks once, just in case.
@@ -1238,16 +1238,14 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return icon_override
 
 	//2: species-specific sprite sheets.
-	var/icon = LAZYACCESS(sprite_sheets, species_type)
-	if(icon && !inhands)
-		return icon
+	. = LAZYACCESS(sprite_sheets, species_type)
+	if(. && !inhands)
+		return
 
 	//3: slot-specific sprite sheets
-	icon = LAZYACCESS(item_icons, slot_name)
-	if(ispath(icon, /datum/greyscale_config))
-		return SSgreyscale.GetColoredIconByType(icon, greyscale_colors)
-	if(icon)
-		return icon
+	. = LAZYACCESS(item_icons, slot_name)
+	if(.)
+		return
 
 	//5: provided default_icon
 	if(default_icon)
@@ -1433,12 +1431,13 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(!variant)
 				return
 
-			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+			if(!do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 				return
 
 			current_variant = variant
 			update_icon()
 			update_greyscale()
+			SEND_SIGNAL(src, COMSIG_ITEM_VARIANT_CHANGE, user, variant)
 			return
 		if(PRESET_COLORS)
 			var/color_selection
@@ -1456,7 +1455,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(COLOR_WHEEL)
 			new_color = input(user, "Pick a color", "Pick color") as null|color
 
-	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+	if(!new_color || !do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 		return
 
 	set_greyscale_colors(new_color)

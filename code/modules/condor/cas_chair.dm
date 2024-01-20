@@ -84,7 +84,7 @@
 				return
 
 			to_chat(user, span_notice("You start climbing into the cockpit..."))
-			if(!do_after(user, 2 SECONDS, TRUE, src))
+			if(!do_after(user, 2 SECONDS, NONE, src))
 				return
 
 			user.visible_message(span_notice("[user] climbs into the plane cockpit!"), span_notice("You get in the seat!"))
@@ -135,7 +135,7 @@
 			to_chat(occupant, span_notice("Getting out of the cockpit while flying seems like a bad idea to you."))
 			return
 		to_chat(occupant, span_notice("You start getting out of the cockpit."))
-		if(!do_after(occupant, 2 SECONDS, TRUE, src))
+		if(!do_after(occupant, 2 SECONDS, NONE, src))
 			return
 	set_cockpit_overlay("cockpit_opening")
 	addtimer(CALLBACK(src, PROC_REF(set_cockpit_overlay), "cockpit_open"), 7)
@@ -204,12 +204,12 @@
 	switch(action)
 		if("launch")
 			if(!cas_usable)
-				to_chat(usr, "<span class='warning'>Combat has not yet initiated, CAS unavailable.")
+				to_chat(usr, span_warning("Combat has not yet initiated, CAS unavailable."))
 				return
 			if(owner.state == PLANE_STATE_FLYING || owner.mode != SHUTTLE_IDLE)
 				return
-			if(owner.fuel_left <= LOW_FUEL_THRESHOLD)
-				to_chat(usr, "<span class='warning'>Unable to launch, low fuel.")
+			if(owner.fuel_left <= LOW_FUEL_TAKEOFF_THRESHOLD)
+				to_chat(usr, span_warning("Unable to launch, low fuel."))
 				return
 			SSshuttle.moveShuttleToDock(owner.id, SSshuttle.generate_transit_dock(owner), TRUE)
 			owner.currently_returning = FALSE

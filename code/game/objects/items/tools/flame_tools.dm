@@ -34,14 +34,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/wax = 800
 
 /obj/item/tool/candle/update_icon_state()
-	var/i
-	if(wax>150)
-		i = 1
-	else if(wax>80)
-		i = 2
+	. = ..()
+	if(wax > 150)
+		icon_state = "candle[1][heat ? "_lit" : ""]"
+	else if(wax > 80)
+		icon_state = "candle[2][heat ? "_lit" : ""]"
 	else
-		i = 3
-	icon_state = "candle[i][heat ? "_lit" : ""]"
+		icon_state = "candle[3][heat ? "_lit" : ""]"
 
 /obj/item/tool/candle/Destroy()
 	if(heat)
@@ -402,7 +401,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/emergency
 	name = "Red Comrade"
-	desc = "A red cigarrete. With some writings in it. Some of it is in russian, but,the Red Russian warning, is in indistinguishable."
+	desc = "A bright red cigarette with what appears to be russian branding on it. The words \"RUSSIAN RED\", however are unmistakable."
 	icon_state = "rrcigoff"
 	item_state = "rrcigoff"
 	icon_on = "rrcigon"

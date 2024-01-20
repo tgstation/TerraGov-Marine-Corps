@@ -61,7 +61,7 @@
 
 /obj/machinery/meter/wrench_act(mob/user, obj/item/I)
 	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
-	if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+	if(do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		user.visible_message(
 			"[user] unfastens \the [src].",
 			span_notice("You unfasten \the [src]."),

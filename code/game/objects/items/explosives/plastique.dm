@@ -27,6 +27,7 @@
 	return ..()
 
 /obj/item/explosive/plastique/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][plant_target ? "_set" : ""]"
 	if(armed)
 		icon_state = "[icon_state][alarm_sounded ? "_armed" : "_on"]"
@@ -57,7 +58,7 @@
 	user.visible_message(span_warning("[user] is trying to plant [name] on [target]!"),
 	span_warning("You are trying to plant [name] on [target]!"))
 
-	if(do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_HOSTILE))
+	if(do_after(user, 2 SECONDS, NONE, target, BUSY_ICON_HOSTILE))
 		if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
 			to_chat(user, "[span_warning("There is already a device attached to [target]")].")
 			return
@@ -111,13 +112,7 @@
 
 /obj/item/explosive/plastique/attack_hand(mob/living/user)
 	if(armed)
-		to_chat(user, "<font color='warning'>Disarm [src] first to remove it!</font>")
-		return
-	return ..()
-
-/obj/item/explosive/plastique/attackby(obj/item/I, mob/user, params)
-	if(ismultitool(I) && armed)
-		if(!do_after(user, 2 SECONDS, TRUE, plant_target, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 2 SECONDS, NONE, plant_target, BUSY_ICON_HOSTILE))
 			return
 
 		if(ismovableatom(plant_target))
@@ -142,6 +137,7 @@
 		alarm_sounded = FALSE
 		plant_target = null
 		update_icon()
+	return ..()
 
 ///Handles the actual explosion effects
 /obj/item/explosive/plastique/proc/detonate()

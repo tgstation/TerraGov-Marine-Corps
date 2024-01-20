@@ -7,7 +7,7 @@
 	layer = TANK_BARREL_LAYER
 	use_power = FALSE
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
-	allow_pass_flags = PASSABLE
+	allow_pass_flags = PASSABLE|PASS_LOW_STRUCTURE
 	///Store user old pixel x
 	var/user_old_x = 0
 	///Store user old pixel y
@@ -18,7 +18,7 @@
 	var/has_anchored_sprite = FALSE
 
 ///generates the icon based on how much ammo it has.
-/obj/machinery/deployable/mounted/update_icon_state(mob/user)
+/obj/machinery/deployable/mounted/update_icon_state()
 	. = ..()
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	if(gun && (!length(gun.chamber_items) || !gun.chamber_items[gun.current_chamber_position]))
@@ -97,10 +97,10 @@
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	if(length(gun?.chamber_items))
 		gun.unload(user)
-		update_icon_state()
+		update_appearance()
 
 	gun?.reload(ammo_magazine, user)
-	update_icon_state()
+	update_appearance()
 
 	REMOVE_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
 
@@ -243,7 +243,7 @@
 			return FALSE
 		operator.setDir(dir)
 		gun?.set_target(target)
-		update_icon_state()
+		update_appearance()
 		return TRUE
 	if(CHECK_BITFIELD(gun?.flags_item, DEPLOYED_NO_ROTATE))
 		to_chat(operator, "This one is anchored in place and cannot be rotated.")
@@ -336,7 +336,7 @@
 
 	if(anchor_time)
 		balloon_alert(user, "You begin [anchored ? "unanchoring" : "anchoring"] [src]")
-		if(!do_after(user, anchor_time, TRUE, src))
+		if(!do_after(user, anchor_time, NONE, src))
 			balloon_alert(user, "Interrupted!")
 			return
 

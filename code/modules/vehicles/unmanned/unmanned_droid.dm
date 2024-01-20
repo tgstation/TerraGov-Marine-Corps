@@ -99,7 +99,7 @@
 
 ///Plays effects and doafter effects for the drone
 /obj/vehicle/unmanned/droid/scout/proc/start_cloak(mob/user)
-	if(!do_after(user, 3 SECONDS, FALSE, src))
+	if(!do_after(user, 3 SECONDS, IGNORE_HELD_ITEM, src))
 		to_chat(user, span_warning(" WARNING. Cloak activation failed; Error code 423: Subject moved during activation."))
 		remove_wibbly_filters(src)
 		return
@@ -130,6 +130,10 @@
 		return
 	if(!is_ground_level(z))
 		to_chat(source, span_warning("You have to be on the planet to use this or it won't transmit."))
+		return FALSE
+	var/area/A = get_area(user)
+	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
+		to_chat(user, span_warning("This won't work if you're standing deep underground."))
 		return FALSE
 	beacon_datum = new /datum/supply_beacon(user.name, src.loc, user.faction, 4 MINUTES)
 	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))

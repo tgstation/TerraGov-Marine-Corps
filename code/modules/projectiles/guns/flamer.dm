@@ -344,6 +344,13 @@
 	)
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock)
 
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/beginner
+	starting_attachment_types = list(
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/flamer_nozzle,
+		/obj/item/attachable/stock/t84stock,
+	)
+
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"
 	desc = "A weapon-mounted refillable flamethrower attachment.\nIt is designed for short bursts."
@@ -418,7 +425,7 @@
 ///Flamer windup called before firing
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/proc/do_windup()
 	windup_checked = WEAPON_WINDUP_CHECKING
-	if(!do_after(gun_user, 1 SECONDS, TRUE, src))
+	if(!do_after(gun_user, 1 SECONDS, IGNORE_USER_LOC_CHANGE, src))
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	windup_checked = WEAPON_WINDUP_CHECKED
@@ -458,7 +465,8 @@
 /turf/open/floor/plating/ground/snow/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	if(slayer > 0)
 		slayer -= 1
-		update_icon(1, 0)
+		update_appearance()
+		update_sides()
 	return ..()
 
 

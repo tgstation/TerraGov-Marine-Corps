@@ -38,9 +38,6 @@
 	light_color = COLOR_WHITE
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
 
-	greyscale_colors = GUN_PALETTE_BLACK
-	colorable_colors = GUN_PALETTE_LIST
-
 /*
  *  Muzzle Vars
 */
@@ -288,10 +285,27 @@
 	var/gun_accuracy_mod = 0
 	///The actual scatter value of the fired projectile
 	var/gun_scatter = 0
+
+/*
+ *  HEAT MECHANIC VARS
+ *
+*/
+	/// heat on this gun. at over 100 heat stops you from firing and goes on cooldown
+	var/heat_amount = 0
+	///heat that we add every successful fire()
+	var/heat_per_fire = 0
+	///heat reduction per second
+	var/cool_amount = 5
+	///tracks overheat timer ref
+	var/overheat_timer
+	///overheat multiplier
+	var/overheat_multiplier = 1.1
+	///image we create to keep track of heat
+	var/image/heat_bar/heat_meter
+
 /*
  *  extra icon and item states or overlays
 */
-
 	///Whether the gun has ammo level overlays for its icon, mainly for eguns
 	var/ammo_level_icon
 	///Whether the icon_state overlay is offset in the x axis
@@ -299,13 +313,12 @@
 	///Whether the icon_state overlay is offset in the Y axis
 	var/icon_overlay_y_offset = 0
 
+
 /*
  *
  *   ATTACHMENT VARS
  *
 */
-
-
 	///List of offsets to make attachment overlays not look wonky.
 	var/list/attachable_offset = null
 	///List of allowed attachments, IT MUST INCLUDE THE STARTING ATTACHMENT TYPES OR THEY WILL NOT ATTACH.
@@ -445,7 +458,8 @@
 	. = ..()
 	set_gun_user(null)
 	active_attachable?.removed_from_inventory(user)
-	drop_connected_mag(null, user)
+	if(loc != user) // reequip component caught it with the signal
+		drop_connected_mag(null, user)
 
 ///Set the user in argument as gun_user
 /obj/item/weapon/gun/proc/set_gun_user(mob/user)
@@ -474,6 +488,9 @@
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
 		gun_user.hud_used.remove_ammo_hud(src)
+		if(heat_meter)
+			gun_user.client.images -= heat_meter
+			heat_meter = null
 		gun_user = null
 
 	if(!user)
@@ -493,13 +510,23 @@
 		COMSIG_MOB_SKILLS_CHANGED,
 		COMSIG_MOB_SHOCK_STAGE_CHANGED,
 		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED), PROC_REF(setup_bullet_accuracy))
+	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
+	if(flags_gun_features & GUN_AMMO_COUNTER)
+		gun_user.hud_used.add_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+	if(heat_per_fire)
+		heat_meter = new(loc=gun_user)
+		heat_meter.animate_change(heat_amount/100, 5)
+		gun_user.client.images += heat_meter
+	if(master_gun)
+		return
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	else
 		RegisterSignal(gun_user, COMSIG_KB_UNIQUEACTION, PROC_REF(unique_action))
 	RegisterSignal(gun_user, COMSIG_QDELETING, PROC_REF(clean_gun_user))
-	RegisterSignals(gun_user, list(COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM), PROC_REF(stop_fire))
+	RegisterSignals(gun_user, list(COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM), PROC_REF(stop_fire))
+	RegisterSignal(gun_user, COMSIG_ITEM_UNZOOM, PROC_REF(on_unzoom))
 	RegisterSignal(gun_user, COMSIG_KB_RAILATTACHMENT, PROC_REF(activate_rail_attachment))
 	RegisterSignal(gun_user, COMSIG_KB_UNDERRAILATTACHMENT, PROC_REF(activate_underrail_attachment))
 	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, PROC_REF(unload_gun))
@@ -513,7 +540,7 @@
 	SIGNAL_HANDLER
 	set_gun_user(null)
 
-/obj/item/weapon/gun/update_icon(mob/user)
+/obj/item/weapon/gun/update_icon()
 	. = ..()
 
 	for(var/datum/action/action AS in actions)
@@ -528,23 +555,15 @@
 /obj/item/weapon/gun/update_icon_state()
 	. = ..()
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))
-		icon_state = !greyscale_config ? base_gun_icon + "_o" : GUN_ICONSTATE_OPEN
+		icon_state = base_gun_icon + "_o"
 	else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !in_chamber && length(chamber_items))
-		icon_state = !greyscale_config ? base_gun_icon + "_u" : GUN_ICONSTATE_UNRACKED
+		icon_state = base_gun_icon + "_u"
 	else if((!length(chamber_items) && max_chamber_items) || (!rounds && !max_chamber_items))
-		icon_state = !greyscale_config ? base_gun_icon + "_e" : GUN_ICONSTATE_UNLOADED
+		icon_state = base_gun_icon + "_e"
 	else if(current_chamber_position <= length(chamber_items) && chamber_items[current_chamber_position] && chamber_items[current_chamber_position].loc != src)
 		icon_state = base_gun_icon + "_l"
 	else
-		icon_state = !greyscale_config ? base_gun_icon : GUN_ICONSTATE_LOADED
-
-/obj/item/weapon/gun/color_item(obj/item/facepaint/paint, mob/user)
-	. = ..()
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/human = user
-	human.regenerate_icons()
-
+		icon_state = base_gun_icon
 
 //manages the overlays for the gun - separate from attachment overlays
 /obj/item/weapon/gun/update_overlays()
@@ -762,6 +781,11 @@
 	active_attachable?.clean_target()
 	target = get_turf(target)
 
+///Handles unzoom behavior
+/obj/item/weapon/gun/proc/on_unzoom(mob/user)
+	SIGNAL_HANDLER
+	stop_fire()
+
 ///Reset variables used in firing and remove the gun from the autofire system
 /obj/item/weapon/gun/proc/stop_fire()
 	SIGNAL_HANDLER
@@ -819,7 +843,7 @@
 		if(!gun_user)
 			addtimer(CALLBACK(src, PROC_REF(fire_after_autonomous_windup)), windup_delay)
 			return NONE
-		if(!do_after(gun_user, windup_delay, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
+		if(!do_after(gun_user, windup_delay, IGNORE_LOC_CHANGE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
 			return NONE
 		windup_checked = WEAPON_WINDUP_CHECKED
@@ -869,6 +893,21 @@
 		if(inactive_gun.rounds && !(inactive_gun.flags_gun_features & GUN_WIELDED_FIRING_ONLY))
 			inactive_gun.last_fired = max(world.time - fire_delay * (1 - akimbo_additional_delay), inactive_gun.last_fired)
 			gun_user.swap_hand()
+	heat_amount += heat_per_fire
+	if(!(datum_flags & DF_ISPROCESSING))
+		START_PROCESSING(SSprocessing, src)
+	if(!heat_per_fire)
+		return AUTOFIRE_CONTINUE
+	if(heat_amount >= 100)
+		STOP_PROCESSING(SSprocessing, src)
+		var/obj/effect/abstract/particle_holder/overheat_smoke = new(src, /particles/overheat_smoke)
+		playsound(src, 'sound/weapons/guns/interact/gun_overheat.ogg', 25, 1, 5)
+		//overheat gives either you a bonus or penalty depending on gun, by default it is +10% time.
+		var/overheat_time = heat_amount/cool_amount*overheat_multiplier
+		overheat_timer = addtimer(CALLBACK(src, PROC_REF(complete_overheat), overheat_smoke), overheat_time, TIMER_STOPPABLE)
+		heat_meter.animate_change(0, overheat_time)
+		return NONE
+	heat_meter.animate_change(heat_amount/100, fire_delay)
 	return AUTOFIRE_CONTINUE
 
 ///Actually fires the gun, sets up the projectile and fires it.
@@ -891,6 +930,11 @@
 	if(gun_user)
 		projectile_to_fire.firer = gun_user
 		projectile_to_fire.def_zone = gun_user.zone_selected
+
+		if(gun_user.skills.getRating(SKILL_FIREARMS) >= SKILL_FIREARMS_DEFAULT)
+			var/skill_level = gun_user.skills.getRating(gun_skill_category)
+			if(skill_level > 0)
+				projectile_to_fire.damage *= 1 + skill_level * FIREARM_SKILL_DAM_MOD
 
 		if((world.time - gun_user.last_move_time) < 5) //if you moved during the last half second, you have some penalties to accuracy and scatter
 			if(flags_item & FULLY_WIELDED)
@@ -1016,6 +1060,19 @@
 	windup_checked = WEAPON_WINDUP_CHECKED
 	Fire()
 
+///called by a timer after overheat finishes
+/obj/item/weapon/gun/proc/complete_overheat(overheat_smoke)
+	QDEL_NULL(overheat_smoke)
+	overheat_timer = null
+	heat_amount = 0
+
+/obj/item/weapon/gun/process(delta_time)
+	if(heat_meter)
+		heat_amount = max(0, heat_amount - cool_amount*delta_time)
+		heat_meter.animate_change(heat_amount/100, 5)
+	if(!heat_amount)
+		return PROCESS_KILL
+
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK) || !able_to_fire(user) || gun_on_cooldown(user) || CHECK_BITFIELD(M.status_flags, INCORPOREAL)) // If it can't point blank, you can't suicide and such.
 		if(master_gun)
@@ -1044,7 +1101,7 @@
 	user.visible_message(span_warning("[user] sticks their gun in their mouth, ready to pull the trigger."))
 	log_combat(user, null, "is trying to commit suicide")
 
-	if(!do_after(user, 40, TRUE, src, BUSY_ICON_DANGER))
+	if(!do_after(user, 40, NONE, src, BUSY_ICON_DANGER))
 		M.visible_message(span_notice("[user] decided life was worth living."))
 		ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
 		return
@@ -1084,7 +1141,7 @@
 			user.apply_damage(200, OXY)
 			if(ishuman(user) && user == M)
 				var/mob/living/carbon/human/HM = user
-				HM.set_undefibbable() //can't be defibbed back from self inflicted gunshot to head
+				HM.set_undefibbable(TRUE) //can't be defibbed back from self inflicted gunshot to head
 			user.death()
 
 	user.log_message("commited suicide with [src]", LOG_ATTACK, "red") //Apply the attack log.
@@ -1262,7 +1319,7 @@
 			return FALSE
 		if(get_magazine_reload_delay(new_mag) > 0 && user && !force)
 			to_chat(user, span_notice("You begin reloading [src] with [new_mag]."))
-			if(!do_after(user, get_magazine_reload_delay(new_mag), TRUE, user))
+			if(!do_after(user, get_magazine_reload_delay(new_mag), NONE, user))
 				to_chat(user, span_warning("Your reload was interupted!"))
 				return FALSE
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
@@ -1492,7 +1549,7 @@
 		num_of_casings--
 	if(num_of_casings)
 		casing.current_casings += num_of_casings
-		casing.update_icon()
+		casing.update_appearance()
 	playsound(current_turf, sound_to_play, 25, 1, 5)
 
 
@@ -1679,6 +1736,9 @@
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT) && !master_gun && CHECK_BITFIELD(flags_gun_features, GUN_ATTACHMENT_FIRE_ONLY))
 		to_chat(user, span_notice("You cannot fire [src] without it attached to a gun!"))
 		return FALSE
+	if(overheat_timer)
+		balloon_alert(user, "overheat")
+		return FALSE
 	return TRUE
 
 /obj/item/weapon/gun/proc/gun_on_cooldown(mob/user)
@@ -1841,3 +1901,34 @@
 	playsound(loc, "alien_claw_metal", 25, 1)
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	to_chat(X, span_warning("We disable the metal thing's lights.") )
+
+
+/particles/overheat_smoke
+	icon = 'icons/effects/particles/smoke.dmi'
+	icon_state = list("smoke_1" = 1, "smoke_2" = 1, "smoke_3" = 2)
+	width = 100
+	height = 200
+	count = 1000
+	spawning = 3
+	lifespan = 1.5 SECONDS
+	fade = 1 SECONDS
+	velocity = list(0, 0.3, 0)
+	position = list(8, 8)
+	drift = generator(GEN_SPHERE, 0, 1, NORMAL_RAND)
+	friction = 0.2
+	gravity = list(0, 0.95)
+	grow = 0.05
+
+//tried to make this a alpha mask that moved up and down over the bar but I failed so whatever
+/image/heat_bar
+	icon = 'icons/effects/overheat.dmi'
+	icon_state = "status_bar"
+	plane = ABOVE_HUD_PLANE
+	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+
+///takes a 0-1 value and then animates to display that percentage on this bar
+/image/heat_bar/proc/animate_change(new_percentage, animate_time)
+	if(new_percentage != 0)
+		animate(src, color=gradient(COLOR_GREEN, COLOR_RED, new_percentage), alpha =  175, easing=SINE_EASING, time=animate_time)
+		return
+	animate(src, color=gradient(COLOR_GREEN, COLOR_RED, new_percentage), alpha = 0, easing=SINE_EASING, time=animate_time)

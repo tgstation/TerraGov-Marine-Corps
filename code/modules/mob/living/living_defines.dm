@@ -47,7 +47,7 @@
 	/// How fast does a mob regen its stamina. Shouldn't go below 0.
 	var/stamina_regen_multiplier = 1
 	/// Maps modifiers by name to a value, applied additively to stamina_regen_multiplier
-	var/list/stamina_regen_modifiers
+	var/list/stamina_regen_modifiers = list()
 	var/is_dizzy = FALSE
 	var/druggy = 0
 

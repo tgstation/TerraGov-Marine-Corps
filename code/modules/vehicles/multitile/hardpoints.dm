@@ -85,7 +85,7 @@ Currently only has the tank hardpoints
 		return
 	user.visible_message(span_notice("[user] starts repairing [src]."),
 		span_notice("You start repairing [src]."))
-	if(!do_after(user, 3 SECONDS * repair_delays, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 3 SECONDS * repair_delays, NONE, src, BUSY_ICON_BUILD))
 		user.visible_message(span_notice("[user] stops repairing [src]."),
 							span_notice("You stop repairing [src]."))
 		return
@@ -142,7 +142,7 @@ Currently only has the tank hardpoints
 
 	var/atom/target = owner ? owner : src
 
-	if(!do_after(user, 10, TRUE, target) || QDELETED(src))
+	if(!do_after(user, 10, NONE, target) || QDELETED(src))
 		to_chat(user, span_warning("Something interrupted you while loading [src]."))
 		return FALSE
 
@@ -263,7 +263,7 @@ Currently only has the tank hardpoints
 
 	to_chat(usr, span_warning("Preparing to fire... keep the tank still for [delay * 0.1] seconds."))
 
-	if(!do_after(usr, delay, FALSE, src) || QDELETED(owner))
+	if(!do_after(usr, delay, IGNORE_HELD_ITEM, src) || QDELETED(owner))
 		to_chat(usr, span_warning("The [name]'s firing was interrupted."))
 		qdel(TL)
 
@@ -421,7 +421,7 @@ Currently only has the tank hardpoints
 
 	to_chat(usr, span_warning("Preparing to fire... keep the tank still for [delay * 0.1] seconds."))
 
-	if(!do_after(usr, delay, FALSE, src) || QDELETED(owner))
+	if(!do_after(usr, delay, IGNORE_HELD_ITEM, src) || QDELETED(owner))
 		to_chat(usr, span_warning("The [name]'s firing was interrupted."))
 		qdel(TL)
 		return
@@ -920,7 +920,8 @@ Currently only has the tank hardpoints
 	max_rounds = 4
 	point_cost = 50
 
-/obj/item/ammo_magazine/tank/ltb_cannon/update_icon()
+/obj/item/ammo_magazine/tank/ltb_cannon/update_icon_state()
+	. = ..()
 	icon_state = "ltbcannon_[current_rounds]"
 
 
@@ -969,7 +970,8 @@ Currently only has the tank hardpoints
 	point_cost = 25
 
 
-/obj/item/ammo_magazine/tank/tank_glauncher/update_icon()
+/obj/item/ammo_magazine/tank/tank_glauncher/update_icon_state()
+	. = ..()
 	if(current_rounds >= max_rounds)
 		icon_state = "glauncher_2"
 	else if(current_rounds <= 0)
@@ -988,7 +990,8 @@ Currently only has the tank hardpoints
 	max_rounds = 6
 	point_cost = 5
 
-/obj/item/ammo_magazine/tank/tank_slauncher/update_icon()
+/obj/item/ammo_magazine/tank/tank_slauncher/update_icon_state()
+	. = ..()
 	icon_state = "slauncher_[current_rounds <= 0 ? "0" : "1"]"
 
 ///////////////

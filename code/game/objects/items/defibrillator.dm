@@ -44,6 +44,7 @@
 
 
 /obj/item/defibrillator/update_icon_state()
+	. = ..()
 	icon_state = "defib"
 	if(ready)
 		icon_state += "_out"
@@ -96,7 +97,7 @@
 	if(skill < SKILL_MEDICAL_PRACTICED)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
-		if(!do_after(user, SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * skill), TRUE, src, BUSY_ICON_UNSKILLED)) // 3 seconds with medical skill, 5 without
+		if(!do_after(user, SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * skill), NONE, src, BUSY_ICON_UNSKILLED)) // 3 seconds with medical skill, 5 without
 			return
 
 	defib_cooldown = world.time + 2 SECONDS
@@ -169,7 +170,7 @@
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
 		var/fumbling_time = SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * skill) // 3 seconds with medical skill, 5 without
-		if(!do_after(user, fumbling_time, TRUE, H, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, NONE, H, BUSY_ICON_UNSKILLED))
 			return
 	else
 		defib_heal_amt *= skill * 0.5 //more healing power when used by a doctor (this means non-trained don't heal)
@@ -212,7 +213,7 @@
 	span_notice("You start setting up the paddles on [H]'s chest."))
 	playsound(get_turf(src),'sound/items/defib_charge.ogg', 25, 0) //Do NOT vary this tune, it needs to be precisely 7 seconds
 
-	if(!do_mob(user, H, 7 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(!do_after(user, 7 SECONDS, NONE, H, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		user.visible_message(span_warning("[user] stops setting up the paddles on [H]'s chest."),
 		span_warning("You stop setting up the paddles on [H]'s chest."))
 		return
@@ -306,6 +307,13 @@
 	H.handle_regular_hud_updates()
 	H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 	H.dead_ticks = 0 //We reset the DNR time
+
+	//Checks if our "patient" is wearing a camera. Then it turns it on if it's off.
+	if(istype(H.wear_ear, /obj/item/radio/headset/mainship))
+		var/obj/item/radio/headset/mainship/cam_headset = H.wear_ear
+		if(!(cam_headset?.camera?.status))
+			cam_headset.camera.toggle_cam(null, FALSE)
+
 	REMOVE_TRAIT(H, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(user.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
@@ -368,5 +376,4 @@
 		defibrillate(target, user)
 
 /obj/item/defibrillator/gloves/update_icon_state()
-	return
-
+	return //The parent has some behaviour we don't want

@@ -168,12 +168,10 @@
 				A.set_broken()
 
 	// Failing SMES has special icon overlay.
-/obj/machinery/power/smes/buildable/update_icon()
-	if (failing)
-		overlays.Cut()
-		overlays += image('icons/obj/power.dmi', "smes_crit")
-	else
-		..()
+/obj/machinery/power/smes/buildable/update_overlays()
+	. = ..()
+	if(failing)
+		. += image('icons/obj/power.dmi', "smes_crit")
 
 /obj/machinery/power/smes/buildable/attackby(obj/item/I, mob/user, params)
 	// No more disassembling of overloaded SMESs. You broke it, now enjoy the consequences.
@@ -213,7 +211,7 @@
 		playsound(get_turf(src), 'sound/items/crowbar.ogg', 25, 1)
 		to_chat(user, span_warning("You begin to disassemble the [src]!"))
 
-		if(!do_after(user, 10 SECONDS * cur_coils, TRUE, src, BUSY_ICON_BUILD)) // More coils = takes longer to disassemble. It's complex so largest one with 5 coils will take 50s
+		if(!do_after(user, 10 SECONDS * cur_coils, NONE, src, BUSY_ICON_BUILD)) // More coils = takes longer to disassemble. It's complex so largest one with 5 coils will take 50s
 			return
 
 		if(failure_probability && prob(failure_probability))

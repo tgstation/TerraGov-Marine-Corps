@@ -243,7 +243,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(!(job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
 		CRASH("add_job_positions called for a non-joinable job")
 	if(total_positions == -1)
-		CRASH("add_job_positions called with [amount] amount for a job set to overflow")
+		return TRUE
 	var/previous_amount = total_positions
 	total_positions += amount
 	manage_job_lists(previous_amount)
@@ -279,7 +279,7 @@ GLOBAL_PROTECT(exp_specialmap)
 // Spawning mobs.
 /mob/living/proc/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	job = assigned_role
-	skills = getSkillsType(job.return_skills_type(player?.prefs))
+	set_skills(getSkillsType(job.return_skills_type(player?.prefs)))
 	faction = job.faction
 	job.announce(src)
 	GLOB.round_statistics.total_humans_created[faction]++

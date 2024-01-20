@@ -113,7 +113,11 @@
 	base_icon_state = "darkfrostwall"
 	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
 
+/turf/closed/mineral/smooth/darkfrostwall/cuttable
+	resistance_flags = UNACIDABLE
+
 /turf/closed/mineral/smooth/darkfrostwall/indestructible
+	name = "tough rock"
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
@@ -302,7 +306,7 @@
 			return
 		else if(!P.start_cut(user, name, src))
 			return
-		else if(!do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
+		else if(!do_after(user, PLASMACUTTER_CUT_DELAY, NONE, src, BUSY_ICON_FRIENDLY))
 			return
 		else
 			P.cut_apart(user, name, src) //purely a cosmetic effect

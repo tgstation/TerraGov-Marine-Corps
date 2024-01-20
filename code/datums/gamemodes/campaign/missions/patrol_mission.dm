@@ -217,14 +217,14 @@
 ///test missions
 /datum/campaign_mission/tdm/lv624
 	name = "Combat patrol 2"
-	map_name = "Orion outpost"
+	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Orion_Military_Outpost/orionoutpost.dmm'
 	map_light_colours = list(COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW)
 	map_light_levels = list(225, 150, 100, 75)
 
 /datum/campaign_mission/tdm/first_mission
 	name = "First Contact"
-	map_name = "Jungle outpost SR-422"
+	map_name = "Jungle Outpost SR-422"
 	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)

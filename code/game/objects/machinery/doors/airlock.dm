@@ -63,6 +63,8 @@
 
 /obj/machinery/door/airlock/LateInitialize()
 	. = ..()
+	if(cyclelinkeddir)
+		cyclelinkairlock()
 	if(!abandoned)
 		return
 	var/outcome = rand(1,40)
@@ -84,6 +86,28 @@
 		if(24 to 30)
 			machine_stat ^= PANEL_OPEN
 
+///connect potential airlocks to each other for cycling
+/obj/machinery/door/airlock/proc/cyclelinkairlock()
+	if (cycle_linked_airlock)
+		cycle_linked_airlock.cycle_linked_airlock = null
+		cycle_linked_airlock = null
+	if (!cyclelinkeddir)
+		return
+	var/limit = world.view
+	var/turf/T = get_turf(src)
+	var/obj/machinery/door/airlock/FoundDoor
+	do
+		T = get_step(T, cyclelinkeddir)
+		FoundDoor = locate() in T
+		if (FoundDoor && FoundDoor.cyclelinkeddir != get_dir(FoundDoor, src))
+			FoundDoor = null
+		limit--
+	while(!FoundDoor && limit)
+	if (!FoundDoor)
+		return
+	FoundDoor.cycle_linked_airlock = src
+	cycle_linked_airlock = FoundDoor
+
 /obj/machinery/door/airlock/proc/isElectrified()
 	if(secondsElectrified != MACHINE_NOT_ELECTRIFIED)
 		return TRUE
@@ -91,6 +115,8 @@
 
 
 /obj/machinery/door/airlock/proc/canAIControl(mob/user)
+	if(hackProof)
+		return
 	if(z != user.z)
 		return
 	return ((aiControlDisabled != 1) && !isAllPowerCut())
@@ -182,25 +208,45 @@
 	else
 		return 0
 
-
-/obj/machinery/door/airlock/update_icon()
-	if(overlays) overlays.Cut()
+/obj/machinery/door/airlock/update_icon_state()
+	. = ..()
 	if(density)
-		if(emergency && hasPower())
-			overlays += image(icon, "emergency_access_on")
 		if(locked && lights)
 			icon_state = "door_locked"
 		else
 			icon_state = "door_closed"
-		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) || welded)
-			overlays = list()
-			if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-				overlays += image(icon, "panel_open")
-			if(welded)
-				overlays += image(icon, "welded")
 	else
 		icon_state = "door_open"
 
+/obj/machinery/door/airlock/update_overlays()
+	. = ..()
+	if(!density)
+		return
+	if(emergency && hasPower())
+		. += image(icon, "emergency_access_on")
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		. += image(icon, "panel_open")
+	if(welded)
+		. += image(icon, "welded")
+	if(hasPower() && unres_sides)
+		for(var/heading in list(NORTH,SOUTH,EAST,WEST))
+			if(!(unres_sides & heading))
+				continue
+			var/image/access_overlay = image('icons/obj/doors/overlays.dmi', "unres_[heading]", layer = DOOR_HELPER_LAYER, pixel_y = -4)
+			switch(heading)
+				if(NORTH)
+					access_overlay.pixel_x = 0
+					access_overlay.pixel_y = 32
+				if(SOUTH)
+					access_overlay.pixel_x = 0
+					access_overlay.pixel_y = -32
+				if(EAST)
+					access_overlay.pixel_x = 32
+					access_overlay.pixel_y = 0
+				if(WEST)
+					access_overlay.pixel_x = -32
+					access_overlay.pixel_y = 0
+			. += access_overlay
 
 /obj/machinery/door/airlock/do_animate(animation)
 	switch(animation)
@@ -255,7 +301,7 @@
 	if(hasPower())
 		X.visible_message(span_warning("\The [X] digs into \the [src] and begins to pry it open."), \
 		span_warning("We dig into \the [src] and begin to pry it open."), null, 5)
-		if(!do_after(X, 4 SECONDS, FALSE, src, BUSY_ICON_HOSTILE) && !X.lying_angle)
+		if(!do_after(X, 4 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE) && !X.lying_angle)
 			return FALSE
 	if(locked)
 		to_chat(X, span_warning("\The [src] is bolted down tight."))
@@ -374,7 +420,7 @@
 			span_notice("You fumble around figuring out how to deconstruct [src]."))
 
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		if(width > 1)
@@ -384,7 +430,7 @@
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
 
-		if(!do_after(user,40, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, span_notice("You removed the airlock electronics!"))

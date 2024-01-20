@@ -3,13 +3,14 @@
 	name = "NT base rescue"
 	mission_icon = "nt_rescue"
 	mission_flags = MISSION_DISALLOW_TELEPORT
-	map_name = "NT site B-403"
+	map_name = "NT Site B-403"
 	map_file = '_maps/map_files/Campaign maps/nt_base/nt_base.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SNOWSTORM = TRUE)
 	map_light_colours = list(COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE)
 	map_light_levels = list(225, 150, 100, 75)
 	objectives_total = 1
 	min_destruction_amount = 1
+	max_game_time = 15 MINUTES
 	shutter_open_delay = list(
 		MISSION_STARTING_FACTION = 60 SECONDS,
 		MISSION_HOSTILE_FACTION = 0,
@@ -140,6 +141,7 @@
 	return ..()
 
 /obj/structure/weapon_x_pod/update_icon_state()
+	. = ..()
 	if(occupant)
 		icon_state = initial(icon_state)
 	else

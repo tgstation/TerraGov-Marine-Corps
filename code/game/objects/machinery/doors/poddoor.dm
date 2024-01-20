@@ -48,7 +48,8 @@
 /obj/machinery/door/poddoor/try_to_activate_door(mob/user)
 	return
 
-/obj/machinery/door/poddoor/update_icon()
+/obj/machinery/door/poddoor/update_icon_state()
+	. = ..()
 	if(density)
 		icon_state = "pdoor1"
 	else
@@ -98,13 +99,11 @@
 /obj/machinery/door/poddoor/telecomms
 	name = "Telecomms Emergency Window"
 	id = "tcomwind"
-	opacity = FALSE
 
 /obj/machinery/door/poddoor/two_tile_hor
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'
 	dir = EAST
 	width = 2
-	resistance_flags = UNACIDABLE
 
 /obj/machinery/door/poddoor/two_tile_hor/execution
 	icon_state = "pdoor0"
@@ -135,7 +134,6 @@
 	icon = 'icons/obj/doors/1x2blast_vert.dmi'
 	dir = NORTH
 	width = 2
-	resistance_flags = UNACIDABLE
 
 /obj/machinery/door/poddoor/two_tile_ver/riotarmory
 	icon_state = "pdoor0"

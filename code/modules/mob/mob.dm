@@ -30,11 +30,16 @@
 		GLOB.dead_mob_list += src
 	set_focus(src)
 	prepare_huds()
+	for(var/v in GLOB.active_alternate_appearances)
+		if(!v)
+			continue
+		var/datum/atom_hud/alternate_appearance/AA = v
+		AA.onNewMob(src)
 	. = ..()
 	if(islist(skills))
-		skills = getSkills(arglist(skills))
+		set_skills(getSkills(arglist(skills)))
 	else if(!skills)
-		skills = getSkills()
+		set_skills(getSkills())
 	else if(!istype(skills, /datum/skills))
 		stack_trace("Invalid type [skills.type] found in .skills during /mob Initialize()")
 	update_config_movespeed()
@@ -226,7 +231,7 @@
 			to_chat(src, span_warning("You are unable to equip that."))
 		return FALSE
 	if(W.equip_delay_self && !ignore_delay)
-		if(!do_after(src, W.equip_delay_self, TRUE, W, BUSY_ICON_FRIENDLY))
+		if(!do_after(src, W.equip_delay_self, NONE, W, BUSY_ICON_FRIENDLY))
 			to_chat(src, "You stop putting on \the [W]")
 			return FALSE
 		equip_to_slot(W, slot) //This proc should not ever fail.
@@ -308,6 +313,37 @@
 	. = ..()
 	. += "---"
 	.["Player Panel"] = "?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
+
+/mob/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if(NAMEOF(src, control_object))
+			var/obj/O = var_value
+			if(!istype(O) || (O.obj_flags & DANGEROUS_POSSESSION))
+				return FALSE
+		if(NAMEOF(src, machine))
+			set_machine(var_value)
+			. = TRUE
+		if(NAMEOF(src, focus))
+			set_focus(var_value)
+			. = TRUE
+		if(NAMEOF(src, stat))
+			set_stat(var_value)
+			. = TRUE
+
+	if(!isnull(.))
+		datum_flags |= DF_VAR_EDITED
+		return
+
+	var/slowdown_edit = (var_name == NAMEOF(src, cached_multiplicative_slowdown))
+	var/diff
+	if(slowdown_edit && isnum(cached_multiplicative_slowdown) && isnum(var_value))
+		remove_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT)
+		diff = var_value - cached_multiplicative_slowdown
+
+	. = ..()
+
+	if(. && slowdown_edit && isnum(diff))
+		update_movespeed()
 
 
 /client/verb/changes()

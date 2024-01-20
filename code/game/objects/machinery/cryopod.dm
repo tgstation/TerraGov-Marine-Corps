@@ -129,6 +129,7 @@
 		set_light(initial(light_range))
 
 /obj/machinery/cryopod/update_icon_state()
+	. = ..()
 	if(occupant)
 		icon_state = "[initial(icon_state)]_occupied"
 	else
@@ -287,7 +288,7 @@
 		span_notice("You start climbing into [src]."))
 
 	var/mob/initiator = helper ? helper : user
-	if(!do_after(initiator, 20, TRUE, user, BUSY_ICON_GENERIC))
+	if(!do_after(initiator, 20, NONE, user, BUSY_ICON_GENERIC))
 		return FALSE
 
 	if(!QDELETED(occupant))

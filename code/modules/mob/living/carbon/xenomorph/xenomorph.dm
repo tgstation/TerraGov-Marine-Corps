@@ -156,17 +156,17 @@
 	var/rank_name
 	switch(playtime_mins)
 		if(0 to 600)
-			rank_name = "Hatchling"
-		if(601 to 1500) //10 hours
 			rank_name = "Young"
-		if(1501 to 4200) //25 hours
+		if(601 to 1500) //10 hours
 			rank_name = "Mature"
-		if(4201 to 10500) //70 hours
+		if(1501 to 4200) //25 hours
 			rank_name = "Elder"
-		if(10501 to INFINITY) //175 hours
+		if(4201 to 10500) //70 hours
 			rank_name = "Ancient"
+		if(10501 to INFINITY) //175 hours
+			rank_name = "Prime"
 		else
-			rank_name = "Hatchling"
+			rank_name = "Young"
 	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
 	name = prefix + "[rank_name ? "[rank_name] " : ""][xeno_caste.display_name] ([nicknumber])"
 
@@ -299,7 +299,7 @@
 		return FALSE //Incorporeal things can't grab or be grabbed.
 	if(AM.anchored)
 		return FALSE //We cannot grab anchored items.
-	if(!isliving(AM) && AM.drag_windup && !do_after(src, AM.drag_windup, TRUE, AM, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = src.health))))
+	if(!isliving(AM) && AM.drag_windup && !do_after(src, AM.drag_windup, NONE, AM, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = src.health))))
 		return //If the target is not a living mob and has a drag_windup defined, calls a do_after. If all conditions are met, it returns. If the user takes damage during the windup, it breaks the channel.
 	var/mob/living/L = AM
 	if(L.buckled)
@@ -465,7 +465,7 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 	update_icon()
 
 /mob/living/carbon/xenomorph/lay_down()
-	var/datum/action/xeno_action/xeno_resting/resting_action = actions_by_path[/datum/action/xeno_action/xeno_resting]
+	var/datum/action/ability/xeno_action/xeno_resting/resting_action = actions_by_path[/datum/action/ability/xeno_action/xeno_resting]
 	if(!resting_action || !resting_action.can_use_action())
 		return
 	return ..()

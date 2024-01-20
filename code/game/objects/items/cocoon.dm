@@ -42,7 +42,8 @@
 /obj/structure/cocoon/process()
 	var/psych_points_output = COCOON_PSY_POINTS_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (COCOON_PSY_POINTS_REWARD_MAX - COCOON_PSY_POINTS_REWARD_MIN))
 	psych_points_output = clamp(psych_points_output, COCOON_PSY_POINTS_REWARD_MIN, COCOON_PSY_POINTS_REWARD_MAX)
-	SSpoints.add_psy_points(hivenumber, psych_points_output)
+	SSpoints.add_strategic_psy_points(hivenumber, psych_points_output)
+	SSpoints.add_tactical_psy_points(hivenumber, psych_points_output*0.25)
 	//Gives marine cloneloss for a total of 30.
 	victim.adjustCloneLoss(0.5)
 
@@ -104,7 +105,7 @@
 		busy = TRUE
 		var/channel = SSsounds.random_available_channel()
 		playsound(user, "sound/effects/cutting_cocoon.ogg", 30, channel = channel)
-		if(!do_after(user, 8 SECONDS, TRUE, src))
+		if(!do_after(user, 8 SECONDS, NONE, src))
 			busy = FALSE
 			user.stop_sound_channel(channel)
 			return
@@ -115,6 +116,7 @@
 	return ..()
 
 /obj/structure/cocoon/update_icon_state()
+	. = ..()
 	if(anchored)
 		icon_state = "xeno_cocoon"
 		return

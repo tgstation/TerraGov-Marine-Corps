@@ -64,7 +64,7 @@
 ///Starts the capture process
 /obj/structure/campaign_objective/capture_objective/proc/begin_capture(mob/living/user)
 	user.balloon_alert_to_viewers("Activating!")
-	if(!do_after(user, activation_time, TRUE, src))
+	if(!do_after(user, activation_time, NONE, src))
 		return
 	if(!capture_check(user))
 		return
@@ -148,6 +148,7 @@
 	countdown.pixel_y = 90
 
 /obj/structure/campaign_objective/capture_objective/sensor_tower/update_icon_state()
+	. = ..()
 	icon_state = initial(icon_state)
 	if(!owning_faction)
 		switch(capturing_faction)

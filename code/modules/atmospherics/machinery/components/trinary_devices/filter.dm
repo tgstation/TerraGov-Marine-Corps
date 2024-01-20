@@ -14,8 +14,9 @@
 	pipe_state = "filter"
 
 
-/obj/machinery/atmospherics/components/trinary/filter/update_icon()
-	cut_overlays()
+/obj/machinery/atmospherics/components/trinary/filter/update_overlays()
+	. = ..()
+
 	for(var/direction in GLOB.cardinals)
 		if(!(direction & initialize_directions))
 			continue
@@ -27,7 +28,7 @@
 		else
 			cap = getpipeimage(icon, "cap", direction, piping_layer = piping_layer)
 
-		add_overlay(cap)
+		. += cap
 
 	return ..()
 

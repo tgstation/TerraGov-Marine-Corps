@@ -505,6 +505,10 @@
 			return s_store
 		if(ITEM_SLOT_HANDCUFF)
 			return handcuffed
+		if(ITEM_SLOT_L_HAND)
+			return l_hand
+		if(ITEM_SLOT_R_HAND)
+			return r_hand
 
 /mob/living/carbon/human/get_equipped_slot(obj/equipped_item)
 	if(..())
@@ -542,7 +546,7 @@
 
 	M.visible_message(span_danger("[src] tries to remove [M]'s [I.name]."), \
 					span_userdanger("[src] tries to remove [M]'s [I.name]."), null, 5)
-	if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_HOSTILE))
+	if(do_after(src, HUMAN_STRIP_DELAY, NONE, M, BUSY_ICON_HOSTILE))
 		if(Adjacent(M) && I && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)
 			log_combat(src, M, "removed [key_name(I)] ([slot_to_process])")

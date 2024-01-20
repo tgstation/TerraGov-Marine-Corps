@@ -54,7 +54,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	//We always use the escorted atom as our reference point for looking for target. So if we don't have any escorted atom, we take ourselve as the reference
 	START_PROCESSING(SSprocessing, src)
 	if(is_offered_on_creation)
-		LAZYDISTINCTADD(GLOB.ssd_living_mobs, mob_parent)
+		LAZYOR(GLOB.ssd_living_mobs, mob_parent)
 
 /datum/ai_behavior/Destroy(force, ...)
 	. = ..()
@@ -108,6 +108,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Cleanup old state vars, start the movement towards our new target
 /datum/ai_behavior/proc/change_action(next_action, atom/next_target, special_distance_to_maintain)
+	if(QDELETED(mob_parent))
+		return
 	cleanup_current_action(next_action)
 	#ifdef TESTING
 	switch(next_action)
@@ -324,6 +326,8 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 
 /// Move the ai and schedule the next move
 /datum/ai_behavior/proc/scheduled_move()
+	if(QDELETED(mob_parent))
+		return
 	if(!atom_to_walk_to)
 		registered_for_move = FALSE
 		return

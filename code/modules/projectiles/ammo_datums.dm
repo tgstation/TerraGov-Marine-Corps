@@ -1,5 +1,9 @@
 #define DEBUG_STAGGER_SLOWDOWN 0
 
+/*!
+ * TODO SPLIT THIS FILE GODDAM
+ */
+
 GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/alien/egg, /obj/structure/mineral_door, /obj/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
 
 /datum/ammo
@@ -117,7 +121,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		CRASH("staggerstun called without a mob target")
 	if(!isliving(victim))
 		return
-	if(proj.distance_travelled > max_range)
+	if(get_dist_euclide(proj.starting_turf, victim) > max_range)
 		return
 	var/impact_message = ""
 	if(isxeno(victim))
@@ -323,7 +327,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	bonus_projectiles_amount = 1
 	fire_bonus_projectiles(proj, T, proj.shot_from, new_range, proj.projectile_speed, new_angle, null, get_step(T, dir_to_proj))
-	bonus_projectiles_amount = 0
+	bonus_projectiles_amount = initial(bonus_projectiles_amount)
 
 /*
 //================================================
@@ -734,8 +738,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range = 15
 	damage = 40
-	penetration = 20
-	sundering = 10
+	penetration = 30
+	sundering = 5
 	bullet_color = COLOR_SOFT_RED
 
 /datum/ammo/bullet/rifle/tx8/incendiary
@@ -751,8 +755,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "high velocity impact bullet"
 	hud_state = "hivelo_impact"
 	damage = 30
-	penetration = 10
-	sundering = 12.5
+	penetration = 20
+	sundering = 6.5
 
 /datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, max_range = 14, slowdown = 1, knockback = 1)
@@ -1158,7 +1162,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	airburst_multiplier = 0.5
 
 /datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/projectile/proj)
-	staggerstun(victim, proj,  max_range = 30, slowdown = 2)
+	staggerstun(victim, proj,  max_range = 30)
 	airburst(victim, proj)
 
 /datum/ammo/bullet/sniper/svd
@@ -1299,6 +1303,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 50
+	max_range = 40
 	penetration = 25
 	sundering = 5
 	shell_speed = 4
@@ -2760,7 +2765,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "laser bolt"
 	icon_state = "laser"
 	hud_state = "laser"
-	armor_type = "laser"
+	armor_type = LASER
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
 	shell_speed = 4
 	accurate_range = 15
@@ -3188,11 +3193,120 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/lasgun/marine/heavy_laser/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? get_step_towards(T, P) : T)
 
+/datum/ammo/energy/plasma
+	name = "superheated plasma"
+	icon_state = "plasma_small"
+	hud_state = "plasma"
+	hud_state_empty = "battery_empty"
+	armor_type = ENERGY
+	bullet_color = COLOR_DISABLER_BLUE
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
+	shell_speed = 3
+
+/datum/ammo/energy/plasma/rifle_standard
+	damage = 25
+	penetration = 15
+	sundering = 0.75
+	damage_falloff = 1
+
+/datum/ammo/energy/plasma/rifle_marksman
+	icon_state = "plasma_big"
+	hud_state = "plasma_blast"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
+	damage = 30
+	penetration = 20
+	sundering = 2
+	damage_falloff = 0.15
+	accurate_range = 25
+
+/datum/ammo/energy/plasma/rifle_blast
+	name = "plasma blast ball"
+	icon_state = "plasma_ball_small"
+	hud_state = "plasma_blast"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY
+	bonus_projectiles_type = /datum/ammo/energy/plasma/rifle_blast/additional
+	bonus_projectiles_amount = 4
+	bonus_projectiles_scatter = 3
+	accurate_range = 4
+	max_range = 6
+	damage = 30
+	damage_falloff = 1
+	///Number of melting stacks to apply when hitting mobs
+	var/melt_stacks = 1
+
+/datum/ammo/energy/plasma/rifle_blast/melting/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+
+	var/mob/living/living_victim = M
+	var/datum/status_effect/stacking/melting/debuff = living_victim.has_status_effect(STATUS_EFFECT_MELTING)
+
+	if(debuff)
+		debuff.add_stacks(melt_stacks)
+	else
+		living_victim.apply_status_effect(STATUS_EFFECT_MELTING, melt_stacks)
+
+/datum/ammo/energy/plasma/rifle_blast/additional
+	name = "additional plasma blast"
+	accurate_range = 4
+	max_range = 10
+	damage = 25
+	damage_falloff = 1
+
+/datum/ammo/energy/plasma/cannon_standard
+	damage = 20
+	penetration = 15
+	sundering = 0.75
+	damage_falloff = 0.75
+
+/datum/ammo/energy/plasma/cannon_heavy
+	name = "plasma heavy glob"
+	icon_state = "plasma_ball_big"
+	hud_state = "plasma_sphere"
+	damage = 120
+	penetration = 40
+	sundering = 10
+	damage_falloff = 1
+	shell_speed = 4
+	///shatter effection duration when hitting mobs
+	var/shatter_duration = 10 SECONDS
+
+/datum/ammo/energy/plasma/cannon_heavy/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+	var/mob/living/living_victim = M
+	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
+
+
+/datum/ammo/energy/plasma/cannon_glob
+	name = "plasma glob"
+	damage = 10
+	penetration = 100
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ENERGY|AMMO_INCENDIARY
+	shell_speed = 2
+	icon_state = "plasma_big"
+	hud_state = "flame"
+
+/datum/ammo/energy/plasma/cannon_glob/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+
+/datum/ammo/energy/plasma/cannon_glob/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(O.density ? P.loc : O.loc)
+
+/datum/ammo/energy/plasma/cannon_glob/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/energy/plasma/cannon_glob/do_at_max_range(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/energy/plasma/cannon_glob/drop_nade(turf/T)
+	flame_radius(2, T, burn_intensity = 3, burn_duration = 3)
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
 /datum/ammo/energy/xeno
 	barricade_clear_distance = 0
 	///Plasma cost to fire this projectile
-	var/plasma_cost
+	var/ability_cost
 	///Particle type used when this ammo is used
 	var/particles/channel_particle
 	///The colour the xeno glows when using this ammo type
@@ -3208,7 +3322,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 7
 	hitscan_effect_icon = "beam_cult"
 	icon_state = "psy_blast"
-	plasma_cost = 230
+	ability_cost = 230
 	channel_particle = /particles/warlock_charge/psy_blast
 	glow_color = "#9e1f1f"
 	///The AOE for drop_nade
@@ -3273,7 +3387,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 12
 	hitscan_effect_icon = "beam_hcult"
 	icon_state = "psy_lance"
-	plasma_cost = 300
+	ability_cost = 300
 	channel_particle = /particles/warlock_charge/psy_blast/psy_lance
 	glow_color = "#CB0166"
 
@@ -3331,7 +3445,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 5
 
 // Plasma //
-/datum/ammo/energy/plasma
+/datum/ammo/energy/sectoid_plasma
 	name = "plasma bolt"
 	icon_state = "pulse2"
 	hud_state = "plasma"
@@ -3791,7 +3905,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
  * * Returns: TRUE on success, FALSE on failure.
 **/
 /datum/ammo/xeno/boiler_gas/proc/enhance_trap(obj/structure/xeno/trap/trap, mob/living/carbon/xenomorph/user_xeno)
-	if(!do_after(user_xeno, 2 SECONDS, TRUE, trap))
+	if(!do_after(user_xeno, 2 SECONDS, NONE, trap))
 		return FALSE
 	trap.set_trap_type(TRAP_SMOKE_NEURO)
 	trap.smoke = new /datum/effect_system/smoke_spread/xeno/neuro/medium
@@ -3879,7 +3993,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	reagent_transfer_amount = 0
 
 /datum/ammo/xeno/boiler_gas/corrosive/enhance_trap(obj/structure/xeno/trap/trap, mob/living/carbon/xenomorph/user_xeno)
-	if(!do_after(user_xeno, 3 SECONDS, TRUE, trap))
+	if(!do_after(user_xeno, 3 SECONDS, NONE, trap))
 		return FALSE
 	trap.set_trap_type(TRAP_SMOKE_ACID)
 	trap.smoke = new /datum/effect_system/smoke_spread/xeno/acid
@@ -3963,7 +4077,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hugger_type = /obj/item/clothing/mask/facehugger/combat/slash
 
 /datum/ammo/xeno/hugger/neuro
-	hugger_type = /obj/item/clothing/mask/facehugger/combat/neuro
+	hugger_type = /obj/item/clothing/mask/facehugger/combat/chem_injector/neuro
+
+/datum/ammo/xeno/hugger/ozelomelyn
+	hugger_type = /obj/item/clothing/mask/facehugger/combat/chem_injector/ozelomelyn
 
 /datum/ammo/xeno/hugger/resin
 	hugger_type = /obj/item/clothing/mask/facehugger/combat/resin
@@ -4078,8 +4195,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/X = victim
-		X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
-		X.use_plasma(plasma_drain)
+		if(!(X.xeno_caste.caste_flags & CASTE_PLASMADRAIN_IMMUNE))
+			X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
+			X.use_plasma(plasma_drain)
 
 /datum/ammo/bullet/pepperball/pepperball_mini
 	damage = 40

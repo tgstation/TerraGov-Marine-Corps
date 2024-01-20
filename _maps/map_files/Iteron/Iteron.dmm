@@ -95,7 +95,7 @@
 /turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/patrol_base)
 "bG" = (
-/obj/structure/drop_pod_launcher,
+/obj/structure/drop_pod_launcher/supply,
 /obj/structure/droppod/nonmob/supply_pod,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)
@@ -621,7 +621,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/barracks)
 "hP" = (
-/obj/machinery/quick_vendor,
+/obj/structure/prop/brokenvendor/brokenuniformvendor,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/prep)
 "hX" = (
@@ -678,7 +678,7 @@
 	},
 /area/mainship/patrol_base/prep)
 "il" = (
-/obj/machinery/quick_vendor,
+/obj/structure/prop/brokenvendor/brokenuniformvendor,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
@@ -793,10 +793,10 @@
 	},
 /area/mainship/patrol_base)
 "js" = (
-/obj/structure/drop_pod_launcher,
 /obj/machinery/light/mainship{
 	dir = 8
 	},
+/obj/structure/drop_pod_launcher/mech,
 /obj/structure/droppod/nonmob/mech_pod,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)
@@ -817,15 +817,15 @@
 	},
 /area/mainship/patrol_base)
 "jL" = (
-/obj/structure/drop_pod_launcher,
+/obj/structure/drop_pod_launcher/sentry,
 /obj/structure/droppod/nonmob/turret_pod,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)
 "jU" = (
-/obj/structure/drop_pod_launcher,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/structure/drop_pod_launcher/mech,
 /obj/structure/droppod/nonmob/mech_pod,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)
@@ -1064,7 +1064,7 @@
 	},
 /area/mainship/patrol_base)
 "nz" = (
-/obj/structure/drop_pod_launcher,
+/obj/structure/drop_pod_launcher/mech,
 /obj/structure/droppod/nonmob/mech_pod,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)
@@ -1270,14 +1270,14 @@
 	},
 /area/mainship/patrol_base/command)
 "qk" = (
-/obj/machinery/quick_vendor,
+/obj/structure/prop/brokenvendor/brokenuniformvendor,
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/prep)
 "qq" = (
-/obj/machinery/quick_vendor,
+/obj/structure/prop/brokenvendor/brokenuniformvendor,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -3834,7 +3834,7 @@
 	},
 /area/mainship/patrol_base/prep)
 "Xl" = (
-/obj/machinery/quick_vendor,
+/obj/structure/prop/brokenvendor/brokenuniformvendor,
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/prep)

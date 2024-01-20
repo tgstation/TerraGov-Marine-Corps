@@ -39,7 +39,7 @@
 	to_chat(user, span_notice("You start taking snow from [src]."))
 	playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
 
-	if(!do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, ET.shovelspeed, NONE, src, BUSY_ICON_BUILD))
 		return
 
 	var/transf_amt = ET.dirt_amt_per_dig
@@ -61,20 +61,22 @@
 			return
 		var/turf/open/T = target
 		if(T.get_dirt_type() == DIRT_TYPE_SNOW)
-			if(T.slayer >= 3)
+			var/turf/open/floor/plating/ground/snow/snowy_turf = T
+			if(snowy_turf.slayer >= 3)
 				to_chat(user, "This ground is already full of snow.")
 				return
 			if(amount < 5)
 				to_chat(user, span_warning("You need 5 piles of snow to cover the ground."))
 				return
 			to_chat(user, "You start putting some snow back on the ground.")
-			if(!do_after(user, 15, FALSE, target, BUSY_ICON_BUILD))
+			if(!do_after(user, 15, IGNORE_HELD_ITEM, target, BUSY_ICON_BUILD))
 				return
-			if(T.slayer >= 3)
+			if(snowy_turf.slayer >= 3)
 				return
 			to_chat(user, "You put a new snow layer on the ground.")
-			T.slayer += 1
-			T.update_icon(TRUE, FALSE)
+			snowy_turf.slayer += 1
+			snowy_turf.update_appearance()
+			snowy_turf.update_sides()
 			use(5)
 
 /obj/item/stack/snow/attack_self(mob/user)
@@ -103,7 +105,7 @@
 
 	user.visible_message(span_notice("[user] starts assembling a snow barricade."),
 	span_notice("You start assembling a snow barricade."))
-	if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
 		return
 	if(amount < 5)
 		return

@@ -60,7 +60,7 @@
 			return
 		bioscanning_ai.last_ai_bioscan = world.time
 		to_chat(bioscanning_ai, span_warning("Scanning for hostile lifeforms..."))
-		if(!do_after(usr, AI_SCAN_DELAY, TRUE, usr, BUSY_ICON_GENERIC)) //initial windup time until firing begins
+		if(!do_after(usr, AI_SCAN_DELAY, NONE, usr, BUSY_ICON_GENERIC)) //initial windup time until firing begins
 			bioscanning_ai.last_ai_bioscan = 0
 			return
 
@@ -124,10 +124,10 @@
 				to_chat(usr, span_warning("Signal analysis reveals excellent detail about hostile movements and numbers."))
 				return
 			if(3)
-				to_chat(usr, span_warning("Minor corruption detected in our bioscan instruments, some information about hostile activity may be incorrect."))
+				to_chat(usr, span_warning("Minor corruption detected in our bioscan instruments due to ship elevation, some information about hostile activity may be incorrect."))
 				return
 			if(5)
-				to_chat(usr, span_warning("Major corruption detected in our bioscan readings, information heavily corrupted."))
+				to_chat(usr, span_warning("Major corruption detected in our bioscan readings due to ship elevation, information heavily corrupted."))
 		return
 
 	if(announce_humans)

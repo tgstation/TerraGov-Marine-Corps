@@ -50,14 +50,17 @@
 		return
 	togglelock(usr)
 
-/obj/structure/closet/secure_closet/update_icon()
-	overlays.Cut()
+/obj/structure/closet/secure_closet/update_icon_state()
+	. = ..()
 	if(opened)
 		icon_state = icon_opened
 	else
 		icon_state = locked ? icon_locked : icon_closed
+
+/obj/structure/closet/secure_closet/update_overlays()
+	. = ..()
 	if(welded)
-		overlays += overlay_welded
+		. += overlay_welded
 
 /obj/structure/closet/secure_closet/break_open()
 	broken = TRUE
