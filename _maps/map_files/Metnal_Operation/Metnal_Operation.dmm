@@ -23340,6 +23340,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
+"slt" = (
+/obj/structure/cable,
+/obj/structure/sign/safety/hazard,
+/turf/open/floor/iron/dark/textured,
+/area/metnal/inside/landingzoneone)
 "slB" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 1
@@ -61739,9 +61744,9 @@ gZA
 lSx
 iVu
 iVu
-iVu
-iVu
 gZA
+iVu
+lSx
 iVu
 iVu
 llM
@@ -63165,7 +63170,7 @@ hOg
 hOg
 hOg
 iVu
-nGt
+slt
 lnl
 dAc
 siO
