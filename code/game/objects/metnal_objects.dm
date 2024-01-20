@@ -28,13 +28,19 @@
 
 // knife flute sprite
 /obj/item/instrument/macheteflute
+
 	name = "Lobey's machete"
 	desc = "This custom machete has holes in the handle and on the blade and plays a somber sound. "
 	icon = 'icons/obj/metnal_objects.dmi'
 	icon_state = "knife_flute"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/instruments_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/instruments_right.dmi',
+		slot_s_store_str = 'icons/mob/instruments_back.dmi',
+		)
 	item_state = "machete"
 	allowed_instrument_ids = "recorder"
-	force = 75
+	force = 65
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
 	flags_atom = CONDUCT
@@ -64,5 +70,3 @@
 	icon = 'icons/obj/metnal_objects.dmi'
 	icon_state = "obsidian_3"
 	density = FALSE
-
-// chapel windows
