@@ -65,6 +65,7 @@
 	icon_state = "t45"
 	max_rounds = 40
 	w_class = WEIGHT_CLASS_SMALL
+	icon_state_mini = "mag_heavy_smg"
 
 /obj/item/ammo_magazine/smg/standard_heavysmg/hollowpoint
 	name = "\improper SMG-45 hollowpoint magazine (.45 ACP)"
