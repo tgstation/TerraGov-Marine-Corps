@@ -6981,6 +6981,7 @@
 	dir = 2;
 	icon_state = "door_open"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/metnal/inside/garage)
 "fAb" = (
@@ -13925,11 +13926,13 @@
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
 "kZw" = (
-/obj/effect/mapping_helpers/airlock/locked,
-/turf/open/floor/plating/ground/concrete/lines{
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 10
+	},
+/turf/open/floor/prison/yellow{
 	dir = 1
 	},
-/area/metnal/inside/garage)
+/area/metnal/inside/mining)
 "kZU" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -18353,7 +18356,10 @@
 /turf/open/floor/wood,
 /area/metnal/inside/garden)
 "oEI" = (
-/obj/machinery/conveyor/inverted,
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "shipping"
+	},
 /turf/open/floor/prison/yellow{
 	dir = 1
 	},
@@ -21078,6 +21084,13 @@
 /obj/item/tool/pen/blue,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/medical)
+"qHI" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/item/instrument/macheteflute,
+/turf/open/floor/tile/dark,
+/area/metnal/inside/recreation)
 "qHL" = (
 /obj/effect/turf_decal/sandedge/corner2{
 	dir = 8
@@ -27750,6 +27763,14 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/iron/textured,
 /area/metnal/inside/laundromat)
+"vyC" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 6
+	},
+/turf/open/floor/prison/yellow{
+	dir = 1
+	},
+/area/metnal/inside/mining)
 "vyH" = (
 /obj/machinery/light{
 	dir = 1
@@ -45336,7 +45357,7 @@ ujt
 ujt
 tUt
 tUt
-kZw
+nbL
 fzZ
 tUt
 tUt
@@ -63584,7 +63605,7 @@ sPo
 njt
 oZD
 uNK
-kZZ
+qHI
 mEc
 rGG
 rGT
@@ -64883,7 +64904,7 @@ ukF
 apV
 knO
 iUb
-oEI
+vyC
 cNs
 wTD
 nhv
@@ -66701,7 +66722,7 @@ eJt
 knO
 knO
 iUb
-oEI
+kZw
 ckV
 aZr
 cZD
