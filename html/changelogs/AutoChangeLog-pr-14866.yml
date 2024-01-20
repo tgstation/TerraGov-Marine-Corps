@@ -1,4 +1,4 @@
 author: "ivanmixo"
 delete-after: True
 changes:
-  - bugfix: "Fixes the AMR for real now"
+  - bugfix: "Fix acid pools having bad flags"

@@ -140,6 +140,7 @@
 #include "code\__DEFINES\dcs\helpers.dm"
 #include "code\__DEFINES\dcs\signals.dm"
 #include "code\__DEFINES\dcs\signals\signals_datum.dm"
+#include "code\__DEFINES\dcs\signals\signals_click.dm"
 #include "code\__DEFINES\dcs\signals\signals_mind.dm"
 #include "code\__DEFINES\dcs\signals\signals_subsystem.dm"
 #include "code\__HELPERS\_lists.dm"

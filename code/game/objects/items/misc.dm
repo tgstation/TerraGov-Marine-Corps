@@ -123,3 +123,11 @@
 	desc = "A small set of servos and gears, coupled to a battery, antenna and circuitry. Attach it to a mortar to allow a shipborne AI to remotely target it."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "modkit"
+
+/obj/item/rosary
+	name = "Rosary"
+	desc = "A small hematite-beaded silver rosary"
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "rosary"
+	item_state = "rosary"
+	w_class = WEIGHT_CLASS_TINY

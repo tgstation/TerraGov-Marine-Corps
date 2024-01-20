@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - admin: "Added a prompt to the reload admins verb"
