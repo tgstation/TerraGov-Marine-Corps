@@ -225,3 +225,21 @@ GLOBAL_LIST_INIT(gear_datums, populate_gear_list())
 	cost = 2
 	slot = SLOT_R_HAND
 
+/datum/gear/rosary
+	display_name = "Rosary"
+	path = /obj/item/rosary
+	cost = 1
+	slot = SLOT_R_HAND
+
+/datum/gear/card/ace/hearts
+	display_name = "Old Ace of Hearts card"
+	path = /obj/item/toy/card/ace/hearts
+	cost = 1
+	slot = SLOT_R_HAND
+
+/datum/gear/card/ace/spades
+	display_name = "Old Ace of Spades card"
+	path = /obj/item/toy/card/ace/spades
+	cost = 1
+	slot = SLOT_R_HAND
+
