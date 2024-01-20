@@ -168,9 +168,9 @@
 
 /obj/structure/window_frame/prison/colony
 	icon = 'icons/obj/smooth_objects/prison_window_frame.dmi'
-	icon_state = "prison_wframe-0"
-	basestate = "prison_wframe"
-	base_icon_state = "prison_wframe"
+	icon_state = "prison_window_frame-0"
+	basestate = "prison_window_frame"
+	base_icon_state = "prison_window_frame"
 
 /obj/structure/window_frame/prison/reinforced
 	reinforced = TRUE
