@@ -36,6 +36,10 @@
 	if(result)
 		amount_per_transfer_from_this = result
 
+/obj/item/reagent_containers/attack_self_alternate(mob/user)
+	. = ..()
+	attack_hand_alternate()
+
 /obj/item/reagent_containers/interact(mob/user)
 	. = ..()
 	if(.)
