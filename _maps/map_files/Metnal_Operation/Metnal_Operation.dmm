@@ -3055,7 +3055,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/smooth/outdoor,
+/turf/closed/mineral/smooth/indestructible,
 /area/metnal/inside/auxstorage)
 "cCS" = (
 /obj/effect/spawner/random/decal/blood,
@@ -61732,8 +61732,8 @@ bhV
 iVu
 gZA
 iVu
-lSx
 iVu
+lSx
 iVu
 gZA
 lSx
@@ -68213,8 +68213,8 @@ udw
 iVu
 sCL
 iVu
-iVu
 udw
+iVu
 lnl
 orz
 edg
