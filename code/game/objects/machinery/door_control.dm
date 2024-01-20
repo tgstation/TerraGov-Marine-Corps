@@ -128,6 +128,7 @@
 	update_icon()
 
 /obj/machinery/door_control/update_icon_state()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else if(pressed)
@@ -281,6 +282,7 @@
 	directional = FALSE
 
 /obj/machinery/door_control/old/update_icon_state()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "olddoorctrl-p"
 	else if(pressed)

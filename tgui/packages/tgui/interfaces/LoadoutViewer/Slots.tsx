@@ -1,8 +1,9 @@
 import { range } from 'common/collections';
+
 import { resolveAsset } from '../../assets';
 import { useBackend } from '../../backend';
-import { Box, Button, Section, Stack, Flex } from '../../components';
-import { LoadoutSlotData, GridSpotKey, SLOTS, getGridSpotKey } from './Types';
+import { Box, Button, Flex, Section, Stack } from '../../components';
+import { getGridSpotKey, GridSpotKey, LoadoutSlotData, SLOTS } from './Types';
 
 const ROWS = 4;
 const COLUMNS = 3;
@@ -10,8 +11,8 @@ const COLUMNS = 3;
 const BUTTON_DIMENSION_WIDTH = '70px';
 const BUTTON_DIMENSION_HEIGHT = '70px';
 
-export const SlotSelector = (props: LoadoutSlotData, context) => {
-  const { act } = useBackend(context);
+export const SlotSelector = (props: LoadoutSlotData) => {
+  const { act } = useBackend();
 
   const { items } = props;
 
@@ -52,20 +53,23 @@ export const SlotSelector = (props: LoadoutSlotData, context) => {
                         style={{
                           width: BUTTON_DIMENSION_WIDTH,
                           height: BUTTON_DIMENSION_HEIGHT,
-                        }}>
+                        }}
+                      >
                         <Box
                           style={{
                             position: 'relative',
                             width: '100%',
                             height: '100%',
-                          }}>
+                          }}
+                        >
                           <Button
                             onClick={() => {
                               act('selectSlot', {
                                 key: keyAtSpot,
                               });
                             }}
-                            tooltip={tooltip}>
+                            tooltip={tooltip}
+                          >
                             {slot.image && (
                               <Box
                                 as="img"
@@ -87,7 +91,8 @@ export const SlotSelector = (props: LoadoutSlotData, context) => {
                                 position: 'relative',
                                 width: '60px',
                                 height: '60px',
-                              }}>
+                              }}
+                            >
                               {item.icons.map((iconinfo) => (
                                 <Box
                                   key={iconinfo.icon}
@@ -98,8 +103,8 @@ export const SlotSelector = (props: LoadoutSlotData, context) => {
                                   width="100%"
                                   color="transparent"
                                   style={{
-                                    'position': 'absolute',
-                                    'vertical-align': 'middle',
+                                    position: 'absolute',
+                                    verticalAlign: 'middle',
                                     transform:
                                       'translateX(' +
                                       iconinfo.translateX +

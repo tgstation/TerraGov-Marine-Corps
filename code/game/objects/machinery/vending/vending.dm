@@ -818,6 +818,7 @@
 		set_light(initial(light_range))
 
 /obj/machinery/vending/update_icon_state()
+	. = ..()
 	if(machine_stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
 	else if(machine_stat & NOPOWER)

@@ -96,6 +96,7 @@ FLOOR SAFES
 
 
 /obj/structure/safe/update_icon_state()
+	. = ..()
 	if(open)
 		icon_state = "[initial(icon_state)]-open"
 	else

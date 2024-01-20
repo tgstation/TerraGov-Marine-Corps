@@ -225,10 +225,8 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 //Since the vics are 3x4 we need to swap between the two files with different dimensions
 //Also need to offset to center the tank about the root object
-/obj/vehicle/multitile/root/cm_armored/update_icon()
-
-	overlays.Cut()
-
+/obj/vehicle/multitile/root/cm_armored/update_icon_state()
+	. = ..()
 	//Assuming 3x3 with half block overlaps in the tank's direction
 	if(dir in list(NORTH, SOUTH))
 		pixel_x = -32
@@ -240,17 +238,20 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		pixel_y = -32
 		icon = 'icons/obj/vehicles/tank_EW.dmi'
 
+/obj/vehicle/multitile/root/cm_armored/update_overlays()
+	. = ..()
+
 	//Basic iteration that snags the overlay from the hardpoint module object
 	for(var/i in hardpoints)
 		var/obj/item/hardpoint/H = hardpoints[i]
 
 		if((i == HDPT_TREADS && !H) || (H && !H.obj_integrity)) //Treads not installed or broken
 			var/image/I = image(icon, icon_state = "damaged_hardpt_[i]")
-			overlays += I
+			. += I
 
 		if(H)
 			var/image/I = H.get_icon_image(0, 0, dir)
-			overlays += I
+			. += I
 
 //Hitboxes but with new names
 /obj/vehicle/multitile/hitbox/cm_armored

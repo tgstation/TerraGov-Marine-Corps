@@ -1211,10 +1211,10 @@
 	xeno_owner = null
 	return ..()
 
-/// Calls update_icon_state().
+/// Calls update_appearance, this exists to discard the arguments we get from the signals.
 /obj/structure/earth_pillar/proc/call_update_icon_state()
 	SIGNAL_HANDLER
-	update_icon_state()
+	update_appearance()
 
 /obj/structure/earth_pillar/update_icon_state()
 	. = ..()

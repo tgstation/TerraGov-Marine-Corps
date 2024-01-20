@@ -144,4 +144,4 @@
 	if(!user.client || !(user.client.eye == user || user.client.eye == user.loc))
 		UnregisterSignal(user, (COMSIG_MOB_CLICKON))
 		return
-	A.specialclick(user)
+	return A.specialclick(user)

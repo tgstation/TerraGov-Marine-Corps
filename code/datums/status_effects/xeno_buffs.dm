@@ -331,64 +331,8 @@
 	enhancement_action.end_ability()
 
 // ***************************************
-// *********** Rejuvenate
+// *********** Psychic Link
 // ***************************************
-/atom/movable/screen/alert/status_effect/xeno_rejuvenate
-	name = "Rejuvenation"
-	desc = "Your health is being restored."
-	icon_state = "xeno_rejuvenate"
-
-/datum/status_effect/xeno_rejuvenate
-	id = "xeno_rejuvenate"
-	tick_interval = 2 SECONDS
-	alert_type = /atom/movable/screen/alert/status_effect/xeno_rejuvenate
-	///Amount of damage taken before reduction kicks in
-	var/tick_damage_limit
-	///Amount of damage taken this tick
-	var/tick_damage
-
-/datum/status_effect/xeno_rejuvenate/on_creation(mob/living/new_owner, set_duration, tick_damage_limit)
-	owner = new_owner
-	duration = set_duration
-	src.tick_damage_limit = tick_damage_limit
-	RegisterSignals(owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(handle_damage_taken))
-	owner.add_movespeed_modifier(MOVESPEED_ID_GORGER_REJUVENATE, TRUE, 0, NONE, TRUE, GORGER_REJUVENATE_SLOWDOWN)
-	owner.add_filter("[id]m", 0, outline_filter(2, "#455d5762"))
-	return ..()
-
-/datum/status_effect/xeno_rejuvenate/on_remove()
-	. = ..()
-	UnregisterSignal(owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
-	owner.remove_movespeed_modifier(MOVESPEED_ID_GORGER_REJUVENATE)
-	owner.remove_filter("[id]m")
-
-/datum/status_effect/xeno_rejuvenate/tick()
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(owner_xeno.plasma_stored < GORGER_REJUVENATE_COST)
-		to_chat(owner_xeno, span_notice("Not enough substance to sustain ourselves..."))
-		owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_REJUVENATE)
-		return
-
-	owner_xeno.plasma_stored -= GORGER_REJUVENATE_COST
-	new /obj/effect/temp_visual/telekinesis(get_turf(owner_xeno))
-	to_chat(owner_xeno, span_notice("We feel our wounds close up."))
-
-	var/amount = owner_xeno.maxHealth * GORGER_REJUVENATE_HEAL
-	HEAL_XENO_DAMAGE(owner_xeno, amount, FALSE)
-	tick_damage = 0
-
-///Handles damage received when the status effect is active
-/datum/status_effect/xeno_rejuvenate/proc/handle_damage_taken(datum/source, amount, list/amount_mod)
-	SIGNAL_HANDLER
-	if(amount <= 0)
-		return
-
-	tick_damage += amount
-	if(tick_damage < tick_damage_limit)
-		return
-
-	amount_mod += min(amount * 0.75, 40)
-
 #define PSYCHIC_LINK_COLOR "#2a888360"
 #define CALC_DAMAGE_REDUCTION(amount, amount_mod) \
 	if(amount <= 0) { \
@@ -398,9 +342,6 @@
 	amount = min(amount * redirect_mod, remaining_health); \
 	amount_mod += amount
 
-// ***************************************
-// *********** Psychic Link
-// ***************************************
 /datum/status_effect/xeno_psychic_link
 	id = "xeno_psychic_link"
 	tick_interval = 2 SECONDS

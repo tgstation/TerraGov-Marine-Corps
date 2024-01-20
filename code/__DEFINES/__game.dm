@@ -14,6 +14,9 @@
 #define MAP_GELIDA_IV "Gelida IV"
 #define MAP_DELTA_STATION "Delta Station"
 #define MAP_OSCAR_OUTPOST "Oscar Outpost"
+#define MAP_DESPARITY "Desparity"
+#define MAP_LAWANKA_OUTPOST "Lawanka Outpost"
+#define MAP_DAEDALUS_PRISON "Daedalus Prison"
 
 #define MAP_PILLAR_OF_SPRING "Pillar of Spring"
 #define MAP_SULACO "Sulaco"
@@ -75,7 +78,7 @@
 #define CEILING_UNDERGROUND 4
 #define CEILING_UNDERGROUND_METAL 5
 #define CEILING_DEEP_UNDERGROUND 6
-#define CEILING_DEEP_UNDERGROUND_METAL 6
+#define CEILING_DEEP_UNDERGROUND_METAL 7
 
 
 // Default font settings

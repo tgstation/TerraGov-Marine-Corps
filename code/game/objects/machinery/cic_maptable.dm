@@ -86,6 +86,12 @@
 	interactees -= user
 	user?.client?.screen -= map
 
+/obj/machinery/cic_maptable/attack_ai(mob/living/silicon/ai/user)
+	if(!(user in interactees))
+		interact(user)
+	else
+		user.unset_interaction()
+
 /obj/machinery/cic_maptable/droppod_maptable
 	name = "Athena tactical map console"
 	desc = "A map that display the planetside AO, specialized in revealing potential areas to drop pod. This is especially useful to see where the frontlines and marines are at so that anyone droppodding can decide where to land. Pray that your land nav skills are robust to not get lost!"
@@ -139,16 +145,15 @@
 	. = ..()
 	if(.)
 		return
-	if(user.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_EXPERT)
-		user.balloon_alert(user, "Can't use that!")
-		return TRUE
-	if(is_banned_from(user.client.ckey, GLOB.roles_allowed_minimap_draw))
-		to_chat(user, span_boldwarning("You have been banned from a command role. You may not use [src] until the ban has been lifted."))
-		return TRUE
 
 /obj/machinery/cic_maptable/drawable/interact(mob/user)
 	. = ..()
 	if(.)
+		return
+	if(user.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_EXPERT)
+		return
+	if(is_banned_from(user.client.ckey, GLOB.roles_allowed_minimap_draw))
+		to_chat(user, span_boldwarning("You have been banned from a command role. You may not use access draw functions until the ban has been lifted."))
 		return
 	user.client.screen += drawing_tools
 

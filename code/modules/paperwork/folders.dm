@@ -43,11 +43,11 @@
 	if(updateicon)
 		update_icon()
 
-/obj/item/folder/update_icon()
-	overlays.Cut()
+/obj/item/folder/update_overlays()
+	. = ..()
 	if(length(contents))
-		overlays += "folder_paper"
-	return
+		. += "folder_paper"
+
 
 /obj/item/folder/attackby(obj/item/I, mob/user, params)
 	. = ..()

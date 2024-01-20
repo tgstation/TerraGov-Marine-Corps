@@ -36,18 +36,22 @@
 	if(!length(contents))
 		return ..()
 
-
-/obj/item/storage/donut_box/update_icon()
-	overlays.Cut()
+/obj/item/storage/donut_box/update_icon_state()
+	. = ..()
 	if(!open)
 		icon_state = "donutbox"
 		return
 	icon_state = "donutbox_o"
+
+/obj/item/storage/donut_box/update_overlays()
+	. = ..()
+	if(!open)
+		return
 	var/i = 0
 	for(var/obj/item/reagent_containers/food/snacks/donut/D in contents)
 		i++
 		var/image/img = image('icons/obj/items/food/donuts.dmi', "[D.overlay_state]-[i]")
-		overlays += img
+		. += img
 
 /obj/item/storage/donut_box/empty
 	icon_state = "donutbox_o"

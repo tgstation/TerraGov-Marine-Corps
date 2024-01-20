@@ -38,6 +38,7 @@
 			return 0
 
 /obj/item/weapon/baton/update_icon_state()
+	. = ..()
 	if(status)
 		icon_state = "[initial(name)]_active"
 	else if(!bcell)
@@ -223,6 +224,7 @@
 
 
 /obj/item/weapon/stunprod/update_icon_state()
+	. = ..()
 	if(status)
 		icon_state = "stunbaton_active"
 	else

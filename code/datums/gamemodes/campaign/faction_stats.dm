@@ -106,6 +106,10 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/atom/movable/screen/text/screen_text/picture/faction_portrait
 	///Faction-wide modifier to respawn delay
 	var/respawn_delay_modifier = 0
+	///records how much currency has been earned from missions, for late join players
+	var/accumulated_mission_reward = 0
+	///list of individual stats by key
+	var/list/datum/individual_stats/individual_stat_list = list()
 
 /datum/faction_stats/New(new_faction)
 	. = ..()
@@ -118,12 +122,36 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	for(var/i = 1 to CAMPAIGN_STANDARD_MISSION_QUANTITY)
 		generate_new_mission()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(mission_end))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED, COMSIG_GLOB_PLAYER_LATE_SPAWNED), PROC_REF(register_faction_member))
 
 	faction_portrait = GLOB.faction_to_portrait[faction] ? GLOB.faction_to_portrait[faction] : /atom/movable/screen/text/screen_text/picture/potrait/unknown
 
 /datum/faction_stats/Destroy(force, ...)
 	GLOB.faction_stats_datums -= faction
 	return ..()
+
+///Sets up newly spawned players with the campaign status verb
+/datum/faction_stats/proc/register_faction_member(datum/source, mob/living/carbon/human/new_member)
+	SIGNAL_HANDLER
+	if(!ishuman(new_member))
+		return
+	if(new_member.faction != faction)
+		return
+	if(individual_stat_list[new_member.key])
+		individual_stat_list[new_member.key].current_mob = new_member
+		individual_stat_list[new_member.key].apply_perks()
+	else
+		get_player_stats(new_member)
+	var/datum/action/campaign_loadout/loadouts = new
+	loadouts.give_action(new_member)
+
+///Returns a users individual stat datum, generating a new one if required
+/datum/faction_stats/proc/get_player_stats(mob/user)
+	if(!user.key)
+		return
+	if(!individual_stat_list[user.key])
+		individual_stat_list[user.key] = new /datum/individual_stats(user, faction, accumulated_mission_reward)
+	return individual_stat_list[user.key]
 
 ///Randomly adds a new mission to the available pool
 /datum/faction_stats/proc/generate_new_mission()
@@ -200,10 +228,19 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	addtimer(CALLBACK(src, PROC_REF(return_to_base), completed_mission), AFTER_MISSION_TELEPORT_DELAY)
 	addtimer(CALLBACK(src, PROC_REF(get_selector)), AFTER_MISSION_LEADER_DELAY) //if the leader died, we load a new one after a bit to give respawns some time
 
+///applies cash rewards to the faction and all individuals
+/datum/faction_stats/proc/apply_cash(amount)
+	if(!amount)
+		return
+	accumulated_mission_reward += amount
+	for(var/i in individual_stat_list)
+		var/datum/individual_stats/player_stats = individual_stat_list[i]
+		player_stats.give_funds(amount)
+
 ///Returns all faction members back to base after the mission is completed
 /datum/faction_stats/proc/return_to_base(datum/campaign_mission/completed_mission)
 	for(var/mob/living/carbon/human/human_mob AS in GLOB.alive_human_list_faction[faction])
-		if(human_mob.z != completed_mission.mission_z_level && human_mob.job.job_cost)
+		if((human_mob.z != completed_mission.mission_z_level.z_value) && human_mob.job.job_cost)
 			human_mob.revive(TRUE)
 			human_mob.overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
 			human_mob.overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
@@ -245,6 +282,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	update_static_data_for_all_viewers()
 
 //UI stuff//
+/datum/faction_stats/ui_assets(mob/user)
+	return list(get_asset_datum(/datum/asset/spritesheet/campaign/missions), get_asset_datum(/datum/asset/spritesheet/campaign/assets))
 
 /datum/faction_stats/ui_interact(mob/living/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -254,6 +293,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	ui.open()
 
 /datum/faction_stats/ui_state(mob/user)
+	if(isobserver(user))
+		return GLOB.always_state
 	return GLOB.conscious_state
 
 /datum/faction_stats/ui_static_data(mob/living/user)
@@ -361,8 +402,6 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	data["victory_points"] = victory_points
 	data["max_victory_points"] = CAMPAIGN_MAX_VICTORY_POINTS
 	data["faction"] = faction
-	data["icons"] = GLOB.campaign_icons
-	data["mission_icons"] = GLOB.campaign_mission_icons
 
 	return data
 
@@ -376,6 +415,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		CRASH("campaign_mission loaded without campaign game mode")
 
 	var/mob/living/user = usr
+	if(!istype(user))
+		return
 
 	switch(action)
 		if("set_attrition_points")
@@ -460,3 +501,14 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				to_chat(faction_member, "<span class='warning'>[user] has purchased the [initial(selected_asset.name)] campaign asset.")
 			update_static_data_for_all_viewers()
 			return TRUE
+
+//overview for campaign gamemode
+/datum/action/campaign_overview
+	name = "Campaign overview"
+	action_icon_state = "campaign_overview"
+
+/datum/action/campaign_overview/action_activate()
+	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[owner.faction]
+	if(!your_faction)
+		return
+	your_faction.interact(owner)

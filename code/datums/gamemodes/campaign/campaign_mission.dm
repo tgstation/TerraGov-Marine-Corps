@@ -66,6 +66,14 @@
 		MISSION_OUTCOME_MINOR_LOSS = list(0, 0),
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 0),
 	)
+	///cash rewards for the mission type
+	var/list/cash_rewards = list(
+		MISSION_OUTCOME_MAJOR_VICTORY = list(800, 600),
+		MISSION_OUTCOME_MINOR_VICTORY = list(700, 600),
+		MISSION_OUTCOME_DRAW = list(600, 600),
+		MISSION_OUTCOME_MINOR_LOSS = list(600, 700),
+		MISSION_OUTCOME_MAJOR_LOSS = list(600, 800),
+	)
 	/// Timer used to calculate how long till mission ends
 	var/game_timer
 	///The length of time until mission ends, if timed
@@ -276,6 +284,9 @@
 	for(var/i in GLOB.quick_loadouts)
 		var/datum/outfit/quick/outfit = GLOB.quick_loadouts[i]
 		outfit.quantity = initial(outfit.quantity)
+	for(var/job in GLOB.campaign_loadout_items_by_role)
+		for(var/datum/loadout_item/loadout_item AS in GLOB.campaign_loadout_items_by_role[job])
+			loadout_item.quantity = initial(loadout_item.quantity)
 	for(var/mob/living/carbon/human/corpse AS in GLOB.dead_human_list) //clean up all the bodies and refund normal roles if required
 		if(corpse.z != mission_z_level)
 			continue
@@ -327,6 +338,7 @@
 
 	modify_attrition_points(attrition_point_rewards[outcome][1], attrition_point_rewards[outcome][2])
 	apply_victory_points(victory_point_rewards[outcome][1], victory_point_rewards[outcome][2])
+	apply_cash_reward(cash_rewards[outcome][1], cash_rewards[outcome][2])
 
 	//reset attrition points - unused points are lost
 	mode.stat_list[starting_faction].active_attrition_points = 0
@@ -361,6 +373,11 @@
 /datum/campaign_mission/proc/modify_attrition_points(start_team_points, hostile_team_points)
 	mode.stat_list[starting_faction].total_attrition_points += start_team_points
 	mode.stat_list[hostile_faction].total_attrition_points += hostile_team_points
+
+///applies mission cash bonuses to both factions
+/datum/campaign_mission/proc/apply_cash_reward(start_team_cash, hostile_team_cash)
+	mode.stat_list[starting_faction].apply_cash(start_team_cash)
+	mode.stat_list[hostile_faction].apply_cash(hostile_team_cash)
 
 ///checks how many marines and SOM are still alive
 /datum/campaign_mission/proc/count_humans(list/z_levels = SSmapping.levels_by_trait(ZTRAIT_AWAY), count_flags) //todo: make new Z's not away levels, or ensure ground and away is consistant in behavior

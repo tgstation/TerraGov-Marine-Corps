@@ -105,6 +105,23 @@
 /obj/effect/overlay/blinking_laser/napalm
 	icon_state = "napalm_target"
 
+/obj/effect/overlay/blinking_laser/monarch
+	icon_state = "monarch_target"
+
+/obj/effect/overlay/blinking_laser/swansong
+	icon_state = "swansong_target"
+
+// Bombs, then bomblets
+
+/obj/effect/overlay/blinking_laser/bomb
+	icon_state = "bomb_target"
+
+/obj/effect/overlay/blinking_laser/bomb_fat
+	icon_state = "fat_bomb_target"
+
+/obj/effect/overlay/blinking_laser/bomblet
+	icon_state = "bomblet_target"
+
 //Marine-only visuals. Prediction HUD, etc. Does not show without marine headset
 /obj/effect/overlay/blinking_laser/marine
 	name = "prediction matrix"
@@ -373,3 +390,12 @@
 	icon_state = "spooky"
 	pixel_x = 16
 	pixel_y = 16
+
+/obj/effect/overlay/vis
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	anchored = TRUE
+	vis_flags = VIS_INHERIT_DIR
+	/// When detected to be unused it gets set to world.time, after a while it gets removed
+	var/unused = 0
+	/// Overlays which go unused for 2 minutes get cleaned up
+	var/cache_expiration = 2 MINUTES 

@@ -1,16 +1,25 @@
-import { CampaignData, MissionData, MissionIcon } from './index';
-import { useBackend, useLocalState } from '../../backend';
-import { LabeledList, Button, Stack, Section, Table, Box, Flex } from '../../components';
+import { classes } from 'common/react';
 
-export const CampaignMissions = (props, context) => {
-  const { act, data } = useBackend<CampaignData>(context);
+import { useBackend, useLocalState } from '../../backend';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  Section,
+  Stack,
+  Table,
+} from '../../components';
+import { CampaignData, MissionData } from './index';
+
+export const CampaignMissions = (props) => {
+  const { act, data } = useBackend<CampaignData>();
   const { available_missions } = data;
   const [selectedNewMission, setSelectedNewMission] =
-    useLocalState<MissionData | null>(context, 'selectedNewMission', null);
+    useLocalState<MissionData | null>('selectedNewMission', null);
   const [selectedMission, setSelectedMission] = useLocalState(
-    context,
     'selectedMission',
-    available_missions[0]
+    available_missions[0],
   );
 
   return (
@@ -29,21 +38,21 @@ export const CampaignMissions = (props, context) => {
                     : mission.mission_critical
                       ? 'red'
                       : 'blue'
-                }>
+                }
+              >
                 <Flex align="center">
-                  <Flex.Item pt={'3px'}>
-                    {!!mission.mission_icon && (
-                      <MissionIcon
-                        icon={
-                          selectedMission.name === mission.name
-                            ? mission.mission_icon + '_yellow'
-                            : mission.mission_critical
-                              ? mission.mission_icon + '_red'
-                              : mission.mission_icon + '_blue'
-                        }
-                      />
-                    )}
-                  </Flex.Item>
+                  <Flex.Item
+                    mt={'3px'}
+                    mr={1.5}
+                    className={classes([
+                      'campaign_missions24x24',
+                      selectedMission.name === mission.name
+                        ? mission.mission_icon + '_yellow'
+                        : mission.mission_critical
+                          ? mission.mission_icon + '_red'
+                          : mission.mission_icon + '_blue',
+                    ])}
+                  />
                   <Flex.Item>{mission.name}</Flex.Item>
                 </Flex>
               </Button>
@@ -57,22 +66,21 @@ export const CampaignMissions = (props, context) => {
             selectedMission ? (
               <Box>
                 <Flex align="center">
-                  <Flex.Item>
-                    {
-                      <MissionIcon
-                        icon={selectedMission.mission_icon + '_yellow'}
-                        icon_width={'48px'}
-                        icon_height={'48px'}
-                      />
-                    }
-                  </Flex.Item>
+                  <Flex.Item
+                    mr={1.5}
+                    className={classes([
+                      'campaign_missions48x48',
+                      selectedMission.mission_icon + '_yellow' + '_big',
+                    ])}
+                  />
                   <Flex.Item fontSize="150%" grow={1}>
                     {selectedMission.name}
                   </Flex.Item>
                   <Flex.Item alight="right" position="end">
                     <Button
                       onClick={() => setSelectedNewMission(selectedMission)}
-                      icon={'check'}>
+                      icon={'check'}
+                    >
                       Select
                     </Button>
                   </Flex.Item>
@@ -81,7 +89,8 @@ export const CampaignMissions = (props, context) => {
             ) : (
               'No Mission selected'
             )
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Map name">
               {selectedMission?.map_name}

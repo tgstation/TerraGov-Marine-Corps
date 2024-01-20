@@ -91,7 +91,7 @@
 			return
 		user.temporarilyRemoveItemFromInventory(item_to_deploy)
 
-		item_to_deploy.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_AUTOEJECT, COMSIG_MOB_CLICK_RIGHT)) //This unregisters Signals related to guns, its for safety
+		item_to_deploy.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_AUTOEJECT, COMSIG_MOB_RIGHT_CLICK)) //This unregisters Signals related to guns, its for safety
 
 		direction_to_deploy = newdir
 
@@ -110,7 +110,7 @@
 	if(item_to_deploy?.reagents?.total_volume)
 		item_to_deploy.reagents.trans_to(deployed_machine, item_to_deploy.reagents.total_volume)
 
-	deployed_machine.update_icon_state()
+	deployed_machine.update_appearance()
 
 	if(user)
 		item_to_deploy.balloon_alert(user, "Deployed!")
@@ -167,4 +167,4 @@
 	deployed_machine.clear_internal_item()
 
 	QDEL_NULL(deployed_machine)
-	undeployed_item.update_icon_state()
+	undeployed_item.update_appearance()
