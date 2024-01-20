@@ -150,11 +150,14 @@
 	icon_state = "painoverlay"
 	layer = FULLSCREEN_PAIN_LAYER
 
-/atom/movable/screen/fullscreen/bloodlust
+/atom/movable/screen/fullscreen/animated/bloodlust
+	icon = 'icons/mob/screen/full/animated.dmi'
+
+/atom/movable/screen/fullscreen/animated/bloodlust
 	icon_state = "bloodlust"
 	layer = FULLSCREEN_NERVES_LAYER
 
-/atom/movable/screen/fullscreen/infection
+/atom/movable/screen/fullscreen/animated/infection
 	icon_state = "curseoverlay"
 	layer = FULLSCREEN_INFECTION_LAYER
 
