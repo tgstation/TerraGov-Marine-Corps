@@ -211,3 +211,15 @@
   - imageadd: Added icons for the new map helpers.
   novaepee:
   - bugfix: east facing mob sprite for sg-62
+2024-01-20:
+  Pariah919:
+  - balance: Removes vertical grip off SG-29.
+  SomrNetwork:
+  - rscadd: Crasher body armor in marine_armor.dmi
+  - rscadd: New swat mask for SpecOps
+  - rscadd: "SpecOps Medic\n/ \U0001F191"
+  ivanmixo:
+  - qol: Widened the hive status tgui window
+  - balance: Marines cannot skip past xenos diagonally if there's an obstacle between
+      them, check the PR for a more clear explanation
+  - balance: Radiopack and AI drone beacon don't work in deep caves anymore

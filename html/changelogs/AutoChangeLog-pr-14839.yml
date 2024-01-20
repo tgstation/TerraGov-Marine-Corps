@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - balance: "Marines cannot skip past xenos diagonally if there's an obstacle between them, check the PR for a more clear explanation"
