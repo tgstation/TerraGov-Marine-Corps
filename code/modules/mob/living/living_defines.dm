@@ -152,3 +152,6 @@
 	var/time_entered_stasis = 0
 	///The world.time of when this mob entered a cryo tube
 	var/time_entered_cryo = 0
+
+	///last time this mob was attacked by something, manually tracked
+	var/last_recieved_attack = 0

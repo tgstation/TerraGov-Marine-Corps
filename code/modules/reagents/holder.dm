@@ -304,6 +304,10 @@
 						var/datum/reagent/A = addiction
 						if(istype(R, A))
 							A.addiction_stage = -15 //you're satisfied for a good while
+
+			if(istype(R, /datum/reagent/medicine) && ((L.last_recieved_attack + 4 SECONDS) > world.time))
+				continue
+
 			need_mob_update += R.on_mob_life(L, quirks)
 
 	if(can_overdose)

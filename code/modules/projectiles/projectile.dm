@@ -912,6 +912,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	else
 		bullet_message(proj, feedback_flags)
 
+	last_recieved_attack = world.time
+
 	GLOB.round_statistics.total_projectile_hits[faction]++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectile_hits[faction]")
 
