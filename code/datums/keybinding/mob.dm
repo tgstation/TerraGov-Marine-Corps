@@ -200,8 +200,7 @@
 /datum/keybinding/mob/examine/proc/examinate(datum/source, atom/A, params)
 	SIGNAL_HANDLER
 	var/mob/user = source
-	user.examinate(A)
-	return COMSIG_MOB_CLICK_HANDLED
+	return user.examinate(A)
 
 /datum/keybinding/mob/toggle_move_intent
 	hotkey_keys = list("5")

@@ -106,6 +106,10 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/atom/movable/screen/text/screen_text/picture/faction_portrait
 	///Faction-wide modifier to respawn delay
 	var/respawn_delay_modifier = 0
+	///records how much currency has been earned from missions, for late join players
+	var/accumulated_mission_reward = 0
+	///list of individual stats by key
+	var/list/datum/individual_stats/individual_stat_list = list()
 
 /datum/faction_stats/New(new_faction)
 	. = ..()
@@ -118,12 +122,36 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	for(var/i = 1 to CAMPAIGN_STANDARD_MISSION_QUANTITY)
 		generate_new_mission()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(mission_end))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED, COMSIG_GLOB_PLAYER_LATE_SPAWNED), PROC_REF(register_faction_member))
 
 	faction_portrait = GLOB.faction_to_portrait[faction] ? GLOB.faction_to_portrait[faction] : /atom/movable/screen/text/screen_text/picture/potrait/unknown
 
 /datum/faction_stats/Destroy(force, ...)
 	GLOB.faction_stats_datums -= faction
 	return ..()
+
+///Sets up newly spawned players with the campaign status verb
+/datum/faction_stats/proc/register_faction_member(datum/source, mob/living/carbon/human/new_member)
+	SIGNAL_HANDLER
+	if(!ishuman(new_member))
+		return
+	if(new_member.faction != faction)
+		return
+	if(individual_stat_list[new_member.key])
+		individual_stat_list[new_member.key].current_mob = new_member
+		individual_stat_list[new_member.key].apply_perks()
+	else
+		get_player_stats(new_member)
+	var/datum/action/campaign_loadout/loadouts = new
+	loadouts.give_action(new_member)
+
+///Returns a users individual stat datum, generating a new one if required
+/datum/faction_stats/proc/get_player_stats(mob/user)
+	if(!user.key)
+		return
+	if(!individual_stat_list[user.key])
+		individual_stat_list[user.key] = new /datum/individual_stats(user, faction, accumulated_mission_reward)
+	return individual_stat_list[user.key]
 
 ///Randomly adds a new mission to the available pool
 /datum/faction_stats/proc/generate_new_mission()
@@ -199,6 +227,15 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	update_static_data_for_all_viewers()
 	addtimer(CALLBACK(src, PROC_REF(return_to_base), completed_mission), AFTER_MISSION_TELEPORT_DELAY)
 	addtimer(CALLBACK(src, PROC_REF(get_selector)), AFTER_MISSION_LEADER_DELAY) //if the leader died, we load a new one after a bit to give respawns some time
+
+///applies cash rewards to the faction and all individuals
+/datum/faction_stats/proc/apply_cash(amount)
+	if(!amount)
+		return
+	accumulated_mission_reward += amount
+	for(var/i in individual_stat_list)
+		var/datum/individual_stats/player_stats = individual_stat_list[i]
+		player_stats.give_funds(amount)
 
 ///Returns all faction members back to base after the mission is completed
 /datum/faction_stats/proc/return_to_base(datum/campaign_mission/completed_mission)
