@@ -387,6 +387,7 @@
 	icon_state = "ace_of_hearts"
 	item_state = "ace_of_hearts"
 	w_class = WEIGHT_CLASS_TINY
+
 /obj/item/toy/card/ace/spades
 	name = "Ancient Ace of Spades card"
 	desc = "An ancient copy of an Ace of Spades from a deck of playing cards."
