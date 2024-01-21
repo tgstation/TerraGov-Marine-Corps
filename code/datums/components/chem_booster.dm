@@ -24,7 +24,9 @@
 	var/resource_storage_max = 200
 	///Amount of substance stored currently
 	var/resource_storage_current = 0
-	///Amount required for operation
+	/// Amount of substance required to start operating.
+	var/resource_storage_required = 150
+	/// Amount of substance to drain while operating.
 	var/resource_drain_amount = 10
 	///Actions that the component provides
 	var/list/datum/action/component_actions = list(
@@ -243,7 +245,7 @@
 		if(!COOLDOWN_CHECK(src, chemboost_activation_cooldown))
 			wearer.balloon_alert(wearer, "You need to wait another [COOLDOWN_TIMELEFT(src, chemboost_activation_cooldown)/10] seconds")
 			return
-		if(resource_storage_current < resource_drain_amount)
+		if(resource_storage_current < resource_storage_required)
 			wearer.balloon_alert(wearer, "Insufficient green blood to begin operation")
 			return
 		if(wearer.stat)
@@ -284,7 +286,7 @@
 /datum/component/chem_booster/proc/update_boost(amount)
 	boost_amount = amount
 	wearer?.balloon_alert(wearer, "Enhancement level set to [boost_amount]")
-	resource_drain_amount = boost_amount*(3 + boost_amount)
+	resource_drain_amount *= amount
 
 ///Handles Vali stat boosts and any other potential buffs on activation/deactivation
 /datum/component/chem_booster/proc/setup_bonus_effects()
@@ -378,7 +380,7 @@
 		return
 	if(resource_storage_current >= resource_storage_max)
 		return
-	update_resource(round(20*connected_weapon.attack_speed/11))
+	update_resource(round(10 + connected_weapon.attack_speed * 0.5))
 
 ///Adds or removes resource from the suit. Signal gets sent at every 25% of stored resource
 /datum/component/chem_booster/proc/update_resource(amount)
