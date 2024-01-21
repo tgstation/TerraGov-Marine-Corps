@@ -453,11 +453,6 @@ GLOBAL_LIST_INIT(module, list(
 	. = ..()
 	recipe = GLOB.module
 
-/obj/item/factory_part/module_tyr2
-	name = "\improper Mark 2 Tyr armor reinforcement"
-	desc = "An unfinished Mark 2 Tyr armor reinforcement module."
-	result = /obj/item/armor_module/module/tyr_extra_armor
-
 /obj/item/factory_part/module_tyr2/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.module
