@@ -71,7 +71,7 @@
 
 
 /atom/movable/screen/fullscreen
-	icon = 'icons/mob/screen/full.dmi'
+	icon = 'icons/mob/screen/full/misc.dmi'
 	icon_state = "default"
 	screen_loc = "CENTER-7,CENTER-7"
 	layer = FULLSCREEN_LAYER
@@ -100,29 +100,33 @@
 	icon_state = "blackimageoverlay" //mostly just a black square, you can change this if you get better ideas
 	layer = FULLSCREEN_INTRO_LAYER
 
-/atom/movable/screen/fullscreen/brute
-	icon_state = "brutedamageoverlay"
-	layer = FULLSCREEN_DAMAGE_LAYER
-	plane = FULLSCREEN_PLANE
-
-/atom/movable/screen/fullscreen/oxy
-	icon_state = "oxydamageoverlay"
-	layer = FULLSCREEN_DAMAGE_LAYER
-	plane = FULLSCREEN_PLANE
-
-/atom/movable/screen/fullscreen/crit
-	icon_state = "passage"
-	layer = FULLSCREEN_CRIT_LAYER
-	plane = FULLSCREEN_PLANE
-
 /atom/movable/screen/fullscreen/blind
 	icon_state = "blackimageoverlay"
 	layer = FULLSCREEN_BLIND_LAYER
 	plane = FULLSCREEN_PLANE
 
+/atom/movable/screen/fullscreen/damage
+	icon = 'icons/mob/screen/full/damage.dmi'
+
+/atom/movable/screen/fullscreen/damage/brute
+	icon_state = "brutedamageoverlay"
+	layer = FULLSCREEN_DAMAGE_LAYER
+	plane = FULLSCREEN_PLANE
+
+/atom/movable/screen/fullscreen/damage/oxy
+	icon_state = "oxydamageoverlay"
+	layer = FULLSCREEN_DAMAGE_LAYER
+	plane = FULLSCREEN_PLANE
+
 /atom/movable/screen/fullscreen/impaired
+	icon = 'icons/mob/screen/full/impaired.dmi'
 	icon_state = "impairedoverlay"
 	layer = FULLSCREEN_IMPAIRED_LAYER
+
+/atom/movable/screen/fullscreen/impaired/crit
+	icon_state = "critical"
+	layer = FULLSCREEN_CRIT_LAYER
+	plane = FULLSCREEN_PLANE
 
 /atom/movable/screen/fullscreen/flash
 	icon = 'icons/mob/screen/generic.dmi'
@@ -142,18 +146,23 @@
 	layer = FULLSCREEN_DRUGGY_LAYER
 
 /atom/movable/screen/fullscreen/pain
+	icon = 'icons/mob/screen/full/pain.dmi'
 	icon_state = "painoverlay"
 	layer = FULLSCREEN_PAIN_LAYER
 
-/atom/movable/screen/fullscreen/bloodlust
+/atom/movable/screen/fullscreen/animated/bloodlust
+	icon = 'icons/mob/screen/full/animated.dmi'
+
+/atom/movable/screen/fullscreen/animated/bloodlust
 	icon_state = "bloodlust"
 	layer = FULLSCREEN_NERVES_LAYER
 
-/atom/movable/screen/fullscreen/infection
+/atom/movable/screen/fullscreen/animated/infection
 	icon_state = "curseoverlay"
 	layer = FULLSCREEN_INFECTION_LAYER
 
 /atom/movable/screen/fullscreen/machine
+	icon = 'icons/mob/screen/full/machine.dmi'
 	icon_state = "machine"
 	alpha = 120
 	layer = FULLSCREEN_DRUGGY_LAYER
