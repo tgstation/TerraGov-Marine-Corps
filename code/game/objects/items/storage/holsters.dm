@@ -423,15 +423,23 @@
 
 /obj/item/storage/holster/m37
 	name = "\improper L44 shotgun scabbard"
-	desc = "A large leather holster allowing the storage of any shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
+	desc = "A large leather holster allowing the storage of any shotgun. It contains harnesses that allow it to be secured to the back for easy storage. Has pockets for some handfuls of shells"
 	icon_state = "m37_holster"
 	holsterable_allowed = list(
-		/obj/item/weapon/gun/shotgun/combat,
-		/obj/item/weapon/gun/shotgun/pump,
+		/obj/item/weapon/gun/shotgun,
+		/obj/item/weapon/gun/rifle/standard_autoshotgun,
 	)
+
+	storage_slots = 6
+	max_storage_space = 20
+	max_w_class = WEIGHT_CLASS_BULKY
+
 	can_hold = list(
-		/obj/item/weapon/gun/shotgun/combat,
-		/obj/item/weapon/gun/shotgun/pump,
+		/obj/item/weapon/gun/rifle/standard_autoshotgun,
+		/obj/item/weapon/gun/shotgun,
+		/obj/item/ammo_magazine/handful,
+		/obj/item/ammo_magazine/rifle/tx15_slug,
+		/obj/item/ammo_magazine/rifle/tx15_flechette,
 	)
 
 /obj/item/storage/holster/m37/full/Initialize(mapload)
@@ -455,7 +463,7 @@
 
 /obj/item/storage/holster/m25
 	name = "\improper M276 pattern M25 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is designed for the M25 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
+	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is designed for the M25 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued. It has pouches for mags."
 	icon_state = "m25_holster"
 	icon = 'icons/obj/clothing/belts.dmi'
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -463,7 +471,16 @@
 		/obj/item/weapon/gun/smg/m25,
 		/obj/item/weapon/gun/smg/m25/holstered,
 	)
-	can_hold = list(/obj/item/weapon/gun/smg/m25)
+
+	storage_slots = 6
+	max_storage_space = 15
+	max_w_class = WEIGHT_CLASS_BULKY
+	can_hold = list(
+	/obj/item/weapon/gun/smg/m25,
+	/obj/item/ammo_magazine/smg/m25,
+	/obj/item/ammo_magazine/smg/m25/ap,
+	/obj/item/ammo_magazine/smg/m25/extended,
+	)
 
 /obj/item/storage/holster/m25/full/Initialize(mapload)
 	. = ..()
