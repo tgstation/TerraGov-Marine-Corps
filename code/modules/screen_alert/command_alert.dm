@@ -56,9 +56,9 @@
 	if(human_owner.assigned_squad)
 		for(var/mob/living/carbon/human/marine AS in human_owner.assigned_squad.marines_list)
 			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>SQUAD ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
-			to_chat(marine, "<span class='faction_alert'>[span_faction_alert_title("You have received orders from the [human_owner.job.title]:")]<br><span class='faction_alert_container'>[span_faction_alert_text("[text]")]</span></span>")
+			to_chat(marine, "<br>[span_announce_header("You have received orders from the [human_owner.job.title].")]<br><br>[span_announce_body("[text]")]<br>")
 		return
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == human_owner.faction)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
-			to_chat(human, "<span class='faction_alert'>[span_faction_alert_title("You have received orders from the [human_owner.job.title]:")]<br><span class='faction_alert_container'>[span_faction_alert_text("[text]")]</span></span>")
+			to_chat(human, "<br>[span_announce_header("You have received orders from the [human_owner.job.title].")]<br><br>[span_announce_body("[text]")]<br><br>")
