@@ -1,6 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - refactor: "Click code is now somewhat cleaner and more standardized"
-  - code_imp: "Adds attack_self_alternate(), this gets called when an item in-hand is right-clicked"
-  - bugfix: "You can now right click any hypospray in-hand to change the injection size"

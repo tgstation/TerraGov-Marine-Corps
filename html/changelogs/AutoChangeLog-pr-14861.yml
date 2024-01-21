@@ -1,6 +1,0 @@
-author: "DeltaFire15"
-delete-after: True
-changes:
-  - bugfix: "Xenomorph pounce abilities no longer bypass shields."
-  - bugfix: "Runner Savage only triggers if the pounce didn't fail."
-  - bugfix: "Thrown objects should now behave more reasonable after passing a portal, for cases such as bouncing."
