@@ -341,7 +341,7 @@ GLOBAL_REAL(Master, /datum/controller/master)
 			chat_warning = TRUE
 
 	var/message = "[message_prefix] [seconds] second[seconds == 1 ? "" : "s"]!"
-	var/chat_message = chat_warning ? span_deadsay("<b><i>[message]</b></i>") : span_boldwarning(message)
+	var/chat_message = chat_warning ? span_boldwarning(message) : span_alert("<b>[message]</b>")
 
 	to_chat(world, chat_message)
 	log_world(message)

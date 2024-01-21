@@ -601,17 +601,14 @@ h2.alert {
 .xenoqueen {
   font-size: 1.4em;
   font-weight: bold;
-  font-style: italic;
 }
 .xenoshrike {
   font-size: 1.2em;
   font-weight: bold;
-  font-style: italic;
 }
 .xenohivemind {
   font-size: 1.2em;
   font-weight: bold;
-  font-style: italic;
 }
 .ordercic {
   font-weight: bold;
@@ -1026,7 +1023,7 @@ h2.alert {
 .faction_alert {
   background: #4d0000;
   margin: 0.5em;
-  padding: 0.5em 0.5em 0.5em 0.2em;
+  padding: 0.5em 0.5em 0.5em 0.5em;
   color: #cecece;
   font-weight: bold;
   display: flex;
@@ -1043,12 +1040,11 @@ h2.alert {
   background: #240000;
   display: flex;
   flex-direction: column;
-  margin: 0.5em;
-  padding: 0.5em 0.5em 0.5em 0.2em;
+  padding: 0.5em 0.5em 0.5em 0.5em;
 }
 .faction_alert_title {
   color: #cecece;
-  padding: 0.5em 0 0 0.35em;
+  padding: 0.35em 0.35em 0 0.35em;
   display: flex;
   flex-direction: column;
   font-size: 185%;

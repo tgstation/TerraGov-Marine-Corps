@@ -501,7 +501,7 @@ em {
 }
 
 .alert {
-  color: #c51e1e;
+  color: #ff0000;
 }
 h1.alert,
 h2.alert {
@@ -560,7 +560,7 @@ h2.alert {
   font-weight: bold;
 }
 .warning {
-  color: #c51e1e;
+  color: #ff0000;
   font-style: italic;
 }
 .xenowarning {
@@ -568,16 +568,16 @@ h2.alert {
   font-style: italic;
 }
 .boldwarning {
-  color: #c51e1e;
+  color: #ff0000;
   font-style: italic;
   font-weight: bold;
 }
 .danger {
-  color: #c51e1e;
+  color: #ff0000;
   font-weight: bold;
 }
 .userdanger {
-  color: #c51e1e;
+  color: #ff0000;
   font-weight: bold;
   font-size: 185%;
 }
@@ -590,7 +590,7 @@ h2.alert {
   font-weight: bold;
 }
 .highdanger {
-  color: #c51e1e;
+  color: #ff0000;
   font-weight: bold;
   font-size: 185%;
 }
@@ -611,17 +611,14 @@ h2.alert {
 }
 .xenoqueen {
   font-size: 1.4em;
-  font-style: italic;
   font-weight: bold;
 }
 .xenoshrike {
   font-size: 1.2em;
-  font-style: italic;
   font-weight: bold;
 }
 .xenohivemind {
   font-size: 1.2em;
-  font-style: italic;
   font-weight: bold;
 }
 .xenoleader {
@@ -1062,7 +1059,7 @@ h2.alert {
 .faction_alert {
   background: #ffadad;
   margin: 0.5em;
-  padding: 0.5em 0.5em 0.5em 0.2em;
+  padding: 0.5em 0.5em 0.5em 0.5em;
   color: #cecece;
   font-weight: bold;
   display: flex;
@@ -1076,15 +1073,14 @@ h2.alert {
   );
 }
 .faction_alert_container {
-  background: #bb7f7f;
+  background: #fcc3c3;
   display: flex;
   flex-direction: column;
-  margin: 0.5em;
-  padding: 0.5em 0.5em 0.5em 0.2em;
+  padding: 0.5em 0.5em 0.5em 0.5em;
 }
 .faction_alert_title {
   color: #000000;
-  padding: 0.5em 0 0 0.35em;
+  padding: 0.35em 0.35em 0 0.35em;
   display: flex;
   flex-direction: column;
   font-size: 185%;
