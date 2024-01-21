@@ -1452,6 +1452,7 @@
 "bjJ" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/effect/turf_decal/box/red,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "bjX" = (
@@ -4475,6 +4476,11 @@
 	dir = 10
 	},
 /area/metnal/inside/cargo)
+"dBj" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/prison,
+/area/metnal/inside/security)
 "dBu" = (
 /obj/structure/inflatable/popped,
 /obj/effect/landmark/weed_node,
@@ -5261,6 +5267,7 @@
 /area/metnal/outside/southeast)
 "eie" = (
 /obj/structure/window/framed/prison/reinforced,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison/sterilewhite/full,
 /area/metnal/inside/security)
 "eih" = (
@@ -6487,6 +6494,7 @@
 	},
 /obj/structure/table/black,
 /obj/item/storage/box/gloves,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "fdE" = (
@@ -6838,6 +6846,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison/sterilewhite/full,
 /area/metnal/inside/security)
 "frp" = (
@@ -11179,6 +11188,7 @@
 "iOA" = (
 /obj/structure/table/black,
 /obj/structure/cable,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "iOC" = (
@@ -11452,10 +11462,6 @@
 	},
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
-"jaB" = (
-/obj/machinery/miner/damaged,
-/turf/open/lavaland/basalt,
-/area/metnal/outside/south)
 "jaG" = (
 /obj/machinery/constructable_frame/state_2,
 /obj/machinery/light{
@@ -12843,6 +12849,10 @@
 /obj/machinery/miner/damaged,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
+"kin" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/prison/sterilewhite/full,
+/area/metnal/inside/security)
 "kju" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/spawner/random/machinery/machine_frame,
@@ -13673,6 +13683,7 @@
 "kMg" = (
 /obj/item/trash/used_stasis_bag,
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/security)
 "kMi" = (
@@ -14706,6 +14717,11 @@
 	dir = 8
 	},
 /area/metnal/inside/mining)
+"lDm" = (
+/obj/effect/acid_hole,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/security)
 "lDw" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -15235,6 +15251,11 @@
 	},
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
+"lZG" = (
+/obj/structure/window/framed/prison/reinforced,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/security)
 "mab" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -16691,6 +16712,7 @@
 "njr" = (
 /obj/item/trash/semki,
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "njt" = (
@@ -17231,6 +17253,10 @@
 /obj/item/ammo_casing,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/metnal/caves/nukestorage)
+"nHT" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/security)
 "nHU" = (
 /turf/open/lavaland/basalt/cave/corner{
 	dir = 4
@@ -17551,6 +17577,7 @@
 	name = "Security Desk";
 	dir = 1
 	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "nUJ" = (
@@ -18759,6 +18786,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/darkred,
 /area/metnal/inside/cafeteria)
+"oRd" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/prison,
+/area/metnal/inside/security)
 "oRh" = (
 /obj/structure/window/framed/prison/cell,
 /turf/open/floor/prison/plate,
@@ -19300,6 +19331,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "pmD" = (
@@ -19387,6 +19419,11 @@
 /obj/structure/rock/large/obsidian,
 /turf/open/lavaland/basalt/glowing,
 /area/metnal/outside/northwest)
+"ppt" = (
+/obj/effect/acid_hole,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/prison,
+/area/metnal/inside/security)
 "ppW" = (
 /obj/structure/cable,
 /obj/item/trash/candy,
@@ -21083,6 +21120,7 @@
 /area/metnal/inside/landingzoneone)
 "qGg" = (
 /obj/structure/window_frame/prison/reinforced,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison/sterilewhite/full,
 /area/metnal/inside/security)
 "qGi" = (
@@ -21758,6 +21796,7 @@
 /area/metnal/inside/colonydorms)
 "raH" = (
 /obj/item/trash/mre/som,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "rbf" = (
@@ -22951,6 +22990,11 @@
 /obj/effect/turf_decal/siding/dark/corner,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/west)
+"rWx" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/security)
 "rWG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
@@ -23693,6 +23737,7 @@
 	},
 /obj/item/book/manual,
 /obj/item/storage/backpack/satchel/withwallet,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "suX" = (
@@ -29361,6 +29406,7 @@
 /area/metnal/inside/auxstorage)
 "wIM" = (
 /obj/effect/turf_decal/box/red,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "wIU" = (
@@ -30313,6 +30359,10 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
+"xsO" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/security)
 "xtc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
@@ -30439,6 +30489,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "xxJ" = (
@@ -30706,6 +30757,7 @@
 	},
 /obj/structure/table/black,
 /obj/item/book/manual/marine_law,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "xJN" = (
@@ -49310,7 +49362,7 @@ xif
 xif
 cEf
 xif
-jaB
+xif
 xif
 hAx
 awd
@@ -65864,12 +65916,12 @@ kUs
 lYc
 fKT
 bhB
-bhB
-xDn
-xDn
-xDn
-bhB
-bhB
+oRd
+lZG
+lZG
+lZG
+oRd
+oRd
 joS
 bcF
 joS
@@ -66071,7 +66123,7 @@ yfP
 vZT
 yfP
 hNp
-xDn
+lZG
 joS
 joS
 joS
@@ -66273,7 +66325,7 @@ nax
 neO
 ltA
 ajt
-xDn
+lZG
 joS
 joS
 aqt
@@ -66475,7 +66527,7 @@ yfP
 yfP
 yfP
 tYc
-xDn
+lZG
 aqt
 joS
 joS
@@ -66677,12 +66729,12 @@ nTF
 kwi
 yfP
 bhB
-bhB
-bhB
+oRd
+oRd
 eie
 eie
-bhB
-bhB
+oRd
+oRd
 joS
 gAo
 esM
@@ -67086,13 +67138,13 @@ aVY
 aVY
 nLN
 hCK
-bhB
-xjb
+dBj
+kin
 fqq
-bhB
-bhB
-bhB
-bhB
+oRd
+oRd
+oRd
+oRd
 hEX
 ebw
 jFg
@@ -67294,7 +67346,7 @@ xXO
 bhB
 fVl
 fVl
-bhB
+oRd
 hEX
 dCR
 ebw
@@ -67480,7 +67532,7 @@ yeo
 nRY
 nRY
 rzA
-nRY
+nHT
 nRY
 nRY
 nRY
@@ -67496,7 +67548,7 @@ mOs
 bhB
 ezf
 qiw
-bhB
+oRd
 vHR
 xVQ
 xVQ
@@ -67682,7 +67734,7 @@ vZT
 nRY
 aDI
 xFV
-yfP
+xsO
 oRh
 pYC
 qzT
@@ -67698,7 +67750,7 @@ tKi
 bhB
 fVl
 jeK
-bhB
+oRd
 esM
 kyV
 esM
@@ -67900,7 +67952,7 @@ mEJ
 bhB
 oIw
 vjE
-bhB
+oRd
 eic
 esM
 siw
@@ -68086,7 +68138,7 @@ xxm
 nRY
 tYc
 dbe
-yfP
+xsO
 nRY
 nRY
 nRY
@@ -68102,7 +68154,7 @@ xjb
 aVY
 aVY
 dyE
-bhB
+oRd
 eic
 esM
 esM
@@ -68304,7 +68356,7 @@ xjb
 aVY
 afW
 iMu
-bhB
+oRd
 eic
 esM
 esM
@@ -68506,7 +68558,7 @@ nak
 aVY
 jvv
 vvY
-bhB
+oRd
 esM
 esM
 esM
@@ -68692,23 +68744,23 @@ xwU
 nRY
 nTF
 pyE
-pHC
+rWx
 nRY
 nRY
 nRY
 nRY
-nRY
-ntO
-bhB
-bhB
+nHT
+ppt
+oRd
+oRd
 kVk
 ujJ
 xjb
 xjb
 ixN
 sSn
-bhB
-bhB
+oRd
+oRd
 esM
 esM
 siw
@@ -68894,22 +68946,22 @@ shf
 nRY
 pze
 hnZ
-yfP
+xsO
 yfP
 oRh
 fpW
 iPB
-iyV
+lDm
 aqt
 joS
-bhB
+oRd
 eie
 qGg
 eie
 eie
 eie
 eie
-bhB
+oRd
 siw
 esM
 esM
@@ -69101,7 +69153,7 @@ aEK
 tdW
 tSU
 vUz
-nRY
+nHT
 joS
 joS
 joS
@@ -69298,12 +69350,12 @@ mQL
 nRY
 nRY
 nRY
-nRY
-nRY
-nRY
-nRY
-nRY
-nRY
+nHT
+nHT
+nHT
+nHT
+nHT
+nHT
 joS
 joS
 joS
