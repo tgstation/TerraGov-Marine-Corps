@@ -244,7 +244,6 @@ GLOBAL_LIST_INIT(specialist_gear_listed_products, list(
 GLOBAL_LIST_INIT(commanddoll_gear_listed_products, list(
 
 	/obj/effect/vendor_bundle/commanddoll = list(CAT_ESS, "Essential Command Doll Set", 0, "white"),
-	/obj/item/armor_module/module/valkyrie_autodoc = list(CAT_CDSUP, "Valkyrie Autodoc Armor Module", 5, "black"),
 	/obj/item/armor_module/module/tyr_extra_armor = list(CAT_CDSUP, "Tyr2 Armor Module", 5, "black"),
 	/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet = list(CAT_CDSUP, "Mimir2 Helmet Module", 2, "black"),
 	/obj/item/armor_module/module/mimir_environment_protection = list(CAT_CDSUP, "Mimir2 Armor Module", 3, "black"),
