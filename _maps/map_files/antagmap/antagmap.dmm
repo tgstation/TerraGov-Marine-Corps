@@ -105,6 +105,7 @@
 	})
 "bl" = (
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
+/obj/item/storage/box/crate/loot/materials_pack,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "bv" = (
@@ -763,6 +764,13 @@
 /area/canora_desert/surface/building/command{
 	outside = 0;
 	name = "SOM Bridge"
+	})
+"hd" = (
+/obj/item/storage/box/crate/loot/materials_pack,
+/turf/open/floor/plating/plating_catwalk,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay";
+	outside = 0
 	})
 "he" = (
 /obj/effect/landmark/weed_node,
@@ -1641,6 +1649,12 @@
 /area/mainship/groundhq/clf/hallways/aft_hallway{
 	requires_power = 0
 	})
+"nC" = (
+/obj/effect/landmark/start/latejoinclf,
+/obj/effect/decal/cleanable/blood/splatter/girlcum,
+/obj/item/explosive/grenade/smokebomb/aphrotoxin,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/engineering/engineering_workshop)
 "nE" = (
 /obj/machinery/telecomms/server/presets/medical/som,
 /turf/open/floor/bcircuit/anim,
@@ -7092,7 +7106,7 @@ Jr
 wB
 EF
 Bt
-zU
+hd
 FY
 Oa
 fG
@@ -9604,7 +9618,7 @@ ko
 xi
 pE
 pq
-wm
+nC
 RC
 cG
 IC
