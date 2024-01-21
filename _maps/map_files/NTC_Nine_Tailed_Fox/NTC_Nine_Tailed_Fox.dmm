@@ -1011,9 +1011,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "aTV" = (
-/obj/machinery/computer/cryopod{
-	dir = 1
-	},
+/obj/machinery/computer/cryopod,
 /turf/open/floor/mainship/mono,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
@@ -12977,9 +12975,7 @@
 /obj/effect/landmark{
 	name = "JoinLate"
 	},
-/obj/machinery/computer/cryopod{
-	dir = 1
-	},
+/obj/machinery/computer/cryopod,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
 "lGg" = (
@@ -16446,9 +16442,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/engineering/upper_engine_monitoring)
 "oQY" = (
-/obj/machinery/computer/cryopod{
-	dir = 1
-	},
+/obj/machinery/computer/cryopod,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -16764,9 +16758,7 @@
 /area/mainship/groundhq/ntf/hallways/bathroom)
 "pfC" = (
 /obj/structure/cable,
-/obj/machinery/computer/cryopod{
-	dir = 1
-	},
+/obj/machinery/computer/cryopod,
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
 "pfG" = (
@@ -17622,9 +17614,7 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
-/obj/machinery/computer/cryopod{
-	dir = 1
-	},
+/obj/machinery/computer/cryopod,
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
