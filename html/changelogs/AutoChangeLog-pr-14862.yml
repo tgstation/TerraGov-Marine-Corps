@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - balance: "Gave DBs a 0.7 damage multiplier, like the SH-39"
