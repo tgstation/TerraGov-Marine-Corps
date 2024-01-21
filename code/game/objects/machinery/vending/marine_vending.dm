@@ -66,8 +66,6 @@
 			/obj/item/ammo_magazine/handful/slug = -1,
 			/obj/item/ammo_magazine/handful/buckshot = -1,
 			/obj/item/ammo_magazine/handful/flechette = -1,
-			/obj/item/ammo_magazine/handful/tracker = -1,
-			/obj/item/ammo_magazine/handful/beanbag = -1,
 			/obj/item/weapon/gun/rifle/standard_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/tx15_flechette = -1,
 			/obj/item/ammo_magazine/rifle/tx15_slug = -1,

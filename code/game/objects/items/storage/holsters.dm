@@ -631,6 +631,17 @@
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
 
+/obj/item/storage/holster/belt/pistol/m4a3/specops/Initialize(mapload)
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m1911/custom/specops(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
 /obj/item/storage/holster/belt/pistol/m4a3/vp70/Initialize(mapload)
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70(src)

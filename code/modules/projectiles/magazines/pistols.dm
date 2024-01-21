@@ -73,7 +73,13 @@
 	icon_state_mini = "mag_pistol_normal"
 	max_rounds = 10
 
-
+/obj/item/ammo_magazine/pistol/m1911/ap
+	name = "\improper P-1911 AP magazine (.45)"
+	default_ammo = /datum/ammo/bullet/pistol/heavy/ap
+	caliber = CALIBER_45ACP
+	icon_state = "1911_ap"
+	icon_state_mini = "mag_pistol_green"
+	max_rounds = 10
 
 //-------------------------------------------------------
 //P-23

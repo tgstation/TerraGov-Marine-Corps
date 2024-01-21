@@ -346,7 +346,7 @@
 
 /datum/reagent/toxin/acid/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
-	if(!(method in list(TOUCH, VAPOR, PATCH)))
+	if(!(method in list(TOUCH, VAPOR, PATCH, INJECT)))
 		return
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
@@ -410,6 +410,9 @@
 	toxpwr = 2
 	meltprob = 30
 	taste_multi = 1.5
+
+/datum/reagent/toxin/acid/polyacid/on_mob_life(mob/living/L, metabolism)
+	L.take_limb_damage(0, 2*effect_str)
 
 /datum/reagent/toxin/nanites
 	name = "Nanomachines"

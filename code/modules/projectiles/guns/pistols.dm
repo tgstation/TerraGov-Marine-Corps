@@ -229,7 +229,7 @@
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/m1911
-	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/m1911)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/m1911, /obj/item/ammo_magazine/pistol/m1911/ap)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT_LOCKED
 	fire_delay = 0.2 SECONDS
@@ -256,6 +256,29 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	fire_delay = 0.15 SECONDS
 	damage_mult = 1.3
+
+/obj/item/weapon/gun/pistol/m1911/custom/specops
+	name = "\improper P-1911SO custom pistol"
+	desc = "A handgun that has received an unholy amount of modifications. It seems to have been lovingly taken care of and passed down for generations. Lacks an auto magazine eject feature."
+	default_ammo_type = /obj/item/ammo_magazine/pistol/m1911/ap
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+	)
+	starting_attachment_types = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/suppressor,
+	)
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.95
 
 //-------------------------------------------------------
 //P-22. Blocc

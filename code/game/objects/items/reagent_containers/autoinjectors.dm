@@ -284,6 +284,13 @@
 	volume = 20
 	list_reagents = list(/datum/reagent/medicine/polyhexanide = 20)
 
+/obj/item/reagent_containers/hypospray/autoinjector/polyacid
+	name = "polytrinic acid autoinjector"
+	desc = "An auto-injector loaded with Polytrinic acid. an extremely corrosive chemical substance. Most likely a war crime."
+	icon_state = "autoinjector-10"
+	amount_per_transfer_from_this = 30
+	volume = 30
+	list_reagents = list(/datum/reagent/toxin/acid/polyacid = 30)
 /obj/item/reagent_containers/hypospray/autoinjector/isotonic
 	name = "isotonic solution autoinjector"
 	desc = "An auto-injector loaded with 2 doses of isotonic solution, formulated to quickly recover fluid volume after blood loss or trauma."

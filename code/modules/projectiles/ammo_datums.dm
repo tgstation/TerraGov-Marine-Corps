@@ -413,7 +413,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 12.5
 	shrapnel_chance = 15
-	sundering = 0.5
+	sundering = 1.5
 
 /datum/ammo/bullet/pistol/heavy
 	name = "heavy pistol bullet"
@@ -422,6 +422,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 5
 	shrapnel_chance = 25
 	sundering = 2.15
+
+/datum/ammo/bullet/pistol/heavy/ap
+	name = "heavy armor-penetrating pistol bullet"
+	hud_state = "pistol_ap"
+	damage = 40
+	penetration = 15
+	sundering = 2.5
 
 /datum/ammo/bullet/pistol/superheavy
 	name = "high impact pistol bullet"
