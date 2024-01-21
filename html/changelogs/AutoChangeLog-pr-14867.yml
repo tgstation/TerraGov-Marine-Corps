@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - code_imp: "Split up the fullscreen overlay dmi file, this may help with lag when they get loaded"
