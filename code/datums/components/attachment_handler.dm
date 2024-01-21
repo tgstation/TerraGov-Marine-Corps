@@ -41,7 +41,7 @@
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(start_handle_attachment)) //For attaching.
 	RegisterSignals(parent, list(COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT_GUN, COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT), PROC_REF(attach_without_user))
 
-	RegisterSignal(parent, COMSIG_CLICK_ALT, PROC_REF(start_detach)) //For Detaching
+	RegisterSignal(parent, COMSIG_ALT_LEFT_CLICK, PROC_REF(start_detach)) //For Detaching
 	RegisterSignal(parent, COMSIG_QDELETING, PROC_REF(clean_references)) //Dels attachments.
 	RegisterSignal(parent, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, PROC_REF(apply_custom))
 	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, PROC_REF(remove_overlay))

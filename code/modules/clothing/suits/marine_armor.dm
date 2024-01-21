@@ -691,3 +691,35 @@
 	desc = "A piece of ICCGF body armor, worn by specialized infantry. Most Infantry actions in the ICC forces are done by adhoc personnel due to constant shortages of manpower, however most real Infantry divisions are of high quality, and are better known as 'Guardsmen'.  Protects well from most sources, and will entirely protect from explosions."
 	icon_state = "icc_guard"
 	soft_armor = list(MELEE = 60, BULLET = 65, LASER = 40, ENERGY = 60, BOMB = 85, BIO = 10, FIRE = 55, ACID = 40)
+
+//===========================SPEC OPS================================
+
+/obj/item/clothing/suit/storage/marine/specops
+	name = "Ballistic vest"
+	desc = "Civilian type armor, made to combat both melee and projectiles."
+	icon = 'icons/mob/clothing/suits/ert_suits.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
+	)
+	icon_state = "specops_vest"
+	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 20, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_armor_protection = CHEST|GROIN
+	flags_armor_features = NONE
+
+/obj/item/clothing/suit/storage/marine/specops/support
+	name = "Ballistic vest"
+	desc = "Civilian type armor, made to combat both melee and projectiles."
+	icon_state = "specops_vest_drone"
+
+/obj/item/clothing/suit/storage/marine/specops/medic
+	name = "Ballistic vest"
+	desc = "Civilian type armor, made to combat both melee and projectiles."
+	icon_state = "specops_vest_medic"
+
+/obj/item/clothing/suit/storage/marine/specops/leader
+	name = "Ballistic vest"
+	desc = "Civilian type armor, made to combat both melee and projectiles. Comes with tactical elbow pads."
+	icon_state = "specops_vest_leader"
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 40, ENERGY = 35, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
+	slowdown = SLOWDOWN_ARMOR_MEDIUM

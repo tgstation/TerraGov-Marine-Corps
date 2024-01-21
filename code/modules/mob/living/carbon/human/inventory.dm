@@ -138,9 +138,9 @@
 		if(ITEM_UNEQUIP_UNEQUIPPED)
 			return
 	if(I == wear_suit)
+		wear_suit = null
 		if(s_store)
 			dropItemToGround(s_store)
-		wear_suit = null
 		I.unequipped(src, SLOT_WEAR_SUIT)
 		if(I.flags_inv_hide & HIDESHOES)
 			update_inv_shoes()
