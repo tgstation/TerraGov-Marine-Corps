@@ -19,10 +19,10 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
-	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/syndicate/tacticool/holster
+	mask = /obj/item/clothing/mask/gas/specops
+	w_uniform = /obj/item/clothing/under/marine/specops
 	shoes = /obj/item/clothing/shoes/combat
-	wear_suit = /obj/item/clothing/suit/armor/bulletproof
+	wear_suit = /obj/item/clothing/suit/storage/marine/specops
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/modular/m10x
 	suit_store = /obj/item/weapon/gun/smg/m25/elite/suppressed
@@ -78,10 +78,10 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
-	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/syndicate/tacticool/holster
+	mask = /obj/item/clothing/mask/gas/specops
+	w_uniform = /obj/item/clothing/under/marine/specops
 	shoes = /obj/item/clothing/shoes/combat
-	wear_suit = /obj/item/clothing/suit/armor/bulletproof
+	wear_suit = /obj/item/clothing/suit/storage/marine/specops/support
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/modular/m10x
 	suit_store = /obj/item/weapon/gun/smg/m25/elite/suppressed/breacher
@@ -133,10 +133,10 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
-	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/syndicate/tacticool/holster
+	mask = /obj/item/clothing/mask/gas/specops
+	w_uniform = /obj/item/clothing/under/marine/specops
 	shoes = /obj/item/clothing/shoes/combat
-	wear_suit = /obj/item/clothing/suit/armor/bulletproof
+	wear_suit = /obj/item/clothing/suit/storage/marine/specops/support
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/modular/m10x/welding
 	suit_store = /obj/item/weapon/gun/smg/m25/elite/suppressed
@@ -179,6 +179,51 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_R_POUCH)
 
+//Special forces Medic
+/datum/job/special_forces/medic
+	title = "Special Response Force Medic"
+	outfit = /datum/outfit/job/special_forces/medic
+
+/datum/outfit/job/special_forces/medic
+	name = "Special Response Force Medic"
+	jobtype = /datum/job/special_forces/medic
+
+	glasses = /obj/item/clothing/glasses/night
+	id = /obj/item/card/id/silver
+	ears = /obj/item/radio/headset/distress/dutch
+	w_uniform = /obj/item/clothing/under/marine/specops
+	belt = /obj/item/storage/belt/lifesaver/full
+	wear_suit = /obj/item/clothing/suit/storage/marine/specops/medic
+	head = /obj/item/clothing/head/modular/m10x
+	shoes = /obj/item/clothing/shoes/combat
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	glasses = /obj/item/clothing/glasses/hud/health
+	suit_store = /obj/item/weapon/gun/smg/m25/elite/suppressed
+	r_store = /obj/item/storage/pouch/medical_injectors/medic
+	l_store = /obj/item/storage/pouch/magazine/large
+	back = /obj/item/storage/backpack/lightpack
+
+
+/datum/outfit/job/special_forces/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/mgoggles, SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/healthanalyzer, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/g22(H), SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_L_POUCH)
+
 //Special forces Leader
 /datum/job/special_forces/leader
 	title = "Special Response Force Leader"
@@ -193,11 +238,11 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
-	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/syndicate/tacticool/holster
+	mask = /obj/item/clothing/mask/gas/specops
+	w_uniform = /obj/item/clothing/under/marine/specops
 	glasses = /obj/item/clothing/glasses/night
 	shoes = /obj/item/clothing/shoes/combat
-	wear_suit = /obj/item/clothing/suit/armor/bulletproof
+	wear_suit = /obj/item/clothing/suit/storage/marine/specops/leader
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/beret/sec
 	suit_store = /obj/item/weapon/gun/rifle/m16/spec_op

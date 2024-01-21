@@ -101,6 +101,17 @@
 	siemens_coefficient = 0.7
 	flags_armor_protection = FACE|EYES
 
+/obj/item/clothing/mask/gas/specops
+	name = "Special Operations gasmask"
+	desc = "A close-fitting tactical mask that can be connected to an air supply. Based off an old design of gas masks."
+	icon = 'icons/mob/clothing/mask.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/mask.dmi'
+	)
+	icon_state = "specop"
+	item_state = "specop"
+	siemens_coefficient = 0.7
+
 /obj/item/clothing/mask/gas/syndicate
 	name = "syndicate mask"
 	desc = "A close-fitting tactical mask that can be connected to an air supply."
