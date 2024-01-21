@@ -50,6 +50,12 @@ Godspeed, commander! And remember, you are not above the law."})
 	jobtype = /datum/job/som/command/commander
 
 	id = /obj/item/card/id/gold
+	ears = /obj/item/radio/headset/mainship/mcom/som
+	belt = /obj/item/storage/holster/belt/mateba/officer/full
+	w_uniform = /obj/item/clothing/under/som/officer/senior
+	shoes = /obj/item/clothing/shoes/marine/full
+	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
+	r_store = /obj/item/storage/pouch/general/large/command
 
 /datum/outfit/job/som/command/commander/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -131,6 +137,12 @@ Make the SOM proud!"})
 	jobtype = /datum/job/som/command/fieldcommander
 
 	id = /obj/item/card/id/dogtag/fc
+	ears = /obj/item/radio/headset/mainship/mcom/som
+	w_uniform = /obj/item/clothing/under/som/officer/senior
+	shoes = /obj/item/clothing/shoes/marine/full
+	r_store = /obj/item/storage/pouch/general/large/command
+	gloves = /obj/item/clothing/gloves/marine/officer
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 
 //Staff Officer
 /datum/job/som/command/staffofficer
@@ -186,7 +198,11 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	jobtype = /datum/job/som/command/staffofficer
 
 	id = /obj/item/card/id/silver
-
+	ears = /obj/item/radio/headset/mainship/mcom/som
+	w_uniform = /obj/item/clothing/under/som/officer
+	shoes = /obj/item/clothing/shoes/marine/full
+	r_store = /obj/item/storage/pouch/general/large
+	l_store = /obj/item/binoculars/tactical
 //Pilot Officer
 /datum/job/som/command/pilot
 	title = SOM_PILOT_OFFICER
