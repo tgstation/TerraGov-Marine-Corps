@@ -1040,8 +1040,6 @@ ARMOR
 		/obj/item/armor_module/module/fire_proof,
 		/obj/item/armor_module/module/fire_proof_helmet,
 		/obj/item/armor_module/module/tyr_extra_armor,
-		/obj/item/armor_module/module/mimir_environment_protection,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/hlin_explosive_armor,
 		/obj/item/armor_module/module/binoculars/artemis_mark_two,
@@ -1069,14 +1067,6 @@ ARMOR
 		/obj/item/armor_module/module/tyr_extra_armor,
 	)
 	cost = 120
-
-/datum/supply_packs/armor/modular/attachments/mimir_environment_protection
-	name = "Mimir Mark 2 module set"
-	contains = list(
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
-		/obj/item/armor_module/module/mimir_environment_protection,
-	)
-	cost = 150
 
 /datum/supply_packs/armor/modular/attachments/hlin_bombimmune
 	name = "Hlin armor module"
@@ -2201,11 +2191,6 @@ FACTORY
 /datum/supply_packs/factory/module_valk_refill
 	name = "Valkyrie Automedical Armor System assembly refill"
 	contains = list(/obj/item/factory_refill/module_valk_refill)
-	cost = 600
-
-/datum/supply_packs/factory/module_mimir2_refill
-	name = "Mark 2 Mimir Environmental Resistance System assembly refill"
-	contains = list(/obj/item/factory_refill/module_mimir2_refill)
 	cost = 600
 
 /datum/supply_packs/factory/module_tyr2_refill

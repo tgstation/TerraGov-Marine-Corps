@@ -299,12 +299,6 @@
 	refill_type = /obj/item/factory_part/module_valk
 	refill_amount = 10
 
-/obj/item/factory_refill/module_mimir2_refill
-	name = "box of rounded metal plates"
-	desc = "A box of round metal plates inside. Used to refill Unboxers."
-	refill_type = /obj/item/factory_part/module_mimir2
-	refill_amount = 10
-
 /obj/item/factory_refill/module_tyr2_refill
 	name = "box of rounded metal plates"
 	desc = "A box of round metal plates inside. Used to refill Unboxers."
