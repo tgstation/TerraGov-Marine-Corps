@@ -6,10 +6,10 @@
 	density = FALSE
 	layer = BELOW_OBJ_LAYER
 	hit_sound = 'sound/effects/alien_resin_break2.ogg'
-	max_integrity = 400
+	max_integrity = 100
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	///Which hive it belongs too
 	var/hivenumber
 	///What is inside the cocoon

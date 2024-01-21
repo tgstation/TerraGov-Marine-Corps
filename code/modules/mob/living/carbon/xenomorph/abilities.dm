@@ -190,9 +190,11 @@
 	///List of buildable structures. Order corresponds with resin_images_list.
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin/regenerating,
+		/turf/closed/wall/resin/membrane,
 		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin,
 		/obj/structure/bed/nest,
+		/obj/structure/bed/nest/wall,
 		/obj/structure/xeno/lighttower,
 		)
 	/// Used for the dragging functionality of pre-shuttter building

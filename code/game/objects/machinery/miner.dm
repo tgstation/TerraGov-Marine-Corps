@@ -336,6 +336,29 @@
 			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[X.ckey]
 			personal_statistics.miner_sabotages_performed++
 
+/obj/machinery/miner/screwdriver_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(faction == user.faction)
+		user.visible_message(span_notice("This miner belongs to your faction already."))
+		return
+	if(user.status_flags & INCORPOREAL) //Incorporeal xenos cannot attack physically.
+		return
+	if(miner_upgrade_type == MINER_RESISTANT)
+		user.visible_message(span_notice("[user]'s [I] can't get through [src]'s reinforced plating."),
+		span_notice("You can't sabotage through [src]'s reinforced plating!"))
+		return
+	while(miner_status != MINER_DESTROYED)
+		if(user.do_actions)
+			return balloon_alert(user, "busy")
+		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+			return
+		user.do_attack_animation(src, ATTACK_EFFECT_LASERSWORD)
+		user.visible_message(span_danger("[user] sabotages \the [src]!"), \
+		span_danger("You sabotage \the [src]!"), null, 5)
+		playsound(loc, "alien_claw_metal", 25, TRUE)
+		miner_integrity -= 25
+		set_miner_status()
+
 /obj/machinery/miner/proc/set_miner_status()
 	var/health_percent = round((miner_integrity / max_miner_integrity) * 100)
 	switch(health_percent)

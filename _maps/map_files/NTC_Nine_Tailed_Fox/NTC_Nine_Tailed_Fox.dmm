@@ -16446,7 +16446,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/engineering/upper_engine_monitoring)
 "oQY" = (
-/obj/machinery/computer/cryopod,
+/obj/machinery/computer/cryopod{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -16762,7 +16764,9 @@
 /area/mainship/groundhq/ntf/hallways/bathroom)
 "pfC" = (
 /obj/structure/cable,
-/obj/machinery/computer/cryopod,
+/obj/machinery/computer/cryopod{
+	dir = 1
+	},
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
 "pfG" = (
@@ -17618,7 +17622,9 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
-/obj/machinery/computer/cryopod,
+/obj/machinery/computer/cryopod{
+	dir = 1
+	},
 /turf/open/floor/mainship/black{
 	dir = 4
 	},

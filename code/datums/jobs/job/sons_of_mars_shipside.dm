@@ -13,6 +13,7 @@
 /datum/job/som/command/commander
 	title = SOM_COMMANDER
 	access = ALL_SOM_ACCESS
+	minimal_access = ALL_SOM_ACCESS
 	req_admin_notify = TRUE
 	paygrade = "SOM_O7"
 	comm_title = "CMDR"
@@ -77,8 +78,8 @@ Godspeed, commander! And remember, you are not above the law."})
 //Field Commander
 /datum/job/som/command/fieldcommander
 	title = SOM_FIELD_COMMANDER
-	access = list(ALL_SOM_ACCESS,ALL_ANTAGONIST_ACCESS)
-	minimal_access = list(ALL_SOM_ACCESS,ALL_ANTAGONIST_ACCESS)
+	access = ALL_SOM_ACCESS
+	minimal_access = ALL_SOM_ACCESS
 	paygrade = "SOM_O3"
 	comm_title = "FCDR"
 	total_positions = 1
@@ -134,8 +135,8 @@ Make the SOM proud!"})
 //Staff Officer
 /datum/job/som/command/staffofficer
 	title = SOM_STAFF_OFFICER
-	access = list(ALL_SOM_ACCESS,ALL_ANTAGONIST_ACCESS)
-	minimal_access = list(ALL_SOM_ACCESS,ALL_ANTAGONIST_ACCESS)
+	access = ALL_SOM_ACCESS
+	minimal_access = ALL_SOM_ACCESS
 	paygrade = "SOM_W5"
 	comm_title = "SO"
 	total_positions = 4
@@ -192,8 +193,8 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	paygrade = "SOM_W2"
 	comm_title = "PO"
 	total_positions = 2
-	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_COMMAND,ACCESS_SOM_ENGINEERING,ALL_ANTAGONIST_ACCESS)
-	minimal_access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_COMMAND,ACCESS_SOM_ENGINEERING,ALL_ANTAGONIST_ACCESS)
+	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_COMMAND,ACCESS_SOM_ENGINEERING,ACCESS_MARINE_ENGINEERING)
+	minimal_access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_COMMAND,ACCESS_SOM_ENGINEERING,ACCESS_MARINE_ENGINEERING)
 	skills_type = /datum/skills/pilot
 	display_order = JOB_DISPLAY_ORDER_PILOT_OFFICER
 	outfit = /datum/outfit/job/som/command/pilot
@@ -260,8 +261,8 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	comm_title = "MCH"
 	total_positions = 0
 	skills_type = /datum/skills/mech_pilot
-	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MECHBAY,ACCESS_SOM_ENGINEERING,ALL_ANTAGONIST_ACCESS)
-	minimal_access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MECHBAY,ACCESS_SOM_ENGINEERING,ALL_ANTAGONIST_ACCESS)
+	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MECHBAY,ACCESS_SOM_ENGINEERING,ACCESS_MARINE_ENGINEERING)
+	minimal_access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MECHBAY,ACCESS_SOM_ENGINEERING,ACCESS_MARINE_ENGINEERING)
 	display_order = JOB_DISPLAY_ORDER_MECH_PILOT
 	outfit = /datum/outfit/job/som/command/mech_pilot
 	exp_requirements = XP_REQ_EXPERT
@@ -329,7 +330,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	comm_title = "CE"
 	selection_color = "#ffeeaa"
 	total_positions = 1
-	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_ENGINEERING,ACCESS_SOM_COMMAND,ACCESS_SOM_REQUESITIONS,ALL_ANTAGONIST_ACCESS)
+	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_ENGINEERING,ACCESS_SOM_COMMAND,ACCESS_SOM_REQUESITIONS,ACCESS_MARINE_ENGINEERING)
 	skills_type = /datum/skills/ce
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 	outfit = /datum/outfit/job/som/engineering/chief
@@ -402,7 +403,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	paygrade = "SOM_E2"
 	total_positions = 5
 	supervisors = "the chief station engineer and the requisitions officer"
-	access = list(ACCESS_SOM_ENGINEERING,ACCESS_SOM_DEFAULT,ALL_ANTAGONIST_ACCESS)
+	access = list(ACCESS_SOM_ENGINEERING,ACCESS_SOM_DEFAULT,ACCESS_MARINE_ENGINEERING)
 	skills_type = /datum/skills/st
 	display_order = JOB_DISPLAY_ORDER_SHIP_TECH
 	outfit = /datum/outfit/job/som/engineering/tech
@@ -472,8 +473,8 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	comm_title = "RO"
 	selection_color = "#9990B2"
 	total_positions = 1
-	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_REQUESITIONS,ACCESS_SOM_COMMAND,ACCESS_SOM_ENGINEERING,ALL_ANTAGONIST_ACCESS)
-	minimal_access = ALL_SOM_ACCESS
+	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_REQUESITIONS,ACCESS_SOM_COMMAND,ACCESS_SOM_ENGINEERING,ACCESS_MARINE_ENGINEERING)
+	minimal_access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_REQUESITIONS,ACCESS_SOM_COMMAND,ACCESS_SOM_ENGINEERING,ACCESS_MARINE_ENGINEERING)
 	skills_type = /datum/skills/ro
 	display_order = JOB_DISPLAY_ORDER_REQUISITIONS_OFFICER
 	outfit = /datum/outfit/job/som/requisitions/officer
@@ -540,7 +541,8 @@ A happy base is a well-functioning base."})
 
 /datum/job/som/medical/professor
 	title = SOM_CHIEF_MEDICAL_OFFICER
-	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MEDICAL,ACCESS_SOM_ENGINEERING,ACCESS_SOM_COMMAND,ALL_ANTAGONIST_ACCESS)
+	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MEDICAL,ACCESS_SOM_ENGINEERING,ACCESS_SOM_COMMAND,ACCESS_MARINE_ENGINEERING)
+	minimal_access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MEDICAL,ACCESS_SOM_ENGINEERING,ACCESS_SOM_COMMAND,ACCESS_MARINE_ENGINEERING)
 	req_admin_notify = TRUE
 	comm_title = "CMO"
 	paygrade = "CHO"
@@ -608,7 +610,8 @@ Make sure that the doctors and nurses are doing their jobs and keeping the SOM h
 //Medical Officer
 /datum/job/som/medical/medicalofficer
 	title = SOM_MEDICAL_DOCTOR
-	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MEDICAL,ALL_ANTAGONIST_ACCESS)
+	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MEDICAL,ACCESS_MARINE_ENGINEERING)
+	minimal_access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MEDICAL,ACCESS_MARINE_ENGINEERING)
 	comm_title = "MD"
 	paygrade = "RES"
 	total_positions = 6
@@ -674,7 +677,8 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 /datum/job/som/civilian/chef
 	title = SOM_CHEF
-	access = list(ACCESS_SOM_DEFAULT,ALL_ANTAGONIST_ACCESS)
+	access = list(ACCESS_SOM_DEFAULT,ACCESS_MARINE_ENGINEERING)
+	minimal_access = list(ACCESS_SOM_DEFAULT,ACCESS_MARINE_ENGINEERING)
 	comm_title = "CHEF"
 	paygrade = "SOM_E1"
 	total_positions = 2

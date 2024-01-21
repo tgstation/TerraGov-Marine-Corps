@@ -54,7 +54,7 @@
 	walltype = "membrane"
 	max_integrity = 120
 	opacity = FALSE
-	alpha = 180
+	alpha = 150
 	allow_pass_flags = PASS_GLASS
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
@@ -71,7 +71,7 @@
 	max_integrity = 240
 	icon_state = "thickmembrane0"
 	walltype = "thickmembrane"
-	alpha = 210
+	alpha = 180
 
 
 /turf/closed/wall/resin/ex_act(severity)

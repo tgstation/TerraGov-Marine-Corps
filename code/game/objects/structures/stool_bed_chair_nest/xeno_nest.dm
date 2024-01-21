@@ -1,4 +1,4 @@
-#define NEST_RESIST_TIME 30 SECONDS
+#define NEST_RESIST_TIME 120 SECONDS
 #define NEST_UNBUCKLED_COOLDOWN 5 SECONDS
 
 ///Alium nests. Essentially beds with an unbuckle delay that only aliums can buckle mobs to.
@@ -9,11 +9,13 @@
 	icon_state = "nest"
 	hit_sound = "alien_resin_break"
 	buckling_y = 6
+	buckling_x = 0
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	max_integrity = 100
-	var/resisting_time = 0
 	layer = RESIN_STRUCTURE_LAYER
+	var/buckleoverlaydir = SOUTH
+	var/unbuckletime = 6 SECONDS
 
 /obj/structure/bed/nest/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -25,6 +27,7 @@
 		var/mob/M = G.grabbed_thing
 		to_chat(user, span_notice("You place [M] on [src]."))
 		M.forceMove(loc)
+		user_buckle_mob(M, user)
 
 
 /obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
@@ -32,8 +35,7 @@
 		return attack_hand(X)
 	return ..()
 
-
-/obj/structure/bed/nest/user_buckle_mob(mob/living/buckling_mob, mob/user, check_loc = TRUE, silent)
+/obj/structure/bed/nest/user_buckle_mob(mob/living/buckling_mob, mob/living/user, check_loc = TRUE, silent)
 	if(user.incapacitated() || !in_range(user, src) || buckling_mob.buckled)
 		return FALSE
 	if(!isxeno(user))
@@ -47,22 +49,19 @@
 		if(TIMER_COOLDOWN_CHECK(H, COOLDOWN_NEST))
 			to_chat(user, span_warning("[H] was recently unbuckled. Wait a bit."))
 			return FALSE
-		if(!H.lying_angle)
-			to_chat(user, span_warning("[H] is resisting, ground [H.p_them()]."))
-			return FALSE
 
 	user.visible_message(span_warning("[user] pins [buckling_mob] into [src], preparing the securing resin."),
 	span_warning("[user] pins [buckling_mob] into [src], preparing the securing resin."))
 
-	if(!do_mob(user, buckling_mob, 1 SECONDS, BUSY_ICON_HOSTILE))
+	if(!do_mob(user, buckling_mob, 2 SECONDS, BUSY_ICON_HOSTILE))
 		return FALSE
 	if(QDELETED(src))
 		return FALSE
 	if(LAZYLEN(buckled_mobs))
 		to_chat(user, span_warning("There's already someone in [src]."))
 		return FALSE
-	if(ishuman(buckling_mob) && !buckling_mob.lying_angle) //Improperly stunned Marines won't be nested
-		to_chat(user, span_warning("[buckling_mob] is resisting, ground [buckling_mob.p_them()]."))
+	if(!ishuman(buckling_mob))
+		to_chat(user, span_warning("[buckling_mob] is not something we can capture."))
 		return FALSE
 
 	buckling_mob.visible_message(span_xenonotice("[user] secretes a thick, vile resin, securing [buckling_mob] into [src]!"),
@@ -78,6 +77,13 @@
 	if(buckled_mob != user)
 		if(user.incapacitated())
 			return FALSE
+		buckled_mob.visible_message(span_notice("\The [user] begins to pull \the [buckled_mob] free from \the [src]!"),
+			span_notice("\The [user] begins to pull you free from \the [src]."),
+			span_notice("You hear squelching."))
+		if(isxeno(user))
+			unbuckletime = 1 SECONDS//xeno go brr
+		if(!do_after(user, unbuckletime, FALSE, buckled_mob, BUSY_ICON_FRIENDLY))
+			return FALSE
 		buckled_mob.visible_message(span_notice("\The [user] pulls \the [buckled_mob] free from \the [src]!"),
 			span_notice("\The [user] pulls you free from \the [src]."),
 			span_notice("You hear squelching."))
@@ -89,29 +95,20 @@
 	if(buckled_mob.incapacitated(TRUE))
 		to_chat(buckled_mob, span_warning("You're currently unable to try that."))
 		return FALSE
-	if(!resisting_time)
-		resisting_time = world.time
-		buckled_mob.visible_message(span_warning("\The [buckled_mob] struggles to break free of \the [src]."),
-			span_warning("You struggle to break free from \the [src]."),
-			span_notice("You hear squelching."))
-		addtimer(CALLBACK(src, PROC_REF(unbuckle_time_message), user), NEST_RESIST_TIME)
-		return FALSE
-	if(resisting_time + NEST_RESIST_TIME > world.time)
-		to_chat(buckled_mob, span_warning("You're already trying to free yourself. Give it some time."))
+	buckled_mob.visible_message(span_warning("\The [buckled_mob] struggles to break free of \the [src]."), span_warning("You struggle to break free from \the [src]."), span_notice("You hear squelching."))
+	if(!do_after(buckled_mob, NEST_RESIST_TIME, FALSE, buckled_mob, BUSY_ICON_DANGER))
 		return FALSE
 	buckled_mob.visible_message(span_danger("\The [buckled_mob] breaks free from \the [src]!"),
 		span_danger("You pull yourself free from \the [src]!"),
 		span_notice("You hear squelching."))
 	silent = TRUE
+	buckled_mob.AdjustStun(2 SECONDS)
+	buckled_mob.set_lying_angle(90)
+	buckled_mob.apply_damage(50, STAMINA, BODY_ZONE_L_ARM)
+	buckled_mob.apply_damage(50, STAMINA, BODY_ZONE_R_ARM)
+	buckled_mob.apply_damage(25, STAMINA, BODY_ZONE_L_LEG)
+	buckled_mob.apply_damage(25, STAMINA, BODY_ZONE_R_LEG)
 	return ..()
-
-
-/obj/structure/bed/nest/proc/unbuckle_time_message(mob/living/user)
-	if(QDELETED(user) || !(user in buckled_mobs))
-		return //Time has passed, conditions may have changed.
-	if(resisting_time + NEST_RESIST_TIME > world.time)
-		return //We've been freed and re-nested.
-	to_chat(user, span_danger("You are ready to break free! Resist once more to free yourself!"))
 
 
 /obj/structure/bed/nest/post_buckle_mob(mob/living/buckling_mob)
@@ -121,7 +118,6 @@
 
 /obj/structure/bed/nest/post_unbuckle_mob(mob/living/buckled_mob)
 	. = ..()
-	resisting_time = 0 //Reset it to keep track on if someone is actively resisting.
 	if(QDELETED(buckled_mob))
 		return
 	DISABLE_BITFIELD(buckled_mob.restrained_flags, RESTRAINED_XENO_NEST)
@@ -138,6 +134,77 @@
 
 /obj/structure/bed/nest/fire_act()
 	take_damage(50, BURN, FIRE)
+
+/obj/structure/bed/nest/wall
+	name = "wall alien nest"
+	desc = "It's a wall of thick, sticky resin as a nest."
+	icon_state = "nestwall"
+	allow_pass_flags = null
+	buckle_lying = 0
+	buckling_x = 0
+	buckling_y = 0
+	density = TRUE
+	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
+
+/obj/structure/bed/nest/wall/user_buckle_mob(mob/living/buckling_mob, mob/user, check_loc = TRUE, silent)
+	buckleoverlaydir = get_dir(src.loc, user.loc)
+	src.dir = buckleoverlaydir
+	face_atom(user)
+	buckling_mob.face_atom(user)
+	. = ..()
+	if(!.)
+		return
+	walldir_update(buckling_mob)
+	buckling_mob.set_lying_angle(0)
+	update_overlays()
+
+/obj/structure/bed/nest/wall/update_overlays()
+	. = ..()
+	if(LAZYLEN(buckled_mobs))
+		. += image("icon_state" = "nestwall_overlay", "layer" = 6, "dir" = buckleoverlaydir, pixel_x = buckling_x, pixel_y = buckling_y)
+
+/obj/structure/bed/nest/wall/proc/walldir_update(mob/buckling_mob)
+	dir2text()
+	switch(buckleoverlaydir)
+		if(4,3,5)
+			buckleoverlaydir = 4
+			dir = 4
+			buckling_mob.dir = 4
+			buckling_y = 0
+			buckling_x = 12
+			layer = 3
+		if(8,9,7)
+			buckleoverlaydir = 8
+			dir = 8
+			buckling_mob.dir = 8
+			buckling_y = 0
+			buckling_x = -12
+			layer = 3
+		if(1)
+			dir = 1
+			buckling_mob.dir = 1
+			buckling_y = 12
+			buckling_x = 0
+			layer = 5
+		if(2)
+			dir = 2
+			buckling_mob.dir = 2
+			buckling_y = -6
+			buckling_x = 0
+			layer = 3
+	buckling_mob.pixel_y = buckling_y
+	buckling_mob.old_y = buckling_y
+	buckling_mob.pixel_x = buckling_x
+	buckling_mob.old_x = buckling_x
+
+/obj/structure/bed/nest/wall/user_unbuckle_mob(mob/living/buckled_mob)
+	. = ..()
+	src.buckling_x = 0
+	src.buckling_y = 0
+	src.layer = 3
+	buckled_mob.pixel_x = 0
+	buckled_mob.pixel_y = 0
+
 
 #undef NEST_RESIST_TIME
 #undef NEST_UNBUCKLED_COOLDOWN

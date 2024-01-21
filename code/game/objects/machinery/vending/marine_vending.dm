@@ -1667,6 +1667,8 @@
 			/obj/item/ammo_magazine/handful/micro_grenade = -1,
 			/obj/item/ammo_magazine/handful/micro_grenade/cluster = -1,
 			/obj/item/ammo_magazine/handful/micro_grenade/smoke_burst = -1,
+			/obj/item/ammo_magazine/handful/micro_grenade/dragonbreath = 6,
+			/obj/item/cell/lasgun/volkite/turret = 4,
 			/obj/item/weapon/gun/smg/som = -1,
 			/obj/item/ammo_magazine/smg/som = -1,
 			/obj/item/weapon/gun/shotgun/som = -1,

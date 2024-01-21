@@ -295,6 +295,8 @@
 				new_mob_type = /mob/living/carbon/xenomorph/queen/admeme
 			if(XENO_HIVE_FALLEN)
 				new_mob_type = /mob/living/carbon/xenomorph/queen/Corrupted/fallen
+			if(XENO_HIVE_FORSAKEN)
+				new_mob_type = /mob/living/carbon/xenomorph/queen/Forsaken
 
 	if(!regression)
 		if(new_caste_type.tier == XENO_TIER_TWO && no_room_tier_two)

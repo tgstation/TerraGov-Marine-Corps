@@ -7,6 +7,7 @@
 	screen_overlay = "cellconsole_screen"
 	circuit = /obj/item/circuitboard/computer/cryopodcontrol
 	resistance_flags = RESIST_ALL
+	dir = 2
 
 /obj/machinery/computer/cryopod/interact(mob/user)
 	. = ..()

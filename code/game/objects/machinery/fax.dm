@@ -180,3 +180,9 @@
 
 /obj/machinery/faxmachine/warden //Prison Station
 	department = "Warden"
+
+/obj/machinery/faxmachine/som
+	department = "SOM"
+
+/obj/machinery/faxmachine/clf
+	department = "CLF"

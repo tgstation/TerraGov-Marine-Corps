@@ -446,6 +446,8 @@
 	log_game("[key_name(usr)] has changed the security level from [GLOB.marine_main_ship.get_security_level(old_level)] to [GLOB.marine_main_ship.get_security_level()].")
 	message_admins("[ADMIN_TPMONTY(usr)] has changed the security level from [GLOB.marine_main_ship.get_security_level(old_level)] to [GLOB.marine_main_ship.get_security_level()].")
 
+/obj/machinery/computer/communications/antag
+	req_access = null
 
 #undef STATE_DEFAULT
 #undef STATE_MESSAGELIST

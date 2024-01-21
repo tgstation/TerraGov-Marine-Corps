@@ -44,6 +44,8 @@
 			icon_state = "traphugger"
 		if(TRAP_SMOKE_NEURO)
 			icon_state = "trapneurogas"
+		if(TRAP_SMOKE_APHRO)
+			icon_state = "trapaphrogas"
 		if(TRAP_SMOKE_ACID)
 			icon_state = "trapacidgas"
 		if(TRAP_ACID_WEAK)
@@ -81,6 +83,8 @@
 			. += "There's a little one inside."
 		if(TRAP_SMOKE_NEURO)
 			. += "There's pressurized neurotoxin inside."
+		if(TRAP_SMOKE_APHRO)
+			. += "There's pressurized aphrotoxin inside."
 		if(TRAP_SMOKE_ACID)
 			. += "There's pressurized acid gas inside."
 		if(TRAP_ACID_WEAK)
@@ -125,7 +129,7 @@
 			if(!crosser.can_be_facehugged(hugger))
 				return
 			drop_hugger()
-		if(TRAP_SMOKE_NEURO, TRAP_SMOKE_ACID)
+		if(TRAP_SMOKE_NEURO, TRAP_SMOKE_APHRO, TRAP_SMOKE_ACID)
 			smoke.start()
 		if(TRAP_ACID_WEAK)
 			for(var/turf/acided AS in RANGE_TURFS(1, src))

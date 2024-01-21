@@ -5,7 +5,7 @@
 	else if(isgrabitem(dropping))
 		var/obj/item/grab/grab_item = dropping
 		if(isliving(grab_item.grabbed_thing))
-		
+
 			. = grab_item.grabbed_thing
 	if(. && user_buckle_mob(., user))
 		return TRUE
@@ -159,7 +159,7 @@
 	return unbuckling_living
 
 ///Returns TRUE or FALSE depending on whether src can buckle buckling_mob into something
-/mob/living/proc/user_can_buckle(mob/living/buckling_mob)
+/mob/living/proc/user_can_buckle(mob/living/buckling_mob, mob/user)
 	if(!Adjacent(src, buckling_mob))
 		return FALSE
 	if(!isturf(loc))

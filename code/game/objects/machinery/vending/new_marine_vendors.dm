@@ -781,6 +781,7 @@
 		/obj/item/tweezers_advanced,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/storage/firstaid/adv,
+		/obj/item/clothing/suit/modular/xenonauten/light/bikini,
 		/obj/item/clothing/head/modular/m10x/leader,
 	)
 

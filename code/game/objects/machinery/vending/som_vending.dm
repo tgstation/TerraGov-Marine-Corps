@@ -80,6 +80,10 @@
 			/obj/item/explosive/grenade/flashbang/stun = 10,
 			/obj/item/storage/box/m94 = 200,
 			/obj/item/storage/box/m94/cas = 30,
+			/obj/item/ammo_magazine/handful/micro_grenade = 15,
+			/obj/item/ammo_magazine/handful/micro_grenade/cluster = 10,
+			/obj/item/ammo_magazine/handful/micro_grenade/smoke_burst = 12,
+			/obj/item/ammo_magazine/handful/micro_grenade/dragonbreath = 6,
 		),
 		"Specialized" = list(
 			/obj/item/weapon/gun/rifle/pepperball = 4,
@@ -98,6 +102,7 @@
 		"Heavy Weapons" = list(
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope = 4,
+			/obj/item/cell/lasgun/volkite/turret = 4,
 			/obj/item/storage/box/tl102 = 1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 5,

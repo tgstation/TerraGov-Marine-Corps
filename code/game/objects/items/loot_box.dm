@@ -523,7 +523,7 @@
 /obj/item/storage/box/crate/loot/infiltration_pack_spec/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/suit/modular/xenonauten/bulletresistant(src)
-	new /obj/item/clothing/glasses/night/m56_goggles(src)
+	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
 	new /obj/item/clothing/gloves/marine/insulated(src)
 	new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
@@ -562,6 +562,7 @@
 /obj/item/storage/box/crate/loot/targetrifle_pack_spec/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/rifle/standard_smarttargetrifle(src)
+	new /obj/item/clothing/glasses/night/m56_goggles(src)
 	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle (src)
 	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle (src)
 	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle (src)
@@ -825,7 +826,7 @@
 	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
 	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
 	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
-	new /obj/item/clothing/glasses/night/tx8(src)
+	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
 
 // Rares
 

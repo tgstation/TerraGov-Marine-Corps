@@ -148,6 +148,7 @@ GLOBAL_VAR_INIT(max_larva_count_per_mob, 3) //Added for adminbus reasons
 #define XENO_HIVE_BETA "beta_hive"
 #define XENO_HIVE_ZETA "zeta_hive"
 #define XENO_HIVE_ADMEME "admeme_hive"
+#define XENO_HIVE_FORSAKEN "forsaken_hive"
 #define XENO_HIVE_FALLEN "fallen_hive"
 
 // =============================

@@ -2,6 +2,7 @@
 	name = "computer"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer"
+	dir = 2
 	density = TRUE
 	anchored = TRUE
 	use_power = IDLE_POWER_USE

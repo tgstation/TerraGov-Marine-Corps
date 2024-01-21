@@ -4,7 +4,7 @@
  * TODO SPLIT THIS FILE GODDAM
  */
 
-GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/alien/egg, /obj/structure/mineral_door, /obj/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
+GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/alien/egg, /obj/structure/mineral_door, /obj/alien/resin, /obj/structure/bed/nest, /obj/structure/bed/nest/wall, /turf/closed/wall/resin/membrane))) //For sticky/acid spit
 
 /datum/ammo
 	var/name = "generic bullet"

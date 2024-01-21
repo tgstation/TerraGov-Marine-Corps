@@ -243,7 +243,7 @@
 	accuracy_mult_unwielded = 1
 	damage_mult = 1.2
 	aim_slowdown = 0.2
-	scatter = 3
+	scatter = 4
 
 /obj/item/weapon/gun/smg/m25/elite/pmc
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
