@@ -82,6 +82,10 @@
 	always_unpowered = TRUE
 	temperature = T22C
 
+/area/metnal/outside/pathways //looks less awful on tacmap
+	name = "Primary Pathways"
+	icon_state = "green"
+
 /area/metnal/outside/central
 	name = "Central Colony Grounds"
 	icon_state = "green"
