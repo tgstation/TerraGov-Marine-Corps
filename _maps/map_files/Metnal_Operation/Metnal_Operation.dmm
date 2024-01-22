@@ -6973,11 +6973,10 @@
 /turf/open/floor/prison/darkred/full,
 /area/metnal/outside/north)
 "fzZ" = (
-/obj/machinery/door/airlock/multi_tile/mainship/maint/free_access{
-	dir = 2;
-	icon_state = "door_open"
-	},
 /obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door/airlock/multi_tile/mainship/maint/free_access/open{
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/garage)
 "fAb" = (
@@ -14624,13 +14623,10 @@
 /turf/open/floor/prison,
 /area/metnal/inside/research)
 "lGz" = (
-/obj/machinery/door/airlock/multi_tile/mainship/maint/free_access{
-	dir = 8;
-	icon_state = "door_open"
-	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/airlock/multi_tile/mainship/maint/free_access/open,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
 "lGA" = (
@@ -16423,7 +16419,6 @@
 /obj/structure/stairs/seamless{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -20605,11 +20600,8 @@
 	},
 /area/metnal/outside/north)
 "quy" = (
-/obj/machinery/door/airlock/multi_tile/mainship/maint/free_access{
-	dir = 8;
-	icon_state = "door_open"
-	},
 /obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door/airlock/multi_tile/mainship/maint/free_access/open,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
 "quP" = (
@@ -20628,13 +20620,6 @@
 /obj/structure/closet/toolcloset,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
-"qvO" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/machinery/light,
-/turf/open/floor/iron/dark/herringbone,
-/area/metnal/inside/landingzoneone)
 "qwG" = (
 /turf/open/floor/prison/darkred/corners,
 /area/metnal/outside/northwest)
@@ -21374,9 +21359,6 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/mining)
 "qUt" = (
-/obj/machinery/smartfridge/chemistry{
-	pixel_y = 32
-	},
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/freezer,
 /area/metnal/inside/security)
@@ -22644,12 +22626,6 @@
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/cafeteria)
-"rRW" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/iron/dark/herringbone,
-/area/metnal/inside/landingzoneone)
 "rRY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
@@ -65737,7 +65713,7 @@ gGG
 gGG
 gGG
 eZx
-qvO
+hpb
 lnl
 orz
 edg
@@ -65939,7 +65915,7 @@ uaA
 gGG
 gGG
 eZx
-rRW
+hTT
 lnl
 orz
 edg
@@ -67353,7 +67329,7 @@ nGt
 nGt
 nGt
 nGt
-arN
+nGt
 lnl
 cCJ
 edg

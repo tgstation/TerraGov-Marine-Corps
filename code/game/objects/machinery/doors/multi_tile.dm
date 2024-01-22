@@ -308,6 +308,9 @@
 
 /obj/machinery/door/airlock/multi_tile/mainship/maint/free_access
 	req_one_access = null
+/obj/machinery/door/airlock/multi_tile/mainship/maint/free_access/open
+	req_one_access = null
+	icon_state = "door_open"
 
 //ENGINEERING
 
