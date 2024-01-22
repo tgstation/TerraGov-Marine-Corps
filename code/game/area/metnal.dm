@@ -85,6 +85,7 @@
 /area/metnal/outside/pathways //looks less awful on tacmap
 	name = "Primary Pathways"
 	icon_state = "green"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/metnal/outside/central
 	name = "Central Colony Grounds"
