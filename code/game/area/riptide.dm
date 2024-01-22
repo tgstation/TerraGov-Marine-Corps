@@ -260,6 +260,31 @@
 	icon_state = "observatory"
 	minimap_color = MINIMAP_AREA_LIVING
 
+/area/riptide/inside/arena
+	name = "Gunfight Arena"
+	icon_state = "courtroom"
+	minimap_color = MINIMAP_AREA_LIVING
+
+/area/riptide/inside/observatory
+	name = "Arena Observation"
+	icon_state = "eva"
+	minimap_color = MINIMAP_AREA_LIVING
+
+/area/riptide/inside/recroom
+	name = "Recreational Room"
+	icon_state = "HH_Crypt"
+	minimap_color = MINIMAP_AREA_LIVING
+
+/area/riptide/inside/luxurybaroverlook
+	name = "Bar Overlook"
+	icon_state = "tcomsatentrance"
+	minimap_color = MINIMAP_AREA_LIVING
+
+/area/riptide/inside/canteen
+	name = "Public Canteen"
+	icon_state = "apmaint"
+	minimap_color = MINIMAP_AREA_LIVING
+
 /area/riptide/inside/abandonedsec
 	name = "Abandoned Security Island"
 	icon_state = "sec_prison"
