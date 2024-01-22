@@ -270,7 +270,7 @@
 				else
 					status_hud.icon_state = "hudsynthdead"
 			else
-				synth_hud_icon_state = "hudsynthdead"
+				status_hud.icon_state = "hudsynthdead"
 			return TRUE
 		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
 		return TRUE
