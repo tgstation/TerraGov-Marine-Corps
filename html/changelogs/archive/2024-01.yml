@@ -240,3 +240,10 @@
   ivanmixo:
   - bugfix: Fix acid pools having bad flags
   - bugfix: Ghosts actually bob up and down now
+2024-01-22:
+  ivanmixo:
+  - bugfix: Fixed magharness keeping the item in your suit slot after you take the
+      suit off
+  - code_imp: Split up the fullscreen overlay dmi file, this may help with lag when
+      they get loaded
+  - balance: Gave DBs a 0.7 damage multiplier, like the SH-39
