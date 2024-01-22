@@ -361,11 +361,6 @@
 	},
 /turf/closed/mineral/smooth/indestructible,
 /area/metnal/outside/northeast)
-"arN" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/iron/dark/textured,
-/area/metnal/inside/landingzoneone)
 "ase" = (
 /obj/machinery/door/airlock/mainship/security/free_access,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2443,10 +2438,6 @@
 "cbB" = (
 /turf/open/liquid/lava/autosmoothing,
 /area/metnal/outside/east)
-"cbI" = (
-/obj/machinery/smartfridge,
-/turf/closed/wall/prison,
-/area/metnal/inside/medical)
 "cbU" = (
 /obj/structure/table/black,
 /obj/effect/spawner/random/misc/paperbin{
@@ -34797,7 +34788,7 @@ hoH
 eGU
 edg
 edg
-cbI
+qQs
 oSu
 vEh
 euj
@@ -68125,7 +68116,7 @@ lnl
 qxq
 nGt
 nGt
-arN
+nGt
 lfa
 iVu
 kby
