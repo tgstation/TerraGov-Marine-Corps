@@ -3056,9 +3056,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/ground/concrete,
 /area/riptide/inside/syndicatefoyer)
-"crs" = (
-/turf/closed/wall,
-/area/riptide/outside/southjungle)
 "cry" = (
 /turf/open/floor/wood,
 /area/riptide/outside/beachlztwo)
@@ -22825,9 +22822,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/concrete,
 /area/riptide/outside/volcano)
-"reS" = (
-/turf/open/floor/prison,
-/area/riptide/outside/southjungle)
 "rfl" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -31902,10 +31896,6 @@
 	dir = 5
 	},
 /area/riptide/outside/northislands)
-"xUb" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/prison,
-/area/riptide/outside/southjungle)
 "xUp" = (
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/riptide/outside/southjungle)
@@ -53059,10 +53049,10 @@ dlz
 sir
 sir
 sir
-crs
-crs
-crs
-crs
+sir
+sir
+sir
+sir
 sir
 sir
 dlz
@@ -53237,11 +53227,11 @@ sir
 sir
 sir
 sir
-crs
-crs
-reS
-reS
-crs
+sir
+sir
+sir
+sir
+sir
 sir
 sir
 sir
@@ -53414,13 +53404,13 @@ iRE
 sir
 sir
 sir
-crs
-crs
-crs
-reS
-reS
-reS
-crs
+sir
+sir
+sir
+sir
+sir
+sir
+sir
 sir
 sir
 sir
@@ -53593,13 +53583,13 @@ iRE
 sir
 sir
 sir
-crs
-xUb
-reS
-reS
-xUb
-reS
-crs
+sir
+dlz
+sir
+sir
+dlz
+sir
+sir
 sir
 sir
 sir
@@ -53772,13 +53762,13 @@ iRE
 sir
 sir
 sir
-crs
-reS
-reS
-reS
-reS
-reS
-crs
+sir
+sir
+sir
+sir
+sir
+sir
+sir
 sir
 sir
 dlz
@@ -53951,13 +53941,13 @@ iRE
 dlz
 sir
 sir
-crs
-crs
-crs
-crs
-crs
-crs
-crs
+sir
+sir
+sir
+sir
+sir
+sir
+sir
 sir
 sir
 sir
