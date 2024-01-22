@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Fixed magharness keeping the item in your suit slot after you take the suit off"
