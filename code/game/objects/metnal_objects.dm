@@ -5,7 +5,6 @@
 	icon = 'icons/obj/metnal_objects.dmi'
 	icon_state = "jukebox"
 	// allowed_instrument_ids = "r3celeste"
-
 	// var/use_power = IDLE_POWER_USE
 	// var/idle_power_usage = 0
 	// var/wrenchable = FALSE
