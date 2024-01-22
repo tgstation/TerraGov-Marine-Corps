@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Your ghost keeps bobbing even after you stop orbiting stuff now"
