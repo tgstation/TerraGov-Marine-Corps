@@ -737,7 +737,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/spec_operative,
 		/obj/item/clothing/shoes/marine/sneakingboots,
-		/obj/item/clothing/gloves/marine,
+		/obj/item/clothing/gloves/marine/hyperscale,
 		/obj/item/storage/box/MRE,
 	)
 
@@ -745,7 +745,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/spec_operative/tback,
 		/obj/item/clothing/shoes/marine/sneakingboots,
-		/obj/item/clothing/gloves/marine,
+		/obj/item/clothing/gloves/marine/hyperscale,
 		/obj/item/storage/box/MRE,
 	)
 
