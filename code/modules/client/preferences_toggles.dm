@@ -293,7 +293,7 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 	usr.client.prefs.toggles_sound ^= SOUND_WEATHER
 	prefs.save_preferences()
 
-	to_chat(usr, span_notice("You will [(usr.client.prefs.toggles_sound & SOUND_WEATHER) ? "no longer" : "now"] hear weather."))
+	to_chat(usr, span_notice("You will [(usr.client.prefs.toggles_sound & SOUND_WEATHER) ? "now" : "no longer"] hear weather."))
 
 /client/verb/toggle_gas_mask_sound()
 	set category = "Preferences"
