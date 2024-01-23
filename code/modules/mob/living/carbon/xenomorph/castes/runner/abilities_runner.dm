@@ -120,6 +120,9 @@
 	 * When called by the evasion extension, deactivate will be FALSE so the ability won't turn off by itself
 	 */
 	if(deactivate && evade_active)
+		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_EVASION_ACTIVATION))
+			owner.balloon_alert(owner, "Accidental deactivation guard!")	//Little message to let the player know and not think it is a bug that their evasion didn't turn off
+			return
 		evasion_deactivate()
 		return
 
@@ -148,6 +151,7 @@
 	RegisterSignal(owner, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(evasion_throw_dodge))
 	GLOB.round_statistics.runner_evasions++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_evasions")
+	TIMER_COOLDOWN_START(src, COOLDOWN_EVASION_ACTIVATION, 1 SECONDS)
 
 /datum/action/ability/xeno_action/evasion/process()
 	var/mob/living/carbon/xenomorph/runner/runner_owner = owner
