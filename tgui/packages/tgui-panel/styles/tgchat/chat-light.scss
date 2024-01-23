@@ -1067,22 +1067,17 @@ h2.alert {
     #ff9999 20px
   );
 }
-.faction_alert_container {
+.faction_alert_text {
+  color: #0e0e0e;
   background: #fcc3c3;
-  display: flex;
-  flex-direction: column;
+  padding: 1em 1em 1em 1em;
+}
+.faction_alert_subtitle {
+  color: #0e0e0e;
   padding: 0.5em 0.5em 0.5em 0.5em;
 }
 .faction_alert_title {
   color: #000000;
   padding: 0.35em 0.35em 0 0.35em;
-  display: flex;
-  flex-direction: column;
   font-size: 185%;
-}
-.faction_alert_text {
-  color: #0e0e0e;
-  padding: 0.5em 0.5em 0.5em 0.5em;
-  display: flex;
-  flex-direction: column;
 }

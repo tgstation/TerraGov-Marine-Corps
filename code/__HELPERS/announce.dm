@@ -2,7 +2,6 @@
 #define ANNOUNCEMENT_PRIORITY 2
 #define ANNOUNCEMENT_COMMAND 3
 
-
 /proc/priority_announce(message, title = "Announcement", type = ANNOUNCEMENT_REGULAR, sound = 'sound/misc/notice2.ogg', list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list))
 	if(!message)
 		return
@@ -23,7 +22,7 @@
 			header += "Command Announcement"
 
 
-	announcement += "<meta charset='UTF-8'><span class='faction_alert'>[span_faction_alert_title("[header]")]<br><span class='faction_alert_container'>[span_faction_alert_text("[html_encode(message)]")]</span></span>"
+	announcement += "<meta charset='UTF-8'>[span_faction_alert("[span_faction_alert_title("[header]")]<br>[span_faction_alert_text("[html_encode(message)]")]")]"
 
 	var/s = sound(sound, channel = CHANNEL_ANNOUNCEMENTS)
 	for(var/i in receivers)
