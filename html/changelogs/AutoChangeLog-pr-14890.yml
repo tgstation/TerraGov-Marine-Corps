@@ -1,0 +1,4 @@
+author: "XElectricX"
+delete-after: True
+changes:
+  - bugfix: "Toggle Weather Sound verb has correct message."
