@@ -2,12 +2,12 @@
 	. = ..()
 	if(!isitem(target))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(target, COMSIG_ALT_LEFT_CLICK, PROC_REF(on_alt_click))
+	RegisterSignal(target, COMSIG_CLICK_ALT, PROC_REF(on_alt_click))
 	ADD_TRAIT(target, TRAIT_STRAPPABLE, STRAPPABLE_ITEM_TRAIT)
 
 /datum/element/strappable/Detach(datum/source, ...)
 	. = ..()
-	UnregisterSignal(source, COMSIG_ALT_LEFT_CLICK)
+	UnregisterSignal(source, COMSIG_CLICK_ALT)
 	REMOVE_TRAIT(source, TRAIT_STRAPPABLE, STRAPPABLE_ITEM_TRAIT)
 
 /datum/element/strappable/proc/on_alt_click(datum/source, mob/user)
