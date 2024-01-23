@@ -55,7 +55,7 @@
 	if(.)
 		return
 	var/mob/living/carbon/C = user.mob
-	C.lay_down()
+	C.toggle_resting()
 	return TRUE
 
 /datum/keybinding/carbon/select_help_intent

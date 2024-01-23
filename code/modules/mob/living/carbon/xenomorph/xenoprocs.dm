@@ -476,7 +476,7 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/proc/setup_verbs()
-	add_verb(src, /mob/living/proc/lay_down)
+	add_verb(src, /mob/living/proc/toggle_resting)
 
 /mob/living/carbon/xenomorph/hivemind/setup_verbs()
 	return
