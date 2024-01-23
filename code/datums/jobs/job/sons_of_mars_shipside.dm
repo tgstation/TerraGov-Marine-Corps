@@ -4,6 +4,7 @@
 	selection_color = "#ddddff"
 	supervisors = "the acting captain"
 	exp_type_department = EXP_TYPE_COMMAND
+	shadow_languages = list(/datum/language/xenocommon)
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/som/squad/veteran = VETERAN_POINTS_REGULAR,

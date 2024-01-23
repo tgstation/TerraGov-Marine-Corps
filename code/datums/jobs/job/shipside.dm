@@ -3,6 +3,7 @@
 	selection_color = "#ddddff"
 	supervisors = "the acting captain"
 	exp_type_department = EXP_TYPE_COMMAND
+	shadow_languages = list(/datum/language/xenocommon)
 
 //Captain
 /datum/job/terragov/command/captain
@@ -207,7 +208,6 @@ Make the NTC proud!"})
 	total_positions = 1
 	skills_type = /datum/skills/ceo
 	access = ALL_ACCESS
-	shadow_languages = list(/datum/language/xenocommon)
 	minimal_access = ALL_ACCESS
 	display_order = JOB_DISPLAY_ORDER_CHIEF_EXECUTIVE_OFFICER
 	outfit = /datum/outfit/job/command/ceo
@@ -1133,6 +1133,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	comm_title = "CL"
 	supervisors = "the NT corporate office"
 	total_positions = 1
+	shadow_languages = list(/datum/language/xenocommon)
 	access = ALL_ACCESS
 	minimal_access = ALL_ACCESS
 	skills_type = /datum/skills/civilian
