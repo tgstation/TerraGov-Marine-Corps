@@ -223,3 +223,34 @@
   - balance: Marines cannot skip past xenos diagonally if there's an obstacle between
       them, check the PR for a more clear explanation
   - balance: Radiopack and AI drone beacon don't work in deep caves anymore
+2024-01-21:
+  DeltaFire15:
+  - bugfix: Xenomorph pounce abilities no longer bypass shields.
+  - bugfix: Runner Savage only triggers if the pounce didn't fail.
+  - bugfix: Thrown objects should now behave more reasonable after passing a portal,
+      for cases such as bouncing.
+  Xander3359:
+  - refactor: Click code is now somewhat cleaner and more standardized
+  - code_imp: Adds attack_self_alternate(), this gets called when an item in-hand
+      is right-clicked
+  - bugfix: You can now right click any hypospray in-hand to change the injection
+      size
+  coldironwarrior:
+  - rscadd: three new helmet cosmetics, selectable as trinkets in character setup
+  ivanmixo:
+  - bugfix: Fix acid pools having bad flags
+  - bugfix: Ghosts actually bob up and down now
+2024-01-22:
+  ivanmixo:
+  - bugfix: Fixed magharness keeping the item in your suit slot after you take the
+      suit off
+  - code_imp: Split up the fullscreen overlay dmi file, this may help with lag when
+      they get loaded
+  - balance: Gave DBs a 0.7 damage multiplier, like the SH-39
+2024-01-23:
+  Lewdcifer:
+  - rscdel: Removed Russian Red from standard access in HvX.
+  Xander3359:
+  - bugfix: fixed a few click-related issues
+  ivanmixo:
+  - bugfix: Your ghost keeps bobbing even after you stop orbiting stuff now
