@@ -77,7 +77,8 @@
 /datum/action/ability/xeno_action/evasion
 	name = "Evasion"
 	action_icon_state = "evasion_on"
-	desc = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving. Alternate use toggles Auto Evasion off or on."
+	desc = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving. \
+			Alternate use toggles Auto Evasion off or on. Click again while active to deactivate early."
 	ability_cost = 75
 	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
@@ -112,7 +113,17 @@
 	action_icon_state = "evasion_[auto_evasion? "on" : "off"]"
 	update_button_icon()
 
-/datum/action/ability/xeno_action/evasion/action_activate()
+/datum/action/ability/xeno_action/evasion/action_activate(deactivate = TRUE)
+	/* Since both the button and the evasion extension call this proc directly, making a toggle for the ability
+	 * Deactivate will default to TRUE when called by a button click, but this should not be a problem
+	 * on the first activation since the evade_active will be false
+	 * When called by the evasion extension, deactivate will be FALSE so the ability won't turn off by itself
+	 */
+	if(deactivate && evade_active)
+		evasion_deactivate()
+		return
+
+	use_state_flags = ABILITY_IGNORE_COOLDOWN|ABILITY_IGNORE_PLASMA	//To allow the ability button to be clicked while on cooldown for deactivation purposes
 	succeed_activate()
 	add_cooldown()
 	if(evade_active)
@@ -173,6 +184,7 @@
 
 /// Deactivates Evasion, clearing signals, vars, etc.
 /datum/action/ability/xeno_action/evasion/proc/evasion_deactivate()
+	use_state_flags = NONE	//To prevent the ability from being used while on cooldown now that it can no longer be deactivated
 	STOP_PROCESSING(SSprocessing, src)
 	UnregisterSignal(owner, list(
 		COMSIG_LIVING_STATUS_STUN,
@@ -238,7 +250,7 @@
 	if(evasion_stacks >= RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD && cooldown_remaining()) //We have more evasion stacks than needed to refresh our cooldown, while being on cooldown.
 		clear_cooldown()
 		if(auto_evasion && xeno_owner.plasma_stored >= ability_cost)
-			action_activate()
+			action_activate(FALSE)
 	var/turf/current_turf = get_turf(xeno_owner) //location of after image SFX
 	playsound(current_turf, pick('sound/effects/throw.ogg','sound/effects/alien_tail_swipe1.ogg', 'sound/effects/alien_tail_swipe2.ogg'), 25, 1) //sound effects
 	var/obj/effect/temp_visual/xenomorph/afterimage/after_image
