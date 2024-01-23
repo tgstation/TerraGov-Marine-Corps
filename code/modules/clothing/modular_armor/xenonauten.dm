@@ -213,7 +213,7 @@
 
 	greyscale_config = /datum/greyscale_config/xenonaut/bulletproof
 
-/obj/item/clothing/suit/storage/ballistic
+/obj/item/clothing/suit/storage/marine/ballistic
 	name = "\improper Crasher multi-threat ballistic armor"
 	desc = "A reused design of a old body armor system from the 21st century."
 	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 20, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
@@ -225,6 +225,8 @@
 		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi'
 	)
 	equip_delay_self = 2 SECONDS
+	unequip_delay_self = 0 SECONDS
+	flags_armor_features = NONE
 
 	icon_state_variants = list(
 		"urban",

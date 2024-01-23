@@ -35,7 +35,7 @@
 		/obj/item/tool/pickaxe/plasmacutter,
 	)
 	var/locate_cooldown = 0 //Cooldown for SL locator
-	var/list/armor_overlays
+	var/list/armor_overlays = list()
 	actions_types = list(/datum/action/item_action/toggle/suit_toggle)
 	flags_armor_features = ARMOR_LAMP_OVERLAY
 	flags_item = SYNTH_RESTRICTED|IMPEDE_JETPACK
@@ -46,7 +46,6 @@
 
 /obj/item/clothing/suit/storage/marine/Initialize(mapload)
 	. = ..()
-	armor_overlays = list("lamp") //Just one for now, can add more later.
 	update_icon()
 
 /obj/item/clothing/suit/storage/marine/update_overlays()

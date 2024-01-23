@@ -247,3 +247,10 @@
   - code_imp: Split up the fullscreen overlay dmi file, this may help with lag when
       they get loaded
   - balance: Gave DBs a 0.7 damage multiplier, like the SH-39
+2024-01-23:
+  Lewdcifer:
+  - rscdel: Removed Russian Red from standard access in HvX.
+  Xander3359:
+  - bugfix: fixed a few click-related issues
+  ivanmixo:
+  - bugfix: Your ghost keeps bobbing even after you stop orbiting stuff now
