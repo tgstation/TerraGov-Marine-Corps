@@ -24,7 +24,7 @@
 	///Time before resurrecting if dead
 	var/revive_time = 1 MINUTES
 	///How much burn and burn damage can you heal every Life tick (half a sec)
-	var/heal_rate = 10
+	var/heal_rate = 5
 	var/faction = FACTION_ZOMBIE
 	var/claw_type = /obj/item/weapon/zombie_claw
 
@@ -172,15 +172,15 @@
 	name = "claws"
 	hitsound = 'sound/weapons/slice.ogg'
 	icon_state = ""
-	force = 20
-	sharp = IS_SHARP_ITEM_BIG
+	force = 5
+	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = TRUE
 	attack_verb = list("clawed", "slashed", "torn", "ripped", "diced", "cut", "bit")
 	flags_item = CAN_BUMP_ATTACK|DELONDROP
 	attack_speed = 8 //Same as unarmed delay
 	pry_capable = IS_PRY_CAPABLE_FORCE
 	///How much zombium are transferred per hit. Set to zero to remove transmission
-	var/zombium_per_hit = 5
+	var/zombium_per_hit = 2
 
 /obj/item/weapon/zombie_claw/Initialize(mapload)
 	. = ..()

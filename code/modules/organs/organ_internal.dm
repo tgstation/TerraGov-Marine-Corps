@@ -348,7 +348,7 @@
 	robotic_type = null
 
 /datum/internal_organ/brain/zombie
-	vital = FALSE
+	vital = TRUE
 
 /datum/internal_organ/eyes
 	name = "eyes"

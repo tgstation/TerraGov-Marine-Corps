@@ -100,7 +100,7 @@
 	shoes = /obj/item/clothing/shoes/marine/full
 
 /datum/job/zombie
-	title = "Oh god run"
+	title = "Zombie"
 
 /datum/job/other/prisoner
 	title = "Prisoner"

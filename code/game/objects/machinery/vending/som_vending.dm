@@ -11,7 +11,7 @@
 
 	products = list(
 		"Rifles" = list(
-			/obj/item/weapon/gun/rifle/som_carbine = -1,
+			/obj/item/weapon/gun/rifle/som_carbine = 4,
 			/obj/item/weapon/gun/rifle/mpi_km = -1,
 			/obj/item/ammo_magazine/rifle/mpi_km/carbine = -1,
 			/obj/item/ammo_magazine/rifle/mpi_km/black = 60,
@@ -19,12 +19,12 @@
 			/obj/item/ammo_magazine/rifle/som = -1,
 			/obj/item/ammo_magazine/rifle/som/ap = 25,
 			/obj/item/ammo_magazine/rifle/som/incendiary = 15,
-			/obj/item/weapon/gun/rifle/som = -1,
+			/obj/item/weapon/gun/rifle/som = 5,
 		),
 		"Energy Weapons" = list(
-			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver = -1,
-			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger = -1,
-			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver = 1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger = 2,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta = 3,
 			/obj/item/cell/lasgun/volkite/small = -1,
 			/obj/item/cell/lasgun/volkite = -1,
 		),
