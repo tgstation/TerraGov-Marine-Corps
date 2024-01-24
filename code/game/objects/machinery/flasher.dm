@@ -34,6 +34,7 @@
 
 
 /obj/machinery/flasher/update_icon_state()
+	. = ..()
 	if(!(machine_stat & NOPOWER))
 		icon_state = "[base_state]1"
 	else

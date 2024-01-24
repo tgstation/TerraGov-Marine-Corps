@@ -597,6 +597,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	for(var/mob/rider AS in crosser.buckled_mobs)
 		if(ishuman(rider))
 			crosser.unbuckle_mob(rider)
+	if(crosser.throwing)
+		crosser.throw_source = get_turf(linked_portal)
 	crosser.Move(get_turf(linked_portal), crosser.dir)
 	UnregisterSignal(crosser, COMSIG_MOVABLE_MOVED)
 

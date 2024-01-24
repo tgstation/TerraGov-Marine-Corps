@@ -854,7 +854,7 @@
 		return
 	attempt_draw_object(user)
 
-/obj/item/storage/CtrlClick(mob/living/user)
+/obj/item/storage/CtrlClick(mob/living/carbon/user)
 	. = ..()
 	attempt_draw_object(user, TRUE)
 
@@ -879,6 +879,7 @@
 	return
 
 /obj/item/storage/update_icon_state()
+	. = ..()
 	if(!sprite_slots)
 		icon_state = initial(icon_state)
 		return

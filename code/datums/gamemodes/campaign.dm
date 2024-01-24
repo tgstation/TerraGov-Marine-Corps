@@ -6,22 +6,22 @@
 	whitelist_ground_maps = list(MAP_FORT_PHOBOS)
 	bioscan_interval = 3 MINUTES
 	valid_job_types = list(
-		/datum/job/terragov/command/captain/campaign = 1,
-		/datum/job/terragov/command/staffofficer/campaign = 2,
-		/datum/job/terragov/command/fieldcommander/campaign = 1,
-		/datum/job/terragov/squad/engineer = 4,
+		/datum/job/terragov/squad/standard = -1,
 		/datum/job/terragov/squad/corpsman = 8,
+		/datum/job/terragov/squad/engineer = 4,
 		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/leader = 4,
-		/datum/job/terragov/squad/standard = -1,
-		/datum/job/som/command/commander = 1,
-		/datum/job/som/command/staffofficer = 2,
-		/datum/job/som/command/fieldcommander = 1,
-		/datum/job/som/squad/leader = 4,
-		/datum/job/som/squad/veteran = 2,
-		/datum/job/som/squad/engineer = 4,
-		/datum/job/som/squad/medic = 8,
+		/datum/job/terragov/command/fieldcommander/campaign = 1,
+		/datum/job/terragov/command/staffofficer/campaign = 2,
+		/datum/job/terragov/command/captain/campaign = 1,
 		/datum/job/som/squad/standard = -1,
+		/datum/job/som/squad/medic = 8,
+		/datum/job/som/squad/engineer = 4,
+		/datum/job/som/squad/veteran = 2,
+		/datum/job/som/squad/leader = 4,
+		/datum/job/som/command/fieldcommander = 1,
+		/datum/job/som/command/staffofficer = 2,
+		/datum/job/som/command/commander = 1,
 	)
 	///The current mission type being played
 	var/datum/campaign_mission/current_mission
@@ -41,7 +41,7 @@
 	. = ..()
 	for(var/faction in factions)
 		stat_list[faction] = new /datum/faction_stats(faction)
-	RegisterSignal(SSdcs, COMSIG_LIVING_JOB_SET, PROC_REF(register_faction_member))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED, COMSIG_GLOB_PLAYER_LATE_SPAWNED), PROC_REF(register_faction_member))
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_MOB_DEATH, COMSIG_MOB_GHOSTIZE), PROC_REF(set_death_time))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(cut_death_list_timer))
 	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, intro_sequence)), SSticker.round_start_time + 1 MINUTES)
@@ -123,7 +123,7 @@
 		stat_list[i].get_status_tab_items(source, items)
 
 /datum/game_mode/hvh/campaign/ghost_verbs(mob/dead/observer/observer)
-	return list(/datum/action/campaign_overview)
+	return list(/datum/action/campaign_overview, /datum/action/campaign_loadout)
 
 ///sets up the newly selected mission
 /datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission)

@@ -633,6 +633,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	if(!is_ground_level(user.z))
 		to_chat(user, span_warning("You have to be on the planet to use this or it won't transmit."))
 		return FALSE
+	var/area/A = get_area(user)
+	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
+		to_chat(user, span_warning("This won't work if you're standing deep underground."))
+		return FALSE
 	var/turf/location = get_turf(src)
 	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)
 	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))

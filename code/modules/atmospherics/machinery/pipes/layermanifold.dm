@@ -40,16 +40,14 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/proc/get_all_connected_nodes()
 	return front_nodes + back_nodes + nodes
 
-/obj/machinery/atmospherics/pipe/layer_manifold/update_icon()	//HEAVILY WIP FOR UPDATE ICONS!!
-	cut_overlays()
+/obj/machinery/atmospherics/pipe/layer_manifold/update_icon() //this sucks and someone should do it properly
+	. = ..()
 	layer = initial(layer) + (PIPING_LAYER_MAX * PIPING_LAYER_LCHANGE)	//This is above everything else.
 
 	for(var/node in front_nodes)
 		add_attached_images(node)
 	for(var/node in back_nodes)
 		add_attached_images(node)
-
-	update_alpha()
 
 /obj/machinery/atmospherics/pipe/layer_manifold/proc/add_attached_images(obj/machinery/atmospherics/A)
 	if(!A)

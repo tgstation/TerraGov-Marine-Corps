@@ -24,8 +24,8 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	qdel(src)
 	return
 
-/obj/structure/bigDelivery/update_icon()
-	overlays = new()
+/obj/structure/bigDelivery/update_overlays()
+	. = ..()
 	if(nameset || examtext)
 		var/image/I = new/image('icons/obj/items/storage/storage.dmi',"delivery_label")
 		if(icon_state == "deliverycloset")
@@ -38,7 +38,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 				label_x = rand(-8, 6)
 			I.pixel_x = label_x
 			I.pixel_y = -3
-		overlays += I
+		. += I
 	if(src.sortTag)
 		var/image/I = new/image('icons/obj/items/storage/storage.dmi',"delivery_tag")
 		if(icon_state == "deliverycloset")
@@ -51,7 +51,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 				tag_x = rand(-8, 6)
 			I.pixel_x = tag_x
 			I.pixel_y = -3
-		overlays += I
+		. += I
 
 /obj/structure/bigDelivery/examine(mob/user)
 	..()
@@ -139,13 +139,13 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	qdel(src)
 	return
 
-/obj/item/smallDelivery/update_icon()
-	overlays = new()
+/obj/item/smallDelivery/update_overlays()
+	. = ..()
 	if((nameset || examtext) && icon_state != "deliverycrate1")
 		var/image/I = new/image('icons/obj/items/storage/storage.dmi',"delivery_label")
 		if(icon_state == "deliverycrate5")
 			I.pixel_y = -1
-		overlays += I
+		. += I
 	if(src.sortTag)
 		var/image/I = new/image('icons/obj/items/storage/storage.dmi',"delivery_tag")
 		switch(icon_state)
@@ -162,7 +162,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 				I.pixel_y = 3
 			if("deliverycrate5")
 				I.pixel_y = -3
-		overlays += I
+		. += I
 
 /obj/item/smallDelivery/examine(mob/user)
 	..()

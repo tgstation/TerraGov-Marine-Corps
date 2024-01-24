@@ -138,9 +138,9 @@
 		if(ITEM_UNEQUIP_UNEQUIPPED)
 			return
 	if(I == wear_suit)
+		wear_suit = null
 		if(s_store)
 			dropItemToGround(s_store)
-		wear_suit = null
 		I.unequipped(src, SLOT_WEAR_SUIT)
 		if(I.flags_inv_hide & HIDESHOES)
 			update_inv_shoes()
@@ -505,6 +505,10 @@
 			return s_store
 		if(ITEM_SLOT_HANDCUFF)
 			return handcuffed
+		if(ITEM_SLOT_L_HAND)
+			return l_hand
+		if(ITEM_SLOT_R_HAND)
+			return r_hand
 
 /mob/living/carbon/human/get_equipped_slot(obj/equipped_item)
 	if(..())

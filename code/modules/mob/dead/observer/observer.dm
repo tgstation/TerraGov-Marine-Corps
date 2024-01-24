@@ -96,7 +96,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		name = random_unique_name(gender)
 	real_name = name
 
-	animate(src, pixel_y = 2, time = 10, loop = -1)
+	animate(src, pixel_y = 2, time = 10, loop = -1, flags = ANIMATION_RELATIVE)
+	animate(pixel_y = -2, time = 10, loop = -1, flags = ANIMATION_RELATIVE)
 
 	grant_all_languages()
 
@@ -123,7 +124,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	SSmobs.dead_players_by_zlevel[old_z] -= src
 	SSmobs.dead_players_by_zlevel[new_z] += src
 
-/mob/dead/observer/update_icon(new_form)
+///Changes our sprite
+/mob/dead/observer/proc/pick_form(new_form)
 	if(client) //We update our preferences in case they changed right before update_icon was called.
 		ghost_others = client.prefs.ghost_others
 
@@ -133,7 +135,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			ghostimage_default.icon_state = new_form + "_nodir" //if this icon has dirs, the default ghostimage must use its nodir version or clients with the preference set to default sprites only will see the dirs
 		else
 			ghostimage_default.icon_state = new_form
-
 
 /mob/dead/observer/Topic(href, href_list)
 	. = ..()
@@ -684,7 +685,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/stop_orbit(datum/component/orbiter/orbits)
 	. = ..()
 	pixel_y = 0
-	animate(src, pixel_y = 2, time = 10, loop = -1)
+	animate(src, pixel_y = 2, time = 10, loop = -1, flags = ANIMATION_RELATIVE)
+	animate(pixel_y = -2, time = 10, loop = -1, flags = ANIMATION_RELATIVE)
 
 
 /mob/dead/observer/verb/toggle_zoom()
@@ -899,7 +901,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		ADD_TRAIT(new_xeno, TRAIT_VALHALLA_XENO, VALHALLA_TRAIT)
 		var/datum/job/xallhala_job = SSjob.GetJobType(/datum/job/fallen/xenomorph)
 		new_xeno.apply_assigned_role_to_spawn(xallhala_job)
-		SSpoints.xeno_points_by_hive[XENO_HIVE_FALLEN] = 10000
+		SSpoints.xeno_strategic_points_by_hive[XENO_HIVE_FALLEN] = 10000
+		SSpoints.xeno_tactical_points_by_hive[XENO_HIVE_FALLEN] = 10000
 		mind.transfer_to(new_xeno, TRUE)
 		xallhala_job.after_spawn(new_xeno)
 		return
