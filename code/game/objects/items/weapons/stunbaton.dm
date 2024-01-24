@@ -275,7 +275,7 @@
 			var/mob/living/carbon/human/H = M
 			H.apply_damage(50, STAMINA)
 			if(H.getStaminaLoss() > 150)
-				H.ParalyzeNoChain(12 SECONDS)
+				H.ParalyzeNoChain(50 SECONDS)
 				H.do_jitter_animation(50, 12 SECONDS)
 			H.visible_message(span_danger("[H] has been prodded with the [src] by [user]!"))
 
