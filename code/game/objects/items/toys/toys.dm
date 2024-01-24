@@ -96,6 +96,7 @@
 		QDEL_IN(src, 5)
 
 /obj/item/toy/balloon/update_icon_state()
+	. = ..()
 	if(reagents.total_volume)
 		icon_state = "waterballoon"
 		item_state = "balloon"

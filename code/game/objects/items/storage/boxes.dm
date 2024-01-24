@@ -349,6 +349,7 @@
 	spawn_number = 5
 
 /obj/item/storage/box/explosive_mines/update_icon_state()
+	. = ..()
 	icon_state = initial(icon_state)
 	if(!length(contents))
 		icon_state += "_e"
@@ -381,7 +382,8 @@
 	spawn_type = /obj/item/explosive/grenade/flare
 	spawn_number = 14
 
-/obj/item/storage/box/m94/update_icon()
+/obj/item/storage/box/m94/update_icon_state()
+	. = ..()
 	icon_state = initial(icon_state)
 	if(!length(contents))
 		icon_state += "_e"
@@ -445,7 +447,8 @@
 	if(. && !length(contents) && !gc_destroyed)
 		qdel(src)
 
-/obj/item/storage/box/MRE/update_icon()
+/obj/item/storage/box/MRE/update_icon_state()
+	. = ..()
 	if(!isopened)
 		isopened = 1
 		icon_state += "opened"

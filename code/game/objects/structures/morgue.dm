@@ -23,7 +23,8 @@
 	QDEL_NULL(connected)
 	return ..()
 
-/obj/structure/morgue/update_icon()
+/obj/structure/morgue/update_icon_state()
+	. = ..()
 	if (morgue_open)
 		icon_state = "[morgue_type]0"
 	else
@@ -181,11 +182,9 @@
 
 
 /obj/structure/morgue/crematorium/update_icon()
+	. = ..()
 	if(cremating)
 		icon_state = "[morgue_type]_active"
-	else
-		..()
-
 
 /obj/structure/morgue/crematorium/proc/cremate(mob/user)
 	set waitfor = 0

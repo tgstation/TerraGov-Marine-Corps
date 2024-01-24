@@ -66,6 +66,7 @@
 
 
 /obj/machinery/reagentgrinder/update_icon_state()
+	. = ..()
 	icon_state = "juicer"+num2text(!isnull(beaker))
 
 

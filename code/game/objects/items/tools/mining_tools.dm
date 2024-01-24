@@ -290,7 +290,8 @@
 		if(!ST.slayer)
 			return
 		ST.slayer = max(0 , ST.slayer - dirt_amt_per_dig)
-		ST.update_icon(1,0)
+		ST.update_appearance()
+		ST.update_sides()
 		cut_apart(user, target.name, target, 0, "You melt the snow with [src]. ") //costs nothing
 
 

@@ -89,7 +89,18 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	if(!QDELETED(laser_target))
 		target = laser_target
 	return ..()
-
+/*
+ * This override exists due to the fact the mouseup signal calls start_fire()
+ * which tries to get a turf from the clickcatcher, which ends up with the COMSIG_QDELETING signal
+ * getting registered on that turf, which we do not care about if we are lazing.
+ * The issue with this is that the signal gets registered to the turf and then gets overriden
+ * if the gun user ever clicks that turf again (also leaves hanging signals because they dont unregister)
+ * Shouldn't mess with reset_fire
+*/
+/obj/item/weapon/gun/rifle/sniper/antimaterial/set_target(atom/object)
+	if(laser_target)
+		return ..(laser_target)
+	return ..()
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/InterceptClickOn(mob/user, params, atom/object)
 	var/list/pa = params2list(params)
@@ -135,7 +146,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/dropped()
 	laser_off()
-	. = ..()
+	return ..()
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/process()
 	var/obj/item/attachable/scope = LAZYACCESS(attachments_by_slot, ATTACHMENT_SLOT_RAIL)
@@ -146,11 +157,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	if(!istype(user))
 		laser_off()
 		return
-	if(!laser_target)
-		laser_off(user)
-		playsound(user,'sound/machines/click.ogg', 25, 1)
-		return
-	if(!line_of_sight(user, laser_target, 24))
+	if(laser_target && !line_of_sight(user, laser_target, 24))
 		laser_off()
 		to_chat(user, span_danger("You lose sight of your target!"))
 		playsound(user,'sound/machines/click.ogg', 25, 1)
@@ -171,6 +178,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		return laser_target
 	else
 		return TRUE
+
+/obj/item/weapon/gun/rifle/sniper/antimaterial/on_unzoom(mob/user)
+	. = ..()
+	if(!targetmarker_primed && !laser_target)
+		return
+	laser_off(user)
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/proc/activate_laser_target(atom/target, mob/living/user)
 	laser_target = target
@@ -203,7 +216,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		to_chat(user, span_warning("You must be zoomed in to use your target marker!"))
 		return TRUE
 	targetmarker_primed = TRUE //We prime the target laser
-	RegisterSignal(user, COMSIG_ITEM_UNZOOM, PROC_REF(laser_off))
 	if(user?.client)
 		user.client.click_intercept = src
 		to_chat(user, span_notice("<b>You activate your target marker and take careful aim.</b>"))
@@ -219,8 +231,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		STOP_PROCESSING(SSobj, src)
 		targetmarker_on = FALSE
 	targetmarker_primed = FALSE
-	if(user)
-		UnregisterSignal(user, COMSIG_ITEM_UNZOOM)
 	if(user?.client)
 		user.client.click_intercept = null
 		to_chat(user, span_notice("<b>You deactivate your target marker.</b>"))
@@ -880,6 +890,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	update_icon()
 
 /obj/item/weapon/gun/launcher/rocket/oneuse/update_icon_state()
+	. = ..()
 	if(extended)
 		icon_state = "[base_gun_icon]_extended"
 	else

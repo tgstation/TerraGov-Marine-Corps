@@ -116,32 +116,3 @@
 		return
 	user.mob?.a_intent_change(INTENT_HARM)
 	return TRUE
-
-/datum/keybinding/carbon/specialclick
-	hotkey_keys = list("Ctrl")
-	name = "specialclick"
-	full_name = "Special Click"
-	description = "Hold this hotkey_keys and click to trigger special object interactions."
-	keybind_signal = COMSIG_KB_CARBON_SPECIALCLICK_DOWN
-
-
-/datum/keybinding/carbon/specialclick/down(client/user)
-	. = ..()
-	if(.)
-		return
-	RegisterSignals(user.mob, list(COMSIG_MOB_CLICKON), PROC_REF(specialclicky))
-	RegisterSignals(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP), TYPE_PROC_REF(/datum/keybinding, intercept_mouse_special))
-	return TRUE
-
-
-/datum/keybinding/carbon/specialclick/up(client/user)
-	UnregisterSignal(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_CLICKON))
-	return TRUE
-
-/datum/keybinding/carbon/specialclick/proc/specialclicky(datum/source, atom/A, params)
-	SIGNAL_HANDLER
-	var/mob/living/carbon/user = source
-	if(!user.client || !(user.client.eye == user || user.client.eye == user.loc))
-		UnregisterSignal(user, (COMSIG_MOB_CLICKON))
-		return
-	A.specialclick(user)
