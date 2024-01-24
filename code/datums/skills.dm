@@ -220,6 +220,13 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 		SKILL_STAMINA = stamina,
 	)
 
+/datum/skills/slut
+	name = SQUAD_SLUT
+	cqc = SKILL_MEDICAL_NOVICE //gotta keep that puss tended
+	firearms = SKILL_FIREARMS_DEFAULT //can still use guns
+	construction = SKILL_CONSTRUCTION_METAL //build a cum shack
+	stamina = SKILL_STAMINA_TRAINED //fucking is hard work
+
 /datum/skills/civilian
 	name = "Civilian"
 	cqc = SKILL_CQC_WEAK

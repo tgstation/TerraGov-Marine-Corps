@@ -81,6 +81,68 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 
 	id = /obj/item/card/id/dogtag
 
+//Squad Slut
+/datum/job/terragov/squad/slut
+	title = SQUAD_SLUT
+	paygrade = "E1"
+	comm_title = "Slt"
+	access = list(ACCESS_MARINE_PREP)
+	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
+	display_order = JOB_DISPLAY_ORDER_SQUAD_SLUT
+	outfit = /datum/outfit/job/marine/slut
+	skills_type = /datum/skills/slut
+	total_positions = -1
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/squad/corpsman = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/squad/engineer = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+	)
+	html_description = {"
+		<b>Difficulty</b>: Easy<br /><br />
+		<b>You answer to the</b> acting Squad Leader<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
+		TerraGov’s Squad Operatives make up the bread and butter of Terra's fighting forces. They are fitted with the standard arsenal that the NTC offers, and they can take up a variety of roles, being a sniper, a pyrotechnician, a machinegunner, rifleman and more. They’re often high in numbers and divided into squads, but they’re the lowest ranking individuals, with a low degree of skill, not adapt to engineering or medical roles. Still, they are not limited to the arsenal they can take on the field to deal whatever threat that lurks against Terra.
+		<br /><br />
+		<b>Duty</b>: Carry out orders made by your acting Squad Leader, deal with any threats that oppose the NTC.
+	"}
+	minimap_icon = "slut"
+
+/datum/job/terragov/squad/slut/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600) // starting
+			new_human.wear_id.paygrade = "E1"
+		if(601 to 6000) // 10hrs
+			new_human.wear_id.paygrade = "E2"
+		if(6001 to 18000) // 100 hrs
+			new_human.wear_id.paygrade = "E3"
+		if(18001 to 60000) // 300 hrs
+			new_human.wear_id.paygrade = "E3E"
+		if(60001 to INFINITY) // 1000 hrs
+			new_human.wear_id.paygrade = "E8" //If you play way too much NTC. 1000 hours.
+
+/datum/job/terragov/squad/slut/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"\nYou are a rank-and-file marine of the NTC with a twist, your job is to be a marine yet also a 'trench-wive' or well, if you are a male 'trench-husband'?
+	You can use some non lethal ammunition to 'tactically' do things to people, Spread those legs! Ooh-rah!"})
+
+/datum/outfit/job/marine/slut
+	name = SQUAD_SLUT
+	jobtype = /datum/job/terragov/squad/slut
+
+	id = /obj/item/card/id/dogtag
+
 //Squad Engineer
 /datum/job/terragov/squad/engineer
 	title = SQUAD_ENGINEER
@@ -263,8 +325,8 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	paygrade = "E4"
 	comm_title = "Spec"
 	total_positions = 4
-	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ENGINEERING)
-	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ENGINEERING)
+	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD)
+	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SPECIALIST
 	skills_type = /datum/skills/specialist
 	outfit = /datum/outfit/job/marine/specialist
@@ -315,8 +377,8 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	comm_title = JOB_COMM_TITLE_SQUAD_LEADER
 	total_positions = 4
 	supervisors = "the acting field commander"
-	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_ENGINEERING)
-	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_ENGINEERING)
+	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD)
+	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD)
 	skills_type = /datum/skills/sl
 	display_order = JOB_DISPLAY_ORDER_SQUAD_LEADER
 	outfit = /datum/outfit/job/marine/leader

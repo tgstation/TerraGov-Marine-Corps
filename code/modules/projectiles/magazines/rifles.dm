@@ -51,6 +51,10 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 36
 
+/obj/item/ammo_magazine/rifle/standard_carbine/rubber
+	name = "\improper AR-18 rubber magazine (10x24mm)"
+	icon_state = "t18_r"
+	default_ammo = /datum/ammo/bullet/rifle/rubber
 //-------------------------------------------------------
 //T12 Assault Rifle
 
@@ -63,6 +67,11 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 50
+
+/obj/item/ammo_magazine/rifle/standard_assaultrifle/rubber
+	name = "\improper AR-12 rubber magazine (10x24mm)"
+	icon_state = "t12_r"
+	default_ammo = /datum/ammo/bullet/rifle/rubber
 
 //-------------------------------------------------------
 //T37 DMR
@@ -415,6 +424,9 @@
 	default_ammo = /datum/ammo/bullet/rifle/hv
 	max_rounds = 70
 
+/obj/item/ammo_magazine/rifle/tx11/rubber
+	icon_state = "tx11_r"
+	default_ammo = /datum/ammo/bullet/rifle/hv/rubber
 //-------------------------------------------------------
 //AR-21
 /obj/item/ammo_magazine/rifle/standard_skirmishrifle
@@ -425,6 +437,10 @@
 	icon_state_mini = "mag_rifle"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	max_rounds = 40
+
+/obj/item/ammo_magazine/rifle/standard_skirmishrifle/rubber
+	icon_state = "t21_r"
+	default_ammo = /datum/ammo/bullet/rifle/heavy/rubber
 
 //ALF-51B
 

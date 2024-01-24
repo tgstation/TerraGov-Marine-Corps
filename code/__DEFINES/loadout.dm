@@ -279,6 +279,7 @@ GLOBAL_LIST_INIT(commanddoll_gear_listed_products, list(
 
 ///Assoc list linking the job title with their specific points vendor
 GLOBAL_LIST_INIT(job_specific_points_vendor, list(
+	SQUAD_SLUT = GLOB.marine_gear_listed_products,
 	SQUAD_MARINE = GLOB.marine_gear_listed_products,
 	SQUAD_ENGINEER = GLOB.engineer_gear_listed_products,
 	SQUAD_CORPSMAN = GLOB.medic_gear_listed_products,
@@ -845,6 +846,7 @@ GLOBAL_LIST_INIT(synthetic_clothes_listed_products, list(
 
 ///Assoc list linking the job title with their specific clothes vendor
 GLOBAL_LIST_INIT(job_specific_clothes_vendor, list(
+	SQUAD_SLUT = GLOB.marine_clothes_listed_products,
 	SQUAD_MARINE = GLOB.marine_clothes_listed_products,
 	SQUAD_ENGINEER = GLOB.engineer_clothes_listed_products,
 	SQUAD_CORPSMAN = GLOB.medic_clothes_listed_products,

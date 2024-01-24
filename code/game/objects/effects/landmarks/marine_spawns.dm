@@ -86,6 +86,10 @@
 	icon_state = "PFC"
 	job = /datum/job/terragov/squad/standard
 
+/obj/effect/landmark/start/job/squadslut
+	icon_state = "PFC"
+	job = /datum/job/terragov/squad/slut
+
 /obj/effect/landmark/start/job/squadengineer
 	icon_state = "Eng"
 	job = /datum/job/terragov/squad/engineer

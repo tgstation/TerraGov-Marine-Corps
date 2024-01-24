@@ -10679,6 +10679,10 @@
 /area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
+"jLh" = (
+/obj/effect/landmark/start/job/squadslut,
+/turf/open/floor/wood,
+/area/mainship/living/cryo_cells)
 "jLt" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -19746,6 +19750,11 @@
 	})
 "sbV" = (
 /turf/open/floor/plating,
+/area/mainship/living/cryo_cells)
+"sbX" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/start/job/squadslut,
+/turf/open/floor/wood,
 /area/mainship/living/cryo_cells)
 "scr" = (
 /obj/structure/table/mainship/nometal,
@@ -43571,8 +43580,8 @@ hPr
 pJE
 pTu
 pJE
-uYU
-uYU
+jLh
+jLh
 vDv
 pTu
 dGj
@@ -43813,8 +43822,8 @@ uhP
 bNX
 pTu
 ssm
-uYU
-uhP
+jLh
+sbX
 vtb
 pTu
 dGj
@@ -44055,8 +44064,8 @@ jAV
 bNX
 dDT
 qtL
-uYU
-uYU
+jLh
+jLh
 bNX
 dDT
 aMa
@@ -44297,8 +44306,8 @@ uYU
 kHI
 pTu
 kHI
-uYU
-uYU
+jLh
+jLh
 bNX
 pTu
 aMa

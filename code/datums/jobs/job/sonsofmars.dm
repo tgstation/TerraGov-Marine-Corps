@@ -104,6 +104,63 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	id = /obj/item/card/id/dogtag/som
 
 
+/datum/job/som/squad/slut
+	title = SOM_SQUAD_SLUT
+	access = list (ACCESS_SOM_DEFAULT, ALL_ANTAGONIST_ACCESS)
+	paygrade = "SOM_E1"
+	comm_title = "Slt"
+	minimap_icon = "slut"
+	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
+	total_positions = -1
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	outfit = /datum/outfit/job/som/squad/slut
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
+		/datum/job/som/squad/veteran = VETERAN_POINTS_REGULAR,
+	)
+	html_description = {"
+		<b>Difficulty</b>: Easy<br /><br />
+		<b>You answer to the</b> acting Squad Leader<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Combat patrol and Sensor Capture<br /><br /><br />
+		The backbone of the Sons of Mars are their rank and file marines, trained and equipped to fight the conventional military of their former oppressors. They are fitted with the standard arsenal that the SOM offers, equipped with traditional projectile weaponry as well are less common but more deadly volkite weapons as the SOM's industry allows. They’re often high in numbers and divided into squads, but they’re the lowest ranking individuals, with a low degree of skill, not adapt to engineering or medical roles. Still, they are not limited to the arsenal they can take on the field to deal whatever threat that lurks against the Sons of Mars.
+		<br /><br />
+		<b>Duty</b>: Carry out orders made by your acting Squad Leader, deal with any threats that oppose the Sons of Mars.
+	"}
+
+/datum/job/som/squad/slut/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600) // starting
+			new_human.wear_id.paygrade = "SOM_E1"
+		if(601 to 6000) // 10hrs
+			new_human.wear_id.paygrade = "SOM_E2"
+		if(6001 to 18000) // 100 hrs
+			new_human.wear_id.paygrade = "SOM_E3"
+		if(18001 to 30000) // 300 hrs
+			new_human.wear_id.paygrade = "SOM_E4"
+		if(30001 to 60000) // 500 hrs
+			new_human.wear_id.paygrade = "SOM_E5"
+		if(60001 to INFINITY) // 1000 hrs
+			new_human.wear_id.paygrade = "SOM_S1"
+
+/datum/job/som/squad/slut/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"\nYou are a rank-and-file soldier of the Sons of Mars, and that is your strength.
+What you lack alone, you gain standing shoulder to shoulder with the men and women of the SOM. For Mars!"})
+
+/datum/outfit/job/som/squad/slut
+	name = "SOM Slut"
+	jobtype = /datum/job/som/squad/slut
+
+	id = /obj/item/card/id/dogtag/som
+
 /datum/job/som/squad/engineer
 	title = SOM_SQUAD_ENGINEER
 	access = list (ACCESS_SOM_DEFAULT,ACCESS_SOM_ENGINEERING,ALL_ANTAGONIST_ACCESS)

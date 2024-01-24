@@ -1183,7 +1183,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			if(SQUAD_SPECIALIST)
 				spec_text += marine_infos
 				spec_count++
-			if(SQUAD_MARINE)
+			if(SQUAD_MARINE, SQUAD_SLUT)
 				marine_text += marine_infos
 				marine_count++
 			else

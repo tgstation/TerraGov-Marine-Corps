@@ -8,6 +8,7 @@
 	var/list/access = list() //Which special access do we grant them
 
 	var/current_positions = list(
+		SQUAD_SLUT = 0,
 		SQUAD_MARINE = 0,
 		SQUAD_ENGINEER = 0,
 		SQUAD_CORPSMAN = 0,
@@ -17,6 +18,7 @@
 		SQUAD_ROBOT = 0, //for campaign
 	)
 	var/max_positions = list(
+		SQUAD_SLUT = -1,
 		SQUAD_MARINE = -1,
 		SQUAD_LEADER = 1)
 
@@ -73,6 +75,7 @@
 	radio_freq = FREQ_ZULU
 	faction = FACTION_SOM
 	current_positions = list(
+		SOM_SQUAD_SLUT = 0,
 		SOM_SQUAD_MARINE = 0,
 		SOM_SQUAD_VETERAN = 0,
 		SOM_SQUAD_CORPSMAN = 0,
@@ -80,6 +83,7 @@
 		SOM_SQUAD_LEADER = 0,
 )
 	max_positions = list(
+		SOM_SQUAD_SLUT = -1,
 		SOM_SQUAD_MARINE = -1,
 		SOM_SQUAD_LEADER = 1,
 )
@@ -92,6 +96,7 @@
 	radio_freq = FREQ_YANKEE
 	faction = FACTION_SOM
 	current_positions = list(
+		SOM_SQUAD_SLUT = 0,
 		SOM_SQUAD_MARINE = 0,
 		SOM_SQUAD_VETERAN = 0,
 		SOM_SQUAD_CORPSMAN = 0,
@@ -99,6 +104,7 @@
 		SOM_SQUAD_LEADER = 0,
 )
 	max_positions = list(
+		SOM_SQUAD_SLUT = -1,
 		SOM_SQUAD_MARINE = -1,
 		SOM_SQUAD_LEADER = 1,
 )
@@ -111,6 +117,7 @@
 	radio_freq = FREQ_XRAY
 	faction = FACTION_SOM
 	current_positions = list(
+		SOM_SQUAD_SLUT = 0,
 		SOM_SQUAD_MARINE = 0,
 		SOM_SQUAD_VETERAN = 0,
 		SOM_SQUAD_CORPSMAN = 0,
@@ -118,6 +125,7 @@
 		SOM_SQUAD_LEADER = 0,
 )
 	max_positions = list(
+		SOM_SQUAD_SLUT = -1,
 		SOM_SQUAD_MARINE = -1,
 		SOM_SQUAD_LEADER = 1,
 )
@@ -130,6 +138,7 @@
 	radio_freq = FREQ_WHISKEY
 	faction = FACTION_SOM
 	current_positions = list(
+		SOM_SQUAD_SLUT = 0,
 		SOM_SQUAD_MARINE = 0,
 		SOM_SQUAD_VETERAN = 0,
 		SOM_SQUAD_CORPSMAN = 0,
@@ -137,6 +146,7 @@
 		SOM_SQUAD_LEADER = 0,
 )
 	max_positions = list(
+		SOM_SQUAD_SLUT = -1,
 		SOM_SQUAD_MARINE = -1,
 		SOM_SQUAD_LEADER = 1,
 )
