@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - balance: "Xenomorph resting now blocks you from unresting for 2 seconds, instead of it being a 2 second progress bar to get up"
