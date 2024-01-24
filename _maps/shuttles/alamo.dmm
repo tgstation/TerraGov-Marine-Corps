@@ -487,8 +487,12 @@
 /turf/open/shuttle/dropship/floor/out,
 /area/shuttle/dropship/alamo)
 "ez" = (
-/obj/item/radio/intercom/dropship,
-/turf/open/shuttle/dropship/five,
+/obj/structure/bed/chair/dropship/doublewide/left,
+/obj/structure/bed/chair/dropship/doublewide/right,
+/obj/structure/closet/walllocker/hydrant/extinguisher{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor/out,
 /area/shuttle/dropship/alamo)
 "gl" = (
 /turf/open/shuttle/dropship/thirtytwo,
@@ -499,10 +503,12 @@
 	},
 /area/shuttle/dropship/alamo)
 "hm" = (
-/obj/structure/closet/walllocker/hydrant/extinguisher{
-	dir = 8
+/obj/structure/bed/chair/dropship/doublewide/left,
+/obj/structure/bed/chair/dropship/doublewide/right,
+/obj/item/radio/intercom/dropship{
+	dir = 4
 	},
-/turf/open/shuttle/dropship/three,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "ie" = (
 /obj/machinery/door/poddoor/shutters/transit{
@@ -515,6 +521,9 @@
 "ji" = (
 /obj/structure/bed/chair/dropship/doublewide/left,
 /obj/structure/bed/chair/dropship/doublewide/right,
+/obj/item/radio/intercom/dropship{
+	dir = 8
+	},
 /turf/open/shuttle/dropship/floor/out{
 	dir = 8
 	},
@@ -588,12 +597,6 @@
 /turf/open/shuttle/dropship/floor/alt{
 	dir = 1
 	},
-/area/shuttle/dropship/alamo)
-"zV" = (
-/obj/structure/closet/walllocker/hydrant/extinguisher{
-	dir = 4
-	},
-/turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/alamo)
 "Aq" = (
 /turf/open/shuttle/dropship/thirtyfour,
@@ -716,8 +719,8 @@ aq
 aE
 aX
 bD
-aI
-me
+hm
+ez
 Dp
 bw
 bD
@@ -740,7 +743,7 @@ aE
 aJ
 aS
 Nj
-zV
+aS
 Aq
 tf
 aS
@@ -790,7 +793,7 @@ jS
 li
 bd
 MG
-ez
+aK
 jI
 aK
 bp
@@ -806,7 +809,7 @@ ah
 am
 au
 aD
-ez
+aK
 og
 aK
 jI
@@ -832,7 +835,7 @@ aE
 aJ
 aS
 gl
-hm
+aS
 pw
 VW
 aS
