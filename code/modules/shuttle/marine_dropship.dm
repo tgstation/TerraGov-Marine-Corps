@@ -493,6 +493,7 @@
 	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	possible_destinations = "lz1;lz2;alamo"
+	opacity = FALSE
 
 /obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
@@ -750,7 +751,6 @@
 	name = "\improper 'Alamo' flight controls"
 	desc = "The flight controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
 	possible_destinations = "lz1;lz2;alamo"
-	opacity = FALSE
 
 /obj/machinery/computer/shuttle/marine_dropship/one/Initialize(mapload)
 	. = ..()
