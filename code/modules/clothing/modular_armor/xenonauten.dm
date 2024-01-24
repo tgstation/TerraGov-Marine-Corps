@@ -201,7 +201,7 @@
 	name = "\improper Crasher multi-threat ballistic armor"
 	desc = "A reused design of a old body armor system from the 21st century."
 	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 50, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
-	slowdown = SLOWDOWN_ARMOR_LIGHT
+	slowdown = 0.25
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	icon = 'icons/mob/clothing/suits/marine_armor.dmi'
 	icon_state = "ballistic_vest"
