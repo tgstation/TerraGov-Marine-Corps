@@ -166,37 +166,6 @@
 		/obj/item/armor_module/storage/medical,
 	)
 
-/obj/item/clothing/suit/modular/xenonauten/pilot
-	name = "\improper TerraGov standard flak jacket"
-	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
-	flags_item = NONE
-	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 50, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
-	slowdown = 0.25
-
-	greyscale_config = /datum/greyscale_config/xenonaut/pilot
-
-	attachments_allowed = list()
-
-
-	allowed = list(
-		/obj/item/weapon/gun,
-		/obj/item/tank/emergency_oxygen,
-		/obj/item/flashlight,
-		/obj/item/ammo_magazine,
-		/obj/item/storage/fancy/cigarettes,
-		/obj/item/tool/lighter,
-		/obj/item/weapon/baton,
-		/obj/item/restraints/handcuffs,
-		/obj/item/explosive/grenade,
-		/obj/item/binoculars,
-		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/holster/blade,
-		/obj/item/storage/holster/belt,
-		/obj/item/weapon/energy/sword,
-	)
-
 /obj/item/clothing/suit/storage/ballistic
 	name = "\improper Crasher multi-threat ballistic armor"
 	desc = "A reused design of a old body armor system from the 21st century."
