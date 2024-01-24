@@ -254,3 +254,10 @@
   - bugfix: fixed a few click-related issues
   ivanmixo:
   - bugfix: Your ghost keeps bobbing even after you stop orbiting stuff now
+2024-01-24:
+  SomrNetwork:
+  - rscadd: "suitlight to crasher body armor\n/ \U0001F191"
+  XElectricX:
+  - bugfix: Toggle Weather Sound verb has correct message.
+  - bugfix: Toggle Ambience verb stops ambience that is currently playing.
+  - bugfix: Hide statpanel scroll bar when not needed.
