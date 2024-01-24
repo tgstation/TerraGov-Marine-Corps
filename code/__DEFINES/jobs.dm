@@ -108,7 +108,7 @@
 #define JOB_CAT_COMMANDSOM "SOM Command"
 #define JOB_CAT_MARINESOM "Sons of Mars"
 #define JOB_CAT_REQUISITIONSSOM "SOM Requisitions"
-#define JOB_CAT_MEDICALSOM "SOPM Medical"
+#define JOB_CAT_MEDICALSOM "SOM Medical"
 #define JOB_CAT_ENGINEERINGSOM "SOM Engineering"
 
 #define JOB_COMM_TITLE_SQUAD_LEADER "SL"

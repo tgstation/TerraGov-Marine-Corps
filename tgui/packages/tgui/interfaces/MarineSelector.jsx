@@ -29,7 +29,7 @@ export const MarineSelector = (props) => {
     );
 
   return (
-    <Window width={600} height={700}>
+    <Window width={1500} height={900}>
       {!!showDesc && (
         <Modal width="400px">
           <Box>{showDesc}</Box>
