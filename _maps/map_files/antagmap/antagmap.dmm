@@ -46,6 +46,17 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"aK" = (
+/obj/structure/cable,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/structure/rack,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/plating/ground/desertdam/asphalt/tile,
+/area/deltastation/hallway/primary/tram{
+	name = "CLF primary hallway";
+	outside = 0;
+	ceiling = 6
+	})
 "aU" = (
 /turf/closed/wall/brick,
 /area/mainship/groundhq/clf/squads/req)
@@ -727,14 +738,12 @@
 	})
 "gU" = (
 /obj/structure/cable,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/mainship/groundhq/clf/hallways/stern_hallway{
+	name = "CLF Armory"
 	})
 "gW" = (
 /turf/open/floor/plating/ground/dirt,
@@ -885,14 +894,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "iA" = (
-/obj/structure/cable,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/obj/effect/landmark/resin_jelly_pod,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway)
 "iB" = (
 /obj/machinery/light{
 	dir = 8
@@ -2222,6 +2226,15 @@
 	dir = 8
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"sT" = (
+/obj/structure/largecrate/supply/explosives/mortar_he,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/mainship/groundhq/clf/hallways/stern_hallway{
+	name = "CLF Armory"
+	})
 "sV" = (
 /obj/effect/decal/cleanable/blood/splatter/cum,
 /turf/open/floor/carpet/side{
@@ -3091,14 +3104,9 @@
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "Ad" = (
-/obj/structure/largecrate/supply/explosives/mortar_he,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway)
 "An" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 2;
@@ -8611,7 +8619,7 @@ ai
 gW
 gW
 gW
-gW
+Ad
 gW
 gW
 gW
@@ -8852,7 +8860,7 @@ uj
 Ns
 Hv
 AN
-Ad
+sT
 AN
 AN
 SP
@@ -8943,9 +8951,9 @@ gW
 aV
 uj
 Nv
-gU
+aK
 AN
-iA
+gU
 IN
 AN
 Id
@@ -9005,7 +9013,7 @@ bU
 aV
 uj
 GG
-gU
+aK
 AN
 lG
 Sk
@@ -9036,7 +9044,7 @@ gW
 aV
 uj
 Nv
-gU
+aK
 AN
 eQ
 tV
@@ -9067,7 +9075,7 @@ gW
 aV
 uj
 Nv
-gU
+aK
 AN
 OP
 Sk
@@ -9445,7 +9453,7 @@ Nj
 gW
 JW
 gW
-gW
+iA
 gW
 aF
 aF
