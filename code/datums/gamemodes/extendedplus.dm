@@ -97,22 +97,6 @@
 
 /datum/game_mode/infestation/extended_plus/post_setup()
 	. = ..()
-	if(bioscan_interval)
-		TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
-	var/weed_type
-	for(var/turf/T in GLOB.xeno_weed_node_turfs)
-		weed_type = pickweight(GLOB.weed_prob_list)
-		new weed_type(T)
-	for(var/turf/T AS in GLOB.xeno_resin_wall_turfs)
-		T.ChangeTurf(/turf/closed/wall/resin, T.type)
-	for(var/i in GLOB.xeno_resin_door_turfs)
-		new /obj/structure/mineral_door/resin(i)
-	for(var/i in GLOB.xeno_tunnel_spawn_turfs)
-		var/obj/structure/xeno/tunnel/new_tunnel = new /obj/structure/xeno/tunnel(i, XENO_HIVE_NORMAL)
-		new_tunnel.name = "[get_area_name(new_tunnel)] tunnel"
-		new_tunnel.tunnel_desc = "["[get_area_name(new_tunnel)]"] (X: [new_tunnel.x], Y: [new_tunnel.y])"
-	for(var/i in GLOB.xeno_jelly_pod_turfs)
-		new /obj/structure/xeno/resin_jelly_pod(i, XENO_HIVE_NORMAL)
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/structure/xeno/pherotower(i)
 		if(prob(75))
