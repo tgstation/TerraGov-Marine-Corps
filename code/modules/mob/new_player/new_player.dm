@@ -229,7 +229,7 @@
 /mob/new_player/proc/view_manifest()
 	var/dat = GLOB.datacore.get_manifest(ooc = TRUE)
 
-	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 400, 420)
+	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Game Manifest</div>", 400, 420)
 	popup.set_content(dat)
 	popup.open(FALSE)
 
