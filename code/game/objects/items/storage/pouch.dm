@@ -371,7 +371,7 @@
 	icon_state = "explosive"
 	sprite_slots = 2
 	storage_slots = 4
-	max_w_class = WEIGHT_CLASS_NORMAL
+	max_w_class = WEIGHT_CLASS_BULKY
 	can_hold = list(
 		/obj/item/explosive/plastique,
 		/obj/item/explosive/mine,
