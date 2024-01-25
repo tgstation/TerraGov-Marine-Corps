@@ -341,7 +341,8 @@
 		target = ability_target(target)
 		if(selected_ability.can_use_ability(target))
 			selected_ability.use_ability(target)
-			return !CHECK_BITFIELD(selected_ability.use_state_flags, ABILITY_DO_AFTER_ATTACK)
+			if(!CHECK_BITFIELD(selected_ability.use_state_flags, ABILITY_DO_AFTER_ATTACK))
+				return
 	return ..()
 
 ///Called when a owner mob CTRL + Rightmouseclicks an atom
