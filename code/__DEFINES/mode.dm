@@ -104,7 +104,7 @@
 #define SUPPLY_POINT_MARINE_SPAWN 50
 
 #define AFK_TIMER 5 MINUTES
-#define TIME_BEFORE_TAKING_BODY 5 SECONDS
+#define TIME_BEFORE_TAKING_BODY 2 MINUTES
 
 #define DEATHTIME_CHECK(M) ((world.time - GLOB.key_to_time_of_role_death[M.key]) < SSticker.mode?.respawn_time)
 #define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_role_death[M.key]) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))

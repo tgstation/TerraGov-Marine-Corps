@@ -213,7 +213,7 @@
 	icon_state = "marineuniform"
 	icon_vend = "marineuniform-vend"
 	icon_deny = "marineuniform-deny"
-	vendor_role = /datum/job/terragov/squad/standard
+	lock_flags = null
 	use_points = TRUE
 	categories = list(
 		CAT_STD = 1,

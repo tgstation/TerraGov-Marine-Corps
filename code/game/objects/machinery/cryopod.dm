@@ -299,6 +299,8 @@
 	user.forceMove(src)
 	occupant = user
 	update_icon()
+	if(!do_after(user, 1 MINUTES, FALSE, user))
+		user.despawn()
 	return TRUE
 
 /obj/machinery/cryopod/proc/go_out()
