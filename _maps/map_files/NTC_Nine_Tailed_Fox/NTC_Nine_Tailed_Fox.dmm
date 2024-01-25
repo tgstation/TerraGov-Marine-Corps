@@ -490,10 +490,13 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hull/upper_hull)
 "aBL" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/prison/kitchen,
+/turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "aBO" = (
 /obj/structure/table/reinforced,
@@ -545,9 +548,7 @@
 /area/mainship/hull/upper_hull)
 "aCH" = (
 /obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
+/obj/structure/disposalpipe/trunk,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/officer_study)
 "aCQ" = (
@@ -778,7 +779,7 @@
 	dir = 10;
 	icon_state = "carpetside"
 	},
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "aJc" = (
@@ -882,7 +883,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "aMB" = (
@@ -1148,6 +1149,9 @@
 /obj/machinery/light/mainship,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
+	},
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
@@ -1647,6 +1651,14 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door_control/mainship{
+	dir = 1;
+	id = "shipside_cic_lockdown2";
+	name = "Door lockdown"
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "bwF" = (
@@ -2145,6 +2157,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
+	},
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
@@ -3341,7 +3356,7 @@
 /obj/structure/cable,
 /obj/machinery/camera/autoname,
 /turf/open/floor/mainship/mono,
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "cQc" = (
@@ -3468,9 +3483,6 @@
 	})
 "cXO" = (
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/valhalla/crew_quarters/cryo{
@@ -3593,9 +3605,6 @@
 /area/mainship/engineering/port_atmos)
 "ddE" = (
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
@@ -4013,7 +4022,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "dBX" = (
@@ -4361,7 +4370,7 @@
 	dir = 9;
 	icon_state = "carpetside"
 	},
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "dUI" = (
@@ -4669,7 +4678,7 @@
 	name = "Shipside Medbay"
 	})
 "eju" = (
-/obj/structure/disposalpipe/segment/corner,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/officer_study)
 "ejv" = (
@@ -6003,7 +6012,7 @@
 "fxz" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/mainship/mono,
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "fxF" = (
@@ -6100,7 +6109,7 @@
 /obj/structure/table/woodentable,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "fBA" = (
@@ -6691,7 +6700,7 @@
 "fZU" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "gaq" = (
@@ -8125,6 +8134,9 @@
 /obj/machinery/light/mainship,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "hnC" = (
@@ -8654,7 +8666,7 @@
 	})
 "hTH" = (
 /turf/closed/wall/mainship,
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "hTK" = (
@@ -9038,16 +9050,10 @@
 	},
 /area/mainship/medical/lower_medical)
 "ilx" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/landmark/start/latejoin,
-/turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo{
-	static_lighting = 1;
-	base_lighting_alpha = 0
-	})
+/obj/structure/table/mainship/nometal,
+/obj/item/defibrillator,
+/turf/open/floor/wood,
+/area/mainship/living/officer_study)
 "ilH" = (
 /obj/machinery/light,
 /obj/structure/closet/secure_closet/hydroponics{
@@ -9156,14 +9162,15 @@
 	},
 /area/mainship/squads/specialist)
 "iri" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/obj/effect/landmark/start/latejoin,
-/turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo{
-	static_lighting = 1;
-	base_lighting_alpha = 0
-	})
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/living/officer_study)
 "isi" = (
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
@@ -9528,7 +9535,7 @@
 	dir = 6;
 	icon_state = "carpetside"
 	},
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "iIz" = (
@@ -9715,9 +9722,6 @@
 /area/mainship/medical/lower_medical)
 "iRH" = (
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment/corner{
-	dir = 8
-	},
 /obj/effect/ai_node,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/plating_catwalk,
@@ -9776,7 +9780,7 @@
 /obj/structure/table/woodentable,
 /obj/machinery/computer/camera_advanced,
 /turf/open/floor/wood,
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "iTU" = (
@@ -10981,9 +10985,6 @@
 /area/mainship/hallways/hangar)
 "jZQ" = (
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment/corner{
-	dir = 4
-	},
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -10992,6 +10993,9 @@
 	dir = 1
 	},
 /obj/machinery/camera/autoname/mainship,
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
@@ -11787,7 +11791,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "kJv" = (
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "kKH" = (
@@ -11796,6 +11799,9 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/latejoin,
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
@@ -12026,16 +12032,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/basketball)
 "kRO" = (
-/obj/machinery/door/airlock/mainship/command/cic{
-	dir = 2
-	},
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/mainship/mono,
-/area/centcom/valhalla/crew_quarters/cryo{
-	static_lighting = 1;
-	base_lighting_alpha = 0
-	})
+/obj/structure/window/framed/mainship,
+/turf/open/floor/plating,
+/area/mainship/living/officer_study)
 "kSc" = (
 /obj/structure/cable,
 /turf/open/floor/stairs/rampbottom{
@@ -12274,7 +12273,7 @@
 	name = "Corpsec Commander's Locker"
 	},
 /turf/open/floor/wood,
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "lbU" = (
@@ -12358,17 +12357,10 @@
 	name = "Ship Floor 3 Hallways"
 	})
 "leQ" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/obj/structure/disposalpipe/segment/corner{
-	dir = 8
-	},
-/obj/effect/landmark/start/latejoin,
-/turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo{
-	static_lighting = 1;
-	base_lighting_alpha = 0
-	})
+/obj/effect/soundplayer,
+/obj/machinery/status_display,
+/turf/closed/wall/mainship,
+/area/mainship/living/officer_study)
 "leX" = (
 /obj/machinery/landinglight/alamo{
 	id = "normandy";
@@ -12699,7 +12691,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "ltJ" = (
@@ -13141,7 +13133,7 @@
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "lLi" = (
@@ -13483,7 +13475,7 @@
 	dir = 5;
 	icon_state = "carpetside"
 	},
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "mcV" = (
@@ -13629,6 +13621,9 @@
 	dir = 5
 	},
 /obj/effect/landmark/start/latejoin,
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
@@ -14779,6 +14774,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/generic,
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
@@ -14988,6 +14986,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/valhalla/crew_quarters/cryo{
@@ -15252,6 +15253,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/start/latejoin,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
@@ -15700,6 +15702,9 @@
 "ofv" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,
@@ -16676,7 +16681,7 @@
 "pba" = (
 /obj/effect/landmark/start/job/corpseccommander,
 /turf/open/floor/wood,
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "pbh" = (
@@ -18124,9 +18129,6 @@
 /obj/structure/ladder{
 	id = "NTFLadder5";
 	height = 1
-	},
-/obj/structure/disposalpipe/segment/corner{
-	dir = 1
 	},
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/officer_study)
@@ -19948,6 +19950,9 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "slL" = (
@@ -19974,9 +19979,11 @@
 	name = "Shipside Corpsec Office"
 	})
 "smP" = (
-/obj/structure/cable,
-/turf/open/floor/prison/kitchen,
-/area/mainship/living/officer_study)
+/turf/open/floor/mainship/floor,
+/area/sulaco/command{
+	name = "Captain's Room";
+	outside = 0
+	})
 "snR" = (
 /obj/machinery/floodlight/landing,
 /obj/machinery/landinglight/cas{
@@ -20007,7 +20014,7 @@
 /area/mainship/living/officer_study)
 "sot" = (
 /turf/open/floor/wood,
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "spx" = (
@@ -21379,7 +21386,7 @@
 	req_access = list(40)
 	},
 /turf/open/floor/wood,
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "tCI" = (
@@ -21479,7 +21486,7 @@
 "tGb" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood,
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "tIc" = (
@@ -22385,6 +22392,9 @@
 "uzE" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
@@ -23924,6 +23934,11 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/poddoor/mainship/open/cic{
+	id = "shipside_cic_lockdown2";
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
@@ -24112,7 +24127,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "wkw" = (
@@ -25340,7 +25355,7 @@
 /obj/structure/bed/chair,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "xom" = (
@@ -25813,7 +25828,6 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
 "xJo" = (
-/obj/structure/disposalpipe/segment/corner,
 /obj/effect/ai_node,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/officer_study)
@@ -26132,7 +26146,7 @@
 /obj/structure/paper_bin,
 /obj/item/tool/stamp/hos,
 /turf/open/floor/wood,
-/area/outpost/brig/wardens_office{
+/area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
 "ybi" = (
@@ -36883,14 +36897,14 @@ nwr
 uiM
 soj
 uTe
-tAW
+ilx
 nzt
 uTe
 bvE
 cMb
 cMb
 cMb
-cMb
+lyD
 kKH
 phM
 iWD
@@ -37128,7 +37142,7 @@ uTe
 rfy
 tAW
 uTe
-bvE
+iri
 cMb
 tmd
 ifv
@@ -37629,7 +37643,7 @@ vwi
 oyH
 slL
 sPS
-slL
+smP
 slL
 tED
 kyS
@@ -37872,7 +37886,7 @@ slL
 slL
 slL
 uxD
-tgQ
+slL
 qBA
 oES
 oES
@@ -38116,7 +38130,7 @@ tVt
 tOh
 tVt
 tSm
-kyS
+tgQ
 kyS
 kyS
 tKP
@@ -38338,11 +38352,11 @@ oYJ
 feE
 dbd
 uTe
-vFS
+aBL
 tbW
 cMb
 cMb
-cMb
+lyD
 jZQ
 vUo
 jQw
@@ -38580,7 +38594,7 @@ jba
 uTe
 nkx
 uTe
-vFS
+aBL
 cMb
 tmd
 ifv
@@ -38817,11 +38831,11 @@ nwr
 nwr
 nwr
 gsf
-cMb
-cMb
+kRO
+kRO
 wlm
-cMb
-cMb
+lyD
+kJv
 uzE
 gYA
 tZG
@@ -39063,7 +39077,7 @@ gZt
 oLi
 hHn
 aCH
-hHn
+eju
 aYI
 cMb
 cMb
@@ -39304,10 +39318,10 @@ uiM
 qRF
 hHn
 hHn
-eju
+hHn
 qAd
 vFS
-lyD
+cMb
 tmd
 ifv
 cMb
@@ -39546,8 +39560,8 @@ uiM
 bbZ
 iEX
 fud
-smP
-aBL
+hHn
+hHn
 cha
 gYA
 tZG
@@ -39788,14 +39802,14 @@ uiM
 sBX
 hHn
 quQ
-smP
-aBL
+hHn
+hHn
 xWt
 cMb
 cMb
 cMb
-tbW
-ilx
+leQ
+oHt
 vZC
 fkb
 scU
@@ -40033,10 +40047,10 @@ vKJ
 hom
 xJo
 kJv
-kRO
-iri
-iri
-leQ
+ePf
+fhq
+fhq
+fhq
 iRH
 pOb
 fkb
