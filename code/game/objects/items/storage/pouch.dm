@@ -45,7 +45,7 @@
 
 /obj/item/storage/pouch/general/medium
 	name = "medium general pouch"
-	storage_slots = 2
+	storage_slots = 4
 	icon_state = "medium_drop"
 	sprite_slots = 2
 	draw_mode = 0
@@ -53,7 +53,7 @@
 /obj/item/storage/pouch/general/large
 	name = "general pouch"
 	storage_slots = null
-	max_storage_space = 6
+	max_storage_space = 8
 	icon_state = "large_drop"
 	sprite_slots = 3
 	draw_mode = 0

@@ -211,6 +211,7 @@
 	icon_state = "rownin_skeleton"
 	item_state = "rownin_skeleton"
 	allowed_uniform_type = /obj/item/clothing/under
+	slowdown = -0.5
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
