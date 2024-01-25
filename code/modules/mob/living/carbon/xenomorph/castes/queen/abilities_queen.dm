@@ -65,7 +65,7 @@
 /datum/action/ability/activable/xeno/impregnatequeen
 	name = "Royal Treatment"
 	action_icon_state = "impregnate"
-	desc = "Directly use your ovipositor to lay larva directly within a host. This is especially violent, and only grows moreso with each larva inserted; The Queenmother warns this method can easily kill a host, so be careful!"
+	desc = "Directly use your ovipositor to lay one or more larva directly within a host. This is especially harmful, and only grows moreso with each larva inserted, and leaves permanent internal damage on the host with each excess larva.; This method can easily kill a host, so be careful!"
 	cooldown_duration = 2.5 SECONDS
 	use_state_flags = ABILITY_USE_STAGGERED
 	ability_cost = 200
@@ -79,7 +79,7 @@
 	var/list/damagetypes = list(BRUTE,BURN,TOX)
 	var/sexverb
 	var/larvalbunch = 3 //How many can the Queen lay at once?
-	var/chancebunch = 35 //How often on a prob() will this occur...
+	var/chancebunch = 25 //How often on a prob() will this occur...
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_IMPREGNATE,
 	)
@@ -160,11 +160,14 @@
 	if(implanted_embryos >= MAX_LARVA_PREGNANCIES)
 		to_chat(owner, span_danger("This Host is way too full! You begin to overstuff them..."))
 		A.apply_damage((damageperlarva/damagescaledivisor)*implanted_embryos, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //Too many larvae!
+		A.apply_damage(1, CLONE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //ripping that womb
 		if(A.stat == CONSCIOUS)
-			to_chat(A, span_highdanger("You're too full, you feel like you're going to burst apart! You might want to ask [X] to stop... If they'll listen.")) //Way too many.
+			to_chat(owner, span_danger("This Host's belly looks like they are about to burst!.."))
+			to_chat(A, span_highdanger("You're too full, you feel like you're going to burst apart! You might want to beg [X] to stop... If they'll listen.")) //Way too many.
 			if(implanted_embryos >= (MAX_LARVA_PREGNANCIES*2))
 				for(var/D in damagetypes)
 					A.apply_damage((damageperlarva/damagescaledivisor)*implanted_embryos, D, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //It'll get worse!
+					A.apply_damage(1, CLONE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //REALLY ripping that womb
 	if(prob(chancebunch)) //Queen has a higher chance to lay in batches.
 		for(var/lcount=0, lcount<larvalbunch, lcount++)
 			var/obj/item/alien_embryo/larba = new(A)
