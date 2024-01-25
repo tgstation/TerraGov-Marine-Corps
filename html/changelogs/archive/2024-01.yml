@@ -261,3 +261,11 @@
   - bugfix: Toggle Weather Sound verb has correct message.
   - bugfix: Toggle Ambience verb stops ambience that is currently playing.
   - bugfix: Hide statpanel scroll bar when not needed.
+2024-01-25:
+  SomrNetwork:
+  - rscdel: "Flak armor\n/ \U0001F191"
+  ivanmixo:
+  - balance: Xenomorph resting now blocks you from unresting for 2 seconds, instead
+      of it being a 2 second progress bar to get up
+  usnpeepoo:
+  - bugfix: Puppeteers radial menu for blessings now have the correct icon in place
