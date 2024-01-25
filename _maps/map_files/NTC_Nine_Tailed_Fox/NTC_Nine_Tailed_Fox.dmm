@@ -9697,8 +9697,8 @@
 	dir = 2;
 	id = "floor3shipcheckpoint"
 	},
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
-	req_access = null
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "\improper Recreation Area"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -13737,8 +13737,8 @@
 	name = "Ship Floor 1 Hallways"
 	})
 "mnG" = (
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
-	req_access = null
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "\improper Recreation Area"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/shipboard/brig)

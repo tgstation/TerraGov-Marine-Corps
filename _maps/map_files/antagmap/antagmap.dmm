@@ -249,10 +249,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/som/medical/morgue)
 "co" = (
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 16
-	},
 /obj/structure/largecrate/supply/medicine/medkits,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/hallways/stern_hallway{
@@ -509,10 +505,7 @@
 /obj/item/ammo_magazine/rifle/type71,
 /obj/item/ammo_magazine/rifle/type71,
 /obj/item/ammo_magazine/rifle/type71,
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 16
-	},
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
@@ -704,6 +697,9 @@
 "gK" = (
 /obj/structure/sign/safety/storage,
 /obj/structure/cable,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/structure/rack,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/deltastation/hallway/primary/tram{
 	name = "CLF primary hallway";
@@ -730,10 +726,15 @@
 	name = "SOM Prisoner Contaiment"
 	})
 "gU" = (
-/obj/structure/largecrate/supply/supplies/coifs,
-/turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
+/obj/structure/cable,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/structure/rack,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/plating/ground/desertdam/asphalt/tile,
+/area/deltastation/hallway/primary/tram{
+	name = "CLF primary hallway";
+	outside = 0;
+	ceiling = 6
 	})
 "gW" = (
 /turf/open/floor/plating/ground/dirt,
@@ -884,8 +885,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "iA" = (
+/obj/structure/cable,
 /obj/machinery/light/small{
-	dir = 8
+	dir = 1
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/hallways/stern_hallway{
@@ -1293,6 +1295,8 @@
 "lG" = (
 /obj/structure/cable,
 /obj/machinery/power/apc,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/structure/rack,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
@@ -3087,8 +3091,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "Ad" = (
-/obj/item/armor_module/storage/uniform/brown_vest,
-/obj/structure/cable,
+/obj/structure/largecrate/supply/explosives/mortar_he,
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
@@ -4174,7 +4180,7 @@
 	name = "SOM Torture Chamber"
 	})
 "IN" = (
-/obj/structure/largecrate/supply/ammo/standard_smg,
+/obj/structure/closet/crate/mortar_ammo/mortar_kit,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
@@ -5006,6 +5012,9 @@
 	pixel_y = 17;
 	pixel_x = -1
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
@@ -5128,6 +5137,8 @@
 /obj/item/weapon/gun/rifle/mpi_km/black/magharness,
 /obj/item/weapon/gun/rifle/mpi_km/black/magharness,
 /obj/item/weapon/gun/rifle/mpi_km/black/magharness,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
@@ -6183,7 +6194,7 @@
 	name = "SOM Bridge"
 	})
 "Xs" = (
-/obj/structure/largecrate/supply/weapons/standard_smg,
+/obj/structure/largecrate/supply/explosives/mines,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
@@ -8841,7 +8852,7 @@ uj
 Ns
 Hv
 AN
-AN
+Ad
 AN
 AN
 SP
@@ -8872,7 +8883,7 @@ uj
 Xc
 gI
 fp
-iA
+Sk
 Ga
 AN
 kZ
@@ -8932,9 +8943,9 @@ gW
 aV
 uj
 Nv
-Ns
+gU
 AN
-LM
+iA
 IN
 AN
 Id
@@ -8965,8 +8976,8 @@ uj
 Nv
 gK
 AN
-Ad
-gU
+LM
+Sk
 AN
 AN
 gW
@@ -8994,7 +9005,7 @@ bU
 aV
 uj
 GG
-Ns
+gU
 AN
 lG
 Sk
@@ -9025,7 +9036,7 @@ gW
 aV
 uj
 Nv
-Ns
+gU
 AN
 eQ
 tV
@@ -9056,7 +9067,7 @@ gW
 aV
 uj
 Nv
-Ns
+gU
 AN
 OP
 Sk
