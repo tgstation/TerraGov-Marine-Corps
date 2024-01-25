@@ -1353,7 +1353,7 @@
 			/obj/item/storage/backpack/marine/satchel = -1,
 			/obj/item/tool/weldpack/marinestandard = -1,
 			/obj/item/storage/holster/m37 = -1,
-			/obj/item/storage/backpack/marine/smock = -1,
+			/obj/item/storage/backpack/marine/smock/lite = -1,
 		),
 		"Instruments" = list(
 			/obj/item/instrument/violin = -1,
