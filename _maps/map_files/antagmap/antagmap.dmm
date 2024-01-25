@@ -122,6 +122,13 @@
 /area/mainship/squads/general/som{
 	name = "SOM Preparation"
 	})
+"bx" = (
+/obj/machinery/washing_machine,
+/turf/open/floor/mainship/sterile/white,
+/area/canora_desert/surface/building/som_restrooms{
+	outside = 0;
+	name = "SOM Restrooms"
+	})
 "bz" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -646,11 +653,9 @@
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "gs" = (
-/obj/structure/holowindow{
-	dir = 1
-	},
 /obj/machinery/power/apc/mainship,
-/turf/open/floor/bcircuit/off,
+/obj/structure/cable,
+/turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
 "gz" = (
 /obj/effect/turf_decal/trimline/dark_blue,
@@ -1726,9 +1731,6 @@
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "ot" = (
-/obj/structure/holowindow{
-	dir = 1
-	},
 /obj/machinery/telecomms/processor/preset_two/som,
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
@@ -2126,9 +2128,7 @@
 	name = "SOM Restrooms"
 	})
 "sd" = (
-/obj/structure/holowindow{
-	dir = 1
-	},
+/obj/structure/cable,
 /turf/open/floor/bcircuit/off,
 /area/mainship/groundhq/som/command/telecomms)
 "sf" = (
@@ -2161,9 +2161,6 @@
 	outside = 0
 	})
 "sp" = (
-/obj/structure/holowindow{
-	dir = 1
-	},
 /obj/machinery/telecomms/processor/preset_one/som,
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
@@ -2953,6 +2950,10 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"yH" = (
+/obj/machinery/telecomms/server/presets/engineering/som,
+/turf/open/floor/bcircuit/anim,
+/area/mainship/groundhq/som/command/telecomms)
 "yK" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/canora_desert/surface/building/command{
@@ -3251,11 +3252,9 @@
 	outside = 0
 	})
 "Bv" = (
-/obj/structure/holowindow{
-	dir = 1
-	},
-/obj/machinery/telecomms/processor/preset_three/som,
-/turf/open/floor/bcircuit/anim,
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/bcircuit/off,
 /area/mainship/groundhq/som/command/telecomms)
 "Bw" = (
 /obj/structure/cable,
@@ -3406,9 +3405,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/hallways/aft_hallway)
 "Cq" = (
-/obj/structure/holowindow{
-	dir = 1
-	},
 /obj/machinery/telecomms/bus/preset_four/som,
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
@@ -3577,15 +3573,10 @@
 	name = "SOM Bridge"
 	})
 "Dm" = (
-/obj/machinery/door/airlock/mainship/secure/tcomms{
-	dir = 2;
-	req_access = list(204)
-	},
-/turf/open/floor/plating/plating_catwalk,
+/obj/machinery/light,
+/turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
 "Dq" = (
-/obj/machinery/telecomms/server/presets/engineering/som,
-/obj/machinery/light,
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
 "Dr" = (
@@ -3682,6 +3673,14 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"El" = (
+/obj/machinery/door/airlock/mainship/secure/tcomms{
+	dir = 2;
+	req_access = list(204)
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/som/command/telecomms)
 "Et" = (
 /obj/structure/cable,
 /obj/machinery/light/small,
@@ -4990,6 +4989,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/squads/req)
 "Ox" = (
+/obj/machinery/light,
 /obj/machinery/telecomms/receiver/preset_right/som,
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
@@ -5670,10 +5670,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "Ts" = (
-/obj/machinery/door/window/secure{
-	dir = 1
-	},
-/turf/open/floor/bcircuit/off,
+/obj/machinery/telecomms/processor/preset_three/som,
+/turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
 "Tt" = (
 /obj/machinery/vending/coffee,
@@ -6300,7 +6298,6 @@
 /area/mainship/groundhq/clf/medical/lounge)
 "Yn" = (
 /obj/machinery/telecomms/receiver/preset_left/som,
-/obj/machinery/light,
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
 "Yo" = (
@@ -6990,7 +6987,7 @@ ZI
 rS
 kh
 gs
-ZB
+sd
 nE
 Kn
 CN
@@ -7019,9 +7016,9 @@ EF
 EF
 ZI
 rS
-Dm
-Ts
-uR
+kh
+GD
+Bv
 Dq
 Kn
 CN
@@ -7049,10 +7046,10 @@ RO
 Sz
 fG
 ZI
-rS
+jE
 kh
 ot
-ZB
+sd
 Ox
 aw
 CN
@@ -7081,9 +7078,9 @@ Fh
 RH
 ZI
 rS
-kh
+El
 sd
-ZB
+sd
 lk
 Kn
 CN
@@ -7111,7 +7108,7 @@ FY
 Oa
 fG
 ZI
-jE
+rS
 kh
 sp
 ZB
@@ -7143,10 +7140,10 @@ zL
 EF
 ZI
 rS
-Dm
+kh
 Ts
 uR
-XZ
+Dm
 aw
 CN
 CN
@@ -7175,9 +7172,9 @@ uW
 ZI
 rS
 kh
-sd
+Dq
 ZB
-ac
+yH
 Kn
 CN
 CN
@@ -7206,9 +7203,9 @@ hH
 lC
 rS
 kh
-Bv
-GD
 NN
+ac
+XZ
 Kn
 CN
 CN
@@ -7759,7 +7756,7 @@ bD
 Tm
 bS
 DI
-HK
+bx
 HK
 HK
 DI
