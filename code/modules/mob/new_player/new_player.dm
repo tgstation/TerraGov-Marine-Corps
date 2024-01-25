@@ -363,6 +363,9 @@
 		return
 	if(tgui_alert(src, "Are you sure you wish to observe?[SSticker.mode?.observe_respawn_message()]", "Observe", list("Yes", "No")) != "Yes")
 		return
+	if(!isadmin(client))
+		to_chat(src, span_warning("Only admins may observe, play instead!"))
+		return FALSE
 	if(!client)
 		return TRUE
 	var/mob/dead/observer/observer = new()
