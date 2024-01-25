@@ -439,6 +439,7 @@
 	max_rounds = 40
 
 /obj/item/ammo_magazine/rifle/standard_skirmishrifle/rubber
+	name = "\improper AR-21 skirmish rifle rubber magazine"
 	icon_state = "t21_r"
 	default_ammo = /datum/ammo/bullet/rifle/heavy/rubber
 

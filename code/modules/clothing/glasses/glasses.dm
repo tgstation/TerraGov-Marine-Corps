@@ -309,15 +309,17 @@
 	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/big
+	name = "big sunglasses"
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
 	icon_state = "bigsunglasses"
 	item_state = "bigsunglasses"
 
 /obj/item/clothing/glasses/sunglasses/big/prescription
-	name = "prescription sunglasses"
+	name = "big prescription sunglasses"
 	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/fake
+	name = "designer sunglasses"
 	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
 	eye_protection = 0
 
@@ -346,16 +348,17 @@
 		update_icon()
 
 /obj/item/clothing/glasses/sunglasses/fake/prescription
-	name = "prescription sunglasses"
+	name = "prescription glasses"
 	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/fake/big
+	name = "large sunglasses"
 	desc = "A pair of larger than average designer sunglasses. Doesn't seem like it'll block flashes."
 	icon_state = "bigsunglasses"
 	item_state = "bigsunglasses"
 
 /obj/item/clothing/glasses/sunglasses/fake/big/prescription
-	name = "prescription sunglasses"
+	name = "big prescription sunglasses"
 	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/sechud
