@@ -88,3 +88,13 @@
 			take_damage(200, BRUTE, BOMB)
 		if(EXPLODE_WEAK)
 			take_damage(100, BRUTE, BOMB)
+
+/obj/structure/xeno/lighttower/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.a_intent == INTENT_HARM) //If we're a builder caste or the creator and we're on harm intent, deconstruct it.
+		balloon_alert(X, "Removing...")
+		if(!do_after(X, XENO_ACID_WELL_FILL_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
+			balloon_alert(X, "Stopped removing")
+			return
+		playsound(src, "alien_resin_break", 25)
+		deconstruct(TRUE, X)
+		return
