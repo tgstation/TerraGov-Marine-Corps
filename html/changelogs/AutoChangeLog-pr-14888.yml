@@ -1,0 +1,7 @@
+author: "DeltaFire15"
+delete-after: True
+changes:
+  - bugfix: "Various HUD elements now display revivability more accurately."
+  - bugfix: "Another case that would randomly DNR you has been fixed."
+  - bugfix: "Defib messages & failures should be less likely to display in incorrect situations."
+  - bugfix: "Minimap icons should no longer display as DNR for now fixed cases."
