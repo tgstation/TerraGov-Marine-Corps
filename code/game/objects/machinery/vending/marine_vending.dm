@@ -919,7 +919,6 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/imidazoline = 20,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20,
-			/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 10,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
@@ -1073,8 +1072,7 @@
 		"General" = list(
 			/obj/item/clothing/suit/modular = -1,
 			/obj/item/clothing/suit/modular/rownin = -1,
-			/obj/item/clothing/suit/modular/xenonauten/pilot = -1,
-			/obj/item/clothing/suit/storage/ballistic = -1,
+			/obj/item/clothing/suit/storage/marine/ballistic = -1,
 			/obj/item/facepaint/green = -1,
 		),
 		"Armor modules" = list(

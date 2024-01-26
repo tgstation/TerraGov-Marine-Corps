@@ -983,13 +983,6 @@ directive is properly returned.
 
 	return TRUE
 
-
-// For special click interactions (take first item out of container, quick-climb, etc.)
-/atom/proc/specialclick(mob/living/carbon/user)
-	SHOULD_CALL_PARENT(TRUE)
-	SEND_SIGNAL(src, COMSIG_ATOM_SPECIALCLICK, user)
-	return COMSIG_MOB_CLICK_CANCELED
-
 /atom/proc/prepare_huds()
 	hud_list = new
 	for(var/hud in hud_possible) //Providing huds.

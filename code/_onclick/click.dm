@@ -337,12 +337,13 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/RightClickOn(atom/target)
-	. = ..()
 	if(selected_ability) //If we have a selected ability that we can use, return TRUE
 		target = ability_target(target)
 		if(selected_ability.can_use_ability(target))
 			selected_ability.use_ability(target)
-			return !CHECK_BITFIELD(selected_ability.use_state_flags, ABILITY_DO_AFTER_ATTACK)
+			if(!CHECK_BITFIELD(selected_ability.use_state_flags, ABILITY_DO_AFTER_ATTACK))
+				return
+	return ..()
 
 ///Called when a owner mob CTRL + Rightmouseclicks an atom
 /mob/proc/CtrlRightClickOn(atom/target, params)
@@ -431,12 +432,12 @@ if(selected_ability.target_flags & flagname && !istype(target, typepath)){\
 	return target
 
 /mob/living/carbon/xenomorph/MiddleClickOn(atom/target)
-	. = ..()
 	if(!(client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING) || !selected_ability)
 		return FALSE
 	target = ability_target(target)
 	if(selected_ability.can_use_ability(target))
 		selected_ability.use_ability(target)
+	return ..()
 
 ///Called when a owner mob CTRL + Middlemouseclicks an atom
 /mob/proc/CtrlMiddleClickOn(atom/target, params)
@@ -533,6 +534,10 @@ if(selected_ability.target_flags & flagname && !istype(target, typepath)){\
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
+
+	if(examinate(target))
+		return
+
 	return target.ShiftClick(src)
 
 ///Called when a mob SHIFT + Leftmouseclicks this atom
