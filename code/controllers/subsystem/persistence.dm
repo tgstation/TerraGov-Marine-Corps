@@ -42,7 +42,7 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/heavy_ff,
 		/datum/season_datum/weapons/guns/heavy_autorail,
 		/datum/season_datum/weapons/guns/heavy_shock,
-		/datum/season_datum/weapons/guns/heavy_plak,
+		/datum/season_datum/weapons/guns/heavy_explosions,
 		),
 	)
 	///The saved list of custom outfits names
@@ -359,13 +359,17 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/storage/box/mlrs_rockets_gas = 4,
 	)
 
-/datum/season_datum/weapons/guns/heavy_plak
-	name = "Plasma and Heavy Weapons"
-	description = "Flak cannon and Plasma guns for roundstart vendors."
+/datum/season_datum/weapons/guns/heavy_explosions
+	name = "Explosive Heavy Weapons"
+	description = "Flak cannon and Recoilless guns for roundstart vendors."
 	item_list = list(
 		/obj/item/weapon/gun/heavy_isg = 1,
 		/obj/item/ammo_magazine/heavy_isg/he = 8,
 		/obj/item/ammo_magazine/heavy_isg/sabot = 5,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon = 3,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle = 3,
+		/obj/item/storage/holster/backholster/rpg/full = 2,
+		/obj/item/ammo_magazine/rocket/recoilless = 4,
+		/obj/item/ammo_magazine/rocket/recoilless/light = 4,
+		/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
+		/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
+		/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
 	)
