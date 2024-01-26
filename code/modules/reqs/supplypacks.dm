@@ -1011,6 +1011,11 @@ ARMOR
 	cost = 120
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/armor/marine_shield
+	name = "TL-172 Defensive Shield"
+	contains = list(/obj/item/weapon/shield/riot/marine)
+	cost = 100
+
 /datum/supply_packs/armor/marine_shield/deployable
 	name = "TL-182 Deployable Shield"
 	contains = list(/obj/item/weapon/shield/riot/marine/deployable)
