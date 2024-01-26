@@ -21,14 +21,20 @@
 	var/operating = FALSE
 	var/autoclose = FALSE
 	var/glass = FALSE
+	/// Unrestricted sides. A bitflag for which direction (if any) can open the door with no access
+	var/unres_sides = NONE
 	var/normalspeed = TRUE
 	var/locked = FALSE
 	var/welded = FALSE
 	var/not_weldable = FALSE // stops people welding the door if true
 	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
 	var/list/fillers
-	//used for determining emergency access
+	///used for determining emergency access
 	var/emergency = FALSE
+	///bool for determining linked state
+	var/cyclelinkeddir = FALSE
+	///what airlock we are linked with
+	var/obj/machinery/door/airlock/cycle_linked_airlock
 
 	//Multi-tile doors
 	dir = EAST
@@ -100,11 +106,17 @@
 		user = null
 
 	if(density)
-		if(allowed(user) || emergency)
+		if(allowed(user) || emergency || unrestricted_side(user))
+			if(cycle_linked_airlock)
+				if(!emergency && !cycle_linked_airlock.emergency && allowed(user))
+					cycle_linked_airlock.close()
 			open()
 		else
 			flick("door_deny", src)
 
+///Allows for specific sides of airlocks to be unrestricted (IE, can exit maint freely, but need access to enter)
+/obj/machinery/door/proc/unrestricted_side(mob/opener)
+	return get_dir(src, opener) & unres_sides
 
 /obj/machinery/door/attack_hand(mob/living/user)
 	. = ..()

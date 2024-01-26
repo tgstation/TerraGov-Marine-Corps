@@ -183,6 +183,18 @@
 		deselect()
 	return ..()
 
+/datum/action/ability/activable/set_toggle(value)
+	. = ..()
+	if(!.)
+		return
+	if(!owner)
+		return
+	if(toggled)
+		SEND_SIGNAL(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE, owner)
+		RegisterSignal(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE, PROC_REF(deselect))
+	else
+		UnregisterSignal(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE)
+
 /datum/action/ability/activable/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(action_activate))
 
@@ -194,7 +206,7 @@
 	if(carbon_owner.selected_ability == src)
 		return
 	if(carbon_owner.selected_ability)
-		carbon_owner.selected_ability.deselect() //todo: make jetpack/blinkdrive etc activatables
+		carbon_owner.selected_ability.deselect()
 	select()
 
 /datum/action/ability/activable/keybind_activation()

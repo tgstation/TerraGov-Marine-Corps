@@ -120,6 +120,8 @@
 
 	. += "Sunder: [100-sunder]% armor left"
 
+	. += "Regeneration power: [max(regen_power * 100, 0)]%"
+
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 	var/msg_holder = ""
 	if(frenzy_aura)
@@ -476,7 +478,7 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/proc/setup_verbs()
-	add_verb(src, /mob/living/proc/lay_down)
+	add_verb(src, /mob/living/proc/toggle_resting)
 
 /mob/living/carbon/xenomorph/hivemind/setup_verbs()
 	return

@@ -15,7 +15,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!istype(X))
 		return
-	X.lay_down()
+	X.toggle_resting()
 	return succeed_activate()
 
 // ***************************************
