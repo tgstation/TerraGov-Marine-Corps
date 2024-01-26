@@ -50,7 +50,9 @@
 
 	do_evolve(castetype, castepick, TRUE)
 
+///Creates a list of possible evolution options for a caste based on their tier.
 /mob/living/carbon/xenomorph/proc/get_evolution_options()
+	. = list()
 	switch(tier)
 		if(XENO_TIER_ZERO)
 			return GLOB.xeno_types_tier_one
@@ -61,10 +63,9 @@
 		if(XENO_TIER_THREE)
 			return GLOB.xeno_types_tier_four
 		if(XENO_TIER_FOUR)
-			if(isxenoshrike(src))
-				return GLOB.xeno_types_tier_shrike
-			else
-				return list()
+			if(istype(xeno_caste, /datum/xeno_caste/shrike))
+				return list(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/king)
+
 
 ///Handles the evolution or devolution of the xenomorph
 /mob/living/carbon/xenomorph/proc/do_evolve(caste_type, forced_caste_name, regression = FALSE)
