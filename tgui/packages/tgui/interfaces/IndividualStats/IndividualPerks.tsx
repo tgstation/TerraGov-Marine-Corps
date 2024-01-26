@@ -20,7 +20,7 @@ export const IndividualPerks = (props) => {
   );
   const [selectedJob, setSelectedJob] = useLocalState(
     'selectedJob',
-    data.jobs[0],
+    data.current_job ? data.current_job : data.jobs[0],
   );
   const [selectedPerk, setSelectedPerk] = useLocalState(
     'selectedPerk',

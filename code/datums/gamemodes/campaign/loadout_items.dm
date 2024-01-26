@@ -63,11 +63,6 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	///assoc list by slot of items blacklisted for this to be equipped
 	var/list/item_blacklist
 
-/datum/loadout_item/New()
-	. = ..()
-	if(loadout_item_flags & LOADOUT_ITEM_DEFAULT_CHOICE)
-		jobs_supported = GLOB.campaign_jobs
-
 ///Attempts to add an item to a loadout
 /datum/loadout_item/proc/item_checks(datum/outfit_holder/outfit_holder)
 	if(length(item_whitelist) && !whitelist_check(outfit_holder))

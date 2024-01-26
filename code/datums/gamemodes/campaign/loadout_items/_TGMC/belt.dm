@@ -5,12 +5,32 @@
 	name = "no belt"
 	desc = ""
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	jobs_supported = list(
+		SQUAD_MARINE,
+		SQUAD_CORPSMAN,
+		SQUAD_ENGINEER,
+		SQUAD_SMARTGUNNER,
+		SQUAD_LEADER,
+		FIELD_COMMANDER,
+		STAFF_OFFICER,
+		CAPTAIN,
+		SOM_SQUAD_MARINE,
+		SOM_SQUAD_CORPSMAN,
+		SOM_SQUAD_ENGINEER,
+		SOM_SQUAD_VETERAN,
+		SOM_SQUAD_LEADER,
+		SOM_FIELD_COMMANDER,
+		SOM_STAFF_OFFICER,
+		SOM_COMMANDER,
+	)
+
 
 /datum/loadout_item/belt/ammo_belt
 	name = "Ammo belt"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition-carrying operations."
 	item_typepath = /obj/item/storage/belt/marine
 	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	item_blacklist = list(
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/minigun/smart_minigun/motion_detector = ITEM_SLOT_SUITSTORE,
@@ -66,6 +86,7 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
 	item_typepath = /obj/item/storage/belt/lifesaver/quick
 	jobs_supported = list(SQUAD_CORPSMAN)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 //FC
 /datum/loadout_item/belt/officer_sword

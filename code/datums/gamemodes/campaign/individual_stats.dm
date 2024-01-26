@@ -3,7 +3,7 @@
 	///currently occupied mob - if any
 	var/mob/living/carbon/current_mob
 	///Credits. You buy stuff with it
-	var/currency = 1000
+	var/currency = 300
 	///List of job types based on faction
 	var/list/valid_jobs = list()
 	///Single list of unlocked perks for easy reference
@@ -82,6 +82,8 @@
 
 	if(!istype(user)) //we immediately apply the perk where possible
 		return
+	if(!(user.job.title in new_perk.jobs_supported))
+		return
 	new_perk.apply_perk(user)
 
 ///Unlocks a loadout item for use
@@ -133,7 +135,8 @@
 		CRASH("campaign_mission loaded without campaign game mode")
 
 	var/list/data = list()
-
+	var/mob/living/living_user = user
+	data["current_job"] = istype(living_user) ? living_user.job.title : null
 	data["currency"] = currency
 
 	//perk stuff
@@ -335,17 +338,17 @@
 	if(!your_faction)
 		return
 
-	var/datum/individual_stats/stats = your_faction.individual_stat_list[owner.key]
+	var/datum/individual_stats/stats = your_faction.get_player_stats(owner)
 	if(!stats)
-		CRASH("Attempted to load Individual stat datum without one existing for [owner] key [owner.key]")
+		return
 	stats.current_mob = M
 
 /datum/action/campaign_loadout/action_activate()
 	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[owner.faction]
 	if(!your_faction)
 		return
-
-	var/datum/individual_stats/stats = your_faction.individual_stat_list[owner.key]
+	var/datum/individual_stats/stats = your_faction.get_player_stats(owner)
 	if(!stats)
-		CRASH("Attempted to load Individual stat datum without one existing for [owner] key [owner.key]")
+		return
+	stats.current_mob = owner //taking over ssd's creates a mismatch
 	stats.interact(owner)

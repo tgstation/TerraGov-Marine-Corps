@@ -1278,7 +1278,6 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_smartmachinegun)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
-		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/foldable/bipod,
@@ -1314,7 +1313,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/magnetic_harness, /obj/item/attachable/lasersight)
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol
-	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/motiondetector, /obj/item/attachable/verticalgrip)
+	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/motiondetector, /obj/item/attachable/lasersight)
 
 //-------------------------------------------------------
 //SG Target Rifle, has underbarreled spotting rifle that applies effects.

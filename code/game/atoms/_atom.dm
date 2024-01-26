@@ -277,7 +277,7 @@ directive is properly returned.
 
 	if(is_blind(src))
 		to_chat(src, span_notice("Something is there but you can't see it."))
-		return
+		return COMSIG_MOB_CLICK_CANCELED
 
 	face_atom(examinify)
 	var/list/result = examinify.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
@@ -288,6 +288,7 @@ directive is properly returned.
 
 	to_chat(src, examine_block(span_infoplain(result.Join())))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
+	return COMSIG_MOB_CLICK_CANCELED
 
 /**
  * Get the name of this object for examine
@@ -981,11 +982,6 @@ directive is properly returned.
 		return FALSE
 
 	return TRUE
-
-
-// For special click interactions (take first item out of container, quick-climb, etc.)
-/atom/proc/specialclick(mob/living/carbon/user)
-	return
 
 /atom/proc/prepare_huds()
 	hud_list = new

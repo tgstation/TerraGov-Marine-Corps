@@ -33,11 +33,11 @@
 	var/postfix = "[sobject][saddition][hp]"
 
 	var/message = "[what_done] [starget][postfix]"
-	user.log_message(message, LOG_ATTACK, color="red")
+	user?.log_message(message, LOG_ATTACK, color="red")
 
 	if(user != target)
 		var/reverse_message = "was [what_done] by [ssource][postfix]"
-		target.log_message(reverse_message, LOG_VICTIM, color="orange", log_globally=FALSE)
+		target?.log_message(reverse_message, LOG_VICTIM, color="orange", log_globally=FALSE)
 
 /// Logging for bombs detonating
 /proc/log_bomber(atom/user, details, atom/bomb, additional_details, message_admins = FALSE)

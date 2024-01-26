@@ -32,7 +32,7 @@
 	action_icon_state = "pounce_savage_[savage_activated? "on" : "off"]"
 	update_button_icon()
 
-/datum/action/ability/activable/xeno/pounce/runner/mob_hit(datum/source, mob/living/living_target)
+/datum/action/ability/activable/xeno/pounce/runner/trigger_pounce_effect(mob/living/living_target)
 	. = ..()
 	if(!savage_activated)
 		return
