@@ -68,6 +68,7 @@
 #define span_announce_body(str) ("<span class='announce_body'>" + str + "</span>")
 #define span_faction_alert(str) ("<span class='faction_alert'>" + str + "</span>")
 #define span_faction_alert_title(str) ("<span class='faction_alert_title'>" + str + "</span>")
+#define span_faction_alert_minortitle(str) ("<span class='faction_alert_minortitle'>" + str + "</span>")
 #define span_faction_alert_subtitle(str) ("<span class='faction_alert_subtitle'>" + str + "</span>")
 #define span_faction_alert_text(str) ("<span class='faction_alert_text'>" + str + "</span>")
 #define span_seasons_announce(str) ("<span class='seasons_announce'>" + str + "</span>")

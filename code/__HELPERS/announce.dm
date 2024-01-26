@@ -54,5 +54,5 @@
 	S.channel = CHANNEL_ANNOUNCEMENTS
 	for(var/mob/M AS in receivers)
 		if(!isnewplayer(M) && !isdeaf(M))
-			to_chat(M, "<span class='big bold'><font color = red>[html_encode(title)]</font color><BR>[html_encode(message)]</span><BR>")
+			to_chat(M, "[span_faction_alert("[span_faction_alert_minortitle("[html_encode(title)]")][span_faction_alert_text("[html_encode(message)]")]")]")
 			SEND_SOUND(M, S)

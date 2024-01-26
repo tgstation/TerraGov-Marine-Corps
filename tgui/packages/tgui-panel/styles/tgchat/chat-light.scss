@@ -638,7 +638,6 @@ h2.alert {
   display: block;
   text-align: center;
   font-weight: bold;
-  //font-family: trebuchet-ms;
   font-size: 1.5em;
 }
 .role_body {
@@ -1073,11 +1072,16 @@ h2.alert {
   padding: 1em 1em 1em 1em;
 }
 .faction_alert_subtitle {
-  color: #0e0e0e;
+  color: #000000;
   padding: 0.5em 0.5em 0.5em 0.5em;
 }
 .faction_alert_title {
   color: #000000;
   padding: 0.35em 0.35em 0 0.35em;
   font-size: 185%;
+}
+.faction_alert_minortitle {
+  color: #000000;
+  padding: 0.35em 0.35em 0.35em 0.35em;
+  font-size: 135%;
 }
