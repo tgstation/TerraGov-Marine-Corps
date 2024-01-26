@@ -164,7 +164,7 @@
 	item_state = "t45"
 	caliber = CALIBER_10X20_CASELESS //codex
 	max_shells = 40 //codex
-	fire_sound = 'sound/weapons/guns/fire/mp5.ogg'
+	fire_sound = 'sound/weapons/guns/fire/skorpevo.ogg'
 	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -202,7 +202,7 @@
 	fire_delay = 0.25 SECONDS
 	burst_delay =  0.2 SECONDS
 	burst_amount = 3
-	scatter = 4
+	scatter = 2
 	scatter_unwielded = 11
 	akimbo_additional_delay = 0.4
 	upper_akimbo_accuracy = 5
