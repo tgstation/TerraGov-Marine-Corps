@@ -113,13 +113,10 @@
 	action_icon_state = "evasion_[auto_evasion? "on" : "off"]"
 	update_button_icon()
 
-/datum/action/ability/xeno_action/evasion/action_activate(deactivate = TRUE)
-	/* Since both the button and the evasion extension call this proc directly, making a toggle for the ability
-	 * Deactivate will default to TRUE when called by a button click, but this should not be a problem
-	 * on the first activation since the evade_active will be false
-	 * When called by the evasion extension, deactivate will be FALSE so the ability won't turn off by itself
-	 */
-	if(deactivate && evade_active)
+/datum/action/ability/xeno_action/evasion/action_activate()
+	//Since both the button and the evasion extension call this proc directly, check if the cooldown timer exists
+	//The evasion extension removes the cooldown before calling this proc again, so use that to differentiate if it was the player trying to cancel
+	if(evade_active && cooldown_timer)
 		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_EVASION_ACTIVATION))
 			owner.balloon_alert(owner, "Accidental deactivation guard!")	//Little message to let the player know and not think it is a bug that their evasion didn't turn off
 			return
@@ -254,7 +251,7 @@
 	if(evasion_stacks >= RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD && cooldown_remaining()) //We have more evasion stacks than needed to refresh our cooldown, while being on cooldown.
 		clear_cooldown()
 		if(auto_evasion && xeno_owner.plasma_stored >= ability_cost)
-			action_activate(FALSE)
+			action_activate()
 	var/turf/current_turf = get_turf(xeno_owner) //location of after image SFX
 	playsound(current_turf, pick('sound/effects/throw.ogg','sound/effects/alien_tail_swipe1.ogg', 'sound/effects/alien_tail_swipe2.ogg'), 25, 1) //sound effects
 	var/obj/effect/temp_visual/xenomorph/afterimage/after_image
