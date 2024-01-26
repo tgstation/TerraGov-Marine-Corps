@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - balance: "Nanites have been rebalanced to be a sidegrade to BKTT, check the PR for more details"

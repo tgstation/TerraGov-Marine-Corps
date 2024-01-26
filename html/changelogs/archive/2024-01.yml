@@ -269,3 +269,16 @@
       of it being a 2 second progress bar to get up
   usnpeepoo:
   - bugfix: Puppeteers radial menu for blessings now have the correct icon in place
+2024-01-26:
+  DeltaFire15:
+  - bugfix: Various HUD elements now display revivability more accurately.
+  - bugfix: Another case that would randomly DNR you has been fixed.
+  - bugfix: Defib messages & failures should be less likely to display in incorrect
+      situations.
+  - bugfix: Minimap icons should no longer display as DNR for now fixed cases.
+  Xander3359:
+  - bugfix: Spit slash RMB works again
+  ivanmixo:
+  - qol: Xenomorphs can now see their current regenerative power in their status panel
+  - balance: Nanites have been rebalanced to be a sidegrade to BKTT, check the PR
+      for more details
