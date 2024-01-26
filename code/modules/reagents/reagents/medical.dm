@@ -1283,19 +1283,19 @@
 	scannable = TRUE
 	taste_description = "metal, followed by mild burning"
 	overdose_threshold = REAGENTS_OVERDOSE * 1.2 //slight buffer to keep you safe
-	purge_list = list(
-		/datum/reagent/medicine/bicaridine,
-		/datum/reagent/medicine/kelotane,
-		/datum/reagent/medicine/tramadol,
-		/datum/reagent/medicine/oxycodone,
-		/datum/reagent/medicine/tricordrazine,
-		/datum/reagent/medicine/meralyne,
-		/datum/reagent/medicine/dermaline,
-		/datum/reagent/medicine/paracetamol,
-		/datum/reagent/medicine/russian_red,
-		/datum/reagent/consumable/drink/doctor_delight,
-	)
-	purge_rate = 5
+//	purge_list = list(
+//		/datum/reagent/medicine/bicaridine,
+//		/datum/reagent/medicine/kelotane,
+//		/datum/reagent/medicine/tramadol,
+//		/datum/reagent/medicine/oxycodone,
+//		/datum/reagent/medicine/tricordrazine,
+//		/datum/reagent/medicine/meralyne,
+//		/datum/reagent/medicine/dermaline,
+//		/datum/reagent/medicine/paracetamol,
+//		/datum/reagent/medicine/russian_red,
+//		/datum/reagent/consumable/drink/doctor_delight,
+//	)
+//	purge_rate = 5
 
 /datum/reagent/medicalnanites/on_mob_add(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("You feel like you should stay near medical help until this shot settles in."))
