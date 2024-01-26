@@ -62,10 +62,8 @@
 	/// Assoc list of key => "plane master groups"
 	/// This is normally just the main window, but it'll occasionally contain things like spyglasses windows
 	var/list/datum/plane_master_group/master_groups = list()
-	///Assoc list of controller groups, associated with key string group name with value of the plane master controller ref
-	var/list/atom/movable/plane_master_controller/plane_master_controllers = list()
-
-	var/list/atom/movable/screen/plane_master/plane_masters = list() // see "appearance_flags" in the ref, assoc list of "[plane]" = object
+	/// see "appearance_flags" in the ref, assoc list of "[plane]" = object
+	var/list/atom/movable/screen/plane_master/plane_masters = list()
 
 	// List of weakrefs to objects that we add to our screen that we don't expect to DO anything
 	// They typically use * in their render target. They exist solely so we can reuse them,

@@ -51,10 +51,6 @@
 	SIGNAL_HANDLER
 
 	var/mob/fool = parent
-	var/datum/hud/our_hud = fool.hud_used
-	for(var/atom/movable/screen/plane_master/seethrough as anything in our_hud.get_true_plane_masters(SEETHROUGH_PLANE))
-		seethrough.unhide_plane(fool)
-
 	var/icon/current_mob_icon = icon(fool.icon, fool.icon_state)
 	render_source_atom.pixel_x = -fool.pixel_x
 	render_source_atom.pixel_y = ((current_mob_icon.Height() - 32) * 0.5)
@@ -102,9 +98,6 @@
 
 	var/mob/fool = parent
 	UnregisterSignal(fool, COMSIG_MOB_LOGOUT)
-	var/datum/hud/our_hud = fool.hud_used
-	for(var/atom/movable/screen/plane_master/seethrough as anything in our_hud.get_true_plane_masters(SEETHROUGH_PLANE))
-		seethrough.hide_plane(fool)
 	clear_image(trickery_image, fool.client)
 
 /datum/component/seethrough_mob/proc/toggle_active()
@@ -125,14 +118,6 @@
 	. = ..()
 	var/datum/component/seethrough_mob/transparency = target
 	transparency.toggle_active()
-	//for(var/atom/movable/screen/plane_master/seethrough/seethrough in owner.client.screen)
-		//seethrough.layer = 1
-		//seethrough.layer += 1
-
-/*
-/datum/action/ability/xeno_action/toggle_seethrough/proc/Activate(atom/t)
-	var/datum/component/seethrough_mob/transparency = target
-	transparency.toggle_active()*/
 
 /datum/action/ability/xeno_action/toggle_seethrough/Destroy()
 	var/datum/component/seethrough_mob/transparency = target

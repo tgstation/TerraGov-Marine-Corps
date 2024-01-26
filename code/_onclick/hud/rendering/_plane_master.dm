@@ -215,8 +215,7 @@
 	name = "Seethrough"
 	plane = SEETHROUGH_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	render_relay_plane = RENDER_PLANE_MASTER
-	start_hidden = TRUE
+	render_relay_plane = RENDER_PLANE_GAME
 
 /**
  * Plane master handling byond internal blackness
