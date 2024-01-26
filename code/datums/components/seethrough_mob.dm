@@ -33,7 +33,7 @@
 	uid++
 	src.personal_uid = uid
 
-	render_source_atom.appearance_flags |= ( RESET_COLOR | RESET_TRANSFORM)
+	render_source_atom.appearance_flags |= ( RESET_COLOR | RESET_TRANSFORM | KEEP_APART)
 
 	render_source_atom.vis_flags |= (VIS_INHERIT_ID | VIS_INHERIT_PLANE | VIS_INHERIT_LAYER)
 
@@ -125,6 +125,9 @@
 	. = ..()
 	var/datum/component/seethrough_mob/transparency = target
 	transparency.toggle_active()
+	//for(var/atom/movable/screen/plane_master/seethrough/seethrough in owner.client.screen)
+		//seethrough.layer = 1
+		//seethrough.layer += 1
 
 /*
 /datum/action/ability/xeno_action/toggle_seethrough/proc/Activate(atom/t)
