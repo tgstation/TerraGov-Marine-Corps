@@ -33,7 +33,7 @@
 
 		else //Dead
 			dead_ticks ++
-			var/mob/dead/observer/related_ghost = get_ghost()
+			var/mob/dead/observer/related_ghost = get_ghost(TRUE)
 			var/datum/limb/headcheck = get_limb("head")
 			// boolean, determines if the body's ghost can reenter the body
 			var/ghost_left = !mind && (!(!headcheck || (headcheck.limb_status & LIMB_DESTROYED)) || (!(species.species_flags & DETACHABLE_HEAD))) && !related_ghost?.can_reenter_corpse
