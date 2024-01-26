@@ -479,6 +479,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_SILO_DETECTION_RANGE 10//How far silos can detect hostiles
 #define XENO_GARGOYLE_DETECTION_COOLDOWN 30 SECONDS
 #define XENO_GARGOYLE_DETECTION_RANGE 10//How far gargoyles can detect hostiles
+#define XENO_RESTING_COOLDOWN 2 SECONDS
 
 #define XENO_HIVEMIND_DETECTION_RANGE 10 //How far out (in tiles) can the hivemind detect hostiles
 #define XENO_HIVEMIND_DETECTION_COOLDOWN 1 MINUTES
