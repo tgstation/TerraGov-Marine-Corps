@@ -215,9 +215,9 @@
 
 /datum/chemical_reaction/medicalnanites
 	name = "Medical Nanites"
-	results = list(/datum/reagent/medicine/research/medicalnanites = 9)
+	results = list(/datum/reagent/medicalnanites = 9)
 	required_reagents = list(/datum/reagent/iron = 10, /datum/reagent/medicine/lemoline = 1)
-	required_catalysts = list(/datum/reagent/medicine/research/medicalnanites = 1)
+	required_catalysts = list(/datum/reagent/medicalnanites = 1)
 
 /datum/chemical_reaction/stimulum
 	name = "Stimulum"
