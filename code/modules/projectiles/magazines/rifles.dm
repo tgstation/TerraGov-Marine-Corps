@@ -425,6 +425,7 @@
 	max_rounds = 70
 
 /obj/item/ammo_magazine/rifle/tx11/rubber
+	name = "\improper AR-11 combat rifle rubber magazine"
 	icon_state = "tx11_r"
 	default_ammo = /datum/ammo/bullet/rifle/hv/rubber
 //-------------------------------------------------------
