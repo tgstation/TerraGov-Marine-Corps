@@ -25,15 +25,21 @@
 		return
 
 	var/list/modifiers = params2list(params)
+
+	//Middle clicking
 	if(modifiers["shift"] && modifiers["middle"])
 		ShiftMiddleClickOn(A)
 		return
+	if(modifiers["middle"])
+		MiddleClickOn(A)
+		return
+
+	//Left clicking
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
 		return
-	if(modifiers["middle"] && MiddleClickOn(A))
-		return
-	if(modifiers["shift"] && ShiftClickOn(A))
+	if(modifiers["shift"])
+		ShiftClickOn(A)
 		return
 	if(modifiers["alt"])
 		return //Disabled for now. Need to sanitize the AltClickOn procs.

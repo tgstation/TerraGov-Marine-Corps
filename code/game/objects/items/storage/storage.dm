@@ -854,7 +854,7 @@
 		return
 	attempt_draw_object(user)
 
-/obj/item/storage/CtrlClick(mob/living/user)
+/obj/item/storage/CtrlClick(mob/living/carbon/user)
 	. = ..()
 	attempt_draw_object(user, TRUE)
 
