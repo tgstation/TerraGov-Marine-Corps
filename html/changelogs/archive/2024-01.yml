@@ -282,3 +282,8 @@
   - qol: Xenomorphs can now see their current regenerative power in their status panel
   - balance: Nanites have been rebalanced to be a sidegrade to BKTT, check the PR
       for more details
+2024-01-27:
+  SomrNetwork:
+  - rscadd: "flak stats to crasher\n/ \U0001F191"
+  novaepee:
+  - balance: remove TL-172 Defensive Shield from crash and nuclear war

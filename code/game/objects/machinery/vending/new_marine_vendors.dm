@@ -830,8 +830,8 @@
 /obj/effect/vendor_bundle/leader
 	gear_to_spawn = list(
 		/obj/item/explosive/plastique,
-		/obj/item/beacon/supply_beacon,
-		/obj/item/beacon/supply_beacon,
+		/obj/item/supply_beacon,
+		/obj/item/supply_beacon,
 		/obj/item/whistle,
 		/obj/item/compass,
 		/obj/item/binoculars/tactical,
@@ -858,7 +858,7 @@
 /obj/effect/vendor_bundle/commander
 	gear_to_spawn = list(
 		/obj/item/explosive/plastique,
-		/obj/item/beacon/supply_beacon,
+		/obj/item/supply_beacon,
 		/obj/item/healthanalyzer,
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,

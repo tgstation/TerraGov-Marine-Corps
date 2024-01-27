@@ -129,7 +129,7 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/effect/vendor_bundle/leader = list(CAT_ESS, "Essential SL Set", 0, "white"),
 		/obj/item/whistle = list(CAT_LEDSUP, "Whistle", 5, "black"),
-		/obj/item/beacon/supply_beacon = list(CAT_LEDSUP, "Supply beacon", 10, "black"),
+		/obj/item/supply_beacon = list(CAT_LEDSUP, "Supply beacon", 10, "black"),
 		/obj/item/fulton_extraction_pack = list(CAT_LEDSUP, "Fulton Extraction Pack", 20, "orange"),
 		/obj/item/deployable_camera = list(CAT_LEDSUP, "Deployable Overwatch Camera", 2, "orange"),
 		/obj/item/megaphone = list(CAT_LEDSUP, "Megaphone", 5, "orange"),
@@ -154,7 +154,7 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 GLOBAL_LIST_INIT(commander_gear_listed_products, list(
 		/obj/effect/vendor_bundle/commander = list(CAT_ESS, "Essential FC Set", 0, "white"),
 		/obj/item/whistle = list(CAT_FCSUP, "Whistle", 5, "black"),
-		/obj/item/beacon/supply_beacon = list(CAT_FCSUP, "Supply beacon", 10, "black"),
+		/obj/item/supply_beacon = list(CAT_FCSUP, "Supply beacon", 10, "black"),
 		/obj/item/fulton_extraction_pack = list(CAT_FCSUP, "Fulton Extraction Pack", 20, "orange"),
 		/obj/item/deployable_camera = list(CAT_FCSUP, "Deployable Overwatch Camera", 2, "orange"),
 		/obj/item/stack/sandbags_empty/half = list(CAT_FCSUP, "Sandbags x25", SANDBAG_PRICE_IN_GEAR_VENDOR, "black"),
@@ -901,7 +901,7 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 	),
 	SQUAD_LEADER = list(
 		/obj/item/explosive/plastique = 1,
-		/obj/item/beacon/supply_beacon = 2,
+		/obj/item/supply_beacon = 2,
 		/obj/item/whistle = 1,
 		/obj/item/binoculars/tactical = 1,
 		/obj/item/pinpointer = 1,
