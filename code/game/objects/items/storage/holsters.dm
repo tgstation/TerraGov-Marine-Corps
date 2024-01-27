@@ -531,6 +531,32 @@
 	for(var/i in 1 to (storage_slots-flare_gun.w_class))
 		new /obj/item/explosive/grenade/flare(src)
 
+
+/obj/item/storage/holster/icc_mg
+	name = "\improper ML-14 scabbard (10x26mm)"
+	desc = "A backpack holster allowing the storage of any a ML-14 Assault Machinegun, also carries ammo for the other portion of the system."
+	icon_state = "icc_bagmg"
+	storage_slots = 5
+	max_storage_space = 16
+	holsterable_allowed = list(
+		/obj/item/weapon/gun/rifle/icc_mg,
+	)
+	can_hold = list(
+		/obj/item/weapon/gun/rifle/icc_mg,
+		/obj/item/ammo_magazine/icc_mg/packet,
+	)
+
+/obj/item/storage/holster/icc_mg/full/Initialize(mapload)
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/rifle/icc_mg(src)
+	new /obj/item/ammo_magazine/icc_mg/packet(src)
+	new /obj/item/ammo_magazine/icc_mg/packet(src)
+	new /obj/item/ammo_magazine/icc_mg/packet(src)
+	new /obj/item/ammo_magazine/icc_mg/packet(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
+
+
 ////////////////////////////// GUN BELTS /////////////////////////////////////
 
 /obj/item/storage/holster/belt
