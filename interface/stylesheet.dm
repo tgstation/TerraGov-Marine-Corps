@@ -69,7 +69,7 @@ a.popt {text-decoration: none;}
 
 .bold, .name, .prefix, .ooc, .looc, .adminooc, .admin, .medal, .yell {font-weight: bold;}
 
-.italic, .italics,  .emote {font-style: italic;}
+.italic, .italics {font-style: italic;}
 
 .highlight {background: yellow;}
 
@@ -147,7 +147,7 @@ a.popt {text-decoration: none;}
 .alert					{color: #ff0000;}
 h1.alert, h2.alert		{color: #000000;}
 
-.emote					{					font-style: italic;}
+.emote					{}
 .selecteddna			{color: #FFFFFF; 	background-color: #001B1B}
 
 .singing				{font-family: "Trebuchet MS", cursive, sans-serif; font-style: italic;}

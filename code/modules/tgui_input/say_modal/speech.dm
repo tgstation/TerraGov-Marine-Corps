@@ -41,6 +41,12 @@
 		if(ME_CHANNEL)
 			client.mob.me_verb(entry)
 			return TRUE
+		if(SUBTLE_CHANNEL)
+			client.mob.subtle(entry)
+			return TRUE
+		if(SUBTLER_CHANNEL)
+			client.mob.subtler(entry)
+			return TRUE
 		if(OOC_CHANNEL)
 			client.ooc(entry)
 			return TRUE

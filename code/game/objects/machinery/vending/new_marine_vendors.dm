@@ -841,7 +841,7 @@
 
 /obj/effect/vendor_bundle/specialist
 	gear_to_spawn = list(
-		/obj/item/beacon/supply_beacon,
+		/obj/item/supply_beacon,
 		/obj/item/compass,
 		/obj/item/binoculars/tactical/scout,
 		/obj/item/explosive/plastique,
@@ -849,7 +849,7 @@
 
 /obj/effect/vendor_bundle/specialistleotard
 	gear_to_spawn = list(
-		/obj/item/beacon/supply_beacon,
+		/obj/item/supply_beacon,
 		/obj/item/compass,
 		/obj/item/binoculars/tactical/scout,
 		/obj/item/explosive/plastique,

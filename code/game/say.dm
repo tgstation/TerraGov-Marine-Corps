@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	))
 
 
-/atom/movable/proc/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/atom/movable/proc/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null, range = 7)
 	if(!can_speak())
 		return
 
@@ -33,7 +33,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(!language)
 		language = get_default_language()
 
-	send_speech(message, 7, src, , spans, message_language = language)
+	send_speech(message, range, src, , spans, message_language = language)
 
 
 /atom/movable/proc/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)

@@ -40,7 +40,7 @@
 	mob_type_ignore_stat_typecache = typecacheof(mob_type_ignore_stat_typecache)
 
 
-/datum/emote/proc/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+/datum/emote/proc/run_emote(mob/user, params, type_override, intentional = FALSE, prefix, range = 7, ghost_visible = TRUE)
 	. = TRUE
 	if(!can_run_emote(user, TRUE, intentional))
 		return FALSE
@@ -69,15 +69,24 @@
 		for(var/mob/M AS in GLOB.dead_mob_list)
 			if(!ismob(M) || isnewplayer(M) || !M.client)
 				continue
-			var/T = get_turf(user)
-			if(!(M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) || (M in viewers(T, null)))
+			var/T1 = get_turf(user)
+			var/T2 = get_turf(M)
+			if((!(M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) && (get_dist(T1, T2) > range)))
+				continue
+
+			// If this is not meant to be visible to ghosts, make sure not to display it unless the user is an admin
+			if (!(ghost_visible || check_rights_for(M.client, R_ADMIN)))
 				continue
 			M.show_message("[FOLLOW_LINK(M, user)] [dchatmsg]")
 
+	// Ensure it filters to 'local' within chat tabs
+	msg = span_emote("[msg]")
+
+	// ghost_visible is set to false because the whole thing right above us already displays the message to ghosts. Don't wanna put it in chat twice.
 	if(emote_type == EMOTE_AUDIBLE)
-		user.audible_message(msg, audible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)
+		user.audible_message(msg, audible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix, hearing_distance = range, ghost_visible = FALSE)
 	else
-		user.visible_message(msg, visible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)
+		user.visible_message(msg, visible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix, vision_distance = range, ghost_visible = FALSE)
 
 /// For handling emote cooldown, return true to allow the emote to happen
 /datum/emote/proc/check_cooldown(mob/user, intentional)
@@ -151,6 +160,7 @@
 				return FALSE
 
 			if(user.client.handle_spam_prevention(message, MUTE_IC))
+				message_admins("Spam prevention triggered by [user] at [ADMIN_VERBOSEJMP(user)]")
 				return FALSE
 
 			if(is_banned_from(user.ckey, "Emote"))
@@ -167,7 +177,6 @@
 					to_chat(user, span_notice("You cannot [key] while unconscious."))
 				if(DEAD)
 					to_chat(user, span_notice("You cannot [key] while dead."))
-
 			return FALSE
 
 		if(flags_emote & EMOTE_RESTRAINT_CHECK)

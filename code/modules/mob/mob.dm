@@ -96,7 +96,7 @@
  * vision_distance (optional) define how many tiles away the message can be seen.
  * ignored_mob (optional) doesn't show any message to a given mob if TRUE.
  */
-/atom/proc/visible_message(message, self_message, blind_message, vision_distance, ignored_mob, visible_message_flags = NONE, emote_prefix)
+/atom/proc/visible_message(message, self_message, blind_message, vision_distance, ignored_mob, visible_message_flags = NONE, emote_prefix, ghost_visible = TRUE)
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
@@ -114,6 +114,10 @@
 			continue
 
 		if(M == ignored_mob)
+			continue
+
+		// Make sure that if this isn't meant to be heard by ghosts it's not.
+		if(!ghost_visible && isdead(M))
 			continue
 
 		var/msg = message
@@ -164,7 +168,7 @@
 // deaf_message (optional) is what deaf people will see.
 // hearing_distance (optional) is the range, how many tiles away the message can be heard.
 
-/mob/audible_message(message, deaf_message, hearing_distance, self_message, audible_message_flags = NONE, emote_prefix)
+/mob/audible_message(message, deaf_message, hearing_distance, self_message, audible_message_flags = NONE, emote_prefix, ghost_visible = TRUE)
 	var/range = 7
 	var/raw_msg = message
 	if(hearing_distance)
@@ -172,6 +176,9 @@
 	if(audible_message_flags & EMOTE_MESSAGE)
 		message = "[emote_prefix]<b>[src]</b> [message]"
 	for(var/mob/M in get_hearers_in_view(range, src))
+		// Make sure that if this isn't meant to be heard by ghosts it's not.
+		if(!ghost_visible && isdead(M))
+			continue
 		var/msg = message
 		if(self_message && M == src)
 			msg = self_message
@@ -187,7 +194,7 @@
  * deaf_message (optional) is what deaf people will see.
  * hearing_distance (optional) is the range, how many tiles away the message can be heard.
  */
-/atom/proc/audible_message(message, deaf_message, hearing_distance, self_message, audible_message_flags = NONE, emote_prefix)
+/atom/proc/audible_message(message, deaf_message, hearing_distance, self_message, audible_message_flags = NONE, emote_prefix, ghost_visible = TRUE)
 	var/range = 7
 	var/raw_msg = message
 	if(hearing_distance)
@@ -195,6 +202,9 @@
 	if(audible_message_flags & EMOTE_MESSAGE)
 		message = "[emote_prefix]<b>[src]</b> [message]"
 	for(var/mob/M in get_hearers_in_view(range, src))
+		// Make sure that if this isn't meant to be heard by ghosts it's not.
+		if(!ghost_visible && isdead(M))
+			continue
 		if(audible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, audible_message_flags))
 			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
 		M.show_message(message, EMOTE_AUDIBLE, deaf_message, EMOTE_VISIBLE)

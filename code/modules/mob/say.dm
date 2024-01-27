@@ -39,6 +39,39 @@
 /mob/proc/whisper(message, datum/language/language)
 	say(message, language = language)
 
+/mob/verb/subtler(message as text)
+
+	set name = "Subtler"
+	set category = "IC"
+	set desc = "Send a 1-tile range message that non-admin ghosts can't see."
+
+	set instant = TRUE
+
+	if(!message)
+		return
+
+	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
+
+	// Italicize it
+	message = "<i>[message]</i>"
+
+	SSspeech_controller.queue_say_for_mob(src, message, SPEECH_CONTROLLER_QUEUE_EMOTE_VERB, range = 1, ghost_visible = FALSE)
+
+
+/mob/verb/subtle(message as text)
+	set name = "Subtle"
+	set category = "IC"
+	set desc = "Send a message with a range of 1 tile."
+
+	if(!message)
+		return
+
+	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
+
+	// Italicize it
+	message = "<i>[message]</i>"
+
+	SSspeech_controller.queue_say_for_mob(src, message, SPEECH_CONTROLLER_QUEUE_EMOTE_VERB, range = 1)
 
 /mob/proc/say_dead(message)
 	if(!check_rights(R_ADMIN, FALSE))
