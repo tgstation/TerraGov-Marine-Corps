@@ -25,7 +25,8 @@
 	update_icon()
 	updateUsrDialog()
 
-/obj/machinery/tank_part_fabricator/update_icon()
+/obj/machinery/tank_part_fabricator/update_icon_state()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "drone_fab_nopower"
 		return

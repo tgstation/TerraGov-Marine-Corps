@@ -148,7 +148,9 @@ GLOBAL_LIST_INIT(puppeteer_phero_images_list, list(
 //xeno upgrade flags
 ///Message the hive when we buy this upgrade
 #define UPGRADE_FLAG_MESSAGE_HIVE (1<<0)
-#define UPGRADE_FLAG_ONETIME (1<<0)
+#define UPGRADE_FLAG_ONETIME (1<<1)
+#define UPGRADE_FLAG_USES_TACTICAL (1<<2)
+
 
 GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	/mob/living/carbon/xenomorph/beetle/ai,

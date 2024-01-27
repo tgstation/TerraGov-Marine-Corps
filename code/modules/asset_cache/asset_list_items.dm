@@ -178,6 +178,22 @@
 	icon_names = GLOB.campaign_asset_icons
 	return ..()
 
+/datum/asset/spritesheet/campaign/perks
+	name = "campaign_perks"
+	icon_sheet = 'icons/UI_Icons/campaign/perk_icons.dmi'
+
+/datum/asset/spritesheet/campaign/perks/New()
+	icon_names = GLOB.campaign_perk_icons
+	return ..()
+
+/datum/asset/spritesheet/campaign/loadout_items
+	name = "campaign_loadout_items"
+	icon_sheet = 'icons/UI_Icons/campaign/loadout_item_icons.dmi'
+
+/datum/asset/spritesheet/campaign/loadout_items/New()
+	icon_names = GLOB.campaign_loadout_item_icons
+	return ..()
+
 /datum/asset/simple/particle_editor
 	assets = list(
 		"motion" = 'icons/ui_icons/particle_editor/motion.png',

@@ -50,88 +50,86 @@
 	var/atom/movable/screen/using
 	var/atom/movable/screen/inventory/inv_box
 
-	using = new /atom/movable/screen/act_intent/corner()
+	using = new /atom/movable/screen/act_intent/corner(null, src)
 	using.alpha = ui_alpha
 	using.icon_state = owner.a_intent
 	static_inventory += using
 	action_intent = using
 
 
-	using = new /atom/movable/screen/mov_intent/alien()
+	using = new /atom/movable/screen/mov_intent/alien(null, src)
 	using.alpha = ui_alpha
 	using.icon_state = (owner.m_intent == MOVE_INTENT_RUN ? "running" : "walking")
 	static_inventory += using
 	move_intent = using
 
-	using = new /atom/movable/screen/drop()
+	using = new /atom/movable/screen/drop(null, src)
 	using.icon = 'icons/mob/screen/alien.dmi'
 	using.alpha = ui_alpha
 	static_inventory += using
 
-	inv_box = new /atom/movable/screen/inventory/hand/right()
+	inv_box = new /atom/movable/screen/inventory/hand/right(null, src)
 	inv_box.icon = 'icons/mob/screen/alien.dmi'
 	using.alpha = ui_alpha
-	if(owner && !owner.hand)	//This being 0 or null means the right hand is in use
-		using.add_overlay("hand_active")
 	inv_box.slot_id = SLOT_R_HAND
+	inv_box.update_icon()
 	r_hand_hud_object = inv_box
 	static_inventory += inv_box
 
-	inv_box = new /atom/movable/screen/inventory/hand()
+	inv_box = new /atom/movable/screen/inventory/hand/left(null, src)
 	inv_box.icon = 'icons/mob/screen/alien.dmi'
 	using.alpha = ui_alpha
-	if(owner?.hand)	//This being 1 means the left hand is in use
-		inv_box.add_overlay("hand_active")
 	inv_box.slot_id = SLOT_L_HAND
+	inv_box.update_icon()
 	l_hand_hud_object = inv_box
 	static_inventory += inv_box
 
-	using = new /atom/movable/screen/swap_hand()
+	using = new /atom/movable/screen/swap_hand(null, src)
 	using.icon = 'icons/mob/screen/alien.dmi'
 	using.alpha = ui_alpha
 	static_inventory += using
 
-	using = new /atom/movable/screen/swap_hand/right()
+	using = new /atom/movable/screen/swap_hand/right(null, src)
 	using.icon = 'icons/mob/screen/alien.dmi'
 	using.alpha = ui_alpha
 	static_inventory += using
 
-	using = new /atom/movable/screen/resist()
+	using = new /atom/movable/screen/resist(null, src)
 	using.icon = 'icons/mob/screen/alien.dmi'
 	using.screen_loc = ui_above_movement
 	using.alpha = ui_alpha
 	hotkeybuttons += using
 
-	throw_icon = new /atom/movable/screen/throw_catch()
+	throw_icon = new /atom/movable/screen/throw_catch(null, src)
 	throw_icon.icon = 'icons/mob/screen/alien.dmi'
 	throw_icon.alpha = ui_alpha
 	hotkeybuttons += throw_icon
 
-	healths = new /atom/movable/screen/healths/alien()
+	healths = new /atom/movable/screen/healths/alien(null, src)
 	healths.alpha = ui_alpha
 	infodisplay += healths
 
-	using = new /atom/movable/screen/alien/nightvision()
+	using = new /atom/movable/screen/alien/nightvision(null, src)
 	using.alpha = ui_alpha
 	infodisplay += using
 
-	alien_plasma_display = new /atom/movable/screen/alien/plasmadisplay()
+	alien_plasma_display = new /atom/movable/screen/alien/plasmadisplay(null, src)
 	alien_plasma_display.alpha = ui_alpha
 	infodisplay += alien_plasma_display
 
-	locate_leader = new /atom/movable/screen/alien/queen_locator()
+	locate_leader = new /atom/movable/screen/alien/queen_locator(null, src)
 	locate_leader.alpha = ui_alpha
 	infodisplay += locate_leader
 
-	pull_icon = new /atom/movable/screen/pull()
+	pull_icon = new /atom/movable/screen/pull(null, src)
 	pull_icon.icon = 'icons/mob/screen/alien.dmi'
 	pull_icon.screen_loc = ui_above_movement
 	pull_icon.alpha = ui_alpha
-	pull_icon.update_icon(owner)
+	pull_icon.update_icon()
 	hotkeybuttons += pull_icon
 
-	zone_sel = new /atom/movable/screen/zone_sel/alien()
-	zone_sel.update_icon(owner)
+	zone_sel = new /atom/movable/screen/zone_sel/alien(null, src)
+	zone_sel.update_icon()
 	static_inventory += zone_sel
 
 /datum/hud/alien/persistent_inventory_update()

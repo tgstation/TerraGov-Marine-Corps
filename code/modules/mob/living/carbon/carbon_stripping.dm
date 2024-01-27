@@ -48,7 +48,7 @@
 	var/mob/mob_source = source
 
 	if(!mob_source.can_put_in_hand(equipping, hand_index))
-		to_chat(src, "<span class='warning'>\The [equipping] doesn't fit in that place!</span>")
+		to_chat(user, "<span class='warning'>[mob_source] can't hold [equipping] right now!</span>")
 		return FALSE
 
 	return TRUE
@@ -105,6 +105,9 @@
 	hand_index = 1
 
 /datum/strippable_item/hand/left/get_alternate_action(atom/source, mob/user)
+	var/obj/item/source_item = get_item(source)
+	if(!HAS_TRAIT(source_item, TRAIT_STRAPPABLE))
+		return null
 	return get_strippable_alternate_action_strap(get_item(source), source)
 
 /datum/strippable_item/hand/left/alternate_action(atom/source, mob/user)
@@ -115,6 +118,9 @@
 	hand_index = 2
 
 /datum/strippable_item/hand/right/get_alternate_action(atom/source, mob/user)
+	var/obj/item/source_item = get_item(source)
+	if(!HAS_TRAIT(source_item, TRAIT_STRAPPABLE))
+		return null
 	return get_strippable_alternate_action_strap(get_item(source), source)
 
 /datum/strippable_item/hand/right/alternate_action(atom/source, mob/user)
@@ -130,6 +136,10 @@
 /// The proc that actually does the alternate action
 /datum/strippable_item/proc/strippable_alternate_action_strap(obj/item/item, atom/source, mob/user)
 	if(!HAS_TRAIT(item, TRAIT_STRAPPABLE))
+		return
+	
+	if(length(user.do_actions))
+		user.balloon_alert(user, "Busy!")
 		return
 
 	var/strapped = HAS_TRAIT_FROM(item, TRAIT_NODROP, STRAPPABLE_ITEM_TRAIT)

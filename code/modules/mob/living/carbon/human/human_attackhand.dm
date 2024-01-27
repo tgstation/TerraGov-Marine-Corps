@@ -107,7 +107,7 @@
 				return FALSE
 
 			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
-			var/max_dmg = H.melee_damage + H.skills.getRating(SKILL_CQC)
+			var/max_dmg = max(H.melee_damage + (H.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD), 3)
 			var/damage = rand(1, max_dmg)
 
 			var/target_zone = ran_zone(H.zone_selected)
@@ -116,7 +116,7 @@
 
 			visible_message(span_danger("[H] [pick(attack.attack_verb)]ed [src]!"), null, null, 5)
 			var/list/hit_report = list()
-			if(damage >= 5 && prob(50))
+			if(damage >= 4 && prob(25))
 				visible_message(span_danger("[H] has weakened [src]!"), null, null, 5)
 				apply_effect(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
 				hit_report += "(KO)"

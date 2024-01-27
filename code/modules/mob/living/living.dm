@@ -327,8 +327,10 @@
 				mob_swap_mode = PHASING
 			else if((move_resist >= MOVE_FORCE_VERY_STRONG || move_resist > L.move_force) && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones. Xenos can always shove xenos
 				mob_swap_mode = SWAPPING
-			///if we're moving diagonally, but the mob isn't on the diagonal destination turf we have no reason to shuffle/push them
-			if(moving_diagonally && (get_dir(src, L) in GLOB.cardinals) && get_step(src, dir).Enter(src, loc))
+			/* If we're moving diagonally, but the mob isn't on the diagonal destination turf and the destination turf is enterable we have no reason to shuffle/push them
+			 * However we also do not want mobs of smaller move forces being able to pass us diagonally if our move resist is larger, unless they're the same faction as us
+			*/
+			if(moving_diagonally && (get_dir(src, L) in GLOB.cardinals) && (L.faction == faction || L.move_resist <= move_force) && get_step(src, dir).Enter(src, loc))
 				mob_swap_mode = PHASING
 			if(mob_swap_mode)
 				//switch our position with L
@@ -803,12 +805,8 @@ below 100 is not dizzy
 	hand = !hand
 	SEND_SIGNAL(src, COMSIG_CARBON_SWAPPED_HANDS)
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
-		hud_used.l_hand_hud_object.update_icon(hand)
-		hud_used.r_hand_hud_object.update_icon(!hand)
-		if(hand)	//This being 1 means the left hand is in use
-			hud_used.l_hand_hud_object.add_overlay("hand_active")
-		else
-			hud_used.r_hand_hud_object.add_overlay("hand_active")
+		hud_used.l_hand_hud_object.update_icon()
+		hud_used.r_hand_hud_object.update_icon()
 	return
 
 ///Swap to the hand clicked on the hud

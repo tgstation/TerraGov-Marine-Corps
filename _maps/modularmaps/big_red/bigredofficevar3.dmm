@@ -215,13 +215,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
-"lo" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 4
-	},
-/area/bigredv2/outside/office_complex)
 "lt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -315,7 +308,6 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
@@ -407,7 +399,6 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "to" = (
@@ -435,27 +426,12 @@
 /obj/item/folder/red,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
-"uG" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1;
-	name = "\improper Private Office"
-	},
-/turf/open/floor,
-/area/bigredv2/outside/office_complex)
 "uH" = (
 /obj/structure/table,
 /obj/machinery/computer/pod/old{
 	name = "Personal Computer"
 	},
 /turf/open/floor,
-/area/bigredv2/outside/office_complex)
-"uK" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "vl" = (
 /obj/machinery/light{
@@ -543,7 +519,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
@@ -789,7 +764,6 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
@@ -842,10 +816,6 @@
 	name = "\improper Office Complex Shutters"
 	},
 /turf/open/floor/plating,
-/area/bigredv2/outside/office_complex)
-"Ne" = (
-/obj/structure/cable,
-/turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "NA" = (
 /obj/structure/table,
@@ -962,11 +932,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
-"TA" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/turf/open/floor,
-/area/bigredv2/outside/office_complex)
 "TN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/red/redtaupecorner,
@@ -993,11 +958,9 @@
 /area/bigredv2/outside/office_complex)
 "Vi" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/apc,
-/obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/bigredv2/outside/e)
+/area/bigredv2/outside/office_complex)
 "Vp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -1534,7 +1497,7 @@ EO
 EX
 eB
 Yj
-uK
+Bl
 eB
 eB
 eB
@@ -1580,10 +1543,10 @@ eB
 eB
 eB
 Vi
-Ne
-TA
-uG
-lo
+VB
+kj
+aL
+Cl
 sL
 Za
 TN

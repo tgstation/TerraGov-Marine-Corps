@@ -6132,7 +6132,7 @@
 /obj/item/stack/sheet/metal{
 	amount = 30
 	},
-/obj/item/stack/sheet/glass{
+/obj/item/stack/sheet/glass/glass{
 	amount = 30
 	},
 /obj/effect/turf_decal/warning_stripes/thick,
@@ -7498,7 +7498,7 @@
 "jXn" = (
 /obj/structure/table/reinforced,
 /obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/glass/large_stack,
+/obj/item/stack/sheet/glass/glass/large_stack,
 /obj/item/stack/rods,
 /obj/item/cell/high,
 /obj/item/cell/high,
@@ -10520,8 +10520,8 @@
 /obj/structure/table/reinforced,
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/glass/large_stack,
-/obj/item/stack/sheet/glass/large_stack,
+/obj/item/stack/sheet/glass/glass/large_stack,
+/obj/item/stack/sheet/glass/glass/large_stack,
 /obj/item/stack/sheet/plasteel/large_stack,
 /obj/item/tool/crowbar,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -11988,7 +11988,7 @@
 /area/centcom/valhalla)
 "qcP" = (
 /obj/structure/table/reinforced,
-/obj/item/stack/sheet/glass/large_stack,
+/obj/item/stack/sheet/glass/glass/large_stack,
 /obj/item/stack/rods,
 /obj/machinery/air_alarm,
 /obj/effect/turf_decal/tile/yellow{
@@ -12305,7 +12305,7 @@
 /area/tdome/tdomeadmin)
 "qBl" = (
 /obj/item/tool/wrench,
-/obj/item/stack/sheet/glass{
+/obj/item/stack/sheet/glass/glass{
 	amount = 30
 	},
 /obj/item/stack/sheet/metal{
@@ -13519,7 +13519,7 @@
 /obj/item/stack/sheet/metal{
 	amount = 30
 	},
-/obj/item/stack/sheet/glass{
+/obj/item/stack/sheet/glass/glass{
 	amount = 30
 	},
 /turf/open/floor/tile/dark/gray,
@@ -14650,8 +14650,8 @@
 /obj/structure/table,
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
-/obj/item/stack/sheet/glass,
-/obj/item/stack/sheet/glass,
+/obj/item/stack/sheet/glass/glass,
+/obj/item/stack/sheet/glass/glass,
 /turf/open/floor/wood,
 /area/centcom/valhalla)
 "tuC" = (

@@ -70,6 +70,7 @@
 		return ..()
 
 /obj/item/storage/holster/update_icon_state()
+	. = ..()
 	if(holstered_item)
 		icon_state = initial(icon_state) + "_full"
 	else
@@ -549,6 +550,7 @@
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
+		/obj/item/cell/lasgun/plasma_powerpack,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
 		/obj/item/cell/lasgun/lasrifle,
 		/obj/item/cell/lasgun/volkite/small,
@@ -574,6 +576,7 @@
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
 		/obj/item/cell/lasgun/lasrifle,
+		/obj/item/cell/lasgun/plasma_powerpack,
 	)
 
 /obj/item/storage/holster/belt/pistol/m4a3/full/Initialize(mapload)
@@ -653,6 +656,7 @@
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
 		/obj/item/cell/lasgun/lasrifle,
 		/obj/item/cell/lasgun/volkite/small,
+		/obj/item/cell/lasgun/plasma_powerpack,
 	)
 
 /obj/item/storage/holster/belt/pistol/m4a3/som/serpenta/Initialize(mapload, ...)

@@ -259,14 +259,19 @@
 		simple_status_hud.icon_state = ""
 		if(stat != DEAD)
 			status_hud.icon_state = "hudsynth"
+		else if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
+			status_hud.icon_state = "hudsynthdnr"
+			return TRUE
 		else
-			if(!client)
-				var/mob/dead/observer/G = get_ghost(FALSE, TRUE)
+			if(!mind)
+				var/mob/dead/observer/G = get_ghost(TRUE)
 				if(!G)
 					status_hud.icon_state = "hudsynthdnr"
 				else
 					status_hud.icon_state = "hudsynthdead"
-			return
+			else
+				status_hud.icon_state = "hudsynthdead"
+			return TRUE
 		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
 		return TRUE
 
@@ -303,8 +308,8 @@
 				hud_list[HEART_STATUS_HUD].icon_state = "still_heart"
 				status_hud.icon_state = "huddead"
 				return TRUE
-			if(!client)
-				var/mob/dead/observer/ghost = get_ghost()
+			if(!mind)
+				var/mob/dead/observer/ghost = get_ghost(TRUE)
 				if(!ghost?.can_reenter_corpse)
 					status_hud.icon_state = "huddead"
 					return TRUE

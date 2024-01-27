@@ -156,17 +156,17 @@
 	var/rank_name
 	switch(playtime_mins)
 		if(0 to 600)
-			rank_name = "Hatchling"
-		if(601 to 1500) //10 hours
 			rank_name = "Young"
-		if(1501 to 4200) //25 hours
+		if(601 to 1500) //10 hours
 			rank_name = "Mature"
-		if(4201 to 10500) //70 hours
+		if(1501 to 4200) //25 hours
 			rank_name = "Elder"
-		if(10501 to INFINITY) //175 hours
+		if(4201 to 10500) //70 hours
 			rank_name = "Ancient"
+		if(10501 to INFINITY) //175 hours
+			rank_name = "Prime"
 		else
-			rank_name = "Hatchling"
+			rank_name = "Young"
 	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
 	name = prefix + "[rank_name ? "[rank_name] " : ""][xeno_caste.display_name] ([nicknumber])"
 
@@ -464,11 +464,20 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 		return
 	update_icon()
 
-/mob/living/carbon/xenomorph/lay_down()
+/mob/living/carbon/xenomorph/toggle_resting()
 	var/datum/action/ability/xeno_action/xeno_resting/resting_action = actions_by_path[/datum/action/ability/xeno_action/xeno_resting]
 	if(!resting_action || !resting_action.can_use_action())
 		return
+
+	if(!COOLDOWN_CHECK(src, xeno_resting_cooldown))
+		balloon_alert(src, "Cannot get up so soon after resting!")
+		return
 	return ..()
+
+/mob/living/carbon/xenomorph/set_resting()
+	. = ..()
+	if(resting)
+		COOLDOWN_START(src, xeno_resting_cooldown, XENO_RESTING_COOLDOWN)
 
 /mob/living/carbon/xenomorph/set_jump_component(duration = 0.5 SECONDS, cooldown = 2 SECONDS, cost = 0, height = 16, sound = null, flags = JUMP_SHADOW, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE)
 	var/gravity = get_gravity()

@@ -351,11 +351,13 @@
 
 /area/daedalusprison/inside/security/medsec
 	name = "Prison Medbay Security"
+	ceiling = CEILING_OBSTRUCTED
 
 /area/daedalusprison/inside/medical
 	name = "Prison Infirmary"
 	icon_state = "medbay"
 	minimap_color = MINIMAP_AREA_MEDBAY
+	ceiling = CEILING_OBSTRUCTED
 
 /area/daedalusprison/inside/medical/chemistry
 	name = "Prison Chemistry"

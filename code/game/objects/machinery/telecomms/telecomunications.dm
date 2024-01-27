@@ -144,7 +144,8 @@ GLOBAL_LIST_EMPTY(telecomms_freq_listening_list)
 			return
 
 
-/obj/machinery/telecomms/update_icon()
+/obj/machinery/telecomms/update_icon_state()
+	. = ..()
 	if(on)
 		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			icon_state = "[initial(icon_state)]_o"

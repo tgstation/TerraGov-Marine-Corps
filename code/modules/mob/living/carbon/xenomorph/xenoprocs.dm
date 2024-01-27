@@ -113,12 +113,14 @@
 	else //Upgrade process finished or impossible
 		. += "Upgrade Progress: (FINISHED)"
 
-	. += "Health: [overheal ? "[overheal] + ": ""][health]/[maxHealth]" //Changes with balance scalar, can't just use the caste
+	. += "Health: [health]/[maxHealth][overheal ? " + [overheal]": ""]" //Changes with balance scalar, can't just use the caste
 
 	if(xeno_caste.plasma_max > 0)
 		. += "Plasma: [plasma_stored]/[xeno_caste.plasma_max]"
 
 	. += "Sunder: [100-sunder]% armor left"
+
+	. += "Regeneration power: [max(regen_power * 100, 0)]%"
 
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 	var/msg_holder = ""
@@ -476,7 +478,7 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/proc/setup_verbs()
-	add_verb(src, /mob/living/proc/lay_down)
+	add_verb(src, /mob/living/proc/toggle_resting)
 
 /mob/living/carbon/xenomorph/hivemind/setup_verbs()
 	return

@@ -61,7 +61,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	///If the gamemode has a whitelist of valid ground maps. Whitelist overrides the blacklist
 	var/list/whitelist_ground_maps
 	///If the gamemode has a blacklist of disallowed ground maps
-	var/list/blacklist_ground_maps = list(MAP_DELTA_STATION, MAP_PRISON_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS)
+	var/list/blacklist_ground_maps = list(MAP_DELTA_STATION, MAP_RESEARCH_OUTPOST, MAP_PRISON_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS)
 	///if fun tads are enabled by default
 	var/enable_fun_tads = FALSE
 
@@ -168,10 +168,10 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		var/mob/living = player.transfer_character()
 		if(!living)
 			continue
-
 		qdel(player)
 		living.client.init_verbs()
 		living.notransform = TRUE
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED, living)
 		log_manifest(living.ckey, living.mind, living)
 		livings += living
 
@@ -584,6 +584,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	player.create_character()
 	SSjob.spawn_character(player, TRUE)
 	player.mind.transfer_to(player.new_character, TRUE)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PLAYER_LATE_SPAWNED, player.new_character)
 	log_manifest(player.new_character.ckey, player.new_character.mind, player.new_character, latejoin = TRUE)
 	var/datum/job/job = player.assigned_role
 	job.on_late_spawn(player.new_character)

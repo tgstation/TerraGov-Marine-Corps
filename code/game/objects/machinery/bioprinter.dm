@@ -83,6 +83,7 @@
 	. += "It has [stored_matter] matter and [stored_metal] metal left."
 
 /obj/machinery/bioprinter/update_icon_state()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "bioprinter_off"
 		return

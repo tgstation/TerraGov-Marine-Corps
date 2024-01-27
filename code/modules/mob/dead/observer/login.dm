@@ -32,17 +32,17 @@
 
 	ghost_others = client.prefs.ghost_others
 
-	update_icon(client.prefs.ghost_form)
+	pick_form(client.prefs.ghost_form)
 	updateghostimages()
 
 	for(var/path in subtypesof(/datum/action/observer_action))
 		if(!actions_by_path[path])
 			var/datum/action/observer_action/A = new path()
 			A.give_action(src)
-	for(var/path in SSticker.mode.ghost_verbs())
-		if(!actions_by_path[path])
-			var/datum/action/action = new path()
-			action.give_action(src)
+	if(!SSticker.mode)
+		RegisterSignal(SSdcs, COMSIG_GLOB_GAMEMODE_LOADED, PROC_REF(load_ghost_gamemode_actions))
+	else
+		load_ghost_gamemode_actions()
 
 	client.AddComponent(/datum/component/larva_queue)
 
@@ -52,3 +52,12 @@
 
 	if(length(GLOB.offered_mob_list))
 		to_chat(src, span_boldnotice("There's mobs available for taking! Ghost > Take Offered Mob"))
+
+///Loads any gamemode specific ghost actions
+/mob/dead/observer/proc/load_ghost_gamemode_actions()
+	SIGNAL_HANDLER
+	UnregisterSignal(SSdcs, COMSIG_GLOB_GAMEMODE_LOADED)
+	for(var/path in SSticker.mode.ghost_verbs())
+		if(!actions_by_path[path])
+			var/datum/action/action = new path()
+			action.give_action(src)

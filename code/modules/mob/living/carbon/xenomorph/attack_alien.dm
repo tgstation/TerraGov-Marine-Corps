@@ -166,7 +166,7 @@
 	if(stat == DEAD)
 		if(istype(wear_ear, /obj/item/radio/headset/mainship))
 			var/obj/item/radio/headset/mainship/cam_headset = wear_ear
-			if(cam_headset.camera.status)
+			if(cam_headset?.camera?.status)
 				cam_headset.camera.toggle_cam(null, FALSE)
 				playsound(loc, "alien_claw_metal", 25, 1)
 				X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
