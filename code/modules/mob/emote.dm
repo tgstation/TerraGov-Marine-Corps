@@ -60,19 +60,3 @@
 /datum/emote/custom/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
 	message = params
 	return ..()
-
-
-/datum/emote/spin
-	key = "spin"
-	key_third_person = "spins"
-	flags_emote = EMOTE_RESTRAINT_CHECK
-	mob_type_allowed_typecache = list(/mob/living, /mob/dead/observer)
-	mob_type_ignore_stat_typecache = list(/mob/dead/observer)
-
-
-/datum/emote/spin/run_emote(mob/user)
-	. = ..()
-	if(!.)
-		return
-
-	user.spin(20, 1)
