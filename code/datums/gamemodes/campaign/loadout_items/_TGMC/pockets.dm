@@ -34,7 +34,6 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_SMARTGUNNER)
 
 /datum/loadout_item/r_pocket/standard_first_aid/standard_improved
-	name = "First aid pouch +"
 	desc = "Standard marine first-aid pouch. Contains a improved set of medical supplies."
 	item_typepath = /obj/item/storage/pouch/firstaid/combat_patrol_leader
 	loadout_item_flags = null
@@ -141,7 +140,6 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/l_pocket/standard_first_aid/standard_improved
-	name = "First aid pouch +"
 	desc = "Standard marine first-aid pouch. Contains a improved set of medical supplies."
 	item_typepath = /obj/item/storage/pouch/firstaid/combat_patrol_leader
 	loadout_item_flags = null
