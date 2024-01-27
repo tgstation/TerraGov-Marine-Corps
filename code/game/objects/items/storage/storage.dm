@@ -748,7 +748,7 @@
 
 ///BubbleWrap - A box can be folded up to make card
 /obj/item/storage/attack_self(mob/user)
-
+	. = ..()
 	//Clicking on itself will empty it, if it has the verb to do that.
 
 	if(allow_quick_empty)
