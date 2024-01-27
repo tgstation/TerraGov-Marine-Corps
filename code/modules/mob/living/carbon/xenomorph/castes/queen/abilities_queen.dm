@@ -90,13 +90,6 @@
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/victim = A
-	if(A.stat == DEAD)
-		to_chat(owner, span_warning("Why would we sully our loins mating with the dead? Get a lesser being to do it for us..."))
-		return FALSE
-	if(ismonkey(A))
-		A.apply_damage(95, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //They CERTAINLY aren't fitting in a monkey.
-		to_chat(owner, span_warning("We stop trying to fuck \the [A]. They're simply too small to hold royal larva!"))
-		return FALSE
 	var/implanted_embryos = 0
 	for(var/obj/item/alien_embryo/implanted in A.contents)
 		implanted_embryos++
@@ -113,12 +106,18 @@
 			sexverb = pick(harmintenttext)
 		if(INTENT_HELP)
 			sexverb = pick(helpintenttext)
-	if(!ishuman(A) && !isxeno(A))
-		to_chat(owner, span_warning("This one wouldn't be able to bear a young one."))
-		return FALSE
 	if(owner.do_actions) //can't use if busy
 		return FALSE
-	if(!owner.Adjacent(victim)) //checks if owner next to target
+	if(!owner.Adjacent(A)) //checks if owner next to target
+		return FALSE
+	if(isxeno(A))
+		to_chat(owner, span_danger("They can't bear our larva, we must find a host instead."))
+		return FALSE
+	if(!ishuman(A))
+		to_chat(owner, span_warning("This one wouldn't be able to bear a young one."))
+		return FALSE
+	if(A.stat == DEAD)
+		to_chat(owner, span_warning("Why would we sully our loins mating with the dead? Get a lesser being to do it for us..."))
 		return FALSE
 	if(X.on_fire)
 		if(!silent)
@@ -143,6 +142,11 @@
 	X.face_atom(A)
 	X.do_jitter_animation() //No need for the human to jostle too.
 	to_chat(owner, span_warning("We will impregnate this host shortly. Remain in proximity."))
+	var/implanted_embryos = 0
+	for(var/obj/item/alien_embryo/implanted in A.contents)
+		implanted_embryos++
+	if(implanted_embryos >= MAX_LARVA_PREGNANCIES)
+		to_chat(owner, span_highdanger("This Host's belly looks like they are about to burst!.."))
 	playsound(X, 'sound/effects/alien_plapping.ogg', 40, channel = channel)
 	if(!do_after(X, 1.5 SECONDS, FALSE, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		to_chat(owner, span_warning("We stop [sexverb] \the [A]. They probably were loose anyways."))
@@ -154,15 +158,22 @@
 	new /obj/effect/decal/cleanable/blood/splatter/xenocum(owner.loc)
 	if(A.stat == CONSCIOUS)
 		to_chat(A, span_warning("[X] thoroughly [sexverb]s you!"))
-	var/implanted_embryos = 0
-	for(var/obj/item/alien_embryo/implanted in A.contents)
 		implanted_embryos++
 	if(implanted_embryos >= MAX_LARVA_PREGNANCIES)
-		to_chat(owner, span_danger("This Host is way too full! You begin to overstuff them..."))
+		to_chat(owner, span_danger("This Host is way too full! We overstuff them..."))
+		A.emote("scream")
 		A.apply_damage((damageperlarva/damagescaledivisor)*implanted_embryos, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //Too many larvae!
-		A.apply_damage(1, CLONE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //ripping that womb
+		A.apply_damage(1*implanted_embryos, CLONE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //ripping that womb
+		if(ismonkey(A))
+			A.apply_damage(50, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //They CERTAINLY aren't fitting in a monkey.
+			A.apply_damage(10*implanted_embryos, CLONE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
+			if(prob(50))
+				owner.visible_message(span_danger("[X] causes [A] to blow up in a gorey mess!"), span_danger("We make [A] explode into a gorey mess!"), span_warning("You hear a gorey explosion."), 5, A)
+				for(var/obj/item/alien_embryo/implanted in A.contents)
+					new /obj/item/alien_embryo(A.loc)
+				explosion(A.loc,0,0,0,1,1,0,1)
+				A.gib()
 		if(A.stat == CONSCIOUS)
-			to_chat(owner, span_danger("This Host's belly looks like they are about to burst!.."))
 			to_chat(A, span_highdanger("You're too full, you feel like you're going to burst apart! You might want to beg [X] to stop... If they'll listen.")) //Way too many.
 			if(implanted_embryos >= (MAX_LARVA_PREGNANCIES*2))
 				for(var/D in damagetypes)
@@ -175,6 +186,8 @@
 			larba.emerge_target_flavor = victimhole
 		to_chat(owner, span_danger("You lay multiple larva at once!"))
 		to_chat(A, span_danger("You feel multiple larva being inserted at once!"))
+		if(ismonkey(A))
+			A.apply_damage(larvalbunch*10, CLONE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
 	else
 		var/obj/item/alien_embryo/embryo = new(A)
 		embryo.hivenumber = X.hivenumber
@@ -184,12 +197,14 @@
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[X.ckey]
 		personal_statistics.impregnations++
 
-		add_cooldown()
-		succeed_activate()
+	if(A.stat == DEAD)
+		owner.visible_message(span_highdanger("[X] causes [A]'s belly to blow up in a gorey mess!"), span_highdanger("We make [A]'s belly explode into a gorey mess!"), span_warning("You hear a gorey explosion."), 5, A)
+		for(var/obj/item/alien_embryo/implanted in A.contents)
+			new /obj/item/alien_embryo(A.loc)
+		explosion(A.loc,0,0,0,1,1,0,1)
 
-	if(isxeno(A))
-		to_chat(owner, span_danger("They aren't worth wasting your larva on."))
-		return FALSE
+	add_cooldown()
+	succeed_activate()
 
 // ***************************************
 // *********** Screech

@@ -1459,12 +1459,12 @@
 		if(implanted_embryos >= MAX_LARVA_PREGNANCIES)
 			to_chat(owner, span_warning("This host is already full of young ones."))
 			return FALSE
-	if(!ishuman(A) && !isxeno(A))
-		to_chat(owner, span_warning("This one wouldn't be able to bear a young one."))
-		return FALSE
 	if(owner.do_actions) //can't use if busy
 		return FALSE
-	if(!owner.Adjacent(victim)) //checks if owner next to target
+	if(!owner.Adjacent(A)) //checks if owner next to target
+		return FALSE
+	if(!ishuman(A) && !isxeno(A))
+		to_chat(owner, span_warning("This one wouldn't be able to bear a young one."))
 		return FALSE
 	if(X.on_fire)
 		if(!silent)
