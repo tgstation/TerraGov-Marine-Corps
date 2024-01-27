@@ -61,9 +61,15 @@
 	dropship_bonus = PLATINUM_DROPSHIP_BONUS_AMOUNT
 /obj/machinery/miner/Initialize(mapload)
 	. = ..()
+	GLOB.miner_list += src
 	init_marker()
 	start_processing()
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_on_hijack))
+
+/obj/machinery/miner/Destroy()
+	. = ..()
+	GLOB.miner_list -= src
+	SSminimaps.remove_marker(src)
 
 /**
  * This proc is called during Initialize() and should be used to initially setup the minimap marker of a functional miner.
@@ -247,6 +253,8 @@
 
 /obj/machinery/miner/examine(mob/user)
 	. = ..()
+	if(faction)
+		. += span_info("[src]'s terminal inform you it belons to [faction]")
 	if(!ishuman(user))
 		return
 	if(!miner_upgrade_type)
