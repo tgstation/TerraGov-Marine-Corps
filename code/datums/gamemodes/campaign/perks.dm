@@ -85,7 +85,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	name = "Shield overlock"
 	desc = "Overclocking a shield module beyond manufacturing specifications results in a more powerful shield at that cost of severely reducing the expected lifetime of its sensitive components. \
 	May void the warranty. Also unlocks shield modules for roles that do not already have access to it."
-	ui_icon = "health_1"
+	ui_icon = "overclock"
 	all_jobs = TRUE
 	unlock_cost = 800
 
