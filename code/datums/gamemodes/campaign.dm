@@ -129,7 +129,7 @@
 /datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission)
 	current_mission = new_mission
 	current_mission.load_mission()
-	addtimer(CALLBACK(src, PROC_REF(autobalance_cycle)), 1 MINUTES) //we autobalance teams after a short delay to account for slow respawners
+	addtimer(CALLBACK(src, PROC_REF(autobalance_cycle)), CAMPAIGN_AUTOBALANCE_DELAY) //we autobalance teams after a short delay to account for slow respawners
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 
 ///Checks team balance and tries to correct if possible
