@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - balance: "All xenomorphs with acid now have strong acid during prep (Nuclear War)"
