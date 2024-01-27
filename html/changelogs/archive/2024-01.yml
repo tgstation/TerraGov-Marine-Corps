@@ -254,3 +254,36 @@
   - bugfix: fixed a few click-related issues
   ivanmixo:
   - bugfix: Your ghost keeps bobbing even after you stop orbiting stuff now
+2024-01-24:
+  SomrNetwork:
+  - rscadd: "suitlight to crasher body armor\n/ \U0001F191"
+  XElectricX:
+  - bugfix: Toggle Weather Sound verb has correct message.
+  - bugfix: Toggle Ambience verb stops ambience that is currently playing.
+  - bugfix: Hide statpanel scroll bar when not needed.
+2024-01-25:
+  SomrNetwork:
+  - rscdel: "Flak armor\n/ \U0001F191"
+  ivanmixo:
+  - balance: Xenomorph resting now blocks you from unresting for 2 seconds, instead
+      of it being a 2 second progress bar to get up
+  usnpeepoo:
+  - bugfix: Puppeteers radial menu for blessings now have the correct icon in place
+2024-01-26:
+  DeltaFire15:
+  - bugfix: Various HUD elements now display revivability more accurately.
+  - bugfix: Another case that would randomly DNR you has been fixed.
+  - bugfix: Defib messages & failures should be less likely to display in incorrect
+      situations.
+  - bugfix: Minimap icons should no longer display as DNR for now fixed cases.
+  Xander3359:
+  - bugfix: Spit slash RMB works again
+  ivanmixo:
+  - qol: Xenomorphs can now see their current regenerative power in their status panel
+  - balance: Nanites have been rebalanced to be a sidegrade to BKTT, check the PR
+      for more details
+2024-01-27:
+  SomrNetwork:
+  - rscadd: "flak stats to crasher\n/ \U0001F191"
+  novaepee:
+  - balance: remove TL-172 Defensive Shield from crash and nuclear war

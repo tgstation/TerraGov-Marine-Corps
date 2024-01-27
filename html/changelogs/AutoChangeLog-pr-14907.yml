@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - balance: "Magmoor disks are now sorted into 3 preset sets."
