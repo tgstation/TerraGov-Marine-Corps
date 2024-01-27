@@ -46,13 +46,11 @@
 		balloon_alert(user, "Already probed")
 		return ..()
 
-	if(user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_EXPERT)
-		user.balloon_alert_to_viewers("Tries to find weak point on [target_xeno]")
-		var/fumbling_time = 15 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_MEDICAL)
-		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
-			return ..()
-	user.balloon_alert_to_viewers("Begins cutting [target_xeno]")
-	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
+	if(user.skills.getRating(skill_type) < skill_threshold)
+		to_chat(user, "You need higher [skill_type] skill.")
+		return ..()
+
+	if(user.do_actions || !do_after(user, RESEARCH_DELAY, TRUE, target_xeno, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 		return ..()
 
 	if(HAS_TRAIT(target_xeno, TRAIT_RESEARCHED))
