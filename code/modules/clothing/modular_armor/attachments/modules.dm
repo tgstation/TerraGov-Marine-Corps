@@ -136,8 +136,6 @@
 	item_state = "lorica_armor_a"
 	attachment_layer = null
 	soft_armor = list(MELEE = 10, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 10, ACID = 5)
-	slowdown = 0.3
-	slot = ATTACHMENT_SLOT_MODULE
 
 /obj/item/armor_module/module/tyr_head
 	name = "Tyr Helmet System"
