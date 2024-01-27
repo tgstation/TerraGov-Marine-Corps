@@ -107,6 +107,9 @@
 /obj/item/weapon/gun/rifle/standard_carbine/beginner
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/angledgrip, /obj/item/attachable/compensator)
 
+/obj/item/weapon/gun/rifle/standard_carbine/suppressed
+	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/weapon/gun/grenade_launcher/underslung, /obj/item/attachable/reddot, /obj/item/attachable/suppressor)
+
 //-------------------------------------------------------
 //AR-12 Assault Rifle
 
