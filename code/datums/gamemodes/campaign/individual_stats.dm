@@ -105,6 +105,17 @@
 		if(!istype(item, item_type))
 			continue
 		loadouts[job_type].allow_new_option(item)
+		return
+
+///Adds and equips a loadout item, replacing another
+/datum/individual_stats/proc/replace_option(new_item, removed_item, job_type)
+	for(var/datum/loadout_item/item AS in GLOB.campaign_loadout_items_by_role[job_type])
+		if(!istype(item, new_item))
+			continue
+		loadouts[job_type].unlock_new_option(item)
+		if(loadouts[job_type].remove_option(GLOB.campaign_loadout_item_type_list[removed_item]))
+			loadouts[job_type].attempt_equip_loadout_item(item)
+		return
 
 ///Applies all perks to a mob
 /datum/individual_stats/proc/apply_perks()
