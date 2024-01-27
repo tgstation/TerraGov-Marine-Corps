@@ -151,17 +151,10 @@
 	var/team_one_count = length(GLOB.alive_human_list_faction[factions[1]])
 	var/team_two_count = length(GLOB.alive_human_list_faction[factions[2]])
 
-	var/stronger_faction
-	var/weaker_faction
-
 	if(team_one_count > team_two_count * ratio)
-		stronger_faction = factions[1]
-		weaker_faction = factions[2]
+		return list(factions[1], factions[2])
 	else if(team_one_count < team_two_count * ratio)
-		stronger_faction = factions[2]
-		weaker_faction = factions[1]
-
-	return list(stronger_faction, weaker_faction)
+		return list(factions[2], factions[1])
 
 ///Actually swaps the player to the other team, unless balance has been restored
 /datum/game_mode/hvh/campaign/proc/swap_player_team(mob/living/carbon/human/user, new_faction)
