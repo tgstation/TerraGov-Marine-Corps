@@ -426,7 +426,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/heavy/ap
 	name = "heavy armor-penetrating pistol bullet"
 	hud_state = "pistol_ap"
-	damage = 40
+	damage = 30
 	penetration = 15
 	sundering = 2.5
 
