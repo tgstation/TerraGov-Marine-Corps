@@ -5,6 +5,12 @@
 	item_typepath = /obj/item/storage/pouch/firstaid/som/combat_patrol
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN)
 
+/datum/loadout_item/r_pocket/som_standard_first_aid/standard_improved
+	name = "First aid pouch +"
+	desc = "Standard SOM first-aid pouch. Contains a improved set of medical supplies."
+	item_typepath = /obj/item/storage/pouch/firstaid/som/combat_patrol_leader
+	loadout_item_flags = null
+
 /datum/loadout_item/r_pocket/som_standard_first_aid/improved
 	desc = "Standard SOM first-aid pouch. Contains a improved set of medical supplies."
 	item_typepath = /obj/item/storage/pouch/firstaid/som/combat_patrol_leader
@@ -98,6 +104,12 @@
 	item_typepath = /obj/item/storage/pouch/firstaid/som/combat_patrol
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+
+/datum/loadout_item/l_pocket/som_standard_first_aid/standard_improved
+	name = "First aid pouch +"
+	desc = "Standard SOM first-aid pouch. Contains a improved set of medical supplies."
+	item_typepath = /obj/item/storage/pouch/firstaid/som/combat_patrol_leader
+	loadout_item_flags = null
 
 /datum/loadout_item/l_pocket/som_standard_first_aid/improved
 	desc = "Standard SOM first-aid pouch. Contains a improved set of medical supplies."

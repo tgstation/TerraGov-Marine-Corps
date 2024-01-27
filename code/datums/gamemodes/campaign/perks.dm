@@ -289,11 +289,24 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/medical
 	name = "Advanced medical training"
-	desc = "Faster at applying medical items. Some items may no longer have a penalty delay."
+	desc = "Faster at applying medical items. Some items may no longer have a penalty delay. Unlocks access to improved first aid pouches if not already available."
 	ui_icon = "medical"
 	medical = 1
 	all_jobs = TRUE
-	unlock_cost = 600
+	unlock_cost = 1
+
+/datum/perk/skill_mod/medical/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	if(!istype(owner_stats))
+		return
+	if(owner_stats.faction == FACTION_TERRAGOV)
+		for(var/job_type in owner_stats.loadouts)
+			owner_stats.unlock_loadout_item(/datum/loadout_item/r_pocket/standard_first_aid/standard_improved, job_type, owner, 0)
+			owner_stats.unlock_loadout_item(/datum/loadout_item/l_pocket/standard_first_aid/standard_improved, job_type, owner, 0)
+
+	else if(owner_stats.faction == FACTION_SOM)
+		for(var/job_type in owner_stats.loadouts)
+			owner_stats.unlock_loadout_item(/datum/loadout_item/r_pocket/som_standard_first_aid/standard_improved, job_type, owner, 0)
+			owner_stats.unlock_loadout_item(/datum/loadout_item/l_pocket/som_standard_first_aid/standard_improved, job_type, owner, 0)
 
 /datum/perk/skill_mod/stamina
 	name = "Improved stamina"
