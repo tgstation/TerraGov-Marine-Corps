@@ -126,7 +126,7 @@
 		authenticated = FALSE
 
 	if(href_list["dept"])
-		var/choice = tgui_input_list(usr, "Who do you want to message?", "Fax", list("Ninetails Human Resources", "NTC Intel Division", "NTC Misc"))
+		var/choice = tgui_input_list(usr, "Who do you want to message?", "Fax", list("Ninetails Human Resources", "NTC Intel Division", "NTC Misc", "NTC Misc", "Combat Information Center", "Corpsec Commander", "Corpsec Brig", "NTC Research", "SOM", "CLF"))
 		if(!choice)
 			return
 		selected = choice
@@ -170,13 +170,13 @@
 	department = "Combat Information Center"
 
 /obj/machinery/faxmachine/cmp
-	department = "Brig"
+	department = "Corpsec Commander"
 
 /obj/machinery/faxmachine/brig
-	department = "Brig"
+	department = "Corpsec Brig"
 
 /obj/machinery/faxmachine/research
-	department = "Research"
+	department = "NTC Research"
 
 /obj/machinery/faxmachine/warden //Prison Station
 	department = "Warden"
