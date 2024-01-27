@@ -164,7 +164,6 @@
 		. += image("icon_state" = "nestwall_overlay", "layer" = 6, "dir" = buckleoverlaydir, pixel_x = buckling_x, pixel_y = buckling_y)
 
 /obj/structure/bed/nest/wall/proc/walldir_update(mob/buckling_mob)
-	dir2text()
 	switch(buckleoverlaydir)
 		if(4,3,5)
 			buckleoverlaydir = 4
