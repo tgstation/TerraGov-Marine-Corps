@@ -55,13 +55,14 @@
 	. = list()
 	switch(tier)
 		if(XENO_TIER_ZERO)
-			return GLOB.xeno_types_tier_one
+			if(!istype(xeno_caste, /datum/xeno_caste/hivemind))
+				return GLOB.xeno_types_tier_one
 		if(XENO_TIER_ONE)
-			return GLOB.xeno_types_tier_two + GLOB.xeno_types_tier_four
+			return GLOB.xeno_types_tier_two + GLOB.xeno_types_tier_four + list(/mob/living/carbon/xenomorph/hivemind)
 		if(XENO_TIER_TWO)
-			return GLOB.xeno_types_tier_three + GLOB.xeno_types_tier_four
+			return GLOB.xeno_types_tier_three + GLOB.xeno_types_tier_four + list(/mob/living/carbon/xenomorph/hivemind)
 		if(XENO_TIER_THREE)
-			return GLOB.xeno_types_tier_four
+			return GLOB.xeno_types_tier_four + list(/mob/living/carbon/xenomorph/hivemind)
 		if(XENO_TIER_FOUR)
 			if(istype(xeno_caste, /datum/xeno_caste/shrike))
 				return list(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/king)
