@@ -1,7 +1,7 @@
 ///Scaling multiplier for larva respawn rate based on round time
 #define XENO_SPAWN_TIME_SCALING_MAX_AMOUNT 2
 ///Time at which scaling multiplier hits its max
-#define XENO_SPAWN_TIME_SCALING_MAX_TIME 2.5 HOURS
+#define XENO_SPAWN_TIME_SCALING_MAX_TIME 3 HOURS
 
 SUBSYSTEM_DEF(silo)
 	name = "Silo"
