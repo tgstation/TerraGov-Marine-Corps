@@ -10,6 +10,47 @@
 
 	GLOB.evo_panel.ui_interact(src)
 
+/mob/living/carbon/xenomorph/verb/Casteswap()
+	set name = "Caste Swap"
+	set desc = "Change into another caste in the same tier."
+	set category = "Alien"
+
+	if(CASTESWAP_CHECK(src))
+		to_chat(src, span_warning("You cannot use caste swap at the moment! Wait until your timer is up."))
+		return
+
+	var/swap_to_pick_from
+	switch(tier)
+		if(XENO_TIER_ZERO, XENO_TIER_FOUR)
+			to_chat(src, span_warning("Your tier does not allow you to Caste Swap."))
+			return
+		if(XENO_TIER_ONE)
+			swap_to_pick_from = GLOB.xeno_types_tier_one
+		if(XENO_TIER_TWO)
+			swap_to_pick_from = GLOB.xeno_types_tier_two
+		if(XENO_TIER_THREE)
+			swap_to_pick_from = GLOB.xeno_types_tier_three
+
+	var/list/swap_to_pick = list()
+	for(var/type in swap_to_pick_from)
+		var/datum/xeno_caste/available_caste = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
+		swap_to_pick += available_caste.caste_name
+	var/swappick = tgui_input_list(src, "We are changing into another caste! It is time to choose a caste.", null, swap_to_pick)
+	if(!swappick)
+		return
+
+	var/swaptype
+	for(var/type in swap_to_pick_from)
+		var/datum/xeno_caste/available_caste = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
+		if(swappick != available_caste.caste_name)
+			continue
+		swaptype = type
+		break
+
+	GLOB.key_to_time_of_caste_swap[src.key] = world.time
+	do_evolve(swaptype, swappick, TRUE)
+
+
 /mob/living/carbon/xenomorph/verb/regress()
 	set name = "Regress"
 	set desc = "Regress into a lower form."

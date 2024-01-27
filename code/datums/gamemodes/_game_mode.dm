@@ -30,6 +30,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/respawn_time = 30 MINUTES
 	//The respawn time for Xenomorphs
 	var/xenorespawn_time = 5 MINUTES
+	//Casteswap timer for Xenomorphs
+	var/casteswap_time = 15 MINUTES
 	///How many points do you need to win in a point gamemode
 	var/win_points_needed = 0
 	///The points per faction, assoc list

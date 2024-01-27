@@ -122,6 +122,12 @@
 
 	. += "Regeneration power: [max(regen_power * 100, 0)]%"
 
+	var/casteswap_value = ((GLOB.key_to_time_of_caste_swap[src.key] ? GLOB.key_to_time_of_caste_swap[src.key] : -INFINITY)  + SSticker.mode?.casteswap_time - world.time) * 0.1
+	if(casteswap_value <= 0)
+		. += "Caste Swap Timer: READY"
+	else
+		. += "Caste Swap Timer: [(casteswap_value / 60) % 60]:[add_leading(num2text(casteswap_value % 60), 2, "0")]"
+
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 	var/msg_holder = ""
 	if(frenzy_aura)
