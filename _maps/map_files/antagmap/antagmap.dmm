@@ -3881,6 +3881,15 @@
 /obj/effect/decal/cleanable/blood/splatter/cum,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"FL" = (
+/obj/docking_port/stationary/crashmode{
+	name = "SOM Crashland point";
+	id = "somcrashland"
+	},
+/turf/open/floor/plating,
+/area/mainship/groundhq/som/squads/req{
+	name = "SOM Requisitions"
+	})
 "FT" = (
 /obj/item/tool/pen/blue,
 /obj/structure/table/fancywoodentable,
@@ -5329,6 +5338,13 @@
 /area/canora_desert/surface/building/som_engineering{
 	outside = 0
 	})
+"Rk" = (
+/obj/docking_port/stationary/crashmode{
+	name = "CLF Crashland point";
+	id = "clfcrashland"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway)
 "Rl" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/pod/old/syndicate,
@@ -7338,7 +7354,7 @@ Xj
 Wa
 Wa
 Wa
-Wa
+FL
 Wa
 Wa
 Wa
@@ -8618,7 +8634,7 @@ gW
 ai
 gW
 gW
-gW
+Rk
 Ad
 gW
 gW
