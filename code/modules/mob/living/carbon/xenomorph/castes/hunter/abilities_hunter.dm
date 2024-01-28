@@ -327,17 +327,22 @@
 	if(living_target.stat)
 		return
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	if(ishuman(living_target) && (living_target.dir in reverse_nearby_direction(living_target.dir)))
+	if(ishuman(living_target) && (angle_to_dir(Get_Angle(xeno_owner.throw_source, living_target)) in reverse_nearby_direction(living_target.dir)))
 		var/mob/living/carbon/human/human_target = living_target
 		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
 			xeno_owner.Paralyze(XENO_POUNCE_SHIELD_STUN_DURATION)
 			xeno_owner.set_throwing(FALSE)
 			return COMPONENT_KEEP_THROWING
-	playsound(living_target.loc, 'sound/voice/alien_pounce.ogg', 25, TRUE)
+	trigger_pounce_effect(living_target)
+	pounce_complete()
+
+///Triggers the effect of a successful pounce on the target.
+/datum/action/ability/activable/xeno/pounce/proc/trigger_pounce_effect(mob/living/living_target)
+	playsound(get_turf(living_target), 'sound/voice/alien_pounce.ogg', 25, TRUE)
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.Immobilize(XENO_POUNCE_STANDBY_DURATION)
 	xeno_owner.forceMove(get_turf(living_target))
 	living_target.Knockdown(XENO_POUNCE_STUN_DURATION)
-	pounce_complete()
 
 /datum/action/ability/activable/xeno/pounce/proc/pounce_complete()
 	SIGNAL_HANDLER

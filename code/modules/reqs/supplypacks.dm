@@ -39,7 +39,7 @@ OPERATIONS
 
 /datum/supply_packs/operations/beacons_supply
 	name = "Supply beacon"
-	contains = list(/obj/item/beacon/supply_beacon)
+	contains = list(/obj/item/supply_beacon)
 	cost = 100
 
 /datum/supply_packs/operations/fulton_extraction_pack
@@ -989,11 +989,6 @@ ARMOR
 	)
 	cost = 120
 	available_against_xeno_only = TRUE
-
-/datum/supply_packs/armor/marine_shield
-	name = "TL-172 Defensive Shield"
-	contains = list(/obj/item/weapon/shield/riot/marine)
-	cost = 100
 
 /datum/supply_packs/armor/marine_shield/deployable
 	name = "TL-182 Deployable Shield"

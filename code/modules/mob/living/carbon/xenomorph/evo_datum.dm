@@ -33,7 +33,7 @@
 			"cooldown" = (initial(xeno_ability.cooldown_duration) / 10)
 		)
 	.["evolves_to"] = list()
-	for(var/evolves_into in xeno.xeno_caste.evolves_to)
+	for(var/evolves_into in xeno.get_evolution_options())
 		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[evolves_into][XENO_UPGRADE_BASETYPE]
 		var/list/caste_data = list(
 			"type_path" = caste.caste_type_path,

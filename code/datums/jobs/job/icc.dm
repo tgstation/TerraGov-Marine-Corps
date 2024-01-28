@@ -130,6 +130,7 @@
 	outfits = list(
 		/datum/outfit/job/icc/guard/coilgun,
 		/datum/outfit/job/icc/guard/icc_autoshotgun,
+		/datum/outfit/job/icc/guard/icc_bagmg,
 	)
 
 /datum/outfit/job/icc/guard
@@ -210,6 +211,24 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_autoshotgun/frag, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_autoshotgun/frag, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_autoshotgun/frag, SLOT_IN_L_POUCH)
+
+/datum/outfit/job/icc/guard/icc_bagmg
+	wear_suit = /obj/item/clothing/suit/storage/marine/icc/guard/heavy
+	head = /obj/item/clothing/head/helmet/marine/icc/guard/heavy
+	suit_store = /obj/item/weapon/gun/rifle/icc_coilgun
+	back = /obj/item/storage/holster/icc_mg/full
+	belt = /obj/item/ammo_magazine/icc_mg/belt
+	l_store = /obj/item/storage/pouch/magazine/large/icc
+	r_store = /obj/item/storage/pouch/magazine/large/icc
+
+/datum/outfit/job/icc/guard/icc_bagmg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_coilgun, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_coilgun, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_coilgun, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_coilgun, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_coilgun, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_coilgun, SLOT_IN_R_POUCH)
 
 
 //ICC Medic
