@@ -55,7 +55,7 @@
 
 					if(NUTRITION_HUNGRY to NUTRITION_OVERFED)
 						adjust_nutrition(-5)
-						adjust_blood_volume(-5) // regenerate blood slowly.
+						adjust_blood_volume(0.5) // regenerate blood slowly.
 
 					if(0 to NUTRITION_HUNGRY)
 						adjust_nutrition(-1)
