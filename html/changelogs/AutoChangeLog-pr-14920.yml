@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "SOM armour no longer has superior bullet armour compared to marines. Still retains a slight weakness to lasers"
+  - bugfix: "Lorica armour has equal slowdown to tyr 2"
