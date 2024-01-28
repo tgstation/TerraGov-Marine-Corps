@@ -896,7 +896,7 @@
 			/obj/item/storage/pill_bottle/kelotane = -1,
 			/obj/item/storage/pill_bottle/tramadol = -1,
 			/obj/item/storage/pill_bottle/tricordrazine = -1,
-			/obj/item/storage/pill_bottle/bktt = -1
+			/obj/item/storage/pill_bottle/bktt = -1,
 			/obj/item/storage/pill_bottle/dylovene = -1,
 			/obj/item/storage/pill_bottle/paracetamol = -1,
 			/obj/item/storage/pill_bottle/isotonic = -1,
@@ -942,7 +942,7 @@
 			/obj/item/storage/pill_bottle/kelotane = -1,
 			/obj/item/storage/pill_bottle/tramadol = -1,
 			/obj/item/storage/pill_bottle/tricordrazine = -1,
-			/obj/item/storage/pill_bottle/bktt = -1
+			/obj/item/storage/pill_bottle/bktt = -1,
 			/obj/item/storage/pill_bottle/dylovene = -1,
 			/obj/item/storage/pill_bottle/paracetamol = -1,
 			/obj/item/storage/pill_bottle/isotonic = -1,
