@@ -6,7 +6,6 @@
 #define ABILITY_USE_CRESTED (1 << 5) // ignore being in crest defense
 #define ABILITY_USE_NOTTURF (1 << 6) // ignore not being on a turf (like in a vent)
 #define ABILITY_USE_BUSY (1 << 7) // ignore being in a do_after or similar
-#define ABILITY_USE_AGILITY (1 << 8) // ignore agility mode
 #define ABILITY_TARGET_SELF (1 << 9) // allow self-targetting
 #define ABILITY_IGNORE_PLASMA (1 << 10) // ignore plasma cost
 #define ABILITY_USE_CLOSEDTURF (1 << 11) // can be used while being on a closed turf.

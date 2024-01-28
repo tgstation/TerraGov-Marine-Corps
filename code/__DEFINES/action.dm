@@ -30,6 +30,8 @@
 #define VREF_MUTABLE_EARTH_PILLAR "VREF_EARTH_PILLAR"
 // extra reference for savage's cooldown
 #define VREF_MUTABLE_SAVAGE_COOLDOWN "VREF_SAVAGE_COOLDOWN"
+// extra define for jab charges
+#define VREF_MUTABLE_JAB "VREF_JAB"
 
 
 /// Actions that toggle on click/trigger

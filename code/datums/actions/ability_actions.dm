@@ -165,15 +165,6 @@
 /datum/action/ability/proc/on_xeno_upgrade()
 	return
 
-///Adds an outline around the ability button
-/datum/action/ability/proc/add_empowered_frame()
-	button.add_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
-
-///Removes an outline around the ability button
-/datum/action/ability/proc/remove_empowered_frame()
-	button.cut_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
-
-
 /datum/action/ability/activable
 	action_type = ACTION_SELECT
 
