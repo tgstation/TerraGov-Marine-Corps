@@ -1,0 +1,4 @@
+author: "Aporhtonoma"
+delete-after: True
+changes:
+  - balance: "squad order skill require from 3 to 2"
