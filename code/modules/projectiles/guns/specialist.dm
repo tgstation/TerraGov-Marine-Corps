@@ -737,7 +737,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	gun_user?.record_war_crime()
 
 /obj/item/weapon/gun/launcher/rocket/sadar/valhalla
-	flags_item = NONE
+	flags_item = TWOHANDED
 
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
