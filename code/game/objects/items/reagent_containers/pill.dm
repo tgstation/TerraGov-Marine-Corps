@@ -242,6 +242,11 @@
 	list_reagents = list(/datum/reagent/hypervene = 3)
 	pill_id = 14
 
+/obj/item/reagent_containers/pill/bktt
+	pill_desc = "A BKTT pill. A combination of medications used to treat multiple types of damage at once."
+	list_reagents = list(/datum/reagent/medicine/bicaridine = 5, /datum/reagent/medicine/kelotane = 5, /datum/reagent/medicine/tramadol = 5, /datum/reagent/medicine/tricordrazine = 5)
+	pill_id = 22
+
 /obj/item/reagent_containers/pill/ultrazine
 	//pill_desc = "An ultrazine pill. A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
 	list_reagents = list(/datum/reagent/medicine/ultrazine = 5)

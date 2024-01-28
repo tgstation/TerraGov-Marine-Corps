@@ -453,6 +453,14 @@
 	greyscale_colors = "#F7A151#ffffff" //orange like carrots
 	description_overlay = "Im"
 
+/obj/item/storage/pill_bottle/bktt
+	name = "\improper BKTT pill bottle"
+	desc = "Contains pills that heal multiple damage types at once."
+	icon_state = "pill_canister"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/bktt
+	greyscale_colors = "#8d634d#ffffff"
+	description_overlay = "Bk"
+
 /obj/item/storage/pill_bottle/russian_red
 	name = "\improper Russian Red pill bottle"
 	desc = "Contains pills that heal all damage rapidly at the cost of small amounts of unhealable damage."
