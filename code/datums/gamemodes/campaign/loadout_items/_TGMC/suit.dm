@@ -38,18 +38,36 @@
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/light/shield
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
+/datum/loadout_item/suit_slot/light_shield/overclocked
+	desc = "Light armor with a Svallin shield module. Provides excellent mobility but lower protection. The shield module has been overclocked for improved performance."
+	item_typepath = /obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	loadout_item_flags = null
+
 /datum/loadout_item/suit_slot/medium_shield
 	name = "Medium shielded armor"
 	desc = "Medium armor with a Svallin shield module. Provides balanced mobility and protection."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/shield
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
+/datum/loadout_item/suit_slot/medium_shield/overclocked
+	desc = "Medium armor with a Svallin shield module. Provides balanced mobility and protection."
+	item_typepath = /obj/item/clothing/suit/modular/xenonauten/shield_overclocked
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	loadout_item_flags = null
+
 /datum/loadout_item/suit_slot/heavy_shield
 	name = "Heavy shielded armor"
-	desc = "Heavy armor with a Svallin shield module. Provides excellent protection but lower mobility."
+	desc = "Heavy armor with a Svallin shield module. Provides excellent protection but lower mobility. The shield module has been overclocked for improved performance."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/shield
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+
+/datum/loadout_item/suit_slot/heavy_shield/overclocked
+	desc = "Heavy armor with a Svallin shield module. Provides excellent protection but lower mobility. The shield module has been overclocked for improved performance."
+	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/shield_overclocked
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	loadout_item_flags = null
 
 /datum/loadout_item/suit_slot/heavy_surt
 	name = "Heavy Surt armor"

@@ -1,0 +1,6 @@
+author: "Neocloudy"
+delete-after: True
+changes:
+  - rscadd: "chat styles from tgstation"
+  - rscadd: "brighter channel, ooc and deadchat colors on dark mode"
+  - rscadd: "announcement blocks/dividers with striped effects, used for priority/minor announcements and sending command orders"
