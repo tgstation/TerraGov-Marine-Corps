@@ -1,5 +1,5 @@
 ///Number of victory points before a faction wins a campaign
-#define CAMPAIGN_MAX_VICTORY_POINTS 12
+#define CAMPAIGN_MAX_VICTORY_POINTS 7
 
 ///Respawn time in campaign mode
 #define CAMPAIGN_RESPAWN_TIME 2 MINUTES
