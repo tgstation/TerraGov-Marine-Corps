@@ -1025,8 +1025,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(new_xeno)].")
 
-	GLOB.key_to_time_of_caste_swap[xeno_candidate.key] = world.time //set caste_swap timer on joining from observer
-
 	xeno_candidate.mob.mind.transfer_to(new_xeno, TRUE)
 	new_xeno.playsound_local(new_xeno, 'sound/effects/xeno_newlarva.ogg')
 	to_chat(new_xeno, span_xenoannounce("We are a xenomorph larva awakened from slumber!"))
