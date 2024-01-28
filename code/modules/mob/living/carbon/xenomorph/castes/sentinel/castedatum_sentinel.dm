@@ -27,8 +27,6 @@
 	evolution_threshold = 100
 	upgrade_threshold = TIER_ONE_THRESHOLD
 
-	evolves_to = list(/mob/living/carbon/xenomorph/spitter)
-
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_RIDE_CRUSHER

@@ -51,7 +51,6 @@
 
 
 /obj/effect/acid_hole/specialclick(mob/living/carbon/user)
-	. = ..()
 	if(!isxeno(user))
 		return
 	if(!user.CanReach(src))

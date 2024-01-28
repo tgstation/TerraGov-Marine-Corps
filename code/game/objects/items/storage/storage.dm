@@ -748,7 +748,7 @@
 
 ///BubbleWrap - A box can be folded up to make card
 /obj/item/storage/attack_self(mob/user)
-
+	. = ..()
 	//Clicking on itself will empty it, if it has the verb to do that.
 
 	if(allow_quick_empty)
@@ -854,7 +854,7 @@
 		return
 	attempt_draw_object(user)
 
-/obj/item/storage/specialclick(mob/living/carbon/user)
+/obj/item/storage/CtrlClick(mob/living/user)
 	. = ..()
 	attempt_draw_object(user, TRUE)
 
