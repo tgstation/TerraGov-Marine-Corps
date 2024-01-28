@@ -116,7 +116,6 @@
 /// Handles anything that would happen when a target is thrown into an atom using an ability.
 /datum/action/ability/activable/xeno/warrior/proc/thrown_into(datum/source, atom/hit_atom, impact_speed)
 	SIGNAL_HANDLER
-	message_admins("real?")
 	UnregisterSignal(source, COMSIG_MOVABLE_IMPACT)
 	var/mob/living/living_target = source
 	INVOKE_ASYNC(living_target, TYPE_PROC_REF(/mob, emote), "pain")
@@ -188,7 +187,7 @@
 /datum/action/ability/activable/xeno/warrior/lunge
 	name = "Lunge"
 	action_icon_state = "lunge"
-	ability_cost = 25
+	ability_cost = 30
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LUNGE,
@@ -292,7 +291,7 @@
 /datum/action/ability/activable/xeno/warrior/fling
 	name = "Fling"
 	action_icon_state = "fling"
-	ability_cost = 15
+	ability_cost = 20
 	cooldown_duration = WARRIOR_FLING_TOSS_COOLDOWN
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLING,
@@ -375,7 +374,7 @@
 /datum/action/ability/activable/xeno/warrior/grapple_toss
 	name = "Grapple Toss"
 	action_icon_state = "grapple_toss"
-	ability_cost = 15
+	ability_cost = 20
 	cooldown_duration = WARRIOR_FLING_TOSS_COOLDOWN
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAPPLE_TOSS,
@@ -438,13 +437,13 @@
 #define WARRIOR_PUNCH_EMPOWER_MULTIPLIER 1.5
 #define WARRIOR_PUNCH_GRAPPLED_DAMAGE_MULTIPLIER 1.5
 #define WARRIOR_PUNCH_GRAPPLED_DEBUFF_MULTIPLIER 1.5
-#define WARRIOR_PUNCH_GRAPPLED_PARALYZE 0.4 SECONDS
+#define WARRIOR_PUNCH_GRAPPLED_PARALYZE 0.3 SECONDS
 
 /datum/action/ability/activable/xeno/warrior/punch
 	name = "Punch"
 	action_icon_state = "punch"
 	desc = "Strike a target, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
-	ability_cost = 10
+	ability_cost = 15
 	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUNCH,
@@ -635,7 +634,7 @@
 // ***************************************
 // *********** Jab
 // ***************************************
-#define WARRIOR_JAB_DAMAGE_MULTIPLIER 0.3
+#define WARRIOR_JAB_DAMAGE_MULTIPLIER 0.25
 #define WARRIOR_JAB_BLIND 3
 #define WARRIOR_JAB_BLUR 6
 #define WARRIOR_JAB_CONFUSION_DURATION 3 SECONDS
@@ -644,8 +643,8 @@
 	name = "Flurry"
 	action_icon_state = "flurry"
 	desc = "Strike at your target with blinding speed."
-	ability_cost = 6.5
-	cooldown_duration = 6 SECONDS
+	ability_cost = 10
+	cooldown_duration = 7 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_JAB,
 	)
