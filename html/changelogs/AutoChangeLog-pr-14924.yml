@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Campaign: Medical skill perk now gives access to improved first aid pouches for roles that don't already have it"
+  - rscadd: "New shield overclock perk for improved shield module performance and availability"
