@@ -3,7 +3,7 @@
 //PUBLIC -  call these wherever you want
 
 
-/mob/proc/throw_alert(category, type, severity, obj/new_master, override = FALSE)
+/mob/proc/throw_alert(category, type, severity, obj/new_master, override = FALSE, mob/initiator)
 
 /* Proc to create or update an alert. Returns the alert if the alert is new or updated, 0 if it was thrown already
 category is a text string. Each mob may only have one alert per category; the previous one will be replaced
@@ -13,6 +13,8 @@ For example, high pressure's icon_state is "highpressure" and can be serverity 1
 new_master is optional and sets the alert's icon state to "template" in the ui_style icons with the master as an overlay.
 Clicks are forwarded to master
 Override makes it so the alert is not replaced until cleared by a clear_alert with clear_override, and it's used for hallucinations.
+
+mob/initiator is optional and is used for alerts that are thrown by other mobs, such as high-fiving
 */
 
 	if(!category || QDELETED(src))
@@ -67,6 +69,14 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	if(thealert.timeout)
 		addtimer(CALLBACK(src, PROC_REF(alert_timeout), thealert, category), thealert.timeout)
 		thealert.timeout = world.time + thealert.timeout - world.tick_lag
+
+	//Only matters for alerts that are thrown by other mobs
+	if(initiator)
+		var/atom/movable/screen/alert/interaction/interaction_alert = thealert
+		interaction_alert.initiating_mob = initiator
+		interaction_alert.register_mob_movement()
+		return interaction_alert
+
 	return thealert
 
 /mob/proc/alert_timeout(atom/movable/screen/alert/alert, category)
@@ -241,3 +251,187 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	name = "Mech Damaged"
 	desc = "Mech integrity is low."
 	icon_state = "low_mech_integrity"
+
+//Mob interactions
+/atom/movable/screen/alert/interaction
+	name = "high five"
+	desc = "You gonna leave them hanging?"
+	icon_state = "drunk2"	//It looks jolly
+	///Sound filed played when interaction is successful
+	var/interaction_sound = 'sound/effects/snap.ogg'
+	///The mob that initiated the alert, if one exists
+	var/mob/initiating_mob
+
+/atom/movable/screen/alert/interaction/proc/register_mob_movement()
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(interactees_moved))
+	RegisterSignal(initiating_mob, COMSIG_MOVABLE_MOVED, PROC_REF(interactees_moved))
+
+/atom/movable/screen/alert/interaction/proc/interactees_moved()
+	if(!owner.Adjacent(initiating_mob))
+		end_interaction(FALSE)
+
+/atom/movable/screen/alert/interaction/proc/end_interaction(success = TRUE)
+	if(!success)
+		owner.visible_message(failure_message())
+	UnregisterSignal(initiating_mob, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	owner.clear_alert(ALERT_INTERACTION)
+
+/atom/movable/screen/alert/interaction/Click()
+	if(usr != owner || !can_interact(owner))
+		end_interaction(FALSE)
+		return FALSE
+
+	return action()
+
+///Called when the interaction is accepted
+/atom/movable/screen/alert/interaction/proc/action()
+	interaction_animation()
+
+	owner.visible_message(success_message())
+	playsound(owner, interaction_sound, 50, TRUE)
+	end_interaction()
+
+///Seperate proc meant to be overriden for unique animations
+/atom/movable/screen/alert/interaction/proc/interaction_animation()
+	owner.face_atom(initiating_mob)
+	initiating_mob.face_atom(owner)
+
+	//Calculate the distances between the two mobs
+	var/x_distance = owner.x - initiating_mob.x
+	var/y_distance = owner.y - initiating_mob.y
+
+	animate(owner, pixel_x = owner.pixel_x - x_distance * 8, pixel_y = owner.pixel_y - y_distance * 8, time = 0.5 SECONDS, easing = BACK_EASING, flags = ANIMATION_PARALLEL)
+	animate(pixel_x = initial(owner.pixel_x), pixel_y = initial(owner.pixel_y), time = 0.1 SECONDS)
+	animate(initiating_mob, pixel_x = initiating_mob.pixel_x + x_distance * 8, pixel_y = initiating_mob.pixel_y + y_distance * 8, time = 0.5 SECONDS, easing = BACK_EASING, flags = ANIMATION_PARALLEL)
+	animate(pixel_x = initial(initiating_mob.pixel_x), pixel_y = initial(initiating_mob.pixel_y), time = 0.1 SECONDS)
+
+///Returns a string for successful interactions
+/atom/movable/screen/alert/interaction/proc/success_message()
+	return "[owner] high fives [initiating_mob]!"
+
+///Returns a string for unsuccessful interactions
+/atom/movable/screen/alert/interaction/proc/failure_message()
+	return "[owner] left [initiating_mob] hanging in the air..."
+
+/atom/movable/screen/alert/interaction/fist_bump
+	name = "fist bump"
+	desc = "Bro."
+	interaction_sound = 'sound/weapons/throwtap.ogg'
+
+//Benos turn around and slap with their tail instead of a fist bump
+/atom/movable/screen/alert/interaction/fist_bump/interaction_animation()
+	owner.face_atom(initiating_mob)
+	initiating_mob.face_atom(owner)
+
+	var/x_distance = owner.x - initiating_mob.x
+	var/y_distance = owner.y - initiating_mob.y
+
+	if(isxeno(owner))
+		animate(owner, pixel_x = owner.pixel_x - x_distance * 8, pixel_y = owner.pixel_y - y_distance * 8, dir = initiating_mob.dir,
+				time = 0.5 SECONDS, easing = BACK_EASING, flags = ANIMATION_PARALLEL)
+		owner.face_atom(initiating_mob)
+	else
+		animate(owner, pixel_x = owner.pixel_x - x_distance * 8, pixel_y = owner.pixel_y - y_distance * 8,
+				time = 0.5 SECONDS, easing = BACK_EASING, flags = ANIMATION_PARALLEL)
+	animate(pixel_x = initial(owner.pixel_x), pixel_y = initial(owner.pixel_y), time = 0.1 SECONDS)
+
+	if(isxeno(initiating_mob))
+		animate(initiating_mob, pixel_x = initiating_mob.pixel_x + x_distance * 8, pixel_y = initiating_mob.pixel_y + y_distance * 8, dir = owner.dir,
+				time = 0.5 SECONDS, easing = BACK_EASING, flags = ANIMATION_PARALLEL)
+		initiating_mob.face_atom(owner)
+	else
+		animate(initiating_mob, pixel_x = initiating_mob.pixel_x + x_distance * 8, pixel_y = initiating_mob.pixel_y + y_distance * 8,
+				time = 0.5 SECONDS, easing = BACK_EASING, flags = ANIMATION_PARALLEL)
+	animate(pixel_x = initial(initiating_mob.pixel_x), pixel_y = initial(initiating_mob.pixel_y), time = 0.1 SECONDS)
+
+//We support interspecies bumping of fists and tails!
+/atom/movable/screen/alert/interaction/fist_bump/success_message()
+	var/owner_xeno = isxeno(owner)
+	var/initiating_mob_xeno = isxeno(initiating_mob)
+	if(owner_xeno && initiating_mob_xeno)
+		return "[owner] and [initiating_mob] slap tails together!"
+	if(owner_xeno)
+		return "[owner] slaps [initiating_mob]'s fist!"
+	if(initiating_mob_xeno)
+		return "[owner] fist bumps [initiating_mob]'s tail!"
+	return "[owner] fist bumps [initiating_mob]!"
+
+/atom/movable/screen/alert/interaction/fist_bump/failure_message()
+	return "[owner] left [initiating_mob] hanging. Not cool!"
+
+/atom/movable/screen/alert/interaction/headbutt
+	name = "head bump"
+	desc = "Touch skulls."
+	interaction_sound = 'sound/weapons/throwtap.ogg'
+
+/atom/movable/screen/alert/interaction/headbutt/interaction_animation()
+	owner.face_atom(initiating_mob)
+	initiating_mob.face_atom(owner)
+
+	var/x_distance = owner.x - initiating_mob.x
+	var/y_distance = owner.y - initiating_mob.y
+
+	var/matrix/owner_matrix = owner.transform
+	var/matrix/initiating_mob_matrix = initiating_mob.transform
+	var/rotation_angle
+	//This was so much pain, maintainers forgive me
+	if(owner.dir & (EAST | WEST))
+		if(isxenorunner(owner))	//Rounies get special upwards headbutts
+			rotation_angle = owner.dir & EAST ? -15 : 15
+		else
+			rotation_angle = owner.dir & EAST ? 15 : -15
+
+		//The animation if the mobs face east/west is to rotate their heads together
+		animate(owner, pixel_x = owner.pixel_x - x_distance * 8, pixel_y = owner.pixel_y - y_distance * 8,
+				transform = owner_matrix.Turn(rotation_angle), time = 0.5 SECONDS, easing = BACK_EASING, flags = ANIMATION_PARALLEL)
+		animate(pixel_x = initial(owner.pixel_x), pixel_y = initial(owner.pixel_y),
+				transform = owner_matrix.Turn(-rotation_angle), time = 0.1 SECONDS)
+	else
+		//If facing north or south, basically the same animation as the high five but move even closer
+		animate(owner, pixel_x = owner.pixel_x - x_distance * 8, pixel_y = owner.pixel_y - y_distance * 16,
+				time = 0.5 SECONDS, easing = BACK_EASING, flags = ANIMATION_PARALLEL)
+		animate(pixel_x = initial(owner.pixel_x), pixel_y = initial(owner.pixel_y), time = 0.1 SECONDS)
+
+	if(initiating_mob.dir & (EAST | WEST))
+		if(isxenorunner(initiating_mob))
+			rotation_angle = initiating_mob.dir & EAST ? -15 : 15
+		else
+			rotation_angle = initiating_mob.dir & EAST ? 15 : -15
+
+		animate(initiating_mob, pixel_x = initiating_mob.pixel_x + x_distance * 8, pixel_y = initiating_mob.pixel_y + y_distance * 8,
+				transform = initiating_mob_matrix.Turn(rotation_angle), time = 0.5 SECONDS, easing = BACK_EASING, flags = ANIMATION_PARALLEL)
+		animate(pixel_x = initial(initiating_mob.pixel_x), pixel_y = initial(initiating_mob.pixel_y),
+				transform = initiating_mob_matrix.Turn(-rotation_angle), time = 0.1 SECONDS)
+	else
+		animate(initiating_mob, pixel_x = initiating_mob.pixel_x + x_distance * 8, pixel_y = initiating_mob.pixel_y + y_distance * 16,
+				time = 0.5 SECONDS, easing = BACK_EASING, flags = ANIMATION_PARALLEL)
+		animate(pixel_x = initial(initiating_mob.pixel_x), pixel_y = initial(initiating_mob.pixel_y), time = 0.1 SECONDS)
+
+/atom/movable/screen/alert/interaction/headbutt/success_message()
+	return "[owner] and [initiating_mob] bonk heads together!!"
+
+/atom/movable/screen/alert/interaction/headbutt/failure_message()
+	return "[owner] did not headbutt [initiating_mob]..."
+
+///All in one function to begin interactions
+/mob/proc/interaction_emote(mob/initiator, mob/target)
+	if(can_interact(target))
+		var/target_zone = ran_zone(initiator.zone_selected)
+		if(target_zone == BODY_ZONE_L_ARM || target_zone == BODY_ZONE_R_ARM)
+			if(isxeno(target) && isxeno(initiator))	//Benos don't high five each other, they slap tails!
+				return target.throw_alert(ALERT_INTERACTION, /atom/movable/screen/alert/interaction/fist_bump, initiator = initiator)
+			return target.throw_alert(ALERT_INTERACTION, /atom/movable/screen/alert/interaction, initiator = initiator)
+		if(target_zone == BODY_ZONE_PRECISE_L_HAND || target_zone == BODY_ZONE_PRECISE_R_HAND)
+			return target.throw_alert(ALERT_INTERACTION, /atom/movable/screen/alert/interaction/fist_bump, initiator = initiator)
+		if(target_zone == BODY_ZONE_HEAD)
+			return target.throw_alert(ALERT_INTERACTION, /atom/movable/screen/alert/interaction/headbutt, initiator = initiator)
+
+/*
+If anyone wants to add more interactions, here is an easy test item to use, just be sure to comment out any can_interact checks
+/obj/item/test/attack_self(mob/user)
+	var/mob/target = tgui_input_list(user, "Select a target", "Select a target", GLOB.alive_living_list)
+	if(!target)
+		return
+	user.throw_alert(ALERT_INTERACTION, /atom/movable/screen/alert/interaction, initiator = target)
+*/

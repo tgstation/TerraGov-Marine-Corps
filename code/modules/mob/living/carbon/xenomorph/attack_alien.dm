@@ -203,6 +203,10 @@
 			if(on_fire)
 				X.visible_message(span_danger("[X] stares at [src]."), span_notice("We stare at the roasting [src], toasty."), null, 5)
 				return FALSE
+
+			if(interaction_emote(X, src))
+				return TRUE
+
 			X.visible_message(span_notice("\The [X] caresses [src] with its scythe-like arm."), \
 			span_notice("We caress [src] with our scythe-like arm."), null, 5)
 			return FALSE
