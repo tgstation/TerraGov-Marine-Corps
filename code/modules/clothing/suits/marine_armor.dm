@@ -133,16 +133,16 @@
 	AddComponent(/datum/component/suit_autodoc)
 	AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
 	AddElement(/datum/element/limb_support, supporting_limbs)
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(flags_item & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b18_in_use += src
 
 /obj/item/clothing/suit/storage/marine/specialist/Destroy()
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(flags_item & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b18_in_use -= src
 	return ..()
 
 /obj/item/clothing/suit/storage/marine/specialist/valhalla
-	obj_flags = NONE
+	flags_item = NONE
 
 /obj/item/clothing/suit/storage/marine/B17
 	name = "\improper B17 defensive armor"
@@ -155,16 +155,16 @@
 
 /obj/item/clothing/suit/storage/marine/B17/Initialize(mapload, ...)
 	. = ..()
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(flags_item & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b17_in_use += src
 
 /obj/item/clothing/suit/storage/marine/B17/Destroy()
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(flags_item & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b17_in_use -= src
 	return ..()
 
 /obj/item/clothing/suit/storage/marine/B17/valhalla
-	obj_flags = NONE
+	flags_item = NONE
 
 ////////////////////////////////
 
@@ -690,6 +690,12 @@
 	desc = "A piece of ICCGF body armor, worn by specialized infantry. Most Infantry actions in the ICC forces are done by adhoc personnel due to constant shortages of manpower, however most real Infantry divisions are of high quality, and are better known as 'Guardsmen'.  Protects well from most sources, and will entirely protect from explosions."
 	icon_state = "icc_guard"
 	soft_armor = list(MELEE = 60, BULLET = 65, LASER = 40, ENERGY = 60, BOMB = 85, BIO = 10, FIRE = 55, ACID = 40)
+
+/obj/item/clothing/suit/storage/marine/icc/guard/heavy
+	name = "\improper Modelle/22 'Cuirassier' combat armor"
+	desc = "A piece of ICCGF body armor, worn by specialized infantry. Most Infantry actions in the ICC forces are done by adhoc personnel due to constant shortages of manpower, however most real Infantry divisions are of high quality, and are better known as 'Guardsmen'.  Protects well from most sources, and will entirely protect from explosions."
+	icon_state = "icc_guard_heavy"
+	soft_armor = list(MELEE = 70, BULLET = 75, LASER = 40, ENERGY = 60, BOMB = 90, BIO = 10, FIRE = 55, ACID = 40)
 
 //===========================SPEC OPS================================
 

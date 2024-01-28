@@ -2,9 +2,6 @@
 
 //Recoded and consolidated by Abby -- ALL evolutions come from here now. It should work with any caste, anywhere
 // refactored by spookydonut because the above two were shitcoders and i'm sure in time my code too will be considered shit.
-//All castes need an evolves_to() list in their defines
-//Such as evolves_to = list("Warrior", "Sentinel", "Runner", "Badass") etc
-// except use typepaths now so you dont have to have an entry for literally every evolve path
 
 /mob/living/carbon/xenomorph/verb/Evolve()
 	set name = "Evolve"
@@ -53,6 +50,23 @@
 
 	do_evolve(castetype, castepick, TRUE)
 
+///Creates a list of possible evolution options for a caste based on their tier.
+/mob/living/carbon/xenomorph/proc/get_evolution_options()
+	. = list()
+	switch(tier)
+		if(XENO_TIER_ZERO)
+			return GLOB.xeno_types_tier_one
+		if(XENO_TIER_ONE)
+			return GLOB.xeno_types_tier_two + GLOB.xeno_types_tier_four
+		if(XENO_TIER_TWO)
+			return GLOB.xeno_types_tier_three + GLOB.xeno_types_tier_four
+		if(XENO_TIER_THREE)
+			return GLOB.xeno_types_tier_four
+		if(XENO_TIER_FOUR)
+			if(istype(xeno_caste, /datum/xeno_caste/shrike))
+				return list(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/king)
+
+
 ///Handles the evolution or devolution of the xenomorph
 /mob/living/carbon/xenomorph/proc/do_evolve(caste_type, forced_caste_name, regression = FALSE)
 	if(!generic_evolution_checks())
@@ -68,14 +82,14 @@
 		castepick = forced_caste_name
 	else
 		var/list/castes_to_pick = list()
-		for(var/type in xeno_caste.evolves_to)
+		for(var/type in get_evolution_options())
 			var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
 			castes_to_pick += Z.caste_name
 		castepick = tgui_input_list(src, "We are growing into a beautiful alien! It is time to choose a caste.", null, castes_to_pick)
 		if(!castepick) //Changed my mind
 			return
 
-		for(var/type in xeno_caste.evolves_to)
+		for(var/type in get_evolution_options())
 			var/datum/xeno_caste/XC = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
 			if(castepick == XC.caste_name)
 				new_mob_type = type
@@ -213,7 +227,7 @@
 		balloon_alert(src, "The restraints are too restricting to allow us to evolve")
 		return FALSE
 
-	if(isnull(xeno_caste.evolves_to) || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
+	if(isnull(get_evolution_options()) || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
 		balloon_alert(src, "We are already the apex of form and function. Let's go forth and spread the hive!")
 		return FALSE
 
@@ -241,7 +255,7 @@
 
 ///Check if the xeno can currently evolve into a specific caste
 /mob/living/carbon/xenomorph/proc/caste_evolution_checks(new_mob_type, castepick, regression = FALSE)
-	if(!regression && !(new_mob_type in xeno_caste.evolves_to))
+	if(!regression && !(new_mob_type in get_evolution_options()))
 		balloon_alert(src, "We can't evolve to that caste from our current one")
 		return FALSE
 

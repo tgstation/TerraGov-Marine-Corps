@@ -29,8 +29,6 @@
 
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
-	evolves_to = list(/mob/living/carbon/xenomorph/defiler, /mob/living/carbon/xenomorph/widow)
-
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
 	can_hold_eggs = CAN_HOLD_ONE_HAND

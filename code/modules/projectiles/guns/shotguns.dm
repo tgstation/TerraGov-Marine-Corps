@@ -671,6 +671,7 @@
 
 	flags_item_map_variant = NONE
 
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	fire_delay = 0.6 SECONDS
 	accuracy_mult = 1.2
 	cock_delay = 0.2 SECONDS

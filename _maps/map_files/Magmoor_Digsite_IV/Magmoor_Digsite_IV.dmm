@@ -2673,7 +2673,9 @@
 	},
 /area/magmoor/compound/southwest)
 "bOI" = (
-/obj/structure/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set2")
+	},
 /turf/open/floor/mainship/purple{
 	dir = 9
 	},
@@ -7285,7 +7287,9 @@
 /turf/closed/wall/r_wall,
 /area/magmoor/research/containment)
 "feR" = (
-/obj/structure/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set1", "set3")
+	},
 /turf/open/floor/carpet,
 /area/magmoor/command/office/main)
 "ffk" = (
@@ -8711,7 +8715,9 @@
 	},
 /area/magmoor/civilian/clean/shower)
 "ght" = (
-/obj/structure/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set2", "set3")
+	},
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -16027,7 +16033,9 @@
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/compound)
 "lGP" = (
-/obj/structure/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set1", "set3")
+	},
 /turf/open/floor/mainship/cargo,
 /area/magmoor/mining/storage)
 "lGS" = (
@@ -20381,7 +20389,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set1", "set2")
+	},
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
