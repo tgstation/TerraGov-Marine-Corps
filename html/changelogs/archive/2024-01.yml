@@ -282,3 +282,22 @@
   - qol: Xenomorphs can now see their current regenerative power in their status panel
   - balance: Nanites have been rebalanced to be a sidegrade to BKTT, check the PR
       for more details
+2024-01-27:
+  SomrNetwork:
+  - rscadd: "flak stats to crasher\n/ \U0001F191"
+  novaepee:
+  - balance: remove TL-172 Defensive Shield from crash and nuclear war
+2024-01-28:
+  Barnet2:
+  - balance: All xenomorphs with acid now have strong acid during prep (Nuclear War)
+  - balance: Xenomorphs can now evolve to any caste above their tier and T4, with
+      exceptions made for the T4's and larva
+  - balance: Magmoor disks are now sorted into 3 preset sets.
+  Helg2:
+  - bugfix: '[Big Red] connected the pipes on few atmos variants.'
+  Pariah919:
+  - rscadd: Added new ML-14 MG to ICC, and backpack.
+  - rscadd: ICC Heavy armor 'Cuirassier'.
+  ivanmixo:
+  - balance: MBX is now two handed only
+  - refactor: Refactored beacons into a component

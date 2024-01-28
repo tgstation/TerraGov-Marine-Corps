@@ -61,8 +61,6 @@
 	///Threshold amount of upgrade points to next maturity
 	var/upgrade_threshold = 0
 
-	///Type paths to the castes that this xenomorph can evolve to
-	var/list/evolves_to = list()
 	///Singular type path for the caste to deevolve to when forced to by the queen.
 	var/deevolves_to
 
