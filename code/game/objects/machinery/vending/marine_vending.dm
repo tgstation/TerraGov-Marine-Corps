@@ -1356,6 +1356,14 @@
 			/obj/item/clothing/glasses/mgoggles = -1,
 			/obj/item/clothing/glasses/mgoggles/prescription = -1,
 		),
+		"Tactical Wedding Wear" = list(
+			/obj/item/clothing/under/wedding/bride_orange = -1,
+			/obj/item/clothing/under/wedding/bride_purple = -1,
+			/obj/item/clothing/under/wedding/bride_blue = -1,
+			/obj/item/clothing/under/wedding/bride_red = -1,
+			/obj/item/clothing/under/wedding/bride_white = -1,
+			/obj/item/clothing/under/sundress = -1,
+		)
 	)
 
 	prices = list()
