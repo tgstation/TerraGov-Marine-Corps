@@ -677,7 +677,7 @@
 	var/wdelay = wield_delay
 	//slower or faster wield delay depending on skill.
 	if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
-		wdelay += 0.3 SECONDS //no training in any firearms
+		wdelay += wield_penalty
 	else
 		var/skill_value = user.skills.getRating(gun_skill_category)
 		if(skill_value > 0)
@@ -1863,7 +1863,7 @@
 		total_recoil += recoil_unwielded
 		if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 			total_recoil += 1
-	if(!gun_user.skills.getRating(SKILL_FIREARMS)) //no training in any firearms
+	if(gun_user.skills.getRating(SKILL_FIREARMS) <= SKILL_FIREARMS_UNTRAINED) //no training in any firearms
 		total_recoil += 2
 	else
 		var/recoil_tweak = gun_user.skills.getRating(gun_skill_category)
