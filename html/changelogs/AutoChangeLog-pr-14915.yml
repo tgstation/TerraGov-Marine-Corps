@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Campaign has an autobalance check at the start of every mission to try balance team numbers"
