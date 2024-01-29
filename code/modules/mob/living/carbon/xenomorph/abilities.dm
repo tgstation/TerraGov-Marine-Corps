@@ -1127,11 +1127,11 @@
 	name = "Psy drain"
 	action_icon_state = "headbite"
 	desc = "Drain the victim of its life force to gain larva and psych points"
+	ability_cost = 50
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEADBITE,
 	)
-	ability_cost = 50
 	gamemode_flags = ABILITY_NUCLEARWAR
 	///How much larva points it gives (8 points for one larva in distress)
 	var/larva_point_reward = 1
