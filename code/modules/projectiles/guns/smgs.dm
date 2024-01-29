@@ -194,7 +194,9 @@
 		/obj/item/attachable/gyro,
 	)
 
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 9, "rail_y" = 20, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 16)
+	attachable_offset = list("muzzle_x" = 43, "muzzle_y" = 19,"rail_x" = 22, "rail_y" = 23, "under_x" = 32, "under_y" = 14, "stock_x" = 24, "stock_y" = 16)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.1 SECONDS
 
 	aim_slowdown = 0.25
 	accuracy_mult = 1.15
