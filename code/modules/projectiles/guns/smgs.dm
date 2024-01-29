@@ -79,7 +79,7 @@
 	lower_akimbo_accuracy = 9
 	burst_amount = 5
 	burst_delay = 0.1 SECONDS
-	akimbo_additional_delay = 10 // Literally do not even bother to try
+	akimbo_additional_delay = 20 // Literally do not even bother to try
 
 /obj/item/weapon/gun/smg/standard_machinepistol/compact
 	starting_attachment_types = list(/obj/item/attachable/foldable/t19stock, /obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
