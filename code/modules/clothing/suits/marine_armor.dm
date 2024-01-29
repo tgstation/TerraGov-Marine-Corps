@@ -715,7 +715,7 @@
 /obj/item/clothing/suit/storage/marine/specops/support
 	name = "Ballistic vest"
 	desc = "Civilian type armor, made to combat both melee and projectiles."
-	icon_state = "specops_vest_drone"
+	icon_state = "specops_vest_support"
 
 /obj/item/clothing/suit/storage/marine/specops/medic
 	name = "Ballistic vest"
