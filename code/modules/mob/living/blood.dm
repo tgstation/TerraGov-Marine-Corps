@@ -11,71 +11,69 @@
 	if(species.species_flags & NO_BLOOD)
 		return
 
+	if(stat == DEAD || bodytemperature <= 170) //Dead or cryosleep people do not pump the blood.
+		return
 	//Effects of bloodloss
-	if(stat != DEAD && bodytemperature >= 170)	//Dead or cryosleep people do not pump the blood.
-		switch(blood_volume)
-			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
-				if(prob(1))
-					var/word = pick("dizzy","woozy","faint")
-					to_chat(src, span_warning("You feel [word]."))
-				if(oxyloss < 20)
-					adjustOxyLoss(3)
-			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
-				if(eye_blurry < 50)
-					adjust_blurriness(5)
-				if(oxyloss < 40)
-					adjustOxyLoss(6)
-				else
-					adjustOxyLoss(3)
-				if(prob(10) && stat == UNCONSCIOUS)
-					adjustToxLoss(1)
-				if(prob(15))
-					Unconscious(rand(2 SECONDS,6 SECONDS))
-					var/word = pick("dizzy","woozy","faint")
-					to_chat(src, span_warning("You feel extremely [word]!"))
-			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
-				adjustOxyLoss(5)
-				adjustToxLoss(2)
-				if(prob(15))
-					var/word = pick("dizzy","woozy","faint")
-					to_chat(src, span_warning("You feel extremely [word]!"))
-			if(0 to BLOOD_VOLUME_SURVIVE)
-				death()
+	switch(blood_volume)
+		if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
+			if(prob(1))
+				var/word = pick("dizzy","woozy","faint")
+				to_chat(src, span_warning("You feel [word]."))
+			if(oxyloss < 20)
+				adjustOxyLoss(3)
+		if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
+			if(eye_blurry < 50)
+				adjust_blurriness(5)
+			if(oxyloss < 40)
+				adjustOxyLoss(6)
+			else
+				adjustOxyLoss(3)
+			if(prob(10) && stat == UNCONSCIOUS)
+				adjustToxLoss(1)
+			if(prob(15))
+				Unconscious(rand(2 SECONDS,6 SECONDS))
+				var/word = pick("dizzy","woozy","faint")
+				to_chat(src, span_warning("You feel extremely [word]!"))
+		if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
+			adjustOxyLoss(5)
+			adjustToxLoss(2)
+			if(prob(15))
+				var/word = pick("dizzy","woozy","faint")
+				to_chat(src, span_warning("You feel extremely [word]!"))
+		if(0 to BLOOD_VOLUME_SURVIVE)
+			death()
 
 
-		// Blood regens using food, more food = more blood.
-		switch(blood_volume)
-			if(BLOOD_VOLUME_SAFE to BLOOD_VOLUME_NORMAL) //Passively regens blood very slowly from 90% to 100% without a tradeoff.
-				adjust_blood_volume(0.1)
-			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_SAFE) //Regens blood from 60% ish to 90% using nutrition.
-				switch(nutrition)
-					if(NUTRITION_OVERFED to INFINITY)
-						adjust_nutrition(-10)
-						adjust_blood_volume(1)// regenerate blood quickly.
+	// Blood regens using food, more food = more blood.
+	switch(blood_volume)
+		if(BLOOD_VOLUME_SAFE to BLOOD_VOLUME_NORMAL) //Passively regens blood very slowly from 90% to 100% without a tradeoff.
+			adjust_blood_volume(0.1)
+		if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_SAFE) //Regens blood from 60% ish to 90% using nutrition.
+			switch(nutrition)
+				if(NUTRITION_OVERFED to INFINITY)
+					adjust_nutrition(-10)
+					adjust_blood_volume(1)// regenerate blood quickly.
 
-					if(NUTRITION_HUNGRY to NUTRITION_OVERFED)
-						adjust_nutrition(-5)
-						adjust_blood_volume(0.5) // regenerate blood slowly.
+				if(NUTRITION_HUNGRY to NUTRITION_OVERFED)
+					adjust_nutrition(-5)
+					adjust_blood_volume(0.5) // regenerate blood slowly.
 
-					if(0 to NUTRITION_HUNGRY)
-						adjust_nutrition(-1)
-						adjust_blood_volume(0.1) // Regenerate blood VERY slowly.
+				if(0 to NUTRITION_HUNGRY)
+					adjust_nutrition(-1)
+					adjust_blood_volume(0.1) // Regenerate blood VERY slowly.
 
-		//Bleeding out
-		var/blood_max = 0
-		for(var/l in limbs)
-			var/datum/limb/temp = l
-			if(!(temp.limb_status & LIMB_BLEEDING) || temp.limb_status & LIMB_ROBOT)
-				continue
-			blood_max += temp.brute_dam / 60
-			if (temp.surgery_open_stage)
-				blood_max += 0.6  //Yer stomach is cut open
+	//Bleeding out
+	var/blood_max = 0
+	for(var/l in limbs)
+		var/datum/limb/temp = l
+		if(!(temp.limb_status & LIMB_BLEEDING) || temp.limb_status & LIMB_ROBOT)
+			continue
+		blood_max += temp.brute_dam / 60
+		if(temp.surgery_open_stage)
+			blood_max += 0.6  //Yer stomach is cut open
 
-		if(blood_max)
-			drip(blood_max)
-
-
-
+	if(blood_max)
+		drip(blood_max)
 
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/carbon/proc/drip(amt)
