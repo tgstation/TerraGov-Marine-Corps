@@ -188,7 +188,7 @@
 	name = "Use Blink Drive"
 	action_icon_state = "axe_sweep"
 	desc = "Teleport a short distance instantly."
-	keybind_flags = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
+	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
 	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_BLINKDRIVE)
 
 /datum/action/ability/activable/item_toggle/blink_drive/can_use_ability(silent, override_flags, selecting)
