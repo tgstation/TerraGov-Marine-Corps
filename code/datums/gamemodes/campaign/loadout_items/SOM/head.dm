@@ -45,6 +45,7 @@
 	desc = "A bulky helmet paired with the 'Lorica' armor module, designed for outstanding protection at the cost of significant weight and reduced flexibility. \
 	Substantial additional armor improves protection against all damage."
 	req_desc = "Requires a suit with a Lorica module."
+	ui_icon = "lorica"
 	item_typepath = /obj/item/clothing/head/modular/som/lorica
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN)
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/lorica = ITEM_SLOT_OCLOTHING)

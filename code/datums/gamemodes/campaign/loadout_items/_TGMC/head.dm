@@ -1,5 +1,6 @@
 /datum/loadout_item/helmet
 	item_slot = ITEM_SLOT_HEAD
+	ui_icon = "helmet"
 
 /datum/loadout_item/helmet/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_HEAD)
@@ -55,6 +56,7 @@
 	name = "M10X-Tyr helmet"
 	desc = "A standard combat helmet with a Tyr extra armor module."
 	req_desc = "Requires a suit with a Tyr module."
+	ui_icon = "tyr"
 	item_typepath = /obj/item/clothing/head/modular/m10x/tyr
 	jobs_supported = list(SQUAD_MARINE)
 	item_whitelist = list(/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two = ITEM_SLOT_OCLOTHING)
