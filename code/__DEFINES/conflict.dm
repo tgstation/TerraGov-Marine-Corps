@@ -146,6 +146,9 @@
 #define ENERGY_OVERCHARGE_AMMO_COST 80
 #define ENERGY_OVERCHARGE_FIRE_DELAY 10
 
+//Define sentry
+#define SENTRY_DEPLOY_RANGE_LIMIT 1 // SQUARE range within which another sentry cannot be deployed.
+
 //Define stagger damage multipliers
 #define STAGGER_DAMAGE_MULTIPLIER 0.5 //-50% damage dealt by the staggered target after all other mods.
 

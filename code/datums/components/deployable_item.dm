@@ -82,6 +82,12 @@
 		if(user.do_actions)
 			user.balloon_alert(user, "You are already doing something!")
 			return
+		if(istype(item_to_deploy, /obj/item/weapon/gun/sentry))
+			for(var/turf/turf_to_check AS in RANGE_TURFS(SENTRY_DEPLOY_RANGE_LIMIT, location))
+				for(var/obj/machinery/deployable/mounted/sentry/deployable_sentry in turf_to_check)
+					if(get_dist_euclide(deployable_sentry, item_to_deploy) >= SENTRY_DEPLOY_RANGE_LIMIT)
+						user.balloon_alert(user, "Another sentry is too close")
+						return
 		user.balloon_alert(user, "You start deploying...")
 		user.setDir(newdir) //Face towards deploy location for ease of deploy.
 		if(!do_after(user, deploy_time, NONE, item_to_deploy, BUSY_ICON_BUILD))
