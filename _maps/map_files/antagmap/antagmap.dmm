@@ -3884,7 +3884,8 @@
 "FL" = (
 /obj/docking_port/stationary/crashmode{
 	name = "SOM Crashland point";
-	id = "somcrashland"
+	id = "somcrashland";
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/mainship/groundhq/som/squads/req{
