@@ -5,7 +5,7 @@
 	This is also paired with [/mob/living/carbon/xenomorph/hivemind_end]
 */
 /mob/living/carbon/xenomorph/proc/hivemind_start()
-	return "<span class='hivemind [queen_chosen_lead?"xenoleader":""]'>Hivemind, [span_name("[name]")]"
+	return "<span class='hivemind [queen_chosen_lead?"xenoleader":""]'>Hivemind, <b>[span_name("[name]")]</b>"
 
 /**
 	Called to create the suffix for xeno hivemind messages
@@ -51,7 +51,7 @@
 		if(!S?.client?.prefs || !(S.client.prefs.toggles_chat & CHAT_GHOSTHIVEMIND))
 			continue
 		var/track = FOLLOW_LINK(S, src)
-		S.show_message("[track] [hivemind_start()] [span_message("hisses, '[message]'")][hivemind_end()]", 2)
+		S.show_message("[track] [hivemind_start()] [span_message("hisses, <b>'[message]'</b>")][hivemind_end()]", 2)
 
 	hive.hive_mind_message(src, message)
 
@@ -59,7 +59,7 @@
 
 /mob/living/carbon/xenomorph/proc/receive_hivemind_message(mob/living/carbon/xenomorph/X, message)
 	var/follow_link = X != src ? "<a href='byond://?src=[REF(src)];watch_xeno_name=[REF(X)]'>(F)</a> " : ""
-	show_message("[follow_link][X.hivemind_start()][span_message(" hisses, '[message]'")][X.hivemind_end()]", 2)
+	show_message("[follow_link][X.hivemind_start()][span_message(" hisses, <b>'[message]'</b>")][X.hivemind_end()]", 2)
 
 
 /mob/living/carbon/xenomorph/get_saymode(message, talk_key)

@@ -9,6 +9,17 @@
 	req_desc = "Requires a blink drive."
 	item_whitelist = list(/obj/item/blink_drive = ITEM_SLOT_BACK)
 
+/datum/loadout_item/suit_slot/som_light_shield/overclocked
+	desc = "M-11 scout armor with a Aegis shield module. Provides excellent mobility but lower protection. The shield module has been overclocked for improved performance."
+	item_typepath = /obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER)
+	loadout_item_flags = null
+
+/datum/loadout_item/suit_slot/som_light_shield/overclocked/veteran
+	jobs_supported = list(SOM_SQUAD_VETERAN)
+	req_desc = "Requires a blink drive."
+	item_whitelist = list(/obj/item/blink_drive = ITEM_SLOT_BACK)
+
 /datum/loadout_item/suit_slot/som_medium_shield
 	name = "Medium Aegis armor"
 	desc = "M-21 battle armor with a Aegis shield module. Provides balanced mobility and protection."
@@ -16,12 +27,24 @@
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
+/datum/loadout_item/suit_slot/som_medium_shield/overclocked
+	desc = "M-21 battle armor with a Aegis shield module. Provides balanced mobility and protection. The shield module has been overclocked for improved performance."
+	item_typepath = /obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	loadout_item_flags = null
+
 /datum/loadout_item/suit_slot/som_heavy_shield
 	name = "Heavy Aegis armor"
 	desc = "M-31 combat armor with a Aegis shield module. Provides excellent protection but lower mobility."
 	item_typepath = /obj/item/clothing/suit/modular/som/heavy/shield
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+
+/datum/loadout_item/suit_slot/som_heavy_shield/overclocked
+	desc = "M-31 combat armor with a Aegis shield module. Provides excellent protection but lower mobility. The shield module has been overclocked for improved performance."
+	item_typepath = /obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked
+	jobs_supported = list(SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	loadout_item_flags = null
 
 /datum/loadout_item/suit_slot/som_heavy_shield/breacher
 	jobs_supported = list(SOM_SQUAD_MARINE)

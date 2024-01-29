@@ -31,68 +31,64 @@
 		A.move_camera_by_click()
 
 
-/mob/living/silicon/ai/ClickOn(atom/target, location, params)
+/mob/living/silicon/ai/ClickOn(atom/A, location, params)
 	if(world.time <= next_click)
 		return
 	next_click = world.time + 1
 
-	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, target, params) & COMSIG_MOB_CLICK_CANCELED)
+	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CLICK_CANCELED)
 		return
 
-	if(!controlling && !can_interact_with(target))
+	if(!controlling && !can_interact_with(A))
 		return
 
 	if(multicam_on)
-		var/turf/T = get_turf(target)
+		var/turf/T = get_turf(A)
 		if(T)
 			for(var/atom/movable/screen/movable/pic_in_pic/ai/P in T.vis_locs)
 				if(P.ai == src)
 					P.Click(params)
 					break
 
-	if(check_click_intercept(params, target))
+	if(check_click_intercept(params, A))
 		return
 
 	if(control_disabled || incapacitated())
 		return
 
-	var/turf/pixel_turf = get_turf_pixel(target)
+	var/turf/pixel_turf = get_turf_pixel(A)
 	if(isnull(pixel_turf))
 		return
-	if(!controlling && !can_see(target))
-		if(isturf(target)) //On unmodified clients clicking the static overlay clicks the turf underneath
+	if(!controlling && !can_see(A))
+		if(isturf(A)) //On unmodified clients clicking the static overlay clicks the turf underneath
 			return //So there's no point messaging admins
-		message_admins("[ADMIN_LOOKUPFLW(src)] might be running a modified client! (failed can_see on AI click of [target] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
-		var/message = "[key_name(src)] might be running a modified client! (failed can_see on AI click of [target] (Turf Loc: [AREACOORD(pixel_turf)]))"
+		message_admins("[ADMIN_LOOKUPFLW(src)] might be running a modified client! (failed can_see on AI click of [A] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
+		var/message = "[key_name(src)] might be running a modified client! (failed can_see on AI click of [A] (Turf Loc: [AREACOORD(pixel_turf)]))"
 		log_admin(message)
 		send2tgs_adminless_only("NOCHEAT", message)
 		return
 
 	var/list/modifiers = params2list(params)
-
-	//Middle clicking
-	if(modifiers["middle"])
-		MiddleClickOn(target)
-		return
-
-	//Left clicking
 	if(modifiers["shift"] && modifiers["ctrl"])
-		CtrlShiftClickOn(target)
+		CtrlShiftClickOn(A)
+		return
+	if(modifiers["middle"])
+		MiddleClickOn(A)
 		return
 	if(modifiers["shift"])
-		ShiftClickOn(target)
+		ShiftClickOn(A)
 		return
 	if(modifiers["ctrl"])
-		CtrlClickOn(target)
+		CtrlClickOn(A)
 		return
 	if(modifiers["alt"]) // alt and alt-gr (rightalt)
-		AltClickOn(target)
+		AltClickOn(A)
 		return
 
 	if(world.time <= next_move)
 		return
 
-	target.attack_ai(src)
+	A.attack_ai(src)
 
 /*
 	AI has no need for the UnarmedAttack() and RangedAttack() procs,

@@ -2,28 +2,27 @@
 #define ANNOUNCEMENT_PRIORITY 2
 #define ANNOUNCEMENT_COMMAND 3
 
-
 /proc/priority_announce(message, title = "Announcement", type = ANNOUNCEMENT_REGULAR, sound = 'sound/misc/notice2.ogg', list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list))
 	if(!message)
 		return
 
 	var/announcement
+	var/header
 
 	switch(type)
 		if(ANNOUNCEMENT_REGULAR)
-			announcement += "<meta charset='UTF-8'><br><h2 class='alert'>[html_encode(title)]</h2>"
+			header += "[html_encode(title)]"
 
 		if(ANNOUNCEMENT_PRIORITY)
-			announcement += "<meta charset='UTF-8'><h1 class='alert'>Priority Announcement</h1>"
+			header += "Priority Announcement"
 			if(title && title != "Announcement")
-				announcement += "<meta charset='UTF-8'><br><h2 class='alert'>[html_encode(title)]</h2>"
+				header += "[html_encode(title)]"
 
 		if(ANNOUNCEMENT_COMMAND)
-			announcement += "<meta charset='UTF-8'><h1 class='alert'>Command Announcement</h1>"
+			header += "Command Announcement"
 
 
-	announcement += "<meta charset='UTF-8'><br>[span_alert("[html_encode(message)]")]<br>"
-	announcement += "<meta charset='UTF-8'><br>"
+	announcement += "<meta charset='UTF-8'>[span_faction_alert("[span_faction_alert_title("[header]")]<br>[span_faction_alert_text("[html_encode(message)]")]")]"
 
 	var/s = sound(sound, channel = CHANNEL_ANNOUNCEMENTS)
 	for(var/i in receivers)
@@ -55,5 +54,5 @@
 	S.channel = CHANNEL_ANNOUNCEMENTS
 	for(var/mob/M AS in receivers)
 		if(!isnewplayer(M) && !isdeaf(M))
-			to_chat(M, "<span class='big bold'><font color = red>[html_encode(title)]</font color><BR>[html_encode(message)]</span><BR>")
+			to_chat(M, "[span_faction_alert("[span_faction_alert_minortitle("[html_encode(title)]")][span_faction_alert_text("[html_encode(message)]")]")]")
 			SEND_SOUND(M, S)

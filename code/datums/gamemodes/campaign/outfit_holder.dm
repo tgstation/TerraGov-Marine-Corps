@@ -66,6 +66,15 @@
 		return
 	purchasable_list["[new_item.item_slot]"] += new_item
 
+///Removes loadout_item entirely from being equipped
+/datum/outfit_holder/proc/remove_option(datum/loadout_item/removed_item)
+	var/removed_item_slot = "[removed_item.item_slot]"
+	available_list[removed_item_slot] -= removed_item
+	purchasable_list[removed_item_slot] -= removed_item
+	if(equipped_things[removed_item_slot] == removed_item)
+		equip_loadout_item(available_list[removed_item_slot][1])
+		return TRUE
+
 ///Tries to add a datum if valid
 /datum/outfit_holder/proc/attempt_equip_loadout_item(datum/loadout_item/new_item)
 	if(!new_item.item_checks(src))

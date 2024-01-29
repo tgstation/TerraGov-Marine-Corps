@@ -31,7 +31,6 @@
 	evolution_threshold = 225
 	upgrade_threshold = TIER_TWO_THRESHOLD
 
-	evolves_to = list(/mob/living/carbon/xenomorph/ravager, /mob/living/carbon/xenomorph/widow)
 	deevolves_to = /mob/living/carbon/xenomorph/runner
 
 	// *** Flags *** //
@@ -105,6 +104,9 @@
 
 	// *** Health *** //
 	max_health = 330
+	regen_delay = 5 SECONDS
+	regen_ramp_amount = 0.03
+	sunder_recover = 1
 
 	// *** Flags *** //
 	caste_flags = CASTE_INNATE_HEALING|CASTE_INNATE_PLASMA_REGEN|CASTE_HIDE_IN_STATUS

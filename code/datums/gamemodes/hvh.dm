@@ -172,8 +172,8 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 
 	for(var/i in GLOB.observer_list)
 		var/mob/M = i
-		to_chat(M, "<h2 class='alert'>Detailed Information</h2>")
-		to_chat(M, {"<span class='alert'>[num_som] SOM alive.
+		to_chat(M, "<span class='announce_header'>Detailed Information</span>")
+		to_chat(M, {"<span class='announce_body'>[num_som] SOM alive.
 [num_tgmc] Marine\s alive."})
 
 	message_admins("Bioscan - Marines: [num_tgmc] active TGMC personnel[tgmc_location ? " .Location:[tgmc_location]":""]")
