@@ -107,7 +107,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 			even = !even
 	if(length(mar) > 0)
 		dat += "<tr><th colspan=3>Marine Personnel</th></tr>"
-		for(var/j in LAZYACCESS(SSjob.squads_by_name, FACTION_TERRAGOV))
+		for(var/j in LAZYACCESS(SSjob.squads_by_name, FACTION_NTC))
 			if(length(squads[j]))
 				dat += "<tr><th colspan=3>[j]</th></tr>"
 			for(var/name in mar)

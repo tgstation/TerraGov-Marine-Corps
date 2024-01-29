@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(keyslot?.custom_squad_factions || keyslot2?.custom_squad_factions)
 		for(var/key in GLOB.custom_squad_radio_freqs)
 			var/datum/squad/custom_squad = GLOB.custom_squad_radio_freqs[key]
-			if(!(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_TERRAGOV) && !(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_TERRAGOV) && custom_squad.faction == FACTION_TERRAGOV)
+			if(!(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_TERRAGOV) && !(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_TERRAGOV) && custom_squad.faction == FACTION_NTC)
 				continue
 			if(!(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_SOM) && !(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_SOM) && custom_squad.faction == FACTION_SOM)
 				continue
@@ -179,7 +179,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/headset_hud_on = FALSE
 	var/sl_direction = FALSE
 	///The faction this headset belongs to. Used for hudtype, minimap and safety protocol
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 	///The type of minimap this headset gives access to
 	var/datum/action/minimap/minimap_type = /datum/action/minimap/marine
 

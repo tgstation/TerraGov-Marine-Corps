@@ -79,7 +79,7 @@
 /obj/effect/landmark/campaign/mech_spawner
 	name = "tgmc med mech spawner"
 	icon_state = "mech"
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 	var/list/colors = list(ARMOR_PALETTE_SPACE_CADET, ARMOR_PALETTE_GREYISH_TURQUOISE, VISOR_PALETTE_MAGENTA)
 	var/obj/vehicle/sealed/mecha/combat/greyscale/mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill
 

@@ -33,7 +33,7 @@
 	///When we reach max progress and get the points
 	var/printing_complete = FALSE
 	///What faction has launched the intel process
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 
 
 /obj/machinery/computer/intel_computer/Initialize(mapload)

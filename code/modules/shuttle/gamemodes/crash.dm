@@ -50,7 +50,7 @@
 	. = ..()
 	var/op_name = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
-		if(human.faction != FACTION_TERRAGOV)
+		if(human.faction != FACTION_NTC)
 			return
 		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] █:█<br>" + "Black Ops Platoon<br>" + "[human.job.title], ████", /atom/movable/screen/text/screen_text/picture/blackop)
 

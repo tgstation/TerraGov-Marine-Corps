@@ -479,7 +479,7 @@
 	///ID to link with an associated start point
 	var/id = null
 	///Faction this belongs to for minimap purposes
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 	///minimap icon state
 	var/minimap_icon = "patrol_1"
 

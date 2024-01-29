@@ -190,7 +190,7 @@
 
 
 /obj/item/binoculars/fire_support/campaign
-	faction = FACTION_TERRAGOV
+	faction = FACTION_NTC
 	mode_list = list(
 		FIRESUPPORT_TYPE_GUN,
 		FIRESUPPORT_TYPE_ROCKETS,

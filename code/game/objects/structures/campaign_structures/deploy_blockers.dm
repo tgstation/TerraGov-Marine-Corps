@@ -19,7 +19,7 @@
 	///What flag this removes from the mission
 	var/flags_to_remove = MISSION_DISALLOW_TELEPORT
 	///The faction this belongs to
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 	var/owning_faction_notification = "A teleportation disruptor has been deployed in this area. Protect the disruptor to ensure hostile forces cannot deploy via teleportation. "
 	var/hostile_faction_notification = "The enemy has a device in this area that will prevent the use of the teleporter array. Destroy this first to allow for teleportation insertion against primary objectives. "
 

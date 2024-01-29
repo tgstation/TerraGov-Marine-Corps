@@ -75,19 +75,19 @@
 	var/message
 	if(issensorcapturegamemode(SSticker.mode))
 		switch(user.faction)
-			if(FACTION_TERRAGOV)
+			if(FACTION_NTC)
 				message = "Reactivate all sensor towers, good luck team."
 			if(FACTION_SOM)
 				message = "Prevent reactivation of the sensor towers, glory to Mars!"
 	else if(iscombatpatrolgamemode(SSticker.mode))
 		switch(user.faction)
-			if(FACTION_TERRAGOV)
+			if(FACTION_NTC)
 				message = "Eliminate all hostile forces in the ao, good luck team."
 			if(FACTION_SOM)
 				message = "Eliminate the TerraGov imperialists in the ao, glory to Mars!"
 	else if(iscampaigngamemode(SSticker.mode))
 		switch(user.faction)
-			if(FACTION_TERRAGOV)
+			if(FACTION_NTC)
 				message = "Stick together and achieve those objectives marines. Good luck."
 			if(FACTION_SOM)
 				message = "Remember your training marines, show those Terrans the strength of the SOM, glory to Mars!"
@@ -96,7 +96,7 @@
 		return
 
 	switch(user.faction)
-		if(FACTION_TERRAGOV)
+		if(FACTION_NTC)
 			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait)
 		if(FACTION_SOM)
 			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait/som_over)

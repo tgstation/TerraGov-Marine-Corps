@@ -99,7 +99,7 @@
 			switch(faction)
 				if(FACTION_SOM)
 					round_finished = MODE_COMBAT_PATROL_SOM_MINOR
-				if(FACTION_TERRAGOV)
+				if(FACTION_NTC)
 					round_finished = MODE_COMBAT_PATROL_MARINE_MINOR
 			message_admins("Round finished: [round_finished]")
 			return TRUE
@@ -107,7 +107,7 @@
 /datum/game_mode/hvh/campaign/declare_completion() //todo: update fluff message
 	. = ..()
 	to_chat(world, span_round_header("|[round_finished]|"))
-	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal NTC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
+	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal NTC spawned: [GLOB.round_statistics.total_humans_created[FACTION_NTC]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
 	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the NTC and SOM, and their struggle on Palmaria."))
 
 /datum/game_mode/hvh/campaign/get_status_tab_items(datum/dcs, mob/source, list/items)

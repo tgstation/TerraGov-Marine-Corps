@@ -13,7 +13,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/authorised_by
 	var/list/datum/supply_packs/pack
 	///What faction ordered this
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 
 /obj/item/paper/manifest
 	name = "Supply Manifest"
@@ -66,7 +66,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/list/gears = list()
 	var/list/obj/machinery/door/poddoor/railing/railings = list()
 	///The faction of this docking port (aka, on which ship it is located)
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 	/// Id of the home docking port
 	var/home_id = "supply_home"
 
@@ -243,7 +243,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	/// Id of the home docking port
 	var/home_id = "supply_home"
 	/// Faction of the tablet
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 
 /obj/item/supplytablet/interact(mob/user)
 	. = ..()
@@ -272,7 +272,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	/// Id of the home docking port
 	var/home_id = "supply_home"
 	/// Faction of the computer
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 
 /obj/machinery/computer/supplycomp/interact(mob/user)
 	. = ..()
@@ -296,7 +296,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	///Reference to the supply shuttle
 	var/obj/docking_port/mobile/supply/supply_shuttle
 	///Faction of the supply console linked
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 	///Id of the home port
 	var/home_id = ""
 

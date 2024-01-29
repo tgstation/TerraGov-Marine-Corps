@@ -1,6 +1,6 @@
 ///Default assets a faction starts with
 GLOBAL_LIST_INIT(campaign_default_assets, list(
-	FACTION_TERRAGOV = list(
+	FACTION_NTC = list(
 		/datum/campaign_asset/mech/light,
 		/datum/campaign_asset/bonus_job/freelancer,
 		/datum/campaign_asset/bonus_job/pmc,
@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(campaign_default_assets, list(
 ))
 ///Default assets a faction can purchase
 GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
-	FACTION_TERRAGOV = list(
+	FACTION_NTC = list(
 		/datum/campaign_asset/fire_support,
 		/datum/campaign_asset/fire_support/mortar,
 		/datum/campaign_asset/droppod_refresh,
@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 ))
 ///The weighted potential mission pool by faction
 GLOBAL_LIST_INIT(campaign_mission_pool, list(
-	FACTION_TERRAGOV = list(
+	FACTION_NTC = list(
 		/datum/campaign_mission/tdm = 10,
 		/datum/campaign_mission/destroy_mission/fire_support_raid = 15,
 		/datum/campaign_mission/capture_mission/phoron_capture = 15,

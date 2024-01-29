@@ -1,5 +1,5 @@
 #define FACTION_NEUTRAL "Neutral"
-#define FACTION_TERRAGOV "Nine Tailed Fox"
+#define FACTION_NTC "Nine Tailed Fox"
 #define FACTION_XENO "Xeno"
 #define FACTION_ZOMBIE "Zombie"
 #define FACTION_CLF "Colonial Liberation Force"
@@ -31,7 +31,7 @@
 GLOBAL_LIST_INIT(faction_to_alignement, list(
 	FACTION_NEUTRAL = ALIGNEMENT_NEUTRAL,
 	//Friendly
-	FACTION_TERRAGOV = ALIGNEMENT_FRIENDLY,
+	FACTION_NTC = ALIGNEMENT_FRIENDLY,
 	FACTION_NANOTRASEN = ALIGNEMENT_FRIENDLY,
 	FACTION_FREELANCERS = ALIGNEMENT_FRIENDLY,
 	FACTION_SPECFORCE = ALIGNEMENT_FRIENDLY,
@@ -68,7 +68,7 @@ GLOBAL_LIST_INIT(faction_to_alignement, list(
 ///Iff for each faction that is able to use iff
 GLOBAL_LIST_INIT(faction_to_iff, list(
 	FACTION_NEUTRAL = NTC_LOYALIST_IFF,
-	FACTION_TERRAGOV = NTC_LOYALIST_IFF,
+	FACTION_NTC = NTC_LOYALIST_IFF,
 	FACTION_RETIRED = NTC_LOYALIST_IFF,
 	FACTION_SPECFORCE = NTC_LOYALIST_IFF,
 	FACTION_NANOTRASEN = NTC_LOYALIST_IFF,
@@ -87,22 +87,22 @@ GLOBAL_LIST_INIT(faction_to_iff, list(
 
 ///List of correspond factions to data hud
 GLOBAL_LIST_INIT(faction_to_data_hud, list(
-	FACTION_TERRAGOV = DATA_HUD_SQUAD_TERRAGOV,
+	FACTION_NTC = DATA_HUD_SQUAD_TERRAGOV,
 	FACTION_SOM = DATA_HUD_SQUAD_SOM,
 ))
 
 GLOBAL_LIST_INIT(faction_to_squad_hud, list(
-	FACTION_TERRAGOV = SQUAD_HUD_TERRAGOV,
+	FACTION_NTC = SQUAD_HUD_TERRAGOV,
 	FACTION_SOM = SQUAD_HUD_SOM,
 ))
 
 GLOBAL_LIST_INIT(faction_to_portrait, list(
-	FACTION_TERRAGOV = /atom/movable/screen/text/screen_text/picture/potrait,
+	FACTION_NTC = /atom/movable/screen/text/screen_text/picture/potrait,
 	FACTION_SOM = /atom/movable/screen/text/screen_text/picture/potrait/som_over,
 ))
 
 GLOBAL_LIST_INIT(faction_to_mech_spawner, list(
-	FACTION_TERRAGOV = list(
+	FACTION_NTC = list(
 		"heavy" = /obj/effect/landmark/campaign/mech_spawner/heavy,
 		"medium" = /obj/effect/landmark/campaign/mech_spawner,
 		"light" = /obj/effect/landmark/campaign/mech_spawner/light,

@@ -149,7 +149,7 @@
 	total_positions = -1
 	selection_color = "#f3f70c"
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST
-	faction = FACTION_TERRAGOV
+	faction = FACTION_NTC
 	job_category = JOB_CAT_CIVILIAN
 
 /datum/outfit/job/worker
@@ -178,7 +178,7 @@
 	total_positions = -1
 	selection_color = "#ef0cf7"
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST
-	faction = FACTION_TERRAGOV
+	faction = FACTION_NTC
 	job_category = JOB_CAT_CIVILIAN
 
 /datum/outfit/job/mo

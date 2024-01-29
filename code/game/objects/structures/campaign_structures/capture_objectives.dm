@@ -34,7 +34,7 @@
 	var/new_icon_state
 	if(!owning_faction)
 		switch(capturing_faction)
-			if(FACTION_TERRAGOV)
+			if(FACTION_NTC)
 				new_icon_state = "campaign_objective_capturing_tgmc"
 			if(null)
 				new_icon_state = "campaign_objective"
@@ -42,7 +42,7 @@
 				new_icon_state = "campaign_objective_capturing_som"
 	else
 		switch(owning_faction)
-			if(FACTION_TERRAGOV)
+			if(FACTION_NTC)
 				new_icon_state = capturing_faction ? "campaign_objective_decap_tgmc" : "campaign_objective_tgmc"
 			else
 				new_icon_state = capturing_faction ? "campaign_objective_decap_som" : "campaign_objective_som"
@@ -152,7 +152,7 @@
 	icon_state = initial(icon_state)
 	if(!owning_faction)
 		switch(capturing_faction)
-			if(FACTION_TERRAGOV)
+			if(FACTION_NTC)
 				icon_state += "_cap_tgmc"
 			if(null)
 				return
@@ -160,7 +160,7 @@
 				icon_state += "_cap_som"
 		return
 	switch(owning_faction)
-		if(FACTION_TERRAGOV)
+		if(FACTION_NTC)
 			icon_state += capturing_faction ? "_decap_tgmc" : "_tgmc"
 		else
 			icon_state += capturing_faction ? "_decap_som" : "_som"
@@ -222,7 +222,7 @@
 	desc = "A sophisticated surface to space missile system designed for attacking orbiting satellites or spacecraft."
 	capture_flags = CAPTURE_OBJECTIVE_RECAPTURABLE
 	///owning faction
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 
 /obj/structure/campaign_objective/capture_objective/fultonable/asat_system/capture_check(mob/living/user)
 	//This is a 'defend' objective. The defending faction can't actually claim it for themselves, just decap it.

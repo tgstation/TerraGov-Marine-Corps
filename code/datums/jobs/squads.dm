@@ -33,7 +33,7 @@
 
 	var/list/squad_laser_targets = list()
 	///Faction of that squad
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 
 
 /datum/squad/alpha
@@ -397,7 +397,7 @@
 
 
 ///A generic proc for handling the initial squad role assignment in SSjob
-/proc/handle_initial_squad(mob/new_player/player, datum/job/job, latejoin = FALSE, faction = FACTION_TERRAGOV)
+/proc/handle_initial_squad(mob/new_player/player, datum/job/job, latejoin = FALSE, faction = FACTION_NTC)
 	var/strict = player.client.prefs.be_special && (player.client.prefs.be_special & BE_SQUAD_STRICT)
 	//List of all the faction accessible squads
 	var/list/available_squads = SSjob.active_squads[faction]
@@ -447,7 +447,7 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 	LAZYADDASSOCSIMPLE(GLOB.radiochannels, "[radio_channel_name]", freq)
 	LAZYADDASSOCSIMPLE(GLOB.reverseradiochannels, "[freq]", radio_channel_name)
 	new_squad.faction = squad_faction
-	if(new_squad.faction == FACTION_TERRAGOV)
+	if(new_squad.faction == FACTION_NTC)
 		var/list/terragov_server_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/server/presets/alpha]
 		var/list/terragov_bus_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/bus/preset_three]
 		var/list/terragov_receiver_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/receiver/preset_left]

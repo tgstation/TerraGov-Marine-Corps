@@ -5,7 +5,7 @@
 	flags_round_type = MODE_INFESTATION|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_ALLOW_XENO_QUICKBUILD
 	shutters_drop_time = 3 MINUTES
 	flags_xeno_abilities = ABILITY_NUCLEARWAR
-	factions = list(FACTION_TERRAGOV, FACTION_SOM, FACTION_ALIEN, FACTION_CLF)
+	factions = list(FACTION_NTC, FACTION_SOM, FACTION_ALIEN, FACTION_CLF)
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
@@ -70,11 +70,11 @@
 
 //sets NTC and SOM squads
 /datum/game_mode/infestation/extended_plus/set_valid_squads()
-	SSjob.active_squads[FACTION_TERRAGOV] = list()
+	SSjob.active_squads[FACTION_NTC] = list()
 	SSjob.active_squads[FACTION_SOM] = list()
 	for(var/key in SSjob.squads)
 		var/datum/squad/squad = SSjob.squads[key]
-		if(squad.faction == FACTION_TERRAGOV || squad.faction == FACTION_SOM) //We only want Marine and SOM squads, future proofs if more faction squads are added
+		if(squad.faction == FACTION_NTC || squad.faction == FACTION_SOM) //We only want Marine and SOM squads, future proofs if more faction squads are added
 			SSjob.active_squads[squad.faction] += squad
 	return TRUE
 

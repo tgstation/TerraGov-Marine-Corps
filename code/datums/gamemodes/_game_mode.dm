@@ -44,7 +44,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	 */
 	var/time_between_round = 0
 	///What factions are used in this gamemode, typically TGMC and xenos
-	var/list/factions = list(FACTION_TERRAGOV, FACTION_ALIEN)
+	var/list/factions = list(FACTION_NTC, FACTION_ALIEN)
 
 //Distress call variables.
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
@@ -112,7 +112,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	transfer_characters()
 	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(flags_round_type, MODE_HUMAN_ONLY))
 	SSpoints.dropship_points = 0
-	SSpoints.supply_points[FACTION_TERRAGOV] = 0
+	SSpoints.supply_points[FACTION_NTC] = 0
 
 	for(var/hivenum in GLOB.hive_datums)
 		var/datum/hive_status/hive = GLOB.hive_datums[hivenum]
@@ -371,10 +371,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 /datum/game_mode/proc/announce_round_stats()
 	var/list/parts = list({"[span_round_body("The end of round statistics are:")]<br>
-		<br>There were [GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV]] total projectiles fired.
-		<br>[GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] ? GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] : "No"] projectiles managed to hit marines. For a [(GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] / max(GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV], 1)) * 100]% friendly fire rate!"})
+		<br>There were [GLOB.round_statistics.total_projectiles_fired[FACTION_NTC]] total projectiles fired.
+		<br>[GLOB.round_statistics.total_projectile_hits[FACTION_NTC] ? GLOB.round_statistics.total_projectile_hits[FACTION_NTC] : "No"] projectiles managed to hit marines. For a [(GLOB.round_statistics.total_projectile_hits[FACTION_NTC] / max(GLOB.round_statistics.total_projectiles_fired[FACTION_NTC], 1)) * 100]% friendly fire rate!"})
 	if(GLOB.round_statistics.total_projectile_hits[FACTION_XENO])
-		parts += "[GLOB.round_statistics.total_projectile_hits[FACTION_XENO]] projectiles managed to hit xenomorphs. For a [(GLOB.round_statistics.total_projectile_hits[FACTION_XENO] / max(GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV], 1)) * 100]% accuracy total!"
+		parts += "[GLOB.round_statistics.total_projectile_hits[FACTION_XENO]] projectiles managed to hit xenomorphs. For a [(GLOB.round_statistics.total_projectile_hits[FACTION_XENO] / max(GLOB.round_statistics.total_projectiles_fired[FACTION_NTC], 1)) * 100]% accuracy total!"
 	if(GLOB.round_statistics.grenades_thrown)
 		parts += "[GLOB.round_statistics.grenades_thrown] total grenades exploding."
 	else
@@ -385,8 +385,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.howitzer_shells_fired] howitzer shells were fired."
 	if(GLOB.round_statistics.rocket_shells_fired)
 		parts += "[GLOB.round_statistics.rocket_shells_fired] rocket artillery shells were fired."
-	if(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV])
-		parts += "[GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV]] people were killed, among which [GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV]] were revived and [GLOB.round_statistics.total_human_respawns] respawned. For a [(GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV] / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% revival rate and a [(GLOB.round_statistics.total_human_respawns / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% respawn rate."
+	if(GLOB.round_statistics.total_human_deaths[FACTION_NTC])
+		parts += "[GLOB.round_statistics.total_human_deaths[FACTION_NTC]] people were killed, among which [GLOB.round_statistics.total_human_revives[FACTION_NTC]] were revived and [GLOB.round_statistics.total_human_respawns] respawned. For a [(GLOB.round_statistics.total_human_revives[FACTION_NTC] / max(GLOB.round_statistics.total_human_deaths[FACTION_NTC], 1)) * 100]% revival rate and a [(GLOB.round_statistics.total_human_respawns / max(GLOB.round_statistics.total_human_deaths[FACTION_NTC], 1)) * 100]% respawn rate."
 	if(SSevacuation.human_escaped)
 		parts += "[SSevacuation.human_escaped] marines manage to evacuate, among [SSevacuation.initial_human_on_ship] that were on ship when xenomorphs arrived."
 	if(GLOB.round_statistics.now_pregnant)
@@ -642,13 +642,13 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 /datum/game_mode/proc/set_valid_squads()
 	var/max_squad_num = min(squads_max_number, SSmapping.configs[SHIP_MAP].squads_max_num)
-	SSjob.active_squads[FACTION_TERRAGOV] = list()
+	SSjob.active_squads[FACTION_NTC] = list()
 	if(max_squad_num == 0)
 		return TRUE
 	var/list/preferred_squads = list()
 	for(var/key in shuffle(SSjob.squads))
 		var/datum/squad/squad = SSjob.squads[key]
-		if(squad.faction == FACTION_TERRAGOV)
+		if(squad.faction == FACTION_NTC)
 			preferred_squads[squad.name] = 0
 	if(!length(preferred_squads))
 		to_chat(world, span_boldnotice("Error, no squads found."))
@@ -666,16 +666,16 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	sortTim(preferred_squads, cmp=/proc/cmp_numeric_dsc, associative = TRUE)
 
 	preferred_squads.len = max_squad_num
-	SSjob.active_squads[FACTION_TERRAGOV] = list()
+	SSjob.active_squads[FACTION_NTC] = list()
 	for(var/name in preferred_squads) //Back from weight to instantiate var
-		SSjob.active_squads[FACTION_TERRAGOV] += LAZYACCESSASSOC(SSjob.squads_by_name, FACTION_TERRAGOV, name)
+		SSjob.active_squads[FACTION_NTC] += LAZYACCESSASSOC(SSjob.squads_by_name, FACTION_NTC, name)
 	return TRUE
 
 
 /datum/game_mode/proc/scale_roles()
 	if(SSjob.ssjob_flags & SSJOB_OVERRIDE_JOBS_START)
 		return FALSE
-	if(length(SSjob.active_squads[FACTION_TERRAGOV]))
+	if(length(SSjob.active_squads[FACTION_NTC]))
 		scale_squad_jobs()
 	for(var/job_type in job_points_needed_by_job_type)
 		if(!(job_type in subtypesof(/datum/job)))
@@ -687,7 +687,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 /datum/game_mode/proc/scale_squad_jobs()
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/terragov/squad/leader)
-	scaled_job.total_positions = length(SSjob.active_squads[FACTION_TERRAGOV])
+	scaled_job.total_positions = length(SSjob.active_squads[FACTION_NTC])
 
 ///Return the list of joinable factions, with regards with the current round balance
 /datum/game_mode/proc/get_joinable_factions(should_look_balance)

@@ -20,7 +20,7 @@
 	///Y offset of the drop, relative to the supply beacon loc
 	var/y_offset = 0
 	///Faction of this drop console
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 	COOLDOWN_DECLARE(next_fire)
 
 /obj/machinery/computer/supplydrop_console/Initialize(mapload)

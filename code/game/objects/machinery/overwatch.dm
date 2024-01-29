@@ -46,7 +46,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	///which z level is ignored when showing marines.
 	var/z_hidden = 0
 	/// The faction that this computer can overwatch
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 	/// The list of all squads that can be watched
 	var/list/watchable_squads
 

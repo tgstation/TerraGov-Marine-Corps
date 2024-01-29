@@ -45,7 +45,7 @@
 	///What type of upgrade it has installed , used to change the icon of the miner.
 	var/miner_upgrade_type
 	///What faction secured that miner
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 
 /obj/machinery/miner/damaged	//mapping and all that shebang
 	miner_status = MINER_DESTROYED

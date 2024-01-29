@@ -439,7 +439,7 @@ What you lack in equipment and military training you make up in bravery and conv
 
 //Freelancers
 /datum/job/freelancer/standard/campaign_bonus
-	faction = FACTION_TERRAGOV
+	faction = FACTION_NTC
 	comm_title = "FL"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
@@ -460,7 +460,7 @@ What you lack in equipment and military training you make up in bravery and conv
 
 
 /datum/job/freelancer/medic/campaign_bonus
-	faction = FACTION_TERRAGOV
+	faction = FACTION_NTC
 	comm_title = "FL"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
@@ -470,7 +470,7 @@ What you lack in equipment and military training you make up in bravery and conv
 	ears = /obj/item/radio/headset/mainship
 
 /datum/job/freelancer/grenadier/campaign_bonus
-	faction = FACTION_TERRAGOV
+	faction = FACTION_NTC
 	comm_title = "FL"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	outfits = list(
@@ -486,7 +486,7 @@ What you lack in equipment and military training you make up in bravery and conv
 	ears = /obj/item/radio/headset/mainship
 
 /datum/job/freelancer/leader/campaign_bonus
-	faction = FACTION_TERRAGOV
+	faction = FACTION_NTC
 	comm_title = "FL"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	outfits = list(
@@ -503,7 +503,7 @@ What you lack in equipment and military training you make up in bravery and conv
 
 //PMC
 /datum/job/pmc/standard/campaign_bonus
-	faction = FACTION_TERRAGOV
+	faction = FACTION_NTC
 	comm_title = "PMC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
@@ -513,7 +513,7 @@ What you lack in equipment and military training you make up in bravery and conv
 	ears = /obj/item/radio/headset/mainship
 
 /datum/job/pmc/gunner/campaign_bonus
-	faction = FACTION_TERRAGOV
+	faction = FACTION_NTC
 	comm_title = "PMC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
@@ -523,7 +523,7 @@ What you lack in equipment and military training you make up in bravery and conv
 	ears = /obj/item/radio/headset/mainship
 
 /datum/job/pmc/leader/campaign_bonus
-	faction = FACTION_TERRAGOV
+	faction = FACTION_NTC
 	comm_title = "PMC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
@@ -533,7 +533,7 @@ What you lack in equipment and military training you make up in bravery and conv
 	ears = /obj/item/radio/headset/mainship
 
 /datum/job/pmc/medic/campaign_bonus
-	faction = FACTION_TERRAGOV
+	faction = FACTION_NTC
 	comm_title = "PMC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
