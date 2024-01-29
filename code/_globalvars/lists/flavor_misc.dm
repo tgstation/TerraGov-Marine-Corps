@@ -252,6 +252,7 @@ GLOBAL_LIST_INIT(campaign_loadout_item_icon_types, list(
 	"helmet",
 	"boots",
 	"machete",
+	"axe",
 	"pistol",
 	"smg",
 ))

@@ -280,7 +280,7 @@
 	name = "Boarding axe"
 	desc = "A SOM boarding axe, effective at breaching doors as well as skulls. When wielded it can be used to block as well as attack."
 	req_desc = "Requires M-31 combat armor with a Lorica extra armor module."
-	ui_icon = "machete"
+	ui_icon = "axe"
 	item_typepath = /obj/item/weapon/twohanded/fireaxe/som
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/lorica = ITEM_SLOT_OCLOTHING)
 	item_blacklist = list(/obj/item/weapon/twohanded/fireaxe/som = ITEM_SLOT_BACK)
@@ -1247,7 +1247,7 @@
 /datum/loadout_item/suit_store/fc_boarding_axe
 	name = "Boarding axe"
 	desc = "A SOM boarding axe, effective at breaching doors as well as skulls. When wielded it can be used to block as well as attack."
-	ui_icon = "machete"
+	ui_icon = "axe"
 	item_typepath = /obj/item/weapon/twohanded/fireaxe/som
 	item_blacklist = list(/obj/item/weapon/twohanded/fireaxe/som = ITEM_SLOT_BACK)
 	jobs_supported = list(SOM_FIELD_COMMANDER)
