@@ -83,7 +83,7 @@
 /datum/loadout_item/r_pocket/som_tools
 	name = "Tool pouch"
 	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool."
-	ui_icon = "materials"
+	ui_icon = "construction"
 	item_typepath = /obj/item/storage/pouch/tools/som/full
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
