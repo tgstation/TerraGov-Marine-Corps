@@ -399,9 +399,14 @@
 	if(deployed_turret.loc == src) //not deployed
 		if(is_reserved_level(z))
 			to_chat(user, span_warning("[src] can't deploy mid-flight."))
-		else
-			to_chat(user, span_notice("You deploy [src]."))
-			deploy_sentry()
+			return
+		for(var/turf/turf_to_check AS in RANGE_TURFS(SENTRY_DEPLOY_RANGE_LIMIT, get_step(src, ship_base.dir)))
+			for(var/obj/machinery/deployable/mounted/sentry/deployable_sentry in turf_to_check)
+				if(get_dist_euclide(deployable_sentry, src) >= SENTRY_DEPLOY_RANGE_LIMIT)
+					to_chat(user, span_warning("Another sentry is too close."))
+					return
+		to_chat(user, span_notice("You deploy [src]."))
+		deploy_sentry()
 	else
 		to_chat(user, span_notice("You retract [src]."))
 		undeploy_sentry()
