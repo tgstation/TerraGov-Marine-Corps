@@ -37,7 +37,7 @@
 /mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	var/randn = rand(1, 100)
 	var/stamina_loss = getStaminaLoss()
-	var/disarmdamage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
+	var/disarmdamage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 1.5
 	var/damage_to_deal = clamp(disarmdamage, 0, maxHealth - stamina_loss)
 	var/sound = 'sound/weapons/alien_knockdown.ogg'
 
