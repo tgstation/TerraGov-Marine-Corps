@@ -60,7 +60,7 @@
 				return
 			apply_damage(damage_to_deal, STAMINA, BODY_ZONE_CHEST, MELEE)
 			X.visible_message("<span class='danger'>[X] shoves and presses [src] down!</span>",
-			"<span class='danger'>We shove and press [src] down!</span>", null, 5)
+			"<span class='danger'>We shove [src]!</span>", null, 5)
 			Stagger(2 SECONDS)
 			if(stamina_loss >= maxHealth)
 				if(!IsParalyzed())
