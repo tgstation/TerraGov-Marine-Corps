@@ -1131,6 +1131,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEADBITE,
 	)
+	ability_cost = 50
 	gamemode_flags = ABILITY_NUCLEARWAR
 	///How much larva points it gives (8 points for one larva in distress)
 	var/larva_point_reward = 1
