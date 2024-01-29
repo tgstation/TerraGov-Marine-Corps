@@ -193,15 +193,15 @@
 
 ///Adjusts the blood volume, with respect to the minimum and maximum values
 /mob/living/proc/adjust_blood_volume(amount)
-	if(!isnull(amount))
-		CRASH("adjust_blood_volume called with null amount of blood.")
+	if(!amount)
+		return
 
 	blood_volume = clamp(blood_volume + amount, 0, BLOOD_VOLUME_MAXIMUM)
 
 ///Sets the blood volume, with respect to the minimum and maximum values
 /mob/living/proc/set_blood_volume(amount)
-	if(!isnull(amount))
-		CRASH("set_blood_volume called with null amount of blood.")
+	if(!amount)
+		return
 
 	blood_volume = clamp(amount, 0, BLOOD_VOLUME_MAXIMUM)
 
