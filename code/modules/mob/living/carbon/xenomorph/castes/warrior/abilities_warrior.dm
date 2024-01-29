@@ -22,7 +22,11 @@
 	return FALSE
 
 /// Checks if Empower is capped and gives bonuses if so, otherwise increases combo count.
-/datum/action/ability/xeno_action/empower/proc/check_empower()
+/datum/action/ability/xeno_action/empower/proc/check_empower(atom/target)
+	if(isliving(target))
+		var/mob/living/living_target = target
+		if(living_target.stat == DEAD || living_target.issamexenohive(owner))
+			return FALSE
 	if(combo_count >= WARRIOR_EMPOWER_COMBO_THRESHOLD)
 		var/mob/living/carbon/xenomorph/xeno_owner = owner
 		xeno_owner.emote("roar")
@@ -220,7 +224,7 @@
 			owner.balloon_alert(owner, "Invalid target")
 		return FALSE
 	var/mob/living/living_target = A
-	if(living_target.stat == DEAD)
+	if(living_target.stat == DEAD && !living_target.issamexenohive(owner))
 		if(!silent)
 			owner.balloon_alert(owner, "Dead")
 		return FALSE
@@ -319,7 +323,7 @@
 			owner.balloon_alert(owner, "Invalid target")
 		return FALSE
 	var/mob/living/living_target = A
-	if(living_target.stat == DEAD)
+	if(living_target.stat == DEAD && !living_target.issamexenohive(owner))
 		if(!silent)
 			owner.balloon_alert(owner, "Dead")
 		return FALSE
@@ -342,7 +346,7 @@
 	if(living_target.mob_size >= MOB_SIZE_BIG) // Penalize fling distance for big creatures.
 		fling_distance--
 	var/datum/action/ability/xeno_action/empower/empower_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/empower]
-	if(empower_action?.check_empower())
+	if(empower_action?.check_empower(living_target))
 		fling_distance *= WARRIOR_FLING_EMPOWER_MULTIPLIER
 	if(!living_target.issamexenohive(xeno_owner))
 		RegisterSignal(living_target, COMSIG_MOVABLE_IMPACT, PROC_REF(thrown_into))
@@ -407,11 +411,12 @@
 		return FALSE
 
 /datum/action/ability/activable/xeno/warrior/grapple_toss/use_ability(atom/A)
+	. = ..()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/atom/movable/atom_target = xeno_owner.pulling
 	var/fling_distance = WARRIOR_GRAPPLE_TOSS_DISTANCE
 	var/datum/action/ability/xeno_action/empower/empower_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/empower]
-	if(empower_action?.check_empower())
+	if(empower_action?.check_empower(atom_target))
 		fling_distance *= WARRIOR_GRAPPLE_TOSS_EMPOWER_MULTIPLIER
 	if(isliving(atom_target))
 		var/mob/living/living_target = atom_target
@@ -499,7 +504,7 @@
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/punch_damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier
 	var/datum/action/ability/xeno_action/empower/empower_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/empower]
-	if(empower_action?.check_empower())
+	if(empower_action?.check_empower(A))
 		punch_damage *= WARRIOR_PUNCH_EMPOWER_MULTIPLIER
 	if(!A.punch_act(xeno_owner, punch_damage))
 		return fail_activate()
@@ -521,10 +526,10 @@
 	return TRUE
 
 /// Handles anything that should happen when the Warrior's punch hits any atom.
-/atom/proc/punch_act(mob/living/carbon/xenomorph/xeno, punch_damage)
+/atom/proc/punch_act(mob/living/carbon/xenomorph/xeno, punch_damage, push = TRUE)
 	return TRUE
 
-/obj/machinery/punch_act(mob/living/carbon/xenomorph/xeno, punch_damage)
+/obj/machinery/punch_act(mob/living/carbon/xenomorph/xeno, punch_damage, ...)
 	xeno.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	xeno.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 	if(!(resistance_flags & UNACIDABLE) || resistance_flags & XENO_DAMAGEABLE) // If it's acidable or we can't acid it but it has the xeno damagable flag, we can damage it
@@ -566,7 +571,7 @@
 	if(tipped_level < 2)
 		tip_over()
 
-/obj/structure/punch_act(mob/living/carbon/xenomorph/xeno, punch_damage)
+/obj/structure/punch_act(mob/living/carbon/xenomorph/xeno, punch_damage, ...)
 	. = ..()
 	xeno.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	xeno.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
@@ -574,7 +579,7 @@
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
 	Shake(duration = 0.5 SECONDS)
 
-/obj/vehicle/punch_act(mob/living/carbon/xenomorph/xeno, punch_damage)
+/obj/vehicle/punch_act(mob/living/carbon/xenomorph/xeno, punch_damage, ...)
 	. = ..()
 	xeno.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	xeno.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
@@ -583,7 +588,7 @@
 	Shake(duration = 0.5 SECONDS)
 	return TRUE
 
-/mob/living/punch_act(mob/living/carbon/xenomorph/warrior/xeno, punch_damage)
+/mob/living/punch_act(mob/living/carbon/xenomorph/warrior/xeno, punch_damage, push = TRUE)
 	. = ..()
 	var/slowdown_stacks = WARRIOR_PUNCH_SLOWDOWN
 	var/stagger_stacks = WARRIOR_PUNCH_STAGGER
@@ -615,6 +620,8 @@
 	apply_damage(punch_damage, BRUTE, target_limb ? target_limb : 0, MELEE)
 	apply_damage(punch_damage, STAMINA, updating_health = TRUE)
 	var/turf_behind = get_step(src, REVERSE_DIR(get_dir(src, xeno)))
+	if(!push)
+		return
 	if(LinkBlocked(get_turf(src), turf_behind))
 		do_attack_animation(turf_behind)
 		return
@@ -639,7 +646,7 @@
 
 
 // ***************************************
-// *********** Jab
+// *********** Flurry
 // ***************************************
 #define WARRIOR_JAB_DAMAGE_MULTIPLIER 0.25
 #define WARRIOR_JAB_BLIND 3
@@ -697,13 +704,13 @@
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/mob/living/living_target = A
 	var/jab_damage = round((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * WARRIOR_JAB_DAMAGE_MULTIPLIER)
-	if(!living_target.punch_act(xeno_owner, jab_damage))
+	if(!living_target.punch_act(xeno_owner, jab_damage, FALSE))
 		return fail_activate()
 	current_charges--
 	succeed_activate()
 	add_cooldown()
 	var/datum/action/ability/xeno_action/empower/empower_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/empower]
-	if(!empower_action?.check_empower())
+	if(!empower_action?.check_empower(living_target))
 		return
 	living_target.adjust_blindness(WARRIOR_JAB_BLIND)
 	living_target.adjust_blurriness(WARRIOR_JAB_BLUR)
