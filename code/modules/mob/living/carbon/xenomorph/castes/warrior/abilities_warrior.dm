@@ -1,8 +1,8 @@
 // ***************************************
 // *********** Empower
 // ***************************************
-#define WARRIOR_EMPOWER_COMBO_THRESHOLD 2
-#define WARRIOR_EMPOWER_COMBO_FADE_TIME 10 SECONDS
+#define WARRIOR_EMPOWER_COMBO_THRESHOLD 2 // After how many abilities should a Warrior get an empowered cast (2 means the 3rd one is empowered).
+#define WARRIOR_EMPOWER_COMBO_FADE_TIME 10 SECONDS // The duration of a combo, after which it will disappear by itself.
 
 /datum/action/ability/xeno_action/empower
 	name = "Empower"
@@ -77,10 +77,12 @@
 
 /datum/action/ability/xeno_action/toggle_agility/New(Target)
 	. = ..()
-	desc = "Move on all fours and loosen your scales. Increases movement speed by [abs(WARRIOR_AGILITY_SPEED_MODIFIER)], but reduces all soft armor by [WARRIOR_AGILITY_ARMOR_MODIFIER]. Automatically disabled after using an ability."
+	desc = "Move on all fours and loosen our scales. Increases movement speed by [abs(WARRIOR_AGILITY_SPEED_MODIFIER)], but reduces all soft armor by [WARRIOR_AGILITY_ARMOR_MODIFIER]. Automatically disabled after using an ability."
 
 /datum/action/ability/xeno_action/toggle_agility/action_activate()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	GLOB.round_statistics.warrior_agility_toggles++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_agility_toggles")
 	ability_active = !ability_active
 	set_toggle(ability_active ? TRUE : FALSE)
 	xeno_owner.update_icons()
@@ -97,6 +99,7 @@
 // ***************************************
 // *********** Parent Ability
 // ***************************************
+#define WARRIOR_IMPACT_DAMAGE_MULTIPLIER 0.5
 #define WARRIOR_DISPLACE_KNOCKDOWN 0.4 SECONDS
 
 /datum/action/ability/activable/xeno/warrior/use_ability(atom/A)
@@ -118,18 +121,18 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_MOVABLE_IMPACT)
 	var/mob/living/living_target = source
-	INVOKE_ASYNC(living_target, TYPE_PROC_REF(/mob, emote), "pain")
+	INVOKE_ASYNC(living_target, TYPE_PROC_REF(/mob, emote), "scream")
 	living_target.Knockdown(WARRIOR_DISPLACE_KNOCKDOWN)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	new /obj/effect/temp_visual/warrior/impact(get_turf(living_target), get_dir(living_target, xeno_owner))
 	// mob/living/turf_collision() does speed * 5 damage on impact with a turf, and we don't want to go overboard, so we deduce that here.
-	var/thrown_damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) - (impact_speed * 5)
+	var/thrown_damage = ((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) - (impact_speed * 5)) * WARRIOR_IMPACT_DAMAGE_MULTIPLIER
 	living_target.apply_damage(thrown_damage, BRUTE, blocked = MELEE)
 	if(isliving(hit_atom))
 		var/mob/living/hit_living = hit_atom
 		if(hit_living.issamexenohive(xeno_owner))
 			return
-		INVOKE_ASYNC(hit_living, TYPE_PROC_REF(/mob, emote), "pain")
+		INVOKE_ASYNC(hit_living, TYPE_PROC_REF(/mob, emote), "scream")
 		hit_living.apply_damage(thrown_damage, BRUTE, blocked = MELEE)
 		hit_living.Knockdown(WARRIOR_DISPLACE_KNOCKDOWN)
 		step_away(hit_living, living_target, 1, 1)
@@ -140,14 +143,17 @@
 		hit_object.take_damage(thrown_damage, BRUTE)
 	if(iswallturf(hit_atom))
 		var/turf/closed/wall/hit_wall = hit_atom
-		if(!hit_wall.resistance_flags != INDESTRUCTIBLE)
+		if(!(hit_wall.resistance_flags & INDESTRUCTIBLE))
 			hit_wall.take_damage(thrown_damage, BRUTE)
 
 /// Ends the target's throw.
 /datum/action/ability/activable/xeno/warrior/proc/throw_ended(datum/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, UnregisterSignal), source, COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW), 1) // having a giggle
+	/* So the reason why we do not flat out unregister this is because, when an atom makes impact with something, it calls throw_impact(). Calling it this way causes
+	stop_throw() to be called in most cases, because impacts can cause a bounce effect and ending the throw makes it happen. Given the way we have signals setup, unregistering
+	it at that point would cause thrown_into() to never get called, and that is exactly the reason why the line of code below exists. */
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, UnregisterSignal), source, COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW), 1)
 	var/mob/living/living_target = source
 	living_target.Knockdown(0.5 SECONDS)
 
@@ -198,7 +204,7 @@
 
 /datum/action/ability/activable/xeno/warrior/lunge/New(Target)
 	. = ..()
-	desc = "Lunge towards a target within [WARRIOR_LUNGE_RANGE] tiles, putting them in your grasp. Usable on allies."
+	desc = "Lunge towards a target within [WARRIOR_LUNGE_RANGE] tiles, putting them in our grasp. Usable on allies."
 
 /datum/action/ability/activable/xeno/warrior/lunge/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
@@ -383,7 +389,7 @@
 
 /datum/action/ability/activable/xeno/warrior/grapple_toss/New(Target)
 	. = ..()
-	desc = "Throw a creature under your grasp up to [WARRIOR_GRAPPLE_TOSS_DISTANCE] tiles away. Distance reduced on bigger creates. Usable on allies."
+	desc = "Throw a creature under our grasp up to [WARRIOR_GRAPPLE_TOSS_DISTANCE] tiles away. Distance reduced on bigger creates. Usable on allies."
 
 /datum/action/ability/activable/xeno/warrior/grapple_toss/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
@@ -488,7 +494,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
 	do_ability(A)
 
-/// Does the ability, as you'd expect!
+/// Does the ability. Exists because Punch is the parent of another ability, so this lets us separate functionality and avoid repeating a few lines of code.
 /datum/action/ability/activable/xeno/warrior/punch/proc/do_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/punch_damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier
@@ -514,18 +520,19 @@
 		return FALSE
 	return TRUE
 
+/// Handles anything that should happen when the Warrior's punch hits any atom.
 /atom/proc/punch_act(mob/living/carbon/xenomorph/xeno, punch_damage)
 	return TRUE
 
 /obj/machinery/punch_act(mob/living/carbon/xenomorph/xeno, punch_damage)
 	xeno.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	xeno.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-	if(!CHECK_BITFIELD(resistance_flags, UNACIDABLE) || resistance_flags == (UNACIDABLE|XENO_DAMAGEABLE)) // If it's acidable or we can't acid it but it has the xeno damagable flag, we can damage it
+	if(!(resistance_flags & UNACIDABLE) || resistance_flags & XENO_DAMAGEABLE) // If it's acidable or we can't acid it but it has the xeno damagable flag, we can damage it
 		attack_generic(xeno, punch_damage * 4, BRUTE, effects = FALSE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
 	Shake(duration = 0.5 SECONDS)
-	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
+	if(!(machine_stat & PANEL_OPEN))
+		machine_stat |= PANEL_OPEN
 	if(wires)
 		var/allcut = wires.is_all_cut()
 		if(!allcut)

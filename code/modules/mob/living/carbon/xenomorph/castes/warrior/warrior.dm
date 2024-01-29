@@ -53,14 +53,16 @@
 		return neck_grab(living_target)
 	. = ..(living_target, force, suppress_message)
 
+/// Puts the target on an upgraded grab and handles related effects.
 /mob/living/carbon/xenomorph/warrior/proc/neck_grab(mob/living/living_target)
 	GLOB.round_statistics.warrior_grabs++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_grabs")
 	setGrabState(GRAB_NECK)
-	ENABLE_BITFIELD(living_target.restrained_flags, RESTRAINED_NECKGRAB)
+	living_target.resistance_flags |= RESTRAINED_NECKGRAB
 	RegisterSignal(living_target, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against))
 	living_target.drop_all_held_items()
 	living_target.Paralyze(0.1 SECONDS)
+	living_target.balloon_alert(src, "Grabbed [living_target]")
 	return TRUE
 
 /mob/living/carbon/xenomorph/warrior/resisted_against(datum/source)
