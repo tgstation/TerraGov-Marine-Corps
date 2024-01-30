@@ -57,11 +57,11 @@
 		deadchat_broadcast(" has sent a Squad Announcement:<br><br>[span_bigdeadsay("[text]")]<br><br>", human_owner, human_owner)
 		for(var/mob/living/carbon/human/marine AS in human_owner.assigned_squad.marines_list)
 			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>SQUAD ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
-			to_chat(marine, "[faction_alert_colored_span("blue", "[span_faction_alert_minortitle("Squad Announcement")][span_faction_alert_subtitle("Sent by [human_owner.real_name]")][span_faction_alert_text("[text]")]")]")
+			to_chat(marine, "[faction_alert_default_span("[span_faction_alert_minortitle("Squad Announcement")][span_faction_alert_subtitle("Sent by [human_owner.real_name]")][span_faction_alert_text("[text]")]")]")
 		return
 	deadchat_broadcast(" has sent a Command Announcement:<br><br>[span_bigdeadsay("[text]")]<br><br>", human_owner, human_owner)
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == human_owner.faction)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>COMMAND ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
-			to_chat(human, "[faction_alert_colored_span("red", "[span_faction_alert_title("Command Announcement")][span_faction_alert_subtitle("Sent by [human_owner.real_name]")][span_faction_alert_text("[text]")]")]")
+			to_chat(human, "[faction_alert_default_span("[span_faction_alert_title("Command Announcement")][span_faction_alert_subtitle("Sent by [human_owner.real_name]")][span_faction_alert_text("[text]")]")]")
 			SEND_SOUND(human, S)
