@@ -118,7 +118,7 @@
 					to_chat(usr, span_warning("That announcement contained charachters prohibited in IC chat! Consider reviewing the server rules."))
 					return FALSE
 
-				priority_announce(input, type = ANNOUNCEMENT_COMMAND)
+				priority_announce(input, subtitle = "Announced by [usr]", type = ANNOUNCEMENT_COMMAND, color_override = "red")
 				message_admins("[ADMIN_TPMONTY(usr)] has just sent a command announcement")
 				log_game("[key_name(usr)] has just sent a command announcement.")
 				cooldown_message = world.time

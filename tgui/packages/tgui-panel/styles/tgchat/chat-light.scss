@@ -3,6 +3,9 @@
  * SPDX-License-Identifier: MIT
  */
 
+@use 'sass:map';
+@use 'sass:color';
+
 html,
 body {
   padding: 0;
@@ -1054,38 +1057,116 @@ h2.alert {
   border-bottom: 1px dashed #000;
 }
 
-.faction_alert {
-  background: #ffadad;
-  margin: 0.5em;
-  padding: 0.5em 0.5em 0.5em 0.5em;
-  color: #cecece;
-  font-weight: bold;
-  display: flex;
-  flex-direction: column;
-  background-image: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 10px,
-    #ff9999 10px,
-    #ff9999 20px
-  );
-}
+$alert-stripe-colors: (
+  'default': #b3bfff,
+  'green': #adffad,
+  'blue': #b3bfff,
+  'pink': #ffb3df,
+  'yellow': #fff3b3,
+  'orange': #ffe2b3,
+  'red': #ffb3b3,
+  'purple': #fac2ff,
+  'grey': #e3e3e3,
+);
+
+$alert-stripe-alternate-colors: (
+  'default': #bdc8ff,
+  'green': #bdffbd,
+  'blue': #bdc8ff,
+  'pink': #ffc2e5,
+  'yellow': #fff5c2,
+  'orange': #ffe8c2,
+  'red': #ffc2c2,
+  'purple': #fbd1ff,
+  'grey': #ebebeb,
+);
+
+$alert-major-header-colors: (
+  'default': #003061,
+  'green': #005229,
+  'blue': #003061,
+  'pink': #800033,
+  'yellow': #754900,
+  'orange': #823208,
+  'red': #800029,
+  'purple': #450d8c,
+  'grey': #800033,
+);
+
+$alert-subheader-header-colors: (
+  'default': #6b0020,
+  'green': #6b0020,
+  'blue': #6b0020,
+  'pink': #002c85,
+  'yellow': #002c85,
+  'orange': #002c85,
+  'red': #002c85,
+  'purple': #002c85,
+  'grey': #002c85,
+);
+
+$border-width: 4;
+
+$border-width-px: $border-width * 1px;
+
 .faction_alert_text {
-  color: #0e0e0e;
-  background: #fcc3c3;
+  color: #202020;
+  background: #eaeaea;
   padding: 1em 1em 1em 1em;
 }
 .faction_alert_subtitle {
-  color: #000000;
-  padding: 0.5em 0.5em 0.5em 0.5em;
+  padding: 0.5rem 0.5rem;
+  font-size: 125%;
 }
 .faction_alert_title {
-  color: #000000;
-  padding: 0.35em 0.35em 0 0.35em;
+  padding: 0.5rem 0.5rem;
   font-size: 185%;
 }
 .faction_alert_minortitle {
-  color: #000000;
-  padding: 0.35em 0.35em 0.35em 0.35em;
+  padding: 0.5rem 0.5rem;
   font-size: 135%;
+}
+
+@each $color-name, $color-value in $alert-stripe-colors {
+  .faction_alert_#{$color-name} {
+    color: #ffffff;
+    box-shadow: none;
+    font-weight: bold;
+    margin: 1rem 0 1rem 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    border-image: repeating-linear-gradient(
+      -45deg,
+      map.get($alert-stripe-alternate-colors, $color-name),
+      map.get($alert-stripe-alternate-colors, $color-name) 10px,
+      $color-value 10px,
+      $color-value 20px
+    );
+    border-image-slice: $border-width fill;
+    border-width: $border-width-px;
+    border-image-width: $border-width-px;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: repeat repeat;
+    border-style: solid;
+  }
+
+  .faction_alert_#{$color-name} .faction_alert_title {
+    color: map.get($alert-major-header-colors, $color-name);
+  }
+
+  .faction_alert_#{$color-name} .faction_alert_minortitle {
+    color: map.get($alert-major-header-colors, $color-name);
+  }
+
+  .faction_alert_#{$color-name} .faction_alert_subtitle {
+    color: map.get($alert-subheader-header-colors, $color-name);
+  }
+
+  .faction_alert_#{$color-name} .faction_alert_text {
+    background-color: lighten(
+      map.get($alert-stripe-alternate-colors, $color-name),
+      5
+    );
+  }
 }
