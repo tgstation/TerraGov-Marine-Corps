@@ -48,7 +48,7 @@
 		return
 
 	if(HAS_TRAIT(user, TRAIT_KNIGHT))
-		balloon_alert(user, "Doth not sully thyne name, squire!")
+		balloon_alert(user, "can't, armor's too restrictive")
 		return
 
 	activate(user)

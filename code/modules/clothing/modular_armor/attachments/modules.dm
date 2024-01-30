@@ -162,7 +162,7 @@
 /obj/item/armor_module/module/knight
 	name = "\improper Magni Knight System"
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
-	desc = "Designed for mounting on modular armor. HUZZAH"
+	desc = "Designed for mounting on modular armor. An aftermarket kit that provides substantial armor while not compromising speed, allows access to exclusive sword and axe techniques but restricts the use of guns."
 	icon_state = "mod_armor"
 	item_state = "mod_armor_a"
 	attachment_layer = COLLAR_LAYER
@@ -178,6 +178,13 @@
 	parent.flags_armor_features &= ~ARMOR_KNIGHT
 	return ..()
 
+/obj/item/armor_module/module/knight/som
+	name = "\improper Squamala Knight System"
+	desc = "Designed for mounting on modular SoM armor. An aftermarket kit that provides substantial armor while not compromising speed, allows access to exclusive axe and sword techniques but restricts the use of guns."
+	icon_state = "lorica_armor"
+	item_state = "lorica_armor_a"
+	attachment_layer = null
+	soft_armor = list(MELEE = 10, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 10, ACID = 5)
 
 /**
  * Environment protection module

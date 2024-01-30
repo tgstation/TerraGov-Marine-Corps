@@ -1711,7 +1711,7 @@
 		to_chat(user, span_warning("Your program does not allow you to use this firearm."))
 		return FALSE
 	if(HAS_TRAIT(user, TRAIT_KNIGHT))
-		to_chat(user, span_warning("Doth not sully thyne name, squire!"))
+		to_chat(user, span_warning("Your armor does not allow you to use this firearm!"))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_GUN_SAFETY))
 		to_chat(user, span_warning("The safety is on!"))

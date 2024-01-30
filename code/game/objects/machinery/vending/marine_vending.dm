@@ -1145,6 +1145,7 @@
 //			/obj/item/armor_module/module/hod_head = -1,
 			/obj/item/armor_module/module/better_shoulder_lamp = -1,
 			/obj/item/armor_module/module/chemsystem = -1,
+			/obj/item/armor_module/module/knight = -1,
 			/obj/item/armor_module/module/eshield = -1,
 		),
 		"Style Line" = list(
@@ -1599,6 +1600,7 @@
 			/obj/item/armor_module/module/fire_proof = -1,
 			/obj/item/armor_module/module/fire_proof_helmet = -1,
 			/obj/item/armor_module/module/tyr_extra_armor = -1,
+			/obj/item/armor_module/module/knight = -1,
 			/obj/item/armor_module/module/tyr_head = -1,
 			/obj/item/attachable/shoulder_mount = -1,
 			/obj/item/armor_module/module/mimir_environment_protection = -1,
