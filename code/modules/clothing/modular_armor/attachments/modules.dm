@@ -172,10 +172,10 @@
 
 /obj/item/armor_module/module/knight/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
-	parent.flags_armor_features |= ARMOR_KNIGHT
+	parent.flags_armor_features |= MELEE_ONLY_ARMOR
 
 /obj/item/armor_module/module/knight/on_detach(obj/item/detaching_from, mob/user)
-	parent.flags_armor_features &= ~ARMOR_KNIGHT
+	parent.flags_armor_features &= ~MELEE_ONLY_ARMOR
 	return ..()
 
 /obj/item/armor_module/module/knight/som
