@@ -53,7 +53,7 @@
 		printing_complete = TRUE
 		SSpoints.supply_points[faction] += supply_reward
 		SSpoints.dropship_points += dropship_reward
-		priority_announce("Classified transmission recieved from [get_area(src)]. Bonus delivered as [supply_reward] supply points and [dropship_reward] dropship points.", title = "NTC Intel Division")
+		minor_announce("Classified transmission recieved from [get_area(src)]. Bonus delivered as [supply_reward] supply points and [dropship_reward] dropship points.", title = "NTC Intel Division")
 		SSminimaps.remove_marker(src)
 		active = FALSE
 		SStgui.close_uis(src)

@@ -81,6 +81,28 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	prereq_perks = list(/datum/perk/hp_boost)
 	unlock_cost = 1000
 
+/datum/perk/shield_overclock
+	name = "Shield overlock"
+	desc = "Overclocking a shield module beyond manufacturing specifications results in a more powerful shield at that cost of severely reducing the expected lifetime of its sensitive components. \
+	May void the warranty. Also unlocks shield modules for roles that do not already have access to it."
+	ui_icon = "overclock"
+	all_jobs = TRUE
+	unlock_cost = 800
+
+/datum/perk/shield_overclock/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	if(owner_stats.faction == FACTION_TERRAGOV)
+		for(var/job_type in owner_stats.loadouts)
+			owner_stats.replace_option(/datum/loadout_item/suit_slot/light_shield/overclocked, /datum/loadout_item/suit_slot/light_shield, job_type)
+			owner_stats.replace_option(/datum/loadout_item/suit_slot/medium_shield/overclocked, /datum/loadout_item/suit_slot/medium_shield, job_type)
+			owner_stats.replace_option(/datum/loadout_item/suit_slot/heavy_shield/overclocked, /datum/loadout_item/suit_slot/heavy_shield, job_type)
+
+	else if(owner_stats.faction == FACTION_SOM)
+		for(var/job_type in owner_stats.loadouts)
+			owner_stats.replace_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked, /datum/loadout_item/suit_slot/light_shield, job_type)
+			owner_stats.replace_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked/veteran, /datum/loadout_item/suit_slot/som_light_shield/veteran, job_type)
+			owner_stats.replace_option(/datum/loadout_item/suit_slot/som_medium_shield/overclocked, /datum/loadout_item/suit_slot/medium_shield, job_type)
+			owner_stats.replace_option(/datum/loadout_item/suit_slot/som_heavy_shield/overclocked, /datum/loadout_item/suit_slot/heavy_shield, job_type)
+
 //perks that give a trait
 /datum/perk/trait
 	///List of traits provided by this perk
@@ -289,11 +311,24 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/medical
 	name = "Advanced medical training"
-	desc = "Faster at applying medical items. Some items may no longer have a penalty delay."
+	desc = "Faster at applying medical items. Some items may no longer have a penalty delay. Unlocks access to improved first aid pouches if not already available."
 	ui_icon = "medical"
 	medical = 1
 	all_jobs = TRUE
 	unlock_cost = 600
+
+/datum/perk/skill_mod/medical/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	if(!istype(owner_stats))
+		return
+	if(owner_stats.faction == FACTION_TERRAGOV)
+		for(var/job_type in owner_stats.loadouts)
+			owner_stats.replace_option(/datum/loadout_item/r_pocket/standard_first_aid/standard_improved, /datum/loadout_item/r_pocket/standard_first_aid, job_type)
+			owner_stats.replace_option(/datum/loadout_item/l_pocket/standard_first_aid/standard_improved, /datum/loadout_item/l_pocket/standard_first_aid, job_type)
+
+	else if(owner_stats.faction == FACTION_SOM)
+		for(var/job_type in owner_stats.loadouts)
+			owner_stats.replace_option(/datum/loadout_item/r_pocket/som_standard_first_aid/standard_improved, /datum/loadout_item/r_pocket/som_standard_first_aid, job_type)
+			owner_stats.replace_option(/datum/loadout_item/l_pocket/som_standard_first_aid/standard_improved, /datum/loadout_item/l_pocket/som_standard_first_aid, job_type)
 
 /datum/perk/skill_mod/stamina
 	name = "Improved stamina"

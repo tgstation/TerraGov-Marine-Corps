@@ -226,6 +226,7 @@ GLOBAL_LIST_INIT(campaign_perk_icon_types, list(
 	"leadership",
 	"smartguns",
 	"firearms",
+	"overclock",
 ))
 
 GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())

@@ -243,6 +243,7 @@
 /mob/living/carbon/xenomorph/examine(mob/user)
 	. = ..()
 	. += xeno_caste.caste_desc
+	. += "<span class='notice'>"
 
 	if(xeno_desc)
 		. += "<span class='info'>[xeno_desc]</span>"
@@ -250,7 +251,7 @@
 		. += "<span class='info'><img src=[xenoprofile_pic] width=250 height=250/></span>"
 
 	if(stat == DEAD)
-		. += "It is DEAD. Kicked the bucket. Off to that great hive in the sky."
+		. += "<span class='deadsay'>It is DEAD. Kicked the bucket. Off to that great hive in the sky.</span>"
 	else if(stat == UNCONSCIOUS)
 		. += "It quivers a bit, but barely moves."
 	else
@@ -266,6 +267,8 @@
 				. += "It bleeds with sizzling wounds."
 			if(1 to 24)
 				. += "It is heavily injured and limping badly."
+
+	. += "</span>"
 
 	if(hivenumber != XENO_HIVE_NORMAL)
 		var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]

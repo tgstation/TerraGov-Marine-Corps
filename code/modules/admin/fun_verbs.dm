@@ -59,7 +59,7 @@
 	if(!input || !customname)
 		return
 
-	var/msg = "<br><h2 class='alert'>[customname]</h2><br>[span_warning("[input]")]<br><br>"
+	var/msg = "[span_faction_alert("[span_faction_alert_title("[customname]")]<br>[span_faction_alert_text("[html_encode(input)]")]")]"
 
 	for(var/i in (GLOB.xeno_mob_list + GLOB.observer_list))
 		var/mob/M = i
@@ -284,8 +284,7 @@
 
 	GLOB.custom_info = new_info
 
-	to_chat(world, "<h1 class='alert'>Custom Information</h1>")
-	to_chat(world, span_alert("[GLOB.custom_info]"))
+	to_chat(world, "[span_faction_alert("[span_faction_alert_title("Custom Information")][span_faction_alert_subtitle("The following custom information has been set for this round.")]<br>[span_faction_alert_text("[GLOB.custom_info]")]")]")
 
 	log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
 	message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
@@ -299,8 +298,7 @@
 		to_chat(src, span_notice("There currently is no custom information set."))
 		return
 
-	to_chat(src, "<h1 class='alert'>Custom Information</h1>")
-	to_chat(src, span_alert("[GLOB.custom_info]"))
+	to_chat(src, "[span_faction_alert("[span_faction_alert_title("Custom Information")][span_faction_alert_subtitle("The following custom information has been set for this round.")]<br>[span_faction_alert_text("[GLOB.custom_info]")]")]")
 
 
 /datum/admins/proc/sound_file(S as sound)

@@ -275,7 +275,7 @@ em {
   font-weight: bold;
 }
 .colorooc {
-  color: #004ed8;
+  color: #4c6dff;
   font-weight: bold;
 }
 
@@ -401,16 +401,24 @@ em {
 }
 
 .deadsay {
-  color: #8041d8;
+  color: #b560ff;
+}
+.bigdeadsay {
+  color: #b560ff;
+  font-size: 140%;
+}
+.tinydeadsay {
+  color: #b560ff;
+  font-size: 85%;
 }
 .radio {
-  color: #158c15;
+  color: #1fc01f;
 }
 .deptradio {
   color: #b21ab2;
 }
 .comradio {
-  color: #3e67b2;
+  color: #517ac5;
 }
 .syndradio {
   color: #7f4648;
@@ -423,27 +431,27 @@ em {
 }
 
 .casradio {
-  color: #a51830;
+  color: #d62946;
 }
 .engradio {
-  color: #cc631e;
+  color: #e2772f;
 }
 .medradio {
-  color: #158c78;
+  color: #25c5aa;
 }
 .sciradio {
   color: #993599;
 }
 
 .supradio {
-  color: #996f2d;
+  color: #b88646;
 }
 
 .alpharadio {
   color: #bf2f2f;
 }
 .bravoradio {
-  color: #cc8814;
+  color: #d4a046;
 }
 .charlieradio {
   color: #b259b2;
@@ -479,7 +487,7 @@ em {
 }
 
 .alert {
-  color: #ff0000;
+  color: #c51e1e;
 }
 h1.alert,
 h2.alert {
@@ -521,14 +529,18 @@ h2.alert {
   color: #ff4c4c;
 }
 .info {
-  color: #6666cc;
+  color: #9ab0ff;
 }
 .debuginfo {
   color: #6c994c;
   font-style: italic;
 }
 .notice {
-  color: #6060c9;
+  color: #6685f5;
+}
+.tinynotice {
+  color: #6685f5;
+  font-size: 85%;
 }
 .xenonotice {
   color: #2c7f5c;
@@ -538,21 +550,26 @@ h2.alert {
   font-weight: bold;
 }
 .warning {
-  color: #ff5959;
+  color: #c51e1e;
   font-style: italic;
 }
 .xenowarning {
   color: #2c7f5c;
   font-style: italic;
 }
+.boldwarning {
+  color: #c51e1e;
+  font-style: italic;
+  font-weight: bold;
+}
 .danger {
-  color: #ff2626;
+  color: #c51e1e;
   font-weight: bold;
 }
 .userdanger {
-  color: #ff0000;
+  color: #c51e1e;
   font-weight: bold;
-  font-size: 3em;
+  font-size: 185%;
 }
 .xenodanger {
   color: #359980;
@@ -563,9 +580,9 @@ h2.alert {
   font-weight: bold;
 }
 .highdanger {
-  color: #ff2626;
+  color: #c51e1e;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 185%;
 }
 .xenohighdanger {
   color: #359980;
@@ -580,8 +597,7 @@ h2.alert {
   font-size: 1.5em;
 }
 .hivemind {
-  color: #b23593;
-  font-weight: bold;
+  color: #e755c3;
 }
 .xenoqueen {
   font-size: 1.4em;
@@ -608,15 +624,14 @@ h2.alert {
 }
 
 .role_header {
-  color: #db0000;
+  color: #8fb2ff;
   display: block;
   text-align: center;
   font-weight: bold;
-  font-family: trebuchet-ms;
   font-size: 1.5em;
 }
 .role_body {
-  color: #5a5abd;
+  color: #d41010;
   display: block;
   text-align: center;
 }
@@ -630,7 +645,6 @@ h2.alert {
   color: #db0000;
   display: block;
   text-align: center;
-  font-family: courier;
   font-weight: bold;
   font-size: 2em;
 }
@@ -638,7 +652,6 @@ h2.alert {
   color: #6685f5;
   display: block;
   text-align: center;
-  font-family: trebuchet-ms;
   font-weight: bold;
   font-size: 1.5em;
 }
@@ -653,6 +666,17 @@ h2.alert {
 }
 .season_additional_info {
   color: #aeb6bf;
+}
+
+.announce_header {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 150%;
+}
+.announce_body {
+  color: #e92d2d;
+  font-weight: normal;
+  font-size: 125%;
 }
 
 .centerbold {
@@ -992,4 +1016,40 @@ h2.alert {
 .tooltip {
   font-style: italic;
   border-bottom: 1px dashed #fff;
+}
+
+.faction_alert {
+  background: #4d0000;
+  margin: 0.5em;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  color: #ffffff;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 10px,
+    #420000 10px,
+    #420000 20px
+  );
+}
+.faction_alert_text {
+  color: #ffffff;
+  background: #240000;
+  padding: 1em 1em 1em 1em;
+}
+.faction_alert_subtitle {
+  color: #ffffff;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+}
+.faction_alert_title {
+  color: #ffffff;
+  padding: 0.35em 0.35em 0 0.35em;
+  font-size: 185%;
+}
+.faction_alert_minortitle {
+  color: #ffffff;
+  padding: 0.35em 0.35em 0.35em 0.35em;
+  font-size: 135%;
 }

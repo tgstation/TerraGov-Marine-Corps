@@ -43,13 +43,13 @@
 			if(/mob/living/carbon/xenomorph/queen)
 				SEND_SOUND(X, queen_sound)
 				//In case in combat, couldn't read fast enough, or needs to copy paste into a translator. Here's the old hive message.
-				to_chat(X, span_xenoannounce("<h2 class='alert'>The words of the queen reverberate in your head...</h2><br>[span_alert(input)]<br><br>"))
+				to_chat(X, "<meta charset='UTF-8'>[span_faction_alert("[span_faction_alert_title("The words of the Queen reverberate in your head...")]<br>[span_faction_alert_text("[html_encode(input)]")]")]")
 			if(/mob/living/carbon/xenomorph/king)
 				SEND_SOUND(X, king_sound)
-				to_chat(X, span_xenoannounce("<h2 class='alert'>The words of the king reverberate in your head...</h2><br>[span_alert(input)]<br><br>"))
+				to_chat(X, "<meta charset='UTF-8'>[span_faction_alert("[span_faction_alert_title("The words of the King reverberate in your head...")]<br>[span_faction_alert_text("[html_encode(input)]")]")]")
 			if(/mob/living/carbon/xenomorph/shrike)
 				SEND_SOUND(X, queen_sound)
-				to_chat(X, span_xenoannounce("<h2 class='alert'>The words of the shrike reverberate in your head...</h2><br>[span_alert(input)]<br><br>"))
+				to_chat(X, "<meta charset='UTF-8'>[span_faction_alert("[span_faction_alert_title("The words of the Shrike reverberate in your head...")]<br>[span_faction_alert_text("[html_encode(input)]")]")]")
 		//Display the ruler's hive message at the top of the game screen.
 		X.play_screen_text(queens_word, /atom/movable/screen/text/screen_text/queen_order)
 

@@ -22,6 +22,7 @@
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/chemsystem,
 		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/eshield/overclocked,
 
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
@@ -80,6 +81,12 @@
 		/obj/item/armor_module/storage/medical,
 	)
 
+/obj/item/clothing/suit/modular/xenonauten/shield_overclocked
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/medical,
+	)
+
 /obj/item/clothing/suit/modular/xenonauten/valk
 	starting_attachments = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
@@ -96,6 +103,12 @@
 /obj/item/clothing/suit/modular/xenonauten/light/shield
 	starting_attachments = list(
 		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
 		/obj/item/armor_module/storage/medical,
 	)
 
@@ -157,6 +170,12 @@
 /obj/item/clothing/suit/modular/xenonauten/heavy/shield
 	starting_attachments = list(
 		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/heavy/shield_overclocked
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
 		/obj/item/armor_module/storage/medical,
 	)
 
