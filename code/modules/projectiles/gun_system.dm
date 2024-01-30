@@ -1710,6 +1710,9 @@
 	if(!(flags_gun_features & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user))
 		to_chat(user, span_warning("Your program does not allow you to use this firearm."))
 		return FALSE
+	if(HAS_TRAIT(user, TRAIT_KNIGHT))
+		to_chat(user, span_warning("Your armor does not allow you to use this firearm!"))
+		return FALSE
 	if(HAS_TRAIT(src, TRAIT_GUN_SAFETY))
 		to_chat(user, span_warning("The safety is on!"))
 		return FALSE

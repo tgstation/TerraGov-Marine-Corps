@@ -155,6 +155,37 @@
 	soft_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 
+
+/**
+ * Knight//Melee only, proof of concept.
+*/
+/obj/item/armor_module/module/knight
+	name = "\improper Magni Knight System"
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	desc = "Designed for mounting on modular armor. An aftermarket kit that provides substantial armor while not compromising speed, allows access to exclusive sword and axe techniques but restricts the use of guns."
+	icon_state = "mod_armor"
+	item_state = "mod_armor_a"
+	attachment_layer = COLLAR_LAYER
+	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, FIRE = 15, ACID = 15)
+	slowdown = 0
+	slot = ATTACHMENT_SLOT_MODULE
+
+/obj/item/armor_module/module/knight/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	parent.flags_armor_features |= ARMOR_KNIGHT
+
+/obj/item/armor_module/module/knight/on_detach(obj/item/detaching_from, mob/user)
+	parent.flags_armor_features &= ~ARMOR_KNIGHT
+	return ..()
+
+/obj/item/armor_module/module/knight/som
+	name = "\improper Squamala Knight System"
+	desc = "Designed for mounting on modular SoM armor. An aftermarket kit that provides substantial armor while not compromising speed, allows access to exclusive axe and sword techniques but restricts the use of guns."
+	icon_state = "lorica_armor"
+	item_state = "lorica_armor_a"
+	attachment_layer = null
+	soft_armor = list(MELEE = 10, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 10, ACID = 5)
+
 /**
  * Environment protection module
 */

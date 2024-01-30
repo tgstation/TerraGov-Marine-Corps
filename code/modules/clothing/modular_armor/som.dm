@@ -19,6 +19,7 @@
 		/obj/item/armor_module/module/valkyrie_autodoc/som,
 		/obj/item/armor_module/module/fire_proof/som,
 		/obj/item/armor_module/module/tyr_extra_armor/som,
+		/obj/item/armor_module/module/knight/som,
 		/obj/item/armor_module/module/mimir_environment_protection/som,
 		/obj/item/armor_module/module/hlin_explosive_armor,
 		/obj/item/armor_module/module/chemsystem,

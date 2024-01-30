@@ -457,6 +457,7 @@
 			/obj/item/armor_module/module/fire_proof/som = 3,
 			/obj/item/armor_module/module/mimir_environment_protection/som = -1,
 			/obj/item/armor_module/module/tyr_extra_armor/som = -1,
+			/obj/item/armor_module/module/knight/som = -1,
 			/obj/item/armor_module/module/better_shoulder_lamp = -1,
 			/obj/item/armor_module/module/chemsystem = -1,
 			/obj/item/armor_module/module/eshield/som = -1,
