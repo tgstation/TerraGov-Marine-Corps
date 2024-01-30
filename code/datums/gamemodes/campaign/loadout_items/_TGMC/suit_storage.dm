@@ -585,6 +585,45 @@
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/mirage, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 
+/datum/loadout_item/suit_store/main_gun/marine/mag_gl
+	name = "GL-54"
+	desc = "A magazine fed, semi-automatic grenade launcher designed to shoot airbursting smart grenades. A powerful support weapon, but unwieldy at close range. \
+	Comes with a variety of 20mm grenade types."
+	ui_icon = "ballistic"
+	purchase_cost = 75
+	quantity = 2
+	item_typepath = /obj/item/weapon/gun/rifle/tx54/motion_sensor
+
+/datum/loadout_item/suit_store/main_gun/marine/mag_gl/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	. = ..()
+	if(!istype(wearer.back, /obj/item/storage))
+		return ..()
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/standard_machinepistol/compact(wearer), SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	if(!istype(wearer.back, /obj/item/storage/backpack/marine/satchel))
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54/smoke/dense, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54/smoke/acid, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54/razor, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/suit_store/main_gun/marine/mag_gl/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	if(istype(wearer.belt, /obj/item/storage/belt))
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54/smoke/acid, SLOT_IN_BELT)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54/incendiary, SLOT_IN_BELT)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54/incendiary, SLOT_IN_BELT)
+
+	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
+
 //corpsman
 /datum/loadout_item/suit_store/main_gun/corpsman
 	jobs_supported = list(SQUAD_CORPSMAN)
