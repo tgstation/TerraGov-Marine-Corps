@@ -90,7 +90,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	unlock_cost = 800
 
 /datum/perk/shield_overclock/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
-	if(owner_stats.faction == FACTION_TERRAGOV)
+	if(owner_stats.faction == FACTION_NTC)
 		for(var/job_type in owner_stats.loadouts)
 			owner_stats.replace_option(/datum/loadout_item/suit_slot/light_shield/overclocked, /datum/loadout_item/suit_slot/light_shield, job_type)
 			owner_stats.replace_option(/datum/loadout_item/suit_slot/medium_shield/overclocked, /datum/loadout_item/suit_slot/medium_shield, job_type)
@@ -320,7 +320,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/skill_mod/medical/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(!istype(owner_stats))
 		return
-	if(owner_stats.faction == FACTION_TERRAGOV)
+	if(owner_stats.faction == FACTION_NTC)
 		for(var/job_type in owner_stats.loadouts)
 			owner_stats.replace_option(/datum/loadout_item/r_pocket/standard_first_aid/standard_improved, /datum/loadout_item/r_pocket/standard_first_aid, job_type)
 			owner_stats.replace_option(/datum/loadout_item/l_pocket/standard_first_aid/standard_improved, /datum/loadout_item/l_pocket/standard_first_aid, job_type)
