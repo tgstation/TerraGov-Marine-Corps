@@ -59,7 +59,7 @@
 	if(!input || !customname)
 		return
 
-	var/msg = "[faction_alert_default_span("[span_faction_alert_title("[customname]")]<br>[span_faction_alert_text("[html_encode(input)]")]")]"
+	var/msg = "[faction_alert_colored_span("purple", "[span_faction_alert_title("[customname]")]<br>[span_faction_alert_text("[html_encode(input)]")]")]"
 
 	for(var/i in (GLOB.xeno_mob_list + GLOB.observer_list))
 		var/mob/M = i
