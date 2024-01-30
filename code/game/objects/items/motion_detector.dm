@@ -53,7 +53,7 @@
 	desc = "A device that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface."
 	icon_state = "minidetector"
 	slot = ATTACHMENT_SLOT_RAIL
-	attachment_action_type = /datum/action/item_action/toggle/motion_detector
+	attachment_action_type = /datum/action/item_action/toggle
 	/// Who's using this item
 	var/mob/living/carbon/human/operator
 	///If a hostile was detected
