@@ -357,6 +357,8 @@
 			/obj/item/ammo_magazine/pistol/plasma_pistol = -1,
 			/obj/item/weapon/gun/shotgun/double/derringer = -1,
 			/obj/item/ammo_magazine/pistol/derringer = -1,
+			/obj/item/weapon/gun/pistol/m1911 = -1,
+			/obj/item/ammo_magazine/pistol/m1911 = -1,
 		),
 		"Grenades" = list(
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
