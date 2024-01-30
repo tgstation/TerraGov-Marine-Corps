@@ -61,6 +61,8 @@
 	var/sword_color
 	///Force of the weapon when activated
 	var/active_force = 40
+	///Special attack action granted to users with the right trait
+	var/datum/action/ability/activable/weapon_skill/sword_lunge/special_attack
 
 /obj/item/weapon/energy/sword/Initialize(mapload)
 	. = ..()
@@ -69,6 +71,21 @@
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING, shield_cover = list(MELEE = 35, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
 	AddComponent(/datum/component/stun_mitigation, shield_cover = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 40, BIO = 40, FIRE = 40, ACID = 40))
 	AddElement(/datum/element/strappable)
+	AddElement(/datum/element/scalping)
+	special_attack = new(src, force, penetration)
+
+/obj/item/weapon/energy/sword/Destroy()
+	QDEL_NULL(special_attack)
+	return ..()
+
+/obj/item/weapon/energy/sword/equipped(mob/user, slot)
+	. = ..()
+	if(HAS_TRAIT(user, TRAIT_SWORD_EXPERT))
+		special_attack.give_action(user)
+
+/obj/item/weapon/energy/sword/dropped(mob/user)
+	. = ..()
+	special_attack.remove_action(user)
 
 /obj/item/weapon/energy/sword/attack_self(mob/living/user)
 	switch_state(src, user)
