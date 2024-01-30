@@ -114,6 +114,14 @@
 	spawn_number = 7
 	w_class = WEIGHT_CLASS_NORMAL
 
+/obj/item/storage/box/stuns
+	name = "box of stun grenades (WARNING)"
+	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
+	icon_state = "flashbang"
+	spawn_type = /obj/item/explosive/grenade/flashbang/stun
+	spawn_number = 7
+	w_class = WEIGHT_CLASS_NORMAL
+
 /obj/item/storage/box/emps
 	name = "box of emp grenades"
 	desc = "A box with 5 emp grenades."
