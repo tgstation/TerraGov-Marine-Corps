@@ -623,8 +623,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/smg/ap
 	name = "armor-piercing submachinegun bullet"
 	hud_state = "smg_ap"
-	damage = 15
-	penetration = 30
+	damage = 20
+	penetration = 15
 	sundering = 3
 
 /datum/ammo/bullet/smg/ap/hv

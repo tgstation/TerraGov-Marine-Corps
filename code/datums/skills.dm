@@ -552,14 +552,9 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
 	leadership = SKILL_LEAD_BEGINNER
-	police = SKILL_POLICE_MP
 	stamina = SKILL_STAMINA_TRAINED
 	melee_weapons = SKILL_MELEE_TRAINED
 	firearms = SKILL_FIREARMS_TRAINED
-	pistols = SKILL_PISTOLS_TRAINED
-	smgs = SKILL_SMGS_TRAINED
-	rifles = SKILL_RIFLES_TRAINED
-	shotguns = SKILL_SHOTGUNS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 	smartgun = SKILL_SMART_TRAINED
 
