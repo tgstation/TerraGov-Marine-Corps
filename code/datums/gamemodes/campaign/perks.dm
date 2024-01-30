@@ -135,9 +135,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/trait/axe_master/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(!istype(owner_stats))
 		return
-	owner_stats.unlock_loadout_item(/datum/loadout_item/back/boarding_axe, SOM_SQUAD_MARINE, owner, 0)
-	owner_stats.unlock_loadout_item(/datum/loadout_item/back/boarding_axe, SOM_SQUAD_VETERAN, owner, 0)
-	owner_stats.unlock_loadout_item(/datum/loadout_item/back/boarding_axe, SOM_FIELD_COMMANDER, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/back/boarding_axe, jobs_supported, owner, 0)
 
 /datum/perk/trait/sword_master
 	name = "Sword master"
@@ -152,8 +150,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/trait/sword_master/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(!istype(owner_stats))
 		return
-	owner_stats.unlock_loadout_item(/datum/loadout_item/back/machete, SQUAD_MARINE, owner, 0)
-	owner_stats.unlock_loadout_item(/datum/loadout_item/back/machete, SQUAD_LEADER, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/back/machete, jobs_supported, owner, 0)
 
 //skill modifying perks
 /datum/perk/skill_mod
@@ -251,7 +248,8 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/skill_mod/shotguns/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(!istype(owner_stats))
 		return
-	owner_stats.unlock_loadout_item(owner_stats.faction == FACTION_SOM ? /datum/loadout_item/back/som_shotgun : /datum/loadout_item/back/marine_shotgun, owner_stats.faction == FACTION_SOM ? SOM_SQUAD_MARINE : SQUAD_MARINE, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/back/som_shotgun, jobs_supported, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/back/marine_shotgun, jobs_supported, owner, 0)
 
 /datum/perk/skill_mod/rifles
 	name = "Advanced rifle training"
