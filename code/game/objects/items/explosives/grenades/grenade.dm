@@ -47,6 +47,10 @@
 		balloon_alert(user, "can't, against your programming")
 		return
 
+	if(HAS_TRAIT(user, TRAIT_KNIGHT))
+		balloon_alert(user, "Doth not sully thyne name, squire!")
+		return
+
 	activate(user)
 
 	balloon_alert_to_viewers("primes grenade")

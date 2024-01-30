@@ -165,6 +165,8 @@
 #define TRAIT_AXE_EXPERT "axe_expert"
 ///You swing sword good
 #define TRAIT_SWORD_EXPERT "sword_expert"
+//Restricted to Melee Weapons
+#define TRAIT_KNIGHT "knight"
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
