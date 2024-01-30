@@ -1,4 +1,0 @@
-author: "Lewdcifer"
-delete-after: True
-changes:
-  - rscdel: "Reverted all click changes in #14896, #14880, and #14747."

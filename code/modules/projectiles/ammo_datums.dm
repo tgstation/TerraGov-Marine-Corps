@@ -652,6 +652,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		return
 	living_victim.apply_radiation(2, 2)
 
+/datum/ammo/bullet/smg/heavy
+	name = "heavy submachinegun bullet"
+	damage = 27.5
+	penetration = 10
+	sundering = 1
+
 /datum/ammo/bullet/smg/mech
 	name = "super-heavy submachinegun bullet"
 	damage = 20
