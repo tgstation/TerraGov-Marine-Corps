@@ -10,6 +10,9 @@
 
 	handle_fire() //Check if we're on fire
 
+	if(is_ventcrawling) //Damage mobs inside of vents
+		apply_damage(1, BRUTE)
+
 /mob/living/carbon/handle_regular_hud_updates()
 	. = ..()
 	if(.)
