@@ -97,5 +97,5 @@
 	S.channel = CHANNEL_ANNOUNCEMENTS
 	for(var/mob/M AS in receivers)
 		if(!isnewplayer(M) && !isdeaf(M))
-			to_chat(M, message)
+			to_chat(M, "[faction_alert_default_span("[span_faction_alert_minortitle("[title]")][span_faction_alert_text("[message]")]")]")
 			SEND_SOUND(M, S)
