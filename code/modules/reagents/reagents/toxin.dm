@@ -412,7 +412,7 @@
 	taste_multi = 1.5
 
 /datum/reagent/toxin/acid/polyacid/on_mob_life(mob/living/L, metabolism)
-	L.take_limb_damage(0, 2*effect_str)
+	L.take_limb_damage(0, 5*effect_str)
 
 /datum/reagent/toxin/nanites
 	name = "Nanomachines"

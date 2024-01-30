@@ -427,7 +427,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "heavy armor-penetrating pistol bullet"
 	hud_state = "pistol_ap"
 	damage = 30
-	penetration = 15
+	penetration = 12.5
 	sundering = 2.5
 
 /datum/ammo/bullet/pistol/superheavy
@@ -624,7 +624,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "armor-piercing submachinegun bullet"
 	hud_state = "smg_ap"
 	damage = 20
-	penetration = 15
+	penetration = 12.5
 	sundering = 3
 
 /datum/ammo/bullet/smg/ap/hv
@@ -697,16 +697,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
 	hud_state = "rifle_ap"
-	damage = 20
-	penetration = 25
+	damage = 25
+	penetration = 15
 	sundering = 3
 
 /datum/ammo/bullet/rifle/hv
 	name = "high-velocity rifle bullet"
 	hud_state = "hivelo"
-	damage = 20
-	penetration = 20
-	sundering = 1.25
+	damage = 25
+	penetration = 10
+	sundering = 2
+	shell_speed = 4
 
 /datum/ammo/bullet/rifle/hv/rubber
 	name = "high-velocity rifle rubber bullet"

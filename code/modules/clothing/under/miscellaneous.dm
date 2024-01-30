@@ -380,7 +380,7 @@
 	desc = "An extremely expensive sneaking suit created by an Ninetails Corporation for high risk missions, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher. This uniform allows you to crawl through vents with ALT-CLICK"
 	icon_state = "syndicate"
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 20, ENERGY = 20, BOMB = 20, BIO = 50, FIRE = 50, ACID = 20)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 15, FIRE = 15, ACID = 15)
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	slowdown= -0.5
@@ -403,5 +403,5 @@
 /obj/item/clothing/under/spec_operative/armoredsuit
 	name = "executive suit"
 	desc = "An extremely expensive looking formal uniform with a short, side split skirt that seems to have toughened, kevlar or maybe another material fabric... Reminds you of john wick's suit."
-	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 20, BIO = 50, FIRE = 50, ACID = 30)
+	soft_armor = list(MELEE = 10, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 15, FIRE = 15, ACID = 15)
 	icon_state = "charcoal_suit_skirt"

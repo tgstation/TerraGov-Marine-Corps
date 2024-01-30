@@ -207,6 +207,7 @@ GLOBAL_LIST_INIT(specialist_gear_listed_products, list(
 	/obj/item/clothing/glasses/night/m42_night_goggles = list(CAT_SPSUP, "M42 Night Vision Goggles", 15, "orange"),
 	/obj/item/storage/box/crate/loot/operator_pack = list(CAT_SPSUP, "Operator Pack (PR-412E + AP & Incen Mags)", 35, "orange"),
 	/obj/item/storage/box/crate/loot/m25e_pack = list(CAT_SPSUP, "CQC Pack (SMG-25BE + AP-Mags)", 30, "orange"),
+	/obj/item/weapon/twohanded/rocketsledge = list(CAT_SPSUP, "Rocket Sledge", 40, "black"),
 	/obj/item/storage/box/crate/loot/scoutrifle_pack_spec = list(CAT_SPSUP, "Scout Rifle Pack (BR-8 + Mixed Mags + Packet + NVG)", 20, "orange"),
 	/obj/item/storage/box/crate/loot/autosniper_pack_spec = list(CAT_SPSUP, "Autosniper Pack (SR-81 + Mags + Packet + NVG Scope)", 20, "black"),
 	/obj/item/storage/box/crate/loot/thermobaric_pack_spec = list(CAT_SPSUP, "Thermobaric Pack (1 Launcher + RPG bag + 20 Arrays)", 20, "black"),
