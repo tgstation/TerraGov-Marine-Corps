@@ -78,6 +78,14 @@
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor = ITEM_SLOT_SUITSTORE,
 	)
 
+/datum/loadout_item/belt/energy_sword
+	name = "Energy sword"
+	desc = "A SOM energy sword. Designed to cut through armored plate. An uncommon secondary weapon, but extremely dangerous at close range."
+	ui_icon = "machete"
+	item_typepath = /obj/item/weapon/energy/sword/som
+	loadout_item_flags = NONE
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
+
 /datum/loadout_item/belt/som_lifesaver
 	name = "S17 lifesaver bag"
 	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
