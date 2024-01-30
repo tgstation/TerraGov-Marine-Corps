@@ -48,6 +48,10 @@
 	. = ..()
 	update_icon()
 
+/obj/item/clothing/suit/storage/marine/turn_light(mob/user, toggle_on)
+	. = ..()
+	user?.update_inv_wear_suit()
+
 /obj/item/clothing/suit/storage/marine/update_overlays()
 	. = ..()
 	if(flags_armor_features & ARMOR_LAMP_OVERLAY)

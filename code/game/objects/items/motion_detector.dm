@@ -66,12 +66,12 @@
 	var/list/obj/effect/blip/blips_list = list()
 
 /obj/item/attachable/motiondetector/Destroy()
-	clean_operator()
+	clean_operator(TRUE)
 	return ..()
 
 /obj/item/attachable/motiondetector/activate(mob/user, turn_off)
 	if(operator)
-		clean_operator()
+		clean_operator(TRUE)
 		return
 	operator = user
 	RegisterSignals(operator, list(COMSIG_QDELETING, COMSIG_GUN_USER_UNSET), PROC_REF(clean_operator))
@@ -113,9 +113,9 @@
 	clean_operator()
 
 /// Signal handler to clean out user vars
-/obj/item/attachable/motiondetector/proc/clean_operator()
+/obj/item/attachable/motiondetector/proc/clean_operator(forced = FALSE)
 	SIGNAL_HANDLER
-	if(operator && (operator.l_hand == src || operator.r_hand == src || operator.l_hand == loc || operator.r_hand == loc))
+	if(!forced && operator && (operator.l_hand == src || operator.r_hand == src || operator.l_hand == loc || operator.r_hand == loc))
 		return
 	STOP_PROCESSING(SSobj, src)
 	clean_blips()
