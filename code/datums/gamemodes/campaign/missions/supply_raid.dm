@@ -62,7 +62,7 @@
 	if(hostile_faction == FACTION_TERRAGOV)
 		winning_team.add_asset(/datum/campaign_asset/equipment/power_armor)
 	else if(hostile_faction == FACTION_SOM)
-		winning_team.add_asset(/obj/effect/landmark/campaign/mech_spawner/som/light)
+		winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 		winning_team.add_asset(/datum/campaign_asset/equipment/gorgon_armor)
 
 /datum/campaign_mission/destroy_mission/supply_raid/apply_major_loss()
@@ -71,7 +71,7 @@
 	if(hostile_faction == FACTION_TERRAGOV)
 		winning_team.add_asset(/datum/campaign_asset/equipment/power_armor)
 	else if(hostile_faction == FACTION_SOM)
-		winning_team.add_asset(/obj/effect/landmark/campaign/mech_spawner/som/light)
+		winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 		winning_team.add_asset(/datum/campaign_asset/equipment/gorgon_armor)
 
 /datum/campaign_mission/destroy_mission/supply_raid/som
