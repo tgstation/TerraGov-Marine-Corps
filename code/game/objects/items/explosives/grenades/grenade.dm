@@ -125,7 +125,7 @@
 	///The range range for the grenade's weak effect
 	var/outer_range = 7
 	///The potency of the grenade
-	var/rad_strength = 20
+	var/rad_strength = 16
 
 /obj/item/explosive/grenade/rad/prime()
 	var/turf/impact_turf = get_turf(src)
