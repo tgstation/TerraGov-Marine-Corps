@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Sensor towers on BR will show up correctly during Mech War missions"
