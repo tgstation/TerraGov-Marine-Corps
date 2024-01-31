@@ -45,6 +45,11 @@
 /datum/campaign_mission/destroy_mission/supply_raid/load_pre_mission_bonuses()
 	. = ..()
 	spawn_mech(defending_faction, 0, 1)
+	var/datum/faction_stats/attacking_team = mode.stat_list[starting_faction]
+	if(starting_faction == FACTION_TERRAGOV)
+		attacking_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_cas/instant)
+	else if(starting_faction == FACTION_SOM)
+		attacking_team.add_asset(/datum/campaign_asset/asset_disabler/som_cas/instant)
 
 /datum/campaign_mission/destroy_mission/supply_raid/apply_major_victory()
 	winning_faction = starting_faction
