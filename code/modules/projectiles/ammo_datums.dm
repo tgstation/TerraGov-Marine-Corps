@@ -630,6 +630,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 3
 	shrapnel_chance = 45
 
+/datum/ammo/bullet/smg/squash
+	name = "squash-head submachinegun bullet"
+	hud_state = "pistol_squash"
+	armor_type = "bomb"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	damage = 15
+	penetration = 15
+	sundering = 2.5
+	damage_falloff = 2
+	shrapnel_chance = 0
+
 /datum/ammo/bullet/smg/incendiary
 	name = "incendiary submachinegun bullet"
 	hud_state = "smg_fire"
