@@ -2413,7 +2413,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /turf/open/floor/mainship/sterile/side,
 /area/centcom/practice/medical{
 	outside = 0;
@@ -4063,7 +4063,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/practice/medical{
 	outside = 0;
@@ -4488,7 +4488,7 @@
 /area/mainship/groundhq/ntf/hallways/hangar)
 "faw" = (
 /obj/machinery/light{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/mainship/red{
 	dir = 8
@@ -14394,7 +14394,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/practice/medical{
 	outside = 0;
@@ -19565,11 +19565,6 @@
 	})
 "wJA" = (
 /obj/structure/rack,
-/obj/item/stack/sheet/glass/large_stack,
-/obj/item/stack/sheet/glass/large_stack,
-/obj/item/stack/sheet/glass/large_stack,
-/obj/item/stack/sheet/glass/large_stack,
-/obj/item/stack/sheet/glass/large_stack,
 /obj/item/stack/sheet/glass/reinforced,
 /obj/item/stack/sheet/glass/reinforced,
 /obj/item/stack/sheet/glass/reinforced,
