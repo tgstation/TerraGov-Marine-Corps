@@ -8,7 +8,7 @@
 /datum/loadout_item/back/som_combat_pack
 	name = "Mining rucksack"
 	desc = "A rucksack with origins dating back to the mining colonies. Has the storage capacity of a backpack but no draw delay."
-	purchase_cost = 50
+	purchase_cost = 25
 	item_typepath = /obj/item/storage/backpack/lightpack/som
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN)
 
@@ -44,8 +44,8 @@
 	desc = "A powerful close quarters tool when someone wants something more suited for close range than most people. A powerful secondary weapon to devastate opponents at close range. \
 	Supplied with an addition box of buckshot, provided you have somewhere to store the shells. \
 	Uses 12 gauge shells. Requires a pump, which is the Unique Action key."
-	ui_icon = "ballistic"
-	purchase_cost = 100
+	ui_icon = "shotgun"
+	purchase_cost = 25
 	item_typepath = /obj/item/weapon/gun/shotgun/som/standard
 	jobs_supported = list(SOM_SQUAD_MARINE)
 	loadout_item_flags = NONE
@@ -79,6 +79,7 @@
 /datum/loadout_item/back/boarding_axe
 	name = "Boarding axe"
 	desc = "A SOM boarding axe, effective at breaching doors as well as skulls. When wielded it can be used to block as well as attack."
+	ui_icon = "axe"
 	item_typepath = /obj/item/weapon/twohanded/fireaxe/som
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_FIELD_COMMANDER)
 	item_blacklist = list(/obj/item/weapon/twohanded/fireaxe/som = ITEM_SLOT_SUITSTORE)

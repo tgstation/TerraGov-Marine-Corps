@@ -62,6 +62,7 @@
 	name = "SMG-25 holster"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. \
 	This version is designed for the SMG-25, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
+	ui_icon = "smg"
 	item_typepath = /obj/item/storage/holster/m25
 	jobs_supported = list(SQUAD_MARINE)
 
@@ -71,6 +72,7 @@
 /datum/loadout_item/belt/machete
 	name = "Machete"
 	desc = "A large leather scabbard carrying a M2132 machete. It can be strapped to the back, waist or armor. Extremely dangerous against human opponents - if you can get close enough."
+	ui_icon = "machete"
 	item_typepath = /obj/item/storage/holster/blade/machete/full
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER)
 
@@ -84,6 +86,7 @@
 /datum/loadout_item/belt/lifesaver
 	name = "Lifesaver bag"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
+	ui_icon = "medkit"
 	item_typepath = /obj/item/storage/belt/lifesaver/quick
 	jobs_supported = list(SQUAD_CORPSMAN)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
@@ -93,6 +96,7 @@
 	name = "Officers sword"
 	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. \
 	Well made and extremely sharp, despite its probable non-combat purpose. Comes in a leather scabbard that an attached to your waist or armor."
+	ui_icon = "machete"
 	item_typepath = /obj/item/storage/holster/blade/officer/full
 	jobs_supported = list(FIELD_COMMANDER)
 	item_blacklist = list(/obj/item/storage/holster/blade/officer/full = ITEM_SLOT_SUITSTORE)
@@ -101,6 +105,7 @@
 	name = "P-1911A1-C pistol"
 	desc = "A handgun that has received several modifications. It seems to have been lovingly taken care of and passed down for generations. \
 	Lacks an auto magazine eject feature. Comes in a holster that fits on your waist or armor."
+	ui_icon = "pistol"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 	jobs_supported = list(FIELD_COMMANDER)
 	item_blacklist = list(/obj/item/storage/holster/belt/pistol/m4a3/fieldcommander = ITEM_SLOT_SUITSTORE)
@@ -109,6 +114,7 @@
 /datum/loadout_item/belt/so_pistol
 	name = "RT-3 pistol"
 	desc = "An RT-3 target pistol, a common sight throughout the bubble. Fires 9mm in magazines. Comes in a holster to fit on your waist."
+	ui_icon = "pistol"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/officer
 	jobs_supported = list(STAFF_OFFICER)
 
@@ -117,5 +123,6 @@
 	name = "SP-13 pistol"
 	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. A cutting-edge miniaturization technology allows mounting of a KTLD IFF system on the pistol, \
 	albeit at high manufactoring cost and the usual specialized training required to use such a pistol. Unique design feature high-capacity mag on top of the barrel, with integrated sight."
+	ui_icon = "pistol"
 	item_typepath = /obj/item/storage/holster/belt/pistol/smart_pistol/full
 	jobs_supported = list(CAPTAIN)
