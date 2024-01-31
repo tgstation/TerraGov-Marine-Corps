@@ -35,6 +35,7 @@
 /datum/loadout_item/suit_slot/light_shield
 	name = "Light shielded armor"
 	desc = "Light armor with a Svallin shield module. Provides excellent mobility but lower protection."
+	ui_icon = "light_armour_shield"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/light/shield
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
@@ -66,6 +67,7 @@
 /datum/loadout_item/suit_slot/medium_shield
 	name = "Medium shielded armor"
 	desc = "Medium armor with a Svallin shield module. Provides balanced mobility and protection."
+	ui_icon = "medium_armour_shield"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/shield
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
@@ -97,6 +99,7 @@
 /datum/loadout_item/suit_slot/heavy_shield
 	name = "Heavy shielded armor"
 	desc = "Heavy armor with a Svallin shield module. Provides excellent protection but lower mobility. The shield module has been overclocked for improved performance."
+	ui_icon = "heavy_armour_shield"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/shield
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
@@ -118,6 +121,7 @@
 	name = "Heavy Tyr armor"
 	desc = "Heavy armor with a Tyr extra armor module. Provides incredible protection at the cost of with further reduced mobility."
 	req_desc = "Requires a ALF-51B or SMG-25."
+	ui_icon = "tyr"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two
 	jobs_supported = list(SQUAD_MARINE)
 	item_whitelist = list(
@@ -133,12 +137,14 @@
 /datum/loadout_item/suit_slot/medium_valk
 	name = "Medium Valkyrie armor"
 	desc = "Medium armor with a Valkyrie automedical module. Provides respectable protection, powerful automatic medical assistance, but modest mobility."
+	ui_icon = "medium_armour"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/valk
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/suit_slot/heavy_valk
 	name = "Heavy Valkyrie armor"
 	desc = "Heavy armor with a Valkyrie automedical module. Provides excellent protection, powerful automatic medical assistance, but reduced mobility."
+	ui_icon = "heavy_armour"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/leader
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
@@ -153,6 +159,7 @@
 /datum/loadout_item/suit_slot/medium_mimir
 	name = "Medium Mimir armor"
 	desc = "Medium armor with a Mimir environmental protection module. Provides respectable armor and total immunity to chemical attacks, and improved radiological protection. Has modest mobility."
+	ui_icon = "medium_armour"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/mimir
 	jobs_supported = list(SQUAD_CORPSMAN)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
@@ -165,6 +172,7 @@
 /datum/loadout_item/suit_slot/medium_engineer
 	name = "Medium armor"
 	desc = "Medium armor with engineering storage. Provides balanced armor and mobility."
+	ui_icon = "medium_armour"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/engineer
 	jobs_supported = list(SQUAD_ENGINEER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE

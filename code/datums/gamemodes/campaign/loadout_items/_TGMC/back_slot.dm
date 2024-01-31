@@ -76,7 +76,7 @@
 	desc = "A powerful close quarters tool when someone wants something more suited for close range than most people. A powerful secondary weapon to devastate opponents at close range. \
 	Supplied with an addition box of buckshot, provided you have somewhere to store the shells. \
 	Uses 12 gauge shells. Requires a pump, which is the Unique Action key."
-	ui_icon = "ballistic"
+	ui_icon = "shotgun"
 	purchase_cost = 25
 	item_typepath = /obj/item/weapon/gun/shotgun/pump/t35/standard
 	jobs_supported = list(SQUAD_MARINE)
@@ -89,6 +89,7 @@
 /datum/loadout_item/back/machete
 	name = "Machete"
 	desc = "A large leather scabbard carrying a M2132 machete. It can be strapped to the back, waist or armor. Extremely dangerous against human opponents - if you can get close enough."
+	ui_icon = "machete"
 	item_typepath = /obj/item/storage/holster/blade/machete/full
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER)
 	loadout_item_flags = NONE

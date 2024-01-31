@@ -56,7 +56,7 @@
 /datum/loadout_item/r_pocket/som_construction
 	name = "Construction pouch"
 	desc = "A pouch containing an assortment of construction supplies. Allows for the rapid establishment of fortified positions."
-	ui_icon = "grenade"
+	ui_icon = "materials"
 	item_typepath = /obj/item/storage/pouch/construction/som
 	jobs_supported = list(SOM_SQUAD_MARINE)
 
@@ -83,7 +83,7 @@
 /datum/loadout_item/r_pocket/som_tools
 	name = "Tool pouch"
 	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool."
-	ui_icon = "grenade"
+	ui_icon = "construction"
 	item_typepath = /obj/item/storage/pouch/tools/som/full
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
@@ -155,7 +155,7 @@
 /datum/loadout_item/l_pocket/som_construction
 	name = "Construction pouch"
 	desc = "A pouch containing an assortment of construction supplies. Allows for the rapid establishment of fortified positions."
-	ui_icon = "grenade"
+	ui_icon = "materials"
 	item_typepath = /obj/item/storage/pouch/construction/som
 	jobs_supported = list(SOM_SQUAD_MARINE)
 
