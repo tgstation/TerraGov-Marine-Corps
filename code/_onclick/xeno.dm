@@ -19,17 +19,7 @@
     S.attack_alien(src, xeno_caste.melee_damage * xeno_melee_damage_modifier, isrightclick = islist(modifiers) ? modifiers["right"] : FALSE)
 
 
-/mob/living/carbon/xenomorph/proc/slash_checks(atom/A)
-    if(lying_angle)
-        return FALSE
-    if(isclosedturf(get_turf(src)) && !iswallturf(A))    //If we are on a closed turf (e.g. in a wall) we can't attack anything, except walls (or well, resin walls really) so we can't make ourselves be stuck.
-        balloon_alert(src, "Cannot reach")
-        return FALSE
-    if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
-        return FALSE
-    return TRUE
-
-/atom/proc/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/atom/proc/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	return
 
 

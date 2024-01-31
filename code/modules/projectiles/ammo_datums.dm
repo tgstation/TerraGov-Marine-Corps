@@ -86,7 +86,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	///greyscale color for the projectile associated with the ammo
 	var/projectile_greyscale_colors = null
 	///Multiplier for deflagrate chance
-	var/deflagrate_multiplier = 1
+	var/deflagrate_multiplier = 0.9
 	///Flat damage caused if fire_burst is triggered by deflagrate
 	var/fire_burst_damage = 10
 	///Base fire stacks added on hit if the projectile has AMMO_INCENDIARY
@@ -221,7 +221,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		//Damages the victims, inflicts brief stagger+slow, and ignites
 		victim.apply_damage(fire_burst_damage, BURN, blocked = FIRE, updating_health = TRUE)
 
-		staggerstun(victim, proj, 30, stagger = 1 SECONDS, slowdown = 0.5)
+		staggerstun(victim, proj, 30, stagger = 0.5 SECONDS, slowdown = 0.5)
 		victim.adjust_fire_stacks(5)
 		victim.IgniteMob()
 
@@ -2437,7 +2437,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 50
 	penetration = 10
 	///Base strength of the rad effects
-	var/rad_strength = 25
+	var/rad_strength = 20
 	///Range for the maximum rad effects
 	var/inner_range = 3
 	///Range for the moderate rad effects
@@ -3580,7 +3580,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	fire_burst_damage = 15
 
 /datum/ammo/energy/volkite/medium/custom
-	deflagrate_multiplier = 2
+	deflagrate_multiplier = 1.8
 
 /datum/ammo/energy/volkite/heavy
 	max_range = 35

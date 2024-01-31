@@ -2163,7 +2163,7 @@
 	scatter = 12
 	recoil = 2
 	wield_delay = 0.4 SECONDS
-	aim_slowdown = 0.3
+	aim_slowdown = 0.4
 	movement_acc_penalty_mult = 4
 	damage_falloff_mult = 1.4
 	damage_mult = 0.9

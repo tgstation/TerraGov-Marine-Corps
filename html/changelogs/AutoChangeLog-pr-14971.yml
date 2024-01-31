@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "V-34 has its slowdown increased from 0.3 to 0.4"
