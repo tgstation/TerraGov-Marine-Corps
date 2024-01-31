@@ -33,7 +33,8 @@ SUBSYSTEM_DEF(silo)
 	current_larva_spawn_rate *= SSticker.mode.silo_scaling
 	//We scale the rate based on the current ratio of humans to xenos
 	current_larva_spawn_rate *= clamp(round((active_humans / active_xenos) / (LARVA_POINTS_REGULAR / xeno_job.job_points_needed), 0.01), 0.5, 1)
-	current_larva_spawn_rate *= LERP(1, XENO_SPAWN_TIME_SCALING_MAX_AMOUNT, min((world.time - SSticker?.round_start_time - SSticker?.mode.shutters_drop_time) / XENO_SPAWN_TIME_SCALING_MAX_TIME, 1))
+	//Scales with time after shutter lifting time
+	current_larva_spawn_rate *= LERP(1, XENO_SPAWN_TIME_SCALING_MAX_AMOUNT, clamp((world.time - SSticker?.round_start_time - SSticker?.mode.shutters_drop_time) / XENO_SPAWN_TIME_SCALING_MAX_TIME, 0, 1))
 
 	current_larva_spawn_rate += larva_spawn_rate_temporary_buff
 
