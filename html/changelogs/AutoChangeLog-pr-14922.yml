@@ -1,4 +1,0 @@
-author: "SomrNetwork"
-delete-after: True
-changes:
-  - rscadd: "medskill to speccops\n/:cl"
