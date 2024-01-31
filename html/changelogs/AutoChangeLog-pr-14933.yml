@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed beacon layers"
+  - bugfix: "fixed supply beacon weight class"

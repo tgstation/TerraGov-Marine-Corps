@@ -1,0 +1,4 @@
+author: "usnpeepoo"
+delete-after: True
+changes:
+  - balance: "Puppeteers organic bombs base timer reduced, now uses a windup"
