@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Visible suit lights now correctly update on the mob sprite when turning on and off"
+  - bugfix: "You can actually turn off your motion sensor now"

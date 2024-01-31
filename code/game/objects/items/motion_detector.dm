@@ -53,7 +53,7 @@
 	desc = "A device that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface."
 	icon_state = "minidetector"
 	slot = ATTACHMENT_SLOT_RAIL
-	attachment_action_type = /datum/action/item_action/toggle/motion_detector
+	attachment_action_type = /datum/action/item_action/toggle
 	/// Who's using this item
 	var/mob/living/carbon/human/operator
 	///If a hostile was detected
@@ -66,12 +66,12 @@
 	var/list/obj/effect/blip/blips_list = list()
 
 /obj/item/attachable/motiondetector/Destroy()
-	clean_operator()
+	clean_operator(TRUE)
 	return ..()
 
 /obj/item/attachable/motiondetector/activate(mob/user, turn_off)
 	if(operator)
-		clean_operator()
+		clean_operator(TRUE)
 		return
 	operator = user
 	RegisterSignals(operator, list(COMSIG_QDELETING, COMSIG_GUN_USER_UNSET), PROC_REF(clean_operator))
@@ -113,9 +113,9 @@
 	clean_operator()
 
 /// Signal handler to clean out user vars
-/obj/item/attachable/motiondetector/proc/clean_operator()
+/obj/item/attachable/motiondetector/proc/clean_operator(forced = FALSE)
 	SIGNAL_HANDLER
-	if(operator && (operator.l_hand == src || operator.r_hand == src || operator.l_hand == loc || operator.r_hand == loc))
+	if(!forced && operator && (operator.l_hand == src || operator.r_hand == src || operator.l_hand == loc || operator.r_hand == loc))
 		return
 	STOP_PROCESSING(SSobj, src)
 	clean_blips()
