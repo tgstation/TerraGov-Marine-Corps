@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Campaign: Esword now benefits from the sword master perk"
