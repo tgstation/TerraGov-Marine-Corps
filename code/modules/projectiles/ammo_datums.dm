@@ -2415,7 +2415,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 50
 	penetration = 10
 	///Base strength of the rad effects
-	var/rad_strength = 25
+	var/rad_strength = 20
 	///Range for the maximum rad effects
 	var/inner_range = 3
 	///Range for the moderate rad effects
