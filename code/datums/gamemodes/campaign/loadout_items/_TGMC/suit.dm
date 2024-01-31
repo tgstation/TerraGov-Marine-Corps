@@ -41,8 +41,27 @@
 /datum/loadout_item/suit_slot/light_shield/overclocked
 	desc = "Light armor with a Svallin shield module. Provides excellent mobility but lower protection. The shield module has been overclocked for improved performance."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked
-	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 	loadout_item_flags = null
+
+/datum/loadout_item/suit_slot/light_shield/overclocked/medic
+	item_typepath = /obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked/medic
+	jobs_supported = list(SQUAD_CORPSMAN)
+
+/datum/loadout_item/suit_slot/light_shield/overclocked/medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)
+
+/datum/loadout_item/suit_slot/light_shield/overclocked/engineer
+	item_typepath = /obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked/engineer
+	jobs_supported = list(SQUAD_ENGINEER)
+
+/datum/loadout_item/suit_slot/light_shield/overclocked/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/medium_stack, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/half_stack, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/medium_shield
 	name = "Medium shielded armor"
@@ -53,8 +72,27 @@
 /datum/loadout_item/suit_slot/medium_shield/overclocked
 	desc = "Medium armor with a Svallin shield module. Provides balanced mobility and protection."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/shield_overclocked
-	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 	loadout_item_flags = null
+
+/datum/loadout_item/suit_slot/medium_shield/overclocked/medic
+	item_typepath = /obj/item/clothing/suit/modular/xenonauten/shield_overclocked/medic
+	jobs_supported = list(SQUAD_CORPSMAN)
+
+/datum/loadout_item/suit_slot/medium_shield/overclocked/medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)
+
+/datum/loadout_item/suit_slot/medium_shield/overclocked/engineer
+	item_typepath = /obj/item/clothing/suit/modular/xenonauten/shield_overclocked/engineer
+	jobs_supported = list(SQUAD_ENGINEER)
+
+/datum/loadout_item/suit_slot/medium_shield/overclocked/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/medium_stack, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/half_stack, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/heavy_shield
 	name = "Heavy shielded armor"
@@ -66,7 +104,7 @@
 /datum/loadout_item/suit_slot/heavy_shield/overclocked
 	desc = "Heavy armor with a Svallin shield module. Provides excellent protection but lower mobility. The shield module has been overclocked for improved performance."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/shield_overclocked
-	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 	loadout_item_flags = null
 
 /datum/loadout_item/suit_slot/heavy_surt
