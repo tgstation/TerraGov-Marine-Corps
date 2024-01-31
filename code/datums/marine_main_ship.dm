@@ -101,7 +101,7 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 						priority_announce("Attention: Security level elevated to RED - there is an immediate threat to the ship.", title = "Security Level Elevated", sound = 'sound/AI/code_red_elevated.ogg', color_override = "red")
 				else
 					if(announce)
-						priority_announce("Attention: Security level lowered to RED - there is an immediate threat to the ship.", title = "Security Level Lowered", subtitle = "Ship Destruction Averted.", sound = 'sound/AI/code_red_lowered.ogg', color_override = "red")
+						priority_announce("Attention: Security level lowered to RED - there is an immediate threat to the ship." title = "Ship Destruction Averted", type = ANNOUNCEMENT_PRIORITY, sound = 'sound/AI/code_red_lowered.ogg', color_override = "red")
 					/*
 					var/area/A
 					for(var/obj/machinery/power/apc/O in machines)

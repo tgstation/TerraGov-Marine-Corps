@@ -2,18 +2,58 @@
 #define ANNOUNCEMENT_PRIORITY 2
 #define ANNOUNCEMENT_COMMAND 3
 
-// these are just spans that furnish the text itself to the appropriate color
+// definitely don't use any of these macros outside of here to keep code somewhat clean
+// instead, use assemble_alert() to get the same effect
+
+// a style for extra padding on alert titles
+#define span_alert_header(str) ("<span class='alert_header'>" + str + "</span>")
+
+// these are spans that just furnish themselves to the appropriate color
 #define span_faction_alert_title(str) ("<span class='faction_alert_title'>" + str + "</span>")
 #define span_faction_alert_minortitle(str) ("<span class='faction_alert_minortitle'>" + str + "</span>")
 #define span_faction_alert_subtitle(str) ("<span class='faction_alert_subtitle'>" + str + "</span>")
 #define span_faction_alert_text(str) ("<span class='faction_alert_text'>" + str + "</span>")
 
-// actually giving alerts the striped background
+// actually giving alerts the striped background/colors
 #define faction_alert_default_span(string) ("<div class='faction_alert_default'>" + string + "</div>")
 #define faction_alert_colored_span(color, string) ("<div class='faction_alert_" + color + "'>" + string + "</div>")
 
-// colors for faction alert overrides
+// colors for faction alert overrides, used for admin menus
 #define faction_alert_colors list("default", "green", "blue", "pink", "yellow", "orange", "red", "purple", "grey")
+
+/**
+ * Assemble a faction alert.
+ *
+ * Returns a string.
+ *
+ * Arguments
+ * * title - required, the title to use for this alert
+ * * subtitle - optional, the subtitle/subheader to use for this alert
+ * * message - required, the message to use for this alert
+ * * color_override - optional, the color to use for this alert instead of blue
+ * * minor - is this a minor alert?
+ */
+/proc/assemble_alert(title, subtitle, message, color_override, minor = FALSE)
+	if(!title || !message)
+		return
+
+	var/list/alert_strings = list()
+	var/header
+	var/finalized_alert
+	header = minor ? span_faction_alert_minortitle(title) : span_faction_alert_title(title)
+
+	if(subtitle)
+		header += span_faction_alert_subtitle(subtitle)
+
+	alert_strings += span_alert_header(header)
+	alert_strings += span_faction_alert_text(message)
+
+	if(color_override)
+		finalized_alert = faction_alert_colored_span(color_override, jointext(alert_strings, ""))
+	else
+		finalized_alert = faction_alert_default_span(jointext(alert_strings, ""))
+
+	return finalized_alert
 
 /**
  * Make a priority announcement to a target
@@ -31,33 +71,39 @@
 	if(!message)
 		return
 
-	/// The strings for this announcement (title/message/etc) to be joined for the final message
-	var/list/announcement_strings = list()
 
-	var/header
+	// header/subtitle to use when using assemble_alert()
+	var/assembly_header
+	var/assembly_subtitle
 	switch(type)
 		if(ANNOUNCEMENT_REGULAR)
-			header = span_faction_alert_title(title)
+			assembly_header = title
 
 		if(ANNOUNCEMENT_PRIORITY)
-			header = span_faction_alert_title("Priority Announcement")
+			assembly_header = "Priority Announcement"
 			if(length(title) > 0)
-				header += span_faction_alert_subtitle(title)
+				assembly_subtitle = title
 
 		if(ANNOUNCEMENT_COMMAND)
-			header = span_faction_alert_title("Command Announcement")
+			assembly_header = "Command Announcement"
 
 	if(subtitle)
-		header += span_faction_alert_subtitle(subtitle)
-
-	announcement_strings += header
-	announcement_strings += span_faction_alert_text("[message]")
+		assembly_subtitle = subtitle
 
 	var/finalized_announcement
 	if(color_override)
-		finalized_announcement = faction_alert_colored_span(color_override, jointext(announcement_strings, ""))
+		finalized_announcement = assemble_alert(
+			title = assembly_header,
+			subtitle = assembly_subtitle,
+			message = message,
+			color_override = color_override
+		)
 	else
-		finalized_announcement = faction_alert_default_span(jointext(announcement_strings, ""))
+		finalized_announcement = assemble_alert(
+			title = assembly_header,
+			subtitle = assembly_subtitle,
+			message = message
+		)
 
 	var/s = sound(sound, channel = CHANNEL_ANNOUNCEMENTS)
 	for(var/i in receivers)
@@ -97,5 +143,17 @@
 	S.channel = CHANNEL_ANNOUNCEMENTS
 	for(var/mob/M AS in receivers)
 		if(!isnewplayer(M) && !isdeaf(M))
-			to_chat(M, faction_alert_default_span("[span_faction_alert_minortitle("[title]")][span_faction_alert_text("[message]")]"))
+			to_chat(M, assemble_alert(
+				title = title,
+				message = message,
+				minor = TRUE
+			))
 			SEND_SOUND(M, S)
+
+#undef span_alert_header
+#undef span_faction_alert_title
+#undef span_faction_alert_minortitle
+#undef span_faction_alert_subtitle
+#undef span_faction_alert_text
+#undef faction_alert_default_span
+#undef faction_alert_colored_span

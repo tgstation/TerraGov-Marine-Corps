@@ -59,11 +59,14 @@
 	if(!input || !customname)
 		return
 
-	var/msg = "[faction_alert_colored_span("purple", "[span_faction_alert_title("[customname]")]<br>[span_faction_alert_text("[html_encode(input)]")]")]"
 
 	for(var/i in (GLOB.xeno_mob_list + GLOB.observer_list))
 		var/mob/M = i
-		to_chat(M, msg)
+		to_chat(M, assemble_alert(
+			title = "Queen Mother Directive",
+			message = input,
+			color_override = "purple"
+		))
 
 	log_admin("[key_name(usr)] created a Queen Mother report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] created a Queen Mother report.")
@@ -286,7 +289,12 @@
 
 	GLOB.custom_info = new_info
 
-	to_chat(world, "[faction_alert_colored_span("red", "[span_faction_alert_title("Custom Information")][span_faction_alert_subtitle("The following custom information has been set for this round.")][span_faction_alert_text("[GLOB.custom_info]")]")]")
+	to_chat(world, assemble_alert(
+		title = "Custom Information",
+		subtitle = "The following custom information has been set for this round.",
+		message = GLOB.custom_info,
+		color_override = "red"
+	))
 
 	log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
 	message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
@@ -300,7 +308,12 @@
 		to_chat(src, span_notice("There currently is no custom information set."))
 		return
 
-	to_chat(src, "[faction_alert_colored_span("red", "[span_faction_alert_title("Custom Information")][span_faction_alert_subtitle("The following custom information has been set for this round.")][span_faction_alert_text("[GLOB.custom_info]")]")]")
+	to_chat(src, assemble_alert(
+		title = "Custom Information",
+		subtitle = "The following custom information has been set for this round.",
+		message = GLOB.custom_info,
+		color_override = "red"
+	))
 
 
 /datum/admins/proc/sound_file(S as sound)

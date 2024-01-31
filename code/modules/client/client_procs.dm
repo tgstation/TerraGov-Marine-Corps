@@ -269,7 +269,12 @@
 		return
 
 	if(GLOB.custom_info)
-		to_chat(src, "[faction_alert_colored_span("red", "[span_faction_alert_title("Custom Information")][span_faction_alert_subtitle("The following custom information has been set for this round.")][span_faction_alert_text("[GLOB.custom_info]")]")]")
+		to_chat(src, assemble_alert(
+			title = "Custom Information",
+			subtitle = "The following custom information has been set for this round.",
+			message = GLOB.custom_info,
+			color_override = "red"
+		))
 
 	connection_time = world.time
 	connection_realtime = world.realtime

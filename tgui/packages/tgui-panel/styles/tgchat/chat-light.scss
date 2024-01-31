@@ -1115,16 +1115,22 @@ $border-width-px: $border-width * 1px;
   padding: 1em 1em 1em 1em;
 }
 .faction_alert_subtitle {
-  padding: 0.5rem 0.5rem;
+  padding: 0 0.5rem;
+  padding-top: 0.25rem;
   font-size: 125%;
 }
 .faction_alert_title {
-  padding: 0.5rem 0.5rem;
+  padding: 0 0.5rem;
   font-size: 185%;
 }
 .faction_alert_minortitle {
-  padding: 0.5rem 0.5rem;
-  font-size: 135%;
+  padding: 0 0.5rem;
+  font-size: 150%;
+}
+.alert_header {
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
 }
 
 @each $color-name, $color-value in $alert-stripe-colors {
