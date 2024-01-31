@@ -87,7 +87,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	May void the warranty. Also unlocks shield modules for roles that do not already have access to it."
 	ui_icon = "overclock"
 	all_jobs = TRUE
-	unlock_cost = 1
+	unlock_cost = 800
 
 /datum/perk/shield_overclock/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(owner_stats.faction == FACTION_TERRAGOV)
