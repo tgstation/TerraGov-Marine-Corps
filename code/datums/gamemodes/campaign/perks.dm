@@ -337,15 +337,28 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/stamina
 	name = "Improved stamina"
-	desc = "Improved stamina regen rate, and reduces the delay before stamina begins to regenerate."
+	desc = "Superior physical conditioning results in overall improved stamina. Improved max stamina, stamina regen rate, and reduces the delay before stamina begins to regenerate after stamina loss."
 	ui_icon = "stamina_1"
 	stamina = 1
 	all_jobs = TRUE
 	unlock_cost = 600
+	///How much this perk increases your max_stam by
+	var/stam_mod = 5
+
+/datum/perk/skill_mod/stamina/apply_perk(mob/living/carbon/owner)
+	. = ..()
+	owner.max_stamina += stam_mod
+	owner.max_stamina_buffer += stam_mod
+
+/datum/perk/skill_mod/stamina/remove_perk(mob/living/carbon/owner)
+	. = ..()
+	owner.max_stamina -= stam_mod
+	owner.max_stamina_buffer -= stam_mod
 
 /datum/perk/skill_mod/stamina/two
 	name = "Extreme stamina"
 	desc = "Greatly stamina regen rate, and further reduces the delay before stamina begins to regenerate."
+	desc = "Extreme physical conditioning results in significantly enhanced overall stamina. Further improved max stamina, stamina regen rate, and reduced delay before stamina begins to regenerate after stamina loss."
 	req_desc = "Requires Improved stamina."
 	ui_icon = "stamina_2"
 	prereq_perks = list(/datum/perk/skill_mod/stamina)
