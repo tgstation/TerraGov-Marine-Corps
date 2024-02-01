@@ -681,6 +681,17 @@
 	var/mob/living/carbon/xenomorph/X = usr
 
 	if(href_list["hijack"])
+		var/groundside_humans
+		for(var/N in GLOB.alive_human_list)
+			var/mob/H = N
+			if(H.z != X.z)
+				continue
+			groundside_humans++
+
+		if(groundside_humans > 5)
+			to_chat(X, span_xenowarning("There is still prey left to hunt!"))
+			return
+
 		if(!(X.hive.hive_flags & HIVE_CAN_HIJACK))
 			to_chat(X, span_warning("Our hive lacks the psychic prowess to hijack the bird."))
 			return

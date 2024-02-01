@@ -124,7 +124,7 @@
 	description = "The plain and simple old Tadpole-03 model."
 	///shuttle switch console name
 	var/display_name = "Tadpole Standard Model"
-	var/admin_enable = TRUE
+	var/admin_enable = FALSE
 
 /datum/map_template/shuttle/minidropship/old
 	suffix = "_big"
@@ -135,7 +135,6 @@
 	suffix = "_food"
 	description = "A Tadpole modified to provide foods and services. Who the hell let this on the military catalogue? Bounty on that guy."
 	display_name = "Tadpole Food-truck Model"
-	admin_enable = FALSE
 
 /datum/map_template/shuttle/minidropship/factorio
 	suffix = "_factorio"
@@ -146,7 +145,6 @@
 	suffix = "_mobile_bar"
 	description =	"A Tadpole modified to provide drinks and disservices. God dammit it's him again, I thought we got rid of him."
 	display_name =	"Tadpole Mobile-Bar Model"
-	admin_enable = FALSE
 
 /datum/map_template/shuttle/minidropship/umbilical
 	suffix = "_umbilical"
@@ -169,7 +167,7 @@
 	shuttle_id = SHUTTLE_DISTRESS_UPP
 	name = "Distress UPP"
 
-/datum/map_template/shuttle/small_ert/ufo 
+/datum/map_template/shuttle/small_ert/ufo
 	shuttle_id = SHUTTLE_DISTRESS_UFO
 	name = "Small UFO"
 
