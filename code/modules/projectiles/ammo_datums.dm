@@ -636,10 +636,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 15
 	penetration = 15
+	armor_type = "bomb"
 	sundering = 1
 	damage_falloff = 2
 	shrapnel_chance = 0
-	var/shatter_duration = 0.15 SECONDS
+	var/shatter_duration = 3 SECONDS
 
 /datum/ammo/bullet/smg/squash/on_hit_mob(mob/M, obj/projectile/proj)
 	if(!isliving(M))
