@@ -270,6 +270,12 @@
 
 	. += "</span>"
 
+	if(has_brain() && stat != DEAD)
+		if(!key)
+			. += "[span_deadsay("They are fast asleep. It doesn't look like they are waking up anytime soon.")]\n"
+		else if(!client)
+			. += "[span_xenowarning("They don't seem responsive.")]\n"
+
 	if(hivenumber != XENO_HIVE_NORMAL)
 		var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 		. += "It appears to belong to the [hive.prefix]hive"
