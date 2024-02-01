@@ -40,11 +40,11 @@
 	hostile_faction_additional_rewards = "Preserve the ability to use drop pods uncontested"
 
 	objectives_total = 6
-	min_capture_amount = 4
+	min_capture_amount = 5
 
 /datum/campaign_mission/capture_mission/asat/load_pre_mission_bonuses()
 	. = ..()
-	spawn_mech(hostile_faction, 0, 0, 4)
+	spawn_mech(hostile_faction, 0, 0, 5)
 	spawn_mech(starting_faction, 0, 1, 1)
 
 	var/datum/faction_stats/attacking_team = mode.stat_list[starting_faction]
