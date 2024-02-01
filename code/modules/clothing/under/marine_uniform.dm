@@ -185,7 +185,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 15, FIRE = 15, ACID = 15)
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
-	slowdown= -0.5
+	slowdown= -0.25
 
 /obj/item/clothing/under/marine/spec_operative/equipped(mob/user, i_clothing)
 	. = ..()

@@ -44,7 +44,7 @@
 		new /obj/item/storage/box/explosive_mines(get_turf(pick(GLOB.campaign_reward_spawners[defending_faction])))
 
 	var/datum/faction_stats/attacking_team = mode.stat_list[starting_faction]
-	if(starting_faction == FACTION_TERRAGOV)
+	if(starting_faction == FACTION_NTC)
 		attacking_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_cas/instant)
 	else if(starting_faction == FACTION_SOM)
 		attacking_team.add_asset(/datum/campaign_asset/asset_disabler/som_cas/instant)
