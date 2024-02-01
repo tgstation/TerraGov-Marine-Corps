@@ -15,13 +15,13 @@
 	to_chat(target, span_userdanger("You feel your skin growing pale as your blood drains away..."), confidential = TRUE)
 	
 	switch (bloodlossamount)
-		if ("A little")
-			target.blood_volume = BLOOD_VOLUME_NOT_IDEAL //80% blood
-		if ("A lot")
-			target.blood_volume = BLOOD_VOLUME_OKAY //60% blood
-		if ("So fucking much")
-			target.blood_volume = BLOOD_VOLUME_BAD //40% blood
-		if ("FUCK THIS DUDE")
-			target.blood_volume = BLOOD_VOLUME_SURVIVE //20% blood
+		if("A little")
+			target.set_blood_volume(BLOOD_VOLUME_NOT_IDEAL) //80% blood
+		if("A lot")
+			target.set_blood_volume(BLOOD_VOLUME_OKAY) //60% blood
+		if("So fucking much")
+			target.set_blood_volume(BLOOD_VOLUME_BAD) //40% blood
+		if("FUCK THIS DUDE")
+			target.set_blood_volume(BLOOD_VOLUME_SURVIVE) //20% blood
 
 #undef BLOOD_VOLUME_NOT_IDEAL
