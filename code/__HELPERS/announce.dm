@@ -1,9 +1,10 @@
+// the types of priority announcements
 #define ANNOUNCEMENT_REGULAR 1
 #define ANNOUNCEMENT_PRIORITY 2
 #define ANNOUNCEMENT_COMMAND 3
 
-// definitely don't use any of these macros outside of here to keep code somewhat clean
-// instead, use assemble_alert() to get the same effect
+// don't use any of these macros outside of here to keep the appearance of alerts consistent (unless you need to make them global for some reason)
+// if you want to design a faction alert to use in a message or something, use assemble_alert()
 
 // a style for extra padding on alert titles
 #define span_alert_header(str) ("<span class='alert_header'>" + str + "</span>")
@@ -14,7 +15,7 @@
 #define span_faction_alert_subtitle(str) ("<span class='faction_alert_subtitle'>" + str + "</span>")
 #define span_faction_alert_text(str) ("<span class='faction_alert_text'>" + str + "</span>")
 
-// actually giving alerts the striped background/colors
+// the actual striped background of faction alerts, the spans above will color themselves to match these
 #define faction_alert_default_span(string) ("<div class='faction_alert_default'>" + string + "</div>")
 #define faction_alert_colored_span(color, string) ("<div class='faction_alert_" + color + "'>" + string + "</div>")
 
@@ -22,7 +23,7 @@
 #define faction_alert_colors list("default", "green", "blue", "pink", "yellow", "orange", "red", "purple", "grey")
 
 /**
- * Create a faction alert. Returns a string.
+ * Design a faction alert. Returns a string.
  *
  * Arguments
  * * title - required, the title to use for this alert
@@ -57,7 +58,7 @@
  * Make a priority announcement to a target
  *
  * Arguments
- * * message - **required,** this is the announcement message
+ * * message - **required,** the content of the announcement
  * * title - optional, the title of the announcement
  * * subtitle - optional, the subtitle/subheader of the announcement
  * * type - optional, the type of the announcement (see defines in `__HELPERS/announce.dm`)
@@ -85,7 +86,7 @@
 		if(ANNOUNCEMENT_COMMAND)
 			assembly_header = "Command Announcement"
 
-	if(subtitle)
+	if(subtitle && type != ANNOUNCEMENT_PRIORITY)
 		assembly_subtitle = subtitle
 
 	var/finalized_announcement
