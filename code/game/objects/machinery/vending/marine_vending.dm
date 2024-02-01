@@ -37,6 +37,9 @@
 			/obj/item/ammo_magazine/smg/standard_smg = -1,
 			/obj/item/weapon/gun/smg/standard_machinepistol = -1,
 			/obj/item/ammo_magazine/smg/standard_machinepistol = -1,
+			/obj/item/weapon/gun/smg/standard_heavysmg = -1,
+			/obj/item/ammo_magazine/smg/standard_heavysmg = -1,
+			/obj/item/ammo_magazine/smg/standard_heavysmg/hollowpoint = -1,
 		),
 		"Marksman" = list(
 			/obj/item/weapon/gun/rifle/standard_dmr = -1,
@@ -82,7 +85,6 @@
 			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
-			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/shield/riot/marine/deployable = 6,
 			/obj/item/weapon/combat_knife/harvester = 12,
 		),
@@ -254,6 +256,9 @@
 			/obj/item/ammo_magazine/smg/standard_smg = -1,
 			/obj/item/weapon/gun/smg/standard_machinepistol = -1,
 			/obj/item/ammo_magazine/smg/standard_machinepistol = -1,
+			/obj/item/weapon/gun/smg/standard_heavysmg = -1,
+			/obj/item/ammo_magazine/smg/standard_heavysmg = -1,
+			/obj/item/ammo_magazine/smg/standard_heavysmg/hollowpoint = -1,
 		),
 		"Marksman" = list(
 			/obj/item/weapon/gun/rifle/standard_dmr = -1,
@@ -298,7 +303,6 @@
 			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
-			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/shield/riot/marine/deployable = 6,
 			/obj/item/weapon/combat_knife/harvester = 12,
 		),
@@ -454,6 +458,9 @@
 			/obj/item/ammo_magazine/smg/standard_smg = -1,
 			/obj/item/weapon/gun/smg/standard_machinepistol = -1,
 			/obj/item/ammo_magazine/smg/standard_machinepistol = -1,
+			/obj/item/weapon/gun/smg/standard_heavysmg = -1,
+			/obj/item/ammo_magazine/smg/standard_heavysmg = -1,
+			/obj/item/ammo_magazine/smg/standard_heavysmg/hollowpoint = -1,
 		),
 		"Marksman" = list(
 			/obj/item/weapon/gun/rifle/standard_dmr = -1,
@@ -530,6 +537,8 @@
 			/obj/item/ammo_magazine/rifle/tx54/smoke = -1,
 			/obj/item/ammo_magazine/rifle/tx54/smoke/dense = -1,
 			/obj/item/ammo_magazine/rifle/tx54/smoke/tangle = -1,
+			/obj/item/ammo_magazine/rifle/tx54/smoke/acid = -1,
+			/obj/item/ammo_magazine/rifle/tx54/razor = -1,
 			/obj/item/explosive/grenade = -1,
 			/obj/item/explosive/grenade/m15 = -1,
 			/obj/item/explosive/grenade/sticky = -1,
@@ -717,7 +726,7 @@
 	products = list(
 		"Surplus Special Equipment" = list(
 			/obj/item/pinpointer = 1,
-			/obj/item/beacon/supply_beacon = 1,
+			/obj/item/supply_beacon = 1,
 			/obj/item/ammo_magazine/rifle/autosniper = 3,
 			/obj/item/ammo_magazine/rifle/tx8 = 3,
 			/obj/item/ammo_magazine/rocket/sadar = 3,
@@ -919,7 +928,6 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/imidazoline = 20,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20,
-			/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 10,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
@@ -1073,7 +1081,7 @@
 		"General" = list(
 			/obj/item/clothing/suit/modular = -1,
 			/obj/item/clothing/suit/modular/rownin = -1,
-			/obj/item/clothing/suit/modular/xenonauten/pilot = -1,
+			/obj/item/clothing/suit/storage/marine/ballistic = -1,
 			/obj/item/facepaint/green = -1,
 		),
 		"Armor modules" = list(

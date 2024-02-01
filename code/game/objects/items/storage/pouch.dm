@@ -521,7 +521,7 @@
 /obj/item/storage/pouch/medical_injectors/firstaid
 	desc = "Standard marine first-aid injector pouch. Specialized to store only auto-injectors. Contains basic injectors, a stabilizing injector, stimulant injector, and an emergency injector."
 
-/obj/item/storage/pouch/medical_injectors/firstaid/Initialize(mapload)
+/obj/item/storage/pouch/medical_injectors/firstaid/Initialize(mapload) //used in hvh and erts
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane (src)
@@ -531,6 +531,17 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
+
+/obj/item/storage/pouch/medical_injectors/standard/Initialize(mapload) //normal access variant available by default to marines
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dylovene(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
 
 /obj/item/storage/pouch/medical_injectors/medic/Initialize(mapload) //corpsman autoinjector pouch gets upgraded, but more general chems.
 	. = ..()
@@ -673,7 +684,7 @@
 		/obj/item/flashlight,
 		/obj/item/whistle,
 		/obj/item/binoculars,
-		/obj/item/beacon/supply_beacon,
+		/obj/item/supply_beacon,
 		/obj/item/compass,
 		/obj/item/deployable_camera,
 		/obj/item/hud_tablet,

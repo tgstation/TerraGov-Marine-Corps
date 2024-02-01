@@ -5,6 +5,11 @@
 	item_typepath = /obj/item/storage/pouch/firstaid/som/combat_patrol
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN)
 
+/datum/loadout_item/r_pocket/som_standard_first_aid/standard_improved
+	desc = "Standard SOM first-aid pouch. Contains a improved set of medical supplies."
+	item_typepath = /obj/item/storage/pouch/firstaid/som/combat_patrol_leader
+	loadout_item_flags = null
+
 /datum/loadout_item/r_pocket/som_standard_first_aid/improved
 	desc = "Standard SOM first-aid pouch. Contains a improved set of medical supplies."
 	item_typepath = /obj/item/storage/pouch/firstaid/som/combat_patrol_leader
@@ -51,7 +56,7 @@
 /datum/loadout_item/r_pocket/som_construction
 	name = "Construction pouch"
 	desc = "A pouch containing an assortment of construction supplies. Allows for the rapid establishment of fortified positions."
-	ui_icon = "grenade"
+	ui_icon = "materials"
 	item_typepath = /obj/item/storage/pouch/construction/som
 	jobs_supported = list(SOM_SQUAD_MARINE)
 
@@ -78,7 +83,7 @@
 /datum/loadout_item/r_pocket/som_tools
 	name = "Tool pouch"
 	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool."
-	ui_icon = "grenade"
+	ui_icon = "construction"
 	item_typepath = /obj/item/storage/pouch/tools/som/full
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
@@ -98,6 +103,11 @@
 	item_typepath = /obj/item/storage/pouch/firstaid/som/combat_patrol
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+
+/datum/loadout_item/l_pocket/som_standard_first_aid/standard_improved
+	desc = "Standard SOM first-aid pouch. Contains a improved set of medical supplies."
+	item_typepath = /obj/item/storage/pouch/firstaid/som/combat_patrol_leader
+	loadout_item_flags = null
 
 /datum/loadout_item/l_pocket/som_standard_first_aid/improved
 	desc = "Standard SOM first-aid pouch. Contains a improved set of medical supplies."
@@ -145,7 +155,7 @@
 /datum/loadout_item/l_pocket/som_construction
 	name = "Construction pouch"
 	desc = "A pouch containing an assortment of construction supplies. Allows for the rapid establishment of fortified positions."
-	ui_icon = "grenade"
+	ui_icon = "materials"
 	item_typepath = /obj/item/storage/pouch/construction/som
 	jobs_supported = list(SOM_SQUAD_MARINE)
 

@@ -45,9 +45,12 @@
 	///Feedback message if this asset is unusable during this mission
 	var/blacklist_message = "Unavailable during this mission."
 
-/datum/campaign_asset/New(datum/faction_stats/winning_faction)
+/datum/campaign_asset/New(datum/faction_stats/new_faction)
 	. = ..()
-	faction = winning_faction
+	if(!istype(new_faction))
+		return qdel(src)
+	SEND_SIGNAL(new_faction, COMSIG_CAMPAIGN_NEW_ASSET, src)
+	faction = new_faction
 	if(asset_flags & ASSET_IMMEDIATE_EFFECT)
 		immediate_effect()
 	if(asset_flags & ASSET_PASSIVE_EFFECT)

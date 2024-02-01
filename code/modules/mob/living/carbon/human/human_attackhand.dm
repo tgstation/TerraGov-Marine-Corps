@@ -279,7 +279,7 @@
 		else if(burn_treated && burndamage > 0)
 			treat += "(Salved)"
 		var/msg = "My [org.display_name] is [status]. [treat]"
-		final_msg += status=="OK" ? span_notice(msg) : span_warning (msg)
+		final_msg += status=="OK" ? span_notice(msg) : span_alert (msg)
 
 
 	switch(staminaloss)

@@ -81,6 +81,34 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	prereq_perks = list(/datum/perk/hp_boost)
 	unlock_cost = 1000
 
+/datum/perk/shield_overclock
+	name = "Shield overlock"
+	desc = "Overclocking a shield module beyond manufacturing specifications results in a more powerful shield at that cost of burning out sensitive components after weeks of use instead of months. \
+	May void the warranty. Also unlocks shield modules for roles that do not already have access to it."
+	ui_icon = "overclock"
+	all_jobs = TRUE
+	unlock_cost = 800
+
+/datum/perk/shield_overclock/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	if(owner_stats.faction == FACTION_TERRAGOV)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/light_shield/overclocked, /datum/loadout_item/suit_slot/light_shield, jobs_supported)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/medium_shield/overclocked, /datum/loadout_item/suit_slot/medium_shield, jobs_supported)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/heavy_shield/overclocked, /datum/loadout_item/suit_slot/heavy_shield, jobs_supported)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/medium_shield/overclocked/engineer, /datum/loadout_item/suit_slot/medium_engineer, jobs_supported)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/light_shield/overclocked/medic, SQUAD_CORPSMAN, owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/medium_shield/overclocked/medic, SQUAD_CORPSMAN, owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/light_shield/overclocked/engineer, SQUAD_ENGINEER, owner)
+
+	else if(owner_stats.faction == FACTION_SOM)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked, /datum/loadout_item/suit_slot/light_shield, jobs_supported)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked/veteran, /datum/loadout_item/suit_slot/som_light_shield/veteran, jobs_supported)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_medium_shield/overclocked, /datum/loadout_item/suit_slot/medium_shield, jobs_supported)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_heavy_shield/overclocked, /datum/loadout_item/suit_slot/heavy_shield, jobs_supported)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked/medic, /datum/loadout_item/suit_slot/som_medic/light, jobs_supported)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_medium_shield/overclocked/medic, /datum/loadout_item/suit_slot/som_medic, jobs_supported)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked/engineer, /datum/loadout_item/suit_slot/som_engineer/light, jobs_supported)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_medium_shield/overclocked/engineer, /datum/loadout_item/suit_slot/som_engineer, jobs_supported)
+
 //perks that give a trait
 /datum/perk/trait
 	///List of traits provided by this perk
@@ -113,25 +141,23 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/trait/axe_master/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(!istype(owner_stats))
 		return
-	owner_stats.unlock_loadout_item(/datum/loadout_item/back/boarding_axe, SOM_SQUAD_MARINE, owner, 0)
-	owner_stats.unlock_loadout_item(/datum/loadout_item/back/boarding_axe, SOM_SQUAD_VETERAN, owner, 0)
-	owner_stats.unlock_loadout_item(/datum/loadout_item/back/boarding_axe, SOM_FIELD_COMMANDER, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/back/boarding_axe, jobs_supported, owner, 0)
 
 /datum/perk/trait/sword_master
 	name = "Sword master"
-	desc = "You are able to wield a sword with considerable skill. Grants access to a special lunge attack when wielding any sword, and allows some roles to select a machete as a back stored weapon."
+	desc = "You are able to wield a sword with considerable skill. Grants access to a special lunge attack when wielding any sword, and allows some roles to select a sword as a back stored weapon."
 	req_desc = "Requires Melee specialisation."
 	ui_icon = "soft_footed"
 	traits = list(TRAIT_SWORD_EXPERT)
-	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, FIELD_COMMANDER, SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 	unlock_cost = 450
 	prereq_perks = list(/datum/perk/skill_mod/melee/two)
 
 /datum/perk/trait/sword_master/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(!istype(owner_stats))
 		return
-	owner_stats.unlock_loadout_item(/datum/loadout_item/back/machete, SQUAD_MARINE, owner, 0)
-	owner_stats.unlock_loadout_item(/datum/loadout_item/back/machete, SQUAD_LEADER, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/back/machete, jobs_supported, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/belt/energy_sword, jobs_supported, owner, 0)
 
 //skill modifying perks
 /datum/perk/skill_mod
@@ -229,7 +255,8 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/skill_mod/shotguns/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(!istype(owner_stats))
 		return
-	owner_stats.unlock_loadout_item(owner_stats.faction == FACTION_SOM ? /datum/loadout_item/back/som_shotgun : /datum/loadout_item/back/marine_shotgun, owner_stats.faction == FACTION_SOM ? SOM_SQUAD_MARINE : SQUAD_MARINE, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/back/som_shotgun, jobs_supported, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/back/marine_shotgun, jobs_supported, owner, 0)
 
 /datum/perk/skill_mod/rifles
 	name = "Advanced rifle training"
@@ -289,11 +316,24 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/medical
 	name = "Advanced medical training"
-	desc = "Faster at applying medical items. Some items may no longer have a penalty delay."
+	desc = "Faster at applying medical items. Some items may no longer have a penalty delay. Unlocks access to improved first aid pouches if not already available."
 	ui_icon = "medical"
 	medical = 1
 	all_jobs = TRUE
 	unlock_cost = 600
+
+/datum/perk/skill_mod/medical/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	if(!istype(owner_stats))
+		return
+	if(owner_stats.faction == FACTION_TERRAGOV)
+		for(var/job_type in owner_stats.loadouts)
+			owner_stats.replace_loadout_option(/datum/loadout_item/r_pocket/standard_first_aid/standard_improved, /datum/loadout_item/r_pocket/standard_first_aid, job_type)
+			owner_stats.replace_loadout_option(/datum/loadout_item/l_pocket/standard_first_aid/standard_improved, /datum/loadout_item/l_pocket/standard_first_aid, job_type)
+
+	else if(owner_stats.faction == FACTION_SOM)
+		for(var/job_type in owner_stats.loadouts)
+			owner_stats.replace_loadout_option(/datum/loadout_item/r_pocket/som_standard_first_aid/standard_improved, /datum/loadout_item/r_pocket/som_standard_first_aid, job_type)
+			owner_stats.replace_loadout_option(/datum/loadout_item/l_pocket/som_standard_first_aid/standard_improved, /datum/loadout_item/l_pocket/som_standard_first_aid, job_type)
 
 /datum/perk/skill_mod/stamina
 	name = "Improved stamina"

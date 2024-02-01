@@ -246,7 +246,8 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a pool that allows xenos to regenerate sunder in it while resting. Requires open space and time to place."
 	psypoint_cost = 200
 	icon = "pool"
-	flags_upgrade = ABILITY_NUCLEARWAR|UPGRADE_FLAG_USES_TACTICAL
+	flags_gamemode = ABILITY_NUCLEARWAR
+	flags_upgrade = UPGRADE_FLAG_USES_TACTICAL
 	building_type = /obj/structure/xeno/acid_pool
 
 /datum/hive_upgrade/building/acid_pool/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
