@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "You can no longer go over the blood limit, or go below 0 blood"
