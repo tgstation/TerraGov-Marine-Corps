@@ -118,7 +118,6 @@
 	//The evasion extension removes the cooldown before calling this proc again, so use that to differentiate if it was the player trying to cancel
 	if(evade_active && cooldown_timer)
 		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_EVASION_ACTIVATION))
-			owner.balloon_alert(owner, "Accidental deactivation guard!")	//Little message to let the player know and not think it is a bug that their evasion didn't turn off
 			return
 		evasion_deactivate()
 		return
