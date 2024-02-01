@@ -537,6 +537,8 @@
 			/obj/item/ammo_magazine/rifle/tx54/smoke = -1,
 			/obj/item/ammo_magazine/rifle/tx54/smoke/dense = -1,
 			/obj/item/ammo_magazine/rifle/tx54/smoke/tangle = -1,
+			/obj/item/ammo_magazine/rifle/tx54/smoke/acid = -1,
+			/obj/item/ammo_magazine/rifle/tx54/razor = -1,
 			/obj/item/explosive/grenade = -1,
 			/obj/item/explosive/grenade/m15 = -1,
 			/obj/item/explosive/grenade/sticky = -1,
