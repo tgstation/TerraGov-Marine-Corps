@@ -22,9 +22,7 @@
 #define faction_alert_colors list("default", "green", "blue", "pink", "yellow", "orange", "red", "purple", "grey")
 
 /**
- * Assemble a faction alert.
- *
- * Returns a string.
+ * Create a faction alert. Returns a string.
  *
  * Arguments
  * * title - required, the title to use for this alert
@@ -67,7 +65,7 @@
  * * color_override - **recommended,** string, use the passed color instead of the default blue (see defines in `__HELPERS/announce.dm`)
  * * receivers - a list of all players to send the message to. defaults to all players, not including those in lobby
  */
-/proc/priority_announce(message, title = "", subtitle = "", type = ANNOUNCEMENT_REGULAR, sound = 'sound/misc/notice2.ogg', color_override, list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list))
+/proc/priority_announce(message, title = "Announcement", subtitle = "", type = ANNOUNCEMENT_REGULAR, sound = 'sound/misc/notice2.ogg', color_override, list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list))
 	if(!message)
 		return
 
