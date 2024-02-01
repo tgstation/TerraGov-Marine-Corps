@@ -633,7 +633,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/smg/squash
 	name = "squash-head submachinegun bullet"
 	hud_state = "pistol_squash"
-	armor_type = "bomb"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 15
 	penetration = 15
