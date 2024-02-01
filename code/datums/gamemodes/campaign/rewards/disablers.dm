@@ -9,18 +9,28 @@
 	var/list/types_disabled
 	///Rewards currently disabled. Recorded to reenable later
 	var/list/types_currently_disabled = list()
+	///Does this apply instantly?
+	var/instant_use = FALSE
 
 /datum/campaign_asset/asset_disabler/immediate_effect()
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(trigger_disabler))
+	if(instant_use)
+		trigger_disabler()
+	else
+		RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(trigger_disabler))
+
+	RegisterSignal(faction, COMSIG_CAMPAIGN_NEW_ASSET, PROC_REF(disable_asset))
 
 /datum/campaign_asset/asset_disabler/deactivate()
+	if(!uses)
+		UnregisterSignal(SSdcs, list(COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, COMSIG_CAMPAIGN_NEW_ASSET))
+		asset_flags &= ~ASSET_DEBUFF
 	for(var/datum/campaign_asset/asset_type AS in types_currently_disabled)
 		asset_type.asset_flags &= ~ASSET_DISABLED
 	types_currently_disabled.Cut()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
 
 ///Handles the actual disabling activation
-/datum/campaign_asset/asset_disabler/proc/trigger_disabler()
+/datum/campaign_asset/asset_disabler/proc/trigger_disabler(datum/source)
 	SIGNAL_HANDLER
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	var/datum/campaign_mission/current_mission = mode.current_mission
@@ -28,19 +38,22 @@
 		return
 
 	for(var/i in faction.faction_assets)
-		var/datum/campaign_asset/asset_type = faction.faction_assets[i]
-		if(!asset_type)
-			continue
-		if(asset_type.type in types_disabled)
-			asset_type.asset_flags |= ASSET_DISABLED
-			types_currently_disabled += asset_type
+		disable_asset(asset = faction.faction_assets[i])
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/datum/campaign_asset, deactivate))
 	uses --
-	if(!uses)
-		UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED)
-		asset_flags &= ~ASSET_DEBUFF
 	SEND_SIGNAL(src, COMSIG_CAMPAIGN_DISABLER_ACTIVATION)
+
+
+///Actually disables an asset
+/datum/campaign_asset/asset_disabler/proc/disable_asset(datum/source, datum/campaign_asset/asset)
+	SIGNAL_HANDLER
+	if(!istype(asset))
+		return
+	if(!(asset.type in types_disabled))
+		return
+	asset.asset_flags |= ASSET_DISABLED
+	types_currently_disabled += asset
 
 /datum/campaign_asset/asset_disabler/tgmc_cas
 	name = "CAS disabled"
@@ -50,6 +63,11 @@
 	types_disabled = list(/datum/campaign_asset/fire_support)
 	blacklist_mission_flags = MISSION_DISALLOW_FIRESUPPORT
 
+/datum/campaign_asset/asset_disabler/tgmc_cas/instant
+	uses = 1
+	instant_use = TRUE
+	detailed_desc = "Hostile assets in the AO are preventing the use of close air support during this mission."
+
 /datum/campaign_asset/asset_disabler/som_cas
 	name = "CAS disabled"
 	desc = "CAS fire support temporarily disabled"
@@ -57,6 +75,11 @@
 	ui_icon = "cas_disabled"
 	types_disabled = list(/datum/campaign_asset/fire_support/som_cas)
 	blacklist_mission_flags = MISSION_DISALLOW_FIRESUPPORT
+
+/datum/campaign_asset/asset_disabler/som_cas/instant
+	uses = 1
+	instant_use = TRUE
+	detailed_desc = "Hostile assets in the AO are preventing the use of close air support during this mission."
 
 /datum/campaign_asset/asset_disabler/tgmc_mortar
 	name = "Mortar support disabled"

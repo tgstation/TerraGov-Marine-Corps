@@ -62,10 +62,6 @@
 /datum/action/item_action/toggle/suit_toggle
 	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_KB_SUITLIGHT)
 
-/datum/action/item_action/toggle/motion_detector/action_activate()
-	. = ..()
-	update_button_icon()
-
 /datum/action/item_action/firemode
 	// just here so players see what key is it bound to
 	keybinding_signals = list(

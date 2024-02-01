@@ -60,5 +60,4 @@
 		return FALSE
 
 	var/mob/living/carbon/carb_mob = implant_owner
-	var/current_blood = carb_mob.blood_volume
-	carb_mob.blood_volume += min(BLOOD_VOLUME_MAXIMUM - current_blood, blood_amount)
+	carb_mob.adjust_blood_volume(blood_amount)

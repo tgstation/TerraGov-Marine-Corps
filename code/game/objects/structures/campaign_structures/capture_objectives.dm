@@ -131,7 +131,13 @@
 	name = "sensor tower objective"
 	icon = 'icons/obj/structures/sensor.dmi'
 	icon_state = "sensor"
-	mission_types = list(/datum/campaign_mission/tdm, /datum/campaign_mission/tdm/lv624, /datum/campaign_mission/tdm/first_mission, /datum/campaign_mission/tdm/mech_wars)
+	mission_types = list(
+		/datum/campaign_mission/tdm,
+		/datum/campaign_mission/tdm/lv624,
+		/datum/campaign_mission/tdm/first_mission,
+		/datum/campaign_mission/tdm/mech_wars,
+		/datum/campaign_mission/tdm/mech_wars/som,
+	)
 	spawn_object = /obj/structure/campaign_objective/capture_objective/sensor_tower
 
 /obj/structure/campaign_objective/capture_objective/sensor_tower

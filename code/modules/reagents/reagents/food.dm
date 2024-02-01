@@ -37,7 +37,7 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.blood_volume < BLOOD_VOLUME_NORMAL)
-			C.blood_volume += blood_gain
+			C.adjust_blood_volume(blood_gain)
 
 	return ..()
 

@@ -44,8 +44,11 @@
 
 /datum/campaign_mission/capture_mission/asat/load_pre_mission_bonuses()
 	. = ..()
-	spawn_mech(hostile_faction, 0, 0, 3)
-	spawn_mech(starting_faction, 0, 2)
+	spawn_mech(hostile_faction, 0, 0, 4)
+	spawn_mech(starting_faction, 0, 1, 1)
+
+	var/datum/faction_stats/attacking_team = mode.stat_list[starting_faction]
+	attacking_team.add_asset(/datum/campaign_asset/asset_disabler/som_cas/instant)
 
 /datum/campaign_mission/capture_mission/asat/load_objective_description()
 	starting_faction_objective_description = "Major Victory:Capture all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] ASAT systems." : ""]"

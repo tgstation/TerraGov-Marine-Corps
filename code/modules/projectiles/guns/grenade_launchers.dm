@@ -7,7 +7,7 @@ The Grenade Launchers
 
 /obj/item/weapon/gun/grenade_launcher
 	w_class = WEIGHT_CLASS_BULKY
-	gun_skill_category = SKILL_FIREARMS
+	gun_skill_category = SKILL_HEAVY_WEAPONS
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	reciever_flags = NONE
 	throw_speed = 2

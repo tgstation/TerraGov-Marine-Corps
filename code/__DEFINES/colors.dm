@@ -262,6 +262,7 @@ Important note: colors can end up significantly different from the basic html pi
 #define COLOR_AMMO_TACTICAL_SMOKE "#2F7B00"
 #define COLOR_AMMO_SMOKE "#0F98BD"
 #define COLOR_AMMO_TANGLEFOOT "#AA1FDC"
+#define COLOR_AMMO_ACID "#25dc1f"
 #define COLOR_AMMO_RAZORBURN "#FBF236"
 #define COLOR_AMMO_HIGH_EXPLOSIVE "#b02323"
 

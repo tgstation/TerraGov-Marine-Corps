@@ -1626,6 +1626,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_greyscale_colors = COLOR_AMMO_TANGLEFOOT
 	projectile_greyscale_colors = COLOR_AMMO_TANGLEFOOT
 
+/datum/ammo/tx54/smoke/acid
+	name = "20mm acid grenade"
+	hud_state = "grenade_acid"
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/smoke/acid
+	handful_greyscale_colors = COLOR_AMMO_ACID
+	projectile_greyscale_colors = COLOR_AMMO_ACID
+
 /datum/ammo/tx54/razor
 	name = "20mm razorburn grenade"
 	hud_state = "grenade_razor"
@@ -1724,6 +1731,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/tx54_spread/smoke/tangle
 	trail_spread_system = /datum/effect_system/smoke_spread/plasmaloss
+
+/datum/ammo/bullet/tx54_spread/smoke/acid
+	trail_spread_system = /datum/effect_system/smoke_spread/xeno/acid
 
 /datum/ammo/bullet/tx54_spread/razor
 	name = "chemical bomblet"
