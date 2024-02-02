@@ -1,0 +1,4 @@
+author: "Dikozda"
+delete-after: True
+changes:
+  - rscdel: "Remove 3 pointless lights from orion outpost"
