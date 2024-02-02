@@ -374,7 +374,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	gun_skill_category = SKILL_FIREARMS
+	gun_skill_category = SKILL_RIFLES
 	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 18,"rail_x" = 18, "rail_y" = 24, "under_x" = 31, "under_y" = 15, "stock_x" = 24, "stock_y" = 13)
 
 
@@ -413,7 +413,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
 	wield_delay = 12
-	gun_skill_category = SKILL_FIREARMS
+	gun_skill_category = SKILL_HEAVY_WEAPONS
 	aim_slowdown = 0.8
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
@@ -432,15 +432,15 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	damage_falloff_mult = 0.5
 	movement_acc_penalty_mult = 4
 
-	flags_item = AUTOBALANCE_CHECK
+	flags_item = TWOHANDED|AUTOBALANCE_CHECK
 
 /obj/item/weapon/gun/minigun/Initialize(mapload)
 	. = ..()
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(flags_item & AUTOBALANCE_CHECK)
 		SSmonitor.stats.miniguns_in_use += src
 
 /obj/item/weapon/gun/minigun/Destroy()
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(flags_item & AUTOBALANCE_CHECK)
 		SSmonitor.stats.miniguns_in_use -= src
 	return ..()
 
@@ -448,7 +448,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
 /obj/item/weapon/gun/minigun/valhalla
-	obj_flags = NONE
+	flags_item = TWOHANDED
 
 //A minigun that requires only one hand. Meant for use with vehicles
 /obj/item/weapon/gun/minigun/one_handed
@@ -459,8 +459,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	reload_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/minigun_wheelchair
 	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_wheelchair)
-	obj_flags = NONE	//Do not affect autobalance
-	flags_item = NONE	//To remove wielding
+	flags_item = NONE
 	flags_equip_slot = NONE
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE|AMMO_RECIEVER_MAGAZINES
@@ -502,7 +501,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 0
 	recoil_unwielded = 4
 
-	obj_flags = NONE
+	flags_item = TWOHANDED
 
 /obj/item/weapon/gun/minigun/smart_minigun/motion_detector
 	starting_attachment_types = list(/obj/item/attachable/motiondetector)
@@ -628,7 +627,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_AUTO_EJECT_LOCKED
-	gun_skill_category = SKILL_FIREARMS
+	gun_skill_category = SKILL_HEAVY_WEAPONS
 	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
@@ -709,7 +708,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SHOWS_LOADED|GUN_SMOKE_PARTICLES
 
-	gun_skill_category = SKILL_FIREARMS
+	gun_skill_category = SKILL_HEAVY_WEAPONS
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
@@ -719,15 +718,15 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 3
 	scatter = -100
 
-	flags_item = AUTOBALANCE_CHECK
+	flags_item = TWOHANDED|AUTOBALANCE_CHECK
 
 /obj/item/weapon/gun/launcher/rocket/sadar/Initialize(mapload, spawn_empty)
 	. = ..()
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(flags_item & AUTOBALANCE_CHECK)
 		SSmonitor.stats.sadar_in_use += src
 
 /obj/item/weapon/gun/launcher/rocket/sadar/Destroy()
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(flags_item & AUTOBALANCE_CHECK)
 		SSmonitor.stats.sadar_in_use -= src
 	return ..()
 
@@ -738,7 +737,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	gun_user?.record_war_crime()
 
 /obj/item/weapon/gun/launcher/rocket/sadar/valhalla
-	obj_flags = NONE
+	flags_item = TWOHANDED
 
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
@@ -829,7 +828,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	gun_skill_category = SKILL_FIREARMS
+	gun_skill_category = SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
 	fire_delay = 1 SECONDS
