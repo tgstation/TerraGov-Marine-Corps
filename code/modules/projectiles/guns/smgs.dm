@@ -293,11 +293,18 @@
 
 	flags_item_map_variant = NONE
 
-	burst_amount = 4
+	scatter = 4
+	fire_delay = 0.2 SECONDS
+	scatter_unwielded = 10
+	aim_slowdown = 0.15
+	burst_amount = 3
+	akimbo_additional_delay = 0.4
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 3
+	damage_falloff_mult = 0.9
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 1
 	damage_mult = 1.2
-	aim_slowdown = 0.2
 	scatter = 4
 
 /obj/item/weapon/gun/smg/m25/elite/pmc
