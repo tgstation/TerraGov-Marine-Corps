@@ -698,19 +698,19 @@
 /obj/item/armor_module/module/night_vision/proc/on_examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
 	examine_text += attached_goggles.battery_status()
-	examine_text += "To eject the battery, [span_bold("CTRL + right-click")] [src] with an empty hand. To insert a battery, [span_bold("click")] [src] with a compatible cell."
+	examine_text += "To eject the battery, [span_bold("SHIFT + right-click")] [src] with an empty hand. To insert a battery, [span_bold("click")] [src] with a compatible cell."
 
 /obj/item/armor_module/module/night_vision/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
-	RegisterSignal(parent, COMSIG_CTRL_RIGHT_CLICK, PROC_REF(on_click))
+	RegisterSignal(parent, COMSIG_CLICK_SHIFT_RIGHT, PROC_REF(on_click))
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby))
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(deploy))
 	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, PROC_REF(undeploy))
 
 /obj/item/armor_module/module/night_vision/on_detach(obj/item/detaching_from, mob/user)
 	UnregisterSignal(parent, COMSIG_ATOM_EXAMINE)
-	UnregisterSignal(parent, COMSIG_CTRL_RIGHT_CLICK)
+	UnregisterSignal(parent, COMSIG_CLICK_SHIFT_RIGHT)
 	UnregisterSignal(parent, COMSIG_ATOM_ATTACKBY)
 	UnregisterSignal(parent, COMSIG_ITEM_EQUIPPED)
 	UnregisterSignal(parent, COMSIG_ITEM_UNEQUIPPED)
