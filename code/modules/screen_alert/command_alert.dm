@@ -53,14 +53,25 @@
 	S.channel = CHANNEL_ANNOUNCEMENTS
 	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
 	log_game("[key_name(human_owner)] has broadcasted the hud message [text] at [AREACOORD(human_owner)]")
+	var/override_color
 	if(human_owner.assigned_squad)
+		switch(human_owner.assigned_squad.id)
+			if(ALPHA_SQUAD)
+				override_color = "red"
+			if(BRAVO_SQUAD)
+				override_color = "orange"
+			if(CHARLIE_SQUAD)
+				override_color = "purple"
+			if(DELTA_SQUAD)
+				override_color = "blue"
 		deadchat_broadcast(" has sent a Squad Announcement:<br><br>[span_bigdeadsay("[text]")]<br><br>", human_owner, human_owner)
 		for(var/mob/living/carbon/human/marine AS in human_owner.assigned_squad.marines_list)
 			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>SQUAD ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
 			to_chat(marine, assemble_alert(
-				title = "Squad Announcement",
+				title = "Squad [human_owner.assigned_squad.name] Announcement",
 				subtitle = "Sent by [human_owner.real_name]",
 				message = text,
+				color_override = override_color,
 				minor = TRUE
 			))
 		return
