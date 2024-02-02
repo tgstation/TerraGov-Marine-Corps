@@ -31,24 +31,22 @@
 	return ..()
 
 
-/obj/item/clothing/glasses/hud/activate_glasses(mob/user, silent = FALSE)
-	. = ..()
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/hud_user = user
-	if(hud_user.glasses != src)
-		return
-	activate_hud(hud_user)
-
-
-/obj/item/clothing/glasses/hud/deactivate_glasses(mob/user, silent = FALSE)
-	. = ..()
+/obj/item/clothing/glasses/hud/activate(mob/user, silent = FALSE)
 	if(QDELETED(affected_user))
 		return
+	if(!ishuman(user))
+		return
+
 	var/mob/living/carbon/human/hud_user = user
 	if(hud_user.glasses != src)
 		return
-	deactivate_hud(hud_user)
+
+	if(active)
+		deactivate_hud(hud_user)
+	else
+		activate_hud(hud_user)
+
+	return ..()
 
 ///Activates the hud(s) these glasses have
 /obj/item/clothing/glasses/hud/proc/activate_hud(mob/living/carbon/human/user)
