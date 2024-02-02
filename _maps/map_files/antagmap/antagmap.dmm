@@ -654,6 +654,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/item/storage/firstaid,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "gs" = (
@@ -1294,6 +1295,7 @@
 "lF" = (
 /obj/structure/table/woodentable,
 /obj/effect/decal/cleanable/blood/splatter/cum,
+/obj/item/reagent_containers/hypospray/advanced/peridaxonplus,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "lG" = (
@@ -1895,6 +1897,7 @@
 	pixel_x = 15
 	},
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
+/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "pF" = (
@@ -3010,6 +3013,8 @@
 	pixel_y = 7
 	},
 /obj/effect/decal/cleanable/blood/splatter/cum,
+/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites,
+/obj/item/reagent_containers/hypospray/autoinjector/combat,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "zf" = (

@@ -36,6 +36,7 @@
 		/datum/job/survivor/rambo = -1,
 		/datum/job/other/prisoner = 4,
 		/datum/job/xenomorph = 8,
+		/datum/job/xenomorph/green = 1,
 		/datum/job/xenomorph/queen = 1,
 		/datum/job/som/command/commander = 1,
 		/datum/job/som/command/fieldcommander = 1,

@@ -5142,6 +5142,11 @@
 	})
 "eMw" = (
 /obj/effect/ai_node,
+/obj/effect/landmark/start/job/xenomorph/green,
+/mob/living/carbon/human/species/monkey{
+	bruteloss = 25;
+	fireloss = 25
+	},
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
@@ -12568,7 +12573,8 @@
 	})
 "lnS" = (
 /obj/machinery/door/airlock/mainship/research/pen{
-	dir = 1
+	dir = 1;
+	id = "Shipside Containment Cell"
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 1

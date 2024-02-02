@@ -72,7 +72,7 @@
 	"}
 
 /datum/job/xenomorph/queen/return_spawn_type(datum/preferences/prefs)
-	return /mob/living/carbon/xenomorph/shrike
+	return /mob/living/carbon/xenomorph/queen
 
 /datum/job/xenomorph/queen/return_spawn_turf()
 	return pick(GLOB.spawns_by_job[/datum/job/xenomorph])
@@ -85,3 +85,14 @@
 /datum/job/xenomorph/queen/handle_special_preview(client/parent)
 	parent.show_character_previews(image('icons/Xeno/castes/larva.dmi', icon_state = "Larva", dir = SOUTH))
 	return TRUE
+
+/datum/job/xenomorph/green
+	title = "Corrupted Xenomorph"
+
+/datum/job/xenomorph/green/return_spawn_type(datum/preferences/prefs)
+	return /mob/living/carbon/xenomorph/larva/Corrupted
+
+/datum/job/xenomorph/green/return_spawn_turf()
+	if(length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_CORRUPTED]))
+		return pick(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_CORRUPTED])
+	return pick(GLOB.spawns_by_job[/datum/job/xenomorph/green])

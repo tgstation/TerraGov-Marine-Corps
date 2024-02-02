@@ -128,6 +128,10 @@
 	icon_state = "xeno_spawn"
 	job = /datum/job/xenomorph
 
+/obj/effect/landmark/start/job/xenomorph/green
+	icon_state = "xeno_spawn"
+	job = /datum/job/xenomorph/green
+
 //SOM
 /obj/effect/landmark/start/job/som/squadstandard
 	icon_state = "som_standard"
