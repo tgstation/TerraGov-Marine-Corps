@@ -30,3 +30,15 @@
   - rscadd: one word "drone" to "support"
   usnpeepoo:
   - balance: Puppeteers organic bombs base timer reduced, now uses a windup
+2024-02-02:
+  AzonStarfall:
+  - qol: Adjusted Arachne CAS bay.
+  - qol: Made the front of the Arachne symmetrical.
+  Pariah919:
+  - balance: MP-19 now has burst fire again instead of auto burst, has insanely high
+      akimbo penalties.
+  ivanmixo:
+  - bugfix: You can no longer go over the blood limit, or go below 0 blood
+  yyzsong:
+  - bugfix: readds tx54 razor nades to valhalla
+  - rscadd: adds tx54 acid grenades to valhalla
