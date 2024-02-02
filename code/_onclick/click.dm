@@ -402,6 +402,10 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
+
+	if(examinate(A))
+		return
+
 	return A.ShiftClick(src)
 
 
