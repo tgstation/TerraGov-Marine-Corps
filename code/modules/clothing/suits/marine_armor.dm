@@ -48,6 +48,10 @@
 	. = ..()
 	update_icon()
 
+/obj/item/clothing/suit/storage/marine/turn_light(mob/user, toggle_on)
+	. = ..()
+	user?.update_inv_wear_suit()
+
 /obj/item/clothing/suit/storage/marine/update_overlays()
 	. = ..()
 	if(flags_armor_features & ARMOR_LAMP_OVERLAY)
@@ -133,16 +137,16 @@
 	AddComponent(/datum/component/suit_autodoc)
 	AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
 	AddElement(/datum/element/limb_support, supporting_limbs)
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(flags_item & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b18_in_use += src
 
 /obj/item/clothing/suit/storage/marine/specialist/Destroy()
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(flags_item & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b18_in_use -= src
 	return ..()
 
 /obj/item/clothing/suit/storage/marine/specialist/valhalla
-	obj_flags = NONE
+	flags_item = NONE
 
 /obj/item/clothing/suit/storage/marine/B17
 	name = "\improper B17 defensive armor"
@@ -155,16 +159,16 @@
 
 /obj/item/clothing/suit/storage/marine/B17/Initialize(mapload, ...)
 	. = ..()
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(flags_item & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b17_in_use += src
 
 /obj/item/clothing/suit/storage/marine/B17/Destroy()
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(flags_item & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b17_in_use -= src
 	return ..()
 
 /obj/item/clothing/suit/storage/marine/B17/valhalla
-	obj_flags = NONE
+	flags_item = NONE
 
 ////////////////////////////////
 
@@ -221,7 +225,7 @@
 	name = "\improper M4 pattern PMC armor"
 	desc = "A common armor vest that is designed for high-profile security operators and corporate mercenaries in mind."
 	icon_state = "pmc_armor"
-	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 38, BOMB = 50, BIO = 15, FIRE = 38, ACID = 45)
+	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 55, BOMB = 50, BIO = 15, FIRE = 38, ACID = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(
 		/obj/item/weapon/gun,
@@ -715,7 +719,7 @@
 /obj/item/clothing/suit/storage/marine/specops/support
 	name = "Ballistic vest"
 	desc = "Civilian type armor, made to combat both melee and projectiles."
-	icon_state = "specops_vest_drone"
+	icon_state = "specops_vest_support"
 
 /obj/item/clothing/suit/storage/marine/specops/medic
 	name = "Ballistic vest"

@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Constition perks now also give some pain resist"
+  - balance: "Stamina perks now also increase max stamina"
+  - balance: "Adjusted the cost of a few perks"

@@ -1,0 +1,44 @@
+2024-02-01:
+  Lumipharon:
+  - bugfix: fixed beacon layers
+  - bugfix: fixed supply beacon weight class
+  - bugfix: Visible suit lights now correctly update on the mob sprite when turning
+      on and off
+  - bugfix: You can actually turn off your motion sensor now
+  - balance: Volkite deflagrate chance reduced by 10% and stagger reduced from 1 sec
+      to 0.5 sec
+  - qol: Left pocket option is before the right pocket in the campaign loadout screen
+  - bugfix: fixed some campaign loadout bugs with overclocked shields and TGMC FC
+      options
+  - bugfix: fixed a BSOD in campaign
+  - imageadd: Updated a few loadout item icons in campaign
+  - balance: V-34 has its slowdown increased from 0.3 to 0.4
+  - balance: Adjusted the points cost of some items in campaign
+  - balance: Reduced the power of radiation weaponry
+  - balance: 'Campaign: Attacking teams on defensive missions can no longer call in
+      CAS'
+  - rscadd: 'Campaign: Esword now benefits from the sword master perk'
+  - code_imp: Improves some code relating to loadout items in campaign
+  - bugfix: Sensor towers on BR will show up correctly during Mech War missions
+  - bugfix: fixed some visuals with hud icons
+  - rscadd: Added the GL-54 to normal marines in campaign
+  - bugfix: fixed some minor skill issues on some weapons
+  - qol: Only some gas masks such as the tactical or swat masks have TTS filters
+  - balance: PMC standard armour has improved energy armour in line with other pmc
+      suits
+  SomrNetwork:
+  - rscadd: one word "drone" to "support"
+  usnpeepoo:
+  - balance: Puppeteers organic bombs base timer reduced, now uses a windup
+2024-02-02:
+  AzonStarfall:
+  - qol: Adjusted Arachne CAS bay.
+  - qol: Made the front of the Arachne symmetrical.
+  Pariah919:
+  - balance: MP-19 now has burst fire again instead of auto burst, has insanely high
+      akimbo penalties.
+  ivanmixo:
+  - bugfix: You can no longer go over the blood limit, or go below 0 blood
+  yyzsong:
+  - bugfix: readds tx54 razor nades to valhalla
+  - rscadd: adds tx54 acid grenades to valhalla

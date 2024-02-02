@@ -1,5 +1,6 @@
 /datum/loadout_item/feet
 	item_slot = ITEM_SLOT_FEET
+	ui_icon = "boots"
 
 /datum/loadout_item/feet/empty
 	name = "no footwear"

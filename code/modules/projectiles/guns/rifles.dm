@@ -99,13 +99,16 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/weapon/gun/grenade_launcher/underslung, /obj/item/attachable/motiondetector, /obj/item/attachable/extended_barrel)
 
 /obj/item/weapon/gun/rifle/standard_carbine/engineer
-	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/lasersight)
+	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
 
 /obj/item/weapon/gun/rifle/standard_carbine/plasma_pistol
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/weapon/gun/pistol/plasma_pistol, /obj/item/attachable/motiondetector, /obj/item/attachable/compensator)
 
 /obj/item/weapon/gun/rifle/standard_carbine/beginner
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/angledgrip, /obj/item/attachable/compensator)
+
+/obj/item/weapon/gun/rifle/standard_carbine/suppressed
+	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/weapon/gun/grenade_launcher/underslung, /obj/item/attachable/reddot, /obj/item/attachable/suppressor)
 
 //-------------------------------------------------------
 //AR-12 Assault Rifle
@@ -1845,6 +1848,7 @@
 		/obj/item/ammo_magazine/rifle/tx54/smoke,
 		/obj/item/ammo_magazine/rifle/tx54/smoke/dense,
 		/obj/item/ammo_magazine/rifle/tx54/smoke/tangle,
+		/obj/item/ammo_magazine/rifle/tx54/smoke/acid,
 		/obj/item/ammo_magazine/rifle/tx54/razor,
 	)
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
@@ -1856,6 +1860,10 @@
 	scatter = -2
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 2
+
+/obj/item/weapon/gun/rifle/tx54/motion_sensor
+	starting_attachment_types = list(/obj/item/attachable/motiondetector)
+	default_ammo_type = /obj/item/ammo_magazine/rifle/tx54
 
 //-------------------------------------------------------
 // AR-55 built in grenade launcher
@@ -2160,7 +2168,7 @@
 	scatter = 12
 	recoil = 1.5
 	wield_delay = 0.4 SECONDS
-	aim_slowdown = 0.3
+	aim_slowdown = 0.4
 	movement_acc_penalty_mult = 4
 	damage_falloff_mult = 1.4
 	damage_mult = 0.9

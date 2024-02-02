@@ -505,6 +505,14 @@
 	icon_state_mini = "mag_sniper_purple"
 	greyscale_colors = COLOR_AMMO_TANGLEFOOT
 
+/obj/item/ammo_magazine/rifle/tx54/smoke/acid
+	name = "\improper 20mm acid smoke grenade magazine"
+	desc = "A 20mm magazine loaded with acid grenades. For use with the GL-54 or AR-55."
+	default_ammo = /datum/ammo/tx54/smoke/acid
+	icon_state = "tx54_airburst"
+	icon_state_mini = "mag_sniper_purple"
+	greyscale_colors = COLOR_AMMO_ACID
+
 /obj/item/ammo_magazine/rifle/tx54/razor
 	name = "\improper 20mm razorburn grenade magazine"
 	desc = "A 20mm magazine loaded with razorburn grenades. For use with the GL-54 or AR-55."

@@ -166,6 +166,11 @@
 #define TRAIT_AXE_EXPERT "axe_expert"
 ///You swing sword good
 #define TRAIT_SWORD_EXPERT "sword_expert"
+///Pain reduction light
+#define TRAIT_LIGHT_PAIN_RESIST "light_pain_resist"
+///Pain reduction medium
+#define TRAIT_MEDIUM_PAIN_RESIST "medium_pain_resist"
+
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"

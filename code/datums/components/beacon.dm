@@ -60,7 +60,7 @@
 
 	if(!ishuman(user))
 		return
-	
+
 	if(length(user.do_actions))
 		user.balloon_alert(user, "Busy!")
 		return
@@ -118,7 +118,7 @@
 		user.dropItemToGround(source)
 		beacon_cam = BC
 		source.anchored = TRUE
-		source.layer = ABOVE_FLY_LAYER
+		source.layer = ABOVE_OBJ_LAYER
 		source.set_light(2, 1)
 		var/marker_flags = GLOB.faction_to_minimap_flag[user.faction]
 		if(!marker_flags)

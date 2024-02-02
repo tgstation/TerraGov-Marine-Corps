@@ -135,9 +135,7 @@
 	icon_state = "lorica_armor"
 	item_state = "lorica_armor_a"
 	attachment_layer = null
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 10, ACID = 5)
-	slowdown = 0.2
-	slot = ATTACHMENT_SLOT_MODULE
+	soft_armor = list(MELEE = 10, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 10, ACID = 5)
 
 /obj/item/armor_module/module/tyr_head
 	name = "Tyr Helmet System"
@@ -427,10 +425,18 @@
 	affected.remove_filter("eshield")
 	affected.add_filter("eshield", 2, outline_filter(1, new_color))
 
+/obj/item/armor_module/module/eshield/overclocked
+	max_shield_health = 65
+	damaged_shield_cooldown = 6 SECONDS
+
 //original Martian design, donutsteel
 /obj/item/armor_module/module/eshield/som
 	name = "Aegis Energy Dispersion Module"
 	desc = "A sophisticated shielding unit, designed to disperse the energy of incoming impacts, rendering them harmless to the user. If it sustains too much it will deactivate, and leave the user vulnerable. It is unclear if this was a purely  SOM designed module, or whether it was reverse engineered from the TGMC's 'Svalinn' shield system which was developed around the same time."
+
+/obj/item/armor_module/module/eshield/som/overclocked
+	max_shield_health = 65
+	damaged_shield_cooldown = 6 SECONDS
 
 /obj/item/armor_module/module/style
 	name = "\improper Armor Equalizer"

@@ -99,7 +99,7 @@
 	When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. \
 	It uses 10x20mm caseless rounds."
 	req_desc = "Requires M-11 scout armor."
-	ui_icon = "ballistic"
+	ui_icon = "smg"
 	item_typepath = /obj/item/weapon/gun/smg/som/scout
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/light/shield = ITEM_SLOT_OCLOTHING)
 
@@ -129,7 +129,7 @@
 	name = "V-51"
 	desc = "The V-51 is the main shotgun utilised by the Sons of Mars. Slower firing than some other semi automatic shotguns, but packs more of a kick."
 	req_desc = "Requires M-11 scout armor."
-	ui_icon = "ballistic"
+	ui_icon = "shotgun"
 	item_typepath = /obj/item/weapon/gun/shotgun/som/standard
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/light/shield = ITEM_SLOT_OCLOTHING)
 
@@ -189,7 +189,7 @@
 	When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. \
 	It uses 10x20mm caseless rounds. \
 	This one comes with a S-144 boarding shield, intended for use with M-31 combat armor for boarding actions."
-	ui_icon = "ballistic"
+	ui_icon = "riot_shield"
 	item_typepath = /obj/item/weapon/gun/smg/som/one_handed
 
 /datum/loadout_item/suit_store/main_gun/som_marine/smg_and_shield/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -251,9 +251,9 @@
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. \
 	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
 	The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges."
-	ui_icon = "ballistic"
+	ui_icon = "volkite"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/magharness
-	purchase_cost = 75
+	purchase_cost = 50
 	quantity = 4
 
 /datum/loadout_item/suit_store/main_gun/som_marine/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -280,7 +280,7 @@
 	name = "Boarding axe"
 	desc = "A SOM boarding axe, effective at breaching doors as well as skulls. When wielded it can be used to block as well as attack."
 	req_desc = "Requires M-31 combat armor with a Lorica extra armor module."
-	ui_icon = "ballistic"
+	ui_icon = "axe"
 	item_typepath = /obj/item/weapon/twohanded/fireaxe/som
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/lorica = ITEM_SLOT_OCLOTHING)
 	item_blacklist = list(/obj/item/weapon/twohanded/fireaxe/som = ITEM_SLOT_BACK)
@@ -407,7 +407,7 @@
 	desc = "The V-21 is the principal submachinegun used by the Sons of Mars, designed to be used effectively one or two handed with  a variable rate of fire. \
 	When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. \
 	It uses 10x20mm caseless rounds."
-	ui_icon = "ballistic"
+	ui_icon = "smg"
 	item_typepath = /obj/item/weapon/gun/smg/som/support
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -436,7 +436,7 @@
 /datum/loadout_item/suit_store/main_gun/som_engineer/flechette_shotgun
 	name = "V-51"
 	desc = "The V-51 is the main shotgun utilised by the Sons of Mars. Slower firing than some other semi automatic shotguns, but packs more of a kick. Loaded with flechette rounds."
-	ui_icon = "ballistic"
+	ui_icon = "shotgun"
 	item_typepath = /obj/item/weapon/gun/shotgun/som/support
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/flechette_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -541,7 +541,7 @@
 	desc = "The V-21 is the principal submachinegun used by the Sons of Mars, designed to be used effectively one or two handed with  a variable rate of fire. \
 	When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. \
 	It uses 10x20mm caseless rounds."
-	ui_icon = "ballistic"
+	ui_icon = "smg"
 	item_typepath = /obj/item/weapon/gun/smg/som/support
 
 /datum/loadout_item/suit_store/main_gun/som_medic/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -564,7 +564,7 @@
 /datum/loadout_item/suit_store/main_gun/som_medic/flechette_shotgun
 	name = "V-51"
 	desc = "The V-51 is the main shotgun utilised by the Sons of Mars. Slower firing than some other semi automatic shotguns, but packs more of a kick. Loaded with flechette rounds."
-	ui_icon = "ballistic"
+	ui_icon = "shotgun"
 	item_typepath = /obj/item/weapon/gun/shotgun/som/support
 
 /datum/loadout_item/suit_store/main_gun/som_medic/flechette_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -644,7 +644,7 @@
 	desc = "The V-21 is the principal submachinegun used by the Sons of Mars, designed to be used effectively one or two handed with  a variable rate of fire. \
 	When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. \
 	Loaded with armor piercing 10x20mm caseless rounds."
-	ui_icon = "ballistic"
+	ui_icon = "smg"
 	item_typepath = /obj/item/weapon/gun/smg/som/veteran
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -675,9 +675,9 @@
 	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
 	The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges. \
 	This one comes with a S-144 boarding shield, intended for use with M-31 Lorica combat armor for boarding actions."
-	ui_icon = "ballistic"
+	ui_icon = "riot_shield"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
-	purchase_cost = 50
+	purchase_cost = 75
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/breacher/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/som, SLOT_L_HAND)
@@ -711,7 +711,7 @@
 	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
 	The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges. \
 	This one is configured for more effective one handed use, and has a motion sensor attached."
-	ui_icon = "ballistic"
+	ui_icon = "volkite"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/scout
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -740,7 +740,7 @@
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. \
 	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
 	The caliver is the primary rifle of the volkite family, and effective at most ranges and situations. Drag click the powerpack to the gun to use that instead of magazines."
-	ui_icon = "ballistic"
+	ui_icon = "volkite"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/standard
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/volkite_caliver/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -811,10 +811,10 @@
 	The caliver is the primary rifle of the volkite family, and effective at most ranges and situations. Drag click the powerpack to the gun to use that instead of magazines. \
 	This one has a motion sensor and is paired with a volkite powerpack."
 	req_desc = "Requires a volkite powerback."
-	ui_icon = "ballistic"
+	ui_icon = "volkite"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
 	quantity = 2
-	purchase_cost = 100
+	purchase_cost = 75
 	item_whitelist = list(/obj/item/cell/lasgun/volkite/powerpack = ITEM_SLOT_BACK)
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/volkite_caliver_pack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -835,7 +835,7 @@
 	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
 	The culverin is the largest man portable example of volkite weaponry, and can lay down a staggering torrent of fire due to its linked back-mounted powerpack. Drag click the powerpack to the gun to load."
 	req_desc = "Requires a volkite powerback to operate."
-	ui_icon = "ballistic"
+	ui_icon = "volkite"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness
 	quantity = 2
 	purchase_cost = 150
@@ -859,7 +859,7 @@
 	When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. \
 	This particular weapon comes with a variety of irradiated and incendiary magazines."
 	req_desc = "Requires a suit with a Mithridatius environmental protection module."
-	ui_icon = "ballistic"
+	ui_icon = "smg"
 	item_typepath = /obj/item/weapon/gun/smg/som/support
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/mithridatius = ITEM_SLOT_OCLOTHING)
 
@@ -907,7 +907,7 @@
 /datum/loadout_item/suit_store/energy_sword
 	name = "Energy sword"
 	desc = "A SOM energy sword. Designed to cut through armored plate. An uncommon primary weapon, typically seen wielded by so called 'blink assault' troops."
-	ui_icon = "ballistic"
+	ui_icon = "machete"
 	item_typepath = /obj/item/weapon/energy/sword/som
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 
@@ -990,7 +990,7 @@
 	desc = "The V-21 is the principal submachinegun used by the Sons of Mars, designed to be used effectively one or two handed with  a variable rate of fire. \
 	When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. \
 	Loaded with armor piercing 10x20mm caseless rounds."
-	ui_icon = "ballistic"
+	ui_icon = "smg"
 	item_typepath = /obj/item/weapon/gun/smg/som/veteran
 
 /datum/loadout_item/suit_store/main_gun/som_squad_leader/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1014,7 +1014,7 @@
 	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
 	The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges. \
 	This one is configured for more effective one handed use, and has a motion sensor attached."
-	ui_icon = "ballistic"
+	ui_icon = "volkite"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/scout
 
 /datum/loadout_item/suit_store/main_gun/som_squad_leader/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1035,7 +1035,8 @@
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. \
 	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
 	The caliver is the primary rifle of the volkite family, and effective at most ranges and situations. Drag click the powerpack to the gun to use that instead of magazines."
-	ui_icon = "ballistic"
+	ui_icon = "volkite"
+	purchase_cost = 50
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
 
 /datum/loadout_item/suit_store/main_gun/som_squad_leader/volkite_caliver/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1143,7 +1144,7 @@
 	desc = "The V-21 is the principal submachinegun used by the Sons of Mars, designed to be used effectively one or two handed with  a variable rate of fire. \
 	When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. \
 	Loaded with armor piercing 10x20mm caseless rounds."
-	ui_icon = "ballistic"
+	ui_icon = "smg"
 	item_typepath = /obj/item/weapon/gun/smg/som/veteran
 
 /datum/loadout_item/suit_store/main_gun/som_field_commander/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1167,7 +1168,7 @@
 	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
 	The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges. \
 	This one is configured for more effective one handed use, and has a motion sensor attached."
-	ui_icon = "ballistic"
+	ui_icon = "volkite"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/scout
 
 /datum/loadout_item/suit_store/main_gun/som_field_commander/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1188,7 +1189,8 @@
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. \
 	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
 	The caliver is the primary rifle of the volkite family, and effective at most ranges and situations. Drag click the powerpack to the gun to use that instead of magazines."
-	ui_icon = "ballistic"
+	ui_icon = "volkite"
+	purchase_cost = 50
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
 
 /datum/loadout_item/suit_store/main_gun/som_field_commander/volkite_caliver/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1247,7 +1249,7 @@
 /datum/loadout_item/suit_store/fc_boarding_axe
 	name = "Boarding axe"
 	desc = "A SOM boarding axe, effective at breaching doors as well as skulls. When wielded it can be used to block as well as attack."
-	ui_icon = "ballistic"
+	ui_icon = "axe"
 	item_typepath = /obj/item/weapon/twohanded/fireaxe/som
 	item_blacklist = list(/obj/item/weapon/twohanded/fireaxe/som = ITEM_SLOT_BACK)
 	jobs_supported = list(SOM_FIELD_COMMANDER)
