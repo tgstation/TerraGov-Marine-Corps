@@ -3,6 +3,3 @@
 
 /** Mech related */
 #define ALERT_MECH_DAMAGE "mech_damage"
-
-//Mob interactions
-#define ALERT_INTERACTION "interaction"
