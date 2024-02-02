@@ -312,14 +312,6 @@
 	key_third_person = "grimaces"
 	message = "grimaces."
 
-
-/datum/emote/living/carbon/human/jump
-	key = "jump"
-	key_third_person = "jumps"
-	message = "jumps!"
-	flags_emote = EMOTE_RESTRAINT_CHECK
-
-
 /datum/emote/living/carbon/human/grumble
 	key = "grumble"
 	key_third_person = "grumbles"
