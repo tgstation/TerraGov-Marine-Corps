@@ -1,0 +1,5 @@
+author: "XElectricX"
+delete-after: True
+changes:
+  - qol: "Runners can manually cancel evasion."
+  - balance: "Runners no longer disarmed for the entire duration of evasion if they cancel it."
