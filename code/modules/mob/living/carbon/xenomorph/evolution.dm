@@ -10,7 +10,7 @@
 
 	GLOB.evo_panel.ui_interact(src)
 
-/mob/living/carbon/xenomorph/verb/CasteSwap()
+/mob/living/carbon/xenomorph/verb/caste_swap()
 	set name = "Caste Swap"
 	set desc = "Change into another caste in the same tier."
 	set category = "Alien"
