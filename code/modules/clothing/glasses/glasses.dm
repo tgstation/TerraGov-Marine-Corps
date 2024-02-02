@@ -24,6 +24,8 @@
 	var/activation_sound = 'sound/items/googles_on.ogg'
 	///Sound played on activate() when turning off
 	var/deactivation_sound = 'sound/items/googles_off.ogg'
+	///Color to use for the HUD tint; leave null if no tint
+	var/tint
 
 /obj/item/clothing/glasses/Initialize(mapload)
 	. = ..()
@@ -415,6 +417,7 @@
 	icon_state = "meson"
 	item_state = "meson"
 	deactive_state = "degoggles"
+	tint = COLOR_RED
 	darkness_view = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	vision_flags = SEE_TURFS
@@ -531,6 +534,7 @@
 /obj/item/clothing/glasses/night_vision/mounted
 	name = "\improper BE-35 night vision goggles"
 	desc = "Goggles for seeing clearer in low light conditions. Must remain attached to a helmet."
+	tint = COLOR_BLUE
 	vision_flags = NONE
 	active_energy_cost = 2	//A little over 7 minutes of use
 	looping_sound_volume = 50

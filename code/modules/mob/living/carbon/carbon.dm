@@ -365,6 +365,12 @@
 				see_invisible = min(G.invis_view, see_invisible)
 			if(!isnull(G.lighting_alpha))
 				lighting_alpha = min(lighting_alpha, G.lighting_alpha)
+			if(G.tint && !fullscreens["glasses"])
+				var/atom/movable/screen/fullscreen/screen = overlay_fullscreen("glasses", /atom/movable/screen/fullscreen/flash)
+				screen.color = G.tint
+				screen.alpha = 50
+		else
+			clear_fullscreen("glasses")
 
 	if(see_override)
 		see_invisible = see_override
