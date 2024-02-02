@@ -1,0 +1,5 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - balance: "Caste Swap: Every 15 minutes a Xenomorph can change to another caste inside of their tier"
+  - code_imp: "Regress uses evo UI"
