@@ -15,7 +15,7 @@
 	set desc = "Change into another caste in the same tier."
 	set category = "Alien"
 
-	if(world.time - (GLOB.key_to_time_of_caste_swap[src.key] ? GLOB.key_to_time_of_caste_swap[src.key] : -INFINITY) < 9000) //casteswap timer, 15 minutes
+	if(world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY) < 9000) //casteswap timer, 15 minutes
 		to_chat(src, span_warning("Your caste swap timer is not done yet."))
 		return
 
