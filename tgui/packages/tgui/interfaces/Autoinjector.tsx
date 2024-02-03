@@ -15,32 +15,36 @@ export const Autoinjector = (props) => {
   const { act, data } = useBackend<Data>();
   const { InjectMode, CurrentLabel, CurrentTag, TransferAmount } = data;
   return (
-    <Window width={400} height={260}>
+    <Window width={300} height={375}>
       <Box>
         <Button m={2} onClick={() => act('ActivateAutolabeler')}>
           Activate Autolabeler
         </Button>
-        <b>CURRENT LABEL: </b>
-        {CurrentLabel}
-        <br />
+        <Box ml={2}>
+          <b>Current label: </b>
+          {CurrentLabel}
+        </Box>
         <Button m={2} onClick={() => act('ActivateTagger')}>
           ActivateTagger
         </Button>
-        <b>CURRENT TAG: </b>
-        {CurrentTag}
-        <br />
+        <Box ml={2}>
+          <b>Current tag: </b>
+          {CurrentTag}
+        </Box>
         <Button m={2} onClick={() => act('ToggleMode')}>
           Toggle Mode
         </Button>
-        <b>CURRENT MODE: </b>
-        {InjectMode ? 'Injecting' : 'Drawing'}
-        <br />
+        <Box ml={2}>
+          <b>Current mode: </b>
+          {InjectMode ? 'Injecting' : 'Drawing'}
+        </Box>
         <Button m={2} onClick={() => act('SetTransferAmount')}>
           Set Transfer Amount
         </Button>
-        <b>CURRENT TRANSFER AMOUNT: </b>
-        {TransferAmount}
-        <br />
+        <Box ml={2}>
+          <b>Current transfer amount: </b>
+          {TransferAmount}
+        </Box>
         <Button color={'red'} m={2} onClick={() => act('EmptyHypospray')}>
           Empty Hypospray
         </Button>
