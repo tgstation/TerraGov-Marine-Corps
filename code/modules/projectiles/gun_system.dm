@@ -1894,16 +1894,19 @@
 
 //For letting xenos turn off the flashlights on any guns left lying around.
 /obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
-	if(!HAS_TRAIT(src, TRAIT_GUN_FLASHLIGHT_ON))
-		return
-	for(var/attachment_slot in attachments_by_slot)
-		var/obj/item/attachable/flashlight/lit_flashlight = attachments_by_slot[attachment_slot]
-		if(!istype(lit_flashlight))
-			continue
-		lit_flashlight.turn_light(null, FALSE)
-	playsound(loc, "alien_claw_metal", 25, 1)
-	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	to_chat(X, span_warning("We disable the metal thing's lights.") )
+	if(X.a_intent == INTENT_HARM)
+		if(!HAS_TRAIT(src, TRAIT_GUN_FLASHLIGHT_ON))
+			return
+		for(var/attachment_slot in attachments_by_slot)
+			var/obj/item/attachable/flashlight/lit_flashlight = attachments_by_slot[attachment_slot]
+			if(!istype(lit_flashlight))
+				continue
+			lit_flashlight.turn_light(null, FALSE)
+		playsound(loc, "alien_claw_metal", 25, 1)
+		X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+		to_chat(X, span_warning("We disable the metal thing's lights.") )
+	else
+		attack_hand(X)
 
 
 /particles/overheat_smoke

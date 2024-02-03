@@ -48,8 +48,7 @@
 	return
 
 /obj/item/reagant_containers/food/snacks/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(!CONFIG_GET(flag/fun_allowed))
-		return FALSE
+
 	attack_hand(X)
 
 /obj/item/reagent_containers/food/snacks/attack(mob/M, mob/user, def_zone)

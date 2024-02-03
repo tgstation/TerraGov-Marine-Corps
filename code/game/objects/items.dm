@@ -997,6 +997,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 //This proc is here to prevent Xenomorphs from picking up objects (default attack_hand behaviour)
 //Note that this is overriden by every proc concerning a child of obj unless inherited
 /obj/item/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
+	if(X.a_intent != INTENT_HARM)
+		attack_hand(X)
 	return FALSE
 
 

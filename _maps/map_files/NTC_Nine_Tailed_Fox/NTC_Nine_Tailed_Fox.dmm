@@ -12560,13 +12560,16 @@
 	})
 "lnS" = (
 /obj/machinery/door/airlock/mainship/research/pen{
-	dir = 1;
-	id = "Shipside Containment Cell"
+	dir = 1
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/opened{
+	dir = 2;
+	id = "Shipside Containment Cell"
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
