@@ -3794,6 +3794,7 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
@@ -5624,6 +5625,7 @@
 "feS" = (
 /obj/machinery/door/airlock/mainship/research/pen,
 /obj/machinery/door/firedoor/mainship,
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
@@ -9962,11 +9964,6 @@
 /obj/machinery/marine_selector/clothes/leader,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
-"jaf" = (
-/obj/effect/ai_node,
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
 "jak" = (
 /obj/machinery/marine_selector/clothes/smartgun,
 /turf/open/floor/mainship/floor,
@@ -11070,10 +11067,17 @@
 	})
 "keH" = (
 /obj/machinery/door/airlock/mainship/maint{
-	dir = 1
+	req_one_access = null;
+	req_access = list(13)
 	},
+/obj/machinery/door/poddoor/shutters/opened{
+	id = "Shipside Containment Cell"
+	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hull/lower_hull)
+/area/mainship/medical/surgery_hallway{
+	name = "Research"
+	})
 "keO" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard{
@@ -11131,10 +11135,8 @@
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/engineering/ce_room)
 "khH" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
 /area/mainship/hull/lower_hull)
 "kia" = (
 /obj/machinery/floodlight/landing,
@@ -12570,6 +12572,7 @@
 	dir = 2;
 	id = "Shipside Containment Cell"
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
@@ -15565,9 +15568,12 @@
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/command/corporateliaison)
 "obn" = (
+/obj/machinery/holopad,
 /obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/surgery_hallway{
+	name = "Research"
+	})
 "obw" = (
 /obj/machinery/door/airlock/multi_tile/mainship/maint{
 	dir = 1
@@ -15756,6 +15762,7 @@
 	})
 "okK" = (
 /obj/effect/landmark/start/job/researcher,
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
@@ -16495,6 +16502,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
@@ -17882,10 +17890,7 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "qqh" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/plating,
 /area/mainship/hull/lower_hull)
 "qqS" = (
 /obj/machinery/light,
@@ -18438,20 +18443,7 @@
 	},
 /area/mainship/command/self_destruct)
 "qOE" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 1;
-	req_one_access = null;
-	req_access = list(13)
-	},
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/obj/structure/cable,
-/obj/machinery/door/poddoor/mainship/open/cic{
-	id = "shipside_cic_lockdown";
-	dir = 2
-	},
-/turf/open/floor/mainship/mono,
+/turf/closed/wall/mainship/white,
 /area/sulaco/engineering/lower_engineering{
 	name = "Lower Power"
 	})
@@ -20651,7 +20643,6 @@
 /obj/machinery/firealarm{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/sterile/purple/corner,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
@@ -32559,7 +32550,7 @@ nje
 nje
 nje
 nje
-jaf
+hWW
 fwn
 nHD
 cCs
@@ -32796,12 +32787,12 @@ cRa
 cRa
 cRa
 nje
-jwc
-oex
-jwc
-jwc
-keH
-obn
+aTq
+khH
+qqh
+aTq
+qqh
+fwn
 aya
 aya
 aya
@@ -33038,12 +33029,12 @@ cRa
 cRa
 cRa
 nje
-jwc
-khH
-jwc
-jwc
-nje
-obn
+qqh
+qqh
+aTq
+qqh
+aTq
+fwn
 wDa
 mfN
 hAA
@@ -33281,10 +33272,10 @@ nje
 nje
 nje
 qqh
-nje
-nje
-nje
-nje
+aTq
+aTq
+aTq
+qqh
 fwn
 wDa
 dhN
@@ -33519,9 +33510,9 @@ jwc
 jwc
 heq
 jwc
-jwc
-jwc
-jwc
+fwn
+fwn
+fwn
 fwn
 dSF
 vQG
@@ -33761,7 +33752,7 @@ lFt
 xHV
 xHV
 xHV
-xHV
+keH
 xHV
 lFt
 cCH
@@ -33997,13 +33988,13 @@ mzg
 xHV
 cAh
 dnh
-jxm
-jxm
+uEl
+uEl
 lnS
-jxm
-jxm
+uEl
+uEl
 oSh
-jxm
+uEl
 oct
 xHV
 kjD
@@ -34238,7 +34229,7 @@ tFl
 jwc
 xHV
 hXW
-jxm
+uEl
 iiz
 wgF
 xHV
@@ -34722,7 +34713,7 @@ iXO
 qsW
 xHV
 krS
-jxm
+uEl
 iWa
 oYD
 xHV
@@ -35206,7 +35197,7 @@ pef
 lgT
 xHV
 bus
-odT
+obn
 iEd
 huE
 xHV
