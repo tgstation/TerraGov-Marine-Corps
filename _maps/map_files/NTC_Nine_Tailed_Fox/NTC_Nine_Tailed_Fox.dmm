@@ -3875,7 +3875,6 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "dqn" = (
-/obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -4502,11 +4501,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/lower_engineering)
-"ebl" = (
-/obj/machinery/door/airlock/mainship/maint,
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hull/lower_hull)
 "ebw" = (
 /obj/machinery/computer/mech_bay_power_console{
 	layer = 5
@@ -4582,14 +4576,6 @@
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
-"eeQ" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 2
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hull/lower_hull)
 "eeT" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/mainship/mono,
@@ -12887,14 +12873,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
-"lCc" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 2
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hull/upper_hull)
 "lDb" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/green{
@@ -20987,9 +20965,6 @@
 	dir = 8
 	},
 /obj/structure/barricade/metal,
-/obj/item/weapon/gun/sentry/big_sentry/premade{
-	dir = 1
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -32729,7 +32704,7 @@ aMa
 aMa
 aMa
 aMa
-wvg
+reV
 oJY
 oJY
 oJY
@@ -32849,7 +32824,7 @@ aya
 aya
 aya
 aya
-ebl
+fwn
 nje
 nje
 nje
@@ -32972,7 +32947,7 @@ hXu
 aMa
 aMa
 boT
-idg
+iSM
 rVF
 cBM
 iSM
@@ -33092,7 +33067,7 @@ kyS
 wDa
 aya
 xQf
-aLs
+fwn
 nHD
 tgi
 fwn
@@ -42369,7 +42344,7 @@ iOs
 bOz
 jkM
 bnG
-nYc
+kOX
 iIE
 kOX
 kOX
@@ -44346,7 +44321,7 @@ kOX
 kOX
 aoH
 kOX
-lCc
+kOX
 aoH
 kOX
 kOX
@@ -44466,7 +44441,7 @@ aEA
 aEA
 gfz
 bYu
-eeQ
+agH
 bqW
 agH
 agH
