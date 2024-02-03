@@ -61,6 +61,7 @@
 		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/activable/xeno/throw_hugger,
 		/datum/action/ability/activable/xeno/call_younger,
+		/datum/action/ability/activable/xeno/larval_growth_sting,
 		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/xeno_action/place_trap,
 		/datum/action/ability/xeno_action/spawn_hugger,

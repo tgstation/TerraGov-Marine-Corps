@@ -4501,6 +4501,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/lower_engineering)
+"ebl" = (
+/obj/item/storage/firstaid/adv,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/surgery_hallway{
+	name = "Research"
+	})
 "ebw" = (
 /obj/machinery/computer/mech_bay_power_console{
 	layer = 5
@@ -5133,6 +5139,7 @@
 	bruteloss = 25;
 	fireloss = 25
 	},
+/obj/alien/weeds/node/resting,
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
@@ -34236,7 +34243,7 @@ bYZ
 tux
 odT
 sfA
-jxm
+ebl
 xHV
 kjD
 fYO

@@ -22,8 +22,8 @@
 	weeds_speed_mod = -0.2
 
 	// *** Plasma *** //
-	plasma_max = 200
-	plasma_gain = 18
+	plasma_max = 600
+	plasma_gain = 30
 
 	// *** Health *** //
 	max_health = 290

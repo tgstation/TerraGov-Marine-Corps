@@ -24,6 +24,9 @@
 /mob/living/carbon/xenomorph/larva/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
+	if(!mind)
+		LAZYOR(GLOB.ssd_living_mobs, src)
+
 
 // ***************************************
 // *********** Mob overrides
