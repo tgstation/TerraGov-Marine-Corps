@@ -4501,12 +4501,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/lower_engineering)
-"ebl" = (
-/obj/item/storage/firstaid/adv,
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/surgery_hallway{
-	name = "Research"
-	})
 "ebw" = (
 /obj/machinery/computer/mech_bay_power_console{
 	layer = 5
@@ -8290,7 +8284,7 @@
 /obj/machinery/door/airlock/mainship/research/glass/cell/cell1{
 	id = "Shipside Containment Cell"
 	},
-/obj/machinery/door/poddoor/shutters/mainship/cell/cell1{
+/obj/machinery/door/poddoor/shutters/mainship/containment/cell1{
 	id = "Shipside Containment Cell"
 	},
 /turf/open/floor/mainship/sterile/dark,
@@ -12880,6 +12874,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
+"lCc" = (
+/obj/item/storage/firstaid/adv,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/surgery_hallway{
+	name = "Research"
+	})
 "lDb" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/green{
@@ -34243,7 +34243,7 @@ bYZ
 tux
 odT
 sfA
-ebl
+lCc
 xHV
 kjD
 fYO
