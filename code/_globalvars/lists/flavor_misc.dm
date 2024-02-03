@@ -227,6 +227,8 @@ GLOBAL_LIST_INIT(campaign_perk_icon_types, list(
 	"smartguns",
 	"firearms",
 	"overclock",
+	"sword",
+	"axe",
 ))
 
 GLOBAL_LIST_INIT(campaign_loadout_item_icon_types, list(

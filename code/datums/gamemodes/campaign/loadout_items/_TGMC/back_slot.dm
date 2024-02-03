@@ -57,6 +57,14 @@
 	jobs_supported = list(SQUAD_MARINE)
 	item_whitelist = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide = ITEM_SLOT_SUITSTORE)
 
+/datum/loadout_item/back/flamer_tank/x_fuel
+	name = "X-fuel tank"
+	desc = "A specialized fuel tank of ultra thick napthal type X, known for its extreme heat and slow burn rate, as well as it's distinct blue flames. For use with the FL-84 flamethrower and FL-240 incinerator unit."
+	item_typepath = /obj/item/ammo_magazine/flamer_tank/backtank/X
+	purchase_cost = 25
+	unlock_cost = 200
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
+
 /datum/loadout_item/back/jetpack
 	name = "Heavy jetpack"
 	desc = "An upgraded jetpack with enough fuel to send a person flying for a short while with extreme force. \

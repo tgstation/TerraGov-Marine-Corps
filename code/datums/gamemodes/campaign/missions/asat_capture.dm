@@ -7,6 +7,7 @@
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
 	mission_flags = MISSION_DISALLOW_TELEPORT
+	max_game_time = 10 MINUTES
 	shutter_open_delay = list(
 		MISSION_STARTING_FACTION = 90 SECONDS,
 		MISSION_HOSTILE_FACTION = 0,
@@ -40,11 +41,11 @@
 	hostile_faction_additional_rewards = "Preserve the ability to use drop pods uncontested"
 
 	objectives_total = 6
-	min_capture_amount = 4
+	min_capture_amount = 5
 
 /datum/campaign_mission/capture_mission/asat/load_pre_mission_bonuses()
 	. = ..()
-	spawn_mech(hostile_faction, 0, 0, 4)
+	spawn_mech(hostile_faction, 0, 0, 5)
 	spawn_mech(starting_faction, 0, 1, 1)
 
 	var/datum/faction_stats/attacking_team = mode.stat_list[starting_faction]

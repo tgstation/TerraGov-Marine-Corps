@@ -165,8 +165,13 @@
 #define TRAIT_AXE_EXPERT "axe_expert"
 ///You swing sword good
 #define TRAIT_SWORD_EXPERT "sword_expert"
-//Restricted to Melee Weapons
+///Restricted to Melee Weapons
 #define TRAIT_KNIGHT "knight"
+///Pain reduction light
+#define TRAIT_LIGHT_PAIN_RESIST "light_pain_resist"
+///Pain reduction medium
+#define TRAIT_MEDIUM_PAIN_RESIST "medium_pain_resist"
+
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
@@ -247,3 +252,7 @@
 
 //added to AIs firing railguns
 #define TRAIT_IS_FIRING_RAILGUN "firing_railgun"
+
+//regress and caste swap UI
+#define TRAIT_CASTE_SWAP "caste_swap"
+#define TRAIT_REGRESSING "regressing"
