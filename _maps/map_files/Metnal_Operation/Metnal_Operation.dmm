@@ -15086,6 +15086,10 @@
 	},
 /turf/open/floor/prison/sterilewhite/full,
 /area/metnal/inside/medical)
+"lYy" = (
+/obj/effect/turf_decal/sandedge,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/central)
 "lYL" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -16054,9 +16058,8 @@
 /turf/open/lavaland/basalt/glowing,
 /area/metnal/outside/southeast)
 "mPr" = (
-/obj/effect/turf_decal/sandedge,
-/turf/open/lavaland/basalt,
-/area/metnal/outside/central)
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/landingzoneone)
 "mPu" = (
 /obj/structure/cable,
 /obj/structure/prop/mainship/gelida/powerccable{
@@ -50427,7 +50430,7 @@ vwI
 vwI
 vwI
 lMd
-mPr
+lYy
 kez
 kez
 kez
@@ -50831,7 +50834,7 @@ hSQ
 hSQ
 hSQ
 lMd
-mPr
+lYy
 kez
 kez
 kez
@@ -51639,7 +51642,7 @@ sKX
 sKX
 sKX
 cJg
-mPr
+lYy
 kez
 kez
 kez
@@ -52043,7 +52046,7 @@ iBq
 tIg
 iBq
 lMd
-mPr
+lYy
 kez
 wwr
 kez
@@ -54287,7 +54290,7 @@ xif
 xif
 xif
 xif
-nrE
+wLD
 lqd
 nrE
 nrE
@@ -54692,7 +54695,7 @@ ilG
 xif
 aRD
 xif
-nrE
+wLD
 edg
 edg
 edg
@@ -58756,7 +58759,7 @@ uQQ
 agr
 edg
 edg
-wLD
+tyB
 tyB
 wzp
 wzp
@@ -58957,8 +58960,8 @@ vCM
 qru
 agr
 edg
-wLD
-wLD
+tyB
+tyB
 cXP
 wzp
 wzp
@@ -59158,8 +59161,8 @@ afZ
 lRE
 esK
 agr
-wLD
-wLD
+tyB
+tyB
 edg
 wzp
 wzp
@@ -59360,7 +59363,7 @@ seX
 xQx
 bCg
 wSZ
-wLD
+tyB
 edg
 edg
 wzp
@@ -61242,21 +61245,21 @@ edg
 edg
 edg
 orz
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
 rzS
 rzS
 rzS
@@ -61265,8 +61268,8 @@ hSF
 rzS
 rzS
 rzS
-lnl
-lnl
+mPr
+mPr
 dAc
 xXc
 nQM
@@ -61444,7 +61447,7 @@ edg
 edg
 edg
 orz
-lnl
+mPr
 bhV
 iVu
 gZA
@@ -61468,7 +61471,7 @@ pSx
 iVu
 iVu
 nRf
-lnl
+mPr
 dAc
 siO
 nQM
@@ -61646,7 +61649,7 @@ edg
 edg
 orz
 orz
-lnl
+mPr
 wVr
 iVu
 iVu
@@ -61670,7 +61673,7 @@ iVu
 iVu
 iVu
 bVo
-lnl
+mPr
 dAc
 dAc
 nQM
@@ -61847,8 +61850,8 @@ edg
 edg
 edg
 orz
-lnl
-lnl
+mPr
+mPr
 bhV
 iVu
 iVu
@@ -61872,8 +61875,8 @@ iVu
 iVu
 iVu
 xqz
-lnl
-lnl
+mPr
+mPr
 dAc
 nQM
 siO
@@ -62049,7 +62052,7 @@ edg
 edg
 edg
 orz
-lnl
+mPr
 iVu
 iVu
 jmS
@@ -62251,7 +62254,7 @@ edg
 edg
 edg
 orz
-lnl
+mPr
 iVu
 kby
 slU
@@ -62453,7 +62456,7 @@ edg
 edg
 edg
 orz
-lnl
+mPr
 iVu
 kby
 eto
@@ -62655,7 +62658,7 @@ edg
 edg
 edg
 orz
-lnl
+mPr
 dGP
 kby
 pVJ
@@ -62857,7 +62860,7 @@ nDo
 edg
 edg
 orz
-lnl
+mPr
 iVu
 iVu
 hOg
@@ -62883,7 +62886,7 @@ hOg
 hOg
 iVu
 slt
-lnl
+mPr
 dAc
 siO
 siO
@@ -63059,7 +63062,7 @@ gpK
 edg
 edg
 orz
-lnl
+mPr
 iVu
 iVu
 iVu
@@ -63085,7 +63088,7 @@ iVu
 iVu
 iVu
 nGt
-lnl
+mPr
 oKs
 xXc
 siO
@@ -63261,7 +63264,7 @@ uSa
 edg
 edg
 orz
-lnl
+mPr
 iVu
 mNI
 iVu
@@ -63287,7 +63290,7 @@ iVu
 iVu
 mNI
 nGt
-lnl
+mPr
 oKs
 siO
 siO
@@ -63463,7 +63466,7 @@ gpK
 edg
 edg
 orz
-lnl
+mPr
 jmS
 jmS
 jmS
@@ -63489,7 +63492,7 @@ jmS
 jmS
 jmS
 hJs
-lnl
+mPr
 oKs
 siO
 siO
@@ -63665,7 +63668,7 @@ gpK
 edg
 edg
 orz
-lnl
+mPr
 tAw
 slU
 nvL
@@ -63691,7 +63694,7 @@ nvL
 nvL
 wSA
 hbi
-lnl
+mPr
 oKs
 siO
 siO
@@ -63867,7 +63870,7 @@ gpK
 edg
 edg
 orz
-lnl
+mPr
 kep
 ubZ
 fkF
@@ -63893,7 +63896,7 @@ fkF
 fkF
 iaw
 iYM
-lnl
+mPr
 oKs
 siO
 siO
@@ -64069,7 +64072,7 @@ gpK
 edg
 edg
 orz
-lnl
+mPr
 eto
 dur
 gGG
@@ -64095,7 +64098,7 @@ gGG
 gGG
 eZx
 hTT
-lnl
+mPr
 orz
 jVs
 siO
@@ -64271,7 +64274,7 @@ gpK
 gpK
 edg
 orz
-lnl
+mPr
 eto
 dur
 gGG
@@ -64297,7 +64300,7 @@ gGG
 gGG
 eZx
 hTT
-lnl
+mPr
 orz
 jVs
 siO
@@ -64473,7 +64476,7 @@ nDo
 lRJ
 edg
 orz
-lnl
+mPr
 fZZ
 dur
 gGG
@@ -64499,7 +64502,7 @@ gGG
 gGG
 eZx
 hpb
-lnl
+mPr
 orz
 edg
 jVs
@@ -64675,7 +64678,7 @@ gpK
 gpK
 edg
 orz
-lnl
+mPr
 eto
 dur
 gGG
@@ -64701,7 +64704,7 @@ gGG
 gGG
 eZx
 hTT
-lnl
+mPr
 orz
 edg
 edg
@@ -64877,7 +64880,7 @@ gpK
 gpK
 edg
 orz
-lnl
+mPr
 eto
 dur
 gGG
@@ -64903,7 +64906,7 @@ gGG
 gGG
 eZx
 hTT
-lnl
+mPr
 orz
 edg
 edg
@@ -65079,7 +65082,7 @@ gpK
 gpK
 edg
 orz
-lnl
+mPr
 eto
 dur
 gGG
@@ -65105,7 +65108,7 @@ gGG
 gGG
 eZx
 hTT
-lnl
+mPr
 orz
 edg
 edg
@@ -65281,7 +65284,7 @@ gpK
 gpK
 jVs
 orz
-lnl
+mPr
 eto
 dur
 gGG
@@ -65307,7 +65310,7 @@ gGG
 gGG
 eZx
 hTT
-lnl
+mPr
 orz
 edg
 edg
@@ -65483,7 +65486,7 @@ nDo
 gpK
 jVs
 orz
-lnl
+mPr
 eto
 dur
 gGG
@@ -65509,7 +65512,7 @@ gGG
 gGG
 eZx
 hTT
-lnl
+mPr
 orz
 edg
 edg
@@ -65685,7 +65688,7 @@ lRJ
 gpK
 gpK
 orz
-lnl
+mPr
 fZZ
 dur
 gGG
@@ -65711,7 +65714,7 @@ gGG
 gGG
 eZx
 hpb
-lnl
+mPr
 orz
 edg
 edg
@@ -65887,7 +65890,7 @@ gpK
 gpK
 gpK
 orz
-lnl
+mPr
 eto
 dur
 gGG
@@ -65913,7 +65916,7 @@ gGG
 gGG
 eZx
 hTT
-lnl
+mPr
 orz
 edg
 edg
@@ -66089,7 +66092,7 @@ gpK
 gpK
 gpK
 orz
-lnl
+mPr
 eto
 dur
 gGG
@@ -66115,7 +66118,7 @@ gGG
 gGG
 eZx
 hTT
-lnl
+mPr
 orz
 edg
 edg
@@ -66291,7 +66294,7 @@ lRJ
 gpK
 gpK
 bNP
-lnl
+mPr
 kLs
 cZj
 awh
@@ -66317,7 +66320,7 @@ awh
 awh
 bkj
 tnM
-lnl
+mPr
 orz
 edg
 edg
@@ -66493,7 +66496,7 @@ nDo
 gpK
 gpK
 bNP
-lnl
+mPr
 eee
 pVJ
 iHB
@@ -66519,7 +66522,7 @@ iHB
 iHB
 hid
 qFR
-lnl
+mPr
 orz
 edg
 edg
@@ -66695,7 +66698,7 @@ gpK
 gpK
 gpK
 bNP
-lnl
+mPr
 hOg
 hOg
 hOg
@@ -66721,7 +66724,7 @@ hOg
 rOe
 hOg
 iwL
-lnl
+mPr
 orz
 edg
 edg
@@ -66897,7 +66900,7 @@ gpK
 gpK
 gpK
 bNP
-lnl
+mPr
 iVu
 mNI
 iVu
@@ -66923,7 +66926,7 @@ iVu
 lfa
 mNI
 nGt
-lnl
+mPr
 aqP
 edg
 edg
@@ -67099,7 +67102,7 @@ lRJ
 gpK
 gpK
 bNP
-lnl
+mPr
 eKX
 iVu
 iVu
@@ -67125,7 +67128,7 @@ cEN
 iVu
 iVu
 nGt
-lnl
+mPr
 vAj
 edg
 edg
@@ -67301,7 +67304,7 @@ gpK
 gpK
 gpK
 orz
-lnl
+mPr
 iVu
 iVu
 iVu
@@ -67327,7 +67330,7 @@ nGt
 nGt
 nGt
 nGt
-lnl
+mPr
 cCJ
 edg
 edg
@@ -67503,8 +67506,8 @@ gpK
 gpK
 gpK
 orz
-lnl
-lnl
+mPr
+mPr
 iVu
 iVu
 iVu
@@ -67528,8 +67531,8 @@ gcG
 iVu
 iVu
 cEN
-lnl
-lnl
+mPr
+mPr
 wJA
 edg
 edg
@@ -67706,7 +67709,7 @@ lRJ
 gpK
 orz
 orz
-lnl
+mPr
 dGP
 iVu
 iVu
@@ -67714,15 +67717,15 @@ iVu
 iVu
 iVu
 iVu
-lnl
-lnl
-lnl
-lnl
+mPr
+mPr
+mPr
+mPr
 pBi
-lnl
-lnl
-lnl
-lnl
+mPr
+mPr
+mPr
+mPr
 yhl
 iVu
 iVu
@@ -67730,7 +67733,7 @@ cEN
 iVu
 iVu
 qAJ
-lnl
+mPr
 orz
 eNJ
 edg
@@ -67908,7 +67911,7 @@ gpK
 gpK
 gpK
 orz
-lnl
+mPr
 iVu
 iVu
 sCL
@@ -67916,7 +67919,7 @@ iVu
 iVu
 iVu
 iVu
-lnl
+mPr
 qti
 kvu
 hOg
@@ -67924,7 +67927,7 @@ iwL
 hOg
 kvu
 kmS
-lnl
+mPr
 tqH
 udw
 iVu
@@ -67932,7 +67935,7 @@ lgL
 iVu
 udw
 iVu
-lnl
+mPr
 orz
 edg
 edg
@@ -68110,15 +68113,15 @@ gpK
 nDo
 gpK
 orz
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
 qxq
 nGt
 nGt
@@ -68126,15 +68129,15 @@ nGt
 lfa
 iVu
 kby
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
 orz
 edg
 edg
@@ -68320,7 +68323,7 @@ bSB
 bSB
 bSB
 bSB
-lnl
+mPr
 oPx
 foL
 cbU
@@ -68328,7 +68331,7 @@ xxJ
 xzm
 foL
 kby
-lnl
+mPr
 bSB
 xcM
 xcM
@@ -68522,7 +68525,7 @@ edg
 edg
 edg
 orz
-lnl
+mPr
 rfq
 foL
 cbU
@@ -68530,7 +68533,7 @@ wWt
 iLh
 iVu
 kby
-lnl
+mPr
 orz
 pux
 pux
@@ -68724,7 +68727,7 @@ edg
 edg
 edg
 orz
-lnl
+mPr
 rfq
 iVu
 iVu
@@ -68732,7 +68735,7 @@ iVu
 iVu
 iVu
 kby
-lnl
+mPr
 orz
 edg
 gpK
@@ -68926,7 +68929,7 @@ edg
 edg
 edg
 orz
-lnl
+mPr
 iZP
 lUU
 sak
@@ -68934,7 +68937,7 @@ sak
 xLZ
 gia
 frp
-lnl
+mPr
 orz
 edg
 edg
@@ -69128,15 +69131,15 @@ edg
 edg
 edg
 orz
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
+mPr
 orz
 edg
 edg
