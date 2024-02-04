@@ -62,3 +62,6 @@
   - qol: Runners can manually cancel evasion.
   - balance: Runners no longer disarmed for the entire duration of evasion if they
       cancel it.
+2024-02-04:
+  Lumipharon:
+  - rscdel: Removed the jump emote

@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "shift click will work for human abilities such as jetpack, if you have toggled your pref from middle mouse button"
