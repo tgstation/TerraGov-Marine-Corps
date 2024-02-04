@@ -27,7 +27,7 @@
 	var/datum/campaign_mission/current_mission
 	///campaign stats organised by faction
 	var/list/datum/faction_stats/stat_list = list()
-	///List of death times by key. Used for respawn time
+	///List of death times by ckey. Used for respawn time
 	var/list/player_death_times = list()
 
 /datum/game_mode/hvh/campaign/announce()
@@ -64,8 +64,8 @@
 		return respawnee.respawn()
 
 	var/respawn_delay = CAMPAIGN_RESPAWN_TIME + stat_list[respawnee.faction]?.respawn_delay_modifier
-	if((player_death_times[respawnee.key] + respawn_delay) > world.time)
-		to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.key] + respawn_delay - world.time) / 10)] seconds remaining.<spawn>")
+	if((player_death_times[respawnee.ckey] + respawn_delay) > world.time)
+		to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.ckey] + respawn_delay - world.time) / 10)] seconds remaining.<spawn>")
 		return
 
 	attempt_attrition_respawn(respawnee)
@@ -183,7 +183,7 @@
 		return
 	if(!(player.faction in factions))
 		return
-	player_death_times[player.key] = world.time
+	player_death_times[player.ckey] = world.time
 
 ///Wrapper for cutting the deathlist via timer due to the players not immediately returning to base
 /datum/game_mode/hvh/campaign/proc/cut_death_list_timer(datum/source)

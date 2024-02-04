@@ -108,7 +108,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/respawn_delay_modifier = 0
 	///records how much currency has been earned from missions, for late join players
 	var/accumulated_mission_reward = 0
-	///list of individual stats by key
+	///list of individual stats by ckey
 	var/list/datum/individual_stats/individual_stat_list = list()
 
 /datum/faction_stats/New(new_faction)
@@ -137,9 +137,9 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		return
 	if(new_member.faction != faction)
 		return
-	if(individual_stat_list[new_member.key])
-		individual_stat_list[new_member.key].current_mob = new_member
-		individual_stat_list[new_member.key].apply_perks()
+	if(individual_stat_list[new_member.ckey])
+		individual_stat_list[new_member.ckey].current_mob = new_member
+		individual_stat_list[new_member.ckey].apply_perks()
 	else
 		get_player_stats(new_member)
 	var/datum/action/campaign_loadout/loadouts = new
@@ -147,11 +147,11 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 ///Returns a users individual stat datum, generating a new one if required
 /datum/faction_stats/proc/get_player_stats(mob/user)
-	if(!user.key)
+	if(!user.ckey)
 		return
-	if(!individual_stat_list[user.key])
-		individual_stat_list[user.key] = new /datum/individual_stats(user, faction, accumulated_mission_reward)
-	return individual_stat_list[user.key]
+	if(!individual_stat_list[user.ckey])
+		individual_stat_list[user.ckey] = new /datum/individual_stats(user, faction, accumulated_mission_reward)
+	return individual_stat_list[user.ckey]
 
 ///Randomly adds a new mission to the available pool
 /datum/faction_stats/proc/generate_new_mission()

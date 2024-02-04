@@ -1,5 +1,6 @@
 /datum/individual_stats
 	interaction_flags = INTERACT_UI_INTERACT
+	var/owner_ckey
 	///currently occupied mob - if any
 	var/mob/living/carbon/current_mob
 	///Credits. You buy stuff with it
@@ -19,6 +20,8 @@
 
 /datum/individual_stats/New(mob/living/carbon/new_mob, new_faction, new_currency)
 	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(post_mission_credits))
+	owner_ckey = new_mob.ckey
 	current_mob = new_mob
 	faction = new_faction
 	currency += new_currency
@@ -36,6 +39,15 @@
 	perks_by_job = null
 	unlocked_items = null
 	return ..()
+
+///Pay each player additional credits based on individual performance during the mission
+/datum/individual_stats/proc/post_mission_credits()
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner_ckey]
+	var/credit_bonus = 0
+	credit_bonus += personal_statistics.mission_projectile_damage * 0.01
+	credit_bonus -= personal_statistics.mission_friendly_fire_damage * 0.02
+
+	give_funds(max(floor(credit_bonus), 0))
 
 ///Applies cash
 /datum/individual_stats/proc/give_funds(amount)

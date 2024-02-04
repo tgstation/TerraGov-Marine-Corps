@@ -38,6 +38,10 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/projectile_damage = 0
 	var/melee_damage = 0
 
+	var/mission_projectile_damage = 0
+
+	var/mission_friendly_fire_damage = 0
+
 	//We are watching
 	var/friendly_fire_damage = 0
 
@@ -104,6 +108,10 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/sippies = 0
 	var/war_crimes = 0
 	var/tactical_unalives = 0	//Someone should add a way to determine if you died to a grenade in your hand and add it to this
+
+/datum/personal_statistics/New()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_STARTED, PROC_REF(reset_mission_stats))
 
 ///Calculated from the chemicals_ingested list, returns a string: "[chemical name], [amount] units"
 /datum/personal_statistics/proc/get_most_ingested_chemical()
@@ -264,7 +272,13 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	//Replace any instances of line breaks after horizontal rules to prevent unneeded empty spaces
 	return replacetext(jointext(stats, "<br>"), "<hr><br>", "<hr>")
 
-
+/**
+ * Resets stats recorded for the current mission
+ * Used for Campaign
+ */
+/datum/personal_statistics/proc/reset_mission_stats()
+	mission_projectile_damage = 0
+	mission_friendly_fire_damage = 0
 
 /* Not sure what folder to put a file of just record keeping procs, so just leaving them here
 The alternative is scattering them everywhere under their respective objects which is a bit messy */
@@ -310,17 +324,17 @@ The alternative is scattering them everywhere under their respective objects whi
 	return ..()
 
 ///Tally to personal_statistics that a successful shot was made and record the damage dealt
-/mob/living/proc/record_projectile_damage(mob/shooter, damage)
-	//Check if a ckey exists; the check for victim aliveness is handled before the proc call
-	if(!shooter.ckey)
+/mob/living/proc/record_projectile_damage(damage, mob/living/victim)
+	if(!ckey)
 		return FALSE
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[shooter.ckey]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 	personal_statistics.projectiles_hit++
 	personal_statistics.projectile_damage += damage
-	if(faction && isliving(shooter))	//See if any friendly fire was made
-		var/mob/living/L = shooter
-		if(faction == L.faction)
-			personal_statistics.friendly_fire_damage += damage	//FF multiplier already included by the way
+	personal_statistics.mission_projectile_damage += damage
+
+	if(faction == victim.faction) //See if any friendly fire was made
+		personal_statistics.friendly_fire_damage += damage	//FF multiplier already included by the way
+		personal_statistics.mission_friendly_fire_damage += damage
 	return TRUE
 
 ///Record what reagents and how much of them were transferred to a mob into their ckey's /datum/personal_statistics
