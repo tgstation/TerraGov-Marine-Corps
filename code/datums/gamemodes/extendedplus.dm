@@ -61,7 +61,7 @@
 	)
 	enable_fun_tads = TRUE
 	xenorespawn_time = 2 MINUTES
-	respawn_time = 1 HOURS
+	respawn_time = 15 MINUTES
 	bioscan_interval = 30 MINUTES
 
 /datum/game_mode/infestation/can_start(bypass_checks = TRUE)
