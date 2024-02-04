@@ -275,10 +275,12 @@
 /turf/open/liquid/lava/single,
 /area/metnal/outside/southwest)
 "anq" = (
-/obj/effect/turf_decal/sandytile/sandyplating,
-/obj/structure/cable,
-/turf/open/lavaland/basalt,
-/area/metnal/outside/southeast)
+/obj/item/stack/sheet/metal/medium_stack,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/metnal/inside/engineering)
 "anN" = (
 /turf/open/floor/grayscale/darkred,
 /area/metnal/inside/cafeteria)
@@ -2640,9 +2642,11 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
 "clT" = (
-/obj/structure/cable,
-/turf/open/lavaland/basalt,
-/area/metnal/outside/southeast)
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/metnal/inside/engineering)
 "cmh" = (
 /obj/effect/spawner/random/machinery/disposal,
 /obj/effect/decal/cleanable/cobweb,
@@ -4954,11 +4958,11 @@
 /area/metnal/inside/mining)
 "dYa" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/engineering/metal/nooffset,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
+/obj/item/stack/sheet/metal/medium_stack,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
 "dYl" = (
@@ -7426,10 +7430,10 @@
 /area/metnal/inside/garden)
 "fXD" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/engineering/metal/nooffset,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
+/obj/item/stack/sheet/metal/medium_stack,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
 "fZe" = (
@@ -8358,10 +8362,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/southwest)
-"gMO" = (
-/obj/effect/spawner/random/engineering/metal/nooffset,
-/turf/open/floor/tile/dark,
-/area/metnal/inside/engineering)
 "gMT" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/prison/yellow{
@@ -17471,7 +17471,7 @@
 /area/metnal/inside/garden)
 "ocE" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/engineering/metal/nooffset,
+/obj/item/stack/sheet/metal/medium_stack,
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 8
 	},
@@ -18486,10 +18486,6 @@
 "oQv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/prison/plate,
-/area/metnal/inside/security)
-"oRd" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/prison,
 /area/metnal/inside/security)
 "oRh" = (
 /obj/structure/window/framed/prison/cell,
@@ -21881,7 +21877,6 @@
 /area/metnal/caves/northeast)
 "rum" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/effect/spawner/random/engineering/metal/nooffset,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -26008,7 +26003,6 @@
 "uzk" = (
 /obj/effect/decal/cleanable/glass/plastic,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/engineering/metal/nooffset,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -26609,12 +26603,12 @@
 /area/metnal/inside/meddesk)
 "uVU" = (
 /obj/structure/rack,
-/obj/item/stack/sheet/metal/medium_stack,
 /obj/item/explosive/plastique,
 /obj/item/explosive/plastique,
 /obj/item/circuitboard/mecha,
 /obj/item/circuitboard/mecha/honker,
 /obj/structure/cable,
+/obj/item/stack/sheet/metal/medium_stack,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
 "uWd" = (
@@ -27370,8 +27364,13 @@
 /area/metnal/inside/research)
 "vyN" = (
 /obj/structure/cable,
-/obj/effect/spawner/random/engineering/metal/nooffset,
-/turf/open/floor/tile/dark,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/item/stack/sheet/metal/medium_stack,
+/turf/open/floor/tile/dark/brown2{
+	dir = 10
+	},
 /area/metnal/inside/substation)
 "vyV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -35600,7 +35599,7 @@ jzI
 wmQ
 iyv
 iyv
-lqk
+vyN
 nou
 flB
 rum
@@ -35997,7 +35996,7 @@ qcs
 pcB
 cxI
 xvZ
-vyN
+sML
 xWr
 dzk
 fZz
@@ -37824,8 +37823,8 @@ xWr
 cqV
 lqj
 iOC
-gMO
 iOC
+anq
 cxc
 xiL
 dEn
@@ -38027,7 +38026,7 @@ kYq
 oMp
 lXa
 eIp
-tYt
+clT
 lAC
 vxR
 iOC
@@ -59865,7 +59864,7 @@ pzj
 tqk
 pzj
 niJ
-jdU
+kop
 uHj
 nQz
 iRk
@@ -60067,7 +60066,7 @@ uoI
 tqk
 uoI
 uCC
-lwX
+uoI
 agr
 tul
 hzV
@@ -60269,7 +60268,7 @@ pzj
 pzj
 uoI
 uCR
-clT
+esM
 iNn
 ixv
 mPD
@@ -60471,7 +60470,7 @@ tqk
 uoI
 gkV
 uCR
-anq
+tMO
 agr
 iNn
 iNn
@@ -66523,7 +66522,7 @@ aVY
 lUh
 nLN
 hCK
-oRd
+bhB
 xjb
 fqq
 bhB
