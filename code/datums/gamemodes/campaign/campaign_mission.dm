@@ -288,7 +288,7 @@
 		for(var/datum/loadout_item/loadout_item AS in GLOB.campaign_loadout_items_by_role[job])
 			loadout_item.quantity = initial(loadout_item.quantity)
 	for(var/mob/living/carbon/human/corpse AS in GLOB.dead_human_list) //clean up all the bodies and refund normal roles if required
-		if(corpse.z != mission_z_level)
+		if(corpse.z != mission_z_level.z_value)
 			continue
 		if(!HAS_TRAIT(corpse, TRAIT_UNDEFIBBABLE) && corpse.job.job_cost)
 			corpse.job.add_job_positions(1)
