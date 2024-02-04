@@ -402,10 +402,6 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
-
-	if(examinate(A))
-		return
-
 	return A.ShiftClick(src)
 
 
@@ -431,6 +427,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 /atom/proc/ShiftClick(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_CLICK_SHIFT, user)
+	user.examinate(src)
 	return TRUE
 
 /*
