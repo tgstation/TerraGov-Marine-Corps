@@ -210,9 +210,14 @@
 
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
 
-	playsound_z_humans(target.z, 'sound/effects/OB_warning_announce.ogg', 100) //for marines on ground
+	priority_announce(
+		message = "Get out of danger close immediately!<br>Warhead type: [tray.warhead.warhead_kind]<br>Estimated location of impact: [get_area(T)]",
+		title = "Orbital bombardment launch command detected!",
+		type = ANNOUNCEMENT_PRIORITY,
+		sound = 'sound/effects/OB_warning_announce.ogg',
+		color_override = "red"
+	)
 	playsound(target, 'sound/effects/OB_warning_announce_novoiceover.ogg', 125, FALSE, 30, 10) //VOX-less version for xenomorphs
-	playsound_z(z, 'sound/effects/OB_warning_announce.ogg', 100) //for the ship
 
 	var/impact_time = 10 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3))
 
