@@ -272,10 +272,10 @@
 /turf/open/floor/grayscale/darkred,
 /area/metnal/inside/cafeteria)
 "anc" = (
-/obj/item/stack/sheet/metal/medium_stack,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/item/stack/sheet/metal,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
 "anq" = (
@@ -4998,7 +4998,7 @@
 	dir = 1;
 	on = 1
 	},
-/obj/item/stack/sheet/metal/medium_stack,
+/obj/item/stack/sheet/metal,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
 "dYl" = (
@@ -5589,6 +5589,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/mining)
+"exj" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/arrows{
+	dir = 1
+	},
+/obj/item/stack/sheet/metal,
+/turf/open/floor/tile/dark,
+/area/metnal/inside/substation)
 "exy" = (
 /obj/structure/table/fancywoodentable,
 /obj/item/trash/plate{
@@ -7491,7 +7499,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/obj/item/stack/sheet/metal/medium_stack,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
 "fZe" = (
@@ -10195,6 +10202,10 @@
 	},
 /turf/open/floor/wood/variable/mosaic,
 /area/metnal/inside/northmeetingroom)
+"ifh" = (
+/obj/effect/turf_decal/sandedge,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/central)
 "ifj" = (
 /obj/effect/spawner/random/machinery/machine_frame,
 /obj/structure/cable,
@@ -15087,9 +15098,8 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/metnal/inside/medical)
 "lYy" = (
-/obj/effect/turf_decal/sandedge,
-/turf/open/lavaland/basalt,
-/area/metnal/outside/central)
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/landingzoneone)
 "lYL" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -16058,8 +16068,9 @@
 /turf/open/lavaland/basalt/glowing,
 /area/metnal/outside/southeast)
 "mPr" = (
-/turf/closed/wall/r_wall/prison,
-/area/metnal/inside/landingzoneone)
+/obj/item/stack/sheet/metal,
+/turf/open/floor/tile/dark,
+/area/metnal/inside/substation)
 "mPu" = (
 /obj/structure/cable,
 /obj/structure/prop/mainship/gelida/powerccable{
@@ -17596,7 +17607,6 @@
 /area/metnal/inside/garden)
 "ocE" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/stack/sheet/metal/medium_stack,
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 8
 	},
@@ -19796,16 +19806,6 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/metnal/inside/substation)
-"pRq" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/item/stack/sheet/metal/medium_stack,
-/turf/open/floor/tile/dark/brown2{
-	dir = 10
-	},
 /area/metnal/inside/substation)
 "pRz" = (
 /obj/effect/ai_node,
@@ -24347,7 +24347,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/item/stack/sheet/metal/medium_stack,
+/obj/item/stack/sheet/metal,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -26839,7 +26839,7 @@
 /obj/item/circuitboard/mecha,
 /obj/item/circuitboard/mecha/honker,
 /obj/structure/cable,
-/obj/item/stack/sheet/metal/medium_stack,
+/obj/item/stack/sheet/metal,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
 "uWd" = (
@@ -31055,8 +31055,8 @@
 /turf/open/lavaland/basalt,
 /area/metnal/outside/north)
 "yjn" = (
-/obj/effect/spawner/random/engineering/metal/nooffset,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/item/stack/sheet/metal,
 /turf/open/floor/tile/dark/yellow2,
 /area/metnal/inside/substation)
 "yjx" = (
@@ -35676,7 +35676,7 @@ rYD
 pQR
 pQR
 pQR
-pQR
+exj
 aPi
 oaX
 saP
@@ -35878,7 +35878,7 @@ jzI
 wmQ
 iyv
 iyv
-pRq
+lqk
 nou
 flB
 rum
@@ -37489,7 +37489,7 @@ xWr
 tkO
 dhw
 oDk
-xWr
+mPr
 bqu
 lHD
 ssC
@@ -50430,7 +50430,7 @@ vwI
 vwI
 vwI
 lMd
-lYy
+ifh
 kez
 kez
 kez
@@ -50834,7 +50834,7 @@ hSQ
 hSQ
 hSQ
 lMd
-lYy
+ifh
 kez
 kez
 kez
@@ -51642,7 +51642,7 @@ sKX
 sKX
 sKX
 cJg
-lYy
+ifh
 kez
 kez
 kez
@@ -52046,7 +52046,7 @@ iBq
 tIg
 iBq
 lMd
-lYy
+ifh
 kez
 wwr
 kez
@@ -61245,21 +61245,21 @@ edg
 edg
 edg
 orz
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
 rzS
 rzS
 rzS
@@ -61268,8 +61268,8 @@ hSF
 rzS
 rzS
 rzS
-mPr
-mPr
+lYy
+lYy
 dAc
 xXc
 nQM
@@ -61447,7 +61447,7 @@ edg
 edg
 edg
 orz
-mPr
+lYy
 bhV
 iVu
 gZA
@@ -61471,7 +61471,7 @@ pSx
 iVu
 iVu
 nRf
-mPr
+lYy
 dAc
 siO
 nQM
@@ -61649,7 +61649,7 @@ edg
 edg
 orz
 orz
-mPr
+lYy
 wVr
 iVu
 iVu
@@ -61673,7 +61673,7 @@ iVu
 iVu
 iVu
 bVo
-mPr
+lYy
 dAc
 dAc
 nQM
@@ -61850,8 +61850,8 @@ edg
 edg
 edg
 orz
-mPr
-mPr
+lYy
+lYy
 bhV
 iVu
 iVu
@@ -61875,8 +61875,8 @@ iVu
 iVu
 iVu
 xqz
-mPr
-mPr
+lYy
+lYy
 dAc
 nQM
 siO
@@ -62052,7 +62052,7 @@ edg
 edg
 edg
 orz
-mPr
+lYy
 iVu
 iVu
 jmS
@@ -62254,7 +62254,7 @@ edg
 edg
 edg
 orz
-mPr
+lYy
 iVu
 kby
 slU
@@ -62456,7 +62456,7 @@ edg
 edg
 edg
 orz
-mPr
+lYy
 iVu
 kby
 eto
@@ -62658,7 +62658,7 @@ edg
 edg
 edg
 orz
-mPr
+lYy
 dGP
 kby
 pVJ
@@ -62860,7 +62860,7 @@ nDo
 edg
 edg
 orz
-mPr
+lYy
 iVu
 iVu
 hOg
@@ -62886,7 +62886,7 @@ hOg
 hOg
 iVu
 slt
-mPr
+lYy
 dAc
 siO
 siO
@@ -63062,7 +63062,7 @@ gpK
 edg
 edg
 orz
-mPr
+lYy
 iVu
 iVu
 iVu
@@ -63088,7 +63088,7 @@ iVu
 iVu
 iVu
 nGt
-mPr
+lYy
 oKs
 xXc
 siO
@@ -63264,7 +63264,7 @@ uSa
 edg
 edg
 orz
-mPr
+lYy
 iVu
 mNI
 iVu
@@ -63290,7 +63290,7 @@ iVu
 iVu
 mNI
 nGt
-mPr
+lYy
 oKs
 siO
 siO
@@ -63466,7 +63466,7 @@ gpK
 edg
 edg
 orz
-mPr
+lYy
 jmS
 jmS
 jmS
@@ -63492,7 +63492,7 @@ jmS
 jmS
 jmS
 hJs
-mPr
+lYy
 oKs
 siO
 siO
@@ -63668,7 +63668,7 @@ gpK
 edg
 edg
 orz
-mPr
+lYy
 tAw
 slU
 nvL
@@ -63694,7 +63694,7 @@ nvL
 nvL
 wSA
 hbi
-mPr
+lYy
 oKs
 siO
 siO
@@ -63870,7 +63870,7 @@ gpK
 edg
 edg
 orz
-mPr
+lYy
 kep
 ubZ
 fkF
@@ -63896,7 +63896,7 @@ fkF
 fkF
 iaw
 iYM
-mPr
+lYy
 oKs
 siO
 siO
@@ -64072,7 +64072,7 @@ gpK
 edg
 edg
 orz
-mPr
+lYy
 eto
 dur
 gGG
@@ -64098,7 +64098,7 @@ gGG
 gGG
 eZx
 hTT
-mPr
+lYy
 orz
 jVs
 siO
@@ -64274,7 +64274,7 @@ gpK
 gpK
 edg
 orz
-mPr
+lYy
 eto
 dur
 gGG
@@ -64300,7 +64300,7 @@ gGG
 gGG
 eZx
 hTT
-mPr
+lYy
 orz
 jVs
 siO
@@ -64476,7 +64476,7 @@ nDo
 lRJ
 edg
 orz
-mPr
+lYy
 fZZ
 dur
 gGG
@@ -64502,7 +64502,7 @@ gGG
 gGG
 eZx
 hpb
-mPr
+lYy
 orz
 edg
 jVs
@@ -64678,7 +64678,7 @@ gpK
 gpK
 edg
 orz
-mPr
+lYy
 eto
 dur
 gGG
@@ -64704,7 +64704,7 @@ gGG
 gGG
 eZx
 hTT
-mPr
+lYy
 orz
 edg
 edg
@@ -64880,7 +64880,7 @@ gpK
 gpK
 edg
 orz
-mPr
+lYy
 eto
 dur
 gGG
@@ -64906,7 +64906,7 @@ gGG
 gGG
 eZx
 hTT
-mPr
+lYy
 orz
 edg
 edg
@@ -65082,7 +65082,7 @@ gpK
 gpK
 edg
 orz
-mPr
+lYy
 eto
 dur
 gGG
@@ -65108,7 +65108,7 @@ gGG
 gGG
 eZx
 hTT
-mPr
+lYy
 orz
 edg
 edg
@@ -65284,7 +65284,7 @@ gpK
 gpK
 jVs
 orz
-mPr
+lYy
 eto
 dur
 gGG
@@ -65310,7 +65310,7 @@ gGG
 gGG
 eZx
 hTT
-mPr
+lYy
 orz
 edg
 edg
@@ -65486,7 +65486,7 @@ nDo
 gpK
 jVs
 orz
-mPr
+lYy
 eto
 dur
 gGG
@@ -65512,7 +65512,7 @@ gGG
 gGG
 eZx
 hTT
-mPr
+lYy
 orz
 edg
 edg
@@ -65688,7 +65688,7 @@ lRJ
 gpK
 gpK
 orz
-mPr
+lYy
 fZZ
 dur
 gGG
@@ -65714,7 +65714,7 @@ gGG
 gGG
 eZx
 hpb
-mPr
+lYy
 orz
 edg
 edg
@@ -65890,7 +65890,7 @@ gpK
 gpK
 gpK
 orz
-mPr
+lYy
 eto
 dur
 gGG
@@ -65916,7 +65916,7 @@ gGG
 gGG
 eZx
 hTT
-mPr
+lYy
 orz
 edg
 edg
@@ -66092,7 +66092,7 @@ gpK
 gpK
 gpK
 orz
-mPr
+lYy
 eto
 dur
 gGG
@@ -66118,7 +66118,7 @@ gGG
 gGG
 eZx
 hTT
-mPr
+lYy
 orz
 edg
 edg
@@ -66294,7 +66294,7 @@ lRJ
 gpK
 gpK
 bNP
-mPr
+lYy
 kLs
 cZj
 awh
@@ -66320,7 +66320,7 @@ awh
 awh
 bkj
 tnM
-mPr
+lYy
 orz
 edg
 edg
@@ -66496,7 +66496,7 @@ nDo
 gpK
 gpK
 bNP
-mPr
+lYy
 eee
 pVJ
 iHB
@@ -66522,7 +66522,7 @@ iHB
 iHB
 hid
 qFR
-mPr
+lYy
 orz
 edg
 edg
@@ -66698,7 +66698,7 @@ gpK
 gpK
 gpK
 bNP
-mPr
+lYy
 hOg
 hOg
 hOg
@@ -66724,7 +66724,7 @@ hOg
 rOe
 hOg
 iwL
-mPr
+lYy
 orz
 edg
 edg
@@ -66900,7 +66900,7 @@ gpK
 gpK
 gpK
 bNP
-mPr
+lYy
 iVu
 mNI
 iVu
@@ -66926,7 +66926,7 @@ iVu
 lfa
 mNI
 nGt
-mPr
+lYy
 aqP
 edg
 edg
@@ -67102,7 +67102,7 @@ lRJ
 gpK
 gpK
 bNP
-mPr
+lYy
 eKX
 iVu
 iVu
@@ -67128,7 +67128,7 @@ cEN
 iVu
 iVu
 nGt
-mPr
+lYy
 vAj
 edg
 edg
@@ -67304,7 +67304,7 @@ gpK
 gpK
 gpK
 orz
-mPr
+lYy
 iVu
 iVu
 iVu
@@ -67330,7 +67330,7 @@ nGt
 nGt
 nGt
 nGt
-mPr
+lYy
 cCJ
 edg
 edg
@@ -67506,8 +67506,8 @@ gpK
 gpK
 gpK
 orz
-mPr
-mPr
+lYy
+lYy
 iVu
 iVu
 iVu
@@ -67531,8 +67531,8 @@ gcG
 iVu
 iVu
 cEN
-mPr
-mPr
+lYy
+lYy
 wJA
 edg
 edg
@@ -67709,7 +67709,7 @@ lRJ
 gpK
 orz
 orz
-mPr
+lYy
 dGP
 iVu
 iVu
@@ -67717,15 +67717,15 @@ iVu
 iVu
 iVu
 iVu
-mPr
-mPr
-mPr
-mPr
+lYy
+lYy
+lYy
+lYy
 pBi
-mPr
-mPr
-mPr
-mPr
+lYy
+lYy
+lYy
+lYy
 yhl
 iVu
 iVu
@@ -67733,7 +67733,7 @@ cEN
 iVu
 iVu
 qAJ
-mPr
+lYy
 orz
 eNJ
 edg
@@ -67911,7 +67911,7 @@ gpK
 gpK
 gpK
 orz
-mPr
+lYy
 iVu
 iVu
 sCL
@@ -67919,7 +67919,7 @@ iVu
 iVu
 iVu
 iVu
-mPr
+lYy
 qti
 kvu
 hOg
@@ -67927,7 +67927,7 @@ iwL
 hOg
 kvu
 kmS
-mPr
+lYy
 tqH
 udw
 iVu
@@ -67935,7 +67935,7 @@ lgL
 iVu
 udw
 iVu
-mPr
+lYy
 orz
 edg
 edg
@@ -68113,15 +68113,15 @@ gpK
 nDo
 gpK
 orz
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
 qxq
 nGt
 nGt
@@ -68129,15 +68129,15 @@ nGt
 lfa
 iVu
 kby
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
 orz
 edg
 edg
@@ -68323,7 +68323,7 @@ bSB
 bSB
 bSB
 bSB
-mPr
+lYy
 oPx
 foL
 cbU
@@ -68331,7 +68331,7 @@ xxJ
 xzm
 foL
 kby
-mPr
+lYy
 bSB
 xcM
 xcM
@@ -68525,7 +68525,7 @@ edg
 edg
 edg
 orz
-mPr
+lYy
 rfq
 foL
 cbU
@@ -68533,7 +68533,7 @@ wWt
 iLh
 iVu
 kby
-mPr
+lYy
 orz
 pux
 pux
@@ -68727,7 +68727,7 @@ edg
 edg
 edg
 orz
-mPr
+lYy
 rfq
 iVu
 iVu
@@ -68735,7 +68735,7 @@ iVu
 iVu
 iVu
 kby
-mPr
+lYy
 orz
 edg
 gpK
@@ -68929,7 +68929,7 @@ edg
 edg
 edg
 orz
-mPr
+lYy
 iZP
 lUU
 sak
@@ -68937,7 +68937,7 @@ sak
 xLZ
 gia
 frp
-mPr
+lYy
 orz
 edg
 edg
@@ -69131,15 +69131,15 @@ edg
 edg
 edg
 orz
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
-mPr
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
+lYy
 orz
 edg
 edg
