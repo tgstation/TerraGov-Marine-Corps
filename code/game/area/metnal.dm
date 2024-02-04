@@ -17,15 +17,13 @@
 /area/metnal/caves/northwest
 	name = "Northwestern Caves"
 	icon_state = "northwest2"
-	ceiling = CEILING_UNDERGROUND
 
 /area/metnal/caves/northwest/garbledradio
-	ceiling = CEILING_DEEP_UNDERGROUND
+	ceiling = CEILING_UNDERGROUND
 
 /area/metnal/caves/north
 	name = "Northern Caves"
 	icon_state = "north2"
-	ceiling = CEILING_UNDERGROUND
 
 /area/metnal/caves/nukestorage
 	name = "Nuclear Storage"
@@ -39,6 +37,7 @@
 	icon_state = "northeast2"
 
 /area/metnal/caves/northeast/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /area/metnal/caves/southwest
 	name = "Southwestern Caves"
@@ -54,6 +53,7 @@
 /area/metnal/caves/south/garbledradio
 	name = "Southern Caves"
 	icon_state = "south2"
+	ceiling = CEILING_UNDERGROUND
 
 /area/metnal/caves/southeast
 	name = "Southeastern Caves"
@@ -71,6 +71,7 @@
 /area/metnal/caves/west/garbledradio
 	name = "Western Caves"
 	icon_state = "west2"
+	ceiling = CEILING_UNDERGROUND
 
 //Outside Area
 /area/metnal/outside
@@ -82,9 +83,14 @@
 	always_unpowered = TRUE
 	temperature = T22C
 
+/area/metnal/outside/pathways/secondary
+	name = "Landing Zone Primary Pathways"
+	icon_state = "yellow"
+	minimap_color = MINIMAP_AREA_LIVING
+
 /area/metnal/outside/pathways //looks less awful on tacmap
 	name = "Primary Pathways"
-	icon_state = "green"
+	icon_state = "yellow"
 	minimap_color = MINIMAP_AREA_LIVING
 
 /area/metnal/outside/central
@@ -149,15 +155,10 @@
 
 // research areas
 /area/metnal/inside/research
-	name = "Research Center"
-	icon_state = "research"
-	minimap_color = MINIMAP_AREA_RESEARCH
-
-/area/metnal/inside/research
 	name = "Research Labs"
 	icon_state = "research"
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
-	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	ceiling = CEILING_UNDERGROUND_METAL
 
 // engineering areas
 /area/metnal/inside/engineering
@@ -242,9 +243,14 @@
 	icon_state = "medbay"
 	minimap_color = MINIMAP_AREA_MEDBAY
 	ceiling = CEILING_OBSTRUCTED
+/area/metnal/inside/medical/storage
+	name = "Medbay Offices and Storage"
+	icon_state = "medbay"
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/metnal/inside/medical/chemistry
 	name = "Chemistry"
+	ceiling = CEILING_OBSTRUCTED
 
 // hydroponics areas
 /area/metnal/inside/garden

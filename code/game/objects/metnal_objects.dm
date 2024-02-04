@@ -1,5 +1,5 @@
 // Metnal Operation instruments
-/obj/machinery/prop/computer/jukebox
+/obj/item/instrument/jukebox
 	icon = 'icons/obj/metnal_objects.dmi'
 	name = "jukebox"
 	desc = "Wow, this thing is ancient!"
@@ -7,11 +7,11 @@
 	// allowed_instrument_ids = "r3celeste"
 	// var/use_power = IDLE_POWER_USE
 	// var/idle_power_usage = 0
-	// var/wrenchable = FALSE
-	// anchored = TRUE
+	var/wrenchable = FALSE
+	anchored = TRUE
 	// interaction_flags = INTERACT_MACHINE_DEFAULT
 	// use_power = IDLE_POWER_USE
-	// density = TRUE
+	density = TRUE
 	// idle_power_usage = 2
 	light_range = 2
 	light_power = 0.5
