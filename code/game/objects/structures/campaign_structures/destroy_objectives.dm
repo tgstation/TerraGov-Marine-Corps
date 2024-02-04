@@ -5,6 +5,8 @@
 	soft_armor = list(MELEE = 200, BULLET = 200, LASER = 200, ENERGY = 200, BOMB = 200, BIO = 200, FIRE = 200, ACID = 200) //require c4 normally
 	///explosion smoke particle holder
 	var/obj/effect/abstract/particle_holder/explosion_smoke
+	///The faction this belongs to
+	var/faction = FACTION_TERRAGOV
 
 /obj/structure/campaign_objective/destruction_objective/Destroy()
 	QDEL_NULL(explosion_smoke)
@@ -13,7 +15,7 @@
 /obj/structure/campaign_objective/destruction_objective/plastique_act(mob/living/plastique_user)
 	if(plastique_user && plastique_user.ckey)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[plastique_user.ckey]
-		personal_statistics.mission_objective_destroyed ++
+		personal_statistics.mission_objective_destroyed += (faction != plastique_user.faction ? 1 : -1)
 	qdel(src)
 
 /obj/structure/campaign_objective/destruction_objective/plastique_time_mod(time)
@@ -33,6 +35,7 @@
 	icon = 'icons/Marine/howitzer.dmi'
 	icon_state = "howitzer_deployed"
 	pixel_x = -16
+	faction = FACTION_SOM
 
 //MLRS
 /obj/effect/landmark/campaign_structure/mlrs
@@ -76,7 +79,7 @@
 /obj/structure/campaign_objective/destruction_objective/mlrs/plastique_act(mob/living/plastique_user)
 	if(plastique_user && plastique_user.ckey)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[plastique_user.ckey]
-		personal_statistics.mission_objective_destroyed ++
+		personal_statistics.mission_objective_destroyed += (faction != plastique_user.faction ? 1 : -1)
 	disable()
 
 /obj/structure/campaign_objective/destruction_objective/mlrs/disable()
@@ -143,13 +146,6 @@
 	position = list(87, 60, 0)
 
 //Supply depot objectives
-/obj/effect/landmark/campaign_structure/supply_objective
-	name = "howitzer objective"
-	icon = 'icons/Marine/howitzer.dmi'
-	icon_state = "howitzer_deployed"
-	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid)
-	spawn_object = /obj/structure/campaign_objective/destruction_objective/howitzer
-
 /obj/structure/campaign_objective/destruction_objective/supply_objective
 	name = "SUPPLY_OBJECTIVE"
 	icon = 'icons/Marine/howitzer.dmi'
@@ -196,6 +192,7 @@
 	icon_state = "phoron_stack"
 	bound_height = 32
 	bound_width = 64
+	faction = FACTION_SOM
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/phoron_stack/Initialize(mapload)
 	. = ..()
@@ -248,6 +245,7 @@
 	bound_width = 64
 	pixel_y = -18
 	pixel_x = -16
+	faction = FACTION_SOM
 	var/status = BLUESPACE_CORE_OK
 
 /obj/structure/campaign_objective/destruction_objective/bluespace_core/Initialize(mapload)
@@ -288,12 +286,12 @@
 	else if(status == BLUESPACE_CORE_UNSTABLE)
 		if(plastique_user && plastique_user.ckey)
 			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[plastique_user.ckey]
-			personal_statistics.mission_objective_destroyed ++
+			personal_statistics.mission_objective_destroyed += (faction != plastique_user.faction ? 1 : -1)
 		change_status(BLUESPACE_CORE_BROKEN)
 
 //airbase
 /obj/structure/prop/som_fighter
-	name = "\improper Harbinger"
+	name = "harbinger"
 	desc = "A state of the art Harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, bristling with high tech systems and weapons."
 	icon = 'icons/Marine/mainship_props96.dmi'
 	icon_state = "SOM_fighter"
@@ -303,7 +301,7 @@
 	allow_pass_flags = PASS_AIR
 
 /obj/effect/landmark/campaign_structure/harbinger
-	name = "\improper Harbinger"
+	name = "harbinger"
 	icon = 'icons/Marine/mainship_props96.dmi'
 	icon_state = "SOM_fighter"
 	pixel_x = -33
@@ -312,7 +310,7 @@
 	spawn_object = /obj/structure/campaign_objective/destruction_objective/harbinger
 
 /obj/structure/campaign_objective/destruction_objective/harbinger
-	name = "\improper Harbinger"
+	name = "harbinger"
 	desc = "A state of the art harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, bristling with high tech systems and weapons."
 	icon = 'icons/Marine/mainship_props96.dmi'
 	icon_state = "SOM_fighter"
@@ -322,6 +320,7 @@
 	bound_width = 3
 	bound_x = -32
 	layer = ABOVE_MOB_LAYER
+	faction = FACTION_SOM
 
 /obj/effect/landmark/campaign_structure/viper
 	name = "\improper Viper"
