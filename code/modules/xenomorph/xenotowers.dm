@@ -11,6 +11,8 @@
 	xeno_structure_flags = CRITICAL_STRUCTURE
 	///boost amt to be added per tower per cycle
 	var/boost_amount = 0.2
+	///maturity boost amt to be added per tower per cycle
+	var/maturty_boost_amount = 0.8
 
 /obj/structure/xeno/evotower/Initialize(mapload, _hivenumber)
 	. = ..()

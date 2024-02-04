@@ -409,8 +409,13 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 /mob/living/carbon/human/ShiftClickOn(atom/A)
 	if(client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING)
 		return ..()
-	var/obj/item/held_thing = get_active_held_item()
+	if(selected_ability)
+		A = ability_target(A)
+		if(selected_ability.can_use_ability(A))
+			selected_ability.use_ability(A)
+		return TRUE
 
+	var/obj/item/held_thing = get_active_held_item()
 	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_SHIFTCLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
 		return FALSE
 	return ..()
@@ -428,6 +433,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 /atom/proc/ShiftClick(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_CLICK_SHIFT, user)
+	user.examinate(src)
 	return TRUE
 
 /*
