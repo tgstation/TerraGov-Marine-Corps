@@ -47,7 +47,9 @@
 	credit_bonus += personal_statistics.mission_projectile_damage * 0.03
 	credit_bonus -= personal_statistics.mission_friendly_fire_damage * 0.06
 	credit_bonus += mission_melee_damage * 0.06
+	credit_bonus += mission_delimbs * 3
 	credit_bonus += mission_revives * 10
+	credit_bonus += mission_times_revived * 5 //purple heart
 	credit_bonus += mission_structures_built * 2
 
 	give_funds(max(floor(credit_bonus), 0))

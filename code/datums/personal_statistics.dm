@@ -108,9 +108,10 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	//campaign specific vars
 	var/mission_projectile_damage = 0
 	var/mission_friendly_fire_damage = 0
-
 	var/mission_melee_damage = 0
+	var/mission_delimbs = 0
 	var/mission_revives = 0
+	var/mission_times_revived = 0
 	var/mission_structures_built = 0
 
 /datum/personal_statistics/New()
@@ -284,8 +285,10 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	mission_projectile_damage = 0
 	mission_friendly_fire_damage = 0
 	mission_revives = 0
+	mission_times_revived = 0
 	mission_structures_built = 0
 	mission_melee_damage = 0
+	mission_delimbs = 0
 
 /* Not sure what folder to put a file of just record keeping procs, so just leaving them here
 The alternative is scattering them everywhere under their respective objects which is a bit messy */
@@ -313,6 +316,7 @@ The alternative is scattering them everywhere under their respective objects whi
 		personal_statistics.limbs_lost++
 	personal_statistics = GLOB.personal_statistics_list[user.ckey]
 	personal_statistics.delimbs++
+	personal_statistics.mission_delimbs++
 	return TRUE
 
 ///Record whenever a player shoots things, taking into account bonus projectiles without running these checks multiple times
