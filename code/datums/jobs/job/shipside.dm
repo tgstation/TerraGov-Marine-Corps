@@ -291,12 +291,65 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 	id = /obj/item/card/id/silver
 
+//Tadpole Officer
+/datum/job/terragov/command/tadofficer
+	title = TADPOLE_OFFICER
+	paygrade = "WO"
+	comm_title = "TO"
+	total_positions = 1
+	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE)
+	minimal_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
+	skills_type = /datum/skills/tadofficer
+	display_order = JOB_DISPLAY_ORDER_TADPOLE_OFFICER
+	outfit = /datum/outfit/job/command/pilot
+	exp_requirements = XP_REQ_TADPOLE_OFFICER
+	exp_type = EXP_TYPE_REGULAR_ALL
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+	)
+	html_description = {"
+		<b>Difficulty</b>: Hard<br /><br />
+		<b>You answer to the</b> acting Command Staff<br /><br />
+		<b>Unlock Requirement</b>: 100 hours<br /><br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
+		<b>Duty</b>: Pilot the Tadpole, a versatile dropship capable of fulfilling roles ranging from ambulance to mobile bunker.
+	"}
+	minimap_icon = "tadofficer"
+
+/datum/job/terragov/command/tadofficer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600) // starting
+			new_human.wear_id.paygrade = "WO"
+		if(601 to 3000) // 10 hrs
+			new_human.wear_id.paygrade = "CWO"
+		if(3001 to 6000) // 50 hrs
+			new_human.wear_id.paygrade = "O1"
+		if(6001 to INFINITY) // 100 hrs
+			new_human.wear_id.paygrade = "O2"
+
+/datum/job/terragov/command/tadofficer/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"Your job is to support marines mobile dropship support with the Tadpole.
+You are to ensure the Tadpole's survival and to transport marines around, acting as a mobile bunker. In the case of it's death, you are relegated to the FOB and the Alamo.
+"})
+
 //Pilot Officer
 /datum/job/terragov/command/pilot
 	title = PILOT_OFFICER
 	paygrade = "WO"
 	comm_title = "PO"
-	total_positions = 2
+	total_positions = 1
 	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT)
 	minimal_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/pilot
@@ -316,7 +369,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Choose between the Condor, a modular attack aircraft that provides close air support with a variety of weapons ranging from the inbuilt gatling to wing mounted rockets; or the Tadpole, a versatile dropship capable of fulfilling roles ranging from ambulance to mobile bunker.
+		<b>Duty</b>: Pilot the Condor, a modular attack aircraft that provides close air support with a variety of weapons ranging from the inbuilt gatling to wing mounted rockets; or the Tadpole, a versatile dropship capable of fulfilling roles ranging from ambulance to mobile bunker.
 	"}
 	minimap_icon = "pilot"
 

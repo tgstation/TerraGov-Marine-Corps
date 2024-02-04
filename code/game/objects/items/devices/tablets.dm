@@ -63,6 +63,10 @@
 				dat += " pilot's"
 				network = list("dropship1", "dropship2")
 				req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
+			if(/datum/job/terragov/command/tadofficer)
+				dat += " pilot's"
+				network = list("dropship1", "dropship2")
+				req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE)
 		name = dat + " hud tablet"
 	// Convert networks to lowercase
 	for(var/i in network)
