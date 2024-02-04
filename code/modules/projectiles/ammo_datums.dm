@@ -167,19 +167,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(iscarbon(victim))
 		var/mob/living/carbon/carbon_victim = victim
 		#if DEBUG_STAGGER_SLOWDOWN
-		to_chat(world, span_debuginfo("Damage: Initial stagger is: <b>[target.IsStaggered()]</b>"))
+		to_chat(world, span_debuginfo("Damage: Initial stagger is: <b>[carbon_victim.AmountStaggered()]</b>"))
 		#endif
 		if(!HAS_TRAIT(carbon_victim, TRAIT_STAGGER_RESISTANT)) //Some mobs like the Queen are immune to projectile stagger
-			carbon_victim.adjust_stagger(stagger)
+			carbon_victim.Stagger(stagger)
 		#if DEBUG_STAGGER_SLOWDOWN
-		to_chat(world, span_debuginfo("Damage: Final stagger is: <b>[target.IsStaggered()]</b>"))
+		to_chat(world, span_debuginfo("Damage: Final stagger is: <b>[carbon_victim.AmountStaggered()]</b>"))
 		#endif
 		#if DEBUG_STAGGER_SLOWDOWN
-		to_chat(world, span_debuginfo("Damage: Initial slowdown is: <b>[target.slowdown]</b>"))
+		to_chat(world, span_debuginfo("Damage: Initial slowdown is: <b>[carbon_victim.slowdown]</b>"))
 		#endif
 		carbon_victim.add_slowdown(slowdown)
 		#if DEBUG_STAGGER_SLOWDOWN
-		to_chat(world, span_debuginfo("Damage: Final slowdown is: <b>[target.slowdown]</b>"))
+		to_chat(world, span_debuginfo("Damage: Final slowdown is: <b>[carbon_victim.slowdown]</b>"))
 		#endif
 	to_chat(victim, "[impact_message]") //Summarize all the bad shit that happened
 
