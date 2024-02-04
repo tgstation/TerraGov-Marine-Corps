@@ -290,6 +290,19 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	mission_melee_damage = 0
 	mission_delimbs = 0
 
+///Returns the credit bonus based on stats from the current mission
+/datum/personal_statistics/proc/get_mission_reward()
+	var/credit_bonus = 0
+	credit_bonus += mission_projectile_damage * 0.1
+	credit_bonus -= mission_friendly_fire_damage * 0.2
+	credit_bonus += mission_melee_damage * 0.2
+	credit_bonus += mission_delimbs * 3
+	credit_bonus += mission_revives * 10
+	credit_bonus += mission_times_revived * 5 //purple heart
+	credit_bonus += mission_structures_built * 2
+
+	return max(floor(credit_bonus), 0)
+
 /* Not sure what folder to put a file of just record keeping procs, so just leaving them here
 The alternative is scattering them everywhere under their respective objects which is a bit messy */
 
