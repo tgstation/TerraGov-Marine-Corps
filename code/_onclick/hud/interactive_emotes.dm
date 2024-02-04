@@ -84,7 +84,7 @@
 		owner.client.screen -= src
 		owner.hud_used.update_interactive_emotes()
 
-	. = ..()
+	return ..()
 
 /atom/movable/screen/interaction/RightClick(mob/user)
 	. = ..()
