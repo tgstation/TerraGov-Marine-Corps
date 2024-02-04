@@ -134,7 +134,7 @@
 	spawn_object = /obj/structure/campaign_objective/destruction_objective/mlrs/apc
 
 /obj/structure/campaign_objective/destruction_objective/mlrs/apc
-	name = "\improper APC"
+	name = "\improper M577 armored personnel carrier"
 	desc = "A giant piece of armor for carrying troops in relative safety. Still has a pretty big gun."
 	icon_state = "apc"
 	smoke_type = /particles/tank_wreck_smoke/apc
