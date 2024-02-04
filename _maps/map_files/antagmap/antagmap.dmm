@@ -178,14 +178,6 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
-"bJ" = (
-/obj/structure/droppod/leader,
-/obj/structure/drop_pod_launcher,
-/turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
 "bO" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -793,11 +785,11 @@
 /turf/closed/wall/brick,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "hf" = (
-/obj/structure/droppod/leader,
 /obj/structure/drop_pod_launcher,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/droppod,
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay";
@@ -1784,11 +1776,11 @@
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "pd" = (
-/obj/structure/droppod/leader,
 /obj/structure/drop_pod_launcher,
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/droppod,
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay";
@@ -7043,7 +7035,7 @@ uH
 yw
 yw
 yw
-bJ
+yw
 rS
 bZ
 EF
@@ -7105,7 +7097,7 @@ uH
 yw
 yw
 yw
-bJ
+yw
 rS
 bZ
 Ou
@@ -7167,7 +7159,7 @@ Dk
 yw
 yw
 yw
-bJ
+yw
 rS
 bZ
 EF
