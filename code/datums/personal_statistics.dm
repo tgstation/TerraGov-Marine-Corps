@@ -115,6 +115,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/mission_structures_built = 0
 	var/mission_objective_destroyed = 0
 	var/mission_blocker_destroyed = 0
+	var/mission_objective_captured = 0
+	var/mission_objective_decaptured = 0
 
 /datum/personal_statistics/New()
 	. = ..()
@@ -294,6 +296,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	mission_delimbs = 0
 	mission_objective_destroyed = 0
 	mission_blocker_destroyed = 0
+	mission_objective_captured = 0
+	mission_objective_decaptured = 0
 
 ///Returns the credit bonus based on stats from the current mission
 /datum/personal_statistics/proc/get_mission_reward()
@@ -307,6 +311,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	credit_bonus += mission_structures_built * 2
 	credit_bonus += mission_objective_destroyed * 15
 	credit_bonus += mission_blocker_destroyed * 10
+	credit_bonus += mission_objective_captured * 5
+	credit_bonus += mission_objective_decaptured * 3
 
 	return max(floor(credit_bonus), 0)
 
