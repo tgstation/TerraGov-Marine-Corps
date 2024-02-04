@@ -49,7 +49,7 @@
 ///Called when the item is in the active hand, and RIGHT clicked;
 /obj/item/proc/attack_self_alternate(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF_ALTERNATE, user)
-	add_fingerprint(user, "attack_self")
+	add_fingerprint(user, "attack_selfLalternate")
 	if(!can_interact(user))
 		return
 	interact(user)
