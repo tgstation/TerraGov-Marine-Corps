@@ -371,6 +371,8 @@
 				screen.alpha = 50
 		else
 			clear_fullscreen("glasses")
+	else
+		clear_fullscreen("glasses")
 
 	if(see_override)
 		see_invisible = see_override

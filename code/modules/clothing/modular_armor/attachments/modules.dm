@@ -676,8 +676,7 @@
 	name = "\improper BE-35 night vision kit"
 	desc = "Installation kit for the BE-35 night vision system. Slightly impedes movement."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
-	icon_state = "mod_lamp"
-	item_state = "mod_lamp_a"
+	icon_state = "night_vision"
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_NO_HANDS
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	prefered_slot = SLOT_HEAD
@@ -698,7 +697,7 @@
 /obj/item/armor_module/module/night_vision/proc/on_examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
 	examine_text += attached_goggles.battery_status()
-	examine_text += "To eject the battery, [span_bold("CTRL + SHIFT + right-click")] [src] with an empty hand. To insert a battery, [span_bold("click")] [src] with a compatible cell."
+	examine_text += "To eject the battery, [span_bold("CTRL + SHIFT + left-click")] [src] with an empty hand. To insert a battery, [span_bold("click")] [src] with a compatible cell."
 
 /obj/item/armor_module/module/night_vision/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()

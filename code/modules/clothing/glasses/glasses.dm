@@ -49,7 +49,6 @@
 /obj/item/clothing/glasses/ui_action_click(mob/user, datum/action/item_action/action)
 	//In case someone in the future adds a non-toggle action to a child type
 	if(istype(action, /datum/action/item_action/toggle))
-		to_chat(world, "a")
 		var/datum/action/item_action/toggle/toggle = action
 		toggle.toggled = !activate(user)
 		return
@@ -414,9 +413,10 @@
 /obj/item/clothing/glasses/night_vision
 	name = "\improper BE-47 night vision goggles"
 	desc = "Goggles for seeing clearer in low light conditions and maintaining sight of the surrounding environment."
-	icon_state = "meson"
-	item_state = "meson"
-	deactive_state = "degoggles"
+	icon_state = "night_vision"
+	deactive_state = "night_vision_off"
+	worn_layer = COLLAR_LAYER	//The sprites are designed to render over helmets
+	item_state_slots = list()
 	tint = COLOR_RED
 	darkness_view = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
@@ -442,6 +442,7 @@
 	battery = new /obj/item/cell/night_vision_battery(src)
 	active_sound = new active_sound()
 	active_sound.volume = looping_sound_volume
+	update_worn_state()
 
 /obj/item/clothing/glasses/night_vision/examine(mob/user)
 	. = ..()
@@ -516,12 +517,25 @@
 		START_PROCESSING(SSobj, src)
 		active_sound.start(src)
 
-	return ..()
+	update_worn_state(!active)	//The active var has not been toggled yet, so pass the opposite value
+	. = ..()
 
 /obj/item/clothing/glasses/night_vision/process()
 	if(!battery?.use(active_energy_cost))
-		activate()
+		if(ismob(loc))	//If it's deactivated while being worn, pass on the reference to activate() so that the user's sight is updated
+			activate(loc)
+		else
+			activate()
 		return PROCESS_KILL
+
+///Simple proc to update the worn state of the glasses; will use the active value by default if no argument passed
+/obj/item/clothing/glasses/night_vision/proc/update_worn_state(state = active)
+	item_state_slots[slot_glasses_str] = initial(icon_state) + (state ? "" : "_off")
+
+/obj/item/clothing/glasses/night_vision/unequipped(mob/unequipper, slot)
+	. = ..()
+	if(active)
+		activate(unequipper)
 
 /obj/item/clothing/glasses/night_vision/Destroy()
 	QDEL_NULL(active_sound)
@@ -534,6 +548,7 @@
 /obj/item/clothing/glasses/night_vision/mounted
 	name = "\improper BE-35 night vision goggles"
 	desc = "Goggles for seeing clearer in low light conditions. Must remain attached to a helmet."
+	icon_state = "night_vision_mounted"
 	tint = COLOR_BLUE
 	vision_flags = NONE
 	active_energy_cost = 2	//A little over 7 minutes of use
