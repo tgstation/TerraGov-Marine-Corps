@@ -1,8 +1,8 @@
 // Metnal Operation instruments
 /obj/machinery/prop/computer/jukebox
+	icon = 'icons/obj/metnal_objects.dmi'
 	name = "jukebox"
 	desc = "Wow, this thing is ancient!"
-	icon = 'icons/obj/metnal_objects.dmi'
 	icon_state = "jukebox"
 	// allowed_instrument_ids = "r3celeste"
 	// var/use_power = IDLE_POWER_USE
