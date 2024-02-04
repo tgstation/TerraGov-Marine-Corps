@@ -10,7 +10,10 @@
 	QDEL_NULL(explosion_smoke)
 	return ..()
 
-/obj/structure/campaign_objective/destruction_objective/plastique_act()
+/obj/structure/campaign_objective/destruction_objective/plastique_act(mob/living/plastique_user)
+	if(plastique_user && plastique_user.ckey)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[plastique_user.ckey]
+		personal_statistics.mission_objective_destroyed ++
 	qdel(src)
 
 /obj/structure/campaign_objective/destruction_objective/plastique_time_mod(time)
@@ -70,7 +73,10 @@
 	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_MOB_LAYER, dir)
 	. += new_overlay
 
-/obj/structure/campaign_objective/destruction_objective/mlrs/plastique_act()
+/obj/structure/campaign_objective/destruction_objective/mlrs/plastique_act(mob/living/plastique_user)
+	if(plastique_user && plastique_user.ckey)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[plastique_user.ckey]
+		personal_statistics.mission_objective_destroyed ++
 	disable()
 
 /obj/structure/campaign_objective/destruction_objective/mlrs/disable()
@@ -115,8 +121,8 @@
 	spawn_object = /obj/structure/campaign_objective/destruction_objective/mlrs/tank
 
 /obj/structure/campaign_objective/destruction_objective/mlrs/tank
-	name = "\improper tank"
-	desc = "A massive multi launch rocket system on a tracked chassis. Can unleash a tremendous amount of firepower in a short amount of time."
+	name = "\improper M34A2 Longstreet Light Tank"
+	desc = "A giant piece of armor with a big gun, good for blowing stuff up."
 	icon_state = "tank"
 
 /obj/effect/landmark/campaign_structure/apc
@@ -129,7 +135,7 @@
 
 /obj/structure/campaign_objective/destruction_objective/mlrs/apc
 	name = "\improper APC"
-	desc = "A massive multi launch rocket system on a tracked chassis. Can unleash a tremendous amount of firepower in a short amount of time."
+	desc = "A giant piece of armor for carrying troops in relative safety. Still has a pretty big gun."
 	icon_state = "apc"
 	smoke_type = /particles/tank_wreck_smoke/apc
 
@@ -276,10 +282,13 @@
 	if(status == BLUESPACE_CORE_BROKEN)
 		disable()
 
-/obj/structure/campaign_objective/destruction_objective/bluespace_core/plastique_act()
+/obj/structure/campaign_objective/destruction_objective/bluespace_core/plastique_act(mob/living/plastique_user)
 	if(status == BLUESPACE_CORE_OK)
 		change_status(BLUESPACE_CORE_UNSTABLE)
 	else if(status == BLUESPACE_CORE_UNSTABLE)
+		if(plastique_user && plastique_user.ckey)
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[plastique_user.ckey]
+			personal_statistics.mission_objective_destroyed ++
 		change_status(BLUESPACE_CORE_BROKEN)
 
 //airbase
