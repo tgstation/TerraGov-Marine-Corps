@@ -2,8 +2,7 @@
 /mob/proc/interaction_emote(mob/target)
 	var/atom/movable/screen/interaction/interaction
 	if(can_interact(target))
-		var/target_zone = src.zone_selected
-		switch(target_zone)
+		switch(src.zone_selected)
 			if(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 				if(isxeno(target) && isxeno(src))	//Benos don't high five each other, they slap tails!
 					interaction = /atom/movable/screen/interaction/fist_bump
@@ -67,6 +66,7 @@
 
 ///What to do when either the owner or the initiating mob moves
 /atom/movable/screen/interaction/proc/interactees_moved()
+	SIGNAL_HANDLER
 	if(!owner.Adjacent(initiator))
 		end_interaction(FALSE)
 
@@ -74,8 +74,6 @@
 /atom/movable/screen/interaction/proc/end_interaction(success = TRUE)
 	if(!success)
 		owner.visible_message(failure_message())
-	UnregisterSignal(initiator, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	qdel(src)
 
 //Delete itself from the owner's hud and list of queued interactions
@@ -89,6 +87,7 @@
 	. = ..()
 
 /atom/movable/screen/interaction/RightClick(mob/user)
+	. = ..()
 	end_interaction(FALSE)
 
 /atom/movable/screen/interaction/ShiftClick(mob/user)
@@ -104,10 +103,7 @@
 		end_interaction(FALSE)
 		return FALSE
 
-	action()
-
-///Called when the interaction is accepted
-/atom/movable/screen/interaction/proc/action()
+	//Begin interaction functions
 	interaction_animation()
 
 	owner.visible_message(success_message())

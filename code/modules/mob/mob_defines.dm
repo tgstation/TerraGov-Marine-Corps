@@ -77,6 +77,7 @@
 	var/list/fullscreens = list()
 	///contains /atom/movable/screen/alert only, used by alerts.dm
 	var/list/alerts = list()
+	///List of queued interactions on this mob
 	var/list/queued_interactions = list()
 	var/list/datum/action/actions = list()
 	var/list/actions_by_path = list()
