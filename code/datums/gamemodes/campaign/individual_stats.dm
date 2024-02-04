@@ -44,9 +44,9 @@
 /datum/individual_stats/proc/post_mission_credits()
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner_ckey]
 	var/credit_bonus = 0
-	credit_bonus += personal_statistics.mission_projectile_damage * 0.03
-	credit_bonus -= personal_statistics.mission_friendly_fire_damage * 0.06
-	credit_bonus += mission_melee_damage * 0.06
+	credit_bonus += personal_statistics.mission_projectile_damage * 0.1
+	credit_bonus -= personal_statistics.mission_friendly_fire_damage * 0.2
+	credit_bonus += mission_melee_damage * 0.2
 	credit_bonus += mission_delimbs * 3
 	credit_bonus += mission_revives * 10
 	credit_bonus += mission_times_revived * 5 //purple heart
