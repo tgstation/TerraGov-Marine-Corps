@@ -282,6 +282,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
  * Used for Campaign
  */
 /datum/personal_statistics/proc/reset_mission_stats()
+	SIGNAL_HANDLER
 	mission_projectile_damage = 0
 	mission_friendly_fire_damage = 0
 	mission_revives = 0

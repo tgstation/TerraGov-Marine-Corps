@@ -41,7 +41,8 @@
 	return ..()
 
 ///Pay each player additional credits based on individual performance during the mission
-/datum/individual_stats/proc/post_mission_credits()
+/datum/individual_stats/proc/post_mission_credits(datum/source)
+	SIGNAL_HANDLER
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner_ckey]
 	give_funds(personal_statistics.get_mission_reward())
 
