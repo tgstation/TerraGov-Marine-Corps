@@ -44,8 +44,11 @@
 /datum/individual_stats/proc/post_mission_credits()
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner_ckey]
 	var/credit_bonus = 0
-	credit_bonus += personal_statistics.mission_projectile_damage * 0.01
-	credit_bonus -= personal_statistics.mission_friendly_fire_damage * 0.02
+	credit_bonus += personal_statistics.mission_projectile_damage * 0.03
+	credit_bonus -= personal_statistics.mission_friendly_fire_damage * 0.06
+	credit_bonus += mission_melee_damage * 0.06
+	credit_bonus += mission_revives * 10
+	credit_bonus += mission_structures_built * 2
 
 	give_funds(max(floor(credit_bonus), 0))
 

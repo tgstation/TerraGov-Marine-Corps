@@ -38,10 +38,6 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/projectile_damage = 0
 	var/melee_damage = 0
 
-	var/mission_projectile_damage = 0
-
-	var/mission_friendly_fire_damage = 0
-
 	//We are watching
 	var/friendly_fire_damage = 0
 
@@ -108,6 +104,14 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/sippies = 0
 	var/war_crimes = 0
 	var/tactical_unalives = 0	//Someone should add a way to determine if you died to a grenade in your hand and add it to this
+
+	//campaign specific vars
+	var/mission_projectile_damage = 0
+	var/mission_friendly_fire_damage = 0
+
+	var/mission_melee_damage = 0
+	var/mission_revives = 0
+	var/mission_structures_built = 0
 
 /datum/personal_statistics/New()
 	. = ..()
@@ -279,6 +283,9 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 /datum/personal_statistics/proc/reset_mission_stats()
 	mission_projectile_damage = 0
 	mission_friendly_fire_damage = 0
+	mission_revives = 0
+	mission_structures_built = 0
+	mission_melee_damage = 0
 
 /* Not sure what folder to put a file of just record keeping procs, so just leaving them here
 The alternative is scattering them everywhere under their respective objects which is a bit messy */
@@ -290,6 +297,9 @@ The alternative is scattering them everywhere under their respective objects whi
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 	personal_statistics.melee_hits++
 	personal_statistics.melee_damage += damage
+	personal_statistics.mission_melee_damage += damage
+	if(faction == user.faction)
+		personal_statistics.mission_friendly_fire_damage += damage
 	return TRUE
 
 /mob/living/carbon/human/record_melee_damage(mob/living/user, damage, delimbed)
@@ -557,6 +567,7 @@ The alternative is scattering them everywhere under their respective objects whi
 		return FALSE
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 	personal_statistics.structures_built++
+	personal_statistics.mission_structures_built++
 	return TRUE
 
 /mob/proc/record_war_crime()
