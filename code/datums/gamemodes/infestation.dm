@@ -135,7 +135,7 @@
 		return
 
 	if(announce_humans)
-		priority_announce(input, name, sound = 'sound/AI/bioscan.ogg', color_override = "grey")
+		priority_announce(input, name, sound = 'sound/AI/bioscan.ogg', color_override = "grey", receivers = (GLOB.alive_human_list + GLOB.ai_list)) // Hide this from observers, they have their own detailed alert.
 
 	if(send_fax)
 		var/fax_message = generate_templated_fax("Combat Information Center", "[MAIN_AI_SYSTEM] Bioscan Status", "", input, "", MAIN_AI_SYSTEM)
@@ -145,13 +145,18 @@
 
 	for(var/i in GLOB.observer_list)
 		var/mob/M = i
-		to_chat(M, "<span class='announce_header'>Detailed Information</span>")
-		to_chat(M, {"<span class='announce_body'>[numXenosPlanet] xeno\s on the planet.
+		to_chat(M, assemble_alert(
+			title = "Detailed Bioscan",
+			message = {"[numXenosPlanet] xeno\s on the planet.
 [numXenosShip] xeno\s on the ship.
+[numXenosTransit] xeno\s in transit.
+
 [numHostsPlanet] human\s on the planet.
 [numHostsShip] human\s on the ship.
-[numHostsTransit] human\s in transit.
-[numXenosTransit] xeno\s in transit.</span>"})
+[numHostsTransit] human\s in transit."},
+			color_override = "purple",
+			minor = TRUE
+		))
 
 	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[hostLocationS ? " Location: [hostLocationS].":""]. [numHostsTransitr] in transit.")
 	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[numXenosPlanetr > 0 && xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""] [numXenosTransitr] in transit.")
