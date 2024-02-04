@@ -254,7 +254,7 @@
 /obj/machinery/miner/examine(mob/user)
 	. = ..()
 	if(faction)
-		. += span_info("[src]'s terminal inform you it belons to [faction]")
+		. += span_info("[src]'s terminal inform you it belongs to [faction]")
 	if(!ishuman(user))
 		return
 	if(!miner_upgrade_type)
