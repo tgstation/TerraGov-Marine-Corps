@@ -50,6 +50,7 @@
 		/datum/action/ability/xeno_action/rally_hive/hivemind,
 		/datum/action/ability/activable/xeno/command_minions,
 		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/activable/xeno/plant_weeds/ranged,
 		/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind,
 		/datum/action/ability/activable/xeno/transfer_plasma/hivemind,
