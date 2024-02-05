@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Beacons now go back to their inactive icon state when undeployed"
+  - bugfix: "Beacons now deactivate themselves when they change Z level to a Z level that isn't groundside (instead of leaving the beacon datum on the tile they were at just before they changed Z level)"

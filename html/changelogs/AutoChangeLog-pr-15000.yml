@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Vali necro overlay should show up again"
+  - code_imp: "The fullscreen overlays now all actually share the proper plane"
