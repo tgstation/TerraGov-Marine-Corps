@@ -9,11 +9,13 @@ type Data = {
   CurrentLabel: string;
   CurrentTag: string;
   TransferAmount: number;
+  IsAdvanced: boolean;
 };
 
 export const Hypospray = (props) => {
   const { act, data } = useBackend<Data>();
-  const { InjectMode, CurrentLabel, CurrentTag, TransferAmount } = data;
+  const { InjectMode, CurrentLabel, CurrentTag, TransferAmount, IsAdvanced } =
+    data;
   return (
     <Window width={300} height={375}>
       <Box>
@@ -45,10 +47,16 @@ export const Hypospray = (props) => {
           <b>Current transfer amount: </b>
           {TransferAmount}
         </Box>
-        <Button m={2} onClick={() => act('DisplayReagentContent')}>
-          Display Reagent Content
-        </Button>
-        <br />
+        {IsAdvanced ? (
+          <Box>
+            <Button m={2} onClick={() => act('DisplayReagentContent')}>
+              Display Reagent Content
+            </Button>
+            <br />
+          </Box>
+        ) : (
+          <Box />
+        )}
         <Button color={'red'} m={2} onClick={() => act('EmptyHypospray')}>
           Empty Hypospray
         </Button>

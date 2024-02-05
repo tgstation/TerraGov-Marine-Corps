@@ -10,13 +10,6 @@
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/sodiumchloride = 30)
 
-/obj/item/reagent_containers/hypospray/autoinjector/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "Autoinjector", name)
-		ui.open()
-		return TRUE // Or else the other UI on reagent_containers/interact will open
-
 /obj/item/reagent_containers/hypospray/autoinjector/update_icon_state()
 	. = ..()
 	if(!(reagents.total_volume) && is_drawable())

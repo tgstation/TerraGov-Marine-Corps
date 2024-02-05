@@ -24,12 +24,6 @@
 	/// Small description appearing as an overlay
 	var/description_overlay = ""
 
-/obj/item/reagent_containers/hypospray/advanced
-	name = "Advanced hypospray"
-	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy."
-	core_name = "hypospray"
-
-
 /obj/item/reagent_containers/hypospray/proc/empty(mob/user)
 	if(tgui_alert(user, "Are you sure you want to empty [src]?", "Flush [src]:", list("Yes", "No")) != "Yes")
 		return
@@ -212,14 +206,17 @@
 	desc.maptext_width = 16
 	. += desc
 
-/obj/item/reagent_containers/hypospray/advanced
-	icon_state = "hypo"
-	init_reagent_flags = REFILLABLE|DRAINABLE
-	liquifier = TRUE
+/obj/item/reagent_containers/hypospray/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Hypospray", name)
+		ui.open()
+		return TRUE // Or else the other UI on reagent_containers/interact will open
 
 /obj/item/reagent_containers/hypospray/ui_data(mob/user)
 	var/list/data = list()
 
+	data["IsAdvanced"] = liquifier
 	data["InjectMode"] = inject_mode
 	data["CurrentLabel"] = label
 	data["CurrentTag"] = description_overlay
@@ -232,49 +229,56 @@
 	if(.)
 		return
 
-	if(action == "ActivateAutolabeler")
-		var/mob/user = usr
-		var/str = copytext(reject_bad_text(input(user,"Hypospray label text?", "Set label", "")), 1, MAX_NAME_LEN)
-		if(!length(str))
-			user.balloon_alert(user, "Invalid text.")
-			return
-		balloon_alert(user, "Labeled \"[str]\".")
-		name = "[core_name] ([str])"
-		label = str
-		return TRUE
+	switch(action)
+		if("ActivateAutolabeler")
+			var/mob/user = usr
+			var/str = copytext(reject_bad_text(input(user,"Hypospray label text?", "Set label", "")), 1, MAX_NAME_LEN)
+			if(!length(str))
+				user.balloon_alert(user, "Invalid text.")
+				return
+			balloon_alert(user, "Labeled \"[str]\".")
+			name = "[core_name] ([str])"
+			label = str
 
-	if(action == "ActivateTagger")
-		var/mob/user = usr
-		var/str = copytext(reject_bad_text(input(user,"Hypospray tag text?", "Set tag", "")), 1, MAX_NAME_HYPO)
-		if(!length(str))
-			user.balloon_alert(user, "Invalid text.")
-			return
-		user.balloon_alert(user, "You tag [src] as \"[str]\".")
-		description_overlay = str
-		update_icon()
-		return TRUE
+		if("ActivateTagger")
+			var/mob/user = usr
+			var/str = copytext(reject_bad_text(input(user,"Hypospray tag text?", "Set tag", "")), 1, MAX_NAME_HYPO)
+			if(!length(str))
+				user.balloon_alert(user, "Invalid text.")
+				return
+			user.balloon_alert(user, "You tag [src] as \"[str]\".")
+			description_overlay = str
+			update_icon()
 
-	if(action == "ToggleMode")
-		if(inject_mode)
-			to_chat(usr, span_notice("[src] has been set to draw mode. It will now drain reagents."))
+		if("ToggleMode")
+			if(inject_mode)
+				to_chat(usr, span_notice("[src] has been set to draw mode. It will now drain reagents."))
+
+			else
+				to_chat(usr, span_notice("[src] has been set to inject mode. It will now inject reagents."))
+			inject_mode = !inject_mode
+			update_icon()
+
+		if("SetTransferAmount")
+			var/N = tgui_input_list(usr, "Amount per transfer from this:", "[src]", possible_transfer_amounts)
+			if(!N)
+				return
+
+			amount_per_transfer_from_this = N
+
+		if("EmptyHypospray")
+			empty(usr)
 
 		else
-			to_chat(usr, span_notice("[src] has been set to inject mode. It will now inject reagents."))
-		inject_mode = !inject_mode
-		update_icon()
-		return TRUE
+			return TRUE
 
-	if(action == "SetTransferAmount")
-		var/N = tgui_input_list(usr, "Amount per transfer from this:", "[src]", possible_transfer_amounts)
-		if(!N)
-			return
-
-		amount_per_transfer_from_this = N
-		return TRUE
-
-	if(action == "EmptyHypospray")
-		empty(usr)
-		return TRUE
+/obj/item/reagent_containers/hypospray/advanced
+	name = "Advanced hypospray"
+	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy."
+	core_name = "hypospray"
+	icon_state = "hypo"
+	init_reagent_flags = REFILLABLE|DRAINABLE
+	liquifier = TRUE
 
 /obj/item/reagent_containers/hypospray/advanced/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -284,13 +288,6 @@
 	if(action == "DisplayReagentContent")
 		to_chat(usr, display_reagents())
 		return TRUE
-
-/obj/item/reagent_containers/hypospray/advanced/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "Hypospray", name)
-		ui.open()
-		return TRUE // Or else the other UI on reagent_containers/interact will open
 
 /obj/item/reagent_containers/hypospray/advanced/update_icon_state()
 	. = ..()
