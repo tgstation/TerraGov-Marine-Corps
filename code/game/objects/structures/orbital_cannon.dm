@@ -208,10 +208,15 @@
 		if("plasma")
 			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[4] - tray.fuel_amt)
 
+	// Give marines a warning if misfuelled.
+	var/fuel_warning = "Warhead fuel level: safe."
+	if(inaccurate_fuel > 0)
+		fuel_warning = "Warhead fuel level: incorrect.<br>Warhead may be inaccurate."
+
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
 
 	priority_announce(
-		message = "Get out of danger close immediately!<br>Warhead type: [tray.warhead.warhead_kind]<br>Warhead fuel level: [tray.fuel_amt]<br>Estimated location of impact: [get_area(T)]",
+		message = "Get out of danger close immediately!<br>Warhead type: [tray.warhead.warhead_kind].<br>[fuel_warning]<br>Estimated location of impact: [get_area(T)].",
 		title = "Orbital bombardment launch command detected!",
 		type = ANNOUNCEMENT_PRIORITY,
 		sound = 'sound/effects/OB_warning_announce.ogg',
