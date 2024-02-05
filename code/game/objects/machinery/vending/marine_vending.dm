@@ -157,7 +157,7 @@
 			/obj/item/jetpack_marine = 4,
 			/obj/item/jetpack_marine/heavy = 2,
 			/obj/item/bodybag/tarp = 10,
-			/obj/item/storage/holster/backholster/rpg/full = 2,
+			/obj/item/storage/holster/backholster/rpg/full = 4,
 			/obj/item/ammo_magazine/rocket/recoilless = 8,
 			/obj/item/ammo_magazine/rocket/recoilless/light = 8,
 			/obj/item/ammo_magazine/rocket/recoilless/low_impact = 8,
