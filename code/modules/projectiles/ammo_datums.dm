@@ -1321,7 +1321,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 0.5
 
 /datum/ammo/bullet/spottingrifle/highimpact/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 1 SECONDS, slowdown = 1 SECONDS, max_range = 12)
+	staggerstun(M, P, stagger = 1 SECONDS, slowdown = 1, max_range = 12)
 
 /datum/ammo/bullet/spottingrifle/heavyrubber
 	name = "smart heavy-rubber spotting bullet"
@@ -1330,7 +1330,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 0.5
 
 /datum/ammo/bullet/spottingrifle/heavyrubber/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1 SECONDS, slowdown = 1 SECONDS, max_range = 12)
+	staggerstun(M, P, weaken = 1 SECONDS, slowdown = 1, max_range = 12)
 
 /datum/ammo/bullet/spottingrifle/plasmaloss
 	name = "smart tanglefoot spotting bullet"
