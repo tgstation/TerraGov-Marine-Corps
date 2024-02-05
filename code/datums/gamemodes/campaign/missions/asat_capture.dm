@@ -55,6 +55,30 @@
 	starting_faction_objective_description = "Major Victory:Capture all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] ASAT systems." : ""]"
 	hostile_faction_objective_description = "Major Victory:Prevent the capture of all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Prevent the capture of atleast [min_capture_amount] ASAT systems." : ""]"
 
+/datum/campaign_mission/capture_mission/asat/check_mission_progress()
+	if(outcome)
+		return TRUE
+
+	if(!game_timer)
+		return FALSE
+
+	if(!max_time_reached && objectives_remaining)
+		return FALSE
+
+	if(capture_count[MISSION_STARTING_FACTION] >= objectives_total)
+		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_VICTORY]")
+		outcome = MISSION_OUTCOME_MAJOR_VICTORY
+	else if(min_capture_amount && (capture_count[MISSION_STARTING_FACTION] >= min_capture_amount))
+		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_VICTORY]")
+		outcome = MISSION_OUTCOME_MINOR_VICTORY
+	else if(capture_count[MISSION_STARTING_FACTION] > 0)
+		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_LOSS]")
+		outcome = MISSION_OUTCOME_MINOR_LOSS
+	else
+		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_LOSS]")
+		outcome = MISSION_OUTCOME_MAJOR_LOSS
+	return TRUE
+
 /datum/campaign_mission/capture_mission/asat/apply_major_victory()
 	. = ..()
 	var/datum/faction_stats/som_team = mode.stat_list[starting_faction]
