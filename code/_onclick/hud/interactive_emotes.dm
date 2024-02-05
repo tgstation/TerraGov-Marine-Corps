@@ -16,7 +16,7 @@
 	if(!interaction)
 		return FALSE
 
-	if(length(target.queued_interactions))
+	if(LAZYLEN(target.queued_interactions))
 		for(var/atom/movable/screen/interaction/element AS in target.queued_interactions)
 			if(element.initiator == src)
 				balloon_alert(src, "Slow your roll!")
@@ -26,7 +26,7 @@
 	interaction.owner = target
 	interaction.initiator = src
 	interaction.register_movement_signals()
-	target.queued_interactions += interaction
+	LAZYADD(queued_interactions, interaction)
 
 	if(target.client && target.hud_used)
 		target.hud_used.update_interactive_emotes()
@@ -79,7 +79,7 @@
 //Delete itself from the owner's hud and list of queued interactions
 /atom/movable/screen/interaction/Destroy()
 	deltimer(timer_id)
-	owner.queued_interactions -= src
+	LAZYREMOVE(owner.queued_interactions, src)
 	if(owner.client && owner.hud_used)
 		owner.client.screen -= src
 		owner.hud_used.update_interactive_emotes()
@@ -250,8 +250,8 @@
 	if(!viewer.client)
 		return
 
-	var/list/queued_interactions = mymob.queued_interactions
-	if(!length(queued_interactions))	//No interactions to show
+	var/list/queued_interactions = LAZYLISTDUPLICATE(mymob.queued_interactions)
+	if(!LAZYLEN(queued_interactions))	//No interactions to show
 		return FALSE
 
 	if(!hud_shown)	//Clear the hud of interaction button(s)
@@ -260,7 +260,7 @@
 		return TRUE
 
 	//I don't want to mess with screen real estate so it will only show the first interaction in the list until it's dismissed/expired
-	var/atom/movable/screen/interaction/interaction = queued_interactions[1]
+	var/atom/movable/screen/interaction/interaction = LAZYACCESS(queued_interactions, 1)
 	interaction.screen_loc = "EAST-1:28,TOP-1:28"
 	viewer.client.screen |= interaction
 	return TRUE
