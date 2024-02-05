@@ -432,7 +432,7 @@
 	///How much energy this module needs when activated
 	var/active_energy_cost = 4	//Little over 4 minutes of use
 	///Looping sound to play
-	var/datum/looping_sound/active_sound = /datum/looping_sound/flickeringambient
+	var/datum/looping_sound/active_sound = /datum/looping_sound/scan_pulse
 	///How loud the looping sound should be
 	var/looping_sound_volume = 15
 
@@ -551,6 +551,7 @@
 	icon_state = "night_vision_mounted"
 	tint = COLOR_BLUE
 	vision_flags = NONE
+	darkness_view = 9	//The standalone version cannot see the edges
 	active_energy_cost = 2	//A little over 7 minutes of use
 	looping_sound_volume = 50
 
