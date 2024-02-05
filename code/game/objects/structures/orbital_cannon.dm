@@ -211,10 +211,11 @@
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
 
 	priority_announce(
-		message = "Get out of danger close immediately!<br>Warhead type: [tray.warhead.warhead_kind]<br>Estimated location of impact: [get_area(T)]",
+		message = "Get out of danger close immediately!<br>Warhead type: [tray.warhead.warhead_kind]<br>Warhead fuel level: [tray.fuel_amt]<br>Estimated location of impact: [get_area(T)]",
 		title = "Orbital bombardment launch command detected!",
 		type = ANNOUNCEMENT_PRIORITY,
 		sound = 'sound/effects/OB_warning_announce.ogg',
+		channel_override = SSsounds.random_available_channel(), // This way, we can't have it be cut off by other sounds.
 		color_override = "red"
 	)
 	playsound(target, 'sound/effects/OB_warning_announce_novoiceover.ogg', 125, FALSE, 30, 10) //VOX-less version for xenomorphs
