@@ -426,12 +426,11 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			if((current_mode.current_mission?.mission_state != MISSION_STATE_NEW) && (current_mode.current_mission?.mission_state != MISSION_STATE_LOADED))
 				to_chat(user, "<span class='warning'>Current mission already ongoing, unable to assign more personnel at this time.")
 				return
-			total_attrition_points += active_attrition_points
-			active_attrition_points = 0 //reset, you can change your mind up until the mission starts
-			var/choice = tgui_input_number(user, "How much manpower would you like to dedicate to this mission?", "Attrition Point selection", 0, total_attrition_points, 0, 60 SECONDS)
-			if(!choice)
-				choice = 0
-			total_attrition_points -= choice
+			var/combined_attrition = total_attrition_points + active_attrition_points
+			var/choice = tgui_input_number(user, "How much manpower would you like to dedicate to this mission?", "Attrition Point selection", 0, combined_attrition, 0, 60 SECONDS)
+			combined_attrition = total_attrition_points + active_attrition_points //we do it again in case the amount has changed
+			choice = clamp(choice, 0, combined_attrition)
+			total_attrition_points = combined_attrition - choice
 			active_attrition_points = choice
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
