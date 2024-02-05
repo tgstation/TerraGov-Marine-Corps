@@ -2,7 +2,7 @@
 /mob/proc/interaction_emote(mob/target)
 	var/atom/movable/screen/interaction/interaction
 	if(can_interact(target))
-		switch(src.zone_selected)
+		switch(zone_selected)
 			if(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 				if(isxeno(target) && isxeno(src))	//Benos don't high five each other, they slap tails!
 					interaction = /atom/movable/screen/interaction/fist_bump
@@ -19,7 +19,7 @@
 	if(length(target.queued_interactions))
 		for(var/atom/movable/screen/interaction/element AS in target.queued_interactions)
 			if(element.initiator == src)
-				to_chat(src, span_warning("Slow your roll! You're already trying to interact with [target]!"))
+				balloon_alert(src, "Slow your roll!")
 				return FALSE
 
 	interaction = new interaction()
@@ -265,7 +265,6 @@
 	viewer.client.screen |= interaction
 	return TRUE
 
-/*
 //If anyone wants to add more interactions, here is an easy test item to use, just be sure to comment out any can_interact checks and to use the target mob's zone_selected
 /obj/item/interaction_tester
 	name = "interaction tester"
@@ -276,4 +275,3 @@
 	if(!target)
 		return
 	target.interaction_emote(user, TRUE)
-*/
