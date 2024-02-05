@@ -1,4 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - balance: "Evolution now gives an extra 0.8 maturity instead of 0.2"
