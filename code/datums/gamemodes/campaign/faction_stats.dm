@@ -186,6 +186,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			for(var/mob/living/carbon/human/candidate AS in possible_candidates)
 				if(candidate.job.title != senior_rank)
 					continue
+				if(!candidate.client)
+					continue
 				senior_rank_list += candidate
 			if(!length(senior_rank_list))
 				senior_rank_list.Cut()
