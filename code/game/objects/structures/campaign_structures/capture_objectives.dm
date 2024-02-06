@@ -112,6 +112,9 @@
 		owning_faction = null
 		update_icon()
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_DECAPTURED, src, user)
+		if(user.ckey)
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+			personal_statistics.mission_objective_decaptured ++
 		return
 	finish_capture(user)
 
@@ -120,6 +123,9 @@
 	SHOULD_CALL_PARENT(TRUE)
 	owning_faction = user.faction
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED, src, user)
+	if(user.ckey)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+		personal_statistics.mission_objective_captured ++
 	update_icon()
 
 ///Returns time left on the nuke in seconds
