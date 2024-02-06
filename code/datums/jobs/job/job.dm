@@ -239,7 +239,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 /datum/job/proc/add_job_positions(amount)
 	if(!(job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
-		CRASH("add_job_positions called for a non-joinable job")
+		return
 	if(total_positions == -1)
 		return TRUE
 	var/previous_amount = total_positions

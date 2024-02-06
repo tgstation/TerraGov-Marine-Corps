@@ -1,0 +1,5 @@
+author: "coldironwarrior"
+delete-after: True
+changes:
+  - rscadd: "removes xeno probing"
+  - balance: "point adjustments to xeno caste values for req exports"

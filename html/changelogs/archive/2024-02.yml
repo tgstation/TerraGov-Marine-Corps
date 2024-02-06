@@ -62,3 +62,37 @@
   - qol: Runners can manually cancel evasion.
   - balance: Runners no longer disarmed for the entire duration of evasion if they
       cancel it.
+2024-02-04:
+  Lumipharon:
+  - rscdel: Removed the jump emote
+2024-02-05:
+  '?':
+  - rscdel: Deletes "specialclick" keybind
+  Barnet2:
+  - balance: Evolution now gives an extra 0.8 maturity instead of 0.2
+  Lumipharon:
+  - bugfix: Fixed tac sensor turning off when you holster a different weapon
+  - bugfix: shift click will work for human abilities such as jetpack, if you have
+      toggled your pref from middle mouse button
+  - bugfix: fixed b18 glove sprites
+  - bugfix: fixed the recoil on some weapons such as the BR-8
+  - balance: Psylance stagger reduced to 1 second
+  Pariah919:
+  - rscadd: Added new seasonal with flak cannon and plasma guns.
+  Xander3359:
+  - rscdel: Deletes "Examinate" Keybind
+2024-02-06:
+  Lewdcifer:
+  - balance: Psydrain plasma cost reduced from 100 to 50.
+  Lumipharon:
+  - bugfix: fixed bodies not being cleaned up after a campaign mission
+  Xander3359:
+  - code_imp: add proc attack_self_alternate()
+  ivanmixo:
+  - bugfix: Vali necro overlay should show up again
+  - code_imp: The fullscreen overlays now all actually share the proper plane
+  - bugfix: Readded span_debuginfo
+  - bugfix: Beacons now go back to their inactive icon state when undeployed
+  - bugfix: Beacons now deactivate themselves when they change Z level to a Z level
+      that isn't groundside (instead of leaving the beacon datum on the tile they
+      were at just before they changed Z level)
