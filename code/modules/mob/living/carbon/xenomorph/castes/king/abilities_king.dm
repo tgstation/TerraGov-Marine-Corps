@@ -493,7 +493,7 @@ GLOBAL_LIST_EMPTY(active_summons)
 
 	GLOB.active_summons += X
 	request_admins()
-	if(!do_after(X, 10 SECONDS, IGNORE_HELD_ITEM, X, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(X, PROC_REF(is_active_summon))))
+	if(!do_after(X, 10 SECONDS, IGNORE_HELD_ITEM, X, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(is_active_summon))))
 		add_cooldown(5 SECONDS)
 		for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 			sister.remove_filter("summonoutline")

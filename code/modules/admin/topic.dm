@@ -2151,6 +2151,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 	else if(href_list["cancelsummon"])
 		var/timerid_to_cancel = href_list["cancelsummon"]
 		deltimer(timerid_to_cancel)
+		TYPE_PROC_REF(/datum/action/ability/xeno_action/psychic_summon, on_admin_cancel)
 		var/logtext = "[key_name(usr)] has cancelled a psychic summon with the timerid [timerid_to_cancel]"
 		message_admins(logtext)
 		log_admin(logtext)
