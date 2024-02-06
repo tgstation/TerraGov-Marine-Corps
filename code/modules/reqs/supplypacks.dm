@@ -3,7 +3,7 @@
 //NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Explosives", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports", "Vehicles", "Factory"))
+GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Explosives", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports", "Vehicles", "Factory", "Ammo"))
 
 /datum/supply_packs
 	var/name
@@ -2257,3 +2257,152 @@ FACTORY
 	name = "Zeus orbital drop pod assembly refill"
 	contains = list(/obj/item/factory_refill/drop_pod_refill)
 	cost = 250
+
+
+/*******************************************************************************
+AMMO
+*******************************************************************************/
+
+/datum/supply_packs/ammo
+	group = "Ammo"
+	containertype = /obj/structure/closet/crate/weapon
+
+/datum/supply_packs/ammo
+	name = "Big ammo box (10x24mm)"
+	contains = list(/obj/item/big_ammo_box)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "Big ammo box (10x20mm)"
+	contains = list(/obj/item/big_ammo_box/smg)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "Slug Ammo Box"
+	contains = list(/obj/item/shotgunbox)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "Buckshot Ammo Box"
+	contains = list(/obj/item/shotgunbox/buckshot)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "Flechette Ammo Box"
+	contains = list(/obj/item/shotgunbox/flechette)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "Tracking Ammo Box"
+	contains = list(/obj/item/shotgunbox/tracker)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "P-14 magazine box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/standard_pistol/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "P-23 magazine box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/standard_heavypistol/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "R-44 speedloader box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/standard_revolver/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "P-17 magazine box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/standard_pocketpistol/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "88M4 magazine box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/vp70/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "PP-7 plasma cell box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/plasma_pistol/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "SMG-90 magazine box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "MP-19 magazine box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/standard_machinepistol/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "AR-12 magazine box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "AR-18 magazine box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/standard_carbine/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "AR-21 magazine box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "Martini Henry ammo packet box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/martini/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "AR-11 magazine box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/ar11/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "Terra Experimental cell box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "SH-15 flechette magazine box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/sh15/flechette/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "SH-15 slug magazine box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/sh15/slug/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "DMR-37 magazine box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/standard_dmr/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "BR-64 magazine box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/standard_br/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "SR-127 magazine box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/chamberedrifle/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "MG-42 drum magazine box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/standard_lmg/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "MG-60 magazine box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/standard_gpmg/full)
+	cost = 0
+
+/datum/supply_packs/ammo
+	name = "MG-27 magazine box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/standard_mmg/full)
+	cost = 0

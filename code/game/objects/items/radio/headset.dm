@@ -165,7 +165,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 //MARINE HEADSETS
 /obj/item/radio/headset/mainship
 	name = "marine radio headset"
-	desc = "A standard military radio headset."
+	desc = "A standard military radio headset. Right-Click with empty hand to open requisitions interface."
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	frequency = FREQ_COMMON
