@@ -118,6 +118,16 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	else
 		. += span_notice("A small screen on the headset flashes, it's too small to read without holding or wearing the headset.")
 
+	+= span_notice("Right-Click with empty hand to open requisitions interface.")
+
+/obj/item/radio/headset/attack_hand_alternate(mob/living/user)
+	if(!allowed(user))
+		return ..()
+	if(!supply_interface)
+		supply_interface = new(src)
+	return supply_interface.interact(user)
+
+
 
 /obj/item/radio/headset/recalculateChannels()
 	. = ..()
