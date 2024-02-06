@@ -58,7 +58,7 @@
 	var/gender = NEUTER // Determines if the accessory will be skipped or included in random hair generations
 	var/locked = FALSE		//Is this part locked from roundstart selection? Used for parts that apply effects
 
-	var/list/species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetics", "Vat-Grown", "Vatborn") // Restrict some styles to specific species
+	var/list/species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn", "Moth") // Restrict some styles to specific species
 	var/do_colouration = TRUE	// Whether or not the accessory can be affected by colouration
 
 	var/datum/greyscale_config/greyscale_config
@@ -73,7 +73,7 @@
 */
 
 /datum/sprite_accessory/hair
-	species_allowed = list("Human","Synthetic","Early Synthetic", "Vat-Grown", "Vatborn")
+	species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn", "Moth")
 	icon = 'icons/mob/Human_face.dmi'
 
 /datum/sprite_accessory/hair/bald
@@ -1170,7 +1170,7 @@
 /datum/sprite_accessory/hair_gradient
 	icon = 'icons/mob/hair_gradients.dmi'
 	gender = NEUTER
-	species_allowed = list("Human","Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn")
+	species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn", "Moth")
 
 /datum/sprite_accessory/hair_gradient/none
 	name = "None"
@@ -1221,7 +1221,7 @@
 	name = "Shaved"
 	icon_state = "bald"
 	gender = NEUTER
-	species_allowed = list("Human","Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn")
+	species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn", "Moth")
 
 /datum/sprite_accessory/facial_hair/watson
 	name = "Watson Mustache"
@@ -1316,8 +1316,8 @@
 	icon_state = "facial_brokenman_s"
 	greyscale_config = /datum/greyscale_config/broken_man
 
-	
-	
+
+
 //skin styles - WIP
 //going to have to re-integrate this with surgery
 //let the icon_state hold an icon preview for now

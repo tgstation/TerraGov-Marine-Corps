@@ -30,6 +30,9 @@
 						return /mob/living/carbon/human/species/robot/bravada
 			to_chat(prefs.parent, span_danger("Robot species joins are currently disabled, your species has been defaulted to Human"))
 			return /mob/living/carbon/human
+		if("Moth")
+			if(!(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY))
+				return /mob/living/carbon/human/species/moth
 		if("Vatborn")
 			return /mob/living/carbon/human/species/vatborn
 		else

@@ -47,11 +47,8 @@
 				return GLOB.xeno_types_tier_four
 	if(HAS_TRAIT(src, TRAIT_REGRESSING))
 		switch(tier)
-			if(XENO_TIER_ZERO, XENO_TIER_FOUR)
-				if(isxenoshrike(src))
-					return GLOB.xeno_types_tier_one
-				else
-					return
+			if(XENO_TIER_ZERO)
+				return
 			if(XENO_TIER_ONE)
 				return list(/mob/living/carbon/xenomorph/larva)
 			if(XENO_TIER_TWO)
@@ -71,8 +68,7 @@
 		if(XENO_TIER_THREE)
 			return GLOB.xeno_types_tier_four + /mob/living/carbon/xenomorph/hivemind
 		if(XENO_TIER_FOUR)
-			if(istype(xeno_caste, /datum/xeno_caste/shrike))
-				return list(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/king)
+			return list(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/king, /mob/living/carbon/xenomorph/shrike)
 
 
 ///Handles the evolution or devolution of the xenomorph

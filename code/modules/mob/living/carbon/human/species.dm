@@ -756,6 +756,7 @@
 	reagent_tag = IS_MOTH
 
 	namepool = /datum/namepool/moth
+	joinable_roundstart = TRUE
 
 /datum/species/moth/handle_fire(mob/living/carbon/human/H)
 	if(H.moth_wings != "Burnt Off" && H.bodytemperature >= 400 && H.fire_stacks > 0)
