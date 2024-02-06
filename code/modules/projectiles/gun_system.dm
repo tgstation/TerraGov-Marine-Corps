@@ -458,8 +458,7 @@
 	. = ..()
 	set_gun_user(null)
 	active_attachable?.removed_from_inventory(user)
-	if(loc != user) // reequip component caught it with the signal
-		drop_connected_mag(null, user)
+	drop_connected_mag(null, user)
 
 ///Set the user in argument as gun_user
 /obj/item/weapon/gun/proc/set_gun_user(mob/user)
@@ -486,7 +485,7 @@
 		COMSIG_MOB_SHOCK_STAGE_CHANGED,
 		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
-		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
+		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET, src)
 		gun_user.hud_used.remove_ammo_hud(src)
 		if(heat_meter)
 			gun_user.client.images -= heat_meter
