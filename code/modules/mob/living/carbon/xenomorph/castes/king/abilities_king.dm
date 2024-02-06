@@ -483,6 +483,7 @@
 
 	log_game("[key_name(owner)] has begun summoning hive in [AREACOORD(owner)]")
 	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", hivenumber = X.hivenumber)
+	message_admins("King: [ADMIN_TPMONTY(owner)] has begun a psychic summon in [get_area(owner)].")
 	var/list/allxenos = X.hive.get_all_xenos()
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 		if(sister.z != owner.z)
