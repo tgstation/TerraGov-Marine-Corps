@@ -460,7 +460,7 @@
 	GLOB.campaign_structures -= mission_obj
 
 ///spawns mechs for a faction
-/datum/campaign_mission/proc/spawn_mech(mech_faction, heavy_mech, medium_mech, light_mech)
+/datum/campaign_mission/proc/spawn_mech(mech_faction, heavy_mech, medium_mech, light_mech, override_message)
 	if(!mech_faction)
 		return
 	var/total_count = (heavy_mech + medium_mech + light_mech)
@@ -480,4 +480,4 @@
 		GLOB.campaign_structures += new_mech
 		RegisterSignal(new_mech, COMSIG_QDELETING, TYPE_PROC_REF(/datum/campaign_mission, remove_mission_object))
 
-	map_text_broadcast(mech_faction, "[total_count] mechs have been deployed for this mission.", "Mechs available")
+	map_text_broadcast(mech_faction, override_message ? override_message : "[total_count] mechs have been deployed for this mission.", "Mechs available")
