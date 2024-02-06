@@ -21,7 +21,6 @@
 	///Whether we can restock this in a vendor without it having its starting reagents
 	var/free_refills = TRUE
 
-
 /obj/item/reagent_containers/Initialize(mapload)
 	. = ..()
 	create_reagents(volume, init_reagent_flags, list_reagents)
@@ -33,16 +32,19 @@
 	change_transfer_amount(user)
 
 /obj/item/reagent_containers/attack_self_alternate(mob/living/user)
-	. = ..()
-	change_transfer_amount(user)
+	if(!change_transfer_amount(user))
+		return ..()
+	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF_ALTERNATE, user)
+	add_fingerprint(user, "attack_self_alternate")
 
 ///Opens a tgui_input_list and changes the transfer_amount of our container based on our selection
 /obj/item/reagent_containers/proc/change_transfer_amount(mob/living/user)
 	if(!possible_transfer_amounts)
-		return
+		return FALSE
 	var/result = tgui_input_list(user, "Amount per transfer from this:","[src]", possible_transfer_amounts)
 	if(result)
 		amount_per_transfer_from_this = result
+	return TRUE
 
 /obj/item/reagent_containers/verb/set_APTFT()
 	set name = "Set transfer amount"
