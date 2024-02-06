@@ -211,7 +211,6 @@
 	if(!ui)
 		ui = new(user, src, "Hypospray", name)
 		ui.open()
-		return TRUE // Or else the other UI on reagent_containers/interact will open
 
 /obj/item/reagent_containers/hypospray/ui_data(mob/user)
 	var/list/data = list()
