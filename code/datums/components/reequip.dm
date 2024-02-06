@@ -5,8 +5,10 @@
 
 	///list of SLOT_* defines for equip_in_one_of_slots
 	var/list/slots_to_try
+	///Ticks between the object being dropped and reequipped
+	var/reequip_delay = 0.3 SECONDS
 
-/datum/component/reequip/Initialize(slots, ...)
+/datum/component/reequip/Initialize(slots, _reequip_delay, ...)
 	if(!slots)
 		return COMPONENT_INCOMPATIBLE
 	if(!isitem(parent))
@@ -14,6 +16,8 @@
 	if(!islist(slots))
 		slots = list(slots)
 	slots_to_try = slots
+	if(_reequip_delay)
+		reequip_delay = _reequip_delay
 	RegisterSignal(parent, COMSIG_ITEM_REMOVED_INVENTORY, PROC_REF(begin_reequip))
 	RegisterSignal(parent, COMSIG_MOVABLE_PRE_THROW, PROC_REF(cancel_throw))
 
@@ -25,7 +29,7 @@
 ///Just holds a delay for the reequip attempt
 /datum/component/reequip/proc/begin_reequip(source, mob/user)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, PROC_REF(catch_wrapper), source, user)
+	addtimer(CALLBACK(src, PROC_REF(catch_wrapper), source, user), reequip_delay)
 
 ///Wrapper to ensure signals only come from One Spot
 /datum/component/reequip/proc/catch_wrapper(source, mob/user)
