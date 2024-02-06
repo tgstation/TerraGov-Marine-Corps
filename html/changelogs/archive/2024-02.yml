@@ -81,3 +81,18 @@
   - rscadd: Added new seasonal with flak cannon and plasma guns.
   Xander3359:
   - rscdel: Deletes "Examinate" Keybind
+2024-02-06:
+  Lewdcifer:
+  - balance: Psydrain plasma cost reduced from 100 to 50.
+  Lumipharon:
+  - bugfix: fixed bodies not being cleaned up after a campaign mission
+  Xander3359:
+  - code_imp: add proc attack_self_alternate()
+  ivanmixo:
+  - bugfix: Vali necro overlay should show up again
+  - code_imp: The fullscreen overlays now all actually share the proper plane
+  - bugfix: Readded span_debuginfo
+  - bugfix: Beacons now go back to their inactive icon state when undeployed
+  - bugfix: Beacons now deactivate themselves when they change Z level to a Z level
+      that isn't groundside (instead of leaving the beacon datum on the tile they
+      were at just before they changed Z level)
