@@ -165,6 +165,15 @@
 	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
 	bound_width = 128
 
+/obj/structure/campaign_objective/destruction_objective/supply_objective/train/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/structure/campaign_objective/destruction_objective/supply_objective/train/update_overlays()
+	. = ..()
+	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_MOB_LAYER, dir)
+	. += new_overlay
+
 /obj/effect/landmark/campaign_structure/train/carriage
 	name = "carriage objective"
 	icon_state = "carriage_lit"
