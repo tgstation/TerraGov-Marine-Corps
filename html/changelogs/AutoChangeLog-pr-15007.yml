@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Campaign: Switching team for autobalance rewards you with addition credits"
+  - balance: "Campaign: If teams are still not balanced, the weaker team is given light mechs based on how outnumbered they are"
