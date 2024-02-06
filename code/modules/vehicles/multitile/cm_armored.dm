@@ -648,7 +648,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	user.visible_message(span_notice("[user] starts repairing the [slot] slot on [src]."),
 		span_notice("You start repairing the [slot] slot on the [src]."))
 
-	if(!do_after(user, 30 * num_delays, NONE, src, BUSY_ICON_BUILD, extra_checks = iswelder(O) ? CALLBACK(O, PROC_REF(isOn)) : null))
+	if(!do_after(user, 30 * num_delays, NONE, src, BUSY_ICON_BUILD, extra_checks = iswelder(O) ? CALLBACK(O, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn)) : null))
 		user.visible_message(span_notice("[user] stops repairing the [slot] slot on [src]."),
 			span_notice("You stop repairing the [slot] slot on the [src]."))
 		return
