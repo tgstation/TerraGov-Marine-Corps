@@ -117,17 +117,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			. += span_info("Alt-click to toggle the high-volume mode.")
 	else
 		. += span_notice("A small screen on the headset flashes, it's too small to read without holding or wearing the headset.")
-	= ..()
-	+= span_notice("Right-Click with empty hand to open requisitions interface.")
-
-/obj/item/radio/headset/attack_hand_alternate(mob/living/user)
-	if(!allowed(user))
-		return ..()
-	if(!supply_interface)
-		supply_interface = new(src)
-	return supply_interface.interact(user)
-
-
 
 /obj/item/radio/headset/recalculateChannels()
 	. = ..()
@@ -191,6 +180,16 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/faction = FACTION_TERRAGOV
 	///The type of minimap this headset gives access to
 	var/datum/action/minimap/minimap_type = /datum/action/minimap/marine
+	// req interface for all radios from radio backpack
+	var/datum/supply_ui/requests/supply_interface
+
+
+/obj/item/radio/headset/mainship/attack_hand_alternate(mob/living/user)
+	if(!allowed(user))
+		return ..()
+	if(!supply_interface)
+		supply_interface = new(src)
+	return supply_interface.interact(user)
 
 /obj/item/radio/headset/mainship/Initialize(mapload)
 	. = ..()
