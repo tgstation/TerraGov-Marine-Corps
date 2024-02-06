@@ -64,7 +64,7 @@
 				override_color = "purple"
 			if(DELTA_SQUAD)
 				override_color = "blue"
-		deadchat_broadcast(" has sent a Squad Announcement:<br><br>[span_bigdeadsay("[text]")]<br><br>", human_owner, human_owner)
+		deadchat_broadcast(" has sent a [human_owner.assigned_squad.name] Squad Announcement:<br><br>[span_bigdeadsay("[text]")]<br><br>", human_owner, human_owner)
 		for(var/mob/living/carbon/human/marine AS in human_owner.assigned_squad.marines_list)
 			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>SQUAD ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
 			to_chat(marine, assemble_alert(

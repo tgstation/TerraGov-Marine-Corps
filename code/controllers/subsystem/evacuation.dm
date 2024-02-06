@@ -177,7 +177,7 @@ SUBSYSTEM_DEF(evacuation)
 			dest_master.visible_message(span_warning("WARNING: Unable to trigger detonation. Please arm all control rods."))
 			return FALSE
 
-	priority_announce("DANGER. DANGER. Self destruct system activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", type = ANNOUNCEMENT_PRIORITY, color_override = "purple")
+	priority_announce("DANGER. DANGER. Self destruct system activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", title = "Self Destruct System", type = ANNOUNCEMENT_PRIORITY, color_override = "purple")
 	GLOB.enter_allowed = FALSE
 	dest_status = NUKE_EXPLOSION_IN_PROGRESS
 	playsound(dest_master, 'sound/machines/alarm.ogg', 75, 0, 30)
