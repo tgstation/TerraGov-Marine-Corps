@@ -227,12 +227,17 @@
 	icon_state = "asat"
 	desc = "A sophisticated surface to space missile system designed for attacking orbiting satellites or spacecraft."
 	capture_flags = CAPTURE_OBJECTIVE_RECAPTURABLE
-	///owning faction
-	var/faction = FACTION_TERRAGOV
+	owning_faction = FACTION_TERRAGOV
 
 /obj/structure/campaign_objective/capture_objective/fultonable/asat_system/capture_check(mob/living/user)
 	//This is a 'defend' objective. The defending faction can't actually claim it for themselves, just decap it.
-	if((user.faction == faction) && !capturing_faction && !owning_faction)
+	if((user.faction == owning_faction) && !capturing_faction)
 		user.balloon_alert(user, "Defend this objective!")
 		return FALSE
 	return ..()
+
+/obj/structure/campaign_objective/capture_objective/fultonable/asat_system/do_capture(mob/living/user)
+	capturing_faction = null
+	capture_timer = null
+	countdown.stop()
+	finish_capture(user)
