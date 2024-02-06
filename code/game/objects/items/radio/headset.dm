@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			. += span_info("Alt-click to toggle the high-volume mode.")
 	else
 		. += span_notice("A small screen on the headset flashes, it's too small to read without holding or wearing the headset.")
-
+	= ..()
 	+= span_notice("Right-Click with empty hand to open requisitions interface.")
 
 /obj/item/radio/headset/attack_hand_alternate(mob/living/user)
