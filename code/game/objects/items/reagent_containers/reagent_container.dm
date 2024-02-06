@@ -30,41 +30,26 @@
 
 /obj/item/reagent_containers/attack_hand_alternate(mob/living/user)
 	. = ..()
+	change_transfer_amount(user)
+
+/obj/item/reagent_containers/attack_self_alternate(mob/living/user)
+	. = ..()
+	change_transfer_amount(user)
+
+///Opens a tgui_input_list and changes the transfer_amount of our container based on our selection
+/obj/item/reagent_containers/proc/change_transfer_amount(mob/living/user)
 	if(!possible_transfer_amounts)
 		return
 	var/result = tgui_input_list(user, "Amount per transfer from this:","[src]", possible_transfer_amounts)
 	if(result)
 		amount_per_transfer_from_this = result
 
-/obj/item/reagent_containers/interact(mob/user)
-	. = ..()
-	if(.)
-		return
-
-	open_ui(user)
-
-///Opens the relevant UI
-/obj/item/reagent_containers/proc/open_ui(mob/user)
-	if(!length(possible_transfer_amounts))
-		return
-
-	var/N = tgui_input_list(user, "Amount per transfer from this:", "[src]", possible_transfer_amounts)
-	if(!N)
-		return
-
-	amount_per_transfer_from_this = N
-
 /obj/item/reagent_containers/verb/set_APTFT()
 	set name = "Set transfer amount"
 	set category = "Object"
 	set src in view(1)
 
-	var/N = tgui_input_list(usr, "Amount per transfer from this:", "[src]", possible_transfer_amounts)
-	if(!N)
-		return
-
-	amount_per_transfer_from_this = N
-
+	change_transfer_amount(usr)
 
 //returns a text listing the reagents (and their volume) in the atom. Used by Attack logs for reagents in pills
 /obj/item/reagent_containers/proc/get_reagent_list_text()
