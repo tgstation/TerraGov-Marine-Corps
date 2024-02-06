@@ -2148,6 +2148,13 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		message_admins(logtext)
 		log_admin(logtext)
 
+	else if(href_list["cancelsummon"])
+		var/timerid_to_cancel = href_list["cancelsummon"]
+		deltimer(timerid_to_cancel)
+		var/logtext = "[key_name(usr)] has cancelled a psychic summon with the timerid [timerid_to_cancel]"
+		message_admins(logtext)
+		log_admin(logtext)
+
 	else if(href_list["tag_datum"])
 		if(!check_rights(R_ADMIN))
 			return
