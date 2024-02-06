@@ -185,6 +185,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 
 /obj/item/radio/headset/mainship/attack_hand_alternate(mob/living/user)
+	var/area/R = get_area(src)
+	if(!isnull(R))
+		if(R.ceiling >= CEILING_UNDERGROUND)
+			return ..()
+
 	if(!allowed(user))
 		return ..()
 	if(!supply_interface)
