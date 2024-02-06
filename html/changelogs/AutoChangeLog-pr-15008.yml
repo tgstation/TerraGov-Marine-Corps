@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Campaign: SSD's will no longer be eligable for faction leader"
+  - qol: "Campaign: SSD shipside players are cleaned up at the end of each mission"
