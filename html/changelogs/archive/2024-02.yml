@@ -81,3 +81,12 @@
   - rscadd: Added new seasonal with flak cannon and plasma guns.
   Xander3359:
   - rscdel: Deletes "Examinate" Keybind
+2024-02-06:
+  Lumipharon:
+  - bugfix: fixed bodies not being cleaned up after a campaign mission
+  ivanmixo:
+  - bugfix: Readded span_debuginfo
+  - bugfix: Beacons now go back to their inactive icon state when undeployed
+  - bugfix: Beacons now deactivate themselves when they change Z level to a Z level
+      that isn't groundside (instead of leaving the beacon datum on the tile they
+      were at just before they changed Z level)
