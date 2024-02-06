@@ -58,7 +58,7 @@
 	var/gender = NEUTER // Determines if the accessory will be skipped or included in random hair generations
 	var/locked = FALSE		//Is this part locked from roundstart selection? Used for parts that apply effects
 
-	var/list/species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn", "Moth") // Restrict some styles to specific species
+	var/list/species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn", "Mothellian") // Restrict some styles to specific species
 	var/do_colouration = TRUE	// Whether or not the accessory can be affected by colouration
 
 	var/datum/greyscale_config/greyscale_config
@@ -73,7 +73,7 @@
 */
 
 /datum/sprite_accessory/hair
-	species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn", "Moth")
+	species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn", "Mothellian")
 	icon = 'icons/mob/Human_face.dmi'
 
 /datum/sprite_accessory/hair/bald
@@ -1170,7 +1170,7 @@
 /datum/sprite_accessory/hair_gradient
 	icon = 'icons/mob/hair_gradients.dmi'
 	gender = NEUTER
-	species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn", "Moth")
+	species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn", "Mothellian")
 
 /datum/sprite_accessory/hair_gradient/none
 	name = "None"
@@ -1221,7 +1221,7 @@
 	name = "Shaved"
 	icon_state = "bald"
 	gender = NEUTER
-	species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn", "Moth")
+	species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn", "Mothellian")
 
 /datum/sprite_accessory/facial_hair/watson
 	name = "Watson Mustache"
@@ -1335,7 +1335,7 @@
 	species_allowed = list("Human")
 
 /datum/sprite_accessory/moth_wings
-	species_allowed = list("Moth")
+	species_allowed = list("Mothellian")
 	do_colouration = FALSE
 	icon = 'icons/mob/species/moth/wings.dmi'
 

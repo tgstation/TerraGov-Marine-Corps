@@ -4,6 +4,7 @@
 	synthetic_type = pick(SYNTH_TYPES)
 	robot_type = pick(ROBOT_TYPES)
 	ethnicity = random_ethnicity()
+	moth_wings = pick(GLOB.moth_wings_list)
 
 	h_style = random_hair_style(gender, species)
 	f_style = random_facial_hair_style(gender, species)
@@ -136,6 +137,7 @@
 	if(!previewJob)
 		var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 		copy_to(mannequin)
+		mannequin.set_species(species)
 		parent.show_character_previews(new /mutable_appearance(mannequin))
 		unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 		return

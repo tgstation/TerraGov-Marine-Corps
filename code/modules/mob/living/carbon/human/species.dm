@@ -734,8 +734,8 @@
 	special_death_message = "You have perished."
 
 /datum/species/moth
-	name = "Moth"
-	name_plural = "Moth"
+	name = "Mothellian"
+	name_plural = "Mothellians"
 	icobase = 'icons/mob/human_races/r_moth.dmi'
 	default_language_holder = /datum/language_holder/moth
 	eyes = "blank_eyes"
