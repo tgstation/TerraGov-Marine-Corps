@@ -249,3 +249,5 @@ log_whisper
 log_emote
 log_looc
 log_say
+allow_vote_restart
+allow_vote_groundmap
