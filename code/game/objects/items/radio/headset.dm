@@ -165,7 +165,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 //MARINE HEADSETS
 /obj/item/radio/headset/mainship
 	name = "marine radio headset"
-	desc = "A standard military radio headset. Right-Click with empty hand to open requisitions interface."
+	desc = "A standard military radio headset. Right-Click with an empty hand to open requisitions interface."
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	frequency = FREQ_COMMON
@@ -185,10 +185,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 
 /obj/item/radio/headset/mainship/attack_hand_alternate(mob/living/user)
-	var/area/R = get_area(src)
-	if(!isnull(R))
-		if(R.ceiling >= CEILING_UNDERGROUND)
-			return ..()
+	var/area/A = get_area(user)
+	if(A && istype(A) && A.ceiling >= CEILING_UNDERGROUND)
+		to_chat(user, span_warning("The radio's requisitions display flickers before dying."))
+		return ..()
 
 	if(!allowed(user))
 		return ..()
