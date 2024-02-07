@@ -254,3 +254,95 @@
   - bugfix: fixed a few click-related issues
   ivanmixo:
   - bugfix: Your ghost keeps bobbing even after you stop orbiting stuff now
+2024-01-24:
+  SomrNetwork:
+  - rscadd: "suitlight to crasher body armor\n/ \U0001F191"
+  XElectricX:
+  - bugfix: Toggle Weather Sound verb has correct message.
+  - bugfix: Toggle Ambience verb stops ambience that is currently playing.
+  - bugfix: Hide statpanel scroll bar when not needed.
+2024-01-25:
+  SomrNetwork:
+  - rscdel: "Flak armor\n/ \U0001F191"
+  ivanmixo:
+  - balance: Xenomorph resting now blocks you from unresting for 2 seconds, instead
+      of it being a 2 second progress bar to get up
+  usnpeepoo:
+  - bugfix: Puppeteers radial menu for blessings now have the correct icon in place
+2024-01-26:
+  DeltaFire15:
+  - bugfix: Various HUD elements now display revivability more accurately.
+  - bugfix: Another case that would randomly DNR you has been fixed.
+  - bugfix: Defib messages & failures should be less likely to display in incorrect
+      situations.
+  - bugfix: Minimap icons should no longer display as DNR for now fixed cases.
+  Xander3359:
+  - bugfix: Spit slash RMB works again
+  ivanmixo:
+  - qol: Xenomorphs can now see their current regenerative power in their status panel
+  - balance: Nanites have been rebalanced to be a sidegrade to BKTT, check the PR
+      for more details
+2024-01-27:
+  SomrNetwork:
+  - rscadd: "flak stats to crasher\n/ \U0001F191"
+  novaepee:
+  - balance: remove TL-172 Defensive Shield from crash and nuclear war
+2024-01-28:
+  Barnet2:
+  - balance: All xenomorphs with acid now have strong acid during prep (Nuclear War)
+  - balance: Xenomorphs can now evolve to any caste above their tier and T4, with
+      exceptions made for the T4's and larva
+  - balance: Magmoor disks are now sorted into 3 preset sets.
+  Helg2:
+  - bugfix: '[Big Red] connected the pipes on few atmos variants.'
+  Pariah919:
+  - rscadd: Added new ML-14 MG to ICC, and backpack.
+  - rscadd: ICC Heavy armor 'Cuirassier'.
+  ivanmixo:
+  - balance: MBX is now two handed only
+  - refactor: Refactored beacons into a component
+2024-01-29:
+  Aporhtonoma:
+  - balance: squad order skill require from 3 to 2
+  Barnet2:
+  - bugfix: Fixes various bugs with evolution
+  Lewdcifer:
+  - rscdel: 'Reverted all click changes in #14896, #14880, and #14747.'
+  Lumipharon:
+  - balance: SOM armour no longer has superior bullet armour compared to marines.
+      Still retains a slight weakness to lasers
+  - bugfix: Lorica armour has equal slowdown to tyr 2
+  - rscadd: Added some more loadout choices for marines in campaign
+  - bugfix: fixed miniguns and SADAR being unwieldable
+  - balance: 'Campaign: Medical skill perk now gives access to improved first aid
+      pouches for roles that don''t already have it'
+  - rscadd: New shield overclock perk for improved shield module performance and availability
+  - balance: Removed some RR from campaign
+  - bugfix: 'Campaign: Base SMG-25 loadout has its missing gear added'
+  - balance: Campaign has an autobalance check at the start of every mission to try
+      balance team numbers
+  - balance: Weapon X in campaign mode heals faster
+  - balance: Campaign VP target reduced to 7 from 12 until round ending missions are
+      added
+  Neocloudy:
+  - rscadd: chat styles from tgstation
+  - rscadd: brighter channel, ooc and deadchat colors on dark mode
+  - rscadd: announcement blocks/dividers with striped effects, used for priority/minor
+      announcements and sending command orders
+  SomrNetwork:
+  - rscadd: 'medskill to speccops
+
+      /:cl'
+  coldironwarrior:
+  - rscadd: Any plushies (or gnomes) now help heal cloneloss a little faster while
+      you sleep; share the bed with them and make sure you bring a blanket!
+2024-01-30:
+  Lumipharon:
+  - bugfix: fixed stagger blocking blink drive and jetpack
+  Pariah919:
+  - rscadd: Added new SMG-45, heavy submachinegun for marines.
+2024-01-31:
+  Lumipharon:
+  - balance: Ravager, Hunter and Mantis now have some AP on their melee attacks
+  efzapa:
+  - imageadd: Energy Sword sprite changed.

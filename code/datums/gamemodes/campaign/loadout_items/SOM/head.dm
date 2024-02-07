@@ -19,20 +19,12 @@
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
-/datum/loadout_item/helmet/som_veteran/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
-
 /datum/loadout_item/helmet/gorgon
 	name = "Gorgon pattern helmet"
 	desc = "Made for use with Gorgon pattern assault armor, providing superior protection. Typically seen on SOM leaders or their most elite combat units."
 	item_typepath = /obj/item/clothing/head/modular/som/leader
 	jobs_supported = list(SOM_SQUAD_LEADER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
-
-/datum/loadout_item/helmet/gorgon/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
 
 /datum/loadout_item/helmet/gorgon/fc
 	name = "Gorgon pattern helmet"
@@ -53,13 +45,10 @@
 	desc = "A bulky helmet paired with the 'Lorica' armor module, designed for outstanding protection at the cost of significant weight and reduced flexibility. \
 	Substantial additional armor improves protection against all damage."
 	req_desc = "Requires a suit with a Lorica module."
+	ui_icon = "lorica"
 	item_typepath = /obj/item/clothing/head/modular/som/lorica
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN)
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/lorica = ITEM_SLOT_OCLOTHING)
-
-/datum/loadout_item/helmet/som_tyr/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
 
 /datum/loadout_item/helmet/som_mimir
 	name = "Biohazard helmet"
@@ -68,10 +57,6 @@
 	item_typepath = /obj/item/clothing/head/modular/som/bio
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/mithridatius = ITEM_SLOT_OCLOTHING)
-
-/datum/loadout_item/helmet/som_mimir/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
 
 /datum/loadout_item/helmet/som_engineer
 	name = "Engineering helmet"

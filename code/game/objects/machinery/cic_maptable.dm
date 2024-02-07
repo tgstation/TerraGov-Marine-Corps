@@ -179,6 +179,7 @@
 	pixel_y = -14
 	coverage = 75
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+	bound_width = 64
 
 /obj/machinery/cic_maptable/drawable/big/som
 	minimap_flag = MINIMAP_FLAG_MARINE_SOM

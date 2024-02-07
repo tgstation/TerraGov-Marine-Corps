@@ -374,6 +374,12 @@
 	for(var/obj/structure/xeno/evotower/tower AS in evotowers)
 		. += tower.boost_amount
 
+///fetches number of bonus maturity points given to the hive
+/datum/hive_status/proc/get_upgrade_boost()
+	. = 0
+	for(var/obj/structure/xeno/evotower/tower AS in evotowers)
+		. += tower.maturty_boost_amount
+
 // ***************************************
 // *********** Adding xenos
 // ***************************************

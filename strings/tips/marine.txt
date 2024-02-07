@@ -43,7 +43,7 @@ Blue weeds and purple sticky resin slow you down. Get rid of them!
 During Self Destruct, green control rods are armed control rods. Each rods take 3 minutes to rise, forcing marines to hold Self Destruct for a total of 20 minutes. Collect all six!
 A fit marine can carry many weapons: in their armor, belt, even hanging from their back.
 Requisitions has many supplies to enhance the combat power of marine units, such as attachments, ammunition, and other toys; ask their crew what's in store and you may be pleasantly surprised. DISCLAIMER: Extra gears' availability is dependent on supply.
-As a marine, you can climb over waist-high obstacles like sandbags, window frames or tables by CTRL+Clicking on them or drag-clicking yourself onto them.
+As a marine, you can climb over waist-high obstacles like sandbags, window frames or tables by CTRL+clicking them or drag-clicking yourself onto them.
 You can jump over waist-high obstacles like platforms, tables, and window frames, for a small stamina cost (Default: Spacebar).
 The Terra Experimental laser rifles have a mode selector that can be switched using the Unique Action command (Default: Spacebar). Some modes are better than other modes in specific circumstances.
 You can remove armor pieces (leg pieces, arm pieces and chest pieces) and armor modules (Valkyrie, Baldur, etc.) from the XM-02 Combat Exoskeleton by Alt+clicking the exoskeleton.

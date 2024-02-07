@@ -112,6 +112,9 @@
 		owning_faction = null
 		update_icon()
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_DECAPTURED, src, user)
+		if(user.ckey)
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+			personal_statistics.mission_objective_decaptured ++
 		return
 	finish_capture(user)
 
@@ -120,6 +123,9 @@
 	SHOULD_CALL_PARENT(TRUE)
 	owning_faction = user.faction
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED, src, user)
+	if(user.ckey)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+		personal_statistics.mission_objective_captured ++
 	update_icon()
 
 ///Returns time left on the nuke in seconds
@@ -131,7 +137,13 @@
 	name = "sensor tower objective"
 	icon = 'icons/obj/structures/sensor.dmi'
 	icon_state = "sensor"
-	mission_types = list(/datum/campaign_mission/tdm, /datum/campaign_mission/tdm/lv624, /datum/campaign_mission/tdm/first_mission, /datum/campaign_mission/tdm/mech_wars)
+	mission_types = list(
+		/datum/campaign_mission/tdm,
+		/datum/campaign_mission/tdm/lv624,
+		/datum/campaign_mission/tdm/first_mission,
+		/datum/campaign_mission/tdm/mech_wars,
+		/datum/campaign_mission/tdm/mech_wars/som,
+	)
 	spawn_object = /obj/structure/campaign_objective/capture_objective/sensor_tower
 
 /obj/structure/campaign_objective/capture_objective/sensor_tower
@@ -221,12 +233,17 @@
 	icon_state = "asat"
 	desc = "A sophisticated surface to space missile system designed for attacking orbiting satellites or spacecraft."
 	capture_flags = CAPTURE_OBJECTIVE_RECAPTURABLE
-	///owning faction
-	var/faction = FACTION_TERRAGOV
+	owning_faction = FACTION_TERRAGOV
 
 /obj/structure/campaign_objective/capture_objective/fultonable/asat_system/capture_check(mob/living/user)
 	//This is a 'defend' objective. The defending faction can't actually claim it for themselves, just decap it.
-	if((user.faction == faction) && !capturing_faction && !owning_faction)
+	if((user.faction == owning_faction) && !capturing_faction)
 		user.balloon_alert(user, "Defend this objective!")
 		return FALSE
 	return ..()
+
+/obj/structure/campaign_objective/capture_objective/fultonable/asat_system/do_capture(mob/living/user)
+	capturing_faction = null
+	capture_timer = null
+	countdown.stop()
+	finish_capture(user)

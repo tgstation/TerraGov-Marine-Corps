@@ -21,7 +21,7 @@
 	///What skill is needed to have this action
 	var/skill_name = SKILL_LEADERSHIP
 	///What minimum level in that skill is needed to have that action
-	var/skill_min = SKILL_LEAD_EXPERT
+	var/skill_min = SKILL_LEAD_TRAINED
 
 /datum/action/innate/message_squad/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min
@@ -49,16 +49,19 @@
 		return
 	if(!can_use_action())
 		return
-	human_owner.playsound_local(owner, "sound/effects/CIC_order.ogg", 10, 1)
+	var/sound/S = sound('sound/misc/notice2.ogg')
+	S.channel = CHANNEL_ANNOUNCEMENTS
 	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
 	log_game("[key_name(human_owner)] has broadcasted the hud message [text] at [AREACOORD(human_owner)]")
-	deadchat_broadcast(" has sent the command order \"[text]\"", human_owner, human_owner)
 	if(human_owner.assigned_squad)
+		deadchat_broadcast(" has sent a Squad Announcement:<br><br>[span_bigdeadsay("[text]")]<br><br>", human_owner, human_owner)
 		for(var/mob/living/carbon/human/marine AS in human_owner.assigned_squad.marines_list)
-			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>SQUAD ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
-			to_chat(marine, "<h2 class='alert'>You have received orders from the [human_owner.job.title]:</h2><br>[span_alert(text)]<br><br>")
+			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>SQUAD ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
+			to_chat(marine, "[span_faction_alert("[span_faction_alert_minortitle("Squad Announcement")][span_faction_alert_text("[text]<br><br><i>Sent by [human_owner.real_name], the [human_owner.job.title]</i>")]")]")
 		return
+	deadchat_broadcast(" has sent a Command Announcement:<br><br>[span_bigdeadsay("[text]")]<br><br>", human_owner, human_owner)
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == human_owner.faction)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
-			to_chat(human, "<h2 class='alert'>You have received orders from the [human_owner.job.title]:</h2><br>[span_alert(text)]<br><br>")
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>COMMAND ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
+			to_chat(human, "[span_faction_alert("[span_faction_alert_title("Command Announcement")]<br>[span_faction_alert_text("[text]<br><br><i>Sent by [human_owner.real_name], the [human_owner.job.title]</i>")]")]")
+			SEND_SOUND(human, S)
