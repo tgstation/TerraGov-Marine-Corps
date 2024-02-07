@@ -120,7 +120,7 @@
 	var/ai_name = "[usr] Bioscan Status"
 
 	if(ai_operator)
-		priority_announce(input, ai_name, sound = 'sound/AI/bioscan.ogg', color_override = "grey")
+		priority_announce(input, ai_name, sound = 'sound/AI/bioscan.ogg', color_override = "grey", receivers = (GLOB.alive_human_list + GLOB.ai_list))
 		log_game("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""] and [numXenosTransit] in transit.")
 
 		switch(GLOB.current_orbit)
