@@ -291,18 +291,18 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 	id = /obj/item/card/id/silver
 
-//Tadpole Officer
-/datum/job/terragov/command/tadofficer
-	title = TADPOLE_OFFICER
+//Transport Officer
+/datum/job/terragov/command/transportofficer
+	title = TRANSPORT_OFFICER
 	paygrade = "WO"
 	comm_title = "TO"
 	total_positions = 1
 	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE)
 	minimal_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
-	skills_type = /datum/skills/tadofficer
-	display_order = JOB_DISPLAY_ORDER_TADPOLE_OFFICER
-	outfit = /datum/outfit/job/command/pilot
-	exp_requirements = XP_REQ_TADPOLE_OFFICER
+	skills_type = /datum/skills/transportofficer
+	display_order = JOB_DISPLAY_ORDER_TRANSPORT_OFFICER
+	outfit = /datum/outfit/job/command/transportofficer
+	exp_requirements = XP_REQ_EXPERT
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
@@ -318,9 +318,9 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Pilot the Tadpole, a versatile dropship capable of fulfilling roles ranging from ambulance to mobile bunker.
 	"}
-	minimap_icon = "tadofficer"
+	minimap_icon = "transportofficer"
 
-/datum/job/terragov/command/tadofficer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+/datum/job/terragov/command/transportofficer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
 	if(!ishuman(new_mob))
 		return
@@ -338,11 +338,36 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		if(6001 to INFINITY) // 100 hrs
 			new_human.wear_id.paygrade = "O2"
 
-/datum/job/terragov/command/tadofficer/radio_help_message(mob/M)
+/datum/job/terragov/command/transportofficer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to support marines mobile dropship support with the Tadpole.
-You are to ensure the Tadpole's survival and to transport marines around, acting as a mobile bunker. In the case of it's death, you are relegated to the FOB and the Alamo.
+You are to ensure the Tadpole's survival and to transport marines around, acting as a mobile bunker. In the case of it's death, you may perform the role of Combat Engineer.
 "})
+
+/datum/outfit/job/command/transportofficer
+	name = TRANSPORT_OFFICER
+	jobtype = /datum/job/terragov/command/transportofficer
+
+	id = /obj/item/card/id/silver
+	belt = /obj/item/storage/belt/utility/full
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/marine/officer/pilot
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/pilot
+	shoes = /obj/item/clothing/shoes/marine/full
+	gloves = /obj/item/clothing/gloves/marine/insulated
+	glasses = /obj/item/clothing/glasses/welding/superior
+	head = /obj/item/clothing/head/helmet/marine/pilot
+	r_store = /obj/item/storage/pouch/construction
+	l_store = /obj/item/hud_tablet/transportofficer
+	back = /obj/item/storage/backpack/marine/engineerpack
+	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/vp70
+
+/datum/outfit/job/command/transportofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_hand(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_hand(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_hand(new /obj/item/stack/sandbags/large_stack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_hand(new /obj/item/stack/barbed_wire/full, SLOT_IN_R_POUCH)
 
 //Pilot Officer
 /datum/job/terragov/command/pilot
@@ -369,7 +394,7 @@ You are to ensure the Tadpole's survival and to transport marines around, acting
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Pilot the Condor, a modular attack aircraft that provides close air support with a variety of weapons ranging from the inbuilt gatling to wing mounted rockets; or the Tadpole, a versatile dropship capable of fulfilling roles ranging from ambulance to mobile bunker.
+		<b>Duty</b>: Pilot the Condor, a modular attack aircraft that provides close air support with a variety of weapons ranging from the inbuilt gatling to wing mounted rockets.
 	"}
 	minimap_icon = "pilot"
 
@@ -393,9 +418,9 @@ You are to ensure the Tadpole's survival and to transport marines around, acting
 
 /datum/job/terragov/command/pilot/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to support marines with either close air support via the Condor, or mobile dropship support with the Tadpole.
-While you are in charge of all aerial crafts the Alamo does not require supervision outside of turning automatic mode on or off at crucial times, and you are expected to choose between the Condor and Tadpole.
-Though you are a warrant officer, your authority is limited to the dropship and your chosen aerial craft, where you have authority over the enlisted personnel.
+	to_chat(M, {"Your job is to support marines with either close air support via the Condor.
+You are expected to use the Condor as the Alamo is able to be ran automatically, though at some points you will be required to take control of the Alamo for the operation's success, though highly unlikey.
+Though you are a warrant officer, your authority is limited to the dropship and the Condor, where you have authority over the enlisted personnel.
 "})
 
 

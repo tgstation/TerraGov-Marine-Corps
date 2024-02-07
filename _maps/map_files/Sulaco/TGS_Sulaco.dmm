@@ -25899,7 +25899,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "wlD" = (
-/obj/effect/landmark/start/job/tadofficer,
+/obj/effect/landmark/start/job/transportofficer,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
 "wlT" = (

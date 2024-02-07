@@ -399,8 +399,9 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	powerloader = SKILL_POWERLOADER_PRO
 	leadership = SKILL_LEAD_TRAINED
 
-/datum/skills/tadofficer
-	name = TADPOLE_OFFICER
+/datum/skills/transportofficer
+	name = TRANSPORT_OFFICER
+	construction = SKILL_CONSTRUCTION_ADVANCED
 	powerloader = SKILL_POWERLOADER_PRO
 	engineer = SKILL_ENGINEER_ENGI
 	leadership = SKILL_LEAD_TRAINED
