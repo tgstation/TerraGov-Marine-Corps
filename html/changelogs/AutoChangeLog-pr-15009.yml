@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Campaign: Marines will no longer be able to steal their own ASAT objectives"
-  - bugfix: "Campaign: Fixed some errors in the ASAT mission win conditions"

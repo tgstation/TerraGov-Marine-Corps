@@ -96,3 +96,27 @@
   - bugfix: Beacons now deactivate themselves when they change Z level to a Z level
       that isn't groundside (instead of leaving the beacon datum on the tile they
       were at just before they changed Z level)
+2024-02-07:
+  Aporhtonoma:
+  - bugfix: squad rally skill requirement from 3 to 2
+  Lumipharon:
+  - qol: 'Campaign: SSD''s will no longer be eligable for faction leader'
+  - qol: 'Campaign: SSD shipside players are cleaned up at the end of each mission'
+  - bugfix: fixed normal claymores being sneakier than intended
+  - balance: 'Campaign: Switching team for autobalance rewards you with addition credits'
+  - balance: 'Campaign: If teams are still not balanced, the weaker team is given
+      light mechs based on how outnumbered they are'
+  - bugfix: 'Campaign: fixed attrition sometimes being lost if several people were
+      setting it at the same time'
+  - bugfix: 'Campaign: Marines will no longer be able to steal their own ASAT objectives'
+  - bugfix: 'Campaign: Fixed some errors in the ASAT mission win conditions'
+  - balance: 'Campaign: credits are additionally awarded at the end of a mission based
+      on individual performance'
+  - balance: 'Campaign: Base credit reward for ending a mission reduced by 150'
+  - imageadd: Fixed some visuals with train props and large map tables
+  Xander3359:
+  - bugfix: SG-162 high impact and heavy impact now apply their CC for 1 second instead
+      of 1 decisecond
+  coldironwarrior:
+  - rscadd: removes xeno probing
+  - balance: point adjustments to xeno caste values for req exports
