@@ -1205,6 +1205,7 @@
 	desc = "The Zauer SH-15 Automatic Assault Shotgun, this is a Terran Armories variant. Another iteration of the ZX series of firearms though it has been since regulated as part of the TGMC arsenal, hence the SH designation. It took over the various shotgun models as the semi-automatic shotgun provided to the TGMC. It is rifled, and loads primarily longer ranged munitions, being incompatible with buckshot shells. Takes 12-round 16 gauge magazines."
 	icon_state = "tx15"
 	item_state = "tx15"
+	icon = 'icons/obj/items/guns/shotguns.dmi'
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh15.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	caliber = CALIBER_16G //codex
@@ -1266,6 +1267,7 @@
 	desc = "The Raummetall-KT SG-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	icon_state = "sg29"
 	item_state = "sg29"
+	icon = 'icons/obj/items/guns/machineguns.dmi'
 	caliber = CALIBER_10x26_CASELESS //codex
 	max_shells = 300 //codex
 	force = 30
@@ -2264,7 +2266,7 @@
 /obj/item/weapon/gun/rifle/icc_sharpshooter
 	name = "\improper L-11 sharpshooter rifle"
 	desc = "The L-11 is a venerable and battle-tested rifle used by the ICCAF. Although rather heavy, long and unwieldy compared to most ICCAF rifles, which focus on getting up close and personal, it easily makes up with excellent long-range potential when compared to most of its peers, mostly seen in use by reserve troops who expect to fight at distance, rather than up close. Uses 10x27mm magazines."
-	icon = 'icons/Marine/guns64/rifles.dmi'
+	icon = 'icons/Marine/guns64/marksman.dmi'
 	icon_state = "l11"
 	item_state = "l11"
 	item_icons = list(
@@ -2409,7 +2411,7 @@
 /obj/item/weapon/gun/rifle/icc_confrontationrifle
 	name = "\improper ML-12 confrontation rifle"
 	desc = "The ML-12 confrontation rifle is an absolute beast of a weapon used by the ICCAF. Featuring a high caliber round in a short package, it will absolutely shred enemy targets at close quarters, a operator must mind the incredible recoil while making followup shots, however. Uses 10x28mm caseless ammunition."
-	icon = 'icons/Marine/guns64/rifles.dmi'
+	icon = 'icons/Marine/guns64/marksman.dmi'
 	icon_state = "ml12"
 	item_state = "ml12"
 	item_icons = list(

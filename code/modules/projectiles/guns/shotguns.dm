@@ -4,6 +4,7 @@
 	caliber = CALIBER_12G //codex
 	max_chamber_items = 8 //codex
 	load_method = SINGLE_CASING //codex
+	icon = 'icons/obj/items/guns/shotguns.dmi'
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_shell_insert.ogg'
@@ -508,6 +509,7 @@
 	desc = "The R-2395 Derringer has been a classic for centuries. This latest iteration combines plasma propulsion powder with the classic design to make an assasination weapon that will leave little to chance."
 	icon_state = "derringer"
 	item_state = "tp17"
+	icon = 'icons/obj/items/guns/pistols.dmi'
 	gun_skill_category = SKILL_PISTOLS
 	w_class = WEIGHT_CLASS_TINY
 	caliber = CALIBER_41RIM //codex

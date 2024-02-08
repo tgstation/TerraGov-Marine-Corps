@@ -77,6 +77,7 @@
 	item_state = "tx7"
 	caliber = CALIBER_PLASMA
 	max_shots = 10
+	icon = 'icons/obj/items/guns/energy.dmi'
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/plasma_pistol

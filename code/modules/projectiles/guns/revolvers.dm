@@ -8,6 +8,7 @@
 	reload_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
 	unload_sound = 'sound/weapons/guns/interact/revolver_unload.ogg'
+	icon = 'icons/obj/items/guns/pistols.dmi'
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	hand_reload_sound = 'sound/weapons/guns/interact/revolver_load.ogg'
 	type_of_casings = "bullet"
