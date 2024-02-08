@@ -162,7 +162,6 @@
 	item_state = "t45"
 	caliber = CALIBER_10X20_CASELESS //codex
 	max_shells = 40 //codex
-	icon = ""
 	fire_sound = 'sound/weapons/guns/fire/skorpevo.ogg'
 	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
