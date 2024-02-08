@@ -897,8 +897,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
 		adjust_sunder(proj.sundering)
 
-	if(stat != DEAD && ismob(proj.firer))
-		record_projectile_damage(proj.firer, damage)	//Tally up whoever the shooter was
+	if(stat != DEAD && isliving(proj.firer))
+		var/mob/living/living_firer = proj.firer
+		living_firer.record_projectile_damage(damage, src)	//Tally up whoever the shooter was
 
 	if(damage)
 		if(do_shrapnel_roll(proj, damage))

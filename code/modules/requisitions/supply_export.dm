@@ -52,7 +52,7 @@
 
 //I hate it but it's how it was so I'm not touching it further than this
 /mob/living/carbon/xenomorph/shrike/get_export_value()
-	return list(500, 50)
+	return list(600, 50)
 
 /obj/item/reagent_containers/food/snacks/req_pizza/get_export_value()
 	return list(10, 0)

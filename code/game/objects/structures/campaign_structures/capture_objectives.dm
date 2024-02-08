@@ -34,7 +34,7 @@
 	var/new_icon_state
 	if(!owning_faction)
 		switch(capturing_faction)
-			if(FACTION_NTC)
+			if(FACTION_TERRAGOV)
 				new_icon_state = "campaign_objective_capturing_tgmc"
 			if(null)
 				new_icon_state = "campaign_objective"
@@ -42,7 +42,7 @@
 				new_icon_state = "campaign_objective_capturing_som"
 	else
 		switch(owning_faction)
-			if(FACTION_NTC)
+			if(FACTION_TERRAGOV)
 				new_icon_state = capturing_faction ? "campaign_objective_decap_tgmc" : "campaign_objective_tgmc"
 			else
 				new_icon_state = capturing_faction ? "campaign_objective_decap_som" : "campaign_objective_som"
@@ -64,7 +64,7 @@
 ///Starts the capture process
 /obj/structure/campaign_objective/capture_objective/proc/begin_capture(mob/living/user)
 	user.balloon_alert_to_viewers("Activating!")
-	if(!do_after(user, activation_time, TRUE, src))
+	if(!do_after(user, activation_time, NONE, src))
 		return
 	if(!capture_check(user))
 		return
@@ -112,6 +112,9 @@
 		owning_faction = null
 		update_icon()
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_DECAPTURED, src, user)
+		if(user.ckey)
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+			personal_statistics.mission_objective_decaptured ++
 		return
 	finish_capture(user)
 
@@ -120,6 +123,9 @@
 	SHOULD_CALL_PARENT(TRUE)
 	owning_faction = user.faction
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED, src, user)
+	if(user.ckey)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+		personal_statistics.mission_objective_captured ++
 	update_icon()
 
 ///Returns time left on the nuke in seconds
@@ -158,7 +164,7 @@
 	icon_state = initial(icon_state)
 	if(!owning_faction)
 		switch(capturing_faction)
-			if(FACTION_NTC)
+			if(FACTION_TERRAGOV)
 				icon_state += "_cap_tgmc"
 			if(null)
 				return
@@ -166,7 +172,7 @@
 				icon_state += "_cap_som"
 		return
 	switch(owning_faction)
-		if(FACTION_NTC)
+		if(FACTION_TERRAGOV)
 			icon_state += capturing_faction ? "_decap_tgmc" : "_tgmc"
 		else
 			icon_state += capturing_faction ? "_decap_som" : "_som"
@@ -227,12 +233,17 @@
 	icon_state = "asat"
 	desc = "A sophisticated surface to space missile system designed for attacking orbiting satellites or spacecraft."
 	capture_flags = CAPTURE_OBJECTIVE_RECAPTURABLE
-	///owning faction
-	var/faction = FACTION_NTC
+	owning_faction = FACTION_TERRAGOV
 
 /obj/structure/campaign_objective/capture_objective/fultonable/asat_system/capture_check(mob/living/user)
 	//This is a 'defend' objective. The defending faction can't actually claim it for themselves, just decap it.
-	if((user.faction == faction) && !capturing_faction && !owning_faction)
+	if((user.faction == owning_faction) && !capturing_faction)
 		user.balloon_alert(user, "Defend this objective!")
 		return FALSE
 	return ..()
+
+/obj/structure/campaign_objective/capture_objective/fultonable/asat_system/do_capture(mob/living/user)
+	capturing_faction = null
+	capture_timer = null
+	countdown.stop()
+	finish_capture(user)
