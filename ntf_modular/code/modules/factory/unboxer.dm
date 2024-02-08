@@ -1,14 +1,21 @@
 /obj/machinery/unboxer/syndicate
 	name = "Illicit Unboxer"
 	desc = "An industrial resourcing unboxer. Seems to have had several restrictions lifted."
-	icon = 'icons/obj/factory/factory_machines.dmi'
-	icon_state = "unboxer_inactive"
+	icon = 'ntf_modular/icons/obj/factory/factory_machines.dmi'
+	icon_state = "ebilunboxer_inactive"
 
 	var/obj/item/factory_part/production_type_antag = /obj/item/factory_part
 
 /obj/machinery/unboxer/syndicate/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	. += "It is currently facing [dir2text(dir)], and is outputting [initial(production_type_antag.name)]. It has [production_amount_left] resources remaining."
+
+/obj/machinery/unboxer/syndicate/update_icon_state()
+	. = ..()
+	if(datum_flags & DF_ISPROCESSING)
+		icon_state = "ebilunboxer"
+		return
+	icon_state = "ebilunboxer_inactive"
 
 /obj/machinery/unboxer/syndicate/process()
 	if(production_amount_left <= 0)
