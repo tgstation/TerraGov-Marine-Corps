@@ -359,7 +359,7 @@
 	name = "box of rounded metal plates"
 	desc = "A box of round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/module_surt
-	antag_refill_type = /obj/item/factory_part/module_surt
+	antag_refill_type = /obj/item/factory_part/module_surt/hades
 	refill_amount = 10
 
 /obj/item/factory_refill/mortar_shell_he_refill
