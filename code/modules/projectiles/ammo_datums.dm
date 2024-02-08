@@ -693,6 +693,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/rifle/rubber
 	name = "rifle rubber bullet"
 	damage_type = STAMINA
+	shrapnel_chance = 0
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
@@ -712,6 +713,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/rifle/hv/rubber
 	name = "high-velocity rifle rubber bullet"
 	damage_type = STAMINA
+	shrapnel_chance = 0
 
 /datum/ammo/bullet/rifle/heavy
 	name = "heavy rifle bullet"
@@ -723,6 +725,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/rifle/heavy/rubber
 	name = "heavy rifle rubber bullet"
 	damage_type = STAMINA
+	shrapnel_chance = 0
 
 /datum/ammo/bullet/rifle/repeater
 	name = "heavy impact rifle bullet"
