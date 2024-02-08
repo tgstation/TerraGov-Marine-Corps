@@ -152,7 +152,7 @@
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/sadar_unguided
-	antag_refill_type = /obj/item/factory_part/sadar_unguided
+	antag_refill_type = /obj/item/factory_part/sadar_he/som_he
 	refill_amount = 15
 
 /obj/item/factory_refill/light_rr_missile_refill
@@ -331,7 +331,7 @@
 	name = "box of rounded metal plates"
 	desc = "A box of round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/module_valk
-	antag_refill_type = /obj/item/factory_part/module_valk
+	antag_refill_type = /obj/item/factory_part/module_valk/apollo
 	refill_amount = 10
 
 /obj/item/factory_refill/module_mimir2_refill

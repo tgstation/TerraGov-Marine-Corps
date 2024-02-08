@@ -3,6 +3,7 @@
 	desc = "An industrial resourcing unboxer. Seems to have had several restrictions lifted."
 	icon = 'ntf_modular/icons/obj/factory/factory_machines.dmi'
 	icon_state = "ebilunboxer_inactive"
+	max_fill_amount = 150
 
 	var/obj/item/factory_part/production_type_antag = /obj/item/factory_part
 
@@ -42,3 +43,11 @@
 	if(refill.refill_amount <= 0)
 		qdel(refill)
 		new /obj/item/stack/sheet/metal(user.loc)//simulates leftover trash
+
+
+/obj/item/factory_refill/basic_assaultrifle
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/basic_rifle
+	antag_refill_type = /obj/item/factory_part/basic_rifle/v31
+	refill_amount = 3

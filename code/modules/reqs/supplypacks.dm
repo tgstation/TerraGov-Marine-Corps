@@ -2290,3 +2290,9 @@ FACTORY
 	name = "Zeus orbital drop pod assembly refill"
 	contains = list(/obj/item/factory_refill/drop_pod_refill)
 	cost = 230
+
+/// TO-DO-LATER
+/datum/supply_packs/factory/ar12
+	name = "AR12 assembly refill"
+	contains = list(/obj/item/factory_refill/basic_assaultrifle)
+	cost = 180
