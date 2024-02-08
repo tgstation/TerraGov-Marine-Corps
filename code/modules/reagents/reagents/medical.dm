@@ -287,7 +287,7 @@
 
 /datum/reagent/medicine/saline_glucose/on_mob_life(mob/living/L, metabolism)
 	if(L.blood_volume < BLOOD_VOLUME_NORMAL)
-		L.blood_volume += 1.2
+		L.adjust_blood_volume(1.2)
 	return ..()
 
 /datum/reagent/medicine/saline_glucose/overdose_process(mob/living/L, metabolism)
@@ -740,7 +740,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 0.25
 
 /datum/reagent/medicine/quickclot/on_mob_life(mob/living/L, metabolism)
-	L.blood_volume += 0.2
+	L.adjust_blood_volume(0.2)
 	if(!ishuman(L) || L.bodytemperature > 169) //only heals IB at cryogenic temperatures.
 		return ..()
 	var/mob/living/carbon/human/H = L
@@ -826,10 +826,10 @@
 
 /datum/reagent/medicine/quickclotplus/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1.5*effect_str, TOX)
-	L.blood_volume -= 4
+	L.adjust_blood_volume(-4)
 
 /datum/reagent/medicine/quickclotplus/overdose_crit_process(mob/living/L, metabolism)
-	L.blood_volume -= 20
+	L.adjust_blood_volume(-20)
 
 /datum/reagent/medicine/nanoblood
 	name = "Nanoblood"
@@ -840,13 +840,13 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/nanoblood/on_mob_life(mob/living/L, metabolism)
-	L.blood_volume += 2.4
+	L.adjust_blood_volume(2.4)
 	L.adjustToxLoss(effect_str)
 	L.adjustStaminaLoss(6*effect_str)
 	if(L.blood_volume < BLOOD_VOLUME_OKAY)
-		L.blood_volume += 2.4
+		L.adjust_blood_volume(2.4)
 	if(L.blood_volume < BLOOD_VOLUME_BAD)
-		L.blood_volume = (BLOOD_VOLUME_BAD+1)
+		L.set_blood_volume(BLOOD_VOLUME_BAD+1)
 		L.reagents.add_reagent(/datum/reagent/toxin,25)
 		L.AdjustSleeping(10 SECONDS)
 	return ..()
@@ -1275,7 +1275,7 @@
 /datum/reagent/medicine/research/somolent/overdose_process(mob/living/L, metabolism)
 	holder.remove_reagent(/datum/reagent/medicine/research/somolent, 1)
 
-/datum/reagent/medicine/research/medicalnanites
+/datum/reagent/medicalnanites
 	name = "Medical nanites"
 	description = "These are a batch of construction nanites altered for in-vivo replication. They can heal wounds using the iron present in the bloodstream. Medical care is recommended during injection."
 	color = COLOR_REAGENT_MEDICALNANITES
@@ -1283,49 +1283,64 @@
 	scannable = TRUE
 	taste_description = "metal, followed by mild burning"
 	overdose_threshold = REAGENTS_OVERDOSE * 1.2 //slight buffer to keep you safe
+	purge_list = list(
+		/datum/reagent/medicine/bicaridine,
+		/datum/reagent/medicine/kelotane,
+		/datum/reagent/medicine/tramadol,
+		/datum/reagent/medicine/oxycodone,
+		/datum/reagent/medicine/tricordrazine,
+		/datum/reagent/medicine/meralyne,
+		/datum/reagent/medicine/dermaline,
+		/datum/reagent/medicine/paracetamol,
+		/datum/reagent/medicine/russian_red,
+		/datum/reagent/consumable/drink/doctor_delight,
+	)
+	purge_rate = 5
 
-/datum/reagent/medicine/research/medicalnanites/on_mob_add(mob/living/L, metabolism)
+/datum/reagent/medicalnanites/on_mob_add(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("You feel like you should stay near medical help until this shot settles in."))
 
-/datum/reagent/medicine/research/medicalnanites/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/medicalnanites/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 75)
-			L.take_limb_damage(0.015*current_cycle*effect_str, 0.015*current_cycle*effect_str)
-			L.adjustToxLoss(1*effect_str)
-			L.adjustStaminaLoss((1.5)*effect_str)
-			L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.40)
+			L.take_limb_damage(0.015 * current_cycle * effect_str, 0.015 * current_cycle * effect_str)
+			L.adjustToxLoss(1 * effect_str)
+			L.adjustStaminaLoss(1.5 * effect_str)
+			L.reagents.add_reagent(/datum/reagent/medicalnanites, 0.4)
 			if(prob(5))
 				to_chat(L, span_notice("You feel intense itching!"))
 		if(76)
 			to_chat(L, span_warning("The pain rapidly subsides. Looks like they've adapted to you."))
 		if(77 to INFINITY)
 			if(volume < 30) //smol injection will self-replicate up to 30u using 240u of blood.
-				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.15)
-				L.blood_volume -= 2
+				L.reagents.add_reagent(/datum/reagent/medicalnanites, 0.15)
+				L.adjust_blood_volume(-2)
 
 			if(volume < 35) //allows 10 ticks of healing for 20 points of free heal to lower scratch damage bloodloss amounts.
-				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.1)
+				L.reagents.add_reagent(/datum/reagent/medicalnanites, 0.1)
 
-			if (volume > 5 && L.getBruteLoss(organic_only = TRUE))
-				L.heal_overall_damage(2*effect_str, 0)
-				L.adjustToxLoss(0.1*effect_str)
-				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
-				if(prob(40))
+			if(volume > 5)
+				L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
+				L.adjustToxLoss(-0.15 * effect_str)
+
+			if(volume > 5 && L.getBruteLoss(organic_only = TRUE))
+				L.heal_overall_damage(3 * effect_str, 0)
+				holder.remove_reagent(/datum/reagent/medicalnanites, 0.5)
+				if(prob(10))
 					to_chat(L, span_notice("Your cuts and bruises begin to scab over rapidly!"))
 
-			if (volume > 5 && L.getFireLoss(organic_only = TRUE))
-				L.heal_overall_damage(0, 2*effect_str)
-				L.adjustToxLoss(0.1*effect_str)
-				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
-				if(prob(40))
+			if(volume > 5 && L.getFireLoss(organic_only = TRUE))
+				L.heal_overall_damage(0, 3 * effect_str)
+				holder.remove_reagent(/datum/reagent/medicalnanites, 0.5)
+				if(prob(10))
 					to_chat(L, span_notice("Your burns begin to slough off, revealing healthy tissue!"))
 	return ..()
 
-/datum/reagent/medicine/research/medicalnanites/overdose_process(mob/living/L, metabolism)
+/datum/reagent/medicalnanites/overdose_process(mob/living/L, metabolism)
 	L.adjustToxLoss(effect_str) //softcap VS injecting massive amounts of medical nanites for the healing factor with no downsides. Still doable if you're clever about it.
-	holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.25)
+	holder.remove_reagent(/datum/reagent/medicalnanites, 0.25)
 
-/datum/reagent/medicine/research/medicalnanites/on_mob_delete(mob/living/L, metabolism)
+/datum/reagent/medicalnanites/on_mob_delete(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("Your nanites have been fully purged! They no longer affect you."))
 
 /datum/reagent/medicine/research/stimulon

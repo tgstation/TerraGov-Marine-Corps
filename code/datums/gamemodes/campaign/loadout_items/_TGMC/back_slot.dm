@@ -40,7 +40,7 @@
 /datum/loadout_item/back/combat_pack
 	name = "Combat pack"
 	desc = "A small lightweight pack for expeditions and short-range operations. Has the storage capacity of a backpack but no draw delay."
-	purchase_cost = 50
+	purchase_cost = 25
 	item_typepath = /obj/item/storage/backpack/lightpack
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER)
 
@@ -56,6 +56,14 @@
 	item_typepath = /obj/item/ammo_magazine/flamer_tank/backtank
 	jobs_supported = list(SQUAD_MARINE)
 	item_whitelist = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide = ITEM_SLOT_SUITSTORE)
+
+/datum/loadout_item/back/flamer_tank/x_fuel
+	name = "X-fuel tank"
+	desc = "A specialized fuel tank of ultra thick napthal type X, known for its extreme heat and slow burn rate, as well as it's distinct blue flames. For use with the FL-84 flamethrower and FL-240 incinerator unit."
+	item_typepath = /obj/item/ammo_magazine/flamer_tank/backtank/X
+	purchase_cost = 25
+	unlock_cost = 200
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
 /datum/loadout_item/back/jetpack
 	name = "Heavy jetpack"
@@ -76,8 +84,8 @@
 	desc = "A powerful close quarters tool when someone wants something more suited for close range than most people. A powerful secondary weapon to devastate opponents at close range. \
 	Supplied with an addition box of buckshot, provided you have somewhere to store the shells. \
 	Uses 12 gauge shells. Requires a pump, which is the Unique Action key."
-	ui_icon = "ballistic"
-	purchase_cost = 100
+	ui_icon = "shotgun"
+	purchase_cost = 25
 	item_typepath = /obj/item/weapon/gun/shotgun/pump/t35/standard
 	jobs_supported = list(SQUAD_MARINE)
 	loadout_item_flags = NONE
@@ -89,6 +97,7 @@
 /datum/loadout_item/back/machete
 	name = "Machete"
 	desc = "A large leather scabbard carrying a M2132 machete. It can be strapped to the back, waist or armor. Extremely dangerous against human opponents - if you can get close enough."
+	ui_icon = "machete"
 	item_typepath = /obj/item/storage/holster/blade/machete/full
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER)
 	loadout_item_flags = NONE

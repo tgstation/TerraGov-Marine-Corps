@@ -216,7 +216,7 @@
 			/obj/item/storage/reagent_tank/bktt = 1,
 		),
 		"Misc" = list(
-			/obj/item/tool/research/xeno_analyzer = -1,
+			/obj/item/tool/research/xeno_analyzer = 2,
 			/obj/item/tool/research/excavation_tool = -1,
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,

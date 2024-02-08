@@ -161,15 +161,13 @@ GLOBAL_PROTECT(exp_specialmap)
 
 /datum/job/proc/radio_help_message(mob/M)
 	to_chat(M, {"
-[span_role_body("|______________________|")]
-[span_role_header("You are \an [title]!")]
-[span_role_body("As \an <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.")]
-[span_role_body("|______________________|")]
+[span_role_header("You are the [title].")]
+[span_role_body("As the <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.")]
 "})
 	if(!(job_flags & JOB_FLAG_NOHEADSET))
-		to_chat(M, "<b>Prefix your message with ; to speak on the default radio channel. To see other prefixes, look closely at your headset.</b>")
+		to_chat(M, "<span class='role_body'>Prefix your message with ; to speak on the default radio channel. To see other prefixes, look closely at your headset.</span>")
 	if(req_admin_notify)
-		to_chat(M, "<span clas='danger'>You are playing a job that is important for game progression. If you have to disconnect, please head to hypersleep, if you can't make it there, notify the admins via adminhelp.</span>")
+		to_chat(M, "<span class='role_body'>You are playing a job that is important for game progression. If you have to disconnect, please head to hypersleep, if you can't make it there, notify the admins via adminhelp.</span>")
 
 /datum/outfit/job
 	var/jobtype
@@ -241,7 +239,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 /datum/job/proc/add_job_positions(amount)
 	if(!(job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
-		CRASH("add_job_positions called for a non-joinable job")
+		return
 	if(total_positions == -1)
 		return TRUE
 	var/previous_amount = total_positions

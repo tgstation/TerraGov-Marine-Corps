@@ -99,13 +99,16 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/weapon/gun/grenade_launcher/underslung, /obj/item/attachable/motiondetector, /obj/item/attachable/extended_barrel)
 
 /obj/item/weapon/gun/rifle/standard_carbine/engineer
-	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/lasersight)
+	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
 
 /obj/item/weapon/gun/rifle/standard_carbine/plasma_pistol
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/weapon/gun/pistol/plasma_pistol, /obj/item/attachable/motiondetector, /obj/item/attachable/compensator)
 
 /obj/item/weapon/gun/rifle/standard_carbine/beginner
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/angledgrip, /obj/item/attachable/compensator)
+
+/obj/item/weapon/gun/rifle/standard_carbine/suppressed
+	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/weapon/gun/grenade_launcher/underslung, /obj/item/attachable/reddot, /obj/item/attachable/suppressor)
 
 //-------------------------------------------------------
 //AR-12 Assault Rifle
@@ -1278,7 +1281,6 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_smartmachinegun)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
-		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/foldable/bipod,
@@ -1314,7 +1316,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/magnetic_harness, /obj/item/attachable/lasersight)
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol
-	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/motiondetector, /obj/item/attachable/verticalgrip)
+	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/motiondetector, /obj/item/attachable/lasersight)
 
 //-------------------------------------------------------
 //SG Target Rifle, has underbarreled spotting rifle that applies effects.
@@ -1846,6 +1848,7 @@
 		/obj/item/ammo_magazine/rifle/tx54/smoke,
 		/obj/item/ammo_magazine/rifle/tx54/smoke/dense,
 		/obj/item/ammo_magazine/rifle/tx54/smoke/tangle,
+		/obj/item/ammo_magazine/rifle/tx54/smoke/acid,
 		/obj/item/ammo_magazine/rifle/tx54/razor,
 	)
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
@@ -1857,6 +1860,10 @@
 	scatter = -2
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 2
+
+/obj/item/weapon/gun/rifle/tx54/motion_sensor
+	starting_attachment_types = list(/obj/item/attachable/motiondetector)
+	default_ammo_type = /obj/item/ammo_magazine/rifle/tx54
 
 //-------------------------------------------------------
 // AR-55 built in grenade launcher
@@ -2161,7 +2168,7 @@
 	scatter = 12
 	recoil = 1.5
 	wield_delay = 0.4 SECONDS
-	aim_slowdown = 0.3
+	aim_slowdown = 0.4
 	movement_acc_penalty_mult = 4
 	damage_falloff_mult = 1.4
 	damage_mult = 0.9
@@ -2572,3 +2579,68 @@
 	icon_state = "l88_export"
 	item_state = "l88_export"
 	default_ammo_type = /obj/item/ammo_magazine/rifle/icc_assaultcarbine/export
+
+//-------------------------------------------------------
+//MG-60 General Purpose Machine Gun
+
+/obj/item/weapon/gun/rifle/icc_mg
+	name = "\improper ML-41 assault machine gun"
+	desc = "The ML-41 is an incredibly lightweight machinegun used by ICCAF forces, being incredibly light for its class allows it to be used in rapid manuevers, at the cost of damage at range and generally high scatter. It uses 10x26mm boxes."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "minimi"
+	item_state = "minimi"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+	)
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+
+	caliber = CALIBER_10x26_CASELESS //codex
+	max_shells = 200 //codex
+	force = 30
+	aim_slowdown = 0.85
+	wield_delay = 0.75 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mg60.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/icc_mg
+	allowed_ammo_types = list(/obj/item/ammo_magazine/icc_mg, /obj/item/ammo_magazine/icc_mg/belt)
+	attachable_allowed = list(
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/foldable/bipod,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/stock/t60stock,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+	)
+
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_skill_category = SKILL_HEAVY_WEAPONS
+	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 21,"rail_x" = 6, "rail_y" = 23, "under_x" = 26, "under_y" = 15, "stock_x" = 8, "stock_y" = 13)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.15 SECONDS
+	aim_speed_modifier = 5
+
+	fire_delay = 0.15 SECONDS
+	damage_falloff_mult = 2.5
+	burst_amount = 1
+	accuracy_mult = 0.85
+	accuracy_mult_unwielded = 0.4
+	scatter = 5
+	scatter_unwielded = 45
+	movement_acc_penalty_mult = 6
+
+/obj/item/weapon/gun/rifle/icc_mg/guard
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/heavy_barrel)

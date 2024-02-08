@@ -120,6 +120,14 @@
 
 	. += "Sunder: [100-sunder]% armor left"
 
+	. += "Regeneration power: [max(regen_power * 100, 0)]%"
+
+	var/casteswap_value = ((GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY)  + 15 MINUTES - world.time) * 0.1
+	if(casteswap_value <= 0)
+		. += "Caste Swap Timer: READY"
+	else
+		. += "Caste Swap Timer: [(casteswap_value / 60) % 60]:[add_leading(num2text(casteswap_value % 60), 2, "0")]"
+
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 	var/msg_holder = ""
 	if(frenzy_aura)
@@ -215,7 +223,7 @@
 	// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	upgrade_stored += 1 + (stored_larva/6) + hive.get_evolution_boost() //Do this regardless of whether we can upgrade so age accrues at primo
+	upgrade_stored += 1 + (stored_larva/6) + hive.get_upgrade_boost() //Do this regardless of whether we can upgrade so age accrues at primo
 	if(!upgrade_possible())
 		return
 	if(upgrade_stored < xeno_caste.upgrade_threshold)
@@ -476,7 +484,7 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/proc/setup_verbs()
-	add_verb(src, /mob/living/proc/lay_down)
+	add_verb(src, /mob/living/proc/toggle_resting)
 
 /mob/living/carbon/xenomorph/hivemind/setup_verbs()
 	return

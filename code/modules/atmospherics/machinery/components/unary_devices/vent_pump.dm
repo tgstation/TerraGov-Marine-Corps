@@ -91,7 +91,7 @@
 			span_notice("You start welding [src] with [WT]."))
 			add_overlay(GLOB.welding_sparks)
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-			if(do_after(user, 50, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+			if(do_after(user, 50, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
 				playsound(get_turf(src), 'sound/items/welder2.ogg', 25, 1)
 				if(!welded)
 					user.visible_message(span_notice("[user] welds [src] shut."), \
@@ -135,7 +135,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/can_crawl_through()
 	return !welded
 
-/obj/machinery/atmospherics/components/unary/vent_pump/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/machinery/atmospherics/components/unary/vent_pump/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return
 	if(!welded || !(do_after(X, 2 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE)))

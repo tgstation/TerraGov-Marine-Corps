@@ -35,7 +35,7 @@
 		/obj/item/tool/pickaxe/plasmacutter,
 	)
 	var/locate_cooldown = 0 //Cooldown for SL locator
-	var/list/armor_overlays
+	var/list/armor_overlays = list()
 	actions_types = list(/datum/action/item_action/toggle/suit_toggle)
 	flags_armor_features = ARMOR_LAMP_OVERLAY
 	flags_item = SYNTH_RESTRICTED|IMPEDE_JETPACK
@@ -46,8 +46,11 @@
 
 /obj/item/clothing/suit/storage/marine/Initialize(mapload)
 	. = ..()
-	armor_overlays = list("lamp") //Just one for now, can add more later.
 	update_icon()
+
+/obj/item/clothing/suit/storage/marine/turn_light(mob/user, toggle_on)
+	. = ..()
+	user?.update_inv_wear_suit()
 
 /obj/item/clothing/suit/storage/marine/update_overlays()
 	. = ..()
@@ -127,23 +130,23 @@
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
-	obj_flags = AUTOBALANCE_CHECK
+	flags_item = AUTOBALANCE_CHECK
 
 /obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
 	. = ..()
 	AddComponent(/datum/component/suit_autodoc)
 	AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
 	AddElement(/datum/element/limb_support, supporting_limbs)
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(flags_item & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b18_in_use += src
 
 /obj/item/clothing/suit/storage/marine/specialist/Destroy()
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(flags_item & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b18_in_use -= src
 	return ..()
 
 /obj/item/clothing/suit/storage/marine/specialist/valhalla
-	obj_flags = NONE
+	flags_item = NONE
 
 /obj/item/clothing/suit/storage/marine/B17
 	name = "\improper B17 defensive armor"
@@ -152,20 +155,20 @@
 	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 50, ENERGY = 55, BOMB = 100, BIO = 55, FIRE = 75, ACID = 65)
 	max_heat_protection_temperature = HEAVYARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
-	obj_flags = AUTOBALANCE_CHECK
+	flags_item = AUTOBALANCE_CHECK
 
 /obj/item/clothing/suit/storage/marine/B17/Initialize(mapload, ...)
 	. = ..()
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(flags_item & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b17_in_use += src
 
 /obj/item/clothing/suit/storage/marine/B17/Destroy()
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(flags_item & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b17_in_use -= src
 	return ..()
 
 /obj/item/clothing/suit/storage/marine/B17/valhalla
-	obj_flags = NONE
+	flags_item = NONE
 
 ////////////////////////////////
 
@@ -222,7 +225,7 @@
 	name = "\improper M4 pattern PMC armor"
 	desc = "A common armor vest that is designed for high-profile security operators and corporate mercenaries in mind."
 	icon_state = "pmc_armor"
-	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 38, BOMB = 50, BIO = 15, FIRE = 38, ACID = 45)
+	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 55, BOMB = 50, BIO = 15, FIRE = 38, ACID = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(
 		/obj/item/weapon/gun,
@@ -691,3 +694,41 @@
 	desc = "A piece of ICCGF body armor, worn by specialized infantry. Most Infantry actions in the ICC forces are done by adhoc personnel due to constant shortages of manpower, however most real Infantry divisions are of high quality, and are better known as 'Guardsmen'.  Protects well from most sources, and will entirely protect from explosions."
 	icon_state = "icc_guard"
 	soft_armor = list(MELEE = 60, BULLET = 65, LASER = 40, ENERGY = 60, BOMB = 85, BIO = 10, FIRE = 55, ACID = 40)
+
+/obj/item/clothing/suit/storage/marine/icc/guard/heavy
+	name = "\improper Modelle/22 'Cuirassier' combat armor"
+	desc = "A piece of ICCGF body armor, worn by specialized infantry. Most Infantry actions in the ICC forces are done by adhoc personnel due to constant shortages of manpower, however most real Infantry divisions are of high quality, and are better known as 'Guardsmen'.  Protects well from most sources, and will entirely protect from explosions."
+	icon_state = "icc_guard_heavy"
+	soft_armor = list(MELEE = 70, BULLET = 75, LASER = 40, ENERGY = 60, BOMB = 90, BIO = 10, FIRE = 55, ACID = 40)
+
+//===========================SPEC OPS================================
+
+/obj/item/clothing/suit/storage/marine/specops
+	name = "Ballistic vest"
+	desc = "Civilian type armor, made to combat both melee and projectiles."
+	icon = 'icons/mob/clothing/suits/ert_suits.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
+	)
+	icon_state = "specops_vest"
+	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 20, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_armor_protection = CHEST|GROIN
+	flags_armor_features = NONE
+
+/obj/item/clothing/suit/storage/marine/specops/support
+	name = "Ballistic vest"
+	desc = "Civilian type armor, made to combat both melee and projectiles."
+	icon_state = "specops_vest_support"
+
+/obj/item/clothing/suit/storage/marine/specops/medic
+	name = "Ballistic vest"
+	desc = "Civilian type armor, made to combat both melee and projectiles."
+	icon_state = "specops_vest_medic"
+
+/obj/item/clothing/suit/storage/marine/specops/leader
+	name = "Ballistic vest"
+	desc = "Civilian type armor, made to combat both melee and projectiles. Comes with tactical elbow pads."
+	icon_state = "specops_vest_leader"
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 40, ENERGY = 35, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
+	slowdown = SLOWDOWN_ARMOR_MEDIUM

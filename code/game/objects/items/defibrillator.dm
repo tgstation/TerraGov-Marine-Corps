@@ -127,7 +127,7 @@
 	stack_trace("Powercell deleted while powering the defib, this isn't supposed to happen normally.")
 	set_dcell(null)
 
-/mob/living/proc/get_ghost()
+/mob/living/proc/get_ghost(bypass_client_check = FALSE)
 	if(client) //Let's call up the correct ghost!
 		return null
 	for(var/mob/dead/observer/ghost AS in GLOB.observer_list)
@@ -137,7 +137,7 @@
 			continue
 		if(ghost.can_reenter_corpse.resolve() != src)
 			continue
-		if(ghost.client)
+		if(ghost.client || bypass_client_check)
 			return ghost
 	return null
 
@@ -204,9 +204,12 @@
 	var/mob/dead/observer/G = H.get_ghost()
 	if(G)
 		G.reenter_corpse()
-	else if(!H.client)
+	else if(!H.mind && !H.get_ghost(TRUE))
 		//We couldn't find a suitable ghost, this means the person is not returning
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient has a DNR."))
+		return
+	else if(!H.client) //Currently disconnected.
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's soul has almost departed. Please try again."))
 		return
 
 	user.visible_message(span_notice("[user] starts setting up the paddles on [H]'s chest."),
@@ -250,19 +253,19 @@
 			user.visible_message("[icon2html(src, viewers(user))] \The [src] buzzes: Positronic brain missing, cannot reboot.")
 			return
 
-	if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
+	if(!H.client) //Either client disconnected after being dragged in, ghosted, or this mob isn't a player (but that is caught way earlier).
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: No soul detected, Attempting to revive..."))
 
-	if(H.mind && !H.client) //Let's call up the correct ghost! Also, bodies with clients only, thank you.
-		G = H.get_ghost()
+	if(!H.mind) //Check if their ghost still exists if they aren't in their body.
+		G = H.get_ghost(TRUE)
 		if(istype(G))
 			user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Patient's soul has almost departed, please try again."))
 			return
-		//We couldn't find a suitable ghost, this means the person is not returning
+		//No mind and no associated ghost exists. This one is DNR.
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient has a DNR."))
 		return
 
-	if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist) or someone who didn't enter their body in time.
+	if(!H.client) //No client, but has a mind. This means the player was in their body, but potentially disconnected.
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. No soul detected. Please try again."))
 		playsound(get_turf(src), 'sound/items/defib_failed.ogg', 35, 0)
 		return
@@ -318,6 +321,7 @@
 	if(user.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.revives++
+		personal_statistics.mission_revives++
 	GLOB.round_statistics.total_human_revives[H.faction]++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_human_revives[H.faction]")
 	to_chat(H, span_notice("You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane."))

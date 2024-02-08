@@ -46,6 +46,14 @@
 		return
 	interact(user)
 
+///Called when the item is in the active hand, and RIGHT clicked;
+/obj/item/proc/attack_self_alternate(mob/user)
+	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF_ALTERNATE, user)
+	add_fingerprint(user, "attack_selfLalternate")
+	if(!can_interact(user))
+		return
+	interact(user)
+
 /atom/proc/attackby(obj/item/I, mob/user, params)
 	SIGNAL_HANDLER_DOES_SLEEP
 	add_fingerprint(user, "attackby", I)

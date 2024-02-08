@@ -86,7 +86,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	///greyscale color for the projectile associated with the ammo
 	var/projectile_greyscale_colors = null
 	///Multiplier for deflagrate chance
-	var/deflagrate_multiplier = 1
+	var/deflagrate_multiplier = 0.9
 	///Flat damage caused if fire_burst is triggered by deflagrate
 	var/fire_burst_damage = 10
 	///Base fire stacks added on hit if the projectile has AMMO_INCENDIARY
@@ -221,7 +221,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		//Damages the victims, inflicts brief stagger+slow, and ignites
 		victim.apply_damage(fire_burst_damage, BURN, blocked = FIRE, updating_health = TRUE)
 
-		staggerstun(victim, proj, 30, stagger = 1 SECONDS, slowdown = 0.5)
+		staggerstun(victim, proj, 30, stagger = 0.5 SECONDS, slowdown = 0.5)
 		victim.adjust_fire_stacks(5)
 		victim.IgniteMob()
 
@@ -651,6 +651,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(!prob(living_victim.modify_by_armor(proj.damage, BIO, penetration, proj.def_zone)))
 		return
 	living_victim.apply_radiation(2, 2)
+
+/datum/ammo/bullet/smg/heavy
+	name = "heavy submachinegun bullet"
+	damage = 27.5
+	penetration = 10
+	sundering = 1
 
 /datum/ammo/bullet/smg/mech
 	name = "super-heavy submachinegun bullet"
@@ -1315,7 +1321,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 0.5
 
 /datum/ammo/bullet/spottingrifle/highimpact/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 1, slowdown = 1, max_range = 12)
+	staggerstun(M, P, stagger = 1 SECONDS, slowdown = 1, max_range = 12)
 
 /datum/ammo/bullet/spottingrifle/heavyrubber
 	name = "smart heavy-rubber spotting bullet"
@@ -1324,7 +1330,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 0.5
 
 /datum/ammo/bullet/spottingrifle/heavyrubber/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, slowdown = 1, max_range = 12)
+	staggerstun(M, P, weaken = 1 SECONDS, slowdown = 1, max_range = 12)
 
 /datum/ammo/bullet/spottingrifle/plasmaloss
 	name = "smart tanglefoot spotting bullet"
@@ -1598,6 +1604,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_greyscale_colors = COLOR_AMMO_TANGLEFOOT
 	projectile_greyscale_colors = COLOR_AMMO_TANGLEFOOT
 
+/datum/ammo/tx54/smoke/acid
+	name = "20mm acid grenade"
+	hud_state = "grenade_acid"
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/smoke/acid
+	handful_greyscale_colors = COLOR_AMMO_ACID
+	projectile_greyscale_colors = COLOR_AMMO_ACID
+
 /datum/ammo/tx54/razor
 	name = "20mm razorburn grenade"
 	hud_state = "grenade_razor"
@@ -1696,6 +1709,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/tx54_spread/smoke/tangle
 	trail_spread_system = /datum/effect_system/smoke_spread/plasmaloss
+
+/datum/ammo/bullet/tx54_spread/smoke/acid
+	trail_spread_system = /datum/effect_system/smoke_spread/xeno/acid
 
 /datum/ammo/bullet/tx54_spread/razor
 	name = "chemical bomblet"
@@ -2409,7 +2425,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 50
 	penetration = 10
 	///Base strength of the rad effects
-	var/rad_strength = 25
+	var/rad_strength = 20
 	///Range for the maximum rad effects
 	var/inner_range = 3
 	///Range for the moderate rad effects
@@ -3399,7 +3415,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/M, obj/projectile/P)
 	if(isxeno(M))
 		return
-	staggerstun(M, P, 9, stagger = 4 SECONDS, slowdown = 2, knockback = 1)
+	staggerstun(M, P, 9, stagger = 1 SECONDS, slowdown = 2, knockback = 1)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_turf(turf/T, obj/projectile/P)
 	return
@@ -3543,7 +3559,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	fire_burst_damage = 20
 
 /datum/ammo/energy/volkite/medium/custom
-	deflagrate_multiplier = 2
+	deflagrate_multiplier = 1.8
 
 /datum/ammo/energy/volkite/heavy
 	max_range = 35
