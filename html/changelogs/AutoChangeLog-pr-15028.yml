@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed deployable shields being climbable when barbed after redeploying"
