@@ -498,9 +498,9 @@
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		return
 	#ifndef TESTING
-	//if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
-	//	to_chat(X, span_xenowarning("It's too early to do this!"))
-	//	return
+	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
+		to_chat(X, span_xenowarning("It's too early to do this!"))
+		return
 	#endif
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
@@ -705,16 +705,16 @@
 		if(confirm != "Yes")
 			return
 
-		var/groundside_humans = length(GLOB.humans_by_zlevel[M.z])
+		var/groundside_humans = length(GLOB.humans_by_zlevel["[z]"])
 		if(groundside_humans > 5)
 			to_chat(X, span_xenowarning("There is still prey left to hunt!"))
 			return
 		//these are all stinky checks, someone make this tgui
-		if(X == usr)
+		if(X != usr)
 			return
 		if(X.stat)
 			return
-		if(Adjacent(X))
+		if(!Adjacent(X))
 			return
 
 		priority_announce("The Alamo has been captured! Losing their main mean of accessing the ground, the marines have no choice but to retreat.", title = "ALAMO CAPTURED")
