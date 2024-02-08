@@ -286,13 +286,14 @@
 /obj/item/weapon/gun/flamer/big_flamer
 	name = "\improper FL-240 incinerator unit"
 	desc = "The FL-240 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
+	icon = 'icons/obj/items/guns/special.dmi'
 	icon_state = "m240"
 	item_state = "m240"
 
 /obj/item/weapon/gun/flamer/som
 	name = "\improper V-62 incinerator"
 	desc = "The V-62 is a deadly weapon employed in close quarter combat, favoured as much for the terror it inspires as the actual damage it inflicts. It has good range for a flamer, but lacks the integrated extinguisher of its TGMC equivalent."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/Marine/guns64/special.dmi'
 	icon_state = "v62"
 	item_state = "v62"
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_SHOWS_LOADED
