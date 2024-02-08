@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Suit lights no longer mismatch their actual state and action state if spammed"
