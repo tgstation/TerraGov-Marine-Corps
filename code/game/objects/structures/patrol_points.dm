@@ -87,7 +87,7 @@
 	//animate(shadow_filter, y = -RAPPEL_HEIGHT, size = 4, time = RAPPEL_DURATION, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
 	animate(shadow_filter, y = 0, size = 0.9, time = RAPPEL_DURATION, flags = ANIMATION_PARALLEL)
 
-	addtimer(CALLBACK(src, PROC_REF(end_rappel), mover, current_layer), RAPPEL_DURATION)
+	addtimer(CALLBACK(src, PROC_REF(end_rappel), user, mover, current_layer), RAPPEL_DURATION)
 
 	if(!user)
 		return
@@ -130,16 +130,21 @@
 
 	user.forceMove(linked_point.loc)
 
+///Temporarily applies godmode to prevent spawn camping
+/obj/structure/patrol_point/proc/add_spawn_protection(mob/living/user)
+	user.ImmobilizeNoChain(RAPPEL_DURATION) //looks weird if they can move while rappeling
+	user.status_flags |= GODMODE
+	addtimer(CALLBACK(src, PROC_REF(remove_spawn_protection), user), 10 SECONDS)
+
 ///Ends the rappel effects
-/obj/structure/patrol_point/proc/end_rappel(atom/movable/mover, original_layer)
+/obj/structure/patrol_point/proc/end_rappel(mob/living/user, atom/movable/mover, original_layer)
 	mover.remove_filter(PATROL_POINT_RAPPEL_EFFECT)
 	mover.layer = original_layer
 	SEND_SIGNAL(mover, COMSIG_MOVABLE_PATROL_DEPLOYED, TRUE, 1.5, 2)
-
-///Temporarily applies godmode to prevent spawn camping
-/obj/structure/patrol_point/proc/add_spawn_protection(mob/user)
-	user.status_flags |= GODMODE
-	addtimer(CALLBACK(src, PROC_REF(remove_spawn_protection), user), 10 SECONDS)
+	if(ismecha(mover))
+		new /obj/effect/temp_visual/rappel_dust(linked_point.loc, 3)
+		playsound(linked_point.loc, 'sound/effects/behemoth/behemoth_stomp.ogg', 40, TRUE)
+	shake_camera(user, 0.2 SECONDS, 0.5)
 
 ///Removes spawn protection godmode
 /obj/structure/patrol_point/proc/remove_spawn_protection(mob/user)
