@@ -83,8 +83,6 @@
 	mover.layer = FLY_LAYER
 
 	animate(mover, pixel_y = mover.pixel_y - RAPPEL_HEIGHT, time = RAPPEL_DURATION)
-
-	//animate(shadow_filter, y = -RAPPEL_HEIGHT, size = 4, time = RAPPEL_DURATION, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
 	animate(shadow_filter, y = 0, size = 0.9, time = RAPPEL_DURATION, flags = ANIMATION_PARALLEL)
 
 	addtimer(CALLBACK(src, PROC_REF(end_rappel), user, mover, current_layer), RAPPEL_DURATION)

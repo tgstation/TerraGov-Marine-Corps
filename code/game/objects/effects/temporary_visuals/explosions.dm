@@ -322,10 +322,7 @@
 	QDEL_NULL(dirt_kickup)
 	return ..()
 
-
-////////////////////////////
 /obj/effect/temp_visual/rappel_dust
-	name = "boom"
 	duration = 25
 	///smoke wave particle holder
 	var/obj/effect/abstract/particle_holder/smoke_wave
