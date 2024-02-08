@@ -727,6 +727,12 @@ WEAPONS
 	cost = 600
 	containertype = null
 
+/datum/supply_packs/weapons/spreadnozzle
+	name = "Flamethrower Spread Nozzle"
+	contains = list(/obj/item/attachable/flamer_nozzle/wide)
+	cost = 500
+	containertype = null
+
 /datum/supply_packs/weapons/rpgoneuse
 	name = "RL-72 Disposable RPG"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/oneuse)
