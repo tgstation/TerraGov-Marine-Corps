@@ -39,7 +39,7 @@
 	minimap_icon = "widow"
 
 	// *** Widow Abilities *** //
-	max_spiderlings = 5
+	max_spiderlings = 8
 
 	// *** Abilities *** ///
 	actions = list(
@@ -51,6 +51,7 @@
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
+		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/web_spit,
 		/datum/action/ability/xeno_action/burrow,
 		/datum/action/ability/activable/xeno/leash_ball,
