@@ -245,7 +245,7 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle
 	name = "\improper LR-73 lasrifle MK2"
 	desc = "A multifunctional laser based rifle with an integrated mode selector. Ideal for any situation. Uses power cells instead of ballistic magazines."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/Marine/guns64/energy.dmi'
 	icon_state = "tx73"
 	item_state = "tx73"
 	max_shots = 50 //codex stuff
@@ -1156,7 +1156,6 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver
 	name = "\improper VX-33 Caliver"
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The caliver is the primary rifle of the volkite family, and effective at most ranges and situations. Drag click the powerpack to the gun to use that instead of magazines."
-	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "caliver"
 	item_state = "caliver"
 	inhand_x_dimension = 64
