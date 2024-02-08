@@ -120,3 +120,10 @@
   coldironwarrior:
   - rscadd: removes xeno probing
   - balance: point adjustments to xeno caste values for req exports
+2024-02-08:
+  Lumipharon:
+  - balance: Tfoot OB's duration is reduced by 4 seconds per level of fuel inaccuracy
+  Naaanii:
+  - rscadd: Adds Baneling to admin player panel tab.
+  Xander3359:
+  - code_imp: extra_checks use PROC_REF() for their callbacks

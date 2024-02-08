@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Tfoot OB's duration is reduced by 4 seconds per level of fuel inaccuracy"
