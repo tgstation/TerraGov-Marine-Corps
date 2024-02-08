@@ -444,12 +444,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.ravager_rages] number of times Ravagers raged."
 	if(GLOB.round_statistics.hunter_silence_targets)
 		parts += "[GLOB.round_statistics.hunter_silence_targets] number of targets silenced by Hunters."
-	if(GLOB.round_statistics.larva_from_psydrain)
-		parts += "[GLOB.round_statistics.larva_from_psydrain] larvas came from psydrain."
 	if(GLOB.round_statistics.larva_from_silo)
 		parts += "[GLOB.round_statistics.larva_from_silo] larvas came from silos."
-	if(GLOB.round_statistics.larva_from_cocoon)
-		parts += "[GLOB.round_statistics.larva_from_cocoon] larvas came from cocoons."
 	if(GLOB.round_statistics.larva_from_marine_spawning)
 		parts += "[GLOB.round_statistics.larva_from_marine_spawning] larvas came from marine spawning."
 	if(GLOB.round_statistics.larva_from_siloing_body)

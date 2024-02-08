@@ -18,8 +18,6 @@
 	var/cocoon_life_time = 5 MINUTES
 	///Standard busy check
 	var/busy = FALSE
-	///How much larva points it gives at the end of its life time (8 points for one larva in distress)
-	var/larva_point_reward = 1.5
 
 
 /obj/structure/cocoon/Initialize(mapload, _hivenumber, mob/living/_victim)
@@ -66,11 +64,6 @@
 	if(anchored)
 		unanchor_from_nest()
 	if(must_release_victim)
-		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-		xeno_job.add_job_points(larva_point_reward)
-		var/datum/hive_status/hive_status = GLOB.hive_datums[hivenumber]
-		hive_status.update_tier_limits()
-		GLOB.round_statistics.larva_from_cocoon += larva_point_reward / xeno_job.job_points_needed
 		release_victim()
 	update_icon()
 

@@ -89,8 +89,6 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/ravager_rages = 0
 	var/larva_from_marine_spawning = 0
 	var/larva_from_silo = 0
-	var/larva_from_cocoon = 0
-	var/larva_from_psydrain = 0
 	var/larva_from_siloing_body = 0
 	var/req_items_produced = list()
 	var/psy_crushes = 0
