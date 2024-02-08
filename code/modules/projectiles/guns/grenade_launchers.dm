@@ -15,6 +15,7 @@ The Grenade Launchers
 	force = 5
 	caliber = CALIBER_40MM //codex
 	load_method = SINGLE_CASING //codex
+	icon = 'icons/obj/items/guns/special.dmi'
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'

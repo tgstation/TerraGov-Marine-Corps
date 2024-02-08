@@ -3,6 +3,7 @@
 //ENERGY GUNS/ETC
 
 /obj/item/weapon/gun/energy
+	icon = "icons/obj/items/guns/energy.dmi"
 	attachable_allowed = list()
 	rounds_per_shot = 10 //100 shots.
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY

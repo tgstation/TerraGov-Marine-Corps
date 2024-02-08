@@ -1,6 +1,7 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/rifle
+	icon = 'icons/obj/items/guns/rifles.dmi'
 	reload_sound = 'sound/weapons/guns/interact/rifle_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/cocked.ogg'
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -1711,6 +1712,7 @@
 /obj/item/weapon/gun/rifle/alf_machinecarbine
 	name = "\improper ALF-51B Kauser machinecarbine"
 	desc = "The Kauser ALF-51B is an unoffical modification of a ALF-51, or better known as the AR-18 carbine, modified to SMG length of barrel, rechambered for a stronger round, and belt based. Truly the peak of CQC. Useless past that. Aiming is impossible. Uses 10x25mm caseless ammunition."
+	icon = 'icons/obj/items/guns/machineguns.dmi'
 	icon_state = "alf51b"
 	item_state = "alf51b"
 	fire_animation = "alf51b_fire"

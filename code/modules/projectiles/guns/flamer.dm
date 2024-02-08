@@ -286,6 +286,7 @@
 /obj/item/weapon/gun/flamer/big_flamer
 	name = "\improper FL-240 incinerator unit"
 	desc = "The FL-240 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
+	icon = 'icons/obj/items/guns/special.dmi'
 	icon_state = "m240"
 	item_state = "m240"
 

@@ -1,4 +1,5 @@
 /obj/item/weapon/gun/smg
+	icon = 'icons/obj/items/guns/submachineguns.dmi'
 	fire_sound = 'sound/weapons/guns/fire/smg_light.ogg'
 	unload_sound = 'sound/weapons/guns/interact/smg_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/smg_reload.ogg'

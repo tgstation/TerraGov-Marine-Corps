@@ -605,6 +605,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/launcher/rocket
 	name = "\improper RL-5 rocket launcher"
 	desc = "The RL-5 is the primary anti-armor used around the galaxy. Used to take out light-tanks and enemy structures, the RL-5 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
+	icon = 'icons/obj/items/guns/special.dmi'
 	icon_state = "m5"
 	item_state = "m5"
 	max_shells = 1 //codex
