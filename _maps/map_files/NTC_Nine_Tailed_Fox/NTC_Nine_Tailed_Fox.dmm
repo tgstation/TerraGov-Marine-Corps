@@ -1744,8 +1744,8 @@
 	},
 /area/mainship/squads/req)
 "bzX" = (
-/obj/structure/largecrate/supply/explosives/mortar_he,
-/turf/open/floor/mainship/orange/full,
+/obj/structure/largecrate/supply/explosives/mines,
+/turf/open/floor/mainship/cargo,
 /area/outpost/cargo{
 	outside = 1
 	})
@@ -2643,8 +2643,6 @@
 /obj/item/xeno_iff_tag,
 /obj/item/xeno_iff_tag,
 /obj/item/xeno_iff_tag,
-/obj/item/storage/box/monkeycubes,
-/obj/item/storage/box/monkeycubes,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -3815,14 +3813,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
-"dnT" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/mainship/maint,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/upper_hull)
 "dot" = (
 /obj/structure/sink{
 	dir = 8;
@@ -4789,14 +4779,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/groundhq/ntf/hallways/bathroom)
-"eqk" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 2
-	},
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hull/lower_hull)
 "eqv" = (
 /obj/structure/flora/pottedplant{
 	pixel_y = 10;
@@ -5806,7 +5788,6 @@
 /turf/open/floor/wood,
 /area/mainship/ntf/fcroom)
 "fnB" = (
-/obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -7116,7 +7097,6 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "gvw" = (
-/obj/machinery/door/airlock/mainship/maint,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -11135,9 +11115,11 @@
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/engineering/ce_room)
 "khH" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/mainship/hull/lower_hull)
+/obj/structure/largecrate/supply/explosives/mortar_he,
+/turf/open/floor/mainship/cargo,
+/area/outpost/cargo{
+	outside = 1
+	})
 "kia" = (
 /obj/machinery/floodlight/landing,
 /obj/machinery/landinglight/alamo{
@@ -12568,10 +12550,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/machinery/door/poddoor/shutters/opened{
-	dir = 2;
-	id = "Shipside Containment Cell"
-	},
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
@@ -23153,12 +23131,6 @@
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
-"vpg" = (
-/obj/structure/largecrate/supply/explosives/mines,
-/turf/open/floor/mainship/orange/full,
-/area/outpost/cargo{
-	outside = 1
-	})
 "vpv" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -32301,12 +32273,12 @@ nwr
 nwr
 nwr
 tmj
-cRa
-cRa
-cRa
-cRa
-cRa
-cRa
+nje
+nje
+nje
+nje
+nje
+nje
 nje
 nje
 nje
@@ -32459,7 +32431,7 @@ wCC
 eBQ
 fvh
 reV
-iqv
+reV
 reV
 reV
 sBY
@@ -32543,13 +32515,13 @@ mFo
 bMw
 bMw
 cRa
-cRa
 nje
-nje
-nje
-nje
-nje
-nje
+qqh
+qqh
+qqh
+aTq
+aTq
+aTq
 hWW
 fwn
 nHD
@@ -32579,7 +32551,7 @@ gQj
 hdt
 dSF
 fwn
-cCs
+fwn
 fwn
 fwn
 uSa
@@ -32785,10 +32757,10 @@ cRa
 cRa
 cRa
 cRa
-cRa
 nje
+qqh
 aTq
-khH
+ojL
 qqh
 aTq
 qqh
@@ -33027,9 +32999,9 @@ cRa
 cRa
 cRa
 cRa
-cRa
 nje
-qqh
+aTq
+aTq
 qqh
 aTq
 qqh
@@ -33270,7 +33242,7 @@ nje
 nje
 nje
 nje
-nje
+aTq
 qqh
 aTq
 aTq
@@ -34292,14 +34264,14 @@ izo
 izo
 xPo
 kkx
-qsl
 izo
 izo
 izo
-iKR
-iKR
 izo
-qsl
+izo
+izo
+izo
+izo
 izo
 xPo
 izo
@@ -34538,8 +34510,8 @@ izo
 izo
 izo
 eRO
-vTs
-vTs
+izo
+izo
 izo
 izo
 izo
@@ -34780,8 +34752,8 @@ izo
 woS
 izo
 izo
-quO
-quO
+izo
+izo
 izo
 woS
 izo
@@ -35018,11 +34990,11 @@ woS
 lMs
 xPo
 kkx
-lMs
-bzX
+izo
+woS
 izo
 izo
-rmB
+woS
 izo
 izo
 woS
@@ -35500,7 +35472,7 @@ izo
 izo
 woS
 izo
-tFF
+xPo
 kkx
 izo
 woS
@@ -35509,7 +35481,7 @@ woS
 woS
 woS
 woS
-vpg
+woS
 izo
 xPo
 izo
@@ -35748,7 +35720,7 @@ izo
 izo
 woS
 woS
-iKR
+izo
 woS
 woS
 izo
@@ -35990,7 +35962,7 @@ izo
 izo
 izo
 izo
-vTs
+izo
 izo
 izo
 izo
@@ -36230,9 +36202,9 @@ xPo
 kkx
 kwl
 izo
-qsl
 izo
-quO
+izo
+izo
 izo
 izo
 izo
@@ -36955,7 +36927,7 @@ kwl
 xPo
 kkx
 kwl
-izo
+khH
 izo
 izo
 izo
@@ -37202,7 +37174,7 @@ izo
 izo
 izo
 izo
-izo
+bzX
 izo
 izo
 xPo
@@ -37920,7 +37892,7 @@ woS
 izo
 woS
 izo
-xPo
+tFF
 kkx
 uJZ
 izo
@@ -42465,7 +42437,7 @@ gQj
 hYO
 vBm
 cxO
-eqk
+agH
 kIV
 agH
 agH
@@ -67611,7 +67583,7 @@ bUm
 mmu
 tdf
 hcR
-dnT
+qgZ
 aMa
 hrr
 qCU
