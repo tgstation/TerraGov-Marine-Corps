@@ -1,3 +1,7 @@
+#define PATROL_POINT_RAPPEL_EFFECT "patrol_point_rappel_effect"
+#define RAPPEL_DURATION 0.6 SECONDS
+#define RAPPEL_HEIGHT 128
+
 /obj/structure/patrol_point
 	name = "Patrol start point"
 	desc = "A one way ticket to the combat zone."
@@ -69,6 +73,22 @@
 
 	new /atom/movable/effect/rappel_rope(linked_point.loc)
 
+	var/atom/movable/mover = obj_mover ? obj_mover : user
+
+	mover.add_filter(PATROL_POINT_RAPPEL_EFFECT, 2, drop_shadow_filter(y = -RAPPEL_HEIGHT, color = COLOR_TRANSPARENT_SHADOW, size = 4))
+	var/shadow_filter = mover.get_filter(PATROL_POINT_RAPPEL_EFFECT)
+
+	var/current_layer = mover.layer
+	mover.pixel_y += RAPPEL_HEIGHT
+	mover.layer = FLY_LAYER
+
+	animate(mover, pixel_y = mover.pixel_y - RAPPEL_HEIGHT, time = RAPPEL_DURATION)
+
+	//animate(shadow_filter, y = -RAPPEL_HEIGHT, size = 4, time = RAPPEL_DURATION, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
+	animate(shadow_filter, y = 0, size = 0.9, time = RAPPEL_DURATION, flags = ANIMATION_PARALLEL)
+
+	addtimer(CALLBACK(src, PROC_REF(end_rappel), mover, current_layer), RAPPEL_DURATION)
+
 	if(!user)
 		return
 	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
@@ -109,6 +129,12 @@
 		return
 
 	user.forceMove(linked_point.loc)
+
+///Ends the rappel effects
+/obj/structure/patrol_point/proc/end_rappel(atom/movable/mover, original_layer)
+	mover.remove_filter(PATROL_POINT_RAPPEL_EFFECT)
+	mover.layer = original_layer
+	SEND_SIGNAL(mover, COMSIG_MOVABLE_PATROL_DEPLOYED, TRUE, 1.5, 2)
 
 ///Temporarily applies godmode to prevent spawn camping
 /obj/structure/patrol_point/proc/add_spawn_protection(mob/user)
