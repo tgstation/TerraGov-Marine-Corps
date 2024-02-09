@@ -16114,7 +16114,7 @@
 /obj/structure/cable,
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/spacetwinkie,
-/obj/item/storage/box/tgmc_mre,
+/obj/item/storage/box/ntc_mre,
 /obj/item/storage/box/nt_mre,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison{

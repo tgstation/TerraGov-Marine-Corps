@@ -1647,7 +1647,7 @@
 /obj/machinery/light/mainship,
 /obj/structure/table/mainship/nometal,
 /obj/item/book/manual/marine_law,
-/obj/item/storage/box/tgmc_mre,
+/obj/item/storage/box/ntc_mre,
 /obj/structure/sign/prop2,
 /obj/machinery/camera/autoname{
 	dir = 1

@@ -14823,7 +14823,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/kitchen/tray,
 /obj/effect/spawner/random/food_or_drink/kitchenknife,
-/obj/item/storage/box/tgmc_mre,
+/obj/item/storage/box/ntc_mre,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "sFt" = (

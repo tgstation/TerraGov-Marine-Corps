@@ -4193,7 +4193,7 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/west)
 "vz" = (
-/obj/item/storage/box/tgmc_mre,
+/obj/item/storage/box/ntc_mre,
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/food_or_drink/beer/whiskeyoutpost,
 /turf/open/floor/tile/whiteyellow/full,

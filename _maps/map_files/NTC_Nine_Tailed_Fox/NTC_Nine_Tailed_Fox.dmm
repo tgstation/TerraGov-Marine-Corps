@@ -19380,7 +19380,7 @@
 	},
 /obj/structure/cable,
 /obj/item/reagent_containers/food/snacks/spacetwinkie,
-/obj/item/storage/box/tgmc_mre,
+/obj/item/storage/box/ntc_mre,
 /obj/item/storage/box/nt_mre,
 /obj/structure/table/reinforced/fabric,
 /turf/open/floor/wood,

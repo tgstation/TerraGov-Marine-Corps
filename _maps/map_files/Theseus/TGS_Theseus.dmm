@@ -360,9 +360,9 @@
 	dir = 1
 	},
 /obj/structure/table/mainship/nometal,
-/obj/item/storage/box/tgmc_mre,
-/obj/item/storage/box/tgmc_mre,
-/obj/item/storage/box/tgmc_mre,
+/obj/item/storage/box/ntc_mre,
+/obj/item/storage/box/ntc_mre,
+/obj/item/storage/box/ntc_mre,
 /obj/item/pizzabox/meat,
 /turf/open/floor/wood,
 /area/mainship/squads/req)
@@ -16424,7 +16424,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/kitchen/tray,
 /obj/effect/spawner/random/food_or_drink/kitchenknife,
-/obj/item/storage/box/tgmc_mre,
+/obj/item/storage/box/ntc_mre,
 /obj/item/book/manual/chef_recipes,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
