@@ -43,7 +43,7 @@
 	return ..()
 
 /obj/item/implant/ui_action_click(mob/user, datum/action/item_action/action)
-	activate()
+	return activate()
 
 ///Handles the actual activation of the implant/it's effects. Returns TRUE on succesful activation and FALSE on failure for parentcalls
 /obj/item/implant/proc/activate()

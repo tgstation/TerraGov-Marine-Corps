@@ -127,3 +127,21 @@
   - rscadd: Adds Baneling to admin player panel tab.
   Xander3359:
   - code_imp: extra_checks use PROC_REF() for their callbacks
+2024-02-09:
+  Barnet2:
+  - rscadd: 'New role: Transport Officer'
+  - balance: Reduces PO slot to one
+  - bugfix: Tadpole cameras use the proper network
+  Lumipharon:
+  - bugfix: fixed SG loadouts often not spawning everything they should
+  - qol: Cancelling delta alert explicitly tells you that this controls both evac
+      and SD
+  - bugfix: fixed deployable shields being climbable when barbed after redeploying
+  - qol: Suit lights no longer mismatch their actual state and action state if spammed
+  - balance: 'Campaign: Made NT base rescue a bit easier for SOM'
+  Wisemonster:
+  - qol: The alert for resin gargoyles have been changed to use the growl sound effect
+      instead of the screech.
+  XElectricX:
+  - rscadd: 'Interactive emotes: you can high-five, fist bump, headbutt, or tail slap
+      other players'

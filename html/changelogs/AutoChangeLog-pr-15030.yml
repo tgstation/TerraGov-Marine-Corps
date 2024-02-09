@@ -1,0 +1,4 @@
+author: "AusarAtkin"
+delete-after: True
+changes:
+  - qol: "Supply Beacon now Auto Update if Tad are moving across Z-level."
