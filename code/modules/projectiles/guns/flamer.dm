@@ -293,7 +293,7 @@
 /obj/item/weapon/gun/flamer/som
 	name = "\improper V-62 incinerator"
 	desc = "The V-62 is a deadly weapon employed in close quarter combat, favoured as much for the terror it inspires as the actual damage it inflicts. It has good range for a flamer, but lacks the integrated extinguisher of its TGMC equivalent."
-	icon = 'icons/Marine/guns64/special.dmi'
+	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "v62"
 	item_state = "v62"
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_SHOWS_LOADED

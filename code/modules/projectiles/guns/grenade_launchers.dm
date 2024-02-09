@@ -110,7 +110,7 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher
 	name = "\improper GL-70 grenade launcher"
 	desc = "The GL-70 is the standard grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
-	icon = 'icons/Marine/guns64/special.dmi'
+	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "t70"
 	item_state = "t70"
 	fire_animation = "t70_fire"

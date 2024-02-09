@@ -276,7 +276,7 @@
 /obj/item/weapon/gun/revolver/standard_magnum
 	name = "\improper R-76 KC magnum"
 	desc = "The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
-	icon = 'icons/Marine/guns64/pistols.dmi'
+	icon = 'icons/obj/items/guns/pistols64.dmi'
 	icon_state = "t76"
 	item_state = "t76"
 	fire_animation = "t76_fire"

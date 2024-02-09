@@ -245,7 +245,7 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle
 	name = "\improper LR-73 lasrifle MK2"
 	desc = "A multifunctional laser based rifle with an integrated mode selector. Ideal for any situation. Uses power cells instead of ballistic magazines."
-	icon = 'icons/Marine/guns64/energy.dmi'
+	icon = 'icons/obj/items/guns/energy64.dmi'
 	icon_state = "tx73"
 	item_state = "tx73"
 	max_shots = 50 //codex stuff
