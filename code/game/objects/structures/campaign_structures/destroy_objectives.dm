@@ -6,7 +6,7 @@
 	///explosion smoke particle holder
 	var/obj/effect/abstract/particle_holder/explosion_smoke
 	///The faction this belongs to
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 
 /obj/structure/campaign_objective/destruction_objective/Destroy()
 	QDEL_NULL(explosion_smoke)
