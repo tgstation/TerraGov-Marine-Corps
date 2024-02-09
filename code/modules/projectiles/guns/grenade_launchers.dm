@@ -50,7 +50,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/chem_grenade,
 		/obj/item/explosive/grenade/chem_grenade/large,
 		/obj/item/explosive/grenade/chem_grenade/metalfoam,
-		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_small,
 		/obj/item/explosive/grenade/chem_grenade/razorburn_large,
 		/obj/item/explosive/grenade/chem_grenade/incendiary,
 		/obj/item/explosive/grenade/chem_grenade/teargas,

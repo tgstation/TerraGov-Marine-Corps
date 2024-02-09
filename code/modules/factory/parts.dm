@@ -328,7 +328,7 @@ GLOBAL_LIST_INIT(razornade, list(
 /obj/item/factory_part/razornade
 	name = "razorfoam grenade"
 	desc = "An unfinished Razorfoam grenade casing."
-	result = /obj/item/explosive/grenade/chem_grenade/razorburn_smol
+	result = /obj/item/explosive/grenade/chem_grenade/razorburn_small
 
 /obj/item/factory_part/razornade/Initialize(mapload)
 	. = ..()
