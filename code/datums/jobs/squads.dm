@@ -309,7 +309,7 @@
 			R.use_command = FALSE
 		var/obj/item/card/id/ID = squad_leader.get_idcard()
 		if(istype(ID))
-			ID.access -= list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
+			ID.access -= list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TADPOLE)
 
 	to_chat(squad_leader, "<font size='3' color='blue'>You're no longer the Squad Leader for [src]!</font>")
 	var/mob/living/carbon/human/H = squad_leader
@@ -334,7 +334,7 @@
 		squad_leader.comm_title = "aSL"
 		var/obj/item/card/id/ID = squad_leader.get_idcard()
 		if(istype(ID))
-			ID.access += list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
+			ID.access += list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TADPOLE)
 
 	if(istype(squad_leader.wear_ear, /obj/item/radio/headset/mainship/marine))
 		var/obj/item/radio/headset/mainship/marine/R = squad_leader.wear_ear

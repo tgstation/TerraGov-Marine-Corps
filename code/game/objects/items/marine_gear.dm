@@ -19,12 +19,12 @@
 	icon_state = "apc"
 
 
-/obj/item/storage/box/tgmc_mre
+/obj/item/storage/box/NTC_mre
 	name = "\improper NTC meal ready to eat"
 	desc = "<B>Instructions:</B> Extract food using maximum firepower. Eat.\n\nOn the box is a picture of a shouting Squad Leader. \n\"YOU WILL EAT YOUR NUTRIENT GOO AND YOU WILL ENJOY IT, MAGGOT.\""
 	icon_state = "mre1"
 
-/obj/item/storage/box/tgmc_mre/Initialize(mapload, ...)
+/obj/item/storage/box/NTC_mre/Initialize(mapload, ...)
 	. = ..()
 	pixel_y = rand(-3,3)
 	pixel_x = rand(-3,3)
@@ -56,15 +56,15 @@
 	var/faction = FACTION_NTC
 	///list of protein bar types
 	var/static/list/flavor_list = list(
-		FACTION_NTC = list(
+		FACTION_TERRAGOV = list(
 			list("stale NTC protein bar","The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute.","#f37d43",list("nutraloafed food" = 1)),
 			list("mint NTC protein bar","A stale old protein bar, with an almost minty freshness to it, but not fresh enough.","#61b36e",list("minty protein" = 1)),
 			list("grape NTC protein bar","Not the good type of grape flavor, tastes like medicine. Fills you up just as well as any protein bar.","#9900ff",list("artifical grape" = 1)),
-			list("mystery NTC protein bar","Some say they have tasted one of these and tasted their favorite childhood meal, especially for Squad Operatives. Most say this tastes like crayons, though it fills like any other protein bar you've seen.","#ffffff",list("crayons" = 1)),
+			list("mystery NTC protein bar","Some say they have tasted one of these and tasted their favorite childhood meal, especially for squad marines. Most say this tastes like crayons, though it fills like any other protein bar you've seen.","#ffffff",list("crayons" = 1)),
 			list("dark chocolate NTC protein bar","The dark chocolate flavor helps it out a bit, but its still a cheap protein bar.","#5a3b1d",list("bitter dark chocolate" = 1)),
 			list("milk chocolate NTC protein bar","A nice milky addition to a otherwise bland protein taste.","#efc296",list("off flavor milk chocolate"= 1)),
 			list("raspberry lime NTC protein bar","A flavored protein bar, some might say a bit too strongly flavored for their tastes.","#ff0066",list("sour raspberry and lime" = 1)),
-			list("chicken NTC protein bar","Protein bar covered with chicken powder one might find in ramen. Get some extra sodium with your protein.","#cccc00",list= ("powdered chicken")),
+			list("chicken NTC protein bar","Protein bar covered with chicken powder one might find in ramen. Get some extra sodium with your protein.","#cccc00",list("powdered chicken" = 1)),
 			list("blueberry NTC protein bar","A nice blueberry crunch into your otherwise stale and boring protein bar.","#4e39c5",list("blueberry" = 1)),
 			list("cement NTC protein bar", "A gray bar that's allegedly made of cement. It seems to have hardened up. Perhaps it'll make you harden up, too.", "#B2B2B2", list("cement" = 1))
 		),
@@ -77,7 +77,7 @@
 			list("milk chocolate SOM protein bar","A nice milky addition to a otherwise bland protein taste.","#efc296",list("off flavor milk chocolate"= 1)),
 			list("beef SOM protein bar","A beef flavored protein bar, doesn't taste like any cow you've ever tried.","#ff0066",list("meat substitute" = 1)),
 			list("meat SOM protein bar","A surprisingly tasty protein bar made from an unspecified meat. Rumors claiming they're made from reconstituted NTC personnel have been widely dismissed.","#a7576b",list("pork" = 1)),
-			list("chicken SOM protein bar","Protein bar covered with chicken powder one might find in ramen. Get some extra sodium with your protein.","#cccc00",list= ("powdered chicken")),
+			list("chicken SOM protein bar","Protein bar covered with chicken powder one might find in ramen. Get some extra sodium with your protein.","#cccc00",list("powdered chicken" = 1)),
 			list("blueberry SOM protein bar","A nice blueberry crunch into your otherwise stale and boring protein bar.","#4e39c5",list("blueberry" = 1))
 		),
 	)

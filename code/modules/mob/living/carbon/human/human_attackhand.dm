@@ -31,6 +31,10 @@
 				return TRUE
 
 			if(health >= get_crit_threshold())
+
+				if(interaction_emote(src))
+					return TRUE
+
 				help_shake_act(H)
 				return TRUE
 

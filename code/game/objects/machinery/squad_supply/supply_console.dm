@@ -68,8 +68,14 @@
 
 	switch(action)
 		if("select_beacon")
-			var/datum/supply_beacon/supply_beacon_choice = GLOB.supply_beacon[tgui_input_list(ui.user, "Select the beacon to send supplies", "Beacon choice", GLOB.supply_beacon)]
-			if(!istype(supply_beacon_choice))
+			var/list/beacon_list = GLOB.supply_beacon.Copy()
+			for(var/beacon_name in beacon_list)
+				var/datum/supply_beacon/beacon = beacon_list[beacon_name]
+				if(!is_ground_level(beacon.drop_location.z))
+					beacon_list -= beacon_name
+					continue
+			var/datum/supply_beacon/supply_beacon_choice = beacon_list[tgui_input_list(ui.user, "Select the beacon to send supplies", "Beacon choice", beacon_list)]
+			if(!istype(supply_beacon_choice) && is_ground_level(supply_beacon.drop_location.z))
 				return
 			supply_beacon = supply_beacon_choice
 			RegisterSignal(supply_beacon, COMSIG_QDELETING, PROC_REF(clean_supply_beacon), override = TRUE)

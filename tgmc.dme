@@ -240,6 +240,7 @@
 #include "code\_onclick\hud\ghost.dm"
 #include "code\_onclick\hud\hud.dm"
 #include "code\_onclick\hud\human.dm"
+#include "code\_onclick\hud\interactive_emotes.dm"
 #include "code\_onclick\hud\map_popups.dm"
 #include "code\_onclick\hud\map_view.dm"
 #include "code\_onclick\hud\movable_screen_objects.dm"

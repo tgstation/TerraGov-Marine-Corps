@@ -7,7 +7,7 @@
 /area/shuttle/minidropship)
 "c" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
-/obj/machinery/camera/autoname/mainship,
+/obj/machinery/camera/autoname/mainship/dropship_two,
 /turf/open/floor/iron/white/textured_half,
 /area/shuttle/minidropship)
 "d" = (
