@@ -630,3 +630,169 @@ GLOBAL_LIST_INIT(equipment_recipe, list(
 /obj/item/factory_part/deployable_camera/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.equipment_recipe
+
+GLOBAL_LIST_INIT(agls_recipe, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "hotplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "rockettube"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "hotplate"),
+	))
+
+/obj/item/factory_part/agls_he
+	name = "\improper AGLS HE magazine assembly"
+	desc = "An incomplete AGLS HE magazine assembly."
+	result = /obj/item/ammo_magazine/standard_agls
+
+/obj/item/factory_part/obj/item/factory_part/agls_he/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.agls_recipe
+
+/obj/item/factory_part/agls_frag
+	name = "\improper AGLS Frag magazine assembly"
+	desc = "An incomplete AGLS Frag magazine assembly."
+	result = /obj/item/ammo_magazine/standard_agls/fragmentation
+
+/obj/item/factory_part/agls_frag/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.agls_recipe
+
+/obj/item/factory_part/agls_incendiary
+	name = "\improper AGLS HE magazine assembly"
+	desc = "An incomplete AGLS HE magazine assembly."
+	result = /obj/item/ammo_magazine/standard_agls/incendiary
+
+/obj/item/factory_part/agls_incendiary/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.agls_recipe
+
+/obj/item/factory_part/agls_flare
+	name = "\improper AGLS HE magazine assembly"
+	desc = "An incomplete AGLS HE magazine assembly."
+	result = /obj/item/ammo_magazine/standard_agls/flare
+
+/obj/item/factory_part/agls_flare/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.agls_recipe
+
+/obj/item/factory_part/agls_cloak
+	name = "\improper AGLS HE magazine assembly"
+	desc = "An incomplete AGLS HE magazine assembly."
+	result = /obj/item/ammo_magazine/standard_agls/cloak
+
+/obj/item/factory_part/agls_cloak/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.agls_recipe
+
+/obj/item/factory_part/agls_tanglefoot
+	name = "\improper AGLS HE magazine assembly"
+	desc = "An incomplete AGLS HE magazine assembly."
+	result = /obj/item/ammo_magazine/standard_agls/tanglefoot
+
+/obj/item/factory_part/agls_tanglefoot/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.agls_recipe
+
+GLOBAL_LIST_INIT(atgun_recipe, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "hotplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "rockettube"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
+	))
+
+/obj/item/factory_part/atgun_aphe
+	name = "\improper AT-36 APHE shell assembly"
+	desc = "An incomplete AT-36 APHE shell assembly."
+	result = /obj/item/ammo_magazine/standard_atgun
+
+/obj/item/factory_part/atgun_aphe/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.atgun_recipe
+
+/obj/item/factory_part/atgun_apcr
+	name = "\improper AT-36 APCR shell assembly"
+	desc = "An incomplete AT-36 APCR shell assembly."
+	result = /obj/item/ammo_magazine/standard_atgun/apcr
+
+/obj/item/factory_part/atgun_apcr/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.atgun_recipe
+
+/obj/item/factory_part/atgun_he
+	name = "\improper AT-36 HE shell assembly"
+	desc = "An incomplete AT-36 HE shell assembly."
+	result = /obj/item/ammo_magazine/standard_atgun/he
+
+/obj/item/factory_part/atgun_he/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.atgun_recipe
+
+/obj/item/factory_part/atgun_beehive
+	name = "\improper AT-36 Beehive shell assembly"
+	desc = "An incomplete AT-36 Beehive shell assembly."
+	result = /obj/item/ammo_magazine/standard_atgun/beehive
+
+/obj/item/factory_part/atgun_beehive/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.atgun_recipe
+
+/obj/item/factory_part/atgun_incend
+	name = "\improper AT-36 Napalm shell assembly"
+	desc = "An incomplete AT-36 Napalm shell assembly."
+	result = /obj/item/ammo_magazine/standard_atgun/incend
+
+/obj/item/factory_part/atgun_incend/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.atgun_recipe
+
+GLOBAL_LIST_INIT(heavy_isg_recipe, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "hotplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FORMER, STEP_ICON_STATE = "rockettube"),
+	))
+
+/obj/item/factory_part/heavy_isg_he
+	name = "\improper FK-88 HE shell assembly"
+	desc = "An incomplete FK-88 HE shell assembly."
+	result = /obj/item/ammo_magazine/heavy_isg/he
+
+/obj/item/factory_part/heavy_isg_he/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.heavy_isg_recipe
+
+/obj/item/factory_part/heavy_isg_sabot
+	name = "\improper FK-88 HE shell assembly"
+	desc = "An incomplete FK-88 APFDS shell assembly."
+	result = /obj/item/ammo_magazine/heavy_isg/sabot
+
+/obj/item/factory_part/heavy_isg_sabot/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.heavy_isg_recipe
+
+GLOBAL_LIST_INIT(ac_recipe, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FORMER, STEP_ICON_STATE = "rockettube"),
+	))
+
+/obj/item/factory_part/ac_hv
+	name = "\improper ATR-22 high velocity magazine assembly"
+	desc = "An incomplete ATR-22 high velocity magazine assembly."
+	result = /obj/item/ammo_magazine/auto_cannon
+
+/obj/item/factory_part/ac_hv/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.ac_recipe
+
+/obj/item/factory_part/ac_flak
+	name = "\improper ATR-22 flak magazine assembly"
+	desc = "An incomplete ATR-22 flak magazine assembly."
+	result = /obj/item/ammo_magazine/auto_cannon/flak
+
+/obj/item/factory_part/ac_flak/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.ac_recipe
