@@ -185,10 +185,15 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 
 /obj/item/radio/headset/mainship/attack_hand_alternate(mob/living/user)
-	var/area/A = get_area(user)
-	if(A && istype(A) && A.ceiling >= CEILING_UNDERGROUND)
+	var/area/user_area = get_area(user)
+	if(user_area && istype(user_area) && user_area.ceiling >= CEILING_UNDERGROUND)
 		to_chat(user, span_warning("The radio's requisitions display flickers before dying."))
 		return ..()
+		///checks if the player is in a cave
+	if(is_centcom_level(user.z))
+		to_chat(user, span_warning("You can't use this here."))
+		return
+		///checks if the player is at eorg or valh
 
 	if(!allowed(user))
 		return ..()
