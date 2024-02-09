@@ -94,9 +94,6 @@
 					ExtinguishMob()
 				return TRUE
 
-			if(interaction_emote(src))
-				return TRUE
-
 			X.visible_message(span_notice("\The [X] caresses \the [src] with its scythe-like arm."), \
 			span_notice("We caress \the [src] with our scythe-like arm."), null, 5)
 

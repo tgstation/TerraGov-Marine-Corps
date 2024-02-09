@@ -351,6 +351,11 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
+
+	//Any mob can begin an interaction when right clicking on help intent
+	if(ismob(A) && a_intent == INTENT_HELP && Adjacent(A) && interaction_emote(A))
+		return TRUE
+
 	return A.RightClick(src)
 
 /mob/living/carbon/human/RightClickOn(atom/A)
