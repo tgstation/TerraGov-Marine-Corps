@@ -24061,7 +24061,6 @@
 "tUA" = (
 /obj/structure/bed/bunkbed,
 /obj/effect/landmark/start/job/pilotofficer,
-/obj/effect/landmark/start/job/pilotofficer,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
 "tVZ" = (
@@ -25899,6 +25898,10 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
+"wlD" = (
+/obj/effect/landmark/start/job/transportofficer,
+/turf/open/floor/prison,
+/area/mainship/living/pilotbunks)
 "wlT" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -66349,7 +66352,7 @@ pWS
 hxN
 oLM
 ujq
-aZw
+wlD
 aZw
 tUA
 aXN

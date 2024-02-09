@@ -280,10 +280,10 @@
 /area/shuttle/minidropship)
 "S" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
-/obj/machinery/camera/autoname/mainship,
 /obj/structure/barricade/metal{
 	dir = 1
 	},
+/obj/machinery/camera/autoname/mainship/dropship_two,
 /turf/open/floor/carpet/side{
 	dir = 1
 	},

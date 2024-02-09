@@ -53,7 +53,7 @@
 	toggle_action.remove_action(user)
 
 /obj/item/jetpack_marine/ui_action_click(mob/user, datum/action/item_action/action, target)
-	use_jetpack(target, user)
+	return use_jetpack(target, user)
 
 ///remove the flame overlay
 /obj/item/jetpack_marine/proc/reset_flame(mob/living/carbon/human/human_user)
