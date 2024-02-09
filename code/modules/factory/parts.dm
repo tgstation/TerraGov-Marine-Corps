@@ -83,6 +83,38 @@ GLOBAL_LIST_INIT(pizza_recipe,  list(
 	. = ..()
 	recipe = GLOB.pizza_recipe
 
+GLOBAL_LIST_INIT(plastique_recipe, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "hotplate"),
+))
+
+/obj/item/factory_part/plastique
+	name = "\improper C4 explosive assembly"
+	desc = "An unfinshed C4 plastique explosive assembly."
+	result = /obj/item/explosive/plastique
+
+/obj/item/factory_part/plastique/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.plastique_recipe
+
+/obj/item/factory_part/plastique_incendiary
+	name = "\improper EX-62 Genghis incendiary assembly"
+	desc = "An unfinshed EX-62 Genghis incendiary charge assembly."
+	result = /obj/item/explosive/plastique/genghis_charge
+
+/obj/item/factory_part/plastique_incendiary/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.plastique_recipe
+
+/obj/item/factory_part/detpack
+	name = "\improper Detpack assembly"
+	desc = "An unfinished Detpack charge assembly"
+	result = /obj/item/detpack
+
+/obj/item/factory_part/detpack/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.plastique_recipe
+
 GLOBAL_LIST_INIT(sadar_ammo_recipe, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),

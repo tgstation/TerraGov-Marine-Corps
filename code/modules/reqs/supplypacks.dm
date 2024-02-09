@@ -2233,6 +2233,21 @@ FACTORY
 	contains = list(/obj/item/factory_refill/module_surt_refill)
 	cost = 600
 
+/datum/supply_packs/factory/plastique_refill
+	name = "C4 assembly refill"
+	contains = list(/obj/item/factory_refill/plastique_refill)
+	cost = 150
+
+/datum/supply_packs/factory/plastique_incendiary_refill
+	name = "EX-62 Genghis incendiary assembly refill"
+	contains = list(/obj/item/factory_refill/plastique_incendiary_refill)
+	cost = 500
+
+/datum/supply_packs/factory/detpack_refill
+	name = "Detpack assembly refill"
+	contains = list(/obj/item/factory_refill/detpack_refill)
+	cost = 250
+
 /datum/supply_packs/factory/mortar_shell_he_refill
 	name = "Mortar High Explosive shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_he_refill)
