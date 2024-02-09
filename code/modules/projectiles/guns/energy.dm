@@ -3,6 +3,10 @@
 //ENERGY GUNS/ETC
 
 /obj/item/weapon/gun/energy
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/energy_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_1.dmi',
+	)
 	attachable_allowed = list()
 	rounds_per_shot = 10 //100 shots.
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
@@ -1161,8 +1165,8 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/energy_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_64.dmi',
 	)
 	fire_sound = 'sound/weapons/guns/fire/volkite_3.ogg'
 	max_shots = 40
@@ -1212,8 +1216,8 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/energy_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_64.dmi',
 	)
 	ammo_level_icon = null
 	gun_skill_category = SKILL_HEAVY_WEAPONS

@@ -195,12 +195,12 @@
 	name = "\improper DMR-37 SCA designated marksman rifle"
 	desc = "The San Cristo Arms DMR-37 is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27mm caseless caliber."
 	icon = 'icons/Marine/gun64.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
+	)
 	icon_state = "t37"
 	item_state = "t37"
-	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
-	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 
@@ -278,8 +278,8 @@
 	item_state = "t64"
 	icon = 'icons/Marine/gun64.dmi'
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
@@ -878,8 +878,8 @@
 	icon_state = "t42"
 	item_state = "t42"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
@@ -959,8 +959,8 @@
 	item_state = "t60"
 	fire_animation = "t60_fire"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
@@ -1207,6 +1207,10 @@
 	desc = "The Zauer SH-15 Automatic Assault Shotgun, this is a Terran Armories variant. Another iteration of the ZX series of firearms though it has been since regulated as part of the TGMC arsenal, hence the SH designation. It took over the various shotgun models as the semi-automatic shotgun provided to the TGMC. It is rifled, and loads primarily longer ranged munitions, being incompatible with buckshot shells. Takes 12-round 16 gauge magazines."
 	icon_state = "tx15"
 	item_state = "tx15"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/shotguns_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh15.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	caliber = CALIBER_16G //codex
@@ -1407,6 +1411,10 @@
 	desc = "An unusual gun of alien origin. It is lacking a trigger or any obvious way to fire it."
 	icon_state = "alien_rifle"
 	item_state = "alien_rifle"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/energy_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/alienplasma.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/alienplasma.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
@@ -1458,8 +1466,8 @@
 	icon_state = "tl127"
 	item_state = "tl127"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
 	)
 
 	inhand_x_dimension = 64
@@ -1641,8 +1649,8 @@
 	icon_state = "t21"
 	item_state = "t21"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
 	)
 
 	inhand_x_dimension = 64
@@ -1970,13 +1978,12 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "garand"
 	item_state = "garand"
-	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
-	)
-
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/garand.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/garand_ping.ogg'
@@ -2206,8 +2213,8 @@
 	item_state = "v41"
 	fire_animation = "v41_fire"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
 	)
 
 	inhand_x_dimension = 64
@@ -2273,8 +2280,8 @@
 	icon_state = "l11"
 	item_state = "l11"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
@@ -2346,8 +2353,8 @@
 	icon_state = "l15"
 	item_state = "l15"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
 	)
 
 	inhand_x_dimension = 64
@@ -2418,8 +2425,8 @@
 	icon_state = "ml12"
 	item_state = "ml12"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
 	)
 
 	inhand_x_dimension = 64
@@ -2484,6 +2491,10 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "ml41"
 	item_state = "ml41"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/shotguns_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	caliber = CALIBER_12G //codex
@@ -2590,8 +2601,8 @@
 	icon_state = "minimi"
 	item_state = "minimi"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
