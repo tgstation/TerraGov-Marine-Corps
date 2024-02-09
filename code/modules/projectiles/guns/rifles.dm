@@ -195,12 +195,12 @@
 	name = "\improper DMR-37 SCA designated marksman rifle"
 	desc = "The San Cristo Arms DMR-37 is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27mm caseless caliber."
 	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t37"
+	item_state = "t37"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
 	)
-	icon_state = "t37"
-	item_state = "t37"
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 
