@@ -2138,6 +2138,16 @@ FACTORY
 	contains = list(/obj/item/factory_refill/railgun_magazine_refill)
 	cost = 200
 
+/datum/supply_packs/factory/railgun_hvap_magazine_refill
+	name = "Railgun HVAP magazine assembly refill"
+	contains = list(/obj/item/factory_refill/railgun_magazine_refill)
+	cost = 200
+
+/datum/supply_packs/factory/railgun_smart_magazine_refill
+	name = "Railgun magazine assembly refill"
+	contains = list(/obj/item/factory_refill/railgun_magazine_refill)
+	cost = 200
+
 /datum/supply_packs/factory/minigun_powerpack_refill
 	name = "Minigun powerpack assembly refill"
 	contains = list(/obj/item/factory_refill/minigun_powerpack_refill)
@@ -2147,6 +2157,11 @@ FACTORY
 	name = "Razornade assembly refill"
 	contains = list(/obj/item/factory_refill/razornade_refill)
 	cost = 500
+
+/datum/supply_packs/factory/flak_sniper_refill
+	name = "SR-127 flak magazine assembly refill"
+	contains = list(/obj/item/factory_refill/sniper_flak_magazine_refill)
+	cost = 600
 
 /datum/supply_packs/factory/amr_magazine_refill
 	name = "T-26 AMR magazine assembly refill"
@@ -2257,3 +2272,12 @@ FACTORY
 	name = "Zeus orbital drop pod assembly refill"
 	contains = list(/obj/item/factory_refill/drop_pod_refill)
 	cost = 250
+
+/datum/supply_packs/factory/deployable_floodlight_refill
+	name = "Deployable floodlight assembly refill"
+	contains = list(/obj/item/factory_refill/deployable_floodlight_refill)
+	cost = 150
+
+/datum/supply_packs/factory/deployable_camera_refill
+	name = "Deplyable security camera refill"
+	cost = 100

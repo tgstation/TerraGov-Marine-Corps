@@ -277,6 +277,15 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	. = ..()
 	recipe = GLOB.IFF_ammo
 
+/obj/item/factory_part/sniper_flak_magazine
+	name = "\improper FLAK sniper bullet box"
+	desc = "A box with unfinished flak sniper rounds inside."
+	result = /obj/item/ammo_magazine/rifle/chamberedrifle/flak
+
+/obj/item/factory_part/sniper_flak_magazine/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
 GLOBAL_LIST_INIT(mateba_speedloader, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "bulletbox"),
@@ -303,6 +312,22 @@ GLOBAL_LIST_INIT(railgun_magazine, list(
 	result = /obj/item/ammo_magazine/railgun
 
 /obj/item/factory_part/railgun_magazine/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.railgun_magazine
+/obj/item/factory_part/railgun_hvap_magazine
+	name = "railgun round"
+	desc = "An unfinished magnetically propelled steel rod."
+	result = /obj/item/ammo_magazine/railgun/hvap
+
+/obj/item/factory_part/railgun_hvap_magazine/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.railgun_magazine
+/obj/item/factory_part/railgun_smart_magazine
+	name = "railgun round"
+	desc = "An unfinished magnetically propelled steel rod."
+	result = /obj/item/ammo_magazine/railgun/smart
+
+/obj/item/factory_part/railgun_smart_magazine/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.railgun_magazine
 
@@ -572,7 +597,7 @@ GLOBAL_LIST_INIT(thermobaric_wp_recipe, list(
 	. = ..()
 	recipe = GLOB.thermobaric_wp_recipe
 
-GLOBAL_LIST_INIT(drop_pod_recipe, list(
+GLOBAL_LIST_INIT(equipment_recipe, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "hotplate"),
@@ -581,10 +606,27 @@ GLOBAL_LIST_INIT(drop_pod_recipe, list(
 
 /obj/item/factory_part/drop_pod
 	name = "TGMC Zeus orbital drop pod assembly"
-	desc = "An incomplete Zeus orbital drop pod assembly"
+	desc = "An incomplete Zeus orbital drop pod assembly."
 	result = /obj/structure/droppod
 
 /obj/item/factory_part/drop_pod/Initialize(mapload)
 	. = ..()
-	recipe = GLOB.drop_pod_recipe
+	recipe = GLOB.equipment_recipe
 
+/obj/item/factory_part/deployable_floodlight
+	name = "\improper deployable floodlight assembly"
+	desc = "An incomplete deployable floodlight assembly."
+	result = /obj/item/deployable_floodlight
+
+/obj/item/factory_part/deployable_floodlight/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.equipment_recipe
+
+/obj/item/factory_part/deployable_camera
+	name = "\improper deployable security camera assembly"
+	desc = "An incomplete deployable security camera assembly."
+	result = /obj/item/deployable_camera
+
+/obj/item/factory_part/deployable_camera/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.equipment_recipe
