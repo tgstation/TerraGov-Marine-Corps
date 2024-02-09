@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "Cancelling delta alert explicitly tells you that this controls both evac and SD"

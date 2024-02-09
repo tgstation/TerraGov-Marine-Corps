@@ -1,6 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - rscadd: "New role: Transport Officer"
-  - balance: "Reduces PO slot to one"
-  - bugfix: "Tadpole cameras use the proper network"
