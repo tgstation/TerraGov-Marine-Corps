@@ -2319,7 +2319,7 @@ FACTORY
 	cost = 100
 
 /datum/supply_packs/factory/heavy_isg_he_refill
-	name = "FK-88 High Velocity shell assembly refill"
+	name = "FK-88 HE shell assembly refill"
 	contains = list(/obj/item/factory_refill/heavy_isg_he_refill)
 	cost = 300
 
