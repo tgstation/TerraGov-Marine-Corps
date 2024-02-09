@@ -396,7 +396,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/minigun
 	name = "\improper MG-100 Vindicator Minigun"
 	desc = "A six barreled rotary machine gun, The ultimate in man-portable firepower, capable of laying down high velocity armor piercing rounds this thing will no doubt pack a punch.. If you don't kill all your friends with it, you can use the stablizing system of the Powerpack to fire aimed fire, but you'll move incredibly slowly."
-	icon = 'icons/obj/items/guns/machineguns64.dmi'
+	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "minigun"
 	item_state = "minigun"
 	fire_animation = "minigun_fire"
