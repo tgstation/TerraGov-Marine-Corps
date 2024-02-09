@@ -397,7 +397,7 @@
 
 /datum/action/ability/activable/xeno/warrior/grapple_toss/New(Target)
 	. = ..()
-	desc = "Throw a creature under our grasp up to [WARRIOR_GRAPPLE_TOSS_DISTANCE] tiles away. Distance reduced on bigger creates. Usable on allies."
+	desc = "Throw a creature under our grasp up to [WARRIOR_GRAPPLE_TOSS_DISTANCE] tiles away. Distance reduced on larger targets. Usable on allies."
 
 /datum/action/ability/activable/xeno/warrior/grapple_toss/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
