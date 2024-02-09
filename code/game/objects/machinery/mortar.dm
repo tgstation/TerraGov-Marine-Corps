@@ -934,7 +934,7 @@
 	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
 
 /obj/item/storage/box/mlrs_rocket_incendiary
-	name = "\improper TA-40L 'S-2' rocket crate"
+	name = "\improper TA-40L incendiary rocket crate"
 	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	storage_slots = 16
 
