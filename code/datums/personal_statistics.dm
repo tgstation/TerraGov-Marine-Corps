@@ -105,6 +105,23 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/war_crimes = 0
 	var/tactical_unalives = 0	//Someone should add a way to determine if you died to a grenade in your hand and add it to this
 
+	//campaign specific vars
+	var/mission_projectile_damage = 0
+	var/mission_friendly_fire_damage = 0
+	var/mission_melee_damage = 0
+	var/mission_delimbs = 0
+	var/mission_revives = 0
+	var/mission_times_revived = 0
+	var/mission_structures_built = 0
+	var/mission_objective_destroyed = 0
+	var/mission_blocker_destroyed = 0
+	var/mission_objective_captured = 0
+	var/mission_objective_decaptured = 0
+
+/datum/personal_statistics/New()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_STARTED, PROC_REF(reset_mission_stats))
+
 ///Calculated from the chemicals_ingested list, returns a string: "[chemical name], [amount] units"
 /datum/personal_statistics/proc/get_most_ingested_chemical()
 	var/list/winner = list("none", 0)
@@ -264,7 +281,40 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	//Replace any instances of line breaks after horizontal rules to prevent unneeded empty spaces
 	return replacetext(jointext(stats, "<br>"), "<hr><br>", "<hr>")
 
+/**
+ * Resets stats recorded for the current mission
+ * Used for Campaign
+ */
+/datum/personal_statistics/proc/reset_mission_stats()
+	SIGNAL_HANDLER
+	mission_projectile_damage = 0
+	mission_friendly_fire_damage = 0
+	mission_revives = 0
+	mission_times_revived = 0
+	mission_structures_built = 0
+	mission_melee_damage = 0
+	mission_delimbs = 0
+	mission_objective_destroyed = 0
+	mission_blocker_destroyed = 0
+	mission_objective_captured = 0
+	mission_objective_decaptured = 0
 
+///Returns the credit bonus based on stats from the current mission
+/datum/personal_statistics/proc/get_mission_reward()
+	var/credit_bonus = 0
+	credit_bonus += mission_projectile_damage * 0.1
+	credit_bonus -= mission_friendly_fire_damage * 0.2
+	credit_bonus += mission_melee_damage * 0.2
+	credit_bonus += mission_delimbs * 3
+	credit_bonus += mission_revives * 10
+	credit_bonus += mission_times_revived * 5 //purple heart
+	credit_bonus += mission_structures_built * 2
+	credit_bonus += mission_objective_destroyed * 15
+	credit_bonus += mission_blocker_destroyed * 10
+	credit_bonus += mission_objective_captured * 5
+	credit_bonus += mission_objective_decaptured * 3
+
+	return max(floor(credit_bonus), 0)
 
 /* Not sure what folder to put a file of just record keeping procs, so just leaving them here
 The alternative is scattering them everywhere under their respective objects which is a bit messy */
@@ -276,6 +326,9 @@ The alternative is scattering them everywhere under their respective objects whi
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 	personal_statistics.melee_hits++
 	personal_statistics.melee_damage += damage
+	personal_statistics.mission_melee_damage += damage
+	if(faction == user.faction)
+		personal_statistics.mission_friendly_fire_damage += damage
 	return TRUE
 
 /mob/living/carbon/human/record_melee_damage(mob/living/user, damage, delimbed)
@@ -289,6 +342,7 @@ The alternative is scattering them everywhere under their respective objects whi
 		personal_statistics.limbs_lost++
 	personal_statistics = GLOB.personal_statistics_list[user.ckey]
 	personal_statistics.delimbs++
+	personal_statistics.mission_delimbs++
 	return TRUE
 
 ///Record whenever a player shoots things, taking into account bonus projectiles without running these checks multiple times
@@ -310,17 +364,17 @@ The alternative is scattering them everywhere under their respective objects whi
 	return ..()
 
 ///Tally to personal_statistics that a successful shot was made and record the damage dealt
-/mob/living/proc/record_projectile_damage(mob/shooter, damage)
-	//Check if a ckey exists; the check for victim aliveness is handled before the proc call
-	if(!shooter.ckey)
+/mob/living/proc/record_projectile_damage(damage, mob/living/victim)
+	if(!ckey)
 		return FALSE
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[shooter.ckey]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 	personal_statistics.projectiles_hit++
 	personal_statistics.projectile_damage += damage
-	if(faction && isliving(shooter))	//See if any friendly fire was made
-		var/mob/living/L = shooter
-		if(faction == L.faction)
-			personal_statistics.friendly_fire_damage += damage	//FF multiplier already included by the way
+	personal_statistics.mission_projectile_damage += damage
+
+	if(faction == victim.faction) //See if any friendly fire was made
+		personal_statistics.friendly_fire_damage += damage	//FF multiplier already included by the way
+		personal_statistics.mission_friendly_fire_damage += damage
 	return TRUE
 
 ///Record what reagents and how much of them were transferred to a mob into their ckey's /datum/personal_statistics
@@ -543,6 +597,7 @@ The alternative is scattering them everywhere under their respective objects whi
 		return FALSE
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 	personal_statistics.structures_built++
+	personal_statistics.mission_structures_built++
 	return TRUE
 
 /mob/proc/record_war_crime()
