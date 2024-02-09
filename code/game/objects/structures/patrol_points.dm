@@ -70,8 +70,8 @@
 		span_notice("You walk through the [src]."))
 		user.trainteleport(linked_point.loc)
 		add_spawn_protection(user)
-
-	new /atom/movable/effect/rappel_rope(linked_point.loc)
+	if(!obj_mover)
+		new /atom/movable/effect/rappel_rope(linked_point.loc) //mechs don't need a rope
 
 	var/atom/movable/mover = obj_mover ? obj_mover : user
 
