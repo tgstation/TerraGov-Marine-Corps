@@ -14,6 +14,23 @@ GLOBAL_LIST_INIT(weapon, list(
 	. = ..()
 	recipe = GLOB.weapon
 
+/obj/item/factory_part/basic_sniper
+	name = "unfinished SR127 parts"
+	desc = "A box with unfinished sniper rifle parts inside."
+	result = /obj/item/weapon/gun/rifle/chambered
+
+/obj/item/factory_part/basic_sniper/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.weapon
+
+/obj/item/factory_part/light_sentry
+	name = "unfinished ST480 parts"
+	desc = "A box with sentry gun parts inside."
+	result = /obj/item/storage/box/crate/minisentry
+
+/obj/item/factory_part/light_sentry/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.weapon
 
 //// ANTAG CONVERTED TYPES ////
 
@@ -55,3 +72,13 @@ GLOBAL_LIST_INIT(weapon, list(
 	name = "unfinished V31 parts"
 	desc = "A box with unfinished rifle parts inside."
 	result = /obj/item/weapon/gun/rifle/som
+
+/obj/item/factory_part/basic_sniper/svd
+	name = "unfinished Dragunov parts"
+	desc = "A box with unfinished sniper rifle parts inside."
+	result = /obj/item/weapon/gun/rifle/sniper/svd
+
+/obj/item/factory_part/light_sentry/cope
+	name = "unfinished COPE parts"
+	desc = "A box with sentry gun parts inside."
+	result = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope

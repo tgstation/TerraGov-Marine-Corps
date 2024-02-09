@@ -51,3 +51,17 @@
 	refill_type = /obj/item/factory_part/basic_rifle
 	antag_refill_type = /obj/item/factory_part/basic_rifle/v31
 	refill_amount = 3
+
+/obj/item/factory_refill/basic_sniperrifle
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/basic_sniper
+	antag_refill_type = /obj/item/factory_part/basic_sniper/svd
+	refill_amount = 2
+
+/obj/item/factory_refill/light_sentry
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/light_sentry
+	antag_refill_type = /obj/item/factory_part/light_sentry/cope
+	refill_amount = 2

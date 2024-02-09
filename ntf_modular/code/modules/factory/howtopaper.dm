@@ -9,7 +9,7 @@
 	Below are some of the potential outcomes, recipes are below noted but otherwise the same as usual. Good luck on your missions.
 	<br>
 	RECIPES:<br>
-	WEAPONS --- AR-12 to V31:<br>
+	WEAPONS --- AR-12 to V31, SR-127 to SVD, ST-480 to COPE:<br>
 	UNBOXER -> DRILLER -> COMPRESSOR -> FORMER<br>
 	<br>
 	WP GRENADE --- Alternative WP variant :<br>
