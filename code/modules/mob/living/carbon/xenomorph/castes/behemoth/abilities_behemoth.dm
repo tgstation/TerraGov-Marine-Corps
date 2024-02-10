@@ -557,6 +557,9 @@
 #define EARTH_RISER_ENHANCED_RANGE 5
 #define EARTH_RISER_ENHANCED_RADIUS 1
 #define EARTH_RISER_ENHANCED_KNOCKDOWN_DURATION 0.8 SECONDS
+#define EARTH_RISER_PRIMAL_WRATH_COOLDOWN 2 SECONDS
+#define EARTH_RISER_KNOCKBACK_DISTANCE 1
+#define EARTH_RISER_KNOCKBACK_SPEED 1
 
 /obj/effect/temp_visual/behemoth/crack/earth_riser/Initialize(mapload, direction)
 	. = ..()
@@ -585,7 +588,7 @@
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_EARTH_RISER_ALTERNATE,
 	)
 	/// Maximum amount of Earth Pillars that this ability can have.
-	var/maximum_pillars = 1
+	var/maximum_pillars = 3
 	/// List that contains all Earth Pillars created by this ability.
 	var/list/obj/structure/earth_pillar/active_pillars = list()
 
@@ -610,7 +613,7 @@
 /datum/action/ability/activable/xeno/earth_riser/update_button_icon()
 	button.cut_overlay(visual_references[VREF_MUTABLE_EARTH_PILLAR])
 	var/mutable_appearance/number = visual_references[VREF_MUTABLE_EARTH_PILLAR]
-	number.maptext = MAPTEXT("[length(active_pillars)]/[maximum_pillars]")
+	number.maptext = MAPTEXT("[maximum_pillars ? "[length(active_pillars)]/[maximum_pillars]" : ""]")
 	visual_references[VREF_MUTABLE_EARTH_PILLAR] = number
 	button.add_overlay(visual_references[VREF_MUTABLE_EARTH_PILLAR])
 	return ..()
@@ -627,7 +630,7 @@
 
 /datum/action/ability/activable/xeno/earth_riser/use_ability(atom/target)
 	. = ..()
-	if(length(active_pillars) >= maximum_pillars)
+	if(maximum_pillars && length(active_pillars) >= maximum_pillars)
 		owner.balloon_alert(owner, "Maximum amount of pillars reached")
 		return
 	var/turf/owner_turf = get_turf(owner)
@@ -651,7 +654,7 @@
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(behemoth_area_attack), xeno_owner, affected_turfs), wind_up_duration + 0.5 SECONDS)
 	do_warning(xeno_owner, affected_turfs, wind_up_duration)
 	addtimer(CALLBACK(src, PROC_REF(do_ability), target_turf, primal_wrath_action?.ability_active), wind_up_duration)
-	add_cooldown(wind_up_duration + 0.1 SECONDS)
+	add_cooldown(primal_wrath_action?.ability_active? EARTH_RISER_PRIMAL_WRATH_COOLDOWN : wind_up_duration + 0.1 SECONDS)
 	succeed_activate()
 
 /// Checks if there's any living mobs in the target turf, displaces them if so, then creates a new Earth Pillar and adds it to the list of active pillars.
@@ -666,16 +669,14 @@
 	for(var/mob/living/affected_living in target_turf)
 		if(xeno_owner.issamexenohive(affected_living) || affected_living.stat == DEAD)
 			continue
-		step_away(affected_living, target_turf, 1, 2)
+		affected_living.knockback(xeno_owner, EARTH_RISER_KNOCKBACK_DISTANCE, EARTH_RISER_KNOCKBACK_SPEED)
 
 /**
  * Changes the maximum amount of Earth Pillars that can be had.
  * If the user has more Earth Pillars active than the new maximum, it will destroy them, from oldest to newest, until meeting the new amount.
 */
 /datum/action/ability/activable/xeno/earth_riser/proc/change_maximum_pillars(amount)
-	if(!amount)
-		return
-	maximum_pillars = amount
+	maximum_pillars = amount ? amount : null
 	if(!length(active_pillars))
 		return
 	while(length(active_pillars) > maximum_pillars)
@@ -750,12 +751,15 @@
 /datum/action/ability/xeno_action/seismic_fracture
 	name = "Seismic Fracture"
 	action_icon_state = "seismic_fracture"
-	desc = "Blast the earth around the selected location, inflicting heavy damage in a large radius."
 	ability_cost = 50
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SEISMIC_FRACTURE,
 	)
+
+/datum/action/ability/xeno_action/seismic_fracture/New(Target)
+	. = ..()
+	desc = "Blast the earth around you, inflicting heavy damage within [SEISMIC_FRACTURE_ATTACK_RADIUS] tiles. Earth Pillars will repeat this ability around them if hit by it."
 
 /datum/action/ability/xeno_action/seismic_fracture/on_cooldown_finish()
 	owner.balloon_alert(owner, "[initial(name)] ready")
@@ -852,6 +856,7 @@
 #define PRIMAL_WRATH_DECAY_MULTIPLIER 1.2
 #define PRIMAL_WRATH_ACTIVE_DECAY_DIVISION 40
 #define PRIMAL_WRATH_GAIN_MULTIPLIER 0.3
+#define PRIMAL_WRATH_LANDSLIDE_CHARGES 3
 
 /particles/primal_wrath
 	icon = 'icons/effects/particles/generic_particles.dmi'
@@ -1068,8 +1073,9 @@
 		decay_time = initial(decay_time)
 		xeno_owner.xeno_melee_damage_modifier = initial(xeno_owner.xeno_melee_damage_modifier)
 		xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_BEHEMOTH_PRIMAL_WRATH)
-		landslide_action?.change_maximum_charges(1)
-		earth_riser_action?.change_maximum_pillars(1)
+		landslide_action?.change_maximum_charges(initial(landslide_action.maximum_charges))
+		earth_riser_action?.cooldown_duration = initial(earth_riser_action?.cooldown_duration)
+		earth_riser_action?.change_maximum_pillars(initial(earth_riser_action.maximum_pillars))
 		owner.balloon_alert(owner, "Primal Wrath ended")
 		UnregisterSignal(xeno_owner, COMSIG_ABILITY_SUCCEED_ACTIVATE)
 		return
@@ -1081,9 +1087,10 @@
 	particle_holder.pixel_y = -20
 	xeno_owner.xeno_melee_damage_modifier = PRIMAL_WRATH_DAMAGE_MULTIPLIER
 	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_BEHEMOTH_PRIMAL_WRATH, TRUE, 0, NONE, TRUE, PRIMAL_WRATH_SPEED_BONUS)
-	landslide_action?.change_maximum_charges(3)
+	landslide_action?.change_maximum_charges(PRIMAL_WRATH_LANDSLIDE_CHARGES)
 	landslide_action?.clear_cooldown()
-	earth_riser_action?.change_maximum_pillars(3)
+	earth_riser_action?.cooldown_duration = EARTH_RISER_PRIMAL_WRATH_COOLDOWN
+	earth_riser_action?.change_maximum_pillars()
 	earth_riser_action?.clear_cooldown()
 	var/datum/action/ability/xeno_action/seismic_fracture/seismic_fracture_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/seismic_fracture]
 	seismic_fracture_action?.clear_cooldown()
@@ -1187,6 +1194,7 @@
 /obj/structure/earth_pillar/Initialize(mapload, mob/living/carbon/xenomorph/new_owner, enhanced)
 	. = ..()
 	xeno_owner = new_owner
+	RegisterSignal(xeno_owner, COMSIG_QDELETING, PROC_REF(owner_deleted))
 	if(enhanced)
 		icon_state = "[icon_state]e"
 		var/random_x = generator("num", -100, 100, NORMAL_RAND)
@@ -1210,11 +1218,6 @@
 		earth_riser_action.active_pillars -= src
 	xeno_owner = null
 	return ..()
-
-/// Calls update_appearance, this exists to discard the arguments we get from the signals.
-/obj/structure/earth_pillar/proc/call_update_icon_state()
-	SIGNAL_HANDLER
-	update_appearance()
 
 /obj/structure/earth_pillar/update_icon_state()
 	. = ..()
@@ -1286,6 +1289,17 @@
 /obj/structure/earth_pillar/MouseDrop(atom/over_atom)
 	throw_pillar(over_atom)
 
+/// Called when the registered xeno_owner is deleted and cleans up the var.
+/obj/structure/earth_pillar/proc/owner_deleted()
+	SIGNAL_HANDLER
+	UnregisterSignal(xeno_owner, COMSIG_QDELETING)
+	xeno_owner = null
+
+/// Calls update_appearance, this exists to discard the arguments we get from the signals.
+/obj/structure/earth_pillar/proc/call_update_icon_state()
+	SIGNAL_HANDLER
+	update_appearance()
+
 /// Deletes the pillar and creates a projectile on the same tile, to be fired at the target atom.
 /obj/structure/earth_pillar/proc/throw_pillar(atom/target_atom, landslide)
 	if(!isxeno(usr) || !in_range(src, usr) || target_atom == src || warning_flashes < initial(warning_flashes))
@@ -1293,7 +1307,7 @@
 	var/source_turf = get_turf(src)
 	playsound(source_turf, get_sfx("behemoth_earth_pillar_hit"), 40)
 	new /obj/effect/temp_visual/behemoth/landslide/hit(source_turf)
-	var/datum/action/ability/activable/xeno/earth_riser/earth_riser_action = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/earth_riser]
+	var/datum/action/ability/activable/xeno/earth_riser/earth_riser_action = xeno_owner?.actions_by_path[/datum/action/ability/activable/xeno/earth_riser]
 	earth_riser_action?.add_cooldown()
 	qdel(src)
 	var/datum/ammo/xeno/earth_pillar/projectile = landslide? GLOB.ammo_list[/datum/ammo/xeno/earth_pillar/landslide] : GLOB.ammo_list[/datum/ammo/xeno/earth_pillar]
@@ -1303,13 +1317,15 @@
 
 /// Seismic Fracture (as in the ability) has a special interaction with any Earth Pillars caught in its attack range.
 /// Those Earth Pillars will reflect the same attack in a similar range around it, destroying itself afterwards.
-/obj/structure/earth_pillar/proc/behemoth_area_attack()
+/obj/structure/earth_pillar/proc/call_area_attack()
 	if(warning_flashes <= 0)
 		new /obj/effect/temp_visual/behemoth/earth_pillar/destroyed(loc)
+		var/datum/action/ability/activable/xeno/earth_riser/earth_riser_action = xeno_owner?.actions_by_path[/datum/action/ability/activable/xeno/earth_riser]
+		earth_riser_action?.add_cooldown()
 		qdel(src)
 		return
 	warning_flashes--
-	addtimer(CALLBACK(src, PROC_REF(behemoth_area_attack)), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(call_area_attack)), 1 SECONDS)
 	animate(src, color = COLOR_TAN_ORANGE, time = 0.5 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
 	animate(color = COLOR_WHITE, time = 0.5 SECONDS, easing = CIRCULAR_EASING|EASE_IN, flags = ANIMATION_PARALLEL)
 
@@ -1414,7 +1430,7 @@
 					var/obj/structure/earth_pillar/affected_pillar = affected_atom
 					if(affected_pillar.warning_flashes < initial(affected_pillar.warning_flashes))
 						continue
-					affected_pillar.behemoth_area_attack()
+					affected_pillar.call_area_attack()
 					var/list/turf/spread_turfs = filled_turfs(affected_pillar.loc, EARTH_PILLAR_SPREAD_RADIUS, include_edge = FALSE, bypass_window = TRUE, projectile = TRUE)
 					var/wind_up_duration = initial(affected_pillar.warning_flashes) * 10
 					do_warning(xeno_owner, spread_turfs, wind_up_duration)
