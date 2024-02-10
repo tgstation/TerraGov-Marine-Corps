@@ -144,3 +144,54 @@
 		strength = victim.modify_by_armor(strength, BIO, 25)
 		victim.apply_radiation(strength, sound_level)
 	qdel(src)
+
+///bullet grenade: shoots bullets out from itself in a ring
+/obj/item/explosive/grenade/bullet
+	name = "\improper M90 leadburster grenade"
+	desc = "Leadburster grenades release a short burst of projectiles after detonation. Keep far away from friendlies. Or don't. I'm just a label."
+	icon_state = "grenade_rad" //TIVI TODO
+	item_state = "grenade_rad" //TIVI TODO
+	icon_state_mini = "grenade_red" //TIVI TODO
+	det_time = 40
+	arm_sound = 'sound/weapons/armbomb.ogg' //TIVI TODO
+	hud_state = "grenade_he" //TIVI TODO
+
+	/// amount of rotations that we will do with these bullets
+	var/rotations = 2
+	///whether we randomly emit or in equal intervals
+	var/randomized = FALSE
+	///sound to play while shooting
+	var/fire_sound = 'sound/weapons/armbomb.ogg' // TIVI TODO
+	/// total amount of bullets to fire, split evenly between rotations
+	var/projectile_count = 30
+	/// range of the bullets
+	var/range = 7
+	/// speed of the bullets
+	var/speed = 2
+	/// ammo type to shoot out: can be ANY ammo type
+	var/datum/ammo/ammo_type = /datum/ammo/energy/lasgun/marine/heavy_laser
+	///weakref to pass the person who primed it to bullet_burst()
+	var/datum/weakref/primer
+
+/obj/item/explosive/grenade/bullet/activate(mob/user)
+	. = ..()
+	if(. && user)
+		primer = WEAKREF(user)
+
+/obj/item/explosive/grenade/bullet/prime()
+	var/list/bullets = list()
+	var/proj_type = /obj/projectile
+	if(initial(ammo_type.flags_ammo_behavior) & AMMO_HITSCAN)
+		proj_type = /obj/projectile/hitscan
+	for(var/i=1 to projectile_count)
+		var/obj/projectile/proj = new proj_type(src)
+		proj.generate_bullet(ammo_type)
+		bullets += proj
+
+	//primer can be null if its triggered by fire or whatever
+	bullet_burst(loc, bullets, primer?.resolve(), fire_sound, range, speed, randomized, rotations)
+	qdel(src)
+
+/obj/item/explosive/grenade/bullet/Destroy()
+	primer = null
+	return ..()
