@@ -250,7 +250,7 @@
 	RegisterSignal(lunge_target, COMSIG_QDELETING, PROC_REF(clean_lunge_target))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(check_if_lunge_possible))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(clean_lunge_target))
-	xeno_owner.throw_at(get_step_towards(A, xeno_owner), WARRIOR_LUNGE_RANGE, 2, xeno_owner, flying = TRUE)
+	xeno_owner.throw_at(get_step_towards(A, xeno_owner), WARRIOR_LUNGE_RANGE, 2, xeno_owner)
 
 /// Check if we are close enough to grab.
 /datum/action/ability/activable/xeno/warrior/lunge/proc/check_if_lunge_possible(datum/source)
