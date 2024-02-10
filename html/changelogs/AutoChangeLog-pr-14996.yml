@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - balance: "Stagger doesn't stack in duration anymore"
