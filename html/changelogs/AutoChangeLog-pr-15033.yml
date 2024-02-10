@@ -1,0 +1,4 @@
+author: "Helg2"
+delete-after: True
+changes:
+  - bugfix: "[Big Red] fixed pipes in medbay variants 4 and 5."
