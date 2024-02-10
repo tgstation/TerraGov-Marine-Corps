@@ -306,7 +306,7 @@
 	xeno_owner.face_atom(target)
 	xeno_owner.set_canmove(FALSE)
 	xeno_owner.behemoth_charging = TRUE
-	ADD_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
+	ADD_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 	playsound(xeno_owner, 'sound/effects/behemoth/landslide_roar.ogg', 40, TRUE)
 	var/which_step = pick(0, 1)
 	new /obj/effect/temp_visual/behemoth/landslide/dust(owner_turf, direction, which_step)
@@ -474,7 +474,7 @@
 */
 /datum/action/ability/activable/xeno/landslide/proc/end_charge(reason)
 	ability_active = FALSE
-	REMOVE_TRAIT(owner, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
+	REMOVE_TRAIT(owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.behemoth_charging = FALSE
 	if(!xeno_owner.lying_angle)
