@@ -42,9 +42,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/transparent/dark_blue/full,
-/obj/machinery/camera/autoname/mainship{
-	dir = 8;
-	pixel_x = 14
+/obj/machinery/camera/autoname/mainship/dropship_two{
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)

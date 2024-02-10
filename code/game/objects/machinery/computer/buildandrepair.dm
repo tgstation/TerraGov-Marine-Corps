@@ -26,7 +26,7 @@
 					return
 
 				playsound(loc, 'sound/items/welder.ogg', 25, 1)
-				if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+				if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
 					return FALSE
 
 				to_chat(user, span_notice("You deconstruct the frame."))

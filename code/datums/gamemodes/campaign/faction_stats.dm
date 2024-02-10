@@ -108,7 +108,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/respawn_delay_modifier = 0
 	///records how much currency has been earned from missions, for late join players
 	var/accumulated_mission_reward = 0
-	///list of individual stats by key
+	///list of individual stats by ckey
 	var/list/datum/individual_stats/individual_stat_list = list()
 
 /datum/faction_stats/New(new_faction)
@@ -137,9 +137,9 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		return
 	if(new_member.faction != faction)
 		return
-	if(individual_stat_list[new_member.key])
-		individual_stat_list[new_member.key].current_mob = new_member
-		individual_stat_list[new_member.key].apply_perks()
+	if(individual_stat_list[new_member.ckey])
+		individual_stat_list[new_member.ckey].current_mob = new_member
+		individual_stat_list[new_member.ckey].apply_perks()
 	else
 		get_player_stats(new_member)
 	var/datum/action/campaign_loadout/loadouts = new
@@ -147,11 +147,11 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 ///Returns a users individual stat datum, generating a new one if required
 /datum/faction_stats/proc/get_player_stats(mob/user)
-	if(!user.key)
+	if(!user.ckey)
 		return
-	if(!individual_stat_list[user.key])
-		individual_stat_list[user.key] = new /datum/individual_stats(user, faction, accumulated_mission_reward)
-	return individual_stat_list[user.key]
+	if(!individual_stat_list[user.ckey])
+		individual_stat_list[user.ckey] = new /datum/individual_stats(user, faction, accumulated_mission_reward)
+	return individual_stat_list[user.ckey]
 
 ///Randomly adds a new mission to the available pool
 /datum/faction_stats/proc/generate_new_mission()
@@ -185,6 +185,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		for(var/senior_rank in ranks)
 			for(var/mob/living/carbon/human/candidate AS in possible_candidates)
 				if(candidate.job.title != senior_rank)
+					continue
+				if(!candidate.client)
 					continue
 				senior_rank_list += candidate
 			if(!length(senior_rank_list))
@@ -240,7 +242,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 ///Returns all faction members back to base after the mission is completed
 /datum/faction_stats/proc/return_to_base(datum/campaign_mission/completed_mission)
 	for(var/mob/living/carbon/human/human_mob AS in GLOB.alive_human_list_faction[faction])
-		if((human_mob.z != completed_mission.mission_z_level.z_value) && human_mob.job.job_cost)
+		if((human_mob.z != completed_mission.mission_z_level.z_value) && human_mob.job.job_cost && human_mob.client)
 			human_mob.revive(TRUE)
 			human_mob.overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
 			human_mob.overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
