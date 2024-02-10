@@ -653,10 +653,13 @@
 			if(groundside_humans > 5)
 				to_chat(usr, span_xenowarning("There is still prey left to hunt!"))
 				return
-
 			var/confirm = tgui_alert(usr, "Would you like to capture the metal bird?\n THIS WILL END THE ROUND", "Capture the ship?", list( "Yes", "No"))
 			if(confirm != "Yes")
 				return
+			if(groundside_humans > 5)
+				to_chat(usr, span_xenowarning("There is still prey left to hunt!"))
+				return
+
 			priority_announce("The Alamo has been captured! Losing their main mean of accessing the ground, the marines have no choice but to retreat.", title = "ALAMO CAPTURED")
 			var/datum/game_mode/infestation/infestation_mode = SSticker.mode
 			infestation_mode.round_stage = INFESTATION_DROPSHIP_CAPTURED_XENOS
