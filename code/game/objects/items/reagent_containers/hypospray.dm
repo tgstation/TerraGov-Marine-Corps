@@ -268,9 +268,6 @@
 		if("EmptyHypospray")
 			empty(usr)
 
-		else
-			return TRUE
-
 /obj/item/reagent_containers/hypospray/advanced
 	name = "Advanced hypospray"
 	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy."

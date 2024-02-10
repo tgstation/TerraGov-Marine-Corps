@@ -52,7 +52,6 @@ export const Hypospray = (props) => {
             <Button m={2} onClick={() => act('DisplayReagentContent')}>
               Display Reagent Content
             </Button>
-            <br />
           </Box>
         ) : (
           <Box />
