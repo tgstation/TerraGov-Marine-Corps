@@ -247,6 +247,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	desc = "A high end mag-rail heavy sniper rifle from Nanotrasen chambered in the heaviest ammo available, 10x99mm Caseless."
 	icon_state = "m42c"
 	item_state = "m42c"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
+	)
 	max_shells = 6 //codex
 	caliber = CALIBER_10X99
 	fire_sound = 'sound/weapons/guns/fire/sniper_heavy.ogg'
@@ -336,6 +340,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tx8"
 	item_state = "tx8"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
+	)
 	max_shells = 25 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = CALIBER_10X28_CASELESS //codex

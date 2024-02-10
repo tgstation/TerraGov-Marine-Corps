@@ -414,6 +414,10 @@
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "t27"
 	item_state = "t27"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+	)
 	caliber = CALIBER_10x27_CASELESS // codex
 	max_shells = 150 //codex
 	force = 40

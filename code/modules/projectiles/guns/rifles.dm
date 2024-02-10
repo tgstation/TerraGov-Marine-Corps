@@ -469,6 +469,10 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m41a"
 	item_state = "m41a"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+	)
 	fire_sound = "gun_pulse"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
@@ -645,6 +649,10 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "rpd"
 	item_state = "rpd"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+	)
 	fire_animation = "rpd_fire"
 	caliber = CALIBER_762X39 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -707,6 +715,10 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "dp27"
 	item_state = "dp27"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+	)
 	max_shells = 47 //codex
 	caliber = CALIBER_762X39 //codex
 	fire_sound = "svd_fire"
@@ -1030,6 +1042,10 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m412l1"
 	item_state = "m412l1"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+	)
 	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 200 //codex
 	aim_slowdown = 0.8
@@ -1272,6 +1288,10 @@
 	desc = "The Raummetall-KT SG-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	icon_state = "sg29"
 	item_state = "sg29"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+	)
 	caliber = CALIBER_10x26_CASELESS //codex
 	max_shells = 300 //codex
 	force = 30
@@ -1331,6 +1351,10 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "sg62"
 	item_state = "sg62"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
+	)
 	caliber = CALIBER_10x27_CASELESS //codex
 	max_shells = 40 //codex
 	aim_slowdown = 0.85
@@ -1723,6 +1747,10 @@
 	desc = "The Kauser ALF-51B is an unoffical modification of a ALF-51, or better known as the AR-18 carbine, modified to SMG length of barrel, rechambered for a stronger round, and belt based. Truly the peak of CQC. Useless past that. Aiming is impossible. Uses 10x25mm caseless ammunition."
 	icon_state = "alf51b"
 	item_state = "alf51b"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+	)
 	fire_animation = "alf51b_fire"
 	fire_sound = 'sound/weapons/guns/fire/t18b.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
@@ -1824,6 +1852,10 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tx54"
 	item_state = "tx54" ///todo
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
+	)
 	max_shells = 5 //codex
 	max_chamber_items = 1
 	fire_delay = 1.2 SECONDS
