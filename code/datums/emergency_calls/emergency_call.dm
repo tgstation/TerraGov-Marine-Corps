@@ -152,7 +152,7 @@
 	message_admins("Distress beacon: '[name]' activated. Looking for candidates.")
 
 	if(announce)
-		priority_announce("A distress beacon has been launched from the [SSmapping.configs[SHIP_MAP].map_name].", "Priority Alert", sound = 'sound/AI/distressbeacon.ogg')
+		priority_announce("A distress beacon has been launched from the [SSmapping.configs[SHIP_MAP].map_name].", title = "Distress Beacon", type = ANNOUNCEMENT_PRIORITY, sound = 'sound/AI/distressbeacon.ogg', color_override = "orange")
 
 	SSticker.mode.on_distress_cooldown = TRUE
 

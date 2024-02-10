@@ -216,6 +216,7 @@
 	persistent_inventory_update(screenmob)
 	mymob.update_action_buttons(TRUE)
 	reorganize_alerts(screenmob)
+	update_interactive_emotes()
 	mymob.reload_fullscreens()
 	update_parallax_pref(screenmob)
 
