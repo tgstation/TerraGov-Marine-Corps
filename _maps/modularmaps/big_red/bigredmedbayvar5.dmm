@@ -843,6 +843,9 @@
 /area/bigredv2/outside/medical)
 "vV" = (
 /obj/structure/bed/roller,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
@@ -1441,6 +1444,13 @@
 /obj/effect/spawner/random/engineering/tool,
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/plating,
+/area/bigredv2/outside/medical)
+"Mk" = (
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Mp" = (
 /obj/structure/morgue{
@@ -2055,7 +2065,7 @@ Yn
 lv
 HT
 gj
-gL
+Re
 na
 oG
 IT
@@ -2083,7 +2093,7 @@ Zu
 Ko
 Uv
 fI
-gj
+Mk
 MO
 KD
 GW
