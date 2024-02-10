@@ -519,12 +519,7 @@ GLOBAL_LIST_EMPTY(active_summons)
 	var/canceltext = "[caster] is using [name] at [ADMIN_VERBOSEJMP(caster.loc)] <a href='?_src_=holder;[HrefToken(TRUE)];cancelsummon=[10 SECONDS]'>\[CANCEL SUMMON\]</a>"
 	message_admins("[span_prefix("PSYCHIC SUMMON:")] <span class='message linkify'> [canceltext]</span>")
 	log_game("psychic summon started by [caster] at [AREACOORD(caster)], timerid to cancel: [10 SECONDS]")
-	notify_ghosts("<b>[caster]</b> has just summoned at [AREACOORD(caster)]!", action = NOTIFY_JUMP)
-
-///Removes our caster from active_summons list, which cancels the current summon via extra_checks
-/datum/action/ability/xeno_action/psychic_summon/proc/on_admin_cancel()
-	var/mob/living/carbon/xenomorph/caster = owner
-	GLOB.active_summons -= caster
+	notify_ghosts("<b>[caster]</b> has begun to summon at [AREACOORD(caster)]!", action = NOTIFY_JUMP)
 
 ///Checks if our summon was cancelled
 /datum/action/ability/xeno_action/psychic_summon/proc/is_active_summon()
