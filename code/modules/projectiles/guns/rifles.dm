@@ -1848,6 +1848,7 @@
 		/obj/item/ammo_magazine/rifle/tx54/smoke,
 		/obj/item/ammo_magazine/rifle/tx54/smoke/dense,
 		/obj/item/ammo_magazine/rifle/tx54/smoke/tangle,
+		/obj/item/ammo_magazine/rifle/tx54/smoke/acid,
 		/obj/item/ammo_magazine/rifle/tx54/razor,
 	)
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
@@ -1859,6 +1860,10 @@
 	scatter = -2
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 2
+
+/obj/item/weapon/gun/rifle/tx54/motion_sensor
+	starting_attachment_types = list(/obj/item/attachable/motiondetector)
+	default_ammo_type = /obj/item/ammo_magazine/rifle/tx54
 
 //-------------------------------------------------------
 // AR-55 built in grenade launcher
@@ -2163,7 +2168,7 @@
 	scatter = 12
 	recoil = 1.5
 	wield_delay = 0.4 SECONDS
-	aim_slowdown = 0.3
+	aim_slowdown = 0.4
 	movement_acc_penalty_mult = 4
 	damage_falloff_mult = 1.4
 	damage_mult = 0.9

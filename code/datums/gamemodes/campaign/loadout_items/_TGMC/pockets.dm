@@ -67,7 +67,7 @@
 /datum/loadout_item/r_pocket/marine_construction
 	name = "Construction pouch"
 	desc = "A pouch containing an assortment of construction supplies. Allows for the rapid establishment of fortified positions."
-	ui_icon = "grenade"
+	ui_icon = "materials"
 	item_typepath = /obj/item/storage/pouch/construction
 	jobs_supported = list(SQUAD_MARINE)
 
@@ -91,7 +91,7 @@
 /datum/loadout_item/r_pocket/tools
 	name = "Tool pouch"
 	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool."
-	ui_icon = "grenade"
+	ui_icon = "construction"
 	item_typepath = /obj/item/storage/pouch/tools/full
 	jobs_supported = list(SQUAD_ENGINEER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
@@ -173,7 +173,7 @@
 /datum/loadout_item/l_pocket/marine_construction
 	name = "Construction pouch"
 	desc = "A pouch containing an assortment of construction supplies. Allows for the rapid establishment of fortified positions."
-	ui_icon = "grenade"
+	ui_icon = "materials"
 	item_typepath = /obj/item/storage/pouch/construction
 	jobs_supported = list(SQUAD_MARINE)
 

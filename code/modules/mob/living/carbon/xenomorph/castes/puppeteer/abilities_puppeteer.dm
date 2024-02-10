@@ -274,7 +274,7 @@
 		return fail_activate()
 	RegisterSignal(victim, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(start_exploding))
 	RegisterSignal(victim, COMSIG_MOB_DEATH, PROC_REF(detonate))
-	addtimer(CALLBACK(src, PROC_REF(detonate), victim), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(start_exploding), victim), 5 SECONDS)
 	add_cooldown()
 
 ///asynchronous signal handler for start_exploding_async

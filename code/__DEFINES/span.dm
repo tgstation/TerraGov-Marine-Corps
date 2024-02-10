@@ -21,6 +21,7 @@
 #define span_deadsay(str) ("<span class='deadsay'>" + str + "</span>")
 #define span_tinydeadsay(str) ("<span class='tinydeadsay'>" + str + "</span>")
 #define span_disarm(str) ("<span class='disarm'>" + str + "</span>")
+#define span_debuginfo(str) ("<span class='debuginfo'>" + str + "</span>")
 #define span_event_announcement(str) ("<span class='event_announcement'>" + str + "</span>")
 #define span_game(str) ("<span class='game'>" + str + "</span>")
 #define span_good(str) ("<span class='good'>" + str + "</span>")

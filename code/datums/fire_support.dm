@@ -417,7 +417,7 @@
 	start_visual = /obj/effect/temp_visual/dropship_flyby/som
 	uses = 2
 	///Base strength of the rad effects
-	var/rad_strength = 30
+	var/rad_strength = 25
 	///Range for the maximum rad effects
 	var/inner_range = 3
 	///Range for the moderate rad effects

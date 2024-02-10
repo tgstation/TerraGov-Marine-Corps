@@ -171,7 +171,13 @@ export const IndividualStats = (props) => {
           <Modal width="500px">
             <Section
               textAlign="center"
-              title={'Unlock ' + unlockPotentialItem.name + '?'}
+              title={
+                'Unlock ' +
+                unlockPotentialItem.name +
+                ' for ' +
+                unlockPotentialItem.unlock_cost +
+                ' credits?'
+              }
             >
               <Stack justify="space-around">
                 <Stack.Item>

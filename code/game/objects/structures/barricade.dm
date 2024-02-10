@@ -75,7 +75,7 @@
 /obj/structure/barricade/attack_animal(mob/user)
 	return attack_alien(user)
 
-/obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
@@ -1064,9 +1064,10 @@
 	name = internal_shield.name
 	desc = internal_shield.desc
 	//if the shield is wired, it deploys wired
-	if (internal_shield.is_wired)
+	if(internal_shield.is_wired)
 		can_wire = FALSE
 		is_wired = TRUE
+		climbable = FALSE
 
 /obj/structure/barricade/metal/deployable/get_internal_item()
 	return internal_shield

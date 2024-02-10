@@ -75,14 +75,11 @@
 	aim_slowdown = 0.15
 	movement_acc_penalty_mult = 2
 
-	upper_akimbo_accuracy = 5
-	lower_akimbo_accuracy = 3
-
-	burst_amount = 1
-	autoburst_delay = 0.1 SECONDS
-	autoburst_delay = 0.1 SECONDS //this makes it fuller auto
-	burst_accuracy_bonus = -0.3
-	burst_scatter_mult = 25
+	upper_akimbo_accuracy = 12
+	lower_akimbo_accuracy = 9
+	burst_amount = 5
+	burst_delay = 0.1 SECONDS
+	akimbo_additional_delay = 20 // Literally do not even bother to try
 
 /obj/item/weapon/gun/smg/standard_machinepistol/compact
 	starting_attachment_types = list(/obj/item/attachable/foldable/t19stock, /obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
