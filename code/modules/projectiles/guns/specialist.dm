@@ -284,8 +284,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	desc = "A semiautomatic sniper rifle, famed for it's marksmanship, and is built from the ground up for it. Fires 7.62x54mmR rounds."
 	icon = 'icons/Marine/gun64.dmi'
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
 
 	inhand_x_dimension = 64

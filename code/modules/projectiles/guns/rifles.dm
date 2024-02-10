@@ -198,8 +198,8 @@
 	icon_state = "t37"
 	item_state = "t37"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
@@ -278,8 +278,8 @@
 	item_state = "t64"
 	icon = 'icons/Marine/gun64.dmi'
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
@@ -878,8 +878,8 @@
 	icon_state = "t42"
 	item_state = "t42"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
@@ -959,8 +959,8 @@
 	item_state = "t60"
 	fire_animation = "t60_fire"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
@@ -1466,8 +1466,8 @@
 	icon_state = "tl127"
 	item_state = "tl127"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
 
 	inhand_x_dimension = 64
@@ -1981,8 +1981,8 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
 	fire_sound = 'sound/weapons/guns/fire/garand.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
@@ -2213,8 +2213,8 @@
 	item_state = "v41"
 	fire_animation = "v41_fire"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
 	)
 
 	inhand_x_dimension = 64
@@ -2280,8 +2280,8 @@
 	icon_state = "l11"
 	item_state = "l11"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
@@ -2425,8 +2425,8 @@
 	icon_state = "ml12"
 	item_state = "ml12"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
 
 	inhand_x_dimension = 64
@@ -2601,8 +2601,8 @@
 	icon_state = "minimi"
 	item_state = "minimi"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
