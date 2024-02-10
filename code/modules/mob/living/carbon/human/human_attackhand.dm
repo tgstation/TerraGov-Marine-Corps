@@ -15,7 +15,7 @@
 	human_user.changeNext_move(7)
 	switch(human_user.a_intent)
 		if(INTENT_HELP)
-			if(on_fire && H != src)
+			if(on_fire && human_user != src)
 				fire_stacks = max(fire_stacks - 1, 0)
 				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				human_user.visible_message(span_danger("[human_user] tries to put out the fire on [src]!"), \
@@ -26,7 +26,7 @@
 					ExtinguishMob()
 				return TRUE
 
-			if(istype(wear_mask, /obj/item/clothing/mask/facehugger) && H != src)
+			if(istype(wear_mask, /obj/item/clothing/mask/facehugger) && human_user != src)
 				human_user.stripPanelUnequip(wear_mask, src, SLOT_WEAR_MASK)
 				return TRUE
 
@@ -146,7 +146,7 @@
 			var/target_zone = ran_zone(human_user.zone_selected)
 
 			//Accidental gun discharge
-			if(user.skills.getRating(SKILL_CQC) < SKILL_CQC_MP)
+			if(human_user.skills.getRating(SKILL_CQC) < SKILL_CQC_MP)
 				if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
 					var/obj/item/weapon/gun/W = null
 					var/chance = 0
@@ -174,7 +174,7 @@
 				apply_effect(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				visible_message(span_danger("[human_user] has pushed [src]!"), null, null, 5)
-				log_combat(user, src, "pushed")
+				log_combat(human_user, src, "pushed")
 				return
 
 			if(randn <= 60)
@@ -192,8 +192,7 @@
 
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, 7)
 			visible_message(span_danger("[human_user] attempted to disarm [src]!"), null, null, 5)
-			log_combat(user, src, "missed a disarm")
-	return
+			log_combat(human_user, src, "missed a disarm")
 
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
 	return
