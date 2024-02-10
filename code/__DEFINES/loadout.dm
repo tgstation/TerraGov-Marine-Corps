@@ -725,6 +725,9 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 	),
 	SQUAD_SMARTGUNNER = list(
 		/obj/item/clothing/glasses/night/m56_goggles = 1,
+		/obj/item/storage/holster/belt/pistol/smart_pistol = 1,
+		/obj/item/weapon/gun/pistol/smart_pistol = 1,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol = 2,
 	),
 	SQUAD_LEADER = list(
 		/obj/item/explosive/plastique = 1,

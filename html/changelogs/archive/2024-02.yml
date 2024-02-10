@@ -1,0 +1,147 @@
+2024-02-01:
+  Lumipharon:
+  - bugfix: fixed beacon layers
+  - bugfix: fixed supply beacon weight class
+  - bugfix: Visible suit lights now correctly update on the mob sprite when turning
+      on and off
+  - bugfix: You can actually turn off your motion sensor now
+  - balance: Volkite deflagrate chance reduced by 10% and stagger reduced from 1 sec
+      to 0.5 sec
+  - qol: Left pocket option is before the right pocket in the campaign loadout screen
+  - bugfix: fixed some campaign loadout bugs with overclocked shields and TGMC FC
+      options
+  - bugfix: fixed a BSOD in campaign
+  - imageadd: Updated a few loadout item icons in campaign
+  - balance: V-34 has its slowdown increased from 0.3 to 0.4
+  - balance: Adjusted the points cost of some items in campaign
+  - balance: Reduced the power of radiation weaponry
+  - balance: 'Campaign: Attacking teams on defensive missions can no longer call in
+      CAS'
+  - rscadd: 'Campaign: Esword now benefits from the sword master perk'
+  - code_imp: Improves some code relating to loadout items in campaign
+  - bugfix: Sensor towers on BR will show up correctly during Mech War missions
+  - bugfix: fixed some visuals with hud icons
+  - rscadd: Added the GL-54 to normal marines in campaign
+  - bugfix: fixed some minor skill issues on some weapons
+  - qol: Only some gas masks such as the tactical or swat masks have TTS filters
+  - balance: PMC standard armour has improved energy armour in line with other pmc
+      suits
+  SomrNetwork:
+  - rscadd: one word "drone" to "support"
+  usnpeepoo:
+  - balance: Puppeteers organic bombs base timer reduced, now uses a windup
+2024-02-02:
+  AzonStarfall:
+  - qol: Adjusted Arachne CAS bay.
+  - qol: Made the front of the Arachne symmetrical.
+  Pariah919:
+  - balance: MP-19 now has burst fire again instead of auto burst, has insanely high
+      akimbo penalties.
+  ivanmixo:
+  - bugfix: You can no longer go over the blood limit, or go below 0 blood
+  yyzsong:
+  - bugfix: readds tx54 razor nades to valhalla
+  - rscadd: adds tx54 acid grenades to valhalla
+2024-02-03:
+  Barnet2:
+  - balance: 'Caste Swap: Every 15 minutes a Xenomorph can change to another caste
+      inside of their tier'
+  - code_imp: Regress uses evo UI
+  Dikozda:
+  - rscdel: Remove 3 pointless lights from orion outpost
+  Helg2:
+  - bugfix: '[Magmoor] Cryopods are now visible again.'
+  Lumipharon:
+  - balance: Minor tweaks to asat
+  - rscadd: Added X-fuel to campaign
+  - balance: Antitank mines are harder to spot when deployed
+  - balance: Constition perks now also give some pain resist
+  - balance: Stamina perks now also increase max stamina
+  - balance: Adjusted the cost of a few perks
+  XElectricX:
+  - qol: Runners can manually cancel evasion.
+  - balance: Runners no longer disarmed for the entire duration of evasion if they
+      cancel it.
+2024-02-04:
+  Lumipharon:
+  - rscdel: Removed the jump emote
+2024-02-05:
+  '?':
+  - rscdel: Deletes "specialclick" keybind
+  Barnet2:
+  - balance: Evolution now gives an extra 0.8 maturity instead of 0.2
+  Lumipharon:
+  - bugfix: Fixed tac sensor turning off when you holster a different weapon
+  - bugfix: shift click will work for human abilities such as jetpack, if you have
+      toggled your pref from middle mouse button
+  - bugfix: fixed b18 glove sprites
+  - bugfix: fixed the recoil on some weapons such as the BR-8
+  - balance: Psylance stagger reduced to 1 second
+  Pariah919:
+  - rscadd: Added new seasonal with flak cannon and plasma guns.
+  Xander3359:
+  - rscdel: Deletes "Examinate" Keybind
+2024-02-06:
+  Lewdcifer:
+  - balance: Psydrain plasma cost reduced from 100 to 50.
+  Lumipharon:
+  - bugfix: fixed bodies not being cleaned up after a campaign mission
+  Xander3359:
+  - code_imp: add proc attack_self_alternate()
+  ivanmixo:
+  - bugfix: Vali necro overlay should show up again
+  - code_imp: The fullscreen overlays now all actually share the proper plane
+  - bugfix: Readded span_debuginfo
+  - bugfix: Beacons now go back to their inactive icon state when undeployed
+  - bugfix: Beacons now deactivate themselves when they change Z level to a Z level
+      that isn't groundside (instead of leaving the beacon datum on the tile they
+      were at just before they changed Z level)
+2024-02-07:
+  Aporhtonoma:
+  - bugfix: squad rally skill requirement from 3 to 2
+  Lumipharon:
+  - qol: 'Campaign: SSD''s will no longer be eligable for faction leader'
+  - qol: 'Campaign: SSD shipside players are cleaned up at the end of each mission'
+  - bugfix: fixed normal claymores being sneakier than intended
+  - balance: 'Campaign: Switching team for autobalance rewards you with addition credits'
+  - balance: 'Campaign: If teams are still not balanced, the weaker team is given
+      light mechs based on how outnumbered they are'
+  - bugfix: 'Campaign: fixed attrition sometimes being lost if several people were
+      setting it at the same time'
+  - bugfix: 'Campaign: Marines will no longer be able to steal their own ASAT objectives'
+  - bugfix: 'Campaign: Fixed some errors in the ASAT mission win conditions'
+  - balance: 'Campaign: credits are additionally awarded at the end of a mission based
+      on individual performance'
+  - balance: 'Campaign: Base credit reward for ending a mission reduced by 150'
+  - imageadd: Fixed some visuals with train props and large map tables
+  Xander3359:
+  - bugfix: SG-162 high impact and heavy impact now apply their CC for 1 second instead
+      of 1 decisecond
+  coldironwarrior:
+  - rscadd: removes xeno probing
+  - balance: point adjustments to xeno caste values for req exports
+2024-02-08:
+  Lumipharon:
+  - balance: Tfoot OB's duration is reduced by 4 seconds per level of fuel inaccuracy
+  Naaanii:
+  - rscadd: Adds Baneling to admin player panel tab.
+  Xander3359:
+  - code_imp: extra_checks use PROC_REF() for their callbacks
+2024-02-09:
+  Barnet2:
+  - rscadd: 'New role: Transport Officer'
+  - balance: Reduces PO slot to one
+  - bugfix: Tadpole cameras use the proper network
+  Lumipharon:
+  - bugfix: fixed SG loadouts often not spawning everything they should
+  - qol: Cancelling delta alert explicitly tells you that this controls both evac
+      and SD
+  - bugfix: fixed deployable shields being climbable when barbed after redeploying
+  - qol: Suit lights no longer mismatch their actual state and action state if spammed
+  - balance: 'Campaign: Made NT base rescue a bit easier for SOM'
+  Wisemonster:
+  - qol: The alert for resin gargoyles have been changed to use the growl sound effect
+      instead of the screech.
+  XElectricX:
+  - rscadd: 'Interactive emotes: you can high-five, fist bump, headbutt, or tail slap
+      other players'

@@ -429,7 +429,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 /obj/vehicle/multitile/hitbox/cm_armored/attackby(obj/item/I, mob/user, params)
 	return root.attackby(I, user, params)
 
-/obj/vehicle/multitile/hitbox/cm_armored/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/vehicle/multitile/hitbox/cm_armored/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	return root.attack_alien(X, damage_amount)
 
 /obj/vehicle/multitile/hitbox/cm_armored/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -648,7 +648,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	user.visible_message(span_notice("[user] starts repairing the [slot] slot on [src]."),
 		span_notice("You start repairing the [slot] slot on the [src]."))
 
-	if(!do_after(user, 30 * num_delays, NONE, src, BUSY_ICON_BUILD, extra_checks = iswelder(O) ? CALLBACK(O, /obj/item/tool/weldingtool/proc/isOn) : null))
+	if(!do_after(user, 30 * num_delays, NONE, src, BUSY_ICON_BUILD, extra_checks = iswelder(O) ? CALLBACK(O, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn)) : null))
 		user.visible_message(span_notice("[user] stops repairing the [slot] slot on [src]."),
 			span_notice("You stop repairing the [slot] slot on the [src]."))
 		return
