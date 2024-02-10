@@ -268,8 +268,6 @@
 		if("EmptyHypospray")
 			empty(usr)
 
-		else
-			return TRUE
 
 /obj/item/reagent_containers/hypospray/advanced
 	name = "Advanced hypospray"
