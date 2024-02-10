@@ -384,6 +384,7 @@
 #define WARRIOR_GRAPPLE_TOSS_STAGGER 3 SECONDS
 #define WARRIOR_GRAPPLE_TOSS_SLOWDOWN 3
 #define WARRIOR_GRAPPLE_TOSS_EMPOWER_MULTIPLIER 2
+#define WARRIOR_GRAPPLE_TOSS_THROW_PARALYZE 0.5 SECONDS
 
 /datum/action/ability/activable/xeno/warrior/grapple_toss
 	name = "Grapple Toss"
@@ -433,6 +434,7 @@
 			living_target.adjust_stagger(WARRIOR_GRAPPLE_TOSS_STAGGER)
 			living_target.add_slowdown(WARRIOR_GRAPPLE_TOSS_SLOWDOWN)
 			living_target.adjust_blurriness(WARRIOR_GRAPPLE_TOSS_SLOWDOWN)
+			living_target.Paralyze(WARRIOR_GRAPPLE_TOSS_THROW_PARALYZE) // very important otherwise the guy can move right as you throw them
 			RegisterSignal(living_target, COMSIG_MOVABLE_IMPACT, PROC_REF(thrown_into))
 			RegisterSignal(living_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(throw_ended))
 	xeno_owner.face_atom(atom_target)
