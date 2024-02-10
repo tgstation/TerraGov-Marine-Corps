@@ -1,0 +1,4 @@
+author: "Dikozda"
+delete-after: True
+changes:
+  - bugfix: "SG prep on cantabury no longer has its only door blocked"
