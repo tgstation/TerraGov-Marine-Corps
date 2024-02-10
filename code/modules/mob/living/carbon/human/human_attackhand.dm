@@ -112,7 +112,9 @@
 
 			human_user.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 			var/max_dmg = max(human_user.melee_damage + (human_user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD), 3)
-			var/damage = rand(1, max_dmg)
+			var/damage = max_dmg
+			if(!lying_angle)
+				damage = rand(1, max_dmg)
 
 			var/target_zone = ran_zone(human_user.zone_selected)
 
