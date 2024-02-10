@@ -17,6 +17,7 @@ Because this parent type did not exist
 Note that this means that snipers will have a slowdown of 3, due to the scope
 */
 /obj/item/weapon/gun/rifle/sniper
+	icon = 'icons/obj/items/guns/marksman.dmi'
 	aim_slowdown = 1
 	gun_skill_category = SKILL_RIFLES
 	wield_delay = 1 SECONDS
