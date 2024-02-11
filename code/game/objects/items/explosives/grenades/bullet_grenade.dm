@@ -30,7 +30,7 @@
 	if(initial(ammo_type.flags_ammo_behavior) & AMMO_HITSCAN)
 		proj_type = /obj/projectile/hitscan
 	for(var/i=1 to projectile_count)
-		var/obj/projectile/proj = new proj_type(src)
+		var/obj/projectile/proj = new proj_type(src, initial(ammo_type.hitscan_effect_icon))
 		proj.generate_bullet(ammo_type)
 		bullets += proj
 
