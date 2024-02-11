@@ -186,3 +186,15 @@
   - bugfix: Chicken protein bars no longer runtime
   ivanmixo:
   - balance: Stagger doesn't stack in duration anymore
+2024-02-11:
+  Dikozda:
+  - bugfix: SG prep on cantabury no longer has its only door blocked
+  Helg2:
+  - bugfix: '[Big Red] fixed pipes in medbay variants 4 and 5.'
+  Neocloudy:
+  - rscadd: new announcement design- announcements can be recolored, have a subtitle,
+      and pop out easier.
+  - code_imp: priority announcements can now have a color override and subtitle
+  - admin: added subtitle and color option to command reports
+  novaepee:
+  - imageadd: port TG surgery tool sprites
