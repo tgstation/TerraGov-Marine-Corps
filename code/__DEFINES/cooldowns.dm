@@ -51,7 +51,6 @@
 #define COOLDOWN_DROPPOD_TARGETTING "cooldown_droppod_targetting"
 #define COOLDOWN_TRY_TTS "cooldown_try_tts"
 #define COOLDOWN_EVASION_ACTIVATION "cooldown_evasion_activation"
-#define COOLDOWN_REST_TOGGLE "cooldown_rest_toggle"
 
 //Mecha cooldowns
 #define COOLDOWN_MECHA "mecha"
