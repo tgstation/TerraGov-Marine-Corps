@@ -11,7 +11,7 @@
 	max_temperature = 6000
 
 	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 100, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	hard_armor = list(MELEE = 0, BULLET = 100, LASER = 100, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 	walltype = "rwall"
 	explosion_block = 4
