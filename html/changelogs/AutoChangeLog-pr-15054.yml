@@ -1,0 +1,8 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Unarmed damage against humans is no longer rng if your victim is prone"
+  - balance: "CQC skill lowers grab upgrade time"
+  - balance: "Unarmed attacks against humans uses the same zone targeting as melee weapons"
+  - bugfix: "Choking someone to death once again actually causes oxyloss"
+  - bugfix: "Melee attack can now actually miss some times as intended (only for humans attacking humans)"

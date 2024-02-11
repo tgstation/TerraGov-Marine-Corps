@@ -513,37 +513,10 @@
 		to_chat(X, span_xenowarning("It's too early to do this!"))
 		return
 	#endif
-	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
-	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
-	if(M)
-		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [SSmapping.configs[SHIP_MAP].map_name]</A><br>"
-		dat += "<A href='?src=[REF(src)];abduct=1'>Capture the [M]</A><br>"
-		M.unlock_all()
-		M.silicon_lock_airlocks(TRUE)
-		if(M.hijack_state != HIJACK_STATE_CALLED_DOWN)
-			to_chat(X, span_xenowarning("We corrupt the bird's controls, unlocking the doors[(M.mode != SHUTTLE_IGNITING) ? "and preventing it from flying." : ", but we are unable to prevent it from flying as it is already taking off!"]"))
-			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED, src)
-			if(M.mode != SHUTTLE_IGNITING)
-				M.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
-				M.do_start_hijack_timer()
+	interact(X)
 
-	var/datum/browser/popup = new(X, "computer", M ? M.name : "shuttle", 300, 200)
-	popup.set_content("<center>[dat]</center>")
-	popup.open()
-
-
-/obj/machinery/computer/shuttle/marine_dropship/can_interact(mob/user)
-	. = ..()
-
-	if(isxeno(user))
-		var/mob/living/carbon/xenomorph/X = user
-		if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
-			return FALSE
-
-	else if(!allowed(user))
-		return FALSE
-
-	return TRUE
+/obj/machinery/computer/shuttle/marine_dropship/ui_state(mob/user)
+	return GLOB.alamo_state
 
 /obj/machinery/computer/shuttle/marine_dropship/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -552,19 +525,28 @@
 		ui = new(user, src, "MarineDropship", name)
 		ui.open()
 
+/obj/machinery/computer/shuttle/marine_dropship/ui_static_data(mob/user)
+	var/obj/docking_port/mobile/marine_dropship/shuttle = SSshuttle.getShuttle(shuttleId)
+	var/list/static_data = list()
+	static_data["current_map"] = SSmapping.configs[SHIP_MAP].map_name
+	static_data["ship_name"] = shuttle
+
+	return static_data
+
 /obj/machinery/computer/shuttle/marine_dropship/ui_data(mob/user)
 	var/obj/docking_port/mobile/marine_dropship/shuttle = SSshuttle.getShuttle(shuttleId)
 	if(!shuttle)
 		WARNING("[src] could not find shuttle [shuttleId] from SSshuttle")
 		return
 
-	. = list()
-	.["on_flyby"] = shuttle.mode == SHUTTLE_CALL
-	.["dest_select"] = !(shuttle.mode == SHUTTLE_CALL || shuttle.mode == SHUTTLE_IDLE)
-	.["hijack_state"] = shuttle.hijack_state != HIJACK_STATE_CALLED_DOWN
-	.["ship_status"] = shuttle.getStatusText()
-	.["automatic_cycle_on"] = shuttle.automatic_cycle_on
-	.["time_between_cycle"] = shuttle.time_between_cycle
+	var/list/data = list()
+	data["is_human"] = ishuman(user)
+	data["on_flyby"] = shuttle.mode == SHUTTLE_CALL
+	data["dest_select"] = !(shuttle.mode == SHUTTLE_CALL || shuttle.mode == SHUTTLE_IDLE)
+	data["hijack_state"] = shuttle.hijack_state != HIJACK_STATE_CALLED_DOWN
+	data["ship_status"] = shuttle.getStatusText()
+	data["automatic_cycle_on"] = shuttle.automatic_cycle_on
+	data["time_between_cycle"] = shuttle.time_between_cycle
 
 	var/locked = 0
 	var/reardoor = 0
@@ -573,12 +555,12 @@
 		if(A.locked && A.density)
 			reardoor++
 	if(!reardoor)
-		.["rear"] = 0
+		data["rear"] = 0
 	else if(reardoor==length(shuttle.rear_airlocks))
-		.["rear"] = 2
+		data["rear"] = 2
 		locked++
 	else
-		.["rear"] = 1
+		data["rear"] = 1
 
 	var/leftdoor = 0
 	for(var/i in shuttle.left_airlocks)
@@ -586,12 +568,12 @@
 		if(A.locked && A.density)
 			leftdoor++
 	if(!leftdoor)
-		.["left"] = 0
+		data["left"] = 0
 	else if(leftdoor==length(shuttle.left_airlocks))
-		.["left"] = 2
+		data["left"] = 2
 		locked++
 	else
-		.["left"] = 1
+		data["left"] = 1
 
 	var/rightdoor = 0
 	for(var/i in shuttle.right_airlocks)
@@ -599,19 +581,19 @@
 		if(A.locked && A.density)
 			rightdoor++
 	if(!rightdoor)
-		.["right"] = 0
+		data["right"] = 0
 	else if(rightdoor==length(shuttle.right_airlocks))
-		.["right"] = 2
+		data["right"] = 2
 		locked++
 	else
-		.["right"] = 1
+		data["right"] = 1
 
 	if(locked == 3)
-		.["lockdown"] = 2
+		data["lockdown"] = 2
 	else if(!locked)
-		.["lockdown"] = 0
+		data["lockdown"] = 0
 	else
-		.["lockdown"] = 1
+		data["lockdown"] = 1
 
 	var/list/options = valid_destinations()
 	var/list/valid_destinations = list()
@@ -621,9 +603,11 @@
 		if(!shuttle.check_dock(S, silent=TRUE))
 			continue
 		valid_destinations += list(list("name" = S.name, "id" = S.id))
-	.["destinations"] = valid_destinations
+	data["destinations"] = valid_destinations
 
-/obj/machinery/computer/shuttle/marine_dropship/ui_act(action, list/params)
+	return data
+
+/obj/machinery/computer/shuttle/marine_dropship/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -687,81 +671,41 @@
 			)
 			M.takeoff_alarm_locked = TRUE
 
-/obj/machinery/computer/shuttle/marine_dropship/Topic(href, href_list)
-	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
-	if(!M)
-		return
-	if(!isxeno(usr) && M.hijack_state == HIJACK_STATE_CALLED_DOWN)
-		to_chat(usr, span_warning("The shuttle isn't responding to commands."))
-		return
-	. = ..()
-	if(.)
-		return
-	if(M.hijack_state == HIJACK_STATE_CRASHING)
-		return
-
-	if(ishuman(usr) || isAI(usr))
-		if(!allowed(usr))
-			return
-		if(href_list["lockdown"])
-
-		else if(href_list["release"])
-
-		else if(href_list["lock"])
-			M.lockdown_airlocks(href_list["lock"])
-		else if(href_list["unlock"])
-			M.unlock_airlocks(href_list["unlock"])
-		return
-
-	if(!is_ground_level(M.z))
-		return
-
-	if(!isxeno(usr))
-		return
-
-	var/mob/living/carbon/xenomorph/X = usr
-
-	if(href_list["hijack"])
-		if(!(X.hive.hive_flags & HIVE_CAN_HIJACK))
-			to_chat(X, span_warning("Our hive lacks the psychic prowess to hijack the bird."))
-			return
-		switch(M.mode)
-			if(SHUTTLE_RECHARGING)
-				to_chat(X, span_xenowarning("The bird is still cooling down."))
+		//These are actions for the Xeno dropship UI
+		if("hijack")
+			var/mob/living/carbon/xenomorph/xeno = usr
+			if(!(xeno.hive.hive_flags & HIVE_CAN_HIJACK))
+				to_chat(xeno, span_warning("Our hive lacks the psychic prowess to hijack the bird."))
 				return
-			if(SHUTTLE_IDLE) //Continue.
-			else
-				to_chat(X, span_xenowarning("We can't do that right now."))
+			if(M.mode == SHUTTLE_RECHARGING)
+				to_chat(xeno, span_xenowarning("The bird is still cooling down."))
 				return
-		var/confirm = tgui_alert(usr, "Would you like to hijack the metal bird?", "Hijack the bird?", list("Yes", "No"))
-		if(confirm != "Yes")
-			return
-		var/obj/docking_port/stationary/marine_dropship/crash_target/CT = pick(SSshuttle.crash_targets)
-		if(!CT)
-			return
-		do_hijack(M, CT, X)
+			if(M.mode != SHUTTLE_IDLE)
+				to_chat(xeno, span_xenowarning("We can't do that right now."))
+				return
+			var/confirm = tgui_alert(usr, "Would you like to hijack the metal bird?", "Hijack the bird?", list("Yes", "No"))
+			if(confirm != "Yes")
+				return
+			var/obj/docking_port/stationary/marine_dropship/crash_target/CT = pick(SSshuttle.crash_targets)
+			if(!CT)
+				return
+			do_hijack(M, CT, xeno)
+		if("abduct")
+			var/groundside_humans = length(GLOB.humans_by_zlevel["[z]"])
+			if(groundside_humans > 5)
+				to_chat(usr, span_xenowarning("There is still prey left to hunt!"))
+				return
+			var/confirm = tgui_alert(usr, "Would you like to capture the metal bird?\n THIS WILL END THE ROUND", "Capture the ship?", list( "Yes", "No"))
+			if(confirm != "Yes")
+				return
+			if(groundside_humans > 5)
+				to_chat(usr, span_xenowarning("There is still prey left to hunt!"))
+				return
 
-	if(href_list["abduct"])
-		var/confirm = tgui_alert(usr, "Would you like to capture the metal bird?\n THIS WILL END THE ROUND", "Capture the ship?", list( "Yes", "No"))
-		if(confirm != "Yes")
+			priority_announce("The Alamo has been captured! Losing their main mean of accessing the ground, the marines have no choice but to retreat.", title = "Alamo Captured", color_override = "orange")
+			var/datum/game_mode/infestation/infestation_mode = SSticker.mode
+			infestation_mode.round_stage = INFESTATION_DROPSHIP_CAPTURED_XENOS
 			return
-
-		var/groundside_humans = length(GLOB.humans_by_zlevel["[z]"])
-		if(groundside_humans > 5)
-			to_chat(X, span_xenowarning("There is still prey left to hunt!"))
-			return
-		//these are all stinky checks, someone make this tgui
-		if(X != usr)
-			return
-		if(X.stat)
-			return
-		if(!Adjacent(X))
-			return
-
-		priority_announce("The Alamo has been captured! Losing their main mean of accessing the ground, the marines have no choice but to retreat.", title = "Alamo Captured", color_override = "orange")
-		var/datum/game_mode/infestation/infestation_mode = SSticker.mode
-		infestation_mode.round_stage = INFESTATION_DROPSHIP_CAPTURED_XENOS
-		return
 
 /obj/machinery/computer/shuttle/marine_dropship/proc/do_hijack(obj/docking_port/mobile/marine_dropship/crashing_dropship, obj/docking_port/stationary/marine_dropship/crash_target/crash_target, mob/living/carbon/xenomorph/user)
 	crashing_dropship.set_hijack_state(HIJACK_STATE_CRASHING)
