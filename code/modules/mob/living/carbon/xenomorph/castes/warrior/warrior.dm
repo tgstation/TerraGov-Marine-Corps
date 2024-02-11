@@ -21,7 +21,7 @@
 /mob/living/carbon/xenomorph/warrior/handle_special_state()
 	var/datum/action/ability/xeno_action/toggle_agility/agility_action = actions_by_path[/datum/action/ability/xeno_action/toggle_agility]
 	if(agility_action?.ability_active)
-		icon_state = "Warrior Agility"
+		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Agility"
 		return TRUE
 	return FALSE
 
@@ -29,7 +29,7 @@
 	. = ..()
 	var/datum/action/ability/xeno_action/toggle_agility/agility_action = actions_by_path[/datum/action/ability/xeno_action/toggle_agility]
 	if(agility_action?.ability_active)
-		return "warrior_wounded_agility_[severity]"
+		return "wounded_agility_[severity]"
 
 
 // ***************************************

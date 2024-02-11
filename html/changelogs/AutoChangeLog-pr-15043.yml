@@ -1,0 +1,4 @@
+author: "Xander3359"
+delete-after: True
+changes:
+  - refactor: "Alamo console for xenos is TGUI now"

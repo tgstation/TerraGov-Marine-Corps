@@ -29,9 +29,9 @@
 /mob/living/carbon/xenomorph/defender/handle_special_wound_states(severity)
 	. = ..()
 	if(fortify)
-		return "defender_wounded_fortify"
+		return "wounded_fortify_[severity]" // we don't have the icons, but still
 	if(crest_defense)
-		return "defender_wounded_crest_[severity]"
+		return "wounded_crest_[severity]"
 
 // ***************************************
 // *********** Life overrides

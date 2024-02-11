@@ -394,7 +394,7 @@
 	human.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_L_POUCH)
 	human.equip_to_slot_or_del(new /obj/item/tool/weldingtool/hugetank, SLOT_IN_L_POUCH)
 
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_smol, SLOT_IN_ACCESSORY)
+	human.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_small, SLOT_IN_ACCESSORY)
 	human.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_ACCESSORY)
 	human.equip_to_slot_or_del(new /obj/item/tool/handheld_charger/hicapcell, SLOT_IN_ACCESSORY)
 	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
