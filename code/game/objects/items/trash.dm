@@ -148,10 +148,10 @@
 	desc = "An empty box from a chunk bar. Significantly less heavy."
 	icon_state = "chunk_trash"
 
-/obj/item/trash/barcardine
-	name = "barcardine bar wrapper"
-	desc = "An empty wrapper from a barcardine bar. You notice the inside has several medical labels. You're not sure if you care or not about that."
-	icon_state = "barcardine_trash"
+/obj/item/trash/barcaridine
+	name = "barcaridine bar wrapper"
+	desc = "An empty wrapper from a barcaridine bar. You notice the inside has several medical labels. You're not sure if you care or not about that."
+	icon_state = "barcaridine_trash"
 
 /obj/item/trash/berrybar
 	name = "berry bar wrapper"
