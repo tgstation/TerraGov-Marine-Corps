@@ -99,15 +99,19 @@
 			if(!attack.is_usable(human_user))
 				return FALSE
 
-			if(!human_user.melee_damage)
+			var/attack_verb = pick(attack.attack_verb)
+			//if you're lying/buckled, the miss chance is ignored anyway
+			var/target_zone = get_zone_with_miss_chance(human_user.zone_selected, src, 10 - (human_user.skills.getRating(SKILL_CQC) - skills.getRating(SKILL_CQC)) * 5)
+
+			if(!human_user.melee_damage || !target_zone)
 				human_user.do_attack_animation(src)
 				playsound(loc, attack.miss_sound, 25, TRUE)
-				visible_message(span_danger("[human_user] tried to [pick(attack.attack_verb)] [src]!"), null, null, 5)
-				log_combat(human_user, src, "[pick(attack.attack_verb)]ed", "(missed)")
+				visible_message(span_danger("[human_user] tried to [attack_verb] [src]!"), null, null, 5)
+				log_combat(human_user, src, "[attack_verb]ed", "(missed)")
 				if(!human_user.mind?.bypass_ff && !mind?.bypass_ff && human_user.faction == faction)
 					var/turf/T = get_turf(src)
-					log_ffattack("[key_name(human_user)] missed a punch against [key_name(src)] in [AREACOORD(T)].")
-					msg_admin_ff("[ADMIN_TPMONTY(human_user)] missed a punch against [ADMIN_TPMONTY(src)] in [ADMIN_VERBOSEJMP(T)].")
+					log_ffattack("[key_name(human_user)] missed a [attack_verb] against [key_name(src)] in [AREACOORD(T)].")
+					msg_admin_ff("[ADMIN_TPMONTY(human_user)] missed a [attack_verb] against [ADMIN_TPMONTY(src)] in [ADMIN_VERBOSEJMP(T)].")
 				return FALSE
 
 			human_user.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
@@ -116,11 +120,9 @@
 			if(!lying_angle)
 				damage = rand(1, max_dmg)
 
-			var/target_zone = ran_zone(human_user.zone_selected)
-
 			playsound(loc, attack.attack_sound, 25, TRUE)
 
-			visible_message(span_danger("[human_user] [pick(attack.attack_verb)]ed [src]!"), null, null, 5)
+			visible_message(span_danger("[human_user] [attack_verb]ed [src]!"), null, null, 5)
 			var/list/hit_report = list()
 			if(damage >= 4 && prob(25))
 				visible_message(span_danger("[human_user] has weakened [src]!"), null, null, 5)
@@ -132,7 +134,7 @@
 
 			hit_report += "(RAW DMG: [damage])"
 
-			log_combat(human_user, src, "[pick(attack.attack_verb)]ed", "[hit_report.Join(" ")]")
+			log_combat(human_user, src, "[attack_verb]ed", "[hit_report.Join(" ")]")
 			if(!human_user.mind?.bypass_ff && !mind?.bypass_ff && human_user.faction == faction)
 				var/turf/T = get_turf(src)
 				human_user.ff_check(damage, src)
