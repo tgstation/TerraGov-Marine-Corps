@@ -370,5 +370,5 @@
 		if(QDELETED(victim_turf) || victim_turf.z != z_level)
 			continue
 		victim.adjustFireLoss(victim.maxHealth * 4)
-		victim.death()
+		victim.gib()
 		CHECK_TICK
