@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma
 	name = "generic plasma weapon"
-	icon = 'icons/Marine/marine-plasmaguns.dmi'
+	icon = 'icons/obj/items/guns/plasma64.dmi'
 	default_ammo_type = /obj/item/cell/lasgun/plasma_powerpack
 	allowed_ammo_types = list(/obj/item/cell/lasgun/plasma_powerpack)
 	heat_per_fire = 5
