@@ -54,8 +54,9 @@
 	var/primary_weapon_type = /obj/item/armored_weapon
 	//What kind of secondary tank weaponry we start with. Default minigun as standard.
 	var/secondary_weapon_type = /obj/item/armored_weapon/secondary_weapon
-
+	///if true disables stops users from being able to shoot weapons
 	var/weapons_safety = FALSE
+	/// damage done by rams
 	var/ram_damage = 20
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
@@ -68,7 +69,7 @@
 		damage_overlay.icon = damage_icon_path
 		damage_overlay.layer = layer+0.1
 		vis_contents += damage_overlay
-	if(CHECK_BITFIELD(flags_armored, ARMORED_HAS_PRIMARY_WEAPON))
+	if(flags_armored & ARMORED_HAS_PRIMARY_WEAPON)
 		turret_overlay = new()
 		turret_overlay.icon = turret_icon
 		turret_overlay.icon_state = turret_icon_state
@@ -76,7 +77,7 @@
 		turret_overlay.layer = layer+0.2
 		turret_overlay.on_tank_turn(src, dir, dir)
 		turret_overlay.RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, TYPE_PROC_REF(/atom/movable/vis_obj/turret_overlay, on_tank_turn))
-		if(CHECK_BITFIELD(flags_armored, ARMORED_HAS_MAP_VARIANTS))
+		if(flags_armored & ARMORED_HAS_MAP_VARIANTS)
 			switch(SSmapping.configs[GROUND_MAP].armor_style)
 				if(MAP_ARMOR_STYLE_JUNGLE)
 					turret_overlay.icon_state += "_jungle"
@@ -376,26 +377,25 @@
 	///overlay for the attached gun
 	var/image/gun_overlay
 
+///updates the gun overlay with a new image
 /atom/movable/vis_obj/turret_overlay/proc/update_gun_overlay(image/new_overlay)
 	cut_overlay(gun_overlay)
 	gun_overlay = new_overlay
-	add_overlay(gun_overlay)
+	if(gun_overlay)
+		add_overlay(gun_overlay)
 
-/atom/movable/vis_obj/turret_overlay/secondary_weapon_overlay
-	name = "Tank gun secondary turret"
-	desc = "The other shooty bit on a tank."
-	icon = 'icons/obj/armored/3x3/tank_secondary_gun.dmi' //set by owner
-	icon_state = "m56cupola_2"
-
-/atom/movable/vis_obj/turret_overlay/proc/remove_fire_overlay(overlay)
-	overlays -= overlay
-
+///updates the turret pixel offsets when the tank turns
 /atom/movable/vis_obj/turret_overlay/proc/on_tank_turn(obj/vehicle/sealed/armored/source, old_dir, new_dir)
 	SIGNAL_HANDLER
 	var/list/offsets = source.turret_dir_offsets[dir2text(new_dir)]
 	pixel_x = offsets[1]
 	pixel_y = offsets[2]
 
+/atom/movable/vis_obj/turret_overlay/secondary_weapon_overlay
+	name = "Tank gun secondary turret"
+	desc = "The other shooty bit on a tank."
+	icon = 'icons/obj/armored/3x3/tank_secondary_gun.dmi' //set by owner
+	icon_state = "m56cupola_2"
 
 /atom/movable/vis_obj/tank_damage
 	name = "Tank damage overlay"

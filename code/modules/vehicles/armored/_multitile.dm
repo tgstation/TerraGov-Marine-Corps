@@ -16,6 +16,7 @@
 	max_occupants = 4
 	move_delay = 0.5 SECONDS
 
+///returns a list of possible locations that this vehicle may be entered from
 /obj/vehicle/sealed/armored/multitile/proc/enter_locations(mob/M)
 	return list(get_step_away(get_step(src, REVERSE_DIR(dir)), src, 2))
 

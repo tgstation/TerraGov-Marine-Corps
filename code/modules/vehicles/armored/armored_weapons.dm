@@ -306,7 +306,7 @@
 /obj/item/armored_weapon/proc/detach(atom/moveto)
 	if(chassis.primary_weapon == src)
 		chassis.primary_weapon = null
-		chassis.turret_overlay.cut_overlays()
+		chassis.turret_overlay.update_gun_overlay()
 	else
 		chassis.secondary_weapon = null
 		chassis.secondary_weapon_overlay.icon = null

@@ -2032,6 +2032,7 @@
 #include "code\modules\vehicles\armored\medium_apc.dm"
 #include "code\modules\vehicles\armored\medium_tank.dm"
 #include "code\modules\vehicles\armored\small_apc.dm"
+#include "code\modules\vehicles\armored\tank_fabricator.dm"
 #include "code\modules\vehicles\armored\vehicle_collision.dm"
 #include "code\modules\vehicles\cars\car.dm"
 #include "code\modules\vehicles\mecha\_mecha.dm"

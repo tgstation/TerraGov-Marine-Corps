@@ -4,7 +4,6 @@
 	flags_magazine = NONE
 	///loading sound to play when
 	var/loading_sound
-	var/point_cost = 0
 
 /obj/item/ammo_magazine/tank/ltb_cannon
 	name = "LTB Cannon Magazine"
@@ -14,7 +13,6 @@
 	w_class = 15 //Heavy fucker
 	default_ammo = /datum/ammo/rocket/ltb
 	max_rounds = 4
-	point_cost = 50
 	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
 
 /obj/item/ammo_magazine/tank/ltb_cannon/update_icon_state()
@@ -29,7 +27,6 @@
 	w_class = 10
 	default_ammo = /datum/ammo/bullet/minigun
 	max_rounds = 500
-	point_cost = 25
 	loading_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 
 
@@ -41,8 +38,6 @@
 	w_class = 12
 	default_ammo = /datum/ammo/flamethrower/tank_flamer
 	max_rounds = 120
-	point_cost = 50
-
 
 /obj/item/ammo_magazine/tank/towlauncher
 	name = "TOW Launcher Magazine"
@@ -52,7 +47,6 @@
 	w_class = 10
 	default_ammo = /datum/ammo/rocket/ap //Fun fact, AP rockets seem to be a straight downgrade from normal rockets. Maybe I'm missing something...
 	max_rounds = 5
-	point_cost = 100
 
 /obj/item/ammo_magazine/tank/m56_cupola
 	name = "M56 Cupola Magazine"
@@ -63,7 +57,6 @@
 	w_class = 12
 	default_ammo = /datum/ammo/bullet/smartmachinegun
 	max_rounds = 1000
-	point_cost = 10
 
 /obj/item/ammo_magazine/tank/tank_glauncher
 	name = "Grenade Launcher Magazine"
@@ -73,7 +66,6 @@
 	w_class = 9
 	default_ammo = /datum/ammo/grenade_container
 	max_rounds = 10
-	point_cost = 25
 
 /obj/item/ammo_magazine/tank/tank_glauncher/update_icon_state()
 	if(current_rounds >= max_rounds)
@@ -83,7 +75,6 @@
 	else
 		icon_state = "glauncher_1"
 
-
 /obj/item/ammo_magazine/tank/tank_slauncher
 	name = "Smoke Launcher Magazine"
 	desc = "A support armament grenade magazine"
@@ -92,7 +83,6 @@
 	w_class = 12
 	default_ammo = /datum/ammo/grenade_container/smoke
 	max_rounds = 6
-	point_cost = 5
 
 /obj/item/ammo_magazine/tank/tank_slauncher/update_icon_state()
 	icon_state = "slauncher_[current_rounds <= 0 ? "0" : "1"]"
