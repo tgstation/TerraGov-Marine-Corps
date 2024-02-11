@@ -256,6 +256,7 @@
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/railgun_magazine
 	refill_amount = 20
+
 /obj/item/factory_refill/minigun_powerpack_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
