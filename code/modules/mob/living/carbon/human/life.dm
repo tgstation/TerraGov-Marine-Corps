@@ -76,8 +76,8 @@
 		return
 
 	if(pulledby?.grab_state >= GRAB_KILL)
-		Losebreath(3)
-		adjustOxyLoss(3)
+		Losebreath(1)
+		adjustOxyLoss(4)
 	else if(losebreath <= 10)
 		adjust_Losebreath(-1) //Since this happens before checking to take/heal oxyloss, a losebreath of 1 or less won't do anything.
 	else
