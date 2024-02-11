@@ -118,7 +118,7 @@
 		return
 
 	var/mob/M
-	if(!isgrab(I))
+	if(!isgrabitem(I))
 		return
 
 	else if(occupant)

@@ -778,7 +778,7 @@
 /obj/structure/hoop/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(isgrab(I) && get_dist(src, user) <= 1)
+	if(isgrabitem(I) && get_dist(src, user) <= 1)
 		var/obj/item/grab/G = I
 		if(!isliving(G.grabbed_thing))
 			return

@@ -142,7 +142,7 @@
 		update_icon()
 		return
 
-	if(!isgrab(I))
+	if(!isgrabitem(I))
 		return
 	if(isxeno(user))//I am very tempted to remove this >:)
 		return

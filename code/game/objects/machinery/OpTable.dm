@@ -196,7 +196,7 @@
 		anes_tank = I
 		to_chat(user, span_notice("You connect \the [anes_tank] to \the [src]."))
 
-	if(!isgrab(I))
+	if(!isgrabitem(I))
 		return
 
 	var/obj/item/grab/G = I

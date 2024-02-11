@@ -64,7 +64,7 @@
 		cistern = !cistern
 		update_icon()
 
-	else if(isgrab(I))
+	else if(isgrabitem(I))
 		if(isxeno(user))
 			return
 		var/obj/item/grab/G = I
@@ -130,7 +130,7 @@
 /obj/structure/urinal/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(isgrab(I))
+	if(isgrabitem(I))
 		if(isxeno(user))
 			return
 		var/obj/item/grab/G = I

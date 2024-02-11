@@ -48,7 +48,7 @@
 
 	var/obj/O = I
 
-	if(isgrab(I))
+	if(isgrabitem(I))
 		var/obj/item/grab/G = I
 		O = G.grabbed_thing
 

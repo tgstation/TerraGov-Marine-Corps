@@ -58,7 +58,7 @@
 		to_chat(user, span_warning("The gibber is full, empty it first!"))
 		return
 
-	else if(!(isgrab(I)) )
+	else if(!(isgrabitem(I)) )
 		to_chat(user, span_warning("This item is not suitable for the gibber!"))
 		return
 

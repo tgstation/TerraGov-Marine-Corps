@@ -61,11 +61,16 @@
 		return TRUE
 	return FALSE
 
-
+#define GRAB_SLAM_DELAY 0.7 SECONDS
 /obj/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return TRUE
+
+	if(isgrabitem(I))
+		if(grab_interact(I, user))
+			user.changeNext_move(GRAB_SLAM_DELAY)
+			return TRUE
 
 	if(user.a_intent != INTENT_HARM)
 		return

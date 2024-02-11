@@ -256,7 +256,7 @@
 		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 
-	if(!isgrab(I))
+	if(!isgrabitem(I))
 		return
 
 	if(machine_stat & (NOPOWER|BROKEN))

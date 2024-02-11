@@ -120,7 +120,7 @@
 
 		return FALSE
 
-	else if(isgrab(I))
+	else if(isgrabitem(I))
 		return TRUE
 
 	else

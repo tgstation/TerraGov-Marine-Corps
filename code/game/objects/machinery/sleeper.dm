@@ -292,7 +292,7 @@
 		return
 
 
-	if(!isgrab(I))
+	if(!isgrabitem(I))
 		return
 
 	var/obj/item/grab/G = I

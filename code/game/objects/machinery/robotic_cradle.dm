@@ -204,7 +204,7 @@
 		J.attack(occupant, user)
 		return
 
-	if(!isgrab(I))
+	if(!isgrabitem(I))
 		return
 
 	if(machine_stat & (NOPOWER|BROKEN))
