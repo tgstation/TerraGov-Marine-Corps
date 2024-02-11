@@ -282,6 +282,7 @@
 	desc = "A high explosive warhead for the V-71 rocket launcher. Causes a strong explosion over a respectable area."
 	icon_state = "rpg_he"
 	default_ammo = /datum/ammo/rocket/som
+	max_rounds = 1
 	reload_delay = 2 SECONDS
 	bonus_overlay = "rpg_he"
 
