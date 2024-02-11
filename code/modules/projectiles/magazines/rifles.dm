@@ -127,12 +127,14 @@
 	wield_delay_mod = 0.1 SECONDS
 
 /obj/item/ammo_magazine/rifle/mpi_km/plum
+	name = "\improper plum MPi-KM magazine (7.62x39mm)"
 	desc = "A 7.62x39mm magazine for the Kalashnikov series of firearms. This one had an old plum finish."
 	icon_state = "ak_40_plum"
 	icon_state_mini = "mag_rifle_darkpurple"
 	bonus_overlay = "ak_40_plum"
 
 /obj/item/ammo_magazine/rifle/mpi_km/black
+	name = "\improper black MPi-KM magazine (7.62x39mm)"
 	desc = "A 7.62x39mm magazine for the Kalashnikov series of firearms. This one had an modern black polymer finish."
 	icon_state = "ak_40_black"
 	icon_state_mini = "mag_rifle"
@@ -156,6 +158,7 @@
 	bonus_overlay = "ak_30_plum"
 
 /obj/item/ammo_magazine/rifle/mpi_km/carbine/black
+	name = "\improper black V-34 magazine (7.62x39mm)"
 	desc = "A 30 round 7.62x39mm magazine for the Kalashnikov series of firearms. This one had an modern black polymer finish."
 	icon_state = "ak_30_black"
 	icon_state_mini = "mag_rifle"
