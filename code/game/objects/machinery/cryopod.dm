@@ -203,41 +203,31 @@
 		I.store_in_cryo()
 	return ..()
 
-/obj/machinery/cryopod/attackby(obj/item/I, mob/user, params)
+/obj/machinery/cryopod/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	. = ..()
-
-	if(!isgrabitem(I))
+	if(.)
 		return
-
-	else if(isxeno(user))
+	if(isxeno(user))
 		return
-
-	var/obj/item/grab/G = I
-	if(!isliving(G.grabbed_thing))
-		return
-
-	if(!QDELETED(occupant))
-		to_chat(user, span_warning("[src] is occupied."))
-		return
-
-	var/mob/living/M = G.grabbed_thing
-
-	if(M.stat == DEAD) //This mob is dead
-		to_chat(user, span_warning("[src] immediately rejects [M]. [M.p_they(TRUE)] passed away!"))
-		return
-
-	if(!ishuman(M))
+	if(!ishuman(grab.grabbed_thing))
 		to_chat(user, span_warning("There is no way [src] will accept [M]!"))
 		return
+	var/mob/living/carbon/human/grabbed_human = grab.grabbed_thing
 
-	if(M.client)
-		if(tgui_alert(M, "Would you like to enter cryosleep?", null, list("Yes", "No")) == "Yes")
-			if(QDELETED(M) || !(G?.grabbed_thing == M))
+	if(!ishuman(grabbed_mob))
+		to_chat(user, span_notice("\ [src] is compatible with humanoid anatomies only!"))
+		return
+
+	if(grabbed_mob.client)
+		if(tgui_alert(grabbed_mob, "Would you like to enter cryosleep?", null, list("Yes", "No")) == "Yes")
+			if(QDELETED(grabbed_mob) || !(grab?.grabbed_thing == grabbed_mob))
 				return
 		else
 			return
 
-	climb_in(M, user)
+	climb_in(grabbed_mob, user)
+
+	return TRUE
 
 /obj/machinery/cryopod/verb/eject()
 	set name = "Eject Pod"

@@ -262,6 +262,8 @@
 	. = ..()
 	if(.)
 		return
+	if(isxeno(user))
+		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, span_notice("\ [src] is non-functional!"))
 		return

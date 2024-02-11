@@ -278,36 +278,50 @@
 
 /obj/machinery/sleeper/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
 		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 		return
 
+/obj/machinery/sleeper/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	. = ..()
+	if(.)
+		return
 	if(isxeno(user))
 		return
-
+	if(machine_stat & (NOPOWER|BROKEN))
+		to_chat(user, span_notice("\ [src] is non-functional!"))
+		return
 	if(occupant)
-		to_chat(user, span_notice("The sleeper is already occupied!"))
+		to_chat(user, span_notice("\ [src] is already occupied!"))
 		return
 
+	var/mob/grabbed_mob
 
-	if(!isgrabitem(I))
+	if(ismob(grab.grabbed_thing))
+		grabbed_mob = grab.grabbed_thing
+	else if(istype(grab.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
+		var/obj/structure/closet/bodybag/cryobag/cryobag = grab.grabbed_thing
+		if(!cryobag.bodybag_occupant)
+			to_chat(user, span_warning("The stasis bag is empty!"))
+			return
+		grabbed_mob = cryobag.bodybag_occupant
+		cryobag.open()
+		user.start_pulling(grabbed_mob)
+	if(!grabbed_mob)
 		return
 
-	var/obj/item/grab/G = I
-	if(!ismob(G.grabbed_thing))
+	if(!grabbed_mob.forceMove(src))
 		return
-
-	var/mob/M = G.grabbed_thing
-	if(!M.forceMove(src))
-		return
-
-	visible_message("[user] puts [M] into the sleeper.", 3)
-	occupant = M
+	visible_message("[user] puts [grabbed_mob] into the sleeper.", 3)
+	occupant = grabbed_mob
 	start_processing()
 	connected.start_processing()
 	update_icon()
+	return TRUE
 
 /obj/machinery/sleeper/ex_act(severity)
 	if(filtering)
