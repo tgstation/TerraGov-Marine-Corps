@@ -134,7 +134,7 @@
 /obj/structure/table/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(isgrab(I) && get_dist(src, user) <= 1)
+	if(isgrab(I))
 		if(isxeno(user))
 			return
 
