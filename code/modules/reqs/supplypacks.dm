@@ -597,13 +597,13 @@ WEAPONS
 /datum/supply_packs/weapons/antimaterial_incend_ammo
 	name = "SR-26 AMR incendiary magazine"
 	contains = list(/obj/item/ammo_magazine/sniper/incendiary)
-	cost = 50
+	cost = 30
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/antimaterial_flak_ammo
 	name = "SR-26 AMR flak magazine"
 	contains = list(/obj/item/ammo_magazine/sniper/flak)
-	cost = 40
+	cost = 30
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/specminigun
@@ -959,10 +959,20 @@ EXPLOSIVES
 	contains = list(/obj/item/storage/box/mlrs_rockets)
 	cost = 60
 
+/datum/supply_packs/explosives/mlrs_rockets_incendiary
+	name = "TA-40L MLRS Incendiary Rocket Pack (x16)"
+	contains = list(/obj/item/storage/box/mlrs_rocket_incendiary)
+	cost = 60
+
 /datum/supply_packs/explosives/mlrs_rockets_gas
 	name = "TA-40L X-50 MLRS Rocket Pack (x16)"
 	contains = list(/obj/item/storage/box/mlrs_rockets_gas)
 	cost = 60
+
+/datum/supply_packs/explosives/mlrs_rockets_cloak
+	name = "TA-40L S-2 MLRS Cloak Rocket Pack (x16)"
+	contains = list(/obj/item/storage/box/mlrs_rocket_gas_cloak)
+	cost = 50
 
 /datum/supply_packs/explosives/howitzer
 	name = "MG-100Y howitzer"
@@ -2171,6 +2181,16 @@ FACTORY
 	contains = list(/obj/item/factory_refill/railgun_magazine_refill)
 	cost = 180
 
+/datum/supply_packs/factory/railgun_hvap_magazine_refill
+	name = "Railgun HVAP magazine assembly refill"
+	contains = list(/obj/item/factory_refill/railgun_magazine_refill)
+	cost = 200
+
+/datum/supply_packs/factory/railgun_smart_magazine_refill
+	name = "Railgun magazine assembly refill"
+	contains = list(/obj/item/factory_refill/railgun_magazine_refill)
+	cost = 200
+
 /datum/supply_packs/factory/minigun_powerpack_refill
 	name = "Minigun powerpack assembly refill"
 	contains = list(/obj/item/factory_refill/minigun_powerpack_refill)
@@ -2180,6 +2200,11 @@ FACTORY
 	name = "Razornade assembly refill"
 	contains = list(/obj/item/factory_refill/razornade_refill)
 	cost = 480
+
+/datum/supply_packs/factory/flak_sniper_refill
+	name = "SR-127 flak magazine assembly refill"
+	contains = list(/obj/item/factory_refill/sniper_flak_magazine_refill)
+	cost = 600
 
 /datum/supply_packs/factory/amr_magazine_refill
 	name = "T-26 AMR magazine assembly refill"
@@ -2251,6 +2276,21 @@ FACTORY
 	contains = list(/obj/item/factory_refill/module_surt_refill)
 	cost = 580
 
+/datum/supply_packs/factory/plastique_refill
+	name = "C4 assembly refill"
+	contains = list(/obj/item/factory_refill/plastique_refill)
+	cost = 150
+
+/datum/supply_packs/factory/plastique_incendiary_refill
+	name = "EX-62 Genghis incendiary assembly refill"
+	contains = list(/obj/item/factory_refill/plastique_incendiary_refill)
+	cost = 500
+
+/datum/supply_packs/factory/detpack_refill
+	name = "Detpack assembly refill"
+	contains = list(/obj/item/factory_refill/detpack_refill)
+	cost = 250
+
 /datum/supply_packs/factory/mortar_shell_he_refill
 	name = "Mortar High Explosive shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_he_refill)
@@ -2309,3 +2349,12 @@ FACTORY
 	notes = "Contains enough for two automated guns"
 	contains = list(/obj/item/factory_refill/light_sentry)
 	cost = 600
+
+/datum/supply_packs/factory/deployable_floodlight_refill
+	name = "Deployable floodlight assembly refill"
+	contains = list(/obj/item/factory_refill/deployable_floodlight_refill)
+	cost = 150
+
+/datum/supply_packs/factory/deployable_camera_refill
+	name = "Deplyable security camera refill"
+	cost = 100
