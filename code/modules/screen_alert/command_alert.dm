@@ -55,6 +55,7 @@
 	log_game("[key_name(human_owner)] has broadcasted the hud message [text] at [AREACOORD(human_owner)]")
 	var/override_color // for squad colors
 	var/list/alert_receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list) // for full faction alerts, do this so that faction's AI and ghosts can hear aswell
+	var/faction_string = "Command" // In case it's not a TGMC announcement, rename this with the faction name
 	if(human_owner.assigned_squad)
 		switch(human_owner.assigned_squad.id)
 			if(ALPHA_SQUAD)
@@ -66,7 +67,8 @@
 			if(DELTA_SQUAD)
 				override_color = "blue"
 		for(var/mob/living/carbon/human/marine AS in human_owner.assigned_squad.marines_list | GLOB.observer_list)
-			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>SQUAD ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
+			marine.playsound_local(owner, 'sound/effects/sos-morse-code.ogg', 35)
+			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>Squad [human_owner.assigned_squad.name] Announcement:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
 			to_chat(marine, assemble_alert(
 				title = "Squad [human_owner.assigned_squad.name] Announcement",
 				subtitle = "Sent by [human_owner.real_name]",
@@ -78,8 +80,10 @@
 	for(var/mob/faction_receiver in alert_receivers)
 		if(faction_receiver.faction == human_owner.faction || isdead(faction_receiver))
 			faction_receiver.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>COMMAND ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
+			if(human_owner.faction != FACTION_TERRAGOV)
+				faction_string = "[human_owner.faction] Command Announcement"
 			to_chat(faction_receiver, assemble_alert(
-				title = "Command Announcement",
+				title = "[faction_string] Announcement",
 				subtitle = "Sent by [human_owner.real_name]",
 				message = text
 			))
