@@ -51,6 +51,7 @@
 #define COOLDOWN_DROPPOD_TARGETTING "cooldown_droppod_targetting"
 #define COOLDOWN_TRY_TTS "cooldown_try_tts"
 #define COOLDOWN_EVASION_ACTIVATION "cooldown_evasion_activation"
+#define COOLDOWN_TANK_SWIVEL "tank_turret_swivel"
 
 //Mecha cooldowns
 #define COOLDOWN_MECHA "mecha"
@@ -62,6 +63,7 @@
 #define COOLDOWN_MECHA_SKYFALL "mecha_skyfall"
 #define COOLDOWN_MECHA_MISSILE_STRIKE "mecha_missile_strike"
 
+#define COOLDOWN_VEHICLE_CRUSHSOUND "cooldown_vehicle_crushsound"
 //// COOLDOWN SYSTEMS
 /*
  * We have 2 cooldown systems: timer cooldowns (divided between stoppable and regular) and world.time cooldowns.

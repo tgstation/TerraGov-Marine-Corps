@@ -1,6 +1,7 @@
 /obj/vehicle/sealed/car
 	layer = ABOVE_MOB_LAYER
 	move_resist = MOVE_FORCE_VERY_STRONG
+	move_delay = 1
 	///Bitflags for special behavior such as kidnapping
 	var/car_traits = NONE
 	///Sound file(s) to play when we drive around
@@ -9,8 +10,6 @@
 	var/engine_sound_length = 2 SECONDS
 	///Time it takes to break out of the car.
 	var/escape_time = 6 SECONDS
-	/// How long it takes to move, cars don't use the riding component similar to mechs so we handle it ourselves
-	var/vehicle_move_delay = 1
 	/// How long it takes to rev (vrrm vrrm!)
 	COOLDOWN_DECLARE(enginesound_cooldown)
 
@@ -79,13 +78,13 @@
 
 /obj/vehicle/sealed/car/relaymove(mob/living/user, direction)
 	if(is_driver(user) && canmove && (!key_type || istype(inserted_key, key_type)))
-		vehicle_move(direction)
+		vehicle_move(user, direction)
 	return TRUE
 
-/obj/vehicle/sealed/car/vehicle_move(direction)
-	if(!COOLDOWN_CHECK(src, cooldown_vehicle_move))
-		return FALSE
-	COOLDOWN_START(src, cooldown_vehicle_move, vehicle_move_delay)
+/obj/vehicle/sealed/car/vehicle_move(mob/living/user, direction)
+	. = ..()
+	if(!.)
+		return
 
 	if(COOLDOWN_CHECK(src, enginesound_cooldown))
 		COOLDOWN_START(src, enginesound_cooldown, engine_sound_length)

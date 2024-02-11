@@ -2,10 +2,10 @@
 /obj/machinery/door/airlock/multi_tile
 	width = 2
 
-/obj/machinery/door/airlock/multi_tile/close() //Nasty as hell O(n^2) code but unfortunately necessary
+/obj/machinery/door/airlock/multi_tile/close() //Nasty as hell O(n^2) code but unfortunately necessary //honestly probably not, TODO fixme
 	for(var/turf/T in locs)
-		for(var/obj/vehicle/multitile/M in T)
-			if(M) return FALSE
+		for(var/obj/hitbox/hit in T)
+			return FALSE
 
 	return ..()
 

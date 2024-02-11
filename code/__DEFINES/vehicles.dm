@@ -45,3 +45,14 @@
 // For fireman carries, the carrying human needs an arm
 #define CARRIER_NEEDS_ARM (1<<4)
 
+
+//Armored vehicle defines
+#define ARMORED_HAS_UNDERLAY (1<<0)
+#define ARMORED_HAS_MAP_VARIANTS (1<<2)
+#define ARMORED_HAS_PRIMARY_WEAPON (1<<3)
+#define ARMORED_HAS_SECONDARY_WEAPON (1<<4)
+#define ARMORED_LIGHTS_ON (1<<5)
+#define ARMORED_HAS_HEADLIGHTS (1<<6)
+
+#define MODULE_PRIMARY (1<<0)
+#define MODULE_SECONDARY (1<<1)

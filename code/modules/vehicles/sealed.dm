@@ -88,7 +88,7 @@
 		M.visible_message(span_notice("[M] drops out of \the [src]!"))
 	return TRUE
 
-/obj/vehicle/sealed/proc/exit_location(M)
+/obj/vehicle/sealed/proc/exit_location(mob/M)
 	return drop_location()
 
 /obj/vehicle/sealed/attackby(obj/item/I, mob/user, params)
@@ -141,10 +141,14 @@
 	return FALSE
 
 /obj/vehicle/sealed/relaymove(mob/living/user, direction)
-	if(canmove)
-		vehicle_move(direction)
+	if(is_driver(user) && canmove)
+		vehicle_move(user, direction)
 	return TRUE
 
 /// Sinced sealed vehicles (cars and mechs) don't have riding components, the actual movement is handled here from [/obj/vehicle/sealed/proc/relaymove]
-/obj/vehicle/sealed/proc/vehicle_move(direction)
-	return FALSE
+/obj/vehicle/sealed/proc/vehicle_move(mob/living/user, direction)
+	SHOULD_CALL_PARENT(TRUE)
+	if(!COOLDOWN_CHECK(src, cooldown_vehicle_move))
+		return FALSE
+	COOLDOWN_START(src, cooldown_vehicle_move, move_delay)
+	return !(SEND_SIGNAL(src, COMSIG_VEHICLE_MOVE, user, direction) & COMPONENT_DRIVER_BLOCK_MOVE)

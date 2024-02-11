@@ -127,3 +127,9 @@
 #define TEXT_SOUTH "[SOUTH]"
 #define TEXT_EAST "[EAST]"
 #define TEXT_WEST "[WEST]"
+
+//compatible with dir2text
+#define NORTH_LOWERTEXT "north"
+#define SOUTH_LOWERTEXT "south"
+#define WEST_LOWERTEXT "west"
+#define EAST_LOWERTEXT "east"
