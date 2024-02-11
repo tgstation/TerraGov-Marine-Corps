@@ -2150,7 +2150,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 	else if(href_list["cancelsummon"])
 		GLOB.active_summons.Cut()
-		var/logtext = "[key_name(usr)] has cancelled a psychic summon"
+		var/logtext = "[key_name(usr)] has cancelled all psychic summons"
 		message_admins(logtext)
 		log_admin(logtext)
 
