@@ -2380,4 +2380,5 @@ FACTORY
 
 /datum/supply_packs/factory/deployable_camera_refill
 	name = "Deplyable security camera refill"
+	contains = list(/obj/item/factory_refill/deployable_camera_refill)
 	cost = 100
