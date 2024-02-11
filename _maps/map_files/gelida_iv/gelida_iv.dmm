@@ -515,7 +515,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_street)
 "arF" = (
-/obj/structure/holohoop{
+/obj/structure/hoop{
 	dir = 4;
 	id = "lvbasketball";
 	side = "left"
@@ -1927,7 +1927,7 @@
 	},
 /area/gelida/landing_zone_2)
 "bmp" = (
-/obj/structure/holohoop{
+/obj/structure/hoop{
 	pixel_y = 27
 	},
 /obj/item/toy/beach_ball/holoball{
@@ -10720,7 +10720,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "hju" = (
-/obj/structure/holohoop{
+/obj/structure/hoop{
 	dir = 8;
 	id = "lvbasketball";
 	side = "right"
@@ -25182,7 +25182,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/fitness)
 "qVp" = (
-/obj/structure/holohoop,
+/obj/structure/hoop,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -26229,7 +26229,7 @@
 	pixel_x = 7;
 	pixel_y = -9
 	},
-/obj/structure/holohoop{
+/obj/structure/hoop{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,

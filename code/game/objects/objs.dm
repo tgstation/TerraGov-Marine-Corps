@@ -361,18 +361,15 @@
 /obj/proc/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	//if(isxeno(user))
 	//	return
-
-	if(!isliving(grab.grabbed_thing))
-		return
-
-	var/mob/living/grabbed_mob = grab.grabbed_thing
 	if(user.a_intent != INTENT_HARM)
 		return
-
+	if(!isliving(grab.grabbed_thing))
+		return
 	if(user.grab_state <= GRAB_AGGRESSIVE)
 		to_chat(user, span_warning("You need a better grip to do that!"))
 		return
 
+	var/mob/living/grabbed_mob = grab.grabbed_thing
 	if(prob(15))
 		grabbed_mob.Paralyze(2 SECONDS)
 	step_towards(grabbed_mob, src)
