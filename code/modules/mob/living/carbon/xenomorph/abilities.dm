@@ -15,7 +15,11 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!istype(X))
 		return
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_REST_TOGGLE))
+		X.balloon_alert(X, "Just got up.")
+		return
 	X.toggle_resting()
+	TIMER_COOLDOWN_START(src, COOLDOWN_REST_TOGGLE, 1 SECONDS)
 	return succeed_activate()
 
 // ***************************************

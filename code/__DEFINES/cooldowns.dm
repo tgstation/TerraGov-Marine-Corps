@@ -51,6 +51,7 @@
 #define COOLDOWN_DROPPOD_TARGETTING "cooldown_droppod_targetting"
 #define COOLDOWN_TRY_TTS "cooldown_try_tts"
 #define COOLDOWN_EVASION_ACTIVATION "cooldown_evasion_activation"
+#define COOLDOWN_REST_TOGGLE "cooldown_rest_toggle"
 
 //Mecha cooldowns
 #define COOLDOWN_MECHA "mecha"
@@ -101,6 +102,7 @@
 
 #define TIMER_COOLDOWN_START(cd_source, cd_index, cd_time) LAZYSET(cd_source.cooldowns, cd_index, addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(end_cooldown), cd_source, cd_index), cd_time))
 
+/// Returns TRUE if still cooling down, FALSE otherwise
 #define TIMER_COOLDOWN_CHECK(cd_source, cd_index) LAZYACCESS(cd_source.cooldowns, cd_index)
 
 #define TIMER_COOLDOWN_END(cd_source, cd_index) LAZYREMOVE(cd_source.cooldowns, cd_index)
