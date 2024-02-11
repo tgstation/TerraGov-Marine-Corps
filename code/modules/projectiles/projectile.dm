@@ -1324,14 +1324,14 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
  * Arguments:
  * * source: [mandatory] atom the bullets are emitting from
  * * bullets: [mandatory] list of bullets  (in order, clockwise) to fire
- * * firer: mob that these bullets relate to
+ * * firer: atom that "shot" these bullets
  * * fire_sound: sound to play while the bullets are firing
  * * range: bullet range
  * * speed: bullet speed
  * * randomized: bool, if true we randomly pick where we're firing instead of evenly seperated
  * * rotations: how many times to "spin" the rotation. if 0 or less, instead bursts all the bullets at once
  */
-/proc/bullet_burst(atom/source, list/obj/projectile/bullets, mob/firer, fire_sound, range, speed, randomized = FALSE, rotations = -1)
+/proc/bullet_burst(atom/source, list/obj/projectile/bullets, atom/firer, fire_sound, range, speed, randomized = FALSE, rotations = -1)
 	var/angle_between_bullets = 0
 	var/current_angle = 0
 
