@@ -1990,7 +1990,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/item/trash/barcardine,
+/obj/item/trash/barcaridine,
 /turf/open/floor/wood,
 /area/outpost/dormitories)
 "jE" = (
@@ -9486,7 +9486,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north)
 "Sv" = (
-/obj/item/trash/barcardine,
+/obj/item/trash/barcaridine,
 /turf/open/floor/wood,
 /area/outpost/dormitories)
 "Sw" = (
