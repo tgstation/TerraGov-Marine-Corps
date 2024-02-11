@@ -63,11 +63,11 @@
  * * subtitle - optional, the subtitle/subheader of the announcement
  * * type - optional, the type of the announcement (see defines in `__HELPERS/announce.dm`)
  * * sound - optional, the sound played accompanying the announcement
- * * channel_override - optional, what channel is this sound going to be played on?
+ * * random_channel - optional, is this sound going to be on a random channel? (so it can't be interrupted)
  * * color_override - **recommended,** string, use the passed color instead of the default blue (see defines in `__HELPERS/announce.dm`)
  * * receivers - a list of all players to send the message to. defaults to all players, not including those in lobby
  */
-/proc/priority_announce(message, title = "Announcement", subtitle = "", type = ANNOUNCEMENT_REGULAR, sound = 'sound/misc/notice2.ogg', channel_override = CHANNEL_ANNOUNCEMENTS, color_override, list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list))
+/proc/priority_announce(message, title = "Announcement", subtitle = "", type = ANNOUNCEMENT_REGULAR, sound = 'sound/misc/notice2.ogg', random_channel = FALSE, color_override, list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list))
 	if(!message)
 		return
 
@@ -105,7 +105,7 @@
 			message = message
 		)
 
-	var/s = sound(sound, channel = channel_override)
+	var/s = sound(sound, channel = random_channel ? SSsounds.random_available_channel() : CHANNEL_ANNOUNCEMENTS)
 	for(var/i in receivers)
 		var/mob/M = i
 		if(!isnewplayer(M))

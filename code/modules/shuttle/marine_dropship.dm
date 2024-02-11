@@ -162,6 +162,8 @@
 	var/cycle_timer
 	///If first landing is false intro sequence wont play
 	var/static/first_landing = TRUE
+	///If this dropship can play the takeoff announcement. Used to track if it's been used already
+	var/takeoff_alarm_locked = FALSE
 
 /obj/docking_port/mobile/marine_dropship/register()
 	. = ..()
@@ -173,6 +175,7 @@
 		return
 	// pull the shuttle from datum/source, and state info from the shuttle itself
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_TRANSIT)
+	takeoff_alarm_locked = FALSE // Allow people to use the announcement alarm again when it enters transit
 	if(first_landing)
 		first_landing = FALSE
 		var/op_name = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
@@ -255,7 +258,15 @@
 	if(hijack_state != HIJACK_STATE_NORMAL)
 		return
 	cycle_timer = addtimer(CALLBACK(src, PROC_REF(go_to_previous_destination)), 20 SECONDS, TIMER_STOPPABLE)
-	priority_announce("The Alamo will depart towards [previous.name] in 20 seconds.", "Dropship Automatic Departure", color_override = "grey")
+	priority_announce(
+		title = "Dropship Alamo Update",
+		subtitle = "Automatic Departure",
+		message = "The Alamo will automatically depart to [previous.name] in 20 seconds.",
+		random_channel = TRUE, // Probably round-changing enough to prevent interruption.
+		sound = 'sound/misc/ds_signalled_alarm.ogg',
+		color_override = "grey"
+	)
+	takeoff_alarm_locked = TRUE // Probably not a good idea if someone turns off auto and needs to use it later, but...
 
 ///Send the dropship to its previous dock
 /obj/docking_port/mobile/marine_dropship/proc/go_to_previous_destination()
@@ -645,6 +656,36 @@
 				deltimer(M.cycle_timer)
 		if("cycle_time_change")
 			M.time_between_cycle = params["cycle_time_change"]
+		if("signal_departure")
+			// Weird cases where you don't want to waste the alarm.
+			switch(M.mode)
+				if(SHUTTLE_RECHARGING)
+					to_chat(usr, span_warning("The dropship is recharging. Wait until it's done."))
+					return
+				if(SHUTTLE_CALL)
+					to_chat(usr, span_warning("The dropship is flying. Wait until it's landed."))
+					return
+				if(SHUTTLE_IGNITING)
+					to_chat(usr, span_warning("The dropship is about to take off. Wait until it's landed."))
+					return
+				if(SHUTTLE_PREARRIVAL)
+					to_chat(usr, span_warning("The dropship is about to land. Wait until it's landed and finished recharging."))
+					return
+
+			// The alarm was already used.
+			if(M.takeoff_alarm_locked)
+				to_chat(usr, span_warning("The dropship takeoff alarm has been locked. It was probably already used. To unlock it, it must be cycled again."))
+				return
+
+			priority_announce(
+				type = ANNOUNCEMENT_PRIORITY,
+				title = "Dropship Takeoff Imminent",
+				message = "[usr.real_name] has signalled that the Alamo will take off soon.",
+				sound = 'sound/misc/ds_signalled_alarm.ogg',
+				random_channel = TRUE, // Probably round-changing enough to prevent interruption.
+				color_override = "yellow"
+			)
+			M.takeoff_alarm_locked = TRUE
 
 /obj/machinery/computer/shuttle/marine_dropship/Topic(href, href_list)
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)

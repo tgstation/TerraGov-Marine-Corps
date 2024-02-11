@@ -33,17 +33,17 @@ const NormalOperation = (props) => {
   const delayBetweenFlight = [0, 15, 30, 45, 60];
   const doorLocks = [
     {
-      label: 'Left',
+      label: 'Lock Left',
       name: 'left',
       lockdown: data.left,
     },
     {
-      label: 'Right',
+      label: 'Lock Right',
       name: 'right',
       lockdown: data.right,
     },
     {
-      label: 'Rear',
+      label: 'Lock Rear',
       name: 'rear',
       lockdown: data.rear,
     },
@@ -99,9 +99,14 @@ const NormalOperation = (props) => {
           </Box>
         ))}
       </Section>
-      <Section title="Door Controls">
+      <Section title="Additional Controls">
         <LabeledList>
-          <LabeledList.Item label="All">
+          <LabeledList.Item label="Takeoff Alarm">
+            <Button onClick={() => act('signal_departure')}>
+              Play Takeoff Alarm
+            </Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Lock All">
             <Button
               onClick={() => act('lockdown')}
               disabled={data.lockdown === 2}
