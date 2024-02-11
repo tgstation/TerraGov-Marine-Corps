@@ -346,6 +346,7 @@ GLOBAL_LIST_INIT(railgun_magazine, list(
 /obj/item/factory_part/railgun_magazine/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.railgun_magazine
+
 /obj/item/factory_part/railgun_hvap_magazine
 	name = "railgun round"
 	desc = "An unfinished magnetically propelled steel rod."
