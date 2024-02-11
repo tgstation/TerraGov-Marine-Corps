@@ -5,6 +5,10 @@
 	max_chamber_items = 8 //codex
 	load_method = SINGLE_CASING //codex
 	icon = 'icons/obj/items/guns/shotguns.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/shotguns_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_shell_insert.ogg'
@@ -388,6 +392,10 @@
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "mosin"
 	item_state = "mosin"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mosin.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mosin_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
@@ -455,6 +463,10 @@
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "martini"
 	item_state = "martini"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
+	)
 	shell_eject_animation = "martini_flick"
 	caliber = CALIBER_557 //codex
 	muzzle_flash_lum = 7
@@ -592,6 +604,10 @@
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "leicrepeater"
 	item_state = "leicrepeater"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_repeater.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'

@@ -199,8 +199,8 @@
 	icon_state = "t37"
 	item_state = "t37"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
@@ -279,8 +279,8 @@
 	item_state = "t64"
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
@@ -470,6 +470,10 @@
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "m41a"
 	item_state = "m41a"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+	)
 	fire_sound = "gun_pulse"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
@@ -646,6 +650,10 @@
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "rpd"
 	item_state = "rpd"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+	)
 	fire_animation = "rpd_fire"
 	caliber = CALIBER_762X39 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -708,6 +716,10 @@
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "dp27"
 	item_state = "dp27"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+	)
 	max_shells = 47 //codex
 	caliber = CALIBER_762X39 //codex
 	fire_sound = "svd_fire"
@@ -879,8 +891,8 @@
 	icon_state = "t42"
 	item_state = "t42"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
@@ -960,8 +972,8 @@
 	item_state = "t60"
 	fire_animation = "t60_fire"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
@@ -1031,6 +1043,10 @@
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "m412l1"
 	item_state = "m412l1"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+	)
 	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 200 //codex
 	aim_slowdown = 0.8
@@ -1209,6 +1225,10 @@
 	icon_state = "tx15"
 	item_state = "tx15"
 	icon = 'icons/obj/items/guns/shotguns.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/shotguns_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh15.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	caliber = CALIBER_16G //codex
@@ -1271,6 +1291,10 @@
 	icon_state = "sg29"
 	item_state = "sg29"
 	icon = 'icons/obj/items/guns/machineguns.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+	)
 	caliber = CALIBER_10x26_CASELESS //codex
 	max_shells = 300 //codex
 	force = 30
@@ -1330,6 +1354,10 @@
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "sg62"
 	item_state = "sg62"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
+	)
 	caliber = CALIBER_10x27_CASELESS //codex
 	max_shells = 40 //codex
 	aim_slowdown = 0.85
@@ -1410,6 +1438,10 @@
 	desc = "An unusual gun of alien origin. It is lacking a trigger or any obvious way to fire it."
 	icon_state = "alien_rifle"
 	item_state = "alien_rifle"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/energy_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/alienplasma.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/alienplasma.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
@@ -1461,8 +1493,8 @@
 	icon_state = "tl127"
 	item_state = "tl127"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
 
 	inhand_x_dimension = 64
@@ -1644,8 +1676,8 @@
 	icon_state = "t21"
 	item_state = "t21"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
 	)
 
 	inhand_x_dimension = 64
@@ -1719,6 +1751,10 @@
 	icon = 'icons/obj/items/guns/machineguns.dmi'
 	icon_state = "alf51b"
 	item_state = "alf51b"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+	)
 	fire_animation = "alf51b_fire"
 	fire_sound = 'sound/weapons/guns/fire/t18b.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
@@ -1820,6 +1856,10 @@
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "tx54"
 	item_state = "tx54" ///todo
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
+	)
 	max_shells = 5 //codex
 	max_chamber_items = 1
 	fire_delay = 1.2 SECONDS
@@ -1974,13 +2014,12 @@
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "garand"
 	item_state = "garand"
-	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
-	)
-
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/garand.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/garand_ping.ogg'
@@ -2210,8 +2249,8 @@
 	item_state = "v41"
 	fire_animation = "v41_fire"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
 	)
 
 	inhand_x_dimension = 64
@@ -2277,8 +2316,8 @@
 	icon_state = "l11"
 	item_state = "l11"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
@@ -2350,8 +2389,8 @@
 	icon_state = "l15"
 	item_state = "l15"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
 	)
 
 	inhand_x_dimension = 64
@@ -2422,8 +2461,8 @@
 	icon_state = "ml12"
 	item_state = "ml12"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
 
 	inhand_x_dimension = 64
@@ -2488,6 +2527,10 @@
 	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	icon_state = "ml41"
 	item_state = "ml41"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/shotguns_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	caliber = CALIBER_12G //codex
@@ -2594,8 +2637,8 @@
 	icon_state = "minimi"
 	item_state = "minimi"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32

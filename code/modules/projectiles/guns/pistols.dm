@@ -4,6 +4,10 @@
 /obj/item/weapon/gun/pistol
 	icon = 'icons/obj/items/guns/pistols.dmi'
 	icon_state = "" //Defaults to revolver pistol when there's no sprite.
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/pistols_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/pistols_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/pistol.ogg'
 	unload_sound = 'sound/weapons/guns/interact/pistol_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/pistol_reload.ogg'
@@ -75,6 +79,10 @@
 	desc = "An experimental weapon designed to set the terrain and targets on fire. It hums with power as magnetic fields coil round each other."
 	icon_state = "tx7"
 	item_state = "tx7"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/energy_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_1.dmi',
+	)
 	caliber = CALIBER_PLASMA
 	max_shots = 10
 	icon = 'icons/obj/items/guns/energy.dmi'

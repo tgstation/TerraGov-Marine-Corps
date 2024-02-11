@@ -16,6 +16,10 @@ The Grenade Launchers
 	caliber = CALIBER_40MM //codex
 	load_method = SINGLE_CASING //codex
 	icon = 'icons/obj/items/guns/special.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'

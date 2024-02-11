@@ -1,5 +1,9 @@
 /obj/item/weapon/gun/smg
 	icon = 'icons/obj/items/guns/submachineguns.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/submachineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/submachineguns_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/smg_light.ogg'
 	unload_sound = 'sound/weapons/guns/interact/smg_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/smg_reload.ogg'
@@ -586,8 +590,8 @@
 	icon_state = "pl38"
 	item_state = "pl38"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/submachineguns_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/submachineguns_right_64.dmi',
 	)
 
 	inhand_x_dimension = 64
@@ -653,8 +657,8 @@
 	icon_state = "l40"
 	item_state = "l40"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/submachineguns_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/submachineguns_right_64.dmi',
 	)
 
 	inhand_x_dimension = 64
