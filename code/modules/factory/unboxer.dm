@@ -527,4 +527,3 @@
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/deployable_camera
 	refill_amount = 30
-
