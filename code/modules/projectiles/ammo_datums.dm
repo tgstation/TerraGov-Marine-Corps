@@ -2693,6 +2693,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/mortar/rocket/mlrs/drop_nade(turf/T)
 	explosion(T, 0, 0, 4, 0, 2)
 
+/datum/ammo/mortar/rocket/mlrs/incendiary/drop_nade(turf/T)
+	explosion(T, 0, 0, 2, 0, 2)
+	flame_radius(3, T)
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
+
 /datum/ammo/mortar/rocket/smoke/mlrs
 	shell_speed = 2.5
 	smoketype = /datum/effect_system/smoke_spread/mustard
@@ -2703,6 +2708,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(5, T, 6)
 	smoke.start()
+
+/datum/ammo/mortar/rocket/smoke/mlrs
+	smoketype = /datum/effect_system/smoke_spread/tactical
 
 /*
 //================================================

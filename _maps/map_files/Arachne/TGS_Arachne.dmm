@@ -7864,9 +7864,7 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/obj/structure/disposalpipe/junction/flipped{
-	dir = 8
-	},
+/obj/structure/disposalpipe/junction/yjunc,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "gLH" = (
