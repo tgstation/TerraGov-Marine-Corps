@@ -32,7 +32,8 @@
 	return TRUE
 
 /obj/item/tank_module/Destroy()
-	on_unequip()
+	if(owner)
+		on_unequip()
 	return ..()
 
 
