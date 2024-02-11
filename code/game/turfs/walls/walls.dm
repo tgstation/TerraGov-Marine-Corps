@@ -12,6 +12,7 @@
 	walltype = "metal"
 
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 	var/wall_integrity
 	var/max_integrity = 1000 //Wall will break down to girders if damage reaches this point
