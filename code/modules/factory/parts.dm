@@ -641,7 +641,6 @@ GLOBAL_LIST_INIT(thermobaric_wp_recipe, list(
 	recipe = GLOB.thermobaric_wp_recipe
 
 GLOBAL_LIST_INIT(equipment_recipe, list(
-GLOBAL_LIST_INIT(equipment_recipe, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "hotplate"),
@@ -650,7 +649,6 @@ GLOBAL_LIST_INIT(equipment_recipe, list(
 
 /obj/item/factory_part/drop_pod
 	name = "TGMC Zeus orbital drop pod assembly"
-	desc = "An incomplete Zeus orbital drop pod assembly."
 	desc = "An incomplete Zeus orbital drop pod assembly."
 	result = /obj/structure/droppod
 
