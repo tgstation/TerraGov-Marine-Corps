@@ -280,7 +280,7 @@
 	if(hijack_state != HIJACK_STATE_NORMAL)
 		return
 	cycle_timer = addtimer(CALLBACK(src, PROC_REF(go_to_previous_destination)), 20 SECONDS, TIMER_STOPPABLE)
-	priority_announce("Dropship taking off in 20 seconds towards [previous.name]", "Dropship Automatic Departure")
+	priority_announce("The Alamo will depart towards [previous.name] in 20 seconds.", "Dropship Automatic Departure", color_override = "grey")
 
 ///Send the dropship to its previous dock
 /obj/docking_port/mobile/marine_dropship/proc/go_to_previous_destination()
@@ -396,7 +396,7 @@
 /obj/docking_port/mobile/marine_dropship/on_prearrival()
 	. = ..()
 	if(hijack_state == HIJACK_STATE_CRASHING)
-		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT.", "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg')
+		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT.", "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg', color_override = "red")
 	for(var/obj/machinery/landinglight/light AS in GLOB.landing_lights)
 		if(light.linked_port == destination)
 			light.turn_on()
@@ -451,7 +451,7 @@
 	message_admins("[ADMIN_TPMONTY(src)] has summoned the dropship")
 	log_admin("[key_name(src)] has summoned the dropship")
 	hive?.xeno_message("[src] has summoned down the metal bird to [port], gather to her now!")
-	priority_announce("Unknown interference with dropship control. Shutting down autopilot",  "Dropship malfunction")
+	priority_announce("Unknown external interference with dropship control. Shutting down autopilot.", "Critical Dropship Alert", type = ANNOUNCEMENT_PRIORITY, color_override = "red")
 
 
 #define ALIVE_HUMANS_FOR_CALLDOWN 0.1
@@ -512,7 +512,7 @@
 		D.silicon_lock_airlocks(TRUE)
 		to_chat(user, span_warning("We have overriden the shuttle lockdown!"))
 		playsound(user, "alien_roar", 50)
-		priority_announce("Alamo lockdown protocol compromised. Interference preventing remote control", "Dropship Lock Alert")
+		priority_announce("Alamo lockdown protocol compromised. Interference preventing remote control.", "Dropship Lock Alert", type = ANNOUNCEMENT_PRIORITY, color_override = "red")
 		return FALSE
 	if(D.mode != SHUTTLE_IDLE && D.mode != SHUTTLE_RECHARGING)
 		to_chat(user, span_warning("The bird's mind is currently active. We need to wait until it's more vulnerable..."))
@@ -777,21 +777,23 @@
 		do_hijack(M, CT, X)
 
 	if(href_list["abduct"])
-		var/groundside_humans
-		for(var/N in GLOB.alive_human_list)
-			var/mob/H = N
-			if(H.z != X.z)
-				continue
-			groundside_humans++
-
-		if(groundside_humans > 5)
-			to_chat(X, span_xenowarning("There is still prey left to hunt!"))
-			return
-
 		var/confirm = tgui_alert(usr, "Would you like to capture the metal bird?\n THIS WILL END THE ROUND", "Capture the ship?", list( "Yes", "No"))
 		if(confirm != "Yes")
 			return
-		priority_announce("The Alamo has been captured! Losing their main mean of accessing the ground, the marines have no choice but to retreat.", title = "ALAMO CAPTURED")
+
+		var/groundside_humans = length(GLOB.humans_by_zlevel["[z]"])
+		if(groundside_humans > 5)
+			to_chat(X, span_xenowarning("There is still prey left to hunt!"))
+			return
+		//these are all stinky checks, someone make this tgui
+		if(X != usr)
+			return
+		if(X.stat)
+			return
+		if(!Adjacent(X))
+			return
+
+		priority_announce("The Alamo has been captured! Losing their main mean of accessing the ground, the marines have no choice but to retreat.", title = "Alamo Captured", color_override = "orange")
 		var/datum/game_mode/infestation/infestation_mode = SSticker.mode
 		infestation_mode.round_stage = INFESTATION_DROPSHIP_CAPTURED_XENOS
 		return
@@ -805,7 +807,7 @@
 	crashing_dropship.crashing = TRUE
 	crashing_dropship.unlock_all()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_HIJACKED)
-	priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely.", "Dropship Alert", sound = 'sound/AI/hijack.ogg')
+	priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely.", title = "Critical Dropship Alert", type = ANNOUNCEMENT_PRIORITY, sound = 'sound/AI/hijack.ogg', color_override = "red")
 	to_chat(user, span_danger("A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!"))
 	user.hive.on_shuttle_hijack(crashing_dropship)
 	playsound(src, 'sound/misc/queen_alarm.ogg')

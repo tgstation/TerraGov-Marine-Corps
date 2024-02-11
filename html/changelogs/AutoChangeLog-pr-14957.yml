@@ -1,0 +1,6 @@
+author: "Neocloudy"
+delete-after: True
+changes:
+  - rscadd: "new announcement design- announcements can be recolored, have a subtitle, and pop out easier."
+  - code_imp: "priority announcements can now have a color override and subtitle"
+  - admin: "added subtitle and color option to command reports"

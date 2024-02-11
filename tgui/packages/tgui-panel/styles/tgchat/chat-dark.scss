@@ -3,6 +3,9 @@
  * SPDX-License-Identifier: MIT
  */
 
+@use 'sass:map';
+@use 'sass:color';
+
 em {
   font-style: normal;
   font-weight: bold;
@@ -1019,38 +1022,118 @@ h2.alert {
   border-bottom: 1px dashed #fff;
 }
 
-.faction_alert {
-  background: #4d0000;
-  margin: 0.5em;
-  padding: 0.5em 0.5em 0.5em 0.5em;
-  color: #ffffff;
-  font-weight: bold;
-  display: flex;
-  flex-direction: column;
-  background-image: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 10px,
-    #420000 10px,
-    #420000 20px
-  );
-}
+$alert-stripe-colors: (
+  'default': #00283a,
+  'green': #003d00,
+  'blue': #00283a,
+  'pink': #30001b,
+  'yellow': #574a00,
+  'orange': #593400,
+  'red': #420000,
+  'purple': #2c0030,
+  'grey': #252525,
+);
+
+$alert-stripe-alternate-colors: (
+  'default': #003045,
+  'green': #004700,
+  'blue': #003045,
+  'pink': #400025,
+  'yellow': #4d4100,
+  'orange': #6b4200,
+  'red': #520000,
+  'purple': #38003d,
+  'grey': #292929,
+);
+
+$alert-major-header-colors: (
+  'default': #33d5ff,
+  'green': #00ff80,
+  'blue': #33d5ff,
+  'pink': #ff5297,
+  'yellow': #fff4e0,
+  'orange': #feefe7,
+  'red': #ff5297,
+  'purple': #c7a1f7,
+  'grey': #ff5297,
+);
+
+$alert-subheader-header-colors: (
+  'default': #ff5297,
+  'green': #ff85b5,
+  'blue': #ff5297,
+  'pink': #33d5ff,
+  'yellow': #33d5ff,
+  'orange': #33d5ff,
+  'red': #33d5ff,
+  'purple': #33d5ff,
+  'grey': #33d5ff,
+);
+
+$border-width: 4;
+
+$border-width-px: $border-width * 1px;
+
 .faction_alert_text {
-  color: #ffffff;
-  background: #240000;
-  padding: 1em 1em 1em 1em;
+  background: #202020;
+  padding: 0.5rem 0.5rem;
 }
 .faction_alert_subtitle {
-  color: #ffffff;
-  padding: 0.5em 0.5em 0.5em 0.5em;
+  padding: 0 0.5rem;
+  padding-top: 0.25rem;
+  font-size: 125%;
 }
 .faction_alert_title {
-  color: #ffffff;
-  padding: 0.35em 0.35em 0 0.35em;
+  padding: 0 0.5rem;
   font-size: 185%;
 }
 .faction_alert_minortitle {
-  color: #ffffff;
-  padding: 0.35em 0.35em 0.35em 0.35em;
-  font-size: 135%;
+  padding: 0 0.5rem;
+  font-size: 150%;
+}
+.alert_header {
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+@each $color-name, $color-value in $alert-stripe-colors {
+  .faction_alert_#{$color-name} {
+    color: #ffffff;
+    box-shadow: none;
+    font-weight: bold;
+    margin: 1rem 0 1rem 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    border-image: repeating-linear-gradient(
+      -45deg,
+      map.get($alert-stripe-alternate-colors, $color-name),
+      map.get($alert-stripe-alternate-colors, $color-name) 10px,
+      $color-value 10px,
+      $color-value 20px
+    );
+    border-image-slice: $border-width fill;
+    border-width: $border-width-px;
+    border-image-width: $border-width-px;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: repeat repeat;
+    border-style: solid;
+  }
+
+  .faction_alert_#{$color-name} .faction_alert_title {
+    color: map.get($alert-major-header-colors, $color-name);
+  }
+
+  .faction_alert_#{$color-name} .faction_alert_minortitle {
+    color: map.get($alert-major-header-colors, $color-name);
+  }
+
+  .faction_alert_#{$color-name} .faction_alert_subtitle {
+    color: map.get($alert-subheader-header-colors, $color-name);
+  }
+
+  .faction_alert_#{$color-name} .faction_alert_text {
+    background-color: darken(map.get($alert-stripe-colors, $color-name), 5);
+  }
 }

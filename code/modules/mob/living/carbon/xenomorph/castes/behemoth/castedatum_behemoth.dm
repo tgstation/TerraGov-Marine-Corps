@@ -9,10 +9,10 @@
 	wound_type = "behemoth"
 
 	// *** Melee Attacks *** //
-	melee_damage = 26
+	melee_damage = 23
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.5
 	weeds_speed_mod = -0.2
 
 	// *** Plasma *** //
@@ -20,7 +20,7 @@
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 750
+	max_health = 650
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -52,7 +52,7 @@
 		/datum/action/ability/xeno_action/ready_charge/behemoth_roll,
 		/datum/action/ability/activable/xeno/landslide,
 		/datum/action/ability/activable/xeno/earth_riser,
-		/datum/action/ability/activable/xeno/seismic_fracture,
+		/datum/action/ability/xeno_action/seismic_fracture,
 	)
 
 /datum/xeno_caste/behemoth/normal
@@ -64,7 +64,7 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	// *** Wrath *** //
-	wrath_max = 750
+	wrath_max = 650
 
 	// *** Abilities *** ///
 	actions = list(
