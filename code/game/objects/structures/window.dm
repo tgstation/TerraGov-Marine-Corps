@@ -128,7 +128,7 @@
 /obj/structure/window/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/grab) && get_dist(src, user) < 2)
+	if(isgrab(I) && get_dist(src, user) < 2)
 		if(isxeno(user))
 			return
 		var/obj/item/grab/G = I
@@ -138,28 +138,25 @@
 		var/mob/living/M = G.grabbed_thing
 		var/state = user.grab_state
 		user.drop_held_item()
+		var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
 		switch(state)
 			if(GRAB_PASSIVE)
+				damage += 10
 				M.visible_message(span_warning("[user] slams [M] against \the [src]!"))
 				log_combat(user, M, "slammed", "", "against \the [src]")
-				M.apply_damage(7, blocked = MELEE)
-				UPDATEHEALTH(M)
-				take_damage(10, BRUTE, MELEE)
 			if(GRAB_AGGRESSIVE)
+				damage += 15
 				M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
 				log_combat(user, M, "bashed", "", "against \the [src]")
 				if(prob(50))
 					M.Paralyze(2 SECONDS)
-				M.apply_damage(10, blocked = MELEE)
-				UPDATEHEALTH(M)
-				take_damage(25, BRUTE, MELEE)
 			if(GRAB_NECK)
+				damage += 20
 				M.visible_message(span_danger("<big>[user] crushes [M] against \the [src]!</big>"))
 				log_combat(user, M, "crushed", "", "against \the [src]")
-				M.Paralyze(10 SECONDS)
-				M.apply_damage(20, blocked = MELEE)
-				UPDATEHEALTH(M)
-				take_damage(50, BRUTE, MELEE)
+				M.Paralyze(2 SECONDS)
+		M.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+		take_damage(damage * 2, BRUTE, MELEE)
 
 	else if(I.flags_item & NOBLUDGEON)
 		return

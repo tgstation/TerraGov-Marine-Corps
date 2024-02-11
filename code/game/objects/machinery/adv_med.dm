@@ -118,7 +118,7 @@
 		return
 
 	var/mob/M
-	if(!istype(I, /obj/item/grab))
+	if(!isgrab(I))
 		return
 
 	else if(occupant)

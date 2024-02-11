@@ -81,7 +81,7 @@
 		new window_type(loc) //This only works on Theseus windows!
 		qdel(src)
 
-	else if(istype(I, /obj/item/grab))
+	else if(isgrab(I))
 		var/obj/item/grab/G = I
 		if(isxeno(user))
 			return

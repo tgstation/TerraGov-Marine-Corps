@@ -871,7 +871,7 @@
 		J.attack(occupant, user)
 		return
 
-	else if(!istype(I, /obj/item/grab))
+	else if(!isgrab(I))
 		return
 
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -882,7 +882,7 @@
 		to_chat(user, span_notice("[src] is already occupied!"))
 		return
 
-	if(!istype(I, /obj/item/grab))
+	if(!isgrab(I))
 		return
 
 	var/obj/item/grab/G = I

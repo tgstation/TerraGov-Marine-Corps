@@ -206,7 +206,7 @@
 /obj/machinery/cryopod/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(!istype(I, /obj/item/grab))
+	if(!isgrab(I))
 		return
 
 	else if(isxeno(user))

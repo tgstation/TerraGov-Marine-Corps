@@ -256,7 +256,7 @@
 		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 
-	if(!istype(I, /obj/item/grab))
+	if(!isgrab(I))
 		return
 
 	if(machine_stat & (NOPOWER|BROKEN))

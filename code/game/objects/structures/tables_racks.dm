@@ -134,7 +134,7 @@
 /obj/structure/table/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
+	if(isgrab(I) && get_dist(src, user) <= 1)
 		if(isxeno(user))
 			return
 
@@ -149,16 +149,18 @@
 				return
 
 			if(prob(15))
-				M.Paralyze(10 SECONDS)
-			M.apply_damage(8, BRUTE, "head", blocked = MELEE, updating_health = TRUE)
+				M.Paralyze(2 SECONDS)
+			var/damage = 10 + (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+			M.apply_damage(damage, BRUTE, "head", blocked = MELEE, updating_health = TRUE)
 			user.visible_message(span_danger("[user] slams [M]'s face against [src]!"),
 			span_danger("You slam [M]'s face against [src]!"))
 			log_combat(user, M, "slammed", "", "against \the [src]")
 			playsound(loc, 'sound/weapons/tablehit1.ogg', 25, 1)
+			take_damage(damage, BRUTE, MELEE)
 
 		else if(user.grab_state >= GRAB_AGGRESSIVE)
 			M.forceMove(loc)
-			M.Paralyze(10 SECONDS)
+			M.Paralyze(2 SECONDS)
 			user.visible_message(span_danger("[user] throws [M] on [src]."),
 			span_danger("You throw [M] on [src]."))
 		return

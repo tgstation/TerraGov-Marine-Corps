@@ -204,7 +204,7 @@
 		J.attack(occupant, user)
 		return
 
-	if(!istype(I, /obj/item/grab))
+	if(!isgrab(I))
 		return
 
 	if(machine_stat & (NOPOWER|BROKEN))

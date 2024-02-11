@@ -292,7 +292,7 @@
 		return
 
 
-	if(!istype(I, /obj/item/grab))
+	if(!isgrab(I))
 		return
 
 	var/obj/item/grab/G = I

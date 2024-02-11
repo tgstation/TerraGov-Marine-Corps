@@ -18,7 +18,7 @@
 /obj/structure/bed/nest/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/grab))
+	if(isgrab(I))
 		var/obj/item/grab/G = I
 		if(!ismob(G.grabbed_thing))
 			return

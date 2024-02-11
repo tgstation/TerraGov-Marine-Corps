@@ -120,7 +120,7 @@
 
 		return FALSE
 
-	else if(istype(I, /obj/item/grab))
+	else if(isgrab(I))
 		return TRUE
 
 	else

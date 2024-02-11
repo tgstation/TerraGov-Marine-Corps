@@ -71,7 +71,7 @@
 	else if(cut) //Cut/brokn grilles can't be messed with further than this
 		return
 
-	else if(istype(I, /obj/item/grab) && get_dist(src, user) < 2)
+	else if(isgrab(I) && get_dist(src, user) < 2)
 		var/obj/item/grab/G = I
 		if(!isliving(G.grabbed_thing))
 			return

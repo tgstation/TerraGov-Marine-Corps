@@ -142,7 +142,7 @@
 		update_icon()
 		return
 
-	if(!istype(I, /obj/item/grab))
+	if(!isgrab(I))
 		return
 	if(isxeno(user))//I am very tempted to remove this >:)
 		return

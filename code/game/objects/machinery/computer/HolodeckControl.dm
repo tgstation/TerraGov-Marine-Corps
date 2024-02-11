@@ -16,7 +16,7 @@
 	if(iswrench(I))
 		to_chat(user, "It's a holotable!  There are no bolts!")
 
-	else if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
+	else if(isgrab(I) && get_dist(src, user) <= 1)
 		var/obj/item/grab/G = I
 		if(!isliving(G.grabbed_thing))
 			return
@@ -81,7 +81,7 @@
 /obj/structure/holohoop/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
+	if(isgrab(I) && get_dist(src, user) <= 1)
 		var/obj/item/grab/G = I
 		if(!isliving(G.grabbed_thing))
 			return
