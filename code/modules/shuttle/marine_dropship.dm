@@ -264,7 +264,7 @@
 		message = "The Alamo will automatically depart to [previous.name] in 20 seconds.",
 		random_channel = TRUE, // Probably round-changing enough to prevent interruption.
 		sound = 'sound/misc/ds_signalled_alarm.ogg',
-		color_override = "grey"
+		color_override = "yellow"
 	)
 	takeoff_alarm_locked = TRUE // Probably not a good idea if someone turns off auto and needs to use it later, but...
 
@@ -658,7 +658,7 @@
 
 			// The alarm was already used.
 			if(M.takeoff_alarm_locked)
-				to_chat(usr, span_warning("The dropship takeoff alarm has been locked. It was probably already used. To unlock it, it must be cycled again."))
+				to_chat(usr, span_warning("The dropship takeoff alarm is locked. To unlock it, the dropship must be cycled again."))
 				return
 
 			priority_announce(
@@ -669,6 +669,7 @@
 				random_channel = TRUE, // Probably round-changing enough to prevent interruption.
 				color_override = "yellow"
 			)
+			to_chat(usr, span_warning("You slam your palm on the alarm button like a badass. It's now locked until the dropship cycles again."))
 			M.takeoff_alarm_locked = TRUE
 
 		//These are actions for the Xeno dropship UI
