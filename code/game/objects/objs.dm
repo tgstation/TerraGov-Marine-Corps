@@ -354,9 +354,6 @@
 	handle_weldingtool_overlay(TRUE)
 	return TRUE
 
-///Default damage for slamming a mob against an object
-#define BASE_OBJ_SLAM_DAMAGE 10
-
 ///Interaction for using a grab on an object
 /obj/proc/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	//if(isxeno(user))
