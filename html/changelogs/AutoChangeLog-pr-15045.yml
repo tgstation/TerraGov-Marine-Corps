@@ -1,0 +1,9 @@
+author: "Naaanii"
+delete-after: True
+changes:
+  - rscadd: "Added HVAP and smart railgun rounds to reqtorio."
+  - rscadd: "Added SR-127 flak ammo to reqtorio."
+  - rscadd: "Added deployable floodlights to reqtorio."
+  - rscadd: "Added both plastiques to reqtorio."
+  - rscadd: "Added detpacks to reqtorio."
+  - spellcheck: "Added a missing period to drop pod factory description."

@@ -17,7 +17,6 @@
 /obj/item/weapon/gun
 	name = "Guns"
 	desc = "Its a gun. It's pretty terrible, though."
-	icon = 'icons/obj/items/gun.dmi'
 	icon_state = ""
 	item_state = "gun"
 	item_state_worn = TRUE
