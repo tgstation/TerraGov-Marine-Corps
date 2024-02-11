@@ -2290,3 +2290,22 @@ FACTORY
 	name = "Zeus orbital drop pod assembly refill"
 	contains = list(/obj/item/factory_refill/drop_pod_refill)
 	cost = 230
+
+/// TO-DO-LATER
+/datum/supply_packs/factory/ar12
+	name = "AR12 assembly refill"
+	notes = "Contains enough for three weapons"
+	contains = list(/obj/item/factory_refill/basic_assaultrifle)
+	cost = 180
+
+/datum/supply_packs/factory/sr127
+	name = "SR127 assembly refill"
+	notes = "Contains enough for two weapons"
+	contains = list(/obj/item/factory_refill/basic_sniperrifle)
+	cost = 250
+
+/datum/supply_packs/factory/st480
+	name = "ST480 assembly refill"
+	notes = "Contains enough for two automated guns"
+	contains = list(/obj/item/factory_refill/light_sentry)
+	cost = 600

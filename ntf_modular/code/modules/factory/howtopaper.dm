@@ -1,19 +1,18 @@
-/obj/item/paper/factoryhowto
-	name = "Factory instructional pamphlet"
-	info = {"Greetings, future Ninetails affiliate! This paper intends to be your manual for your brand new purchased Nanotrasen Field Factory system. <br>
+/obj/item/paper/factoryhowto/som
+	name = "Unboxer modification instructional pamphlet"
+	info = {"Good afternoon, interested party and loyal soldier to the SOM. <br>
 	<br>
-	Step one is to aquire conveyors and a conveyor switch to turn them on in the autolathe. You can link these together by clicking on the conveyor stack with the switch,
-	after which you can place both items on the ground by clicking with them. Remove them from the ground by using a crowbar.<br>
+	We have managed to modify a pair of unboxers to output more...Usable items for us.
+	Simply use the red painted unboxers if such an outcome is convenient, then, continue with the procedure as normal.<br>
 	<br>
-	With your starter kit, all machines can be anchored and unanchored by using a wrench on them, and rotated with a screwdriver, where the direction can be seen with the small arrow on the bottom left of the front of the machine.
-	Unboxers must be refilled with refill kits and clicked with an empty hand to be turned on but all other machines just need to be anchored to work.
-	Machines will always output in the direction they are facing and input from the opposite direction.<br>
+	We will note that some items will not be converted, as our technicians are still tinkering with them. Don't worry, you'll still get their original variant, however.
+	Below are some of the potential outcomes, recipes are below noted but otherwise the same as usual. Good luck on your missions.
 	<br>
 	RECIPES:<br>
-	WEAPONS:<br>
+	WEAPONS --- AR-12 to V31, SR-127 to SVD, ST-480 to COPE:<br>
 	UNBOXER -> DRILLER -> COMPRESSOR -> FORMER<br>
 	<br>
-	WP GRENADE:<br>
+	WP GRENADE --- Alternative WP variant :<br>
 	UNBOXER -> CUTTER -> HEATER -> FORMER<br>
 	<br>
 	M15 GRENADE:<br>
@@ -22,7 +21,7 @@
 	PIZZA:<br>
 	UNBOXER -> CUTTER -> HEATER<br>
 	<br>
-	ALL SADAR AMMO TYPES:<br>
+	ALL SADAR AMMO TYPES --- V71 RPG rockets:<br>
 	UNBOXER -> CUTTER -> HEATER -> FLATTER -> ATOMIC RECONSTRUCTOR<br>
 	<br>
 	ALL RECOILLESS RIFLE AMMO TYPES:<br>
@@ -58,7 +57,7 @@
 	MEDICAL EQUIPMENT:<br>
 	UNBOXER -> FLATTER -> COMPRESSOR -> DRILLER -> GALVANIZER<br>
 	<br>
-	ALL MODULES:<br>
+	ALL MODULES --- SURT to HADES - VALKYRIE to APOLLO:<br>
 	UNBOXER -> CUTTER -> FLATTER -> DRILLER -> HEATER -> COMPRESSOR -> GALVANIZER<br>
 	<br>
 	ALL MORTAR AMMO:<br>
