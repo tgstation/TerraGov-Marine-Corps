@@ -209,13 +209,9 @@
 		return
 	if(isxeno(user))
 		return
-	if(!ishuman(grab.grabbed_thing))
-		to_chat(user, span_warning("There is no way [src] will accept [M]!"))
-		return
-	var/mob/living/carbon/human/grabbed_human = grab.grabbed_thing
-
+	var/mob/living/carbon/human/grabbed_mob = grab.grabbed_thing
 	if(!ishuman(grabbed_mob))
-		to_chat(user, span_notice("\ [src] is compatible with humanoid anatomies only!"))
+		to_chat(user, span_warning("There is no way [src] will accept [grabbed_mob]!"))
 		return
 
 	if(grabbed_mob.client)
