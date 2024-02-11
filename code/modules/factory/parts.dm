@@ -83,6 +83,38 @@ GLOBAL_LIST_INIT(pizza_recipe,  list(
 	. = ..()
 	recipe = GLOB.pizza_recipe
 
+GLOBAL_LIST_INIT(plastique_recipe, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "hotplate"),
+))
+
+/obj/item/factory_part/plastique
+	name = "\improper C4 explosive assembly"
+	desc = "An unfinshed C4 plastique explosive assembly."
+	result = /obj/item/explosive/plastique
+
+/obj/item/factory_part/plastique/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.plastique_recipe
+
+/obj/item/factory_part/plastique_incendiary
+	name = "\improper EX-62 Genghis incendiary assembly"
+	desc = "An unfinshed EX-62 Genghis incendiary charge assembly."
+	result = /obj/item/explosive/plastique/genghis_charge
+
+/obj/item/factory_part/plastique_incendiary/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.plastique_recipe
+
+/obj/item/factory_part/detpack
+	name = "\improper Detpack assembly"
+	desc = "An unfinished Detpack charge assembly"
+	result = /obj/item/detpack
+
+/obj/item/factory_part/detpack/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.plastique_recipe
+
 GLOBAL_LIST_INIT(sadar_ammo_recipe, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
@@ -274,6 +306,15 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	result = /obj/item/ammo_magazine/sniper/flak
 
 /obj/item/factory_part/amr_magazine_flak/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
+/obj/item/factory_part/sniper_flak_magazine
+	name = "\improper FLAK sniper bullet box"
+	desc = "A box with unfinished flak sniper rounds inside."
+	result = /obj/item/ammo_magazine/rifle/chamberedrifle/flak
+
+/obj/item/factory_part/sniper_flak_magazine/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.IFF_ammo
 
@@ -598,6 +639,7 @@ GLOBAL_LIST_INIT(thermobaric_wp_recipe, list(
 	recipe = GLOB.thermobaric_wp_recipe
 
 GLOBAL_LIST_INIT(equipment_recipe, list(
+GLOBAL_LIST_INIT(equipment_recipe, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "hotplate"),
@@ -606,6 +648,7 @@ GLOBAL_LIST_INIT(equipment_recipe, list(
 
 /obj/item/factory_part/drop_pod
 	name = "TGMC Zeus orbital drop pod assembly"
+	desc = "An incomplete Zeus orbital drop pod assembly."
 	desc = "An incomplete Zeus orbital drop pod assembly."
 	result = /obj/structure/droppod
 
