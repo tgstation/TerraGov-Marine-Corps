@@ -67,10 +67,9 @@
 	if(.)
 		return TRUE
 
-	if(isgrabitem(I))
-		if(grab_interact(I, user))
-			user.changeNext_move(GRAB_SLAM_DELAY)
-			return TRUE
+	if(isgrabitem(I) && grab_interact(I, user))
+		user.changeNext_move(GRAB_SLAM_DELAY)
+		return TRUE
 
 	if(user.a_intent != INTENT_HARM)
 		return

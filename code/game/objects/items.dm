@@ -186,6 +186,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	GLOB.cryoed_item_list -= src
 	return ..()
 
+/obj/item/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	return
 
 /obj/item/proc/update_item_state(mob/user)
 	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"

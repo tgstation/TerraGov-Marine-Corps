@@ -46,8 +46,9 @@
 		update_icon()
 		return
 
-	if(isgrabitem(I))
-		return grab_interact(I, user)
+	if(isgrabitem(I) && grab_interact(I, user))
+		user.changeNext_move(GRAB_SLAM_DELAY)
+		return TRUE
 
 	if(grill_fuel <= 0)
 		to_chat(user, span_warning("No fuel!"))
