@@ -173,6 +173,8 @@
 
 /obj/structure/bed/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		if(!buildstacktype)
@@ -183,15 +185,18 @@
 			new buildstacktype(loc, buildstackamount)
 		qdel(src)
 
-	else if(isgrabitem(I) && !LAZYLEN(buckled_mobs) && !buckled_bodybag)
-		var/obj/item/grab/G = I
-		if(!ismob(G.grabbed_thing))
-			return
-
-		var/mob/M = G.grabbed_thing
-		to_chat(user, span_notice("You place [M] on [src]."))
-		M.forceMove(loc)
-		return TRUE
+/obj/structure/bed/grab_interact(obj/item/grab/grab, mob/user, base_damage = 5, is_sharp = FALSE)
+	. = ..()
+	if(.)
+		return
+	if(LAZYLEN(buckled_mobs) || buckled_bodybag)
+		return
+	if(!ismob(grab.grabbed_thing))
+		return
+	var/mob/grabbed_mob = grab.grabbed_thing
+	to_chat(user, span_notice("You place [grabbed_mob] on [src]."))
+	grabbed_mob.forceMove(loc)
+	return TRUE
 
 /obj/structure/bed/alien
 	icon_state = "abed"

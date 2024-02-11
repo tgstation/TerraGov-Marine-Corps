@@ -774,28 +774,33 @@
 	var/side = ""
 	var/id = ""
 
+/obj/structure/hoop/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	. = ..()
+	if(.)
+		return
+	if(!isliving(grab.grabbed_thing))
+		return
+	if(user.a_intent == INTENT_HARM)
+		return
+	var/mob/living/grabbed_mob = grab.grabbed_thing
+	if(user.grab_state <= GRAB_AGGRESSIVE)
+		to_chat(user, span_warning("You need a better grip to do that!"))
+		return
+
+	grabbed_mob.forceMove(loc)
+	grabbed_mob.Paralyze(4 SECONDS)
+	for(var/obj/machinery/scoreboard/X in GLOB.machines)
+		if(X.id == id)
+			X.score(side, 3)// 3 points for dunking a mob
+	visible_message(span_danger("[user] dunks [grabbed_mob] into the [src]!"))
+
 
 /obj/structure/hoop/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
-	if(isgrabitem(I) && get_dist(src, user) <= 1)
-		var/obj/item/grab/G = I
-		if(!isliving(G.grabbed_thing))
-			return
-
-		var/mob/living/L = G.grabbed_thing
-		if(user.grab_state < GRAB_AGGRESSIVE)
-			to_chat(user, span_warning("You need a better grip to do that!"))
-			return
-		L.forceMove(loc)
-		L.Paralyze(10 SECONDS)
-		for(var/obj/machinery/scoreboard/X in GLOB.machines)
-			if(X.id == id)
-				X.score(side, 3)// 3 points for dunking a mob
-				// no break, to update multiple scoreboards
-		visible_message(span_danger("[user] dunks [L] into the [src]!"))
-
-	else if(get_dist(src, user) < 2)
+	if(get_dist(src, user) < 2)
 		user.transferItemToLoc(I, loc)
 		for(var/obj/machinery/scoreboard/X in GLOB.machines)
 			if(X.id == id)

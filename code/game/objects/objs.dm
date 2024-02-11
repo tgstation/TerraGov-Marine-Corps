@@ -375,9 +375,9 @@
 
 	if(prob(15))
 		grabbed_mob.Paralyze(2 SECONDS)
-	get_step_towards(grabbed_mob, src)
+	step_towards(grabbed_mob, src)
 	var/damage = base_damage + (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
-	grabbed_mob.apply_damage(damage, BRUTE, "head", blocked = MELEE, sharp = is_sharp, updating_health = TRUE)
+	grabbed_mob.apply_damage(damage, BRUTE, "head", MELEE, is_sharp, updating_health = TRUE)
 	user.visible_message(span_danger("[user] slams [grabbed_mob]'s face against [src]!"),
 	span_danger("You slam [grabbed_mob]'s face against [src]!"))
 	log_combat(user, grabbed_mob, "slammed", "", "against \the [src]")

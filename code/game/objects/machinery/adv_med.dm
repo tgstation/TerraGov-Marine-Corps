@@ -108,47 +108,49 @@
 		return
 	go_out()
 
-
 /obj/machinery/bodyscanner/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out; this is here mainly for consistency's sake.
 		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 		return
 
-	var/mob/M
-	if(!isgrabitem(I))
+/obj/machinery/bodyscanner/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	. = ..()
+	if(.)
 		return
-
-	else if(occupant)
+	if(occupant)
 		to_chat(user, span_warning("The scanner is already occupied!"))
 		return
 
-	var/obj/item/grab/G = I
-	if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
-		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
-		if(!C.bodybag_occupant)
+	var/mob/grabbed_mob
+	if(ismob(grab.grabbed_thing))
+		grabbed_mob = grab.grabbed_thing
+	else if(istype(grab.grabbed_thing, /obj/structure/closet/bodybag/cryobag))
+		var/obj/structure/closet/bodybag/cryobag/cryobag = grab.grabbed_thing
+		if(!cryobag.bodybag_occupant)
 			to_chat(user, span_warning("The stasis bag is empty!"))
 			return
-		M = C.bodybag_occupant
-		C.open()
-		user.start_pulling(M)
-	else if(ismob(G.grabbed_thing))
-		M = G.grabbed_thing
+		grabbed_mob = cryobag.bodybag_occupant
+		cryobag.open()
+		user.start_pulling(grabbed_mob)
 
-	if(!M)
+	if(!grabbed_mob)
 		return
 
-	if(M.abiotic())
+	if(grabbed_mob.abiotic())
 		to_chat(user, span_warning("Subject cannot have abiotic items on."))
 		return
 
-	M.forceMove(src)
-	occupant = M
+	grabbed_mob.forceMove(src)
+	occupant = grabbed_mob
 	update_icon()
 	for(var/obj/O in src)
 		O.forceMove(loc)
+	return TRUE
 
 /obj/machinery/bodyscanner/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(!occupant)

@@ -64,40 +64,6 @@
 		cistern = !cistern
 		update_icon()
 
-	else if(isgrabitem(I))
-		if(isxeno(user))
-			return
-		var/obj/item/grab/G = I
-
-		if(!iscarbon(G.grabbed_thing))
-			return
-
-		var/mob/living/carbon/C = G.grabbed_thing
-
-		if(user.grab_state <= GRAB_PASSIVE)
-			to_chat(user, span_notice("You need a tighter grip."))
-			return
-
-		if(!C.loc == get_turf(src))
-			to_chat(user, span_notice("[C] needs to be on the toilet."))
-			return
-
-		if(open && !swirlie)
-			user.visible_message(span_danger("[user] starts to give [C] a swirlie!"), span_notice("You start to give [C] a swirlie!"))
-			swirlie = C
-			if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_HOSTILE))
-				return
-
-			user.visible_message(span_danger("[user] gives [C] a swirlie!"), span_notice("You give [C] a swirlie!"), "You hear a toilet flushing.")
-			log_combat(user, C, "given a swirlie")
-			if(!C.internal)
-				C.adjustOxyLoss(5)
-			swirlie = null
-		else
-			user.visible_message(span_danger("[user] slams [C] into the [src]!"), span_notice("You slam [C] into the [src]!"))
-			log_combat(user, C, "slammed", "", "into the \the [src]")
-			C.apply_damage(8, BRUTE, blocked = MELEE, updating_health = TRUE)
-
 	else if(cistern && !issilicon(user)) //STOP PUTTING YOUR MODULES IN THE TOILET.
 		if(I.w_class > 3)
 			to_chat(user, span_notice("\The [I] does not fit."))
@@ -111,6 +77,38 @@
 		I.forceMove(src)
 		w_items += I.w_class
 		to_chat(user, "You carefully place \the [I] into the cistern.")
+
+/obj/structure/toilet/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	. = ..()
+	if(.)
+		return
+	if(isxeno(user))
+		return
+	if(!iscarbon(grab.grabbed_thing))
+		return
+	if(!open || swirlie)
+		return
+
+	var/mob/living/carbon/grabbed_mob = grab.grabbed_thing
+
+	if(user.grab_state <= GRAB_PASSIVE)
+		to_chat(user, span_notice("You need a tighter grip."))
+		return
+
+	if(!grabbed_mob.loc == get_turf(src))
+		to_chat(user, span_notice("[grabbed_mob] needs to be on the toilet."))
+		return
+
+	user.visible_message(span_danger("[user] starts to give [grabbed_mob] a swirlie!"), span_notice("You start to give [grabbed_mob] a swirlie!"))
+	swirlie = grabbed_mob
+	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_HOSTILE))
+		return
+
+	user.visible_message(span_danger("[user] gives [grabbed_mob] a swirlie!"), span_notice("You give [grabbed_mob] a swirlie!"), "You hear a toilet flushing.")
+	log_combat(user, grabbed_mob, "given a swirlie")
+	if(!grabbed_mob.internal)
+		grabbed_mob.adjustOxyLoss(5)
+	swirlie = null
 
 /obj/structure/toilet/alternate
 	icon_state = "toilet200"
@@ -126,30 +124,6 @@
 	icon_state = "urinal"
 	density = FALSE
 	anchored = TRUE
-
-/obj/structure/urinal/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(isgrabitem(I))
-		if(isxeno(user))
-			return
-		var/obj/item/grab/G = I
-		if(!isliving(G.grabbed_thing))
-			return
-
-		var/mob/living/GM = G.grabbed_thing
-		if(user.grab_state <= GRAB_PASSIVE)
-			to_chat(user, span_notice("You need a tighter grip."))
-			return
-
-		if(!GM.loc == get_turf(src))
-			to_chat(user, span_notice("[GM] needs to be on the urinal."))
-			return
-
-		user.visible_message(span_danger("[user] slams [GM] into the [src]!"), span_notice("You slam [GM] into the [src]!"))
-		GM.apply_damage(8, blocked = MELEE)
-		UPDATEHEALTH(GM)
-
 
 /obj/machinery/shower
 	name = "shower"
