@@ -32,10 +32,8 @@
 	change_transfer_amount(user)
 
 /obj/item/reagent_containers/attack_self_alternate(mob/living/user)
-	if(!change_transfer_amount(user))
-		return ..()
-	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF_ALTERNATE, user)
-	add_fingerprint(user, "attack_self_alternate")
+	. = ..()
+	change_transfer_amount(user)
 
 ///Opens a tgui_input_list and changes the transfer_amount of our container based on our selection
 /obj/item/reagent_containers/proc/change_transfer_amount(mob/living/user)
