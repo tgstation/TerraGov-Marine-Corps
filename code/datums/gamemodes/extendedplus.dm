@@ -36,8 +36,8 @@
 		/datum/job/worker = -1,
 		/datum/job/survivor/rambo = -1,
 		/datum/job/other/prisoner = 4,
-		/datum/job/xenomorph = FREE_XENO_AT_START,
-		/datum/job/xenomorph/green = FREE_XENO_AT_START,
+		/datum/job/xenomorph = 8,
+		/datum/job/xenomorph/green = 1,
 		/datum/job/xenomorph/queen = 1,
 		/datum/job/som/command/commander = 1,
 		/datum/job/som/command/fieldcommander = 1,
@@ -64,6 +64,7 @@
 	xenorespawn_time = 2 MINUTES
 	respawn_time = 15 MINUTES
 	bioscan_interval = 30 MINUTES
+	deploy_time_lock = 15 SECONDS
 
 /datum/game_mode/infestation/can_start(bypass_checks = TRUE)
 	. = ..()
