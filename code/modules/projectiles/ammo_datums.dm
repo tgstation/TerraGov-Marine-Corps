@@ -3703,6 +3703,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	spit_cost = 100
 	damage = 40
 	smoke_strength = 0.4
+	smoke_lifetime = 2
 	reagent_transfer_amount = 5
 	bonus_projectiles_type = /datum/ammo/xeno/toxin/smoke_spread
 	bonus_projectiles_scatter = 25
@@ -3758,6 +3759,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	slowdown_stacks = 0
 	smoke_range = 0
 	smoke_strength = 0.4
+	smoke_lifetime = 3
 	reagent_transfer_amount = 0
 
 /datum/ammo/xeno/toxin/smoke_spread/on_hit_mob()
