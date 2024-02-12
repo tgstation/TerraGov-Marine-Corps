@@ -175,7 +175,7 @@
 		return
 	// pull the shuttle from datum/source, and state info from the shuttle itself
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_TRANSIT)
-	takeoff_alarm_locked = FALSE // Allow people to use the announcement alarm again when it enters transit
+	takeoff_alarm_locked = FALSE // Reset the alarm lock when it enters transit
 	if(first_landing)
 		first_landing = FALSE
 		var/op_name = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
@@ -259,14 +259,14 @@
 		return
 	cycle_timer = addtimer(CALLBACK(src, PROC_REF(go_to_previous_destination)), 20 SECONDS, TIMER_STOPPABLE)
 	priority_announce(
-		title = "Dropship Alamo Update",
-		subtitle = "Automatic Departure",
+		type = ANNOUNCEMENT_PRIORITY,
+		title = "Dropship Takeoff Imminent",
 		message = "The Alamo will automatically depart to [previous.name] in 20 seconds.",
 		random_channel = TRUE, // Probably round-changing enough to prevent interruption.
 		sound = 'sound/misc/ds_signalled_alarm.ogg',
 		color_override = "yellow"
 	)
-	takeoff_alarm_locked = TRUE // Probably not a good idea if someone turns off auto and needs to use it later, but...
+	takeoff_alarm_locked = TRUE // Probably not a good idea if someone turns off auto and needs to use the alarm later, but...
 
 ///Send the dropship to its previous dock
 /obj/docking_port/mobile/marine_dropship/proc/go_to_previous_destination()
@@ -641,22 +641,29 @@
 		if("cycle_time_change")
 			M.time_between_cycle = params["cycle_time_change"]
 		if("signal_departure")
-			// Weird cases where you don't want to waste the alarm.
+			// Weird cases where the alarm shouldn't be used.
 			switch(M.mode)
 				if(SHUTTLE_RECHARGING)
-					to_chat(usr, span_warning("The dropship is recharging. Wait until it's done."))
+					to_chat(usr, span_warning("The dropship is recharging."))
 					return
 				if(SHUTTLE_CALL)
-					to_chat(usr, span_warning("The dropship is flying. Wait until it's landed."))
+					to_chat(usr, span_warning("The dropship is in flight."))
 					return
 				if(SHUTTLE_IGNITING)
-					to_chat(usr, span_warning("The dropship is about to take off. Wait until it's landed."))
+					to_chat(usr, span_warning("The dropship is about to take off."))
 					return
 				if(SHUTTLE_PREARRIVAL)
-					to_chat(usr, span_warning("The dropship is about to land. Wait until it's landed and finished recharging."))
+					to_chat(usr, span_warning("The dropship is about to land."))
 					return
 
-			// The alarm was already used.
+			// It's too early to launch it.
+			#ifndef TESTING
+			if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+				to_chat(usr, span_warning("The engines are still refueling."))
+				return TRUE
+			#endif
+
+			// Prevent spamming the alarm.
 			if(M.takeoff_alarm_locked)
 				to_chat(usr, span_warning("The dropship takeoff alarm is locked. To unlock it, the dropship must be cycled again."))
 				return
