@@ -352,6 +352,8 @@
 
 /obj/effect/particle_effect/smoke/xeno/toxic
 	lifetime = 2
+	alpha = 60
+	opacity = FALSE
 	color = "#00B22C"
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_TOXIC|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
 
