@@ -40,7 +40,7 @@
 		else
 			return ..()
 
-/obj/item/explosive/grenade/chem_grenade/razorburn_smol/attackby(obj/item/I, mob/user, params)
+/obj/item/explosive/grenade/chem_grenade/razorburn_small/attackby(obj/item/I, mob/user, params)
 	to_chat(user, span_notice("The [initial(name)] is hermetically sealed, and does not open."))
 	return
 
@@ -237,7 +237,7 @@
 	icon_state = initial(icon_state) +"_locked"
 
 
-/obj/item/explosive/grenade/chem_grenade/razorburn_smol
+/obj/item/explosive/grenade/chem_grenade/razorburn_small
 	name = "Razorburn Grenade"
 	desc = "Contains construction nanites ready to turn a small area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
 	icon_state = "grenade_razorburn"
@@ -247,7 +247,7 @@
 	icon_state_mini = "grenade_chem_yellow"
 
 
-/obj/item/explosive/grenade/chem_grenade/razorburn_smol/Initialize(mapload, ...)
+/obj/item/explosive/grenade/chem_grenade/razorburn_small/Initialize(mapload, ...)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
