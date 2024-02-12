@@ -81,7 +81,7 @@
 		if(faction_receiver.faction == human_owner.faction || isdead(faction_receiver))
 			faction_receiver.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>COMMAND ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
 			if(human_owner.faction != FACTION_TERRAGOV)
-				faction_string = "[human_owner.faction] Command Announcement"
+				faction_string = "[human_owner.faction] Command"
 			to_chat(faction_receiver, assemble_alert(
 				title = "[faction_string] Announcement",
 				subtitle = "Sent by [human_owner.real_name]",
