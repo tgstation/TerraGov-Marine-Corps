@@ -11730,7 +11730,7 @@
 	dir = 1;
 	on = 1
 	},
-/mob/living/simple_animal/catslug/newt,
+/obj/effect/landmark/start/job/companion,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "jcX" = (

@@ -117,6 +117,7 @@
 #define VALI_TRAIT "vali"
 #define HELDGLOVE_TRAIT "heldglove"
 #define SECTOID_TRAIT "sectoid"
+#define CATSLUG_TRAIT "catslug"
 #define HUGGER_TRAIT "hugger"
 #define PISTOL_LACE_TRAIT "pistol_lace"
 

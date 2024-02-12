@@ -41,6 +41,7 @@ export const JobPreferences = (props) => {
     'Chief Medical Officer',
     'Medical Doctor',
     'Medical Researcher',
+    'Companion',
   ];
   const marineJobs = [
     'Squad Marine',

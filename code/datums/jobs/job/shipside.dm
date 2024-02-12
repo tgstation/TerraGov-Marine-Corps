@@ -908,7 +908,6 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	r_store = /obj/item/storage/pouch/surgery
 	l_store = /obj/item/storage/pouch/medkit/medic
 
-
 /datum/outfit/job/medical/researcher/robot
 	species = SPECIES_COMBAT_ROBOT
 
@@ -925,6 +924,76 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	job_category = JOB_CAT_CIVILIAN
 	selection_color = "#ffeedd"
 
+
+/datum/job/terragov/medical/companion
+	title = MEDICAL_COMPANION
+	paygrade = "PO1"
+	total_positions = 1
+	supervisors = "the medical researcher"
+	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
+	minimal_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
+	skills_type = /datum/skills/companion
+	display_order = JOB_DISPLAY_ORDER_MEDICAL_COMPANION
+	outfit = /datum/outfit/job/medical/companion
+	multiple_outfits = FALSE
+	outfits = list(
+		/datum/outfit/job/medical/companion
+	)
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+	)
+	html_description = {"
+		<b>Difficulty</b>: Easy<br /><br />
+		<b>You answer to the</b> Medical Researcher<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
+		<b>Duty</b>: Guard the medical researchers as they go about their duties, protect the company that saved you using your senses and knowledge of wielding primitive weapons
+	"}
+	minimap_icon = "researcher"
+
+
+/datum/job/terragov/medical/researcher/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"You are a catslug, one of the last if not the last, taken from a world ravaged by the xenomorph menace.
+	dedicated to protecting the company that saved you, you dedicate your time being a mascot and protecting the onboard researchers with a trustie spear.
+	following these benevolent beings has given you further access to hone your senses."})
+
+/datum/job/terragov/medical/companion/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 3000) // starting
+			new_human.wear_id.paygrade = "PO2"
+		if(3001 to INFINITY) // 50 hrs
+			new_human.wear_id.paygrade = "PO3"
+
+/datum/outfit/job/medical/companion
+	name = MEDICAL_COMPANION
+	jobtype = /datum/job/terragov/medical/companion
+
+	id = /obj/item/card/id/silver
+	ears = /obj/item/radio/headset/mainship
+	back = /obj/item/storage/backpack/marine/newt
+	head = /obj/item/clothing/head/tgmcberet/newt
+
+/datum/outfit/job/medical/companion/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.set_species("Catslug")
+	H.fully_replace_character_name(H.real_name, "newt")
+	H.gender = FEMALE
+
+/datum/outfit/job/medical/companion/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_hand(new /obj/item/weapon/twohanded/spear/tactical/newt, SLOT_L_HAND)
 
 //Liaison
 /datum/job/terragov/civilian/liaison

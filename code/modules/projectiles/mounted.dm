@@ -129,6 +129,9 @@
 	if(issynth(human_user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(human_user, span_warning("Your programming restricts operating heavy weaponry."))
 		return TRUE
+	if(iscatslug(human_user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		to_chat(human_user, span_warning("Your mind restricts operating heavy weaponry."))
+		return TRUE
 
 	density = FALSE
 	if(!user.Move(loc)) //Move instead of forcemove to ensure we can actually get to the object's turf

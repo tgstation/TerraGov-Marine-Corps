@@ -15816,7 +15816,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "tRq" = (
-/mob/living/simple_animal/catslug/newt,
+/obj/effect/landmark/start/job/companion,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9

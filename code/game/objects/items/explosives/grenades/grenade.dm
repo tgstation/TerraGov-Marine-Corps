@@ -47,6 +47,10 @@
 		balloon_alert(user, "can't, against your programming")
 		return
 
+	if(iscatslug(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		balloon_alert(user, "can't, your mind is not developed enough")
+		return
+
 	activate(user)
 
 	balloon_alert_to_viewers("primes grenade")

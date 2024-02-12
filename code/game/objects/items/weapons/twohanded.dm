@@ -388,6 +388,16 @@
 	. = ..()
 	AddElement(/datum/element/strappable)
 
+/obj/item/weapon/twohanded/spear/tactical/newt
+	name = "Custom M-23 spear"
+	desc = "A custom built spear with inbuilt straps for a non-human body, a name engraved on the blade reads 'newt'."
+	icon_state = "newtspear"
+	item_state = "newtspear"
+
+/obj/item/weapon/twohanded/spear/tactical/newt/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src,TRAIT_NODROP, CATSLUG_TRAIT)
+
 /obj/item/weapon/twohanded/spear/tactical/tacticool
 	name = "M-23 TACTICOOL spear"
 	icon = 'icons/Marine/gun64.dmi'

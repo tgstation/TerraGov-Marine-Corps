@@ -84,6 +84,9 @@
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, span_warning("Your programming restricts using rigged power cells."))
 			return
+		if(iscatslug(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			to_chat(user, span_warning("Your mind restricts using rigged power cells."))
+			return
 		log_bomber(user, "primed a rigged", src)
 		user.visible_message(span_danger("[user] destabilizes [src]; it will detonate shortly!"),
 		span_danger("You destabilize [src]; it will detonate shortly!"))
@@ -112,6 +115,10 @@
 			to_chat(user, span_warning("Your programming restricts rigging of power cells."))
 			return
 
+		if(iscatslug(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			to_chat(user, span_warning("Your mind restricts rigging of power cells."))
+			return
+
 		to_chat(user, "You inject the solution into the power cell.")
 
 		if(S.reagents.has_reagent(/datum/reagent/toxin/phoron, 5))
@@ -121,6 +128,9 @@
 	else if(ismultitool(I))
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, span_warning("Your programming restricts rigging of power cells."))
+			return
+		if(iscatslug(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			to_chat(user, span_warning("Your mind restricts rigging of power cells."))
 			return
 		var/skill = user.skills.getRating(SKILL_ENGINEER)
 		var/delay = SKILL_TASK_EASY - (5 + skill * 1.25)

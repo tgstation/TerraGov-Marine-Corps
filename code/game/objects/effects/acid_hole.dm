@@ -143,6 +143,11 @@
 			to_chat(user, span_warning("Your programming prevents you from doing this."))
 			return
 
+		if(iscatslug(user) && G.dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			to_chat(user, span_warning("Your mind prevents you from doing this."))
+			return
+
+
 		if(!T || T.density)
 			to_chat(user, span_warning("This hole leads nowhere!"))
 			return

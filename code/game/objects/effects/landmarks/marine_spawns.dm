@@ -62,6 +62,10 @@
 	icon_state = "Research"
 	job = /datum/job/terragov/medical/researcher
 
+/obj/effect/landmark/start/job/companion
+	icon_state = "Companion"
+	job = /datum/job/terragov/medical/companion
+
 /obj/effect/landmark/start/job/corporateliaison
 	icon_state = "CL"
 	job = /datum/job/terragov/civilian/liaison

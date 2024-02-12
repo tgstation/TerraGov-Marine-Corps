@@ -61,6 +61,14 @@
 	flags_item_map_variant = NONE
 	flags_armor_features = ARMOR_NO_DECAP
 
+/obj/item/clothing/head/tgmcberet/newt
+	name = "\improper Customized beret"
+	icon_state = "newtberet"
+
+/obj/item/clothing/head/tgmcberet/newt/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src,TRAIT_NODROP, CATSLUG_TRAIT)
+
 /obj/item/clothing/head/tgmcberet/tan
 	name = "\improper Tan beret"
 	icon_state = "berettan"
