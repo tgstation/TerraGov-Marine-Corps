@@ -15,7 +15,6 @@
 	bound_y = -32
 	max_integrity = INFINITY
 	move_resist = INFINITY // non forcemoving this could break gliding so lets just say no
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	///The "parent" that this hitbox is attached to and to whom it will relay damage
 	var/obj/vehicle/root = null
 
