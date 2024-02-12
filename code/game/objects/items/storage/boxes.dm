@@ -1194,7 +1194,7 @@
 	storage_slots = 15
 	max_storage_space = 30
 	spawn_number = 15
-	spawn_type = /obj/item/explosive/grenade/chem_grenade/razorburn_smol
+	spawn_type = /obj/item/explosive/grenade/chem_grenade/razorburn_small
 	closed_overlay = "grenade_box_overlay_razorburn"
 
 /obj/item/storage/box/visual/grenade/razorburn_large
