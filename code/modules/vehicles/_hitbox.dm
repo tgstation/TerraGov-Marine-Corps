@@ -15,6 +15,7 @@
 	bound_y = -32
 	max_integrity = INFINITY
 	move_resist = INFINITY // non forcemoving this could break gliding so lets just say no
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	///The "parent" that this hitbox is attached to and to whom it will relay damage
 	var/obj/vehicle/root = null
 
@@ -26,6 +27,10 @@
 	RegisterSignal(new_root, COMSIG_MOVABLE_MOVED, PROC_REF(root_move))
 	RegisterSignal(new_root, COMSIG_QDELETING, PROC_REF(root_delete))
 	RegisterSignals(new_root, list(COMSIG_RIDDEN_DRIVER_MOVE, COMSIG_VEHICLE_MOVE), PROC_REF(on_attempt_drive))
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/hitbox/Destroy(force)
 	if(!force) // only when the parent is deleted
