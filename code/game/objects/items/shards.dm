@@ -50,6 +50,8 @@
 
 /obj/item/shard/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/WT = I

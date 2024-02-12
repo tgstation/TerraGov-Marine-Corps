@@ -260,6 +260,8 @@
 
 /obj/item/pizzabox/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/pizzabox))
 		var/obj/item/pizzabox/box = I

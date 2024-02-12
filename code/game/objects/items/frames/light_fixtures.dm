@@ -11,6 +11,8 @@
 
 /obj/item/frame/light_fixture/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		new /obj/item/stack/sheet/metal(loc, sheets_refunded)

@@ -65,6 +65,8 @@
 
 /obj/item/flashlight/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/screwdriver))
 		if(!raillight_compatible) //No fancy messages, just no

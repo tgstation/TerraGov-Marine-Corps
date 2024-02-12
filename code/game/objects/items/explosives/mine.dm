@@ -102,6 +102,8 @@ Stepping directly on the mine will also blow it up
 /// Supports diarming a mine
 /obj/item/explosive/mine/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!ismultitool(I) || !anchored)
 		return

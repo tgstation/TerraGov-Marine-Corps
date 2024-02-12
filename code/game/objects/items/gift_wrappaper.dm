@@ -157,6 +157,8 @@
 
 /obj/effect/spresent/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!iswirecutter(I))
 		to_chat(user, span_notice("You need wirecutters for that."))
@@ -184,6 +186,8 @@
 
 /obj/item/wrapping_paper/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	var/a_used = 2 ** (w_class - 1)
 

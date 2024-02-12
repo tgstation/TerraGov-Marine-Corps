@@ -85,6 +85,8 @@
 
 /obj/item/weapon/baton/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/cell))
 		if(bcell)

@@ -49,6 +49,8 @@
 
 /obj/item/coin/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/CC = I

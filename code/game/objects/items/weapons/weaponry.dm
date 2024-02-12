@@ -127,6 +127,8 @@
 
 /obj/item/weapon/wirerod/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/shard))
 		var/obj/item/weapon/twohanded/spear/S = new

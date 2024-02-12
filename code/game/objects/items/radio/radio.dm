@@ -398,6 +398,8 @@
 
 /obj/item/radio/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(isscrewdriver(I) && !subspace_transmission)
 		unscrewed = !unscrewed
 		if(unscrewed)

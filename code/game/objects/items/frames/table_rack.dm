@@ -23,6 +23,8 @@
 
 /obj/item/frame/table/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	var/turf/table_turf = get_turf(src)
 	if(iswrench(I) && deconstruct_type)
@@ -104,6 +106,8 @@
 
 /obj/item/frame/table/wood/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/stack/tile/carpet))
 		var/obj/item/stack/tile/carpet/C = I
@@ -134,6 +138,8 @@
 
 /obj/item/frame/table/gambling/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iscrowbar(I))
 		to_chat(user, span_notice("You pry the carpet out of [src]."))
@@ -164,6 +170,8 @@
 
 /obj/item/frame/rack/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		new /obj/item/stack/sheet/metal(loc)

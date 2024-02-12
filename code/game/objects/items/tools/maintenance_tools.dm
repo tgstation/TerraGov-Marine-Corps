@@ -179,6 +179,8 @@
 
 /obj/item/tool/weldingtool/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/screwdriver))
 		flamethrower_screwdriver(src, user)
@@ -365,6 +367,8 @@
 
 /obj/item/tool/weldpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(reagents.total_volume == 0)
 		balloon_alert(user, "Out of fuel")
 		return
@@ -505,6 +509,8 @@
 
 /obj/item/tool/handheld_charger/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!istype(I, /obj/item/cell))
 		return

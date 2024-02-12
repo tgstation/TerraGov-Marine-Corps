@@ -82,6 +82,8 @@
 
 /obj/item/reagent_containers/food/snacks/grown/potato/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iscablecoil(I))
 		var/obj/item/stack/cable_coil/C = I
@@ -246,6 +248,8 @@
 
 /obj/item/reagent_containers/food/snacks/grown/pumpkin/attackby(obj/item/I, mob/user, param)
 	. = ..()
+	if(.)
+		return
 
 	if(I.sharp == IS_SHARP_ITEM_ACCURATE || I.sharp == IS_SHARP_ITEM_BIG)
 		to_chat(user, span_notice("You carve a face into [src]!"))

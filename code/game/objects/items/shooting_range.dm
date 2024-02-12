@@ -36,6 +36,8 @@
 
 /obj/structure/target_stake/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(!istype(I, /obj/item/target))
 		return
 	var/obj/item/target/targetcushion = I

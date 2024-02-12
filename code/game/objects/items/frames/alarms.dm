@@ -12,6 +12,8 @@ Code shamelessly copied from apc_frame
 
 /obj/item/frame/fire_alarm/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		new /obj/item/stack/sheet/metal(loc, 2)

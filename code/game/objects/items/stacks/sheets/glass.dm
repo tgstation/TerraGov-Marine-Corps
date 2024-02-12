@@ -57,6 +57,8 @@ GLOBAL_LIST_INIT(glass_radial_images, list(
 
 /obj/item/stack/sheet/glass/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(is_reinforced)
 		return

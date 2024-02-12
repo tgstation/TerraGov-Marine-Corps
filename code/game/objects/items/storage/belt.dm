@@ -754,7 +754,6 @@
 
 
 /obj/item/storage/belt/shotgun/attackby(obj/item/I, mob/user, params)
-
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/M = I
 		if(CHECK_BITFIELD(M.flags_magazine, MAGAZINE_HANDFUL))
