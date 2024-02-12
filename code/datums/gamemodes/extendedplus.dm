@@ -36,8 +36,8 @@
 		/datum/job/worker = -1,
 		/datum/job/survivor/rambo = -1,
 		/datum/job/other/prisoner = 4,
-		/datum/job/xenomorph = 8,
-		/datum/job/xenomorph/green = 1,
+		/datum/job/xenomorph = FREE_XENO_AT_START,
+		/datum/job/xenomorph/green = FREE_XENO_AT_START,
 		/datum/job/xenomorph/queen = 1,
 		/datum/job/som/command/commander = 1,
 		/datum/job/som/command/fieldcommander = 1,
@@ -106,12 +106,14 @@
 
 	SSpoints.add_strategic_psy_points(XENO_HIVE_NORMAL, 1400)
 	SSpoints.add_tactical_psy_points(XENO_HIVE_NORMAL, 300)
+	SSpoints.add_strategic_psy_points(XENO_HIVE_CORRUPTED, 1400)
+	SSpoints.add_tactical_psy_points(XENO_HIVE_CORRUPTED, 300)
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
 
 	for(var/miner in GLOB.miner_list)
-		if(prob(50))
+		if(prob(65))
 			qdel(miner)
 
 	for(var/mob/living/carbon/xenomorph/larva/xeno in GLOB.alive_xeno_list)

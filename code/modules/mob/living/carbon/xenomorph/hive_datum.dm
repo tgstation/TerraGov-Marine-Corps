@@ -1042,7 +1042,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /datum/hive_status/normal/on_shuttle_hijack(obj/docking_port/mobile/marine_dropship/hijacked_ship)
 	//GLOB.xeno_enter_allowed = FALSE
-	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
+	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid severing!")
 	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, PROC_REF(on_hijack_depart))
 
 	for(var/obj/structure/xeno/structure AS in GLOB.xeno_structures_by_hive[XENO_HIVE_NORMAL])
@@ -1073,13 +1073,13 @@ to_chat will check for valid clients itself already so no need to double check f
 			continue
 		if(isxenohivemind(boarder))
 			continue
-		INVOKE_ASYNC(boarder, TYPE_PROC_REF(/mob/living, gib))
+		boarder.add_to_hive_by_hivenumber(XENO_HIVE_FORSAKEN)
 		if(boarder.xeno_caste.tier == XENO_TIER_MINION)
 			continue
 		left_behind++
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	if(left_behind)
-		xeno_message("[left_behind > 1 ? "[left_behind] sisters" : "One sister"] perished due to being too slow to board the bird. The freeing of their psychic link allows us to call burrowed, at least.")
+		xeno_message("[left_behind > 1 ? "[left_behind] sisters" : "One sister"] severed connection due to being too slow to board the bird. The freeing of their psychic link allows us to call burrowed, at least.")
 		xeno_job.add_job_positions(left_behind)
 	if(difference < 0)
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))

@@ -25,7 +25,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 	var/distress_cancelled = FALSE
 
-	var/deploy_time_lock = 15 MINUTES
+	var/deploy_time_lock = 10 MINUTES
 	///The respawn time for marines
 	var/respawn_time = 30 MINUTES
 	//The respawn time for Xenomorphs
