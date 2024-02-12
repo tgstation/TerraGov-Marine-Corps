@@ -629,7 +629,7 @@
 
 /datum/species/early_synthetic/handle_unique_behavior(mob/living/carbon/human/H)
 	if(H.health <= -30 && H.stat != DEAD) // Instead of having a critical condition, they overheat and slowly die.
-		H.adjustFireLoss(rand(15, 25)) // This may need tweaks
+		H.adjustFireLoss(rand(18, 28)) // This may need tweaks
 		if(prob(8))
 			to_chat(H, span_alert("<b>Critical damage sustained. Internal temperature regulation systems offline. <u>Immediate repair required.</u></b>"))
 
