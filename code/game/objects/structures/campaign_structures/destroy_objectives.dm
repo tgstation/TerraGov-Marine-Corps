@@ -73,7 +73,7 @@
 
 /obj/structure/campaign_objective/destruction_objective/mlrs/update_overlays()
 	. = ..()
-	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_MOB_LAYER, dir)
+	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
 	. += new_overlay
 
 /obj/structure/campaign_objective/destruction_objective/mlrs/plastique_act(mob/living/plastique_user)
@@ -173,7 +173,7 @@
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train/update_overlays()
 	. = ..()
-	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_MOB_LAYER, dir)
+	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
 	. += new_overlay
 
 /obj/effect/landmark/campaign_structure/train/carriage
@@ -209,7 +209,7 @@
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/phoron_stack/update_overlays()
 	. = ..()
-	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_MOB_LAYER, dir)
+	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
 	. += new_overlay
 
 //NT base
