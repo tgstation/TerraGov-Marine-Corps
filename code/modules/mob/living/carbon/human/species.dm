@@ -568,7 +568,7 @@
 
 /datum/species/synthetic/handle_unique_behavior(mob/living/carbon/human/H)
 	if(H.health <= -30 && H.stat != DEAD) // Instead of having a critical condition, they overheat and slowly die.
-		H.adjustFireLoss(rand(16, 27)) // This may need tweaks. But synth burn is really fucked up.
+		H.adjustFireLoss(rand(14, 24)) // This may need tweaks
 		if(prob(8))
 			to_chat(H, span_alert("<b>Critical damage sustained. Internal temperature regulation systems offline. <u>Immediate repair required.</u></b>"))
 
@@ -629,7 +629,7 @@
 
 /datum/species/early_synthetic/handle_unique_behavior(mob/living/carbon/human/H)
 	if(H.health <= -30 && H.stat != DEAD) // Instead of having a critical condition, they overheat and slowly die.
-		H.adjustFireLoss(rand(22, 34)) // This may need tweaks. But synth burn is really fucked up.
+		H.adjustFireLoss(rand(15, 25)) // This may need tweaks
 		if(prob(8))
 			to_chat(H, span_alert("<b>Critical damage sustained. Internal temperature regulation systems offline. <u>Immediate repair required.</u></b>"))
 
