@@ -3701,7 +3701,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	spit_cost = 100
 	damage = 40
 	smoke_strength = 0.4
-	reagent_transfer_amount = 8
+	reagent_transfer_amount = 5
 	bonus_projectiles_type = /datum/ammo/xeno/toxin/smoke_spread
 	bonus_projectiles_scatter = 25
 	var/bonus_projectile_quantity = 2
@@ -3751,12 +3751,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_XENO|AMMO_PASS_THROUGH_MOVABLE
 	icon_state = null
 	max_range = 2
-	damage = 1
+	damage = 0
 	stagger_stacks = 0 SECONDS
 	slowdown_stacks = 0
 	smoke_range = 0
 	smoke_strength = 0.4
-	reagent_transfer_amount = 1
+	reagent_transfer_amount = 0
 
 /datum/ammo/xeno/toxin/smoke_spread/on_hit_mob()
 	return
