@@ -9,8 +9,8 @@
 	item_state = "armor"
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	flags_atom = CONDUCT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
@@ -48,6 +48,10 @@
 	. = ..()
 	update_icon()
 
+/obj/item/clothing/suit/storage/marine/turn_light(mob/user, toggle_on)
+	. = ..()
+	user?.update_inv_wear_suit()
+
 /obj/item/clothing/suit/storage/marine/update_overlays()
 	. = ..()
 	if(flags_armor_features & ARMOR_LAMP_OVERLAY)
@@ -79,8 +83,8 @@
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit != src)
 		return
-	turn_light(user, !light_on)
-	return TRUE
+	if(turn_light(user, !light_on) == CHECKS_PASSED)
+		return TRUE
 
 /obj/item/clothing/suit/storage/marine/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user))
@@ -212,8 +216,8 @@
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	flags_armor_features = ARMOR_LAMP_OVERLAY
 
@@ -221,7 +225,7 @@
 	name = "\improper M4 pattern PMC armor"
 	desc = "A common armor vest that is designed for high-profile security operators and corporate mercenaries in mind."
 	icon_state = "pmc_armor"
-	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 38, BOMB = 50, BIO = 15, FIRE = 38, ACID = 45)
+	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 55, BOMB = 50, BIO = 15, FIRE = 38, ACID = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(
 		/obj/item/weapon/gun,
@@ -286,8 +290,8 @@
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "guardarmor"
 	soft_armor = list(MELEE = 75, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 0, FIRE = 60, ACID = 60)
@@ -334,8 +338,8 @@
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	flags_atom = CONDUCT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -392,8 +396,8 @@
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit != src) return
 
-	turn_light(user, !light_on)
-	return 1
+	if(turn_light(user, !light_on) == CHECKS_PASSED)
+		return TRUE
 
 /obj/item/clothing/suit/storage/faction/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user)) return FALSE
@@ -640,8 +644,8 @@
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "som_armor"
 	item_state = "som_armor"
@@ -674,8 +678,8 @@
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "icc"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
@@ -715,7 +719,7 @@
 /obj/item/clothing/suit/storage/marine/specops/support
 	name = "Ballistic vest"
 	desc = "Civilian type armor, made to combat both melee and projectiles."
-	icon_state = "specops_vest_drone"
+	icon_state = "specops_vest_support"
 
 /obj/item/clothing/suit/storage/marine/specops/medic
 	name = "Ballistic vest"

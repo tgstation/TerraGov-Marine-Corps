@@ -8,6 +8,20 @@
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 
+	SStgui.close_user_uis(src, GLOB.evo_panel) // Closes all verbs using evo UI; evolution, caste swap and regress. They need to be refreshed with their respective castelists.
+	GLOB.evo_panel.ui_interact(src)
+
+/mob/living/carbon/xenomorph/verb/caste_swap()
+	set name = "Caste Swap"
+	set desc = "Change into another caste in the same tier."
+	set category = "Alien"
+
+	if(world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY) < 9000) //casteswap timer, 15 minutes
+		to_chat(src, span_warning("Your caste swap timer is not done yet."))
+		return
+
+	SStgui.close_user_uis(src, GLOB.evo_panel)
+	ADD_TRAIT(src, TRAIT_CASTE_SWAP, TRAIT_CASTE_SWAP)
 	GLOB.evo_panel.ui_interact(src)
 
 /mob/living/carbon/xenomorph/verb/regress()
@@ -15,44 +29,36 @@
 	set desc = "Regress into a lower form."
 	set category = "Alien"
 
-	var/tiers_to_pick_from
-	switch(tier)
-		if(XENO_TIER_ZERO, XENO_TIER_FOUR)
-			if(isxenoshrike(src))
-				tiers_to_pick_from = GLOB.xeno_types_tier_one
-			else
-				to_chat(src, span_warning("Your tier does not allow you to regress."))
-				return
-		if(XENO_TIER_ONE)
-			tiers_to_pick_from = list(/mob/living/carbon/xenomorph/larva)
-		if(XENO_TIER_TWO)
-			tiers_to_pick_from = GLOB.xeno_types_tier_one
-		if(XENO_TIER_THREE)
-			tiers_to_pick_from = GLOB.xeno_types_tier_two
-		else
-			CRASH("side_evolve() called without a valid tier")
-
-	var/list/castes_to_pick = list()
-	for(var/type in tiers_to_pick_from)
-		var/datum/xeno_caste/available_caste = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
-		castes_to_pick += available_caste.caste_name
-	var/castepick = tgui_input_list(src, "We are growing into a beautiful alien! It is time to choose a caste.", null, castes_to_pick)
-	if(!castepick) //Changed my mind
-		return
-
-	var/castetype
-	for(var/type in tiers_to_pick_from)
-		var/datum/xeno_caste/available_caste = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
-		if(castepick != available_caste.caste_name)
-			continue
-		castetype = type
-		break
-
-	do_evolve(castetype, castepick, TRUE)
+	SStgui.close_user_uis(src, GLOB.evo_panel)
+	ADD_TRAIT(src, TRAIT_REGRESSING, TRAIT_REGRESSING)
+	GLOB.evo_panel.ui_interact(src)
 
 ///Creates a list of possible evolution options for a caste based on their tier.
 /mob/living/carbon/xenomorph/proc/get_evolution_options()
 	. = list()
+	if(HAS_TRAIT(src, TRAIT_CASTE_SWAP))
+		switch(tier)
+			if(XENO_TIER_ZERO, XENO_TIER_FOUR)
+				return
+			if(XENO_TIER_ONE)
+				return GLOB.xeno_types_tier_one
+			if(XENO_TIER_TWO)
+				return GLOB.xeno_types_tier_two
+			if(XENO_TIER_THREE)
+				return GLOB.xeno_types_tier_three
+	if(HAS_TRAIT(src, TRAIT_REGRESSING))
+		switch(tier)
+			if(XENO_TIER_ZERO, XENO_TIER_FOUR)
+				if(isxenoshrike(src))
+					return GLOB.xeno_types_tier_one
+				else
+					return
+			if(XENO_TIER_ONE)
+				return list(/mob/living/carbon/xenomorph/larva)
+			if(XENO_TIER_TWO)
+				return GLOB.xeno_types_tier_one
+			if(XENO_TIER_THREE)
+				return GLOB.xeno_types_tier_two
 	switch(tier)
 		if(XENO_TIER_ZERO)
 			if(!istype(xeno_caste, /datum/xeno_caste/hivemind))
@@ -113,6 +119,9 @@
 
 	if(!generic_evolution_checks() || !caste_evolution_checks(new_mob_type, castepick, regression))
 		return
+
+	if(HAS_TRAIT(src, TRAIT_CASTE_SWAP))
+		GLOB.key_to_time_of_caste_swap[key] = world.time
 
 	SStgui.close_user_uis(src) //Force close all UIs upon evolution.
 	finish_evolve(new_mob_type)

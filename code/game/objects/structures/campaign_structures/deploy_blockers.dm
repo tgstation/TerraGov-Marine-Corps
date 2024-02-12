@@ -43,7 +43,10 @@
 /obj/structure/campaign_deployblocker/ex_act()
 	return
 
-/obj/structure/campaign_deployblocker/plastique_act()
+/obj/structure/campaign_deployblocker/plastique_act(mob/living/plastique_user)
+	if(plastique_user && plastique_user.ckey)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[plastique_user.ckey]
+		personal_statistics.mission_blocker_destroyed += (faction != plastique_user.faction ? 1 : -1)
 	qdel(src)
 
 ///Signals its destruction, enabling the use of the teleporter asset

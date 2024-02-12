@@ -3,6 +3,11 @@
 //ENERGY GUNS/ETC
 
 /obj/item/weapon/gun/energy
+	icon = 'icons/obj/items/guns/energy.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/energy_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_1.dmi',
+	)
 	attachable_allowed = list()
 	rounds_per_shot = 10 //100 shots.
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
@@ -244,7 +249,7 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle
 	name = "\improper LR-73 lasrifle MK2"
 	desc = "A multifunctional laser based rifle with an integrated mode selector. Ideal for any situation. Uses power cells instead of ballistic magazines."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/energy64.dmi'
 	icon_state = "tx73"
 	item_state = "tx73"
 	max_shots = 50 //codex stuff
@@ -1155,14 +1160,13 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver
 	name = "\improper VX-33 Caliver"
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The caliver is the primary rifle of the volkite family, and effective at most ranges and situations. Drag click the powerpack to the gun to use that instead of magazines."
-	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "caliver"
 	item_state = "caliver"
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/energy_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_64.dmi',
 	)
 	fire_sound = 'sound/weapons/guns/fire/volkite_3.ogg'
 	max_shots = 40
@@ -1212,8 +1216,8 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/energy_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_64.dmi',
 	)
 	ammo_level_icon = null
 	gun_skill_category = SKILL_HEAVY_WEAPONS

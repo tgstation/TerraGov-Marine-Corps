@@ -45,6 +45,11 @@
 /datum/campaign_mission/destroy_mission/supply_raid/load_pre_mission_bonuses()
 	. = ..()
 	spawn_mech(defending_faction, 0, 1)
+	var/datum/faction_stats/attacking_team = mode.stat_list[starting_faction]
+	if(starting_faction == FACTION_TERRAGOV)
+		attacking_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_cas/instant)
+	else if(starting_faction == FACTION_SOM)
+		attacking_team.add_asset(/datum/campaign_asset/asset_disabler/som_cas/instant)
 
 /datum/campaign_mission/destroy_mission/supply_raid/apply_major_victory()
 	winning_faction = starting_faction
@@ -62,7 +67,7 @@
 	if(hostile_faction == FACTION_TERRAGOV)
 		winning_team.add_asset(/datum/campaign_asset/equipment/power_armor)
 	else if(hostile_faction == FACTION_SOM)
-		winning_team.add_asset(/obj/effect/landmark/campaign/mech_spawner/som/light)
+		winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 		winning_team.add_asset(/datum/campaign_asset/equipment/gorgon_armor)
 
 /datum/campaign_mission/destroy_mission/supply_raid/apply_major_loss()
@@ -71,7 +76,7 @@
 	if(hostile_faction == FACTION_TERRAGOV)
 		winning_team.add_asset(/datum/campaign_asset/equipment/power_armor)
 	else if(hostile_faction == FACTION_SOM)
-		winning_team.add_asset(/obj/effect/landmark/campaign/mech_spawner/som/light)
+		winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 		winning_team.add_asset(/datum/campaign_asset/equipment/gorgon_armor)
 
 /datum/campaign_mission/destroy_mission/supply_raid/som

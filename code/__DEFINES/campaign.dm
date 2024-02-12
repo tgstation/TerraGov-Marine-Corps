@@ -12,6 +12,8 @@
 #define AFTER_MISSION_LEADER_DELAY 1 MINUTES
 ///How long after a mission is selected that team balance is checked
 #define CAMPAIGN_AUTOBALANCE_DELAY 1 MINUTES
+///How long players get to choose to autobalance or not
+#define CAMPAIGN_AUTOBALANCE_DECISION_TIME 30 SECONDS
 ///Standard amount of missions for a faction to have
 #define CAMPAIGN_STANDARD_MISSION_QUANTITY 3
 ///Attrition bonus for losing
