@@ -25,6 +25,8 @@
 
 /obj/structure/coatrack/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!(I.type in allowed) || coat)
 		to_chat(user, span_notice("You cannot hang [I] on [src]"))

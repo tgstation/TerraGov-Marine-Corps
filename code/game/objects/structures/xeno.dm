@@ -27,6 +27,8 @@
 
 /obj/alien/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(user.a_intent == INTENT_HARM) //Already handled at the parent level.
 		return

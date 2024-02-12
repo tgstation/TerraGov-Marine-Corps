@@ -34,6 +34,8 @@
 
 /obj/machinery/light_construct/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		if(stage == 1)
@@ -338,6 +340,8 @@
 
 /obj/machinery/light/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/lightreplacer))
 		var/obj/item/lightreplacer/LR = I
@@ -703,6 +707,8 @@
 // if a syringe, can inject phoron to make it explode
 /obj/item/light_bulb/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/S = I

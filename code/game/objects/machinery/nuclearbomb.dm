@@ -103,6 +103,8 @@
 
 /obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(!extended)
 		return
 	if(!istype(I, /obj/item/disk/nuclear))

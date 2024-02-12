@@ -67,6 +67,8 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 /obj/structure/bigDelivery/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/destTagger))
 		var/obj/item/destTagger/O = I
@@ -174,6 +176,8 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 /obj/item/smallDelivery/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/destTagger))
 		var/obj/item/destTagger/O = I
@@ -422,6 +426,8 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 /obj/machinery/disposal/deliveryChute/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I))
 		c_mode = !c_mode

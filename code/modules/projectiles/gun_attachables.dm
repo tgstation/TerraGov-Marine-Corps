@@ -628,6 +628,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/flashlight/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I,/obj/item/tool/screwdriver))
 		to_chat(user, span_notice("You modify the rail flashlight back into a normal flashlight."))

@@ -65,6 +65,8 @@
 
 /obj/machinery/deployable/minelayer/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/explosive/mine) && stored_amount <= max_amount)
 		stored_amount++
 		qdel(I)

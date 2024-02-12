@@ -39,6 +39,8 @@
 
 /obj/structure/filingcabinet/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/paper) || istype(I, /obj/item/folder) || istype(I, /obj/item/photo) || istype(I, /obj/item/paper_bundle))
 		if(!user.transferItemToLoc(I, src))

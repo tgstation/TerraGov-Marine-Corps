@@ -143,6 +143,8 @@
 
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!istype(I, /obj/item/assembly_holder))
 		return

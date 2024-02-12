@@ -48,6 +48,8 @@
 
 /obj/item/clipboard/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/paper) || istype(I, /obj/item/photo))
 		user.drop_held_item()

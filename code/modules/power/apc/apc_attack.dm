@@ -28,6 +28,8 @@
 //Attack with an item - open/close cover, insert cell, or (un)lock interface //todo please clean this up
 /obj/machinery/power/apc/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/cell) && opened) //Trying to put a cell inside
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)

@@ -82,6 +82,8 @@
 
 /obj/structure/bed/chair/reinforced/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		to_chat(user, span_warning("You can only deconstruct this by welding it down!"))
@@ -348,6 +350,8 @@
 
 /obj/structure/bed/chair/dropship/passenger/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		switch(chair_state)

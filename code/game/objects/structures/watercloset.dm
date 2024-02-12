@@ -52,6 +52,8 @@
 
 /obj/structure/toilet/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iscrowbar(I))
 		to_chat(user, span_notice("You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]."))
@@ -178,6 +180,8 @@
 
 /obj/machinery/shower/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(I.type == /obj/item/tool/analyzer)
 		to_chat(user, span_notice("The water temperature seems to be [watertemp]."))
@@ -347,6 +351,8 @@
 
 /obj/structure/sink/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(busy)
 		to_chat(user, span_warning("Someone's already washing here."))

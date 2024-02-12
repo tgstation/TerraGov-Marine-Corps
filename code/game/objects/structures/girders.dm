@@ -53,6 +53,8 @@
 
 /obj/structure/girder/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, GIRDER_REINF_METAL) || istype(I, GIRDER_REINF_PLASTEEL))
 		if(user.do_actions)
 			return TRUE //no afterattack

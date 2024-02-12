@@ -128,6 +128,8 @@
 
 /obj/machinery/miner/attackby(obj/item/I,mob/user,params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/minerupgrade))
 		var/obj/item/minerupgrade/upgrade = I
 		if(!(miner_status == MINER_RUNNING))

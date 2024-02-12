@@ -144,11 +144,10 @@
 			qdel(src)
 
 /obj/alien/egg/hugger/attackby(obj/item/I, mob/user, params)
-	. = ..()
+	if(istype(I, /obj/item/clothing/mask/facehugger))
+		return insert_new_hugger(I, user)
 
-	if(!istype(I, /obj/item/clothing/mask/facehugger))
-		return FALSE
-	return insert_new_hugger(I, user)
+	return ..()
 
 ///Try to insert a new hugger into the egg
 /obj/alien/egg/hugger/proc/insert_new_hugger(obj/item/clothing/mask/facehugger/facehugger, mob/user)

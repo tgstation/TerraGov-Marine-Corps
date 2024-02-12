@@ -114,6 +114,8 @@ LINEN BINS
 
 /obj/structure/bedsheetbin/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/bedsheet))
 		if(!user.drop_held_item())

@@ -55,6 +55,8 @@
 
 /turf/open/space/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/stack/rods))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice) in src

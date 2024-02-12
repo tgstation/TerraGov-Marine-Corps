@@ -164,6 +164,8 @@
 
 /obj/item/cell/lasgun/volkite/powerpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/weapon/gun) && loc == user)
 		var/obj/item/weapon/gun/gun = I
 		if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_MAGAZINES))
@@ -215,6 +217,8 @@
 
 /obj/item/cell/lasgun/plasma_powerpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/weapon/gun) && loc == user)
 		var/obj/item/weapon/gun/gun = I
 		if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_MAGAZINES))

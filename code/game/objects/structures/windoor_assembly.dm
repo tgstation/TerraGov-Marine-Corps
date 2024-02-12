@@ -52,6 +52,8 @@
 
 /obj/structure/windoor_assembly/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	switch(state)
 		if("01")

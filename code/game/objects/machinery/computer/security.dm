@@ -41,6 +41,8 @@
 
 /obj/machinery/computer/secure_data/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/card/id) && !scan)
 		if(!user.drop_held_item())

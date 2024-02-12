@@ -497,6 +497,8 @@
 
 /obj/machinery/hydroponics/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(I.is_open_container())
 		return
@@ -663,6 +665,8 @@
 
 /obj/machinery/hydroponics/soil/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/shovel))
 		to_chat(user, "You clear up [src]!")

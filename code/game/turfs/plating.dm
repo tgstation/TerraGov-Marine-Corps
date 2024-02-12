@@ -100,6 +100,8 @@
 
 /turf/open/floor/plating/plating_catwalk/attackby(obj/item/I, mob/user)
 	. = ..()
+	if(.)
+		return
 	if(iscrowbar(I))
 		if(covered)
 			var/obj/item/stack/catwalk/R = new(user.loc)
@@ -114,8 +116,6 @@
 			covered = TRUE
 			update_turf_overlay()
 			return
-	return ..()
-
 
 /turf/open/floor/plating/plating_catwalk/prison
 	icon = 'icons/turf/prison.dmi'

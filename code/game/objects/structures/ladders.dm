@@ -210,6 +210,8 @@
 //Throwing Shiet
 /obj/structure/ladder/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/explosive/grenade))
 		var/obj/item/explosive/grenade/G = I

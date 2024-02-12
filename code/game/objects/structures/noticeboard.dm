@@ -19,6 +19,8 @@
 //attaching papers!!
 /obj/structure/noticeboard/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/paper))
 		if(notices >= 5)

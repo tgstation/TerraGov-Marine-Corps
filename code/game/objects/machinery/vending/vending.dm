@@ -345,6 +345,8 @@
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(tipped_level)
 		to_chat(user, "Tip it back upright first!")

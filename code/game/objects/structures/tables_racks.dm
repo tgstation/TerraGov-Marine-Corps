@@ -521,6 +521,8 @@
 
 /obj/structure/rack/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		deconstruct(TRUE)

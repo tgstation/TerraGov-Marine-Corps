@@ -178,6 +178,8 @@ FLOOR SAFES
 
 /obj/structure/safe/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!open)
 		return

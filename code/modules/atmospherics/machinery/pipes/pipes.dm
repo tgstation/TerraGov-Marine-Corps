@@ -42,6 +42,8 @@
 
 /obj/machinery/atmospherics/pipe/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/pipe_meter))
 		var/obj/item/pipe_meter/meter = I
 		user.dropItemToGround(meter)

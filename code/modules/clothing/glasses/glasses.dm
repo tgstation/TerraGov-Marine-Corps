@@ -74,6 +74,8 @@
 
 /obj/item/clothing/glasses/eyepatch/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/clothing/glasses/hud/health))
 		var/obj/item/clothing/glasses/hud/medpatch/P = new
@@ -115,6 +117,8 @@
 
 /obj/item/clothing/glasses/regular/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/clothing/glasses/hud/health))
 		var/obj/item/clothing/glasses/hud/medglasses/P = new
@@ -163,6 +167,8 @@
 
 /obj/item/clothing/glasses/mgoggles/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/clothing/glasses/hud/health))
 		if(prescription)
@@ -323,6 +329,8 @@
 
 /obj/item/clothing/glasses/sunglasses/fake/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/clothing/glasses/hud/health))
 		var/obj/item/clothing/glasses/hud/medsunglasses/P = new

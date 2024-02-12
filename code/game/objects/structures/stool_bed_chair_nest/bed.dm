@@ -246,6 +246,8 @@
 
 /obj/item/roller/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/roller_holder) && rollertype == /obj/structure/bed/roller)
 		var/obj/item/roller_holder/RH = I
@@ -581,6 +583,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/item/roller/medevac/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/medevac_beacon))
 		var/obj/item/medevac_beacon/B = I
@@ -697,6 +701,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/item/medevac_beacon/attackby(obj/item/I, mob/user, params) //Corpsmen can lock their beacons.
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/card/id))
 		if(!allowed(user))

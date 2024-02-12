@@ -54,6 +54,8 @@
 
 /obj/item/moneybag/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/coin))
 		var/obj/item/coin/C = I

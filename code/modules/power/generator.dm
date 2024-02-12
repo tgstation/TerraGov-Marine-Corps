@@ -75,6 +75,8 @@
 
 /obj/machinery/power/generator/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		anchored = !anchored

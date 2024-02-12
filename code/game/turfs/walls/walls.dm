@@ -290,6 +290,8 @@
 
 /turf/closed/wall/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!ishuman(user))
 		to_chat(user, span_warning("You don't have the dexterity to do this!"))

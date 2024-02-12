@@ -30,6 +30,8 @@
 
 /obj/structure/fence/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/stack/rods) && obj_integrity < max_integrity)
 		if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_PLASTEEL)

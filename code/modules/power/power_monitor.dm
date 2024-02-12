@@ -106,6 +106,8 @@
 //copied from computer.dm
 /obj/machinery/power/monitor/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I) && circuit)
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)

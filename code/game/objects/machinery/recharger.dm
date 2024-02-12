@@ -12,6 +12,8 @@
 
 /obj/machinery/recharger/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(issilicon(user))
 		return

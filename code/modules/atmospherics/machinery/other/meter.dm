@@ -56,6 +56,8 @@
 
 /obj/machinery/meter/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(iswrench(I))
 		return wrench_act(user, I)
 

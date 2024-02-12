@@ -19,6 +19,8 @@
 
 /obj/item/paper_bundle/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 
 	if(istype(I, /obj/item/paper))

@@ -321,6 +321,8 @@
 
 /obj/machinery/chem_dispenser/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isreagentcontainer(I))
 		if(beaker)

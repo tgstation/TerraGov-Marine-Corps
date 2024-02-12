@@ -423,7 +423,9 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	use(1)
 
 /obj/item/stack/conveyor/attackby(obj/item/I, mob/user, params)
-	..()
+	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/conveyor_switch_construct))
 		to_chat(user, span_notice("You link the switch to the conveyor belt assembly."))
 		var/obj/item/conveyor_switch_construct/C = I
