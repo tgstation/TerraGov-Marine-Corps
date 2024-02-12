@@ -3677,6 +3677,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	set_smoke()
 	smoke_system.strength = smoke_strength
+	smoke_system.lifetime = 4
 	smoke_system.set_up(smoke_range, T)
 	smoke_system.start()
 	smoke_system = null
@@ -3699,9 +3700,66 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	added_spit_delay = 0
 	spit_cost = 100
 	damage = 40
-	smoke_strength = 1
-	reagent_transfer_amount = 10
+	smoke_strength = 0.4
+	reagent_transfer_amount = 8
+	bonus_projectiles_type = /datum/ammo/xeno/toxin/smoke_spread
+	bonus_projectiles_scatter = 25
+	var/bonus_projectile_quantity = 2
+	var/bonus_projectile_range = 2
+	var/bonus_projectile_speed = 1.5
 
+
+/datum/ammo/xeno/toxin/heavy/on_hit_mob(mob/living/carbon/carbon_victim, obj/projectile/P)
+	var/turf/initial_turf = get_turf(carbon_victim)
+	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf))
+
+	if(!istype(carbon_victim) || carbon_victim.stat == DEAD || carbon_victim.issamexenohive(P.firer) )
+		return
+
+	if(isnestedhost(carbon_victim))
+		return
+
+	carbon_victim.adjust_stagger(stagger_stacks)
+	carbon_victim.add_slowdown(slowdown_stacks)
+
+	set_reagents()
+	for(var/reagent_id in spit_reagents)
+		spit_reagents[reagent_id] = carbon_victim.modify_by_armor(spit_reagents[reagent_id], armor_type, penetration, P.def_zone)
+
+	carbon_victim.reagents.add_reagent_list(spit_reagents)
+
+	return ..()
+
+/datum/ammo/xeno/toxin/heavy/on_hit_obj(obj/O, obj/projectile/P)
+	var/turf/initial_turf = O.density ? P.loc : get_turf(O)
+	drop_neuro_smoke(initial_turf)
+	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf))
+
+
+/datum/ammo/xeno/toxin/heavy/on_hit_turf(turf/T, obj/projectile/P)
+	var/turf/initial_turf = T.density ? P.loc : T
+	drop_neuro_smoke(initial_turf)
+	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf))
+
+
+/datum/ammo/xeno/toxin/heavy/do_at_max_range(turf/T, obj/projectile/P)
+	var/turf/initial_turf = T.density ? P.loc : T
+	drop_neuro_smoke(initial_turf)
+	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf))
+
+/datum/ammo/xeno/toxin/smoke_spread
+	flags_ammo_behavior = AMMO_XENO|AMMO_PASS_THROUGH_MOVABLE
+	icon_state = null
+	max_range = 2
+	damage = 1
+	stagger_stacks = 0 SECONDS
+	slowdown_stacks = 0
+	smoke_range = 0
+	smoke_strength = 0.4
+	reagent_transfer_amount = 1
+
+/datum/ammo/xeno/toxin/smoke_spread/on_hit_mob()
+	return
 
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
