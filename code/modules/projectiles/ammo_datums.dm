@@ -3614,6 +3614,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/datum/effect_system/smoke_spread/xeno/smoke_system
 	var/smoke_strength
 	var/smoke_range
+	var/smoke_lifetime
 	///The hivenumber of this ammo
 	var/hivenumber = XENO_HIVE_NORMAL
 
@@ -3632,6 +3633,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	slowdown_stacks = 1.5
 	smoke_strength = 0.5
 	smoke_range = 0
+	smoke_lifetime = 4
 	reagent_transfer_amount = 4
 
 ///Set up the list of reagents the spit transfers upon impact
@@ -3677,7 +3679,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	set_smoke()
 	smoke_system.strength = smoke_strength
-	smoke_system.lifetime = 4
+	smoke_system.lifetime = smoke_lifetime
 	smoke_system.set_up(smoke_range, T)
 	smoke_system.start()
 	smoke_system = null
