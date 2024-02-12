@@ -15,7 +15,8 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
 	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES)
-	soft_armor = list(MELEE = 0, BULLET = 70, LASER = 60, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 85, LASER = 80, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	hard_armor = list(MELEE = 0, BULLET = 15, LASER = 10, ENERGY = 0, BOMB =0 , BIO = 0, FIRE = 0, ACID = 0)
 	resistance_flags = UNACIDABLE
 
 /turf/closed/wall/resin/add_debris_element()
@@ -121,6 +122,8 @@
 	var/damage = I.force
 	var/multiplier = 1
 	if(I.damtype == BURN) //Burn damage deals extra vs resin structures (mostly welders).
+		multiplier += 1
+	if(I.damtype == BRUTE) //Basically all melee attacks will do more damage.
 		multiplier += 1
 
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
