@@ -3941,6 +3941,45 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 8
 	puddle_duration = 1 SECONDS //Lasts 2-4 seconds
 
+///For the Praetorian's Acid Splash ability
+/datum/ammo/xeno/acid/heavy/praetorian
+	puddle_duration = 3 SECONDS
+	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/praetorian_splash
+	bonus_projectiles_scatter = 10
+	var/bonus_projectile_quantity = 3
+	var/bonus_projectile_range = 1.5
+	var/bonus_projectile_speed = 1.5
+
+/datum/ammo/xeno/acid/heavy/praetorian/on_hit_mob(mob/M, obj/projectile/P)
+	var/turf/initial_turf = get_turf(M)
+	drop_nade(initial_turf)
+	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf))
+
+/datum/ammo/xeno/acid/heavy/praetorian/on_hit_obj(obj/O, obj/projectile/P)
+	var/turf/initial_turf = O.density ? P.loc : get_turf(O)
+	drop_nade(initial_turf)
+	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf))
+
+/datum/ammo/xeno/acid/heavy/praetorian/on_hit_turf(turf/T, obj/projectile/P)
+	var/turf/initial_turf = T.density ? P.loc : T
+	drop_nade(initial_turf)
+	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf))
+
+/datum/ammo/xeno/acid/heavy/praetorian/do_at_max_range(turf/T, obj/projectile/P)
+	var/turf/initial_turf = T.density ? P.loc : T
+	drop_nade(T.density ? P.loc : T)
+	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf))
+
+/datum/ammo/xeno/acid/heavy/praetorian_splash
+	icon_state = null
+	puddle_duration = 2 SECONDS
+	flags_ammo_behavior = AMMO_XENO|AMMO_PASS_THROUGH_MOVABLE
+	icon_state = null
+	damage = 0
+
+/datum/ammo/xeno/acid/heavy/praetorian_splash/on_hit_mob()
+	return
+
 /datum/ammo/xeno/boiler_gas
 	name = "glob of gas"
 	icon_state = "boiler_gas2"
