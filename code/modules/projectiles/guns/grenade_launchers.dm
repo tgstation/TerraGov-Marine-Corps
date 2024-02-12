@@ -15,6 +15,11 @@ The Grenade Launchers
 	force = 5
 	caliber = CALIBER_40MM //codex
 	load_method = SINGLE_CASING //codex
+	icon = 'icons/obj/items/guns/special.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
@@ -50,7 +55,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/chem_grenade,
 		/obj/item/explosive/grenade/chem_grenade/large,
 		/obj/item/explosive/grenade/chem_grenade/metalfoam,
-		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_small,
 		/obj/item/explosive/grenade/chem_grenade/razorburn_large,
 		/obj/item/explosive/grenade/chem_grenade/incendiary,
 		/obj/item/explosive/grenade/chem_grenade/teargas,
@@ -109,7 +114,7 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher
 	name = "\improper GL-70 grenade launcher"
 	desc = "The GL-70 is the standard grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "t70"
 	item_state = "t70"
 	fire_animation = "t70_fire"
