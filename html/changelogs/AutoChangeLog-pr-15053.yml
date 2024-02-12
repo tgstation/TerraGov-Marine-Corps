@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - code_imp: "razorburns have been removed from loadouts due to an internal code change"
