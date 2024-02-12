@@ -640,6 +640,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 1
 	damage_falloff = 2
 	shrapnel_chance = 0
+	///shatter effection duration when hitting mobs
 	var/shatter_duration = 3 SECONDS
 
 /datum/ammo/bullet/smg/squash/on_hit_mob(mob/M, obj/projectile/proj)
