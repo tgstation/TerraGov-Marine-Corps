@@ -414,6 +414,10 @@
 		if(!silent)
 			owner.balloon_alert(owner, "Nothing to toss")
 		return FALSE
+	if(!Adjacent(owner.pulling))
+		if(!silent)
+			owner.balloon_alert(owner, "Target not adjacent")
+		return FALSE
 
 /datum/action/ability/activable/xeno/warrior/grapple_toss/use_ability(atom/A)
 	. = ..()
