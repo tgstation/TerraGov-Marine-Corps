@@ -21,7 +21,7 @@
 /obj/hitbox/Initialize(mapload, obj/vehicle/new_root)
 	. = ..()
 	root = new_root
-	pass_flags = root.pass_flags
+	allow_pass_flags = root.allow_pass_flags
 	resistance_flags = root.resistance_flags
 	RegisterSignal(new_root, COMSIG_MOVABLE_MOVED, PROC_REF(root_move))
 	RegisterSignal(new_root, COMSIG_QDELETING, PROC_REF(root_delete))

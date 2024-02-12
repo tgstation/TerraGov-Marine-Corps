@@ -9,7 +9,7 @@
 	layer = ABOVE_MOB_LAYER
 	max_drivers = 1
 	move_resist = INFINITY
-	pass_flags = PASS_LOW_STRUCTURE|PASS_AIR|PASS_WALKOVER
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_AIR|PASS_WALKOVER
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE|PORTAL_IMMUNE
 
 	// placeholder, make skill check or similar later
