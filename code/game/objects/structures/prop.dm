@@ -746,6 +746,13 @@
 	icon_state = "silo"
 	density = TRUE
 
+/obj/structure/prop/rappel_bay
+	name = "rappel hatch"
+	desc = "A hatch in the ground wih support for a quick-deploy rope."
+	icon = 'icons/obj/structures/droppod.dmi'
+	icon_state = "launch_bay"
+	layer = PODDOOR_OPEN_LAYER
+
 /obj/structure/prop/mainship/propcarp
 	name = "space carp"
 	desc = "A ferocious, fang-bearing creature that resembles a fish."

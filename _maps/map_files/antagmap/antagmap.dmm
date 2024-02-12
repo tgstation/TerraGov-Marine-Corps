@@ -57,6 +57,9 @@
 	outside = 0;
 	ceiling = 6
 	})
+"aM" = (
+/turf/closed/shuttle/dropship_dark/top_corner,
+/area/shuttle/transport)
 "aU" = (
 /turf/closed/wall/brick,
 /area/mainship/groundhq/clf/squads/req)
@@ -119,6 +122,9 @@
 /obj/item/storage/box/crate/loot/materials_pack,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"bm" = (
+/turf/open/shuttle/dropship/three,
+/area/shuttle/transport)
 "bv" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/wood/alt_three,
@@ -360,6 +366,16 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"dv" = (
+/turf/closed/shuttle/dropship_regular/engine_corner{
+	dir = 1
+	},
+/area/shuttle/transport)
+"dB" = (
+/turf/closed/shuttle/dropship_regular/backhatch{
+	dir = 4
+	},
+/area/shuttle/transport)
 "dF" = (
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/misc/paperbin,
@@ -582,11 +598,19 @@
 	outside = 0;
 	name = "SOM Torture Chamber"
 	})
+"fy" = (
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/transport)
 "fA" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"fE" = (
+/turf/closed/shuttle/dropship_regular/top_corner/alt{
+	dir = 1
+	},
+/area/shuttle/transport)
 "fG" = (
 /obj/structure/barricade/plasteel,
 /obj/machinery/door/poddoor/mainship/open{
@@ -649,6 +673,10 @@
 /obj/item/storage/firstaid,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"gq" = (
+/obj/structure/bed/chair/dropship/passenger,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/transport)
 "gs" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
@@ -971,6 +999,11 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"je" = (
+/obj/structure/rack,
+/obj/item/storage/firstaid/adv,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/transport)
 "jf" = (
 /turf/open/shuttle/plating,
 /area/canora_desert/surface/building/som_mechbay{
@@ -1107,6 +1140,9 @@
 "kh" = (
 /turf/closed/wall/mainship/gray,
 /area/mainship/groundhq/som/command/telecomms)
+"kj" = (
+/turf/closed/shuttle/dropship_regular/engine_corner,
+/area/shuttle/transport)
 "kl" = (
 /obj/effect/turf_decal/siding/wideplating_new/light,
 /obj/machinery/washing_machine,
@@ -1207,6 +1243,9 @@
 /area/canora_desert/surface/building/som_engineering{
 	outside = 0
 	})
+"kY" = (
+/turf/closed/shuttle/dropship_dark/cockpit_window,
+/area/shuttle/transport)
 "kZ" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
@@ -1226,6 +1265,11 @@
 /area/mainship/squads/general/som{
 	name = "SOM Preparation"
 	})
+"lh" = (
+/obj/structure/prop/rappel_bay,
+/obj/structure/patrol_point/tgmc_14,
+/turf/open/shuttle/dropship/three,
+/area/shuttle/transport)
 "lk" = (
 /obj/machinery/camera/autoname/mainship/somship{
 	dir = 10
@@ -1488,6 +1532,11 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"mH" = (
+/turf/closed/shuttle/dropship_dark/backhatch{
+	dir = 4
+	},
+/area/shuttle/transport)
 "mL" = (
 /obj/effect/ai_node,
 /obj/structure/bed/chair/dropship/passenger{
@@ -1656,6 +1705,11 @@
 /area/mainship/groundhq/clf/hallways/aft_hallway{
 	requires_power = 0
 	})
+"nB" = (
+/turf/closed/shuttle/dropship_dark/top_corner{
+	dir = 1
+	},
+/area/shuttle/transport)
 "nC" = (
 /obj/effect/landmark/start/latejoinclf,
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
@@ -1685,6 +1739,11 @@
 /area/mainship/groundhq/som/medical/lounge{
 	name = "SOM Medbay"
 	})
+"nM" = (
+/turf/closed/shuttle/dropship_regular/backhatch{
+	dir = 1
+	},
+/area/shuttle/transport)
 "nP" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -1923,6 +1982,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/hallways/aft_hallway)
+"pS" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/tool/multitool,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/transport)
 "pU" = (
 /obj/structure/window/framed,
 /obj/structure/window/framed{
@@ -1987,6 +2052,11 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"qz" = (
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1
+	},
+/area/shuttle/transport)
 "qB" = (
 /obj/item/stack/sheet/metal/large_stack,
 /obj/machinery/light/small{
@@ -2005,6 +2075,9 @@
 	outside = 0;
 	name = "SOM Restrooms"
 	})
+"qM" = (
+/turf/closed/shuttle/dropship_regular/backwall,
+/area/shuttle/transport)
 "qX" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship/somship{
@@ -2134,6 +2207,9 @@
 /obj/structure/cable,
 /turf/open/floor/bcircuit/off,
 /area/mainship/groundhq/som/command/telecomms)
+"se" = (
+/turf/open/shuttle/dropship/five,
+/area/shuttle/transport)
 "sf" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/machinery/vending/nanomed/tadpolemed,
@@ -2193,6 +2269,13 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"sI" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/effect/landmark/start/latejoinmoff,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/transport)
 "sR" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
@@ -2423,6 +2506,9 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"uB" = (
+/turf/open/shuttle/dropship/four,
+/area/shuttle/transport)
 "uH" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating,
@@ -2452,6 +2538,11 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"uO" = (
+/turf/closed/shuttle/dropship_regular/interior_corner{
+	dir = 1
+	},
+/area/shuttle/transport)
 "uR" = (
 /obj/effect/ai_node,
 /turf/open/floor/bcircuit/off,
@@ -2565,6 +2656,9 @@
 	outside = 0;
 	name = "SOM Restrooms"
 	})
+"vx" = (
+/turf/closed/shuttle/dropship_regular/backhatch,
+/area/shuttle/transport)
 "vy" = (
 /turf/closed/wall/mainship/gray,
 /area/canora_desert/surface/building/command{
@@ -2585,6 +2679,11 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"vJ" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/effect/landmark/start/latejoinmoff,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/transport)
 "vR" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -2870,6 +2969,11 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
+"xC" = (
+/obj/structure/patrol_point/tgmc_14,
+/obj/structure/prop/rappel_bay,
+/turf/open/shuttle/dropship/three,
+/area/shuttle/transport)
 "xD" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating,
@@ -2902,6 +3006,15 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"xT" = (
+/turf/closed/shuttle/dropship_regular/top_corner/alt,
+/area/shuttle/transport)
+"xX" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/transport)
 "ya" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/thinplating_new/dark{
@@ -3117,6 +3230,9 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/mainship/groundhq/clf/living/grunt_rnr/two)
+"Ar" = (
+/turf/closed/shuttle/dropship_dark/interior_wall,
+/area/shuttle/transport)
 "Av" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
@@ -3346,6 +3462,11 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"BO" = (
+/turf/closed/shuttle/ert/engines/left/three{
+	dir = 1
+	},
+/area/shuttle/transport)
 "BR" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -3566,6 +3687,12 @@
 	outside = 0;
 	name = "SOM Restrooms"
 	})
+"Di" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/shuttle/dropship/seven,
+/area/shuttle/transport)
 "Dj" = (
 /obj/alien/egg/hugger,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
@@ -3763,6 +3890,9 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"EJ" = (
+/turf/closed/shuttle/dropship_dark/engine_corner,
+/area/shuttle/transport)
 "EL" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -3888,6 +4018,11 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"FN" = (
+/turf/closed/shuttle/dropship_dark/backhatch{
+	dir = 1
+	},
+/area/shuttle/transport)
 "FT" = (
 /obj/item/tool/pen/blue,
 /obj/structure/table/fancywoodentable,
@@ -3912,6 +4047,11 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
+"Gk" = (
+/turf/closed/shuttle/dropship_dark/interior_wall{
+	dir = 1
+	},
+/area/shuttle/transport)
 "Go" = (
 /obj/effect/forcefield/fog,
 /turf/open/floor/plating/ground/dirt,
@@ -3968,6 +4108,12 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"GL" = (
+/obj/structure/rack,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/belt/lifesaver/full,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/transport)
 "GN" = (
 /turf/closed/mineral/smooth,
 /area/mainship/groundhq/clf/hallways/aft_hallway)
@@ -3981,6 +4127,9 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"GV" = (
+/turf/closed/shuttle/dropship_dark/top_corner/alt,
+/area/shuttle/transport)
 "Hc" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/asteroid/box,
@@ -4007,6 +4156,9 @@
 /area/canora_desert/surface/building/som_barracks{
 	outside = 0
 	})
+"Hr" = (
+/turf/closed/shuttle/dropship_dark/logo_wall,
+/area/shuttle/transport)
 "Hs" = (
 /turf/closed/wall/mainship/gray,
 /area/canora_desert/surface/building/som_nmaint{
@@ -4054,6 +4206,9 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"HH" = (
+/turf/closed/shuttle/dropship_regular/interior_wall,
+/area/shuttle/transport)
 "HJ" = (
 /obj/structure/inflatable/popped,
 /turf/open/floor/plating/ground/dirt,
@@ -4194,6 +4349,12 @@
 	outside = 0;
 	name = "SOM Torture Chamber"
 	})
+"II" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/transport)
 "IN" = (
 /obj/structure/closet/crate/mortar_ammo/mortar_kit,
 /turf/open/floor/plating/asteroidfloor,
@@ -4235,6 +4396,11 @@
 /area/canora_desert/surface/building/som_engineering{
 	outside = 0
 	})
+"IT" = (
+/turf/closed/shuttle/dropship_dark/interior_corner{
+	dir = 1
+	},
+/area/shuttle/transport)
 "IU" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
@@ -4392,6 +4558,11 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"Kh" = (
+/obj/structure/patrol_point/tgmc_13,
+/obj/structure/prop/rappel_bay,
+/turf/open/shuttle/dropship/three,
+/area/shuttle/transport)
 "Ki" = (
 /obj/structure/cable,
 /obj/machinery/light/small{
@@ -4402,6 +4573,9 @@
 	name = "SOM South Maintenance";
 	outside = 0
 	})
+"Kk" = (
+/turf/closed/shuttle/dropship_dark/backwall,
+/area/shuttle/transport)
 "Kn" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating,
@@ -4571,6 +4745,9 @@
 "LF" = (
 /turf/closed/wall/brick,
 /area/mainship/groundhq/clf/medical/lounge)
+"LK" = (
+/turf/closed/shuttle/dropship_regular/interior_corner,
+/area/shuttle/transport)
 "LL" = (
 /obj/structure/platform{
 	dir = 1
@@ -4586,6 +4763,11 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
+"LQ" = (
+/turf/closed/shuttle/dropship_dark/top_corner/alt{
+	dir = 8
+	},
+/area/shuttle/transport)
 "LR" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -4598,6 +4780,10 @@
 	outside = 0;
 	name = "SOM Torture Chamber"
 	})
+"LT" = (
+/obj/machinery/computer,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/transport)
 "LU" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass{
 	dir = 2
@@ -4615,6 +4801,11 @@
 	dir = 10
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"LY" = (
+/turf/closed/shuttle/ert/engines/left/two{
+	dir = 1
+	},
+/area/shuttle/transport)
 "Mh" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/warning{
 	dir = 1
@@ -4625,6 +4816,10 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"Mi" = (
+/obj/structure/prop/mainship/doorblocker/patrol_base/som,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/transport)
 "Ml" = (
 /turf/closed/wall/brick,
 /area/mainship/groundhq/clf/living/grunt_rnr/two)
@@ -4654,9 +4849,20 @@
 	name = "SOM Admiral Quarters";
 	outside = 0
 	})
+"Mx" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/transport)
 "MB" = (
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"ME" = (
+/obj/machinery/door/poddoor/shutters/transit/open,
+/obj/structure/prop/mainship/doorblocker/patrol_base/som,
+/turf/open/shuttle/dropship/three,
+/area/shuttle/transport)
 "MI" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -4741,6 +4947,9 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"Nl" = (
+/turf/closed/shuttle/dropship_dark/interior_corner,
+/area/shuttle/transport)
 "Nm" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/mainship/office,
@@ -4992,6 +5201,9 @@
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/hallways/aft_hallway)
+"Ot" = (
+/turf/closed/shuttle/dropship_dark/backhatch,
+/area/shuttle/transport)
 "Ou" = (
 /obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
 /turf/open/floor/mainship/mono,
@@ -5021,6 +5233,11 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"OK" = (
+/turf/closed/shuttle/dropship_regular/top_corner{
+	dir = 1
+	},
+/area/shuttle/transport)
 "OP" = (
 /obj/structure/largecrate/supply/supplies/metal,
 /obj/structure/largecrate/supply/supplies/plasteel{
@@ -5181,6 +5398,12 @@
 "PV" = (
 /turf/open/floor/plating/asteroidwarning/down,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"PX" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/transport)
 "PY" = (
 /obj/machinery/chem_master,
 /turf/open/floor/mainship/sterile,
@@ -5323,6 +5546,10 @@
 /area/mainship/groundhq/som/medical/lounge{
 	name = "SOM Medbay"
 	})
+"QY" = (
+/obj/structure/prop/mainship/doorblocker/patrol_base/som,
+/turf/open/shuttle/dropship/three,
+/area/shuttle/transport)
 "Ra" = (
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating/asteroidfloor,
@@ -5545,6 +5772,17 @@
 	outside = 0;
 	name = "SOM Prisoner Contaiment"
 	})
+"Sr" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/shuttle/dropship/six,
+/area/shuttle/transport)
+"Su" = (
+/turf/closed/shuttle/ert/engines/right/two{
+	dir = 1
+	},
+/area/shuttle/transport)
 "Sw" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/mainship/mono,
@@ -5606,6 +5844,9 @@
 /obj/effect/landmark/weed_node,
 /turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
+"SN" = (
+/turf/closed/shuttle/dropship_regular/top_corner,
+/area/shuttle/transport)
 "SP" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -5841,6 +6082,11 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"Uq" = (
+/turf/closed/shuttle/dropship_dark/engine_corner{
+	dir = 1
+	},
+/area/shuttle/transport)
 "Ur" = (
 /turf/closed/wall/brick,
 /area/mainship/groundhq/clf/living/grunt_rnr)
@@ -5877,6 +6123,9 @@
 	dir = 1
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"UJ" = (
+/turf/closed/shuttle/dropship_regular/cockpit_window,
+/area/shuttle/transport)
 "UL" = (
 /obj/structure/largecrate/random/barrel/blue,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
@@ -6040,6 +6289,9 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/hallways/aft_hallway)
+"VS" = (
+/turf/open/shuttle/dropship/eight,
+/area/shuttle/transport)
 "VY" = (
 /obj/structure/closet/secure_closet/engineering_personal{
 	pixel_x = -8;
@@ -6082,6 +6334,11 @@
 	name = "SOM Admiral Quarters";
 	outside = 0
 	})
+"Wj" = (
+/turf/closed/shuttle/dropship_regular/interior_wall{
+	dir = 1
+	},
+/area/shuttle/transport)
 "Wn" = (
 /obj/machinery/computer,
 /turf/open/floor/plating/plating_catwalk,
@@ -6215,6 +6472,11 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"Xr" = (
+/turf/closed/shuttle/ert/engines/right/three{
+	dir = 1
+	},
+/area/shuttle/transport)
 "Xs" = (
 /obj/structure/largecrate/supply/explosives/mines,
 /turf/open/floor/plating/asteroidfloor,
@@ -6248,6 +6510,18 @@
 	name = "SOM Admiral Quarters";
 	outside = 0
 	})
+"XE" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/effect/landmark/start/latejoinmoff,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/transport)
+"XH" = (
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1
+	},
+/area/shuttle/transport)
 "XM" = (
 /obj/item/bedsheet/brown,
 /obj/effect/decal/cleanable/blood/splatter/cum,
@@ -9785,4 +10059,283 @@ tT
 tT
 tT
 tT
+"}
+(106,1,1) = {"
+It
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+It
+"}
+(107,1,1) = {"
+VK
+It
+fE
+HH
+QY
+HH
+HH
+HH
+QY
+HH
+kj
+BO
+LY
+qz
+VK
+It
+LQ
+Hr
+QY
+Hr
+Ar
+Ar
+QY
+Ar
+EJ
+BO
+LY
+qz
+VK
+"}
+(108,1,1) = {"
+VK
+VK
+qM
+pS
+fy
+xX
+xX
+xX
+fy
+GL
+SN
+HH
+HH
+vx
+VK
+VK
+Kk
+pS
+fy
+XE
+XE
+XE
+fy
+GL
+aM
+Ar
+Ar
+Ot
+VK
+"}
+(109,1,1) = {"
+VK
+fE
+LK
+Sr
+bm
+bm
+bm
+bm
+bm
+uB
+fy
+Mx
+fy
+Mi
+VK
+LQ
+Nl
+Sr
+bm
+bm
+bm
+bm
+bm
+uB
+fy
+Mx
+fy
+Mi
+VK
+"}
+(110,1,1) = {"
+VK
+UJ
+LT
+se
+gq
+gq
+gq
+gq
+gq
+se
+lh
+bm
+lh
+nM
+VK
+kY
+LT
+se
+vJ
+vJ
+vJ
+vJ
+vJ
+se
+xC
+bm
+Kh
+FN
+VK
+"}
+(111,1,1) = {"
+VK
+xT
+uO
+Di
+bm
+bm
+bm
+bm
+bm
+VS
+fy
+PX
+fy
+Mi
+VK
+GV
+IT
+Di
+bm
+bm
+bm
+bm
+bm
+VS
+fy
+PX
+fy
+Mi
+VK
+"}
+(112,1,1) = {"
+VK
+It
+qM
+je
+fy
+II
+II
+II
+fy
+GL
+OK
+Wj
+Wj
+dB
+VK
+It
+Kk
+je
+fy
+sI
+sI
+sI
+fy
+GL
+nB
+Gk
+Gk
+mH
+VK
+"}
+(113,1,1) = {"
+VK
+VK
+xT
+Wj
+QY
+Wj
+Wj
+Wj
+ME
+Wj
+dv
+Xr
+Su
+XH
+VK
+VK
+GV
+Gk
+QY
+Gk
+Gk
+Gk
+ME
+Gk
+Uq
+Xr
+Su
+XH
+VK
+"}
+(114,1,1) = {"
+It
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
 "}

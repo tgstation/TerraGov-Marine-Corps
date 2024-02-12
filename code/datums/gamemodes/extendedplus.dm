@@ -59,6 +59,11 @@
 		/datum/job/clf/medic = 8,
 		/datum/job/clf/standard = -1,
 		/datum/job/clf/breeder = -1,
+		/datum/job/mothellian/standard = 0,
+		/datum/job/mothellian/medic = 0,
+		/datum/job/mothellian/engi = 0,
+		/datum/job/mothellian/grenadier = 0,
+		/datum/job/mothellian/leader = 0,
 	)
 	enable_fun_tads = TRUE
 	xenorespawn_time = 2 MINUTES

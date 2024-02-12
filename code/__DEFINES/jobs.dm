@@ -31,6 +31,7 @@
 #define JOB_DISPLAY_ORDER_SURVIVOR 28
 #define JOB_DISPLAY_ORDER_SECURITY_OFFICER 29
 #define JOB_DISPLAY_ORDER_PRISONER 30
+#define JOB_DISPLAY_ORDER_MOFFS 31
 
 #define JOB_FLAG_SPECIALNAME (1<<0)
 #define JOB_FLAG_LATEJOINABLE (1<<1) //Can this job be selected for prefs to join as?

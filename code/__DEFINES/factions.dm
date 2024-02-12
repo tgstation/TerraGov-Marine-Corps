@@ -18,6 +18,7 @@
 #define FACTION_HOSTILE "Hostile"
 #define FACTION_PIRATE "Pirate"
 #define FACTION_SPECFORCE "Special Forces"
+#define FACTION_MOTHELLIAN "Mothellians"
 
 //Alignement are currently only used by req.
 ///Mob with a neutral alignement cannot be sold by anyone
@@ -37,6 +38,7 @@ GLOBAL_LIST_INIT(faction_to_alignement, list(
 	FACTION_SPECFORCE = ALIGNEMENT_FRIENDLY,
 	FACTION_RETIRED = ALIGNEMENT_FRIENDLY,
 	FACTION_DEATHSQUAD = ALIGNEMENT_FRIENDLY,
+	FACTION_MOTHELLIAN = ALIGNEMENT_FRIENDLY,
 	//Hostile
 	FACTION_XENO = ALIGNEMENT_HOSTILE,
 	FACTION_CLF = ALIGNEMENT_HOSTILE,
@@ -83,6 +85,7 @@ GLOBAL_LIST_INIT(faction_to_iff, list(
 	FACTION_ICC = ICC_IFF,
 	FACTION_USL = USL_IFF,
 	FACTION_PIRATE = PIRATE_IFF,
+	FACTION_MOTHELLIAN = NTC_LOYALIST_IFF,
 ))
 
 ///List of correspond factions to data hud

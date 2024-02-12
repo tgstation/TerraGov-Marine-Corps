@@ -427,5 +427,15 @@
 			. = size ? "Mk.II" : "Mark II"
 		if("Mk.I")
 			. = size ? "Mk.I" : "Mark I"
+		if("MTH1")
+			. = size ? "MTH" : "Mothellian Standard"
+		if("MTH2")
+			. = size ? "MTH" : "Mothellian Medic"
+		if("MTH3")
+			. = size ? "MTH" : "Mothellian Technician"
+		if("MTH4")
+			. = size ? "MTH" : "Mothellian Veteran"
+		if("MTH")
+			. = size ? "MTH" : "Mothellian Leader"
 		else
 			. = paygrade //custom paygrade
