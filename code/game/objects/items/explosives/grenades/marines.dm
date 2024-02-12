@@ -370,6 +370,17 @@
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
 
+/obj/item/explosive/grenade/smokebomb/antigas
+	name = "\improper M40-AG smoke grenade"
+	desc = "A gas grenade originally designed to remove any contaminates in the air for the purpose of cleaning, now repurposed to remove hostile gasses."
+	icon_state = "grenade_agas"
+	item_state = "grenade_agas"
+	hud_state = "grenade_antigas"
+	det_time = 3 SECONDS
+	icon_state_mini = "grenade_antigas"
+	dangerous = TRUE
+	smoketype = /datum/effect_system/smoke_spread/antigas
+
 /obj/item/explosive/grenade/smokebomb/drain/agls
 	name = "\improper AGLS-T smoke grenade"
 	desc = "A small tiny smart grenade, it is about to blow up in your face, unless you found it inert. Otherwise a pretty normal grenade, other than it is somehow in a primeable state."
