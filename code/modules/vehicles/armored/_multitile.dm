@@ -16,6 +16,20 @@
 	max_occupants = 4
 	move_delay = 0.5 SECONDS
 
+/obj/vehicle/sealed/armored/multitile/Move(atom/newloc, direction, glide_size_override)
+	. = ..()
+	for(var/atom/boxtile in hitbox.locs)
+		for(var/mob/living/tank_desant in boxtile)
+			if(isxeno(tank_desant))
+				step(tank_desant, direction, glide_size_override)
+				return
+			var/away_dir = get_dir(tank_desant, src)
+			if(!away_dir)
+				away_dir = pick(GLOB.alldirs)
+			away_dir = REVERSE_DIR(away_dir)
+			var/turf/target = get_step(get_step(src, away_dir), away_dir)
+			tank_desant.throw_at(target, 3, 3, src)
+
 ///returns a list of possible locations that this vehicle may be entered from
 /obj/vehicle/sealed/armored/multitile/proc/enter_locations(mob/M)
 	return list(get_step_away(get_step(src, REVERSE_DIR(dir)), src, 2))

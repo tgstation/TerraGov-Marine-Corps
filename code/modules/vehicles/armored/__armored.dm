@@ -9,6 +9,8 @@
 	layer = ABOVE_MOB_LAYER
 	max_drivers = 1
 	move_resist = INFINITY
+	pass_flags = PASS_LOW_STRUCTURE|PASS_AIR|PASS_WALKOVER
+	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE|PORTAL_IMMUNE
 
 	// placeholder, make skill check or similar later
 	req_access = list(ACCESS_MARINE_MECH)
@@ -278,9 +280,12 @@
 /obj/vehicle/sealed/armored/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(istype(I, /obj/item/armored_weapon))
+		var/obj/item/armored_weapon/gun = I
+		if(!(gun.weapon_slot & MODULE_PRIMARY))
+			balloon_alert(user, "not a primary weapon")
+			return
 		if(!do_after(user, 2 SECONDS, NONE, src))
 			return
-		var/obj/item/armored_weapon/gun = I
 		user.temporarilyRemoveItemFromInventory(I)
 		gun.attach(src, TRUE)
 		return
@@ -306,9 +311,12 @@
 /obj/vehicle/sealed/armored/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
 	if(istype(I, /obj/item/armored_weapon))
+		var/obj/item/armored_weapon/gun = I
+		if(!(gun.weapon_slot & MODULE_SECONDARY))
+			balloon_alert(user, "not a secondary weapon")
+			return
 		if(!do_after(user, 2 SECONDS, NONE, src))
 			return
-		var/obj/item/armored_weapon/gun = I
 		user.temporarilyRemoveItemFromInventory(I)
 		gun.attach(src, FALSE)
 		return

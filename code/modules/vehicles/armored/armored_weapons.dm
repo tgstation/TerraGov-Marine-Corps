@@ -46,7 +46,7 @@
 	///fire mode to use for autofire
 	var/fire_mode = GUN_FIREMODE_SEMIAUTO
 	///how many seconds automatic reloading takes
-	var/rearm_time = 4 SECONDS
+	var/rearm_time = 4.5 SECONDS
 	///ammo hud icon to display when empty
 	var/hud_state_empty = "shell_empty"
 
@@ -263,7 +263,8 @@
 		return AUTOFIRE_SUCCESS
 	var/obj/item/ammo_magazine/tank/new_mag = ammo_magazine[1]
 	if(istype(new_mag) && new_mag.loading_sound)
-		playsound(src, new_mag.loading_sound, 40)
+		// .5 sec delay to let other sounds play out
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), src, new_mag.loading_sound, 40), 5)
 	if(!do_after(current_firer, rearm_time, IGNORE_HELD_ITEM, chassis, BUSY_ICON_GENERIC))
 		return AUTOFIRE_SUCCESS
 	reload()

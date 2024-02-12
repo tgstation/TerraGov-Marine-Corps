@@ -21,6 +21,8 @@
 /obj/hitbox/Initialize(mapload, obj/vehicle/new_root)
 	. = ..()
 	root = new_root
+	pass_flags = root.pass_flags
+	resistance_flags = root.resistance_flags
 	RegisterSignal(new_root, COMSIG_MOVABLE_MOVED, PROC_REF(root_move))
 	RegisterSignal(new_root, COMSIG_QDELETING, PROC_REF(root_delete))
 	RegisterSignals(new_root, list(COMSIG_RIDDEN_DRIVER_MOVE, COMSIG_VEHICLE_MOVE), PROC_REF(on_attempt_drive))
@@ -28,7 +30,7 @@
 /obj/hitbox/Destroy(force)
 	if(!force) // only when the parent is deleted
 		return QDEL_HINT_LETMELIVE
-	root.hitbox = null
+	root?.hitbox = null
 	root = null
 	return ..()
 
