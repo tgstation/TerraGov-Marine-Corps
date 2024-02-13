@@ -937,7 +937,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	outfit = /datum/outfit/job/medical/companion
 	multiple_outfits = FALSE
 	outfits = list(
-		/datum/outfit/job/medical/companion
+		/datum/outfit/job/medical/companion,
 	)
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
 	jobworth = list(
@@ -956,7 +956,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	minimap_icon = "researcher"
 
 
-/datum/job/terragov/medical/researcher/radio_help_message(mob/M)
+/datum/job/terragov/medical/companion/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are a catslug, one of the last if not the last, taken from a world ravaged by the xenomorph menace.
 	dedicated to protecting the company that saved you, you dedicate your time being a mascot and protecting the onboard researchers with a trustie spear.
@@ -985,11 +985,18 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	back = /obj/item/storage/backpack/marine/newt
 	head = /obj/item/clothing/head/tgmcberet/newt
 
+	var/list/abilities = list(
+		/datum/action/ability/activable/catslug/rockthrow,
+	)
+
 /datum/outfit/job/medical/companion/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.set_species("Catslug")
 	H.fully_replace_character_name(H.real_name, "newt")
 	H.gender = FEMALE
+
+	for(var/ability in abilities)
+		H.add_ability(ability)
 
 /datum/outfit/job/medical/companion/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()

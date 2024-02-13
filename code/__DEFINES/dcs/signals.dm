@@ -956,6 +956,9 @@
 #define COMSIG_ABILITY_TELEKINESIS "ability_telekinesis"
 #define COMSIG_ABILITY_REANIMATE "ability_reanimate"
 
+//catslug abilities
+#define COMSIG_ABILITY_ROCKTHROW "ability_rockthrow"
+
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
 #define COMSIG_PARRY_TRIGGER "parry_trigger"

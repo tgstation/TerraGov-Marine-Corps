@@ -1103,7 +1103,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/shotgun/tracker/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	victim.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
 
-
 /datum/ammo/bullet/shotgun/mech
 	name = "super-heavy shotgun buckshot shell"
 	icon_state = "buckshot"
@@ -4334,6 +4333,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/toy/do_at_max_range(turf/T, obj/projectile/P)
 	return
+
+/datum/ammo/bullet/rock
+	name = "weighted rock"
+	icon_state = "rock"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	shell_speed = 3
+	max_range = 15
+	damage = 10
+	penetration = 50
+	sundering = 1
+
+/datum/ammo/bullet/rock/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, slowdown = 2, knockback = 1)
 
 /datum/ammo/grenade_container
 	name = "grenade shell"
