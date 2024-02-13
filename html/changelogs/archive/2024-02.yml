@@ -227,3 +227,11 @@
   - refactor: Alamo console for xenos is TGUI now
   Xander3359 Naaanii:
   - admin: Admins can cancel king summon
+2024-02-13:
+  Barnet2:
+  - balance: If autobalance is on or if you are a tier four, the xeno respawn timer
+      is not applied
+  - balance: Sentinel gas nade is now transparent (you can see through it)
+  Lumipharon:
+  - bugfix: fixed a couple of minor edge case bugs with jumping
+  - code_imp: connect_loc now works properly for multitile atoms
