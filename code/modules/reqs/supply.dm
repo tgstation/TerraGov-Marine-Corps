@@ -646,7 +646,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	shuttle_id = "supplysom"
 	faction = FACTION_SOM
 	home_id = "supply_som"
-	req_one_access = list(213, 210, 208)
+	req_access = list(213)
 
 /obj/machinery/computer/supplycomp/clf
 	shuttle_id = "supplyclf"

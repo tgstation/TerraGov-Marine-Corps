@@ -163,7 +163,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 
 /datum/job/som/squad/engineer
 	title = SOM_SQUAD_ENGINEER
-	access = list (ACCESS_SOM_DEFAULT,ACCESS_SOM_ENGINEERING,ALL_ANTAGONIST_ACCESS)
+	access = list (ACCESS_SOM_DEFAULT,ACCESS_SOM_REQUESITIONS,ACCESS_SOM_ENGINEERING,ALL_ANTAGONIST_ACCESS)
 	paygrade = "SOM_E3"
 	comm_title = "Eng"
 	total_positions = 12
@@ -328,7 +328,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 /datum/job/som/squad/leader
 	title = SOM_SQUAD_LEADER
-	access = list (ACCESS_SOM_DEFAULT,ACCESS_SOM_SQUADLEADER,ALL_ANTAGONIST_ACCESS)
+	access = list (ACCESS_SOM_DEFAULT,ACCESS_SOM_REQUESITIONS,ACCESS_SOM_SQUADLEADER,ALL_ANTAGONIST_ACCESS)
 	req_admin_notify = TRUE
 	paygrade = "SOM_S3"
 	comm_title = JOB_COMM_TITLE_SQUAD_LEADER
