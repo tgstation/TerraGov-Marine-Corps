@@ -279,12 +279,12 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor_switch/update_icon_state()
 	. = ..()
-	if(position = CONVEYOR_ON_REVERSE)
+	if(position == CONVEYOR_ON_REVERSE)
 		if(invert_icon)
 			icon_state = "switch-fwd"
 		else
 			icon_state = "switch-rev"
-	else if(position = CONVEYOR_ON_FORWARDS)
+	else if(position == CONVEYOR_ON_FORWARDS)
 		if(invert_icon)
 			icon_state = "switch-rev"
 		else
