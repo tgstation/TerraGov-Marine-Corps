@@ -88,40 +88,52 @@
 		setting += 1
 	balloon_alert(user, "Power level [setting].")
 
-/obj/item/weapon/powerfist/attack(mob/living/carbon/M, mob/living/carbon/user)
+/obj/item/weapon/powerfist/attack(mob/living/carbon/victim, mob/living/carbon/user)
 	if(!cell)
 		to_chat(user, span_warning("\The [src] can't operate without a source of power!"))
 		return
 
-	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
+	if(victim.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
 		return
 
 	var/powerused = setting * 20
 	if(powerused > cell.charge)
 		to_chat(user, span_warning("\The [src]'s cell doesn't have enough power!"))
-		M.apply_damage((force * 0.2), BRUTE, user.zone_selected, MELEE)
+		victim.apply_damage((force * 0.2), BRUTE, user.zone_selected, MELEE)
 		playsound(loc, 'sound/weapons/punch1.ogg', 50, TRUE)
-		if(M == user)
+		if(victim == user)
 			to_chat(user, span_userdanger("You punch yourself!"))
 		else
-			M.visible_message(span_danger("[user]'s powerfist lets out a dull thunk as they punch [M.name]!"), \
+			victim.visible_message(span_danger("[user]'s powerfist lets out a dull thunk as they punch [victim.name]!"), \
 				span_userdanger("[user] punches you!"))
 		return ..()
-	if(M == user)
+
+	if(victim == user) //You don't go flying if you are punching yourself
 		user.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE)
 		to_chat(user, span_userdanger("You punch yourself!"))
 		playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
 		playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
 		cell.charge -= powerused
 		return ..()
-	M.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE)
-	M.visible_message(span_danger("[user]'s powerfist shudders as they punch [M.name], flinging them away!"), \
+
+	if(victim.buckled == user) //Man this is so dumb, if you fireman carry you bypass the first check
+		victim.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE)
+		to_chat(user, span_userdanger("You punch [victim] in the [user.zone_selected]"))
+		to_chat(victim, span_userdanger("[user] punches you in the [user.zone_selected]!"))
+		playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
+		playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
+		cell.charge -= powerused
+		return ..()
+
+	//Normal behaviour if you punch something that isn't caught by checks
+	victim.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE)
+	victim.visible_message(span_danger("[user]'s powerfist shudders as they punch [victim.name], flinging them away!"), \
 		span_userdanger("[user]'s punch flings you backwards!"))
 	playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
 	playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
-	var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
-	var/throw_distance = setting * LERP(5, 3, M.mob_size / MOB_SIZE_BIG)
-	M.throw_at(throw_target, throw_distance, 0.5 + (setting / 2))
+	var/atom/throw_target = get_edge_target_turf(victim, get_dir(src, get_step_away(victim, src)))
+	var/throw_distance = setting * LERP(5, 3, victim.mob_size / MOB_SIZE_BIG)
+	victim.throw_at(throw_target, throw_distance, 0.5 + (setting / 2))
 	cell.charge -= powerused
 	return ..()
 
