@@ -476,7 +476,7 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 			balloon_alert(src, "Cannot get up so soon after resting!")
 			return
 
-	else if(!resting)
+	else
 		if(!COOLDOWN_CHECK(src, xeno_unresting_cooldown))
 			balloon_alert(src, "Cannot rest so soon after getting up!")
 			return
@@ -486,7 +486,7 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 	. = ..()
 	if(resting)
 		COOLDOWN_START(src, xeno_resting_cooldown, XENO_RESTING_COOLDOWN)
-	else if(!resting)
+	else
 		COOLDOWN_START(src, xeno_unresting_cooldown, XENO_UNRESTING_COOLDOWN)
 
 /mob/living/carbon/xenomorph/set_jump_component(duration = 0.5 SECONDS, cooldown = 2 SECONDS, cost = 0, height = 16, sound = null, flags = JUMP_SHADOW, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE)
