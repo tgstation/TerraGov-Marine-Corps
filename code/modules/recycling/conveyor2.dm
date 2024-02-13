@@ -1,6 +1,20 @@
 //conveyor2 is pretty much like the original, except it supports corners, but not diverters.
 //note that corner pieces transfer stuff clockwise when running forward, and anti-clockwise backwards.
 #define MAX_CONVEYOR_ITEMS_MOVE 30
+
+#define CONVEYOR_OFF 0
+#define CONVEYOR_ON_FORWARDS 1
+#define CONVEYOR_ON_REVERSE -1
+
+#define CONVEYOR_DELAY 2 SECONDS
+
+///true if can operate (no broken segments in this belt run)
+#define CONVEYOR_OPERABLE (1<<0)
+//#define CONVEYOR_OPERABLE (1<<1)
+//#define CONVEYOR_OPERABLE (1<<2)
+//#define CONVEYOR_OPERABLE (1<<3)
+//#define CONVEYOR_OPERABLE (1<<4)
+
 GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor
@@ -11,42 +25,18 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	layer = FIREDOOR_OPEN_LAYER
 	max_integrity = 50
 	resistance_flags = XENO_DAMAGEABLE
+	var/conveyor_flags = CONVEYOR_OPERABLE
 	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
-	var/operable = 1	// true if can operate (no broken segments in this belt run)
 	var/forwards		// this is the default (forward) direction, set by the map dir
 	var/backwards		// hopefully self-explanatory
 	var/movedir			// the actual direction to move stuff in
 
-	var/list/affecting	// the list of all items that will be moved this ptick
 	var/id = ""			// the control ID	- must match controller ID
 	/// Inverts the direction the conveyor belt moves when false.
 	var/verted = FALSE
 	/// Is the conveyor's belt flipped? Useful mostly for conveyor belt corners. It makes the belt point in the other direction, rather than just going in reverse.
 	var/flipped = FALSE
-	/// Are we currently conveying items?
-	var/conveying = FALSE
 
-/obj/machinery/conveyor/centcom_auto
-	id = "round_end_belt"
-
-/obj/machinery/conveyor/inverted //Directions inverted so you can use different corner pieces.
-	icon_state = "conveyor_map_inverted"
-	verted = -1
-	flipped = TRUE
-
-/obj/machinery/conveyor/inverted/Initialize(mapload)
-	. = ..()
-	if(mapload && !(ISDIAGONALDIR(dir)))
-		stack_trace("[src] at [AREACOORD(src)] spawned without using a diagonal dir. Please replace with a normal version.")
-
-
-/obj/machinery/conveyor/auto/update()
-	. = ..()
-	if(.)
-		operating = TRUE
-	update_icon()
-
-// create a conveyor
 /obj/machinery/conveyor/Initialize(mapload, newdir, newid)
 	. = ..()
 	if(newdir)
@@ -56,10 +46,10 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	LAZYADD(GLOB.conveyors_by_id[id], src)
 	update_move_direction()
 	update_icon()
-
-/obj/machinery/conveyor/auto/Initialize(mapload, newdir)
-	operating = TRUE
-	return ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/machinery/conveyor/Destroy()
 	LAZYREMOVE(GLOB.conveyors_by_id[id], src)
@@ -74,50 +64,6 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	else
 		return ..()
 
-/obj/machinery/conveyor/setDir(newdir)
-	. = ..()
-	update_move_direction()
-
-/obj/machinery/conveyor/proc/update_move_direction()
-	switch(dir)
-		if(NORTH)
-			forwards = NORTH
-			backwards = SOUTH
-		if(SOUTH)
-			forwards = SOUTH
-			backwards = NORTH
-		if(EAST)
-			forwards = EAST
-			backwards = WEST
-		if(WEST)
-			forwards = WEST
-			backwards = EAST
-		if(NORTHEAST)
-			forwards = EAST
-			backwards = SOUTH
-		if(NORTHWEST)
-			forwards = NORTH
-			backwards = EAST
-		if(SOUTHEAST)
-			forwards = SOUTH
-			backwards = WEST
-		if(SOUTHWEST)
-			forwards = WEST
-			backwards = NORTH
-	if(verted)
-		var/temp = forwards
-		forwards = backwards
-		backwards = temp
-	if(flipped)
-		var/temp = forwards
-		forwards = backwards
-		backwards = temp
-	if(operating == 1)
-		movedir = forwards
-	else
-		movedir = backwards
-	update()
-
 /obj/machinery/conveyor/update_icon_state()
 	. = ..()
 	if(machine_stat & BROKEN)
@@ -125,51 +71,9 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	else
 		icon_state = "conveyor[verted ? -operating : operating ][flipped ? "-flipped" : ""]"
 
-/obj/machinery/conveyor/proc/update()
-	if(machine_stat & BROKEN || !operable || machine_stat & NOPOWER)
-		operating = FALSE
-		update_icon()
-		return FALSE
-	return TRUE
-
-// machine process
-// move items to the target location
-/obj/machinery/conveyor/process()
-	if(machine_stat & (BROKEN | NOPOWER))
-		return
-
-	//If the conveyor is broken or already moving items
-	if(!operating || conveying)
-		return
-
-	//get the first 30 items in contents
-	var/turf/locturf = loc
-	var/list/items = locturf.contents - src
-	if(!LAZYLEN(items))//Dont do anything at all if theres nothing there but the conveyor
-		return
-	var/list/affecting
-	if(length(items) > MAX_CONVEYOR_ITEMS_MOVE)
-		affecting = items.Copy(1, MAX_CONVEYOR_ITEMS_MOVE + 1)//Lists start at 1 lol
-	else
-		affecting = items
-	conveying = TRUE
-
-	INVOKE_NEXT_TICK(src, PROC_REF(convey), affecting)//Movement effect
-
-/obj/machinery/conveyor/proc/convey(list/affecting)
-	for(var/am in affecting)
-		if(!ismovable(am))	//This is like a third faster than for(var/atom/movable in affecting)
-			continue
-		var/atom/movable/movable_thing = am
-		//Give this a chance to yield if the server is busy
-		stoplag()
-		if(QDELETED(movable_thing) || (movable_thing.loc != loc))
-			continue
-		if(iseffect(movable_thing) || isdead(movable_thing))
-			continue
-		if(!movable_thing.anchored)
-			step(movable_thing, movedir)
-	conveying = FALSE
+/obj/machinery/conveyor/setDir(newdir)
+	. = ..()
+	update_move_direction()
 
 /obj/machinery/conveyor/crowbar_act(mob/living/user, obj/item/I)
 	user.visible_message(span_notice("[user] struggles to pry up \the [src] with \the [I]."), \
@@ -216,6 +120,107 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		return
 	user.Move_Pulled(src)
 
+///Sets the correct movement directions based on dir
+/obj/machinery/conveyor/proc/update_move_direction()
+	switch(dir)
+		if(NORTH)
+			forwards = NORTH
+			backwards = SOUTH
+		if(SOUTH)
+			forwards = SOUTH
+			backwards = NORTH
+		if(EAST)
+			forwards = EAST
+			backwards = WEST
+		if(WEST)
+			forwards = WEST
+			backwards = EAST
+		if(NORTHEAST)
+			forwards = EAST
+			backwards = SOUTH
+		if(NORTHWEST)
+			forwards = NORTH
+			backwards = EAST
+		if(SOUTHEAST)
+			forwards = SOUTH
+			backwards = WEST
+		if(SOUTHWEST)
+			forwards = WEST
+			backwards = NORTH
+	if(verted)
+		var/temp = forwards
+		forwards = backwards
+		backwards = temp
+	if(flipped)
+		var/temp = forwards
+		forwards = backwards
+		backwards = temp
+	if(operating == CONVEYOR_ON_FORWARDS)
+		movedir = forwards
+	else
+		movedir = backwards
+	update()
+
+///Handles setting its operating status
+/obj/machinery/conveyor/proc/set_operating(new_position)
+		if(operating == new_position)
+			return
+		operating = new_position
+		update_move_direction()
+		update_icon()
+		if(operating)
+			on_activation()
+
+/obj/machinery/conveyor/proc/update()
+	if(machine_stat & BROKEN || !(conveyor_flags & CONVEYOR_OPERABLE) || machine_stat & NOPOWER)
+		set_operating(CONVEYOR_OFF)
+		return FALSE
+	return TRUE
+
+///Moves any AMs on loc when turned on
+/obj/machinery/conveyor/proc/on_activation()
+	if(!is_operational())
+		return
+	if(!operating)
+		return
+	if(!isturf(loc))
+		return //how
+
+	//get the first 30 items in contents
+	var/turf/locturf = loc
+	var/list/items_to_move = locturf.contents - src
+	if(length(items) > MAX_CONVEYOR_ITEMS_MOVE)
+		items_to_move = items_to_move.Copy(1, MAX_CONVEYOR_ITEMS_MOVE + 1)
+		addtimer(CALLBACK(src, PROC_REF(on_activation)), CONVEYOR_DELAY + 1)
+
+	for(var/atom/movable/thing_to_move in items_to_move)
+		if(thing_to_move.anchored)
+			continue
+		addtimer(CALLBACK(src, PROC_REF(convey), thing_to_move), CONVEYOR_DELAY)
+
+///Sets any entering AMs to be moved
+/obj/machinery/conveyor/proc/on_cross(datum/source, atom/movable/arrived)
+	SIGNAL_HANDLER
+	if(!is_operational())
+		return
+	if(!operating)
+		return
+	if(arrived.anchored)
+		return
+	addtimer(CALLBACK(src, PROC_REF(convey), arrived), CONVEYOR_DELAY)
+
+///Actually moves an AM
+/obj/machinery/conveyor/proc/convey(atom/movable/movable_thing)
+	if(QDELETED(movable_thing) || (movable_thing.loc != loc))
+		return
+	if(iseffect(movable_thing) || isdead(movable_thing))
+		return
+	if(!is_operational())
+		return
+	if(!operating)
+		return
+	step(movable_thing, movedir)
+
 // make the conveyor broken
 // also propagate inoperability to any connected conveyor with the same ID
 /obj/machinery/conveyor/proc/broken()
@@ -224,11 +229,11 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 	var/obj/machinery/conveyor/C = locate() in get_step(src, dir)
 	if(C)
-		C.set_operable(dir, id, 0)
+		C.set_operable(dir, id, FALSE)
 
 	C = locate() in get_step(src, REVERSE_DIR(dir))
 	if(C)
-		C.set_operable(REVERSE_DIR(dir), id, 0)
+		C.set_operable(REVERSE_DIR(dir), id, FALSE)
 
 
 //set the operable var if ID matches, propagating in the given direction
@@ -237,7 +242,10 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 	if(id != match_id)
 		return
-	operable = op
+	if(op)
+		conveyor_flags |= CONVEYOR_OPERABLE
+	else
+		conveyor_flags &= -CONVEYOR_OPERABLE
 
 	update()
 	var/obj/machinery/conveyor/C = locate() in get_step(src, stepdir)
@@ -247,6 +255,29 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor/power_change()
 	. = ..()
 	update()
+
+/obj/machinery/conveyor/centcom_auto
+	id = "round_end_belt"
+
+/obj/machinery/conveyor/inverted //Directions inverted so you can use different corner pieces.
+	icon_state = "conveyor_map_inverted"
+	verted = -1
+	flipped = TRUE
+
+/obj/machinery/conveyor/inverted/Initialize(mapload)
+	. = ..()
+	if(mapload && !(ISDIAGONALDIR(dir)))
+		stack_trace("[src] at [AREACOORD(src)] spawned without using a diagonal dir. Please replace with a normal version.")
+
+/obj/machinery/conveyor/auto/Initialize(mapload, newdir)
+	set_operating(CONVEYOR_ON_FORWARDS)
+	return ..()
+
+/obj/machinery/conveyor/auto/update()
+	. = ..()
+	if(.)
+		set_operating(CONVEYOR_ON_FORWARDS)
+	//update_icon()
 
 ///////// the conveyor control switch
 
@@ -303,13 +334,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /// Updates all conveyor belts that are linked to this switch, and tells them to start processing.
 /obj/machinery/conveyor_switch/proc/update_linked_conveyors()
 	for(var/obj/machinery/conveyor/C in GLOB.conveyors_by_id[id])
-		C.operating = position
-		C.update_move_direction()
-		C.update_icon()
-		if(C.operating)
-			C.start_processing()
-		else
-			C.stop_processing()
+		C.set_operating(position)
 		CHECK_TICK
 
 /// Finds any switches with same `id` as this one, and set their position and icon to match us.
