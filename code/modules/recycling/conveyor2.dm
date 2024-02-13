@@ -239,19 +239,21 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		set_operating(CONVEYOR_ON_FORWARDS)
 
 ///////// the conveyor control switch
-
 /obj/machinery/conveyor_switch
 	name = "conveyor switch"
 	desc = "A conveyor control switch."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "switch-off"
-
-	var/position = 0			// 0 off, -1 reverse, 1 forward
-	var/last_pos = -1			// last direction setting
-	var/oneway = FALSE			// if the switch only operates the conveyor belts in a single direction.
-	var/invert_icon = FALSE		// If the level points the opposite direction when it's turned on.
-
-	var/id = "" 				// must match conveyor IDs to control them
+	///switch position
+	var/position = CONVEYOR_OFF
+	///Previous switch position
+	var/last_pos = -1
+	///If this only works one way
+	var/oneway = FALSE
+	///If the level points the opposite direction when it's turned on.
+	var/invert_icon = FALSE
+	///ID. Must match conveyor ID's to control them
+	var/id = ""
 
 /obj/machinery/conveyor_switch/Initialize(mapload, newid)
 	. = ..()
@@ -277,12 +279,12 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor_switch/update_icon_state()
 	. = ..()
-	if(position<0)
+	if(position = CONVEYOR_ON_REVERSE)
 		if(invert_icon)
 			icon_state = "switch-fwd"
 		else
 			icon_state = "switch-rev"
-	else if(position>0)
+	else if(position = CONVEYOR_ON_FORWARDS)
 		if(invert_icon)
 			icon_state = "switch-rev"
 		else
@@ -311,14 +313,14 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 			position = oneway
 		else
 			if(last_pos < 0)
-				position = 1
-				last_pos = 0
+				position = CONVEYOR_ON_FORWARDS
+				last_pos = CONVEYOR_OFF
 			else
-				position = -1
-				last_pos = 0
+				position = CONVEYOR_ON_REVERSE
+				last_pos = CONVEYOR_OFF
 	else
 		last_pos = position
-		position = 0
+		position = CONVEYOR_OFF
 
 /// Called when a user clicks on this switch with an open hand.
 /obj/machinery/conveyor_switch/interact(mob/user)
