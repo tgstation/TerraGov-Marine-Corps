@@ -61,7 +61,6 @@
 		return TRUE
 	return FALSE
 
-#define GRAB_SLAM_DELAY 0.7 SECONDS
 /obj/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
