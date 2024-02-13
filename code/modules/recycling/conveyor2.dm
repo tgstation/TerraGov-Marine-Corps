@@ -11,13 +11,12 @@
 ///It go back
 #define CONVEYOR_ON_REVERSE -1
 
-///Speed at which it moves things
-#define CONVEYOR_DELAY 1 SECONDS
-
 ///true if can operate (no broken segments in this belt run)
 #define CONVEYOR_OPERABLE (1<<0)
 ///Inverts the direction the conveyor belt moves, only particularly relevant for diagonals
 #define CONVEYOR_INVERTED (1<<1)
+///Currently has things scheduled for movement. Required to reduce lag
+#define CONVEYOR_IS_CONVEYING (1<<2)
 
 GLOBAL_LIST_EMPTY(conveyors_by_id)
 
@@ -47,11 +46,6 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	LAZYADD(GLOB.conveyors_by_id[id], src)
 	update_move_direction()
 	update_icon()
-	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(on_enter),
-		//COMSIG_ATOM_EXIT = PROC_REF(on_exit),
-	)
-	AddElement(/datum/element/connect_loc, connections)
 
 /obj/machinery/conveyor/Destroy()
 	LAZYREMOVE(GLOB.conveyors_by_id[id], src)
@@ -121,6 +115,50 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	. = ..()
 	update()
 
+/obj/machinery/conveyor/process()
+	if(conveyor_flags & CONVEYOR_IS_CONVEYING)
+		return //you've made a lag monster
+	if(!is_operational())
+		return
+	if(!operating)
+		return
+	if(!isturf(loc))
+		return //how
+
+	//get the first 30 items in contents
+	var/turf/locturf = loc
+	var/list/items_to_move = locturf.contents - src
+	if(length(items_to_move) > MAX_CONVEYOR_ITEMS_MOVE)
+		items_to_move = items_to_move.Copy(1, MAX_CONVEYOR_ITEMS_MOVE + 1)
+
+	conveyor_flags |= CONVEYOR_IS_CONVEYING
+	INVOKE_NEXT_TICK(src, PROC_REF(convey), items_to_move)
+
+///Attempts to move a batch of AMs
+/obj/machinery/conveyor/proc/convey(list/affecting)
+	if(!is_operational())
+		return
+	if(!operating)
+		return
+	for(var/am in affecting)
+		if(!ismovable(am))	//This is like a third faster than for(var/atom/movable in affecting)
+			continue
+		var/atom/movable/movable_thing = am
+		stoplag() //Give this a chance to yield if the server is busy
+		if(QDELETED(movable_thing))
+			continue
+		if((movable_thing.loc != loc))
+			continue
+		if(iseffect(movable_thing))
+			continue
+		if(isdead(movable_thing))
+			return
+		if(movable_thing.anchored)
+			return
+		step(movable_thing, movedir)
+
+	conveyor_flags &= ~CONVEYOR_IS_CONVEYING
+
 ///Sets the correct movement directions based on dir
 /obj/machinery/conveyor/proc/update_move_direction()
 	var/forwards
@@ -167,57 +205,17 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	operating = new_position
 	update_move_direction()
 	update_icon()
-	on_activation()
+
+	if(operating)
+		start_processing()
+	else
+		stop_processing()
 
 /obj/machinery/conveyor/proc/update()
 	if(!is_operational() || !(conveyor_flags & CONVEYOR_OPERABLE))
 		set_operating(CONVEYOR_OFF)
 		return FALSE
 	return TRUE
-
-///Moves any AMs on loc when turned on
-/obj/machinery/conveyor/proc/on_activation()
-	if(!is_operational())
-		return
-	if(!operating)
-		return
-	if(!isturf(loc))
-		return //how
-
-	//get the first 30 items in contents
-	var/turf/locturf = loc
-	var/list/items_to_move = locturf.contents - src
-	if(length(items_to_move) > MAX_CONVEYOR_ITEMS_MOVE)
-		items_to_move = items_to_move.Copy(1, MAX_CONVEYOR_ITEMS_MOVE + 1)
-		addtimer(CALLBACK(src, PROC_REF(on_activation)), CONVEYOR_DELAY + 1)
-
-	for(var/atom/movable/thing_to_move in items_to_move)
-		if(thing_to_move.anchored)
-			continue
-		addtimer(CALLBACK(src, PROC_REF(convey), thing_to_move), CONVEYOR_DELAY)
-
-///Sets any entering AMs to be moved
-/obj/machinery/conveyor/proc/on_enter(datum/source, atom/movable/arrived)
-	SIGNAL_HANDLER
-	if(!is_operational())
-		return
-	if(!operating)
-		return
-	if(arrived.anchored)
-		return
-	addtimer(CALLBACK(src, PROC_REF(convey), arrived), CONVEYOR_DELAY)
-
-///Actually moves an AM
-/obj/machinery/conveyor/proc/convey(atom/movable/movable_thing)
-	if(QDELETED(movable_thing) || (movable_thing.loc != loc))
-		return
-	if(iseffect(movable_thing) || isdead(movable_thing))
-		return
-	if(!is_operational())
-		return
-	if(!operating)
-		return
-	step(movable_thing, movedir)
 
 /obj/machinery/conveyor/centcom_auto
 	id = "round_end_belt"
