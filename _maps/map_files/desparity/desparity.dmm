@@ -5981,7 +5981,7 @@
 /area/lv624/ground/caves/west1)
 "Fe" = (
 /obj/structure/table,
-/obj/item/trash/barcardine,
+/obj/item/trash/barcaridine,
 /obj/item/clothing/suit/armor/vest/security{
 	pixel_x = 5;
 	pixel_y = 5
