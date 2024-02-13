@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - balance: "If autobalance is on or if you are a tier four, the xeno respawn timer is not applied"
