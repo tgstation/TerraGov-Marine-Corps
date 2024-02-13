@@ -1,19 +1,23 @@
 //conveyor2 is pretty much like the original, except it supports corners, but not diverters.
 //note that corner pieces transfer stuff clockwise when running forward, and anti-clockwise backwards.
+
+///Max amount of items it will try move in one go
 #define MAX_CONVEYOR_ITEMS_MOVE 30
 
+///It don't go
 #define CONVEYOR_OFF 0
+///It go forwards
 #define CONVEYOR_ON_FORWARDS 1
+///It go back
 #define CONVEYOR_ON_REVERSE -1
 
-#define CONVEYOR_DELAY 2 SECONDS
+///Speed at which it moves things
+#define CONVEYOR_DELAY 1 SECONDS
 
 ///true if can operate (no broken segments in this belt run)
 #define CONVEYOR_OPERABLE (1<<0)
-//#define CONVEYOR_OPERABLE (1<<1)
-//#define CONVEYOR_OPERABLE (1<<2)
-//#define CONVEYOR_OPERABLE (1<<3)
-//#define CONVEYOR_OPERABLE (1<<4)
+///Inverts the direction the conveyor belt moves, only particularly relevant for diagonals
+#define CONVEYOR_INVERTED (1<<1)
 
 GLOBAL_LIST_EMPTY(conveyors_by_id)
 
@@ -21,21 +25,18 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "conveyor_map"
 	name = "conveyor belt"
-	desc = "A conveyor belt. It can be rotated with a <b>wrench</b>. It can be reversed with a <b>screwdriver</b>. The belt can be flipped with a <b>wirecutter</b>."
+	desc = "A conveyor belt. It can be rotated with a <b>wrench</b>. It can be reversed with a <b>screwdriver</b>."
 	layer = FIREDOOR_OPEN_LAYER
 	max_integrity = 50
 	resistance_flags = XENO_DAMAGEABLE
+	///Conveyor specific flags
 	var/conveyor_flags = CONVEYOR_OPERABLE
-	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
-	var/forwards		// this is the default (forward) direction, set by the map dir
-	var/backwards		// hopefully self-explanatory
-	var/movedir			// the actual direction to move stuff in
-
-	var/id = ""			// the control ID	- must match controller ID
-	/// Inverts the direction the conveyor belt moves when false.
-	var/verted = FALSE
-	/// Is the conveyor's belt flipped? Useful mostly for conveyor belt corners. It makes the belt point in the other direction, rather than just going in reverse.
-	var/flipped = FALSE
+	///Operating direction
+	var/operating = CONVEYOR_OFF
+	///Current direction of movement
+	var/movedir
+	/// the control ID	- must match controller ID
+	var/id = ""
 
 /obj/machinery/conveyor/Initialize(mapload, newdir, newid)
 	. = ..()
@@ -68,8 +69,9 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	. = ..()
 	if(machine_stat & BROKEN)
 		icon_state = "conveyor-broken"
+
 	else
-		icon_state = "conveyor[verted ? -operating : operating ][flipped ? "-flipped" : ""]"
+		icon_state = "conveyor[!operating ? "_off" : operating == CONVEYOR_ON_FORWARDS ? "_forwards": "_reverse"][conveyor_flags & CONVEYOR_INVERTED ? "_inverted" : ""]"
 
 /obj/machinery/conveyor/setDir(newdir)
 	. = ..()
@@ -97,16 +99,10 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor/screwdriver_act(mob/living/user, obj/item/I)
 	if(machine_stat & BROKEN)
 		return TRUE
-	verted = !verted
+	conveyor_flags ^= CONVEYOR_INVERTED
 	update_move_direction()
-	to_chat(user, span_notice("You set [src]'s direction [verted ? "backwards" : "back to default"]."))
-
-/obj/machinery/conveyor/wirecutter_act(mob/living/user, obj/item/I)
-	if(machine_stat & BROKEN)
-		return TRUE
-	flipped = !flipped
-	update_move_direction()
-	to_chat(user, span_notice("You flip [src]'s belt [flipped ? "around" : "back to normal"]."))
+	update_icon()
+	to_chat(user, span_notice("You set [src]'s direction [conveyor_flags & CONVEYOR_INVERTED ? "backwards" : "back to default"]."))
 
 /obj/machinery/conveyor/attackby(obj/item/I, mob/living/user, def_zone)
 	. = ..()
@@ -120,8 +116,14 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		return
 	user.Move_Pulled(src)
 
+/obj/machinery/conveyor/power_change()
+	. = ..()
+	update()
+
 ///Sets the correct movement directions based on dir
 /obj/machinery/conveyor/proc/update_move_direction()
+	var/forwards
+	var/backwards
 	switch(dir)
 		if(NORTH)
 			forwards = NORTH
@@ -147,11 +149,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		if(SOUTHWEST)
 			forwards = WEST
 			backwards = NORTH
-	if(verted)
-		var/temp = forwards
-		forwards = backwards
-		backwards = temp
-	if(flipped)
+	if(conveyor_flags & CONVEYOR_INVERTED)
 		var/temp = forwards
 		forwards = backwards
 		backwards = temp
@@ -163,16 +161,15 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 ///Handles setting its operating status
 /obj/machinery/conveyor/proc/set_operating(new_position)
-		if(operating == new_position)
-			return
-		operating = new_position
-		update_move_direction()
-		update_icon()
-		if(operating)
-			on_activation()
+	if(operating == new_position)
+		return
+	operating = new_position
+	update_move_direction()
+	update_icon()
+	on_activation()
 
 /obj/machinery/conveyor/proc/update()
-	if(machine_stat & BROKEN || !(conveyor_flags & CONVEYOR_OPERABLE) || machine_stat & NOPOWER)
+	if(!is_operational() || !(conveyor_flags & CONVEYOR_OPERABLE))
 		set_operating(CONVEYOR_OFF)
 		return FALSE
 	return TRUE
@@ -189,7 +186,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	//get the first 30 items in contents
 	var/turf/locturf = loc
 	var/list/items_to_move = locturf.contents - src
-	if(length(items) > MAX_CONVEYOR_ITEMS_MOVE)
+	if(length(items_to_move) > MAX_CONVEYOR_ITEMS_MOVE)
 		items_to_move = items_to_move.Copy(1, MAX_CONVEYOR_ITEMS_MOVE + 1)
 		addtimer(CALLBACK(src, PROC_REF(on_activation)), CONVEYOR_DELAY + 1)
 
@@ -252,17 +249,12 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	if(C)
 		C.set_operable(stepdir, id, op)
 
-/obj/machinery/conveyor/power_change()
-	. = ..()
-	update()
-
 /obj/machinery/conveyor/centcom_auto
 	id = "round_end_belt"
 
 /obj/machinery/conveyor/inverted //Directions inverted so you can use different corner pieces.
 	icon_state = "conveyor_map_inverted"
-	verted = -1
-	flipped = TRUE
+	conveyor_flags = CONVEYOR_OPERABLE|CONVEYOR_INVERTED
 
 /obj/machinery/conveyor/inverted/Initialize(mapload)
 	. = ..()
@@ -277,7 +269,6 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	. = ..()
 	if(.)
 		set_operating(CONVEYOR_ON_FORWARDS)
-	//update_icon()
 
 ///////// the conveyor control switch
 
