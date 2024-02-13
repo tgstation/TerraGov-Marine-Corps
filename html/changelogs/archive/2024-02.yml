@@ -127,3 +127,111 @@
   - rscadd: Adds Baneling to admin player panel tab.
   Xander3359:
   - code_imp: extra_checks use PROC_REF() for their callbacks
+2024-02-09:
+  Barnet2:
+  - rscadd: 'New role: Transport Officer'
+  - balance: Reduces PO slot to one
+  - bugfix: Tadpole cameras use the proper network
+  Lumipharon:
+  - bugfix: fixed SG loadouts often not spawning everything they should
+  - qol: Cancelling delta alert explicitly tells you that this controls both evac
+      and SD
+  - bugfix: fixed deployable shields being climbable when barbed after redeploying
+  - qol: Suit lights no longer mismatch their actual state and action state if spammed
+  - balance: 'Campaign: Made NT base rescue a bit easier for SOM'
+  Wisemonster:
+  - qol: The alert for resin gargoyles have been changed to use the growl sound effect
+      instead of the screech.
+  XElectricX:
+  - rscadd: 'Interactive emotes: you can high-five, fist bump, headbutt, or tail slap
+      other players'
+2024-02-10:
+  AusarAtkin:
+  - qol: Supply Beacon now Auto Update if Tad are moving across Z-level.
+  Barnet2:
+  - bugfix: Fixes a certain exploit with caste swap and regress
+  - admin: Expert timelock increased to 25 hours
+  Lewdcifer:
+  - rscadd: 'Behemoth 2: Now with more caffeine! Check the relevant PR for the full
+      detailed changelog.'
+  - rscadd: Completely revamped Earth Riser's primo. Meteors rain from above!
+  - balance: Behemoth melee damage reduced from 26 to 23. This also affects all ability
+      damage.
+  - balance: Maximum health reduced from 750 to 650, maximum wrath adjusted accordingly.
+  - balance: Movement speed increased from -0.2 to -0.5, weed speed modifier increased
+      from -0.1 to -0.2.
+  - balance: Behemoth roll wind up increased from 1.8s to 2s.
+  - balance: Behemoth roll speed gain reduced from 0.4 to 0.35.
+  - balance: Landslide movement speed increased from 1.7 to 1.5. This is much faster
+      than it sounds!
+  - balance: Earth Riser plasma cost reduced from 30 to 20.
+  - balance: Earth Riser cooldown reduced from 15s to 10s.
+  - balance: Seismic Fracture is no longer ranged, but rather an AoE around the Behemoth.
+  - balance: Seismic Fracture attack radius increased from 2 to 3.
+  - bugfix: Fixed a bug where Primal Wrath would no longer replace plasma costs with
+      wrath.
+  - bugfix: Fixed a bug where Landslide couldn't be cancelled sometimes. Now it's
+      responsive and reliable.
+  - spellcheck: Behemoth cooldown messages no longer include the ability's plasma
+      cost.
+  - sounddel: Removed an unused Behemoth sound file.
+  - imageadd: Added an icon for the primordial version of Earth Riser
+  - refactor: Refactored Behemoth AoE attacks.
+  Lumipharon:
+  - rscadd: Improved rappel effects in HvH
+  - bugfix: fixed various exploits with capturing the alamo
+  Pariah919:
+  - rscdel: You can no loner acquire long or wide nozzle in HvX.
+  Xander3359:
+  - bugfix: Chicken protein bars no longer runtime
+  ivanmixo:
+  - balance: Stagger doesn't stack in duration anymore
+2024-02-11:
+  Dikozda:
+  - bugfix: SG prep on cantabury no longer has its only door blocked
+  Helg2:
+  - bugfix: '[Big Red] fixed pipes in medbay variants 4 and 5.'
+  Neocloudy:
+  - rscadd: new announcement design- announcements can be recolored, have a subtitle,
+      and pop out easier.
+  - code_imp: priority announcements can now have a color override and subtitle
+  - admin: added subtitle and color option to command reports
+  novaepee:
+  - imageadd: port TG surgery tool sprites
+2024-02-12:
+  AzonStarfall:
+  - bugfix: Fixed Arachne's Medbay Disposal.
+  Helg2:
+  - bugfix: Xenos now show their wound in their special states.
+  Lumipharon:
+  - balance: Unarmed damage against humans is no longer rng if your victim is prone
+  - balance: CQC skill lowers grab upgrade time
+  - balance: Unarmed attacks against humans uses the same zone targeting as melee
+      weapons
+  - bugfix: Choking someone to death once again actually causes oxyloss
+  - bugfix: Melee attack can now actually miss some times as intended (only for humans
+      attacking humans)
+  Naaanii:
+  - rscadd: Added HVAP and smart railgun rounds to reqtorio.
+  - rscadd: Added SR-127 flak ammo to reqtorio.
+  - rscadd: Added deployable floodlights to reqtorio.
+  - rscadd: Added both plastiques to reqtorio.
+  - rscadd: Added detpacks to reqtorio.
+  - spellcheck: Added a missing period to drop pod factory description.
+  - balance: All AMR mags cost the same.
+  Pariah919:
+  - rscadd: Added new cloak and incendiary rockets for MLRS.
+  TiviPlus:
+  - code_imp: razorburns have been removed from loadouts due to an internal code change
+  Xander3359:
+  - refactor: Alamo console for xenos is TGUI now
+  Xander3359 Naaanii:
+  - admin: Admins can cancel king summon
+2024-02-13:
+  Barnet2:
+  - balance: If autobalance is on or if you are a tier four, the xeno respawn timer
+      is not applied
+  - balance: Sentinel gas nade is now transparent (you can see through it)
+  Lumipharon:
+  - bugfix: fixed a couple of minor edge case bugs with jumping
+  - code_imp: connect_loc now works properly for multitile atoms

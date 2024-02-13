@@ -72,13 +72,14 @@
 /obj/item/attachable/motiondetector/activate(mob/user, turn_off)
 	if(operator)
 		clean_operator(forced = TRUE)
-		return
+		return TRUE
 	operator = user
 	RegisterSignals(operator, list(COMSIG_QDELETING, COMSIG_GUN_USER_UNSET), PROC_REF(clean_operator))
 	RegisterSignals(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_REMOVED_INVENTORY), PROC_REF(clean_operator))
 	UnregisterSignal(operator, COMSIG_GUN_USER_SET)
 	START_PROCESSING(SSobj, src)
 	update_icon()
+	return TRUE
 
 ///Activate the attachement when your are putting the gun out of your suit slot
 /obj/item/attachable/motiondetector/proc/start_processing_again(datum/source, obj/item/weapon/gun/equipping)
@@ -93,11 +94,6 @@
 
 /obj/item/attachable/motiondetector/attack_self(mob/user)
 	activate(user)
-
-/obj/item/attachable/motiondetector/update_icon()
-	. = ..()
-	for(var/datum/action/action AS in master_gun?.actions)
-		action.update_button_icon()
 
 /obj/item/attachable/motiondetector/update_icon_state()
 	. = ..()
