@@ -269,6 +269,3 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 //cameras
 #define SOM_CAMERA_NETWORK "som_camera_network"
-
-///Default damage for slamming a mob against an object
-#define BASE_OBJ_SLAM_DAMAGE 10

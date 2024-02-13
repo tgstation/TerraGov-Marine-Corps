@@ -354,10 +354,9 @@
 	handle_weldingtool_overlay(TRUE)
 	return TRUE
 
-///Interaction for using a grab on an object
-/obj/proc/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
-	//if(isxeno(user))
-	//	return
+/obj/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	if(isxeno(user))
+		return
 	if(user.a_intent != INTENT_HARM)
 		return
 	if(!isliving(grab.grabbed_thing))
@@ -369,6 +368,7 @@
 	var/mob/living/grabbed_mob = grab.grabbed_thing
 	if(prob(15))
 		grabbed_mob.Paralyze(2 SECONDS)
+		user.drop_held_item()
 	step_towards(grabbed_mob, src)
 	var/damage = base_damage + (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
 	grabbed_mob.apply_damage(damage, BRUTE, "head", MELEE, is_sharp, updating_health = TRUE)

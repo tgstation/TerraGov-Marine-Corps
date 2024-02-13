@@ -493,3 +493,34 @@
 
 /turf/closed/wall/dissolvability(acid_strength)
 	return 0.5
+
+/turf/closed/wall/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_WALL_SLAM_DAMAGE, is_sharp = FALSE)
+	if(!isliving(grab.grabbed_thing))
+		return
+
+	var/mob/living/grabbed_mob = grab.grabbed_thing
+	step_towards(grabbed_mob, src)
+	var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	var/state = user.grab_state
+	switch(state)
+		if(GRAB_PASSIVE)
+			damage += base_damage
+			grabbed_mob.visible_message(span_warning("[user] slams [grabbed_mob] against [src]!"))
+			log_combat(user, grabbed_mob, "slammed", "", "against [src]")
+		if(GRAB_AGGRESSIVE)
+			damage += base_damage * 1.5
+			grabbed_mob.visible_message(span_danger("[user] bashes [grabbed_mob] against [src]!"))
+			log_combat(user, grabbed_mob, "bashed", "", "against [src]")
+			if(prob(50))
+				grabbed_mob.Paralyze(2 SECONDS)
+				user.drop_held_item()
+		if(GRAB_NECK)
+			damage += base_damage * 2
+			grabbed_mob.visible_message(span_danger("<big>[user] crushes [grabbed_mob] against [src]!</big>"))
+			log_combat(user, grabbed_mob, "crushed", "", "against [src]")
+			grabbed_mob.Paralyze(2 SECONDS)
+			user.drop_held_item()
+	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	take_damage(damage, BRUTE, MELEE)
+	playsound(src, 'sound/weapons/heavyhit.ogg', 40)
+	return TRUE

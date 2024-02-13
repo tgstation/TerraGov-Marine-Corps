@@ -132,20 +132,21 @@
 	var/mob/living/grabbed_mob = grab.grabbed_thing
 	var/state = user.grab_state
 	user.drop_held_item()
+	step_towards(grabbed_mob, src)
 	var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
 	switch(state)
 		if(GRAB_PASSIVE)
-			damage += BASE_OBJ_SLAM_DAMAGE
+			damage += base_damage
 			grabbed_mob.visible_message(span_warning("[user] slams [grabbed_mob] against \the [src]!"))
 			log_combat(user, grabbed_mob, "slammed", "", "against \the [src]")
 		if(GRAB_AGGRESSIVE)
-			damage += BASE_OBJ_SLAM_DAMAGE * 1.5
+			damage += base_damage * 1.5
 			grabbed_mob.visible_message(span_danger("[user] bashes [grabbed_mob] against \the [src]!"))
 			log_combat(user, grabbed_mob, "bashed", "", "against \the [src]")
 			if(prob(50))
 				grabbed_mob.Paralyze(2 SECONDS)
 		if(GRAB_NECK)
-			damage += BASE_OBJ_SLAM_DAMAGE * 2
+			damage += base_damage * 2
 			grabbed_mob.visible_message(span_danger("<big>[user] crushes [grabbed_mob] against \the [src]!</big>"))
 			log_combat(user, grabbed_mob, "crushed", "", "against \the [src]")
 			grabbed_mob.Paralyze(2 SECONDS)
