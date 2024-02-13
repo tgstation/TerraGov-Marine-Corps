@@ -198,3 +198,40 @@
   - admin: added subtitle and color option to command reports
   novaepee:
   - imageadd: port TG surgery tool sprites
+2024-02-12:
+  AzonStarfall:
+  - bugfix: Fixed Arachne's Medbay Disposal.
+  Helg2:
+  - bugfix: Xenos now show their wound in their special states.
+  Lumipharon:
+  - balance: Unarmed damage against humans is no longer rng if your victim is prone
+  - balance: CQC skill lowers grab upgrade time
+  - balance: Unarmed attacks against humans uses the same zone targeting as melee
+      weapons
+  - bugfix: Choking someone to death once again actually causes oxyloss
+  - bugfix: Melee attack can now actually miss some times as intended (only for humans
+      attacking humans)
+  Naaanii:
+  - rscadd: Added HVAP and smart railgun rounds to reqtorio.
+  - rscadd: Added SR-127 flak ammo to reqtorio.
+  - rscadd: Added deployable floodlights to reqtorio.
+  - rscadd: Added both plastiques to reqtorio.
+  - rscadd: Added detpacks to reqtorio.
+  - spellcheck: Added a missing period to drop pod factory description.
+  - balance: All AMR mags cost the same.
+  Pariah919:
+  - rscadd: Added new cloak and incendiary rockets for MLRS.
+  TiviPlus:
+  - code_imp: razorburns have been removed from loadouts due to an internal code change
+  Xander3359:
+  - refactor: Alamo console for xenos is TGUI now
+  Xander3359 Naaanii:
+  - admin: Admins can cancel king summon
+2024-02-13:
+  Barnet2:
+  - balance: If autobalance is on or if you are a tier four, the xeno respawn timer
+      is not applied
+  - balance: Sentinel gas nade is now transparent (you can see through it)
+  Lumipharon:
+  - bugfix: fixed a couple of minor edge case bugs with jumping
+  - code_imp: connect_loc now works properly for multitile atoms
