@@ -48,7 +48,8 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	update_move_direction()
 	update_icon()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+		COMSIG_ATOM_ENTERED = PROC_REF(on_enter),
+		//COMSIG_ATOM_EXIT = PROC_REF(on_exit),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -196,7 +197,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		addtimer(CALLBACK(src, PROC_REF(convey), thing_to_move), CONVEYOR_DELAY)
 
 ///Sets any entering AMs to be moved
-/obj/machinery/conveyor/proc/on_cross(datum/source, atom/movable/arrived)
+/obj/machinery/conveyor/proc/on_enter(datum/source, atom/movable/arrived)
 	SIGNAL_HANDLER
 	if(!is_operational())
 		return
@@ -217,37 +218,6 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	if(!operating)
 		return
 	step(movable_thing, movedir)
-
-// make the conveyor broken
-// also propagate inoperability to any connected conveyor with the same ID
-/obj/machinery/conveyor/proc/broken()
-	obj_break()
-	update()
-
-	var/obj/machinery/conveyor/C = locate() in get_step(src, dir)
-	if(C)
-		C.set_operable(dir, id, FALSE)
-
-	C = locate() in get_step(src, REVERSE_DIR(dir))
-	if(C)
-		C.set_operable(REVERSE_DIR(dir), id, FALSE)
-
-
-//set the operable var if ID matches, propagating in the given direction
-
-/obj/machinery/conveyor/proc/set_operable(stepdir, match_id, op)
-
-	if(id != match_id)
-		return
-	if(op)
-		conveyor_flags |= CONVEYOR_OPERABLE
-	else
-		conveyor_flags &= -CONVEYOR_OPERABLE
-
-	update()
-	var/obj/machinery/conveyor/C = locate() in get_step(src, stepdir)
-	if(C)
-		C.set_operable(stepdir, id, op)
 
 /obj/machinery/conveyor/centcom_auto
 	id = "round_end_belt"
