@@ -923,17 +923,19 @@
 	return ..()
 
 /obj/item/storage/belt/shotgun/martini/attack_hand(mob/living/user)
-	. = ..()
-	if (loc != user)
+	if(!ishuman(user))
+		return
+
+	if(loc != user)
 		. = ..()
 		for(var/mob/M in content_watchers)
 			close(M)
 
-	if(!draw_mode || !ishuman(user) && !length(contents))
-		open(user)
-
 	if(!length(contents))
-		return
+		open(user) //Empty belt? Open the inventory
+
+	if(!draw_mode)
+		return ..() //No draw mode so we just click like normal
 
 	var/obj/item/I = contents[length(contents)]
 	if(!istype(I, /obj/item/ammo_magazine/handful))
