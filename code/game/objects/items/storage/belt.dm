@@ -920,8 +920,10 @@
 		to_chat(user, span_notice("[src] can only be filled with .557/440 ball rifle rounds."))
 		return
 
+	return ..()
 
 /obj/item/storage/belt/shotgun/martini/attack_hand(mob/living/user)
+	. = ..()
 	if (loc != user)
 		. = ..()
 		for(var/mob/M in content_watchers)
@@ -945,7 +947,6 @@
 
 	existing_handful.create_handful(user, 1)
 	update_icon()
-
 
 /obj/item/storage/belt/knifepouch
 	name="\improper M276 pattern knife rig"
