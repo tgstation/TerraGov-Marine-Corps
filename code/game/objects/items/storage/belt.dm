@@ -898,7 +898,7 @@
 /obj/item/storage/belt/shotgun/martini
 	name = "martini henry ammo belt"
 	desc = "A belt good enough for holding all your .577/400 ball rounds."
-	icon_state = "marini_belt"
+	icon_state = "martini_belt"
 	storage_slots = 12
 	max_storage_space = 24
 	sprite_slots = 6
