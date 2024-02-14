@@ -164,7 +164,7 @@
 	icon = 'icons/obj/items/guns/submachineguns64.dmi'
 	icon_state = "t45"
 	item_state = "t45"
-	caliber = CALIBER_10X20_CASELESS //codex
+	caliber = CALIBER_45ACP //codex
 	max_shells = 40 //codex
 	fire_sound = 'sound/weapons/guns/fire/skorpevo.ogg'
 	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
@@ -174,7 +174,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_heavysmg
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/smg/standard_heavysmg,
-		/obj/item/ammo_magazine/smg/standard_heavysmg/hollowpoint,
+		/obj/item/ammo_magazine/smg/standard_heavysmg/squashhead,
 	)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,

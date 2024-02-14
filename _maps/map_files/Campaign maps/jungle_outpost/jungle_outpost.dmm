@@ -6716,7 +6716,7 @@
 /area/campaign/jungle_outpost/outpost/landing)
 "BU" = (
 /obj/structure/table/mainship,
-/obj/item/trash/barcardine,
+/obj/item/trash/barcaridine,
 /turf/open/floor/tile/neutral/full,
 /area/campaign/jungle_outpost/outpost/living/canteen)
 "BV" = (

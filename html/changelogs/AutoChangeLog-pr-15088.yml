@@ -1,0 +1,4 @@
+author: "Helg2"
+delete-after: True
+changes:
+  - balance: "Psychic Relays, Evolution Towers and Pheromonone Towers now ignore weed removal."

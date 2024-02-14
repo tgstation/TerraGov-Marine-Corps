@@ -16,6 +16,7 @@ Thumbs.db
 data/
 cfg/
 tmp/
+/cache/**/*
 tools/Runtime Condenser/Input.txt
 tools/Runtime Condenser/Output.txt
 tools/MapDaemon/logs/*.txt
