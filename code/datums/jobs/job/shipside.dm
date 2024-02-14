@@ -982,7 +982,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 
 	id = /obj/item/card/id/silver
 	ears = /obj/item/radio/headset/mainship
-	back = /obj/item/storage/backpack/marine/newt
+	back = /obj/item/storage/backpack/marine/satchel/newt
 	head = /obj/item/clothing/head/tgmcberet/newt
 
 	var/list/abilities = list(
@@ -992,7 +992,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 /datum/outfit/job/medical/companion/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.set_species("Catslug")
-	H.fully_replace_character_name(H.real_name, "newt")
+	H.fully_replace_character_name(H.real_name, "Newt")
 	H.gender = FEMALE
 
 	for(var/ability in abilities)
@@ -1000,7 +1000,14 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 
 /datum/outfit/job/medical/companion/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_hand(new /obj/item/weapon/twohanded/spear/tactical/newt, SLOT_L_HAND)
+	H.equip_to_slot_or_hand(new /obj/item/weapon/twohanded/spear/tactical/newt,  SLOT_BACK)
+	H.equip_to_appropriate_slot(new /obj/item/stack/medical/heal_pack/advanced/burn_pack ,  SLOT_BACK)
+	H.equip_to_appropriate_slot(new /obj/item/stack/medical/heal_pack/advanced/burn_pack ,  SLOT_BACK)
+	H.equip_to_appropriate_slot(new /obj/item/stack/medical/heal_pack/advanced/bruise_pack ,  SLOT_BACK)
+	H.equip_to_appropriate_slot(new /obj/item/stack/medical/heal_pack/advanced/bruise_pack ,  SLOT_BACK)
+	H.equip_to_appropriate_slot(new /obj/item/stack/medical/splint ,  SLOT_BACK)
+	H.equip_to_appropriate_slot(new /obj/item/stack/medical/splint ,  SLOT_BACK)
+	H.equip_to_appropriate_slot(new /obj/item/defibrillator  , SLOT_BACK)
 
 //Liaison
 /datum/job/terragov/civilian/liaison

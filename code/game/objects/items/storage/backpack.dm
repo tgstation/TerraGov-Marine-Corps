@@ -414,7 +414,7 @@
 		/obj/item/stack/sandbags,
 	)
 
-/obj/item/storage/backpack/marine/newt
+/obj/item/storage/backpack/marine/satchel/newt
 	name = "\improper Newt satchel"
 	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel, this one has been cut down and fits a much smaller lifeform."
 	icon_state = "newtsatchel"
