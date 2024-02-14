@@ -477,8 +477,8 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 			return
 
 	else if(!COOLDOWN_CHECK(src, xeno_unresting_cooldown))
-			balloon_alert(src, "Cannot rest so soon after getting up!")
-			return
+		balloon_alert(src, "Cannot rest so soon after getting up!")
+		return
 	return ..()
 
 /mob/living/carbon/xenomorph/set_resting()
