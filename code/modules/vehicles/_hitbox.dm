@@ -38,7 +38,7 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/hitbox/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
+/obj/hitbox/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/ability/xeno_action/ready_charge/charge_datum)
 	charge_datum.do_stop_momentum(FALSE)
 	return (CHARGE_SPEED(charge_datum) * 20)
 
