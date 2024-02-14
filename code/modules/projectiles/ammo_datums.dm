@@ -636,7 +636,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 15
 	penetration = 15
-	armor_type = "bomb"
+	armor_type = BOMB
 	sundering = 1
 	damage_falloff = 2
 	shrapnel_chance = 0
