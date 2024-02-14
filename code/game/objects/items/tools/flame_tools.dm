@@ -411,7 +411,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/bica
 	name = "strawberry flavored cigarette"
-	desc = "Red tipped. Has got a single word stamped on the side: \"(BICARDINE)\"."
+	desc = "Red tipped. Has got a single word stamped on the side: \"(BICARIDINE)\"."
 	icon_state = "bicacigoff"
 	item_state = "bicacigoff"
 	icon_on = "bicacigon"
