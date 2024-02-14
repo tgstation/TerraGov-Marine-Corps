@@ -39,7 +39,7 @@
 			/obj/item/ammo_magazine/smg/standard_machinepistol = -1,
 			/obj/item/weapon/gun/smg/standard_heavysmg = -1,
 			/obj/item/ammo_magazine/smg/standard_heavysmg = -1,
-			/obj/item/ammo_magazine/smg/standard_heavysmg/hollowpoint = -1,
+			/obj/item/ammo_magazine/smg/standard_heavysmg/squashhead = -1,
 		),
 		"Marksman" = list(
 			/obj/item/weapon/gun/rifle/standard_dmr = -1,
@@ -257,7 +257,7 @@
 			/obj/item/ammo_magazine/smg/standard_machinepistol = -1,
 			/obj/item/weapon/gun/smg/standard_heavysmg = -1,
 			/obj/item/ammo_magazine/smg/standard_heavysmg = -1,
-			/obj/item/ammo_magazine/smg/standard_heavysmg/hollowpoint = -1,
+			/obj/item/ammo_magazine/smg/standard_heavysmg/squashhead = -1,
 		),
 		"Marksman" = list(
 			/obj/item/weapon/gun/rifle/standard_dmr = -1,
@@ -458,7 +458,7 @@
 			/obj/item/ammo_magazine/smg/standard_machinepistol = -1,
 			/obj/item/weapon/gun/smg/standard_heavysmg = -1,
 			/obj/item/ammo_magazine/smg/standard_heavysmg = -1,
-			/obj/item/ammo_magazine/smg/standard_heavysmg/hollowpoint = -1,
+			/obj/item/ammo_magazine/smg/standard_heavysmg/squashhead = -1,
 		),
 		"Marksman" = list(
 			/obj/item/weapon/gun/rifle/standard_dmr = -1,

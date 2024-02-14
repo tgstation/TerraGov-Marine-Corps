@@ -630,6 +630,28 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 3
 	shrapnel_chance = 45
 
+/datum/ammo/bullet/smg/squash
+	name = "squash-head submachinegun bullet"
+	hud_state = "pistol_squash"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	damage = 15
+	penetration = 15
+	armor_type = BOMB
+	sundering = 1
+	damage_falloff = 2
+	shrapnel_chance = 0
+	///shatter effection duration when hitting mobs
+	var/shatter_duration = 3 SECONDS
+
+/datum/ammo/bullet/smg/squash/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+
+	var/mob/living/living_victim = M
+	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
+
+
+
 /datum/ammo/bullet/smg/incendiary
 	name = "incendiary submachinegun bullet"
 	hud_state = "smg_fire"
