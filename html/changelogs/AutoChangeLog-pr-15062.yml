@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - rscadd: "Added new \"lasburster\" grenade"
-  - code_imp: "added the ability to shoot bullets in a circle"

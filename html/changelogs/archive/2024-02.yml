@@ -235,3 +235,19 @@
   Lumipharon:
   - bugfix: fixed a couple of minor edge case bugs with jumping
   - code_imp: connect_loc now works properly for multitile atoms
+2024-02-14:
+  Cpol-CzHa:
+  - rscadd: Adds a number of missing items to valhalla.
+  Naaanii:
+  - rscadd: Added all AGLS ammo to reqtorio.
+  - rscadd: Added all TAT ammo to reqtorio.
+  - rscadd: Added all FK-88 ammo to reqtorio.
+  - rscadd: Added all ATR-22 ammo to reqtorio.
+  - bugfix: Actually adds the camera refill to req.
+  TiviPlus:
+  - rscadd: Added new "lasburster" grenade
+  - code_imp: added the ability to shoot bullets in a circle
+  Xander3359:
+  - bugfix: fix typo in martini belt causing broken sprite
+  efzapa:
+  - spellcheck: Bicaridine is now universally spelt correctly.
