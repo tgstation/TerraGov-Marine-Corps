@@ -41,7 +41,6 @@
 		return 0
 	if(lying_angle)
 		return 0
-	if(HAS_TRAIT())
 	log_attack("[key_name(pilot)] drove into [key_name(src)] with [veh]")
 	temp = get_step(veh.loc, facing)
 	T = temp
