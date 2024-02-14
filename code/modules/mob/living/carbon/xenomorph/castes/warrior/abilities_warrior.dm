@@ -414,7 +414,7 @@
 		if(!silent)
 			owner.balloon_alert(owner, "Nothing to toss")
 		return FALSE
-	if(!Adjacent(owner.pulling))
+	if(!owner.Adjacent(owner.pulling))
 		if(!silent)
 			owner.balloon_alert(owner, "Target not adjacent")
 		return FALSE
