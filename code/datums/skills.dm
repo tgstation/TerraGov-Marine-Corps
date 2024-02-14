@@ -313,10 +313,10 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/companion
 	name = "Companion"
-	cqc = SKILL_CQC_TRAINED
 	firearms = SKILL_FIREARMS_UNTRAINED
 	melee_weapons = SKILL_MELEE_TRAINED
-	medical = SKILL_MEDICAL_NOVICE
+	medical = SKILL_MEDICAL_PRACTICED
+	cqc = SKILL_CQC_WEAK
 
 /datum/skills/cmo
 	name = "CMO"
