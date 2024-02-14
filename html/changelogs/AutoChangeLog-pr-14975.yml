@@ -1,0 +1,6 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - rscadd: "New squashhead bullets for SMG-45"
+  - rscdel: "SMG-45 HP"
+  - soundadd: "New firesound for SMG-45"
