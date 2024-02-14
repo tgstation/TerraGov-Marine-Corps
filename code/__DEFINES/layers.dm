@@ -129,7 +129,7 @@
 ///for platform corner structures
 #define ABOVE_MOB_PLATFORM_LAYER 4.11
 
-#define TANK_BARREL_LAYER 4.2
+#define ABOVE_MOB_PROP_LAYER 4.2
 
 #define TANK_TURRET_LAYER 4.27
 

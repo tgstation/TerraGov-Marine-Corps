@@ -15,6 +15,7 @@
 	bound_y = -32
 	max_integrity = INFINITY
 	move_resist = INFINITY // non forcemoving this could break gliding so lets just say no
+	var/list/atom/movable/tank_desants
 	///The "parent" that this hitbox is attached to and to whom it will relay damage
 	var/obj/vehicle/root = null
 
@@ -22,10 +23,73 @@
 	. = ..()
 	root = new_root
 	allow_pass_flags = root.allow_pass_flags
+	//root.allow_pass_flags = ALL
+	//root.pass_flags = ALL
 	resistance_flags = root.resistance_flags
 	RegisterSignal(new_root, COMSIG_MOVABLE_MOVED, PROC_REF(root_move))
 	RegisterSignal(new_root, COMSIG_QDELETING, PROC_REF(root_delete))
 	RegisterSignals(new_root, list(COMSIG_RIDDEN_DRIVER_MOVE, COMSIG_VEHICLE_MOVE), PROC_REF(on_attempt_drive))
+	RegisterSignal(new_root, COMSIG_ATOM_DIR_CHANGE, PROC_REF(owner_turned))
+
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_TURF_JUMP_ENDED_HERE = PROC_REF(on_jump_landed),
+		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/hitbox/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
+	charge_datum.do_stop_momentum(FALSE)
+	return (CHARGE_SPEED(charge_datum) * 20)
+
+///Signal handler to spin the desants as well when the tank turns
+/obj/hitbox/proc/owner_turned(datum/source, old_dir, new_dir)
+	SIGNAL_HANDLER
+	if(!new_dir || new_dir == old_dir)
+		return
+	for(var/mob/living/desant AS in tank_desants)
+		if(desant.loc == root.loc)
+			continue
+		var/turf/new_pos
+		//doesnt work with diags, but that shouldnt happen, right?
+		if(REVERSE_DIR(old_dir) == new_dir)
+			new_pos = get_step(root, REVERSE_DIR(get_dir(desant, root)))
+		else if(turn(old_dir, 90) == new_dir)
+			new_pos = get_step(root, turn(get_dir(desant, root), -90))
+		else
+			new_pos = get_step(root, turn(get_dir(desant, root), 90))
+		desant.forceMove(new_pos)
+
+/obj/hitbox/proc/on_jump_landed(datum/source, atom/lander)
+	SIGNAL_HANDLER
+	if(HAS_TRAIT(lander, TRAIT_TANK_DESANT))
+		return
+	ADD_TRAIT(lander, TRAIT_TANK_DESANT, VEHICLE_TRAIT)
+	LAZYSET(tank_desants, lander, lander.layer)
+	RegisterSignal(lander, COMSIG_QDELETING, PROC_REF(on_desant_del))
+	lander.layer = ABOVE_MOB_PLATFORM_LAYER
+
+/obj/hitbox/proc/on_exited(atom/source, atom/movable/AM, direction)
+	SIGNAL_HANDLER
+	if(!HAS_TRAIT(AM, TRAIT_TANK_DESANT))
+		return
+	if(locate(src) in AM.loc) //Î'd cut the locate but for some reason it wants strict loc only not locs so ???
+		return
+	REMOVE_TRAIT(AM, TRAIT_TANK_DESANT, VEHICLE_TRAIT)
+	AM.layer = LAZYACCESS(tank_desants, AM)
+	LAZYREMOVE(tank_desants, AM)
+	UnregisterSignal(AM, COMSIG_QDELETING)
+
+/obj/hitbox/proc/on_desant_del(datum/source)
+	SIGNAL_HANDLER
+	LAZYREMOVE(tank_desants, source)
+
+/obj/hitbox/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(.)
+		return
+	if((allow_pass_flags & PASS_TANK) && (mover.pass_flags & PASS_TANK))
+		return TRUE
 
 /obj/hitbox/Destroy(force)
 	if(!force) // only when the parent is deleted
@@ -40,18 +104,30 @@
 
 /obj/hitbox/proc/root_move(atom/movable/mover, atom/oldloc, direction)
 	SIGNAL_HANDLER
+	//direction is null here, so we improvise
+	direction = get_dir(oldloc, mover)
 	forceMove(mover.loc)
-
-/obj/hitbox/CanAllowThrough(atom/movable/mover, turf/target)
-	if(mover == root)//Bypass your own hitbox
-		return TRUE
-	return ..()
+	for(var/mob/living/tank_desant AS in tank_desants)
+		step(tank_desant, direction, root.step_size)
+		if(isxeno(tank_desant))
+			return
+		var/away_dir = get_dir(tank_desant, root)
+		if(!away_dir)
+			away_dir = pick(GLOB.alldirs)
+		away_dir = REVERSE_DIR(away_dir)
+		var/turf/target = get_step(get_step(root, away_dir), away_dir)
+		tank_desant.throw_at(target, 3, 3, root)
 
 /obj/hitbox/proc/on_attempt_drive(atom/movable/movable_parent, mob/living/user, direction)
 	SIGNAL_HANDLER
 	if(ISDIAGONALDIR(direction))
 		return COMPONENT_DRIVER_BLOCK_MOVE
-	movable_parent.setDir(direction)//we can move, so lets start by pointing in that direction
+	if((root.dir != direction) && (root.dir != REVERSE_DIR(direction)))
+		root.setDir(direction) // tivi todo dupe on medium size kill me
+		if(isarmoredvehicle(root))
+			var/obj/vehicle/sealed/armored/armor = root
+			playsound(armor, armor.engine_sound, 100, TRUE, 20)
+		return COMPONENT_DRIVER_BLOCK_MOVE
 	//Due to this being a hot proc this part here is inlined and set on a by-hitbox-size basis
 	/////////////////////////////
 	var/turf/centerturf = get_step(get_step(root, direction), direction)
@@ -61,16 +137,16 @@
 	/////////////////////////////
 	var/canstep = TRUE
 	for(var/turf/T AS in enteringturfs)	//No break because we want to crush all the turfs before we start trying to move
-		if(T.Enter(root) == FALSE)	//Check if we can cross the turf first/bump the turf
-			canstep = FALSE		//why "var == false" you ask? well its because its tiny bit faster, thanks byond
+		if(!T.Enter(root, direction))	//Check if we can cross the turf first/bump the turf
+			canstep = FALSE
 
-		for(var/atom/movable/O AS in T.contents) // this is checked in turf/enter but it doesnt return it so lmao
-			if(O.CanPass(root) == TRUE)	// Then check for obstacles to crush
+		for(var/atom/movable/O AS in T.contents) // this is checked in turf/enter but it doesnt return false so lmao
+			if(O.CanPass(root))	// Then check for obstacles to crush
 				continue
 			root.Bump(O) //manually call bump on everything
 			canstep = FALSE
 
-	if(canstep == TRUE)
+	if(canstep)
 		return NONE
 	return COMPONENT_DRIVER_BLOCK_MOVE
 
@@ -119,15 +195,15 @@
 	////////////////////////////////////
 	var/canstep = TRUE
 	for(var/turf/T AS in enteringturfs)	//No break because we want to crush all the turfs before we start trying to move
-		if(T.Enter(root) == FALSE)	//Check if we can cross the turf first/bump the turf
+		if(!T.Enter(root))	//Check if we can cross the turf first/bump the turf
 			canstep = FALSE		//why "var == false" you ask? well its because its tiny bit faster, thanks byond
 
 		for(var/atom/movable/O AS in T.contents) // this is checked in turf/enter but it doesnt return it so lmao
-			if(O.CanPass(root) == TRUE)	// Then check for obstacles to crush
+			if(O.CanPass(root))	// Then check for obstacles to crush
 				continue
 			root.Bump(O) //manually call bump on everything
 			canstep = FALSE
 
-	if(canstep == TRUE)
+	if(canstep)
 		return NONE //step(root, direction)
 	return COMPONENT_DRIVER_BLOCK_MOVE

@@ -169,6 +169,8 @@
 #define TRAIT_LIGHT_PAIN_RESIST "light_pain_resist"
 ///Pain reduction medium
 #define TRAIT_MEDIUM_PAIN_RESIST "medium_pain_resist"
+///is currently riding an armored vehicle
+#define TRAIT_TANK_DESANT "tank_desant"
 
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).

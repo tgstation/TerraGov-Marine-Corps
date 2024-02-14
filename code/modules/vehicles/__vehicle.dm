@@ -21,7 +21,7 @@
 	var/move_delay = 2
 	var/lastmove = 0
 	///multitile hitbox, set to a hitbox type to make this vehicle multitile.
-	var/obj/hitbox
+	var/obj/hitbox/hitbox
 	/**
 	  * If the driver needs a certain item in hand (or inserted, for vehicles) to drive this. For vehicles, this must be duplicated on their riding component subtype
 	  * [/datum/component/riding/var/keytype] variable because only a few specific checks are handled here with this var, and the majority of it is on the riding component

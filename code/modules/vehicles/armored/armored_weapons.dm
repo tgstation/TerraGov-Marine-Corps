@@ -215,6 +215,8 @@
 ///does any effects and changes to the projectile when it is fired
 /obj/item/armored_weapon/proc/apply_weapon_modifiers(obj/projectile/projectile_to_fire, mob/firer)
 	projectile_to_fire.shot_from = src
+	if(chassis.hitbox?.tank_desants)
+		projectile_to_fire.hit_atoms += chassis.hitbox.tank_desants
 	if(projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF)
 		var/iff_signal
 		if(ishuman(firer))

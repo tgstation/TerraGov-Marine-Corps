@@ -41,37 +41,17 @@
 		return 0
 	if(lying_angle)
 		return 0
-	log_attack("[key_name(pilot)] drove over [key_name(src)] with [veh]")
-	KnockdownNoChain(1)
-	if(src in veh.loc) // trodden over.
-		var/target_dir = turn(veh.dir, 180)
-		temp = get_step(veh.loc, target_dir)
-		T = temp
-		target_dir = turn(veh.dir, 180)
-		T = get_step(T, target_dir)
-		face_atom(T)
-		throw_at(T, 3, 2, veh, 1)
-		return apply_damage(rand(20, 30), BRUTE)
-
-	temp = get_step(T, facing)
+	if(HAS_TRAIT())
+	log_attack("[key_name(pilot)] drove into [key_name(src)] with [veh]")
+	temp = get_step(veh.loc, facing)
 	T = temp
-	T = get_step(T, pick(GLOB.cardinals))
-	if(mob_size == MOB_SIZE_BIG)
-		throw_at(T, 3, 2, veh, 0)
-	else
-		throw_at(T, 3, 2, veh, 1)
-	visible_message(span_danger("[veh] bumps into [src], throwing [p_them()] away!"), span_danger("[veh] violently bumps into you!"))
-	return apply_damage(rand(40, 55), BRUTE)
+	T = get_step(T, facing)
+	T = get_step(T, facing)
+	T = get_step(T, facing)
+	face_atom(T)
+	throw_at(T, 3, 2, veh, 1)
+	return apply_damage(rand(20, 30), BRUTE)
 
-/mob/living/carbon/xenomorph/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, turf/T, turf/temp)
-	. = ..()
-	if(lying_angle || loc == veh.loc)
-		return
-	temp = get_step(T, facing)
-	T = temp
-	T = get_step(T, pick(GLOB.cardinals))
-	throw_at(T, 2, 2, veh, 0)
-	visible_message(span_danger("[veh] bumps into [src], pushing [p_them()] away!"), span_danger("[veh] bumps into us!"))
 
 /mob/living/carbon/xenomorph/larva/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, turf/T, turf/temp)
 	gib() //fuck you

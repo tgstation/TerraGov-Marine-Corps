@@ -9,7 +9,8 @@
 	layer = ABOVE_MOB_LAYER
 	max_drivers = 1
 	move_resist = INFINITY
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_AIR|PASS_WALKOVER
+	flags_atom = PREVENT_CONTENTS_EXPLOSION
+	allow_pass_flags = PASS_TANK|PASS_AIR|PASS_WALKOVER
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE|PORTAL_IMMUNE
 
 	// placeholder, make skill check or similar later
@@ -69,14 +70,14 @@
 	if(damage_icon_path)
 		damage_overlay = new()
 		damage_overlay.icon = damage_icon_path
-		damage_overlay.layer = layer+0.1
+		damage_overlay.layer = layer+0.001
 		vis_contents += damage_overlay
 	if(flags_armored & ARMORED_HAS_PRIMARY_WEAPON)
 		turret_overlay = new()
 		turret_overlay.icon = turret_icon
 		turret_overlay.icon_state = turret_icon_state
 		turret_overlay.setDir(dir)
-		turret_overlay.layer = layer+0.2
+		turret_overlay.layer = layer+0.002
 		turret_overlay.on_tank_turn(src, dir, dir)
 		turret_overlay.RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, TYPE_PROC_REF(/atom/movable/vis_obj/turret_overlay, on_tank_turn))
 		if(flags_armored & ARMORED_HAS_MAP_VARIANTS)
@@ -96,7 +97,7 @@
 	if(flags_armored & ARMORED_HAS_SECONDARY_WEAPON)
 		secondary_weapon_overlay = new()
 		secondary_weapon_overlay.icon = secondary_turret_icon
-		secondary_weapon_overlay.layer = layer+0.3
+		secondary_weapon_overlay.layer = layer+0.003
 		secondary_weapon_overlay.on_tank_turn(src, dir, dir)
 		secondary_weapon_overlay.RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, TYPE_PROC_REF(/atom/movable/vis_obj/turret_overlay, on_tank_turn))
 		vis_contents += secondary_weapon_overlay
@@ -170,9 +171,8 @@
 	if(COOLDOWN_CHECK(src, enginesound_cooldown))
 		COOLDOWN_START(src, enginesound_cooldown, engine_sound_length)
 		playsound(get_turf(src), engine_sound, 100, TRUE, 20)
-	setDir(direction)
 	after_move(direction)
-	return step(src, direction)
+	forceMove(get_step(src, direction)) // still animates and calls moved() and all that stuff BUT we skip checks
 
 /obj/vehicle/sealed/armored/resisted_against(mob/living/user)
 	balloon_alert(user, "exiting...")
@@ -180,7 +180,14 @@
 		balloon_alert(user, "exited")
 		mob_exit(user, TRUE)
 
-/obj/vehicle/sealed/armored/Bump(atom/A, yes)
+/obj/vehicle/sealed/armored/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(.)
+		return
+	if((allow_pass_flags & PASS_TANK) && (mover.pass_flags & PASS_TANK))
+		return TRUE
+
+/obj/vehicle/sealed/armored/Bump(atom/A)
 	. = ..()
 	var/pilot
 	var/list/drivers = return_drivers()
@@ -203,6 +210,11 @@
 
 /obj/vehicle/sealed/armored/exit_location(mob/M)
 	return get_step(src, REVERSE_DIR(dir))
+
+/obj/vehicle/sealed/armored/mob_try_enter(mob/M)
+	if(!ishuman(M))
+		return FALSE
+	return ..()
 
 /obj/vehicle/sealed/armored/add_occupant(mob/M, control_flags)
 	RegisterSignal(M, COMSIG_MOB_DEATH, PROC_REF(mob_exit), TRUE)
@@ -299,10 +311,14 @@
 		if(length(primary_weapon.ammo_magazine) >= primary_weapon.maximum_magazines)
 			balloon_alert(user, "magazine already full")
 			return
-		primary_weapon.ammo_magazine += I
 		user.temporarilyRemoveItemFromInventory(I)
 		I.forceMove(primary_weapon)
-		balloon_alert(user, "magazines [length(primary_weapon.ammo_magazine)]/[primary_weapon.maximum_magazines]")
+		if(!primary_weapon.ammo)
+			primary_weapon.ammo = src
+			balloon_alert(user, "primary gun loaded")
+		else
+			primary_weapon.ammo_magazine += I
+			balloon_alert(user, "magazines [length(primary_weapon.ammo_magazine)]/[primary_weapon.maximum_magazines]")
 		return
 	if(istype(I, /obj/item/tank_module))
 		var/obj/item/tank_module/mod = I
@@ -330,10 +346,14 @@
 		if(length(secondary_weapon.ammo_magazine) >= secondary_weapon.maximum_magazines)
 			balloon_alert(user, "magazine already full")
 			return
-		secondary_weapon.ammo_magazine += I
 		user.temporarilyRemoveItemFromInventory(I)
 		I.forceMove(secondary_weapon)
-		balloon_alert(user, "magazines [length(secondary_weapon.ammo_magazine)]/[secondary_weapon.maximum_magazines]")
+		if(!secondary_weapon.ammo)
+			secondary_weapon.ammo = I
+			balloon_alert(user, "secondary gun loaded")
+		else
+			secondary_weapon.ammo_magazine += I
+			balloon_alert(user, "magazines [length(secondary_weapon.ammo_magazine)]/[secondary_weapon.maximum_magazines]")
 		return
 
 /obj/vehicle/sealed/armored/welder_act(mob/living/user, obj/item/I)
