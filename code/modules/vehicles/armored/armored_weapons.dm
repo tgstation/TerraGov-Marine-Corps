@@ -15,7 +15,7 @@
 	///currently loaded ammo. initial value is ammo we start with
 	var/obj/item/ammo_magazine/ammo = /obj/item/ammo_magazine/tank/ltb_cannon
 	///Current loaded magazines: top one empties into ammo
-	var/obj/item/ammo_magazine/ammo_magazine = list()
+	var/list/obj/item/ammo_magazine/ammo_magazine = list()
 	///maximum magazines ammo_magazine can hold
 	var/maximum_magazines = 3
 	///ammo types we'll be able to accept
@@ -55,7 +55,6 @@
 	. = ..()
 	if(ammo)
 		ammo = new ammo(src)
-	accepted_ammo += default_ammo
 	AddComponent(/datum/component/automatedfire/autofire, projectile_delay, projectile_delay, projectile_burst_delay, burst_amount, fire_mode, CALLBACK(src, PROC_REF(set_bursting)), CALLBACK(src, PROC_REF(reset_fire)), CALLBACK(src, PROC_REF(fire)))
 
 /obj/item/armored_weapon/Destroy()
