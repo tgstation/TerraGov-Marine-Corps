@@ -8,7 +8,9 @@
 	desc = "Yell at the admin that spawned this in please."
 	icon = 'icons/obj/vehicles/hardpoint_modules.dmi'
 	icon_state = "ltb_cannon"
+	///reference to current overlay added to owner
 	var/image/overlay
+	///vehicle this overlay is attached to
 	var/obj/vehicle/sealed/armored/owner
 
 ///Called to apply modules to a vehicle

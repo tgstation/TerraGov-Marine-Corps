@@ -10,25 +10,26 @@
 	///Used to build the icon name for the turret overlay, null if its unequipable as a secondary
 	var/secondary_icon_name
 	///Weapon slot this weapon fits in
-	var/weapon_slot = MODULE_PRIMARY|MODULE_SECONDARY
+	var/weapon_slot = MODULE_PRIMARY
+
+	///currently loaded ammo. initial value is ammo we start with
+	var/obj/item/ammo_magazine/ammo = /obj/item/ammo_magazine/tank/ltb_cannon
 	///Current loaded magazines: top one empties into ammo
 	var/obj/item/ammo_magazine/ammo_magazine = list()
-	///currently loaded ammo
-	var/obj/item/ammo_magazine/ammo
 	///maximum magazines ammo_magazine can hold
 	var/maximum_magazines = 3
-	///The default ammo we start with
-	var/default_ammo = /obj/item/ammo_magazine/tank/ltb_cannon
-	///Alt ammo we'll also accept alongside the default ammo
+	///ammo types we'll be able to accept
 	var/list/accepted_ammo = list(
 		/obj/item/ammo_magazine/tank/tank_glauncher,
+		/obj/item/ammo_magazine/tank/ltb_cannon,
 	)
-	///sound file to play when this weapon you know, fires
-	var/fire_sound = list('sound/weapons/guns/fire/tank_cannon1.ogg', 'sound/weapons/guns/fire/tank_cannon2.ogg')
 	///current tracked target for fire(), updated when user drags
 	var/atom/current_target
 	///current mob firing this weapon. used for tracking for iff and etc in fire()
 	var/mob/current_firer
+
+	///sound file to play when this weapon you know, fires
+	var/fire_sound = list('sound/weapons/guns/fire/tank_cannon1.ogg', 'sound/weapons/guns/fire/tank_cannon2.ogg')
 	///Tracks windups
 	var/windup_checked = WEAPON_WINDUP_NOT_CHECKED
 	///windup sound played during windup
@@ -47,77 +48,24 @@
 	var/fire_mode = GUN_FIREMODE_SEMIAUTO
 	///how many seconds automatic reloading takes
 	var/rearm_time = 4.5 SECONDS
-	///ammo hud icon to display when empty
+	///ammo hud icon to display when no ammo is loaded
 	var/hud_state_empty = "shell_empty"
 
 /obj/item/armored_weapon/Initialize(mapload)
 	. = ..()
-	ammo = new default_ammo(src)
+	if(ammo)
+		ammo = new ammo(src)
 	accepted_ammo += default_ammo
 	AddComponent(/datum/component/automatedfire/autofire, projectile_delay, projectile_delay, projectile_burst_delay, burst_amount, fire_mode, CALLBACK(src, PROC_REF(set_bursting)), CALLBACK(src, PROC_REF(reset_fire)), CALLBACK(src, PROC_REF(fire)))
 
-/**
- * Toggles Weapons Safety
- *
- * Handles enabling or disabling the safety function.
- */
-/obj/vehicle/sealed/armored/proc/set_safety(mob/user)
-	weapons_safety = !weapons_safety
-	SEND_SOUND(user, sound('sound/machines/beep.ogg', volume = 25))
-	balloon_alert(user, "equipment [weapons_safety ? "safe" : "ready"]")
-	// todo maybe make tanks also update the mouse icon?
+/obj/item/armored_weapon/Destroy()
+	if(chassis)
+		detach(get_turf(chassis))
+	QDEL_NULL(ammo)
+	QDEL_LIST(ammo_magazine)
+	return ..()
 
-///Rotates the cannon overlay
-/obj/vehicle/sealed/armored/proc/swivel_turret(atom/A)
-	var/new_weapon_dir = angle2dir_cardinal(Get_Angle(src, A))
-	if(turret_overlay.dir == new_weapon_dir)
-		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam
-		return FALSE
-	playsound(src, 'sound/effects/tankswivel.ogg', 80,1)
-	TIMER_COOLDOWN_START(src, COOLDOWN_TANK_SWIVEL, 2 SECONDS)
-	turret_overlay.setDir(new_weapon_dir)
-	secondary_weapon_overlay.icon_state = "[secondary_weapon.secondary_icon_name]" + "_" + "[new_weapon_dir]"
-	return TRUE
-
-/obj/vehicle/sealed/armored/proc/on_mouseclick(mob/user, atom/target, turf/location, control, list/modifiers)
-	SIGNAL_HANDLER
-	//tgmc add start
-	modifiers = params2list(modifiers)
-	if(isnull(location) && target.plane == CLICKCATCHER_PLANE) //Checks if the intended target is in deep darkness and adjusts target based on params.
-		target = params2turf(modifiers["screen-loc"], get_turf(user), user.client)
-		modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
-		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
-	//tgmc add end
-	if(LAZYACCESS(modifiers, MIDDLE_CLICK))
-		set_safety(user)
-		return COMSIG_MOB_CLICK_CANCELED
-	if(modifiers[SHIFT_CLICK]) //Allows things to be examined.
-		return
-	if(weapons_safety)
-		return
-	if(!isturf(target) && !isturf(target.loc)) // Prevents inventory from being drilled
-		return
-	if(HAS_TRAIT(user, TRAIT_INCAPACITATED))
-		return
-	if(src == target)
-		return
-	if(!is_equipment_controller(user))
-		balloon_alert(user, "wrong seat for equipment!")
-		return COMSIG_MOB_CLICK_CANCELED
-	var/dir_to_target = get_cardinal_dir(src, target)
-	var/obj/item/armored_weapon/selected
-	if(modifiers[BUTTON] == RIGHT_CLICK)
-		selected = secondary_weapon
-	else
-		if(turret_overlay.dir != dir_to_target)
-			swivel_turret(target)
-			return COMSIG_MOB_CLICK_CANCELED
-		selected = primary_weapon
-	if(!selected)
-		return
-	INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/armored_weapon, begin_fire), user, target, modifiers)
-
+///called by the chassis: begins firing, yes this is stolen from mech but I made both so bite me
 /obj/item/armored_weapon/proc/begin_fire(mob/source, atom/target, list/modifiers)
 	if(!ammo || ammo.current_rounds < 0)
 		playsound(source, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
@@ -168,6 +116,7 @@
 			return FALSE
 	return TRUE
 
+///callback wrapper for adding/removing trait
 /obj/item/armored_weapon/proc/set_bursting(bursting)
 	if(bursting)
 		ADD_TRAIT(src, TRAIT_GUN_BURST_FIRING, VEHICLE_TRAIT)
@@ -248,11 +197,9 @@
 
 	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
 
-	if(chassis.primary_weapon == src)
-		var/image/flash = image(chassis.turret_overlay.icon, icon_state + "_fire", pixel_x = -54, pixel_y = -27)
-		var/old_overlay = chassis.turret_overlay.gun_overlay
-		chassis.turret_overlay.update_gun_overlay(flash)
-		addtimer(CALLBACK(chassis.turret_overlay, TYPE_PROC_REF(/atom/movable/vis_obj/turret_overlay, update_gun_overlay), old_overlay), 6, TIMER_CLIENT_TIME)
+	if(chassis.primary_weapon == src && !chassis.turret_overlay.flashing)
+		chassis.turret_overlay.swap_overlays(TRUE)
+		addtimer(CALLBACK(chassis.turret_overlay, TYPE_PROC_REF(/atom/movable/vis_obj/turret_overlay, swap_overlays), FALSE), 7, TIMER_CLIENT_TIME)
 
 	ammo.current_rounds--
 	for(var/mob/occupant AS in chassis.occupants)
@@ -272,6 +219,7 @@
 	reload()
 	return AUTOFIRE_CONTINUE|AUTOFIRE_SUCCESS
 
+///eject current ammo from tank
 /obj/item/armored_weapon/proc/eject_ammo()
 	ammo.forceMove(chassis.exit_location())
 	ammo.update_appearance()
@@ -279,6 +227,7 @@
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.update_ammo_hud(src, list(hud_state_empty, hud_state_empty), 0)
 
+///load topmost ammo magazine, if there is any
 /obj/item/armored_weapon/proc/reload()
 	if(ammo)
 		eject_ammo()
@@ -286,12 +235,12 @@
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.update_ammo_hud(src, list(ammo.default_ammo.hud_state, ammo.default_ammo.hud_state_empty), ammo.current_rounds)
 
-
+///attach this weapon to a chassis
 /obj/item/armored_weapon/proc/attach(obj/vehicle/sealed/armored/tank, attach_primary)
 	if(attach_primary)
 		tank.primary_weapon?.detach(tank.exit_location())
 		tank.primary_weapon = src
-		tank.turret_overlay.update_gun_overlay(image(tank.turret_overlay.icon, icon_state, pixel_x = -24))
+		tank.turret_overlay.update_gun_overlay(icon_state)
 	else
 		tank.secondary_weapon?.detach(tank.exit_location())
 		tank.secondary_weapon = src
@@ -306,6 +255,7 @@
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.add_ammo_hud(src, icon_list, ammo.current_rounds)
 
+///detach this weapon to a chassis
 /obj/item/armored_weapon/proc/detach(atom/moveto)
 	if(chassis.primary_weapon == src)
 		chassis.primary_weapon = null
@@ -319,17 +269,18 @@
 	chassis = null
 	forceMove(moveto)
 
-
 /obj/item/armored_weapon/secondary_weapon
 	name = "Secondary minigun"
 	desc = "A much better gun that shits out bullets at ridiculous speeds, don't get in its way!"
-	icon_state = "secondary_cupola"
+	icon_state = "m56_cupola"
 	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
+	weapon_slot = MODULE_PRIMARY|MODULE_SECONDARY
 	secondary_equipped_icon = 'icons/obj/armored/3x3/tank_secondary_gun.dmi'
 	secondary_icon_name = "m56cupola"
-	default_ammo = /obj/item/ammo_magazine/tank/secondary_cupola
+	ammo = /obj/item/ammo_magazine/tank/secondary_cupola
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/secondary_cupola)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	projectile_delay = 2
 	rearm_time = 1 SECONDS
@@ -341,8 +292,9 @@
 	desc = "A double barrelled cannon which can rapidly deploy utility packages to the battlefield."
 	icon_state = "APC uninstalled dualcannon"
 	fire_sound = 'sound/weapons/guns/fire/tank_smokelauncher.ogg'
-	default_ammo = /obj/item/ammo_magazine/tank/tank_slauncher
+	ammo = /obj/item/ammo_magazine/tank/tank_slauncher
 	accepted_ammo = list(
+		/obj/item/ammo_magazine/tank/tank_slauncher,
 		/obj/item/ammo_magazine/tank/tank_glauncher,
 	)
 	projectile_delay = 0.7 SECONDS

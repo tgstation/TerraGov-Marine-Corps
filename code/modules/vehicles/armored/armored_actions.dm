@@ -62,6 +62,7 @@
 		if(ARMOR_PASSENGER)
 			chassis.balloon_alert(owner, "entered passenger seat")
 
+///checks if owner can still transfer
 /datum/action/vehicle/sealed/armored/swap_seat/proc/transfer_checks(choice)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return FALSE

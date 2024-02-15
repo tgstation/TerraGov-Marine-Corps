@@ -2,7 +2,7 @@
  * HITBOX
  * The core of multitile. Acts as a relay for damage and stops people from walking onto the multitle sprite
  * has changed bounds and as thus must always be forcemoved so it doesnt break everything
- * I would use pixel movement but the maptick caused by it is way too high and a fake tile based movement is ?????
+ * I would use pixel movement but the maptick caused by it is way too high and a fake tile based movement might work? but I want this to at least pretend to be generic
  * Thus we just use this relay. it's an obj so we can make sure all the damage procs that work on root also work on the hitbox
  */
 /obj/hitbox
@@ -15,6 +15,7 @@
 	bound_y = -32
 	max_integrity = INFINITY
 	move_resist = INFINITY // non forcemoving this could break gliding so lets just say no
+	///people riding on this hitbox that we want to move with us
 	var/list/atom/movable/tank_desants
 	///The "parent" that this hitbox is attached to and to whom it will relay damage
 	var/obj/vehicle/root = null
@@ -37,6 +38,13 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
+/obj/hitbox/Destroy(force)
+	if(!force) // only when the parent is deleted
+		return QDEL_HINT_LETMELIVE
+	root?.hitbox = null
+	root = null
+	return ..()
+
 ///Signal handler to spin the desants as well when the tank turns
 /obj/hitbox/proc/owner_turned(datum/source, old_dir, new_dir)
 	SIGNAL_HANDLER
@@ -55,6 +63,7 @@
 			new_pos = get_step(root, turn(get_dir(desant, root), 90))
 		desant.forceMove(new_pos)
 
+///signal handler when someone jumping lands on us
 /obj/hitbox/proc/on_jump_landed(datum/source, atom/lander)
 	SIGNAL_HANDLER
 	if(HAS_TRAIT(lander, TRAIT_TANK_DESANT))
@@ -64,39 +73,29 @@
 	RegisterSignal(lander, COMSIG_QDELETING, PROC_REF(on_desant_del))
 	lander.layer = ABOVE_MOB_PLATFORM_LAYER
 
+///signal handler when we leave a turf under the hitbox
 /obj/hitbox/proc/on_exited(atom/source, atom/movable/AM, direction)
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(AM, TRAIT_TANK_DESANT))
 		return
-	if(locate(src) in AM.loc) //Î'd cut the locate but for some reason it wants strict loc only not locs so ???
+	if(locate(src) in AM.loc) //Î'd cut the locate but for some reason it wdoesnt work lol
 		return
 	REMOVE_TRAIT(AM, TRAIT_TANK_DESANT, VEHICLE_TRAIT)
 	AM.layer = LAZYACCESS(tank_desants, AM)
 	LAZYREMOVE(tank_desants, AM)
 	UnregisterSignal(AM, COMSIG_QDELETING)
 
+///cleanup riders on deletion
 /obj/hitbox/proc/on_desant_del(datum/source)
 	SIGNAL_HANDLER
 	LAZYREMOVE(tank_desants, source)
 
-/obj/hitbox/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(.)
-		return
-	if((allow_pass_flags & PASS_TANK) && (mover.pass_flags & PASS_TANK))
-		return TRUE
-
-/obj/hitbox/Destroy(force)
-	if(!force) // only when the parent is deleted
-		return QDEL_HINT_LETMELIVE
-	root?.hitbox = null
-	root = null
-	return ..()
-
+///when root deletes is the only time we want to be deleting
 /obj/hitbox/proc/root_delete()
 	SIGNAL_HANDLER
 	qdel(src, TRUE)
 
+///when the owner moves, let's move with them!
 /obj/hitbox/proc/root_move(atom/movable/mover, atom/oldloc, direction)
 	SIGNAL_HANDLER
 	//direction is null here, so we improvise
@@ -113,6 +112,7 @@
 		var/turf/target = get_step(get_step(root, away_dir), away_dir)
 		tank_desant.throw_at(target, 3, 3, root)
 
+///called when the tank is off movement cooldown and someone tries to move it
 /obj/hitbox/proc/on_attempt_drive(atom/movable/movable_parent, mob/living/user, direction)
 	SIGNAL_HANDLER
 	if(ISDIAGONALDIR(direction))
@@ -145,6 +145,12 @@
 		return NONE
 	return COMPONENT_DRIVER_BLOCK_MOVE
 
+/obj/hitbox/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(.)
+		return
+	if((allow_pass_flags & PASS_TANK) && (mover.pass_flags & PASS_TANK))
+		return TRUE
 
 /obj/hitbox/projectile_hit(obj/projectile/proj)
 	if(proj.firer == root)
@@ -152,7 +158,7 @@
 	return root.projectile_hit(arglist(args))
 
 /obj/hitbox/bullet_act(obj/projectile/proj)
-	SHOULD_CALL_PARENT(FALSE) // this is an abstract object that should not affect the bullet in any way
+	SHOULD_CALL_PARENT(FALSE) // this is an abstract object: we have to avoid everything on parent
 	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, proj)
 	return root.bullet_act(proj)
 
@@ -172,7 +178,12 @@
 /obj/hitbox/medium/on_attempt_drive(atom/movable/movable_parent, mob/living/user, direction)
 	if(ISDIAGONALDIR(direction))
 		return COMPONENT_DRIVER_BLOCK_MOVE
-	setDir(direction)//we can move, so lets start by pointing in that direction
+	if((root.dir != direction) && (root.dir != REVERSE_DIR(direction)))
+		root.setDir(direction) // tivi todo dupe on medium size kill me
+		if(isarmoredvehicle(root))
+			var/obj/vehicle/sealed/armored/armor = root
+			playsound(armor, armor.engine_sound, 100, TRUE, 20)
+		return COMPONENT_DRIVER_BLOCK_MOVE
 	///////////////////////////
 	var/turf/centerturf = get_step(root, direction)
 	var/list/enteringturfs = list(centerturf)

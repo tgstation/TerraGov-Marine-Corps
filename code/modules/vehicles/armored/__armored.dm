@@ -323,7 +323,7 @@
 		user.temporarilyRemoveItemFromInventory(I)
 		I.forceMove(primary_weapon)
 		if(!primary_weapon.ammo)
-			primary_weapon.ammo = src
+			primary_weapon.ammo = I
 			balloon_alert(user, "primary gun loaded")
 			for(var/mob/occupant AS in occupants)
 				occupant.hud_used.update_ammo_hud(src, list(primary_weapon.ammo.default_ammo.hud_state, primary_weapon.ammo.default_ammo.hud_state_empty), primary_weapon.ammo.current_rounds)
@@ -409,6 +409,67 @@
 	utility_module.on_unequip()
 	balloon_alert(user, "detached")
 
+/**
+ * Toggles Weapons Safety
+ *
+ * Handles enabling or disabling the safety function.
+ */
+/obj/vehicle/sealed/armored/proc/set_safety(mob/user)
+	weapons_safety = !weapons_safety
+	SEND_SOUND(user, sound('sound/machines/beep.ogg', volume = 25))
+	balloon_alert(user, "equipment [weapons_safety ? "safe" : "ready"]")
+	// todo maybe make tanks also update the mouse icon?
+
+///Rotates the cannon overlay
+/obj/vehicle/sealed/armored/proc/swivel_turret(atom/A)
+	var/new_weapon_dir = angle2dir_cardinal(Get_Angle(src, A))
+	if(turret_overlay.dir == new_weapon_dir)
+		return FALSE
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam
+		return FALSE
+	playsound(src, 'sound/effects/tankswivel.ogg', 80,1)
+	TIMER_COOLDOWN_START(src, COOLDOWN_TANK_SWIVEL, 2 SECONDS)
+	turret_overlay.setDir(new_weapon_dir)
+	secondary_weapon_overlay.icon_state = "[secondary_weapon.secondary_icon_name]" + "_" + "[new_weapon_dir]"
+	return TRUE
+
+///handles mouseclicks by a user in the vehicle
+/obj/vehicle/sealed/armored/proc/on_mouseclick(mob/user, atom/target, turf/location, control, list/modifiers)
+	SIGNAL_HANDLER
+	if(!is_equipment_controller(user))
+		balloon_alert(user, "wrong seat for equipment!")
+		return COMSIG_MOB_CLICK_CANCELED
+	modifiers = params2list(modifiers)
+	if(isnull(location) && target.plane == CLICKCATCHER_PLANE) //Checks if the intended target is in deep darkness and adjusts target based on params.
+		target = params2turf(modifiers["screen-loc"], get_turf(user), user.client)
+		modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
+		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
+	if(LAZYACCESS(modifiers, MIDDLE_CLICK))
+		set_safety(user)
+		return COMSIG_MOB_CLICK_CANCELED
+	if(modifiers[SHIFT_CLICK]) //Allows things to be examined.
+		return
+	if(weapons_safety)
+		return
+	if(!isturf(target) && !isturf(target.loc)) // Prevents inventory from being drilled
+		return
+	if(HAS_TRAIT(user, TRAIT_INCAPACITATED))
+		return
+	if(src == target)
+		return
+	var/dir_to_target = get_cardinal_dir(src, target)
+	var/obj/item/armored_weapon/selected
+	if(modifiers[BUTTON] == RIGHT_CLICK)
+		selected = secondary_weapon
+	else
+		if(turret_overlay.dir != dir_to_target)
+			swivel_turret(target)
+			return COMSIG_MOB_CLICK_CANCELED
+		selected = primary_weapon
+	if(!selected)
+		return
+	INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/armored_weapon, begin_fire), user, target, modifiers)
+
 /atom/movable/vis_obj/turret_overlay
 	name = "Tank gun turret"
 	desc = "The shooty bit on a tank."
@@ -417,13 +478,31 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	///overlay for the attached gun
 	var/image/gun_overlay
+	///overlay for the shooting version of that gun
+	var/image/flash_overlay
+	///currently using the flashing overlay
+	var/flashing = FALSE
+
+/atom/movable/vis_obj/turret_overlay/proc/update_gun_overlay(gun_icon_state)
+	cut_overlays()
+	if(!gun_icon_state)
+		flash_overlay = null
+		gun_overlay = null
+		return
+	flashing = FALSE
+	flash_overlay = image(icon, gun_icon_state + "_fire", pixel_x = -54, pixel_y = -27)
+	gun_overlay  = image(icon, gun_icon_state, pixel_x = -24)
+	add_overlay(gun_overlay)
 
 ///updates the gun overlay with a new image
-/atom/movable/vis_obj/turret_overlay/proc/update_gun_overlay(image/new_overlay)
-	cut_overlay(gun_overlay)
-	gun_overlay = new_overlay
-	if(gun_overlay)
-		add_overlay(gun_overlay)
+/atom/movable/vis_obj/turret_overlay/proc/swap_overlays(new_flashing)
+	cut_overlays()
+	flashing = new_flashing
+	if(flashing)
+		add_overlay(flash_overlay)
+		return
+	add_overlay(gun_overlay)
+
 
 ///updates the turret pixel offsets when the tank turns
 /atom/movable/vis_obj/turret_overlay/proc/on_tank_turn(obj/vehicle/sealed/armored/source, old_dir, new_dir)
