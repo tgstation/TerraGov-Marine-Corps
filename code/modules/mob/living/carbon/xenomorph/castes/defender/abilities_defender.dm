@@ -324,6 +324,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_fortifiy_toggles")
 	if(on)
 		ADD_TRAIT(X, TRAIT_IMMOBILE, FORTIFY_TRAIT)
+		ADD_TRAIT(X, TRAIT_STOPS_TANK_COLLISION, FORTIFY_TRAIT)
 		if(!silent)
 			to_chat(X, span_xenowarning("We tuck ourselves into a defensive stance."))
 		X.soft_armor = X.soft_armor.modifyAllRatings(last_fortify_bonus)
@@ -334,6 +335,7 @@
 		X.soft_armor = X.soft_armor.modifyAllRatings(-last_fortify_bonus)
 		X.soft_armor = X.soft_armor.modifyRating(BOMB = -last_fortify_bonus)
 		REMOVE_TRAIT(X, TRAIT_IMMOBILE, FORTIFY_TRAIT)
+		REMOVE_TRAIT(X, TRAIT_STOPS_TANK_COLLISION, FORTIFY_TRAIT)
 
 	X.fortify = on
 	X.anchored = on

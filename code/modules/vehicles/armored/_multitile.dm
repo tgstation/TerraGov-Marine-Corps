@@ -8,14 +8,17 @@
 	icon_state = "tank"
 	turret_dir_offsets = list(NORTH_LOWERTEXT = list(0,-48), SOUTH_LOWERTEXT = list(0,4), WEST_LOWERTEXT = list(32,-5), EAST_LOWERTEXT = list(-28,-8))
 	hitbox = /obj/hitbox
-	flags_atom = DIRLOCK
+	flags_atom = DIRLOCK|BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
 	flags_armored = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_MAP_VARIANTS
 	pixel_x = -48
 	pixel_y = -48
-	obj_integrity = 2000
-	max_integrity = 2000
+	obj_integrity = 600
+	max_integrity = 600
+	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 40, ACID = 40)
+	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	max_occupants = 4
-	move_delay = 0.5 SECONDS
+	move_delay = 2 SECONDS
+	ram_damage = 70
 
 ///returns a list of possible locations that this vehicle may be entered from
 /obj/vehicle/sealed/armored/multitile/proc/enter_locations(mob/M)

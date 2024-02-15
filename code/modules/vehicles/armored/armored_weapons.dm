@@ -38,7 +38,7 @@
 	///scatter of this weapon. in degrees and modified by arm this is attached to
 	var/variance = 0
 	/// since mech guns only get one firemode this is for all types of shots
-	var/projectile_delay = 3 SECONDS
+	var/projectile_delay = 8 SECONDS
 	/// time between shots in a burst
 	var/projectile_burst_delay = 2
 	///bullets per burst if firemode is set to burst
@@ -323,15 +323,17 @@
 /obj/item/armored_weapon/secondary_weapon
 	name = "Secondary minigun"
 	desc = "A much better gun that shits out bullets at ridiculous speeds, don't get in its way!"
-	icon_state = "m56_cupola"
+	icon_state = "secondary_cupola"
 	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	secondary_equipped_icon = 'icons/obj/armored/3x3/tank_secondary_gun.dmi'
 	secondary_icon_name = "m56cupola"
-	default_ammo = /obj/item/ammo_magazine/tank/m56_cupola
+	default_ammo = /obj/item/ammo_magazine/tank/secondary_cupola
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	projectile_delay = 2
+	rearm_time = 1 SECONDS
+	maximum_magazines = 5
 	hud_state_empty = "rifle_empty"
 
 /obj/item/armored_weapon/apc_cannon

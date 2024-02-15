@@ -245,6 +245,8 @@
 
 //this mech is melee core boosted
 #define TRAIT_MELEE_CORE "melee_core"
+///stops tanks from being able to ram this mob
+#define TRAIT_STOPS_TANK_COLLISION "stops_tanks"
 
 //added to escaped humans
 #define TRAIT_HAS_ESCAPED "escaped_marine"

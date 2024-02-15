@@ -9,15 +9,15 @@
 	layer = ABOVE_MOB_LAYER
 	max_drivers = 1
 	move_resist = INFINITY
-	flags_atom = PREVENT_CONTENTS_EXPLOSION
+	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
 	allow_pass_flags = PASS_TANK|PASS_AIR|PASS_WALKOVER
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE|PORTAL_IMMUNE
 
 	// placeholder, make skill check or similar later
 	req_access = list(ACCESS_MARINE_MECH)
 	move_delay = 0.7 SECONDS
-	obj_integrity = 1000
-	max_integrity = 1000
+	obj_integrity = 600
+	max_integrity = 600
 	light_range = 10
 	///Tank bitflags
 	var/flags_armored = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_HEADLIGHTS
@@ -189,6 +189,12 @@
 
 /obj/vehicle/sealed/armored/Bump(atom/A)
 	. = ..()
+	if(HAS_TRAIT(A, TRAIT_STOPS_TANK_COLLISION))
+		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_VEHICLE_CRUSHSOUND))
+			visible_message(span_danger("[src] is stopped by [A]!"))
+			playsound(src, 'sound/effects/metal_crash.ogg', 45)
+			TIMER_COOLDOWN_START(src, COOLDOWN_VEHICLE_CRUSHSOUND, 1 SECONDS)
+		return
 	var/pilot
 	var/list/drivers = return_drivers()
 	if(length(drivers))
@@ -200,12 +206,9 @@
 		add_control_flags(new_occupant, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS|VEHICLE_CONTROL_MELEE|VEHICLE_CONTROL_EQUIPMENT)
 		return
 
-	if(!allowed(new_occupant))
-		return //passenger
-
 	if(driver_amount() < max_drivers) //movement controllers
 		add_control_flags(new_occupant, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS)
-	else if(occupant_amount() == driver_amount())
+	else if(length(return_controllers_with_flag(VEHICLE_CONTROL_EQUIPMENT)) < 1)
 		add_control_flags(new_occupant, VEHICLE_CONTROL_MELEE|VEHICLE_CONTROL_EQUIPMENT)
 
 /obj/vehicle/sealed/armored/exit_location(mob/M)
@@ -245,6 +248,12 @@
 	if(M.client)
 		M.update_mouse_pointer()
 		M.client.view_size.reset_to_default()
+	return ..()
+
+/obj/vehicle/sealed/armored/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	for(var/mob/living/carbon/human/crew AS in occupants)
+		if(crew.wear_id?.iff_signal & proj.iff_signal)
+			return FALSE
 	return ..()
 
 /obj/vehicle/sealed/armored/attack_hand(mob/living/user)
@@ -316,6 +325,8 @@
 		if(!primary_weapon.ammo)
 			primary_weapon.ammo = src
 			balloon_alert(user, "primary gun loaded")
+			for(var/mob/occupant AS in occupants)
+				occupant.hud_used.update_ammo_hud(src, list(primary_weapon.ammo.default_ammo.hud_state, primary_weapon.ammo.default_ammo.hud_state_empty), primary_weapon.ammo.current_rounds)
 		else
 			primary_weapon.ammo_magazine += I
 			balloon_alert(user, "magazines [length(primary_weapon.ammo_magazine)]/[primary_weapon.maximum_magazines]")
@@ -351,6 +362,8 @@
 		if(!secondary_weapon.ammo)
 			secondary_weapon.ammo = I
 			balloon_alert(user, "secondary gun loaded")
+			for(var/mob/occupant AS in occupants)
+				occupant.hud_used.update_ammo_hud(src, list(secondary_weapon.ammo.default_ammo.hud_state, secondary_weapon.ammo.default_ammo.hud_state_empty), secondary_weapon.ammo.current_rounds)
 		else
 			secondary_weapon.ammo_magazine += I
 			balloon_alert(user, "magazines [length(secondary_weapon.ammo_magazine)]/[secondary_weapon.maximum_magazines]")

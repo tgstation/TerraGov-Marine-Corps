@@ -23,8 +23,7 @@
 	. = ..()
 	root = new_root
 	allow_pass_flags = root.allow_pass_flags
-	//root.allow_pass_flags = ALL
-	//root.pass_flags = ALL
+	flags_atom = root.flags_atom
 	resistance_flags = root.resistance_flags
 	RegisterSignal(new_root, COMSIG_MOVABLE_MOVED, PROC_REF(root_move))
 	RegisterSignal(new_root, COMSIG_QDELETING, PROC_REF(root_delete))
@@ -37,10 +36,6 @@
 		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
 	)
 	AddElement(/datum/element/connect_loc, connections)
-
-/obj/hitbox/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/ability/xeno_action/ready_charge/charge_datum)
-	charge_datum.do_stop_momentum(FALSE)
-	return (CHARGE_SPEED(charge_datum) * 20)
 
 ///Signal handler to spin the desants as well when the tank turns
 /obj/hitbox/proc/owner_turned(datum/source, old_dir, new_dir)
@@ -154,7 +149,7 @@
 /obj/hitbox/projectile_hit(obj/projectile/proj)
 	if(proj.firer == root)
 		return FALSE
-	return ..()
+	return root.projectile_hit(arglist(args))
 
 /obj/hitbox/bullet_act(obj/projectile/proj)
 	SHOULD_CALL_PARENT(FALSE) // this is an abstract object that should not affect the bullet in any way

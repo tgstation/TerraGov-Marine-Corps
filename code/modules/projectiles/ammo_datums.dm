@@ -1324,6 +1324,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 25
 	accurate_range_min = 3
 
+/datum/ammo/bullet/cupola
+	name = "cupola bullet"
+	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
+	hud_state = "smartgun"
+	hud_state_empty = "smartgun_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	accurate_range = 12
+	damage = 25
+	penetration = 5
+	sundering = 1
+
 /datum/ammo/bullet/spottingrifle
 	name = "smart spotting bullet"
 	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
@@ -3765,6 +3776,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 /datum/ammo/xeno/sticky/on_hit_obj(obj/O, obj/projectile/P)
+	if(isarmoredvehicle(O))
+		var/obj/vehicle/sealed/armored/tank = O
+		COOLDOWN_START(tank, cooldown_vehicle_move, tank.move_delay)
 	var/turf/T = get_turf(O)
 	drop_resin(T.density ? P.loc : T)
 

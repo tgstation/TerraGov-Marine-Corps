@@ -11,7 +11,7 @@
 	var/damage = veh.ram_damage // Each vehicle gets its own damage, you can modify it with snowplows and such ideally
 
 	if(!TIMER_COOLDOWN_CHECK(veh, COOLDOWN_VEHICLE_CRUSHSOUND))
-		visible_message(span_danger("[veh] crushes the [src]!"))
+		visible_message(span_danger("[veh] rams [src]!"))
 		playsound(src, 'sound/effects/metal_crash.ogg', 45)
 		TIMER_COOLDOWN_START(veh, COOLDOWN_VEHICLE_CRUSHSOUND, 1 SECONDS)
 	return damage

@@ -36,18 +36,19 @@
 /datum/action/vehicle/sealed/armored/swap_seat/action_activate(trigger_flags)
 	if(!transfer_checks())
 		return
-	var/list/choices = list(ARMOR_DRIVER, ARMOR_GUNNER, ARMOR_PASSENGER)
-	if(chassis.occupants[owner] & VEHICLE_CONTROL_DRIVE)
-		choices -= ARMOR_DRIVER
-	if(chassis.occupants[owner] & VEHICLE_CONTROL_EQUIPMENT)
-		choices -= ARMOR_GUNNER
+	var/list/choices = list()
+	if(!chassis.is_driver(owner))
+		choices += ARMOR_DRIVER
+	if(!chassis.is_equipment_controller(owner))
+		choices += ARMOR_GUNNER
+	choices += ARMOR_PASSENGER
 	var/choice = tgui_input_list(owner, "Select a seat", chassis.name, choices)
 	if(!choice)
 		return
-	if(!transfer_checks())
+	if(!transfer_checks(choice))
 		return
 	chassis.balloon_alert(owner, "moving to other seat...")
-	if(!do_after(owner, chassis.enter_delay, target = chassis, extra_checks=CALLBACK(src, PROC_REF(transfer_checks))))
+	if(!do_after(owner, chassis.enter_delay, target = chassis, extra_checks=CALLBACK(src, PROC_REF(transfer_checks), choice)))
 		chassis.balloon_alert(owner, "interrupted!")
 		return
 	chassis.remove_control_flags(owner, VEHICLE_CONTROL_MELEE|VEHICLE_CONTROL_EQUIPMENT|VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS)
@@ -61,13 +62,21 @@
 		if(ARMOR_PASSENGER)
 			chassis.balloon_alert(owner, "entered passenger seat")
 
-
-/datum/action/vehicle/sealed/armored/swap_seat/proc/transfer_checks()
+/datum/action/vehicle/sealed/armored/swap_seat/proc/transfer_checks(choice)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return FALSE
 	if(length(chassis.occupants) >= chassis.max_occupants)
 		chassis.balloon_alert(owner, "other seats occupied!")
 		return FALSE
+	switch(choice)
+		if(ARMOR_GUNNER)
+			if(length(chassis.return_controllers_with_flag(VEHICLE_CONTROL_EQUIPMENT)) >= 1)
+				chassis.balloon_alert(owner, "gunner occupied!")
+				return FALSE
+		if(ARMOR_DRIVER)
+			if(chassis.driver_amount() >= chassis.max_drivers)
+				chassis.balloon_alert(owner, "driver occupied!")
+				return FALSE
 	return TRUE
 
 #undef ARMOR_DRIVER
