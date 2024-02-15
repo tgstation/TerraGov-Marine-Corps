@@ -4334,17 +4334,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/toy/do_at_max_range(turf/T, obj/projectile/P)
 	return
 
-/datum/ammo/bullet/rock
-	name = "weighted rock"
-	icon_state = "rock"
+/datum/ammo/bullet/spear
+	name = "spear"
+	icon_state = "spear"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	shell_speed = 3
 	max_range = 15
-	damage = 10
+	damage = 25
 	penetration = 50
-	sundering = 1
+	sundering = 5
 
-/datum/ammo/bullet/rock/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/bullet/spear/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, slowdown = 2, knockback = 1)
 
 /datum/ammo/grenade_container

@@ -986,7 +986,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	head = /obj/item/clothing/head/tgmcberet/newt
 
 	var/list/abilities = list(
-		/datum/action/ability/activable/catslug/rockthrow,
+		/datum/action/ability/activable/catslug/spearthrow,
 	)
 
 /datum/outfit/job/medical/companion/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
