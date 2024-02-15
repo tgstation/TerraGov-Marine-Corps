@@ -117,12 +117,12 @@
 	GLOB.tank_list += src
 
 /obj/vehicle/sealed/armored/Destroy()
-	QDEL_NULL(turret_overlay)
-	QDEL_NULL(secondary_weapon_overlay)
 	QDEL_NULL(primary_weapon)
 	QDEL_NULL(secondary_weapon)
 	QDEL_NULL(utility_module)
 	QDEL_NULL(damage_overlay)
+	QDEL_NULL(turret_overlay)
+	QDEL_NULL(secondary_weapon_overlay)
 	underlay = null
 	GLOB.tank_list -= src
 	return ..()
