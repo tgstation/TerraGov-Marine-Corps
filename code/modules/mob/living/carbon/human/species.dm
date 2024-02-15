@@ -720,7 +720,7 @@
 	burn_damage_icon_state = "newt_burn"
 	eyes = "blank_eyes"
 	unarmed_type = /datum/unarmed_attack/bite
-	slowdown = -0.25 //faster then the average human, can't wear shoes
+	slowdown = -1.25 //faster then the average human, can't wear shoes
 	total_health = 75 //small size, small health
 	burn_mod = 0.5 //slug coating, slippery
 	brute_mod = 0.8 //some innate brute defense so they have some protection

@@ -994,6 +994,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	H.set_species("Catslug")
 	H.fully_replace_character_name(H.real_name, "Newt")
 	H.gender = FEMALE
+	H.voice = "woman(youth)"
 
 	for(var/ability in abilities)
 		H.add_ability(ability)
