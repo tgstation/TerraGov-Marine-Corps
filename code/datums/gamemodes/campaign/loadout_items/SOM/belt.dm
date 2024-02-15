@@ -71,7 +71,7 @@
 
 /datum/loadout_item/belt/sawn_off
 	name = "Sawn-off shotgun"
-	desc = "A double barreled shotgun whose barrel has been artificially shortened to reduce range for further CQC potiential."
+	desc = "A double barreled shotgun whose barrel has been artificially shortened to reduce range for further CQC potiential. Extremely powerful at close range, but is very difficult to handle."
 	req_desc = "Requires a VX-42 culverin or VX-33 caliver with powerpack."
 	ui_icon = "shotgun"
 	item_typepath = /obj/item/weapon/gun/shotgun/double/sawn
@@ -83,7 +83,8 @@
 
 /datum/loadout_item/belt/energy_sword
 	name = "Energy sword"
-	desc = "A SOM energy sword. Designed to cut through armored plate. An uncommon secondary weapon, but extremely dangerous at close range."
+	desc = "A SOM energy sword. Designed to cut through armored plate. An uncommon primary weapon, typically seen wielded by so called 'blink assault' troops. \
+	Can be used defensively to great effect, mainly against opponents trying to strike you in melee, although some users report varying levels of success in blocking ranged projectiles."
 	ui_icon = "machete"
 	item_typepath = /obj/item/weapon/energy/sword/som
 	loadout_item_flags = NONE
@@ -99,7 +100,7 @@
 
 /datum/loadout_item/belt/som_officer_pistol
 	name = "VX-12 Serpenta"
-	desc = "The 'serpenta' is pistol typically seen in the hands of SOM officers and some NCOs, and is quite dangerous for it's size. \
+	desc = "The 'serpenta' is a volkite energy pistol typically seen in the hands of SOM officers and some NCOs, and is quite dangerous for it's size. \
 	Comes in a holster that fits on your waist or armor."
 	ui_icon = "pistol"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/som/serpenta
@@ -109,7 +110,7 @@
 
 /datum/loadout_item/belt/som_officer_pistol_custom
 	name = "VX-12c Serpenta"
-	desc = "The 'serpenta' is pistol typically seen in the hands of SOM officers and some NCOs, and is quite dangerous for it's size. \
+	desc = "The 'serpenta' is a volkite energy pistol typically seen in the hands of SOM officers and some NCOs, and is quite dangerous for it's size. \
 	This particular weapon appears to be a custom model with improved performance. Comes in a fancy holster that fits on your waist or armor."
 	ui_icon = "pistol"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/som/fancy/fieldcommander
