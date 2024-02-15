@@ -1,4 +1,0 @@
-author: "yyzsong"
-delete-after: True
-changes:
-  - qol: "Adds a cooldown between unresting and then resting again for xenomorphs"

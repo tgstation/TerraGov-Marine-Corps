@@ -251,3 +251,15 @@
   - bugfix: fix typo in martini belt causing broken sprite
   efzapa:
   - spellcheck: Bicaridine is now universally spelt correctly.
+2024-02-15:
+  Helg2:
+  - balance: Psychic Relays, Evolution Towers and Pheromonone Towers now ignore weed
+      removal.
+  Pariah919:
+  - rscadd: New squashhead bullets for SMG-45
+  - rscdel: SMG-45 HP
+  - soundadd: New firesound for SMG-45
+  Xander3359:
+  - bugfix: Fix not being able to click martini belt
+  yyzsong:
+  - qol: Adds a cooldown between unresting and then resting again for xenomorphs
