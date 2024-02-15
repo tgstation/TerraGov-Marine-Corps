@@ -81,7 +81,11 @@
 	name = "Belt harness"
 	desc = "A shoulder worn strap with clamps that can attach to most anything. Should keep you from losing your weapon, hopefully."
 	item_typepath = /obj/item/belt_harness/marine
-	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_LEADER, FIELD_COMMANDER)
+
+/datum/loadout_item/belt/belt_harness/smart_gunner
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	jobs_supported = list(SQUAD_SMARTGUNNER)
 
 //medic
 /datum/loadout_item/belt/lifesaver
