@@ -374,7 +374,7 @@
 	name = "\improper M92 mine box"
 	desc = "A secure box holding anti-tank proximity mines."
 	icon_state = "atminebox"
-	spawn_type = /obj/item/explosive/mine/anti_tank
+	spawn_type = /obj/item/mine/anti_tank
 	spawn_number = 5
 
 /obj/item/storage/box/m94
