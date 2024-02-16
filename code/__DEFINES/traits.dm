@@ -92,6 +92,7 @@
 #define TRAIT_STASIS "stasis"//Subject to the stasis effect
 #define ENDURE_TRAIT "endure" //Ravager Endure ability.
 #define RAGE_TRAIT "rage" //Ravager Rage ability.
+#define CHARGE_TRAIT "charge_stun_immunity" //Charge Stun Immunity
 #define UNMANNED_VEHICLE "unmanned"
 #define STEALTH_TRAIT "stealth" //From hunter stealth
 #define REVIVE_TO_CRIT_TRAIT "revive_to_crit"

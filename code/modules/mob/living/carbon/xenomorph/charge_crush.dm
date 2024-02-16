@@ -72,6 +72,7 @@
 	RegisterSignal(charger, COMSIG_MOVABLE_MOVED, PROC_REF(update_charging))
 	RegisterSignal(charger, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_dir_change))
 	set_toggle(TRUE)
+	ADD_TRAIT(charger, TRAIT_STUNIMMUNE, BULL_TRAIT)
 	if(verbose)
 		to_chat(charger, span_xenonotice("We will charge when moving, now."))
 
@@ -81,6 +82,7 @@
 	if(charger.is_charging != CHARGE_OFF)
 		do_stop_momentum()
 	UnregisterSignal(charger, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE))
+	REMOVE_TRAIT(charger, TRAIT_STUNIMMUNE, BULL_TRAIT)
 	if(verbose)
 		to_chat(charger, span_xenonotice("We will no longer charge when moving."))
 	set_toggle(FALSE)

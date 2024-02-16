@@ -10,7 +10,6 @@
 	plasma_stored = 200
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_NORMAL
-	mob_size = MOB_SIZE_BIG
 
 	pixel_x = -16
 	pixel_y = -3
