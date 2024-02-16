@@ -34,17 +34,17 @@
 	var/message = "Code"
 
 	if(!l_set && !l_setshort)
-		dat += text("<p>\n<b>5-DIGIT PASSCODE NOT SET.<br>ENTER NEW PASSCODE.</b>")
+		dat += "<p>\n<b>5-DIGIT PASSCODE NOT SET.<br>ENTER NEW PASSCODE.</b>"
 
 	if(l_setshort)
-		dat += text("<p>\n<font color=red><b>ALERT: MEMORY SYSTEM ERROR - 6040 201</b></font>")
+		dat += "<p>\n<font color=red><b>ALERT: MEMORY SYSTEM ERROR - 6040 201</b></font>"
 
 	message = "[code]"
 
 	if(!locked)
 		message = "*****"
 
-	dat += text("<HR>\n>[]<BR>\n<A href='?src=\ref[];type=1'>1</A>-<A href='?src=\ref[];type=2'>2</A>-<A href='?src=\ref[];type=3'>3</A><BR>\n<A href='?src=\ref[];type=4'>4</A>-<A href='?src=\ref[];type=5'>5</A>-<A href='?src=\ref[];type=6'>6</A><BR>\n<A href='?src=\ref[];type=7'>7</A>-<A href='?src=\ref[];type=8'>8</A>-<A href='?src=\ref[];type=9'>9</A><BR>\n<A href='?src=\ref[];type=R'>R</A>-<A href='?src=\ref[];type=0'>0</A>-<A href='?src=\ref[];type=E'>E</A><BR>\n</TT>", message, src, src, src, src, src, src, src, src, src, src, src, src)
+	dat += "<HR>\n>[message]<BR>\n<A href='?src=[text_ref(src)];type=1'>1</A>-<A href='?src=[text_ref(src)];type=2'>2</A>-<A href='?src=[text_ref(src)];type=3'>3</A><BR>\n<A href='?src=[text_ref(src)];type=4'>4</A>-<A href='?src=[text_ref(src)];type=5'>5</A>-<A href='?src=[text_ref(src)];type=6'>6</A><BR>\n<A href='?src=[text_ref(src)];type=7'>7</A>-<A href='?src=[text_ref(src)];type=8'>8</A>-<A href='?src=[text_ref(src)];type=9'>9</A><BR>\n<A href='?src=[text_ref(src)];type=R'>R</A>-<A href='?src=[text_ref(src)];type=0'>0</A>-<A href='?src=[text_ref(src)];type=E'>E</A><BR>\n</TT>"
 
 
 	var/datum/browser/popup = new(user, "caselock", "<div align='center'>[src]</div>")
@@ -88,7 +88,7 @@
 		return ..()
 
 	else if(isscrewdriver(I))
-		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		open = !open
@@ -97,7 +97,7 @@
 	else if(ismultitool(I) && open && !l_hacking)
 		user.show_message(span_warning(" Now attempting to reset internal memory, please hold."))
 		l_hacking = TRUE
-		if(!do_after(user, 100, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 100, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		if(!prob(40))
@@ -133,7 +133,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 
 
-/obj/item/storage/secure/briefcase/Initialize()
+/obj/item/storage/secure/briefcase/Initialize(mapload)
 	. = ..()
 	new /obj/item/paper(src)
 	new /obj/item/tool/pen(src)

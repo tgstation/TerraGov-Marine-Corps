@@ -1,9 +1,12 @@
 /obj/item/binoculars
-
 	name = "binoculars"
 	desc = "A pair of binoculars."
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "binoculars"
-
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/binoculars_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/binoculars_right.dmi',
+	)
 	flags_atom = CONDUCT
 	force = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -27,7 +30,9 @@
 
 /obj/item/binoculars/tactical
 	name = "tactical binoculars"
-	desc = "A pair of binoculars, with a laser targeting function. Unique action to toggle mode. Alt+Click to change selected linked mortar. Ctrl+Click when using to target something. Shift+Click to get coordinates. Ctrl+Shift+Click to fire OB when lasing in OB mode"
+	desc = "A pair of binoculars, with a laser targeting function. Unique action to toggle mode. Alt+Click to change selected linked artillery. Ctrl+Click when using to target something. Shift+Click to get coordinates. Ctrl+Shift+Click to fire OB when lasing in OB mode"
+	icon = 'icons/Marine/marine-navigation.dmi'
+	icon_state = "range_finders"
 	var/laser_cooldown = 0
 	var/cooldown_duration = 200 //20 seconds
 	var/obj/effect/overlay/temp/laser_target/laser
@@ -43,7 +48,7 @@
 	/// Selected mortar index
 	var/selected_mortar = 1
 
-/obj/item/binoculars/tactical/Initialize()
+/obj/item/binoculars/tactical/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -63,12 +68,12 @@
 			. += span_notice("They are currently set to railgun targeting mode.")
 		if(MODE_ORBITAL)
 			. += span_notice("They are currently set to orbital bombardment mode.")
-	. += span_notice("Use on a mortar to link it for remote targeting.")
+	. += span_notice("Use on an artillery piece to link it for remote targeting.")
 	if(length(linked_mortars))
-		. += span_notice("They are currently linked to [length(linked_mortars)] mortar(s).")
-		. += span_notice("They are currently set to mortar [selected_mortar].")
+		. += span_notice("They are currently linked to [length(linked_mortars)] artillery piece(s).")
+		. += span_notice("They are currently set to [linked_mortars[selected_mortar].name] N°[selected_mortar].")
 		return
-	. += span_notice("They are not linked to a mortar.")
+	. += span_notice("They are not linked to any artillery piece(s).")
 
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)
@@ -139,10 +144,12 @@
 	. = ..()
 	if(!length(linked_mortars))
 		return
+	if(length(linked_mortars) == 1)
+		to_chat(user, span_notice("There is only one linked piece, you can't switch to another."))
 	selected_mortar += 1
 	check_mortar_index()
 	var/obj/mortar = linked_mortars[selected_mortar]
-	to_chat(user, span_notice("NOW SENDING COORDINATES TO MORTAR [selected_mortar] AT: LONGITUDE [mortar.x]. LATITUDE [mortar.y]."))
+	to_chat(user, span_notice("NOW SENDING COORDINATES TO [linked_mortars[selected_mortar].name] AT: LONGITUDE [mortar.x]. LATITUDE [mortar.y]."))
 
 /obj/item/binoculars/tactical/verb/toggle_mode(mob/user)
 	set category = "Object"
@@ -199,25 +206,15 @@
 		return
 	var/datum/squad/S = user.assigned_squad
 
-	var/laz_name = ""
-	laz_name += user.get_paygrade()
-	laz_name += user.name
-	if(S)
-		laz_name += " ([S.name])"
+	var/laz_name = "[user.get_paygrade()] [user.name][S ? " ([S.name])" : null]"
 
 
 	var/area/targ_area = get_area(A)
 	if(!istype(TU))
 		return
 	var/is_outside = FALSE
-	if(is_ground_level(TU.z))
-		switch(targ_area.ceiling)
-			if(CEILING_NONE)
-				is_outside = TRUE
-			if(CEILING_GLASS)
-				is_outside = TRUE
-			if(CEILING_METAL)
-				is_outside = TRUE
+	if(is_ground_level(TU.z) && (targ_area.ceiling <= CEILING_OBSTRUCTED))
+		is_outside = TRUE
 	if(!is_outside)
 		to_chat(user, span_warning("DEPTH WARNING: Target too deep for ordnance."))
 		return
@@ -226,7 +223,7 @@
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
 	if(mode != MODE_RANGE_FINDER)
 		to_chat(user, span_notice("INITIATING LASER TARGETING. Stand still."))
-		if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating(SKILL_LEADERSHIP))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
+		if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating(SKILL_LEADERSHIP))), NONE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
 			return
 	if(targ_area.flags_area & OB_CAS_IMMUNE)
 		to_chat(user, span_warning("Our payload won't reach this target!"))
@@ -238,23 +235,26 @@
 			laser = CS
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
 			while(laser)
-				if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
+				if(!do_after(user, 5 SECONDS, NONE, laser, BUSY_ICON_GENERIC))
 					QDEL_NULL(laser)
 					break
 		if(MODE_RANGE_FINDER)
 			if(!length(linked_mortars))
-				to_chat(user, span_notice("No linked mortars found."))
+				to_chat(user, span_notice("No linked artillery found."))
 				return
 			check_mortar_index() // incase varedit screws something up
 			targetturf = TU
-			to_chat(user, span_notice("COORDINATES TARGETED BY MORTAR [selected_mortar]: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
+			to_chat(user, span_notice("COORDINATES TARGETED BY ARTILLERY [selected_mortar]: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
 			var/obj/machinery/deployable/mortar/mortar = linked_mortars[selected_mortar]
 			mortar.recieve_target(TU,user)
 			return
 		if(MODE_RAILGUN)
+			if(SSticker?.mode?.flags_round_type & MODE_DISALLOW_RAILGUN)
+				to_chat(user, span_notice("ERROR. NO LINKED RAILGUN DETECTED. UNABLE TO FIRE."))
+				return
 			to_chat(user, span_notice("ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE."))
-			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 300 SECONDS) > world.time)
+			if((GLOB.marine_main_ship?.rail_gun?.last_firing + COOLDOWN_RAILGUN_FIRE) > world.time)
 				to_chat(user, "[icon2html(src, user)] [span_warning("The Rail Gun hasn't cooled down yet!")]")
 			else if(!targ_area)
 				to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
@@ -262,13 +262,13 @@
 				var/obj/effect/overlay/temp/laser_target/RGL = new (TU, 0, laz_name, S)
 				laser = RGL
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
-				if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
+				if(!do_after(user, 2 SECONDS, NONE, user, BUSY_ICON_GENERIC))
 					QDEL_NULL(laser)
 					return
 				to_chat(user, span_notice("TARGET ACQUIRED. RAILGUN IS FIRING. DON'T MOVE."))
 				while(laser)
 					GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(TU,user)
-					if(!do_after(user, 3 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
+					if(!do_after(user, 3 SECONDS, NONE, laser, BUSY_ICON_GENERIC))
 						QDEL_NULL(laser)
 						break
 		if(MODE_ORBITAL)
@@ -279,7 +279,7 @@
 				var/obj/effect/overlay/temp/laser_target/OB/OBL = new (TU, 0, laz_name, S)
 				laser = OBL
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
-				if(!do_after(user, 15 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
+				if(!do_after(user, 15 SECONDS, NONE, user, BUSY_ICON_GENERIC))
 					QDEL_NULL(laser)
 					return
 				to_chat(user, span_notice("TARGET ACQUIRED. ORBITAL CANNON IS READY TO FIRE."))
@@ -287,7 +287,7 @@
 				current_turf = TU
 				ob_fired = FALSE // Reset the fired state
 				while(laser && !ob_fired)
-					if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
+					if(!do_after(user, 5 SECONDS, NONE, laser, BUSY_ICON_GENERIC))
 						QDEL_NULL(laser)
 						break
 				current_turf = null
@@ -312,21 +312,23 @@
 	QDEL_NULL(laser)
 
 ///Sets or unsets the binocs linked mortar.
-/obj/item/binoculars/tactical/proc/set_mortar(mortar)
+/obj/item/binoculars/tactical/proc/set_mortar(obj/machinery/deployable/mortar/mortar)
 	if(mortar in linked_mortars)
-		UnregisterSignal(mortar, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(mortar, COMSIG_QDELETING)
 		linked_mortars -= mortar
+		LAZYREMOVE(mortar.linked_struct_binoculars, src)
 		return FALSE
 	linked_mortars += mortar
-	RegisterSignal(mortar, COMSIG_PARENT_QDELETING, PROC_REF(clean_refs))
+	LAZYADD(mortar.linked_struct_binoculars, src)
+	RegisterSignal(mortar, COMSIG_QDELETING, PROC_REF(clean_refs))
 	return TRUE
 
 ///Proc called when linked_mortar is deleted.
 /obj/item/binoculars/tactical/proc/clean_refs(datum/source)
 	SIGNAL_HANDLER
+	say("NOTICE: Connection lost with linked artillery.")
 	linked_mortars -= source
 	check_mortar_index()
-	say("NOTICE: connection lost with linked mortar.")
 
 /obj/item/binoculars/tactical/scout
 	name = "scout tactical binoculars"
@@ -337,7 +339,7 @@
 //For events
 /obj/item/binoculars/tactical/range
 	name = "range-finder"
-	desc = "A pair of binoculars designed to find coordinates. Shift+Click or Ctrl+Click to get coordinates when using."
+	desc = "A pair of binoculars designed to find coordinates, and aim linked artillery pieces. Shift+Click or Ctrl+Click to get coordinates while using them. Alt+Click to change selected linked artillery"
 	changable = 0
 	mode = MODE_RANGE_FINDER
 

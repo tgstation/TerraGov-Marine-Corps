@@ -159,7 +159,8 @@
 
 /obj/machinery/cryopod/evacuation/climb_in(mob/living/carbon/user, mob/helper)
 	. = ..()
-	user.ghostize(FALSE)
+	if(.)
+		user.ghostize(FALSE)
 
 /obj/machinery/door/airlock/evacuation
 	name = "\improper Evacuation Airlock"
@@ -209,5 +210,5 @@
 /obj/machinery/door/airlock/evacuation/attack_hand(mob/living/user)
 	return TRUE
 
-/obj/machinery/door/airlock/evacuation/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/machinery/door/airlock/evacuation/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	return FALSE //Probably a better idea that these cannot be forced open.

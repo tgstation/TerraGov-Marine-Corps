@@ -108,7 +108,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 
 //Tickets statpanel
-/datum/admin_help_tickets/proc/stat_entry()
+/datum/admin_help_tickets/proc/stat_entry(client/target)
+	SHOULD_CALL_PARENT(TRUE)
+	SHOULD_NOT_SLEEP(TRUE)
+	var/list/L = list()
 	var/num_mentors_active = 0
 	var/num_admins_active = 0
 	var/num_mentors_closed = 0
@@ -137,33 +140,36 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		else if(AH.tier == TICKET_ADMIN)
 			num_admins_resolved++
 
-	if(check_rights(R_ADMINTICKET, FALSE))
-		stat("Active Tickets:", astatclick.update("[num_mentors_active + num_admins_active]"))
-	else if(check_rights(R_MENTOR, FALSE))
-		stat("Active Tickets:", astatclick.update("[num_mentors_active]"))
+	if(check_rights_for(target, R_ADMINTICKET))
+		L[++L.len] = list("Active Tickets:", "[astatclick.update("[num_mentors_active + num_admins_active]")]", null, REF(astatclick))
+	else if(check_rights_for(target, R_MENTOR))
+		L[++L.len] = list("Active Tickets:", "[astatclick.update("[num_mentors_active]")]", null, REF(astatclick))
 
 	for(var/I in active_tickets)
 		var/datum/admin_help/AH = I
-		if(AH.tier == TICKET_MENTOR && check_rights(R_ADMINTICKET|R_MENTOR, FALSE))
+		var/obj/effect/statclick/updated = AH.statclick.update()
+		if(AH.tier == TICKET_MENTOR && check_rights_for(target, R_ADMINTICKET|R_MENTOR))
 			if(AH.initiator)
-				stat("\[[AH.marked ? "X" : "  "]\] #[AH.id]. Mentor. [AH.initiator_key_name]:", AH.statclick.update())
+				L[++L.len] = list("\[[AH.marked ? "X" : "  "]\] #[AH.id]. Mentor. [AH.initiator_key_name]:", "[updated.name]", REF(AH))
 			else
-				stat("\[D\] #[AH.id]. Mentor. [AH.initiator_key_name]:", AH.statclick.update())
-		else if(AH.tier == TICKET_ADMIN && check_rights(R_ADMINTICKET, FALSE))
+				L[++L.len] = list("\[D\] #[AH.id]. Mentor. [AH.initiator_key_name]:", "[updated.name]", REF(AH))
+		else if(AH.tier == TICKET_ADMIN && check_rights_for(target, R_ADMINTICKET))
 			if(AH.initiator)
-				stat("\[[AH.marked ? "X" : "  "]\] #[AH.id]. Admin. [AH.initiator_key_name]:", AH.statclick.update())
+				L[++L.len] = list("\[[AH.marked ? "X" : "  "]\] #[AH.id]. Admin. [AH.initiator_key_name]:", "[updated.name]", REF(AH))
 			else
-				stat("\[D\] #[AH.id]. Admin. [AH.initiator_key_name]:", AH.statclick.update())
+				L[++L.len] = list("\[D\] #[AH.id]. Admin. [AH.initiator_key_name]:", "[updated.name]", REF(AH))
 
-	if(check_rights(R_ADMINTICKET, FALSE))
-		stat("Closed Tickets:", cstatclick.update("[num_mentors_closed + num_admins_closed]"))
-	else if(check_rights(R_MENTOR, FALSE))
-		stat("Closed Tickets:", cstatclick.update("[num_mentors_closed]"))
+	if(check_rights_for(target, R_ADMINTICKET))
+		L[++L.len] = list("Closed Tickets:", "[cstatclick.update("[num_mentors_closed + num_admins_closed]")]", null, REF(cstatclick))
+	else if(check_rights_for(target, R_MENTOR))
+		L[++L.len] = list("Closed Tickets:", "[cstatclick.update("[num_mentors_closed]")]", null, REF(cstatclick))
 
-	if(check_rights(R_ADMINTICKET, FALSE))
-		stat("Resolved Tickets:", rstatclick.update("[num_mentors_resolved + num_admins_resolved]"))
-	else if(check_rights(R_MENTOR, FALSE))
-		stat("Resolved Tickets:", rstatclick.update("[num_mentors_resolved]"))
+	if(check_rights_for(target, R_ADMINTICKET))
+		L[++L.len] = list("Resolved Tickets:", "[rstatclick.update("[num_mentors_resolved + num_admins_resolved]")]", null, REF(rstatclick))
+	else if(check_rights_for(target, R_MENTOR))
+		L[++L.len] = list("Resolved Tickets:", "[rstatclick.update("[num_mentors_resolved]")]", null, REF(rstatclick))
+
+	return L
 
 
 //Reassociate still open ticket if one exists
@@ -197,14 +203,21 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /obj/effect/statclick/ticket_list
 	var/current_state
 
-
 /obj/effect/statclick/ticket_list/Initialize(mapload, name, state)
 	. = ..()
 	current_state = state
 
-
 /obj/effect/statclick/ticket_list/Click()
+	if (!usr.client?.holder)
+		message_admins("[key_name_admin(usr)] non-holder clicked on a ticket list statclick! ([src])")
+		usr.log_message("non-holder clicked on a ticket list statclick! ([src])", LOG_ADMIN)
+		return
+
 	GLOB.ahelp_tickets.BrowseTickets(current_state)
+
+//called by admin topic
+/obj/effect/statclick/ticket_list/proc/Action()
+	Click()
 
 
 //
@@ -761,7 +774,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 //
 
 /client/proc/giveadminhelpverb()
-	verbs |= /client/verb/adminhelp
+	add_verb(src, /client/verb/adminhelp)
 	deltimer(adminhelptimerid)
 	adminhelptimerid = 0
 

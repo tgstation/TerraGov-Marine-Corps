@@ -15,7 +15,7 @@
 	var/w_items = 0			//the combined w_class of all the items in the cistern
 	var/mob/living/swirlie = null	//the mob being given a swirlie
 
-/obj/structure/toilet/Initialize()
+/obj/structure/toilet/Initialize(mapload)
 	. = ..()
 	open = round(rand(0, 1))
 	update_icon()
@@ -46,7 +46,8 @@
 	open = !open
 	update_icon()
 
-/obj/structure/toilet/update_icon()
+/obj/structure/toilet/update_icon_state()
+	. = ..()
 	icon_state = "toilet[open][cistern]"
 
 /obj/structure/toilet/attackby(obj/item/I, mob/user, params)
@@ -56,7 +57,7 @@
 		to_chat(user, span_notice("You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]."))
 		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 
-		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		user.visible_message(span_notice("[user] [cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"]!"), span_notice("You [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]!"), "You hear grinding porcelain.")
@@ -84,7 +85,7 @@
 		if(open && !swirlie)
 			user.visible_message(span_danger("[user] starts to give [C] a swirlie!"), span_notice("You start to give [C] a swirlie!"))
 			swirlie = C
-			if(!do_after(user, 30, TRUE, src, BUSY_ICON_HOSTILE))
+			if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_HOSTILE))
 				return
 
 			user.visible_message(span_danger("[user] gives [C] a swirlie!"), span_notice("You give [C] a swirlie!"), "You hear a toilet flushing.")
@@ -114,7 +115,8 @@
 /obj/structure/toilet/alternate
 	icon_state = "toilet200"
 
-/obj/structure/toilet/alternate/update_icon()
+/obj/structure/toilet/alternate/update_icon_state()
+	. = ..()
 	icon_state = "toilet2[open][cistern]"
 
 /obj/structure/urinal
@@ -166,7 +168,7 @@
 	var/mobpresent = 0
 	var/is_washing = FALSE
 
-/obj/machinery/shower/Initialize()
+/obj/machinery/shower/Initialize(mapload)
 	. = ..()
 	create_reagents(2)
 	var/static/list/connections = list(
@@ -189,7 +191,7 @@
 	if(.)
 		return
 	on = !on
-	update_icon()
+	update_mist()
 	if(on)
 		start_processing()
 		if (user.loc == loc)
@@ -209,7 +211,7 @@
 	else if(iswrench(I))
 		to_chat(user, span_notice("You begin to adjust the temperature valve with \the [I]."))
 
-		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		switch(watertemp)
@@ -221,8 +223,9 @@
 				watertemp = "normal"
 		user.visible_message(span_notice("[user] adjusts the shower with \the [I]."), span_notice("You adjust the shower with \the [I]."))
 
-/obj/machinery/shower/update_icon()	//this is terribly unreadable, but basically it makes the shower mist up
-	overlays.Cut()					//once it's been on for a while, in addition to handling the water overlay.
+/obj/machinery/shower/proc/update_mist()
+//this is terribly unreadable, but basically it makes the shower mist up once it's been on for a while
+	update_icon()
 	if(mymist)
 		qdel(mymist)
 		mymist = null
@@ -247,6 +250,11 @@
 				qdel(mymist)
 				mymist = null
 				ismist = FALSE
+
+/obj/machinery/shower/update_overlays()
+	. = ..()
+	if(on)
+		. += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
 
 /obj/machinery/shower/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
 	SIGNAL_HANDLER
@@ -321,10 +329,10 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "sink"
 	desc = "A sink used for washing one's hands and face."
-	anchored = TRUE
-	var/busy = 0 	//Something's being washed at the moment
+	///is someone currently washing at this sink?
+	var/busy = FALSE
 
-/obj/structure/sink/Initialize()
+/obj/structure/sink/Initialize(mapload)
 	. = ..()
 	switch(dir)
 		if(WEST)
@@ -335,32 +343,32 @@
 			pixel_x = 11
 		if(SOUTH)
 			pixel_y = 25
+
 /obj/structure/sink/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	if(isAI(user))
-		return
 
-	if(!Adjacent(user))
+	if(!ishuman(user) || !Adjacent(user))
 		return
 
 	if(busy)
-		to_chat(user, span_warning("Someone's already washing here."))
+		balloon_alert_to_viewers("Someone else is washing")
 		return
 
-	to_chat(usr, span_notice("You start washing your hands."))
+	balloon_alert_to_viewers("Starts washing hands")
+	playsound(loc, 'sound/effects/sink_long.ogg', 25, 1)
 
-	busy = 1
-	sleep(4 SECONDS)
-	busy = 0
-
-	if(!Adjacent(user)) return		//Person has moved away from the sink
+	busy = TRUE
+	if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+		busy = FALSE
+		balloon_alert_to_viewers("Stops washing")
+		return
+	busy = FALSE
 
 	user.clean_blood()
-	if(ishuman(user))
-		user:update_inv_gloves()
-	visible_message(span_notice("[user] washes their hands using \the [src]."))
+	user:update_inv_gloves()
+	balloon_alert_to_viewers("Washes their hands")
 
 
 /obj/structure/sink/attackby(obj/item/I, mob/user, params)
@@ -404,7 +412,7 @@
 
 	to_chat(usr, span_notice("You start washing \the [I]."))
 
-	if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return
 
 	if(user.loc != location || user.get_active_held_item() != I)

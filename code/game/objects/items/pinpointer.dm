@@ -1,5 +1,6 @@
 /obj/item/pinpointer
 	name = "Xeno structure pinpointer"
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "pinoff"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -11,23 +12,51 @@
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20
+	///What we're currently tracking
 	var/atom/movable/target
+	///The list of things we're tracking
 	var/list/tracked_list
+	///The hive we're tracking
+	var/tracked_hivenumber = XENO_HIVE_NORMAL
+	///The list of hives we will never track
+	var/static/list/blacklisted_hivenumbers = list(XENO_HIVE_NONE, XENO_HIVE_ADMEME, XENO_HIVE_FALLEN)
 
-/obj/item/pinpointer/Initialize()
+/obj/item/pinpointer/Initialize(mapload)
 	. = ..()
-	tracked_list = GLOB.xeno_critical_structures
+	tracked_list = GLOB.xeno_critical_structures_by_hive[tracked_hivenumber]
+
+/obj/item/pinpointer/Destroy()
+	target = null
+	return ..()
 
 /obj/item/pinpointer/proc/set_target(mob/living/user)
+	///The hivenumbers that we're allowed to select structures to track from
+	var/list/trackable_hivenumbers = list()
+	for(var/hivenumber in GLOB.xeno_critical_structures_by_hive)
+		if(hivenumber in blacklisted_hivenumbers) //no reason to ever track valhalla or admin beans
+			continue
+		if(!length(GLOB.xeno_critical_structures_by_hive[hivenumber])) //hives with no structures don't need tracking either
+			continue
+		trackable_hivenumbers |= hivenumber
+
+	if(length(trackable_hivenumbers) == 1)
+		tracked_list = GLOB.xeno_critical_structures_by_hive[trackable_hivenumbers[1]]
+
+	else if(length(trackable_hivenumbers) > 1)
+		tracked_hivenumber = tgui_input_list(user, "Select the hive you wish to track.", "Pinpointer", trackable_hivenumbers)
+		if(!tracked_hivenumber)
+			return
+		tracked_list = GLOB.xeno_critical_structures_by_hive[tracked_hivenumber]
+
 	if(!length(tracked_list))
-		to_chat(user, span_warning("No traceable signals found!"))
+		balloon_alert(user, "No signal")
 		return
-	target = tgui_input_list(user, "Select the item you wish to track.", "Pinpointer", tracked_list)
+	target = tgui_input_list(user, "Select the structure you wish to track.", "Pinpointer", tracked_list)
 	if(QDELETED(target))
 		return
 	var/turf/pinpointer_loc = get_turf(src)
 	if(target.z != pinpointer_loc.z)
-		to_chat(user, span_warning("Chosen target signal too weak. Choose another."))
+		balloon_alert(user, "Signal too weak")
 		target = null
 		return
 
@@ -41,11 +70,11 @@
 
 /obj/item/pinpointer/proc/activate(mob/living/user)
 	set_target(user)
-	if(!target)
+	if(QDELETED(target))
 		return
 	active = TRUE
 	START_PROCESSING(SSobj, src)
-	to_chat(user, span_notice("You activate the pinpointer"))
+	balloon_alert(user, "Pinpointer activated")
 
 
 /obj/item/pinpointer/proc/deactivate(mob/living/user)
@@ -53,14 +82,14 @@
 	target = null
 	STOP_PROCESSING(SSobj, src)
 	icon_state = "pinoff"
-	to_chat(user, span_notice("You deactivate the pinpointer"))
+	balloon_alert(user, "Pinpointer deactivated")
 
 
 /obj/item/pinpointer/process()
-	if(!target)
-		icon_state = "pinonnull"
+	if(QDELETED(target))
 		active = FALSE
-		return
+		icon_state = "pinonnull"
+		return PROCESS_KILL
 
 	setDir(get_dir(src, target))
 	switch(get_dist(src, target))

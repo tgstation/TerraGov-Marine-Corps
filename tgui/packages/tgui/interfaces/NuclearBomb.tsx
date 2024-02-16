@@ -1,11 +1,19 @@
 import { useBackend } from '../backend';
-import { AnimatedNumber, Button, Box, NoticeBox, LabeledList, ProgressBar, Section } from '../components';
+import {
+  AnimatedNumber,
+  Box,
+  Button,
+  LabeledList,
+  NoticeBox,
+  ProgressBar,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 type NuclearBombData = {
   status: string;
+  time: number;
   time_left: number;
-  time_max: number;
   timer_enabled: boolean;
   has_auth: boolean;
   safety: boolean;
@@ -15,8 +23,8 @@ type NuclearBombData = {
   blue: boolean;
 };
 
-export const NuclearBomb = (props, context) => {
-  const { data } = useBackend<NuclearBombData>(context);
+export const NuclearBomb = (props) => {
+  const { data } = useBackend<NuclearBombData>();
   return (
     <Window width={450} height={450}>
       <Window.Content scrollable>
@@ -26,12 +34,12 @@ export const NuclearBomb = (props, context) => {
   );
 };
 
-const NuclearBombContent = (props, context) => {
-  const { act, data } = useBackend<NuclearBombData>(context);
+const NuclearBombContent = (props) => {
+  const { act, data } = useBackend<NuclearBombData>();
   const {
     status,
+    time,
     time_left,
-    time_max,
     timer_enabled,
     has_auth,
     safety,
@@ -49,12 +57,13 @@ const NuclearBombContent = (props, context) => {
         <LabeledList>
           <LabeledList.Item label="Time left">
             <ProgressBar
-              value={time_left / time_max}
+              value={time_left / time}
               ranges={{
                 good: [0.6, Infinity],
                 average: [0.2, 0.6],
                 bad: [-Infinity, 0.2],
-              }}>
+              }}
+            >
               <AnimatedNumber value={time_left} />s
             </ProgressBar>
           </LabeledList.Item>
@@ -90,7 +99,7 @@ const NuclearBombContent = (props, context) => {
                 }
                 disabled={timer_enabled}
               />
-              <AnimatedNumber value={data.time_max} />
+              <AnimatedNumber value={data.time} />
               <Button
                 content="+5"
                 onClick={() =>

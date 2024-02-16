@@ -22,7 +22,7 @@
 	new /obj/item/clothing/under/marine/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
 	new /obj/item/storage/backpack/marine/satchel/captain_cloak(src)
-	new /obj/item/storage/belt/gun/mateba/officer/full(src)
+	new /obj/item/storage/holster/belt/mateba/officer/full(src)
 
 
 
@@ -80,7 +80,7 @@
 	new /obj/item/clothing/suit/modular/xenonauten/pilot(src)
 	new /obj/item/storage/holster/m25/full(src)
 	new /obj/item/storage/backpack/marine/satchel(src)
-	new /obj/item/clothing/gloves/yellow(src)
+	new /obj/item/clothing/gloves/insulated(src)
 	new /obj/item/clothing/glasses/sunglasses/aviator/yellow(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/gloves/white(src)
@@ -191,7 +191,7 @@
 	new /obj/item/clothing/under/rank/cargotech(src)
 	new /obj/item/clothing/shoes/marine(src)
 	new /obj/item/radio/headset/mainship/ct(src)
-	new /obj/item/clothing/gloves/yellow(src)
+	new /obj/item/clothing/gloves/insulated(src)
 	new /obj/item/clothing/head/beanie(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/storage/backpack/marine/satchel(src)

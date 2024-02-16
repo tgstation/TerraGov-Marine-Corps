@@ -1,6 +1,6 @@
 /////////For remote construction of FOB using a computer on the ship during setup phase
 GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/shuttle/drop2/lz2)))
-GLOBAL_LIST_INIT(blocked_remotebuild_turfs, typecacheof(list(/turf/closed, /turf/open/beach/sea)))
+GLOBAL_LIST_INIT(blocked_remotebuild_turfs, typecacheof(list(/turf/closed)))
 GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/computer/camera_advanced/remote_fob, /obj/structure/window, /obj/machinery/door/poddoor)))
 /////////////////////////////// Drone Mob
 
@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/compu
 	var/area/starting_area
 	var/turf/spawnloc
 
-/mob/camera/aiEye/remote/fobdrone/Initialize()
+/mob/camera/aiEye/remote/fobdrone/Initialize(mapload)
 	. = ..()
 	starting_area = get_area(loc)
 

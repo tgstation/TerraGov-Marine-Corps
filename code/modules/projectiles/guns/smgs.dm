@@ -1,4 +1,9 @@
 /obj/item/weapon/gun/smg
+	icon = 'icons/obj/items/guns/submachineguns.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/submachineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/submachineguns_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/smg_light.ogg'
 	unload_sound = 'sound/weapons/guns/interact/smg_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/smg_reload.ogg'
@@ -16,7 +21,7 @@
 		/obj/item/attachable/magnetic_harness,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	gun_skill_category = SKILL_SMGS
 
@@ -34,6 +39,7 @@
 	desc = "The MP-19 is the TerraGov Marine Corps standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
 	icon_state = "t19"
 	item_state = "t19"
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mp19.ogg'
 	caliber = CALIBER_10X20_CASELESS //codex
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	max_shells = 30 //codex
@@ -74,14 +80,11 @@
 	aim_slowdown = 0.15
 	movement_acc_penalty_mult = 2
 
-	upper_akimbo_accuracy = 5
-	lower_akimbo_accuracy = 3
-
-	burst_amount = 1
-	autoburst_delay = 0.1 SECONDS
-	autoburst_delay = 0.1 SECONDS //this makes it fuller auto
-	burst_accuracy_mult = 0.3
-	burst_scatter_mult = 25
+	upper_akimbo_accuracy = 12
+	lower_akimbo_accuracy = 9
+	burst_amount = 5
+	burst_delay = 0.1 SECONDS
+	akimbo_additional_delay = 20 // Literally do not even bother to try
 
 /obj/item/weapon/gun/smg/standard_machinepistol/compact
 	starting_attachment_types = list(/obj/item/attachable/foldable/t19stock, /obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
@@ -98,7 +101,7 @@
 /obj/item/weapon/gun/smg/standard_smg
 	name = "\improper SMG-90 submachinegun"
 	desc = "The SMG-90 is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with. It uses 10x20mm caseless rounds."
-	fire_sound = 'sound/weapons/guns/fire/t90.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_smg90.ogg'
 	icon_state = "t90"
 	item_state = "t90"
 	caliber = CALIBER_10X20_CASELESS //codex
@@ -125,7 +128,7 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
@@ -153,12 +156,70 @@
 	starting_attachment_types = list(/obj/item/attachable/compensator, /obj/item/attachable/reddot, /obj/item/attachable/lasersight)
 
 //-------------------------------------------------------
+//Da slapper.
+
+/obj/item/weapon/gun/smg/standard_heavysmg
+	name = "\improper SMG-45 heavy submachinegun"
+	desc = "The SMG-45 is a heavier than usual subgun used by the TerraGov Marine Corps. Best known for carrying a punch within a small package. It's usually carried by troops who want a lightweight firearm to rush with while beating a mean punch, however it struggles at range. It uses 10x20mm caseless rounds."
+	icon = 'icons/obj/items/guns/submachineguns64.dmi'
+	icon_state = "t45"
+	item_state = "t45"
+	caliber = CALIBER_45ACP //codex
+	max_shells = 40 //codex
+	fire_sound = 'sound/weapons/guns/fire/skorpevo.ogg'
+	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
+	flags_equip_slot = ITEM_SLOT_BACK
+	type_of_casings = null
+	default_ammo_type = /obj/item/ammo_magazine/smg/standard_heavysmg
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/smg/standard_heavysmg,
+		/obj/item/ammo_magazine/smg/standard_heavysmg/squashhead,
+	)
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/attachable/gyro,
+	)
+
+	attachable_offset = list("muzzle_x" = 43, "muzzle_y" = 19,"rail_x" = 22, "rail_y" = 23, "under_x" = 32, "under_y" = 14, "stock_x" = 24, "stock_y" = 16)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.1 SECONDS
+
+	aim_slowdown = 0.25
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.85
+	fire_delay = 0.25 SECONDS
+	burst_delay =  0.2 SECONDS
+	burst_amount = 3
+	scatter = 2
+	scatter_unwielded = 11
+	akimbo_additional_delay = 0.4
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 3
+
+//-------------------------------------------------------
 //M-25 SMG
 
 /obj/item/weapon/gun/smg/m25
 	name = "\improper SMG-25 submachinegun"
 	desc = "The RivArms SMG-25 submachinegun, an update to a classic design. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/submachineguns64.dmi'
 	icon_state = "m25"
 	item_state = "m25"
 	caliber = CALIBER_10X20_CASELESS //codex
@@ -185,8 +246,12 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/gyro,
 	)
 
@@ -199,6 +264,10 @@
 	scatter_unwielded = 10
 	aim_slowdown = 0.15
 	burst_amount = 3
+	akimbo_additional_delay = 0.4
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 3
+	damage_falloff_mult = 0.9
 
 /obj/item/weapon/gun/smg/m25/holstered
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/gyro)
@@ -284,7 +353,7 @@
 /obj/item/weapon/gun/smg/skorpion
 	name = "\improper CZ-81 submachinegun"
 	desc = "A robust, 20th century firearm that's a combination of pistol and submachinegun. Fires .32ACP caliber rounds from a 20 round magazine."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/submachineguns64.dmi'
 	icon_state = "skorpion"
 	item_state = "skorpion"
 	caliber = CALIBER_32ACP //codex
@@ -325,7 +394,7 @@
 /obj/item/weapon/gun/smg/ppsh
 	name = "\improper PPSh-17b submachinegun"
 	desc = "The PPSh-17b or \"Papasha\" is replica of a 20th century USSR model submachinegun that many terrorist organizations had copied all over the years. Despite its small-hitting firepower, its reliablity, extreme longevity and high firepower rate proves useful for the hands of the user."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/submachineguns64.dmi'
 	icon_state = "ppsh"
 	item_state = "ppsh"
 	caliber = CALIBER_762X25 //codex
@@ -357,7 +426,7 @@
 		/obj/item/attachable/foldable/bipod,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 21, "under_x" = 26, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.15 SECONDS
@@ -367,15 +436,20 @@
 		/obj/item/attachable/stock/ppsh,
 	)
 
-	fire_delay = 0.15 SECONDS
-	burst_amount = 6
+	fire_delay = 0.1 SECONDS
+	burst_amount = 1
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.8
-	scatter = 5
-	scatter_unwielded = 15
-	aim_slowdown = 0.3
-	wield_delay = 0.35 SECONDS
+	akimbo_additional_delay = 0.5
 
+	min_scatter = 2
+	min_scatter_unwielded = 3
+	max_scatter = 15
+	max_scatter_unwielded = 25
+	scatter_increase = 2
+	scatter_increase_unwielded = 8
+	scatter_decay = 0.5
+	scatter_decay_unwielded = 0.1
 
 //-------------------------------------------------------
 //GENERIC UZI //Based on the uzi submachinegun, of course.
@@ -414,14 +488,20 @@
 	name = "\improper V-21 submachinegun"
 	desc = "The V-21 is the principal submachinegun used by the Sons of Mars, designed to be used effectively one or two handed with  a variable rate of fire. When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. It uses 10x20mm caseless rounds."
 	icon_state = "v21"
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/submachineguns64.dmi'
 	item_state = "v21"
 	caliber = CALIBER_10X20_CASELESS
 	max_shells = 50
 	flags_equip_slot = ITEM_SLOT_BACK
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/som
-	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/som, /obj/item/ammo_magazine/smg/som/ap, /obj/item/ammo_magazine/smg/som/incendiary, /obj/item/ammo_magazine/smg/som/extended)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/smg/som,
+		/obj/item/ammo_magazine/smg/som/ap,
+		/obj/item/ammo_magazine/smg/som/incendiary,
+		/obj/item/ammo_magazine/smg/som/extended,
+		/obj/item/ammo_magazine/smg/som/rad,
+	)
 	fire_sound = 'sound/weapons/guns/fire/vector_fire.ogg'
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST) //full auto, fuller auto
 
@@ -458,7 +538,7 @@
 	burst_delay = 0.1 SECONDS
 	extra_delay = 0.1 SECONDS
 	autoburst_delay = 0.1 SECONDS //this makes it fuller auto
-	burst_accuracy_mult = -0.3
+	burst_accuracy_bonus = -0.3
 	burst_scatter_mult = 15
 
 	akimbo_additional_delay = 0.7
@@ -506,12 +586,12 @@
 /obj/item/weapon/gun/smg/icc_machinepistol
 	name = "\improper PL-38 machinepistol"
 	desc = "The PL-38 is a machinepistol used by rearline ICCAF personnel, it presents solid performance at longer ranges in a compact package, although suffers due to a slow rate of fire for its class. It uses 10x20mm caseless rounds."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/submachineguns64.dmi'
 	icon_state = "pl38"
 	item_state = "pl38"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/submachineguns_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/submachineguns_right_64.dmi',
 	)
 
 	inhand_x_dimension = 64
@@ -573,12 +653,12 @@
 /obj/item/weapon/gun/smg/icc_pdw
 	name = "\improper L-40 personal defense weapon"
 	desc = "The L-40 is the primer ICCAF submachinegun, generally termed as a 'PDW' due to its armor-piercing high velocity round, while it has adequate ranged performance, it is mostly tuned for at close quarters combat. It uses 4.6mm high velocity caseless rounds."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/submachineguns64.dmi'
 	icon_state = "l40"
 	item_state = "l40"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/submachineguns_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/submachineguns_right_64.dmi',
 	)
 
 	inhand_x_dimension = 64

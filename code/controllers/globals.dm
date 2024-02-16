@@ -13,8 +13,12 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 	GLOB = src
 
 	var/datum/controller/exclude_these = new
-	gvars_datum_in_built_vars = exclude_these.vars + list(NAMEOF(src, gvars_datum_protected_varlist), NAMEOF(src, gvars_datum_in_built_vars), NAMEOF(src, gvars_datum_init_order))
-	QDEL_IN(exclude_these, 1)	//signal logging isn't ready
+	// I know this is dumb but the nested vars list hangs a ref to the datum. This fixes that
+	var/list/controller_vars = exclude_these.vars.Copy()
+	controller_vars["vars"] = null
+	gvars_datum_in_built_vars = controller_vars + list(NAMEOF(src, gvars_datum_protected_varlist), NAMEOF(src, gvars_datum_in_built_vars), NAMEOF(src, gvars_datum_init_order))
+
+	QDEL_IN(exclude_these, 1) //signal logging isn't ready
 
 	log_world("[length(vars) - length(gvars_datum_in_built_vars)] global variables")
 
@@ -25,11 +29,9 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 	SHOULD_CALL_PARENT(FALSE)
 	return QDEL_HINT_IWILLGC
 
-/datum/controller/global_vars/stat_entry()
-	if(!statclick)
-		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
-
-	stat("Globals:", statclick.update("Debug"))
+/datum/controller/global_vars/stat_entry(msg)
+	msg = "Edit"
+	return msg
 
 /datum/controller/global_vars/vv_edit_var(var_name, var_value)
 	if(gvars_datum_protected_varlist[var_name])
@@ -54,3 +56,6 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 		var/end_tick = world.time
 		if(end_tick - start_tick)
 			warning("Global [replacetext("[I]", "InitGlobal", "")] slept during initialization!")
+
+	// Someone make it so this call isn't necessary
+	make_datum_reference_lists()

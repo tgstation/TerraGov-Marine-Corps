@@ -16,7 +16,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = RESIST_ALL
 
-/obj/item/disk/nuclear/Initialize()
+/obj/item/disk/nuclear/Initialize(mapload)
 	. = ..()
 	GLOB.nuke_disk_list += src
 

@@ -1,14 +1,14 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "bk" = (
 /turf/closed/wall/r_wall,
-/area/lv624/ground/caves/central1)
+/area/lv624/ground/caves/central1/garbledradio)
 "bF" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
 "co" = (
 /turf/open/floor,
-/area/lv624/ground/caves/central1)
+/area/lv624/ground/caves/central1/garbledradio)
 "cr" = (
 /obj/effect/turf_decal/lvsanddecal,
 /obj/effect/turf_decal/lvsanddecal{
@@ -56,7 +56,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "gq" = (
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "gv" = (
@@ -188,9 +188,6 @@
 /obj/effect/turf_decal/lvsanddecal,
 /turf/open/floor/tile/darkgreen,
 /area/lv624/ground/caves/central2)
-"uN" = (
-/turf/closed/mineral/smooth,
-/area/lv624/ground/caves/central1)
 "vo" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
@@ -3277,7 +3274,7 @@ XC
 XC
 XC
 yQ
-uN
+XC
 co
 co
 co

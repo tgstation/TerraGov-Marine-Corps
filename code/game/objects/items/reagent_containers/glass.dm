@@ -17,7 +17,7 @@
 	var/label_text = ""
 
 
-/obj/item/reagent_containers/glass/Initialize()
+/obj/item/reagent_containers/glass/Initialize(mapload)
 	. = ..()
 	base_name = name
 
@@ -90,6 +90,7 @@
 				injected += R.name
 			var/contained = english_list(injected)
 			log_combat(user, M, "splashed", src, "Reagents: [contained]")
+			record_reagent_consumption(reagents.total_volume, injected, user, M)
 
 			visible_message(span_warning("[target] has been splashed with something by [user]!"))
 			reagents.reaction(target, TOUCH)
@@ -150,28 +151,35 @@
 		return
 	update_icon()
 
-/obj/item/reagent_containers/glass/beaker/update_icon()
-	overlays.Cut()
+/obj/item/reagent_containers/glass/beaker/update_overlays()
+	. = ..()
 
 	if(reagents.total_volume)
 		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "[icon_state]10")
 
 		var/percent = round((reagents.total_volume / volume) * 100)
 		switch(percent)
-			if(0 to 9)			filling.icon_state = "[icon_state]-10"
-			if(10 to 24) 		filling.icon_state = "[icon_state]10"
-			if(25 to 49)		filling.icon_state = "[icon_state]25"
-			if(50 to 74)		filling.icon_state = "[icon_state]50"
-			if(75 to 79)		filling.icon_state = "[icon_state]75"
-			if(80 to 90)		filling.icon_state = "[icon_state]80"
-			if(91 to INFINITY)	filling.icon_state = "[icon_state]100"
+			if(0 to 9)			
+				filling.icon_state = "[icon_state]-10"
+			if(10 to 24) 		
+				filling.icon_state = "[icon_state]10"
+			if(25 to 49)		
+				filling.icon_state = "[icon_state]25"
+			if(50 to 74)		
+				filling.icon_state = "[icon_state]50"
+			if(75 to 79)		
+				filling.icon_state = "[icon_state]75"
+			if(80 to 90)		
+				filling.icon_state = "[icon_state]80"
+			if(91 to INFINITY)	
+				filling.icon_state = "[icon_state]100"
 
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		overlays += filling
+		. += filling
 
 	if(!is_open_container())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
-		overlays += lid
+		. += lid
 
 /obj/item/reagent_containers/glass/beaker/large
 	name = "large beaker"
@@ -209,7 +217,7 @@
 	list_reagents = list(/datum/reagent/medicine/cryoxadone = 30)
 
 
-/obj/item/reagent_containers/glass/beaker/cryoxadone/Initialize()
+/obj/item/reagent_containers/glass/beaker/cryoxadone/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -218,7 +226,7 @@
 	list_reagents = list(/datum/reagent/medicine/cryoxadone = 10, /datum/reagent/medicine/clonexadone = 10, /datum/reagent/medicine/saline_glucose = 5, /datum/reagent/medicine/tricordrazine = 10, /datum/reagent/medicine/quickclot = 5, /datum/reagent/medicine/dexalinplus = 5, /datum/reagent/medicine/spaceacillin = 5, /datum/reagent/medicine/bihexajuline = 5)
 
 
-/obj/item/reagent_containers/glass/beaker/cryomix/Initialize()
+/obj/item/reagent_containers/glass/beaker/cryomix/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -227,7 +235,7 @@
 	list_reagents = list(/datum/reagent/toxin/acid = 60)
 
 
-/obj/item/reagent_containers/glass/beaker/sulphuric/Initialize()
+/obj/item/reagent_containers/glass/beaker/sulphuric/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -259,12 +267,12 @@
 		to_chat(user, span_notice("You wet [I] in [src]."))
 		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
-/obj/item/reagent_containers/glass/bucket/update_icon()
-	overlays.Cut()
+/obj/item/reagent_containers/glass/bucket/update_overlays()
+	. = ..()
 
 	if(!is_open_container())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
-		overlays += lid
+		. += lid
 
 /obj/item/reagent_containers/glass/bucket/janibucket
 	name = "janitorial bucket"
@@ -275,14 +283,17 @@
 	update_icon()
 
 
-/obj/item/reagent_containers/glass/bucket/janibucket/update_icon()
-	..()
+/obj/item/reagent_containers/glass/bucket/janibucket/update_icon_state()
+	. = ..()
 	if(reagents.total_volume)
 		var/percent = round((reagents.total_volume / volume) * 100)
 		switch(percent)
-			if(0 to 9)			icon_state = "janibucket"
-			if(10 to 65) 		icon_state = "janibucket_half"
-			if(66 to INFINITY)	icon_state = "janibucket_full"
+			if(0 to 9)			
+				icon_state = "janibucket"
+			if(10 to 65) 		
+				icon_state = "janibucket_half"
+			if(66 to INFINITY)	
+				icon_state = "janibucket_full"
 	else
 		icon_state = "janibucket"
 

@@ -39,6 +39,7 @@
 /obj/item/clothing/mask/gas/tactical
 	name = "Tactical gas mask"
 	icon_state = "gas_alt_tactical"
+	voice_filter = "lowpass=f=750,volume=2"
 
 /obj/item/clothing/mask/gas/tactical/coif
 	name = "Tactical coifed gas mask"
@@ -55,6 +56,7 @@
 	flags_inventory = COVERMOUTH|BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 	breathy = FALSE
+	voice_filter = "lowpass=f=750,volume=2"
 
 /obj/item/clothing/mask/gas/pmc/damaged
 	name = "damaged M8 pattern armored balaclava"
@@ -97,6 +99,19 @@
 	anti_hug = 1
 	siemens_coefficient = 0.7
 	flags_armor_protection = FACE|EYES
+	voice_filter = "lowpass=f=750,volume=2"
+
+/obj/item/clothing/mask/gas/specops
+	name = "Special Operations gasmask"
+	desc = "A close-fitting tactical mask that can be connected to an air supply. Based off an old design of gas masks."
+	icon = 'icons/mob/clothing/mask.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/mask.dmi'
+	)
+	icon_state = "specop"
+	item_state = "specop"
+	siemens_coefficient = 0.7
+	voice_filter = "lowpass=f=750,volume=2"
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "syndicate mask"
@@ -108,7 +123,6 @@
 	name = "gas mask"
 	//desc = "A face-covering mask that can be connected to an air supply. It seems to house some odd electronics."
 	var/mode = 0// 0==Scouter|1==Night Vision|2==Thermal|3==Meson
-	var/voice = "Unknown"
 	var/vchange = 0//This didn't do anything before. It now checks if the mask has special functions/N
 
 

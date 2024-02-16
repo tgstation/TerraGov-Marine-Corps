@@ -11,7 +11,7 @@
 	var/loop = FALSE
 	var/hearing_range = 3
 
-/obj/item/assembly/timer/Initialize()
+/obj/item/assembly/timer/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -63,12 +63,15 @@
 		timer_end()
 		time = saved_time
 
-/obj/item/assembly/timer/update_icon()
-	cut_overlays()
+/obj/item/assembly/timer/update_overlays()
+	. = ..()
 	attached_overlays = list()
 	if(timing)
-		add_overlay("timer_timing")
+		. += "timer_timing"
 		attached_overlays += "timer_timing"
+
+/obj/item/assembly/timer/update_icon()
+	. = ..()
 	if(holder)
 		holder.update_icon()
 

@@ -166,6 +166,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
 	},
@@ -216,7 +217,7 @@
 /area/bigredv2/caves/west)
 "pG" = (
 /obj/machinery/light,
-/obj/effect/spawner/random/engineering/structure/tank/fuelweighted/barrel,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "pR" = (
@@ -366,7 +367,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "zy" = (
-/obj/effect/spawner/random/misc/structure/supplycrate/case/double,
+/obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "zR" = (
@@ -476,9 +477,8 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/caves/northwest)
 "FO" = (
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/item/stack/sheet/wood,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Gm" = (
@@ -488,7 +488,11 @@
 	},
 /area/bigredv2/outside/nw)
 "Gr" = (
-/obj/effect/spawner/random/misc/structure/barrel/white,
+/obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Gu" = (
@@ -696,7 +700,7 @@
 /area/bigredv2/outside/nw)
 "Uq" = (
 /obj/machinery/light{
-	dir = 1;
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -723,7 +727,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "UP" = (
-/obj/effect/spawner/random/engineering/structure/tank/fuelweighted/barrel,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Vv" = (
@@ -798,9 +802,9 @@
 /area/bigredv2/outside/nw)
 "XR" = (
 /obj/machinery/light{
-	dir = 1;
+	dir = 1
 	},
-/obj/effect/spawner/random/misc/structure/supplycrate/case/small,
+/obj/structure/largecrate/random/case/small,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Yd" = (
@@ -1320,7 +1324,7 @@ Uk
 Uk
 Uk
 OL
-FO
+Uq
 er
 er
 Dm
@@ -1466,7 +1470,7 @@ JU
 OL
 er
 er
-Gr
+Qe
 er
 er
 er
@@ -1591,9 +1595,9 @@ er
 er
 rw
 er
-PL
-er
-PY
+FO
+Fo
+Gr
 JP
 JI
 Vv
@@ -1615,7 +1619,7 @@ er
 PY
 er
 er
-er
+Fo
 er
 er
 JP
@@ -1943,7 +1947,7 @@ jf
 WG
 aC
 Pb
-er
+Fo
 er
 er
 bZ

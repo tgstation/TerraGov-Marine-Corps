@@ -72,7 +72,7 @@
 //This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, CHEST, GROIN, etc. See setup.dm for the full list)
 /mob/living/carbon/human/proc/get_flags_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
 
-	var/thermal_protection_flags = 0
+	var/thermal_protection_flags = NONE
 
 	//Handle normal clothing
 	if(head)
@@ -131,7 +131,7 @@
 //See proc/get_flags_heat_protection_flags(temperature) for the description of this proc.
 /mob/living/carbon/human/proc/get_flags_cold_protection_flags(temperature, deficit = 0)
 
-	var/thermal_protection_flags = 0
+	var/thermal_protection_flags = NONE
 
 	//Handle normal clothing
 	if(head)

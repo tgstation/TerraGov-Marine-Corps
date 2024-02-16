@@ -1,7 +1,7 @@
 /obj/item/tool/extinguisher
 	name = "fire extinguisher"
 	desc = "A traditional red fire extinguisher."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/tank.dmi'
 	icon_state = "fire_extinguisher0"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
@@ -44,7 +44,7 @@
 /obj/item/tool/extinguisher/attack_self(mob/user as mob)
 	safety = !safety
 	icon_state = "[sprite_name][!safety]"
-	to_chat(user, "The safety is [safety ? "on" : "off"].")
+	balloon_alert(user, "Safety [safety ? "on" : "off"]")
 
 /obj/item/tool/extinguisher/attack(mob/M, mob/user)
 	if(user.a_intent == INTENT_HELP && !safety) //If we're on help intent and going to spray people, don't bash them.
@@ -58,7 +58,7 @@
 	if( istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(src,target) <= 1)
 		var/obj/o = target
 		o.reagents.trans_to(src, 50)
-		to_chat(user, span_notice("\The [src] is now refilled"))
+		balloon_alert(user, "Refilled")
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 

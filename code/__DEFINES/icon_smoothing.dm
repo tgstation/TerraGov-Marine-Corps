@@ -103,6 +103,8 @@
 #define SMOOTH_GROUP_SHUTTERS S_OBJ(26)
 
 #define SMOOTH_GROUP_LATTICE  S_OBJ(30)
+#define SMOOTH_GROUP_FENCE  S_OBJ(31)
+#define SMOOTH_GROUP_GIRDER  S_OBJ(32)
 
 #define SMOOTH_GROUP_AIRLOCK  S_OBJ(40)							///obj/structure/lattice
 #define SMOOTH_GROUP_GRILLE  S_OBJ(41)
@@ -136,3 +138,5 @@
 #define SMOOTH_GROUP_XENO_STRUCTURES S_OBJ(69) //Resin structures.
 
 #define SMOOTH_GROUP_FOAM_WALL S_OBJ(70) //foam walls.
+#define SMOOTH_GROUP_TALL_GRASS S_OBJ(71) //tall grass
+#define SMOOTH_GROUP_GRASS_DECAL S_OBJ(72) //grass decal

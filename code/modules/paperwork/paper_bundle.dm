@@ -101,15 +101,15 @@
 		switch(screen)
 			if(0)
 				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'></DIV>"
-				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>Remove [(istype(src[page], /obj/item/paper)) ? "paper" : "photo"]</A></DIV>"
-				dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='?src=\ref[src];next_page=1'>Next Page</A></DIV><BR><HR>"
+				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=[text_ref(src)];remove=1'>Remove [(istype(src[page], /obj/item/paper)) ? "paper" : "photo"]</A></DIV>"
+				dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='?src=[text_ref(src)];next_page=1'>Next Page</A></DIV><BR><HR>"
 			if(1)
-				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=\ref[src];prev_page=1'>Previous Page</A></DIV>"
-				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>Remove [(istype(src[page], /obj/item/paper)) ? "paper" : "photo"]</A></DIV>"
-				dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='?src=\ref[src];next_page=1'>Next Page</A></DIV><BR><HR>"
+				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=[text_ref(src)];prev_page=1'>Previous Page</A></DIV>"
+				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=[text_ref(src)];remove=1'>Remove [(istype(src[page], /obj/item/paper)) ? "paper" : "photo"]</A></DIV>"
+				dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='?src=[text_ref(src)];next_page=1'>Next Page</A></DIV><BR><HR>"
 			if(2)
-				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=\ref[src];prev_page=1'>Previous Page</A></DIV>"
-				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>Remove [(istype(src[page], /obj/item/paper)) ? "paper" : "photo"]</A></DIV><BR><HR>"
+				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=[text_ref(src)];prev_page=1'>Previous Page</A></DIV>"
+				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=[text_ref(src)];remove=1'>Remove [(istype(src[page], /obj/item/paper)) ? "paper" : "photo"]</A></DIV><BR><HR>"
 				dat+= "<DIV STYLE='float;left; text-align:right; with:33.33333%'></DIV>"
 		if(istype(src[page], /obj/item/paper))
 			var/obj/item/paper/P = src[page]
@@ -183,7 +183,7 @@
 
 	var/n_name = stripped_input(usr, "What would you like to label the bundle?", "Bundle Labelling")
 	if((loc == usr && usr.stat == 0))
-		name = "[(n_name ? text("[n_name]") : "paper")]"
+		name = "[(n_name ? "[n_name]" : "paper")]"
 
 /obj/item/paper_bundle/verb/remove_all()
 	set name = "Loose bundle"
@@ -196,36 +196,51 @@
 	usr.dropItemToGround(src)
 	qdel(src)
 
-/obj/item/paper_bundle/update_icon()
+/obj/item/paper_bundle/update_icon_state()
+	. = ..()
 	if(length(contents))
 		var/obj/item/I = contents[1]
 		icon_state = I.icon_state
-		overlays = I.overlays
+
+/obj/item/paper_bundle/update_desc(updates)
+	. = ..()
+	var/paper_number = 0
+	var/photo = FALSE
+	for(var/obj/thing in src)
+		if(istype(thing, /obj/item/paper))
+			paper_number++
+		else if(istype(thing, /obj/item/photo))
+			photo = TRUE
+	if(paper_number>1)
+		desc = "[paper_number] papers clipped to each other."
+	else
+		desc = "A single sheet of paper."
+	if(photo)
+		desc += "There is a photo attached to it."
+
+
+/obj/item/paper_bundle/update_overlays()
+	. = ..()
+	if(length(contents))
+		var/obj/item/I = contents[1]
+		. = I.overlays
 	underlays = 0
-	var/i = 0
-	var/photo
+	var/paper_number = 0
 	for(var/obj/O in src)
 		var/image/IMG = image('icons/obj/items/paper.dmi')
 		if(istype(O, /obj/item/paper))
 			IMG.icon_state = O.icon_state
-			IMG.pixel_x -= min(1*i, 2)
-			IMG.pixel_y -= min(1*i, 2)
-			pixel_x = min(0.5*i, 1)
-			pixel_y = min(  1*i, 2)
+			IMG.pixel_x -= min(1*paper_number, 2)
+			IMG.pixel_y -= min(1*paper_number, 2)
+			pixel_x = min(0.5*paper_number, 1)
+			pixel_y = min(  1*paper_number, 2)
 			underlays += IMG
-			i++
+			paper_number++
 		else if(istype(O, /obj/item/photo))
 			var/obj/item/photo/PH = O
 			IMG = PH.picture.picture_icon
-			photo = 1
-			overlays += IMG
-	if(i>1)
-		desc = "[i] papers clipped to each other."
-	else
-		desc = "A single sheet of paper."
-	if(photo)
-		desc += "\nThere is a photo attached to it."
-	overlays += image('icons/obj/items/paper.dmi', "clip")
+			. += IMG
+	. += image('icons/obj/items/paper.dmi', "clip")
 
 /obj/item/paper_bundle/proc/attach_doc(obj/item/I, mob/living/user, no_message)
 	if(I.loc == user)

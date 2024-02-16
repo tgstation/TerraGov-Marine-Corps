@@ -105,7 +105,8 @@
 
 #define STUN "stun"
 #define WEAKEN "weaken"
-#define PARALYZE "paralize"
+#define PARALYZE "paralyze"
+#define STAGGER "stagger"
 #define AGONY "agony" // Added in PAIN!
 #define STUTTER "stutter"
 #define EYE_BLUR "eye_blur"
@@ -165,15 +166,12 @@ GLOBAL_LIST_INIT(tier_as_number, list(XENO_TIER_MINION = -1, XENO_TIER_ZERO = 0,
 
 #define XENO_UPGRADE_BASETYPE "basetype"
 #define XENO_UPGRADE_INVALID "invalid" // not applicable, the old -1
-#define XENO_UPGRADE_ZERO "zero"	// god forgive me again
-#define XENO_UPGRADE_ONE "one"
-#define XENO_UPGRADE_TWO "two"
-#define XENO_UPGRADE_THREE "three"
-#define XENO_UPGRADE_FOUR "four"
+#define XENO_UPGRADE_NORMAL "zero"	// god forgive me again
+#define XENO_UPGRADE_PRIMO "one"
 
 #define XENO_UPGRADE_MANIFESTATION "manifestation" //just for the hivemind
 
-GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE, XENO_UPGRADE_FOUR, XENO_UPGRADE_MANIFESTATION))
+GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_NORMAL, XENO_UPGRADE_PRIMO, XENO_UPGRADE_MANIFESTATION))
 
 //=================================================
 
@@ -380,17 +378,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TASTE_DULL 30 //anything below 30%
 #define TASTE_NUMB 101 //no taste
 
-
-//defins for datum/hud
-
-#define HUD_STYLE_STANDARD 1
-#define HUD_STYLE_REDUCED 2
-#define HUD_STYLE_NOHUD 3
-#define HUD_VERSIONS 3
-#define HUD_SL_LOCATOR_COOLDOWN 0.5 SECONDS
-#define HUD_SL_LOCATOR_PROCESS_COOLDOWN 10 SECONDS
-
-
 //Blood levels
 #define BLOOD_VOLUME_MAXIMUM 600
 #define BLOOD_VOLUME_NORMAL 560
@@ -403,26 +390,27 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 
 // Human Overlay Indexes
-#define LASER_LAYER 28 //For sniper targeting laser
-#define MOTH_WINGS_LAYER 27
-#define MUTATIONS_LAYER 26
-#define DAMAGE_LAYER 25
-#define UNIFORM_LAYER 24
-#define TAIL_LAYER 23 //bs12 specific. this hack is probably gonna come back to haunt me
-#define ID_LAYER 22
-#define SHOES_LAYER 21
-#define GLOVES_LAYER 20
-#define BELT_LAYER 19
-#define GLASSES_LAYER 18
-#define SUIT_LAYER 17 //Possible make this an overlay of somethign required to wear a belt?
-#define HAIR_LAYER 16 //TODO: make part of head layer?
-#define EARS_LAYER 15
-#define FACEMASK_LAYER 14
-#define GOGGLES_LAYER 13	//For putting Ballistic goggles and potentially other things above masks
-#define HEAD_LAYER 12
-#define COLLAR_LAYER 11
-#define SUIT_STORE_LAYER 10
-#define BACK_LAYER 9
+#define LASER_LAYER 29 //For sniper targeting laser
+#define MOTH_WINGS_LAYER 28
+#define MUTATIONS_LAYER 27
+#define DAMAGE_LAYER 26
+#define UNIFORM_LAYER 25
+#define TAIL_LAYER 24 //bs12 specific. this hack is probably gonna come back to haunt me
+#define ID_LAYER 23
+#define SHOES_LAYER 22
+#define GLOVES_LAYER 21
+#define BELT_LAYER 20
+#define GLASSES_LAYER 19
+#define SUIT_LAYER 18 //Possible make this an overlay of somethign required to wear a belt?
+#define HAIR_LAYER 17 //TODO: make part of head layer?
+#define EARS_LAYER 16
+#define FACEMASK_LAYER 15
+#define GOGGLES_LAYER 14	//For putting Ballistic goggles and potentially other things above masks
+#define HEAD_LAYER 13
+#define COLLAR_LAYER 12
+#define SUIT_STORE_LAYER 11
+#define BACK_LAYER 10
+#define KAMA_LAYER 9
 #define CAPE_LAYER 8
 #define HANDCUFF_LAYER 7
 #define L_HAND_LAYER 6
@@ -432,7 +420,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TARGETED_LAYER 2 //for target sprites when held at gun point, and holo cards.
 #define FIRE_LAYER 1 //If you're on fire
 
-#define TOTAL_LAYERS 28
+#define TOTAL_LAYERS 29
 
 #define MOTH_WINGS_BEHIND_LAYER 1
 
@@ -445,7 +433,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 ///Stamina exhaustion
 
 #define LIVING_STAMINA_EXHAUSTION_COOLDOWN 10 SECONDS //Amount of time between 0 stamina exhaustion events
-#define STAMINA_EXHAUSTION_DEBUFF_STACKS 6 //Amount of slow and stagger stacks applied on stamina exhaustion events
+#define STAMINA_EXHAUSTION_STAGGER_DURATION 10 SECONDS //Amount of stagger applied on stamina exhaustion events
+#define STAMINA_EXHAUSTION_DEBUFF_STACKS 6 //Amount of slow and eyeblur stacks applied on stamina exhaustion events
 
 
 //Shock defines
@@ -463,18 +452,16 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_ACID_WELL_MAX_CHARGES 5 //Maximum number of charges for the acid well
 
 #define HIVE_CAN_HIJACK (1<<0)
-#define HIVE_CAN_COLLAPSE_FROM_SILO (1<<1)
 
 #define XENO_PULL_CHARGE_TIME 2 SECONDS
 #define XENO_SLOWDOWN_REGEN 0.4
 
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
-#define XENO_EXPLOSION_RESIST_3_MODIFIER 0.25 //multiplies top level explosive damage by this amount.
-#define XENO_EXPLOSION_GIB_THRESHOLD 5 //under this level of bomb armour, devestating explosion will gib xenos
+#define XENO_EXPLOSION_GIB_THRESHOLD 0.95 //if your effective bomb armour is less than 5, devestating explosions will gib xenos
 
 #define KING_SUMMON_TIMER_DURATION 5 MINUTES
 
-#define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speed.
+#define SPIT_UPGRADE_BONUS(Xenomorph) (Xenomorph.upgrade_as_number() ?  0.6 : 0.45 ) //Primo damage increase
 
 #define PLASMA_TRANSFER_AMOUNT 100
 
@@ -490,6 +477,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_SILO_DAMAGE_POINTER_DURATION 10 SECONDS //How long the alert directional pointer lasts when silos are damaged
 #define XENO_SILO_DETECTION_COOLDOWN 1 MINUTES
 #define XENO_SILO_DETECTION_RANGE 10//How far silos can detect hostiles
+#define XENO_GARGOYLE_DETECTION_COOLDOWN 30 SECONDS
+#define XENO_GARGOYLE_DETECTION_RANGE 10//How far gargoyles can detect hostiles
+#define XENO_RESTING_COOLDOWN 2 SECONDS
+#define XENO_UNRESTING_COOLDOWN 0.5 SECONDS
+
 #define XENO_HIVEMIND_DETECTION_RANGE 10 //How far out (in tiles) can the hivemind detect hostiles
 #define XENO_HIVEMIND_DETECTION_COOLDOWN 1 MINUTES
 
@@ -517,6 +509,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_NOT_IN_BIOSCAN (1<<13) // xenos with this flag aren't registered towards bioscan
 #define CASTE_DO_NOT_ANNOUNCE_DEATH (1<<14) // xenos with this flag wont be announced to hive when dying
 #define CASTE_STAGGER_RESISTANT (1<<15) //Resistant to some forms of stagger, such as projectiles
+#define CASTE_HAS_WOUND_MASK (1<<16) //uses an alpha mask for wounded states
 
 // Xeno defines that affect evolution, considering making a new var for these
 #define CASTE_LEADER_TYPE (1<<16) //Whether we are a leader type caste, such as the queen, shrike or ?king?, and is affected by queen ban and playtime restrictions
@@ -547,12 +540,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CHARGE_ON 2
 #define CHARGE_MAX 3
 
-// Xeno charge types
-#define CHARGE_TYPE_SMALL 1
-#define CHARGE_TYPE_MEDIUM 2
-#define CHARGE_TYPE_LARGE 3
-#define CHARGE_TYPE_MASSIVE 4
-
 //Hunter Defines
 #define HUNTER_STEALTH_COOLDOWN 50 //5 seconds
 #define HUNTER_STEALTH_WALK_PLASMADRAIN 2
@@ -563,14 +550,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_STEALTH_STEALTH_DELAY 30 //3 seconds before 95% stealth
 #define HUNTER_STEALTH_INITIAL_DELAY 20 //2 seconds before we can increase stealth
 #define HUNTER_POUNCE_SNEAKATTACK_DELAY 30 //3 seconds before we can sneak attack
-#define HANDLE_STEALTH_CHECK 1
-#define HANDLE_SNEAK_ATTACK_CHECK 3
-#define HUNTER_SNEAK_SLASH_ARMOR_PEN 20 //1 - this value = the actual penetration
+#define HUNTER_SNEAK_SLASH_ARMOR_PEN 20 //bonus AP
 #define HUNTER_SNEAK_ATTACK_RUN_DELAY 2 SECONDS
-#define HUNTER_SNEAKATTACK_MAX_MULTIPLIER 2.0
-#define HUNTER_SNEAKATTACK_RUN_REDUCTION 0.2
-#define HUNTER_SNEAKATTACK_WALK_INCREASE 1
-#define HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY 10
 #define HUNTER_PSYCHIC_TRACE_COOLDOWN 5 SECONDS //Cooldown of the Hunter's Psychic Trace, and duration of its arrow
 #define HUNTER_SILENCE_STAGGER_STACKS 1 //Silence imposes this many stagger stacks
 #define HUNTER_SILENCE_SENSORY_STACKS 7 //Silence imposes this many eyeblur and deafen stacks.
@@ -584,9 +565,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Ravager defines:
 #define RAV_CHARGESPEED 2
-#define RAV_CHARGESTRENGTH 2
 #define RAV_CHARGEDISTANCE 4
-#define RAV_CHARGE_TYPE 3
+
+#define RAV_RAVAGE_THROW_RANGE 1
 
 #define RAVAGER_ENDURE_DURATION				10 SECONDS
 #define RAVAGER_ENDURE_DURATION_WARNING		0.7
@@ -614,11 +595,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define GORGER_DRAIN_HEAL 40 // overheal gained each time the target is drained
 #define GORGER_DRAIN_BLOOD_DRAIN 20 // amount of plasma drained when feeding on something
 #define GORGER_TRANSFUSION_HEAL 0.3 // in %
-#define GORGER_REJUVENATE_DURATION -1
-#define GORGER_REJUVENATE_COST 20
-#define GORGER_REJUVENATE_SLOWDOWN 6
-#define GORGER_REJUVENATE_HEAL 0.05 //in %
-#define GORGER_REJUVENATE_THRESHOLD 0.10 //in %
+#define GORGER_OPPOSE_COST 100
+#define GORGER_OPPOSE_HEAL 0.2 // in %
 #define GORGER_PSYCHIC_LINK_CHANNEL 10 SECONDS
 #define GORGER_PSYCHIC_LINK_RANGE 15
 #define GORGER_PSYCHIC_LINK_REDIRECT 0.5 //in %
@@ -655,9 +633,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Boiler defines
 #define BOILER_LUMINOSITY_BASE 0
 #define BOILER_LUMINOSITY_BASE_COLOR LIGHT_COLOR_GREEN
-#define BOILER_LUMINOSITY_AMMO 1 //don't set this to 0. How much each 'piece' of ammo in reserve glows by.
+#define BOILER_LUMINOSITY_AMMO 0.5 //don't set this to 0. How much each 'piece' of ammo in reserve glows by.
 #define BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR LIGHT_COLOR_YELLOW
 #define BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR LIGHT_COLOR_GREEN
+#define BOILER_BOMBARD_COOLDOWN_REDUCTION 1.5 //Amount of seconds each glob stored reduces bombard cooldown by
+#define	BOILER_LUMINOSITY_THRESHOLD 2 //Amount of ammo needed to start glowing
 
 //Hivelord defines
 #define HIVELORD_TUNNEL_DISMANTLE_TIME 3 SECONDS
@@ -682,10 +662,15 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DRONE_ESSENCE_LINK_REGEN 0.012 // Amount of health regen given as a percentage.
 #define DRONE_ESSENCE_LINK_SHARED_HEAL 0.1 // The effectiveness of heals when applied to the other linked xeno, as a percentage
 
-//Runner defines
-#define RUNNER_EVASION_DURATION 2 SECONDS //How long Evasion lasts.
-#define RUNNER_EVASION_RUN_DELAY 0.5 SECONDS //If the time since the Runner last moved is equal to or greater than this, its Evasion ends.
-#define RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD 120 //If we dodge this much damage times our streak count plus 1 while evading, refresh the cooldown of Evasion.
+//Defender defines
+#define DEFENDER_CHARGE_RANGE 4
+
+//Baneling defines
+#define BANELING_CHARGE_MAX 2
+#define BANELING_CHARGE_GAIN_TIME 240 SECONDS
+#define BANELING_CHARGE_RESPAWN_TIME 30 SECONDS
+/// Not specified in seconds because it causes smoke to last almost four times as long if done so
+#define BANELING_SMOKE_DURATION 4
 
 //Sentinel defines
 #define SENTINEL_TOXIC_SPIT_STACKS_PER 2 //Amount of debuff stacks to be applied per spit.
@@ -711,7 +696,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER 0.5
 #define WRAITH_BANISH_VERY_SHORT_MULTIPLIER 0.3
 
-#define WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS 2 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
+#define WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS 2 SECONDS //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 #define WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS 3 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 
 //Warrior defines
@@ -724,7 +709,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Widow Defines
 #define WIDOW_SPEED_BONUS 1 // How much faster widow moves while she has wall_speedup element
-#define BURROW_FIRE_RESIST_MODIFIER 20 // How much fire resistance widow and spiderlings have while burrowed
 #define WIDOW_WEB_HOOK_RANGE 10 // how far the web hook can reach
 #define WIDOW_WEB_HOOK_MIN_RANGE 3 // the minimum range that the hook must travel to use the ability
 #define WIDOW_WEB_HOOK_SPEED 3 // how fast widow yeets herself when using web hook
@@ -747,11 +731,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BRAVO_SQUAD "bravo_squad"
 #define CHARLIE_SQUAD "charlie_squad"
 #define DELTA_SQUAD "delta_squad"
-
-#define ALPHA_SQUAD_REBEL "alpha_squad_rebel"
-#define BRAVO_SQUAD_REBEL "bravo_squad_rebel"
-#define CHARLIE_SQUAD_REBEL "charlie_squad_rebel"
-#define DELTA_SQUAD_REBEL "delta_squad_rebel"
 
 #define ZULU_SQUAD "zulu_squad"
 #define YANKEE_SQUAD "yankee_squad"
@@ -807,6 +786,7 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define GRAB_PIXEL_SHIFT_NECK 16
 
 #define HUMAN_CARRY_SLOWDOWN 0.35
+#define HUMAN_EXPLOSION_GIB_THRESHOLD 0.1
 
 
 // =============================
@@ -816,24 +796,25 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define SCREWYHUD_DEAD 2
 #define SCREWYHUD_HEALTHY 3
 
-//do_mob() flags
-#define IGNORE_LOC_CHANGE (1<<0)
-#define IGNORE_HAND (1<<1)
+// timed_action_flags parameter for `/proc/do_after`
+/// Can do the action even if mob moves location
+#define IGNORE_USER_LOC_CHANGE (1<<0)
+/// Can do the action even if the target moves location
+#define IGNORE_TARGET_LOC_CHANGE (1<<1)
+/// Can do the action even if the item is no longer being held
+#define IGNORE_HELD_ITEM (1<<2)
+/// Can do the action even if the mob is incapacitated (ex. handcuffed)
+#define IGNORE_INCAPACITATED (1<<3)
+/// Used to prevent important slowdowns from being abused by drugs like kronkaine
+#define IGNORE_SLOWDOWNS (1<<4)
 
-#define TIER_ONE_YOUNG_THRESHOLD 60
-#define TIER_ONE_MATURE_THRESHOLD TIER_ONE_YOUNG_THRESHOLD + 120
-#define TIER_ONE_ELDER_THRESHOLD TIER_ONE_MATURE_THRESHOLD + 240
-#define TIER_ONE_ANCIENT_THRESHOLD TIER_ONE_ELDER_THRESHOLD + 240
+#define IGNORE_LOC_CHANGE (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE)
 
-#define TIER_TWO_YOUNG_THRESHOLD 120
-#define TIER_TWO_MATURE_THRESHOLD TIER_TWO_YOUNG_THRESHOLD + 240
-#define TIER_TWO_ELDER_THRESHOLD TIER_TWO_MATURE_THRESHOLD + 480
-#define TIER_TWO_ANCIENT_THRESHOLD TIER_TWO_ELDER_THRESHOLD + 240
+#define TIER_ONE_THRESHOLD 420
 
-#define TIER_THREE_YOUNG_THRESHOLD 250
-#define TIER_THREE_MATURE_THRESHOLD TIER_THREE_YOUNG_THRESHOLD + 500
-#define TIER_THREE_ELDER_THRESHOLD TIER_THREE_MATURE_THRESHOLD + 1000
-#define TIER_THREE_ANCIENT_THRESHOLD TIER_THREE_ELDER_THRESHOLD + 100
+#define TIER_TWO_THRESHOLD 840
+
+#define TIER_THREE_THRESHOLD 1750
 
 
 // Pheromones and buff orders
@@ -845,3 +826,26 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define AURA_HUMAN_MOVE "move"
 #define AURA_HUMAN_HOLD "hold"
 #define AURA_HUMAN_FOCUS "focus"
+
+#define AURA_XENO_BLESSWARDING "Blessing Of Warding"
+#define AURA_XENO_BLESSFRENZY "Blessing Of Frenzy"
+#define AURA_XENO_BLESSFURY "Blessing Of Fury"
+
+//slowdown defines for liquid turfs
+
+///Default slowdown for mobs moving through liquid
+#define MOB_WATER_SLOWDOWN 1.75
+///Slowdown for xenos moving through liquid
+#define XENO_WATER_SLOWDOWN 1.3
+///Slowdown for boilers moving through liquid
+#define BOILER_WATER_SLOWDOWN 0
+///Slowdown for warlocks moving through liquid
+#define WARLOCK_WATER_SLOWDOWN 0
+
+
+//Species defines
+
+///Human species or those that functional behave like them. Default species
+#define SPECIES_HUMAN "species_human"
+///Combat robot species
+#define SPECIES_COMBAT_ROBOT "species_combat_robot"

@@ -1,0 +1,153 @@
+{
+	"highlight_none":[
+		{
+			"type": "icon_state",
+			"icon_state": "empty",
+			"blend_mode": "overlay"
+		}
+	],
+	"highlight_kama":[
+		{
+			"type": "hyperscale",
+			"icon_state": "kama"
+		}
+	],
+	"highlight_kilt": [
+		{
+			"type": "hyperscale",
+			"icon_state": "kilt"
+		}
+	],
+	"highlight_scarf":[
+		{
+			"type": "hyperscale",
+			"icon_state": "scarf"
+		}
+	],
+	"highlight_scarf_h":[
+		{
+			"type": "hyperscale",
+			"icon_state": "scarf_h"
+		}
+	],
+	"highlight_normal":[
+		{
+			"type": "hyperscale",
+			"icon_state": "normal"
+		}
+	],
+	"highlight_normal_h":[
+		{
+			"type": "hyperscale",
+			"icon_state": "normal_h"
+		}
+	],
+	"highlight_normal (alt)":[
+		{
+			"type": "hyperscale",
+			"icon_state": "normal_alt"
+		}
+	],
+	"highlight_normal (alt)_h":[
+		{
+			"type": "hyperscale",
+			"icon_state": "normal_alt_h"
+		}
+	],
+	"highlight_short":[
+		{
+			"type": "hyperscale",
+			"icon_state": "short"
+		}
+	],
+	"highlight_short_h":[
+		{
+			"type": "hyperscale",
+			"icon_state": "short_h"
+		}
+	],
+	"highlight_shredded":[
+		{
+			"type": "hyperscale",
+			"icon_state": "shredded"
+		}
+	],
+	"highlight_shredded_h":[
+		{
+			"type": "hyperscale",
+			"icon_state": "shredded_h"
+		}
+	],
+	"highlight_half":[
+		{
+			"type": "hyperscale",
+			"icon_state": "half"
+		}
+	],
+	"highlight_half_h":[
+		{
+			"type": "hyperscale",
+			"icon_state": "half_h"
+		}
+	],
+	"highlight_full":[
+		{
+			"type": "hyperscale",
+			"icon_state": "full"
+		}
+	],
+	"highlight_full_h":[
+		{
+			"type": "hyperscale",
+			"icon_state": "full_h"
+		}
+	],
+	"highlight_back":[
+		{
+			"type": "hyperscale",
+			"icon_state": "back"
+		}
+	],
+	"highlight_cover":[
+		{
+			"type": "hyperscale",
+			"icon_state": "cover"
+		}
+	],
+	"highlight_cover (alt)":[
+		{
+			"type": "hyperscale",
+			"icon_state": "cover_2"
+		}
+	],
+	"highlight_shoal":[
+		{
+			"type": "hyperscale",
+			"icon_state": "shoal"
+		}
+	],
+	"highlight_shoal (alt)":[
+		{
+			"type": "hyperscale",
+			"icon_state": "shoal_2"
+		}
+	],
+	"highlight_shoal (back)":[
+		{
+			"type": "hyperscale",
+			"icon_state": "shoal_back"
+		}
+	],
+	"highlight_rapier left":[
+		{
+			"type": "hyperscale",
+			"icon_state": "rapier_left"
+		}
+	],
+	"highlight_rapier right":[
+		{
+			"type": "hyperscale",
+			"icon_state": "rapier_right"
+		}
+	]
+}

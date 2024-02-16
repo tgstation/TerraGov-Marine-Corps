@@ -14,6 +14,7 @@
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	flags_atom = BUMP_ATTACKABLE
 	soft_armor = list(MELEE = 25, BULLET = 85, LASER = 50, ENERGY = 100, BOMB = 50, BIO = 100, FIRE = 25, ACID = 25)
+	allow_pass_flags = PASS_AIR|PASS_LOW_STRUCTURE|PASS_THROW
 	/// Needed to keep track of any slowdowns and/or diagonal movement
 	var/next_move_delay = 0
 	/// Path of "turret" attached
@@ -43,14 +44,14 @@
 	/// If something is already controlling the vehicle
 	var/controlled = FALSE
 	/// Flags for unmanned vehicules
-	var/unmanned_flags = OVERLAY_TURRET|HAS_LIGHTS|UNDERCARRIAGE
+	var/unmanned_flags = OVERLAY_TURRET|HAS_LIGHTS
 	/// Iff flags, to prevent friendly fire from sg and aiming marines
 	var/iff_signal = TGMC_LOYALIST_IFF
 	/// muzzleflash stuff
 	var/atom/movable/vis_obj/effect/muzzle_flash/flash
 	COOLDOWN_DECLARE(fire_cooldown)
 
-/obj/vehicle/unmanned/Initialize()
+/obj/vehicle/unmanned/Initialize(mapload)
 	. = ..()
 	ammo = GLOB.ammo_list[ammo]
 	name += " " + num2text(serial)
@@ -70,12 +71,13 @@
 		max_rounds = initial(spawn_equipped_type.max_rounds)
 		update_icon()
 	hud_set_uav_ammo()
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_MARINE, "uav")
+	SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "uav"))
 
 /obj/vehicle/unmanned/Destroy()
-	. = ..()
 	GLOB.unmanned_vehicles -= src
 	QDEL_NULL(flash)
+	QDEL_NULL(in_chamber)
+	return ..()
 
 /obj/vehicle/unmanned/obj_destruction()
 	robogibs(src)
@@ -124,11 +126,6 @@
 	if(istype(I, /obj/item/ammo_magazine))
 		return reload_turret(I, user)
 
-/obj/vehicle/unmanned/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if((unmanned_flags & UNDERCARRIAGE) && istype(mover) && !ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
-
 /obj/vehicle/unmanned/relaymove(mob/living/user, direction)
 	if(user.incapacitated())
 		return FALSE
@@ -150,7 +147,7 @@
 		to_chat(user,"<span class='warning'>There is nothing to remove from [src]!</span>")
 		return
 	user.visible_message(span_notice("[user] starts to remove [initial(turret_path.name)] from [src]"),	span_notice("You start to remove [initial(turret_path.name)] from [src]"))
-	if(!do_after(user, 3 SECONDS, TRUE, src))
+	if(!do_after(user, 3 SECONDS, NONE, src))
 		return
 	var/obj/item/equipment = new turret_path
 	user.visible_message(span_notice("[user] removes [equipment] from [src]."),
@@ -176,7 +173,7 @@
 		to_chat(user, span_warning("The [src] ammo storage is already full!"))
 		return
 	user.visible_message(span_notice("[user] starts to reload [src] with [reload_ammo]."), span_notice("You start to reload [src] with [reload_ammo]."))
-	if(!do_after(user, 3 SECONDS, TRUE, src))
+	if(!do_after(user, 3 SECONDS, NONE, src))
 		return
 	current_rounds = current_rounds + reload_ammo.current_rounds
 	if(current_rounds > max_rounds)
@@ -202,7 +199,7 @@
 			return
 	user.visible_message(span_notice("[user] starts to attach [I] to [src]."),
 	span_notice("You start to attach [I] to [src]."))
-	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 		return
 	turret_path = I.type
 	if(istype(I, /obj/item/uav_turret))
@@ -286,10 +283,10 @@
 	vis_contents -= flash
 
 /obj/vehicle/unmanned/flamer_fire_act(burnlevel)
-	take_damage(burnlevel / 2, BURN, "fire")
+	take_damage(burnlevel / 2, BURN, FIRE)
 
 /obj/vehicle/unmanned/fire_act()
-	take_damage(20, BURN, "fire")
+	take_damage(20, BURN, FIRE)
 
 /obj/vehicle/unmanned/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 35, 2 SECONDS, 0, SKILL_ENGINEER_ENGI, 1, 4 SECONDS)

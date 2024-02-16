@@ -27,6 +27,7 @@
 
 
 /obj/machinery/button/update_icon_state()
+	. = ..()
 	if(machine_stat & (NOPOWER|BROKEN))
 		icon_state = "[initial(icon_state)]-p"
 	else
@@ -116,7 +117,7 @@
 	icon_state = "shutterctrl"
 	use_power = NO_POWER_USE
 	resistance_flags = RESIST_ALL
-	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_DROPSHIP_REBEL)
+	req_one_access = list(ACCESS_MARINE_DROPSHIP)
 	/// Has the shutters alarm been played?
 	var/alarm_played = FALSE
 
@@ -128,6 +129,11 @@
 /obj/machinery/button/door/open_only/landing_zone/attack_hand(mob/living/user)
 	if((machine_stat & (NOPOWER|BROKEN)))
 		return
+	#ifndef TESTING
+	if(world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+		to_chat(user, span_notice("The containment shutters can't open yet!"))
+		return
+	#endif
 	if(!allowed(user))
 		to_chat(user, span_danger("Access Denied"))
 		flick("[initial(icon_state)]-denied", src)
@@ -244,6 +250,7 @@
 	update_icon()
 
 /obj/machinery/medical_help_button/update_icon_state()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else

@@ -1,12 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/open/space/basic,
-/area/space)
 "b" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
 "c" = (
@@ -53,6 +47,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
+"v" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
 "w" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -83,10 +81,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "N" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "O" = (
@@ -98,20 +93,14 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
 "R" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "S" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "W" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "Y" = (
@@ -156,13 +145,13 @@ l
 l
 l
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (2,1,1) = {"
 j
@@ -201,13 +190,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (3,1,1) = {"
 j
@@ -246,13 +235,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (4,1,1) = {"
 j
@@ -291,13 +280,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (5,1,1) = {"
 j
@@ -336,13 +325,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (6,1,1) = {"
 j
@@ -381,13 +370,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (7,1,1) = {"
 j
@@ -426,13 +415,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (8,1,1) = {"
 j
@@ -471,13 +460,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (9,1,1) = {"
 j
@@ -516,13 +505,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (10,1,1) = {"
 S
@@ -561,13 +550,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (11,1,1) = {"
 g
@@ -606,13 +595,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (12,1,1) = {"
 S
@@ -651,13 +640,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (13,1,1) = {"
 S
@@ -696,13 +685,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (14,1,1) = {"
 S
@@ -741,13 +730,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (15,1,1) = {"
 S
@@ -786,13 +775,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (16,1,1) = {"
 S
@@ -831,13 +820,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (17,1,1) = {"
 S
@@ -876,13 +865,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (18,1,1) = {"
 S
@@ -921,13 +910,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (19,1,1) = {"
 S
@@ -966,13 +955,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (20,1,1) = {"
 j
@@ -1011,13 +1000,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (21,1,1) = {"
 j
@@ -1056,13 +1045,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (22,1,1) = {"
 j
@@ -1101,13 +1090,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (23,1,1) = {"
 j
@@ -1146,13 +1135,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (24,1,1) = {"
 j
@@ -1191,13 +1180,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (25,1,1) = {"
 j
@@ -1236,13 +1225,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (26,1,1) = {"
 j
@@ -1281,13 +1270,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (27,1,1) = {"
 j
@@ -1326,13 +1315,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (28,1,1) = {"
 j
@@ -1356,7 +1345,7 @@ j
 j
 S
 g
-S
+v
 j
 j
 t
@@ -1371,13 +1360,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (29,1,1) = {"
 j
@@ -1416,13 +1405,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (30,1,1) = {"
 j
@@ -1461,13 +1450,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (31,1,1) = {"
 j
@@ -1506,13 +1495,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (32,1,1) = {"
 j
@@ -1551,13 +1540,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (33,1,1) = {"
 j
@@ -1596,13 +1585,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (34,1,1) = {"
 j
@@ -1641,13 +1630,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (35,1,1) = {"
 j
@@ -1686,13 +1675,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (36,1,1) = {"
 j
@@ -1731,13 +1720,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (37,1,1) = {"
 S
@@ -1776,13 +1765,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (38,1,1) = {"
 S
@@ -1821,13 +1810,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (39,1,1) = {"
 S
@@ -1866,13 +1855,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (40,1,1) = {"
 S
@@ -1911,13 +1900,13 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}
 (41,1,1) = {"
 z
@@ -1956,11 +1945,11 @@ j
 j
 j
 l
-a
-a
-a
-a
-a
-a
-a
+l
+l
+l
+l
+l
+l
+l
 "}

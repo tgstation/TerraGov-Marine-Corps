@@ -1,13 +1,11 @@
-#define LAVA_TILE_BURN_DAMAGE 20
-
 //turfs with density = FALSE
 /turf/open
 	plane = FLOOR_PLANE
 	minimap_color = MINIMAP_AREA_COLONY
+	resistance_flags = PROJECTILE_IMMUNE|UNACIDABLE
 	var/allow_construction = TRUE //whether you can build things like barricades on this turf.
 	var/slayer = 0 //snow layer
 	var/wet = 0 //whether the turf is wet (only used by floors).
-	var/has_catwalk = FALSE
 	var/shoefootstep = FOOTSTEP_FLOOR
 	var/barefootstep = FOOTSTEP_HARD
 	var/mediumxenofootstep = FOOTSTEP_HARD
@@ -49,13 +47,20 @@
 	. = ..()
 	. += ceiling_desc()
 
-/turf/open/river
-	can_bloody = FALSE
-	shoefootstep = FOOTSTEP_WATER
-	barefootstep = FOOTSTEP_WATER
-	mediumxenofootstep = FOOTSTEP_WATER
-	heavyxenofootstep = FOOTSTEP_WATER
+///Checks if anything should override the turf's normal footstep sounds
+/turf/open/proc/get_footstep_override(footstep_type)
+	var/list/footstep_overrides = list()
+	SEND_SIGNAL(src, COMSIG_FIND_FOOTSTEP_SOUND, footstep_overrides)
+	if(!length(footstep_overrides))
+		return
 
+	var/override_sound
+	var/index = 0
+	for(var/i in footstep_overrides)
+		if(footstep_overrides[i] > index)
+			override_sound = i
+			index = footstep_overrides[i]
+	return override_sound
 
 // Beach
 
@@ -74,76 +79,6 @@
 	name = "coastline"
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "sandwater"
-
-/turf/open/beach/water
-	name = "water"
-	icon_state = "water"
-	can_bloody = FALSE
-	shoefootstep = FOOTSTEP_WATER
-	barefootstep = FOOTSTEP_WATER
-	mediumxenofootstep = FOOTSTEP_WATER
-	heavyxenofootstep = FOOTSTEP_WATER
-
-/turf/open/beach/water/New()
-	..()
-	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water2","layer"=MOB_LAYER+0.1)
-
-/obj/effect/beach_overlay
-	name = "beach_overlay"
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	layer = RIVER_OVERLAY_LAYER
-	plane = FLOOR_PLANE
-
-/turf/open/beach/water/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	. = ..()
-	if(has_catwalk || !iscarbon(arrived))
-		return
-	var/mob/living/carbon/C = arrived
-	C.clean_mob()
-
-	if(isxeno(C))
-		var/mob/living/carbon/xenomorph/xeno = C
-		xeno.next_move_slowdown += xeno.xeno_caste.water_slowdown
-	else
-		C.next_move_slowdown += 1.75
-
-	if(C.on_fire)
-		C.ExtinguishMob()
-
-/turf/open/beach/water2
-	name = "water"
-	icon_state = "water"
-	can_bloody = FALSE
-	shoefootstep = FOOTSTEP_WATER
-	barefootstep = FOOTSTEP_WATER
-	mediumxenofootstep = FOOTSTEP_WATER
-	heavyxenofootstep = FOOTSTEP_WATER
-
-/turf/open/beach/water2/New()
-	..()
-	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
-
-/turf/open/beach/sea
-	name = "sea"
-	icon_state = "seadeep"
-	can_bloody = FALSE
-	shoefootstep = FOOTSTEP_WATER
-	barefootstep = FOOTSTEP_WATER
-	mediumxenofootstep = FOOTSTEP_WATER
-	heavyxenofootstep = FOOTSTEP_WATER
-
-//Nostromo turfs
-
-/turf/open/nostromowater
-	name = "ocean"
-	desc = "Its a long way down to the ocean from here."
-	icon = 'icons/turf/ground_map.dmi'
-	icon_state = "seadeep"
-	can_bloody = FALSE
-	shoefootstep = FOOTSTEP_WATER
-	barefootstep = FOOTSTEP_WATER
-	mediumxenofootstep = FOOTSTEP_WATER
-	heavyxenofootstep = FOOTSTEP_WATER
 
 //SHUTTLE 'FLOORS'
 //not a child of turf/open/floor because shuttle floors are magic and don't behave like real floors.
@@ -221,24 +156,6 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
 
-// NECESSARY FOR LAGMOOR EXPERIENCE
-// Colony tiles
-/turf/open/floor/concrete
-	name = "concrete"
-	icon = 'icons/turf/concrete.dmi'
-	icon_state = "concrete0"
-	mediumxenofootstep = FOOTSTEP_CONCRETE
-	barefootstep = FOOTSTEP_CONCRETE
-	shoefootstep = FOOTSTEP_CONCRETE
-
-/turf/open/floor/concrete/ex_act() //Fixes black tile explosion issue
-
-/turf/open/floor/concrete/lines
-	icon_state = "concrete_lines"
-
-/turf/open/floor/concrete/edge
-	icon_state = "concrete_edge"
-
 /turf/open/floor/plating/heatinggrate
 	icon_state = "heatinggrate"
 
@@ -299,135 +216,14 @@
 /turf/open/lavaland
 	icon = 'icons/turf/lava.dmi'
 	plane = FLOOR_PLANE
-	baseturfs = /turf/open/lavaland/lava
-
-
-/turf/open/lavaland/lava
-	name = "lava"
-	icon_state = "full"
-	light_system = STATIC_LIGHT //theres a lot of lava, dont change this
-	light_range = 2
-	light_power = 1.4
-	light_color = LIGHT_COLOR_LAVA
-	minimap_color = MINIMAP_LAVA
-
-/turf/open/lavaland/lava/is_weedable()
-	return FALSE
-
-/turf/open/lavaland/lava/corner
-	icon_state = "corner"
-
-/turf/open/lavaland/lava/side
-	icon_state = "side"
-
-/turf/open/lavaland/lava/lpiece
-	icon_state = "lpiece"
-
-/turf/open/lavaland/lava/single/
-	icon_state = "single"
-
-/turf/open/lavaland/lava/single/intersection
-	icon_state = "single_intersection"
-
-/turf/open/lavaland/lava/single_intersection/direction
-	icon_state = "single_intersection_direction"
-
-/turf/open/lavaland/lava/single/middle
-	icon_state = "single_middle"
-
-/turf/open/lavaland/lava/single/end
-	icon_state = "single_end"
-
-/turf/open/lavaland/lava/single/corners
-	icon_state = "single_corners"
-
-/turf/open/lavaland/lava/Initialize()
-	. = ..()
-	var/turf/current_turf = get_turf(src)
-	if(current_turf && density)
-		current_turf.flags_atom |= AI_BLOCKED
-
-/turf/open/lavaland/lava/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	. = ..()
-	if(burn_stuff(arrived))
-		START_PROCESSING(SSobj, src)
-
-/turf/open/lavaland/lava/Exited(atom/movable/leaver, direction)
-	. = ..()
-	if(isliving(leaver))
-		var/mob/living/L = leaver
-		if(!islava(get_step(src, direction)) && !L.on_fire)
-			L.update_fire()
-
-/turf/open/lavaland/lava/process()
-	if(!burn_stuff())
-		STOP_PROCESSING(SSobj, src)
-
-/turf/open/lavaland/lava/proc/burn_stuff(AM)
-	. = FALSE
-
-	var/thing_to_check = src
-	if (AM)
-		thing_to_check = list(AM)
-	for(var/thing in thing_to_check)
-		if(ismecha(thing))
-			var/obj/vehicle/sealed/mecha/burned_mech = thing
-			burned_mech.take_damage(rand(40, 120), BURN)
-			. = TRUE
-
-		else if(isobj(thing))
-			var/obj/O = thing
-			O.fire_act(10000, 1000)
-
-		else if (isliving(thing))
-			var/mob/living/L = thing
-
-			if(L.stat == DEAD)
-				continue
-
-			if(!L.on_fire || L.getFireLoss() <= 200)
-				L.take_overall_damage(LAVA_TILE_BURN_DAMAGE * clamp(L.get_fire_resist(), 0.2, 1), BURN, updating_health = TRUE)
-				if(!CHECK_BITFIELD(L.flags_pass, PASSFIRE))//Pass fire allow to cross lava without igniting
-					L.adjust_fire_stacks(20)
-					L.IgniteMob()
-				. = TRUE
-
-/turf/open/lavaland/lava/attackby(obj/item/C, mob/user, params)
-	..()
-	if(istype(C, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = C
-		var/turf/open/lavaland/catwalk/H = locate(/turf/open/lavaland/catwalk, src)
-		if(H)
-			to_chat(user, span_warning("There is already a catwalk here!"))
-			return
-		if(!do_after(user, 5 SECONDS, FALSE))
-			to_chat(user, span_warning("It takes time to construct a catwalk!"))
-			return
-		if(R.use(4))
-			to_chat(user, span_notice("You construct a heatproof catwalk."))
-			playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
-			ChangeTurf(/turf/open/lavaland/catwalk/built)
-			var/turf/current_turf = get_turf(src)
-			if(current_turf && density)
-				current_turf.flags_atom &= ~AI_BLOCKED
-		else
-			to_chat(user, span_warning("You need four rods to build a heatproof catwalk."))
-		return
-
-/turf/open/lavaland/lava/autosmoothing
-	icon = 'icons/turf/floors/lava.dmi'
-	icon_state = "lava-icon"
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_FLOOR_LAVA)
-	canSmoothWith = list(SMOOTH_GROUP_FLOOR_LAVA, SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS, SMOOTH_GROUP_WINDOW_FULLTILE)
-	base_icon_state = "lava"
+	baseturfs = /turf/open/liquid/lava
 
 /turf/open/lavaland/basalt
 	name = "basalt"
 	icon_state = "basalt"
-	shoefootstep = FOOTSTEP_SAND
-	barefootstep = FOOTSTEP_SAND
-	mediumxenofootstep = FOOTSTEP_SAND
+	shoefootstep = FOOTSTEP_GRAVEL
+	barefootstep = FOOTSTEP_GRAVEL
+	mediumxenofootstep = FOOTSTEP_GRAVEL
 
 /turf/open/lavaland/basalt/cave
 	name = "cave"
@@ -499,7 +295,7 @@
 /turf/open/lavaland/catwalk/built
 	var/deconstructing = FALSE
 
-/turf/open/lavaland/catwalk/built/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/turf/open/lavaland/catwalk/built/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return
 	if(X.a_intent != INTENT_HARM)
@@ -507,7 +303,7 @@
 	if(deconstructing)
 		return
 	deconstructing = TRUE
-	if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(X, 10 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		deconstructing = FALSE
 		return
 	deconstructing = FALSE
@@ -515,4 +311,4 @@
 	var/turf/current_turf = get_turf(src)
 	if(current_turf)
 		current_turf.flags_atom |= AI_BLOCKED
-	ChangeTurf(/turf/open/lavaland/lava)
+	ChangeTurf(/turf/open/liquid/lava)

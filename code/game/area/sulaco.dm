@@ -423,10 +423,12 @@
 /area/shuttle/distress/arrive_1
 	name = "Distress Shuttle"
 	icon_state = "away3"
+	requires_power = TRUE
 
 /area/shuttle/distress/arrive_2
 	name = "Distress Shuttle"
 	icon_state = "away4"
+	requires_power = TRUE
 
 /area/shuttle/distress/arrive_3
 	name = "Distress Shuttle"

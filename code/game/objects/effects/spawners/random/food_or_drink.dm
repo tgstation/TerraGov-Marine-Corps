@@ -112,7 +112,7 @@
 	loot = list(
 		/obj/item/reagent_containers/food/snacks/wrapped/booniebars = 26,
 		/obj/item/reagent_containers/food/snacks/wrapped/chunk = 26,
-		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 26,
+		/obj/item/reagent_containers/food/snacks/wrapped/barcaridine = 26,
 		/obj/item/reagent_containers/food/snacks/wrapped/proteinbar = 12,
 		/obj/item/reagent_containers/food/snacks/candy = 5,
 		/obj/item/reagent_containers/food/snacks/enrg_bar = 5,
@@ -126,7 +126,7 @@
 		/obj/item/reagent_containers/food/snacks/wrapped/proteinbar = 10,
 		/obj/item/reagent_containers/food/snacks/wrapped/booniebars = 5,
 		/obj/item/reagent_containers/food/snacks/wrapped/chunk = 5,
-		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 5,
+		/obj/item/reagent_containers/food/snacks/wrapped/barcaridine = 5,
 	)
 
 /obj/effect/spawner/random/food_or_drink/cheesewedge
@@ -257,7 +257,7 @@
 		/obj/item/reagent_containers/food/snacks/sosjerky,
 		/obj/item/reagent_containers/food/snacks/donkpocket,
 		/obj/item/reagent_containers/food/snacks/wrapped/booniebars,
-		/obj/item/reagent_containers/food/snacks/wrapped/barcardine,
+		/obj/item/reagent_containers/food/snacks/wrapped/barcaridine,
 		/obj/item/reagent_containers/food/snacks/wrapped/chunk,
 		/obj/item/reagent_containers/food/snacks/lollipop,
 		/obj/item/reagent_containers/food/snacks/pastries/appletart,
@@ -332,9 +332,27 @@
 		/obj/effect/spawner/random/food_or_drink/beer = 5,
 	)
 
+/obj/effect/spawner/random/food_or_drink/beer/whiskeyoutpost
+	loot = list(
+		/obj/item/reagent_containers/food/drinks/bottle/whiskey = 95,
+		/obj/effect/spawner/random/food_or_drink/beer = 5,
+	)
+
 /obj/effect/spawner/random/food_or_drink/wine
 	icon_state = "random_winebottle"
 	loot = list(
 		/obj/item/reagent_containers/food/drinks/bottle/wine = 95,
 		/obj/effect/spawner/random/food_or_drink/beer = 5,
+	)
+
+/obj/effect/spawner/random/food_or_drink/bread
+	name = "Random bread spawner"
+	icon_state = "random_bread"
+	loot = list(
+		/obj/item/reagent_containers/food/snacks/baguette = 45,
+		/obj/item/reagent_containers/food/snacks/sandwiches/bread = 10,
+		/obj/item/reagent_containers/food/snacks/sliceable/sandwiches/meatbread = 5,
+		/obj/item/reagent_containers/food/snacks/sandwiches/meatbreadslice = 5,
+		/obj/item/reagent_containers/food/snacks/sandwiches/toastedsandwich = 5,
+		/obj/effect/spawner/random/food_or_drink/burger = 5,
 	)

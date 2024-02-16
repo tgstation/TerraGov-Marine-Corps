@@ -79,7 +79,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	var/mob/living/carbon/target = null
 
 /obj/effect/hallucination/simple
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/runner.dmi'
 	icon_state = "Runner Walking"
 	var/px = 0
 	var/py = 0
@@ -90,6 +90,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 /obj/effect/hallucination/simple/Initialize(mapload, mob/living/carbon/T)
 	. = ..()
+	if(!target)
+		return INITIALIZE_HINT_QDEL
 	target = T
 	current_image = GetImage()
 	if(target.client)
@@ -112,21 +114,11 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if(target.client)
 			target.client.images |= current_image
 
-/obj/effect/hallucination/simple/update_icon(new_state,new_icon,new_px=0,new_py=0)
-	icon_state = new_state
-	if(new_icon)
-		icon = new_icon
-	else
-		icon = initial(icon)
-	px = new_px
-	py = new_py
-	Show()
-
 /obj/effect/hallucination/simple/Moved(atom/OldLoc, Dir)
 	Show()
 
 /obj/effect/hallucination/simple/Destroy()
-	if(target.client)
+	if(target?.client)
 		target.client.images.Remove(current_image)
 	active = FALSE
 	return ..()
@@ -134,7 +126,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 /obj/effect/hallucination/simple/xeno
 	name = "Mature Runner"
 	desc = "A small red alien that looks like it could run fairly quickly..."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/runner.dmi'
 	icon_state = "Runner Walking"
 
 /obj/effect/hallucination/simple/xeno/Initialize(mapload, mob/living/carbon/T)
@@ -142,6 +134,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	name = "Mature Runner ([rand(100, 999)])"
 
 /obj/effect/hallucination/simple/xeno/throw_impact(atom/hit_atom, speed)
+	. = ..()
+	if(!.)
+		return
 	if(hit_atom == target && target.stat != DEAD)
 		target.Paralyze(3 SECONDS, TRUE, TRUE)
 		target.visible_message(span_danger("[target] flails around wildly."),span_xenowarning("\The [src] pounces at [target]!"))

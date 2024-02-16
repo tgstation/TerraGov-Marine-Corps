@@ -8,7 +8,7 @@
 	// while packing the entire FOB into a single crate would be funny propably not great idea
 	var/max_items = 30
 
-/obj/structure/largecrate/packed/Initialize()
+/obj/structure/largecrate/packed/Initialize(mapload)
 	. = ..()
 	pack()
 

@@ -2,8 +2,8 @@
 	return "[round(time / 36000) + 12]:[(time / 600 % 60) < 10 ? add_leading(num2text(time / 600 % 60), 1, "0") : time / 600 % 60]"
 
 
-/proc/time_stamp() // Shows current GMT time
-	return time2text(world.timeofday, "hh:mm:ss")
+/proc/time_stamp(format = "hh:mm:ss") // Shows current GMT time
+	return time2text(world.timeofday, format)
 
 
 /proc/duration2text(time = world.time) // Shows current time starting at 0:00
@@ -48,15 +48,11 @@ GLOBAL_VAR_INIT(rollovercheck_last_timeofday, 0)
 	return "[day] day[(day != 1)? "s":""][hourT][minuteT][secondT]"
 
 
-/proc/gameTimestamp(format = "hh:mm:ss", wtime = null)
-	if(!wtime)
-		wtime = world.time
+/proc/gameTimestamp(format = "hh:mm:ss", wtime = world.time)
 	return time2text(wtime - GLOB.timezoneOffset, format)
 
 
-/proc/stationTimestamp(format = "hh:mm:ss", wtime = null)
-	if(!wtime)
-		wtime = world.time
+/proc/stationTimestamp(format = "hh:mm:ss", wtime = world.time)
 	return time2text(wtime - GLOB.timezoneOffset + (12 * 36000), format)
 
 

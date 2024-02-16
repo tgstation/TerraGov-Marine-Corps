@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(spawning)
  */
 /datum/controller/subsystem/spawning/proc/registerspawner(atom/spawner, delaytime = 30 SECONDS, spawntypes, maxmobs = 10, spawnamount = 1, datum/callback/postspawn)
 	spawnerdata[spawner] = new /datum/spawnerdata(delaytime/wait, spawntypes, maxmobs, spawnamount, postspawn)
-	RegisterSignal(spawner, COMSIG_PARENT_QDELETING, PROC_REF(unregisterspawner))
+	RegisterSignal(spawner, COMSIG_QDELETING, PROC_REF(unregisterspawner))
 
 /**
  * Unregisters an atom with the subsystem
@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(spawning)
 	SIGNAL_HANDLER
 	death_callbacks_by_mob -= spawnerdata[spawner].spawnedmobs
 	spawnerdata -= spawner
-	UnregisterSignal(spawner, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(spawner, COMSIG_QDELETING)
 
 
 ///Essentially a wrapper for accessing a dying/delting mobs callback to remove it
@@ -55,7 +55,7 @@ SUBSYSTEM_DEF(spawning)
 	SIGNAL_HANDLER
 	if(source in death_callbacks_by_mob) //due to signals being async we might've been removed from the list already in unregisterspawner()
 		death_callbacks_by_mob[source].Invoke()
-	UnregisterSignal(source, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH))
+	UnregisterSignal(source, list(COMSIG_QDELETING, COMSIG_MOB_DEATH))
 
 /**
  * Removes a mob from a spawners mobs spawned list
@@ -86,7 +86,7 @@ SUBSYSTEM_DEF(spawning)
 
 			var/datum/callback/deathcb = CALLBACK(src, PROC_REF(decrement_spawnedmobs), newmob, spawner)
 			death_callbacks_by_mob[newmob] = deathcb
-			RegisterSignal(newmob, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH), PROC_REF(remove_mob))
+			RegisterSignals(newmob, list(COMSIG_QDELETING, COMSIG_MOB_DEATH), PROC_REF(remove_mob))
 			spawnerdata[spawner].spawnedmobs += newmob
 			squad += newmob
 			totalspawned++

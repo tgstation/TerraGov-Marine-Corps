@@ -1,5 +1,7 @@
 /mob/dead/observer/Login()
 	. = ..()
+	SSmobs.dead_players_by_zlevel[z] += src
+	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(observer_z_changed))
 
 	client.prefs.load_preferences()
 	ghost_medhud = client.prefs.ghost_hud & GHOST_HUD_MED
@@ -17,8 +19,6 @@
 	if(ghost_squadhud)
 		H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 		H.add_hud_to(src)
-		H = GLOB.huds[DATA_HUD_SQUAD_REBEL]
-		H.add_hud_to(src)
 		H = GLOB.huds[DATA_HUD_SQUAD_SOM]
 		H.add_hud_to(src)
 	if(ghost_xenohud)
@@ -32,16 +32,32 @@
 
 	ghost_others = client.prefs.ghost_others
 
-	update_icon(client.prefs.ghost_form)
+	pick_form(client.prefs.ghost_form)
 	updateghostimages()
 
 	for(var/path in subtypesof(/datum/action/observer_action))
 		if(!actions_by_path[path])
 			var/datum/action/observer_action/A = new path()
 			A.give_action(src)
+	if(!SSticker.mode)
+		RegisterSignal(SSdcs, COMSIG_GLOB_GAMEMODE_LOADED, PROC_REF(load_ghost_gamemode_actions))
+	else
+		load_ghost_gamemode_actions()
+
+	client.AddComponent(/datum/component/larva_queue)
+
 	if(!actions_by_path[/datum/action/minimap/observer])
 		var/datum/action/minimap/observer/mini = new
 		mini.give_action(src)
 
 	if(length(GLOB.offered_mob_list))
 		to_chat(src, span_boldnotice("There's mobs available for taking! Ghost > Take Offered Mob"))
+
+///Loads any gamemode specific ghost actions
+/mob/dead/observer/proc/load_ghost_gamemode_actions()
+	SIGNAL_HANDLER
+	UnregisterSignal(SSdcs, COMSIG_GLOB_GAMEMODE_LOADED)
+	for(var/path in SSticker.mode.ghost_verbs())
+		if(!actions_by_path[path])
+			var/datum/action/action = new path()
+			action.give_action(src)

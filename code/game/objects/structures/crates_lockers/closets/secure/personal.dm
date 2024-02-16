@@ -4,7 +4,7 @@
 	req_access = list(ACCESS_CIVILIAN_PUBLIC)
 	var/registered_name = null
 
-/obj/structure/closet/secure_closet/personal/Initialize()
+/obj/structure/closet/secure_closet/personal/Initialize(mapload)
 	. = ..()
 	if(prob(50))
 		new /obj/item/storage/backpack(src)
@@ -17,7 +17,7 @@
 /obj/structure/closet/secure_closet/personal/morgue
 	name = "Morgue Closet"
 
-/obj/structure/closet/secure_closet/personal/patient/Initialize()
+/obj/structure/closet/secure_closet/personal/patient/Initialize(mapload)
 	. = ..()
 	contents = list()
 	new /obj/item/clothing/under/color/white( src )
@@ -31,7 +31,8 @@
 	icon_broken = "cabinetdetective_broken"
 	icon_off = "cabinetdetective_broken"
 
-/obj/structure/closet/secure_closet/personal/cabinet/update_icon()
+/obj/structure/closet/secure_closet/personal/cabinet/update_icon_state()
+	. = ..()
 	if(broken)
 		icon_state = icon_broken
 	else
@@ -43,7 +44,7 @@
 		else
 			icon_state = icon_opened
 
-/obj/structure/closet/secure_closet/personal/cabinet/Initialize()
+/obj/structure/closet/secure_closet/personal/cabinet/Initialize(mapload)
 	. = ..()
 	contents = list()
 	new /obj/item/storage/backpack/satchel( src )

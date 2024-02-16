@@ -15,13 +15,27 @@
 	var/base_icon = "portgen0"
 	var/datum/looping_sound/generator/soundloop
 
-/obj/machinery/power/port_gen/Initialize()
+/obj/machinery/power/port_gen/Initialize(mapload)
 	. = ..()
 	soundloop = new(list(src), active)
 
 /obj/machinery/power/port_gen/Destroy()
 	QDEL_NULL(soundloop)
 	return ..()
+
+/obj/machinery/power/port_gen/attacked_by(obj/item/I, mob/living/user, def_zone)
+	. = ..()
+	if(!.)
+		return FALSE
+	record_generator_sabotages(user)
+	return TRUE
+
+/obj/machinery/power/port_gen/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	. = ..()
+	if(!.)
+		return FALSE
+	record_generator_sabotages(X)
+	return TRUE
 
 /obj/machinery/power/port_gen/should_have_node()
 	return anchored
@@ -56,6 +70,7 @@
 		soundloop.start()
 
 /obj/machinery/power/port_gen/update_icon_state()
+	. = ..()
 	icon_state = "[base_icon]"
 
 /obj/machinery/power/port_gen/process()
@@ -90,7 +105,7 @@
 	power_gen = 15000
 	interaction_flags = INTERACT_MACHINE_TGUI
 
-/obj/machinery/power/port_gen/pacman/Initialize()
+/obj/machinery/power/port_gen/pacman/Initialize(mapload)
 	. = ..()
 	if(anchored)
 		connect_to_network()
@@ -101,9 +116,6 @@
 	component_parts += new /obj/item/stack/cable_coil(src)
 	component_parts += new /obj/item/stock_parts/capacitor(src)
 	RefreshParts()
-
-/obj/machinery/power/port_gen/pacman/Initialize()
-	. = ..()
 
 	var/obj/S = sheet_path
 	sheet_name = initial(S.name)
@@ -179,7 +191,7 @@
 		STOP_PROCESSING(SSmachines, src)
 
 /obj/machinery/power/port_gen/pacman/proc/overheat()
-	explosion(loc, 3, 6, small_animation = TRUE)
+	explosion(loc, 3, 6)
 
 /obj/machinery/power/port_gen/pacman/attackby(obj/item/O, mob/user, params)
 	if(istype(O, sheet_path))
@@ -277,7 +289,7 @@
 	time_per_sheet = 85
 
 /obj/machinery/power/port_gen/pacman/super/overheat()
-	explosion(loc, 4, small_animation = TRUE)
+	explosion(loc, 4)
 
 /obj/machinery/power/port_gen/pacman/mrs
 	name = "\improper M.R.S.P.A.C.M.A.N.-type portable generator"
@@ -289,12 +301,12 @@
 	time_per_sheet = 80
 
 /obj/machinery/power/port_gen/pacman/mrs/overheat()
-	explosion(loc, 4, small_animation = TRUE)
+	explosion(loc, 4)
 
 /obj/machinery/power/port_gen/pacman/mobile_power
 	name = "\improper A.D.V.P.A.C.M.A.N.-type portable generator"
 
-/obj/machinery/power/port_gen/pacman/mobile_power/Initialize()
+/obj/machinery/power/port_gen/pacman/mobile_power/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/mobile_power, active, 10)
 

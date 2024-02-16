@@ -1,7 +1,9 @@
 /obj/machinery/computer/area_atmos
 	name = "Area Air Control"
 	desc = "A computer used to control the stationary scrubbers and pumps in the area."
-	icon_state = "area_atmos"
+	icon_state = "computer"
+	screen_overlay = "area_atmos"
+	broken_icon = "computer_blue_broken"
 	circuit = /obj/item/circuitboard/computer/area_atmos
 
 	var/list/connectedscrubbers = new()
@@ -12,7 +14,7 @@
 	//Simple variable to prevent me from doing attack_hand in both this and the child computer
 	var/zone = "This computer is working on a wireless range, the range is currently limited to 25 meters."
 
-/obj/machinery/computer/area_atmos/Initialize()
+/obj/machinery/computer/area_atmos/Initialize(mapload)
 	. = ..()
 	scanscrubbers()
 

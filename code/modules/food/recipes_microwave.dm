@@ -71,7 +71,7 @@
 /datum/recipe/xenoburger
 	items = list(
 		/obj/item/reagent_containers/food/snacks/burger/bun,
-		/obj/item/reagent_containers/food/snacks/xenomeat,
+		/obj/item/reagent_containers/food/snacks/meat/xeno,
 	)
 	result = /obj/item/reagent_containers/food/snacks/burger/xeno
 
@@ -191,9 +191,9 @@
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/reagent_containers/food/snacks/dough,
-		/obj/item/reagent_containers/food/snacks/xenomeat,
-		/obj/item/reagent_containers/food/snacks/xenomeat,
-		/obj/item/reagent_containers/food/snacks/xenomeat,
+		/obj/item/reagent_containers/food/snacks/meat/xeno,
+		/obj/item/reagent_containers/food/snacks/meat/xeno,
+		/obj/item/reagent_containers/food/snacks/meat/xeno,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
@@ -302,7 +302,7 @@
 /datum/recipe/xemeatpie
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
-		/obj/item/reagent_containers/food/snacks/xenomeat,
+		/obj/item/reagent_containers/food/snacks/meat/xeno,
 	)
 	result = /obj/item/reagent_containers/food/snacks/pastries/xemeatpie
 
@@ -332,7 +332,7 @@
 /datum/recipe/wingfangchu
 	reagents = list(/datum/reagent/consumable/soysauce = 5)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/xenomeat,
+		/obj/item/reagent_containers/food/snacks/meat/xeno,
 	)
 	result = /obj/item/reagent_containers/food/snacks/soup/wingfangchu
 

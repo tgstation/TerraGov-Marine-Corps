@@ -18,15 +18,6 @@
 /mob/proc/remove_all_indicators()
 	return
 
-/mob/set_stat(new_stat)
-	. = ..()
-	if(.)
-		remove_all_indicators()
-
-/mob/Logout()
-	remove_all_indicators()
-	return ..()
-
 /** Sets the mob as "thinking" - with indicator and variable thinking_IC */
 /datum/tgui_say/proc/start_thinking()
 	if(!window_open || !client.prefs.show_typing)
@@ -65,7 +56,7 @@
 /mob/living/create_thinking_indicator()
 	if(active_thinking_indicator || active_typing_indicator || !thinking_IC || stat != CONSCIOUS )
 		return FALSE
-	active_thinking_indicator = mutable_appearance('icons/mob/effects/talk.dmi', "[bubble_icon]3", TYPING_LAYER)
+	active_thinking_indicator = mutable_appearance('icons/mob/effects/talk.dmi', "[bubble_icon]3", TYPING_LAYER, appearance_flags = APPEARANCE_UI|KEEP_APART|TILE_BOUND)
 	add_overlay(active_thinking_indicator)
 	//play_fov_effect(src, 6, "talk", ignore_self = TRUE)
 
@@ -78,7 +69,7 @@
 /mob/living/create_typing_indicator()
 	if(active_typing_indicator || active_thinking_indicator || !thinking_IC || stat != CONSCIOUS)
 		return FALSE
-	active_typing_indicator = mutable_appearance('icons/mob/effects/talk.dmi', "[bubble_icon]0", TYPING_LAYER)
+	active_typing_indicator = mutable_appearance('icons/mob/effects/talk.dmi', "[bubble_icon]0", TYPING_LAYER, appearance_flags = APPEARANCE_UI|KEEP_APART|TILE_BOUND)
 	add_overlay(active_typing_indicator)
 	//play_fov_effect(src, 6, "talk", ignore_self = TRUE)
 

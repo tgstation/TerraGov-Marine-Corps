@@ -15,7 +15,7 @@
 	anchored = TRUE
 	coverage = 20
 
-/obj/structure/morgue/Initialize()
+/obj/structure/morgue/Initialize(mapload)
 	. = ..()
 	connected = new tray_path(src)
 
@@ -23,7 +23,8 @@
 	QDEL_NULL(connected)
 	return ..()
 
-/obj/structure/morgue/update_icon()
+/obj/structure/morgue/update_icon_state()
+	. = ..()
 	if (morgue_open)
 		icon_state = "[morgue_type]0"
 	else
@@ -40,6 +41,8 @@
 		if(EXPLODE_LIGHT)
 			if(prob(95))
 				return
+		if(EXPLODE_WEAK)
+			return
 	for(var/atom/movable/A in src)
 		A.forceMove(loc)
 		ex_act(severity)
@@ -138,6 +141,7 @@
 
 
 /obj/structure/morgue_tray/MouseDrop_T(atom/movable/O, mob/user)
+	. = ..()
 	if (!istype(O) || O.anchored || !isturf(O.loc))
 		return
 	if (!ismob(O) && !istype(O, /obj/structure/closet/bodybag))
@@ -178,11 +182,9 @@
 
 
 /obj/structure/morgue/crematorium/update_icon()
+	. = ..()
 	if(cremating)
 		icon_state = "[morgue_type]_active"
-	else
-		..()
-
 
 /obj/structure/morgue/crematorium/proc/cremate(mob/user)
 	set waitfor = 0

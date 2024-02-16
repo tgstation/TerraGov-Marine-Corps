@@ -28,7 +28,7 @@
 	eye_protection = 2
 	var/hug_memory = 0 //Variable to hold the "memory" of how many anti-hugs remain.  Because people were abusing the fuck out of it.
 
-/obj/item/clothing/head/welding/Initialize()
+/obj/item/clothing/head/welding/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_5)
 

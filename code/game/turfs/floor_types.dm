@@ -25,7 +25,6 @@
 
 /turf/open/floor/mainship/cargo/arrow
 	icon_state = "cargo_arrow"
-	icon_regular_floor = "cargo_arrow"
 
 /turf/open/floor/mainship/blue
 	icon_state = "blue"
@@ -134,10 +133,8 @@
 
 /turf/open/floor/mainship/mono
 	icon_state = "mono"
-	icon_regular_floor = "mono"
 
 /turf/open/floor/mainship/tcomms
-	icon_plating = "tcomms"
 	icon_state = "tcomms"
 
 /turf/open/floor/mainship/sterile/purple
@@ -167,6 +164,7 @@
 	desc = "There seems to be an awful lot of machinery down below"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "1"
+	hull_floor = TRUE
 
 /turf/open/floor/mainship/empty/is_weedable()
 	return FALSE
@@ -302,55 +300,115 @@
 /turf/open/floor/light
 	name = "Light floor"
 	icon_state = "light_on"
+	floor_tile = /obj/item/stack/tile/light
 
-/turf/open/floor/light/Initialize()
-	. = ..()
-	floor_tile = new /obj/item/stack/tile/light
-	return INITIALIZE_HINT_LATELOAD
-
-
-/turf/open/floor/light/LateInitialize(mapload)
+/turf/open/floor/light/LateInitialize()
 	update_icon()
 
 /turf/open/floor/light/plating
 	icon_state = "plating"
 
 /turf/open/floor/wood
-	name = "floor"
+	name = "wood floor"
+	icon = 'icons/turf/wood_floor.dmi'
 	icon_state = "wood"
-	floor_tile = new/obj/item/stack/tile/wood
+	floor_tile = /obj/item/stack/tile/wood
 	shoefootstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_WOOD
 	mediumxenofootstep = FOOTSTEP_WOOD
+	var/damaged_states = 7
+
+/turf/open/floor/wood/broken_states()
+	if(!damaged_states)
+		return icon_state
+	return "[initial(icon_state)]_damaged_[rand(1, damaged_states)]"
+
+/turf/open/floor/wood/burnt_states()
+	if(!damaged_states)
+		return icon_state
+	return "[initial(icon_state)]_damaged_[rand(1, damaged_states)]"
 
 /turf/open/floor/wood/broken
-	icon_state = "wood-broken1"
 	burnt = TRUE
 
-/turf/open/floor/wood/broken/two
-	icon_state = "wood-broken2"
+/turf/open/floor/wood/fancy
+	icon_state = "wood_fancy"
+	damaged_states = 6
+
+/turf/open/floor/wood/fancy/damaged
 	burnt = TRUE
 
-/turf/open/floor/wood/broken/three
-	icon_state = "wood-broken3"
+/turf/open/floor/wood/darker
+	icon_state = "wood_darker"
+
+/turf/open/floor/wood/thatch
+	icon_state = "thatch"
+	damaged_states = NONE
+
+/turf/open/floor/wood/alt_one
+	icon_state = "wood_alt_1"
+	damaged_states = NONE
+
+/turf/open/floor/wood/alt_two
+	icon_state = "wood_alt_2"
+	damaged_states = NONE
+
+/turf/open/floor/wood/alt_three
+	icon_state = "wood_alt_3"
+	damaged_states = NONE
+
+/turf/open/floor/wood/alt_four
+	icon_state = "wood_alt_4"
+	damaged_states = NONE
+
+/turf/open/floor/wood/alt_five
+	icon_state = "wood_alt_5"
+	damaged_states = NONE
+
+/turf/open/floor/wood/alt_six
+	icon_state = "wood_alt_6"
+	damaged_states = NONE
+
+/turf/open/floor/wood/alt_seven
+	icon_state = "wood_alt_7"
+	damaged_states = NONE
+
+/turf/open/floor/wood/alt_eight
+	icon_state = "wood_alt_8"
+	damaged_states = NONE
+
+/turf/open/floor/wood/alt_nine
+	icon_state = "wood_alt_9"
+	damaged_states = NONE
+
+/turf/open/floor/wood/alt_ten
+	icon_state = "wood_alt_10"
+	damaged_states = NONE
+
+/turf/open/floor/wood/alt_eleven
+	icon_state = "wood_alt_11"
+	damaged_states = NONE
+
+/turf/open/floor/wood/variable
+	icon_state = "wood_common"
+	damaged_states = 6
+
+/turf/open/floor/wood/variable/damaged
 	burnt = TRUE
 
-/turf/open/floor/wood/broken/four
-	icon_state = "wood-broken4"
+/turf/open/floor/wood/variable/wide
+	icon_state = "wood_wide"
+	damaged_states = 6
+
+/turf/open/floor/wood/variable/wide/damaged
 	burnt = TRUE
 
-/turf/open/floor/wood/broken/five
-	icon_state = "wood-broken5"
-	burnt = TRUE
+/turf/open/floor/wood/variable/mosaic
+	icon_state = "wood_mosaic"
+	damaged_states = 6
 
-/turf/open/floor/wood/broken/six
-	icon_state = "wood-broken6"
+/turf/open/floor/wood/variable/mosaic/damaged
 	burnt = TRUE
-
-/turf/open/floor/wood/broken/seven
-	icon_state = "wood-broken7"
-	burnt = TRUE
-
 
 /turf/open/floor/vault
 	icon_state = "rockvault"
@@ -362,6 +420,12 @@
 /turf/open/floor/cult
 	icon_state = "cult"
 
+/turf/open/floor/cult/broken_states()
+	return pick("cultdamage", "cultdamage2", "cultdamage3", "cultdamage4", "cultdamage5", "cultdamage6", "cultdamage7")
+
+/turf/open/floor/cult/burnt_states()
+	return pick("cultdamage", "cultdamage2", "cultdamage3", "cultdamage4", "cultdamage5", "cultdamage6", "cultdamage7")
+
 /turf/open/floor/dark2
 	icon_state = "darktile2"
 
@@ -371,12 +435,10 @@
 /turf/open/floor/engine
 	name = "reinforced floor"
 	icon_state = "engine"
-	intact_tile = 0
 	breakable_tile = FALSE
 	burnable_tile = FALSE
+	floor_tile = null
 
-/turf/open/floor/engine/make_plating()
-	return
 
 /turf/open/floor/engine/attackby(obj/item/I, mob/user, params)
 	if(iscrowbar(I)) // Prevent generation of infinite 'floor_tile' objs caused by the overridden make_plating() above never clearing the var
@@ -388,14 +450,11 @@
 		span_notice("You start removing [src]'s protective cover."))
 		playsound(src, 'sound/items/ratchet.ogg', 25, 1)
 
-		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		new /obj/item/stack/rods(src, 2)
-		ChangeTurf(/turf/open/floor)
-		var/turf/open/floor/F = src
-		F.make_plating()
-
+		make_plating()
 
 /turf/open/floor/engine/nitrogen
 
@@ -466,22 +525,20 @@
 
 /turf/open/floor/grass
 	name = "Grass patch"
-	icon_state = "grass1"
-	floor_tile = new/obj/item/stack/tile/grass
+	icon_state = "grass"
+	floor_tile = /obj/item/stack/tile/grass
 	shoefootstep = FOOTSTEP_GRASS
 	barefootstep = FOOTSTEP_GRASS
 	mediumxenofootstep = FOOTSTEP_GRASS
+	icon_variants = 4
 
 
-/turf/open/floor/grass/Initialize()
+/turf/open/floor/grass/Initialize(mapload)
 	. = ..()
-	floor_tile = new /obj/item/stack/tile/grass
-	icon_state = "grass[pick("1","2","3","4")]"
 	return INITIALIZE_HINT_LATELOAD
 
 
-/turf/open/floor/grass/LateInitialize(mapload)
-	update_icon()
+/turf/open/floor/grass/LateInitialize()
 	for(var/direction in GLOB.cardinals)
 		if(!istype(get_step(src,direction), /turf/open/floor))
 			continue
@@ -572,7 +629,6 @@
 
 /turf/open/floor/tile/chapel
 	icon_state = "chapel"
-	icon_regular_floor = "chapel"
 
 /turf/open/floor/tile/cmo
 	icon_state = "cmo"
@@ -707,6 +763,9 @@
 /turf/open/floor/tile/green/greentaupe
 	icon_state = "green"
 
+/turf/open/floor/tile/green/greentaupecorner
+	icon_state = "greencorner"
+
 /turf/open/floor/tile/green/whitegreen
 	icon_state = "whitegreen"
 
@@ -817,14 +876,27 @@
 	shoefootstep = FOOTSTEP_CARPET
 	barefootstep = FOOTSTEP_CARPET
 	mediumxenofootstep = FOOTSTEP_CARPET
+	floor_tile = /obj/item/stack/tile/carpet
 
-/turf/open/floor/carpet/Initialize()
-	. = ..()
-	floor_tile = new /obj/item/stack/tile/carpet
-	return INITIALIZE_HINT_LATELOAD
+/turf/open/floor/carpet/broken_states()
+	return icon_state
+
+/turf/open/floor/carpet/burnt_states()
+	return icon_state
 
 /turf/open/floor/carpet/ex_act(severity)
-	return
+	if(hull_floor)
+		return ..()
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			make_plating()
+		if(EXPLODE_HEAVY)
+			if(prob(80))
+				make_plating()
+		if(EXPLODE_LIGHT)
+			if(prob(50))
+				make_plating()
+	return ..()
 
 /turf/open/floor/carpet/edge2
 	icon_state = "carpetedge"

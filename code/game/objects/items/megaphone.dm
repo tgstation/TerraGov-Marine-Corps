@@ -1,6 +1,7 @@
 /obj/item/megaphone
 	name = "megaphone"
 	desc = "A device used to project your voice. Loudly."
+	icon = 'icons/obj/device.dmi'
 	icon_state = "megaphone"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
@@ -9,35 +10,27 @@
 	item_state = "radio"
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
-
 	var/spamcheck = 0
-	var/insults = 0
-	var/list/insultmsg = list("FUCK EVERYONE!", "I'M A TATER!", "ALL SECURITY TO SHOOT ME ON SIGHT!", "I HAVE A BOMB!", "CAPTAIN IS A COMDOM!", "FOR THE SYNDICATE!")
+	var/list/voicespan = list(SPAN_COMMAND)
 
-/obj/item/megaphone/attack_self(mob/living/user)
-	if (user.client)
-		if(user.client.prefs.muted & MUTE_IC)
-			to_chat(src, span_warning("You cannot speak in IC (muted)."))
-			return
-	if(!ishuman(user))
-		to_chat(user, span_warning("You don't know how to use this!"))
-		return
+/obj/item/megaphone/equipped(mob/M, slot)
+	. = ..()
+	if ((slot == SLOT_L_HAND) || (slot == SLOT_R_HAND))
+		RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+	else
+		UnregisterSignal(M, COMSIG_MOB_SAY)
 
-	if(spamcheck)
-		to_chat(user, span_warning("\The [src] needs to recharge!"))
-		return
+/obj/item/megaphone/dropped(mob/M)
+	. = ..()
+	UnregisterSignal(M, COMSIG_MOB_SAY)
 
-	var/message = stripped_input(user, "Shout a message?", "Megaphone")
-	if(!message)
+/obj/item/megaphone/proc/handle_speech(mob/living/carbon/user, list/speech_args)
+	SIGNAL_HANDLER
+	if (user.get_active_held_item() != src)
 		return
-	if(CHAT_FILTER_CHECK(message))
-		to_chat(user, span_warning("That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[message]\"</span>"))
-		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+	if(spamcheck > world.time)
+		balloon_alert(user, "cooldown")
 		return
-	message = capitalize(message)
-	user.log_talk(message, LOG_SAY, "(megaphone)")
-	if ((src.loc == user && usr.stat == 0))
-		user.send_speech("<FONT size=4>[message]</FONT>", message_language = user.get_default_language())
-
-		spamcheck = TRUE
-		addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 2 SECONDS)
+	playsound(loc, 'sound/items/megaphone.ogg', 100, FALSE, TRUE)
+	spamcheck = world.time + 20
+	speech_args[SPEECH_SPANS] |= voicespan

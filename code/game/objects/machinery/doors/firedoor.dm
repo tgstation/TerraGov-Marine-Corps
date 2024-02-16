@@ -16,6 +16,7 @@
 	opacity = FALSE
 	density = FALSE
 	obj_flags = CAN_BE_HIT
+	allow_pass_flags = NONE
 	layer = FIREDOOR_OPEN_LAYER
 	open_layer = FIREDOOR_OPEN_LAYER // Just below doors when open
 	closed_layer = FIREDOOR_CLOSED_LAYER // Just above doors when closed
@@ -43,7 +44,7 @@
 		"cold"
 	)
 
-/obj/machinery/door/firedoor/Initialize()
+/obj/machinery/door/firedoor/Initialize(mapload)
 	. = ..()
 	for(var/obj/machinery/door/firedoor/F in loc)
 		if(F != src)
@@ -116,7 +117,7 @@
 		return ..()
 	return FALSE
 
-/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
@@ -134,7 +135,7 @@
 	X.visible_message(span_warning("\The [X] digs into \the [src] and begins to pry it open."), \
 	span_warning("We dig into \the [src] and begin to pry it open."), null, 5)
 
-	if(do_after(X, 30, FALSE, src, BUSY_ICON_BUILD))
+	if(do_after(X, 30, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 		if(blocked)
 			to_chat(X, span_warning("\The [src] is welded shut."))
 			return FALSE
@@ -210,7 +211,13 @@
 		if(!W.remove_fuel(0, user))
 			return
 
+		balloon_alert_to_viewers("Starts [blocked ? "unwelding" : "welding"]")
+		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+			balloon_alert_to_viewers("Stops welding")
+			return
+
 		blocked = !blocked
+		balloon_alert_to_viewers("[blocked ? "welds" : "unwelds"] the firedoor")
 		user.visible_message(span_danger("\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W]."),\
 		"You [blocked ? "weld" : "unweld"] \the [src] with \the [W].",\
 		"You hear something being welded.")
@@ -228,7 +235,7 @@
 				"You hear metal strain.")
 		var/old_density = density
 
-		if(!do_after(user, 30, TRUE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 30, NONE, src, BUSY_ICON_HOSTILE))
 			return
 
 		if(blocked || density != old_density)
@@ -280,26 +287,29 @@
 			flick("door_closing", src)
 	playsound(loc, 'sound/machines/emergency_shutter.ogg', 25)
 
-
-/obj/machinery/door/firedoor/update_icon()
-	overlays.Cut()
+/obj/machinery/door/firedoor/update_icon_state()
+	. = ..()
 	if(density)
 		icon_state = "door_closed"
+	else
+		icon_state = "door_open"
+
+/obj/machinery/door/firedoor/update_overlays()
+	. = ..()
+	if(density)
 		if(blocked)
-			overlays += "welded"
+			. += "welded"
 		if(pdiff_alert)
-			overlays += "palert"
+			. += "palert"
 		if(dir_alerts)
 			for(var/d=1;d<=4;d++)
 				var/cdir = GLOB.cardinals[d]
 				for(var/i=1;i<=length(ALERT_STATES);i++)
 					if(dir_alerts[d] & (1<<(i-1)))
-						overlays += new/icon(icon,"alert_[ALERT_STATES[i]]", dir=cdir)
+						. += new/icon(icon,"alert_[ALERT_STATES[i]]", dir=cdir)
 	else
-		icon_state = "door_open"
 		if(blocked)
-			overlays += "welded_open"
-
+			. += "welded_open"
 
 /obj/machinery/door/firedoor/mainship
 	name = "\improper Emergency Shutter"
@@ -317,32 +327,16 @@
 /obj/machinery/door/firedoor/border_only
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	flags_atom = ON_BORDER
+	allow_pass_flags = PASS_GLASS
 
-/obj/machinery/door/firedoor/border_only/Initialize()
+/obj/machinery/door/firedoor/border_only/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/machinery/door/firedoor/border_only/proc/on_try_exit(datum/source, atom/movable/leaver, direction, list/moveblockers)
-	SIGNAL_HANDLER
-	if(CHECK_BITFIELD(leaver.flags_pass, PASSGLASS))
-		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (leaver.status_flags & INCORPOREAL))
-		return NONE
-	moveblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
-
 /obj/machinery/door/firedoor/border_only/closed
 	icon_state = "door_closed"
 	opacity = TRUE
 	density = TRUE
-
-
-/obj/machinery/door/firedoor/border_only/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return TRUE
-
-

@@ -5,7 +5,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/equipment/shields_right.dmi',
 	)
 
-/obj/item/weapon/shield/Initialize()
+/obj/item/weapon/shield/Initialize(mapload)
 	. = ..()
 	set_shield()
 
@@ -65,14 +65,19 @@
 
 		visible_message(span_notice("[user] begins to restore the structural integrity of [src]."))
 
-		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
+		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 			return
 
 		if(!metal_sheets.use(1))
 			return
 
-		repair_damage(max_integrity * 0.2)
+		repair_damage(max_integrity * 0.2, user)
 		visible_message(span_notice("[user] restores the structural integrity of [src]."))
+
+	else if(istype(I, /obj/item/weapon) && world.time >= cooldown)
+		user.visible_message(span_warning("[user] bashes [src] with [I]!"))
+		playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
+		cooldown = world.time + 2.5 SECONDS
 
 
 /obj/item/weapon/shield/riot/welder_act(mob/living/user, obj/item/I)
@@ -80,14 +85,6 @@
 	if(. == BELOW_INTEGRITY_THRESHOLD)
 		balloon_alert(user, "Too damaged. Use metal sheets.")
 
-
-/obj/item/weapon/shield/riot/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon) && world.time >= cooldown)
-		user.visible_message(span_warning("[user] bashes [src] with [I]!"))
-		playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
-		cooldown = world.time + 2.5 SECONDS
-		return TRUE
-	return ..()
 
 /obj/item/weapon/shield/riot/marine
 	name = "\improper TL-172 defensive shield"
@@ -102,8 +99,12 @@
 	force = 20
 	slowdown = 0.5
 
+/obj/item/weapon/shield/riot/marine/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/strappable)
 
 /obj/item/weapon/shield/riot/marine/update_icon_state()
+	. = ..()
 	if(obj_integrity <= integrity_failure)
 		icon_state = initial(icon_state) + "_broken"
 	else
@@ -120,19 +121,6 @@
 		holder.update_inv_r_hand()
 		return
 	holder.update_inv_back()
-
-/obj/item/weapon/shield/riot/marine/AltClick(mob/user)
-	if(!can_interact(user))
-		return ..()
-	if(!ishuman(user))
-		return ..()
-	if(!(user.l_hand == src || user.r_hand == src))
-		return ..()
-	TOGGLE_BITFIELD(flags_item, NODROP)
-	if(CHECK_BITFIELD(flags_item, NODROP))
-		to_chat(user, span_warning("You tighten the strap of [src] around your hand!"))
-	else
-		to_chat(user, span_notice("You loosen the strap of [src] around your hand!"))
 
 /obj/item/weapon/shield/riot/marine/metal
 	icon_state = "riot_metal"
@@ -166,9 +154,9 @@
 	///Whether it is wired
 	var/is_wired = FALSE
 
-/obj/item/weapon/shield/riot/marine/deployable/Initialize()
+/obj/item/weapon/shield/riot/marine/deployable/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/deployable_item, deployable_item, deploy_time, undeploy_time)
+	AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time)
 
 /obj/item/weapon/shield/riot/marine/deployable/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list(MELEE = 40, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 40, BIO = 15, FIRE = 30, ACID = 35))
@@ -187,6 +175,10 @@
 	attack_verb = list("shoved", "bashed")
 	var/on_force = 10
 
+/obj/item/weapon/shield/energy/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/strappable)
+
 /obj/item/weapon/shield/energy/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
 
@@ -200,7 +192,7 @@
 		to_chat(user, span_notice("[src] is now active."))
 	else
 		force = initial(force)
-		w_class = WEIGHT_CLASS_TINY
+		w_class = WEIGHT_CLASS_SMALL
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, TRUE)
 		to_chat(user, span_notice("[src] can now be concealed."))
 	add_fingerprint(user, "turned [active ? "on" : "off"]")

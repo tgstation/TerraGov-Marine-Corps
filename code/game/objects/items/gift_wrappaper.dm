@@ -136,7 +136,7 @@
 /obj/item/weapon/gun/launcher/rocket/m57a4/xmas/able_to_fire(mob/living/user)
 	var/turf/current_turf = get_turf(user)
 	if(is_mainship_level(current_turf.z))
-		to_chat(user, span_warning("You can't fire that here!"))
+		balloon_alert(user, "Can't fire")
 		return FALSE
 	return TRUE
 
@@ -177,7 +177,7 @@
 /obj/item/wrapping_paper
 	name = "wrapping paper"
 	desc = "You can use this to wrap items in."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "wrap_paper"
 	var/amount = 20
 

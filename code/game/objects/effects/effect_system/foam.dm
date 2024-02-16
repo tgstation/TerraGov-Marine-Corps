@@ -23,7 +23,7 @@
 	///flags for the foam, such as RAZOR_FOAM and METAL_FOAM.
 	var/foam_flags = NONE
 
-/obj/effect/particle_effect/foam/Initialize()
+/obj/effect/particle_effect/foam/Initialize(mapload)
 	. = ..()
 	create_reagents(1000) //limited by the size of the reagent holder anyway.
 	START_PROCESSING(SSfastprocess, src)
@@ -132,20 +132,20 @@
 
 /datum/effect_system/foam_spread/set_up(spread_amount = 5, atom/location, datum/reagents/carry = null, foam_flags = NONE, lifetime = 75)
 	if(isturf(location))
-		src.location = location
+		src.location = WEAKREF(location)
 	else
-		src.location = get_turf(location)
+		src.location = WEAKREF(get_turf(location))
 
 	src.spread_amount = round(sqrt(spread_amount / 3), 1)
 	carry.copy_to(carrying_reagents, carry.total_volume)
 	src.foam_flags = foam_flags
 
 /datum/effect_system/foam_spread/start()
-	if(spread_amount <= 0)
+	if(spread_amount < 0)
 		return
-	var/obj/effect/particle_effect/foam/F = new(location)
+	var/obj/effect/particle_effect/foam/F = new(location.resolve())
 	var/foamcolor = mix_color_from_reagents(carrying_reagents.reagent_list)
-	carrying_reagents.copy_to(F, carrying_reagents.total_volume/spread_amount)
+	carrying_reagents.copy_to(F, spread_amount ? carrying_reagents.total_volume/spread_amount : carrying_reagents.total_volume) //this magically duplicates chems
 	F.add_atom_colour(foamcolor, FIXED_COLOUR_PRIORITY)
 	F.spread_amount = spread_amount
 	F.foam_flags = foam_flags
@@ -160,7 +160,7 @@
 	density = TRUE
 	opacity = FALSE 	// changed in New()
 	anchored = TRUE
-	flags_pass = NONE
+	allow_pass_flags = NONE
 	name = "foamed metal"
 	desc = "A lightweight foamed metal wall."
 	resistance_flags = XENO_DAMAGEABLE
@@ -174,5 +174,5 @@
 	)
 
 /obj/structure/foamedmetal/fire_act() //flamerwallhacks go BRRR
-	take_damage(10, BURN, "fire")
+	take_damage(10, BURN, FIRE)
 

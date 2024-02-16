@@ -11,7 +11,7 @@
 	light_power = 2
 	var/hardhat_color = "yellow" //Determines used sprites: hardhat[on]_[hardhat_color]
 
-/obj/item/clothing/head/hardhat/Initialize()
+/obj/item/clothing/head/hardhat/Initialize(mapload)
 	. = ..()
 	GLOB.nightfall_toggleable_lights += src
 
@@ -44,7 +44,7 @@
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	to_chat(X, span_warning("We disable the metal thing's lights.") )
 
-/obj/item/clothing/head/hardhat/update_icon()
+/obj/item/clothing/head/hardhat/update_icon_state()
 	. = ..()
 	icon_state = "hardhat[light_on]_[hardhat_color]"
 	item_state = "hardhat[light_on]_[hardhat_color]"

@@ -4,13 +4,18 @@
 	caliber = CALIBER_12G //codex
 	max_chamber_items = 8 //codex
 	load_method = SINGLE_CASING //codex
+	icon = 'icons/obj/items/guns/shotguns.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/shotguns_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_shell_insert.ogg'
 	hand_reload_sound = 'sound/weapons/guns/interact/shotgun_shell_insert.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/shotgun_reload.ogg'
 	opened_sound = 'sound/weapons/guns/interact/shotgun_open.ogg'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_HANDFULS
 	type_of_casings = "shell"
 	allowed_ammo_types = list()
@@ -43,7 +48,7 @@
 	icon_state = "mk221"
 	item_state = "mk221"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	max_chamber_items = 9
 	attachable_allowed = list(
@@ -75,20 +80,22 @@
 	desc = "The Terran Armories SH-39 combat shotgun is a semi automatic shotgun used by breachers and pointmen within the TGMC squads. Uses 12 gauge shells."
 	force = 20 //Has a stock already
 	flags_equip_slot = ITEM_SLOT_BACK
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	icon_state = "t39"
 	item_state = "t39"
-	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh39.ogg'
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
@@ -101,15 +108,19 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t39stock)
 
 	fire_delay = 14 //one shot every 1.4 seconds.
-	accuracy_mult = 1.20
+	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.65
 	scatter = 3
 	scatter_unwielded = 12
 	damage_mult = 0.7  //30% less damage. Faster firerate.
-	recoil = 0 //It has a stock on the sprite.
-	recoil_unwielded = 2
-	wield_delay = 1 SECONDS
+	recoil = 2
+	recoil_unwielded = 4
+	wield_delay = 0.8 SECONDS
 	akimbo_additional_delay = 0.9
+
+/obj/item/weapon/gun/shotgun/combat/standardmarine/beginner
+	default_ammo_type = /datum/ammo/bullet/shotgun/slug
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/heavy_barrel, /obj/item/attachable/verticalgrip, /obj/item/attachable/stock/t39stock)
 
 /obj/item/weapon/gun/shotgun/combat/masterkey
 	name = "masterkey shotgun"
@@ -122,7 +133,7 @@
 	slot = ATTACHMENT_SLOT_UNDER
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
-	flags_gun_features = GUN_IS_ATTACHMENT|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_CAN_POINTBLANK|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_IS_ATTACHMENT|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_CAN_POINTBLANK|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	damage_mult = 0.6 // 40% less damage, but MUCH higher falloff.
 	scatter = 3
@@ -143,7 +154,7 @@
 	item_state = "dshotgun"
 	max_chamber_items = 2 //codex
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
-	fire_sound = 'sound/weapons/guns/fire/shotgun_heavy.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh34.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
 	cocked_sound = null //We don't want this.
 	attachable_allowed = list(
@@ -152,9 +163,10 @@
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/flashlight/under,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS|AMMO_RECIEVER_HANDFULS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
@@ -165,6 +177,7 @@
 	recoil = 2
 	recoil_unwielded = 4
 	aim_slowdown = 0.6
+	damage_mult = 0.7
 
 /obj/item/weapon/gun/shotgun/double/sawn
 	name = "sawn-off shotgun"
@@ -173,7 +186,7 @@
 	item_state = "sshotgun"
 	flags_equip_slot = ITEM_SLOT_BELT
 	attachable_allowed = list()
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES|GUN_WIELDED_FIRING_ONLY
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 18, "under_y" = 16, "stock_x" = 18, "stock_y" = 16)
 
 	fire_delay = 2
@@ -194,30 +207,31 @@
 	item_state = "ts34"
 	max_chamber_items = 2 //codex
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
-	fire_sound = 'sound/weapons/guns/fire/shotgun_heavy.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh34.ogg'
 	hand_reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
 	cocked_sound = null //We don't want this.
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/reddot,
-		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 21, "under_y" = 13, "stock_x" = 13, "stock_y" = 16)
 
-	fire_delay = 5
+	fire_delay = 0.65 SECONDS
 	burst_amount = 1
 	scatter = 3
 	scatter_unwielded = 10
-	recoil = 2
+	recoil = 1
 	recoil_unwielded = 4
 
 
@@ -240,18 +254,20 @@
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION|AMMO_RECIEVER_UNIQUE_ACTION_LOCKS
 	cocked_message = "You rack the pump."
 	cock_locked_message = "The pump is locked! Fire it first!"
@@ -274,7 +290,7 @@
 /obj/item/weapon/gun/shotgun/pump/cmb
 	name = "\improper SH-12 Paladin pump shotgun"
 	desc = "A nine-round pump action shotgun. A shotgun used for hunting, home defence and police work, many versions of it exist and are used by just about anyone."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	icon_state = "pal12"
 	item_state = "pal12"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_cmb.ogg'
@@ -285,6 +301,7 @@
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/magnetic_harness,
@@ -318,7 +335,7 @@
 /obj/item/weapon/gun/shotgun/pump/trenchgun
 	name = "\improper L-4034 trenchgun"
 	desc = "A six-round pump action shotgun. A shotgun used for hunting, home defence and police work, many versions of it exist and are used by just about anyone."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	icon_state = "trenchgun"
 	item_state = "trenchgun"
 	fire_sound = 'sound/weapons/guns/fire/trenchgun.ogg'
@@ -329,6 +346,7 @@
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/magnetic_harness,
@@ -371,10 +389,15 @@
 /obj/item/weapon/gun/shotgun/pump/bolt
 	name = "\improper Mosin Nagant rifle"
 	desc = "A mosin nagant rifle, even just looking at it you can feel the cosmoline already. Commonly known by its slang, \"Moist Nugget\", by downbrained colonists and outlaws."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "mosin"
 	item_state = "mosin"
-	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
+	)
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mosin.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mosin_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_762X54 //codex
@@ -393,6 +416,7 @@
 		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/motiondetector,
@@ -401,7 +425,7 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 	flags_item_map_variant = NONE
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 37, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/mosin,
@@ -434,11 +458,15 @@
 
 /obj/item/weapon/gun/shotgun/double/martini
 	name = "\improper Martini Henry lever action rifle"
-	desc = "A lever action with room for a single round of .557/440 ball. Perfect for any kind of hunt, be it elephant or xeno."
+	desc = "A lever action with room for a single round of .557/440 ball. Perfect for any kind of hunt, be it elephant or xeno with how quick to the draw it is."
 	flags_equip_slot = ITEM_SLOT_BACK
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "martini"
 	item_state = "martini"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
+	)
 	shell_eject_animation = "martini_flick"
 	caliber = CALIBER_557 //codex
 	muzzle_flash_lum = 7
@@ -446,15 +474,17 @@
 	ammo_datum_type = /datum/ammo/bullet/sniper/martini
 	default_ammo_type = /datum/ammo/bullet/sniper/martini
 	gun_skill_category = SKILL_RIFLES
-	fire_sound = 'sound/weapons/guns/fire/martini.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_martinihenry.ogg'
 	reload_sound = 'sound/weapons/guns/interact/martini_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/martini_cocked.ogg'
 	opened_sound = 'sound/weapons/guns/interact/martini_open.ogg'
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/marine,
@@ -463,8 +493,12 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 23,"rail_x" = 17, "rail_y" = 25, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_slowdown = 0.35
+	aim_time = 0.5 SECONDS
+
 
 	fire_delay = 1 SECONDS
 
@@ -479,6 +513,7 @@
 	movement_acc_penalty_mult = 5
 
 	placed_overlay_iconstate = "wood"
+	damage_mult = 1
 
 //***********************************************************
 // Derringer
@@ -488,6 +523,7 @@
 	desc = "The R-2395 Derringer has been a classic for centuries. This latest iteration combines plasma propulsion powder with the classic design to make an assasination weapon that will leave little to chance."
 	icon_state = "derringer"
 	item_state = "tp17"
+	icon = 'icons/obj/items/guns/pistols.dmi'
 	gun_skill_category = SKILL_PISTOLS
 	w_class = WEIGHT_CLASS_TINY
 	caliber = CALIBER_41RIM //codex
@@ -500,16 +536,18 @@
 	cocked_sound = 'sound/weapons/guns/interact/martini_cocked.ogg'
 	opened_sound = 'sound/weapons/guns/interact/martini_open.ogg'
 	attachable_allowed = list()
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 
-	fire_delay = 0.5 SECONDS
-	scatter = 2
-	recoil = 1
-	recoil_unwielded = 1
+	fire_delay = 0.2 SECONDS
+	scatter = 0
+	scatter_unwielded = 0
+	recoil = 0
+	recoil_unwielded = 0
 	aim_slowdown = 0
-	wield_delay = 0.5 SECONDS
+	wield_delay = 0.1 SECONDS
+	damage_mult = 1
 
-/obj/item/weapon/gun/shotgun/double/derringer/Initialize()
+/obj/item/weapon/gun/shotgun/double/derringer/Initialize(mapload)
 	. = ..()
 	if(round(rand(1, 10), 1) != 1)
 		return
@@ -522,7 +560,7 @@
 /obj/item/weapon/gun/shotgun/pump/lever
 	name = "lever action rifle"
 	desc = "A .44 magnum lever action rifle with side loading port. It has a low fire rate, but it packs quite a punch in hunting."
-	icon = 'icons/obj/items/gun.dmi'
+	icon = 'icons/obj/items/guns/shotguns.dmi'
 	icon_state = "mares_leg"
 	item_state = "mares_leg"
 	fire_sound = 'sound/weapons/guns/fire/leveraction.ogg'//I like how this one sounds.
@@ -541,10 +579,11 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/bayonet,
 	)
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 
 	fire_delay = 8
 	accuracy_mult = 1.2
@@ -562,10 +601,14 @@
 /obj/item/weapon/gun/shotgun/pump/lever/repeater
 	name = "\improper Leicester Repeater"
 	desc = "The gun that won the west or so they say. But space is a very different kind of frontier all together, chambered for .45-70 Governemnt."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "leicrepeater"
 	item_state = "leicrepeater"
-	fire_sound = 'sound/weapons/guns/fire/leveraction.ogg'//I like how this one sounds.
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
+	)
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_repeater.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_4570 //codex
@@ -580,12 +623,13 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 	)
 	attachable_offset = list ("muzzle_x" = 45, "muzzle_y" = 23,"rail_x" = 21, "rail_y" = 23, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.3 SECONDS
 	aim_speed_modifier = 2
@@ -601,6 +645,9 @@
 	cock_delay = 2
 	aim_slowdown = 0.6
 	movement_acc_penalty_mult = 5
+
+/obj/item/weapon/gun/shotgun/pump/lever/repeater/beginner
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet)
 
 //------------------------------------------------------
 //MBX900 Lever Action Shotgun
@@ -626,6 +673,7 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/lasersight,
@@ -641,6 +689,7 @@
 
 	flags_item_map_variant = NONE
 
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	fire_delay = 0.6 SECONDS
 	accuracy_mult = 1.2
 	cock_delay = 0.2 SECONDS
@@ -651,21 +700,23 @@
 	name = "\improper SH-35 pump shotgun"
 	desc = "The Terran Armories SH-35 is the shotgun used by the TerraGov Marine Corps. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells.\n<b>Requires a pump, which is the Unique Action key.</b>"
 	flags_equip_slot = ITEM_SLOT_BACK
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	icon_state = "t35"
 	item_state = "t35"
 	cock_animation = "t35_pump"
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
-	fire_sound = 'sound/weapons/guns/fire/t35.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh35.ogg'
 	max_chamber_items = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
@@ -702,13 +753,17 @@
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness)
 
+/obj/item/weapon/gun/shotgun/pump/t35/beginner
+	default_ammo_type = /datum/ammo/bullet/shotgun/slug
+	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/gyro, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet)
+
 //-------------------------------------------------------
 //THE MYTH, THE GUN, THE LEGEND, THE DEATH, THE ZX
 
 /obj/item/weapon/gun/shotgun/zx76
 	name = "\improper ZX-76 assault shotgun"
 	desc = "The ZX-76 Assault Shotgun, a incredibly rare, double barreled semi-automatic combat shotgun with a twin shot mode. Possibly the unrivaled master of CQC. Has a 9 round internal magazine."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	icon_state = "zx-76"
 	item_state = "zx-76"
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -724,6 +779,7 @@
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/lasersight,
 		/obj/item/weapon/gun/flamer/mini_flamer,
@@ -755,20 +811,22 @@
 	desc = "The V-51 is the main shotgun utilised by the Sons of Mars. Slower firing than some other semi automatic shotguns, but packs more of a kick."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "v51"
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	item_state = "v51"
 	fire_sound = "shotgun_som"
 	dry_fire_sound = 'sound/weapons/guns/fire/v51_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/v51_load.ogg'
 	hand_reload_sound = 'sound/weapons/guns/interact/v51_load.ogg'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	max_chamber_items = 9
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/reddot,

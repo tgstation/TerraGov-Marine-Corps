@@ -4,8 +4,8 @@
 
 	do_resist()
 
-
-/mob/living/proc/lay_down()
+///Handles trying to toggle resting state
+/mob/living/proc/toggle_resting()
 	set name = "Rest"
 	set category = "IC"
 
@@ -16,18 +16,20 @@
 		if(is_ventcrawling)
 			return FALSE
 		set_resting(TRUE, FALSE)
-	else if(do_actions)
-		to_chat(src, span_warning("You are still in the process of standing up."))
 		return
-	else if(do_mob(src, src, 2 SECONDS, ignore_flags = (IGNORE_LOC_CHANGE|IGNORE_HAND)))
-		get_up()
+	if(do_actions)
+		balloon_alert(src, "Busy!")
+		return
+	get_up()
 
+///Handles getting up, doing a basic check before relaying it to the actual proc that does it
 /mob/living/proc/get_up()
 	if(!incapacitated(TRUE))
 		set_resting(FALSE, FALSE)
 	else
 		to_chat(src, span_notice("You fail to get up."))
 
+///Actually handles toggling the resting state
 /mob/living/proc/set_resting(rest, silent = TRUE)
 	if(status_flags & INCORPOREAL)
 		return
@@ -45,11 +47,7 @@
 		if(!silent)
 			to_chat(src, span_notice("You get up."))
 		SEND_SIGNAL(src, COMSIG_XENOMORPH_UNREST)
-	update_resting()
-
-
-/mob/living/proc/update_resting()
-	hud_used?.rest_icon?.update_icon(src)
+	hud_used?.rest_icon?.update_icon()
 
 
 /mob/living/verb/ghost()
@@ -68,30 +66,9 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has ghosted.")
 	ghostize(FALSE)
 
-/mob/living/verb/point_to(atom/A)
-	set name = "Point To"
-	set category = "Object"
-
-	if(!isturf(loc))
+/mob/living/point_to(atom/pointed_atom as mob|obj|turf in view(client.view, src))
+	if(!..())
 		return FALSE
-
-	if(!A.mouse_opacity) //Can't click it? can't point at it.
+	if(incapacitated() || HAS_TRAIT(src, TRAIT_FAKEDEATH))
 		return FALSE
-
-	if(incapacitated() || HAS_TRAIT(src, TRAIT_FAKEDEATH)) //Incapacitated, can't point.
-		return FALSE
-
-	var/tile = get_turf(A)
-	if(!tile)
-		return FALSE
-
-	if(next_move > world.time)
-		return FALSE
-
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_POINT))
-		return FALSE
-
-	next_move = world.time + 2
-
-	point_to_atom(A, tile)
-	return TRUE
+	visible_message(span_infoplain("[span_name("[src]")] points at [pointed_atom]."), span_notice("You point at [pointed_atom]."))

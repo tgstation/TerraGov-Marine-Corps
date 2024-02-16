@@ -15,7 +15,7 @@ Mineral Sheets
 */
 
 GLOBAL_LIST_INIT(sandstone_recipes, list ( \
-	new/datum/stack_recipe("pile of dirt", /obj/machinery/portable_atmospherics/hydroponics/soil, 3, time = 1 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
+	new/datum/stack_recipe("pile of dirt", /obj/machinery/hydroponics/soil, 3, time = 1 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	new/datum/stack_recipe("sandstone door", /obj/structure/mineral_door/sandstone, 10, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	))
 
@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	throw_speed = 3
 	throw_range = 3
 
-/obj/item/stack/sheet/mineral/Initialize()
+/obj/item/stack/sheet/mineral/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-2, 2)
 	pixel_y = rand(-2, 2)
@@ -75,7 +75,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	perunit = 3750
 
 
-/obj/item/stack/sheet/mineral/iron/Initialize()
+/obj/item/stack/sheet/mineral/iron/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.iron_recipes
 
@@ -89,7 +89,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	sheettype = "sandstone"
 
 
-/obj/item/stack/sheet/mineral/sandstone/Initialize()
+/obj/item/stack/sheet/mineral/sandstone/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.sandstone_recipes
 
@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	sheettype = "diamond"
 
 
-/obj/item/stack/sheet/mineral/diamond/Initialize()
+/obj/item/stack/sheet/mineral/diamond/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.diamond_recipes
 
@@ -115,7 +115,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	sheettype = "uranium"
 
 
-/obj/item/stack/sheet/mineral/uranium/Initialize()
+/obj/item/stack/sheet/mineral/uranium/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.uranium_recipes
 
@@ -145,7 +145,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	perunit = 2000
 
 
-/obj/item/stack/sheet/mineral/plastic/Initialize()
+/obj/item/stack/sheet/mineral/plastic/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.plastic_recipes
 
@@ -166,7 +166,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	number_of_extra_variants = 2
 
 
-/obj/item/stack/sheet/mineral/gold/Initialize()
+/obj/item/stack/sheet/mineral/gold/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.gold_recipes
 
@@ -180,7 +180,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	number_of_extra_variants = 2
 
 
-/obj/item/stack/sheet/mineral/silver/Initialize()
+/obj/item/stack/sheet/mineral/silver/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.silver_recipes
 
@@ -220,7 +220,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 /obj/item/stack/sheet/mineral/osmium
 	name = "osmium"
 	desc = "Osmium is a transition metal. The densest naturally-occuring element known to man, it is obviously known for its extreme hardness and durability and used as such."
-	singular_name = "tritium ingot"
+	singular_name = "osmium ingot"
 	icon_state = "sheet-silver"
 	sheettype = "osmium"
 	color = "#9999FF"

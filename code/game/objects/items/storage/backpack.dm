@@ -314,6 +314,7 @@
 		. += span_warning("Its defibrillator recharge unit does not have a power cell installed!")
 
 /obj/item/storage/backpack/marine/corpsman/update_icon_state()
+	. = ..()
 	icon_state = icon_skin
 	if(cell?.charge >= 0)
 		switch(PERCENT(cell.charge/cell.maxcharge))
@@ -529,7 +530,7 @@
 
 	addtimer(CALLBACK(src, PROC_REF(on_cloak)), 1)
 	RegisterSignal(M, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(damage_taken))
-	RegisterSignal(M, list(
+	RegisterSignals(M, list(
 		COMSIG_MOB_GUN_FIRED,
 		COMSIG_MOB_GUN_AUTOFIRED,
 		COMSIG_MOB_ATTACHMENT_FIRED,
@@ -556,8 +557,9 @@
 		anim(wearer.loc,wearer,'icons/mob/mob.dmi',,"uncloak",,wearer.dir)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_off(mob/user)
-	UnregisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH)
-	if (!user)
+	if(wearer)
+		UnregisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH)
+	if(!user)
 		camo_active = FALSE
 		wearer = null
 		STOP_PROCESSING(SSprocessing, src)
@@ -682,7 +684,7 @@
 	desc = "The M68-B thermal cloak is a variant custom-purposed for snipers, allowing for faster, superior, stationary concealment at the expense of mobile concealment. It is designed to be paired with the lightweight M3 recon battle armor. Serves as a satchel."
 	shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA * 0.5 //Half the normal shimmer transparency.
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper/equippedsniper/Initialize()
+/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper/equippedsniper/Initialize(mapload)
 	. = ..()
 	new /obj/item/detpack(src)
 
@@ -706,7 +708,7 @@
 
 /obj/item/storage/backpack/marine/engineerpack
 	name = "\improper TGMC technician welderpack"
-	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling and use,"
+	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling."
 	icon_state = "engineerpack"
 	item_state = "engineerpack"
 	var/max_fuel = 260
@@ -718,7 +720,7 @@
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
-	R.my_atom = src
+	R.my_atom = WEAKREF(src)
 	R.add_reagent(/datum/reagent/fuel, max_fuel)
 
 

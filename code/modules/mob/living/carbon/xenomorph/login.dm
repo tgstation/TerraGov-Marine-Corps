@@ -14,4 +14,5 @@
 		nicknumber = 0
 		generate_nicknumber()
 
+	hud_update_rank()
 	generate_name()

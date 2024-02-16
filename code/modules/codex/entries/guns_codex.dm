@@ -110,23 +110,26 @@
 
 	. += jointext(traits, "<br>")
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/get_mechanics_info()
+	. = ..()
+	if(!mode_list)
+		return
+
+	var/list/fire_modes = list()
+	fire_modes += "<br><U>Fire modes</U>:<br>"
+
+	for(var/num AS in mode_list)
+		var/datum/lasrifle/mode = mode_list[num]
+		fire_modes += "<U>[num]</U>: [initial(mode.description)]"
+
+	. += jointext(fire_modes, "<br>")
+
 /obj/item/weapon/gun/shotgun/pump/get_mechanics_info()
 	. = ..()
 	if(gun_skill_category == SKILL_RIFLES)
 		. += "<br><br>To work the weapon press spacebar.<br>"
 	else
 		. += "<br><br>To pump it press spacebar.<br>"
-
-/obj/item/weapon/gun/energy/crossbow/get_antag_info()
-	. = ..()
-	. += "This is a stealthy weapon which fires poisoned bolts at your target. When it hits someone, they will suffer a stun effect, in \
-	addition to toxins. The energy crossbow recharges itself slowly, and can be concealed in your pocket or bag.<br>"
-
-/obj/item/weapon/gun/energy/chameleon/get_antag_info()
-	. = ..()
-	. += "This gun is actually a hologram projector that can alter its appearance to mimick other weapons. To change the appearance, use \
-	the appropriate verb in the chameleon items tab. Any beams or projectiles fired from this gun are actually holograms and useless for actual combat. \
-	Projecting these holograms over distance uses a little bit of charge.<br>"
 
 /datum/codex_entry/energy_weapons
 	display_name = "energy weapons"
@@ -142,6 +145,16 @@
 		thanks to their ability to disable human targets easily and even on the military thanks to their ability to recharge using \
 		traditional chargers and their capability to switch their lens, allowing more flexibility, something that a ballistic weapon \
 		aren't capable of."
+
+/datum/codex_entry/plasma_weapons
+	display_name = "plasma weapons"
+	mechanics_text = "This weapon is a plasma weapon; it fires bursts of superheated gas that have been ionized and electrically charged. You can \
+		unload it by holding it and clicking it with an empty hand, and reload it by clicking it with a power cell or a plasma cartridge, depending on the model of \
+		the weapon. \
+		<br>"
+	lore_text = "Plasma weapons are rare and powerful due to the high cost and difficulty of producing and controlling plasma \
+		pulses. They have a devastating effect on most targets, as the plasma can melt, burn, or vaporize them. Using a plasma weapon in a confined space is very risky, \
+		as the plasma can damage the surroundings or harm friendly units with its intense heat and radiation."
 
 /datum/codex_entry/ballistic_weapons
 	display_name = "ballistic weapons"

@@ -1,12 +1,13 @@
 /datum/game_mode/extended
 	name = "Extended"
 	config_tag = "Extended"
-	flags_xeno_abilities = ABILITY_DISTRESS
+	flags_xeno_abilities = ABILITY_NUCLEARWAR
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
 		/datum/job/terragov/command/staffofficer = 4,
-		/datum/job/terragov/command/pilot = 2,
+		/datum/job/terragov/command/pilot = 1,
+		/datum/job/terragov/command/transportofficer = 1,
 		/datum/job/terragov/command/mech_pilot = 0,
 		/datum/job/terragov/engineering/chief = 1,
 		/datum/job/terragov/engineering/tech = 1,
@@ -23,6 +24,8 @@
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1
 	)
+	enable_fun_tads = TRUE
+	xenorespawn_time = 1 MINUTES
 
 /datum/game_mode/extended/announce()
 	to_chat(world, "<b>The current game mode is - Extended Role-Playing!</b>")

@@ -1,8 +1,9 @@
 /obj/structure/fence
 	name = "fence"
 	desc = "A large metal mesh strewn between two poles. Intended as a cheap way to separate areas, while allowing one to see through it."
-	icon = 'icons/obj/structures/fence.dmi'
-	icon_state = "fence0"
+	icon = 'icons/obj/smooth_objects/fence.dmi'
+	base_icon_state = "fence"
+	icon_state = "fence-icon"
 	density = TRUE
 	anchored = TRUE //We can not be moved.
 	coverage = 5
@@ -11,19 +12,21 @@
 	resistance_flags = XENO_DAMAGEABLE
 	minimap_color = MINIMAP_FENCE
 	var/cut = FALSE //Cut fences can be passed through
-	var/junction = 0 //Because everything is terrible, I'm making this a fence-level var
-	var/basestate = "fence"
-	coverage = 0 //Were like 4 rods
-	//We dont have armor do to being a bit more healthy!
+	coverage = 0 //4 rods doesn't provide any cover
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_FENCE)
+	canSmoothWith = list(SMOOTH_GROUP_FENCE)
 
 /obj/structure/fence/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			deconstruct(FALSE)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(100, 125))//Almost broken or half way
+			take_damage(rand(100, 125), BRUTE, BOMB)//Almost broken or half way
 		if(EXPLODE_LIGHT)
-			take_damage(rand(50, 75))
+			take_damage(rand(50, 75), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(30, BRUTE, BOMB)
 
 /obj/structure/fence/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -33,7 +36,7 @@
 			user.visible_message(span_notice("[user] fumbles around figuring out how to fix [src]'s wiring."),
 			span_notice("You fumble around figuring out how to fix [src]'s wiring."))
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_CONSTRUCTION)
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		var/obj/item/stack/rods/R = I
@@ -49,7 +52,7 @@
 		"<span class='notice'>You start repairing [src] with [R]")
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 
-		if(!do_after(user, 30, TRUE, src, BUSY_ICON_FRIENDLY))
+		if(!do_after(user, 30, NONE, src, BUSY_ICON_FRIENDLY))
 			return
 
 		if(R.amount < amount_needed)
@@ -57,10 +60,10 @@
 			return
 
 		R.use(amount_needed)
-		repair_damage(max_integrity)
+		repair_damage(max_integrity, user)
 		cut = 0
 		density = TRUE
-		update_icon()
+		icon = 'icons/obj/smooth_objects/fence.dmi'
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		user.visible_message(span_notice("[user] repairs [src] with [R]."),
 		"<span class='notice'>You repair [src] with [R]")
@@ -85,7 +88,7 @@
 			if(GRAB_AGGRESSIVE)
 				M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
 				if(prob(50))
-					M.Paralyze(20)
+					M.Paralyze(2 SECONDS)
 				M.apply_damage(10, blocked = MELEE)
 				UPDATEHEALTH(M)
 				take_damage(25)
@@ -100,7 +103,7 @@
 		user.visible_message(span_notice("[user] starts cutting through [src] with [I]."),
 		"<span class='notice'>You start cutting through [src] with [I]")
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
@@ -115,8 +118,7 @@
 		new /obj/item/stack/rods(loc)
 	cut = TRUE
 	density = FALSE
-	update_icon() //Make it appear cut through!
-
+	icon = 'icons/obj/smooth_objects/brokenfence.dmi'
 
 /obj/structure/fence/Initialize(mapload, start_dir)
 	. = ..()
@@ -128,35 +130,10 @@
 	if(start_dir)
 		setDir(start_dir)
 
-	update_nearby_icons()
-
 /obj/structure/fence/Destroy()
 	density = FALSE
-	update_nearby_icons()
+	icon = 'icons/obj/smooth_objects/brokenfence.dmi'
 	return ..()
-
-//This proc is used to update the icons of nearby windows.
-/obj/structure/fence/proc/update_nearby_icons()
-	update_icon()
-	for(var/direction in GLOB.cardinals)
-		for(var/obj/structure/fence/W in get_step(src, direction))
-			W.update_icon()
-
-//merges adjacent full-tile windows into one (blatant ripoff from game/smoothwall.dm)
-/obj/structure/fence/update_icon()
-	//A little cludge here, since I don't know how it will work with slim windows. Most likely VERY wrong.
-	//this way it will only update full-tile ones
-	//This spawn is here so windows get properly updated when one gets deleted.
-	spawn(2)
-		if(!src)
-			return
-		for(var/obj/structure/fence/W in orange(src, 1))
-			if(abs(x - W.x) - abs(y - W.y)) //Doesn't count grilles, placed diagonally to src
-				junction |= get_dir(src, W)
-		if(cut)
-			icon_state = "broken[basestate][junction]"
-		else
-			icon_state = "[basestate][junction]"
 
 /obj/structure/fence/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 800)

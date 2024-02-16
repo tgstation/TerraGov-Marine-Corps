@@ -7,12 +7,15 @@
 	anchored = FALSE
 	var/dropmetal = TRUE
 	resistance_flags = XENO_DAMAGEABLE
+	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED
 	max_integrity = 40
 	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	hit_sound = 'sound/effects/woodhit.ogg'
 	var/spawn_type
 	var/spawn_amount
 
+/obj/structure/largecrate/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
 
 /obj/structure/largecrate/deconstruct(disassembled = TRUE)
 	spawn_stuff()
@@ -22,17 +25,6 @@
 /obj/structure/largecrate/examine(mob/user)
 	. = ..()
 	. += span_notice("You need a crowbar to pry this open!")
-
-
-/obj/structure/largecrate/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return TRUE
-
-	if(istype(I, /obj/item/powerloader_clamp))
-		return
-
-	return attack_hand(user)
 
 
 /obj/structure/largecrate/crowbar_act(mob/living/user, obj/item/I)
@@ -109,7 +101,7 @@
 						/obj/item/clothing/shoes/marine
 						)
 
-/obj/structure/largecrate/random/Initialize()
+/obj/structure/largecrate/random/Initialize(mapload)
 	. = ..()
 	if(!num_things) num_things = rand(0,3)
 
@@ -150,7 +142,7 @@
 /obj/structure/largecrate/random/barrel/welder_act(mob/living/user, obj/item/tool/weldingtool/welder)
 	if(!welder.isOn())
 		return FALSE
-	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return TRUE
 	if(!welder.remove_fuel(1, user))
 		return TRUE
@@ -166,6 +158,8 @@
 	. = ..()
 	. += span_notice("You need a blowtorch to weld this open!")
 
+/obj/structure/largecrate/random/barrel/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
 
 /obj/structure/largecrate/random/barrel
 	name = "blue barrel"
@@ -215,7 +209,7 @@
 /obj/structure/largecrate/random/secure/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()
 	to_chat(user, span_notice("You begin to cut the straps off \the [src]..."))
-	if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+	if(!do_after(user, 1.5 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 		return TRUE
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 	to_chat(user, span_notice("You cut the straps away."))
@@ -224,7 +218,7 @@
 	return TRUE
 
 
-/obj/structure/largecrate/random/barrel/examine(mob/user)
+/obj/structure/largecrate/random/secure/examine(mob/user)
 	. = ..()
 	. += span_notice("You need something sharp to cut off the straps.")
 
@@ -247,7 +241,7 @@
 					/obj/item/weapon/gun/grenade_launcher/single_shot = /obj/item/explosive/grenade/phosphorus
 					)
 
-/obj/structure/largecrate/guns/Initialize()
+/obj/structure/largecrate/guns/Initialize(mapload)
 	. = ..()
 	var/gun_type
 	var/i = 0

@@ -14,6 +14,25 @@
 	density = TRUE
 
 	base_icon_state = "testwall"
+	///do we have bits of decoration to add to the walls?
+	var/decorated_wall = TRUE
+
+/* this completely breaks hull walls in HvH, will fix in a separate pr because wall overlays are horribly shitcode
+/turf/closed/wall/mainship/smooth_icon()
+	. = ..()
+	cut_overlays()
+	if(decorated_wall)
+		var/r1 = rand(0,10) //Make a random chance for this to happen
+		var/r2 = rand(0,3) // Which wall if we do choose it
+		if(length(canSmoothWith) && !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (WEST_JUNCTION)))
+			return
+		if(CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (SOUTH_JUNCTION)) || !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (EAST_JUNCTION)))
+			return
+		if(r1 == 9 || r1 == 10)
+			add_overlay("[r2]")
+*/
+
+//turf/closed/wall/mainship/update_icon()
 
 /turf/closed/wall/mainship/outer
 	name = "outer hull"
@@ -22,6 +41,7 @@
 	walltype = "testwall"
 	resistance_flags = RESIST_ALL //Impossible to destroy or even damage. Used for outer walls that would breach into space, potentially some special walls
 	icon_state = "wall-invincible"
+	decorated_wall = FALSE
 
 /turf/closed/wall/mainship/outer/reinforced
 	name = "reinforced hull"
@@ -40,6 +60,7 @@
 	icon = 'icons/turf/walls/wwall.dmi'
 	base_icon_state = "wwall"
 	icon_state = "wwall-0"
+	decorated_wall = FALSE
 
 /turf/closed/wall/mainship/gray
 	walltype = "gwall"
@@ -53,6 +74,7 @@
 	walltype = "gwall"
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
+	decorated_wall = FALSE
 
 /turf/closed/wall/mainship/white/canterbury //For ship smoothing.
 	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
@@ -64,7 +86,9 @@
 		SMOOTH_GROUP_CANTERBURY,
 	)
 
-
+/turf/closed/wall/mainship/research
+	resistance_flags = UNACIDABLE
+	decorated_wall = FALSE
 
 /turf/closed/wall/mainship/white/outer
 	name = "outer hull"
@@ -72,14 +96,12 @@
 	icon_state = "wall-invincible"
 	resistance_flags = RESIST_ALL
 
-/turf/closed/wall/mainship/research/can_be_dissolved()
-	return FALSE
-
 /turf/closed/wall/mainship/research/containment/wall
 	icon = 'icons/turf/mainshipwalls.dmi'
 	name = "cell wall"
 	walltype = null
 	smoothing_flags = NONE
+	decorated_wall = FALSE
 
 /turf/closed/wall/mainship/research/containment/wall/corner
 	icon_state = "containment_wall_corner"
@@ -178,11 +200,11 @@
 			ChangeTurf(/turf/open/floor/plating)
 		if(EXPLODE_HEAVY)
 			if(prob(75))
-				take_damage(rand(100, 250))
+				take_damage(rand(100, 250), BRUTE, BOMB)
 			else
 				dismantle_wall(1, 1)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(0, 250))
+			take_damage(rand(0, 250), BRUTE, BOMB)
 
 
 /turf/closed/wall/sulaco/hull
@@ -205,11 +227,6 @@
 /turf/closed/wall/sulaco/unmeltable/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
 	return
 
-/turf/closed/wall/sulaco/unmeltable/can_be_dissolved()
-	return FALSE
-
-
-
 /turf/closed/wall/indestructible
 	name = "wall"
 	icon = 'icons/turf/walls.dmi'
@@ -229,9 +246,6 @@
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		to_chat(user, span_warning("[P] can't cut through this!"))
 	return
-
-/turf/closed/wall/indestructible/can_be_dissolved()
-	return 0
 
 /turf/closed/wall/indestructible/mineral
 	name = "impenetrable rock"
@@ -258,7 +272,7 @@
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
 	if(icon_state == "title_painting1")
-		icon_state = "title_painting[rand(0,33)]"
+		icon_state = "title_painting[rand(0,35)]"
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
@@ -269,6 +283,7 @@
 	name = "mineral wall"
 	desc = "This shouldn't exist"
 	icon_state = ""
+	resistance_flags = UNACIDABLE
 	var/mineral
 	var/last_event = 0
 	var/active = null
@@ -276,7 +291,9 @@
 /turf/closed/wall/mineral/gold
 	name = "gold wall"
 	desc = "A wall with gold plating. Swag!"
-	icon_state = "gold0"
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "gold-0"
+	base_icon_state = "gold"
 	walltype = "gold"
 	mineral = "gold"
 
@@ -351,6 +368,8 @@
 	icon_state = "cavewall0"
 	walltype = "cavewall"
 
+/turf/closed/wall/desertcavewall/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_ROCK, -10, 5, 1)
 
 //Prison wall
 
@@ -373,6 +392,9 @@
 	walltype = "woodwall"
 	explosion_block = 1
 
+/turf/closed/wall/wood/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+
 // Reinforced Wood Wall
 
 /turf/closed/wall/wood/reinforced
@@ -384,3 +406,57 @@
 	walltype = "woodrwall"
 	max_integrity = 3000
 	explosion_block = 4
+
+/turf/closed/wall/brick
+	name = "brick wall"
+	desc = "A wall made out of weathered brick."
+	icon = 'icons/turf/walls/brick.dmi'
+	icon_state = "wall-0"
+	walltype = "wall"
+	base_icon_state = "wall"
+
+/turf/closed/wall/variable
+	icon_state = "wall-0"
+	///the different tileset paths for this turf
+	var/list/icon_path_variants = list()
+
+/turf/closed/wall/variable/Initialize(mapload, ...)
+	. = ..()
+	icon = pick(icon_path_variants)
+
+/turf/closed/wall/variable/adobe
+	name = "adobe wall"
+	desc = "A wall made out of adobe brick."
+	icon_state = "wall-0"
+	icon = 'icons/turf/walls/adobe.dmi'
+	walltype = "wall"
+	base_icon_state = "wall"
+	icon_path_variants = list(
+		'icons/turf/walls/adobe.dmi',
+		'icons/turf/walls/adobe_1.dmi',
+		'icons/turf/walls/adobe_2.dmi',
+		'icons/turf/walls/adobe_3.dmi',
+	)
+
+/turf/closed/wall/variable/siding
+	name = "siding wall"
+	desc = "A worn wooden wall."
+	icon = 'icons/turf/walls/siding.dmi'
+	icon_state = "wall-0"
+	walltype = "wall"
+	base_icon_state = "wall"
+	icon_path_variants = list(
+		'icons/turf/walls/siding.dmi',
+		'icons/turf/walls/siding_1.dmi',
+		'icons/turf/walls/siding_2.dmi',
+		'icons/turf/walls/siding_3.dmi',
+	)
+
+/turf/closed/wall/variable/siding/red
+	icon = 'icons/turf/walls/siding_red.dmi'
+	icon_path_variants = list(
+		'icons/turf/walls/siding_red.dmi',
+		'icons/turf/walls/siding_red_1.dmi',
+		'icons/turf/walls/siding_red_2.dmi',
+		'icons/turf/walls/siding_red_3.dmi',
+	)

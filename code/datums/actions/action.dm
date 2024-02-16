@@ -29,7 +29,7 @@ KEYBINDINGS
 
 /datum/action/New(Target)
 	target = Target
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clean_action))
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(clean_action))
 	button = new
 	button.icon = icon(background_icon, background_icon_state)
 	button.source_action = src
@@ -71,21 +71,19 @@ KEYBINDINGS
 ///Depending on the action type , toggles the selected/active frame to show without allowing stacking multiple overlays
 /datum/action/proc/set_toggle(value)
 	if(value == toggled)
-		return
-	if(value)
-		switch(action_type)
-			if(ACTION_SELECT)
-				button.add_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
-			if(ACTION_TOGGLE)
-				button.add_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
-		toggled = TRUE
-		return
-	switch(action_type)
-		if(ACTION_SELECT)
-			button.cut_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
-		if(ACTION_TOGGLE)
-			button.cut_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
-	toggled = FALSE
+		return FALSE
+	toggled = value
+	update_button_icon()
+	return TRUE
+
+///Setting this action as the active action
+/datum/action/proc/select()
+	set_toggle(TRUE)
+
+///Deselecting this action for use
+/datum/action/proc/deselect()
+	SIGNAL_HANDLER
+	set_toggle(FALSE)
 
 ///A handler used to update the maptext and show the change immediately.
 /datum/action/proc/update_map_text(key_string, key_signal)
@@ -120,6 +118,17 @@ KEYBINDINGS
 			button.add_overlay(action_appearence)
 	if(background_icon_state != button.icon_state)
 		button.icon_state = background_icon_state
+	switch(action_type)
+		if(ACTION_SELECT)
+			button.cut_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
+		if(ACTION_TOGGLE)
+			button.cut_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
+	if(toggled)
+		switch(action_type)
+			if(ACTION_SELECT)
+				button.add_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
+			if(ACTION_TOGGLE)
+				button.add_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
 	handle_button_status_visuals()
 	return TRUE
 
@@ -152,7 +161,7 @@ KEYBINDINGS
 	SIGNAL_HANDLER
 	/**
 	 * assumption: if no keybind ref passed you want to call normally.
-	 * would use comp_lookup but that'd start getting cursed and overly expensive for what it is
+	 * would use _listen_lookup but that'd start getting cursed and overly expensive for what it is
 	 * Add it if you need it
 	 */
 	if(!kb_type || kb_type.keybind_signal == keybinding_signals[KEYBINDING_NORMAL])

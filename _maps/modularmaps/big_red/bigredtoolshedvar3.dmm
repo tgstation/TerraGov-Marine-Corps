@@ -115,6 +115,8 @@
 /obj/effect/spawner/random/weaponry/ammo/sidearm,
 /obj/effect/spawner/random/weaponry/ammo/sidearm,
 /obj/effect/spawner/random/weaponry/ammo,
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "y" = (

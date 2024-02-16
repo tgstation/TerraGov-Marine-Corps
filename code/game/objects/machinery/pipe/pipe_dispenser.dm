@@ -74,7 +74,7 @@
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, span_notice("You begin to unfasten \the [src] from the floor..."))
 
-			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
 				return
 
 			user.visible_message("[user] unfastens \the [src].", \
@@ -89,7 +89,7 @@
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, span_notice("You begin to fasten \the [src] to the floor..."))
 
-			if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
 				return
 
 			user.visible_message("[user] fastens \the [src].", \
@@ -108,34 +108,21 @@
 				return TRUE
 	return FALSE
 
-/obj/machinery/pipedispenser/disposal
-	name = "Disposal Pipe Dispenser"
-	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "pipe_d"
-	density = TRUE
-	anchored = TRUE
+
 /obj/machinery/pipedispenser/disposal
 	name = "disposal pipe dispenser"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
 	desc = "Dispenses pipes that will ultimately be used to move trash around."
-	density = TRUE
 
 
 //Allow you to drag-drop disposal pipes and transit tubes into it
-/obj/machinery/pipedispenser/disposal/MouseDrop_T(obj/structure/pipe, mob/usr)
-	if(!usr.incapacitated())
+/obj/machinery/pipedispenser/disposal/MouseDrop_T(obj/structure/disposalconstruct/pipe, mob/user)
+	. = ..()
+	if(user.incapacitated() || !istype(pipe) || get_dist(user, src) > 1 || get_dist(src, pipe) > 1 || pipe.anchored)
 		return
 
-	if (!istype(pipe, /obj/structure/disposalconstruct))
-		return
-
-	if (get_dist(usr, src) > 1 || get_dist(src,pipe) > 1 )
-		return
-
-	if (pipe.anchored)
-		return
-
+	user.balloon_alert(user, "Recycled pipe.")
 	qdel(pipe)
 
 /obj/machinery/pipedispenser/disposal/interact(mob/user)

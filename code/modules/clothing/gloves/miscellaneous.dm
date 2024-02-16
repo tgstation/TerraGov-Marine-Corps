@@ -2,7 +2,6 @@
 	desc = "Regal blue gloves, with a nice gold trim. Swanky."
 	name = "captain's gloves"
 	icon_state = "captain"
-	item_state = "egloves"
 	flags_cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_heat_protection = HANDS
@@ -12,7 +11,6 @@
 	desc = "These tactical gloves are somewhat fire and impact-resistant."
 	name = "\improper SWAT Gloves"
 	icon_state = "black"
-	item_state = "swat_gl"
 	siemens_coefficient = 0.6
 	permeability_coefficient = 0.05
 
@@ -25,7 +23,6 @@
 	desc = "These tactical gloves are somewhat fire and impact resistant."
 	name = "combat gloves"
 	icon_state = "black"
-	item_state = "swat_gl"
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	flags_cold_protection = HANDS
@@ -37,7 +34,6 @@
 	desc = "A pair of gloves used by workers in dangerous environments."
 	name = "rugged gloves"
 	icon_state = "black"
-	item_state = "swat_gl"
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	flags_cold_protection = HANDS
@@ -50,15 +46,16 @@
 	name = "latex gloves"
 	desc = "Sterile latex gloves."
 	icon_state = "latex"
-	item_state = "lgloves"
 	siemens_coefficient = 0.30
 	permeability_coefficient = 0.01
+
+/obj/item/clothing/gloves/latex/blue
+	icon_state = "bluelatex"
 
 /obj/item/clothing/gloves/botanic_leather
 	desc = "These leather gloves protect against thorns, barbs, prickles, spikes and other harmful objects of floral origin."
 	name = "botanist's leather gloves"
 	icon_state = "leather"
-	item_state = "ggloves"
 	permeability_coefficient = 0.9
 	siemens_coefficient = 0.9
 
@@ -86,7 +83,7 @@
 /obj/item/clothing/gloves/heldgloves/unequipped(mob/unequipper, slot)
 	. = ..()
 	remove_gloves(unequipper)
-	DISABLE_BITFIELD(flags_item, NODROP)
+	REMOVE_TRAIT(src, TRAIT_NODROP, HELDGLOVE_TRAIT)
 
 //We use alt-click to activate/deactive the gloves in-hand
 /obj/item/clothing/gloves/heldgloves/AltClick(mob/user)
@@ -95,12 +92,12 @@
 		return
 
 	if(remove_gloves(user))
-		DISABLE_BITFIELD(flags_item, NODROP)
+		REMOVE_TRAIT(src, TRAIT_NODROP, HELDGLOVE_TRAIT)
 		return
 
 	user.drop_all_held_items() //Gloves require free hands
 	if(create_gloves(user))
-		ENABLE_BITFIELD(flags_item, NODROP) //Make sure the gloves aren't able to be taken off
+		ADD_TRAIT(src, TRAIT_NODROP, HELDGLOVE_TRAIT) //Make sure the gloves aren't able to be taken off
 
 /// Creates the held items for user and puts it in their hand
 /obj/item/clothing/gloves/heldgloves/proc/create_gloves(mob/user)
@@ -126,7 +123,10 @@
 
 /obj/item/weapon/heldglove
 	name = "glove"
-	flags_item = NODROP
+
+/obj/item/weapon/heldglove/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, HELDGLOVE_TRAIT)
 
 //Boxing gloves
 /obj/item/clothing/gloves/heldgloves/boxing
@@ -134,7 +134,6 @@
 	desc = "Because you really needed another excuse to punch your crewmates."
 	icon = 'icons/obj/clothing/boxing.dmi'
 	icon_state = "boxing"
-	item_state = "boxing"
 	rightglove_path = /obj/item/weapon/heldglove/boxing/hook
 	leftglove_path = /obj/item/weapon/heldglove/boxing/jab
 
@@ -150,7 +149,6 @@
 	desc = "Because you really needed another excuse to punch your crewmates."
 	icon = 'icons/obj/clothing/boxing.dmi'
 	icon_state = "boxing"
-	item_state = "boxing"
 	damtype = STAMINA
 	force = 10
 	w_class = WEIGHT_CLASS_BULKY
@@ -180,7 +178,6 @@
 
 /obj/item/clothing/gloves/heldgloves/boxing/green
 	icon_state = "boxinggreen"
-	item_state = "boxinggreen"
 	rightglove_path = /obj/item/weapon/heldglove/boxing/hook/green
 	leftglove_path = /obj/item/weapon/heldglove/boxing/jab/green
 
@@ -192,7 +189,6 @@
 
 /obj/item/clothing/gloves/heldgloves/boxing/blue
 	icon_state = "boxingblue"
-	item_state = "boxingblue"
 	rightglove_path = /obj/item/weapon/heldglove/boxing/hook/blue
 	leftglove_path = /obj/item/weapon/heldglove/boxing/jab/blue
 
@@ -204,7 +200,6 @@
 
 /obj/item/clothing/gloves/heldgloves/boxing/yellow
 	icon_state = "boxingyellow"
-	item_state = "boxingyellow"
 	rightglove_path = /obj/item/weapon/heldglove/boxing/hook/yellow
 	leftglove_path = /obj/item/weapon/heldglove/boxing/jab/yellow
 
@@ -229,11 +224,9 @@
 /obj/item/clothing/gloves/white
 	name = "white gloves"
 	desc = "These look pretty fancy."
-	icon_state = "latex"
-	item_state = "lgloves"
+	icon_state = "white"
 
 /obj/item/clothing/gloves/techpriest
 	name = "Techpriest gloves"
 	desc = "Praise the Omnissiah!"
 	icon_state = "tp_gloves"
-	item_state = "tp_gloves"

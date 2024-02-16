@@ -3,6 +3,13 @@
 	max_integrity = 25
 	coverage = 30
 	var/on_fire = FALSE
+	///number of icon variants this object has
+	var/icon_variants = NONE
+
+/obj/structure/flora/Initialize(mapload)
+	. = ..()
+	if(icon_variants)
+		icon_state = "[initial(icon_state)]_[rand(1, icon_variants)]"
 
 /obj/structure/flora/ex_act(severity)
 	switch(severity)
@@ -14,13 +21,16 @@
 		if(EXPLODE_LIGHT)
 			if(prob(50))
 				qdel(src)
+		if(EXPLODE_WEAK)
+			if(prob(10))
+				qdel(src)
 
 
 /obj/structure/flora/flamer_fire_act(burnlevel)
-	take_damage(burnlevel, BURN, "fire")
+	take_damage(burnlevel, BURN, FIRE)
 
 /obj/structure/flora/fire_act()
-	take_damage(25, BURN, "fire")
+	take_damage(25, BURN, FIRE)
 
 
 //TREES
@@ -32,9 +42,13 @@
 	pixel_x = -16
 	max_integrity = 500
 	layer = ABOVE_FLY_LAYER
+	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
 	var/log_amount = 10
 
-/obj/structure/flora/tree/Initialize()
+/obj/structure/flora/tree/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+
+/obj/structure/flora/tree/Initialize(mapload)
 	. = ..()
 	AddTransparencyComponent()
 
@@ -45,11 +59,13 @@
 /obj/structure/flora/tree/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(500)
+			take_damage(500, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(140, 300))
+			take_damage(rand(140, 300), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(50, 100))
+			take_damage(rand(50, 100), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(25, 50), BRUTE, BOMB)
 	START_PROCESSING(SSobj, src)
 
 
@@ -72,7 +88,7 @@
 	user.visible_message(span_notice("[user] begins to cut down [src] with [I]."),span_notice("You begin to cut down [src] with [I]."), "You hear the sound of sawing.")
 	var/cut_force = min(1, I.force)
 	var/cutting_time = clamp(10, 20, 100 / cut_force) SECONDS
-	if(!do_after(user, cutting_time , TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, cutting_time , NONE, src, BUSY_ICON_BUILD))
 		return
 
 	user.visible_message(span_notice("[user] fells [src] with the [I]."),span_notice("You fell [src] with the [I]."), "You hear the sound of a tree falling.")
@@ -86,7 +102,7 @@
 	qdel(src)
 
 /obj/structure/flora/tree/flamer_fire_act(burnlevel)
-	take_damage(burnlevel/6, BURN, "fire")
+	take_damage(burnlevel/6, BURN, FIRE)
 
 
 /obj/structure/flora/tree/update_overlays()
@@ -106,15 +122,13 @@
 	name = "pine tree"
 	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "pine"
-
-/obj/structure/flora/tree/pine/Initialize()
-	. = ..()
-	icon_state = "[icon_state][rand(1, 3)]"
+	icon_variants = 3
 
 /obj/structure/flora/tree/xmas
 	icon = 'icons/obj/flora/pinetrees.dmi'
 	name = "xmas tree"
 	icon_state = "pine_c"
+	icon_variants = NONE
 
 /obj/structure/flora/tree/xmas/presents
 	icon_state = "pinepresents"
@@ -140,13 +154,17 @@
 /obj/structure/flora/tree/dead
 	icon = 'icons/obj/flora/deadtrees.dmi'
 	icon_state = "tree"
+	icon_variants = 6
 
 /obj/structure/flora/tree/dead/AddTransparencyComponent()
 	AddComponent(/datum/component/largetransparency, 0, 1, 0, 0)
 
-/obj/structure/flora/tree/dead/Initialize()
-	. = ..()
-	icon_state = "[icon_state][rand(1, 6)]"
+/obj/structure/flora/tree/dead/drought
+	name = "dead tree"
+	desc = "A dead tree. Its probably seen better days."
+	icon = 'icons/obj/flora/tall_trees.dmi'
+	icon_state = "dead_tree"
+	icon_variants = 3
 
 /obj/structure/flora/tree/joshua
 	name = "joshua tree"
@@ -154,10 +172,7 @@
 	icon = 'icons/obj/flora/joshuatree.dmi'
 	icon_state = "joshua"
 	pixel_x = 0
-
-/obj/structure/flora/tree/joshua/Initialize()
-	. = ..()
-	icon_state = "[icon_state][rand(1,4)]"
+	icon_variants = 4
 
 /obj/structure/flora/tree/jungle
 	name = "jungle tree"
@@ -174,13 +189,10 @@
 	pixel_y = 0
 	pixel_x = -32
 	icon = 'icons/obj/flora/jungletreesmall.dmi'
+	icon_variants = 6
 
 /obj/structure/flora/tree/jungle/small/AddTransparencyComponent()
 	AddComponent(/datum/component/largetransparency)
-
-/obj/structure/flora/tree/jungle/Initialize()
-	. = ..()
-	icon_state = "[icon_state][rand(1, 6)]"
 
 //GRASS
 
@@ -190,25 +202,16 @@
 	anchored = TRUE
 
 /obj/structure/flora/grass/brown
-	icon_state = "snowgrass1bb"
-
-/obj/structure/flora/grass/brown/Initialize()
-	. = ..()
-	icon_state = "snowgrass[rand(1, 3)]bb"
+	icon_state = "snowgrass_bb"
+	icon_variants = 3
 
 /obj/structure/flora/grass/green
-	icon_state = "snowgrass1gb"
-
-/obj/structure/flora/grass/green/Initialize()
-	. = ..()
-	icon_state = "snowgrass[rand(1, 3)]gb"
+	icon_state = "snowgrass_gb"
+	icon_variants = 3
 
 /obj/structure/flora/grass/both
-	icon_state = "snowgrassall1"
-
-/obj/structure/flora/grass/both/Initialize()
-	. = ..()
-	icon_state = "snowgrassall[rand(1, 3)]"
+	icon_state = "snowgrassall"
+	icon_variants = 3
 
 //grayscale tall grass
 /obj/structure/flora/grass/tallgrass
@@ -217,21 +220,42 @@
 	icon_state = "tallgrass"
 	layer = TALL_GRASS_LAYER
 	opacity = TRUE
+	color = "#7a8c54"
 
 /obj/structure/flora/grass/tallgrass/tallgrasscorner
 	name = "tall grass"
 	icon_state = "tallgrass_corner"
 
+/obj/structure/flora/grass/tallgrass/hideable
+	layer = BUSH_LAYER
+
+/obj/structure/flora/grass/tallgrass/hideable/tallgrasscorner
+	icon_state = "tallgrass_corner"
+
+/obj/structure/flora/grass/tallgrass/autosmooth
+	name = "tall grass"
+	icon = 'icons/obj/flora/smooth/tall_grass.dmi'
+	icon_state = "tallgrass-icon"
+	base_icon_state = "tallgrass"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_TALL_GRASS)
+	canSmoothWith = list(
+		SMOOTH_GROUP_TALL_GRASS,
+		SMOOTH_GROUP_ASTEROID_WARNING,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_MINERAL_STRUCTURES,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_FLORA,
+		SMOOTH_GROUP_WINDOW_FRAME,
+	)
+
 //bushes
 /obj/structure/flora/bush
 	name = "bush"
 	icon = 'icons/obj/flora/snowflora.dmi'
-	icon_state = "snowbush1"
+	icon_state = "snowbush"
 	anchored = TRUE
-
-/obj/structure/flora/bush/Initialize()
-	. = ..()
-	icon_state = "snowbush[rand(1, 6)]"
+	icon_variants = 6
 
 /obj/structure/flora/pottedplant
 	name = "potted plant"
@@ -321,117 +345,62 @@
 /obj/structure/flora/ausbushes
 	name = "bush"
 	icon = 'icons/obj/flora/ausflora.dmi'
-	icon_state = "firstbush_1"
+	icon_state = "firstbush"
 	anchored = TRUE
-
-/obj/structure/flora/ausbushes/Initialize()
-	. = ..()
-	icon_state = "firstbush_[rand(1, 4)]"
+	icon_variants = 4
 
 /obj/structure/flora/ausbushes/reedbush
-	icon_state = "reedbush_1"
-
-/obj/structure/flora/ausbushes/reedbush/Initialize()
-	. = ..()
-	icon_state = "reedbush_[rand(1, 4)]"
+	icon_state = "reedbush"
 
 /obj/structure/flora/ausbushes/leafybush
-	icon_state = "leafybush_1"
-
-/obj/structure/flora/ausbushes/leafybush/Initialize()
-	. = ..()
-	icon_state = "leafybush_[rand(1, 3)]"
+	icon_state = "leafybush"
+	icon_variants = 3
 
 /obj/structure/flora/ausbushes/palebush
-	icon_state = "palebush_1"
-
-/obj/structure/flora/ausbushes/palebush/Initialize()
-	. = ..()
-	icon_state = "palebush_[rand(1, 4)]"
+	icon_state = "palebush"
 
 /obj/structure/flora/ausbushes/stalkybush
-	icon_state = "stalkybush_1"
-
-/obj/structure/flora/ausbushes/stalkybush/Initialize()
-	. = ..()
-	icon_state = "stalkybush_[rand(1, 3)]"
+	icon_state = "stalkybush"
+	icon_variants = 3
 
 /obj/structure/flora/ausbushes/grassybush
-	icon_state = "grassybush_1"
-
-/obj/structure/flora/ausbushes/grassybush/Initialize()
-	. = ..()
-	icon_state = "grassybush_[rand(1, 4)]"
+	icon_state = "grassybush"
 
 /obj/structure/flora/ausbushes/fernybush
-	icon_state = "fernybush_1"
-
-/obj/structure/flora/ausbushes/fernybush/Initialize()
-	. = ..()
-	icon_state = "fernybush_[rand(1, 3)]"
+	icon_state = "fernybush"
+	icon_variants = 3
 
 /obj/structure/flora/ausbushes/sunnybush
-	icon_state = "sunnybush_1"
-
-/obj/structure/flora/ausbushes/sunnybush/Initialize()
-	. = ..()
-	icon_state = "sunnybush_[rand(1, 3)]"
+	icon_state = "sunnybush"
+	icon_variants = 3
 
 /obj/structure/flora/ausbushes/genericbush
-	icon_state = "genericbush_1"
-
-/obj/structure/flora/ausbushes/genericbush/Initialize()
-	. = ..()
-	icon_state = "genericbush_[rand(1, 4)]"
+	icon_state = "genericbush"
 
 /obj/structure/flora/ausbushes/pointybush
-	icon_state = "pointybush_1"
-
-/obj/structure/flora/ausbushes/pointybush/Initialize()
-	. = ..()
-	icon_state = "pointybush_[rand(1, 4)]"
+	icon_state = "pointybush"
 
 /obj/structure/flora/ausbushes/lavendergrass
-	icon_state = "lavendergrass_1"
-
-/obj/structure/flora/ausbushes/lavendergrass/Initialize()
-	. = ..()
-	icon_state = "lavendergrass_[rand(1, 4)]"
+	icon_state = "lavendergrass"
 
 /obj/structure/flora/ausbushes/ywflowers
-	icon_state = "ywflowers_1"
-
-/obj/structure/flora/ausbushes/ywflowers/Initialize()
-	. = ..()
-	icon_state = "ywflowers_[rand(1, 3)]"
+	icon_state = "ywflowers"
+	icon_variants = 3
 
 /obj/structure/flora/ausbushes/brflowers
-	icon_state = "brflowers_1"
-
-/obj/structure/flora/ausbushes/brflowers/Initialize()
-	. = ..()
-	icon_state = "brflowers_[rand(1, 3)]"
+	icon_state = "brflowers"
+	icon_variants = 3
 
 /obj/structure/flora/ausbushes/ppflowers
-	icon_state = "ppflowers_1"
-
-/obj/structure/flora/ausbushes/ppflowers/Initialize()
-	. = ..()
-	icon_state = "ppflowers_[rand(1, 4)]"
+	icon_state = "ppflowers"
 
 /obj/structure/flora/ausbushes/sparsegrass
-	icon_state = "sparsegrass_1"
-
-/obj/structure/flora/ausbushes/sparsegrass/Initialize()
-	. = ..()
-	icon_state = "sparsegrass_[rand(1, 3)]"
+	icon_state = "sparsegrass"
+	icon_variants = 3
 
 /obj/structure/flora/ausbushes/fullgrass
-	icon_state = "fullgrass_1"
-
-/obj/structure/flora/ausbushes/fullgrass/Initialize()
-	. = ..()
-	icon_state = "fullgrass_[rand(1, 3)]"
+	icon_state = "fullgrass"
+	icon_variants = 3
 
 
 //Desert (Desert Dam)
@@ -441,201 +410,34 @@
 /obj/structure/flora/desert
 	anchored = TRUE
 	icon = 'icons/obj/flora/dam.dmi'
-	var/icon_tag = null
-	var/variations = null
-
-/obj/structure/flora/desert/Initialize()
-	. = ..()
-	icon_state = "[icon_tag]_[rand(1,variations)]"
 
 //GRASS
 /obj/structure/flora/desert/grass
 	name = "grass"
-	icon_state = "lightgrass_1"
-	icon_tag = "lightgrass"
-	variations = 12
-
-/obj/structure/flora/desert/grass/one
-	icon_state = "lightgrass_1"
-
-/obj/structure/flora/desert/grass/two
-	icon_state = "lightgrass_2"
-
-/obj/structure/flora/desert/grass/three
-	icon_state = "lightgrass_3"
-
-/obj/structure/flora/desert/grass/four
-	icon_state = "lightgrass_4"
-
-/obj/structure/flora/desert/grass/five
-	icon_state = "lightgrass_5"
-
-/obj/structure/flora/desert/grass/six
-	icon_state = "lightgrass_6"
-
-/obj/structure/flora/desert/grass/seven
-	icon_state = "lightgrass_7"
-
-/obj/structure/flora/desert/grass/eight
-	icon_state = "lightgrass_8"
-
-/obj/structure/flora/desert/grass/nine
-	icon_state = "lightgrass_9"
-
-/obj/structure/flora/desert/grass/ten
-	icon_state = "lightgrass_10"
-
-/obj/structure/flora/desert/grass/eleven
-	icon_state = "lightgrass_11"
-
-/obj/structure/flora/desert/grass/twelve
-	icon_state = "lightgrass_12"
+	icon_state = "lightgrass"
+	icon_variants = 12
 
 /obj/structure/flora/desert/grass/heavy
-	icon_state = "heavygrass_1"
-	icon_tag = "heavygrass"
-	variations = 16
-
-/obj/structure/flora/desert/grass/heavy/one
-	icon_state = "heavygrass_1"
-
-/obj/structure/flora/desert/grass/heavy/two
-	icon_state = "heavygrass_2"
-
-/obj/structure/flora/desert/grass/heavy/three
-	icon_state = "heavygrass_3"
-
-/obj/structure/flora/desert/grass/heavy/four
-	icon_state = "heavygrass_4"
-
-/obj/structure/flora/desert/grass/heavy/five
-	icon_state = "heavygrass_5"
-
-/obj/structure/flora/desert/grass/heavy/six
-	icon_state = "heavygrass_6"
-
-/obj/structure/flora/desert/grass/heavy/seven
-	icon_state = "heavygrass_7"
-
-/obj/structure/flora/desert/grass/heavy/eight
-	icon_state = "heavygrass_8"
-
-/obj/structure/flora/desert/grass/heavy/nine
-	icon_state = "heavygrass_9"
-
-/obj/structure/flora/desert/grass/heavy/ten
-	icon_state = "heavygrass_10"
-
-/obj/structure/flora/desert/grass/heavy/eleven
-	icon_state = "heavygrass_11"
-
-/obj/structure/flora/desert/grass/heavy/twelve
-	icon_state = "heavygrass_12"
-
-/obj/structure/flora/desert/grass/heavy/thirteen
-	icon_state = "heavygrass_13"
-
-/obj/structure/flora/desert/grass/heavy/fourteen
-	icon_state = "heavygrass_14"
-
-/obj/structure/flora/desert/grass/heavy/fifteen
-	icon_state = "heavygrass_15"
-
-/obj/structure/flora/desert/grass/heavy/sixteen
-	icon_state = "heavygrass_16"
+	icon_state = "heavygrass"
+	icon_variants = 16
 
 //BUSHES
 /obj/structure/flora/desert/bush
 	name = "bush"
 	desc = "A small, leafy bush."
-	icon_state = "tree_1"
-	icon_tag = "tree"
-	variations = 4
+	icon_state = "tree"
+	icon_variants = 4
 
 //CACTUS
 /obj/structure/flora/desert/cactus
 	name = "cactus"
 	desc = "It's a small, spiky cactus."
-	icon_state = "cactus_1"
-	icon_tag = "cactus"
-	variations = 12
-
-/obj/structure/flora/desert/cactus/one
-	icon_state = "cactus_1"
-
-/obj/structure/flora/desert/cactus/two
-	icon_state = "cactus_2"
-
-/obj/structure/flora/desert/cactus/three
-	icon_state = "cactus_3"
-
-/obj/structure/flora/desert/cactus/four
-	icon_state = "cactus_4"
-
-/obj/structure/flora/desert/cactus/five
-	icon_state = "cactus_5"
-
-/obj/structure/flora/desert/cactus/six
-	icon_state = "cactus_6"
-
-/obj/structure/flora/desert/cactus/seven
-	icon_state = "cactus_7"
-
-/obj/structure/flora/desert/cactus/eight
-	icon_state = "cactus_8"
-
-/obj/structure/flora/desert/cactus/nine
-	icon_state = "cactus_9"
-
-/obj/structure/flora/desert/cactus/ten
-	icon_state = "cactus_10"
-
-/obj/structure/flora/desert/cactus/eleven
-	icon_state = "cactus_11"
-
-/obj/structure/flora/desert/cactus/twelve
-	icon_state = "cactus_12"
+	icon_state = "cactus"
+	icon_variants = 12
 
 /obj/structure/flora/desert/cactus/multiple
 	name = "cacti"
-	icon_state = "cactus_1"
-	icon_tag = "cacti"
-
-/obj/structure/flora/desert/cactus/multiple/one
-	icon_state = "cacti_1"
-
-/obj/structure/flora/desert/cactus/multiple/two
-	icon_state = "cacti_2"
-
-/obj/structure/flora/desert/cactus/multiple/three
-	icon_state = "cacti_3"
-
-/obj/structure/flora/desert/cactus/multiple/four
-	icon_state = "cacti_4"
-
-/obj/structure/flora/desert/cactus/multiple/five
-	icon_state = "cacti_5"
-
-/obj/structure/flora/desert/cactus/multiple/six
-	icon_state = "cacti_6"
-
-/obj/structure/flora/desert/cactus/multiple/seven
-	icon_state = "cacti_7"
-
-/obj/structure/flora/desert/cactus/multiple/eight
-	icon_state = "cacti_8"
-
-/obj/structure/flora/desert/cactus/multiple/nine
-	icon_state = "cacti_9"
-
-/obj/structure/flora/desert/cactus/multiple/ten
-	icon_state = "cacti_10"
-
-/obj/structure/flora/desert/cactus/multiple/eleven
-	icon_state = "cacti_11"
-
-/obj/structure/flora/desert/cactus/multiple/twelve
-	icon_state = "cacti_12"
+	icon_state = "cacti"
 
 
 //Jungle (Whiskey Outpost)
@@ -644,39 +446,69 @@
 // Generic undergrowth //
 //*********************//
 
-/obj/structure/jungle
+/obj/structure/flora/jungle
 	name = "jungle foliage"
 	icon = 'icons/turf/ground_map.dmi'
-	density = FALSE
-	anchored = TRUE
-	resistance_flags = UNACIDABLE
 	layer = ABOVE_MOB_LAYER
 
-/obj/structure/jungle/shrub
+/obj/structure/flora/jungle/shrub
 	name = "jungle foliage"
 	desc = "Pretty thick scrub, it'll take something sharp and a lot of determination to clear away."
 	icon_state = "grass4"
 
-/obj/structure/jungle/plantbot1
+/obj/structure/flora/jungle/plantbot1
 	name = "strange tree"
 	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
 	icon_state = "plantbot1"
 
-/obj/structure/jungle/plantbot1/alien
+/obj/structure/flora/jungle/plantbot1/alien
 	icon_state = "alienplant1"
 
-/obj/structure/jungle/planttop1
+/obj/structure/flora/jungle/planttop1
 	name = "strange tree"
 	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
 	icon_state = "planttop1"
 
-/obj/structure/jungle/vines
+/obj/structure/flora/jungle/bush
+	name = "jungle bush"
+	desc = "A small leafy plant."
+	icon_state = "bush"
+	icon = 'icons/obj/flora/jungleflora.dmi'
+	icon_variants = 9
+	layer = OBJ_LAYER
+
+/obj/structure/flora/jungle/grass
+	name = "jungle grass"
+	desc = "some type of grass species."
+	icon_state = "grass"
+	icon = 'icons/obj/flora/jungleflora.dmi'
+	icon_variants = 5
+	layer = OBJ_LAYER
+
+/obj/structure/flora/jungle/grass/thin
+	icon_state = "grass_thin"
+
+/obj/structure/flora/jungle/large_bush
+	name = "large plant"
+	desc = "A large leafy plant."
+	icon_state = "bush"
+	icon = 'icons/obj/flora/largejungleflora.dmi'
+	layer = ABOVE_MOB_LAYER
+	pixel_x = -16
+	pixel_y = -8
+	icon_variants = 3
+
+/obj/structure/flora/jungle/large_bush/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/largetransparency, 0, 0, 0, 1)
+
+/obj/structure/flora/jungle/vines
 	name = "vines"
 	desc = "A mass of twisted vines."
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "Light2"
 
-/obj/structure/jungle/vines/attackby(obj/item/I, mob/user, params)
+/obj/structure/flora/jungle/vines/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(I.sharp != IS_SHARP_ITEM_BIG || !isliving(user))
@@ -689,62 +521,133 @@
 	playsound(src, 'sound/effects/vegetation_hit.ogg', 25, 1)
 	qdel(src)
 
-/obj/structure/jungle/vines/Initialize()
+/obj/structure/flora/jungle/vines/Initialize(mapload)
 	. = ..()
 	icon_state = pick("Light1","Light2","Light3")
 
-/obj/structure/jungle/vines/heavy
+/obj/structure/flora/jungle/vines/heavy
 	desc = "A thick, coiled mass of twisted vines."
 	opacity = TRUE
 
-/obj/structure/jungle/vines/heavy/Initialize()
+/obj/structure/flora/jungle/vines/heavy/Initialize(mapload)
 	. = ..()
 	icon_state = pick("Hvy1","Hvy2","Hvy3","Med1","Med2","Med3")
 
-/obj/structure/jungle/tree/grasscarpet
-	name = "thick grass"
-	desc = "A thick mat of dense grass."
-	icon_state = "grasscarpet"
-	layer = BELOW_MOB_LAYER
 
-//ROCKS
-/obj/structure/flora/rock
-	name = "volcanic rock"
-	desc = "A volcanic rock. Pioneers used to ride these babies for miles."
-	icon = 'icons/obj/flora/rocks2.dmi'
+//drought map flora
+/obj/structure/flora/drought
+	icon = 'icons/obj/flora/desert_flora.dmi'
+
+//GRASS
+/obj/structure/flora/drought/grass
+	name = "grass"
+	desc = "Some dried up grass."
+	icon_state = "drygrass"
+	icon_variants = 15
+
+/obj/structure/flora/drought/tall_cactus
+	name = "cactus"
+	desc = "Some tall, spikey looking cactus."
+	icon_state = "tall_cactus"
+	icon_variants = 3
 	density = TRUE
-	max_integrity = 250
-	layer = ABOVE_TURF_LAYER
-	coverage = 100
-	icon_state = "basalt"
 
-/obj/structure/flora/rock/alt
-	name = "volcanic rock"
-	icon_state = "basalt1"
+/obj/structure/flora/drought/short_cactus
+	name = "cactus"
+	desc = "Some short, spikey looking cactus."
+	icon_state = "short_cactus"
+	icon_variants = 3
 
-/obj/structure/flora/rock/alt2
-	name = "volcanic rock"
-	icon_state = "basalt2"
+/obj/structure/flora/drought/barrel_cactus
+	name = "cactus"
+	desc = "Some plump, spikey looking cactus."
+	icon_state = "barrel"
+	icon_variants = 6
 
-/obj/structure/flora/rock/alt3
-	name = "volcanic rock"
-	icon_state = "basalt3"
+/obj/structure/flora/drought/leafy_plant
+	name = "plant"
+	desc = "A tough looking little plant."
+	icon_state = "leafy_plant"
+	icon_variants = 3
 
-/obj/structure/flora/rock/pile
-	name = "rock pile"
-	desc = "pile of volcanic rocks."
-	density = FALSE
-	icon_state = "lavarocks"
+/obj/structure/flora/drought/yucca
+	name = "yucca bush"
+	desc = "A hardy little bush. Its flowers are said to have medicinal properties."
+	icon_state = "yucca"
+	icon_variants = 2
 
-/obj/structure/flora/rock/pile/alt
-	name = "rock pile"
-	icon_state = "lavarocks1"
+/obj/structure/flora/drought/xander
+	name = "xander bush"
+	desc = "A tough little shrub. Supposedly has medicinal properties when dried."
+	icon_state = "xander"
+	icon_variants = 2
 
-/obj/structure/flora/rock/pile/alt2
-	name = "rock pile"
-	icon_state = "lavarocks2"
+/obj/structure/flora/drought/broc
+	name = "broc flower tree"
+	desc = "A small desert shrub. It doesn't look terribly happy."
+	icon_state = "broc_flower"
+	icon_variants = 2
 
-/obj/structure/flora/rock/pile/alt3
-	name = "fossils"
-	desc = "A pile of ancient fossils. There are some oddly shaped skulls in here..."
-	icon_state = "lavarocks3"
+/obj/structure/flora/drought/aster
+	name = "aster bush"
+	desc = "A tough little shrub. It produces pretty blue flowers."
+	icon_state = "aster"
+	icon_variants = 2
+
+/obj/structure/flora/drought/ash
+	name = "ash rose"
+	desc = "A tough little shrub with wickly sharp thorns. The flowers are prized for their strong aroma."
+	icon_state = "ash_rose"
+	icon_variants = 2
+
+//cave flora
+/obj/structure/flora/drought/shroom
+	name = "fungus"
+	desc = "A small patch of brown fungus. Eating them is probably a terrible idea."
+	icon_state = "shroom"
+	icon_variants = 3
+
+/obj/structure/flora/drought/shroom/glow
+	name = "glowing fungus"
+	desc = "A small patch of luminescent fungus. Eating them is definitely a terrible idea."
+	icon_state = "glowshroom"
+
+/obj/structure/flora/drought/shroom/blight
+	name = "blight mushroom"
+	desc = "A small patch of blight mushrooms. Extremely toxic."
+	icon_state = "blightshroom"
+
+/obj/structure/flora/drought/shroom/brain
+	name = "ash rose"
+	desc = "A small patch of brain fungus. Apparently delicious when correctly prepared."
+	icon_state = "brainshroom"
+
+/obj/structure/flora/drought/shroom/fire
+	name = "ash rose"
+	desc = "A small patch of fire mushrooms. Doesn't actually cause fire."
+	icon_state = "fireshroom"
+
+/obj/structure/flora/drought/shroom/gut
+	name = "ash rose"
+	desc = "A small patch of gut mushrooms. Is supposed to cause a prolonged, agonising death."
+	icon_state = "gutshroom"
+
+/obj/structure/flora/drought/shroom/nara_root
+	name = "ash rose"
+	desc = "A small patch of nara root fungus. Supposedly has healing properties."
+	icon_state = "narashroom"
+
+/obj/structure/flora/drought/shroom/lure_weed
+	name = "lure weed"
+	desc = "A long, tough little fungus."
+	icon_state = "lureweed"
+
+/obj/structure/flora/drought/broc/cave
+	desc = "A small desert shrub. It looks surprisingly happy in the gloom."
+	icon_state = "broc_flower_cave"
+	icon_variants = 2
+
+/obj/structure/flora/drought/xander/cave
+	desc = "A tough little plant. Supposedly has medicinal properties when dried."
+	icon_state = "xander_cave"
+	icon_variants = 2

@@ -68,7 +68,7 @@
 	. = ..()
 	if(!.)
 		return
-	user.Unconscious(40)
+	user.Unconscious(4 SECONDS)
 
 
 /datum/emote/living/carbon/human/cough
@@ -115,7 +115,7 @@
 	. = ..()
 	if(!.)
 		return
-	user.AdjustSleeping(10)
+	user.AdjustSleeping(1 SECONDS)
 
 
 /datum/emote/living/carbon/human/frown
@@ -311,14 +311,6 @@
 	key = "grimace"
 	key_third_person = "grimaces"
 	message = "grimaces."
-
-
-/datum/emote/living/carbon/human/jump
-	key = "jump"
-	key_third_person = "jumps"
-	message = "jumps!"
-	flags_emote = EMOTE_RESTRAINT_CHECK
-
 
 /datum/emote/living/carbon/human/grumble
 	key = "grumble"

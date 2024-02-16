@@ -74,7 +74,7 @@
 /datum/asset/spritesheet/chat
 	name = "chat"
 
-/datum/asset/spritesheet/chat/register()
+/datum/asset/spritesheet/chat/create_spritesheets()
 	InsertAll("emoji", 'icons/misc/emoji.dmi')
 	// pre-loading all lanugage icons also helps to avoid meta
 	InsertAll("language", 'icons/misc/language.dmi')
@@ -85,7 +85,6 @@
 		if (icon != 'icons/misc/language.dmi')
 			var/icon_state = initial(L.icon_state)
 			Insert("language-[icon_state]", icon, icon_state=icon_state)
-	..()
 
 /datum/asset/simple/namespaced/common
 	assets = list("padlock.png" = 'html/images/padlock.png')
@@ -121,37 +120,79 @@
 /datum/asset/spritesheet/blessingmenu
 	name = "blessingmenu"
 
-/datum/asset/spritesheet/blessingmenu/register()
+/datum/asset/spritesheet/blessingmenu/create_spritesheets()
 	InsertAll("", 'icons/UI_Icons/buyable_icons.dmi')
-	..()
 
 /datum/asset/spritesheet/mechaarmor
 	name = "mechaarmor"
 
-/datum/asset/spritesheet/mechaarmor/register()
+/datum/asset/spritesheet/mechaarmor/create_spritesheets()
 	InsertAll("", 'icons/UI_Icons/mecha/armor.dmi')
-	..()
 
 /datum/asset/spritesheet/mech_builder
 	name = "mech_builder"
 
-/datum/asset/spritesheet/mech_builder/register()
+/datum/asset/spritesheet/mech_builder/create_spritesheets()
 	InsertAll("", 'icons/mecha/mecha_equipment_64x32.dmi')
-	..()
 
 /datum/asset/spritesheet/mech_ammo
 	name = "mech_ammo"
 
-/datum/asset/spritesheet/mech_ammo/register()
+/datum/asset/spritesheet/mech_ammo/create_spritesheets()
 	InsertAll("", 'icons/mecha/mecha_ammo.dmi')
-	..()
 
 /datum/asset/spritesheet/hivestatus
 	name = "hivestatus"
 
-/datum/asset/spritesheet/hivestatus/register()
+/datum/asset/spritesheet/hivestatus/create_spritesheets()
 	InsertAll("", 'icons/UI_Icons/hive_status_icons.dmi')
-	..()
+
+/datum/asset/spritesheet/campaign
+	name = "campaign_base"
+	///The dmi file used for this spritesheet
+	var/icon_sheet
+	///The list of icon names to use for this sprite sheet
+	var/list/icon_names
+
+/datum/asset/spritesheet/campaign/create_spritesheets()
+	for(var/icon_name in icon_names)
+		var/icon/iconNormal = icon(icon_sheet, icon_name, SOUTH)
+		Insert(icon_name, iconNormal)
+
+		var/icon/iconBig = icon(icon_sheet, icon_name, SOUTH)
+		iconBig.Scale(iconBig.Width()*2, iconBig.Height()*2)
+		Insert("[icon_name]_big", iconBig)
+
+/datum/asset/spritesheet/campaign/missions
+	name = "campaign_missions"
+	icon_sheet = 'icons/UI_Icons/campaign/mission_icons.dmi'
+
+/datum/asset/spritesheet/campaign/missions/New()
+	icon_names = GLOB.campaign_mission_icons
+	return ..()
+/datum/asset/spritesheet/campaign/assets
+	name = "campaign_assets"
+	icon_sheet = 'icons/UI_Icons/campaign/asset_icons.dmi'
+
+/datum/asset/spritesheet/campaign/assets/New()
+	icon_names = GLOB.campaign_asset_icons
+	return ..()
+
+/datum/asset/spritesheet/campaign/perks
+	name = "campaign_perks"
+	icon_sheet = 'icons/UI_Icons/campaign/perk_icons.dmi'
+
+/datum/asset/spritesheet/campaign/perks/New()
+	icon_names = GLOB.campaign_perk_icons
+	return ..()
+
+/datum/asset/spritesheet/campaign/loadout_items
+	name = "campaign_loadout_items"
+	icon_sheet = 'icons/UI_Icons/campaign/loadout_item_icons.dmi'
+
+/datum/asset/spritesheet/campaign/loadout_items/New()
+	icon_names = GLOB.campaign_loadout_item_icons
+	return ..()
 
 /datum/asset/simple/particle_editor
 	assets = list(
@@ -169,4 +210,10 @@
 		"sphere" = 'icons/ui_icons/particle_editor/sphere_gen.png',
 		"square" = 'icons/ui_icons/particle_editor/square_gen.png',
 		"cube" = 'icons/ui_icons/particle_editor/cube_gen.png',
+	)
+
+/datum/asset/simple/paper
+	assets = list(
+		"ntlogo.png" = 'html/images/ntlogo.png',
+		"tgmclogo.png" = 'html/images/tgmclogo.png',
 	)

@@ -42,6 +42,14 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
+"as" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/mainship_hull/dir{
+	dir = 4
+	},
+/area/oscar_outpost)
 "at" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -351,17 +359,11 @@
 	},
 /area/oscar_outpost/outside/north)
 "da" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "dd" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "dg" = (
@@ -400,10 +402,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "dF" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "dL" = (
@@ -450,11 +449,14 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
-"el" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
+"ef" = (
+/obj/structure/platform{
+	dir = 8
 	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/road)
+"el" = (
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "er" = (
@@ -473,10 +475,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "eB" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "eC" = (
@@ -596,10 +595,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "fe" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "fj" = (
@@ -614,10 +610,7 @@
 	},
 /area/oscar_outpost/outside/road)
 "fm" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "fz" = (
@@ -671,16 +664,7 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "fL" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
-"fO" = (
-/obj/structure/platform_decoration{
-	dir = 1
-	},
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "fQ" = (
@@ -690,16 +674,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
-"fV" = (
-/obj/structure/platform_decoration,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "fW" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "gg" = (
 /obj/structure/platform_decoration{
 	dir = 1
+	},
+/obj/structure/platform{
+	dir = 5
 	},
 /turf/open/floor/mainship_hull/dir{
 	dir = 5
@@ -904,6 +887,9 @@
 /area/oscar_outpost/outside/north)
 "iW" = (
 /obj/structure/platform_decoration,
+/obj/structure/platform{
+	dir = 9
+	},
 /turf/open/floor/mainship_hull/dir{
 	dir = 9
 	},
@@ -939,7 +925,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "je" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/east)
 "jj" = (
@@ -961,7 +947,16 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost)
+"jI" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner,
+/area/oscar_outpost/outside/northwest)
 "jP" = (
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/mainship_hull/dir{
 	dir = 1
 	},
@@ -994,6 +989,14 @@
 "kq" = (
 /turf/closed/wall,
 /area/oscar_outpost/outside/east)
+"kK" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/oscar_outpost/outside/northwest)
 "kP" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
@@ -1019,7 +1022,7 @@
 	},
 /area/oscar_outpost/outside/road)
 "lf" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
@@ -1069,7 +1072,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "lB" = (
-/obj/item/weapon/gun/heavy_laser{
+/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser{
 	dir = 1;
 	pixel_y = 7
 	},
@@ -1089,12 +1092,6 @@
 	dir = 1
 	},
 /area/oscar_outpost/outside/road)
-"mj" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/road)
 "mn" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
@@ -1104,16 +1101,19 @@
 	},
 /area/oscar_outpost/outside/road)
 "mu" = (
+/obj/structure/platform{
+	dir = 5
+	},
 /turf/open/floor/mainship_hull/dir{
 	dir = 5
 	},
 /area/oscar_outpost)
 "mx" = (
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "my" = (
@@ -1129,11 +1129,11 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "mA" = (
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
 /obj/structure/barricade/sandbags{
 	dir = 1;
 	name = "trench lining";
@@ -1242,25 +1242,23 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
-"ns" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/floor/mainship_hull/dir{
-	dir = 8
-	},
-/area/oscar_outpost)
 "nu" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "nw" = (
+/obj/structure/platform{
+	dir = 9
+	},
 /turf/open/floor/mainship_hull/dir{
 	dir = 9
 	},
 /area/oscar_outpost)
 "nB" = (
 /obj/effect/ai_node,
+/obj/structure/platform{
+	dir = 9
+	},
 /turf/open/floor/mainship_hull/dir{
 	dir = 9
 	},
@@ -1275,6 +1273,9 @@
 /area/oscar_outpost/outside/road)
 "nW" = (
 /obj/effect/ai_node,
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/mainship_hull/dir{
 	dir = 1
 	},
@@ -1628,6 +1629,14 @@
 	dir = 2
 	},
 /area/oscar_outpost)
+"rc" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/oscar_outpost/outside/northeast)
 "rg" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
@@ -1834,16 +1843,16 @@
 "tT" = (
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/east)
-"uq" = (
-/obj/structure/platform,
-/turf/open/floor/mainship_hull/dir{
-	dir = 1
-	},
-/area/oscar_outpost)
 "ut" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship,
 /area/oscar_outpost)
+"ux" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/road)
 "uB" = (
 /obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 1
@@ -1856,7 +1865,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "uM" = (
-/obj/item/weapon/gun/launcher/rocket/heavy_rr{
+/obj/item/weapon/gun/heavy_isg{
 	dir = 1
 	},
 /turf/open/floor/engine/cult{
@@ -1889,10 +1898,6 @@
 	},
 /area/oscar_outpost)
 "uV" = (
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 8
-	},
 /obj/structure/platform_decoration{
 	dir = 10
 	},
@@ -1938,16 +1943,7 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/west)
-"vV" = (
-/obj/structure/platform,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "wa" = (
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/structure/platform_decoration{
 	dir = 6
 	},
@@ -1995,11 +1991,11 @@
 	},
 /area/oscar_outpost)
 "wA" = (
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
 /obj/structure/barricade/sandbags{
 	dir = 1;
 	name = "trench lining";
@@ -2079,6 +2075,13 @@
 	dir = 2
 	},
 /area/oscar_outpost)
+"xk" = (
+/obj/effect/ai_node,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
 "xp" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
@@ -2277,17 +2280,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
-"Aa" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
 "Ad" = (
 /obj/structure/barricade/sandbags{
 	dir = 8;
@@ -2307,17 +2299,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
-"AA" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
 "AL" = (
 /obj/structure/stairs/seamless,
 /turf/open/floor/plating/ground/dirt2,
@@ -2372,11 +2353,11 @@
 /area/oscar_outpost)
 "AU" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -2423,7 +2404,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
 "Ck" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "Cz" = (
@@ -2604,19 +2585,31 @@
 /area/oscar_outpost)
 "Dn" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/oscar_outpost)
+"Ds" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
 "Du" = (
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship,
 /area/oscar_outpost)
+"DA" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "DB" = (
 /obj/structure/barricade/sandbags{
 	dir = 4;
@@ -2629,26 +2622,6 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
-"DE" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
-"DI" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
 "DK" = (
 /obj/structure/rack,
 /obj/item/explosive/mine,
@@ -2770,10 +2743,6 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
 "Es" = (
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 8
-	},
 /obj/structure/platform_decoration{
 	dir = 10
 	},
@@ -2791,10 +2760,6 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/road)
 "EB" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/platform,
 /obj/structure/platform_decoration{
 	dir = 6
 	},
@@ -2830,6 +2795,14 @@
 /obj/structure/largecrate/supply/explosives/grenades,
 /turf/open/floor/engine/cult{
 	dir = 2
+	},
+/area/oscar_outpost)
+"Fe" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
 	},
 /area/oscar_outpost)
 "Fk" = (
@@ -2890,6 +2863,14 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
+"FN" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/northeast)
 "FR" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -2925,7 +2906,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "Gj" = (
-/obj/item/weapon/gun/heavy_laser{
+/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser{
 	dir = 1;
 	pixel_y = 7
 	},
@@ -2945,10 +2926,6 @@
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
-"Gv" = (
-/obj/effect/landmark/sensor_tower,
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
 "GD" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
@@ -3026,11 +3003,11 @@
 	},
 /area/oscar_outpost/outside/east)
 "Ie" = (
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "Iw" = (
@@ -3100,6 +3077,9 @@
 /area/oscar_outpost/outside/northeast)
 "IY" = (
 /obj/effect/ai_node,
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/northwest)
 "Jc" = (
@@ -3166,11 +3146,25 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/north)
+"JD" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/northwest)
 "JL" = (
 /obj/effect/ai_node,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
+"JM" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/road)
 "JN" = (
 /obj/item/ammo_magazine/tl102/hsg_nest,
 /obj/item/ammo_magazine/tl102/hsg_nest,
@@ -3280,9 +3274,6 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "Ky" = (
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
 	pixel_y = -7
@@ -3457,7 +3448,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "MA" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "MB" = (
@@ -3576,6 +3567,12 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
+"NM" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
 "NZ" = (
 /turf/open/floor/plating,
 /area/oscar_outpost)
@@ -3672,10 +3669,6 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
-"Ph" = (
-/obj/structure/platform,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "Pl" = (
 /obj/structure/barricade/sandbags{
 	dir = 4;
@@ -3882,16 +3875,6 @@
 /obj/structure/closet/secure_closet/medical3,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
-"QO" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/road)
 "QX" = (
 /obj/structure/stairs/seamless{
 	dir = 8
@@ -3953,7 +3936,7 @@
 	},
 /area/oscar_outpost/outside/northeast)
 "Rp" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "Rs" = (
@@ -3975,7 +3958,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northeast)
 "Rv" = (
-/obj/effect/spawner/random/misc/structure/crate/medsupplies/alwaysspawns,
+/obj/effect/spawner/random/medical/structure/crate/medsupplies/alwaysspawns,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "RA" = (
@@ -4002,6 +3985,14 @@
 "RI" = (
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northeast)
+"RT" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/oscar_outpost/outside/road)
 "Sb" = (
 /obj/effect/ai_node,
 /turf/open/ground/grass,
@@ -4147,12 +4138,6 @@
 	dir = 8
 	},
 /area/oscar_outpost/outside/northwest)
-"UC" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/road)
 "UV" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/oscar_outpost/outside/rock)
@@ -4180,14 +4165,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/road)
-"Vi" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/floor/mainship_hull/dir{
-	dir = 4
-	},
-/area/oscar_outpost)
 "Vv" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/ground/grass,
@@ -4365,7 +4342,7 @@
 /area/oscar_outpost)
 "Yh" = (
 /obj/effect/ai_node,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/oscar_outpost/outside/north)
 "Yi" = (
 /obj/machinery/camera/autoname/mainship{
@@ -4443,6 +4420,14 @@
 	pixel_y = 7
 	},
 /turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northwest)
+"YQ" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
 /area/oscar_outpost/outside/northwest)
 "YV" = (
 /obj/structure/closet,
@@ -4560,7 +4545,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northwest)
 "ZO" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/oscar_outpost/outside/north)
 
 (1,1,1) = {"
@@ -4916,8 +4901,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 om
 tm
@@ -5071,8 +5056,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 tB
@@ -5226,8 +5211,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 tB
@@ -5381,8 +5366,8 @@ ZE
 ZE
 ZE
 FR
-Ph
-uq
+ZE
+jP
 jP
 ox
 uB
@@ -5536,8 +5521,8 @@ cy
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 tB
@@ -5691,8 +5676,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 uM
@@ -5846,8 +5831,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 pB
 tB
@@ -6001,8 +5986,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 uB
@@ -6156,8 +6141,8 @@ ZE
 ZE
 ZE
 FR
-Ph
-uq
+ZE
+jP
 jP
 ox
 tB
@@ -6311,8 +6296,8 @@ ZE
 sY
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 uN
@@ -6466,8 +6451,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 pI
 uR
@@ -6621,15 +6606,15 @@ fL
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 mu
-GH
-GH
-GH
-GH
-GH
-GH
+as
+as
+as
+as
+as
+as
 eC
 eC
 eC
@@ -6776,16 +6761,16 @@ ZE
 ZE
 ZE
 ZE
-Ph
-gg
-Vi
-Vi
-Vi
-Vi
-Vi
-Vi
+ZE
+mu
+as
+as
+as
+GH
+GH
+GH
 Es
-eC
+Ds
 eC
 eC
 eC
@@ -6931,16 +6916,16 @@ ZE
 fe
 ZE
 ZE
-fO
-gE
-gE
-gE
-uV
 ZE
+ZE
+ZE
+ZE
+uV
+NM
 LV
 JB
-Ph
-eC
+ZE
+Ds
 eC
 eC
 eC
@@ -7090,12 +7075,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 eC
 eC
@@ -7245,12 +7230,12 @@ cy
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-qH
+ZE
+YQ
 qH
 qH
 qH
@@ -7710,12 +7695,12 @@ ZE
 ZE
 ZE
 ZE
-vV
-ZE
+FR
+NM
 Zl
 gw
-Ph
-Yz
+ZE
+kK
 Yz
 Yz
 Yz
@@ -7865,12 +7850,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 bs
 ar
@@ -8020,12 +8005,12 @@ JB
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 aX
 NF
@@ -8175,12 +8160,12 @@ gw
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 aG
 Pl
@@ -8330,12 +8315,12 @@ Up
 ZE
 cy
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 eC
 eC
@@ -8485,12 +8470,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-WB
+ZE
+jI
 qH
 qH
 qH
@@ -8640,12 +8625,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-IQ
+ZE
+JD
 ZM
 ZM
 ZM
@@ -8795,11 +8780,11 @@ FR
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
+ZE
 IY
 ZM
 SB
@@ -9264,8 +9249,8 @@ be
 ZE
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 eC
 eC
@@ -9415,12 +9400,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 eC
 eC
@@ -9570,12 +9555,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 eC
 eC
@@ -9725,12 +9710,12 @@ ZE
 ZE
 ZE
 FR
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 eC
 Wi
@@ -9880,12 +9865,12 @@ ZE
 ZE
 FR
 cy
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 eC
 eC
@@ -10035,12 +10020,12 @@ jV
 JB
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 eC
 eC
@@ -10190,12 +10175,12 @@ th
 gw
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 eC
 eC
@@ -10345,12 +10330,12 @@ LR
 Up
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 eC
 eC
@@ -10500,12 +10485,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-qH
+ZE
+YQ
 qH
 qH
 qH
@@ -10965,12 +10950,12 @@ cy
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-Yz
+ZE
+kK
 Yz
 Yz
 Yz
@@ -11120,12 +11105,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 eC
 bs
@@ -11271,16 +11256,16 @@ ZE
 ZE
 ZE
 ZE
-fV
-iq
-iq
-iq
-wa
 ZE
+ZE
+ZE
+ZE
+wa
+NM
 QA
 Up
-Ph
-eC
+ZE
+Ds
 eC
 eC
 aX
@@ -11426,16 +11411,16 @@ ZE
 ZE
 ZE
 ZE
-Ph
-iW
-ns
-ns
-ns
-ns
-ns
-ns
+ZE
+nw
+Fe
+Fe
+Fe
+qa
+qa
+qa
 EB
-eC
+Ds
 eC
 eC
 aG
@@ -11581,15 +11566,15 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 nw
-qa
-qa
-qa
-qa
-qa
-qa
+Fe
+Fe
+Fe
+Fe
+Fe
+Fe
 eC
 eC
 eC
@@ -11736,8 +11721,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ra
 wl
@@ -11891,8 +11876,8 @@ ZE
 ZE
 FR
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 wr
@@ -12046,8 +12031,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 tB
@@ -12201,8 +12186,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 uB
@@ -12356,8 +12341,8 @@ ZE
 cy
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 tB
@@ -12511,8 +12496,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 uM
@@ -12666,8 +12651,8 @@ ZE
 sY
 JL
 ZE
-Ph
-uq
+ZE
+jP
 jP
 pB
 tB
@@ -12821,8 +12806,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 uB
@@ -12976,8 +12961,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 tB
@@ -13131,8 +13116,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 uN
@@ -13286,8 +13271,8 @@ ZE
 ZE
 FR
 ZE
-Ph
-uq
+ZE
+jP
 jP
 rb
 uR
@@ -13441,15 +13426,15 @@ cy
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 mu
-GH
-GH
-GH
-GH
-GH
-GH
+as
+as
+as
+as
+as
+as
 eC
 eC
 eC
@@ -13596,16 +13581,16 @@ ZE
 ZE
 ZE
 ZE
-Ph
-gg
-Vi
-Vi
-Vi
-Vi
-Vi
-Vi
+ZE
+mu
+as
+as
+as
+GH
+GH
+GH
 Es
-eC
+Ds
 eC
 eC
 eC
@@ -13751,16 +13736,16 @@ ZE
 ZE
 ZE
 ZE
-fO
-gE
-gE
-gE
-uV
 ZE
+ZE
+ZE
+ZE
+uV
+NM
 LV
 JB
-Ph
-eC
+ZE
+Ds
 eC
 eC
 eC
@@ -13910,12 +13895,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 eC
 eC
@@ -14065,12 +14050,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 eC
 bs
@@ -14220,12 +14205,12 @@ cy
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 eC
 aX
@@ -14685,12 +14670,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 eC
 eC
@@ -14840,12 +14825,12 @@ cy
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 eC
 eC
@@ -14995,12 +14980,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 eC
 eC
@@ -15150,12 +15135,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 bs
 ar
 Kw
@@ -15305,12 +15290,12 @@ ZE
 ZE
 cy
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 aX
 NF
 LX
@@ -15460,12 +15445,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 aG
 Pl
 Nw
@@ -15615,12 +15600,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-eC
+ZE
+Ds
 eC
 eC
 eC
@@ -15770,12 +15755,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
-Aa
-DE
-Ph
-QH
+NM
+Zl
+gw
+ZE
+JM
 QH
 QH
 QH
@@ -15789,7 +15774,7 @@ XN
 BD
 nD
 Gf
-mj
+XN
 Ky
 QH
 QH
@@ -15927,8 +15912,8 @@ ZE
 ZE
 be
 ZE
-ZE
-FR
+gE
+xk
 be
 Pr
 Pr
@@ -15944,8 +15929,8 @@ Pr
 Pr
 Pr
 Pr
-Pr
-Pr
+ef
+ef
 Pr
 Pr
 Pr
@@ -16237,8 +16222,8 @@ ZE
 ZE
 be
 ZE
-ZE
-ZE
+iq
+iq
 be
 Pr
 Pr
@@ -16254,8 +16239,8 @@ Pr
 Pr
 Pr
 Pr
-Pr
-Pr
+ux
+ux
 Pr
 Pr
 Pr
@@ -16390,12 +16375,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
-AA
-DI
-Ph
-pL
+NM
+Zl
+gw
+ZE
+RT
 pL
 pL
 pL
@@ -16409,8 +16394,8 @@ XN
 GD
 En
 XG
-UC
-QO
+XN
+Ky
 pL
 pL
 pL
@@ -16545,12 +16530,12 @@ ZE
 ZE
 cy
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 RI
 RI
@@ -16700,12 +16685,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 RI
 RI
@@ -16855,12 +16840,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 RI
 RI
@@ -17010,12 +16995,12 @@ ZE
 LV
 jV
 JB
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 RI
 RI
@@ -17165,12 +17150,12 @@ ZE
 Zl
 th
 gw
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 bQ
 Rb
 Gh
@@ -17320,12 +17305,12 @@ ZE
 QA
 LR
 Up
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 ay
 yw
 vk
@@ -17475,12 +17460,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 LK
 im
 wH
@@ -17940,12 +17925,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 RI
 HU
@@ -18095,12 +18080,12 @@ ZE
 cy
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 RI
 zR
@@ -18136,7 +18121,7 @@ RI
 RI
 RI
 ay
-Gv
+yw
 vk
 RI
 ay
@@ -18246,16 +18231,16 @@ ZE
 ZE
 ZE
 ZE
-fV
-iq
-iq
-iq
-wa
 ZE
+ZE
+ZE
+ZE
+wa
+NM
 QA
 Up
-Ph
-RI
+ZE
+DA
 RI
 Vv
 pM
@@ -18401,16 +18386,16 @@ ZE
 sY
 ZE
 ZE
-Ph
+ZE
 iW
-ns
-ns
-ns
-ns
-ns
-ns
+Fe
+Fe
+Fe
+qa
+qa
+qa
 EB
-RI
+DA
 RI
 RI
 RI
@@ -18556,15 +18541,15 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 nB
-qa
-qa
-qa
-qa
-qa
-qa
+Fe
+Fe
+Fe
+Fe
+Fe
+Fe
 RI
 RI
 RI
@@ -18711,8 +18696,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ra
 wl
@@ -18866,8 +18851,8 @@ ZE
 ZE
 ZE
 cy
-Ph
-uq
+ZE
+jP
 jP
 ox
 wr
@@ -19021,8 +19006,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 tB
@@ -19176,8 +19161,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 xh
@@ -19331,8 +19316,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 tB
@@ -19486,8 +19471,8 @@ ZE
 cy
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 uM
@@ -19641,8 +19626,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 nW
 pB
 tB
@@ -19796,8 +19781,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 xh
@@ -19951,8 +19936,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 tB
@@ -20106,8 +20091,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 uN
@@ -20261,8 +20246,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 rb
 uR
@@ -20416,15 +20401,15 @@ cy
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 mu
-GH
-GH
-GH
-GH
-GH
-GH
+as
+as
+as
+as
+as
+as
 RI
 RI
 RI
@@ -20571,16 +20556,16 @@ ZE
 ZE
 ZE
 ZE
-Ph
+ZE
 gg
-Vi
-Vi
-Vi
-Vi
-Vi
-Vi
+as
+as
+as
+GH
+GH
+GH
 Es
-RI
+DA
 RI
 RI
 RI
@@ -20726,16 +20711,16 @@ ZE
 ZE
 ZE
 ZE
-fO
-gE
-gE
-gE
-uV
 ZE
+ZE
+ZE
+ZE
+uV
+NM
 LV
 JB
-Ph
-RI
+ZE
+DA
 RI
 RI
 RI
@@ -20885,12 +20870,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 RI
 RI
@@ -21040,12 +21025,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 RI
 RI
@@ -21195,12 +21180,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-Rm
+ZE
+FN
 Rt
 Rm
 Rm
@@ -21660,12 +21645,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-zC
+ZE
+rc
 zC
 zC
 zC
@@ -21815,12 +21800,12 @@ JB
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 bQ
 Rb
@@ -21970,12 +21955,12 @@ gw
 ZE
 cy
 ZE
-vV
-ZE
+FR
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 ay
 yw
@@ -22125,12 +22110,12 @@ Up
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 LK
 im
@@ -22280,12 +22265,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 RI
 RI
@@ -22435,12 +22420,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 HU
 Rm
@@ -22590,12 +22575,12 @@ ZE
 ZE
 ZE
 ZE
-vV
-ZE
+FR
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 zR
 zK
@@ -22745,12 +22730,12 @@ ZE
 cy
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 zR
 zK
@@ -23210,12 +23195,12 @@ Zl
 th
 gw
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 RI
 RI
@@ -23365,12 +23350,12 @@ QA
 LR
 Up
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 bQ
 Rb
 Gh
@@ -23520,12 +23505,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 ay
 yw
 vk
@@ -23675,12 +23660,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 LK
 im
 wH
@@ -23830,12 +23815,12 @@ ZE
 cy
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 RI
 RI
@@ -23985,12 +23970,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 RI
 RI
@@ -24140,12 +24125,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 RI
 RI
@@ -24295,12 +24280,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 RI
 RI
@@ -24450,12 +24435,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-Rm
+ZE
+FN
 Rm
 Rm
 Rm
@@ -24915,12 +24900,12 @@ ZE
 cy
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-zC
+ZE
+rc
 zC
 zC
 zC
@@ -25070,12 +25055,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 RI
 bQ
@@ -25225,12 +25210,12 @@ ZE
 ZE
 ZE
 ZE
-Ph
 ZE
+NM
 Zl
 gw
-Ph
-RI
+ZE
+DA
 RI
 RI
 ay
@@ -25376,16 +25361,16 @@ ZE
 ZE
 ZE
 ZE
-fV
-iq
-iq
-iq
-wa
 ZE
+ZE
+ZE
+ZE
+wa
+NM
 QA
 Up
-Ph
-RI
+ZE
+DA
 RI
 RI
 LK
@@ -25531,16 +25516,16 @@ ZE
 ZE
 ZE
 ZE
-Ph
-iW
-ns
-ns
-ns
-ns
-ns
-ns
+ZE
+nw
+Fe
+Fe
+Fe
+qa
+qa
+qa
 EB
-RI
+DA
 RI
 RI
 RI
@@ -25686,15 +25671,15 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 nw
-qa
-qa
-qa
-qa
-qa
-qa
+Fe
+Fe
+Fe
+Fe
+Fe
+Fe
 RI
 RI
 RI
@@ -25841,8 +25826,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ra
 wl
@@ -25996,8 +25981,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 wr
@@ -26151,8 +26136,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 tB
@@ -26306,8 +26291,8 @@ ZE
 FR
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 uB
@@ -26461,8 +26446,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 tB
@@ -26616,8 +26601,8 @@ LV
 jV
 JB
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 uM
@@ -26771,8 +26756,8 @@ Zl
 th
 gw
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 tB
@@ -26926,8 +26911,8 @@ QA
 LR
 Up
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 uB
@@ -27081,8 +27066,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 tB
@@ -27236,8 +27221,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ox
 tB
@@ -27391,8 +27376,8 @@ ZE
 ZE
 ZE
 ZE
-Ph
-uq
+ZE
+jP
 jP
 ry
 tm

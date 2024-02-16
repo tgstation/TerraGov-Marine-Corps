@@ -13,9 +13,6 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "ae" = (
-/obj/structure/platform{
-	dir = 1
-	},
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -29,6 +26,9 @@
 	},
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/platform{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -86,6 +86,9 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/deathmatch)
 "an" = (
@@ -94,6 +97,9 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/platform{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -106,6 +112,9 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/platform{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -187,6 +196,9 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/deathmatch)
 "ax" = (
@@ -201,12 +213,14 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/window/reinforced,
+/obj/structure/platform,
 /turf/open/floor/wood,
 /area/deathmatch)
 "az" = (
 /obj/effect/turf_decal/warning_stripes/nscenter,
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/window/reinforced,
+/obj/structure/platform,
 /turf/open/floor/wood,
 /area/deathmatch)
 "aA" = (
@@ -215,19 +229,19 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
+/obj/structure/platform,
 /turf/open/floor/wood,
 /area/deathmatch)
 "aB" = (
-/obj/structure/platform,
 /turf/open/floor/mainship/green,
 /area/deathmatch)
 "aC" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "aD" = (
-/obj/structure/platform,
 /obj/machinery/scoreboard{
 	id = "basketball";
 	pixel_y = 30
@@ -236,7 +250,8 @@
 /turf/open/floor/mainship/green,
 /area/deathmatch)
 "aE" = (
-/turf/open/floor/stairs/rampbottom,
+/obj/structure/stairs/edge,
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "aF" = (
 /obj/effect/ai_node,
@@ -251,25 +266,9 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "aI" = (
-/obj/structure/platform,
 /turf/open/floor/mainship/red,
 /area/deathmatch)
-"aJ" = (
-/obj/structure/platform,
-/turf/open/floor/mainship/blue,
-/area/deathmatch)
-"aK" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/open/floor/mainship/red{
-	dir = 1
-	},
-/area/deathmatch)
 "aL" = (
-/obj/structure/platform{
-	dir = 1
-	},
 /turf/open/floor/mainship/blue{
 	dir = 1
 	},
@@ -324,6 +323,7 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /obj/structure/window/reinforced,
+/obj/structure/platform,
 /turf/open/floor/wood,
 /area/deathmatch)
 "aT" = (
@@ -338,6 +338,7 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /obj/structure/window/reinforced,
+/obj/structure/platform,
 /turf/open/floor/wood,
 /area/deathmatch)
 "aV" = (
@@ -452,6 +453,9 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/deathmatch)
 "cd" = (
@@ -465,6 +469,11 @@
 "cP" = (
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/mainship/mono,
+/area/deathmatch)
+"dt" = (
+/obj/effect/turf_decal/warning_stripes/nscenter,
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
+/turf/open/floor/wood,
 /area/deathmatch)
 "dH" = (
 /obj/effect/ai_node,
@@ -481,7 +490,7 @@
 /area/deathmatch)
 "eo" = (
 /obj/effect/ai_node,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "et" = (
 /obj/item/storage/belt/champion,
@@ -599,6 +608,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
+"rr" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
 "rF" = (
 /obj/machinery/light{
 	dir = 4
@@ -643,6 +656,10 @@
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
+"vK" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/wood,
+/area/deathmatch)
 "wK" = (
 /obj/machinery/disposal,
 /turf/open/floor/mainship/sterile/plain,
@@ -671,6 +688,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/landmark/eord_roomba,
 /turf/open/floor/mainship,
 /area/deathmatch)
 "yq" = (
@@ -727,6 +745,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
+"CW" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/liquid/water/river,
+/area/deathmatch)
 "Di" = (
 /obj/structure/target_stake,
 /obj/item/target,
@@ -762,7 +784,7 @@
 /area/deathmatch)
 "GD" = (
 /obj/item/toy/beach_ball,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "Hf" = (
 /turf/open/floor/mainship/blue{
@@ -781,6 +803,11 @@
 "HL" = (
 /turf/open/floor/wood,
 /area/deathmatch)
+"In" = (
+/obj/structure/sink,
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
 "IC" = (
 /turf/closed/wall/mainship/outer,
 /area/space)
@@ -793,25 +820,21 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "JU" = (
-/obj/structure/platform{
-	dir = 1
-	},
 /obj/machinery/floodlight/landing/hq,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
 /area/deathmatch)
 "JV" = (
-/obj/structure/platform,
 /obj/machinery/floodlight/landing/hq,
 /turf/open/floor/mainship/blue,
 /area/deathmatch)
 "Kh" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "Kr" = (
 /obj/item/toy/inflatable_duck,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "KK" = (
 /obj/structure/closet/lasertag/red,
@@ -822,18 +845,12 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "Ms" = (
-/obj/structure/platform{
-	dir = 1
-	},
 /obj/machinery/floodlight/landing/hq,
 /turf/open/floor/mainship/blue{
 	dir = 1
 	},
 /area/deathmatch)
 "MX" = (
-/obj/structure/platform{
-	dir = 1
-	},
 /obj/machinery/floodlight/landing/hq,
 /turf/open/floor/mainship/red{
 	dir = 1
@@ -859,7 +876,7 @@
 /area/deathmatch)
 "OY" = (
 /obj/machinery/light,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "PK" = (
 /obj/machinery/disposal,
@@ -899,6 +916,7 @@
 "SS" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/window/reinforced,
+/obj/structure/platform,
 /turf/open/floor/wood,
 /area/deathmatch)
 "Tn" = (
@@ -942,7 +960,6 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "Uo" = (
-/obj/structure/platform,
 /obj/machinery/floodlight/landing/hq,
 /turf/open/floor/mainship/red,
 /area/deathmatch)
@@ -986,6 +1003,10 @@
 "WF" = (
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/mono,
+/area/deathmatch)
+"WU" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/mainship,
 /area/deathmatch)
 "Xi" = (
 /obj/effect/landmark/deathmatch,
@@ -1112,7 +1133,7 @@ ap
 ap
 HC
 aS
-aK
+YI
 aX
 bc
 aX
@@ -1160,7 +1181,7 @@ HL
 HL
 HL
 SS
-aK
+YI
 Zn
 bc
 Zn
@@ -1208,7 +1229,7 @@ au
 ak
 ak
 ay
-aK
+YI
 aR
 bc
 aR
@@ -1256,7 +1277,7 @@ av
 HL
 HL
 SS
-aK
+YI
 Zn
 bc
 Zn
@@ -1304,7 +1325,7 @@ av
 HL
 OO
 SS
-aK
+YI
 Zn
 bc
 Zn
@@ -1326,7 +1347,7 @@ aa
 ey
 IS
 IS
-IS
+WU
 cP
 hr
 hr
@@ -1352,7 +1373,7 @@ av
 HL
 HL
 SS
-aK
+YI
 Zn
 uB
 rX
@@ -1400,7 +1421,7 @@ aO
 HL
 HL
 SS
-aK
+YI
 Zn
 bc
 Zn
@@ -1409,7 +1430,7 @@ HL
 bI
 bI
 aa
-bf
+In
 bd
 aZ
 bc
@@ -1440,7 +1461,7 @@ HL
 HL
 HL
 HL
-HL
+vK
 HL
 HL
 HL
@@ -1496,7 +1517,7 @@ HL
 HL
 aV
 SS
-aK
+YI
 Zn
 uB
 Zn
@@ -1544,7 +1565,7 @@ aV
 HL
 HL
 SS
-aK
+YI
 Zn
 bc
 Zn
@@ -1592,7 +1613,7 @@ HL
 HL
 HL
 SS
-aK
+YI
 Zn
 bc
 Zn
@@ -1640,7 +1661,7 @@ HL
 HL
 aG
 SS
-aK
+YI
 Zn
 uB
 Zn
@@ -1688,7 +1709,7 @@ HL
 HL
 HL
 SS
-aK
+YI
 Zn
 bc
 rX
@@ -1736,7 +1757,7 @@ HL
 HL
 HL
 SS
-aK
+YI
 Zn
 xx
 Zn
@@ -1784,7 +1805,7 @@ HL
 HL
 HL
 SS
-aK
+YI
 aR
 bc
 Bd
@@ -2111,7 +2132,7 @@ ad
 ad
 ad
 ad
-ad
+dt
 aN
 ad
 ad
@@ -2127,7 +2148,7 @@ it
 aa
 Zc
 JI
-HL
+vK
 WF
 nu
 Xu
@@ -2440,7 +2461,7 @@ aa
 SK
 bc
 aQ
-aJ
+QG
 ca
 HL
 HL
@@ -2488,7 +2509,7 @@ aH
 ue
 bc
 ue
-aJ
+QG
 ca
 HL
 HL
@@ -2536,7 +2557,7 @@ aH
 ue
 bc
 ue
-aJ
+QG
 ca
 HL
 HL
@@ -2584,7 +2605,7 @@ aH
 ue
 uB
 ue
-aJ
+QG
 ca
 HL
 HL
@@ -2632,7 +2653,7 @@ aH
 ue
 xx
 ue
-aJ
+QG
 ca
 HL
 HL
@@ -2680,7 +2701,7 @@ aH
 ue
 bc
 ue
-aJ
+QG
 ca
 HL
 HL
@@ -2718,7 +2739,7 @@ aa
 bb
 Kh
 Kh
-Kh
+CW
 Kh
 aa
 hr
@@ -2728,7 +2749,7 @@ aH
 ue
 uB
 ue
-aJ
+QG
 ca
 aV
 HL
@@ -2784,7 +2805,7 @@ HL
 HL
 HL
 HL
-HL
+vK
 HL
 aG
 HL
@@ -2801,7 +2822,7 @@ HL
 bI
 bI
 cP
-bb
+rr
 bg
 et
 bg
@@ -2824,7 +2845,7 @@ aH
 ue
 bc
 ue
-aJ
+QG
 ca
 HL
 HL
@@ -2872,7 +2893,7 @@ aH
 ue
 uB
 ue
-aJ
+QG
 ca
 HL
 HL
@@ -2920,7 +2941,7 @@ aH
 ue
 bc
 ue
-aJ
+QG
 ca
 al
 HL
@@ -2968,7 +2989,7 @@ aH
 ue
 bc
 ue
-aJ
+QG
 ca
 HL
 HL
@@ -3016,7 +3037,7 @@ aH
 aQ
 bc
 aQ
-aJ
+QG
 ao
 ap
 ap
@@ -3064,7 +3085,7 @@ aH
 ue
 bc
 ue
-aJ
+QG
 ca
 HL
 HL
@@ -3112,7 +3133,7 @@ aH
 aW
 bc
 aW
-aJ
+QG
 aw
 Tt
 ak

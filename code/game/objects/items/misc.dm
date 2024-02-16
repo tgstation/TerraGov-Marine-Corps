@@ -14,7 +14,7 @@
 /obj/item/clock
 	name = "digital clock"
 	desc = "A battery powered clock, able to keep time within about 5 seconds... it was never that accurate."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "digital_clock"
 	force = 3
 	throwforce = 2
@@ -29,14 +29,14 @@
 /obj/item/bananapeel
 	name = "banana peel"
 	desc = "A peel from a banana."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "banana_peel"
 	item_state = "banana_peel"
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/bananapeel/Initialize()
+/obj/item/bananapeel/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 0.4 SECONDS, 0.2 SECONDS)
 
@@ -123,3 +123,11 @@
 	desc = "A small set of servos and gears, coupled to a battery, antenna and circuitry. Attach it to a mortar to allow a shipborne AI to remotely target it."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "modkit"
+
+/obj/item/rosary
+	name = "Rosary"
+	desc = "A small hematite-beaded silver rosary"
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "rosary"
+	item_state = "rosary"
+	w_class = WEIGHT_CLASS_TINY

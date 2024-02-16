@@ -66,9 +66,8 @@
 		playsound(user, tmp_sound, 50, flags_emote & EMOTE_VARY)
 
 	if(user.client)
-		for(var/i in GLOB.dead_mob_list)
-			var/mob/M = i
-			if(isnewplayer(M) || !M.client)
+		for(var/mob/M AS in GLOB.dead_mob_list)
+			if(!ismob(M) || isnewplayer(M) || !M.client)
 				continue
 			var/T = get_turf(user)
 			if(!(M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) || (M in viewers(T, null)))

@@ -266,6 +266,9 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "rJ" = (
@@ -552,7 +555,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "EB" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "EF" = (
@@ -815,6 +818,10 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"TN" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/se)
 "Uc" = (
 /obj/effect/ai_node,
 /turf/open/floor,
@@ -970,8 +977,10 @@
 /area/bigredv2/outside/se)
 "ZL" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "ZP" = (
@@ -1419,7 +1428,7 @@ Jk
 "}
 (17,1,1) = {"
 zy
-Db
+TN
 Db
 Db
 EP

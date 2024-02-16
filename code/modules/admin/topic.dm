@@ -404,6 +404,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/warrior, location, null, delmob)
 			if("runner")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/runner, location, null, delmob)
+			if("baneling")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/baneling, location, null, delmob)
 			if("drone")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/drone, location, null, delmob)
 			if("sentinel")
@@ -444,6 +446,10 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/king, location, null, delmob)
 			if("wraith")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/wraith, location, null, delmob)
+			if("puppeteer")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/puppeteer, location, null, delmob)
+			if("behemoth")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/behemoth, location, null, delmob)
 			if("human")
 				newmob = M.change_mob_type(/mob/living/carbon/human, location, null, delmob)
 			if("synthetic")
@@ -1236,174 +1242,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		message_admins("[ADMIN_TPMONTY(usr)] created [number] [english_list(paths)] at [ADMIN_VERBOSEJMP(usr.loc)].")
 
 
-	else if(href_list["admin_log"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		var/dat
-
-		for(var/x in GLOB.admin_log)
-			dat += "[x]<br>"
-
-		var/datum/browser/browser = new(usr, "admin_log", "<div align='center'>Admin Log</div>")
-		browser.set_content(dat)
-		browser.open(FALSE)
-
-
-	else if(href_list["adminprivate_log"])
-		if(!check_rights(R_BAN))
-			return
-
-		var/dat
-
-		for(var/x in GLOB.adminprivate_log)
-			dat += "[x]<br>"
-
-		var/datum/browser/browser = new(usr, "adminprivate_log", "<div align='center'>Adminprivate Log</div>")
-		browser.set_content(dat)
-		browser.open(FALSE)
-
-
-	else if(href_list["asay_log"])
-		if(!check_rights(R_ASAY))
-			return
-
-		var/dat
-
-		for(var/x in GLOB.asay_log)
-			dat += "[x]<br>"
-
-		var/datum/browser/browser = new(usr, "asay_log", "<div align='center'>Asay Log</div>")
-		browser.set_content(dat)
-		browser.open(FALSE)
-
-
-	else if(href_list["msay_log"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		var/dat
-
-		for(var/x in GLOB.msay_log)
-			dat += "[x]<br>"
-
-		var/datum/browser/browser = new(usr, "msay_log", "<div align='center'>Msay Log</div>")
-		browser.set_content(dat)
-		browser.open(FALSE)
-
-
-	else if(href_list["say_log"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		var/dat
-
-		for(var/x in GLOB.say_log)
-			dat += "[x]<br>"
-
-		var/datum/browser/browser = new(usr, "say_log", "<div align='center'>Say Log</div>")
-		browser.set_content(dat)
-		browser.open(FALSE)
-
-
-	else if(href_list["telecomms_log"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		var/dat
-
-		for(var/x in GLOB.telecomms_log)
-			dat += "[x]<br>"
-
-		var/datum/browser/browser = new(usr, "telecomms_log", "<div align='center'>Telecomms Log</div>")
-		browser.set_content(dat)
-		browser.open(FALSE)
-
-
-	else if(href_list["game_log"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		var/dat
-
-		for(var/x in GLOB.game_log)
-			dat += "[x]<br>"
-
-		var/datum/browser/browser = new(usr, "game_log", "<div align='center'>Game Log</div>")
-		browser.set_content(dat)
-		browser.open(FALSE)
-
-
-	else if(href_list["manifest_log"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		var/dat
-
-		for(var/x in GLOB.manifest_log)
-			dat += "[x]<br>"
-
-		var/datum/browser/browser = new(usr, "manifest_log", "<div align='center'>Manifest Log</div>")
-		browser.set_content(dat)
-		browser.open(FALSE)
-
-
-	else if(href_list["access_log"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		var/dat
-
-		for(var/x in GLOB.access_log)
-			dat += "[x]<br>"
-
-		var/datum/browser/browser = new(usr, "access_log", "<div align='center'>Access Log</div>")
-		browser.set_content(dat)
-		browser.open(FALSE)
-
-
-	else if(href_list["attack_log"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		var/dat
-
-		for(var/x in GLOB.attack_log)
-			dat += "[x]<br>"
-
-		var/datum/browser/browser = new(usr, "attack_log", "<div align='center'>Attack Log</div>")
-		browser.set_content(dat)
-		browser.open(FALSE)
-
-
-	else if(href_list["ffattack_log"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		var/dat
-
-		for(var/x in GLOB.ffattack_log)
-			dat += "[x]<br>"
-
-		var/datum/browser/browser = new(usr, "ffattack_log", "<div align='center'>FF Attack Log</div>")
-		browser.set_content(dat)
-		browser.open(FALSE)
-
-
-	else if(href_list["explosion_log"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		var/dat
-
-		for(var/x in GLOB.explosion_log)
-			dat += "[x]<br>"
-
-		var/datum/browser/browser = new(usr, "explosion_log", "<div align='center'>Explosion Log</div>")
-		browser.set_content(dat)
-		browser.open(FALSE)
-
-
 	else if(href_list["viewruntime"])
 		var/datum/error_viewer/error_viewer = locate(href_list["viewruntime"])
 		if(!istype(error_viewer))
@@ -1932,7 +1770,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/dat
 
-		for(var/i in L.get_contents())
+		for(var/i in L.GetAllContents())
 			var/atom/A = i
 			dat += "[A] [ADMIN_VV(A)]<br>"
 
@@ -1974,7 +1812,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				change = input("Select the hair color.", "Edit Appearance") as null|color
 				if(!change || !istype(H))
 					return
-				previous = "#[num2hex(H.r_hair)][num2hex(H.g_hair)][num2hex(H.b_hair)]"
+				previous = "#[num2hex(H.r_hair, 2)][num2hex(H.g_hair, 2)][num2hex(H.b_hair, 2)]"
 				H.r_hair = hex2num(copytext(change, 2, 4))
 				H.g_hair = hex2num(copytext(change, 4, 6))
 				H.b_hair = hex2num(copytext(change, 6, 8))
@@ -1988,7 +1826,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				change = input("Select the facial hair color.", "Edit Appearance") as null|color
 				if(!change || !istype(H))
 					return
-				previous = "#[num2hex(H.r_facial)][num2hex(H.g_facial)][num2hex(H.b_facial)]"
+				previous = "#[num2hex(H.r_facial, 2)][num2hex(H.g_facial, 2)][num2hex(H.b_facial, 2)]"
 				H.r_facial = hex2num(copytext(change, 2, 4))
 				H.g_facial = hex2num(copytext(change, 4, 6))
 				H.b_facial = hex2num(copytext(change, 6, 8))
@@ -1996,7 +1834,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				change = input("Select the eye color.", "Edit Appearance") as null|color
 				if(!change || !istype(H))
 					return
-				previous = "#[num2hex(H.r_eyes)][num2hex(H.g_eyes)][num2hex(H.b_eyes)]"
+				previous = "#[num2hex(H.r_eyes, 2)][num2hex(H.g_eyes, 2)][num2hex(H.b_eyes, 2)]"
 				H.r_eyes = hex2num(copytext(change, 2, 4))
 				H.g_eyes = hex2num(copytext(change, 4, 6))
 				H.b_eyes = hex2num(copytext(change, 6, 8))
@@ -2004,7 +1842,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				change = input("Select the body color.", "Edit Appearance") as null|color
 				if(!change || !istype(H))
 					return
-				previous = "#[num2hex(H.r_skin)][num2hex(H.g_skin)][num2hex(H.b_skin)]"
+				previous = "#[num2hex(H.r_skin, 2)][num2hex(H.g_skin, 2)][num2hex(H.b_skin, 2)]"
 				H.r_skin = hex2num(copytext(change, 2, 4))
 				H.g_skin = hex2num(copytext(change, 4, 6))
 				H.b_skin = hex2num(copytext(change, 6, 8))
@@ -2068,7 +1906,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 						squad_to_insert_into = pick(SSjob.active_squads[J.faction])
 				H.apply_assigned_role_to_spawn(J, H.client, squad_to_insert_into, admin_action = TRUE)
 				if(href_list["doequip"])
-					H.set_equipment(J.title)
+					H.equip_role_outfit(J)
 					addition = ", equipping them"
 			if("skills")
 				var/list/skilltypes = subtypesof(/datum/skills)
@@ -2236,7 +2074,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					return
 
 				X.upgrade_xeno(change)
-				if(change != XENO_UPGRADE_ZERO)
+				if(change != XENO_UPGRADE_NORMAL)
 					var/datum/xeno_caste/previous_maturity = GLOB.xeno_caste_datums[X.caste_base_type][X.upgrade_prev()]
 					X.upgrade_stored = previous_maturity.upgrade_threshold
 
@@ -2309,3 +2147,38 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/logtext = "[key_name(usr)] has cancelled an OB with the timerid [timerid_to_cancel]"
 		message_admins(logtext)
 		log_admin(logtext)
+
+	else if(href_list["cancelsummon"])
+		GLOB.active_summons.Cut()
+		var/logtext = "[key_name(usr)] has cancelled all psychic summons"
+		message_admins(logtext)
+		log_admin(logtext)
+
+	else if(href_list["tag_datum"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/datum/datum_to_tag = locate(href_list["tag_datum"])
+		if(!datum_to_tag)
+			return
+		return add_tagged_datum(datum_to_tag)
+
+	else if(href_list["del_tag"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/datum/datum_to_remove = locate(href_list["del_tag"])
+		if(!datum_to_remove)
+			return
+		return remove_tagged_datum(datum_to_remove)
+
+	else if(href_list["show_tags"])
+		if(!check_rights(R_ADMIN))
+			return
+		return display_tags()
+
+	else if(href_list["mark_datum"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/datum/datum_to_mark = locate(href_list["mark_datum"])
+		if(!datum_to_mark)
+			return
+		return usr.client?.mark_datum(datum_to_mark)

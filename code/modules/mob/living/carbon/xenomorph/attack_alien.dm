@@ -35,7 +35,7 @@
 	return TRUE
 
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
-	return TRUE
+	return !(status_flags & INCORPOREAL)
 
 /mob/living/proc/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
 	return
@@ -67,9 +67,9 @@
 	var/armor_block = 0
 
 	var/list/damage_mod = list()
-	var/armor_pen = 0
+	var/list/armor_mod = list()
 
-	var/signal_return = SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod, armor_pen)
+	var/signal_return = SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod, armor_mod)
 
 	// if we don't get any non-stacking bonuses dont apply dam_bonus
 	if(!(signal_return & COMSIG_XENOMORPH_BONUS_APPLIED))
@@ -80,6 +80,10 @@
 
 	for(var/i in damage_mod)
 		damage += i
+
+	var/armor_pen = X.xeno_caste.melee_ap
+	for(var/i in armor_mod)
+		armor_pen += i
 
 	if(!(signal_return & COMPONENT_BYPASS_SHIELDS))
 		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
@@ -114,7 +118,9 @@
 	else //Normal xenomorph friendship with benefits
 		log_combat(X, src, log)
 
-	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE, TRUE, armor_pen) //This should slicey dicey
+	record_melee_damage(X, damage)
+	var/damage_done = apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE, TRUE, armor_pen) //This should slicey dicey
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_POSTATTACK_LIVING, src, damage_done, damage_mod)
 
 	return TRUE
 
@@ -160,7 +166,7 @@
 	if(stat == DEAD)
 		if(istype(wear_ear, /obj/item/radio/headset/mainship))
 			var/obj/item/radio/headset/mainship/cam_headset = wear_ear
-			if(cam_headset.camera.status)
+			if(cam_headset?.camera?.status)
 				cam_headset.camera.toggle_cam(null, FALSE)
 				playsound(loc, "alien_claw_metal", 25, 1)
 				X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
@@ -183,18 +189,24 @@
 		return FALSE
 
 //Every other type of nonhuman mob //MARKER OVERRIDE
-/mob/living/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/mob/living/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
-	if (X.fortify)
+	if (X.fortify || X.behemoth_charging)
 		return FALSE
+
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage_amount, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier)
 
 	switch(X.a_intent)
 		if(INTENT_HELP)
 			if(on_fire)
 				X.visible_message(span_danger("[X] stares at [src]."), span_notice("We stare at the roasting [src], toasty."), null, 5)
 				return FALSE
+
+			if(interaction_emote(src))
+				return TRUE
+
 			X.visible_message(span_notice("\The [X] caresses [src] with its scythe-like arm."), \
 			span_notice("We caress [src] with our scythe-like arm."), null, 5)
 			return FALSE

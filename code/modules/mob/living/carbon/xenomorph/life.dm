@@ -34,11 +34,6 @@
 	update_action_button_icons()
 	update_icons(FALSE)
 
-/mob/living/carbon/xenomorph/handle_status_effects()
-	. = ..()
-	handle_stagger() // 1 each time
-	handle_slowdown() // 0.4 each time
-
 /mob/living/carbon/xenomorph/handle_fire()
 	. = ..()
 	if(.)
@@ -46,14 +41,13 @@
 			adjust_fire_stacks(-1)	//Passively lose firestacks when not on fire while resting and having firestacks built up.
 		return
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
-		SEND_SIGNAL(src, COMSIG_XENOMORPH_FIRE_BURNING)
-		adjustFireLoss((fire_stacks + 3) * get_fire_resist())
+		apply_damage((fire_stacks + 3), BURN, blocked = FIRE)
 
 /mob/living/carbon/xenomorph/proc/handle_living_health_updates()
 	if(health < 0)
 		handle_critical_health_updates()
 		return
-	if((health >= maxHealth) || xeno_caste.hardcore || on_fire) //can't regenerate.
+	if((health >= maxHealth) || on_fire) //can't regenerate.
 		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
 		return
 	var/turf/T = loc
@@ -154,6 +148,11 @@
 	gain_plasma(plasma_mod[1])
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
 
+/mob/living/carbon/xenomorph/can_receive_aura(aura_type, atom/source, datum/aura_bearer/bearer)
+	. = ..()
+	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Xenos on fire cannot receive pheros.
+		return FALSE
+
 /mob/living/carbon/xenomorph/finish_aura_cycle()
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Has to be here to prevent desyncing between phero and life, despite making more sense in handle_fire()
 		if(current_aura)
@@ -213,7 +212,7 @@
 	var/env_temperature = loc.return_temperature()
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
 		if(env_temperature > (T0C + 66))
-			adjustFireLoss((env_temperature - (T0C + 66) ) * 0.2 * get_fire_resist()) //Might be too high, check in testing.
+			apply_damage(((env_temperature - (T0C + 66) ) * 0.2), BURN, blocked = FIRE)
 			updatehealth() //unused while atmos is off
 			if(hud_used?.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"
@@ -243,11 +242,6 @@
 		world << span_debuginfo("Regen: Final slowdown is: <b>[slowdown]</b>")
 		#endif
 	return slowdown
-
-/mob/living/carbon/xenomorph/adjust_stagger(amount)
-	if(is_charging >= CHARGE_ON) //If we're charging we don't accumulate more stagger stacks.
-		return FALSE
-	return ..()
 
 /mob/living/carbon/xenomorph/proc/set_frenzy_aura(new_aura)
 	if(frenzy_aura == new_aura)

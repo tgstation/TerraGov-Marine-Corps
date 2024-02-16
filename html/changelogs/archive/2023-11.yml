@@ -1,0 +1,393 @@
+2023-11-01:
+  Helg2:
+  - bugfix: fixed plasma pistol not shooting from one hand after detaching it as attachment
+      from somewhere.
+  Lewdcifer:
+  - rscdel: Behemoth's ability warnings no longer cause screen shaking.
+  - rscdel: Behemoth's abilities have lost screen shaking in various cases.
+  - qol: Reduced Primal Wrath's screen distortion a little. Additionally, this effect
+      no longer applies to allied xenos besides yourself.
+  - bugfix: Behemoth's Landslide no longer displaces adjacent allies, only those directly
+      in front of you.
+  - bugfix: Behemoth's Landslide no longer destroys resin doors. Instead, they will
+      open and let you proceed.
+  - rscadd: Examine, when used by xenos, will now provide complete information instead
+      of omitting most of it.
+  - rscadd: Examine will now include more information about modular armor, such as
+      attachments and modules.
+  - code_imp: Gets rid of a distance check in unconscious/dead examine text.
+  - balance: Behemoth's maximum health reduced from 800 to 750.
+  - balance: Behemoth's Wrath gain reduced from 50% of damage received to 30%.
+  Lumipharon:
+  - bugfix: fixed ghosts drawing on maptables for reals
+  - balance: C4 now takes 30 seconds at minimum to detonate on campaign objectives
+  - rscadd: Youtool vendor stocks multitools
+  - bugfix: Fixed campaign missions ending causing unintended notifications in some
+      instances
+  - bugfix: Drop pod blocker objects in Campaign are no longer invisible
+  - balance: V-34 stock now increases slowdown by 0.05
+  - bugfix: fixed various throw bugs
+  - bugfix: Missing a throw because you tried to hit a missing limb will now properly
+      miss and keep going
+  - rscadd: NT base rescue mission is now available for TGMC
+  - bugfix: fixed hunter appearing twice in the hive status screen
+  Wisemonster:
+  - spellcheck: Changed the description of Behemoth's Earth Riser to mention the click-drag
+      launching function.
+  Xander3359:
+  - rscadd: Syringe cases in the NT Medplus
+2023-11-03:
+  Lewdcifer:
+  - balance: MG-27 no longer accepts suppressors.
+  Xander3359:
+  - balance: Disables Big Red on crash gamemode
+  - code_imp: Delete unused chigusa define
+  - bugfix: moves 2 carps
+  ZeWaka:
+  - qol: Warlocks can only be pushed by big xenos while channeling Psychic Shield.
+  gl0ck:
+  - imageadd: Changed cafe latte, hot chocolate, and soy latte sprites to be a bit
+      more modern.
+2023-11-04:
+  DeltaFire15:
+  - bugfix: Pointblank shots once again ignore Runner evasion.
+  - bugfix: throw_impact() now actually receives the speed arg.
+  Helg2:
+  - bugfix: Slouch hat is now visible on your head.
+  Lumipharon:
+  - bugfix: fixed a sprite issue for the squad management console
+  - imageadd: Updated the sprites of some medical equipment, mainly with emissives
+  - qol: Cryotubes visually show the occupant even if turned off
+  - bugfix: fixed power monitor sprites
+  - imageadd: Xeno flame sprites are now emissive and specific to each caste
+  - bugfix: Xenos now reliably emit light when on fire
+  - bugfix: Xenos emitting light no longer do so off center
+  - rscadd: ASAT capture enabled for SOM in campaign
+  Waselon:
+  - rscadd: 'New hivelord primo: Resin Globe.'
+  - balance: Sow was added to all builder castes as primo ability.
+  - bugfix: Plasma fruit now respects special plasma options (ravager, gorger, puppeteer)
+  Xander3359:
+  - rscadd: Syringe Case in Valhalla NTMED
+  - balance: Harvester weapon with Kelotane causes sundering
+  - balance: Vali uses 1u of Synaptizine instead of 3u
+  ZeWaka:
+  - rscadd: Added a 'respawn charge' indicator for banelings on the explode ability.
+  - code_imp: Removed some vestigial ravager code from before the primo rework.
+  - rscadd: You can now continue to wait in/join the xeno larva queue while playing
+      as a minion
+2023-11-05:
+  Barnet2:
+  - rscadd: Big Red now has a library disk
+  - balance: Big Red ETA disk is now guaranteed.
+  DeltaFire15:
+  - bugfix: Some throw speeds that were extremely high have been normalized.
+  Helg2:
+  - bugfix: Deleted stacking pipes on Arachne.
+  - bugfix: Deleted stacking pipes on Magmoor.
+  - bugfix: Deleted stacking pipes on Sulaco.
+  - bugfix: Deleted stacking pipes on Ice Colony.
+  - bugfix: deleted stacking pipes on Pillar of Spring.
+  - bugfix: Deleted stacking pipes from Theseus.
+  - bugfix: Deleted stacking pipes on Iteron.
+  - bugfix: Deleted stacking pipes on Prison Station.
+  Lewdcifer:
+  - rscadd: 'With Runner QoL changes introduced before, a missing commit caused some
+      changes to be missing. This has been amended with the following changes:'
+  - balance: All ability cooldown sounds are now played locally, meaning only the
+      user will hear them. Go do some stealth!
+  - balance: Re-added Savage's cooldown. The cooldown now has a duration indicator
+      on the ability icon.
+  - balance: Fixed an issue with Savage's plasma cost being half of what it should
+      actually be.
+  - bugfix: Fixed an issue where Runner's Evasion duration HUD indicator would persist
+      sometimes. The indicator will now correctly disappear when it should.
+  Lumipharon:
+  - imageadd: added some new computer sprite and other icons for campaign
+  - bugfix: fixed wall throws not respecting armour
+  - soundadd: added a sound effect when you're thrown into a wall
+  - bugfix: fixed xeno fire overlays getting stuck when resisting
+  vilereaver41:
+  - balance: Lz2 is more open and less cluttered.
+  - balance: cantabury no longer crashes right besides discs or fog.
+  - balance: north monorail disc will be better to defend and attack.
+2023-11-06:
+  Barnet2:
+  - rscdel: LV is now only voteable on HvH gamemodes.
+  - code_imp: Sets Debugdalus and Vapor Processing to the default maps
+  Lumipharon:
+  - balance: Throwing things into windows will no longer stop the throw if the window
+      breaks from the impact
+  - balance: Throwing mobs into windows hurts like a wall throw
+  - balance: Throwing mobs into a window scales damage to the window based on mob
+      size
+  Waselon:
+  - rscadd: 'New xeno support minion: Nymph'
+  Xander3359:
+  - rscadd: Tricord, Paracetamol and Isotonic to NTMed
+  - rscadd: NTMED in Valhalla with more stock
+  ZeWaka:
+  - bugfix: You should no longer get the 'You left the Larva queue.' message when
+      returning to your corpse.
+2023-11-07:
+  Waselon:
+  - bugfix: fixed rocket sledgehammer having incorrect stun values
+  Wisemonster:
+  - rscdel: Removed a weapon from the surplus clothing vendor.
+  - code_imp: Added a space
+  breadhunt:
+  - bugfix: Spiderlings will no longer wander aimlessly after destroying something,
+      instead returning to the widow. This was big, spiderlings should be a lot more
+      responsive now
+  - rscadd: Attach Spiderlings will now command spiderlings to follow you
+  - bugfix: This should fix a lot of AI bugginess, especially regarding the Mark Spiderlings
+      ability
+  - bugfix: Commanding spiderlings to follow you now actually commands spiderlings
+      to follow you
+  - bugfix: Missing spiderling mark no longer gives spiderlings a midlife crisis,
+      instead just cancelling the ability
+  - bugfix: Fixed spiderlings de-syncing with their parent widow's rest mode
+  - rscadd: If spiderling mark is targeted at a turf/weeds, and there is a human on
+      that turf, the mark will now target that human. Targeting anything else is unchanged.
+  - rscadd: If a widow goes crit, instead of fluoride staring at their beloved mother
+      bleeding out, its spiderlings will now attempt to shield it from harm by latching
+      on to its body and physically covering up its sprite
+  - rscadd: If spiderlings are on the same time as widow, any friendly clicks (grabs/abilities/etc)
+      will pass through to the widow. So don't worry, spiderling guard won't block
+      you from saving your widow buddies
+  - bugfix: Humans can no longer unbuckle a widow's spiderlings from them
+  - rscadd: Spiderlings now turn red when enraged, and blue when guarding
+  - imageadd: Spiderling red and blue colours
+  vvvv-vvvv:
+  - bugfix: Fix runtime in spatial agent shortcut
+  - bugfix: Fix adding slots in job slots panel
+  - bugfix: Fix cryo pod and some other UIs opening their window when they shouldn't
+  - bugfix: Fix invisible squad selection console
+  - bugfix: Fix invisible mech bay power console screen
+  - bugfix: Fix tacmap console emissive
+  - bugfix: Fix recoil not working properly with a scope
+2023-11-08:
+  ZeWaka:
+  - qol: Banelings can no longer explode before shutters unless they have a pod placed.
+2023-11-09:
+  Barnet2:
+  - bugfix: LV is no longer voteable on Crash.
+  Helg2:
+  - bugfix: Full pouches now don't look empty on spawn.
+  Lumipharon:
+  - bugfix: Certain cryo tubes will no longer eject their occupant into a wall
+  - imageadd: Slight updates to cryo and cloner tube sprites
+  - bugfix: fixed flares not hitting weed nodes
+  Xander3359:
+  - rscadd: Port the CM Reagent Canister Pouch
+  ZeWaka:
+  - rscadd: If you have a stronger acid, you can now click on weaker acid directly
+      to upgrade it.
+  - bugfix: Fixed acid upgrading not inheriting the existing melt progress
+  - bugfix: Banelings will no longer bring sticky nades back to their pod upon dying.
+  coldironwarrior:
+  - balance: made resin walls have 70 bullet armor (up from 60)
+2023-11-10:
+  ClosetedSkeletonGH:
+  - rscadd: Hivemind sprite changes depending on the type of weed it is on
+  - balance: Hivemind demanifestation and remanifestation
+  - bugfix: Hivemind no longer flickers on tele
+  - bugfix: Hivemind direction of manifestation is normalized
+2023-11-11:
+  Xander3359:
+  - balance: pills no longer input-lock you
+  - qol: You can use a pill in-hand to eat it.
+2023-11-12:
+  Barnet2:
+  - bugfix: Removes unopenable blast door on smallbury CIC
+  Bobthe28th:
+  - bugfix: Defiler can only inject eggs adjacent to them.
+  Dgeen:
+  - bugfix: Rouny runner is back
+  Lumipharon:
+  - qol: Campaign missions will specify if a teleport or drop pod blocker is active
+      in the current mission
+  - qol: failure to activate a campaign asset now provided more feedback to the user
+  - bugfix: fixed a few issues with activating some campaign assets
+  - rscadd: Ammo knockback, as well as that caused by defender charge and rav abilities
+      now use throw mechanics
+  SiegeB0t:
+  - qol: req can be confident that crates to a supply beacon on tad will arrive on
+      tad.
+  - bugfix: A supply beacon on tad will work after tad moves.
+  Xander3359:
+  - rscadd: Added an empty reagent pouch to the clothing vendor.
+  - balance: Adjust reagent pouch to 2:2:1:2 BKTT
+  ivanmixo:
+  - bugfix: Shrike vortex doesn't throw around things it shouldn't anymore (decals)
+  - code_imp: Smol shrike vortex code improvement
+  vvvv-vvvv:
+  - bugfix: Fix missing nuke disk candidate icon
+2023-11-13:
+  Lewdcifer:
+  - bugfix: Fixed some weird behavior in the larva queue.
+2023-11-14:
+  Barnet2:
+  - rscdel: Removed all Big Red LZ modulars, replaces them with a static LZ for each
+      spot.
+  Lewdcifer:
+  - bugfix: Fixed an issue with the Runner HUD not updating properly when cancelled.
+  - bugfix: Fixes a runtime related to AI movement.
+  Pariah919:
+  - balance: You no longer need to wind up the FK-88 to fire.
+  Xander3359:
+  - balance: Light medical belt holds pill bottles
+  - imageadd: Harvesters will now have a visual based on whichever reagent is loaded
+  - code_imp: Harvesters now have sprites + code in their own separate file
+  ZeWaka:
+  - bugfix: Spiderlings and some assorted damage rolls should now actually work instead
+      of being super weird
+  novaepee:
+  - rscdel: remove miniscope on recoilless rocket
+  vvvv-vvvv:
+  - bugfix: Fix orders not being shown in chat
+2023-11-15:
+  vvvv-vvvv:
+  - bugfix: Fix SOM breacher ERT scaling the amount of specs incorrectly
+  - bugfix: Fix player-controlled puppets being able to feed on non-adjacent humans
+  - qol: You can now toggle auto aim mode while trying to wield a gun
+2023-11-16:
+  Barnet2:
+  - bugfix: Icy Caves now has one APC per area and passes unit tests.
+  Xander3359:
+  - qol: Flamethrower backtank can be refilled from welding kits
+  - imageadd: Ports deathsquad sprites from TG
+  psykzz:
+  - admin: add flags_area to bitfields for VV.
+2023-11-17:
+  Lumipharon:
+  - imageadd: drop pods are now emissive
+2023-11-18:
+  Lumipharon:
+  - bugfix: Getting decapped should no longer bypass the respawn timer
+  yyzsong:
+  - rscadd: adds refills for unguided sadar rockets and SG-62 magazines to req
+2023-11-19:
+  Lumipharon:
+  - imageadd: Updated some map blips, mainly for HvH
+  Pariah919:
+  - rscadd: Added new Heavy Laser fire modes.
+  Xander3359:
+  - code_imp: made chem colors defines
+  vvvv-vvvv:
+  - bugfix: Fix custom squad members not showing in manifest
+  - bugfix: Fix evolving when the game hasn't started
+  - refactor: Refactor NODROP into TRAIT_NODROP
+2023-11-20:
+  Barnet2:
+  - qol: Reduced xeno rank playtime requirements
+  Scarlet-Oduko:
+  - qol: Allows grenades to be self stickied, instead of having to be applies by others
+  - balance: Self-applied stickies allowing one to use them directly
+  Xander3359:
+  - balance: Russian red is 30% less effective
+  - imageadd: Adds camera emissives
+  vvvv-vvvv:
+  - admin: Added JSON logging. Use the new View-Round-Logs verb for a nicer UI
+2023-11-21:
+  Lewdcifer:
+  - imageadd: Added a new unique icon for Behemoth on the minimap. It is now used
+      instead of borrowing the Crusher's.
+  Xander3359:
+  - qol: reagent pouch defaults to draw mode enabled (left click to draw)
+2023-11-22:
+  Helg2:
+  - bugfix: pouches now properly update, for real this time.
+  Lumipharon:
+  - rscadd: Added a heavy lift jetpack to HvH, capable of travelling further with
+      a heavy load, or smashing directly into mobs
+  - qol: Jetpacks say how long is left on CD if you try use it
+  - code_imp: minor code improvements for jetpacks
+  - bugfix: fixed a few campaign bugs
+  - qol: 3rd party faction are not locked behind the 30 min respawn timer in campaign,
+      when between missions
+  - balance: Replaced packets with pill bottles for all marine use
+  - bugfix: fixed huggers not hugging people in some cases
+  ivanmixo:
+  - bugfix: Cocoon doesn't try to process after it releases its victim
+  - bugfix: Fixed lobby button runtimes and bugs (you shouldn't get 'Unknown Character'
+      anymore)
+  - bugfix: TTS mask runtime fix
+  - bugfix: Fixed SSresinshaping and ping not returning their stat panel entry
+  novaepee:
+  - rscadd: update alky meds' desc to include healing ear damage
+  vvvv-vvvv:
+  - bugfix: Fix lascarbine spread pointblanks shooting past the target
+  yyzsong:
+  - balance: kills portaflashers
+2023-11-23:
+  Lumipharon:
+  - code_imp: Removed some hardcoded limitations around max health
+  - imageadd: acidwells are now emissive
+  - balance: stalemates no longer provide insane amounts of larva
+  novaepee:
+  - spellcheck: fixed desactived to deactivated in camera code
+2023-11-24:
+  Barnet2:
+  - code_imp: Re-organized the Slumbridge area file.
+  - bugfix: CAS can now no longer hit inside of Slumbridge caves in PC'd tiles.
+  Lumipharon:
+  - code_imp: some code clean up for living mob init
+2023-11-25:
+  Lumipharon:
+  - bugfix: Can no longer teleport to the objective on Base Rescue in campaign
+  - balance: Ship railgun is no longer available in Crash
+  Pariah919:
+  - rscdel: Vali spear has been removed.
+2023-11-27:
+  Pariah919:
+  - balance: Amount of free roundstart HEDPs reduced to 200 from 600.
+  - balance: Most grenade boxes are now cheaper, lower tier grenades have went from
+      500 to 310, and higher tier grenades to 350. Razorburn and white phos are untouched.
+  TiviPlus:
+  - rscdel: Removes the context menu toggle
+  ivanmixo:
+  - bugfix: Fixed some AI runtimes
+  - bugfix: Fixed a bunch of spiderling runtimes
+  - bugfix: Xenos should no longer have quickbuild outside of prep
+  yyzsong:
+  - bugfix: fixes the names of the FK-88 and ATR-22 ammos in req
+  - rscadd: adds hand labelers and KOTAHI decks to valhalla weapons vendors
+  - bugfix: Unguided rockets are now unlimited in valhalla (whoops)
+  - rscdel: removes the valhalla reqtorio section
+2023-11-28:
+  Lewdcifer:
+  - balance: Removed Russian Red pill bottles and packets from most vendors (including
+      the Tadpole med vendor) except Valhalla's.
+  - balance: Russian Red storage options have been replaced in first aid kits where
+      appropriate.
+  - balance: Reduced the amount of Russian Red autoinjectors in normal vendors from
+      30 to 10.
+  Lumipharon:
+  - bugfix: fixed embedded objects not being correctly put into the victim in some
+      cases
+  dopamiin0:
+  - balance: The dropship fabricator now recieves 10% of the value of exports, rather
+      than 5%.
+  efzapa:
+  - imageadd: Added working coffee sprite
+  - spellcheck: Updated Red Comrade Cigarette description.
+  vvvv-vvvv:
+  - bugfix: Fix some computer emissives
+  - bugfix: Fix tadpole being able to land on disks
+2023-11-29:
+  coldironwarrior:
+  - rscadd: 'adds two new armor colors: mountbatten pink and yellow (replaces the
+      old "yellow" which is now "olive")'
+  - bugfix: fixed a few color names
+2023-11-30:
+  Xander3359:
+  - rscadd: Harvesters can use tricordrazine, which applies a shatter effect
+  - balance: All chems in a harvester will do the same damage bonus
+  - balance: Bicaridine in a harvester will have more healing if you finish the channel
+      with higher medical skill
+  ivanmixo:
+  - bugfix: Fixed valhalla loadout vendor not working in hvh
+  yyzsong:
+  - rscadd: Adds the FK-88 and TAT shells to valhalla
+  - rscadd: Adds soap and sterilizer spray to valhalla

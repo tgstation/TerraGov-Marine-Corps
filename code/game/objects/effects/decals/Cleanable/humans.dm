@@ -16,7 +16,7 @@
 	var/drying_timer
 
 
-/obj/effect/decal/cleanable/blood/Initialize()
+/obj/effect/decal/cleanable/blood/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
@@ -46,9 +46,8 @@
 		deltimer(drying_timer)
 	return ..()
 
-
-/obj/effect/decal/cleanable/blood/update_icon()
-	if(basecolor == "rainbow") basecolor = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
+/obj/effect/decal/cleanable/blood/update_icon_state()
+	. = ..()
 	color = basecolor
 
 /obj/effect/decal/cleanable/blood/proc/on_cross(datum/source, mob/living/carbon/human/perp, oldloc, oldlocs)
@@ -57,7 +56,7 @@
 		return
 	if(amount < 1)
 		return
-	if(CHECK_MULTIPLE_BITFIELDS(perp.flags_pass, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(perp.pass_flags, HOVERING))
 		return
 
 	var/datum/limb/foot/l_foot = perp.get_limb("l_foot")
@@ -74,9 +73,6 @@
 	else if (hasfeet)//Or feet
 		perp.feet_blood_color = basecolor
 		perp.track_blood = max(amount,perp.track_blood)
-	else if (perp.buckled && istype(perp.buckled, /obj/structure/bed/chair/wheelchair))
-		var/obj/structure/bed/chair/wheelchair/W = perp.buckled
-		W.bloodiness = 4
 
 	perp.update_inv_shoes(1)
 	amount--
@@ -146,7 +142,7 @@
 	amount = 0
 	var/message
 
-/obj/effect/decal/cleanable/blood/writing/Initialize()
+/obj/effect/decal/cleanable/blood/writing/Initialize(mapload)
 	. = ..()
 	if(length(random_icon_states))
 		for(var/obj/effect/decal/cleanable/blood/writing/W in loc)
@@ -171,20 +167,22 @@
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6")
 	var/fleshcolor = "#FFC896"
 
-/obj/effect/decal/cleanable/blood/gibs/update_icon()
-
-	var/image/giblets = new(base_icon, "[icon_state]_flesh", dir)
-	if(!fleshcolor || fleshcolor == "rainbow")
+/obj/effect/decal/cleanable/blood/gibs/update_icon_state()
+	. = ..()
+	if(!fleshcolor)
 		fleshcolor = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
-	giblets.color = fleshcolor
-
 	var/icon/blood = new(base_icon,"[icon_state]",dir)
-	if(basecolor == "rainbow") basecolor = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
-	blood.Blend(basecolor,ICON_MULTIPLY)
+	if(basecolor == "rainbow")
+		basecolor = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
+	blood.Blend(basecolor, ICON_MULTIPLY)
 
 	icon = blood
-	overlays.Cut()
-	overlays += giblets
+
+/obj/effect/decal/cleanable/blood/gibs/update_overlays()
+	. = ..()
+	var/image/giblets = new(base_icon, "[icon_state]_flesh", dir)
+	giblets.color = fleshcolor
+	. += giblets
 
 /obj/effect/decal/cleanable/blood/gibs/up
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6","gibup1","gibup1","gibup1")
@@ -227,10 +225,17 @@
 	icon_state = "mucus"
 	random_icon_states = list("mucus")
 	var/dry=0 // Keeps the lag down
+	///The dry timer id
+	var/dry_timer
 
-/obj/effect/decal/cleanable/mucus/Initialize()
+/obj/effect/decal/cleanable/mucus/Initialize(mapload)
 	. = ..()
-	addtimer(VARSET_CALLBACK(src, dry, TRUE), DRYING_TIME * 2)
+	dry_timer = addtimer(VARSET_CALLBACK(src, dry, TRUE), DRYING_TIME * 2, TIMER_STOPPABLE)
+
+/obj/effect/decal/cleanable/mucus/Destroy()
+	if(dry_timer)
+		deltimer(dry_timer)
+	return ..()
 
 /obj/effect/decal/cleanable/blood/humanimprint/one
 	icon_state = "u_madman"

@@ -171,56 +171,55 @@
 	var/list/boxes = list() // If the boxes are stacked, they come here
 	var/boxtag = ""
 
-/obj/item/pizzabox/update_icon()
-
-	overlays = list()
-
-	// Set appropriate description
-	if( open && pizza )
+/obj/item/pizzabox/update_desc(updates)
+	. = ..()
+	if(open && pizza)
 		desc = "A box suited for pizzas. It appears to have a [pizza.name] inside."
-	else if( boxes.len > 0 )
+	else if(boxes.len > 0)
 		desc = "A pile of boxes suited for pizzas. There appears to be [boxes.len + 1] boxes in the pile."
 
 		var/obj/item/pizzabox/topbox = boxes[boxes.len]
 		var/toptag = topbox.boxtag
-		if( toptag != "" )
+		if(toptag != "")
 			desc = "[desc] The box on top has a tag, it reads: '[toptag]'."
 	else
 		desc = "A box suited for pizzas."
 
-		if( boxtag != "" )
+		if(boxtag != "")
 			desc = "[desc] The box has a tag, it reads: '[boxtag]'."
 
-	// Icon states and overlays
-	if( open )
-		if( ismessy )
+/obj/item/pizzabox/update_icon_state()
+	. = ..()
+	if(open)
+		if(ismessy)
 			icon_state = "pizzabox_messy"
 		else
 			icon_state = "pizzabox_open"
-
-		if( pizza )
-			var/image/pizzaimg = image("pizzaspaghetti.dmi", icon_state = pizza.icon_state)
-			pizzaimg.pixel_y = -3
-			overlays += pizzaimg
-
 		return
-	else
-		// Stupid code because byondcode sucks
-		var/doimgtag = 0
-		if( boxes.len > 0 )
-			var/obj/item/pizzabox/topbox = boxes[boxes.len]
-			if( topbox.boxtag != "" )
-				doimgtag = 1
-		else
-			if( boxtag != "" )
-				doimgtag = 1
-
-		if( doimgtag )
-			var/image/tagimg = image("pizzaspaghetti.dmi", icon_state = "pizzabox_tag")
-			tagimg.pixel_y = boxes.len * 3
-			overlays += tagimg
 
 	icon_state = "pizzabox[boxes.len+1]"
+
+/obj/item/pizzabox/update_overlays()
+	. = ..()
+	if(open && pizza)
+		var/image/pizzaimg = image("pizzaspaghetti.dmi", icon_state = pizza.icon_state)
+		pizzaimg.pixel_y = -3
+		. += pizzaimg
+		return
+	// Stupid code because byondcode sucks - imagine blaming the engine for you being bad at coding. TODO: clean this up
+	var/doimgtag = 0
+	if(boxes.len > 0)
+		var/obj/item/pizzabox/topbox = boxes[boxes.len]
+		if(topbox.boxtag != "")
+			doimgtag = 1
+	else
+		if(boxtag != "")
+			doimgtag = 1
+
+	if(doimgtag)
+		var/image/tagimg = image("pizzaspaghetti.dmi", icon_state = "pizzabox_tag")
+		tagimg.pixel_y = boxes.len * 3
+		. += tagimg
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/pizzabox/attack_hand(mob/living/user)
@@ -311,55 +310,49 @@
 		update_icon()
 
 
-/obj/item/pizzabox/margherita/Initialize()
+/obj/item/pizzabox/margherita/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/margherita(src)
 	boxtag = "Margherita Deluxe"
 
 
-/obj/item/pizzabox/vegetable/Initialize()
-	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/vegetablepizza(src)
-	boxtag = "Gourmet Vegatable"
-
-
-/obj/item/pizzabox/mushroom/Initialize()
+/obj/item/pizzabox/mushroom/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/mushroompizza(src)
 	boxtag = "Mushroom Special"
 
 
-/obj/item/pizzabox/meat/Initialize()
+/obj/item/pizzabox/meat/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza(src)
 	boxtag = "Meatlover's Supreme"
 
-/obj/item/pizzabox/donkpocket/Initialize()
+/obj/item/pizzabox/donkpocket/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/donkpocket(src)
 	boxtag = "Bangin' Donk"
 
-/obj/item/pizzabox/ants/Initialize()
+/obj/item/pizzabox/ants/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/ants(src)
 	boxtag = "Anthill Deluxe"
 
-/obj/item/pizzabox/dank/Initialize()
+/obj/item/pizzabox/dank/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/dank(src)
 	boxtag = "Fresh Herbs"
 
-/obj/item/pizzabox/vegetable/Initialize()
+/obj/item/pizzabox/vegetable/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/vegetablepizza(src)
 	boxtag = "Gourmet Vegetable"
 
-/obj/item/pizzabox/sassysage/Initialize()
+/obj/item/pizzabox/sassysage/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/sassysage(src)
 	boxtag = "Sausage Lovers"
 
-/obj/item/pizzabox/pineapple/Initialize()
+/obj/item/pizzabox/pineapple/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/pineapple(src)
 	boxtag = "Honolulu Chew"
@@ -456,7 +449,7 @@
 		/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza,
 	)
 
-/obj/item/pizzabox/random/Initialize()
+/obj/item/pizzabox/random/Initialize(mapload)
 	. = .. ()
 	var/pizza_type = pick(pizza_choices)
 	pizza = new pizza_type(src)

@@ -8,7 +8,7 @@
 	var/blood_type
 
 
-/obj/item/reagent_containers/blood/Initialize()
+/obj/item/reagent_containers/blood/Initialize(mapload)
 	. = ..()
 	if(blood_type)
 		name = "BloodPack [blood_type]"
@@ -20,7 +20,7 @@
 	update_icon()
 
 /obj/item/reagent_containers/blood/update_icon_state()
-
+	. = ..()
 	var/percent = PERCENT(reagents.total_volume / volume)
 	switch(percent)
 		if(0 to 9.9)

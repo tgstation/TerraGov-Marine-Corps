@@ -31,7 +31,7 @@ Currently only has the tank hardpoints
 	var/max_clips = 1 //1 so they can reload their backups and actually reload once
 	var/buyable = TRUE
 
-/obj/item/hardpoint/Initialize()
+/obj/item/hardpoint/Initialize(mapload)
 	. = ..()
 	if(starter_ammo)
 		ammo = new starter_ammo
@@ -85,7 +85,7 @@ Currently only has the tank hardpoints
 		return
 	user.visible_message(span_notice("[user] starts repairing [src]."),
 		span_notice("You start repairing [src]."))
-	if(!do_after(user, 3 SECONDS * repair_delays, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 3 SECONDS * repair_delays, NONE, src, BUSY_ICON_BUILD))
 		user.visible_message(span_notice("[user] stops repairing [src]."),
 							span_notice("You stop repairing [src]."))
 		return
@@ -142,7 +142,7 @@ Currently only has the tank hardpoints
 
 	var/atom/target = owner ? owner : src
 
-	if(!do_after(user, 10, TRUE, target) || QDELETED(src))
+	if(!do_after(user, 10, NONE, target) || QDELETED(src))
 		to_chat(user, span_warning("Something interrupted you while loading [src]."))
 		return FALSE
 
@@ -263,7 +263,7 @@ Currently only has the tank hardpoints
 
 	to_chat(usr, span_warning("Preparing to fire... keep the tank still for [delay * 0.1] seconds."))
 
-	if(!do_after(usr, delay, FALSE, src) || QDELETED(owner))
+	if(!do_after(usr, delay, IGNORE_HELD_ITEM, src) || QDELETED(owner))
 		to_chat(usr, span_warning("The [name]'s firing was interrupted."))
 		qdel(TL)
 
@@ -275,8 +275,7 @@ Currently only has the tank hardpoints
 		T = get_step(T, pick(GLOB.cardinals))
 	var/obj/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
-	log_combat(usr, usr, "fired the [src].")
-	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
+	log_bomber(usr, "fired", src)
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	playsound(get_turf(src), pick('sound/weapons/guns/fire/tank_cannon1.ogg', 'sound/weapons/guns/fire/tank_cannon2.ogg'), 60, 1)
 	ammo.current_rounds--
@@ -422,7 +421,7 @@ Currently only has the tank hardpoints
 
 	to_chat(usr, span_warning("Preparing to fire... keep the tank still for [delay * 0.1] seconds."))
 
-	if(!do_after(usr, delay, FALSE, src) || QDELETED(owner))
+	if(!do_after(usr, delay, IGNORE_HELD_ITEM, src) || QDELETED(owner))
 		to_chat(usr, span_warning("The [name]'s firing was interrupted."))
 		qdel(TL)
 		return
@@ -438,8 +437,7 @@ Currently only has the tank hardpoints
 		T = get_step(T, pick(GLOB.cardinals))
 	var/obj/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
-	log_combat(usr, usr, "fired the [src].")
-	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
+	log_bomber(usr, "fired", src)
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	ammo.current_rounds--
 
@@ -497,8 +495,7 @@ Currently only has the tank hardpoints
 		A = get_step(A, pick(GLOB.cardinals))
 	var/obj/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
-	log_combat(usr, usr, "fired the [src].")
-	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
+	log_bomber(usr, "fired", src)
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	playsound(get_turf(src), 'sound/weapons/guns/fire/grenadelauncher.ogg', 60, 1)
 	ammo.current_rounds--
@@ -910,7 +907,7 @@ Currently only has the tank hardpoints
 
 //Special ammo magazines for hardpoint modules. Some aren't here since you can use normal magazines on them
 /obj/item/ammo_magazine/tank
-	flags_magazine = 0 //No refilling
+	flags_magazine = NONE //No refilling
 	var/point_cost = 0
 
 /obj/item/ammo_magazine/tank/ltb_cannon
@@ -923,7 +920,8 @@ Currently only has the tank hardpoints
 	max_rounds = 4
 	point_cost = 50
 
-/obj/item/ammo_magazine/tank/ltb_cannon/update_icon()
+/obj/item/ammo_magazine/tank/ltb_cannon/update_icon_state()
+	. = ..()
 	icon_state = "ltbcannon_[current_rounds]"
 
 
@@ -972,7 +970,8 @@ Currently only has the tank hardpoints
 	point_cost = 25
 
 
-/obj/item/ammo_magazine/tank/tank_glauncher/update_icon()
+/obj/item/ammo_magazine/tank/tank_glauncher/update_icon_state()
+	. = ..()
 	if(current_rounds >= max_rounds)
 		icon_state = "glauncher_2"
 	else if(current_rounds <= 0)
@@ -991,7 +990,8 @@ Currently only has the tank hardpoints
 	max_rounds = 6
 	point_cost = 5
 
-/obj/item/ammo_magazine/tank/tank_slauncher/update_icon()
+/obj/item/ammo_magazine/tank/tank_slauncher/update_icon_state()
+	. = ..()
 	icon_state = "slauncher_[current_rounds <= 0 ? "0" : "1"]"
 
 ///////////////

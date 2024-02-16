@@ -74,7 +74,7 @@
 		),
 	)
 
-/obj/machinery/researchcomp/Initialize()
+/obj/machinery/researchcomp/Initialize(mapload)
 	. = ..()
 	construct_insertable_resources_desc()
 
@@ -252,7 +252,7 @@
 	icon = 'icons/obj/alien_autopsy.dmi'
 	icon_state = "sample_0"
 
-/obj/item/research_resource/xeno/Initialize()
+/obj/item/research_resource/xeno/Initialize(mapload)
 	. = ..()
 	icon_state = "sample_[rand(0, 11)]"
 

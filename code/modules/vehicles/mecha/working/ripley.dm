@@ -119,9 +119,6 @@
 /obj/vehicle/sealed/mecha/working/ripley/mining/Initialize(mapload)
 	. = ..()
 	take_damage(125) // Low starting health
-
-/obj/vehicle/sealed/mecha/working/ripley/mining/Initialize(mapload)
-	. = ..()
 	if(cell)
 		cell.charge = FLOOR(cell.charge * 0.25, 1) //Starts at very low charge
 	if(prob(70)) //Maybe add a drill
@@ -202,7 +199,7 @@
 
 /obj/vehicle/sealed/mecha/working/ripley/resisted_against(mob/living/user, obj/O)
 	to_chat(user, span_notice("You lean on the back of [O] and start pushing so it falls out of [src]."))
-	if(do_after(user, 300, target = O))
+	if(do_after(user, 30 SECONDS, target = O))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || O.loc != src )
 			return
 		to_chat(user, span_notice("You successfully pushed [O] out of [src]!"))

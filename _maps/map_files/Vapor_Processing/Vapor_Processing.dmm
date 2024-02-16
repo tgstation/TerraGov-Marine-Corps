@@ -16,128 +16,27 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop2/lz2)
 "aj" = (
-/obj/machinery/landinglight/ds2/delaytwo,
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
+/obj/machinery/landinglight/lz2,
 /turf/open/floor/plating/asteroidwarning/down,
-/area/shuttle/drop2/lz2)
-"ak" = (
-/obj/structure/barricade/wooden{
-	dir = 1
-	},
-/obj/machinery/landinglight/ds2/delayone,
-/turf/open/floor/plating/asteroidwarning/down,
-/area/shuttle/drop2/lz2)
-"al" = (
-/obj/structure/barricade/wooden{
-	dir = 1
-	},
-/obj/machinery/landinglight/ds2,
-/turf/open/floor/plating/asteroidwarning/down,
-/area/shuttle/drop2/lz2)
-"am" = (
-/obj/structure/barricade/wooden{
-	dir = 1
-	},
-/obj/machinery/landinglight/ds2/delaythree,
-/turf/open/floor/plating/asteroidwarning/down,
-/area/shuttle/drop2/lz2)
-"an" = (
-/obj/structure/barricade/wooden{
-	dir = 1
-	},
-/obj/machinery/landinglight/ds2/delaytwo,
-/turf/open/floor/plating/asteroidwarning/down,
-/area/shuttle/drop2/lz2)
-"ao" = (
-/obj/machinery/landinglight/ds2,
-/obj/structure/barricade/wooden{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroidwarning/down,
-/area/shuttle/drop2/lz2)
-"ap" = (
-/obj/structure/barricade/wooden{
-	dir = 8
-	},
-/obj/machinery/landinglight/ds2/delaythree{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 4
-	},
 /area/shuttle/drop2/lz2)
 "aq" = (
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
-"ar" = (
-/obj/structure/barricade/wooden{
-	dir = 4
-	},
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 8
-	},
 /area/shuttle/drop2/lz2)
 "as" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
-"at" = (
-/obj/structure/barricade/wooden{
-	dir = 8
-	},
-/obj/machinery/landinglight/ds2{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 4
-	},
-/area/shuttle/drop2/lz2)
-"au" = (
-/obj/structure/barricade/wooden{
-	dir = 4
-	},
-/obj/machinery/landinglight/ds2{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 8
-	},
-/area/shuttle/drop2/lz2)
 "av" = (
 /obj/structure/dispenser,
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
-"aw" = (
-/obj/structure/barricade/wooden{
-	dir = 8
-	},
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 4
-	},
-/area/shuttle/drop2/lz2)
 "ax" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
-"ay" = (
-/obj/structure/barricade/wooden{
-	dir = 4
-	},
-/obj/machinery/landinglight/ds2/delaythree{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 8
-	},
 /area/shuttle/drop2/lz2)
 "az" = (
 /obj/structure/largecrate,
@@ -147,7 +46,7 @@
 /obj/structure/barricade/wooden{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/lz2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -162,32 +61,8 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
 /area/maintenance/apmaint)
-"aF" = (
-/obj/machinery/landinglight/ds2{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 8
-	},
-/area/shuttle/drop2/lz2)
-"aG" = (
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 4
-	},
-/area/shuttle/drop2/lz2)
-"aI" = (
-/obj/machinery/landinglight/ds2/delaythree{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 8
-	},
-/area/shuttle/drop2/lz2)
 "aJ" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/lz2{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -195,15 +70,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "aL" = (
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 8
-	},
-/area/shuttle/drop2/lz2)
-"aM" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/lz2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -216,33 +83,11 @@
 	},
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
-"aO" = (
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 4
-	},
-/obj/structure/barricade/wooden{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 4
-	},
-/area/shuttle/drop2/lz2)
-"aP" = (
-/obj/machinery/landinglight/ds2/delaytwo{
-	dir = 4
-	},
-/obj/structure/barricade/wooden{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 4
-	},
-/area/shuttle/drop2/lz2)
 "aR" = (
 /obj/structure/barricade/wooden{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/lz2{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -251,63 +96,9 @@
 /area/shuttle/drop2/lz2)
 "aT" = (
 /obj/structure/barricade/wooden,
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/lz2{
 	dir = 1
 	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 1
-	},
-/area/shuttle/drop2/lz2)
-"aU" = (
-/obj/structure/barricade/wooden,
-/obj/machinery/landinglight/ds2{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 1
-	},
-/area/shuttle/drop2/lz2)
-"aV" = (
-/obj/structure/barricade/wooden,
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 1
-	},
-/area/shuttle/drop2/lz2)
-"aW" = (
-/obj/machinery/landinglight/ds2/delaytwo{
-	dir = 1
-	},
-/obj/structure/barricade/wooden,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 1
-	},
-/area/shuttle/drop2/lz2)
-"aX" = (
-/obj/machinery/landinglight/ds2/delaythree{
-	dir = 1
-	},
-/obj/structure/barricade/wooden,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 1
-	},
-/area/shuttle/drop2/lz2)
-"aY" = (
-/obj/machinery/landinglight/ds2{
-	dir = 1
-	},
-/obj/structure/barricade/wooden,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 1
-	},
-/area/shuttle/drop2/lz2)
-"aZ" = (
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 1
-	},
-/obj/structure/barricade/wooden,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
@@ -398,7 +189,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
 "by" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
 "bz" = (
@@ -418,6 +209,12 @@
 "bE" = (
 /turf/open/ground,
 /area/lv624/ground/caves/east1)
+"bG" = (
+/obj/structure/rack,
+/obj/machinery/light,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
 "bL" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets,
@@ -469,35 +266,7 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/prison/sterilewhite,
 /area/lv624/lazarus/fitness)
-"bU" = (
-/obj/machinery/landinglight/ds1/delaytwo,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"bV" = (
-/obj/machinery/landinglight/ds1/delayone,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"bW" = (
-/obj/machinery/landinglight/ds1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"bX" = (
-/obj/machinery/landinglight/ds1/delaythree,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"bY" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "bZ" = (
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"ca" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cb" = (
@@ -505,44 +274,8 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
-"cc" = (
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "cd" = (
 /obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"ce" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"cf" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"cg" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"ch" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"cj" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cl" = (
@@ -566,30 +299,6 @@
 "cx" = (
 /turf/open/floor/prison/sterilewhite,
 /area/lv624/lazarus/fitness)
-"cy" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"cz" = (
-/obj/machinery/landinglight/ds1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"cA" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"cB" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "cC" = (
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
@@ -692,7 +401,6 @@
 "dd" = (
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
-/obj/machinery/power/apc/drained,
 /turf/open/floor/wood,
 /area/shuttle/drop2/lz2)
 "de" = (
@@ -703,7 +411,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/wood,
 /area/shuttle/drop2/lz2)
 "df" = (
@@ -960,7 +667,6 @@
 /area/medical/medbay2)
 "ex" = (
 /obj/structure/closet/bodybag/cryobag,
-/obj/structure/closet/bodybag/cryobag,
 /turf/open/floor/tile/bar,
 /area/medical/medbay2)
 "eA" = (
@@ -1052,7 +758,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/medical/medbay2)
 "eS" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/tile/whiteyellow/corner{
 	dir = 1
 	},
@@ -1076,7 +782,7 @@
 /turf/open/floor/tile/white,
 /area/medical/medbay2)
 "eW" = (
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /obj/structure/cable,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -1121,7 +827,7 @@
 /turf/closed/wall,
 /area/lv624/lazarus/quartstorage)
 "fe" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/structure/cable,
 /obj/machinery/light{
 	dir = 8
@@ -1158,6 +864,14 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/grass,
 /area/vapor_processing/west_compound)
+"fp" = (
+/obj/structure/closet,
+/obj/effect/spawner/random/clothing/sunglasses,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/wood/broken,
+/area/crew_quarters/sleep_male)
 "fq" = (
 /obj/machinery/power/terminal,
 /obj/structure/cable,
@@ -1274,7 +988,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "gg" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -1285,7 +999,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "gj" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "gk" = (
@@ -1308,10 +1022,7 @@
 /turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
 "go" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "gI" = (
@@ -1336,7 +1047,7 @@
 	},
 /area/lv624/lazarus/quart)
 "gT" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/tile/whiteyellow/corner{
 	dir = 1
 	},
@@ -1407,7 +1118,7 @@
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
 "ht" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/machinery/light,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
@@ -1454,7 +1165,7 @@
 /area/lv624/lazarus/medbay)
 "hD" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
@@ -1490,6 +1201,16 @@
 	},
 /turf/open/floor/tile/green/whitegreen,
 /area/medical/medbay2)
+"hM" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/spawner/random/engineering/tech_supply,
+/turf/open/floor/wood,
+/area/shuttle/drop1/lz1)
 "hO" = (
 /turf/closed/wall,
 /area/vapor_processing/cargo3)
@@ -1589,6 +1310,11 @@
 	},
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
+"io" = (
+/obj/structure/table,
+/obj/effect/spawner/random/engineering/toolbox,
+/turf/open/floor/wood,
+/area/crew_quarters/sleep_male)
 "ir" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/prison/yellow/full,
@@ -1606,11 +1332,24 @@
 /obj/structure/closet/secure_closet/detective,
 /turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
+"iw" = (
+/obj/structure/closet/fireaxecabinet{
+	pixel_y = -1
+	},
+/obj/structure/cable,
+/turf/closed/wall/wood,
+/area/crew_quarters/sleep/bedrooms)
 "iy" = (
 /obj/machinery/power/geothermal,
 /obj/structure/cable,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
+"iA" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/gun/shotgun/pump/cmb,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/turf/open/floor/tile/red/redtaupe,
+/area/lv624/lazarus/security)
 "iB" = (
 /turf/closed/wall,
 /area/lv624/lazarus/canteen)
@@ -1620,6 +1359,16 @@
 	dir = 1
 	},
 /area/vapor_processing/cargo3)
+"iG" = (
+/obj/structure/table/flipped,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor,
+/area/storage/tools)
 "iJ" = (
 /obj/structure/dispenser,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1773,7 +1522,6 @@
 /area/lv624/lazarus/canteen)
 "jv" = (
 /obj/structure/table/flipped,
-/obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -1827,12 +1575,6 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/tile/red/redtaupe,
-/area/lv624/lazarus/security)
-"jE" = (
-/obj/structure/table/reinforced,
-/obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "jF" = (
@@ -2142,6 +1884,13 @@
 "kY" = (
 /turf/closed/gm/dense,
 /area/lv624/ground/compound/sw)
+"kZ" = (
+/obj/structure/largecrate,
+/obj/machinery/landinglight/lz1{
+	dir = 4
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "lb" = (
 /obj/machinery/computer/aifixer,
 /turf/open/floor/tile/blue/whiteblue{
@@ -2184,9 +1933,19 @@
 "lm" = (
 /turf/closed/gm/dense,
 /area/lv624/ground/compound/se)
+"ln" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/spawner/random/engineering/tech_supply,
+/turf/open/floor/wood,
+/area/lv624/lazarus/canteen)
 "lo" = (
 /obj/structure/table/flipped,
-/obj/machinery/computer/communications,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
@@ -2217,7 +1976,7 @@
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
 "lx" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/whiteyellow/corner{
@@ -2399,6 +2158,14 @@
 /obj/machinery/vending/nanomed,
 /turf/closed/wall,
 /area/lv624/lazarus/robotics)
+"mz" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
 "mA" = (
 /obj/machinery/vending/robotics,
 /turf/open/floor,
@@ -2591,13 +2358,6 @@
 "nJ" = (
 /turf/closed/wall/wood,
 /area/crew_quarters/sleep/bedrooms)
-"nK" = (
-/obj/structure/closet/fireaxecabinet{
-	pixel_y = -1
-	},
-/obj/structure/cable,
-/turf/closed/wall/wood,
-/area/crew_quarters/sleep/bedrooms)
 "nN" = (
 /obj/machinery/light{
 	dir = 8
@@ -2615,10 +2375,6 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor,
 /area/lv624/lazarus/research)
-"nT" = (
-/obj/machinery/door/airlock/mainship/generic,
-/turf/open/floor/wood,
-/area/crew_quarters/sleep/bedrooms)
 "nU" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -2669,20 +2425,9 @@
 /obj/structure/cable,
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
-"om" = (
-/obj/machinery/door/airlock/mainship/generic,
-/turf/open/floor/wood/broken,
-/area/crew_quarters/sleep/bedrooms)
 "ot" = (
 /obj/structure/cable,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
-"ov" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "ow" = (
 /obj/structure/table,
@@ -2737,16 +2482,15 @@
 	},
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
-"oP" = (
-/obj/machinery/door/airlock/mainship/generic,
-/turf/open/floor/plating,
-/area/vapor_processing/cargo_maint_s)
 "oS" = (
 /obj/structure/closet/secure_closet/personal,
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
 "oW" = (
 /obj/structure/cargo_container,
+/obj/machinery/landinglight/lz1{
+	dir = 8
+	},
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "oX" = (
@@ -2902,7 +2646,7 @@
 /area/lv624/lazarus/robotics)
 "pJ" = (
 /obj/structure/closet,
-/obj/item/storage/fancy/cigarettes/dromedaryco,
+/obj/effect/spawner/random/misc/cigarettes,
 /obj/machinery/light,
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
@@ -2931,7 +2675,6 @@
 "pQ" = (
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
-/obj/machinery/power/apc/drained,
 /turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
 "pS" = (
@@ -2981,6 +2724,12 @@
 	dir = 1
 	},
 /area/shuttle/drop1/lz1)
+"qj" = (
+/obj/machinery/landinglight/lz1{
+	dir = 8
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "qk" = (
 /obj/structure/table/flipped,
 /obj/machinery/chem_dispenser/beer,
@@ -2996,12 +2745,6 @@
 /obj/structure/window/reinforced,
 /obj/item/weapon/gun/flamer/hydro_cannon,
 /obj/item/tool/kitchen/rollingpin,
-/obj/item/tool/kitchen/tray,
-/turf/open/floor/carpet,
-/area/lv624/lazarus/canteen)
-"qn" = (
-/obj/structure/window/reinforced,
-/obj/effect/spawner/random/food_or_drink/kitchenknife,
 /obj/item/tool/kitchen/tray,
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
@@ -3108,6 +2851,10 @@
 /obj/structure/window/framed/wood,
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
+"qM" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor/plating,
+/area/vapor_processing/cargo_maint_s)
 "qN" = (
 /obj/machinery/light{
 	dir = 8
@@ -3127,7 +2874,7 @@
 "qQ" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "qS" = (
@@ -3145,13 +2892,13 @@
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
 "qU" = (
-/obj/machinery/power/apc/drained,
+/obj/structure/closet/secure_closet/miner,
 /obj/structure/cable,
-/obj/structure/bed/chair/office/light{
+/obj/machinery/power/apc/drained,
+/turf/open/floor/tile/whiteyellow/corner{
 	dir = 1
 	},
-/turf/open/floor/plating,
-/area/vapor_processing/cargo_maint_s)
+/area/lv624/lazarus/quartstorage)
 "qV" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -3925,25 +3672,6 @@
 /obj/structure/window_frame/wood,
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
-"uF" = (
-/obj/structure/closet,
-/obj/item/tool/crowbar,
-/obj/item/clothing/gloves/yellow,
-/obj/item/stack/medical/heal_pack/gauze,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/light,
-/turf/open/floor/wood,
-/area/crew_quarters/sleep_male)
-"uI" = (
-/obj/structure/closet,
-/obj/effect/spawner/random/clothing/sunglasses,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/wood/broken,
-/area/crew_quarters/sleep_male)
 "uJ" = (
 /obj/machinery/door/window,
 /obj/machinery/door/window{
@@ -3963,10 +3691,18 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/bar,
 /area/medical/medbay2)
+"uY" = (
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor,
+/area/lv624/lazarus/research)
 "vb" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
@@ -4025,6 +3761,11 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground,
 /area/space)
+"wa" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
 "wf" = (
 /obj/machinery/door/poddoor/mainship{
 	id = "secure_blast";
@@ -4033,15 +3774,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/scorched/two,
 /area/lv624/lazarus/research)
-"wh" = (
-/obj/structure/table/flipped,
-/obj/effect/spawner/random/engineering/tech_supply,
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
-/turf/open/floor/tile/whiteyellow/corner{
-	dir = 1
-	},
-/area/vapor_processing/cargo3)
 "wi" = (
 /obj/structure/cable,
 /turf/open/floor/prison/yellow{
@@ -4061,7 +3793,7 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/n)
-"wC" = (
+"wt" = (
 /obj/structure/table/flipped,
 /obj/effect/spawner/random/engineering/powercell,
 /obj/machinery/light{
@@ -4078,9 +3810,13 @@
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "wG" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
+/obj/effect/landmark/patrol_point/som/som_22,
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
+"wI" = (
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
+	dir = 8
 	},
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
@@ -4104,17 +3840,16 @@
 /turf/open/ground,
 /area/space)
 "xc" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
-"xg" = (
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/structure/table,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
+"xh" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/machinery/landinglight/lz1{
+	dir = 8
 	},
-/turf/open/floor/wood,
-/area/crew_quarters/sleep/bedrooms)
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "xq" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/grass,
@@ -4128,10 +3863,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "xH" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "xK" = (
@@ -4169,10 +3901,7 @@
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
 "yv" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/se)
 "yz" = (
@@ -4195,6 +3924,19 @@
 	},
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
+"yI" = (
+/obj/structure/table/flipped,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/structure/cable,
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
+	},
+/area/vapor_processing/cargo3)
+"yK" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/tech_supply,
+/turf/open/floor/wood,
+/area/lv624/lazarus/canteen)
 "yS" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/scorched/two,
@@ -4203,10 +3945,25 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/east1)
+"yZ" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/spawner/random/engineering/tech_supply,
+/turf/open/floor/wood,
+/area/shuttle/drop2/lz2)
 "za" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
+"ze" = (
+/obj/structure/table/flipped,
+/obj/effect/spawner/random/engineering/tech_supply,
+/turf/open/floor,
+/area/storage/tools)
 "zl" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/dmg3,
@@ -4235,18 +3992,23 @@
 /obj/effect/ai_node,
 /turf/open/ground,
 /area/lv624/ground/compound/se)
+"zS" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/spawner/random/engineering/tech_supply,
+/turf/open/floor/wood,
+/area/shuttle/drop1/lz1)
 "zV" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/dmg1,
 /area/lv624/lazarus/research)
-"zY" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
+"zX" = (
+/obj/structure/window/reinforced,
+/obj/effect/spawner/random/food_or_drink/kitchenknife,
+/obj/item/tool/kitchen/tray,
+/turf/open/floor/carpet,
+/area/lv624/lazarus/canteen)
 "Al" = (
 /obj/effect/ai_node,
 /turf/open/ground/grass/grass2,
@@ -4270,6 +4032,19 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/space)
+"AM" = (
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/structure/table,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/sleep/bedrooms)
+"AN" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating,
+/area/medical/medbay2)
 "AO" = (
 /obj/machinery/light{
 	dir = 8
@@ -4288,6 +4063,13 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/research)
+"AR" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/spawner/random/engineering/tech_supply,
+/turf/open/floor/wood,
+/area/shuttle/drop2/lz2)
 "AS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/scorched/two,
@@ -4298,6 +4080,12 @@
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
+"AX" = (
+/obj/machinery/landinglight/lz1{
+	dir = 1
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "Bc" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 2
@@ -4354,12 +4142,6 @@
 "BJ" = (
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/east1)
-"BM" = (
-/obj/structure/table/mainship,
-/obj/item/toy/deck,
-/obj/effect/spawner/random/engineering/tech_supply,
-/turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
 "BN" = (
 /obj/effect/ai_node,
 /turf/open/floor/grass,
@@ -4374,19 +4156,9 @@
 /turf/open/ground,
 /area/lv624/ground/compound/se)
 "BZ" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
-"Cb" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/obj/effect/spawner/random/engineering/tech_supply,
-/turf/open/floor/wood,
-/area/lv624/lazarus/canteen)
 "Cd" = (
 /obj/machinery/computer/area_atmos,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -4418,6 +4190,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/ground,
 /area/lv624/ground/compound/n)
+"Ct" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor/wood/broken,
+/area/crew_quarters/sleep/bedrooms)
 "Cz" = (
 /obj/item/weapon/gun/pistol/holdout,
 /obj/effect/landmark/weed_node,
@@ -4433,39 +4209,17 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground,
 /area/space)
-"CH" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/bomb_supply,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
 "CO" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
-"CW" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "CY" = (
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/tile/whiteyellow/corner{
 	dir = 1
 	},
 /area/lv624/lazarus/quart)
-"Db" = (
-/obj/structure/table/mainship,
-/obj/item/toy/deck,
-/obj/effect/spawner/random/engineering/tech_supply,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-/turf/open/floor/wood,
-/area/lv624/lazarus/canteen)
 "Dd" = (
 /obj/effect/landmark/supplyspawner/food,
 /turf/open/floor/carpet,
@@ -4474,6 +4228,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
+"Dj" = (
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/structure/table,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/sleep/bedrooms)
 "Dl" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer,
 /obj/effect/decal/cleanable/dirt,
@@ -4489,12 +4251,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
-"DF" = (
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/structure/table,
-/obj/structure/cable,
-/turf/open/floor,
-/area/lv624/lazarus/research)
 "DL" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -4505,14 +4261,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/ground,
 /area/space)
-"DO" = (
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor,
-/area/lv624/lazarus/research)
 "DP" = (
 /obj/structure/cable,
 /obj/machinery/vending/nanomed,
@@ -4523,14 +4271,12 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground,
 /area/vapor_processing/caves/se)
-"DY" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/technology_scanner,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
-	},
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
+"DS" = (
+/obj/structure/table,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/structure/cable,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
 "Eb" = (
 /obj/machinery/robotic_fabricator,
 /obj/effect/decal/cleanable/dirt,
@@ -4542,6 +4288,12 @@
 /obj/effect/ai_node,
 /turf/open/ground,
 /area/lv624/ground/compound/n)
+"Eg" = (
+/obj/structure/table/mainship,
+/obj/item/toy/deck,
+/obj/effect/spawner/random/engineering/tech_supply,
+/turf/open/floor/wood,
+/area/shuttle/drop2/lz2)
 "Em" = (
 /obj/structure/cable,
 /obj/effect/landmark/corpsespawner/engineer/rig,
@@ -4588,16 +4340,6 @@
 "ER" = (
 /obj/effect/ai_node,
 /turf/open/floor/scorched/two,
-/area/storage/tools)
-"ES" = (
-/obj/structure/table/flipped,
-/obj/effect/spawner/random/engineering/bomb_supply,
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
-	},
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor,
 /area/storage/tools)
 "Fa" = (
 /turf/closed/mineral/smooth,
@@ -4652,6 +4394,12 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/sw)
+"FH" = (
+/obj/machinery/landinglight/lz1{
+	dir = 1
+	},
+/turf/closed/wall,
+/area/shuttle/drop1/lz1)
 "FJ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/grass,
@@ -4673,10 +4421,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
 "FZ" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/ground,
 /area/space)
 "Gh" = (
@@ -4700,9 +4445,17 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
-"GC" = (
+"Gx" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/spawner/random/engineering/tech_supply,
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
+"Gy" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "GI" = (
@@ -4788,9 +4541,16 @@
 /turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/west1)
 "Iu" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison/yellow/full,
 /area/lv624/lazarus/engineering)
+"Ix" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/spawner/random/engineering/tech_supply,
+/turf/open/floor/wood,
+/area/lv624/lazarus/canteen)
 "IH" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor,
@@ -4825,14 +4585,6 @@
 	},
 /turf/open/floor/scorched/two,
 /area/storage/tools)
-"Jo" = (
-/obj/structure/table/flipped,
-/obj/effect/spawner/random/engineering/tech_supply,
-/obj/structure/cable,
-/turf/open/floor/tile/whiteyellow/corner{
-	dir = 1
-	},
-/area/vapor_processing/cargo3)
 "Js" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/blood,
@@ -4854,18 +4606,8 @@
 /obj/effect/ai_node,
 /turf/open/floor/grass,
 /area/vapor_processing/south_compound)
-"JD" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/tech_supply,
-/obj/effect/spawner/random/engineering/tech_supply,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
 "JL" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/ground,
 /area/space)
 "JN" = (
@@ -4903,20 +4645,40 @@
 	},
 /turf/open/ground,
 /area/space)
-"Kr" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
+"Km" = (
+/obj/structure/closet,
+/obj/structure/window/reinforced{
+	dir = 4
 	},
+/obj/effect/spawner/random/engineering/toolbox,
+/turf/open/floor/wood,
+/area/crew_quarters/sleep_male)
+"Kr" = (
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "Ks" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/scorched/two,
 /area/lv624/lazarus/research)
+"Kz" = (
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor,
+/area/lv624/lazarus/research)
 "KE" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/vapor_processing/east_compound)
+"KF" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/spawner/random/engineering/toolbox,
+/turf/open/floor/wood/broken,
+/area/crew_quarters/sleep_male)
 "KH" = (
 /turf/open/ground,
 /area/lv624/lazarus/quartstorage)
@@ -4924,11 +4686,6 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/se)
-"KO" = (
-/obj/structure/table,
-/obj/effect/spawner/random/engineering/tool,
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
 "KQ" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/weed_node,
@@ -4943,25 +4700,6 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/ground,
 /area/space)
-"Ld" = (
-/obj/structure/table/mainship,
-/obj/effect/spawner/random/engineering/tech_supply,
-/turf/open/floor/wood,
-/area/lv624/lazarus/canteen)
-"Lg" = (
-/obj/structure/rack,
-/obj/machinery/light,
-/obj/effect/spawner/random/engineering/technology_scanner,
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
-"Li" = (
-/obj/structure/table,
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
 "Lj" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood,
@@ -5021,6 +4759,12 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central1)
+"LO" = (
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/structure/table,
+/obj/structure/cable,
+/turf/open/floor,
+/area/lv624/lazarus/research)
 "LP" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
@@ -5076,14 +4820,10 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor,
 /area/lv624/lazarus/robotics)
-"MB" = (
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/structure/table,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/sleep/bedrooms)
+"Mz" = (
+/obj/machinery/landinglight/lz1,
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "MD" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -5123,14 +4863,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
-"Nn" = (
-/obj/structure/closet,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/effect/spawner/random/engineering/toolbox,
-/turf/open/floor/wood,
-/area/crew_quarters/sleep_male)
 "Nt" = (
 /obj/structure/cable,
 /obj/machinery/vending/nanomed,
@@ -5172,15 +4904,20 @@
 	},
 /turf/open/ground,
 /area/vapor_processing/caves/se)
+"NN" = (
+/obj/structure/table,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
 "NP" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor,
 /area/maintenance/substation)
 "NS" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
+/obj/effect/landmark/patrol_point/tgmc_14,
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "Oa" = (
@@ -5251,21 +4988,6 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/lv624/lazarus/research)
-"OK" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating,
-/area/medical/medbay2)
-"Pd" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/effect/spawner/random/engineering/tech_supply,
-/turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
 "Pf" = (
 /obj/effect/ai_node,
 /turf/open/ground,
@@ -5281,6 +5003,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground,
 /area/space)
+"Pj" = (
+/obj/structure/reagent_dispensers/watertank,
+/obj/machinery/landinglight/lz1{
+	dir = 4
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "Pl" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/plating/dmg2,
@@ -5313,6 +5042,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/grass,
 /area/vapor_processing/east_compound)
+"Py" = (
+/obj/machinery/landinglight/lz1{
+	dir = 4
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "PD" = (
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central1)
@@ -5328,20 +5063,11 @@
 /turf/open/floor/grass,
 /area/lv624/ground/compound/c)
 "PN" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 4
-	},
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "PP" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/ground,
 /area/space)
 "PR" = (
@@ -5374,20 +5100,12 @@
 /turf/open/ground,
 /area/vapor_processing/caves/se)
 "Qp" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
-/obj/effect/spawner/random/engineering/tech_supply,
-/turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
-"Qr" = (
-/obj/structure/table/flipped,
-/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor,
-/area/storage/tools)
+/area/shuttle/drop1/lz1)
 "Qu" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -5406,16 +5124,6 @@
 	},
 /turf/open/ground,
 /area/vapor_processing/caves/se)
-"QQ" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/effect/spawner/random/engineering/tech_supply,
-/turf/open/floor/wood,
-/area/lv624/lazarus/canteen)
 "QS" = (
 /obj/effect/ai_node,
 /turf/open/floor/scorched/two,
@@ -5428,13 +5136,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/ground,
 /area/vapor_processing/caves/se)
-"Rh" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/obj/effect/spawner/random/engineering/tech_supply,
-/turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
 "Rj" = (
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack;
@@ -5453,6 +5154,13 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/ground,
 /area/space)
+"Ry" = (
+/obj/structure/table/mainship,
+/obj/item/toy/deck,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/turf/open/floor/wood,
+/area/lv624/lazarus/canteen)
 "Rz" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /obj/effect/decal/cleanable/dirt,
@@ -5475,6 +5183,19 @@
 	},
 /turf/open/ground,
 /area/space)
+"RT" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
+"RX" = (
+/obj/structure/table/flipped,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/turf/open/floor,
+/area/storage/tools)
 "Sb" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/green/whitegreen,
@@ -5503,10 +5224,7 @@
 /turf/open/floor,
 /area/storage/tools)
 "Sr" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/ground,
 /area/space)
 "St" = (
@@ -5530,10 +5248,12 @@
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "SH" = (
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/structure/table,
+/obj/structure/reagent_dispensers/watertank,
+/obj/machinery/landinglight/lz1{
+	dir = 8
+	},
 /turf/open/floor,
-/area/lv624/lazarus/research)
+/area/shuttle/drop1/lz1)
 "SJ" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/whiteyellow/full,
@@ -5552,10 +5272,7 @@
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
 "SV" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
+/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "SW" = (
@@ -5635,11 +5352,6 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/n)
-"Um" = (
-/obj/structure/table/flipped,
-/obj/effect/spawner/random/engineering/powercell,
-/turf/open/floor,
-/area/storage/tools)
 "Uu" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -5648,6 +5360,11 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/research)
+"Uv" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/toolbox,
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
 "Uw" = (
 /obj/effect/landmark/corpsespawner/security{
 	corpsehelmet = /obj/item/clothing/head/helmet/riot;
@@ -5715,11 +5432,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
-"Vk" = (
-/obj/structure/table/flipped,
-/obj/effect/spawner/random/engineering/bomb_supply,
-/turf/open/floor,
-/area/storage/tools)
 "Vn" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -5736,6 +5448,11 @@
 /obj/effect/ai_node,
 /turf/open/ground,
 /area/lv624/ground/caves/west1)
+"Vz" = (
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1,
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "VC" = (
 /obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -5788,26 +5505,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
-"We" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/toolbox,
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
-"Wf" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/obj/effect/spawner/random/engineering/tech_supply,
-/turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
 "Wh" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/yellow/full,
 /area/lv624/lazarus/engineering)
-"Wk" = (
-/obj/effect/spawner/random/engineering/tool,
-/turf/open/floor,
-/area/lv624/lazarus/research)
 "Wq" = (
 /turf/closed/mineral/smooth,
 /area/space)
@@ -5831,12 +5532,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/yellow/full,
 /area/lv624/lazarus/engineering)
-"WE" = (
-/obj/structure/table/mainship,
-/obj/item/toy/deck,
-/obj/effect/spawner/random/engineering/tech_supply,
-/turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
 "WF" = (
 /obj/effect/ai_node,
 /turf/open/ground,
@@ -5925,10 +5620,7 @@
 	},
 /area/vapor_processing/cargo3)
 "Xn" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
 "Xv" = (
@@ -5939,15 +5631,11 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
 "XB" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
 "XE" = (
@@ -5958,6 +5646,11 @@
 	dir = 1
 	},
 /area/lv624/lazarus/quart)
+"XF" = (
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/structure/table,
+/turf/open/floor,
+/area/lv624/lazarus/research)
 "XI" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grass,
@@ -6009,25 +5702,25 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/dmg3,
 /area/lv624/lazarus/research)
+"YA" = (
+/obj/structure/table/flipped,
+/obj/effect/spawner/random/engineering/powercell,
+/turf/open/floor,
+/area/storage/tools)
 "YB" = (
 /obj/effect/landmark/weed_node,
 /turf/open/ground,
 /area/vapor_processing/caves/se)
-"YD" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/tech_supply,
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
-"YI" = (
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+"YG" = (
+/obj/structure/closet,
+/obj/item/tool/crowbar,
+/obj/item/clothing/gloves/insulated,
+/obj/item/stack/medical/heal_pack/gauze,
+/obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/effect/spawner/random/engineering/toolbox,
-/turf/open/floor/wood/broken,
+/obj/machinery/light,
+/turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
 "YL" = (
 /obj/effect/landmark/corpsespawner/engineer,
@@ -6042,27 +5735,25 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
-"YP" = (
-/obj/structure/table,
-/obj/effect/spawner/random/engineering/toolbox,
-/turf/open/floor/wood,
-/area/crew_quarters/sleep_male)
 "YT" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
 	},
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
-"YY" = (
+"YW" = (
 /obj/structure/table,
-/obj/effect/spawner/random/engineering/tech_supply,
-/obj/structure/cable,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
 "Za" = (
 /obj/effect/ai_node,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/c)
+"Zq" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor/wood,
+/area/crew_quarters/sleep/bedrooms)
 "Zr" = (
 /obj/effect/ai_node,
 /turf/open/floor,
@@ -6074,17 +5765,27 @@
 "ZA" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/compound/se)
+"ZC" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
 "ZH" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
+/obj/effect/landmark/patrol_point/tgmc_12,
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "ZJ" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/grass,
 /area/vapor_processing/east_compound)
+"ZM" = (
+/obj/structure/table/mainship,
+/obj/item/toy/deck,
+/obj/effect/spawner/random/engineering/tech_supply,
+/turf/open/floor/wood,
+/area/shuttle/drop1/lz1)
 "ZO" = (
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = null;
@@ -6574,7 +6275,7 @@ PG
 PG
 PG
 hT
-jE
+iA
 jV
 kk
 hT
@@ -6589,29 +6290,29 @@ mc
 mc
 mr
 mc
-mc
-mc
-mc
-ms
-mc
-wM
-mc
-mc
-mc
-mc
-mc
-wM
-ms
-mc
-mc
-mc
-mc
-mc
-mc
-me
-mc
-me
-me
+Py
+Py
+Py
+Pj
+Py
+Qp
+Py
+Py
+Py
+Py
+Py
+Qp
+Pj
+Py
+Py
+Py
+Py
+Py
+Py
+kZ
+Py
+kZ
+kZ
 me
 me
 me
@@ -6625,26 +6326,26 @@ ad
 ad
 SV
 ai
-ap
-ap
-at
-aw
 aR
-ap
-at
-aG
+aR
+aR
+aR
+aR
+aR
+aR
 aJ
-ap
-at
-aw
+aJ
 aR
-ap
-at
-aO
-aP
-ap
-at
-aw
+aR
+aR
+aR
+aR
+aR
+aR
+aR
+aR
+aR
+aR
 aR
 ai
 ad
@@ -6690,31 +6391,31 @@ lt
 mc
 mc
 me
-mc
+Mz
 Ma
-bY
-bY
-cc
-cf
-ch
-bY
-cc
-cf
-ch
-bY
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
 Ma
-cf
-ch
-bY
-cc
-cf
-ch
-bY
-cc
-cf
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
 PN
 Ma
-mc
+AX
 mc
 mc
 mc
@@ -6755,7 +6456,7 @@ cS
 cT
 db
 yb
-Wf
+AR
 ae
 ah
 ah
@@ -6792,15 +6493,7 @@ lu
 wM
 me
 mc
-mc
-bU
-bZ
-bZ
-cd
-bZ
-bZ
-bZ
-bZ
+Mz
 bZ
 bZ
 bZ
@@ -6812,11 +6505,19 @@ bZ
 bZ
 bZ
 bZ
+cd
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
 bZ
 cd
 bZ
-ov
-mc
+za
+AX
 xH
 mc
 wM
@@ -6828,7 +6529,7 @@ ad
 ad
 az
 ad
-ak
+aj
 aq
 aq
 aq
@@ -6850,14 +6551,14 @@ aq
 ax
 aq
 aq
-aU
+aT
 ad
 cO
 ad
 cT
 dc
 do
-BM
+Eg
 ae
 ah
 ah
@@ -6894,8 +6595,8 @@ lv
 Pt
 mc
 mc
-mc
-bV
+Mz
+bZ
 bZ
 bZ
 bZ
@@ -6917,8 +6618,8 @@ bZ
 bZ
 bZ
 za
-cz
-pK
+bZ
+FH
 pK
 pK
 pK
@@ -6930,7 +6631,7 @@ ad
 az
 az
 Ll
-al
+aj
 aq
 aq
 aq
@@ -6952,7 +6653,7 @@ aq
 aq
 aq
 aq
-aV
+aT
 ad
 ad
 ad
@@ -6996,8 +6697,7 @@ lt
 md
 mc
 mc
-mc
-bW
+Mz
 bZ
 bZ
 bZ
@@ -7019,8 +6719,9 @@ bZ
 bZ
 bZ
 bZ
-cA
-pK
+bZ
+bZ
+FH
 pN
 pW
 qe
@@ -7032,7 +6733,7 @@ ad
 ad
 Ll
 ad
-am
+aj
 aq
 aq
 aq
@@ -7054,14 +6755,14 @@ aq
 aq
 aq
 aq
-aW
+aT
 ad
 ad
 ad
 cT
 de
 dq
-Pd
+yZ
 ae
 ah
 ah
@@ -7098,8 +6799,7 @@ lt
 mc
 mc
 mB
-mc
-bX
+Mz
 bZ
 bZ
 bZ
@@ -7121,11 +6821,12 @@ bZ
 bZ
 bZ
 bZ
-cB
-pK
+bZ
+bZ
+FH
 pO
 Oa
-Rh
+zS
 PG
 "}
 (11,1,1) = {"
@@ -7134,7 +6835,7 @@ ad
 ad
 ad
 ad
-an
+aj
 aq
 aq
 aq
@@ -7156,7 +6857,7 @@ aq
 aq
 aq
 aq
-aX
+aT
 Ll
 ad
 cO
@@ -7200,8 +6901,7 @@ lt
 mc
 mc
 mC
-mc
-bU
+Mz
 bZ
 bZ
 bZ
@@ -7223,11 +6923,12 @@ bZ
 bZ
 bZ
 bZ
-cy
-pK
+bZ
+bZ
+FH
 pP
 pY
-WE
+ZM
 PG
 "}
 (12,1,1) = {"
@@ -7236,7 +6937,7 @@ ad
 az
 ad
 ad
-ak
+aj
 aq
 aq
 aq
@@ -7258,7 +6959,7 @@ aq
 aq
 aq
 aq
-aY
+aT
 ad
 ad
 ad
@@ -7302,8 +7003,8 @@ lt
 mc
 mc
 mD
-mc
-bV
+Mz
+bZ
 bZ
 bZ
 bZ
@@ -7325,8 +7026,8 @@ bZ
 bZ
 bZ
 bZ
-cz
-pK
+bZ
+FH
 pQ
 yz
 qh
@@ -7338,7 +7039,7 @@ ad
 az
 ad
 ad
-al
+aj
 aq
 aq
 aq
@@ -7360,7 +7061,7 @@ aq
 aq
 aq
 aq
-aZ
+aT
 ad
 cO
 ad
@@ -7404,8 +7105,7 @@ lt
 wM
 mc
 mc
-wM
-bW
+Vz
 bZ
 bZ
 bZ
@@ -7427,11 +7127,12 @@ bZ
 bZ
 bZ
 bZ
-cA
-pK
+bZ
+bZ
+FH
 Xv
 qa
-Qp
+hM
 PG
 "}
 (14,1,1) = {"
@@ -7440,7 +7141,7 @@ ad
 az
 ad
 ad
-am
+aj
 aq
 aq
 aq
@@ -7462,7 +7163,7 @@ aq
 aq
 aq
 aq
-aW
+aT
 ad
 ad
 ad
@@ -7473,7 +7174,7 @@ dv
 ba
 Ec
 Cq
-OK
+AN
 ee
 xW
 eF
@@ -7495,7 +7196,7 @@ iB
 iB
 ka
 xR
-Cb
+Ix
 iB
 ki
 ki
@@ -7506,8 +7207,7 @@ lt
 mc
 mr
 mc
-mc
-bX
+Mz
 bZ
 bZ
 bZ
@@ -7529,8 +7229,9 @@ bZ
 bZ
 bZ
 bZ
-cB
-mc
+bZ
+bZ
+AX
 ot
 me
 mc
@@ -7564,7 +7265,7 @@ aq
 aq
 aq
 aq
-aX
+aT
 ad
 ad
 ad
@@ -7597,7 +7298,7 @@ jn
 qm
 kb
 ks
-Db
+Ry
 pp
 ki
 ki
@@ -7608,8 +7309,7 @@ lt
 me
 mc
 mc
-mc
-bU
+Mz
 bZ
 bZ
 bZ
@@ -7631,8 +7331,9 @@ bZ
 bZ
 bZ
 bZ
-cy
-mc
+bZ
+bZ
+AX
 Be
 mc
 mc
@@ -7644,7 +7345,7 @@ ad
 az
 Ll
 ad
-ak
+aj
 aq
 aq
 aq
@@ -7666,7 +7367,7 @@ aq
 ax
 aq
 aq
-aU
+aT
 ad
 ad
 ad
@@ -7696,10 +7397,10 @@ eK
 eK
 pp
 jo
-qn
+zX
 kc
 kt
-Ld
+yK
 pp
 ki
 ki
@@ -7710,8 +7411,7 @@ lt
 md
 ms
 ms
-mc
-bV
+Mz
 bZ
 bZ
 bZ
@@ -7733,8 +7433,9 @@ bZ
 bZ
 bZ
 bZ
-cz
-mc
+bZ
+bZ
+AX
 ot
 wM
 mc
@@ -7746,7 +7447,7 @@ ad
 Ll
 ad
 ad
-ao
+aj
 aq
 aq
 aq
@@ -7768,7 +7469,7 @@ aq
 aq
 aq
 aq
-aV
+aT
 ad
 ad
 cO
@@ -7801,7 +7502,7 @@ jp
 ys
 kd
 ku
-QQ
+ln
 iB
 ki
 ki
@@ -7812,15 +7513,7 @@ lt
 mc
 mc
 mc
-mc
-bW
-bZ
-bZ
-cd
-bZ
-bZ
-bZ
-bZ
+Mz
 bZ
 bZ
 bZ
@@ -7832,11 +7525,19 @@ bZ
 bZ
 bZ
 bZ
+cd
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
 bZ
 cd
 bZ
-cA
-mc
+bZ
+AX
 ot
 mc
 mc
@@ -7849,26 +7550,26 @@ ad
 ad
 ad
 ai
-ar
-ar
-au
-ay
 aB
-ar
-aF
-aI
-aM
-aL
-aF
-aI
-aM
-aL
-au
-ay
 aB
-ar
-au
-ay
+aB
+aB
+aB
+aB
+aL
+aL
+aL
+aL
+aL
+aL
+aL
+aL
+aB
+aB
+aB
+aB
+aB
+aB
 aB
 ai
 Ll
@@ -7914,31 +7615,31 @@ lt
 mc
 me
 mc
-mc
+Mz
 Ma
-ca
-ca
-ce
-cg
-cj
-ca
-ce
-cg
-cj
-ca
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
 Ma
-cg
-cj
-ca
-ce
-cg
-cj
-ca
-ce
-cg
-CW
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+za
 Ma
-mc
+AX
 ot
 mc
 mc
@@ -8017,29 +7718,29 @@ mc
 mc
 mc
 IH
-mc
-mc
-mc
-mc
-mc
-mc
-ms
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
+qj
+qj
+qj
+qj
+qj
+qj
+SH
+qj
+qj
+qj
+qj
+qj
+qj
+qj
+qj
+qj
 oW
-wM
-mc
-wD
-wM
-mc
-mc
+wI
+qj
+xh
+wI
+qj
+qj
 mc
 pT
 mc
@@ -8520,7 +8221,7 @@ kP
 kP
 kP
 lt
-qU
+lF
 lv
 lv
 lv
@@ -8746,7 +8447,7 @@ lK
 lt
 qV
 lt
-oP
+qM
 lt
 lt
 lt
@@ -9238,7 +8939,7 @@ kR
 kR
 kR
 lH
-Qr
+ze
 lQ
 lQ
 mK
@@ -9340,7 +9041,7 @@ ki
 ki
 lU
 mf
-Qr
+ze
 WR
 lQ
 mK
@@ -9442,7 +9143,7 @@ ki
 lH
 lV
 lQ
-Qr
+ze
 lQ
 lQ
 mK
@@ -9543,8 +9244,8 @@ sC
 lH
 lO
 lV
-Qr
-Qr
+ze
+ze
 lQ
 lQ
 mK
@@ -9847,16 +9548,16 @@ iX
 sz
 le
 lH
-wC
-Um
-Um
-Um
+wt
+YA
+YA
+YA
 So
 lQ
-Vk
-Vk
-Vk
-ES
+RX
+RX
+RX
+iG
 lH
 nd
 qJ
@@ -10241,7 +9942,7 @@ Hb
 hh
 mO
 hh
-Lg
+bG
 fT
 eu
 iX
@@ -10339,11 +10040,11 @@ eL
 ry
 kz
 lq
-JD
+ZC
 AT
-DY
+mz
 hh
-We
+Uv
 fT
 eu
 ep
@@ -10441,9 +10142,9 @@ eS
 jy
 fT
 gQ
-GC
+wa
 Qc
-CH
+RT
 hh
 ik
 fT
@@ -10537,15 +10238,15 @@ bm
 eq
 ep
 eL
-eT
+qU
 ff
 fs
 fs
 fT
 gQ
-YD
+Gx
 VZ
-zY
+Gy
 hh
 oh
 fT
@@ -11158,7 +10859,7 @@ fj
 fj
 ep
 rp
-wh
+yI
 im
 Xh
 rG
@@ -11260,7 +10961,7 @@ gT
 fj
 ep
 rp
-Jo
+yI
 im
 im
 rH
@@ -11708,10 +11409,10 @@ lh
 lh
 le
 pf
-YI
+KF
 YO
 px
-uF
+YG
 pf
 lf
 PG
@@ -11915,7 +11616,7 @@ pf
 VC
 pu
 pz
-Nn
+Km
 pf
 lg
 PG
@@ -12014,7 +11715,7 @@ lh
 lh
 le
 pf
-YP
+io
 pv
 pA
 pG
@@ -12119,7 +11820,7 @@ pf
 uC
 Fd
 pz
-uI
+fp
 pf
 lg
 PG
@@ -13116,20 +12817,20 @@ qo
 lT
 mA
 mw
-Wk
-Wk
+Kz
+Kz
 mo
-SH
-DO
-SH
-DF
-DO
-SH
+XF
+uY
+XF
+LO
+uY
+XF
 mo
 nQ
 sU
-Wk
-Wk
+Kz
+Kz
 mo
 uz
 mo
@@ -13841,10 +13542,10 @@ ll
 li
 nJ
 ME
-xg
+AM
 tR
 Cm
-MB
+Dj
 tR
 Bz
 ud
@@ -13933,7 +13634,7 @@ MD
 MD
 fY
 gZ
-KO
+YW
 pe
 tf
 gZ
@@ -14036,7 +13737,7 @@ QD
 SS
 rD
 rt
-Li
+NN
 JN
 gZ
 fY
@@ -14044,16 +13745,16 @@ nn
 ll
 ll
 nJ
-nT
+Zq
 nJ
 nJ
-nT
+Zq
 nJ
 nJ
-nT
+Zq
 nJ
 nJ
-nT
+Zq
 nJ
 nJ
 lj
@@ -14137,7 +13838,7 @@ wi
 Hd
 jb
 Gu
-YY
+DS
 je
 je
 jb
@@ -14145,7 +13846,7 @@ je
 nm
 nn
 nn
-nK
+iw
 Qu
 nU
 nU
@@ -14353,7 +14054,7 @@ nJ
 nJ
 nJ
 nJ
-om
+Ct
 nJ
 nJ
 nJ

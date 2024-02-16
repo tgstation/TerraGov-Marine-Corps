@@ -27,7 +27,7 @@
 		M.forceMove(loc)
 
 
-/obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(X.a_intent != INTENT_HARM)
 		return attack_hand(X)
 	return ..()
@@ -54,7 +54,7 @@
 	user.visible_message(span_warning("[user] pins [buckling_mob] into [src], preparing the securing resin."),
 	span_warning("[user] pins [buckling_mob] into [src], preparing the securing resin."))
 
-	if(!do_mob(user, buckling_mob, 1 SECONDS, BUSY_ICON_HOSTILE))
+	if(!do_after(user, 1 SECONDS, NONE, buckling_mob, BUSY_ICON_HOSTILE))
 		return FALSE
 	if(QDELETED(src))
 		return FALSE
@@ -134,10 +134,10 @@
 
 
 /obj/structure/bed/nest/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 2, BURN, "fire")
+	take_damage(burnlevel * 2, BURN, FIRE)
 
 /obj/structure/bed/nest/fire_act()
-	take_damage(50, BURN, "fire")
+	take_damage(50, BURN, FIRE)
 
 #undef NEST_RESIST_TIME
 #undef NEST_UNBUCKLED_COOLDOWN

@@ -6,6 +6,10 @@
 /datum/item_representation
 	/// The type of the object represented, to allow us to create the object when needed
 	var/obj/item/item_type
+	///If the item has greyscale colors, they are saved here
+	var/colors
+	///If the item has an icon_state variant, save it.
+	var/variant
 	/// If it's allowed to bypass the vendor check
 	var/bypass_vendor_check = FALSE
 
@@ -13,6 +17,17 @@
 	if(!item_to_copy)
 		return
 	item_type = item_to_copy.type
+	if(item_to_copy.current_variant && item_to_copy.colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
+		for(var/key in GLOB.loadout_variant_keys)
+			var/val = GLOB.loadout_variant_keys[key]
+			if(val != item_to_copy.current_variant)
+				continue
+			variant = key
+			break
+
+	if(!item_to_copy.greyscale_config)
+		return
+	colors = item_to_copy.greyscale_colors
 
 /**
  * This will attempt to instantiate an object.
@@ -31,6 +46,11 @@
 		to_chat(user, span_warning("[item_type] in your loadout is an invalid item, it has probably been changed or removed."))
 		return
 	var/obj/item/item = new item_type(master)
+	if(item.greyscale_config)
+		item.set_greyscale_colors(colors)
+	if(item.current_variant && item.colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
+		item.current_variant = GLOB.loadout_variant_keys[variant]
+		item.update_icon()
 	return item
 
 /**
@@ -38,7 +58,12 @@
  */
 /datum/item_representation/proc/get_tgui_data()
 	var/list/tgui_data = list()
-	var/icon/icon_to_convert = icon(initial(item_type.icon), initial(item_type.icon_state), SOUTH)
+	var/icon/icon_to_convert
+	var/icon_state = initial(item_type.icon_state) + (variant ? "_[GLOB.loadout_variant_keys[variant]]" : "")
+	if(initial(item_type.greyscale_config))
+		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), colors), icon_state,  dir = SOUTH)
+	else
+		icon_to_convert = icon(initial(item_type.icon), icon_state, SOUTH)
 	tgui_data["icons"] = list(list(
 				"icon" = icon2base64(icon_to_convert),
 				"translateX" = NO_OFFSET,
@@ -170,12 +195,6 @@
 
 	for(var/key in footwear.attachments_by_slot)
 		if(!isitem(footwear.attachments_by_slot[key]))
-			continue
-		if(istype(footwear.attachments_by_slot[key], /obj/item/armor_module/greyscale))
-			attachments += new /datum/item_representation/armor_module/colored(footwear.attachments_by_slot[key])
-			continue
-		if(istype(footwear.attachments_by_slot[key], /obj/item/armor_module/armor))
-			attachments += new /datum/item_representation/armor_module/armor(footwear.attachments_by_slot[key])
 			continue
 		if(istype(footwear.attachments_by_slot[key], /obj/item/armor_module/storage))
 			attachments += new /datum/item_representation/armor_module/storage(footwear.attachments_by_slot[key])

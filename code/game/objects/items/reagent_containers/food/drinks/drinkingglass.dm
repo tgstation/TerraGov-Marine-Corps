@@ -611,7 +611,7 @@
 		center_of_mass = list("x"=16, "y"=10)
 		return
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/item/reagent_containers/food/drinks/drinkingglass/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!CONFIG_GET(flag/fun_allowed))
 		return FALSE
 	attack_hand(X)
@@ -622,7 +622,7 @@
 	desc = "A drinking glass for soda."
 	list_reagents = list(/datum/reagent/consumable/drink/cold/sodawater = 50)
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/soda/Initialize()
+/obj/item/reagent_containers/food/drinks/drinkingglass/soda/Initialize(mapload)
 	. = ..()
 	on_reagent_change()
 
@@ -631,6 +631,6 @@
 	desc = "A drinking glass for cola."
 	list_reagents = list(/datum/reagent/consumable/drink/cold/space_cola = 50)
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/cola/Initialize()
+/obj/item/reagent_containers/food/drinks/drinkingglass/cola/Initialize(mapload)
 	. = ..()
 	on_reagent_change()

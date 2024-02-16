@@ -31,7 +31,7 @@
 	H.moth_wings = pick(GLOB.moth_wings_list - "Burnt Off")
 
 /mob/living/carbon/human/species/vatgrown
-	race = "Vat-Grown"
+	race = "Vat-Grown Human"
 
 /mob/living/carbon/human/species/sectoid
 	race = "Sectoid"
@@ -45,7 +45,7 @@
 /mob/living/carbon/human/species/zombie
 	race = "Strong zombie"
 
-/mob/living/carbon/human/species/zombie/Initialize()
+/mob/living/carbon/human/species/zombie/Initialize(mapload)
 	. = ..()
 	var/datum/outfit/outfit = pick(GLOB.survivor_outfits)
 	outfit = new outfit()

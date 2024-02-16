@@ -68,7 +68,7 @@
 	icon_dead = "corgigrey_dead"
 
 
-/mob/living/simple_animal/corgi/exoticcorgi/Initialize()
+/mob/living/simple_animal/corgi/exoticcorgi/Initialize(mapload)
 	. = ..()
 	var/newcolor = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
 	add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
@@ -112,7 +112,8 @@
 	icon_living = "puppy"
 	icon_dead = "puppy_dead"
 	density = FALSE
-	flags_pass = PASSMOB
+	allow_pass_flags = PASS_MOB
+	pass_flags = PASS_MOB
 	mob_size = MOB_SIZE_SMALL
 
 

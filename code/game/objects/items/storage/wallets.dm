@@ -46,8 +46,8 @@
 			name = "[name] ([front_id])"
 			update_icon()
 
-/obj/item/storage/wallet/update_icon()
-
+/obj/item/storage/wallet/update_icon_state()
+	. = ..()
 	if(front_id)
 		switch(front_id.icon_state)
 			if("id")
@@ -65,7 +65,7 @@
 	icon_state = "wallet"
 
 
-/obj/item/storage/wallet/random/Initialize()
+/obj/item/storage/wallet/random/Initialize(mapload)
 	. = ..()
 	var/item1_type = pick( /obj/item/spacecash/c10,/obj/item/spacecash/c100,/obj/item/spacecash/c20,/obj/item/spacecash/c200,/obj/item/spacecash/c50, /obj/item/spacecash/c500)
 	var/item2_type

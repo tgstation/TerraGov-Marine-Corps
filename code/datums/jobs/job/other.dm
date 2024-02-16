@@ -64,7 +64,7 @@
 	belt = /obj/item/storage/belt/utility/full
 	shoes = /obj/item/clothing/shoes/marinechief/sa
 	gloves = /obj/item/clothing/gloves/marine/officer/chief/sa
-	glasses = /obj/item/clothing/glasses/sunglasses/sa/nodrop
+	glasses = /obj/item/clothing/glasses/hud/sa/nodrop
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/job/spatial_agent/galaxy_red
@@ -96,7 +96,7 @@
 /datum/outfit/job/other/spatial_agent/marine_officer
 	w_uniform = /obj/item/clothing/under/marine/officer/bridge
 	head = /obj/item/clothing/head/beret/marine
-	belt = /obj/item/storage/belt/gun/pistol/m4a3/officer
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/officer
 	back = null
 	shoes = /obj/item/clothing/shoes/marine/full
 

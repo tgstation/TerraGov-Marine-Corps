@@ -1,6 +1,7 @@
 /obj/item/taperecorder
 	desc = "A device that can record up to an hour of dialogue and play it back. It automatically translates the content in playback."
 	name = "universal recorder"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "taperecorderidle"
 	item_state = "analyzer"
 	w_class = WEIGHT_CLASS_SMALL
@@ -9,15 +10,15 @@
 	var/playing = 0
 	var/timerecorded = 0
 	var/playsleepseconds = 0
-	var/list/storedinfo = new/list()
-	var/list/timestamp = new/list()
+	var/list/storedinfo = list()
+	var/list/timestamp = list()
 	var/canprint = 1
 	flags_atom = CONDUCT
 	throwforce = 2
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/taperecorder/Initialize()
+/obj/item/taperecorder/Initialize(mapload)
 	. = ..()
 	become_hearing_sensitive()
 

@@ -5,7 +5,7 @@
 	name = "mineral door"
 	density = TRUE
 	opacity = TRUE
-	flags_pass = NONE
+	allow_pass_flags = NONE
 	icon = 'icons/obj/doors/mineral_doors.dmi'
 	icon_state = "metal"
 
@@ -18,10 +18,16 @@
 	///The type of material we're made from and what we drop when destroyed
 	var/material_type
 
-/obj/structure/mineral_door/Initialize()
-	. = ..()
+/obj/structure/mineral_door/Initialize(mapload)
 	if((locate(/mob/living) in loc) && !open)	//If we build a door below ourselves, it starts open.
 		toggle_state()
+	/*
+	We are calling parent later because if we toggle state, the opacity changes only to change to
+	non opaque after the parent procs do their thing, this is an issue because this changes the
+	directional opacity of the turf below to be opaque from all sides, which screws with
+	line of sight because the turf below the door is considered opaque, when it shouldn't be.
+	*/
+	return ..()
 
 /obj/structure/mineral_door/Bumped(atom/user)
 	. = ..()
@@ -35,9 +41,10 @@
 	return try_toggle_state(user)
 
 /obj/structure/mineral_door/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
+
+	return ..()
 
 /*
  * Checks all the requirements for opening/closing a door before opening/closing it
@@ -68,7 +75,8 @@
 	update_icon()
 	addtimer(VARSET_CALLBACK(src, switching_states, FALSE), 1 SECONDS)
 
-/obj/structure/mineral_door/update_icon()
+/obj/structure/mineral_door/update_icon_state()
+	. = ..()
 	if(open)
 		icon_state = "[base_icon_state][smoothing_flags ? "-[smoothing_junction]" : ""]-open"
 	else
@@ -92,7 +100,7 @@
 	if(W.damtype == BURN && istype(src, /obj/structure/mineral_door/resin)) //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1 //generally means we do double damage to resin doors
 
-	take_damage(max(0, W.force * multiplier - W.force), W.damtype)
+	take_damage(max(0, W.force * multiplier - W.force), W.damtype, MELEE)
 
 /obj/structure/mineral_door/Destroy()
 	if(material_type)
@@ -110,24 +118,28 @@
 	name = "silver door"
 	material_type = /obj/item/stack/sheet/mineral/silver
 	base_icon_state = "silver"
+	icon_state = "silver"
 	max_integrity = 500
 
 /obj/structure/mineral_door/gold
 	name = "gold door"
 	material_type = /obj/item/stack/sheet/mineral/gold
 	base_icon_state = "gold"
+	icon_state = "gold"
 	max_integrity = 250
 
 /obj/structure/mineral_door/uranium
 	name = "uranium door"
 	material_type = /obj/item/stack/sheet/mineral/uranium
 	base_icon_state = "uranium"
+	icon_state = "uranium"
 	max_integrity = 500
 
 /obj/structure/mineral_door/sandstone
 	name = "sandstone door"
 	material_type = /obj/item/stack/sheet/mineral/sandstone
 	base_icon_state = "sandstone"
+	icon_state = "sandstone"
 	max_integrity = 100
 
 /obj/structure/mineral_door/transparent
@@ -143,26 +155,30 @@
 	name = "phoron door"
 	material_type = /obj/item/stack/sheet/mineral/phoron
 	base_icon_state = "phoron"
+	icon_state = "phoron"
 	max_integrity = 250
 
 /obj/structure/mineral_door/transparent/phoron/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
-			new /obj/flamer_fire(get_turf(src), 25, 25)
+			var/turf/T = get_turf(src)
+			T.ignite(25, 25)
 			visible_message(span_danger("[src] suddenly combusts!"))
 	return ..()
 
 
 /obj/structure/mineral_door/transparent/phoron/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
-		new /obj/flamer_fire(get_turf(src), 25, 25)
+		var/turf/T = get_turf(src)
+		T.ignite(25, 25)
 
 
 /obj/structure/mineral_door/transparent/diamond
 	name = "diamond door"
 	material_type = /obj/item/stack/sheet/mineral/diamond
 	base_icon_state = "diamond"
+	icon_state = "diamond"
 	max_integrity = 1000
 
 
@@ -170,6 +186,9 @@
 	name = "wooden door"
 	material_type = /obj/item/stack/sheet/wood
 	base_icon_state = "wood"
+	icon_state = "wood"
 	trigger_sound = 'sound/effects/doorcreaky.ogg'
 	max_integrity = 100
 
+/obj/structure/mineral_door/wood/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)

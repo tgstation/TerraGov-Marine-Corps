@@ -2,7 +2,6 @@
 /obj/structure/table/holotable
 	name = "table"
 	desc = "A square piece of metal standing on four metal legs. It can not move."
-	icon_state = "table"
 	density = TRUE
 	anchored = TRUE
 
@@ -64,7 +63,7 @@
 	desc = "Here's your chance, do your dance at the Space Jam."
 	w_class = WEIGHT_CLASS_BULKY //Stops people from hiding it in their bags/pockets
 
-/obj/item/toy/beach_ball/holoball/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/item/toy/beach_ball/holoball/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!CONFIG_GET(flag/fun_allowed))
 		return FALSE
 	attack_hand(X)
@@ -107,7 +106,6 @@
 		visible_message(span_notice("[user] dunks [I] into the [src]!"))
 
 /obj/structure/holohoop/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(istype(mover,/obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(prob(50))
@@ -119,6 +117,6 @@
 			visible_message(span_notice(" Swish! \the [I] lands in \the [src]."), 3)
 		else
 			visible_message(span_warning(" \the [I] bounces off of \the [src]'s rim!"), 3)
-		return 0
+		return FALSE
 	else
 		return ..()

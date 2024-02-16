@@ -21,9 +21,6 @@
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
-"hq" = (
-/turf/closed/mineral/smooth,
-/area/lv624/ground/caves/central1)
 "kc" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
@@ -133,7 +130,7 @@
 /area/lv624/ground/caves/central3)
 "KU" = (
 /turf/closed/wall/r_wall,
-/area/lv624/ground/caves/central1)
+/area/lv624/ground/caves/central1/garbledradio)
 "Lu" = (
 /obj/structure/rack,
 /obj/item/tool/shovel,
@@ -151,8 +148,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "MU" = (
-/obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
+/obj/structure/flora/jungle/plantbot1/alien,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "OT" = (
 /obj/structure/rack,
@@ -163,7 +160,7 @@
 /area/lv624/ground/caves/central1)
 "OY" = (
 /turf/open/floor,
-/area/lv624/ground/caves/central1)
+/area/lv624/ground/caves/central1/garbledradio)
 "OZ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -215,7 +212,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "WN" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "WW" = (
 /turf/closed/wall,
@@ -3015,7 +3012,7 @@ bj
 bj
 bj
 Ka
-hq
+bj
 OY
 OY
 OY

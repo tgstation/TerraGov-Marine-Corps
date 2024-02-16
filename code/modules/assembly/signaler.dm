@@ -12,7 +12,7 @@
 	var/datum/radio_frequency/radio_connection
 	var/hearing_range = 1
 
-/obj/item/assembly/signaler/Initialize()
+/obj/item/assembly/signaler/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
 
@@ -28,6 +28,7 @@
 	return TRUE
 
 /obj/item/assembly/signaler/update_icon()
+	. = ..()
 	if(holder)
 		holder.update_icon()
 

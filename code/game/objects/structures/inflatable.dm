@@ -11,7 +11,7 @@
 /obj/item/inflatable/attack_self(mob/user)
 	. = ..()
 	balloon_alert(user, "Inflating...")
-	if(!do_after(user, 3 SECONDS, TRUE, src))
+	if(!do_after(user, 3 SECONDS, NONE, src))
 		balloon_alert(user, "Interrupted!")
 		return
 	playsound(loc, 'sound/items/zip.ogg', 25, 1)
@@ -38,7 +38,7 @@
 	name = "generic inflatable"
 	desc = "You shouldn't be seeing this."
 	density = TRUE
-	flags_pass = NONE
+	allow_pass_flags = NONE
 	icon = 'icons/obj/inflatable.dmi'
 	max_integrity = 50
 	resistance_flags = XENO_DAMAGEABLE
@@ -65,6 +65,9 @@
 
 		if(EXPLODE_LIGHT)
 			if(prob(50))
+				deflate(TRUE)
+		if(EXPLODE_WEAK)
+			if(prob(20))
 				deflate(TRUE)
 
 
@@ -142,7 +145,7 @@
 	///Are we currently busy opening/closing?
 	var/switching_states = FALSE
 
-/obj/structure/inflatable/door/Initialize()
+/obj/structure/inflatable/door/Initialize(mapload)
 	. = ..()
 	if((locate(/mob/living) in loc) && !open)
 		toggle_state()
@@ -166,11 +169,11 @@
 	return try_toggle_state(user)
 
 /obj/structure/inflatable/door/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	. = ..()
 	if(air_group)
 		return open
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
+	return ..()
 
 /*
  * Checks all the requirements for opening/closing a door before opening/closing it. Copypasta. TODO: un-copypasta this
@@ -196,7 +199,6 @@
 	open = !open
 	flick("door_[open ? "opening" : "closing"]", src)
 	density = !density
-	opacity = !opacity
 	update_icon()
 	addtimer(VARSET_CALLBACK(src, switching_states, FALSE), 1 SECONDS)
 

@@ -31,7 +31,7 @@
 	sharp = 0
 	var/loaded      //Descriptive string for currently loaded food object.
 
-/obj/item/tool/kitchen/utensil/Initialize()
+/obj/item/tool/kitchen/utensil/Initialize(mapload)
 	. = ..()
 	if (prob(60))
 		src.pixel_y = rand(0, 4)
@@ -60,7 +60,7 @@
 	else
 		..()
 
-/obj/item/tool/kitchen/utensil/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/item/tool/kitchen/utensil/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!CONFIG_GET(flag/fun_allowed))
 		return FALSE
 	attack_hand(X)
@@ -115,10 +115,6 @@
 	icon_state = "pknife"
 	force = 10
 	throwforce = 10
-
-/obj/item/tool/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, 5)
-	return ..()
 
 /*
 * Kitchen knives
@@ -248,7 +244,7 @@
 		log_combat(user, M, "attacked", src)
 
 		if(prob(15))
-			M.Paralyze(60)
+			M.Paralyze(6 SECONDS)
 			M.take_limb_damage(3)
 		else
 			M.take_limb_damage(5)
@@ -285,7 +281,7 @@
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin'
 			visible_message(span_danger("[user] slams [M] with the tray!"))
 		if(prob(10))
-			M.Stun(rand(20,60))
+			M.Stun(rand(2 SECONDS, 6 SECONDS))
 			M.take_limb_damage(3)
 			return
 		else
@@ -307,13 +303,13 @@
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin' again
 			visible_message(span_danger("[user] slams [M] in the face with the tray!"))
 		if(prob(30))
-			M.Stun(rand(40,80))
+			M.Stun(rand(4 SECONDS, 8 SECONDS))
 			M.take_limb_damage(4)
 			return
 		else
 			M.take_limb_damage(8)
 			if(prob(30))
-				M.Paralyze(40)
+				M.Paralyze(4 SECONDS)
 				return
 			return
 

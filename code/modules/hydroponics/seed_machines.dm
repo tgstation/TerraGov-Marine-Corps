@@ -8,7 +8,7 @@
 	var/list/genes = list()
 	var/genesource = "unknown"
 
-/obj/item/disk/botany/Initialize()
+/obj/item/disk/botany/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-5,5)
 	pixel_y = rand(-5,5)
@@ -123,48 +123,7 @@
 
 	var/datum/seed/genetics // Currently scanned seed genetic structure.
 	var/degradation = 0     // Increments with each scan, stops allowing gene mods after a certain point.
-/*
-/obj/machinery/botany/extractor/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 
-	if(!user)
-		return
-
-	var/list/data = list()
-
-	var/list/geneMasks[0]
-	for(var/gene_tag in GLOB.gene_tag_masks)
-		geneMasks.Add(list(list("tag" = gene_tag, "mask" = GLOB.gene_tag_masks[gene_tag])))
-	data["geneMasks"] = geneMasks
-
-	data["activity"] = active
-	data["degradation"] = degradation
-
-	if(loaded_disk)
-		data["disk"] = 1
-	else
-		data["disk"] = 0
-
-	if(seed)
-		data["loaded"] = "[seed.name]"
-	else
-		data["loaded"] = 0
-
-	if(genetics)
-		data["hasGenetics"] = 1
-		data["sourceName"] = genetics.display_name
-		if(!genetics.roundstart)
-			data["sourceName"] += " (variety #[genetics.uid])"
-	else
-		data["hasGenetics"] = 0
-		data["sourceName"] = 0
-
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "botany_isolator.tmpl", "Lysis-isolation Centrifuge UI", 470, 450)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-*/
 /obj/machinery/botany/Topic(href, href_list)
 	. = ..()
 	if(.)
@@ -251,47 +210,7 @@
 	name = "bioballistic delivery system"
 	icon_state = "traitgun"
 	disk_needs_genes = 1
-/*
-/obj/machinery/botany/editor/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 
-	if(!user)
-		return
-
-	var/list/data = list()
-
-	data["activity"] = active
-
-	if(seed)
-		data["degradation"] = seed.modified
-	else
-		data["degradation"] = 0
-
-	if(length(loaded_disk.genes))
-		data["disk"] = 1
-		data["sourceName"] = loaded_disk.genesource
-		data["locus"] = ""
-
-		for(var/datum/plantgene/P in loaded_disk.genes)
-			if(data["locus"] != "") data["locus"] += ", "
-			data["locus"] += "[GLOB.gene_tag_masks[P.genetype]]"
-
-	else
-		data["disk"] = 0
-		data["sourceName"] = 0
-		data["locus"] = 0
-
-	if(seed)
-		data["loaded"] = "[seed.name]"
-	else
-		data["loaded"] = 0
-
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "botany_editor.tmpl", "Bioballistic Delivery UI", 470, 450)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-*/
 /obj/machinery/botany/editor/Topic(href, href_list)
 	. = ..()
 	if(.)

@@ -34,11 +34,10 @@
 		/obj/item/armor_module/storage/uniform/holster/freelancer,
 		/obj/item/armor_module/storage/uniform/holster/vp,
 		/obj/item/armor_module/storage/uniform/holster/highpower,
-		/obj/item/armor_module/greyscale/badge,
-		/obj/item/armor_module/greyscale/cape,
-		/obj/item/armor_module/greyscale/cape/half,
-		/obj/item/armor_module/greyscale/cape/short,
-		/obj/item/armor_module/greyscale/cape/scarf,
+		/obj/item/armor_module/storage/uniform/holster/deathsquad,
+		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/armor/cape,
+		/obj/item/armor_module/armor/cape/kama,
 		/obj/item/armor_module/module/pt_belt,
 		/obj/item/clothing/tie,
 		/obj/item/clothing/tie/blue,
@@ -73,15 +72,16 @@
 		ATTACHMENT_SLOT_UNIFORM_TIE,
 		ATTACHMENT_SLOT_BADGE,
 		ATTACHMENT_SLOT_CAPE,
+		ATTACHMENT_SLOT_KAMA,
 		ATTACHMENT_SLOT_BELT,
 	)
 	///Typepath list of uniform variants.
 	var/list/adjustment_variants = list(
 		"Down" = "_d",
 	)
-	var/current_variant
+	var/adjustment_variant
 
-/obj/item/clothing/under/Initialize()
+/obj/item/clothing/under/Initialize(mapload)
 	. = ..()
 	attachments_allowed = string_list(attachments_allowed)
 
@@ -90,9 +90,10 @@
 		var/mob/M = src.loc
 		M.update_inv_w_uniform()
 
+
 /obj/item/clothing/under/get_worn_icon_state(slot_name, inhands)
 	. = ..()
-	. += current_variant
+	. += adjustment_variant
 
 /obj/item/clothing/under/attackby(obj/item/I, mob/user, params)
 	if(!ishuman(user))
@@ -115,7 +116,7 @@
 	if(!ishuman(usr))
 		return
 	//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
-	if ((flags_item & NODROP) || loc != usr)
+	if(HAS_TRAIT(src, TRAIT_NODROP) || loc != usr)
 		return
 	if(usr.incapacitated() || usr.buckled || usr.lying_angle)
 		return
@@ -216,7 +217,7 @@
 		to_chat(usr, span_warning("You cannot roll down the uniform!"))
 		return
 	var/variant = null
-	if(!current_variant || length(adjustment_variants) > 1)
+	if(!adjustment_variant || length(adjustment_variants) > 1)
 		if(length(adjustment_variants) == 1)
 			variant = adjustment_variants[1]
 		else
@@ -224,8 +225,8 @@
 			selection_list += adjustment_variants
 			variant = tgui_input_list(usr, "Select Variant", "Variants", selection_list)
 	if(variant)
-		current_variant = adjustment_variants[variant]
+		adjustment_variant = adjustment_variants[variant]
 	else
-		current_variant = null
+		adjustment_variant = null
 	update_icon()
 	update_clothing_icon()

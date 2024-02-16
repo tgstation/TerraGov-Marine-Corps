@@ -11,15 +11,15 @@
 	allowed = list(/obj/item/weapon/gun)//Guns only.
 
 
-/obj/item/clothing/suit/armor/mob_can_equip(mob/M, slot, disable_warning)
+/obj/item/clothing/suit/armor/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
 	. = ..()
 	if(!.)
 		return FALSE
 
-	if(!ishuman(M))
+	if(!ishuman(user))
 		return TRUE
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/carbon/human/H = user
 	if(!H.w_uniform)
 		to_chat(H, span_warning("You need to be wearing somethng under this to be able to equip it."))
 		return FALSE
@@ -78,14 +78,14 @@
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 5)
 	siemens_coefficient = 0.7
 	permeability_coefficient = 0.9
-	time_to_unequip = 20
-	time_to_equip = 20
+	equip_delay_self = 20
+	unequip_delay_self = 20
 	allowed = list(
 		/obj/item/weapon/gun/,
 		/obj/item/flashlight,
 		/obj/item/storage/holster/blade,
-		/obj/item/storage/belt/gun/pistol/m4a3,
-		/obj/item/storage/belt/gun/m44,
+		/obj/item/storage/holster/belt/pistol/m4a3,
+		/obj/item/storage/holster/belt/m44,
 	)
 
 /obj/item/clothing/suit/armor/riot
@@ -101,8 +101,8 @@
 	flags_item = SYNTH_RESTRICTED
 	siemens_coefficient = 0.5
 	permeability_coefficient = 0.7
-	time_to_unequip = 20
-	time_to_equip = 20
+	equip_delay_self = 20
+	unequip_delay_self = 20
 
 /obj/item/clothing/suit/armor/swat
 	name = "swat suit"
@@ -162,17 +162,21 @@
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
-	flags_item = NODROP|DELONDROP
+	flags_item = DELONDROP
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 35, ENERGY = 20, BOMB = 40, BIO = 40, FIRE = 40, ACID = 40)
 	allowed = list()//how would you put a gun onto a field of energy?
+
+/obj/item/clothing/suit/armor/sectoid/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, SECTOID_TRAIT)
 
 /obj/item/clothing/suit/armor/sectoid/shield
 	name = "powerful psionic field"
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 35, ENERGY = 20, BOMB = 40, BIO = 40, FIRE = 40, ACID = 40)
 
-/obj/item/clothing/suit/armor/sectoid/shield/Initialize()
+/obj/item/clothing/suit/armor/sectoid/shield/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/shield/overhealth)
 

@@ -110,7 +110,7 @@
 	volume = 50
 
 
-/obj/item/reagent_containers/spray/cleaner/Initialize()
+/obj/item/reagent_containers/spray/cleaner/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(/datum/reagent/space_cleaner, volume)
 

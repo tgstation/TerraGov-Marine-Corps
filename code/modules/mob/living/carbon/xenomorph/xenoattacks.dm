@@ -69,12 +69,13 @@
 
 //Hot hot Aliens on Aliens action.
 //Actually just used for eating people.
-/mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(status_flags & INCORPOREAL || X.status_flags & INCORPOREAL) //Incorporeal xenos cannot attack or be attacked
 		return
 
 	if(src == X)
 		return TRUE
+
 	if(isxenolarva(X)) //Larvas can't eat people
 		X.visible_message(span_danger("[X] nudges its head against \the [src]."), \
 		span_danger("We nudge our head against \the [src]."))
@@ -92,6 +93,10 @@
 						span_notice("We extinguished the fire on [src]."), null, 5)
 					ExtinguishMob()
 				return TRUE
+
+			if(interaction_emote(src))
+				return TRUE
+
 			X.visible_message(span_notice("\The [X] caresses \the [src] with its scythe-like arm."), \
 			span_notice("We caress \the [src] with our scythe-like arm."), null, 5)
 
@@ -110,6 +115,8 @@
 				X.visible_message(span_warning("\The [X] nibbles \the [src]."), \
 				span_warning("We nibble \the [src]."), null, 5)
 				return TRUE
+			// Not at the base of the proc otherwise we can just nibble for free slashing effects
+			SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_HOSTILE_XENOMORPH, src, damage_amount, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier)
 			// copypasted from attack_alien.dm
 			//From this point, we are certain a full attack will go out. Calculate damage and modifiers
 			var/damage = X.xeno_caste.melee_damage

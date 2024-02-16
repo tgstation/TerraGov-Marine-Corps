@@ -59,6 +59,33 @@
 		/obj/effect/spawner/random/misc/structure/closet = 1,
 	)
 
+/obj/effect/spawner/random/misc/structure/closet/welding
+	icon_state = "random_welding"
+	spawn_loot_chance = 100
+	loot = list(
+		/obj/structure/closet/secure_closet/engineering_welding = 50,
+		/obj/structure/closet/secure_closet/engineering_electrical = 5,
+		/obj/structure/closet/toolcloset = 5,
+	)
+
+/obj/effect/spawner/random/misc/structure/closet/tool
+	icon_state = "random_toolcloset"
+	spawn_loot_chance = 100
+	loot = list(
+		/obj/structure/closet/toolcloset = 50,
+		/obj/structure/closet/secure_closet/engineering_welding = 5,
+		/obj/structure/closet/secure_closet/engineering_electrical = 5,
+	)
+
+/obj/effect/spawner/random/misc/structure/closet/electrical
+	icon_state = "random_electrical"
+	spawn_loot_chance = 100
+	loot = list(
+		/obj/structure/closet/secure_closet/engineering_electrical = 50,
+		/obj/structure/closet/secure_closet/engineering_welding = 5,
+		/obj/structure/closet/toolcloset = 5,
+	)
+
 /obj/effect/spawner/random/misc/structure/security_closet
 	name = "security closet spawner"
 	icon_state = "random_security_closet"
@@ -143,8 +170,8 @@
 	icon_state = "random_m42c"
 	spawn_loot_chance = 1
 	loot = list(
-		/obj/item/storage/box/m42c_system = 9,
-		/obj/item/storage/box/m42c_system_Jungle = 1,
+		/obj/item/storage/box/crate/m42c_system = 9,
+		/obj/item/storage/box/crate/m42c_system_Jungle = 1,
 	)
 
 /obj/effect/spawner/random/misc/structure/m42c/oscaroutpost
@@ -167,6 +194,13 @@
 		/obj/structure/filingcabinet,
 	)
 
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn
+	spawn_loot_chance = 85
+	loot = list(
+		/obj/structure/filingcabinet = 15,
+		/obj/item/stack/sheet/metal = 1,
+	)
+
 /obj/effect/spawner/random/misc/structure/filingcabinet/chestdrawer
 	icon_state = "random_chestdrawers"
 	loot = list(
@@ -179,13 +213,21 @@
 	icon_state = "random_girder"
 	spawn_loot_chance = 65
 	loot = list(
-		/obj/structure/girder = 3,
 		/obj/structure/girder/displaced = 7,
+		/obj/structure/girder = 3,
 		/obj/structure/girder/reinforced = 1,
 	)
 
 /obj/effect/spawner/random/misc/structure/girder/highspawn
 	spawn_loot_chance = 95
+
+/obj/effect/spawner/random/misc/structure/girder/regularweighted
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/structure/girder = 70,
+		/obj/structure/girder/displaced = 15,
+		/obj/structure/girder/reinforced = 5,
+	)
 
 /obj/effect/spawner/random/misc/structure/table_parts
 	name = "table parts spawner"
@@ -193,7 +235,7 @@
 	spawn_loot_chance = 95
 	loot = list(
 		/obj/item/frame/table = 15,
-		/obj/item/frame/table/nometal = 10,
+		/obj/item/frame/table/mainship/nometal = 10,
 		/obj/item/frame/table/reinforced = 10,
 		/obj/item/frame/table/wood = 5,
 		/obj/item/frame/table/fancywood = 5,
@@ -452,6 +494,86 @@
 		/obj/structure/bed/stool,
 	)
 
+/obj/effect/spawner/random/misc/structure/flavorvending
+	name = "vending spawner"
+	icon_state = "random_vending"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/machinery/vending/assist = 25,
+		/obj/machinery/vending/cigarette = 25,
+		/obj/machinery/vending/coffee = 25,
+		/obj/machinery/vending/cola = 25,
+		/obj/machinery/vending/snack = 25,
+		/obj/machinery/vending/sovietsoda = 1,
+		/obj/machinery/vending/engineering = 1,
+	)
+
+/obj/effect/spawner/random/misc/structure/flavorvending/assistweighted
+	icon_state = "random_assist"
+	loot = list(
+		/obj/machinery/vending/assist = 40,
+		/obj/effect/spawner/random/misc/structure/flavorvending = 2,
+	)
+
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted
+	icon_state = "random_cigarette_machine"
+	loot = list(
+		/obj/machinery/vending/cigarette = 40,
+		/obj/effect/spawner/random/misc/structure/flavorvending = 2,
+	)
+
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted/colony
+	icon_state = "random_cigarette_machine"
+	loot = list(
+		/obj/machinery/vending/cigarette/colony = 40,
+		/obj/machinery/vending/coffee = 2,
+		/obj/machinery/vending/cola = 2,
+		/obj/machinery/vending/snack = 2,
+	)
+
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted
+	icon_state = "random_coffee"
+	loot = list(
+		/obj/machinery/vending/coffee = 40,
+		/obj/machinery/vending/snack = 5,
+		/obj/machinery/vending/cola = 5,
+		/obj/effect/spawner/random/misc/structure/flavorvending = 2,
+	)
+
+/obj/effect/spawner/random/misc/structure/flavorvending/colaweighted
+	icon_state = "random_cola"
+	loot = list(
+		/obj/machinery/vending/cola = 40,
+		/obj/machinery/vending/snack = 5,
+		/obj/machinery/vending/coffee = 5,
+		/obj/effect/spawner/random/misc/structure/flavorvending = 2,
+	)
+
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted
+	icon_state = "random_snack"
+	loot = list(
+		/obj/machinery/vending/snack = 40,
+		/obj/machinery/vending/cola = 5,
+		/obj/machinery/vending/coffee = 5,
+		/obj/effect/spawner/random/misc/structure/flavorvending = 2,
+	)
+
+/obj/effect/spawner/random/misc/structure/flavorvending/engivend
+	icon_state = "random_engivend"
+	loot = list(
+		/obj/machinery/vending/engivend = 60,
+		/obj/machinery/vending/tool = 5,
+		/obj/effect/spawner/random/misc/structure/flavorvending = 2,
+	)
+
+/obj/effect/spawner/random/misc/structure/flavorvending/engitool
+	icon_state = "random_engitool"
+	loot = list(
+		/obj/machinery/vending/tool = 60,
+		/obj/machinery/vending/engivend = 5,
+		/obj/effect/spawner/random/misc/structure/flavorvending = 2,
+	)
+
 /obj/effect/spawner/random/misc/structure/supplycrate
 	name = "supply crate spawner"
 	icon_state = "random_supplycrate"
@@ -463,7 +585,7 @@
 
 /obj/effect/spawner/random/misc/structure/supplycrate/normalweighted
 	loot = list(
-		/obj/structure/largecrate = 30,
+		/obj/structure/largecrate/random = 40,
 		/obj/effect/spawner/random/misc/structure/supplycrate = 5,
 	)
 
@@ -472,7 +594,7 @@
 	icon_state = "random_securecrate"
 	spawn_loot_chance = 90
 	loot = list(
-		/obj/structure/largecrate/random/secure = 30,
+		/obj/structure/largecrate/random/secure = 40,
 		/obj/structure/largecrate/random = 5,
 	)
 

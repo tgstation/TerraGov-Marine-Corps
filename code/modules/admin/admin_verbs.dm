@@ -196,6 +196,14 @@
 	log_admin("[key_name(usr)] revived [key_name(L)].")
 	message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")
 
+/client/proc/cmd_admin_check_contents(mob/living/M in GLOB.mob_list)
+	set category = "Debug"
+	set name = "Check Contents"
+
+	var/list/L = M.GetAllContents()
+	for(var/t in L)
+		to_chat(usr, "[t] [ADMIN_VV(t)] [ADMIN_TAG(t)]", confidential = TRUE)
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Check Contents") // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_sleep(mob/living/L in GLOB.mob_living_list)
 	set category = null
@@ -363,7 +371,7 @@
 	return path
 
 
-/datum/admins/proc/browse_files(root = "data/logs/", max_iterations = 20, list/valid_extensions = list("txt", "log", "htm", "html"))
+/datum/admins/proc/browse_files(root = "data/logs/", max_iterations = 20, list/valid_extensions = list("txt", "log", "htm", "html", "json"))
 	if(!check_rights(R_LOG))
 		return
 
@@ -407,6 +415,8 @@
 	if(M.client)
 		dat += "<center><p>Client</p></center>"
 		dat += "<center>"
+		dat += individual_logging_panel_link(M, INDIVIDUAL_GAME_LOG, LOGSRC_CLIENT, "Game Log", source, ntype)
+		dat += " | "
 		dat += individual_logging_panel_link(M, INDIVIDUAL_ATTACK_LOG, LOGSRC_CLIENT, "Attack Log", source, ntype)
 		dat += " | "
 		dat += individual_logging_panel_link(M, INDIVIDUAL_SAY_LOG, LOGSRC_CLIENT, "Say Log", source, ntype)
@@ -426,6 +436,8 @@
 	dat += "<center><p>Mob</p></center>"
 
 	dat += "<center>"
+	dat += individual_logging_panel_link(M, INDIVIDUAL_GAME_LOG, LOGSRC_MOB, "Game Log", source, ntype)
+	dat += " | "
 	dat += individual_logging_panel_link(M, INDIVIDUAL_ATTACK_LOG, LOGSRC_MOB, "Attack Log", source, ntype)
 	dat += " | "
 	dat += individual_logging_panel_link(M, INDIVIDUAL_SAY_LOG, LOGSRC_MOB, "Say Log", source, ntype)
@@ -501,7 +513,7 @@
 		window_flash(iter_admin_client)
 		SEND_SOUND(iter_admin_client.mob, sound('sound/misc/bloop.ogg'))
 
-	log_admin_private_asay("[key_name(src)]: [msg]")
+	mob.log_talk(msg, LOG_ASAY)
 
 	var/color = "asay"
 	if(check_other_rights(src, R_DBRANKS, FALSE))
@@ -533,7 +545,7 @@
 	if(!msg)
 		return
 
-	log_admin_private_msay("[key_name(src)]: [msg]")
+	mob.log_talk(msg, LOG_MSAY)
 
 	var/color = "msay"
 	if(check_other_rights(src, R_DBRANKS, FALSE))
@@ -597,7 +609,7 @@
 	if(handle_spam_prevention(msg, MUTE_DEADCHAT))
 		return
 
-	log_dsay("[key_name(src)]: [msg]")
+	mob.log_talk(msg, LOG_DSAY)
 	msg = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[holder.fakekey ? "" : "([holder.rank.name]) "][holder.fakekey ? "Administrator" : key]</span> says, \"<span class='message'>[msg]</span>\"</span>"
 
 	for(var/i in GLOB.clients)
@@ -611,6 +623,17 @@
 		else if(C.mob.stat == DEAD && (C.prefs.toggles_chat & CHAT_DEAD))
 			to_chat(C, msg)
 
+/client/proc/object_say(obj/O in world)
+	set category = "Admin"
+	set name = "OSay"
+	set desc = "Makes an object say something."
+	var/message = tgui_input_text(usr, "What do you want the message to be?", "Make Sound", encode = FALSE)
+	if(!message)
+		return
+	O.say(message, sanitize = FALSE)
+	log_admin("[key_name(usr)] made [O] at [AREACOORD(O)] say \"[message]\"")
+	message_admins(span_adminnotice("[key_name_admin(usr)] made [O] at [AREACOORD(O)]. say \"[message]\""))
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Object Say") // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
 
 /datum/admins/proc/jump()
 	set category = "Admin"
@@ -937,7 +960,7 @@
 					current_ticket.MessageNoRecipient(msg)
 				return
 
-	if(handle_spam_prevention(msg, MUTE_ADMINHELP))
+	if(handle_spam_prevention(msg, MUTE_ADMINHELP, MESSAGE_FLAG_MENTOR|MESSAGE_FLAG_ADMIN))
 		return
 
 	//clean the message if it's not sent by a high-rank admin
@@ -1215,6 +1238,20 @@
 		log_admin("[key_name(usr)] forcibly removed all players from [CA].")
 		message_admins("[ADMIN_TPMONTY(usr)] forcibly removed all players from [CA].")
 
+/// Admin verb to delete a squad completely
+/datum/admins/proc/delete_squad()
+	set category = "Admin"
+	set name = "Delete a squad"
+
+	if(!check_rights(R_ADMIN))
+		return
+	var/id_to_del = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
+	if(!id_to_del)
+		return
+	qdel(SSjob.squads[id_to_del])
+	var/msg = "[key_name(usr)] has deleted a squad. ID:[id_to_del]."
+	message_admins(msg)
+	log_admin(msg)
 
 /datum/admins/proc/job_slots()
 	set category = "Admin"
@@ -1299,10 +1336,26 @@
 
 /client/proc/get_togglebuildmode()
 	set name = "Toggle Build Mode"
-	set category = "Fun"
+	set category = "Admin.Fun"
 	if(!check_rights(R_SPAWN))
 		return
 	togglebuildmode(mob)
+
+/client/proc/toggle_admin_tads()
+	set category = "Admin.Fun"
+	set name = "Toggle Tadpole Restrictions"
+
+	if(!check_rights(R_FUN))
+		return
+
+	if(SSticker.mode.enable_fun_tads)
+		message_admins("[ADMIN_TPMONTY(usr)] toggled Tadpole restrictions off.")
+		log_admin("[key_name(usr)] toggled Tadpole restrictions off.")
+		SSticker.mode.enable_fun_tads = FALSE
+	else
+		SSticker.mode.enable_fun_tads = TRUE
+		message_admins("[ADMIN_TPMONTY(usr)] toggled Tadpole restrictions on.")
+		log_admin("[key_name(usr)] toggled Tadpole restrictions on.")
 
 //returns TRUE to let the dragdrop code know we are trapping this event
 //returns FALSE if we don't plan to trap the event
@@ -1340,13 +1393,14 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Ghost Drag Control")
 
 	tomob.ckey = frommob.ckey
+	tomob.client?.init_verbs()
 	qdel(frommob)
 
 	return TRUE
 
 /client/proc/mass_replace()
 	set name = "Mass replace atom"
-	set category = "Fun"
+	set category = "Admin.Fun"
 	if(!check_rights(R_SPAWN))
 		return
 	var/to_replace = pick_closest_path(input("Pick a movable atom path to be replaced", "Enter path as text") as text)

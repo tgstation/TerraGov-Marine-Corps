@@ -1,5 +1,5 @@
 /mob/new_player
-	invisibility = INVISIBILITY_MAXIMUM
+	invisibility = INVISIBILITY_ABSTRACT
 	stat = DEAD
 	density = FALSE
 	canmove = FALSE
@@ -14,7 +14,7 @@
 	var/datum/job/saved_job
 
 
-/mob/new_player/Initialize()
+/mob/new_player/Initialize(mapload)
 	if(length(GLOB.newplayer_start))
 		var/turf/spawn_loc = get_turf(pick(GLOB.newplayer_start))
 		forceMove(spawn_loc)
@@ -69,24 +69,23 @@
 			return null
 		return output
 
-/mob/new_player/Stat()
+/mob/new_player/get_status_tab_items()
 	. = ..()
 
 	if(!SSticker)
 		return
 
-	if(statpanel("Status"))
-
-		if(SSticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
-			stat("Players: [length(GLOB.player_list)]", "Players Ready: [length(GLOB.ready_players)]")
-			for(var/i in GLOB.player_list)
-				if(isnewplayer(i))
-					var/mob/new_player/N = i
-					stat("[N.client?.holder?.fakekey ? N.client.holder.fakekey : N.key]", N.ready ? "Playing" : "")
-				else if(isobserver(i))
-					var/mob/dead/observer/O = i
-					stat("[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]", "Observing")
+	if(SSticker.current_state == GAME_STATE_PREGAME)
+		. += "Time To Start: [SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]"
+		. += "Players: [length(GLOB.player_list)]"
+		. += "Players Ready: [length(GLOB.ready_players)]"
+		for(var/i in GLOB.player_list)
+			if(isnewplayer(i))
+				var/mob/new_player/N = i
+				. += "[N.client?.holder?.fakekey ? N.client.holder.fakekey : N.key][N.ready ? " Playing" : ""]"
+			else if(isobserver(i))
+				var/mob/dead/observer/O = i
+				. += "[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key] Observing"
 
 
 /mob/new_player/Topic(href, href_list[])
@@ -133,6 +132,9 @@
 
 		if("aliens")
 			view_aliens()
+
+		if("som")
+			view_som()
 
 		if("SelectedJob")
 			if(!SSticker)
@@ -233,7 +235,7 @@
 
 /mob/new_player/proc/view_lore()
 	var/output = "<div align='center'>"
-	output += "<a href='byond://?src=[REF(src)];lobby_choice=marines'>TerraGov Marine Corps</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=aliens'>Xenomorph Hive</A>"
+	output += "<a href='byond://?src=[REF(src)];lobby_choice=marines'>TerraGov Marine Corps</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=aliens'>Xenomorph Hive</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=som'>Sons of Mars</A>"
 	output += "</div>"
 
 	var/datum/browser/popup = new(src, "lore", "<div align='center'>Current Year: [GAME_YEAR]</div>", 240, 300)
@@ -258,8 +260,21 @@
 	popup.set_content(output)
 	popup.open(FALSE)
 
+/mob/new_player/proc/view_som()
+	var/output = "<div align='left'>"
+	output += "<p><i>The <b>Sons of Mars</b> are a fanatical group that trace their lineage back to the great Martian uprising. \
+	After TerraGov brutally crushed the rebellion, many Martians fled into deep space and most Terrans thought they would die in the great void. \
+	However, more than a century later their descendants emerged as the Sons of Mars, who are determined to reclaim their lost home and crush their hated enemy TerraGov.\
+	</i></p>"
+	output += "</div>"
+	output += "<p><i>The men and women that form the SOM are taught from birth of their dream of Mars, and hatred of TerraGov, and are fiercely proud of their history. \
+	As a society they have a single mindeded dedication towards reclaiming a home almost none of them have ever seen. What they lack in sheer manpower or resources compared to TerraGov, they make up for with advanced technology and bloody minded focus. \
+	Across the outer rim of colonised space, the SOM have worked to spread discontent and rebellion across TerraGov's many colonies, many of whom are receptive to the SOM's promises of freedom from TerraGov tyranny. \
+	Now the SOM feel their long promised revenge is almost at hand, and the threat of all out war looms over all human occupied space...</i></p>"
 
-
+	var/datum/browser/popup = new(src, "som", "<div align='center'>Sons of Mars</div>", 480, 430)
+	popup.set_content(output)
+	popup.open(FALSE)
 
 /mob/new_player/Move()
 	return FALSE
@@ -295,6 +310,7 @@
 	var/spawn_type = assigned_role.return_spawn_type(client.prefs)
 	var/mob/living/spawning_living = new spawn_type()
 	GLOB.joined_player_list += ckey
+	client.init_verbs()
 
 	spawning_living.on_spawn(src)
 
@@ -318,6 +334,9 @@
 	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
 	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
+/mob/living/carbon/xenomorph/on_spawn(mob/new_player/summoner)
+	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
+	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
 /mob/new_player/proc/transfer_character()
 	. = new_character
@@ -394,6 +413,7 @@
 	observer.name = observer.real_name
 
 	mind.transfer_to(observer, TRUE)
+	observer.client?.init_verbs()
 	qdel(src)
 
 ///Toggles the new players ready state

@@ -94,7 +94,7 @@
 
 	var/obj/item/radio/radio = null//Let's give it a radio.
 
-/obj/item/mmi/radio_enabled/Initialize()
+/obj/item/mmi/radio_enabled/Initialize(mapload)
 	. = ..()
 	radio = new(src)//Spawns a radio inside the MMI.
 	radio.broadcasting = 1//So it's broadcasting from the start.

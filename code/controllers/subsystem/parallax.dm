@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(parallax)
 	name = "Parallax"
 	wait = 2
-	flags = SS_POST_FIRE_TIMING | SS_BACKGROUND
+	flags = SS_POST_FIRE_TIMING | SS_BACKGROUND | SS_NO_INIT
 	priority = FIRE_PRIORITY_PARALLAX
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 	var/list/currentrun
@@ -40,7 +40,8 @@ SUBSYSTEM_DEF(parallax)
 		if(!istype(movable_eye))
 			continue
 
-		for(movable_eye; isloc(movable_eye.loc) && !isturf(movable_eye.loc); movable_eye = movable_eye.loc);
+		while(isloc(movable_eye.loc) && !isturf(movable_eye.loc))
+			movable_eye = movable_eye.loc
 		//get the last movable holding the mobs eye
 
 		if(movable_eye == processing_client.movingmob)

@@ -71,20 +71,21 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	resistance_flags = RESIST_ALL
 
 
-/obj/structure/closet/supplypod/Initialize()
+/obj/structure/closet/supplypod/Initialize(mapload)
 	. = ..()
 	setStyle(style, TRUE)
 
 
-/obj/structure/closet/supplypod/update_icon()
-	cut_overlays()
+/obj/structure/closet/supplypod/update_overlays()
+	. = ..()
+
 	if(style == STYLE_SEETHROUGH || style == STYLE_INVISIBLE)
 		return
 
 	if(opened)
-		add_overlay("[icon_state]_open")
+		. += "[icon_state]_open"
 	else
-		add_overlay("[icon_state]_door")
+		. += "[icon_state]_door"
 
 
 /obj/structure/closet/supplypod/proc/setStyle(chosenStyle, duringInit = FALSE)
@@ -141,7 +142,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 
 	var/explosion_sum = B[1] + B[2] + B[3] + B[4]
 	if(explosion_sum != 0)
-		explosion(get_turf(src), B[1], B[2], B[3], B[4])
+		explosion(get_turf(src), B[1], B[2], B[3], 0, B[4])
 	else if(!effectQuiet)
 		playsound(src, "explosion", landingSound ? 15 : 80, 1)
 
@@ -246,7 +247,9 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	icon_state = ""
 
 
-/obj/effect/DPfall/Initialize(dropLocation, obj/structure/closet/supplypod/pod)
+/obj/effect/DPfall/Initialize(mapload, obj/structure/closet/supplypod/pod)
+	if(!pod)
+		return INITIALIZE_HINT_QDEL
 	if(pod.style == STYLE_SEETHROUGH)
 		pixel_x = -16
 		pixel_y = 0
@@ -278,6 +281,8 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 
 /obj/effect/DPtarget/Initialize(mapload, podParam, single_order)
 	. = ..()
+	if(!podParam)
+		return INITIALIZE_HINT_QDEL
 	if(ispath(podParam))
 		podParam = new podParam()
 	pod = podParam

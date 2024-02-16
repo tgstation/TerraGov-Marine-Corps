@@ -2,7 +2,7 @@
 // charge from 0 to 100%
 // fits in APC to provide backup power
 
-/obj/item/cell/Initialize()
+/obj/item/cell/Initialize(mapload)
 	. = ..()
 	charge = maxcharge
 	if(self_recharge)
@@ -84,8 +84,7 @@
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, span_warning("Your programming restricts using rigged power cells."))
 			return
-		log_explosion("[key_name(user)] primed a rigged [src] at [AREACOORD(user.loc)].")
-		log_combat(user, src, "primed a rigged")
+		log_bomber(user, "primed a rigged", src)
 		user.visible_message(span_danger("[user] destabilizes [src]; it will detonate shortly!"),
 		span_danger("You destabilize [src]; it will detonate shortly!"))
 		var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
@@ -134,12 +133,12 @@
 			if(skill < SKILL_ENGINEER_ENGI) //Field engi skill or better or ya fumble.
 				user.visible_message(span_notice("[user] fumbles around figuring out how to manipulate [src]."),
 				span_notice("You fumble around, trying to figure out how to rig [src] to explode."))
-				if(!do_after(user, delay, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(user, delay, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 
 			user.visible_message(span_notice("[user] begins manipulating [src] with [I]."),
 			span_notice("You begin rigging [src] to detonate with [I]."))
-			if(!do_after(user, delay, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, delay, NONE, src, BUSY_ICON_BUILD))
 				return
 			rigged = TRUE
 			overlays += spark_overlay
@@ -150,7 +149,7 @@
 				user.visible_message(span_notice("[user] fumbles around figuring out how to manipulate [src]."),
 				span_notice("You fumble around, trying to figure out how to stabilize [src]."))
 				var/fumbling_time = SKILL_TASK_EASY
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 				if(prob((SKILL_ENGINEER_PLASTEEL - skill) * 20))
 					to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
@@ -160,7 +159,7 @@
 			span_notice("You begin stabilizing [src] with [I] so it won't detonate on use."))
 			if(skill > SKILL_ENGINEER_ENGI)
 				delay = max(delay - 10, 0)
-			if(!do_after(user, delay, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, delay, NONE, src, BUSY_ICON_BUILD))
 				return
 			rigged = FALSE
 			overlays -= spark_overlay
@@ -181,7 +180,7 @@
 	var/light_impact_range = clamp(round(sqrt(charge) * 0.15), 0, 4)
 	var/flash_range = clamp(round(sqrt(charge) * 0.15), -1, 4)
 
-	explosion(T, devastation_range, heavy_impact_range, light_impact_range, flash_range, small_animation = TRUE)
+	explosion(T, devastation_range, heavy_impact_range, light_impact_range, 0, flash_range)
 
 	QDEL_IN(src, 1)
 
@@ -214,6 +213,9 @@
 			if (prob(25))
 				qdel(src)
 				return
+			if (prob(25))
+				corrupt()
+		if(EXPLODE_WEAK)
 			if (prob(25))
 				corrupt()
 

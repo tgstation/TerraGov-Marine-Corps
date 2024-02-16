@@ -2,13 +2,13 @@
 
 /datum/reagents
 	/// The reagents being held
-	var/list/datum/reagent/reagent_list = new/list()
+	var/list/datum/reagent/reagent_list = list()
 	/// Current volume of all the reagents
 	var/total_volume = 0
 	/// Max volume of this holder
 	var/maximum_volume = 100
 	/// The atom this holder is attached to
-	var/atom/my_atom = null
+	var/datum/weakref/my_atom
 	/// Current temp of the holder volume
 	var/chem_temp = 150
 	/// unused
@@ -16,7 +16,7 @@
 	/// see [/datum/reagents/proc/metabolize] for usage
 	var/addiction_tick = 1
 	/// currently addicted reagents
-	var/list/datum/reagent/addiction_list = new/list()
+	var/list/datum/reagent/addiction_list = list()
 	/// various flags, see code\__DEFINES\reagents.dm
 	var/reagent_flags
 
@@ -26,15 +26,12 @@
 	reagent_flags = new_flags
 
 /datum/reagents/Destroy()
-	var/list/cached_reagents = reagent_list
-	for(var/reagent in cached_reagents)
-		var/datum/reagent/R = reagent
-		qdel(R)
-	cached_reagents.Cut()
-	cached_reagents = null
-	if(my_atom?.reagents == src)
-		my_atom.reagents = null
-	my_atom = null
+	for(var/datum/reagent/reagent AS in reagent_list)
+		qdel(reagent)
+	reagent_list = null
+	var/atom/holder_atom = get_holder()
+	if(holder_atom && holder_atom.reagents == src)
+		holder_atom.reagents = null
 	return ..()
 
 /**
@@ -246,7 +243,7 @@
 			if(preserve_data)
 				trans_data = current_reagent.data
 			R.add_reagent(current_reagent.type, amount, trans_data, src.chem_temp)
-			remove_reagent(current_reagent.type, amount, 1)
+			remove_reagent(current_reagent.type, amount)
 			break
 
 	src.update_total()
@@ -277,7 +274,7 @@
 		if(liverless && !R.self_consuming) //need to be metabolized
 			continue
 		if(!L)
-			L = R.holder.my_atom
+			L = R.holder.get_holder()
 			quirks = L.get_reagent_tags()
 		if(L.reagent_check(R) != TRUE)
 			if(can_overdose)
@@ -354,7 +351,7 @@
 		return //Yup, no reactions here. No siree.
 	var/list/cached_reagents = reagent_list
 	var/list/cached_reactions = GLOB.chemical_reactions_list
-	var/datum/cached_my_atom = my_atom
+	var/datum/cached_my_atom = get_holder()
 
 	var/reaction_occured = TRUE
 	while(reaction_occured)
@@ -430,14 +427,14 @@
 				multiplier = min(multiplier, round(get_reagent_amount(B) / cached_required_reagents[B]))
 
 			for(var/B in cached_required_reagents)
-				remove_reagent(B, (multiplier * cached_required_reagents[B]), safety = 1)
+				remove_reagent(B, (multiplier * cached_required_reagents[B]))
 
 			for(var/P in selected_reaction.results)
 				multiplier = max(multiplier, 1) //This shouldn't happen...
 				SSblackbox.record_feedback("tally", "chemical_reaction", cached_results[P]*multiplier, P)
 				add_reagent(P, cached_results[P]*multiplier, null, chem_temp)
 
-			var/list/seen = viewers(4, get_turf(my_atom))
+			var/list/seen = viewers(4, get_turf(cached_my_atom))
 			var/iconhtml = icon2html(cached_my_atom, seen)
 			if(cached_my_atom)
 				if(!ismob(cached_my_atom)) //no bubbling mobs
@@ -469,13 +466,14 @@
 	if(!reagent_to_remove)
 		return FALSE
 	SEND_SIGNAL(src, COMSIG_REAGENT_DELETING, type_to_remove)
-	if(isliving(my_atom))
-		var/mob/living/L = my_atom
+	var/atom/holder_atom = get_holder()
+	if(isliving(holder_atom))
+		var/mob/living/L = holder_atom
 		reagent_to_remove.on_mob_delete(L, L.get_reagent_tags())
 	reagent_list -= reagent_to_remove
 	qdel(reagent_to_remove)
 	update_total()
-	my_atom?.on_reagent_change(DEL_REAGENT)
+	holder_atom?.on_reagent_change(DEL_REAGENT)
 	return TRUE
 
 
@@ -554,7 +552,7 @@
 
 	var/datum/reagent/D = GLOB.chemical_reagents_list[reagent]
 	if(!D)
-		stack_trace("[my_atom] attempted to add a reagent called '[reagent]' which doesn't exist. ([usr])")
+		stack_trace("[get_holder()] attempted to add a reagent called '[reagent]' which doesn't exist. ([usr])")
 		return FALSE
 
 	update_total()
@@ -569,6 +567,7 @@
 	var/new_total = cached_total + amount
 	var/cached_temp = chem_temp
 	var/list/cached_reagents = reagent_list
+	var/atom/cached_atom = get_holder()
 
 	//Equalize temperature - Not using specific_heat() as it's just some still unused physical chemistry.
 	var/specific_heat = 0
@@ -587,8 +586,8 @@
 	if(existing_reagent)
 		existing_reagent.volume += amount
 		update_total()
-		if(my_atom)
-			my_atom.on_reagent_change(ADD_REAGENT)
+		if(cached_atom)
+			cached_atom.on_reagent_change(ADD_REAGENT)
 		existing_reagent.on_merge(data, amount)
 		if(!no_react)
 			handle_reactions()
@@ -604,12 +603,12 @@
 		R.data = data
 		R.on_new(data)
 
-	if(isliving(my_atom))
-		var/mob/living/L = my_atom
-		R.on_mob_add(my_atom, L.get_reagent_tags()) //Must occur before it could possibly run on_mob_delete
+	if(isliving(cached_atom))
+		var/mob/living/L = cached_atom
+		R.on_mob_add(cached_atom, L.get_reagent_tags()) //Must occur before it could possibly run on_mob_delete
 	update_total()
-	if(my_atom)
-		my_atom.on_reagent_change(ADD_REAGENT)
+	if(cached_atom)
+		cached_atom.on_reagent_change(ADD_REAGENT)
 	if(!no_react)
 		handle_reactions()
 	return TRUE
@@ -619,7 +618,7 @@
 		var/amt = list_reagents[r_id]
 		add_reagent(r_id, amt, data)
 
-/datum/reagents/proc/remove_reagent(reagent, amount, safety)//Added a safety check for the trans_id_to
+/datum/reagents/proc/remove_reagent(reagent, amount)
 	if(isnull(amount))
 		amount = 0
 		CRASH("null amount passed to reagent code")
@@ -628,6 +627,7 @@
 		return FALSE
 
 	var/list/cached_reagents = reagent_list
+	var/atom/cached_holder_atom = get_holder()
 
 	for(var/A in cached_reagents)
 		var/datum/reagent/R = A
@@ -637,10 +637,7 @@
 			amount = clamp(amount, 0, R.volume) //P.S. Change it with the define when the other PR is merged.
 			R.volume -= amount
 			update_total()
-			if(!safety)//So it does not handle reactions when it need not to
-				handle_reactions()
-			if(my_atom)
-				my_atom.on_reagent_change(REM_REAGENT)
+			cached_holder_atom?.on_reagent_change(REM_REAGENT)
 			return TRUE
 
 	return FALSE
@@ -704,7 +701,7 @@
 		// We found a match, proceed to remove the reagent.	Keep looping, we might find other reagents of the same type.
 		if(matches)
 			// Have our other proc handle removement
-			has_removed_reagent = remove_reagent(R.type, amount, safety)
+			has_removed_reagent = remove_reagent(R.type, amount)
 
 	return has_removed_reagent
 
@@ -790,6 +787,9 @@
 	chem_temp = round(chem_temp)
 	handle_reactions()
 
+///Getter proc for our atom holder
+/datum/reagents/proc/get_holder()
+	return my_atom?.resolve()
 
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -800,7 +800,7 @@
 	if(reagents)
 		qdel(reagents)
 	reagents = new (max_vol, new_flags)
-	reagents.my_atom = src
+	reagents.my_atom = WEAKREF(src)
 	if(init_reagents)
 		reagents.add_reagent_list(init_reagents, data)
 

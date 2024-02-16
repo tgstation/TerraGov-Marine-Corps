@@ -35,16 +35,19 @@
 
 /mob/proc/death(gibbing, deathmessage = "seizes up and falls limp...", silent)
 	SHOULD_CALL_PARENT(TRUE)
+	if(SEND_SIGNAL(src, COMSIG_MOB_PRE_DEATH, FALSE) & COMPONENT_CANCEL_DEATH)
+		return FALSE
 	if(stat == DEAD)
 		if(gibbing)
 			qdel(src)
 		return
-
+	set_stat(DEAD)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_DEATH, src)
 	SEND_SIGNAL(src, COMSIG_MOB_DEATH, gibbing)
 	log_combat(src, src, "[deathmessage]")
-
-	set_stat(DEAD)
+	if(client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
+		personal_statistics.deaths++
 
 	if(deathmessage && !silent && !gibbing)
 		visible_message("<b>\The [name]</b> [deathmessage]")

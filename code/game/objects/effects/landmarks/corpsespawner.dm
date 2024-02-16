@@ -38,7 +38,7 @@
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Use CAPTAIN if you want it to be all access.
 	var/corpseidicon = null //For setting it to be a gold, silver, centcom etc ID
 
-/obj/effect/landmark/corpsespawner/Initialize()
+/obj/effect/landmark/corpsespawner/Initialize(mapload)
 	. = ..()
 	GLOB.corpse_landmarks_list += src
 
@@ -62,6 +62,7 @@
 	victim.timeofdeath = -CONFIG_GET(number/revive_grace_period)
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	ADD_TRAIT(victim, TRAIT_UNDEFIBBABLE, TRAIT_UNDEFIBBABLE)
+	ADD_TRAIT(victim, TRAIT_MAPSPAWNED, TRAIT_MAPSPAWNED)
 	victim.med_hud_set_status()
 	equip_items_to_mob(victim)
 	switch(death_type)
@@ -295,7 +296,7 @@
 	corpseback = /obj/item/storage/backpack/industrial
 	corpseshoes = /obj/item/clothing/shoes/orange
 	corpsebelt = /obj/item/storage/belt/utility/full
-	corpsegloves = /obj/item/clothing/gloves/yellow
+	corpsegloves = /obj/item/clothing/gloves/insulated
 	corpsehelmet = /obj/item/clothing/head/hardhat
 	corpseid = 1
 	corpseidjob = "Station Engineer"
@@ -393,7 +394,7 @@
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsesuit = /obj/item/clothing/suit/armor/vest/security
 	corpseback = /obj/item/storage/backpack/satchel
-	corpsebelt = /obj/item/storage/belt/gun/pistol/m4a3/vp70
+	corpsebelt = /obj/item/storage/holster/belt/pistol/m4a3/vp70
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/pmc
 	corpsemask = /obj/item/clothing/mask/gas/pmc/damaged
@@ -537,13 +538,25 @@
 	corpsemask = /obj/item/clothing/mask/gas
 	corpseglasses = /obj/item/clothing/glasses/welding
 	corpsehelmet = /obj/item/clothing/head/soft/grey
-	corpsegloves = /obj/item/clothing/gloves/fyellow
+	corpsegloves = /obj/item/clothing/gloves/yellow
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpsepocket1 = /obj/item/tool/soap/nanotrasen
 	corpsepocket2 = /obj/item/tool/lighter/zippo
 
 /obj/effect/landmark/corpsespawner/assistant/regular
 	death_type = REGULAR_DEATH
+
+//SOM
+/obj/effect/landmark/corpsespawner/som
+	name = "SOM marine"
+	corpseuniform = /obj/item/clothing/under/som
+	corpsesuit = /obj/item/clothing/suit/modular/som
+	corpseback = /obj/item/storage/backpack/satchel/som
+	corpsemask = /obj/item/clothing/mask/gas
+	corpsehelmet = /obj/item/clothing/head/modular/som
+	corpsegloves = /obj/item/clothing/gloves/marine/som
+	corpseshoes = /obj/item/clothing/shoes/marine/som/knife
+	corpsepocket1 = /obj/item/tool/lighter/zippo
 
 #undef REGULAR_DEATH
 #undef COCOONED_DEATH

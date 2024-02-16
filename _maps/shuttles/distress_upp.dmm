@@ -28,6 +28,11 @@
 	dir = 1
 	},
 /area/shuttle/ert/upp)
+"i" = (
+/turf/closed/shuttle/ert/engines/left/two{
+	dir = 1
+	},
+/area/shuttle/ert/upp)
 "j" = (
 /obj/structure/rack,
 /obj/effect/landmark/distress_item,
@@ -174,24 +179,23 @@
 	dir = 1
 	},
 /area/shuttle/ert/upp)
-"Q" = (
-/turf/closed/shuttle/ert/engines/left{
-	dir = 4
+"O" = (
+/turf/closed/shuttle/ert/engines/right/two{
+	dir = 1
 	},
 /area/shuttle/ert/upp)
-"U" = (
-/turf/closed/shuttle/ert/engines/left,
+"Q" = (
+/turf/closed/shuttle/ert/engines/left/three{
+	dir = 1
+	},
 /area/shuttle/ert/upp)
 "V" = (
-/turf/closed/shuttle/ert/engines/right{
-	dir = 4
+/turf/closed/shuttle/ert/engines/right/three{
+	dir = 1
 	},
 /area/shuttle/ert/upp)
 "W" = (
 /turf/closed/shuttle/dropship_dark/interior_wall,
-/area/shuttle/ert/upp)
-"X" = (
-/turf/closed/shuttle/ert/engines/right,
 /area/shuttle/ert/upp)
 "Z" = (
 /turf/closed/shuttle/ert/engines/right{
@@ -211,8 +215,8 @@ p
 W
 A
 Q
+i
 N
-U
 "}
 (2,1,1) = {"
 a
@@ -301,6 +305,6 @@ p
 o
 F
 V
+O
 Z
-X
 "}

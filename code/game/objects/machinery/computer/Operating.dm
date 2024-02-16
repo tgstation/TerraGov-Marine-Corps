@@ -2,12 +2,13 @@
 	name = "Operating Computer"
 	anchored = TRUE
 	density = TRUE
-	icon_state = "operating"
+	icon_state = "computer_small"
+	screen_overlay = "operating"
 	circuit = /obj/item/circuitboard/computer/operating
 	var/mob/living/carbon/human/victim = null
 	var/obj/machinery/optable/table = null
 
-/obj/machinery/computer/operating/Initialize()
+/obj/machinery/computer/operating/Initialize(mapload)
 	. = ..()
 	for(dir in list(NORTH,EAST,SOUTH,WEST))
 		table = locate(/obj/machinery/optable, get_step(src, dir))

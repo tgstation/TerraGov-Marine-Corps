@@ -51,10 +51,7 @@
 	var/melee_damage_type = BRUTE //Damage type of a simple mob's melee attack, should it do damage.
 	var/list/damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1) // 1 for full damage , 0 for none , -1 for 1:1 heal from that source
 
-	//Gibber thingy
-	var/nutrition = NUTRITION_WELLFED
-
-/mob/living/simple_animal/Initialize()
+/mob/living/simple_animal/Initialize(mapload)
 	. = ..()
 	GLOB.simple_animals[AIStatus] += src
 	if(gender == PLURAL)
@@ -200,7 +197,7 @@
 			return TRUE
 
 
-/mob/living/simple_animal/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/mob/living/simple_animal/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
 	if(!.)
 		return
@@ -219,11 +216,9 @@
 	return TRUE
 
 
-/mob/living/simple_animal/Stat()
+/mob/living/simple_animal/get_status_tab_items()
 	. = ..()
-
-	if(statpanel("Game"))
-		stat("Health:", "[round((health / maxHealth) * 100)]%")
+	. += "Health: [round((health / maxHealth) * 100)]%"
 
 
 /mob/living/simple_animal/ex_act(severity)
@@ -232,12 +227,15 @@
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			gib()
+			return
 		if(EXPLODE_HEAVY)
 			adjustBruteLoss(60)
-			UPDATEHEALTH(src)
 		if(EXPLODE_LIGHT)
 			adjustBruteLoss(30)
-			UPDATEHEALTH(src)
+		if(EXPLODE_WEAK)
+			adjustBruteLoss(15)
+
+	UPDATEHEALTH(src)
 
 
 /mob/living/simple_animal/get_idcard(hand_first)

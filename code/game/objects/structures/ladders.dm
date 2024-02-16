@@ -13,7 +13,7 @@
 	var/is_watching = 0
 	var/obj/machinery/camera/cam
 
-/obj/structure/ladder/Initialize()
+/obj/structure/ladder/Initialize(mapload)
 	. = ..()
 	cam = new /obj/machinery/camera(src)
 	cam.network = list("LADDER")
@@ -53,6 +53,7 @@
 	return ..()
 
 /obj/structure/ladder/update_icon_state()
+	. = ..()
 	if(up && down)
 		icon_state = "ladder11"
 
@@ -65,7 +66,7 @@
 	else	//wtf make your ladders properly assholes
 		icon_state = "ladder00"
 
-/obj/structure/ladder/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/ladder/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	return attack_hand(X)
 
 /obj/structure/ladder/attack_larva(mob/living/carbon/xenomorph/larva/X)
@@ -104,7 +105,7 @@
 	step(user, get_dir(user, src))
 	user.visible_message(span_notice("[user] starts climbing [ladder_dir_name] [src]."),
 	span_notice("You start climbing [ladder_dir_name] [src]."))
-	if(!do_after(user, 20, FALSE, src, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
+	if(!do_after(user, 20, IGNORE_HELD_ITEM, src, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
 		return
 	user.trainteleport(ladder_dest.loc)
 	visible_message(span_notice("[user] climbs [ladder_dir_name] [src].")) //Hack to give a visible message to the people here without duplicating user message
@@ -239,7 +240,7 @@
 		user.visible_message(span_warning("[user] takes position to throw [G] [ladder_dir_name] [src]."),
 		span_warning("You take position to throw [G] [ladder_dir_name] [src]."))
 
-		if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 10, NONE, src, BUSY_ICON_HOSTILE))
 			return
 
 		user.visible_message(span_warning("[user] throws [G] [ladder_dir_name] [src]!"),
@@ -279,7 +280,7 @@
 		user.visible_message(span_warning("[user] takes position to throw [F] [ladder_dir_name] [src]."),
 		span_warning("You take position to throw [F] [ladder_dir_name] [src]."))
 
-		if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 10, NONE, src, BUSY_ICON_HOSTILE))
 			return
 
 		user.visible_message(span_warning("[user] throws [F] [ladder_dir_name] [src]!"),

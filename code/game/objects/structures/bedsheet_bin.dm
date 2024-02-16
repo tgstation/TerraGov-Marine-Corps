@@ -7,7 +7,7 @@ LINEN BINS
 /obj/item/bedsheet
 	name = "bedsheet"
 	desc = "A surprisingly soft linen bedsheet."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/bedsheets.dmi'
 	icon_state = "sheet"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
@@ -101,7 +101,8 @@ LINEN BINS
 		. += "There are [amount] bed sheets in the bin."
 
 
-/obj/structure/bedsheetbin/update_icon()
+/obj/structure/bedsheetbin/update_icon_state()
+	. = ..()
 	switch(amount)
 		if(0)
 			icon_state = "linenbin-empty"

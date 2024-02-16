@@ -29,6 +29,7 @@
 			new spawn_type(src)
 
 /obj/item/storage/fancy/update_icon_state()
+	. = ..()
 	icon_state = "[icon_type]box[length(contents)]"
 
 /obj/item/storage/fancy/remove_from_storage(obj/item/W, atom/new_location, mob/user)
@@ -93,7 +94,7 @@
 	icon_type = "crayon"
 	can_hold = list(/obj/item/toy/crayon)
 
-/obj/item/storage/fancy/crayons/Initialize()
+/obj/item/storage/fancy/crayons/Initialize(mapload)
 	. = ..()
 	new /obj/item/toy/crayon/red(src)
 	new /obj/item/toy/crayon/orange(src)
@@ -146,6 +147,7 @@
 		new /obj/item/clothing/mask/cigarette(src)
 
 /obj/item/storage/fancy/cigarettes/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][length(contents)]"
 
 /obj/item/storage/fancy/cigarettes/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
@@ -171,8 +173,8 @@
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
 	flags_equip_slot = ITEM_SLOT_BELT
-	max_storage_space = 25
-	storage_slots = 25
+	max_storage_space = 18
+	storage_slots = 18
 	can_hold = list(
 		/obj/item/clothing/mask/cigarette,
 		/obj/item/tool/lighter,
@@ -192,10 +194,10 @@
 	for(var/i in 1 to 5)
 		new /obj/item/clothing/mask/cigarette/antitox(src)
 
-	new /obj/item/clothing/mask/cigarette/emergency(src)
 	new /obj/item/tool/lighter(src)
 
 /obj/item/storage/fancy/chemrettes/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][length(contents)]"
 
 /obj/item/storage/fancy/cigarettes/dromedaryco
@@ -238,6 +240,7 @@
 	icon_type = "cigar"
 
 /obj/item/storage/fancy/cigar/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][length(contents)]"
 
 
@@ -287,8 +290,9 @@
 	. = ..()
 	update_icon()
 
-/obj/item/storage/lockbox/vials/update_icon(itemremoved = 0)
-	icon_state = "vialbox[length(contents)-itemremoved]"
+/obj/item/storage/lockbox/vials/update_icon_state()
+	. = ..()
+	icon_state = "vialbox[length(contents)]"
 
 /obj/item/storage/lockbox/vials/update_overlays()
 	. = ..()

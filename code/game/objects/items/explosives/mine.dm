@@ -1,5 +1,5 @@
 /*
-Mines and other explosive traps
+Mines
 
 Mines use invisible /obj/effect/mine_trigger objects that tell the mine to explode when something crosses over it
 
@@ -18,11 +18,12 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	throwforce = 5
 	throw_range = 6
 	throw_speed = 3
-	/// IFF signal - used to determine friendly units
+	flags_atom = CONDUCT
+	///IFF signal - used to determine friendly units
 	var/iff_signal = NONE
-	/// If the mine has been triggered
+	///If the mine has been triggered
 	var/triggered = FALSE
-	/// State of the mine. Will the mine explode or not
+	///State of the mine. Will the mine explode or not
 	var/armed = FALSE
 	///List of references to each dummy object that serve as triggers for this mine
 	var/list/triggers = list()
@@ -70,6 +71,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/heavy_explosion_range = 0
 	///How large the light impact is
 	var/light_explosion_range = 0
+	///How large the weak impact is
+	var/weak_explosion_range = 0
 	///How far away a player can be to be blinded by the explosion
 	var/blinding_range = 0
 	///How far away objects are thrown
@@ -99,7 +102,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	///How long the gas cloud remains; do not use SECONDS as it is used by the smoke object's process(), which is called roughly every second
 	var/gas_duration = 0
 
-/obj/item/mine/Initialize()
+/obj/item/mine/Initialize(mapload)
 	. = ..()
 	if(!buffer_range || pressure_activated)
 		var/static/list/connections = list(COMSIG_ATOM_ENTERED = PROC_REF(on_cross))
@@ -115,7 +118,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		. += "[span_bold("Alt Click")] to change the detection range."
 
 /// Update the icon, adding "_armed" if appropriate to the icon_state.
-/obj/item/mine/update_icon()
+/obj/item/mine/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][armed ? "_armed" : ""]"
 
 /obj/item/mine/AltClick(mob/user)
@@ -144,16 +148,16 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		return FALSE
 	if(armed || triggered)	//Just in case
 		return FALSE
-	if(!do_after(user, deploy_delay, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, deploy_delay, NONE, src, BUSY_ICON_BUILD))
 		return FALSE
 	//Probably important to keep this logged, just in case
 	user.visible_message(span_notice("[user] deploys a [src]."), span_notice("You deploy a [src]."))
 	var/obj/item/card/id/id = user.get_idcard()
 	deploy(user, id?.iff_signal)
+	user.record_traps_created()
 
 ///Process for arming the mine; anchoring, setting who it belongs to, generating the trigger zones
 /obj/item/mine/proc/deploy(mob/living/user, faction)
-	flags_item |= NO_VACUUM	//Stop the roomba from eating the mine upon deployment
 	iff_signal = faction
 	anchored = TRUE
 	armed = TRUE
@@ -228,7 +232,6 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	QDEL_LIST(triggers)
 	if(deletion_timer)
 		deltimer(deletion_timer)
-	flags_item &= ~NO_VACUUM	//The roomba can eat it again
 
 ///Checks if a mob entered the tile this mine is on, and if it can cause it to trigger
 /obj/item/mine/proc/on_cross(datum/source, atom/movable/A, oldloc, oldlocs)
@@ -239,21 +242,34 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		if(L.stat)
 			return FALSE
 	if(pressure_activated)
-		if(!CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))	//Flying mobs can't trip this mine
+		if(!CHECK_MULTIPLE_BITFIELDS(A.pass_flags, HOVERING))	//Flying mobs can't trip this mine
 			return trip_mine(A)
 		return FALSE
 	trip_mine(A)
 
 ///Process for triggering detonation
-/obj/item/mine/proc/trip_mine(mob/living/L)
+/obj/item/mine/proc/trip_mine(atom/movable/victim)
 	if(!armed || triggered)
 		return FALSE
-	if((L.status_flags & INCORPOREAL))
+	var/mob/living/living_victim
+	if(isliving(victim))
+		living_victim = victim
+	else if(isvehicle(victim))
+		var/obj/vehicle/vehicle_victim = victim
+		if(!length(vehicle_victim.occupants))
+			return FALSE
+		living_victim = vehicle_victim.occupants[1]
+
+	if(!living_victim)
 		return FALSE
-	var/obj/item/card/id/id = L.get_idcard()
+	if((living_victim.status_flags & INCORPOREAL))
+		return FALSE
+	if(living_victim.stat == DEAD)
+		return FALSE
+	var/obj/item/card/id/id = living_victim.get_idcard()
 	if(id?.iff_signal & iff_signal)
 		return FALSE
-	trigger_explosion(L)
+	trigger_explosion(living_victim)
 
 ///Trigger the mine; needs to be a separate proc so that we can use a timer
 /obj/item/mine/proc/trigger_explosion(mob/living/L)
@@ -343,7 +359,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	///The explosive this dummy object is connected to
 	var/obj/item/mine/linked_mine
 
-/obj/effect/mine_trigger/Initialize()
+/obj/effect/mine_trigger/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(COMSIG_ATOM_ENTERED = PROC_REF(on_cross))
 	AddElement(/datum/element/connect_loc, connections)
@@ -353,7 +369,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	return ..()
 
 ///When crossed, triggers the linked mine if checks pass
-/obj/effect/mine_trigger/proc/on_cross(datum/source, atom/A, oldloc, oldlocs)
+/obj/effect/mine_trigger/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
 	SIGNAL_HANDLER
 	if(!linked_mine)	//If this doesn't belong to a mine, why does this object exist?!
 		qdel(src)
@@ -361,12 +377,12 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	if(linked_mine.triggered) //Mine is already set to go off
 		return FALSE
 	if(linked_mine.discern_living)	//If only mobs can trigger the mine this belongs to, check if they are conscious
-		if(!isliving(A))
+		if(!isliving(AM))
 			return FALSE
-		var/mob/living/unlucky_person = A
+		var/mob/living/unlucky_person = AM
 		if(unlucky_person.stat)
 			return FALSE
-	linked_mine.trip_mine(A)
+	linked_mine.trip_mine(AM)
 
 /* Claymores - Directional fragment spray, small explosion */
 /obj/item/mine/claymore
@@ -637,15 +653,16 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 /obj/effect/temp_visual/radiation
 	randomdir = FALSE
-	///How much
+	///How much damage each tick does
 	var/radiation_damage = 10
 	///Reference to the radiation particle effect
 	var/obj/effect/abstract/particle_holder/particle_holder
 
 /obj/effect/temp_visual/radiation/Initialize(mapload, effect_duration)
 	. = ..()
+	//Override the timerid value set on the object; the duration is determined by the radiation mine
 	deltimer(timerid)
-	timerid = QDEL_IN(src, effect_duration)
+	timerid = QDEL_IN_STOPPABLE(src, effect_duration)
 	particle_holder = new(src, /particles/radiation)
 	var/static/list/connections = list(COMSIG_ATOM_ENTERED = PROC_REF(on_cross))
 	AddElement(/datum/element/connect_loc, connections)
@@ -839,6 +856,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	triggered = FALSE	//Reset the mine but not disarm it
 	if(!L)
 		return FALSE
+
 	var/mini_icon
 	if(isxeno(L))
 		var/mob/living/carbon/xenomorph/X = L
@@ -847,14 +865,13 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		mini_icon = L.job.minimap_icon
 	else
 		mini_icon = "defiler"	//Closest thing to a generic warning
-	var/marker_flags = MINIMAP_FLAG_MARINE
+
+	var/marker_flags
 	if(CHECK_BITFIELD(iff_signal, TGMC_LOYALIST_IFF))
 		marker_flags |= MINIMAP_FLAG_MARINE
-	if(CHECK_BITFIELD(iff_signal, TGMC_REBEL_IFF))
-		marker_flags |= MINIMAP_FLAG_MARINE_REBEL
-	//Lumping all the antag groups together
-	if(CHECK_BITFIELD(iff_signal, SOM_IFF|ICC_IFF|DEATHSQUAD_IFF))
+	else	//I have been told ERT factions don't have a minimap anyways
 		marker_flags |= MINIMAP_FLAG_MARINE_SOM
+
 	radio.talk_into(src, "ALERT! Hostile/Unknown: [L.name] | [AREACOORD_NO_Z(src)]")
 	SSminimaps.remove_marker(src)
 	SSminimaps.add_marker(src, z, marker_flags, mini_icon)
@@ -998,3 +1015,15 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 /obj/item/mine/flash/battery_included
 	battery = /obj/item/cell
+
+//Anti-vehicle mines
+/obj/item/mine/anti_tank
+	name = "\improper M92 Valiant anti-tank mine"
+	desc = "The M92 Valiant is a anti-tank mine designed by Armat Systems for use by the TerraGov Marine Corps against heavy armour, both tanks and mechs."
+	icon_state = "m92"
+	uber_explosion_range = 2
+	weak_explosion_range = 4
+
+/obj/item/mine/anti_tank/update_icon_state()
+	. = ..()
+	alpha = armed ? 50 : 255

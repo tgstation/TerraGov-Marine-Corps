@@ -16,7 +16,7 @@
  * Doesn't support any event scheduled for more than 100 ticks in the future, as it has no secondary queue by design
  */
 SUBSYSTEM_DEF(automatedfire)
-	name = "Automated fire"
+	name = "Autofire"
 	flags = SS_TICKER | SS_NO_INIT
 	wait = 1
 	priority = FIRE_PRIORITY_AUTOFIRE
@@ -32,14 +32,15 @@ SUBSYSTEM_DEF(automatedfire)
 	/// List of buckets, each bucket holds every shooter that has to shoot this byond tick
 	var/list/bucket_list = list()
 	/// Reference to the next shooter before we clean shooter.next
-	var/var/datum/component/automatedfire/next_shooter
+	var/datum/component/automatedfire/next_shooter
 
 /datum/controller/subsystem/automatedfire/PreInit()
 	bucket_list.len = BUCKET_LEN
 	head_offset = world.time
 	bucket_resolution = world.tick_lag
 
-/datum/controller/subsystem/automatedfire/stat_entry(msg = "ActShooters:[shooter_count]")
+/datum/controller/subsystem/automatedfire/stat_entry(msg)
+	msg = "ActShooters:[shooter_count]"
 	return ..()
 
 /datum/controller/subsystem/automatedfire/fire(resumed = FALSE)
@@ -163,7 +164,7 @@ SUBSYSTEM_DEF(automatedfire)
 	name = "debug turret slow"
 	firerate = 25
 
-/obj/structure/turret_debug/Initialize()
+/obj/structure/turret_debug/Initialize(mapload)
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid]
 	target = locate(x+5, y, z)

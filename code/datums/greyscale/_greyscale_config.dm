@@ -1,3 +1,4 @@
+
 /datum/greyscale_config
 	/// Reference to the json config file
 	var/json_config
@@ -22,6 +23,12 @@
 
 	/// Generated icons keyed by their color arguments
 	var/list/icon_cache
+
+	/// This is used to differentiate sprites that can use the same json, but you dont want a ton of different icon files. It applies this prefix to the icon states before gathering the icons.
+	var/prefix = ""
+
+	/// Flags that can be used to modify use
+	var/greyscale_flags = NONE
 
 // There's more sanity checking here than normal because this is designed for spriters to work with
 // Sensible error messages that tell you exactly what's wrong is the best way to make this easy to use
@@ -77,7 +84,7 @@
 		var/layer_type = SSgreyscale.layer_types[data["type"]]
 		if(!layer_type)
 			CRASH("An unknown layer type was specified in greyscale configuration json: [data["layer_type"]]")
-		return new layer_type(icon_file, data)
+		return new layer_type(icon_file, data, prefix)
 	var/list/output = list()
 	for(var/list/group AS in data)
 		output += ReadLayerGroup(group)
@@ -113,8 +120,6 @@
 	if(new_icon && !render_steps)
 		return icon(new_icon)
 	var/list/colors = ParseColorString(color_string)
-	if(length(colors) != expected_colors)
-		CRASH("[DebugName()] expected [expected_colors] color arguments but only received [length(colors)]")
 	var/icon/icon_bundle = new
 	for(var/icon_state in icon_states)
 		var/icon/generated_icon = GenerateLayerGroup(colors, icon_states[icon_state], render_steps)
@@ -131,12 +136,13 @@
 	var/icon/new_icon
 	for(var/datum/greyscale_layer/layer AS in group)
 		var/icon/layer_icon
+		if(length(colors) < expected_colors)
+			CRASH("[DebugName()] expected [expected_colors] color arguments but only received [length(colors)]")
 		if(islist(layer))
 			layer_icon = GenerateLayerGroup(colors, layer, render_steps)
 			layer = layer[1] // When there are multiple layers in a group like this we use the first one's blend mode
 		else
-			layer_icon = layer.Generate(colors, render_steps)
-
+			layer_icon = layer.Generate(colors, render_steps, src)
 		if(!new_icon)
 			new_icon = layer_icon
 		else

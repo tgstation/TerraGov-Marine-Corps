@@ -192,6 +192,10 @@
 	dir = 9
 	},
 /area/bigredv2/outside/se)
+"om" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/se)
 "ou" = (
 /obj/effect/landmark/corpsespawner/marine,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
@@ -382,7 +386,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "zz" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/bigredv2/caves/rock)
 "zI" = (
 /obj/structure/cable,
@@ -474,7 +478,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/s)
 "FI" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Gl" = (
@@ -636,7 +640,7 @@
 /area/bigredv2/outside/se)
 "SX" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "Tv" = (
 /obj/item/stack/sheet/wood,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
@@ -1144,7 +1148,7 @@ rV
 "}
 (17,1,1) = {"
 Rk
-Ok
+om
 jL
 Ok
 Ll

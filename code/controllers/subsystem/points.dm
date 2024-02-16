@@ -1,5 +1,5 @@
 // points per minute
-#define DROPSHIP_POINT_RATE 18 * ((GLOB.current_orbit+3)/6)
+#define DROPSHIP_POINT_RATE 18 * (GLOB.current_orbit/3)
 #define SUPPLY_POINT_RATE 20 * (GLOB.current_orbit/3)
 
 SUBSYSTEM_DEF(points)
@@ -12,8 +12,10 @@ SUBSYSTEM_DEF(points)
 	var/dropship_points = 0
 	///Assoc list of supply points
 	var/supply_points = list()
-	///Assoc list of xeno points: xeno_points_by_hive["hivenum"]
-	var/list/xeno_points_by_hive = list()
+	///Assoc list of xeno strategic points: xeno_strategic_points_by_hive["hivenum"]
+	var/list/xeno_strategic_points_by_hive = list()
+	///Assoc list of xeno tactical points: xeno_tactical_points_by_hive["hivenum"]
+	var/list/xeno_tactical_points_by_hive = list()
 
 	var/ordernum = 1					//order number given to next order
 
@@ -45,9 +47,9 @@ SUBSYSTEM_DEF(points)
 	approvedrequests = SSpoints.approvedrequests
 	request_shopping_cart = SSpoints.request_shopping_cart
 
-/datum/controller/subsystem/points/Initialize(timeofday)
+/datum/controller/subsystem/points/Initialize()
 	ordernum = rand(1, 9000)
-	return ..()
+	return SS_INIT_SUCCESS
 
 /// Prepare the global supply pack list at the gamemode start
 /datum/controller/subsystem/points/proc/prepare_supply_packs_list(is_human_req_only = FALSE)
@@ -78,12 +80,17 @@ SUBSYSTEM_DEF(points)
 	for(var/key in supply_points)
 		supply_points[key] += SUPPLY_POINT_RATE / (1 MINUTES / wait)
 
-///Add amount of psy points to the selected hive only if the gamemode support psypoints
-/datum/controller/subsystem/points/proc/add_psy_points(hivenumber, amount)
+///Add amount of strategic psy points to the selected hive only if the gamemode support psypoints
+/datum/controller/subsystem/points/proc/add_strategic_psy_points(hivenumber, amount)
 	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_PSY_POINTS))
 		return
-	xeno_points_by_hive[hivenumber] += amount
+	xeno_strategic_points_by_hive[hivenumber] += amount
 
+///Add amount of tactical psy points to the selected hive only if the gamemode support psypoints
+/datum/controller/subsystem/points/proc/add_tactical_psy_points(hivenumber, amount)
+	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_PSY_POINTS))
+		return
+	xeno_tactical_points_by_hive[hivenumber] += amount
 
 /datum/controller/subsystem/points/proc/approve_request(datum/supply_order/O, mob/living/user)
 	var/cost = 0
@@ -103,6 +110,9 @@ SUBSYSTEM_DEF(points)
 	LAZYADDASSOCSIMPLE(shoppinglist[O.faction], "[O.id]", O)
 	if(GLOB.directory[O.orderer])
 		to_chat(GLOB.directory[O.orderer], span_notice("Your request [O.id] has been approved!"))
+	if(GLOB.personal_statistics_list[O.orderer_ckey])
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[O.orderer_ckey]
+		personal_statistics.req_points_used += cost
 
 /datum/controller/subsystem/points/proc/deny_request(datum/supply_order/O)
 	requestlist -= "[O.id]"

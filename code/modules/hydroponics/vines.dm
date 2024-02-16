@@ -8,7 +8,7 @@
 	anchored = TRUE
 	density = FALSE
 	layer = FLY_LAYER
-	flags_pass = PASSTABLE|PASSGRILLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_GRILLE
 
 	// Vars used by vines with seed data.
 	var/age = 0
@@ -268,7 +268,7 @@
 	slowdown_limit = 3
 	limited_growth = 1
 
-/obj/effect/plant_controller/Initialize()
+/obj/effect/plant_controller/Initialize(mapload)
 	. = ..()
 
 	if(!istype(loc,/turf/open/floor))

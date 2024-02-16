@@ -22,7 +22,9 @@
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/pastries/pie/throw_impact(atom/hit_atom)
-	..()
+	. = ..()
+	if(!.)
+		return
 	new /obj/effect/decal/cleanable/pie_smudge(loc)
 	visible_message(span_warning(" [src.name] splats."),span_warning(" You hear a splat."))
 	qdel(src)
@@ -592,7 +594,7 @@
 	bitesize = 2
 
 
-/obj/item/reagent_containers/food/snacks/pastries/plump_pie/Initialize()
+/obj/item/reagent_containers/food/snacks/pastries/plump_pie/Initialize(mapload)
 	. = ..()
 	var/fey = prob(10)
 	if(fey)

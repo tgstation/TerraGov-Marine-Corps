@@ -5,7 +5,8 @@
 /obj/machinery/computer/crew
 	name = "Crew monitoring computer"
 	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
-	icon_state = "crew"
+	icon_state = "computer"
+	screen_overlay = "crew"
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 250
 	active_power_usage = 500
@@ -18,17 +19,6 @@
 	var/displayed_z_level = DISPLAY_ON_SHIP
 	var/cmp_proc = /proc/cmp_list_asc
 	var/sortkey = "name"
-
-
-/obj/machinery/computer/crew/update_icon_state()
-	if(machine_stat & (BROKEN|DISABLED))
-		icon_state = "crewb"
-	else if(machine_stat & NOPOWER)
-		icon_state = "crew0"
-		machine_stat |= NOPOWER
-	else
-		icon_state = initial(icon_state)
-		machine_stat &= ~NOPOWER
 
 /obj/machinery/computer/crew/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -124,9 +114,9 @@
 
 /obj/machinery/computer/crew/proc/scan()
 	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
-		if(!H || !istype(H)) continue
 		var/obj/item/clothing/under/C = H.w_uniform
-		if(!C || !istype(C)) continue
+		if(!istype(C))
+			continue
 		if(C.has_sensor && H.mind)
 			add_to_tracked(C)
 	return TRUE
@@ -136,13 +126,13 @@
 	if(tracked.Find(under))
 		return
 	tracked += under
-	RegisterSignal(tracked, COMSIG_PARENT_QDELETING, PROC_REF(remove_from_tracked))
+	RegisterSignal(under, COMSIG_QDELETING, PROC_REF(remove_from_tracked))
 
 ///Remove an atom from the tracked list
 /obj/machinery/computer/crew/proc/remove_from_tracked(atom/under)
 	SIGNAL_HANDLER
 	tracked -= under
-	UnregisterSignal(tracked, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(under, COMSIG_QDELETING)
 
 #undef DISPLAY_ON_SHIP
 #undef DISPLAY_PLANETSIDE

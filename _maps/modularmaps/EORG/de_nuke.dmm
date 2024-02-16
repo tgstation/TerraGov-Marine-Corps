@@ -6,6 +6,12 @@
 "bi" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
+"cW" = (
+/obj/structure/stairs/seamless/edge{
+	color = "#888888"
+	},
+/turf/open/floor/tile/dark,
+/area/deathmatch)
 "db" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -36,6 +42,11 @@
 	color = "#888888"
 	},
 /area/deathmatch)
+"fv" = (
+/obj/machinery/door/poddoor/railing,
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/asteroidplating,
+/area/deathmatch)
 "fF" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
@@ -45,16 +56,23 @@
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
+"hM" = (
+/obj/structure/stairs/seamless{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/deathmatch)
 "ix" = (
 /obj/structure/rack,
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "jb" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/seamless{
 	color = "#888888";
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "jc" = (
 /obj/machinery/door/poddoor/railing{
@@ -64,6 +82,10 @@
 	dir = 1
 	},
 /area/deathmatch)
+"jm" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/asteroidplating,
+/area/deathmatch)
 "jJ" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -71,7 +93,7 @@
 	},
 /area/deathmatch)
 "jM" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/deathmatch)
 "jP" = (
@@ -103,7 +125,7 @@
 /turf/open/floor/grime,
 /area/deathmatch)
 "nt" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
 	},
@@ -139,14 +161,19 @@
 /obj/structure/window/framed/wood,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
+"qH" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/grime,
+/area/deathmatch)
 "rv" = (
 /obj/machinery/door/poddoor/railing,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "rF" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/seamless{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "sr" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
@@ -161,6 +188,16 @@
 "tf" = (
 /obj/structure/largecrate,
 /turf/open/floor/plating/asteroidplating,
+/area/deathmatch)
+"to" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1
+	},
+/obj/structure/stairs/seamless{
+	color = "#888888";
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "tF" = (
 /obj/structure/rack,
@@ -192,10 +229,6 @@
 	dir = 9
 	},
 /area/deathmatch)
-"vW" = (
-/obj/structure/platform,
-/turf/open/floor/plating/asteroidfloor,
-/area/deathmatch)
 "wl" = (
 /obj/structure/cargo_container/ch_red{
 	dir = 4
@@ -222,10 +255,18 @@
 /obj/machinery/door/poddoor/railing{
 	dir = 1
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/seamless/edge{
 	color = "#888888";
-	dir = 8
+	dir = 4
 	},
+/turf/open/floor/tile/dark,
+/area/deathmatch)
+"xv" = (
+/turf/closed/mineral/smooth/desertdamrockwall/indestructible,
+/area/deathmatch)
+"xE" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "zr" = (
 /obj/structure/cargo_container{
@@ -239,7 +280,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "zQ" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
 "Ab" = (
@@ -247,6 +288,12 @@
 /turf/open/floor/plating/asteroidplating{
 	color = "#888888"
 	},
+/area/deathmatch)
+"Aw" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/closed/wall,
 /area/deathmatch)
 "Ax" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
@@ -264,17 +311,44 @@
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
-"De" = (
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor/stairs/rampbottom{
+"AR" = (
+/obj/structure/stairs/seamless/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
+/area/deathmatch)
+"BY" = (
+/obj/structure/stairs/seamless/edge{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/deathmatch)
+"De" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/structure/stairs/seamless/edge{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Do" = (
 /obj/effect/landmark/deathmatch,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/seamless{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
+/area/deathmatch)
+"Ei" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/deathmatch)
+"Ej" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/structure/stairs/seamless/edge{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Fc" = (
 /obj/structure/table/reinforced,
@@ -303,6 +377,12 @@
 	dir = 8
 	},
 /area/deathmatch)
+"Hl" = (
+/obj/structure/stairs/seamless/edge{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/deathmatch)
 "HV" = (
 /obj/structure/window/framed/wood,
 /turf/open/floor/wood,
@@ -316,7 +396,7 @@
 	},
 /area/deathmatch)
 "Jn" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "JT" = (
@@ -347,16 +427,18 @@
 /area/deathmatch)
 "LA" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/seamless{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "LY" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/seamless{
 	color = "#888888";
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Mn" = (
 /turf/open/floor/plating/asteroidfloor,
@@ -381,10 +463,10 @@
 /obj/machinery/door/poddoor/railing{
 	dir = 2
 	},
-/turf/open/floor/stairs/rampbottom{
-	color = "#888888";
-	dir = 8
+/obj/structure/stairs/seamless/edge{
+	color = "#888888"
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "PF" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -405,7 +487,7 @@
 /area/deathmatch)
 "QR" = (
 /obj/structure/platform{
-	dir = 8
+	dir = 9
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
@@ -415,16 +497,15 @@
 	},
 /turf/open/floor/plating/asteroidwarning,
 /area/deathmatch)
-"TU" = (
-/obj/structure/platform,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor/plating/asteroidfloor,
-/area/deathmatch)
 "Uc" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 2
 	},
 /turf/open/floor/plating/asteroidfloor,
+/area/deathmatch)
+"UO" = (
+/obj/structure/stairs/seamless/edge,
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "VQ" = (
 /obj/structure/cargo_container/ch_red,
@@ -449,7 +530,14 @@
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
 	},
-/turf/closed/wall,
+/turf/closed/wall/r_wall/unmeltable/regular,
+/area/deathmatch)
+"WO" = (
+/obj/effect/landmark/deathmatch,
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "Xe" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -476,9 +564,10 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "YO" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "ZA" = (
 /obj/structure/table/reinforced,
@@ -517,55 +606,55 @@
 /area/deathmatch)
 
 (1,1,1) = {"
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
 Wn
 Wn
 Wn
 Wn
 Wn
-XY
-XY
-XY
-XY
-XY
+xv
+xv
+xv
+xv
+xv
 "}
 (2,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -613,7 +702,7 @@ od
 Wn
 "}
 (3,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -661,7 +750,7 @@ Mn
 Wn
 "}
 (4,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -709,7 +798,7 @@ Mn
 Wn
 "}
 (5,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -757,7 +846,7 @@ Mn
 Wn
 "}
 (6,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -805,7 +894,7 @@ Mn
 Wn
 "}
 (7,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -837,7 +926,7 @@ XY
 XY
 od
 rF
-rF
+UO
 od
 od
 Sf
@@ -853,7 +942,7 @@ Mn
 Wn
 "}
 (8,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -901,7 +990,7 @@ MV
 Wn
 "}
 (9,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -949,7 +1038,7 @@ Mn
 Wn
 "}
 (10,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -997,7 +1086,7 @@ Mn
 Wn
 "}
 (11,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -1045,7 +1134,7 @@ My
 Wn
 "}
 (12,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -1083,7 +1172,7 @@ od
 Sf
 Fp
 Fp
-Fp
+jm
 Fp
 Fp
 wH
@@ -1093,7 +1182,7 @@ Mn
 Wn
 "}
 (13,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -1141,7 +1230,7 @@ od
 Wn
 "}
 (14,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -1189,7 +1278,7 @@ Mn
 Wn
 "}
 (15,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -1226,9 +1315,9 @@ od
 od
 Sf
 Fp
+AR
 rF
-rF
-rF
+UO
 Fp
 jc
 od
@@ -1237,7 +1326,7 @@ ix
 Wn
 "}
 (16,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -1285,7 +1374,7 @@ od
 Wn
 "}
 (17,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -1330,10 +1419,10 @@ od
 od
 XY
 XY
-XY
+xv
 "}
 (18,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -1378,10 +1467,10 @@ od
 XY
 XY
 XY
-XY
+xv
 "}
 (19,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -1426,10 +1515,10 @@ od
 XY
 XY
 XY
-XY
+xv
 "}
 (20,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -1449,7 +1538,7 @@ XY
 zB
 VU
 JT
-JT
+qH
 JT
 VU
 jU
@@ -1474,10 +1563,10 @@ od
 XY
 XY
 XY
-XY
+xv
 "}
 (21,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -1516,16 +1605,16 @@ od
 od
 jb
 jb
-jb
+cW
 od
 od
 XY
 XY
 XY
-XY
+xv
 "}
 (22,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -1564,16 +1653,16 @@ XY
 od
 jb
 LY
-jb
+cW
 od
 XY
 XY
 XY
 XY
-XY
+xv
 "}
 (23,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -1618,10 +1707,10 @@ XY
 XY
 XY
 XY
-XY
+xv
 "}
 (24,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -1635,8 +1724,8 @@ dj
 Ax
 od
 Mn
-vW
-od
+Mn
+Aw
 od
 od
 od
@@ -1666,10 +1755,10 @@ XY
 XY
 XY
 XY
-XY
+xv
 "}
 (25,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -1683,8 +1772,8 @@ od
 od
 od
 My
-TU
-Mn
+MV
+Ei
 Mn
 Mn
 Wj
@@ -1714,10 +1803,10 @@ XY
 XY
 XY
 XY
-XY
+xv
 "}
 (26,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -1762,10 +1851,10 @@ XY
 XY
 XY
 XY
-XY
+xv
 "}
 (27,1,1) = {"
-XY
+xv
 XY
 dj
 dj
@@ -1779,8 +1868,8 @@ MV
 Mn
 Mn
 Mn
-vW
 Mn
+Ei
 od
 Mn
 Wj
@@ -1810,10 +1899,10 @@ XY
 XY
 XY
 XY
-XY
+xv
 "}
 (28,1,1) = {"
-XY
+xv
 db
 Go
 Ax
@@ -1826,7 +1915,7 @@ Mn
 Mn
 od
 Mn
-vW
+Mn
 QR
 Mn
 od
@@ -1858,10 +1947,10 @@ XY
 ZH
 ZH
 XY
-XY
+xv
 "}
 (29,1,1) = {"
-XY
+xv
 dj
 dj
 dj
@@ -1874,8 +1963,8 @@ Mn
 Mn
 od
 Mn
-vW
-My
+Mn
+WO
 ZA
 od
 Fp
@@ -1906,10 +1995,10 @@ db
 dj
 dj
 Ax
-XY
+xv
 "}
 (30,1,1) = {"
-XY
+xv
 ZH
 ZH
 XY
@@ -1922,8 +2011,8 @@ My
 Mn
 od
 Mn
-vW
 Mn
+Ei
 QO
 od
 Fp
@@ -1954,10 +2043,10 @@ dj
 dj
 dj
 Go
-XY
+xv
 "}
 (31,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -1970,14 +2059,14 @@ bi
 sr
 od
 MV
-vW
-od
+Mn
+Aw
 od
 od
 Fp
 wI
 Fp
-Fp
+jm
 Fp
 Fp
 Fp
@@ -2002,10 +2091,10 @@ dj
 dj
 dj
 dj
-XY
+xv
 "}
 (32,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -2050,10 +2139,10 @@ dj
 dj
 dj
 dj
-XY
+xv
 "}
 (33,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -2098,10 +2187,10 @@ dj
 dj
 dj
 dj
-XY
+xv
 "}
 (34,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -2140,16 +2229,16 @@ dj
 Go
 dj
 dj
-dj
+xE
 dj
 dj
 dj
 db
 XY
-XY
+xv
 "}
 (35,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -2194,10 +2283,10 @@ dj
 dj
 XY
 XY
-XY
+xv
 "}
 (36,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -2242,10 +2331,10 @@ XY
 XY
 XY
 XY
-XY
+xv
 "}
 (37,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -2265,7 +2354,7 @@ od
 Fp
 Fp
 rv
-rv
+fv
 rv
 Fp
 Fp
@@ -2290,10 +2379,10 @@ XY
 XY
 XY
 XY
-XY
+xv
 "}
 (38,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -2310,13 +2399,13 @@ XY
 XY
 XY
 od
-YO
-YO
+hM
+Hl
 xu
 jb
 Px
-YO
-YO
+hM
+Hl
 od
 XY
 XY
@@ -2338,10 +2427,10 @@ XY
 XY
 XY
 XY
-XY
+xv
 "}
 (39,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -2358,13 +2447,13 @@ XY
 XY
 XY
 od
-YO
-YO
-xu
+hM
+Hl
+to
 LY
 Px
-YO
-YO
+hM
+Hl
 od
 XY
 XY
@@ -2386,10 +2475,10 @@ XY
 XY
 XY
 XY
-XY
+xv
 "}
 (40,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -2407,12 +2496,12 @@ XY
 XY
 od
 De
-YO
-xu
+Hl
+to
 jb
 Px
-YO
-De
+BY
+Ej
 od
 XY
 XY
@@ -2434,10 +2523,10 @@ XY
 XY
 XY
 XY
-XY
+xv
 "}
 (41,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -2482,10 +2571,10 @@ XY
 XY
 XY
 XY
-XY
+xv
 "}
 (42,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -2530,10 +2619,10 @@ XY
 XY
 XY
 XY
-XY
+xv
 "}
 (43,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -2578,10 +2667,10 @@ XY
 XY
 XY
 XY
-XY
+xv
 "}
 (44,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -2626,10 +2715,10 @@ XY
 XY
 XY
 XY
-XY
+xv
 "}
 (45,1,1) = {"
-XY
+xv
 XY
 XY
 XY
@@ -2674,53 +2763,53 @@ XY
 XY
 XY
 XY
-XY
+xv
 "}
 (46,1,1) = {"
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
 Wn
 Wn
 Wn
 Wn
 Wn
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
-XY
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
+xv
 "}

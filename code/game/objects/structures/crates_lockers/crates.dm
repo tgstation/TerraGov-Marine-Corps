@@ -7,113 +7,41 @@
 	icon_closed = "closed_basic"
 	anchored = FALSE
 	mob_storage_capacity = 0
-	var/rigged = 0
+	storage_capacity = 100
 	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	open_sound = 'sound/machines/click.ogg'
+	close_sound = 'sound/machines/click.ogg'
 
-/obj/structure/closet/crate/can_open()
-	return 1
+/obj/structure/closet/crate/Initialize(mapload, ...)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/closet/crate/can_close()
-	for(var/mob/living/L in get_turf(src)) //Can't close if someone is standing inside it. This is to prevent "crate traps" (let someone step in, close, open for 30 damage)
-		return 0
-	return 1
-
-/obj/structure/closet/crate/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return 1
+	if(!.)
+		return
+	for(var/mob/living/L in get_turf(src)) //Can't close if someone is standing inside it. This is to prevent "crate traps" (let someone step in, close, open for 30 damage)
+		return FALSE
+	return TRUE
 
-	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
-		return 1
-	if(opened) //Open crate, you can cross over it
-		return 1
+/obj/structure/closet/crate/open(mob/living/user)
+	. = ..()
+	if(!.)
+		return
 
-/obj/structure/closet/crate/open()
-	if(opened)
-		return 0
-	if(!can_open())
-		return 0
-
-	if(rigged && locate(/obj/item/electropack) in src)
-		if(isliving(usr))
-			var/mob/living/L = usr
-			if(L.electrocute_act(17, src))
-				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-				s.set_up(5, 1, src)
-				s.start()
-				return 2
-
-	playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
-	for(var/obj/O in src)
-		O.loc = get_turf(src)
-	opened = 1
-	update_icon()
 	if(climbable)
-		structure_shaken()
-		climbable = 0 //Open crate is not a surface that works when climbing around
-	return 1
-
-/obj/structure/closet/crate/break_open()
-	open()
+		INVOKE_ASYNC(src, PROC_REF(structure_shaken))
+		climbable = FALSE //Open crate is not a surface that works when climbing around
 
 /obj/structure/closet/crate/close()
-	if(!opened)
-		return 0
-	if(!can_close())
-		return 0
-
-	playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
-	var/itemcount = 0
-	for(var/obj/O in get_turf(src))
-		if(itemcount >= storage_capacity)
-			break
-		if(O.density || O.anchored || istype(O, /obj/structure/closet))
-			continue
-		if(istype(O, /obj/structure/bed)) //This is only necessary because of rollerbeds and swivel chairs.
-			var/obj/structure/bed/B = O
-			if(LAZYLEN(B.buckled_mobs))
-				continue
-		O.loc = src
-		itemcount++
-
-	opened = 0
-	climbable = 1
-	update_icon()
-	return 1
-
-/obj/structure/closet/crate/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/powerloader_clamp))
-		return FALSE
-
 	. = ..()
-
-	if(iscablecoil(I))
-		var/obj/item/stack/cable_coil/C = I
-		if(rigged)
-			to_chat(user, span_notice("[src] is already rigged!"))
-			return
-		if(!C.use(1))
-			return
-
-		to_chat(user, span_notice("You rig [src]."))
-		rigged = TRUE
-
-	else if(istype(I, /obj/item/electropack))
-		if(!rigged)
-			return
-
-		to_chat(user, span_notice("You attach [I] to [src]."))
-		user.drop_held_item()
-		I.forceMove(src)
-
-	else if(iswirecutter(I))
-		if(!rigged)
-			return
-
-		to_chat(user, span_notice("You cut away the wiring."))
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		rigged = FALSE
+	if(!.)
+		return
+	climbable = TRUE
 
 /obj/structure/closet/crate/alpha
 	name = "alpha squad crate"
@@ -164,7 +92,7 @@
 	icon_opened = "open_explosives"
 	icon_closed = "closed_explosives"
 
-/obj/structure/closet/crate/explosives/whiskeyoutpost/Initialize()
+/obj/structure/closet/crate/explosives/whiskeyoutpost/Initialize(mapload)
 	. = ..()
 	new /obj/item/explosive/grenade/stick(src)
 	new /obj/item/explosive/grenade/stick(src)
@@ -184,7 +112,7 @@
 	new /obj/item/explosive/grenade/phosphorus/upp(src)
 	new /obj/item/explosive/grenade/phosphorus/upp(src)
 
-/obj/structure/closet/crate/explosives/whiskeyoutposttwo/Initialize()
+/obj/structure/closet/crate/explosives/whiskeyoutposttwo/Initialize(mapload)
 	. = ..()
 	new /obj/structure/closet/crate/explosives(src)
 	new /obj/item/storage/box/visual/grenade/razorburn(src)
@@ -211,7 +139,7 @@
 	icon_opened = "open_hydro"
 	icon_closed = "closed_hydro"
 
-/obj/structure/closet/crate/hydroponics/prespawned/Initialize()
+/obj/structure/closet/crate/hydroponics/prespawned/Initialize(mapload)
 	. = ..()
 	new /obj/item/reagent_containers/spray/plantbgone(src)
 	new /obj/item/reagent_containers/spray/plantbgone(src)
@@ -243,7 +171,7 @@
 	name = "RCD crate"
 	desc = "A crate for the storage of the RCD."
 
-/obj/structure/closet/crate/rcd/Initialize()
+/obj/structure/closet/crate/rcd/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_rcd(src)
 	new /obj/item/ammo_rcd(src)
@@ -258,7 +186,7 @@
 	desc = "A crate of emergency rations."
 	name = "Emergency Rations"
 
-/obj/structure/closet/crate/freezer/rations/Initialize()
+/obj/structure/closet/crate/freezer/rations/Initialize(mapload)
 	. = ..()
 	new /obj/item/storage/box/donkpockets(src)
 	new /obj/item/storage/box/donkpockets(src)
@@ -270,7 +198,7 @@
 	icon_opened = "open_radioactive"
 	icon_closed = "closed_radioactive"
 
-/obj/structure/closet/crate/radiation/Initialize()
+/obj/structure/closet/crate/radiation/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/suit/radiation(src)
 	new /obj/item/clothing/head/radiation(src)

@@ -99,7 +99,7 @@
 /area/bigredv2/outside/se)
 "jt" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "ke" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
@@ -134,7 +134,7 @@
 "md" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "mw" = (
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/s)
@@ -440,6 +440,10 @@
 /obj/structure/table,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"Pq" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/se)
 "Qd" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/bigredv2/outside/se)
@@ -500,10 +504,10 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/se)
 "Uj" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/bigredv2/caves/rock)
 "Uu" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "UR" = (
@@ -999,7 +1003,7 @@ Qq
 "}
 (17,1,1) = {"
 Vb
-VI
+Pq
 IP
 VI
 OJ

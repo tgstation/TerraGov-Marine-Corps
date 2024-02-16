@@ -129,7 +129,7 @@
 	var/emotion = "Neutral"
 
 
-/obj/machinery/status_display/ai/Initialize()
+/obj/machinery/status_display/ai/Initialize(mapload)
 	. = ..()
 	GLOB.ai_status_displays.Add(src)
 

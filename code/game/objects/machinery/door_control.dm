@@ -128,6 +128,7 @@
 	update_icon()
 
 /obj/machinery/door_control/update_icon_state()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else if(pressed)
@@ -228,17 +229,9 @@
 	id = "cic_lockdown"
 	req_one_access = list(ACCESS_MARINE_BRIDGE)
 
-/obj/machinery/door_control/mainship/cic/rebel
-	id = "cic_lockdown_rebel"
-	req_one_access = list(ACCESS_MARINE_BRIDGE_REBEL)
-
 /obj/machinery/door_control/mainship/cic/armory
 	name = "Armory Lockdown"
 	id = "cic_armory"
-
-/obj/machinery/door_control/mainship/cic/armory/rebel
-	id = "cic_armory_armory"
-	req_one_access = list(ACCESS_MARINE_BRIDGE_REBEL)
 
 /obj/machinery/door_control/mainship/cic/hangar
 	name = "Hangar Lockdown"
@@ -253,10 +246,6 @@
 	name = "Telecommunications Entrance"
 	id = "tcomms"
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE)
-
-/obj/machinery/door_control/mainship/tcomms/rebel
-	id = "tcomms_rebel"
-	req_one_access = list(ACCESS_MARINE_ENGINEERING_REBEL, ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_BRIDGE_REBEL)
 
 /obj/machinery/door_control/mainship/engineering/armory
 	name = "Engineering Armory Lockdown"
@@ -273,10 +262,6 @@
 	name = "RO Line Shutters"
 	id = "ROlobby"
 	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
-
-/obj/machinery/door_control/mainship/req/rebel
-	id = "ROlobby_rebel"
-	req_one_access = list(ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_LOGISTICS_REBEL)
 
 /obj/machinery/door_control/mainship/req/ro1
 	name = "RO Line 1 Shutters"
@@ -297,6 +282,7 @@
 	directional = FALSE
 
 /obj/machinery/door_control/old/update_icon_state()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "olddoorctrl-p"
 	else if(pressed)
@@ -313,20 +299,10 @@
 	name = "RO Line Shutters"
 	id = "valhalla"
 
-/obj/machinery/door_control/old/rebel
-	name = "RO Line Shutters"
-	id = "ROlobby_rebel"
-	req_one_access = list(ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_LOGISTICS_REBEL)
-
 /obj/machinery/door_control/old/cic
 	name = "CIC Lockdown"
 	id = "cic_lockdown"
 	req_one_access = list(ACCESS_MARINE_BRIDGE)
-
-/obj/machinery/door_control/old/cic/rebel
-	name = "CIC Lockdown"
-	id = "cic_lockdown"
-	req_one_access = list(ACCESS_MARINE_BRIDGE_REBEL)
 
 /obj/machinery/door_control/old/cic/hangar
 	name = "Hangar Lockdown"
@@ -339,10 +315,6 @@
 /obj/machinery/door_control/old/cic/armory
 	name = "Armory Lockdown"
 	id = "cic_armory"
-
-/obj/machinery/door_control/old/cic/armory/rebel
-	id = "cic_armory_armory"
-	req_one_access = list(ACCESS_MARINE_BRIDGE_REBEL)
 
 /obj/machinery/door_control/old/medbay
 	req_access = list(ACCESS_MARINE_MEDBAY)

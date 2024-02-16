@@ -51,7 +51,7 @@
 	var/lose_patience_timer_id //id for a timer to call LoseTarget(), used to stop mobs fixating on a target they can't reach
 	var/lose_patience_timeout = 300 //30 seconds by default, so there's no major changes to AI behaviour, beyond actually bailing if stuck forever
 
-/mob/living/simple_animal/hostile/Initialize()
+/mob/living/simple_animal/hostile/Initialize(mapload)
 	. = ..()
 
 	if(!targets_from)
@@ -342,7 +342,7 @@
 	return ..()
 
 
-/mob/living/simple_animal/hostile/proc/summon_backup(distance, exact_faction_match)
+/mob/living/simple_animal/hostile/proc/summon_backup(distance, eABILITY_faction_match)
 	playsound(loc, 'sound/machines/chime.ogg', 50, 1, -1)
 	for(var/mob/living/simple_animal/hostile/M in oview(distance, targets_from))
 		if(faction == M.faction)

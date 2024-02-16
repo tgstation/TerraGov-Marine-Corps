@@ -1,5 +1,5 @@
 /datum/admins/proc/set_view_range()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Set View Range"
 
 	if(!check_rights(R_FUN))
@@ -24,7 +24,7 @@
 
 
 /datum/admins/proc/emp()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "EM Pulse"
 
 	if(!check_rights(R_FUN))
@@ -48,29 +48,32 @@
 
 
 /datum/admins/proc/queen_report()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Queen Mother Report"
 
 	if(!check_rights(R_FUN))
 		return
 
-	var/customname = tgui_input_text(usr, "What do you want it to be called?.", "Queen Mother Report", "Queen Mother", encode = FALSE)
+	var/customname = tgui_input_text(usr, "What do you want the title of this report to be?", "Report Title", "Queen Mother Directive", encode = FALSE)
 	var/input = tgui_input_text(usr, "This should be a message from the ruler of the Xenomorph race.", "Queen Mother Report", "", multiline = TRUE, encode = FALSE)
 	if(!input || !customname)
 		return
 
-	var/msg = "<br><h2 class='alert'>[customname]</h2><br>[span_warning("[input]")]<br><br>"
 
 	for(var/i in (GLOB.xeno_mob_list + GLOB.observer_list))
 		var/mob/M = i
-		to_chat(M, msg)
+		to_chat(M, assemble_alert(
+			title = customname,
+			message = input,
+			color_override = "purple"
+		))
 
 	log_admin("[key_name(usr)] created a Queen Mother report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] created a Queen Mother report.")
 
 /datum/admins/proc/rouny_all()
 	set name = "Toggle Glob Xeno Rouny"
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set desc = "Toggle all living xenos into rouny versions of themselves"
 
 	if(!check_rights(R_FUN))
@@ -83,8 +86,8 @@
 
 
 /datum/admins/proc/hive_status()
-	set category = "Fun"
-	set name = "Hive Status"
+	set category = "Admin.Fun"
+	set name = "Check Hive Status"
 	set desc = "Check the status of the hive."
 
 	if(!check_rights(R_FUN))
@@ -99,7 +102,7 @@
 
 
 /datum/admins/proc/ai_report()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "AI Report"
 
 	if(!check_rights(R_FUN))
@@ -129,7 +132,7 @@
 
 
 /datum/admins/proc/command_report()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Command Report"
 
 	if(!check_rights(R_FUN))
@@ -137,7 +140,9 @@
 
 
 	var/customname = tgui_input_text(usr, "Pick a title for the report.", "Title", "TGMC Update", encode = FALSE)
+	var/customsubtitle = tgui_input_text(usr, "Pick a subtitle for the report.", "Subtitle", "", encode = FALSE)
 	var/input = tgui_input_text(usr, "Please enter anything you want. Anything. Serious.", "What?", "", multiline = TRUE, encode = FALSE)
+	var/override = tgui_input_list(usr, "Pick a color for the report.", "Color", faction_alert_colors - "default", default = "blue")
 
 	if(!input || !customname)
 		return
@@ -147,9 +152,9 @@
 
 	switch(tgui_alert(usr, "Should this be announced to the general population?", "Announce", list("Yes", "No", "Cancel")))
 		if("Yes")
-			priority_announce(input, customname, sound = 'sound/AI/commandreport.ogg');
+			priority_announce(input, customname, customsubtitle, sound = 'sound/AI/commandreport.ogg', color_override = override);
 		if("No")
-			priority_announce("New update available at all communication consoles.", type = ANNOUNCEMENT_COMMAND, sound = 'sound/AI/commandreport.ogg')
+			priority_announce("New update available at all communication consoles.", "Classified Transmission Received", type = ANNOUNCEMENT_PRIORITY, sound = 'sound/AI/commandreport.ogg')
 		else
 			return
 
@@ -158,7 +163,7 @@
 
 
 /datum/admins/proc/narrate_global()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Global Narrate"
 
 	if(!check_rights(R_FUN))
@@ -217,7 +222,7 @@
 
 
 /datum/admins/proc/subtle_message_panel()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Subtle Message Mob"
 
 	if(!check_rights(R_FUN|R_MENTOR))
@@ -256,7 +261,7 @@
 
 
 /datum/admins/proc/award_medal()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Award a Medal"
 
 	if(!check_rights(R_FUN))
@@ -266,7 +271,7 @@
 
 
 /datum/admins/proc/custom_info()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Change Custom Info"
 
 	if(!check_rights(R_FUN))
@@ -284,8 +289,12 @@
 
 	GLOB.custom_info = new_info
 
-	to_chat(world, "<h1 class='alert'>Custom Information</h1>")
-	to_chat(world, span_alert("[GLOB.custom_info]"))
+	to_chat(world, assemble_alert(
+		title = "Custom Information",
+		subtitle = "The following custom information has been set for this round.",
+		message = GLOB.custom_info,
+		color_override = "red"
+	))
 
 	log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
 	message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
@@ -299,12 +308,16 @@
 		to_chat(src, span_notice("There currently is no custom information set."))
 		return
 
-	to_chat(src, "<h1 class='alert'>Custom Information</h1>")
-	to_chat(src, span_alert("[GLOB.custom_info]"))
+	to_chat(src, assemble_alert(
+		title = "Custom Information",
+		subtitle = "The following custom information has been set for this round.",
+		message = GLOB.custom_info,
+		color_override = "red"
+	))
 
 
 /datum/admins/proc/sound_file(S as sound)
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Play Imported Sound"
 	set desc = "Play a sound imported from anywhere on your computer."
 
@@ -336,7 +349,7 @@
 
 
 /datum/admins/proc/sound_web()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Play Internet Sound"
 
 	if(!check_rights(R_SOUND))
@@ -428,7 +441,7 @@
 
 
 /datum/admins/proc/sound_stop()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Stop Regular Sounds"
 
 	if(!check_rights(R_SOUND))
@@ -443,7 +456,7 @@
 
 
 /datum/admins/proc/music_stop()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Stop Playing Music"
 
 	if(!check_rights(R_SOUND))
@@ -459,7 +472,7 @@
 
 
 /datum/admins/proc/announce()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Admin Announce"
 
 	if(!check_rights(R_FUN))
@@ -478,7 +491,7 @@
 
 
 /datum/admins/proc/force_distress()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Distress Beacon"
 	set desc = "Call a distress beacon manually."
 
@@ -567,7 +580,7 @@
 
 
 /datum/admins/proc/drop_bomb()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Drop Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
@@ -597,13 +610,13 @@
 			new /obj/effect/overlay/temp/blinking_laser (usr.loc)
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(delayed_detonate_bomb_napalm), get_turf(usr.loc)), 1 SECONDS)
 		if("Small Bomb")
-			explosion(usr.loc, 1, 2, 3, 3, small_animation = TRUE)
+			explosion(usr.loc, 1, 2, 3, 0, 3)
 		if("Medium Bomb")
-			explosion(usr.loc, 2, 3, 4, 4, small_animation = TRUE)
+			explosion(usr.loc, 2, 3, 4, 0, 4)
 		if("Big Bomb")
-			explosion(usr.loc, 3, 5, 7, 5)
+			explosion(usr.loc, 3, 5, 7, 0, 5)
 		if("Maxcap")
-			explosion(usr.loc, GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
+			explosion(usr.loc, GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, 0, GLOB.MAX_EX_FLASH_RANGE)
 		if("Custom Bomb")
 			var/input_devastation_range = input("Devastation range (in tiles):", "Drop Bomb") as null|num
 			var/input_heavy_impact_range = input("Heavy impact range (in tiles):", "Drop Bomb") as null|num
@@ -621,10 +634,10 @@
 			input_flame_range = clamp(input_flame_range, 0, world_max)
 			switch(tgui_alert(usr, "Deploy payload?", "DIR: [input_devastation_range] | HIR: [input_heavy_impact_range] | LIR: [input_light_impact_range] | FshR: [input_flash_range] | FlmR: [input_flame_range] | ThR: [input_throw_range]", list("Launch!", "Cancel")))
 				if("Launch!")
-					explosion(usr.loc, input_devastation_range, input_heavy_impact_range, input_light_impact_range, input_flash_range, input_flame_range, input_throw_range)
+					explosion(usr.loc, input_devastation_range, input_heavy_impact_range, input_light_impact_range, 0, input_flash_range, input_flame_range, input_throw_range)
 				else
 					return
-			choice = "[choice] ([input_devastation_range], [input_heavy_impact_range], [input_light_impact_range], [input_flash_range], [input_flame_range])" //For better logging.
+			choice = "[choice] ([input_devastation_range], [input_heavy_impact_range], [input_light_impact_range], 0, [input_flash_range], [input_flame_range])" //For better logging.
 		else
 			return
 
@@ -634,7 +647,7 @@
 /proc/delayed_detonate_bomb(turf/impact, input_devastation_range, input_heavy_impact_range, input_light_impact_range, input_flash_range, input_flame_range, input_throw_range, ceiling_debris)
 	if(ceiling_debris)
 		impact.ceiling_debris_check(ceiling_debris)
-	explosion(impact, input_devastation_range, input_heavy_impact_range, input_light_impact_range, input_flash_range, input_flame_range, input_throw_range)
+	explosion(impact, input_devastation_range, input_heavy_impact_range, input_light_impact_range, 0, input_flash_range, input_flame_range, input_throw_range)
 
 /proc/delayed_detonate_bomb_fatty(turf/impact)
 	impact.ceiling_debris_check(2)
@@ -651,12 +664,12 @@
 
 /proc/delayed_detonate_bomb_napalm(turf/impact)
 	impact.ceiling_debris_check(3)
-	explosion(impact, 2, 3, 4, 6)
+	explosion(impact, 2, 3, 4, 0, 6)
 	flame_radius(5, impact, 60, 30)
 
 
 /datum/admins/proc/drop_dynex_bomb()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Drop DynEx Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
@@ -669,7 +682,7 @@
 
 
 /datum/admins/proc/change_security_level()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Set Security Level"
 
 	if(!check_rights(R_FUN))
@@ -689,7 +702,7 @@
 
 
 /datum/admins/proc/rank_and_equipment(mob/living/carbon/human/H in GLOB.human_mob_list)
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Rank and Equipment"
 
 	if(!check_rights(R_FUN))
@@ -731,7 +744,7 @@
 
 
 /datum/admins/proc/edit_appearance(mob/living/carbon/human/H in GLOB.human_mob_list)
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Edit Appearance"
 
 	if(!check_rights(R_FUN))
@@ -740,10 +753,10 @@
 	if(!istype(H))
 		return
 
-	var/hcolor = "#[num2hex(H.r_hair)][num2hex(H.g_hair)][num2hex(H.b_hair)]"
-	var/fcolor = "#[num2hex(H.r_facial)][num2hex(H.g_facial)][num2hex(H.b_facial)]"
-	var/ecolor = "#[num2hex(H.r_eyes)][num2hex(H.g_eyes)][num2hex(H.b_eyes)]"
-	var/bcolor = "#[num2hex(H.r_skin)][num2hex(H.g_skin)][num2hex(H.b_skin)]"
+	var/hcolor = "#[num2hex(H.r_hair, 2)][num2hex(H.g_hair, 2)][num2hex(H.b_hair, 2)]"
+	var/fcolor = "#[num2hex(H.r_facial, 2)][num2hex(H.g_facial, 2)][num2hex(H.b_facial, 2)]"
+	var/ecolor = "#[num2hex(H.r_eyes, 2)][num2hex(H.g_eyes, 2)][num2hex(H.b_eyes, 2)]"
+	var/bcolor = "#[num2hex(H.r_skin, 2)][num2hex(H.g_skin, 2)][num2hex(H.b_skin, 2)]"
 
 	var/dat = "<br>"
 
@@ -766,7 +779,7 @@
 
 
 /datum/admins/proc/offer(mob/living/L in GLOB.mob_living_list)
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Offer Mob"
 
 	if(!check_rights(R_FUN))
@@ -801,7 +814,7 @@
 
 
 /datum/admins/proc/xeno_panel(mob/living/carbon/xenomorph/X in GLOB.xeno_mob_list)
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Xeno Panel"
 
 	if(!check_rights(R_FUN))
@@ -872,18 +885,8 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has possessed [O] ([O.type]).")
 
 
-/client/proc/toggle_buildmode()
-	set category = "Fun"
-	set name = "Toggle Build Mode"
-
-	if(!check_rights(R_FUN))
-		return
-
-	togglebuildmode(usr)
-
-
 /datum/admins/proc/imaginary_friend()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Imaginary Friend"
 
 	if(!check_rights(R_FUN|R_MENTOR))
@@ -925,7 +928,7 @@
 	message_admins("[ADMIN_TPMONTY(IF)] started being imaginary friend of [ADMIN_TPMONTY(friend_owner)].")
 
 /datum/admins/proc/force_dropship()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Force Dropship"
 
 	if(!check_rights(R_FUN))
@@ -999,7 +1002,7 @@
 
 
 /datum/admins/proc/play_cinematic()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Play Cinematic"
 
 	if(!check_rights(R_FUN))
@@ -1016,7 +1019,7 @@
 
 
 /datum/admins/proc/set_tip()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Set Tip"
 
 	if(!check_rights(R_FUN))
@@ -1037,7 +1040,7 @@
 
 
 /datum/admins/proc/ghost_interact()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Ghost Interact"
 
 	if(!check_rights(R_FUN))
@@ -1049,7 +1052,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has [usr.client.holder.ghost_interact ? "enabled" : "disabled"] ghost interact.")
 
 /client/proc/run_weather()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Run Weather"
 	set desc = "Triggers a weather on the z-level you choose."
 
@@ -1073,7 +1076,7 @@
 
 ///client verb to set round end sound
 /client/proc/set_round_end_sound(S as sound)
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Set Round End Sound"
 	if(!check_rights(R_SOUND))
 		return
@@ -1083,3 +1086,34 @@
 	log_admin("[key_name(src)] set the round end sound to [S]")
 	message_admins("[key_name_admin(src)] set the round end sound to [S]")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Set Round End Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+///Adjusts gravity, modifying the jump component for all mobs
+/datum/admins/proc/adjust_gravity()
+	set category = "Admin.Fun"
+	set name = "Adjust Gravity"
+
+	if(!check_rights(R_FUN))
+		return
+
+	var/choice = tgui_input_list(usr, "What would you like to set gravity to?", "Gravity adjustment", list("Standard gravity", "Low gravity", "John Woo", "Exceeding orbital velocity"))
+	switch(choice)
+		if("Standard gravity")
+			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity return to normal."))
+			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
+				living_mob.set_jump_component()
+		if("Low gravity")
+			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity pull gently at you."))
+			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
+				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 32, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_DEFENSIVE_STRUCTURE)
+		if("John Woo")
+			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity grow weak, and the urge to fly."))
+			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
+				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 48, sound = "jump", flags = JUMP_SPIN, flags_pass = HOVERING|PASS_PROJECTILE)
+		if("Exceeding orbital velocity")
+			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity fade to nothing. Will you even come back down?"))
+			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
+				living_mob.set_jump_component(duration = 4 SECONDS, cooldown = 6 SECONDS, cost = 0, height = 128, sound = "jump", flags = JUMP_SPIN, flags_pass = HOVERING|PASS_PROJECTILE)
+		else
+			return
+
+	log_admin("[key_name(usr)] set gravity to [choice].")

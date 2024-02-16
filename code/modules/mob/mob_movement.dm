@@ -1,11 +1,14 @@
 /mob/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(CHECK_BITFIELD(mover.flags_pass, PASSMOB))
+	if(mover.pass_flags & PASS_MOB)
 		return TRUE
-	if(ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSMOB))
+	if(..())
 		return TRUE
-	return . || (!mover.density || !density || lying_angle) //Parent handles buckling - if someone's strapped to us it can pass.
-
+	if(lying_angle)
+		return TRUE
+	if(mover.throwing && !(allow_pass_flags & PASS_THROW))
+		return FALSE
+	if(!mover.density)
+		return TRUE
 
 /client/verb/swap_hand()
 	set hidden = 1
@@ -354,7 +357,7 @@
 
 	if(hud_used?.static_inventory)
 		for(var/atom/movable/screen/mov_intent/selector in hud_used.static_inventory)
-			selector.update_icon(src)
+			selector.update_icon()
 
 	return TRUE
 
@@ -367,7 +370,7 @@
 
 
 /mob/living/carbon/human/toggle_move_intent(new_intent)
-	if(species.species_flags & NO_STAMINA && (m_intent == MOVE_INTENT_WALK || new_intent == MOVE_INTENT_RUN))
+	if((m_intent == MOVE_INTENT_WALK || new_intent == MOVE_INTENT_RUN) && (staminaloss >= 0 || (species.species_flags & NO_STAMINA)))
 		return
 	return ..()
 

@@ -5,7 +5,7 @@
 
 /obj/item/tool/pickaxe
 	name = "pickaxe"
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/mining.dmi'
 	icon_state = "pickaxe"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -81,6 +81,8 @@
 
 /obj/item/tool/pickaxe/plasmacutter
 	name = "plasma cutter"
+	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
+	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "plasma_cutter_off"
 	item_state = "plasmacutter"
 	w_class = WEIGHT_CLASS_BULKY
@@ -88,7 +90,6 @@
 	force = 70
 	damtype = BURN
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction
-	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
 	drill_verb = "cutting"
 	attack_verb = list("dissolves", "disintegrates", "liquefies", "subliminates", "vaporizes")
 	heat = 3800
@@ -102,7 +103,7 @@
 	var/obj/item/cell/rtg/large/cell //The plasma cutter cell is unremovable and recharges over time
 	tool_behaviour = TOOL_WELD_CUTTER
 
-/obj/item/tool/pickaxe/plasmacutter/Initialize()
+/obj/item/tool/pickaxe/plasmacutter/Initialize(mapload)
 	. = ..()
 	cell = new /obj/item/cell/rtg/plasma_cutter()
 
@@ -169,7 +170,7 @@
 		if(custom_string)
 			to_chat(user, span_notice(custom_string))
 		else
-			to_chat(user, span_notice("You start cutting apart the [name] with [src]."))
+			balloon_alert(user, "Starts cutting apart")
 	return TRUE
 
 /obj/item/tool/pickaxe/plasmacutter/proc/cut_apart(mob/user, name = "", atom/source, charge_amount = PLASMACUTTER_BASE_COST, custom_string)
@@ -185,7 +186,7 @@
 	if(custom_string)
 		to_chat(user, span_notice(custom_string))
 	else
-		to_chat(user, span_notice("You cut apart the [name] with [src]."))
+		balloon_alert(user, "Cuts apart")
 
 /obj/item/tool/pickaxe/plasmacutter/proc/debris(location, metal = 0, rods = 0, wood = 0, wires = 0, shards = 0, plasteel = 0)
 	if(metal)
@@ -279,7 +280,7 @@
 		if(!start_cut(user, target.name, target, 0, span_notice("You start melting the [target.name] with [src].")))
 			return
 		playsound(user.loc, 'sound/items/welder.ogg', 25, 1)
-		if(!do_after(user, calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, T, BUSY_ICON_BUILD))
+		if(!do_after(user, calc_delay(user) * PLASMACUTTER_VLOW_MOD, NONE, T, BUSY_ICON_BUILD))
 			return
 		if(!powered)
 			fizzle_message(user)
@@ -289,7 +290,8 @@
 		if(!ST.slayer)
 			return
 		ST.slayer = max(0 , ST.slayer - dirt_amt_per_dig)
-		ST.update_icon(1,0)
+		ST.update_appearance()
+		ST.update_sides()
 		cut_apart(user, target.name, target, 0, "You melt the snow with [src]. ") //costs nothing
 
 
@@ -302,7 +304,7 @@
 	if(!start_cut(user, O.name, O))
 		return TRUE
 
-	if(!do_after(user, calc_delay(user), TRUE, O, BUSY_ICON_HOSTILE))
+	if(!do_after(user, calc_delay(user), NONE, O, BUSY_ICON_HOSTILE))
 		return TRUE
 
 	cut_apart(user, O.name, O)

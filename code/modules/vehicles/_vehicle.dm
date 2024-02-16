@@ -10,7 +10,7 @@
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	obj_flags = CAN_BE_HIT
 	resistance_flags = XENO_DAMAGEABLE
-	flags_pass = PASSAIR
+	allow_pass_flags = PASS_AIR
 	COOLDOWN_DECLARE(cooldown_vehicle_move)
 	///mob = bitflags of their control level.
 	var/list/mob/occupants
@@ -92,6 +92,10 @@
 /obj/vehicle/proc/is_driver(mob/M)
 	return is_occupant(M) && occupants[M] & VEHICLE_CONTROL_DRIVE
 
+///Is the passed mob an equipment controller?
+/obj/vehicle/proc/is_equipment_controller(mob/M)
+	return is_occupant(M) && occupants[M] & VEHICLE_CONTROL_EQUIPMENT
+
 /obj/vehicle/proc/is_occupant(mob/M)
 	return !isnull(LAZYACCESS(occupants, M))
 
@@ -164,4 +168,4 @@
 /obj/vehicle/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
-		take_damage(20 * S.strength)
+		take_damage(20 * S.strength, BURN, ACID)

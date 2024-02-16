@@ -15,12 +15,15 @@
 		if(EXPLODE_DEVASTATE)
 			deconstruct(FALSE)
 		if(EXPLODE_HEAVY)
-			take_damage(15)
+			take_damage(15, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(5)
+			take_damage(5, BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(5, BRUTE, BOMB)
 
 
-/obj/structure/displaycase/update_icon()
+/obj/structure/displaycase/update_icon_state()
+	. = ..()
 	if(destroyed)
 		icon_state = "glassboxb[occupied]"
 	else
@@ -39,7 +42,7 @@
 		return
 
 	visible_message(span_warning("[user] kicks the display case."), span_notice("You kick the display case."))
-	take_damage(2)
+	take_damage(2, BRUTE, MELEE)
 
 //Quick destroyed case.
 /obj/structure/displaycase/destroyed

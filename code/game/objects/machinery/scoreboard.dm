@@ -11,7 +11,7 @@
 	var/scoreleft = 0
 	var/scoreright = 0
 
-/obj/machinery/scoreboard/Initialize()
+/obj/machinery/scoreboard/Initialize(mapload)
 	. = ..()
 	update_display()
 

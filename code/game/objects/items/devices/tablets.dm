@@ -1,7 +1,7 @@
 /obj/item/hud_tablet
 	name = "hud tablet"
 	desc = "A tablet with a live feed to a number of headset cameras"
-	icon = 'icons/obj/items/req_tablet.dmi'
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "req_tablet_off"
 	req_access = list(ACCESS_NT_CORPORATE)
 	flags_equip_slot = ITEM_SLOT_POCKET
@@ -61,8 +61,12 @@
 				req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER)
 			if(/datum/job/terragov/command/pilot)
 				dat += " pilot's"
-				network = list("dropship1", "dropship2")
+				network = list("dropship1")
 				req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
+			if(/datum/job/terragov/command/transportofficer)
+				dat += " transport officer's"
+				network = list("dropship2")
+				req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE)
 		name = dat + " hud tablet"
 	// Convert networks to lowercase
 	for(var/i in network)
@@ -252,10 +256,15 @@
 
 /obj/item/hud_tablet/pilot
 	name = "pilot officers's hud tablet"
-	network = list("dropship1", "dropship2")
+	network = list("dropship1")
 	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
 	max_view_dist = WORLD_VIEW_NUM
 
+/obj/item/hud_tablet/transportofficer
+	name = "transport officer's hud tablet"
+	network = list("dropship2")
+	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE)
+	max_view_dist = WORLD_VIEW_NUM
 
 /obj/item/hud_tablet/artillery
 	name = "artillery impact hud tablet"

@@ -23,7 +23,7 @@
 	var/casedesc = "This basic model accepts both beakers and bottles. It heats contents by 10°K upon ignition." // Appears when examining empty casings.
 
 
-/obj/item/explosive/grenade/chem_grenade/Initialize()
+/obj/item/explosive/grenade/chem_grenade/Initialize(mapload)
 	. = ..()
 	create_reagents(1000)
 	stage_change() // If no argument is set, it will change the stage to the current stage, useful for stock grenades that start READY.
@@ -40,7 +40,7 @@
 		else
 			return ..()
 
-/obj/item/explosive/grenade/chem_grenade/razorburn_smol/attackby(obj/item/I, mob/user, params)
+/obj/item/explosive/grenade/chem_grenade/razorburn_small/attackby(obj/item/I, mob/user, params)
 	to_chat(user, span_notice("The [initial(name)] is hermetically sealed, and does not open."))
 	return
 
@@ -199,8 +199,7 @@
 	if(nadeassembly)
 		var/mob/M = get_mob_by_ckey(assemblyattacher)
 
-		log_explosion("[key_name(M)] primed [src] at [AREACOORD(loc)].")
-		log_combat(M, src, "primed")
+		log_bomber(M, "primed", src)
 
 	if(ismob(loc))
 		var/mob/M = loc
@@ -238,16 +237,17 @@
 	icon_state = initial(icon_state) +"_locked"
 
 
-/obj/item/explosive/grenade/chem_grenade/razorburn_smol
+/obj/item/explosive/grenade/chem_grenade/razorburn_small
 	name = "Razorburn Grenade"
 	desc = "Contains construction nanites ready to turn a small area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
 	icon_state = "grenade_razorburn"
 	item_state = "grenade_razorburn"
+	hud_state = "grenade_razor"
 	stage = CG_READY
 	icon_state_mini = "grenade_chem_yellow"
 
 
-/obj/item/explosive/grenade/chem_grenade/razorburn_smol/Initialize(mapload, ...)
+/obj/item/explosive/grenade/chem_grenade/razorburn_small/Initialize(mapload, ...)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)

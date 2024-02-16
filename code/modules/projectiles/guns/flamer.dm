@@ -8,6 +8,10 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
+	)
 	fire_sound = "gun_flamethrower"
 	dry_fire_sound = 'sound/weapons/guns/fire/flamethrower_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/flamethrower_unload.ogg'
@@ -51,6 +55,9 @@
 		/obj/item/ammo_magazine/flamer_tank/backtank,
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
+	light_range = 0.1
+	light_power = 0.1
+	light_color = LIGHT_COLOR_ORANGE
 	///Max range of the flamer in tiles.
 	var/flame_max_range = 6
 	///Max resin wall penetration in tiles.
@@ -76,7 +83,7 @@
 	///how wide of a cone the flamethrower produces on wide mode.
 	var/cone_angle = 55
 
-/obj/item/weapon/gun/flamer/Initialize()
+/obj/item/weapon/gun/flamer/Initialize(mapload)
 	. = ..()
 	if(!rounds)
 		return
@@ -115,10 +122,11 @@
 		return
 	if(light)
 		ENABLE_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)
+		turn_light(null, TRUE)
 	else
 		DISABLE_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)
+		turn_light(null, FALSE)
 	playsound(src, CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT) ? 'sound/weapons/guns/interact/flamethrower_on.ogg' : 'sound/weapons/guns/interact/flamethrower_off.ogg', 25, 1)
-
 
 	if(CHECK_BITFIELD(flags_flamer_features, FLAMER_NO_LIT_OVERLAY))
 		return
@@ -134,6 +142,12 @@
 	lit_overlay.pixel_x += lit_overlay_offset_x
 	lit_overlay.pixel_y += lit_overlay_offset_y
 	. += lit_overlay
+
+/obj/item/weapon/gun/flamer/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	set_light_on(toggle_on)
 
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
 	. = ..()
@@ -246,12 +260,9 @@
 /obj/item/weapon/gun/flamer/proc/flame_turf(turf/turf_to_ignite, mob/living/user, burn_time, burn_level, fire_color = "red", direction = NORTH)
 	turf_to_ignite.ignite(burn_time, burn_level, fire_color)
 
-	var/fire_mod
 	for(var/mob/living/mob_caught in turf_to_ignite) //Deal bonus damage if someone's caught directly in initial stream
 		if(mob_caught.stat == DEAD)
 			continue
-
-		fire_mod = mob_caught.get_fire_resist()
 
 		if(isxeno(mob_caught))
 			var/mob/living/carbon/xenomorph/xeno_caught = mob_caught
@@ -269,10 +280,7 @@
 				else
 					log_combat(user, human_caught, "flamed", src)
 
-			if(human_caught.hard_armor.getRating(FIRE) >= 100)
-				continue
-
-		mob_caught.take_overall_damage(rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, BURN, updating_health = TRUE, max_limbs = 4) // Make it so its the amount of heat or twice it for the initial blast.
+		mob_caught.take_overall_damage(rand(burn_level, (burn_level * mob_flame_damage_mod)), BURN, FIRE, updating_health = TRUE, max_limbs = 4) // Make it so its the amount of heat or twice it for the initial blast.
 		mob_caught.adjust_fire_stacks(rand(5, (burn_level * mob_flame_damage_mod)))
 		mob_caught.IgniteMob()
 
@@ -282,21 +290,22 @@
 /obj/item/weapon/gun/flamer/big_flamer
 	name = "\improper FL-240 incinerator unit"
 	desc = "The FL-240 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
+	icon = 'icons/obj/items/guns/special.dmi'
 	icon_state = "m240"
 	item_state = "m240"
 
 /obj/item/weapon/gun/flamer/som
 	name = "\improper V-62 incinerator"
 	desc = "The V-62 is a deadly weapon employed in close quarter combat, favoured as much for the terror it inspires as the actual damage it inflicts. It has good range for a flamer, but lacks the integrated extinguisher of its TGMC equivalent."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "v62"
 	item_state = "v62"
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_SHOWS_LOADED
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_64.dmi',
 	)
 	lit_overlay_icon_state = "v62_lit"
 	lit_overlay_offset_x = 0
@@ -310,8 +319,42 @@
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
 
+/obj/item/weapon/gun/flamer/som/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	. = ..()
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
+	standing.overlays.Add(emissive_overlay)
+
 /obj/item/weapon/gun/flamer/som/mag_harness
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide, /obj/item/attachable/magnetic_harness)
+
+//dedicated engineer pyro kit flamer
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer
+	name = "\improper FL-86 incinerator unit"
+	desc = "The FL-86 is a more light weight incinerator unit designed specifically to fit into its accompanying engineers bag. Can only be used with magazine fuel tanks however."
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/flamer_tank,
+		/obj/item/ammo_magazine/flamer_tank/large,
+		/obj/item/ammo_magazine/flamer_tank/large/X,
+	)
+	attachable_allowed = list(
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/t84stock,
+		/obj/item/attachable/flamer_nozzle,
+		/obj/item/attachable/flamer_nozzle/wide,
+		/obj/item/attachable/flamer_nozzle/long,
+	)
+	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock)
+
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/beginner
+	starting_attachment_types = list(
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/flamer_nozzle,
+		/obj/item/attachable/stock/t84stock,
+	)
 
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"
@@ -366,6 +409,7 @@
 		/obj/item/attachable/stock/t84stock,
 		/obj/item/attachable/flamer_nozzle,
 		/obj/item/attachable/flamer_nozzle/wide,
+		/obj/item/attachable/flamer_nozzle/wide/red,
 		/obj/item/attachable/flamer_nozzle/long,
 		/obj/item/weapon/gun/flamer/hydro_cannon,
 	)
@@ -386,7 +430,7 @@
 ///Flamer windup called before firing
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/proc/do_windup()
 	windup_checked = WEAPON_WINDUP_CHECKING
-	if(!do_after(gun_user, 1 SECONDS, TRUE, src))
+	if(!do_after(gun_user, 1 SECONDS, IGNORE_USER_LOC_CHANGE, src))
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	windup_checked = WEAPON_WINDUP_CHECKED
@@ -395,6 +439,16 @@
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide
 	starting_attachment_types = list(
 		/obj/item/attachable/flamer_nozzle/wide,
+		/obj/item/attachable/stock/t84stock,
+		/obj/item/weapon/gun/flamer/hydro_cannon,
+		/obj/item/attachable/magnetic_harness,
+	)
+
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/deathsquad
+	allowed_ammo_types = list(/obj/item/ammo_magazine/flamer_tank/large/X/deathsquad)
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad
+	starting_attachment_types = list(
+		/obj/item/attachable/flamer_nozzle/wide/red,
 		/obj/item/attachable/stock/t84stock,
 		/obj/item/weapon/gun/flamer/hydro_cannon,
 		/obj/item/attachable/magnetic_harness,
@@ -410,13 +464,14 @@
 		return
 
 	new /obj/flamer_fire(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
-	for(var/obj/structure/jungle/vines/vines in src)
+	for(var/obj/structure/flora/jungle/vines/vines in src)
 		QDEL_NULL(vines)
 
 /turf/open/floor/plating/ground/snow/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	if(slayer > 0)
 		slayer -= 1
-		update_icon(1, 0)
+		update_appearance()
+		update_sides()
 	return ..()
 
 
@@ -459,7 +514,6 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	light_on = TRUE
 	light_range = 3
 	light_power = 3
-	light_color = LIGHT_COLOR_LAVA
 	///Tracks how much "fire" there is. Basically the timer of how long the fire burns
 	var/firelevel = 12
 	///Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature
@@ -470,6 +524,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 /obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	. = ..()
 	set_fire(fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
+	updateicon()
 
 	START_PROCESSING(SSobj, src)
 
@@ -523,15 +578,15 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		C.take_overall_damage(fire_damage, BURN, FIRE, updating_health = TRUE)
 
 /obj/flamer_fire/proc/updateicon()
-	var/light_color = "LIGHT_COLOR_LAVA"
+	var/light_color = "LIGHT_COLOR_FLAME"
 	var/light_intensity = 3
 	switch(flame_color)
 		if("red")
-			light_color = LIGHT_COLOR_LAVA
+			light_color = LIGHT_COLOR_FLAME
 		if("blue")
-			light_color = LIGHT_COLOR_CYAN
+			light_color = LIGHT_COLOR_BLUE_FLAME
 		if("green")
-			light_color = LIGHT_COLOR_GREEN
+			light_color = LIGHT_COLOR_ELECTRIC_GREEN
 	switch(firelevel)
 		if(1 to 9)
 			icon_state = "[flame_color]_1"

@@ -25,7 +25,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
 	caste_traits = null
 
 	// *** Defense *** //
@@ -39,6 +39,7 @@
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/activable/xeno/xeno_spit,
+		/datum/action/ability/activable/xeno/corrosive_acid/drone,
 	)

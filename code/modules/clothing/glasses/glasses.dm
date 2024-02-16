@@ -14,7 +14,7 @@
 	flags_equip_slot = ITEM_SLOT_EYES
 	flags_armor_protection = EYES
 	var/deactive_state = "degoggles"
-	var/vision_flags = 0
+	var/vision_flags = NONE
 	var/darkness_view = 2 //Base human is 2
 	var/invis_view = SEE_INVISIBLE_LIVING
 	var/invis_override = 0 //Override to allow glasses to set higher than normal see_invis
@@ -88,7 +88,7 @@
 		qdel(src)
 		user.put_in_hands(P)
 
-		update_icon(user)
+		update_icon()
 
 
 /obj/item/clothing/glasses/monocle
@@ -123,7 +123,7 @@
 		qdel(src)
 		user.put_in_hands(P)
 
-		update_icon(user)
+		update_icon()
 
 /obj/item/clothing/glasses/regular/hipster
 	name = "prescription glasses"
@@ -191,7 +191,7 @@
 			qdel(src)
 			user.put_in_hands(S)
 
-		update_icon(user)
+		update_icon()
 
 /obj/item/clothing/glasses/m42_goggles
 	name = "\improper M42 scout sight"
@@ -217,7 +217,7 @@
 	flags_inv_hide = HIDEEYES
 	eye_protection = 2
 
-/obj/item/clothing/glasses/welding/Initialize()
+/obj/item/clothing/glasses/welding/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_5, TRUE)
 
@@ -275,7 +275,7 @@
 	icon_state = "rwelding-g"
 	item_state = "rwelding-g"
 
-/obj/item/clothing/glasses/welding/superior/Initialize()
+/obj/item/clothing/glasses/welding/superior/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_4)
 
@@ -288,7 +288,7 @@
 	item_state = "sunglasses"
 	eye_protection = 1
 
-/obj/item/clothing/glasses/sunglasses/Initialize()
+/obj/item/clothing/glasses/sunglasses/Initialize(mapload)
 	. = ..()
 	if(eye_protection)
 		AddComponent(/datum/component/clothing_tint, TINT_3)
@@ -300,7 +300,7 @@
 	item_state = "blindfold"
 	eye_protection = 2
 
-/obj/item/clothing/glasses/sunglasses/blindfold/Initialize()
+/obj/item/clothing/glasses/sunglasses/blindfold/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_BLIND)
 
@@ -336,8 +336,14 @@
 		qdel(I)
 		qdel(src)
 		user.put_in_hands(P)
+	else if(istype(I, /obj/item/clothing/glasses/night/m56_goggles))
+		var/obj/item/clothing/glasses/night/sunglasses/P = new
+		to_chat(user, span_notice("You fasten the KTLD sight to the inside of the glasses."))
+		qdel(I)
+		qdel(src)
+		user.put_in_hands(P)
 
-		update_icon(user)
+		update_icon()
 
 /obj/item/clothing/glasses/sunglasses/fake/prescription
 	name = "prescription sunglasses"
@@ -351,22 +357,6 @@
 /obj/item/clothing/glasses/sunglasses/fake/big/prescription
 	name = "prescription sunglasses"
 	prescription = TRUE
-
-/obj/item/clothing/glasses/sunglasses/sa
-	name = "spatial agent's sunglasses"
-	desc = "Glasses worn by a spatial agent."
-	eye_protection = 2
-	darkness_view = 8
-	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
-	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-
-/obj/item/clothing/glasses/sunglasses/sa/Initialize()
-	. = ..()
-	AddComponent(/datum/component/clothing_tint, TINT_NONE)
-
-/obj/item/clothing/glasses/sunglasses/sa/nodrop
-	desc = "Glasses worn by a spatial agent. cannot be dropped"
-	flags_item = DELONDROP
 
 /obj/item/clothing/glasses/sunglasses/sechud
 	name = "HUDSunglasses"

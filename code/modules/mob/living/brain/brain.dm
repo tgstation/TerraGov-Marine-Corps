@@ -6,11 +6,11 @@
 	icon = 'icons/obj/items/organs.dmi'
 	icon_state = "brain1"
 
-/mob/living/brain/Initialize()
+/mob/living/brain/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
-	R.my_atom = src
+	R.my_atom = WEAKREF(src)
 	ADD_TRAIT(src, TRAIT_IMMOBILE, INNATE_TRAIT)
 
 /mob/living/brain/Destroy()

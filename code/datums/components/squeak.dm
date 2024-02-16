@@ -14,15 +14,16 @@
 	///what we set connect_loc to if parent is a movable
 	var/static/list/item_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(play_squeak_crossed),
+		COMSIG_TURF_JUMP_ENDED_HERE = PROC_REF(play_squeak),
 	)
 
 /datum/component/squeak/Initialize(sound_to_play, volume_override, chance_override, step_delay_override, use_delay_override)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, list(COMSIG_ATOM_ENTERED, COMSIG_PARENT_ATTACKBY), PROC_REF(play_squeak))
+	RegisterSignals(parent, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_ATTACKBY), PROC_REF(play_squeak))
 	if(ismovableatom(parent))
 		AddComponent(/datum/component/connect_loc_behalf, parent, item_connections)
-		RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_IMPACT), PROC_REF(play_squeak))
+		RegisterSignals(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_IMPACT), PROC_REF(play_squeak))
 		RegisterSignal(parent, COMSIG_MOVABLE_DISPOSING, PROC_REF(disposing_react))
 		if(isitem(parent))
 			RegisterSignal(parent, COMSIG_ITEM_ATTACK, PROC_REF(play_squeak))
@@ -86,7 +87,7 @@
 	if(isobserver(AM))
 		return
 
-	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(AM.pass_flags, HOVERING))
 		return
 	var/atom/current_parent = parent
 	if(isturf(current_parent.loc))
@@ -109,7 +110,7 @@
 	UnregisterSignal(user, COMSIG_MOVABLE_DISPOSING)
 
 
-/datum/component/squeak/proc/disposing_react(datum/source, obj/structure/disposalholder/holder, obj/machinery/disposal/source)
+/datum/component/squeak/proc/disposing_react(datum/source, obj/structure/disposalholder/holder, obj/machinery/disposal/disposal_unit)
 	SIGNAL_HANDLER
 	//We don't need to worry about unregistering this signal as it will happen for us automaticaly when the holder is qdeleted
 	RegisterSignal(holder, COMSIG_ATOM_DIR_CHANGE, PROC_REF(holder_dir_change))
