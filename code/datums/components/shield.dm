@@ -5,10 +5,6 @@
 	var/datum/callback/intercept_damage_cb
 	///Callback to transfer damage to the shield
 	var/datum/callback/transfer_damage_cb
-	/// %-reduction-based armor.
-	var/datum/armor/soft_armor
-	/// Flat-damage-reduction-based armor.
-	var/datum/armor/hard_armor
 	/// Percentage damage The shield intercepts.
 	var/datum/armor/cover
 	///Behavior flags
@@ -21,7 +17,7 @@
 	var/active = TRUE
 
 
-/datum/component/shield/Initialize(shield_flags, shield_soft_armor, shield_hard_armor, shield_cover = list(MELEE = 80, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 80, BIO = 30, FIRE = 80, ACID = 80))
+/datum/component/shield/Initialize(shield_flags, shield_cover = list(MELEE = 80, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 80, BIO = 30, FIRE = 80, ACID = 80))
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -40,20 +36,6 @@
 
 	setup_callbacks(shield_flags)
 
-	if(!isnull(shield_soft_armor))
-		soft_armor = shield_soft_armor
-	if(islist(shield_soft_armor))
-		soft_armor = getArmor(arglist(shield_soft_armor))
-	else
-		soft_armor = parent_item.soft_armor
-
-	if(!isnull(shield_hard_armor))
-		hard_armor = shield_hard_armor
-	if(islist(shield_hard_armor))
-		hard_armor = getArmor(arglist(shield_hard_armor))
-	else
-		hard_armor = parent_item.hard_armor
-
 	if(islist(shield_cover))
 		cover = getArmor(arglist(shield_cover))
 	else if(istype(shield_cover, /datum/armor))
@@ -65,8 +47,6 @@
 
 /datum/component/shield/Destroy()
 	shield_detach_from_user()
-	soft_armor = null
-	hard_armor = null
 	cover = null
 	intercept_damage_cb = null
 	transfer_damage_cb = null
@@ -157,56 +137,65 @@
 		return
 	affecting_shields[intercept_damage_cb] = layer
 
-///Damage intercept calculation
-/datum/component/shield/proc/item_intercept_attack(attack_type, incoming_damage, damage_type, silent, penetration)
+///Calculates a modifier to the shield coverage based on user or parent conditions
+/datum/component/shield/proc/get_shield_status_modifier()
 	var/obj/item/parent_item = parent
-	var/status_cover_modifier = 1
+	var/shield_status_modifier = 1
 
 	if(parent_item.obj_integrity <= parent_item.integrity_failure)
-		return incoming_damage
+		return 0
 
 	if(affected.IsSleeping() || affected.IsUnconscious() || affected.IsAdminSleeping()) //We don't do jack if we're literally KOed/sleeping/paralyzed.
-		return incoming_damage
+		return 0
 
 	if(affected.IsStun() || affected.IsKnockdown() || affected.IsParalyzed()) //Halve shield cover if we're paralyzed or stunned
-		status_cover_modifier *= 0.5
+		shield_status_modifier *= 0.5
 
 	if(iscarbon(affected))
 		var/mob/living/carbon/C = affected
 		if(C.IsStaggered()) //Lesser penalty to shield cover for being staggered.
-			status_cover_modifier *= 0.75
+			shield_status_modifier *= 0.75
+
+	return shield_status_modifier
+
+///Damage intercept calculation
+/datum/component/shield/proc/item_intercept_attack(attack_type, incoming_damage, damage_type, silent, penetration)
+	var/shield_status_modifier = get_shield_status_modifier()
 
 	switch(attack_type)
 		if(COMBAT_TOUCH_ATTACK) //Touch attacks return true if the associated negative effect is blocked
-			if(!prob(cover.getRating(damage_type) * status_cover_modifier))
+			if(!prob(cover.getRating(damage_type) * shield_status_modifier))
 				return FALSE
+			var/obj/item/parent_item = parent
 			incoming_damage = parent_item.modify_by_armor(incoming_damage, damage_type, penetration)
 			return prob(50 - round(incoming_damage / 3)) //Two checks for touch attacks to make it less absurdly effective, or something.
 		if(COMBAT_MELEE_ATTACK, COMBAT_PROJ_ATTACK) //we return the amount of damage that bypasses the shield
-			var/absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01 * status_cover_modifier  //Determine cover ratio; this is the % of damage we actually intercept.
+			var/absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01 * shield_status_modifier  //Determine cover ratio; this is the % of damage we actually intercept.
 			if(!absorbing_damage)
 				return incoming_damage
 			. = incoming_damage - absorbing_damage
 			if(transfer_damage_cb)
-				return transfer_damage_cb.Invoke(absorbing_damage, ., silent)
+				return transfer_damage_cb.Invoke(absorbing_damage, ., damage_type, silent, penetration)
 
 ///Applies damage to parent item
 /datum/component/shield/proc/transfer_damage_to_parent(return_damage, incoming_damage, damage_type, silent, penetration)
-	. = return_damage
 	var/obj/item/parent_item = parent
 	incoming_damage = parent_item.modify_by_armor(incoming_damage, damage_type, penetration)
 	if(incoming_damage > parent_item.obj_integrity)
-		. += incoming_damage - parent_item.obj_integrity //if we destroy the shield item, extra damage spills over
+		return_damage += incoming_damage - parent_item.obj_integrity //if we destroy the shield item, extra damage spills over
 	if(!silent)
 		to_chat(affected, span_avoidharm("\The [parent_item.name] [. ? "softens" : "soaks"] the damage!"))
-	parent_item.take_damage(incoming_damage, armour_penetration = 100)
+	parent_item.take_damage(incoming_damage)
+	return return_damage
 
 ///Block chance calculation
 /datum/component/shield/proc/item_pure_block_chance(attack_type, incoming_damage, damage_type, silent, penetration)
 	switch(attack_type)
 		if(COMBAT_TOUCH_ATTACK) //Touch attacks return true if the associated negative effect is blocked
-			if(!prob(cover.getRating(damage_type) * status_cover_modifier))
+			var/shield_status_modifier = get_shield_status_modifier()
+			if(!prob(cover.getRating(damage_type) * shield_status_modifier))
 				return FALSE
+			var/obj/item/parent_item = parent
 			incoming_damage = parent_item.modify_by_armor(incoming_damage, damage_type, penetration)
 			return prob(50 - round(incoming_damage / 3)) //Two checks for touch attacks to make it less absurdly effective, or something.
 		if(COMBAT_MELEE_ATTACK, COMBAT_PROJ_ATTACK)
@@ -229,7 +218,7 @@
 	var/next_recharge = 0 //world.time based
 	var/shield_overlay = "shield-blue"
 
-/datum/component/shield/overhealth/Initialize(shield_flags, shield_soft_armor, shield_hard_armor, shield_cover)
+/datum/component/shield/overhealth/Initialize(shield_flags, shield_cover = list(MELEE = 0, BULLET = 80, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 80))
 	if(!issuit(parent))
 		return COMPONENT_INCOMPATIBLE
 	return ..()

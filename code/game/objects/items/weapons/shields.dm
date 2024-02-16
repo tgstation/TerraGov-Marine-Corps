@@ -10,7 +10,7 @@
 	set_shield()
 
 /obj/item/weapon/shield/proc/set_shield()
-	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 80, BIO = 30, FIRE = 50, ACID = 80))
+	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 80, BIO = 30, FIRE = 50, ACID = 80))
 	AddComponent(/datum/component/stun_mitigation)
 
 /obj/item/weapon/shield/riot
@@ -159,7 +159,7 @@
 	AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time)
 
 /obj/item/weapon/shield/riot/marine/deployable/set_shield()
-	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list(MELEE = 40, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 40, BIO = 15, FIRE = 30, ACID = 35))
+	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, list(MELEE = 40, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 40, BIO = 15, FIRE = 30, ACID = 35))
 
 /obj/item/weapon/shield/energy
 	name = "energy combat shield"
