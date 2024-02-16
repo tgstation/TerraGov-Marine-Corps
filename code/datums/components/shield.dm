@@ -243,7 +243,7 @@
 	intercept_damage_cb = CALLBACK(src, PROC_REF(overhealth_intercept_attack))
 	transfer_damage_cb = CALLBACK(src, PROC_REF(transfer_damage_to_overhealth))
 
-
+///Checks if damage should be passed to overshield
 /datum/component/shield/overhealth/proc/overhealth_intercept_attack(attack_type, incoming_damage, damage_type, silent)
 	switch(attack_type)
 		if(COMBAT_TOUCH_ATTACK)
@@ -254,36 +254,19 @@
 			var/absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01
 			if(!absorbing_damage)
 				return incoming_damage //We are transparent to this kind of damage.
-			. = incoming_damage - absorbing_damage
-			absorbing_damage = max(0, absorbing_damage - hard_armor.getRating(damage_type))
-			absorbing_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01
-			return wrap_up_attack(absorbing_damage, ., silent)
+			return transfer_damage_cb.Invoke(absorbing_damage, incoming_damage - absorbing_damage, silent)
 
-
-/datum/component/shield/overhealth/proc/wrap_up_attack(absorbing_damage, unabsorbed_damage, silent)
-	. = unabsorbed_damage
-	var/obj/item/parent_item = parent
-	if(absorbing_damage <= 0)
-		if(!.)
-			if(!silent)
-				to_chat(affected, span_avoidharm("\The [parent_item.name] soaks the damage!"))
-			return
-	if(transfer_damage_cb)
-		return transfer_damage_cb.Invoke(absorbing_damage, ., silent)
-	else if(!silent)
-		to_chat(affected, span_avoidharm("\The [parent_item.name] softens the damage!"))
-
-
+///Calculates actual damage to the shield, returning total amount that penetrates
 /datum/component/shield/overhealth/proc/transfer_damage_to_overhealth(absorbing_damage, unabsorbed_damage, silent)
-	. = unabsorbed_damage
-	var/obj/item/parent_item = parent
 	if(absorbing_damage >= shield_integrity)
-		. += absorbing_damage - shield_integrity
+		unabsorbed_damage += absorbing_damage - shield_integrity
 	if(!silent)
+		var/obj/item/parent_item = parent
 		to_chat(affected, span_avoidharm("\The [parent_item.name] [. ? "softens" : "soaks"] the damage!"))
 	damage_overhealth(absorbing_damage)
+	return unabsorbed_damage
 
-
+///Applies damage to overshield
 /datum/component/shield/overhealth/proc/damage_overhealth(amount)
 	var/datum/effect_system/spark_spread/s = new
 	s.set_up(2, 1, get_turf(parent))
