@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed some throw bugs involving buckled mobs, and added a failsafe to catch any other edge cases"

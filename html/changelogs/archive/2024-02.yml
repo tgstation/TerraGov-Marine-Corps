@@ -263,3 +263,11 @@
   - bugfix: Fix not being able to click martini belt
   yyzsong:
   - qol: Adds a cooldown between unresting and then resting again for xenomorphs
+2024-02-16:
+  Lumipharon:
+  - bugfix: fixed some throw bugs involving buckled mobs, and added a failsafe to
+      catch any other edge cases
+  - bugfix: 'Campaign: Fixed a bug in destroy mission victory checks'
+  - bugfix: fixed some campaign autobalance logic
+  ivanmixo:
+  - bugfix: Xenos abilities shouldn't go through missing corners anymore
