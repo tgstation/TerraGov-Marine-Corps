@@ -1,6 +1,9 @@
 /datum/component/shield
+	///Shielded mob
 	var/mob/living/affected
+	///Callback to block damage entirely
 	var/datum/callback/intercept_damage_cb
+	///Callback to transfer damage to the shield
 	var/datum/callback/transfer_damage_cb
 	/// %-reduction-based armor.
 	var/datum/armor/soft_armor
@@ -8,9 +11,13 @@
 	var/datum/armor/hard_armor
 	/// Percentage damage The shield intercepts.
 	var/datum/armor/cover
+	///Behavior flags
 	var/shield_flags = NONE
+	///What slots the parent item provides its shield effects in
 	var/slot_flags = list(SLOT_L_HAND, SLOT_R_HAND)
+	///Shield priority layer
 	var/layer = 50
+	///Is the shield currently active
 	var/active = TRUE
 
 
@@ -65,6 +72,7 @@
 	transfer_damage_cb = null
 	return ..()
 
+///Sets up the correct callbacks based on flagged behavior
 /datum/component/shield/proc/setup_callbacks(shield_flags)
 	if(shield_flags & SHIELD_PURE_BLOCKING)
 		intercept_damage_cb = CALLBACK(src, PROC_REF(item_pure_block_chance))
@@ -89,6 +97,7 @@
 	else
 		deactivate_with_user()
 
+///Handles equipping the shield
 /datum/component/shield/proc/shield_equipped(datum/source, mob/living/user, slot)
 	SIGNAL_HANDLER
 	if(!(slot in slot_flags))
@@ -103,6 +112,7 @@
 	if(parent_item.slowdown)
 		human_user.add_movespeed_modifier(parent_item.type, TRUE, 0, ((parent_item.flags_item & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE), TRUE, parent_item.slowdown)
 
+///Handles unequipping the shield
 /datum/component/shield/proc/shield_dropped(datum/source, mob/user)
 	SIGNAL_HANDLER
 	shield_detach_from_user()
@@ -114,6 +124,7 @@
 	if(parent_item.slowdown)
 		human_user.remove_movespeed_modifier(parent.type)
 
+///Toggles shield effects for the user
 /datum/component/shield/proc/shield_affect_user(mob/living/user)
 	if(affected)
 		if(affected == user)
@@ -123,12 +134,7 @@
 	if(active)
 		activate_with_user()
 
-/datum/component/shield/proc/activate_with_user()
-	RegisterSignal(affected, COMSIG_LIVING_SHIELDCALL, PROC_REF(on_attack_cb_shields_call))
-
-/datum/component/shield/proc/deactivate_with_user()
-	UnregisterSignal(affected, COMSIG_LIVING_SHIELDCALL)
-
+///Detaches shield from the user
 /datum/component/shield/proc/shield_detach_from_user()
 	if(!affected)
 		return
@@ -136,6 +142,15 @@
 	deactivate_with_user()
 	affected = null
 
+///Activates shield effects
+/datum/component/shield/proc/activate_with_user()
+	RegisterSignal(affected, COMSIG_LIVING_SHIELDCALL, PROC_REF(on_attack_cb_shields_call))
+
+///Deactivates shield effects
+/datum/component/shield/proc/deactivate_with_user()
+	UnregisterSignal(affected, COMSIG_LIVING_SHIELDCALL)
+
+///Main shield damage intercept handling
 /datum/component/shield/proc/on_attack_cb_shields_call(datum/source, list/affecting_shields, dam_type)
 	SIGNAL_HANDLER
 	if(cover.getRating(dam_type) <= 0)
@@ -194,6 +209,7 @@
 				return 0 //Blocked
 			return incoming_damage //Went through.
 
+///Applies damage to parent item
 /datum/component/shield/proc/transfer_damage_to_parent(incoming_damage, return_damage, silent)
 	. = return_damage
 	var/obj/item/parent_item = parent
