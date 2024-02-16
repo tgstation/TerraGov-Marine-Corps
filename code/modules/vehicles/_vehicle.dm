@@ -39,6 +39,8 @@
 	///This vehicle will follow us when we move (like atrailer duh)
 	var/obj/vehicle/trailer
 	var/are_legs_exposed = FALSE
+	///IFF signal this vehicle emits; Marine by default
+	var/iff_signal = TGMC_LOYALIST_IFF
 
 /obj/vehicle/Initialize(mapload)
 	. = ..()

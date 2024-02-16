@@ -6,10 +6,15 @@ Mines use invisible /obj/effect/mine_trigger objects that tell the mine to explo
 Shrapnel-based explosives (like claymores) will not actually hit anything standing on the same tile due to fire_at() not
 taking that kind of thing into account, setting buffer_range = 0 or making them pressure_activated is useless
 */
+//Flags for pressure_activated
+#define PRESSURE_SENSITIVE (1<<0)
+#define PRESSURE_WEIGHTED (1<<1)
+
 /obj/item/mine
 	name = "not a real mine"
 	desc = "Dummy object. Otherwise changing stats on the parent item would cause chaos/tedium every time."
 	icon = 'icons/obj/items/mine.dmi'
+	icon_state = "proximity"
 	resistance_flags = XENO_DAMAGEABLE
 	flags_atom = CONDUCT
 	w_class = WEIGHT_CLASS_SMALL
@@ -51,8 +56,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/undeploy_delay = 0
 	///Time it takes to set up a mine
 	var/deploy_delay = 0
-	///Requires physical weight to detonate if touched; mine will detonate even if buffer_range is 0
-	var/pressure_activated = FALSE
+	///Requires physical weight to detonate if touched; mine will detonate even if buffer_range is 0; can be set to only detonate on heavy objects crossing it
+	var/pressure_activated = NONE
 	///If TRUE, trigger zones can only be activated by conscious mobs, even if it's pressure_activated; if FALSE, anything can trigger this mine!
 	var/discern_living = TRUE
 	///If TRUE, damage will cause this mine to explode; EMPs will disable volatile mines
@@ -117,10 +122,10 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	if(custom_range)
 		. += "[span_bold("Alt Click")] to change the detection range."
 
-/// Update the icon, adding "_armed" if appropriate to the icon_state.
+///Update the icon, adding "_armed" or "_deployed" (or nothing if not planted)
 /obj/item/mine/update_icon_state()
 	. = ..()
-	icon_state = "[initial(icon_state)][armed ? "_armed" : ""]"
+	icon_state = "[initial(icon_state)][anchored ? (armed ? "_armed" : "_deployed") : ""]"
 
 /obj/item/mine/AltClick(mob/user)
 	if(armed)
@@ -234,88 +239,112 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		deltimer(deletion_timer)
 
 ///Checks if a mob entered the tile this mine is on, and if it can cause it to trigger
-/obj/item/mine/proc/on_cross(datum/source, atom/movable/A, oldloc, oldlocs)
-	if(discern_living)	//If only conscious mobs can trigger this mine, run the appropriate checks
-		if(!isliving(A))
-			return FALSE
-		var/mob/living/L = A
-		if(L.stat)
-			return FALSE
-	if(pressure_activated)
-		if(!CHECK_MULTIPLE_BITFIELDS(A.pass_flags, HOVERING))	//Flying mobs can't trip this mine
-			return trip_mine(A)
+/obj/item/mine/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
+	if(AM.status_flags & INCORPOREAL)	//Don't let ghosts trigger them
 		return FALSE
-	trip_mine(A)
+
+	var/mob/living/crosser = isliving(AM) ? AM : null
+	if(discern_living)	//If only conscious mobs can trigger this mine, run the appropriate checks
+		if(crosser)
+			return FALSE
+		if(crosser.stat)
+			return FALSE
+
+	if(pressure_activated)
+		//Flying mobs can't trip this mine
+		if(CHECK_MULTIPLE_BITFIELDS(AM.pass_flags, HOVERING))
+			return FALSE
+
+		if(pressure_activated & PRESSURE_WEIGHTED)
+			//Maybe do some exercise and you won't trip mines so easily
+			if(crosser)
+				var/mob/living/carbon/possible_fatty = iscarbon(crosser) ? crosser : null
+				if(crosser.mob_size < MOB_SIZE_BIG || possible_fatty?.nutrition >= NUTRITION_OVERFED)
+					return FALSE
+
+			//Only heavy objects can trip this mine (or a structure)
+			else if(isitem(AM))
+				var/obj/item/object = AM
+				if(object.w_class < WEIGHT_CLASS_HUGE)
+					return FALSE
+
+	//All crossing conditions met, run the triggering-related checks
+	trip_mine(AM)
 
 ///Process for triggering detonation
 /obj/item/mine/proc/trip_mine(atom/movable/victim)
 	if(!armed || triggered)
 		return FALSE
-	var/mob/living/living_victim
-	if(isliving(victim))
-		living_victim = victim
+
+	if(ishuman(victim))
+		var/mob/living/carbon/human/human_victim = victim
+		var/obj/item/card/id/id_card = human_victim.get_idcard()
+		if(id_card?.iff_signal == iff_signal)
+			return FALSE
+
 	else if(isvehicle(victim))
 		var/obj/vehicle/vehicle_victim = victim
-		if(!length(vehicle_victim.occupants))
+		if(vehicle_victim.iff_signal == iff_signal)
 			return FALSE
-		living_victim = vehicle_victim.occupants[1]
 
-	if(!living_victim)
-		return FALSE
-	if((living_victim.status_flags & INCORPOREAL))
-		return FALSE
-	if(living_victim.stat == DEAD)
-		return FALSE
-	var/obj/item/card/id/id = living_victim.get_idcard()
-	if(id?.iff_signal & iff_signal)
-		return FALSE
-	trigger_explosion(living_victim)
+	trigger_explosion(victim)
 
 ///Trigger the mine; needs to be a separate proc so that we can use a timer
-/obj/item/mine/proc/trigger_explosion(mob/living/L)
+/obj/item/mine/proc/trigger_explosion(atom/movable/victim)
 	if(triggered)
 		return FALSE
+
 	triggered = TRUE
 	if(detonation_message)
 		visible_message(span_danger("[icon2html(src, viewers(src))] \The [src] [detonation_message]"))
 	playsound(loc, detonation_sound, 50, sound_range = 7)
 	if(detonation_delay)
 		return addtimer(CALLBACK(src, PROC_REF(explode)), detonation_delay)
-	explode(L)
+	explode(victim)
 
 ///Proc that actually causes the explosion
-/obj/item/mine/proc/explode(mob/living/L)
+/obj/item/mine/proc/explode(atom/movable/victim)
 	if(!triggered)
 		return FALSE
-	if(light_explosion_range || heavy_explosion_range || uber_explosion_range)
+
+	if(light_explosion_range || heavy_explosion_range || uber_explosion_range || weak_explosion_range)
 		//Directional-based explosives (like claymores) will spawn the explosion in front instead of on themselves
-		explosion((buffer_range && !pressure_activated) ? get_step(src, dir) : loc, uber_explosion_range, heavy_explosion_range, light_explosion_range, \
+		explosion((buffer_range && !pressure_activated) ? get_step(src, dir) : loc, \
+		uber_explosion_range, heavy_explosion_range, light_explosion_range, weak_explosion_range, \
 		blinding_range, throw_range = launch_distance, color = explosion_color)
+
 	if(fire_range)
 		flame_radius(fire_range, (buffer_range && !pressure_activated) ? get_step(src, dir) : loc, fire_intensity, fire_duration, fire_damage, fire_stacks, colour = fire_color)
+
 	if(shrapnel_range && shrapnel_type)	//Spawn projectiles, their associated data, and then launch it the direction it is facing
 		var/obj/projectile/projectile_to_fire = new /obj/projectile(get_turf(src))
 		projectile_to_fire.generate_bullet(shrapnel_type)
 		projectile_to_fire.fire_at(get_step(src, dir), src, src, shrapnel_range, projectile_to_fire.ammo.shell_speed)
+
 	if(gas_type && gas_duration)
 		var/datum/effect_system/smoke_spread/smoke = new gas_type()
 		playsound(src, 'sound/effects/smoke.ogg', 25, 1, gas_range + 2)
 		smoke.set_up(gas_range, get_turf(src), gas_duration)
 		smoke.start()
-	if(duration || duration < 0)	//If this is a mine that causes effects over time, call extra_effects() and set timers before deletion/disarming
-		extra_effects(L)
+
+	//If this is a mine that causes effects over time, call extra_effects() and set timers before deletion/disarming
+	if(duration || duration < 0)
+		extra_effects(victim)
 		if(duration > 0)
 			if(reusable)
 				return deletion_timer = addtimer(CALLBACK(src, PROC_REF(disarm)), duration, TIMER_OVERRIDE|TIMER_STOPPABLE)
 			return deletion_timer = addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), duration, TIMER_OVERRIDE|TIMER_STOPPABLE)
-		return TRUE
+		return TRUE	//Don't stop
+
+	//Reusable mines do not delete themselves upon detonation, just go back to sleep
 	if(reusable)
 		return disarm()
+
 	QDEL_LIST(triggers)
 	qdel(src)
 
 ///Shove any code for special effects caused by this mine here
-/obj/item/mine/proc/extra_effects(mob/living/L)
+/obj/item/mine/proc/extra_effects(atom/movable/victim)
 	return
 
 ///If this mine is volatile, explode! Easier to copy paste this into several places
@@ -417,7 +446,6 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /obj/item/mine/proximity
 	name = "proximity mine"
 	desc = "Detonates when it detects a nearby hostile."
-	icon_state = "m20"
 	detonation_message = "beeps rapidly."
 	detonation_sound = 'sound/machines/triple_beep.ogg'
 	range = 3
@@ -436,7 +464,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /obj/item/mine/pressure
 	name = "land mine"
 	desc = "Pressure activated high explosive. Watch your step."
-	icon_state = "m20"
+	icon_state = "pressure"
 	detonation_message = "whirs and clicks. Run."
 	max_integrity = 250
 	range = 0
@@ -449,8 +477,22 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	light_explosion_range = 0
 	blinding_range = 3
 	launch_distance = 5
-	pressure_activated = TRUE
+	pressure_activated = PRESSURE_SENSITIVE
 	volatile = TRUE
+
+/obj/item/mine/pressure/anti_tank
+	name = "\improper M92 Valiant anti-tank mine"
+	desc = "The M92 Valiant is a anti-tank mine designed by Armat Systems for use by the TerraGov Marine Corps against heavy armour, both tanks and mechs."
+	icon_state = "m92"
+	uber_explosion_range = 2
+	heavy_explosion_range = 3
+	weak_explosion_range = 4
+	pressure_activated = PRESSURE_WEIGHTED
+	volatile = FALSE	//More stable, either destroy it or disarm it
+
+/obj/item/mine/pressure/anti_tank/update_icon_state()
+	. = ..()
+	alpha = armed ? 50 : 255
 
 /obj/item/mine/incendiary
 	name = "incendiary mine"
@@ -483,7 +525,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /* Improvised explosives - You craft them */
 /obj/item/mine/scrap
 	name = "eviscerator mine"
-	desc = "Cobbled together from scrap metal, gunpowder, and a proximity sensor."
+	desc = "Cobbled together from scrap metal, gunpowder, and a proximity sensor. The people's mine."
 	icon_state = "scrap"
 	detonation_message = "clicks and rattles."
 	detonation_sound = 'sound/machines/triple_beep.ogg'
@@ -527,7 +569,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	if(gunpowder_amount < gunpowder_amount_required || rods_amount < rods_amount_required || !has_proximity_sensor)
 		balloon_alert(user, "Not finished!")
 		return FALSE
-	..()
+	return ..()
 
 /obj/item/mine/scrap/assembly/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -535,30 +577,37 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		//Marines can no longer use chem machines to make gunpowder, so we're going to apply a simple mechanic of recycling bullets
 		if(gunpowder_amount >= gunpowder_amount_required)
 			return balloon_alert(user, "Already full!")
+
 		var/obj/item/ammo_magazine/handful/bullets = I
 		if(bullets.current_rounds < 1)
 			return balloon_alert(user, "Not enough usable gunpowder!")
+
+		//The gunpowder to bullet ratio is 1:1, so using something like bullets from your rifle are straightforward
+		//However, shotgun shells are packed with a lot more so they have a multiplier; 4 gunpowder from each shotgun shell
 		var/caliber_bonus = 1
 		if(bullets.caliber == (CALIBER_12G || CALIBER_410))
 			caliber_bonus = 4
-		//The gunpowder to bullet ratio is 1:1, so using something like bullets from your rifle are straightforward
-		//However, shotgun shells are packed with a lot more so they have a multiplier; 4 gunpowder from each shotgun shell
+
 		var/amount_to_transfer = min(bullets.current_rounds * caliber_bonus, gunpowder_amount_required - gunpowder_amount)
 		bullets.current_rounds -= ROUND_UP(amount_to_transfer/caliber_bonus)	//Round up instead of down since you're not summoning gunpowder out of thin air
 		gunpowder_amount += amount_to_transfer
 		if(!bullets.current_rounds)	//Delete the handful stack if we used it all
 			qdel(bullets)
 		return TRUE
+
 	if(istype(I, /obj/item/stack/rods))
 		if(rods_amount >= rods_amount_required)
 			return balloon_alert(user, "Already full!")
+
 		var/obj/item/stack/rods = I
 		if(rods.amount < 1)
 			return balloon_alert(user, "Not enough usable rods!")
+
 		var/amount_to_transfer = min(rods.amount, rods_amount_required - rods_amount)
 		rods_amount += amount_to_transfer
 		rods.change_stack(user, rods.amount - amount_to_transfer)
 		return TRUE
+
 	if(istype(I, /obj/item/assembly/prox_sensor))
 		has_proximity_sensor = TRUE
 		qdel(I)
@@ -619,30 +668,30 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	light_range = 0	//Hybrid lights don't actually turn off, just have to change light_range
 	. = ..()
 
-/obj/item/mine/radiation/trip_mine(mob/living/L)
+/obj/item/mine/radiation/trip_mine(atom/movable/victim)
 	if(!current_fuel)
 		return FALSE
 	. = ..()
 
-/obj/item/mine/radiation/explode(mob/living/L)
+/obj/item/mine/radiation/explode(atom/movable/victim)
 	. = ..()
 	if(!.)
 		return FALSE
 	//The deletion_timer lasts a second longer so that the last pulse can go off before qdel()
 	deletion_timer = addtimer(CALLBACK(src, PROC_REF(disarm)), duration + 1 SECONDS, TIMER_OVERRIDE|TIMER_STOPPABLE)
 
-/obj/item/mine/radiation/extra_effects(mob/living/L)
+/obj/item/mine/radiation/extra_effects(atom/movable/victim)
 	if(!current_fuel)	//While this should NEVER happen, just in case
 		current_fuel = 1	//I would normally have it be disarmed but this mine is not reusable, so just let it continue as normal
 	new /obj/effect/temp_visual/shockwave(get_turf(src), current_fuel * 1.5)
 	light_range = current_fuel * 1.5
 	set_light(light_range, light_power, light_color)
 	var/list/exclusion_zone = circle_range(get_turf(src), current_fuel)	//Radiation passes through walls
-	for(var/mob/living/carbon/victim in exclusion_zone)
+	for(var/mob/living/carbon/radiation_victim in exclusion_zone)
 		//Apply initial damages of the detonation evenly in BURN and TOX, then do a fifth of it in cellular damage
-		victim.apply_damages(0, radiation_damage/2, radiation_damage/2, 0, radiation_damage/5, ishuman(victim) ? pick(GLOB.human_body_parts) : null, BIO)
-		victim.adjust_stagger(radiation_damage/5 SECONDS)
-		victim.adjust_radiation(radiation_damage SECONDS)
+		radiation_victim.apply_damages(0, radiation_damage/2, radiation_damage/2, 0, radiation_damage/5, ishuman(radiation_victim) ? pick(GLOB.human_body_parts) : null, BIO)
+		radiation_victim.adjust_stagger(radiation_damage/5 SECONDS)
+		radiation_victim.adjust_radiation(radiation_damage SECONDS)
 	for(var/turf/irradiated_turf in exclusion_zone)
 		//Delete them before the next pulse otherwise the exclusion_zone list will be gigantic
 		new /obj/effect/temp_visual/radiation(irradiated_turf, (duration/number_of_pulses) - 1)
@@ -757,40 +806,44 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	battery = null
 	update_icon()
 
-/obj/item/mine/shock/trip_mine(mob/living/L)
+/obj/item/mine/shock/trip_mine(atom/movable/victim)
 	if(!battery?.charge)
 		return FALSE
 	. = ..()
 
-/obj/item/mine/shock/extra_effects(mob/living/L)
+/obj/item/mine/shock/extra_effects(atom/movable/victim)
 	if(!battery?.charge || battery.charge < energy_cost)
 		playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, sound_range = 7)
 		balloon_alert_to_viewers("Out of charge!")
 		return disarm()
+
 	//Grab a list of nearby objects, shuffle it, then see if they are an eligible victim
 	var/target
 	var/list/nearby_objects = shuffle(circle_view(src, range))
 	nearby_objects -= src	//Prevent the mine from committing suicide
+
 	for(var/atom in nearby_objects)
 		if(isliving(atom))
 			if(ishuman(atom))
-				var/mob/living/carbon/human/victim = atom
+				var/mob/living/carbon/human/bad_luck_brian = atom
 				//Will shock a random body part on humans
-				victim.apply_damage(damage, BURN, pick(GLOB.human_body_parts), ENERGY)
-				target = victim
+				bad_luck_brian.apply_damage(damage, BURN, pick(GLOB.human_body_parts), ENERGY)
+				target = bad_luck_brian
 			else
-				var/mob/living/victim = atom
-				victim.apply_damage(damage, BURN, blocked = ENERGY)
-				target = victim
+				var/mob/living/living_victim = atom
+				living_victim.apply_damage(damage, BURN, blocked = ENERGY)
+				target = living_victim
 			break
+
 		else if(isobj(atom) && !iseffect(atom))
-			var/obj/victim = atom
+			var/obj/lightning_rod = atom
 			//Prevents targeting things like wiring under floor tiles and makes it so only conductive objects will attract lightning
-			if(victim.invisibility > SEE_INVISIBLE_LIVING || !CHECK_BITFIELD(victim.flags_atom, CONDUCT))
+			if(lightning_rod.invisibility > SEE_INVISIBLE_LIVING || !CHECK_BITFIELD(lightning_rod.flags_atom, CONDUCT))
 				continue
-			victim.take_damage(damage, BURN, ENERGY)
-			target = victim
+			lightning_rod.take_damage(damage, BURN, ENERGY)
+			target = lightning_rod
 			break
+
 	playsound(loc, "sparks", 100, sound_range = 7)
 	if(target)
 		to_chat(world, "[target]")
@@ -847,24 +900,24 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	radio = new(src)
 	radio.frequency = FREQ_COMMON	//Frequency argument on talk_into is bugged so making it common by default
 
-/obj/item/mine/alarm/trip_mine(mob/living/L)
+/obj/item/mine/alarm/trip_mine(atom/movable/victim)
 	if(!COOLDOWN_CHECK(src, alarm_cooldown))
 		return
-	. = ..()
+	return ..()
 
-/obj/item/mine/alarm/extra_effects(mob/living/L)
+/obj/item/mine/alarm/extra_effects(atom/movable/victim)
 	triggered = FALSE	//Reset the mine but not disarm it
-	if(!L)
+	if(!victim)
 		return FALSE
 
-	var/mini_icon
-	if(isxeno(L))
-		var/mob/living/carbon/xenomorph/X = L
-		mini_icon = X.xeno_caste.minimap_icon
-	else if(L.job)	//Not everything has a job
-		mini_icon = L.job.minimap_icon
-	else
-		mini_icon = "defiler"	//Closest thing to a generic warning
+	var/mini_icon = "defiler"	//Closest thing to a generic warning icon
+	if(isxeno(victim))
+		var/mob/living/carbon/xenomorph/beno_victim = victim
+		mini_icon = beno_victim.xeno_caste.minimap_icon
+	else if(ishuman(victim))
+		var/mob/living/carbon/human/human_victim = victim
+		if(human_victim.job)
+			mini_icon = human_victim.job.minimap_icon
 
 	var/marker_flags
 	if(CHECK_BITFIELD(iff_signal, TGMC_LOYALIST_IFF))
@@ -872,9 +925,10 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	else	//I have been told ERT factions don't have a minimap anyways
 		marker_flags |= MINIMAP_FLAG_MARINE_SOM
 
-	radio.talk_into(src, "ALERT! Hostile/Unknown: [L.name] | [AREACOORD_NO_Z(src)]")
+	radio.talk_into(src, "ALERT! Hostile/Unknown: [victim.name] | [AREACOORD_NO_Z(src)]")
 	SSminimaps.remove_marker(src)
 	SSminimaps.add_marker(src, z, marker_flags, mini_icon)
+	deltimer(minimap_timer)
 	minimap_timer = addtimer(CALLBACK(SSminimaps, TYPE_PROC_REF(/datum/controller/subsystem/minimaps, remove_marker), src), minimap_duration, TIMER_UNIQUE|TIMER_OVERRIDE)
 	COOLDOWN_START(src, alarm_cooldown, cooldown)
 
@@ -909,8 +963,10 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /obj/item/mine/emp/attackby(obj/item/I, mob/user, params)
 	if(!iscell(I))
 		return ..()
+
 	if(battery)
 		return balloon_alert(user, "There is already a battery installed!")
+
 	user.transferItemToLoc(I, src)
 	battery = I
 	update_icon()
@@ -918,16 +974,17 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /obj/item/mine/emp/screwdriver_act(mob/living/user, obj/item/I)
 	if(!battery)
 		return balloon_alert(user, "No battery installed!")
+
 	user.put_in_hands(battery)
 	battery = null
 	update_icon()
 
-/obj/item/mine/emp/trip_mine(mob/living/L)
+/obj/item/mine/emp/trip_mine(atom/movable/victim)
 	if(!battery?.charge)
 		return FALSE
-	. = ..()
+	return ..()
 
-/obj/item/mine/emp/extra_effects(mob/living/L)
+/obj/item/mine/emp/extra_effects(atom/movable/victim)
 	addtimer(CALLBACK(src, PROC_REF(do_empulse)), duration - 1)	//Make the timer slightly less than duration otherwise it gets disarmed
 
 ///Separate proc that performs empulse() if it was not disarmed before the timer was done
@@ -980,8 +1037,10 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /obj/item/mine/flash/attackby(obj/item/I, mob/user, params)
 	if(!iscell(I))
 		return ..()
+
 	if(battery)
 		return balloon_alert(user, "There is already a battery installed!")
+
 	user.transferItemToLoc(I, src)
 	battery = I
 	update_icon()
@@ -989,41 +1048,35 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /obj/item/mine/flash/screwdriver_act(mob/living/user, obj/item/I)
 	if(!battery)
 		return balloon_alert(user, "No battery installed!")
+
 	user.put_in_hands(battery)
 	battery = null
 	update_icon()
 
-/obj/item/mine/flash/trip_mine(mob/living/L)
+/obj/item/mine/flash/trip_mine(atom/movable/victim)
 	if(!COOLDOWN_CHECK(src, flash_cooldown))
 		return FALSE
+
 	if(!battery?.charge)
 		return FALSE
-	. = ..()
 
-/obj/item/mine/flash/extra_effects(mob/living/L)
+	return ..()
+
+/obj/item/mine/flash/extra_effects(atom/movable/victim)
 	if(!battery?.charge || battery.charge < energy_cost)
 		balloon_alert_to_viewers("Out of charge!")
 		return disarm()
+
 	triggered = FALSE	//Reset the mine but not disarm it
 	var/turf/epicenter = get_turf(src)
 	playsound(epicenter, "flashbang", 65, FALSE, range + 2)
-	for(var/mob/living/carbon/victim in oviewers(range, epicenter))
-		if(!HAS_TRAIT(victim, TRAIT_FLASHBANGIMMUNE))
-			victim.flash_act(duration = flash_duration)
+
+	for(var/mob/living/carbon/bystander in oviewers(range, epicenter))
+		if(!HAS_TRAIT(bystander, TRAIT_FLASHBANGIMMUNE))
+			bystander.flash_act(duration = flash_duration)
+
 	battery.charge -= energy_cost
 	COOLDOWN_START(src, flash_cooldown, cooldown)
 
 /obj/item/mine/flash/battery_included
 	battery = /obj/item/cell
-
-//Anti-vehicle mines
-/obj/item/mine/anti_tank
-	name = "\improper M92 Valiant anti-tank mine"
-	desc = "The M92 Valiant is a anti-tank mine designed by Armat Systems for use by the TerraGov Marine Corps against heavy armour, both tanks and mechs."
-	icon_state = "m92"
-	uber_explosion_range = 2
-	weak_explosion_range = 4
-
-/obj/item/mine/anti_tank/update_icon_state()
-	. = ..()
-	alpha = armed ? 50 : 255
