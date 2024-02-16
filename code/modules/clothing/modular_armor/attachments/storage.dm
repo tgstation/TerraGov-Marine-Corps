@@ -272,7 +272,7 @@
 		/obj/item/tool/multitool,
 		/obj/item/binoculars/tactical/range,
 		/obj/item/explosive/plastique,
-		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_small,
 		/obj/item/explosive/grenade/chem_grenade/razorburn_large,
 		/obj/item/cell/apc,
 		/obj/item/cell/high,

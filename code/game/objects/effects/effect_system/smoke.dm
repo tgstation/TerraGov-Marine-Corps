@@ -13,13 +13,19 @@
 	pass_flags = PASS_AIR
 	resistance_flags = UNACIDABLE|PLASMACUTTER_IMMUNE|PROJECTILE_IMMUNE|CRUSHER_IMMUNE
 	var/amount = 3
+	///Duration in 2 second ticks
 	var/lifetime = 5
 	///time in decisecond for a smoke to spread one tile.
 	var/expansion_speed = 1
+	///Special effect traits
 	var/smoke_traits = NONE
-	var/strength = 1 // Effects scale with the emitter's bomb_strength upgrades.
-	var/bio_protection = 1 // how unefficient its effects are against protected target from 0 to 1.
-	var/datum/effect_system/smoke_spread/cloud // for associated chemical smokes.
+	///Smoke effect strength mult
+	var/strength = 1
+	///Effect strength mult against bio protection
+	var/bio_protection = 1
+	///for associated chemical smoke
+	var/datum/effect_system/smoke_spread/cloud
+	///Fraction used for chem touch effects
 	var/fraction = 0.2
 	///Delay in ticks before this smoke can affect a given mob again, applied in living's effect_smoke
 	var/minimum_effect_delay = 1 SECONDS
@@ -189,8 +195,11 @@
 /////////////////////////////////////////////
 
 /datum/effect_system/smoke_spread
+	///Smoke range
 	var/range = 3
+	///Type of smoke
 	var/smoke_type = /obj/effect/particle_effect/smoke
+	///Smoke duration in 2 sec ticks
 	var/lifetime
 	var/list/smokes
 	var/list/smoked_mobs
@@ -343,8 +352,10 @@
 
 /obj/effect/particle_effect/smoke/xeno/toxic
 	lifetime = 2
+	alpha = 60
+	opacity = FALSE
 	color = "#00B22C"
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_TOXIC|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_TOXIC|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH
 
 /obj/effect/particle_effect/smoke/xeno/hemodile
 	color = "#0287A1"

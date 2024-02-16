@@ -2,7 +2,12 @@
 //--------------------------------------------------
 
 /obj/item/weapon/gun/pistol
+	icon = 'icons/obj/items/guns/pistols.dmi'
 	icon_state = "" //Defaults to revolver pistol when there's no sprite.
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/pistols_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/pistols_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/pistol.ogg'
 	unload_sound = 'sound/weapons/guns/interact/pistol_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/pistol_reload.ogg'
@@ -74,8 +79,13 @@
 	desc = "An experimental weapon designed to set the terrain and targets on fire. It hums with power as magnetic fields coil round each other."
 	icon_state = "tx7"
 	item_state = "tx7"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/energy_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_1.dmi',
+	)
 	caliber = CALIBER_PLASMA
 	max_shots = 10
+	icon = 'icons/obj/items/guns/energy.dmi'
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/plasma_pistol
@@ -656,7 +666,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	desc = "The PL-5 is a true and tested ICCAF handgun, used for a very long time with minimal changes to the core design, best used at close quarters with its higher than usual magazine size for its caliber. It is chambered in .45 ACP."
 	icon_state = "pl5"
 	item_state = "pl5"
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/pistols64.dmi'
 	caliber = CALIBER_45ACP //codex
 	max_shells = 18 //codex
 	fire_sound = 'sound/weapons/guns/fire/colt.ogg'
@@ -745,7 +755,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 /obj/item/weapon/gun/pistol/smart_pistol
 	name = "\improper SP-13 smart pistol"
 	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. A cutting-edge miniaturization technology allows mounting of a KTLD IFF system on the pistol, albeit at high manufactoring cost and the usual specialized training required to use such a pistol. Unique design feature high-capacity mag on top of the barrel, with integrated sight."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/pistols64.dmi'
 	icon_state = "sp13"
 	item_state = "sp13"
 	caliber = CALIBER_9X19 //codex

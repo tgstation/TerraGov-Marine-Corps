@@ -63,7 +63,8 @@
 	if(jump_sound)
 		playsound(jumper, jump_sound, 65)
 
-	jumper.layer = ABOVE_MOB_LAYER
+	var/original_layer = jumper.layer
+	var/original_pass_flags = jumper.pass_flags
 
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_STARTED)
 	jumper.adjustStaminaLoss(stamina_cost)
@@ -78,22 +79,21 @@
 		var/spin_number = ROUND_UP(jump_duration * 0.1)
 		jumper.animation_spin(jump_duration / spin_number, spin_number, jumper.dir == WEST ? FALSE : TRUE)
 
-	animate(jumper, pixel_y = jumper.pixel_y + jump_height, layer = ABOVE_MOB_LAYER, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
-	animate(pixel_y = jumper.pixel_y - jump_height, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
+	animate(jumper, pixel_y = jumper.pixel_y + jump_height, layer = MOB_JUMP_LAYER, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
+	animate(pixel_y = jumper.pixel_y - jump_height, layer = original_layer, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
 
 	if(jump_flags & JUMP_SHADOW)
 		animate(shadow_filter, y = -jump_height, size = 4, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
 		animate(y = 0, size = 0.9, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
 
-	addtimer(CALLBACK(src, PROC_REF(end_jump), jumper), jump_duration)
+	addtimer(CALLBACK(src, PROC_REF(end_jump), jumper, original_pass_flags), jump_duration)
 
 	TIMER_COOLDOWN_START(jumper, JUMP_COMPONENT_COOLDOWN, jump_cooldown)
 
 ///Ends the jump
-/datum/component/jump/proc/end_jump(mob/living/jumper)
+/datum/component/jump/proc/end_jump(mob/living/jumper, original_pass_flags)
 	jumper.remove_filter(JUMP_COMPONENT)
-	jumper.layer = initial(jumper.layer)
-	jumper.pass_flags = initial(jumper.pass_flags)
+	jumper.pass_flags = original_pass_flags
 	REMOVE_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_ENDED, TRUE, 1.5, 2)
 	SEND_SIGNAL(jumper.loc, COMSIG_TURF_JUMP_ENDED_HERE, jumper)

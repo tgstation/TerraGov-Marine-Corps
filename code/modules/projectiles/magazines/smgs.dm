@@ -68,11 +68,12 @@
 	icon_state_mini = "mag_heavy_smg"
 	bonus_overlay = "t45_mag"
 
-/obj/item/ammo_magazine/smg/standard_heavysmg/hollowpoint
-	name = "\improper SMG-45 hollowpoint magazine (.45 ACP)"
-	default_ammo = /datum/ammo/bullet/smg/hollow
-	icon_state = "t45_hp"
-	bonus_overlay = "t45_mag_hp"
+/obj/item/ammo_magazine/smg/standard_heavysmg/squashhead
+	name = "\improper SMG-45 squash-head magazine (.45 ACP)"
+	desc = "A .45 ACP caseless submachinegun magazine that does a minituare explosion upon contact, will shred the armor off of basically anything."
+	default_ammo = /datum/ammo/bullet/smg/squash
+	icon_state = "t45_sh"
+	bonus_overlay = "t45_mag_sh"
 
 //-------------------------------------------------------
 //SMG-27, based on the SMG-27, based on the M7.

@@ -1470,7 +1470,7 @@
 /obj/structure/bed/bunkbed,
 /obj/effect/landmark/start/job/squadmarine,
 /obj/effect/landmark/start/job/squadmarine,
-/obj/item/trash/barcardine,
+/obj/item/trash/barcaridine,
 /obj/machinery/firealarm{
 	dir = 8
 	},
@@ -9355,7 +9355,7 @@
 "lPM" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
-/obj/effect/landmark/start/job/pilotofficer,
+/obj/effect/landmark/start/job/transportofficer,
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "lPY" = (
@@ -12440,7 +12440,7 @@
 /obj/structure/bed/bunkbed,
 /obj/effect/landmark/start/job/squadmarine,
 /obj/effect/landmark/start/job/squadmarine,
-/obj/item/trash/barcardine,
+/obj/item/trash/barcaridine,
 /turf/open/floor/wood,
 /area/mainship/living/cryo_cells)
 "pHV" = (

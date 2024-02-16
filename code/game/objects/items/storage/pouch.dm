@@ -395,9 +395,9 @@
 
 /obj/item/storage/pouch/explosive/razorburn/Initialize(mapload)
 	. = ..()
-	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
-	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
-	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_small(src)
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_small(src)
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_small(src)
 	new /obj/item/explosive/grenade/chem_grenade/razorburn_large(src)
 
 /obj/item/storage/pouch/explosive/upp
