@@ -109,7 +109,7 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/human_user = user
-	if(parent_item.slowdown)
+	if(parent_item.slowdown) //todo: make this less smelly, I have no idea why this is on the shield component, and could likely cause unintended double slowdown
 		human_user.add_movespeed_modifier(parent_item.type, TRUE, 0, ((parent_item.flags_item & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE), TRUE, parent_item.slowdown)
 
 ///Handles unequipping the shield
@@ -150,13 +150,14 @@
 /datum/component/shield/proc/deactivate_with_user()
 	UnregisterSignal(affected, COMSIG_LIVING_SHIELDCALL)
 
-///Main shield damage intercept handling
+///Signal handler for incoming damage, directs to the right callback proc
 /datum/component/shield/proc/on_attack_cb_shields_call(datum/source, list/affecting_shields, dam_type)
 	SIGNAL_HANDLER
 	if(cover.getRating(dam_type) <= 0)
 		return
 	affecting_shields[intercept_damage_cb] = layer
 
+///Damage intercept calculation
 /datum/component/shield/proc/item_intercept_attack(attack_type, incoming_damage, damage_type, silent, penetration)
 	var/obj/item/parent_item = parent
 	var/status_cover_modifier = 1
@@ -176,50 +177,42 @@
 			status_cover_modifier *= 0.75
 
 	switch(attack_type)
-		if(COMBAT_TOUCH_ATTACK)
+		if(COMBAT_TOUCH_ATTACK) //Touch attacks return true if the associated negative effect is blocked
 			if(!prob(cover.getRating(damage_type) * status_cover_modifier))
-				return FALSE //Bypassed the shield.
-			incoming_damage = max(0, incoming_damage - hard_armor.getRating(damage_type))
-			incoming_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01
-			return prob(50 - round(incoming_damage / 3))
-		if(COMBAT_MELEE_ATTACK, COMBAT_PROJ_ATTACK)
+				return FALSE
+			incoming_damage = parent_item.modify_by_armor(incoming_damage, damage_type, penetration)
+			return prob(50 - round(incoming_damage / 3)) //Two checks for touch attacks to make it less absurdly effective, or something.
+		if(COMBAT_MELEE_ATTACK, COMBAT_PROJ_ATTACK) //we return the amount of damage that bypasses the shield
 			var/absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01 * status_cover_modifier  //Determine cover ratio; this is the % of damage we actually intercept.
 			if(!absorbing_damage)
-				return incoming_damage //We are transparent to this kind of damage.
+				return incoming_damage
 			. = incoming_damage - absorbing_damage
-			absorbing_damage = max(0, absorbing_damage - (hard_armor.getRating(damage_type) * (100 - penetration) * 0.01)) //Hard armor first, with pen as percent reduction to flat armor
-			absorbing_damage *= (100 - max(0, soft_armor.getRating(damage_type) - penetration)) * 0.01 //Soft armor second, with pen as flat reduction to percent armor
-			if(absorbing_damage <= 0)
-				if(!silent)
-					to_chat(affected, span_avoidharm("\The [parent_item.name] [. ? "softens" : "soaks"] the damage!"))
-				return
 			if(transfer_damage_cb)
 				return transfer_damage_cb.Invoke(absorbing_damage, ., silent)
 
-/datum/component/shield/proc/item_pure_block_chance(attack_type, incoming_damage, damage_type, silent, penetration)
-	switch(attack_type)
-		if(COMBAT_TOUCH_ATTACK)
-			if(!prob(cover.getRating(damage_type) - penetration))
-				return FALSE //Bypassed the shield.
-			incoming_damage = max(0, incoming_damage - hard_armor.getRating(damage_type))
-			incoming_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01
-			return prob(50 - round(incoming_damage / 3))
-		if(COMBAT_MELEE_ATTACK, COMBAT_PROJ_ATTACK)
-			if(prob(cover.getRating(damage_type) - penetration))
-				return 0 //Blocked
-			return incoming_damage //Went through.
-
 ///Applies damage to parent item
-/datum/component/shield/proc/transfer_damage_to_parent(incoming_damage, return_damage, silent)
+/datum/component/shield/proc/transfer_damage_to_parent(return_damage, incoming_damage, damage_type, silent, penetration)
 	. = return_damage
 	var/obj/item/parent_item = parent
-	if(incoming_damage >= parent_item.obj_integrity)
-		. += incoming_damage - parent_item.obj_integrity
-		parent_item.take_damage(incoming_damage, armour_penetration = 100) //Armor has already been accounted for, this should destroy the parent and thus the component.
-		return
+	incoming_damage = parent_item.modify_by_armor(incoming_damage, damage_type, penetration)
+	if(incoming_damage > parent_item.obj_integrity)
+		. += incoming_damage - parent_item.obj_integrity //if we destroy the shield item, extra damage spills over
 	if(!silent)
 		to_chat(affected, span_avoidharm("\The [parent_item.name] [. ? "softens" : "soaks"] the damage!"))
 	parent_item.take_damage(incoming_damage, armour_penetration = 100)
+
+///Block chance calculation
+/datum/component/shield/proc/item_pure_block_chance(attack_type, incoming_damage, damage_type, silent, penetration)
+	switch(attack_type)
+		if(COMBAT_TOUCH_ATTACK) //Touch attacks return true if the associated negative effect is blocked
+			if(!prob(cover.getRating(damage_type) * status_cover_modifier))
+				return FALSE
+			incoming_damage = parent_item.modify_by_armor(incoming_damage, damage_type, penetration)
+			return prob(50 - round(incoming_damage / 3)) //Two checks for touch attacks to make it less absurdly effective, or something.
+		if(COMBAT_MELEE_ATTACK, COMBAT_PROJ_ATTACK)
+			if(prob(cover.getRating(damage_type) - penetration))
+				return 0
+			return incoming_damage
 
 
 //Dune, Halo and energy shields.
