@@ -44,6 +44,8 @@
 	var/list/datum/action/ability/mob_abilities = list()
 	///Currently selected ability
 	var/datum/action/ability/activable/selected_ability
+	///carbon overlay layers
+	var/list/overlays_standing[TOTAL_LAYERS]
 
 /mob/living/carbon/proc/transfer_identity(mob/living/carbon/destination)
 	if(!istype(destination))
