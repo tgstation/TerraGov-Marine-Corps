@@ -32,8 +32,10 @@
 	if(active)	//For glasses that spawn active
 		active = FALSE
 		activate()
-	else
-		icon_state = deactive_state
+
+/obj/item/clothing/glasses/update_icon_state()
+	. = ..()
+	icon_state = active ? initial(icon_state) : deactive_state
 
 /obj/item/clothing/glasses/update_clothing_icon()
 	if (ismob(src.loc))
@@ -57,13 +59,13 @@
 
 ///Toggle the functions of the glasses
 /obj/item/clothing/glasses/proc/activate(mob/user, silent = FALSE)
-	icon_state = active ? deactive_state : initial(icon_state)
 	if(!silent)
 		playsound(get_turf(src), active ? deactivation_sound : activation_sound, 15)
 
 	active = !active
 	user?.update_inv_glasses()
 	user?.update_sight()
+	update_icon_state()
 
 	return active	//For the UI button update
 
@@ -425,10 +427,10 @@
 	goggles = TRUE
 	active = FALSE
 	actions_types = list(/datum/action/item_action/toggle)
-	///The battery inside
-	var/obj/item/cell/night_vision_battery/battery
 	activation_sound = 'sound/effects/nightvision.ogg'
 	deactivation_sound = 'sound/machines/click.ogg'
+	///The battery inside
+	var/obj/item/cell/night_vision_battery/battery
 	///How much energy this module needs when activated
 	var/active_energy_cost = 4	//Little over 4 minutes of use
 	///Looping sound to play
@@ -470,8 +472,7 @@
 
 /obj/item/clothing/glasses/night_vision/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(insert_battery(I, user))
-		return
+	insert_battery(I, user)
 
 ///Insert a battery, if checks pass
 /obj/item/clothing/glasses/night_vision/proc/insert_battery(obj/item/I, mob/user)
@@ -518,7 +519,7 @@
 		active_sound.start(src)
 
 	update_worn_state(!active)	//The active var has not been toggled yet, so pass the opposite value
-	. = ..()
+	return ..()
 
 /obj/item/clothing/glasses/night_vision/process()
 	if(!battery?.use(active_energy_cost))
@@ -539,7 +540,7 @@
 
 /obj/item/clothing/glasses/night_vision/Destroy()
 	QDEL_NULL(active_sound)
-	. = ..()
+	return ..()
 
 //So that the toggle button is only given when in the eyes slot
 /obj/item/clothing/glasses/night_vision/item_action_slot_check(mob/user, slot)

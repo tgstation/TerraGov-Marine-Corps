@@ -713,7 +713,7 @@
 	UnregisterSignal(parent, COMSIG_ATOM_ATTACKBY)
 	UnregisterSignal(parent, COMSIG_ITEM_EQUIPPED)
 	UnregisterSignal(parent, COMSIG_ITEM_UNEQUIPPED)
-	. = ..()
+	return ..()
 
 ///Called when the parent is clicked on with an open hand; to take out the battery
 /obj/item/armor_module/module/night_vision/proc/on_click(datum/source, mob/user)
@@ -739,25 +739,29 @@
 ///Called when the parent is equipped; deploys the goggles
 /obj/item/armor_module/module/night_vision/proc/deploy(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
-	if(ishuman(user))	//Must be human for the following procs to work
-		var/mob/living/carbon/human/wearer = user
-		if(prefered_slot == slot)
-			if(wearer.glasses && !wearer.dropItemToGround(wearer.glasses))
-				//This only happens if the wearer has a head item that can't be dropped
-				to_chat(wearer, span_warning("Could not deploy night vision system due to [wearer.head]!"))
-				return
-			INVOKE_ASYNC(wearer, TYPE_PROC_REF(/mob/living/carbon/human, equip_to_slot), attached_goggles, SLOT_GLASSES)
+	if(!ishuman(user) || prefered_slot != slot)	//Must be human for the following procs to work
+		return
+
+	var/mob/living/carbon/human/wearer = user
+	if(wearer.glasses && !wearer.dropItemToGround(wearer.glasses))
+		//This only happens if the wearer has a head item that can't be dropped
+		to_chat(wearer, span_warning("Could not deploy night vision system due to [wearer.head]!"))
+		return
+
+	INVOKE_ASYNC(wearer, TYPE_PROC_REF(/mob/living/carbon/human, equip_to_slot), attached_goggles, SLOT_GLASSES)
 
 ///Called when the parent is unequipped; undeploys the goggles
 /obj/item/armor_module/module/night_vision/proc/undeploy(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
 	//See if goggles are deployed
-	if(attached_goggles.loc != src)
-		//The goggles should not be anywhere but on the wearer's face; but if it's not, just yoink it back to the module
-		if(attached_goggles.loc == user)
-			user.temporarilyRemoveItemFromInventory(attached_goggles, TRUE)
-		attached_goggles.forceMove(src)
+	if(attached_goggles.loc == src)
+		return
+
+	//The goggles should not be anywhere but on the wearer's face; but if it's not, just yoink it back to the module
+	if(attached_goggles.loc == user)
+		user.temporarilyRemoveItemFromInventory(attached_goggles, TRUE)
+	attached_goggles.forceMove(src)
 
 /obj/item/armor_module/module/night_vision/Destroy()
 	QDEL_NULL(attached_goggles)
-	. = ..()
+	return ..()
