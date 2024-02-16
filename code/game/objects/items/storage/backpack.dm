@@ -283,6 +283,8 @@
 	item_state = "marinepackm"
 	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
 	var/icon_skin
+	bypass_w_limit = list(/obj/item/storage/firstaid)
+	storage_type_limits = list(/obj/item/storage/firstaid = 1) //You can only hold 1 medkit
 
 /obj/item/storage/backpack/marine/corpsman/Initialize(mapload, ...)
 	. = ..()
