@@ -17,7 +17,7 @@
 	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 40, ACID = 40)
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	max_occupants = 4
-	move_delay = 2 SECONDS
+	move_delay = 1.5 SECONDS
 	ram_damage = 70
 
 ///returns a list of possible locations that this vehicle may be entered from

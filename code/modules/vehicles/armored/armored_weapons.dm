@@ -252,7 +252,7 @@
 	else
 		icon_list = list(hud_state_empty, hud_state_empty)
 	for(var/mob/occupant AS in chassis.occupants)
-		occupant.hud_used.add_ammo_hud(src, icon_list, ammo.current_rounds)
+		occupant.hud_used.add_ammo_hud(src, icon_list, ammo ? ammo.current_rounds : 0)
 
 ///detach this weapon to a chassis
 /obj/item/armored_weapon/proc/detach(atom/moveto)

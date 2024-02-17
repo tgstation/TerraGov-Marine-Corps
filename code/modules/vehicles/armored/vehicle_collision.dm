@@ -36,8 +36,9 @@
 	. = ..()
 	take_damage(. += rand(200, 225))
 
-/mob/living/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, turf/T, turf/temp, mob/pilot) //If theyre alive, yeet them
-	if(stat == DEAD)	//Cant make horizontal spacemen more horizontal
+/mob/living/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, turf/T, turf/temp, mob/pilot)
+	. = ..()
+	if(stat == DEAD)
 		return 0
 	if(lying_angle)
 		return 0
@@ -49,14 +50,15 @@
 	T = get_step(T, facing)
 	face_atom(T)
 	throw_at(T, 3, 2, veh, 1)
-	return apply_damage(rand(20, 30), BRUTE)
+	return apply_damage(., BRUTE)
 
 
 /mob/living/carbon/xenomorph/larva/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, turf/T, turf/temp)
 	gib() //fuck you
 
 /obj/effect/alien/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, turf/T, turf/temp)
-	take_damage(veh.ram_damage/2)
+	. = ..()
+	take_damage(./2)
 
 /obj/effect/alien/weeds/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, turf/T, turf/temp)
 	return

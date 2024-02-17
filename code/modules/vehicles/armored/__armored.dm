@@ -449,8 +449,6 @@
 		return COMSIG_MOB_CLICK_CANCELED
 	if(modifiers[SHIFT_CLICK]) //Allows things to be examined.
 		return
-	if(weapons_safety)
-		return
 	if(!isturf(target) && !isturf(target.loc)) // Prevents inventory from being drilled
 		return
 	if(HAS_TRAIT(user, TRAIT_INCAPACITATED))
@@ -467,6 +465,8 @@
 			return COMSIG_MOB_CLICK_CANCELED
 		selected = primary_weapon
 	if(!selected)
+		return
+	if(weapons_safety)
 		return
 	INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/armored_weapon, begin_fire), user, target, modifiers)
 

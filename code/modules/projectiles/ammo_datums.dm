@@ -2161,12 +2161,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
 	accurate_range = 15
 	max_range = 40
-	penetration = 200
-	damage = 300
+	penetration = 100
+	damage = 50
 	hud_state = "bigshell_he"
 
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
-	explosion(T, 0, 4, 6, 0, 7)
+	explosion(T, 1, 0, 4, 0, 5)
 
 /datum/ammo/rocket/mech
 	name = "large high-explosive rocket"
