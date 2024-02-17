@@ -303,6 +303,17 @@
 	var/image/heat_bar/heat_meter
 
 /*
+ *  COIN MECHANIC VARS
+ *
+*/
+	/// Number of coins in the revolver
+	var/coin_amount = 0
+	///Recharge time for each coin
+	var/coin_cooldown = 0
+	/// Maxiumum amount of coins allowed
+	var/max_coins = 4
+
+/*
  *  extra icon and item states or overlays
 */
 	///Whether the gun has ammo level overlays for its icon, mainly for eguns
@@ -1929,3 +1940,24 @@
 		animate(src, color=gradient(COLOR_GREEN, COLOR_RED, new_percentage), alpha =  175, easing=SINE_EASING, time=animate_time)
 		return
 	animate(src, color=gradient(COLOR_GREEN, COLOR_RED, new_percentage), alpha = 0, easing=SINE_EASING, time=animate_time)
+
+/obj/item/weapon/gun/pistol/coin_pistol/proc/coin_toss()
+	if(!can_see(user, get_turf(target), length = 9))
+		return ..()
+
+	if(max_coins && coin_amount <= 0)
+		to_chat(user, span_warning("You don't have any more coins to toss."))
+		return COIN_TOSS_CANCEL
+
+	if(max_coins)
+		START_PROCESSING(SSobj, src)
+		coin_count = max(0, coin_count - 1)
+
+	var/turf/target_turf = get_offset_target_turf(target)
+	playsound(user.loc, 'sound/effects/cointoss.ogg', 50, TRUE)
+	user.visible_message(span_warning("[user] flips a coin towards [target]!"), span_danger("You flip a coin towards [target]!"))
+	var/obj/projectile/bullet/coin/new_coin = new(get_turf(user), target_turf, user)
+	new_coin.preparePixelProjectile(target_turf, user)
+	new_coin.fire()
+
+	return COIN_TOSS_CANCEL

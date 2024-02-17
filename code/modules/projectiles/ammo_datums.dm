@@ -329,6 +329,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	fire_bonus_projectiles(proj, T, proj.shot_from, new_range, proj.projectile_speed, new_angle, null, get_step(T, dir_to_proj))
 	bonus_projectiles_amount = initial(bonus_projectiles_amount)
 
+/datum/ammo/proc/coin_ricochet(obj/item/coin, obj/projectile/proj)
+	if(!iscoin)
+		return
 /*
 //================================================
 					Default Ammo
@@ -485,6 +488,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		P.visible_message(span_danger("The [src] chimpers furiously!"))
 		new /mob/living/carbon/human/species/monkey(P.loc)
 
+/datum/ammo/bullet/pistol/coin_bullet
+	name = "marksman pistol bullet"
+	accuracy = 10
+	damage = 20
+	accurate_range = 10
+	penetration = 20
+	sundering = 1
+
+/datum/ammo/bullet/pistol/coin_bullet/on_hit_obj(obj/item/coin, obj/projectile/P)
+	if(!iscoin)
+	playsound(proj, sound(get_sfx("coin_ricochet")))
+	ricochet()
+		return
 /*
 //================================================
 					Revolver Ammo
