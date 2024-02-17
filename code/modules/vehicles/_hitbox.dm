@@ -32,7 +32,7 @@
 	RegisterSignal(new_root, COMSIG_ATOM_DIR_CHANGE, PROC_REF(owner_turned))
 
 	var/static/list/connections = list(
-		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_cross_hitbox),
 		COMSIG_TURF_JUMP_ENDED_HERE = PROC_REF(on_jump_landed),
 		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
 	)
@@ -44,6 +44,12 @@
 	root?.hitbox = null
 	root = null
 	return ..()
+
+///signal handler for handling PASS_WALKOVER
+/obj/hitbox/proc/can_cross_hitbox(atom/source)
+	SIGNAL_HANDLER
+	if(locate(src) in source.loc)
+		return TRUE
 
 ///Signal handler to spin the desants as well when the tank turns
 /obj/hitbox/proc/owner_turned(datum/source, old_dir, new_dir)
