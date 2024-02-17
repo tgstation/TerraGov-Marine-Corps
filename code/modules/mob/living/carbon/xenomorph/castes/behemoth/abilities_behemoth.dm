@@ -391,7 +391,7 @@
 					var/obj/structure/earth_pillar/affected_pillar = affected_atom
 					affected_pillar.throw_pillar(get_ranged_target_turf(xeno_owner, xeno_owner.dir, 7), TRUE)
 					continue
-				if(ismecha(affected_atom))
+				if(isvehicle(affected_atom))
 					var/obj/vehicle/sealed/mecha/affected_mecha = affected_atom
 					affected_mecha.take_damage(damage * LANDSLIDE_DAMAGE_MECHA_MODIFIER, MELEE)
 					continue
@@ -453,7 +453,7 @@
 					var/obj/structure/earth_pillar/affected_pillar = affected_atom
 					affected_pillar.throw_pillar(get_ranged_target_turf(xeno_owner, xeno_owner.dir, 7), TRUE)
 					continue
-				if(ismecha(affected_atom))
+				if(isvehicle(affected_atom))
 					var/obj/vehicle/sealed/mecha/affected_mecha = affected_atom
 					affected_mecha.take_damage(damage * LANDSLIDE_DAMAGE_MECHA_MODIFIER, MELEE)
 					continue

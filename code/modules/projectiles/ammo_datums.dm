@@ -3461,7 +3461,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	glow_color = "#CB0166"
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/O, obj/projectile/P)
-	if(ismecha(O))
+	if(isvehicle(O))
 		var/obj/vehicle/sealed/mecha/mech_victim = O
 		mech_victim.take_damage(200, BURN, ENERGY, TRUE, armour_penetration = penetration)
 
