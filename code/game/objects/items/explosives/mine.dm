@@ -10,6 +10,12 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 #define PRESSURE_SENSITIVE (1<<0)
 #define PRESSURE_WEIGHTED (1<<1)
 
+//Flags for craftable IED
+#define IED_SECURED (1<<0)
+#define IED_WIRED (1<<1)
+#define IED_CONNECTED (1<<2)
+#define IED_FINISHED IED_SECURED|IED_WIRED|IED_CONNECTED
+
 /obj/item/mine
 	name = "not a real mine"
 	desc = "Dummy object. Otherwise changing stats on the parent item would cause chaos/tedium every time."
@@ -68,6 +74,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/interruptible = TRUE
 	///If TRUE, the range can be changed from 1 to 7 tiles of range
 	var/custom_range = FALSE
+	///If deploying this mine counts as a war crime
+	var/illegal = FALSE
 
 	/* -- Explosion data -- */
 	///How large the devestation impact is
@@ -148,20 +156,23 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 ///Runs the checks for attempting to deploy a mine
 /obj/item/mine/proc/setup(mob/living/user)
 	if(!user.loc || user.loc.density)
-		balloon_alert(user, "You can't plant a mine here.")
+		balloon_alert(user, "No space!")
 		return FALSE
 	if(locate(/obj/item/mine) in get_turf(src))
-		balloon_alert(user, "There already is a mine at this position!")
+		balloon_alert(user, "Already a mine here!")
 		return FALSE
 	if(armed || triggered)	//Just in case
 		return FALSE
 	if(!do_after(user, deploy_delay, NONE, src, BUSY_ICON_BUILD))
 		return FALSE
+
 	//Probably important to keep this logged, just in case
-	user.visible_message(span_notice("[user] deploys a [src]."), span_notice("You deploy a [src]."))
+	visible_message(span_notice("[user] deploys a [src]."))
 	var/obj/item/card/id/id = user.get_idcard()
 	deploy(user, id?.iff_signal)
 	user.record_traps_created()
+	if(illegal)
+		user.record_war_crime()
 	return TRUE
 
 ///Process for arming the mine; anchoring, setting who it belongs to, generating the trigger zones
@@ -520,10 +531,10 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	fire_color = "green"
 
 /* Improvised explosives - You craft them */
-/obj/item/mine/scrap
-	name = "eviscerator mine"
-	desc = "Cobbled together from scrap metal, gunpowder, and a proximity sensor. The people's mine."
-	icon_state = "scrap"
+/obj/item/mine/ied
+	name = "pipe mine"
+	desc = "Cobbled together from a metal pipe, gunpowder, rods, cables, and a proximity sensor. The people's mine."
+	icon_state = "pipe"
 	detonation_message = "clicks and rattles."
 	detonation_sound = 'sound/machines/triple_beep.ogg'
 	range = 2
@@ -532,44 +543,63 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	disarm_delay = 1 SECONDS
 	undeploy_delay = 2 SECONDS
 	deploy_delay = 2 SECONDS
-	shrapnel_type = /datum/ammo/bullet/claymore_shrapnel/scrap
+	shrapnel_type = /datum/ammo/bullet/claymore_shrapnel/nail
 	shrapnel_range = 4
+	discern_living = FALSE
 	volatile = TRUE
 
-/obj/item/mine/scrap/assembly
+	///Stages of assembly; see top of file for the flags
+	var/assembly_steps_completed = NONE
 	///How much gunpowder is needed for the mine to be operational
 	var/gunpowder_amount_required = 20
 	///How much gunpowder is in the mine
-	var/gunpowder_amount = 20
+	var/gunpowder_amount = 0
 	///How many rods are needed for the mine to be operational
 	var/rods_amount_required = 4
 	///How many rods have been added to this mine
-	var/rods_amount = 4
-	///Whether or not a proximity sensor has been added to the assembly
-	var/has_proximity_sensor = TRUE
+	var/rods_amount = 0
 
-/obj/item/mine/scrap/assembly/examine(mob/user)
+/obj/item/mine/ied/examine(mob/user)
 	. = ..()
 	if(gunpowder_amount < gunpowder_amount_required)
 		. += "Currently has [span_bold("[gunpowder_amount]")] out of [span_bold("[gunpowder_amount_required]")] gunpowder."
 	if(rods_amount < rods_amount_required)
 		. += "Currently has [span_bold("[rods_amount]")] out of [span_bold("[rods_amount_required]")] rods."
-	if(!has_proximity_sensor)
-		. += "Lacks a proximity sensor."
 
-/obj/item/mine/scrap/assembly/update_icon()
+/obj/item/mine/ied/update_icon_state()
 	. = ..()
-	if(gunpowder_amount < gunpowder_amount_required || rods_amount < rods_amount_required || !has_proximity_sensor)
-		icon_state = "[initial(icon_state)]_assembly"
+	cut_overlays()
+	//Only add the wires if not deployed, don't need the overlay for that
+	if(CHECK_BITFIELD(assembly_steps_completed, IED_WIRED) && !anchored)
+		var/image/wires_overlay = image(icon, src, "wires")
+		add_overlay(wires_overlay)
 
-/obj/item/mine/scrap/assembly/setup(mob/living/user)
-	if(gunpowder_amount < gunpowder_amount_required || rods_amount < rods_amount_required || !has_proximity_sensor)
+/obj/item/mine/ied/setup(mob/living/user)
+	if(!CHECK_MULTIPLE_BITFIELDS(assembly_steps_completed, IED_FINISHED) || gunpowder_amount < gunpowder_amount_required || rods_amount < rods_amount_required)
 		balloon_alert(user, "Not finished!")
 		return FALSE
 	return ..()
 
-/obj/item/mine/scrap/assembly/attackby(obj/item/I, mob/user, params)
+/obj/item/mine/ied/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(isscrewdriver(I))
+		return screwdriver_act(user, I)
+
+	if(iswirecutter(I))
+		return wirecutter_act(user, I)
+
+	if(iscablecoil(I))
+		if(CHECK_BITFIELD(assembly_steps_completed, IED_WIRED))
+			return balloon_alert(user, "Already wired!")
+
+		var/obj/item/stack/cable_coil/cables = I
+		if(!cables.use(1))
+			return balloon_alert(user, "Not enough cables!")
+
+		ENABLE_BITFIELD(assembly_steps_completed, IED_WIRED)
+		update_icon_state()
+		return balloon_alert(user, "Wired!")
+
 	if(istype(I, /obj/item/ammo_magazine/handful))
 		//Marines can no longer use chem machines to make gunpowder, so we're going to apply a simple mechanic of recycling bullets
 		if(gunpowder_amount >= gunpowder_amount_required)
@@ -577,7 +607,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 		var/obj/item/ammo_magazine/handful/bullets = I
 		if(bullets.current_rounds < 1)
-			return balloon_alert(user, "Not enough usable gunpowder!")
+			return balloon_alert(user, "Not enough gunpowder!")
 
 		//The gunpowder to bullet ratio is 1:1, so using something like bullets from your rifle are straightforward
 		//However, shotgun shells are packed with a lot more so they have a multiplier; 4 gunpowder from each shotgun shell
@@ -590,24 +620,44 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		gunpowder_amount += amount_to_transfer
 		if(!bullets.current_rounds)	//Delete the handful stack if we used it all
 			qdel(bullets)
-		return TRUE
+		return balloon_alert(user, gunpowder_amount == gunpowder_amount_required ? "Full!" : "[gunpowder_amount]/[gunpowder_amount_required] powder!")
 
 	if(istype(I, /obj/item/stack/rods))
 		if(rods_amount >= rods_amount_required)
 			return balloon_alert(user, "Already full!")
 
 		var/obj/item/stack/rods = I
-		if(rods.amount < 1)
-			return balloon_alert(user, "Not enough usable rods!")
+		var/amount_to_transfer = max(1, min(rods.amount, rods_amount_required - rods_amount))
+		if(!rods.use(amount_to_transfer))
+			return balloon_alert(user, "Not enough rods!")
 
-		var/amount_to_transfer = min(rods.amount, rods_amount_required - rods_amount)
 		rods_amount += amount_to_transfer
-		rods.change_stack(user, rods.amount - amount_to_transfer)
-		return TRUE
+		return balloon_alert(user, rods_amount == rods_amount_required ? "Full!" : "[rods_amount]/[rods_amount_required] rods!")
 
-	if(istype(I, /obj/item/assembly/prox_sensor))
-		has_proximity_sensor = TRUE
-		qdel(I)
+/obj/item/mine/ied/screwdriver_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(CHECK_BITFIELD(assembly_steps_completed, IED_SECURED))
+		return balloon_alert(user, "Already secured!")
+	ENABLE_BITFIELD(assembly_steps_completed, IED_SECURED)
+	return balloon_alert(user, "Secured!")
+
+/obj/item/mine/ied/wirecutter_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(!CHECK_BITFIELD(assembly_steps_completed, IED_WIRED))
+		return balloon_alert(user, "Not wired!")
+	if(CHECK_BITFIELD(assembly_steps_completed, IED_CONNECTED))
+		return balloon_alert(user, "Already connected!")
+	ENABLE_BITFIELD(assembly_steps_completed, IED_CONNECTED)
+	return balloon_alert(user, "Connected!")
+
+/obj/item/mine/ied/assembled
+	assembly_steps_completed = IED_FINISHED
+
+/obj/item/mine/ied/assembled/Initialize(mapload)
+	. = ..()
+	gunpowder_amount = gunpowder_amount_required
+	rods_amount = rods_amount_required
+	update_icon_state()
 
 /* Exotic mines - Rather than just explode, these have special effects */
 /obj/item/mine/radiation
@@ -622,6 +672,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	deploy_delay = 2 SECONDS
 	volatile = TRUE
 	custom_range = TRUE
+	illegal = TRUE
 	///Base damage of the radiation pulse, and determines severity of effects; see extra_effects()
 	var/radiation_damage = 20
 	///How many more times the mine pulses out radiation and refreshes the radiation field
@@ -650,20 +701,14 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	if(istype(I, /obj/item/stack/sheet/mineral/uranium))
 		if(current_fuel >= max_fuel)
 			return balloon_alert(user, "Already full!")
-		var/obj/item/stack/uranium = I
-		if(uranium.amount < 1)
-			return balloon_alert(user, "Not enough usable fuel!")
-		var/amount_to_transfer = min(uranium.amount, max_fuel - current_fuel)
-		current_fuel += amount_to_transfer
-		uranium.change_stack(user, uranium.amount - amount_to_transfer)
-		return TRUE
 
-/obj/item/mine/radiation/setup(mob/living/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	user.record_war_crime()
-	return .
+		var/obj/item/stack/uranium = I
+		var/amount_to_transfer = max(1, min(uranium.amount, max_fuel - current_fuel))
+		if(uranium.use(amount_to_transfer))
+			return balloon_alert(user, "Not enough fuel!")
+
+		current_fuel += amount_to_transfer
+		return balloon_alert(user, current_fuel == max_fuel ? "Full!" : "[current_fuel]/[max_fuel] fuel!")
 
 /obj/item/mine/radiation/disarm()
 	if(triggered)
@@ -798,7 +843,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	if(!iscell(I))
 		return ..()
 	if(battery)
-		return balloon_alert(user, "There is already a battery installed!")
+		return balloon_alert(user, "Already has one!")
 	user.transferItemToLoc(I, src)
 	battery = I
 	update_icon()
@@ -875,6 +920,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	gas_duration = 15
 	volatile = TRUE
 	interruptible = FALSE
+	illegal = TRUE
 
 /* Tactical mines - Non-lethal, utility-focused gadgets */
 /obj/item/mine/alarm

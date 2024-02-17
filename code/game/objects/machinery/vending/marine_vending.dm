@@ -125,6 +125,7 @@
 			/obj/item/explosive/grenade/bullet/laser = 30,
 			/obj/item/storage/box/m94 = 200,
 			/obj/item/storage/box/m94/cas = 30,
+			/obj/item/storage/box/ied_assembly_kit = -1,
 		),
 		"Specialized" = list(
 			/obj/item/weapon/gun/rifle/pepperball = 4,

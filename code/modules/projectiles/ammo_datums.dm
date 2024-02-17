@@ -2094,11 +2094,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/claymore_shrapnel/pmc
 	bonus_projectiles_scatter = 3
 
-/datum/ammo/bullet/claymore_shrapnel/scrap
+/datum/ammo/bullet/claymore_shrapnel/nail
+	name = "nail"
 	damage = 15
 	penetration = 5
+	sundering = 5
+	bonus_projectiles_type = /datum/ammo/bullet/claymore_shrapnel/nail/additional
 	bonus_projectiles_amount = 40
+	bonus_projectiles_scatter = 10
 	shrapnel_chance = 100	//Hope marines got their tetanus shots
+
+/datum/ammo/bullet/claymore_shrapnel/nail/additional
+	bonus_projectiles_amount = 0
 
 /*
 //================================================

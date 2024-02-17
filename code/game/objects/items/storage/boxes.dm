@@ -377,6 +377,24 @@
 	spawn_type = /obj/item/mine/pressure/anti_tank
 	spawn_number = 5
 
+/obj/item/storage/box/ied_assembly_kit
+	name = "\improper BYOND IED assembly kit"
+	desc = "A box containing the core components for a pipe mine. Think BYOND your traditional bomb training, anyone can make their own explosives!"
+	icon_state = "minebox"
+	w_class = WEIGHT_CLASS_NORMAL
+	max_storage_space = 30
+	storage_slots = 12
+	spawn_number = 6
+	spawn_type = /obj/item/assembly/prox_sensor
+	can_hold = list(/obj/item/pipe, /obj/item/assembly/prox_sensor)
+	max_w_class = WEIGHT_CLASS_NORMAL	//So pipes can be put back in
+
+/obj/item/storage/box/ied_assembly_kit/Initialize(mapload, ...)
+	. = ..()
+	//Spawn an equal number of proximity sensors
+	for(var/i in 1 to spawn_number)
+		new /obj/item/pipe(src, /obj/machinery/atmospherics/pipe/simple, NORTH)
+
 /obj/item/storage/box/m94
 	name = "\improper M40 FLDP flare pack"
 	desc = "A packet of seven M40 FLDP Flares. Carried by TGMC marines to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
