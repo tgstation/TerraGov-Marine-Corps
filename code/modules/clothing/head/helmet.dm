@@ -265,7 +265,7 @@
 	name = "M8 riot helmet"
 	desc = "It's a modified version of the widely used Riot Helmets for use against angry jarheads. Boasts high ballistic protection"
 	icon_state = "marine_riot"
-	soft_armor = list(MELEE = 65, BULLET = 110, LASER = 110, ENERGY = 5, BOMB = 50, BIO = 50, FIRE = 50, ACID = 30)
+	soft_armor = list(MELEE = 65, BULLET = 90, LASER = 110, ENERGY = 5, BOMB = 50, BIO = 50, FIRE = 50, ACID = 30)
 	flags_inventory = COVEREYES|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDETOPHAIR
 	flags_item = SYNTH_RESTRICTED
