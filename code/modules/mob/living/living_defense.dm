@@ -1,6 +1,8 @@
 /mob/living/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_MOB_SLAM_DAMAGE, is_sharp = FALSE)
 	if(!isliving(grab.grabbed_thing))
 		return
+	if(grab.grabbed_thing == src)
+		return
 
 	var/mob/living/grabbed_mob = grab.grabbed_thing
 	step_towards(grabbed_mob, src)
