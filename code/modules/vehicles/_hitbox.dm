@@ -46,9 +46,9 @@
 	return ..()
 
 ///signal handler for handling PASS_WALKOVER
-/obj/hitbox/proc/can_cross_hitbox(atom/source)
+/obj/hitbox/proc/can_cross_hitbox(datum/source, atom/mover)
 	SIGNAL_HANDLER
-	if(locate(src) in source.loc)
+	if(locate(src) in mover.loc)
 		return TRUE
 
 ///Signal handler to spin the desants as well when the tank turns
@@ -185,37 +185,38 @@
 	if(ISDIAGONALDIR(direction))
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	if((root.dir != direction) && (root.dir != REVERSE_DIR(direction)))
-		root.setDir(direction) // tivi todo dupe on medium size kill me
+		root.setDir(direction)
 		if(isarmoredvehicle(root))
 			var/obj/vehicle/sealed/armored/armor = root
 			playsound(armor, armor.engine_sound, 100, TRUE, 20)
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	///////////////////////////
 	var/turf/centerturf = get_step(root, direction)
-	var/list/enteringturfs = list(centerturf)
+	var/list/enteringturfs = list()
 	switch(direction)
 		if(NORTH)
 			enteringturfs += get_step(centerturf, turn(direction, -90))
 		if(SOUTH)
-			centerturf = get_step(get_step(root, direction), direction)
+			centerturf = get_step(centerturf, direction)
 			enteringturfs += get_step(centerturf, turn(direction, 90))
 		if(EAST)
-			centerturf = get_step(get_step(root, direction), direction)
+			centerturf = get_step(centerturf, direction)
 			enteringturfs += get_step(centerturf, turn(direction, -90))
 		if(WEST)
 			enteringturfs += get_step(centerturf, turn(direction, 90))
+	enteringturfs += centerturf
 	////////////////////////////////////
 	var/canstep = TRUE
 	for(var/turf/T AS in enteringturfs)	//No break because we want to crush all the turfs before we start trying to move
-		if(!T.Enter(root))	//Check if we can cross the turf first/bump the turf
-			canstep = FALSE		//why "var == false" you ask? well its because its tiny bit faster, thanks byond
+		if(!T.Enter(root, direction))	//Check if we can cross the turf first/bump the turf
+			canstep = FALSE
 
-		for(var/atom/movable/O AS in T.contents) // this is checked in turf/enter but it doesnt return it so lmao
+		for(var/atom/movable/O AS in T.contents) // this is checked in turf/enter but it doesnt return false so lmao
 			if(O.CanPass(root))	// Then check for obstacles to crush
 				continue
 			root.Bump(O) //manually call bump on everything
 			canstep = FALSE
 
 	if(canstep)
-		return NONE //step(root, direction)
+		return NONE
 	return COMPONENT_DRIVER_BLOCK_MOVE

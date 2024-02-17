@@ -58,7 +58,8 @@
 
 /obj/effect/alien/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, turf/T, turf/temp)
 	. = ..()
-	take_damage(./2)
+	. /= 2
+	take_damage(.)
 
 /obj/effect/alien/weeds/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, turf/T, turf/temp)
 	return

@@ -10,7 +10,7 @@
 	max_drivers = 1
 	move_resist = INFINITY
 	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
-	allow_pass_flags = PASS_TANK|PASS_AIR|PASS_WALKOVER
+	allow_pass_flags = PASS_TANK|PASS_AIR|PASS_WALKOVER|PASS_THROW
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE|PORTAL_IMMUNE
 
 	// placeholder, make skill check or similar later
@@ -430,15 +430,12 @@
 	playsound(src, 'sound/effects/tankswivel.ogg', 80,1)
 	TIMER_COOLDOWN_START(src, COOLDOWN_TANK_SWIVEL, 2 SECONDS)
 	turret_overlay.setDir(new_weapon_dir)
-	secondary_weapon_overlay.icon_state = "[secondary_weapon.secondary_icon_name]" + "_" + "[new_weapon_dir]"
+	secondary_weapon_overlay?.icon_state = "[secondary_weapon.secondary_icon_name]" + "_" + "[new_weapon_dir]"
 	return TRUE
 
 ///handles mouseclicks by a user in the vehicle
 /obj/vehicle/sealed/armored/proc/on_mouseclick(mob/user, atom/target, turf/location, control, list/modifiers)
 	SIGNAL_HANDLER
-	if(!is_equipment_controller(user))
-		balloon_alert(user, "wrong seat for equipment!")
-		return COMSIG_MOB_CLICK_CANCELED
 	modifiers = params2list(modifiers)
 	if(isnull(location) && target.plane == CLICKCATCHER_PLANE) //Checks if the intended target is in deep darkness and adjusts target based on params.
 		target = params2turf(modifiers["screen-loc"], get_turf(user), user.client)
@@ -455,11 +452,16 @@
 		return
 	if(src == target)
 		return
+	if(!is_equipment_controller(user))
+		balloon_alert(user, "wrong seat for equipment!")
+		return COMSIG_MOB_CLICK_CANCELED
 	var/dir_to_target = get_cardinal_dir(src, target)
 	var/obj/item/armored_weapon/selected
 	if(modifiers[BUTTON] == RIGHT_CLICK)
 		selected = secondary_weapon
 	else
+		if(!turret_overlay)
+			return COMSIG_MOB_CLICK_CANCELED
 		if(turret_overlay.dir != dir_to_target)
 			swivel_turret(target)
 			return COMSIG_MOB_CLICK_CANCELED
