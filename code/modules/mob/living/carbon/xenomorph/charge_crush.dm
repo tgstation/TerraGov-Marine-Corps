@@ -72,7 +72,6 @@
 	RegisterSignal(charger, COMSIG_MOVABLE_MOVED, PROC_REF(update_charging))
 	RegisterSignal(charger, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_dir_change))
 	set_toggle(TRUE)
-	ADD_TRAIT(charger, TRAIT_STUNIMMUNE, CHARGE_TRAIT)
 	if(verbose)
 		to_chat(charger, span_xenonotice("We will charge when moving, now."))
 
@@ -82,7 +81,6 @@
 	if(charger.is_charging != CHARGE_OFF)
 		do_stop_momentum()
 	UnregisterSignal(charger, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE))
-	REMOVE_TRAIT(charger, TRAIT_STUNIMMUNE, CHARGE_TRAIT)
 	if(verbose)
 		to_chat(charger, span_xenonotice("We will no longer charge when moving."))
 	set_toggle(FALSE)
@@ -134,12 +132,14 @@
 	var/mob/living/carbon/xenomorph/charger = owner
 	RegisterSignals(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE), PROC_REF(do_crush))
 	charger.is_charging = CHARGE_ON
+	ADD_TRAIT(charger, TRAIT_STUNIMMUNE, CHARGE_TRAIT)
 	charger.update_icons()
 
 
 /datum/action/ability/xeno_action/ready_charge/proc/do_stop_crushing()
 	var/mob/living/carbon/xenomorph/charger = owner
 	UnregisterSignal(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE))
+	REMOVE_TRAIT(charger, TRAIT_STUNIMMUNE, CHARGE_TRAIT)
 	if(valid_steps_taken > 0) //If this is false, then do_stop_momentum() should have it handled already.
 		charger.is_charging = CHARGE_BUILDINGUP
 		charger.update_icons()
