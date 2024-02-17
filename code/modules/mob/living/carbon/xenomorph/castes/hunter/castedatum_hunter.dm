@@ -18,7 +18,7 @@
 	attack_delay = 7
 
 	// *** Speed *** //
-	speed = -1.4
+	speed = -1.5
 	weeds_speed_mod = -0.1
 
 	// *** Plasma *** //
