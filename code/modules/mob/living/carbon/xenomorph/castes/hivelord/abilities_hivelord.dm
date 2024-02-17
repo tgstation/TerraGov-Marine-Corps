@@ -245,7 +245,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_JELLY_POD,
 	)
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = ABILITY_USE_LYING
 
 /datum/action/ability/xeno_action/place_jelly_pod/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -286,7 +286,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_JELLY,
 	)
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = ABILITY_USE_LYING
 
 /datum/action/ability/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
 	. = ..()
