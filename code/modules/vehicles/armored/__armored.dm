@@ -370,7 +370,7 @@
 		return
 
 /obj/vehicle/sealed/armored/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, 120, 5 SECONDS, 0, SKILL_ENGINEER_METAL, 5, 2 SECONDS)
+	return welder_repair_act(user, I, 50, 5 SECONDS, 0, SKILL_ENGINEER_METAL, 5, 2 SECONDS)
 
 /obj/vehicle/sealed/armored/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
@@ -428,7 +428,7 @@
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam
 		return FALSE
 	playsound(src, 'sound/effects/tankswivel.ogg', 80,1)
-	TIMER_COOLDOWN_START(src, COOLDOWN_TANK_SWIVEL, 2 SECONDS)
+	TIMER_COOLDOWN_START(src, COOLDOWN_TANK_SWIVEL, 3 SECONDS)
 	turret_overlay.setDir(new_weapon_dir)
 	secondary_weapon_overlay?.icon_state = "[secondary_weapon.secondary_icon_name]" + "_" + "[new_weapon_dir]"
 	return TRUE
@@ -441,9 +441,6 @@
 		target = params2turf(modifiers["screen-loc"], get_turf(user), user.client)
 		modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
 		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
-	if(LAZYACCESS(modifiers, MIDDLE_CLICK))
-		set_safety(user)
-		return COMSIG_MOB_CLICK_CANCELED
 	if(modifiers[SHIFT_CLICK]) //Allows things to be examined.
 		return
 	if(!isturf(target) && !isturf(target.loc)) // Prevents inventory from being drilled
@@ -454,6 +451,9 @@
 		return
 	if(!is_equipment_controller(user))
 		balloon_alert(user, "wrong seat for equipment!")
+		return COMSIG_MOB_CLICK_CANCELED
+	if(LAZYACCESS(modifiers, MIDDLE_CLICK))
+		set_safety(user)
 		return COMSIG_MOB_CLICK_CANCELED
 	var/dir_to_target = get_cardinal_dir(src, target)
 	var/obj/item/armored_weapon/selected
