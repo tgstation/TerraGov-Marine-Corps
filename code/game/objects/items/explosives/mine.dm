@@ -121,6 +121,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	. = ..()
 	if(custom_range)
 		. += "[span_bold("Alt Click")] to change the detection range."
+	if(armed)
+		. += span_warning("It is active!")
 
 ///Update the icon, adding "_armed" or "_deployed" (or nothing if not planted)
 /obj/item/mine/update_icon_state()
@@ -160,6 +162,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/obj/item/card/id/id = user.get_idcard()
 	deploy(user, id?.iff_signal)
 	user.record_traps_created()
+	return TRUE
 
 ///Process for arming the mine; anchoring, setting who it belongs to, generating the trigger zones
 /obj/item/mine/proc/deploy(mob/living/user, faction)
@@ -245,7 +248,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 	var/mob/living/crosser = isliving(AM) ? AM : null
 	if(discern_living)	//If only conscious mobs can trigger this mine, run the appropriate checks
-		if(crosser)
+		if(!crosser)
 			return FALSE
 		if(crosser.stat)
 			return FALSE
@@ -332,8 +335,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		extra_effects(victim)
 		if(duration > 0)
 			if(reusable)
-				return deletion_timer = addtimer(CALLBACK(src, PROC_REF(disarm)), duration, TIMER_OVERRIDE|TIMER_STOPPABLE)
-			return deletion_timer = addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), duration, TIMER_OVERRIDE|TIMER_STOPPABLE)
+				return deletion_timer = addtimer(CALLBACK(src, PROC_REF(disarm)), duration, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+			return deletion_timer = addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), duration, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 		return TRUE	//Don't stop
 
 	//Reusable mines do not delete themselves upon detonation, just go back to sleep
@@ -425,11 +428,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	disarm_delay = 1 SECONDS
 	undeploy_delay = 2 SECONDS
 	deploy_delay = 2 SECONDS
-	uber_explosion_range = 0
-	heavy_explosion_range = 0
 	light_explosion_range = 2
-	blinding_range = 0
-	launch_distance = 0
 	shrapnel_type = /datum/ammo/bullet/claymore_shrapnel
 	shrapnel_range = 5
 
@@ -454,10 +453,9 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	disarm_delay = 3 SECONDS
 	undeploy_delay = 1 SECONDS
 	deploy_delay = 1 SECONDS
-	uber_explosion_range = 0
-	heavy_explosion_range = 1
-	light_explosion_range = 3
-	blinding_range = 2
+	light_explosion_range = 2
+	weak_explosion_range = 3
+	blinding_range = 1
 	launch_distance = 1
 	volatile = TRUE
 
@@ -474,8 +472,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	deploy_delay = 3 SECONDS
 	uber_explosion_range = 1
 	heavy_explosion_range = 3
-	light_explosion_range = 0
-	blinding_range = 3
+	blinding_range = 1
 	launch_distance = 5
 	pressure_activated = PRESSURE_SENSITIVE
 	volatile = TRUE
@@ -614,9 +611,9 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 /* Exotic mines - Rather than just explode, these have special effects */
 /obj/item/mine/radiation
-	name = "radiation mine"
-	desc = "Irradiates the surrounding area when triggered. Uses sheets of uranium as a source of fuel. More fuel increases the range of the radiation field."
-	icon_state = "m20"
+	name = "\improper MOPe radiation mine"
+	desc = "The Marine Operation Penalizer irradiates the surrounding area when triggered. Uses sheets of uranium as a source of fuel. More fuel increases the range of the radiation field."
+	icon_state = "radiation"
 	detonation_message = "clicks, emitting a low hum."
 	range = 2
 	duration = 30 SECONDS
@@ -661,6 +658,13 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		uranium.change_stack(user, uranium.amount - amount_to_transfer)
 		return TRUE
 
+/obj/item/mine/radiation/setup(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	user.record_war_crime()
+	return .
+
 /obj/item/mine/radiation/disarm()
 	if(triggered)
 		current_fuel = 0	//In the event of disarmament when already detonated, have the fuel be already expended
@@ -678,7 +682,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	if(!.)
 		return FALSE
 	//The deletion_timer lasts a second longer so that the last pulse can go off before qdel()
-	deletion_timer = addtimer(CALLBACK(src, PROC_REF(disarm)), duration + 1 SECONDS, TIMER_OVERRIDE|TIMER_STOPPABLE)
+	deletion_timer = addtimer(CALLBACK(src, PROC_REF(disarm)), duration + 1 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 
 /obj/item/mine/radiation/extra_effects(atom/movable/victim)
 	if(!current_fuel)	//While this should NEVER happen, just in case
@@ -695,7 +699,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	for(var/turf/irradiated_turf in exclusion_zone)
 		//Delete them before the next pulse otherwise the exclusion_zone list will be gigantic
 		new /obj/effect/temp_visual/radiation(irradiated_turf, (duration/number_of_pulses) - 1)
-	pulse_timer = addtimer(CALLBACK(src, PROC_REF(extra_effects)), duration/number_of_pulses, TIMER_OVERRIDE|TIMER_STOPPABLE)
+	pulse_timer = addtimer(CALLBACK(src, PROC_REF(extra_effects)), duration/number_of_pulses, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 
 /obj/item/mine/radiation/fueled
 	current_fuel = 10
@@ -762,9 +766,9 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	color = COLOR_GREEN
 
 /obj/item/mine/shock
-	name = "shock mine"
+	name = "tesla mine"
 	desc = "Delivers high voltage arcs of lightning at nearby conductive targets. Can be recharged."
-	icon_state = "m20"
+	icon_state = "tesla"
 	range = 3
 	duration = -1
 	disarm_delay = 4 SECONDS
@@ -929,7 +933,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	SSminimaps.remove_marker(src)
 	SSminimaps.add_marker(src, z, marker_flags, mini_icon)
 	deltimer(minimap_timer)
-	minimap_timer = addtimer(CALLBACK(SSminimaps, TYPE_PROC_REF(/datum/controller/subsystem/minimaps, remove_marker), src), minimap_duration, TIMER_UNIQUE|TIMER_OVERRIDE)
+	minimap_timer = addtimer(CALLBACK(SSminimaps, TYPE_PROC_REF(/datum/controller/subsystem/minimaps, remove_marker), src), minimap_duration, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 	COOLDOWN_START(src, alarm_cooldown, cooldown)
 
 /obj/item/mine/alarm/disarm()
@@ -1007,7 +1011,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /obj/item/mine/flash
 	name = "flash mine"
 	desc = "Blinds nearby enemies when activated."
-	icon_state = "m20"
+	icon_state = "flash"
 	detonation_message = "clicks."
 	range = 4
 	duration = -1

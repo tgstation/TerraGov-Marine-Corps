@@ -2760,6 +2760,74 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/mortar/rocket/smoke/mlrs
 	smoketype = /datum/effect_system/smoke_spread/tactical
 
+//Generic ammo type to spread mines over an area
+/datum/ammo/carpet_mine
+	name = "proximity mine payload"
+	icon_state = "howi"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	shell_speed = 0.75
+	damage = 0
+	penetration = 0
+	sundering = 0
+	accuracy = 1000
+	max_range = 1000
+	ping = null
+	bullet_color = COLOR_VERY_SOFT_YELLOW
+	///How many mines to deploy
+	var/payload_amount = 7
+	///How far mines will be dispersed
+	var/spread_radius = 7
+
+/datum/ammo/carpet_mine/do_at_max_range(turf/T, obj/projectile/proj)
+	//Get a list of turfs around the impact point and shuffle it
+	var/list/turf/turfs = shuffle(circle_range_turfs(T, spread_radius))
+	//Deploy mines in open turfs until there are none left
+	var/amount = payload_amount
+	while(amount > 0)
+		for(var/turf/turf AS in turfs)
+			if(is_blocked_turf(turf))	//Don't put mines anywhere that can't be reached
+				turfs.Remove(turf)	//Don't bother with this turf again
+				continue
+
+			//Mines don't all pop out at once, little bit of flair
+			addtimer(CALLBACK(src, PROC_REF(deploy_animation), turf), rand(1 SECONDS, 5 SECONDS))
+			turfs.Remove(turf)	//So we don't put more than one mine on a turf
+			break
+
+		amount--
+
+///Separate proc to handle the deployment animation
+/datum/ammo/carpet_mine/proc/deploy_animation(turf/T)
+	playsound(T, 'sound/items/fultext_deploy.ogg', 25, 1, 7)
+	var/obj/item/mine/proximity/mine = new(T)
+	var/image/bloon = image('icons/obj/items/fulton_balloon.dmi', mine, "fulton_balloon", pixel_y = 16)
+	mine.overlays += bloon
+
+	//So nothing happens to the mine during the animation
+	mine.pixel_y = 128
+	mine.mouse_opacity = 0
+	mine.anchored = TRUE
+	ENABLE_BITFIELD(mine.obj_flags, RESIST_ALL)
+
+	var/duration = rand(3 SECONDS, 15 SECONDS)
+	mine.add_filter("drop shadow", 2, drop_shadow_filter(color = COLOR_TRANSPARENT_SHADOW, size = 3, y = -128))
+	var/shadow_filter = mine.get_filter("drop shadow")
+	//Falling animations
+	animate(shadow_filter, duration, y = 0, size = 1, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
+	animate(mine, duration, pixel_y = 0, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
+	//Bobbing animations
+	animate(time = duration/2, pixel_x = rand(-16, 16), easing = BACK_EASING|EASE_IN, flags = ANIMATION_PARALLEL)
+	animate(time = duration/2, pixel_x = 0)
+	addtimer(CALLBACK(src, PROC_REF(deploy_mine), mine), duration)
+
+///Separate proc to handle mine deployment
+/datum/ammo/carpet_mine/proc/deploy_mine(obj/item/mine/mine)
+	DISABLE_BITFIELD(mine.obj_flags, RESIST_ALL)
+	mine.cut_overlays()
+	mine.mouse_opacity = initial(mine.mouse_opacity)
+	mine.remove_filter("drop shadow")
+	mine.deploy(faction = TGMC_LOYALIST_IFF)
+
 /*
 //================================================
 					Energy Ammo

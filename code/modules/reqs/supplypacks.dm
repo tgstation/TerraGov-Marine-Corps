@@ -979,6 +979,11 @@ EXPLOSIVES
 	cost = 60
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/explosives/mortar_ammo_mine
+	name = "MG-100Y howitzer mine dispersal shell"
+	contains = list(/obj/item/mortal_shell/howitzer/mine)
+	cost = 60
+
 /datum/supply_packs/explosives/ai_target_module
 	name = "AI artillery targeting module"
 	contains = list(/obj/item/ai_target_beacon)

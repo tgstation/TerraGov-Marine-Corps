@@ -493,6 +493,7 @@
 		/obj/item/mortal_shell/howitzer/he,
 		/obj/item/mortal_shell/howitzer/incendiary,
 		/obj/item/mortal_shell/howitzer/plasmaloss,
+		/obj/item/mortal_shell/howitzer/mine,
 		/obj/item/mortal_shell/flare,
 	)
 	tally_type = TALLY_HOWITZER
@@ -722,6 +723,12 @@
 	icon_state = "howitzer_ammo_wp"
 	ammo_type = /datum/ammo/mortar/smoke/howi/wp
 
+/obj/item/mortal_shell/howitzer/mine
+	name = "\improper 150mm mine dispersal artillery shell"
+	desc = "An 150mm artillery shell, loaded with proximity mines. Scatters the payload over a wide area."
+	icon_state = "howitzer_ammo_mine"
+	ammo_type = /datum/ammo/carpet_mine
+
 /obj/item/mortal_shell/rocket
 	ammo_type = /datum/ammo/mortar/rocket
 
@@ -854,6 +861,8 @@
 	new	/obj/item/mortal_shell/howitzer/plasmaloss(src)
 	new	/obj/item/mortal_shell/howitzer/plasmaloss(src)
 	new	/obj/item/mortal_shell/howitzer/plasmaloss(src)
+	new /obj/item/mortal_shell/howitzer/mine(src)
+	new /obj/item/mortal_shell/howitzer/mine(src)
 	new /obj/item/mortal_shell/flare(src)
 	new /obj/item/mortal_shell/flare(src)
 	new /obj/item/mortal_shell/flare(src)
