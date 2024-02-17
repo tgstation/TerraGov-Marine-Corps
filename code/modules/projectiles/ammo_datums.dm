@@ -640,6 +640,28 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 3
 	shrapnel_chance = 45
 
+/datum/ammo/bullet/smg/squash
+	name = "squash-head submachinegun bullet"
+	hud_state = "pistol_squash"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	damage = 15
+	penetration = 15
+	armor_type = BOMB
+	sundering = 1
+	damage_falloff = 2
+	shrapnel_chance = 0
+	///shatter effection duration when hitting mobs
+	var/shatter_duration = 3 SECONDS
+
+/datum/ammo/bullet/smg/squash/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+
+	var/mob/living/living_victim = M
+	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
+
+
+
 /datum/ammo/bullet/smg/incendiary
 	name = "incendiary submachinegun bullet"
 	hud_state = "smg_fire"
@@ -2784,7 +2806,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 10
 	bullet_color = COLOR_VIVID_YELLOW
 /datum/ammo/energy/taser/on_hit_mob(mob/living/M,obj/projectile/P)
-	M.ParalyzeNoChain(15 SECONDS)
+	staggerstun(M, P, stun = 15 SECONDS)
 	M.add_slowdown(5)
 	M.do_jitter_animation(150, 14 SECONDS)
 	M.emote("scream")
@@ -2818,6 +2840,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(isxeno(M)) //need 1 second more than the actual effect time
 		var/mob/living/carbon/xenomorph/X = M
 		X.use_plasma(0.3 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) //Drains 30% of max plasma on hit
+
+/datum/ammo/energy/lasburster
+	name = "lasburster bolt"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_HITSCAN
+	hud_state = "laser_overcharge"
+	armor_type = LASER
+	damage = 40
+	penetration = 5
+	max_range = 7
+	hitscan_effect_icon = "beam_heavy"
 
 /datum/ammo/energy/lasgun
 	name = "laser bolt"

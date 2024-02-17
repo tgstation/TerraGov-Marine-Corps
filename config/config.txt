@@ -230,9 +230,9 @@ DEFAULT_VIEW_SQUARE 15x15
 
 AI_ANTI_STUCK_LAG_TIME_DILATION_THRESHOLD 20
 
-## Assets can opt-in to caching their results into `tmp`.
+## Assets can opt-in to caching their results into `cache/`.
 ## This is important, as preferences assets take upwards of 30 seconds (without sleeps) to collect.
-## The cache is assumed to be cleared by TGS recompiling, which deletes `tmp`.
+## The cache is assumed to be cleared by TGS recompiling, which deletes `cache/`.
 ## This should be disabled (through `CACHE_ASSETS 0`) on development,
 ## but enabled on production (the default).
 CACHE_ASSETS 0

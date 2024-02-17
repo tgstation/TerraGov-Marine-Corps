@@ -288,6 +288,23 @@
 	color = "#791697"
 	smoke_traits = SMOKE_PLASMALOSS
 
+/obj/effect/particle_effect/smoke/plasmaloss/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(S.smoke_traits & SMOKE_PURGER)
+		lifetime -= 4
+
+//////////////////////////////////////
+// ANTIGAS SMOKE
+////////////////////////////////////
+
+/obj/effect/particle_effect/smoke/antigas
+	alpha = 25
+	opacity = FALSE
+	color = "#030101"
+	smoke_traits = SMOKE_PURGER
+
 //////////////////////////////////////
 // FLASHBANG SMOKE
 ////////////////////////////////////
@@ -307,6 +324,13 @@
 	strength = 1
 	smoke_traits = SMOKE_SATRAPINE|SMOKE_GASP|SMOKE_COUGH
 
+/obj/effect/particle_effect/smoke/satrapine/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(S.smoke_traits & SMOKE_PURGER)
+		lifetime -= 4
+
 /////////////////////////////////////////
 // BOILER SMOKES
 /////////////////////////////////////////
@@ -323,6 +347,8 @@
 		return
 	if(S.smoke_traits & SMOKE_PLASMALOSS)
 		lifetime -= 2
+	if(S.smoke_traits & SMOKE_PURGER)
+		lifetime -= 4
 
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno/burn
@@ -355,8 +381,10 @@
 
 /obj/effect/particle_effect/smoke/xeno/toxic
 	lifetime = 2
+	alpha = 60
+	opacity = FALSE
 	color = "#00B22C"
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_TOXIC|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_TOXIC|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH
 
 /obj/effect/particle_effect/smoke/xeno/hemodile
 	color = "#0287A1"
@@ -405,6 +433,9 @@
 
 /datum/effect_system/smoke_spread/satrapine
 	smoke_type = /obj/effect/particle_effect/smoke/satrapine
+
+/datum/effect_system/smoke_spread/antigas
+	smoke_type = /obj/effect/particle_effect/smoke/antigas
 
 /datum/effect_system/smoke_spread/xeno
 	smoke_type = /obj/effect/particle_effect/smoke/xeno

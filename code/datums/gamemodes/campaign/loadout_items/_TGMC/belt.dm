@@ -81,7 +81,11 @@
 	name = "Belt harness"
 	desc = "A shoulder worn strap with clamps that can attach to most anything. Should keep you from losing your weapon, hopefully."
 	item_typepath = /obj/item/belt_harness/marine
-	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_LEADER, FIELD_COMMANDER)
+
+/datum/loadout_item/belt/belt_harness/smart_gunner
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	jobs_supported = list(SQUAD_SMARTGUNNER)
 
 //medic
 /datum/loadout_item/belt/lifesaver
@@ -104,8 +108,8 @@
 
 /datum/loadout_item/belt/fc_pistol
 	name = "P-1911A1-C pistol"
-	desc = "A handgun that has received several modifications. It seems to have been lovingly taken care of and passed down for generations. \
-	Lacks an auto magazine eject feature. Comes in a holster that fits on your waist or armor."
+	desc = "The P-1911A1-C is a custom modified pistol with impressive stopping power for its size. \
+	Light and easy to use one handed, it suffers from a small magazine size and no auto eject feature. Comes in a holster that fits on your waist or armor. Uses .45 ACP ammunition."
 	ui_icon = "pistol"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 	jobs_supported = list(FIELD_COMMANDER)
@@ -114,7 +118,7 @@
 //staff officer
 /datum/loadout_item/belt/so_pistol
 	name = "RT-3 pistol"
-	desc = "An RT-3 target pistol, a common sight throughout the bubble. Fires 9mm in magazines. Comes in a holster to fit on your waist."
+	desc = "An RT-3 target pistol, a common sight throughout the bubble and the standard sidearm for noncombat roles in the TGMC. Comes in a holster to fit on your waist. uses 9mm caseless ammunition."
 	ui_icon = "pistol"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/officer
 	jobs_supported = list(STAFF_OFFICER)
@@ -122,8 +126,8 @@
 //captain
 /datum/loadout_item/belt/smart_pistol
 	name = "SP-13 pistol"
-	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. A cutting-edge miniaturization technology allows mounting of a KTLD IFF system on the pistol, \
-	albeit at high manufactoring cost and the usual specialized training required to use such a pistol. Unique design feature high-capacity mag on top of the barrel, with integrated sight."
+	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. Has good damage, penetration and magazine capacity. \
+	Expensive to manufacture, this sophisticated pistol is only occassionally used by smartgunners, or some higher ranking officers who have the skills to use it. Uses 9x19mm Parabellum ammunition."
 	ui_icon = "pistol"
 	item_typepath = /obj/item/storage/holster/belt/pistol/smart_pistol/full
 	jobs_supported = list(CAPTAIN)

@@ -1188,6 +1188,13 @@
 	spawn_type = /obj/item/explosive/grenade/smokebomb/drain
 	closed_overlay = "grenade_box_overlay_drain"
 
+/obj/item/storage/box/visual/grenade/antigas
+	name = "\improper M40-AG grenade box"
+	desc = "A secure box holding 25 M40-AG gas grenades. Quickly clears out hostile smoke."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/smokebomb/antigas
+	closed_overlay = "grenade_box_overlay_antigas"
+
 /obj/item/storage/box/visual/grenade/razorburn
 	name = "razorburn grenade box"
 	desc = "A secure box holding 15 razor burn grenades. Used for quick flank coverage."
@@ -1211,6 +1218,13 @@
 	spawn_number = 25
 	spawn_type = /obj/item/explosive/grenade/chem_grenade/teargas
 	closed_overlay = "grenade_box_overlay_teargas"
+
+/obj/item/storage/box/visual/grenade/lasburster
+	name = "\improper M80 lasburster grenade box"
+	desc = "A secure box holding 25 M80 lasburster grenades."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/bullet/laser
+	closed_overlay = "grenade_box_overlay_grenade_lasburster"
 
 /obj/item/storage/box/visual/grenade/training
 	name = "\improper M07 training grenade box"

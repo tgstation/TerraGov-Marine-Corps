@@ -434,3 +434,5 @@
 
 	///The resting cooldown
 	COOLDOWN_DECLARE(xeno_resting_cooldown)
+	///The unresting cooldown
+	COOLDOWN_DECLARE(xeno_unresting_cooldown)
