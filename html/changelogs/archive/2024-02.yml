@@ -251,3 +251,32 @@
   - bugfix: fix typo in martini belt causing broken sprite
   efzapa:
   - spellcheck: Bicaridine is now universally spelt correctly.
+2024-02-15:
+  Helg2:
+  - balance: Psychic Relays, Evolution Towers and Pheromonone Towers now ignore weed
+      removal.
+  Pariah919:
+  - rscadd: New squashhead bullets for SMG-45
+  - rscdel: SMG-45 HP
+  - soundadd: New firesound for SMG-45
+  Xander3359:
+  - bugfix: Fix not being able to click martini belt
+  yyzsong:
+  - qol: Adds a cooldown between unresting and then resting again for xenomorphs
+2024-02-16:
+  Lumipharon:
+  - bugfix: fixed some throw bugs involving buckled mobs, and added a failsafe to
+      catch any other edge cases
+  - bugfix: 'Campaign: Fixed a bug in destroy mission victory checks'
+  - bugfix: fixed some campaign autobalance logic
+  ivanmixo:
+  - bugfix: Xenos abilities shouldn't go through missing corners anymore
+2024-02-17:
+  Barnet2:
+  - rscadd: 'New limited grenade: M40-AG "Anti Gas" grenades. Purges gas inside of
+      it''s smoke radius. 10 in vendor roundstart, 700 points for 25 nades, fairly
+      expensive'
+  Lumipharon:
+  - qol: 'Campaign: Updated weapon descriptions in the loadout UI'
+  Xander3359:
+  - bugfix: Fixes a bug allowing you to have tac sensor active permanently
