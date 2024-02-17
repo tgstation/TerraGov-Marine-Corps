@@ -1,4 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - rscadd: "New limited grenade: M40-AG \"Anti Gas\" grenades. Purges gas inside of it's smoke radius. 10 in vendor roundstart, 700 points for 25 nades, fairly expensive"

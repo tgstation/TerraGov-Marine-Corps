@@ -271,3 +271,12 @@
   - bugfix: fixed some campaign autobalance logic
   ivanmixo:
   - bugfix: Xenos abilities shouldn't go through missing corners anymore
+2024-02-17:
+  Barnet2:
+  - rscadd: 'New limited grenade: M40-AG "Anti Gas" grenades. Purges gas inside of
+      it''s smoke radius. 10 in vendor roundstart, 700 points for 25 nades, fairly
+      expensive'
+  Lumipharon:
+  - qol: 'Campaign: Updated weapon descriptions in the loadout UI'
+  Xander3359:
+  - bugfix: Fixes a bug allowing you to have tac sensor active permanently
