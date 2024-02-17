@@ -10,7 +10,7 @@
 	max_drivers = 1
 	move_resist = INFINITY
 	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
-	allow_pass_flags = PASS_TANK|PASS_AIR|PASS_WALKOVER|PASS_THROW
+	allow_pass_flags = PASS_TANK|PASS_AIR|PASS_WALKOVER
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE|PORTAL_IMMUNE
 
 	// placeholder, make skill check or similar later
