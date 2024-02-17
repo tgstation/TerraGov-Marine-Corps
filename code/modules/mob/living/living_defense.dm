@@ -3,6 +3,8 @@
 		return
 	if(grab.grabbed_thing == src)
 		return
+	if(user == src)
+		return
 
 	var/mob/living/grabbed_mob = grab.grabbed_thing
 	step_towards(grabbed_mob, src)
