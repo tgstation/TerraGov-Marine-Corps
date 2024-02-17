@@ -402,7 +402,10 @@
 	req_desc = "Requires a light armour suit."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
-	item_whitelist = list(/obj/item/clothing/suit/modular/xenonauten/light/shield = ITEM_SLOT_OCLOTHING)
+	item_whitelist = list(
+		/obj/item/clothing/suit/modular/xenonauten/light/shield = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked = ITEM_SLOT_OCLOTHING,
+	)
 
 /datum/loadout_item/suit_store/main_gun/marine/laser_carbine_scout/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -436,7 +439,10 @@
 	req_desc = "Requires a light armour suit."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_carbine/scout
-	item_whitelist = list(/obj/item/clothing/suit/modular/xenonauten/light/shield = ITEM_SLOT_OCLOTHING)
+	item_whitelist = list(
+		/obj/item/clothing/suit/modular/xenonauten/light/shield = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked = ITEM_SLOT_OCLOTHING,
+	)
 
 /datum/loadout_item/suit_store/main_gun/marine/scout_carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -526,7 +532,10 @@
 	req_desc = "Requires a light armour suit."
 	ui_icon = "scout"
 	item_typepath = /obj/item/weapon/gun/rifle/tx8/scout
-	item_whitelist = list(/obj/item/clothing/suit/modular/xenonauten/light/shield = ITEM_SLOT_OCLOTHING)
+	item_whitelist = list(
+		/obj/item/clothing/suit/modular/xenonauten/light/shield = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked = ITEM_SLOT_OCLOTHING,
+	)
 	purchase_cost = 100
 	quantity = 2
 

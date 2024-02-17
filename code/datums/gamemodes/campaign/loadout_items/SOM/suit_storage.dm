@@ -101,7 +101,10 @@
 	req_desc = "Requires M-11 scout armor."
 	ui_icon = "smg"
 	item_typepath = /obj/item/weapon/gun/smg/som/scout
-	item_whitelist = list(/obj/item/clothing/suit/modular/som/light/shield = ITEM_SLOT_OCLOTHING)
+	item_whitelist = list(
+		/obj/item/clothing/suit/modular/som/light/shield = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/som/light/shield_overclocked = ITEM_SLOT_OCLOTHING,
+	)
 
 /datum/loadout_item/suit_store/main_gun/som_marine/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -131,7 +134,10 @@
 	req_desc = "Requires M-11 scout armor."
 	ui_icon = "shotgun"
 	item_typepath = /obj/item/weapon/gun/shotgun/som/standard
-	item_whitelist = list(/obj/item/clothing/suit/modular/som/light/shield = ITEM_SLOT_OCLOTHING)
+	item_whitelist = list(
+		/obj/item/clothing/suit/modular/som/light/shield = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/som/light/shield_overclocked = ITEM_SLOT_OCLOTHING,
+	)
 
 /datum/loadout_item/suit_store/main_gun/som_marine/standard_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
