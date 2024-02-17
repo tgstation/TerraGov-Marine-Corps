@@ -9141,6 +9141,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/vending/weapon,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "baT" = (
@@ -11585,6 +11586,13 @@
 	},
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_2)
+"ecj" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/loadout_vendor,
+/turf/open/floor/prison,
+/area/sulaco/hallway/lower_main_hall)
 "eck" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -14547,6 +14555,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/cargo)
+"hTO" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/prison,
+/area/sulaco/hallway/lower_main_hall)
 "hUb" = (
 /obj/structure/rack,
 /obj/item/conveyor_switch_construct,
@@ -23688,15 +23700,10 @@
 /area/sulaco/cargo)
 "tvk" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/holopad{
-	active_power_usage = 130;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a larger lense.";
-	holo_range = 7;
-	name = "modfied holopad"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/vending/armor_supply,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "tvS" = (
@@ -26856,6 +26863,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "xHY" = (
@@ -57615,7 +57623,7 @@ aGy
 pIP
 xKR
 pIP
-pIP
+hTO
 fVo
 xzB
 ajQ
@@ -59669,7 +59677,7 @@ jtC
 tNu
 aSB
 hlq
-xHE
+ecj
 pIP
 aZh
 kVT
