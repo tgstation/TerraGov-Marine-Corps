@@ -27,8 +27,8 @@
 #define CAT_SHN "HATS" // Synth's non-protective hats
 
 #define VENDOR_FACTION_NEUTRAL "Neutral"
-#define VENDOR_FACTION_CRASH "Valhalla"
-#define VENDOR_FACTION_VALHALLA "Crash"
+#define VENDOR_FACTION_CRASH "Crash"
+#define VENDOR_FACTION_VALHALLA "Valhalla"
 
 GLOBAL_LIST_INIT(marine_selector_cats, list(
 		CAT_MOD = 1,
@@ -244,9 +244,10 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/weapon/valhalla,
 		/obj/machinery/vending/uniform_supply/valhalla,
 		/obj/machinery/vending/armor_supply/valhalla,
-		/obj/machinery/vending/marineFood/valhalla,
+		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed/valhalla,
 		/obj/machinery/vending/cigarette/valhalla,
+		/obj/machinery/vending/tool/nopower/valhalla,
 	),
 	SQUAD_CORPSMAN = list(
 		/obj/machinery/vending/medical/shipside,

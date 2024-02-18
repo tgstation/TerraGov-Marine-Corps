@@ -315,17 +315,17 @@ WEAPONS
 /datum/supply_packs/weapons/flak_gun
 	name = "FK-88 Flak Gun"
 	contains = list(/obj/item/weapon/gun/heavy_isg)
-	cost = 1200
+	cost = 1000
 
 /datum/supply_packs/weapons/flak_he
 	name = "FK-88 HE Shell"
 	contains = list(/obj/item/ammo_magazine/heavy_isg/he)
-	cost = 100
+	cost = 50
 
 /datum/supply_packs/weapons/flak_sabot
 	name = "FK-88 APFDS Shell"
 	contains = list(/obj/item/ammo_magazine/heavy_isg/sabot)
-	cost = 120
+	cost = 50
 
 /datum/supply_packs/weapons/heayvlaser_emplacement
 	name = "Mounted Heavy Laser"
@@ -867,6 +867,12 @@ EXPLOSIVES
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/cloaker)
 	cost = 310
+
+/datum/supply_packs/explosives/explosives_antigas
+	name = "M40-AG Anti-Gas grenade box crate"
+	notes = "Cotains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/antigas)
+	cost = 700
 
 /datum/supply_packs/explosives/explosives_cloak
 	name = "M40-2 SCDP grenade box crate"

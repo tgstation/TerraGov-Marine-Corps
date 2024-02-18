@@ -81,9 +81,10 @@
 //special unlockable
 /datum/loadout_item/back/marine_shotgun
 	name = "SH-35"
-	desc = "A powerful close quarters tool when someone wants something more suited for close range than most people. A powerful secondary weapon to devastate opponents at close range. \
-	Supplied with an addition box of buckshot, provided you have somewhere to store the shells. \
-	Uses 12 gauge shells. Requires a pump, which is the Unique Action key."
+	desc = "Equipped with a mag harness, bayonet, angled grip and foldable stock. \
+	The SH-35 is the most commonly used shotgun of the TGMC. With good mobility and handling, it has unparalleled close range power when using buckshot. Able to kill or maim all but the most heavily armored targets with a single well aimmed blast. \
+	When using flechette rounds, it can provide surprisingly powerful long range damage with good penetration, although its low rate of fire means its sustained damage is relatively poor. \
+	Uses 12 gauge shells."
 	ui_icon = "shotgun"
 	purchase_cost = 25
 	item_typepath = /obj/item/weapon/gun/shotgun/pump/t35/standard
@@ -135,7 +136,8 @@
 
 /datum/loadout_item/back/tgmc_rocket_bag
 	name = "Rocket bag"
-	desc = "This backpack holds 4 67mm shells, in addition to a recoiless launcher. Has a draw delay."
+	desc = "This backpack holds 4 67mm shells, in addition to a recoiless rifle. \
+	A powerful ranged weapon with a wide area of effect, the recoiless rifle is a powerful support weapon that can severely wound whole groups of opponents in a single shot. Has a draw delay."
 	purchase_cost = 100
 	quantity = 2
 	item_typepath = /obj/item/storage/holster/backholster/rpg/low_impact
