@@ -536,7 +536,7 @@
 		return
 
 	var/list/data = list()
-	data["is_human"] = ishuman(user)
+	data["is_xeno"] = isxeno(user)
 	data["on_flyby"] = shuttle.mode == SHUTTLE_CALL
 	data["dest_select"] = !(shuttle.mode == SHUTTLE_CALL || shuttle.mode == SHUTTLE_IDLE)
 	data["hijack_state"] = shuttle.hijack_state != HIJACK_STATE_CALLED_DOWN
