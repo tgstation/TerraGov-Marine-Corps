@@ -2191,16 +2191,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	explosion(T, 0, 0, 5, 0, 5)
 
 /datum/ammo/rocket/heavy_isg
-	name = "15cm round"
+	name = "8.8cm round"
 	icon_state = "heavyrr"
 	hud_state = "bigshell_he"
 	hud_state_empty = "shell_empty"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_EXPLOSIVE
-	damage = 50
+	damage = 100
 	penetration = 200
 	max_range = 30
 	shell_speed = 0.75
-	accuracy = 30
 	accurate_range = 21
 	handful_amount = 1
 
@@ -2212,15 +2211,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ROCKET
 
 /datum/ammo/bullet/heavy_isg_apfds
-	name = "15cm APFDS round"
+	name = "8.8cm APFDS round"
 	icon_state = "apfds"
 	hud_state = "bigshell_apfds"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
-	damage = 200
+	damage = 275
 	penetration = 75
 	shell_speed = 7
 	accurate_range = 24
-	accurate_range_min = 6
 	max_range = 35
 
 /datum/ammo/bullet/isg_apfds/on_hit_turf(turf/T, obj/projectile/P)
