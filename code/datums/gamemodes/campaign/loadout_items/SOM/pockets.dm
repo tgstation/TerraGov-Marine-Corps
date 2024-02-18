@@ -40,6 +40,13 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, SLOT_IN_R_POUCH)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, SLOT_IN_R_POUCH)
 
+/datum/loadout_item/r_pocket/mines
+	name = "MOPe mine pouch"
+	desc = "A pouch carrying radioactive mines."
+	ui_icon = "grenade"
+	item_typepath = /obj/item/storage/pouch/mine/radiation
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER)
+
 /datum/loadout_item/r_pocket/som_shotgun
 	name = "Buckshot shells"
 	desc = "A pouch specialized for holding shotgun ammo. Contains buckshot shells."
@@ -138,6 +145,13 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, SLOT_IN_L_POUCH)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, SLOT_IN_L_POUCH)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, SLOT_IN_L_POUCH)
+
+/datum/loadout_item/l_pocket/mines
+	name = "MOPe mine pouch"
+	desc = "A pouch carrying radioactive mines."
+	ui_icon = "grenade"
+	item_typepath = /obj/item/storage/pouch/mine/radiation
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER)
 
 /datum/loadout_item/l_pocket/som_shotgun
 	name = "Flechette shells"

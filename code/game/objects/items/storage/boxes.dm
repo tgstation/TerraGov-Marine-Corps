@@ -377,6 +377,36 @@
 	spawn_type = /obj/item/mine/pressure/anti_tank
 	spawn_number = 5
 
+/obj/item/storage/box/explosive_mines/proximity
+	name = "proximity mine box"
+	desc = "A secure box holding proximity mines."
+	spawn_type = /obj/item/mine/proximity
+	spawn_number = 5
+
+/obj/item/storage/box/explosive_mines/pressure
+	name = "pressure mine box"
+	desc = "A secure box holding pressure mines."
+	spawn_type = /obj/item/mine/pressure
+	spawn_number = 5
+
+/obj/item/storage/box/explosive_mines/incendiary
+	name = "incendiary mine box"
+	desc = "A secure box holding incendiary mines."
+	spawn_type = /obj/item/mine/incendiary
+	spawn_number = 5
+
+/obj/item/storage/box/explosive_mines/tanglefoot
+	name = "tanglefoot mine box"
+	desc = "A secure box holding tanglefoot mines."
+	spawn_type = /obj/item/mine/tanglefoot
+	spawn_number = 5
+
+/obj/item/storage/box/explosive_mines/emp
+	name = "\improper EMP mine box"
+	desc = "A secure box holding EMP mines."
+	spawn_type = /obj/item/mine/emp
+	spawn_number = 5
+
 /obj/item/storage/box/ied_assembly_kit
 	name = "\improper BYOND IED assembly kit"
 	desc = "A box containing the core components for a pipe mine. Think BYOND your traditional bomb training, anyone can make their own explosives!"

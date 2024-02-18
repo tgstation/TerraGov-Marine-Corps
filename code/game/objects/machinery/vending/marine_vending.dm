@@ -125,6 +125,11 @@
 			/obj/item/explosive/grenade/bullet/laser = 30,
 			/obj/item/storage/box/m94 = 200,
 			/obj/item/storage/box/m94/cas = 30,
+			/obj/item/mine/proximity = 10,
+			/obj/item/mine/pressure = 10,
+			/obj/item/mine/incendiary = 10,
+			/obj/item/mine/shock = 10,
+			/obj/item/mine/tanglefoot = 10,
 			/obj/item/storage/box/ied_assembly_kit = -1,
 		),
 		"Specialized" = list(

@@ -461,6 +461,39 @@
 	new /obj/item/explosive/grenade/som(src)
 	new /obj/item/explosive/grenade/som(src)
 
+/obj/item/storage/pouch/mine
+	name = "mine pouch"
+	desc = "To keep your death traps tucked safely."
+	icon_state = "large_explosive"
+	sprite_slots = 3
+	storage_slots = 5
+	max_storage_space = 10
+	can_hold = list(/obj/item/mine)
+
+/obj/item/storage/pouch/mine/flash
+	name = "flash mine pouch"
+	storage_slots = 6
+	max_storage_space = 11
+	fill_type = /obj/item/mine/flash/battery_included
+	fill_number = 5
+	can_hold = list(/obj/item/mine, /obj/item/cell)
+
+/obj/item/storage/pouch/flash/Initialize(mapload)
+	. = ..()
+	new /obj/item/cell(src)
+
+/obj/item/storage/pouch/mine/radiation
+	name = "radiation mine pouch"
+	storage_slots = 6
+	max_storage_space = 11
+	fill_type = /obj/item/mine/radiation/fueled
+	fill_number = 5
+	can_hold = list(/obj/item/mine, /obj/item/stack/sheet/mineral/uranium)
+
+/obj/item/storage/pouch/radiation/Initialize(mapload)
+	. = ..()
+	new /obj/item/stack/sheet/mineral/uranium/small_stack(src)
+
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
 	desc = "A standard use medkit pouch that can contain all kinds of medical supplies and equipment."

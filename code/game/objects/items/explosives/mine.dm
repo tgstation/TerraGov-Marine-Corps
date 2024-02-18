@@ -397,8 +397,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /obj/effect/mine_trigger
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	icon_state = "blocker"
-	//invisibility = INVISIBILITY_MAXIMUM
+	icon_state = "blocker"	//For debugging; comment out the invisibility var below to see mine sensor zones
+	invisibility = INVISIBILITY_MAXIMUM
 	///The explosive this dummy object is connected to
 	var/obj/item/mine/linked_mine
 
@@ -476,7 +476,6 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	icon_state = "pressure"
 	detonation_message = "whirs and clicks. Run."
 	max_integrity = 250
-	range = 0
 	detonation_delay = 0.5 SECONDS
 	disarm_delay = 5 SECONDS
 	undeploy_delay = 3 SECONDS
@@ -503,32 +502,22 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	alpha = armed ? 50 : 255
 
 /obj/item/mine/incendiary
-	name = "incendiary mine"
-	desc = "Rather than filled with explosives or shrapnel, it contains combustable chemicals that are ignited in the presence of enemies."
-	icon_state = "m20"
+	name = "napalm mine"
+	desc = "Incendiary mine variant with a napalm-based formula. Very sticky."
+	icon_state = "incendiary"
 	detonation_message = "hisses, releasing an inferno."
-	detonation_sound = 'sound/machines/terminal_button08.ogg'
-	range = 4
+	detonation_sound = 'sound/weapons/guns/fire/tank_flamethrower.ogg'
+	range = 3
 	disarm_delay = 2 SECONDS
 	undeploy_delay = 1 SECONDS
 	deploy_delay = 1 SECONDS
-	fire_range = 5
-	fire_intensity = 40
-	fire_duration = 30
-	fire_damage = 35
-	fire_stacks = 15
-	volatile = TRUE
-
-/obj/item/mine/incendiary/napalm
-	name = "napalm mine"
-	desc = "Incendiary mine variant with a napalm-based formula. Very sticky."
-	range = 3
 	fire_range = 4
-	fire_intensity = 80
-	fire_duration = 50
+	fire_intensity = 10 SECONDS
+	fire_duration = 4 SECONDS
 	fire_damage = 10
 	fire_stacks = 10
 	fire_color = "green"
+	volatile = TRUE
 
 /* Improvised explosives - You craft them */
 /obj/item/mine/ied
@@ -868,10 +857,13 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 	//Grab a list of nearby objects, shuffle it, then see if they are an eligible victim
 	var/target
-	var/list/nearby_objects = shuffle(circle_view(src, range))
+	var/list/nearby_objects = shuffle(circle_range(src, range))
 	nearby_objects -= src	//Prevent the mine from committing suicide
 
 	for(var/atom in nearby_objects)
+		if(!check_path(src, atom))	//circle_range() goes through walls, so make sure the target is reachable
+			continue
+
 		if(isliving(atom))
 			if(ishuman(atom))
 				var/mob/living/carbon/human/bad_luck_brian = atom
@@ -907,7 +899,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /obj/item/mine/tanglefoot
 	name = "tanglefoot mine"
 	desc = "Releases plasma-draining smoke."
-	icon_state = "m20"
+	icon_state = "gas"
 	detonation_message = "beeps and hisses, releasing purple vapors."
 	range = 2
 	duration = 10 SECONDS	//Stays around for a bit venting gas

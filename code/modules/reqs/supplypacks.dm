@@ -814,6 +814,30 @@ EXPLOSIVES
 	contains = list(/obj/item/minelayer)
 	cost = 50
 
+/datum/supply_packs/explosives/proximity_mines
+	name = "Proximity Mines"
+	notes = "Contains 5 mines"
+	contains = list(/obj/item/storage/box/explosive_mines/proximity)
+	cost = 150
+
+/datum/supply_packs/explosives/explosives_pressure
+	name = "Pressure Mines"
+	notes = "Contains 5 mines"
+	contains = list(/obj/item/storage/box/explosive_mines/pressure)
+	cost = 150
+
+/datum/supply_packs/explosives/explosives_incendiary
+	name = "Incendiary Mines"
+	notes = "Contains 5 mines"
+	contains = list(/obj/item/storage/box/explosive_mines/incendiary)
+	cost = 150
+
+/datum/supply_packs/explosives/explosives_tanglefoot
+	name = "Tanglefoot Mines"
+	notes = "Contains 5 mines"
+	contains = list(/obj/item/storage/box/explosive_mines/tanglefoot)
+	cost = 150
+
 /datum/supply_packs/explosives/explosives_razor
 	name = "Razorburn grenade box crate"
 	notes = "Contains 15 razor burns"
