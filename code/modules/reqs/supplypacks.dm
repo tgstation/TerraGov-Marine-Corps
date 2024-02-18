@@ -1207,21 +1207,6 @@ CLOTHING
 	contains = list(/obj/item/jetpack_marine)
 	cost = 120
 
-/datum/supply_packs/clothing/night_vision
-	name = "BE-47 Night Vision Goggles"
-	contains = list(/obj/item/clothing/glasses/night_vision)
-	cost = 500
-
-/datum/supply_packs/clothing/night_vision_mounted
-	name = "BE-35 Night Vision Module"
-	contains = list(/obj/item/clothing/glasses/night_vision/mounted)
-	cost = 300
-
-/datum/supply_packs/clothing/night_vision_batteries
-	name = "Double pack of night vision batteries"
-	contains = list(/obj/item/cell/night_vision_battery, /obj/item/cell/night_vision_battery)
-	cost = 200
-
 /*******************************************************************************
 MEDICAL
 *******************************************************************************/
