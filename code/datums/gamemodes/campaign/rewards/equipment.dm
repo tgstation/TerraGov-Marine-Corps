@@ -291,7 +291,7 @@
 		/obj/item/storage/box/explosive_mines/antitank,
 	)
 
-/datum/campaign_asset/equipment/at_mines
+/datum/campaign_asset/equipment/emp_mines
 	name = "EMP mines"
 	desc = "10 EMP mines"
 	detailed_desc = "EMP mines capable of disabling electronics and vehicles."
