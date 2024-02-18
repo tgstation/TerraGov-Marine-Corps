@@ -1,4 +1,0 @@
-author: "Scarlet-Oduko"
-delete-after: True
-changes:
-  - code_imp: "merged overlay defines into one layer list"

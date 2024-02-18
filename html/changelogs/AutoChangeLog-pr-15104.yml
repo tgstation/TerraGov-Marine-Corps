@@ -1,4 +1,0 @@
-author: "AzonStarfall"
-delete-after: True
-changes:
-  - bugfix: "Removed duplicated bomb ammo placements on Arachne."

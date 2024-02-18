@@ -1,4 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes:
-  - balance: "FK-88 Ammo changes. APFDS no longer has a minimum range, does 275 damage, has 20 less pen. HE does 100 damage, matching SADAR."
