@@ -213,7 +213,7 @@
 	if(istype(new_mag) && new_mag.loading_sound)
 		// .5 sec delay to let other sounds play out
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), src, new_mag.loading_sound, 40), 5)
-	if(!do_after(current_firer, rearm_time, IGNORE_HELD_ITEM, chassis, BUSY_ICON_GENERIC))
+	if(!do_after(current_firer, rearm_time, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, chassis, BUSY_ICON_GENERIC))
 		return AUTOFIRE_SUCCESS
 	reload()
 	return AUTOFIRE_CONTINUE|AUTOFIRE_SUCCESS
@@ -261,7 +261,6 @@
 		chassis.turret_overlay.update_gun_overlay()
 	else
 		chassis.secondary_weapon = null
-		chassis.secondary_weapon_overlay.icon = null
 		chassis.secondary_weapon_overlay.icon_state = null
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.remove_ammo_hud(src)

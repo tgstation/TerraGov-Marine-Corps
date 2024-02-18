@@ -9,15 +9,14 @@
 	turret_dir_offsets = list(NORTH_LOWERTEXT = list(0,-48), SOUTH_LOWERTEXT = list(0,4), WEST_LOWERTEXT = list(32,-5), EAST_LOWERTEXT = list(-28,-8))
 	hitbox = /obj/hitbox
 	flags_atom = DIRLOCK|BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
-	flags_armored = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_MAP_VARIANTS
+	flags_armored = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_MAP_VARIANTS|ARMORED_HAS_HEADLIGHTS
 	pixel_x = -48
 	pixel_y = -48
-	obj_integrity = 650
-	max_integrity = 650
+	max_integrity = 900
 	soft_armor = list(MELEE = 50, BULLET = 100 , LASER = 90, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 50, ACID = 50)
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	max_occupants = 4
-	move_delay = 1.5 SECONDS
+	move_delay = 0.9 SECONDS
 	ram_damage = 70
 
 ///returns a list of possible locations that this vehicle may be entered from
