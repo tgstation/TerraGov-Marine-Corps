@@ -141,7 +141,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 		even = !even
 
 	if(length(HN.xeno_leader_list) > 0)
-		dat += "<tr><th colspan=3>Hive Leaders"
+		dat += "<tr><th colspan=3>Hive Leaders</th></tr>"
 		for(var/x in HN.xeno_leader_list)
 			var/mob/living/carbon/xenomorph/leader = x
 			dat += "<tr[even ? " class='alt'" : ""]><td>[leader.xeno_caste.display_name]</td><td>[leader.name]</td></tr>"
