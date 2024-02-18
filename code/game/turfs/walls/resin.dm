@@ -123,8 +123,8 @@
 	var/multiplier = 1
 	if(I.damtype == BURN) //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1
-	if(I.damtype == BRUTE) //Basically all melee attacks will do more damage.
-		multiplier += 0.5
+	else if(I.damtype == BRUTE)
+		multiplier += 0.75
 
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
