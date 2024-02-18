@@ -383,13 +383,13 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "dM" = (
-/obj/structure/window/framed{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 8
 	},
 /obj/structure/filingcabinet/medical,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -1367,13 +1367,13 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "mf" = (
-/obj/structure/window/framed,
 /obj/structure/table/reinforced,
 /obj/item/newspaper,
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 6
 	},
 /obj/item/clipboard,
+/obj/structure/window/reinforced,
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -1924,15 +1924,15 @@
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/hallways/aft_hallway)
 "pU" = (
-/obj/structure/window/framed,
-/obj/structure/window/framed{
-	dir = 8
-	},
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 10
 	},
 /obj/item/storage/donut_box,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -2303,13 +2303,13 @@
 	name = "SOM Bridge"
 	})
 "tR" = (
-/obj/structure/window/framed{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 8
 	},
 /obj/structure/filingcabinet/security,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -3042,12 +3042,12 @@
 	name = "SOM Mech Bay"
 	})
 "zx" = (
-/obj/structure/window/framed,
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/thinplating_new/dark,
 /obj/machinery/computer/communications/antag{
 	dir = 1
 	},
+/obj/structure/window/reinforced,
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -3594,17 +3594,17 @@
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 9
 	},
-/obj/structure/window/framed{
-	dir = 1
-	},
-/obj/structure/window/framed{
-	dir = 8
-	},
 /obj/structure/table/reinforced,
 /obj/item/card/id/dogtag/som,
 /obj/item/card/id/dogtag/som,
 /obj/item/card/id/dogtag/som,
 /obj/item/card/id/dogtag/som,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -3703,7 +3703,7 @@
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 5
 	},
-/obj/structure/window/framed{
+/obj/structure/window/reinforced{
 	dir = 1
 	},
 /turf/open/floor/mainship/red/full,
@@ -4532,7 +4532,7 @@
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 1
 	},
-/obj/structure/window/framed{
+/obj/structure/window/reinforced{
 	dir = 1
 	},
 /turf/open/floor/mainship/red/full,
