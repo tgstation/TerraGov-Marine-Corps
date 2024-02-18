@@ -9141,7 +9141,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/vending/weapon,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "baT" = (
@@ -11587,12 +11586,9 @@
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_2)
 "ecj" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/loadout_vendor,
-/turf/open/floor/prison,
-/area/sulaco/hallway/lower_main_hall)
+/obj/machinery/vending/weapon,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "eck" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -13481,6 +13477,11 @@
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship/gray/outer,
 /area/shuttle/distress/arrive_2)
+"gGd" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "gGh" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/air_alarm{
@@ -15128,6 +15129,13 @@
 	dir = 4
 	},
 /area/sulaco/engineering)
+"iFZ" = (
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "iGf" = (
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/misc/paperbin{
@@ -16418,6 +16426,7 @@
 /area/space)
 "kcP" = (
 /obj/effect/decal/cleanable/cobweb,
+/obj/machinery/vending/armor_supply,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "kcV" = (
@@ -16432,6 +16441,10 @@
 	dir = 4
 	},
 /area/sulaco/marine/chapel)
+"kcY" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "kee" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -17540,6 +17553,11 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall2)
+"lDk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/weapon,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "lDs" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/camera,
@@ -21399,6 +21417,13 @@
 	dir = 1
 	},
 /area/sulaco/marine/chapel)
+"qGU" = (
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/machinery/loadout_vendor,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "qHb" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /obj/effect/soundplayer,
@@ -23703,7 +23728,12 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/vending/armor_supply,
+/obj/machinery/holopad{
+	active_power_usage = 130;
+	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a larger lense.";
+	holo_range = 7;
+	name = "modfied holopad"
+	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "tvS" = (
@@ -25292,6 +25322,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall)
+"vyG" = (
+/obj/machinery/light/mainship,
+/obj/machinery/loadout_vendor,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "vyQ" = (
 /turf/open/floor/mainship_hull/gray/dir{
 	dir = 10
@@ -25585,6 +25620,11 @@
 	dir = 1
 	},
 /area/sulaco/medbay)
+"vRA" = (
+/obj/machinery/light/mainship,
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "vRH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -26863,7 +26903,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/vending/uniform_supply,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "xHY" = (
@@ -59677,7 +59716,7 @@ jtC
 tNu
 aSB
 hlq
-ecj
+xHE
 pIP
 aZh
 kVT
@@ -61462,7 +61501,7 @@ rFM
 rFM
 qBE
 xca
-aPF
+kcY
 aQI
 aQr
 fEL
@@ -61719,7 +61758,7 @@ gkO
 mZj
 vhM
 xca
-aRR
+qGU
 uVR
 vVE
 vNm
@@ -61976,7 +62015,7 @@ qBE
 vIJ
 sLp
 xca
-aPF
+ecj
 gHU
 aPF
 igo
@@ -62260,7 +62299,7 @@ kpD
 aPZ
 svV
 gHU
-gQS
+vyG
 bFa
 bFa
 bFa
@@ -62517,7 +62556,7 @@ aPZ
 aPZ
 svV
 aPF
-gHU
+lDk
 xHm
 rId
 ptp
@@ -63545,7 +63584,7 @@ aPZ
 aPZ
 svV
 aPF
-gHU
+gGd
 aPY
 ryR
 aYA
@@ -63802,7 +63841,7 @@ jYG
 aPZ
 svV
 aPF
-gQS
+vRA
 bFa
 bFa
 bFa
@@ -64289,7 +64328,7 @@ yjP
 byI
 scy
 xca
-aRR
+iFZ
 aPF
 aPF
 igo
