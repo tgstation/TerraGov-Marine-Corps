@@ -1406,7 +1406,7 @@
 				shake_camera(affected_living, 1, 0.8)
 				affected_living.Paralyze(paralyze_duration)
 				affected_living.apply_damage(attack_damage, BRUTE, blocked = MELEE)
-			else if(isearthpillar(affected_atom) || ismecha(affected_atom) || istype(affected_atom, /obj/structure/reagent_dispensers/fueltank))
+			else if(isearthpillar(affected_atom) || isvehicle(affected_atom) || istype(affected_atom, /obj/structure/reagent_dispensers/fueltank))
 				affected_atom.do_jitter_animation()
 				new /obj/effect/temp_visual/behemoth/landslide/hit(affected_atom.loc)
 				playsound(affected_atom.loc, get_sfx("behemoth_earth_pillar_hit"), 40)
@@ -1420,7 +1420,7 @@
 					do_warning(xeno_owner, spread_turfs, wind_up_duration)
 					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(behemoth_area_attack), xeno_owner, spread_turfs, enhanced), wind_up_duration)
 					continue
-				if(ismecha(affected_atom))
+				if(isvehicle(affected_atom))
 					var/obj/vehicle/sealed/mecha/affected_mecha = affected_atom
 					affected_mecha.take_damage(attack_damage * AREA_ATTACK_DAMAGE_MECHA_MODIFIER, MELEE)
 					continue

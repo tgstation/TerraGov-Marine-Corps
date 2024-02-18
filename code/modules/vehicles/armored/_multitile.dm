@@ -12,9 +12,9 @@
 	flags_armored = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_MAP_VARIANTS
 	pixel_x = -48
 	pixel_y = -48
-	obj_integrity = 600
-	max_integrity = 600
-	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 40, ACID = 40)
+	obj_integrity = 650
+	max_integrity = 650
+	soft_armor = list(MELEE = 50, BULLET = 100 , LASER = 90, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 50, ACID = 50)
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	max_occupants = 4
 	move_delay = 1.5 SECONDS

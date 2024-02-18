@@ -18,7 +18,7 @@
 
 /obj/structure/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, turf/T, turf/temp)
 	. = ..()
-	take_damage(.)
+	take_damage(., BRUTE, MELEE, TRUE, facing, 0)
 
 /obj/structure/barricade/plasteel/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, turf/T, turf/temp)
 	. = ..()
@@ -26,15 +26,15 @@
 
 /obj/vehicle/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, turf/T, turf/temp)	//MONSTER TRUCKS
 	. = ..()
-	take_damage(.)
+	take_damage(., BRUTE, MELEE, TRUE, facing, 0)
 
 /obj/machinery/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, turf/T, turf/temp)
 	. = ..()
-	take_damage(.)
+	take_damage(., BRUTE, MELEE, TRUE, facing, 0)
 
 /turf/closed/wall/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, turf/T, turf/temp)
 	. = ..()
-	take_damage(. += rand(200, 225))
+	take_damage(., BRUTE, MELEE, TRUE, facing, 0)
 
 /mob/living/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, turf/T, turf/temp, mob/pilot)
 	. = ..()
@@ -50,7 +50,7 @@
 	T = get_step(T, facing)
 	face_atom(T)
 	throw_at(T, 3, 2, veh, 1)
-	return apply_damage(., BRUTE)
+	return take_overall_damage(., BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 4)
 
 
 /mob/living/carbon/xenomorph/larva/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, turf/T, turf/temp)
@@ -58,8 +58,7 @@
 
 /obj/effect/alien/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, turf/T, turf/temp)
 	. = ..()
-	. /= 2
-	take_damage(.)
+	take_damage(., BRUTE, MELEE, TRUE, facing, 0)
 
 /obj/effect/alien/weeds/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, turf/T, turf/temp)
 	return
