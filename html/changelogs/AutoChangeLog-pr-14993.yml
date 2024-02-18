@@ -1,5 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - refactor: "Converts Autoinjectors + Hyposprays into TGUI"
-  - code_imp: "reagent_containers use attack_self_alternate + attack_hand_alternate to open the reagent change UI (Also applies to hypos)"

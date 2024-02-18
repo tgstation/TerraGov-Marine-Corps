@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed some wonky shield behavior"
-  - code_imp: "Cleaned up some shield code"

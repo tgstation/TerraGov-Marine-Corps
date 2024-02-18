@@ -4070,9 +4070,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "dAc" = (
-/obj/structure/stairs{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
@@ -6886,6 +6883,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
+/obj/structure/stairs,
 /turf/open/floor/plating,
 /area/mainship/hallways/starboard_hallway)
 "fRR" = (
@@ -21865,10 +21863,6 @@
 	dir = 8
 	},
 /area/mainship/medical/upper_medical)
-"rZa" = (
-/obj/structure/ship_ammo/cas/bomblet,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "rZc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/machinery/light/mainship{
@@ -26943,10 +26937,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/starboard_atmos)
-"wzy" = (
-/obj/structure/ship_ammo/cas/bomb/fourhundred,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "wzR" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -40089,7 +40079,7 @@ oUe
 oHG
 nTG
 mGC
-wzy
+mGC
 mGC
 jfL
 jcy
@@ -40191,7 +40181,7 @@ oUe
 oHG
 nTG
 mGC
-rZa
+mGC
 mGC
 mGC
 mtP

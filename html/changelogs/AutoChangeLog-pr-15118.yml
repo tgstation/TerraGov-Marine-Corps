@@ -1,4 +1,0 @@
-author: "exdal"
-delete-after: True
-changes:
-  - bugfix: "Requisitions status at round end stats is now properly formated."

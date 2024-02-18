@@ -280,3 +280,32 @@
   - qol: 'Campaign: Updated weapon descriptions in the loadout UI'
   Xander3359:
   - bugfix: Fixes a bug allowing you to have tac sensor active permanently
+2024-02-18:
+  AzonStarfall:
+  - bugfix: Removed duplicated bomb ammo placements on Arachne.
+  Barnet2:
+  - bugfix: Transport Officer icon should show in orbit menu
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed some guns not working with upgraded shield light armour
+      as expected'
+  - balance: 'Campaign: Light and medium explosions have a chance to detonate armed
+      AT mines'
+  - bugfix: fixed some wonky shield behavior
+  - code_imp: Cleaned up some shield code
+  Pariah919:
+  - balance: FK-88 Ammo changes. APFDS no longer has a minimum range, does 275 damage,
+      has 20 less pen. HE does 100 damage, matching SADAR.
+  Scarlet-Oduko:
+  - code_imp: merged overlay defines into one layer list
+  Xander3359:
+  - bugfix: Loadouts work in Valhalla now
+  - bugfix: Xeno alamo console is functional once more
+  - refactor: Converts Autoinjectors + Hyposprays into TGUI
+  - code_imp: reagent_containers use attack_self_alternate + attack_hand_alternate
+      to open the reagent change UI (Also applies to hypos)
+  - bugfix: Fix not being able to use the beginner loadout in valhalla
+  - bugfix: Martini belt no longer has an error sprite when its full
+  exdal:
+  - bugfix: Requisitions status at round end stats is now properly formated.
+  ivanmixo:
+  - bugfix: Fixed the xeno ability going thru wall bug fix
