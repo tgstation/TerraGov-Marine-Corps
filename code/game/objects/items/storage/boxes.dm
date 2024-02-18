@@ -1218,6 +1218,13 @@
 	spawn_type = /obj/item/explosive/grenade/bullet/laser
 	closed_overlay = "grenade_box_overlay_grenade_lasburster"
 
+obj/item/storage/box/visual/grenade/hefa
+	name = "\improper M25 HEFA grenade box"
+	desc = "A secure box holding 25 M25 high explosive fragmentation grenades. Keep very far away from extreme heat and flame."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/bullet/hefa
+	closed_overlay = "grenade_box_overlay_hefa"
+
 /obj/item/storage/box/visual/grenade/training
 	name = "\improper M07 training grenade box"
 	desc = "A secure box holding 25 M07 training grenades. Harmless and reusable."

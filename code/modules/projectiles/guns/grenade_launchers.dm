@@ -62,6 +62,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/chem_grenade/teargas,
 		/obj/item/explosive/grenade/flashbang/stun,
 		/obj/item/explosive/grenade/bullet/laser,
+		/obj/item/explosive/grenade/bullet/hefa,
 	)
 	reciever_flags = NONE
 
