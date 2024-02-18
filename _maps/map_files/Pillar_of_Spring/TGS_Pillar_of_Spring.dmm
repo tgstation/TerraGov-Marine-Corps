@@ -1727,6 +1727,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/tankerbunks)
+"bXo" = (
+/obj/structure/ship_ammo/cas/bomblet,
+/turf/open/floor/mainship/floor,
+/area/mainship/hallways/hangar)
 "bXH" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -14492,6 +14496,10 @@
 	dir = 9
 	},
 /area/mainship/squads/general)
+"rVY" = (
+/obj/structure/ship_ammo/cas/bomb/fourhundred,
+/turf/open/floor/mainship/floor,
+/area/mainship/hallways/hangar)
 "rWv" = (
 /obj/machinery/holopad,
 /turf/open/floor/wood,
@@ -55531,8 +55539,8 @@ hRh
 esN
 pkN
 tyN
-hcF
-hcF
+bXo
+rVY
 hcF
 agP
 hcF
