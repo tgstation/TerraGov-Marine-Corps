@@ -17,7 +17,7 @@
 	///Current loaded magazines: top one empties into ammo
 	var/list/obj/item/ammo_magazine/ammo_magazine = list()
 	///maximum magazines ammo_magazine can hold
-	var/maximum_magazines = 3
+	var/maximum_magazines = 5
 	///ammo types we'll be able to accept
 	var/list/accepted_ammo = list(
 		/obj/item/ammo_magazine/tank/tank_glauncher,
@@ -39,7 +39,7 @@
 	///scatter of this weapon. in degrees and modified by arm this is attached to
 	var/variance = 0
 	/// since mech guns only get one firemode this is for all types of shots
-	var/projectile_delay = 8 SECONDS
+	var/projectile_delay = 5 SECONDS
 	/// time between shots in a burst
 	var/projectile_burst_delay = 2
 	///bullets per burst if firemode is set to burst

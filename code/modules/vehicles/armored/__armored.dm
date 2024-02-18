@@ -16,7 +16,6 @@
 	// placeholder, make skill check or similar later
 	req_access = list(ACCESS_MARINE_MECH)
 	move_delay = 0.7 SECONDS
-	obj_integrity = 600
 	max_integrity = 600
 	light_range = 10
 	///Tank bitflags
