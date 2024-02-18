@@ -11036,6 +11036,10 @@
 /obj/structure/largecrate/random/case,
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing/two)
+"iba" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/magmoor/civilian/gambling)
 "ibg" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/mainship/silver{
@@ -23281,6 +23285,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/magmoor/research/containment)
+"rax" = (
+/obj/structure/window_frame/colony/reinforced,
+/obj/item/shard,
+/turf/open/floor/plating,
+/area/magmoor/civilian/gambling)
 "raC" = (
 /obj/structure/closet/crate/trashcart,
 /obj/machinery/power/apc/drained,
@@ -44267,7 +44276,7 @@ xRt
 saX
 kfI
 roE
-sZv
+iba
 mQq
 eCB
 rgm
@@ -44500,7 +44509,7 @@ roE
 kfI
 pLX
 jeO
-sZv
+iba
 mQq
 eCB
 rgm
@@ -44733,7 +44742,7 @@ xRt
 kfI
 kfI
 roE
-sZv
+rax
 avf
 eCB
 rgm
@@ -45665,7 +45674,7 @@ kfI
 roE
 ucS
 roE
-sZv
+iba
 mQq
 eCB
 rgm
@@ -45898,7 +45907,7 @@ bGT
 jeO
 ucS
 roE
-sZv
+iba
 mQq
 eCB
 rgm
