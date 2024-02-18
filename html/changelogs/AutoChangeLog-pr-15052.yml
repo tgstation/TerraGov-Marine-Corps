@@ -1,0 +1,10 @@
+author: "Lewdcifer"
+delete-after: True
+changes:
+  - balance: "Earth Riser maximum pillars increased from 1 to 3. Primordial version now uncapped but limited by a 2s. cooldown."
+  - balance: "Earth Riser displacement is now a knockback, meaning it throws people."
+  - bugfix: "Fixed an issue where footstep changes on Landslide were setup incorrectly, which could lead to wacky behavior in certain cases."
+  - bugfix: "Fixed an unintended result where the primordial version of Earth Riser would have a much shorter cooldown than intended."
+  - bugfix: "Fixed an issue where hitting Earth Pillars with Seismic Fracture wouldn't begin Earth Riser's cooldown."
+  - code_imp: "If the owner of an Earth Pillar is somehow deleted while it is active, it will now clean away the reference."
+  - code_imp: "Changed the name of a Behemoth proc."
