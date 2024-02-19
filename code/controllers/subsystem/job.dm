@@ -346,6 +346,10 @@ SUBSYSTEM_DEF(job)
 			if(length(GLOB.latejoinclf))
 				SendToAtom(M, pick(GLOB.latejoinclf))
 				return
+		if(FACTION_MOTHELLIAN)
+			if(length(GLOB.latejoinmoff))
+				SendToAtom(M, pick(GLOB.latejoinmoff))
+				return
 		else
 			if(length(GLOB.latejoin))
 				SendToAtom(M, pick(GLOB.latejoin))
