@@ -1303,6 +1303,7 @@
 /datum/reagent/medicalnanites/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 75)
+			purge_rate = 0
 			L.take_limb_damage(0.015 * current_cycle * effect_str, 0.015 * current_cycle * effect_str)
 			L.adjustToxLoss(1 * effect_str)
 			L.adjustStaminaLoss(1.5 * effect_str)
@@ -1311,6 +1312,7 @@
 				to_chat(L, span_notice("You feel intense itching!"))
 		if(76)
 			to_chat(L, span_warning("The pain rapidly subsides. Looks like they've adapted to you."))
+			purge_rate = initial(purge_rate)
 		if(77 to INFINITY)
 			if(volume < 30) //smol injection will self-replicate up to 30u using 240u of blood.
 				L.reagents.add_reagent(/datum/reagent/medicalnanites, 0.15)
