@@ -335,6 +335,30 @@
 /datum/species/proc/update_inv_wear_suit(mob/living/carbon/human/H)
 	return
 
+// return true here to override blood overstuff for hands
+/datum/species/proc/update_inv_gloves(mob/living/carbon/human/H)
+	return FALSE
+
+/*
+/datum/species/newt/update_inv_gloves(mob/living/carbon/human/H)
+	var/datum/limb/left_hand = H.get_limb("l_hand")
+	var/datum/limb/right_hand = H.get_limb("r_hand")
+	var/mutable_appearance/bloodsies
+	if(left_hand.limb_status & LIMB_DESTROYED)
+		if(right_hand.limb_status & LIMB_DESTROYED)
+			return //No hands.
+		bloodsies = mutable_appearance(icon = 'icons/effects/blood.dmi', icon_state = "bloodyhand_right") //Only right hand.
+	else if(right_hand.limb_status & LIMB_DESTROYED)
+		bloodsies = mutable_appearance(icon = 'icons/effects/blood.dmi', icon_state = "bloodyhand_left") //Only left hand.
+	else
+		bloodsies = mutable_appearance(icon = 'icons/effects/blood.dmi', icon_state = "bloodyhands") //Both hands.
+
+	bloodsies.color = H.blood_color
+	H.overlays_standing[GLOVES_LAYER] = bloodsies
+	H.apply_overlay(GLOVES_LAYER)
+	return TRUE
+*/
+
 /datum/species/proc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(CHECK_BITFIELD(species_flags, NO_CHEM_METABOLIZATION)) //explicit
 		H.reagents.del_reagent(chem.type) //for the time being
