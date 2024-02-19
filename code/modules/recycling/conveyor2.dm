@@ -97,7 +97,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	conveyor_flags ^= CONVEYOR_INVERTED
 	update_move_direction()
 	update_icon()
-	to_chat(user, span_notice("You set [src]'s direction [conveyor_flags & CONVEYOR_INVERTED ? "backwards" : "back to default"]."))
+	balloon_alert(user, "[conveyor_flags & CONVEYOR_INVERTED ? "backwards" : "back to default"]")
 
 /obj/machinery/conveyor/attackby(obj/item/I, mob/living/user, def_zone)
 	. = ..()
@@ -119,15 +119,14 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	if(conveyor_flags & CONVEYOR_IS_CONVEYING)
 		return //you've made a lag monster
 	if(!is_operational())
-		return
+		return PROCESS_KILL
 	if(!operating)
-		return
+		return PROCESS_KILL
 	if(!isturf(loc))
 		return //how
 
 	//get the first 30 items in contents
-	var/turf/locturf = loc
-	var/list/items_to_move = locturf.contents - src
+	var/list/items_to_move = loc.contents - src
 	if(length(items_to_move) > MAX_CONVEYOR_ITEMS_MOVE)
 		items_to_move = items_to_move.Copy(1, MAX_CONVEYOR_ITEMS_MOVE + 1)
 
@@ -211,6 +210,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	else
 		stop_processing()
 
+///Checks to see if the conveyor needs to be switched off
 /obj/machinery/conveyor/proc/update()
 	if(!is_operational() || !(conveyor_flags & CONVEYOR_OPERABLE))
 		set_operating(CONVEYOR_OFF)
