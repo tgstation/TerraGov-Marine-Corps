@@ -309,3 +309,29 @@
   - bugfix: Requisitions status at round end stats is now properly formated.
   ivanmixo:
   - bugfix: Fixed the xeno ability going thru wall bug fix
+2024-02-19:
+  AusarAtkin:
+  - balance: Synth & Early Synth can fix Groundside Gens faster now.
+  Barnet2:
+  - balance: Ice colony now has 2100 quickbuild points instead of 1600.
+  - balance: Xeno spit is unstaggerable
+  - balance: Big Red now has 2300 quickbuild points instead of 1800
+  Lewdcifer:
+  - balance: Earth Riser maximum pillars increased from 1 to 3. Primordial version
+      now uncapped but limited by a 2s. cooldown.
+  - balance: Earth Riser displacement is now a knockback, meaning it throws people.
+  - bugfix: Fixed an issue where footstep changes on Landslide were setup incorrectly,
+      which could lead to wacky behavior in certain cases.
+  - bugfix: Fixed an unintended result where the primordial version of Earth Riser
+      would have a much shorter cooldown than intended.
+  - bugfix: Fixed an issue where hitting Earth Pillars with Seismic Fracture wouldn't
+      begin Earth Riser's cooldown.
+  - code_imp: If the owner of an Earth Pillar is somehow deleted while it is active,
+      it will now clean away the reference.
+  - code_imp: Changed the name of a Behemoth proc.
+  Xander3359:
+  - rscdel: Medics and SLs no longer get a firstaid box
+  - bugfix: The ship AI can no longer hijack/capture the Alamo
+  blackdav123:
+  - balance: Reinforced the external walls of two buildings on Magmoor.
+  - balance: Preweeded Gelida IV and added a tunnel.

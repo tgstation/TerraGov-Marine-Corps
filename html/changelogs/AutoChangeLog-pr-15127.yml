@@ -1,4 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - bugfix: "The ship AI can no longer hijack/capture the Alamo"
