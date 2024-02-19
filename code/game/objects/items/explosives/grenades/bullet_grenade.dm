@@ -51,6 +51,7 @@
 	fire_sound = 'sound/weapons/burst_phaser2.ogg'
 	projectile_count = 20
 	ammo_type = /datum/ammo/energy/lasburster
+
 /obj/item/explosive/grenade/bullet/hefa
 	name = "\improper M25 HEFA grenade"
 	desc = "High explosive fragmentation grenades cause a powerful yet very small explosion combined with a scattering ring of buckshot shrapnel, please throw very, very, VERY far away."
