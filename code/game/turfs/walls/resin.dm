@@ -115,6 +115,9 @@
 	if(I.flags_item & NOBLUDGEON || !isliving(user))
 		return
 
+	if(user.do_actions)
+		return
+
 	user.changeNext_move(I.attack_speed)
 	user.do_attack_animation(src, used_item = I)
 
@@ -129,9 +132,13 @@
 			multiplier += PLASMACUTTER_RESIN_MULTIPLIER
 			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
 
+	var/previous_type = type
 	damage *= max(0, multiplier)
 	take_damage(damage, BRUTE, MELEE)
 	playsound(src, "alien_resin_break", 25)
+
+	if(previous_type == type && do_after(user, I.attack_speed, TRUE, src, BUSY_ICON_GENERIC))
+		attackby(I, user, params)
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
 	ScrapeAway()
