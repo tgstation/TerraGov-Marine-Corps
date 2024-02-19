@@ -13,7 +13,7 @@
 	load_method = MAGAZINE //codex
 	force = 8
 	w_class = WEIGHT_CLASS_BULKY
-	wield_delay = 0.4 SECONDS
+	wield_delay = 0.6 SECONDS
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
@@ -107,7 +107,7 @@
 	caliber = CALIBER_10X20_CASELESS //codex
 	max_shells = 50 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
-	wield_delay = 0.5 SECONDS
+	wield_delay = 0.7 SECONDS
 	force = 20
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_smg
@@ -383,7 +383,7 @@
 	scatter_unwielded = 6
 	fire_delay = 0.1 SECONDS
 	aim_slowdown = 0.3
-	wield_delay = 0.3 SECONDS
+	wield_delay = 0.5 SECONDS
 
 /obj/item/weapon/gun/smg/skorpion/mag_harness
 	starting_attachment_types = list(/obj/item/attachable/foldable/skorpion_stock, /obj/item/attachable/magnetic_harness)
@@ -475,7 +475,7 @@
 	scatter = 0
 	scatter_unwielded = 4
 	aim_slowdown = 0.15
-	wield_delay = 0.2 SECONDS
+	wield_delay = 0.4 SECONDS
 
 /obj/item/weapon/gun/smg/uzi/mag_harness
 	default_ammo_type = /obj/item/ammo_magazine/smg/uzi/extended
@@ -523,7 +523,7 @@
 
 	fire_delay = 0.15 SECONDS
 	aim_slowdown = 0.15
-	wield_delay = 0.4 SECONDS
+	wield_delay = 0.6 SECONDS
 
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.9
@@ -639,7 +639,7 @@
 	scatter = 2
 	scatter_unwielded = 5
 	aim_slowdown = 0.2
-	wield_delay = 0.35 SECONDS
+	wield_delay = 0.55 SECONDS
 
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
@@ -702,7 +702,7 @@
 	burst_amount = 1
 	fire_delay = 0.15 SECONDS
 	aim_slowdown = 0.25
-	wield_delay = 0.4 SECONDS
+	wield_delay = 0.6 SECONDS
 
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.9
