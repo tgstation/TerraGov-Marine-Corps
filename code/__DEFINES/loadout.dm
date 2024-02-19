@@ -139,7 +139,7 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/item/storage/pouch/explosive/razorburn = list(CAT_LEDSUP, "Pack of Razorburn grenades", 24, "orange"),
 		/obj/item/explosive/grenade/chem_grenade/razorburn_large = list(CAT_LEDSUP, "Razorburn canister", 21, "black"),
 		/obj/item/explosive/grenade/chem_grenade/razorburn_small = list(CAT_LEDSUP, "Razorburn grenade", 6, "black"),
-		/obj/item/storage/holster/backholster/flamer/full = list(CAT_LEDSUP, "Flamethrower Backpack", 25, "black"),
+		/obj/item/storage/holster/backholster/flamer/full = list(CAT_LEDSUP, "Flamethrower Bag", 25, "black"),
 		/obj/item/storage/backpack/marine/radiopack = list(CAT_LEDSUP, "Radio Pack", 15, "black"),
 		/obj/item/weapon/gun/revolver/standard_magnum = list(CAT_LEDSUP, "R-76 Magnum", 12, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_LEDSUP, "Injector (Synaptizine)", 10, "black"),
