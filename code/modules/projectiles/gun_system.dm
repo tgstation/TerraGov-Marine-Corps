@@ -260,7 +260,7 @@
 	///Slowdown for wielding
 	var/aim_slowdown = 0
 	///How long between wielding and firing in tenths of seconds
-	var/wield_delay = 0.4 SECONDS
+	var/wield_delay = 0.6 SECONDS
 	///Extra wield delay for untrained operators
 	var/wield_penalty = 0.2 SECONDS
 	///Storing value for above
