@@ -15,18 +15,14 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	flags_item = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
+	interaction_flags = INTERACT_OBJ_UI
 	var/skilllock = 1
 	var/inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 	var/core_name = "hypospray"
+	///If we add a custom label, our name becomes "[core_name] ([label])"
 	var/label = null
 	/// Small description appearing as an overlay
 	var/description_overlay = ""
-
-/obj/item/reagent_containers/hypospray/advanced
-	name = "Advanced hypospray"
-	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy."
-	core_name = "hypospray"
-
 
 /obj/item/reagent_containers/hypospray/proc/empty(mob/user)
 	if(tgui_alert(user, "Are you sure you want to empty [src]?", "Flush [src]:", list("Yes", "No")) != "Yes")
@@ -210,113 +206,84 @@
 	desc.maptext_width = 16
 	. += desc
 
+/obj/item/reagent_containers/hypospray/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Hypospray", name)
+		ui.open()
+
+/obj/item/reagent_containers/hypospray/ui_data(mob/user)
+	var/list/data = list()
+
+	data["IsAdvanced"] = liquifier
+	data["InjectMode"] = inject_mode
+	data["CurrentLabel"] = label
+	data["CurrentTag"] = description_overlay
+	data["TransferAmount"] = amount_per_transfer_from_this
+
+	return data
+
+/obj/item/reagent_containers/hypospray/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("ActivateAutolabeler")
+			var/mob/user = usr
+			var/str = copytext(reject_bad_text(input(user,"Hypospray label text?", "Set label", "")), 1, MAX_NAME_LEN)
+			if(!length(str))
+				user.balloon_alert(user, "Invalid text.")
+				return
+			balloon_alert(user, "Labeled \"[str]\".")
+			name = "[core_name] ([str])"
+			label = str
+
+		if("ActivateTagger")
+			var/mob/user = usr
+			var/str = copytext(reject_bad_text(input(user,"Hypospray tag text?", "Set tag", "")), 1, MAX_NAME_HYPO)
+			if(!length(str))
+				user.balloon_alert(user, "Invalid text.")
+				return
+			user.balloon_alert(user, "You tag [src] as \"[str]\".")
+			description_overlay = str
+			update_icon()
+
+		if("ToggleMode")
+			if(inject_mode)
+				to_chat(usr, span_notice("[src] has been set to draw mode. It will now drain reagents."))
+
+			else
+				to_chat(usr, span_notice("[src] has been set to inject mode. It will now inject reagents."))
+			inject_mode = !inject_mode
+			update_icon()
+
+		if("SetTransferAmount")
+			var/N = tgui_input_list(usr, "Amount per transfer from this:", "[src]", possible_transfer_amounts)
+			if(!N)
+				return
+
+			amount_per_transfer_from_this = N
+
+		if("EmptyHypospray")
+			empty(usr)
+
 /obj/item/reagent_containers/hypospray/advanced
+	name = "Advanced hypospray"
+	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy."
+	core_name = "hypospray"
 	icon_state = "hypo"
 	init_reagent_flags = REFILLABLE|DRAINABLE
 	liquifier = TRUE
 
-
-/obj/item/reagent_containers/hypospray/open_ui(mob/user)
-	var/dat = {"
-	<B><A href='?src=[text_ref(src)];autolabeler=1'>Activate Autolabeler</A></B><BR>
-	<B>Current Label:</B> [label]<BR>
-	<BR>
-	<B><A href='?src=[text_ref(src)];overlayer=1'>Activate Tagger</A></B><BR>
-	<B>Current Tag:</B> [description_overlay]<BR>
-	<BR>
-	<B><A href='byond://?src=[text_ref(src)];inject_mode=1'>Toggle Mode:</A></B><BR>
-	<B>Current Mode:</B> [inject_mode ? "Inject" : "Draw"]<BR>
-	<BR>
-	<B><A href='byond://?src=[text_ref(src)];set_transfer=1'>Set Transfer Amount:</A></B><BR>
-	<B>Current Transfer Amount [amount_per_transfer_from_this]</B><BR>
-	<BR>
-	<B><A href='byond://?src=[text_ref(src)];flush=1'>Empty Hypospray:</A></B><BR>
-	<BR>"}
-
-	var/datum/browser/popup = new(user, "hypospray")
-	popup.set_content(dat)
-	popup.open()
-
-
-/obj/item/reagent_containers/hypospray/advanced/open_ui(mob/user)
-	var/dat = {"
-	<B><A href='?src=[text_ref(src)];autolabeler=1'>Activate Autolabeler</A></B><BR>
-	<B>Current Label:</B> [label]<BR>
-	<BR>
-	<B><A href='?src=[text_ref(src)];overlayer=1'>Activate Tagger</A></B><BR>
-	<B>Current Tag:</B> [description_overlay]<BR>
-	<BR>
-	<B><A href='byond://?src=[text_ref(src)];inject_mode=1'>Toggle Mode:</A></B><BR>
-	<B>Current Mode:</B> [inject_mode ? "Inject" : "Draw"]<BR>
-	<BR>
-	<B><A href='byond://?src=[text_ref(src)];set_transfer=1'>Set Transfer Amount:</A></B><BR>
-	<B>Current Transfer Amount:</B> [amount_per_transfer_from_this]<BR>
-	<BR>
-	<B><A href='byond://?src=[text_ref(src)];displayreagents=1'>Display Reagent Content:</A></B><BR>
-	<BR>
-	<BR>
-	<B><A href='byond://?src=[text_ref(src)];flush=1'>Empty Hypospray:</A></B><BR>
-	<BR>"}
-
-	var/datum/browser/popup = new(user, "hypospray")
-	popup.set_content(dat)
-	popup.open()
-
-
-/obj/item/reagent_containers/hypospray/Topic(href, href_list)
+/obj/item/reagent_containers/hypospray/advanced/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
 
-	if(href_list["inject_mode"])
-		if(inject_mode)
-			to_chat(usr, span_notice("[src] has been set to draw mode. It will now drain reagents."))
-
-		else
-			to_chat(usr, span_notice("[src] has been set to inject mode. It will now inject reagents."))
-		inject_mode = !inject_mode
-		update_icon()
-
-	else if(href_list["autolabeler"])
-		var/mob/user = usr
-		var/str = copytext(reject_bad_text(input(user,"Hypospray label text?", "Set label", "")), 1, MAX_NAME_LEN)
-		if(!length(str))
-			user.balloon_alert(user, "Invalid text.")
-			return
-		balloon_alert(user, "Labeled \"[str]\".")
-		name = "[core_name] ([str])"
-		label = str
-
-	else if(href_list["overlayer"])
-		var/mob/user = usr
-		var/str = copytext(reject_bad_text(input(user,"Hypospray tag text?", "Set tag", "")), 1, MAX_NAME_HYPO)
-		if(!length(str))
-			user.balloon_alert(user, "Invalid text.")
-			return
-		user.balloon_alert(user, "You tag [src] as \"[str]\".")
-		description_overlay = str
-		update_icon()
-
-	else if(href_list["set_transfer"])
-		var/N = tgui_input_list(usr, "Amount per transfer from this:", "[src]", possible_transfer_amounts)
-		if(!N)
-			return
-
-		amount_per_transfer_from_this = N
-
-	else if(href_list["flush"])
-		empty(usr)
-
-	updateUsrDialog()
-
-
-/obj/item/reagent_containers/hypospray/advanced/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-
-	if(href_list["displayreagents"])
+	if(action == "DisplayReagentContent")
 		to_chat(usr, display_reagents())
+		return TRUE
 
 /obj/item/reagent_containers/hypospray/advanced/update_icon_state()
 	. = ..()

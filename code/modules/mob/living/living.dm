@@ -437,6 +437,11 @@
 		stop_pulling() //being thrown breaks pulls.
 	if(pulledby)
 		pulledby.stop_pulling()
+	if(LAZYLEN(buckled_mobs) && !flying)
+		unbuckle_all_mobs(force = TRUE)
+	if(buckled)
+		buckled.unbuckle_mob(src)
+
 	return ..()
 
 /**

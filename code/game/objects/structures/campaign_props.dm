@@ -27,7 +27,7 @@
 
 /obj/structure/prop/train/update_overlays()
 	. = ..()
-	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_MOB_LAYER, dir)
+	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
 	. += new_overlay
 
 /obj/structure/prop/train/carriage

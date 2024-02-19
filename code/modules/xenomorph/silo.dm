@@ -126,6 +126,8 @@
 		shake(4 SECONDS)
 
 		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+		if(hivenumber == XENO_HIVE_CORRUPTED)
+			xeno_job = SSjob.GetJobType(/datum/job/xenomorph/green)
 		xeno_job.add_job_points(4.5) //4.5 corpses per burrowed; 8 points per larva
 
 		log_combat(victim, user, "was consumed by a resin silo")

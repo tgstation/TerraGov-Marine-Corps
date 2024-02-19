@@ -8,7 +8,7 @@
 	bound_height = 32
 	obj_integrity = 400
 	max_integrity = 400
-	xeno_structure_flags = CRITICAL_STRUCTURE
+	xeno_structure_flags = CRITICAL_STRUCTURE|IGNORE_WEED_REMOVAL
 	///The type of pheromone currently being emitted.
 	var/datum/aura_bearer/current_aura
 	///Strength of pheromones given by this tower.

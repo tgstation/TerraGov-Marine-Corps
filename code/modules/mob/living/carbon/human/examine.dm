@@ -541,6 +541,8 @@
 				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline)] doses of Inaprovaline [t_is] still inside the infected host, keeping this one stabilized for now.\n"
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/dexalin))
 				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/dexalin)] doses of Dexalin [t_is] still inside the infected host, making this one breathe easier.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)] doses of Spaceacillin [t_is] still inside the infected host, curing infections on this one.\n"
 			if(reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
 				msg += "[reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly)] doses of Growth toxin [t_is] still inside the infected host, making the little one within grow faster.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/acid))

@@ -399,13 +399,13 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "dM" = (
-/obj/structure/window/framed{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 8
 	},
 /obj/structure/filingcabinet/medical,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -914,6 +914,13 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"iv" = (
+/obj/vehicle/ridden/motorbike{
+	dir = 4
+	},
+/obj/item/reagent_containers/jerrycan,
+/turf/open/floor/mainship/cargo,
+/area/mainship/groundhq/clf/squads/req)
 "iA" = (
 /obj/effect/landmark/resin_jelly_pod,
 /turf/open/floor/plating/ground/dirt,
@@ -1292,11 +1299,11 @@
 	name = "SOM Field Commander's Office"
 	})
 "lt" = (
-/obj/structure/rack,
-/obj/item/storage/belt/utility/full,
-/obj/item/storage/belt/utility/full,
-/obj/item/tool/weldpack,
-/turf/open/floor/mainship/cargo,
+/obj/machinery/power/apc{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/squads/req)
 "lu" = (
 /turf/open/floor/grayscale/edge,
@@ -1411,13 +1418,13 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "mf" = (
-/obj/structure/window/framed,
 /obj/structure/table/reinforced,
 /obj/item/newspaper,
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 6
 	},
 /obj/item/clipboard,
+/obj/structure/window/reinforced,
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -1754,6 +1761,16 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"nW" = (
+/obj/structure/rack,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/tool/weldpack,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/groundhq/clf/squads/req)
 "nY" = (
 /obj/structure/table/reinforced,
 /obj/item/circuitboard/apc,
@@ -1989,15 +2006,15 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/transport)
 "pU" = (
-/obj/structure/window/framed,
-/obj/structure/window/framed{
-	dir = 8
-	},
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 10
 	},
 /obj/item/storage/donut_box,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -2386,13 +2403,13 @@
 	name = "SOM Bridge"
 	})
 "tR" = (
-/obj/structure/window/framed{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 8
 	},
 /obj/structure/filingcabinet/security,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -3103,13 +3120,7 @@
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "yY" = (
-/obj/item/fulton_extraction_pack,
-/obj/item/fulton_extraction_pack,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/turf/open/floor/plating/asteroidfloor,
+/turf/open/floor/plating,
 /area/mainship/groundhq/clf/squads/req)
 "ze" = (
 /obj/structure/table/woodentable,
@@ -3155,12 +3166,12 @@
 	name = "SOM Mech Bay"
 	})
 "zx" = (
-/obj/structure/window/framed,
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/thinplating_new/dark,
 /obj/machinery/computer/communications/antag{
 	dir = 1
 	},
+/obj/structure/window/reinforced,
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -3721,17 +3732,17 @@
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 9
 	},
-/obj/structure/window/framed{
-	dir = 1
-	},
-/obj/structure/window/framed{
-	dir = 8
-	},
 /obj/structure/table/reinforced,
 /obj/item/card/id/dogtag/som,
 /obj/item/card/id/dogtag/som,
 /obj/item/card/id/dogtag/som,
 /obj/item/card/id/dogtag/som,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -3830,7 +3841,7 @@
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 5
 	},
-/obj/structure/window/framed{
+/obj/structure/window/reinforced{
 	dir = 1
 	},
 /turf/open/floor/mainship/red/full,
@@ -4382,10 +4393,10 @@
 	})
 "IQ" = (
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 8
+/obj/machinery/light/small{
+	dir = 4
 	},
-/turf/open/floor/plating/asteroidwarning/down,
+/turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/squads/req)
 "IS" = (
 /obj/machinery/camera/autoname/mainship/somship{
@@ -4706,7 +4717,7 @@
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 1
 	},
-/obj/structure/window/framed{
+/obj/structure/window/reinforced{
 	dir = 1
 	},
 /turf/open/floor/mainship/red/full,
@@ -5549,7 +5560,19 @@
 "QY" = (
 /obj/structure/prop/mainship/doorblocker/patrol_base/som,
 /turf/open/shuttle/dropship/three,
-/area/shuttle/transport)
+/area/shuttle/transport,
+/obj/structure/prop/mainship/railing{
+	dir = 8
+	},
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/fulton_extraction_pack,
+/obj/item/fulton_extraction_pack,
+/obj/structure/rack,
+/turf/open/floor/plating/asteroidfloor,
+/area/mainship/groundhq/clf/squads/req)
 "Ra" = (
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating/asteroidfloor,
@@ -6623,6 +6646,12 @@
 	name = "SOM South Maintenance";
 	outside = 0
 	})
+"Yu" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/mainship/groundhq/clf/squads/req)
 "Yx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/airlock/mainship/generic/bathroom/toilet{
@@ -6772,10 +6801,6 @@
 	name = "SOM Preparation"
 	})
 "ZU" = (
-/obj/vehicle/ridden/motorbike{
-	dir = 4
-	},
-/obj/item/reagent_containers/jerrycan,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -8580,18 +8605,18 @@ Jk
 Ia
 Vw
 JC
-aF
-aF
-aF
-aF
-aF
-aF
-aF
-aF
-aF
-aF
-aF
-aF
+aU
+aU
+aU
+aU
+aU
+aU
+aU
+aU
+aU
+aU
+aU
+aU
 aF
 aF
 aF
@@ -8611,18 +8636,18 @@ BT
 mr
 VD
 JC
+nW
+Gy
+ZU
+Gy
+Gy
+ZU
+Gy
+Gy
+ZU
+Gy
+pA
 aU
-aU
-aU
-aU
-aU
-tT
-aF
-aF
-tT
-tT
-tT
-aF
 aF
 aF
 aF
@@ -8642,18 +8667,18 @@ od
 OR
 kl
 JC
-lt
-ZU
+Yg
+Gy
 yY
-pA
+yY
+yY
+yY
+yY
+yY
+yY
+WJ
+TE
 aU
-tT
-aF
-aF
-tT
-tT
-aF
-aF
 aF
 aF
 aF
@@ -8673,18 +8698,18 @@ wf
 UT
 kl
 JC
-Yg
+iv
 Gy
+yY
+yY
+yY
+yY
+yY
+yY
+yY
 WJ
-TE
+WG
 aU
-tT
-aF
-aF
-aF
-aF
-aF
-aF
 aF
 aF
 aF
@@ -8706,16 +8731,16 @@ SY
 JC
 nb
 Gy
+yY
+yY
+yY
+yY
+yY
+yY
+yY
 WJ
-WG
+TE
 aU
-aF
-aF
-aF
-aF
-aF
-tT
-tT
 aF
 aF
 aF
@@ -8738,15 +8763,15 @@ JC
 RG
 Ow
 IQ
-TE
+lt
+Gy
+Yu
+Gy
+Gy
+Yu
+Gy
+QY
 aU
-aF
-aF
-aF
-aF
-aF
-tT
-tT
 aF
 aF
 tY
@@ -8771,13 +8796,13 @@ Wy
 xP
 CR
 aU
-aF
-aF
-aF
-aF
-aF
-aF
-aF
+aU
+aU
+aU
+aU
+aU
+aU
+aU
 aF
 tY
 gW

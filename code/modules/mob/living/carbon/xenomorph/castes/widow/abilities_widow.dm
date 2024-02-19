@@ -143,7 +143,7 @@
 /datum/action/ability/xeno_action/create_spiderling/give_action(mob/living/L)
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = L
-	var/max_spiderlings = X?.xeno_caste.max_spiderlings ? X.xeno_caste.max_spiderlings : 5
+	var/max_spiderlings = X?.xeno_caste.max_spiderlings ? X.xeno_caste.max_spiderlings : 8
 	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy [max_spiderlings] spiderlings at one time. On alt-use, if any charges of Cannibalise are stored, create a spiderling at no plasma cost or cooldown."
 
 /datum/action/ability/xeno_action/create_spiderling/can_use_action(silent = FALSE, override_flags)
@@ -332,7 +332,7 @@
 	///the attached spiderlings
 	var/list/mob/living/carbon/xenomorph/spiderling/attached_spiderlings = list()
 	///how many times we attempt to attach adjacent spiderligns
-	var/attach_attempts = 5
+	var/attach_attempts = 8
 
 /datum/action/ability/xeno_action/attach_spiderlings/action_activate()
 	. = ..()

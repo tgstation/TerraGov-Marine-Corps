@@ -5,7 +5,7 @@
 	flags_round_type = MODE_INFESTATION|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_ALLOW_XENO_QUICKBUILD
 	shutters_drop_time = 3 MINUTES
 	flags_xeno_abilities = ABILITY_NUCLEARWAR
-	factions = list(FACTION_NTC, FACTION_SOM, FACTION_ALIEN, FACTION_CLF)
+	factions = list(FACTION_NTC, FACTION_SOM, FACTION_ALIEN, FACTION_XENO, FACTION_CLF)
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
@@ -69,6 +69,7 @@
 	xenorespawn_time = 2 MINUTES
 	respawn_time = 15 MINUTES
 	bioscan_interval = 30 MINUTES
+	deploy_time_lock = 15 SECONDS
 
 /datum/game_mode/infestation/can_start(bypass_checks = TRUE)
 	. = ..()
@@ -111,12 +112,14 @@
 
 	SSpoints.add_strategic_psy_points(XENO_HIVE_NORMAL, 1400)
 	SSpoints.add_tactical_psy_points(XENO_HIVE_NORMAL, 300)
+	SSpoints.add_strategic_psy_points(XENO_HIVE_CORRUPTED, 1400)
+	SSpoints.add_tactical_psy_points(XENO_HIVE_CORRUPTED, 300)
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
 
 	for(var/miner in GLOB.miner_list)
-		if(prob(50))
+		if(prob(65))
 			qdel(miner)
 
 	for(var/mob/living/carbon/xenomorph/larva/xeno in GLOB.alive_xeno_list)
