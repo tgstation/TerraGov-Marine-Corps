@@ -123,7 +123,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	if(!operating)
 		return PROCESS_KILL
 	if(!isturf(loc))
-		return //how
+		return PROCESS_KILL //how
 
 	//get the first 30 items in contents
 	var/list/items_to_move = loc.contents - src
