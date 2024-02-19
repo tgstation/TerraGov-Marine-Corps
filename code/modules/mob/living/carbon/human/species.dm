@@ -197,6 +197,24 @@
 /datum/species/proc/random_name(gender)
 	return GLOB.namepool[namepool].get_random_name(gender)
 
+/datum/species/proc/can_pickup_item(obj/item/item)
+	return TRUE
+
+/datum/species/human/can_pickup_item(obj/item/item)
+	if(HAS_TRAIT(item, TRAIT_NEWT_ONLY_ITEM))
+		H.visible_message(span_warning("You cannot pickup newt-only items as a human."))
+		return COMPONENT_HUMAN_CANNOT_PICKUP
+
+/*
+/datum/species/newt/can_pickup_item(obj/item/item)
+	if(HAS_TRAIT(item, TRAIT_NEWT_ONLY_ITEM))
+		return
+	if(HAS_TRAIT(item, TRAIT_NEWT_USABLE_ITEM))
+		return
+	H.visible_message(span_warning("As a newt you cannot pickup this item."))
+	return COMPONENT_HUMAN_CANNOT_PICKUP
+*/
+
 /datum/species/proc/prefs_name(datum/preferences/prefs)
 	return prefs.real_name
 
@@ -241,11 +259,15 @@
 		ADD_TRAIT(H, newtrait, SPECIES_TRAIT)
 	H.maxHealth += total_health - (old_species ? old_species.total_health : initial(H.maxHealth))
 
+	RegisterSignal(H, COMSIG_HUMAN_PUT_IN_HAND_CHECK, PROC_REF(can_pickup_item))
+
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
 	SHOULD_CALL_PARENT(TRUE)
 	for(var/oldtrait in inherent_traits)
 		REMOVE_TRAIT(H, oldtrait, SPECIES_TRAIT)
+
+	UnregisterSignal(H, COMSIG_HUMAN_PUT_IN_HAND_CHECK)
 
 /// Removes all species-specific verbs and actions
 /datum/species/proc/remove_inherent_abilities(mob/living/carbon/human/H)

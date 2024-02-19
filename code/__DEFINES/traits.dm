@@ -254,3 +254,9 @@
 //regress and caste swap UI
 #define TRAIT_CASTE_SWAP "caste_swap"
 #define TRAIT_REGRESSING "regressing"
+
+// newt item traits
+// item only pickupable by newt
+#define TRAIT_NEWT_ONLY_ITEM "newt_only_item"
+// normal item that newt is allowed to pickup
+#define TRAIT_NEWT_USABLE_ITEM "newt_usable_item"
