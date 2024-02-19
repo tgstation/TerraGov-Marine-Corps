@@ -957,11 +957,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
+	shrapnel_chance = 15
 	damage = 30
 	damage_falloff = 3
 
 /datum/ammo/bullet/hefa_buckshot/on_hit_mob(mob/mob_hit, obj/projectile/projectile)
 	staggerstun(mob_hit, projectile, knockback = 2, max_range = 4)
+
 /datum/ammo/bullet/hefa_buckshot/spread
 	name =	"hefa extra fragment"
 	icon_state = "buckshot"
@@ -969,6 +971,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
+	shrapnel_chance = 15
 	damage = 30
 	damage_falloff = 3
 

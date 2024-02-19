@@ -1,4 +1,4 @@
-  ///bullet grenade: shoots bullets out from itself in a ring
+ ///bullet grenade: shoots bullets out from itself in a ring
 /obj/item/explosive/grenade/bullet
 	name = "\improper M90 leadburster grenade"
 	desc = "Leadburster grenades release a short burst of projectiles after detonation. Keep far away from friendlies. Or don't. I'm just a label."
@@ -65,5 +65,5 @@
 	ammo_type = /datum/ammo/bullet/hefa_buckshot
 
 /obj/item/explosive/grenade/bullet/hefa/prime()
-    explosion(loc, light_impact_range = 2, heavy_impact_range = 1)
-    return ..()
+	explosion(loc, light_impact_range = 2, heavy_impact_range = 1)
+	return ..()
