@@ -123,7 +123,7 @@
 /obj/structure/fence/Initialize(mapload, start_dir)
 	. = ..()
 
-	if(prob(80))
+	if(!obj_integrity || prob(80))
 		obj_integrity = 0
 		deconstruct(FALSE)
 
@@ -139,3 +139,6 @@
 	if(exposed_temperature > T0C + 800)
 		take_damage(round(exposed_volume / 100), BURN, "fire")
 	return ..()
+
+/obj/structure/fence/broken
+	obj_integrity = 0
