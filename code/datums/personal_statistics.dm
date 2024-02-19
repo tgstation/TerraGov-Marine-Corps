@@ -105,6 +105,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/war_crimes = 0
 	var/tactical_unalives = 0	//Someone should add a way to determine if you died to a grenade in your hand and add it to this
 
+	var/mechs_destroyed = 0
+
 	//campaign specific vars
 	var/mission_projectile_damage = 0
 	var/mission_friendly_fire_damage = 0
@@ -117,6 +119,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/mission_blocker_destroyed = 0
 	var/mission_objective_captured = 0
 	var/mission_objective_decaptured = 0
+	var/mission_mechs_destroyed = 0
 
 /datum/personal_statistics/New()
 	. = ..()
@@ -298,6 +301,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	mission_blocker_destroyed = 0
 	mission_objective_captured = 0
 	mission_objective_decaptured = 0
+	mission_mechs_destroyed = 0
 
 ///Returns the credit bonus based on stats from the current mission
 /datum/personal_statistics/proc/get_mission_reward()
@@ -306,13 +310,14 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	credit_bonus -= mission_friendly_fire_damage * 0.2
 	credit_bonus += mission_melee_damage * 0.2
 	credit_bonus += mission_delimbs * 3
-	credit_bonus += mission_revives * 10
+	credit_bonus += mission_revives * 15
 	credit_bonus += mission_times_revived * 5 //purple heart
-	credit_bonus += mission_structures_built * 2
-	credit_bonus += mission_objective_destroyed * 15
-	credit_bonus += mission_blocker_destroyed * 10
-	credit_bonus += mission_objective_captured * 5
-	credit_bonus += mission_objective_decaptured * 3
+	credit_bonus += mission_structures_built * 5
+	credit_bonus += mission_objective_destroyed * 50
+	credit_bonus += mission_blocker_destroyed * 30
+	credit_bonus += mission_objective_captured * 20
+	credit_bonus += mission_objective_decaptured * 20
+	credit_bonus += mission_mechs_destroyed * 20
 
 	return max(floor(credit_bonus), 0)
 

@@ -44,7 +44,7 @@
 	qdel(src)
 
 
-/obj/structure/xeno/acidwell/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/structure/xeno/acidwell/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
 		var/area/A = get_area(src)
 		if(A)
