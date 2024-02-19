@@ -60,7 +60,7 @@
 	hud_state = "grenade_hefa2"
 
 	rotations = -1
-	fire_sound = 'sound/weapons/burst_phaser2.ogg'
+	fire_sound = null
 	projectile_count = 10
 	ammo_type = /datum/ammo/bullet/hefa_buckshot
 
