@@ -263,14 +263,7 @@
 			status_hud.icon_state = "hudsynthdnr"
 			return TRUE
 		else
-			if(!mind)
-				var/mob/dead/observer/G = get_ghost(TRUE)
-				if(!G)
-					status_hud.icon_state = "hudsynthdnr"
-				else
-					status_hud.icon_state = "hudsynthdead"
-			else
-				status_hud.icon_state = "hudsynthdead"
+			status_hud.icon_state = "hudsynthdead"
 			return TRUE
 		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
 		return TRUE
@@ -308,11 +301,6 @@
 				hud_list[HEART_STATUS_HUD].icon_state = "still_heart"
 				status_hud.icon_state = "huddead"
 				return TRUE
-			if(!mind)
-				var/mob/dead/observer/ghost = get_ghost(TRUE)
-				if(!ghost?.can_reenter_corpse)
-					status_hud.icon_state = "huddead"
-					return TRUE
 			var/stage
 			switch(dead_ticks)
 				if(0 to 0.4 * TIME_BEFORE_DNR)

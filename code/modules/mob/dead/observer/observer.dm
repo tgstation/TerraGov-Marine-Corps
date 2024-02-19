@@ -846,11 +846,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set name = "Do Not Revive"
 	set desc = "Noone will be able to revive you."
 
-	if(!isnull(can_reenter_corpse) && tgui_alert(usr, "Are you sure? You won't be able to get revived.", "Confirmation", list("Yes", "No")) == "Yes")
-		var/mob/living/carbon/human/human_current = can_reenter_corpse.resolve()
-		if(istype(human_current))
-			human_current.set_undefibbable(TRUE)
-
+	if(!isnull(can_reenter_corpse) && tgui_alert(usr, "Are you sure? You won't be able to return to your body anymore.", "Confirmation", list("Yes", "No")) == "Yes")
 		can_reenter_corpse = null
 		to_chat(usr, span_notice("You can no longer be revived."))
 		return
