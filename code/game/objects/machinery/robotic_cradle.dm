@@ -15,17 +15,16 @@
 	density = TRUE
 	max_integrity = 350
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 30, ACID = 30)
-	//This var is used to see if the machine is currently repairing or not.
-	var/repairing = FALSE
-	//This var is the reference used for the patient
-	var/mob/living/carbon/human/occupant
-
 	//It uses power
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 15
 	active_power_usage = 10000 // It rebuilds you from nothing...
 
-	//This var is in reference to the radio the cradle uses to speak to the craw.
+	//This var is used to see if the machine is currently repairing or not.
+	var/repairing = FALSE
+	//This var is the reference used for the patient
+	var/mob/living/carbon/human/occupant
+	//This var is in reference to the radio the cradle uses to speak to the crew
 	var/obj/item/radio/headset/mainship/doc/radio
 
 /obj/machinery/robotic_cradle/Initialize(mapload)
@@ -39,16 +38,9 @@
 	return ..()
 
 /obj/machinery/robotic_cradle/update_icon_state()
-	. = ..()
-	if(machine_stat & NOPOWER)
-		icon_state = "borgcharger0"
-		return
-	if(repairing)
+	if(occupant && !(machine_stat & NOPOWER))
 		icon_state = "borgcharger1"
-		return
-	if(occupant)
-		icon_state = "borgcharger1"
-		return
+		return ..()
 	icon_state = "borgcharger0"
 
 /obj/machinery/robotic_cradle/power_change()
@@ -161,12 +153,12 @@
 	dropped.stop_pulling()
 	dropped.forceMove(src)
 	occupant = dropped
-	icon_state = "pod_0"
 	var/implants = list(/obj/item/implant/neurostim)
 	var/mob/living/carbon/human/H = occupant
 	var/doc_dat
 	med_scan(H, doc_dat, implants, TRUE)
 	start_processing()
+	update_icon()
 
 	say("Automatic mode engaged, initialising procedure.")
 	addtimer(CALLBACK(src, PROC_REF(auto_start)), 20 SECONDS)
@@ -265,7 +257,7 @@
 
 	M.forceMove(src)
 	occupant = M
-	icon_state = "pod_1"
+	update_icon()
 	var/implants = list(/obj/item/implant/neurostim)
 	var/mob/living/carbon/human/H = occupant
 	med_scan(H, null, implants, TRUE)
