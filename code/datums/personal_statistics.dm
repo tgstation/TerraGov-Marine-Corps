@@ -38,6 +38,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/projectile_damage = 0
 	var/melee_damage = 0
 
+	var/mechs_destroyed = 0
+
 	//We are watching
 	var/friendly_fire_damage = 0
 
@@ -62,6 +64,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 
 	var/times_revived = 0
 	var/deaths = 0
+	var/shrapnel_removed = 0
 
 	//Downtime
 	var/time_resting = 0
@@ -105,8 +108,6 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/war_crimes = 0
 	var/tactical_unalives = 0	//Someone should add a way to determine if you died to a grenade in your hand and add it to this
 
-	var/mechs_destroyed = 0
-
 	//campaign specific vars
 	var/mission_projectile_damage = 0
 	var/mission_friendly_fire_damage = 0
@@ -120,6 +121,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/mission_objective_captured = 0
 	var/mission_objective_decaptured = 0
 	var/mission_mechs_destroyed = 0
+	var/mission_shrapnel_removed = 0
+	var/mission_traps_created = 0
 
 /datum/personal_statistics/New()
 	. = ..()
@@ -173,6 +176,9 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	if(internal_injuries_inflicted)
 		stats += "Inflicted [internal_injuries_inflicted] internal injur[internal_injuries_inflicted > 1 ? "ies" : "y"] on [internal_injuries_inflicted > 1 ? "others" : "somebody"]."
 
+	if(mechs_destroyed)
+		stats += "[mechs_destroyed] hostile mechs destroyed."
+
 	//Medical
 	stats += "<hr>"
 	if(self_heals)
@@ -186,6 +192,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	if(times_revived)
 		stats += "You were revived [times_revived] time\s."
 	stats += deaths ? "You died [deaths] time\s." : "You survived the whole round."
+	if(shrapnel_removed)
+		stats += "Removed [shrapnel_removed] piece\s of shrapnel."
 
 	//Downtime
 	var/list/downtime_stats = list()
@@ -302,6 +310,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	mission_objective_captured = 0
 	mission_objective_decaptured = 0
 	mission_mechs_destroyed = 0
+	mission_shrapnel_removed = 0
+	mission_traps_created = 0
 
 ///Returns the credit bonus based on stats from the current mission
 /datum/personal_statistics/proc/get_mission_reward()
@@ -318,6 +328,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	credit_bonus += mission_objective_captured * 20
 	credit_bonus += mission_objective_decaptured * 20
 	credit_bonus += mission_mechs_destroyed * 20
+	credit_bonus += mission_shrapnel_removed * 2
+	credit_bonus += mission_traps_created * 3
 
 	return max(floor(credit_bonus), 0)
 
@@ -584,6 +596,7 @@ The alternative is scattering them everywhere under their respective objects whi
 		return FALSE
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 	personal_statistics.traps_created++
+	personal_statistics.mission_traps_created++
 	return TRUE
 
 ///Tally up bullets caught/reflected
