@@ -197,21 +197,18 @@
 /datum/species/proc/random_name(gender)
 	return GLOB.namepool[namepool].get_random_name(gender)
 
-/datum/species/proc/can_pickup_item(obj/item/item)
-	return TRUE
-
-/datum/species/human/can_pickup_item(obj/item/item)
+/datum/species/proc/can_pickup_item(mob/living/carbon/human/source, obj/item/item)
 	if(HAS_TRAIT(item, TRAIT_NEWT_ONLY_ITEM))
-		H.visible_message(span_warning("You cannot pickup newt-only items as a human."))
+		source.visible_message(span_warning("You cannot pickup newt-only items as a [name]."))
 		return COMPONENT_HUMAN_CANNOT_PICKUP
 
 /*
-/datum/species/newt/can_pickup_item(obj/item/item)
+/datum/species/newt/can_pickup_item(mob/living/carbon/human/source, obj/item/item)
 	if(HAS_TRAIT(item, TRAIT_NEWT_ONLY_ITEM))
 		return
 	if(HAS_TRAIT(item, TRAIT_NEWT_USABLE_ITEM))
 		return
-	H.visible_message(span_warning("As a newt you cannot pickup this item."))
+	source.visible_message(span_warning("As a newt you cannot pickup this item."))
 	return COMPONENT_HUMAN_CANNOT_PICKUP
 */
 
