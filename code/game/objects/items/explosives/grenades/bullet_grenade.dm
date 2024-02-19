@@ -1,4 +1,4 @@
- ///bullet grenade: shoots bullets out from itself in a ring
+///bullet grenade: shoots bullets out from itself in a ring
 /obj/item/explosive/grenade/bullet
 	name = "\improper M90 leadburster grenade"
 	desc = "Leadburster grenades release a short burst of projectiles after detonation. Keep far away from friendlies. Or don't. I'm just a label."
