@@ -744,6 +744,20 @@
 /area/mainship/groundhq/som/medical/lounge{
 	name = "SOM Medbay"
 	})
+"gM" = (
+/obj/structure/prop/mainship/railing{
+	dir = 8
+	},
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/fulton_extraction_pack,
+/obj/item/fulton_extraction_pack,
+/obj/structure/rack,
+/turf/open/shuttle/dropship/three,
+/turf/open/floor/plating/asteroidfloor,
+/area/mainship/groundhq/clf/squads/req)
 "gP" = (
 /obj/machinery/vending/hydroseeds,
 /obj/effect/turf_decal/siding/wood{
@@ -5559,8 +5573,6 @@
 	})
 "QY" = (
 /obj/structure/prop/mainship/doorblocker/patrol_base/som,
-/turf/open/shuttle/dropship/three,
-/area/shuttle/transport,
 /obj/structure/prop/mainship/railing{
 	dir = 8
 	},
@@ -5571,7 +5583,9 @@
 /obj/item/fulton_extraction_pack,
 /obj/item/fulton_extraction_pack,
 /obj/structure/rack,
+/turf/open/shuttle/dropship/three,
 /turf/open/floor/plating/asteroidfloor,
+/area/shuttle/transport,
 /area/mainship/groundhq/clf/squads/req)
 "Ra" = (
 /obj/item/storage/toolbox/mechanical,
@@ -8770,7 +8784,7 @@ Gy
 Gy
 Yu
 Gy
-QY
+gM
 aU
 aF
 aF
