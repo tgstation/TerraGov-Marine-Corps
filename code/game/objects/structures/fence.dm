@@ -16,6 +16,8 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_FENCE)
 	canSmoothWith = list(SMOOTH_GROUP_FENCE)
+	///Chance for the fence to break on /init
+	var/chance_to_break = 80 //Defaults to 80%
 
 /obj/structure/fence/ex_act(severity)
 	switch(severity)
@@ -123,7 +125,7 @@
 /obj/structure/fence/Initialize(mapload, start_dir)
 	. = ..()
 
-	if(!obj_integrity || prob(80))
+	if(prob(chance_to_break))
 		obj_integrity = 0
 		deconstruct(FALSE)
 
@@ -141,4 +143,4 @@
 	return ..()
 
 /obj/structure/fence/broken
-	obj_integrity = 0
+	chance_to_break = 100

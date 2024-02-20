@@ -339,10 +339,6 @@
 	},
 /turf/open/floor/prison/whitegreen/full,
 /area/daedalusprison/inside/medical)
-"aoX" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/ice,
-/area/daedalusprison/caves/northeast)
 "apf" = (
 /turf/closed/wall/prison,
 /area/daedalusprison/inside/southclass)
@@ -62515,7 +62511,7 @@ mkY
 mkY
 nMf
 mkY
-aoX
+mkY
 nMf
 mkY
 kOm
