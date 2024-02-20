@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - bugfix: "fixed headsets being invisible if you spawned them while in a custom squad"
