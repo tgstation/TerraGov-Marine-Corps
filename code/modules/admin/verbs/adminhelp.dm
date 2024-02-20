@@ -452,13 +452,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		msg = "an admin ticket"
 		AddInteraction("<font color='#ff8c8c'>Made admin ticket by: [key_name_admin(usr)].</font>")
 		message_admins("Ticket [TicketHref("#[id]")] has been made [msg] by [ref].")
-		to_chat(initiator, span_adminhelp("Your ticket has been tiered to an admin."))
+		to_chat(initiator, span_adminhelp("Your ticket has been tiered to an adminhelp."))
 	else if(tier == TICKET_ADMIN)
 		tier = TICKET_MENTOR
 		msg = "a mentor ticket"
 		AddInteraction("<font color='#ff8c8c'>Made mentor ticket by: [key_name_admin(usr)].</font>")
 		message_staff("Ticket [TicketHref("#[id]")] has been made [msg] by [ref].")
-		to_chat(initiator, span_adminhelp("Your ticket has been tiered to a mentor."))
+		to_chat(initiator, span_adminhelp("Your ticket has been tiered to a mentorhelp."))
 		if(!irc)
 			for(var/client/X in GLOB.admins)
 				if(!is_mentor(X))
