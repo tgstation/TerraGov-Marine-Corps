@@ -586,6 +586,9 @@
 
 #define COMSIG_HUMAN_MARKSMAN_AURA_CHANGED "human_marksman_aura_changed"
 
+#define COMSIG_HUMAN_PUT_IN_HAND_CHECK "human_put_in_hand_check"
+	#define COMPONENT_HUMAN_CANNOT_PICKUP (1<<0)
+
 // shuttle signals
 #define COMSIG_SHUTTLE_SETMODE "shuttle_setmode"
 

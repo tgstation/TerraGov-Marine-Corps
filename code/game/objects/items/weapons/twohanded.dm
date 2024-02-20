@@ -397,6 +397,7 @@
 /obj/item/weapon/twohanded/spear/tactical/newt/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src,TRAIT_NODROP, CATSLUG_TRAIT)
+	ADD_TRAIT(src,TRAIT_NEWT_ONLY_ITEM, CATSLUG_TRAIT)
 
 /obj/item/weapon/twohanded/spear/tactical/tacticool
 	name = "M-23 TACTICOOL spear"

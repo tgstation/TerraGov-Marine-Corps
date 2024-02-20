@@ -194,6 +194,19 @@
 		H.visible_message(span_notice("[H] hugs [target] to make [target.p_them()] feel better!"), \
 					span_notice("You hug [target] to make [target.p_them()] feel better!"), null, 4)
 
+/datum/species/proc/can_pickup_item(mob/living/carbon/human/source, obj/item/item)
+	if(HAS_TRAIT(item, TRAIT_NEWT_ONLY_ITEM))
+		source.visible_message(span_warning("You cannot pickup newt-only items as a [name]."))
+		return COMPONENT_HUMAN_CANNOT_PICKUP
+
+/datum/species/catslug/can_pickup_item(mob/living/carbon/human/source, obj/item/item)
+	if(HAS_TRAIT(item, TRAIT_NEWT_ONLY_ITEM))
+		return
+	if(HAS_TRAIT(item, TRAIT_NEWT_USABLE_ITEM))
+		return
+	source.visible_message(span_warning("As a newt you cannot pickup this item."))
+	return COMPONENT_HUMAN_CANNOT_PICKUP
+
 /datum/species/proc/random_name(gender)
 	return GLOB.namepool[namepool].get_random_name(gender)
 
@@ -241,11 +254,15 @@
 		ADD_TRAIT(H, newtrait, SPECIES_TRAIT)
 	H.maxHealth += total_health - (old_species ? old_species.total_health : initial(H.maxHealth))
 
+	RegisterSignal(H, COMSIG_HUMAN_PUT_IN_HAND_CHECK, PROC_REF(can_pickup_item))
+
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
 	SHOULD_CALL_PARENT(TRUE)
 	for(var/oldtrait in inherent_traits)
 		REMOVE_TRAIT(H, oldtrait, SPECIES_TRAIT)
+
+	UnregisterSignal(H, COMSIG_HUMAN_PUT_IN_HAND_CHECK)
 
 /// Removes all species-specific verbs and actions
 /datum/species/proc/remove_inherent_abilities(mob/living/carbon/human/H)
@@ -256,6 +273,8 @@
 			var/datum/action/old_species_action = H.actions_by_path[action_path]
 			qdel(old_species_action)
 	return
+
+
 
 /// Adds all species-specific verbs and actions
 /datum/species/proc/add_inherent_abilities(mob/living/carbon/human/H)
@@ -326,6 +345,10 @@
 	if(CHECK_BITFIELD(species_flags, NO_OVERDOSE)) //no stacking
 		if(chem.overdose_threshold && chem.volume > chem.overdose_threshold)
 			H.reagents.remove_reagent(chem.type, chem.volume - chem.overdose_threshold)
+	return FALSE
+
+// return true here to override blood overstuff for hands
+/datum/species/proc/update_inv_gloves(mob/living/carbon/human/H)
 	return FALSE
 
 /datum/species/human
@@ -748,6 +771,23 @@
 	warcries = list(FEMALE = "female_warcry")
 	special_death_message = "You have been slain in your duties down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 	joinable_roundstart = TRUE
+
+/datum/species/catslug/update_inv_gloves(mob/living/carbon/human/H)
+	var/datum/limb/left_hand = H.get_limb("l_hand")
+	var/datum/limb/right_hand = H.get_limb("r_hand")
+	var/mutable_appearance/bloodsies
+	if(left_hand.limb_status & LIMB_DESTROYED)
+		if(right_hand.limb_status & LIMB_DESTROYED)
+			return //No hands.
+		bloodsies = mutable_appearance(icon = 'icons/effects/blood.dmi', icon_state = "bloodyhand_right_newt") //Only right hand.
+	else if(right_hand.limb_status & LIMB_DESTROYED)
+		bloodsies = mutable_appearance(icon = 'icons/effects/blood.dmi', icon_state = "bloodyhand_left_newt") //Only left hand.
+	else
+		bloodsies = mutable_appearance(icon = 'icons/effects/blood.dmi', icon_state = "bloodyhands_newt") //Both hands.
+	bloodsies.color = H.blood_color
+	H.overlays_standing[GLOVES_LAYER] = bloodsies
+	H.apply_overlay(GLOVES_LAYER)
+	return TRUE
 
 /datum/species/sectoid
 	name = "Sectoid"

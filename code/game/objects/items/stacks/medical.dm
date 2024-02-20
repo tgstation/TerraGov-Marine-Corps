@@ -19,6 +19,10 @@
 	///Fumble delay applied without sufficient skill
 	var/unskilled_delay = SKILL_TASK_TRIVIAL
 
+/obj/item/stack/medical/Initialize(mapload, new_amount)
+	. = ..()
+	ADD_TRAIT(src,TRAIT_NEWT_USABLE_ITEM, CATSLUG_TRAIT)
+
 /obj/item/stack/medical/attack(mob/living/M, mob/living/user)
 	. = ..()
 	if(.)
