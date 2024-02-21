@@ -189,6 +189,7 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's chest is obscured. Remove suit or armor and try again."))
 		return
 
+	// Synthetics/combat robots missing their head
 	if(H.species.species_flags & DETACHABLE_HEAD)
 		var/datum/limb/head/braincase = H.get_limb("head")
 		if(braincase.limb_status & LIMB_DESTROYED)
@@ -237,13 +238,13 @@
 
 	defib_heal_amt *= skill * 0.5 //more healing power when used by a doctor (this means non-trained don't heal)
 
+	if(!check_revive(H, user))
+		return
+
 	var/mob/dead/observer/G = H.get_ghost()
 	if(G)
 		notify_ghost(G, span_bigdeadsay("<b>Your heart is being defibrillated!</b>"), ghost_sound = 'sound/effects/gladosmarinerevive.ogg')
 		G.reenter_corpse()
-
-	if(!check_revive(H, user))
-		return
 
 	user.visible_message(span_notice("[user] starts setting up the paddles on [H]'s chest."),
 	span_notice("You start setting up the paddles on [H]'s chest."))
@@ -254,9 +255,6 @@
 	if(!do_after(user, 7 SECONDS, NONE, H, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		user.visible_message(span_warning("[user] stops setting up the paddles on [H]'s chest."),
 		span_warning("You stop setting up the paddles on [H]'s chest."))
-		return
-
-	if(!check_revive(H, user))
 		return
 
 	//Do this now, order doesn't matter
@@ -273,7 +271,7 @@
 	if(!issynth(H) && !isrobot(H) && heart && prob(25))
 		heart.take_damage(5) //Allow the defibrillator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
-	if(!check_revive(H, user)) // Extra check incase they perma mid defib?
+	if(!check_revive(H, user)) // Extra check incase they perma mid defib, the user turns off the defib or something else changes mid defib.
 		return
 
 	//At this point, the defibrillator is ready to work
