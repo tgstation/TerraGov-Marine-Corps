@@ -898,7 +898,7 @@
 /obj/item/storage/belt/shotgun/martini
 	name = "martini henry ammo belt"
 	desc = "A belt good enough for holding all your .577/400 ball rounds."
-	icon_state = "marini_belt"
+	icon_state = "martini_belt"
 	storage_slots = 12
 	max_storage_space = 24
 	sprite_slots = 6
@@ -920,18 +920,22 @@
 		to_chat(user, span_notice("[src] can only be filled with .557/440 ball rifle rounds."))
 		return
 
+	return ..()
 
 /obj/item/storage/belt/shotgun/martini/attack_hand(mob/living/user)
-	if (loc != user)
+	if(!ishuman(user))
+		return
+
+	if(loc != user)
 		. = ..()
 		for(var/mob/M in content_watchers)
 			close(M)
 
-	if(!draw_mode || !ishuman(user) && !length(contents))
-		open(user)
-
 	if(!length(contents))
-		return
+		open(user) //Empty belt? Open the inventory
+
+	if(!draw_mode)
+		return ..() //No draw mode so we just click like normal
 
 	var/obj/item/I = contents[length(contents)]
 	if(!istype(I, /obj/item/ammo_magazine/handful))
@@ -945,7 +949,6 @@
 
 	existing_handful.create_handful(user, 1)
 	update_icon()
-
 
 /obj/item/storage/belt/knifepouch
 	name="\improper M276 pattern knife rig"

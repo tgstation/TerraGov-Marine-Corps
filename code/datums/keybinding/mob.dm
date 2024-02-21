@@ -174,35 +174,6 @@
 		user.mob.dropItemToGround(I)
 	return TRUE
 
-
-/datum/keybinding/mob/examine
-	hotkey_keys = list("Shift")
-	name = "examine_kb"
-	full_name = "Examine"
-	description = "Hold this hotkey_keys and click to examine things."
-	keybind_signal = COMSIG_KB_MOB_EXAMINE_DOWN
-
-
-/datum/keybinding/mob/examine/down(client/user)
-	. = ..()
-	if(.)
-		return
-	RegisterSignals(user.mob, list(COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON), PROC_REF(examinate))
-	RegisterSignals(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP), TYPE_PROC_REF(/datum/keybinding, intercept_mouse_special))
-	return TRUE
-
-
-/datum/keybinding/mob/examine/up(client/user)
-	UnregisterSignal(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON))
-	return TRUE
-
-
-/datum/keybinding/mob/examine/proc/examinate(datum/source, atom/A, params)
-	SIGNAL_HANDLER
-	var/mob/user = source
-	user.examinate(A)
-	return COMSIG_MOB_CLICK_HANDLED
-
 /datum/keybinding/mob/toggle_move_intent
 	hotkey_keys = list("5")
 	name = "toggle_move_intent"

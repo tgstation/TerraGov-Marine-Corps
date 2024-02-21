@@ -10501,6 +10501,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
+"gXv" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/obj/effect/landmark/start/job/transportofficer,
+/turf/open/floor/wood,
+/area/mainship/living/pilotbunks)
 "gXD" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -44385,7 +44391,7 @@ srL
 nKK
 lzj
 cZJ
-stM
+gXv
 lzj
 fZA
 aVk

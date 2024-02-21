@@ -27,14 +27,14 @@
 // ***************************************
 /mob/living/carbon/xenomorph/warrior/handle_special_state()
 	if(agility)
-		icon_state = "Warrior Agility"
+		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Agility"
 		return TRUE
 	return FALSE
 
 /mob/living/carbon/xenomorph/warrior/handle_special_wound_states(severity)
 	. = ..()
 	if(agility)
-		return "warrior_wounded_agility_[severity]"
+		return "wounded_agility_[severity]"
 
 // ***************************************
 // *********** Mob overrides

@@ -17,14 +17,13 @@
 /obj/item/weapon/gun
 	name = "Guns"
 	desc = "Its a gun. It's pretty terrible, though."
-	icon = 'icons/obj/items/gun.dmi'
 	icon_state = ""
 	item_state = "gun"
 	item_state_worn = TRUE
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
-		)
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_1.dmi',
+	)
 	max_integrity = 250
 	w_class = WEIGHT_CLASS_NORMAL
 	throwforce = 5
@@ -458,8 +457,7 @@
 	. = ..()
 	set_gun_user(null)
 	active_attachable?.removed_from_inventory(user)
-	if(loc != user) // reequip component caught it with the signal
-		drop_connected_mag(null, user)
+	drop_connected_mag(null, user)
 
 ///Set the user in argument as gun_user
 /obj/item/weapon/gun/proc/set_gun_user(mob/user)
@@ -486,7 +484,7 @@
 		COMSIG_MOB_SHOCK_STAGE_CHANGED,
 		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
-		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
+		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET, src)
 		gun_user.hud_used.remove_ammo_hud(src)
 		if(heat_meter)
 			gun_user.client.images -= heat_meter
@@ -510,7 +508,6 @@
 		COMSIG_MOB_SKILLS_CHANGED,
 		COMSIG_MOB_SHOCK_STAGE_CHANGED,
 		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED), PROC_REF(setup_bullet_accuracy))
-	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
 	if(flags_gun_features & GUN_AMMO_COUNTER)
 		gun_user.hud_used.add_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	if(heat_per_fire)

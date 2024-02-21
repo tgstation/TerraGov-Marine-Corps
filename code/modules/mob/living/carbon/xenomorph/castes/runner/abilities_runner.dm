@@ -77,7 +77,8 @@
 /datum/action/ability/xeno_action/evasion
 	name = "Evasion"
 	action_icon_state = "evasion_on"
-	desc = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving. Alternate use toggles Auto Evasion off or on."
+	desc = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving. \
+			Alternate use toggles Auto Evasion off or on. Click again while active to deactivate early."
 	ability_cost = 75
 	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
@@ -113,6 +114,15 @@
 	update_button_icon()
 
 /datum/action/ability/xeno_action/evasion/action_activate()
+	//Since both the button and the evasion extension call this proc directly, check if the cooldown timer exists
+	//The evasion extension removes the cooldown before calling this proc again, so use that to differentiate if it was the player trying to cancel
+	if(evade_active && cooldown_timer)
+		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_EVASION_ACTIVATION))
+			return
+		evasion_deactivate()
+		return
+
+	use_state_flags = ABILITY_IGNORE_COOLDOWN|ABILITY_IGNORE_PLASMA	//To allow the ability button to be clicked while on cooldown for deactivation purposes
 	succeed_activate()
 	add_cooldown()
 	if(evade_active)
@@ -137,6 +147,7 @@
 	RegisterSignal(owner, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(evasion_throw_dodge))
 	GLOB.round_statistics.runner_evasions++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_evasions")
+	TIMER_COOLDOWN_START(src, COOLDOWN_EVASION_ACTIVATION, 1 SECONDS)
 
 /datum/action/ability/xeno_action/evasion/process()
 	var/mob/living/carbon/xenomorph/runner/runner_owner = owner
@@ -173,6 +184,7 @@
 
 /// Deactivates Evasion, clearing signals, vars, etc.
 /datum/action/ability/xeno_action/evasion/proc/evasion_deactivate()
+	use_state_flags = NONE	//To prevent the ability from being used while on cooldown now that it can no longer be deactivated
 	STOP_PROCESSING(SSprocessing, src)
 	UnregisterSignal(owner, list(
 		COMSIG_LIVING_STATUS_STUN,

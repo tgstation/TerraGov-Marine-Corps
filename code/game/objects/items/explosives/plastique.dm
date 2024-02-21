@@ -21,9 +21,12 @@
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
 	/// radius this smoke will encompass
 	var/smokeradius = 1
+	///Current/last user of the c4
+	var/mob/living/last_user
 
 /obj/item/explosive/plastique/Destroy()
 	plant_target = null
+	last_user = null
 	return ..()
 
 /obj/item/explosive/plastique/update_icon_state()
@@ -94,6 +97,7 @@
 			forceMove(location)
 		armed = TRUE
 		timer = target.plastique_time_mod(timer)
+		last_user = user
 
 		log_bomber(user, "planted", src, "on [target] with a [timer] second fuse", message_admins = TRUE)
 
@@ -136,6 +140,7 @@
 		armed = FALSE
 		alarm_sounded = FALSE
 		plant_target = null
+		last_user = null
 		update_icon()
 	return ..()
 
@@ -151,7 +156,7 @@
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	smoke.set_up(smokeradius, plant_target, 2)
 	smoke.start()
-	plant_target.plastique_act()
+	plant_target.plastique_act(last_user)
 	qdel(src)
 
 ///Triggers a warning beep prior to the actual detonation, while also setting the actual detonation timer
@@ -163,7 +168,7 @@
 		update_icon()
 
 ///Handles the effect of c4 on the atom - overridden as needed
-/atom/proc/plastique_act()
+/atom/proc/plastique_act(mob/living/plastique_user)
 	ex_act(EXPLODE_DEVASTATE)
 
 /obj/item/explosive/plastique/genghis_charge

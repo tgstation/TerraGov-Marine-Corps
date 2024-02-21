@@ -207,7 +207,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 
 /datum/hive_upgrade/building/evotower
 	name = "Evolution Tower"
-	desc = "Constructs a tower that increases the rate of evolution point and maturity point generation by 1.2 times per tower."
+	desc = "Constructs a tower that increases the rate of evolution point generation by 0.2 and maturity point generation by 0.8 times per tower."
 	psypoint_cost = 300
 	icon = "evotower"
 	flags_gamemode = ABILITY_NUCLEARWAR

@@ -237,6 +237,10 @@ Stepping directly on the mine will also blow it up
 	icon_state = "m92"
 	target_mode = MINE_VEHICLE_ONLY
 
+/obj/item/explosive/mine/anti_tank/update_icon(updates=ALL)
+	. = ..()
+	alpha = armed ? 50 : 255
+
 /obj/item/explosive/mine/anti_tank/trigger_explosion()
 	if(triggered)
 		return

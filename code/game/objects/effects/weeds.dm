@@ -218,11 +218,11 @@
 		return ..()
 	return window.MouseDrop_T(dropping, user)
 
-/obj/alien/weeds/weedwall/window/specialclick(mob/living/carbon/user)
+/obj/alien/weeds/weedwall/window/CtrlClick(mob/living/carbon/user)
 	var/obj/structure/window = locate(window_type) in loc
 	if(!window)
 		return ..()
-	return window.specialclick(user)
+	return window.CtrlClick(user)
 
 /obj/alien/weeds/weedwall/window/attackby(obj/item/I, mob/user, params) //yes, this blocks attacking the weed itself, but if you destroy the frame you destroy the weed!
 	var/obj/structure/window = locate(window_type) in loc

@@ -121,7 +121,8 @@
 #define ABOVE_LYING_MOB_LAYER 3.9 //drone (not the xeno)
 
 //#define MOB_LAYER 4
-#define RIVER_OVERLAY_LAYER 4.01
+
+#define MOB_JUMP_LAYER 4.05
 
 #define ABOVE_MOB_LAYER 4.1
 

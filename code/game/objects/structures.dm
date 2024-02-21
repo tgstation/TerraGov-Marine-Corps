@@ -49,7 +49,7 @@
 
 	do_climb(usr)
 
-/obj/structure/specialclick(mob/living/carbon/user)
+/obj/structure/CtrlClick(mob/living/carbon/user)
 	. = ..()
 	INVOKE_ASYNC(src, PROC_REF(do_climb), user)
 

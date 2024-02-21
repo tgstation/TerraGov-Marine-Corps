@@ -54,18 +54,6 @@
 
 	return TRUE
 
-///Plasma cost override allows for actions/abilities to override the normal plasma costs
-/datum/action/ability/xeno_action/succeed_activate(ability_cost_override)
-	//the sig call means we need to override this proc it seems
-	if(QDELETED(owner))
-		return
-	ability_cost_override = ability_cost_override? ability_cost_override : ability_cost
-	if(SEND_SIGNAL(owner, COMSIG_XENO_ACTION_SUCCEED_ACTIVATE, src, ability_cost_override) & SUCCEED_ACTIVATE_CANCEL)
-		return
-	if(ability_cost_override > 0)
-		var/mob/living/carbon/xenomorph/xeno_owner = owner
-		xeno_owner.deduct_ability_cost(ability_cost_override)
-
 //activatable
 /datum/action/ability/activable/xeno/New(Target)
 	. = ..()
