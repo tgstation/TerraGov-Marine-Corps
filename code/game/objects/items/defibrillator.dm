@@ -240,13 +240,13 @@
 
 	defib_heal_amt *= skill * 0.5 //more healing power when used by a doctor (this means non-trained don't heal)
 
-	if(!check_revive(H, user))
-		return
-
 	var/mob/dead/observer/G = H.get_ghost()
 	if(G)
 		notify_ghost(G, span_bigdeadsay("<b>Your heart is being defibrillated!</b>"), ghost_sound = 'sound/effects/gladosmarinerevive.ogg')
 		G.reenter_corpse()
+
+	if(!check_revive(H, user))
+		return
 
 	user.visible_message(span_notice("[user] starts setting up the paddles on [H]'s chest."),
 	span_notice("You start setting up the paddles on [H]'s chest."))
