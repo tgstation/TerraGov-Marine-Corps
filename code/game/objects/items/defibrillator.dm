@@ -19,9 +19,11 @@
 	var/damage_threshold = 8
 	/// The charge cost of this defibrillator
 	var/charge_cost = 66
-	/// The cooldown for toggling and shocking someone this defibrillator
+	/// The cooldown for toggling and shocking someone with this defibrillator
 	var/defib_cooldown = 0
+	/// The defibrillator power cell
 	var/obj/item/cell/dcell = null
+	/// The sparks when this defibrillator shocks someone
 	var/datum/effect_system/spark_spread/sparks
 
 
@@ -338,7 +340,7 @@
 
 /obj/item/defibrillator/civi
 	name = "emergency defibrillator"
-	desc = "A handheld emergency defibrillator, used to restore fibrillating patients. Can optionally bring people back from the dead. Appears to be a civillian model."
+	desc = "A handheld emergency defibrillator, used to resuscitate incapacitated patients. This one is a yellow civilian model."
 	icon_state = "civ_defib"
 	item_state = "defib"
 
@@ -383,5 +385,6 @@
 	if(istype(user) && istype(target))
 		defibrillate(target, user)
 
-/obj/item/defibrillator/gloves/update_icon_state()
-	return //The parent has some behaviour we don't want
+/obj/item/defibrillator/gloves/update_icon()
+	SHOULD_CALL_PARENT(FALSE)
+	return // We don't want the parent defibrillator's icon updates and overlays here
