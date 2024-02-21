@@ -177,10 +177,33 @@
 	dir = 1
 	},
 /area/shuttle/ert)
+"Q" = (
+/obj/structure/barricade/plasteel{
+	closed = 0;
+	density = 1;
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert)
+"R" = (
+/obj/structure/barricade/plasteel{
+	closed = 0;
+	density = 1
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert)
 "S" = (
 /turf/closed/shuttle/ert/engines/right{
 	dir = 1
 	},
+/area/shuttle/ert)
+"V" = (
+/obj/structure/barricade/plasteel{
+	closed = 0;
+	density = 1;
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert)
 "X" = (
 /turf/closed/shuttle/ert/engines/right/two{
@@ -212,11 +235,11 @@ O
 a
 e
 j
-g
+Q
 s
 s
 s
-g
+Q
 u
 y
 i
@@ -235,7 +258,7 @@ q
 v
 g
 D
-g
+R
 I
 "}
 (4,1,1) = {"
@@ -265,18 +288,18 @@ q
 w
 g
 E
-g
+R
 I
 "}
 (6,1,1) = {"
 a
 e
 n
-g
+V
 t
 t
 t
-g
+V
 u
 A
 o

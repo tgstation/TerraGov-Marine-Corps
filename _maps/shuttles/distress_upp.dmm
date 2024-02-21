@@ -161,6 +161,14 @@
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/upp)
+"J" = (
+/obj/structure/barricade/plasteel{
+	closed = 0;
+	density = 1;
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert/upp)
 "K" = (
 /turf/closed/shuttle/dropship_dark/backhatch,
 /area/shuttle/ert/upp)
@@ -188,6 +196,21 @@
 /turf/closed/shuttle/ert/engines/left/three{
 	dir = 1
 	},
+/area/shuttle/ert/upp)
+"R" = (
+/obj/structure/barricade/plasteel{
+	closed = 0;
+	density = 1
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert/upp)
+"U" = (
+/obj/structure/barricade/plasteel{
+	closed = 0;
+	density = 1;
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/upp)
 "V" = (
 /turf/closed/shuttle/ert/engines/right/three{
@@ -222,11 +245,11 @@ N
 a
 e
 j
-g
+U
 t
 t
 t
-g
+U
 x
 B
 W
@@ -245,7 +268,7 @@ q
 v
 g
 E
-g
+R
 I
 "}
 (4,1,1) = {"
@@ -275,18 +298,18 @@ q
 w
 g
 G
-g
+R
 I
 "}
 (6,1,1) = {"
 a
 e
 n
-g
+J
 u
 u
 u
-g
+J
 y
 D
 o
