@@ -278,7 +278,7 @@
 /obj/item/ammo_magazine/pistol/coin
 	name = "\improper Marksman Pistol magazine"
 	desc = "A marksman pistol magazine. This really shouldn't be outside..."
-	caliber = CALIBER_COIN
+	caliber = CALIBER_MARKSMAN_PISTOL
 	icon_state = "ukr-marksman"
 	icon_state_mini = "mag_pistol"
 	max_rounds = -1

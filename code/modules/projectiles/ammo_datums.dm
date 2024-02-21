@@ -497,6 +497,118 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	sundering = 1
 
+/obj/projectile/bullet/marksman/scan_moved_turf()
+	var/turf/cur_turf = get_turf(src) // check to see if we're passing over a turf with a coin on it
+	var/obj/projectile/bullet/coin/coin_check = cur_turf ? locate(/obj/projectile/bullet/coin) in cur_turf.contents : null
+
+	if(!coin_check || (ricoshot_level == 0 && get_dist(coin_check.target_turf, coin_check) >= 1) || coin_check.used) // no coin, keep trucking
+		return ..()
+
+	coin_check.check_splitshot(firer, src)
+	Impact(coin_check)
+
+/// Marksman Coin
+	/// Save the turf we're aiming for for future use
+	var/turf/target_turf
+	/// Coins are valid while within a tile of their target tile, and can only be directly ricoshot during this time.
+	var/valid = FALSE
+	/// When a coin has been activated, is is marked as used, so that it is taken out of consideration for any further ricochets
+	var/used = FALSE
+	/// When this coin is targeted with a valid splitshot, it creates this many child splitshots
+	var/num_of_splitshots = 2
+	/// The mob who originally flipped this coin, as a matter of convenience, may be able tto be removed
+	var/mob/original_firer
+
+/obj/projectile/bullet/coin/Initialize(mapload, turf/the_target, mob/original_firer)
+	src.original_firer = original_firer
+	target_turf = the_target
+	range = (get_dist(original_firer, target_turf) + 3) * 3 // 3 tiles past the origin (the *3 is because Range() ticks 3 times a tile because of the slower speed)
+
+	. = ..()
+
+	if(!istype(original_firer) || !original_firer.client)
+		return
+
+/obj/projectile/bullet/coin/Destroy()
+	return ..()
+
+// the coin must be on the target turf to be directly targetable
+/obj/projectile/bullet/coin/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
+	. = ..()
+	if(!valid && get_dist(loc, target_turf) < 1)
+		original_firer?.playsound_local(src, 'sound/machines/ping.ogg', 30)
+		valid = TRUE
+	else if(valid && get_dist(loc, target_turf) > 1)
+		valid = FALSE
+
+/// We've been shot by a marksman revolver shot, or the ricochet off another coin, check if we can actually ricochet. The forced var being TRUE means it's a ricochet from another coin
+/obj/projectile/bullet/coin/proc/check_splitshot(mob/living/shooter, obj/projectile/bullet/marksman/incoming_shot, forced = FALSE)
+	if(!forced && get_dist(src, target_turf) > 1)
+		return FALSE
+
+	used = TRUE
+	var/turf/cur_tur = get_turf(src)
+	cur_tur.visible_message(span_nicegreen("[incoming_shot] impacts [src] and splits!"))
+	iterate_splitshots(shooter, incoming_shot)
+	QDEL_IN(src, 0.25 SECONDS) // may not be needed
+
+/// Now we actually create all the splitshots, loop through however many splits we'll create and fire them
+/obj/projectile/bullet/coin/proc/iterate_splitshots(mob/living/shooter, obj/projectile/incoming_shot)
+	for(var/i in 1 to num_of_splitshots)
+		fire_splitshot(incoming_shot)
+
+/// Shoot an individual splitshot at a new target
+/obj/projectile/bullet/coin/proc/fire_splitshot(obj/projectile/bullet/marksman/incoming_shot)
+	var/atom/next_target = find_next_target()
+
+	ADD_TRAIT(next_target, RECENTLY_COINED_TRAIT, "[type]")
+	addtimer(TRAIT_CALLBACK_REMOVE(next_target, RECENTLY_COINED_TRAIT, "[type]"), 0.5 SECONDS)
+	var/outgoing_ricoshot_level = incoming_shot.ricoshot_level + 1
+	var/obj/projectile/bullet/marksman/new_splitshot = new /obj/projectile/bullet/marksman(get_turf(src), null, outgoing_ricoshot_level)
+	//Shooting Code:
+	new_splitshot.original = next_target
+	new_splitshot.fired_from = incoming_shot.fired_from
+	new_splitshot.firer = incoming_shot.firer
+	new_splitshot.damage = 2 * incoming_shot.damage
+
+	var/current_turf = get_turf(src)
+	var/target_turf = get_turf(next_target)
+
+	if(Adjacent(current_turf, target_turf))
+		new_splitshot.fire(get_angle(current_turf, target_turf), direct_target = next_target)
+	else
+		new_splitshot.preparePixelProjectile(next_target, get_turf(src))
+		new_splitshot.fire()
+
+	if(istype(next_target, /obj/projectile/bullet/coin)) // handle further splitshot checks
+		var/obj/projectile/bullet/coin/our_coin = next_target
+		our_coin.check_splitshot(incoming_shot.firer, new_splitshot, forced = TRUE)
+
+/// Find what the splitshots will want to target next, with the order roughly based off the UK coin
+/obj/projectile/bullet/coin/proc/find_next_target()
+	var/list/valid_targets = shuffle(oview(4, loc))
+	valid_targets -= firer
+
+	for(var/obj/projectile/bullet/coin/iter_coin in valid_targets)
+		if(!iter_coin.used) // this will prevent shooting itself as well
+			return iter_coin
+
+	var/list/mob/living/carbon/xenomorph/possible_victims = list()
+
+	for(var/mob/living/iter_living in valid_targets)
+		if(HAS_TRAIT(iter_living, RECENTLY_COINED_TRAIT) || iter_living.stat != CONSCIOUS)
+			continue
+
+		if(get_dist(src, iter_living) <= 2) // prioritize close mobs
+			return iter_living
+		possible_victims += iter_living
+
+	if(possible_victims.len)
+		return pick(possible_victims)
+
+	var/list/static/prioritized_targets = list(/mob/living/carbon/xenomorph, /mob/living/carbon/human)
+
+
 /*
 //================================================
 					Revolver Ammo

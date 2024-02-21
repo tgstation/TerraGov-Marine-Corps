@@ -799,7 +799,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	icon = 'icons/obj/items/guns/pistols64.dmi'
 	icon_state = "ukr-marksman"
 	item_state = "ukr-marksman"
-	caliber = CALIBER_COIN //codex
+	caliber = CALIBER_MARKSMAN_PISTOL //codex
 	max_shells = -1 //codex
 	fire_sound = 'sound/weapons/guns/fire/marksmanalt.ogg' //same bullets, same sound
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
@@ -824,3 +824,47 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	scatter_unwielded = 0
 	recoil = -2
 	recoil_unwielded = 2
+
+/obj/item/gun/pistol/coin_pistol/Initialize(mapload)
+	. = ..()
+	coin_count = max_coins
+
+/obj/item/gun/pistol/coin_pistol/examine(mob/user)
+	. = ..()
+	if(max_coins)
+		. += "It currently has [coin_count] out of [max_coins] coins, and takes [coin_regen_rate/10] seconds to recharge each one."
+	else
+		. += "It has infinite coins available for use."
+
+/obj/item/gun/pistol/coin_pistol/process(delta_time)
+	if(!max_coins || coin_count >= max_coins)
+		STOP_PROCESSING(SSobj, src)
+		return
+
+	if(COOLDOWN_FINISHED(src, coin_regen_cd))
+		if(ismob(loc))
+			var/mob/owner = loc
+			owner.playsound_local(owner, 'sound/machines/ding.ogg', 20)
+		coin_count++
+		COOLDOWN_START(src, cooldown_coin_toss, coin_recharge_rate)
+
+obj/item/weapon/gun/pistol/coin_pistol/proc/coin_toss()
+	if(!can_see(user, get_turf(target), length = 9))
+		return ..()
+
+	if(max_coins && coin_amount <= 0)
+		to_chat(user, span_warning("You don't have any more coins to toss."))
+		return COIN_TOSS_CANCEL
+
+	if(max_coins)
+		START_PROCESSING(SSobj, src)
+		coin_count = max(0, coin_count - 1)
+
+	var/turf/target_turf = get_offset_target_turf(target)
+	playsound(user.loc, 'sound/effects/cointoss.ogg', 50, TRUE)
+	user.visible_message(span_warning("[user] flips a coin towards [target]!"), span_danger("You flip a coin towards [target]!"))
+	var/obj/projectile/bullet/coin/new_coin = new(get_turf(user), target_turf, user)
+	new_coin.preparePixelProjectile(target_turf, user)
+	new_coin.fire()
+
+	return COIN_TOSS_CANCEL
