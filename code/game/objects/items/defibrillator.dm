@@ -179,7 +179,7 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's chest is obscured. Remove suit or armor and try again."))
 		return
 
-	// Unrevivable. No head or something.
+	// Unrevivable. NPC, missing a head, or something else. Also synthetics won't expire from this.
 	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE) && !issynth(H)) || H.suiciding)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's general condition does not allow revival."))
 		return
@@ -189,7 +189,7 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is missing intelligence patterns or has a DNR."))
 		return
 
-	// Moved out of their body.
+	// Moved out of their body. Or decapitated robots/synths.
 	if(!H.client)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's soul has departed. Please try again."))
 		return
@@ -222,7 +222,7 @@
 	defib_heal_amt *= skill * 0.5 //more healing power when used by a doctor (this means non-trained don't heal)
 
 	var/mob/dead/observer/G = H.get_ghost()
-	if(G && H.stat == DEAD)
+	if(G)
 		notify_ghost(G, span_bigdeadsay("<b>Your heart is being defibrillated!</b>"), ghost_sound = 'sound/effects/gladosmarinerevive.ogg')
 		G.reenter_corpse()
 
