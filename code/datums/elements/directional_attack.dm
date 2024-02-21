@@ -27,6 +27,9 @@
 	if(!(source?.client?.prefs?.toggles_gameplay & DIRECTIONAL_ATTACKS))
 		return
 
+	if(QDELETED(clicked_atom))
+		return
+
 	var/turf/turf_to_check = get_step(source, angle_to_dir(Get_Angle(source, clicked_atom)))
 	if(!turf_to_check)
 		return
