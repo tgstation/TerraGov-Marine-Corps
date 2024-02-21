@@ -103,6 +103,10 @@
 /turf/open/floor/light,
 /area/shuttle/ert)
 "x" = (
+/obj/structure/barricade/plasteel{
+	closed = 0;
+	density = 1
+	},
 /turf/open/floor/podhatch/floor,
 /area/shuttle/ert)
 "y" = (
