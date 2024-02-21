@@ -1090,5 +1090,3 @@
 
 #define COMSIG_CAVE_INTERFERENCE_CHECK "cave_interference_check" //! Cave comms interference check signal.
 
-// signal sent when a special resin wall is destroyed
-#define COMSIG_SPECIAL_RESIN_DESTROY
