@@ -179,6 +179,12 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's chest is obscured. Remove suit or armor and try again."))
 		return
 
+	if(H.species.species_flags & DETACHABLE_HEAD)
+		var/datum/limb/head/braincase = H.get_limb("head")
+		if(braincase.limb_status & LIMB_DESTROYED)
+			user.visible_message("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is missing their head. Reattach and try again.")
+			return
+
 	// Unrevivable. NPC, missing a head, or something else. Also synthetics won't expire from this.
 	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE) && !issynth(H)) || H.suiciding)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's general condition does not allow revival."))
