@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "Custom squads will now automatically pick the first most unused letter in the name: (e.g cool squad will be .o because .c is taken by charlie by default) the key can be found by examining your headset. people in the squad still have to use ; because im lazy and didnt fix it"
