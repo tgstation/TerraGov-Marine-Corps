@@ -97,13 +97,13 @@
 	charge_amount = 1
 	charge_delay = 3 SECONDS
 	self_recharge = TRUE
-	flags_ammo_behavior = AMMO_SPECIAL_PROCESS|AMMO_LEAVE_TURF
 
 /datum/ammo/bullet/coin ///the coin that gets fired from the coin launcher
 	name = "marksman coin"
 	icon_state = "plasma" //placeholder
 	shell_speed = 0.1
 	damage = 5
+	flags_ammo_behavior = AMMO_SPECIAL_PROCESS|AMMO_LEAVE_TURF
 
 	/// When a coin has been activated, is is marked as used, so that it is taken out of consideration for any further ricochets
 	var/used = FALSE
@@ -113,17 +113,36 @@
 
 	var/entered_turf = get_turf(proj)
 	RegisterSignal(entered_turf, COMSIG_TURF_PROJECTILE_MANIPULATED, PROC_REF(handle_bounce))
-	ADD_TRAIT(entered_turf, TRAIT_TURF_BULLET_MANIPULATION, src)
+	ADD_TRAIT(entered_turf, TRAIT_TURF_BULLET_MANIPULATION, REF(src))
 
 /datum/ammo/bullet/coin/on_leave_turf(turf/T, atom/firer, obj/projectile/proj)
 	. = ..()
 	UnregisterSignal(T, list(COMSIG_TURF_PROJECTILE_MANIPULATED))
-	REMOVE_TRAIT(T, TRAIT_TURF_BULLET_MANIPULATION, src)
+	REMOVE_TRAIT(T, TRAIT_TURF_BULLET_MANIPULATION, REF(src))
 
 ///Reflects the laser projectile from the marksman revolver bouncing off of src
 /datum/ammo/bullet/coin/proc/handle_bounce(datum/source, obj/projectile/bullet)
 	SIGNAL_HANDLER
-	bullet.reflect()
+
+	var/perpendicular_angle = Get_Angle(get_turf(src), get_step(src, dir)) //the angle src is facing, get_turf because pixel_x or y messes with the angle
+	bullet.distance_travelled = 0 //we're effectively firing it fresh
+	var/new_angle = (perpendicular_angle + (perpendicular_angle - bullet.dir_angle - 180))
+	if(new_angle < 0)
+		new_angle += 360
+	else if(new_angle > 360)
+		new_angle -= 360
+	bullet.firer = src
+	bullet.fire_at(shooter = src, source = src, angle = new_angle, recursivity = TRUE)
+
+
+
+
+
+
+
+
+
+
 	//if(line_of_sight()) //Another coin is nearby, direct the laser to it
 
 
