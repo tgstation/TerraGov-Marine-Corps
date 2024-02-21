@@ -60,8 +60,8 @@
 	accuracy_mult = 1.25
 	pixel_shift_x = 18
 	pixel_shift_y = 16
-	default_ammo_type = /obj/item/cell/coin_launcher
-	allowed_ammo_types = list(/obj/item/cell/coin_launcher)
+	default_ammo_type = /obj/item/cell/lasgun/coin_launcher
+	allowed_ammo_types = list(/obj/item/cell/lasgun/coin_launcher)
 	max_rounds = 4
 	rounds_per_shot = 1
 	ammo_datum_type = /datum/ammo/bullet/coin
@@ -87,9 +87,13 @@
 	penetration = 20
 	sundering = 1
 
+///Whenever a coin is hit, we bounce off of it and gain damage
+/datum/ammo/bullet/pistol/coin_bullet/proc/on_hit_coin(datum/source)
+	damage = damage * 2
+
 //-------------------------------------------------------
 // Coin launcher magazine (It's a cell because it works via charge)
-/obj/item/cell/coin_launcher
+/obj/item/cell/lasgun/coin_launcher
 	name = "\improper Marksman Pistol magazine"
 	desc = "A marksman pistol magazine. This really shouldn't be outside..."
 	w_class = WEIGHT_CLASS_SMALL
@@ -105,43 +109,44 @@
 	damage = 5
 	flags_ammo_behavior = AMMO_SPECIAL_PROCESS|AMMO_LEAVE_TURF
 
-	/// When a coin has been activated, is is marked as used, so that it is taken out of consideration for any further ricochets
-	var/used = FALSE
-
 /datum/ammo/bullet/coin/ammo_process(obj/projectile/proj, damage)
-	. = ..()
-
-	var/entered_turf = get_turf(proj)
+	var/turf/entered_turf = get_turf(proj)
 	RegisterSignal(entered_turf, COMSIG_TURF_PROJECTILE_MANIPULATED, PROC_REF(handle_bounce))
 	ADD_TRAIT(entered_turf, TRAIT_TURF_BULLET_MANIPULATION, REF(src))
 
-/datum/ammo/bullet/coin/on_leave_turf(turf/T, atom/firer, obj/projectile/proj)
+/datum/ammo/bullet/coin/on_leave_turf(turf/current_turf, atom/firer, obj/projectile/proj)
 	. = ..()
-	UnregisterSignal(T, list(COMSIG_TURF_PROJECTILE_MANIPULATED))
-	REMOVE_TRAIT(T, TRAIT_TURF_BULLET_MANIPULATION, REF(src))
+	UnregisterSignal(current_turf, list(COMSIG_TURF_PROJECTILE_MANIPULATED))
+	REMOVE_TRAIT(current_turf, TRAIT_TURF_BULLET_MANIPULATION, REF(src))
+
+/datum/ammo/bullet/coin/Destroy(force, ...)
+	var/turf/current_turf = locate(src)
+	UnregisterSignal(current_turf, list(COMSIG_TURF_PROJECTILE_MANIPULATED))
+	REMOVE_TRAIT(current_turf, TRAIT_TURF_BULLET_MANIPULATION, REF(src))
+	return ..()
+
+///When the coin is shot by a bullet, it gets destroyed
+/datum/ammo/bullet/coin/proc/coin_on_hit(datum/source)
+	qdel(src)
+
+///Finds our next target, if nothing gets targetted, the projectile will bounce in a random direction
+/datum/ammo/bullet/coin/proc/find_next_shot(datum/source)
+	var/list/valid_targets = oview(4, source)
+	return FALSE
 
 ///Reflects the laser projectile from the marksman revolver bouncing off of src
 /datum/ammo/bullet/coin/proc/handle_bounce(datum/source, obj/projectile/bullet)
 	SIGNAL_HANDLER
 
-	var/perpendicular_angle = Get_Angle(get_turf(src), get_step(src, dir)) //the angle src is facing, get_turf because pixel_x or y messes with the angle
-	bullet.distance_travelled = 0 //we're effectively firing it fresh
-	var/new_angle = (perpendicular_angle + (perpendicular_angle - bullet.dir_angle - 180))
-	if(new_angle < 0)
-		new_angle += 360
-	else if(new_angle > 360)
-		new_angle -= 360
-	bullet.firer = src
-	bullet.fire_at(shooter = src, source = src, angle = new_angle, recursivity = TRUE)
+	if(find_next_shot(source))
 
-
-
-
-
-
-
-
-
+	else
+		//If there's no hostiles nearby, and no other coins, we just bounce in some random ass direction
+		var/bounce_angle = rand(1,360)
+		INVOKE_ASYNC(bullet, TYPE_PROC_REF(/datum/ammo/bullet/pistol/coin_bullet, on_hit_coin), source)
+		bullet.firer = src
+		bullet.fire_at(shooter = source, source = src, angle = bounce_angle, recursivity = TRUE)
+		INVOKE_ASYNC(src, PROC_REF(coin_on_hit), source)
 
 	//if(line_of_sight()) //Another coin is nearby, direct the laser to it
 
