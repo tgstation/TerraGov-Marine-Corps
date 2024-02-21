@@ -335,3 +335,19 @@
   blackdav123:
   - balance: Reinforced the external walls of two buildings on Magmoor.
   - balance: Preweeded Gelida IV and added a tunnel.
+2024-02-20:
+  blackdav123:
+  - rscadd: A set of vendors near the Alamo on Sulaco.
+2024-02-21:
+  TiviPlus:
+  - bugfix: Fixes custom squad tablets not working
+  - bugfix: Fix Main console not being able to overwatch custom squads
+  - bugfix: fixed headsets being invisible if you spawned them while in a custom squad
+  - bugfix: 'Custom squads will now automatically pick the first most unused letter
+      in the name: (e.g cool squad will be .o because .c is taken by charlie by default)
+      the key can be found by examining your headset. people in the squad still have
+      to use ; because im lazy and didnt fix it'
+  XElectricX:
+  - bugfix: Fix interactive emotes
+  ivanmixo:
+  - bugfix: Nulls in the global client list shouldnt be as common anymore

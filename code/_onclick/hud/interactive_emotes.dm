@@ -1,17 +1,16 @@
 ///All in one function to begin interactions
 /mob/proc/interaction_emote(mob/target)
-	var/atom/movable/screen/interaction/interaction
-	if(can_interact(target))
-		switch(zone_selected)
-			if(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
-				if(isxeno(target) && isxeno(src))	//Benos don't high five each other, they slap tails!
-					interaction = /atom/movable/screen/interaction/fist_bump
-				else
-					interaction = /atom/movable/screen/interaction
-			if(BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
-				interaction = /atom/movable/screen/interaction/fist_bump
-			if(BODY_ZONE_HEAD)
-				interaction = /atom/movable/screen/interaction/headbutt
+	if(!target || target == src)
+		return FALSE
+
+	var/list/interactions_list = list("Headbutt" = /atom/movable/screen/interaction/headbutt)	//Universal interactions
+	if(isxeno(src))	//Benos don't high five each other, they slap tails! A beno cannot initiate a high five, but can recieve one if prompted by a human
+		interactions_list["Tail Slap"] = /atom/movable/screen/interaction/fist_bump
+	else
+		interactions_list["High Five"] = /atom/movable/screen/interaction
+		interactions_list["Fist Bump"] = /atom/movable/screen/interaction/fist_bump
+
+	var/atom/movable/screen/interaction/interaction = interactions_list[tgui_input_list(src, "Select an interaction type", "Interactive Emotes", interactions_list)]
 
 	if(!interaction)
 		return FALSE
@@ -26,7 +25,7 @@
 	interaction.owner = target
 	interaction.initiator = src
 	interaction.register_movement_signals()
-	LAZYADD(queued_interactions, interaction)
+	LAZYADD(target.queued_interactions, interaction)
 
 	if(target.client && target.hud_used)
 		target.hud_used.update_interactive_emotes()
@@ -265,7 +264,7 @@
 	viewer.client.screen |= interaction
 	return TRUE
 
-//If anyone wants to add more interactions, here is an easy test item to use, just be sure to comment out any can_interact checks and to use the target mob's zone_selected
+//If anyone wants to add more interactions, here is an easy test item to use, just be sure to comment out any can_interact checks and to use the target tgui input list
 /obj/item/interaction_tester
 	name = "interaction tester"
 	icon_state = "coin"

@@ -300,8 +300,8 @@
 
 	priority_announce(
 		title = "High Command Update",
-		subtitle = "Good morning, marines.",
-		message = "Cryosleep disengaged by TGMC High Command.<br><br>ATTN: [SSmapping.configs[SHIP_MAP].map_name].<br>[SSmapping.configs[GROUND_MAP].announce_text]",
+		subtitle = "Good morning, operatives.",
+		message = "Cryosleep disengaged by NTF High Command.<br><br>ATTN: [SSmapping.configs[SHIP_MAP].map_name].<br>[SSmapping.configs[GROUND_MAP].announce_text]",
 		color_override = "red"
 	)
 
