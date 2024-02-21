@@ -19,10 +19,8 @@
 	var/damage_threshold = 8
 	/// The charge cost of this defibrillator
 	var/charge_cost = 66
-	/// The cooldown for *toggling* this defibrillator
+	/// The cooldown for toggling and shocking someone this defibrillator
 	var/defib_cooldown = 0
-	/// The cooldown for *using* this defibrillator (on someone)
-	var/shock_cooldown = 0
 	var/obj/item/cell/dcell = null
 	var/datum/effect_system/spark_spread/sparks
 
@@ -49,9 +47,9 @@
 	return ..()
 
 
-/obj/item/defibrillator/update_icon_state()
+/obj/item/defibrillator/update_icon()
+	. = ..()
 	icon_state = initial(icon_state)
-	overlays.Cut()
 
 	if(ready)
 		icon_state += "_out"
@@ -72,12 +70,23 @@
 
 /obj/item/defibrillator/examine(mob/user)
 	. = ..()
-	var/maxuses = 0
-	var/currentuses = 0
-	maxuses = round(dcell.maxcharge / charge_cost)
-	currentuses = round(dcell.charge / charge_cost)
-	. += span_info("It has <b>[currentuses]</b> out of <b>[maxuses]</b> uses left in its internal battery.")
+	. += span_info("It has <b>[round(dcell.charge / charge_cost)]</b> out of <b>[round(dcell.maxcharge  / charge_cost)]</b> uses left in its internal battery.")
+	. += maybe_message_recharge_hint()
 
+
+/obj/item/defibrillator/proc/maybe_message_recharge_hint(mob/living/carbon/human/user)
+	if(!dcell)
+		return
+
+	var/message
+	if(dcell.charge < charge_cost)
+		message = "The battery is empty."
+	else if(round(dcell.charge * 100 / dcell.maxcharge) <= 33)
+		message = "The battery is low."
+
+	if(!message)
+		return
+	return span_info("[message] You can click-drag this defibrillator on a corpsman backpack to recharge it.")
 
 /obj/item/defibrillator/attack_self(mob/living/carbon/human/user)
 	if(!ready_needed)
@@ -85,6 +94,7 @@
 	if(!istype(user))
 		return
 	if(defib_cooldown > world.time)
+		to_chat(user, span_warning("You've used [src] too recently!"))
 		return
 
 	//Job knowledge requirement
@@ -95,7 +105,7 @@
 		if(!do_after(user, SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * skill), NONE, src, BUSY_ICON_UNSKILLED)) // 3 seconds with medical skill, 5 without
 			return
 
-	defib_cooldown = world.time + 1 SECONDS
+	defib_cooldown = world.time + 2 SECONDS
 	ready = !ready
 	user.visible_message(span_notice("[user] turns [src] [ready? "on and opens the cover" : "off and closes the cover"]."),
 	span_notice("You turn [src] [ready? "on and open the cover" : "off and close the cover"]."))
@@ -151,7 +161,7 @@
 /obj/item/defibrillator/proc/check_revive(mob/living/carbon/human/H, mob/living/carbon/human/user)
 	// The patient is a xenomorph
 	if(!ishuman(H))
-		to_chat(user, span_warning("You can't defibrilate [H]. You don't even know where to put the paddles!"))
+		to_chat(user, span_warning("You can't defibrillate [H]. You don't even know where to put the paddles!"))
 		return
 
 	// Defibrillator isn't active
@@ -195,7 +205,7 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is missing intelligence patterns or has a DNR."))
 		return
 
-	// Moved out of their body. Or decapitated robots/synths.
+	// Moved out of their body.
 	if(!H.client)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's soul has departed. Please try again."))
 		return
@@ -208,11 +218,11 @@
 		to_chat(user, span_warning("You're too busy to defibrillate [H]!"))
 		return
 
-	if(shock_cooldown > world.time) // Shocking has been made a separate cooldown so you can immediately shock after turning it on.
-		to_chat(user, span_warning("The defibrillator is recharging!"))
+	if(defib_cooldown > world.time)
+		to_chat(user, span_warning("You've used [src] too recently!"))
 		return
 
-	shock_cooldown = world.time + 1 SECONDS
+	defib_cooldown = world.time + 2 SECONDS
 
 	var/defib_heal_amt = damage_threshold
 
@@ -257,9 +267,13 @@
 	user.visible_message(span_notice("[user] shocks [H] with the paddles."),
 	span_notice("You shock [H] with the paddles."))
 	H.visible_message(span_danger("[H]'s body convulses a bit."))
-	shock_cooldown = world.time + 20 //2 second cooldown before you can shock again
+	defib_cooldown = world.time + 2 SECONDS //2 second cooldown before you can try again
 
-	if(!check_revive(H, user))
+	var/datum/internal_organ/heart/heart = H.internal_organs_by_name["heart"]
+	if(!issynth(H) && !isrobot(H) && heart && prob(25))
+		heart.take_damage(5) //Allow the defibrillator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
+
+	if(!check_revive(H, user)) // Extra check incase they perma mid defib?
 		return
 
 	//At this point, the defibrillator is ready to work
