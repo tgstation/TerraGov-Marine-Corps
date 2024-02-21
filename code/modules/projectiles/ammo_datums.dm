@@ -490,17 +490,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/pistol/coin_bullet
 	name = "marksman pistol bullet"
+	flags_ammo_behavior = AMMO_HITSCAN
 	accuracy = 10
 	damage = 20
 	accurate_range = 10
 	penetration = 20
 	sundering = 1
 
-/datum/ammo/bullet/pistol/coin_bullet/on_hit_obj(obj/item/coin, obj/projectile/P)
-	if(!iscoin)
-	playsound(proj, sound(get_sfx("coin_ricochet")))
-	ricochet()
-		return
 /*
 //================================================
 					Revolver Ammo

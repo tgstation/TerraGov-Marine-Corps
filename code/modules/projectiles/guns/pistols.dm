@@ -797,11 +797,11 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	name = "\improper Marksman Pistol"
 	desc = "The Marksman Pistol is a prototype gun that has subpar damage but comes with a set of coins that can be shot to ricochet bullets right into enemy weakpoints and potentially double it's damage."
 	icon = 'icons/obj/items/guns/pistols64.dmi'
-	icon_state = "sp13"
-	item_state = "sp13"
+	icon_state = "ukr-marksman"
+	item_state = "ukr-marksman"
 	caliber = CALIBER_COIN //codex
 	max_shells = -1 //codex
-	fire_sound = 'sound/weapons/guns/fire/tp14.ogg' //same bullets, same sound
+	fire_sound = 'sound/weapons/guns/fire/marksmanalt.ogg' //same bullets, same sound
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/coin
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/coin)
@@ -811,7 +811,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 
 	flags_gun_features = GUN_IFF|GUN_SMOKE_PARTICLES|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = SKILL_SMARTGUN
-	actions_types = list() // Inherits aimmode, but has IFF so..
+	actions_types = list()
 
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
 

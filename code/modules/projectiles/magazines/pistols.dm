@@ -279,7 +279,7 @@
 	name = "\improper Marksman Pistol magazine"
 	desc = "A marksman pistol magazine. This really shouldn't be outside..."
 	caliber = CALIBER_COIN
-	icon_state = "tp14"
+	icon_state = "ukr-marksman"
 	icon_state_mini = "mag_pistol"
 	max_rounds = -1
 	w_class = WEIGHT_CLASS_SMALL
