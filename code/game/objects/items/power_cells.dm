@@ -13,14 +13,22 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	var/charge = 0	// note %age conveted to actual charge in New
+	/// note %age conveted to actual charge in New
+	var/charge = 0
+	/// Maximum amount of charge the cell can hold
 	var/maxcharge = 1000
-	var/rigged = 0		// true if rigged to explode
-	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
-	var/self_recharge = FALSE // If true, the cell will recharge itself.
-	var/charge_amount = 25 // How much power to give, if self_recharge is true.  The number is in absolute cell charge, as it gets divided by CELLRATE later.
-	var/last_use = 0 // A tracker for use in self-charging
-	var/charge_delay = 0 // How long it takes for the cell to start recharging after last use
+	/// true if rigged to explode
+	var/rigged = 0
+	///If not 100% reliable, it will build up faults.
+	var/minor_fault = 0
+	/// If true, the cell will recharge itself.
+	var/self_recharge = FALSE
+	/// How much power to give, if self_recharge is true.  The number is in absolute cell charge, as it gets divided by CELLRATE later.
+	var/charge_amount = 25
+	/// A tracker for use in self-charging
+	var/last_use = 0
+	/// How long it takes for the cell to start recharging after last use
+	var/charge_delay = 0
 	///used to track what set of overlays to use to display charge level
 	var/charge_overlay = "cell"
 
