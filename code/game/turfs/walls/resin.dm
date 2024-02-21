@@ -203,3 +203,42 @@
 /* Hivelord walls, they start off stronger */
 /turf/closed/wall/resin/regenerating/thick
 	max_integrity = 250
+
+/turf/closed/wall/resin/regenerating/special
+	name = "you shouldn't see this"
+	var/hivenumber = null //set in abilities.dm
+
+/turf/closed/wall/resin/regenerating/special/dismantle_wall(devastated = 0, explode = 0)
+	GLOB.hive_datums[hivenumber].special_build_points++
+	ScrapeAway()
+
+/turf/closed/wall/resin/regenerating/special/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return
+	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
+	span_xenonotice("We start to tear down \the [src]."))
+	if(!do_after(X, 1 SECONDS, NONE, X, BUSY_ICON_GENERIC))
+		return
+	if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the wall already gone
+		return
+	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	X.visible_message(span_xenonotice("\The [X] tears down \the [src]!"), \
+	span_xenonotice("We tear down \the [src]."))
+	playsound(src, "alien_resin_break", 25)
+	take_damage(max_integrity) // Ensure its destroyed
+
+/turf/closed/wall/resin/regenerating/special/reflective
+	name = "reflective resin wall"
+	desc = "Weird slime solidified into a wall. Looks shiny."
+	soft_armor = list(MELEE = 0, BULLET = 200, LASER = 200, ENERGY = 200, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0) //You aren't damaging this with bullets.
+	color = "#ed99f6"
+
+/turf/closed/wall/resin/regenerating/special/reflective/bullet_act(obj/projectile/proj)
+	. = ..()
+	proj.ammo.reflect(src, proj, 0)
+
+/turf/closed/wall/resin/regenerating/special/fireproof
+	name = "fireproof resin wall"
+	desc = "Weird slime solidified into a wall. Very red."
+	soft_armor = list(MELEE = 0, BULLET = 70, LASER = 60, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 200, ACID = 0)
+	color = "#ff696e"

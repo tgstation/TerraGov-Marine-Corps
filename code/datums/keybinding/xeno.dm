@@ -47,6 +47,12 @@
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 	hotkey_keys = list("R")
 
+/datum/keybinding/xeno/secrete_special_resin
+	name = "secrete_special_resin"
+	full name = "Secrete Special Resin"
+	description = "Builds whatever special resin you have selected."
+	keybind_signal = COMSIG_XENOABILITY_SECRETE_SPECIAL_RESIN
+	hotkey_keys = list("ShiftR")
 /datum/keybinding/xeno/recycle
 	name = "Recycle"
 	full_name = "Recycle xenomorph"
