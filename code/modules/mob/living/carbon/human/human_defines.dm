@@ -94,6 +94,11 @@
 	///How long the human is dead, in life ticks, which is 2 seconds
 	var/dead_ticks = 0
 
+	// Brute Revive Threshold with a defibrillator
+	var/brute_revive_threshold = 180
+	// Burn Revive Threshold with a defibrillator
+	var/burn_revive_threshold = 180
+
 	var/holo_card_color = "" //which color type of holocard is printed on us
 
 	var/list/limbs = list()
@@ -134,3 +139,81 @@
 /mob/living/carbon/human/proc/copy_clothing_prefs(mob/living/carbon/human/destination)
 	destination.underwear = underwear
 	destination.undershirt = undershirt
+
+///is this mob under their death threshold
+/mob/living/carbon/human/proc/can_be_revived()
+	if(health <= health_threshold_dead)
+		return FALSE
+	return TRUE
+
+/// Proc to check for a mob's ghost.
+/mob/living/proc/get_ghost()
+	if(client) //Let's call up the correct ghost!
+		return null
+	for(var/mob/dead/observer/ghost AS in GLOB.observer_list)
+		if(!ghost) //Observers hard del often so lets just be safe
+			continue
+		if(isnull(ghost.can_reenter_corpse))
+			continue
+		if(ghost.can_reenter_corpse.resolve() != src)
+			continue
+		if(ghost.client)
+			return ghost
+	return null
+
+/**
+ * Proc to check if a human has the required organs to sustain life.
+ *
+ * Returns false if this human is missing a heart, their current heart is broken, or they have no brain
+ *
+ * Returns true otherwise
+ */
+/mob/living/carbon/human/proc/has_working_organs()
+	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
+
+	if(!heart || heart.organ_status == ORGAN_BROKEN || !has_brain())
+		return FALSE
+
+	return TRUE
+
+/**
+ * proc that resuscitates a human, separated because it's better this way
+ *
+ * intended to be called by defibrillators
+ *
+ */
+/mob/living/carbon/human/proc/resuscitate()
+	updatehealth() // so they don't die instantly
+	if(stat == DEAD && can_be_revived())
+		set_stat(UNCONSCIOUS)
+		emote("gasp")
+		chestburst = 0 // reset this so we don't have someone walk around with a hole in their chest (lol)
+		regenerate_icons()
+		reload_fullscreens()
+		flash_act()
+		apply_effect(10, EYE_BLUR)
+		apply_effect(20 SECONDS, PARALYZE)
+		handle_regular_hud_updates()
+		updatehealth() // do this ONE LAST TIME for extra cleanup.
+		REMOVE_TRAIT(src, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+		dead_ticks = 0 // reset DNR timer
+
+///Checks brute/fire damage, heart status, having a head, death ticks and client for defibrillation
+/mob/living/carbon/human/proc/check_defib()
+	if((getBruteLoss() >= brute_revive_threshold) || (getFireLoss() >= burn_revive_threshold))
+		return DEFIB_FAIL_TISSUE_DAMAGE
+
+	if(!has_working_organs() && !(species.species_flags & ROBOTIC_LIMBS)) // Ya organs dpmt wprl
+		return DEFIB_FAIL_BAD_ORGANS
+
+	var/datum/limb/head/head = get_limb("head")
+	if(head.limb_status & LIMB_DESTROYED)
+		return DEFIB_FAIL_DECAPITATED
+
+	if((dead_ticks > TIME_BEFORE_DNR) && !issynth(src)) // synthetics never expire
+		return DEFIB_FAIL_BRAINDEAD
+
+	if(!client) // no client at all
+		return DEFIB_FAIL_CLIENT_MISSING
+
+	return DEFIB_POSSIBLE

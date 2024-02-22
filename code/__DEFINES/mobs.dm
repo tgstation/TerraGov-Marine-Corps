@@ -27,6 +27,19 @@
 #define NUTRITION_OVERFED 450
 
 //=================================================
+
+///////////////////Defibrillation///////////////////
+
+// Defibrillation outcomes. used in human_defines.dm
+#define DEFIB_POSSIBLE (1<<0)
+#define DEFIB_FAIL_TISSUE_DAMAGE (1<<1)
+#define DEFIB_FAIL_BAD_ORGANS (1<<2)
+#define DEFIB_FAIL_DECAPITATED (1<<3)
+#define DEFIB_FAIL_BRAINDEAD (1<<4)
+#define DEFIB_FAIL_CLIENT_MISSING (1<<5)
+//=================================================
+
+//=================================================
 /*
 	Germs and infections
 */

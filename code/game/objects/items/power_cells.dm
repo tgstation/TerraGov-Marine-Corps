@@ -144,3 +144,7 @@
 	name = "large radiotope cell"
 	maxcharge = 1500
 	charge_amount = 50
+
+/obj/item/cell/defibrillator
+	name = "defibrillator power cell"
+	maxcharge = 1320
