@@ -193,7 +193,7 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(target.stat == DEAD)
 		return
-	owner_xeno.gain_plasma(floor(damage * 1.1))
+	owner_xeno.gain_plasma(floor(damage / 0.9))
 
 // ***************************************
 // *********** Stitch Puppet
