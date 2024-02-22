@@ -450,9 +450,9 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SECRETE_SPECIAL_RESIN,
 	)
-	///Minimum time to build a resin structure
-	var/base_wait = 1 SECONDS
-	///Multiplicator factor to add to the building time, depends on the health of the structure built
+	///Minimum time to build a special resin structure
+	var/base_wait = 2 SECONDS
+	///Multiplicator factor to add to the building time, depends on the health of builder.
 	var/scaling_wait = 1 SECONDS
 	///List of buildable structures. Order corresponds with resin_special_images_list.
 	var/list/buildable_special_structures = list(
@@ -521,12 +521,7 @@
 		return
 	var/mob/living/carbon/xenomorph/X = owner
 
-	var/build_resin_modifier = 1
-	switch(X.selected_resin)
-		if(/obj/alien/resin/sticky)
-			build_resin_modifier = 0.5
-
-	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * build_resin_modifier
+	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth)))
 
 /datum/action/ability/activable/xeno/secrete_special_resin/proc/build_special_resin(turf/T)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -603,9 +598,6 @@
 		add_cooldown(SSmonitor.gamestate == SHUTTERS_CLOSED ? get_cooldown()/2 : get_cooldown())
 		succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? ability_cost/2 : ability_cost)
 		GLOB.hive_datums[owner.get_xeno_hivenumber()].special_build_points--
-		if(isturf(new_resin))
-			var/turf/closed/wall/resin/regenerating/special/new_wall = new_resin
-			new_wall.hivenumber = owner.get_xeno_hivenumber()
 	ability_cost = initial(ability_cost) //Reset the plasma cost
 	owner.record_structures_built()
 

@@ -206,11 +206,6 @@
 
 /turf/closed/wall/resin/regenerating/special
 	name = "you shouldn't see this"
-	var/hivenumber = null //set in abilities.dm
-
-/turf/closed/wall/resin/regenerating/special/dismantle_wall(devastated = 0, explode = 0)
-	GLOB.hive_datums[hivenumber].special_build_points++
-	ScrapeAway()
 
 /turf/closed/wall/resin/regenerating/special/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
