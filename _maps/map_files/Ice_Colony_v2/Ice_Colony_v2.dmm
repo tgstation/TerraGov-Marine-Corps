@@ -21354,10 +21354,6 @@
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
-"hqp" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/ice_colony/exterior/surface/valley/southeast)
 "hqr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -23397,10 +23393,6 @@
 	dir = 8
 	},
 /area/ice_colony/underground/requesition)
-"kqC" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/valley/south)
 "kqN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -24972,10 +24964,6 @@
 /obj/item/lightstick/anchored,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/landing_pad2)
-"mxl" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/ice_colony/exterior/surface/clearing/south)
 "mxE" = (
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/landing_pad_external)
@@ -31794,10 +31782,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/ice_colony/underground/westroadtunnel)
-"vGy" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/ice_colony/exterior/surface/valley/north)
 "vGO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -49100,7 +49084,7 @@ xJX
 hKV
 vCr
 eAl
-kqC
+eAl
 bVW
 eAl
 eAl
@@ -54808,7 +54792,7 @@ aKC
 aKC
 vPZ
 aXE
-mxl
+aKC
 aKC
 aKC
 exj
@@ -59626,7 +59610,7 @@ nsF
 nsF
 nsF
 wkf
-mTO
+wkf
 wkf
 wkf
 hlm
@@ -60427,7 +60411,7 @@ uSg
 uSg
 hKV
 fIm
-vGy
+fIm
 fIm
 fIm
 fIm
@@ -67441,7 +67425,7 @@ wkf
 xCs
 wkf
 mqj
-jPw
+mqj
 wkf
 wkf
 xCs
@@ -70255,7 +70239,7 @@ fIR
 uXx
 xnK
 uUO
-hqp
+xnK
 xnK
 sZv
 sZv
@@ -70653,7 +70637,7 @@ xnK
 xnK
 pdQ
 sZv
-hqp
+xnK
 oYT
 bqg
 xnK
@@ -71899,7 +71883,7 @@ aiX
 aiX
 wkf
 wkf
-wkf
+mTO
 cZy
 nsF
 wkf
