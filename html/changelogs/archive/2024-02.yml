@@ -351,3 +351,17 @@
   - bugfix: Fix interactive emotes
   ivanmixo:
   - bugfix: Nulls in the global client list shouldnt be as common anymore
+2024-02-22:
+  Lumipharon:
+  - bugfix: fixed heightened stamina skill not properly lowering the stam regen delay
+  - bugfix: 'Campaign: Fixed an issue with some perks unlocking items incorrectly'
+  - balance: 'Campaign: Advanced firearm training perk reduced to 400 credits'
+  - balance: 'Campaign: Advanced construction and medical training reduced to 300
+      credits and increase skill by 2'
+  Naaanii:
+  - balance: Increases hunter speed to -1.5
+  - balance: Essence link (Drone), Create Jelly (Drone and Hivelord), Place Jelly
+      Pod (Hivelord), Place Resin trap (Carrier), Create Spiderling (Widow), Acid
+      well placement (several castes) can be used while resting.
+  blackdav123:
+  - balance: ' Removed 7 phoron miners from Ice Colony, Added 1.'
