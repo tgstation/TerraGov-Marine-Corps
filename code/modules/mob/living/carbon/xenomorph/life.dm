@@ -120,18 +120,18 @@
 
 	if(current_aura)
 		if(plasma_stored < pheromone_cost)
-			use_plasma(plasma_stored)
+			use_plasma(plasma_stored, FALSE)
 			QDEL_NULL(current_aura)
 			src.balloon_alert(src, "Stop emitting, no plasma")
 		else
-			use_plasma(pheromone_cost)
+			use_plasma(pheromone_cost, FALSE)
 
 	if(HAS_TRAIT(src, TRAIT_NOPLASMAREGEN))
 		hud_set_plasma()
 		return
 
 	if(!loc_weeds_type && !(xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
-		hud_set_plasma() // since we used some plasma via the aura
+		hud_set_plasma()
 		return
 
 	var/plasma_gain = xeno_caste.plasma_gain
@@ -145,8 +145,8 @@
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod)
 
-	gain_plasma(plasma_mod[1])
-	hud_set_plasma() //update plasma amount on the plasma mob_hud
+	gain_plasma(plasma_mod[1], FALSE)
+	hud_set_plasma()
 
 /mob/living/carbon/xenomorph/can_receive_aura(aura_type, atom/source, datum/aura_bearer/bearer)
 	. = ..()
