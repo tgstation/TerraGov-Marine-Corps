@@ -557,7 +557,7 @@
 	foundbarricade.wire()
 
 /obj/effect/mapping_helpers/barricade/bomb
-	name = "ballistic armor barricade helper"
+	name = "bomb armor barricade helper"
 	icon_state = "barricade_bomb"
 
 /obj/effect/mapping_helpers/barricade/bomb/Initialize(mapload)
@@ -575,7 +575,7 @@
 	foundbarricade.update_icon()
 
 /obj/effect/mapping_helpers/barricade/acid
-	name = "ballistic armor barricade helper"
+	name = "acid armor barricade helper"
 	icon_state = "barricade_acid"
 
 /obj/effect/mapping_helpers/barricade/acid/Initialize(mapload)
@@ -594,7 +594,7 @@
 	foundbarricade.update_icon()
 
 /obj/effect/mapping_helpers/barricade/melee
-	name = "ballistic armor barricade helper"
+	name = "melee armor barricade helper"
 	icon_state = "barricade_melee"
 
 /obj/effect/mapping_helpers/barricade/melee/Initialize(mapload)
@@ -611,11 +611,11 @@
 	foundbarricade.soft_armor = soft_armor.modifyRating(melee = 30, bullet = 30, laser = 30, energy = 30)
 	foundbarricade.update_icon()
 
-/obj/effect/mapping_helpers/barricade/open
-	name = "ballistic armor barricade helper"
-	icon_state = "barricade_open"
+/obj/effect/mapping_helpers/barricade/closed
+	name = "closed plasteel barricade helper"
+	icon_state = "barricade_closed"
 
-/obj/effect/mapping_helpers/barricade/open/Initialize(mapload)
+/obj/effect/mapping_helpers/barricade/closed/Initialize(mapload)
 	. = ..()
 	if(!mapload)
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
