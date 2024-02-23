@@ -178,18 +178,13 @@
 	},
 /area/shuttle/ert)
 "Q" = (
-/obj/structure/barricade/plasteel{
-	closed = 0;
-	density = 1;
+/obj/structure/barricade/plasteel/closed{
 	dir = 8
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert)
 "R" = (
-/obj/structure/barricade/plasteel{
-	closed = 0;
-	density = 1
-	},
+/obj/structure/barricade/plasteel/closed,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert)
 "S" = (
@@ -198,9 +193,7 @@
 	},
 /area/shuttle/ert)
 "V" = (
-/obj/structure/barricade/plasteel{
-	closed = 0;
-	density = 1;
+/obj/structure/barricade/plasteel/closed{
 	dir = 4
 	},
 /turf/open/shuttle/dropship/floor,
