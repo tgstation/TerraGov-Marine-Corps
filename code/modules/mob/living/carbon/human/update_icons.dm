@@ -63,7 +63,6 @@ There are several things that need to be remembered:
 
 
 /mob/living/carbon/human
-	var/list/overlays_standing[TOTAL_LAYERS]
 	var/list/underlays_standing[TOTAL_UNDERLAYS]
 	var/previous_damage_appearance // store what the body last looked like, so we only have to update it if something changed
 
@@ -621,7 +620,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		client.screen += r_hand
 		r_hand.screen_loc = ui_rhand
 
-	overlays_standing[R_HAND_LAYER] = r_hand.make_worn_icon(species_type = species.name, inhands = TRUE, slot_name = slot_r_hand_str, default_icon = 'icons/mob/items_righthand_1.dmi', default_layer = R_HAND_LAYER)
+	overlays_standing[R_HAND_LAYER] = r_hand.make_worn_icon(species_type = species.name, inhands = TRUE, slot_name = slot_r_hand_str, default_icon = 'icons/mob/inhands/items/items_right.dmi', default_layer = R_HAND_LAYER)
 
 	apply_overlay(R_HAND_LAYER)
 
@@ -635,7 +634,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		client.screen += l_hand
 		l_hand.screen_loc = ui_lhand
 
-	overlays_standing[L_HAND_LAYER] = l_hand.make_worn_icon(species_type = species.name, inhands = TRUE, slot_name = slot_l_hand_str, default_icon = 'icons/mob/items_lefthand_1.dmi', default_layer = L_HAND_LAYER)
+	overlays_standing[L_HAND_LAYER] = l_hand.make_worn_icon(species_type = species.name, inhands = TRUE, slot_name = slot_l_hand_str, default_icon = 'icons/mob/inhands/items/items_left.dmi', default_layer = L_HAND_LAYER)
 	apply_overlay(L_HAND_LAYER)
 
 

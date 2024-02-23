@@ -23,6 +23,8 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ESSENCE_LINK,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE,
 	)
+	use_state_flags = ABILITY_USE_LYING
+
 	/// Used to determine whether there is an existing Essence Link or not. Also allows access to its vars.
 	var/datum/status_effect/stacking/essence_link/existing_link
 	/// The target of an existing link, if applicable.

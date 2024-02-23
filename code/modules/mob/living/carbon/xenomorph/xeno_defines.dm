@@ -122,12 +122,6 @@
 	// *** Defiler Abilities *** //
 	var/list/available_reagents_define = list() //reagents available for select reagent
 
-	// *** Warrior Abilities *** //
-	///speed increase afforded to the warrior caste when in 'agiility' mode. negative number means faster movement.
-	var/agility_speed_increase = 0 // this opens up possibilities for balancing
-	///amount of soft armor adjusted when in agility mode for the warrior caste. Flat integer amounts only.
-	var/agility_speed_armor = 0 //Same as above
-
 	// *** Boiler Abilities *** //
 	///maximum number of 'globs' of boiler ammunition that can be stored by the boiler caste.
 	var/max_ammo = 0
@@ -287,7 +281,6 @@
 	///State tracking of hive status toggles
 	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
 
-	var/list/overlays_standing[X_TOTAL_LAYERS]
 	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
 	var/atom/movable/vis_obj/xeno_wounds/fire_overlay/fire_overlay
 	var/datum/xeno_caste/xeno_caste
@@ -424,3 +417,5 @@
 
 	///The resting cooldown
 	COOLDOWN_DECLARE(xeno_resting_cooldown)
+	///The unresting cooldown
+	COOLDOWN_DECLARE(xeno_unresting_cooldown)

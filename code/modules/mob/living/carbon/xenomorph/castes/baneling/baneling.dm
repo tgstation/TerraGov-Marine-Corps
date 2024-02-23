@@ -32,7 +32,7 @@
 /mob/living/carbon/xenomorph/baneling/handle_special_wound_states(severity)
 	. = ..()
 	if(m_intent == MOVE_INTENT_RUN)
-		return "baneling_wounded_running_[severity]"
+		return "wounded_running_[severity]"
 
 /obj/structure/xeno/baneling_pod
 	name = "Baneling pod"
@@ -56,7 +56,7 @@
 	qdel(src)
 
 /// We eject and kill our stored baneling if we have one
-/obj/structure/xeno/baneling_pod/obj_destruction()
+/obj/structure/xeno/baneling_pod/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	if(length(contents) <= 0)
 		return ..()
 	for(var/mob/living/carbon/xenomorph/xeno in contents)

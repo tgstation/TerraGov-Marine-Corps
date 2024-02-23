@@ -176,7 +176,7 @@
 	smoke.set_up(0, src)
 	smoke.start()
 
-/obj/vehicle/ridden/motorbike/obj_destruction()
+/obj/vehicle/ridden/motorbike/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	explosion(src, light_impact_range = 2, flash_range = 0)
 	return ..()
 

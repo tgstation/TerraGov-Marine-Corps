@@ -155,7 +155,7 @@
 
 	if(team_one_count > team_two_count * ratio)
 		return list(factions[1], factions[2])
-	else if(team_one_count < team_two_count * ratio)
+	else if(team_two_count > team_one_count * ratio)
 		return list(factions[2], factions[1])
 
 ///Actually swaps the player to the other team, unless balance has been restored
@@ -181,7 +181,7 @@
 	if(!autobalance_faction_list)
 		return
 
-	var/autobal_num = ROUND_UP(length(GLOB.alive_human_list_faction[autobalance_faction_list[1]]) - length(GLOB.alive_human_list_faction[autobalance_faction_list[2]]) * 0.2)
+	var/autobal_num = ROUND_UP((length(GLOB.alive_human_list_faction[autobalance_faction_list[1]]) - length(GLOB.alive_human_list_faction[autobalance_faction_list[2]])) * 0.2)
 	current_mission.spawn_mech(autobalance_faction_list[2], 0, 0, autobal_num, "[autobal_num] additional mechs granted for autobalance")
 
 //respawn stuff

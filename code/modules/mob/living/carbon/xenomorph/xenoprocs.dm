@@ -184,16 +184,25 @@
 		return FALSE
 	return TRUE
 
-/mob/living/carbon/xenomorph/proc/use_plasma(value)
+/mob/living/carbon/xenomorph/proc/set_plasma(value, update_plasma = TRUE)
+	plasma_stored = clamp(value, 0, xeno_caste.plasma_max)
+	if(!update_plasma)
+		return
+	hud_set_plasma()
+
+/mob/living/carbon/xenomorph/proc/use_plasma(value, update_plasma = TRUE)
 	plasma_stored = max(plasma_stored - value, 0)
 	update_action_button_icons()
+	if(!update_plasma)
+		return
+	hud_set_plasma()
 
-/mob/living/carbon/xenomorph/proc/gain_plasma(value)
+/mob/living/carbon/xenomorph/proc/gain_plasma(value, update_plasma = TRUE)
 	plasma_stored = min(plasma_stored + value, xeno_caste.plasma_max)
 	update_action_button_icons()
-
-
-
+	if(!update_plasma)
+		return
+	hud_set_plasma()
 
 //Strip all inherent xeno verbs from your caste. Used in evolution.
 /mob/living/carbon/xenomorph/proc/remove_inherent_verbs()
@@ -541,10 +550,6 @@
 /mob/living/carbon/xenomorph/proc/clean_tracked(atom/to_track)
 	SIGNAL_HANDLER
 	tracked = null
-
-///Handles empowered abilities, should return TRUE if the ability should be empowered. Empowerable should be FALSE if the ability cannot itself be empowered but has interactions with empowerable abilities
-/mob/living/carbon/xenomorph/proc/empower(empowerable = TRUE)
-	return FALSE
 
 ///Handles icon updates when leadered/unleadered. Evolution.dm also uses this
 /mob/living/carbon/xenomorph/proc/update_leader_icon(makeleader = TRUE)

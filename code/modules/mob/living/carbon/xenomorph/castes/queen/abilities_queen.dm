@@ -39,17 +39,17 @@
 	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS)
 	var/sound/king_sound = sound('sound/voice/xenos_roaring.ogg', channel = CHANNEL_ANNOUNCEMENTS)
 	for(var/mob/living/carbon/xenomorph/X AS in Q.hive.get_all_xenos())
+		to_chat(X, assemble_alert(
+			title = "Hive Announcement",
+			subtitle = "From [Q.name]",
+			message = input,
+			color_override = "purple"
+		))
 		switch(Q.caste_base_type)
-			if(/mob/living/carbon/xenomorph/queen)
+			if(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/shrike)
 				SEND_SOUND(X, queen_sound)
-				//In case in combat, couldn't read fast enough, or needs to copy paste into a translator. Here's the old hive message.
-				to_chat(X, "<meta charset='UTF-8'>[span_faction_alert("[span_faction_alert_title("The words of the Queen reverberate in your head...")]<br>[span_faction_alert_text("[html_encode(input)]")]")]")
 			if(/mob/living/carbon/xenomorph/king)
 				SEND_SOUND(X, king_sound)
-				to_chat(X, "<meta charset='UTF-8'>[span_faction_alert("[span_faction_alert_title("The words of the King reverberate in your head...")]<br>[span_faction_alert_text("[html_encode(input)]")]")]")
-			if(/mob/living/carbon/xenomorph/shrike)
-				SEND_SOUND(X, queen_sound)
-				to_chat(X, "<meta charset='UTF-8'>[span_faction_alert("[span_faction_alert_title("The words of the Shrike reverberate in your head...")]<br>[span_faction_alert_text("[html_encode(input)]")]")]")
 		//Display the ruler's hive message at the top of the game screen.
 		X.play_screen_text(queens_word, /atom/movable/screen/text/screen_text/queen_order)
 

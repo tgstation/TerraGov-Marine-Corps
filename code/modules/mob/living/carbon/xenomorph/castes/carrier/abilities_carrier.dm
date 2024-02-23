@@ -119,6 +119,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_TRAP,
 	)
+	use_state_flags = ABILITY_USE_LYING
 
 /datum/action/ability/xeno_action/place_trap/can_use_action(silent = FALSE, override_flags)
 	. = ..()

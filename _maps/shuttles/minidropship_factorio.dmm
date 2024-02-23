@@ -72,9 +72,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "w" = (
-/obj/machinery/camera/autoname/mainship{
-	pixel_y = 16
-	},
+/obj/machinery/camera/autoname/mainship/dropship_two,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "x" = (

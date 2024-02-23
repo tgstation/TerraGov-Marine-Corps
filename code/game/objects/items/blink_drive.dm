@@ -70,7 +70,7 @@
 	standing.overlays.Add(emissive_overlay)
 
 /obj/item/blink_drive/ui_action_click(mob/user, datum/action/item_action/action, target)
-	teleport(target, user)
+	return teleport(target, user)
 
 ///Handles the actual teleportation
 /obj/item/blink_drive/proc/teleport(atom/A, mob/user)
@@ -129,6 +129,7 @@
 	deltimer(charge_timer)
 	charge_timer = addtimer(CALLBACK(src, PROC_REF(recharge)), BLINK_DRIVE_CHARGE_TIME * 2, TIMER_STOPPABLE)
 	update_icon()
+	return TRUE
 
 ///Recharges the drive, and sets another timer if not maxed out
 /obj/item/blink_drive/proc/recharge()
