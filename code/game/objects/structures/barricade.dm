@@ -962,6 +962,10 @@
 
 	update_icon()
 
+/obj/structure/barricade/plasteel/closed
+	density = TRUE
+	closed = FALSE
+
 #undef BARRICADE_PLASTEEL_LOOSE
 #undef BARRICADE_PLASTEEL_ANCHORED
 #undef BARRICADE_PLASTEEL_FIRM
