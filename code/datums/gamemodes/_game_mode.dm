@@ -469,13 +469,11 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.points_from_research)
 		parts += "[GLOB.round_statistics.points_from_research] requisitions points gained from research."
 	if(length(GLOB.round_statistics.req_items_produced))
+		parts += ""  // make it special from other stats above
 		parts += "Requisitions produced: "
 		for(var/atom/movable/path AS in GLOB.round_statistics.req_items_produced)
-			parts += "[GLOB.round_statistics.req_items_produced[path]] [initial(path.name)]"
-			if(path == GLOB.round_statistics.req_items_produced[length(GLOB.round_statistics.req_items_produced)]) //last element
-				parts += "."
-			else
-				parts += ","
+			var/last = GLOB.round_statistics.req_items_produced[length(GLOB.round_statistics.req_items_produced)]
+			parts += "[GLOB.round_statistics.req_items_produced[path]] [initial(path.name)][last ? "." : ","]"
 
 	if(length(parts))
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"

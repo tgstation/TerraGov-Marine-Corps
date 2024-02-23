@@ -442,6 +442,7 @@
 #include "code\datums\elements\attachment.dm"
 #include "code\datums\elements\connect_loc.dm"
 #include "code\datums\elements\debris.dm"
+#include "code\datums\elements\directional_attack.dm"
 #include "code\datums\elements\egrill_element.dm"
 #include "code\datums\elements\footstep.dm"
 #include "code\datums\elements\gestures.dm"

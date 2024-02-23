@@ -363,7 +363,7 @@
 	X.visible_message(span_danger("[X] nudges its head against [src]."), \
 	span_danger("You nudge your head against [src]."))
 
-/obj/structure/xeno/hivemindcore/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
+/obj/structure/xeno/hivemindcore/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
 	var/mob/living/carbon/xenomorph/hivemind/our_parent = get_parent()
 	if(isnull(our_parent))

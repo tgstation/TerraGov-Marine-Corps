@@ -41,7 +41,7 @@
 			. += span_info("It appears in good shape, pulsating healthily.")
 
 
-/obj/structure/xeno/spawner/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
+/obj/structure/xeno/spawner/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
 	spawner_damage_alert()
 

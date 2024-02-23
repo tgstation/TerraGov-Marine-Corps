@@ -42,11 +42,6 @@
 			X.balloon_alert(X, "Cannot while rooted")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_AGILITY) && X.agility)
-		if(!silent)
-			X.balloon_alert(X, "Cannot in agility mode")
-		return FALSE
-
 	if(!(flags_to_check & ABILITY_IGNORE_PLASMA) && X.plasma_stored < ability_cost)
 		if(!silent)
 			X.balloon_alert(X, "Need [ability_cost - X.plasma_stored] more plasma")
@@ -91,11 +86,6 @@
 	if(!(flags_to_check & ABILITY_USE_ROOTED) && HAS_TRAIT_FROM(X, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
 		if(!silent)
 			X.balloon_alert(X, "Cannot while rooted")
-		return FALSE
-
-	if(!(flags_to_check & ABILITY_USE_AGILITY) && X.agility)
-		if(!silent)
-			X.balloon_alert(X, "Cannot in agility mode")
 		return FALSE
 
 	if(!(flags_to_check & ABILITY_IGNORE_PLASMA) && X.plasma_stored < ability_cost)

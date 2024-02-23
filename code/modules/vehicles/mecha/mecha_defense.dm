@@ -36,7 +36,7 @@
 		to_chat(occupants, "[icon2html(src, occupants)][span_danger("[gear] is critically damaged!")]")
 		playsound(src, gear.destroy_sound, 50)
 
-/obj/vehicle/sealed/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration)
+/obj/vehicle/sealed/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration, mob/living/blame_mob)
 	var/damage_taken = ..()
 	if(damage_taken <= 0 || obj_integrity < 0)
 		return damage_taken
@@ -222,7 +222,7 @@
 	if(!attacking_item.force)
 		return
 
-	var/damage_taken = take_damage(attacking_item.force, attacking_item.damtype, MELEE, 1)
+	var/damage_taken = take_damage(attacking_item.force, attacking_item.damtype, MELEE, blame_mob = user)
 	try_damage_component(damage_taken, user.zone_selected)
 
 	var/hit_verb = length(attacking_item.attack_verb) ? "[pick(attacking_item.attack_verb)]" : "hit"

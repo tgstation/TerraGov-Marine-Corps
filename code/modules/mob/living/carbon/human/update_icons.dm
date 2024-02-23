@@ -63,7 +63,6 @@ There are several things that need to be remembered:
 
 
 /mob/living/carbon/human
-	var/list/overlays_standing[TOTAL_LAYERS]
 	var/list/underlays_standing[TOTAL_UNDERLAYS]
 	var/previous_damage_appearance // store what the body last looked like, so we only have to update it if something changed
 
