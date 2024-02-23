@@ -55,7 +55,7 @@
 	name = "V-11 extended"
 	desc = "The standard sidearm used by the Sons of Mars. A reliable and simple weapon that is often seen on the export market on the outer colonies. \
 	Typically chambered in 9mm armor piercing rounds. This one is configures for burstfire, and loaded with extended mags."
-	ui_icon = "pistol"
+	ui_icon = "v11"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/som
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN)
 
@@ -73,7 +73,7 @@
 	name = "Sawn-off shotgun"
 	desc = "A double barreled shotgun whose barrel has been artificially shortened to reduce range for further CQC potiential. Extremely powerful at close range, but is very difficult to handle."
 	req_desc = "Requires a VX-42 culverin or VX-33 caliver with powerpack."
-	ui_icon = "shotgun"
+	ui_icon = "sshotgun"
 	item_typepath = /obj/item/weapon/gun/shotgun/double/sawn
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 	item_whitelist = list(

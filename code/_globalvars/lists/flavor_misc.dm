@@ -259,6 +259,22 @@ GLOBAL_LIST_INIT(campaign_loadout_item_icon_types, list(
 	"pistol",
 	"smg",
 	"construction",
+	"tx55",
+	"m25",
+	"m240",
+	"m1911c",
+	"rt3",
+	"88m4",
+	"v11",
+	"t19",
+	"t90",
+	"sg29",
+	"t18",
+	"t12",
+	"alf51b",
+	"tx11",
+	"sshotgun",
+	"tx15",
 ))
 
 GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())

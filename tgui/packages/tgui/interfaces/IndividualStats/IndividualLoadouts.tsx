@@ -101,9 +101,9 @@ export const IndividualLoadouts = (props) => {
                         {!!equippeditem.item_type.icon && (
                           <Flex.Item
                             mr={1.5}
-                            width={'18px'}
+                            width={'32px'}
                             className={classes([
-                              'campaign_loadout_items18x18',
+                              'campaign_loadout_items32x32',
                               selectedLoadoutItem.item_type.name ===
                               equippeditem.item_type.name
                                 ? equippeditem.item_type.icon + '_orange'
@@ -128,69 +128,71 @@ export const IndividualLoadouts = (props) => {
         </Section>
       </Stack.Item>
       <Stack.Item>
-        <Section>
+        <Section fill width={'240px'}>
           <Stack
             fontSize="150%"
             bold={1}
             textAlign="center"
-            mt={'12px'}
-            mb={'28px'}
+            mt={'10px'}
+            mb={'14px'}
+            ml={'10px'}
           >
             Equipment options
           </Stack>
-          <Stack vertical>
-            {available_loadouts_data
-              .filter((potentialitem) => potentialitem.job === selectedJob)
-              .filter(
-                (potentialitem) =>
-                  potentialitem.slot === selectedLoadoutItem.item_type.slot,
-              )
-              .map((potentialitem) => (
-                <Stack.Item key={potentialitem.name}>
-                  <Button
-                    width={'180px'}
-                    onClick={() => {
-                      setselectedPossibleItem(potentialitem);
-                      potentialitem.unlocked &&
-                        act('equip_item', {
-                          selected_item: potentialitem.type,
-                          selected_job: potentialitem.job,
-                        });
-                    }}
-                    color={
-                      selectedPossibleItem.name === potentialitem.name
-                        ? 'orange'
-                        : !potentialitem.unlocked ||
-                            potentialitem.quantity === 0
-                          ? 'grey'
-                          : !potentialitem.valid_choice
-                            ? 'red'
-                            : 'blue'
-                    }
-                  >
-                    <Flex align="center">
-                      {!!potentialitem.icon && (
-                        <Flex.Item
-                          mr={1.5}
-                          className={classes([
-                            'campaign_loadout_items18x18',
-                            selectedPossibleItem.name === potentialitem.name
-                              ? potentialitem.icon + '_orange'
-                              : !potentialitem.unlocked ||
-                                  potentialitem.quantity === 0
-                                ? potentialitem.icon + '_grey'
-                                : !potentialitem.valid_choice
-                                  ? potentialitem.icon + '_red'
-                                  : potentialitem.icon + '_blue',
-                          ])}
-                        />
-                      )}
-                      {potentialitem.name}
-                    </Flex>
-                  </Button>
-                </Stack.Item>
-              ))}
-          </Stack>
+          <Section fill scrollable width={'240px'}>
+            <Flex width={'220px'} wrap>
+              {available_loadouts_data
+                .filter((potentialitem) => potentialitem.job === selectedJob)
+                .filter(
+                  (potentialitem) =>
+                    potentialitem.slot === selectedLoadoutItem.item_type.slot,
+                )
+                .map((potentialitem) => (
+                  <Flex.Item mr={1.5} mb={1} key={potentialitem.name}>
+                    <Button
+                      width={'100px'}
+                      onClick={() => {
+                        setselectedPossibleItem(potentialitem);
+                        potentialitem.unlocked &&
+                          act('equip_item', {
+                            selected_item: potentialitem.type,
+                            selected_job: potentialitem.job,
+                          });
+                      }}
+                      color={
+                        selectedPossibleItem.name === potentialitem.name
+                          ? 'orange'
+                          : !potentialitem.unlocked ||
+                              potentialitem.quantity === 0
+                            ? 'grey'
+                            : !potentialitem.valid_choice
+                              ? 'red'
+                              : 'blue'
+                      }
+                    >
+                      <Flex align="center" direction="column">
+                        {!!potentialitem.icon && (
+                          <Flex.Item
+                            className={classes([
+                              'campaign_loadout_items64x64',
+                              selectedPossibleItem.name === potentialitem.name
+                                ? potentialitem.icon + '_orange' + '_big'
+                                : !potentialitem.unlocked ||
+                                    potentialitem.quantity === 0
+                                  ? potentialitem.icon + '_grey' + '_big'
+                                  : !potentialitem.valid_choice
+                                    ? potentialitem.icon + '_red' + '_big'
+                                    : potentialitem.icon + '_blue' + '_big',
+                            ])}
+                          />
+                        )}
+                        {potentialitem.name}
+                      </Flex>
+                    </Button>
+                  </Flex.Item>
+                ))}
+            </Flex>
+          </Section>
         </Section>
       </Stack.Item>
       <Stack.Item>
@@ -214,7 +216,7 @@ export const IndividualLoadouts = (props) => {
                   <Flex.Item
                     mr={1.5}
                     className={classes([
-                      'campaign_loadout_items36x36',
+                      'campaign_loadout_items64x64',
                       selectedPossibleItem.icon + '_orange' + '_big',
                     ])}
                   />

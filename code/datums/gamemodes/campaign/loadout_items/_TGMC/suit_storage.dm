@@ -71,7 +71,7 @@
 	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. The AR-12 is the former main weapon of the TGMC before it was superceded by the AR-18 for general issue. \
 	A jack of all trades weapon, effect at close and long range, with good capacity and handling, making it a reliable all-rounder. \
 	It does not particularly excel in any area however, and so is overshadowed by other weapons at particular tasks. It uses 10x24mm caseless ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "t12"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
@@ -125,7 +125,7 @@
 	name = "AR-18"
 	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
 	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. Uses 10x24mm caseless ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "t18"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_carbine/standard
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -149,7 +149,7 @@
 	desc = "Equipped with a red dot sight and laser sight. The AR-11 is an old rifle of the TGMC, but is now a relatively uncommon sight. \
 	It has a very large magazine capacity, and can inflict incredible damage at long range with its HV ammo, making it particularly effective at well armored targets. \
 	However it suffers from relatively poor handling and mobility, and lacks any underbarrel weapon attachments, making it an effective but less flexible weapon. It uses 4.92×34mm caseless HV ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "tx11"
 	item_typepath = /obj/item/weapon/gun/rifle/tx11/standard
 
 /datum/loadout_item/suit_store/main_gun/marine/combat_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -227,7 +227,7 @@
 	desc = "Equipped with a mag harness, bayonet and vertical grip. The ALF-51B is an unusual weapon, being a heavily modified AR-18 modified to SMG length of barrel, rechambered for a larger caliber, and belt fed. \
 	Combining its powerful close range damage that can slow targets, impressive mobility and huge capacity, it is a devastating close range weapon. \
 	However it suffers from appaling falloff making it highly ineffective at range, and its belt fed nature means it cannot be reloaded quickly, often leaving careless users exposed. Uses 10x25mm caseless ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "alf51b"
 	item_typepath = /obj/item/weapon/gun/rifle/alf_machinecarbine/assault
 
 /datum/loadout_item/suit_store/main_gun/marine/alf/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -351,7 +351,7 @@
 	Excels at clearing out enclosed or fortified positions, but suffers from poor mobility and relatively limited range, making it of questionable use in open combat. \
 	Uses back or gun mounted fuel tanks."
 	req_desc = "Requires a suit with a Surt module."
-	ui_icon = "ballistic"
+	ui_icon = "m240"
 	item_typepath = /obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide
 	item_whitelist = list(/obj/item/clothing/suit/modular/xenonauten/heavy/surt = ITEM_SLOT_OCLOTHING)
 
@@ -438,7 +438,7 @@
 	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. \
 	The motion detector on this example makes it excellent for scouting out enemy positions and tracking down hidden enemies. Uses 10x24mm caseless ammunition."
 	req_desc = "Requires a light armour suit."
-	ui_icon = "ballistic"
+	ui_icon = "t18"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_carbine/scout
 	item_whitelist = list(
 		/obj/item/clothing/suit/modular/xenonauten/light/shield = ITEM_SLOT_OCLOTHING,
@@ -500,7 +500,7 @@
 	name = "SMG-25"
 	desc = "Equipped with a mag harness, recoil compensator and gyroscopic stabilizer. SMG-25 submachinegun, is a large capacity smg, able to be be used effectively one or two handed. \
 	Like all smgs, it has excellent mobility and handling, but has poor damage application at longer ranges. Uses 10x20mm caseless ammunition, and comes with multiple ammo types."
-	ui_icon = "smg"
+	ui_icon = "m25"
 	item_typepath = /obj/item/weapon/gun/smg/m25/magharness
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -578,7 +578,7 @@
 	desc = "Equipped with red dot sight, suppressor and underbarrel grenade launcher. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
 	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. \
 	This suppressed variant is typically used for stealth operations, where its quiet firing and lack of tracers can give the user an edge over unsuspecting opponents. Uses 10x24mm caseless ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "t18"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_carbine/suppressed
 
 /datum/loadout_item/suit_store/main_gun/marine/suppressed_carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -707,7 +707,7 @@
 	desc = "Equipped with a mag harness and underbarrel grenade launcher. \
 	The SH-15 automatic shotgun has excellent mobility and handling, and offers powerful damage per shot. Its comparatively slow rate of fire means in a straight gunfight its overall damage output is somewhat lacking.\
 	Can use both slugs or flechette rounds. Takes 12-round 16 gauge magazines."
-	ui_icon = "ballistic"
+	ui_icon = "tx15"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_autoshotgun/engineer
 
 /datum/loadout_item/suit_store/main_gun/corpsman/auto_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -768,7 +768,7 @@
 	name = "SMG-90"
 	desc = "Equipped with a red dot sight, recoil compensator and laser sight. The SMG-90 is a PDW that offers outstanding mobility and handling, and respectable damage output and magazine capacity. \
 	Its lower damage output compared to rifles, and significantly worse performance at range means it is usually seen on second line units or in the hands of supporting roles. It uses 10x20mm caseless rounds."
-	ui_icon = "smg"
+	ui_icon = "t90"
 	item_typepath = /obj/item/weapon/gun/smg/standard_smg/tactical
 
 /datum/loadout_item/suit_store/main_gun/corpsman/pdw/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -796,7 +796,7 @@
 	desc = "Equipped with mag harness, extended barrel and underbarrel grenade launcher. The AR-12 is the former main weapon of the TGMC before it was superceded by the AR-18 for general issue. \
 	A jack of all trades weapon, effect at close and long range, with good capacity and handling, making it a reliable all-rounder. \
 	It does not particularly excel in any area however, and so is overshadowed by other weapons at particular tasks. It uses 10x24mm caseless ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "t12"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_assaultrifle/medic
 
 /datum/loadout_item/suit_store/main_gun/corpsman/assault_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -822,7 +822,7 @@
 	desc = "Equipped with a red dot sight and laser sight. The AR-11 is an old rifle of the TGMC, but is now a relatively uncommon sight. \
 	It has a very large magazine capacity, and can inflict incredible damage at long range with its HV ammo, making it particularly effective at well armored targets. \
 	However it suffers from relatively poor handling and mobility, and lacks any underbarrel weapon attachments, making it an effective but less flexible weapon. It uses 4.92×34mm caseless HV ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "tx11"
 	item_typepath = /obj/item/weapon/gun/rifle/tx11/standard
 
 /datum/loadout_item/suit_store/main_gun/corpsman/combat_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -858,7 +858,7 @@
 	name = "AR-18"
 	desc = "Equipped with mag harness, extended barrel and vertical grip. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
 	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. Uses 10x24mm caseless ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "t18"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_carbine/engineer
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
@@ -867,7 +867,7 @@
 	desc = "Equipped with mag harness, extended barrel and miniflamer. The AR-12 is the former main weapon of the TGMC before it was superceded by the AR-18 for general issue. \
 	A jack of all trades weapon, effect at close and long range, with good capacity and handling, making it a reliable all-rounder. \
 	It does not particularly excel in any area however, and so is overshadowed by other weapons at particular tasks. It uses 10x24mm caseless ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "t12"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_assaultrifle/engineer
 
 /datum/loadout_item/suit_store/main_gun/engineer/assault_rifle/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -883,7 +883,7 @@
 	desc = "Equipped with a mag harness and underbarrel grenade launcher. \
 	The SH-15 automatic shotgun has excellent mobility and handling, and offers powerful damage per shot. Its comparatively slow rate of fire means in a straight gunfight its overall damage output is somewhat lacking.\
 	Can use both slugs or flechette rounds. Takes 12-round 16 gauge magazines."
-	ui_icon = "ballistic"
+	ui_icon = "tx15"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_autoshotgun/engineer
 
 /datum/loadout_item/suit_store/main_gun/engineer/auto_shotgun/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -914,7 +914,7 @@
 	desc = "Equipped with a red dot sight and laser sight. The AR-11 is an old rifle of the TGMC, but is now a relatively uncommon sight. \
 	It has a very large magazine capacity, and can inflict incredible damage at long range with its HV ammo, making it particularly effective at well armored targets. \
 	However it suffers from relatively poor handling and mobility, and lacks any underbarrel weapon attachments, making it an effective but less flexible weapon. It uses 4.92×34mm caseless HV ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "tx11"
 	item_typepath = /obj/item/weapon/gun/rifle/tx11/standard
 
 /datum/loadout_item/suit_store/main_gun/engineer/laser_carbine
@@ -935,7 +935,7 @@
 	It has good mobility for a machinegun, and is extremely effective on the move. Its innate IFF, good damage application and attached motion sensor makes it a powerful support weapon. \
 	Has somewhat poor falloff however, and although it has an excellent capacity, has slow reloading. It uses 10x26mm caseless ammunition. \
 	Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
-	ui_icon = "smartgun"
+	ui_icon = "sg29"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
@@ -1031,7 +1031,7 @@
 	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. The AR-12 is the former main weapon of the TGMC before it was superceded by the AR-18 for general issue. \
 	A jack of all trades weapon, effect at close and long range, with good capacity and handling, making it a reliable all-rounder. \
 	It does not particularly excel in any area however, and so is overshadowed by other weapons at particular tasks. It uses 10x24mm caseless ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "t12"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1095,7 +1095,7 @@
 	name = "AR-18"
 	desc = "Equipped with red dot sight, extended barrel and plasma pistol. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
 	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. Uses 10x24mm caseless ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "t18"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_carbine/plasma_pistol
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1127,7 +1127,7 @@
 	desc = "Equipped with a red dot sight and laser sight. The AR-11 is an old rifle of the TGMC, but is now a relatively uncommon sight. \
 	It has a very large magazine capacity, and can inflict incredible damage at long range with its HV ammo, making it particularly effective at well armored targets. \
 	However it suffers from relatively poor handling and mobility, and lacks any underbarrel weapon attachments, making it an effective but less flexible weapon. It uses 4.92×34mm caseless HV ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "tx11"
 	item_typepath = /obj/item/weapon/gun/rifle/tx11/standard
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/combat_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1189,7 +1189,7 @@
 	desc = "Equipped with a motion sensor, extended barrel and plasma pistol. \
 	The SH-15 automatic shotgun has excellent mobility and handling, and offers powerful damage per shot. Its comparatively slow rate of fire means in a straight gunfight its overall damage output is somewhat lacking.\
 	Can use both slugs or flechette rounds. Takes 12-round 16 gauge magazines."
-	ui_icon = "ballistic"
+	ui_icon = "tx15"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_autoshotgun/plasma_pistol
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/auto_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1239,7 +1239,7 @@
 	The AR-55 is effectively a GL-54 with a simplified AR-18 strapped to the bottom. It has all the flexible airbursting power of the GL-54 combined with the reliable damage of an assault rifle. \
 	While even more bulky and cumbersome than just the GL-54 alone, and the rifle component is inferior to the AR-18 it is derived from, the AR-55 is a far more effective weapon than the sum of its parts. \
 	Uses 10x24mm caseless ammunition and 20mm airburst grenades."
-	ui_icon = "ballistic"
+	ui_icon = "tx55"
 	item_typepath = /obj/item/weapon/gun/rifle/tx55/combat_patrol
 	purchase_cost = 100
 	quantity = 2
@@ -1286,6 +1286,7 @@
 	name = "Officers sword"
 	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. \
 	Well made and extremely sharp, despite its probable non-combat purpose. Comes in a leather scabbard that an attached to your waist or armor."
+	ui_icon = "machete"
 	item_typepath = /obj/item/storage/holster/blade/officer/full
 	jobs_supported = list(FIELD_COMMANDER)
 	item_blacklist = list(/obj/item/storage/holster/blade/officer/full = ITEM_SLOT_BELT)
@@ -1318,6 +1319,7 @@
 	name = "P-1911A1-C pistol"
 	desc = "The P-1911A1-C is a custom modified pistol with impressive stopping power for its size. \
 	Light and easy to use one handed, it suffers from a small magazine size and no auto eject feature. Comes in a holster that fits on your waist or armor. Uses .45 ACP ammunition."
+	ui_icon = "m1911c"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 	jobs_supported = list(FIELD_COMMANDER)
 	item_blacklist = list(/obj/item/storage/holster/belt/pistol/m4a3/fieldcommander = ITEM_SLOT_BELT)
@@ -1392,7 +1394,7 @@
 	desc = "Equipped with a red dot sight and laser sight. The AR-11 is an old rifle of the TGMC, but is now a relatively uncommon sight. \
 	It has a very large magazine capacity, and can inflict incredible damage at long range with its HV ammo, making it particularly effective at well armored targets. \
 	However it suffers from relatively poor handling and mobility, and lacks any underbarrel weapon attachments, making it an effective but less flexible weapon. It uses 4.92×34mm caseless HV ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "tx11"
 	item_typepath = /obj/item/weapon/gun/rifle/tx11/standard
 
 /datum/loadout_item/suit_store/main_gun/field_commander/combat_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
