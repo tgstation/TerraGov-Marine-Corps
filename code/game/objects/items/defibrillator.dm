@@ -49,13 +49,15 @@
 	return ..()
 
 
-/obj/item/defibrillator/update_icon()
-	. = ..()
+/obj/item/defibrillator/update_icon_state()
 	icon_state = initial(icon_state)
-
 	if(ready)
 		icon_state += "_out"
 
+/obj/item/defibrillator/update_overlays()
+	. = ..()
+	if(flags_equip_slot & ITEM_SLOT_GLOVES)
+		return // don't add these to defib gloves
 	if(dcell?.charge)
 		switch(round(dcell.charge * 100 / dcell.maxcharge))
 			if(67 to INFINITY)
@@ -69,13 +71,16 @@
 	else // No cell.
 		overlays += "+empty"
 
-
 /obj/item/defibrillator/examine(mob/user)
 	. = ..()
-	. += span_info("It has <b>[round(dcell.charge / charge_cost)]</b> out of <b>[round(dcell.maxcharge  / charge_cost)]</b> uses left in its internal battery.")
+	. += span_info("It has [round(dcell.charge / charge_cost)] out of [round(dcell.maxcharge  / charge_cost)] uses left in its internal battery.")
 	. += maybe_message_recharge_hint()
 
 
+/**
+ * Message user with a hint to recharge defibrillator
+ * and how to do it if the battery is low.
+*/
 /obj/item/defibrillator/proc/maybe_message_recharge_hint(mob/living/carbon/human/user)
 	if(!dcell)
 		return
@@ -171,22 +176,17 @@
 		to_chat(user, span_warning("Take [src]'s paddles out first."))
 		return
 
-	// No power
-	if(dcell.charge <= charge_cost)
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Internal battery depleted. Cannot analyze nor administer shock."))
-		return
-
 	// They aren't even dead
 	if(H.stat != DEAD)
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is not in a valid state."))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is not in a valid state. Operation aborted."))
 		return
 
-	// Heart broken
+	// Heart or brain are failing
 	if(!H.has_working_organs() && !(H.species.species_flags & ROBOTIC_LIMBS))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's heart is failing. Immediate surgical intervention required."))
 		return
 
-	// Wearing armor
+	// Chest obscured by armor
 	if((H.wear_suit && H.wear_suit.flags_atom & CONDUCT))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's chest is obscured. Remove suit or armor and try again."))
 		return
@@ -198,19 +198,19 @@
 			user.visible_message("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is missing their head. Reattach and try again.")
 			return
 
-	// Unrevivable. NPC, missing a head, or something else. Also synthetics won't expire from this.
+	// They won't be coming back. Missing a head, DNR, or NPC(???)
 	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE) && !issynth(H)) || H.suiciding)
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's general condition does not allow revival."))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Resuscitation failed - Patient's general condition does not allow revival."))
 		return
 
-	// No ghost detected. DNR or an NPC.
+	// No ghost detected, so our human is likely an NPC (colonist)
 	if(!H.mind && !H.get_ghost(TRUE))
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is missing intelligence patterns or has a DNR."))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Resuscitation failed - Patient is missing intelligence patterns."))
 		return
 
-	// Moved out of their body.
+	// No client detected, so our human left after being dragged in, disconnected or something else
 	if(!H.client)
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's soul has departed. Please try again."))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Resuscitation failed - No soul detected. Please try again."))
 		return
 
 	return TRUE
@@ -237,8 +237,13 @@
 		var/fumbling_time = SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * skill) // 3 seconds with medical skill, 5 without
 		if(!do_after(user, fumbling_time, NONE, H, BUSY_ICON_UNSKILLED))
 			return
+	else
+		defib_heal_amt *= skill * 0.5 //more healing power when used by a doctor (this means non-trained don't heal)
 
-	defib_heal_amt *= skill * 0.5 //more healing power when used by a doctor (this means non-trained don't heal)
+	// No power. Doing this here only because it could deplete while checking after the shock.
+	if(dcell.charge <= charge_cost)
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Internal battery depleted. Cannot analyze nor administer shock."))
+		return
 
 	var/mob/dead/observer/G = H.get_ghost()
 	if(G)
@@ -250,8 +255,6 @@
 
 	user.visible_message(span_notice("[user] starts setting up the paddles on [H]'s chest."),
 	span_notice("You start setting up the paddles on [H]'s chest."))
-	if(defib_heal_amt == 0)
-		to_chat(user, span_warning("Using a defibrillator without training is awkward."))
 	playsound(get_turf(src),'sound/items/defib_charge.ogg', 25, 0) // This needs to be exactly 7 seconds, so don't vary it.
 
 	if(!do_after(user, 7 SECONDS, NONE, H, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
@@ -263,17 +266,18 @@
 	sparks.start()
 	dcell.use(charge_cost)
 	update_icon()
-	playsound(get_turf(src), 'sound/items/defib_release.ogg', 25)
+	playsound(get_turf(src), 'sound/items/defib_release.ogg', 25, 1)
 	user.visible_message(span_notice("[user] shocks [H] with the paddles."),
 	span_notice("You shock [H] with the paddles."))
 	H.visible_message(span_danger("[H]'s body convulses a bit."))
-	defib_cooldown = world.time + 2 SECONDS //2 second cooldown before you can try again
+	defib_cooldown = world.time + 1 SECONDS // 1 second cooldown before you can try again
 
 	var/datum/internal_organ/heart/heart = H.internal_organs_by_name["heart"]
 	if(!issynth(H) && !isrobot(H) && heart && prob(25))
 		heart.take_damage(5) //Allow the defibrillator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
 	if(!check_revive(H, user)) // Extra check incase they perma mid defib, the user turns off the defib or something else changes mid defib.
+		playsound(get_turf(src), 'sound/items/defib_failed.ogg', 35, 0)
 		return
 
 	//At this point, the defibrillator is ready to work
@@ -385,6 +389,5 @@
 	if(istype(user) && istype(target))
 		defibrillate(target, user)
 
-/obj/item/defibrillator/gloves/update_icon()
-	SHOULD_CALL_PARENT(FALSE)
-	return // We don't want the parent defibrillator's icon updates and overlays here
+/obj/item/defibrillator/gloves/update_icon_state()
+	return // The parent has some behavior we don't want
