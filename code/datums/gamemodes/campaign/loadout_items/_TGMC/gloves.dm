@@ -4,6 +4,7 @@
 /datum/loadout_item/gloves/empty
 	name = "no gloves"
 	desc = ""
+	ui_icon = "empty"
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
