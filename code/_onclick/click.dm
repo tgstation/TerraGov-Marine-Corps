@@ -156,7 +156,9 @@
 		else
 			if(A.Adjacent(src))
 				A.attack_hand(src)
-			RangedAttack(A, params)
+
+	if(!A.Adjacent(src))
+		RangedAttack(A, params)
 
 
 /atom/movable/proc/CanReach(atom/ultimate_target, obj/item/tool, view_only = FALSE)

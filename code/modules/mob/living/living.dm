@@ -98,6 +98,7 @@
 	set_armor_datum()
 	AddElement(/datum/element/gesture)
 	AddElement(/datum/element/keybinding_update)
+	AddElement(/datum/element/directional_attack)
 
 /mob/living/Destroy()
 	for(var/datum/status_effect/effect AS in status_effects)
