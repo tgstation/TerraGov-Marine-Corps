@@ -109,7 +109,7 @@
 	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
 	if(restore_health_and_plasma)
 		// xenos that manage plasma through special means shouldn't gain it for free on aging
-		plasma_stored = max(plasma_stored, xeno_caste.plasma_max * xeno_caste.plasma_regen_limit)
+		set_plasma(max(plasma_stored, xeno_caste.plasma_max * xeno_caste.plasma_regen_limit))
 		health = maxHealth
 	setXenoCasteSpeed(xeno_caste.speed)
 
