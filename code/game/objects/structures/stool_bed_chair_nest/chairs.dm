@@ -419,7 +419,7 @@
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 	if(LAZYLEN(buckled_mobs))
-		unbuckle_mob(buckled_mobs[1])
+		unbuckle_all_mobs(TRUE)
 	return ..()
 
 /obj/structure/bed/chair/dropship/doublewide/welder_act(mob/living/user, obj/item/I)
