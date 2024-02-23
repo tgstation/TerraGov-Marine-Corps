@@ -233,6 +233,7 @@ GLOBAL_LIST_INIT(campaign_perk_icon_types, list(
 ))
 
 GLOBAL_LIST_INIT(campaign_loadout_item_icon_types, list(
+	"empty",
 	"light_armour_shield",
 	"medium_armour_shield",
 	"heavy_armour_shield",

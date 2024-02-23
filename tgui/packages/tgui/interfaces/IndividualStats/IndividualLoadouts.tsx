@@ -139,7 +139,7 @@ export const IndividualLoadouts = (props) => {
           >
             Equipment options
           </Stack>
-          <Section fill scrollable width={'240px'}>
+          <Section fill scrollable width={'240px'} height={'555px'}>
             <Flex width={'220px'} wrap>
               {available_loadouts_data
                 .filter((potentialitem) => potentialitem.job === selectedJob)
