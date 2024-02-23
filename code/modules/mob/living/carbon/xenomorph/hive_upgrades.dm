@@ -385,14 +385,6 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	flags_gamemode = ABILITY_NUCLEARWAR
 	flags_upgrade = UPGRADE_FLAG_USES_TACTICAL
 
-/datum/hive_upgrade/defence/special_walls/can_buy(mob/living/carbon/xenomorph/buyer, silent)
-	. = ..()
-	if(!isxenoqueen(buyer) && !isxenoshrike(buyer) && !isxenoking(buyer))
-		if(!silent)
-			to_chat(buyer, span_xenonotice("You must be a ruler to buy this!"))
-		return FALSE
-
-
 /datum/hive_upgrade/defence/special_walls/on_buy(mob/living/carbon/xenomorph/buyer)
 	GLOB.hive_datums[buyer.get_xeno_hivenumber()].special_build_points += 50
 	to_chat(buyer, span_notice("We buy 50 special resin points for [psypoint_cost] psy points."))
