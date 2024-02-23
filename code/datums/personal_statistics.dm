@@ -123,6 +123,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/mission_mechs_destroyed = 0
 	var/mission_shrapnel_removed = 0
 	var/mission_traps_created = 0
+	var/mission_grenades_primed = 0
 
 /datum/personal_statistics/New()
 	. = ..()
@@ -312,6 +313,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	mission_mechs_destroyed = 0
 	mission_shrapnel_removed = 0
 	mission_traps_created = 0
+	mission_grenades_primed = 0
 
 ///Returns the credit bonus based on stats from the current mission
 /datum/personal_statistics/proc/get_mission_reward()
@@ -322,14 +324,15 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	credit_bonus += mission_delimbs * 3
 	credit_bonus += mission_revives * 15
 	credit_bonus += mission_times_revived * 5 //purple heart
-	credit_bonus += mission_structures_built * 5
+	credit_bonus += mission_structures_built * 6
 	credit_bonus += mission_objective_destroyed * 50
 	credit_bonus += mission_blocker_destroyed * 30
 	credit_bonus += mission_objective_captured * 20
 	credit_bonus += mission_objective_decaptured * 20
 	credit_bonus += mission_mechs_destroyed * 20
-	credit_bonus += mission_shrapnel_removed * 2
-	credit_bonus += mission_traps_created * 3
+	credit_bonus += mission_shrapnel_removed * 3
+	credit_bonus += mission_traps_created * 4
+	credit_bonus += mission_grenades_primed * 2
 
 	return max(floor(credit_bonus), 0)
 
