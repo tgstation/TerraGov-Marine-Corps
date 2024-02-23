@@ -1,7 +1,7 @@
 ///All in one function to begin interactions
 /mob/proc/interaction_emote(mob/target)
 	if(!target || target == src)
-		return FALSE
+		return
 
 	var/list/interactions_list = list("Headbutt" = /atom/movable/screen/interaction/headbutt)	//Universal interactions
 	if(isxeno(src))	//Benos don't high five each other, they slap tails! A beno cannot initiate a high five, but can recieve one if prompted by a human
@@ -13,13 +13,13 @@
 	var/atom/movable/screen/interaction/interaction = interactions_list[tgui_input_list(src, "Select an interaction type", "Interactive Emotes", interactions_list)]
 
 	if(!interaction)
-		return FALSE
+		return
 
 	if(LAZYLEN(target.queued_interactions))
 		for(var/atom/movable/screen/interaction/element AS in target.queued_interactions)
 			if(element.initiator == src)
 				balloon_alert(src, "Slow your roll!")
-				return FALSE
+				return
 
 	interaction = new interaction()
 	interaction.owner = target
@@ -34,8 +34,6 @@
 	animate(interaction, transform = matrix(), time = 2.5, easing = CUBIC_EASING)
 
 	interaction.timer_id = addtimer(CALLBACK(interaction, TYPE_PROC_REF(/atom/movable/screen/interaction, end_interaction), FALSE), interaction.timeout, TIMER_STOPPABLE|TIMER_UNIQUE)
-
-	return TRUE
 
 //Mob interactions
 /atom/movable/screen/interaction
@@ -273,4 +271,4 @@
 	var/mob/target = tgui_input_list(user, "Select a target", "Select a target", GLOB.alive_living_list)
 	if(!target)
 		return
-	target.interaction_emote(user, TRUE)
+	target.interaction_emote(user)
