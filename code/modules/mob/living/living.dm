@@ -98,6 +98,7 @@
 	set_armor_datum()
 	AddElement(/datum/element/gesture)
 	AddElement(/datum/element/keybinding_update)
+	AddElement(/datum/element/directional_attack)
 
 /mob/living/Destroy()
 	for(var/datum/status_effect/effect AS in status_effects)
@@ -437,6 +438,11 @@
 		stop_pulling() //being thrown breaks pulls.
 	if(pulledby)
 		pulledby.stop_pulling()
+	if(LAZYLEN(buckled_mobs) && !flying)
+		unbuckle_all_mobs(force = TRUE)
+	if(buckled)
+		buckled.unbuckle_mob(src)
+
 	return ..()
 
 /**

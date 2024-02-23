@@ -742,6 +742,7 @@
 #define COMSIG_KB_TOGGLE_MINIMAP "toggle_minimap"
 #define COMSIG_KB_TOGGLE_EXTERNAL_MINIMAP "toggle_external_minimap"
 #define COMSIG_KB_SELFHARM "keybind_selfharm"
+#define COMSIG_KB_INTERACTIVE_EMOTE "keybinding_interactive_emote"
 
 // mecha keybinds
 #define COMSIG_MECHABILITY_TOGGLE_INTERNALS "mechability_toggle_internals"

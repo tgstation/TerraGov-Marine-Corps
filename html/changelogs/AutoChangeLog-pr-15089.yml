@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - rscadd: "Added directional attacks, you can enable them in the preference menu for all living mobs."

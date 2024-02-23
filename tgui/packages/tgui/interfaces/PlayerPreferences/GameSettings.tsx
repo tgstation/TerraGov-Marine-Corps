@@ -143,6 +143,13 @@ export const GameSettings = (props) => {
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
               />
+              <ToggleFieldPreference
+                label="Use directional attacks"
+                value="directional_attacks"
+                action="directional_attacks"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
             </LabeledList>
           </Section>
         </Stack.Item>

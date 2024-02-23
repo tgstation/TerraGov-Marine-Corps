@@ -345,7 +345,7 @@
 	. += "Moving this will require some sort of lifter."
 
 
-/obj/structure/ob_ammo/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/structure/ob_ammo/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2)
 	return ..()
 

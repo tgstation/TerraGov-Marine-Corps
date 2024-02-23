@@ -26,7 +26,7 @@
 	X.create_stomp() //Adds the visual effect. Wom wom wom
 
 	for(var/mob/living/M in range(1, get_turf(X)))
-		if(X.issamexenohive(M) || M.stat == DEAD || isnestedhost(M))
+		if(X.issamexenohive(M) || M.stat == DEAD || isnestedhost(M) || !X.Adjacent(M))
 			continue
 		var/distance = get_dist(M, X)
 		var/damage = X.xeno_caste.stomp_damage/max(1, distance + 1)

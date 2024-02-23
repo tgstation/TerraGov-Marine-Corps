@@ -73,7 +73,8 @@
 	if(user)
 		log_bomber(user, "primed", src)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
-		personal_statistics.grenades_primed++
+		personal_statistics.grenades_primed ++
+		personal_statistics.mission_grenades_primed ++
 
 	icon_state = initial(icon_state) + "_active"
 	active = TRUE

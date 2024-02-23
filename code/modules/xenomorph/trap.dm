@@ -55,7 +55,7 @@
 		else
 			icon_state = "trap"
 
-/obj/structure/xeno/trap/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/structure/xeno/trap/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	if((damage_amount || damage_flag) && hugger && loc)
 		trigger_trap()
 	return ..()

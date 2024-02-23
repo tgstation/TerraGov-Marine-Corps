@@ -1,4 +1,4 @@
-#define ASSET_CROSS_ROUND_CACHE_DIRECTORY "tmp/assets"
+#define ASSET_CROSS_ROUND_CACHE_DIRECTORY "cache/assets"
 
 //These datums are used to populate the asset cache, the proc "register()" does this.
 //Place any asset datums you create in asset_list_items.dm
@@ -385,7 +385,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		var/icon/sheet_copy = icon(sheet)
 		size[SPRSZ_STRIPPED] = null
 		sheet_copy.Insert(I, icon_state=sprite_name)
-		size[SPRSZ_ICON] = sheet_copy	
+		size[SPRSZ_ICON] = sheet_copy
 		sprites[sprite_name] = list(size_id, position)
 	else
 		sizes[size_id] = size = list(1, I, null)

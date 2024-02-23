@@ -52,7 +52,7 @@
 
 ///Adds a new loadout_item to the available list
 /datum/outfit_holder/proc/unlock_new_option(datum/loadout_item/new_item)
-	available_list["[new_item.item_slot]"] += new_item
+	available_list["[new_item.item_slot]"] |= new_item
 	purchasable_list["[new_item.item_slot]"] -= new_item
 
 ///Adds a new loadout_item to the purchasable list

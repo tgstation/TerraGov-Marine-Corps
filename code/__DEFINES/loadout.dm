@@ -27,8 +27,8 @@
 #define CAT_SHN "HATS" // Synth's non-protective hats
 
 #define VENDOR_FACTION_NEUTRAL "Neutral"
-#define VENDOR_FACTION_CRASH "Valhalla"
-#define VENDOR_FACTION_VALHALLA "Crash"
+#define VENDOR_FACTION_CRASH "Crash"
+#define VENDOR_FACTION_VALHALLA "Valhalla"
 
 GLOBAL_LIST_INIT(marine_selector_cats, list(
 		CAT_MOD = 1,
@@ -143,7 +143,6 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/item/ammo_magazine/flamer_tank/large = list(CAT_LEDSUP, "Flamethrower tank", 4, "black"),
 		/obj/item/storage/backpack/marine/radiopack = list(CAT_LEDSUP, "Radio Pack", 15, "black"),
 		/obj/item/weapon/gun/revolver/standard_magnum = list(CAT_LEDSUP, "R-76 Magnum", 12, "black"),
-		/obj/item/storage/firstaid/adv = list(CAT_LEDSUP, "Advanced firstaid kit", 10, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_LEDSUP, "Injector (Synaptizine)", 10, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_LEDSUP, "Injector (Advanced)", 15, "orange"),
 	))
@@ -167,7 +166,6 @@ GLOBAL_LIST_INIT(commander_gear_listed_products, list(
 		/obj/item/ammo_magazine/flamer_tank/large = list(CAT_FCSUP, "Flamethrower tank", 4, "black"),
 		/obj/item/storage/backpack/marine/radiopack = list(CAT_FCSUP, "Radio Pack", 15, "black"),
 		/obj/item/weapon/gun/revolver/standard_magnum = list(CAT_FCSUP, "R-76 Magnum", 12, "black"),
-		/obj/item/storage/firstaid/adv = list(CAT_FCSUP, "Advanced firstaid kit", 10, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_FCSUP, "Injector (Synaptizine)", 10, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_FCSUP, "Injector (Advanced)", 15, "orange"),
 	))
@@ -244,9 +242,10 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/weapon/valhalla,
 		/obj/machinery/vending/uniform_supply/valhalla,
 		/obj/machinery/vending/armor_supply/valhalla,
-		/obj/machinery/vending/marineFood/valhalla,
+		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed/valhalla,
 		/obj/machinery/vending/cigarette/valhalla,
+		/obj/machinery/vending/tool/nopower/valhalla,
 	),
 	SQUAD_CORPSMAN = list(
 		/obj/machinery/vending/medical/shipside,
@@ -719,7 +718,6 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/roller = 1,
 		/obj/item/tweezers = 1,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone = 1,
-		/obj/item/storage/firstaid/adv = 1,
 		/obj/item/clothing/glasses/hud/health = 1,
 		/obj/item/clothing/under/marine/corpsman = 1,
 	),

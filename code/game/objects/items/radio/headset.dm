@@ -448,7 +448,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/marine/Initialize(mapload, datum/squad/squad, rank)
 	if(squad)
-		icon_state = "headset_marine_[lowertext(squad.name)]"
+		icon_state = "headset_marine_greyscale"
+		var/image/coloring = image(icon, icon_state="headset_marine_overlay")
+		coloring.color = squad.color
+		add_overlay(coloring)
 		var/dat = "marine [lowertext(squad.name)]"
 		frequency = squad.radio_freq
 		if(ispath(rank, /datum/job/terragov/squad/leader))
