@@ -274,8 +274,10 @@
 	name = "dropship chair"
 	desc = "Holds you in place during high altitude drops."
 	icon_state = "shuttle_chair"
+	/// Handles the chair buckle bars overlay
 	var/image/chairbar = null
 	buildstacktype = 0
+	/// Handles the current state of the chair (buckled, unbuckled, folded, broke)
 	var/chair_state = DROPSHIP_CHAIR_UNBUCKLED
 
 /obj/structure/bed/chair/dropship/update_overlays()
@@ -410,7 +412,9 @@
 	name = "doublewide seat"
 	icon_state = "doublewide_chair" //only facing south cause the rest are ugly
 	max_integrity = 130
+	/// Handles the color of the chair 
 	var/chair_color = NO_CHAIR_COLOR
+	/// If the chair can only be sat in by a leader or not
 	var/leader_chair = FALSE
 	/// pixel x shift to give to the buckled mob
 	var/buckling_x = 0
@@ -462,6 +466,7 @@
 	doublewide_mob_density(buckled_mob, FALSE)
 	return ..()
 
+/// Handles checking the changing density for the person buckling or unbuckling and the person next to the buckling/unbuckling person
 /obj/structure/bed/chair/dropship/doublewide/proc/doublewide_mob_density(mob/interactionmob, buckling)
 	var/obj/structure/bed/chair/dropship/doublewide/other_doublewide = locate(/obj/structure/bed/chair/dropship/doublewide) in interactionmob.loc
 	var/mob/living/other_chair_buckled_mob
@@ -481,7 +486,6 @@
 			return
 	//if there is no other doublewide or theyre unbuckling
 	interactionmob.density = TRUE
-	return
 
 /obj/structure/bed/chair/dropship/doublewide/left
 	pixel_x = -8
