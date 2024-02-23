@@ -303,6 +303,17 @@
 	var/image/heat_bar/heat_meter
 
 /*
+ *  COIN MECHANIC VARS
+ *
+*/
+	/// Maxiumum amount of coins allowed
+	var/max_coins = 4
+	/// Number of coins in the revolver
+	var/coin_amount = 0
+	///Recharge time for each coin
+	var/coin_recharge_rate = 3 SECONDS
+
+/*
  *  extra icon and item states or overlays
 */
 	///Whether the gun has ammo level overlays for its icon, mainly for eguns
@@ -1929,3 +1940,4 @@
 		animate(src, color=gradient(COLOR_GREEN, COLOR_RED, new_percentage), alpha =  175, easing=SINE_EASING, time=animate_time)
 		return
 	animate(src, color=gradient(COLOR_GREEN, COLOR_RED, new_percentage), alpha = 0, easing=SINE_EASING, time=animate_time)
+

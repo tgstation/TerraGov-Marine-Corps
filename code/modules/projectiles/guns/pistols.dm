@@ -791,3 +791,80 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	scatter_unwielded = 7
 	recoil = -2
 	recoil_unwielded = 2
+
+// MARKSMAN REVOLVER
+/obj/item/weapon/gun/pistol/coin_pistol
+	name = "\improper Marksman Pistol"
+	desc = "The Marksman Pistol is a prototype gun that has subpar damage but comes with a set of coins that can be shot to ricochet bullets right into enemy weakpoints and potentially double it's damage."
+	icon = 'icons/obj/items/guns/pistols64.dmi'
+	icon_state = "ukr-marksman"
+	item_state = "ukr-marksman"
+	caliber = CALIBER_MARKSMAN_PISTOL //codex
+	max_shells = -1 //codex
+	fire_sound = 'sound/weapons/guns/fire/marksmanalt.ogg' //same bullets, same sound
+	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/coin
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/coin)
+	attachable_allowed = list(
+		/obj/item/attachable/magnetic_harness,
+	)
+
+	flags_gun_features = GUN_IFF|GUN_SMOKE_PARTICLES|GUN_WIELDED_FIRING_ONLY
+	gun_skill_category = SKILL_SMARTGUN
+	actions_types = list()
+
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
+
+	aim_slowdown = 0
+	wield_delay = 0.1 SECONDS
+	fire_delay = 1 SECONDS
+	accuracy_mult = 1.2
+	accuracy_mult_unwielded = 1
+	scatter = -1
+	scatter_unwielded = 0
+	recoil = -2
+	recoil_unwielded = 2
+
+/obj/item/gun/pistol/coin_pistol/Initialize(mapload)
+	. = ..()
+	coin_count = max_coins
+
+/obj/item/gun/pistol/coin_pistol/examine(mob/user)
+	. = ..()
+	if(max_coins)
+		. += "It currently has [coin_count] out of [max_coins] coins, and takes [coin_regen_rate/10] seconds to recharge each one."
+	else
+		. += "It has infinite coins available for use."
+
+/obj/item/gun/pistol/coin_pistol/process(delta_time)
+	if(!max_coins || coin_count >= max_coins)
+		STOP_PROCESSING(SSobj, src)
+		return
+
+	if(COOLDOWN_FINISHED(src, coin_regen_cd))
+		if(ismob(loc))
+			var/mob/owner = loc
+			owner.playsound_local(owner, 'sound/machines/ding.ogg', 20)
+		coin_count++
+		COOLDOWN_START(src, cooldown_coin_toss, coin_recharge_rate)
+
+obj/item/weapon/gun/pistol/coin_pistol/proc/coin_toss()
+	if(!can_see(user, get_turf(target), length = 9))
+		return ..()
+
+	if(max_coins && coin_amount <= 0)
+		to_chat(user, span_warning("You don't have any more coins to toss."))
+		return COIN_TOSS_CANCEL
+
+	if(max_coins)
+		START_PROCESSING(SSobj, src)
+		coin_count = max(0, coin_count - 1)
+
+	var/turf/target_turf = get_offset_target_turf(target)
+	playsound(user.loc, 'sound/effects/cointoss.ogg', 50, TRUE)
+	user.visible_message(span_warning("[user] flips a coin towards [target]!"), span_danger("You flip a coin towards [target]!"))
+	var/obj/projectile/bullet/coin/new_coin = new(get_turf(user), target_turf, user)
+	new_coin.preparePixelProjectile(target_turf, user)
+	new_coin.fire()
+
+	return COIN_TOSS_CANCEL

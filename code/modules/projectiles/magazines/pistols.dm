@@ -272,3 +272,15 @@
 	caliber = CALIBER_ALIEN
 	icon_state = "knife"
 	max_rounds = 1
+
+//-------------------------------------------------------
+// Marksman Pistol
+/obj/item/ammo_magazine/pistol/coin
+	name = "\improper Marksman Pistol magazine"
+	desc = "A marksman pistol magazine. This really shouldn't be outside..."
+	caliber = CALIBER_MARKSMAN_PISTOL
+	icon_state = "ukr-marksman"
+	icon_state_mini = "mag_pistol"
+	max_rounds = -1
+	w_class = WEIGHT_CLASS_SMALL
+	default_ammo = /datum/ammo/bullet/pistol/coin
