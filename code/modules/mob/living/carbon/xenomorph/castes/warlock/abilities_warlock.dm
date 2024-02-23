@@ -221,7 +221,7 @@
 		release_projectiles()
 		owner.apply_effect(1 SECONDS, WEAKEN)
 
-/obj/effect/xeno/shield/obj_destruction()
+/obj/effect/xeno/shield/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	release_projectiles()
 	owner.apply_effect(1 SECONDS, WEAKEN)
 	return ..()
