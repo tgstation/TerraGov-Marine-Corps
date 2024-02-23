@@ -33,10 +33,8 @@
 	var/turret_icon = 'icons/obj/armored/1x1/tinytank_gun.dmi'
 	///Iconstate for the rotating main turret
 	var/turret_icon_state = "turret"
-	/// offsets for the turret rotation dir = (pixelx, pixely) format
-	var/list/turret_dir_offsets = list(NORTH_LOWERTEXT = list(0,0), SOUTH_LOWERTEXT = list(0,0), WEST_LOWERTEXT = list(0,0), EAST_LOWERTEXT = list(0,0))
-	///secondary independently rotating overlay
-	var/atom/movable/vis_obj/turret_overlay/secondary_weapon_overlay/secondary_weapon_overlay
+	///secondary independently rotating overlay, if we only have a secondary weapon
+	var/image/secondary_weapon_overlay
 	///Icon for the secondary rotating turret, should contain all possible icons. iconstate is fetched from the attached weapon
 	var/secondary_turret_icon
 	///Damage overlay for when the vehicle gets damaged
@@ -50,14 +48,18 @@
 	var/obj/item/armored_weapon/primary_weapon
 	///What weapon we have in our secondary slot
 	var/obj/item/armored_weapon/secondary_weapon
-	///Our utility module
-	var/obj/item/tank_module/utility_module
+	///Our driver utility module
+	var/obj/item/tank_module/driver_utility_module
+	///Our driver utility module
+	var/obj/item/tank_module/gunner_utility_module
 	//What kind of primary tank weaponry we start with. Defaults to a tank gun.
 	var/primary_weapon_type = /obj/item/armored_weapon
 	//What kind of secondary tank weaponry we start with. Default minigun as standard.
 	var/secondary_weapon_type = /obj/item/armored_weapon/secondary_weapon
 	///if true disables stops users from being able to shoot weapons
 	var/weapons_safety = FALSE
+	//Bool for zoom on/off
+	var/zoom_mode = FALSE
 	/// damage done by rams
 	var/ram_damage = 20
 
@@ -77,8 +79,6 @@
 		turret_overlay.icon_state = turret_icon_state
 		turret_overlay.setDir(dir)
 		turret_overlay.layer = layer+0.002
-		turret_overlay.on_tank_turn(src, dir, dir)
-		turret_overlay.RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, TYPE_PROC_REF(/atom/movable/vis_obj/turret_overlay, on_tank_turn))
 		if(flags_armored & ARMORED_HAS_MAP_VARIANTS)
 			switch(SSmapping.configs[GROUND_MAP].armor_style)
 				if(MAP_ARMOR_STYLE_JUNGLE)
@@ -94,12 +94,6 @@
 			var/obj/item/armored_weapon/primary = new primary_weapon_type(src)
 			primary.attach(src, TRUE)
 	if(flags_armored & ARMORED_HAS_SECONDARY_WEAPON)
-		secondary_weapon_overlay = new()
-		secondary_weapon_overlay.icon = secondary_turret_icon
-		secondary_weapon_overlay.layer = layer+0.003
-		secondary_weapon_overlay.on_tank_turn(src, dir, dir)
-		secondary_weapon_overlay.RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, TYPE_PROC_REF(/atom/movable/vis_obj/turret_overlay, on_tank_turn))
-		vis_contents += secondary_weapon_overlay
 		if(secondary_weapon_type)
 			var/obj/item/armored_weapon/secondary = new secondary_weapon_type(src)
 			secondary.attach(src, FALSE)
@@ -118,10 +112,10 @@
 /obj/vehicle/sealed/armored/Destroy()
 	QDEL_NULL(primary_weapon)
 	QDEL_NULL(secondary_weapon)
-	QDEL_NULL(utility_module)
+	QDEL_NULL(driver_utility_module)
+	QDEL_NULL(gunner_utility_module)
 	QDEL_NULL(damage_overlay)
 	QDEL_NULL(turret_overlay)
-	QDEL_NULL(secondary_weapon_overlay)
 	underlay = null
 	GLOB.tank_list -= src
 	return ..()
@@ -152,6 +146,18 @@
 		else
 			damage_overlay.icon_state = "null"
 
+/obj/vehicle/sealed/armored/update_overlays()
+	. = ..()
+	if(secondary_weapon_overlay)
+		. += secondary_weapon_overlay
+
+/obj/vehicle/sealed/armored/setDir(newdir)
+	. = ..()
+	if(secondary_weapon_overlay)
+		cut_overlay(secondary_weapon_overlay)
+		secondary_weapon_overlay.icon_state = secondary_weapon.icon_state + "_" + "[newdir]"
+		add_overlay(secondary_weapon_overlay)
+
 /obj/vehicle/sealed/armored/examine(mob/user)
 	. = ..()
 	if(!isxeno(user))
@@ -159,7 +165,7 @@
 		. += "To fire its secondary weapon, right click a tile."
 		. += "Middle click to toggle weapon safety."
 		. += "It's currently holding [LAZYLEN(occupants)]/[max_occupants] crew."
-	. += span_notice("There is [isnull(primary_weapon) ? "nothing" : "[primary_weapon]"] in the primary attachment point, [isnull(secondary_weapon) ? "nothing" : "[secondary_weapon]"] installed in the secondary slot and [isnull(utility_module) ? "nothing" : "[utility_module]"] in the utility slot.")
+	. += span_notice("There is [isnull(primary_weapon) ? "nothing" : "[primary_weapon]"] in the primary attachment point, [isnull(secondary_weapon) ? "nothing" : "[secondary_weapon]"] installed in the secondary slot, [isnull(driver_utility_module) ? "nothing" : "[driver_utility_module]"] in the driver utility slot and [isnull(gunner_utility_module) ? "nothing" : "[gunner_utility_module]"] in the gunner utility slot.")
 	if(!isxeno(user))
 		. += "<b>It is currently at <u>[PERCENT(obj_integrity / max_integrity)]%</u> integrity.</b>"
 
@@ -247,6 +253,8 @@
 	if(M.client)
 		M.update_mouse_pointer()
 		M.client.view_size.reset_to_default()
+		if(is_equipment_controller(M))
+			zoom_mode = FALSE
 	return ..()
 
 /obj/vehicle/sealed/armored/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
@@ -332,7 +340,7 @@
 		return
 	if(istype(I, /obj/item/tank_module))
 		var/obj/item/tank_module/mod = I
-		mod.on_equip(src)
+		mod.on_equip(src, user)
 
 /obj/vehicle/sealed/armored/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
@@ -367,6 +375,17 @@
 			secondary_weapon.ammo_magazine += I
 			balloon_alert(user, "magazines [length(secondary_weapon.ammo_magazine)]/[secondary_weapon.maximum_magazines]")
 		return
+	if(!isscrewdriver(I))
+		return
+	if(!gunner_utility_module)
+		balloon_alert(user, "no gunner utility module")
+		return
+	balloon_alert(user, "detaching gunner utility")
+	if(!do_after(user, 2 SECONDS, NONE, src))
+		return
+	gunner_utility_module.on_unequip(user)
+	balloon_alert(user, "detached")
+
 
 /obj/vehicle/sealed/armored/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 50, 5 SECONDS, 0, SKILL_ENGINEER_METAL, 5, 2 SECONDS)
@@ -399,13 +418,13 @@
 
 /obj/vehicle/sealed/armored/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
-	if(!utility_module)
-		balloon_alert(user, "no utility module")
+	if(!driver_utility_module)
+		balloon_alert(user, "no driver utility module")
 		return
-	balloon_alert(user, "detaching utility")
+	balloon_alert(user, "detaching driver utility")
 	if(!do_after(user, 2 SECONDS, NONE, src))
 		return
-	utility_module.on_unequip()
+	driver_utility_module.on_unequip(user)
 	balloon_alert(user, "detached")
 
 /**
@@ -429,7 +448,6 @@
 	playsound(src, 'sound/effects/tankswivel.ogg', 80,1)
 	TIMER_COOLDOWN_START(src, COOLDOWN_TANK_SWIVEL, 3 SECONDS)
 	turret_overlay.setDir(new_weapon_dir)
-	secondary_weapon_overlay?.icon_state = "[secondary_weapon.secondary_icon_name]" + "_" + "[new_weapon_dir]"
 	return TRUE
 
 ///handles mouseclicks by a user in the vehicle
@@ -467,7 +485,7 @@
 		selected = primary_weapon
 	if(!selected)
 		return
-	if(weapons_safety)
+	if(weapons_safety || zoom_mode)
 		return
 	INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/armored_weapon, begin_fire), user, target, modifiers)
 
@@ -483,6 +501,8 @@
 	var/image/flash_overlay
 	///currently using the flashing overlay
 	var/flashing = FALSE
+	///icon state for the secondary
+	var/image/secondary_overlay
 
 /atom/movable/vis_obj/turret_overlay/proc/update_gun_overlay(gun_icon_state)
 	cut_overlays()
@@ -491,32 +511,24 @@
 		gun_overlay = null
 		return
 	flashing = FALSE
-	flash_overlay = image(icon, gun_icon_state + "_fire", pixel_x = -54, pixel_y = -27)
-	gun_overlay  = image(icon, gun_icon_state, pixel_x = -24)
-	add_overlay(gun_overlay)
+	flash_overlay = image(icon, gun_icon_state + "_fire", pixel_x = -70, pixel_y = -69)
+	gun_overlay  = image(icon, gun_icon_state, pixel_x = -40, pixel_y = -48)
+	update_appearance(UPDATE_OVERLAYS)
 
-///updates the gun overlay with a new image
-/atom/movable/vis_obj/turret_overlay/proc/swap_overlays(new_flashing)
-	cut_overlays()
+/atom/movable/vis_obj/turret_overlay/proc/set_flashing(new_flashing)
 	flashing = new_flashing
-	if(flashing)
-		add_overlay(flash_overlay)
-		return
-	add_overlay(gun_overlay)
+	update_appearance(UPDATE_OVERLAYS)
 
+/atom/movable/vis_obj/turret_overlay/update_overlays()
+	. = ..()
+	. += (flashing ? flash_overlay : gun_overlay)
 
-///updates the turret pixel offsets when the tank turns
-/atom/movable/vis_obj/turret_overlay/proc/on_tank_turn(obj/vehicle/sealed/armored/source, old_dir, new_dir)
-	SIGNAL_HANDLER
-	var/list/offsets = source.turret_dir_offsets[dir2text(new_dir)]
-	pixel_x = offsets[1]
-	pixel_y = offsets[2]
-
-/atom/movable/vis_obj/turret_overlay/secondary_weapon_overlay
-	name = "Tank gun secondary turret"
-	desc = "The other shooty bit on a tank."
-	icon = 'icons/obj/armored/3x3/tank_secondary_gun.dmi' //set by owner
-	icon_state = "m56cupola_2"
+/atom/movable/vis_obj/turret_overlay/setDir(newdir)
+	. = ..()
+	if(secondary_overlay)
+		cut_overlay(secondary_overlay)
+		secondary_overlay.icon_state = copytext(secondary_overlay.icon_state, 1, length(secondary_overlay.icon_state)) + "[dir]"
+		add_overlay(secondary_overlay)
 
 /atom/movable/vis_obj/tank_damage
 	name = "Tank damage overlay"

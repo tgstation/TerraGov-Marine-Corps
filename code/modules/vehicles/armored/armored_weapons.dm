@@ -1,14 +1,12 @@
 /obj/item/armored_weapon
 	name = "LTB main battle tank cannon"
 	desc = "A TGMC vehicle's main turret cannon. It fires 86mm rocket propelled shells"
-	icon = 'icons/obj/vehicles/hardpoint_modules.dmi'
+	icon = 'icons/obj/armored/hardpoint_modules.dmi'
 	icon_state = "ltb_cannon"
 	///owner this is attached to
 	var/obj/vehicle/sealed/armored/chassis
 	///The turret icon if we equip the weapon in a secondary slot, you should null this if its unequippable as such
 	var/secondary_equipped_icon
-	///Used to build the icon name for the turret overlay, null if its unequipable as a secondary
-	var/secondary_icon_name
 	///Weapon slot this weapon fits in
 	var/weapon_slot = MODULE_PRIMARY
 
@@ -76,7 +74,8 @@
 	set_target(get_turf_on_clickcatcher(target, source, list2params(modifiers)))
 	if(!current_target)
 		return
-
+	RegisterSignal(source, COMSIG_MOB_MOUSEUP, PROC_REF(stop_fire))
+	RegisterSignal(source, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
 		playsound(chassis.loc, windup_sound, 30, TRUE)
@@ -96,14 +95,14 @@
 			return
 		reset_fire()
 		return
-	RegisterSignal(source, COMSIG_MOB_MOUSEUP, PROC_REF(stop_fire))
-	RegisterSignal(source, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	SEND_SIGNAL(src, COMSIG_ARMORED_FIRE)
 	source?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
 /// do after checks for the mecha equipment do afters
 /obj/item/armored_weapon/proc/do_after_checks(atom/target)
 	if(!chassis)
+		return FALSE
+	if(QDELETED(current_target))
 		return FALSE
 	if(chassis.primary_weapon == src)
 		var/dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.turret_overlay.dir))
@@ -180,8 +179,14 @@
 		if(dir_target_diff > (ARMORED_FIRE_CONE_ALLOWED / 2))
 			chassis.swivel_turret(current_target)
 			return AUTOFIRE_CONTINUE
+	else if(chassis.turret_overlay)
+		chassis.turret_overlay.cut_overlay(chassis.turret_overlay.secondary_overlay)
+		chassis.turret_overlay.secondary_overlay.dir = get_cardinal_dir(chassis, current_target)
+		chassis.turret_overlay.add_overlay(chassis.turret_overlay.secondary_overlay)
 	else
-		chassis.secondary_weapon_overlay.setDir(get_cardinal_dir(chassis, current_target))
+		chassis.cut_overlay(chassis.secondary_weapon_overlay)
+		chassis.secondary_weapon_overlay.dir = get_cardinal_dir(chassis, current_target)
+		chassis.add_overlay(chassis.secondary_weapon_overlay)
 
 
 	var/type_to_spawn = CHECK_BITFIELD(initial(ammo.default_ammo.flags_ammo_behavior), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
@@ -197,8 +202,8 @@
 	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
 
 	if(chassis.primary_weapon == src && !chassis.turret_overlay.flashing)
-		chassis.turret_overlay.swap_overlays(TRUE)
-		addtimer(CALLBACK(chassis.turret_overlay, TYPE_PROC_REF(/atom/movable/vis_obj/turret_overlay, swap_overlays), FALSE), 7, TIMER_CLIENT_TIME)
+		chassis.turret_overlay.set_flashing(TRUE)
+		addtimer(CALLBACK(chassis.turret_overlay, TYPE_PROC_REF(/atom/movable/vis_obj/turret_overlay, set_flashing), FALSE), 7, TIMER_CLIENT_TIME)
 
 	ammo.current_rounds--
 	for(var/mob/occupant AS in chassis.occupants)
@@ -243,7 +248,13 @@
 	else
 		tank.secondary_weapon?.detach(tank.exit_location())
 		tank.secondary_weapon = src
-		tank.secondary_weapon_overlay.icon_state = "[secondary_icon_name]" + "_" + "[tank.turret_overlay.dir]"
+		if(tank.turret_overlay)
+			// do not remove the dir = SOUTH becuase otherwise byond flips an internal flag so the dir is inherited from the turret
+			tank.turret_overlay.secondary_overlay = image(tank.turret_icon, icon_state = icon_state + "_" + "[tank.turret_overlay.dir]", dir = SOUTH)
+			tank.turret_overlay.add_overlay(tank.turret_overlay.secondary_overlay)
+		else
+			tank.secondary_weapon_overlay = image(tank.turret_icon, icon_state = icon_state + "_" + "[tank.dir]")
+			tank.update_appearance(UPDATE_OVERLAYS)
 	chassis = tank
 	forceMove(tank)
 	var/icon_list
@@ -261,22 +272,26 @@
 		chassis.turret_overlay.update_gun_overlay()
 	else
 		chassis.secondary_weapon = null
-		chassis.secondary_weapon_overlay.icon_state = null
+		if(chassis.turret_overlay)
+			chassis.turret_overlay.cut_overlay(chassis.turret_overlay.secondary_overlay)
+			chassis.turret_overlay.secondary_overlay = null
+		else
+			chassis.secondary_weapon_overlay = null
+			chassis.update_appearance(UPDATE_OVERLAYS)
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.remove_ammo_hud(src)
 	chassis = null
 	forceMove(moveto)
 
 /obj/item/armored_weapon/secondary_weapon
-	name = "Secondary minigun"
-	desc = "A much better gun that shits out bullets at ridiculous speeds, don't get in its way!"
-	icon_state = "m56_cupola"
+	name = "secondary cupola minigun"
+	desc = "A robotically controlled minigun that spws lead. Do not stand in front of it!!"
+	icon_state = "cupola"
 	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	weapon_slot = MODULE_PRIMARY|MODULE_SECONDARY
 	secondary_equipped_icon = 'icons/obj/armored/3x3/tank_secondary_gun.dmi'
-	secondary_icon_name = "m56cupola"
 	ammo = /obj/item/ammo_magazine/tank/secondary_cupola
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/secondary_cupola)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
