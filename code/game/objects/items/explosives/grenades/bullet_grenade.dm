@@ -59,10 +59,9 @@
 	item_state = "grenade_hefa2"
 	icon_state_mini = "grenade_hefa"
 	hud_state = "grenade_hefa2"
-
 	rotations = -1
 	fire_sound = null
-	projectile_count = 10
+	projectile_count = 50
 	ammo_type = /datum/ammo/bullet/hefa_buckshot
 
 /obj/item/explosive/grenade/bullet/hefa/prime()

@@ -950,9 +950,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_icon_state = "shotgun buckshot shell"
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
-	bonus_projectiles_type = /datum/ammo/bullet/hefa_buckshot/spread
-	bonus_projectiles_amount = 5
-	bonus_projectiles_scatter = 4
 	accuracy_var_low = 9
 	accuracy_var_high = 9
 	accurate_range = 3
@@ -963,17 +960,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/hefa_buckshot/on_hit_mob(mob/mob_hit, obj/projectile/projectile)
 	staggerstun(mob_hit, projectile, knockback = 2, max_range = 4)
-
-/datum/ammo/bullet/hefa_buckshot/spread
-	name =	"hefa extra fragment"
-	icon_state = "buckshot"
-	accuracy_var_low = 9
-	accuracy_var_high = 9
-	accurate_range = 3
-	max_range = 10
-	shrapnel_chance = 15
-	damage = 30
-	damage_falloff = 3
 
 /datum/ammo/bullet/shotgun/spread
 	name = "additional buckshot"
