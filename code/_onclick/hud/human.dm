@@ -5,8 +5,6 @@
 	layer = ABOVE_HUD_LAYER
 
 /atom/movable/screen/human/equip/Click()
-	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech
-		return TRUE
 	SEND_SIGNAL(usr, COMSIG_CLICK_QUICKEQUIP)
 
 

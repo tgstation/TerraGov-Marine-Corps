@@ -184,9 +184,9 @@
 
 	victim.update_burst()
 
-	if(istype(victim.loc, /obj/vehicle/multitile/root))
-		var/obj/vehicle/multitile/root/V = victim.loc
-		V.handle_player_exit(src)
+	if(istype(victim.loc, /obj/vehicle/sealed))
+		var/obj/vehicle/sealed/armored/veh = victim.loc
+		forceMove(veh.exit_location(src))
 	else
 		forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
 	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25)
