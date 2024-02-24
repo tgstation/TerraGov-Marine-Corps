@@ -551,7 +551,7 @@
 		return
 	var/obj/structure/barricade/foundbarricade = locate(/obj/structure/barricade) in loc
 	if(!foundbarricade)
-		CRASH("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+		CRASH("### MAP WARNING, [src] failed to find a barricade at [AREACOORD(src)]")
 	if(foundbarricade.is_wired || !foundbarricade.can_wire)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to make [foundbarricade] wired but it's already wired!")
 	foundbarricade.wire()
@@ -567,7 +567,7 @@
 		return
 	var/obj/structure/barricade/metal/foundbarricade = locate(/obj/structure/barricade/metal) in loc
 	if(!foundbarricade)
-		CRASH("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+		CRASH("### MAP WARNING, [src] failed to find a barricade at [AREACOORD(src)]")
 	if(foundbarricade.barricade_upgrade_type)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to upgrade [foundbarricade] but it already has armor!")
 	foundbarricade.soft_armor = soft_armor.modifyRating(bomb = 50)
@@ -585,7 +585,7 @@
 		return
 	var/obj/structure/barricade/metal/foundbarricade = locate(/obj/structure/barricade/metal) in loc
 	if(!foundbarricade)
-		CRASH("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+		CRASH("### MAP WARNING, [src] failed to find a barricade at [AREACOORD(src)]")
 	if(foundbarricade.barricade_upgrade_type)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to upgrade [foundbarricade] but it already has armor!")
 	foundbarricade.barricade_upgrade_type = CADE_TYPE_ACID
@@ -604,7 +604,7 @@
 		return
 	var/obj/structure/barricade/metal/foundbarricade = locate(/obj/structure/barricade/metal) in loc
 	if(!foundbarricade)
-		CRASH("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+		CRASH("### MAP WARNING, [src] failed to find a barricade at [AREACOORD(src)]")
 	if(foundbarricade.barricade_upgrade_type)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to upgrade [foundbarricade] but it already has armor!")
 	foundbarricade.barricade_upgrade_type = CADE_TYPE_MELEE
@@ -622,7 +622,7 @@
 		return
 	var/obj/structure/barricade/plasteel/foundbarricade = locate(/obj/structure/barricade/plasteel) in loc
 	if(!foundbarricade)
-		CRASH("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+		CRASH("### MAP WARNING, [src] failed to find a plasteel barricade at [AREACOORD(src)]")
 	if(!foundbarricade.closed)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to open [foundbarricade] but it's already open!")
 	foundbarricade.toggle_open()
