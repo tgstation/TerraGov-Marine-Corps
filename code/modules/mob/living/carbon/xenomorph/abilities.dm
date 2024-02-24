@@ -1669,7 +1669,6 @@
 	desc = "Strike a target within two tiles with a sharp tail for armor-piercing damage, stagger and slowdown. Deals more AP, damage, stagger and slowdown to grappled targets, structures and machinery."
 	ability_cost = 30
 	cooldown_duration = 10 SECONDS
-	use_state_flags = ABILITY_USE_AGILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_STAB,
 	)

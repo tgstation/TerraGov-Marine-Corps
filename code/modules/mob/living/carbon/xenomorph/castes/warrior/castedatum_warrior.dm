@@ -64,5 +64,5 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
-		/datum/action/ability/activable/xeno/punch/flurry,
+		/datum/action/ability/activable/xeno/warrior/punch/flurry,
 	)
