@@ -4,11 +4,41 @@ Mines
 Mines use invisible /obj/effect/mine_trigger objects that tell the mine to explode when something crosses over it
 
 Shrapnel-based explosives (like claymores) will not actually hit anything standing on the same tile due to fire_at() not
-taking that kind of thing into account, setting buffer_range = 0 or making them pressure_activated is useless
+taking that kind of thing into account, setting buffer_range = 0 or making them pressure activated is useless
 */
-//Flags for pressure_activated
-#define PRESSURE_SENSITIVE (1<<0)
-#define PRESSURE_WEIGHTED (1<<1)
+
+/* Flags for mine_features */
+///For pressure mines that trigger when something crosses them
+#define MINE_PRESSURE_SENSITIVE (1<<0)
+///For pressure mines that only trigger when heavy objects cross them
+#define MINE_PRESSURE_WEIGHTED (1<<1)
+///For mines that only trigger when conscious mobs cross them
+#define MINE_DISCERN_LIVING (1<<2)
+///For mines that can be disabled by EMPs
+#define MINE_ELECTRONIC (1<<3)
+///For mines that limit their effects to a specific direction (like claymores)
+#define MINE_DIRECTIONAL (1<<4)
+///For mines that can have their range changed
+#define MINE_CUSTOM_RANGE (1<<5)
+///For mines that can be disarmed or interacted with in any way once triggered
+#define MINE_INTERRUPTIBLE (1<<6)
+///For mines that do not delete themselves upon detonation
+#define MINE_REUSABLE (1<<7)
+///Record war crimes when deploying this mine
+#define MINE_ILLEGAL (1<<8)
+
+///Common flags for most mines; reduce amount of flags needed to copy paste
+#define MINE_STANDARD_FLAGS MINE_DISCERN_LIVING|MINE_ELECTRONIC|MINE_INTERRUPTIBLE
+
+/* Flags for volatility; also go under mine_features */
+///For mines that detonate when damaged physically (hit by a bullet, slashed, etc.)
+#define MINE_VOLATILE_DAMAGE (1<<9)
+///For mines that detonate when damaged by fire
+#define MINE_VOLATILE_FIRE (1<<10)
+///For mines that detonate when damaged by explosions
+#define MINE_VOLATILE_EXPLOSION (1<<11)
+///For mines that detonate when hit by EMPs
+#define MINE_VOLATILE_EMP (1<<12)
 
 //Flags for craftable IED
 #define IED_SECURED (1<<0)
@@ -62,20 +92,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/undeploy_delay = 0
 	///Time it takes to set up a mine
 	var/deploy_delay = 0
-	///Requires physical weight to detonate if touched; mine will detonate even if buffer_range is 0; can be set to only detonate on heavy objects crossing it
-	var/pressure_activated = NONE
-	///If TRUE, trigger zones can only be activated by conscious mobs, even if it's pressure_activated; if FALSE, anything can trigger this mine!
-	var/discern_living = TRUE
-	///If TRUE, damage will cause this mine to explode; EMPs will disable volatile mines
-	var/volatile = FALSE
-	///Mine will not delete itself upon detonation if TRUE
-	var/reusable = FALSE
-	///If this mine can be disarmed or interacted with in any way once triggered; good for adding flavor or as an effect
-	var/interruptible = TRUE
-	///If TRUE, the range can be changed from 1 to 7 tiles of range
-	var/custom_range = FALSE
-	///If deploying this mine counts as a war crime
-	var/illegal = FALSE
+	///Flags for what this mine can do; see top of mine.dm for defines
+	var/mine_features = MINE_STANDARD_FLAGS
 
 	/* -- Explosion data -- */
 	///How large the devestation impact is
@@ -117,17 +135,17 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 /obj/item/mine/Initialize(mapload)
 	. = ..()
-	if(!buffer_range || pressure_activated)
+	if(!buffer_range || CHECK_BITFIELD(mine_features, MINE_PRESSURE_SENSITIVE|MINE_PRESSURE_WEIGHTED))
 		var/static/list/connections = list(COMSIG_ATOM_ENTERED = PROC_REF(on_cross))
 		AddElement(/datum/element/connect_loc, connections)
 
 /obj/item/mine/Destroy()
-	QDEL_LIST(triggers)
+	delete_detection_zone()
 	return ..()
 
 /obj/item/mine/examine(mob/user)
 	. = ..()
-	if(custom_range)
+	if(CHECK_BITFIELD(mine_features, MINE_CUSTOM_RANGE))
 		. += "[span_bold("Alt Click")] to change the detection range."
 	if(armed)
 		. += span_warning("It is active!")
@@ -171,7 +189,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/obj/item/card/id/id = user.get_idcard()
 	deploy(user, id?.iff_signal)
 	user.record_traps_created()
-	if(illegal)
+	if(CHECK_BITFIELD(mine_features, MINE_ILLEGAL) && user)
 		user.record_war_crime()
 	return TRUE
 
@@ -181,18 +199,15 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	anchored = TRUE
 	armed = TRUE
 	playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
+
 	if(user)
 		user.temporarilyRemoveItemFromInventory(src)
 		forceMove(drop_location())
 		setDir(user.dir)
 	else
 		setDir(pick(CARDINAL_DIRS))
-	if(range)
-		var/list/trigger_turfs = generate_true_cone(get_turf(src), range, buffer_range, angle, dir2angle(dir), bypass_xeno = TRUE, air_pass = TRUE)
-		for(var/turf/T in trigger_turfs)
-			var/obj/effect/mine_trigger/tripwire = new /obj/effect/mine_trigger(T)
-			tripwire.linked_mine = src
-			triggers += tripwire
+
+	generate_detection_zone()
 	update_icon()
 
 /obj/item/mine/attack_hand(mob/living/user)
@@ -202,15 +217,22 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 ///Required checks before a mine is turned off and packed up
 /obj/item/mine/proc/undeploy(mob/living/user)
-	if(triggered && !interruptible)
+	if(triggered && !CHECK_BITFIELD(mine_features, MINE_INTERRUPTIBLE))
 		balloon_alert(user, "Too late, run!")
 		return FALSE
+
 	if(iff_signal)	//Has to actually be registered with a faction, otherwise it's hostile to everyone!
 		var/obj/item/card/id/id_card = user.get_idcard()
 		if(id_card && id_card.iff_signal == iff_signal)
 			if(undeploy_delay && !do_after(user, undeploy_delay, TRUE, src))
 				return FALSE
+			//The brain damaged and blind are likely to fumble it
+			if((user.brainloss > BRAIN_DAMAGE_MILD && prob(user.brainloss)) || (user.eye_blind && prob(50)))
+				visible_message(span_alert("[user] accidentally set off [src]!"), \
+				span_alert("You pressed the wrong button, dumb ass."))
+				return trigger_explosion(user)
 			return disarm()
+
 	balloon_alert(user, "Must be defused!")
 
 /obj/item/mine/attackby(obj/item/I, mob/user, params)
@@ -220,37 +242,75 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 ///The process for trying to disarm a mine
 /obj/item/mine/proc/bomb_defusal(mob/user)
-	if(triggered && !interruptible)
+	if(triggered && !CHECK_BITFIELD(mine_features, MINE_INTERRUPTIBLE))
 		balloon_alert(user, "Can't disarm this, run!")
 		return FALSE
+
 	//Mine defusal time is de/increased by 1 second per skill point
 	var/skill_issue = max(disarm_delay - user.skills.getRating(SKILL_ENGINEER) + SKILL_ENGINEER_ENGI, 0)
+
+	//Chance for failure below; only /living/ types can be checked for brain damage
+	var/mob/living/living = isliving(user) ? user : null
+	var/homer_simpson = living ? living.brainloss : 0
+
 	if(skill_issue)	//If you got the time down to 0, you can just skip this whole disarming process you smart egg!
 		if(user.skills.getRating(SKILL_ENGINEER) >= SKILL_ENGINEER_ENGI)
 			user.visible_message(span_notice("[user] starts disarming [src]."), \
 			span_notice("You start disarming [src]."))
+		else if(user.skills.getRating(SKILL_ENGINEER) == SKILL_ENGINEER_DEFAULT)
+			user.visible_message(span_warning("[user] is about to do something stupid!"), \
+			span_warning("You are about to get yourself killed."))
+			homer_simpson += 50	//Just add a flat 50% chance of failure if you're completely unskilled
 		else
 			user.visible_message(span_notice("[user] visibly struggles to disarm [src]."), \
 			span_notice("You try your best to disarm [src]."))
-		if(!do_after(user, skill_issue, TRUE, src, skill_issue > disarm_delay ? BUSY_ICON_UNSKILLED : BUSY_ICON_DANGER))
-			user.visible_message("<span class='warning'>[user] stops disarming [src].", \
-			"<span class='warning'>You stop disarming [src].")
+
+		if(!do_after(user, skill_issue, TRUE, src, skill_issue > disarm_delay ? BUSY_ICON_UNSKILLED : BUSY_ICON_BUILD))
+			user.visible_message(span_notice("[user] stops disarming [src]."), \
+			span_notice("You stop disarming [src]."))
 			return FALSE
-	user.visible_message("<span class='notice'>[user] disarmed [src].", \
-	"<span class='notice'>You disarmed [src].")
+
+	if(prob(homer_simpson))
+		user.visible_message(span_alert("[user] accidentally set off [src]!"), \
+		span_alert("You failed to disarm [src]!"))
+		return trigger_explosion(user)
+
+	//Let everyone know a mine was disarmed, but no need to log it to chat
+	balloon_alert_to_viewers("[src] disarmed")
 	disarm(user)
 
 ///Turns off the mine
 /obj/item/mine/proc/disarm()
-	if(!reusable && deletion_timer)	//Non-reuseable mine already doing it's thing? Deletion upon disarming then
+	if(!CHECK_BITFIELD(mine_features, MINE_REUSABLE) && deletion_timer)	//Non-reuseable mine already doing it's thing? Deletion upon disarming then
 		return qdel(src)
 	armed = FALSE
 	anchored = FALSE
 	triggered = FALSE	//Good job, you managed to disarm it before it blew
 	update_icon()
-	QDEL_LIST(triggers)
+	delete_detection_zone()
 	if(deletion_timer)
 		deltimer(deletion_timer)
+
+///Generate the trigger zones for the mine
+/obj/item/mine/proc/generate_detection_zone()
+	if(!range)
+		return
+
+	if(length(triggers))
+		delete_detection_zone()
+
+	var/list/trigger_turfs = generate_true_cone(get_turf(src), range, buffer_range, angle, dir2angle(dir), bypass_xeno = TRUE, air_pass = TRUE)
+	for(var/turf/T in trigger_turfs)
+		var/obj/effect/mine_trigger/tripwire = new /obj/effect/mine_trigger(T)
+		tripwire.linked_mine = src
+		triggers += tripwire
+
+///Delete the trigger zones for the mine
+/obj/item/mine/proc/delete_detection_zone()
+	if(!length(triggers))
+		return
+
+	QDEL_LIST(triggers)
 
 ///Checks if a mob entered the tile this mine is on, and if it can cause it to trigger
 /obj/item/mine/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
@@ -258,18 +318,18 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		return FALSE
 
 	var/mob/living/crosser = isliving(AM) ? AM : null
-	if(discern_living)	//If only conscious mobs can trigger this mine, run the appropriate checks
+	if(CHECK_BITFIELD(mine_features, MINE_DISCERN_LIVING))	//If only conscious mobs can trigger this mine, run the appropriate checks
 		if(!crosser)
 			return FALSE
 		if(crosser.stat)
 			return FALSE
 
-	if(pressure_activated)
+	if(CHECK_BITFIELD(mine_features, MINE_PRESSURE_SENSITIVE|MINE_PRESSURE_WEIGHTED))
 		//Flying mobs can't trip this mine
 		if(CHECK_MULTIPLE_BITFIELDS(AM.pass_flags, HOVERING))
 			return FALSE
 
-		if(pressure_activated & PRESSURE_WEIGHTED)
+		if(CHECK_BITFIELD(mine_features, MINE_PRESSURE_WEIGHTED))
 			//Maybe do some exercise and you won't trip mines so easily
 			if(crosser)
 				var/mob/living/carbon/possible_fatty = iscarbon(crosser) ? crosser : null
@@ -323,12 +383,13 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 	if(light_explosion_range || heavy_explosion_range || uber_explosion_range || weak_explosion_range)
 		//Directional-based explosives (like claymores) will spawn the explosion in front instead of on themselves
-		explosion((buffer_range && !pressure_activated) ? get_step(src, dir) : loc, \
+		explosion((CHECK_BITFIELD(mine_features, MINE_DIRECTIONAL)) ? get_step(src, dir) : loc, \
 		uber_explosion_range, heavy_explosion_range, light_explosion_range, weak_explosion_range, \
 		blinding_range, throw_range = launch_distance, color = explosion_color)
 
 	if(fire_range)
-		flame_radius(fire_range, (buffer_range && !pressure_activated) ? get_step(src, dir) : loc, fire_intensity, fire_duration, fire_damage, fire_stacks, colour = fire_color)
+		flame_radius(fire_range, (CHECK_BITFIELD(mine_features, MINE_DIRECTIONAL)) ? get_step(src, dir) : loc, \
+		fire_intensity, fire_duration, fire_damage, fire_stacks, colour = fire_color)
 
 	if(shrapnel_range && shrapnel_type)	//Spawn projectiles, their associated data, and then launch it the direction it is facing
 		var/obj/projectile/projectile_to_fire = new /obj/projectile(get_turf(src))
@@ -345,53 +406,67 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	if(duration || duration < 0)
 		extra_effects(victim)
 		if(duration > 0)
-			if(reusable)
+			if(CHECK_BITFIELD(mine_features, MINE_REUSABLE))
 				return deletion_timer = addtimer(CALLBACK(src, PROC_REF(disarm)), duration, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 			return deletion_timer = addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), duration, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 		return TRUE	//Don't stop
 
 	//Reusable mines do not delete themselves upon detonation, just go back to sleep
-	if(reusable)
+	if(CHECK_BITFIELD(mine_features, MINE_REUSABLE))
 		return disarm()
 
-	QDEL_LIST(triggers)
+	delete_detection_zone()
 	qdel(src)
 
 ///Shove any code for special effects caused by this mine here
 /obj/item/mine/proc/extra_effects(atom/movable/victim)
 	return
 
-///If this mine is volatile, explode! Easier to copy paste this into several places
-/obj/item/mine/proc/volatility_check()
-	if(volatile)
+///If this mine is volatile, explode! See top of mine.dm for volatility flags
+/obj/item/mine/proc/volatility_check(flag)
+	if(CHECK_BITFIELD(mine_features, flag))
 		//Let's make sure everyone knows it was not activated by normal circumstances
 		visible_message(span_danger("[icon2html(src, viewers(src))] \The [src]'s detonation mechanism is accidentally triggered!"))
 		trigger_explosion()
 
 //On explosion, mines trigger their own explosion, assuming they were not deleted straight away (larger explosions or probability)
-/obj/item/mine/ex_act()
+/obj/item/mine/ex_act(severity)
 	. = ..()
-	if(!QDELETED(src))
-		volatility_check()
+	if(QDELETED(src) || !armed)
+		return
 
-//Any EMP effects will render volatiles mines disabled
-/obj/item/mine/emp_act()
-	. = ..()
-	if(volatile)
-		disarm()
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			return
+		if(EXPLODE_HEAVY)
+			if(prob(25))
+				return
+		if(EXPLODE_LIGHT)
+			if(prob(50))
+				return
+		if(EXPLODE_WEAK)
+			return //not strong enough to detonate
+
+	volatility_check(MINE_VOLATILE_EXPLOSION)
 
 //Fire will cause mines to trigger their explosion
 /obj/item/mine/flamer_fire_act(burnlevel)
-	. = ..()
-	volatility_check()
+	volatility_check(MINE_VOLATILE_FIRE)
 
 /obj/item/mine/fire_act()
-	. = ..()
-	volatility_check()
+	volatility_check(MINE_VOLATILE_FIRE)
 
 /obj/item/mine/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
-	. = ..()
-	volatility_check()
+	if(damage_amount)	//Only do this if the mine actually took damage; run it before damage is dealt in case it destroys the mine
+		volatility_check(MINE_VOLATILE_DAMAGE)
+	return ..()
+
+//Any EMP effects will render electronic mines disabled, or trigger them if they are volatile
+/obj/item/mine/emp_act(severity)
+	if(CHECK_BITFIELD(mine_features, MINE_VOLATILE_EMP))
+		trigger_explosion()
+	else if(CHECK_BITFIELD(mine_features, MINE_ELECTRONIC))
+		disarm()
 
 ///Act as dummy objects that detects if something touched it, causing the linked mine to detonate
 /obj/effect/mine_trigger
@@ -406,10 +481,16 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	. = ..()
 	var/static/list/connections = list(COMSIG_ATOM_ENTERED = PROC_REF(on_cross))
 	AddElement(/datum/element/connect_loc, connections)
+	RegisterSignal(loc, COMSIG_TURF_CHANGE, PROC_REF(on_turf_change))
 
 /obj/effect/mine_trigger/Destroy()
 	linked_mine = null
 	return ..()
+
+///If the turf this trigger is on changes, update the detection zones to prevent orphaned triggers
+/obj/effect/mine_trigger/proc/on_turf_change()
+	SIGNAL_HANDLER
+	linked_mine.generate_detection_zone()
 
 ///When crossed, triggers the linked mine if checks pass
 /obj/effect/mine_trigger/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
@@ -419,7 +500,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		return
 	if(linked_mine.triggered) //Mine is already set to go off
 		return FALSE
-	if(linked_mine.discern_living)	//If only mobs can trigger the mine this belongs to, check if they are conscious
+	if(CHECK_BITFIELD(linked_mine.mine_features, MINE_DISCERN_LIVING))	//If only mobs can trigger the mine this belongs to, check if they are conscious
 		if(!isliving(AM))
 			return FALSE
 		var/mob/living/unlucky_person = AM
@@ -442,6 +523,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	light_explosion_range = 2
 	shrapnel_type = /datum/ammo/bullet/claymore_shrapnel
 	shrapnel_range = 5
+	mine_features = MINE_STANDARD_FLAGS|MINE_DIRECTIONAL
 
 /obj/item/mine/claymore/pmc
 	name = "\improper M20P Claymore anti-personnel mine"
@@ -468,7 +550,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	weak_explosion_range = 3
 	blinding_range = 1
 	launch_distance = 1
-	volatile = TRUE
+	mine_features = MINE_STANDARD_FLAGS|MINE_VOLATILE_DAMAGE|MINE_VOLATILE_FIRE|MINE_VOLATILE_EXPLOSION
 
 /obj/item/mine/pressure
 	name = "land mine"
@@ -484,8 +566,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	heavy_explosion_range = 3
 	blinding_range = 1
 	launch_distance = 5
-	pressure_activated = PRESSURE_SENSITIVE
-	volatile = TRUE
+	mine_features = MINE_PRESSURE_SENSITIVE
 
 /obj/item/mine/pressure/anti_tank
 	name = "\improper M92 Valiant anti-tank mine"
@@ -494,8 +575,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	uber_explosion_range = 2
 	heavy_explosion_range = 3
 	weak_explosion_range = 4
-	pressure_activated = PRESSURE_WEIGHTED
-	volatile = FALSE	//More stable, either destroy it or disarm it
+	mine_features = MINE_PRESSURE_WEIGHTED|MINE_VOLATILE_EXPLOSION
 
 /obj/item/mine/pressure/anti_tank/update_icon_state()
 	. = ..()
@@ -517,7 +597,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	fire_damage = 10
 	fire_stacks = 10
 	fire_color = "green"
-	volatile = TRUE
+	mine_features = MINE_DISCERN_LIVING|MINE_ELECTRONIC|MINE_VOLATILE_DAMAGE|MINE_VOLATILE_FIRE|MINE_VOLATILE_EXPLOSION
 
 /* Improvised explosives - You craft them */
 /obj/item/mine/ied
@@ -534,8 +614,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	deploy_delay = 2 SECONDS
 	shrapnel_type = /datum/ammo/bullet/claymore_shrapnel/nail
 	shrapnel_range = 4
-	discern_living = FALSE
-	volatile = TRUE
+	//I know they technically are electronic with the proximity sensor but it's probably more fun if not EMP'able since they're practically junk
+	mine_features = MINE_INTERRUPTIBLE|MINE_VOLATILE_DAMAGE|MINE_VOLATILE_FIRE|MINE_VOLATILE_EXPLOSION
 
 	///Stages of assembly; see top of file for the flags
 	var/assembly_steps_completed = NONE
@@ -659,9 +739,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	disarm_delay = 5 SECONDS
 	undeploy_delay = 4 SECONDS	//You turn it off veeeery carefully
 	deploy_delay = 2 SECONDS
-	volatile = TRUE
-	custom_range = TRUE
-	illegal = TRUE
+	mine_features = MINE_STANDARD_FLAGS|MINE_REUSABLE|MINE_ILLEGAL|MINE_VOLATILE_DAMAGE|MINE_VOLATILE_EXPLOSION
 	///Base damage of the radiation pulse, and determines severity of effects; see extra_effects()
 	var/radiation_damage = 20
 	///How many more times the mine pulses out radiation and refreshes the radiation field
@@ -808,8 +886,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	disarm_delay = 4 SECONDS
 	undeploy_delay = 5 SECONDS
 	deploy_delay = 5 SECONDS
-	volatile = TRUE
-	reusable = TRUE
+	mine_features = MINE_STANDARD_FLAGS|MINE_REUSABLE|MINE_VOLATILE_DAMAGE|MINE_VOLATILE_EMP
 	///The internal cell powering it
 	var/obj/item/cell/battery
 	///How much energy is drained from the internal cell
@@ -910,9 +987,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	gas_type = /datum/effect_system/smoke_spread/plasmaloss
 	gas_range = 3
 	gas_duration = 15
-	volatile = TRUE
-	interruptible = FALSE
-	illegal = TRUE
+	mine_features = MINE_DISCERN_LIVING|MINE_ELECTRONIC|MINE_ILLEGAL|MINE_VOLATILE_DAMAGE|MINE_VOLATILE_FIRE|MINE_VOLATILE_EXPLOSION
 
 /* Tactical mines - Non-lethal, utility-focused gadgets */
 /obj/item/mine/alarm
@@ -925,7 +1000,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	duration = -1
 	undeploy_delay = 0.5 SECONDS
 	deploy_delay = 1 SECONDS
-	reusable = TRUE
+	mine_features = MINE_STANDARD_FLAGS|MINE_REUSABLE
 	///Internal radio that transmits alerts, spawned on Initialize()
 	var/obj/item/radio/radio
 	///To prevent spam
@@ -988,8 +1063,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	duration = 1.5 SECONDS
 	undeploy_delay = 2 SECONDS
 	deploy_delay = 2 SECONDS
-	reusable = TRUE
-	custom_range = TRUE
+	mine_features = MINE_STANDARD_FLAGS|MINE_REUSABLE|MINE_CUSTOM_RANGE
 	///The internal cell powering it
 	var/obj/item/cell/battery
 
@@ -1055,7 +1129,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	duration = -1
 	undeploy_delay = 1 SECONDS
 	deploy_delay = 1 SECONDS
-	reusable = TRUE
+	mine_features = MINE_STANDARD_FLAGS|MINE_REUSABLE
 	///How long to blind a victim
 	var/flash_duration = 3 SECONDS
 	///The internal cell powering it
