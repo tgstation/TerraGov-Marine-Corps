@@ -46,7 +46,7 @@
 /obj/item/explosive/plastique/afterattack(atom/target, mob/user, flag)
 	if(!flag)
 		return FALSE
-	if(istype(target, /obj/vehicle/sealed) || istype(target, /obj/item) || isopenturf(target))
+	if(istype(target, /obj/item) || isopenturf(target))
 		return FALSE
 	if(target.resistance_flags & INDESTRUCTIBLE)
 		return FALSE

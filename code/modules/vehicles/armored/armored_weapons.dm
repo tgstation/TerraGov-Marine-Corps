@@ -164,13 +164,10 @@
 	projectile_to_fire.shot_from = src
 	if(chassis.hitbox?.tank_desants)
 		projectile_to_fire.hit_atoms += chassis.hitbox.tank_desants
-	if(projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF)
-		var/iff_signal
-		if(ishuman(firer))
-			var/mob/living/carbon/human/human_firer = firer
-			var/obj/item/card/id/id = human_firer.get_idcard()
-			iff_signal = id?.iff_signal
-		projectile_to_fire.iff_signal = iff_signal
+	if((projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF) && ishuman(firer))
+		var/mob/living/carbon/human/human_firer = firer
+		var/obj/item/card/id/id = human_firer.get_idcard()
+		projectile_to_fire.iff_signal = id?.iff_signal
 
 ///actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop
 /obj/item/armored_weapon/proc/fire()

@@ -420,7 +420,11 @@
 	ExtinguishMob()
 
 /obj/flamer_fire/acid_spray_act(mob/living/carbon/xenomorph/X)
-	Destroy()
+	qdel(src)
+
+/obj/hitbox/acid_spray_act(mob/living/carbon/xenomorph/X)
+	take_damage(X.xeno_caste.acid_spray_structure_damage, BURN, ACID)
+	return TRUE
 
 // Vent Crawl
 /mob/living/carbon/xenomorph/proc/vent_crawl()

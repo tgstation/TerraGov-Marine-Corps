@@ -131,7 +131,7 @@
 #define LANDSLIDE_ENDING_COLLISION_DELAY 0.3 SECONDS
 #define LANDSLIDE_KNOCKDOWN_DURATION 1 SECONDS
 #define LANDSLIDE_DAMAGE_MULTIPLIER 1.2
-#define LANDSLIDE_DAMAGE_MECHA_MODIFIER 20
+#define LANDSLIDE_DAMAGE_VEHICLE_MODIFIER 20
 #define LANDSLIDE_OBJECT_INTEGRITY_THRESHOLD 150
 
 #define LANDSLIDE_ENDED_CANCELLED (1<<0)
@@ -392,8 +392,8 @@
 					affected_pillar.throw_pillar(get_ranged_target_turf(xeno_owner, xeno_owner.dir, 7), TRUE)
 					continue
 				if(isvehicle(affected_atom))
-					var/obj/vehicle/sealed/mecha/affected_mecha = affected_atom
-					affected_mecha.take_damage(damage * LANDSLIDE_DAMAGE_MECHA_MODIFIER, MELEE)
+					var/obj/vehicle/veh_victim = affected_atom
+					veh_victim.take_damage(damage * LANDSLIDE_DAMAGE_VEHICLE_MODIFIER, MELEE)
 					continue
 				var/obj/affected_object = affected_atom
 				if(!affected_object.density || affected_object.allow_pass_flags & PASS_MOB || affected_object.resistance_flags & INDESTRUCTIBLE)
@@ -454,8 +454,8 @@
 					affected_pillar.throw_pillar(get_ranged_target_turf(xeno_owner, xeno_owner.dir, 7), TRUE)
 					continue
 				if(isvehicle(affected_atom))
-					var/obj/vehicle/sealed/mecha/affected_mecha = affected_atom
-					affected_mecha.take_damage(damage * LANDSLIDE_DAMAGE_MECHA_MODIFIER, MELEE)
+					var/obj/vehicle/veh_victim = affected_atom
+					veh_victim.take_damage(damage * LANDSLIDE_DAMAGE_VEHICLE_MODIFIER, MELEE)
 					continue
 				var/obj/affected_object = affected_atom
 				if(!affected_object.density || affected_object.allow_pass_flags & PASS_MOB || affected_object.resistance_flags & INDESTRUCTIBLE)
@@ -1391,7 +1391,7 @@
 // ***************************************
 // *********** Global Procs
 // ***************************************
-#define AREA_ATTACK_DAMAGE_MECHA_MODIFIER 10
+#define AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER 10
 
 /**
  * Checks for any atoms caught in the attack's range, and applies several effects based on the atom's type.
@@ -1437,8 +1437,8 @@
 					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(behemoth_area_attack), xeno_owner, spread_turfs, enhanced), wind_up_duration)
 					continue
 				if(isvehicle(affected_atom))
-					var/obj/vehicle/sealed/mecha/affected_mecha = affected_atom
-					affected_mecha.take_damage(attack_damage * AREA_ATTACK_DAMAGE_MECHA_MODIFIER, MELEE)
+					var/obj/vehicle/veh_victim = affected_atom
+					veh_victim.take_damage(attack_damage * AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER, MELEE)
 					continue
 				if(istype(affected_atom, /obj/structure/reagent_dispensers/fueltank))
 					var/obj/structure/reagent_dispensers/fueltank/affected_tank = affected_atom
