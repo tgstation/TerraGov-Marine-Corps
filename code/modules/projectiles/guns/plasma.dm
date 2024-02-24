@@ -29,7 +29,7 @@
 	unload_sound = 'sound/weapons/guns/interact/plasma_unload_3.ogg'
 	reload_sound = 'sound/weapons/guns/interact/plasma_reload_2.ogg'
 
-	wield_delay = 0.4 SECONDS
+	wield_delay = 0.6 SECONDS
 	aim_slowdown = 0.5
 
 	accuracy_mult = 1.1
@@ -108,9 +108,10 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY
 	w_class = WEIGHT_CLASS_BULKY
+	gun_skill_category = SKILL_HEAVY_WEAPONS
 
 	aim_slowdown = 1.2
-	wield_delay = 1.5 SECONDS
+	wield_delay = 1.7 SECONDS
 	movement_acc_penalty_mult = 6
 
 	accuracy_mult = 1

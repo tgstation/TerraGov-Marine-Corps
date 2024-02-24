@@ -40,7 +40,6 @@
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 	update_wounds()
 
-	hud_set_plasma()
 	med_hud_set_health()
 	hud_set_sunder()
 	hud_set_firestacks()

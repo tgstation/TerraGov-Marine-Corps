@@ -20,7 +20,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/obj/items/guns/marksman.dmi'
 	aim_slowdown = 1
 	gun_skill_category = SKILL_RIFLES
-	wield_delay = 1 SECONDS
+	wield_delay = 1.2 SECONDS
 
 //Pow! Headshot
 
@@ -47,7 +47,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/ammo_magazine/sniper/flak,
 	)
 	force = 12
-	wield_delay = 12 //Ends up being 1.6 seconds due to scope
+	wield_delay = 1.4 SECONDS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/targetmarker_on = FALSE
 	var/targetmarker_primed = FALSE
@@ -319,7 +319,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	accuracy_mult = 1
 	scatter = -5
 	recoil = -1
-	wield_delay = 1.8 SECONDS
+	wield_delay = 2 SECONDS
 	movement_acc_penalty_mult = 6
 
 
@@ -419,7 +419,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_powerpack)
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
-	wield_delay = 12
+	wield_delay = 1.2 SECONDS
 	gun_skill_category = SKILL_HEAVY_WEAPONS
 	aim_slowdown = 0.8
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
@@ -493,7 +493,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	max_shells = 1000 //codex
 	caliber = CALIBER_10x26_CASELESS //codex
 	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
-	wield_delay = 1.5 SECONDS
+	wield_delay = 1.7 SECONDS
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
 	gun_skill_category = SKILL_SMARTGUN
 	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/motiondetector)
@@ -532,7 +532,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	default_ammo_type = /obj/item/ammo_magazine/rifle/pepperball
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball)
 	force = 30 // two shots weeds as it has no bayonet
-	wield_delay = 0.5 SECONDS // Very fast to put up.
+	wield_delay = 0.7 SECONDS // Very fast to put up.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
 		/obj/item/attachable/buildasentry,
@@ -626,7 +626,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_equip_slot = NONE
 	w_class = WEIGHT_CLASS_HUGE
 	force = 15
-	wield_delay = 12
+	wield_delay = 1.2 SECONDS
 	wield_penalty = 1.6 SECONDS
 	aim_slowdown = 1.75
 	general_codex_key = "explosive weapons"
@@ -709,7 +709,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_equip_slot = NONE
 	w_class = WEIGHT_CLASS_HUGE
 	force = 15
-	wield_delay = 12
+	wield_delay = 1.2 SECONDS
 	wield_penalty = 1.6 SECONDS
 	aim_slowdown = 1.75
 	general_codex_key = "explosive weapons"
@@ -838,7 +838,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	gun_skill_category = SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
 	fire_delay = 1 SECONDS
@@ -1024,7 +1023,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/ammo_magazine/railgun/hvap,
 	)
 	force = 40
-	wield_delay = 1 SECONDS //You're not quick drawing this.
+	wield_delay = 1.2 SECONDS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 31, "rail_y" = 23, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
@@ -1069,7 +1068,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/ammo_magazine/rifle/icc_coilgun,
 	)
 	force = 40
-	wield_delay = 1 SECONDS //You're not quick drawing this.
+	wield_delay = 1.2 SECONDS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 31, "rail_y" = 23, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,

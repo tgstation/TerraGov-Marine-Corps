@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - rscadd: "added some admin-only vehicles"
+  - code_imp: "added multitile, multicrew vehicle support"

@@ -97,14 +97,16 @@
 	GLOB.round_statistics.queen_screech++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")
 	X.create_shriekwave() //Adds the visual effect. Wom wom wom
-	//stop_momentum(charge_dir) //Screech kills a charge
 
 	var/list/nearby_living = list()
 	for(var/mob/living/L in hearers(WORLD_VIEW, X))
 		nearby_living.Add(L)
+	for(var/obj/vehicle/sealed/armored/tank AS in GLOB.tank_list)
+		if(get_dist(tank, X) > WORLD_VIEW_NUM)
+			continue
+		nearby_living += tank.occupants
 
-	for(var/i in GLOB.mob_living_list)
-		var/mob/living/L = i
+	for(var/mob/living/L AS in GLOB.mob_living_list)
 		if(get_dist(L, X) > WORLD_VIEW_NUM)
 			continue
 		L.screech_act(X, WORLD_VIEW_NUM, L in nearby_living)
