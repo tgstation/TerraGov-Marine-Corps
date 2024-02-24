@@ -234,7 +234,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	ui_icon = "firearms"
 	firearms = 1
 	all_jobs = TRUE
-	unlock_cost = 600
+	unlock_cost = 400
 
 /datum/perk/skill_mod/pistols
 	name = "Advanced pistol training"
@@ -306,9 +306,9 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	name = "Advanced construction training"
 	desc = "Faster construction times when building. Some items may no longer have a penalty delay when constructing."
 	ui_icon = "construction"
-	construction = 1
+	construction = 2
 	all_jobs = TRUE
-	unlock_cost = 400
+	unlock_cost = 300
 
 /datum/perk/skill_mod/leadership
 	name = "Advanced leadership training"
@@ -322,9 +322,9 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	name = "Advanced medical training"
 	desc = "Faster at applying medical items. Some items may no longer have a penalty delay. Unlocks access to improved first aid pouches if not already available."
 	ui_icon = "medical"
-	medical = 1
+	medical = 2
 	all_jobs = TRUE
-	unlock_cost = 400
+	unlock_cost = 300
 
 /datum/perk/skill_mod/medical/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(!istype(owner_stats))

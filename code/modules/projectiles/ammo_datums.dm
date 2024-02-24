@@ -971,6 +971,22 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
 
+/datum/ammo/bullet/hefa_buckshot
+	name = "hefa fragment"
+	handful_icon_state = "shotgun buckshot shell"
+	icon_state = "buckshot"
+	hud_state = "shotgun_buckshot"
+	accuracy_var_low = 9
+	accuracy_var_high = 9
+	accurate_range = 3
+	max_range = 10
+	shrapnel_chance = 15
+	damage = 30
+	damage_falloff = 3
+
+/datum/ammo/bullet/hefa_buckshot/on_hit_mob(mob/mob_hit, obj/projectile/projectile)
+	staggerstun(mob_hit, projectile, knockback = 2, max_range = 4)
+
 /datum/ammo/bullet/shotgun/spread
 	name = "additional buckshot"
 	icon_state = "buckshot"
@@ -1348,6 +1364,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0.5
 	accurate_range = 25
 	accurate_range_min = 3
+
+/datum/ammo/bullet/cupola
+	name = "cupola bullet"
+	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
+	hud_state = "smartgun"
+	hud_state_empty = "smartgun_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_IFF
+	accurate_range = 12
+	damage = 25
+	penetration = 5
+	sundering = 1
 
 /datum/ammo/bullet/spottingrifle
 	name = "smart spotting bullet"
@@ -2175,11 +2202,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
 	accurate_range = 15
 	max_range = 40
-	penetration = 200
-	damage = 300
+	penetration = 50
+	damage = 200
+	hud_state = "bigshell_he"
 
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
-	explosion(T, 0, 4, 6, 0, 7)
+	explosion(T, 1, 2, 5, 0, 5)
 
 /datum/ammo/rocket/mech
 	name = "large high-explosive rocket"
@@ -3480,9 +3508,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	glow_color = "#CB0166"
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/O, obj/projectile/P)
-	if(ismecha(O))
-		var/obj/vehicle/sealed/mecha/mech_victim = O
-		mech_victim.take_damage(200, BURN, ENERGY, TRUE, armour_penetration = penetration)
+	if(isvehicle(O))
+		var/obj/vehicle/veh_victim = O
+		veh_victim.take_damage(200, BURN, ENERGY, TRUE, armour_penetration = penetration)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/M, obj/projectile/P)
 	if(isxeno(M))
@@ -3795,6 +3823,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 /datum/ammo/xeno/sticky/on_hit_obj(obj/O, obj/projectile/P)
+	if(isarmoredvehicle(O))
+		var/obj/vehicle/sealed/armored/tank = O
+		COOLDOWN_START(tank, cooldown_vehicle_move, tank.move_delay)
 	var/turf/T = get_turf(O)
 	drop_resin(T.density ? P.loc : T)
 

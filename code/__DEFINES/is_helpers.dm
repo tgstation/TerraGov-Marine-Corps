@@ -250,6 +250,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define ismecha(A) (istype(A, /obj/vehicle/sealed/mecha))
 
+#define isarmoredvehicle(A) (istype(A, /obj/vehicle/sealed/armored))
+
 #define isorgan(A) (istype(A, /datum/limb))
 
 #define isidcard(A) (istype(A, /obj/item/card/id))

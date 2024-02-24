@@ -79,11 +79,11 @@
 	QDEL_NULL(in_chamber)
 	return ..()
 
-/obj/vehicle/unmanned/obj_destruction()
+/obj/vehicle/unmanned/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	robogibs(src)
 	return ..()
 
-/obj/vehicle/unmanned/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
+/obj/vehicle/unmanned/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
 	hud_set_machine_health()
 

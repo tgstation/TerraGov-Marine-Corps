@@ -901,6 +901,12 @@ EXPLOSIVES
 	contains = list(/obj/item/storage/box/visual/grenade/phosphorus)
 	cost = 700
 
+/datum/supply_packs/explosives/explosives_hefa
+	name = "M25 HEFA grenade box crate"
+	notes = "Contains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/hefa)
+	cost = 550
+
 /datum/supply_packs/explosives/plastique
 	name = "C4 plastic explosive"
 	contains = list(/obj/item/explosive/plastique)

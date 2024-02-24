@@ -22,6 +22,8 @@
 #define PASS_AIR (1<<9)
 ///Mobs can walk freely between turfs with walkover flagged objects
 #define PASS_WALKOVER (1<<10)
+///when jumping, mobs can pass onto tanks
+#define PASS_TANK (1<<11)
 
 #define PASSABLE (PASS_THROW|PASS_PROJECTILE|PASS_AIR)
 #define HOVERING (PASS_LOW_STRUCTURE|PASS_MOB|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE)

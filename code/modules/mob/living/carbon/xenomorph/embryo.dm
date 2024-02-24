@@ -188,9 +188,9 @@
 		return
 
 
-	if(istype(victim.loc, /obj/vehicle/multitile/root))
-		var/obj/vehicle/multitile/root/V = victim.loc
-		V.handle_player_exit(src)
+	if(istype(victim.loc, /obj/vehicle/sealed))
+		var/obj/vehicle/sealed/armored/veh = victim.loc
+		forceMove(veh.exit_location(src))
 	else
 		forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
 	var/obj/item/alien_embryo/AE = locate() in victim

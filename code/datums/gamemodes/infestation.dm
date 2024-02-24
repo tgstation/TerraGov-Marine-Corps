@@ -52,9 +52,8 @@
 /datum/game_mode/infestation/announce_bioscans(show_locations = TRUE, delta = 2, ai_operator = FALSE, announce_humans = TRUE, announce_xenos = TRUE, send_fax = TRUE)
 
 	if(ai_operator)
-		var/mob/living/silicon/ai/bioscanning_ai = usr
 		#ifndef TESTING
-
+		var/mob/living/silicon/ai/bioscanning_ai = usr
 		if((bioscanning_ai.last_ai_bioscan + COOLDOWN_AI_BIOSCAN) > world.time)
 			to_chat(bioscanning_ai, "Bioscan instruments are still recalibrating from their last use.")
 			return

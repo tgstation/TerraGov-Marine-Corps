@@ -146,6 +146,7 @@
 			/obj/item/explosive/grenade/flashbang/stun = 30,
 			/obj/item/explosive/grenade/smokebomb/sleep = 5,
 			/obj/item/explosive/grenade/bullet/laser = 30,
+			/obj/item/explosive/grenade/bullet/hefa = 10,
 			/obj/item/storage/box/m94 = 200,
 			/obj/item/storage/box/m94/cas = 30,
 		),
