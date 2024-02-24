@@ -398,3 +398,28 @@
       and containment.
   Pariah919:
   - balance: Reinforced Walls have 75 laser/bullet armor and 5000 HP.
+2024-02-24:
+  74delta:
+  - rscadd: hefa grenades to req for 550 a box and 10 in roundstart vendors
+  Lumipharon:
+  - qol: Xeno plasma levels will update on the hud as soon as plasma levels change,
+      instead of waiting for life ticks
+  - bugfix: fixed pheros not using plasma if you were on full plasma, even off weeds
+  - code_imp: Improved some xeno plasma hud code
+  - balance: 'Campaign: Added individual stats to track shrapnel removed, mines placed
+      and mechs destroyed'
+  - balance: 'Campaign: Boosted the cash rewards for performing non combat actions'
+  - bugfix: fixed some wrong/misleading wield time stats
+  - bugfix: 'Campaign: Fixed an incorrect objective desc for ASAT Capture'
+  - code_imp: Cleaned up some conveyor code
+  - bugfix: 'Campaign: Fixed not being properly despawned at the end of a mission
+      in some cases'
+  MiniMeatwad:
+  - admin: Added message for recipient when a ticket is (un)marked, closed, or tiered.
+  XElectricX:
+  - code_imp: Interactive emotes can be bound to a key instead of using right clicking.
+  Xander3359:
+  - bugfix: Fix robotic cradle sprite
+  ivanmixo:
+  - rscadd: Added directional attacks, you can enable them in the preference menu
+      for all living mobs.

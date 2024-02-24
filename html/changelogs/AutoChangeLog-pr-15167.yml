@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "Xeno plasma levels will update on the hud as soon as plasma levels change, instead of waiting for life ticks"
-  - bugfix: "fixed pheros not using plasma if you were on full plasma, even off weeds"
-  - code_imp: "Improved some xeno plasma hud code"

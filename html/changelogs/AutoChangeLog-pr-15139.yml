@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Campaign: Added individual stats to track shrapnel removed, mines placed and mechs destroyed"
-  - balance: "Campaign: Boosted the cash rewards for performing non combat actions"
