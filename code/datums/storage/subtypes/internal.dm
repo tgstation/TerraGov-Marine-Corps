@@ -90,3 +90,213 @@
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
 		/obj/item/cell/lasgun/lasrifle,
 	)
+
+/datum/storage/internal/modular
+	max_storage_space = 2
+	storage_slots = 2
+	max_w_class = WEIGHT_CLASS_TINY
+	bypass_w_limit = list(
+		/obj/item/clothing/glasses,
+	)
+	cant_hold = list(
+		/obj/item/stack,
+	)
+
+/datum/storage/internal/pocket
+	max_storage_space = 6
+	storage_slots = 2
+	max_w_class = WEIGHT_CLASS_NORMAL
+	bypass_w_limit = list(
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/cell/lasgun,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/ammo_magazine/handful,
+	)
+	cant_hold = list(/obj/item/cell/lasgun/volkite/powerpack)
+
+/datum/storage/internal/pocket/insertion_message(obj/item/item, mob/user)
+	var/visidist = item.w_class >= WEIGHT_CLASS_NORMAL ? 3 : 1
+	//Grab the name of the object this pocket belongs to
+	user.visible_message(span_notice("[user] puts \a [item] into \the [parent.name]."),\
+						span_notice("You put \the [item] into \the [parent.name]."),\
+						null, visidist)
+
+/datum/storage/internal/pocket/medical
+	max_storage_space = 30
+	storage_slots = 5
+	max_w_class = WEIGHT_CLASS_SMALL
+	can_hold = list(
+		/obj/item/healthanalyzer,
+		/obj/item/stack/medical,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/hypospray/advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/pill,
+		/obj/item/storage/pill_bottle,
+		/obj/item/clothing/glasses/hud/health,
+		/obj/item/clothing/gloves/latex,
+		/obj/item/tweezers,
+		/obj/item/tweezers_advanced,
+		/obj/item/whistle,
+	)
+
+/datum/storage/internal/modular/general
+	max_storage_space = 6
+	storage_slots = 2
+	max_w_class = WEIGHT_CLASS_NORMAL
+	bypass_w_limit = list(
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/cell/lasgun,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/ammo_magazine/handful,
+		/obj/item/cell/lasgun/plasma_powerpack,
+	)
+	cant_hold = list(/obj/item/cell/lasgun/volkite/powerpack)
+
+/datum/storage/internal/modular/ammo_mag
+	max_storage_space = 15
+	storage_slots = 4
+	max_w_class = WEIGHT_CLASS_NORMAL
+	can_hold = list(
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/explosive/grenade/flare/civilian,
+		/obj/item/explosive/grenade/flare,
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/cell/lasgun,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/ammo_magazine/handful,
+		/obj/item/explosive/grenade,
+		/obj/item/explosive/mine,
+		/obj/item/reagent_containers/food/snacks,
+	)
+
+/datum/storage/internal/modular/engineering
+	max_storage_space = 15
+	storage_slots = 5
+	max_w_class = WEIGHT_CLASS_BULKY
+	can_hold = list(
+		/obj/item/stack/barbed_wire,
+		/obj/item/stack/sheet,
+		/obj/item/stack/rods,
+		/obj/item/stack/cable_coil,
+		/obj/item/stack/sandbags_empty,
+		/obj/item/stack/sandbags,
+		/obj/item/stack/razorwire,
+		/obj/item/tool/shovel/etool,
+		/obj/item/tool/wrench,
+		/obj/item/tool/weldingtool,
+		/obj/item/tool/wirecutters,
+		/obj/item/tool/crowbar,
+		/obj/item/tool/screwdriver,
+		/obj/item/tool/handheld_charger,
+		/obj/item/tool/multitool,
+		/obj/item/binoculars/tactical/range,
+		/obj/item/explosive/plastique,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_small,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_large,
+		/obj/item/cell/apc,
+		/obj/item/cell/high,
+		/obj/item/cell/rtg,
+		/obj/item/cell/super,
+		/obj/item/cell/potato,
+		/obj/item/assembly/signaler,
+		/obj/item/detpack,
+		/obj/item/circuitboard,
+		/obj/item/lightreplacer,
+	)
+	cant_hold = list()
+
+/datum/storage/internal/modular/medical
+	max_storage_space = 30
+	storage_slots = 5
+	max_w_class = WEIGHT_CLASS_SMALL
+	can_hold = list(
+		/obj/item/healthanalyzer,
+		/obj/item/stack/medical,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/hypospray/advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/pill,
+		/obj/item/storage/syringe_case,
+		/obj/item/roller/medevac,
+		/obj/item/roller,
+		/obj/item/bodybag,
+		/obj/item/storage/pill_bottle,
+		/obj/item/clothing/glasses/hud/health,
+		/obj/item/clothing/gloves/latex,
+		/obj/item/tweezers,
+		/obj/item/tweezers_advanced,
+		/obj/item/whistle,
+	)
+
+/datum/storage/internal/modular/injector
+	max_storage_space = 10
+	storage_slots = 10
+	max_w_class = WEIGHT_CLASS_TINY
+	can_hold = list(
+		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/hypospray/autoinjector,
+	)
+
+/datum/storage/internal/modular/integrated
+	bypass_w_limit = list()
+	storage_slots = null
+	max_storage_space = 15
+	max_w_class = WEIGHT_CLASS_NORMAL
+
+/datum/storage/internal/modular/grenade
+	max_storage_space = 12
+	storage_slots = 6
+	max_w_class = WEIGHT_CLASS_SMALL
+	can_hold = list(
+		/obj/item/explosive/grenade,
+		/obj/item/reagent_containers/food/drinks/cans,
+	)
+
+/datum/storage/internal/shoes/boot_knife
+	max_storage_space = 3
+	storage_slots = 1
+	draw_mode = TRUE
+	can_hold = list(
+		/obj/item/weapon/combat_knife,
+		/obj/item/weapon/gun/pistol/standard_pocketpistol,
+		/obj/item/weapon/gun/shotgun/double/derringer,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
+		/obj/item/stack/throwing_knife,
+		/obj/item/storage/box/MRE,
+	)
+
+/datum/storage/internal/marinehelmet
+	max_storage_space = 3
+	storage_slots = 2
+	max_w_class = WEIGHT_CLASS_TINY
+	bypass_w_limit = list(
+		/obj/item/clothing/glasses,
+		/obj/item/reagent_containers/food/snacks,
+		/obj/item/stack/medical/heal_pack/gauze,
+		/obj/item/stack/medical/heal_pack/ointment,
+		/obj/item/ammo_magazine/handful,
+	)
+	cant_hold = list(
+		/obj/item/stack/sheet,
+		/obj/item/stack/catwalk,
+		/obj/item/stack/rods,
+		/obj/item/stack/sandbags_empty,
+		/obj/item/stack/tile,
+		/obj/item/stack/cable_coil,
+	)

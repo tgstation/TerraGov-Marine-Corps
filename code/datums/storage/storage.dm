@@ -615,11 +615,11 @@
 		item.on_exit_storage(src)
 		item.mouse_opacity = initial(item.mouse_opacity)
 
-	parent.update_icon()
-
 	for(var/limited_type in storage_type_limits)
 		if(istype(item, limited_type))
 			storage_type_limits[limited_type] += 1
+
+	parent.update_icon()
 
 	return TRUE
 
