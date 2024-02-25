@@ -288,7 +288,7 @@
 		return
 	if(length(contents))
 		var/obj/item/I = contents[1]
-		if(!remove_from_storage(I,user,user))
+		if(!atom_storage.remove_from_storage(I,user,user))
 			return
 		if(user.put_in_inactive_hand(I))
 			if(iscarbon(user))
@@ -298,11 +298,6 @@
 			user.dropItemToGround(I)
 			to_chat(user, span_notice("You fumble around with \the [src] and drop a pill on the floor."))
 		return
-
-/obj/item/storage/pill_bottle/remove_from_storage(obj/item/item, atom/new_location, mob/user)
-	. = ..()
-	if(. && user)
-		playsound(user, 'sound/items/pills.ogg', 15, 1)
 
 /obj/item/storage/pill_bottle/update_overlays()
 	. = ..()

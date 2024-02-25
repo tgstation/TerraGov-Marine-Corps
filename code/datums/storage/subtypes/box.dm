@@ -17,7 +17,7 @@
 /datum/storage/box/mre/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	. = ..()
 	if(. && !length(parent.contents) && !gc_destroyed)
-		qdel(src)
+		qdel(parent)
 
 /datum/storage/box/visual
 	max_w_class = WEIGHT_CLASS_BULKY
@@ -74,3 +74,16 @@
 		/obj/item/explosive/grenade,
 	)
 	cant_hold = list()
+
+/datum/storage/box/crate/sentry
+	max_w_class = WEIGHT_CLASS_HUGE
+	storage_slots = 6
+	max_storage_space = 16
+	can_hold = list(
+		/obj/item/weapon/gun/sentry,
+		/obj/item/ammo_magazine/sentry,
+	)
+	bypass_w_limit = list(
+		/obj/item/weapon/gun/sentry,
+		/obj/item/ammo_magazine/sentry,
+	)

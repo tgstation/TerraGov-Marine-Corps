@@ -192,7 +192,7 @@
 			living_puller.set_pull_offsets(src)
 
 	if(s_active && !(s_active in contents) && !CanReach(s_active))
-		s_active.close(src)
+		s_active.atom_storage.close(src)
 
 
 /mob/living/Moved(oldLoc, dir)

@@ -110,7 +110,7 @@
 	var/list/obj/item/starting_items = list()
 	for(var/obj/item/I AS in storage.contents)
 		starting_items[I.type] = starting_items[I.type] + get_item_stack_number(I)
-	storage.delete_contents()
+	storage.atom_storage.delete_contents()
 	for(var/datum/item_representation/item_representation AS in contents)
 		if(!item_representation.bypass_vendor_check && starting_items[item_representation.item_type] > 0)
 			var/amount_to_remove = get_item_stack_representation_amount(item_representation)
@@ -123,8 +123,8 @@
 		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, null, user)
 		if(!item_to_insert)
 			continue
-		if(storage.can_be_inserted(item_to_insert))
-			storage.handle_item_insertion(item_to_insert)
+		if(storage.atom_storage.can_be_inserted(item_to_insert))
+			storage.atom_storage.handle_item_insertion(item_to_insert)
 			continue
 		item_to_insert.forceMove(get_turf(user))
 

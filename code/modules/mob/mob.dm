@@ -16,7 +16,7 @@
 	if(hud_used)
 		QDEL_NULL(hud_used)
 	if(s_active)
-		s_active.hide_from(src)
+		s_active.atom_storage.hide_from(src)
 	unset_machine()
 	for(var/a in actions)
 		var/datum/action/action_to_remove = a

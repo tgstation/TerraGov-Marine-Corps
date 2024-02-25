@@ -445,12 +445,12 @@
 	desc = "A large case containing some kind of equipment. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon_state = "smartgun_case"
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 21
-	can_hold = list() // Holds absolutely nothing after you take it out.
-	//foldable = null
 
 /obj/item/storage/box/crate/loot/Initialize(mapload)
 	. = ..()
+	atom_storage.storage_slots = 21
+	atom_storage.can_hold = list() // Holds absolutely nothing after you take it out.
+	//atom_storage.foldable = null // I don't know why this was commented out, but I'm not gonna be the one to change it
 	new /obj/item/weapon/banhammer(src)
 
 // Crate for lootboxes. Use for large items.

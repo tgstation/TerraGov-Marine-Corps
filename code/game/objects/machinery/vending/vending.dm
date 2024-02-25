@@ -729,7 +729,7 @@
 
 	if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
 		var/obj/item/storage/S = item_to_stock.loc
-		S.remove_from_storage(item_to_stock, user.loc, user)
+		S.atom_storage.remove_from_storage(item_to_stock, user.loc, user)
 
 	if(vending_flags & VENDING_RECHARGER && recharge_amount)
 		machine_current_charge -= recharge_amount

@@ -62,8 +62,13 @@
 /datum/storage/backpack/captain
 	max_storage_space = 30
 
+/datum/storage/backpack/dispenser
+	max_storage_space = 48
 
+/datum/storage/backpack/dispenser/open(mob/user)
+	var/obj/item/dispenser = parent
+	if(CHECK_BITFIELD(dispenser.flags_item, IS_DEPLOYED))
+		return ..()
 
-
-
-
+/datum/storage/backpack/dispenser/attempt_draw_object(mob/living/user)
+	to_chat(usr, span_notice("You can't grab anything out of [src] while it's not deployed."))

@@ -14,9 +14,9 @@
 	allow_pass_flags = PASSABLE
 	coverage = 30	//It's just a bike, not hard to shoot over
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
-	///Internal motorbick storage object
+	///Internal motorbike storage object
 	var/obj/item/storage/internal/motorbike_pack/motor_pack = /obj/item/storage/internal/motorbike_pack
-	///Mutable appearance overlay that covers up the mob with th e bike as needed
+	///Mutable appearance overlay that covers up the mob with the bike as needed
 	var/mutable_appearance/motorbike_cover
 	///Fuel count, fuel usage is one per tile moved
 	var/fuel_count = 0
@@ -61,7 +61,7 @@
 	return ..()
 
 /obj/vehicle/ridden/motorbike/attack_hand(mob/living/user)
-	return motor_pack.open(user)
+	return motor_pack.atom_storage.open(user)
 
 /obj/vehicle/ridden/motorbike/MouseDrop(obj/over_object)
 	if(motor_pack.handle_mousedrop(usr, over_object))
@@ -185,10 +185,7 @@
 	return ..()
 
 /obj/item/storage/internal/motorbike_pack
-	storage_slots = 4
-	max_w_class = WEIGHT_CLASS_SMALL
-	max_storage_space = 8
-
+	storage_type = /datum/storage/internal/motorbike_pack
 
 /obj/item/storage/internal/motorbike_pack/handle_mousedrop(mob/user, obj/over_object)
 	if(!ishuman(user))
@@ -198,7 +195,7 @@
 		return FALSE
 
 	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
-		open(user)
+		atom_storage.open(user)
 		return FALSE
 
 

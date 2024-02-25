@@ -641,7 +641,7 @@
 		span_notice("You load \a [mortar_shell.name] into [src]."))
 		chamber_items += mortar_shell
 
-		rocket_box.remove_from_storage(mortar_shell,null,user)
+		rocket_box.atom_storage.remove_from_storage(mortar_shell,null,user)
 		rocketsloaded++
 	user.balloon_alert(user, "Right click to fire")
 
@@ -888,10 +888,12 @@
 /obj/item/storage/box/mlrs_rockets
 	name = "\improper TA-40L rocket crate"
 	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
-	storage_slots = 16
 
 /obj/item/storage/box/mlrs_rockets/Initialize(mapload)
 	. = ..()
+	atom_storage.storage_slots = 16
+
+/obj/item/storage/box/mlrs_rockets/PopulateContents()
 	new /obj/item/mortal_shell/rocket/mlrs(src)
 	new /obj/item/mortal_shell/rocket/mlrs(src)
 	new /obj/item/mortal_shell/rocket/mlrs(src)
@@ -912,10 +914,12 @@
 /obj/item/storage/box/mlrs_rockets_gas
 	name = "\improper TA-40L X-50 rocket crate"
 	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
-	storage_slots = 16
 
 /obj/item/storage/box/mlrs_rockets_gas/Initialize(mapload)
 	. = ..()
+	atom_storage.storage_slots = 16
+
+/obj/item/storage/box/mlrs_rockets_gas/PopulateContents()
 	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
 	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
 	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
@@ -936,10 +940,12 @@
 /obj/item/storage/box/mlrs_rocket_incendiary
 	name = "\improper TA-40L incendiary rocket crate"
 	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
-	storage_slots = 16
 
 /obj/item/storage/box/mlrs_rocket_incendiary/Initialize(mapload)
 	. = ..()
+	atom_storage.storage_slots = 16
+
+/obj/item/storage/box/mlrs_rocket_incendiary/PopulateContents()
 	new /obj/item/mortal_shell/rocket/mlrs/incendiary(src)
 	new /obj/item/mortal_shell/rocket/mlrs/incendiary(src)
 	new /obj/item/mortal_shell/rocket/mlrs/incendiary(src)
@@ -960,10 +966,12 @@
 /obj/item/storage/box/mlrs_rocket_gas_cloak
 	name = "\improper TA-40L 'S-2' rocket crate"
 	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
-	storage_slots = 16
 
 /obj/item/storage/box/mlrs_rocket_gas_cloak/Initialize(mapload)
 	. = ..()
+	atom_storage.storage_slots = 16
+
+/obj/item/storage/box/mlrs_rocket_gas_cloak/PopulateContents()
 	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
 	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
 	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)

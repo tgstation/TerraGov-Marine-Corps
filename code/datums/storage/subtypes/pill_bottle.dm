@@ -12,6 +12,27 @@
 	refill_types = list(/obj/item/storage/pill_bottle)
 	refill_sound = 'sound/items/pills.ogg'
 
+/datum/storage/pill_bottle/remove_from_storage(obj/item/item, atom/new_location, mob/user)
+	. = ..()
+	if(. && user)
+		playsound(user, 'sound/items/pills.ogg', 15, 1)
 
+/datum/storage/pill_bottle/packet
+	cant_hold = list(/obj/item/reagent_containers/pill) //Nada. Once you take the pills out. They don't come back in.
+	storage_slots = 8
+	max_w_class = 0
+	max_storage_space = 8
+	trash_item = /obj/item/trash/pillpacket
+	refill_types = null
+	refill_sound = null
 
-
+/datum/storage/pill_bottle/packet/remove_from_storage(obj/item/item, atom/new_location, mob/user)
+	. = ..()
+	if(!.)
+		return
+	if(!length(parent.contents) && !QDELETED(parent))
+		var/turf/parent_turf = get_turf(parent)
+		new trash_item(parent_turf)
+		qdel(parent)
+		return
+	parent.update_icon()

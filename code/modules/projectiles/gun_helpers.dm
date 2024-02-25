@@ -124,7 +124,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		return
 	if(istype(new_magazine.loc, /obj/item/storage))
 		var/obj/item/storage/S = new_magazine.loc
-		S.remove_from_storage(new_magazine, get_turf(user), user)
+		S.atom_storage.remove_from_storage(new_magazine, get_turf(user), user)
 	if(!CHECK_BITFIELD(get_flags_magazine_features(new_magazine), MAGAZINE_WORN))
 		user.put_in_any_hand_if_possible(new_magazine)
 	reload(new_magazine, user)

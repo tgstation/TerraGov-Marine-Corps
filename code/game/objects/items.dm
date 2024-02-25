@@ -253,7 +253,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	if(istype(loc, /obj/item/storage))
 		var/obj/item/storage/S = loc
-		if(!S.remove_from_storage(src, user.loc, user))
+		if(!S.atom_storage.remove_from_storage(src, user.loc, user))
 			return
 
 	if(loc == user && !user.temporarilyRemoveItemFromInventory(src))
@@ -288,10 +288,10 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/obj/item/storage/S = I
 
-	if(!S.use_to_pickup || !isturf(loc))
+	if(!S.atom_storage.use_to_pickup || !isturf(loc))
 		return
 
-	if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
+	if(S.atom_storage.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
 		var/list/rejections = list()
 		var/success = FALSE
 		var/failure = FALSE
@@ -299,12 +299,12 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		for(var/obj/item/IM in loc)
 			if(IM.type in rejections) // To limit bag spamming: any given type only complains once
 				continue
-			if(!S.can_be_inserted(IM))	// Note can_be_inserted still makes noise when the answer is no
+			if(!S.atom_storage.can_be_inserted(IM))	// Note can_be_inserted still makes noise when the answer is no
 				rejections += IM.type	// therefore full bags are still a little spammy
 				failure = TRUE
 				continue
 			success = TRUE
-			S.handle_item_insertion(IM, TRUE, user)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
+			S.atom_storage.handle_item_insertion(IM, TRUE, user)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
 		if(success && !failure)
 			to_chat(user, span_notice("You put everything in [S]."))
 		else if(success)
@@ -312,8 +312,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		else
 			to_chat(user, span_notice("You fail to pick anything up with [S]."))
 
-	else if(S.can_be_inserted(src))
-		S.handle_item_insertion(src, FALSE, user)
+	else if(S.atom_storage.can_be_inserted(src))
+		S.atom_storage.handle_item_insertion(src, FALSE, user)
 
 
 /obj/item/attackby_alternate(obj/item/I, mob/user, params)
@@ -676,7 +676,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	if(!storage_item)
 		return FALSE
 
-	return storage_item.can_be_inserted(src, warning)
+	return storage_item.atom_storage.can_be_inserted(src, warning)
 
 /// Checks whether the item can be unequipped from owner by stripper. Generates a message on failure and returns TRUE/FALSE
 /obj/item/proc/canStrip(mob/stripper, mob/owner)
@@ -1388,8 +1388,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///Called by vendors when vending an item. Allows the item to specify what happens when it is given to the player.
 /obj/item/proc/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)
 	//Put item into player's currently open storage
-	if (fill_container && user.s_active && user.s_active.can_be_inserted(src, FALSE))
-		user.s_active.handle_item_insertion(src, FALSE, user)
+	if (fill_container && user.s_active && user.s_active.atom_storage.can_be_inserted(src, FALSE))
+		user.s_active.atom_storage.handle_item_insertion(src, FALSE, user)
 		return
 	//Equip item onto player
 	if (auto_equip && vendor_equip(user))

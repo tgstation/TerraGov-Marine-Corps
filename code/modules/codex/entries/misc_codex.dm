@@ -26,33 +26,33 @@
 	if(length(slots))
 		storage_strings += "It can be worn on your [english_list(slots)]."
 
-	if(use_to_pickup)
+	if(atom_storage.use_to_pickup)
 		storage_strings += "It can be used to pickup objects."
 
-	if(storage_slots)
-		storage_strings += "It has [storage_slots] spaces for inventory."
+	if(atom_storage.storage_slots)
+		storage_strings += "It has [atom_storage.storage_slots] spaces for inventory."
 
-	if(max_storage_space)
-		storage_strings += "It can carry [max_storage_space] weight of stuff."
+	if(atom_storage.max_storage_space)
+		storage_strings += "It can carry [atom_storage.max_storage_space] weight of stuff."
 
-	if(max_w_class && !length(can_hold))
-		storage_strings += "It can carry weight [max_w_class] things or lighter."
+	if(atom_storage.max_w_class && !length(atom_storage.can_hold))
+		storage_strings += "It can carry weight [atom_storage.max_w_class] things or lighter."
 
-	if(length(can_hold))
+	if(length(atom_storage.can_hold))
 		storage_strings += "<br><U>You can only carry the following in this</U>:"
-		for(var/X in can_hold)
+		for(var/X in atom_storage.can_hold)
 			var/obj/item/A = X
 			storage_strings += "[initial(A.name)]"
 
-	if(length(bypass_w_limit))
+	if(length(atom_storage.bypass_w_limit))
 		storage_strings += "<br><U>You can also carry the following special items in this</U>:"
-		for(var/X in bypass_w_limit)
+		for(var/X in atom_storage.bypass_w_limit)
 			var/obj/item/A = X
 			storage_strings += "[initial(A.name)]"
 
-	if(length(cant_hold))
+	if(length(atom_storage.cant_hold))
 		storage_strings += "<br><U>You can specifically not carry these things in this</U>:"
-		for(var/X in cant_hold)
+		for(var/X in atom_storage.cant_hold)
 			var/obj/item/A = X
 			storage_strings += "[initial(A.name)]"
 

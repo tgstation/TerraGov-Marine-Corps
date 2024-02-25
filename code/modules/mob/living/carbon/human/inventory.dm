@@ -414,7 +414,7 @@
 	if(!storage_item)
 		return FALSE
 
-	return storage_item.handle_item_insertion(W, FALSE, src)
+	return storage_item.atom_storage.handle_item_insertion(W, FALSE, src)
 
 /mob/living/carbon/human/get_item_by_slot(slot_id)
 	switch(slot_id)

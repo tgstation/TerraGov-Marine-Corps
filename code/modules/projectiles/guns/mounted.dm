@@ -5,14 +5,16 @@
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "crate"
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 7
-	bypass_w_limit = list(
+
+/obj/item/storage/box/tl102/Initialize(mapload)
+	. = ..()
+	atom_storage.storage_slots = 7
+	atom_storage.bypass_w_limit = list(
 		/obj/item/weapon/gun/tl102,
 		/obj/item/ammo_magazine/tl102,
 	)
 
-/obj/item/storage/box/tl102/Initialize(mapload)
-	. = ..()
+/obj/item/storage/box/tl102/PopulateContents()
 	new /obj/item/weapon/gun/tl102(src) //gun itself
 	new /obj/item/ammo_magazine/tl102(src) //ammo for the gun
 
@@ -587,11 +589,12 @@
 		QDEL_NULL(sponson)
 	return ..()
 
-/obj/item/storage/internal/ammo_rack
-	storage_slots = 10
-	max_storage_space = 40
-	max_w_class = WEIGHT_CLASS_BULKY
-	can_hold = list(/obj/item/ammo_magazine/standard_atgun)
+/obj/item/storage/internal/ammo_rack/Initialize(mapload)
+	. = ..()
+	atom_storage.storage_slots = 10
+	atom_storage.max_storage_space = 40
+	atom_storage.max_w_class = WEIGHT_CLASS_BULKY
+	atom_storage.can_hold = list(/obj/item/ammo_magazine/standard_atgun)
 
 /obj/machinery/deployable/mounted/moveable/atgun/Initialize(mapload)
 	. = ..()
@@ -606,14 +609,14 @@
 	return . = ..()
 
 /obj/machinery/deployable/mounted/moveable/atgun/attack_hand_alternate(mob/living/user)
-	return sponson.open(user)
+	return sponson.atom_storage.open(user)
 
 /obj/item/storage/internal/ammo_rack/handle_mousedrop(mob/user, obj/over_object)
 	if(!ishuman(user) || user.lying_angle || user.incapacitated())
 		return FALSE
 
 	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
-		open(user)
+		atom_storage.open(user)
 		return FALSE
 
 /obj/machinery/deployable/mounted/moveable/atgun/ex_act(severity)

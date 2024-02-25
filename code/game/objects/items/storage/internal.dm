@@ -1,7 +1,7 @@
 //A storage item intended to be used by other items to provide storage functionality.
 //Types that use this should consider overriding emp_act() and hear_talk(), unless they shield their contents somehow.
 /obj/item/storage/internal
-	allow_drawing_method = FALSE /// Unable to set draw_mode ourselves
+	storage_type = /datum/storage/internal
 	var/obj/master_item
 
 /obj/item/storage/internal/Initialize(mapload)
@@ -15,7 +15,7 @@
 	verbs -= /obj/item/verb/verb_pickup	//make sure this is never picked up.
 
 /obj/item/storage/internal/Destroy()
-	for(var/i in contents)
+	for(var/i in master_item.contents)
 		var/obj/item/content_item = i
 		qdel(content_item)
 	master_item = null
@@ -44,7 +44,7 @@
 		return FALSE
 
 	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
-		open(user)
+		atom_storage.open(user)
 		return FALSE
 
 	if(!isitem(master_item))
@@ -107,31 +107,20 @@
 			return FALSE
 
 	if(master_item.loc == user)
-		if(draw_mode && ishuman(user) && length(contents))
+		if(atom_storage.draw_mode && ishuman(user) && length(contents))
 			var/obj/item/I = contents[length(contents)]
 			I.attack_hand(user)
 		else
-			open(user)
+			atom_storage.open(user)
 		return FALSE
 
 	for(var/mob/M in range(1, master_item.loc))
 		if(M.s_active == src)
-			close(M)
+			atom_storage.close(M)
 	return TRUE
 
 /obj/item/storage/internal/Adjacent(atom/neighbor)
 	return master_item.Adjacent(neighbor)
-
-
-/obj/item/storage/internal/handle_item_insertion(obj/item/W, prevent_warning = FALSE)
-	. = ..()
-	master_item?.on_pocket_insertion()
-
-
-/obj/item/storage/internal/remove_from_storage(obj/item/W, atom/new_location, mob/user)
-	. = ..()
-	master_item?.on_pocket_removal()
-
 
 ///things to do when an item is inserted in the obj's internal pocket
 /obj/proc/on_pocket_insertion()

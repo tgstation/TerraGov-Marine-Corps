@@ -64,7 +64,7 @@
 	if(user.a_intent == INTENT_GRAB)
 		return drink_from_nozzle(user)
 	var/obj/item/storage/internal_bag = get_internal_item()
-	internal_bag?.open(user)
+	internal_bag?.atom_storage.open(user)
 
 /obj/machinery/deployable/reagent_tank/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(X.a_intent != INTENT_HARM)
@@ -111,8 +111,8 @@
 /obj/machinery/deployable/reagent_tank/disassemble(mob/user)
 	. = ..()
 	var/obj/item/storage/internal_bag = get_internal_item()
-	for(var/mob/watching in internal_bag?.content_watchers)
-		internal_bag.close(watching)
+	for(var/mob/watching in internal_bag?.atom_storage.content_watchers)
+		internal_bag.atom_storage.close(watching)
 	playsound(src, 'sound/machines/elevator_openclose.ogg', 50)
 
 /obj/item/storage/reagent_tank
@@ -124,11 +124,8 @@
 	item_state = "reagent_dispenser"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
-	max_w_class = WEIGHT_CLASS_SMALL	//Beaker size
-	storage_slots = null
-	max_storage_space = 5
-	can_hold = list(/obj/item/reagent_containers, /obj/item/reagent_scanner)
 	max_integrity = 200
+	storage_type = /datum/storage/reagent_tank
 	///Properties relating to reagents for this container; whether you can check if reagents are visible, if it is refillable, etc.
 	var/container_flags = TRANSPARENT
 	///Maximum units of reagents this container can hold
@@ -173,27 +170,11 @@
 
 /obj/item/storage/reagent_tank/attack_hand(mob/living/user)
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		return open(user)
-	return ..()
-
-/obj/item/storage/reagent_tank/open(mob/user)
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		return ..()
-
-/obj/item/storage/reagent_tank/attempt_draw_object(mob/living/user)
-	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		balloon_alert(user, "Not deployed")
-		return FALSE
+		return atom_storage.open(user)
 	return ..()
 
 /obj/item/storage/reagent_tank/do_quick_equip(mob/user)
 	balloon_alert(user, "Not deployed")
-
-/obj/item/storage/reagent_tank/can_be_inserted(obj/item/W, warning)
-	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		balloon_alert(usr, "Not deployed")
-		return FALSE
-	return ..()
 
 //Preset tanks so you can have these ready for a round and not need to drain the chem master's energy
 /obj/item/storage/reagent_tank/bicaridine
