@@ -190,7 +190,7 @@
 		flame_target.ignite(10, 5)
 		qdel(src)
 		return
-	new /obj/flamer_fire/autospread(flame_target, 17, 31)
+	new /obj/flamer_fire/autospread(flame_target, 9, 62)
 	playsound(plant_target, sound(get_sfx("explosion_small")), 100, FALSE, 25)
 	qdel(src)
 
