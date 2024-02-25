@@ -423,3 +423,12 @@
   ivanmixo:
   - rscadd: Added directional attacks, you can enable them in the preference menu
       for all living mobs.
+2024-02-25:
+  RipGrayson:
+  - rscadd: Added some barricade mapping helpers for mapper use.
+  TiviPlus:
+  - rscadd: added some admin-only vehicles
+  - code_imp: added multitile, multicrew vehicle support
+  Wisemonster:
+  - balance: ERT ships will now have plasteel cades protecting their doors.
+  - code_imp: Added a plasteel child that spawns in closed
