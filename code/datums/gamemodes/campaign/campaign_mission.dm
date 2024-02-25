@@ -273,7 +273,6 @@
 /datum/campaign_mission/proc/end_mission()
 	SHOULD_CALL_PARENT(TRUE)
 	unregister_mission_signals()
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, src, winning_faction)
 	QDEL_LIST(GLOB.campaign_objectives)
 	QDEL_LIST(GLOB.campaign_structures)
 	QDEL_LIST(GLOB.patrol_point_list) //purge all existing links, cutting off the current ground map. Start point links are auto severed, and will reconnect to new points when a new map is loaded and upon use.
@@ -281,6 +280,7 @@
 	mission_state = MISSION_STATE_FINISHED
 	apply_outcome()
 	play_outro()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, src, winning_faction)
 	for(var/i in GLOB.quick_loadouts)
 		var/datum/outfit/quick/outfit = GLOB.quick_loadouts[i]
 		outfit.quantity = initial(outfit.quantity)
