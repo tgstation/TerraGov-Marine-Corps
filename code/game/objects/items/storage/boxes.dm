@@ -50,10 +50,10 @@
 	storage_type = /datum/storage/box
 
 /obj/item/storage/box/Initialize(mapload, ...)
+	. = ..()
 	if(spawn_type)
 		if(!(spawn_type in atom_storage.can_hold))
 			atom_storage.can_hold += spawn_type // must be set before parent init for typecacheof
-	. = ..()
 	if(spawn_type)
 		for(var/i in 1 to spawn_number)
 			new spawn_type(src)

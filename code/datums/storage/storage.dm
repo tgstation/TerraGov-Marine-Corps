@@ -221,6 +221,8 @@
 /datum/storage/proc/on_attack_hand(datum/source, mob/living/user)
 	SIGNAL_HANDLER
 	if(parent.loc == user)
+		if(user.s_active == src) //Currently active storage closes if we click it again
+			close(user)
 		if(draw_mode && ishuman(user) && length(parent.contents))
 			var/obj/item/item_to_attack = parent.contents[length(parent.contents)]
 			INVOKE_ASYNC(item_to_attack, TYPE_PROC_REF(/atom/movable, attack_hand), user)
@@ -349,7 +351,7 @@
 			cy--
 	closer.screen_loc = "[mx+1],[my]"
 	if(show_storage_fullness)
-		boxes.update_fullness(src)
+		boxes.update_fullness(parent)
 
 /datum/numbered_display
 	var/obj/item/sample_object
@@ -395,7 +397,7 @@
 				cy--
 	closer.screen_loc = "[4+cols+1]:16,2:16"
 	if(show_storage_fullness)
-		boxes.update_fullness(src)
+		boxes.update_fullness(parent)
 
 /datum/storage/proc/space_orient_objs(list/obj/item/display_contents)
 
@@ -495,7 +497,7 @@
 	if(length(can_hold))
 		if(!is_type_in_typecache(item_to_insert, can_hold))
 			if(warning)
-				to_chat(usr, span_notice("[src] cannot hold [item_to_insert]."))
+				to_chat(usr, span_notice("[parent.name] cannot hold [item_to_insert]."))
 			return FALSE
 
 	if(is_type_in_typecache(item_to_insert, cant_hold)) //Check for specific items which this container can't hold.
@@ -586,8 +588,8 @@
 		if(!user.transferItemToLoc(item, src))
 			return FALSE
 	else
-		item.forceMove(src)
-	item.on_enter_storage(src)
+		item.forceMove(parent)
+	item.on_enter_storage(parent)
 	if(user)
 		if(user.s_active != src)
 			user.client?.screen -= item

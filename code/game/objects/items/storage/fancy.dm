@@ -21,9 +21,9 @@
 	var/spawn_number
 
 /obj/item/storage/fancy/Initialize(mapload, ...)
-	if(spawn_type)
-		atom_storage.can_hold = list(spawn_type) // must be set before parent init for typecacheof
 	. = ..()
+	if(spawn_type)
+		atom_storage.can_hold = list(spawn_type)
 	if(spawn_type)
 		for(var/i in 1 to spawn_number)
 			new spawn_type(src)

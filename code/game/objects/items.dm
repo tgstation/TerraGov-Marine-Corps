@@ -1388,11 +1388,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///Called by vendors when vending an item. Allows the item to specify what happens when it is given to the player.
 /obj/item/proc/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)
 	//Put item into player's currently open storage
-	if (fill_container && user.s_active && user.s_active.atom_storage.can_be_inserted(src, FALSE))
-		user.s_active.atom_storage.handle_item_insertion(src, FALSE, user)
+	if(fill_container && user.s_active && user.s_active.can_be_inserted(src, FALSE))
+		user.s_active.handle_item_insertion(src, FALSE, user)
 		return
 	//Equip item onto player
-	if (auto_equip && vendor_equip(user))
+	if(auto_equip && vendor_equip(user))
 		return
 	//Otherwise fall back to putting item in player's hand
 	if(user.put_in_any_hand_if_possible(src, warning = FALSE))
