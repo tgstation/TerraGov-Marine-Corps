@@ -226,7 +226,7 @@
 		spread_directions |= old_spreader.possible_directions
 	if(old_flame)
 		qdel(old_flame)
-	new /obj/flamer_fire/autospread(turf_to_burn, 17, 31, flame_color, 0, 0, spread_directions)
+	new /obj/flamer_fire/autospread(turf_to_burn, 9, 62, flame_color, 0, 0, spread_directions)
 
 ///Allows the c4 timer to be tweaked on certain atoms as required
 /atom/proc/plastique_time_mod(time)
