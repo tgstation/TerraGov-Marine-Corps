@@ -987,7 +987,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			remove_from_larva_candidate_queue(xeno_candidate)
 			return FALSE
 
-	if(QDELETED(chosen_silo) || isnull(xeno_candidate))
+	if(QDELETED(chosen_silo) || isnull(xeno_candidate) || stored_larva <= 0)
 		return FALSE
 
 	xeno_candidate.mob.reset_perspective(null)
