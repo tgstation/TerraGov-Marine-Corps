@@ -46,15 +46,10 @@
 /obj/item/storage/pouch/pressurized_reagent_pouch //The actual pouch itself and all its function
 	name = "pressurized reagent pouch"
 	w_class = WEIGHT_CLASS_BULKY
-	max_w_class = WEIGHT_CLASS_BULKY
-	allow_drawing_method = TRUE
 	icon_state = "reagent_pouch"
 	desc = "A very large reagent pouch. It is used to refill custom injectors, and can also store one.\
 	You can Alt-Click to remove the canister in order to refill it."
-	can_hold = list(/obj/item/reagent_containers/hypospray)
-	cant_hold = list(/obj/item/reagent_containers/glass/reagent_canister) //To prevent chat spam when you try to put the container in
 	flags_item = NOBLUDGEON
-	draw_mode = TRUE
 	///The internal container of the pouch. Holds the reagent that you use to refill the connected injector
 	var/obj/item/reagent_containers/glass/reagent_canister/inner
 	///List of chemicals we fill up our pouch with on Initialize()
@@ -64,6 +59,12 @@
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/Initialize(mapload)
 	. = ..()
+	atom_storage.max_w_class = WEIGHT_CLASS_BULKY
+	atom_storage.allow_drawing_method = TRUE
+	atom_storage.can_hold = list(/obj/item/reagent_containers/hypospray)
+	atom_storage.cant_hold = list(/obj/item/reagent_containers/glass/reagent_canister) //To prevent chat spam when you try to put the container in
+	atom_storage.draw_mode = TRUE
+
 	inner = new /obj/item/reagent_containers/glass/reagent_canister
 	new /obj/item/reagent_containers/hypospray/autoinjector/r_pouch(src)
 	for(var/datum/reagent/chem_type AS in chemicals_to_fill)

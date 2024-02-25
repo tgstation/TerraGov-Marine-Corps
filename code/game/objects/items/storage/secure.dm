@@ -11,19 +11,20 @@
 	var/l_hacking = 0
 	var/open = 0
 	w_class = WEIGHT_CLASS_NORMAL
-	max_w_class = WEIGHT_CLASS_SMALL
-	max_storage_space = 14
+
+/obj/item/storage/secure/Initialize(mapload, ...)
+	. = ..()
+	atom_storage.max_w_class = WEIGHT_CLASS_SMALL
+	atom_storage.max_storage_space = 14
 
 /obj/item/storage/secure/examine(mob/user)
 	. = ..()
 	. += "The service panel is [open ? "open" : "closed"]."
 
-
 /obj/item/storage/secure/MouseDrop(over_object, src_location, over_location)
 	if (locked)
 		return
 	..()
-
 
 /obj/item/storage/secure/interact(mob/user)
 	. = ..()
@@ -46,12 +47,10 @@
 
 	dat += "<HR>\n>[message]<BR>\n<A href='?src=[text_ref(src)];type=1'>1</A>-<A href='?src=[text_ref(src)];type=2'>2</A>-<A href='?src=[text_ref(src)];type=3'>3</A><BR>\n<A href='?src=[text_ref(src)];type=4'>4</A>-<A href='?src=[text_ref(src)];type=5'>5</A>-<A href='?src=[text_ref(src)];type=6'>6</A><BR>\n<A href='?src=[text_ref(src)];type=7'>7</A>-<A href='?src=[text_ref(src)];type=8'>8</A>-<A href='?src=[text_ref(src)];type=9'>9</A><BR>\n<A href='?src=[text_ref(src)];type=R'>R</A>-<A href='?src=[text_ref(src)];type=0'>0</A>-<A href='?src=[text_ref(src)];type=E'>E</A><BR>\n</TT>"
 
-
 	var/datum/browser/popup = new(user, "caselock", "<div align='center'>[src]</div>")
 	popup.set_content(dat)
 	popup.open()
 	return TRUE
-
 
 /obj/item/storage/secure/Topic(href, href_list)
 	. = ..()
@@ -74,14 +73,13 @@
 			locked = TRUE
 			overlays = null
 			code = null
-			close(usr)
+			atom_storage.close(usr)
 		else
 			code += href_list["type"]
 			if(length(code) > 5)
 				code = "ERROR"
 
 	updateUsrDialog()
-
 
 /obj/item/storage/secure/attackby(obj/item/I, mob/user, params)
 	if(!locked)
@@ -105,14 +103,12 @@
 			l_hacking = FALSE
 			return
 
-
 		l_setshort = TRUE
 		l_set = FALSE
 		user.show_message(span_warning(" Internal memory reset.  Please give it a few seconds to reinitialize."))
 		sleep(8 SECONDS)
 		l_setshort = FALSE
 		l_hacking = FALSE
-
 
 // -----------------------------
 //        Secure Briefcase
@@ -132,12 +128,10 @@
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
 
-
 /obj/item/storage/secure/briefcase/Initialize(mapload)
 	. = ..()
 	new /obj/item/paper(src)
 	new /obj/item/tool/pen(src)
-
 
 /obj/item/storage/secure/briefcase/attack_hand(mob/user)
 	if(loc == user && locked)
@@ -145,14 +139,13 @@
 		return
 
 	if(loc == user && !locked)
-		open(user)
+		atom_storage.open(user)
 		return
 
 	. = ..()
 	for(var/mob/M in range(1))
 		if(M.s_active == src)
-			close(M)
-
+			atom_storage.close(M)
 
 // -----------------------------
 //        Secure Safe
@@ -168,13 +161,15 @@
 	flags_atom = CONDUCT
 	force = 8
 	w_class = WEIGHT_CLASS_GIGANTIC
-	max_w_class = WEIGHT_CLASS_GIGANTIC
 	anchored = TRUE
 	density = FALSE
-	cant_hold = list(/obj/item/storage/secure/briefcase)
 
 /obj/item/storage/secure/safe/Initialize(mapload, ...)
 	. = ..()
+	atom_storage.max_w_class = WEIGHT_CLASS_GIGANTIC
+	atom_storage.cant_hold = list(/obj/item/storage/secure/briefcase)
+
+/obj/item/storage/secure/safe/PopulateContents()
 	new /obj/item/paper(src)
 	new /obj/item/tool/pen(src)
 

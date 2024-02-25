@@ -625,6 +625,7 @@
 #include "code\datums\storage\subtypes\holster.dm"
 #include "code\datums\storage\subtypes\lockbox.dm"
 #include "code\datums\storage\subtypes\pill_bottle.dm"
+#include "code\datums\storage\subtypes\pouch.dm"
 #include "code\datums\storage\subtypes\surgical_tray.dm"
 #include "code\datums\storage\subtypes\wallet.dm"
 #include "code\datums\weather\weather.dm"
