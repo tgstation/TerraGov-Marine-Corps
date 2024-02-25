@@ -112,6 +112,7 @@
 		stack_trace("Storage datum ([type]) created without a [isnull(parent) ? "null parent" : "invalid parent ([parent.type])"]!")
 		qdel(src)
 		return
+	src.parent = parent
 
 	if(length(can_hold))
 		can_hold = typecacheof(can_hold)
@@ -121,6 +122,7 @@
 		bypass_w_limit = typecacheof(bypass_w_limit)
 
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(on_attack_hand))
 
 /*	if(!allow_quick_gather)
 		verbs -= /datum/storage/verb/toggle_gathering_mode
@@ -175,7 +177,7 @@
 	closer.master = src
 
 /datum/storage/Destroy()
-	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACKBY))
+	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_ATTACK_HAND))
 	for(var/atom/movable/item in parent.contents)
 		qdel(item)
 	for(var/mob/M in content_watchers)
@@ -199,6 +201,35 @@
 	if(trash_item)
 		new trash_item(get_turf(parent))
 	. = ..()
+
+///This proc is called when you want to place an attacking_item into the storage
+/datum/storage/proc/on_attackby(datum/source, obj/item/attacking_item, mob/user, params)
+	SIGNAL_HANDLER
+
+	if(length(refill_types))
+		for(var/typepath in refill_types)
+			if(istype(attacking_item, typepath))
+				INVOKE_ASYNC(src, PROC_REF(do_refill), attacking_item, user)
+				return
+
+	if(!can_be_inserted(attacking_item))
+		return FALSE
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), attacking_item, FALSE, user)
+	return
+
+///This proc is called when you click on your storage with your hand
+/datum/storage/proc/on_attack_hand(datum/source, mob/living/user)
+	SIGNAL_HANDLER
+	if(parent.loc == user)
+		if(draw_mode && ishuman(user) && length(parent.contents))
+			var/obj/item/item_to_attack = parent.contents[length(parent.contents)]
+			INVOKE_ASYNC(item_to_attack, TYPE_PROC_REF(/atom/movable, attack_hand), user)
+			return COMPONENT_NO_ATTACK_HAND
+		else if(open(user))
+			return COMPONENT_NO_ATTACK_HAND
+	for(var/mob/M AS in content_watchers)
+		close(M)
+		return COMPONENT_NO_ATTACK_HAND
 
 /datum/storage/verb/toggle_gathering_mode()
 	set name = "Switch Gathering Method"
@@ -622,21 +653,6 @@
 	parent.update_icon()
 
 	return TRUE
-
-///This proc is called when you want to place an attacking_item into the storage
-/datum/storage/proc/on_attackby(datum/source, obj/item/attacking_item, mob/user, params)
-	SIGNAL_HANDLER
-
-	if(length(refill_types))
-		for(var/typepath in refill_types)
-			if(istype(attacking_item, typepath))
-				INVOKE_ASYNC(src, PROC_REF(do_refill), attacking_item, user)
-				return
-
-	if(!can_be_inserted(attacking_item))
-		return FALSE
-	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), attacking_item, FALSE, user)
-	return
 
 /datum/storage/proc/do_refill(obj/item/storage/refiller, mob/user)
 	if(!length(refiller.contents))
