@@ -1445,6 +1445,36 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SENTRY
 
 
+/datum/ammo/bullet/turret/sniper
+	name = "antimaterial bullet"
+	bullet_color = COLOR_SOFT_RED
+	accurate_range = 21
+	damage = 80
+	penetration = 50
+	sundering = 5
+
+/datum/ammo/bullet/turret/buckshot
+	name = "turret buckshot shell"
+	icon_state = "buckshot"
+	hud_state = "shotgun_buckshot"
+	bonus_projectiles_type = /datum/ammo/bullet/turret/spread
+	bonus_projectiles_amount = 6
+	bonus_projectiles_scatter = 5
+	max_range = 10
+	damage = 20
+	penetration = 40
+	damage_falloff = 1
+
+/datum/ammo/bullet/turret/buckshot/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, knockback = 1, max_range = 4)
+
+/datum/ammo/bullet/turret/spread
+	name = "additional buckshot"
+	max_range = 10
+	damage = 20
+	penetration = 40
+	damage_falloff = 1
+
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
 	name = "machinegun bullet"
 	icon_state = "bullet" // Keeping it bog standard with the turret but allows it to be changed.
