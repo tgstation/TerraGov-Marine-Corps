@@ -13,72 +13,22 @@
 		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
 	)
 	w_class = WEIGHT_CLASS_NORMAL
-	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
-	var/list/cant_hold = list() //List of objects which this item can't store (in effect only if can_hold isn't set)
-	var/list/bypass_w_limit = list() //a list of objects which this item can store despite not passing the w_class limit
-	/**
-	 * Associated list of types and their max count, formatted as
-	 * 	storage_type_limits = list(
-	 * 		/obj/A = 3,
-	 * 	)
-	 *
-	 * Any inserted objects will decrement the allowed count of every listed type which matches or is a parent of that object.
-	 * With entries for both /obj/A and /obj/A/B, inserting a B requires non-zero allowed count remaining for, and reduces, both.
-	 */
-	var/list/storage_type_limits
-	///In slotless storage, stores areas where clicking will refer to the associated item
-	var/list/click_border_start = list()
-	var/list/click_border_end = list()
-	///Max size of objects that this object can store (in effect only if can_hold isn't set)
-	var/max_w_class = WEIGHT_CLASS_SMALL
-	///The sum of the storage costs of all the items in this storage item.
-	var/max_storage_space = 14
-	///The number of storage slots in this container.
-	var/storage_slots = 7
-	///Defines how many versions of the sprites that gets progressively emptier as they get closer to "_0" in .dmi.
-	var/sprite_slots = null
-	var/atom/movable/screen/storage/boxes = null
-	///storage UI
-	var/atom/movable/screen/storage/storage_start = null
-	var/atom/movable/screen/storage/storage_continue = null
-	var/atom/movable/screen/storage/storage_end = null
-	var/atom/movable/screen/storage/stored_start = null
-	var/atom/movable/screen/storage/stored_continue = null
-	var/atom/movable/screen/storage/stored_end = null
-	var/atom/movable/screen/close/closer = null
-	///whether our storage box on hud changes color when full.
-	var/show_storage_fullness = TRUE
-	///Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
-	var/use_to_pickup
-	///Set this to make the storage item group contents of the same type and display them as a number.
-	var/display_contents_with_number
-	///Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
-	var/allow_quick_empty
-	///Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
-	var/allow_quick_gather
-	///whether this object can change its drawing method (pouches)
-	var/allow_drawing_method
-	///0 = will open the inventory if you click on the storage container, 1 = will draw from the inventory if you click on the storage container
-	var/draw_mode = 0
-	////0 = pick one at a time, 1 = pick all on tile
-	var/collection_mode = 1;
-	///BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
-	var/foldable = null
-	///sound played when used. null for no sound.
-	var/use_sound = "rustle"
-	///Has it been opened before?
-	var/opened = 0
-	///list of mobs currently seeing the storage's contents
-	var/list/content_watchers = list()
-	///How long does it take to put items into or out of this, in ticks
-	var/access_delay = 0
-	///What item do you use to tactical refill this
-	var/list/obj/item/storage/refill_types
-	///What sound gets played when the item is tactical refilled
-	var/refill_sound = null
 	///Flags for specifically storage items
 	var/flags_storage = NONE
+	///Determines what subtype of storage is on our item, see datums\storage\subtypes
+	var/datum/storage/storage_type = /datum/storage
 
+/obj/item/storage/Initialize(mapload, ...)
+	. = ..()
+	create_storage(storage_type = /datum/storage)
+
+	PopulateContents()
+
+///Use this to fill your storage with items. USE THIS INSTEAD OF NEW/INIT
+/obj/item/storage/proc/PopulateContents()
+	return
+
+/* - XANTODO DONT LEAVE THIS IN
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(!ishuman(usr))
 		return
@@ -649,68 +599,6 @@
 		return FALSE
 	return W
 
-/obj/item/storage/Initialize(mapload, ...)
-	. = ..()
-	PopulateContents()
-	if(length(can_hold))
-		can_hold = typecacheof(can_hold)
-	else if(length(cant_hold))
-		cant_hold = typecacheof(cant_hold)
-	if(length(bypass_w_limit))
-		bypass_w_limit = typecacheof(bypass_w_limit)
-
-	if(!allow_quick_gather)
-		verbs -= /obj/item/storage/verb/toggle_gathering_mode
-
-	if(!allow_drawing_method)
-		verbs -= /obj/item/storage/verb/toggle_draw_mode
-
-	boxes = new()
-	boxes.name = "storage"
-	boxes.master = src
-	boxes.icon_state = "block"
-	boxes.screen_loc = "7,7 to 10,8"
-	boxes.layer = HUD_LAYER
-	boxes.plane = HUD_PLANE
-
-	storage_start = new /atom/movable/screen/storage()
-	storage_start.name = "storage"
-	storage_start.master = src
-	storage_start.icon_state = "storage_start"
-	storage_start.screen_loc = "7,7 to 10,8"
-	storage_start.layer = HUD_LAYER
-	storage_start.plane = HUD_PLANE
-	storage_continue = new /atom/movable/screen/storage()
-	storage_continue.name = "storage"
-	storage_continue.master = src
-	storage_continue.icon_state = "storage_continue"
-	storage_continue.screen_loc = "7,7 to 10,8"
-	storage_continue.layer = HUD_LAYER
-	storage_continue.plane = HUD_PLANE
-	storage_end = new /atom/movable/screen/storage()
-	storage_end.name = "storage"
-	storage_end.master = src
-	storage_end.icon_state = "storage_end"
-	storage_end.screen_loc = "7,7 to 10,8"
-	storage_end.layer = HUD_LAYER
-	storage_end.plane = HUD_PLANE
-
-	stored_start = new /obj() //we just need these to hold the icon
-	stored_start.icon_state = "stored_start"
-	stored_start.layer = HUD_LAYER
-	stored_start.plane = HUD_PLANE
-	stored_continue = new /obj()
-	stored_continue.icon_state = "stored_continue"
-	stored_continue.layer = HUD_LAYER
-	stored_continue.plane = HUD_PLANE
-	stored_end = new /obj()
-	stored_end.icon_state = "stored_end"
-	stored_end.layer = HUD_LAYER
-	stored_end.plane = HUD_PLANE
-
-	closer = new()
-	closer.master = src
-
 /obj/item/storage/Destroy()
 	for(var/atom/movable/I in contents)
 		qdel(I)
@@ -869,9 +757,6 @@
 	var/obj/item/drawn_item = start_from_left ? contents[1] : contents[length(contents)]
 	drawn_item.attack_hand(user)
 
-/obj/item/storage/proc/PopulateContents()
-	return
-
 /obj/item/storage/update_icon_state()
 	. = ..()
 	if(!sprite_slots)
@@ -894,3 +779,4 @@
 		icon_state = initial(icon_state) + "_" + num2text(total_weight)
 	else
 		icon_state = initial(icon_state)
+*/

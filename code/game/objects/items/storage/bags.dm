@@ -16,11 +16,8 @@
 
 //  Generic non-item
 /obj/item/storage/bag
-	allow_quick_gather = 1
-	allow_quick_empty = 1
-	display_contents_with_number = 0 // UNStABLE AS FuCK, turn on when it stops crashing clients
-	use_to_pickup = 1
 	flags_equip_slot = ITEM_SLOT_BELT
+	storage_type = /datum/storage/bag
 
 // -----------------------------
 //          Trash bag
@@ -33,10 +30,7 @@
 	item_state = "trashbag"
 
 	w_class = WEIGHT_CLASS_BULKY
-	max_w_class = WEIGHT_CLASS_SMALL
-	storage_slots = 21
-	can_hold = list() // any
-	cant_hold = list(/obj/item/disk/nuclear)
+	storage_type = /datum/storage/bag/trash
 
 /obj/item/storage/bag/trash/update_icon_state()
 	. = ..()
@@ -62,10 +56,7 @@
 	item_state = "plasticbag"
 
 	w_class = WEIGHT_CLASS_BULKY
-	max_w_class = WEIGHT_CLASS_SMALL
-	storage_slots = 21
-	can_hold = list() // any
-	cant_hold = list(/obj/item/disk/nuclear)
+	storage_type = /datum/storage/bag/plasticbag
 
 // -----------------------------
 //        Mining Satchel
@@ -78,11 +69,7 @@
 	icon_state = "satchel"
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_NORMAL
-	storage_slots = 50
-	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * ore.w_class
-	max_w_class = WEIGHT_CLASS_NORMAL
-	can_hold = list(/obj/item/ore)
-
+	storage_type = /datum/storage/bag/ore
 
 // -----------------------------
 //          Plant bag
@@ -92,16 +79,8 @@
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "plantbag"
 	name = "Plant Bag"
-	storage_slots = 50; //the number of plant pieces it can carry.
-	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * plants.w_class
-	max_w_class = WEIGHT_CLASS_NORMAL
 	w_class = WEIGHT_CLASS_SMALL
-	can_hold = list(
-		/obj/item/reagent_containers/food/snacks/grown,
-		/obj/item/seeds,
-		/obj/item/grown,
-	)
-
+	storage_type = /datum/storage/bag/plants
 
 // -----------------------------
 //        Sheet Snatcher
@@ -249,11 +228,5 @@
 	icon_state = "cashbag"
 	name = "Cash bag"
 	desc = "A bag for carrying lots of cash. It's got a big dollar sign printed on the front."
-	storage_slots = 50; //the number of cash pieces it can carry.
-	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * cash.w_class
-	max_w_class = WEIGHT_CLASS_NORMAL
 	w_class = WEIGHT_CLASS_SMALL
-	can_hold = list(
-		/obj/item/coin,
-		/obj/item/spacecash,
-	)
+	storage_type = /datum/storage/bag/cash

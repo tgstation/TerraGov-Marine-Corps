@@ -57,7 +57,7 @@
 			continue
 		if(user.get_active_held_item(reloading_gun))
 			reloading_gun.tactical_reload(item_to_reload_with, user)
-			reloading_storage.orient2hud()
+			reloading_storage.storage_type.orient2hud()
 		return COMPONENT_NO_AFTERATTACK
 
 /**

@@ -123,6 +123,9 @@
 	var/list/managed_vis_overlays
 	///The list of alternate appearances for this atom
 	var/list/alternate_appearances
+	///var containing our storage, see atom/proc/create_storage()
+	var/datum/storage/atom_storage
+
 
 /*
 We actually care what this returns, since it can return different directives.

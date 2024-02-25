@@ -16,19 +16,22 @@
 		slot_r_hand_str = 'icons/mob/inhands/equipment/medkits_right.dmi',
 	)
 	icon_state = "firstaid"
-	use_sound = 'sound/effects/toolbox.ogg'
 	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 8
-	cant_hold = list(
-		/obj/item/ammo_magazine,
-		/obj/item/explosive/grenade,
-	)
-	var/empty = FALSE //whether the kit starts empty
-	var/icon_full //icon state to use when kit is full
+	///whether the kit starts empty
+	var/empty = FALSE
+	///icon state to use when kit is full
+	var/icon_full
 
 /obj/item/storage/firstaid/Initialize(mapload, ...)
 	. = ..()
+	atom_storage.use_sound = 'sound/effects/toolbox.ogg'
+	atom_storage.cant_hold = list(
+		/obj/item/ammo_magazine,
+		/obj/item/explosive/grenade,
+	)
+
 	icon_full = icon_state
 	if(empty)
 		icon_state = icon_state += "_empty"
@@ -152,15 +155,17 @@
 	icon_state = "syringe_case"
 	throw_speed = 2
 	throw_range = 8
-	storage_slots = 3
 	w_class = WEIGHT_CLASS_SMALL
-	can_hold = list(
+
+/obj/item/storage/syringe_case/empty/Initialize(mapload, ...)
+	. = ..()
+	atom_storage.storage_slots = 3
+	atom_storage.can_hold = list(
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/syringe,
 	)
 
-/obj/item/storage/syringe_case/empty/Initialize(mapload, ...)
-	. = ..()
+/obj/item/storage/syringe_case/empty/PopulateContents()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/empty(src)
 	new /obj/item/reagent_containers/glass/bottle/empty(src)
@@ -170,7 +175,6 @@
 	desc = "It's a medical case for storing syringes and bottles. This one contains basic meds."
 
 /obj/item/storage/syringe_case/regular/PopulateContents()
-	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/inaprovaline(src)
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
@@ -180,7 +184,6 @@
 	desc = "It's a medical case for storing syringes and bottles. This one contains meds designed to treat burns."
 
 /obj/item/storage/syringe_case/burn/PopulateContents()
-	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
 	new /obj/item/reagent_containers/glass/bottle/oxycodone(src)
@@ -190,7 +193,6 @@
 	desc = "It's a medical case for storing syringes and bottles. This one contains meds designed to treat toxins."
 
 /obj/item/storage/syringe_case/tox/PopulateContents()
-	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
 	new /obj/item/reagent_containers/glass/bottle/hypervene(src)
@@ -200,7 +202,6 @@
 	desc = "It's a medical case for storing syringes and bottles. This one contains meds designed to treat oxygen deprivation."
 
 /obj/item/storage/syringe_case/oxy/PopulateContents()
-	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/inaprovaline(src)
 	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
@@ -210,7 +211,6 @@
 	desc = "It's a medical case for storing syringes and bottles. This one contains Meralyne."
 
 /obj/item/storage/syringe_case/meralyne/PopulateContents()
-	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/meralyne(src)
 	new /obj/item/reagent_containers/glass/bottle/meralyne(src)
@@ -220,7 +220,6 @@
 	desc = "It's a medical case for storing syringes and bottles. This one contains Dermaline."
 
 /obj/item/storage/syringe_case/dermaline/PopulateContents()
-	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/dermaline(src)
 	new /obj/item/reagent_containers/glass/bottle/dermaline(src)
@@ -230,7 +229,6 @@
 	desc = "It's a medical case for storing syringes and bottles. This one contains Meraderm."
 
 /obj/item/storage/syringe_case/meraderm/PopulateContents()
-	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/meraderm(src)
 	new /obj/item/reagent_containers/glass/bottle/meraderm(src)
@@ -240,7 +238,6 @@
 	desc = "It's a medical case for storing syringes and bottles. This one contains nanoblood."
 
 /obj/item/storage/syringe_case/nanoblood/PopulateContents()
-	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/nanoblood(src)
 	new /obj/item/reagent_containers/glass/bottle/nanoblood(src)
@@ -250,7 +247,6 @@
 	desc = "It's a medical case for storing syringes and bottles. This one contains Tricordrazine."
 
 /obj/item/storage/syringe_case/tricordrazine/PopulateContents()
-	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
@@ -272,28 +268,17 @@
 	)
 	item_state = "contsolid"
 	w_class = WEIGHT_CLASS_SMALL
-	can_hold = list(
-		/obj/item/reagent_containers/pill,
-		/obj/item/toy/dice,
-		/obj/item/paper,
-	)
-	allow_quick_gather = 1
-	use_to_pickup = 1
-	storage_slots = null
-	use_sound = 'sound/items/pillbottle.ogg'
-	max_storage_space = 16
 	greyscale_config = /datum/greyscale_config/pillbottle
 	greyscale_colors = "#d9cd07#f2cdbb" //default colors
-	var/pill_type_to_fill //type of pill to use to fill in the bottle in New()
-	/// Short description in overlay
+	storage_type = /datum/storage/pill_bottle
+	///What kind of pill we are filling our pill bottle with
+	var/pill_type_to_fill
+	///Short description in overlay
 	var/description_overlay = ""
-	refill_types = list(/obj/item/storage/pill_bottle)
-	refill_sound = 'sound/items/pills.ogg'
 
-/obj/item/storage/pill_bottle/Initialize(mapload, ...)
-	. = ..()
+/obj/item/storage/pill_bottle/PopulateContents()
 	if(pill_type_to_fill)
-		for(var/i in 1 to max_storage_space)
+		for(var/i in 1 to atom_storage.max_storage_space)
 			new pill_type_to_fill(src)
 	update_icon()
 
@@ -492,16 +477,23 @@
 /obj/item/storage/pill_bottle/happy
 	name = "happy pill bottle"
 	desc = "Contains highly illegal drugs. When you want to see the rainbow."
-	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_containers/pill/happy
 	greyscale_colors = "#6C52BF#ffffff"
+
+/obj/item/storage/pill_bottle/happy/Initialize(mapload, ...)
+	. = ..()
+	atom_storage.max_storage_space = 7
 
 /obj/item/storage/pill_bottle/zoom
 	name = "zoom pill bottle"
 	desc = "Containts highly illegal drugs. Trade heart for speed."
-	max_storage_space = 7
+
 	pill_type_to_fill = /obj/item/reagent_containers/pill/zoom
 	greyscale_colors = "#ef3ad4#ffffff"
+
+/obj/item/storage/pill_bottle/zoom/Initialize(mapload, ...)
+	. = ..()
+	atom_storage.max_storage_space = 7
 
 /obj/item/storage/pill_bottle/attackby(obj/item/I, mob/user, params)
 	. = ..()
