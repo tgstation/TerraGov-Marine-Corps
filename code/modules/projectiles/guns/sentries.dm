@@ -366,7 +366,7 @@
 
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
-	attachable_allowed = list(/obj/item/attachable/scope/unremovable)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102)
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/tl102,
 	)
