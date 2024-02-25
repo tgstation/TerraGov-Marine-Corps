@@ -1,5 +1,5 @@
 /obj/vehicle/sealed/armored/multitile/apc
-	name = "TAV - Athena"
+	name = "\improper APC - Athena"
 	desc = "An unarmed command APC designed to command and transport troops in the battlefield."
 	icon = 'icons/obj/armored/3x3/apc.dmi'
 	icon_state = "apc"
