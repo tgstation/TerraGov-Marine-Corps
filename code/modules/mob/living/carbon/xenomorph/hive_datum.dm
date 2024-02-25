@@ -987,8 +987,12 @@ to_chat will check for valid clients itself already so no need to double check f
 			remove_from_larva_candidate_queue(xeno_candidate)
 			return FALSE
 
-	if(QDELETED(chosen_silo) || isnull(xeno_candidate) || stored_larva <= 0)
+	if(QDELETED(chosen_silo) || isnull(xeno_candidate))
 		return FALSE
+
+	if((round(xeno_job.total_positions - xeno_job.current_positions)) <= 0)
+		to_chat(xeno_candidate.mob, span_warning("There is no longer any larva available!"))
+		return
 
 	xeno_candidate.mob.reset_perspective(null)
 	return do_spawn_larva(xeno_candidate, chosen_silo.loc, larva_already_reserved)
