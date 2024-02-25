@@ -1490,7 +1490,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 1
 	max_range = 35
 	///Bonus flat damage to walls, balanced around resin walls.
-	var/autocannon_wall_bonus = 20
+	var/autocannon_wall_bonus = 50
 
 /datum/ammo/bullet/auto_cannon/on_hit_turf(turf/T, obj/projectile/P)
 	P.proj_max_range -= 20
@@ -1515,7 +1515,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 5
 	max_range = 30
 	airburst_multiplier = 1
-	autocannon_wall_bonus = 5
+	autocannon_wall_bonus = 25
 
 /datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
