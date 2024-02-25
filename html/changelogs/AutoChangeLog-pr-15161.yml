@@ -1,0 +1,5 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - balance: "ERT ships will now have plasteel cades protecting their doors."
+  - code_imp: "Added a plasteel child that spawns in closed"
