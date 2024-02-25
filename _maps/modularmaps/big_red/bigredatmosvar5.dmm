@@ -266,6 +266,9 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "rJ" = (
@@ -974,8 +977,10 @@
 /area/bigredv2/outside/se)
 "ZL" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "ZP" = (

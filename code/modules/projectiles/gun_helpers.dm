@@ -81,7 +81,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /obj/item/weapon/gun/attack_self(mob/user)
 	. = ..()
 	//There are only two ways to interact here.
-	if(!CHECK_BITFIELD(flags_item, TWOHANDED))
+	if(!(flags_item & TWOHANDED))
 		return
 	if(flags_item & WIELDED)
 		unwield(user)//Trying to unwield it
@@ -220,12 +220,9 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	var/datum/action/item_action/firemode/firemode_action = action
 	if(!istype(firemode_action))
 		if(master_gun)
-			activate(user)
-			return
+			return activate(user)
 		return ..()
-	do_toggle_firemode()
-	user.update_action_buttons()
-
+	return do_toggle_firemode()
 
 /mob/living/carbon/human/verb/toggle_autofire()
 	set category = "Weapons"
@@ -334,11 +331,10 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 	if(ishuman(source))
 		to_chat(source, span_notice("[icon2html(src, source)] You switch to <b>[gun_firemode]</b>."))
-		if(source == gun_user)
-			gun_user.update_action_buttons()
 	playsound(src, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, gun_firemode)
 	setup_bullet_accuracy()
+	return TRUE
 
 
 /obj/item/weapon/gun/proc/add_firemode(added_firemode, mob/user)

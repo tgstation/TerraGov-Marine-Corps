@@ -36,6 +36,7 @@
 	set_light(initial(light_range))
 
 /obj/machinery/air_alarm/update_icon_state()
+	. = ..()
 	if(machine_stat & (NOPOWER|BROKEN))
 		icon_state = "alarm_unpowered"
 	else

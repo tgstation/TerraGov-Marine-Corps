@@ -22,6 +22,7 @@
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/chemsystem,
 		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/eshield/overclocked,
 
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
@@ -44,10 +45,28 @@
 
 	allowed_uniform_type = /obj/item/clothing/under
 
+/obj/item/clothing/suit/modular/xenonauten/hodgrenades
+	starting_attachments = list(
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/storage/grenade,
+	)
+
 /obj/item/clothing/suit/modular/xenonauten/engineer
 	starting_attachments = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/storage/engineering,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/lightmedical
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/lightgeneral
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/general,
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/mimir
@@ -56,10 +75,34 @@
 		/obj/item/armor_module/storage/general,
 	)
 
+/obj/item/clothing/suit/modular/xenonauten/mimirinjector
+	starting_attachments = list(
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/storage/injector,
+	)
+
 /obj/item/clothing/suit/modular/xenonauten/shield
 	starting_attachments = list(
 		/obj/item/armor_module/module/eshield,
 		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/shield_overclocked
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/shield_overclocked/medic
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/general,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/shield_overclocked/engineer
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/engineering,
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/valk
@@ -81,6 +124,30 @@
 		/obj/item/armor_module/storage/medical,
 	)
 
+/obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked/medic
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/general,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked/engineer
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/engineering,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/light/lightmedical
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/medical,
+	)
+
 /obj/item/clothing/suit/modular/xenonauten/heavy
 	name = "\improper Xenonauten-H pattern armored vest"
 	desc = "A XN-H vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a heavy variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
@@ -88,10 +155,22 @@
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	greyscale_config = /datum/greyscale_config/xenonaut/heavy
 
+/obj/item/clothing/suit/modular/xenonauten/heavy/mimirengi
+	starting_attachments = list(
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/storage/engineering,
+	)
+
 /obj/item/clothing/suit/modular/xenonauten/heavy/leader
 	starting_attachments = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_onegeneral
+	starting_attachments = list(
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/storage/general,
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_one
@@ -106,6 +185,12 @@
 		/obj/item/armor_module/storage/medical,
 	)
 
+/obj/item/clothing/suit/modular/xenonauten/heavy/grenadier //Literally grenades
+	starting_attachments = list(
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/storage/grenade,
+	)
+
 /obj/item/clothing/suit/modular/xenonauten/heavy/surt
 	starting_attachments = list(
 		/obj/item/armor_module/module/fire_proof,
@@ -115,6 +200,12 @@
 /obj/item/clothing/suit/modular/xenonauten/heavy/shield
 	starting_attachments = list(
 		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/heavy/shield_overclocked
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
 		/obj/item/armor_module/storage/medical,
 	)
 
@@ -129,6 +220,49 @@
 
 	attachments_allowed = list()
 
+
+	allowed = list(
+		/obj/item/weapon/gun,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/flashlight,
+		/obj/item/ammo_magazine,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/weapon/baton,
+		/obj/item/restraints/handcuffs,
+		/obj/item/explosive/grenade,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/storage/belt/sparepouch,
+		/obj/item/storage/holster/blade,
+		/obj/item/storage/holster/belt,
+		/obj/item/weapon/energy/sword,
+	)
+
+/obj/item/clothing/suit/storage/marine/ballistic
+	name = "\improper Crasher multi-threat ballistic armor"
+	desc = "A reused design of a old body armor system from the 21st century."
+	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 50, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
+	slowdown = 0.25
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	icon = 'icons/mob/clothing/suits/marine_armor.dmi'
+	icon_state = "ballistic_vest"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi'
+	)
+	equip_delay_self = 2 SECONDS
+	unequip_delay_self = 0 SECONDS
+	flags_armor_features = NONE
+
+	icon_state_variants = list(
+		"urban",
+		"jungle",
+		"desert",
+		"snow",
+	)
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED
+	current_variant = "urban"
 
 	allowed = list(
 		/obj/item/weapon/gun,
@@ -179,8 +313,20 @@
 
 	visorless_offset_y = 0
 
+/obj/item/clothing/head/modular/m10x/hod
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/hod_head)
+
+/obj/item/clothing/head/modular/m10x/freyr
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/artemis)
+
+/obj/item/clothing/head/modular/m10x/antenna
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/antenna)
+
 /obj/item/clothing/head/modular/m10x/welding
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)
+
+/obj/item/clothing/head/modular/m10x/superiorwelding
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding/superior)
 
 /obj/item/clothing/head/modular/m10x/mimir
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1)

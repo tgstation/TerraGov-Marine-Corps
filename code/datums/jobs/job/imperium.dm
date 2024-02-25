@@ -40,8 +40,9 @@
 	name = "Imperial Guardsman"
 	jobtype = /datum/job/imperial/guardsman
 
-	belt = /obj/item/storage/belt/marine
+	belt = /obj/item/storage/belt/marine/te_cells
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle
 	head = /obj/item/clothing/head/helmet/marine/imperial
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/holster/flarepouch/full
@@ -59,98 +60,49 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-
-	var/obj/item/weapon/gun/energy/lasgun/lasrifle/G = new /obj/item/weapon/gun/energy/lasgun/lasrifle(H)
-	H.equip_to_slot_or_del(G, SLOT_S_STORE)
-
 /datum/job/imperial/guardsman/sergeant
 	title = "Guardsman Sergeant"
 	comm_title = "Sergeant"
 	skills_type = /datum/skills/imperial/sl
 	paygrade = "Sergeant"
-	outfit = /datum/outfit/job/imperial/sergeant
+	outfit = /datum/outfit/job/imperial/guardsman/sergeant
 
-/datum/outfit/job/imperial/sergeant // don't inherit guardsman equipment
+/datum/outfit/job/imperial/guardsman/sergeant
 	name = "Guardsman Sergeant"
 	jobtype = /datum/job/imperial/guardsman/sergeant
 
-	belt = /obj/item/storage/belt/marine
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial/sergeant
 	head = /obj/item/clothing/head/helmet/marine/imperial/sergeant
 	r_store = /obj/item/storage/pouch/explosive/upp
 	l_store = /obj/item/storage/pouch/field_pouch/full
-	back = /obj/item/storage/backpack/lightpack
-
-/datum/outfit/job/imperial/sergeant/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone, SLOT_IN_HEAD)
-
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_SUIT)
-
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-
-	var/obj/item/weapon/gun/energy/lasgun/lasrifle/G = new /obj/item/weapon/gun/energy/lasgun/lasrifle(H)
-	H.equip_to_slot_or_del(G, SLOT_S_STORE)
 
 /datum/job/imperial/guardsman/medicae
 	title = "Guardsman Medicae"
 	comm_title = "Medicae"
 	skills_type = /datum/skills/imperial/medicae
 	paygrade = "Medicae"
-	outfit = /datum/outfit/job/imperial/medicae
+	outfit = /datum/outfit/job/imperial/guardsman/medicae
 
-/datum/outfit/job/imperial/medicae
+/datum/outfit/job/imperial/guardsman/medicae
 	name = "Guardsman Medicae"
 	jobtype = /datum/job/imperial/guardsman/medicae
 
 	belt = /obj/item/storage/belt/lifesaver/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial/medicae
-	head = /obj/item/clothing/head/helmet/marine/imperial
 	glasses = /obj/item/clothing/glasses/hud/health
 	l_store = /obj/item/storage/pouch/medkit/medic
 	r_store = /obj/item/storage/pouch/medical_injectors/medic
-	back = /obj/item/storage/backpack/lightpack
 
-/datum/outfit/job/imperial/medicae/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/imperial/guardsman/medicae/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
-	H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv, SLOT_IN_L_POUCH)
-
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone, SLOT_IN_HEAD)
-
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_SUIT)
-
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/zoom, SLOT_IN_BELT) // closest thing to combat performance drugs
-
-	var/obj/item/weapon/gun/energy/lasgun/lasrifle/G = new /obj/item/weapon/gun/energy/lasgun/lasrifle(H)
-	H.equip_to_slot_or_del(G, SLOT_S_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/zoom, SLOT_IN_BACKPACK) // closest thing to combat performance drugs
 
 /datum/job/imperial/commissar
 	title = "Imperial Commissar"
@@ -166,21 +118,18 @@
 	belt = /obj/item/storage/holster/belt/mateba/full //Ideally this can be later replaced with a bolter
 	w_uniform = /obj/item/clothing/under/marine/imperial/commissar
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial/commissar
+	suit_store = /obj/item/weapon/claymore/mercsword/commissar_sword
 	gloves = /obj/item/clothing/gloves/marine/commissar
 	head = /obj/item/clothing/head/commissar
-	l_store = /obj/item/storage/pouch/medkit
+	l_store = /obj/item/storage/pouch/medkit/firstaid
 	r_store = /obj/item/storage/pouch/magazine/pistol/large/mateba
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/imperial/commissar/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
-	H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv, SLOT_IN_L_POUCH)
-
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword/commissar_sword, SLOT_S_STORE)

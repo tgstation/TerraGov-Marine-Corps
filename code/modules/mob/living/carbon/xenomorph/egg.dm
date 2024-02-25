@@ -21,6 +21,7 @@
 	advance_maturity(maturity_stage)
 
 /obj/alien/egg/update_icon_state()
+	. = ..()
 	icon_state = initial(icon_state) + "[maturity_stage]"
 
 /obj/alien/egg/obj_break(damage_flag)

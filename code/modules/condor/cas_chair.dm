@@ -204,12 +204,12 @@
 	switch(action)
 		if("launch")
 			if(!cas_usable)
-				to_chat(usr, "<span class='warning'>Combat has not yet initiated, CAS unavailable.")
+				to_chat(usr, span_warning("Combat has not yet initiated, CAS unavailable."))
 				return
 			if(owner.state == PLANE_STATE_FLYING || owner.mode != SHUTTLE_IDLE)
 				return
-			if(owner.fuel_left <= LOW_FUEL_THRESHOLD)
-				to_chat(usr, "<span class='warning'>Unable to launch, low fuel.")
+			if(owner.fuel_left <= LOW_FUEL_TAKEOFF_THRESHOLD)
+				to_chat(usr, span_warning("Unable to launch, low fuel."))
 				return
 			SSshuttle.moveShuttleToDock(owner.id, SSshuttle.generate_transit_dock(owner), TRUE)
 			owner.currently_returning = FALSE

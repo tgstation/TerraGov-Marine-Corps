@@ -207,6 +207,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 		set_light(0)
 
 /obj/machinery/cloning/vats/update_icon_state()
+	. = ..()
 	if(!beaker)
 		icon_state = "cell_0"
 		return

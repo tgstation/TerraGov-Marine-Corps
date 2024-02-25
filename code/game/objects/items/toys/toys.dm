@@ -25,7 +25,7 @@
 	throw_range = 20
 	force = 0
 
-/obj/item/toy/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/item/toy/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!CONFIG_GET(flag/fun_allowed))
 		return FALSE
 	attack_hand(X)
@@ -96,6 +96,7 @@
 		QDEL_IN(src, 5)
 
 /obj/item/toy/balloon/update_icon_state()
+	. = ..()
 	if(reagents.total_volume)
 		icon_state = "waterballoon"
 		item_state = "balloon"

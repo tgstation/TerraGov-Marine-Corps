@@ -153,7 +153,7 @@
 /datum/buildmode/proc/change_dir(newdir)
 	build_dir = newdir
 	close_dirswitch()
-	dirbutton.update_icon()
+	dirbutton.update_dir()
 	return TRUE
 
 

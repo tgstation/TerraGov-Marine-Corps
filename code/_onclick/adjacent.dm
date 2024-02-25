@@ -102,6 +102,8 @@
 
 //Multitile special cases.
 /obj/vehicle/Adjacent(atom/neighbor)
+	if(hitbox)
+		return hitbox.Adjacent(neighbor)
 	if(bound_width > 32 || bound_height > 32)
 		for(var/turf/myloc AS in locs)
 			if(myloc.Adjacent(neighbor, target = neighbor, mover = src))
@@ -112,6 +114,12 @@
 		if(!isturf(loc))
 			return FALSE
 		if(loc.Adjacent(neighbor, neighbor, src))
+			return TRUE
+	return FALSE
+
+/obj/hitbox/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
+	for(var/turf/T AS in locs)
+		if(T.Adjacent(neighbor, neighbor, mover))
 			return TRUE
 	return FALSE
 

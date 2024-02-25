@@ -25,7 +25,7 @@
 	playsound(loc, 'sound/effects/thud.ogg', 100)
 	user.dropItemToGround(src)
 	is_collapsed = FALSE
-	update_icon_state()
+	update_appearance()
 
 
 /obj/item/flag_base/attack_hand(mob/living/user)
@@ -34,8 +34,8 @@
 			to_chat(user, "<span class='warning'>You decide against removing the flag here.")
 			return
 		is_collapsed = TRUE
-		update_icon_state()
-	. = ..()
+		update_appearance()
+	return ..()
 
 
 /obj/item/flag_base/update_icon_state()

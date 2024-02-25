@@ -9,7 +9,7 @@
 	///What skill is needed to have this action
 	var/skill_name = SKILL_LEADERSHIP
 	///What minimum level in that skill is needed to have that action
-	var/skill_min = SKILL_LEAD_EXPERT
+	var/skill_min = SKILL_LEAD_TRAINED
 
 /datum/action/innate/order/give_action(mob/M)
 	. = ..()

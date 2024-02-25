@@ -209,7 +209,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/proc/safety_protocol(mob/living/carbon/human/user)
 	balloon_alert_to_viewers("Explodes")
 	playsound(user, 'sound/effects/explosion_micro1.ogg', 50, 1)
-	user.ex_act(EXPLODE_LIGHT)
+	if(wearer)
+		wearer.ex_act(EXPLODE_LIGHT)
 	qdel(src)
 
 /obj/item/radio/headset/mainship/dropped(mob/living/carbon/human/user)
@@ -282,8 +283,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		if(HAS_TRAIT(wearer, TRAIT_UNDEFIBBABLE))
 			SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
 			return
-		if(!wearer.client)
-			var/mob/dead/observer/ghost = wearer.get_ghost()
+		if(!wearer.mind)
+			var/mob/dead/observer/ghost = wearer.get_ghost(TRUE)
 			if(!ghost?.can_reenter_corpse)
 				SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
 				return
@@ -445,7 +446,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/marine/Initialize(mapload, datum/squad/squad, rank)
 	if(squad)
-		icon_state = "headset_marine_[lowertext(squad.name)]"
+		icon_state = "headset_marine_greyscale"
+		var/image/coloring = image(icon, icon_state="headset_marine_overlay")
+		coloring.color = squad.color
+		add_overlay(coloring)
 		var/dat = "marine [lowertext(squad.name)]"
 		frequency = squad.radio_freq
 		if(ispath(rank, /datum/job/terragov/squad/leader))
@@ -643,6 +647,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/distress/echo
 	name = "\improper Echo Task Force headset"
 	keyslot = /obj/item/encryptionkey/echo
+
+/obj/item/radio/headset/distress/retired
+	name = "retirement home headset"
+	keyslot = /obj/item/encryptionkey/retired
+	frequency = FREQ_RETIRED
 
 //SOM headsets
 

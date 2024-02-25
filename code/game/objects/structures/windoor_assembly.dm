@@ -47,6 +47,7 @@
 	update_icon()
 
 /obj/structure/windoor_assembly/update_icon_state()
+	. = ..()
 	icon_state = "[facing]_[secure]windoor_assembly[state]"
 
 /obj/structure/windoor_assembly/attackby(obj/item/I, mob/user, params)

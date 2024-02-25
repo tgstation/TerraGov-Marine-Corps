@@ -75,6 +75,11 @@
 		new_overlay.pixel_x = -32
 		. += new_overlay
 
+/obj/structure/platform/nondense
+	density = FALSE
+	climbable = FALSE
+	coverage = 0
+
 /obj/structure/platform/rockcliff
 	icon_state = "rockcliff"
 	name = "rock cliff"
@@ -82,6 +87,11 @@
 
 /obj/structure/platform/rockcliff/icycliff
 	icon_state = "icerock"
+
+/obj/structure/platform/rockcliff/icycliff/nondense
+	density = FALSE
+	climbable = FALSE
+	coverage = 0
 
 /obj/structure/platform/metalplatform
 	icon_state = "metalplatform"

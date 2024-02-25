@@ -97,6 +97,8 @@
 ///degree of cone in front of which mech is allowed to fire at
 #define MECH_FIRE_CONE_ALLOWED 120
 
+///degree of cone in front of which armored vehicles are allowed to fire at
+#define ARMORED_FIRE_CONE_ALLOWED 110
 /**
  * greyscale mech shenanigans
  */

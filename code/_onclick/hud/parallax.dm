@@ -7,12 +7,12 @@
 
 	if(!length(C.parallax_layers_cached))
 		C.parallax_layers_cached = list()
-		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_1(null, C.view)
-		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_2(null, C.view)
-		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/planet(null, C.view)
+		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_1(null, src, C.view)
+		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_2(null, src, C.view)
+		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/planet(null, src, C.view)
 		if(SSparallax.random_layer)
-			C.parallax_layers_cached += new SSparallax.random_layer
-		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_3(null, C.view)
+			C.parallax_layers_cached += new SSparallax.random_layer(null, src, C.view)
+		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_3(null, src, C.view)
 
 	C.parallax_layers = C.parallax_layers_cached.Copy()
 
@@ -238,7 +238,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 
-/atom/movable/screen/parallax_layer/Initialize(mapload, view)
+/atom/movable/screen/parallax_layer/Initialize(mapload, datum/hud/hud_owner, view)
 	. = ..()
 	if (!view)
 		view = world.view
@@ -289,7 +289,7 @@
 /atom/movable/screen/parallax_layer/random/space_gas
 	icon_state = "space_gas"
 
-/atom/movable/screen/parallax_layer/random/space_gas/Initialize(mapload, view)
+/atom/movable/screen/parallax_layer/random/space_gas/Initialize(mapload, datum/hud/hud_owner, view)
 	. = ..()
 	src.add_atom_colour(SSparallax.random_parallax_color, ADMIN_COLOUR_PRIORITY)
 

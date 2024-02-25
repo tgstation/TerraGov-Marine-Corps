@@ -35,7 +35,7 @@
 	. = ..()
 	var/datum/action/ability/xeno_action/ready_charge/behemoth_roll/behemoth_roll_action = actions_by_path[/datum/action/ability/xeno_action/ready_charge/behemoth_roll]
 	if(behemoth_roll_action?.charge_ability_on)
-		return "behemoth_wounded_charging_[severity]"
+		return "wounded_charging_[severity]"
 
 /mob/living/carbon/xenomorph/behemoth/get_status_tab_items()
 	. = ..()

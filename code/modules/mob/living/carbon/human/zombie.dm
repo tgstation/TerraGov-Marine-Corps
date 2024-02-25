@@ -25,11 +25,13 @@
 	var/revive_time = 1 MINUTES
 	///How much burn and burn damage can you heal every Life tick (half a sec)
 	var/heal_rate = 10
+	var/faction = FACTION_ZOMBIE
+	var/claw_type = /obj/item/weapon/zombie_claw
 
 /datum/species/zombie/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.set_undefibbable()
-	H.faction = FACTION_ZOMBIE
+	H.faction = faction
 	H.language_holder = new default_language_holder()
 	H.setOxyLoss(0)
 	H.setToxLoss(0)
@@ -40,8 +42,8 @@
 		var/obj/item/card/id/id = H.wear_id
 		id.access = list() // A bit gamey, but let's say ids have a security against zombies
 		id.iff_signal = NONE
-	H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_R_HAND)
-	H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_L_HAND)
+	H.equip_to_slot_or_del(new claw_type, SLOT_R_HAND)
+	H.equip_to_slot_or_del(new claw_type, SLOT_L_HAND)
 	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_OBSERVER]
 	health_hud.add_hud_to(H)
 	H.job = new /datum/job/zombie //Prevent from skewing the respawn timer if you take a zombie, it's a ghost role after all
@@ -96,6 +98,76 @@
 		limb.vital = FALSE
 		return
 
+/datum/species/zombie/fast
+	name = "Fast zombie"
+	slowdown = 0
+
+/datum/species/zombie/fast/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	H.transform = matrix().Scale(0.8, 0.8)
+
+/datum/species/zombie/fast/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
+	H.transform = matrix().Scale(1/(0.8), 1/(0.8))
+
+/datum/species/zombie/tank
+	name = "Tank zombie"
+	slowdown = 1
+	heal_rate = 20
+	total_health = 250
+
+/datum/species/zombie/tank/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	H.transform = matrix().Scale(1.2, 1.2)
+
+/datum/species/zombie/tank/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
+	H.transform = matrix().Scale(1/(1.2), 1/(1.2))
+
+/datum/species/zombie/strong
+	name = "Strong zombie" //These are zombies created from marines, they are stronger, but of course rarer
+	slowdown = -0.5
+	heal_rate = 20
+	total_health = 200
+
+/datum/species/zombie/strong/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	H.color = COLOR_MAROON
+
+/datum/species/zombie/psi_zombie
+	name = "Psi zombie" //reanimated by psionic ability
+	slowdown = -0.5
+	heal_rate = 20
+	total_health = 200
+	faction = FACTION_SECTOIDS
+	claw_type = /obj/item/weapon/zombie_claw/no_zombium
+
+/datum/action/rally_zombie
+	name = "Rally Zombies"
+	action_icon_state = "rally_minions"
+
+/datum/action/rally_zombie/action_activate()
+	owner.emote("roar")
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, owner)
+	var/datum/action/set_agressivity/set_agressivity = owner.actions_by_path[/datum/action/set_agressivity]
+	if(set_agressivity)
+		SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.zombies_agressive) //New escorting ais should have the same behaviour as old one
+
+/datum/action/set_agressivity
+	name = "Set other zombie behavior"
+	action_icon_state = "minion_agressive"
+	///If zombies should be agressive
+	var/zombies_agressive = TRUE
+
+/datum/action/set_agressivity/action_activate()
+	zombies_agressive = !zombies_agressive
+	SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, zombies_agressive)
+	update_button_icon()
+
+/datum/action/set_agressivity/update_button_icon()
+	action_icon_state = zombies_agressive ? "minion_agressive" : "minion_passive"
+	return ..()
+
 /obj/item/weapon/zombie_claw
 	name = "claws"
 	hitsound = 'sound/weapons/slice.ogg'
@@ -145,64 +217,5 @@
 	if(door.density) //Make sure it's still closed
 		door.open(TRUE)
 
-/datum/species/zombie/fast
-	name = "Fast zombie"
-	slowdown = 0
-
-/datum/species/zombie/fast/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
-	. = ..()
-	H.transform = matrix().Scale(0.8, 0.8)
-
-/datum/species/zombie/fast/post_species_loss(mob/living/carbon/human/H)
-	. = ..()
-	H.transform = matrix().Scale(1/(0.8), 1/(0.8))
-
-/datum/species/zombie/tank
-	name = "Tank zombie"
-	slowdown = 1
-	heal_rate = 20
-	total_health = 250
-
-/datum/species/zombie/tank/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
-	. = ..()
-	H.transform = matrix().Scale(1.2, 1.2)
-
-/datum/species/zombie/tank/post_species_loss(mob/living/carbon/human/H)
-	. = ..()
-	H.transform = matrix().Scale(1/(1.2), 1/(1.2))
-
-/datum/species/zombie/strong
-	name = "Strong zombie" //These are zombies created from marines, they are stronger, but of course rarer
-	slowdown = -0.5
-	heal_rate = 20
-	total_health = 200
-
-/datum/species/zombie/strong/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
-	. = ..()
-	H.color = COLOR_MAROON
-
-/datum/action/rally_zombie
-	name = "Rally Zombies"
-	action_icon_state = "rally_minions"
-
-/datum/action/rally_zombie/action_activate()
-	owner.emote("roar")
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, owner)
-	var/datum/action/set_agressivity/set_agressivity = owner.actions_by_path[/datum/action/set_agressivity]
-	if(set_agressivity)
-		SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.zombies_agressive) //New escorting ais should have the same behaviour as old one
-
-/datum/action/set_agressivity
-	name = "Set other zombie behavior"
-	action_icon_state = "minion_agressive"
-	///If zombies should be agressive
-	var/zombies_agressive = TRUE
-
-/datum/action/set_agressivity/action_activate()
-	zombies_agressive = !zombies_agressive
-	SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, zombies_agressive)
-	update_button_icon()
-
-/datum/action/set_agressivity/update_button_icon()
-	action_icon_state = zombies_agressive ? "minion_agressive" : "minion_passive"
-	return ..()
+/obj/item/weapon/zombie_claw/no_zombium
+	zombium_per_hit = 0

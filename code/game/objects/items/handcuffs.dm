@@ -110,7 +110,7 @@
 		user.put_in_hands(W)
 		to_chat(user, span_notice("You wrap the cable restraint around the top of the rod."))
 		qdel(src)
-		update_icon(user)
+		update_icon()
 
 
 /obj/item/restraints/handcuffs/cyborg

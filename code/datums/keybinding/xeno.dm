@@ -503,11 +503,11 @@
 	keybind_signal = COMSIG_XENOABILITY_TRANSFUSION
 	hotkey_keys = list("H")
 
-/datum/keybinding/xeno/rejuvenate
-	name = "rejuvenate"
-	full_name = "Gorger: Rejuvenate"
-	description = "Drains blood continuosly, slows you down and reduces damage taken, while restoring some health over time. Cancel by activating again."
-	keybind_signal = COMSIG_XENOABILITY_REJUVENATE
+/datum/keybinding/xeno/oppose
+	name = "oppose"
+	full_name = "Gorger: Oppose"
+	description = "Violently suffuse the nearby ground with stored blood, staggering nearby marines and healing nearby xenomorphs."
+	keybind_signal = COMSIG_XENOABILITY_OPPOSE
 	hotkey_keys = list("R")
 
 /datum/keybinding/xeno/psychic_link

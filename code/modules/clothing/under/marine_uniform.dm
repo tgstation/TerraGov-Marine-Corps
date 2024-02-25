@@ -9,8 +9,8 @@
 	icon_state = "marine_jumpsuit"
 	item_icons = list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/marine_uniforms.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	has_sensor = 2
 	adjustment_variants = list(
@@ -18,6 +18,12 @@
 		"No Sleeves" = "_h",
 		"No Top" = "_r",
 	)
+
+/obj/item/clothing/under/marine/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+
+/obj/item/clothing/under/marine/corpman_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
 /obj/item/clothing/under/marine/hyperscale
 	name = "\improper 8E Chameleon TGMC uniform"
@@ -31,6 +37,9 @@
 
 /obj/item/clothing/under/marine/black_vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/marine/brown_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
 
 //Squad colored turtlenecks
 /obj/item/clothing/under/marine/squad/neck
@@ -115,6 +124,9 @@
 		"Down" = "_d",
 	)
 
+/obj/item/clothing/under/marine/orion_fatigue/black_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
 /obj/item/clothing/under/marine/red_fatigue
 	name = "\improper Big Red fatigues"
 	desc = "Originated from Big Red. Designed for dry, low humid, and Mars-eqse environments, they're meant for recon, stealth, and evac operations. They come with a built in cassette player hearable only to the user to help pass time, during any possible long waits. They make you feel like one with the desert, forged by the beating Sun. Rumors had it that it can recycle your sweat and urine for drinkable water!"
@@ -123,6 +135,9 @@
 	adjustment_variants = list(
 		"Down" = "_d",
 	)
+
+/obj/item/clothing/under/marine/red_fatigue/black_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
 /obj/item/clothing/under/marine/lv_fatigue
 	name = "\improper LV-624 fatigues"
@@ -133,12 +148,19 @@
 		"Down" = "_d",
 	)
 
+/obj/item/clothing/under/marine/lv_fatigue/black_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
 /obj/item/clothing/under/marine/striped
 	name = "\improper Striped fatigues"
 	desc = "A simple set of camo pants and a striped shirt."
 	icon_state = "marine_striped"
 	item_state = "marine_striped"
 	adjustment_variants = list()
+
+/obj/item/clothing/under/marine/striped/black_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
 /obj/item/clothing/under/marine/black_suit
 	name = "\improper marine black suit"
 	desc = "A easy fitting black suit, somehow exactly your size."
@@ -272,8 +294,8 @@
 	icon_state = "guardjumpsuit"
 	item_icons = list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	item_state = "guardjumpsuit"
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
@@ -290,8 +312,8 @@
 	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
 	item_icons = list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	adjustment_variants = list()
 
@@ -433,7 +455,7 @@
 	adjustment_variants = list()
 
 /obj/item/clothing/under/som
-	name = "\improper SOM officer uniform"
+	name = "\improper SOM uniform"
 	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies."
 	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "som_uniform"
@@ -478,7 +500,7 @@
 
 /obj/item/clothing/under/som/officer
 	name = "\improper SOM officer uniform"
-	desc = "The distinct black uniform of a SOM officer. Usually worn by junior officers"
+	desc = "The distinct black uniform of a SOM officer. Usually worn by junior officers."
 	icon_state = "som_officer_uniform"
 	item_state = "som_officer_uniform"
 	adjustment_variants = list()
@@ -488,7 +510,7 @@
 
 /obj/item/clothing/under/som/officer/senior
 	name = "\improper SOM officer uniform"
-	desc = "The distinct jacketed black uniform of a SOM officer. Usually worn by senior officers"
+	desc = "The distinct jacketed black uniform of a SOM officer. Usually worn by senior officers."
 	icon_state = "som_senior_officer_uniform"
 	item_state = "som_senior_officer_uniform"
 
@@ -499,8 +521,8 @@
 	icon_state = "icc"
 	item_icons = list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	item_state = "icc"
 	has_sensor = FALSE
@@ -535,3 +557,16 @@
 
 /obj/item/clothing/under/marine/robotic/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/marine/specops
+	name = "Tactical turtleneck"
+	desc = "A TGMC turtleneck issued to special operation units"
+	icon = 'icons/mob/clothing/uniforms/ert_uniforms.dmi'
+	icon_state = "specops_uniform"
+	item_icons = list(
+		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
+	)
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+	item_state = "specops_uniform"
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	has_sensor = 0

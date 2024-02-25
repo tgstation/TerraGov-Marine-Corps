@@ -1,7 +1,13 @@
+You can replace normal weed pods with sticky/resting weed pods, but cannot do the inverse.
+Stagger stops most xenomorphs from using abilities. Watch out for weapons that can stagger!
+Different castes have different pheromone strengths, with drone being the lowest and king being the highest.
+Pheromones do not stack, only the strongest applies.
+When placing resin walls, they start at 40% their max health then gain health over time. Walls made by hivelords start at 70% health.
+Marines suffer no movement penalty for moving on standard or resting weeds, however sticky weeds slow them down significantly.
 As a xeno, you can freely melt barricades while in boiler or defiler gas as long as you can click on the right spot. The gas is also a really good hiding spot to launch ambushes from without marines being aware of you.
 As a xeno, always thank your drones and hivelords for supporting the hive!
-As a xeno, you can drag any item, but you must wait through an actionbar before you can do so!
-As a xeno, do not fight as a young xenomorph.
+Robot healthbars are not directly one to one with their actual health. They will still have some fight left in them after it shows their health has hit critical.
+As a xeno, you can drag any item, but you must wait through an actionbar before you can do so! Carrier loves dragging items for their traps!
 Most alien deaths are caused by over-aggression. Rein yourself in, or you may find yourself dying round after round.
 As a xeno, if you have difficulty clicking marines, try using bump slash. You can use movement keys to slash marines. That said, clicking marines to slash them is faster than bump slashing!
 It is EXTREMELY IMPORTANT that you as a xenomorph have your abilities set up on keybinds. Ask for help if you don't know how in XOOC or mentorhelp.
@@ -10,36 +16,51 @@ As a xeno, it is faster to re-fill an empty acid well than rolling on the ground
 As a xeno, acid wells extinguish fire and explode into an acid cloud when destroyed. The Queen, the Shrike, praetorians, boilers, and hivelords can make acid wells.
 The Queen, the King, the Shrike, and hivelord have access to Queen's Blessing, a menu for the hive to use psychic points to give xenomorphs a cutting edge in the battlefield.
 If you have acid spit, you can spit at a welding fuel tank to blow it up. If the welding fuel is near hostiles, you might give them a pleasant surprise!
+If something comes up in real life while you’re a xenomorph, head back to the silo and use the “ghost” command to let others take over your body.
 As a xeno, check hive status often.
 Some xenos have pheromones that can help the hive. Frenzy increases speed, Warding increases armor, and Recovery increases healing.
 The King has the strongest pheromones, followed by the Queen, praetorians, Hivemind, the Shrike and hivelords, defilers, and carriers. Drones have the weakest pheromones.
 Some xenos can recycle the bodies of their fallen hive members. Use this to your advantage to prevent marines from getting points for their Requisitions orders!
 As a xeno, you can pounce past window frames and barricades without barbed wires.
 As a xeno, pouncing into a barricade with barbed wire causes you to bounce off the barricade.
-As a xeno, aging from young to mature gives you the most benefit, further aging has diminishing returns.
 As a xeno, remember that neurotoxin injected can overdose, killing a marine quickly.
 As a xeno, you can crawl through holes in walls made by acid by SpecialClicking (Default: CTRL+click) on them or click-dragging yourself on them. If you're too big to pass through, you'll damage the wall instead.
 As a xeno, you can climb over window frames by jumping (Default: Spacebar), SpecialClicking (Default: CTRL+click) on them, or click-dragging yourself on them.
-As a xeno, do not camp the landing zones prior to the marines building their defenses.
 As a xeno, do not block other xenos' paths when they are retreating. Circumvent this by being on Help Intent or by simply moving away.
 As a xeno, green weeds help you heal faster, blue weeds slow down marines, and weeds with no colors are normal weeds. Rest on the green weeds to heal faster!
 As a larva, ask your hive leader what you should evolve into. If nobody responds, you can check hive status to see what xenomorphs need the most.
 As a larva, you can slide under unbolted and unwelded doors by clicking on the door.
 As a larva, stay on weeds while growing. You will grow faster as a result.
 As a runner, warlock, or larva, you can pass over window frames without climbing onto them beforehand.
+As a caste with acid, you can click directly on a lower-level acid puddle to upgrade it.
 As a drone or sentinel, your corrosive acid is very weak, but it's better than nothing.
 As a xeno, spread weeds as much as you can, especially near the front-line fighters.
 Before you evolve into the Hivemind as a drone, hide in a secure area! Once you evolve, you will create a core that cannot be moved.
+As a hivelord, build as many tunnels as you can to help mobilize the hive!
 As a carrier, you can hit a host directly with a thrown facehugger to have a high chance of infecting them near instantly. This will take time, however.
 As a carrier, you can hide traps beneath certain objects and items.
+As a carrier you can take out huggers from eggs and replace them with specialized huggers instead, such as a neurotox hugger.
 As a hunter, you have almost perfect stealth if you stand still.
+As a hunter, entering stalk/walk mode while stealthing will make you more transparent.
+As a hunter, a second activation of your mirages ability will exchange your place with one of your mirages! Use this to get back in the fight, when marines start to ignore your mirages.
 As a ravager or the Queen, you are fire-resistant, NOT fireproof. You can still get lit on fire, but you take very little damage from it. As the King, however, you're fireproof until your armor is damaged by sunder.
+As a ravager, rage mode will make you stagger immune, reset your armour, give you additional fury and boost your speed for a time. Use it as an escape tool, especially if you're too low on rage to endure.
 As a spitter, boiler, praetorian, or the Queen, take advantage of unguarded barricades and defenses; melt or constantly spit acid on them if you can.
+As a ravager, you passively gain rage while on fire.
+As a ravager, don't get overconfident.
+As a ravager, you will regenerate your rage, up to a point.
+As a ravager or gorger, you will not be affected by tanglefoot or the tesla rifle. However, pepperballs and the smartgunner's tanglefoot DMR ammo still will.
+As a gorger, your drain ability can be used on corpses to heal incredibly fast, and scales up with pheromones.
+As a gorger, you have very little armour. You do not have to consider sunder as much as other castes.
+As a gorger, overheal will let you drain corpses even if you're taking damage! This also applies to anyone else that you've overhealed.
+As a gorger, you may psy drain for free.
+As a warlock, your offensive abilities can be cast through glass. Give laser-using marines a taste of their own medicine.
 As a boiler, primordial hivelord, the King or the Queen, you have the most powerful corrosive acid for melting things.
 As the Shrike, take advantage of your psychic abilities. Use Psychic Fling and Unrelenting Force to displace a marine or even push certain and hazardous objects towards your enemies and vice versa.
 As the Queen, your screech does not only affect the mobs on view, but affects through walls or gases. However, the effect of the screech will be reduced.
 As a drone, hivelord, Hivemind, Shrike, and the Queen, a large maze is almost always a good investment.
 As a drone, hivelord, Hivemind, Shrike, and the Queen, be clever with your walling. Try to allow for as much fluid movement as possible.
+As a shrike, queen, or king, hijacking the alamo will kill every xeno that you leave groundside, as well as destroying every structure and resetting your psy count. However, dead xenos will be refunded as burrowed larva. Call burrowed after a hijack!
 Sticky resin can act as the path for your maze to be built around.
 The Hivemind is very skilled at flanking marines. Wait for them to push, and wall them off from behind!
 Praying to the Queen-Mother will usually net a response.
@@ -56,6 +77,10 @@ As a xeno, attack between the delay of a shotgun being fired.
 As a xeno, listen to the sound of your enemy's magazine! If it sounds hollow, it will soon be empty.
 As a xeno, strike hard and fast.
 As a xeno, you are not disposable. However, sacrificing your life to save the Queen is widely respected.
+Hunter has AP and knockdown when striking from stealth, which can be chained with pounce for a longer stun.
+Defiler can vent crawl.
+Spitter can vent crawl.
+Defiler has one of the highest slash damages among the entire hive, use it to your advantage.
 A fortified defender is one of the best ways to stall a push.
 Skilled defilers can easily kill any marine in a span of seconds.
 As a xeno, always have an escape plan.

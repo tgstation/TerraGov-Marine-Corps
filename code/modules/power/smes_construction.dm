@@ -168,12 +168,10 @@
 				A.set_broken()
 
 	// Failing SMES has special icon overlay.
-/obj/machinery/power/smes/buildable/update_icon()
-	if (failing)
-		overlays.Cut()
-		overlays += image('icons/obj/power.dmi', "smes_crit")
-	else
-		..()
+/obj/machinery/power/smes/buildable/update_overlays()
+	. = ..()
+	if(failing)
+		. += image('icons/obj/power.dmi', "smes_crit")
 
 /obj/machinery/power/smes/buildable/attackby(obj/item/I, mob/user, params)
 	// No more disassembling of overloaded SMESs. You broke it, now enjoy the consequences.

@@ -8,7 +8,8 @@
 		/datum/job/terragov/command/captain = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
 		/datum/job/terragov/command/staffofficer = 4,
-		/datum/job/terragov/command/pilot = 2,
+		/datum/job/terragov/command/pilot = 1,
+		/datum/job/terragov/command/transportofficer = 1,
 		/datum/job/terragov/engineering/chief = 1,
 		/datum/job/terragov/engineering/tech = 2,
 		/datum/job/terragov/requisitions/officer = 1,
@@ -37,7 +38,8 @@
 /datum/game_mode/infestation/nuclear_war/post_setup()
 	. = ..()
 
-	SSpoints.add_psy_points(XENO_HIVE_NORMAL, 1400)
+	SSpoints.add_strategic_psy_points(XENO_HIVE_NORMAL, 1400)
+	SSpoints.add_tactical_psy_points(XENO_HIVE_NORMAL, 300)
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()

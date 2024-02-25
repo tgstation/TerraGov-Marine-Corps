@@ -23331,7 +23331,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/security)
 "qZL" = (
-/obj/structure/bed/chair/wheelchair,
+/obj/vehicle/ridden/wheelchair,
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
@@ -27071,7 +27071,7 @@
 	},
 /area/gelida/indoors/a_block/admin)
 "tKl" = (
-/obj/item/trash/barcardine,
+/obj/item/trash/barcaridine,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/hallway)
 "tKn" = (
@@ -28497,7 +28497,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/landing_zone_1)
 "uPv" = (
-/obj/item/trash/barcardine,
+/obj/item/trash/barcaridine,
 /turf/open/floor/prison/blue,
 /area/gelida/indoors/a_block/hallway)
 "uPN" = (

@@ -9,31 +9,44 @@
 	var/mode = 1 // 1 is injecting, 0 is taking blood.
 	var/obj/item/reagent_containers/beaker = null
 
-/obj/machinery/iv_drip/update_icon()
-	if(src.attached)
+/obj/machinery/iv_drip/update_icon_state()
+	. = ..()
+	if(attached)
 		icon_state = "hooked"
 	else
 		icon_state = ""
 
-	overlays = null
+/obj/machinery/iv_drip/update_overlays()
+	. = ..()
 
-	if(beaker)
-		var/datum/reagents/reagents = beaker.reagents
-		if(reagents.total_volume)
-			var/image/filling = image('icons/obj/iv_drip.dmi', src, "reagent")
+	if(!beaker)
+		return
 
-			var/percent = round((reagents.total_volume / beaker.volume) * 100)
-			switch(percent)
-				if(0 to 9)		filling.icon_state = "reagent0"
-				if(10 to 24) 	filling.icon_state = "reagent10"
-				if(25 to 49)	filling.icon_state = "reagent25"
-				if(50 to 74)	filling.icon_state = "reagent50"
-				if(75 to 79)	filling.icon_state = "reagent75"
-				if(80 to 90)	filling.icon_state = "reagent80"
-				if(91 to INFINITY)	filling.icon_state = "reagent100"
+	var/datum/reagents/reagents = beaker.reagents
+	if(!reagents?.total_volume)
+		return
 
-			filling.color = mix_color_from_reagents(reagents.reagent_list)
-			overlays += filling
+	var/image/filling = image('icons/obj/iv_drip.dmi', src, "reagent")
+
+	var/percent = round((reagents.total_volume / beaker.volume) * 100)
+	switch(percent)
+		if(0 to 9)		
+			filling.icon_state = "reagent0"
+		if(10 to 24) 	
+			filling.icon_state = "reagent10"
+		if(25 to 49)	
+			filling.icon_state = "reagent25"
+		if(50 to 74)	
+			filling.icon_state = "reagent50"
+		if(75 to 79)	
+			filling.icon_state = "reagent75"
+		if(80 to 90)	
+			filling.icon_state = "reagent80"
+		if(91 to INFINITY)	
+			filling.icon_state = "reagent100"
+
+	filling.color = mix_color_from_reagents(reagents.reagent_list)
+	. += filling
 
 /obj/machinery/iv_drip/MouseDrop(over_object, src_location, over_location)
 	..()

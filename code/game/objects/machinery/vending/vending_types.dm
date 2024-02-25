@@ -112,7 +112,7 @@
 		/obj/item/reagent_containers/food/snacks/enrg_bar = -1,
 		/obj/item/reagent_containers/food/snacks/wrapped/booniebars = -1,
 		/obj/item/reagent_containers/food/snacks/wrapped/chunk = -1,
-		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = -1,
+		/obj/item/reagent_containers/food/snacks/wrapped/barcaridine = -1,
 		/obj/item/reagent_containers/food/snacks/lollipop = -1,
 		/obj/item/reagent_containers/food/snacks/wrapped/berrybar = -1,
 	)
@@ -210,7 +210,7 @@
 			/obj/item/storage/reagent_tank/bktt = 1,
 		),
 		"Misc" = list(
-			/obj/item/tool/research/xeno_analyzer = -1,
+			/obj/item/tool/research/xeno_analyzer = 2,
 			/obj/item/tool/research/excavation_tool = -1,
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
@@ -258,7 +258,6 @@
 			/obj/item/reagent_containers/glass/bottle/adminordrazine = -1,
 			/obj/item/reagent_containers/glass/bottle/lemoline = -1,
 			/obj/item/reagent_containers/glass/bottle/nanoblood = -1,
-			/obj/item/reagent_containers/glass/bottle/doctor_delight = -1,
 		),
 		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/bicaridine = -1,
@@ -315,6 +314,8 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/virilyth = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
 			/obj/item/reagent_containers/glass/bottle/toxin = -1,
+			/obj/item/reagent_containers/glass/bottle/doctor_delight = -1,
+			/obj/item/alien_embryo = -1,
 		),
 	)
 

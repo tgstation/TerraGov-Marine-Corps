@@ -46,8 +46,8 @@
 			name = "[name] ([front_id])"
 			update_icon()
 
-/obj/item/storage/wallet/update_icon()
-
+/obj/item/storage/wallet/update_icon_state()
+	. = ..()
 	if(front_id)
 		switch(front_id.icon_state)
 			if("id")

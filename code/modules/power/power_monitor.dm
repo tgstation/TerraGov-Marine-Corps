@@ -87,6 +87,7 @@
 		set_light(initial(light_range))
 
 /obj/machinery/power/monitor/update_icon_state()
+	. = ..()
 	if(machine_stat & (BROKEN|DISABLED))
 		icon_state = "[initial(icon_state)]_broken"
 	else

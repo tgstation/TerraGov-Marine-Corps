@@ -75,6 +75,7 @@
 		set_light(initial(light_range))
 
 /obj/machinery/prop/computer/update_icon_state()
+	. = ..()
 	if(machine_stat & (BROKEN|DISABLED))
 		icon_state = "[initial(icon_state)]_broken"
 	else
@@ -1094,7 +1095,7 @@
 
 ///BROKEN VEHICLE PROPS
 /obj/structure/prop/vehicle
-	layer = TANK_BARREL_LAYER
+	layer = ABOVE_MOB_PROP_LAYER
 /obj/structure/prop/vehicle/van
 	name = "van"
 	desc = "An old van, seems to be broken down."
@@ -1242,7 +1243,7 @@
 
 /obj/structure/prop/vehicle/tank/east/barrel
 	icon_state = "ltb_cannon_0"
-	layer = TANK_BARREL_LAYER
+	layer = ABOVE_MOB_PROP_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/vehicle/tank/east/barrel/broken

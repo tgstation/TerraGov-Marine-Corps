@@ -76,7 +76,8 @@
 		visible_message(span_danger("[O] plows straight through [src]!"))
 		deconstruct(FALSE)
 
-/obj/structure/table/update_icon()
+/obj/structure/table/update_icon_state()
+	. = ..()
 	if(flipped)
 		var/ttype = 0
 		var/tabledirs = 0
@@ -464,6 +465,10 @@
 	table_status = TABLE_STATUS_FIRM
 	return TRUE
 
+/obj/structure/table/reinforced/weak //used for the icon, functionally similar to a table.
+	name = "rickety reinforced table"
+	desc = "A square metal surface resting on four legs. It has seen better days to whence it was strong."
+	max_integrity = 40
 
 /obj/structure/table/reinforced/prison
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."

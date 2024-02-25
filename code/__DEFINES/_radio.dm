@@ -52,6 +52,7 @@
 
 #define RADIO_CHANNEL_COLONIST "Colonist"
 #define RADIO_CHANNEL_PMC "NT PMC"
+#define RADIO_CHANNEL_RETIRED "Terragov Retirees"
 #define RADIO_CHANNEL_USL "USL"
 #define RADIO_CHANNEL_DEATHSQUAD "Deathsquad"
 #define RADIO_CHANNEL_IMPERIAL "Imperial"
@@ -77,6 +78,7 @@
 
 #define MIN_ERT_FREQ 1331
 #define FREQ_PMC 1331
+#define FREQ_RETIRED 1334
 #define FREQ_COLONIST 1335
 #define FREQ_USL 1337
 #define FREQ_DEATHSQUAD 1339

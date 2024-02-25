@@ -101,6 +101,10 @@
 	desc = "The Centurion Omnidirectional Point-defense Energy sentry is a man portable, automated weapon system utilised by the SOM. It is activated in hand then thrown into place before it deploys, where it's ground hugging profile makes it a difficult target to accurately hit. Equipped with a compact volkite weapon system, and a recharging battery to allow for prolonged use, but can take normal volkite cells in a pinch."
 	icon_state = "cope"
 	icon = 'icons/Marine/sentry.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
+	)
 	max_integrity = 225
 	integrity_failure = 50
 	deploy_time = 1 SECONDS
@@ -182,7 +186,7 @@
 	deployed_machine.max_integrity = max_integrity //Syncs new machine or structure integrity with that of the item.
 	deployed_machine.obj_integrity = obj_integrity
 
-	deployed_machine.update_icon_state()
+	deployed_machine.update_appearance()
 
 	forceMove(deployed_machine) //Moves the Item into the machine or structure
 

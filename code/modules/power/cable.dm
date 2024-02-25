@@ -124,6 +124,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 ///////////////////////////////////
 
 /obj/structure/cable/update_icon_state()
+	. = ..()
 	if(!linked_dirs)
 		icon_state = "l[cable_layer]-noconnection"
 	else

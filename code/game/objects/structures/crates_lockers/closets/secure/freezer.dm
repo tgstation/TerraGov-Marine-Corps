@@ -8,6 +8,7 @@
 	icon_off = "fridge1"
 
 /obj/structure/closet/secure_closet/freezer/update_icon_state()
+	. = ..()
 	if(broken)
 		icon_state = icon_broken
 		return

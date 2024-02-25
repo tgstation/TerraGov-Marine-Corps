@@ -25,10 +25,6 @@
 	evolution_threshold = 225
 	upgrade_threshold = TIER_TWO_THRESHOLD
 
-	evolves_to = list(
-		/mob/living/carbon/xenomorph/boiler,
-		/mob/living/carbon/xenomorph/praetorian,
-	)
 	deevolves_to = list(
 		/mob/living/carbon/xenomorph/sentinel,
 		/mob/living/carbon/xenomorph/baneling,

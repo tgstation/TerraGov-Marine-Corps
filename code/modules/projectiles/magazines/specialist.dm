@@ -108,12 +108,22 @@
 	user.drop_held_item()
 	qdel(src)
 
-/obj/item/ammo_magazine/rocket/update_icon()
-	overlays.Cut()
+/obj/item/ammo_magazine/rocket/update_name(updates)
+	. = ..()
 	if(current_rounds > 0)
 		return
 	name = "empty rocket frame"
+
+/obj/item/ammo_magazine/rocket/update_desc(updates)
+	. = ..()
+	if(current_rounds > 0)
+		return
 	desc = "A spent rocket rube. Activate it to deconstruct it and receive some materials."
+
+/obj/item/ammo_magazine/rocket/update_icon_state()
+	. = ..()
+	if(current_rounds > 0)
+		return
 	icon_state = istype(src, /obj/item/ammo_magazine/rocket/m57a4) ? "quad_rocket_e" : "rocket_e"
 
 //-------------------------------------------------------
@@ -426,6 +436,20 @@
 	caliber = CALIBER_10x26_CASELESS
 	flags_item_map_variant = null
 
+//"External magazine" for the wheelchair-mounted minigun
+/obj/item/ammo_magazine/minigun_wheelchair
+	name = "\improper Mounted MG-100 Vindicator ammo rack"
+	desc = "A case filled to the brim with ammunition. Appears custom made to be slotted into a feeding system."
+	icon = 'icons/obj/items/ammo.dmi'
+	icon_state = "minigun"
+	flags_atom = CONDUCT
+	flags_magazine = MAGAZINE_REFILLABLE
+	flags_equip_slot = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_HUGE
+	default_ammo = /datum/ammo/bullet/minigun
+	current_rounds = 1000
+	max_rounds = 1000
+	reload_delay = 0.75 SECONDS
 
 // ICC coilgun
 

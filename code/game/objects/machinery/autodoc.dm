@@ -105,6 +105,7 @@
 		set_light(initial(light_range))
 
 /obj/machinery/autodoc/update_icon_state()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "autodoc_off"
 	else if(surgery)

@@ -156,9 +156,11 @@
 /proc/deadchat_broadcast(message, source = null, mob/follow_target = null, turf/turf_target = null, speaker_key = null, message_type = DEADCHAT_REGULAR)
 	message = span_deadsay("[source][span_linkify("[message]")]")
 	for(var/mob/M in GLOB.player_list)
+		if(!M.client)
+			continue
 		var/chat_toggles = TOGGLES_CHAT_DEFAULT
 		var/deadchat_toggles = TOGGLES_DEADCHAT_DEFAULT
-		if(M.client.prefs)
+		if(M?.client?.prefs)
 			var/datum/preferences/prefs = M.client.prefs
 			chat_toggles = prefs.toggles_chat
 			deadchat_toggles = prefs.toggles_deadchat

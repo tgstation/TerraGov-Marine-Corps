@@ -3928,10 +3928,10 @@
 /area/whiskey_outpost/outside/east)
 "tP" = (
 /obj/structure/closet/crate,
-/obj/item/stack/sheet/glass{
+/obj/item/stack/sheet/glass/glass{
 	amount = 30
 	},
-/obj/item/stack/sheet/glass{
+/obj/item/stack/sheet/glass/glass{
 	amount = 30
 	},
 /turf/open/floor/marking/bot,

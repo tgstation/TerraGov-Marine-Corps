@@ -157,7 +157,7 @@
 Sensors indicate [num_tgmc_delta || "no"] unknown lifeform signature[num_tgmc_delta > 1 ? "s":""] present in the area of operations[tgmc_location ? ", including one at: [tgmc_location]":""]"}
 
 	if(announce_som)
-		priority_announce(som_scan_input, som_scan_name, sound = 'sound/AI/bioscan.ogg', receivers = (som_list + GLOB.observer_list))
+		priority_announce(som_scan_input, som_scan_name, sound = 'sound/AI/bioscan.ogg', color_override = "orange", receivers = (som_list + GLOB.observer_list))
 
 	//announcement for TGMC
 	var/marine_scan_name = "Long Range Tactical Bioscan Status"
@@ -166,14 +166,14 @@ Sensors indicate [num_tgmc_delta || "no"] unknown lifeform signature[num_tgmc_de
 Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delta > 1 ? "s":""] present in the area of operations[som_location ? ", including one at: [som_location]":""]"}
 
 	if(announce_marines)
-		priority_announce(marine_scan_input, marine_scan_name, sound = 'sound/AI/bioscan.ogg', receivers = (tgmc_list + GLOB.observer_list))
+		priority_announce(marine_scan_input, marine_scan_name, sound = 'sound/AI/bioscan.ogg', color_override = "blue", receivers = (tgmc_list + GLOB.observer_list))
 
 	log_game("Bioscan. [num_tgmc] active TGMC personnel[tgmc_location ? " Location: [tgmc_location]":""] and [num_som] active SOM personnel[som_location ? " Location: [som_location]":""]")
 
 	for(var/i in GLOB.observer_list)
 		var/mob/M = i
-		to_chat(M, "<h2 class='alert'>Detailed Information</h2>")
-		to_chat(M, {"<span class='alert'>[num_som] SOM alive.
+		to_chat(M, "<span class='announce_header'>Detailed Information</span>")
+		to_chat(M, {"<span class='announce_body'>[num_som] SOM alive.
 [num_tgmc] Marine\s alive."})
 
 	message_admins("Bioscan - Marines: [num_tgmc] active TGMC personnel[tgmc_location ? " .Location:[tgmc_location]":""]")

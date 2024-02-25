@@ -334,6 +334,7 @@
 
 
 /obj/structure/girder/update_icon_state()
+	. = ..()
 	switch(girder_state)
 		if(GIRDER_BROKEN, GIRDER_BROKEN_PATCHED)
 			icon = 'icons/obj/smooth_objects/girder_broke.dmi'

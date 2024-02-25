@@ -22,6 +22,8 @@
 	// *** Melee Attacks *** //
 	///The amount of damage a xenomorph caste will do with a 'slash' attack.
 	var/melee_damage = 10
+	///The amount of armour pen their melee attacks have
+	var/melee_ap = 0
 	///number of ticks between attacks for a caste.
 	var/attack_delay = CLICK_CD_MELEE
 
@@ -61,8 +63,6 @@
 	///Threshold amount of upgrade points to next maturity
 	var/upgrade_threshold = 0
 
-	///Type paths to the castes that this xenomorph can evolve to
-	var/list/evolves_to = list()
 	///Singular type path for the caste to deevolve to when forced to by the queen.
 	var/deevolves_to
 
@@ -121,12 +121,6 @@
 
 	// *** Defiler Abilities *** //
 	var/list/available_reagents_define = list() //reagents available for select reagent
-
-	// *** Warrior Abilities *** //
-	///speed increase afforded to the warrior caste when in 'agiility' mode. negative number means faster movement.
-	var/agility_speed_increase = 0 // this opens up possibilities for balancing
-	///amount of soft armor adjusted when in agility mode for the warrior caste. Flat integer amounts only.
-	var/agility_speed_armor = 0 //Same as above
 
 	// *** Boiler Abilities *** //
 	///maximum number of 'globs' of boiler ammunition that can be stored by the boiler caste.
@@ -287,7 +281,6 @@
 	///State tracking of hive status toggles
 	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
 
-	var/list/overlays_standing[X_TOTAL_LAYERS]
 	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
 	var/atom/movable/vis_obj/xeno_wounds/fire_overlay/fire_overlay
 	var/datum/xeno_caste/xeno_caste
@@ -421,3 +414,8 @@
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
+
+	///The resting cooldown
+	COOLDOWN_DECLARE(xeno_resting_cooldown)
+	///The unresting cooldown
+	COOLDOWN_DECLARE(xeno_unresting_cooldown)

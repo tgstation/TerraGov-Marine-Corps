@@ -76,15 +76,16 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	setStyle(style, TRUE)
 
 
-/obj/structure/closet/supplypod/update_icon()
-	cut_overlays()
+/obj/structure/closet/supplypod/update_overlays()
+	. = ..()
+
 	if(style == STYLE_SEETHROUGH || style == STYLE_INVISIBLE)
 		return
 
 	if(opened)
-		add_overlay("[icon_state]_open")
+		. += "[icon_state]_open"
 	else
-		add_overlay("[icon_state]_door")
+		. += "[icon_state]_door"
 
 
 /obj/structure/closet/supplypod/proc/setStyle(chosenStyle, duringInit = FALSE)

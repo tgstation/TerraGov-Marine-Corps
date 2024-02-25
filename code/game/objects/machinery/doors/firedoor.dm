@@ -117,7 +117,7 @@
 		return ..()
 	return FALSE
 
-/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
@@ -287,26 +287,29 @@
 			flick("door_closing", src)
 	playsound(loc, 'sound/machines/emergency_shutter.ogg', 25)
 
-
-/obj/machinery/door/firedoor/update_icon()
-	overlays.Cut()
+/obj/machinery/door/firedoor/update_icon_state()
+	. = ..()
 	if(density)
 		icon_state = "door_closed"
+	else
+		icon_state = "door_open"
+
+/obj/machinery/door/firedoor/update_overlays()
+	. = ..()
+	if(density)
 		if(blocked)
-			overlays += "welded"
+			. += "welded"
 		if(pdiff_alert)
-			overlays += "palert"
+			. += "palert"
 		if(dir_alerts)
 			for(var/d=1;d<=4;d++)
 				var/cdir = GLOB.cardinals[d]
 				for(var/i=1;i<=length(ALERT_STATES);i++)
 					if(dir_alerts[d] & (1<<(i-1)))
-						overlays += new/icon(icon,"alert_[ALERT_STATES[i]]", dir=cdir)
+						. += new/icon(icon,"alert_[ALERT_STATES[i]]", dir=cdir)
 	else
-		icon_state = "door_open"
 		if(blocked)
-			overlays += "welded_open"
-
+			. += "welded_open"
 
 /obj/machinery/door/firedoor/mainship
 	name = "\improper Emergency Shutter"

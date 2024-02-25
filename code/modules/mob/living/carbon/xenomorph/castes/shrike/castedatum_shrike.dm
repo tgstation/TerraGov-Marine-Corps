@@ -29,7 +29,6 @@
 	maximum_active_caste = 1
 	upgrade_threshold = TIER_TWO_THRESHOLD
 
-	evolves_to = list(/mob/living/carbon/xenomorph/queen)
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
 	// *** Flags *** //

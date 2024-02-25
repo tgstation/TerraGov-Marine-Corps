@@ -4,6 +4,7 @@
 	use_power = 0
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
+	allow_pass_flags = PASSABLE
 
 	///Spark system for making sparks
 	var/datum/effect_system/spark_spread/spark_system
@@ -301,7 +302,7 @@
 	set_on(FALSE)
 	update_icon()
 
-/obj/machinery/deployable/mounted/sentry/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
+/obj/machinery/deployable/mounted/sentry/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	if(damage_amount <= 0)
 		return
 	if(prob(10))
@@ -571,4 +572,4 @@
 	internal_item = null
 
 	QDEL_NULL(src)
-	attached_item.update_icon_state()
+	attached_item.update_appearance()

@@ -1,6 +1,17 @@
 import { useBackend } from '../../backend';
-import { Button, Section, LabeledList, Stack, ColorBox } from '../../components';
-import { ToggleFieldPreference, TextFieldPreference, SelectFieldPreference, LoopingSelectionPreference } from './FieldPreferences';
+import {
+  Button,
+  ColorBox,
+  LabeledList,
+  Section,
+  Stack,
+} from '../../components';
+import {
+  LoopingSelectionPreference,
+  SelectFieldPreference,
+  TextFieldPreference,
+  ToggleFieldPreference,
+} from './FieldPreferences';
 
 const ParallaxNumToString = (integer) => {
   let returnval = '';
@@ -26,8 +37,8 @@ const ParallaxNumToString = (integer) => {
   return returnval;
 };
 
-export const GameSettings = (props, context) => {
-  const { act, data } = useBackend<GameSettingData>(context);
+export const GameSettings = (props) => {
+  const { act, data } = useBackend<GameSettingData>();
   const { ui_style_color, scaling_method, pixel_size, parallax, is_admin } =
     data;
   return (
@@ -129,6 +140,13 @@ export const GameSettings = (props, context) => {
                 label="Auto interact with Deployables"
                 value="autointeractdeployablespref"
                 action="autointeractdeployablespref"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
+              <ToggleFieldPreference
+                label="Use directional attacks"
+                value="directional_attacks"
+                action="directional_attacks"
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
               />

@@ -32,6 +32,7 @@
 		set_light(initial(light_range))
 
 /obj/machinery/bodyscanner/update_icon_state()
+	. = ..()
 	if(occupant)
 		icon_state = "[initial(icon_state)]_occupied"
 	else

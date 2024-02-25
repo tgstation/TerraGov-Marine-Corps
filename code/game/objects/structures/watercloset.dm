@@ -46,7 +46,8 @@
 	open = !open
 	update_icon()
 
-/obj/structure/toilet/update_icon()
+/obj/structure/toilet/update_icon_state()
+	. = ..()
 	icon_state = "toilet[open][cistern]"
 
 /obj/structure/toilet/attackby(obj/item/I, mob/user, params)
@@ -114,7 +115,8 @@
 /obj/structure/toilet/alternate
 	icon_state = "toilet200"
 
-/obj/structure/toilet/alternate/update_icon()
+/obj/structure/toilet/alternate/update_icon_state()
+	. = ..()
 	icon_state = "toilet2[open][cistern]"
 
 /obj/structure/urinal
@@ -189,7 +191,7 @@
 	if(.)
 		return
 	on = !on
-	update_icon()
+	update_mist()
 	if(on)
 		start_processing()
 		if (user.loc == loc)
@@ -221,8 +223,9 @@
 				watertemp = "normal"
 		user.visible_message(span_notice("[user] adjusts the shower with \the [I]."), span_notice("You adjust the shower with \the [I]."))
 
-/obj/machinery/shower/update_icon()	//this is terribly unreadable, but basically it makes the shower mist up
-	overlays.Cut()					//once it's been on for a while, in addition to handling the water overlay.
+/obj/machinery/shower/proc/update_mist()
+//this is terribly unreadable, but basically it makes the shower mist up once it's been on for a while
+	update_icon()
 	if(mymist)
 		qdel(mymist)
 		mymist = null
@@ -247,6 +250,11 @@
 				qdel(mymist)
 				mymist = null
 				ismist = FALSE
+
+/obj/machinery/shower/update_overlays()
+	. = ..()
+	if(on)
+		. += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
 
 /obj/machinery/shower/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
 	SIGNAL_HANDLER

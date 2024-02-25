@@ -157,11 +157,11 @@
 	. = ..()
 	throw_mode_off()
 	if(is_ventcrawling) //NOPE
-		return
+		return FALSE
 	if(stat || !target)
-		return
+		return FALSE
 	if(target.type == /atom/movable/screen)
-		return
+		return FALSE
 
 	var/atom/movable/thrown_thing
 	var/obj/item/I = get_active_held_item()
@@ -197,6 +197,8 @@
 	playsound(src, 'sound/effects/throw.ogg', 30, 1)
 
 	thrown_thing.throw_at(target, thrown_thing.throw_range + throw_modifiers["range_modifier"], max(1, thrown_thing.throw_speed + throw_modifiers["speed_modifier"]), src, spin_throw, !throw_modifiers["targetted_throw"], throw_modifiers["targetted_throw"])
+
+	return TRUE
 
 ///Called by the carbon throw_item() proc. Returns null if the item negates the throw, or a reference to the thing to suffer the throw else.
 /obj/item/proc/on_thrown(mob/living/carbon/user, atom/target)
@@ -266,12 +268,33 @@
 			if(!lying_angle)
 				break
 
-
 /mob/living/carbon/vv_get_dropdown()
 	. = ..()
-	. += "---"
-	. -= "Update Icon"
-	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
+	VV_DROPDOWN_OPTION("", "---------")
+	VV_DROPDOWN_OPTION(VV_HK_REGENERATE_ICON, "Regenerate Icons")
+
+/mob/living/carbon/vv_do_topic(list/href_list)
+	. = ..()
+
+	if(!.)
+		return
+
+	if(href_list[VV_HK_REGENERATE_ICON])
+		if(!check_rights(NONE))
+			return
+		regenerate_icons()
+
+/mob/living/carbon/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if(NAMEOF(src, nutrition))
+			set_nutrition(var_value)
+			. = TRUE
+
+	if(!isnull(.))
+		datum_flags |= DF_VAR_EDITED
+		return
+
+	return ..()
 
 /mob/living/carbon/update_tracking(mob/living/carbon/C)
 	var/atom/movable/screen/LL_dir = hud_used.SL_locator

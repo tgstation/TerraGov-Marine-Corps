@@ -471,13 +471,6 @@
 	template_width = 28
 	template_height = 23
 
-/datum/map_template/modular/bigred/officefour
-	name = "Big red office"
-	mappath = "_maps/modularmaps/big_red/bigredofficevar4.dmm"
-	modular_id = "broffice"
-	template_width = 28
-	template_height = 23
-
 /datum/map_template/modular/bigred/atmosone
 	name = "Big red atmos"
 	mappath = "_maps/modularmaps/big_red/bigredatmosvar1.dmm"

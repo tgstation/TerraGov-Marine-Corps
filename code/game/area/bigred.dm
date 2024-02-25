@@ -248,11 +248,14 @@
 	outside = FALSE
 
 /area/bigredv2/outside/engineering
-	name = "Engineering Complex"
+	name = "West Engineering Complex"
 	icon_state = "engine"
 	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_ENGI
 	outside = FALSE
+
+/area/bigredv2/outside/engineering/east
+	name = "East Engineering Complex"
 
 /area/bigredv2/outside/storage
 	name = "Storage"

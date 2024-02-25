@@ -17,15 +17,24 @@
 	var/target_flags = NONE
 	/// flags to restrict an ability to certain gamemode
 	var/gamemode_flags = ABILITY_ALL_GAMEMODE
+	///Cooldown map text holder
+	var/obj/effect/countdown/action_cooldown/countdown
 
 /datum/action/ability/New(Target)
 	. = ..()
 	if(ability_cost)
 		name = "[name] ([ability_cost])"
-	var/image/cooldown_image = image('icons/effects/progressicons.dmi', null, "busy_clock", ACTION_LAYER_CLOCK)
-	cooldown_image.pixel_y = 7
-	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
-	visual_references[VREF_IMAGE_XENO_CLOCK] = cooldown_image
+	countdown = new(button, src)
+
+/datum/action/ability/Destroy()
+	if(cooldown_timer)
+		deltimer(cooldown_timer)
+	return ..()
+
+/datum/action/ability/Destroy()
+	if(cooldown_timer)
+		deltimer(cooldown_timer)
+	return ..()
 
 /datum/action/ability/give_action(mob/living/L)
 	. = ..()
@@ -33,8 +42,6 @@
 	carbon_owner.mob_abilities += src
 
 /datum/action/ability/remove_action(mob/living/L)
-	if(cooldown_timer)
-		deltimer(cooldown_timer)
 	var/mob/living/carbon/carbon_owner = L
 	if(!istype(carbon_owner))
 		stack_trace("/datum/action/ability/remove_action called with [L], expecting /mob/living/carbon.")
@@ -111,6 +118,8 @@
 	if(QDELETED(owner))
 		return
 	ability_cost_override = ability_cost_override? ability_cost_override : ability_cost
+	if(SEND_SIGNAL(owner, COMSIG_ABILITY_SUCCEED_ACTIVATE, src, ability_cost_override) & SUCCEED_ACTIVATE_CANCEL)
+		return
 	if(ability_cost_override > 0)
 		var/mob/living/carbon/carbon_owner = owner
 		carbon_owner.deduct_ability_cost(ability_cost_override)
@@ -139,7 +148,8 @@
 	if(cooldown_timer || !cooldown_length) // stop doubling up or waiting on zero
 		return
 	cooldown_timer = addtimer(CALLBACK(src, PROC_REF(on_cooldown_finish)), cooldown_length, TIMER_STOPPABLE)
-	button.add_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
+	countdown.start()
+	update_button_icon()
 
 ///Time remaining on cooldown
 /datum/action/ability/proc/cooldown_remaining()
@@ -150,29 +160,33 @@
 	cooldown_timer = null
 	if(!button)
 		CRASH("no button object on finishing ability action cooldown")
-	button.cut_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
+	countdown.stop()
+	update_button_icon()
 
 ///Any changes when a xeno with this ability evolves
 /datum/action/ability/proc/on_xeno_upgrade()
 	return
-
-///Adds an outline around the ability button
-/datum/action/ability/proc/add_empowered_frame()
-	button.add_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
-
-///Removes an outline around the ability button
-/datum/action/ability/proc/remove_empowered_frame()
-	button.cut_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
-
 
 /datum/action/ability/activable
 	action_type = ACTION_SELECT
 
 /datum/action/ability/activable/Destroy()
 	var/mob/living/carbon/carbon_owner = owner
-	if(carbon_owner.selected_ability == src)
+	if(carbon_owner?.selected_ability == src)
 		deselect()
 	return ..()
+
+/datum/action/ability/activable/set_toggle(value)
+	. = ..()
+	if(!.)
+		return
+	if(!owner)
+		return
+	if(toggled)
+		SEND_SIGNAL(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE, owner)
+		RegisterSignal(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE, PROC_REF(deselect))
+	else
+		UnregisterSignal(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE)
 
 /datum/action/ability/activable/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(action_activate))
@@ -199,6 +213,7 @@
 		action_activate()
 
 /datum/action/ability/activable/remove_action(mob/living/carbon/carbon_owner)
+	deselect()
 	if(carbon_owner.selected_ability == src)
 		carbon_owner.selected_ability = null
 	return ..()
@@ -227,17 +242,18 @@
 	return
 
 ///Setting this ability as the active ability
-/datum/action/ability/activable/proc/select()
+/datum/action/ability/activable/select()
+	. = ..()
 	var/mob/living/carbon/carbon_owner = owner
-	set_toggle(TRUE)
 	carbon_owner.selected_ability = src
 	on_selection()
 
 ///Deselecting this ability for use
-/datum/action/ability/activable/proc/deselect()
-	var/mob/living/carbon/carbon_owner = owner
-	set_toggle(FALSE)
-	carbon_owner.selected_ability = null
+/datum/action/ability/activable/deselect()
+	. = ..()
+	if(owner)
+		var/mob/living/carbon/carbon_owner = owner
+		carbon_owner.selected_ability = null
 	on_deselection()
 
 ///Any effects on selecting this ability

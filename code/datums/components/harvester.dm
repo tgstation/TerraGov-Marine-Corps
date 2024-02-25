@@ -75,19 +75,17 @@
 ///Adds additional text for the component when examining the item
 /datum/component/harvester/proc/examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	var/output = ""
 	if(length(loaded_reagents))
-		output += "It currently holds:<br>"
+		examine_list += "It currently holds:<br>"
 		for(var/datum/reagent/reagent_type AS in loaded_reagents)
-			output += "<span style='color:[initial(reagent_type.color)];font-weight:bold'>[initial(reagent_type.name)]</span> - [loaded_reagents[reagent_type]]\n"
+			examine_list += "<span style='color:[initial(reagent_type.color)];font-weight:bold'>[initial(reagent_type.name)]</span> - [loaded_reagents[reagent_type]]\n"
 	else
-		output += "The internal storage is empty\n"
+		examine_list += "The internal storage is empty"
 
-	output += "<b>Compatible chemicals:</b>\n"
+	examine_list += "<b>Compatible chemicals:</b>"
 	for(var/datum/reagent/reagent AS in loadable_reagents)
-		output += "<span style='color:[initial(reagent.color)];font-weight:bold'>[initial(reagent.name)]</span>\n"
+		examine_list += "<span style='color:[initial(reagent.color)];font-weight:bold'>[initial(reagent.name)]</span>\n"
 
-	to_chat(user, output)
 
 ///Adds mechanics info to the weapon
 /datum/component/harvester/proc/get_mechanics_info(datum/source, list/mechanics_text)
@@ -120,7 +118,7 @@
 		user.balloon_alert(user, "incompatible reagent, check description")
 		return
 
-	if(loaded_reagents[reagent_to_load] > max_loadable_reagent_amount)
+	if(loaded_reagents[reagent_to_load] >= max_loadable_reagent_amount)
 		user.balloon_alert(user, "full")
 		return
 
@@ -257,6 +255,18 @@
 		target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
 		user.adjustStaminaLoss(-30)
 		user.heal_overall_damage(5, 0, updating_health = TRUE)
+		return
+
+	if(target.stat == DEAD)
+		to_chat(user, span_rose("[target] is already dead."))
+		return
+
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/carbon_target = target
+
+	if((carbon_target.species.species_flags & NO_CHEM_METABOLIZATION))
+		to_chat(user, span_rose("[target] Cannot process chemicals."))
 		return
 
 	to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))

@@ -116,11 +116,6 @@
 /obj/machinery/computer/cryopod,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"aG" = (
-/obj/machinery/light,
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
 "aH" = (
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship/sterile,
@@ -219,13 +214,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "aX" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/marine_selector/clothes,
+/obj/machinery/quick_vendor/beginner,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aY" = (
@@ -275,6 +264,12 @@
 /area/shuttle/canterbury/medical)
 "bg" = (
 /obj/machinery/vending/uniform_supply,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bh" = (
@@ -300,6 +295,13 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/rack,
+/obj/item/fuel_cell/random,
+/obj/item/fuel_cell/random,
+/obj/item/fuel_cell/random,
+/obj/item/fuel_cell/random,
+/obj/item/fuel_cell/random,
+/obj/item/fuel_cell/random,
 /turf/open/floor/mainship/tcomms,
 /area/shuttle/canterbury)
 "bk" = (
@@ -349,8 +351,6 @@
 /area/shuttle/canterbury)
 "br" = (
 /obj/structure/table/mainship,
-/obj/item/fuel_cell/full,
-/obj/item/fuel_cell/full,
 /obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/t_scanner,
@@ -360,7 +360,7 @@
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/item/facepaint/black,
-/obj/item/stack/sheet/glass{
+/obj/item/stack/sheet/glass/glass{
 	amount = 50;
 	pixel_x = 3;
 	pixel_y = 3
@@ -504,6 +504,9 @@
 	},
 /area/shuttle/canterbury/cic)
 "bS" = (
+/obj/machinery/air_alarm{
+	dir = 1
+	},
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/cic)
 "bT" = (
@@ -559,12 +562,6 @@
 "cR" = (
 /turf/open/floor/mainship/floor,
 /area/shuttle/canterbury)
-"ds" = (
-/obj/effect/turf_decal/warning_stripes/box/arrow{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
 "fL" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/beaker/bluespace,
@@ -616,12 +613,6 @@
 /obj/machinery/vending/medical,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
-"lX" = (
-/obj/structure/cable,
-/obj/effect/attach_point/crew_weapon/dropship1,
-/obj/effect/turf_decal/stripes/end,
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
 "ma" = (
 /obj/machinery/vending/marineFood,
 /turf/open/floor/mainship/mono,
@@ -696,12 +687,6 @@
 /obj/machinery/vending/weapon/crash,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"pT" = (
-/obj/effect/turf_decal/warning_stripes/box/arrow{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
 "pY" = (
 /obj/structure/barricade/plasteel{
 	dir = 8
@@ -710,9 +695,6 @@
 /area/shuttle/canterbury)
 "qh" = (
 /obj/structure/rack,
-/obj/machinery/air_alarm{
-	dir = 8
-	},
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/plasteel/medium_stack,
@@ -746,6 +728,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
+"rb" = (
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "su" = (
@@ -853,6 +839,9 @@
 	dir = 8
 	},
 /obj/machinery/vending/armor_supply,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "zc" = (
@@ -865,12 +854,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"zk" = (
-/obj/machinery/air_alarm,
-/turf/open/floor/mainship/blue{
-	dir = 4
-	},
-/area/shuttle/canterbury/cic)
 "zy" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -881,10 +864,10 @@
 /area/shuttle/canterbury)
 "AS" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
+/obj/item/storage/belt/utility/full,
+/obj/item/t_scanner,
+/obj/item/clothing/suit/storage/hazardvest,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "BZ" = (
@@ -900,6 +883,12 @@
 /area/shuttle/canterbury)
 "DF" = (
 /obj/machinery/vending/armor_supply,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "DI" = (
@@ -927,16 +916,6 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
-"GE" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/marine_selector/clothes,
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
 "JM" = (
 /obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/mainship/mono,
@@ -962,11 +941,17 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Kk" = (
-/obj/machinery/air_alarm{
+/obj/machinery/vending/uniform_supply,
+/obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/vehicle/ridden/powerloader,
-/turf/open/floor/mainship/cargo,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "KD" = (
 /obj/machinery/marine_selector/clothes,
@@ -976,11 +961,11 @@
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "Mj" = (
-/obj/machinery/mech_bay_recharge_port{
-	dir = 2
+/obj/machinery/air_alarm{
+	dir = 4
 	},
-/obj/structure/cable,
-/turf/open/floor/mainship/cargo,
+/obj/structure/bed/chair/dropship/passenger,
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "MY" = (
 /turf/open/floor/mainship/blue/full,
@@ -1073,15 +1058,11 @@
 /turf/open/floor/mainship/blue,
 /area/shuttle/canterbury/cic)
 "Ui" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/cable,
-/obj/structure/dropship_equipment/shuttle/weapon_holder/machinegun,
-/turf/open/floor/plating/plating_catwalk,
+/obj/structure/bed/chair/dropship/passenger,
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Ul" = (
 /obj/machinery/vending/nanomed,
@@ -1158,11 +1139,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
-"Xp" = (
-/obj/machinery/door/window,
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
 "XO" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
@@ -1233,7 +1209,7 @@ Uo
 Uo
 al
 Mj
-Kk
+rb
 ab
 bU
 bU
@@ -1266,7 +1242,7 @@ Uo
 Uo
 al
 Ui
-Xp
+ac
 ab
 bi
 pY
@@ -1299,7 +1275,7 @@ ad
 ad
 al
 UE
-as
+ac
 ab
 CA
 an
@@ -1328,11 +1304,11 @@ Uo
 Uo
 al
 al
-zk
+uu
 bL
 al
 Rd
-aG
+jq
 ab
 iy
 an
@@ -1365,7 +1341,7 @@ MY
 bM
 al
 AS
-as
+ac
 ab
 YN
 an
@@ -1398,7 +1374,7 @@ uu
 bN
 al
 FZ
-as
+ac
 ab
 uZ
 an
@@ -1431,7 +1407,7 @@ MY
 bS
 al
 qh
-as
+ac
 ab
 Wk
 an
@@ -1464,11 +1440,11 @@ bK
 Ul
 ad
 ac
-as
+ac
 ki
 ac
 an
-pT
+ac
 ac
 ac
 ac
@@ -1501,7 +1477,7 @@ as
 nM
 as
 as
-lX
+as
 as
 as
 aa
@@ -1534,7 +1510,7 @@ ac
 zy
 ac
 an
-ds
+ac
 ac
 ac
 ac
@@ -1570,7 +1546,7 @@ wB
 ac
 FQ
 Fl
-Fl
+aX
 bG
 an
 ma
@@ -1708,12 +1684,12 @@ ow
 ab
 Wb
 UO
-GE
+aX
 bA
 aT
 UO
 aX
-bg
+Kk
 bA
 bg
 ab
@@ -1779,7 +1755,7 @@ bA
 cF
 DI
 aQ
-aM
+cF
 DI
 aQ
 ab

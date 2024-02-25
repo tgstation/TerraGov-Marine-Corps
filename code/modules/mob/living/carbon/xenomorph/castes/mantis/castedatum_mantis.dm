@@ -12,12 +12,13 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
+	melee_ap = 5
 
 	// *** Speed *** //
 	speed = -0.6
 
 	// *** Plasma *** //
-	plasma_max = 600 //3 ravage
+	plasma_max = 500 //2 ravages
 	plasma_gain = 20
 
 	// *** Health *** //
@@ -25,7 +26,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
 	caste_traits = null
 
 	// *** Defense *** //

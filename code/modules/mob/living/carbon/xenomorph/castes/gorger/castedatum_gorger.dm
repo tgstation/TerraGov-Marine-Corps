@@ -75,7 +75,7 @@
 		/datum/action/ability/activable/xeno/psychic_link,
 		/datum/action/ability/activable/xeno/drain,
 		/datum/action/ability/activable/xeno/transfusion,
-		/datum/action/ability/activable/xeno/rejuvenate,
+		/datum/action/ability/activable/xeno/oppose,
 		/datum/action/ability/activable/xeno/carnage,
 		/datum/action/ability/activable/xeno/feast,
 		/datum/action/ability/activable/xeno/devour,

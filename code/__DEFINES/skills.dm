@@ -115,6 +115,8 @@
 #define SKILL_CQC_MP 2 //no risk of accidental weapon discharge upon disarming (MP)
 #define SKILL_CQC_MASTER 5
 
+///unarmed damage mod from CQC skill
+#define CQC_SKILL_DAMAGE_MOD 5
 ///disarm chance mod from CQC skill
 #define CQC_SKILL_DISARM_MOD 5
 
@@ -159,7 +161,7 @@
 #define SKILL_STAMINA_TRAINED 1
 #define SKILL_STAMINA_SUPER 2
 
-#define STAMINA_SKILL_COOLDOWN_MOD 2
+#define STAMINA_SKILL_COOLDOWN_MOD 2 SECONDS
 #define STAMINA_SKILL_REGEN_MOD 0.15
 
 ////////////////////////////////////////////////

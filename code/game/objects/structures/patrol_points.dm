@@ -1,3 +1,7 @@
+#define PATROL_POINT_RAPPEL_EFFECT "patrol_point_rappel_effect"
+#define RAPPEL_DURATION 0.6 SECONDS
+#define RAPPEL_HEIGHT 128
+
 /obj/structure/patrol_point
 	name = "Patrol start point"
 	desc = "A one way ticket to the combat zone."
@@ -66,8 +70,22 @@
 		span_notice("You walk through the [src]."))
 		user.trainteleport(linked_point.loc)
 		add_spawn_protection(user)
+	if(!obj_mover)
+		new /atom/movable/effect/rappel_rope(linked_point.loc) //mechs don't need a rope
 
-	new /atom/movable/effect/rappel_rope(linked_point.loc)
+	var/atom/movable/mover = obj_mover ? obj_mover : user
+
+	mover.add_filter(PATROL_POINT_RAPPEL_EFFECT, 2, drop_shadow_filter(y = -RAPPEL_HEIGHT, color = COLOR_TRANSPARENT_SHADOW, size = 4))
+	var/shadow_filter = mover.get_filter(PATROL_POINT_RAPPEL_EFFECT)
+
+	var/current_layer = mover.layer
+	mover.pixel_y += RAPPEL_HEIGHT
+	mover.layer = FLY_LAYER
+
+	animate(mover, pixel_y = mover.pixel_y - RAPPEL_HEIGHT, time = RAPPEL_DURATION)
+	animate(shadow_filter, y = 0, size = 0.9, time = RAPPEL_DURATION, flags = ANIMATION_PARALLEL)
+
+	addtimer(CALLBACK(src, PROC_REF(end_rappel), user, mover, current_layer), RAPPEL_DURATION)
 
 	if(!user)
 		return
@@ -111,9 +129,20 @@
 	user.forceMove(linked_point.loc)
 
 ///Temporarily applies godmode to prevent spawn camping
-/obj/structure/patrol_point/proc/add_spawn_protection(mob/user)
+/obj/structure/patrol_point/proc/add_spawn_protection(mob/living/user)
+	user.ImmobilizeNoChain(RAPPEL_DURATION) //looks weird if they can move while rappeling
 	user.status_flags |= GODMODE
 	addtimer(CALLBACK(src, PROC_REF(remove_spawn_protection), user), 10 SECONDS)
+
+///Ends the rappel effects
+/obj/structure/patrol_point/proc/end_rappel(mob/living/user, atom/movable/mover, original_layer)
+	mover.remove_filter(PATROL_POINT_RAPPEL_EFFECT)
+	mover.layer = original_layer
+	SEND_SIGNAL(mover, COMSIG_MOVABLE_PATROL_DEPLOYED, TRUE, 1.5, 2)
+	if(ismecha(mover))
+		new /obj/effect/temp_visual/rappel_dust(linked_point.loc, 3)
+		playsound(linked_point.loc, 'sound/effects/behemoth/behemoth_stomp.ogg', 40, TRUE)
+	shake_camera(user, 0.2 SECONDS, 0.5)
 
 ///Removes spawn protection godmode
 /obj/structure/patrol_point/proc/remove_spawn_protection(mob/user)

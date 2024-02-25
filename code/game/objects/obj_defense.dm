@@ -1,4 +1,4 @@
-/obj/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0)
+/obj/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	if(QDELETED(src))
 		CRASH("[src] taking damage after deletion")
 	if(!damage_amount)
@@ -22,7 +22,7 @@
 
 	//DESTROYING SECOND
 	if(obj_integrity <= 0)
-		obj_destruction(damage_amount, damage_type, damage_flag)
+		obj_destruction(damage_amount, damage_type, damage_flag, blame_mob)
 
 ///Increase obj_integrity and record it to the repairer's stats
 /obj/proc/repair_damage(repair_amount, mob/user)
@@ -90,7 +90,7 @@
 		return
 	playsound(loc, P.hitsound, 50, 1)
 	visible_message(span_warning("\the [src] is damaged by \the [P]!"), visible_message_flags = COMBAT_MESSAGE)
-	take_damage(P.damage, P.ammo.damage_type, P.ammo.armor_type, 0, REVERSE_DIR(P.dir), P.ammo.penetration)
+	take_damage(P.damage, P.ammo.damage_type, P.ammo.armor_type, 0, REVERSE_DIR(P.dir), P.ammo.penetration, isliving(P.firer) ? P.firer : null)
 
 
 /obj/proc/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0) //used by attack_alien, attack_animal, and attack_slime
@@ -113,7 +113,7 @@
 			playsound(loc, 'sound/effects/meteorimpact.ogg', 100, 1)
 
 
-/obj/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	// SHOULD_CALL_PARENT(TRUE) // TODO: fix this
 	if(X.status_flags & INCORPOREAL) //Ghosts can't attack machines
 		return FALSE
@@ -149,7 +149,7 @@
 
 
 ///what happens when the obj's integrity reaches zero.
-/obj/proc/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/proc/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	SHOULD_CALL_PARENT(TRUE)
 	if(destroy_sound)
 		playsound(loc, destroy_sound, 35, 1)

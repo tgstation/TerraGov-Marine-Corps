@@ -6,7 +6,7 @@
 	name = "Rest"
 	action_icon_state = "resting"
 	desc = "Rest on weeds to regenerate health and plasma."
-	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_CRESTED|ABILITY_USE_AGILITY|ABILITY_USE_CLOSEDTURF
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_CRESTED|ABILITY_USE_CLOSEDTURF
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REST,
 	)
@@ -15,7 +15,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!istype(X))
 		return
-	X.lay_down()
+	X.toggle_resting()
 	return succeed_activate()
 
 // ***************************************
@@ -599,6 +599,9 @@
 	use_state_flags = ABILITY_USE_BUCKLED
 
 /datum/action/ability/activable/xeno/corrosive_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
+	var/obj/effect/xenomorph/acid/current_acid_type = acid_type
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+		current_acid_type = /obj/effect/xenomorph/acid/strong //if it is before shutters open, everyone gets strong acid
 	// Check if it's an acid object we're upgrading
 	if (istype(A, /obj/effect/xenomorph/acid))
 		var/obj/effect/xenomorph/acid/existing_acid = A
@@ -614,24 +617,26 @@
 		if(!silent)
 			owner.balloon_alert(owner, "We can't melt [A]")
 		return FALSE
-	if(A.resistance_flags & UNACIDABLE || !A.dissolvability(initial(acid_type.acid_strength)))
+	if(A.resistance_flags & UNACIDABLE || !A.dissolvability(initial(current_acid_type.acid_strength)))
 		if(!silent)
 			owner.balloon_alert(owner, "We cannot dissolve [A]")
 		return FALSE
-	if(!A.should_apply_acid(initial(acid_type.acid_strength)) || initial(acid_type.acid_strength) <= A.current_acid?.acid_strength)
+	if(!A.should_apply_acid(initial(acid_type.acid_strength)) || initial(current_acid_type.acid_strength) <= A.current_acid?.acid_strength)
 		if(!silent)
 			owner.balloon_alert(owner, "[A] is already subject to a more or equally powerful acid")
 		return FALSE
 
 /datum/action/ability/activable/xeno/corrosive_acid/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
-
+	var/obj/effect/xenomorph/acid/current_acid_type = acid_type
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+		current_acid_type = /obj/effect/xenomorph/acid/strong //if it is before shutters open, everyone gets strong acid
 	// Check if it's an acid object we're upgrading
-	if (istype(A, /obj/effect/xenomorph/acid))
+	if(istype(A, /obj/effect/xenomorph/acid))
 		var/obj/effect/xenomorph/acid/existing_acid = A
 		A = existing_acid.acid_t // Swap the target to the target of the acid
 
-	if(!A.dissolvability(initial(acid_type.acid_strength)))
+	if(!A.dissolvability(initial(current_acid_type.acid_strength)))
 		return fail_activate()
 
 	X.face_atom(A)
@@ -645,7 +650,7 @@
 
 	var/old_acid_ticks = A.current_acid?.ticks
 	QDEL_NULL(A.current_acid)
-	A.current_acid = new acid_type(get_turf(A), A, A.dissolvability(initial(acid_type.acid_strength)), old_acid_ticks)
+	A.current_acid = new current_acid_type(get_turf(A), A, A.dissolvability(initial(current_acid_type.acid_strength)), old_acid_ticks)
 
 	succeed_activate()
 
@@ -712,7 +717,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_XENO_SPIT,
 	)
-	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED|ABILITY_DO_AFTER_ATTACK
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED|ABILITY_DO_AFTER_ATTACK|ABILITY_USE_STAGGERED
 	target_flags = ABILITY_MOB_TARGET
 	///Current target that the xeno is targeting. This is for aiming.
 	var/current_target
@@ -1122,12 +1127,12 @@
 	name = "Psy drain"
 	action_icon_state = "headbite"
 	desc = "Drain the victim of its life force to gain larva and psych points"
+	ability_cost = 50
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEADBITE,
 	)
 	gamemode_flags = ABILITY_NUCLEARWAR
-	ability_cost = 100
 	///How much larva points it gives (8 points for one larva in distress)
 	var/larva_point_reward = 1
 
@@ -1200,7 +1205,8 @@
 	if(HAS_TRAIT(victim, TRAIT_HIVE_TARGET))
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HIVE_TARGET_DRAINED, X)
 		psy_points_reward = psy_points_reward * 3
-	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
+	SSpoints.add_strategic_psy_points(X.hivenumber, psy_points_reward)
+	SSpoints.add_tactical_psy_points(X.hivenumber, psy_points_reward*0.25)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(larva_point_reward)
 	X.hive.update_tier_limits()
@@ -1315,7 +1321,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BLESSINGSMENU,
 	)
-	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_CRESTED|ABILITY_USE_AGILITY
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_CRESTED
 
 /datum/action/ability/xeno_action/blessing_menu/should_show()
 	return FALSE // Blessings meni now done through hive status UI!

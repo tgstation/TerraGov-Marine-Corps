@@ -719,6 +719,7 @@
 	eyes = "blank_eyes"
 	speech_verb_override = "transmits"
 	count_human = TRUE
+	total_health = 80
 
 	species_flags = HAS_NO_HAIR|NO_BREATHE|NO_POISON|NO_PAIN|USES_ALIEN_WEAPONS|NO_DAMAGE_OVERLAY
 
@@ -732,7 +733,6 @@
 
 	namepool = /datum/namepool/sectoid
 	special_death_message = "You have perished."
-
 
 /datum/species/moth
 	name = "Moth"

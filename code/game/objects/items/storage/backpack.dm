@@ -314,6 +314,7 @@
 		. += span_warning("Its defibrillator recharge unit does not have a power cell installed!")
 
 /obj/item/storage/backpack/marine/corpsman/update_icon_state()
+	. = ..()
 	icon_state = icon_skin
 	if(cell?.charge >= 0)
 		switch(PERCENT(cell.charge/cell.maxcharge))
@@ -707,7 +708,7 @@
 
 /obj/item/storage/backpack/marine/engineerpack
 	name = "\improper TGMC technician welderpack"
-	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling and use,"
+	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling."
 	icon_state = "engineerpack"
 	item_state = "engineerpack"
 	var/max_fuel = 260

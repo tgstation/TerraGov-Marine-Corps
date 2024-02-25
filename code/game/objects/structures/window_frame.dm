@@ -49,6 +49,7 @@
 
 /obj/structure/window_frame/update_icon()
 	QUEUE_SMOOTH(src)
+	return ..()
 
 /obj/structure/window_frame/Destroy()
 	density = FALSE

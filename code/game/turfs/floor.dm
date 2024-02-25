@@ -66,6 +66,7 @@
 	return W
 
 /turf/open/floor/update_icon_state()
+	. = ..()
 	if(broken)
 		icon_state = broken_states()
 	else if(burnt)

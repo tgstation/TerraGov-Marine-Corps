@@ -31,6 +31,7 @@
 
 
 /obj/item/assembly/mousetrap/update_icon_state()
+	. = ..()
 	if(armed)
 		icon_state = "mousetraparmed"
 	else

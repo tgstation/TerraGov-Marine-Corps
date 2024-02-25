@@ -9,7 +9,7 @@
 	attachment_layer = CAPE_LAYER
 	prefered_slot = SLOT_W_UNIFORM
 	greyscale_config = /datum/greyscale_config/cape
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB|ATTACH_ACTIVATION
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB|ATTACH_ACTIVATION|ATTACH_NO_HANDS
 	attach_delay = 0 SECONDS
 	detach_delay = 0 SECONDS
 	secondary_color = TRUE
@@ -126,27 +126,6 @@
 				"none",
 			),
 		),
-		"overlord" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(
-				"overlord",
-				"none",
-			),
-		),
-		"overlord (alt 1)" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(
-				"overlord (alt)",
-				"none",
-			),
-		),
-		"overlord (alt 2)" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(
-				"overlord (alt 2)",
-				"none",
-			),
-		),
 		"shoal" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
@@ -168,13 +147,6 @@
 				"none",
 			),
 		),
-		"star" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(
-				"star",
-				"none",
-			),
-		),
 		"rapier (right)" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
@@ -189,19 +161,13 @@
 				"none",
 			),
 		),
-		"jacket" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(
-				"jacket",
-				"none",
-			),
-		),
 	)
 
 	///True if the hood is up, false if not.
 	var/hood = FALSE
 
 /obj/item/armor_module/armor/cape/update_icon_state()
+	. = ..()
 	var/obj/item/armor_module/highlight = attachments_by_slot[ATTACHMENT_SLOT_CAPE_HIGHLIGHT]
 	if(hood)
 		icon_state = initial(icon_state) + "_[current_variant]_h"
@@ -260,7 +226,7 @@
 	desc = "A chromatic kama to improve on the design of the 7E badge, this kama is capable of two colors, for all your fashion needs. Hanged from the belt, it serves to flourish the lower extremities.  \n Interact with facepaint to color. Attaches onto a uniform."
 	slot = ATTACHMENT_SLOT_KAMA
 	attachment_layer = KAMA_LAYER
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB|ATTACH_NO_HANDS
 	starting_attachments = list(/obj/item/armor_module/armor/cape_highlight/kama)
 	greyscale_config = /datum/greyscale_config/cape
 	icon_state_variants = list(
@@ -291,7 +257,7 @@
 	desc = "A cape to improve on the design of the 7E badge, this cape is capable of six colors, for all your fashion needs. This variation of the cape functions more as a scarf. \n Interact with facepaint to color. Attaches onto a uniform. Activate it to toggle the hood."
 	icon_state = "highlight"
 	slot = ATTACHMENT_SLOT_CAPE_HIGHLIGHT
-	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
+	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB|ATTACH_NO_HANDS
 	colorable_allowed = PRESET_COLORS_ALLOWED|ICON_STATE_VARIANTS_ALLOWED|COLOR_WHEEL_ALLOWED
 	greyscale_config = /datum/greyscale_config/cape_highlight
 	secondary_color = TRUE
@@ -306,6 +272,7 @@
 	)
 
 /obj/item/armor_module/armor/cape_highlight/update_icon_state()
+	. = ..()
 	if(!parent)
 		return
 	var/obj/item/armor_module/armor/cape/cape_parent = parent
