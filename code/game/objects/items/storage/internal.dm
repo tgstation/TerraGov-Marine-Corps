@@ -14,6 +14,11 @@
 	forceMove(master_item)
 	verbs -= /obj/item/verb/verb_pickup	//make sure this is never picked up.
 
+/obj/item/storage/internal/Destroy()
+	if(master_item)
+		master_item = null
+	return ..()
+
 /* - XANTODO Figure out if this is needed, probably not since atom/Destroy() is supposed to delete atom_storage
 /obj/item/storage/internal/Destroy()
 	for(var/i in master_item.contents)
