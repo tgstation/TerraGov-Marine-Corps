@@ -114,12 +114,12 @@
 		return
 	src.parent = parent
 
-	if(length(can_hold))
-		can_hold = typecacheof(can_hold)
-	else if(length(cant_hold))
-		cant_hold = typecacheof(cant_hold)
-	if(length(bypass_w_limit))
-		bypass_w_limit = typecacheof(bypass_w_limit)
+	if(length(src.can_hold))
+		src.can_hold = typecacheof(can_hold)
+	else if(length(src.cant_hold))
+		src.cant_hold = typecacheof(cant_hold)
+	if(length(src.bypass_w_limit))
+		src.bypass_w_limit = typecacheof(bypass_w_limit)
 
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby))
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(on_attack_hand))
@@ -221,8 +221,11 @@
 /datum/storage/proc/on_attack_hand(datum/source, mob/living/user)
 	SIGNAL_HANDLER
 	if(parent.loc == user)
-		if(user.s_active == src) //Currently active storage closes if we click it again
-			close(user)
+		if(user.s_active) //Currently active storage closes when we click on any storage
+			if(user.s_active == src) //If we clicked on ourselves, we'll just close and do nothing else
+				close(user)
+				return COMPONENT_NO_ATTACK_HAND
+			user.s_active.close(user) //Else we just close the old storage and continue
 		if(draw_mode && ishuman(user) && length(parent.contents))
 			var/obj/item/item_to_attack = parent.contents[length(parent.contents)]
 			INVOKE_ASYNC(item_to_attack, TYPE_PROC_REF(/atom/movable, attack_hand), user)
@@ -585,7 +588,7 @@
 		item.forceMove(item.drop_location())
 		return FALSE
 	if(user && item.loc == user)
-		if(!user.transferItemToLoc(item, src))
+		if(!user.transferItemToLoc(item, parent))
 			return FALSE
 	else
 		item.forceMove(parent)
