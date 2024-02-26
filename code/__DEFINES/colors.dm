@@ -254,8 +254,6 @@ Important note: colors can end up significantly different from the basic html pi
 #define LIGHT_COLOR_FLAME "#F88818"
 /// Rich and bright blue. rgb(0, 183, 255)
 #define LIGHT_COLOR_BLUE_FLAME "#00b8ff"
-///Strong red orange
-#define LIGHT_COLOR_RED_ORANGE "#ff2802"
 
 //Ammo and grenade colors
 #define COLOR_AMMO_AIRBURST "#2272eb"

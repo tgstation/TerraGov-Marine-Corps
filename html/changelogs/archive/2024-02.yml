@@ -432,8 +432,3 @@
   Wisemonster:
   - balance: ERT ships will now have plasteel cades protecting their doors.
   - code_imp: Added a plasteel child that spawns in closed
-2024-02-26:
-  Barnet2:
-  - balance: Daedalus Prison has weaker tables and pre-broken fences for a better
-      prep experience
-  - bugfix: Snows shows up as a proper texture in SDMM

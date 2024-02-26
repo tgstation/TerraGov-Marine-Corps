@@ -90,7 +90,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/active_attrition_points = 0
 	///Multiplier on the passive attrition point gain for this faction
 	var/attrition_gain_multiplier = 1
-	///cumulative loss bonus which is applied to attrition gain mult and player credit mission reward
+	///cumulative loss bonus which is applied to attrition gain mult
 	var/loss_bonus = 0
 	///Future missions this faction can currently choose from
 	var/list/datum/campaign_mission/available_missions = list()
@@ -234,7 +234,6 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 /datum/faction_stats/proc/apply_cash(amount)
 	if(!amount)
 		return
-	amount *= 1 + loss_bonus
 	accumulated_mission_reward += amount
 	for(var/i in individual_stat_list)
 		var/datum/individual_stats/player_stats = individual_stat_list[i]

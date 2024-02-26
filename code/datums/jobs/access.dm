@@ -236,17 +236,13 @@
 		if("E6")
 			. = size ? "SSGT" : "Staff Sergeant"
 		if("E7")
-			. = size ? "SFC" : "Sergeant First Class"
-		if("E7E")
 			. = size ? "GYSGT" : "Gunnery Sergeant"
 		if("E8")
 			. = size ? "MSGT" : "Master Sergeant"
 		if("E8E")
 			. = size ? "FSGT" : "First Sergeant"
 		if("E9")
-			. = size ? "MGYSGT" : "Master Gunnery Sergeant"
-		if("E9A")
-			. = size ? "SGM" : "Sergeant Major" //above master gunnery sergeant, below command sergeant major
+			. = size ? "SGM" : "Sergeant Major"
 		if("E9E")
 			. = size ? "CSGM" : "Command Sergeant Major"
 		if("O1")
@@ -287,10 +283,6 @@
 			. = size ? "MAJ" : "Major"
 		if("MO5")
 			. = size ? "LtCol" : "Lieutenant Colonel"
-		if("MO6")
-			. = size ? "Col" : "Colonel"
-		if("M10")
-			. = size ? "Gen" : "General"
 		if("UPP1")
 			. = size ? "UGNR" : "USL Gunner"
 		if("UPP2")

@@ -137,12 +137,10 @@ Your squaddies will look to you when it comes to construction in the field of ba
 			new_human.wear_id.paygrade = "E3"
 		if(1501 to 6000) // 25 hrs
 			new_human.wear_id.paygrade = "E4"
-		if(6001 to 18000) // 100 hrs
+		if(6001 to 60000) // 100 hrs
 			new_human.wear_id.paygrade = "E5"
-		if(18001 to 60000) // 300 hrs
-			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
-			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+			new_human.wear_id.paygrade = "E9" //If you play way too much TGMC. 1000 hours.
 
 //Squad Corpsman
 /datum/job/terragov/squad/corpsman
@@ -199,12 +197,10 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 			new_human.wear_id.paygrade = "E3"
 		if(1501 to 6000) // 25 hrs
 			new_human.wear_id.paygrade = "E4"
-		if(6001 to 18000) // 100 hrs
+		if(6001 to 60000) // 100 hrs
 			new_human.wear_id.paygrade = "E5"
-		if(18001 to 60000) // 300 hrs
-			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
-			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+			new_human.wear_id.paygrade = "E9" //If you play way too much TGMC. 1000 hours.
 
 //Squad Smartgunner
 /datum/job/terragov/squad/smartgunner
@@ -252,12 +248,10 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 			new_human.wear_id.paygrade = "E3"
 		if(1501 to 6000) // 25 hrs
 			new_human.wear_id.paygrade = "E4"
-		if(6001 to 18000) // 100 hrs
+		if(6001 to 60000) // 100 hrs
 			new_human.wear_id.paygrade = "E5"
-		if(18001 to 60000) // 300 hrs
-			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
-			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+			new_human.wear_id.paygrade = "E9" //If you play way too much TGMC. 1000 hours.
 
 /datum/outfit/job/marine/smartgunner
 	name = SQUAD_SMARTGUNNER
@@ -353,13 +347,11 @@ You are also in charge of communicating with command and letting them know about
 	var/playtime_mins = user?.client?.get_exp(title)
 	switch(playtime_mins)
 		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "E5"
+		if(1501 to 7500) // 25 hrs
+			new_human.wear_id.paygrade = "E6"
+		if(7501 to 60000) // 125 hrs
 			new_human.wear_id.paygrade = "E7"
-		if(1501 to 6000) // 25 hrs
-			new_human.wear_id.paygrade = "E7E"
-		if(6001 to 18000) // 100 hrs
-			new_human.wear_id.paygrade = "E8E"
-		if(18001 to 60000) // 300 hrs
-			new_human.wear_id.paygrade = "E9"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9E" //If you play way too much TGMC. 1000 hours.
 	if(!latejoin)

@@ -4,7 +4,10 @@
 
 
 /mob/living/carbon/xenomorph/death(gibbing, deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw.", silent)
-	return ..() //we're just changing the death message
+	if(stat == DEAD)
+		return ..()
+	return ..() //Just a different standard deathmessage
+
 
 /mob/living/carbon/xenomorph/on_death()
 	GLOB.alive_xeno_list -= src
@@ -36,7 +39,6 @@
 		if(hud_used.alien_plasma_display)
 			hud_used.alien_plasma_display.icon_state = "power_display_empty"
 	update_icons()
-	hud_set_plasma()
 
 	death_cry()
 

@@ -99,13 +99,13 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/trait/hp_boost
 	name = "Improved constitution"
-	desc = "Through disciplined training and hypno indoctrination, your body is able to tolerate higher levels of trauma. +25 max health, +25 pain resistance."
+	desc = "Through disciplined training and hypno indoctrination, your body is able to tolerate higher levels of trauma. +15 max health, +15 pain resistance."
 	ui_icon = "health_1"
 	all_jobs = TRUE
 	unlock_cost = 800
 	traits = list(TRAIT_LIGHT_PAIN_RESIST)
 	///How much this perk increases your maxhp by
-	var/health_mod = 25
+	var/health_mod = 15
 
 /datum/perk/trait/hp_boost/apply_perk(mob/living/carbon/owner)
 	. = ..()
@@ -117,7 +117,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/trait/hp_boost/two
 	name = "Extreme constitution"
-	desc = "Military grade biological augmentations are used to harden your body against grievous bodily harm. Provides an addition +25 max health and +10 pain resistance."
+	desc = "Military grade biological augmentations are used to harden your body against grievous bodily harm. Provides an addition +15 max health and +10 pain resistance."
 	req_desc = "Requires Improved constitution."
 	ui_icon = "health_2"
 	prereq_perks = list(/datum/perk/trait/hp_boost)
@@ -347,7 +347,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	all_jobs = TRUE
 	unlock_cost = 600
 	///How much this perk increases your max_stam by
-	var/stam_mod = 10
+	var/stam_mod = 5
 
 /datum/perk/skill_mod/stamina/apply_perk(mob/living/carbon/owner)
 	. = ..()
