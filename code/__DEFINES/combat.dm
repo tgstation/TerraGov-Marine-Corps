@@ -71,3 +71,6 @@
 #define EXPLODE_HEAVY 2
 #define EXPLODE_LIGHT 3
 #define EXPLODE_WEAK 4
+
+///Xenomorph accuracy
+#define XENO_DEFAULT_ACCURACY 70
