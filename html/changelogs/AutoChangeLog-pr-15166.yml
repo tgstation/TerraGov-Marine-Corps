@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - balance: "Widow and Puppeteer minions have a 5% chance to hit their selected limb (chest) instead of a 70% chance."
