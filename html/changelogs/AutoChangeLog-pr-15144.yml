@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - balance: "Queen has a sunder multiplier of 0.8 (takes 80% sunder), Crusher has a sunder multiplier of 0.5 (takes 50% sunder)"
