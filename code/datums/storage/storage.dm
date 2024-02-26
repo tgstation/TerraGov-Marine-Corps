@@ -183,7 +183,7 @@
 	closer = new()
 	closer.master = src
 
-/datum/storage/Destroy()
+/datum/storage/Destroy(force = FALSE, ...)
 	UnregisterSignal(parent, list(
 		COMSIG_ATOM_ATTACKBY,
 		COMSIG_ATOM_ATTACK_HAND,
@@ -216,6 +216,7 @@
 		QDEL_NULL(closer)
 	if(trash_item)
 		new trash_item(get_turf(parent))
+	parent = null
 	. = ..()
 
 ///This proc is called when you want to place an attacking_item into the storage

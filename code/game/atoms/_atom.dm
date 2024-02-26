@@ -138,6 +138,9 @@ directive is properly returned.
 	if(reagents)
 		QDEL_NULL(reagents)
 
+	if(atom_storage)
+		QDEL_NULL(atom_storage)
+
 	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
 
 	LAZYCLEARLIST(overlays)
