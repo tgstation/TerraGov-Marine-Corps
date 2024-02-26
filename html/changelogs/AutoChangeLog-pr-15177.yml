@@ -1,0 +1,4 @@
+author: "exdal"
+delete-after: True
+changes:
+  - rscadd: "AI VOX announcements are now visible on chat"
