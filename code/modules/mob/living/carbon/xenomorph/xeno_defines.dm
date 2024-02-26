@@ -340,7 +340,7 @@
 	///which resin structure to build when we secrete resin
 	var/selected_resin = /turf/closed/wall/resin/regenerating
 	//which special resin structure to build when we secrete special resin
-	var/selected_special_resin = /turf/closed/wall/resin/regenerating/special/reflective
+	var/selected_special_resin = /turf/closed/wall/resin/regenerating/special/bulletproof
 	///which reagent to slash with using reagent slash
 	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile
 	///which plant to place when we use sow
