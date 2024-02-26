@@ -991,7 +991,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		return FALSE
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	if(!xeno_job.total_positions - xeno_job.current_positions)
+	if((xeno_job.total_positions - xeno_job.current_positions) <= 0)
 		to_chat(xeno_candidate.mob, span_warning("There are no longer burrowed larvas available."))
 		return FALSE
 
