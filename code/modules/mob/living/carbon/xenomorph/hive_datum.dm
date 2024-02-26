@@ -990,6 +990,11 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(QDELETED(chosen_silo) || isnull(xeno_candidate))
 		return FALSE
 
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	if(!xeno_job.total_positions - xeno_job.current_positions)
+		to_chat(xeno_candidate.mob, span_warning("There are no longer burrowed larvas available."))
+		return FALSE
+
 	xeno_candidate.mob.reset_perspective(null)
 	return do_spawn_larva(xeno_candidate, chosen_silo.loc, larva_already_reserved)
 

@@ -156,7 +156,9 @@
 		else
 			if(A.Adjacent(src))
 				A.attack_hand(src)
-			RangedAttack(A, params)
+
+	if(!A.Adjacent(src))
+		RangedAttack(A, params)
 
 
 /atom/movable/proc/CanReach(atom/ultimate_target, obj/item/tool, view_only = FALSE)
@@ -355,6 +357,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 			return FALSE
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
+
 	return A.RightClick(src)
 
 /mob/living/carbon/human/RightClickOn(atom/A)

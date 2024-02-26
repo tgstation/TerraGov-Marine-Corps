@@ -96,9 +96,9 @@
 
 	traumatic_shock += reagent_pain_modifier
 	if(HAS_TRAIT(src, TRAIT_MEDIUM_PAIN_RESIST))
-		traumatic_shock += PAIN_REDUCTION_MEDIUM
+		traumatic_shock += PAIN_REDUCTION_HEAVY
 	else if(HAS_TRAIT(src, TRAIT_LIGHT_PAIN_RESIST))
-		traumatic_shock += PAIN_REDUCTION_LIGHT
+		traumatic_shock += PAIN_REDUCTION_MEDIUM
 
 	return traumatic_shock
 

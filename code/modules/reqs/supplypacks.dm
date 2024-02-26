@@ -872,7 +872,7 @@ EXPLOSIVES
 	name = "M40-AG Anti-Gas grenade box crate"
 	notes = "Cotains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/antigas)
-	cost = 700
+	cost = 600
 
 /datum/supply_packs/explosives/explosives_cloak
 	name = "M40-2 SCDP grenade box crate"
@@ -909,6 +909,12 @@ EXPLOSIVES
 	notes = "Contains 15 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/phosphorus)
 	cost = 700
+
+/datum/supply_packs/explosives/explosives_hefa
+	name = "M25 HEFA grenade box crate"
+	notes = "Contains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/hefa)
+	cost = 550
 
 /datum/supply_packs/explosives/plastique
 	name = "C4 plastic explosive"

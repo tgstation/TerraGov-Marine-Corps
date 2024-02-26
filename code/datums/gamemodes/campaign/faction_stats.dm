@@ -90,7 +90,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/active_attrition_points = 0
 	///Multiplier on the passive attrition point gain for this faction
 	var/attrition_gain_multiplier = 1
-	///cumulative loss bonus which is applied to attrition gain mult
+	///cumulative loss bonus which is applied to attrition gain mult and player credit mission reward
 	var/loss_bonus = 0
 	///Future missions this faction can currently choose from
 	var/list/datum/campaign_mission/available_missions = list()
@@ -234,6 +234,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 /datum/faction_stats/proc/apply_cash(amount)
 	if(!amount)
 		return
+	amount *= 1 + loss_bonus
 	accumulated_mission_reward += amount
 	for(var/i in individual_stat_list)
 		var/datum/individual_stats/player_stats = individual_stat_list[i]
@@ -242,7 +243,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 ///Returns all faction members back to base after the mission is completed
 /datum/faction_stats/proc/return_to_base(datum/campaign_mission/completed_mission)
 	for(var/mob/living/carbon/human/human_mob AS in GLOB.alive_human_list_faction[faction])
-		if((human_mob.z != completed_mission.mission_z_level.z_value) && human_mob.job.job_cost && human_mob.client)
+		if((human_mob.z && human_mob.z != completed_mission.mission_z_level.z_value) && human_mob.job.job_cost && human_mob.client) //why is byond so cursed that being inside something makes you z = 0
 			human_mob.revive(TRUE)
 			human_mob.overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
 			human_mob.overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)

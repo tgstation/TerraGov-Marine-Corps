@@ -309,3 +309,131 @@
   - bugfix: Requisitions status at round end stats is now properly formated.
   ivanmixo:
   - bugfix: Fixed the xeno ability going thru wall bug fix
+2024-02-19:
+  AusarAtkin:
+  - balance: Synth & Early Synth can fix Groundside Gens faster now.
+  Barnet2:
+  - balance: Ice colony now has 2100 quickbuild points instead of 1600.
+  - balance: Xeno spit is unstaggerable
+  - balance: Big Red now has 2300 quickbuild points instead of 1800
+  Lewdcifer:
+  - balance: Earth Riser maximum pillars increased from 1 to 3. Primordial version
+      now uncapped but limited by a 2s. cooldown.
+  - balance: Earth Riser displacement is now a knockback, meaning it throws people.
+  - bugfix: Fixed an issue where footstep changes on Landslide were setup incorrectly,
+      which could lead to wacky behavior in certain cases.
+  - bugfix: Fixed an unintended result where the primordial version of Earth Riser
+      would have a much shorter cooldown than intended.
+  - bugfix: Fixed an issue where hitting Earth Pillars with Seismic Fracture wouldn't
+      begin Earth Riser's cooldown.
+  - code_imp: If the owner of an Earth Pillar is somehow deleted while it is active,
+      it will now clean away the reference.
+  - code_imp: Changed the name of a Behemoth proc.
+  Xander3359:
+  - rscdel: Medics and SLs no longer get a firstaid box
+  - bugfix: The ship AI can no longer hijack/capture the Alamo
+  blackdav123:
+  - balance: Reinforced the external walls of two buildings on Magmoor.
+  - balance: Preweeded Gelida IV and added a tunnel.
+2024-02-20:
+  blackdav123:
+  - rscadd: A set of vendors near the Alamo on Sulaco.
+2024-02-21:
+  TiviPlus:
+  - bugfix: Fixes custom squad tablets not working
+  - bugfix: Fix Main console not being able to overwatch custom squads
+  - bugfix: fixed headsets being invisible if you spawned them while in a custom squad
+  - bugfix: 'Custom squads will now automatically pick the first most unused letter
+      in the name: (e.g cool squad will be .o because .c is taken by charlie by default)
+      the key can be found by examining your headset. people in the squad still have
+      to use ; because im lazy and didnt fix it'
+  XElectricX:
+  - bugfix: Fix interactive emotes
+  ivanmixo:
+  - bugfix: Nulls in the global client list shouldnt be as common anymore
+2024-02-22:
+  Lumipharon:
+  - bugfix: fixed heightened stamina skill not properly lowering the stam regen delay
+  - bugfix: 'Campaign: Fixed an issue with some perks unlocking items incorrectly'
+  - balance: 'Campaign: Advanced firearm training perk reduced to 400 credits'
+  - balance: 'Campaign: Advanced construction and medical training reduced to 300
+      credits and increase skill by 2'
+  Naaanii:
+  - balance: Increases hunter speed to -1.5
+  - balance: Essence link (Drone), Create Jelly (Drone and Hivelord), Place Jelly
+      Pod (Hivelord), Place Resin trap (Carrier), Create Spiderling (Widow), Acid
+      well placement (several castes) can be used while resting.
+  blackdav123:
+  - balance: ' Removed 7 phoron miners from Ice Colony, Added 1.'
+2024-02-23:
+  Barnet2:
+  - balance: Resin walls take 1.75x from melee, but have highly increased bullet and
+      laser armor
+  Lewdcifer:
+  - rscadd: Various Warrior changes, as part of a minor rework and rebalancing!
+  - rscadd: 'Added a new Primordial Warrior ability: Flurry!'
+  - rscadd: 'FLURRY: 10 plasma, 7 CD, three charges.'
+  - rscadd: 'FLURRY: Each attack deals 25% of the Warrior''s melee damage, and counts
+      towards the Empower combo count.'
+  - rscadd: 'FLURRY: Empowered version is the same as Jab''s. Inflicts 3 stacks of
+      blind, 6 of blur, and confuses for 3s.'
+  - rscdel: Primordial Warrior's Jab ability removed.
+  - balance: Melee damage reduced from 23 to 20.
+  - balance: Maximum plasma reduced from 120 to 100.
+  - balance: Plasma gain reduced from 12 to 10.
+  - balance: 'AGILITY: Cooldown reduced from 0.5s to 0.4s.'
+  - balance: 'LUNGE: Plasma cost increased from 18 to 20.'
+  - balance: 'GRAPPLE TOSS: Plasma cost increased from 18 to 20.'
+  - balance: 'FLING + GRAPPLE TOSS: Distance penalty on big mobs changed. Instead
+      of halving it, it now reduces it by one.'
+  - balance: 'FLING + GRAPPLE TOSS: Throwing impact effect added.'
+  - balance: 'PUNCH: Plasma cost increased from 12 to 15.'
+  - balance: 'PUNCH: Will no longer push targets if they''re against a wall.'
+  - qol: 'ALL ABILITIES: Abilities will now inform the player via a balloon message
+      when their cooldown is finished.'
+  - qol: 'AGILITY: No longer disallows using abilities while active. However, using
+      any ability will automatically disable Agility.'
+  - imageadd: Visual effects for throwing impacts, and punching.
+  - refactor: Refactored most of Warrior's coding, with the intention of better quality
+      and containment.
+  Pariah919:
+  - balance: Reinforced Walls have 75 laser/bullet armor and 5000 HP.
+2024-02-24:
+  74delta:
+  - rscadd: hefa grenades to req for 550 a box and 10 in roundstart vendors
+  Lumipharon:
+  - qol: Xeno plasma levels will update on the hud as soon as plasma levels change,
+      instead of waiting for life ticks
+  - bugfix: fixed pheros not using plasma if you were on full plasma, even off weeds
+  - code_imp: Improved some xeno plasma hud code
+  - balance: 'Campaign: Added individual stats to track shrapnel removed, mines placed
+      and mechs destroyed'
+  - balance: 'Campaign: Boosted the cash rewards for performing non combat actions'
+  - bugfix: fixed some wrong/misleading wield time stats
+  - bugfix: 'Campaign: Fixed an incorrect objective desc for ASAT Capture'
+  - code_imp: Cleaned up some conveyor code
+  - bugfix: 'Campaign: Fixed not being properly despawned at the end of a mission
+      in some cases'
+  MiniMeatwad:
+  - admin: Added message for recipient when a ticket is (un)marked, closed, or tiered.
+  XElectricX:
+  - code_imp: Interactive emotes can be bound to a key instead of using right clicking.
+  Xander3359:
+  - bugfix: Fix robotic cradle sprite
+  ivanmixo:
+  - rscadd: Added directional attacks, you can enable them in the preference menu
+      for all living mobs.
+2024-02-25:
+  RipGrayson:
+  - rscadd: Added some barricade mapping helpers for mapper use.
+  TiviPlus:
+  - rscadd: added some admin-only vehicles
+  - code_imp: added multitile, multicrew vehicle support
+  Wisemonster:
+  - balance: ERT ships will now have plasteel cades protecting their doors.
+  - code_imp: Added a plasteel child that spawns in closed
+2024-02-26:
+  Barnet2:
+  - balance: Daedalus Prison has weaker tables and pre-broken fences for a better
+      prep experience
+  - bugfix: Snows shows up as a proper texture in SDMM
