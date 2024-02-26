@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - balance: "AC has significantly more wall damage to keep up with wall resistance buffs."

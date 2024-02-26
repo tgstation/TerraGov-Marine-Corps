@@ -1,5 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - balance: "Daedalus Prison has weaker tables and pre-broken fences for a better prep experience"
-  - bugfix: "Snows shows up as a proper texture in SDMM"

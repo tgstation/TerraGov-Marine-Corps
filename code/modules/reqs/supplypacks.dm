@@ -848,7 +848,7 @@ EXPLOSIVES
 	name = "M40-AG Anti-Gas grenade box crate"
 	notes = "Cotains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/antigas)
-	cost = 700
+	cost = 600
 
 /datum/supply_packs/explosives/explosives_cloak
 	name = "M40-2 SCDP grenade box crate"
