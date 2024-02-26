@@ -6,6 +6,7 @@
 	damage_icon_path = 'icons/obj/armored/3x3/apc_damage_overlay.dmi'
 	flags_armored = ARMORED_HAS_HEADLIGHTS
 	turret_icon = null
+	interior = null
 	secondary_turret_icon = null
 	primary_weapon_type = null
 	secondary_weapon_type = null
