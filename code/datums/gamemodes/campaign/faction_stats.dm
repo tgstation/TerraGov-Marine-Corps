@@ -45,14 +45,14 @@ GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 		/datum/campaign_asset/teleporter_charges,
 		/datum/campaign_asset/teleporter_enabled,
 		/datum/campaign_asset/equipment/medkit_basic/som,
-		/datum/campaign_asset/equipment/materials_pack,
+		/datum/campaign_asset/equipment/materials_pack/som,
 		/datum/campaign_asset/equipment/ballistic_som,
 		/datum/campaign_asset/equipment/shotguns_som,
 		/datum/campaign_asset/equipment/volkite,
 		/datum/campaign_asset/equipment/heavy_armour_som,
 		/datum/campaign_asset/equipment/shields_som,
 		/datum/campaign_asset/equipment/grenades_som,
-		/datum/campaign_asset/equipment/at_mines,
+		/datum/campaign_asset/equipment/at_mines/som,
 		/datum/campaign_asset/equipment/tac_bino_som,
 		/datum/campaign_asset/tactical_reserves,
 	),
@@ -103,7 +103,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	///Any special behavior flags for the faction
 	var/stats_flags = NONE
 	///Portrait used for general screen text notifications
-	var/atom/movable/screen/text/screen_text/picture/faction_portrait
+	var/faction_portrait
 	///Faction-wide modifier to respawn delay
 	var/respawn_delay_modifier = 0
 	///records how much currency has been earned from missions, for late join players
@@ -480,7 +480,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				return
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
-				faction_member.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[choice.name] asset activated", faction_portrait)
+				var/portrait = choice.asset_portrait ? choice.asset_portrait : faction_portrait
+				faction_member.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[choice.name] asset activated", portrait)
 				to_chat(faction_member, "<span class='warning'>[user] has activated the [choice.name] campaign asset.")
 			return TRUE
 
