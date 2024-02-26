@@ -236,6 +236,7 @@
 	popup.set_content(dat)
 	popup.open(FALSE)
 
+/// Proc for lobby button "View Hive" to see current leader/queen status.
 /mob/new_player/proc/view_xeno_manifest()
 	var/dat = GLOB.datacore.get_xeno_manifest()
 

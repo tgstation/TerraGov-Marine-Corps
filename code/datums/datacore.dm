@@ -118,6 +118,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 	return dat
 
+/// Gathers the information necessary to display the hive's leader/queen status to lobby.
 /datum/datacore/proc/get_xeno_manifest(monochrome)
 	var/even = 0
 
