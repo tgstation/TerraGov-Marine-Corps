@@ -22,8 +22,8 @@
 	src.exit_callback = exit_callback
 	RegisterSignal(container, COMSIG_QDELETING, PROC_REF(handle_container_del))
 	RegisterSignal(container, COMSIG_ATOM_ENTERED, PROC_REF(on_container_enter))
-	var/datum/map_template/map = new template
 	ASYNC
+		var/datum/map_template/map = new template
 		reservation = SSmapping.RequestBlockReservation(map.width + (INTERIOR_BUFFER_TILES*2), map.height + (INTERIOR_BUFFER_TILES*2))
 
 		var/list/load_coords = reservation.bottom_left_coords.Copy()
