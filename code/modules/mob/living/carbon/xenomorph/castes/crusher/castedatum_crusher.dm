@@ -36,7 +36,7 @@
 	soft_armor = list(MELEE = 90, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 130, BIO = 100, FIRE = 40, ACID = 100)
 
 	// *** Sunder *** //
-	sunder_multiplier = 0.5 //takes half sunder
+	sunder_multiplier = 0.5
 
 	// *** Minimap Icon *** //
 	minimap_icon = "crusher"
