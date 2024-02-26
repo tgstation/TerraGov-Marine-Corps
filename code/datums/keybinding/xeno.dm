@@ -253,13 +253,6 @@
 	keybind_signal = COMSIG_XENOABILITY_CREATE_BOMB
 	hotkey_keys = list("F")
 
-/datum/keybinding/xeno/root
-	name = "root"
-	full_name = "Boiler: Root in place"
-	description = "Begin rooting in place."
-	keybind_signal = COMSIG_XENOABILITY_ROOT
-	hotkey_keys = list("C")
-
 /datum/keybinding/xeno/bombard
 	name = "bombard"
 	full_name = "Boiler: Bombard"
