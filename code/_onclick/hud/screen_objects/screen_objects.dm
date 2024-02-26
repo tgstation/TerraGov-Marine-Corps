@@ -256,6 +256,34 @@
 	icon_state = "block"
 	screen_loc = "7,7 to 10,8"
 
+/atom/movable/screen/storage/Click(location, control, params)
+	if(usr.incapacitated(TRUE))
+		return
+
+	var/list/PL = params2list(params)
+
+	if(!master)
+		return
+
+	var/datum/storage/storage_datum = master
+	var/obj/item/item_in_hand = usr.get_active_held_item()
+	if(item_in_hand)
+		storage_datum.parent.attackby(item_in_hand, usr)
+		return
+
+	// Taking something out of the storage screen (including clicking on item border overlay)
+	var/list/screen_loc_params = splittext(PL["screen-loc"], ",")
+	var/list/screen_loc_X = splittext(screen_loc_params[1],":")
+	var/click_x = text2num(screen_loc_X[1]) * 32 + text2num(screen_loc_X[2]) - 144
+
+	for(var/i = 1 to length(storage_datum.click_border_start))
+		if(storage_datum.click_border_start[i] > click_x || click_x > storage_datum.click_border_end[i])
+			continue
+		if(length(storage_datum.parent.contents) < i)
+			continue
+		item_in_hand = storage_datum.parent.contents[i]
+		item_in_hand.attack_hand(usr)
+		return
 
 /atom/movable/screen/storage/proc/update_fullness(obj/item/storage/S)
 	if(!length(S.contents))
@@ -273,7 +301,6 @@
 			color = "#ffa500"
 		else
 			color = null
-
 
 /atom/movable/screen/throw_catch
 	name = "throw/catch"

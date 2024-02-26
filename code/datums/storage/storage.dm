@@ -121,8 +121,15 @@
 	if(length(src.bypass_w_limit))
 		src.bypass_w_limit = typecacheof(bypass_w_limit)
 
-	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby))
-	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(on_attack_hand))
+	//Clicking signals
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby)) //Left click
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(on_attack_hand)) //Left click empty hand
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, PROC_REF(on_attack_hand_alternate)) //Right click empty hand
+	RegisterSignal(parent, COMSIG_CLICK_ALT, PROC_REF(on_alt_click)) //ALT + click
+	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, PROC_REF(on_alt_right_click)) //ALT + right click
+	RegisterSignal(parent, COMSIG_CLICK_CTRL, PROC_REF(on_ctrl_click)) //CTRL + Left click
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_GHOST, PROC_REF(on_attack_ghost)) //Ghosts can see inside your storages
+	RegisterSignal(parent, COMSIG_MOUSEDROP_ONTO, PROC_REF(on_mousedrop_onto)) //Click dragging
 
 /*	if(!allow_quick_gather)
 		verbs -= /datum/storage/verb/toggle_gathering_mode
@@ -177,7 +184,16 @@
 	closer.master = src
 
 /datum/storage/Destroy()
-	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_ATTACK_HAND))
+	UnregisterSignal(parent, list(
+		COMSIG_ATOM_ATTACKBY,
+		COMSIG_ATOM_ATTACK_HAND,
+		COMSIG_ATOM_ATTACK_HAND_ALTERNATE,
+		COMSIG_CLICK_ALT,
+		COMSIG_CLICK_ALT_RIGHT,
+		COMSIG_CLICK_CTRL,
+		COMSIG_ATOM_ATTACK_GHOST,
+		COMSIG_MOUSEDROP_ONTO,
+	))
 	for(var/atom/movable/item in parent.contents)
 		qdel(item)
 	for(var/mob/M in content_watchers)
@@ -217,15 +233,10 @@
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), attacking_item, FALSE, user)
 	return
 
-///This proc is called when you click on your storage with your hand
+///Called when you click on parent with an empty hand
 /datum/storage/proc/on_attack_hand(datum/source, mob/living/user)
 	SIGNAL_HANDLER
 	if(parent.loc == user)
-		if(user.s_active) //Currently active storage closes when we click on any storage
-			if(user.s_active == src) //If we clicked on ourselves, we'll just close and do nothing else
-				close(user)
-				return COMPONENT_NO_ATTACK_HAND
-			user.s_active.close(user) //Else we just close the old storage and continue
 		if(draw_mode && ishuman(user) && length(parent.contents))
 			var/obj/item/item_to_attack = parent.contents[length(parent.contents)]
 			INVOKE_ASYNC(item_to_attack, TYPE_PROC_REF(/atom/movable, attack_hand), user)
@@ -234,7 +245,71 @@
 			return COMPONENT_NO_ATTACK_HAND
 	for(var/mob/M AS in content_watchers)
 		close(M)
-		return COMPONENT_NO_ATTACK_HAND
+		return
+
+///Called when you RIGHT click on parent with an empty hand
+/datum/storage/proc/on_attack_hand_alternate(datum/source, mob/living/user)
+	SIGNAL_HANDLER
+	if(parent.Adjacent(user))
+		INVOKE_ASYNC(src, PROC_REF(attempt_draw_object), user)
+
+///Called when you alt + left click on parent
+/datum/storage/proc/on_alt_click(datum/source, mob/user)
+	SIGNAL_HANDLER
+	if(parent.Adjacent(user))
+		INVOKE_ASYNC(src, PROC_REF(attempt_draw_object), user)
+
+///Called when you alt + right click on parent
+/datum/storage/proc/on_alt_right_click(datum/source, mob/user)
+	SIGNAL_HANDLER
+	if(parent.Adjacent(user))
+		open(user)
+
+///Called when you ctrl + left click on parent
+/datum/storage/proc/on_ctrl_click(datum/source, mob/user)
+	SIGNAL_HANDLER
+	if(parent.Adjacent(user))
+		INVOKE_ASYNC(src, PROC_REF(attempt_draw_object), user, TRUE)
+
+/datum/storage/proc/on_attack_ghost(datum/source, mob/user)
+	SIGNAL_HANDLER
+	open(user)
+
+///Signal handler for when you click drag parent
+/datum/storage/proc/on_mousedrop_onto(datum/source, obj/over_object as obj, mob/user)
+	SIGNAL_HANDLER
+	if(!ishuman(user))
+		return COMPONENT_NO_MOUSEDROP
+
+	if(user.lying_angle)
+		return COMPONENT_NO_MOUSEDROP
+
+	if(over_object == user && parent.Adjacent(user)) // this must come before the screen objects only block
+		open(user)
+		return COMPONENT_NO_MOUSEDROP
+
+	if(!istype(over_object, /atom/movable/screen))
+		return //Don't cancel mousedrop
+
+	if(HAS_TRAIT(src, TRAIT_NODROP))
+		return COMPONENT_NO_MOUSEDROP
+
+	//Makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
+	if(parent.loc != user)// || (src.parent.loc && src.parent.loc == user))
+		return COMPONENT_NO_MOUSEDROP
+
+	if(!user.restrained() && !user.stat)
+		switch(over_object.name)
+			if("r_hand")
+				user.temporarilyRemoveItemFromInventory(parent)
+				if(!user.put_in_r_hand(parent))
+					user.dropItemToGround(parent)
+				return COMPONENT_NO_MOUSEDROP
+			if("l_hand")
+				user.temporarilyRemoveItemFromInventory(parent)
+				if(!user.put_in_l_hand(parent))
+					user.dropItemToGround(parent)
+				return COMPONENT_NO_MOUSEDROP
 
 /datum/storage/verb/toggle_gathering_mode()
 	set name = "Switch Gathering Method"
@@ -311,7 +386,6 @@
 		user.s_active = null
 	content_watchers -= user
 
-
 /datum/storage/proc/can_see_content()
 	var/list/lookers = list()
 	for(var/i in content_watchers)
@@ -329,17 +403,23 @@
 	if(use_sound && user.stat != DEAD)
 		playsound(parent.loc, use_sound, 25, 1, 3)
 
-	if(user.s_active == src)
+	if(user.s_active == src) //If active storage is already open, close it
 		close(user)
+		return TRUE
+	if(user.s_active) //We can only have 1 active storage at once
+		user.s_active.close(user)
 	show_to(user)
 	return TRUE
-
 
 /datum/storage/proc/close(mob/user)
 	hide_from(user)
 
-
-///This proc draws out the inventory and places the items on it. tx and ty are the upper left tile and mx, my are the bottm right. The numbers are calculated from the bottom-left The bottom-left slot being 1,1.
+/**
+ * This proc draws out the inventory and places the items on it.
+ * tx and ty are the upper left tile and
+ * mx, my are the bottm right.
+ * The numbers are calculated from the bottom-left The bottom-left slot being 1,1.
+ */
 /datum/storage/proc/orient_objs(tx, ty, mx, my)
 	var/cx = tx
 	var/cy = ty
@@ -355,20 +435,6 @@
 	closer.screen_loc = "[mx+1],[my]"
 	if(show_storage_fullness)
 		boxes.update_fullness(parent)
-
-/datum/numbered_display
-	var/obj/item/sample_object
-	var/number
-
-/datum/numbered_display/New(obj/item/sample)
-	if(!istype(sample))
-		qdel(src)
-	sample_object = sample
-	number = 1
-
-/datum/numbered_display/Destroy()
-	sample_object = null
-	return ..()
 
 ///This proc draws out the inventory and places the items on it. It uses the standard position.
 /datum/storage/proc/slot_orient_objs(rows, cols, list/obj/item/display_contents)
@@ -456,10 +522,23 @@
 
 	closer.screen_loc = "4:[storage_width+19],2:16"
 
+/datum/numbered_display
+	var/obj/item/sample_object
+	var/number
+
+/datum/numbered_display/New(obj/item/sample)
+	if(!istype(sample))
+		qdel(src)
+	sample_object = sample
+	number = 1
+
+/datum/numbered_display/Destroy()
+	sample_object = null
+	return ..()
+
+///This proc determines the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /datum/storage/proc/orient2hud()
-
 	var/adjusted_contents = length(parent.contents)
-
 	//Numbered contents display
 	var/list/datum/numbered_display/numbered_contents
 	if(display_contents_with_number)
@@ -659,6 +738,7 @@
 
 	return TRUE
 
+///Refills the storage from the refill_types item
 /datum/storage/proc/do_refill(obj/item/storage/refiller, mob/user)
 	if(!length(refiller.contents))
 		user.balloon_alert(user, "[refiller] is empty.")
@@ -697,23 +777,6 @@
 		item.on_exit_storage(src)
 		qdel(item)
 
-/**
- * Attempts to get the first possible object from this container
- *
- * Arguments:
- * * mob/living/user - The mob attempting to draw from this container
- * * start_from_left - If true we draw the leftmost object instead of the rightmost. FALSE by default.
- */
-/datum/storage/proc/attempt_draw_object(mob/living/user, start_from_left = FALSE)
-	if(!ishuman(user) || user.incapacitated() || isturf(parent.loc))
-		return
-	if(!length(parent.contents))
-		return user.balloon_alert(user, "Empty")
-	if(user.get_active_held_item())
-		return //User is already holding something.
-	var/obj/item/drawn_item = start_from_left ? parent.contents[1] : parent.contents[length(parent.contents)]
-	drawn_item.attack_hand(user)
-
 ///Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area). Returns -1 if the atom was not found on container.
 /datum/storage/proc/storage_depth(atom/container)
 	var/depth = 0
@@ -748,3 +811,96 @@
 
 	return depth
 
+/* - XANTODO CONVERT THESE TO SIGNALS/DATUMS
+///finds a stored item to draw
+/obj/item/storage/do_quick_equip(mob/user)
+	if(!length(contents))
+		return FALSE //we don't want to equip the storage item itself
+	var/obj/item/W = contents[length(contents)]
+	if(!remove_from_storage(W, null, user))
+		return FALSE
+	return W
+
+
+/obj/item/storage/emp_act(severity)
+	if(!isliving(loc))
+		for(var/obj/O in contents)
+			O.emp_act(severity)
+	..()
+
+///BubbleWrap - A box can be folded up to make card
+/obj/item/storage/attack_self(mob/user)
+	. = ..()
+	//Clicking on itself will empty it, if it has the verb to do that.
+
+	if(allow_quick_empty)
+		quick_empty()
+		return
+
+	//Otherwise we'll try to fold it.
+	if ( length(contents) )
+		return
+
+	if ( !ispath(foldable) )
+		return
+
+	// Close any open UI windows first
+	for(var/mob/M in content_watchers)
+		close(M)
+
+	// Now make the cardboard
+	to_chat(user, span_notice("You break down the [src]."))
+	new foldable(get_turf(src))
+	qdel(src)
+//BubbleWrap END
+*/
+/*
+/obj/item/storage/handle_atom_del(atom/movable/AM)
+	if(istype(AM, /obj/item))
+		remove_from_storage(AM)
+
+
+/obj/item/storage/max_stack_merging(obj/item/stack/S)
+	if(is_type_in_typecache(S, bypass_w_limit))
+		return FALSE //No need for limits if we can bypass it.
+	var/weight_diff = initial(S.w_class) - max_w_class
+	if(weight_diff <= 0)
+		return FALSE //Nor if the limit is not higher than what we have.
+	var/max_amt = round((S.max_amount / STACK_WEIGHT_STEPS) * (STACK_WEIGHT_STEPS - weight_diff)) //How much we can fill per weight step times the valid steps.
+	if(max_amt <= 0 || max_amt > S.max_amount)
+		stack_trace("[src] tried to max_stack_merging([S]) with [max_w_class] max_w_class and [weight_diff] weight_diff, resulting in [max_amt] max_amt.")
+	return max_amt
+
+
+/obj/item/storage/recalculate_storage_space()
+	var/list/lookers = can_see_content()
+	if(!length(lookers))
+		return
+	orient2hud()
+	for(var/X in lookers)
+		var/mob/M = X //There is no need to typecast here, really, but for clarity.
+		show_to(M)
+
+
+/obj/item/storage/contents_explosion(severity)
+	for(var/i in contents)
+		var/atom/A = i
+		A.ex_act(severity)
+*/
+
+/**
+ * Attempts to get the first possible object from this container
+ *
+ * Arguments:
+ * * mob/living/user - The mob attempting to draw from this container
+ * * start_from_left - If true we draw the leftmost object instead of the rightmost. FALSE by default.
+ */
+/datum/storage/proc/attempt_draw_object(mob/living/user, start_from_left = FALSE)
+	if(!ishuman(user) || user.incapacitated() || isturf(parent.loc))
+		return
+	if(!length(parent.contents))
+		return user.balloon_alert(user, "Empty")
+	if(user.get_active_held_item())
+		return //User is already holding something.
+	var/obj/item/drawn_item = start_from_left ? parent.contents[1] : parent.contents[length(parent.contents)]
+	drawn_item.attack_hand(user)
