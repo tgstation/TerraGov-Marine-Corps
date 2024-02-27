@@ -19,15 +19,6 @@
 		master_item = null
 	return ..()
 
-/* - XANTODO Figure out if this is needed, probably not since atom/Destroy() is supposed to delete atom_storage
-/obj/item/storage/internal/Destroy()
-	for(var/i in master_item.contents)
-		var/obj/item/content_item = i
-		qdel(content_item)
-	master_item = null
-	return ..()
-	*/
-
 /obj/item/storage/internal/attack_hand(mob/living/user)
 	return TRUE
 
