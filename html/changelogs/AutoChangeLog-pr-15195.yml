@@ -1,0 +1,4 @@
+author: "exdal"
+delete-after: True
+changes:
+  - code_imp: "Observers and AI now receive VOX announcement message"
