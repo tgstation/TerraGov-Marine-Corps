@@ -19,6 +19,9 @@
 	hard_armor = list(MELEE = 0, BULLET = 15, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	resistance_flags = UNACIDABLE
 
+	//Used for quickbuild refunding.
+	var/is_normal_resin_wall = TRUE
+
 /turf/closed/wall/resin/add_debris_element()
 	AddElement(/datum/element/debris, null, -15, 8, 0.7)
 
@@ -91,9 +94,10 @@
 	if(X.status_flags & INCORPOREAL)
 		return
 	if(CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
-		SSresinshaping.quickbuild_points_by_hive[X.hivenumber]++
-		take_damage(max_integrity) // Ensure its destroyed
-		return
+		if(src.is_normal_resin_wall)
+			SSresinshaping.quickbuild_points_by_hive[X.hivenumber]++
+			take_damage(max_integrity) // Ensure its destroyed
+			return
 	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
 	span_xenonotice("We start to tear down \the [src]."))
 	if(!do_after(X, 1 SECONDS, NONE, X, BUSY_ICON_GENERIC))
@@ -209,21 +213,7 @@
 
 /turf/closed/wall/resin/regenerating/special
 	name = "you shouldn't see this"
-
-/turf/closed/wall/resin/regenerating/special/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
-		return
-	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
-	span_xenonotice("We start to tear down \the [src]."))
-	if(!do_after(X, 1 SECONDS, NONE, X, BUSY_ICON_GENERIC))
-		return
-	if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the wall already gone
-		return
-	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	X.visible_message(span_xenonotice("\The [X] tears down \the [src]!"), \
-	span_xenonotice("We tear down \the [src]."))
-	playsound(src, "alien_resin_break", 25)
-	take_damage(max_integrity) // Ensure its destroyed
+	is_normal_resin_wall = FALSE
 
 /turf/closed/wall/resin/regenerating/special/bulletproof
 	name = "bulletproof resin wall"
