@@ -151,12 +151,16 @@ Make the NTC proud!"})
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500) //starting
+		if(0 to 1500) // starting
 			new_human.wear_id.paygrade = "O3"
-		if(1500 to 7500) // 25 hrs
+		if(1501 to 6000) // 25hrs
 			new_human.wear_id.paygrade = "MO4"
-		if(7501 to INFINITY) // 125 hrs
+		if(6001 to 18000) // 100 hrs
 			new_human.wear_id.paygrade = "MO5"
+		if(18001 to 60000) // 300 hrs
+			new_human.wear_id.paygrade = "MO6"
+		if(60001 to INFINITY) // 1000 hrs
+			new_human.wear_id.paygrade = "M10" //If you play way too much TGMC. 1000 hours.
 
 
 /datum/outfit/job/command/fieldcommander
@@ -682,14 +686,16 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 600) // starting
-			new_human.wear_id.paygrade = "WO"
-		if(601 to 3000) // 10 hrs
-			new_human.wear_id.paygrade = "CWO"
-		if(3001 to 6000) // 50 hrs
-			new_human.wear_id.paygrade = "O1"
-		if(6001 to INFINITY) // 100 hrs
-			new_human.wear_id.paygrade = "O2"
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "E3"
+		if(1501 to 6000) // 25 hrs
+			new_human.wear_id.paygrade = "E4"
+		if(6001 to 18000) // 100 hrs
+			new_human.wear_id.paygrade = "E5"
+		if(18001 to 60000) // 300 hrs
+			new_human.wear_id.paygrade = "E6"
+		if(60001 to INFINITY) // 1000 hrs
+			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
 
 /datum/outfit/job/command/mech_pilot
 	name = MECH_PILOT

@@ -151,13 +151,10 @@
 			holding = grey.limbs[MECH_GREY_L_ARM]
 		projectile_to_fire.scatter = max(variance + holding?.scatter_mod, 0)
 	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
-	if(projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF)
-		var/iff_signal
-		if(ishuman(firer))
-			var/mob/living/carbon/human/human_firer = firer
-			var/obj/item/card/id/id = human_firer.get_idcard()
-			iff_signal = id?.iff_signal
-		projectile_to_fire.iff_signal = iff_signal
+	if((projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF) && ishuman(firer))
+		var/mob/living/carbon/human/human_firer = firer
+		var/obj/item/card/id/id = human_firer.get_idcard()
+		projectile_to_fire.iff_signal = id?.iff_signal
 
 ///actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/fire()

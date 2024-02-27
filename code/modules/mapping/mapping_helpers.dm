@@ -537,6 +537,96 @@
 	else
 		airlock.cyclelinkeddir = dir
 
+/obj/effect/mapping_helpers/barricade
+	name = "base barricade helper"
+
+/obj/effect/mapping_helpers/barricade/wired
+	name = "wired barricade helper"
+	icon_state = "barricade_wired"
+
+/obj/effect/mapping_helpers/barricade/wired/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_world("### MAP WARNING, [src] spawned outside of mapload!")
+		return
+	var/obj/structure/barricade/foundbarricade = locate(/obj/structure/barricade) in loc
+	if(!foundbarricade)
+		CRASH("### MAP WARNING, [src] failed to find a barricade at [AREACOORD(src)]")
+	if(foundbarricade.is_wired || !foundbarricade.can_wire)
+		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to make [foundbarricade] wired but it's already wired!")
+	foundbarricade.wire()
+
+/obj/effect/mapping_helpers/barricade/bomb
+	name = "bomb armor barricade helper"
+	icon_state = "barricade_bomb"
+
+/obj/effect/mapping_helpers/barricade/bomb/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_world("### MAP WARNING, [src] spawned outside of mapload!")
+		return
+	var/obj/structure/barricade/metal/foundbarricade = locate(/obj/structure/barricade/metal) in loc
+	if(!foundbarricade)
+		CRASH("### MAP WARNING, [src] failed to find a barricade at [AREACOORD(src)]")
+	if(foundbarricade.barricade_upgrade_type)
+		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to upgrade [foundbarricade] but it already has armor!")
+	foundbarricade.soft_armor = soft_armor.modifyRating(bomb = 50)
+	foundbarricade.barricade_upgrade_type = CADE_TYPE_BOMB
+	foundbarricade.update_icon()
+
+/obj/effect/mapping_helpers/barricade/acid
+	name = "acid armor barricade helper"
+	icon_state = "barricade_acid"
+
+/obj/effect/mapping_helpers/barricade/acid/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_world("### MAP WARNING, [src] spawned outside of mapload!")
+		return
+	var/obj/structure/barricade/metal/foundbarricade = locate(/obj/structure/barricade/metal) in loc
+	if(!foundbarricade)
+		CRASH("### MAP WARNING, [src] failed to find a barricade at [AREACOORD(src)]")
+	if(foundbarricade.barricade_upgrade_type)
+		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to upgrade [foundbarricade] but it already has armor!")
+	foundbarricade.barricade_upgrade_type = CADE_TYPE_ACID
+	foundbarricade.soft_armor = soft_armor.modifyRating(acid = 20)
+	foundbarricade.resistance_flags |= UNACIDABLE
+	foundbarricade.update_icon()
+
+/obj/effect/mapping_helpers/barricade/melee
+	name = "melee armor barricade helper"
+	icon_state = "barricade_melee"
+
+/obj/effect/mapping_helpers/barricade/melee/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_world("### MAP WARNING, [src] spawned outside of mapload!")
+		return
+	var/obj/structure/barricade/metal/foundbarricade = locate(/obj/structure/barricade/metal) in loc
+	if(!foundbarricade)
+		CRASH("### MAP WARNING, [src] failed to find a barricade at [AREACOORD(src)]")
+	if(foundbarricade.barricade_upgrade_type)
+		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to upgrade [foundbarricade] but it already has armor!")
+	foundbarricade.barricade_upgrade_type = CADE_TYPE_MELEE
+	foundbarricade.soft_armor = soft_armor.modifyRating(melee = 30, bullet = 30, laser = 30, energy = 30)
+	foundbarricade.update_icon()
+
+/obj/effect/mapping_helpers/barricade/closed
+	name = "closed plasteel barricade helper"
+	icon_state = "barricade_closed"
+
+/obj/effect/mapping_helpers/barricade/closed/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_world("### MAP WARNING, [src] spawned outside of mapload!")
+		return
+	var/obj/structure/barricade/plasteel/foundbarricade = locate(/obj/structure/barricade/plasteel) in loc
+	if(!foundbarricade)
+		CRASH("### MAP WARNING, [src] failed to find a plasteel barricade at [AREACOORD(src)]")
+	if(!foundbarricade.closed)
+		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to open [foundbarricade] but it's already open!")
+	foundbarricade.toggle_open()
+
 //needs to do its thing before spawn_rivers() is called
 /*
 INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)

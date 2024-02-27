@@ -23,6 +23,9 @@
 	// *** Health *** //
 	max_health = 500
 
+	// *** Sunder *** //
+	sunder_multiplier = 0.8
+
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	evolve_min_xenos = 8
