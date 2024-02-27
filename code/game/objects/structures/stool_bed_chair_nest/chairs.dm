@@ -471,7 +471,7 @@
 	var/obj/structure/bed/chair/dropship/doublewide/other_doublewide = locate(/obj/structure/bed/chair/dropship/doublewide) in interactionmob.loc
 	var/mob/living/other_chair_buckled_mob
 	if(other_doublewide) //if there is another doublewide
-		if((LAZYLEN(other_doublewide.buckled_mobs)) && (other_doublewide.buckled_mobs[1] != interactionmob))
+		if(LAZYLEN(other_doublewide.buckled_mobs) && (other_doublewide.buckled_mobs[1] != interactionmob))
 			other_chair_buckled_mob = other_doublewide.buckled_mobs[1]
 			if(buckling)
 				other_chair_buckled_mob.density = TRUE
