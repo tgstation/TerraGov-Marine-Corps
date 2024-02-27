@@ -22,23 +22,26 @@
 	src.exit_callback = exit_callback
 	RegisterSignal(container, COMSIG_QDELETING, PROC_REF(handle_container_del))
 	RegisterSignal(container, COMSIG_ATOM_ENTERED, PROC_REF(on_container_enter))
-	ASYNC
-		var/datum/map_template/map = new template
-		reservation = SSmapping.RequestBlockReservation(map.width + (INTERIOR_BUFFER_TILES*2), map.height + (INTERIOR_BUFFER_TILES*2))
+	INVOKE_ASYNC(src, init_map)
 
-		var/list/load_coords = reservation.bottom_left_coords.Copy()
-		load_coords[1] = load_coords[1] + INTERIOR_BUFFER_TILES
-		load_coords[2] = load_coords[2] + INTERIOR_BUFFER_TILES
-		var/turf/load_loc = locate(load_coords[1], load_coords[2], load_coords[3])
-		var/list/bounds = map.load(load_loc)
-		this_area = load_loc.loc
+///actual inits the map, seperate proc because otherwise it fails linter due to "sleep in new"
+/datum/interior/proc/init_map()
+	var/datum/map_template/map = new template
+	reservation = SSmapping.RequestBlockReservation(map.width + (INTERIOR_BUFFER_TILES*2), map.height + (INTERIOR_BUFFER_TILES*2))
 
-		loaded_turfs = block(
-			locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]),
-			locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ])
-		)
+	var/list/load_coords = reservation.bottom_left_coords.Copy()
+	load_coords[1] = load_coords[1] + INTERIOR_BUFFER_TILES
+	load_coords[2] = load_coords[2] + INTERIOR_BUFFER_TILES
+	var/turf/load_loc = locate(load_coords[1], load_coords[2], load_coords[3])
+	var/list/bounds = map.load(load_loc)
+	this_area = load_loc.loc
 
-		connect_atoms()
+	loaded_turfs = block(
+		locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]),
+		locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ])
+	)
+
+	connect_atoms()
 
 ///connects all atoms as needed to the interior. seperate so it can be used in debugging
 /datum/interior/proc/connect_atoms()
