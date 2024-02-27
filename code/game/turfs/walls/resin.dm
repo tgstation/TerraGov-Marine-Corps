@@ -229,17 +229,17 @@
 	name = "bulletproof resin wall"
 	desc = "Weird slime solidified into a wall. Looks shiny."
 	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0) //You aren't damaging this with bullets without alot of AP.
-	color = "#ed99f6"
+	color = COLLOR_WALL_BULLETPROOF
 
 /turf/closed/wall/resin/regenerating/special/fireproof
 	name = "fireproof resin wall"
 	desc = "Weird slime solidified into a wall. Very red."
 	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 75, ENERGY = 75, BOMB = 0, BIO = 0, FIRE = 200, ACID = 0)
-	color = "#ff696e"
+	color = COLOR_WALL_FIREPROOF
 
 /turf/closed/wall/resin/regenerating/special/hardy
 	name = "hardy resin wall"
 	desc = "Weird slime soldified into a wall. Looks very strong."
 	max_upgradable_health = 450
 	max_upgrade_per_tick = 12 //Upgrades faster, but if damaged at all it will be put on cooldown still to help against walling in combat.
-	color = "#6699ff"
+	color = COLOR_WALL_HARDY
