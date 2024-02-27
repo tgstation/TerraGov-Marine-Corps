@@ -458,8 +458,8 @@
 	var/list/buildable_special_structures = list(
 		/turf/closed/wall/resin/regenerating/special/bulletproof,
 		/turf/closed/wall/resin/regenerating/special/fireproof,
-		/turf/closed/wall/resin/regenerating/special/hardy
-		)
+		/turf/closed/wall/resin/regenerating/special/hardy,
+	)
 
 /datum/action/ability/activable/xeno/secrete_special_resin/give_action(mob/living/L)
 	. = ..()
