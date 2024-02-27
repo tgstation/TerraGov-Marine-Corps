@@ -205,7 +205,7 @@
 
 /* Hivelord walls, they start off stronger */
 /turf/closed/wall/resin/regenerating/thick
-	max_integrity = 250
+	max_integrity = 125
 
 /turf/closed/wall/resin/regenerating/special
 	name = "you shouldn't see this"
