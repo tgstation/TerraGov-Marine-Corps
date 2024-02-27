@@ -31,8 +31,9 @@
 	human_victim.attack_alien_harm(src, xeno_caste.melee_damage * xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
 	var/target_turf = get_ranged_target_turf(human_victim, get_dir(src, human_victim), rand(1, 3)) //we blast our victim behind us
 	target_turf = get_step_rand(target_turf) //Scatter
-	human_victim.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, src)
 	human_victim.Paralyze(2 SECONDS)
+	human_victim.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, src)
+	return TRUE
 
 /mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel)
 	. = ..()
