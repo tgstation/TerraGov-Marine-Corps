@@ -1,4 +1,0 @@
-author: "DeltaFire15"
-delete-after: True
-changes:
-  - bugfix: "The new larva queue check should no longer be broken."
