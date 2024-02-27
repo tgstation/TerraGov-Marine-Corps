@@ -990,11 +990,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(QDELETED(chosen_silo) || isnull(xeno_candidate))
 		return FALSE
 
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	if((xeno_job.total_positions - xeno_job.current_positions) <= 0)
-		to_chat(xeno_candidate.mob, span_warning("There are no longer burrowed larvas available."))
-		return FALSE
-
 	xeno_candidate.mob.reset_perspective(null)
 	return do_spawn_larva(xeno_candidate, chosen_silo.loc, larva_already_reserved)
 
@@ -1101,8 +1096,11 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/list/possible_silos = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos)
 	if(stored_larva > 0 && !LAZYLEN(candidates) && !XENODEATHTIME_CHECK(waiter.mob) && (length(possible_mothers) || length(possible_silos) || (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && SSmonitor.gamestate == SHUTTERS_CLOSED)))
-		attempt_to_spawn_larva(waiter)
-		return
+		xeno_job.occupy_job_positions(1)
+		if(!attempt_to_spawn_larva(waiter, TRUE))
+			xeno_job.free_job_positions(1)
+			return FALSE
+		return TRUE
 	if(LAZYFIND(candidates, waiter))
 		remove_from_larva_candidate_queue(waiter)
 		return FALSE
