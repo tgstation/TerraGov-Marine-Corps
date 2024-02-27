@@ -131,6 +131,8 @@
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_GHOST, PROC_REF(on_attack_ghost)) //Ghosts can see inside your storages
 	RegisterSignal(parent, COMSIG_MOUSEDROP_ONTO, PROC_REF(on_mousedrop_onto)) //Click dragging
 
+	RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, PROC_REF(on_emp)) //Getting EMP'd
+
 /*	if(!allow_quick_gather)
 		verbs -= /datum/storage/verb/toggle_gathering_mode
 
@@ -821,14 +823,16 @@
 	if(!remove_from_storage(W, null, user))
 		return FALSE
 	return W
+*/
 
-
-/obj/item/storage/emp_act(severity)
+///Called whenever parent is hit by an EMP, effectively EMPs everything inside your storage
+/datum/storage/proc/on_emp(datum/source, severity)
 	if(!isliving(loc))
-		for(var/obj/O in contents)
-			O.emp_act(severity)
-	..()
+		for(var/obj/stored_object in contents)
+			stored_object.emp_act(severity)
 
+
+/*
 ///BubbleWrap - A box can be folded up to make card
 /obj/item/storage/attack_self(mob/user)
 	. = ..()

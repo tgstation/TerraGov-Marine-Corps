@@ -241,6 +241,7 @@ directive is properly returned.
 
 
 /atom/proc/emp_act(severity)
+	SEND_SIGNAL(src, COMSIG_ATOM_EMP_ACT, severity)
 	return
 
 
