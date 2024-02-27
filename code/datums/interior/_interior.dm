@@ -22,7 +22,7 @@
 	src.exit_callback = exit_callback
 	RegisterSignal(container, COMSIG_QDELETING, PROC_REF(handle_container_del))
 	RegisterSignal(container, COMSIG_ATOM_ENTERED, PROC_REF(on_container_enter))
-	INVOKE_ASYNC(src, PROC_REF(init_map))
+	INVOKE_NEXT_TICK(src, PROC_REF(init_map))
 
 ///actual inits the map, seperate proc because otherwise it fails linter due to "sleep in new"
 /datum/interior/proc/init_map()
