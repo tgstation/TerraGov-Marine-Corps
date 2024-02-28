@@ -438,10 +438,13 @@
 	switch(percentage)
 		if(-INFINITY to 65)
 			chair_state = DROPSHIP_CHAIR_BROKEN
-			if(LAZYLEN(buckled_mobs))
-				unbuckle_mob(buckled_mobs[1])
-				balloon_alert_to_viewers("This chair is too damaged to sit in")
 	icon_state = "doublewide_chair[chair_color][chair_state]"
+
+/obj/structure/bed/chair/dropship/doublewide/attackby()
+	. = ..()
+	if(LAZYLEN(buckled_mobs) && chair_state == DROPSHIP_CHAIR_BROKEN)
+		unbuckle_mob(buckled_mobs[1])
+		balloon_alert_to_viewers("This chair is too damaged to stay sitting in")
 
 /obj/structure/bed/chair/dropship/doublewide/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(chair_state == DROPSHIP_CHAIR_BROKEN)
