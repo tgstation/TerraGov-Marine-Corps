@@ -610,14 +610,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		turf_to_scan.bullet_act(src)
 		return !(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_TURF)
 
-	if(shot_from)
-		switch(SEND_SIGNAL(shot_from, COMSIG_PROJ_SCANTURF, turf_to_scan))
-			if(COMPONENT_PROJ_SCANTURF_TURFCLEAR)
-				return FALSE
-			if(COMPONENT_PROJ_SCANTURF_TARGETFOUND)
-				original_target.do_projectile_hit(src)
-				return TRUE
-
 	for(var/atom/movable/thing_to_hit in turf_to_scan)
 
 		if(!PROJECTILE_HIT_CHECK(thing_to_hit, src, cardinal_move, FALSE, hit_atoms))
@@ -825,6 +817,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, angle, get_blood_color())
 
 
+/mob/living/carbon/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(proj.flags_projectile_behavior & PROJECTILE_PRECISE_TARGET)
+		return proj.original_target == src ? TRUE : FALSE
+	return ..()
+
 /mob/living/carbon/human/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(wear_id?.iff_signal & proj.iff_signal)
 		proj.damage -= proj.damage*proj.damage_marine_falloff
@@ -894,7 +891,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	var/feedback_flags = NONE
 
-	if(proj.shot_from && src == proj.shot_from.sniper_target(src))
+	if(proj.flags_projectile_behavior & PROJECTILE_PRECISE_TARGET)
 		damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
 		add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 
