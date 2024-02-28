@@ -310,7 +310,7 @@
 /obj/item/reagent_containers/hypospray/advanced/update_overlays()
 	. = ..()
 
-	if(reagents.total_volume)
+	if(reagents?.total_volume)
 		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "[icon_state]10")
 
 		var/percent = round((reagents.total_volume / volume) * 100)
