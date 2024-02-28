@@ -158,6 +158,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	. = ..()
 
+	if(loc.atom_storage)
+		on_enter_storage()
+
 	for(var/path in actions_types)
 		new path(src)
 	if(w_class <= 3) //pulling small items doesn't slow you down much
@@ -185,7 +188,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	embedded_into = null //Should have been removed by temporarilyRemoveItemFromInventory, but let's play it safe.
 	GLOB.cryoed_item_list -= src
 	return ..()
-
 
 /obj/item/proc/update_item_state(mob/user)
 	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
@@ -379,7 +381,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 ///called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
-	flags_item & ~IN_STORAGE
+	flags_item &= ~IN_STORAGE
 	return
 
 
