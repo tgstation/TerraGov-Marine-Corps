@@ -136,6 +136,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH,
 	)
+	charge_range = PRAE_CHARGEDISTANCE
 	///Can we use the ability again
 	var/recast_available = FALSE
 	///Is this the recast
@@ -161,7 +162,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	last_turf = get_turf(owner)
 	owner.pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
-	owner.throw_at(A, 5, 2, owner)
+	owner.throw_at(A, charge_range, 2, owner)
 
 /datum/action/ability/activable/xeno/charge/acid_dash/mob_hit(datum/source, mob/living/living_target)
 	. = TRUE

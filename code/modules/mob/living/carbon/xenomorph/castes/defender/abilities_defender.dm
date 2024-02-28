@@ -85,7 +85,7 @@
 // ***************************************
 // *********** Forward Charge
 // ***************************************
-/datum/action/ability/activable/xeno/forward_charge
+/datum/action/ability/activable/xeno/charge/forward_charge
 	name = "Forward Charge"
 	action_icon_state = "pounce"
 	desc = "Charge up to 4 tiles and knockdown any targets in our way."
@@ -95,19 +95,11 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORWARD_CHARGE,
 	)
+	charge_range = DEFENDER_CHARGE_RANGE
 	///How long is the windup before charging
 	var/windup_time = 0.5 SECONDS
 
-///Deals with hitting objects
-/datum/action/ability/activable/xeno/forward_charge/proc/charge_complete()
-	SIGNAL_HANDLER
-	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENOMORPH_LEAP_BUMP, COMSIG_MOVABLE_POST_THROW))
-	var/mob/living/carbon/xenomorph/ravager/xeno_owner = owner
-	xeno_owner.xeno_flags &= ~XENO_LEAPING
-
-///Deals with hitting mobs. Triggered by bump instead of throw impact as we want to plow past mobs
-/datum/action/ability/activable/xeno/forward_charge/proc/mob_hit(datum/source, mob/living/living_target)
-	SIGNAL_HANDLER
+/datum/action/ability/activable/xeno/charge/forward_charge/mob_hit(datum/source, mob/living/living_target)
 	. = TRUE
 	if(living_target.stat || isxeno(living_target) || !(iscarbon(living_target))) //we leap past xenos
 		return
@@ -118,25 +110,10 @@
 	carbon_victim.attack_alien_harm(src, extra_dmg, FALSE, TRUE, FALSE, TRUE) //Location is always random, cannot crit, harm only
 	var/target_turf = get_ranged_target_turf(carbon_victim, get_dir(src, carbon_victim), rand(1, 2)) //we blast our victim behind us
 	target_turf = get_step_rand(target_turf) //Scatter
-	carbon_victim.throw_at(get_turf(target_turf), DEFENDER_CHARGE_RANGE, 5, src)
+	carbon_victim.throw_at(get_turf(target_turf), charge_range, 5, src)
 	carbon_victim.Paralyze(4 SECONDS)
 
-/datum/action/ability/activable/xeno/forward_charge/proc/obj_hit(datum/source, obj/target, speed)
-	SIGNAL_HANDLER
-	if(istype(target, /obj/structure/table))
-		var/obj/structure/S = target
-		owner.visible_message(span_danger("[owner] plows straight through [S]!"), null, null, 5)
-		S.deconstruct(FALSE) //We want to continue moving, so we do not reset throwing.
-		return // stay registered
-	target.hitby(owner, speed) //This resets throwing.
-	charge_complete()
-
-/datum/action/ability/activable/xeno/forward_charge/on_cooldown_finish()
-	to_chat(owner, span_xenodanger("Our exoskeleton quivers as we get ready to use Forward Charge again."))
-	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
-	return ..()
-
-/datum/action/ability/activable/xeno/forward_charge/use_ability(atom/A)
+/datum/action/ability/activable/xeno/charge/forward_charge/use_ability(atom/A)
 	if(!A)
 		return
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
@@ -162,29 +139,20 @@
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 	xeno_owner.xeno_flags |= XENO_LEAPING
 
-	xeno_owner.throw_at(A, DEFENDER_CHARGE_RANGE, 5, xeno_owner)
+	xeno_owner.throw_at(A, charge_range, 5, xeno_owner)
 
 	add_cooldown()
 
-/datum/action/ability/activable/xeno/forward_charge/ai_should_start_consider()
-	return TRUE
-
-/datum/action/ability/activable/xeno/forward_charge/ai_should_use(atom/target)
-	if(!iscarbon(target))
-		return FALSE
-	if(!line_of_sight(owner, target, DEFENDER_CHARGE_RANGE))
-		return FALSE
-	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
-		return FALSE
-	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
-		return FALSE
+/datum/action/ability/activable/xeno/charge/forward_charge/ai_should_use(atom/target)
+	. = ..()
+	if(!.)
+		return
 	action_activate()
 	LAZYINCREMENT(owner.do_actions, target)
 	addtimer(CALLBACK(src, PROC_REF(decrease_do_action), target), windup_time)
-	return TRUE
 
 ///Decrease the do_actions of the owner
-/datum/action/ability/activable/xeno/forward_charge/proc/decrease_do_action(atom/target)
+/datum/action/ability/activable/xeno/charge/forward_charge/proc/decrease_do_action(atom/target)
 	LAZYDECREMENT(owner.do_actions, target)
 
 // ***************************************
@@ -320,7 +288,7 @@
 		CD.add_cooldown()
 		to_chat(X, span_xenowarning("We tuck our lowered crest into ourselves."))
 
-	var/datum/action/ability/activable/xeno/forward_charge/combo_cooldown = X.actions_by_path[/datum/action/ability/activable/xeno/forward_charge]
+	var/datum/action/ability/activable/xeno/charge/forward_charge/combo_cooldown = X.actions_by_path[/datum/action/ability/activable/xeno/charge/forward_charge]
 	combo_cooldown.add_cooldown(cooldown_duration)
 
 	set_fortify(TRUE, was_crested)

@@ -10,6 +10,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGER_CHARGE,
 	)
+	///charge distance
+	var/charge_range = RAV_CHARGEDISTANCE
 
 /datum/action/ability/activable/xeno/charge/proc/charge_complete()
 	SIGNAL_HANDLER
@@ -43,7 +45,7 @@
 	if(iscarbon(living_target))
 		var/mob/living/carbon/carbon_victim = living_target
 		carbon_victim.Paralyze(2 SECONDS)
-	living_target.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, src)
+	living_target.throw_at(get_turf(target_turf), charge_range, RAV_CHARGESPEED, src)
 
 /datum/action/ability/activable/xeno/charge/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("Our exoskeleton quivers as we get ready to use [name] again."))
@@ -65,7 +67,7 @@
 	X.xeno_flags |= XENO_LEAPING //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
 	succeed_activate()
 
-	X.throw_at(A, RAV_CHARGEDISTANCE, RAV_CHARGESPEED, X)
+	X.throw_at(A, charge_range, RAV_CHARGESPEED, X)
 
 	add_cooldown()
 
@@ -75,14 +77,13 @@
 /datum/action/ability/activable/xeno/charge/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
-	if(!line_of_sight(owner, target, 4))
+	if(!line_of_sight(owner, target, charge_range))
 		return FALSE
 	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
 	return TRUE
-
 
 // ***************************************
 // *********** Ravage
