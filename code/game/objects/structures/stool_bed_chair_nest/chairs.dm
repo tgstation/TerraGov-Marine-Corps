@@ -440,7 +440,7 @@
 			chair_state = DROPSHIP_CHAIR_BROKEN
 	icon_state = "doublewide_chair[chair_color][chair_state]"
 
-/obj/structure/bed/chair/dropship/doublewide/attackby()
+/obj/structure/bed/chair/dropship/doublewide/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(LAZYLEN(buckled_mobs) && chair_state == DROPSHIP_CHAIR_BROKEN)
 		unbuckle_mob(buckled_mobs[1])
