@@ -871,6 +871,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	var/damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff))
 	if(!damage)
 		return
+
+	if(proj.flags_projectile_behavior & PROJECTILE_PRECISE_TARGET)
+		damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
+		add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
+
 	//friendly fire reduces the damage of the projectile, so only applies the multiplier if a hit is confirmed
 	if(isliving(proj.firer))
 		var/mob/living/shooter_living = proj.firer
@@ -890,11 +895,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	flash_weak_pain()
 
 	var/feedback_flags = NONE
-
-	if(proj.flags_projectile_behavior & PROJECTILE_PRECISE_TARGET)
-		damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
-		add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
-
 	var/original_damage = damage
 	damage = modify_by_armor(damage, proj.armor_type, proj.penetration, proj.def_zone)
 	if(damage == original_damage)
