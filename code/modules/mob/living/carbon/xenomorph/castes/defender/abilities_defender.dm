@@ -98,12 +98,14 @@
 	///How long is the windup before charging
 	var/windup_time = 0.5 SECONDS
 
+///Deals with hitting objects
 /datum/action/ability/activable/xeno/forward_charge/proc/charge_complete()
 	SIGNAL_HANDLER
 	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENOMORPH_LEAP_BUMP, COMSIG_MOVABLE_POST_THROW))
 	var/mob/living/carbon/xenomorph/ravager/xeno_owner = owner
 	xeno_owner.xeno_flags &= ~XENO_LEAPING
 
+///Deals with hitting mobs. Triggered by bump instead of throw impact as we want to plow past mobs
 /datum/action/ability/activable/xeno/forward_charge/proc/mob_hit(datum/source, mob/living/living_target)
 	SIGNAL_HANDLER
 	. = TRUE

@@ -17,6 +17,7 @@
 	var/mob/living/carbon/xenomorph/ravager/xeno_owner = owner
 	xeno_owner.xeno_flags &= ~XENO_LEAPING
 
+///Deals with hitting objects
 /datum/action/ability/activable/xeno/charge/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
 	if(istype(target, /obj/structure/table))
@@ -28,6 +29,7 @@
 	target.hitby(owner, speed) //This resets throwing.
 	charge_complete()
 
+///Deals with hitting mobs. Triggered by bump instead of throw impact as we want to plow past mobs
 /datum/action/ability/activable/xeno/charge/proc/mob_hit(datum/source, mob/living/living_target)
 	SIGNAL_HANDLER
 	. = TRUE
