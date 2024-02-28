@@ -2081,11 +2081,6 @@ FACTORY
 	contains = list(/obj/item/factory_refill/phosnade_refill)
 	cost = 1400
 
-/datum/supply_packs/factory/tfootnaderefill
-	name = "Tanglefoot grenade refill"
-	contains = list(/obj/item/factory_refill/tfootnade_refill)
-	cost = 800
-
 /datum/supply_packs/factory/trailblazerrefill
 	name = "Trailblazer grenade refill"
 	contains = list(/obj/item/factory_refill/trailblazer_refill)
