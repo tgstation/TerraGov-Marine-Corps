@@ -92,6 +92,8 @@
 	var/sunder_recover = 0.5
 	///What is the max amount of sunder that can be applied to a xeno (100 = 100%)
 	var/sunder_max = 100
+	///Multiplier on the weapons sunder, e.g 10 sunder on a projectile is reduced to 5 with a 0.5 multiplier.
+	var/sunder_multiplier = 1
 
 	// *** Ranged Attack *** //
 	///Delay timer for spitting
@@ -225,6 +227,8 @@
 	var/evolve_min_xenos = 0
 	// How many of this caste may be alive at once
 	var/maximum_active_caste = INFINITY
+	// Accuracy malus, 0 by default. Should NOT go over 70.
+	var/accuracy_malus = 0
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
@@ -339,6 +343,8 @@
 	var/emotedown = 0
 	///which resin structure to build when we secrete resin
 	var/selected_resin = /turf/closed/wall/resin/regenerating
+	//which special resin structure to build when we secrete special resin
+	var/selected_special_resin = /turf/closed/wall/resin/regenerating/special/bulletproof
 	///which reagent to slash with using reagent slash
 	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile
 	///which plant to place when we use sow

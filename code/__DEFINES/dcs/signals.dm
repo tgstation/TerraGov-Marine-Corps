@@ -8,6 +8,7 @@
 
 ///from base of datum/controller/subsystem/mapping/proc/add_new_zlevel(): (list/args)
 #define COMSIG_GLOB_NEW_Z "!new_z"
+#define COMSIG_GLOB_DEPLOY_TIMELOCK_ENDED "!deploy_timelock_ended"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE "!open_timed_shutters_late"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND "!open_timed_shutters_xeno_hivemind"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH "!open_timed_shutters_crash"
@@ -777,6 +778,7 @@
 #define COMSIG_XENOABILITY_DROP_PLANT "xenoability_drop_plant"
 #define COMSIG_XENOABILITY_CHOOSE_PLANT "xenoability_choose_plant"
 #define COMSIG_XENOABILITY_SECRETE_RESIN "xenoability_secrete_resin"
+#define COMSIG_XENOABILITY_SECRETE_SPECIAL_RESIN "xenoability_secrete_special_resin"
 #define COMSIG_XENOABILITY_PLACE_ACID_WELL "place_acid_well"
 #define COMSIG_XENOABILITY_EMIT_RECOVERY "xenoability_emit_recovery"
 #define COMSIG_XENOABILITY_EMIT_WARDING "xenoability_emit_warding"
@@ -809,7 +811,6 @@
 #define COMSIG_XENOABILITY_TOGGLE_BOMB "xenoability_toggle_bomb"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL "xenoability_toggle_bomb_radial"
 #define COMSIG_XENOABILITY_CREATE_BOMB "xenoability_create_bomb"
-#define COMSIG_XENOABILITY_ROOT "xenoability_root"
 #define COMSIG_XENOABILITY_BOMBARD "xenoability_bombard"
 
 #define COMSIG_XENOABILITY_THROW_HUGGER "xenoability_throw_hugger"
@@ -1101,3 +1102,4 @@
 #define COMSIG_PUPPET_CHANGE_ALL_ORDER "puppetglobalorder"
 
 #define COMSIG_CAVE_INTERFERENCE_CHECK "cave_interference_check" //! Cave comms interference check signal.
+

@@ -112,6 +112,15 @@
 	var/mob/new_player/player = hud.mymob
 	player.view_manifest()
 
+/atom/movable/screen/text/lobby/clickable/xenomanifest
+	maptext = "<span class='maptext' style=font-size:8px>VIEW HIVE</span>"
+	icon_state = "manifest"
+
+/atom/movable/screen/text/lobby/clickable/xenomanifest/Click()
+	. = ..()
+	var/mob/new_player/player = hud.mymob
+	player.view_xeno_manifest()
+
 /atom/movable/screen/text/lobby/clickable/background
 	maptext = "<span class='maptext' style=font-size:8px>BACKGROUND</span>"
 	icon_state = "background"
@@ -138,7 +147,7 @@
 /atom/movable/screen/text/lobby/clickable/polls/update_text()
 	INVOKE_ASYNC(src, PROC_REF(fetch_polls)) //this sleeps and it shouldn't because update_text uses a signal sometimes
 
-///Proc that fetches the polls, exists so we can async it in update_text 
+///Proc that fetches the polls, exists so we can async it in update_text
 /atom/movable/screen/text/lobby/clickable/polls/proc/fetch_polls()
 	var/mob/new_player/player = hud.mymob
 	var/hasnewpolls = player.check_playerpolls()

@@ -43,11 +43,45 @@
 	maptext_y = 0
 	letters_per_update = 2
 
+/atom/movable/screen/text/screen_text/picture/potrait/tgmc_req
+	image_to_play = "req_tgmc"
+
 /atom/movable/screen/text/screen_text/picture/potrait/som_over
 	image_to_play = "overwatch_som"
+
+/atom/movable/screen/text/screen_text/picture/potrait/som_req
+	image_to_play = "req_som"
 
 /atom/movable/screen/text/screen_text/picture/potrait/unknown
 	image_to_play = "overwatch_unknown"
 
 /atom/movable/screen/text/screen_text/picture/potrait/pilot
 	image_to_play = "po"
+
+//
+/atom/movable/screen/text/screen_text/picture/potrait/icc_over
+	image_to_play = "overwatch_icc"
+
+/atom/movable/screen/text/screen_text/picture/potrait/militia_reinforcement
+	image_to_play = "reinforcement_clf"
+
+/atom/movable/screen/text/screen_text/picture/potrait/freelancer_reinforcement
+	image_to_play = "reinforcement_fre"
+
+/atom/movable/screen/text/screen_text/picture/potrait/spec_reinforcement
+	image_to_play = "reinforcement_spec"
+
+/atom/movable/screen/text/screen_text/picture/potrait/pmc_reinforcement
+	image_to_play = "reinforcement_pmc"
+
+/atom/movable/screen/text/screen_text/picture/potrait/icc_reinforcement
+	image_to_play = "reinforcement_icc"
+
+/atom/movable/screen/text/screen_text/picture/potrait/som_reinforcement
+	image_to_play = "reinforcement_som"
+
+/atom/movable/screen/text/screen_text/picture/potrait/tgmc_distress
+	image_to_play = "distress_tgmc"
+
+/atom/movable/screen/text/screen_text/picture/potrait/som_distress
+	image_to_play = "distress_som"

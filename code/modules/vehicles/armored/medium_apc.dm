@@ -5,6 +5,7 @@
 	turret_icon = 'icons/obj/armored/2x2/medium_vehicles.dmi'
 	turret_icon_state = "apc_turret"
 	damage_icon_path = null
+	interior = null
 	flags_armored = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY
 	icon_state = "apc"
 	move_delay = 0.25 SECONDS

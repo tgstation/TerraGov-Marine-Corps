@@ -7,6 +7,7 @@
 	hitbox = /obj/hitbox/medium
 	secondary_turret_icon = null
 	damage_icon_path = null
+	interior = null
 	icon_state = "tank"
 	flags_armored = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_UNDERLAY
 	pixel_x = -16
