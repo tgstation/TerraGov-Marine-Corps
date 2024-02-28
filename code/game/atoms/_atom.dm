@@ -851,6 +851,7 @@ directive is properly returned.
 	return FALSE //But if they do, limit is not an issue.
 
 /atom/proc/recalculate_storage_space()
+	SEND_SIGNAL(src, ATOM_RECALCULATE_STORAGE_SPACE)
 	return //Nothing to see here.
 
 // Tool-specific behavior procs. To be overridden in subtypes.

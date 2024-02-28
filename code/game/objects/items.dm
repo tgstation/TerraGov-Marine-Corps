@@ -251,9 +251,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	set_throwing(FALSE)
 
-	if(istype(loc, /obj/item/storage))
-		var/obj/item/storage/S = loc
-		if(!S.atom_storage.remove_from_storage(src, user.loc, user))
+	if(flags_item & IN_STORAGE)
+		var/datum/storage/current_storage = loc.atom_storage
+		if(!current_storage.remove_from_storage(src, user.loc, user))
 			return
 
 	if(loc == user && !user.temporarilyRemoveItemFromInventory(src))
@@ -379,11 +379,13 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 ///called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
+	flags_item & ~IN_STORAGE
 	return
 
 
 ///called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
 /obj/item/proc/on_enter_storage(obj/item/storage/S as obj)
+	flags_item |= IN_STORAGE
 	return
 
 

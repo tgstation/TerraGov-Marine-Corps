@@ -132,8 +132,11 @@
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_GHOST, PROC_REF(on_attack_ghost)) //Ghosts can see inside your storages
 	RegisterSignal(parent, COMSIG_MOUSEDROP_ONTO, PROC_REF(on_mousedrop_onto)) //Click dragging
 
+	//Something is happening to our storage
 	RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, PROC_REF(on_emp)) //Getting EMP'd
 	RegisterSignal(parent, COMSIG_CONTENTS_EX_ACT, PROC_REF(on_contents_explode)) //Getting exploded
+
+	RegisterSignal(parent, ATOM_RECALCULATE_STORAGE_SPACE, PROC_REF(recalculate_storage_space))
 
 /*	if(!allow_quick_gather)
 		verbs -= /datum/storage/verb/toggle_gathering_mode
@@ -606,12 +609,13 @@
 			to_chat(usr, span_notice("[src] is full, make some space."))
 		return FALSE
 
-	// XANTODO - Pill bottles don't fit in black vest, maybe investigate?
-	if(item_to_insert.w_class >= max_w_class && istype(item_to_insert, /obj/item/storage) && !is_type_in_typecache(item_to_insert.type, bypass_w_limit))
-		if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
-			if(warning)
-				to_chat(usr, span_notice("[src] cannot hold [item_to_insert] as it's a storage item of the same size."))
-			return FALSE //To prevent the stacking of same sized storage items.
+	if(isitem(parent))
+		var/obj/item/parent_storage = parent
+		if(item_to_insert.w_class >= parent_storage.w_class && istype(item_to_insert, /obj/item/storage) && !is_type_in_typecache(item_to_insert.type, bypass_w_limit))
+			if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
+				if(warning)
+					to_chat(usr, span_notice("[src] cannot hold [item_to_insert] as it's a storage item of the same size."))
+				return FALSE //To prevent the stacking of same sized storage items.
 
 	for(var/limited_type in storage_type_limits)
 		if(!istype(item_to_insert, limited_type))
@@ -874,8 +878,11 @@
 		stack_trace("[src] tried to max_stack_merging([S]) with [max_w_class] max_w_class and [weight_diff] weight_diff, resulting in [max_amt] max_amt.")
 	return max_amt
 
+*/
 
-/obj/item/storage/recalculate_storage_space()
+///Called from signal in order to update the color of our storage, it's "fullness" basically
+/datum/storage/proc/recalculate_storage_space(datum/source)
+	SIGNAL_HANDLER
 	var/list/lookers = can_see_content()
 	if(!length(lookers))
 		return
@@ -883,10 +890,9 @@
 	for(var/X in lookers)
 		var/mob/M = X //There is no need to typecast here, really, but for clarity.
 		show_to(M)
-*/
 
 ///handles explosions on parent exploding the things in storage
-/datum/storage/proc/on_contents_explode(/datum/source, severity)
+/datum/storage/proc/on_contents_explode(datum/source, severity)
 	SIGNAL_HANDLER
 	for(var/stored_items in parent.contents)
 		var/atom/atom = stored_items
