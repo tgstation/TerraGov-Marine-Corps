@@ -466,3 +466,13 @@
   - qol: The tadpole surgery dispenser now layers over objects
   exdal:
   - rscadd: AI VOX announcements are now visible on chat
+2024-02-28:
+  Lumipharon:
+  - bugfix: Fixed a new issue with the larva queue
+  - balance: 'Campaign: Shotgun perk unlocks shotgun in the backslot for SL''s and
+      veterans'
+  - bugfix: fixed conveyors not working in some cases
+  Xander3359:
+  - code_imp: add emp signal
+  exdal:
+  - code_imp: Observers and AI now receive VOX announcement message
