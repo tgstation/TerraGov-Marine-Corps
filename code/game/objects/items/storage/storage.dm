@@ -32,7 +32,7 @@
 
 /obj/item/storage/update_icon_state()
 	. = ..()
-	if(!atom_storage.sprite_slots)
+	if(!atom_storage?.sprite_slots)
 		icon_state = initial(icon_state)
 		return
 

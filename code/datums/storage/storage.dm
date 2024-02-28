@@ -584,18 +584,17 @@
 			to_chat(usr, span_notice("[src] is full, make some space."))
 		return FALSE //Storage item is full
 
-	if(length(can_hold))
-		if(!is_type_in_typecache(item_to_insert, can_hold))
-			if(warning)
-				to_chat(usr, span_notice("[parent.name] cannot hold [item_to_insert]."))
-			return FALSE
+	if(length(can_hold) && !is_type_in_typecache(item_to_insert, typecacheof(can_hold)))
+		if(warning)
+			to_chat(usr, span_notice("[parent.name] cannot hold [item_to_insert]."))
+		return FALSE
 
-	if(is_type_in_typecache(item_to_insert, cant_hold)) //Check for specific items which this container can't hold.
+	if(is_type_in_typecache(item_to_insert, typecacheof(cant_hold))) //Check for specific items which this container can't hold.
 		if(warning)
 			to_chat(usr, span_notice("[src] cannot hold [item_to_insert]."))
 		return FALSE
 
-	if(!is_type_in_typecache(item_to_insert, bypass_w_limit) && item_to_insert.w_class > max_w_class)
+	if(!is_type_in_typecache(item_to_insert, typecacheof(bypass_w_limit)) && item_to_insert.w_class > max_w_class)
 		if(warning)
 			to_chat(usr, span_notice("[item_to_insert] is too long for this [src]."))
 		return FALSE
@@ -611,7 +610,7 @@
 
 	if(isitem(parent))
 		var/obj/item/parent_storage = parent
-		if(item_to_insert.w_class >= parent_storage.w_class && istype(item_to_insert, /obj/item/storage) && !is_type_in_typecache(item_to_insert.type, bypass_w_limit))
+		if(item_to_insert.w_class >= parent_storage.w_class && istype(item_to_insert, /obj/item/storage) && !is_type_in_typecache(item_to_insert.type, typecacheof(bypass_w_limit)))
 			if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
 				if(warning)
 					to_chat(usr, span_notice("[src] cannot hold [item_to_insert] as it's a storage item of the same size."))

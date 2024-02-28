@@ -158,7 +158,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	. = ..()
 
-	if(loc.atom_storage)
+	if(loc?.atom_storage)
 		on_enter_storage()
 
 	for(var/path in actions_types)
@@ -666,15 +666,14 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/datum/storage/storage_item
 
-	if(isstorage(selected_slot))
-		storage_item = selected_slot
+	if(selected_slot.atom_storage)
+		storage_item = selected_slot.atom_storage
 
 	else if(isclothing(selected_slot))
 		var/obj/item/clothing/selected_clothing = selected_slot
-		for(var/attachment_slot in selected_clothing.attachments_by_slot)
-			if(ismodulararmorstoragemodule(selected_clothing.attachments_by_slot[attachment_slot]))
-				var/obj/item/armor_module/storage/storage_attachment = selected_clothing.attachments_by_slot[attachment_slot]
-				storage_item = storage_attachment.atom_storage
+		for(var/obj/attachment_slot in selected_clothing.attachments_by_slot)
+			if(attachment_slot.atom_storage)
+				storage_item = attachment_slot.atom_storage
 				break
 
 	if(!storage_item)
