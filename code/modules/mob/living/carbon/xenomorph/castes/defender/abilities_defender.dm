@@ -99,20 +99,6 @@
 	///How long is the windup before charging
 	var/windup_time = 0.5 SECONDS
 
-/datum/action/ability/activable/xeno/charge/forward_charge/mob_hit(datum/source, mob/living/living_target)
-	. = TRUE
-	if(living_target.stat || isxeno(living_target) || !(iscarbon(living_target))) //we leap past xenos
-		return
-
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/mob/living/carbon/carbon_victim = living_target
-	var/extra_dmg = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * 0.5 // 50% dmg reduction
-	carbon_victim.attack_alien_harm(src, extra_dmg, FALSE, TRUE, FALSE, TRUE) //Location is always random, cannot crit, harm only
-	var/target_turf = get_ranged_target_turf(carbon_victim, get_dir(src, carbon_victim), rand(1, 2)) //we blast our victim behind us
-	target_turf = get_step_rand(target_turf) //Scatter
-	carbon_victim.throw_at(get_turf(target_turf), charge_range, 5, src)
-	carbon_victim.Paralyze(4 SECONDS)
-
 /datum/action/ability/activable/xeno/charge/forward_charge/use_ability(atom/A)
 	if(!A)
 		return
@@ -142,6 +128,20 @@
 	xeno_owner.throw_at(A, charge_range, 5, xeno_owner)
 
 	add_cooldown()
+
+/datum/action/ability/activable/xeno/charge/forward_charge/mob_hit(datum/source, mob/living/living_target)
+	. = TRUE
+	if(living_target.stat || isxeno(living_target) || !(iscarbon(living_target))) //we leap past xenos
+		return
+
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	var/mob/living/carbon/carbon_victim = living_target
+	var/extra_dmg = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * 0.5 // 50% dmg reduction
+	carbon_victim.attack_alien_harm(src, extra_dmg, FALSE, TRUE, FALSE, TRUE) //Location is always random, cannot crit, harm only
+	var/target_turf = get_ranged_target_turf(carbon_victim, get_dir(src, carbon_victim), rand(1, 2)) //we blast our victim behind us
+	target_turf = get_step_rand(target_turf) //Scatter
+	carbon_victim.throw_at(get_turf(target_turf), charge_range, 5, src)
+	carbon_victim.Paralyze(4 SECONDS)
 
 /datum/action/ability/activable/xeno/charge/forward_charge/ai_should_use(atom/target)
 	. = ..()
