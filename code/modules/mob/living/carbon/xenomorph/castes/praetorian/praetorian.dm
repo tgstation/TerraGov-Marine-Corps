@@ -14,16 +14,3 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_NORMAL
 	bubble_icon = "alienroyal"
-
-/mob/living/carbon/xenomorph/praetorian/Bump(atom/A)
-	if(!(xeno_flags & XENO_LEAPING) || !throwing || !throw_source || !thrower)
-		return ..()
-	if(!ishuman(A))
-		return ..()
-	var/mob/living/carbon/human/human_victim = A
-	human_victim.ParalyzeNoChain(0.5 SECONDS)
-
-	to_chat(human_victim, span_highdanger("The [src] tackles us, sending us behind them!"))
-	visible_message(span_xenodanger("\The [src] tackles [human_victim], swapping location with them!"), \
-		span_xenodanger("We push [human_victim] in our acid trail!"), visible_message_flags = COMBAT_MESSAGE)
-	return TRUE

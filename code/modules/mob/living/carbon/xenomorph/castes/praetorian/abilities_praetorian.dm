@@ -168,6 +168,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	. = TRUE
 	if(living_target.stat || isxeno(living_target) || !(iscarbon(living_target))) //we leap past xenos
 		return
+	recast_available = TRUE
 	var/mob/living/carbon/carbon_victim = living_target
 	carbon_victim.ParalyzeNoChain(0.5 SECONDS)
 
