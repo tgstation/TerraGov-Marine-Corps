@@ -19,7 +19,7 @@
 	deevolves_to = list(/mob/living/carbon/xenomorph/wraith, /mob/living/carbon/xenomorph/puppeteer)
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 	caste_traits = null
-	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 10, BIO = 35, FIRE = 35, ACID = 35)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 10, BIO = 35, FIRE = 35, ACID = 35)
 	shield_strength = 650
 	crush_strength = 50
 	blast_strength = 45
