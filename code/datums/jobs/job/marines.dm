@@ -20,6 +20,8 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	///yes i know istype(src) is gross but we literally have 1 child type we would want to ignore so
 	if(ismarineleaderjob(src))
 		return
+	if(!(SSticker.mode.flags_round_type & MODE_FORCE_CUSTOMSQUAD_UI))
+		return
 	if(world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		human_spawn.RegisterSignal(SSdcs, COMSIG_GLOB_DEPLOY_TIMELOCK_ENDED, TYPE_PROC_REF(/mob/living/carbon/human, suggest_squad_assign))
 		return
