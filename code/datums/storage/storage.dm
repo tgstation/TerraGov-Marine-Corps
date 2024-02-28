@@ -136,13 +136,10 @@
 	RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, PROC_REF(on_emp)) //Getting EMP'd
 	RegisterSignal(parent, COMSIG_CONTENTS_EX_ACT, PROC_REF(on_contents_explode)) //Getting exploded
 
+	RegisterSignal(parent, COMSIG_ATOM_CONTENTS_DEL, PROC_REF(handle_atom_del))
+	RegisterSignal(parent, ATOM_MAX_STACK_MERGING, PROC_REF(max_stack_merging))
 	RegisterSignal(parent, ATOM_RECALCULATE_STORAGE_SPACE, PROC_REF(recalculate_storage_space))
-
-/*	if(!allow_quick_gather)
-		verbs -= /datum/storage/verb/toggle_gathering_mode
-
-	if(!allow_drawing_method)
-		verbs -= /datum/storage/verb/toggle_draw_mode*/
+	RegisterSignals(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(update_verbs))
 
 	boxes = new()
 	boxes.name = "storage"
@@ -860,24 +857,23 @@
 	qdel(parent)
 //BubbleWrap END
 
-/*
-/obj/item/storage/handle_atom_del(atom/movable/AM)
-	if(istype(AM, /obj/item))
-		remove_from_storage(AM)
+///signal sent from /atom/proc/handle_atom_del(atom/A)
+/datum/storage/proc/handle_atom_del(datum/source, atom/movable/movable_atom)
+	SIGNAL_HANDLER
+	if(istype(movable_atom, /obj/item))
+		INVOKE_ASYNC(src, PROC_REF(remove_from_storage), movable_atom)
 
-
-/obj/item/storage/max_stack_merging(obj/item/stack/S)
-	if(is_type_in_typecache(S, bypass_w_limit))
+///signal sent from /atom/proc/max_stack_merging()
+/datum/storage/proc/max_stack_merging(datum/source, obj/item/stack/stacks)
+	if(is_type_in_typecache(stacks, typecacheof(bypass_w_limit)))
 		return FALSE //No need for limits if we can bypass it.
-	var/weight_diff = initial(S.w_class) - max_w_class
+	var/weight_diff = initial(stacks.w_class) - max_w_class
 	if(weight_diff <= 0)
 		return FALSE //Nor if the limit is not higher than what we have.
-	var/max_amt = round((S.max_amount / STACK_WEIGHT_STEPS) * (STACK_WEIGHT_STEPS - weight_diff)) //How much we can fill per weight step times the valid steps.
-	if(max_amt <= 0 || max_amt > S.max_amount)
-		stack_trace("[src] tried to max_stack_merging([S]) with [max_w_class] max_w_class and [weight_diff] weight_diff, resulting in [max_amt] max_amt.")
+	var/max_amt = round((stacks.max_amount / STACK_WEIGHT_STEPS) * (STACK_WEIGHT_STEPS - weight_diff)) //How much we can fill per weight step times the valid steps.
+	if(max_amt <= 0 || max_amt > stacks.max_amount)
+		stack_trace("[src] tried to max_stack_merging([stacks]) with [max_w_class] max_w_class and [weight_diff] weight_diff, resulting in [max_amt] max_amt.")
 	return max_amt
-
-*/
 
 ///Called from signal in order to update the color of our storage, it's "fullness" basically
 /datum/storage/proc/recalculate_storage_space(datum/source)
@@ -896,6 +892,22 @@
 	for(var/stored_items in parent.contents)
 		var/atom/atom = stored_items
 		atom.ex_act(severity)
+
+///Updates our verbs if we are equipped
+/datum/storage/proc/update_verbs(datum/source, mob/user, slot)
+	SIGNAL_HANDLER
+	var/obj/item/parent_item = parent
+	if(allow_quick_gather)
+		if(parent_item.flags_item & IN_INVENTORY)
+			parent.verbs += /datum/storage/verb/toggle_gathering_mode
+		else
+			parent.verbs -= /datum/storage/verb/toggle_gathering_mode
+
+	if(allow_drawing_method)
+		if(parent_item.flags_item & IN_INVENTORY)
+			parent.verbs += /datum/storage/verb/toggle_draw_mode
+		else
+			parent.verbs -= /datum/storage/verb/toggle_draw_mode
 
 /**
  * Attempts to get the first possible object from this container

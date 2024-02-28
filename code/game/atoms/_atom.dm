@@ -457,8 +457,9 @@ directive is properly returned.
 	return
 
 
-//This proc is called on the location of an atom when the atom is Destroy()'d
+///This proc is called on the location of an atom when the atom is Destroy()'d
 /atom/proc/handle_atom_del(atom/A)
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ATOM_CONTENTS_DEL, A)
 
 
@@ -848,9 +849,12 @@ directive is properly returned.
 // Stacks and storage redefined procs.
 
 /atom/proc/max_stack_merging(obj/item/stack/S)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, ATOM_MAX_STACK_MERGING, S)
 	return FALSE //But if they do, limit is not an issue.
 
 /atom/proc/recalculate_storage_space()
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, ATOM_RECALCULATE_STORAGE_SPACE)
 	return //Nothing to see here.
 
