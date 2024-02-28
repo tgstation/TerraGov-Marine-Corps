@@ -150,7 +150,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	RegisterSignal(xeno_owner, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
-	RegisterSignal(xeno_owner, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(acid_steps)) //We drop acid on every tile we pass through
 
 	xeno_owner.visible_message(span_danger("[xeno_owner] slides towards \the [A]!"), \
@@ -163,10 +163,16 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	owner.pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 	owner.throw_at(A, 5, 2, owner)
 
-/datum/action/ability/activable/xeno/charge/acid_dash/mob_hit(datum/source, mob/M)
-	. = ..()
-	if(. == COMPONENT_KEEP_THROWING && !recast)
-		recast_available = TRUE
+/datum/action/ability/activable/xeno/charge/acid_dash/mob_hit(datum/source, mob/living/living_target)
+	. = TRUE
+	if(living_target.stat || isxeno(living_target) || !(iscarbon(living_target))) //we leap past xenos
+		return
+	var/mob/living/carbon/carbon_victim = living_target
+	carbon_victim.ParalyzeNoChain(0.5 SECONDS)
+
+	to_chat(carbon_victim, span_highdanger("The [src] tackles us, sending us behind them!"))
+	owner.visible_message(span_xenodanger("\The [src] tackles [carbon_victim], swapping location with them!"), \
+		span_xenodanger("We push [carbon_victim] in our acid trail!"), visible_message_flags = COMBAT_MESSAGE)
 
 /datum/action/ability/activable/xeno/charge/acid_dash/charge_complete()
 	. = ..()

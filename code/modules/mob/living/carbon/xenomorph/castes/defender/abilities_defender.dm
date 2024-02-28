@@ -100,15 +100,24 @@
 
 /datum/action/ability/activable/xeno/forward_charge/proc/charge_complete()
 	SIGNAL_HANDLER
-	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_MOVABLE_POST_THROW))
+	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENOMORPH_LEAP_BUMP, COMSIG_MOVABLE_POST_THROW))
 	var/mob/living/carbon/xenomorph/ravager/xeno_owner = owner
 	xeno_owner.xeno_flags &= ~XENO_LEAPING
 
-/datum/action/ability/activable/xeno/forward_charge/proc/mob_hit(datum/source, mob/M)
+/datum/action/ability/activable/xeno/forward_charge/proc/mob_hit(datum/source, mob/living/living_target)
 	SIGNAL_HANDLER
-	if(M.stat || isxeno(M))
+	. = TRUE
+	if(living_target.stat || isxeno(living_target) || !(iscarbon(living_target))) //we leap past xenos
 		return
-	return COMPONENT_KEEP_THROWING
+
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	var/mob/living/carbon/carbon_victim = living_target
+	var/extra_dmg = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * 0.5 // 50% dmg reduction
+	carbon_victim.attack_alien_harm(src, extra_dmg, FALSE, TRUE, FALSE, TRUE) //Location is always random, cannot crit, harm only
+	var/target_turf = get_ranged_target_turf(carbon_victim, get_dir(src, carbon_victim), rand(1, 2)) //we blast our victim behind us
+	target_turf = get_step_rand(target_turf) //Scatter
+	carbon_victim.throw_at(get_turf(target_turf), DEFENDER_CHARGE_RANGE, 5, src)
+	carbon_victim.Paralyze(4 SECONDS)
 
 /datum/action/ability/activable/xeno/forward_charge/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
@@ -147,7 +156,7 @@
 	succeed_activate()
 
 	RegisterSignal(xeno_owner, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
-	RegisterSignal(xeno_owner, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 	xeno_owner.xeno_flags |= XENO_LEAPING
 

@@ -13,7 +13,7 @@
 
 /datum/action/ability/activable/xeno/charge/proc/charge_complete()
 	SIGNAL_HANDLER
-	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_LIVING_THROW_HIT))
+	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENOMORPH_LEAP_BUMP))
 	var/mob/living/carbon/xenomorph/ravager/xeno_owner = owner
 	xeno_owner.xeno_flags &= ~XENO_LEAPING
 
@@ -28,11 +28,20 @@
 	target.hitby(owner, speed) //This resets throwing.
 	charge_complete()
 
-/datum/action/ability/activable/xeno/charge/proc/mob_hit(datum/source, mob/M)
+/datum/action/ability/activable/xeno/charge/proc/mob_hit(datum/source, mob/living/living_target)
 	SIGNAL_HANDLER
-	if(M.stat || isxeno(M))
+	. = TRUE
+	if(living_target.stat || isxeno(living_target)) //we leap past xenos
 		return
-	return COMPONENT_KEEP_THROWING //Ravagers plow straight through humans; we only stop on hitting a dense turf
+
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	living_target.attack_alien_harm(src, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
+	var/target_turf = get_ranged_target_turf(living_target, get_dir(src, living_target), rand(1, 3)) //we blast our victim behind us
+	target_turf = get_step_rand(target_turf) //Scatter
+	if(iscarbon(living_target))
+		var/mob/living/carbon/carbon_victim = living_target
+		carbon_victim.Paralyze(2 SECONDS)
+	living_target.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, src)
 
 /datum/action/ability/activable/xeno/charge/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("Our exoskeleton quivers as we get ready to use [name] again."))
@@ -46,7 +55,7 @@
 
 	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
 	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
-	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
+	RegisterSignal(X, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
 
 	X.visible_message(span_danger("[X] charges towards \the [A]!"), \
 	span_danger("We charge towards \the [A]!") )
