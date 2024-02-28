@@ -126,3 +126,9 @@
 	else
 		owner.client.view_size.reset_to_default()
 	update_button_icon()
+
+/datum/action/vehicle/sealed/armored/zoom/remove_action(mob/M)
+	if(chassis.zoom_mode)
+		M.client.view_size.reset_to_default()
+		chassis.zoom_mode = FALSE
+	return ..()
