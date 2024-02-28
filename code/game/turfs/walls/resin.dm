@@ -94,7 +94,7 @@
 	if(X.status_flags & INCORPOREAL)
 		return
 	if(CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
-		if(src.is_normal_resin_wall)
+		if(is_normal_resin_wall)
 			SSresinshaping.quickbuild_points_by_hive[X.hivenumber]++
 			take_damage(max_integrity) // Ensure its destroyed
 			return

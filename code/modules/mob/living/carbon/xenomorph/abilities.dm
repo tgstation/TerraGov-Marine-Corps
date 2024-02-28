@@ -553,7 +553,7 @@
 		if(TRUE)
 			return
 	if(!line_of_sight(owner, T))
-		to_chat(owner, span_warning("You cannot secrete resin without line of sight!"))
+		owner.balloon_alert(owner, span_notice("You cannot secrete resin without line of sight!"))
 		return fail_activate()
 	if(!do_after(X, get_wait(), NONE, T, BUSY_ICON_BUILD))
 		return fail_activate()
