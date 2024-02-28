@@ -911,7 +911,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(IgniteMob())
 			feedback_flags |= (BULLET_FEEDBACK_FIRE)
 
-	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
+	if(proj.sundering)
 		adjust_sunder(proj.sundering)
 
 	if(stat != DEAD && isliving(proj.firer))

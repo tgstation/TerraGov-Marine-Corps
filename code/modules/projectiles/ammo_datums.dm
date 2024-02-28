@@ -361,7 +361,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "pistol bullet"
 	hud_state = "pistol"
 	hud_state_empty = "pistol_empty"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	damage = 20
 	penetration = 5
 	accurate_range = 5
@@ -496,7 +496,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "revolver"
 	hud_state_empty = "revolver_empty"
 	handful_amount = 7
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	damage = 45
 	penetration = 10
 	sundering = 3
@@ -601,7 +601,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "submachinegun bullet"
 	hud_state = "smg"
 	hud_state_empty = "smg_empty"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	damage = 20
@@ -633,7 +633,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/smg/squash
 	name = "squash-head submachinegun bullet"
 	hud_state = "pistol_squash"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	damage = 15
 	penetration = 15
 	armor_type = BOMB
@@ -696,7 +696,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "rifle bullet"
 	hud_state = "rifle"
 	hud_state_empty = "rifle_empty"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range = 12
 	damage = 25
 	penetration = 5
@@ -763,7 +763,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
 	damage_falloff = 0
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range = 15
 	damage = 40
 	penetration = 30
@@ -773,7 +773,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/rifle/tx8/incendiary
 	name = "high velocity incendiary bullet"
 	hud_state = "hivelo_fire"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_PASS_THROUGH_MOB
 	damage = 25
 	penetration = 20
 	sundering = 2.5
@@ -792,7 +792,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/rifle/mpi_km
 	name = "crude heavy rifle bullet"
 	hud_state = "rifle_crude"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	damage = 30
 	penetration = 15
 	sundering = 1.75
@@ -802,7 +802,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
 	damage_falloff = 0.5
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range = 25
 	accurate_range_min = 6
 	max_range = 40
@@ -821,7 +821,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "light marksman bullet"
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	penetration = 15
 	damage = 32.5
 	sundering = 1.25
@@ -865,7 +865,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "shotgun slug"
 	handful_icon_state = "shotgun slug"
 	hud_state = "shotgun_slug"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	shell_speed = 3
 	max_range = 15
 	damage = 100
@@ -895,7 +895,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_icon_state = "incendiary slug"
 	hud_state = "shotgun_fire"
 	damage_type = BRUTE
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	max_range = 15
 	damage = 70
 	penetration = 15
@@ -910,7 +910,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_icon_state = "shotgun flechette shell"
 	icon_state = "flechette"
 	hud_state = "shotgun_flechette"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette/flechette_spread
 	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 3
@@ -1058,7 +1058,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_icon_state = "shotgun flechette shell"
 	icon_state = "flechette"
 	hud_state = "shotgun_flechette"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/tx15_flechette/spread
 	bonus_projectiles_amount = 4
 	bonus_projectiles_scatter = 2
@@ -1075,7 +1075,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "shotgun slug"
 	handful_icon_state = "shotgun slug"
 	hud_state = "shotgun_slug"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	shell_speed = 3
 	max_range = 15
 	damage = 60
@@ -1108,7 +1108,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_icon_state = "light shotgun sabot shell"
 	icon_state = "shotgun_slug"
 	hud_state = "shotgun_sabot"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	shell_speed = 5
 	max_range = 30
 	damage = 50
@@ -1176,7 +1176,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "sniper"
 	hud_state_empty = "sniper_empty"
 	damage_falloff = 0
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER
 	accurate_range_min = 7
 	shell_speed = 4
 	accurate_range = 30
@@ -1190,7 +1190,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "sniper_fire"
 	accuracy = 0
 	damage_type = BURN
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SNIPER|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SNIPER
 	accuracy_var_high = 7
 	max_range = 20
 	damage = 70
@@ -1240,7 +1240,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"
 	hud_state = "sniper_supersonic"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	accuracy = 20
 	damage = 100
 	penetration = 60
@@ -1249,7 +1249,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/sniper/pfc
 	name = "high caliber rifle bullet"
 	hud_state = "sniper_heavy"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER
 	damage = 80
 	penetration = 30
 	sundering = 7.5
@@ -1258,7 +1258,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/sniper/pfc/flak
 	name = "high caliber flak rifle bullet"
 	hud_state = "sniper_heavy_flak"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER
 	damage = 40
 	penetration = 10
 	sundering = 10
@@ -1271,7 +1271,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/sniper/auto
 	name = "high caliber rifle bullet"
 	hud_state = "sniper_auto"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER
 	damage = 50
 	penetration = 30
 	sundering = 2
@@ -1280,7 +1280,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/sniper/clf_heavyrifle
 	name = "high velocity incendiary sniper bullet"
 	handful_icon_state = "ptrs"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SNIPER|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SNIPER
 	hud_state = "sniper_fire"
 	accurate_range_min = 4
 	shell_speed = 5
@@ -1290,7 +1290,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/sniper/mech
 	name = "light anti-tank bullet"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER|AMMO_IFF
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_IFF
 	damage = 100
 	penetration = 35
 	sundering = 0
@@ -1307,7 +1307,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range = 12
 	damage = 20
 	penetration = 15
@@ -1318,7 +1318,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
 	hud_state = "smartgun_minigun"
 	hud_state_empty = "smartgun_empty"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range = 12
 	damage = 10
 	penetration = 25
@@ -1330,7 +1330,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	damage = 40
 	max_range = 40
 	penetration = 30
@@ -1345,7 +1345,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_IFF
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_IFF
 	accurate_range = 12
 	damage = 25
 	penetration = 5
@@ -1356,7 +1356,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
 	hud_state = "spotrifle"
 	hud_state_empty = "smartgun_empty"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	damage = 50
 	max_range = 40
 	penetration = 25
@@ -1424,7 +1424,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bullet_color = COLOR_SOFT_RED
 	hud_state = "rifle"
 	hud_state_empty = "rifle_empty"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range = 10
 	damage = 25
 	penetration = 20
@@ -1448,7 +1448,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
 	name = "machinegun bullet"
 	icon_state = "bullet" // Keeping it bog standard with the turret but allows it to be changed.
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
 	accurate_range = 12
@@ -1462,7 +1462,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "minigun bullet"
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	accurate_range = 5
@@ -1481,7 +1481,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "autocannon high-velocity bullet"
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	accurate_range_min = 6
 	accuracy_var_low = 3
 	accuracy_var_high = 3
@@ -1509,7 +1509,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/auto_cannon/flak
 	name = "autocannon smart-detonating bullet"
 	hud_state = "sniper_flak"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_TARGET_TURF
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_TARGET_TURF
 	damage = 50
 	penetration = 30
 	sundering = 5
@@ -1527,7 +1527,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "armor piercing railgun slug"
 	hud_state = "railgun_ap"
 	icon_state = "blue_bullet"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
 	max_range = 14
 	damage = 150
@@ -1554,7 +1554,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/railgun/smart
 	name = "smart armor piercing railgun slug"
 	hud_state = "railgun_smart"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE|AMMO_IFF
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE|AMMO_IFF
 	damage = 100
 	penetration = 20
 	sundering = 20
@@ -1566,7 +1566,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "\improper APFSDS round"
 	hud_state = "alloy_spike"
 	icon_state = "blue_bullet"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE|AMMO_UNWIELDY
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOVABLE|AMMO_UNWIELDY
 	shell_speed = 4
 	max_range = 14
 	damage = 150
@@ -1584,7 +1584,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_amount = 3
 	ping = null //no bounce off.
 	sound_bounce = "rocket_bounce"
-	flags_ammo_behavior = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_TARGET_TURF|AMMO_SNIPER
 	armor_type = "bomb"
 	damage_falloff = 0.5
 	shell_speed = 2
@@ -1696,7 +1696,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/tx54_spread
 	name = "Shrapnel"
 	icon_state = "flechette"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
 	accuracy_var_low = 5
 	accuracy_var_high = 5
 	max_range = 4
@@ -1710,7 +1710,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/tx54_spread/incendiary
 	name = "incendiary flechette"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
 	damage = 15
 	penetration = 10
 	sundering = 1.5
@@ -1872,7 +1872,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/micro_rail_spread
 	name = "Shrapnel"
 	icon_state = "flechette"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
 	accuracy_var_low = 5
 	accuracy_var_high = 5
 	max_range = 7
@@ -1886,7 +1886,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/micro_rail_spread/incendiary
 	name = "incendiary flechette"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
 	damage = 15
 	penetration = 5
 	sundering = 1.5
@@ -2049,7 +2049,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/ags_spread
 	name = "Shrapnel"
 	icon_state = "flechette"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
 	accuracy_var_low = 15
 	accuracy_var_high = 5
 	max_range = 6
@@ -2060,7 +2060,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/ags_spread/incendiary
 	name = "White phosphorous shrapnel"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_INCENDIARY
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	damage = 20
 	penetration = 10
 	sundering = 1.5
@@ -2088,7 +2088,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "high-velocity tungsten slug"
 	hud_state = "railgun_ap"
 	icon_state = "blue_bullet"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 5
 	max_range = 31
 	damage = 70
@@ -2114,7 +2114,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "rocket_empty"
 	ping = null //no bounce off.
 	sound_bounce = "rocket_bounce"
-	flags_ammo_behavior = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_TARGET_TURF|AMMO_SNIPER
 	armor_type = "bomb"
 	damage_falloff = 0
 	shell_speed = 2
@@ -2154,7 +2154,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/he/unguided
 	damage = 100
-	flags_ammo_behavior = AMMO_SNIPER|AMMO_SUNDERING // We want this one to specifically go over onscreen range.
+	flags_ammo_behavior = AMMO_SNIPER // We want this one to specifically go over onscreen range.
 
 /datum/ammo/rocket/he/unguided/drop_nade(turf/T)
 	explosion(T, 0, 7, 0, 0, 2)
@@ -2238,7 +2238,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "white phosphorous rocket"
 	icon_state = "rocket_wp"
 	hud_state = "rocket_fire"
-	flags_ammo_behavior = AMMO_SNIPER|AMMO_INCENDIARY|AMMO_TARGET_TURF|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_SNIPER|AMMO_INCENDIARY|AMMO_TARGET_TURF
 	armor_type = "fire"
 	damage_type = BURN
 	accuracy_var_low = 7
@@ -2298,7 +2298,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/wp/unguided
 	damage = 100
-	flags_ammo_behavior = AMMO_SNIPER|AMMO_INCENDIARY|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_SNIPER|AMMO_INCENDIARY
 	effect_radius = 5
 
 /datum/ammo/rocket/recoilless
@@ -2306,7 +2306,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "recoilless_rifle_he"
 	hud_state = "shell_he"
 	hud_state_empty = "shell_empty"
-	flags_ammo_behavior = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_TARGET_TURF|AMMO_SNIPER
 	armor_type = "bomb"
 	damage_falloff = 0
 	shell_speed = 2
@@ -2323,7 +2323,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "HEAT shell"
 	icon_state = "recoilless_rifle_heat"
 	hud_state = "shell_heat"
-	flags_ammo_behavior = AMMO_SNIPER|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_SNIPER
 	damage = 200
 	penetration = 100
 	sundering = 0
@@ -2334,7 +2334,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/recoilless/heat/mech //for anti mech use in HvH
 	name = "HEAM shell"
 	accuracy = -10 //Not designed for anti human use
-	flags_ammo_behavior = AMMO_SNIPER|AMMO_SUNDERING|AMMO_UNWIELDY
+	flags_ammo_behavior = AMMO_SNIPER|AMMO_UNWIELDY
 
 /datum/ammo/rocket/recoilless/heat/mech/on_hit_obj(obj/O, obj/projectile/P)
 	drop_nade(get_turf(O))
@@ -2348,7 +2348,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "light explosive shell"
 	icon_state = "recoilless_rifle_le"
 	hud_state = "shell_le"
-	flags_ammo_behavior = AMMO_SNIPER|AMMO_SUNDERING //We want this to specifically go farther than onscreen range.
+	flags_ammo_behavior = AMMO_SNIPER //We want this to specifically go farther than onscreen range.
 	accurate_range = 15
 	max_range = 20
 	damage = 75
@@ -2362,7 +2362,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "low velocity chemical shell"
 	icon_state = "recoilless_rifle_smoke"
 	hud_state = "shell_le"
-	flags_ammo_behavior = AMMO_SNIPER|AMMO_SUNDERING|AMMO_IFF //We want this to specifically go farther than onscreen range and pass through friendlies.
+	flags_ammo_behavior = AMMO_SNIPER|AMMO_IFF //We want this to specifically go farther than onscreen range and pass through friendlies.
 	accurate_range = 21
 	max_range = 21
 	damage = 10
@@ -2396,7 +2396,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "low impact explosive shell"
 	icon_state = "recoilless_rifle_le"
 	hud_state = "shell_le"
-	flags_ammo_behavior = AMMO_SNIPER|AMMO_SUNDERING //We want this to specifically go farther than onscreen range.
+	flags_ammo_behavior = AMMO_SNIPER //We want this to specifically go farther than onscreen range.
 	accurate_range = 15
 	max_range = 20
 	damage = 75
@@ -2417,7 +2417,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "high explosive RPG"
 	icon_state = "rpg_he"
 	hud_state = "rpg_he"
-	flags_ammo_behavior = AMMO_SNIPER|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_SNIPER
 	accurate_range = 15
 	max_range = 20
 	damage = 80
@@ -2431,7 +2431,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "low impact RPG"
 	icon_state = "rpg_le"
 	hud_state = "rpg_le"
-	flags_ammo_behavior = AMMO_SNIPER|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_SNIPER
 	accurate_range = 15
 	damage = 60
 	penetration = 10
@@ -2456,7 +2456,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 100
 	sundering = 0
 	accuracy = -10 //Not designed for anti human use
-	flags_ammo_behavior = AMMO_SNIPER|AMMO_SUNDERING|AMMO_UNWIELDY
+	flags_ammo_behavior = AMMO_SNIPER|AMMO_UNWIELDY
 
 /datum/ammo/rocket/som/heat/on_hit_obj(obj/O, obj/projectile/P)
 	drop_nade(get_turf(O))
@@ -2506,7 +2506,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "atgun"
 	hud_state = "shell_heat"
 	hud_state_empty = "shell_empty"
-	flags_ammo_behavior = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF
+	flags_ammo_behavior = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_PASS_THROUGH_TURF
 	shell_speed = 2
 	damage = 90
 	penetration = 30
@@ -2523,7 +2523,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/atgun_shell/apcr
 	name = "tungsten penetrator"
 	hud_state = "shell_apcr"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
 	damage = 200
 	penetration = 70
@@ -2546,7 +2546,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/atgun_shell/he
 	name = "low velocity high explosive shell"
 	hud_state = "shell_he"
-	flags_ammo_behavior = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_TARGET_TURF|AMMO_SNIPER
 	damage = 50
 	penetration = 50
 	sundering = 35
@@ -2560,7 +2560,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/atgun_shell/beehive
 	name = "beehive shell"
 	hud_state = "shell_le"
-	flags_ammo_behavior = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_TARGET_TURF|AMMO_SNIPER
 	shell_speed = 3
 	damage = 30
 	penetration = 30
@@ -2593,14 +2593,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/atgun_shell/beehive/incend
 	name = "napalm shell"
 	hud_state = "shell_heat"
-	flags_ammo_behavior = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_TARGET_TURF|AMMO_SNIPER
 	shell_speed = 3
 	bonus_projectiles_type = /datum/ammo/bullet/atgun_spread/incendiary
 
 /datum/ammo/bullet/atgun_spread
 	name = "Shrapnel"
 	icon_state = "flechette"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
 	accuracy_var_low = 15
 	accuracy_var_high = 5
 	max_range = 6
@@ -2611,7 +2611,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/atgun_spread/incendiary
 	name = "incendiary flechette"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
 	damage = 20
 	penetration = 10
 	sundering = 1.5
@@ -2849,7 +2849,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "laser"
 	hud_state = "laser"
 	armor_type = LASER
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_ENERGY
 	shell_speed = 4
 	accurate_range = 15
 	damage = 20
@@ -2877,7 +2877,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "laser_heat"
 	damage = 12 //requires mod with -0.15 multiplier should math out to 10
 	penetration = 100 // It's a laser that burns the skin! The fire stacks go threw anyway.
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY
 	sundering = 1
 
 /datum/ammo/energy/lasgun/M43/blast
@@ -2954,7 +2954,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 // TE Lasers //
 
 /datum/ammo/energy/lasgun/marine
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_HITSCAN
 	damage = 20
 	penetration = 10
 	sundering = 1.5
@@ -3084,7 +3084,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 30
 	sundering = 3
 	hitscan_effect_icon = "beam_heavy"
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOB
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOB
 
 /datum/ammo/energy/lasgun/marine/autolaser/charge/on_hit_turf(turf/T, obj/projectile/proj)
 	if(istype(T, /turf/closed/wall))
@@ -3120,7 +3120,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 60
 	penetration = 30
 	accurate_range_min = 5
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 5
 	max_range = 40
 	damage_falloff = 0
@@ -3133,7 +3133,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 40
 	penetration = 10
 	accurate_range_min = 5
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 1
 	hitscan_effect_icon = "u_laser_beam"
 	bullet_color = COLOR_DISABLER_BLUE
@@ -3168,7 +3168,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "laser_heat"
 	damage = 100
 	penetration = 30
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 1
 	hitscan_effect_icon = "u_laser_beam"
 	bonus_projectiles_scatter = 0
@@ -3221,7 +3221,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	shell_speed = 2.5
 	penetration = 10
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_HITSCAN
 	sundering = 0.5
 	hitscan_effect_icon = "beam_incen"
 	bullet_color = COLOR_LASER_RED
@@ -3233,7 +3233,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "xray heat bolt"
 	hud_state = "laser_xray"
 	icon_state = "u_laser"
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_HITSCAN
 	damage = 25
 	penetration = 5
 	sundering = 1
@@ -3250,7 +3250,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hitscan_effect_icon = "xray_beam"
 
 /datum/ammo/energy/lasgun/marine/heavy_laser
-	flags_ammo_behavior = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_INCENDIARY
+	flags_ammo_behavior = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_ENERGY|AMMO_HITSCAN|AMMO_INCENDIARY
 	hud_state = "laser_overcharge"
 	damage = 60
 	penetration = 10
@@ -3283,7 +3283,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "battery_empty"
 	armor_type = ENERGY
 	bullet_color = COLOR_DISABLER_BLUE
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_ENERGY
 	shell_speed = 3
 
 /datum/ammo/energy/plasma/rifle_standard
@@ -3295,7 +3295,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/plasma/rifle_marksman
 	icon_state = "plasma_big"
 	hud_state = "plasma_blast"
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_PASS_THROUGH_MOB
 	damage = 30
 	penetration = 20
 	sundering = 2
@@ -3397,7 +3397,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/xeno/psy_blast
 	name = "psychic blast"
-	flags_ammo_behavior = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
+	flags_ammo_behavior = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_ENERGY|AMMO_HITSCAN
 	damage = 35
 	penetration = 10
 	sundering = 1
@@ -3462,7 +3462,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance
 	name = "psychic lance"
-	flags_ammo_behavior = AMMO_XENO|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE
+	flags_ammo_behavior = AMMO_XENO|AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE
 	damage = 60
 	penetration = 50
 	accuracy = 100
@@ -3511,7 +3511,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/marine/mech/lance_strike
 	name = "particle lance"
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_SNIPER|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_MOB
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SNIPER|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_MOB
 	damage_type = BRUTE
 	damage = 100
 	armor_type = MELEE
@@ -3592,7 +3592,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "overchargedlaser"
 	hud_state = "laser_heat"
 	hud_state_empty = "battery_empty_flash"
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_SOUND_PITCH
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SOUND_PITCH
 	bullet_color = COLOR_TAN_ORANGE
 	armor_type = "energy"
 	max_range = 14

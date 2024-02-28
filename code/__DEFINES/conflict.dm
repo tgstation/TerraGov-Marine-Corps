@@ -46,16 +46,15 @@
 #define AMMO_INCENDIARY (1<<5) //Ammo will attempt to add firestacks and ignite a hit mob if it deals any damage. Armor applies, regardless of AMMO_IGNORE_ARMOR
 #define AMMO_SKIPS_ALIENS (1<<6)
 #define AMMO_BALLISTIC (1<<7) //Generates blood splatters on mob hit
-#define AMMO_SUNDERING (1<<8) // TODO useless flag just check if sundering != 0
-#define AMMO_SPECIAL_PROCESS (1<<9)
-#define AMMO_FLAME (1<<10) //Used to identify flamethrower projectiles and similar projectiles
-#define AMMO_IFF (1<<11) //Used to identify ammo that have intrinsec IFF properties
-#define AMMO_HITSCAN (1<<12) //If the projectile from this ammo is hitscan
-#define AMMO_LEAVE_TURF (1<<13) //If the projectile does something with on_leave_turf()
-#define AMMO_PASS_THROUGH_TURF (1<<14) //If the projectile passes through walls causing damage to them
-#define AMMO_PASS_THROUGH_MOVABLE (1<<15) //If the projectile passes through mobs and objects causing damage to them
-#define AMMO_PASS_THROUGH_MOB (1<<16) //If the projectile passes through mobs only causing damage to them
-#define AMMO_SOUND_PITCH (1<<17) //If the projectile ricochet and miss sound is pitched up
+#define AMMO_SPECIAL_PROCESS (1<<8)
+#define AMMO_FLAME (1<<9) //Used to identify flamethrower projectiles and similar projectiles
+#define AMMO_IFF (1<<10) //Used to identify ammo that have intrinsec IFF properties
+#define AMMO_HITSCAN (1<<11) //If the projectile from this ammo is hitscan
+#define AMMO_LEAVE_TURF (1<<12) //If the projectile does something with on_leave_turf()
+#define AMMO_PASS_THROUGH_TURF (1<<13) //If the projectile passes through walls causing damage to them
+#define AMMO_PASS_THROUGH_MOVABLE (1<<14) //If the projectile passes through mobs and objects causing damage to them
+#define AMMO_PASS_THROUGH_MOB (1<<15) //If the projectile passes through mobs only causing damage to them
+#define AMMO_SOUND_PITCH (1<<16) //If the projectile ricochet and miss sound is pitched up
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
