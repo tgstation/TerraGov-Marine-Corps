@@ -76,6 +76,7 @@
 	desc = "A shipment of combat robots to bolster your forces"
 	detailed_desc = "A four combat robot job slots are opened at no attrition cost. \
 	Combat robots are tough to kill, being immune to pain and chemicals, and resist both fire and radiation. They suffer from low mobility however."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/robot_reinforcement
 	ui_icon = "combat_robots"
 	cost = 6
 	bonus_job_list = list(
