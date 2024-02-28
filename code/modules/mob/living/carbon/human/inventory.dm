@@ -408,7 +408,7 @@
 		for(var/attachment_slot in selected_clothing.attachments_by_slot)
 			if(ismodulararmorstoragemodule(selected_clothing.attachments_by_slot[attachment_slot]))
 				var/obj/item/armor_module/storage/storage_attachment = selected_clothing.attachments_by_slot[attachment_slot]
-				storage_item = storage_attachment.storage
+				storage_item = storage_attachment.atom_storage
 				break
 
 	if(!storage_item)

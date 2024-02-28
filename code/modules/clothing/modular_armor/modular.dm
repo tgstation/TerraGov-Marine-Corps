@@ -132,7 +132,7 @@
 	var/obj/item/armor_module/storage/storage_module = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 	if(!storage_module.show_storage)
 		return standing
-	for(var/obj/item/stored AS in storage_module.storage.contents)
+	for(var/obj/item/stored AS in storage_module.contents)
 		standing.overlays += mutable_appearance(storage_module.show_storage_icon, icon_state = initial(stored.icon_state))
 	return standing
 
@@ -326,7 +326,7 @@
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE] && istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		var/obj/item/armor_module/storage/storage_module = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 		if(storage_module.show_storage)
-			for(var/obj/item/stored AS in storage_module.storage.contents)
+			for(var/obj/item/stored AS in storage_module.contents)
 				if(istype(stored, /obj/item/ammo_magazine/handful))
 					standing.overlays += mutable_appearance(storage_module.show_storage_icon, icon_state = stored.icon_state, layer = COLLAR_LAYER)
 				else

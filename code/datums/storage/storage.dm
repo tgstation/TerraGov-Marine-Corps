@@ -115,15 +115,16 @@
 	src.parent = parent
 
 	if(length(src.can_hold))
-		src.can_hold = typecacheof(can_hold)
+		src.can_hold = typecacheof(src.can_hold)
 	else if(length(src.cant_hold))
-		src.cant_hold = typecacheof(cant_hold)
+		src.cant_hold = typecacheof(src.cant_hold)
 	if(length(src.bypass_w_limit))
-		src.bypass_w_limit = typecacheof(bypass_w_limit)
+		src.bypass_w_limit = typecacheof(src.bypass_w_limit)
 
 	//Clicking signals
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby)) //Left click
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(on_attack_hand)) //Left click empty hand
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(on_attack_self)) //Item clicking on itself
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, PROC_REF(on_attack_hand_alternate)) //Right click empty hand
 	RegisterSignal(parent, COMSIG_CLICK_ALT, PROC_REF(on_alt_click)) //ALT + click
 	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, PROC_REF(on_alt_right_click)) //ALT + right click
@@ -132,6 +133,7 @@
 	RegisterSignal(parent, COMSIG_MOUSEDROP_ONTO, PROC_REF(on_mousedrop_onto)) //Click dragging
 
 	RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, PROC_REF(on_emp)) //Getting EMP'd
+	RegisterSignal(parent, COMSIG_CONTENTS_EX_ACT, PROC_REF(on_contents_explode)) //Getting exploded
 
 /*	if(!allow_quick_gather)
 		verbs -= /datum/storage/verb/toggle_gathering_mode
@@ -239,7 +241,7 @@
 ///Called when you click on parent with an empty hand
 /datum/storage/proc/on_attack_hand(datum/source, mob/living/user)
 	SIGNAL_HANDLER
-	if(parent.loc == user)
+	if(parent.loc == user || parent.loc.loc == user)
 		if(draw_mode && ishuman(user) && length(parent.contents))
 			var/obj/item/item_to_attack = parent.contents[length(parent.contents)]
 			INVOKE_ASYNC(item_to_attack, TYPE_PROC_REF(/atom/movable, attack_hand), user)
@@ -604,6 +606,7 @@
 			to_chat(usr, span_notice("[src] is full, make some space."))
 		return FALSE
 
+	// XANTODO - Pill bottles don't fit in black vest, maybe investigate?
 	if(item_to_insert.w_class >= max_w_class && istype(item_to_insert, /obj/item/storage) && !is_type_in_typecache(item_to_insert.type, bypass_w_limit))
 		if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
 			if(warning)
@@ -827,38 +830,33 @@
 
 ///Called whenever parent is hit by an EMP, effectively EMPs everything inside your storage
 /datum/storage/proc/on_emp(datum/source, severity)
-	if(!isliving(loc))
-		for(var/obj/stored_object in contents)
-			stored_object.emp_act(severity)
+	SIGNAL_HANDLER
+	for(var/obj/stored_object in parent.contents)
+		stored_object.emp_act(severity)
 
-
-/*
-///BubbleWrap - A box can be folded up to make card
-/obj/item/storage/attack_self(mob/user)
-	. = ..()
-	//Clicking on itself will empty it, if it has the verb to do that.
-
+///BubbleWrap - Called when the parent clicks on itself. Used mostly to fold empty boxes
+/datum/storage/proc/on_attack_self(datum/source, mob/user)
+	SIGNAL_HANDLER
 	if(allow_quick_empty)
-		quick_empty()
+		INVOKE_ASYNC(src, PROC_REF(quick_empty))
 		return
 
-	//Otherwise we'll try to fold it.
-	if ( length(contents) )
+	if(!foldable) //Gotta be foldable to be folded obviously
 		return
 
-	if ( !ispath(foldable) )
+	if(length(parent.contents)) //Can't fold, box not empty
 		return
 
 	// Close any open UI windows first
-	for(var/mob/M in content_watchers)
-		close(M)
+	for(var/mob/watcher_mob in content_watchers)
+		close(watcher_mob)
 
 	// Now make the cardboard
-	to_chat(user, span_notice("You break down the [src]."))
-	new foldable(get_turf(src))
-	qdel(src)
+	to_chat(user, span_notice("You break down the [parent]."))
+	new foldable(get_turf(parent))
+	qdel(parent)
 //BubbleWrap END
-*/
+
 /*
 /obj/item/storage/handle_atom_del(atom/movable/AM)
 	if(istype(AM, /obj/item))
@@ -885,13 +883,14 @@
 	for(var/X in lookers)
 		var/mob/M = X //There is no need to typecast here, really, but for clarity.
 		show_to(M)
-
-
-/obj/item/storage/contents_explosion(severity)
-	for(var/i in contents)
-		var/atom/A = i
-		A.ex_act(severity)
 */
+
+///handles explosions on parent exploding the things in storage
+/datum/storage/proc/on_contents_explode(/datum/source, severity)
+	SIGNAL_HANDLER
+	for(var/stored_items in parent.contents)
+		var/atom/atom = stored_items
+		atom.ex_act(severity)
 
 /**
  * Attempts to get the first possible object from this container

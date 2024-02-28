@@ -88,7 +88,7 @@
 //Items that use internal storage have the option of calling this to emulate default storage attack_hand behaviour.
 //Returns 1 if the master item's parent's attack_hand() should be called, 0 otherwise.
 //It's strange, but no other way of doing it without the ability to call another proc's parent, really.
-/obj/item/storage/internal/proc/handle_attack_hand(mob/user)
+/obj/item/storage/internal/proc/handle_attack_hand(mob/user) // XANTODO Delete this? Lol?
 
 	if(user.lying_angle)
 		return FALSE

@@ -660,7 +660,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	if(!selected_slot)
 		return FALSE
 
-	var/obj/item/storage/storage_item
+	var/datum/storage/storage_item
 
 	if(isstorage(selected_slot))
 		storage_item = selected_slot
@@ -670,13 +670,13 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		for(var/attachment_slot in selected_clothing.attachments_by_slot)
 			if(ismodulararmorstoragemodule(selected_clothing.attachments_by_slot[attachment_slot]))
 				var/obj/item/armor_module/storage/storage_attachment = selected_clothing.attachments_by_slot[attachment_slot]
-				storage_item = storage_attachment.storage
+				storage_item = storage_attachment.atom_storage
 				break
 
 	if(!storage_item)
 		return FALSE
 
-	return storage_item.atom_storage.can_be_inserted(src, warning)
+	return storage_item.can_be_inserted(src, warning) // XANTODO - This is runtiming
 
 /// Checks whether the item can be unequipped from owner by stripper. Generates a message on failure and returns TRUE/FALSE
 /obj/item/proc/canStrip(mob/stripper, mob/owner)

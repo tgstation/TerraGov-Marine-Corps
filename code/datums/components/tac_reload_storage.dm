@@ -70,7 +70,7 @@
  */
 /datum/component/tac_reload_storage/proc/on_suit_attach(obj/item/armor_module/storage/source, obj/item/clothing/new_host, mob/attacher)
 	SIGNAL_HANDLER
-	reloading_storage = source.storage
+	reloading_storage = source.atom_storage
 	RegisterSignal(new_host, COMSIG_ATOM_ATTACKBY_ALTERNATE, PROC_REF(on_parent_attackby_alternate))
 	RegisterSignal(new_host, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 

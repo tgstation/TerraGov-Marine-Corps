@@ -205,7 +205,7 @@
 		CRASH("/datum/item_representation/armor_module created from an item that is not a jaeger storage module")
 	..()
 	var/obj/item/armor_module/storage/storage_module = item_to_copy
-	var/obj/item/storage/internal/modular/internal_storage = storage_module.storage
+	var/obj/item/storage/internal/modular/internal_storage = storage_module.atom_storage
 	storage = new(internal_storage)
 
 /datum/item_representation/armor_module/storage/instantiate_object(datum/loadout_seller/seller, master, mob/living/user)
@@ -215,6 +215,6 @@
 	var/obj/item/armor_module/storage/storage_module = .
 	if(!storage)
 		return
-	qdel(storage_module.storage) //an empty storage item is generated when the module is initialised
-	storage_module.storage = storage.instantiate_object(seller, storage_module, user)
+	qdel(storage_module.atom_storage) //an empty storage item is generated when the module is initialised
+	storage_module.atom_storage = storage.instantiate_object(seller, storage_module, user)
 

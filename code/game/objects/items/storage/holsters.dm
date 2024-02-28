@@ -16,7 +16,7 @@
 	var/obj/holstered_item = null
 	///Image that get's underlayed under the sprite of the holster
 	var/image/holstered_item_underlay
-
+// XANTODO REPLACE HOLSTER INITIALIZE WITH POPUALTECONTENTS
 /obj/item/storage/holster/equipped(mob/user, slot)
 	if (slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE || slot == SLOT_L_STORE || slot == SLOT_R_STORE )	//add more if needed
 		mouse_opacity = MOUSE_OPACITY_OPAQUE //so it's easier to click when properly equipped.

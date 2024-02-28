@@ -70,12 +70,14 @@
 	. = ..()
 	update_icon()
 
+/* XANTODO Figure out quick equip
 /obj/item/clothing/do_quick_equip(mob/user)
 	for(var/attachment_slot in attachments_by_slot)
 		if(ismodulararmorstoragemodule(attachments_by_slot[attachment_slot]))
 			var/obj/item/armor_module/storage/storage_attachment = attachments_by_slot[attachment_slot]
-			return storage_attachment.storage.do_quick_equip(user)
+			return storage_attachment.atom_storage.do_quick_equip(user)
 	return src
+*/
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
@@ -194,14 +196,16 @@
 		var/mob/M = loc
 		M.update_inv_wear_suit()
 
+/* XANTODO /datum/storage probably handles this
 /obj/item/clothing/suit/MouseDrop(over_object, src_location, over_location)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		return ..()
 	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		return ..()
 	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-	if(armor_storage.storage.handle_mousedrop(usr, over_object))
+	if(armor_storage.atom_storage.handle_mousedrop(usr, over_object))
 		return ..()
+*/
 
 /////////////////////////////////////////////////////////
 //Gloves
@@ -314,12 +318,13 @@
 		var/mob/M = src.loc
 		M.update_inv_shoes()
 
-
+/* XANTODO /datum/storage probably handles this
 /obj/item/clothing/shoes/MouseDrop(over_object, src_location, over_location)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		return ..()
 	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		return ..()
 	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-	if(armor_storage.storage.handle_mousedrop(usr, over_object))
+	if(armor_storage.atom_storage.handle_mousedrop(usr, over_object))
 		return ..()
+*/
