@@ -120,19 +120,14 @@
 	target.hitby(owner, speed) //This resets throwing.
 	charge_complete()
 
-/datum/action/ability/activable/xeno/forward_charge/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(!A)
-		return FALSE
-
 /datum/action/ability/activable/xeno/forward_charge/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("Our exoskeleton quivers as we get ready to use Forward Charge again."))
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 	return ..()
 
 /datum/action/ability/activable/xeno/forward_charge/use_ability(atom/A)
+	if(!A)
+		return
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 
 	if(!do_after(xeno_owner, windup_time, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, ABILITY_USE_BUSY)))
@@ -146,17 +141,17 @@
 		fortify_action.add_cooldown()
 		to_chat(xeno_owner, span_xenowarning("We rapidly untuck ourselves, preparing to surge forward."))
 
-	xeno_owner.visible_message(span_danger("[X] charges towards \the [A]!"), \
+	xeno_owner.visible_message(span_danger("[xeno_owner] charges towards \the [A]!"), \
 	span_danger("We charge towards \the [A]!") )
 	xeno_owner.emote("roar")
 	succeed_activate()
 
-	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
-	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
-	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
+	RegisterSignal(xeno_owner, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
+	RegisterSignal(xeno_owner, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 	xeno_owner.xeno_flags |= XENO_LEAPING
 
-	xeno_owner.throw_at(A, DEFENDER_CHARGE_RANGE, 5, X)
+	xeno_owner.throw_at(A, DEFENDER_CHARGE_RANGE, 5, xeno_owner)
 
 	add_cooldown()
 
