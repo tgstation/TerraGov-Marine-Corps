@@ -100,10 +100,6 @@
 	inside.door = src
 	owner = inside.container
 
-///returns where we want to spit out new enterers
-/turf/closed/interior/tank/door/proc/get_enter_location()
-	return get_step(src, EAST)
-
 /turf/closed/interior/tank/door/attack_hand(mob/living/user)
 	. = ..()
 	owner.interior.mob_leave(user)
@@ -111,6 +107,10 @@
 /turf/closed/interior/tank/door/attack_ghost(mob/dead/observer/user)
 	. = ..()
 	owner.interior.mob_leave(user)
+
+///returns where we want to spit out new enterers
+/turf/closed/interior/tank/door/proc/get_enter_location()
+	return get_step(src, EAST)
 
 
 /turf/open/interior

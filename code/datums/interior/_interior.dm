@@ -43,13 +43,6 @@
 
 	connect_atoms()
 
-///connects all atoms as needed to the interior. seperate so it can be used in debugging
-/datum/interior/proc/connect_atoms()
-	for(var/turf/tile AS in loaded_turfs)
-		for(var/atom/subject AS in tile.GetAllContents())
-			subject.link_interior(src)
-		CHECK_TICK
-
 /datum/interior/Destroy(force, ...)
 	for(var/mob/occupant AS in occupants)
 		mob_leave(occupant)
@@ -59,6 +52,13 @@
 	QDEL_NULL(reservation) //all the turfs/objs are deleted past this point
 	container = null
 	return ..()
+
+///connects all atoms as needed to the interior. seperate so it can be used in debugging
+/datum/interior/proc/connect_atoms()
+	for(var/turf/tile AS in loaded_turfs)
+		for(var/atom/subject AS in tile.GetAllContents())
+			subject.link_interior(src)
+		CHECK_TICK
 
 ///called when someone enters the container
 /datum/interior/proc/on_container_enter(datum/source, atom/movable/moved_in, direction)
@@ -99,4 +99,4 @@
 
 /area/interior
 	name = "ERROR AREA DO NOT USE"
-	base_lighting_alpha = 255
+	base_lighting_alpha = 128

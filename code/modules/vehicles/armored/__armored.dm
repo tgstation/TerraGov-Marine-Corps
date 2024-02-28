@@ -226,16 +226,20 @@
 	else if(length(return_controllers_with_flag(VEHICLE_CONTROL_EQUIPMENT)) < 1)
 		add_control_flags(new_occupant, VEHICLE_CONTROL_MELEE|VEHICLE_CONTROL_EQUIPMENT)
 
+/obj/vehicle/sealed/armored/exit_location(mob/M)
+	return get_step(src, REVERSE_DIR(dir))
+
+///called when a mob tried to leave our interior
 /obj/vehicle/sealed/armored/proc/interior_exit(mob/leaver, datum/interior/inside, teleport)
 	if(!teleport)
 		remove_occupant(leaver)
 		return
 	mob_exit(leaver, TRUE)
 
-/obj/vehicle/sealed/armored/exit_location(mob/M)
-	return get_step(src, REVERSE_DIR(dir))
-
 /obj/vehicle/sealed/armored/mob_try_enter(mob/M)
+	if(isobserver(M))
+		interior?.mob_enter(M)
+		return FALSE
 	if(!ishuman(M))
 		return FALSE
 	return ..()
@@ -287,10 +291,6 @@
 		if(crew.wear_id?.iff_signal & proj.iff_signal)
 			return FALSE
 	return ..()
-
-/obj/vehicle/sealed/armored/attack_ghost(mob/dead/observer/user)
-	. = ..()
-	interior?.mob_enter(user)
 
 /obj/vehicle/sealed/armored/attack_hand(mob/living/user)
 	. = ..()

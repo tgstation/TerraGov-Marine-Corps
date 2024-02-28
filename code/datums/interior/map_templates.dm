@@ -1,6 +1,8 @@
 /datum/map_template/interior
 	name = "Base Interior Template"
+	///just the prefix so we dont need to fill in the entire thing
 	var/prefix = "_maps/interiors/"
+	///filename without file type for the map
 	var/filename
 
 /datum/map_template/interior/New()
