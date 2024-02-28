@@ -14,7 +14,7 @@
 	pull_speed = -2
 
 /mob/living/carbon/xenomorph/beetle/Bump(atom/A)
-	if(!throwing || !throw_source || !thrower)
+	if(!(xeno_flags & XENO_LEAPING) || !throwing || !throw_source || !thrower)
 		return ..()
 	if(!ishuman(A))
 		return ..()
@@ -25,3 +25,4 @@
 	target_turf = get_step_rand(target_turf) //Scatter
 	H.throw_at(get_turf(target_turf), 4, 5, H)
 	H.Paralyze(2 SECONDS)
+	return TRUE

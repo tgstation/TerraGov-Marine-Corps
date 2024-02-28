@@ -49,7 +49,7 @@
 // *********** Mob overrides
 // ***************************************
 /mob/living/carbon/xenomorph/defender/Bump(atom/A)
-	if(!throwing || !throw_source || !thrower)
+	if(!(xeno_flags & XENO_LEAPING) || !throwing || !throw_source || !thrower)
 		return ..()
 	if(!ishuman(A))
 		return ..()
@@ -60,6 +60,7 @@
 	target_turf = get_step_rand(target_turf) //Scatter
 	human_victim.throw_at(get_turf(target_turf), DEFENDER_CHARGE_RANGE, 5, src)
 	human_victim.Paralyze(4 SECONDS)
+	return TRUE
 
 /mob/living/carbon/xenomorph/defender/Initialize(mapload)
 	. = ..()

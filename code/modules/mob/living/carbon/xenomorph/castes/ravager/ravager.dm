@@ -23,7 +23,7 @@
 // *********** Mob overrides
 // ***************************************
 /mob/living/carbon/xenomorph/ravager/Bump(atom/A)
-	if(!throwing || !usedPounce || !throw_source || !thrower) //Must currently be charging to knock aside and slice marines in it's path
+	if(!throwing || !(xeno_flags & XENO_LEAPING) || !throw_source || !thrower) //Must currently be charging to knock aside and slice marines in it's path
 		return ..() //It's not pouncing; do regular Bump() IE body block but not throw_impact() because ravager isn't being thrown
 	if(!ishuman(A)) //Must also be a human; regular Bump() will default to throw_impact() which means ravager will plow through tables but get stopped by cades and walls
 		return ..()

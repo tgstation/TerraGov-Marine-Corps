@@ -101,6 +101,8 @@
 /datum/action/ability/activable/xeno/forward_charge/proc/charge_complete()
 	SIGNAL_HANDLER
 	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_MOVABLE_POST_THROW))
+	var/mob/living/carbon/xenomorph/ravager/xeno_owner = owner
+	xeno_owner.xeno_flags &= ~XENO_LEAPING
 
 /datum/action/ability/activable/xeno/forward_charge/proc/mob_hit(datum/source, mob/M)
 	SIGNAL_HANDLER
@@ -131,29 +133,30 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/forward_charge/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
 
-	if(!do_after(X, windup_time, IGNORE_HELD_ITEM, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, ABILITY_USE_BUSY)))
+	if(!do_after(xeno_owner, windup_time, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, ABILITY_USE_BUSY)))
 		return fail_activate()
 
-	var/mob/living/carbon/xenomorph/defender/defender = X
+	var/mob/living/carbon/xenomorph/defender/defender = xeno_owner
 	if(defender.fortify)
-		var/datum/action/ability/xeno_action/fortify/fortify_action = X.actions_by_path[/datum/action/ability/xeno_action/fortify]
+		var/datum/action/ability/xeno_action/fortify/fortify_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/fortify]
 
 		fortify_action.set_fortify(FALSE, TRUE)
 		fortify_action.add_cooldown()
-		to_chat(X, span_xenowarning("We rapidly untuck ourselves, preparing to surge forward."))
+		to_chat(xeno_owner, span_xenowarning("We rapidly untuck ourselves, preparing to surge forward."))
 
-	X.visible_message(span_danger("[X] charges towards \the [A]!"), \
+	xeno_owner.visible_message(span_danger("[X] charges towards \the [A]!"), \
 	span_danger("We charge towards \the [A]!") )
-	X.emote("roar")
+	xeno_owner.emote("roar")
 	succeed_activate()
 
 	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
 	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
 	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
+	xeno_owner.xeno_flags |= XENO_LEAPING
 
-	X.throw_at(A, DEFENDER_CHARGE_RANGE, 5, X)
+	xeno_owner.throw_at(A, DEFENDER_CHARGE_RANGE, 5, X)
 
 	add_cooldown()
 
