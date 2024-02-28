@@ -456,7 +456,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /obj/item/mine/fire_act()
 	volatility_check(MINE_VOLATILE_FIRE)
 
-/obj/item/mine/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
+/obj/item/mine/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration, mob/living/blame_mob)
 	if(damage_amount)	//Only do this if the mine actually took damage; run it before damage is dealt in case it destroys the mine
 		volatility_check(MINE_VOLATILE_DAMAGE)
 	return ..()
