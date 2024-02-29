@@ -300,7 +300,7 @@
 		owner.buckled.unbuckle_mob(owner)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(movement_fx))
 	RegisterSignal(owner, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(object_hit))
-	RegisterSignal(owner, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
+	RegisterSignal(owner, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
 	RegisterSignal(owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(pounce_complete))
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_POUNCE)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
@@ -322,15 +322,17 @@
 
 /datum/action/ability/activable/xeno/pounce/proc/mob_hit(datum/source, mob/living/living_target)
 	SIGNAL_HANDLER
-	if(living_target.stat)
+	. = TRUE
+	if(living_target.stat || isxeno(living_target)) //we leap past xenos
 		return
+
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(ishuman(living_target) && (angle_to_dir(Get_Angle(xeno_owner.throw_source, living_target)) in reverse_nearby_direction(living_target.dir)))
 		var/mob/living/carbon/human/human_target = living_target
 		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
 			xeno_owner.Paralyze(XENO_POUNCE_SHIELD_STUN_DURATION)
 			xeno_owner.set_throwing(FALSE)
-			return COMPONENT_KEEP_THROWING
+			return
 	trigger_pounce_effect(living_target)
 	pounce_complete()
 
@@ -344,7 +346,7 @@
 
 /datum/action/ability/activable/xeno/pounce/proc/pounce_complete()
 	SIGNAL_HANDLER
-	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_MOVABLE_POST_THROW))
+	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENOMORPH_LEAP_BUMP, COMSIG_MOVABLE_POST_THROW))
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_POUNCE_END)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.xeno_flags &= ~XENO_LEAPING
