@@ -277,7 +277,7 @@
 /mob/living/carbon/proc/add_ability(datum/action/ability/new_ability)
 	if(!new_ability)
 		return
-	new_ability = new new_ability
+	new_ability = new new_ability(src)
 	new_ability.give_action(src)
 
 ///Removes an ability from a mob
