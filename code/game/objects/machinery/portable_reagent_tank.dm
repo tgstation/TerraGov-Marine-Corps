@@ -146,7 +146,7 @@
 
 /obj/item/storage/reagent_tank/update_overlays()
 	. = ..()
-	if(reagents.total_volume)
+	if(reagents?.total_volume)
 		var/image/filling = image(icon, src, "[icon_state]")
 		var/percent = round((reagents.total_volume/max_volume) * 100)
 		switch(percent)
