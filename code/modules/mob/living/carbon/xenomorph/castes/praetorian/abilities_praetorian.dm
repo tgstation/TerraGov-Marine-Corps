@@ -172,8 +172,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/mob/living/carbon/carbon_victim = living_target
 	carbon_victim.ParalyzeNoChain(0.5 SECONDS)
 
-	to_chat(carbon_victim, span_highdanger("The [src] tackles us, sending us behind them!"))
-	owner.visible_message(span_xenodanger("\The [src] tackles [carbon_victim], swapping location with them!"), \
+	to_chat(carbon_victim, span_highdanger("The [owner] tackles us, sending us behind them!"))
+	owner.visible_message(span_xenodanger("\The [owner] tackles [carbon_victim], swapping location with them!"), \
 		span_xenodanger("We push [carbon_victim] in our acid trail!"), visible_message_flags = COMBAT_MESSAGE)
 
 /datum/action/ability/activable/xeno/charge/acid_dash/charge_complete()
