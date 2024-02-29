@@ -1,0 +1,4 @@
+author: "tyeagg"
+delete-after: True
+changes:
+  - bugfix: "rust-g not compiled with pathfinder feature"
