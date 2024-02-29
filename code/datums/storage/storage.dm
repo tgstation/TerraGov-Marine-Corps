@@ -861,7 +861,7 @@
 /datum/storage/proc/handle_atom_del(datum/source, atom/movable/movable_atom)
 	SIGNAL_HANDLER
 	if(istype(movable_atom, /obj/item))
-		INVOKE_ASYNC(src, PROC_REF(remove_from_storage), movable_atom)
+		INVOKE_ASYNC(src, PROC_REF(remove_from_storage), movable_atom, movable_atom.loc, usr)
 
 ///signal sent from /atom/proc/max_stack_merging()
 /datum/storage/proc/max_stack_merging(datum/source, obj/item/stack/stacks)
