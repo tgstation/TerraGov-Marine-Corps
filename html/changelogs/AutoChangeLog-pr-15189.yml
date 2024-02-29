@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - rscadd: "Added interiors that can be attached to any object"
-  - rscadd: "Tank now has an interior"

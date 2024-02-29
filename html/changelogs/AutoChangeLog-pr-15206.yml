@@ -1,4 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - bugfix: "Landmark resin walls now properly function"
