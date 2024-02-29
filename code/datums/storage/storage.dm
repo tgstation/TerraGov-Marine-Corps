@@ -917,7 +917,7 @@
  * * start_from_left - If true we draw the leftmost object instead of the rightmost. FALSE by default.
  */
 /datum/storage/proc/attempt_draw_object(mob/living/user, start_from_left = FALSE)
-	if(!ishuman(user) || user.incapacitated() || isturf(parent.loc))
+	if(!ishuman(user) || user.incapacitated())
 		return
 	if(!length(parent.contents))
 		return user.balloon_alert(user, "Empty")

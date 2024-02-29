@@ -633,6 +633,7 @@
 #include "code\datums\storage\subtypes\pouch.dm"
 #include "code\datums\storage\subtypes\reagent_tank.dm"
 #include "code\datums\storage\subtypes\surgical_tray.dm"
+#include "code\datums\storage\subtypes\tank.dm"
 #include "code\datums\storage\subtypes\wallet.dm"
 #include "code\datums\weather\weather.dm"
 #include "code\datums\weather\weather_types\acid_rain.dm"
