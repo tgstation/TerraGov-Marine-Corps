@@ -1436,6 +1436,7 @@
 /obj/item/weapon/gun/rifle/sectoid_rifle
 	name = "alien rifle"
 	desc = "An unusual gun of alien origin. It is lacking a trigger or any obvious way to fire it."
+	icon = 'icons/obj/items/guns/energy.dmi'
 	icon_state = "alien_rifle"
 	item_state = "alien_rifle"
 	item_icons = list(

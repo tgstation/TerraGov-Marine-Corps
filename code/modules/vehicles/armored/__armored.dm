@@ -1,6 +1,6 @@
 
 /obj/vehicle/sealed/armored
-	name = "\improper TAV - Shortstreet MK4"
+	name = "\improper MT - Shortstreet MK4"
 	desc = "An adorable chunk of metal with an alarming amount of firepower designed to crush, immolate, destroy and maim anything that Nanotrasen wants it to. This model contains advanced Bluespace technology which allows a TARDIS-like amount of room on the inside."
 	icon = 'icons/obj/armored/1x1/tinytank.dmi'
 	icon_state = "tank"
@@ -44,6 +44,8 @@
 	///Overlay for larger vehicles that need under parts
 	var/image/underlay
 
+	///reference to our interior datum if set, uses the typepath its set to
+	var/datum/interior/armored/interior
 	///What weapon we have in our primary slot
 	var/obj/item/armored_weapon/primary_weapon
 	///What weapon we have in our secondary slot
@@ -64,6 +66,8 @@
 	var/ram_damage = 20
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
+	if(interior)
+		interior = new interior(src, CALLBACK(src, PROC_REF(interior_exit)))
 	. = ..()
 	if(flags_armored & ARMORED_HAS_UNDERLAY)
 		underlay = new(icon, icon_state + "_underlay", layer = layer-0.1)
@@ -116,15 +120,19 @@
 	QDEL_NULL(gunner_utility_module)
 	QDEL_NULL(damage_overlay)
 	QDEL_NULL(turret_overlay)
+	QDEL_NULL(interior)
 	underlay = null
 	GLOB.tank_list -= src
 	return ..()
 
 /obj/vehicle/sealed/armored/generate_actions()
-	initialize_passenger_action_type(/datum/action/vehicle/sealed/armored/eject)
-	initialize_passenger_action_type(/datum/action/vehicle/sealed/armored/swap_seat)
 	if(flags_armored & ARMORED_HAS_HEADLIGHTS)
 		initialize_controller_action_type(/datum/action/vehicle/sealed/armored/toggle_lights, VEHICLE_CONTROL_SETTINGS)
+	if(interior)
+		return
+	initialize_passenger_action_type(/datum/action/vehicle/sealed/armored/eject)
+	if(max_occupants > 1)
+		initialize_passenger_action_type(/datum/action/vehicle/sealed/armored/swap_seat)
 
 /obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag)
 	. = ..()
@@ -207,6 +215,8 @@
 	A.vehicle_collision(src, get_dir(src, A), get_turf(loc), get_turf(loc), pilot)
 
 /obj/vehicle/sealed/armored/auto_assign_occupant_flags(mob/new_occupant)
+	if(interior) //handled by interior seats
+		return
 	if(max_occupants == 1)
 		add_control_flags(new_occupant, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS|VEHICLE_CONTROL_MELEE|VEHICLE_CONTROL_EQUIPMENT)
 		return
@@ -219,15 +229,25 @@
 /obj/vehicle/sealed/armored/exit_location(mob/M)
 	return get_step(src, REVERSE_DIR(dir))
 
+///called when a mob tried to leave our interior
+/obj/vehicle/sealed/armored/proc/interior_exit(mob/leaver, datum/interior/inside, teleport)
+	if(!teleport)
+		remove_occupant(leaver)
+		return
+	mob_exit(leaver, TRUE)
+
 /obj/vehicle/sealed/armored/mob_try_enter(mob/M)
+	if(isobserver(M))
+		interior?.mob_enter(M)
+		return FALSE
 	if(!ishuman(M))
 		return FALSE
 	return ..()
 
 /obj/vehicle/sealed/armored/add_occupant(mob/M, control_flags)
-	RegisterSignal(M, COMSIG_MOB_DEATH, PROC_REF(mob_exit), TRUE)
-	RegisterSignal(M, COMSIG_MOB_MOUSEDOWN, PROC_REF(on_mouseclick), TRUE)
-	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against), TRUE)
+	if(!interior)
+		RegisterSignal(M, COMSIG_MOB_DEATH, PROC_REF(mob_exit), TRUE)
+		RegisterSignal(M, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against), TRUE)
 	. = ..()
 	if(primary_weapon)
 		var/list/primary_icons
@@ -244,17 +264,26 @@
 			secondary_icons = list(secondary_weapon.hud_state_empty, secondary_weapon.hud_state_empty)
 		M.hud_used.add_ammo_hud(secondary_weapon, secondary_icons, secondary_weapon.ammo.current_rounds)
 
+/obj/vehicle/sealed/armored/after_add_occupant(mob/M)
+	. = ..()
+	if(interior)
+		REMOVE_TRAIT(M, TRAIT_HANDS_BLOCKED, VEHICLE_TRAIT)
+
+/obj/vehicle/sealed/armored/grant_controller_actions_by_flag(mob/M, flag)
+	. = ..()
+	if(. && (flag & VEHICLE_CONTROL_EQUIPMENT))
+		RegisterSignal(M, COMSIG_MOB_MOUSEDOWN, PROC_REF(on_mouseclick), TRUE)
+
+/obj/vehicle/sealed/armored/remove_controller_actions_by_flag(mob/M, flag)
+	. = ..()
+	if(. && (flag & VEHICLE_CONTROL_EQUIPMENT))
+		UnregisterSignal(M, COMSIG_MOB_MOUSEDOWN)
+
 /obj/vehicle/sealed/armored/remove_occupant(mob/M)
 	M.hud_used.remove_ammo_hud(primary_weapon)
 	M.hud_used.remove_ammo_hud(secondary_weapon)
 	UnregisterSignal(M, COMSIG_MOB_DEATH)
-	UnregisterSignal(M, COMSIG_MOB_MOUSEDOWN)
 	UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
-	if(M.client)
-		M.update_mouse_pointer()
-		M.client.view_size.reset_to_default()
-		if(is_equipment_controller(M))
-			zoom_mode = FALSE
 	return ..()
 
 /obj/vehicle/sealed/armored/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
@@ -265,6 +294,8 @@
 
 /obj/vehicle/sealed/armored/attack_hand(mob/living/user)
 	. = ..()
+	if(interior) // handled by gun breech
+		return
 	if(!primary_weapon)
 		balloon_alert(user, "no primary")
 		return
@@ -286,6 +317,8 @@
 
 /obj/vehicle/sealed/armored/attack_hand_alternate(mob/living/user)
 	. = ..()
+	if(interior) // handled by gun breech
+		return
 	if(!secondary_weapon)
 		balloon_alert(user, "no secondary")
 		return
@@ -317,6 +350,12 @@
 		user.temporarilyRemoveItemFromInventory(I)
 		gun.attach(src, TRUE)
 		return
+	if(istype(I, /obj/item/tank_module))
+		var/obj/item/tank_module/mod = I
+		mod.on_equip(src, user)
+		return
+	if(!interior) // if interior handle by gun breech
+		return
 	if(istype(I, /obj/item/ammo_magazine))
 		if(!primary_weapon)
 			balloon_alert(user, "no primary weapon")
@@ -337,10 +376,6 @@
 		else
 			primary_weapon.ammo_magazine += I
 			balloon_alert(user, "magazines [length(primary_weapon.ammo_magazine)]/[primary_weapon.maximum_magazines]")
-		return
-	if(istype(I, /obj/item/tank_module))
-		var/obj/item/tank_module/mod = I
-		mod.on_equip(src, user)
 
 /obj/vehicle/sealed/armored/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
@@ -353,6 +388,18 @@
 			return
 		user.temporarilyRemoveItemFromInventory(I)
 		gun.attach(src, FALSE)
+		return
+	if(isscrewdriver(I))
+		if(!gunner_utility_module)
+			balloon_alert(user, "no gunner utility module")
+			return
+		balloon_alert(user, "detaching gunner utility")
+		if(!do_after(user, 2 SECONDS, NONE, src))
+			return
+		gunner_utility_module.on_unequip(user)
+		balloon_alert(user, "detached")
+		return
+	if(!interior) // if interior handle by gun breech
 		return
 	if(istype(I, /obj/item/ammo_magazine))
 		if(!secondary_weapon)
@@ -374,17 +421,6 @@
 		else
 			secondary_weapon.ammo_magazine += I
 			balloon_alert(user, "magazines [length(secondary_weapon.ammo_magazine)]/[secondary_weapon.maximum_magazines]")
-		return
-	if(!isscrewdriver(I))
-		return
-	if(!gunner_utility_module)
-		balloon_alert(user, "no gunner utility module")
-		return
-	balloon_alert(user, "detaching gunner utility")
-	if(!do_after(user, 2 SECONDS, NONE, src))
-		return
-	gunner_utility_module.on_unequip(user)
-	balloon_alert(user, "detached")
 
 
 /obj/vehicle/sealed/armored/welder_act(mob/living/user, obj/item/I)

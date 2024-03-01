@@ -10,11 +10,8 @@
 	Machines will always output in the direction they are facing and input from the opposite direction.<br>
 	<br>
 	RECIPES:<br>
-	WP GRENADE:<br>
-	UNBOXER -> CUTTER -> HEATER -> FORMER<br>
-	<br>
-	M15 GRENADE:<br>
-	UNBOXER -> CUTTER -> FORMER<br>
+	ALL GRENADES:<br>
+	UNBOXER -> CUTTER -> HEATER -> FORMER -> COMPRESSOR<br>
 	<br>
 	PIZZA:<br>
 	UNBOXER -> CUTTER -> HEATER<br>
@@ -38,17 +35,10 @@
 	UNBOXER -> CUTTER -> FLATTER<br>
 	<br>
 	ALL RAILGUN AMMO:<br>
-	ALL RAILGUN AMMO:<br>
 	UNBOXER -> CUTTER -> FLATTER -> ATOMIC RECONSTRUCTOR<br>
 	<br>
 	MINIGUN POWERPACK:<br>
 	UNBOXER -> CUTTER -> ATMOIC RECONSTRUCTOR -> FORMER<br>
-	<br>
-	RAZORFOAM GRENADES:<br>
-	UNBOXER -> CUTTER -> FORMER -> HEATER<br>
-	<br>
-	SR-127 FLAK AMMO:<br>
-	UNBOXER -> CUTTER -> ATOMIC RECONSTRUCTOR<br>
 	<br>
 	SR-127 FLAK AMMO:<br>
 	UNBOXER -> CUTTER -> ATOMIC RECONSTRUCTOR<br>

@@ -1,0 +1,5 @@
+author: "Naaanii"
+delete-after: True
+changes:
+  - rscadd: "Adds Incendiary, Sticky, Cloak, Tfoot, Trailblazer, Lasernade, HEFA and Antigas grenades to reqtorio."
+  - balance: "Adjusted the price and yield of M15, WP and razor nades in reqtorio."

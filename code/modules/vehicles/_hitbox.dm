@@ -125,7 +125,7 @@
 	if(ISDIAGONALDIR(direction))
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	if((root.dir != direction) && (root.dir != REVERSE_DIR(direction)))
-		root.setDir(direction) // tivi todo dupe on medium size kill me
+		root.setDir(direction)
 		if(isarmoredvehicle(root))
 			var/obj/vehicle/sealed/armored/armor = root
 			playsound(armor, armor.engine_sound, 100, TRUE, 20)
