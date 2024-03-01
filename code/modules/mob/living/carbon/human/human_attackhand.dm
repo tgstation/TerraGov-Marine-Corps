@@ -122,7 +122,7 @@
 			var/list/hit_report = list()
 			if(damage >= 4 && prob(25))
 				visible_message(span_danger("[human_user] has weakened [src]!"), null, null, 5)
-				apply_effect(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
+				apply_effect((4 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
 				hit_report += "(KO)"
 
 			damage += attack.damage
@@ -169,7 +169,7 @@
 			var/randn = rand(1, 100) + skills.getRating(SKILL_CQC) * CQC_SKILL_DISARM_MOD - human_user.skills.getRating(SKILL_CQC) * CQC_SKILL_DISARM_MOD
 
 			if (randn <= 25)
-				apply_effect(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
+				apply_effect((4 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				visible_message(span_danger("[human_user] has pushed [src]!"), null, null, 5)
 				log_combat(human_user, src, "pushed")
