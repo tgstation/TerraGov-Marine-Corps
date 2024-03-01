@@ -201,7 +201,7 @@
 	X.set_canmove(TRUE)
 
 	var/datum/action/ability/xeno_action/ready_charge/charge = X.actions_by_path[/datum/action/ability/xeno_action/ready_charge]
-	var/aimdir = get_dir(X, ABILITY_MOB_TARGET)
+	var/aimdir = get_dir(X, A)
 	if(charge)
 		charge.charge_on(FALSE)
 		charge.do_stop_momentum(FALSE) //Reset charge so next_move_limit check_momentum() does not cuck us and 0 out steps_taken
