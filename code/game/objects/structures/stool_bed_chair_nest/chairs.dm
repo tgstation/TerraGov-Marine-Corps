@@ -412,7 +412,7 @@
 	name = "doublewide seat"
 	icon_state = "doublewide_chair" //only facing south cause the rest are ugly
 	max_integrity = 130
-	/// Handles the color of the chair 
+	/// Handles the color of the chair
 	var/chair_color = NO_CHAIR_COLOR
 	/// If the chair can only be sat in by a leader or not
 	var/leader_chair = FALSE
@@ -427,8 +427,11 @@
 	return ..()
 
 /obj/structure/bed/chair/dropship/doublewide/welder_act(mob/living/user, obj/item/I)
+	if(LAZYLEN(buckled_mobs))
+		balloon_alert_to_viewers("You cannot repair this chair while someone is sitting in it")
+		return
 	welder_repair_act(user, I, 130, 1 SECONDS, 0, SKILL_ENGINEER_METAL, 1)
-	chair_state = DROPSHIP_CHAIR_FOLDED
+	chair_state = DROPSHIP_CHAIR_UNBUCKLED
 	update_icon()
 	return
 
