@@ -1,0 +1,5 @@
+author: "AzonStarfall"
+delete-after: True
+changes:
+  - rscdel: "Removed references to high-tier xenomorph research samples."
+  - bugfix: "Simplified the name of spawnable xenomorph research samples."
