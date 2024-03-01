@@ -52,5 +52,5 @@
 	rewards_max = 4
 	map_icon = "excav_xeno"
 	rewards = list(
-		/obj/item/research_resource/xeno/tier_one,
+		/obj/item/research_resource/xeno,
 	)
