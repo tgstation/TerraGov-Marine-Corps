@@ -112,7 +112,6 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/mission_projectile_damage = 0
 	var/mission_friendly_fire_damage = 0
 	var/mission_melee_damage = 0
-	var/mission_delimbs = 0
 	var/mission_revives = 0
 	var/mission_times_revived = 0
 	var/mission_structures_built = 0
@@ -305,7 +304,6 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	mission_times_revived = 0
 	mission_structures_built = 0
 	mission_melee_damage = 0
-	mission_delimbs = 0
 	mission_objective_destroyed = 0
 	mission_blocker_destroyed = 0
 	mission_objective_captured = 0
@@ -321,7 +319,6 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	credit_bonus += mission_projectile_damage * 0.1
 	credit_bonus -= mission_friendly_fire_damage * 0.2
 	credit_bonus += mission_melee_damage * 0.2
-	credit_bonus += mission_delimbs * 3
 	credit_bonus += mission_revives * 15
 	credit_bonus += mission_times_revived * 5 //purple heart
 	credit_bonus += mission_structures_built * 6
@@ -362,7 +359,6 @@ The alternative is scattering them everywhere under their respective objects whi
 		personal_statistics.limbs_lost++
 	personal_statistics = GLOB.personal_statistics_list[user.ckey]
 	personal_statistics.delimbs++
-	personal_statistics.mission_delimbs++
 	return TRUE
 
 ///Record whenever a player shoots things, taking into account bonus projectiles without running these checks multiple times

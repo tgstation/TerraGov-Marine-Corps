@@ -1,5 +1,5 @@
 /obj/vehicle/sealed/armored/multitile
-	name = "TAV - Rhino"
+	name = "\improper MT - Ares"
 	desc = "A gigantic wall of metal designed for maximum Xeno destruction. Drag yourself onto it at an entrance to get inside."
 	icon = 'icons/obj/armored/3x3/tank.dmi'
 	turret_icon = 'icons/obj/armored/3x3/tank_gun.dmi'
@@ -7,6 +7,7 @@
 	damage_icon_path = 'icons/obj/armored/3x3/tank_damage.dmi'
 	icon_state = "tank"
 	hitbox = /obj/hitbox
+	interior = /datum/interior/armored
 	flags_atom = DIRLOCK|BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
 	flags_armored = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_MAP_VARIANTS|ARMORED_HAS_HEADLIGHTS
 	pixel_x = -48

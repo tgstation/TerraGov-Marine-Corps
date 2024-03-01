@@ -381,6 +381,7 @@
 /obj/machinery/vending/nanomed/tadpolemed
 	name = "Flight surgeon medical equipment dispenser"
 	desc = "Dedicated for the surgeon with wings, this humble box contains a lot for its size."
+	layer = ABOVE_OBJ_LAYER
 	products = list(
 		"Autoinjectors" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 2,

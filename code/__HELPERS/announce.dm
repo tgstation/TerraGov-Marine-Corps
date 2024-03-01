@@ -135,7 +135,7 @@
  * * alert - optional, alert or notice?
  * * receivers - a list of all players to send the message to
  */
-/proc/minor_announce(message, title = "Attention:", alert, list/receivers = GLOB.alive_human_list)
+/proc/minor_announce(message, title = "Attention:", alert, list/receivers = GLOB.alive_human_list, should_play_sound = TRUE)
 	if(!message)
 		return
 
@@ -148,7 +148,8 @@
 				message = message,
 				minor = TRUE
 			))
-			SEND_SOUND(M, S)
+			if(should_play_sound)
+				SEND_SOUND(M, S)
 
 #undef span_alert_header
 #undef span_faction_alert_title

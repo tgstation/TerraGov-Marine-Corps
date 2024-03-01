@@ -1,0 +1,7 @@
+2024-03-01:
+  Lumipharon:
+  - code_imp: Tiny tweak to directional attack code
+  - balance: Blowing up a wraith portal kills both ends of the portal now
+  - bugfix: fixed a runtime with adjacency checks
+  tyeagg:
+  - bugfix: rust-g not compiled with pathfinder feature

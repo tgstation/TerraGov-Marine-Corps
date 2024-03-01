@@ -10,11 +10,48 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGER_CHARGE,
 	)
+	///charge distance
+	var/charge_range = RAV_CHARGEDISTANCE
 
-/datum/action/ability/activable/xeno/charge/proc/charge_complete()
-	SIGNAL_HANDLER
-	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_LIVING_THROW_HIT))
+/datum/action/ability/activable/xeno/charge/use_ability(atom/A)
+	if(!A)
+		return
+	var/mob/living/carbon/xenomorph/ravager/X = owner
 
+	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
+	RegisterSignal(X, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
+
+	X.visible_message(span_danger("[X] charges towards \the [A]!"), \
+	span_danger("We charge towards \the [A]!") )
+	X.emote("roar")
+	X.xeno_flags |= XENO_LEAPING //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
+	succeed_activate()
+
+	X.throw_at(A, charge_range, RAV_CHARGESPEED, X)
+
+	add_cooldown()
+
+/datum/action/ability/activable/xeno/charge/on_cooldown_finish()
+	to_chat(owner, span_xenodanger("Our exoskeleton quivers as we get ready to use [name] again."))
+	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
+	return ..()
+
+/datum/action/ability/activable/xeno/charge/ai_should_start_consider()
+	return TRUE
+
+/datum/action/ability/activable/xeno/charge/ai_should_use(atom/target)
+	if(!iscarbon(target))
+		return FALSE
+	if(!line_of_sight(owner, target, charge_range))
+		return FALSE
+	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
+	return TRUE
+
+///Deals with hitting objects
 /datum/action/ability/activable/xeno/charge/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
 	if(istype(target, /obj/structure/table))
@@ -26,57 +63,28 @@
 	target.hitby(owner, speed) //This resets throwing.
 	charge_complete()
 
-/datum/action/ability/activable/xeno/charge/proc/mob_hit(datum/source, mob/M)
+///Deals with hitting mobs. Triggered by bump instead of throw impact as we want to plow past mobs
+/datum/action/ability/activable/xeno/charge/proc/mob_hit(datum/source, mob/living/living_target)
 	SIGNAL_HANDLER
-	if(M.stat || isxeno(M))
+	. = TRUE
+	if(living_target.stat || isxeno(living_target)) //we leap past xenos
 		return
-	return COMPONENT_KEEP_THROWING //Ravagers plow straight through humans; we only stop on hitting a dense turf
 
-/datum/action/ability/activable/xeno/charge/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(!A)
-		return FALSE
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
+	var/target_turf = get_ranged_target_turf(living_target, get_dir(src, living_target), rand(1, 3)) //we blast our victim behind us
+	target_turf = get_step_rand(target_turf) //Scatter
+	if(iscarbon(living_target))
+		var/mob/living/carbon/carbon_victim = living_target
+		carbon_victim.Paralyze(2 SECONDS)
+	living_target.throw_at(get_turf(target_turf), charge_range, RAV_CHARGESPEED, src)
 
-/datum/action/ability/activable/xeno/charge/on_cooldown_finish()
-	to_chat(owner, span_xenodanger("Our exoskeleton quivers as we get ready to use Eviscerating Charge again."))
-	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
-	var/mob/living/carbon/xenomorph/ravager/X = owner
-	X.usedPounce = FALSE
-	return ..()
-
-/datum/action/ability/activable/xeno/charge/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/ravager/X = owner
-
-	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
-	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
-	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
-
-	X.visible_message(span_danger("[X] charges towards \the [A]!"), \
-	span_danger("We charge towards \the [A]!") )
-	X.emote("roar") //heheh
-	X.usedPounce = TRUE //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
-	succeed_activate()
-
-	X.throw_at(A, RAV_CHARGEDISTANCE, RAV_CHARGESPEED, X)
-
-	add_cooldown()
-
-/datum/action/ability/activable/xeno/charge/ai_should_start_consider()
-	return TRUE
-
-/datum/action/ability/activable/xeno/charge/ai_should_use(atom/target)
-	if(!iscarbon(target))
-		return FALSE
-	if(!line_of_sight(owner, target, 4))
-		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
-		return FALSE
-	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
-		return FALSE
-	return TRUE
-
+///Cleans up after charge is finished
+/datum/action/ability/activable/xeno/charge/proc/charge_complete()
+	SIGNAL_HANDLER
+	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENOMORPH_LEAP_BUMP))
+	var/mob/living/carbon/xenomorph/ravager/xeno_owner = owner
+	xeno_owner.xeno_flags &= ~XENO_LEAPING
 
 // ***************************************
 // *********** Ravage

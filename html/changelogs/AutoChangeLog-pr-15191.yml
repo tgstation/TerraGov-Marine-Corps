@@ -1,0 +1,4 @@
+author: "2whatever2"
+delete-after: True
+changes:
+  - balance: "2x damage on Genghis charge flames, 0.5x on it's timer. (17, 31) --> (9, 62) (Time rounded up.)"

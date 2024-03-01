@@ -432,3 +432,60 @@
   Wisemonster:
   - balance: ERT ships will now have plasteel cades protecting their doors.
   - code_imp: Added a plasteel child that spawns in closed
+2024-02-26:
+  Barnet2:
+  - balance: Daedalus Prison has weaker tables and pre-broken fences for a better
+      prep experience
+  - bugfix: Snows shows up as a proper texture in SDMM
+2024-02-27:
+  Barnet2:
+  - balance: Boiler no longer has to root to fire
+  - spellcheck: New groundside marine ranks
+  - balance: Antigas nade req price reduced to 600, 20 nades in vendor instead of
+      10
+  - balance: Widow and Puppeteer minions have a 5% chance to hit their selected limb
+      (chest) instead of a 70% chance.
+  - rscadd: Xeno manifest on lobby screen
+  - balance: Queen has a sunder multiplier of 0.8 (takes 80% sunder), Crusher has
+      a sunder multiplier of 0.5 (takes 50% sunder)
+  DeltaFire15:
+  - bugfix: The new larva queue check should no longer be broken.
+  Helg2:
+  - code_imp: Weather danger messages now can be filtered by chat settings.
+  Lumipharon:
+  - balance: 'Campaign: Improved HP, shield and stamina perks'
+  - bugfix: fixed a larva queue issue
+  - bugfix: fixed xeno plasma hud getting stuck on death
+  - balance: Meleeing humans can no longer embed the item
+  - balance: 'Campaign: Slightly increased some credit reward values, and loss bonus
+      now applies to mission credit rewards'
+  Pariah919:
+  - balance: AC has significantly more wall damage to keep up with wall resistance
+      buffs.
+  Wisemonster:
+  - qol: The tadpole surgery dispenser now layers over objects
+  exdal:
+  - rscadd: AI VOX announcements are now visible on chat
+2024-02-28:
+  Lumipharon:
+  - bugfix: Fixed a new issue with the larva queue
+  - balance: 'Campaign: Shotgun perk unlocks shotgun in the backslot for SL''s and
+      veterans'
+  - bugfix: fixed conveyors not working in some cases
+  Xander3359:
+  - code_imp: add emp signal
+  exdal:
+  - code_imp: Observers and AI now receive VOX announcement message
+2024-02-29:
+  Barnet2:
+  - rscadd: Bulletproof, Hardy and Fireproof walls
+  - bugfix: Landmark resin walls now properly function
+  Lumipharon:
+  - balance: 'Campaign: Delimbing no longer provides additional credits'
+  - bugfix: 'Campaign: Fixed the tactical reserve asset'
+  - imageadd: Added some new portraits to some campaign assets
+  - bugfix: fixed the sectoid gun sprite
+  TiviPlus:
+  - rscadd: Custom squad UIs will now open during the round automatically
+  - rscadd: Added interiors that can be attached to any object
+  - rscadd: Tank now has an interior

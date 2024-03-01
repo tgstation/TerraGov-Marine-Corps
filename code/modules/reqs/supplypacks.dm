@@ -868,7 +868,7 @@ EXPLOSIVES
 	name = "M40-AG Anti-Gas grenade box crate"
 	notes = "Cotains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/antigas)
-	cost = 700
+	cost = 600
 
 /datum/supply_packs/explosives/explosives_cloak
 	name = "M40-2 SCDP grenade box crate"
@@ -2081,15 +2081,50 @@ FACTORY
 	contains = list(/obj/machinery/unboxer)
 	cost = 50
 
-/datum/supply_packs/factory/phosphosrefill
-	name = "Phosphorus-resistant plates refill"
-	contains = list(/obj/item/factory_refill/phosnade_refill)
-	cost = 900
-
 /datum/supply_packs/factory/bignaderefill
 	name = "Rounded M15 plates refill"
 	contains = list(/obj/item/factory_refill/bignade_refill)
+	cost = 700
+
+/datum/supply_packs/factory/incennaderefill
+	name = "Incendiary grenade refill"
+	contains = list(/obj/item/factory_refill/incennade_refill)
 	cost = 500
+
+/datum/supply_packs/factory/stickynaderefill
+	name = "Adhesive grenade refill"
+	contains = list(/obj/item/factory_refill/stickynade_refill)
+	cost = 450
+
+/datum/supply_packs/factory/phosphosrefill
+	name = "Phosphorus-resistant plates refill"
+	contains = list(/obj/item/factory_refill/phosnade_refill)
+	cost = 1400
+
+/datum/supply_packs/factory/trailblazerrefill
+	name = "Trailblazer grenade refill"
+	contains = list(/obj/item/factory_refill/trailblazer_refill)
+	cost = 500
+
+/datum/supply_packs/factory/lasenaderefill
+	name = "Laserburster grenade refill"
+	contains = list(/obj/item/factory_refill/lasenade_refill)
+	cost = 450
+
+/datum/supply_packs/factory/hefanaderefill
+	name = "HEFA fragmentation grenade refill"
+	contains = list(/obj/item/factory_refill/hefanade_refill)
+	cost = 700
+
+/datum/supply_packs/factory/antigasrefill
+	name = "Anti-Gas grenade refill"
+	contains = list(/obj/item/factory_refill/antigas_refill)
+	cost = 800
+
+/datum/supply_packs/factory/razornade_refill
+	name = "Razornade assembly refill"
+	contains = list(/obj/item/factory_refill/razornade_refill)
+	cost = 1000
 
 /datum/supply_packs/factory/sadar_refill_he
 	name = "SADAR HE missile assembly refill"
@@ -2200,11 +2235,6 @@ FACTORY
 	name = "Minigun powerpack assembly refill"
 	contains = list(/obj/item/factory_refill/minigun_powerpack_refill)
 	cost = 250
-
-/datum/supply_packs/factory/razornade_refill
-	name = "Razornade assembly refill"
-	contains = list(/obj/item/factory_refill/razornade_refill)
-	cost = 500
 
 /datum/supply_packs/factory/flak_sniper_refill
 	name = "SR-127 flak magazine assembly refill"

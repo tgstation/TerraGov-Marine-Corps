@@ -47,7 +47,7 @@
 	else if(SEND_SIGNAL(X, COMSIG_XENOMORPH_ZONE_SELECT) & COMSIG_ACCURATE_ZONE)
 		affecting = get_limb(X.zone_selected)
 	else
-		affecting = get_limb(ran_zone(X.zone_selected, 70))
+		affecting = get_limb(ran_zone(X.zone_selected, XENO_DEFAULT_ACCURACY - X.xeno_caste.accuracy_malus))
 	if(!affecting || (random_location && !set_location) || (ignore_destroyed && !affecting.is_usable())) //No organ or it's destroyed, just get a random one
 		affecting = get_limb(ran_zone(null, 0))
 	if(!affecting || (no_head && affecting == get_limb("head")) || (ignore_destroyed && !affecting.is_usable()))

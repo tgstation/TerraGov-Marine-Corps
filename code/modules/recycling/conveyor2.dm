@@ -151,9 +151,9 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		if(iseffect(movable_thing))
 			continue
 		if(isdead(movable_thing))
-			return
+			continue
 		if(movable_thing.anchored)
-			return
+			continue
 		step(movable_thing, movedir)
 
 	conveyor_flags &= ~CONVEYOR_IS_CONVEYING

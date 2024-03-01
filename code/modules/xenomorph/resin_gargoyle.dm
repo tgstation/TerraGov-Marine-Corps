@@ -4,6 +4,7 @@
 	icon = 'icons/Xeno/2x2building.dmi'
 	icon_state = "gargoyle"
 	max_integrity = 100
+	xeno_structure_flags = CRITICAL_STRUCTURE|IGNORE_WEED_REMOVAL
 	///Bool if we're currently alerting
 	var/is_alerting = FALSE
 	//cd tracking for the alert
