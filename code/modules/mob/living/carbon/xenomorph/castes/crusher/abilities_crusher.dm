@@ -173,7 +173,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE,
 	)
-
+	///Max charge range
 	var/advance_range = 7
 
 /datum/action/ability/activable/xeno/advance/on_cooldown_finish()
