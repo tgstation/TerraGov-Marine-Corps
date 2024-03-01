@@ -189,6 +189,11 @@
 
 
 /datum/action/ability/activable/xeno/advance/use_ability(atom/A)
+	var/turf/target_turf = get_turf(A)
+	var/turf/starting_turf = get_turf(owner)
+	if(!target_turf || !starting_turf)
+		return
+
 	var/mob/living/carbon/xenomorph/X = owner
 	X.face_atom(A)
 	X.set_canmove(FALSE)
@@ -199,19 +204,21 @@
 	X.set_canmove(TRUE)
 
 	var/datum/action/ability/xeno_action/ready_charge/charge = X.actions_by_path[/datum/action/ability/xeno_action/ready_charge]
-	var/aimdir = get_dir(X,A)
+	var/aimdir = get_dir(X, target_turf)
 	if(charge)
 		charge.charge_on(FALSE)
 		charge.do_stop_momentum(FALSE) //Reset charge so next_move_limit check_momentum() does not cuck us and 0 out steps_taken
 		charge.do_start_crushing()
 		charge.valid_steps_taken = charge.max_steps_buildup - 1
 		charge.charge_dir = aimdir //Set dir so check_momentum() does not cuck us
-	for(var/i=0 to get_dist(X, A))
+
+	for(var/i in 0 to get_dist(starting_turf, target_turf))
 		if(i % 2)
 			playsound(X, "alien_charge", 50)
 			new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(X), X)
 		X.Move(get_step(X, aimdir), aimdir)
-		aimdir = get_dir(X,A)
+		aimdir = get_dir(X,target_turf)
+
 	succeed_activate()
 	add_cooldown()
 
