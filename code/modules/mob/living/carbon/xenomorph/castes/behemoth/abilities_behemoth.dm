@@ -925,7 +925,7 @@
 
 /datum/action/ability/xeno_action/primal_wrath/process()
 	if(!owner)
-		return STOP_PROCESSING
+		return PROCESS_KILL
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.hivenumber == XENO_HIVE_FALLEN)
 		if(xeno_owner.wrath_stored < xeno_owner.xeno_caste.wrath_max)
