@@ -1,0 +1,4 @@
+author: "2whatever2"
+delete-after: True
+changes:
+  - rscadd: "Gargoyles are now act the same as other structures, and can be tracked with Structure pinpointers and hive tracker."
