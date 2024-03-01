@@ -197,7 +197,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	X.face_atom(A)
 	X.set_canmove(FALSE)
-	if(!do_after(X, 10, NONE, X, BUSY_ICON_DANGER))
+	if(!do_after(X, 10, NONE, X, BUSY_ICON_DANGER) || !((target_turf = get_turf(A))))
 		if(!X.stat)
 			X.set_canmove(TRUE)
 		return fail_activate()
@@ -216,7 +216,12 @@
 		if(i % 2)
 			playsound(X, "alien_charge", 50)
 			new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(X), X)
+
 		X.Move(get_step(X, aimdir), aimdir)
+
+		target_turf = get_turf(A)
+		if(isnull(A) || (A.z != X.z)) //Target's off the map or on another z level
+			break
 		aimdir = get_dir(X,target_turf)
 
 	succeed_activate()
