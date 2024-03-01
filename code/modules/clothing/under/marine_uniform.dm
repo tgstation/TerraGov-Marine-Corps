@@ -219,6 +219,16 @@
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented uniform worn by mech pilots. Not as impressive as a titanium robot but good enough."
 	icon_state = "marine_mech_pilot"
 
+/obj/item/clothing/under/marine/officer/assault_crewman
+	name = "assault crewman uniform"
+	desc = "A standard-issue, carbon fibre uniform optimised for operating heavy equipment. Feels like a hand-me-down from last decade."
+	icon_state = "marine_assault_crewman"
+
+/obj/item/clothing/under/marine/officer/transport_crewman
+	name = "transport crewman uniform"
+	desc = "A standard issue comfortable uniform designed for sitting all day."
+	icon_state = "marine_transport_crewman"
+
 /obj/item/clothing/under/marine/officer/bridge
 	name = "staff officer uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented staff officer uniform. Do the navy proud."

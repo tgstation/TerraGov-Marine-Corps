@@ -27,6 +27,11 @@
 	inside.drive_seat = src
 	owner = inside.container
 
+/obj/structure/bed/chair/vehicle_driver_seat/buckle_mob(mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
+	if(buckling_mob.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_VETERAN)
+		return FALSE
+	return ..()
+
 /obj/structure/bed/chair/vehicle_driver_seat/post_buckle_mob(mob/buckling_mob)
 	. = ..()
 	owner.add_control_flags(buckling_mob, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS)
@@ -60,6 +65,11 @@
 	var/datum/interior/armored/inside = link
 	inside.gun_seat = src
 	owner = inside.container
+
+/obj/structure/bed/chair/vehicle_gunner_seat/buckle_mob(mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
+	if(buckling_mob.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_VETERAN)
+		return FALSE
+	return ..()
 
 /obj/structure/bed/chair/vehicle_gunner_seat/post_buckle_mob(mob/buckling_mob)
 	. = ..()
