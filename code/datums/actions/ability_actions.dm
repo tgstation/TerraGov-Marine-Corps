@@ -29,11 +29,7 @@
 /datum/action/ability/Destroy()
 	if(cooldown_timer)
 		deltimer(cooldown_timer)
-	return ..()
-
-/datum/action/ability/Destroy()
-	if(cooldown_timer)
-		deltimer(cooldown_timer)
+	QDEL_NULL(countdown)
 	return ..()
 
 /datum/action/ability/give_action(mob/living/L)
@@ -158,9 +154,9 @@
 ///override this for cooldown completion
 /datum/action/ability/proc/on_cooldown_finish()
 	cooldown_timer = null
-	if(!button)
-		CRASH("no button object on finishing ability action cooldown")
 	countdown.stop()
+	if(!button)
+		return
 	update_button_icon()
 
 ///Any changes when a xeno with this ability evolves
