@@ -208,7 +208,7 @@
 		charge.do_start_crushing()
 		charge.valid_steps_taken = charge.max_steps_buildup - 1
 		charge.charge_dir = aimdir //Set dir so check_momentum() does not cuck us
-	for(var/i=0 to max(get_dist(X, A)), advance_range)
+	for(var/i=0 to max(get_dist(X, A), advance_range))
 		if(i % 2)
 			playsound(X, "alien_charge", 50)
 			new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(X), X)
