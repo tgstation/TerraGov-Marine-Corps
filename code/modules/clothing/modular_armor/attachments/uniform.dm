@@ -38,7 +38,7 @@
 	icon_state = "webbing_white"
 	storage_type = /datum/storage/internal/surgery_webbing
 
-/obj/item/storage/internal/surgery_webbing/PopulateContents()
+/obj/item/armor_module/storage/uniform/surgery_webbing/PopulateContents()
 	new /obj/item/tool/surgery/scalpel/manager(src)
 	new /obj/item/tool/surgery/scalpel(src)
 	new /obj/item/tool/surgery/hemostat(src)

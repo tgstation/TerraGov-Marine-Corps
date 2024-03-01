@@ -140,6 +140,7 @@
 	RegisterSignal(parent, ATOM_MAX_STACK_MERGING, PROC_REF(max_stack_merging))
 	RegisterSignal(parent, ATOM_RECALCULATE_STORAGE_SPACE, PROC_REF(recalculate_storage_space))
 	RegisterSignals(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(update_verbs))
+	RegisterSignal(parent, COMSIG_ITEM_QUICK_EQUIP, PROC_REF(on_quick_equip_request))
 
 	boxes = new()
 	boxes.name = "storage"
@@ -188,16 +189,6 @@
 	closer.master = src
 
 /datum/storage/Destroy(force = FALSE, ...)
-	UnregisterSignal(parent, list(
-		COMSIG_ATOM_ATTACKBY,
-		COMSIG_ATOM_ATTACK_HAND,
-		COMSIG_ATOM_ATTACK_HAND_ALTERNATE,
-		COMSIG_CLICK_ALT,
-		COMSIG_CLICK_ALT_RIGHT,
-		COMSIG_CLICK_CTRL,
-		COMSIG_ATOM_ATTACK_GHOST,
-		COMSIG_MOUSEDROP_ONTO,
-	))
 	for(var/atom/movable/item in parent.contents)
 		qdel(item)
 	for(var/mob/M in content_watchers)
@@ -817,16 +808,14 @@
 
 	return depth
 
-/* - XANTODO CONVERT THESE TO SIGNALS/DATUMS
-///finds a stored item to draw
-/obj/item/storage/do_quick_equip(mob/user)
-	if(!length(contents))
-		return FALSE //we don't want to equip the storage item itself
-	var/obj/item/W = contents[length(contents)]
-	if(!remove_from_storage(W, null, user))
-		return FALSE
-	return W
-*/
+//Equips an item from our storage, returns signal COMSIG_QUICK_EQUIP_HANDLED to prevent standard quick equip behaviour
+/datum/storage/proc/on_quick_equip_request(datum/source, mob/user)
+	SIGNAL_HANDLER
+	if(!length(parent.contents)) //we don't want to equip the storage item itself
+		return COMSIG_QUICK_EQUIP_HANDLED
+	else
+		INVOKE_ASYNC(src, PROC_REF(attempt_draw_object), user)
+		return COMSIG_QUICK_EQUIP_HANDLED
 
 ///Called whenever parent is hit by an EMP, effectively EMPs everything inside your storage
 /datum/storage/proc/on_emp(datum/source, severity)

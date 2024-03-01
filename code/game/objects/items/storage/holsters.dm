@@ -67,13 +67,14 @@
 		underlays -= holstered_item_underlay
 		QDEL_NULL(holstered_item_underlay)
 
+/* XANTODO Probably have to add this function to base /datum/storage
 /obj/item/storage/holster/do_quick_equip(mob/user) //Will only draw the specific holstered item, not ammo etc.
 	if(!holstered_item)
 		return FALSE
 	var/obj/item/W = holstered_item
 	if(!atom_storage.remove_from_storage(W, null, user))
 		return FALSE
-	return W
+	return W */
 
 /obj/item/storage/holster/vendor_equip(mob/user)
 	. = ..()

@@ -299,6 +299,10 @@
 	if(slot == SLOT_IN_R_POUCH && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol))))
 		return FALSE
 
+	///Sends quick equip signal, if our signal is not handled we continue to the normal behaviour
+	if(SEND_SIGNAL(I, COMSIG_ITEM_QUICK_EQUIP, src) & COMSIG_QUICK_EQUIP_HANDLED)
+		return TRUE
+
 	//calls on the item to return a suitable item to be equipped
 	var/obj/item/found = I.do_quick_equip(src)
 	if(!found)
