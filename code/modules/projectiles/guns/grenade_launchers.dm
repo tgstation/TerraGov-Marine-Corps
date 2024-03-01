@@ -221,7 +221,11 @@ The Grenade Launchers
 	wield_delay = 0.2 SECONDS
 	aim_slowdown = 1
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
-	attachable_allowed = list()
+	attachable_allowed = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/scope/mini,
+		)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	fire_delay = 1.05 SECONDS
 	max_chamber_items = 0
