@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed various bugs with xeno charge abilities"
-  - refactor: "Refactored xeno charge abilities"

@@ -1,6 +1,0 @@
-author: "Naaanii"
-delete-after: True
-changes:
-  - rscadd: "Added Hefa nades to Valhalla vendors."
-  - rscdel: "Removed tfoot nades from Valhalla weapon vendors."
-  - rscadd: "Added tfoot nades to Valhalla req vendors."
