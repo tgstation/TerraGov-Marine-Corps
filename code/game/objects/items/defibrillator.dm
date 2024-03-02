@@ -338,6 +338,71 @@
 	icon_state = "civ_defib_full"
 	item_state = "defib"
 
+/obj/item/defibrillator/internal
+	ready = TRUE
+	ready_needed = FALSE
+	var/obj/parent_obj
+
+/obj/item/defibrillator/internal/New(obj/new_parent)
+	. = ..()
+	if(!new_parent)
+		return qdel(src)
+	parent_obj = new_parent
+
+/obj/item/defibrillator/internal/update_icon()
+	. = ..()
+	parent_obj.update_icon()
+
+/obj/item/clothing/gloves/defibrillator
+	name = "advanced medical combat gloves"
+	desc = "Advanced medical gloves, these include small electrodes to defibrilate a patiant. No more bulky units!"
+	icon_state = "defib_out_full"
+	item_state = "defib_gloves"
+	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
+	flags_cold_protection = HANDS
+	flags_heat_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+	var/obj/item/defibrillator/internal/internal_defib
+
+/obj/item/clothing/gloves/defibrillator/New(loc, ...)
+	. = ..()
+	internal_defib = new
+
+/obj/item/clothing/gloves/defibrillator/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(user.gloves == src)
+		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
+	else
+		UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
+
+/obj/item/clothing/gloves/defibrillator/unequipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK) //Unregisters in the case of getting delimbed
+
+/obj/item/clothing/gloves/defibrillator/examine(mob/user)
+	. = ..()
+	. += internal_defib.maybe_message_recharge_hint()
+
+/obj/item/clothing/gloves/defibrillator/update_icon_state()
+	. = ..()
+	icon_state = internal_defib.icon_state
+
+
+//when you are wearing these gloves, this will call the normal attack code to begin defibing the target
+/obj/item/clothing/gloves/defibrillator/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	SIGNAL_HANDLER
+	if(user.a_intent != INTENT_HELP)
+		return
+	if(istype(user) && istype(target))
+		INVOKE_ASYNC(internal_defib, TYPE_PROC_REF(/obj/item/defibrillator, defibrillate), target, user)
+
+
+
+
+
+
+
 
 /obj/item/defibrillator/gloves
 	name = "advanced medical combat gloves"
