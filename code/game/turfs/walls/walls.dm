@@ -31,7 +31,7 @@
 	///A reference to the current bullethole overlay image, this is added and deleted as needed
 	var/image/bullethole_overlay
 	/**
-	 * The variation set we're using 
+	 * The variation set we're using
 	 * There are 10 sets and it gets picked randomly the first time a wall is shot
 	 * It corresponds to the first number in the icon_state (bhole_[**bullethole_variation**]_[current_bulletholes])
 	 * Gets reset to 0 if the wall reaches maximum health, so a new variation is picked when the wall gets shot again
@@ -112,7 +112,7 @@
 	..()
 
 
-/turf/closed/wall/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/turf/closed/wall/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return
 	if(acided_hole && (X.mob_size == MOB_SIZE_BIG || X.xeno_caste.caste_flags & CASTE_IS_STRONG)) //Strong and/or big xenos can tear open acided walls

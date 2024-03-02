@@ -13,18 +13,27 @@ export const MarineDropship = (props) => {
   const { act, data } = useBackend();
 
   return (
-    <Window width={500} height={600}>
-      <Window.Content scrollable>
-        {!data.hijack_state ? (
-          <NoticeBox>
-            <Box>POSSIBLE HIJACK</Box>
-            <Box>SYSTEMS REBOOTING...</Box>
-          </NoticeBox>
-        ) : (
-          <NormalOperation />
-        )}
-      </Window.Content>
-    </Window>
+    <>
+      {!data.is_xeno ? (
+        <Window width={500} height={600}>
+          <Window.Content scrollable>
+            {!data.hijack_state ? (
+              <NoticeBox>
+                <Box>POSSIBLE HIJACK</Box>
+                <Box>SYSTEMS REBOOTING...</Box>
+              </NoticeBox>
+            ) : (
+              <NormalOperation />
+            )}
+          </Window.Content>
+        </Window>
+      ) : (
+        <Window width={300} height={130}>
+          <CorruptedOperation />
+        </Window>
+      )}
+      ;
+    </>
   );
 };
 
@@ -134,5 +143,28 @@ const NormalOperation = (props) => {
         </LabeledList>
       </Section>
     </>
+  );
+};
+
+const CorruptedOperation = (props) => {
+  const { act, data } = useBackend();
+  return (
+    <Section fill>
+      <Box textAlign="center">
+        <Box inline mb={1}>
+          Status: {data.ship_status}
+        </Box>
+        <Box mt={1}>
+          <Button onClick={() => act('hijack')}>
+            Launch to {data.current_map}
+          </Button>
+        </Box>
+        <Box mt={1}>
+          <Button onClick={() => act('abduct')}>
+            Capture the {data.ship_name}
+          </Button>
+        </Box>
+      </Box>
+    </Section>
   );
 };

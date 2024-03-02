@@ -2,15 +2,26 @@
 
 //Recoded and consolidated by Abby -- ALL evolutions come from here now. It should work with any caste, anywhere
 // refactored by spookydonut because the above two were shitcoders and i'm sure in time my code too will be considered shit.
-//All castes need an evolves_to() list in their defines
-//Such as evolves_to = list("Warrior", "Sentinel", "Runner", "Badass") etc
-// except use typepaths now so you dont have to have an entry for literally every evolve path
 
 /mob/living/carbon/xenomorph/verb/Evolve()
 	set name = "Evolve"
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 
+	SStgui.close_user_uis(src, GLOB.evo_panel) // Closes all verbs using evo UI; evolution, caste swap and regress. They need to be refreshed with their respective castelists.
+	GLOB.evo_panel.ui_interact(src)
+
+/mob/living/carbon/xenomorph/verb/caste_swap()
+	set name = "Caste Swap"
+	set desc = "Change into another caste in the same tier."
+	set category = "Alien"
+
+	if(world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY) < 9000) //casteswap timer, 15 minutes
+		to_chat(src, span_warning("Your caste swap timer is not done yet."))
+		return
+
+	SStgui.close_user_uis(src, GLOB.evo_panel)
+	ADD_TRAIT(src, TRAIT_CASTE_SWAP, TRAIT_CASTE_SWAP)
 	GLOB.evo_panel.ui_interact(src)
 
 /mob/living/carbon/xenomorph/verb/regress()
@@ -18,40 +29,50 @@
 	set desc = "Regress into a lower form."
 	set category = "Alien"
 
-	var/tiers_to_pick_from
-	switch(tier)
-		if(XENO_TIER_ZERO, XENO_TIER_FOUR)
-			if(isxenoshrike(src))
-				tiers_to_pick_from = GLOB.xeno_types_tier_one
-			else
-				to_chat(src, span_warning("Your tier does not allow you to regress."))
+	SStgui.close_user_uis(src, GLOB.evo_panel)
+	ADD_TRAIT(src, TRAIT_REGRESSING, TRAIT_REGRESSING)
+	GLOB.evo_panel.ui_interact(src)
+
+///Creates a list of possible evolution options for a caste based on their tier.
+/mob/living/carbon/xenomorph/proc/get_evolution_options()
+	. = list()
+	if(HAS_TRAIT(src, TRAIT_CASTE_SWAP))
+		switch(tier)
+			if(XENO_TIER_ZERO, XENO_TIER_FOUR)
 				return
+			if(XENO_TIER_ONE)
+				return GLOB.xeno_types_tier_one
+			if(XENO_TIER_TWO)
+				return GLOB.xeno_types_tier_two
+			if(XENO_TIER_THREE)
+				return GLOB.xeno_types_tier_three
+	if(HAS_TRAIT(src, TRAIT_REGRESSING))
+		switch(tier)
+			if(XENO_TIER_ZERO, XENO_TIER_FOUR)
+				if(isxenoshrike(src))
+					return GLOB.xeno_types_tier_one
+				else
+					return
+			if(XENO_TIER_ONE)
+				return list(/mob/living/carbon/xenomorph/larva)
+			if(XENO_TIER_TWO)
+				return GLOB.xeno_types_tier_one
+			if(XENO_TIER_THREE)
+				return GLOB.xeno_types_tier_two
+	switch(tier)
+		if(XENO_TIER_ZERO)
+			if(!istype(xeno_caste, /datum/xeno_caste/hivemind))
+				return GLOB.xeno_types_tier_one
 		if(XENO_TIER_ONE)
-			tiers_to_pick_from = list(/mob/living/carbon/xenomorph/larva)
+			return GLOB.xeno_types_tier_two + GLOB.xeno_types_tier_four + /mob/living/carbon/xenomorph/hivemind
 		if(XENO_TIER_TWO)
-			tiers_to_pick_from = GLOB.xeno_types_tier_one
+			return GLOB.xeno_types_tier_three + GLOB.xeno_types_tier_four + /mob/living/carbon/xenomorph/hivemind
 		if(XENO_TIER_THREE)
-			tiers_to_pick_from = GLOB.xeno_types_tier_two
-		else
-			CRASH("side_evolve() called without a valid tier")
+			return GLOB.xeno_types_tier_four + /mob/living/carbon/xenomorph/hivemind
+		if(XENO_TIER_FOUR)
+			if(istype(xeno_caste, /datum/xeno_caste/shrike))
+				return list(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/king)
 
-	var/list/castes_to_pick = list()
-	for(var/type in tiers_to_pick_from)
-		var/datum/xeno_caste/available_caste = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
-		castes_to_pick += available_caste.caste_name
-	var/castepick = tgui_input_list(src, "We are growing into a beautiful alien! It is time to choose a caste.", null, castes_to_pick)
-	if(!castepick) //Changed my mind
-		return
-
-	var/castetype
-	for(var/type in tiers_to_pick_from)
-		var/datum/xeno_caste/available_caste = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
-		if(castepick != available_caste.caste_name)
-			continue
-		castetype = type
-		break
-
-	do_evolve(castetype, castepick, TRUE)
 
 ///Handles the evolution or devolution of the xenomorph
 /mob/living/carbon/xenomorph/proc/do_evolve(caste_type, forced_caste_name, regression = FALSE)
@@ -68,14 +89,14 @@
 		castepick = forced_caste_name
 	else
 		var/list/castes_to_pick = list()
-		for(var/type in xeno_caste.evolves_to)
+		for(var/type in get_evolution_options())
 			var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
 			castes_to_pick += Z.caste_name
 		castepick = tgui_input_list(src, "We are growing into a beautiful alien! It is time to choose a caste.", null, castes_to_pick)
 		if(!castepick) //Changed my mind
 			return
 
-		for(var/type in xeno_caste.evolves_to)
+		for(var/type in get_evolution_options())
 			var/datum/xeno_caste/XC = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
 			if(castepick == XC.caste_name)
 				new_mob_type = type
@@ -98,6 +119,9 @@
 
 	if(!generic_evolution_checks() || !caste_evolution_checks(new_mob_type, castepick, regression))
 		return
+
+	if(HAS_TRAIT(src, TRAIT_CASTE_SWAP))
+		GLOB.key_to_time_of_caste_swap[key] = world.time
 
 	SStgui.close_user_uis(src) //Force close all UIs upon evolution.
 	finish_evolve(new_mob_type)
@@ -213,7 +237,7 @@
 		balloon_alert(src, "The restraints are too restricting to allow us to evolve")
 		return FALSE
 
-	if(isnull(xeno_caste.evolves_to) || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
+	if(isnull(get_evolution_options()) || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
 		balloon_alert(src, "We are already the apex of form and function. Let's go forth and spread the hive!")
 		return FALSE
 
@@ -241,7 +265,7 @@
 
 ///Check if the xeno can currently evolve into a specific caste
 /mob/living/carbon/xenomorph/proc/caste_evolution_checks(new_mob_type, castepick, regression = FALSE)
-	if(!regression && !(new_mob_type in xeno_caste.evolves_to))
+	if(!regression && !(new_mob_type in get_evolution_options()))
 		balloon_alert(src, "We can't evolve to that caste from our current one")
 		return FALSE
 

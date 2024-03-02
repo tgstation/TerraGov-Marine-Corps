@@ -29,7 +29,6 @@
 	maximum_active_caste = 1
 	upgrade_threshold = TIER_TWO_THRESHOLD
 
-	evolves_to = list(/mob/living/carbon/xenomorph/queen)
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
 	// *** Flags *** //
@@ -58,6 +57,7 @@
 		/datum/action/ability/activable/xeno/neurotox_sting/ozelomelyn,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/secrete_resin,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/psychic_cure,
@@ -94,6 +94,7 @@
 		/datum/action/ability/activable/xeno/neurotox_sting/ozelomelyn,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/secrete_resin,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/psychic_cure,

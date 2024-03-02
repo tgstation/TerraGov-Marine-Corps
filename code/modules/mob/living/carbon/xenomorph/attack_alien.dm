@@ -47,7 +47,7 @@
 	else if(SEND_SIGNAL(X, COMSIG_XENOMORPH_ZONE_SELECT) & COMSIG_ACCURATE_ZONE)
 		affecting = get_limb(X.zone_selected)
 	else
-		affecting = get_limb(ran_zone(X.zone_selected, 70))
+		affecting = get_limb(ran_zone(X.zone_selected, XENO_DEFAULT_ACCURACY - X.xeno_caste.accuracy_malus))
 	if(!affecting || (random_location && !set_location) || (ignore_destroyed && !affecting.is_usable())) //No organ or it's destroyed, just get a random one
 		affecting = get_limb(ran_zone(null, 0))
 	if(!affecting || (no_head && affecting == get_limb("head")) || (ignore_destroyed && !affecting.is_usable()))
@@ -81,7 +81,7 @@
 	for(var/i in damage_mod)
 		damage += i
 
-	var/armor_pen
+	var/armor_pen = X.xeno_caste.melee_ap
 	for(var/i in armor_mod)
 		armor_pen += i
 
@@ -189,7 +189,7 @@
 		return FALSE
 
 //Every other type of nonhuman mob //MARKER OVERRIDE
-/mob/living/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/mob/living/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
@@ -203,6 +203,7 @@
 			if(on_fire)
 				X.visible_message(span_danger("[X] stares at [src]."), span_notice("We stare at the roasting [src], toasty."), null, 5)
 				return FALSE
+
 			X.visible_message(span_notice("\The [X] caresses [src] with its scythe-like arm."), \
 			span_notice("We caress [src] with our scythe-like arm."), null, 5)
 			return FALSE

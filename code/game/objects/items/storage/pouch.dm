@@ -395,9 +395,9 @@
 
 /obj/item/storage/pouch/explosive/razorburn/Initialize(mapload)
 	. = ..()
-	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
-	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
-	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_small(src)
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_small(src)
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_small(src)
 	new /obj/item/explosive/grenade/chem_grenade/razorburn_large(src)
 
 /obj/item/storage/pouch/explosive/upp
@@ -684,7 +684,7 @@
 		/obj/item/flashlight,
 		/obj/item/whistle,
 		/obj/item/binoculars,
-		/obj/item/beacon/supply_beacon,
+		/obj/item/supply_beacon,
 		/obj/item/compass,
 		/obj/item/deployable_camera,
 		/obj/item/hud_tablet,

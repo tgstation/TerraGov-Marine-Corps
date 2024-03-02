@@ -465,6 +465,10 @@
 	table_status = TABLE_STATUS_FIRM
 	return TRUE
 
+/obj/structure/table/reinforced/weak //used for the icon, functionally similar to a table.
+	name = "rickety reinforced table"
+	desc = "A square metal surface resting on four legs. It has seen better days to whence it was strong."
+	max_integrity = 40
 
 /obj/structure/table/reinforced/prison
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."

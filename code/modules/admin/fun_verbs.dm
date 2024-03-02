@@ -54,16 +54,19 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/customname = tgui_input_text(usr, "What do you want it to be called?.", "Queen Mother Report", "Queen Mother", encode = FALSE)
+	var/customname = tgui_input_text(usr, "What do you want the title of this report to be?", "Report Title", "Queen Mother Directive", encode = FALSE)
 	var/input = tgui_input_text(usr, "This should be a message from the ruler of the Xenomorph race.", "Queen Mother Report", "", multiline = TRUE, encode = FALSE)
 	if(!input || !customname)
 		return
 
-	var/msg = "<br><h2 class='alert'>[customname]</h2><br>[span_warning("[input]")]<br><br>"
 
 	for(var/i in (GLOB.xeno_mob_list + GLOB.observer_list))
 		var/mob/M = i
-		to_chat(M, msg)
+		to_chat(M, assemble_alert(
+			title = customname,
+			message = input,
+			color_override = "purple"
+		))
 
 	log_admin("[key_name(usr)] created a Queen Mother report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] created a Queen Mother report.")
@@ -137,7 +140,9 @@
 
 
 	var/customname = tgui_input_text(usr, "Pick a title for the report.", "Title", "TGMC Update", encode = FALSE)
+	var/customsubtitle = tgui_input_text(usr, "Pick a subtitle for the report.", "Subtitle", "", encode = FALSE)
 	var/input = tgui_input_text(usr, "Please enter anything you want. Anything. Serious.", "What?", "", multiline = TRUE, encode = FALSE)
+	var/override = tgui_input_list(usr, "Pick a color for the report.", "Color", faction_alert_colors - "default", default = "blue")
 
 	if(!input || !customname)
 		return
@@ -147,9 +152,9 @@
 
 	switch(tgui_alert(usr, "Should this be announced to the general population?", "Announce", list("Yes", "No", "Cancel")))
 		if("Yes")
-			priority_announce(input, customname, sound = 'sound/AI/commandreport.ogg');
+			priority_announce(input, customname, customsubtitle, sound = 'sound/AI/commandreport.ogg', color_override = override);
 		if("No")
-			priority_announce("New update available at all communication consoles.", type = ANNOUNCEMENT_COMMAND, sound = 'sound/AI/commandreport.ogg')
+			priority_announce("New update available at all communication consoles.", "Classified Transmission Received", type = ANNOUNCEMENT_PRIORITY, sound = 'sound/AI/commandreport.ogg')
 		else
 			return
 
@@ -284,8 +289,12 @@
 
 	GLOB.custom_info = new_info
 
-	to_chat(world, "<h1 class='alert'>Custom Information</h1>")
-	to_chat(world, span_alert("[GLOB.custom_info]"))
+	to_chat(world, assemble_alert(
+		title = "Custom Information",
+		subtitle = "The following custom information has been set for this round.",
+		message = GLOB.custom_info,
+		color_override = "red"
+	))
 
 	log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
 	message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
@@ -299,8 +308,12 @@
 		to_chat(src, span_notice("There currently is no custom information set."))
 		return
 
-	to_chat(src, "<h1 class='alert'>Custom Information</h1>")
-	to_chat(src, span_alert("[GLOB.custom_info]"))
+	to_chat(src, assemble_alert(
+		title = "Custom Information",
+		subtitle = "The following custom information has been set for this round.",
+		message = GLOB.custom_info,
+		color_override = "red"
+	))
 
 
 /datum/admins/proc/sound_file(S as sound)
@@ -1091,15 +1104,15 @@
 		if("Low gravity")
 			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity pull gently at you."))
 			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
-				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 32, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_DEFENSIVE_STRUCTURE)
+				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 32, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_DEFENSIVE_STRUCTURE|PASS_TANK)
 		if("John Woo")
 			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity grow weak, and the urge to fly."))
 			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
-				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 48, sound = "jump", flags = JUMP_SPIN, flags_pass = HOVERING|PASS_PROJECTILE)
+				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 48, sound = "jump", flags = JUMP_SPIN, flags_pass = HOVERING|PASS_PROJECTILE|PASS_TANK)
 		if("Exceeding orbital velocity")
 			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity fade to nothing. Will you even come back down?"))
 			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
-				living_mob.set_jump_component(duration = 4 SECONDS, cooldown = 6 SECONDS, cost = 0, height = 128, sound = "jump", flags = JUMP_SPIN, flags_pass = HOVERING|PASS_PROJECTILE)
+				living_mob.set_jump_component(duration = 4 SECONDS, cooldown = 6 SECONDS, cost = 0, height = 128, sound = "jump", flags = JUMP_SPIN, flags_pass = HOVERING|PASS_PROJECTILE|PASS_TANK)
 		else
 			return
 

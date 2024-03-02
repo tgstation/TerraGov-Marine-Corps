@@ -191,6 +191,20 @@
 		return
 	remove_movespeed_modifier(MOVESPEED_ID_DROWSINESS)
 
+///Adjusts the blood volume, with respect to the minimum and maximum values
+/mob/living/proc/adjust_blood_volume(amount)
+	if(!amount)
+		return
+
+	blood_volume = clamp(blood_volume + amount, 0, BLOOD_VOLUME_MAXIMUM)
+
+///Sets the blood volume, with respect to the minimum and maximum values
+/mob/living/proc/set_blood_volume(amount)
+	if(!amount)
+		return
+
+	blood_volume = clamp(amount, 0, BLOOD_VOLUME_MAXIMUM)
+
 
 // heal ONE limb, organ gets randomly selected from damaged ones.
 /mob/living/proc/heal_limb_damage(brute, burn, robo_repair = FALSE, updating_health = FALSE)
@@ -360,7 +374,7 @@
 
 
 /mob/living/carbon/xenomorph/revive(admin_revive = FALSE)
-	plasma_stored = xeno_caste.plasma_max
+	set_plasma(xeno_caste.plasma_max)
 	sunder = 0
 	if(stat == DEAD)
 		hive?.on_xeno_revive(src)

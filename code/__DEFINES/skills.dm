@@ -161,7 +161,7 @@
 #define SKILL_STAMINA_TRAINED 1
 #define SKILL_STAMINA_SUPER 2
 
-#define STAMINA_SKILL_COOLDOWN_MOD 2
+#define STAMINA_SKILL_COOLDOWN_MOD 2 SECONDS
 #define STAMINA_SKILL_REGEN_MOD 0.15
 
 ////////////////////////////////////////////////

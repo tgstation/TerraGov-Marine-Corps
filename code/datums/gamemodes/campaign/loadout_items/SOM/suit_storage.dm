@@ -24,9 +24,11 @@
 
 /datum/loadout_item/suit_store/main_gun/som_marine/standard_rifle
 	name = "V-31"
-	desc = "The V-31 was the primary rifle of the Sons of Mars until the introduction of more advanced energy weapons. \
-	Nevertheless, the V-31 continues to see common use due to its comparative ease of production and maintenance, and due to the inbuilt low velocity railgun designed for so called 'micro' grenades. \
-	Has good handling due to its compact bullpup design, and is generally effective at all ranges. Uses 10x25mm caseless ammunition."
+	desc = "Equipped with a red dot sight, extended barrel, vertical grip and integrated micro rail launcher. The V-31 is the principal ballistic weapon for the SOM. \
+	It has good mobility and handling and a good rate of fire, but tends to favour closer range fighting compared to many TGMC equivilents. \
+	The rail launcher electromagnetically launches a variety of 10 gauge airbursting grenades. Extremely effective when used correctly, their fixed fuse time makes them entirely ineffective at very close or far ranges. \
+	Managing engagement range is thus vital for maximising the effectiveness of this weapon. \
+	Uses 10x25mm caseless ammunition and 10 gauge micro grenades."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som/standard
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
@@ -54,8 +56,9 @@
 
 /datum/loadout_item/suit_store/main_gun/som_marine/mpi_grenadier
 	name = "MPi-KM"
-	desc = "A cheap and robust rifle manufactured by the SOM, famed for its reliability and stopping power. \
-	Sometimes better known as an 'AK', it chambers 7.62x39mm. This one has a built in underbarrel grenade launcher."
+	desc = "Equipped with a red dot sight and underbarrel grenade launcher. The MPi-KM is a modern reproduction based off several variants of kalashnikov type rifles used during the original Martian rebellion. \
+	These weapons were already ancient at that time, and their continued use by the SOM speaks more to their cultural legacy than any tactical benefits. \
+	Despite having relatively poor mobility and handling, it never the less has fearsome firepower and good capacity, ensuring it stays a relevant weapon choice for the SOM. Uses 7.62x39mm ammunition."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/mpi_km/black/grenadier
 
@@ -74,9 +77,10 @@
 
 /datum/loadout_item/suit_store/main_gun/som_marine/carbine
 	name = "V-34"
-	desc = "A modern redesign by the SOM of an ancient weapon that saw extensive use in the Martian uprising. \
-	A comparatively light and compact weapon, it still packs a considerable punch thanks to a good rate of fire and high calibre, although at range its effective drops off considerably. \
-	It is chambered in 7.62x39mm."
+	desc = "Equipped with a red dot sight and foldable stock. The V-34 is a modern redesign of an ancient weapon that saw extensive use in the Martian uprising. \
+	It combines good mobility and managable handling with fearsome stopping power and a tremendous rate of fire, making the V-34 an exceptionally deadly weapon at close range. \
+	With poor falloff and accuracy, it is a poor weapon outside of close range, and its mobility lacks compared to some other close range weapons like the V-21. \
+	Uses 7.62x39mm ammunition."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som_carbine/black/standard
 
@@ -95,13 +99,18 @@
 
 /datum/loadout_item/suit_store/main_gun/som_marine/smg
 	name = "V-21"
-	desc = "The V-21 is the principal submachinegun used by the Sons of Mars, designed to be used effectively one or two handed with  a variable rate of fire. \
-	When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. \
+	desc = "Equipped with a motion sensor, recoil compensator and vertical grip. The V-21 is the principal submachinegun used by the Sons of Mars, with a variable rate of fire. \
+	Has outstanding mobility and handling and can be comfortably fired one handed on its lower fire rate mode. \
+	When set to its higher rate of fire, it unleashes a staggering torrent of firepower, but is difficult to control even two handed, and quickly loses effectiveness at range. \
+	At close range however, it will quickly obliterate most targets - as long as you don't run out of ammo. \
 	It uses 10x20mm caseless rounds."
 	req_desc = "Requires M-11 scout armor."
-	ui_icon = "ballistic"
+	ui_icon = "smg"
 	item_typepath = /obj/item/weapon/gun/smg/som/scout
-	item_whitelist = list(/obj/item/clothing/suit/modular/som/light/shield = ITEM_SLOT_OCLOTHING)
+	item_whitelist = list(
+		/obj/item/clothing/suit/modular/som/light/shield = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/som/light/shield_overclocked = ITEM_SLOT_OCLOTHING,
+	)
 
 /datum/loadout_item/suit_store/main_gun/som_marine/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -127,11 +136,16 @@
 
 /datum/loadout_item/suit_store/main_gun/som_marine/standard_shotgun
 	name = "V-51"
-	desc = "The V-51 is the main shotgun utilised by the Sons of Mars. Slower firing than some other semi automatic shotguns, but packs more of a kick."
+	desc = "Equipped with a mag harness, bayonet and undebarrel flashlight. The V-51 is the main shotgun utilised by the Sons of Mars. \
+	Semi automatic with great handling and mobility, it is less powerful than the SH-35 used by the TGMC, but makes up for it with a superior rate of fire. \
+	Uses 12 gauge shells."
 	req_desc = "Requires M-11 scout armor."
-	ui_icon = "ballistic"
+	ui_icon = "shotgun"
 	item_typepath = /obj/item/weapon/gun/shotgun/som/standard
-	item_whitelist = list(/obj/item/clothing/suit/modular/som/light/shield = ITEM_SLOT_OCLOTHING)
+	item_whitelist = list(
+		/obj/item/clothing/suit/modular/som/light/shield = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/som/light/shield_overclocked = ITEM_SLOT_OCLOTHING,
+	)
 
 /datum/loadout_item/suit_store/main_gun/som_marine/standard_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -156,8 +170,8 @@
 
 /datum/loadout_item/suit_store/main_gun/som_marine/flamer
 	name = "V-62 incinerator"
-	desc = "The V-62 is a deadly weapon employed in close quarter combat, favoured as much for the terror it inspires as the actual damage it inflicts. \
-	It has good range for a flamer, but lacks the integrated extinguisher of its TGMC equivalent."
+	desc = "Equipped with a mag harness and wide nozzle. The V-62 is a deadly weapon employed in close quarter combat, favoured as much for the terror it inspires as the actual damage it inflicts. \
+	It has good range for a flamer, able to effortly clear out enclosed or defensive positions but lacks the integrated extinguisher of its TGMC equivalent."
 	req_desc = "Requires M-31 combat armor with a Hades fireproof module."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/flamer/som/mag_harness
@@ -185,11 +199,12 @@
 
 /datum/loadout_item/suit_store/main_gun/som_marine/smg_and_shield
 	name = "V-21 & riot shield"
-	desc = "The V-21 is the principal submachinegun used by the Sons of Mars, designed to be used effectively one or two handed with  a variable rate of fire. \
-	When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. \
-	It uses 10x20mm caseless rounds. \
-	This one comes with a S-144 boarding shield, intended for use with M-31 combat armor for boarding actions."
-	ui_icon = "ballistic"
+	desc = "Equipped with a red dot sight, recoil compensator and vertical grip, along with a S-144 boarding shield, intended for use with M-31 combat armor for boarding actions.. The V-21 is the principal submachinegun used by the Sons of Mars, with a variable rate of fire. \
+	Has outstanding mobility and handling and can be comfortably fired one handed on its lower fire rate mode. \
+	When set to its higher rate of fire, it unleashes a staggering torrent of firepower, but is difficult to control even two handed, and quickly loses effectiveness at range. \
+	When used with the boarding shield, use of the higher rate of fire is highly unrecommended outside of anything but absolute point blank range. \
+	It uses 10x20mm caseless rounds."
+	ui_icon = "riot_shield"
 	item_typepath = /obj/item/weapon/gun/smg/som/one_handed
 
 /datum/loadout_item/suit_store/main_gun/som_marine/smg_and_shield/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -221,8 +236,8 @@
 
 /datum/loadout_item/suit_store/main_gun/som_marine/machinegunner
 	name = "V-41"
-	desc = "The V-41 is a large man portable machine used by the SOM, allowing for sustained, accurate suppressive firepower at the cost of mobility and handling. \
-	Commonly seen where their preferred tactics of fast, mobile aggression is ill suited. Takes 10x26mm Caseless."
+	desc = "Equipped with a red dot sight, extended barrel and bipod. The V-41 is a large man portable machine used by the SOM, allowing for sustained, accurate suppressive firepower at the cost of mobility and handling. \
+	Commonly seen where their preferred tactics of fast, mobile aggression is ill suited. Has impressive ranged damage application as a static weapon. Uses 10x26mm Caseless ammunition."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som_mg/standard
 
@@ -248,12 +263,13 @@
 
 /datum/loadout_item/suit_store/main_gun/som_marine/volkite_charger
 	name = "VX-32 charger"
-	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. \
-	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
-	The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges."
-	ui_icon = "ballistic"
+	desc = "Equipped with a mag harness. The VX-32 is a sophisticated energy weapon capable of explosively deflagrated organic targets, horrifically burning and igniting the victim and anyone unfortunate enough to be near them. \
+	Has excellent mobility and handling and is best used at close range. Can be used one handed relatively effectively with sufficient skill. \
+	Its deflagrating ability works best against light armored targets, where it can quickly mow down and demoralise tightly packed enemies. Against heavily armored opponents, its effectiveness can quickly drop however. \
+	Uses volkite power cells, shared with the VX-33."
+	ui_icon = "volkite"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/magharness
-	purchase_cost = 75
+	purchase_cost = 50
 	quantity = 4
 
 /datum/loadout_item/suit_store/main_gun/som_marine/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -278,9 +294,11 @@
 
 /datum/loadout_item/suit_store/boarding_axe
 	name = "Boarding axe"
-	desc = "A SOM boarding axe, effective at breaching doors as well as skulls. When wielded it can be used to block as well as attack."
+	desc = "A SOM boarding axe, a monstrous two handed weapon that inflicts terrible damage even through heavy armor. \
+	When wielded it can be used to block as well as attack, and can also be used to force unpowered airlocks open. \
+	You'll kill pretty much anything you can hit with this - providing you can get close enough to use it."
 	req_desc = "Requires M-31 combat armor with a Lorica extra armor module."
-	ui_icon = "ballistic"
+	ui_icon = "axe"
 	item_typepath = /obj/item/weapon/twohanded/fireaxe/som
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/lorica = ITEM_SLOT_OCLOTHING)
 	item_blacklist = list(/obj/item/weapon/twohanded/fireaxe/som = ITEM_SLOT_BACK)
@@ -325,9 +343,11 @@
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/standard_rifle
 	name = "V-31"
-	desc = "The V-31 was the primary rifle of the Sons of Mars until the introduction of more advanced energy weapons. \
-	Nevertheless, the V-31 continues to see common use due to its comparative ease of production and maintenance, and due to the inbuilt low velocity railgun designed for so called 'micro' grenades. \
-	Has good handling due to its compact bullpup design, and is generally effective at all ranges. Uses 10x25mm caseless ammunition."
+	desc = "Equipped with a red dot sight, extended barrel, vertical grip and integrated micro rail launcher. The V-31 is the principal ballistic weapon for the SOM. \
+	It has good mobility and handling and a good rate of fire, but tends to favour closer range fighting compared to many TGMC equivilents. \
+	The rail launcher electromagnetically launches a variety of 10 gauge airbursting grenades. Extremely effective when used correctly, their fixed fuse time makes them entirely ineffective at very close or far ranges. \
+	Managing engagement range is thus vital for maximising the effectiveness of this weapon. \
+	Uses 10x25mm caseless ammunition and 10 gauge micro grenades."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som/standard
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
@@ -357,8 +377,9 @@
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/mpi
 	name = "MPi-KM"
-	desc = "A cheap and robust rifle manufactured by the SOM, famed for its reliability and stopping power. \
-	Sometimes better known as an 'AK', it chambers 7.62x39mm."
+	desc = "Equipped with a mag harness and laser sight. The MPi-KM is a modern reproduction based off several variants of kalashnikov type rifles used during the original Martian rebellion. \
+	These weapons were already ancient at that time, and their continued use by the SOM speaks more to their cultural legacy than any tactical benefits. \
+	Despite having relatively poor mobility and handling, it never the less has fearsome firepower and good capacity, ensuring it stays a relevant weapon choice for the SOM. Uses 7.62x39mm ammunition."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/mpi_km/black/magharness
 
@@ -380,9 +401,10 @@
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/carbine
 	name = "V-34"
-	desc = "A modern redesign by the SOM of an ancient weapon that saw extensive use in the Martian uprising. \
-	A comparatively light and compact weapon, it still packs a considerable punch thanks to a good rate of fire and high calibre, although at range its effective drops off considerably. \
-	It is chambered in 7.62x39mm."
+	desc = "Equipped with a red dot sight and foldable stock. The V-34 is a modern redesign of an ancient weapon that saw extensive use in the Martian uprising. \
+	It combines good mobility and managable handling with fearsome stopping power and a tremendous rate of fire, making the V-34 an exceptionally deadly weapon at close range. \
+	With poor falloff and accuracy, it is a poor weapon outside of close range, and its mobility lacks compared to some other close range weapons like the V-21. \
+	Uses 7.62x39mm ammunition."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som_carbine/black/standard
 
@@ -404,10 +426,12 @@
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/smg
 	name = "V-21"
-	desc = "The V-21 is the principal submachinegun used by the Sons of Mars, designed to be used effectively one or two handed with  a variable rate of fire. \
-	When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. \
+	desc = "Equipped with a mag harness, recoil compensator and vertical grip. The V-21 is the principal submachinegun used by the Sons of Mars, with a variable rate of fire. \
+	Has outstanding mobility and handling and can be comfortably fired one handed on its lower fire rate mode. \
+	When set to its higher rate of fire, it unleashes a staggering torrent of firepower, but is difficult to control even two handed, and quickly loses effectiveness at range. \
+	At close range however, it will quickly obliterate most targets - as long as you don't run out of ammo. \
 	It uses 10x20mm caseless rounds."
-	ui_icon = "ballistic"
+	ui_icon = "smg"
 	item_typepath = /obj/item/weapon/gun/smg/som/support
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -435,8 +459,10 @@
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/flechette_shotgun
 	name = "V-51"
-	desc = "The V-51 is the main shotgun utilised by the Sons of Mars. Slower firing than some other semi automatic shotguns, but packs more of a kick. Loaded with flechette rounds."
-	ui_icon = "ballistic"
+	desc = "Equipped with a mag harness and bayonet. The V-51 is the main shotgun utilised by the Sons of Mars. \
+	Semi automatic with great handling and mobility, it is less powerful than the SH-35 used by the TGMC, but makes up for it with a superior rate of fire. \
+	Uses 12 gauge shells."
+	ui_icon = "shotgun"
 	item_typepath = /obj/item/weapon/gun/shotgun/som/support
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/flechette_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -468,9 +494,11 @@
 
 /datum/loadout_item/suit_store/main_gun/som_medic/standard_rifle
 	name = "V-31"
-	desc = "The V-31 was the primary rifle of the Sons of Mars until the introduction of more advanced energy weapons. \
-	Nevertheless, the V-31 continues to see common use due to its comparative ease of production and maintenance, and due to the inbuilt low velocity railgun designed for so called 'micro' grenades. \
-	Has good handling due to its compact bullpup design, and is generally effective at all ranges. Uses 10x25mm caseless ammunition."
+	desc = "Equipped with a red dot sight, extended barrel, vertical grip and integrated micro rail launcher. The V-31 is the principal ballistic weapon for the SOM. \
+	It has good mobility and handling and a good rate of fire, but tends to favour closer range fighting compared to many TGMC equivilents. \
+	The rail launcher electromagnetically launches a variety of 10 gauge airbursting grenades. Extremely effective when used correctly, their fixed fuse time makes them entirely ineffective at very close or far ranges. \
+	Managing engagement range is thus vital for maximising the effectiveness of this weapon. \
+	Uses 10x25mm caseless ammunition and 10 gauge micro grenades."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som/standard
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
@@ -493,8 +521,9 @@
 
 /datum/loadout_item/suit_store/main_gun/som_medic/mpi
 	name = "MPi-KM"
-	desc = "A cheap and robust rifle manufactured by the SOM, famed for its reliability and stopping power. \
-	Sometimes better known as an 'AK', it chambers 7.62x39mm."
+	desc = "Equipped with a mag harness and laser sight. The MPi-KM is a modern reproduction based off several variants of kalashnikov type rifles used during the original Martian rebellion. \
+	These weapons were already ancient at that time, and their continued use by the SOM speaks more to their cultural legacy than any tactical benefits. \
+	Despite having relatively poor mobility and handling, it never the less has fearsome firepower and good capacity, ensuring it stays a relevant weapon choice for the SOM. Uses 7.62x39mm ammunition."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/mpi_km/black/magharness
 
@@ -515,9 +544,10 @@
 
 /datum/loadout_item/suit_store/main_gun/som_medic/carbine
 	name = "V-34"
-	desc = "A modern redesign by the SOM of an ancient weapon that saw extensive use in the Martian uprising. \
-	A comparatively light and compact weapon, it still packs a considerable punch thanks to a good rate of fire and high calibre, although at range its effective drops off considerably. \
-	It is chambered in 7.62x39mm."
+	desc = "Equipped with a red dot sight and foldable stock. The V-34 is a modern redesign of an ancient weapon that saw extensive use in the Martian uprising. \
+	It combines good mobility and managable handling with fearsome stopping power and a tremendous rate of fire, making the V-34 an exceptionally deadly weapon at close range. \
+	With poor falloff and accuracy, it is a poor weapon outside of close range, and its mobility lacks compared to some other close range weapons like the V-21. \
+	Uses 7.62x39mm ammunition."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som_carbine/black/standard
 
@@ -538,10 +568,12 @@
 
 /datum/loadout_item/suit_store/main_gun/som_medic/smg
 	name = "V-21"
-	desc = "The V-21 is the principal submachinegun used by the Sons of Mars, designed to be used effectively one or two handed with  a variable rate of fire. \
-	When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. \
+	desc = "Equipped with a mag harness, recoil compensator and vertical grip. The V-21 is the principal submachinegun used by the Sons of Mars, with a variable rate of fire. \
+	Has outstanding mobility and handling and can be comfortably fired one handed on its lower fire rate mode. \
+	When set to its higher rate of fire, it unleashes a staggering torrent of firepower, but is difficult to control even two handed, and quickly loses effectiveness at range. \
+	At close range however, it will quickly obliterate most targets - as long as you don't run out of ammo. \
 	It uses 10x20mm caseless rounds."
-	ui_icon = "ballistic"
+	ui_icon = "smg"
 	item_typepath = /obj/item/weapon/gun/smg/som/support
 
 /datum/loadout_item/suit_store/main_gun/som_medic/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -563,8 +595,10 @@
 
 /datum/loadout_item/suit_store/main_gun/som_medic/flechette_shotgun
 	name = "V-51"
-	desc = "The V-51 is the main shotgun utilised by the Sons of Mars. Slower firing than some other semi automatic shotguns, but packs more of a kick. Loaded with flechette rounds."
-	ui_icon = "ballistic"
+	desc = "Equipped with a mag harness and bayonet, and solely loaded with flechette rounds. The V-51 is the main shotgun utilised by the Sons of Mars. \
+	Semi automatic with great handling and mobility, it is less powerful than the SH-35 used by the TGMC, but makes up for it with a superior rate of fire. \
+	Uses 12 gauge shells."
+	ui_icon = "shotgun"
 	item_typepath = /obj/item/weapon/gun/shotgun/som/support
 
 /datum/loadout_item/suit_store/main_gun/som_medic/flechette_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -610,9 +644,11 @@
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/standard_rifle
 	name = "V-31"
-	desc = "The V-31 was the primary rifle of the Sons of Mars until the introduction of more advanced energy weapons. \
-	Nevertheless, the V-31 continues to see common use due to its comparative ease of production and maintenance, and due to the inbuilt low velocity railgun designed for so called 'micro' grenades. \
-	Has good handling due to its compact bullpup design, and is generally effective at all ranges. Loaded with armor piercing 10x25mm caseless ammunition."
+	desc = "Equipped with a red dot sight, extended barrel, vertical grip and integrated micro rail launcher. Also comes with light armor piercing ammunition. The V-31 is the principal ballistic weapon for the SOM. \
+	It has good mobility and handling and a good rate of fire, but tends to favour closer range fighting compared to many TGMC equivilents. \
+	The rail launcher electromagnetically launches a variety of 10 gauge airbursting grenades. Extremely effective when used correctly, their fixed fuse time makes them entirely ineffective at very close or far ranges. \
+	Managing engagement range is thus vital for maximising the effectiveness of this weapon. \
+	Uses 10x25mm caseless ammunition and 10 gauge micro grenades."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som/veteran
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
@@ -641,10 +677,12 @@
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/smg
 	name = "V-21"
-	desc = "The V-21 is the principal submachinegun used by the Sons of Mars, designed to be used effectively one or two handed with  a variable rate of fire. \
-	When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. \
-	Loaded with armor piercing 10x20mm caseless rounds."
-	ui_icon = "ballistic"
+	desc = "Equipped with a red dot sight, recoil compensator and vertical grip, along with armor piercing ammunition. The V-21 is the principal submachinegun used by the Sons of Mars, with a variable rate of fire. \
+	Has outstanding mobility and handling and can be comfortably fired one handed on its lower fire rate mode. \
+	When set to its higher rate of fire, it unleashes a staggering torrent of firepower, but is difficult to control even two handed, and quickly loses effectiveness at range. \
+	At close range however, it will quickly obliterate most targets - as long as you don't run out of ammo. \
+	It uses 10x20mm caseless rounds."
+	ui_icon = "smg"
 	item_typepath = /obj/item/weapon/gun/smg/som/veteran
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -671,13 +709,14 @@
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/breacher
 	name = "VX-32B charger"
-	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. \
-	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
-	The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges. \
-	This one comes with a S-144 boarding shield, intended for use with M-31 Lorica combat armor for boarding actions."
-	ui_icon = "ballistic"
+	desc = "Equipped with a mag harness and gyroscopic stabiliser for effective one handed use, and comes with a S-144 boarding shield, intended for use with M-31 Lorica combat armor for boarding actions. \
+	The VX-32 is a sophisticated energy weapon capable of explosively deflagrated organic targets, horrifically burning and igniting the victim and anyone unfortunate enough to be near them. \
+	Has excellent mobility and handling and is best used at close range. \
+	Its deflagrating ability works best against light armored targets, where it can quickly mow down and demoralise tightly packed enemies. Against heavily armored opponents, its effectiveness can quickly drop however. \
+	Uses volkite power cells, shared with the VX-33."
+	ui_icon = "riot_shield"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
-	purchase_cost = 50
+	purchase_cost = 75
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/breacher/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/som, SLOT_L_HAND)
@@ -707,11 +746,12 @@
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/volkite_charger
 	name = "VX-32 charger"
-	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. \
-	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
-	The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges. \
-	This one is configured for more effective one handed use, and has a motion sensor attached."
-	ui_icon = "ballistic"
+	desc = "Equipped with a motion sensor and gyroscopic stabiliser for effective one handed use. \
+	The VX-32 is a sophisticated energy weapon capable of explosively deflagrated organic targets, horrifically burning and igniting the victim and anyone unfortunate enough to be near them. \
+	Has excellent mobility and handling and is best used at close range. \
+	Its deflagrating ability works best against light armored targets, where it can quickly mow down and demoralise tightly packed enemies. Against heavily armored opponents, its effectiveness can quickly drop however. \
+	Uses volkite power cells, shared with the VX-33."
+	ui_icon = "volkite"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/scout
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -737,10 +777,12 @@
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/volkite_caliver
 	name = "VX-33 caliver"
-	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. \
-	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
-	The caliver is the primary rifle of the volkite family, and effective at most ranges and situations. Drag click the powerpack to the gun to use that instead of magazines."
-	ui_icon = "ballistic"
+	desc = "Equipped with a red dot sight and laser sight. \
+	The VX-33 is a sophisticated energy weapon capable of explosively deflagrated organic targets, horrifically burning and igniting the victim and anyone unfortunate enough to be near them. \
+	Has middling mobility and handling, it is a long range rifle analogue, able to project strong damage even at long ranges. \
+	Its deflagrating ability works best against light armored targets, where it can quickly mow down and demoralise tightly packed enemies. Against heavily armored opponents, its effectiveness can quickly drop however. \
+	Uses volkite power cells, shared with the VX-32, and can also be linked to a volkite powerpack."
+	ui_icon = "volkite"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/standard
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/volkite_caliver/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -766,7 +808,10 @@
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/mpi
 	name = "MPi-KM"
-	desc = "A cheap and robust rifle, sometimes better known as an 'AK'. Chambers 7.62x39mm. This one has a built in underbarrel grenade launcher and looks very old, but well looked after."
+	desc = "Equipped with a mag harness and underbarrel grenade launcher. This MPi-KM is an original example of one of several variants of kalashnikov type rifles used during the original Martian rebellion. \
+	Passed down the generations and lovingly maintained as a family heirloom, \
+	its use on modern battlefields is an idiosyncratic example of the SOM's persistant desire to maintain a link to their cultural past, more than any possible tactical reason. \
+	Despite having relatively poor mobility and handling, it never the less has fearsome firepower and good capacity, ensuring it stays a relevant weapon choice for the SOM. Uses 7.62x39mm ammunition."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/mpi_km/grenadier
 
@@ -785,9 +830,11 @@
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/carbine
 	name = "V-34"
-	desc = "An old but robust weapon that saw extensive use in the Martian uprising. \
-	A comparatively light and compact weapon, it still packs a considerable punch thanks to a good rate of fire and high calibre, \
-	although at range its effective drops off considerably. It is chambered in 7.62x39mm."
+	desc = "Equipped with a mag harness and foldable stock. This V-34 is refurbished and well maintained weapon passed down from its use during the original Martian rebellion, \
+	more family heirloom than a battlefield weapon, it serves just as well regardless. \
+	It combines good mobility and managable handling with fearsome stopping power and a tremendous rate of fire, making the V-34 an exceptionally deadly weapon at close range. \
+	With poor falloff and accuracy, it is a poor weapon outside of close range, and its mobility lacks compared to some other close range weapons like the V-21. \
+	Uses 7.62x39mm ammunition."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som_carbine/mag_harness
 
@@ -806,15 +853,16 @@
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/volkite_caliver_pack
 	name = "VX-33P Caliver"
-	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. \
-	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
-	The caliver is the primary rifle of the volkite family, and effective at most ranges and situations. Drag click the powerpack to the gun to use that instead of magazines. \
-	This one has a motion sensor and is paired with a volkite powerpack."
+	desc = "Equipped with a motion sensor and laser sight, this one is intended to be used with a back worm powerpack. \
+	The VX-33 is a sophisticated energy weapon capable of explosively deflagrated organic targets, horrifically burning and igniting the victim and anyone unfortunate enough to be near them. \
+	Has middling mobility and handling, it is a long range rifle analogue, able to project strong damage even at long ranges. \
+	Its deflagrating ability works best against light armored targets, where it can quickly mow down and demoralise tightly packed enemies. Against heavily armored opponents, its effectiveness can quickly drop however. \
+	Uses volkite power cells, shared with the VX-32, and can also be linked to a volkite powerpack."
 	req_desc = "Requires a volkite powerback."
-	ui_icon = "ballistic"
+	ui_icon = "volkite"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
 	quantity = 2
-	purchase_cost = 100
+	purchase_cost = 75
 	item_whitelist = list(/obj/item/cell/lasgun/volkite/powerpack = ITEM_SLOT_BACK)
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/volkite_caliver_pack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -831,11 +879,14 @@
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/volkite_culverin
 	name = "VX-42 culverin"
-	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. \
-	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
-	The culverin is the largest man portable example of volkite weaponry, and can lay down a staggering torrent of fire due to its linked back-mounted powerpack. Drag click the powerpack to the gun to load."
+	desc = "Equipped with a mag harness. \
+	The VX-42 is a massive and terrifying energy weapon capable of explosively deflagrated organic targets, horrifically burning and igniting the victim and anyone unfortunate enough to be near them. \
+	It has poor mobility and handling and is somewhat inaccurate at range, especially on the move. Despite this, the VX-42 can unleash a blistering amount of firepower, making it one of the most feared weapons in the SOM arsenal. \
+	Targets at close range are torn apart, and its high rate of fire more than makes up for its somewhat poor long range accuracy. \
+	Its deflagrating ability works best against light armored targets, where it can quickly mow down and demoralise tightly packed enemies. Against heavily armored opponents, its effectiveness can quickly drop however. \
+	It must be linked to a volkite powerpack, allowing for sustained fire, although its energy demands can quickly drain even the powerpack, leaving a trigger happy operate vulnerable while it recharges."
 	req_desc = "Requires a volkite powerback to operate."
-	ui_icon = "ballistic"
+	ui_icon = "volkite"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness
 	quantity = 2
 	purchase_cost = 150
@@ -855,11 +906,13 @@
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/radioactive_smg
 	name = "V-21R"
-	desc = "The V-21 is the principal submachinegun used by the Sons of Mars, designed to be used effectively one or two handed with  a variable rate of fire. \
-	When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. \
-	This particular weapon comes with a variety of irradiated and incendiary magazines."
+	desc = "Equipped with a red dot sight, recoil compensator and vertical grip, along with radioactive and incendiary ammunition. The V-21 is the principal submachinegun used by the Sons of Mars, with a variable rate of fire. \
+	Has outstanding mobility and handling and can be comfortably fired one handed on its lower fire rate mode. \
+	When set to its higher rate of fire, it unleashes a staggering torrent of firepower, but is difficult to control even two handed, and quickly loses effectiveness at range. \
+	At close range however, it will quickly obliterate most targets - as long as you don't run out of ammo. \
+	It uses 10x20mm caseless rounds."
 	req_desc = "Requires a suit with a Mithridatius environmental protection module."
-	ui_icon = "ballistic"
+	ui_icon = "smg"
 	item_typepath = /obj/item/weapon/gun/smg/som/support
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/mithridatius = ITEM_SLOT_OCLOTHING)
 
@@ -906,8 +959,9 @@
 
 /datum/loadout_item/suit_store/energy_sword
 	name = "Energy sword"
-	desc = "A SOM energy sword. Designed to cut through armored plate. An uncommon primary weapon, typically seen wielded by so called 'blink assault' troops."
-	ui_icon = "ballistic"
+	desc = "A SOM energy sword. Designed to cut through armored plate. An uncommon primary weapon, typically seen wielded by so called 'blink assault' troops. \
+	Can be used defensively to great effect, mainly against opponents trying to strike you in melee, although some users report varying levels of success in blocking ranged projectiles."
+	ui_icon = "machete"
 	item_typepath = /obj/item/weapon/energy/sword/som
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 
@@ -964,9 +1018,11 @@
 
 /datum/loadout_item/suit_store/main_gun/som_squad_leader/standard_rifle
 	name = "V-31"
-	desc = "The V-31 was the primary rifle of the Sons of Mars until the introduction of more advanced energy weapons. \
-	Nevertheless, the V-31 continues to see common use due to its comparative ease of production and maintenance, and due to the inbuilt low velocity railgun designed for so called 'micro' grenades. \
-	Has good handling due to its compact bullpup design, and is generally effective at all ranges. Loaded with armor piercing 10x25mm caseless ammunition."
+	desc = "Equipped with a red dot sight, extended barrel, vertical grip and integrated micro rail launcher. Also comes with light armor piercing ammunition. The V-31 is the principal ballistic weapon for the SOM. \
+	It has good mobility and handling and a good rate of fire, but tends to favour closer range fighting compared to many TGMC equivilents. \
+	The rail launcher electromagnetically launches a variety of 10 gauge airbursting grenades. Extremely effective when used correctly, their fixed fuse time makes them entirely ineffective at very close or far ranges. \
+	Managing engagement range is thus vital for maximising the effectiveness of this weapon. \
+	Uses 10x25mm caseless ammunition and 10 gauge micro grenades."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som/veteran
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
@@ -987,10 +1043,12 @@
 
 /datum/loadout_item/suit_store/main_gun/som_squad_leader/smg
 	name = "V-21"
-	desc = "The V-21 is the principal submachinegun used by the Sons of Mars, designed to be used effectively one or two handed with  a variable rate of fire. \
-	When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. \
-	Loaded with armor piercing 10x20mm caseless rounds."
-	ui_icon = "ballistic"
+	desc = "Equipped with a red dot sight, recoil compensator and vertical grip, along with armor piercing ammunition. The V-21 is the principal submachinegun used by the Sons of Mars, with a variable rate of fire. \
+	Has outstanding mobility and handling and can be comfortably fired one handed on its lower fire rate mode. \
+	When set to its higher rate of fire, it unleashes a staggering torrent of firepower, but is difficult to control even two handed, and quickly loses effectiveness at range. \
+	At close range however, it will quickly obliterate most targets - as long as you don't run out of ammo. \
+	It uses 10x20mm caseless rounds."
+	ui_icon = "smg"
 	item_typepath = /obj/item/weapon/gun/smg/som/veteran
 
 /datum/loadout_item/suit_store/main_gun/som_squad_leader/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1010,11 +1068,12 @@
 
 /datum/loadout_item/suit_store/main_gun/som_squad_leader/volkite_charger
 	name = "VX-32 charger"
-	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. \
-	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
-	The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges. \
-	This one is configured for more effective one handed use, and has a motion sensor attached."
-	ui_icon = "ballistic"
+	desc = "Equipped with a motion sensor and gyroscopic stabiliser for effective one handed use. \
+	The VX-32 is a sophisticated energy weapon capable of explosively deflagrated organic targets, horrifically burning and igniting the victim and anyone unfortunate enough to be near them. \
+	Has excellent mobility and handling and is best used at close range. \
+	Its deflagrating ability works best against light armored targets, where it can quickly mow down and demoralise tightly packed enemies. Against heavily armored opponents, its effectiveness can quickly drop however. \
+	Uses volkite power cells, shared with the VX-33."
+	ui_icon = "volkite"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/scout
 
 /datum/loadout_item/suit_store/main_gun/som_squad_leader/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1032,10 +1091,13 @@
 
 /datum/loadout_item/suit_store/main_gun/som_squad_leader/volkite_caliver
 	name = "VX-33 caliver"
-	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. \
-	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
-	The caliver is the primary rifle of the volkite family, and effective at most ranges and situations. Drag click the powerpack to the gun to use that instead of magazines."
-	ui_icon = "ballistic"
+	desc = "Equipped with a motion sensor and laser sight. \
+	The VX-33 is a sophisticated energy weapon capable of explosively deflagrated organic targets, horrifically burning and igniting the victim and anyone unfortunate enough to be near them. \
+	Has middling mobility and handling, it is a long range rifle analogue, able to project strong damage even at long ranges. \
+	Its deflagrating ability works best against light armored targets, where it can quickly mow down and demoralise tightly packed enemies. Against heavily armored opponents, its effectiveness can quickly drop however. \
+	Uses volkite power cells, shared with the VX-32, and can also be linked to a volkite powerpack."
+	ui_icon = "volkite"
+	purchase_cost = 50
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
 
 /datum/loadout_item/suit_store/main_gun/som_squad_leader/volkite_caliver/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1053,7 +1115,10 @@
 
 /datum/loadout_item/suit_store/main_gun/som_squad_leader/mpi
 	name = "MPi-KM"
-	desc = "A cheap and robust rifle, sometimes better known as an 'AK'. Chambers 7.62x39mm. This one has a built in underbarrel grenade launcher and looks very old, but well looked after."
+	desc = "Equipped with a mag harness and underbarrel grenade launcher. This MPi-KM is an original example of one of several variants of kalashnikov type rifles used during the original Martian rebellion. \
+	Passed down the generations and lovingly maintained as a family heirloom, \
+	its use on modern battlefields is an idiosyncratic example of the SOM's persistant desire to maintain a link to their cultural past, more than any possible tactical reason. \
+	Despite having relatively poor mobility and handling, it never the less has fearsome firepower and good capacity, ensuring it stays a relevant weapon choice for the SOM. Uses 7.62x39mm ammunition."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/mpi_km/grenadier
 
@@ -1072,9 +1137,11 @@
 
 /datum/loadout_item/suit_store/main_gun/som_squad_leader/carbine
 	name = "V-34"
-	desc = "An old but robust weapon that saw extensive use in the Martian uprising. \
-	A comparatively light and compact weapon, it still packs a considerable punch thanks to a good rate of fire and high calibre, \
-	although at range its effective drops off considerably. It is chambered in 7.62x39mm."
+	desc = "Equipped with a mag harness and foldable stock. This V-34 is refurbished and well maintained weapon passed down from its use during the original Martian rebellion, \
+	more family heirloom than a battlefield weapon, it serves just as well regardless. \
+	It combines good mobility and managable handling with fearsome stopping power and a tremendous rate of fire, making the V-34 an exceptionally deadly weapon at close range. \
+	With poor falloff and accuracy, it is a poor weapon outside of close range, and its mobility lacks compared to some other close range weapons like the V-21. \
+	Uses 7.62x39mm ammunition."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som_carbine/mag_harness
 
@@ -1117,9 +1184,11 @@
 
 /datum/loadout_item/suit_store/main_gun/som_field_commander/standard_rifle
 	name = "V-31"
-	desc = "The V-31 was the primary rifle of the Sons of Mars until the introduction of more advanced energy weapons. \
-	Nevertheless, the V-31 continues to see common use due to its comparative ease of production and maintenance, and due to the inbuilt low velocity railgun designed for so called 'micro' grenades. \
-	Has good handling due to its compact bullpup design, and is generally effective at all ranges. Loaded with armor piercing 10x25mm caseless ammunition."
+	desc = "Equipped with a red dot sight, extended barrel, vertical grip and integrated micro rail launcher. Also comes with light armor piercing ammunition. The V-31 is the principal ballistic weapon for the SOM. \
+	It has good mobility and handling and a good rate of fire, but tends to favour closer range fighting compared to many TGMC equivilents. \
+	The rail launcher electromagnetically launches a variety of 10 gauge airbursting grenades. Extremely effective when used correctly, their fixed fuse time makes them entirely ineffective at very close or far ranges. \
+	Managing engagement range is thus vital for maximising the effectiveness of this weapon. \
+	Uses 10x25mm caseless ammunition and 10 gauge micro grenades."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som/veteran
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
@@ -1140,10 +1209,12 @@
 
 /datum/loadout_item/suit_store/main_gun/som_field_commander/smg
 	name = "V-21"
-	desc = "The V-21 is the principal submachinegun used by the Sons of Mars, designed to be used effectively one or two handed with  a variable rate of fire. \
-	When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. \
-	Loaded with armor piercing 10x20mm caseless rounds."
-	ui_icon = "ballistic"
+	desc = "Equipped with a red dot sight, recoil compensator and vertical grip, along with armor piercing ammunition. The V-21 is the principal submachinegun used by the Sons of Mars, with a variable rate of fire. \
+	Has outstanding mobility and handling and can be comfortably fired one handed on its lower fire rate mode. \
+	When set to its higher rate of fire, it unleashes a staggering torrent of firepower, but is difficult to control even two handed, and quickly loses effectiveness at range. \
+	At close range however, it will quickly obliterate most targets - as long as you don't run out of ammo. \
+	It uses 10x20mm caseless rounds."
+	ui_icon = "smg"
 	item_typepath = /obj/item/weapon/gun/smg/som/veteran
 
 /datum/loadout_item/suit_store/main_gun/som_field_commander/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1163,11 +1234,12 @@
 
 /datum/loadout_item/suit_store/main_gun/som_field_commander/volkite_charger
 	name = "VX-32 charger"
-	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. \
-	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
-	The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges. \
-	This one is configured for more effective one handed use, and has a motion sensor attached."
-	ui_icon = "ballistic"
+	desc = "Equipped with a motion sensor and gyroscopic stabiliser for effective one handed use. \
+	The VX-32 is a sophisticated energy weapon capable of explosively deflagrated organic targets, horrifically burning and igniting the victim and anyone unfortunate enough to be near them. \
+	Has excellent mobility and handling and is best used at close range. \
+	Its deflagrating ability works best against light armored targets, where it can quickly mow down and demoralise tightly packed enemies. Against heavily armored opponents, its effectiveness can quickly drop however. \
+	Uses volkite power cells, shared with the VX-33."
+	ui_icon = "volkite"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/scout
 
 /datum/loadout_item/suit_store/main_gun/som_field_commander/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1185,10 +1257,13 @@
 
 /datum/loadout_item/suit_store/main_gun/som_field_commander/volkite_caliver
 	name = "VX-33 caliver"
-	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. \
-	Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. \
-	The caliver is the primary rifle of the volkite family, and effective at most ranges and situations. Drag click the powerpack to the gun to use that instead of magazines."
-	ui_icon = "ballistic"
+	desc = "Equipped with a red dot sight and laser sight. \
+	The VX-33 is a sophisticated energy weapon capable of explosively deflagrated organic targets, horrifically burning and igniting the victim and anyone unfortunate enough to be near them. \
+	Has middling mobility and handling, it is a long range rifle analogue, able to project strong damage even at long ranges. \
+	Its deflagrating ability works best against light armored targets, where it can quickly mow down and demoralise tightly packed enemies. Against heavily armored opponents, its effectiveness can quickly drop however. \
+	Uses volkite power cells, shared with the VX-32, and can also be linked to a volkite powerpack."
+	ui_icon = "volkite"
+	purchase_cost = 50
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
 
 /datum/loadout_item/suit_store/main_gun/som_field_commander/volkite_caliver/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1206,7 +1281,10 @@
 
 /datum/loadout_item/suit_store/main_gun/som_field_commander/mpi
 	name = "MPi-KM"
-	desc = "A cheap and robust rifle, sometimes better known as an 'AK'. Chambers 7.62x39mm. This one has a built in underbarrel grenade launcher and looks very old, but well looked after."
+	desc = "Equipped with a mag harness and underbarrel grenade launcher. This MPi-KM is an original example of one of several variants of kalashnikov type rifles used during the original Martian rebellion. \
+	Passed down the generations and lovingly maintained as a family heirloom, \
+	its use on modern battlefields is an idiosyncratic example of the SOM's persistant desire to maintain a link to their cultural past, more than any possible tactical reason. \
+	Despite having relatively poor mobility and handling, it never the less has fearsome firepower and good capacity, ensuring it stays a relevant weapon choice for the SOM. Uses 7.62x39mm ammunition."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/mpi_km/grenadier
 
@@ -1225,9 +1303,11 @@
 
 /datum/loadout_item/suit_store/main_gun/som_field_commander/carbine
 	name = "V-34"
-	desc = "An old but robust weapon that saw extensive use in the Martian uprising. \
-	A comparatively light and compact weapon, it still packs a considerable punch thanks to a good rate of fire and high calibre, \
-	although at range its effective drops off considerably. It is chambered in 7.62x39mm."
+	desc = "Equipped with a mag harness and foldable stock. This V-34 is refurbished and well maintained weapon passed down from its use during the original Martian rebellion, \
+	more family heirloom than a battlefield weapon, it serves just as well regardless. \
+	It combines good mobility and managable handling with fearsome stopping power and a tremendous rate of fire, making the V-34 an exceptionally deadly weapon at close range. \
+	With poor falloff and accuracy, it is a poor weapon outside of close range, and its mobility lacks compared to some other close range weapons like the V-21. \
+	Uses 7.62x39mm ammunition."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som_carbine/mag_harness
 
@@ -1246,8 +1326,10 @@
 
 /datum/loadout_item/suit_store/fc_boarding_axe
 	name = "Boarding axe"
-	desc = "A SOM boarding axe, effective at breaching doors as well as skulls. When wielded it can be used to block as well as attack."
-	ui_icon = "ballistic"
+	desc = "A SOM boarding axe, a monstrous two handed weapon that inflicts terrible damage even through heavy armor. \
+	When wielded it can be used to block as well as attack, and can also be used to force unpowered airlocks open. \
+	You'll kill pretty much anything you can hit with this - providing you can get close enough to use it."
+	ui_icon = "axe"
 	item_typepath = /obj/item/weapon/twohanded/fireaxe/som
 	item_blacklist = list(/obj/item/weapon/twohanded/fireaxe/som = ITEM_SLOT_BACK)
 	jobs_supported = list(SOM_FIELD_COMMANDER)

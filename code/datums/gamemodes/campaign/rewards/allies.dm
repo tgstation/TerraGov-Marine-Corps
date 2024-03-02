@@ -22,6 +22,7 @@
 	desc = "A colonial militia squad to augment our forces"
 	detailed_desc = "A large number of militia job slots are opened at no attrition cost. \
 	A local colonial militia sympathetic to our cause has offered a squad to support our troops. Equipped with lesser arms and armor than our own troops, but fairly numerous."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/militia_reinforcement
 	ui_icon = "militia"
 	bonus_job_list = list(
 		/datum/job/som/mercenary/militia/leader = 1,
@@ -34,6 +35,7 @@
 	desc = "A squad of freelance guns for hire to support our forces"
 	detailed_desc = "A moderate number of freelancer job slots are opened at no attrition cost. \
 	A contract has been bought for a squad of freelancers to augment our forces. With comparable equipment and training, they can help turn the tables when our forces are stretched thin."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/freelancer_reinforcement
 	ui_icon = "freelancers"
 	bonus_job_list = list(
 		/datum/job/freelancer/leader/campaign_bonus = 1,
@@ -47,6 +49,7 @@
 	desc = "A squad of ICC soldiers to support our forces"
 	detailed_desc = "A moderate number of ICC job slots are opened at no attrition cost. \
 	The ICC have authorised a small, local detachment of their troops to aid us in our conflict. They are well armed and armored, and could prove a valuable advantage in a fight."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/icc_reinforcement
 	ui_icon = "icc"
 	bonus_job_list = list(
 		/datum/job/icc/leader/campaign_bonus = 1,
@@ -60,6 +63,7 @@
 	desc = "An elite PMC team to assist in a joint operation"
 	detailed_desc = "A small number of PMC job slots are opened at no attrition cost. \
 	NanoTrasen have authorised a small team of their PMC contractors to assist us in combat. With superior arms and armor, they a powerful tactical asset."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/pmc_reinforcement
 	ui_icon = "pmc"
 	bonus_job_list = list(
 		/datum/job/pmc/leader/campaign_bonus = 1,

@@ -845,7 +845,7 @@
 /turf/open/floor/tile/white,
 /area/slumbridge/inside/pmcdome/dorms)
 "aLp" = (
-/obj/item/trash/barcardine,
+/obj/item/trash/barcaridine,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/green/whitegreen{
@@ -7822,7 +7822,7 @@
 /area/slumbridge/inside/pmcdome)
 "fYc" = (
 /obj/structure/table,
-/obj/item/trash/barcardine,
+/obj/item/trash/barcaridine,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -9303,7 +9303,7 @@
 /turf/open/floor/tile/yellow/full,
 /area/slumbridge/inside/engi/central)
 "hey" = (
-/obj/item/ammo_magazine/tank/ltaaap_minigun,
+/obj/item/ammo_magazine/tank/ltaap_minigun,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/slumbridge/inside/sombase/east)
@@ -26353,7 +26353,7 @@
 "twh" = (
 /obj/structure/table/gamblingtable,
 /obj/item/toy/dice/d20,
-/obj/item/trash/barcardine,
+/obj/item/trash/barcaridine,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},

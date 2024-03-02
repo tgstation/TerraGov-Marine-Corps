@@ -897,8 +897,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
 		adjust_sunder(proj.sundering)
 
-	if(stat != DEAD && ismob(proj.firer))
-		record_projectile_damage(proj.firer, damage)	//Tally up whoever the shooter was
+	if(stat != DEAD && isliving(proj.firer))
+		var/mob/living/living_firer = proj.firer
+		living_firer.record_projectile_damage(damage, src)	//Tally up whoever the shooter was
 
 	if(damage)
 		if(do_shrapnel_roll(proj, damage))
@@ -1316,6 +1317,50 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/proc/get_sunder()
 	return 0
+
+
+/**
+ * Fires a list of projectile objects in a circle around an atom
+ * Arguments:
+ * * source: [mandatory] atom the bullets are emitting from
+ * * bullets: [mandatory] list of bullets  (in order, clockwise) to fire
+ * * firer: atom that "shot" these bullets
+ * * fire_sound: sound to play while the bullets are firing
+ * * range: bullet range
+ * * speed: bullet speed
+ * * randomized: bool, if true we randomly pick where we're firing instead of evenly seperated
+ * * rotations: how many times to "spin" the rotation. if 0 or less, instead bursts all the bullets at once
+ */
+/proc/bullet_burst(atom/source, list/obj/projectile/bullets, atom/firer, fire_sound, range, speed, randomized = FALSE, rotations = -1)
+	var/angle_between_bullets = 0
+	var/current_angle = 0
+
+	//fire in an instant burst, no shrapnel
+	if(rotations < 1)
+		angle_between_bullets = 360 / length(bullets)
+		for(var/obj/projectile/proj in bullets)
+			if(randomized)
+				current_angle = rand(1, 360)
+			else
+				current_angle += angle_between_bullets
+
+			proj.fire_at(null, firer, source, range, speed, current_angle, loc_override=source)
+		if(fire_sound)
+			playsound(source, fire_sound, 60, TRUE)
+		return
+
+	angle_between_bullets = 360 / (length(bullets) / rotations)
+	var/play_sound
+	for(var/obj/projectile/proj in bullets)
+		if(randomized)
+			current_angle = rand(1, 360)
+		else
+			current_angle += angle_between_bullets
+
+		proj.fire_at(null, firer, source, range, speed, current_angle, loc_override=source)
+		if(play_sound % 3 && fire_sound)
+			playsound(source, fire_sound, 60, FALSE)
+		stoplag(1)
 
 #undef BULLET_FEEDBACK_PEN
 #undef BULLET_FEEDBACK_SOAK

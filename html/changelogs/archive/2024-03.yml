@@ -1,0 +1,41 @@
+2024-03-01:
+  Lumipharon:
+  - code_imp: Tiny tweak to directional attack code
+  - balance: Blowing up a wraith portal kills both ends of the portal now
+  - bugfix: fixed a runtime with adjacency checks
+  tyeagg:
+  - bugfix: rust-g not compiled with pathfinder feature
+2024-03-02:
+  2whatever2:
+  - rscadd: Gargoyles are now act the same as other structures, and can be tracked
+      with Structure pinpointers and hive tracker.
+  - balance: 2x damage on Genghis charge flames, 0.5x on it's timer. (17, 31) -->
+      (9, 62) (Time rounded up.)
+  AzonStarfall:
+  - rscdel: Removed references to high-tier xenomorph research samples.
+  - bugfix: Simplified the name of spawnable xenomorph research samples.
+  Barnet2:
+  - spellcheck: Changed "View Hive" lobby button to "View Hive Leaders"
+  Kapu1178:
+  - bugfix: Primordial crusher doesn't crash the server anymore.
+  Lumipharon:
+  - qol: Mecha controls can now be correctly hotkeyed
+  - bugfix: fixed various bugs with xeno charge abilities
+  - refactor: Refactored xeno charge abilities
+  Naaanii:
+  - rscadd: Adds Incendiary, Sticky, Cloak, Tfoot, Trailblazer, Lasernade, HEFA and
+      Antigas grenades to reqtorio.
+  - balance: Adjusted the price and yield of M15, WP and razor nades in reqtorio.
+  - rscadd: Added Hefa nades to Valhalla vendors.
+  - rscdel: Removed tfoot nades from Valhalla weapon vendors.
+  - rscadd: Added tfoot nades to Valhalla req vendors.
+  Xander3359:
+  - balance: Some lemolocked chems have a bit more generous reactions.
+  Yttriums:
+  - balance: Squad Engineers can now purchase supply beacons in their roundstart vendor
+  - balance: Mortar kit now includes a bag.
+  blackdav123:
+  - balance: Increases crusher sunder multiplier
+  ivanmixo:
+  - bugfix: The server should no longer die if you try to directional attack diagonally
+      thru a wall

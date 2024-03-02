@@ -29,15 +29,6 @@
 	evolution_threshold = 100
 	upgrade_threshold = TIER_ONE_THRESHOLD
 
-	evolves_to = list(
-		/mob/living/carbon/xenomorph/shrike,
-		/mob/living/carbon/xenomorph/queen,
-		/mob/living/carbon/xenomorph/king,
-		/mob/living/carbon/xenomorph/carrier,
-		/mob/living/carbon/xenomorph/hivelord,
-		/mob/living/carbon/xenomorph/hivemind,
-	)
-
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_BUILDER
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
@@ -61,6 +52,7 @@
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/activable/xeno/essence_link,
 		/datum/action/ability/activable/xeno/psychic_cure/acidic_salve,
 		/datum/action/ability/activable/xeno/transfer_plasma/drone,
@@ -89,6 +81,7 @@
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/activable/xeno/essence_link,
 		/datum/action/ability/activable/xeno/psychic_cure/acidic_salve,
 		/datum/action/ability/activable/xeno/transfer_plasma/drone,

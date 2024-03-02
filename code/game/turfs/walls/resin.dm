@@ -15,8 +15,12 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
 	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES)
-	soft_armor = list(MELEE = 0, BULLET = 70, LASER = 60, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 75, ENERGY = 75, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	hard_armor = list(MELEE = 0, BULLET = 15, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	resistance_flags = UNACIDABLE
+
+	//Used for quickbuild refunding.
+	var/is_normal_resin_wall = TRUE
 
 /turf/closed/wall/resin/add_debris_element()
 	AddElement(/datum/element/debris, null, -15, 8, 0.7)
@@ -86,13 +90,14 @@
 			take_damage(rand(30, 50), BRUTE, BOMB)
 
 
-/turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return
 	if(CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
-		SSresinshaping.quickbuild_points_by_hive[X.hivenumber]++
-		take_damage(max_integrity) // Ensure its destroyed
-		return
+		if(is_normal_resin_wall)
+			SSresinshaping.quickbuild_points_by_hive[X.hivenumber]++
+			take_damage(max_integrity) // Ensure its destroyed
+			return
 	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
 	span_xenonotice("We start to tear down \the [src]."))
 	if(!do_after(X, 1 SECONDS, NONE, X, BUSY_ICON_GENERIC))
@@ -122,6 +127,8 @@
 	var/multiplier = 1
 	if(I.damtype == BURN) //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1
+	else if(I.damtype == BRUTE)
+		multiplier += 0.75
 
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
@@ -152,14 +159,14 @@
  * Regenerating walls that start with lower health, but grow to a much higher hp over time
  */
 /turf/closed/wall/resin/regenerating
-	max_integrity = 150
+	max_integrity = 75
 
 	/// Total health possible for a wall after regenerating at max health
 	var/max_upgradable_health = 300
 	/// How much the walls integrity heals per tick (5 seconds)
 	var/heal_per_tick = 25
 	/// How much the walls max_integrity increases per tick (5 seconds)
-	var/max_upgrade_per_tick = 3
+	var/max_upgrade_per_tick = 6
 	/// How long should the wall stop healing for when taking dmg
 	var/cooldown_on_taking_dmg = 30 SECONDS
 	///Whether we have a timer already to stop from clogging up the timer ss
@@ -202,4 +209,27 @@
 
 /* Hivelord walls, they start off stronger */
 /turf/closed/wall/resin/regenerating/thick
-	max_integrity = 250
+	max_integrity = 125
+
+/turf/closed/wall/resin/regenerating/special
+	name = "you shouldn't see this"
+	is_normal_resin_wall = FALSE
+
+/turf/closed/wall/resin/regenerating/special/bulletproof
+	name = "bulletproof resin wall"
+	desc = "Weird slime solidified into a wall. Looks shiny."
+	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0) //You aren't damaging this with bullets without alot of AP.
+	color = COLLOR_WALL_BULLETPROOF
+
+/turf/closed/wall/resin/regenerating/special/fireproof
+	name = "fireproof resin wall"
+	desc = "Weird slime solidified into a wall. Very red."
+	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 75, ENERGY = 75, BOMB = 0, BIO = 0, FIRE = 200, ACID = 0)
+	color = COLOR_WALL_FIREPROOF
+
+/turf/closed/wall/resin/regenerating/special/hardy
+	name = "hardy resin wall"
+	desc = "Weird slime soldified into a wall. Looks very strong."
+	max_upgradable_health = 450
+	max_upgrade_per_tick = 12 //Upgrades faster, but if damaged at all it will be put on cooldown still to help against walling in combat.
+	color = COLOR_WALL_HARDY

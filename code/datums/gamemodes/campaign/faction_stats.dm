@@ -45,14 +45,14 @@ GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 		/datum/campaign_asset/teleporter_charges,
 		/datum/campaign_asset/teleporter_enabled,
 		/datum/campaign_asset/equipment/medkit_basic/som,
-		/datum/campaign_asset/equipment/materials_pack,
+		/datum/campaign_asset/equipment/materials_pack/som,
 		/datum/campaign_asset/equipment/ballistic_som,
 		/datum/campaign_asset/equipment/shotguns_som,
 		/datum/campaign_asset/equipment/volkite,
 		/datum/campaign_asset/equipment/heavy_armour_som,
 		/datum/campaign_asset/equipment/shields_som,
 		/datum/campaign_asset/equipment/grenades_som,
-		/datum/campaign_asset/equipment/at_mines,
+		/datum/campaign_asset/equipment/at_mines/som,
 		/datum/campaign_asset/equipment/tac_bino_som,
 		/datum/campaign_asset/tactical_reserves,
 	),
@@ -90,7 +90,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/active_attrition_points = 0
 	///Multiplier on the passive attrition point gain for this faction
 	var/attrition_gain_multiplier = 1
-	///cumulative loss bonus which is applied to attrition gain mult
+	///cumulative loss bonus which is applied to attrition gain mult and player credit mission reward
 	var/loss_bonus = 0
 	///Future missions this faction can currently choose from
 	var/list/datum/campaign_mission/available_missions = list()
@@ -103,12 +103,12 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	///Any special behavior flags for the faction
 	var/stats_flags = NONE
 	///Portrait used for general screen text notifications
-	var/atom/movable/screen/text/screen_text/picture/faction_portrait
+	var/faction_portrait
 	///Faction-wide modifier to respawn delay
 	var/respawn_delay_modifier = 0
 	///records how much currency has been earned from missions, for late join players
 	var/accumulated_mission_reward = 0
-	///list of individual stats by key
+	///list of individual stats by ckey
 	var/list/datum/individual_stats/individual_stat_list = list()
 
 /datum/faction_stats/New(new_faction)
@@ -137,9 +137,9 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		return
 	if(new_member.faction != faction)
 		return
-	if(individual_stat_list[new_member.key])
-		individual_stat_list[new_member.key].current_mob = new_member
-		individual_stat_list[new_member.key].apply_perks()
+	if(individual_stat_list[new_member.ckey])
+		individual_stat_list[new_member.ckey].current_mob = new_member
+		individual_stat_list[new_member.ckey].apply_perks()
 	else
 		get_player_stats(new_member)
 	var/datum/action/campaign_loadout/loadouts = new
@@ -147,11 +147,11 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 ///Returns a users individual stat datum, generating a new one if required
 /datum/faction_stats/proc/get_player_stats(mob/user)
-	if(!user.key)
+	if(!user.ckey)
 		return
-	if(!individual_stat_list[user.key])
-		individual_stat_list[user.key] = new /datum/individual_stats(user, faction, accumulated_mission_reward)
-	return individual_stat_list[user.key]
+	if(!individual_stat_list[user.ckey])
+		individual_stat_list[user.ckey] = new /datum/individual_stats(user, faction, accumulated_mission_reward)
+	return individual_stat_list[user.ckey]
 
 ///Randomly adds a new mission to the available pool
 /datum/faction_stats/proc/generate_new_mission()
@@ -185,6 +185,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		for(var/senior_rank in ranks)
 			for(var/mob/living/carbon/human/candidate AS in possible_candidates)
 				if(candidate.job.title != senior_rank)
+					continue
+				if(!candidate.client)
 					continue
 				senior_rank_list += candidate
 			if(!length(senior_rank_list))
@@ -232,6 +234,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 /datum/faction_stats/proc/apply_cash(amount)
 	if(!amount)
 		return
+	amount *= 1 + loss_bonus
 	accumulated_mission_reward += amount
 	for(var/i in individual_stat_list)
 		var/datum/individual_stats/player_stats = individual_stat_list[i]
@@ -240,7 +243,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 ///Returns all faction members back to base after the mission is completed
 /datum/faction_stats/proc/return_to_base(datum/campaign_mission/completed_mission)
 	for(var/mob/living/carbon/human/human_mob AS in GLOB.alive_human_list_faction[faction])
-		if((human_mob.z != completed_mission.mission_z_level.z_value) && human_mob.job.job_cost)
+		if((human_mob.z && human_mob.z != completed_mission.mission_z_level.z_value) && human_mob.job.job_cost && human_mob.client) //why is byond so cursed that being inside something makes you z = 0
 			human_mob.revive(TRUE)
 			human_mob.overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
 			human_mob.overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
@@ -426,12 +429,11 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			if((current_mode.current_mission?.mission_state != MISSION_STATE_NEW) && (current_mode.current_mission?.mission_state != MISSION_STATE_LOADED))
 				to_chat(user, "<span class='warning'>Current mission already ongoing, unable to assign more personnel at this time.")
 				return
-			total_attrition_points += active_attrition_points
-			active_attrition_points = 0 //reset, you can change your mind up until the mission starts
-			var/choice = tgui_input_number(user, "How much manpower would you like to dedicate to this mission?", "Attrition Point selection", 0, total_attrition_points, 0, 60 SECONDS)
-			if(!choice)
-				choice = 0
-			total_attrition_points -= choice
+			var/combined_attrition = total_attrition_points + active_attrition_points
+			var/choice = tgui_input_number(user, "How much manpower would you like to dedicate to this mission?", "Attrition Point selection", 0, combined_attrition, 0, 60 SECONDS)
+			combined_attrition = total_attrition_points + active_attrition_points //we do it again in case the amount has changed
+			choice = clamp(choice, 0, combined_attrition)
+			total_attrition_points = combined_attrition - choice
 			active_attrition_points = choice
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
@@ -478,7 +480,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				return
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
-				faction_member.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[choice.name] asset activated", faction_portrait)
+				var/portrait = choice.asset_portrait ? choice.asset_portrait : faction_portrait
+				faction_member.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[choice.name] asset activated", portrait)
 				to_chat(faction_member, "<span class='warning'>[user] has activated the [choice.name] campaign asset.")
 			return TRUE
 

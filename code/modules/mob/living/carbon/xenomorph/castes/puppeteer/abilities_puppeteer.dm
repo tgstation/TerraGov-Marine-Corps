@@ -193,7 +193,7 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(target.stat == DEAD)
 		return
-	owner_xeno.plasma_stored = min(owner_xeno.plasma_stored + round(damage / 0.9), owner_xeno.xeno_caste.plasma_max)
+	owner_xeno.gain_plasma(floor(damage / 0.9))
 
 // ***************************************
 // *********** Stitch Puppet
@@ -274,7 +274,7 @@
 		return fail_activate()
 	RegisterSignal(victim, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(start_exploding))
 	RegisterSignal(victim, COMSIG_MOB_DEATH, PROC_REF(detonate))
-	addtimer(CALLBACK(src, PROC_REF(detonate), victim), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(start_exploding), victim), 5 SECONDS)
 	add_cooldown()
 
 ///asynchronous signal handler for start_exploding_async

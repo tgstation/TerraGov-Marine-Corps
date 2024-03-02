@@ -1,9 +1,10 @@
 /datum/individual_stats
 	interaction_flags = INTERACT_UI_INTERACT
+	var/owner_ckey
 	///currently occupied mob - if any
 	var/mob/living/carbon/current_mob
 	///Credits. You buy stuff with it
-	var/currency = 300
+	var/currency = 450
 	///List of job types based on faction
 	var/list/valid_jobs = list()
 	///Single list of unlocked perks for easy reference
@@ -19,6 +20,8 @@
 
 /datum/individual_stats/New(mob/living/carbon/new_mob, new_faction, new_currency)
 	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(post_mission_credits))
+	owner_ckey = new_mob.ckey
 	current_mob = new_mob
 	faction = new_faction
 	currency += new_currency
@@ -36,6 +39,12 @@
 	perks_by_job = null
 	unlocked_items = null
 	return ..()
+
+///Pay each player additional credits based on individual performance during the mission
+/datum/individual_stats/proc/post_mission_credits(datum/source)
+	SIGNAL_HANDLER
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner_ckey]
+	give_funds(personal_statistics.get_mission_reward())
 
 ///Applies cash
 /datum/individual_stats/proc/give_funds(amount)
@@ -87,24 +96,49 @@
 	new_perk.apply_perk(user)
 
 ///Unlocks a loadout item for use
-/datum/individual_stats/proc/unlock_loadout_item(item_type, job_type, mob/user, cost_override)
-	for(var/datum/loadout_item/item AS in GLOB.campaign_loadout_items_by_role[job_type])
-		if(!istype(item, item_type))
+/datum/individual_stats/proc/unlock_loadout_item(item_type, job_type_or_types, mob/user, cost_override, job_req_override = FALSE)
+	if(!islist(job_type_or_types))
+		job_type_or_types = list(job_type_or_types)
+	var/datum/loadout_item/item = GLOB.campaign_loadout_item_type_list[item_type]
+	if(!istype(item))
+		return FALSE
+	var/insufficient_credits = use_funds(isnum(cost_override) ? cost_override : item.unlock_cost)
+	if(insufficient_credits)
+		to_chat(user, span_warning("Requires [insufficient_credits] more credits."))
+		return FALSE
+	for(var/job_type in job_type_or_types)
+		if(!job_req_override && !(job_type in item.jobs_supported))
 			continue
-		var/insufficient_credits = use_funds(isnum(cost_override) ? cost_override : item.unlock_cost)
-		if(insufficient_credits)
-			to_chat(user, span_warning("Requires [insufficient_credits] more credits."))
-			return
-		if(!loadouts[job_type].unlock_new_option(item))
-			return
-		return TRUE
+		loadouts[job_type]?.unlock_new_option(item)
+	return TRUE
 
 ///Adds an item to the unlockable list for a job
-/datum/individual_stats/proc/make_available_loadout_item(item_type, job_type, mob/user)
-	for(var/datum/loadout_item/item AS in GLOB.campaign_loadout_items_by_role[job_type])
-		if(!istype(item, item_type))
+/datum/individual_stats/proc/make_available_loadout_item(item_type, job_type_or_types, mob/user, job_req_override = FALSE)
+	if(!islist(job_type_or_types))
+		job_type_or_types = list(job_type_or_types)
+	var/datum/loadout_item/item = GLOB.campaign_loadout_item_type_list[item_type]
+	if(!istype(item))
+		return FALSE
+	for(var/job_type in job_type_or_types)
+		if(!job_req_override && !(job_type in item.jobs_supported))
 			continue
-		loadouts[job_type].allow_new_option(item)
+		loadouts[job_type]?.allow_new_option(item)
+	return TRUE
+
+///Adds and equips a loadout item, replacing another
+/datum/individual_stats/proc/replace_loadout_option(new_item, removed_item, job_type_or_types, job_req_override = FALSE)
+	if(!islist(job_type_or_types))
+		job_type_or_types = list(job_type_or_types)
+	var/datum/loadout_item/item = GLOB.campaign_loadout_item_type_list[new_item]
+	if(!istype(item))
+		return FALSE
+	for(var/job_type in job_type_or_types)
+		if(!job_req_override && !(job_type in item.jobs_supported))
+			continue
+		loadouts[job_type]?.unlock_new_option(item)
+		if(loadouts[job_type]?.remove_option(GLOB.campaign_loadout_item_type_list[removed_item]))
+			loadouts[job_type].attempt_equip_loadout_item(item)
+	return TRUE
 
 ///Applies all perks to a mob
 /datum/individual_stats/proc/apply_perks()

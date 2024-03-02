@@ -10,16 +10,16 @@
 	Note that in all cases the neighbor is handled simply; this is usually the user's mob, in which case it is up to you
 	to check that the mob is not inside of something
 */
-/datum/proc/Adjacent(atom/neighbor) // basic inheritance, unused
+/datum/proc/Adjacent(atom/neighbor, atom/target, atom/movable/mover) // basic inheritance, unused
 	return FALSE
 
 
-/datum/wires/Adjacent(atom/neighbor)
+/datum/wires/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	return holder.Adjacent(neighbor)
 
 
 // Not a sane use of the function and (for now) indicative of an error elsewhere
-/area/Adjacent(atom/neighbor)
+/area/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	CRASH("Call to /area/Adjacent(), unimplemented proc")
 
 
@@ -75,7 +75,7 @@
 	Note: Multiple-tile objects are created when the bound_width and bound_height are creater than the tile size.
 	This is not used in stock /tg/station currently.
 */
-/atom/movable/Adjacent(atom/neighbor)
+/atom/movable/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	if(neighbor == loc)
 		return TRUE
 	if(!isturf(loc))
@@ -86,8 +86,8 @@
 
 
 //Multitile special cases.
-/obj/structure/Adjacent(atom/neighbor)
-	if(bound_width > 32 || bound_height > 32)
+/obj/structure/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
+	if(isturf(loc) && bound_width > 32 || bound_height > 32) //locs will show loc if loc is not a turf
 		for(var/turf/myloc AS in locs)
 			if(myloc.Adjacent(neighbor, target = neighbor, mover = src))
 				return TRUE
@@ -101,8 +101,10 @@
 	return FALSE
 
 //Multitile special cases.
-/obj/vehicle/Adjacent(atom/neighbor)
-	if(bound_width > 32 || bound_height > 32)
+/obj/vehicle/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
+	if(hitbox)
+		return hitbox.Adjacent(neighbor)
+	if(isturf(loc) && bound_width > 32 || bound_height > 32) //locs will show loc if loc is not a turf
 		for(var/turf/myloc AS in locs)
 			if(myloc.Adjacent(neighbor, target = neighbor, mover = src))
 				return TRUE
@@ -115,16 +117,22 @@
 			return TRUE
 	return FALSE
 
+/obj/hitbox/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
+	for(var/turf/T AS in locs)
+		if(T.Adjacent(neighbor, neighbor, mover))
+			return TRUE
+	return FALSE
 
-/mob/living/silicon/decoy/Adjacent(atom/neighbor)
+
+/mob/living/silicon/decoy/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	for(var/turf/myloc AS in locs)
 		if(myloc.Adjacent(neighbor, target = neighbor, mover = src))
 			return TRUE
 	return FALSE
 
 
-/obj/machinery/door/Adjacent(atom/neighbor)
-	if(bound_width > 32 || bound_height > 32)
+/obj/machinery/door/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
+	if(isturf(loc) && bound_width > 32 || bound_height > 32) //locs will show loc if loc is not a turf
 		for(var/turf/myloc AS in locs)
 			if(myloc.Adjacent(neighbor, target = neighbor, mover = src))
 				return TRUE
@@ -139,7 +147,7 @@
 
 
 // This is necessary for storage items not on your person.
-/obj/item/Adjacent(atom/neighbor)
+/obj/item/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	if(isnull(loc)) //User input can sometimes cause adjacency checks to things no longer in the map.
 		return FALSE
 
@@ -161,12 +169,12 @@
 	return FALSE
 
 
-/obj/projectile/Adjacent(atom/neighbor) //Projectiles don't behave like regular items.
+/obj/projectile/Adjacent(atom/neighbor, atom/target, atom/movable/mover) //Projectiles don't behave like regular items.
 	var/turf/T = get_turf(loc)
 	return T?.Adjacent(neighbor, target = neighbor, mover = src)
 
 
-/obj/item/detpack/Adjacent(atom/neighbor) //Snowflake detpacks.
+/obj/item/detpack/Adjacent(atom/neighbor, atom/target, atom/movable/mover) //Snowflake detpacks.
 	if(neighbor == loc)
 		return TRUE
 	var/turf/T = get_turf(loc)

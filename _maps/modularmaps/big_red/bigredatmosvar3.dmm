@@ -538,7 +538,9 @@
 /area/bigredv2/outside/filtration_plant)
 "FY" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "GD" = (
@@ -736,6 +738,9 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Tm" = (

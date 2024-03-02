@@ -47,7 +47,7 @@ Stepping directly on the mine will also blow it up
 	icon_state = "[initial(icon_state)][armed ? "_armed" : ""]"
 
 /// On explosion mines trigger their own explosion, assuming there were not deleted straight away (larger explosions or probability)
-/obj/item/explosive/mine/ex_act()
+/obj/item/explosive/mine/ex_act(severity)
 	. = ..()
 	if(!QDELETED(src))
 		INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
@@ -163,7 +163,7 @@ Stepping directly on the mine will also blow it up
 	return TRUE
 
 /// Alien attacks trigger the explosive to instantly detonate
-/obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 	if(triggered) //Mine is already set to go off
@@ -237,6 +237,10 @@ Stepping directly on the mine will also blow it up
 	icon_state = "m92"
 	target_mode = MINE_VEHICLE_ONLY
 
+/obj/item/explosive/mine/anti_tank/update_icon(updates=ALL)
+	. = ..()
+	alpha = armed ? 50 : 255
+
 /obj/item/explosive/mine/anti_tank/trigger_explosion()
 	if(triggered)
 		return
@@ -245,5 +249,27 @@ Stepping directly on the mine will also blow it up
 	QDEL_NULL(tripwire)
 	qdel(src)
 
-/obj/item/explosive/mine/anti_tank/ex_act()
-	qdel(src)
+/obj/item/explosive/mine/anti_tank/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(INFINITY, BRUTE, BOMB, 0)
+			return
+		if(EXPLODE_HEAVY)
+			take_damage(rand(100, 250), BRUTE, BOMB, 0)
+			if(prob(25))
+				return
+		if(EXPLODE_LIGHT)
+			take_damage(rand(10, 90), BRUTE, BOMB, 0)
+			if(prob(50))
+				return
+		if(EXPLODE_WEAK)
+			take_damage(rand(5, 45), BRUTE, BOMB, 0)
+			return //not strong enough to detonate
+	if(QDELETED(src))
+		return
+	if(!armed)
+		return
+	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
+
+/obj/item/explosive/mine/anti_tank/flamer_fire_act(burnlevel)
+	return //its highly exploitable if fire detonates these

@@ -106,6 +106,7 @@ GLOBAL_LIST_INIT(playable_icons, list(
 	"mech_pilot",
 	"medical",
 	"pilot",
+	"transportofficer",
 	"praetorian",
 	"private",
 	"puppeteer",
@@ -226,6 +227,38 @@ GLOBAL_LIST_INIT(campaign_perk_icon_types, list(
 	"leadership",
 	"smartguns",
 	"firearms",
+	"overclock",
+	"sword",
+	"axe",
+))
+
+GLOBAL_LIST_INIT(campaign_loadout_item_icon_types, list(
+	"light_armour_shield",
+	"medium_armour_shield",
+	"heavy_armour_shield",
+	"light_armour",
+	"medium_armour",
+	"heavy_armour",
+	"gorgon",
+	"medkit",
+	"materials",
+	"tyr",
+	"lorica",
+	"riot_shield",
+	"grenade",
+	"shotgun",
+	"scout",
+	"ballistic",
+	"lasergun",
+	"volkite",
+	"smartgun",
+	"helmet",
+	"boots",
+	"machete",
+	"axe",
+	"pistol",
+	"smg",
+	"construction",
 ))
 
 GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())
@@ -272,6 +305,6 @@ GLOBAL_LIST_INIT(campaign_loadout_item_icons, init_campaign_loadout_item_icons()
 /proc/init_campaign_loadout_item_icons()
 	. = list()
 	var/list/colours = list("green", "orange", "grey", "red", "blue")
-	for(var/icon_state in GLOB.campaign_asset_icon_types) //placeholder
+	for(var/icon_state in GLOB.campaign_loadout_item_icon_types)
 		for(var/colour in colours)
 			. += "[icon_state]_[colour]"

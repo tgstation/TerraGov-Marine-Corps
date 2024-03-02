@@ -6,7 +6,7 @@
 /turf/open/floor/plating/ground/snow
 	name = "snow layer"
 	icon = 'icons/turf/snow2.dmi'
-	icon_state = "snow_0"
+	icon_state = "snow_0_1"
 	hull_floor = TRUE
 	shoefootstep = FOOTSTEP_SNOW
 	barefootstep = FOOTSTEP_SNOW
@@ -190,20 +190,20 @@
 
 //SNOW LAYERS-----------------------------------//
 /turf/open/floor/plating/ground/snow/layer0
-	icon_state = "snow_0"
+	icon_state = "snow_0_1"
 	slayer = 0
 	minimap_color = MINIMAP_DIRT
 
 /turf/open/floor/plating/ground/snow/layer1
-	icon_state = "snow_1"
+	icon_state = "snow_1_1"
 	slayer = 1
 
 /turf/open/floor/plating/ground/snow/layer2
-	icon_state = "snow_2"
+	icon_state = "snow_2_1"
 	slayer = 2
 
 /turf/open/floor/plating/ground/snow/layer3
-	icon_state = "snow_3"
+	icon_state = "snow_3_1"
 	slayer = 3
 
 

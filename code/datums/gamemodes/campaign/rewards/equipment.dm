@@ -1,5 +1,6 @@
 //Parent for all 'spawn stuff' assets
 /datum/campaign_asset/equipment
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/tgmc_req
 	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_SL_AVAILABLE
 	///list of objects to spawn when this asset is activated
 	var/list/obj/equipment_to_spawn = list()
@@ -27,6 +28,7 @@
 	name = "Gorgon consignment"
 	desc = "Five sets of Gorgon power armor"
 	detailed_desc = "Activatable by squad leaders. Your battalion has been assigned a number of Gorgon power armor sets, available at your request. Gorgon armor is the SOM's elite infantry armor, providing superior protection and an automedical system without significantly compromising on speed."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_req
 	ui_icon = "gorgon"
 	uses = 5
 	cost = 12
@@ -56,6 +58,7 @@
 	)
 
 /datum/campaign_asset/equipment/medkit_basic/som
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_req
 	equipment_to_spawn = list(
 		/obj/item/storage/pouch/firstaid/som/full,
 		/obj/item/storage/pouch/firstaid/som/full,
@@ -80,6 +83,9 @@
 		/obj/item/storage/box/crate/loot/materials_pack,
 	)
 
+/datum/campaign_asset/equipment/materials_pack/som
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_req
+
 /datum/campaign_asset/equipment/ballistic_tgmc
 	name = "ballistic weapon cache"
 	desc = "Ballistic weapons and ammo"
@@ -101,6 +107,7 @@
 	name = "ballistic weapon cache"
 	desc = "Ballistic weapons and ammo"
 	detailed_desc = "A number of standard ballistic weapons and ammo to match."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_req
 	ui_icon = "ballistic"
 	uses = 1
 	cost = 3
@@ -132,6 +139,7 @@
 	name = "Volkite weapon cache"
 	desc = "Volkite weapon cache and ammo"
 	detailed_desc = "A volkite caliver and charger, with accompanying ammo. Able to deflagrate targets, making them deadly against tightly packed opponents."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_req
 	ui_icon = "volkite"
 	uses = 1
 	cost = 4
@@ -188,6 +196,7 @@
 	name = "Shotgun cache"
 	desc = "Shotgun and ammo"
 	detailed_desc = "A V-51 and ammo to match."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_req
 	ui_icon = "shotgun"
 	uses = 1
 	cost = 2
@@ -247,6 +256,7 @@
 	name = "Lorica heavy armour"
 	desc = "Heavy armor upgrades"
 	detailed_desc = "A pair of heavy armor suits equipped with 'Lorica' armour upgrades. Premier protection, but somewhat cumbersome."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_req
 	ui_icon = "lorica"
 	uses = 2
 	cost = 4
@@ -259,6 +269,7 @@
 	name = "Defensive shields"
 	desc = "Heavy shields to hide behind"
 	detailed_desc = "A pair of heavy riot shields. Able to withstand a tremendous amount of punishment at the cost of occupying a hand and slowing you down."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_req
 	ui_icon = "riot_shield"
 	uses = 2
 	cost = 3
@@ -271,6 +282,7 @@
 	name = "Grenade resupply"
 	desc = "An assortment of grenades"
 	detailed_desc = "A variety of different grenade types. Throw towards enemy."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_req
 	ui_icon = "grenade"
 	uses = 2
 	cost = 6
@@ -291,10 +303,14 @@
 		/obj/item/storage/box/explosive_mines/antitank,
 	)
 
+/datum/campaign_asset/equipment/at_mines/som
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_req
+
 /datum/campaign_asset/equipment/tac_bino_som
 	name = "Tactical binoculars"
 	desc = "One set of tactical binoculars"
 	detailed_desc = "Tactical binoculars for seeing into the distance and calling down air support."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_req
 	ui_icon = "binoculars"
 	uses = 1
 	cost = 3

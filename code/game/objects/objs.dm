@@ -124,7 +124,7 @@
 		return FALSE
 	if((allow_pass_flags & PASS_MOB))
 		return TRUE
-	if((allow_pass_flags & PASS_WALKOVER) && SEND_SIGNAL(target, COMSIG_OBJ_TRY_ALLOW_THROUGH))
+	if((allow_pass_flags & PASS_WALKOVER) && SEND_SIGNAL(target, COMSIG_OBJ_TRY_ALLOW_THROUGH, mover))
 		return TRUE
 
 ///Handles extra checks for things trying to exit this objects turf
@@ -147,7 +147,7 @@
 	return COMPONENT_ATOM_BLOCK_EXIT
 
 ///Signal handler to check if you can move from one low object to another
-/obj/proc/can_climb_over(datum/source)
+/obj/proc/can_climb_over(datum/source, atom/mover)
 	SIGNAL_HANDLER
 	if(!(flags_atom & ON_BORDER) && density)
 		return TRUE

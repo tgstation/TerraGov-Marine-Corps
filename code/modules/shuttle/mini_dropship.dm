@@ -17,7 +17,7 @@
 	desc = "Used to designate a precise transit location for the Tadpole."
 	icon_state = "shuttlecomputer"
 	screen_overlay = "shuttlecomputer_screen"
-	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
+	req_access = list(ACCESS_MARINE_TADPOLE)
 	density = FALSE
 	interaction_flags = INTERACT_OBJ_UI
 	resistance_flags = RESIST_ALL

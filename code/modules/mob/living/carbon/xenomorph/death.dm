@@ -4,10 +4,7 @@
 
 
 /mob/living/carbon/xenomorph/death(gibbing, deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw.", silent)
-	if(stat == DEAD)
-		return ..()
-	return ..() //Just a different standard deathmessage
-
+	return ..() //we're just changing the death message
 
 /mob/living/carbon/xenomorph/on_death()
 	GLOB.alive_xeno_list -= src
@@ -23,8 +20,10 @@
 	if(is_zoomed)
 		zoom_out()
 
-	if(tier != XENO_TIER_MINION)
-		GLOB.key_to_time_of_xeno_death[key] = world.time
+	if(GLOB.xeno_stat_multiplicator_buff == 1) //if autobalance is on, it won't equal 1, so xeno respawn timer is not set
+		switch(tier)
+			if(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, XENO_TIER_THREE) //minions and tier fours have no respawn timer
+				GLOB.key_to_time_of_xeno_death[key] = world.time
 
 	SSminimaps.remove_marker(src)
 	set_light_on(FALSE)
@@ -37,6 +36,7 @@
 		if(hud_used.alien_plasma_display)
 			hud_used.alien_plasma_display.icon_state = "power_display_empty"
 	update_icons()
+	hud_set_plasma()
 
 	death_cry()
 

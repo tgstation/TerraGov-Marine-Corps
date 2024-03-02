@@ -4,10 +4,15 @@
 /obj/item/weapon/gun/revolver
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/pistols_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/pistols_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/44mag.ogg'
 	reload_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
 	unload_sound = 'sound/weapons/guns/interact/revolver_unload.ogg'
+	icon = 'icons/obj/items/guns/pistols.dmi'
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	hand_reload_sound = 'sound/weapons/guns/interact/revolver_load.ogg'
 	type_of_casings = "bullet"
@@ -16,7 +21,7 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_speed_modifier = 0.75
 	aim_fire_delay = 0.25 SECONDS
-	wield_delay = 0.2 SECONDS //If you modify your revolver to be two-handed, it will still be fast to aim
+	wield_delay = 0.4 SECONDS
 	gun_skill_category = SKILL_PISTOLS
 
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS
@@ -275,7 +280,7 @@
 /obj/item/weapon/gun/revolver/standard_magnum
 	name = "\improper R-76 KC magnum"
 	desc = "The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/pistols64.dmi'
 	icon_state = "t76"
 	item_state = "t76"
 	fire_animation = "t76_fire"

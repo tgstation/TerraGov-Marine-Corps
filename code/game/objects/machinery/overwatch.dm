@@ -204,14 +204,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/give_eye_control(mob/user)
 	. = ..()
-	RegisterSignal(user, COMSIG_MOB_SHIFT_LEFT_CLICK, PROC_REF(send_order))
+	RegisterSignal(user, COMSIG_MOB_CLICK_SHIFT, PROC_REF(send_order))
 	RegisterSignal(user, COMSIG_ORDER_SELECTED, PROC_REF(set_order))
 	RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, PROC_REF(attempt_radial))
 	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, PROC_REF(alert_lase))
 
 /obj/machinery/computer/camera_advanced/overwatch/remove_eye_control(mob/living/user)
 	. = ..()
-	UnregisterSignal(user, COMSIG_MOB_SHIFT_LEFT_CLICK)
+	UnregisterSignal(user, COMSIG_MOB_CLICK_SHIFT)
 	UnregisterSignal(user, COMSIG_ORDER_SELECTED)
 	UnregisterSignal(user, COMSIG_MOB_MIDDLE_CLICK)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
@@ -319,30 +319,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			state = OW_MAIN
 		if("monitor")
 			state = OW_MONITOR
-		if("monitoralpha_squad")
-			state = OW_MONITOR
-			current_squad = get_squad_by_id(ALPHA_SQUAD)
-		if("monitorbravo_squad")
-			state = OW_MONITOR
-			current_squad = get_squad_by_id(BRAVO_SQUAD)
-		if("monitorcharlie_squad")
-			state = OW_MONITOR
-			current_squad = get_squad_by_id(CHARLIE_SQUAD)
-		if("monitordelta_squad")
-			state = OW_MONITOR
-			current_squad = get_squad_by_id(DELTA_SQUAD)
-		if("monitorzulu_squad")
-			state = OW_MONITOR
-			current_squad = get_squad_by_id(ZULU_SQUAD)
-		if("monitoryankee_squad")
-			state = OW_MONITOR
-			current_squad = get_squad_by_id(YANKEE_SQUAD)
-		if("monitorxray_squad")
-			state = OW_MONITOR
-			current_squad = get_squad_by_id(XRAY_SQUAD)
-		if("monitorwhiskey_squad")
-			state = OW_MONITOR
-			current_squad = get_squad_by_id(WHISKEY_SQUAD)
+			if(href_list["squad_id"])
+				current_squad = get_squad_by_id(href_list["squad_id"])
 		if("change_operator")
 			if(operator != usr)
 				if(current_squad)
@@ -548,7 +526,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						dat += "<b>Squad Overwatch:</b> [S.overwatch_officer.name]<br>"
 					else
 						dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
-					dat += "<A href='?src=[text_ref(src)];operation=monitor[S.id]'>[S.name] Squad Monitor</a><br>"
+					dat += "<A href='?src=[text_ref(src)];operation=monitor;squad_id=[S.id]'>[S.name] Squad Monitor</a><br>"
 				dat += "----------------------<br>"
 				dat += "<b>Orbital Bombardment Control</b><br>"
 				dat += "<b>Current Cannon Status:</b> "
@@ -608,7 +586,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						dat += "<b>Squad Overwatch:</b> [S.overwatch_officer.name]<br>"
 					else
 						dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
-					dat += "<A href='?src=[text_ref(src)];operation=monitor[S.id]'>[S.name] Squad Monitor</a><br>"
+					dat += "<A href='?src=[text_ref(src)];operation=monitor;squad_id=[S.id]'>[S.name] Squad Monitor</a><br>"
 			if(OW_MONITOR)//Info screen.
 				dat += get_squad_info()
 

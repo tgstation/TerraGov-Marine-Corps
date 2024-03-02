@@ -9,14 +9,14 @@
 	wound_type = "warrior" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 20
 
 	// *** Speed *** //
 	speed = -0.5
 
 	// *** Plasma *** //
-	plasma_max = 120
-	plasma_gain = 12
+	plasma_max = 100
+	plasma_gain = 10
 
 	// *** Health *** //
 	max_health = 350
@@ -25,7 +25,6 @@
 	evolution_threshold = 225
 	upgrade_threshold = TIER_TWO_THRESHOLD
 
-	evolves_to = list(/mob/living/carbon/xenomorph/crusher, /mob/living/carbon/xenomorph/behemoth, /mob/living/carbon/xenomorph/gorger, /mob/living/carbon/xenomorph/warlock)
 	deevolves_to = /mob/living/carbon/xenomorph/defender
 
 	// *** Flags *** //
@@ -39,19 +38,15 @@
 	// *** Minimap Icon *** //
 	minimap_icon = "warrior"
 
-	// *** Warrior Abilities *** //
-	agility_speed_increase = -0.6
-	agility_speed_armor = -30
-
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/toggle_agility,
-		/datum/action/ability/activable/xeno/lunge,
-		/datum/action/ability/activable/xeno/fling,
-		/datum/action/ability/activable/xeno/toss,
-		/datum/action/ability/activable/xeno/punch,
+		/datum/action/ability/activable/xeno/warrior/lunge,
+		/datum/action/ability/activable/xeno/warrior/fling,
+		/datum/action/ability/activable/xeno/warrior/grapple_toss,
+		/datum/action/ability/activable/xeno/warrior/punch,
 	)
 
 /datum/xeno_caste/warrior/normal
@@ -67,10 +62,11 @@
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/empower,
 		/datum/action/ability/xeno_action/toggle_agility,
-		/datum/action/ability/activable/xeno/lunge,
-		/datum/action/ability/activable/xeno/fling,
-		/datum/action/ability/activable/xeno/toss,
-		/datum/action/ability/activable/xeno/punch,
-		/datum/action/ability/activable/xeno/punch/jab,
+		/datum/action/ability/activable/xeno/warrior/lunge,
+		/datum/action/ability/activable/xeno/warrior/fling,
+		/datum/action/ability/activable/xeno/warrior/grapple_toss,
+		/datum/action/ability/activable/xeno/warrior/punch,
+		/datum/action/ability/activable/xeno/warrior/punch/flurry,
 	)

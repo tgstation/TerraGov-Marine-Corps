@@ -2640,7 +2640,7 @@
 /area/orion_outpost/ground/outpostsw)
 "nJ" = (
 /obj/item/ammo_magazine/tank/ltb_cannon,
-/obj/item/ammo_magazine/tank/ltaaap_minigun,
+/obj/item/ammo_magazine/tank/ltaap_minigun,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -6262,7 +6262,7 @@
 /area/orion_outpost/ground/outpostcent)
 "Gr" = (
 /obj/item/ammo_magazine/tank/ltb_cannon,
-/obj/item/ammo_magazine/tank/ltaaap_minigun,
+/obj/item/ammo_magazine/tank/ltaap_minigun,
 /turf/open/floor/mainship/black/full,
 /area/orion_outpost/surface/building/ammodepot)
 "Gs" = (
@@ -7715,13 +7715,6 @@
 	dir = 10
 	},
 /area/orion_outpost/surface/building/tadpolepad)
-"NF" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/bed/bunkbed,
-/turf/open/floor/wood,
-/area/orion_outpost/surface/building/barracks)
 "NG" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -19336,7 +19329,7 @@ Zl
 xi
 Zl
 xi
-NF
+Zl
 Jd
 Qu
 VA
@@ -19350,7 +19343,7 @@ Zl
 xi
 Zl
 xi
-NF
+Zl
 Jd
 tS
 hX
@@ -20788,7 +20781,7 @@ Zl
 xi
 Zl
 xi
-NF
+Zl
 Jd
 in
 in

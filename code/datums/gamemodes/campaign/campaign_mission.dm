@@ -68,11 +68,11 @@
 	)
 	///cash rewards for the mission type
 	var/list/cash_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(800, 600),
-		MISSION_OUTCOME_MINOR_VICTORY = list(700, 600),
-		MISSION_OUTCOME_DRAW = list(600, 600),
-		MISSION_OUTCOME_MINOR_LOSS = list(600, 700),
-		MISSION_OUTCOME_MAJOR_LOSS = list(600, 800),
+		MISSION_OUTCOME_MAJOR_VICTORY = list(700, 500),
+		MISSION_OUTCOME_MINOR_VICTORY = list(600, 500),
+		MISSION_OUTCOME_DRAW = list(500, 500),
+		MISSION_OUTCOME_MINOR_LOSS = list(500, 600),
+		MISSION_OUTCOME_MAJOR_LOSS = list(500, 700),
 	)
 	/// Timer used to calculate how long till mission ends
 	var/game_timer
@@ -288,7 +288,7 @@
 		for(var/datum/loadout_item/loadout_item AS in GLOB.campaign_loadout_items_by_role[job])
 			loadout_item.quantity = initial(loadout_item.quantity)
 	for(var/mob/living/carbon/human/corpse AS in GLOB.dead_human_list) //clean up all the bodies and refund normal roles if required
-		if(corpse.z != mission_z_level)
+		if(corpse.z != mission_z_level.z_value)
 			continue
 		if(!HAS_TRAIT(corpse, TRAIT_UNDEFIBBABLE) && corpse.job.job_cost)
 			corpse.job.add_job_positions(1)
@@ -460,7 +460,7 @@
 	GLOB.campaign_structures -= mission_obj
 
 ///spawns mechs for a faction
-/datum/campaign_mission/proc/spawn_mech(mech_faction, heavy_mech, medium_mech, light_mech)
+/datum/campaign_mission/proc/spawn_mech(mech_faction, heavy_mech, medium_mech, light_mech, override_message)
 	if(!mech_faction)
 		return
 	var/total_count = (heavy_mech + medium_mech + light_mech)
@@ -480,4 +480,4 @@
 		GLOB.campaign_structures += new_mech
 		RegisterSignal(new_mech, COMSIG_QDELETING, TYPE_PROC_REF(/datum/campaign_mission, remove_mission_object))
 
-	map_text_broadcast(mech_faction, "[total_count] mechs have been deployed for this mission.", "Mechs available")
+	map_text_broadcast(mech_faction, override_message ? override_message : "[total_count] mechs have been deployed for this mission.", "Mechs available")

@@ -22,6 +22,8 @@
 #define PASS_AIR (1<<9)
 ///Mobs can walk freely between turfs with walkover flagged objects
 #define PASS_WALKOVER (1<<10)
+///when jumping, mobs can pass onto tanks
+#define PASS_TANK (1<<11)
 
 #define PASSABLE (PASS_THROW|PASS_PROJECTILE|PASS_AIR)
 #define HOVERING (PASS_LOW_STRUCTURE|PASS_MOB|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE)
@@ -64,28 +66,48 @@
 //bitflags that were previously under flags_atom, these only apply to items.
 //clothing specific stuff uses flags_inventory.
 //flags_item
-#define NOBLUDGEON (1<<0)	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
-#define DELONDROP (1<<1)	// Deletes on drop instead of falling on the floor.
-#define TWOHANDED (1<<2)	// The item is twohanded.
-#define WIELDED (1<<3)	// The item is wielded with both hands.
-#define ITEM_ABSTRACT (1<<4)	//The item is abstract (grab, powerloader_clamp, etc)
-#define DOES_NOT_NEED_HANDS (1<<5)	//Dont need hands to use it
-#define SYNTH_RESTRICTED (1<<6)	//Prevents synths from wearing items with this flag
-#define IMPEDE_JETPACK (1<<7)  //Reduce the range of jetpack
-#define CAN_BUMP_ATTACK (1<<8)	 //Item triggers bump attack
-#define IS_DEPLOYABLE (1<<9) //Item can be deployed into a machine
+/// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
+#define NOBLUDGEON (1<<0)
+/// Deletes on drop instead of falling on the floor.
+#define DELONDROP (1<<1)
+/// The item is twohanded.
+#define TWOHANDED (1<<2)
+/// The item is wielded with both hands.
+#define WIELDED (1<<3)
+///The item is abstract (grab, powerloader_clamp, etc)
+#define ITEM_ABSTRACT (1<<4)
+///Dont need hands to use it
+#define DOES_NOT_NEED_HANDS (1<<5)
+///Prevents synths from wearing items with this flag
+#define SYNTH_RESTRICTED (1<<6)
+///Reduce the range of jetpack
+#define IMPEDE_JETPACK (1<<7)
+///Item triggers bump attack
+#define CAN_BUMP_ATTACK (1<<8)
+///Item can be deployed into a machine
+#define IS_DEPLOYABLE (1<<9)
+///Item deploys on initialize
 #define DEPLOY_ON_INITIALIZE (1<<10)
-#define IS_DEPLOYED (1<<11) //If this is on an item, said item is currently deployed
-#define DEPLOYED_NO_PICKUP  (1<<12) //Disables deployed item pickup
-#define DEPLOYED_NO_ROTATE  (1<<13) //Disables deployed item rotation abilities to rotate.
-#define DEPLOYED_NO_ROTATE_ANCHORED (1<<14) //Disables deployed item rotation if anchored.
-#define DEPLOYED_WRENCH_DISASSEMBLE (1<<15) //If this is on an item, the item can only be disassembled using a wrench once deployed.
-#define DEPLOYED_ANCHORED_FIRING_ONLY (1<<16) //Disables firing deployable if it is not anchored.
-#define FULLY_WIELDED (1<<17) //If the item is properly wielded. Used for guns
+///If this is on an item, said item is currently deployed
+#define IS_DEPLOYED (1<<11)
+///Disables deployed item pickup
+#define DEPLOYED_NO_PICKUP  (1<<12)
+///Disables deployed item rotation abilities to rotate.
+#define DEPLOYED_NO_ROTATE  (1<<13)
+///Disables deployed item rotation if anchored.
+#define DEPLOYED_NO_ROTATE_ANCHORED (1<<14)
+///If this is on an item, the item can only be disassembled using a wrench once deployed.
+#define DEPLOYED_WRENCH_DISASSEMBLE (1<<15)
+///Disables firing deployable if it is not anchored.
+#define DEPLOYED_ANCHORED_FIRING_ONLY (1<<16)
+///If the item is properly wielded. Used for guns
+#define FULLY_WIELDED (1<<17)
 ///If a holster has underlay sprites
 #define HAS_UNDERLAY (1<<18)
 ///is this item equipped into an inventory slot or hand of a mob?
 #define IN_INVENTORY (1<<19)
+///This item is used for autobalance calculations or excluded, such as valhalla items
+#define AUTOBALANCE_CHECK (1<<20)
 
 //flags_storage
 ///If a storage container can be restocked into a vendor

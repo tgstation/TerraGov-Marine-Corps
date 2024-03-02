@@ -39,17 +39,17 @@
 	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS)
 	var/sound/king_sound = sound('sound/voice/xenos_roaring.ogg', channel = CHANNEL_ANNOUNCEMENTS)
 	for(var/mob/living/carbon/xenomorph/X AS in Q.hive.get_all_xenos())
+		to_chat(X, assemble_alert(
+			title = "Hive Announcement",
+			subtitle = "From [Q.name]",
+			message = input,
+			color_override = "purple"
+		))
 		switch(Q.caste_base_type)
-			if(/mob/living/carbon/xenomorph/queen)
+			if(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/shrike)
 				SEND_SOUND(X, queen_sound)
-				//In case in combat, couldn't read fast enough, or needs to copy paste into a translator. Here's the old hive message.
-				to_chat(X, span_xenoannounce("<h2 class='alert'>The words of the queen reverberate in your head...</h2><br>[span_alert(input)]<br><br>"))
 			if(/mob/living/carbon/xenomorph/king)
 				SEND_SOUND(X, king_sound)
-				to_chat(X, span_xenoannounce("<h2 class='alert'>The words of the king reverberate in your head...</h2><br>[span_alert(input)]<br><br>"))
-			if(/mob/living/carbon/xenomorph/shrike)
-				SEND_SOUND(X, queen_sound)
-				to_chat(X, span_xenoannounce("<h2 class='alert'>The words of the shrike reverberate in your head...</h2><br>[span_alert(input)]<br><br>"))
 		//Display the ruler's hive message at the top of the game screen.
 		X.play_screen_text(queens_word, /atom/movable/screen/text/screen_text/queen_order)
 
@@ -97,14 +97,16 @@
 	GLOB.round_statistics.queen_screech++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")
 	X.create_shriekwave() //Adds the visual effect. Wom wom wom
-	//stop_momentum(charge_dir) //Screech kills a charge
 
 	var/list/nearby_living = list()
 	for(var/mob/living/L in hearers(WORLD_VIEW, X))
 		nearby_living.Add(L)
+	for(var/obj/vehicle/sealed/armored/tank AS in GLOB.tank_list)
+		if(get_dist(tank, X) > WORLD_VIEW_NUM)
+			continue
+		nearby_living += tank.occupants
 
-	for(var/i in GLOB.mob_living_list)
-		var/mob/living/L = i
+	for(var/mob/living/L AS in GLOB.mob_living_list)
 		if(get_dist(L, X) > WORLD_VIEW_NUM)
 			continue
 		L.screech_act(X, WORLD_VIEW_NUM, L in nearby_living)

@@ -22,6 +22,7 @@
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/chemsystem,
 		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/eshield/overclocked,
 
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
@@ -86,6 +87,24 @@
 		/obj/item/armor_module/storage/medical,
 	)
 
+/obj/item/clothing/suit/modular/xenonauten/shield_overclocked
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/shield_overclocked/medic
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/general,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/shield_overclocked/engineer
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/engineering,
+	)
+
 /obj/item/clothing/suit/modular/xenonauten/valk
 	starting_attachments = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
@@ -103,6 +122,24 @@
 	starting_attachments = list(
 		/obj/item/armor_module/module/eshield,
 		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked/medic
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/general,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked/engineer
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/engineering,
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/light/lightmedical
@@ -166,6 +203,12 @@
 		/obj/item/armor_module/storage/medical,
 	)
 
+/obj/item/clothing/suit/modular/xenonauten/heavy/shield_overclocked
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/medical,
+	)
+
 /obj/item/clothing/suit/modular/xenonauten/pilot
 	name = "\improper TerraGov standard flak jacket"
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
@@ -200,9 +243,9 @@
 /obj/item/clothing/suit/storage/marine/ballistic
 	name = "\improper Crasher multi-threat ballistic armor"
 	desc = "A reused design of a old body armor system from the 21st century."
-	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 20, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
-	slowdown = SLOWDOWN_ARMOR_LIGHT
-	flags_armor_protection = CHEST|GROIN
+	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 50, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
+	slowdown = 0.25
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	icon = 'icons/mob/clothing/suits/marine_armor.dmi'
 	icon_state = "ballistic_vest"
 	item_icons = list(
