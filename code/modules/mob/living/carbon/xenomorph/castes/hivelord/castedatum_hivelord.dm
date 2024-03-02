@@ -67,6 +67,7 @@
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/larval_growth_sting,
 		/datum/action/ability/activable/xeno/secrete_resin/hivelord,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/activable/xeno/transfer_plasma/improved,
 		/datum/action/ability/activable/xeno/corrosive_acid,
@@ -94,5 +95,6 @@
 	spit_types = list(/datum/ammo/xeno/sticky, /datum/ammo/xeno/sticky/globe)
 
 	actions = list(
+		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/xeno_action/sow,
 	)

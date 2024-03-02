@@ -119,7 +119,7 @@
 			close(M)
 	return TRUE
 
-/obj/item/storage/internal/Adjacent(atom/neighbor)
+/obj/item/storage/internal/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	return master_item.Adjacent(neighbor)
 
 

@@ -58,6 +58,7 @@
 		/datum/action/ability/activable/xeno/larval_growth_sting,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/activable/xeno/essence_link,
 		/datum/action/ability/activable/xeno/psychic_cure/resin_salve,
 		/datum/action/ability/activable/xeno/transfer_plasma/drone,

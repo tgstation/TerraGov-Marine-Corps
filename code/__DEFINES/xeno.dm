@@ -29,6 +29,11 @@
 #define WALL_RESIN_NEST "wall resin nest"
 #define LIGHT_TOWER "light tower"
 
+//Special resin defines
+#define BULLETPROOF_WALL "bulletproof resin wall"
+#define FIREPROOF_WALL "fireproof resin wall"
+#define HARDY_WALL "hardy resin wall"
+
 //Xeno reagents defines
 #define DEFILER_NEUROTOXIN "Neurotoxin"
 #define DEFILER_HEMODILE "Hemodile"
@@ -143,6 +148,14 @@ GLOBAL_LIST_INIT(resin_images_list, list(
 		WALL_RESIN_NEST = image('icons/Xeno/actions.dmi', icon_state = WALL_RESIN_NEST),
 		RESIN_LIGHTTOWER = image('icons/Xeno/actions.dmi', icon_state = LIGHT_TOWER)
 		))
+
+//List of special resin structure images
+GLOBAL_LIST_INIT(resin_special_images_list, list(
+		BULLETPROOF_WALL = image('icons/Xeno/actions.dmi', icon_state = BULLETPROOF_WALL),
+		FIREPROOF_WALL = image('icons/Xeno/actions.dmi', icon_state = FIREPROOF_WALL),
+		HARDY_WALL = image('icons/Xeno/actions.dmi', icon_state = HARDY_WALL)
+))
+
 //List of puppeteer order images
 GLOBAL_LIST_INIT(puppeteer_order_images_list, list(
 		PUPPET_ATTACK = image('icons/Xeno/actions.dmi', icon_state = "enrage"),

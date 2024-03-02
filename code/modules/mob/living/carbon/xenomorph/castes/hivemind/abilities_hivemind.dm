@@ -13,6 +13,11 @@
 		return FALSE
 	return ..()
 
+/datum/action/ability/activable/xeno/secrete_special_resin/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+	if (owner.status_flags & INCORPOREAL)
+		return FALSE
+	return ..()
+
 /datum/action/ability/xeno_action/change_form
 	name = "Change form"
 	action_icon_state = "manifest"

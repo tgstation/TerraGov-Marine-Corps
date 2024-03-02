@@ -65,6 +65,7 @@
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/activable/xeno/secrete_resin,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/xeno_action/place_acidwell,

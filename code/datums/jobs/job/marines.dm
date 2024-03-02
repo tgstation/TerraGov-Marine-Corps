@@ -17,7 +17,15 @@
 		CRASH("after_spawn called for a marine without an assigned_squad")
 	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[human_spawn.assigned_squad.color]>[lowertext(human_spawn.assigned_squad.name)] squad</font></b>.
 Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."})
-
+	///yes i know istype(src) is gross but we literally have 1 child type we would want to ignore so
+	if(ismarineleaderjob(src))
+		return
+	if(!(SSticker.mode.flags_round_type & MODE_FORCE_CUSTOMSQUAD_UI))
+		return
+	if(world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+		human_spawn.RegisterSignal(SSdcs, COMSIG_GLOB_DEPLOY_TIMELOCK_ENDED, TYPE_PROC_REF(/mob/living/carbon/human, suggest_squad_assign))
+		return
+	addtimer(CALLBACK(GLOB.squad_selector, TYPE_PROC_REF(/datum, interact), human_spawn), 2 SECONDS)
 
 //Squad Operative
 /datum/job/terragov/squad/standard
@@ -437,7 +445,8 @@ You are also in charge of communicating with command and letting them know about
 		if(18001 to 60000) // 300 hrs
 			new_human.wear_id.paygrade = "E9"
 		if(60001 to INFINITY) // 1000 hrs
-			new_human.wear_id.paygrade = "E9E" //If you play way too much NTC. 1000 hours.
+			new_human.wear_id.paygrade = "E9E" //If you play way too much TGMC. 1000 hours.
+	addtimer(CALLBACK(GLOB.squad_manager, TYPE_PROC_REF(/datum, interact), new_human), 2 SECONDS)
 	if(!latejoin)
 		return
 	if(!new_human.assigned_squad)
@@ -446,7 +455,6 @@ You are also in charge of communicating with command and letting them know about
 		if(new_human.assigned_squad.squad_leader)
 			new_human.assigned_squad.demote_leader()
 		new_human.assigned_squad.promote_leader(new_human)
-
 
 
 /datum/job/terragov/squad/vatgrown

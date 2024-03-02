@@ -55,7 +55,7 @@
 	ui_icon = "shotgun"
 	purchase_cost = 25
 	item_typepath = /obj/item/weapon/gun/shotgun/som/standard
-	jobs_supported = list(SOM_SQUAD_MARINE)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 	loadout_item_flags = NONE
 
 /datum/loadout_item/back/som_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)

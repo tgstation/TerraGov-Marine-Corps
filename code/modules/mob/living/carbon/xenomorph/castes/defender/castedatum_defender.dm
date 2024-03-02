@@ -54,7 +54,7 @@
 		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/xeno_action/toggle_crest_defense,
 		/datum/action/ability/xeno_action/fortify,
-		/datum/action/ability/activable/xeno/forward_charge,
+		/datum/action/ability/activable/xeno/charge/forward_charge,
 		/datum/action/ability/xeno_action/tail_sweep,
 		/datum/action/ability/xeno_action/regenerate_skin,
 	)

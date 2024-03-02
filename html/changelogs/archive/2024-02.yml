@@ -466,3 +466,26 @@
   - qol: The tadpole surgery dispenser now layers over objects
   exdal:
   - rscadd: AI VOX announcements are now visible on chat
+2024-02-28:
+  Lumipharon:
+  - bugfix: Fixed a new issue with the larva queue
+  - balance: 'Campaign: Shotgun perk unlocks shotgun in the backslot for SL''s and
+      veterans'
+  - bugfix: fixed conveyors not working in some cases
+  Xander3359:
+  - code_imp: add emp signal
+  exdal:
+  - code_imp: Observers and AI now receive VOX announcement message
+2024-02-29:
+  Barnet2:
+  - rscadd: Bulletproof, Hardy and Fireproof walls
+  - bugfix: Landmark resin walls now properly function
+  Lumipharon:
+  - balance: 'Campaign: Delimbing no longer provides additional credits'
+  - bugfix: 'Campaign: Fixed the tactical reserve asset'
+  - imageadd: Added some new portraits to some campaign assets
+  - bugfix: fixed the sectoid gun sprite
+  TiviPlus:
+  - rscadd: Custom squad UIs will now open during the round automatically
+  - rscadd: Added interiors that can be attached to any object
+  - rscadd: Tank now has an interior

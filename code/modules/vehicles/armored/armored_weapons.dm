@@ -1,5 +1,5 @@
 /obj/item/armored_weapon
-	name = "LTB main battle tank cannon"
+	name = "\improper LTB main battle tank cannon"
 	desc = "A TGMC vehicle's main turret cannon. It fires 86mm rocket propelled shells"
 	icon = 'icons/obj/armored/hardpoint_modules.dmi'
 	icon_state = "ltb_cannon"
@@ -45,7 +45,7 @@
 	///fire mode to use for autofire
 	var/fire_mode = GUN_FIREMODE_SEMIAUTO
 	///how many seconds automatic reloading takes
-	var/rearm_time = 4.5 SECONDS
+	var/rearm_time = 4 SECONDS
 	///ammo hud icon to display when no ammo is loaded
 	var/hud_state_empty = "shell_empty"
 
@@ -201,6 +201,7 @@
 	if(chassis.primary_weapon == src && !chassis.turret_overlay.flashing)
 		chassis.turret_overlay.set_flashing(TRUE)
 		addtimer(CALLBACK(chassis.turret_overlay, TYPE_PROC_REF(/atom/movable/vis_obj/turret_overlay, set_flashing), FALSE), 7, TIMER_CLIENT_TIME)
+		chassis.interior?.breech.on_main_fire(ammo)
 
 	ammo.current_rounds--
 	for(var/mob/occupant AS in chassis.occupants)
@@ -222,11 +223,18 @@
 
 ///eject current ammo from tank
 /obj/item/armored_weapon/proc/eject_ammo()
-	ammo.forceMove(chassis.exit_location())
-	ammo.update_appearance()
-	ammo = null
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.update_ammo_hud(src, list(hud_state_empty, hud_state_empty), 0)
+	ammo.update_appearance()
+	var/obj/item/ammo_magazine/old_ammo = ammo
+	ammo = null
+	if(chassis.interior)
+		if(chassis.primary_weapon == src)
+			chassis.interior.breech.do_eject_ammo(old_ammo)
+		else
+			chassis.interior.secondary_breech.do_eject_ammo(old_ammo)
+		return
+	old_ammo.forceMove(chassis.exit_location())
 
 ///load topmost ammo magazine, if there is any
 /obj/item/armored_weapon/proc/reload()

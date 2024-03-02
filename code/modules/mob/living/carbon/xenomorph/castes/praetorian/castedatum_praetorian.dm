@@ -79,5 +79,5 @@
 	primordial_message = "The strongest of acids flows through our veins, let's reduce them to dust."
 
 	actions = list(
-		/datum/action/ability/activable/xeno/acid_dash,
+		/datum/action/ability/activable/xeno/charge/acid_dash,
 	)

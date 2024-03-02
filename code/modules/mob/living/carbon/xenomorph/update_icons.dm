@@ -51,17 +51,6 @@
 	update_inv_l_hand()
 	update_icons()
 
-
-/mob/living/carbon/xenomorph/update_inv_pockets()
-	if(l_store)
-		if(client && hud_used && hud_used.hud_shown)
-			l_store.screen_loc = ui_storage1
-			client.screen += l_store
-	if(r_store)
-		if(client && hud_used && hud_used.hud_shown)
-			r_store.screen_loc = ui_storage2
-			client.screen += r_store
-
 /mob/living/carbon/xenomorph/update_inv_r_hand()
 	remove_overlay(R_HAND_LAYER)
 	if(r_hand)
