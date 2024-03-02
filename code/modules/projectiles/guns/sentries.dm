@@ -341,7 +341,7 @@
 		/obj/item/ammo_magazine/sentry/sniper,
 	)
 
-/obj/item/storage/box/crate/sentry/sniper/Initialize(mapload)
+/obj/item/storage/box/crate/sentry_sniper/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/sentry/sniper_sentry(src)
 	new /obj/item/ammo_magazine/sentry/sniper(src)
@@ -381,14 +381,14 @@
 	max_storage_space = 16
 	can_hold = list(
 		/obj/item/weapon/gun/sentry/shotgun_sentry,
-		/obj/item/ammo_magazine/sentry/sniper,
+		/obj/item/ammo_magazine/sentry/shotgun,
 	)
 	bypass_w_limit = list(
 		/obj/item/weapon/gun/sentry/shotgun_sentry,
 		/obj/item/ammo_magazine/sentry/shotgun,
 	)
 
-/obj/item/storage/box/crate/sentry/sniper/Initialize(mapload)
+/obj/item/storage/box/crate/sentry_shotgun/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/sentry/shotgun_sentry(src)
 	new /obj/item/ammo_magazine/sentry/shotgun(src)
