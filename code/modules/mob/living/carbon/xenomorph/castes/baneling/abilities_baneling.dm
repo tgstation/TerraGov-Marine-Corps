@@ -42,6 +42,7 @@
 /datum/action/ability/xeno_action/baneling_explode/clean_action()
 	button.cut_overlay(visual_references[VREF_MUTABLE_BANE_CHARGES])
 	visual_references[VREF_MUTABLE_BANE_CHARGES] = null
+	return ..()
 
 
 /datum/action/ability/xeno_action/baneling_explode/can_use_action(silent = FALSE, override_flags)
