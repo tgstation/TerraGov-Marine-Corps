@@ -273,12 +273,13 @@
 
 //related mob procs
 
-///deducts the cost of using an ability
+///deducts the cost of using an ability & updates plasma HUD accordingly
 /mob/living/carbon/proc/deduct_ability_cost(amount)
 	return
 
 /mob/living/carbon/xenomorph/deduct_ability_cost(amount)
 	use_plasma(amount)
+	hud_set_plasma()
 
 ///adds an ability to the mob
 /mob/living/carbon/proc/add_ability(datum/action/ability/new_ability)
