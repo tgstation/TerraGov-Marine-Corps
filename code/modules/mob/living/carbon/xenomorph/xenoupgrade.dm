@@ -11,14 +11,14 @@
 	set_datum(FALSE)
 	var/selected_ability_type = selected_ability?.type
 
-	var/list/datum/action/ability/xeno_action/actions_already_added = xeno_abilities
-	xeno_abilities = list()
+	var/list/datum/action/ability/xeno_action/actions_already_added = mob_abilities
+	mob_abilities = list()
 
 	for(var/allowed_action_path in xeno_caste.actions)
 		var/found = FALSE
 		for(var/datum/action/ability/xeno_action/action_already_added AS in actions_already_added)
 			if(action_already_added.type == allowed_action_path)
-				xeno_abilities.Add(action_already_added)
+				mob_abilities.Add(action_already_added)
 				actions_already_added.Remove(action_already_added)
 				found = TRUE
 				break

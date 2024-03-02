@@ -396,7 +396,7 @@
 	if(!line_of_sight(owner, T))
 		to_chat(owner, span_warning("You cannot secrete resin without line of sight!"))
 		return fail_activate()
-	if(!do_after(X, get_wait(), TRUE, T, BUSY_ICON_BUILD))
+	if(!do_after(X, get_wait(), NONE, T, BUSY_ICON_BUILD))
 		return fail_activate()
 	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin))
 		if(ERROR_CANT_WEED)
@@ -726,7 +726,7 @@
 
 	X.face_atom(target) //Face our target so we don't look silly
 
-	if(!do_after(X, transfer_delay, TRUE, null, BUSY_ICON_FRIENDLY))
+	if(!do_after(X, transfer_delay, NONE, null, BUSY_ICON_FRIENDLY))
 		return fail_activate()
 
 	if(!can_use_ability(A))
@@ -809,7 +809,7 @@
 	X.face_atom(A)
 	to_chat(X, span_xenowarning("We begin generating enough acid to melt through the [A]"))
 
-	if(!do_after(X, A.get_acid_delay(), TRUE, A, BUSY_ICON_HOSTILE))
+	if(!do_after(X, A.get_acid_delay(), NONE, A, BUSY_ICON_HOSTILE))
 		return fail_activate()
 
 	if(!can_use_ability(A, TRUE))
@@ -826,26 +826,6 @@
 	X.visible_message(span_xenowarning("\The [X] vomits globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!"), \
 	span_xenowarning("We vomit globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!"), null, 5)
 	playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
-
-/datum/action/ability/activable/xeno/corrosive_acid/proc/acid_progress_transfer(acid_type, obj/O, turf/T)
-	if(!O && !T)
-		return
-
-	var/obj/effect/xenomorph/acid/new_acid = acid_type
-
-	var/obj/effect/xenomorph/acid/current_acid
-
-	if(T)
-		current_acid = T.current_acid
-
-	else if(O)
-		current_acid = O.current_acid
-
-	if(!current_acid) //Sanity check. No acid
-		return
-	new_acid.ticks = current_acid.ticks //Inherit the old acid's progress
-	qdel(current_acid)
-
 
 // ***************************************
 // *********** Super strong acid
@@ -1082,7 +1062,6 @@
 	name = "Neurotoxin Sting"
 	action_icon_state = "neuro_sting"
 	desc = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
-
 	cooldown_duration = 12 SECONDS
 	ability_cost = 150
 	keybinding_signals = list(
@@ -1102,12 +1081,16 @@
 		if(!silent)
 			to_chat(owner, span_warning("Our sting won't affect this target!"))
 		return FALSE
-
 	if(!owner.Adjacent(A))
 		var/mob/living/carbon/xenomorph/X = owner
 		if(!silent && world.time > (X.recent_notice + X.notice_delay)) //anti-notice spam
 			to_chat(X, span_warning("We can't reach this target!"))
 			X.recent_notice = world.time //anti-notice spam
+		return FALSE
+	var/mob/living/carbon/C = A
+	if (isnestedhost(C))
+		if(!silent)
+			to_chat(owner, span_warning("Ashamed, we reconsider bullying the poor, nested host with our stinger."))
 		return FALSE
 
 /datum/action/ability/activable/xeno/neurotox_sting/on_cooldown_finish()
@@ -1135,7 +1118,6 @@
 	name = "Ozelomelyn Sting"
 	action_icon_state = "drone_sting"
 	desc = "A channeled melee attack that injects the target with Ozelomelyn over a few seconds, purging chemicals and dealing minor toxin damage to a moderate cap while inside them."
-
 	cooldown_duration = 25 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OZELOMELYN_STING,
@@ -1404,7 +1386,7 @@
 	owner.visible_message(span_xenonotice("[owner] starts planting an egg."), \
 		span_xenonotice("We start planting an egg."), null, 5)
 
-	if(!do_after(owner, 2.5 SECONDS, TRUE, current_turf, BUSY_ICON_BUILD, extra_checks = CALLBACK(current_turf, TYPE_PROC_REF(/turf, check_alien_construction), owner)))
+	if(!do_after(owner, 2.5 SECONDS, NONE, current_turf, BUSY_ICON_BUILD, extra_checks = CALLBACK(current_turf, TYPE_PROC_REF(/turf, check_alien_construction), owner)))
 		return fail_activate()
 
 	if(!xeno.loc_weeds_type)
@@ -1426,7 +1408,6 @@
 	name = "Rally Hive"
 	action_icon_state = "rally_hive"
 	desc = "Rallies the hive to a congregate at a target location, along with an arrow pointer. Gives the Hive your current health status. 60 second cooldown."
-
 	ability_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_HIVE,
@@ -1451,7 +1432,6 @@
 	name = "Rally Minions"
 	action_icon_state = "minion_agressive"
 	desc = "Rallies the minions around you, asking them to follow you if they don't have a leader already. Rightclick to change minion behaviour."
-
 	ability_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_MINION,
@@ -1489,7 +1469,7 @@
 
 
 /mob/living/carbon/xenomorph/proc/remove_abilities()
-	for(var/action_datum in xeno_abilities)
+	for(var/action_datum in mob_abilities)
 		qdel(action_datum)
 
 /datum/action/ability/xeno_action/rally_hive/hivemind //Halve the cooldown for Hiveminds as their relative omnipresence means they can actually make use of this lower cooldown.
@@ -1548,7 +1528,7 @@
 	span_danger("We slowly drain \the [victim]'s life force!"), null, 20)
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/magic/nightfall.ogg', 40, channel = channel)
-	if(!do_after(X, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
+	if(!do_after(X, 5 SECONDS, IGNORE_HELD_ITEM, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		X.visible_message(span_xenowarning("\The [X] retracts its inner jaw."), \
 		span_danger("We retract our inner jaw."), null, 20)
 		X.stop_sound_channel(channel)
@@ -1773,7 +1753,7 @@
 	var/mob/living/carbon/human/victim = A
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/vore/struggle.ogg', 40, channel = channel)
-	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
+	if(!do_after(X, 7 SECONDS, IGNORE_HELD_ITEM, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
 		X.stop_sound_channel(channel)
 		return fail_activate()
@@ -1790,7 +1770,7 @@
 	succeed_activate()
 	channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/vore/escape.ogg', 40, channel = channel)
-	if(!do_after(X, cocoon_production_time, FALSE, null, BUSY_ICON_DANGER))
+	if(!do_after(X, cocoon_production_time, IGNORE_HELD_ITEM, null, BUSY_ICON_DANGER))
 		to_chat(owner, span_warning("We moved too soon and we will have to devour our victim again!"))
 		X.eject_victim(FALSE, starting_turf)
 		X.stop_sound_channel(channel)
