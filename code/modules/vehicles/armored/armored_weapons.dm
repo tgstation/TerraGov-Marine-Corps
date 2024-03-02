@@ -194,7 +194,7 @@
 	var/firing_angle = get_angle_with_scatter(chassis, current_target, projectile_to_fire.scatter, projectile_to_fire.p_x, projectile_to_fire.p_y)
 
 	playsound(chassis, islist(fire_sound) ? pick(fire_sound):fire_sound, 20, TRUE)
-	projectile_to_fire.fire_at(current_target, chassis, null, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
+	projectile_to_fire.fire_at(current_target, chassis, null, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 
 	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
 
