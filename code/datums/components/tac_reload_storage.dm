@@ -1,11 +1,20 @@
-///Component for making something capable of tactical reload via right click.
+/*!
+ * Component for making something capable of tactical reload via right click.
+ */
+
+// HEY, LISTEN. This component pre-dates the storage refactor so it may not be up to standards.
+// I would love it if someone were to go ahead and give this a look for me, otherwise I'll get to it eventually... maybe
+
 /datum/component/tac_reload_storage
 	///The storage item that we are attempting to use to tactical reload on.
 	///Use this over checking the item directly, for edge cases such as indirect storage (e.g: storage armor module).
 	var/obj/item/storage/reloading_storage
 
 /datum/component/tac_reload_storage/Initialize()
-	if(!isstorage(parent) && !istype(parent, /obj/item/armor_module/storage))
+	if(!isatom(parent)) // atom_storage is a var on /atom, so that's the bare minimum
+		return COMPONENT_INCOMPATIBLE
+	var/atom/atom_parent = parent
+	if(!atom_parent.atom_storage) //Gotta have some storage to be capable to tac-reload from
 		return COMPONENT_INCOMPATIBLE
 
 /datum/component/tac_reload_storage/Destroy(force, silent)
@@ -46,7 +55,7 @@
 	SIGNAL_HANDLER
 	if(!istype(reloading_gun))
 		return
-	if(!reloading_storage)
+	if(!reloading_storage.atom_storage)
 		CRASH("[user] attempted to reload [reloading_gun] on [source], but it has no storage attached!")
 	INVOKE_ASYNC(src, PROC_REF(do_tac_reload), reloading_gun, user, params)
 
@@ -57,7 +66,7 @@
 			continue
 		if(user.get_active_held_item(reloading_gun))
 			reloading_gun.tactical_reload(item_to_reload_with, user)
-			reloading_storage.storage_type.orient2hud()
+			reloading_storage.atom_storage.orient2hud()
 		return COMPONENT_NO_AFTERATTACK
 
 /**

@@ -63,7 +63,7 @@
 	if(holstered_item && !holstered_item_underlay)
 		holstered_item_underlay = image(icon, src, holstered_item.icon_state)
 		underlays += holstered_item_underlay
-	else
+	else if(!holstered_item) //Only delete the underlay once our actual holstered item is gone
 		underlays -= holstered_item_underlay
 		QDEL_NULL(holstered_item_underlay)
 
