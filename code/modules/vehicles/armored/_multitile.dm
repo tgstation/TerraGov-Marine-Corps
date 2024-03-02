@@ -17,7 +17,7 @@
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	max_occupants = 4
 	move_delay = 0.9 SECONDS
-	ram_damage = 70
+	ram_damage = 100
 
 ///returns a list of possible locations that this vehicle may be entered from
 /obj/vehicle/sealed/armored/multitile/proc/enter_locations(mob/M)
