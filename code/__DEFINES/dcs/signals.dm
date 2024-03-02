@@ -412,6 +412,7 @@
 #define COMSIG_ITEM_QUICK_EQUIP "item_quick_equip"
 // Return signals for /datum/storage/proc/on_quick_equip_request
 	#define COMSIG_QUICK_EQUIP_HANDLED (1<<0) //Our signal handler took care of quick equip
+	#define COMSIG_QUICK_EQUIP_BLOCKED (1<<1) //Our signal handler blocked the quick equip, but does not want to block the remainder of the proc
 
 #define COMSIG_ATTACHMENT_ATTACHED "attachment_attached"
 #define COMSIG_ATTACHMENT_ATTACHED_TO_ITEM "attachment_attached_to_item"

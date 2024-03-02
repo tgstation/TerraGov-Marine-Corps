@@ -3,7 +3,6 @@
 	These are storage attachments that equip into storage slots on modular armor
 */
 
-
 /** Storage modules */
 /obj/item/armor_module/storage
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
@@ -27,61 +26,16 @@
 	. = ..()
 	equip_delay_self = parent.equip_delay_self
 	strip_delay = parent.strip_delay
-	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(access_storage))
-	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, PROC_REF(open_storage))	//Open storage if the armor is alt right clicked
-	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(insert_item))
-	RegisterSignal(parent, COMSIG_ATOM_ATTACK_GHOST, PROC_REF(open_storage))
-	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, PROC_REF(draw_from_storage))
-	RegisterSignal(parent, COMSIG_CLICK_CTRL, PROC_REF(left_draw_from_storage))
+
+	atom_storage.register_storage_signals(attaching_to)
 
 /obj/item/armor_module/storage/on_detach(obj/item/detaching_from, mob/user)
 	equip_delay_self = initial(equip_delay_self)
 	strip_delay = initial(strip_delay)
-	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_CLICK_ALT_RIGHT, COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_ATTACK_GHOST, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, COMSIG_CLICK_CTRL))
+
+	atom_storage.unregister_storage_signals(detaching_from)
+
 	return ..()
-
-///Triggers attack hand interaction for storage when the parent is clicked on.
-/obj/item/armor_module/storage/proc/access_storage(datum/source, mob/living/user)
-	SIGNAL_HANDLER
-	if(parent.loc != user)
-		return
-	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom, attack_hand), user)
-	return COMPONENT_NO_ATTACK_HAND
-
-///Opens the internal storage when the parent is alt right clicked on.
-/obj/item/armor_module/storage/proc/open_storage(datum/source, mob/living/user)
-	SIGNAL_HANDLER
-	if(!isobserver(user) && parent.loc != user)
-		return
-	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom, AltRightClick), user)
-	return COMPONENT_NO_ATTACK_HAND
-
-///Inserts I into storage when parent is attacked by I.
-/obj/item/armor_module/storage/proc/insert_item(datum/source, obj/item/I, mob/user)
-	SIGNAL_HANDLER
-	if(istype(I, /obj/item/facepaint) || istype(I, /obj/item/armor_module))
-		return
-	if(parent.loc != user)
-		return
-	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom, attackby), I, user)
-	return COMPONENT_NO_AFTERATTACK
-
-///We draw from the item's storage
-/obj/item/armor_module/storage/proc/draw_from_storage(datum/source, mob/user)
-	SIGNAL_HANDLER
-	if(parent.loc != user)
-		return
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, attempt_draw_object), user)
-	return COMPONENT_NO_ATTACK_HAND
-
-
-///We draw the leftmost item from the item's storage
-/obj/item/armor_module/storage/proc/left_draw_from_storage(datum/source, mob/user)
-	SIGNAL_HANDLER
-	if(parent.loc != user)
-		return
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, attempt_draw_object), user, TRUE)
-	return COMPONENT_NO_ATTACK_HAND
 
 ///Use this to fill your storage with items. USE THIS INSTEAD OF NEW/INIT
 /obj/item/armor_module/storage/proc/PopulateContents()

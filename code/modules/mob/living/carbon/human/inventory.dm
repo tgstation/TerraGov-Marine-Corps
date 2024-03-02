@@ -399,7 +399,9 @@
 		return FALSE
 
 	var/datum/storage/selected_storage
-	if(selected_slot.atom_storage)
+	if(isstorage(selected_slot))
+		selected_storage = selected_slot
+	else if(selected_slot.atom_storage)
 		selected_storage = selected_slot.atom_storage
 	else if(isclothing(selected_slot))
 		var/obj/item/clothing/selected_clothing = selected_slot

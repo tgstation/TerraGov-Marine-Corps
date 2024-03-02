@@ -1,6 +1,51 @@
 /datum/storage/internal
 	allow_drawing_method = FALSE /// Unable to set draw_mode ourselves
 
+//Reason for this override is due to conflict signal from modules, which detach on ALT+CLICK
+/datum/storage/internal/register_storage_signals(atom/parent)
+	//Clicking signals
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby)) //Left click
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(on_attack_hand)) //Left click empty hand
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(on_attack_self)) //Item clicking on itself
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, PROC_REF(on_attack_hand_alternate)) //Right click empty hand
+	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, PROC_REF(on_alt_right_click)) //ALT + right click
+	RegisterSignal(parent, COMSIG_CLICK_CTRL, PROC_REF(on_ctrl_click)) //CTRL + Left click
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_GHOST, PROC_REF(on_attack_ghost)) //Ghosts can see inside your storages
+	RegisterSignal(parent, COMSIG_MOUSEDROP_ONTO, PROC_REF(on_mousedrop_onto)) //Click dragging
+
+	//Something is happening to our storage
+	RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, PROC_REF(on_emp)) //Getting EMP'd
+	RegisterSignal(parent, COMSIG_CONTENTS_EX_ACT, PROC_REF(on_contents_explode)) //Getting exploded
+
+	RegisterSignal(parent, COMSIG_ATOM_CONTENTS_DEL, PROC_REF(handle_atom_del))
+	RegisterSignal(parent, ATOM_MAX_STACK_MERGING, PROC_REF(max_stack_merging))
+	RegisterSignal(parent, ATOM_RECALCULATE_STORAGE_SPACE, PROC_REF(recalculate_storage_space))
+	RegisterSignals(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(update_verbs))
+	RegisterSignal(parent, COMSIG_ITEM_QUICK_EQUIP, PROC_REF(on_quick_equip_request))
+
+//Reason for this override is due to conflict signal from modules, which detach on ALT+CLICK
+/datum/storage/internal/unregister_storage_signals(atom/parent)
+	UnregisterSignal(parent, list(
+	COMSIG_ATOM_ATTACKBY,
+	COMSIG_ATOM_ATTACK_HAND,
+	COMSIG_ITEM_ATTACK_SELF,
+	COMSIG_ATOM_ATTACK_HAND_ALTERNATE,
+	COMSIG_CLICK_ALT_RIGHT,
+	COMSIG_CLICK_CTRL,
+	COMSIG_ATOM_ATTACK_GHOST,
+	COMSIG_MOUSEDROP_ONTO,
+
+	COMSIG_ATOM_EMP_ACT,
+	COMSIG_CONTENTS_EX_ACT,
+
+	COMSIG_ATOM_CONTENTS_DEL,
+	ATOM_MAX_STACK_MERGING,
+	ATOM_RECALCULATE_STORAGE_SPACE,
+	COMSIG_ITEM_EQUIPPED,
+	COMSIG_ITEM_DROPPED,
+	COMSIG_ITEM_QUICK_EQUIP,
+	))
+
 /datum/storage/internal/handle_item_insertion(obj/item/W, prevent_warning = FALSE)
 	. = ..()
 	var/obj/master_item = parent.loc
