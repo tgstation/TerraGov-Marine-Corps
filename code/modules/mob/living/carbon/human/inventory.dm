@@ -407,7 +407,7 @@
 		var/obj/item/clothing/selected_clothing = selected_slot
 		for(var/key AS in selected_clothing.attachments_by_slot)
 			var/atom/attachment = selected_clothing.attachments_by_slot[key]
-			if(!attachment.atom_storage)
+			if(!attachment?.atom_storage)
 				continue
 			selected_storage = attachment.atom_storage
 			break

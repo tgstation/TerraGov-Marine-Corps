@@ -676,7 +676,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		var/obj/item/clothing/selected_clothing = selected_slot
 		for(var/key AS in selected_clothing.attachments_by_slot)
 			var/atom/attachment = selected_clothing.attachments_by_slot[key]
-			if(!attachment.atom_storage)
+			if(!attachment?.atom_storage)
 				continue
 			storage_datum = attachment.atom_storage
 			break

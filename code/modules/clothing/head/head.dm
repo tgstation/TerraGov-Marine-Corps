@@ -24,6 +24,7 @@
 		return
 	item_icons = list(slot_head_str = icon)
 
+/* XANTODO /datum/storage probably handles this
 /obj/item/clothing/head/MouseDrop(over_object, src_location, over_location)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		return ..()
@@ -31,7 +32,7 @@
 		return ..()
 	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 	if(armor_storage.MouseDrop(over_object))
-		return ..()
+		return ..()*/
 
 /obj/item/clothing/head/beanie
 	name = "\improper TGMC beanie"

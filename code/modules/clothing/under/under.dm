@@ -112,6 +112,7 @@
 	else
 		return ..()
 
+/* XANTODO /datum/storage probably handles this
 /obj/item/clothing/under/MouseDrop(obj/over_object as obj)
 	if(!ishuman(usr))
 		return
@@ -128,7 +129,7 @@
 			usr.put_in_r_hand(src)
 		if("l_hand")
 			usr.dropItemToGround(src)
-			usr.put_in_l_hand(src)
+			usr.put_in_l_hand(src)*/
 
 
 /obj/item/clothing/under/examine(mob/user)
