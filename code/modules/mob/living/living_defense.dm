@@ -1,3 +1,53 @@
+/mob/living/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_MOB_SLAM_DAMAGE, is_sharp = FALSE)
+	if(!isliving(grab.grabbed_thing))
+		return
+	if(grab.grabbed_thing == src)
+		return
+	if(user == src)
+		return
+
+	var/mob/living/grabbed_mob = grab.grabbed_thing
+	step_towards(grabbed_mob, src)
+	user.drop_held_item()
+	var/state = user.grab_state
+
+	if(state >= GRAB_AGGRESSIVE)
+		var/own_stun_chance = 0
+		var/grabbed_stun_chance = 0
+		if(grabbed_mob.mob_size > mob_size)
+			own_stun_chance = 25
+			grabbed_stun_chance = 10
+		else if(grabbed_mob.mob_size < mob_size)
+			own_stun_chance = 0
+			grabbed_stun_chance = 25
+		else
+			own_stun_chance = 25
+			grabbed_stun_chance = 25
+
+		if(prob(own_stun_chance))
+			Paralyze(1 SECONDS)
+		if(prob(grabbed_stun_chance))
+			grabbed_mob.Paralyze(1 SECONDS)
+
+	var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	switch(state)
+		if(GRAB_PASSIVE)
+			damage += base_damage
+			grabbed_mob.visible_message(span_warning("[user] slams [grabbed_mob] against [src]!"))
+			log_combat(user, grabbed_mob, "slammed", "", "against [src]")
+		if(GRAB_AGGRESSIVE)
+			damage += base_damage * 1.5
+			grabbed_mob.visible_message(span_danger("[user] bashes [grabbed_mob] against [src]!"))
+			log_combat(user, grabbed_mob, "bashed", "", "against [src]")
+		if(GRAB_NECK)
+			damage += base_damage * 2
+			grabbed_mob.visible_message(span_danger("<big>[user] crushes [grabbed_mob] against [src]!</big>"))
+			log_combat(user, grabbed_mob, "crushed", "", "against [src]")
+	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	playsound(src, 'sound/weapons/heavyhit.ogg', 40)
+	return TRUE
+
 /mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0)
 	return 0 //only carbon liveforms have this proc
 

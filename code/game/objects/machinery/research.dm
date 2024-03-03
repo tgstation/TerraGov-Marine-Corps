@@ -90,6 +90,8 @@
 
 /obj/machinery/researchcomp/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(researching || !istype(I, /obj/item/research_resource))
 		return
 

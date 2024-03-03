@@ -121,6 +121,8 @@
 
 /obj/vehicle/unmanned/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/uav_turret) || istype(I, /obj/item/explosive/plastique))
 		return equip_turret(I, user)
 	if(istype(I, /obj/item/ammo_magazine))

@@ -15,6 +15,8 @@
 
 /obj/machinery/fuelcell_recycler/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/fuel_cell))
 		if(!cell_left)
 			if(user.transferItemToLoc(I, src))
