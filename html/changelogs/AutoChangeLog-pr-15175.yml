@@ -1,0 +1,5 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - qol: "Fire-safety cabinets now layer above objects"
+  - qol: "Moved the fire cabinet on the standard tad model to the other side of the pilot computer."
