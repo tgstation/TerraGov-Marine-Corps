@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "You can now slam grabbed mobs into most objects, walls and mobs for varying results"
+  - refactor: "Refactored grab interactions with objects"
