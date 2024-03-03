@@ -87,6 +87,8 @@
 
 /obj/item/stack/tile/light/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/crowbar))
 		new /obj/item/stack/sheet/metal(user.loc)

@@ -73,6 +73,8 @@
 
 /obj/machinery/reagentgrinder/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/reagent_containers) && I.is_open_container())
 		if(beaker)

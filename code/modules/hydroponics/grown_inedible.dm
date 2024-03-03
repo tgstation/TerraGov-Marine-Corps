@@ -50,6 +50,8 @@
 
 /obj/item/grown/log/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(I.sharp != IS_SHARP_ITEM_BIG)
 		return
@@ -173,6 +175,8 @@
 
 /obj/item/corncob/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(I.sharp == IS_SHARP_ITEM_ACCURATE)
 		to_chat(user, span_notice("You use [I] to fashion a pipe out of the corn cob!"))

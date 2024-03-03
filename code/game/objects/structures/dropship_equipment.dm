@@ -325,6 +325,8 @@
 
 /obj/structure/dropship_equipment/shuttle/flare_launcher/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/explosive/grenade/flare) && stored_amount < max_amount)
 		stored_amount++
 		user.balloon_alert(user, "You insert a flare, remaining flares [stored_amount].")

@@ -85,6 +85,8 @@
 
 /obj/structure/mineral_door/attackby(obj/item/W, mob/living/user)
 	. = ..()
+	if(.)
+		return
 	if(QDELETED(src))
 		return
 
