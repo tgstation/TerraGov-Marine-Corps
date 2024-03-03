@@ -495,7 +495,8 @@
 	possible_destinations = "lz1;lz2;alamo"
 
 /obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/xeno, damage_amount = xeno.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = xeno.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(!(xeno.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
+	var/datum/game_mode/infestation/infestation_mode = SSticker.mode //Minor QOL, any xeno can check the console after a leader hijacks
+	if(!(xeno.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT) && (infestation_mode.round_stage != INFESTATION_MARINE_CRASHING))
 		return
 	#ifndef TESTING
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
@@ -661,7 +662,7 @@
 		if("abduct")
 			var/datum/game_mode/infestation/infestation_mode = SSticker.mode
 			if(infestation_mode.round_stage == INFESTATION_MARINE_CRASHING)
-				message_admins("[xeno] tried to capture the shuttle after it was already hijacked, possible use of exploits.")
+				message_admins("[usr] tried to capture the shuttle after it was already hijacked, possible use of exploits.")
 				return
 			var/groundside_humans = length(GLOB.humans_by_zlevel["[z]"])
 			if(groundside_humans > 5)
@@ -676,7 +677,6 @@
 				return
 
 			priority_announce("The Alamo has been captured! Losing their main mean of accessing the ground, the marines have no choice but to retreat.", title = "Alamo Captured", color_override = "orange")
-			var/datum/game_mode/infestation/infestation_mode = SSticker.mode
 			infestation_mode.round_stage = INFESTATION_DROPSHIP_CAPTURED_XENOS
 			return
 
