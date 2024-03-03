@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Retired ERT leader doesn't have legs anymore as was intended"

@@ -39,3 +39,13 @@
   ivanmixo:
   - bugfix: The server should no longer die if you try to directional attack diagonally
       thru a wall
+2024-03-03:
+  Barnet2:
+  - balance: Antigas nades are now in the crash weapons vendor
+  Lumipharon:
+  - bugfix: fixed a gunfire runtime when firing the last bullet of some guns
+  TiviPlus:
+  - bugfix: tanks and mechs have correct bullet movement speed now
+  ivanmixo:
+  - bugfix: Retired ERT leader doesn't have legs anymore as was intended
+  - qol: Disabled directional attacks for mobs of the same faction as you
