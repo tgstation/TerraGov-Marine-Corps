@@ -30,7 +30,7 @@
 	if(cooldown_timer)
 		deltimer(cooldown_timer)
 	QDEL_NULL(countdown)
-	. = ..()
+	return ..()
 
 /datum/action/ability/give_action(mob/living/L)
 	. = ..()
