@@ -1,3 +1,10 @@
+/mob/living/carbon/xenomorph/Bump(atom/A)
+	if(!(xeno_flags & XENO_LEAPING))
+		return ..()
+	if(!isliving(A))
+		return ..()
+	return SEND_SIGNAL(src, COMSIG_XENOMORPH_LEAP_BUMP, A)
+
 /mob/living/carbon/xenomorph/verb/hive_status()
 	set name = "Hive Status"
 	set desc = "Check the status of your current hive."
@@ -184,16 +191,25 @@
 		return FALSE
 	return TRUE
 
-/mob/living/carbon/xenomorph/proc/use_plasma(value)
+/mob/living/carbon/xenomorph/proc/set_plasma(value, update_plasma = TRUE)
+	plasma_stored = clamp(value, 0, xeno_caste.plasma_max)
+	if(!update_plasma)
+		return
+	hud_set_plasma()
+
+/mob/living/carbon/xenomorph/proc/use_plasma(value, update_plasma = TRUE)
 	plasma_stored = max(plasma_stored - value, 0)
 	update_action_button_icons()
+	if(!update_plasma)
+		return
+	hud_set_plasma()
 
-/mob/living/carbon/xenomorph/proc/gain_plasma(value)
+/mob/living/carbon/xenomorph/proc/gain_plasma(value, update_plasma = TRUE)
 	plasma_stored = min(plasma_stored + value, xeno_caste.plasma_max)
 	update_action_button_icons()
-
-
-
+	if(!update_plasma)
+		return
+	hud_set_plasma()
 
 //Strip all inherent xeno verbs from your caste. Used in evolution.
 /mob/living/carbon/xenomorph/proc/remove_inherent_verbs()
@@ -258,7 +274,7 @@
 /mob/living/carbon/xenomorph/throw_impact(atom/hit_atom, speed)
 	set waitfor = FALSE
 
-	if(stat || !usedPounce)
+	if(stat || !(xeno_flags & XENO_LEAPING))
 		return ..()
 
 	if(isobj(hit_atom)) //Deal with smacking into dense objects. This overwrites normal throw code.
@@ -391,11 +407,6 @@
 	take_damage(2 * X.xeno_caste.acid_spray_structure_damage, BURN, ACID)
 	return FALSE // not normal density flag
 
-/obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/xenomorph/X)
-	take_damage_type(X.xeno_caste.acid_spray_structure_damage, ACID, src)
-	healthcheck()
-	return TRUE
-
 /mob/living/carbon/acid_spray_act(mob/living/carbon/xenomorph/X)
 	ExtinguishMob()
 	if(isnestedhost(src))
@@ -425,7 +436,11 @@
 	ExtinguishMob()
 
 /obj/flamer_fire/acid_spray_act(mob/living/carbon/xenomorph/X)
-	Destroy()
+	qdel(src)
+
+/obj/hitbox/acid_spray_act(mob/living/carbon/xenomorph/X)
+	take_damage(X.xeno_caste.acid_spray_structure_damage, BURN, ACID)
+	return TRUE
 
 // Vent Crawl
 /mob/living/carbon/xenomorph/proc/vent_crawl()
@@ -493,7 +508,8 @@
 	. = ..()
 	if(.)
 		return
-	sunder = clamp(sunder + adjustment, 0, xeno_caste.sunder_max)
+	sunder = clamp(sunder + (adjustment > 0 ? adjustment * xeno_caste.sunder_multiplier : adjustment), 0, xeno_caste.sunder_max)
+//Applying sunder is an adjustment value above 0, healing sunder is an adjustment value below 0. Use multiplier when taking sunder, not when healing.
 
 /mob/living/carbon/xenomorph/set_sunder(new_sunder)
 	. = ..()
@@ -541,10 +557,6 @@
 /mob/living/carbon/xenomorph/proc/clean_tracked(atom/to_track)
 	SIGNAL_HANDLER
 	tracked = null
-
-///Handles empowered abilities, should return TRUE if the ability should be empowered. Empowerable should be FALSE if the ability cannot itself be empowered but has interactions with empowerable abilities
-/mob/living/carbon/xenomorph/proc/empower(empowerable = TRUE)
-	return FALSE
 
 ///Handles icon updates when leadered/unleadered. Evolution.dm also uses this
 /mob/living/carbon/xenomorph/proc/update_leader_icon(makeleader = TRUE)

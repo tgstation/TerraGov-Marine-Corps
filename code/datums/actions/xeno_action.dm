@@ -37,34 +37,12 @@
 			X.balloon_alert(X, "Cannot while in crest defense")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_ROOTED) && HAS_TRAIT_FROM(X, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
-		if(!silent)
-			X.balloon_alert(X, "Cannot while rooted")
-		return FALSE
-
-	if(!(flags_to_check & ABILITY_USE_AGILITY) && X.agility)
-		if(!silent)
-			X.balloon_alert(X, "Cannot in agility mode")
-		return FALSE
-
 	if(!(flags_to_check & ABILITY_IGNORE_PLASMA) && X.plasma_stored < ability_cost)
 		if(!silent)
 			X.balloon_alert(X, "Need [ability_cost - X.plasma_stored] more plasma")
 		return FALSE
 
 	return TRUE
-
-///Plasma cost override allows for actions/abilities to override the normal plasma costs
-/datum/action/ability/xeno_action/succeed_activate(ability_cost_override)
-	//the sig call means we need to override this proc it seems
-	if(QDELETED(owner))
-		return
-	ability_cost_override = ability_cost_override? ability_cost_override : ability_cost
-	if(SEND_SIGNAL(owner, COMSIG_XENO_ACTION_SUCCEED_ACTIVATE, src, ability_cost_override) & SUCCEED_ACTIVATE_CANCEL)
-		return
-	if(ability_cost_override > 0)
-		var/mob/living/carbon/xenomorph/xeno_owner = owner
-		xeno_owner.deduct_ability_cost(ability_cost_override)
 
 //activatable
 /datum/action/ability/activable/xeno/New(Target)
@@ -98,16 +76,6 @@
 	if(!(flags_to_check & ABILITY_USE_CRESTED) && X.crest_defense)
 		if(!silent)
 			X.balloon_alert(X, "Cannot while in crest defense")
-		return FALSE
-
-	if(!(flags_to_check & ABILITY_USE_ROOTED) && HAS_TRAIT_FROM(X, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
-		if(!silent)
-			X.balloon_alert(X, "Cannot while rooted")
-		return FALSE
-
-	if(!(flags_to_check & ABILITY_USE_AGILITY) && X.agility)
-		if(!silent)
-			X.balloon_alert(X, "Cannot in agility mode")
 		return FALSE
 
 	if(!(flags_to_check & ABILITY_IGNORE_PLASMA) && X.plasma_stored < ability_cost)

@@ -258,9 +258,9 @@
 			shake_camera(carbon_victim, 3 * severity, 3 * severity)
 			carbon_victim.apply_effect(1 SECONDS, WEAKEN)
 			to_chat(carbon_victim, "You are smashed to the ground!")
-		else if(ismecha(victim))
-			var/obj/vehicle/sealed/mecha/mecha_victim = victim
-			mecha_victim.take_damage(SHATTERING_ROAR_DAMAGE * 5 * severity, BRUTE, MELEE)
+		else if(isvehicle(victim))
+			var/obj/vehicle/veh_victim = victim
+			veh_victim.take_damage(SHATTERING_ROAR_DAMAGE * 5 * severity, BRUTE, MELEE)
 		else if(istype(victim, /obj/structure/window))
 			var/obj/structure/window/window_victim = victim
 			if(window_victim.damageable)
@@ -396,9 +396,9 @@
 				human_victim.take_overall_damage(15, BURN, updating_health = TRUE)
 				human_victim.flash_weak_pain()
 				animation_flash_color(human_victim)
-			else if(ismecha(victim))
-				var/obj/vehicle/sealed/mecha/mech_victim = victim
-				mech_victim.take_damage(75, BURN, ENERGY, armour_penetration = 60)
+			else if(isvehicle(victim))
+				var/obj/vehicle/veh_victim = victim
+				veh_victim.take_damage(75, BURN, ENERGY, armour_penetration = 60)
 	timer_ref = addtimer(CALLBACK(src, PROC_REF(execute_attack)), ZEROFORM_TICK_RATE, TIMER_STOPPABLE)
 
 ///ends and cleans up beam
@@ -478,6 +478,8 @@
 			owner.balloon_alert(owner, "noone to call")
 		return FALSE
 
+GLOBAL_LIST_EMPTY(active_summons)
+
 /datum/action/ability/xeno_action/psychic_summon/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 
@@ -489,7 +491,9 @@
 			continue
 		sister.add_filter("summonoutline", 2, outline_filter(1, COLOR_VIOLET))
 
-	if(!do_after(X, 10 SECONDS, IGNORE_HELD_ITEM, X, BUSY_ICON_HOSTILE))
+	GLOB.active_summons += X
+	request_admins()
+	if(!do_after(X, 10 SECONDS, IGNORE_HELD_ITEM, X, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(is_active_summon))))
 		add_cooldown(5 SECONDS)
 		for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 			sister.remove_filter("summonoutline")
@@ -508,3 +512,23 @@
 
 	add_cooldown()
 	succeed_activate()
+
+///Sends a message to admins, prompting them if they want to cancel a psychic summon
+/datum/action/ability/xeno_action/psychic_summon/proc/request_admins()
+	var/mob/living/carbon/xenomorph/caster = owner
+	var/canceltext = "[caster] is using [name] at [AREACOORD(caster)] [ADMIN_TPMONTY(caster)] <a href='?_src_=holder;[HrefToken(TRUE)];cancelsummon=[10 SECONDS]'>\[CANCEL SUMMON\]</a>"
+	message_admins("[span_prefix("PSYCHIC SUMMON:")] <span class='message linkify'> [canceltext]</span>")
+	log_game("psychic summon started by [caster] at [AREACOORD(caster)], timerid to cancel: [10 SECONDS]")
+	notify_ghosts("<b>[caster]</b> has begun to summon at [AREACOORD(caster)]!", action = NOTIFY_JUMP)
+
+///Checks if our summon was cancelled
+/datum/action/ability/xeno_action/psychic_summon/proc/is_active_summon()
+	var/mob/living/carbon/xenomorph/caster = owner
+	if(!(caster in GLOB.active_summons))
+		return FALSE
+	return TRUE
+
+/datum/action/ability/xeno_action/psychic_summon/succeed_activate()
+	. = ..()
+	var/mob/living/carbon/xenomorph/caster = owner
+	GLOB.active_summons -= caster //Remove ourselves from the list once we have completed our summon

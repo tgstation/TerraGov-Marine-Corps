@@ -310,8 +310,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
 	if(G == user.get_active_held_item() || G == user.get_inactive_held_item() || CHECK_BITFIELD(G.flags_item, IS_DEPLOYED))
-		if(activate(user)) //success
+		if(activate(user))
 			playsound(user, activation_sound, 15, 1)
+			return TRUE
 	else
 		to_chat(user, span_warning("[G] must be in our hands to do this."))
 
@@ -1533,7 +1534,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/shoulder_mount/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
 	if(!istype(master_gun.loc, /obj/item/clothing/suit/modular) || master_gun.loc.loc != user)
 		return
-	activate(user)
+	return activate(user)
 
 /obj/item/attachable/shoulder_mount/activate(mob/user, turn_off)
 	. = ..()
@@ -1665,7 +1666,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attach_delay = 2 SECONDS
 	detach_delay = 2 SECONDS
 
-	///This is pulled when the parent flamer fires, it determins how the parent flamers fire stream acts.
+	///This is pulled when the parent flamer fires, it determines how the parent flamers fire stream acts.
 	var/stream_type = FLAMER_STREAM_STRAIGHT
 
 	///Modifier for burn level of attached flamer. Percentage based.

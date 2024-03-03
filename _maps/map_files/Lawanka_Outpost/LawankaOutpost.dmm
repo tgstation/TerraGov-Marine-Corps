@@ -4503,7 +4503,7 @@
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "dNa" = (
 /obj/structure/table/reinforced,
-/obj/item/trash/barcardine,
+/obj/item/trash/barcaridine,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/outside/central)
 "dND" = (

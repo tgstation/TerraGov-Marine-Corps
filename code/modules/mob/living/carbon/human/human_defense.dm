@@ -106,6 +106,19 @@ Contains most of the procs that are called when a mob is attacked by something
 	else
 		target_zone = def_zone ? check_zone(def_zone) : get_zone_with_miss_chance(user.zone_selected, src)
 
+	var/attack_verb = LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"
+
+	if(!target_zone)
+		user.do_attack_animation(src)
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
+		visible_message(span_danger("[user] tried to hit [src] with [I]!"), null, null, 5)
+		log_combat(user, src, "[attack_verb]", "(missed)")
+		if(!user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
+			var/turf/T = get_turf(src)
+			log_ffattack("[key_name(user)] missed a attack against [key_name(src)] with [I] in [AREACOORD(T)].")
+			msg_admin_ff("[ADMIN_TPMONTY(user)] missed an against [ADMIN_TPMONTY(src)] with [I] in [ADMIN_VERBOSEJMP(T)].")
+		return FALSE
+
 	var/datum/limb/affecting = get_limb(target_zone)
 	if(affecting.limb_status & LIMB_DESTROYED)
 		to_chat(user, "What [affecting.display_name]?")
@@ -122,7 +135,6 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	var/applied_damage = modify_by_armor(damage, MELEE, I.penetration, target_zone)
 	var/percentage_penetration = applied_damage / damage * 100
-	var/attack_verb = LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"
 	var/armor_verb
 	switch(percentage_penetration)
 		if(-INFINITY to 0)
@@ -201,11 +213,6 @@ Contains most of the procs that are called when a mob is attacked by something
 	//Melee weapon embedded object code.
 	if(affecting.limb_status & LIMB_DESTROYED)
 		hit_report += "(delimbed [affecting.display_name])"
-	else if(I.damtype == BRUTE && !(HAS_TRAIT(I, TRAIT_NODROP) || (I.flags_item & DELONDROP)))
-		if (percentage_penetration && weapon_sharp && prob(I.embedding.embed_chance))
-			user.dropItemToGround(I, TRUE)
-			I.embed_into(src, affecting)
-			hit_report += "(embedded in [affecting.display_name])"
 
 	record_melee_damage(user, applied_damage, affecting.limb_status & LIMB_DESTROYED)
 	log_combat(user, src, "attacked", I, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)]) [hit_report.Join(" ")]")

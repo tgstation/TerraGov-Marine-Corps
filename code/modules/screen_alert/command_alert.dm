@@ -53,15 +53,34 @@
 	S.channel = CHANNEL_ANNOUNCEMENTS
 	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
 	log_game("[key_name(human_owner)] has broadcasted the hud message [text] at [AREACOORD(human_owner)]")
+	var/override_color // for squad colors
+	var/list/alert_receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list) // for full faction alerts, do this so that faction's AI and ghosts can hear aswell
 	if(human_owner.assigned_squad)
-		deadchat_broadcast(" has sent a Squad Announcement:<br><br>[span_bigdeadsay("[text]")]<br><br>", human_owner, human_owner)
-		for(var/mob/living/carbon/human/marine AS in human_owner.assigned_squad.marines_list)
+		switch(human_owner.assigned_squad.id)
+			if(ALPHA_SQUAD)
+				override_color = "red"
+			if(BRAVO_SQUAD)
+				override_color = "orange"
+			if(CHARLIE_SQUAD)
+				override_color = "purple"
+			if(DELTA_SQUAD)
+				override_color = "blue"
+		for(var/mob/living/carbon/human/marine AS in human_owner.assigned_squad.marines_list | GLOB.observer_list)
 			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>SQUAD ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
-			to_chat(marine, "[span_faction_alert("[span_faction_alert_minortitle("Squad Announcement")][span_faction_alert_text("[text]<br><br><i>Sent by [human_owner.real_name], the [human_owner.job.title]</i>")]")]")
+			to_chat(marine, assemble_alert(
+				title = "Squad [human_owner.assigned_squad.name] Announcement",
+				subtitle = "Sent by [human_owner.real_name]",
+				message = text,
+				color_override = override_color,
+				minor = TRUE
+			))
 		return
-	deadchat_broadcast(" has sent a Command Announcement:<br><br>[span_bigdeadsay("[text]")]<br><br>", human_owner, human_owner)
-	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
-		if(human.faction == human_owner.faction)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>COMMAND ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
-			to_chat(human, "[span_faction_alert("[span_faction_alert_title("Command Announcement")]<br>[span_faction_alert_text("[text]<br><br><i>Sent by [human_owner.real_name], the [human_owner.job.title]</i>")]")]")
-			SEND_SOUND(human, S)
+	for(var/mob/faction_receiver in alert_receivers)
+		if(faction_receiver.faction == human_owner.faction || isdead(faction_receiver))
+			faction_receiver.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>COMMAND ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
+			to_chat(faction_receiver, assemble_alert(
+				title = "Command Announcement",
+				subtitle = "Sent by [human_owner.real_name]",
+				message = text
+			))
+			SEND_SOUND(faction_receiver, S)

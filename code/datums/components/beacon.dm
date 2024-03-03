@@ -83,11 +83,6 @@
 ///Activates the beacon
 /datum/component/beacon/proc/activate(atom/movable/source, mob/user)
 	var/turf/location = get_turf(source)
-	if(!is_ground_level(location.z))
-		to_chat(user, span_warning("You have to be on the planet to use this or it won't transmit."))
-		active = FALSE
-		return FALSE
-
 	var/area/A = get_area(location)
 	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
 		to_chat(user, span_warning("This won't work if you're standing deep underground."))
@@ -194,9 +189,8 @@
 ///What happens when we change Z level
 /datum/component/beacon/proc/on_z_change(atom/source, old_z, new_z)
 	SIGNAL_HANDLER
-	var/turf/source_turf = get_turf(source)
-	if(!is_ground_level(source_turf.z) && active)
-		INVOKE_ASYNC(src, PROC_REF(deactivate), source)
+	if(active)
+		beacon_datum.drop_location = get_turf(source)
 		return
 
 /datum/component/beacon/ai_droid/RegisterWithParent()

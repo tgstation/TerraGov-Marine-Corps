@@ -23,5 +23,5 @@
 	SIGNAL_HANDLER
 	if(target.stat == DEAD)
 		return
-	plasma_stored = min(plasma_stored + round(damage / 0.8), xeno_caste.plasma_max)
+	gain_plasma(floor(damage / 0.8))
 	SEND_SIGNAL(src, COMSIG_PUPPET_CHANGE_ALL_ORDER, PUPPET_ATTACK, target) //we are on harm intent so it probably means we want to kill the target

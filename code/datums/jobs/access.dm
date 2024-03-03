@@ -39,7 +39,7 @@
 		if(0)
 			return ALL_ACCESS
 		if(1)
-			return list(ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_MECH, ACCESS_MARINE_BRIDGE)//command
+			return list(ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TADPOLE, ACCESS_MARINE_PILOT, ACCESS_MARINE_MECH, ACCESS_MARINE_BRIDGE)//command
 		if(2)
 			return list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_REMOTEBUILD)//engineering and maintenance
 		if(3)
@@ -132,6 +132,8 @@
 			return "Requisitions"
 		if(ACCESS_MARINE_DROPSHIP)
 			return "Dropship Piloting"
+		if(ACCESS_MARINE_TADPOLE)
+			return "Tadpole Piloting"
 		if(ACCESS_MARINE_PILOT)
 			return "Pilot Gear"
 		if(ACCESS_MARINE_MECH)
@@ -234,13 +236,17 @@
 		if("E6")
 			. = size ? "SSGT" : "Staff Sergeant"
 		if("E7")
+			. = size ? "SFC" : "Sergeant First Class"
+		if("E7E")
 			. = size ? "GYSGT" : "Gunnery Sergeant"
 		if("E8")
 			. = size ? "MSGT" : "Master Sergeant"
 		if("E8E")
 			. = size ? "FSGT" : "First Sergeant"
 		if("E9")
-			. = size ? "SGM" : "Sergeant Major"
+			. = size ? "MGYSGT" : "Master Gunnery Sergeant"
+		if("E9A")
+			. = size ? "SGM" : "Sergeant Major" //above master gunnery sergeant, below command sergeant major
 		if("E9E")
 			. = size ? "CSGM" : "Command Sergeant Major"
 		if("O1")
@@ -281,6 +287,10 @@
 			. = size ? "MAJ" : "Major"
 		if("MO5")
 			. = size ? "LtCol" : "Lieutenant Colonel"
+		if("MO6")
+			. = size ? "Col" : "Colonel"
+		if("M10")
+			. = size ? "Gen" : "General"
 		if("UPP1")
 			. = size ? "UGNR" : "USL Gunner"
 		if("UPP2")

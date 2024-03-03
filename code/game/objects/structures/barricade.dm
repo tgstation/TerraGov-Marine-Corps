@@ -1064,9 +1064,10 @@
 	name = internal_shield.name
 	desc = internal_shield.desc
 	//if the shield is wired, it deploys wired
-	if (internal_shield.is_wired)
+	if(internal_shield.is_wired)
 		can_wire = FALSE
 		is_wired = TRUE
+		climbable = FALSE
 
 /obj/structure/barricade/metal/deployable/get_internal_item()
 	return internal_shield

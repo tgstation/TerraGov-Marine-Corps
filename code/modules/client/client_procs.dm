@@ -188,7 +188,7 @@
 	if(CONFIG_GET(flag/log_access))
 		for(var/I in GLOB.clients)
 			if(!I)
-				stack_trace("null in GLOB.clients during client/New()")
+				listclearnulls(GLOB.clients)
 				continue
 			if(I == src)
 				continue
@@ -269,7 +269,12 @@
 		return
 
 	if(GLOB.custom_info)
-		to_chat(src, "[span_faction_alert("[span_faction_alert_title("Custom Information")][span_faction_alert_subtitle("The following custom information has been set for this round.")]<br>[span_faction_alert_text("[GLOB.custom_info]")]")]")
+		to_chat(src, assemble_alert(
+			title = "Custom Information",
+			subtitle = "The following custom information has been set for this round.",
+			message = GLOB.custom_info,
+			color_override = "red"
+		))
 
 	connection_time = world.time
 	connection_realtime = world.realtime

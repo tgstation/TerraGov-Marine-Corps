@@ -17,14 +17,13 @@
 /obj/item/weapon/gun
 	name = "Guns"
 	desc = "Its a gun. It's pretty terrible, though."
-	icon = 'icons/obj/items/gun.dmi'
 	icon_state = ""
 	item_state = "gun"
 	item_state_worn = TRUE
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
-		)
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_1.dmi',
+	)
 	max_integrity = 250
 	w_class = WEIGHT_CLASS_NORMAL
 	throwforce = 5
@@ -261,7 +260,7 @@
 	///Slowdown for wielding
 	var/aim_slowdown = 0
 	///How long between wielding and firing in tenths of seconds
-	var/wield_delay = 0.4 SECONDS
+	var/wield_delay = 0.6 SECONDS
 	///Extra wield delay for untrained operators
 	var/wield_penalty = 0.2 SECONDS
 	///Storing value for above
@@ -486,7 +485,7 @@
 		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET, src)
-		gun_user.hud_used.remove_ammo_hud(src)
+		gun_user.hud_used?.remove_ammo_hud(src)
 		if(heat_meter)
 			gun_user.client.images -= heat_meter
 			heat_meter = null
@@ -500,7 +499,11 @@
 	gun_user = user
 	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
 	if(flags_gun_features & GUN_AMMO_COUNTER)
-		gun_user.hud_used.add_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+		gun_user.hud_used?.add_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+	if(heat_per_fire)
+		heat_meter = new(loc=gun_user)
+		heat_meter.animate_change(heat_amount/100, 5)
+		gun_user.client.images += heat_meter
 	if(master_gun)
 		return
 	setup_bullet_accuracy()
@@ -509,15 +512,6 @@
 		COMSIG_MOB_SKILLS_CHANGED,
 		COMSIG_MOB_SHOCK_STAGE_CHANGED,
 		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED), PROC_REF(setup_bullet_accuracy))
-	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
-	if(flags_gun_features & GUN_AMMO_COUNTER)
-		gun_user.hud_used.add_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
-	if(heat_per_fire)
-		heat_meter = new(loc=gun_user)
-		heat_meter.animate_change(heat_amount/100, 5)
-		gun_user.client.images += heat_meter
-	if(master_gun)
-		return
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
@@ -679,10 +673,10 @@
 		wdelay += wield_penalty
 	else
 		var/skill_value = user.skills.getRating(gun_skill_category)
+		if(skill_value < 0)
+			wdelay += wield_penalty
 		if(skill_value > 0)
 			wdelay -= skill_value * 2
-		else
-			wdelay += wield_penalty
 	wield_time = world.time + wdelay
 	do_wield(user, wdelay)
 	if(HAS_TRAIT(src, TRAIT_GUN_AUTO_AIM_MODE))
@@ -1766,7 +1760,7 @@
 
 /obj/item/weapon/gun/proc/play_fire_sound(mob/user)
 	//Guns with low ammo have their firing sound
-	var/firing_sndfreq = CHECK_BITFIELD(flags_gun_features, GUN_NO_PITCH_SHIFT_NEAR_EMPTY) ? FALSE : ((rounds / (max_rounds ? max_rounds : max_shells)) > 0.25) ? FALSE : 55000
+	var/firing_sndfreq = CHECK_BITFIELD(flags_gun_features, GUN_NO_PITCH_SHIFT_NEAR_EMPTY) ? FALSE : ((max(rounds, 1) / (max_rounds ? max_rounds : max_shells)) > 0.25) ? FALSE : 55000
 	if(HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 		playsound(user, fire_sound, 25, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 		return

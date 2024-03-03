@@ -92,6 +92,8 @@
 	var/sunder_recover = 0.5
 	///What is the max amount of sunder that can be applied to a xeno (100 = 100%)
 	var/sunder_max = 100
+	///Multiplier on the weapons sunder, e.g 10 sunder on a projectile is reduced to 5 with a 0.5 multiplier.
+	var/sunder_multiplier = 1
 
 	// *** Ranged Attack *** //
 	///Delay timer for spitting
@@ -121,12 +123,6 @@
 
 	// *** Defiler Abilities *** //
 	var/list/available_reagents_define = list() //reagents available for select reagent
-
-	// *** Warrior Abilities *** //
-	///speed increase afforded to the warrior caste when in 'agiility' mode. negative number means faster movement.
-	var/agility_speed_increase = 0 // this opens up possibilities for balancing
-	///amount of soft armor adjusted when in agility mode for the warrior caste. Flat integer amounts only.
-	var/agility_speed_armor = 0 //Same as above
 
 	// *** Boiler Abilities *** //
 	///maximum number of 'globs' of boiler ammunition that can be stored by the boiler caste.
@@ -231,6 +227,8 @@
 	var/evolve_min_xenos = 0
 	// How many of this caste may be alive at once
 	var/maximum_active_caste = INFINITY
+	// Accuracy malus, 0 by default. Should NOT go over 70.
+	var/accuracy_malus = 0
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
@@ -280,25 +278,23 @@
 	gib_chance = 5
 	light_system = MOVABLE_LIGHT
 
+	///Hive name define
 	var/hivenumber = XENO_HIVE_NORMAL
-
+	///Hive datum we belong to
 	var/datum/hive_status/hive
+	///Xeno mob specific flags
+	var/xeno_flags = NONE //TODO: There are loads of vars below that should be flags
 
 	///State tracking of hive status toggles
 	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
 
-	var/list/overlays_standing[X_TOTAL_LAYERS]
 	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
 	var/atom/movable/vis_obj/xeno_wounds/fire_overlay/fire_overlay
 	var/datum/xeno_caste/xeno_caste
 	var/caste_base_type
 	var/language = "Xenomorph"
-	var/obj/item/clothing/suit/wear_suit = null
-	var/obj/item/clothing/head/head = null
-	var/obj/item/r_store = null
-	var/obj/item/l_store = null
+	///Plasma currently stored
 	var/plasma_stored = 0
-	var/time_of_birth
 
 	///A mob the xeno ate
 	var/mob/living/carbon/eaten_mob
@@ -312,9 +308,6 @@
 	var/sunder = 0
 	///The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
 	var/datum/ammo/xeno/ammo = null
-
-	var/list/upgrades_bought = list()
-
 	///The aura we're currently emitted. Destroyed whenever we change or stop pheromones.
 	var/datum/aura_bearer/current_aura
 	/// If we're chosen as leader, this is the leader aura we emit.
@@ -342,10 +335,10 @@
 	var/attack_delay = 0
 	///This will track their "tier" to restrict/limit evolutions
 	var/tier = XENO_TIER_ONE
-
-	var/emotedown = 0
 	///which resin structure to build when we secrete resin
 	var/selected_resin = /turf/closed/wall/resin/regenerating
+	//which special resin structure to build when we secrete special resin
+	var/selected_special_resin = /turf/closed/wall/resin/regenerating/special/bulletproof
 	///which reagent to slash with using reagent slash
 	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile
 	///which plant to place when we use sow
@@ -371,9 +364,6 @@
 	//Charge vars
 	///Will the mob charge when moving ? You need the charge verb to change this
 	var/is_charging = CHARGE_OFF
-
-	//Pounce vars
-	var/usedPounce = 0
 
 	// Gorger vars
 	var/overheal = 0
@@ -424,3 +414,5 @@
 
 	///The resting cooldown
 	COOLDOWN_DECLARE(xeno_resting_cooldown)
+	///The unresting cooldown
+	COOLDOWN_DECLARE(xeno_unresting_cooldown)

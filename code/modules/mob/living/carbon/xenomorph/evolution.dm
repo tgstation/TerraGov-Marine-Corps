@@ -8,6 +8,7 @@
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 
+	SStgui.close_user_uis(src, GLOB.evo_panel) // Closes all verbs using evo UI; evolution, caste swap and regress. They need to be refreshed with their respective castelists.
 	GLOB.evo_panel.ui_interact(src)
 
 /mob/living/carbon/xenomorph/verb/caste_swap()
@@ -19,6 +20,7 @@
 		to_chat(src, span_warning("Your caste swap timer is not done yet."))
 		return
 
+	SStgui.close_user_uis(src, GLOB.evo_panel)
 	ADD_TRAIT(src, TRAIT_CASTE_SWAP, TRAIT_CASTE_SWAP)
 	GLOB.evo_panel.ui_interact(src)
 
@@ -27,6 +29,7 @@
 	set desc = "Regress into a lower form."
 	set category = "Alien"
 
+	SStgui.close_user_uis(src, GLOB.evo_panel)
 	ADD_TRAIT(src, TRAIT_REGRESSING, TRAIT_REGRESSING)
 	GLOB.evo_panel.ui_interact(src)
 

@@ -219,7 +219,7 @@
 
 /obj/item/weapon/twohanded/fireaxe/som/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING, shield_cover = list(MELEE = 45, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
+	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING, list(MELEE = 45, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
 	AddComponent(/datum/component/stun_mitigation, SHIELD_TOGGLE, shield_cover = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 60, ACID = 60))
 	AddElement(/datum/element/strappable)
 	special_attack = new(src, force_wielded, penetration)
@@ -390,7 +390,7 @@
 
 /obj/item/weapon/twohanded/spear/tactical/tacticool
 	name = "M-23 TACTICOOL spear"
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/Marine/spear.dmi'
 	desc = "A TACTICOOL spear. Used for TACTICOOLNESS in combat."
 
 /obj/item/weapon/twohanded/spear/tactical/tacticool/Initialize(mapload)

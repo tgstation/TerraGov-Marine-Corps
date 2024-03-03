@@ -25,6 +25,10 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "turret"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
+	)
 
 	fire_sound = 'sound/weapons/guns/fire/hmg2.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
@@ -158,6 +162,10 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-ac.dmi'
 	icon_state = "autocannon"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
+	)
 	fire_sound = "ac_fire"
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
@@ -355,6 +363,10 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "mg08"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
+	)
 
 	fire_sound = 'sound/weapons/guns/fire/mg08.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
@@ -402,11 +414,15 @@
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "t27"
 	item_state = "t27"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+	)
 	caliber = CALIBER_10x27_CASELESS // codex
 	max_shells = 150 //codex
 	force = 40
 	aim_slowdown = 1.2
-	wield_delay = 2 SECONDS
+	wield_delay = 2.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mg27.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mg27_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
@@ -466,8 +482,8 @@
 	icon_state = "ptrs"
 	item_state = "ptrs"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
@@ -672,6 +688,10 @@
 	desc = "The KRD-61ES machinegun is the export variant of the ML-91 HMG. It's too heavy to be wielded or operated without the tripod. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "kord"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
+	)
 
 	fire_sound = 'sound/weapons/guns/fire/hmg2.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'

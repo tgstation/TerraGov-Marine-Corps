@@ -50,6 +50,11 @@
 							dat += " delta"
 							network = list("delta")
 							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
+						else
+							var/lowername = lowertext(squad.name)
+							dat = dat + " " + lowername
+							network = list(lowername)
+							req_access = list(ACCESS_MARINE_LEADER)
 				dat += " squad leader's"
 			if(/datum/job/terragov/command/captain)
 				dat += " captain's"
@@ -61,8 +66,12 @@
 				req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER)
 			if(/datum/job/terragov/command/pilot)
 				dat += " pilot's"
-				network = list("dropship1", "dropship2")
+				network = list("dropship1")
 				req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
+			if(/datum/job/terragov/command/transportofficer)
+				dat += " transport officer's"
+				network = list("dropship2")
+				req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE)
 		name = dat + " hud tablet"
 	// Convert networks to lowercase
 	for(var/i in network)
@@ -252,10 +261,15 @@
 
 /obj/item/hud_tablet/pilot
 	name = "pilot officers's hud tablet"
-	network = list("dropship1", "dropship2")
+	network = list("dropship1")
 	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
 	max_view_dist = WORLD_VIEW_NUM
 
+/obj/item/hud_tablet/transportofficer
+	name = "transport officer's hud tablet"
+	network = list("dropship2")
+	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE)
+	max_view_dist = WORLD_VIEW_NUM
 
 /obj/item/hud_tablet/artillery
 	name = "artillery impact hud tablet"

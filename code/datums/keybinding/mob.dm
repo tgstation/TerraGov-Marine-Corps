@@ -312,3 +312,32 @@
 		return
 	user.mob.do_self_harm = !user.mob.do_self_harm
 	user.mob.balloon_alert(user.mob, "You can [user.mob.do_self_harm ? "now" : "no longer"] hit yourself")
+
+/datum/keybinding/mob/interactive_emote
+	name = "interactive_emote"
+	full_name = "Do interactive emote"
+	description = "Perform an interactive emote with another player."
+	keybind_signal = COMSIG_KB_INTERACTIVE_EMOTE
+
+/datum/keybinding/mob/interactive_emote/down(client/user)
+	. = ..()
+	if(. || !isliving(user.mob) || CHECK_BITFIELD(user.mob.status_flags, INCORPOREAL) || !user.mob.can_interact(user.mob))
+		return
+
+	var/list/adjacent_mobs = cheap_get_living_near(user.mob, 1)
+	adjacent_mobs.Remove(user.mob)	//Get rid of self
+	for(var/mob/M AS in adjacent_mobs)
+		if(!M.client)
+			adjacent_mobs.Remove(M)	//Get rid of non-players
+
+	if(!length(adjacent_mobs))
+		return
+
+	if(length(adjacent_mobs) == 1)
+		user.mob.interaction_emote(adjacent_mobs[1])
+		return
+
+	var/mob/target = tgui_input_list(user, "Who do you want to interact with?", "Select a target", adjacent_mobs)
+	if(!target || !user.mob.Adjacent(target))	//In case the target moved away while selecting them
+		return
+	user.mob.interaction_emote(target)
