@@ -55,7 +55,7 @@
 	name = "Standard grenades"
 	desc = "A pouch carrying a set of six standard offensive grenades. Contains HE, lasburster and incendiary grenades."
 	ui_icon = "grenade"
-	item_typepath = /obj/item/storage/pouch/grenade/standard/standard
+	item_typepath = /obj/item/storage/pouch/grenade/standard
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/r_pocket/shotgun
@@ -168,7 +168,7 @@
 	name = "Standard grenades"
 	desc = "A pouch carrying a set of six standard offensive grenades. Contains HE, lasburster and incendiary grenades."
 	ui_icon = "grenade"
-	item_typepath = /obj/item/storage/pouch/grenade/standard/standard
+	item_typepath = /obj/item/storage/pouch/grenade/standard
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/l_pocket/shotgun

@@ -438,7 +438,7 @@
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 
-/obj/item/storage/pouch/grenade/standard/standard/Initialize(mapload)
+/obj/item/storage/pouch/grenade/standard/Initialize(mapload)
 	. = ..()
 	new /obj/item/explosive/grenade(src)
 	new /obj/item/explosive/grenade(src)
