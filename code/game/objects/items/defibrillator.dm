@@ -61,15 +61,15 @@
 	if(dcell?.charge)
 		switch(round(dcell.charge * 100 / dcell.maxcharge))
 			if(67 to INFINITY)
-				overlays += "+full"
+				overlays += "_full"
 			if(34 to 66)
-				overlays += "+half"
+				overlays += "_half"
 			if(3 to 33)
-				overlays += "+low"
+				overlays += "_low"
 			if(0 to 3)
-				overlays += "+empty"
+				overlays += "_empty"
 	else // No cell.
-		overlays += "+empty"
+		overlays += "_empty"
 
 /obj/item/defibrillator/examine(mob/user)
 	. = ..()
@@ -93,7 +93,7 @@
 
 	if(!message)
 		return
-	return span_info("[message] You can click-drag this defibrillator on a corpsman backpack to recharge it.")
+	return span_notice("[message] You can click-drag this defibrillator on a corpsman backpack to recharge it.")
 
 /obj/item/defibrillator/attack_self(mob/living/carbon/human/user)
 	if(!ready_needed)
@@ -166,7 +166,7 @@
 
 /// Clowncar proc to check a bunch of different reasons someone could be unrevivable.
 /obj/item/defibrillator/proc/check_revive(mob/living/carbon/human/H, mob/living/carbon/human/user)
-	// The patient is a xenomorph
+	// The patient isn't a human (xenomorphs, animals)
 	if(!ishuman(H))
 		to_chat(user, span_warning("You can't defibrillate [H]. You don't even know where to put the paddles!"))
 		return
@@ -181,7 +181,7 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is not in a valid state. Operation aborted."))
 		return
 
-	// Heart or brain are failing
+	// Heartbreak, OR they don't have a brain for some reason
 	if(!H.has_working_organs() && !(H.species.species_flags & ROBOTIC_LIMBS))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's heart is failing. Immediate surgical intervention required."))
 		return
@@ -198,12 +198,13 @@
 			user.visible_message("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is missing their head. Reattach and try again.")
 			return
 
-	// They won't be coming back. Missing a head, DNR, or NPC(???)
+	// They won't be coming back. Missing a head or braindead/they set a DNR (also applies to NPCs on death)
+	// Synths won't suffer from brain death, but if they have a DNR set, they should be caught by the next check
 	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE) && !issynth(H)) || H.suiciding)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Resuscitation failed - Patient's general condition does not allow revival."))
 		return
 
-	// No ghost detected, so our human is likely an NPC (colonist)
+	// No ghost detected, so our human is likely an NPC (colonists, ghosted/NPC mobs, etc)
 	if(!H.mind && !H.get_ghost(TRUE))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Resuscitation failed - Patient is missing intelligence patterns."))
 		return
@@ -276,7 +277,7 @@
 	if(!issynth(H) && !isrobot(H) && heart && prob(25))
 		heart.take_damage(5) //Allow the defibrillator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
-	if(!check_revive(H, user)) // Extra check incase they perma mid defib, the user turns off the defib or something else changes mid defib.
+	if(!check_revive(H, user)) // This is an extra check in case something changes mid resuscitation (DNR, defib turned off, etc)
 		playsound(get_turf(src), 'sound/items/defib_failed.ogg', 35, 0)
 		return
 
@@ -303,7 +304,7 @@
 
 	H.updatehealth() //Make sure health is up to date since it's a purely derived value
 	if(H.health <= H.get_death_threshold())
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Resuscitation failed. Vital signs are too weak, repair damage and try again."))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Resuscitation failed. Tissue damage too severe, repair damage and try again."))
 		playsound(get_turf(src), 'sound/items/defib_failed.ogg', 35, 0)
 		return
 
