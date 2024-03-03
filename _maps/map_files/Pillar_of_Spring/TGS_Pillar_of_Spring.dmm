@@ -3284,10 +3284,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/carpet,
 /area/mainship/living/commandbunks)
-"ebg" = (
-/obj/vehicle/unmanned/droid/scout,
-/turf/open/floor/mech_bay_recharge_floor,
-/area/mainship/command/airoom)
 "ebr" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/machinery/light/mainship{
@@ -54040,7 +54036,7 @@ lVp
 giB
 jzc
 eNw
-ebg
+hQD
 gll
 uMf
 fCi
