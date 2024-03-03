@@ -670,6 +670,10 @@
 /obj/structure/bed/chair/wood/wings,
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
+"aPM" = (
+/obj/structure/ship_ammo/cas/rocket/keeper,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "aQj" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -5162,9 +5166,6 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/hallways/hangar)
 "gwK" = (
@@ -5342,10 +5343,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "gPw" = (
+/obj/structure/ship_ammo/cas/bomblet,
 /obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
+	dir = 8
 	},
-/turf/open/floor/mainship/cargo/arrow,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "gPQ" = (
 /obj/machinery/flasher{
@@ -6437,7 +6439,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/hallways/hangar)
@@ -8337,8 +8339,13 @@
 	},
 /area/mainship/living/numbertwobunks)
 "kOe" = (
-/obj/structure/ship_ammo/cas/rocket/keeper,
-/turf/open/floor/mainship/cargo,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "kPH" = (
 /obj/structure/table/fancywoodentable,
@@ -10972,6 +10979,11 @@
 	dir = 4
 	},
 /area/mainship/medical/upper_medical)
+"nNY" = (
+/obj/machinery/camera/autoname/mainship,
+/obj/structure/ship_ammo/cas/heavygun,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "nOv" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/wrench,
@@ -12040,9 +12052,13 @@
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
 "pha" = (
-/obj/machinery/camera/autoname/mainship,
-/obj/structure/ship_ammo/cas/heavygun,
-/turf/open/floor/mainship/cargo,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo/arrow,
 /area/mainship/hallways/hangar)
 "phr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -12737,6 +12753,9 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -15125,7 +15144,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/structure/ship_ammo/cas/bomblet,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "tbT" = (
@@ -52938,8 +52957,8 @@ qzs
 hoB
 fwq
 kcJ
-gRV
-nYk
+kOe
+fwq
 sZZ
 tyN
 wEZ
@@ -53194,8 +53213,8 @@ pkN
 tyN
 hiO
 bDi
-kOe
-gPw
+aPM
+gvv
 pbx
 tyN
 tyN
@@ -53452,7 +53471,7 @@ tyN
 oDl
 mVM
 mVM
-ilf
+pha
 rwK
 mQH
 tXB
@@ -54222,8 +54241,8 @@ wPV
 jAX
 sPc
 bDi
-kOe
-gvv
+aPM
+ilf
 xuA
 mQH
 egI
@@ -54480,7 +54499,7 @@ tyN
 uDq
 mVM
 mVM
-gPw
+gvv
 dgE
 tyN
 tyN
@@ -54738,7 +54757,7 @@ wsX
 fIt
 hSO
 pVY
-lXN
+gPw
 lET
 tyN
 rYr
@@ -54991,10 +55010,10 @@ hRh
 esN
 wPV
 tyN
-pha
+nNY
 mEj
 mEj
-gPw
+gvv
 dpY
 paT
 tyN
