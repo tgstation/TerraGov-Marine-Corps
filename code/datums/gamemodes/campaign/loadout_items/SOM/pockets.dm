@@ -15,13 +15,20 @@
 	item_typepath = /obj/item/storage/pouch/firstaid/som/combat_patrol_leader
 	jobs_supported = list(SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 
-/datum/loadout_item/r_pocket/som_standard_grenades
-	name = "Grenade pouch"
-	desc = "A pouch carrying a set of six standard support grenades."
+/datum/loadout_item/r_pocket/som_support_grenades
+	name = "Support grenades"
+	desc = "A pouch carrying a set of six standard support grenades. Includes smoke grenades of both lethal and nonlethal varieties, as well as stun grenades."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/som/combat_patrol
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+
+/datum/loadout_item/r_pocket/som_standard_grenades
+	name = "Standard grenades"
+	desc = "A pouch carrying a set of six standard offensive grenades. Contains HE and incendiary grenades."
+	ui_icon = "grenade"
+	item_typepath = /obj/item/storage/pouch/grenade/som/standard
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 
 /datum/loadout_item/r_pocket/war_crime_grenades
 	name = "Warcrime grenades"
@@ -115,11 +122,18 @@
 	jobs_supported = list(SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
-/datum/loadout_item/l_pocket/som_standard_grenades
-	name = "Grenade pouch"
-	desc = "A pouch carrying a set of six standard support grenades."
+/datum/loadout_item/l_pocket/som_support_grenades
+	name = "Support grenades"
+	desc = "A pouch carrying a set of six standard support grenades. Includes smoke grenades of both lethal and nonlethal varieties, as well as stun grenades."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/som/combat_patrol
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+
+/datum/loadout_item/l_pocket/som_standard_grenades
+	name = "Standard grenades"
+	desc = "A pouch carrying a set of six standard offensive grenades. Contains HE and incendiary grenades."
+	ui_icon = "grenade"
+	item_typepath = /obj/item/storage/pouch/grenade/som/standard
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 
 /datum/loadout_item/l_pocket/war_crime_grenades
