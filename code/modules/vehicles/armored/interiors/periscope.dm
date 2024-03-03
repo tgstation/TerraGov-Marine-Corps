@@ -19,10 +19,16 @@
 /obj/structure/periscope/attack_hand(mob/living/user)
 	. = ..()
 	user.reset_perspective(owner)
-	RegisterSignals(user, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_DO_RESIST), PROC_REF(stop_looking))
+	ADD_TRAIT(user, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
+	user.update_sight()
+	user.client.view_size.set_view_radius_to(4.5)
+	RegisterSignals(user, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_DO_RESIST, COMSIG_MOB_LOGOUT), PROC_REF(stop_looking))
 
 ///signal handler for canceling the looking
 /obj/structure/periscope/proc/stop_looking(mob/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_DO_RESIST))
+	UnregisterSignal(source, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_DO_RESIST, COMSIG_MOB_LOGOUT))
 	source.reset_perspective()
+	REMOVE_TRAIT(source, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
+	source.client.view_size.reset_to_default()
+	source.update_sight()
