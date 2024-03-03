@@ -324,20 +324,20 @@
 		return COMPONENT_NO_MOUSEDROP
 
 	//Makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
-	if(parent.loc != user)// || (src.parent.loc && src.parent.loc == user))
+	if(parent.loc != user && parent.loc.loc != user) //loc.loc handles edge case of storage attached to an item attached to another item (modules/boots)
 		return COMPONENT_NO_MOUSEDROP
 
 	if(!user.restrained() && !user.stat)
 		switch(over_object.name)
 			if("r_hand")
-				user.temporarilyRemoveItemFromInventory(parent)
-				if(!user.put_in_r_hand(parent))
-					user.dropItemToGround(parent)
+				user.temporarilyRemoveItemFromInventory(source)
+				if(!user.put_in_r_hand(source))
+					user.dropItemToGround(source)
 				return COMPONENT_NO_MOUSEDROP
 			if("l_hand")
-				user.temporarilyRemoveItemFromInventory(parent)
-				if(!user.put_in_l_hand(parent))
-					user.dropItemToGround(parent)
+				user.temporarilyRemoveItemFromInventory(source)
+				if(!user.put_in_l_hand(source))
+					user.dropItemToGround(source)
 				return COMPONENT_NO_MOUSEDROP
 
 /datum/storage/verb/toggle_gathering_mode()

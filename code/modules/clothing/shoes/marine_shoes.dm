@@ -14,7 +14,6 @@
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_STORAGE,
 	)
-	// XANTODO - Man these boots are so shit. Remove this crap and make it have actual storage instead smh
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/boot,
 		/obj/item/armor_module/storage/boot/full,

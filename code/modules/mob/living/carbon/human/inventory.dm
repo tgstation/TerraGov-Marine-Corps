@@ -405,10 +405,12 @@
 		selected_storage = selected_slot.atom_storage
 	else if(isclothing(selected_slot))
 		var/obj/item/clothing/selected_clothing = selected_slot
-		for(var/obj/attachment_slot in selected_clothing.attachments_by_slot)
-			if(attachment_slot.atom_storage)
-				selected_storage = attachment_slot.atom_storage
-				break
+		for(var/key AS in selected_clothing.attachments_by_slot)
+			var/atom/attachment = selected_clothing.attachments_by_slot[key]
+			if(!attachment.atom_storage)
+				continue
+			selected_storage = attachment.atom_storage
+			break
 
 	if(!selected_storage)
 		return FALSE

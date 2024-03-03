@@ -23,7 +23,7 @@
 	return TRUE
 
 /obj/item/storage/internal/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
-	return 0	//make sure this is never picked up
+	return 0 //make sure this is never picked up
 
 //Helper procs to cleanly implement internal storages - storage items that provide inventory slots for other items.
 //These procs are completely optional, it is up to the master item to decide when it's storage get's opened by calling open()
@@ -34,7 +34,7 @@
 //Items that use internal storage have the option of calling this to emulate default storage MouseDrop behaviour.
 //Returns 1 if the master item's parent's MouseDrop() should be called, 0 otherwise. It's strange, but no other way of
 //Doing it without the ability to call another proc's parent, really.
-/obj/item/storage/internal/proc/handle_mousedrop(mob/user, obj/over_object)
+/obj/item/storage/internal/proc/handle_mousedrop(mob/user, obj/over_object) //XANTODO Verify this
 	if(!ishuman(user))
 		return FALSE
 
@@ -84,38 +84,6 @@
 	else
 		user.dropItemToGround(owner)
 		user.put_in_l_hand(owner)
-
-//Items that use internal storage have the option of calling this to emulate default storage attack_hand behaviour.
-//Returns 1 if the master item's parent's attack_hand() should be called, 0 otherwise.
-//It's strange, but no other way of doing it without the ability to call another proc's parent, really.
-/obj/item/storage/internal/proc/handle_attack_hand(mob/user) // XANTODO Delete this? Lol?
-
-	if(user.lying_angle)
-		return FALSE
-
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.l_store == master_item && !H.get_active_held_item())	//Prevents opening if it's in a pocket.
-			H.put_in_hands(master_item)
-			H.l_store = null
-			return FALSE
-		if(H.r_store == master_item && !H.get_active_held_item())
-			H.put_in_hands(master_item)
-			H.r_store = null
-			return FALSE
-
-	if(master_item.loc == user)
-		if(atom_storage.draw_mode && ishuman(user) && length(contents))
-			var/obj/item/I = contents[length(contents)]
-			I.attack_hand(user)
-		else
-			atom_storage.open(user)
-		return FALSE
-
-	for(var/mob/M in range(1, master_item.loc))
-		if(M.s_active == src)
-			atom_storage.close(M)
-	return TRUE
 
 /obj/item/storage/internal/Adjacent(atom/neighbor)
 	return master_item.Adjacent(neighbor)

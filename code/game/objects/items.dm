@@ -664,25 +664,27 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	if(!selected_slot)
 		return FALSE
 
-	var/datum/storage/storage_item
+	var/datum/storage/storage_datum
 
 	if(isstorage(selected_slot))
-		storage_item = selected_slot
+		storage_datum = selected_slot
 
 	else if(selected_slot.atom_storage)
-		storage_item = selected_slot.atom_storage
+		storage_datum = selected_slot.atom_storage
 
 	else if(isclothing(selected_slot))
 		var/obj/item/clothing/selected_clothing = selected_slot
-		for(var/obj/attachment_slot in selected_clothing.attachments_by_slot)
-			if(attachment_slot.atom_storage)
-				storage_item = attachment_slot.atom_storage
-				break
+		for(var/key AS in selected_clothing.attachments_by_slot)
+			var/atom/attachment = selected_clothing.attachments_by_slot[key]
+			if(!attachment.atom_storage)
+				continue
+			storage_datum = attachment.atom_storage
+			break
 
-	if(!storage_item)
+	if(!storage_datum)
 		return FALSE
 
-	return storage_item.can_be_inserted(src, warning) // XANTODO - This is runtiming
+	return storage_datum.can_be_inserted(src, warning)
 
 /// Checks whether the item can be unequipped from owner by stripper. Generates a message on failure and returns TRUE/FALSE
 /obj/item/proc/canStrip(mob/stripper, mob/owner)
