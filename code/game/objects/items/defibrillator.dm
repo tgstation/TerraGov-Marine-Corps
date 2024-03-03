@@ -351,6 +351,10 @@
 	parent_obj = new_parent
 	return ..()
 
+/obj/item/defibrillator/internal/Destroy()
+	parent_obj = null
+	return ..()
+
 /obj/item/defibrillator/internal/update_icon()
 	. = ..()
 	parent_obj.update_icon()
@@ -372,6 +376,10 @@
 	. = ..()
 	internal_defib = new(src, src)
 	update_icon()
+
+/obj/item/clothing/gloves/defibrillator/Destroy()
+	internal_defib = null
+	return ..()
 
 /obj/item/clothing/gloves/defibrillator/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
