@@ -85,7 +85,7 @@
 		user.dropItemToGround(owner)
 		user.put_in_l_hand(owner)
 
-/obj/item/storage/internal/Adjacent(atom/neighbor)
+/obj/item/storage/internal/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	return master_item.Adjacent(neighbor)
 
 ///things to do when an item is inserted in the obj's internal pocket

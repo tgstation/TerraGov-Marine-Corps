@@ -113,7 +113,7 @@
 	player.view_manifest()
 
 /atom/movable/screen/text/lobby/clickable/xenomanifest
-	maptext = "<span class='maptext' style=font-size:8px>VIEW HIVE</span>"
+	maptext = "<span class='maptext' style=font-size:8px>VIEW HIVE LEADERS</span>"
 	icon_state = "manifest"
 
 /atom/movable/screen/text/lobby/clickable/xenomanifest/Click()

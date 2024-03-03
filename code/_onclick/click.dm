@@ -153,12 +153,13 @@
 			var/proximity = A.Adjacent(src)
 			if(!proximity || !A.attackby(W, src, params))
 				W.afterattack(A, src, proximity, params)
+				RangedAttack(A, params)
 		else
 			if(A.Adjacent(src))
 				A.attack_hand(src)
+			else
+				RangedAttack(A, params)
 
-	if(!A.Adjacent(src))
-		RangedAttack(A, params)
 
 /**
  * A backwards depth-limited breadth-first-search to see if the target is

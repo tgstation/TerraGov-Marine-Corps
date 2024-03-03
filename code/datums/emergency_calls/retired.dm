@@ -39,12 +39,10 @@
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/retired/leader)
 		H.apply_assigned_role_to_spawn(J)
-		var/obj/vehicle/ridden/wheelchair/weaponized/wheelchair = new(H.drop_location())
-		wheelchair.buckle_mob(H, TRUE)
 		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the TGMC retired veteran expedition leader! Lead your fellow veterans to one last hurrah!</notice></p>")
 		return
 
-	if(prob(30))
+	if(prob(30)) //30% chance to get robot limbs instead of being legless in a wheelchair
 		var/datum/job/J = SSjob.GetJobType(/datum/job/retired/augmented)
 		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are an augmented TGMC veteran, you may have had a few limbs replaced with synthetic versions, but at least you can walk! Follow the expedition leader and relive your glory days!</notice></p>")
