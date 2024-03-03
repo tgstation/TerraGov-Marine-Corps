@@ -29,12 +29,6 @@
 		var/thirds = clamp(round(3 * (total_w / atom_storage.max_storage_space)), 1, 3)
 		. += image(icon, src, bottommost.icon_state + "_" + "[thirds]") // "ltb_3"/"ltb_2"/"ltb_1"
 
-/obj/structure/ammo_rack/on_pocket_insertion()
-	update_appearance()
-
-/obj/structure/ammo_rack/on_pocket_removal()
-	update_appearance()
-
 /obj/structure/ammo_rack/primary
 	name = "primary ammo rack"
 	icon_state = "primaryrack"

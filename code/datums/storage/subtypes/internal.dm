@@ -49,14 +49,14 @@
 /datum/storage/internal/handle_item_insertion(obj/item/W, prevent_warning = FALSE)
 	. = ..()
 	var/obj/master_item = parent.loc
-	master_item?.on_pocket_insertion()
+	master_item?.update_icon()
 
 /datum/storage/internal/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	. = ..()
 	var/obj/master_item = parent.loc
 	if(isturf(master_item) || ismob(master_item))
 		return
-	master_item?.on_pocket_removal()
+	master_item?.update_icon()
 
 /datum/storage/internal/motorbike_pack
 	storage_slots = 4
@@ -347,3 +347,22 @@
 		/obj/item/stack/tile,
 		/obj/item/stack/cable_coil,
 	)
+
+//Hey this is funny, but due to this storage refactor, deployables can have storage too!
+/datum/storage/internal/ammo_rack
+	storage_slots = 10
+	max_storage_space = 40
+	max_w_class = WEIGHT_CLASS_BULKY
+	can_hold = list(/obj/item/ammo_magazine/standard_atgun)
+
+/datum/storage/internal/ammo_rack/on_mousedrop_onto(datum/source, obj/over_object, mob/user)
+	if(!ishuman(user) || user.lying_angle || user.incapacitated())
+		return FALSE
+
+	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
+		open(user)
+		return FALSE
+
+/datum/storage/internal/ammo_rack/on_attack_hand(datum/source, mob/living/user) //Override for motorbike subtype since this is vehicle storage
+	if(parent.Adjacent(user))
+		open(user)

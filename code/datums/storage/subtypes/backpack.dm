@@ -71,4 +71,4 @@
 		return ..()
 
 /datum/storage/backpack/dispenser/attempt_draw_object(mob/living/user)
-	to_chat(usr, span_notice("You can't grab anything out of [src] while it's not deployed."))
+	to_chat(usr, span_notice("You can't grab anything out of [parent] while it's not deployed."))

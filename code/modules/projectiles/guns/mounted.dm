@@ -538,7 +538,7 @@
 //-------------------------------------------------------
 //AT-36 Anti Tank Gun
 
-/obj/item/weapon/gun/standard_atgun
+/obj/item/weapon/gun/standard_atgun // XANTODO THIS IS HORRIBLY BROKEN AAAAAAAAHHHHHHHHHHHHHHH
 	name = "\improper AT-36 anti tank gun"
 	desc = "The AT-36 is a light dual purpose anti tank and anti personnel weapon used by the TGMC. Used for light vehicle or bunker busting on a short notice. Best used by two people. It can move around with wheels, and has an ammo rack intergral to the weapon. CANNOT BE UNDEPLOYED ONCE DEPLOYED! It uses several types of 37mm shells boxes. Alt-right click on it to anchor it so that it cannot be moved by anyone, then alt-right click again to move it."
 	w_class = WEIGHT_CLASS_BULKY
@@ -579,26 +579,13 @@
 	deployable_item = /obj/machinery/deployable/mounted/moveable/atgun
 
 /obj/machinery/deployable/mounted/moveable/atgun
-	var/obj/item/storage/internal/ammo_rack/sponson = /obj/item/storage/internal/ammo_rack
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
 	coverage = 85 //has a shield
 	anchor_time = 1 SECONDS
 
-/obj/machinery/deployable/mounted/moveable/atgun/Destroy()
-	if(sponson)
-		QDEL_NULL(sponson)
-	return ..()
-
-/obj/item/storage/internal/ammo_rack/Initialize(mapload)
-	. = ..()
-	atom_storage.storage_slots = 10
-	atom_storage.max_storage_space = 40
-	atom_storage.max_w_class = WEIGHT_CLASS_BULKY
-	atom_storage.can_hold = list(/obj/item/ammo_magazine/standard_atgun)
-
 /obj/machinery/deployable/mounted/moveable/atgun/Initialize(mapload)
 	. = ..()
-	sponson = new sponson(src)
+	create_storage(/datum/storage/internal/ammo_rack)
 
 /obj/machinery/deployable/mounted/moveable/atgun/attackby(obj/item/I, mob/user, params)
 	var/obj/item/weapon/gun/standard_atgun/internal_gun = get_internal_item()
@@ -607,17 +594,6 @@
 		return
 
 	return . = ..()
-
-/obj/machinery/deployable/mounted/moveable/atgun/attack_hand_alternate(mob/living/user)
-	return sponson.atom_storage.open(user)
-
-/obj/item/storage/internal/ammo_rack/handle_mousedrop(mob/user, obj/over_object)
-	if(!ishuman(user) || user.lying_angle || user.incapacitated())
-		return FALSE
-
-	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
-		atom_storage.open(user)
-		return FALSE
 
 /obj/machinery/deployable/mounted/moveable/atgun/ex_act(severity)
 	switch(severity)

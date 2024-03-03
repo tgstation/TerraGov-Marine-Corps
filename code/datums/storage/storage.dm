@@ -106,6 +106,19 @@
 	///the item left behind when our parent is destroyed
 	var/trash_item = null
 
+	//----- Holster vars
+	///the sound produced when the special item is drawn
+	var/draw_sound = null
+	///the sound produced when the special item is sheathed
+	var/sheathe_sound = null
+	///the snowflake item(s) that will update the sprite.
+	var/list/holsterable_allowed = list()
+	///records the specific special item currently in the holster
+	var/obj/holstered_item = null
+	///Image that get's underlayed under the sprite of the holster
+	var/image/holstered_item_underlay
+
+
 /datum/storage/New(atom/parent, list/can_hold, list/cant_hold, list/bypass_w_limit)
 	. = ..()
 	if(!istype(parent))
@@ -190,6 +203,8 @@
 		QDEL_NULL(stored_end)
 	if(closer)
 		QDEL_NULL(closer)
+	if(holstered_item)
+		QDEL_NULL(holstered_item)
 	if(trash_item)
 		new trash_item(get_turf(parent))
 	parent = null
@@ -262,8 +277,13 @@
 /datum/storage/proc/on_attack_hand(datum/source, mob/living/user)
 	SIGNAL_HANDLER
 	if(parent.loc == user || parent.loc.loc == user)
+		var/obj/item/item_to_attack
+		if(holstered_item in parent.contents)
+			item_to_attack = holstered_item
+			INVOKE_ASYNC(item_to_attack, TYPE_PROC_REF(/atom/movable, attack_hand), user)
+			return COMPONENT_NO_ATTACK_HAND
 		if(draw_mode && ishuman(user) && length(parent.contents))
-			var/obj/item/item_to_attack = parent.contents[length(parent.contents)]
+			item_to_attack = parent.contents[length(parent.contents)]
 			INVOKE_ASYNC(item_to_attack, TYPE_PROC_REF(/atom/movable, attack_hand), user)
 			return COMPONENT_NO_ATTACK_HAND
 		else if(open(user))
@@ -304,7 +324,7 @@
 	SIGNAL_HANDLER
 	open(user)
 
-///Signal handler for when you click drag parent
+///Signal handler for when you click drag parent to something (usually ourselves or an inventory slot)
 /datum/storage/proc/on_mousedrop_onto(datum/source, obj/over_object as obj, mob/user)
 	SIGNAL_HANDLER
 	if(!ishuman(user))
@@ -702,6 +722,11 @@
 	else
 		item.forceMove(parent)
 	item.on_enter_storage(parent)
+	if(length(holsterable_allowed))
+		for(var/holsterable_item in holsterable_allowed) //If our item is our snowflake item, it gets set as holstered_item
+			if(!istype(item, holsterable_item))
+				continue
+			holstered_item = item
 	if(user)
 		if(user.s_active != src)
 			user.client?.screen -= item
@@ -846,6 +871,10 @@
 	SIGNAL_HANDLER
 	if(!length(parent.contents)) //we don't want to equip the storage item itself
 		return COMSIG_QUICK_EQUIP_BLOCKED
+	/*if(holsterable_allowed && holstered_item) //If we have a holstered item in parent contents
+		if(holstered_item in parent.contents)
+			INVOKE_ASYNC(src, PROC_REF(remove_from_storage), holstered_item, null, user)
+			return COMSIG_QUICK_EQUIP_HANDLED*/
 	else
 		INVOKE_ASYNC(src, PROC_REF(attempt_draw_object), user)
 		return COMSIG_QUICK_EQUIP_HANDLED
@@ -945,5 +974,9 @@
 		return user.balloon_alert(user, "Empty")
 	if(user.get_active_held_item())
 		return //User is already holding something.
+	if(holsterable_allowed && holstered_item) //If we have a holstered item in parent contents
+		if(holstered_item in parent.contents)
+			holstered_item.attack_hand(user)
+			return
 	var/obj/item/drawn_item = start_from_left ? parent.contents[1] : parent.contents[length(parent.contents)]
 	drawn_item.attack_hand(user)

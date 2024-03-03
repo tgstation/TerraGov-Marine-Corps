@@ -308,6 +308,7 @@
 			return FALSE
 
 	//calls on the item to return a suitable item to be equipped
+	//Realistically only would get called on an item that has no storage/storage didnt fail signal
 	var/obj/item/found = I.do_quick_equip(src)
 	if(!found)
 		return FALSE

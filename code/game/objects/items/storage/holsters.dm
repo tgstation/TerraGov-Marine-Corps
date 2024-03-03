@@ -1,3 +1,9 @@
+/*!
+ * Contains holster subtype, which is a form of storage with a snowflake item we are particularly interested in
+ */
+
+// HEY, if you have some time to kill, consider moving all this snowflake stuff from holsters to be purely handled by /datum/storage
+
 ///Parent item for all holster type storage items
 /obj/item/storage/holster
 	name = "holster"
@@ -17,6 +23,14 @@
 	///Image that get's underlayed under the sprite of the holster
 	var/image/holstered_item_underlay
 
+/obj/item/storage/holster/Initialize(mapload, ...)
+	. = ..()
+	atom_storage.draw_sound = src.draw_sound
+	atom_storage.sheathe_sound = src.sheathe_sound
+	atom_storage.holsterable_allowed = src.holsterable_allowed
+	atom_storage.holstered_item = src.holstered_item
+	atom_storage.holstered_item_underlay = src.holstered_item_underlay
+
 /obj/item/storage/holster/equipped(mob/user, slot)
 	if (slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE || slot == SLOT_L_STORE || slot == SLOT_R_STORE )	//add more if needed
 		mouse_opacity = MOUSE_OPACITY_OPAQUE //so it's easier to click when properly equipped.
@@ -32,12 +46,6 @@
 	if(holstered_item)
 		QDEL_NULL(holstered_item)
 	return ..()
-
-/obj/item/storage/holster/attack_hand(mob/living/user) //Prioritizes our snowflake item on unarmed click
-	if(holstered_item && ishuman(user) && loc == user)
-		holstered_item.attack_hand(user)
-	else
-		return ..()
 
 /obj/item/storage/holster/update_icon_state()
 	. = ..()
@@ -67,14 +75,13 @@
 		underlays -= holstered_item_underlay
 		QDEL_NULL(holstered_item_underlay)
 
-/* XANTODO Probably have to add this function to base /datum/storage
 /obj/item/storage/holster/do_quick_equip(mob/user) //Will only draw the specific holstered item, not ammo etc.
 	if(!holstered_item)
 		return FALSE
 	var/obj/item/W = holstered_item
 	if(!atom_storage.remove_from_storage(W, null, user))
 		return FALSE
-	return W */
+	return W
 
 /obj/item/storage/holster/vendor_equip(mob/user)
 	. = ..()
@@ -203,9 +210,7 @@
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		)
 
-
-/obj/item/storage/holster/backholster/mortar/full/Initialize()
-	. = ..()
+/obj/item/storage/holster/backholster/mortar/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/mortar_kit(src)
 	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 

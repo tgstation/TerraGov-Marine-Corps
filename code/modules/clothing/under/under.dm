@@ -112,26 +112,6 @@
 	else
 		return ..()
 
-/* XANTODO /datum/storage probably handles this
-/obj/item/clothing/under/MouseDrop(obj/over_object as obj)
-	if(!ishuman(usr))
-		return
-	//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
-	if(HAS_TRAIT(src, TRAIT_NODROP) || loc != usr)
-		return
-	if(usr.incapacitated() || usr.buckled || usr.lying_angle)
-		return
-	if(!over_object)
-		return
-	switch(over_object.name)
-		if("r_hand")
-			usr.dropItemToGround(src)
-			usr.put_in_r_hand(src)
-		if("l_hand")
-			usr.dropItemToGround(src)
-			usr.put_in_l_hand(src)*/
-
-
 /obj/item/clothing/under/examine(mob/user)
 	. = ..()
 	if(!has_sensor)
@@ -145,15 +125,7 @@
 			. += "Its vital tracker appears to be enabled."
 		if(3)
 			. += "Its vital tracker and tracking beacon appear to be enabled."
-/* XANTODO Figure out quick equip
-//we only want to quick equip from actual 'holster' type webbings
-/obj/item/clothing/under/do_quick_equip(mob/user)
-	for(var/attachment_slot in attachments_by_slot)
-		if(istype(attachments_by_slot[attachment_slot], /obj/item/armor_module/storage/uniform/holster))
-			var/obj/item/armor_module/storage/storage_attachment = attachments_by_slot[attachment_slot]
-			return storage_attachment.atom_storage.do_quick_equip(user)
-	return src
-*/
+
 /obj/item/clothing/under/proc/set_sensors(mob/living/user)
 	if (!istype(user))
 		return
