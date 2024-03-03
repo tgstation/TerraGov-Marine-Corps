@@ -15982,6 +15982,10 @@
 	},
 /turf/open/floor/mainship/orange,
 /area/mainship/hallways/repair_bay)
+"qde" = (
+/obj/vehicle/unmanned/droid/scout,
+/turf/open/floor/mech_bay_recharge_floor,
+/area/mainship/command/airoom)
 "qdA" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -71079,7 +71083,7 @@ aaa
 aai
 unv
 adj
-asH
+qde
 vSj
 asH
 adj
