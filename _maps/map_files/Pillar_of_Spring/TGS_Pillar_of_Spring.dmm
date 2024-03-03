@@ -12384,6 +12384,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
+/obj/item/stack/sandbags_empty/half,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "pEN" = (

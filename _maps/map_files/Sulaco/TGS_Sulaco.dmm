@@ -13729,6 +13729,15 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
+"gWz" = (
+/obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/item/clothing/gloves/insulated,
+/turf/open/floor/prison,
+/area/sulaco/bridge/office)
 "gWF" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/prison,
@@ -14040,6 +14049,7 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
+/obj/item/clothing/gloves/insulated,
 /turf/open/floor/prison/darkyellow{
 	dir = 8
 	},
@@ -54205,7 +54215,7 @@ arc
 avr
 atF
 ecX
-uif
+gWz
 avr
 awI
 rhM
