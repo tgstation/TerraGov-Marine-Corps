@@ -160,15 +160,12 @@ const CorruptedOperation = (props) => {
           </Button>
         </Box>
         <Box mt={1}>
-          {data.shuttle_hijacked ? (
-            <Button onClick={() => act('abduct')} disabled>
-              Capture the {data.ship_name}
-            </Button>
-          ) : (
-            <Button onClick={() => act('abduct')}>
-              Capture the {data.ship_name}
-            </Button>
-          )}
+          <Button
+            onClick={() => act('abduct')}
+            disabled={data.shuttle_hijacked}
+          >
+            Capture the {data.ship_name}
+          </Button>
         </Box>
       </Box>
     </Section>
