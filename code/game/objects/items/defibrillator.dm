@@ -347,7 +347,7 @@
 
 /obj/item/defibrillator/internal/Initialize(mapload, obj/new_parent)
 	if(!istype(new_parent))
-		return qdel(src)
+		return INITIALIZE_HINT_QDEL
 	parent_obj = new_parent
 	return ..()
 
