@@ -52,7 +52,7 @@
 	loading_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/bullet/cupola
-	max_rounds = 50
+	max_rounds = 75
 
 /obj/item/ammo_magazine/tank/tank_glauncher
 	name = "Grenade Launcher Magazine"
