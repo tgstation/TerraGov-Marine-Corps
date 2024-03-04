@@ -1323,7 +1323,7 @@
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_BELT)
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_BELT)
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_BELT)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x20mm, SLOT_IN_BELT)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
 	if(loadout.l_store == /obj/item/storage/pouch/magazine/large)
