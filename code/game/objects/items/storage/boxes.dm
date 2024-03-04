@@ -508,7 +508,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 	max_overlays = amt_horizontal * amt_vertical
 	overlay_w_class = FLOOR(atom_storage.max_storage_space / max_overlays, 1)
-	//atom_storage.can_hold -= atom_storage.cant_hold //Have cant_hold actually have a use // XANTODO wtf is this, its runtiming
+	atom_storage.can_hold -= atom_storage.cant_hold //Have cant_hold actually have a use
 	update_icon() //Getting the closed_overlay onto it
 
 
