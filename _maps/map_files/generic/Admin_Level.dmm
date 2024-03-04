@@ -2359,7 +2359,7 @@
 	},
 /obj/machinery/chem_master/nopower/valhalla,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/exterior)
+/area/centcom/valhalla)
 "dur" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/machinery/button/valhalla/marine_button{
@@ -22976,7 +22976,7 @@ aWz
 llp
 wqU
 tWP
-bRv
+loD
 loD
 ger
 loD
