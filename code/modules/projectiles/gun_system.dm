@@ -174,10 +174,8 @@
 	var/shots_fired = 0
 	///If this gun is in inactive hands and shooting in akimbo
 	var/dual_wield = FALSE
-	///determines upper accuracy modifier in akimbo
-	var/upper_akimbo_accuracy = 2
-	///determines lower accuracy modifier in akimbo
-	var/lower_akimbo_accuracy = 1
+	///mult to scatter when firing akimbo
+	var/akimbo_scatter_mod = 3
 	///If fire delay is 1 second, and akimbo_additional_delay is 0.5, then you'll have to wait 1 second * 0.5 to fire the second gun
 	var/akimbo_additional_delay = 0.5
 	///Delay for the gun winding up before firing.
@@ -1824,7 +1822,7 @@
 			gun_scatter += burst_amount * burst_scatter_mult * 2
 
 	if(dual_wield) //akimbo firing gives terrible scatter
-		gun_scatter += 2 * rand(upper_akimbo_accuracy, lower_akimbo_accuracy) //TODO: remove the rng increase
+		gun_scatter += akimbo_scatter_mod
 
 	if(gun_user)
 		//firearm skills modifiers
