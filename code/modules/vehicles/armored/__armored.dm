@@ -354,7 +354,7 @@
 		var/obj/item/tank_module/mod = I
 		mod.on_equip(src, user)
 		return
-	if(!interior) // if interior handle by gun breech
+	if(interior) // if interior handle by gun breech
 		return
 	if(istype(I, /obj/item/ammo_magazine))
 		if(!primary_weapon)
@@ -399,7 +399,7 @@
 		gunner_utility_module.on_unequip(user)
 		balloon_alert(user, "detached")
 		return
-	if(!interior) // if interior handle by gun breech
+	if(interior) // if interior handle by gun breech
 		return
 	if(istype(I, /obj/item/ammo_magazine))
 		if(!secondary_weapon)
@@ -479,7 +479,7 @@
 
 ///Rotates the cannon overlay
 /obj/vehicle/sealed/armored/proc/swivel_turret(atom/A)
-	var/new_weapon_dir = angle_to_cardinal_dir(Get_Angle(src, A))
+	var/new_weapon_dir = angle_to_cardinal_dir(Get_Angle(get_turf(src), get_turf(A)))
 	if(turret_overlay.dir == new_weapon_dir)
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam
