@@ -100,6 +100,8 @@
 
 /obj/item/restraints/handcuffs/cable/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = I

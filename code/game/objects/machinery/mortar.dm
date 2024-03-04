@@ -189,6 +189,8 @@
 
 /obj/machinery/deployable/mortar/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(firing)
 		user.balloon_alert(user, "The barrel is steaming hot. Wait till it cools off")

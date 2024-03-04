@@ -187,6 +187,8 @@
 
 /obj/structure/xeno/trap/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!istype(I, /obj/item/clothing/mask/facehugger) || !isxeno(user))
 		return

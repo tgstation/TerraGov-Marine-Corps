@@ -214,6 +214,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	. = ..()
 	if(anchored || armed)
 		undeploy(user)
+	if(.)
+		return
 
 ///Required checks before a mine is turned off and packed up
 /obj/item/mine/proc/undeploy(mob/living/user)

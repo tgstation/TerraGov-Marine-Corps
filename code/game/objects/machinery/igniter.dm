@@ -62,6 +62,8 @@
 
 /obj/machinery/sparker/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/detective_scanner))
 		return
@@ -108,6 +110,8 @@
 
 /obj/machinery/ignition_switch/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	return attack_hand(user)
 
 /obj/machinery/ignition_switch/attack_hand(mob/living/user)

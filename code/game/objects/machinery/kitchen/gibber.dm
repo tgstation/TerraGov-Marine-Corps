@@ -51,39 +51,32 @@
 
 	startgibbing(user)
 
-/obj/machinery/gibber/attackby(obj/item/grab/I, mob/user, param)
-	. = ..()
-
+/obj/machinery/gibber/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	if(!is_operational())
+		return ..()
 	if(occupant)
 		to_chat(user, span_warning("The gibber is full, empty it first!"))
 		return
-
-	else if(!(istype(I, /obj/item/grab)) )
+	var/mob/living/grabbed_mob = grab.grabbed_thing
+	if(!iscarbon(grabbed_mob) && !istype(grabbed_mob, /mob/living/simple_animal))
 		to_chat(user, span_warning("This item is not suitable for the gibber!"))
 		return
-
-	else if(!iscarbon(I.grabbed_thing) && !istype(I.grabbed_thing, /mob/living/simple_animal))
-		to_chat(user, span_warning("This item is not suitable for the gibber!"))
-		return
-
-	var/mob/living/M = I.grabbed_thing
 	if(user.grab_state < GRAB_AGGRESSIVE)
 		to_chat(user, span_warning("You need a better grip to do that!"))
 		return
-
-	else if(M.abiotic(TRUE))
+	if(grabbed_mob.abiotic(TRUE))
 		to_chat(user, span_warning("Subject may not have abiotic items on."))
 		return
+	user.visible_message(span_danger("[user] starts to put [grabbed_mob] into the gibber!"))
 
-	user.visible_message(span_danger("[user] starts to put [M] into the gibber!"))
-
-	if(!do_after(user, 30, NONE, M, BUSY_ICON_DANGER) || QDELETED(src) || occupant)
+	if(!do_after(user, 30, NONE, grabbed_mob, BUSY_ICON_DANGER) || QDELETED(src) || occupant)
 		return
 
-	user.visible_message(span_danger("[user] stuffs [M] into the gibber!"))
-	M.forceMove(src)
-	occupant = M
+	user.visible_message(span_danger("[user] stuffs [grabbed_mob] into the gibber!"))
+	grabbed_mob.forceMove(src)
+	occupant = grabbed_mob
 	update_icon()
+	return TRUE
 
 /obj/machinery/gibber/verb/eject()
 	set category = "Object"
