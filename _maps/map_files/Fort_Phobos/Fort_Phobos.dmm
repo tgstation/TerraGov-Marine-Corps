@@ -2258,6 +2258,10 @@
 	dir = 4
 	},
 /area/mainship/patrol_base/som/barracks)
+"Ai" = (
+/obj/vehicle/ridden/powerloader,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "Ap" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/mainship/patrol_base/som)
@@ -12376,7 +12380,7 @@ Uk
 Uk
 Uk
 vz
-Aw
+Ai
 Aw
 Aw
 Aw
