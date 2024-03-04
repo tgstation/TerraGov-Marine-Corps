@@ -84,8 +84,8 @@
 /datum/item_representation/storage/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
-	if(!isstorage(item_to_copy))
-		CRASH("/datum/item_representation/storage created from an item that is not a storage")
+	if(!item_to_copy.atom_storage)
+		CRASH("/datum/item_representation/storage created from an item that has no storage")
 	..()
 	//Internal storage are not in vendors. They should always be available for the loadout vendors, because they are instantiated like any other object
 	if(istype(item_to_copy, /obj/item/storage/internal))

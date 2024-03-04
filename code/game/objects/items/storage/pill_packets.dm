@@ -7,7 +7,6 @@
 	greyscale_config = null //So that we get packets and not pill bottles.
 	///Color of the pips on top of the pill packet
 	var/pip_color = "#0066ff" //default color because I like this color
-	flags_storage = BYPASS_VENDOR_CHECK
 	storage_type = /datum/storage/pill_bottle/packet
 
 /obj/item/storage/pill_bottle/packet/update_overlays()

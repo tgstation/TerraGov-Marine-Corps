@@ -417,27 +417,6 @@
 
 	return selected_storage.handle_item_insertion(item_to_equip, FALSE, src)
 
-/*
-	var/obj/item/storage/storage_item
-
-	if(isstorage(selected_slot))
-		storage_item = selected_slot
-
-	else if(isclothing(selected_slot))
-		var/obj/item/clothing/selected_clothing = selected_slot
-		for(var/attachment_slot in selected_clothing.attachments_by_slot)
-			if(ismodulararmorstoragemodule(selected_clothing.attachments_by_slot[attachment_slot]))
-				var/obj/item/armor_module/storage/storage_attachment = selected_clothing.attachments_by_slot[attachment_slot]
-				storage_item = storage_attachment.atom_storage
-				break
-
-	if(!storage_item)
-		return FALSE
-
-	return storage_item.atom_storage.handle_item_insertion(W, FALSE, src)
-*/
-
-
 /mob/living/carbon/human/get_item_by_slot(slot_id)
 	switch(slot_id)
 		if(SLOT_BACK)

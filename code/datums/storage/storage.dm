@@ -105,6 +105,8 @@
 	var/refill_sound = null
 	///the item left behind when our parent is destroyed
 	var/trash_item = null
+	///flags for special behaviours
+	var/flags_storage = NONE
 
 	//----- Holster vars
 	///the sound produced when the special item is drawn
@@ -365,18 +367,18 @@
 	collection_mode = !collection_mode
 	switch (collection_mode)
 		if(1)
-			to_chat(usr, "[src] now picks up all items in a tile at once.")
+			to_chat(usr, "[parent.name] now picks up all items in a tile at once.")
 		if(0)
-			to_chat(usr, "[src] now picks up one item at a time.")
+			to_chat(usr, "[parent.name] now picks up one item at a time.")
 
 /datum/storage/verb/toggle_draw_mode()
 	set name = "Switch Storage Drawing Method"
 	set category = "Object"
 	draw_mode = !draw_mode
 	if(draw_mode)
-		to_chat(usr, "Clicking [src] with an empty hand now puts the last stored item in your hand.")
+		to_chat(usr, "Clicking [parent.name] with an empty hand now puts the last stored item in your hand.")
 	else
-		to_chat(usr, "Clicking [src] with an empty hand now opens the pouch storage menu.")
+		to_chat(usr, "Clicking [parent.name] with an empty hand now opens the pouch storage menu.")
 
 /**
  * Gets the inventory of a storage
@@ -620,7 +622,7 @@
 		return FALSE //Means the item is already in the storage item
 	if(storage_slots != null && length(parent.contents) >= storage_slots)
 		if(warning)
-			to_chat(usr, span_notice("[src] is full, make some space."))
+			to_chat(usr, span_notice("[parent.name] is full, make some space."))
 		return FALSE //Storage item is full
 
 	if(length(can_hold) && !is_type_in_typecache(item_to_insert, typecacheof(can_hold)))
@@ -630,12 +632,12 @@
 
 	if(is_type_in_typecache(item_to_insert, typecacheof(cant_hold))) //Check for specific items which this container can't hold.
 		if(warning)
-			to_chat(usr, span_notice("[src] cannot hold [item_to_insert]."))
+			to_chat(usr, span_notice("[parent.name] cannot hold [item_to_insert]."))
 		return FALSE
 
 	if(!is_type_in_typecache(item_to_insert, typecacheof(bypass_w_limit)) && item_to_insert.w_class > max_w_class)
 		if(warning)
-			to_chat(usr, span_notice("[item_to_insert] is too long for this [src]."))
+			to_chat(usr, span_notice("[item_to_insert] is too long for this [parent.name]."))
 		return FALSE
 
 	var/sum_storage_cost = item_to_insert.w_class
@@ -644,7 +646,7 @@
 
 	if(sum_storage_cost > max_storage_space)
 		if(warning)
-			to_chat(usr, span_notice("[src] is full, make some space."))
+			to_chat(usr, span_notice("[parent.name] is full, make some space."))
 		return FALSE
 
 	if(isitem(parent))
@@ -652,7 +654,7 @@
 		if(item_to_insert.w_class >= parent_storage.w_class && istype(item_to_insert, /obj/item/storage) && !is_type_in_typecache(item_to_insert.type, typecacheof(bypass_w_limit)))
 			if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
 				if(warning)
-					to_chat(usr, span_notice("[src] cannot hold [item_to_insert] as it's a storage item of the same size."))
+					to_chat(usr, span_notice("[parent.name] cannot hold [item_to_insert] as it's a storage item of the same size."))
 				return FALSE //To prevent the stacking of same sized storage items.
 
 	for(var/limited_type in storage_type_limits)
@@ -660,7 +662,7 @@
 			continue
 		if(storage_type_limits[limited_type] == 0)
 			if(warning)
-				to_chat(usr, span_warning("[src] can't fit any more of those.") )
+				to_chat(usr, span_warning("[parent.name] can't fit any more of those.") )
 			return FALSE
 
 	if(istype(item_to_insert, /obj/item/tool/hand_labeler))
@@ -688,7 +690,7 @@
 	if(!alert_user)
 		return do_after(user, access_delay, IGNORE_USER_LOC_CHANGE, src)
 
-	to_chat(user, "<span class='notice'>You begin to [taking_out ? "take" : "put"] [accessed] [taking_out ? "out of" : "into"] [src]")
+	to_chat(user, "<span class='notice'>You begin to [taking_out ? "take" : "put"] [accessed] [taking_out ? "out of" : "into"] [parent.name]")
 	if(!do_after(user, access_delay, IGNORE_USER_LOC_CHANGE, src))
 		to_chat(user, span_warning("You fumble [accessed]!"))
 		return FALSE
@@ -798,7 +800,7 @@
 		return
 
 	if(!can_be_inserted(refiller.contents[1]))
-		user.balloon_alert(user, "[src] is full.")
+		user.balloon_alert(user, "[parent.name] is full.")
 		return
 
 	user.balloon_alert(user, "Refilling.")
@@ -921,7 +923,7 @@
 		return FALSE //Nor if the limit is not higher than what we have.
 	var/max_amt = round((stacks.max_amount / STACK_WEIGHT_STEPS) * (STACK_WEIGHT_STEPS - weight_diff)) //How much we can fill per weight step times the valid steps.
 	if(max_amt <= 0 || max_amt > stacks.max_amount)
-		stack_trace("[src] tried to max_stack_merging([stacks]) with [max_w_class] max_w_class and [weight_diff] weight_diff, resulting in [max_amt] max_amt.")
+		stack_trace("[parent.name] tried to max_stack_merging([stacks]) with [max_w_class] max_w_class and [weight_diff] weight_diff, resulting in [max_amt] max_amt.")
 	return max_amt
 
 ///Called from signal in order to update the color of our storage, it's "fullness" basically

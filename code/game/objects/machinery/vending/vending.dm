@@ -664,8 +664,8 @@
 		return FALSE
 
 	//More accurate comparison between absolute paths.
-	if(isstorage(item_to_stock)) //Nice try, specialists/engis
-		var/obj/item/storage/storage_to_stock = item_to_stock
+	if(item_to_stock.atom_storage) //Nice try, specialists/engis
+		var/datum/storage/storage_to_stock = item_to_stock.atom_storage
 		if(!(storage_to_stock.flags_storage & BYPASS_VENDOR_CHECK)) //If your storage has this flag, it can be restocked
 			display_message_and_visuals(user, show_feedback, "Can't restock containers!", VENDING_RESTOCK_DENY)
 			return FALSE
@@ -727,6 +727,8 @@
 			item_to_stock.unwield(user)
 		user.transferItemToLoc(item_to_stock, src)
 
+	// Hey I don't think this code does anything, it looks like it wants to restock things that are inside a storage?
+	// Probably should be running a loop over every item inside the storage, but whatever that's not for this PR
 	if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
 		var/obj/item/storage/S = item_to_stock.loc
 		S.atom_storage.remove_from_storage(item_to_stock, user.loc, user)

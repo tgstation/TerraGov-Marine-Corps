@@ -15,8 +15,6 @@
 		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
 	)
 	w_class = WEIGHT_CLASS_NORMAL
-	///Flags for specifically storage items
-	var/flags_storage = NONE
 	///Determines what subtype of storage is on our item, see datums\storage\subtypes
 	var/datum/storage/storage_type = /datum/storage
 

@@ -25,6 +25,7 @@
 	trash_item = /obj/item/trash/pillpacket
 	refill_types = null
 	refill_sound = null
+	flags_storage = BYPASS_VENDOR_CHECK
 
 /datum/storage/pill_bottle/packet/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	. = ..()
