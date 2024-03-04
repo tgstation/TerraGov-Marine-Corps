@@ -538,7 +538,7 @@
 //-------------------------------------------------------
 //AT-36 Anti Tank Gun
 
-/obj/item/weapon/gun/standard_atgun // XANTODO THIS IS HORRIBLY BROKEN AAAAAAAAHHHHHHHHHHHHHHH
+/obj/item/weapon/gun/standard_atgun
 	name = "\improper AT-36 anti tank gun"
 	desc = "The AT-36 is a light dual purpose anti tank and anti personnel weapon used by the TGMC. Used for light vehicle or bunker busting on a short notice. Best used by two people. It can move around with wheels, and has an ammo rack intergral to the weapon. CANNOT BE UNDEPLOYED ONCE DEPLOYED! It uses several types of 37mm shells boxes. Alt-right click on it to anchor it so that it cannot be moved by anyone, then alt-right click again to move it."
 	w_class = WEIGHT_CLASS_BULKY
@@ -561,7 +561,7 @@
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/standard_atgun)
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/standard_atgun)
 
-	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_ROTATE_ANCHORED|DEPLOYED_ANCHORED_FIRING_ONLY
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOYED_NO_ROTATE_ANCHORED|DEPLOYED_ANCHORED_FIRING_ONLY
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
@@ -582,10 +582,20 @@
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
 	coverage = 85 //has a shield
 	anchor_time = 1 SECONDS
+	///The internal storage of our atgun
+	var/obj/item/storage/atgun_ammo_rack/sponson = /obj/item/storage/atgun_ammo_rack
+
+/obj/item/storage/atgun_ammo_rack
+	storage_type = /datum/storage/internal/ammo_rack
+
+/obj/machinery/deployable/mounted/moveable/atgun/Destroy()
+	if(sponson)
+		QDEL_NULL(sponson)
+	return ..()
 
 /obj/machinery/deployable/mounted/moveable/atgun/Initialize(mapload)
 	. = ..()
-	create_storage(/datum/storage/internal/ammo_rack)
+	sponson = new sponson(src)
 
 /obj/machinery/deployable/mounted/moveable/atgun/attackby(obj/item/I, mob/user, params)
 	var/obj/item/weapon/gun/standard_atgun/internal_gun = get_internal_item()
@@ -593,7 +603,27 @@
 		balloon_alert(user, "Busy manning!")
 		return
 
-	return . = ..()
+	if(!sponson.attackby(I, user, params))
+		return ..()
+
+/obj/machinery/deployable/mounted/moveable/atgun/attack_hand_alternate(mob/living/user)
+	if(user.interactee == src)
+		balloon_alert(user, "Busy manning!")
+		return
+
+	return sponson.attack_hand_alternate(user)
+
+/obj/machinery/deployable/mounted/moveable/atgun/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
+	if(!ishuman(usr) || usr.lying_angle || usr.incapacitated())
+		return FALSE
+
+	if(usr.interactee == src)
+		balloon_alert(usr, "Busy manning!")
+		return
+
+	if(over == usr && Adjacent(usr)) //This must come before the screen objects only block
+		sponson.atom_storage.open(usr)
+		return FALSE
 
 /obj/machinery/deployable/mounted/moveable/atgun/ex_act(severity)
 	switch(severity)

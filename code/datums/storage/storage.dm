@@ -261,17 +261,15 @@
 ///This proc is called when you want to place an attacking_item into the storage
 /datum/storage/proc/on_attackby(datum/source, obj/item/attacking_item, mob/user, params)
 	SIGNAL_HANDLER
-
 	if(length(refill_types))
 		for(var/typepath in refill_types)
 			if(istype(attacking_item, typepath))
 				INVOKE_ASYNC(src, PROC_REF(do_refill), attacking_item, user)
 				return
-
 	if(!can_be_inserted(attacking_item))
 		return FALSE
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), attacking_item, FALSE, user)
-	return
+	return COMPONENT_NO_AFTERATTACK
 
 ///Called when you click on parent with an empty hand
 /datum/storage/proc/on_attack_hand(datum/source, mob/living/user)

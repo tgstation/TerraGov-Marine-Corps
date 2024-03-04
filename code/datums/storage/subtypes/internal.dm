@@ -348,8 +348,7 @@
 		/obj/item/stack/cable_coil,
 	)
 
-//Hey this is funny, but due to this storage refactor, deployables can have storage too!
-/datum/storage/internal/ammo_rack
+/datum/storage/internal/ammo_rack //Hey isn't this great? Due to this storage refactor, deployables can have storage too!
 	storage_slots = 10
 	max_storage_space = 40
 	max_w_class = WEIGHT_CLASS_BULKY
@@ -358,6 +357,7 @@
 //Reason for this override is due to conflict controls from deployables
 /datum/storage/internal/ammo_rack/register_storage_signals(atom/parent)
 	//Clicking signals
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby)) //Left click
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(on_attack_self)) //Item clicking on itself
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, PROC_REF(on_attack_hand_alternate)) //Right click empty hand
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_GHOST, PROC_REF(on_attack_ghost)) //Ghosts can see inside your storages
@@ -375,6 +375,7 @@
 //Reason for this override is due to conflict controls from deployables
 /datum/storage/internal/ammo_rack/unregister_storage_signals(atom/parent)
 	UnregisterSignal(parent, list(
+	COMSIG_ATOM_ATTACKBY,
 	COMSIG_ITEM_ATTACK_SELF,
 	COMSIG_ATOM_ATTACK_HAND_ALTERNATE,
 	COMSIG_ATOM_ATTACK_GHOST,
@@ -390,18 +391,22 @@
 	COMSIG_ITEM_QUICK_EQUIP,
 	))
 
-/datum/storage/internal/ammo_rack/on_mousedrop_onto(datum/source, obj/over_object, mob/user)
-	if(!ishuman(user) || user.lying_angle || user.incapacitated())
+// Special override to reload our gun if it's empty before putting extra shells into storage
+/datum/storage/internal/ammo_rack/on_attackby(datum/source, obj/item/attacking_item, mob/user, params)
+	if(user.s_active != src) //Only insert shells into storage if our storage UI is open
 		return FALSE
 
-	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
-		open(user)
+	if(length(refill_types))
+		for(var/typepath in refill_types)
+			if(istype(attacking_item, typepath))
+				INVOKE_ASYNC(src, PROC_REF(do_refill), attacking_item, user)
+				return
+
+	if(!can_be_inserted(attacking_item))
 		return FALSE
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), attacking_item, FALSE, user)
+	return COMPONENT_NO_AFTERATTACK
 
-/datum/storage/internal/ammo_rack/on_attack_hand(datum/source, mob/living/user) //Override for motorbike subtype since this is vehicle storage
-	if(parent.Adjacent(user))
+/datum/storage/internal/ammo_rack/on_attack_hand_alternate(datum/source, mob/living/user) //Override for subtype since this is in world storage
+	if(user.CanReach(source))
 		open(user)
-
-/datum/storage/internal/ammo_rack/on_attack_hand_alternate(datum/source, mob/living/user)
-	. = ..()
-	// XANTODO work on AT-36 to make sure all the clicks are clicking, deployables have to be refactored to not use contents
