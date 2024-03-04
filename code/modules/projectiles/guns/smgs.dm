@@ -275,6 +275,9 @@
 /obj/item/weapon/gun/smg/m25/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/compensator, /obj/item/attachable/gyro)
 
+/obj/item/weapon/gun/smg/m25/vgrip
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/compensator, /obj/item/attachable/verticalgrip)
+
 /obj/item/weapon/gun/smg/m25/plasma
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/compensator, /obj/item/weapon/gun/pistol/plasma_pistol)
 

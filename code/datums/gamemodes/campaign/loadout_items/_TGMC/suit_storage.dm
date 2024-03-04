@@ -764,14 +764,14 @@
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x25mm, SLOT_IN_BACKPACK)
 
-/datum/loadout_item/suit_store/main_gun/corpsman/pdw
-	name = "SMG-90"
-	desc = "Equipped with a red dot sight, recoil compensator and laser sight. The SMG-90 is a PDW that offers outstanding mobility and handling, and respectable damage output and magazine capacity. \
-	Its lower damage output compared to rifles, and significantly worse performance at range means it is usually seen on second line units or in the hands of supporting roles. It uses 10x20mm caseless rounds."
+/datum/loadout_item/suit_store/main_gun/corpsman/standard_smg
+	name = "SMG-25"
+	desc = "Equipped with a mag harness, recoil compensator and gyroscopic stabilizer. SMG-25 submachinegun, is a large capacity smg, able to be be used effectively one or two handed. \
+	Like all smgs, it has excellent mobility and handling, but has poor damage application at longer ranges. Uses 10x20mm caseless ammunition."
 	ui_icon = "smg"
-	item_typepath = /obj/item/weapon/gun/smg/standard_smg/tactical
+	item_typepath = /obj/item/weapon/gun/smg/m25/magharness
 
-/datum/loadout_item/suit_store/main_gun/corpsman/pdw/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/corpsman/standard_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
 	if(!istype(wearer.back, /obj/item/storage))
 		return ..()
@@ -923,6 +923,13 @@
 	Variable firemodes gives it additional flexibility over its ballistic counterpart. Uses TE power cells that are shared across all TGMC laser weaponry."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/gyro
+
+/datum/loadout_item/suit_store/main_gun/engineer/standard_smg
+	name = "SMG-25"
+	desc = "Equipped with a mag harness, recoil compensator and vertical grip. SMG-25 submachinegun, is a large capacity smg, able to be be used effectively one or two handed. \
+	Like all smgs, it has excellent mobility and handling, but has poor damage application at longer ranges. Uses 10x20mm caseless ammunition."
+	ui_icon = "smg"
+	item_typepath = /obj/item/weapon/gun/smg/m25/vgrip
 
 //Smartgunner
 
