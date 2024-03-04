@@ -28,7 +28,7 @@ export const Hypospray = (props) => {
             {CurrentLabel}
           </Box>
           <Button m={2} onClick={() => act('ActivateTagger')}>
-            ActivateTagger
+            Activate Tagger
           </Button>
           <Box ml={2}>
             <b>Current tag: </b>
