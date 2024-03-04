@@ -45,6 +45,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 		/datum/job/terragov/squad/engineer = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Easy<br /><br />
@@ -107,6 +108,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 		/datum/job/terragov/squad/corpsman = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	job_points_needed = 5
 	html_description = {"
@@ -167,6 +169,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	jobworth = list(
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM,
 		/datum/job/terragov/squad/engineer = SMARTIE_POINTS_REGULAR,
@@ -330,6 +333,7 @@ You can serve a variety of roles, so choose carefully."})
 		/datum/job/terragov/squad/engineer = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
@@ -395,6 +399,7 @@ You are also in charge of communicating with command and letting them know about
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	minimap_icon = "private"
 

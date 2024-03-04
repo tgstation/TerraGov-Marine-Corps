@@ -8,6 +8,8 @@
 	icon_state = "tank"
 	hitbox = /obj/hitbox
 	interior = /datum/interior/armored
+	minimap_icon_state = "tank"
+	required_entry_skill = SKILL_LARGE_VEHICLE_TRAINED
 	flags_atom = DIRLOCK|BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
 	flags_armored = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_MAP_VARIANTS|ARMORED_HAS_HEADLIGHTS
 	pixel_x = -48
@@ -27,7 +29,7 @@
 	return pick(enter_locations(M))
 
 /obj/vehicle/sealed/armored/multitile/mob_try_enter(mob/M)
-	if(!(M.loc in enter_locations(M)))
+	if(!isobserver(M) && !(M.loc in enter_locations(M)))
 		balloon_alert(M, "Not at entrance")
 		return FALSE
 	return ..()

@@ -102,6 +102,24 @@
 	soft_armor = list(MELEE = 45, BULLET = 55, LASER = 55, ENERGY = 20, BOMB = 45, BIO = 30, FIRE = 25, ACID = 35)
 	flags_item_map_variant = NONE
 
+/obj/item/clothing/suit/storage/marine/assault_crewman
+	name = "\improper PAS-73 pattern tanker armor"
+	desc = "A somewhat sparsely armored but robust armored vest. Used by tankers, mostly to absorb bumps in the road as they drive over enemies."
+	icon_state = "assault_crewman_suit"
+	item_state = "assault_crewman_suit"
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	soft_armor = list(MELEE = 45, BULLET = 55, LASER = 55, ENERGY = 20, BOMB = 45, BIO = 30, FIRE = 25, ACID = 35)
+	flags_item_map_variant = NONE
+
+/obj/item/clothing/suit/storage/marine/transport_crewman
+	name = "\improper PAS-74 pattern transport armor"
+	desc = "A somewhat sparsely armored but robust armored vest. Used by transport crewmen so that they can pretend that they may survice when their vehicle is overrun."
+	icon_state = "transport_crewman_suit"
+	item_state = "transport_crewman_suit"
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	soft_armor = list(MELEE = 45, BULLET = 55, LASER = 55, ENERGY = 20, BOMB = 45, BIO = 30, FIRE = 25, ACID = 35)
+	flags_item_map_variant = NONE
+
 /obj/item/clothing/suit/storage/marine/riot
 	name = "\improper M5 riot control armor"
 	desc = "A heavily modified suit of M2 MP Armor used to supress riots from buckethead marines and their guns. Slows you down a lot."
