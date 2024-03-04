@@ -73,6 +73,8 @@
 
 /obj/structure/inflatable/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(can_puncture(I))
 		visible_message(span_danger("[user] pierces [src] with [I]!"))
 		deflate(TRUE)

@@ -55,6 +55,8 @@
 
 /obj/vehicle/train/cargo/engine/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/key/cargo_train))
 		if(key)

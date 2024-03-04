@@ -136,7 +136,8 @@
 
 /obj/structure/door_assembly/attackby(obj/item/I, mob/user, params)
 	. = ..()
-
+	if(.)
+		return
 	if(istype(I, /obj/item/tool/pen))
 		var/t = copytext(stripped_input(user, "Enter the name for the door.", name, created_name), 1, MAX_NAME_LEN)
 		if(!t)

@@ -55,6 +55,8 @@
 
 /obj/item/tool/hand_labeler/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/paper))
 		to_chat(user, span_notice("You insert [I] into [src]."))
 		qdel(I)

@@ -173,6 +173,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE,
 	)
+	///Max charge range
+	var/advance_range = 7
 
 /datum/action/ability/activable/xeno/advance/on_cooldown_finish()
 	to_chat(owner, span_xenowarning("<b>We can now rapidly charge forward again.</b>"))
@@ -184,46 +186,34 @@
 	if(!.)
 		return FALSE
 
-	if(get_dist(owner, A) > 7)
+	if(get_dist(owner, A) > advance_range)
 		return FALSE
 
 
 /datum/action/ability/activable/xeno/advance/use_ability(atom/A)
-	var/turf/target_turf = get_turf(A)
-	var/turf/starting_turf = get_turf(owner)
-	if(!target_turf || !starting_turf)
-		return
-
 	var/mob/living/carbon/xenomorph/X = owner
 	X.face_atom(A)
 	X.set_canmove(FALSE)
-	if(!do_after(X, 10, NONE, X, BUSY_ICON_DANGER) || !((target_turf = get_turf(A))))
+	if(!do_after(X, 1 SECONDS, NONE, X, BUSY_ICON_DANGER) || (QDELETED(A)) || X.z != A.z)
 		if(!X.stat)
 			X.set_canmove(TRUE)
 		return fail_activate()
 	X.set_canmove(TRUE)
 
 	var/datum/action/ability/xeno_action/ready_charge/charge = X.actions_by_path[/datum/action/ability/xeno_action/ready_charge]
-	var/aimdir = get_dir(X, target_turf)
+	var/aimdir = get_dir(X, A)
 	if(charge)
 		charge.charge_on(FALSE)
 		charge.do_stop_momentum(FALSE) //Reset charge so next_move_limit check_momentum() does not cuck us and 0 out steps_taken
 		charge.do_start_crushing()
 		charge.valid_steps_taken = charge.max_steps_buildup - 1
 		charge.charge_dir = aimdir //Set dir so check_momentum() does not cuck us
-
-	for(var/i in 0 to get_dist(starting_turf, target_turf))
+	for(var/i=0 to max(get_dist(X, A), advance_range))
 		if(i % 2)
 			playsound(X, "alien_charge", 50)
 			new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(X), X)
-
 		X.Move(get_step(X, aimdir), aimdir)
-
-		target_turf = get_turf(A)
-		if(isnull(A) || (A.z != X.z)) //Target's off the map or on another z level
-			break
-		aimdir = get_dir(X,target_turf)
-
+		aimdir = get_dir(X, A)
 	succeed_activate()
 	add_cooldown()
 
