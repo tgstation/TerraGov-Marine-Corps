@@ -355,6 +355,41 @@
 	max_w_class = WEIGHT_CLASS_BULKY
 	can_hold = list(/obj/item/ammo_magazine/standard_atgun)
 
+//Reason for this override is due to conflict controls from deployables
+/datum/storage/internal/ammo_rack/register_storage_signals(atom/parent)
+	//Clicking signals
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(on_attack_self)) //Item clicking on itself
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, PROC_REF(on_attack_hand_alternate)) //Right click empty hand
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_GHOST, PROC_REF(on_attack_ghost)) //Ghosts can see inside your storages
+
+	//Something is happening to our storage
+	RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, PROC_REF(on_emp)) //Getting EMP'd
+	RegisterSignal(parent, COMSIG_CONTENTS_EX_ACT, PROC_REF(on_contents_explode)) //Getting exploded
+
+	RegisterSignal(parent, COMSIG_ATOM_CONTENTS_DEL, PROC_REF(handle_atom_del))
+	RegisterSignal(parent, ATOM_MAX_STACK_MERGING, PROC_REF(max_stack_merging))
+	RegisterSignal(parent, ATOM_RECALCULATE_STORAGE_SPACE, PROC_REF(recalculate_storage_space))
+	RegisterSignals(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(update_verbs))
+	RegisterSignal(parent, COMSIG_ITEM_QUICK_EQUIP, PROC_REF(on_quick_equip_request))
+
+//Reason for this override is due to conflict controls from deployables
+/datum/storage/internal/ammo_rack/unregister_storage_signals(atom/parent)
+	UnregisterSignal(parent, list(
+	COMSIG_ITEM_ATTACK_SELF,
+	COMSIG_ATOM_ATTACK_HAND_ALTERNATE,
+	COMSIG_ATOM_ATTACK_GHOST,
+
+	COMSIG_ATOM_EMP_ACT,
+	COMSIG_CONTENTS_EX_ACT,
+
+	COMSIG_ATOM_CONTENTS_DEL,
+	ATOM_MAX_STACK_MERGING,
+	ATOM_RECALCULATE_STORAGE_SPACE,
+	COMSIG_ITEM_EQUIPPED,
+	COMSIG_ITEM_DROPPED,
+	COMSIG_ITEM_QUICK_EQUIP,
+	))
+
 /datum/storage/internal/ammo_rack/on_mousedrop_onto(datum/source, obj/over_object, mob/user)
 	if(!ishuman(user) || user.lying_angle || user.incapacitated())
 		return FALSE
@@ -366,3 +401,7 @@
 /datum/storage/internal/ammo_rack/on_attack_hand(datum/source, mob/living/user) //Override for motorbike subtype since this is vehicle storage
 	if(parent.Adjacent(user))
 		open(user)
+
+/datum/storage/internal/ammo_rack/on_attack_hand_alternate(datum/source, mob/living/user)
+	. = ..()
+	// XANTODO work on AT-36 to make sure all the clicks are clicking, deployables have to be refactored to not use contents
