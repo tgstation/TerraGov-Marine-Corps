@@ -31,7 +31,7 @@
 	desc = "Standard marine first-aid pouch. Contains a basic set of medical supplies."
 	ui_icon = "medkit"
 	item_typepath = /obj/item/storage/pouch/firstaid/combat_patrol
-	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_SMARTGUNNER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER)
 
 /datum/loadout_item/r_pocket/standard_first_aid/standard_improved
 	desc = "Standard marine first-aid pouch. Contains a improved set of medical supplies."
@@ -48,7 +48,7 @@
 	desc = "A pouch carrying a set of six standard support grenades."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/combat_patrol
-	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/r_pocket/marine_standard_grenades
@@ -56,7 +56,7 @@
 	desc = "A pouch carrying a set of six standard offensive grenades. Contains HE, lasburster and incendiary grenades."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/standard
-	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/r_pocket/shotgun
 	name = "Buckshot shells"
@@ -89,7 +89,7 @@
 	desc = "A pouch containing three ammo magazines."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/magazine/large
-	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 	item_blacklist = list(
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/minigun/smart_minigun/motion_detector = ITEM_SLOT_SUITSTORE,
