@@ -370,7 +370,8 @@ You are also in charge of communicating with command and letting them know about
 			new_human.wear_id.paygrade = "E9"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9E" //If you play way too much TGMC. 1000 hours.
-	addtimer(CALLBACK(GLOB.squad_manager, TYPE_PROC_REF(/datum, interact), new_human), 2 SECONDS)
+	if(SSticker.mode.flags_round_type & MODE_FORCE_CUSTOMSQUAD_UI)
+		addtimer(CALLBACK(GLOB.squad_manager, TYPE_PROC_REF(/datum, interact), new_human), 2 SECONDS)
 	if(!latejoin)
 		return
 	if(!new_human.assigned_squad)
