@@ -299,4 +299,96 @@
 	ammo_datum_type = /datum/ammo/bullet/turret
 	sentry_iff_signal = TGMC_LOYALIST_IFF
 
+// Sniper Sentry
 
+/obj/item/weapon/gun/sentry/sniper_sentry
+	name = "\improper SRT-574 sentry gun"
+	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber AM-5 antimaterial rifle and a 75-round drum magazine."
+	icon_state = "snipersentry"
+
+	turret_range = 21
+	deploy_time = 10 SECONDS
+	max_shells = 75
+	fire_delay = 2 SECONDS
+
+	scatter = 0
+
+	ammo_datum_type = /datum/ammo/bullet/turret/sniper
+	default_ammo_type = /obj/item/ammo_magazine/sentry/sniper
+	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/sniper)
+
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable)
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable,
+	)
+
+/obj/item/storage/box/crate/sentry_sniper
+	name = "\improper SST-574 sentry crate"
+	desc = "A large case containing all you need to set up an automated sentry."
+	icon_state = "sentry_case"
+	w_class = WEIGHT_CLASS_HUGE
+	max_w_class = WEIGHT_CLASS_HUGE
+	storage_slots = 6
+	max_storage_space = 16
+	can_hold = list(
+		/obj/item/weapon/gun/sentry/sniper_sentry,
+		/obj/item/ammo_magazine/sentry/sniper,
+	)
+	bypass_w_limit = list(
+		/obj/item/weapon/gun/sentry/sniper_sentry,
+		/obj/item/ammo_magazine/sentry/sniper,
+	)
+
+/obj/item/storage/box/crate/sentry_sniper/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/sentry/sniper_sentry(src)
+	new /obj/item/ammo_magazine/sentry/sniper(src)
+
+// Shotgun Sentry
+
+/obj/item/weapon/gun/sentry/shotgun_sentry
+	name = "\improper SHT-573 sentry gun"
+	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber SM-10 shotgun and a 100-round drum magazine."
+	icon_state = "shotgunsentry"
+
+	turret_range = 8
+	deploy_time = 5 SECONDS
+	max_shells = 75
+	fire_delay = 1 SECONDS
+
+	scatter = 5
+
+	ammo_datum_type = /datum/ammo/bullet/turret/buckshot
+	default_ammo_type = /obj/item/ammo_magazine/sentry/shotgun
+	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/shotgun)
+
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102)
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/tl102,
+	)
+
+/obj/item/storage/box/crate/sentry_shotgun
+	name = "\improper SHT-573 sentry crate"
+	desc = "A large case containing all you need to set up an automated sentry."
+	icon_state = "sentry_case"
+	w_class = WEIGHT_CLASS_HUGE
+	max_w_class = WEIGHT_CLASS_HUGE
+	storage_slots = 6
+	max_storage_space = 16
+	can_hold = list(
+		/obj/item/weapon/gun/sentry/shotgun_sentry,
+		/obj/item/ammo_magazine/sentry/shotgun,
+	)
+	bypass_w_limit = list(
+		/obj/item/weapon/gun/sentry/shotgun_sentry,
+		/obj/item/ammo_magazine/sentry/shotgun,
+	)
+
+/obj/item/storage/box/crate/sentry_shotgun/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/sentry/shotgun_sentry(src)
+	new /obj/item/ammo_magazine/sentry/shotgun(src)
