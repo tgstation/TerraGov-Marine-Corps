@@ -59,7 +59,7 @@
 	if(!item)
 		return
 	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
-		balloon_alert(user, "cannot be disassembled")
+		balloon_alert(user, "Cannot disassemble")
 		return
 	operator?.unset_interaction()
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)

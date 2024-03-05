@@ -543,7 +543,7 @@
 	if(!item)
 		return
 	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
-		balloon_alert(user, "cannot be disassembled")
+		balloon_alert(user, "Cannot disassemble")
 		return
 	if(!match_iff(user)) //You can't steal other faction's turrets
 		to_chat(user, span_notice("Access denied."))
