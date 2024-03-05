@@ -330,8 +330,6 @@
 
 	///Type of weeds the xeno is standing on, null when not on weeds
 	var/obj/alien/weeds/loc_weeds_type
-	///Bonus or pen to time in between attacks. + makes slashes slower.
-	var/attack_delay = 0
 	///This will track their "tier" to restrict/limit evolutions
 	var/tier = XENO_TIER_ONE
 	///which resin structure to build when we secrete resin
