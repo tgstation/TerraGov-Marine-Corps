@@ -5,7 +5,6 @@
 //This is so they can be easily transferred between them without copypasta
 
 /mob/living/carbon/xenomorph/Initialize(mapload)
-	setup_verbs()
 	if(mob_size == MOB_SIZE_BIG)
 		move_resist = MOVE_FORCE_EXTREMELY_STRONG
 		move_force = MOVE_FORCE_EXTREMELY_STRONG
