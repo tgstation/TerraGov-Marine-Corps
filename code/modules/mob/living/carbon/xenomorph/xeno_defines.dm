@@ -283,7 +283,7 @@
 	///Hive datum we belong to
 	var/datum/hive_status/hive
 	///Xeno mob specific flags
-	var/xeno_flags = NONE //TODO: There are loads of vars below that should be flags
+	var/xeno_flags = NONE
 
 	///State tracking of hive status toggles
 	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
@@ -396,9 +396,6 @@
 
 	///The xenos/silo/nuke currently tracked by the xeno_tracker arrow
 	var/atom/tracked
-
-	///Are we the roony version of this xeno
-	var/is_a_rouny = FALSE
 
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM

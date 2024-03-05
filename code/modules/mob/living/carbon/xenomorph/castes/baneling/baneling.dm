@@ -25,7 +25,7 @@
 /mob/living/carbon/xenomorph/baneling/handle_special_state()
 	. = ..()
 	if(m_intent == MOVE_INTENT_RUN)
-		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Running"
+		icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Running"
 		return TRUE
 	return FALSE
 
