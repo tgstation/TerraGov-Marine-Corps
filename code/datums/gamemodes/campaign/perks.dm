@@ -77,10 +77,10 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/light_shield/overclocked/engineer, SQUAD_ENGINEER, owner)
 
 	else if(owner_stats.faction == FACTION_SOM)
-		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked, /datum/loadout_item/suit_slot/light_shield, jobs_supported)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked, /datum/loadout_item/suit_slot/som_light_shield, jobs_supported)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked/veteran, /datum/loadout_item/suit_slot/som_light_shield/veteran, jobs_supported)
-		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_medium_shield/overclocked, /datum/loadout_item/suit_slot/medium_shield, jobs_supported)
-		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_heavy_shield/overclocked, /datum/loadout_item/suit_slot/heavy_shield, jobs_supported)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_medium_shield/overclocked, /datum/loadout_item/suit_slot/som_medium_shield, jobs_supported)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_heavy_shield/overclocked, /datum/loadout_item/suit_slot/som_heavy_shield, jobs_supported)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked/medic, /datum/loadout_item/suit_slot/som_medic/light, jobs_supported)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_medium_shield/overclocked/medic, /datum/loadout_item/suit_slot/som_medic, jobs_supported)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked/engineer, /datum/loadout_item/suit_slot/som_engineer/light, jobs_supported)
@@ -99,13 +99,13 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/trait/hp_boost
 	name = "Improved constitution"
-	desc = "Through disciplined training and hypno indoctrination, your body is able to tolerate higher levels of trauma. +15 max health, +15 pain resistance."
+	desc = "Through disciplined training and hypno indoctrination, your body is able to tolerate higher levels of trauma. +25 max health, +25 pain resistance."
 	ui_icon = "health_1"
 	all_jobs = TRUE
 	unlock_cost = 800
 	traits = list(TRAIT_LIGHT_PAIN_RESIST)
 	///How much this perk increases your maxhp by
-	var/health_mod = 15
+	var/health_mod = 25
 
 /datum/perk/trait/hp_boost/apply_perk(mob/living/carbon/owner)
 	. = ..()
@@ -117,7 +117,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/trait/hp_boost/two
 	name = "Extreme constitution"
-	desc = "Military grade biological augmentations are used to harden your body against grievous bodily harm. Provides an addition +15 max health and +10 pain resistance."
+	desc = "Military grade biological augmentations are used to harden your body against grievous bodily harm. Provides an addition +25 max health and +10 pain resistance."
 	req_desc = "Requires Improved constitution."
 	ui_icon = "health_2"
 	prereq_perks = list(/datum/perk/trait/hp_boost)
@@ -234,7 +234,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	ui_icon = "firearms"
 	firearms = 1
 	all_jobs = TRUE
-	unlock_cost = 600
+	unlock_cost = 400
 
 /datum/perk/skill_mod/pistols
 	name = "Advanced pistol training"
@@ -306,9 +306,9 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	name = "Advanced construction training"
 	desc = "Faster construction times when building. Some items may no longer have a penalty delay when constructing."
 	ui_icon = "construction"
-	construction = 1
+	construction = 2
 	all_jobs = TRUE
-	unlock_cost = 400
+	unlock_cost = 300
 
 /datum/perk/skill_mod/leadership
 	name = "Advanced leadership training"
@@ -322,9 +322,9 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	name = "Advanced medical training"
 	desc = "Faster at applying medical items. Some items may no longer have a penalty delay. Unlocks access to improved first aid pouches if not already available."
 	ui_icon = "medical"
-	medical = 1
+	medical = 2
 	all_jobs = TRUE
-	unlock_cost = 400
+	unlock_cost = 300
 
 /datum/perk/skill_mod/medical/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(!istype(owner_stats))
@@ -347,7 +347,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	all_jobs = TRUE
 	unlock_cost = 600
 	///How much this perk increases your max_stam by
-	var/stam_mod = 5
+	var/stam_mod = 10
 
 /datum/perk/skill_mod/stamina/apply_perk(mob/living/carbon/owner)
 	. = ..()

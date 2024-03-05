@@ -1,8 +1,0 @@
-author: "Naaanii"
-delete-after: True
-changes:
-  - rscadd: "Added all AGLS ammo to reqtorio."
-  - rscadd: "Added all TAT ammo to reqtorio."
-  - rscadd: "Added all FK-88 ammo to reqtorio."
-  - rscadd: "Added all ATR-22 ammo to reqtorio."
-  - bugfix: "Actually adds the camera refill to req."

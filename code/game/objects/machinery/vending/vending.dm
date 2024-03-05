@@ -345,6 +345,8 @@
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(tipped_level)
 		to_chat(user, "Tip it back upright first!")
@@ -874,7 +876,7 @@
 	. = TRUE
 
 
-/obj/machinery/vending/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0)
+/obj/machinery/vending/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	if(density && damage_amount >= knockdown_threshold)
 		tip_over()
 	return ..()

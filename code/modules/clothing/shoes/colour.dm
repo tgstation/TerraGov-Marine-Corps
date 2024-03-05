@@ -81,7 +81,7 @@
 	remove_cuffs(user)
 
 /obj/item/clothing/shoes/orange/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
 	if(istype(I, /obj/item/restraints/handcuffs))
 		attach_cuffs(I, user)
+		return
+	return ..()

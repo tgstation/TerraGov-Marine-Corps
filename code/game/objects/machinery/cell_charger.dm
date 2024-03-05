@@ -37,6 +37,8 @@
 
 /obj/machinery/cell_charger/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(machine_stat & BROKEN)
 		return

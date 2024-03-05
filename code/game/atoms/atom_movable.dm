@@ -477,7 +477,7 @@
 	var/old_throw_source = throw_source
 	hit_successful = hit_atom.hitby(src, speed)
 	if(hit_successful)
-		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, speed)
 		if(bounce && hit_atom.density && !isliving(hit_atom))
 			INVOKE_NEXT_TICK(src, PROC_REF(throw_bounce), hit_atom, old_throw_source)
 	return hit_successful //if the throw missed, it continues
@@ -571,7 +571,8 @@
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				Move(step)
+				if(!Move(step))
+					throwing = FALSE
 				error += dist_x
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -581,7 +582,8 @@
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				Move(step)
+				if(!Move(step))
+					throwing = FALSE
 				error -= dist_y
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -595,7 +597,8 @@
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				Move(step)
+				if(!Move(step))
+					throwing = FALSE
 				error += dist_y
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -605,7 +608,8 @@
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				Move(step)
+				if(!Move(step))
+					throwing = FALSE
 				error -= dist_x
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)

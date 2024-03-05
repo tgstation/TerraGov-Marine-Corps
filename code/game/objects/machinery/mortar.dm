@@ -189,6 +189,8 @@
 
 /obj/machinery/deployable/mortar/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(firing)
 		user.balloon_alert(user, "The barrel is steaming hot. Wait till it cools off")
@@ -786,7 +788,7 @@
 	desc = "A crate containing a basic set of a mortar and some shells, to get an engineer started."
 
 /obj/structure/closet/crate/mortar_ammo/mortar_kit/PopulateContents()
-	new /obj/item/mortar_kit(src)
+	new /obj/item/storage/holster/backholster/mortar/full(src)
 	new /obj/item/mortal_shell/he(src)
 	new /obj/item/mortal_shell/he(src)
 	new /obj/item/mortal_shell/he(src)

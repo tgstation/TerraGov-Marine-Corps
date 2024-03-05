@@ -8,6 +8,7 @@
 
 ///from base of datum/controller/subsystem/mapping/proc/add_new_zlevel(): (list/args)
 #define COMSIG_GLOB_NEW_Z "!new_z"
+#define COMSIG_GLOB_DEPLOY_TIMELOCK_ENDED "!deploy_timelock_ended"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE "!open_timed_shutters_late"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND "!open_timed_shutters_xeno_hivemind"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH "!open_timed_shutters_crash"
@@ -211,6 +212,8 @@
 #define COMSIG_ATOM_ATTACK_GHOST "atom_attack_ghost"			//from base of atom/attack_ghost(): (mob/dead/observer/ghost)
 	#define COMPONENT_NO_ATTACK_HAND (1<<0)						//works on all attack_hands.
 #define COMSIG_ATOM_ATTACK_POWERLOADER "atom_attack_powerloader"//from base of atom/attack_powerloader: (mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+///from base of atom/emp_act(): (severity)
+#define COMSIG_ATOM_EMP_ACT "atom_emp_act"
 #define COMSIG_ATOM_EXAMINE "atom_examine"					//from base of atom/examine(): (/mob)
 ///from base of atom/get_examine_name(): (/mob, list/overrides)
 #define COMSIG_ATOM_GET_EXAMINE_NAME "atom_examine_name"
@@ -291,6 +294,8 @@
 #define COMSIG_MOVABLE_BUCKLE "buckle"							//from base of atom/movable/buckle_mob(): (mob, force)
 	#define COMPONENT_MOVABLE_BUCKLE_STOPPED (1<<0)
 #define COMSIG_MOVABLE_UNBUCKLE "unbuckle"						//from base of atom/movable/unbuckle_mob(): (mob, force)
+///from /obj/vehicle/sealed/proc/driver_move
+#define COMSIG_VEHICLE_MOVE "vehicle_move"
 ///from /obj/vehicle/proc/driver_move, caught by the riding component to check and execute the driver trying to drive the vehicle
 #define COMSIG_RIDDEN_DRIVER_MOVE "driver_move"
 	#define COMPONENT_DRIVER_BLOCK_MOVE (1<<0)
@@ -440,6 +445,8 @@
 #define COMSIG_MECH_FIRE "mech_fire"
 #define COMSIG_MECH_STOP_FIRE "mech_stop_fire"
 
+#define COMSIG_ARMORED_FIRE "armored_fire"
+#define COMSIG_ARMORED_STOP_FIRE "armored_stop_fire"
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
@@ -676,6 +683,8 @@
 
 #define COMSIG_XENO_PSYCHIC_LINK_REMOVED "xeno_psychic_link_removed"
 
+#define COMSIG_XENOMORPH_LEAP_BUMP "xenomorph_leap_bump" //from /mob/living/carbon/xenomorph/bump
+
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"
 
@@ -742,6 +751,7 @@
 #define COMSIG_KB_TOGGLE_MINIMAP "toggle_minimap"
 #define COMSIG_KB_TOGGLE_EXTERNAL_MINIMAP "toggle_external_minimap"
 #define COMSIG_KB_SELFHARM "keybind_selfharm"
+#define COMSIG_KB_INTERACTIVE_EMOTE "keybinding_interactive_emote"
 
 // mecha keybinds
 #define COMSIG_MECHABILITY_TOGGLE_INTERNALS "mechability_toggle_internals"
@@ -764,6 +774,7 @@
 #define COMSIG_XENOABILITY_DROP_PLANT "xenoability_drop_plant"
 #define COMSIG_XENOABILITY_CHOOSE_PLANT "xenoability_choose_plant"
 #define COMSIG_XENOABILITY_SECRETE_RESIN "xenoability_secrete_resin"
+#define COMSIG_XENOABILITY_SECRETE_SPECIAL_RESIN "xenoability_secrete_special_resin"
 #define COMSIG_XENOABILITY_PLACE_ACID_WELL "place_acid_well"
 #define COMSIG_XENOABILITY_EMIT_RECOVERY "xenoability_emit_recovery"
 #define COMSIG_XENOABILITY_EMIT_WARDING "xenoability_emit_warding"
@@ -796,7 +807,6 @@
 #define COMSIG_XENOABILITY_TOGGLE_BOMB "xenoability_toggle_bomb"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL "xenoability_toggle_bomb_radial"
 #define COMSIG_XENOABILITY_CREATE_BOMB "xenoability_create_bomb"
-#define COMSIG_XENOABILITY_ROOT "xenoability_root"
 #define COMSIG_XENOABILITY_BOMBARD "xenoability_bombard"
 
 #define COMSIG_XENOABILITY_THROW_HUGGER "xenoability_throw_hugger"
@@ -1088,3 +1098,4 @@
 #define COMSIG_PUPPET_CHANGE_ALL_ORDER "puppetglobalorder"
 
 #define COMSIG_CAVE_INTERFERENCE_CHECK "cave_interference_check" //! Cave comms interference check signal.
+

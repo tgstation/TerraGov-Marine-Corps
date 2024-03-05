@@ -9,6 +9,8 @@
 		/datum/job/terragov/command/pilot = 1,
 		/datum/job/terragov/command/transportofficer = 1,
 		/datum/job/terragov/command/mech_pilot = 0,
+		/datum/job/terragov/command/assault_crewman = 2,
+		/datum/job/terragov/command/transport_crewman = 1,
 		/datum/job/terragov/engineering/chief = 1,
 		/datum/job/terragov/engineering/tech = 1,
 		/datum/job/terragov/requisitions/officer = 1,

@@ -250,7 +250,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 		span_notice("You carefully start burning [src]'s resin off."))
 		add_overlay(GLOB.welding_sparks)
 
-		if(!do_after(user, 20 SECONDS, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
+		if(!do_after(user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20) SECONDS, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
 			cut_overlay(GLOB.welding_sparks)
 			return FALSE
 
@@ -278,7 +278,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	span_notice("You start welding [src]'s internal damage."))
 	add_overlay(GLOB.welding_sparks)
 
-	if(!do_after(user, 20 SECONDS, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
+	if(!do_after(user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20) SECONDS, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
 		cut_overlay(GLOB.welding_sparks)
 		return FALSE
 
@@ -304,7 +304,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	user.visible_message(span_notice("[user] starts securing [src]'s wiring."),
 	span_notice("You start securing [src]'s wiring."))
 
-	if(!do_after(user, 12 SECONDS, NONE, src, BUSY_ICON_BUILD) || buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
+	if(!do_after(user, 12 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 4, 0, 12) SECONDS, NONE, src, BUSY_ICON_BUILD) || buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
 		return FALSE
 
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
@@ -329,7 +329,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	user.visible_message(span_notice("[user] starts repairing [src]'s tubing and plating."),
 	span_notice("You start repairing [src]'s tubing and plating."))
 
-	if(!do_after(user, 15 SECONDS, NONE, src, BUSY_ICON_BUILD) || buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
+	if(!do_after(user, 15 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 15) SECONDS, NONE, src, BUSY_ICON_BUILD) || buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
 		return FALSE
 
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)

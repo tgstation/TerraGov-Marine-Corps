@@ -229,6 +229,8 @@
 
 /obj/machinery/suit_storage_unit/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(machine_stat & NOPOWER)
 		return
 

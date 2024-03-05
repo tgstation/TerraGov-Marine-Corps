@@ -14,7 +14,7 @@ export const MarineDropship = (props) => {
 
   return (
     <>
-      {data.is_human ? (
+      {!data.is_xeno ? (
         <Window width={500} height={600}>
           <Window.Content scrollable>
             {!data.hijack_state ? (

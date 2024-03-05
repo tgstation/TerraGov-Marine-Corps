@@ -50,6 +50,11 @@
 							dat += " delta"
 							network = list("delta")
 							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
+						else
+							var/lowername = lowertext(squad.name)
+							dat = dat + " " + lowername
+							network = list(lowername)
+							req_access = list(ACCESS_MARINE_LEADER)
 				dat += " squad leader's"
 			if(/datum/job/terragov/command/captain)
 				dat += " captain's"

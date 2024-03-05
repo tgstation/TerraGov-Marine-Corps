@@ -628,6 +628,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/flashlight/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I,/obj/item/tool/screwdriver))
 		to_chat(user, span_notice("You modify the rail flashlight back into a normal flashlight."))
@@ -1666,7 +1668,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attach_delay = 2 SECONDS
 	detach_delay = 2 SECONDS
 
-	///This is pulled when the parent flamer fires, it determins how the parent flamers fire stream acts.
+	///This is pulled when the parent flamer fires, it determines how the parent flamers fire stream acts.
 	var/stream_type = FLAMER_STREAM_STRAIGHT
 
 	///Modifier for burn level of attached flamer. Percentage based.

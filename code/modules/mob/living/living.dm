@@ -98,6 +98,7 @@
 	set_armor_datum()
 	AddElement(/datum/element/gesture)
 	AddElement(/datum/element/keybinding_update)
+	AddElement(/datum/element/directional_attack)
 
 /mob/living/Destroy()
 	for(var/datum/status_effect/effect AS in status_effects)
@@ -437,6 +438,11 @@
 		stop_pulling() //being thrown breaks pulls.
 	if(pulledby)
 		pulledby.stop_pulling()
+	if(LAZYLEN(buckled_mobs) && !flying)
+		unbuckle_all_mobs(force = TRUE)
+	if(buckled)
+		buckled.unbuckle_mob(src)
+
 	return ..()
 
 /**
@@ -869,7 +875,7 @@ below 100 is not dizzy
 		get_up()
 
 ///Sets up the jump component for the mob. Proc args can be altered so different mobs have different 'default' jump settings
-/mob/living/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE)
+/mob/living/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)
 	var/gravity = get_gravity()
 	if(gravity < 1) //low grav
 		duration *= 2.5 - gravity

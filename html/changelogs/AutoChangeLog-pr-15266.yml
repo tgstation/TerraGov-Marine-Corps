@@ -1,0 +1,4 @@
+author: "coldironwarrior"
+delete-after: True
+changes:
+  - bugfix: "new category for other trinkets available in \"gear preferences\" under the \"preferences\" window"

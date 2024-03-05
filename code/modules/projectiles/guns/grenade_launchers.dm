@@ -13,6 +13,7 @@ The Grenade Launchers
 	throw_speed = 2
 	throw_range = 10
 	force = 5
+	wield_delay = 0.4 SECONDS
 	caliber = CALIBER_40MM //codex
 	load_method = SINGLE_CASING //codex
 	icon = 'icons/obj/items/guns/special.dmi'
@@ -42,6 +43,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/smokebomb/som,
 		/obj/item/explosive/grenade/smokebomb/cloak,
 		/obj/item/explosive/grenade/smokebomb/drain,
+		/obj/item/explosive/grenade/smokebomb/antigas,
 		/obj/item/explosive/grenade/smokebomb/neuro,
 		/obj/item/explosive/grenade/smokebomb/acid,
 		/obj/item/explosive/grenade/smokebomb/satrapine,
@@ -60,6 +62,8 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/chem_grenade/incendiary,
 		/obj/item/explosive/grenade/chem_grenade/teargas,
 		/obj/item/explosive/grenade/flashbang/stun,
+		/obj/item/explosive/grenade/bullet/laser,
+		/obj/item/explosive/grenade/bullet/hefa,
 	)
 	reciever_flags = NONE
 
@@ -173,6 +177,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/smokebomb/som,
 		/obj/item/explosive/grenade/smokebomb/cloak,
 		/obj/item/explosive/grenade/smokebomb/drain,
+		/obj/item/explosive/grenade/smokebomb/antigas,
 		/obj/item/explosive/grenade/smokebomb/neuro,
 		/obj/item/explosive/grenade/smokebomb/acid,
 		/obj/item/explosive/grenade/smokebomb/satrapine,
