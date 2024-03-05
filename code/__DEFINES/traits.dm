@@ -119,7 +119,6 @@
 #define SECTOID_TRAIT "sectoid"
 #define HUGGER_TRAIT "hugger"
 #define PISTOL_LACE_TRAIT "pistol_lace"
-#define NIGHT_VISION_GOGGLES_TRAIT "night_vision_goggles"
 
 #define ABSTRACT_ITEM_TRAIT "abstract_item"
 /// A trait given by any status effect
