@@ -68,6 +68,11 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/fancy/chemrettes, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_SUIT)
 
+	H.amputate_limb(BODY_ZONE_L_LEG)
+	H.amputate_limb(BODY_ZONE_R_LEG)
+	var/obj/vehicle/ridden/wheelchair/weaponized/wheelchair = new(H.drop_location())
+	wheelchair.buckle_mob(H, TRUE)
+
 /datum/job/retired/augmented
 	title = "TGMC augmented veteran"
 	outfit = /datum/outfit/job/retired/augmented

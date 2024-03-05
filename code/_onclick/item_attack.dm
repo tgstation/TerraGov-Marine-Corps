@@ -57,8 +57,10 @@
 	add_fingerprint(user, "attackby", I)
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY, I, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
+	if(isgrabitem(I) && grab_interact(I, user))
+		user.changeNext_move(GRAB_SLAM_DELAY)
+		return TRUE
 	return FALSE
-
 
 /obj/attackby(obj/item/I, mob/user, params)
 	. = ..()

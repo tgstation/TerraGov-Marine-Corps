@@ -544,7 +544,7 @@
 	var/swap_used = FALSE
 
 /datum/action/ability/xeno_action/mirage/remove_action()
-	clean_illusions()
+	illusions = list() //the actual illusions fade on their own, and the cooldown object may be qdel'd
 	return ..()
 
 /datum/action/ability/xeno_action/mirage/can_use_action(silent = FALSE, override_flags)

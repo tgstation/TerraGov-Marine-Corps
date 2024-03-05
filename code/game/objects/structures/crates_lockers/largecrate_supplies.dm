@@ -397,7 +397,7 @@
 
 /obj/structure/largecrate/machine/autodoc/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 
 	if(iscrowbar(I))
@@ -417,7 +417,7 @@
 
 /obj/structure/largecrate/supply/machine/bodyscanner/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 
 	if(iscrowbar(I))
@@ -436,7 +436,7 @@
 
 /obj/structure/largecrate/machine/sleeper/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 
 	if(iscrowbar(I))

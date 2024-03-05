@@ -70,11 +70,9 @@
 	user.temporarilyRemoveItemFromInventory(mag)
 	mag.forceMove(weapon)
 	weapon.ammo = mag
-	balloon_alert(user, "loaded")
-	if(!is_secondary)
-		user.say("Up!")
-	for(var/mob/occupant AS in owner.occupants)
-		occupant.hud_used.update_ammo_hud(owner, list(
+	user.say(is_secondary ? "Loaded!" : "Up!")
+	for(var/mob/occupant AS in owner.interior.occupants)
+		occupant.hud_used.update_ammo_hud(weapon, list(
 			mag.default_ammo.hud_state,
 			mag.default_ammo.hud_state_empty),
 			mag.current_rounds

@@ -3630,7 +3630,7 @@
 	},
 /area/patricks_rest/ground/colonyn)
 "pX" = (
-/obj/structure/holohoop{
+/obj/structure/hoop{
 	dir = 8;
 	id = "lvbasketball";
 	side = "right"
@@ -9825,7 +9825,7 @@
 	},
 /area/patricks_rest/ground/colonyn)
 "Uk" = (
-/obj/structure/holohoop{
+/obj/structure/hoop{
 	dir = 4;
 	id = "lvbasketball";
 	side = "left"
