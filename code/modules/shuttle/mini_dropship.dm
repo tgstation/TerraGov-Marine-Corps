@@ -286,7 +286,7 @@
 	origin.shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
 	origin.next_fly_state = SHUTTLE_ON_GROUND
 	origin.open_prompt = FALSE
-	origin.ui_close(C)
+	SStgui.close_user_uis(C, origin)
 	origin.shuttle_port.set_mode(SHUTTLE_CALL)
 	origin.last_valid_ground_port = origin.my_port
 	SSshuttle.moveShuttleToDock(origin.shuttleId, origin.my_port, TRUE)
