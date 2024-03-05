@@ -137,7 +137,7 @@
 	take_damage(damage, BRUTE, MELEE)
 	playsound(src, "alien_resin_break", 25)
 
-	if(previous_type == type && do_after(user, I.attack_speed, TRUE, src, BUSY_ICON_GENERIC))
+	if(previous_type == type && do_after(user, I.attack_speed, IGNORE_USER_LOC_CHANGE, src, BUSY_ICON_GENERIC, extra_checks = CALLBACK(user, TYPE_PROC_REF(/datum, Adjacent), src)))
 		attackby(I, user, params)
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
