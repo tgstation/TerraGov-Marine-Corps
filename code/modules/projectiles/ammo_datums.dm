@@ -3966,7 +3966,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	///On a direct hit, how much drowsyness gets added to the target?
 	var/hit_drowsyness = 12
 	///Base spread range
-	var/fixed_spread_range = 3
+	var/fixed_spread_range = 4
 	///Which type is the smoke we leave on passed tiles, provided the projectile has AMMO_LEAVE_TURF enabled?
 	var/passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light
 	///We're going to reuse one smoke spread system repeatedly to cut down on processing.
