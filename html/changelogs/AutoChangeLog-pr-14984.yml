@@ -1,0 +1,7 @@
+author: "XElectricX"
+delete-after: True
+changes:
+  - rscadd: "Night vision goggles and night vision helmet module."
+  - balance: "Night vision headsets can be purchased via requisitions."
+  - refactor: "Glasses activation code optimized."
+  - imageadd: "Night vision item sprites created by an artist commissioned by Bonkai"
