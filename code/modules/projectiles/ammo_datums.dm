@@ -3956,7 +3956,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 50
 	damage_type = STAMINA
 	damage_falloff = 0
-	penetration = 40
+	penetration = 50
 	bullet_color = BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR
 	reagent_transfer_amount = 30
 	///On a direct hit, how long is the target paralyzed?
@@ -4068,7 +4068,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	danger_message = span_danger("A glob of acid lands with a splat and explodes into corrosive bile!")
 	damage = 50
 	damage_type = BURN
-	penetration = 40
+	penetration = 50
 	bullet_color = BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR
 	hit_paralyze_time = 1 SECONDS
 	hit_eye_blur = 1
@@ -4098,7 +4098,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	danger_message = span_danger("A pressurized glob of acid lands with a nasty splat and explodes into noxious fumes!")
 	max_range = 40
 	damage = 75
-	penetration = 60
+	penetration = 70
 	reagent_transfer_amount = 55
 	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light
 	hit_paralyze_time = 2 SECONDS
@@ -4118,7 +4118,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	danger_message = span_danger("A pressurized glob of acid lands with a concerning hissing sound and explodes into corrosive bile!")
 	max_range = 40
 	damage = 75
-	penetration = 60
+	penetration = 70
 	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/acid/light
 	hit_paralyze_time = 1.5 SECONDS
 	hit_eye_blur = 4
