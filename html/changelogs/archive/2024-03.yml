@@ -67,3 +67,11 @@
       pilot computer.
   blackdav123:
   - bugfix: Moved a silo on orion out of marines reach.
+2024-03-05:
+  Neocloudy:
+  - rscadd: new plain chat style
+  - balance: late synths have a 20% burn reduction instead of 30%
+  - balance: synths/early synths will no longer be unconscious at -50 health
+  - balance: synths/early synths take rapid burn damage at -30 health
+  TiviPlus:
+  - rscadd: Added Assault Crewman and Transport Crewman roles
