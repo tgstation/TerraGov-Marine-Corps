@@ -324,7 +324,7 @@
 	hud_state = "grenade_acid"
 	det_time = 4 SECONDS
 	dangerous = TRUE
-	smoketype = /datum/effect_system/smoke_spread/xeno/acid
+	smoketype = /datum/effect_system/smoke_spread/xeno/acid/opaque
 	smokeradius = 5
 
 /obj/item/explosive/grenade/smokebomb/satrapine
