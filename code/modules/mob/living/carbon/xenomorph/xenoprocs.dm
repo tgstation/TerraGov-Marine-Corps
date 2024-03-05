@@ -321,17 +321,16 @@
 
 /mob/living/carbon/xenomorph/proc/zoom_in(tileoffset = 5, viewsize = 12)
 	if(stat || resting)
-		if(is_zoomed)
-			is_zoomed = 0
+		if(xeno_flags & XENO_ZOOMED)
 			zoom_out()
 			return
 		return
-	if(is_zoomed)
+	if(xeno_flags & XENO_ZOOMED)
 		return
 	if(!client)
 		return
 	zoom_turf = get_turf(src)
-	is_zoomed = 1
+	xeno_flags |= XENO_ZOOMED
 	client.view_size.set_view_radius_to(viewsize/2-2) //convert diameter to radius
 	var/viewoffset = 32 * tileoffset
 	switch(dir)
@@ -349,7 +348,7 @@
 			client.pixel_y = 0
 
 /mob/living/carbon/xenomorph/proc/zoom_out()
-	is_zoomed = 0
+	xeno_flags &= ~XENO_ZOOMED
 	zoom_turf = null
 	if(!client)
 		return
