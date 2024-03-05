@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - bugfix: "Mag harness now functions properly for belt guns."

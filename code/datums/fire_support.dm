@@ -196,7 +196,7 @@
 	initiate_chat_message = "TARGET ACQUIRED ROCKET RUN INBOUND."
 	initiate_screen_message = "Rockets hot, incoming!"
 	initiate_title = "Avenger-4"
-	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_over
+	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_pilot
 	start_visual = /obj/effect/temp_visual/dropship_flyby/som
 	uses = 2
 
@@ -283,7 +283,7 @@
 	initiate_chat_message = "TARGET ACQUIRED GUN RUN INBOUND."
 	initiate_screen_message = "Target received, gun run inbound."
 	initiate_title = "Avenger-4"
-	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_over
+	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_pilot
 	start_visual = /obj/effect/temp_visual/dropship_flyby/som
 	uses = 3
 
@@ -338,7 +338,7 @@
 /datum/fire_support/mortar/som
 	fire_support_type = FIRESUPPORT_TYPE_HE_MORTAR_SOM
 	initiate_title = "Guardian-1"
-	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_over
+	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_mortar
 
 /datum/fire_support/mortar/incendiary
 	name = "Incendiary mortar barrage"
@@ -355,7 +355,7 @@
 /datum/fire_support/mortar/incendiary/som
 	fire_support_type = FIRESUPPORT_TYPE_INCENDIARY_MORTAR_SOM
 	initiate_title = "Guardian-1"
-	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_over
+	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_mortar
 
 /datum/fire_support/mortar/smoke
 	name = "Smoke mortar barrage"
@@ -382,7 +382,7 @@
 /datum/fire_support/mortar/smoke/som
 	fire_support_type = FIRESUPPORT_TYPE_SMOKE_MORTAR_SOM
 	initiate_title = "Guardian-1"
-	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_over
+	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_mortar
 
 /datum/fire_support/mortar/smoke/acid
 	name = "Acid smoke mortar barrage"
@@ -413,7 +413,7 @@
 	initiate_chat_message = "TARGET ACQUIRED RAD MISSILE INBOUND."
 	initiate_screen_message = "Target locked, rads inbound!"
 	initiate_title = "Avenger-4"
-	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_over
+	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_pilot
 	start_visual = /obj/effect/temp_visual/dropship_flyby/som
 	uses = 2
 	///Base strength of the rad effects
