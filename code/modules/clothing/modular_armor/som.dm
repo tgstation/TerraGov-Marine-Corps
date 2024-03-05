@@ -179,6 +179,7 @@
 		/obj/item/armor_module/module/mimir_environment_protection/som,
 		/obj/item/armor_module/module/hlin_explosive_armor,
 		/obj/item/armor_module/module/eshield/som,
+		/obj/item/armor_module/module/eshield/som/overclocked,
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/engineering,

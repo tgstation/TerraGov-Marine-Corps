@@ -144,7 +144,8 @@
 	item_typepath = /obj/item/clothing/suit/modular/som/heavy/mithridatius
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 	item_whitelist = list(/obj/item/clothing/head/modular/som/bio = ITEM_SLOT_HEAD)
-	quantity = 2
+	purchase_cost = 75
+	quantity = 4
 
 //engineer
 /datum/loadout_item/suit_slot/som_engineer
