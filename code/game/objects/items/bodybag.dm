@@ -111,6 +111,8 @@
 
 /obj/structure/closet/bodybag/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/pen))
 		var/t = stripped_input(user, "What would you like the label to be?", name, null, MAX_MESSAGE_LEN)

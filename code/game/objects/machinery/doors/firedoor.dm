@@ -202,6 +202,8 @@
 
 /obj/machinery/door/firedoor/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(operating)
 		return

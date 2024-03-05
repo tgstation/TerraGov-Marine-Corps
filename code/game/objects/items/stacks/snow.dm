@@ -15,6 +15,8 @@
 
 /obj/item/stack/snow/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!istype(I, /obj/item/tool/shovel))
 		return

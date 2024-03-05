@@ -32,6 +32,8 @@
 
 /obj/item/toy/deck/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/toy/handcard))
 		var/obj/item/toy/handcard/H = I
@@ -181,6 +183,8 @@
 
 /obj/item/toy/handcard/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/toy/handcard))
 		var/obj/item/toy/handcard/H = I

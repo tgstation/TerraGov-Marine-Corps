@@ -55,6 +55,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I))
 		if(keyslot || keyslot2)

@@ -460,7 +460,21 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_MASTER
 	powerloader = SKILL_POWERLOADER_PRO
-	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
+	large_vehicle = SKILL_LARGE_VEHICLE_VETERAN
+
+/datum/skills/assault_crewman
+	name = ASSAULT_CREWMAN
+	engineer = SKILL_ENGINEER_METAL
+	construction = SKILL_CONSTRUCTION_METAL
+	powerloader = SKILL_POWERLOADER_PRO
+	large_vehicle = SKILL_LARGE_VEHICLE_VETERAN
+
+/datum/skills/transport_crewman
+	name = TRANSPORT_CREWMAN
+	engineer = SKILL_ENGINEER_METAL
+	construction = SKILL_CONSTRUCTION_METAL
+	powerloader = SKILL_POWERLOADER_PRO
+	large_vehicle = SKILL_LARGE_VEHICLE_EXPERIENCED
 
 /datum/skills/ce
 	name = CHIEF_SHIP_ENGINEER
@@ -690,7 +704,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
-	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
+	large_vehicle = SKILL_LARGE_VEHICLE_VETERAN
 
 /* Deathsquad */
 /datum/skills/deathsquad

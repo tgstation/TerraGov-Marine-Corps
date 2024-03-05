@@ -178,6 +178,8 @@
 
 /obj/item/clothing/tie/holobadge/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/card/id))
 		var/obj/item/card/id/id_card = I

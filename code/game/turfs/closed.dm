@@ -297,8 +297,6 @@
 	icon_state = "Intersection"
 
 /turf/closed/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE))
@@ -313,6 +311,8 @@
 
 		//change targetted turf to a new one to simulate deconstruction
 		ChangeTurf(open_turf_type)
+		return
+	return ..()
 
 //Ice Thin Wall
 /turf/closed/ice/thin

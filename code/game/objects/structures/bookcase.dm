@@ -18,6 +18,8 @@
 
 /obj/structure/bookcase/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/book))
 		user.drop_held_item()

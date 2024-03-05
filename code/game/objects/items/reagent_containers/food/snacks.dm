@@ -143,6 +143,8 @@
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/kitchen/utensil)) //todo early return
 		var/obj/item/tool/kitchen/utensil/U = I
@@ -172,6 +174,8 @@
 
 /obj/item/reagent_containers/food/snacks/sliceable/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(I.sharp == IS_NOT_SHARP_ITEM)
 		if(I.w_class >= WEIGHT_CLASS_SMALL)
@@ -1163,6 +1167,8 @@
 // Flour + egg = dough
 /obj/item/reagent_containers/food/snacks/flour/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/reagent_containers/food/snacks/egg))
 		new /obj/item/reagent_containers/food/snacks/dough(src)
@@ -1173,6 +1179,8 @@
 // Egg + flour = dough
 /obj/item/reagent_containers/food/snacks/egg/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/reagent_containers/food/snacks/flour))
 		new /obj/item/reagent_containers/food/snacks/dough(src)
@@ -1204,6 +1212,8 @@
 // Dough + rolling pin = flat dough
 /obj/item/reagent_containers/food/snacks/dough/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/kitchen/rollingpin))
 		new /obj/item/reagent_containers/food/snacks/sliceable/flatdough(src)
@@ -1242,6 +1252,8 @@
 
 /obj/item/reagent_containers/food/snacks/meat/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/kitchen/knife))
 		new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
@@ -1281,6 +1293,8 @@
 
 /obj/item/reagent_containers/food/snacks/rawcutlet/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/kitchen/knife))
 		new /obj/item/reagent_containers/food/snacks/rawmeatball(src)

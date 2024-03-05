@@ -29,6 +29,8 @@
 
 /obj/item/stack/barbed_wire/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!istype(I, /obj/item/stack/rods))
 		return

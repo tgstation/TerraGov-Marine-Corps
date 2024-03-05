@@ -18,6 +18,8 @@
 
 /obj/item/spacecash/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/spacecash) && !istype(I, /obj/item/spacecash/ewallet))
 		var/obj/item/spacecash/bundle/bundle

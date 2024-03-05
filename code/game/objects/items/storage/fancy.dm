@@ -112,6 +112,8 @@
 
 /obj/item/storage/fancy/crayons/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/toy/crayon))
 		var/obj/item/toy/crayon/C = I

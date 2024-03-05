@@ -50,6 +50,7 @@
 	icon_closed = "hydrant"
 	icon_opened = "hydrantopen"
 	overlay_welded = "hydrant-medical_welded"
+	layer = ABOVE_OBJ_LAYER
 
 /obj/structure/closet/walllocker/hydrant/extinguisher
 

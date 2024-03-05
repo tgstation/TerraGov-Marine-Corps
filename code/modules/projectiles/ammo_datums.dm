@@ -1369,8 +1369,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_IFF
 	accurate_range = 12
-	damage = 25
-	penetration = 5
+	damage = 30
+	penetration = 10
 	sundering = 1
 
 /datum/ammo/bullet/spottingrifle
@@ -2204,7 +2204,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "bigshell_he"
 
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
-	explosion(T, 1, 2, 5, 0, 5)
+	explosion(T, 1, 2, 5, 0, 3)
 
 /datum/ammo/rocket/mech
 	name = "large high-explosive rocket"

@@ -74,6 +74,8 @@
 
 /obj/machinery/washing_machine/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/toy/crayon) || istype(I, /obj/item/tool/stamp))
 		if(!(state in list(1, 3, 6)))

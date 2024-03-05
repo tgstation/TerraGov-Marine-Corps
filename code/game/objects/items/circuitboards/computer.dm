@@ -175,6 +175,8 @@
 
 /obj/item/circuitboard/computer/security/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/card/id))
 		if(!check_access(I))

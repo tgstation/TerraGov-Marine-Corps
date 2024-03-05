@@ -46,6 +46,10 @@
 		update_icon()
 		return
 
+	if(isgrabitem(I) && grab_interact(I, user))
+		user.changeNext_move(GRAB_SLAM_DELAY)
+		return TRUE
+
 	if(grill_fuel <= 0)
 		to_chat(user, span_warning("No fuel!"))
 		return ..()
@@ -97,6 +101,35 @@
 			return
 
 	return ..()
+
+/obj/machinery/grill/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	if(grill_fuel <= 0)
+		return ..()
+
+	if(!isliving(grab.grabbed_thing))
+		return
+
+	var/mob/living/grabbed_mob = grab.grabbed_thing
+	if(user.a_intent != INTENT_HARM)
+		return
+
+	if(user.grab_state <= GRAB_AGGRESSIVE)
+		to_chat(user, span_warning("You need a better grip to do that!"))
+		return
+
+	if(user.do_actions)
+		return
+
+	user.visible_message(span_danger("[user] starts to press [grabbed_mob] onto the [src]!"))
+
+	if(!do_after(user, 0.5 SECONDS, NONE, grabbed_mob, BUSY_ICON_DANGER) || QDELETED(src))
+		return
+
+	user.visible_message(span_danger("[user] slams [grabbed_mob] onto the [src]!"))
+	grabbed_mob.apply_damage(40, BURN, BODY_ZONE_HEAD, FIRE, updating_health = TRUE)
+	playsound(src, "sound/machines/grill/frying.ogg", 100, null, 9)
+	grabbed_mob.emote("scream")
+	return TRUE
 
 /obj/machinery/grill/process(delta_time)
 	..()

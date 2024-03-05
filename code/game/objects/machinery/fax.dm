@@ -144,6 +144,8 @@
 
 /obj/machinery/faxmachine/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/paper))
 		if(!message)
 			user.transferItemToLoc(I, src)

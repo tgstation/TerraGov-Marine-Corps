@@ -332,8 +332,7 @@
 			fallen_list += D.fallen_names
 			qdel(D)
 		return TRUE
-	else
-		. = ..()
+	return ..()
 
 /obj/structure/prop/mainship/ship_memorial/examine(mob/user)
 	. = ..()

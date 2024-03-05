@@ -264,6 +264,8 @@
 
 /turf/open/liquid/lava/attackby(obj/item/C, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(C, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = C
 		var/turf/open/lavaland/catwalk/H = locate(/turf/open/lavaland/catwalk, src)

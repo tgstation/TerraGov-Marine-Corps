@@ -22,6 +22,8 @@
 
 /obj/item/stack/sandbags_empty/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/shovel))
 		var/obj/item/tool/shovel/ET = I

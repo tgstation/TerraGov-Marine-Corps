@@ -44,7 +44,7 @@
 	var/burst_amount = 0
 	///fire mode to use for autofire
 	var/fire_mode = GUN_FIREMODE_SEMIAUTO
-	///how many seconds automatic reloading takes
+	///how many seconds automatic, and manual, reloading takes
 	var/rearm_time = 4 SECONDS
 	///ammo hud icon to display when no ammo is loaded
 	var/hud_state_empty = "shell_empty"
@@ -162,6 +162,7 @@
 ///does any effects and changes to the projectile when it is fired
 /obj/item/armored_weapon/proc/apply_weapon_modifiers(obj/projectile/projectile_to_fire, mob/firer)
 	projectile_to_fire.shot_from = src
+	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
 	if(chassis.hitbox?.tank_desants)
 		projectile_to_fire.hit_atoms += chassis.hitbox.tank_desants
 	if((projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF) && ishuman(firer))

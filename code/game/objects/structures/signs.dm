@@ -28,6 +28,8 @@
 
 /obj/structure/sign/attackby(obj/item/I, mob/user, params)	//deconstruction
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I) && !istype(src, /obj/structure/sign/double))
 		to_chat(user, "You unfasten the sign with your [I].")
@@ -47,6 +49,8 @@
 
 /obj/item/sign/attackby(obj/item/I, mob/user, params)	//construction
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I) && isturf(user.loc))
 		var/direction = tgui_input_list(user, "In which direction?", "Select direction.", list("North", "East", "South", "West"))

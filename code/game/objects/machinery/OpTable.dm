@@ -188,6 +188,8 @@
 
 /obj/machinery/optable/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tank/anesthetic))
 		if(anes_tank)
@@ -196,32 +198,33 @@
 		anes_tank = I
 		to_chat(user, span_notice("You connect \the [anes_tank] to \the [src]."))
 
-	if(!istype(I, /obj/item/grab))
+/obj/machinery/optable/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	. = ..()
+	if(.)
 		return
-
-	var/obj/item/grab/G = I
-	if(victim && victim != G.grabbed_thing)
+	if(victim && victim != grab.grabbed_thing)
 		to_chat(user, span_warning("The table is already occupied!"))
 		return
-	var/mob/living/carbon/M
-	if(iscarbon(G.grabbed_thing))
-		M = G.grabbed_thing
-		if(M.buckled)
+	var/mob/living/carbon/grabbed_mob
+	if(iscarbon(grab.grabbed_thing))
+		grabbed_mob = grab.grabbed_thing
+		if(grabbed_mob.buckled)
 			to_chat(user, span_warning("Unbuckle first!"))
 			return
-	else if(istype(G.grabbed_thing, /obj/structure/closet/bodybag/cryobag))
-		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
-		if(!C.bodybag_occupant)
+	else if(istype(grab.grabbed_thing, /obj/structure/closet/bodybag/cryobag))
+		var/obj/structure/closet/bodybag/cryobag/cryobag = grab.grabbed_thing
+		if(!cryobag.bodybag_occupant)
 			return
-		M = C.bodybag_occupant
-		C.open()
+		grabbed_mob = cryobag.bodybag_occupant
+		cryobag.open()
 		user.stop_pulling()
-		user.start_pulling(M)
+		user.start_pulling(grabbed_mob)
 
-	if(!M)
+	if(!grabbed_mob)
 		return
 
-	take_victim(M, user)
+	take_victim(grabbed_mob, user)
+	return TRUE
 
 /obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)
 	if(victim)

@@ -80,6 +80,8 @@
 
 /obj/item/detpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(ismultitool(I) && armed)
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)

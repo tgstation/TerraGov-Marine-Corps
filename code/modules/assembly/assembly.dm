@@ -95,6 +95,8 @@
 
 /obj/item/assembly/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(isassembly(I))
 		var/obj/item/assembly/A = I
 		if(!A.secured && !secured)

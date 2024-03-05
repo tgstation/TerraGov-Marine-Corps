@@ -54,6 +54,8 @@
 //PLACING/REMOVING/BUILDING
 /turf/open/floor/plating/ground/snow/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	//Light Stick
 	if(istype(I, /obj/item/lightstick))
 		var/obj/item/lightstick/L = I

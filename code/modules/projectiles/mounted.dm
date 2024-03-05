@@ -71,6 +71,8 @@
 
 /obj/machinery/deployable/mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun, if its in acid cant touch it.
 	. = ..()
+	if(.)
+		return
 
 	if(!ishuman(user))
 		return

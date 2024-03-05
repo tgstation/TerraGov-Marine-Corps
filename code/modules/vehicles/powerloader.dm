@@ -46,6 +46,8 @@
 
 /obj/vehicle/ridden/powerloader/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!isscrewdriver(I))
 		return

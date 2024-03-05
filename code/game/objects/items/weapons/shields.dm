@@ -53,6 +53,8 @@
 
 /obj/item/weapon/shield/riot/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/metal_sheets = I
