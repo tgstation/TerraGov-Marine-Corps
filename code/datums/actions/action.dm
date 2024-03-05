@@ -63,6 +63,7 @@ KEYBINDINGS
 
 /datum/action/proc/clean_action()
 	SIGNAL_HANDLER
+	SHOULD_CALL_PARENT(TRUE)
 	qdel(src)
 
 /datum/action/proc/should_show()

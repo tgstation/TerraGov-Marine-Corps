@@ -179,3 +179,16 @@ GLOBAL_LIST_INIT(hive_ui_static_data, init_hive_status_lists()) // init by make_
 	for(var/i in GLOB.mob_list)
 		var/mob/M = i
 		M.update_config_movespeed()
+
+///The actions given to all humans on init
+GLOBAL_LIST_INIT(human_init_actions, list(
+	/datum/action/skill/toggle_orders,
+	/datum/action/skill/issue_order/move,
+	/datum/action/skill/issue_order/hold,
+	/datum/action/skill/issue_order/focus,
+	/datum/action/innate/order/attack_order/personal,
+	/datum/action/innate/order/defend_order/personal,
+	/datum/action/innate/order/retreat_order/personal,
+	/datum/action/innate/order/rally_order/personal,
+	/datum/action/innate/message_squad,
+))

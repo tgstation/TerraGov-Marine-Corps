@@ -82,11 +82,12 @@
 /// Ends the ability if the Enhancement buff is removed.
 /datum/action/ability/activable/sectoid/mindmeld/proc/end_ability()
 	SIGNAL_HANDLER
+	UnregisterSignal(owner, COMSIG_MOB_DEATH)
 	var/mob/living/carbon/carbon_owner = owner
-	add_cooldown()
 	carbon_owner.remove_status_effect(STATUS_EFFECT_MINDMEND)
 	if(!melded_mob)
 		return
+	UnregisterSignal(melded_mob, COMSIG_MOB_DEATH)
 	melded_mob.remove_status_effect(STATUS_EFFECT_MINDMEND)
 	melded_mob = null
 
