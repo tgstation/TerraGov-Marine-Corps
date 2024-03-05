@@ -358,8 +358,6 @@
 	var/xeno_melee_damage_modifier = 1
 	///whether the xeno mobhud is activated or not.
 	var/xeno_mobhud = FALSE
-	///whether the xeno has been selected by the queen as a leader.
-	var/queen_chosen_lead = FALSE
 
 	//Charge vars
 	///Will the mob charge when moving ? You need the charge verb to change this

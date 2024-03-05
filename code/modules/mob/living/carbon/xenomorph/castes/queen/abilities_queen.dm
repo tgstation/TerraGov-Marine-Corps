@@ -294,7 +294,7 @@
 /datum/action/ability/xeno_action/set_xeno_lead/proc/select_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
 	var/mob/living/carbon/xenomorph/queen/xeno_ruler = owner
 
-	if(selected_xeno.queen_chosen_lead)
+	if(selected_xeno.xeno_flags & XENO_LEADER)
 		unset_xeno_leader(selected_xeno)
 		return
 
