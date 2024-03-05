@@ -503,7 +503,7 @@
 
 /obj/structure/bed/chair/dropship/doublewide/left/alpha
 	name = "Alpha Squad Leader's Chair"
-	desc = "A chair specially reserve for the Alpha Squad Leader."
+	desc = "A chair specially reserved for the Alpha Squad Leader."
 	icon_state = "doublewide_chair_alpha"
 	chair_color = ALPHA_CHAIR
 	leader_chair = TRUE
@@ -511,7 +511,7 @@
 
 /obj/structure/bed/chair/dropship/doublewide/right/bravo
 	name = "Bravo Squad Leader's Chair"
-	desc = "A chair specially reserve for the Bravo Squad Leader."
+	desc = "A chair specially reserved for the Bravo Squad Leader."
 	icon_state = "doublewide_chair_bravo"
 	chair_color = BRAVO_CHAIR
 	leader_chair = TRUE
@@ -519,7 +519,7 @@
 
 /obj/structure/bed/chair/dropship/doublewide/left/charlie
 	name = "Charlie Squad Leader's Chair"
-	desc = "A chair specially reserve for the Charlie Squad Leader."
+	desc = "A chair specially reserved for the Charlie Squad Leader."
 	icon_state = "doublewide_chair_charlie"
 	chair_color = CHARLIE_CHAIR
 	leader_chair = TRUE
@@ -527,7 +527,7 @@
 
 /obj/structure/bed/chair/dropship/doublewide/right/delta
 	name = "Delta Squad Leader's Chair"
-	desc = "A chair specially reserve for the Delta Squad Leader."
+	desc = "A chair specially reserved for the Delta Squad Leader."
 	icon_state = "doublewide_chair_delta"
 	chair_color = DELTA_CHAIR
 	leader_chair = TRUE
@@ -535,7 +535,7 @@
 
 /obj/structure/bed/chair/dropship/doublewide/fieldcommander
 	name = "Field Commander's Chair"
-	desc = "A chair specially reserve for the Field Commander."
+	desc = "A chair specially reserved for the Field Commander."
 	icon_state = "doublewide_chair_fc"
 	chair_color = FC_CHAIR
 	leader_chair = TRUE
