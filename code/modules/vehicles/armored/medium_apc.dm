@@ -6,6 +6,8 @@
 	turret_icon_state = "apc_turret"
 	damage_icon_path = null
 	interior = null
+	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
+	minimap_icon_state = null
 	flags_armored = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY
 	icon_state = "apc"
 	move_delay = 0.25 SECONDS

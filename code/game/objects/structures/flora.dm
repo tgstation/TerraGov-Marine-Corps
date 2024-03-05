@@ -78,6 +78,8 @@
 
 /obj/structure/flora/tree/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!I.sharp && I.force <= 0)
 		return
@@ -510,6 +512,8 @@
 
 /obj/structure/flora/jungle/vines/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(I.sharp != IS_SHARP_ITEM_BIG || !isliving(user))
 		return

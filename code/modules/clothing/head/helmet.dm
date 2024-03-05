@@ -261,6 +261,18 @@
 	desc = "A lightweight helmet with a small port in the back. Offers lower response times for TGMC mech pilots by integrating them directly into their mech suit's systems, though it certainly doesn't make them smarter."
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
+/obj/item/clothing/head/helmet/marine/assault_crewman
+	name = "\improper M12B pattern tanker helmet"
+	icon_state = "assault_crewman_helmet"
+	desc = "A lightweight helmet. Offers the user protection from being hit in the hell by ejected shell casings, mostly."
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/head/helmet/marine/transport_crewman
+	name = "\improper M12A pattern transport helmet"
+	icon_state = "transport_crewman_helmet"
+	desc = "A lightweight helmet with a small port in the back. Offers decent protection against reckless driving."
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+
 /obj/item/clothing/head/helmet/marine/riot
 	name = "M8 riot helmet"
 	desc = "It's a modified version of the widely used Riot Helmets for use against angry jarheads. Boasts high ballistic protection"

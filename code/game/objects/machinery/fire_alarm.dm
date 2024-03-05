@@ -100,6 +100,8 @@ FIRE ALARM
 
 /obj/machinery/firealarm/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I) && buildstage == 2)
 		wiresexposed = !wiresexposed
