@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - balance: "RWalls have 3000 hp again rather than 5000, slightly higher armor."
