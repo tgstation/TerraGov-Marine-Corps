@@ -48,6 +48,19 @@
 	primordial_message = "We see the beauty of the unlimited psychic power of the hive. Enlighten the tallhosts to its majesty."
 	upgrade = XENO_UPGRADE_PRIMO
 
-	actions = list()
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/activable/xeno/psy_crush,
+		/datum/action/ability/activable/xeno/psy_blast,
+		/datum/action/ability/activable/xeno/psychic_shield,
+		/datum/action/ability/activable/xeno/transfer_plasma/drone,
+		/datum/action/ability/activable/psionic_interact,
+	)
 
 	spit_types = list(/datum/ammo/energy/xeno/psy_blast, /datum/ammo/energy/xeno/psy_blast/psy_lance)
