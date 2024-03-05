@@ -89,6 +89,7 @@
 		MISSION_STARTING_FACTION = "starting faction intro text here",
 		MISSION_HOSTILE_FACTION = "hostile faction intro text here",
 	)
+	///Message to players when a mission ends
 	var/list/outro_message = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(
 			MISSION_STARTING_FACTION = "<u>Major victory</u><br> All mission objectives achieved, outstanding work!",
