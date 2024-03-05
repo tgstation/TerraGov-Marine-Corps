@@ -161,10 +161,10 @@
 		new_xeno.fireloss = fireloss //Transfers the damage over.
 		new_xeno.updatehealth()
 
-	if(xeno_mobhud)
+	if(xeno_flags & XENO_MOBHUD)
 		var/datum/atom_hud/H = GLOB.huds[DATA_HUD_XENO_STATUS]
 		H.add_hud_to(new_xeno) //keep our mobhud choice
-		new_xeno.xeno_mobhud = TRUE
+		new_xeno.xeno_flags |= XENO_MOBHUD
 
 	if(lighting_alpha != new_xeno.lighting_alpha)
 		new_xeno.toggle_nightvision(lighting_alpha)
