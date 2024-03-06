@@ -41,15 +41,15 @@
 	light_color = COLOR_VERY_SOFT_YELLOW
 
 	///greyscale support
-	greyscale_config = null
-	greyscale_colors = null
+	greyscale_config
+	greyscale_colors
 	///Any special effects applied to this projectile
 	var/flags_projectile_behavior = NONE
 	///Hit impact sound
-	var/hitsound = null
+	var/hitsound
 	///The ammo data which holds most of the actual info
 	var/datum/ammo/ammo
-	///target def zone
+	///The bodypart you're trying to hit
 	var/def_zone = BODY_ZONE_CHEST
 	///the pixel X location of the tile that the player clicked. Default is the center
 	var/p_x = 16
@@ -63,15 +63,15 @@
 	var/apy
 
 	///The object which shot us
-	var/atom/shot_from 	 = null //todo: Shot_from and firer are heavily misused, need a cleanup, for example a mech should have firer = the occupant, shot_from as the mech
+	var/atom/shot_from //todo: Shot_from and firer are heavily misused, need a cleanup, for example a mech should have firer = the occupant, shot_from as the mech
 	///the projectile's starting turf
-	var/turf/starting_turf = null
+	var/turf/starting_turf
 	///the original target clicked
-	var/atom/original_target = null
+	var/atom/original_target
 	///the original target's starting turf
-	var/turf/original_target_turf = null
+	var/turf/original_target_turf
 	///The atom (usually mob) who shot it
-	var/atom/firer = null
+	var/atom/firer
 	///List of border movable atoms to check for when exiting a turf.
 	var/list/atom/movable/uncross_scheduled = list()
 	///Actual projectile damage
@@ -106,10 +106,9 @@
 	var/stored_moves = 0
 	//0 is north, 90 is east, 180 is south, 270 is west. BYOND angles and all
 	var/dir_angle
-	//Float, not integer
-	///X_offset for calculating turf movements
+	///Float X_offset for calculating turf movements
 	var/x_offset
-	///Y_offset for calculating turf movements
+	///Float Y_offset for calculating turf movements
 	var/y_offset
 	///Max range the projectile can travel
 	var/proj_max_range = 30
