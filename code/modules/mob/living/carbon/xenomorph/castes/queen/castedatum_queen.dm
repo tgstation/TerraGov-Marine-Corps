@@ -12,7 +12,7 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 23
-	melee_ap = = 10
+	melee_ap = 10
 
 	// *** Speed *** //
 	speed = -0.3
