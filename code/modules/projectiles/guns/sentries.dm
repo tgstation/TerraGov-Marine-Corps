@@ -310,6 +310,7 @@
 	deploy_time = 10 SECONDS
 	max_shells = 75
 	fire_delay = 2 SECONDS
+	burst_amount = 1
 
 	scatter = 0
 
@@ -357,6 +358,7 @@
 	deploy_time = 5 SECONDS
 	max_shells = 75
 	fire_delay = 1 SECONDS
+	burst_amount = 1
 
 	scatter = 5
 
