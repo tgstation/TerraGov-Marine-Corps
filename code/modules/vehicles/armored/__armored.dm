@@ -250,6 +250,9 @@
 		return FALSE
 	if(!ishuman(M))
 		return FALSE
+	if(LAZYLEN(M.buckled_mobs))
+		balloon_alert(M, "remove riders first")
+		return FALSE
 	if(M.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
 		return FALSE
 	return ..()
