@@ -52,20 +52,21 @@
 	//In case someone in the future adds a non-toggle action to a child type
 	if(istype(action, /datum/action/item_action/toggle))
 		var/datum/action/item_action/toggle/toggle = action
-		toggle.toggled = !activate(user)
+		//Toggling item actions are dumb; it has to be done this way for the icon to properly update
+		toggle.set_toggle(activate(user))
 		return
 
-	activate(user)
+	return activate(user)
 
 ///Toggle the functions of the glasses
-/obj/item/clothing/glasses/proc/activate(mob/user, silent = FALSE)
-	if(!silent)
+/obj/item/clothing/glasses/proc/activate(mob/user)
+	if(activation_sound && deactivation_sound)
 		playsound(get_turf(src), active ? deactivation_sound : activation_sound, 15)
 
 	active = !active
+	update_icon_state()	//Found out the hard way this has to be before update_inv_glasses()
 	user?.update_inv_glasses()
 	user?.update_sight()
-	update_icon_state()
 
 	return active	//For the UI button update
 
@@ -232,24 +233,12 @@
 	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEEYES
 	eye_protection = 2
+	activation_sound = null
+	deactivation_sound = null
 
 /obj/item/clothing/glasses/welding/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_5, TRUE)
-
-/obj/item/clothing/glasses/welding/proc/flip_up()
-	DISABLE_BITFIELD(flags_inventory, COVEREYES)
-	DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
-	DISABLE_BITFIELD(flags_armor_protection, EYES)
-	eye_protection = 0
-	icon_state = "[initial(icon_state)]up"
-
-/obj/item/clothing/glasses/welding/proc/flip_down()
-	ENABLE_BITFIELD(flags_inventory, COVEREYES)
-	ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
-	ENABLE_BITFIELD(flags_armor_protection, EYES)
-	eye_protection = initial(eye_protection)
-	icon_state = initial(icon_state)
 
 /obj/item/clothing/glasses/welding/verb/verbtoggle()
 	set category = "Object"
@@ -257,32 +246,34 @@
 	set src in usr
 
 	if(!usr.incapacitated())
-		toggle_item_state(usr)
+		activate(usr)
 
-/obj/item/clothing/glasses/welding/attack_self(mob/user)
+/obj/item/clothing/glasses/welding/activate(mob/user)
+	if(active)
+		DISABLE_BITFIELD(flags_inventory, COVEREYES)
+		DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
+		DISABLE_BITFIELD(flags_armor_protection, EYES)
+	else
+		ENABLE_BITFIELD(flags_inventory, COVEREYES)
+		ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
+		ENABLE_BITFIELD(flags_armor_protection, EYES)
+
+	eye_protection = active ? 0 : initial(eye_protection)
+
+	if(user)
+		to_chat(usr, "You [active ? "push [src] up out of your face" : "flip [src] down to protect your eyes"].")
+
+	//I imagine some signals use it so letting it still call it
 	toggle_item_state(user)
 
-/obj/item/clothing/glasses/welding/toggle_item_state(mob/user)
-	. = ..()
-	active = !active
+	return ..()
+
+/obj/item/clothing/glasses/welding/update_icon_state()
 	icon_state = "[initial(icon_state)][!active ? "up" : ""]"
-	if(!active)
-		flip_up()
-	else
-		flip_down()
-	if(user)
-		to_chat(usr, "You [active ? "flip [src] down to protect your eyes" : "push [src] up out of your face"].")
 
-	update_clothing_icon()
-
-	update_action_button_icons()
-
-/obj/item/clothing/glasses/welding/flipped //spawn in flipped up.
-	active = FALSE
-
-/obj/item/clothing/glasses/welding/flipped/Initialize(mapload)
+/obj/item/clothing/glasses/welding/flipped/Initialize(mapload)	//spawn in flipped up.
 	. = ..()
-	flip_up()
+	activate()
 	AddComponent(/datum/component/clothing_tint, TINT_5, FALSE)
 
 /obj/item/clothing/glasses/welding/superior
@@ -444,7 +435,7 @@
 	///Looping sound to play
 	var/datum/looping_sound/active_sound = /datum/looping_sound/scan_pulse
 	///How loud the looping sound should be
-	var/looping_sound_volume = 15
+	var/looping_sound_volume = 25
 
 /obj/item/clothing/glasses/night_vision/Initialize(mapload)
 	. = ..()
@@ -465,9 +456,6 @@
 	if(battery)
 		return span_notice("Battery: [battery.charge]/[battery.maxcharge]")
 	return span_warning("No battery installed!")
-
-/obj/item/clothing/glasses/night_vision/ui_action_click(mob/user, datum/action/item_action/action)
-	activate(user)
 
 /obj/item/clothing/glasses/night_vision/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() == src && eject_battery(user))

@@ -31,9 +31,7 @@
 	return ..()
 
 
-/obj/item/clothing/glasses/hud/activate(mob/user, silent = FALSE)
-	if(QDELETED(affected_user))
-		return
+/obj/item/clothing/glasses/hud/activate(mob/user)
 	if(!ishuman(user))
 		return
 
