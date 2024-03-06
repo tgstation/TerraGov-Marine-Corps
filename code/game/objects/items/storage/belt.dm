@@ -342,9 +342,10 @@
 	new /obj/item/storage/pill_bottle/imidazoline(src)
 	new /obj/item/storage/pill_bottle/quickclot(src)
 	new /obj/item/storage/pill_bottle/hypervene(src)
+	new /obj/item/bodybag/cryobag(src)
 	new /obj/item/defibrillator(src)
 	new /obj/item/tool/research/excavation_tool(src)
-	new /obj/item/tool/research/xeno_analyzer(src)
+
 	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/belt/hypospraybelt
