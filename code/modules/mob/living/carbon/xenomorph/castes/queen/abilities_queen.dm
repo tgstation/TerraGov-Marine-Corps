@@ -448,7 +448,7 @@
 /datum/action/ability/xeno_action/bulwark
 	name = "Royal Bulwark"
 	action_icon_state = "bulwark"
-	desc = "Creates a field of defensive energy, filling chinks in the armor of nearby sisters, making them more resilient."
+	desc = "Creates a field of defensive energy, filling chunks in the armor of nearby sisters, making them more resilient."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
