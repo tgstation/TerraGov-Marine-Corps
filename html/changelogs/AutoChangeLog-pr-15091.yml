@@ -1,5 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - bugfix: "Tad can no longer land on itself"
-  - bugfix: "Tad can no longer perform instant transmission"

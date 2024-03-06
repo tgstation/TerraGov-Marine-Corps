@@ -1,6 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - bugfix: "Xenos can no longer corrupt the alamo controls mid-transit"
-  - bugfix: "Xenos can no longer capture the alamo mid-transit"
-  - qol: "All xenos can look at the alamo console while in hijack transit"
