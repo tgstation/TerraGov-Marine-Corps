@@ -526,5 +526,5 @@
 // *********** Queen tail sweep
 // ***************************************
 /datum/action/ability/xeno_action/tail_sweep/queen
-	var/swipe_stun_duration = 0.1 SECONDS
+	swipe_stun_duration = 0.1 SECONDS
 
