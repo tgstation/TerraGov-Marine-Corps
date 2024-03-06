@@ -25,7 +25,7 @@
 
 /obj/item/cell/update_overlays()
 	. = ..()
-	if(charge < 0.01)
+	if(charge < 0.01 || !charge_overlay)
 		return
 	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
 	. += "[charge_overlay]_[remaining]"

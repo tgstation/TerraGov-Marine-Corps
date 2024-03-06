@@ -1,6 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - balance: "late synths have a 20% burn reduction instead of 30%"
-  - balance: "synths/early synths will no longer be unconscious at -50 health"
-  - balance: "synths/early synths take rapid burn damage at -30 health"

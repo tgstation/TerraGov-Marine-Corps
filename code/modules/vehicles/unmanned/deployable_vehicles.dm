@@ -60,7 +60,7 @@
 ///Dissassembles the device
 /obj/vehicle/unmanned/deployable/proc/disassemble(mob/user)
 	if(CHECK_BITFIELD(internal_item.flags_item, DEPLOYED_NO_PICKUP))
-		balloon_alert(user, "cannot be disassembled")
+		balloon_alert(user, "Cannot disassemble")
 		return
 	if(turret_path)
 		internal_item.stored_turret_type = turret_path

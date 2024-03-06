@@ -513,7 +513,7 @@
 
 	suit_store = /obj/item/weapon/gun/shotgun/pump/lever/repeater/beginner
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/mimirinjector
-	gloves = /obj/item/defibrillator/gloves
+	gloves = /obj/item/clothing/gloves/defibrillator
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/m10x/mimir
 	r_store = /obj/item/storage/pouch/medkit/medic
