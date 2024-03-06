@@ -1,7 +1,7 @@
 // ***************************************
 // *********** Tail sweep
 // ***************************************
-/datum/action/ability/xeno_action/tail_sweep/defender
+/datum/action/ability/xeno_action/tail_sweep
 
 
 // ***************************************
