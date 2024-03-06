@@ -345,7 +345,6 @@
 	new /obj/item/bodybag/cryobag(src)
 	new /obj/item/defibrillator(src)
 	new /obj/item/tool/research/excavation_tool(src)
-
 	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/belt/hypospraybelt
