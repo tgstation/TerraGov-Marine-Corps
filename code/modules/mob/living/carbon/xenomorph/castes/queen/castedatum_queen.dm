@@ -66,6 +66,7 @@
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/screech,
 		/datum/action/ability/xeno_action/bulwark,
+		/datum/action/ability/xeno_action/tail_sweep/queen,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/activable/xeno/xeno_spit,
 		/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal,
