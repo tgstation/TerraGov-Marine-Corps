@@ -46,6 +46,8 @@
 
 	///reference to our interior datum if set, uses the typepath its set to
 	var/datum/interior/armored/interior
+	///Skill required to enter this vehicle
+	var/required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	///What weapon we have in our primary slot
 	var/obj/item/armored_weapon/primary_weapon
 	///What weapon we have in our secondary slot
@@ -58,6 +60,10 @@
 	var/primary_weapon_type = /obj/item/armored_weapon
 	//What kind of secondary tank weaponry we start with. Default minigun as standard.
 	var/secondary_weapon_type = /obj/item/armored_weapon/secondary_weapon
+	///Minimap flags to use for this vehcile
+	var/minimap_flags = MINIMAP_FLAG_MARINE
+	///minimap iconstate to use for this vehicle
+	var/minimap_icon_state
 	///if true disables stops users from being able to shoot weapons
 	var/weapons_safety = FALSE
 	//Bool for zoom on/off
@@ -111,6 +117,8 @@
 				icon_state += "_urban"
 			if(MAP_ARMOR_STYLE_DESERT)
 				icon_state += "_desert"
+	if(minimap_icon_state)
+		SSminimaps.add_marker(src, minimap_flags, image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon_state))
 	GLOB.tank_list += src
 
 /obj/vehicle/sealed/armored/Destroy()
@@ -242,6 +250,8 @@
 		return FALSE
 	if(!ishuman(M))
 		return FALSE
+	if(M.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		return FALSE
 	return ..()
 
 /obj/vehicle/sealed/armored/add_occupant(mob/M, control_flags)
@@ -372,7 +382,7 @@
 			primary_weapon.ammo = I
 			balloon_alert(user, "primary gun loaded")
 			for(var/mob/occupant AS in occupants)
-				occupant.hud_used.update_ammo_hud(src, list(primary_weapon.ammo.default_ammo.hud_state, primary_weapon.ammo.default_ammo.hud_state_empty), primary_weapon.ammo.current_rounds)
+				occupant.hud_used.update_ammo_hud(primary_weapon, list(primary_weapon.ammo.default_ammo.hud_state, primary_weapon.ammo.default_ammo.hud_state_empty), primary_weapon.ammo.current_rounds)
 		else
 			primary_weapon.ammo_magazine += I
 			balloon_alert(user, "magazines [length(primary_weapon.ammo_magazine)]/[primary_weapon.maximum_magazines]")
@@ -417,7 +427,7 @@
 			secondary_weapon.ammo = I
 			balloon_alert(user, "secondary gun loaded")
 			for(var/mob/occupant AS in occupants)
-				occupant.hud_used.update_ammo_hud(src, list(secondary_weapon.ammo.default_ammo.hud_state, secondary_weapon.ammo.default_ammo.hud_state_empty), secondary_weapon.ammo.current_rounds)
+				occupant.hud_used.update_ammo_hud(secondary_weapon, list(secondary_weapon.ammo.default_ammo.hud_state, secondary_weapon.ammo.default_ammo.hud_state_empty), secondary_weapon.ammo.current_rounds)
 		else
 			secondary_weapon.ammo_magazine += I
 			balloon_alert(user, "magazines [length(secondary_weapon.ammo_magazine)]/[secondary_weapon.maximum_magazines]")

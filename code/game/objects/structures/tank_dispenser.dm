@@ -27,14 +27,14 @@
 /obj/structure/dispenser/update_overlays()
 	. = ..()
 	switch(oxygentanks)
-		if(1 to 3)	
+		if(1 to 3)
 			. += "oxygen-[oxygentanks]"
-		if(4 to INFINITY) 
+		if(4 to INFINITY)
 			. += "oxygen-4"
 	switch(phorontanks)
-		if(1 to 4)	
+		if(1 to 4)
 			. += "phoron-[phorontanks]"
-		if(5 to INFINITY) 
+		if(5 to INFINITY)
 			. += "phoron-5"
 
 /obj/structure/dispenser/interact(mob/user)
@@ -53,6 +53,8 @@
 
 /obj/structure/dispenser/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tank/oxygen) || istype(I, /obj/item/tank/air) || istype(I, /obj/item/tank/anesthetic))
 		if(oxygentanks >= 10)

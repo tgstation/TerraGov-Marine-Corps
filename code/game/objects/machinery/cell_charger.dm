@@ -37,11 +37,17 @@
 
 /obj/machinery/cell_charger/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(machine_stat & BROKEN)
 		return
 
 	if(istype(I, /obj/item/cell) && anchored)
+		if(istype(I, /obj/item/cell/night_vision_battery))
+			balloon_alert(user, "Not rechargeable")
+			return
+
 		if(charging)
 			to_chat(user, span_warning("There is already a cell in the charger."))
 			return

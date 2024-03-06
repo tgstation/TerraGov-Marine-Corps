@@ -43,9 +43,6 @@
 	item_typepath = /obj/item/clothing/under/som/webbing
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
-	item_whitelist = list(
-		/obj/item/storage/pouch/tools/som/full = ITEM_SLOT_R_POCKET,
-	)
 
 /datum/loadout_item/uniform/som_field_commander
 	name = "Officer uniform"

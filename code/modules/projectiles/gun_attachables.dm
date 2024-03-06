@@ -565,7 +565,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	slot = ATTACHMENT_SLOT_RAIL
 	accuracy_mod = 0.15
 	accuracy_unwielded_mod = 0.1
-	aim_mode_delay_mod = -0.5
+	aim_mode_movement_mult = -0.35
 	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "", /obj/item/weapon/gun/shotgun/som = "")
 
 /obj/item/attachable/m16sight
@@ -628,6 +628,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/flashlight/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I,/obj/item/tool/screwdriver))
 		to_chat(user, span_notice("You modify the rail flashlight back into a normal flashlight."))
@@ -669,7 +671,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	. = ..()
 	if(!master_gun)
 		return
-	reequip_component = master_gun.AddComponent(/datum/component/reequip, list(SLOT_S_STORE, SLOT_BACK))
+	reequip_component = master_gun.AddComponent(/datum/component/reequip, list(SLOT_S_STORE, SLOT_BELT, SLOT_BACK))
 
 /obj/item/attachable/magnetic_harness/on_detach(attaching_item, mob/user)
 	. = ..()
