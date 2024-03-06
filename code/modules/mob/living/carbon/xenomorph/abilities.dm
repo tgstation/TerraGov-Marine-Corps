@@ -749,7 +749,6 @@
 // ***************************************
 // *********** Corrosive Acid
 // ***************************************
-
 /datum/action/ability/activable/xeno/corrosive_acid
 	name = "Corrosive Acid"
 	action_icon_state = "corrosive_acid"
@@ -826,7 +825,6 @@
 // ***************************************
 // *********** Super strong acid
 // ***************************************
-
 /datum/action/ability/activable/xeno/corrosive_acid/strong
 	name = "Corrosive Acid"
 	ability_cost = 200
@@ -1475,7 +1473,7 @@
 		personal_statistics.cocooned++
 
 /////////////////////////////////
-// blessing Menu
+// Blessing Menu
 /////////////////////////////////
 /datum/action/ability/xeno_action/blessing_menu
 	name = "Mothers Blessings"
@@ -1493,3 +1491,87 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	X.hive.purchases.interact(X)
 	return succeed_activate()
+
+// ***************************************
+// *********** Tail sweep
+// ***************************************
+/datum/action/ability/xeno_action/tail_sweep
+	name = "Tail Sweep"
+	action_icon_state = "tail_sweep"
+	desc = "Hit all adjacent units around you, knocking them away and down."
+	ability_cost = 35
+	use_state_flags = ABILITY_USE_CRESTED
+	cooldown_duration = 12 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_SWEEP,
+	)
+
+/datum/action/ability/xeno_action/tail_sweep/can_use_action(silent, override_flags)
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.crest_defense && X.plasma_stored < (ability_cost * 2))
+		to_chat(X, span_xenowarning("We don't have enough plasma, we need [(ability_cost * 2) - X.plasma_stored] more plasma!"))
+		return FALSE
+
+/datum/action/ability/xeno_action/tail_sweep/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+
+	GLOB.round_statistics.defender_tail_sweeps++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweeps")
+	X.visible_message(span_xenowarning("\The [X] sweeps its tail in a wide circle!"), \
+	span_xenowarning("We sweep our tail in a wide circle!"))
+
+	X.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX
+	X.spin(4, 1)
+	X.enable_throw_parry(0.6 SECONDS)
+	playsound(X,pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
+
+	var/sweep_range = 1
+	var/list/L = orange(sweep_range, X)		// Not actually the fruit
+
+	for (var/mob/living/carbon/human/H in L)
+		if(H.stat == DEAD || !X.Adjacent(H))
+			continue
+		H.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX; motion blur
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/atom, remove_filter), "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
+		var/damage = X.xeno_caste.melee_damage
+		var/affecting = H.get_limb(ran_zone(null, 0))
+		if(!affecting) //Still nothing??
+			affecting = H.get_limb("chest") //Gotta have a torso?!
+		H.knockback(X, sweep_range, 4)
+		H.apply_damage(damage, BRUTE, affecting, MELEE)
+		H.apply_damage(damage, STAMINA, updating_health = TRUE)
+		H.Paralyze(0.5 SECONDS) //trip and go
+		GLOB.round_statistics.defender_tail_sweep_hits++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
+		shake_camera(H, 2, 1)
+
+		to_chat(H, span_xenowarning("We are struck by \the [X]'s tail sweep!"))
+		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
+
+	addtimer(CALLBACK(X, TYPE_PROC_REF(/atom, remove_filter), "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
+	succeed_activate()
+	if(X.crest_defense)
+		X.use_plasma(ability_cost)
+	add_cooldown()
+
+/datum/action/ability/xeno_action/tail_sweep/on_cooldown_finish()
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, span_notice("We gather enough strength to tail sweep again."))
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	return ..()
+
+/datum/action/ability/xeno_action/tail_sweep/ai_should_start_consider()
+	return TRUE
+
+/datum/action/ability/xeno_action/tail_sweep/ai_should_use(atom/target)
+	if(!iscarbon(target))
+		return FALSE
+	if(get_dist(target, owner) > 1)
+		return FALSE
+	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
+	return TRUE

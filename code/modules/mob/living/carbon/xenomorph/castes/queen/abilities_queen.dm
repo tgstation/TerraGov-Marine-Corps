@@ -521,3 +521,11 @@
 	scale = 0.8
 	friction = generator(GEN_NUM, 0.1, 0.15)
 	spin = generator(GEN_NUM, -20, 20)
+
+// ***************************************
+// *********** Queen tail sweep
+// ***************************************
+/datum/action/ability/xeno_action/tail_sweep/queen
+	action_icon_state = "tail_sweep"
+	var/swipe_stun_duration = 0.1 SECONDS
+
