@@ -2564,6 +2564,7 @@
 	pixel_x = 9;
 	pixel_y = 15
 	},
+/obj/item/storage/fancy/cigar,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "dIg" = (
@@ -5337,10 +5338,6 @@
 /obj/item/reagent_containers/food/snacks/chips,
 /turf/open/floor/grimy,
 /area/centcom/valhalla)
-"hTv" = (
-/obj/machinery/marine_selector/clothes/commander/valhalla,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "hTO" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -6243,7 +6240,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/exterior)
+/area/centcom/valhalla)
 "jvi" = (
 /obj/effect/turf_decal/sandedge/corner2,
 /turf/open/floor/plating,
@@ -10150,9 +10147,6 @@
 /area/centcom/valhalla)
 "ppm" = (
 /obj/machinery/vending/armor_supply/valhalla,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "ppW" = (
@@ -21736,8 +21730,8 @@ voa
 oYw
 cbS
 loD
-loD
-loD
+voa
+voa
 loD
 ogJ
 loD
@@ -21874,8 +21868,8 @@ wqU
 tWP
 loD
 loD
-lYp
-hTv
+loD
+loD
 loD
 ogS
 pdz
@@ -22149,7 +22143,7 @@ llp
 wqU
 kjb
 kmz
-lYp
+voa
 lYp
 oJr
 loD
@@ -22976,7 +22970,7 @@ aWz
 llp
 wqU
 tWP
-loD
+bRv
 loD
 ger
 loD
