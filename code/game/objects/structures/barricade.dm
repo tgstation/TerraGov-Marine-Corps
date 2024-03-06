@@ -1090,7 +1090,7 @@
 ///Dissassembles the device
 /obj/structure/barricade/metal/deployable/proc/disassemble(mob/user)
 	if(CHECK_BITFIELD(internal_shield.flags_item, DEPLOYED_NO_PICKUP))
-		balloon_alert(user, "cannot be disassembled")
+		balloon_alert(user, "Cannot disassemble")
 		return
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 

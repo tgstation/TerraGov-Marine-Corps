@@ -39,7 +39,7 @@
 			activable_ability.select()
 			break
 
-	if(queen_chosen_lead)
+	if(xeno_flags & XENO_LEADER)
 		give_rally_abilities() //Give them back their rally hive ability
 
 	if(current_aura) //Updates pheromone strength

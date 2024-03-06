@@ -225,10 +225,11 @@
 	clean_ui_user()
 
 /// Set ui_user to null to prevent hard del
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/clean_ui_user()
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/clean_ui_user(datum/source)
 	SIGNAL_HANDLER
 	if(ui_user)
-		remove_eye_control(ui_user)
+		SStgui.close_user_uis(ui_user, src) //Close the tadpole UI
+		remove_eye_control(ui_user) //Boot the user out of the camera system
 		UnregisterSignal(ui_user, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
 		ui_user = null
 
@@ -279,10 +280,13 @@
 	if(!origin.placeLandingSpot(target))
 		to_chat(owner, span_warning("You cannot land here."))
 		return
+	if(is_ground_level(origin.z)) //Safety check to prevent instant transmission
+		to_chat(owner, span_warning("The shuttle can't move while docked on the planet"))
+		return
 	origin.shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
 	origin.next_fly_state = SHUTTLE_ON_GROUND
 	origin.open_prompt = FALSE
-	origin.clean_ui_user()
+	SStgui.close_user_uis(C, origin)
 	origin.shuttle_port.set_mode(SHUTTLE_CALL)
 	origin.last_valid_ground_port = origin.my_port
 	SSshuttle.moveShuttleToDock(origin.shuttleId, origin.my_port, TRUE)

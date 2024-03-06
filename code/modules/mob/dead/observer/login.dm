@@ -37,7 +37,7 @@
 
 	for(var/path in subtypesof(/datum/action/observer_action))
 		if(!actions_by_path[path])
-			var/datum/action/observer_action/A = new path()
+			var/datum/action/observer_action/A = new path(src)
 			A.give_action(src)
 	if(!SSticker.mode)
 		RegisterSignal(SSdcs, COMSIG_GLOB_GAMEMODE_LOADED, PROC_REF(load_ghost_gamemode_actions))
@@ -47,7 +47,7 @@
 	client.AddComponent(/datum/component/larva_queue)
 
 	if(!actions_by_path[/datum/action/minimap/observer])
-		var/datum/action/minimap/observer/mini = new
+		var/datum/action/minimap/observer/mini = new(src)
 		mini.give_action(src)
 
 	if(length(GLOB.offered_mob_list))
@@ -59,5 +59,5 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_GAMEMODE_LOADED)
 	for(var/path in SSticker.mode.ghost_verbs())
 		if(!actions_by_path[path])
-			var/datum/action/action = new path()
+			var/datum/action/action = new path(src)
 			action.give_action(src)

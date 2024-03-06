@@ -55,7 +55,7 @@
 	name = "Defib gloves"
 	desc = "Advanced medical gloves, these include small electrodes to defibrilate a patiant. No more bulky units!"
 	purchase_cost = 50
-	item_typepath = /obj/item/defibrillator/gloves
+	item_typepath = /obj/item/clothing/gloves/defibrillator
 	jobs_supported = list(SQUAD_CORPSMAN)
 
 //engineer

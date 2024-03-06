@@ -17,7 +17,7 @@
 	hive?.on_xeno_death(src)
 	hive?.update_tier_limits() //Update our tier limits.
 
-	if(is_zoomed)
+	if(xeno_flags & XENO_ZOOMED)
 		zoom_out()
 
 	if(GLOB.xeno_stat_multiplicator_buff == 1) //if autobalance is on, it won't equal 1, so xeno respawn timer is not set

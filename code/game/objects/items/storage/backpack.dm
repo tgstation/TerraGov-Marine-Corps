@@ -330,13 +330,18 @@
 		icon_state += "_0"
 
 /obj/item/storage/backpack/marine/corpsman/MouseDrop_T(obj/item/W, mob/living/user) //Dragging the defib/power cell onto the backpack will trigger its special functionality.
+	var/obj/item/defibrillator/defib
 	if(istype(W, /obj/item/defibrillator))
+		defib = W
+	else if(istype(W, /obj/item/clothing/gloves/defibrillator))
+		var/obj/item/clothing/gloves/defibrillator/defib_gloves = W
+		defib = defib_gloves.internal_defib
+	if(defib)
 		if(cell)
-			var/obj/item/defibrillator/D = W
-			var/charge_difference = D.dcell.maxcharge - D.dcell.charge
+			var/charge_difference = defib.dcell.maxcharge - defib.dcell.charge
 			if(charge_difference) //If the defib has less than max charge, recharge it.
 				use_charge(user, charge_difference) //consume an appropriate amount of charge
-				D.dcell.charge += min(charge_difference, cell.charge) //Recharge the defibrillator battery with the lower of the difference between its present and max cap, or the remaining charge
+				defib.dcell.charge += min(charge_difference, cell.charge) //Recharge the defibrillator battery with the lower of the difference between its present and max cap, or the remaining charge
 			else
 				to_chat(user, span_warning("This defibrillator is already at maximum charge!"))
 		else
