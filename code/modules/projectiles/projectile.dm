@@ -55,11 +55,15 @@
 	var/p_x = 16
 	///the pixel y location of the tile that the player clicked. Default is the center
 	var/p_y = 16
-	//Pixel location in absolute coordinates. This is (((x - 1) * 32) + 16 + pixel_x)
-	//These values are floats, not integers. They need to be converted through CEILING or such when translated to relative pixel coordinates.
-	///Projectile X coordinate
+	/**
+	*Pixel location in absolute coordinates. This is (((x - 1) * 32) + 16 + pixel_x)
+	*These values are floats, not integers. They need to be converted through CEILING or such when translated to relative pixel coordinates.
+	*/
 	var/apx
-	///Projectile Y coordinate
+	/**
+	*Pixel location in absolute coordinates. This is (((y - 1) * 32) + 16 + pixel_y)
+	*These values are floats, not integers. They need to be converted through CEILING or such when translated to relative pixel coordinates.
+	*/
 	var/apy
 
 	///The object which shot us
