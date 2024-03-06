@@ -1542,7 +1542,8 @@
 		H.knockback(X, sweep_range, 4)
 		H.apply_damage(damage, BRUTE, affecting, MELEE)
 		H.apply_damage(damage, STAMINA, updating_health = TRUE)
-		H.Paralyze(0.5 SECONDS) //trip and go
+		var/swipe_stun_duration = 0.5 SECONDS
+		H.Paralyze(swipe_stun_duration) //trip and go
 		GLOB.round_statistics.defender_tail_sweep_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
 		shake_camera(H, 2, 1)
