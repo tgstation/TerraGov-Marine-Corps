@@ -1451,6 +1451,7 @@
 			/obj/item/explosive/grenade/smokebomb/acid = -1,
 			/obj/item/explosive/grenade/smokebomb/satrapine = -1,
 			/obj/item/explosive/grenade/smokebomb/drain = -1,
+			/obj/item/explosive/grenade/chem_grenade/cleaner = -1,
 			/obj/item/weapon/gun/rifle/m412l1_hpr = -1,
 			/obj/item/ammo_magazine/m412l1_hpr = -1,
 			/obj/item/weapon/gun/rifle/famas = -1,
