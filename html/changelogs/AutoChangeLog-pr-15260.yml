@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Campaign: Some loadout additions and tweaks"
-  - bugfix: "fixed gorgon armour being unable to equip overclocked shield modules"
