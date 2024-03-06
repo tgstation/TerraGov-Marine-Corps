@@ -306,6 +306,9 @@
 	. = ..()
 	if(interior) // handled by gun breech
 		return
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		balloon_alert(user, "not enough skill")
+		return
 	if(!primary_weapon)
 		balloon_alert(user, "no primary")
 		return
@@ -328,6 +331,9 @@
 /obj/vehicle/sealed/armored/attack_hand_alternate(mob/living/user)
 	. = ..()
 	if(interior) // handled by gun breech
+		return
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		balloon_alert(user, "not enough skill")
 		return
 	if(!secondary_weapon)
 		balloon_alert(user, "no secondary")
@@ -389,6 +395,9 @@
 
 /obj/vehicle/sealed/armored/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		balloon_alert(user, "not enough skill")
+		return
 	if(istype(I, /obj/item/armored_weapon))
 		var/obj/item/armored_weapon/gun = I
 		if(!(gun.weapon_slot & MODULE_SECONDARY))
@@ -438,6 +447,9 @@
 
 /obj/vehicle/sealed/armored/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		balloon_alert(user, "not enough skill")
+		return
 	if(!primary_weapon)
 		balloon_alert(user, "no primary weapon")
 		return
@@ -451,6 +463,9 @@
 
 /obj/vehicle/sealed/armored/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		balloon_alert(user, "not enough skill")
+		return
 	if(!secondary_weapon)
 		balloon_alert(user, "no secondary weapon")
 		return
@@ -464,6 +479,9 @@
 
 /obj/vehicle/sealed/armored/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		balloon_alert(user, "not enough skill")
+		return
 	if(!driver_utility_module)
 		balloon_alert(user, "no driver utility module")
 		return
