@@ -86,7 +86,7 @@
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/holster
 	shoes = /obj/item/clothing/shoes/veteran/pmc
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc
-	gloves = /obj/item/defibrillator/gloves
+	gloves = /obj/item/clothing/gloves/defibrillator
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc
 	mask = /obj/item/clothing/mask/gas/pmc
 	glasses = /obj/item/clothing/glasses/hud/health

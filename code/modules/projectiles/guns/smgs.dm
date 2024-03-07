@@ -303,8 +303,6 @@
 	aim_slowdown = 0.15
 	burst_amount = 3
 	akimbo_additional_delay = 0.4
-	upper_akimbo_accuracy = 5
-	lower_akimbo_accuracy = 3
 	damage_falloff_mult = 0.9
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 1
