@@ -192,7 +192,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			continue
 		victim.visible_message(span_danger("[victim] is hit by backlash from \a [proj.name]!"),
 			isxeno(victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_highdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
-		victim.apply_damage(proj.damage * proj.airburst_multiplier, proj.ammo.damage_type, blocked = armor_type, updating_health = TRUE)
+		victim.apply_damage(proj.damage * airburst_multiplier, proj.ammo.damage_type, blocked = armor_type, updating_health = TRUE)
 
 ///handles the probability of a projectile hit to trigger fire_burst, based off actual damage done
 /datum/ammo/proc/deflagrate(atom/target, obj/projectile/proj)

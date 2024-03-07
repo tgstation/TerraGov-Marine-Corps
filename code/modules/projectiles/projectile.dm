@@ -90,10 +90,6 @@
 	///Modifies projectile damage by a % when a marine gets passed, but not hit
 	var/damage_marine_falloff = 0
 
-	var/scatter = 0 //Chance of scattering, also maximum amount scattered. High variance.
-	///damage airburst inflicts, as a multiplier of proj.damage
-	var/airburst_multiplier = 0
-
 	/// The iff signal that will be compared to the target's one, to apply iff if needed
 	var/iff_signal = NONE
 	///How far the projectile has currently travelled
@@ -174,8 +170,6 @@
 	damage = ammo.damage + bonus_damage //Mainly for emitters.
 	penetration = ammo.penetration
 	sundering = ammo.sundering
-	scatter = ammo.scatter
-	airburst_multiplier = ammo.airburst_multiplier
 	accuracy   += ammo.accuracy
 	accuracy   *= rand(95 - ammo.accuracy_var_low, 105 + ammo.accuracy_var_high) * 0.01 //Rand only works with integers.
 	damage_falloff = ammo.damage_falloff
@@ -743,7 +737,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	//We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	var/hit_chance = proj.accuracy
-	BULLET_DEBUG("Base accuracy is <b>[hit_chance]; scatter:[proj.scatter]; distance:[proj.distance_travelled]</b>")
+	BULLET_DEBUG("Base accuracy is <b>[hit_chance]; distance:[proj.distance_travelled]</b>")
 
 	hit_chance += (mob_size - 1) * 20 //You're easy to hit when you're swoll, hard to hit when you're a manlet
 
