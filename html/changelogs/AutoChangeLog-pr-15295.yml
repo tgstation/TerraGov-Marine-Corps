@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Fixed hold orders rounding certain incoming damage down to 0, such as weather"
