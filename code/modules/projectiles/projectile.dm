@@ -66,15 +66,15 @@
 	*/
 	var/apy
 
-	///The object which shot us
-	var/atom/shot_from //todo: Shot_from and firer are heavily misused, need a cleanup, for example a mech should have firer = the occupant, shot_from as the mech
+	///The atom which shot us i.e. a gun or xeno
+	var/atom/shot_from
 	///the projectile's starting turf
 	var/turf/starting_turf
 	///the original target clicked
 	var/atom/original_target
 	///the original target's starting turf
 	var/turf/original_target_turf
-	///The mob that fired this projectile, if any
+	///The mob responsible for firing this projectile, if any
 	var/mob/living/firer
 	///List of border movable atoms to check for when exiting a turf.
 	var/list/atom/movable/uncross_scheduled = list()
