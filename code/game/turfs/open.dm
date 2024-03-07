@@ -295,15 +295,15 @@
 /turf/open/lavaland/catwalk/built
 	var/deconstructing = FALSE
 
-/turf/open/lavaland/catwalk/built/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/turf/open/lavaland/catwalk/built/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
-	if(X.a_intent != INTENT_HARM)
+	if(xeno_attacker.a_intent != INTENT_HARM)
 		return
 	if(deconstructing)
 		return
 	deconstructing = TRUE
-	if(!do_after(X, 10 SECONDS, NONE, src, BUSY_ICON_BUILD))
+	if(!do_after(xeno_attacker, 10 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		deconstructing = FALSE
 		return
 	deconstructing = FALSE
