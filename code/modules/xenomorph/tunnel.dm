@@ -30,7 +30,7 @@ TUNNEL
 	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
 		xeno_tac_hud.add_to_hud(src)
 	hud_set_xeno_tunnel()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xenotunnel"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xenotunnel", VERY_HIGH_FLOAT_LAYER))
 
 /obj/structure/xeno/tunnel/Destroy()
 	var/turf/drop_loc = get_turf(src)
