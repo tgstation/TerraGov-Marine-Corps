@@ -218,18 +218,19 @@
 	qdel(src)
 
 
-/proc/flame_radius(radius = 1, turf/epicenter, burn_intensity = 25, burn_duration = 25, burn_damage = 25, fire_stacks = 15, int_var = 0.5, dur_var = 0.5, colour = "red") //~Art updated fire.
+/proc/flame_radius(radius = 1, turf/epicenter, burn_intensity = 25, burn_duration = 25, burn_damage = 25, fire_stacks = 15, colour = "red") //~Art updated fire.
 	if(!isturf(epicenter))
 		CRASH("flame_radius used without a valid turf parameter")
 	radius = clamp(radius, 1, 50) //Sanitize inputs
-	int_var = clamp(int_var, 0.1,0.5)
-	dur_var = clamp(int_var, 0.1,0.5)
-	fire_stacks = randfloat(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + randfloat(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
-	burn_damage = randfloat(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + randfloat(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 
 	for(var/t in filled_turfs(epicenter, radius, "circle", air_pass = TRUE))
 		var/turf/turf_to_flame = t
-		turf_to_flame.ignite(randfloat(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + randfloat(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), randfloat(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + randfloat(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, burn_damage, fire_stacks)
+		// Slight randomization on how long a fire last so that a sea of fire does not delete instantly at the same time. Flat for high durations, % for low.
+		if(burn_duration >= 10)
+			burn_duration = burn_duration - randfloat(0, 2)
+		else
+			burn_duration = randfloat(burn_duration, burn_duration*0.95)
+		turf_to_flame.ignite(burn_duration, burn_intensity, colour, burn_damage, fire_stacks)
 
 /obj/item/explosive/grenade/incendiary/som
 	name = "\improper S30-I incendiary grenade"
@@ -411,7 +412,7 @@
 	smoke.set_up(6, loc, 7)
 	smoke.start()
 	flame_radius(4, get_turf(src))
-	flame_radius(1, get_turf(src), burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)	//The closer to the middle you are the more it hurts
+	flame_radius(1, get_turf(src), burn_intensity = 75, burn_duration = 45, burn_damage = 15, fire_stacks = 75)	//The closer to the middle you are the more it hurts
 	qdel(src)
 
 /obj/item/explosive/grenade/phosphorus/activate(mob/user)

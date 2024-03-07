@@ -378,7 +378,7 @@
 /obj/structure/ob_ammo/warhead/incendiary/warhead_impact(turf/target, inaccuracy_amt = 0)
 	. = ..()
 	var/range_num = max(15 - inaccuracy_amt, 12)
-	flame_radius(range_num, target,	burn_intensity = 36, burn_duration = 40, colour = "blue")
+	flame_radius(range_num, target,	burn_intensity = 46, burn_duration = 40, colour = "blue")
 	var/datum/effect_system/smoke_spread/phosphorus/warcrime = new
 	warcrime.set_up(17, target, 20)
 	warcrime.start()
