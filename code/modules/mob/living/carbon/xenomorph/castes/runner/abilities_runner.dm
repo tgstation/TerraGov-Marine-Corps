@@ -235,7 +235,7 @@
 	if(proj.original_target == xeno_owner && proj.distance_travelled < 2) //Pointblank shot.
 		return FALSE
 	if(!xeno_owner.fire_stacks)
-		evasion_stacks += proj.damage //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes
+		evasion_stacks += proj.damage //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes, fire negates this
 	evasion_dodge_fx(proj)
 	return COMPONENT_PROJECTILE_DODGE
 
