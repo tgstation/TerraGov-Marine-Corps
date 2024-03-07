@@ -493,7 +493,7 @@
 	var/resin_choice = show_radial_menu(owner, owner, GLOB.resin_special_images_list, radius = 35)
 	if(!resin_choice)
 		return
-	var/i = GLOB.resin_images_list.Find(resin_choice)
+	var/i = GLOB.resin_special_images_list.Find(resin_choice)
 	X.selected_special_resin = buildable_special_structures[i]
 	var/atom/A = X.selected_special_resin
 	X.balloon_alert(X, initial(A.name))
@@ -1463,7 +1463,7 @@
 
 /mob/living/carbon/xenomorph/proc/add_abilities()
 	for(var/action_path in xeno_caste.actions)
-		var/datum/action/ability/xeno_action/action = new action_path()
+		var/datum/action/ability/xeno_action/action = new action_path(src)
 		if(!SSticker.mode || SSticker.mode.flags_xeno_abilities & action.gamemode_flags)
 			action.give_action(src)
 

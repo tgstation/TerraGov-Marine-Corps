@@ -41,10 +41,6 @@
 #define DEFILER_OZELOMELYN "Ozelomelyn"
 #define DEFILER_APHROTOXIN "Aphrotoxin"
 
-//Baneling specific reagent define
-#define BANELING_ACID "Sulphuric acid"
-#define BANELING_ACID_ICON "spray_acid"
-
 #define TRAP_HUGGER "hugger"
 #define TRAP_SMOKE_NEURO "neurotoxin gas"
 #define TRAP_SMOKE_APHRO "aphrotoxin gas"
@@ -111,16 +107,6 @@ GLOBAL_LIST_INIT(defiler_toxins_typecache_list, typecacheof(list(
 		/datum/reagent/toxin/xeno_aphrotoxin,
 		/datum/status_effect/stacking/intoxicated,
 		)))
-
-//List of Baneling chemical types available for selection
-GLOBAL_LIST_INIT(baneling_chem_type_list, list(
-		/datum/reagent/toxin/xeno_ozelomelyn,
-		/datum/reagent/toxin/xeno_hemodile,
-		/datum/reagent/toxin/xeno_transvitox,
-		/datum/reagent/toxin/xeno_neurotoxin,
-		/datum/reagent/toxin/xeno_aphrotoxin,
-		/datum/reagent/toxin/acid,
-		))
 
 //List of plant types
 GLOBAL_LIST_INIT(plant_type_list, list(

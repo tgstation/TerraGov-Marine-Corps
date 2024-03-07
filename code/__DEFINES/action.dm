@@ -20,8 +20,6 @@
 // /datum/action/ability/xeno_action. Additional references
 /// A mutable appearance to add the "empowered" frame around the edges
 #define VREF_MUTABLE_EMPOWERED_FRAME "VREF_EMPOWERED_FRAME"
-/// A reference for baneling's respawn charges
-#define VREF_MUTABLE_BANE_CHARGES "VREF_BANE_CHARGES"
 /// A reference for the build counter of a xeno
 #define VREF_MUTABLE_BUILDING_COUNTER "VREF_BUILD_COUNTER"
 //A reference for the special resin build counter of a xeno

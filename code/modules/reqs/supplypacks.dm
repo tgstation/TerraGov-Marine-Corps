@@ -1074,7 +1074,7 @@ ARMOR
 
 /datum/supply_packs/armor/scout_cloak
 	name = "NT-Cyberghost"
-	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak/scout)
+	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak)
 	cost = 500
 
 /datum/supply_packs/armor/sniper_cloak
@@ -1212,6 +1212,21 @@ CLOTHING
 	name = "Jetpack"
 	contains = list(/obj/item/jetpack_marine)
 	cost = 120
+
+/datum/supply_packs/clothing/night_vision
+	name = "BE-47 Night Vision Goggles"
+	contains = list(/obj/item/clothing/glasses/night_vision)
+	cost = 500
+
+/datum/supply_packs/clothing/night_vision_mounted
+	name = "BE-35 Night Vision Module"
+	contains = list(/obj/item/clothing/glasses/night_vision/mounted)
+	cost = 300
+
+/datum/supply_packs/clothing/night_vision_batteries
+	name = "Double pack of night vision batteries"
+	contains = list(/obj/item/cell/night_vision_battery, /obj/item/cell/night_vision_battery)
+	cost = 100
 
 /*******************************************************************************
 MEDICAL

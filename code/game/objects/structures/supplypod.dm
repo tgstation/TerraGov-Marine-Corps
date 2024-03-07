@@ -75,6 +75,9 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	. = ..()
 	setStyle(style, TRUE)
 
+/obj/structure/closet/supplypod/update_icon_state()
+	. = ..()
+	icon_state = GLOB.pod_styles[style][POD_ICON_STATE]
 
 /obj/structure/closet/supplypod/update_overlays()
 	. = ..()
@@ -93,7 +96,6 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 		setStyle(STYLE_CENTCOM)
 		return
 	style = chosenStyle
-	icon_state = GLOB.pod_styles[chosenStyle][POD_ICON_STATE]
 	if(!adminNamed)
 		name = GLOB.pod_styles[chosenStyle][POD_NAME]
 		desc = GLOB.pod_styles[chosenStyle][POD_DESC]

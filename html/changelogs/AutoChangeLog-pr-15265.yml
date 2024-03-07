@@ -1,0 +1,5 @@
+author: "coldironwarrior"
+delete-after: True
+changes:
+  - bugfix: "fix scout droids not having nightvision"
+  - bugfix: "fixes AIs getting permanent nightvision after deploying to their scout droid"

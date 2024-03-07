@@ -74,6 +74,7 @@
 	var/mob/living/victim = pulling
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 	setGrabState(grab_state + 1)
+	victim.grab_resist_level -= 1
 	switch(grab_state)
 		if(GRAB_AGGRESSIVE)
 			log_combat(src, victim, "aggressive grabbed")

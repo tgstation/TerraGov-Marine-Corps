@@ -287,7 +287,7 @@
 	///Hive datum we belong to
 	var/datum/hive_status/hive
 	///Xeno mob specific flags
-	var/xeno_flags = NONE //TODO: There are loads of vars below that should be flags
+	var/xeno_flags = NONE
 
 	///State tracking of hive status toggles
 	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
@@ -334,13 +334,10 @@
 	///Increases by xeno_caste.regen_ramp_amount every decisecond. If you want to balance this, look at the xeno_caste defines mentioned above.
 	var/regen_power = 0
 
-	var/is_zoomed = 0
 	var/zoom_turf = null
 
 	///Type of weeds the xeno is standing on, null when not on weeds
 	var/obj/alien/weeds/loc_weeds_type
-	///Bonus or pen to time in between attacks. + makes slashes slower.
-	var/attack_delay = 0
 	///This will track their "tier" to restrict/limit evolutions
 	var/tier = XENO_TIER_ONE
 	///which resin structure to build when we secrete resin
@@ -364,10 +361,6 @@
 
 	///Multiplicative melee damage modifier; referenced by attack_alien.dm, most notably attack_alien_harm
 	var/xeno_melee_damage_modifier = 1
-	///whether the xeno mobhud is activated or not.
-	var/xeno_mobhud = FALSE
-	///whether the xeno has been selected by the queen as a leader.
-	var/queen_chosen_lead = FALSE
 
 	//Charge vars
 	///Will the mob charge when moving ? You need the charge verb to change this
@@ -383,10 +376,6 @@
 	// Defender vars
 	var/fortify = 0
 	var/crest_defense = 0
-
-	// Baneling vars
-	/// Respawn charges, each charge makes respawn take 30 seconds. Maximum of 2 charges. If there is no charge the respawn takes 120 seconds.
-	var/stored_charge = 0
 
 	// *** Ravager vars *** //
 	/// when true the rav will not go into crit or take crit damage.
@@ -411,9 +400,6 @@
 
 	///The xenos/silo/nuke currently tracked by the xeno_tracker arrow
 	var/atom/tracked
-
-	///Are we the roony version of this xeno
-	var/is_a_rouny = FALSE
 
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM

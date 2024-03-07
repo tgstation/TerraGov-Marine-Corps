@@ -29,7 +29,7 @@
 	burst_amount = 3
 	recoil_unwielded = 0.5
 	akimbo_additional_delay = 0.2
-	movement_acc_penalty_mult = 3
+	akimbo_scatter_mod = 8
 
 //-------------------------------------------------------
 // MP-19 Machinepistol. It fits here more.
@@ -80,8 +80,7 @@
 	aim_slowdown = 0.15
 	movement_acc_penalty_mult = 2
 
-	upper_akimbo_accuracy = 12
-	lower_akimbo_accuracy = 9
+	akimbo_scatter_mod = 24
 	burst_amount = 5
 	burst_delay = 0.1 SECONDS
 	akimbo_additional_delay = 20 // Literally do not even bother to try
@@ -141,8 +140,6 @@
 	scatter_unwielded = 8
 	aim_slowdown = 0.2
 	burst_amount = 0
-	upper_akimbo_accuracy = 4
-	lower_akimbo_accuracy = 2
 
 	placed_overlay_iconstate = "t90"
 
@@ -210,8 +207,6 @@
 	scatter = 2
 	scatter_unwielded = 11
 	akimbo_additional_delay = 0.4
-	upper_akimbo_accuracy = 5
-	lower_akimbo_accuracy = 3
 
 //-------------------------------------------------------
 //M-25 SMG
@@ -265,8 +260,6 @@
 	aim_slowdown = 0.15
 	burst_amount = 3
 	akimbo_additional_delay = 0.4
-	upper_akimbo_accuracy = 5
-	lower_akimbo_accuracy = 3
 	damage_falloff_mult = 0.9
 
 /obj/item/weapon/gun/smg/m25/holstered
@@ -274,6 +267,12 @@
 
 /obj/item/weapon/gun/smg/m25/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/compensator, /obj/item/attachable/gyro)
+
+/obj/item/weapon/gun/smg/m25/vgrip
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/compensator, /obj/item/attachable/verticalgrip)
+
+/obj/item/weapon/gun/smg/m25/plasma
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/compensator, /obj/item/weapon/gun/pistol/plasma_pistol)
 
 /obj/item/weapon/gun/smg/m25/elite
 	name = "\improper SMG-25B2 submachinegun"
@@ -549,8 +548,6 @@
 	burst_scatter_mult = 15
 
 	akimbo_additional_delay = 0.7
-	upper_akimbo_accuracy = 5
-	lower_akimbo_accuracy = 3
 
 /obj/item/weapon/gun/smg/som/scout
 	starting_attachment_types = list(
@@ -647,9 +644,6 @@
 	scatter_unwielded = 5
 	aim_slowdown = 0.2
 	wield_delay = 0.55 SECONDS
-
-	upper_akimbo_accuracy = 5
-	lower_akimbo_accuracy = 3
 
 /obj/item/weapon/gun/smg/icc_machinepistol/medic
 	starting_attachment_types = list(/obj/item/attachable/foldable/icc_machinepistol, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)

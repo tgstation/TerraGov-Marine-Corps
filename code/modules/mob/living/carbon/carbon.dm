@@ -16,7 +16,7 @@
 		to_chat(src,"<b>[span_deadsay("<p style='font-size:1.5em'>[species.special_death_message]</p>")]</b>")
 	return ..()
 
-/mob/living/carbon/Moved(oldLoc, dir)
+/mob/living/carbon/Moved(atom/old_loc, movement_dir, forced = FALSE, list/old_locs)
 	. = ..()
 	if(nutrition && stat != DEAD)
 		adjust_nutrition(-HUNGER_FACTOR * 0.1 * ((m_intent == MOVE_INTENT_RUN) ? 2 : 1))
@@ -365,6 +365,14 @@
 				see_invisible = min(G.invis_view, see_invisible)
 			if(!isnull(G.lighting_alpha))
 				lighting_alpha = min(lighting_alpha, G.lighting_alpha)
+			if(G.tint && !fullscreens["glasses"])
+				var/atom/movable/screen/fullscreen/screen = overlay_fullscreen("glasses", /atom/movable/screen/fullscreen/flash)
+				screen.color = G.tint
+				screen.alpha = 50
+		else
+			clear_fullscreen("glasses")
+	else
+		clear_fullscreen("glasses")
 
 	if(see_override)
 		see_invisible = see_override

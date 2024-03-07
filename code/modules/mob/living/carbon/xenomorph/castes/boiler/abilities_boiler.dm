@@ -36,14 +36,14 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 /datum/action/ability/xeno_action/toggle_long_range/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	if(X.is_zoomed)
+	if(X.xeno_flags & XENO_ZOOMED)
 		X.zoom_out()
 		X.visible_message(span_notice("[X] stops looking off into the distance."), \
 		span_notice("We stop looking off into the distance."), null, 5)
 	else
 		X.visible_message(span_notice("[X] starts looking off into the distance."), \
 			span_notice("We start focusing your sight to look off into the distance."), null, 5)
-		if(!do_after(X, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || X.is_zoomed)
+		if(!do_after(X, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || (X.xeno_flags & XENO_ZOOMED))
 			return
 		X.zoom_in(11)
 		..()
@@ -146,7 +146,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/ability/xeno_action/create_boiler_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 
-	if(X.is_zoomed)
+	if(X.xeno_flags & XENO_ZOOMED)
 		to_chat(X, span_notice("We can not prepare globules as we are now. We must stop concentrating into the distance!"))
 		return
 

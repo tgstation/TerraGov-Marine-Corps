@@ -69,8 +69,7 @@
 	scatter_unwielded = 4
 	recoil = -2
 	recoil_unwielded = -2
-	upper_akimbo_accuracy = 5
-	lower_akimbo_accuracy = 4
+	akimbo_scatter_mod = 8
 
 //-------------------------------------------------------
 //PP-7 Plasma Pistol
@@ -210,7 +209,6 @@
 	accuracy_mult_unwielded = 0.95
 	recoil = -2
 	recoil_unwielded = -2
-	lower_akimbo_accuracy = 2
 
 /obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
 	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/flashlight) //Tacticool
@@ -247,7 +245,6 @@
 	accuracy_mult_unwielded = 0.85
 	damage_mult = 1.15
 	recoil = -2
-	lower_akimbo_accuracy = 2
 
 /obj/item/weapon/gun/pistol/m1911/custom
 	name = "\improper P-1911A1 custom pistol"
@@ -589,7 +586,6 @@
 	aim_slowdown = 0.2
 	scatter = 0
 	scatter_unwielded = 6
-	lower_akimbo_accuracy = 2
 	akimbo_additional_delay = 2
 
 /obj/item/weapon/gun/pistol/vp70/tactical
