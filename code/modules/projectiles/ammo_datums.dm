@@ -1474,6 +1474,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 10
 	sundering = 0.5
 
+/datum/ammo/bullet/minigun/ltaap
+	name = "chaingun bullet"
+	damage = 30
+	penetration = 10
+	sundering = 0
+	damage_falloff = 2
+	accuracy = 80
+
 /datum/ammo/bullet/auto_cannon
 	name = "autocannon high-velocity bullet"
 	hud_state = "minigun"

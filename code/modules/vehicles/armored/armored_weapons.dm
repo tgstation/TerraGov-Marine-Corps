@@ -291,18 +291,37 @@
 
 /obj/item/armored_weapon/secondary_weapon
 	name = "secondary cupola minigun"
-	desc = "A robotically controlled minigun that spws lead. Do not stand in front of it!!"
+	desc = "A robotically controlled minigun that spews lead."
 	icon_state = "cupola"
 	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
-	weapon_slot = MODULE_PRIMARY|MODULE_SECONDARY
+	weapon_slot = MODULE_SECONDARY
 	secondary_equipped_icon = 'icons/obj/armored/3x3/tank_secondary_gun.dmi'
 	ammo = /obj/item/ammo_magazine/tank/secondary_cupola
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/secondary_cupola)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	projectile_delay = 2
+	variance = 5
 	rearm_time = 1 SECONDS
+	maximum_magazines = 5
+	hud_state_empty = "rifle_empty"
+
+/obj/item/armored_weapon/ltaap
+	name = "\improper LTA-AP chaingun"
+	desc = "A hefty, large caliber chaingun"
+	icon_state = "ltaap_chaingun"
+	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
+	windup_delay = 5
+	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
+	weapon_slot = MODULE_PRIMARY
+	secondary_equipped_icon = 'icons/obj/armored/3x3/tank_secondary_gun.dmi'
+	ammo = /obj/item/ammo_magazine/tank/ltaap_chaingun
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	variance = 15
+	projectile_delay = 0.1 SECONDS
+	rearm_time = 3 SECONDS
 	maximum_magazines = 5
 	hud_state_empty = "rifle_empty"
 
