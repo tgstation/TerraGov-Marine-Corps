@@ -5,11 +5,13 @@
 	name = "Baneling Explode"
 	action_icon_state = "baneling_explode"
 	desc = "Explode and spread dangerous toxins to hinder or kill your foes. You will respawn in your pod after you detonate, should your pod be planted. By staying alive, you gain charges to respawn quicker."
+
 	var/static/list/baneling_smoke_list = list(
 		/datum/reagent/toxin/xeno_neurotoxin = /datum/effect_system/smoke_spread/xeno/neuro/medium,
 		/datum/reagent/toxin/xeno_hemodile = /datum/effect_system/smoke_spread/xeno/hemodile,
 		/datum/reagent/toxin/xeno_transvitox = /datum/effect_system/smoke_spread/xeno/transvitox,
 		/datum/reagent/toxin/xeno_ozelomelyn = /datum/effect_system/smoke_spread/xeno/ozelomelyn,
+		/datum/reagent/toxin/xeno_aphrotoxin = /datum/effect_system/smoke_spread/xeno/aphrotoxin,
 		/datum/reagent/toxin/acid = /datum/effect_system/smoke_spread/xeno/acid,
 	)
 	keybinding_signals = list(
@@ -45,13 +47,12 @@
 	return ..()
 
 
-/datum/action/ability/xeno_action/baneling_explode/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/baneling_explode/can_use_action()
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/datum/action/ability/xeno_action/spawn_pod/pod_action = X.actions_by_path[/datum/action/ability/xeno_action/spawn_pod]
-	if(SSmonitor.gamestate == SHUTTERS_CLOSED && isnull(pod_action?.the_pod))
-		if(!silent)
-			X.balloon_alert(owner, span_notice("Can't explode before shutters without a pod!"))
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && isnull(pod_action.the_pod))
+		X.balloon_alert(owner, span_notice("Can't explode before shutters without a pod!"))
 		return FALSE
 
 /datum/action/ability/xeno_action/baneling_explode/action_activate()
@@ -113,6 +114,7 @@
 		DEFILER_HEMODILE = image('icons/Xeno/actions.dmi', icon_state = DEFILER_HEMODILE),
 		DEFILER_TRANSVITOX = image('icons/Xeno/actions.dmi', icon_state = DEFILER_TRANSVITOX),
 		DEFILER_OZELOMELYN = image('icons/Xeno/actions.dmi', icon_state = DEFILER_OZELOMELYN),
+		DEFILER_APHROTOXIN = image('icons/Xeno/actions.dmi', icon_state = DEFILER_APHROTOXIN),
 		BANELING_ACID = image('icons/Xeno/actions.dmi', icon_state = BANELING_ACID_ICON),
 		)
 	var/toxin_choice = show_radial_menu(owner, owner, reagent_images_list, radius = 48)
@@ -135,6 +137,7 @@
 	name = "Spawn pod"
 	action_icon_state = "spawn_pod"
 	desc = "Spawn a pod that you will respawn inside of upon death. You will NOT respawn if the pod is destroyed!"
+
 	ability_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_SPAWN_POD,
@@ -163,6 +166,7 @@
 	name = "Dash Explosion"
 	action_icon_state = "dash_explosion"
 	desc = "Wind up and charge in a direction, detonating yourself on impact."
+
 	ability_cost = 0
 	///How far can we charge
 	var/range = 6
@@ -173,7 +177,7 @@
 /datum/action/ability/activable/xeno/dash_explosion/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!do_after(X, 1 SECONDS, IGNORE_HELD_ITEM, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, ABILITY_USE_BUSY)))
+	if(!do_after(X, 1 SECONDS, FALSE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, ABILITY_USE_BUSY)))
 		return fail_activate()
 	RegisterSignals(X, list(COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_OBJ_THROW_HIT), PROC_REF(charge_complete))
 	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
