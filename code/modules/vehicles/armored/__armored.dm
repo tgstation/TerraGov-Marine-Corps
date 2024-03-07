@@ -296,6 +296,11 @@
 	UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
 	return ..()
 
+/obj/vehicle/sealed/armored/relaymove(mob/living/user, direction)
+	. = ..()
+	if(!is_driver(user) && is_equipment_controller(user))
+		swivel_turret(null, direction)
+
 /obj/vehicle/sealed/armored/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	for(var/mob/living/carbon/human/crew AS in occupants)
 		if(crew.wear_id?.iff_signal & proj.iff_signal)
@@ -488,8 +493,9 @@
 	// todo maybe make tanks also update the mouse icon?
 
 ///Rotates the cannon overlay
-/obj/vehicle/sealed/armored/proc/swivel_turret(atom/A)
-	var/new_weapon_dir = angle_to_cardinal_dir(Get_Angle(get_turf(src), get_turf(A)))
+/obj/vehicle/sealed/armored/proc/swivel_turret(atom/A, new_weapon_dir)
+	if(!new_weapon_dir)
+		new_weapon_dir = angle_to_cardinal_dir(Get_Angle(get_turf(src), get_turf(A)))
 	if(turret_overlay.dir == new_weapon_dir)
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam
