@@ -9,7 +9,7 @@
 		return
 
 	if(damage_flag)
-		damage_amount = round(modify_by_armor(damage_amount, damage_flag, armour_penetration), DAMAGE_PRECISION)
+		damage_amount = round(modify_by_armor(damage_amount, damage_flag, armour_penetration, null, attack_dir), DAMAGE_PRECISION)
 	if(damage_amount < DAMAGE_PRECISION)
 		return
 	. = damage_amount
