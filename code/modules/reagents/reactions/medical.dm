@@ -177,6 +177,11 @@
 	required_reagents = list(/datum/reagent/medicine/lemoline = 1, /datum/reagent/consumable/larvajelly = 1)
 
 // Cloning chemicals
+/datum/chemical_reaction/dupl_Lemonine
+	name = "Duplicate Lemonine"
+	results = list(/datum/reagent/medicine/lemoline = 2)
+	required_reagents = list(/datum/reagent/virilyth = 5, /datum/reagent/medicine/lemoline = 1) //5 to one Virilyth to Lemonine ratio
+
 /datum/chemical_reaction/dupl_bicaridine
 	name = "Duplicate Bicaridine"
 	results = list(/datum/reagent/medicine/bicaridine = 2)
