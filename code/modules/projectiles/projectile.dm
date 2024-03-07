@@ -74,8 +74,8 @@
 	var/atom/original_target
 	///the original target's starting turf
 	var/turf/original_target_turf
-	///The atom (usually mob) who shot it
-	var/atom/firer
+	///The mob that fired this projectile, if any
+	var/mob/living/firer
 	///List of border movable atoms to check for when exiting a turf.
 	var/list/atom/movable/uncross_scheduled = list()
 	///Actual projectile damage
@@ -182,7 +182,7 @@
 	armor_type = ammo.armor_type
 
 //Target, firer, shot from. Ie the gun
-/obj/projectile/proc/fire_at(atom/target, atom/shooter, atom/source, range, speed, angle, recursivity, suppress_light = FALSE, atom/loc_override = shooter)
+/obj/projectile/proc/fire_at(atom/target, mob/living/shooter, atom/source, range, speed, angle, recursivity, suppress_light = FALSE, atom/loc_override = source)
 	if(!isnull(speed))
 		projectile_speed = speed
 
@@ -301,21 +301,20 @@
 	apx += pixel_x //Update the absolute pixels with the offset.
 	apy += pixel_y
 
-	if(ismob(firer) && !recursivity)
-		var/mob/mob_firer = firer
-		record_projectile_fire(mob_firer)
-		GLOB.round_statistics.total_projectiles_fired[mob_firer.faction]++
-		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectiles_fired[mob_firer.faction]")
+	if(firer && !recursivity)
+		record_projectile_fire(firer)
+		GLOB.round_statistics.total_projectiles_fired[firer.faction]++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectiles_fired[firer.faction]")
 		if(ammo.bonus_projectiles_amount)
-			GLOB.round_statistics.total_projectiles_fired[mob_firer.faction] += ammo.bonus_projectiles_amount
-			SSblackbox.record_feedback("tally", "round_statistics", ammo.bonus_projectiles_amount, "total_projectiles_fired[mob_firer.faction]")
+			GLOB.round_statistics.total_projectiles_fired[firer.faction] += ammo.bonus_projectiles_amount
+			SSblackbox.record_feedback("tally", "round_statistics", ammo.bonus_projectiles_amount, "total_projectiles_fired[firer.faction]")
 
 
 	//If we have the the right kind of ammo, we can fire several projectiles at once.
 	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
 		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle, target)
 
-	if(shooter.Adjacent(target) && PROJECTILE_HIT_CHECK(target, src, null, FALSE, null)) //todo: doesn't take into account piercing projectiles
+	if(source.Adjacent(target) && PROJECTILE_HIT_CHECK(target, src, null, FALSE, null)) //todo: doesn't take into account piercing projectiles
 		target.do_projectile_hit(src)
 		qdel(src)
 		return
@@ -539,7 +538,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					y_pixel_dist_travelled += pixel_moves_until_crossing_x_border * y_offset
 				break
 			if(ammo.flags_ammo_behavior & AMMO_LEAVE_TURF)
-				ammo.on_leave_turf(turf_crossed_by, firer, src)
+				ammo.on_leave_turf(turf_crossed_by, src)
 		if(length(uncross_scheduled)) //Time to exit the last turf entered, if the diagonal movement didn't handle it already.
 			for(var/j in uncross_scheduled)
 				var/atom/movable/thing_to_uncross = j
@@ -558,7 +557,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(end_of_movement)
 				break
 		if(ammo.flags_ammo_behavior & AMMO_LEAVE_TURF)
-			ammo.on_leave_turf(last_processed_turf, firer, src)
+			ammo.on_leave_turf(last_processed_turf, src)
 		x_pixel_dist_travelled += 32 * x_offset
 		y_pixel_dist_travelled += 32 * y_offset
 		last_processed_turf = next_turf
@@ -716,7 +715,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return src == proj.original_target
 
 /obj/vehicle/unmanned/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(proj.firer == src)
+	if(proj.shot_from == src)
 		return FALSE
 	if(iff_signal & proj.iff_signal)
 		proj.damage -= proj.damage*proj.damage_marine_falloff
@@ -748,9 +747,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	hit_chance += (mob_size - 1) * 20 //You're easy to hit when you're swoll, hard to hit when you're a manlet
 
 	///Is the shooter a living mob. Defined before the check as used later as well
-	if(isliving(proj.firer))
-		var/mob/living/shooter_living = proj.firer
-		if(shooter_living.faction == faction)
+	if(proj.firer)
+		if(proj.firer.faction == faction)
 			hit_chance = round(hit_chance*0.85) //You (presumably) aren't trying to shoot your friends
 		var/obj/item/shot_source = proj.shot_from
 		if((!istype(shot_source) || !shot_source.zoom) && !line_of_sight(proj.starting_turf, src, 9)) //if you can't draw LOS within 9 tiles (to accomodate wide screen), AND the source was either not zoomed or not an item(like a xeno)
@@ -880,9 +878,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 
 	//friendly fire reduces the damage of the projectile, so only applies the multiplier if a hit is confirmed
-	if(isliving(proj.firer))
-		var/mob/living/shooter_living = proj.firer
-		if(shooter_living?.faction == faction)
+	if(proj.firer)
+		if(proj.firer?.faction == faction)
 			damage *= proj.friendly_fire_multiplier
 
 		if(iscarbon(proj.firer))
@@ -914,9 +911,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(proj.sundering)
 		adjust_sunder(proj.sundering)
 
-	if(stat != DEAD && isliving(proj.firer))
-		var/mob/living/living_firer = proj.firer
-		living_firer.record_projectile_damage(damage, src)	//Tally up whoever the shooter was
+	if(stat != DEAD && proj.firer)
+		proj.firer.record_projectile_damage(damage, src)	//Tally up whoever the shooter was
 
 	if(damage)
 		if(do_shrapnel_roll(proj, damage))
@@ -950,7 +946,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(effect_icon)
 		src.effect_icon = effect_icon
 
-/obj/projectile/hitscan/fire_at(atom/target, atom/shooter, atom/source, range, speed, angle, recursivity, suppress_light, atom/loc_override = shooter)
+/obj/projectile/hitscan/fire_at(atom/target, mob/living/shooter, atom/source, range, speed, angle, recursivity, suppress_light, atom/loc_override = source)
 	if(!isnull(range))
 		proj_max_range = range
 	if(shooter)
@@ -980,7 +976,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(ammo.bonus_projectiles_amount)
 			ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle, target)
 
-	if(shooter.Adjacent(target) && ismob(target))
+	if(source.Adjacent(target) && ismob(target))
 		var/mob/mob_to_hit = target
 		ammo.on_hit_mob(mob_to_hit, src)
 		mob_to_hit.bullet_act(src)
@@ -1110,7 +1106,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(end_of_movement)
 				break
 			if(ammo.flags_ammo_behavior & AMMO_LEAVE_TURF)
-				ammo.on_leave_turf(turf_crossed_by, firer, src)
+				ammo.on_leave_turf(turf_crossed_by, src)
 		if(length(uncross_scheduled)) //Time to exit the last turf entered, if the diagonal movement didn't handle it already.
 			for(var/atom/movable/thing_to_uncross AS in uncross_scheduled)
 				if(QDELETED(thing_to_uncross))
@@ -1127,7 +1123,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(end_of_movement)
 				break
 		if(ammo.flags_ammo_behavior & AMMO_LEAVE_TURF)
-			ammo.on_leave_turf(last_processed_turf, firer, src)
+			ammo.on_leave_turf(last_processed_turf, src)
 		last_processed_turf = next_turf
 		if(scan_a_turf(next_turf, movement_dir))
 			end_of_movement = TRUE
@@ -1348,7 +1344,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
  * * randomized: bool, if true we randomly pick where we're firing instead of evenly seperated
  * * rotations: how many times to "spin" the rotation. if 0 or less, instead bursts all the bullets at once
  */
-/proc/bullet_burst(atom/source, list/obj/projectile/bullets, atom/firer, fire_sound, range, speed, randomized = FALSE, rotations = -1)
+/proc/bullet_burst(atom/source, list/obj/projectile/bullets, mob/living/firer, fire_sound, range, speed, randomized = FALSE, rotations = -1)
 	var/angle_between_bullets = 0
 	var/current_angle = 0
 
@@ -1361,7 +1357,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			else
 				current_angle += angle_between_bullets
 
-			proj.fire_at(null, firer, source, range, speed, current_angle, loc_override=source)
+			proj.fire_at(null, firer, source, range, speed, current_angle)
 		if(fire_sound)
 			playsound(source, fire_sound, 60, TRUE)
 		return
@@ -1374,7 +1370,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		else
 			current_angle += angle_between_bullets
 
-		proj.fire_at(null, firer, source, range, speed, current_angle, loc_override=source)
+		proj.fire_at(null, firer, source, range, speed, current_angle)
 		if(play_sound % 3 && fire_sound)
 			playsound(source, fire_sound, 60, FALSE)
 		stoplag(1)
