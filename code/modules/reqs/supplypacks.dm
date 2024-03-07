@@ -1042,7 +1042,7 @@ ARMOR
 
 /datum/supply_packs/armor/scout_cloak
 	name = "Scout Cloak"
-	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak/scout)
+	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak)
 	cost = 500
 
 /datum/supply_packs/armor/sniper_cloak
