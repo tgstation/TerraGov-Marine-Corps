@@ -1,0 +1,4 @@
+author: "coldironwarrior"
+delete-after: True
+changes:
+  - balance: "researchers spawn with isotonic pill bottles instead of dexalin bottles in their belts"
