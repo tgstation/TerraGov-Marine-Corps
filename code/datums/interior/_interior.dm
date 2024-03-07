@@ -71,7 +71,7 @@
 	RegisterSignal(enterer, COMSIG_QDELETING, PROC_REF(handle_occupant_del))
 	RegisterSignal(enterer, COMSIG_EXIT_AREA, PROC_REF(handle_area_leave))
 	for(var/datum/action/minimap/user_map in enterer.actions)
-		user_map.override_locator(src)
+		user_map.override_locator(container)
 	occupants += enterer
 	//teleporting the mob is on a case-by-case basis
 
