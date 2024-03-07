@@ -225,12 +225,7 @@
 
 	for(var/t in filled_turfs(epicenter, radius, "circle", air_pass = TRUE))
 		var/turf/turf_to_flame = t
-		// Slight randomization on how long a fire last so that a sea of fire does not delete instantly at the same time. High % for long durations, low % for short.
-		if(burn_duration >= 10)
-			burn_duration = randfloat(burn_duration, burn_duration*0.5)
-		else
-			burn_duration = randfloat(burn_duration, burn_duration*0.95)
-		turf_to_flame.ignite(burn_duration, burn_intensity, colour, burn_damage, fire_stacks)
+		turf_to_flame.ignite(randfloat(burn_duration*0.75, burn_duration), burn_intensity, colour, burn_damage, fire_stacks)
 
 /obj/item/explosive/grenade/incendiary/som
 	name = "\improper S30-I incendiary grenade"
