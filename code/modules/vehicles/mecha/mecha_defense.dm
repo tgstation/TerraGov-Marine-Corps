@@ -85,15 +85,24 @@
 		contents_explosion(severity)
 	if(QDELETED(src))
 		return
+	var/stagger_duration
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(rand(1200, 1800), BRUTE, BOMB, 0)
+			stagger_duration = 7 SECONDS
 		if(EXPLODE_HEAVY)
 			take_damage(rand(400, 600), BRUTE, BOMB, 0)
+			stagger_duration = 5 SECONDS
 		if(EXPLODE_LIGHT)
 			take_damage(rand(150, 300), BRUTE, BOMB, 0)
+			stagger_duration = 2 SECONDS
 		if(EXPLODE_WEAK)
 			take_damage(rand(50, 100), BRUTE, BOMB, 0)
+
+	if(!stagger_duration)
+		return
+	for(var/mob/living/living_occupant AS in occupants)
+		living_occupant.Stagger(stagger_duration)
 
 /obj/vehicle/sealed/mecha/contents_explosion(severity)
 	severity--
