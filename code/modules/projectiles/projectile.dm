@@ -210,11 +210,6 @@
 	if(target)
 		original_target = target
 		original_target_turf = get_turf(target)
-		if(original_target_turf == loc) //Shooting from and towards the same tile. Why not?
-			distance_travelled++
-			scan_a_turf(loc)
-			qdel(src)
-			return
 
 	apx = ABS_COOR(x) //Set the absolute coordinates. Center of a tile is assumed to be (16,16)
 	apy = ABS_COOR(y)
@@ -313,6 +308,12 @@
 	//If we have the the right kind of ammo, we can fire several projectiles at once.
 	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
 		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle, target)
+
+	if(original_target_turf == loc) //Shooting from and towards the same tile. Why not?
+		distance_travelled++
+		scan_a_turf(loc)
+		qdel(src)
+		return
 
 	if(source.Adjacent(target) && PROJECTILE_HIT_CHECK(target, src, null, FALSE, null)) //todo: doesn't take into account piercing projectiles
 		target.do_projectile_hit(src)
@@ -976,10 +977,14 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(ammo.bonus_projectiles_amount)
 			ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle, target)
 
-	if(source.Adjacent(target) && ismob(target))
-		var/mob/mob_to_hit = target
-		ammo.on_hit_mob(mob_to_hit, src)
-		mob_to_hit.bullet_act(src)
+	if(original_target_turf == loc) //Shooting from and towards the same tile. Why not?
+		distance_travelled++
+		scan_a_turf(loc)
+		qdel(src)
+		return
+
+	if(source.Adjacent(target) && PROJECTILE_HIT_CHECK(target, src, null, FALSE, null)) //todo: doesn't take into account piercing projectiles
+		target.do_projectile_hit(src)
 		qdel(src)
 		return
 
@@ -1357,7 +1362,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			else
 				current_angle += angle_between_bullets
 
-			proj.fire_at(null, firer, source, range, speed, current_angle)
+			proj.fire_at(source.loc, firer, source, range, speed, current_angle)
 		if(fire_sound)
 			playsound(source, fire_sound, 60, TRUE)
 		return
@@ -1370,7 +1375,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		else
 			current_angle += angle_between_bullets
 
-		proj.fire_at(null, firer, source, range, speed, current_angle)
+		proj.fire_at(source.loc, firer, source, range, speed, current_angle)
 		if(play_sound % 3 && fire_sound)
 			playsound(source, fire_sound, 60, FALSE)
 		stoplag(1)
