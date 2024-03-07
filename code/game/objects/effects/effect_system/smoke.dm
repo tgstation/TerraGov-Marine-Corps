@@ -350,7 +350,7 @@
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno/burn
 	lifetime = 6
-	alpha = 80
+	alpha = 120
 	opacity = FALSE
 	color = "#86B028" //Mostly green?
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH
@@ -366,7 +366,7 @@
 
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno/neuro
-	alpha = 80
+	alpha = 120
 	opacity = FALSE
 	color = "#ffbf58" //Mustard orange?
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH
