@@ -4,20 +4,7 @@
  */
 
 ///Helper proc to give something storage
-/atom/proc/create_storage(
-	storage_type = /datum/storage,
-	list/can_hold,
-	list/cant_hold,
-	list/bypass_w_limit,
-	/*
-	max_w_class,
-	max_storage_space,
-	storage_slots,
-	list/storage_type_limits,
-	draw_mode,
-	collection_mode,
-	*/
-)
+/atom/proc/create_storage(storage_type = /datum/storage, list/can_hold, list/cant_hold, list/bypass_w_limit)
 	if(atom_storage)
 		QDEL_NULL(atom_storage)
 

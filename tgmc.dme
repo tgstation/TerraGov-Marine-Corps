@@ -624,6 +624,7 @@
 #include "code\datums\storage\subtypes\backpack.dm"
 #include "code\datums\storage\subtypes\bag.dm"
 #include "code\datums\storage\subtypes\belt.dm"
+#include "code\datums\storage\subtypes\bible.dm"
 #include "code\datums\storage\subtypes\box.dm"
 #include "code\datums\storage\subtypes\briefcase.dm"
 #include "code\datums\storage\subtypes\holster.dm"

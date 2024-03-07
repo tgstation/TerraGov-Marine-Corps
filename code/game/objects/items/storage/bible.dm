@@ -9,12 +9,9 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
+	storage_type = /datum/storage/bible
 	var/mob/affecting = null
 	var/deity_name = "Christ"
-
-/obj/item/storage/bible/Initialize(mapload, ...)
-	. = ..()
-	atom_storage.storage_slots = 1
 
 /obj/item/storage/bible/koran
 	name = "koran"
@@ -25,14 +22,7 @@
 	name = "bible"
 	desc = "To be applied to the head repeatedly."
 	icon_state ="bible"
-
-/obj/item/storage/bible/booze/Initialize(mapload, ...)
-	. = ..()
-	atom_storage.storage_slots = 7
-	atom_storage.can_hold = list(
-		/obj/item/reagent_containers/food/drinks/cans,
-		/obj/item/spacecash,
-	)
+	storage_type = /datum/storage/bible/alcoholic
 
 /obj/item/storage/bible/booze/PopulateContents()
 	new /obj/item/reagent_containers/food/drinks/cans/beer(src)
