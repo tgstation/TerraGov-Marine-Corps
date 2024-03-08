@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - qol: "Tank gunner can now rotate turret using movement keys"

@@ -1237,29 +1237,29 @@
 // Attacking an Earth Pillar as a xeno has a few possible interactions, based on intent:
 // - Harm intent will reduce a counter in this structure. When the counter hits zero, the structure is destroyed, meaning it is much easier to break it as a xeno.
 // - Help intent as a Behemoth will trigger an easter egg. Does nothing, just fluff.
-/obj/structure/earth_pillar/attack_alien(mob/living/carbon/xenomorph/xeno_user, isrightclick = FALSE)
+/obj/structure/earth_pillar/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	var/current_turf = get_turf(src)
-	switch(xeno_user.a_intent)
+	switch(xeno_attacker.a_intent)
 		if(INTENT_DISARM, INTENT_GRAB, INTENT_HARM)
 			if(attacks_to_destroy <= 1)
-				xeno_user.do_attack_animation(src)
-				xeno_user.balloon_alert(xeno_user, "Destroyed")
+				xeno_attacker.do_attack_animation(src)
+				xeno_attacker.balloon_alert(xeno_attacker, "Destroyed")
 				new /obj/effect/temp_visual/behemoth/landslide/hit(current_turf)
 				qdel(src)
 				return TRUE
 			attacks_to_destroy--
-			xeno_user.do_attack_animation(src)
+			xeno_attacker.do_attack_animation(src)
 			do_jitter_animation(jitter_loops = 1)
 			playsound(src, get_sfx("behemoth_earth_pillar_hit"), 40)
-			xeno_user.balloon_alert(xeno_user, "Attack [attacks_to_destroy] more time(s) to destroy")
+			xeno_attacker.balloon_alert(xeno_attacker, "Attack [attacks_to_destroy] more time(s) to destroy")
 			new /obj/effect/temp_visual/behemoth/landslide/hit(current_turf)
 			return TRUE
 		if(INTENT_HELP)
-			if(isxenobehemoth(xeno_user))
-				xeno_user.do_attack_animation(src)
+			if(isxenobehemoth(xeno_attacker))
+				xeno_attacker.do_attack_animation(src)
 				do_jitter_animation(jitter_loops = 1)
 				playsound(src, 'sound/effects/behemoth/earth_pillar_eating.ogg', 30, TRUE)
-				xeno_user.visible_message(span_xenowarning("\The [xeno_user] eats away at the [src.name]!"), \
+				xeno_attacker.visible_message(span_xenowarning("\The [xeno_attacker] eats away at the [src.name]!"), \
 				span_xenonotice(pick(
 					"We eat away at the stone. It tastes good, as expected of our primary diet.",
 					"Mmmmm... Delicious rock. A fitting meal for the hardiest of creatures.",

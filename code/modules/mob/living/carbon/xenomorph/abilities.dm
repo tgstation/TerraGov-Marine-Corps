@@ -489,7 +489,7 @@
 	var/resin_choice = show_radial_menu(owner, owner, GLOB.resin_special_images_list, radius = 35)
 	if(!resin_choice)
 		return
-	var/i = GLOB.resin_images_list.Find(resin_choice)
+	var/i = GLOB.resin_special_images_list.Find(resin_choice)
 	X.selected_special_resin = buildable_special_structures[i]
 	var/atom/A = X.selected_special_resin
 	X.balloon_alert(X, initial(A.name))

@@ -16,7 +16,7 @@
 		to_chat(src,"<b>[span_deadsay("<p style='font-size:1.5em'>[species.special_death_message]</p>")]</b>")
 	return ..()
 
-/mob/living/carbon/Moved(oldLoc, dir)
+/mob/living/carbon/Moved(atom/old_loc, movement_dir, forced = FALSE, list/old_locs)
 	. = ..()
 	if(nutrition && stat != DEAD)
 		adjust_nutrition(-HUNGER_FACTOR * 0.1 * ((m_intent == MOVE_INTENT_RUN) ? 2 : 1))

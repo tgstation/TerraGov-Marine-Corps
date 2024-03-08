@@ -109,3 +109,43 @@
   - bugfix: new category for other trinkets available in "gear preferences" under
       the "preferences" window
   - spellcheck: fixed AGLS description
+2024-03-07:
+  Barnet2:
+  - rscdel: Removed Baneling
+  - balance: Warrior slash increase from 20 to 22
+  Lumipharon:
+  - code_imp: Cleaned up akimbo scatter mod code
+  Xander3359:
+  - bugfix: Trying to un-deploy some things no longer gives a misleading message
+  ivanmixo:
+  - code_imp: Cleaned up code related to humans
+2024-03-08:
+  2whatever2:
+  - balance: 'You now have to resist 1 more time for each time grabs are upgraded
+      on you. (Old values: Agrab 1, neckgrab 2, strangle 3.) (New: Agrab 2, neckgrab
+      4(WARRIOR GRAB UNAFFECTED.) strangle 6.'
+  - balance: 'Punch stun and Shove stun no longer get lowered by more armor, and increased
+      with less armor, and will now always stun for 4 seconds. (Old values: 6 second
+      stun base, lowered by armor rating.)'
+  Lumipharon:
+  - bugfix: Fixed hold orders rounding certain incoming damage down to 0, such as
+      weather
+  - code_imp: Cleaned up some scout cloak related code
+  MLGTASTICa:
+  - bugfix: Fixed xenormophs being unable to choose any other special resin wall other
+      than the bulletproof one.
+  TiviPlus:
+  - bugfix: fixed tank sound for ghosts, and may have fixed it being offset
+  - bugfix: Fixes tank turret (literally) rotating randomly, as well as a series of
+      other things that use cardinal directions
+  - bugfix: you can no longer load the tank external magazines
+  blackdav123:
+  - balance: Lowers warlock HP from 375 to 325.
+  coldironwarrior:
+  - bugfix: fix scout droids not having nightvision
+  - bugfix: fixes AIs getting permanent nightvision after deploying to their scout
+      droid
+  - balance: researchers spawn with isotonic pill bottles instead of dexalin bottles
+      in their belts
+  ivanmixo:
+  - spellcheck: Fixed a typo in bulwark description

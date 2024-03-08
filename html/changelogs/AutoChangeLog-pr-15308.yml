@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Fixed some issues with mech armour facings against melee attacks"
+  - bugfix: "Fixed xeno melee attacks ignoring all armour on objects"

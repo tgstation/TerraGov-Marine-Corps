@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - code_imp: "kotahi uses proper shuffling in backend"
+  - bugfix: "Fix kotahi always spitting out 4 +4s in a row"

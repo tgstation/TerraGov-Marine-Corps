@@ -1,4 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - bugfix: "Trying to un-deploy some things no longer gives a misleading message"
