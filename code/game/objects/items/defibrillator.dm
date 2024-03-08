@@ -89,8 +89,6 @@
 	else if(round(dcell.charge * 100 / dcell.maxcharge) <= 33)
 		message += span_warning("\nThe battery is low.")
 
-	if(!message)
-		return
 	return span_notice("[message]\nYou can click-drag this defibrillator on a corpsman backpack to recharge it.")
 
 /obj/item/defibrillator/attack_self(mob/living/carbon/human/user)
