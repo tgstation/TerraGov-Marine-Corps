@@ -54,6 +54,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I))
 		if(keyslot || keyslot2)
@@ -232,7 +234,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(wearer)
 		if(headset_hud_on && wearer.wear_ear == src)
 			squadhud.remove_hud_from(wearer)
-			wearer.SL_directional = null
 			if(wearer.assigned_squad)
 				SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
 		wearer = null

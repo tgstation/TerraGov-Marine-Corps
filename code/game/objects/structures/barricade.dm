@@ -87,6 +87,8 @@
 
 /obj/structure/barricade/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	for(var/obj/effect/xenomorph/acid/A in loc)
 		if(A.acid_t == src)
@@ -267,6 +269,8 @@
 //Item Attack
 /obj/structure/barricade/snow/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	for(var/obj/effect/xenomorph/acid/A in loc)
 		if(A.acid_t == src)
@@ -345,6 +349,8 @@
 
 /obj/structure/barricade/wooden/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	for(var/obj/effect/xenomorph/acid/A in loc)
 		if(A.acid_t == src)
@@ -437,6 +443,8 @@
 
 /obj/structure/barricade/metal/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!istype(I, /obj/item/stack/sheet/metal))
 		return
@@ -888,6 +896,8 @@
 
 /obj/structure/barricade/plasteel/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/stack/sheet/plasteel))
 		var/obj/item/stack/sheet/plasteel/plasteel_sheets = I
@@ -994,6 +1004,8 @@
 
 /obj/structure/barricade/sandbags/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	for(var/obj/effect/xenomorph/acid/A in loc)
 		if(A.acid_t == src)
@@ -1078,7 +1090,7 @@
 ///Dissassembles the device
 /obj/structure/barricade/metal/deployable/proc/disassemble(mob/user)
 	if(CHECK_BITFIELD(internal_shield.flags_item, DEPLOYED_NO_PICKUP))
-		balloon_alert(user, "cannot be disassembled")
+		balloon_alert(user, "Cannot disassemble")
 		return
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 

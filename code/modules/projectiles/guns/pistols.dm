@@ -18,7 +18,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
 	movement_acc_penalty_mult = 2
-	wield_delay = 0.2 SECONDS //If you modify your pistol to be two-handed, it will still be fast to aim
+	wield_delay = 0.4 SECONDS
 	type_of_casings = "bullet"
 	gun_skill_category = SKILL_PISTOLS
 	attachable_allowed = list(
@@ -69,8 +69,7 @@
 	scatter_unwielded = 4
 	recoil = -2
 	recoil_unwielded = -2
-	upper_akimbo_accuracy = 5
-	lower_akimbo_accuracy = 4
+	akimbo_scatter_mod = 8
 
 //-------------------------------------------------------
 //PP-7 Plasma Pistol
@@ -108,7 +107,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 	actions_types = list()
-	wield_delay = 0.5 SECONDS
+	wield_delay = 0.7 SECONDS
 	muzzle_flash_color = COLOR_GREEN
 
 	fire_delay = 1.5 SECONDS
@@ -210,7 +209,6 @@
 	accuracy_mult_unwielded = 0.95
 	recoil = -2
 	recoil_unwielded = -2
-	lower_akimbo_accuracy = 2
 
 /obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
 	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/flashlight) //Tacticool
@@ -247,7 +245,6 @@
 	accuracy_mult_unwielded = 0.85
 	damage_mult = 1.15
 	recoil = -2
-	lower_akimbo_accuracy = 2
 
 /obj/item/weapon/gun/pistol/m1911/custom
 	name = "\improper P-1911A1 custom pistol"
@@ -541,7 +538,6 @@
 	aim_slowdown = 0.2
 	scatter = 0
 	scatter_unwielded = 6
-	lower_akimbo_accuracy = 2
 	akimbo_additional_delay = 2
 
 /obj/item/weapon/gun/pistol/vp70/tactical
@@ -783,7 +779,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
 
 	aim_slowdown = 0.2
-	wield_delay = 0.4 SECONDS
+	wield_delay = 0.6 SECONDS
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.85

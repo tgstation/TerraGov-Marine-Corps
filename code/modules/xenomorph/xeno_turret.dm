@@ -56,7 +56,7 @@
 	SIGNAL_HANDLER
 	qdel(src)
 
-/obj/structure/xeno/xeno_turret/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/structure/xeno/xeno_turret/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	if(damage_amount) //Spawn the gas only if we actually get destroyed by damage
 		var/datum/effect_system/smoke_spread/xeno/smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
 		smoke.set_up(1, get_turf(src))

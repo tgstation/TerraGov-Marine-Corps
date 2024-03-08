@@ -14,7 +14,9 @@
 
 
 /obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
-	..()
+	. = ..()
+	if(.)
+		return
 
 	if(istype(W, /obj/item/stack/barbed_wire)) // making razorwire obstacles
 		var/obj/item/stack/barbed_wire/B = W
@@ -46,8 +48,6 @@
 			if (!R && replace)
 				user.put_in_hands(new_item)
 		return
-	..()
-
 
 /obj/item/stack/rods/attack_self(mob/user as mob)
 

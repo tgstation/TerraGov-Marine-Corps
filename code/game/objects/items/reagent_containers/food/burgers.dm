@@ -294,6 +294,8 @@
 // Human Burger + cheese wedge = cheeseburger
 /obj/item/reagent_containers/food/snacks/burger/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/reagent_containers/food/snacks/cheesewedge))
 		new /obj/item/reagent_containers/food/snacks/burger/cheese(src)
@@ -305,6 +307,8 @@
 // Burger + cheese wedge = cheeseburger
 /obj/item/reagent_containers/food/snacks/burger/plain/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/reagent_containers/food/snacks/cheesewedge))
 		new /obj/item/reagent_containers/food/snacks/burger/cheese(src)
@@ -330,6 +334,8 @@
 
 /obj/item/reagent_containers/food/snacks/burger/bun/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	// Bun + meatball = burger
 	if(istype(I, /obj/item/reagent_containers/food/snacks/meatball))
 		new /obj/item/reagent_containers/food/snacks/burger/plain(src)

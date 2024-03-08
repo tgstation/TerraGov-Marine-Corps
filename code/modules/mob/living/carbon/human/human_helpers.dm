@@ -241,3 +241,9 @@
 	. = ..()
 	if(species.name)
 		. += species.name
+
+///wrapper for a signal to handle opening the squad selector ui just before drop
+/mob/living/carbon/human/proc/suggest_squad_assign()
+	SIGNAL_HANDLER
+	UnregisterSignal(SSdcs, COMSIG_GLOB_DEPLOY_TIMELOCK_ENDED)
+	GLOB.squad_selector.interact(src)

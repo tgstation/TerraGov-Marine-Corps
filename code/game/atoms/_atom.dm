@@ -235,6 +235,7 @@ directive is properly returned.
 
 
 /atom/proc/emp_act(severity)
+	SEND_SIGNAL(src, COMSIG_ATOM_EMP_ACT, severity)
 	return
 
 
@@ -1080,4 +1081,8 @@ directive is properly returned.
 
 ///Returns the hard armor for the given atom. If human and a limb is specified, gets the armor for that specific limb.
 /atom/proc/get_hard_armor(armor_type, proj_def_zone)
+	return
+
+///Interaction for using a grab on an atom
+/atom/proc/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	return

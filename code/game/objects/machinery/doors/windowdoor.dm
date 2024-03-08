@@ -129,6 +129,8 @@
 
 /obj/machinery/door/window/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(operating)
 		return TRUE

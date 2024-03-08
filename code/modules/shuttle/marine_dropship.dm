@@ -495,7 +495,8 @@
 	possible_destinations = "lz1;lz2;alamo"
 
 /obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/xeno, damage_amount = xeno.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = xeno.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(!(xeno.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
+	var/datum/game_mode/infestation/infestation_mode = SSticker.mode //Minor QOL, any xeno can check the console after a leader hijacks
+	if(!(xeno.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT) && (infestation_mode.round_stage != INFESTATION_MARINE_CRASHING))
 		return
 	#ifndef TESTING
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
@@ -503,7 +504,7 @@
 		return
 	#endif
 	var/obj/docking_port/mobile/marine_dropship/shuttle = SSshuttle.getShuttle(shuttleId)
-	if(shuttle.hijack_state != HIJACK_STATE_CALLED_DOWN) //Process of corrupting the controls
+	if(shuttle.hijack_state != HIJACK_STATE_CALLED_DOWN && shuttle.hijack_state != HIJACK_STATE_CRASHING) //Process of corrupting the controls
 		to_chat(xeno, span_xenowarning("We corrupt the bird's controls, unlocking the doors[(shuttle.mode != SHUTTLE_IGNITING) ? "and preventing it from flying." : ", but we are unable to prevent it from flying as it is already taking off!"]"))
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED, src)
 		if(shuttle.mode != SHUTTLE_IGNITING)
@@ -543,6 +544,9 @@
 	data["ship_status"] = shuttle.getStatusText()
 	data["automatic_cycle_on"] = shuttle.automatic_cycle_on
 	data["time_between_cycle"] = shuttle.time_between_cycle
+
+	var/datum/game_mode/infestation/infestation_mode = SSticker.mode
+	data["shuttle_hijacked"] = (infestation_mode.round_stage == INFESTATION_MARINE_CRASHING) //If we hijacked, our capture button greys out
 
 	var/locked = 0
 	var/reardoor = 0
@@ -656,6 +660,10 @@
 				return
 			do_hijack(shuttle, CT, xeno)
 		if("abduct")
+			var/datum/game_mode/infestation/infestation_mode = SSticker.mode
+			if(infestation_mode.round_stage == INFESTATION_MARINE_CRASHING)
+				message_admins("[usr] tried to capture the shuttle after it was already hijacked, possible use of exploits.")
+				return
 			var/groundside_humans = length(GLOB.humans_by_zlevel["[z]"])
 			if(groundside_humans > 5)
 				to_chat(usr, span_xenowarning("There is still prey left to hunt!"))
@@ -663,12 +671,12 @@
 			var/confirm = tgui_alert(usr, "Would you like to capture the metal bird?\n THIS WILL END THE ROUND", "Capture the ship?", list( "Yes", "No"))
 			if(confirm != "Yes")
 				return
+			groundside_humans = length(GLOB.humans_by_zlevel["[z]"])
 			if(groundside_humans > 5)
 				to_chat(usr, span_xenowarning("There is still prey left to hunt!"))
 				return
 
 			priority_announce("The Alamo has been captured! Losing their main mean of accessing the ground, the marines have no choice but to retreat.", title = "Alamo Captured", color_override = "orange")
-			var/datum/game_mode/infestation/infestation_mode = SSticker.mode
 			infestation_mode.round_stage = INFESTATION_DROPSHIP_CAPTURED_XENOS
 			return
 
@@ -683,6 +691,7 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_HIJACKED)
 	priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely.", title = "Critical Dropship Alert", type = ANNOUNCEMENT_PRIORITY, sound = 'sound/AI/hijack.ogg', color_override = "red")
 	to_chat(user, span_danger("A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!"))
+	GLOB.hive_datums[XENO_HIVE_NORMAL].special_build_points = 25 //resets special build points
 	user.hive.on_shuttle_hijack(crashing_dropship)
 	playsound(src, 'sound/misc/queen_alarm.ogg')
 	crashing_dropship.silicon_lock_airlocks(TRUE)

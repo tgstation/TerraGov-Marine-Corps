@@ -168,6 +168,8 @@
 
 /obj/machinery/computer/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I) && circuit)
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)

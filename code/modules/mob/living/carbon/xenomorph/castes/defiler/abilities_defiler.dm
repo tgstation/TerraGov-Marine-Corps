@@ -191,16 +191,16 @@
 
 	X.emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
 
-	X.icon_state = "[X.xeno_caste.caste_name][X.is_a_rouny ? " rouny" : ""] Power Up"
+	X.icon_state = "[X.xeno_caste.caste_name][(X.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Power Up"
 
 	if(!do_after(X, DEFILER_GAS_CHANNEL_TIME, NONE, null, BUSY_ICON_HOSTILE))
 		if(!QDELETED(src))
 			to_chat(X, span_xenodanger("We abort emitting fumes, our expended plasma resulting in nothing."))
 			X.emitting_gas = FALSE
-			X.icon_state = "[X.xeno_caste.caste_name][X.is_a_rouny ? " rouny" : ""] Running"
+			X.icon_state = "[X.xeno_caste.caste_name][(X.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Running"
 			return fail_activate()
 	X.emitting_gas = FALSE
-	X.icon_state = "[X.xeno_caste.caste_name][X.is_a_rouny ? " rouny" : ""] Running"
+	X.icon_state = "[X.xeno_caste.caste_name][(X.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Running"
 
 	add_cooldown()
 	succeed_activate()

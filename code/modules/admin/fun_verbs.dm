@@ -82,7 +82,7 @@
 	for(var/mob/living/carbon/xenomorph/xenotorouny in GLOB.xeno_mob_list)
 		if(!isliving(xenotorouny))
 			return
-		xenotorouny.is_a_rouny = !xenotorouny.is_a_rouny
+		xenotorouny.xeno_flags ^= XENO_ROUNY
 
 
 /datum/admins/proc/hive_status()
@@ -1104,15 +1104,15 @@
 		if("Low gravity")
 			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity pull gently at you."))
 			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
-				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 32, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_DEFENSIVE_STRUCTURE)
+				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 32, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_DEFENSIVE_STRUCTURE|PASS_TANK)
 		if("John Woo")
 			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity grow weak, and the urge to fly."))
 			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
-				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 48, sound = "jump", flags = JUMP_SPIN, flags_pass = HOVERING|PASS_PROJECTILE)
+				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 48, sound = "jump", flags = JUMP_SPIN, flags_pass = HOVERING|PASS_PROJECTILE|PASS_TANK)
 		if("Exceeding orbital velocity")
 			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity fade to nothing. Will you even come back down?"))
 			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
-				living_mob.set_jump_component(duration = 4 SECONDS, cooldown = 6 SECONDS, cost = 0, height = 128, sound = "jump", flags = JUMP_SPIN, flags_pass = HOVERING|PASS_PROJECTILE)
+				living_mob.set_jump_component(duration = 4 SECONDS, cooldown = 6 SECONDS, cost = 0, height = 128, sound = "jump", flags = JUMP_SPIN, flags_pass = HOVERING|PASS_PROJECTILE|PASS_TANK)
 		else
 			return
 

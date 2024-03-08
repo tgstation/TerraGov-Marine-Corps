@@ -82,6 +82,8 @@
 
 /obj/structure/bed/chair/reinforced/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		to_chat(user, span_warning("You can only deconstruct this by welding it down!"))
@@ -280,7 +282,7 @@
 	var/is_animating = 0
 
 /obj/structure/bed/chair/dropship/passenger/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && istype(mover, /obj/vehicle/multitile) && !is_animating)
+	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && istype(mover, /obj/vehicle/sealed) && !is_animating)
 		visible_message(span_danger("[mover] slams into [src] and breaks it!"))
 		INVOKE_ASYNC(src, PROC_REF(fold_down), TRUE)
 		return FALSE
@@ -348,6 +350,8 @@
 
 /obj/structure/bed/chair/dropship/passenger/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		switch(chair_state)

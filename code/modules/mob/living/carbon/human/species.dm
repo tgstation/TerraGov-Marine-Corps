@@ -538,8 +538,8 @@
 
 	total_health = 125 //more health than regular humans
 
-	brute_mod = 0.70
-	burn_mod = 0.70 //Synthetics should not be instantly melted by acid compared to humans - This is a test to hopefully fix very glaring issues involving synthetics taking 2.6 trillion damage when so much as touching acid
+	brute_mod = 0.7
+	burn_mod = 0.8 // A slight amount of burn resistance. Changed from 0.7 due to their critical condition phase.
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -566,16 +566,24 @@
 	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
+/datum/species/synthetic/handle_unique_behavior(mob/living/carbon/human/H)
+	if(H.health <= -30 && H.stat != DEAD) // Instead of having a critical condition, they overheat and slowly die.
+		H.adjustFireLoss(rand(14, 24)) // This may need tweaks
+		if(prob(8))
+			to_chat(H, span_alert("<b>Critical damage sustained. Internal temperature regulation systems offline. <u>Immediate repair required.</u></b>"))
+
 /datum/species/synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
+	H.health_threshold_crit = -100 // You overheat below -30 health.
 
 
 /datum/species/synthetic/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.remove_hud_from(H)
+	H.health_threshold_crit = -50
 
 /mob/living/carbon/human/species/synthetic/binarycheck(mob/H)
 	return TRUE
@@ -619,16 +627,24 @@
 	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
+/datum/species/early_synthetic/handle_unique_behavior(mob/living/carbon/human/H)
+	if(H.health <= -30 && H.stat != DEAD) // Instead of having a critical condition, they overheat and slowly die.
+		H.adjustFireLoss(rand(18, 28)) // This may need tweaks
+		if(prob(8))
+			to_chat(H, span_alert("<b>Critical damage sustained. Internal temperature regulation systems offline. <u>Immediate repair required.</u></b>"))
+
 /datum/species/early_synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
+	H.health_threshold_crit = -100 // You overheat below -30 health.
 
 
 /datum/species/early_synthetic/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.remove_hud_from(H)
+	H.health_threshold_crit = -50
 
 /mob/living/carbon/human/species/early_synthetic/binarycheck(mob/H)
 	return TRUE
@@ -975,7 +991,7 @@
 		damage = victim.modify_by_armor(damage, blocked, penetration, def_zone)
 
 	if(victim.protection_aura)
-		damage = round(damage * ((20 - victim.protection_aura) / 20))
+		damage = round(damage * ((20 - victim.protection_aura) / 20), 0.1)
 
 	if(!damage)
 		return 0

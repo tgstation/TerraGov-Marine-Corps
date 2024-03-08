@@ -153,10 +153,13 @@
 			var/proximity = A.Adjacent(src)
 			if(!proximity || !A.attackby(W, src, params))
 				W.afterattack(A, src, proximity, params)
+				RangedAttack(A, params)
 		else
 			if(A.Adjacent(src))
 				A.attack_hand(src)
-			RangedAttack(A, params)
+			else
+				RangedAttack(A, params)
+
 
 
 /atom/movable/proc/CanReach(atom/ultimate_target, obj/item/tool, view_only = FALSE)
@@ -358,12 +361,6 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 
 	return A.RightClick(src)
 
-/mob/living/carbon/RightClickOn(atom/A)
-	. = ..()
-	//Any carbon type mob can begin an interaction when right clicking another mob on help intent
-	if(ismob(A) && a_intent == INTENT_HELP && Adjacent(A) && interaction_emote(A))
-		return TRUE
-
 /mob/living/carbon/human/RightClickOn(atom/A)
 	var/obj/item/held_thing = get_active_held_item()
 
@@ -515,7 +512,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 
 
 /atom/proc/CtrlShiftClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_SHIFT)
+	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_SHIFT, user)
 
 
 /*

@@ -33,18 +33,17 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LONG_RANGE_SIGHT,
 	)
-	use_state_flags = ABILITY_USE_ROOTED
 
 /datum/action/ability/xeno_action/toggle_long_range/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	if(X.is_zoomed)
+	if(X.xeno_flags & XENO_ZOOMED)
 		X.zoom_out()
 		X.visible_message(span_notice("[X] stops looking off into the distance."), \
 		span_notice("We stop looking off into the distance."), null, 5)
 	else
 		X.visible_message(span_notice("[X] starts looking off into the distance."), \
 			span_notice("We start focusing your sight to look off into the distance."), null, 5)
-		if(!do_after(X, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || X.is_zoomed)
+		if(!do_after(X, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || (X.xeno_flags & XENO_ZOOMED))
 			return
 		X.zoom_in(11)
 		..()
@@ -57,7 +56,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	name = "Toggle Bombard Type"
 	action_icon_state = "toggle_bomb0"
 	desc = "Switches Boiler Bombard type between available glob types."
-	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING|ABILITY_USE_ROOTED
+	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_BOMB,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL,
@@ -135,7 +134,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	action_icon = 'icons/xeno/actions_boiler_glob.dmi'
 	desc = "Creates a Boiler Bombard of the type currently selected."
 	ability_cost = 200
-	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING|ABILITY_USE_ROOTED
+	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_BOMB,
 	)
@@ -147,7 +146,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/ability/xeno_action/create_boiler_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 
-	if(X.is_zoomed)
+	if(X.xeno_flags & XENO_ZOOMED)
 		to_chat(X, span_notice("We can not prepare globules as we are now. We must stop concentrating into the distance!"))
 		return
 
@@ -180,10 +179,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	desc = "Launch a glob of neurotoxin or acid. Must be rooted to use."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BOMBARD,
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ROOT,
 	)
 	target_flags = ABILITY_TURF_TARGET
-	use_state_flags = ABILITY_USE_ROOTED
 
 /datum/action/ability/activable/xeno/bombard/get_cooldown()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -213,11 +210,6 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	var/turf/S = get_turf(owner)
 	var/mob/living/carbon/xenomorph/boiler/boiler_owner = owner
 
-	if(!HAS_TRAIT_FROM(owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
-		if(!silent)
-			to_chat(owner, span_warning("We need to be rooted to fire!"))
-		return FALSE
-
 	if(istype(boiler_owner.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
 		if(boiler_owner.corrosive_ammo <= 0)
 			boiler_owner.balloon_alert(boiler_owner, "No corrosive globules.")
@@ -226,10 +218,6 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		if(boiler_owner.neuro_ammo <= 0)
 			boiler_owner.balloon_alert(boiler_owner, "No neurotoxin globules.")
 			return FALSE
-
-	if(!HAS_TRAIT_FROM(boiler_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
-		boiler_owner.balloon_alert(boiler_owner, "We need to be rooted to the ground to fire!")
-		return FALSE
 
 	if(!isturf(T) || T.z != S.z)
 		if(!silent)
@@ -278,52 +266,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	update_button_icon()
 	add_cooldown()
 
-
-/datum/action/ability/activable/xeno/bombard/alternate_action_activate()
-	INVOKE_ASYNC(src, PROC_REF(root))
-	return COMSIG_KB_ACTIVATED
-
-/// The alternative action of bombard, rooting. It begins the rooting/unrooting process.
-/datum/action/ability/activable/xeno/bombard/proc/root()
-	if(HAS_TRAIT_FROM(owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
-		owner.balloon_alert_to_viewers("Rooting out of place...")
-		if(!do_after(owner, 3 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_HOSTILE))
-			owner.balloon_alert(owner, "Interrupted!")
-			return
-		owner.balloon_alert(owner, "Unrooted!")
-		set_rooted(FALSE)
-		return
-
-	if(HAS_TRAIT_FROM(owner, TRAIT_FLOORED, RESTING_TRAIT))
-		owner.balloon_alert(owner, "Cannot while lying down!")
-		return
-
-	owner.balloon_alert_to_viewers("Rooting into place...")
-	if(!do_after(owner, 3 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_HOSTILE))
-		owner.balloon_alert(owner, "Interrupted!")
-		return
-
-	owner.balloon_alert_to_viewers("Rooted into place!")
-	set_rooted(TRUE)
-
-/// Proc that actually does the rooting, makes us immobile and anchors us in place. Similar to defender's fortify.
-/datum/action/ability/activable/xeno/bombard/proc/set_rooted(on)
-	var/mob/living/carbon/xenomorph/boiler/boiler_owner = owner
-	if(on)
-		ADD_TRAIT(boiler_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
-		if(boiler_owner.client)
-			boiler_owner.client.mouse_pointer_icon = 'icons/mecha/mecha_mouse.dmi'
-	else
-		REMOVE_TRAIT(boiler_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
-		if(boiler_owner.client)
-			boiler_owner.client.mouse_pointer_icon = initial(boiler_owner.client.mouse_pointer_icon)
-
-	boiler_owner.anchored = on
-
-
 // ***************************************
 // *********** Acid spray
 // ***************************************
 /datum/action/ability/activable/xeno/spray_acid/line/boiler
 	cooldown_duration = 9 SECONDS
-	use_state_flags = ABILITY_USE_ROOTED
