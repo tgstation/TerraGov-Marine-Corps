@@ -265,7 +265,7 @@
 	name = "neural_flux"
 	action_icon_state = "neural_flux"
 	desc = " Project a wave which confuses, staggers and slows marines. Staggered targets will take bonus brain damage. Channeling the ability increases the size of the wave, but reduces the effects."
-	ability_cost = 200
+	ability_cost = 300
 	cooldown_duration = 16 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	target_flags = ABILITY_TURF_TARGET
