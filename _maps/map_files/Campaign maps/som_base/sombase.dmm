@@ -15720,11 +15720,6 @@
 /obj/machinery/power/apc,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/living/janitor)
-"vOw" = (
-/obj/structure/table/black,
-/obj/item/hardpoint/treads,
-/turf/open/floor/mainship/mono,
-/area/rocinante_base/surface/building/cargo/southern_aux)
 "vPC" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#5b7857";
@@ -34481,7 +34476,7 @@ gnj
 jaw
 jaw
 jaw
-vOw
+lJq
 tao
 oVs
 pEm
@@ -34633,7 +34628,7 @@ gnj
 aSY
 gOG
 cQP
-vOw
+lJq
 oVs
 oVs
 pEm
