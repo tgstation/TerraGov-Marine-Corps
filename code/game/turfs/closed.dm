@@ -51,12 +51,12 @@
 				minimap_color = MINIMAP_SOLID
 			overlays += rock_side
 
-/turf/closed/mineral/attack_alien(mob/living/carbon/xenomorph/xeno_user, isrightclick = FALSE)
+/turf/closed/mineral/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
-	if(isxenobehemoth(xeno_user))
-		xeno_user.do_attack_animation(src)
+	if(isxenobehemoth(xeno_attacker))
+		xeno_attacker.do_attack_animation(src)
 		playsound(src, 'sound/effects/behemoth/earth_pillar_eating.ogg', 10, TRUE)
-		xeno_user.visible_message(span_xenowarning("\The [xeno_user] eats away at the [src.name]!"), \
+		xeno_attacker.visible_message(span_xenowarning("\The [xeno_attacker] eats away at the [src.name]!"), \
 		span_xenonotice(pick(
 			"We eat away at the stone. It tastes good, as expected of our primary diet.",
 			"Mmmmm... Delicious rock. A fitting meal for the hardiest of creatures.",
