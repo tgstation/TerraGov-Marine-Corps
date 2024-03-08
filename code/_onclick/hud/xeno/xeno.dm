@@ -108,7 +108,6 @@
 	healths = new /atom/movable/screen/healths/alien(null, src)
 	healths.alpha = ui_alpha
 	infodisplay += healths
-	owner.med_hud_set_health()
 
 	using = new /atom/movable/screen/alien/nightvision(null, src)
 	using.alpha = ui_alpha
@@ -117,7 +116,6 @@
 	alien_plasma_display = new /atom/movable/screen/alien/plasmadisplay(null, src)
 	alien_plasma_display.alpha = ui_alpha
 	infodisplay += alien_plasma_display
-	owner.hud_set_plasma()
 
 	locate_leader = new /atom/movable/screen/alien/queen_locator(null, src)
 	locate_leader.alpha = ui_alpha
