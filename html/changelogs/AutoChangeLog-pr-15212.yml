@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "AMR lase mode will no longer completely ignore solid objects"
+  - code_imp: "Cleaned up a bunch of projectile code"
