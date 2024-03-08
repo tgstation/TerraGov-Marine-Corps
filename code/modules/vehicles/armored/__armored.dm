@@ -254,6 +254,14 @@
 		return FALSE
 	return ..()
 
+/obj/vehicle/sealed/armored/enter_checks(mob/M)
+	. = ..()
+	if(!.)
+		return
+	if(LAZYLEN(M.buckled_mobs))
+		balloon_alert(M, "remove riders first")
+		return FALSE
+
 /obj/vehicle/sealed/armored/add_occupant(mob/M, control_flags)
 	if(!interior)
 		RegisterSignal(M, COMSIG_MOB_DEATH, PROC_REF(mob_exit), TRUE)
