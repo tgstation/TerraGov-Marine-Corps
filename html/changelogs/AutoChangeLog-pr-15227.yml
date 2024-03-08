@@ -1,4 +1,0 @@
-author: "2whatever2"
-delete-after: True
-changes:
-  - balance: "Punch stun and Shove stun no longer get lowered by more armor, and increased with less armor, and will now always stun for 4 seconds. (Old values: 6 second stun base, lowered by armor rating.)"
