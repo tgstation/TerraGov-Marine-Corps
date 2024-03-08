@@ -32,8 +32,7 @@
 	recoil = 2
 	recoil_unwielded = 4
 	movement_acc_penalty_mult = 2
-	lower_akimbo_accuracy = 3
-	upper_akimbo_accuracy = 5
+	akimbo_scatter_mod = 8
 
 	placed_overlay_iconstate = "shotgun"
 

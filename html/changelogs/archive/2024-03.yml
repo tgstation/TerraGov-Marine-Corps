@@ -75,3 +75,77 @@
   - balance: synths/early synths take rapid burn damage at -30 health
   TiviPlus:
   - rscadd: Added Assault Crewman and Transport Crewman roles
+2024-03-06:
+  Lumipharon:
+  - code_imp: Repathed defib gloves to actually be gloves
+  - imageadd: added new and improved portrait sprites for campaign
+  - bugfix: fixed a minor bug with the overclock shield perk for some SOM roles
+  - bugfix: fixed admin pods
+  - bugfix: fixed some ability runtimes
+  - code_imp: Cleaned up some xeno code
+  - balance: 'Campaign: Some loadout additions and tweaks'
+  - bugfix: fixed gorgon armour being unable to equip overclocked shield modules
+  - bugfix: fixed the squad management pop up opening for SL's on non nukewar modes
+  Pariah919:
+  - balance: RWalls have 3000 hp again rather than 5000, slightly higher armor.
+  - balance: Focus order no longer gives a firerate increase while aiming.
+  - rscadd: Added new Sniper and Shotgun sentry to the marine arsenal, as well as
+      new sentry sprites.
+  - balance: rds now gives bonus speed while aiming instead of increased firerate.
+  XElectricX:
+  - rscadd: Night vision goggles and night vision helmet module.
+  - balance: Night vision headsets can be purchased via requisitions.
+  - refactor: Glasses activation code optimized.
+  - imageadd: Night vision item sprites created by an artist commissioned by Bonkai
+  Xander3359:
+  - bugfix: Xenos can no longer corrupt the alamo controls mid-transit
+  - bugfix: Xenos can no longer capture the alamo mid-transit
+  - qol: All xenos can look at the alamo console while in hijack transit
+  - bugfix: Tad can no longer land on itself
+  - bugfix: Tad can no longer perform instant transmission
+  blackdav123:
+  - bugfix: Mag harness now functions properly for belt guns.
+  coldironwarrior:
+  - bugfix: new category for other trinkets available in "gear preferences" under
+      the "preferences" window
+  - spellcheck: fixed AGLS description
+2024-03-07:
+  Barnet2:
+  - rscdel: Removed Baneling
+  - balance: Warrior slash increase from 20 to 22
+  Lumipharon:
+  - code_imp: Cleaned up akimbo scatter mod code
+  Xander3359:
+  - bugfix: Trying to un-deploy some things no longer gives a misleading message
+  ivanmixo:
+  - code_imp: Cleaned up code related to humans
+2024-03-08:
+  2whatever2:
+  - balance: 'You now have to resist 1 more time for each time grabs are upgraded
+      on you. (Old values: Agrab 1, neckgrab 2, strangle 3.) (New: Agrab 2, neckgrab
+      4(WARRIOR GRAB UNAFFECTED.) strangle 6.'
+  - balance: 'Punch stun and Shove stun no longer get lowered by more armor, and increased
+      with less armor, and will now always stun for 4 seconds. (Old values: 6 second
+      stun base, lowered by armor rating.)'
+  Lumipharon:
+  - bugfix: Fixed hold orders rounding certain incoming damage down to 0, such as
+      weather
+  - code_imp: Cleaned up some scout cloak related code
+  MLGTASTICa:
+  - bugfix: Fixed xenormophs being unable to choose any other special resin wall other
+      than the bulletproof one.
+  TiviPlus:
+  - bugfix: fixed tank sound for ghosts, and may have fixed it being offset
+  - bugfix: Fixes tank turret (literally) rotating randomly, as well as a series of
+      other things that use cardinal directions
+  - bugfix: you can no longer load the tank external magazines
+  blackdav123:
+  - balance: Lowers warlock HP from 375 to 325.
+  coldironwarrior:
+  - bugfix: fix scout droids not having nightvision
+  - bugfix: fixes AIs getting permanent nightvision after deploying to their scout
+      droid
+  - balance: researchers spawn with isotonic pill bottles instead of dexalin bottles
+      in their belts
+  ivanmixo:
+  - spellcheck: Fixed a typo in bulwark description

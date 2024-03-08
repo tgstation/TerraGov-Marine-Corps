@@ -19,10 +19,10 @@
 // ***************************************
 /mob/living/carbon/xenomorph/defender/handle_special_state()
 	if(fortify)
-		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Fortify"
+		icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Fortify"
 		return TRUE
 	if(crest_defense)
-		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Crest"
+		icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Crest"
 		return TRUE
 	return FALSE
 
