@@ -108,6 +108,14 @@
 
 
 /mob/living/carbon/xenomorph/med_hud_set_health()
+	if(hud_used?.healths)
+		var/bucket
+		if(stat == DEAD)
+			bucket = "critical"
+		else
+			bucket = get_bucket(XENO_HUD_ICON_BUCKETS, maxHealth, health, get_crit_threshold(), list("full", "critical"))
+		hud_used.healths.icon_state = "health[bucket]"
+
 	var/image/holder = hud_list[HEALTH_HUD_XENO]
 	if(!holder)
 		return
@@ -464,8 +472,14 @@
 
 
 /mob/living/carbon/xenomorph/proc/hud_set_plasma()
-	if(!xeno_caste) // usually happens because hud ticks before New() finishes.
-		return
+	if(hud_used?.alien_plasma_display)
+		var/bucket
+		if(stat == DEAD)
+			bucket = "empty"
+		else
+			bucket = get_bucket(XENO_HUD_ICON_BUCKETS, xeno_caste.plasma_max, plasma_stored, 0, list("full", "empty"))
+		hud_used.alien_plasma_display.icon_state = "power_display_[bucket]"
+
 	var/image/holder = hud_list[PLASMA_HUD]
 	if(!holder)
 		return
