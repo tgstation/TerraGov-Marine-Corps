@@ -12,6 +12,7 @@
 	density = TRUE
 	coverage = 20
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
+	resistance_flags = XENO_DAMAGEABLE
 	/// list of the target x and y, and the dialing we can do to them
 	var/list/coords = list("name"= "", "targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0)
 	/// saved last three inputs that were actually used to fire a round
@@ -477,6 +478,7 @@
 	icon = 'icons/Marine/howitzer.dmi'
 	icon_state = "howitzer"
 	max_integrity = 400
+	resistance_flags = XENO_DAMAGEABLE
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	w_class = WEIGHT_CLASS_HUGE
 	deployable_item = /obj/machinery/deployable/mortar/howitzer
