@@ -1479,6 +1479,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 	penetration = 10
 	sundering = 0
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_IFF
 	damage_falloff = 2
 	accuracy = 80
 
