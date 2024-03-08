@@ -78,21 +78,18 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			crew.playsound_local(null, soundin, vol*0.5, vary, frequency, falloff, is_global, channel, S, sound_reciever = crew)
 
 
-//todo rename S to sound_to_use
-/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/S, distance_multiplier = 1, mob/sound_reciever)
-	if(!sound_reciever)
-		sound_reciever = src
+/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/sound_to_use, distance_multiplier = 1, mob/sound_reciever = src)
 	if(!sound_reciever.client)
 		return FALSE
 
-	if(!S)
-		S = sound(get_sfx(soundin))
-	S.wait = 0 //No queue
-	S.channel = channel || SSsounds.random_available_channel()
-	S.volume = vol
+	if(!sound_to_use)
+		sound_to_use = sound(get_sfx(soundin))
+	sound_to_use.wait = 0 //No queue
+	sound_to_use.channel = channel || SSsounds.random_available_channel()
+	sound_to_use.volume = vol
 
 	if(vary)
-		S.frequency = frequency ? frequency : GET_RANDOM_FREQ
+		sound_to_use.frequency = frequency ? frequency : GET_RANDOM_FREQ
 
 	if(isturf(turf_source))
 		// 3D sounds, the technology is here!
@@ -103,21 +100,21 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 
 		distance *= distance_multiplier
 
-		if(S.volume <= 2*distance)
+		if(sound_to_use.volume <= 2*distance)
 			return FALSE //no volume or too far away to hear such a volume level.
 
 		var/dx = turf_source.x - T.x // Hearing from the right/left
-		S.x = dx * distance_multiplier
+		sound_to_use.x = dx * distance_multiplier
 		var/dz = turf_source.y - T.y // Hearing from infront/behind
-		S.z = dz * distance_multiplier
+		sound_to_use.z = dz * distance_multiplier
 		//The y value is for above your head, but there is no ceiling in 2d spessmens.
-		S.y = 1
-		S.falloff = falloff ? falloff : FALLOFF_SOUNDS * max(round(S.volume * 0.05), 1)
+		sound_to_use.y = 1
+		sound_to_use.falloff = falloff ? falloff : FALLOFF_SOUNDS * max(round(sound_to_use.volume * 0.05), 1)
 
 	if(!is_global)
-		S.environment = SOUND_ENVIRONMENT_ROOM
+		sound_to_use.environment = SOUND_ENVIRONMENT_ROOM
 
-	SEND_SOUND(sound_reciever, S)
+	SEND_SOUND(sound_reciever, sound_to_use)
 
 
 /mob/living/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/S, distance_multiplier = 1, mob/sound_reciever)
