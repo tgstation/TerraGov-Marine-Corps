@@ -56,8 +56,6 @@
 
 /obj/item/defibrillator/update_overlays()
 	. = ..()
-	if(flags_equip_slot & ITEM_SLOT_GLOVES)
-		return // don't add these to defib gloves
 	if(dcell?.charge)
 		switch(round(dcell.charge * 100 / dcell.maxcharge))
 			if(67 to INFINITY)
@@ -68,32 +66,32 @@
 				overlays += "_low"
 			if(0 to 3)
 				overlays += "_empty"
-	else // No cell.
+	else // Somehow, no cell.
 		overlays += "_empty"
 
 /obj/item/defibrillator/examine(mob/user)
 	. = ..()
-	. += span_info("It has [round(dcell.charge / charge_cost)] out of [round(dcell.maxcharge  / charge_cost)] uses left in its internal battery.")
-	. += maybe_message_recharge_hint()
+	. += charge_information()
 
 
 /**
- * Message user with a hint to recharge defibrillator
- * and how to do it if the battery is low.
+ * Used for information on the defibrillator's charge status and how to recharge it.
+ * Returns a string.
 */
-/obj/item/defibrillator/proc/maybe_message_recharge_hint(mob/living/carbon/human/user)
+/obj/item/defibrillator/proc/charge_information(mob/living/carbon/human/user)
 	if(!dcell)
 		return
 
 	var/message
+	message += span_info("It has [round(dcell.charge / charge_cost)] out of [round(dcell.maxcharge  / charge_cost)] uses left in its internal battery.")
 	if(dcell.charge < charge_cost)
-		message = "The battery is empty."
+		message += span_warning("\nThe battery is empty.")
 	else if(round(dcell.charge * 100 / dcell.maxcharge) <= 33)
-		message = "The battery is low."
+		message += span_warning("\nThe battery is low.")
 
 	if(!message)
 		return
-	return span_notice("[message] You can click-drag this defibrillator on a corpsman backpack to recharge it.")
+	return span_notice("[message]\nYou can click-drag this defibrillator on a corpsman backpack to recharge it.")
 
 /obj/item/defibrillator/attack_self(mob/living/carbon/human/user)
 	if(!ready_needed)
@@ -366,13 +364,28 @@
 	parent_obj = null
 	return ..()
 
+/obj/item/defibrillator/internal/update_icon_state() // we have to do some messing around for the glove sprites to update
+	. = ..()
+	if(dcell?.charge)
+		switch(round(dcell.charge * 100 / dcell.maxcharge))
+			if(67 to INFINITY)
+				icon_state += "_full"
+			if(34 to 66)
+				icon_state += "_half"
+			if(3 to 33)
+				icon_state += "_low"
+			if(0 to 3)
+				icon_state += "_empty"
+	else // Somehow, no cell.
+		icon_state += "_empty"
+
 /obj/item/defibrillator/internal/update_icon()
 	. = ..()
 	parent_obj.update_icon()
 
 /obj/item/clothing/gloves/defibrillator
 	name = "advanced medical combat gloves"
-	desc = "Advanced medical gloves, these include small electrodes to defibrilate a patiant. No more bulky units!"
+	desc = "Advanced gauntlets that include small electrodes to resuscitate incapacitated patients."
 	icon_state = "defib_out_full"
 	item_state = "defib_gloves"
 	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
@@ -405,7 +418,7 @@
 
 /obj/item/clothing/gloves/defibrillator/examine(mob/user)
 	. = ..()
-	. += internal_defib.maybe_message_recharge_hint()
+	. += internal_defib.charge_information()
 
 /obj/item/clothing/gloves/defibrillator/update_icon_state()
 	. = ..()
