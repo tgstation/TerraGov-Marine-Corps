@@ -41,34 +41,49 @@
 	light_color = COLOR_VERY_SOFT_YELLOW
 
 	///greyscale support
-	greyscale_config = null
-	greyscale_colors = null
-
+	greyscale_config
+	greyscale_colors
 	///Any special effects applied to this projectile
 	var/flags_projectile_behavior = NONE
-
-	var/hitsound = null
-	var/datum/ammo/ammo //The ammo data which holds most of the actual info.
-
-	var/def_zone = BODY_ZONE_CHEST	//So we're not getting empty strings.
-
+	///Hit impact sound
+	var/hitsound
+	///The ammo data which holds most of the actual info
+	var/datum/ammo/ammo
+	///The bodypart you're trying to hit
+	var/def_zone = BODY_ZONE_CHEST
+	///the pixel X location of the tile that the player clicked. Default is the center
 	var/p_x = 16
-	var/p_y = 16 // the pixel location of the tile that the player clicked. Default is the center
-	var/apx //Pixel location in absolute coordinates. This is (((x - 1) * 32) + 16 + pixel_x)
-	var/apy //These values are floats, not integers. They need to be converted through CEILING or such when translated to relative pixel coordinates.
+	///the pixel y location of the tile that the player clicked. Default is the center
+	var/p_y = 16
+	/**
+	*Pixel location in absolute coordinates. This is (((x - 1) * 32) + 16 + pixel_x)
+	*These values are floats, not integers. They need to be converted through CEILING or such when translated to relative pixel coordinates.
+	*/
+	var/apx
+	/**
+	*Pixel location in absolute coordinates. This is (((y - 1) * 32) + 16 + pixel_y)
+	*These values are floats, not integers. They need to be converted through CEILING or such when translated to relative pixel coordinates.
+	*/
+	var/apy
 
-	var/atom/shot_from 	 = null // the object which shot us
-	var/turf/starting_turf = null // the projectile's starting turf
-	var/atom/original_target = null // the original target clicked
-	var/turf/original_target_turf = null // the original target's starting turf
-	var/atom/firer 		 = null // Who shot it
-
-	var/list/atom/movable/uncross_scheduled = list() // List of border movable atoms to check for when exiting a turf.
-
+	///The object which shot us
+	var/atom/shot_from //todo: Shot_from and firer are heavily misused, need a cleanup, for example a mech should have firer = the occupant, shot_from as the mech
+	///the projectile's starting turf
+	var/turf/starting_turf
+	///the original target clicked
+	var/atom/original_target
+	///the original target's starting turf
+	var/turf/original_target_turf
+	///The atom (usually mob) who shot it
+	var/atom/firer
+	///List of border movable atoms to check for when exiting a turf.
+	var/list/atom/movable/uncross_scheduled = list()
+	///Actual projectile damage
 	var/damage = 0
 	///ammo sundering value
 	var/sundering = 0
-	var/accuracy = 90 //Base projectile accuracy. Can maybe be later taken from the mob if desired.
+	///Base projectile accuracy
+	var/accuracy = 90
 
 	///how many damage points the projectile loses per tiles travelled
 	var/damage_falloff = 0
@@ -81,19 +96,25 @@
 
 	/// The iff signal that will be compared to the target's one, to apply iff if needed
 	var/iff_signal = NONE
-
+	///How far the projectile has currently travelled
 	var/distance_travelled = 0
-
-	var/projectile_speed = 1 //Tiles travelled per full tick.
-	var/armor_type = null
+	///Tiles travelled per full tick
+	var/projectile_speed = 1
+	///armour type this projectile is checked against
+	var/armor_type = BULLET
 
 	//Fired processing vars
+	///Last movement time
 	var/last_projectile_move = 0
+	///How many movements it needs to make in the next tick
 	var/stored_moves = 0
-	var/dir_angle //0 is north, 90 is east, 180 is south, 270 is west. BYOND angles and all.
-	var/x_offset //Float, not integer.
+	//0 is north, 90 is east, 180 is south, 270 is west. BYOND angles and all
+	var/dir_angle
+	///Float X_offset for calculating turf movements
+	var/x_offset
+	///Float Y_offset for calculating turf movements
 	var/y_offset
-
+	///Max range the projectile can travel
 	var/proj_max_range = 30
 	///A damage multiplier applied when a mob from the same faction as the projectile firer is hit
 	var/friendly_fire_multiplier = 0.5
@@ -484,7 +505,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					return
 				RegisterSignal(turf_crossed_by, COMSIG_TURF_RESUME_PROJECTILE_MOVE, PROC_REF(resume_move))
 				return PROJECTILE_FROZEN
-			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
+			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_TARGET_TURF)
 				last_processed_turf = turf_crossed_by
 				ammo.do_at_max_range(turf_crossed_by, src)
 				if(border_escaped_through & (NORTH|SOUTH))
@@ -550,7 +571,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				return
 			RegisterSignal(next_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE, PROC_REF(resume_move))
 			return PROJECTILE_FROZEN
-		if(next_turf == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
+		if(next_turf == original_target_turf && ammo.flags_ammo_behavior & AMMO_TARGET_TURF)
 			ammo.do_at_max_range(next_turf, src)
 			end_of_movement = i
 			break
@@ -591,14 +612,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		ammo.on_hit_turf(turf_to_scan, src)
 		turf_to_scan.bullet_act(src)
 		return !(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_TURF)
-
-	if(shot_from)
-		switch(SEND_SIGNAL(shot_from, COMSIG_PROJ_SCANTURF, turf_to_scan))
-			if(COMPONENT_PROJ_SCANTURF_TURFCLEAR)
-				return FALSE
-			if(COMPONENT_PROJ_SCANTURF_TARGETFOUND)
-				original_target.do_projectile_hit(src)
-				return TRUE
 
 	for(var/atom/movable/thing_to_hit in turf_to_scan)
 
@@ -658,7 +671,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			return FALSE //No effect now, but we save the reference to check on exiting the tile.
 		if (uncrossing)
 			return FALSE //you don't hit the cade from behind.
-	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.iff_signal || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds are better at getting past cover
+	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.iff_signal) //sniper and IFF rounds are better at getting past cover
 		hit_chance *= 0.8
 	///50% better protection when shooting from outside accurate range.
 	if(proj.distance_travelled > proj.ammo.accurate_range)
@@ -735,13 +748,12 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	hit_chance += (mob_size - 1) * 20 //You're easy to hit when you're swoll, hard to hit when you're a manlet
 
 	///Is the shooter a living mob. Defined before the check as used later as well
-	var/mob/living/shooter_living
 	if(isliving(proj.firer))
-		shooter_living = proj.firer
+		var/mob/living/shooter_living = proj.firer
 		if(shooter_living.faction == faction)
 			hit_chance = round(hit_chance*0.85) //You (presumably) aren't trying to shoot your friends
 		var/obj/item/shot_source = proj.shot_from
-		if(!line_of_sight(shooter_living, src, 9) && (!istype(shot_source) || !shot_source.zoom)) //if you can't draw LOS within 9 tiles (to accomodate wide screen), AND the source was either not zoomed or not an item(like a xeno)
+		if((!istype(shot_source) || !shot_source.zoom) && !line_of_sight(proj.starting_turf, src, 9)) //if you can't draw LOS within 9 tiles (to accomodate wide screen), AND the source was either not zoomed or not an item(like a xeno)
 			BULLET_DEBUG("Can't see target ([round(hit_chance*0.8)]).")
 			hit_chance = round(hit_chance*0.8) //Can't see the target (Opaque thing between shooter and target), or out of view range
 
@@ -782,9 +794,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	var/hit_roll = rand(0, 99) //Our randomly generated roll
 
 	if(hit_chance > hit_roll) //Hit
-		//friendly fire reduces the damage of the projectile, so only applies the multiplier if a hit is confirmed
-		if(shooter_living?.faction == faction)
-			proj.damage *= proj.friendly_fire_multiplier
 		if(hit_roll > (hit_chance-25)) //if you hit by a small margin, you hit a random bodypart instead of what you were aiming for
 			proj.def_zone = pick(GLOB.base_miss_chance)
 		return TRUE
@@ -810,6 +819,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		var/angle = !isnull(proj.dir_angle) ? proj.dir_angle : round(Get_Angle(proj.starting_turf, src), 1)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, angle, get_blood_color())
 
+
+/mob/living/carbon/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(proj.flags_projectile_behavior & PROJECTILE_PRECISE_TARGET)
+		return proj.original_target == src ? TRUE : FALSE
+	return ..()
 
 /mob/living/carbon/human/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(wear_id?.iff_signal & proj.iff_signal)
@@ -861,26 +875,29 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(!damage)
 		return
 
+	if(proj.flags_projectile_behavior & PROJECTILE_PRECISE_TARGET)
+		damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
+		add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
+
+	//friendly fire reduces the damage of the projectile, so only applies the multiplier if a hit is confirmed
+	if(isliving(proj.firer))
+		var/mob/living/shooter_living = proj.firer
+		if(shooter_living?.faction == faction)
+			damage *= proj.friendly_fire_multiplier
+
+		if(iscarbon(proj.firer))
+			var/mob/living/carbon/shooter_carbon = proj.firer
+			if(shooter_carbon.IsStaggered())
+				damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
+
 	damage = check_shields(COMBAT_PROJ_ATTACK, damage, proj.ammo.armor_type, FALSE, proj.penetration)
 	if(!damage)
 		proj.ammo.on_shield_block(src, proj)
 		return
 
-	if(!damage)
-		return
-
 	flash_weak_pain()
 
 	var/feedback_flags = NONE
-
-	if(proj.shot_from && src == proj.shot_from.sniper_target(src))
-		damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
-		add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
-
-	if(iscarbon(proj.firer))
-		var/mob/living/carbon/shooter_carbon = proj.firer
-		if(shooter_carbon.IsStaggered())
-			damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
 	var/original_damage = damage
 	damage = modify_by_armor(damage, proj.armor_type, proj.penetration, proj.def_zone)
 	if(damage == original_damage)
@@ -894,7 +911,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(IgniteMob())
 			feedback_flags |= (BULLET_FEEDBACK_FIRE)
 
-	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
+	if(proj.sundering)
 		adjust_sunder(proj.sundering)
 
 	if(stat != DEAD && isliving(proj.firer))
@@ -1066,7 +1083,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				break
 			if(scan_a_turf(turf_crossed_by, border_escaped_through))
 				break
-			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
+			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_TARGET_TURF)
 				last_processed_turf = turf_crossed_by
 				ammo.do_at_max_range(turf_crossed_by, src)
 				end_of_movement = TRUE
@@ -1115,7 +1132,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(scan_a_turf(next_turf, movement_dir))
 			end_of_movement = TRUE
 			break
-		if(next_turf == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
+		if(next_turf == original_target_turf && ammo.flags_ammo_behavior & AMMO_TARGET_TURF)
 			ammo.do_at_max_range(next_turf, src)
 			end_of_movement = TRUE
 			break
@@ -1250,7 +1267,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/carbon/human/bullet_message(obj/projectile/proj, feedback_flags, damage)
 	. = ..()
 	var/list/victim_feedback = list()
-	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
+	if(proj.shot_from && HAS_TRAIT(proj.shot_from, TRAIT_GUN_SILENCED))
 		victim_feedback += "You've been shot in the [parse_zone(proj.def_zone)] by [proj]!"
 	else
 		victim_feedback += "You are hit by [proj] in the [parse_zone(proj.def_zone)]!"
@@ -1287,7 +1304,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/carbon/xenomorph/bullet_message(obj/projectile/proj, feedback_flags, damage)
 	. = ..()
 	var/list/victim_feedback
-	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
+	if(proj.shot_from && HAS_TRAIT(proj.shot_from, TRAIT_GUN_SILENCED))
 		victim_feedback = list("We've been shot in the [parse_zone(proj.def_zone)] by [proj]!")
 	else
 		victim_feedback = list("We are hit by the [proj] in the [parse_zone(proj.def_zone)]!")
