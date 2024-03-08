@@ -472,6 +472,8 @@
 
 
 /mob/living/carbon/xenomorph/proc/hud_set_plasma()
+	if(!xeno_caste) //this is cringe that we need this but currently its called before caste is set on init
+		return
 	if(hud_used?.alien_plasma_display)
 		var/bucket
 		if(stat == DEAD)
