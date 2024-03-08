@@ -21,14 +21,17 @@
 	caste_traits = null
 	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 10, BIO = 35, FIRE = 35, ACID = 35)
 	shield_strength = 650
-	crush_strength = 50
+	flux_bonus_brain_damage = 3
+	flux_max_confuse_dur = 9 SECONDS
+	flux_stagger_dur = 3 SECONDS
+	flux_slowdown_dur = 3 SECONDS
 	blast_strength = 45
 	minimap_icon = "warlock"
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/psy_crush,
+		/datum/action/ability/activable/xeno/neural_flux,
 		/datum/action/ability/activable/xeno/psy_blast,
 		/datum/action/ability/activable/xeno/psychic_shield,
 		/datum/action/ability/activable/xeno/transfer_plasma/drone,

@@ -194,8 +194,11 @@
 	// *** Warlock Abilities ***
 	///The integrity of psychic shields made by the xeno
 	var/shield_strength = 350
-	///The strength of psychic crush's effects
-	var/crush_strength = 35
+	///The strength of neural flux's effects
+	var/flux_bonus_brain_damage = 0
+	var/flux_max_confuse_dur = 0
+	var/flux_stagger_dur = 0
+	var/flux_slowdown_dur = 0
 	///The strength of psychic blast's  AOE effects
 	var/blast_strength = 25
 
