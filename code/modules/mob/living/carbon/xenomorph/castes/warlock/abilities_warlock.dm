@@ -266,7 +266,7 @@
 	action_icon_state = "neural_flux"
 	desc = " Project a wave which confuses, staggers and slows marines. Staggered targets will take bonus brain damage. Channeling the ability increases the size of the wave, but reduces the effects."
 	ability_cost = 200
-	cooldown_duration = 12 SECONDS
+	cooldown_duration = 16 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
@@ -378,7 +378,7 @@
 /datum/action/ability/activable/xeno/neural_flux/proc/flux(turf/target)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	//Calculate the confusion effect durations by subtracting from max duration based on current_iterations
-	var/confuse_dur = xeno_owner.xeno_caste.flux_max_confuse_dur SECONDS - current_iterations * 0.8 SECONDS
+	var/confuse_dur = xeno_owner.xeno_caste.flux_max_confuse_dur - current_iterations * 0.8 SECONDS
 	if(!check_distance(target))
 		stop_flux()
 		return
