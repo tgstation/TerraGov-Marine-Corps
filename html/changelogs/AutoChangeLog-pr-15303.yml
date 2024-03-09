@@ -1,6 +1,0 @@
-author: "Naaanii"
-delete-after: True
-changes:
-  - rscadd: "Adds AMR incen and flak ammo to valhalla."
-  - rscadd: "Adds TL Flak rounds to valhalla."
-  - rscadd: "Adds cleaner nades to valhalla."

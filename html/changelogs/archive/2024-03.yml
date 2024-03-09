@@ -149,3 +149,23 @@
       in their belts
   ivanmixo:
   - spellcheck: Fixed a typo in bulwark description
+2024-03-09:
+  Lumipharon:
+  - bugfix: Fixed some issues with mech armour facings against melee attacks
+  - bugfix: Fixed xeno melee attacks ignoring all armour on objects
+  - rscdel: Removed a nonexistant item
+  - bugfix: AMR lase mode will no longer completely ignore solid objects
+  - code_imp: Cleaned up a bunch of projectile code
+  Naaanii:
+  - rscadd: Adds AMR incen and flak ammo to valhalla.
+  - rscadd: Adds TL Flak rounds to valhalla.
+  - rscadd: Adds cleaner nades to valhalla.
+  TiviPlus:
+  - qol: Tank gunner can now rotate turret using movement keys
+  - code_imp: kotahi uses proper shuffling in backend
+  - bugfix: Fix kotahi always spitting out 4 +4s in a row
+  - rscadd: Minimaps now work in the tank
+  - rscadd: restricted things like removing tank gun to tank crew only
+  - rscadd: Added tank LTA-AP minigun
+  ivanmixo:
+  - rscdel: Resting is no longer a verb in the IC tab
