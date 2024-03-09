@@ -991,7 +991,7 @@
 		damage = victim.modify_by_armor(damage, blocked, penetration, def_zone)
 
 	if(victim.protection_aura)
-		damage = round(damage * ((20 - victim.protection_aura) / 20))
+		damage = round(damage * ((20 - victim.protection_aura) / 20), 0.1)
 
 	if(!damage)
 		return 0

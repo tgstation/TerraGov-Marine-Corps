@@ -81,7 +81,7 @@
 	robogibs(src)
 	return ..()
 
-/obj/vehicle/unmanned/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+/obj/vehicle/unmanned/take_damage(damage_amount, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
 	hud_set_machine_health()
 

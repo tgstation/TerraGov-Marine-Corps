@@ -27,7 +27,6 @@
 
 	deevolves_to = list(
 		/mob/living/carbon/xenomorph/sentinel,
-		/mob/living/carbon/xenomorph/baneling,
 	)
 
 	// *** Flags *** //

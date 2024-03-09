@@ -605,9 +605,7 @@
 
 
 /proc/get_cardinal_dir(atom/A, atom/B)
-	var/dx = abs(B.x - A.x)
-	var/dy = abs(B.y - A.y)
-	return get_dir(A, B) & (rand() * (dx+dy) < dy ? 3 : 12)
+	return angle_to_cardinal_dir(Get_Angle(get_turf(A), get_turf(B)))
 
 /// If given a diagonal dir, return a corresponding cardinal dir. East/west preferred
 /proc/closest_cardinal_dir(dir)

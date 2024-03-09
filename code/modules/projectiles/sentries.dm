@@ -302,7 +302,7 @@
 	set_on(FALSE)
 	update_icon()
 
-/obj/machinery/deployable/mounted/sentry/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+/obj/machinery/deployable/mounted/sentry/take_damage(damage_amount, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	if(damage_amount <= 0)
 		return
 	if(prob(10))
