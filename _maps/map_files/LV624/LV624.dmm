@@ -11451,7 +11451,8 @@
 /area/lv624/lazarus/engineering)
 "lmd" = (
 /obj/structure/table,
-//turf/open/floor/freezer,
+/obj/item/clothing/suit/storage/chef/classic,
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "lmI" = (
 /obj/structure/cargo_container/nt{
