@@ -273,20 +273,3 @@ Good luck, but do not expect to survive."})
 	wear_suit = /obj/item/clothing/suit/storage/CMB
 	shoes = /obj/item/clothing/shoes/jackboots
 	back = /obj/item/storage/backpack/satchel/sec
-
-
-// Rambo Survivor
-/datum/job/survivor/rambo
-	title = "Survivor"
-	skills_type = /datum/skills/civilian/survivor/master
-	outfit = /datum/outfit/job/survivor/rambo
-	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN
-
-/datum/outfit/job/survivor/rambo
-	name = "Survivor"
-	jobtype = /datum/job/survivor/rambo
-	w_uniform = /obj/item/clothing/under/color/grey
-	wear_suit = /obj/item/clothing/suit/armor/rugged
-	shoes = /obj/item/clothing/shoes/ruggedboot
-	back = /obj/item/storage/backpack/satchel/rugged
-	gloves = /obj/item/clothing/gloves/ruggedgloves
