@@ -352,7 +352,7 @@
 	max_integrity = 300
 	reinf = TRUE
 
-//For the sulaco and POS AI core.
+//For the POS AI core.
 /obj/structure/window/reinforced/extratoughened
 	name = "protective AI glass"
 	desc = "Heavily reinforced glass with many layers of a rod matrice. This is rarely used for anything but the most important windows"
