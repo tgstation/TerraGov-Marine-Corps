@@ -633,7 +633,7 @@ GLOBAL_LIST_INIT(synthetic_clothes_listed_products, list(
 		/obj/item/armor_module/storage/uniform/white_vest = list(CAT_WEB, "White medical vest", 0, "black"),
 		/obj/item/armor_module/storage/uniform/surgery_webbing = list(CAT_WEB, "White surgical webbing", 0, "black"),
 		/obj/item/clothing/gloves/insulated = list(CAT_GLO, "Insulated gloves", 0, "black"),
-		/obj/item/clothing/gloves/marine = list(CAT_GLO, "Combat gloves", 0, "synth-armor")
+		/obj/item/clothing/gloves/marine = list(CAT_GLO, "Combat gloves", 0, "synth-armor"),
 		/obj/item/clothing/gloves/latex = list(CAT_GLO, "Latex gloves", 0, "black"),
 		/obj/item/storage/belt/lifesaver/full = list(CAT_BEL, "Lifesaver belt", 0, "orange", "synth-attachable"),
 		/obj/item/storage/belt/rig/medical = list(CAT_BEL, "Rig belt", 0, "black"),
