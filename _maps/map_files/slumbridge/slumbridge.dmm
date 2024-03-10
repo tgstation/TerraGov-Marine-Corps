@@ -12866,7 +12866,8 @@
 /area/slumbridge/inside/colony/bar)
 "jFz" = (
 /obj/structure/table,
-//obj/effect/spawner/random/food_or_drink/kitchen,
+/obj/item/clothing/suit/storage/chef/classic,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
 /area/slumbridge/inside/colony/kitchen)
