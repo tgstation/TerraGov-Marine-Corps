@@ -29,8 +29,6 @@
 	var/hit_sound
 	///Sound this object makes when destroyed
 	var/destroy_sound
-	///How many fire stacks it applies
-	var/item_fire_stacks = 0 //todo: kill this
 	///ID access where all are required to access this object
 	var/list/req_access = null
 	///ID access where any one is required to access this object

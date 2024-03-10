@@ -446,7 +446,7 @@
 		explosion(loc, light_impact_range = 1, flash_range = 2)
 		qdel(src)
 
-
+#define FLARE_FIRE_STACKS 5
 /obj/item/explosive/grenade/flare
 	name = "\improper M40 FLDP grenade"
 	desc = "A TGMC standard issue flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand."
@@ -489,68 +489,6 @@
 	if(!fuel || !active)
 		turn_off()
 
-/obj/item/explosive/grenade/flare/proc/turn_off()
-	active = FALSE
-	fuel = 0
-	heat = 0
-	item_fire_stacks = 0
-	force = initial(force)
-	damtype = initial(damtype)
-	update_brightness()
-	icon_state = "[initial(icon_state)]_empty" // override icon state set by update_brightness
-	STOP_PROCESSING(SSobj, src)
-
-/obj/item/explosive/grenade/flare/proc/turn_on()
-	active = TRUE
-	force = 5
-	throwforce = 10
-	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
-	item_fire_stacks = 5
-	heat = 1500
-	damtype = BURN
-	update_brightness()
-	playsound(src,'sound/items/flare.ogg', 15, 1)
-	START_PROCESSING(SSobj, src)
-
-/obj/item/explosive/grenade/flare/attack_self(mob/user)
-
-	// Usual checks
-	if(!fuel)
-		to_chat(user, span_notice("It's out of fuel."))
-		return
-	if(active)
-		return
-
-	// All good, turn it on.
-	user.visible_message(span_notice("[user] activates the flare."), span_notice("You depress the ignition button, activating it!"))
-	turn_on(user)
-
-/obj/item/explosive/grenade/flare/activate(mob/user)
-	if(!active)
-		turn_on(user)
-
-/obj/item/explosive/grenade/flare/on/Initialize(mapload)
-	. = ..()
-	active = TRUE
-	heat = 1500
-	update_brightness()
-	force = 5
-	throwforce = 10
-	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
-	item_fire_stacks = 5
-	damtype = BURN
-	START_PROCESSING(SSobj, src)
-
-/obj/item/explosive/grenade/flare/proc/update_brightness()
-	if(active && fuel > 0)
-		icon_state = "[initial(icon_state)]_active"
-		item_state = "[initial(item_state)]_active"
-		set_light_on(TRUE)
-	else
-		icon_state = initial(icon_state)
-		item_state = initial(item_state)
-		set_light_on(FALSE)
-
 /obj/item/explosive/grenade/flare/throw_impact(atom/hit_atom, speed)
 	if(isopenturf(hit_atom))
 		var/obj/alien/weeds/node/N = locate() in loc
@@ -564,13 +502,67 @@
 		return
 
 	if(isliving(hit_atom))
-		var/mob/living/L = hit_atom
+		var/mob/living/living_target = hit_atom
+		living_target.fire_stacks += FLARE_FIRE_STACKS
+		living_target.IgniteMob()
 
-		var/target_zone = check_zone(L.zone_selected)
+		var/target_zone = check_zone(living_target.zone_selected)
 		if(!target_zone || rand(40))
 			target_zone = "chest"
-		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE) && !L.on_fire)
-			L.apply_damage(randfloat(throwforce * 0.75, throwforce * 1.25), BURN, target_zone, FIRE, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
+		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE) && !living_target.on_fire)
+			living_target.apply_damage(randfloat(throwforce * 0.75, throwforce * 1.25), BURN, target_zone, FIRE, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
+
+/obj/item/explosive/grenade/flare/attack_self(mob/user)
+	if(!fuel)
+		to_chat(user, span_notice("It's out of fuel."))
+		return
+	if(active)
+		return
+
+	user.visible_message(span_notice("[user] activates the flare."), span_notice("You depress the ignition button, activating it!"))
+	turn_on(user)
+
+/obj/item/explosive/grenade/flare/activate(mob/user)
+	if(!active)
+		turn_on(user)
+
+///Shuts the flare off
+/obj/item/explosive/grenade/flare/proc/turn_off()
+	active = FALSE
+	fuel = 0
+	heat = 0
+	force = initial(force)
+	damtype = initial(damtype)
+	update_brightness()
+	icon_state = "[initial(icon_state)]_empty" // override icon state set by update_brightness
+	STOP_PROCESSING(SSobj, src)
+
+///Activates the flare
+/obj/item/explosive/grenade/flare/proc/turn_on()
+	active = TRUE
+	force = 5
+	throwforce = 10
+	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
+	heat = 1500
+	damtype = BURN
+	update_brightness()
+	playsound(src,'sound/items/flare.ogg', 15, 1)
+	START_PROCESSING(SSobj, src)
+
+/obj/item/explosive/grenade/flare/proc/update_brightness()
+	if(active && fuel > 0)
+		icon_state = "[initial(icon_state)]_active"
+		item_state = "[initial(item_state)]_active"
+		set_light_on(TRUE)
+	else
+		icon_state = initial(icon_state)
+		item_state = initial(item_state)
+		set_light_on(FALSE)
+
+//Starts on
+/obj/item/explosive/grenade/flare/on/Initialize(mapload)
+	. = ..()
+	turn_on()
 
 /obj/item/explosive/grenade/flare/civilian
 	name = "flare"
