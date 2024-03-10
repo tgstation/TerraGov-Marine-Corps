@@ -109,29 +109,11 @@
 	desc = "You shouldn't see this"
 	flags_armor_protection = CHEST|GROIN|ARMS
 
-/obj/item/clothing/suit/security/formal
-	name = "formal jacket"
-	desc = "A formal military jacket. Not recommended for combat use."
-	icon_state = "officerbluejacket"
-
-/obj/item/clothing/suit/security/formal/tan
-	icon_state = "officertanjacket"
-
-/obj/item/clothing/suit/security/formal/officer
-	name = "officer's jacket"
-	desc = "An officer's formal jacket, makes you look authoritative."
-	icon_state = "wardenbluejacket"
-
-/obj/item/clothing/suit/security/formal/officer/tan
-	icon_state = "wardentanjacket"
-
 /obj/item/clothing/suit/security/formal/senior_officer
 	name = "senior officer's jacket"
 	desc = "This piece of clothing was specifically designed for asserting superior authority."
 	icon_state = "hosbluejacket"
 
-/obj/item/clothing/suit/security/formal/senior_officer/tan
-	icon_state = "hostanjacket"
 
 //Detective
 /obj/item/clothing/suit/storage/det_suit
@@ -238,39 +220,10 @@
 /obj/item/clothing/suit/storage/lawyer/purpjacket
 	name = "Purple Suit Jacket"
 	desc = "A snappy dress jacket."
-	icon_state = "suitjacket_purp"
-	item_state = "suitjacket_purp"
+	icon_state = "suitjacket_purp_open"
+	item_state = "suitjacket_purp_open"
 	blood_overlay_type = "coat"
 	flags_armor_protection = CHEST|ARMS
-
-//Internal Affairs
-/obj/item/clothing/suit/storage/internalaffairs
-	name = "Internal Affairs Jacket"
-	desc = "A smooth black jacket."
-	icon_state = "ia_jacket_open"
-	item_state = "ia_jacket"
-	blood_overlay_type = "coat"
-	flags_armor_protection = CHEST|ARMS
-
-/obj/item/clothing/suit/storage/internalaffairs/verb/toggle()
-	set name = "Toggle Coat Buttons"
-	set category = "Object"
-	set src in usr
-
-	if(!usr.canmove || usr.stat || usr.restrained())
-		return FALSE
-
-	switch(icon_state)
-		if("ia_jacket_open")
-			src.icon_state = "ia_jacket"
-			to_chat(usr, "You button up the jacket.")
-		if("ia_jacket")
-			src.icon_state = "ia_jacket_open"
-			to_chat(usr, "You unbutton the jacket.")
-		else
-			to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising that it won't work.")
-			return FALSE
-	update_clothing_icon()	//so our overlays update
 
 //Medical
 /obj/item/clothing/suit/storage/fr_jacket

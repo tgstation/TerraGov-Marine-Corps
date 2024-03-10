@@ -25,6 +25,24 @@
 /obj/item/clothing/under/marine/corpman_vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
+//Robot Undersuit
+/obj/item/clothing/under/marine/robotic
+	name = "robotic armor suit mount"
+	desc = "Additional structural armor plate used for mounting equipment on a combat robot."
+	item_state = "chest_rig"
+	icon_state = "chest_rig"
+	adjustment_variants = list()
+	species_exception = list(/datum/species/robot)
+
+/obj/item/clothing/under/marine/robotic/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
+	. = ..()
+	if(!isrobot(user))
+		to_chat(user, span_warning("You can't equip this as it requires mounting screws on your body!"))
+		return FALSE
+
+/obj/item/clothing/under/marine/robotic/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
 /obj/item/clothing/under/marine/hyperscale
 	name = "\improper 8E Chameleon TGMC uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform BUT colorable with a facepaint! You suspect it's not as robust-proof as advertised."
@@ -173,30 +191,6 @@
 	icon_state = "officertanclothes"
 	item_state = "officertanclothes"
 	adjustment_variants = list()
-
-/obj/item/clothing/under/marine/officer/warden
-	name = "marine officer uniform"
-	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."
-	icon_state = "wardentanclothes"
-	item_state = "wardentanclothes"
-
-/obj/item/clothing/under/marine/officer/hos
-	name = "marine officer uniform"
-	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."
-	icon_state = "hostanclothes"
-	item_state = "hostanclothes"
-
-/obj/item/clothing/under/marine/officer/warrant
-	name = "Command Master at Arms uniform"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented uniform worn by lawful-good warrant officers. You suspect it's not as robust-proof as advertised."
-	icon_state = "WO_jumpsuit"
-	item_state = "WO_jumpsuit"
-
-/obj/item/clothing/under/marine/officer/logistics
-	name = "marine officer uniform"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented uniform worn by logistics officers of the TGMC. Do the corps proud."
-	icon_state = "BO_jumpsuit"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/under/marine/officer/ro_suit
 	name = "requisition officer suit"
@@ -464,6 +458,7 @@
 	icon_state = "rdalt"
 	adjustment_variants = list()
 
+//SOM clothing
 /obj/item/clothing/under/som
 	name = "\improper SOM uniform"
 	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies."
@@ -479,7 +474,6 @@
 
 /obj/item/clothing/under/som/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
-
 
 /obj/item/clothing/under/som/medic
 	name = "\improper SOM medical uniform"
@@ -524,6 +518,7 @@
 	icon_state = "som_senior_officer_uniform"
 	item_state = "som_senior_officer_uniform"
 
+//ICC uniforms
 /obj/item/clothing/under/icc
 	name = "\improper Modelle/30 uniform"
 	desc = "The standard uniform of ICC military personnel. The design is clearly dual purpose, meant to be both a combat uniform and one fit for daily tasks abord ships."
@@ -540,6 +535,7 @@
 /obj/item/clothing/under/icc/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
 
+//Other ERT Uniforms
 /obj/item/clothing/under/sectoid
 	name = "psionic field"
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
@@ -550,23 +546,6 @@
 /obj/item/clothing/under/sectoid/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, SECTOID_TRAIT)
-
-/obj/item/clothing/under/marine/robotic
-	name = "robotic armor suit mount"
-	desc = "Additional structural armor plate used for mounting equipment on a combat robot."
-	item_state = "chest_rig"
-	icon_state = "chest_rig"
-	adjustment_variants = list()
-	species_exception = list(/datum/species/robot)
-
-/obj/item/clothing/under/marine/robotic/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
-	. = ..()
-	if(!isrobot(user))
-		to_chat(user, span_warning("You can't equip this as it requires mounting screws on your body!"))
-		return FALSE
-
-/obj/item/clothing/under/marine/robotic/webbing
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
 /obj/item/clothing/under/marine/specops
 	name = "Tactical turtleneck"

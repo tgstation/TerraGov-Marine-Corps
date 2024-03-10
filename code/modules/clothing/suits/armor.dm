@@ -45,27 +45,12 @@
 		/obj/item/storage/holster/blade
 	)
 
-/obj/item/clothing/suit/armor/vest/admiral
-	name = "admiral's jacket"
-	desc = "An armoured jacket with gold regalia"
-	icon_state = "admiral_jacket"
-	item_state = "admiral_jacket"
-	flags_armor_protection = CHEST|GROIN|ARMS
-	w_class = WEIGHT_CLASS_NORMAL
-
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"
 	desc = "An armored vest that protects against some damage."
 	icon_state = "armorsec"
 	item_state = "armorsec"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM //prevents powergaming marine by swapping armor.
-
-/obj/item/clothing/suit/armor/vest/warden
-	name = "Warden's jacket"
-	desc = "An armoured jacket with silver rank pips and livery."
-	icon_state = "warden_jacket"
-	item_state = "warden_jacket"
-	flags_armor_protection = CHEST|GROIN|ARMS
 
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof vest"
@@ -143,19 +128,6 @@
 	flags_armor_protection = CHEST|GROIN
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 50, BULLET = 15, LASER = 50, ENERGY = 10, BOMB = 25, BIO = 0, FIRE = 10, ACID = 10)
-
-/obj/item/clothing/suit/armor/rugged
-	name = "rugged armor"
-	desc = "A suit of armor used by workers in dangerous environments."
-	icon_state = "swatarmor"
-	item_state = "swatarmor"
-	var/obj/item/weapon/gun/holstered = null
-	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	flags_item = SYNTH_RESTRICTED
-	slowdown = 0
-	soft_armor = list(MELEE = 50, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 50, BIO = 40, FIRE = 50, ACID = 50)
-	siemens_coefficient = 0.7
-
 
 /obj/item/clothing/suit/armor/sectoid
 	name = "psionic field"

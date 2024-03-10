@@ -69,25 +69,6 @@
 	icon_state = "marisa"
 	item_state = "marisarobe"
 
-/obj/item/clothing/suit/wizrobe/magusblue
-	name = "Magus Robe"
-	desc = "A set of armoured robes that seem to radiate a dark power"
-	icon_state = "magusblue"
-	item_state = "magusblue"
-	flags_armor_protection = CHEST|GROIN|ARMS|HANDS|LEGS|FEET
-
-/obj/item/clothing/suit/wizrobe/magusred
-	name = "Magus Robe"
-	desc = "A set of armoured robes that seem to radiate a dark power"
-	icon_state = "magusred"
-	item_state = "magusred"
-	flags_armor_protection = CHEST|GROIN|ARMS|HANDS|LEGS|FEET
-
-/obj/item/clothing/suit/wizrobe/psypurple
-	name = "purple robes"
-	desc = "Heavy, royal purple robes threaded with psychic amplifiers and weird, bulbous lenses. Do not machine wash."
-	icon_state = "psyamp"
-	item_state = "psyamp"
 
 /obj/item/clothing/suit/wizrobe/gentlecoat
 	name = "Gentlemans Coat"
