@@ -19,7 +19,6 @@
 	var/obj_integrity	//defaults to max_integrity
 	var/max_integrity = 500
 	var/integrity_failure = 0 //0 if we have no special broken behavior
-	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
 	var/crit_fail = 0
 
 	///throwforce needs to be at least 1 else it causes runtimes with shields

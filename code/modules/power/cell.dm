@@ -54,14 +54,11 @@
 		explode()
 		return 0
 
-	if(maxcharge < amount)	return 0
+	if(maxcharge < amount)
+		return 0
 	var/amount_used = min(maxcharge-charge,amount)
-	if(crit_fail)	return 0
-	if(!prob(reliability))
-		minor_fault++
-		if(prob(minor_fault))
-			crit_fail = 1
-			return 0
+	if(crit_fail)
+		return 0
 	charge += amount_used
 	return amount_used
 
@@ -196,9 +193,7 @@
 	charge -= 1000 / severity
 	if (charge < 0)
 		charge = 0
-	if(reliability != 100 && prob(50/severity))
-		reliability -= 10 / severity
-	..()
+	return ..()
 
 /obj/item/cell/ex_act(severity)
 
