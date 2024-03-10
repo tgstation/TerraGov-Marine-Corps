@@ -306,7 +306,7 @@
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber AM-5 antimaterial rifle and a 75-round drum magazine."
 	icon_state = "snipersentry"
 
-	turret_range = 21
+	turret_range = 9
 	deploy_time = 10 SECONDS
 	max_shells = 75
 	fire_delay = 2 SECONDS
