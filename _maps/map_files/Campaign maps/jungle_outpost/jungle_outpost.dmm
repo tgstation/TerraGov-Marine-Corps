@@ -3272,7 +3272,8 @@
 /area/campaign/jungle_outpost/ground/jungle)
 "nH" = (
 /obj/structure/table/mainship,
-//obj/item/clothing/head/chefhat,
+/obj/item/clothing/suit/storage/chef/classic,
+/obj/item/clothing/head/chefhat,
 /obj/item/clothing/gloves/latex,
 /turf/open/floor/tile/barber,
 /area/campaign/jungle_outpost/outpost/living/kitchen)
