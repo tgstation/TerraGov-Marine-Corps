@@ -57,8 +57,6 @@
 	if(maxcharge < amount)
 		return 0
 	var/amount_used = min(maxcharge-charge,amount)
-	if(crit_fail)
-		return 0
 	charge += amount_used
 	return amount_used
 
@@ -69,8 +67,6 @@
 		. += "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%."
 	else
 		. += "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(src.percent() )]%."
-	if(crit_fail)
-		. += span_warning("This power cell seems to be faulty.")
 	if(rigged)
 		if(get_dist(user,src) < 3) //Have to be close to make out the *DANGEROUS* details
 			. += span_danger("This power cell looks jury rigged to explode!")

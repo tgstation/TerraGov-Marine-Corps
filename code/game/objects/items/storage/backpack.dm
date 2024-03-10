@@ -67,15 +67,10 @@
 	max_storage_space = 28
 
 /obj/item/storage/backpack/holding/attackby(obj/item/I, mob/user, params)
-	if(crit_fail)
-		to_chat(user, span_warning("The Bluespace generator isn't working."))
-
-	else if(istype(I, /obj/item/storage/backpack/holding) && !I.crit_fail)
-		to_chat(user, span_warning("The Bluespace interfaces of the two devices conflict and malfunction."))
-		qdel(I)
-
-	else
+	if(!istype(I, /obj/item/storage/backpack/holding))
 		return ..()
+	to_chat(user, span_warning("The Bluespace interfaces of the two devices conflict and malfunction."))
+	qdel(I)
 
 /obj/item/storage/backpack/santabag
 	name = "Santa's Gift Bag"

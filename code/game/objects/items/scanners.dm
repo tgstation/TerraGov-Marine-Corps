@@ -417,9 +417,6 @@ REAGENT SCANNER
 /obj/item/mass_spectrometer/attack_self(mob/user as mob)
 	if (user.stat)
 		return
-	if (crit_fail)
-		to_chat(user, span_warning("This device has critically failed and is no longer functional!"))
-		return
 	if(!reagents.total_volume)
 		return
 	var/list/blood_traces
@@ -464,9 +461,6 @@ REAGENT SCANNER
 	if (user.stat)
 		return
 	if(!istype(O))
-		return
-	if (crit_fail)
-		to_chat(user, span_warning("This device has critically failed and is no longer functional!"))
 		return
 	if(!O.reagents || !length(O.reagents.reagent_list))
 		to_chat(user, span_notice("No chemical agents found in [O]"))
