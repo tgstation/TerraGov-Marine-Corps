@@ -1,0 +1,7 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Explosion throws are now tied to severity"
+  - balance: "Large xenos will not be thrown by light or weak explosions"
+  - balance: "Mechs will only be thrown by devastating explosions"
+  - balance: "Weak explosions will now only throw loose items"
