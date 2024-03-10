@@ -96,7 +96,7 @@
 	allowed = list (/obj/item/tool/kitchen/knife,
 	/obj/item/tool/kitchen/knife/butcher)
 
-//obj/item/clothing/suit/storage/chef/classic
+/obj/item/clothing/suit/storage/chef/classic
 	name = "A classic chef's apron."
 	desc = "A basic, dull, white chef's apron."
 	icon_state = "apronchef"
