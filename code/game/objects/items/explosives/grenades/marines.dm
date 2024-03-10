@@ -526,6 +526,18 @@
 	if(!active)
 		turn_on(user)
 
+/obj/item/explosive/grenade/flare/update_icon_state()
+	if(active && fuel > 0)
+		icon_state = "[initial(icon_state)]_active"
+		item_state = "[initial(item_state)]_active"
+	else if(!fuel)
+		icon_state = "[initial(icon_state)]_empty"
+		item_state = "[initial(item_state)]_empty"
+	else
+		icon_state = initial(icon_state)
+		item_state = initial(item_state)
+
+
 ///Shuts the flare off
 /obj/item/explosive/grenade/flare/proc/turn_off()
 	active = FALSE
@@ -533,8 +545,8 @@
 	heat = 0
 	force = initial(force)
 	damtype = initial(damtype)
-	update_brightness()
-	icon_state = "[initial(icon_state)]_empty" // override icon state set by update_brightness
+	update_icon()
+	set_light_on(FALSE)
 	STOP_PROCESSING(SSobj, src)
 
 ///Activates the flare
@@ -545,19 +557,10 @@
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 	heat = 1500
 	damtype = BURN
-	update_brightness()
+	update_icon()
+	set_light_on(TRUE)
 	playsound(src,'sound/items/flare.ogg', 15, 1)
 	START_PROCESSING(SSobj, src)
-
-/obj/item/explosive/grenade/flare/proc/update_brightness()
-	if(active && fuel > 0)
-		icon_state = "[initial(icon_state)]_active"
-		item_state = "[initial(item_state)]_active"
-		set_light_on(TRUE)
-	else
-		icon_state = initial(icon_state)
-		item_state = initial(item_state)
-		set_light_on(FALSE)
 
 //Starts on
 /obj/item/explosive/grenade/flare/on/Initialize(mapload)
@@ -611,8 +614,7 @@
 	upper_fuel_limit = 20
 	light_system = STATIC_LIGHT//movable light has a max range
 	light_color = LIGHT_COLOR_CYAN
-	///The brightness of the flare
-	var/brightness = 12
+	light_range = 12
 
 /obj/item/explosive/grenade/flare/strongerflare/throw_impact(atom/hit_atom, speed)
 	. = ..()
@@ -620,11 +622,6 @@
 		return
 	anchored = TRUE//prevents marines from picking up and running around with a stronger flare
 
-/obj/item/explosive/grenade/flare/strongerflare/update_brightness()
+/obj/item/explosive/grenade/flare/strongerflare/turn_off()
 	. = ..()
-	if(active && fuel > 0)
-		icon_state = "[initial(icon_state)]_active"
-		set_light(brightness)
-	else
-		icon_state = initial(icon_state)
-		set_light(0)
+	set_light(0)
