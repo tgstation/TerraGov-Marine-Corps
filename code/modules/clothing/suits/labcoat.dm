@@ -79,7 +79,11 @@
 	desc = "A suit that protects against minor chemical spills. Offers slightly more protection against biohazards than the standard model. Has a green stripe on the shoulder."
 	icon_state = "labcoat_viro"
 
-/obj/item/clothing/suit/storage/labcoat/scientist
+/obj/item/clothing/suit/storage/labcoat/genetics
+	name = "Geneticist labcoat"
+	desc = "A suit that protects against minor chemical spills. Has a blue stripe on the shoulder."
+	icon_state = "labcoat_gen"
+/obj/item/clothing/suit/storage/labcoat/science
 	name = "Scientist labcoat"
 	desc = "A suit that protects against minor chemical spills. Has a purple stripe on the shoulder."
 	icon_state = "labcoat_sci"
