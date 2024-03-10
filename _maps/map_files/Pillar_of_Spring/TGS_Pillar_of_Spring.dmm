@@ -12508,7 +12508,8 @@
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/item/clothing/gloves/latex,
 /obj/item/clothing/head/chefhat,
-//obj/item/tool/kitchen/rollingpin,
+/obj/item/clothing/suit/storage/chef/classic,
+/obj/item/tool/kitchen/rollingpin,
 /obj/item/book/manual/chef_recipes,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
@@ -17865,7 +17866,8 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/clothing/head/chefhat,
 /obj/item/clothing/under/rank/chef,
-//turf/open/floor/mainship/mono,
+/obj/item/clothing/suit/storage/chef/classic,
+/turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "wwQ" = (
 /obj/structure/bed/chair/nometal{
