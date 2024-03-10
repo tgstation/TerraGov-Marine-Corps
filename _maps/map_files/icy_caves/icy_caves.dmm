@@ -9029,7 +9029,8 @@
 /area/icy_caves/caves/northwestmonorail)
 "US" = (
 /obj/structure/table,
-//turf/open/floor/prison/kitchen,
+/obj/item/clothing/suit/storage/chef/classic,
+/turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "UT" = (
 /obj/effect/decal/cleanable/blood/gibs,
