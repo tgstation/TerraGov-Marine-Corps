@@ -20,7 +20,6 @@
 
 #define MAP_PILLAR_OF_SPRING "Pillar of Spring"
 #define MAP_SULACO "Sulaco"
-#define MAP_THESEUS "Theseus"
 #define MAP_ARACHNE "Arachne"
 #define MAP_COMBAT_PATROL_BASE "Combat Patrol Base"
 
