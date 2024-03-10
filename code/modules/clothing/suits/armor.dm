@@ -52,6 +52,13 @@
 	item_state = "armorsec"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM //prevents powergaming marine by swapping armor.
 
+/obj/item/clothing/suit/armor/vest/warden
+	name = "Warden's jacket"
+	desc = "An armoured jacket with silver rank pips and livery."
+	icon_state = "warden_jacket"
+	item_state = "warden_jacket"
+	flags_armor_protection = CHEST|GROIN|ARMS
+
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof vest"
 	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
