@@ -1425,7 +1425,8 @@
 /area/mainship/medical/operating_room_three)
 "aru" = (
 /obj/structure/table/mainship/nometal,
-//obj/item/tool/kitchen/rollingpin,
+/obj/item/clothing/suit/storage/chef/classic,
+/obj/item/tool/kitchen/rollingpin,
 /obj/item/clothing/head/chefhat,
 /obj/item/clothing/gloves/latex,
 /obj/item/reagent_containers/food/drinks/shaker,
