@@ -17986,7 +17986,8 @@
 /area/gelida/indoors/a_block/executive)
 "nkE" = (
 /obj/structure/table/mainship,
-//turf/open/floor/prison/kitchen,
+/obj/item/clothing/suit/storage/chef/classic,
+/turf/open/floor/prison/kitchen,
 /area/gelida/indoors/a_block/kitchen)
 "nkH" = (
 /obj/effect/turf_decal/warning_stripes/thick{
