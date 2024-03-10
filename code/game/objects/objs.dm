@@ -33,8 +33,6 @@
 	var/list/req_access = null
 	///ID access where any one is required to access this object
 	var/list/req_one_access = null
-	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
-	var/real_explosion_block
 	///Odds of a projectile hitting the object, if the object is dense
 	var/coverage = 50
 
