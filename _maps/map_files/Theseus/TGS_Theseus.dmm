@@ -16462,7 +16462,8 @@
 /area/mainship/hull/port_hull)
 "qJm" = (
 /obj/item/tool/kitchen/tray,
-//obj/item/clothing/head/chefhat,
+/obj/item/clothing/suit/storage/chef/classic,
+/obj/item/clothing/head/chefhat,
 /obj/structure/table/reinforced,
 /obj/item/tool/kitchen/rollingpin,
 /obj/item/clothing/gloves/latex,
