@@ -259,7 +259,7 @@
 /obj/effect/landmark/corpsespawner/chef
 	name = "Chef"
 	corpseuniform = /obj/item/clothing/under/rank/chef
-	corpsesuit = /obj/item/clothing/suit/chef/classic
+	corpsesuit = //obj/item/clothing/suit/storage/chef/classic
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpsehelmet = /obj/item/clothing/head/chefhat
 	corpseback = /obj/item/storage/backpack

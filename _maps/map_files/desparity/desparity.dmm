@@ -8491,8 +8491,7 @@
 "Ru" = (
 /obj/structure/table,
 /obj/item/clothing/head/chefhat,
-/obj/item/clothing/suit/chef/classic,
-/obj/item/tool/kitchen/rollingpin,
+//obj/item/tool/kitchen/rollingpin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/canteen)
