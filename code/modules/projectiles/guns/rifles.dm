@@ -2637,6 +2637,7 @@
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "minimi"
 	item_state = "minimi"
+	fire_animation = "minimi_fire"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
