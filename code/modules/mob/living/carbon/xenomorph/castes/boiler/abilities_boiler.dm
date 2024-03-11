@@ -188,6 +188,9 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 /datum/action/ability/activable/xeno/bombard/on_cooldown_finish()
 	to_chat(owner, span_notice("We feel your toxin glands swell. We are able to bombard an area again."))
+	var/mob/living/carbon/xenomorph/boiler/X = owner
+	if(X.selected_ability == src)
+		X.set_bombard_pointer()
 	return ..()
 
 /datum/action/ability/activable/xeno/bombard/on_selection()
