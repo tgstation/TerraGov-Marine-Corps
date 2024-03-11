@@ -13071,6 +13071,10 @@
 	},
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
+"gcZ" = (
+/obj/structure/ship_ammo/cas/heavygun,
+/turf/open/floor/plating,
+/area/sulaco/hangar/cas)
 "gdq" = (
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -59182,7 +59186,7 @@ kwh
 bhA
 ddK
 pwv
-pwv
+gcZ
 pwv
 qct
 pwv
@@ -59439,7 +59443,7 @@ kwh
 bhA
 ddK
 pwv
-pwv
+gcZ
 pwv
 qct
 pwv
