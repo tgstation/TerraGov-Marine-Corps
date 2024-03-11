@@ -274,7 +274,7 @@
 	var/datum/ammo/ammo = GLOB.ammo_list[arty_shell.ammo_type]
 	shell.generate_bullet(ammo)
 	var/shell_range = min(get_dist_euclide(src, target), ammo.max_range)
-	shell.fire_at(target, src, src, shell_range, ammo.shell_speed)
+	shell.fire_at(target, null, src, shell_range, ammo.shell_speed)
 
 	perform_firing_visuals()
 
