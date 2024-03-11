@@ -2701,7 +2701,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	smoke.set_up(6, T, 7)
 	smoke.start()
 	flame_radius(4, T)
-	flame_radius(1, T, burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)
+	flame_radius(1, T, burn_intensity = 75, burn_duration = 45, burn_damage = 15, fire_stacks = 75)
 
 /datum/ammo/mortar/smoke/howi/plasmaloss
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
