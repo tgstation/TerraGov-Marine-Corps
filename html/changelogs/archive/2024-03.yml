@@ -173,3 +173,19 @@
   Lumipharon:
   - bugfix: fixed scout cloaks
   - qol: Xeno side UI plasma/health icons now also update instantly on change
+2024-03-11:
+  74delta:
+  - balance: Changes light armor slowdown from .3 to .2 and vlarmor from .2 to .15
+  Barnet2:
+  - balance: Cluster OB now has 1 more tile of devastation per hit
+  Lumipharon:
+  - bugfix: Projectiles more accurately have a firing mob (such as vehicles) so mob
+      modifiers now apply correctly
+  - bugfix: fixed HEFA nades not hitting their own turf
+  - code_imp: More projectile code improvements and minor fixes
+  - balance: Explosions stagger the occupants of mechs, applying stagger damage penalties
+      to their weapons
+  - balance: Explosion throws are now tied to severity
+  - balance: Large xenos will not be thrown by light or weak explosions
+  - balance: Mechs will only be thrown by devastating explosions
+  - balance: Weak explosions will now only throw loose items
