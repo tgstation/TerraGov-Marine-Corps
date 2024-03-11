@@ -20567,6 +20567,7 @@
 	},
 /obj/structure/rack,
 /obj/item/uav_turret/droid,
+/obj/item/uav_turret/droid,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "pum" = (
@@ -22150,7 +22151,7 @@
 /area/sulaco/hallway/lower_foreship)
 "ryR" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/vehicle/unmanned/droid/scout,
+/obj/vehicle/unmanned/droid,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "rzi" = (
