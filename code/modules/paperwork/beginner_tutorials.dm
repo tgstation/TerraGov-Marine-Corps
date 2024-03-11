@@ -51,7 +51,7 @@
 	Try keeping the distance from ferocious melee enemies, while getting too close for comfort with squishier ranged ones."}
 
 /obj/item/paper/tutorial/beginner_machinegunner
-	name = "Machinergunner Tutorial"
+	name = "Machinegunner Tutorial"
 	info = {"As a machinegunner, you are the backbone of a marine force. While you possess heavy armor reinforced with\
 	Tyr-pattern plating (strengthening its defense even further against melee attacks), your slow move speed and the unwieldy nature of your MG-60 machinegun\
 	means you should not be spearheading any pushes. Aim mode is your best friend - combined with your bipod, you are very apt at sitting just behind the front line,\
