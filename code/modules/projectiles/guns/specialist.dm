@@ -759,7 +759,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rocket/m57a4/ds, /obj/item/ammo_magazine/rocket/m57a4)
 	aim_slowdown = 2.75
 	attachable_allowed = list(
-
+		/obj/item/attachable/buildasentry,
 	)
 	general_codex_key = "explosive weapons"
 
@@ -825,6 +825,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/buildasentry,
 	)
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
