@@ -85,11 +85,11 @@
 		return
 	do_workout_set(user)
 
-/obj/structure/benchpress/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+/obj/structure/benchpress/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
 	if(.)
 		return
-	do_workout_set(X)
+	do_workout_set(xeno_attacker)
 
 ///checks if possible and if yes performs a workout set for this mob
 /obj/structure/benchpress/proc/do_workout_set(mob/living/user)

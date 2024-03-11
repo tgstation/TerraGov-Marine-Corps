@@ -228,7 +228,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	var/datum/data/record/M = new()
 	M.fields["id"] = id
 	M.fields["name"] = H.real_name
-	M.fields["b_type"] = H.b_type
+	M.fields["b_type"] = H.blood_type
 	M.fields["mi_dis"] = "None"
 	M.fields["mi_dis_d"] = "No minor disabilities have been declared."
 	M.fields["ma_dis"] = "None"
@@ -303,7 +303,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	var/datum/data/record/M = new
 	M.fields["id"] = null
 	M.fields["name"] = H.real_name
-	M.fields["b_type"] = H.b_type
+	M.fields["b_type"] = H.blood_type
 	M.fields["mi_dis"] = "None"
 	M.fields["mi_dis_d"] = "No minor disabilities have been declared."
 	M.fields["ma_dis"] = "None"

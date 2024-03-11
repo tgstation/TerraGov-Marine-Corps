@@ -195,9 +195,9 @@
 		s_active.close(src)
 
 
-/mob/living/Moved(oldLoc, dir)
+/mob/living/Moved(atom/old_loc, movement_dir, forced = FALSE, list/old_locs)
 	. = ..()
-	update_camera_location(oldLoc)
+	update_camera_location(old_loc)
 
 
 /mob/living/forceMove(atom/destination)

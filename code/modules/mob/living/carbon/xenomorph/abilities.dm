@@ -489,7 +489,7 @@
 	var/resin_choice = show_radial_menu(owner, owner, GLOB.resin_special_images_list, radius = 35)
 	if(!resin_choice)
 		return
-	var/i = GLOB.resin_images_list.Find(resin_choice)
+	var/i = GLOB.resin_special_images_list.Find(resin_choice)
 	X.selected_special_resin = buildable_special_structures[i]
 	var/atom/A = X.selected_special_resin
 	X.balloon_alert(X, initial(A.name))
@@ -975,7 +975,7 @@
 	ability_cost = X.ammo.spit_cost
 	newspit.generate_bullet(X.ammo, X.ammo.damage * SPIT_UPGRADE_BONUS(X))
 	newspit.def_zone = X.get_limbzone_target()
-	newspit.fire_at(current_target, X, null, X.ammo.max_range, X.ammo.shell_speed)
+	newspit.fire_at(current_target, X, X, X.ammo.max_range, X.ammo.shell_speed)
 
 	if(can_use_ability(current_target) && X.client) //X.client to make sure autospit doesn't continue for non player mobs.
 		succeed_activate()

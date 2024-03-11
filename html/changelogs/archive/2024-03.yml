@@ -109,3 +109,84 @@
   - bugfix: new category for other trinkets available in "gear preferences" under
       the "preferences" window
   - spellcheck: fixed AGLS description
+2024-03-07:
+  Barnet2:
+  - rscdel: Removed Baneling
+  - balance: Warrior slash increase from 20 to 22
+  Lumipharon:
+  - code_imp: Cleaned up akimbo scatter mod code
+  Xander3359:
+  - bugfix: Trying to un-deploy some things no longer gives a misleading message
+  ivanmixo:
+  - code_imp: Cleaned up code related to humans
+2024-03-08:
+  2whatever2:
+  - balance: 'You now have to resist 1 more time for each time grabs are upgraded
+      on you. (Old values: Agrab 1, neckgrab 2, strangle 3.) (New: Agrab 2, neckgrab
+      4(WARRIOR GRAB UNAFFECTED.) strangle 6.'
+  - balance: 'Punch stun and Shove stun no longer get lowered by more armor, and increased
+      with less armor, and will now always stun for 4 seconds. (Old values: 6 second
+      stun base, lowered by armor rating.)'
+  Lumipharon:
+  - bugfix: Fixed hold orders rounding certain incoming damage down to 0, such as
+      weather
+  - code_imp: Cleaned up some scout cloak related code
+  MLGTASTICa:
+  - bugfix: Fixed xenormophs being unable to choose any other special resin wall other
+      than the bulletproof one.
+  TiviPlus:
+  - bugfix: fixed tank sound for ghosts, and may have fixed it being offset
+  - bugfix: Fixes tank turret (literally) rotating randomly, as well as a series of
+      other things that use cardinal directions
+  - bugfix: you can no longer load the tank external magazines
+  blackdav123:
+  - balance: Lowers warlock HP from 375 to 325.
+  coldironwarrior:
+  - bugfix: fix scout droids not having nightvision
+  - bugfix: fixes AIs getting permanent nightvision after deploying to their scout
+      droid
+  - balance: researchers spawn with isotonic pill bottles instead of dexalin bottles
+      in their belts
+  ivanmixo:
+  - spellcheck: Fixed a typo in bulwark description
+2024-03-09:
+  Lumipharon:
+  - bugfix: Fixed some issues with mech armour facings against melee attacks
+  - bugfix: Fixed xeno melee attacks ignoring all armour on objects
+  - rscdel: Removed a nonexistant item
+  - bugfix: AMR lase mode will no longer completely ignore solid objects
+  - code_imp: Cleaned up a bunch of projectile code
+  Naaanii:
+  - rscadd: Adds AMR incen and flak ammo to valhalla.
+  - rscadd: Adds TL Flak rounds to valhalla.
+  - rscadd: Adds cleaner nades to valhalla.
+  TiviPlus:
+  - qol: Tank gunner can now rotate turret using movement keys
+  - code_imp: kotahi uses proper shuffling in backend
+  - bugfix: Fix kotahi always spitting out 4 +4s in a row
+  - rscadd: Minimaps now work in the tank
+  - rscadd: restricted things like removing tank gun to tank crew only
+  - rscadd: Added tank LTA-AP minigun
+  ivanmixo:
+  - rscdel: Resting is no longer a verb in the IC tab
+2024-03-10:
+  Lumipharon:
+  - bugfix: fixed scout cloaks
+  - qol: Xeno side UI plasma/health icons now also update instantly on change
+2024-03-11:
+  74delta:
+  - balance: Changes light armor slowdown from .3 to .2 and vlarmor from .2 to .15
+  Barnet2:
+  - balance: Cluster OB now has 1 more tile of devastation per hit
+  Lumipharon:
+  - bugfix: Projectiles more accurately have a firing mob (such as vehicles) so mob
+      modifiers now apply correctly
+  - bugfix: fixed HEFA nades not hitting their own turf
+  - code_imp: More projectile code improvements and minor fixes
+  - bugfix: fixed bemo rock throwing
+  - balance: Explosions stagger the occupants of mechs, applying stagger damage penalties
+      to their weapons
+  - balance: Explosion throws are now tied to severity
+  - balance: Large xenos will not be thrown by light or weak explosions
+  - balance: Mechs will only be thrown by devastating explosions
+  - balance: Weak explosions will now only throw loose items

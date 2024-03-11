@@ -102,8 +102,7 @@
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 80 //Heavy and unwieldy
 	damage_falloff_mult = 0.5
-	upper_akimbo_accuracy = 5
-	lower_akimbo_accuracy = 3
+	akimbo_scatter_mod = 8
 
 /obj/item/weapon/gun/energy/lasgun/unique_action(mob/user, dont_operate = FALSE)
 	QDEL_NULL(in_chamber)
@@ -546,8 +545,8 @@
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
 	ammo_level_icon = null
 	rounds_per_shot = 20
-	gun_firemode = GUN_FIREMODE_SEMIAUTO
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -588,7 +587,7 @@
 	fire_delay = 0.15 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
 	message_to_user = "You set the laser pistol's charge mode to standard fire."
-	fire_mode = GUN_FIREMODE_SEMIAUTO
+	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tep"
 	description = "Fires a standard laser pulse. Moderate damage."
 
@@ -1093,8 +1092,8 @@
 	default_ammo_type = /obj/item/cell/lasgun/volkite/small
 	allowed_ammo_types = list(/obj/item/cell/lasgun/volkite/small)
 	fire_sound = 'sound/weapons/guns/fire/volkite_3.ogg'
-	gun_firemode = GUN_FIREMODE_SEMIAUTO
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	fire_delay = 0.35 SECONDS
 	scatter = -1
 	scatter_unwielded = 5

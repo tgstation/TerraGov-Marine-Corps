@@ -2863,7 +2863,7 @@
 /area/orion_outpost/ground/underground/caveN)
 "nJ" = (
 /obj/item/ammo_magazine/tank/ltb_cannon,
-/obj/item/ammo_magazine/tank/ltaap_minigun,
+/obj/item/ammo_magazine/tank/ltaap_chaingun,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -6740,7 +6740,7 @@
 /area/orion_outpost/ground/outpostcent)
 "Gr" = (
 /obj/item/ammo_magazine/tank/ltb_cannon,
-/obj/item/ammo_magazine/tank/ltaap_minigun,
+/obj/item/ammo_magazine/tank/ltaap_chaingun,
 /turf/open/floor/mainship/black/full,
 /area/orion_outpost/surface/building/ammodepot)
 "Gs" = (

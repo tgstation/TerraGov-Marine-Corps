@@ -15,14 +15,14 @@
 	max_rounds = 1
 	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
 
-/obj/item/ammo_magazine/tank/ltaap_minigun
-	name = "LTA-AP Minigun Magazine"
-	desc = "A primary armament minigun magazine"
+/obj/item/ammo_magazine/tank/ltaap_chaingun
+	name = "\improper LTA-AP chaingun Magazine"
+	desc = "A primary armament chaingun magazine."
 	caliber = CALIBER_762X51
-	icon_state = "minigunammo"
+	icon_state = "ltaap"
 	w_class = WEIGHT_CLASS_GIGANTIC
-	default_ammo = /datum/ammo/bullet/minigun
-	max_rounds = 500
+	default_ammo = /datum/ammo/bullet/minigun/ltaap
+	max_rounds = 150
 	loading_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 
 
