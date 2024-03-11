@@ -81,9 +81,9 @@
 	if(outcome)
 		return
 	if(dead_mech.faction == hostile_faction)
-		start_team_cap_points += 5
+		start_team_cap_points += 10
 	else if(dead_mech.faction == starting_faction)
-		hostile_team_cap_points += 5
+		hostile_team_cap_points += 10
 
 //mech spawn points
 /obj/effect/landmark/campaign/mech_spawner
