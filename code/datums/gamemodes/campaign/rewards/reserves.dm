@@ -55,11 +55,11 @@
 		if(candidate.stat != DEAD)
 			continue
 		mode.player_death_times -= candidate.ckey
-		to_chat(candidate, "<span class='warning'>Tactical reserves mobilised. You can now respawn immediately if possible.<spawn>")
-		candidate.playsound_local(null, 'sound/ambience/votestart.ogg', 50)
-		var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 		deltimer(mode.respawn_timers[candidate.ckey])
 		mode.respawn_timers[candidate.ckey] = null
-		mode.player_respawn(player)
+		mode.player_respawn(candidate)
+
+		to_chat(candidate, "<span class='warning'>Tactical reserves mobilised. You can now respawn immediately if possible.<spawn>")
+		candidate.playsound_local(null, 'sound/ambience/votestart.ogg', 50)
 
 
