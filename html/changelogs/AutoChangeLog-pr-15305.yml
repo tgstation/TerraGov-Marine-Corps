@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Projectiles more accurately have a firing mob (such as vehicles) so mob modifiers now apply correctly"
-  - bugfix: "fixed HEFA nades not hitting their own turf"
-  - code_imp: "More projectile code improvements and minor fixes"
