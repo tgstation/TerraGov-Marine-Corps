@@ -9861,16 +9861,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
-"bJY" = (
-/obj/structure/table/reinforced,
-/obj/item/book/manual/chef_recipes,
-/obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
-/obj/item/tool/kitchen/rollingpin,
-/obj/item/clothing/head/chefhat,
-/obj/item/clothing/suit/storage/chef/classic,
-/obj/item/clothing/suit/storage/chef,
-/turf/open/floor/prison/sterilewhite,
-/area/sulaco/cafeteria/kitchen)
 "bKl" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -10171,6 +10161,25 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
+"cds" = (
+/obj/structure/closet/crate/hydroponics,
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/obj/item/clothing/gloves/botanic_leather,
+/obj/item/clothing/gloves/botanic_leather,
+/obj/item/clothing/under/rank/hydroponics,
+/obj/item/clothing/under/rank/hydroponics,
+/obj/item/tool/minihoe,
+/obj/item/tool/minihoe,
+/obj/item/tool/hatchet,
+/obj/item/tool/hatchet,
+/obj/item/clothing/suit/storage/apron/overalls,
+/obj/item/clothing/suit/storage/apron/overalls,
+/obj/item/storage/bag/plants,
+/obj/item/storage/bag/plants,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hydro)
 "cdy" = (
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
@@ -12314,12 +12323,25 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/bridge/office)
+"eUe" = (
+/obj/structure/ship_ammo/cas/heavygun,
+/turf/open/floor/plating,
+/area/sulaco/hangar/cas)
 "eUn" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"eVr" = (
+/obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/item/clothing/gloves/insulated,
+/turf/open/floor/prison,
+/area/sulaco/bridge/office)
 "eVy" = (
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice{
 	dir = 2
@@ -13798,25 +13820,6 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
-"haJ" = (
-/obj/structure/closet/crate/hydroponics,
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
-/obj/item/clothing/gloves/botanic_leather,
-/obj/item/clothing/gloves/botanic_leather,
-/obj/item/clothing/under/rank/hydroponics,
-/obj/item/clothing/under/rank/hydroponics,
-/obj/item/tool/minihoe,
-/obj/item/tool/minihoe,
-/obj/item/tool/hatchet,
-/obj/item/tool/hatchet,
-/obj/item/clothing/suit/storage/apron/overalls,
-/obj/item/clothing/suit/storage/apron/overalls,
-/obj/item/storage/bag/plants,
-/obj/item/storage/bag/plants,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hydro)
 "hbf" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -14030,20 +14033,6 @@
 	},
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
-"hnw" = (
-/obj/machinery/air_alarm{
-	dir = 4
-	},
-/obj/structure/table/reinforced,
-/obj/item/stack/sheet/glass/glass{
-	amount = 50;
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/prison/darkyellow{
-	dir = 8
-	},
-/area/sulaco/engineering/engine_monitoring)
 "hoi" = (
 /obj/structure/closet/crate/ammo,
 /obj/effect/decal/cleanable/dirt,
@@ -14711,6 +14700,16 @@
 /obj/machinery/vending/nanomed,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay)
+"idA" = (
+/obj/structure/table/reinforced,
+/obj/item/book/manual/chef_recipes,
+/obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
+/obj/item/tool/kitchen/rollingpin,
+/obj/item/clothing/head/chefhat,
+/obj/item/clothing/suit/storage/chef/classic,
+/obj/item/clothing/suit/storage/chef,
+/turf/open/floor/prison/sterilewhite,
+/area/sulaco/cafeteria/kitchen)
 "idU" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -18479,6 +18478,15 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"mLT" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/item/uav_turret/droid,
+/obj/item/uav_turret/droid,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "mMU" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -18667,6 +18675,21 @@
 	dir = 8
 	},
 /area/sulaco/hangar/droppod)
+"mZC" = (
+/obj/machinery/air_alarm{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/glass/glass{
+	amount = 50;
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/clothing/gloves/insulated,
+/turf/open/floor/prison/darkyellow{
+	dir = 8
+	},
+/area/sulaco/engineering/engine_monitoring)
 "mZO" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -20313,6 +20336,11 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint3)
+"pgb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/vehicle/unmanned/droid,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "pgQ" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -20557,14 +20585,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo/office)
-"ptp" = (
-/obj/machinery/light/mainship{
-	dir = 8
-	},
-/obj/structure/rack,
-/obj/item/uav_turret/droid,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "pum" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -22144,11 +22164,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
-"ryR" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/vehicle/unmanned/droid/scout,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "rzi" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
@@ -48420,7 +48435,7 @@ dsb
 iRd
 aKK
 aNy
-haJ
+cds
 iRd
 oEL
 ppl
@@ -48949,7 +48964,7 @@ aOR
 ifW
 uZN
 uam
-bJY
+idA
 wpp
 mDu
 qDO
@@ -54205,7 +54220,7 @@ arc
 avr
 atF
 ecX
-uif
+eVr
 avr
 awI
 rhM
@@ -59182,7 +59197,7 @@ kwh
 bhA
 ddK
 pwv
-pwv
+eUe
 pwv
 qct
 pwv
@@ -59439,7 +59454,7 @@ kwh
 bhA
 ddK
 pwv
-pwv
+eUe
 pwv
 qct
 pwv
@@ -62556,7 +62571,7 @@ aPF
 lDk
 xHm
 rId
-ptp
+mLT
 bFa
 bFa
 mDu
@@ -63583,7 +63598,7 @@ svV
 aPF
 gGd
 aPY
-ryR
+pgb
 aYA
 bFa
 bFa
@@ -72967,7 +72982,7 @@ iSb
 wEi
 awd
 ayd
-hnw
+mZC
 aAB
 aBZ
 aDc

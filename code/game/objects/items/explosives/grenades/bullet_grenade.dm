@@ -34,7 +34,7 @@
 		proj.generate_bullet(ammo_type)
 		bullets += proj
 
-	bullet_burst(loc, bullets, src, fire_sound, range, speed, randomized, rotations)
+	bullet_burst(src, bullets, null, fire_sound, range, speed, randomized, rotations)
 	qdel(src)
 
 

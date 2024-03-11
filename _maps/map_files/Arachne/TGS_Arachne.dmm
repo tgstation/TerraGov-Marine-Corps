@@ -2981,16 +2981,6 @@
 	},
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/morgue)
-"cML" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/drinks/shaker,
-/obj/item/clothing/gloves/latex,
-/obj/item/clothing/head/chefhat,
-/obj/item/clothing/suit/storage/chef/classic,
-/obj/item/tool/kitchen/rollingpin,
-/obj/item/book/manual/chef_recipes,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
 "cNE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -6301,11 +6291,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"fur" = (
-/obj/structure/rack,
-/obj/item/uav_turret/droid,
-/turf/open/floor/mainship/cargo,
-/area/mainship/command/airoom)
 "fuI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -6525,19 +6510,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
-"fEy" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/drinks/shaker,
-/obj/item/clothing/gloves/latex,
-/obj/item/clothing/head/chefhat,
-/obj/item/tool/kitchen/rollingpin,
-/obj/item/clothing/suit/storage/chef/classic,
-/obj/item/book/manual/chef_recipes,
-/obj/machinery/light/mainship,
-/turf/open/floor/mainship/sterile/corner{
-	dir = 4
-	},
-/area/mainship/medical/lounge)
 "fFA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
@@ -7788,19 +7760,6 @@
 	dir = 4
 	},
 /area/mainship/medical/morgue)
-"gJj" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/clothing/suit/storage/hazardvest,
-/obj/item/clothing/suit/storage/hazardvest/lime,
-/obj/item/clothing/suit/storage/hazardvest/blue,
-/obj/item/tool/shovel/etool,
-/obj/item/storage/pouch/medkit/firstaid,
-/obj/item/tool/taperoll/engineering,
-/obj/machinery/light/mainship{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/engineering/engineering_workshop)
 "gJr" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -13479,12 +13438,6 @@
 /obj/item/paper/crane,
 /turf/open/floor/plating,
 /area/mainship/engineering/engineering_workshop)
-"liC" = (
-/obj/vehicle/unmanned/droid/scout,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/mech_bay_recharge_floor,
-/area/mainship/command/airoom)
 "liE" = (
 /turf/open/floor/mainship/blue{
 	dir = 9
@@ -14028,6 +13981,16 @@
 	dir = 1
 	},
 /area/mainship/hull/starboard_hull)
+"lDn" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/clothing/gloves/latex,
+/obj/item/clothing/head/chefhat,
+/obj/item/clothing/suit/storage/chef/classic,
+/obj/item/tool/kitchen/rollingpin,
+/obj/item/book/manual/chef_recipes,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/grunt_rnr)
 "lDr" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -15728,6 +15691,13 @@
 /obj/machinery/firealarm,
 /turf/open/floor/mainship/research,
 /area/mainship/medical/upper_medical)
+"naG" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/clothing/head/chefhat,
+/obj/item/clothing/under/rank/chef,
+/obj/item/clothing/suit/storage/chef/classic,
+/turf/open/floor/mainship/floor,
+/area/mainship/living/grunt_rnr)
 "naR" = (
 /obj/machinery/cic_maptable,
 /obj/structure/table/mainship/nometal,
@@ -18984,6 +18954,20 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/weapon_room)
+"pGh" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/clothing/suit/storage/hazardvest,
+/obj/item/clothing/suit/storage/hazardvest/lime,
+/obj/item/clothing/suit/storage/hazardvest/blue,
+/obj/item/tool/shovel/etool,
+/obj/item/storage/pouch/medkit/firstaid,
+/obj/item/tool/taperoll/engineering,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/item/stack/sandbags_empty/half,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/engineering/engineering_workshop)
 "pGQ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -20021,6 +20005,19 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"qBu" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/clothing/gloves/latex,
+/obj/item/clothing/head/chefhat,
+/obj/item/tool/kitchen/rollingpin,
+/obj/item/clothing/suit/storage/chef/classic,
+/obj/item/book/manual/chef_recipes,
+/obj/machinery/light/mainship,
+/turf/open/floor/mainship/sterile/corner{
+	dir = 4
+	},
+/area/mainship/medical/lounge)
 "qCa" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -20422,6 +20419,12 @@
 	dir = 1
 	},
 /area/mainship/hallways/hangar/flight_control)
+"qTM" = (
+/obj/structure/rack,
+/obj/item/uav_turret/droid,
+/obj/item/uav_turret/droid,
+/turf/open/floor/mainship/cargo,
+/area/mainship/command/airoom)
 "qTP" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -21501,6 +21504,12 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical)
+"rKL" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/vehicle/unmanned/droid,
+/turf/open/floor/mech_bay_recharge_floor,
+/area/mainship/command/airoom)
 "rKQ" = (
 /obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/mainship/black{
@@ -22296,13 +22305,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/numbertwobunks)
-"spk" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/clothing/head/chefhat,
-/obj/item/clothing/under/rank/chef,
-/obj/item/clothing/suit/storage/chef/classic,
-/turf/open/floor/mainship/floor,
-/area/mainship/living/grunt_rnr)
 "spr" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -32667,7 +32669,7 @@ alg
 alg
 hfg
 lCI
-fEy
+qBu
 dnA
 nLu
 nLu
@@ -34827,7 +34829,7 @@ cgW
 icj
 kse
 ndN
-gJj
+pGh
 qUk
 kse
 sOI
@@ -40547,7 +40549,7 @@ fzi
 paR
 oKZ
 vRs
-liC
+rKL
 pVl
 gpx
 eob
@@ -40755,7 +40757,7 @@ yaW
 uIJ
 ksL
 bsz
-fur
+qTM
 wJw
 twS
 eju
@@ -41558,7 +41560,7 @@ qyM
 aRg
 vgK
 bxN
-spk
+naG
 vNz
 eWn
 rQd
@@ -41758,7 +41760,7 @@ rQd
 rQd
 rQd
 rQd
-cML
+lDn
 lve
 izc
 axs

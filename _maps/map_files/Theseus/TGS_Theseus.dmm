@@ -1423,15 +1423,6 @@
 	dir = 1
 	},
 /area/mainship/medical/operating_room_three)
-"aru" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/clothing/suit/storage/chef/classic,
-/obj/item/tool/kitchen/rollingpin,
-/obj/item/clothing/head/chefhat,
-/obj/item/clothing/gloves/latex,
-/obj/item/reagent_containers/food/drinks/shaker,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
 "arE" = (
 /obj/machinery/light{
 	dir = 4
@@ -9691,19 +9682,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
-"fHe" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/flashlight/combat,
-/obj/item/clothing/suit/storage/hazardvest,
-/obj/item/clothing/suit/storage/hazardvest/lime,
-/obj/item/clothing/suit/storage/hazardvest/blue,
-/obj/item/tool/shovel/etool,
-/obj/item/storage/pouch/medkit/firstaid,
-/obj/item/tool/taperoll/engineering,
-/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
-/obj/item/storage/toolbox/mechanical,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/officer_rnr)
 "fHk" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/door_control/old/cic{
@@ -11648,17 +11626,6 @@
 	dir = 8
 	},
 /area/mainship/living/starboard_emb)
-"iXP" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/cell_charger,
-/obj/item/clothing/glasses/welding,
-/obj/machinery/light/mainship{
-	dir = 4
-	},
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
-/area/mainship/engineering/lower_engineering)
 "iXX" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -12307,6 +12274,20 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/ce_room)
+"kkt" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/flashlight/combat,
+/obj/item/clothing/suit/storage/hazardvest,
+/obj/item/clothing/suit/storage/hazardvest/lime,
+/obj/item/clothing/suit/storage/hazardvest/blue,
+/obj/item/tool/shovel/etool,
+/obj/item/storage/pouch/medkit/firstaid,
+/obj/item/tool/taperoll/engineering,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/stack/sandbags_empty/half,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/officer_rnr)
 "kkG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -15247,6 +15228,18 @@
 	dir = 4
 	},
 /area/mainship/living/port_emb)
+"oRf" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/cell_charger,
+/obj/item/clothing/glasses/welding,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/item/clothing/gloves/insulated,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/engineering/lower_engineering)
 "oRl" = (
 /turf/open/floor/mainship/purple/corner{
 	dir = 1
@@ -15265,6 +15258,19 @@
 	dir = 10
 	},
 /area/mainship/command/cic)
+"oSa" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/storage/belt/utility/atmostech,
+/obj/item/storage/belt/utility/atmostech,
+/obj/item/clothing/glasses/welding,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/item/clothing/gloves/insulated,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/engineering/lower_engineering)
 "oTF" = (
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/cluster,
@@ -16460,15 +16466,6 @@
 	dir = 4
 	},
 /area/mainship/hull/port_hull)
-"qJm" = (
-/obj/item/tool/kitchen/tray,
-/obj/item/clothing/suit/storage/chef/classic,
-/obj/item/clothing/head/chefhat,
-/obj/structure/table/reinforced,
-/obj/item/tool/kitchen/rollingpin,
-/obj/item/clothing/gloves/latex,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/officer_rnr)
 "qKs" = (
 /obj/structure/table/woodentable,
 /obj/item/pizzabox/meat,
@@ -16723,6 +16720,15 @@
 	dir = 5
 	},
 /area/mainship/command/cic)
+"ree" = (
+/obj/item/tool/kitchen/tray,
+/obj/item/clothing/suit/storage/chef/classic,
+/obj/item/clothing/head/chefhat,
+/obj/structure/table/reinforced,
+/obj/item/tool/kitchen/rollingpin,
+/obj/item/clothing/gloves/latex,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/officer_rnr)
 "rfB" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/standard_lmg,
@@ -17864,18 +17870,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_umbilical)
-"thi" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/storage/belt/utility/atmostech,
-/obj/item/storage/belt/utility/atmostech,
-/obj/item/clothing/glasses/welding,
-/obj/machinery/light/mainship{
-	dir = 4
-	},
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
-/area/mainship/engineering/lower_engineering)
 "tih" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -19481,6 +19475,15 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/engine_core)
+"vYp" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/clothing/suit/storage/chef/classic,
+/obj/item/tool/kitchen/rollingpin,
+/obj/item/clothing/head/chefhat,
+/obj/item/clothing/gloves/latex,
+/obj/item/reagent_containers/food/drinks/shaker,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/grunt_rnr)
 "vYx" = (
 /obj/machinery/door/window/secure/req,
 /obj/machinery/door/window{
@@ -54152,7 +54155,7 @@ rMd
 eeo
 gyu
 seL
-qJm
+ree
 dhF
 ipy
 wkL
@@ -54675,7 +54678,7 @@ oYC
 ert
 ahO
 ndz
-fHe
+kkt
 ahO
 wem
 aVk
@@ -55696,7 +55699,7 @@ bSw
 uOE
 kAb
 omz
-aru
+vYp
 pjY
 qZM
 asB
@@ -72125,11 +72128,11 @@ oXT
 bhO
 bwA
 dlC
-iXP
+oRf
 qOJ
 jFR
 xPH
-thi
+oSa
 aLI
 bHH
 bhO
