@@ -183,6 +183,7 @@
       modifiers now apply correctly
   - bugfix: fixed HEFA nades not hitting their own turf
   - code_imp: More projectile code improvements and minor fixes
+  - bugfix: fixed bemo rock throwing
   - balance: Explosions stagger the occupants of mechs, applying stagger damage penalties
       to their weapons
   - balance: Explosion throws are now tied to severity
