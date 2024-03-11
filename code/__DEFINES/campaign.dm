@@ -2,7 +2,7 @@
 #define CAMPAIGN_MAX_VICTORY_POINTS 7
 
 ///Respawn time in campaign mode
-#define CAMPAIGN_RESPAWN_TIME 2 MINUTES
+#define CAMPAIGN_RESPAWN_TIME 10 SECONDS
 
 ///stats/points/etc recorded by faction
 #define MISSION_SELECTION_ALLOWED  (1<<0)
