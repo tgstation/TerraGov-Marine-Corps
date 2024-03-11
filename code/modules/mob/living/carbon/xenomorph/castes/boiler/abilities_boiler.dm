@@ -191,9 +191,31 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	return ..()
 
 /datum/action/ability/activable/xeno/bombard/on_selection()
+	var/mob/living/carbon/xenomorph/boiler/X = owner
+	var/current_ammo = X.corrosive_ammo + X.neuro_ammo
+	if(current_ammo <= 0)
+		to_chat(X, span_notice("We have nothing prepared to fire."))
+		return FALSE
+
+	X.visible_message(span_notice("\The [X] begins digging their claws into the ground."), \
+	span_notice("We begin digging ourselves into place."), null, 5)
+	if(!do_after(X, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
+		on_deselection()
+		X.selected_ability = null
+		X.update_action_button_icons()
+		X.reset_bombard_pointer()
+		return FALSE
+
+	X.visible_message(span_notice("\The [X] digs itself into the ground!"), \
+		span_notice("We dig ourselves into place! If we move, we must wait again to fire."), null, 5)
+	X.set_bombard_pointer()
 	RegisterSignal(owner, COMSIG_MOB_ATTACK_RANGED, TYPE_PROC_REF(/datum/action/ability/activable/xeno/bombard, on_ranged_attack))
 
 /datum/action/ability/activable/xeno/bombard/on_deselection()
+	var/mob/living/carbon/xenomorph/boiler/X = owner
+	if(X.selected_ability == src)
+		X.reset_bombard_pointer()
+		to_chat(X, span_notice("We relax our stance."))
 	UnregisterSignal(owner, COMSIG_MOB_ATTACK_RANGED)
 
 /// Signal proc for clicking at a distance
@@ -201,6 +223,24 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	SIGNAL_HANDLER
 	if(can_use_ability(A, TRUE))
 		INVOKE_ASYNC(src, PROC_REF(use_ability), A)
+
+
+/mob/living/carbon/xenomorph/boiler/Moved(atom/OldLoc,Dir)
+	. = ..()
+	if(selected_ability?.type == /datum/action/ability/activable/xeno/bombard)
+		var/datum/action/ability/activable/bomb = actions_by_path[/datum/action/ability/activable/xeno/bombard]
+		bomb.on_deselection()
+		selected_ability.button.icon_state = "template"
+		selected_ability = null
+		update_action_button_icons()
+
+/mob/living/carbon/xenomorph/boiler/proc/set_bombard_pointer()
+	if(client)
+		client.mouse_pointer_icon = 'icons/mecha/mecha_mouse.dmi'
+
+/mob/living/carbon/xenomorph/boiler/proc/reset_bombard_pointer()
+	if(client)
+		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
 
 /datum/action/ability/activable/xeno/bombard/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
