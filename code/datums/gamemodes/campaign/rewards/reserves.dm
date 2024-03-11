@@ -60,6 +60,6 @@
 		var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 		deltimer(mode.respawn_timers[candidate.ckey])
 		mode.respawn_timers[candidate.ckey] = null
-		player_respawn(player)
+		mode.player_respawn(player)
 
 
