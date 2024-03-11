@@ -39,6 +39,8 @@
 	max_rounds = 75
 	default_ammo = /datum/ammo/bullet/turret/sniper
 
+// Shotgun Sentry
+
 /obj/item/ammo_magazine/sentry/shotgun
 	name = "\improper SM-10 box magazine (12G Caseless)"
 	desc = "A drum of 200 specialized telescopic 12G rounds for the SST-573 sentry gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
@@ -46,3 +48,14 @@
 	icon_state = "shotgunsentry"
 	max_rounds = 100
 	default_ammo = /datum/ammo/bullet/turret/buckshot
+
+// Flamer Sentry
+
+/obj/item/ammo_magazine/sentry/flamer
+	name = "\improper SM-10 box magazine (12G Caseless)"
+	desc = "A drum of 200 specialized telescopic 12G rounds for the SST-573 sentry gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	caliber = CALIBER_12G
+	icon_state = "flamersentry"
+	max_rounds = 100
+	default_ammo = /datum/ammo/bullet/turret/flamer
+

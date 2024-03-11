@@ -306,7 +306,7 @@
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber AM-5 antimaterial rifle and a 75-round drum magazine."
 	icon_state = "snipersentry"
 
-	turret_range = 9
+	turret_range = 12
 	deploy_time = 10 SECONDS
 	max_shells = 75
 	fire_delay = 2 SECONDS
@@ -394,3 +394,52 @@
 	. = ..()
 	new /obj/item/weapon/gun/sentry/shotgun_sentry(src)
 	new /obj/item/ammo_magazine/sentry/shotgun(src)
+
+// Flamethrower Sentry
+
+/obj/item/weapon/gun/sentry/flamer_sentry
+	name = "\improper SFT-573 sentry gun"
+	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy flamethrower and a 200-round drum magazine."
+	icon_state = "flamersentry"
+
+	turret_range = 8
+	deploy_time = 5 SECONDS
+	max_shells = 200
+	fire_delay = 2 SECONDS
+	burst_amount = 1
+
+	scatter = 5
+
+	ammo_datum_type = /datum/ammo/bullet/turret/flamer
+	default_ammo_type = /obj/item/ammo_magazine/sentry/flamer
+	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/flamer)
+
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102)
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/tl102,
+	)
+
+/obj/item/storage/box/crate/sentry_flamer
+	name = "\improper SHT-573 sentry crate"
+	desc = "A large case containing all you need to set up an automated sentry."
+	icon_state = "sentry_case"
+	w_class = WEIGHT_CLASS_HUGE
+	max_w_class = WEIGHT_CLASS_HUGE
+	storage_slots = 6
+	max_storage_space = 16
+	can_hold = list(
+		/obj/item/weapon/gun/sentry/flamer_sentry,
+		/obj/item/ammo_magazine/sentry/flamer,
+	)
+	bypass_w_limit = list(
+		/obj/item/weapon/gun/sentry/flamer_sentry,
+		/obj/item/ammo_magazine/sentry/flamer,
+	)
+
+/obj/item/storage/box/crate/sentry_flamer/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/sentry/flamer_sentry(src)
+	new /obj/item/ammo_magazine/sentry/flamer(src)
+
