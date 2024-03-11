@@ -578,8 +578,8 @@
 					medical_record.fields["com_[counter]"] = "Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[comment_to_add]"
 
 	if(href_list["medholocard"])
-		if(!species?.count_human)
-			to_chat(usr, span_warning("Triage holocards only works on organic humanoid entities."))
+		if(!ishuman(src))
+			to_chat(usr, span_warning("This only works on humanoids."))
 			return
 		var/newcolor = tgui_input_list(usr, "Choose a triage holo card to add to the patient:", "Triage holo card", list("black", "red", "orange", "none"))
 		if(!newcolor)
@@ -804,7 +804,7 @@
 
 	species.create_organs(src)
 
-	dextrous = species.has_fine_manipulation
+	dextrous = TRUE //All humans are dextrous
 
 	if(species.default_language_holder)
 		language_holder = new species.default_language_holder(src)
