@@ -29,7 +29,7 @@
 	///Number for how much fuel we have left, this x5 seconds is how much time we have while flying
 	var/fuel_left = 120
 	///How much fuel we can hold maximum
-	var/fuel_max = 40
+	var/fuel_max = 120
 	///Our currently selected weapon we will fire
 	var/obj/structure/dropship_equipment/cas/weapon/active_weapon
 	///Minimap for the pilot to know where the marines have ran off to
