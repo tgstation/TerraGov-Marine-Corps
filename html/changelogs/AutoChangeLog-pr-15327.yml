@@ -1,0 +1,4 @@
+author: "00ze-cyclone"
+delete-after: True
+changes:
+  - balance: "laspistol and serpenta are now full auto"
