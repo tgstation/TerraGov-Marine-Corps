@@ -221,36 +221,6 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		to_chat(firer, span_notice("We relax our stance."))
 	UnregisterSignal(owner, COMSIG_MOB_ATTACK_RANGED)
 
-/datum/action/ability/activable/xeno/bombard/clean_action()
-	var/mob/living/carbon/xenomorph/boiler/firer = owner
-	firer.reset_bombard_pointer()
-	return ..()
-
-/mob/living/carbon/xenomorph/boiler/Moved(atom/OldLoc,Dir)
-	. = ..()
-	if(selected_ability?.type == /datum/action/ability/activable/xeno/bombard)
-		var/datum/action/ability/activable/bomb = actions_by_path[/datum/action/ability/activable/xeno/bombard]
-		bomb.on_deselection()
-		selected_ability.button.icon_state = "template"
-		selected_ability = null
-		update_action_button_icons()
-
-/// Set the boiler's mouse cursor to the green firing cursor.
-/mob/living/carbon/xenomorph/boiler/proc/set_bombard_pointer()
-	if(client)
-		client.mouse_pointer_icon = 'icons/mecha/mecha_mouse.dmi'
-
-/// Resets the boiler's mouse cursor to the default cursor.
-/mob/living/carbon/xenomorph/boiler/proc/reset_bombard_pointer()
-	if(client)
-		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
-
-/// Signal proc for clicking at a distance
-/datum/action/ability/activable/xeno/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
-	SIGNAL_HANDLER
-	if(can_use_ability(A, TRUE))
-		INVOKE_ASYNC(src, PROC_REF(use_ability), A)
-
 /datum/action/ability/activable/xeno/bombard/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
@@ -314,6 +284,36 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	boiler_owner.update_boiler_glow()
 	update_button_icon()
 	add_cooldown()
+
+/datum/action/ability/activable/xeno/bombard/clean_action()
+	var/mob/living/carbon/xenomorph/boiler/firer = owner
+	firer.reset_bombard_pointer()
+	return ..()
+
+/// Signal proc for clicking at a distance
+/datum/action/ability/activable/xeno/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
+	SIGNAL_HANDLER
+	if(can_use_ability(A, TRUE))
+		INVOKE_ASYNC(src, PROC_REF(use_ability), A)
+
+/mob/living/carbon/xenomorph/boiler/Moved(atom/OldLoc,Dir)
+	. = ..()
+	if(selected_ability?.type == /datum/action/ability/activable/xeno/bombard)
+		var/datum/action/ability/activable/bomb = actions_by_path[/datum/action/ability/activable/xeno/bombard]
+		bomb.on_deselection()
+		selected_ability.button.icon_state = "template"
+		selected_ability = null
+		update_action_button_icons()
+
+/// Set the boiler's mouse cursor to the green firing cursor.
+/mob/living/carbon/xenomorph/boiler/proc/set_bombard_pointer()
+	if(client)
+		client.mouse_pointer_icon = 'icons/mecha/mecha_mouse.dmi'
+
+/// Resets the boiler's mouse cursor to the default cursor.
+/mob/living/carbon/xenomorph/boiler/proc/reset_bombard_pointer()
+	if(client)
+		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
 
 // ***************************************
 // *********** Acid spray
