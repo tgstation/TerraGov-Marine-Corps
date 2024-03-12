@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - bugfix: "The AI can interact with the nuke again"

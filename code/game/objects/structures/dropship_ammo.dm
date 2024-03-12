@@ -441,7 +441,7 @@
 /obj/structure/ship_ammo/cas/rocket/napalm/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range)
-	flame_radius(fire_range, impact, 60, 30) //cooking for a long time
+	flame_radius(fire_range, impact, 30, 60) //cooking for a long time
 	var/datum/effect_system/smoke_spread/phosphorus/warcrime = new
 	warcrime.set_up(fire_range + 1, impact, 7)
 	warcrime.start()
