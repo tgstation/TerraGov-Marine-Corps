@@ -1,3 +1,12 @@
+#define HS_CNSL_GUN 0
+#define HS_CNSL_AMMO 1
+#define HS_CNSL_EXPLOSIVE 2
+#define HS_CNSL_MELEE 4
+#define HS_CNSL_CLOTHING 5
+#define HS_CNSL_FOOD 6
+#define HS_CNSL_DRUGS 7
+#define HS_CNSL_CONTAINERS 8
+#define HS_CNSL_OTHER 9
 
 /obj/machinery/computer/cryopod
 	name = "hypersleep bay console"
@@ -7,6 +16,7 @@
 	screen_overlay = "cellconsole_screen"
 	circuit = /obj/item/circuitboard/computer/cryopodcontrol
 	resistance_flags = RESIST_ALL
+	var/state = HS_CNSL_GUN
 
 /obj/machinery/computer/cryopod/interact(mob/user)
 	. = ..()
@@ -22,11 +32,81 @@
 	dat +="<table style='text-align:justify'><tr>"
 	dat += "<tr></table>"
 	dat += "<center><a href='byond://?src=[text_ref(src)];allitems=TRUE'>Dispense All</a></center><br/>"
-	for(var/obj/item/I AS in GLOB.cryoed_item_list)
-		if(QDELETED(I))
-			GLOB.cryoed_item_list -= I
-			continue
-		dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
+	dat += "<a href='?src=[text_ref(src)];operation=guns'>Guns</a><br>"
+	dat += "<a href='?src=[text_ref(src)];operation=ammo'>Ammo</a><br>"
+	dat += "<a href='?src=[text_ref(src)];operation=explosive'>Explosives</a><br>"
+	dat += "<a href='?src=[text_ref(src)];operation=melee'>Melee</a><br>"
+	dat += "<a href='?src=[text_ref(src)];operation=clothing'>Clothing</a><br>"
+	dat += "<a href='?src=[text_ref(src)];operation=food'>Food</a><br>"
+	dat += "<a href='?src=[text_ref(src)];operation=drug'>Drugs</a><br>"
+	dat += "<a href='?src=[text_ref(src)];operation=container'>Containers</a><br>"
+	dat += "<a href='?src=[text_ref(src)];operation=other'>Other</a><br>"
+	dat += "<hr/>"
+
+	switch(state)
+		if(HS_CNSL_GUN)
+			dat += "<center>Guns</center><br/>"
+			for(var/obj/item/I in GLOB.cryoed_item_list_gun)
+				if(QDELETED(I))
+					GLOB.cryoed_item_list_gun -= I
+					continue
+				dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
+		if(HS_CNSL_AMMO)
+			dat += "<center>Ammo</center><br/>"
+			for(var/obj/item/I in GLOB.cryoed_item_list_ammo)
+				if(QDELETED(I))
+					GLOB.cryoed_item_list_ammo -= I
+					continue
+				dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
+		if(HS_CNSL_EXPLOSIVE)
+			dat += "<center>Explosives</center><br/>"
+			for(var/obj/item/I in GLOB.cryoed_item_list_explosive)
+				if(QDELETED(I))
+					GLOB.cryoed_item_list_explosive -= I
+					continue
+				dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
+		if(HS_CNSL_MELEE)
+			dat += "<center>Melee</center><br/>"
+			for(var/obj/item/I in GLOB.cryoed_item_list_melee)
+				if(QDELETED(I))
+					GLOB.cryoed_item_list_melee -= I
+					continue
+				dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
+		if(HS_CNSL_CLOTHING)
+			dat += "<center>Clothing</center><br/>"
+			for(var/obj/item/I in GLOB.cryoed_item_list_clothing)
+				if(QDELETED(I))
+					GLOB.cryoed_item_list_clothing -= I
+					continue
+				dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
+		if(HS_CNSL_FOOD)
+			dat += "<center>Food</center><br/>"
+			for(var/obj/item/I in GLOB.cryoed_item_list_food)
+				if(QDELETED(I))
+					GLOB.cryoed_item_list_food -= I
+					continue
+				dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
+		if(HS_CNSL_DRUGS)
+			dat += "<center>Drugs</center><br/>"
+			for(var/obj/item/I in GLOB.cryoed_item_list_drugs)
+				if(QDELETED(I))
+					GLOB.cryoed_item_list_drugs -= I
+					continue
+				dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
+		if(HS_CNSL_CONTAINERS)
+			dat += "<center>Containers</center><br/>"
+			for(var/obj/item/I in GLOB.cryoed_item_list_containers)
+				if(QDELETED(I))
+					GLOB.cryoed_item_list_containers -= I
+					continue
+				dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
+		if(HS_CNSL_OTHER)
+			dat += "<center>Other</center><br/>"
+			for(var/obj/item/I in GLOB.cryoed_item_list_other)
+				if(QDELETED(I))
+					GLOB.cryoed_item_list_other -= I
+					continue
+				dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
 	dat += "<hr/>"
 
 	var/datum/browser/popup = new(user, "cryopod_console", "<div align='center'>Cryogenics</div>")
@@ -39,20 +119,60 @@
 	if(.)
 		return
 
+	switch(href_list["operation"])
+		if("guns")
+			state = HS_CNSL_GUN
+		if("ammo")
+			state = HS_CNSL_AMMO
+		if("explosive")
+			state = HS_CNSL_EXPLOSIVE
+		if("melee")
+			state = HS_CNSL_MELEE
+		if("clothing")
+			state = HS_CNSL_CLOTHING
+		if("food")
+			state = HS_CNSL_FOOD
+		if("drugs")
+			state = HS_CNSL_DRUGS
+		if("container")
+			state = HS_CNSL_CONTAINERS
+		if("other")
+			state = HS_CNSL_OTHER
+	updateUsrDialog()
+
 	if(href_list["item"])
-		var/obj/item/I = locate(href_list["item"]) in GLOB.cryoed_item_list
+		var/obj/item/I 
+		switch(state)
+			if(HS_CNSL_GUN)
+				I = locate(href_list["item"]) in GLOB.cryoed_item_list_gun
+			if(HS_CNSL_AMMO)
+				I = locate(href_list["item"]) in GLOB.cryoed_item_list_ammo
+			if(HS_CNSL_EXPLOSIVE)
+				I = locate(href_list["item"]) in GLOB.cryoed_item_list_explosive
+			if(HS_CNSL_MELEE)
+				I = locate(href_list["item"]) in GLOB.cryoed_item_list_melee
+			if(HS_CNSL_CLOTHING)
+				I = locate(href_list["item"]) in GLOB.cryoed_item_list_clothing
+			if(HS_CNSL_FOOD)
+				I = locate(href_list["item"]) in GLOB.cryoed_item_list_food
+			if(HS_CNSL_DRUGS)
+				I = locate(href_list["item"]) in GLOB.cryoed_item_list_drugs
+			if(HS_CNSL_CONTAINERS)
+				I = locate(href_list["item"]) in GLOB.cryoed_item_list_containers
+			if(HS_CNSL_OTHER)
+				I = locate(href_list["item"]) in GLOB.cryoed_item_list_other
 		dispense_item(I, usr)
 
 	else if(href_list["allitems"])
 
-		if(!length(GLOB.cryoed_item_list))
+		if(!length(GLOB.cryoed_item_list_gun) && !length(GLOB.cryoed_item_list_ammo) && !length(GLOB.cryoed_item_list_explosive) && !length(cryoed_item_list_melee) && !length(GLOB.cryoed_item_list_clothing) && !length(GLOB.cryoed_item_list_food) && !length(GLOB.cryoed_item_list_drugs) && !length(GLOB.cryoed_item_list_containers) && !length(GLOB.cryoed_item_list_other))
 			to_chat(usr, span_warning("There is nothing to recover from storage."))
 			updateUsrDialog()
 			return
 
 		visible_message(span_notice("[src] beeps happily as it disgorges the desired objects."))
 
-		for(var/obj/item/I AS in GLOB.cryoed_item_list)
+		for(var/obj/item/I in GLOB.cryoed_item_list_gun || GLOB.cryoed_item_list_ammo || GLOB.cryoed_item_list_explosive || GLOB.cryoed_item_list_melee || GLOB.cryoed_item_list_clothing || GLOB.cryoed_item_list_food || GLOB.cryoed_item_list_drugs || GLOB.cryoed_item_list_containers || GLOB.cryoed_item_list_other)
 			dispense_item(I, usr, FALSE)
 
 	updateUsrDialog()
@@ -60,16 +180,35 @@
 
 /obj/machinery/computer/cryopod/proc/dispense_item(obj/item/I, mob/user, message = TRUE)
 	if(!istype(I) || QDELETED(I))
-		GLOB.cryoed_item_list -= I
+		GLOB.cryoed_item_list_gun -= I;
+		GLOB.cryoed_item_list_ammo -= I;
+		GLOB.cryoed_item_list_explosive -= I;
+		GLOB.cryoed_item_list_melee -= I;
+		GLOB.cryoed_item_list_clothing -= I;
+		GLOB.cryoed_item_list_food -= I;
+		GLOB.cryoed_item_list_drugs -= I;
+		GLOB.cryoed_item_list_containers -= I;
+		GLOB.cryoed_item_list_other -= I;
 		CRASH("Deleted or erroneous variable ([I]) called for hypersleep inventory retrivial.")
-	if(!(I in GLOB.cryoed_item_list))
+	if(!I in (GLOB.cryoed_item_list_gun || GLOB.cryoed_item_list_ammo || GLOB.cryoed_item_list_explosive || GLOB.cryoed_item_list_melee || GLOB.cryoed_item_list_clothing || GLOB.cryoed_item_list_food || GLOB.cryoed_item_list_drugs || GLOB.cryoed_item_list_containers || GLOB.cryoed_item_list_other))
 		if(message)
 			to_chat(user, span_warning("[I] is no longer in storage."))
 		return
 	if(message)
 		visible_message(span_notice("[src] beeps happily as it disgorges [I]."))
 	I.forceMove(get_turf(src))
-	GLOB.cryoed_item_list -= I
+	// For when we have south and north facing sprites.
+	// I.forceMove(get_step(loc, dir))
+
+	GLOB.cryoed_item_list_gun -= I;
+	GLOB.cryoed_item_list_ammo -= I;
+	GLOB.cryoed_item_list_explosive -= I;
+	GLOB.cryoed_item_list_melee -= I;
+	GLOB.cryoed_item_list_clothing -= I;
+	GLOB.cryoed_item_list_food -= I;
+	GLOB.cryoed_item_list_drugs -= I;
+	GLOB.cryoed_item_list_containers -= I;
+	GLOB.cryoed_item_list_other -= I;
 
 //Decorative structures to go alongside cryopods.
 /obj/structure/cryofeed
@@ -196,7 +335,24 @@
 			qdel(src)
 		return
 	moveToNullspace()
-	GLOB.cryoed_item_list += src
+	if(istype(src, /obj/item/weapon/gun))
+		GLOB.cryoed_item_list_gun += src
+	else if(istype(src, /obj/item/ammo_magazine))
+		GLOB.cryoed_item_list_ammo += src
+	else if(istype(src, /obj/item/explosive/))
+		GLOB.cryoed_item_list_explosive += src
+	else if(istype(src, /obj/item/weapon/))
+		GLOB.cryoed_item_list_melee += src
+	else if(istype(src, /obj/item/clothing/))
+		GLOB.cryoed_item_list_clothing += src
+	else if(istype(src, /obj/item/reagant_containers/food/))
+		GLOB.cryoed_item_list_food += src
+	else if(istype(src, /obj/item/reagent_containers/hypospray/) || istype(src, /obj/item/reagent_containers/syringe) || istype(src, /obj/item/reagent_containers/pill))
+		GLOB.cryoed_item_list_drugs += src
+	else if(istype(src, /obj/item/storage/))
+		GLOB.cryoed_item_list_containers += src
+	else
+		GLOB.cryoed_item_list_other += src
 
 /obj/item/storage/store_in_cryo()
 	for(var/obj/item/I AS in src)
