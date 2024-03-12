@@ -569,6 +569,7 @@
 			/obj/item/storage/box/tl102 = -1,
 			/obj/item/weapon/gun/heavymachinegun = -1,
 			/obj/item/ammo_magazine/heavymachinegun = -1,
+			/obj/item/ammo_magazine/heavymachinegun/small = -1,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,
