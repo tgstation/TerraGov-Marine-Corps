@@ -221,6 +221,12 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		to_chat(firer, span_notice("We relax our stance."))
 	UnregisterSignal(owner, COMSIG_MOB_ATTACK_RANGED)
 
+/// If boiler gets out of dig in a way other than their own action (i.e they die), reset the cursor to the original.
+/datum/action/ability/activable/xeno/bombard/clean_action()
+	var/mob/living/carbon/xenomorph/boiler/firer = owner
+	firer.reset_bombard_pointer()
+	return ..()
+
 /// Signal proc for clicking at a distance
 /datum/action/ability/activable/xeno/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
 	SIGNAL_HANDLER
@@ -246,6 +252,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /mob/living/carbon/xenomorph/boiler/proc/reset_bombard_pointer()
 	if(client)
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
+
+
 
 /datum/action/ability/activable/xeno/bombard/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
