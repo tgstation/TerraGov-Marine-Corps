@@ -188,37 +188,37 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 /datum/action/ability/activable/xeno/bombard/on_cooldown_finish()
 	to_chat(owner, span_notice("We feel your toxin glands swell. We are able to bombard an area again."))
-	var/mob/living/carbon/xenomorph/boiler/X = owner
-	if(X.selected_ability == src)
-		X.set_bombard_pointer()
+	var/mob/living/carbon/xenomorph/boiler/firer = owner
+	if(firer.selected_ability == src)
+		firer.set_bombard_pointer()
 	return ..()
 
 /datum/action/ability/activable/xeno/bombard/on_selection()
-	var/mob/living/carbon/xenomorph/boiler/X = owner
-	var/current_ammo = X.corrosive_ammo + X.neuro_ammo
+	var/mob/living/carbon/xenomorph/boiler/firer = owner
+	var/current_ammo = firer.corrosive_ammo + firer.neuro_ammo
 	if(current_ammo <= 0)
-		to_chat(X, span_notice("We have nothing prepared to fire."))
+		to_chat(firer, span_notice("We have nothing prepared to fire."))
 		return FALSE
 
-	X.visible_message(span_notice("\The [X] begins digging their claws into the ground."), \
+	firer.visible_message(span_notice("\The [firer] begins digging their claws into the ground."), \
 	span_notice("We begin digging ourselves into place."), null, 5)
-	if(!do_after(X, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
+	if(!do_after(firer, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
 		on_deselection()
-		X.selected_ability = null
-		X.update_action_button_icons()
-		X.reset_bombard_pointer()
+		firer.selected_ability = null
+		firer.update_action_button_icons()
+		firer.reset_bombard_pointer()
 		return FALSE
 
-	X.visible_message(span_notice("\The [X] digs itself into the ground!"), \
+	firer.visible_message(span_notice("\The [firer] digs itself into the ground!"), \
 		span_notice("We dig ourselves into place! If we move, we must wait again to fire."), null, 5)
-	X.set_bombard_pointer()
+	firer.set_bombard_pointer()
 	RegisterSignal(owner, COMSIG_MOB_ATTACK_RANGED, TYPE_PROC_REF(/datum/action/ability/activable/xeno/bombard, on_ranged_attack))
 
 /datum/action/ability/activable/xeno/bombard/on_deselection()
-	var/mob/living/carbon/xenomorph/boiler/X = owner
-	if(X.selected_ability == src)
-		X.reset_bombard_pointer()
-		to_chat(X, span_notice("We relax our stance."))
+	var/mob/living/carbon/xenomorph/boiler/firer = owner
+	if(firer.selected_ability == src)
+		firer.reset_bombard_pointer()
+		to_chat(firer, span_notice("We relax our stance."))
 	UnregisterSignal(owner, COMSIG_MOB_ATTACK_RANGED)
 
 /// Signal proc for clicking at a distance
@@ -237,10 +237,12 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		selected_ability = null
 		update_action_button_icons()
 
+/// Set the boiler's mouse cursor to the green firing cursor.
 /mob/living/carbon/xenomorph/boiler/proc/set_bombard_pointer()
 	if(client)
 		client.mouse_pointer_icon = 'icons/mecha/mecha_mouse.dmi'
 
+/// Resets the boiler's mouse cursor to the default cursor.
 /mob/living/carbon/xenomorph/boiler/proc/reset_bombard_pointer()
 	if(client)
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
