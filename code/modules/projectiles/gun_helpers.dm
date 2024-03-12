@@ -616,7 +616,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	aim_fire_delay = max(initial(aim_fire_delay) + modification_value, 0)
 	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING))
 		modify_fire_delay(aim_fire_delay - old_delay)
-		modify_auto_burst_delay(aim_fire_delay - old_delay)
+		modify_auto_burst_delay(burst_amount * aim_fire_delay / 2 - old_delay) //more delay between bursts when using aim mode
 
 ///Adds an aim_fire_delay modificatio value
 /obj/item/weapon/gun/proc/add_aim_mode_fire_delay(source, value)
@@ -651,12 +651,12 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		REMOVE_TRAIT(src, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
 		modify_fire_delay(-aim_fire_delay)
-		modify_auto_burst_delay(-aim_fire_delay)
+		modify_auto_burst_delay(-burst_amount * aim_fire_delay / 2)
 		///if your attached weapon has aim mode, stops it from aimming
 		if( (gunattachment) && (/datum/action/item_action/aim_mode in gunattachment.actions_types) )
 			REMOVE_TRAIT(gunattachment, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 			gunattachment.modify_fire_delay(-aim_fire_delay)
-			gunattachment.modify_auto_burst_delay(-aim_fire_delay)
+			gunattachment.modify_auto_burst_delay(-burst_amount * aim_fire_delay / 2)
 		to_chat(user, span_notice("You cease aiming."))
 		return
 	if(!(flags_item & WIELDED) && !(flags_item & IS_DEPLOYED))
@@ -680,7 +680,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	ADD_TRAIT(src, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)
 	modify_fire_delay(aim_fire_delay)
-	modify_auto_burst_delay(aim_fire_delay)
+	modify_auto_burst_delay(burst_amount * aim_fire_delay / 2)
 	///if your attached weapon has aim mode, makes it aim
 	if( (gunattachment) && (/datum/action/item_action/aim_mode in gunattachment.actions_types) )
 		ADD_TRAIT(gunattachment, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
