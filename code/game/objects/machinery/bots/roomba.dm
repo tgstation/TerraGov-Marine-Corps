@@ -47,12 +47,35 @@
 ///Called when the roomba moves, sucks in all items held in the tile and sends them to cryo
 /obj/machinery/bot/roomba/proc/suck_items()
 	SIGNAL_HANDLER
+
 	var/sucked_one = FALSE
 	for(var/obj/item/sucker in loc)
 		if(sucker.anchored)
 			continue
 		sucked_one = TRUE
-		sucker.store_in_cryo()
+
+		//Here we try to restock whatever we sucked up
+		var/been_restocked = FALSE
+		for(var/type in GLOB.loadout_linked_vendor[VENDOR_FACTION_NEUTRAL])
+			for(var/datum/vending_product/item_to_restock AS in GLOB.vending_records[type])
+				//Infinite rocket bags are disgusting and you should feel bad
+				if(isstorage(sucker))
+					break //Backpacks go to cryo, shrimple as
+				//Here we pretend to restock, but really we just delete the item since it has infinite supply (Do not send to cryo, do not collect 200$)
+				if(item_to_restock.product_path == sucker.type && item_to_restock.amount < 0)
+					been_restocked = TRUE
+					qdel(sucker)
+					break
+				//Here we actually restock, so our flamers aren't sent to the shadowrealm
+				if(item_to_restock.product_path == sucker.type)
+					item_to_restock.amount++
+					been_restocked = TRUE
+					qdel(sucker)
+					break
+		//Cryo our item if our restock attempt failed (Or is a storage)
+		if(!been_restocked)
+			sucker.store_in_cryo()
+
 		counter++
 	stuck_counter = 0
 	if(sucked_one && prob(10))
