@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - balance: "Restores pre-root boiler dig mechanic, have to sit still and wait 3 seconds before firing a glob (you can still move, but cancels the channel)"
