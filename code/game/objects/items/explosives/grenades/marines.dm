@@ -368,7 +368,7 @@
 
 /obj/item/explosive/grenade/smokebomb/antigas
 	name = "\improper M40-AG smoke grenade"
-	desc = "A gas grenade originally designed to remove any contaminates in the air for the purpose of cleaning, now repurposed to remove hostile gasses."
+	desc = "A gas grenade originally designed to remove any contaminants in the air for the purpose of cleaning, now repurposed to remove hostile gases."
 	icon_state = "grenade_agas"
 	item_state = "grenade_agas"
 	hud_state = "grenade_antigas"
