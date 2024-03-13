@@ -176,9 +176,11 @@
 
 ///Checks if we can draw LOS to the target
 /obj/item/binoculars/fire_support/proc/can_see_target(atom/target, mob/living/user)
-	var/distance = get_dist(target, get_turf(user))
-	var/zoom_screen_size = zoom_tile_offset + zoom_viewsize + 1
-	if(QDELETED(target) || target.z != user.z || distance == -1 || (distance > zoom_screen_size) || !line_of_sight(user, target, zoom_screen_size))
+	if(QDELETED(target))
+		return FALSE
+	if(target.z != user.z)
+		return FALSE
+	if(!(user in viewers(zoom_tile_offset + zoom_viewsize + 1, target)))
 		return FALSE
 	return TRUE
 
