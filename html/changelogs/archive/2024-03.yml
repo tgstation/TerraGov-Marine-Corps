@@ -211,3 +211,9 @@
       their weapons easier
   - bugfix: 'PoS minor changes: removes a duplicate rack; fixes decaling by the alamo;
       moves a vent that was covered by a photocopier in engineering'
+2024-03-13:
+  Barnet2:
+  - balance: Restores pre-root boiler dig mechanic, have to sit still and wait 3 seconds
+      before firing a glob (you can still move, but cancels the channel)
+  lbnesquik:
+  - bugfix: The AI can interact with the nuke again
