@@ -1,12 +1,12 @@
-#define HS_CNSL_GUN 0
-#define HS_CNSL_AMMO 1
-#define HS_CNSL_EXPLOSIVE 2
-#define HS_CNSL_MELEE 4
-#define HS_CNSL_CLOTHING 5
-#define HS_CNSL_FOOD 6
-#define HS_CNSL_DRUGS 7
-#define HS_CNSL_CONTAINERS 8
-#define HS_CNSL_OTHER 9
+#define STATE_GUN 0
+#define STATE_AMMO 1
+#define STATE_EXPLOSIVE 2
+#define STATE_MELEE 4
+#define STATE_CLOTHING 5
+#define STATE_FOOD 6
+#define STATE_DRUGS 7
+#define STATE_CONTAINERS 8
+#define STATE_OTHER 9
 
 /obj/machinery/computer/cryopod
 	name = "hypersleep bay console"
@@ -16,7 +16,7 @@
 	screen_overlay = "cellconsole_screen"
 	circuit = /obj/item/circuitboard/computer/cryopodcontrol
 	resistance_flags = RESIST_ALL
-	var/state = HS_CNSL_GUN
+	var/state = STATE_GUN
 
 /obj/machinery/computer/cryopod/interact(mob/user)
 	. = ..()
@@ -44,63 +44,63 @@
 	dat += "<hr/>"
 
 	switch(state)
-		if(HS_CNSL_GUN)
+		if(STATE_GUN)
 			dat += "<center>Guns</center><br/>"
 			for(var/obj/item/I in GLOB.cryoed_item_list_gun)
 				if(QDELETED(I))
 					GLOB.cryoed_item_list_gun -= I
 					continue
 				dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
-		if(HS_CNSL_AMMO)
+		if(STATE_AMMO)
 			dat += "<center>Ammo</center><br/>"
 			for(var/obj/item/I in GLOB.cryoed_item_list_ammo)
 				if(QDELETED(I))
 					GLOB.cryoed_item_list_ammo -= I
 					continue
 				dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
-		if(HS_CNSL_EXPLOSIVE)
+		if(STATE_EXPLOSIVE)
 			dat += "<center>Explosives</center><br/>"
 			for(var/obj/item/I in GLOB.cryoed_item_list_explosive)
 				if(QDELETED(I))
 					GLOB.cryoed_item_list_explosive -= I
 					continue
 				dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
-		if(HS_CNSL_MELEE)
+		if(STATE_MELEE)
 			dat += "<center>Melee</center><br/>"
 			for(var/obj/item/I in GLOB.cryoed_item_list_melee)
 				if(QDELETED(I))
 					GLOB.cryoed_item_list_melee -= I
 					continue
 				dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
-		if(HS_CNSL_CLOTHING)
+		if(STATE_CLOTHING)
 			dat += "<center>Clothing</center><br/>"
 			for(var/obj/item/I in GLOB.cryoed_item_list_clothing)
 				if(QDELETED(I))
 					GLOB.cryoed_item_list_clothing -= I
 					continue
 				dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
-		if(HS_CNSL_FOOD)
+		if(STATE_FOOD)
 			dat += "<center>Food</center><br/>"
 			for(var/obj/item/I in GLOB.cryoed_item_list_food)
 				if(QDELETED(I))
 					GLOB.cryoed_item_list_food -= I
 					continue
 				dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
-		if(HS_CNSL_DRUGS)
+		if(STATE_DRUGS)
 			dat += "<center>Drugs</center><br/>"
 			for(var/obj/item/I in GLOB.cryoed_item_list_drugs)
 				if(QDELETED(I))
 					GLOB.cryoed_item_list_drugs -= I
 					continue
 				dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
-		if(HS_CNSL_CONTAINERS)
+		if(STATE_CONTAINERS)
 			dat += "<center>Containers</center><br/>"
 			for(var/obj/item/I in GLOB.cryoed_item_list_containers)
 				if(QDELETED(I))
 					GLOB.cryoed_item_list_containers -= I
 					continue
 				dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
-		if(HS_CNSL_OTHER)
+		if(STATE_OTHER)
 			dat += "<center>Other</center><br/>"
 			for(var/obj/item/I in GLOB.cryoed_item_list_other)
 				if(QDELETED(I))
@@ -121,45 +121,45 @@
 
 	switch(href_list["operation"])
 		if("guns")
-			state = HS_CNSL_GUN
+			state = STATE_GUN
 		if("ammo")
-			state = HS_CNSL_AMMO
+			state = STATE_AMMO
 		if("explosive")
-			state = HS_CNSL_EXPLOSIVE
+			state = STATE_EXPLOSIVE
 		if("melee")
-			state = HS_CNSL_MELEE
+			state = STATE_MELEE
 		if("clothing")
-			state = HS_CNSL_CLOTHING
+			state = STATE_CLOTHING
 		if("food")
-			state = HS_CNSL_FOOD
+			state = STATE_FOOD
 		if("drugs")
-			state = HS_CNSL_DRUGS
+			state = STATE_DRUGS
 		if("container")
-			state = HS_CNSL_CONTAINERS
+			state = STATE_CONTAINERS
 		if("other")
-			state = HS_CNSL_OTHER
+			state = STATE_OTHER
 	updateUsrDialog()
 
 	if(href_list["item"])
 		var/obj/item/I 
 		switch(state)
-			if(HS_CNSL_GUN)
+			if(STATE_GUN)
 				I = locate(href_list["item"]) in GLOB.cryoed_item_list_gun
-			if(HS_CNSL_AMMO)
+			if(STATE_AMMO)
 				I = locate(href_list["item"]) in GLOB.cryoed_item_list_ammo
-			if(HS_CNSL_EXPLOSIVE)
+			if(STATE_EXPLOSIVE)
 				I = locate(href_list["item"]) in GLOB.cryoed_item_list_explosive
-			if(HS_CNSL_MELEE)
+			if(STATE_MELEE)
 				I = locate(href_list["item"]) in GLOB.cryoed_item_list_melee
-			if(HS_CNSL_CLOTHING)
+			if(STATE_CLOTHING)
 				I = locate(href_list["item"]) in GLOB.cryoed_item_list_clothing
-			if(HS_CNSL_FOOD)
+			if(STATE_FOOD)
 				I = locate(href_list["item"]) in GLOB.cryoed_item_list_food
-			if(HS_CNSL_DRUGS)
+			if(STATE_DRUGS)
 				I = locate(href_list["item"]) in GLOB.cryoed_item_list_drugs
-			if(HS_CNSL_CONTAINERS)
+			if(STATE_CONTAINERS)
 				I = locate(href_list["item"]) in GLOB.cryoed_item_list_containers
-			if(HS_CNSL_OTHER)
+			if(STATE_OTHER)
 				I = locate(href_list["item"]) in GLOB.cryoed_item_list_other
 		dispense_item(I, usr)
 
@@ -469,12 +469,12 @@
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	go_out()
 
-#undef HS_CNSL_GUN
-#undef HS_CNSL_AMMO
-#undef HS_CNSL_EXPLOSIVE
-#undef HS_CNSL_MELEE
-#undef HS_CNSL_CLOTHING
-#undef HS_CNSL_FOOD
-#undef HS_CNSL_DRUGS
-#undef HS_CNSL_CONTAINERS
-#undef HS_CNSL_OTHER
+#undef STATE_GUN
+#undef STATE_AMMO
+#undef STATE_EXPLOSIVE
+#undef STATE_MELEE
+#undef STATE_CLOTHING
+#undef STATE_FOOD
+#undef STATE_DRUGS
+#undef STATE_CONTAINERS
+#undef STATE_OTHER
