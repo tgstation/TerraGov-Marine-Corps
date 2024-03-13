@@ -616,7 +616,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	aim_fire_delay = max(initial(aim_fire_delay) + modification_value, 0)
 	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING))
 		modify_fire_delay(aim_fire_delay - old_delay)
-		modify_auto_burst_delay(burst_amount * aim_fire_delay / 2 - old_delay) //more delay between bursts when using aim mode
+		modify_auto_burst_delay(burst_amount * aim_fire_delay / 2 - burst_amount * old_delay / 2) //more delay between bursts when using aim mode
 
 ///Adds an aim_fire_delay modificatio value
 /obj/item/weapon/gun/proc/add_aim_mode_fire_delay(source, value)
