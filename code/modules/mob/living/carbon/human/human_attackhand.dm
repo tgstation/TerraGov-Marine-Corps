@@ -141,8 +141,6 @@
 
 			human_user.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 
-			var/target_zone = ran_zone(human_user.zone_selected)
-
 			//Accidental gun discharge
 			if(human_user.skills.getRating(SKILL_CQC) < SKILL_CQC_MP)
 				if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
