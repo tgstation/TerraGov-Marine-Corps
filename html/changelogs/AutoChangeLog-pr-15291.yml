@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "Fixes tank turret (literally) rotating randomly, as well as a series of other things that use cardinal directions"
-  - bugfix: "you can no longer load the tank external magazines"

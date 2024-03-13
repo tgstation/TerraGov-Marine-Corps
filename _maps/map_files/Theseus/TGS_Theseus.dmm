@@ -9702,6 +9702,7 @@
 /obj/item/tool/taperoll/engineering,
 /obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /obj/item/storage/toolbox/mechanical,
+/obj/item/stack/sandbags_empty/half,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/officer_rnr)
 "fHk" = (
@@ -11655,6 +11656,7 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/item/clothing/gloves/insulated,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -17872,6 +17874,7 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/item/clothing/gloves/insulated,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},

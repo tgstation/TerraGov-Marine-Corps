@@ -26,5 +26,9 @@
 #define RESIST_ALL (UNACIDABLE|INDESTRUCTIBLE|PLASMACUTTER_IMMUNE)
 
 //projectile flags
-#define PROJECTILE_FROZEN (1<<0) //indicates a projectile is no longer moving
+///Indicates a projectile is no longer moving
+#define PROJECTILE_FROZEN (1<<0)
+///Indicates we've hit something
 #define PROJECTILE_HIT (1<<1)
+///This projectile will ignore non targetted mobs
+#define PROJECTILE_PRECISE_TARGET (1<<2)

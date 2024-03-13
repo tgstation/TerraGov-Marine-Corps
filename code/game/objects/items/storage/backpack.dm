@@ -485,6 +485,10 @@
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
+/obj/item/storage/backpack/marine/satchel/scout_cloak/attack_self(mob/user)
+	. = ..()
+	camouflage()
+
 /obj/item/storage/backpack/marine/satchel/scout_cloak/process()
 	if(!wearer)
 		camo_off()

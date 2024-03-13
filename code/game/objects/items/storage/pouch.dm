@@ -396,6 +396,13 @@
 	new /obj/item/explosive/grenade/chem_grenade/razorburn_small(src)
 	new /obj/item/explosive/grenade/chem_grenade/razorburn_large(src)
 
+/obj/item/storage/pouch/explosive/antigas/Initialize(mapload)
+	. = ..()
+	new /obj/item/explosive/grenade/smokebomb/antigas(src)
+	new /obj/item/explosive/grenade/smokebomb/antigas(src)
+	new /obj/item/explosive/grenade/smokebomb/antigas(src)
+	new /obj/item/explosive/grenade/smokebomb/antigas(src)
+
 /obj/item/storage/pouch/explosive/upp
 	fill_type = /obj/item/explosive/grenade/upp
 	fill_number = 4

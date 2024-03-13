@@ -12,7 +12,7 @@
 	speed = -0.5
 	plasma_max = 1700
 	plasma_gain = 60
-	max_health = 375
+	max_health = 325
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	spit_types = list(/datum/ammo/energy/xeno/psy_blast)
 

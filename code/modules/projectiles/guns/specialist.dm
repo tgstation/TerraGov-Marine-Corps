@@ -60,8 +60,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/scope/antimaterial,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/sniperbarrel,
-		/obj/item/attachable/scope/pmc,
-		/obj/item/attachable/shoulder_mount,
 	)
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF|GUN_SMOKE_PARTICLES
 	starting_attachment_types = list(/obj/item/attachable/scope/antimaterial, /obj/item/attachable/sniperbarrel)
@@ -105,6 +103,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/rifle/sniper/antimaterial/set_target(atom/object)
 	if(laser_target)
 		return ..(laser_target)
+	return ..()
+
+/obj/item/weapon/gun/rifle/sniper/antimaterial/do_fire(obj/object_to_fire)
+	if(laser_target)
+		var/obj/projectile/projectile_to_fire = object_to_fire
+		projectile_to_fire.flags_projectile_behavior |= PROJECTILE_PRECISE_TARGET
 	return ..()
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/InterceptClickOn(mob/user, params, atom/object)
@@ -164,17 +168,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	if(!scope.zoom && (targetmarker_on || targetmarker_primed) )
 		laser_off(user)
 
-/atom/proc/sniper_target(atom/A)
-	return FALSE
-
-/obj/item/weapon/gun/rifle/sniper/antimaterial/sniper_target(atom/A)
-	if(!laser_target)
-		return FALSE
-	if(A == laser_target)
-		return laser_target
-	else
-		return TRUE
-
 /obj/item/weapon/gun/rifle/sniper/antimaterial/on_unzoom(mob/user)
 	. = ..()
 	if(!targetmarker_primed && !laser_target)
@@ -186,25 +179,13 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	to_chat(user, span_danger("You focus your target marker on [target]!"))
 	targetmarker_primed = FALSE
 	targetmarker_on = TRUE
-	RegisterSignal(src, COMSIG_PROJ_SCANTURF, PROC_REF(scan_turf_for_target))
 	START_PROCESSING(SSobj, src)
 	accuracy_mult += 0.50 //We get a big accuracy bonus vs the lasered target
 
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/proc/deactivate_laser_target()
-	UnregisterSignal(src, COMSIG_PROJ_SCANTURF)
 	laser_target.remove_laser()
 	laser_target = null
-
-
-/obj/item/weapon/gun/rifle/sniper/antimaterial/proc/scan_turf_for_target(datum/source, turf/target_turf)
-	SIGNAL_HANDLER
-	if(QDELETED(laser_target) || !isturf(laser_target.loc))
-		return NONE
-	if(get_turf(laser_target) == target_turf)
-		return COMPONENT_PROJ_SCANTURF_TARGETFOUND
-	return COMPONENT_PROJ_SCANTURF_TURFCLEAR
-
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/proc/laser_on(mob/user)
 	var/obj/item/attachable/scope = LAZYACCESS(attachments_by_slot, ATTACHMENT_SLOT_RAIL)
@@ -537,6 +518,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_allowed = list(
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/flashlight,
 		/obj/item/weapon/gun/flamer/hydro_cannon/pepperball,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
@@ -654,8 +636,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
@@ -787,7 +767,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	aim_slowdown = 2.75
 	attachable_allowed = list(
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
 	)
 	general_codex_key = "explosive weapons"
 
@@ -806,8 +785,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/deathsquad
 	attachable_allowed = list(
-		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/magnetic_harness,
 	)
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
@@ -856,7 +833,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
 	)
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)

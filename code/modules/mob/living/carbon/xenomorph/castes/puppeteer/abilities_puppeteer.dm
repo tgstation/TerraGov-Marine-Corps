@@ -83,7 +83,7 @@
 	var/obj/projectile/spine = new /obj/projectile(current_turf)
 	spine.generate_bullet(/datum/ammo/xeno/spine)
 	spine.def_zone = xeno.get_limbzone_target()
-	spine.fire_at(victim, xeno, null, range = 6, speed = 1)
+	spine.fire_at(victim, xeno, xeno, range = 6, speed = 1)
 
 	add_cooldown()
 // ***************************************

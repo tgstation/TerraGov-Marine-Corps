@@ -228,3 +228,6 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 #define ERROR_CONSTRUCT 8
 
 #define PUPPET_WITHER_RANGE 15
+
+///Number of icon states to show health and plasma on the side UI buttons
+#define XENO_HUD_ICON_BUCKETS 16
