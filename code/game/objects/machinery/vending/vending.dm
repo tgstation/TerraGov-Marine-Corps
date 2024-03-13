@@ -645,70 +645,71 @@
 		return FALSE
 
 	/// The found record matching the item_to_stock in the vending_records lists
-	var/datum/vending_product/record = FALSE
-	for(var/datum/vending_product/R AS in product_records + hidden_records + coin_records)
-		if(item_to_stock.type != R.product_path)
+	var/datum/vending_product/record
+	for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)
+		if(item_to_stock.type != checked_record.product_path)
 			continue
-		record = R
+		record = checked_record
 
 	if(!record) //Item isn't listed in the vending records.
-		user.balloon_alert(user, "[item_to_stock] doesn't belong here!")
+		user?.balloon_alert(user, "[item_to_stock] doesn't belong here!")
 		return FALSE
 
 	return do_stock(item_to_stock, user, show_feedback, record)
 
 ///Actually does the restock. Overridden by lasgun vendor for snowflake behaviour
 /obj/machinery/vending/proc/do_stock(obj/item/item_to_stock, mob/user, show_feedback = TRUE, datum/vending_product/record)
-	if(!record.item_can_be_restocked(item_to_stock, user, show_feedback))
+	if(!record.attempt_restock(item_to_stock, user, show_feedback))
+		display_message_and_visuals(user, enable = TRUE, message = null, state = VENDING_RESTOCK_DENY)
 		return FALSE
 	display_message_and_visuals(user, show_feedback, "Restocked", VENDING_RESTOCK_ACCEPT)
 	return TRUE //Item restocked, no reason to go on.
 
 /obj/machinery/vending/lasgun/do_stock(obj/item/item_to_stock, mob/user, show_feedback = TRUE, datum/vending_product/record)
 	//Special snowflake handling of cells
-	///In case of a cell, the amount of charge required to fully charge said cell
-	var/recharge_amount = 0
-	if(iscell(item_to_stock))
-		var/obj/item/cell/cell = item_to_stock
-		if(cell.charge < cell.maxcharge)
-			// Item is not full. Time to try to recharge
-			recharge_amount = cell.maxcharge - cell.charge
-			if(machine_current_charge == 0)
-				display_message_and_visuals(user, show_feedback, "No power!", VENDING_RESTOCK_DENY)
+	if(!iscell(item_to_stock))
+		return ..()
+
+	var/recharge_amount = 0 //the amount of charge required to fully charge our cell
+	var/obj/item/cell/cell = item_to_stock
+	if(cell.charge < cell.maxcharge)
+		// Item is not full. Time to try to recharge
+		recharge_amount = cell.maxcharge - cell.charge
+		if(machine_current_charge == 0)
+			display_message_and_visuals(user, show_feedback, "No power!", VENDING_RESTOCK_DENY)
+			return FALSE
+		else if(machine_current_charge < recharge_amount) // Not enough but some charge remaining so partially recharge cell and move on
+			cell.give(machine_current_charge)
+			machine_current_charge = 0
+			cell.update_icon()
+			display_message_and_visuals(user, show_feedback, "Cell charged partially! [round(cell.percent())]%.", VENDING_RESTOCK_RECHARGE)
+			playsound(loc, 'sound/machines/hydraulics_1.ogg', 25, 0, 1)
+			return FALSE
+		else
+			machine_current_charge -= recharge_amount
+			cell.give(recharge_amount)
+			if(!record.attempt_restock(item_to_stock, user, show_feedback))
 				return FALSE
-			else if(machine_current_charge < recharge_amount) // Not enough but some charge remaining so partially recharge cell and move on
-				cell.give(machine_current_charge)
-				machine_current_charge = 0
-				cell.update_icon()
-				display_message_and_visuals(user, show_feedback, "Cell charged partially! [round(cell.percent())]%.", VENDING_RESTOCK_RECHARGE)
-				playsound(loc, 'sound/machines/hydraulics_1.ogg', 25, 0, 1)
-				return FALSE
-			else
-				machine_current_charge -= recharge_amount
-				cell.give(recharge_amount)
-				if(!record.item_can_be_restocked(item_to_stock, user, show_feedback))
-					return FALSE
-				display_message_and_visuals(user, show_feedback, "Restocked and recharged", VENDING_RESTOCK_ACCEPT_RECHARGE)
-				return TRUE
-	return ..()
+			display_message_and_visuals(user, show_feedback, "Restocked and recharged", VENDING_RESTOCK_ACCEPT_RECHARGE)
+			return TRUE
 
 /**
  * A few checks to make sure the item we are trying to restock is allowed to be restocked
  * Then restocks it afterwards
  * Returns TRUE if we successfully restock
  */
-/datum/vending_product/proc/item_can_be_restocked(obj/item/item_to_stock, mob/user, show_feedback = TRUE)
+/datum/vending_product/proc/attempt_restock(obj/item/item_to_stock, mob/user, show_feedback = TRUE)
 	//More accurate comparison between absolute paths.
 	if(isstorage(item_to_stock)) //Nice try, specialists/engis
 		var/obj/item/storage/storage_to_stock = item_to_stock
 		if(!(storage_to_stock.flags_storage & BYPASS_VENDOR_CHECK)) //If your storage has this flag, it can be restocked
-			user.balloon_alert(user, "Can't restock containers!")
+			user?.balloon_alert(user, "Can't restock containers!")
 			return FALSE
 
 	else if(isgrenade(item_to_stock))
 		var/obj/item/explosive/grenade/grenade = item_to_stock
 		if(grenade.active) //Machine ain't gonna save you from your dumb decisions now
-			user.balloon_alert(user, "You panic and erratically fumble around!")
+			user?.balloon_alert(user, "You panic and erratically fumble around!")
 			return FALSE
 
 	else if(amount >= 0) //Item is finite so we are more strict on its condition
@@ -716,36 +717,37 @@
 		if(isammomagazine(item_to_stock))
 			var/obj/item/ammo_magazine/A = item_to_stock
 			if(A.current_rounds < A.max_rounds)
-				user.balloon_alert(user, "Magazine isn't full!")
+				user?.balloon_alert(user, "Magazine isn't full!")
 				return FALSE
 
 		if(iscell(item_to_stock))
 			var/obj/item/cell/cell = item_to_stock
 			if(cell.charge < cell.maxcharge)
-				user.balloon_alert(user, "Cell isn't at full charge!")
+				user?.balloon_alert(user, "Cell isn't at full charge!")
 				return FALSE
 
 		if(isitemstack(item_to_stock))
 			var/obj/item/stack/stack = item_to_stock
 			if(stack.amount != initial(stack.amount))
-				user.balloon_alert(user, "[stack] has been partially used. Refill it!")
+				user?.balloon_alert(user, "[stack] has been partially used. Refill it!")
 				return FALSE
 
 		if(isreagentcontainer(item_to_stock))
 			var/obj/item/reagent_containers/reagent_container = item_to_stock
 			if(!reagent_container.free_refills && !reagent_container.has_initial_reagents())
-				user.balloon_alert(user, "\The [reagent_container] is missing some of its reagents!")
+				user?.balloon_alert(user, "\The [reagent_container] is missing some of its reagents!")
 				return FALSE
 
 	//Actually restocks the item after our checks
-	if(user && item_to_stock.loc == user) //Inside the mob's inventory
-		if(item_to_stock.flags_item & WIELDED)
-			item_to_stock.unwield(user)
-		user.temporarilyRemoveItemFromInventory(item_to_stock)
+	if(user)
+		if(item_to_stock.loc == user) //Inside the mob's inventory
+			if(item_to_stock.flags_item & WIELDED)
+				item_to_stock.unwield(user)
+			user.temporarilyRemoveItemFromInventory(item_to_stock)
 
-	if(user && istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
-		var/obj/item/storage/S = item_to_stock.loc
-		S.remove_from_storage(item_to_stock, user.loc, user)
+		if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
+			var/obj/item/storage/S = item_to_stock.loc
+			S.remove_from_storage(item_to_stock, user.loc, user)
 
 	qdel(item_to_stock)
 

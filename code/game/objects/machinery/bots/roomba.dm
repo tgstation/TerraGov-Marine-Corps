@@ -56,7 +56,7 @@
 
 		if(roomba_restock(sucker))
 			counter++
-			break
+			continue
 
 	stuck_counter = 0
 	if(sucked_one && prob(10))
@@ -68,7 +68,9 @@
 	//Here we try to restock whatever we sucked up
 	for(var/type in GLOB.loadout_linked_vendor[VENDOR_FACTION_NEUTRAL])
 		for(var/datum/vending_product/item_to_restock AS in GLOB.vending_records[type])
-			if(item_to_restock.product_path == sucker.type && item_to_restock.item_can_be_restocked(sucker, null, FALSE))
+			if(sucker.type != item_to_restock.product_path)
+				continue
+			if(item_to_restock.attempt_restock(sucker, null, FALSE))
 				return TRUE
 	//Cryo our item if our restock attempt failed
 	sucker.store_in_cryo()
