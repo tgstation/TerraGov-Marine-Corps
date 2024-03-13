@@ -386,7 +386,7 @@
 	var/obj/projectile/P = new(startloc)
 	playsound(src, projectilesound, 100, 1)
 	P.generate_bullet(GLOB.ammo_list[ammotype])
-	P.fire_at(targeted_atom, src)
+	P.fire_at(targeted_atom, src, src)
 
 
 /mob/living/simple_animal/hostile/proc/CanSmashTurfs(turf/T)

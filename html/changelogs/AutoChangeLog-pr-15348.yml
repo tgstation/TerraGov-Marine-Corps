@@ -1,0 +1,5 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - imageadd: "added pump animation for trench gun"
+  - imageadd: "added firing animation for M412LI, and Minimi"
