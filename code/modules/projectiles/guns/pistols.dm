@@ -98,6 +98,7 @@
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/scope/marine,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 	)
@@ -197,6 +198,7 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
@@ -256,6 +258,7 @@
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	fire_delay = 0.15 SECONDS
@@ -382,6 +385,7 @@
 		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
@@ -427,6 +431,7 @@
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/suppressor/unremovable/invisible,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
