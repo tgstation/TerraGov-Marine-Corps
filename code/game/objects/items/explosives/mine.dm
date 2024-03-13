@@ -232,8 +232,10 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 			if((user.brainloss > BRAIN_DAMAGE_MILD && prob(user.brainloss)) || (user.eye_blind && prob(50)))
 				visible_message(span_alert("[user] accidentally set off [src]!"), \
 				span_alert("You pressed the wrong button, dumb ass."))
-				return trigger_explosion(user)
-			return disarm()
+				trigger_explosion(user)
+				return
+			disarm()
+			return
 
 	balloon_alert(user, "Must be defused!")
 
@@ -253,7 +255,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 	//Chance for failure below; only /living/ types can be checked for brain damage
 	var/mob/living/living = isliving(user) ? user : null
-	var/homer_simpson = living ? living.brainloss : 0
+	var/extra_failure_risk = living ? living.brainloss : 0
 
 	if(skill_issue)	//If you got the time down to 0, you can just skip this whole disarming process you smart egg!
 		if(user.skills.getRating(SKILL_ENGINEER) >= SKILL_ENGINEER_ENGI)
@@ -262,7 +264,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		else if(user.skills.getRating(SKILL_ENGINEER) == SKILL_ENGINEER_DEFAULT)
 			user.visible_message(span_warning("[user] is about to do something stupid!"), \
 			span_warning("You are about to get yourself killed."))
-			homer_simpson += 50	//Just add a flat 50% chance of failure if you're completely unskilled
+			extra_failure_risk += 50	//Just add a flat 50% chance of failure if you're completely unskilled
 		else
 			user.visible_message(span_notice("[user] visibly struggles to disarm [src]."), \
 			span_notice("You try your best to disarm [src]."))
@@ -272,10 +274,11 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 			span_notice("You stop disarming [src]."))
 			return FALSE
 
-	if(prob(homer_simpson))
+	if(prob(extra_failure_risk))
 		user.visible_message(span_alert("[user] accidentally set off [src]!"), \
 		span_alert("You failed to disarm [src]!"))
-		return trigger_explosion(user)
+		trigger_explosion(user)
+		return
 
 	//Let everyone know a mine was disarmed, but no need to log it to chat
 	balloon_alert_to_viewers("[src] disarmed")
@@ -284,7 +287,9 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 ///Turns off the mine
 /obj/item/mine/proc/disarm()
 	if(!CHECK_BITFIELD(mine_features, MINE_REUSABLE) && deletion_timer)	//Non-reuseable mine already doing it's thing? Deletion upon disarming then
-		return qdel(src)
+		qdel(src)
+		return
+
 	armed = FALSE
 	anchored = FALSE
 	triggered = FALSE	//Good job, you managed to disarm it before it blew
@@ -375,7 +380,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		visible_message(span_danger("[icon2html(src, viewers(src))] \The [src] [detonation_message]"))
 	playsound(loc, detonation_sound, 50, sound_range = 7)
 	if(detonation_delay)
-		return addtimer(CALLBACK(src, PROC_REF(explode)), detonation_delay)
+		addtimer(CALLBACK(src, PROC_REF(explode)), detonation_delay)
+		return
 	explode(victim)
 
 ///Proc that actually causes the explosion
@@ -396,7 +402,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	if(shrapnel_range && shrapnel_type)	//Spawn projectiles, their associated data, and then launch it the direction it is facing
 		var/obj/projectile/projectile_to_fire = new /obj/projectile(get_turf(src))
 		projectile_to_fire.generate_bullet(shrapnel_type)
-		projectile_to_fire.fire_at(get_step(src, dir), src, src, shrapnel_range, projectile_to_fire.ammo.shell_speed)
+		projectile_to_fire.fire_at(get_step(src, dir), null, src, shrapnel_range, projectile_to_fire.ammo.shell_speed)
 
 	if(gas_type && gas_duration)
 		var/datum/effect_system/smoke_spread/smoke = new gas_type()
@@ -437,17 +443,9 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	if(QDELETED(src) || !armed)
 		return
 
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			return
-		if(EXPLODE_HEAVY)
-			if(prob(25))
-				return
-		if(EXPLODE_LIGHT)
-			if(prob(50))
-				return
-		if(EXPLODE_WEAK)
-			return //not strong enough to detonate
+	//Only heavy and light explosions can cause a detonation, and depending on RNG
+	if(severity == EXPLODE_DEVASTATE || (severity == EXPLODE_HEAVY && prob(25)) || (severity == EXPLODE_LIGHT && prob(50)) || severity == EXPLODE_WEAK)
+		return
 
 	volatility_check(MINE_VOLATILE_EXPLOSION)
 
@@ -637,7 +635,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	if(rods_amount < rods_amount_required)
 		. += "Currently has [span_bold("[rods_amount]")] out of [span_bold("[rods_amount_required]")] rods."
 
-/obj/item/mine/ied/update_icon_state()
+/obj/item/mine/ied/update_overlays()
 	. = ..()
 	cut_overlays()
 	//Only add the wires if not deployed, don't need the overlay for that
@@ -653,37 +651,36 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 /obj/item/mine/ied/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(isscrewdriver(I))
-		return screwdriver_act(user, I)
-
-	if(iswirecutter(I))
-		return wirecutter_act(user, I)
-
 	if(iscablecoil(I))
 		if(CHECK_BITFIELD(assembly_steps_completed, IED_WIRED))
-			return balloon_alert(user, "Already wired!")
+			balloon_alert(user, "Already wired!")
+			return
 
 		var/obj/item/stack/cable_coil/cables = I
 		if(!cables.use(1))
-			return balloon_alert(user, "Not enough cables!")
+			balloon_alert(user, "Not enough cables!")
+			return
 
 		ENABLE_BITFIELD(assembly_steps_completed, IED_WIRED)
 		update_icon_state()
-		return balloon_alert(user, "Wired!")
+		balloon_alert(user, "Wired!")
+		return
 
 	if(istype(I, /obj/item/ammo_magazine/handful))
 		//Marines can no longer use chem machines to make gunpowder, so we're going to apply a simple mechanic of recycling bullets
 		if(gunpowder_amount >= gunpowder_amount_required)
-			return balloon_alert(user, "Already full!")
+			balloon_alert(user, "Already full!")
+			return
 
 		var/obj/item/ammo_magazine/handful/bullets = I
 		if(bullets.current_rounds < 1)
-			return balloon_alert(user, "Not enough gunpowder!")
+			balloon_alert(user, "Not enough gunpowder!")
+			return
 
 		//The gunpowder to bullet ratio is 1:1, so using something like bullets from your rifle are straightforward
 		//However, shotgun shells are packed with a lot more so they have a multiplier; 4 gunpowder from each shotgun shell
 		var/caliber_bonus = 1
-		if(bullets.caliber == (CALIBER_12G || CALIBER_410))
+		if(bullets.caliber == CALIBER_12G || bullets.caliber == CALIBER_410)
 			caliber_bonus = 4
 
 		var/amount_to_transfer = min(bullets.current_rounds * caliber_bonus, gunpowder_amount_required - gunpowder_amount)
@@ -691,35 +688,43 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		gunpowder_amount += amount_to_transfer
 		if(!bullets.current_rounds)	//Delete the handful stack if we used it all
 			qdel(bullets)
-		return balloon_alert(user, gunpowder_amount == gunpowder_amount_required ? "Full!" : "[gunpowder_amount]/[gunpowder_amount_required] powder!")
+		balloon_alert(user, gunpowder_amount == gunpowder_amount_required ? "Full!" : "[gunpowder_amount]/[gunpowder_amount_required] powder!")
+		return
 
 	if(istype(I, /obj/item/stack/rods))
 		if(rods_amount >= rods_amount_required)
-			return balloon_alert(user, "Already full!")
+			balloon_alert(user, "Already full!")
+			return
 
 		var/obj/item/stack/rods = I
 		var/amount_to_transfer = max(1, min(rods.amount, rods_amount_required - rods_amount))
 		if(!rods.use(amount_to_transfer))
-			return balloon_alert(user, "Not enough rods!")
+			balloon_alert(user, "Not enough rods!")
+			return
 
 		rods_amount += amount_to_transfer
-		return balloon_alert(user, rods_amount == rods_amount_required ? "Full!" : "[rods_amount]/[rods_amount_required] rods!")
+		balloon_alert(user, rods_amount == rods_amount_required ? "Full!" : "[rods_amount]/[rods_amount_required] rods!")
+		return
 
 /obj/item/mine/ied/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(CHECK_BITFIELD(assembly_steps_completed, IED_SECURED))
-		return balloon_alert(user, "Already secured!")
+		balloon_alert(user, "Already secured!")
+		return
 	ENABLE_BITFIELD(assembly_steps_completed, IED_SECURED)
-	return balloon_alert(user, "Secured!")
+	balloon_alert(user, "Secured!")
+	return
 
 /obj/item/mine/ied/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(!CHECK_BITFIELD(assembly_steps_completed, IED_WIRED))
-		return balloon_alert(user, "Not wired!")
+		balloon_alert(user, "Not wired!")
+		return
 	if(CHECK_BITFIELD(assembly_steps_completed, IED_CONNECTED))
-		return balloon_alert(user, "Already connected!")
+		balloon_alert(user, "Already connected!")
+		return
 	ENABLE_BITFIELD(assembly_steps_completed, IED_CONNECTED)
-	return balloon_alert(user, "Connected!")
+	balloon_alert(user, "Connected!")
 
 /obj/item/mine/ied/assembled
 	assembly_steps_completed = IED_FINISHED
@@ -769,27 +774,30 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	//Also no other /stack/ type apart from maybe phoron would be a good fuel candidate so why bother
 	if(istype(I, /obj/item/stack/sheet/mineral/uranium))
 		if(current_fuel >= max_fuel)
-			return balloon_alert(user, "Already full!")
+			balloon_alert(user, "Already full!")
+			return
 
 		var/obj/item/stack/uranium = I
 		var/amount_to_transfer = max(1, min(uranium.amount, max_fuel - current_fuel))
 		if(uranium.use(amount_to_transfer))
-			return balloon_alert(user, "Not enough fuel!")
+			balloon_alert(user, "Not enough fuel!")
+			return
 
 		current_fuel += amount_to_transfer
-		return balloon_alert(user, current_fuel == max_fuel ? "Full!" : "[current_fuel]/[max_fuel] fuel!")
+		balloon_alert(user, current_fuel == max_fuel ? "Full!" : "[current_fuel]/[max_fuel] fuel!")
+		return
 
 /obj/item/mine/radiation/disarm()
 	if(triggered)
 		current_fuel = 0	//In the event of disarmament when already detonated, have the fuel be already expended
 	deltimer(pulse_timer)
 	light_range = 0	//Hybrid lights don't actually turn off, just have to change light_range
-	. = ..()
+	return ..()
 
 /obj/item/mine/radiation/trip_mine(atom/movable/victim)
 	if(!current_fuel)
 		return FALSE
-	. = ..()
+	return ..()
 
 /obj/item/mine/radiation/explode(atom/movable/victim)
 	. = ..()
@@ -834,6 +842,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/static/list/connections = list(COMSIG_ATOM_ENTERED = PROC_REF(on_cross))
 	AddElement(/datum/element/connect_loc, connections)
 
+///Called when an atom enters the tile this radiation effect is on
 /obj/effect/temp_visual/radiation/proc/on_cross(datum/source, atom/A, oldloc, oldlocs)
 	if(!isliving(A))
 		return FALSE
@@ -844,6 +853,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	if(!irradiate())
 		STOP_PROCESSING(SSobj, src)
 
+///Proc to run the radiation effects on mobs that are on the same tile as this radiation effect
 /obj/effect/temp_visual/radiation/proc/irradiate(mob/living/crosser)
 	var/turf/turf_to_check = get_turf(src)
 	var/list/radiation_victims = turf_to_check.contents.Copy()
@@ -911,7 +921,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	if(!iscell(I))
 		return ..()
 	if(battery)
-		return balloon_alert(user, "Already has one!")
+		balloon_alert(user, "Already has one!")
+		return
 	user.transferItemToLoc(I, src)
 	battery = I
 	update_icon()
@@ -926,7 +937,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /obj/item/mine/shock/trip_mine(atom/movable/victim)
 	if(!battery?.charge)
 		return FALSE
-	. = ..()
+	return ..()
 
 /obj/item/mine/shock/extra_effects(atom/movable/victim)
 	if(!battery?.charge || battery.charge < energy_cost)
@@ -945,10 +956,10 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 		if(isliving(atom))
 			if(ishuman(atom))
-				var/mob/living/carbon/human/bad_luck_brian = atom
+				var/mob/living/carbon/human/human_victim = atom
 				//Will shock a random body part on humans
-				bad_luck_brian.apply_damage(damage, BURN, pick(GLOB.human_body_parts), ENERGY)
-				target = bad_luck_brian
+				human_victim.apply_damage(damage, BURN, pick(GLOB.human_body_parts), ENERGY)
+				target = human_victim
 			else
 				var/mob/living/living_victim = atom
 				living_victim.apply_damage(damage, BURN, blocked = ENERGY)
@@ -1082,7 +1093,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		return ..()
 
 	if(battery)
-		return balloon_alert(user, "There is already a battery installed!")
+		balloon_alert(user, "There is already a battery installed!")
+		return
 
 	user.transferItemToLoc(I, src)
 	battery = I
@@ -1090,7 +1102,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 /obj/item/mine/emp/screwdriver_act(mob/living/user, obj/item/I)
 	if(!battery)
-		return balloon_alert(user, "No battery installed!")
+		balloon_alert(user, "No battery installed!")
+		return
 
 	user.put_in_hands(battery)
 	battery = null
@@ -1156,7 +1169,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		return ..()
 
 	if(battery)
-		return balloon_alert(user, "There is already a battery installed!")
+		balloon_alert(user, "There is already a battery installed!")
+		return
 
 	user.transferItemToLoc(I, src)
 	battery = I
@@ -1164,7 +1178,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 /obj/item/mine/flash/screwdriver_act(mob/living/user, obj/item/I)
 	if(!battery)
-		return balloon_alert(user, "No battery installed!")
+		balloon_alert(user, "No battery installed!")
+		return
 
 	user.put_in_hands(battery)
 	battery = null
