@@ -258,16 +258,23 @@
 			go_idle()
 		return
 
-	var/i = 10//So if we have a pile of dead bodies around, it doesn't scan everything, just ten iterations.
-	for(var/mob/living/carbon/M in view(4,src))
-		if(!i)
-			break
-		if(M.can_be_facehugged(src))
-			visible_message(span_warning("\The scuttling [src] leaps at [M]!"), null, null, 4)
-			leaping = TRUE
-			throw_at(M, 4, 1)
-			return //We found a target and will jump towards it; cancel out. If we didn't find anything, continue and try again later
-		--i
+	var/mob/living/carbon/chosen_target
+
+	for(var/mob/living/carbon/M in view(4, src))
+		// Using euclidean distance means it will prioritize cardinal directions, which are less likely to miss due to wall jank.
+		if(chosen_target && (get_dist_euclidean(src, M) > get_dist_euclidean(src, chosen_target)))
+			continue
+
+		if(!M.can_be_facehugged(src))
+			continue
+
+		chosen_target = M
+
+	if(chosen_target)
+		visible_message(span_warning("\The scuttling [src] leaps at [M]!"), null, null, 4)
+		leaping = TRUE
+		throw_at(M, 4, 1)
+		return
 
 	remove_danger_overlay() //Remove the danger overlay
 	pre_leap() //Go into the universal leap set up proc

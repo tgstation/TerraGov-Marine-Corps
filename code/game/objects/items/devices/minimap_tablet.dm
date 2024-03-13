@@ -310,7 +310,7 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 		var/curr_dist
 		var/turf/nearest
 		for(var/turf/label AS in labelled_turfs)
-			var/dist = get_dist_euclide(label, target)
+			var/dist = get_dist_euclidean(label, target)
 			if(dist > LABEL_REMOVE_RANGE)
 				continue
 			if(!curr_dist || curr_dist > dist)
