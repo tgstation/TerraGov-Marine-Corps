@@ -201,7 +201,7 @@
 	ui_view = new(null, null, src)
 	if(enclosed)
 		internal_tank = new (src)
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(play_stepsound))
+	RegisterSignals(src, list(COMSIG_MOVABLE_MOVED, COMSIG_ELEMENT_JUMP_ENDED), PROC_REF(play_stepsound))
 
 	spark_system.set_up(2, 0, src)
 	spark_system.attach(src)
