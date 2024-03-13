@@ -806,7 +806,7 @@ EXPLOSIVES
 /datum/supply_packs/explosives/explosives_mines
 	name = "claymore mines"
 	notes = "Contains 5 mines"
-	contains = list(/obj/item/storage/box/explosive_mines)
+	contains = list(/obj/item/storage/box/explosive_mines/claymore)
 	cost = 150
 
 /datum/supply_packs/explosives/explosives_minelayer

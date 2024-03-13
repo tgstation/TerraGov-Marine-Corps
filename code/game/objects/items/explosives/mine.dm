@@ -966,7 +966,6 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 	playsound(loc, "sparks", 100, sound_range = 7)
 	if(target)
-		to_chat(world, "[target]")
 		beam(target, "lightning[rand(1,12)]", time = 0.25 SECONDS)
 		battery.charge -= energy_cost
 	addtimer(CALLBACK(src, PROC_REF(extra_effects)), fire_delay)

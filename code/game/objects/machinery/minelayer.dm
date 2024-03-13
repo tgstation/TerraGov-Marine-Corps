@@ -49,7 +49,7 @@
 	if(target_turf.density || turf_block_check(src, target_turf) || locate(/obj/item/mine) in range(1, target_turf) || !line_of_sight(loc, target_turf))
 		throw_mine(list_of_turfs)
 		return
-	var/obj/item/mine/mine_to_throw = new /obj/item/mine(loc)
+	var/obj/item/mine/mine_to_throw = new /obj/item/mine/claymore(loc)
 	mine_to_throw.throw_at(target_turf, range * 2, 1, src, TRUE)
 	stored_amount--
 	playsound(loc, 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg', 25, 1)
