@@ -271,9 +271,9 @@
 		chosen_target = M
 
 	if(chosen_target)
-		visible_message(span_warning("\The scuttling [src] leaps at [M]!"), null, null, 4)
+		visible_message(span_warning("\The scuttling [src] leaps at [chosen_target]!"), null, null, 4)
 		leaping = TRUE
-		throw_at(M, 4, 1)
+		throw_at(chosen_target, 4, 1)
 		return
 
 	remove_danger_overlay() //Remove the danger overlay
