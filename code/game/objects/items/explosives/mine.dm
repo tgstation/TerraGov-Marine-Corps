@@ -634,6 +634,10 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		. += "Currently has [span_bold("[gunpowder_amount]")] out of [span_bold("[gunpowder_amount_required]")] gunpowder."
 	if(rods_amount < rods_amount_required)
 		. += "Currently has [span_bold("[rods_amount]")] out of [span_bold("[rods_amount_required]")] rods."
+	if(!CHECK_BITFIELD(assembly_steps_completed, IED_SECURED))
+		. += "Needs to be secured with a screwdriver."
+	if(CHECK_BITFIELD(assembly_steps_completed, IED_WIRED) && !CHECK_BITFIELD(assembly_steps_completed, IED_CONNECTED))
+		. += "The wiring needs to be set up with a wirecutter."
 
 /obj/item/mine/ied/update_overlays()
 	. = ..()
