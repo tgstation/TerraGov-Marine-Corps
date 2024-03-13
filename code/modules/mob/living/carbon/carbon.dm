@@ -340,14 +340,13 @@
 
 	sight = initial(sight)
 	lighting_alpha = initial(lighting_alpha)
-	see_in_dark = species.darksight
 	see_invisible = initial(see_invisible)
 
 	if(species)
 		if(species.lighting_alpha)
 			lighting_alpha = initial(species.lighting_alpha)
 		if(species.see_in_dark)
-			see_in_dark = initial(species.see_in_dark)
+			see_in_dark = species.see_in_dark
 
 	if(client.eye != src)
 		var/atom/A = client.eye

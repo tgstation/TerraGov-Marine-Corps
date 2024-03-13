@@ -23,9 +23,9 @@
 	///icon for eyes
 	var/eyes = "eyes_s"
 	///Color of the blood specific to our species
-	var/blood_color = "#A10808" //Red.
+	var/blood_color = "#A10808"
 	///Color of the gibs that spawn from our species [/mob/living/carbon/human/spawn_gibs]
-	var/flesh_color = "#FFC896" //Pink. //Fuck you this isn't Pink
+	var/flesh_color = "#FFC896"
 	///Used when setting species.
 	var/base_color
 	///If the species only has one hair color
@@ -77,7 +77,7 @@
 	///species-specific dusting animation
 	var/dusted_anim = "dust-h"
 	///used to determine what item is left behind in /spawn_dust_remains()
-	var/remains_type = /obj/effect/decal/cleanable/ash //The proc is dumb as hell btw. if this is false, it spawns xeno remains. Lol
+	var/remains_type = /obj/effect/decal/cleanable/ash
 	///Sound that gets played on death()
 	var/death_sound
 	///Message that gets sent on death()
@@ -114,10 +114,9 @@
 	///type that gets set as our language_holder on proc/set_species
 	var/default_language_holder = /datum/language_holder
 
-	///updates see_in_dark to this value on [/mob/living/carbon/human/update_sight()]
-	var/darksight = 2 //btw this value is never changed anywhere...
-	///Also sets see_in_dark on [/mob/living/carbon/human/update_sight()], this runs after an if(species) check...
-	var/see_in_dark //wtf
+	///Sets mob/var/see_in_dark on [/mob/living/carbon/human/update_sight]
+	var/see_in_dark = 2
+
 	var/lighting_alpha
 
 	///Used for metabolizing reagents.
@@ -267,7 +266,7 @@
 ///Called when we turn into a species, called by [/mob/living/carbon/human/proc/set_species()]
 ///drops things we shouldn't be allowed to equip, adds relevant traits, and adjusts the max health of our mob
 /datum/species/proc/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
-	SHOULD_CALL_PARENT(TRUE) //remember to call base procs kids
+	SHOULD_CALL_PARENT(TRUE)
 	for(var/slot_id in no_equip)
 		var/obj/item/thing = H.get_item_by_slot(slot_id)
 		if(thing && !is_type_in_list(src,thing.species_exception))
