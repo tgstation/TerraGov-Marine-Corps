@@ -54,32 +54,25 @@
 			continue
 		sucked_one = TRUE
 
-		//Here we try to restock whatever we sucked up
-		var/been_restocked = FALSE
-		for(var/type in GLOB.loadout_linked_vendor[VENDOR_FACTION_NEUTRAL])
-			for(var/datum/vending_product/item_to_restock AS in GLOB.vending_records[type])
-				//Infinite rocket bags are disgusting and you should feel bad
-				if(isstorage(sucker))
-					break //Backpacks go to cryo, shrimple as
-				//Here we pretend to restock, but really we just delete the item since it has infinite supply (Do not send to cryo, do not collect 200$)
-				if(item_to_restock.product_path == sucker.type && item_to_restock.amount < 0)
-					been_restocked = TRUE
-					qdel(sucker)
-					break
-				//Here we actually restock, so our flamers aren't sent to the shadowrealm
-				if(item_to_restock.product_path == sucker.type)
-					item_to_restock.amount++
-					been_restocked = TRUE
-					qdel(sucker)
-					break
-		//Cryo our item if our restock attempt failed (Or is a storage)
-		if(!been_restocked)
-			sucker.store_in_cryo()
+		if(roomba_restock(sucker))
+			counter++
+			break
 
-		counter++
 	stuck_counter = 0
 	if(sucked_one && prob(10))
 		say(pick(sentences))
+
+/obj/machinery/bot/roomba/proc/roomba_restock(obj/item/sucker)
+	set waitfor = FALSE
+
+	//Here we try to restock whatever we sucked up
+	for(var/type in GLOB.loadout_linked_vendor[VENDOR_FACTION_NEUTRAL])
+		for(var/datum/vending_product/item_to_restock AS in GLOB.vending_records[type])
+			if(item_to_restock.product_path == sucker.type && item_to_restock.item_can_be_restocked(sucker, null, FALSE))
+				return TRUE
+	//Cryo our item if our restock attempt failed
+	sucker.store_in_cryo()
+	return TRUE
 
 /obj/machinery/bot/roomba/attack_hand(mob/living/user)
 	if(!CONFIG_GET(flag/fun_allowed))
