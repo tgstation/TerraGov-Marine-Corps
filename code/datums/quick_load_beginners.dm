@@ -322,7 +322,7 @@
 	belt = /obj/item/storage/belt/grenade
 	mask = /obj/item/clothing/mask/gas
 	w_uniform = /obj/item/clothing/under/marine/corpman_vest
-	head = /obj/item/clothing/head/modular/m10x/hod
+	head = /obj/item/clothing/head/modular/m10x
 	shoes = /obj/item/clothing/shoes/marine
 	l_hand = /obj/item/paper/tutorial/beginner_chad
 
