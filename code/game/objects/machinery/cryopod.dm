@@ -468,3 +468,13 @@
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	go_out()
+
+#undef HS_CNSL_GUN
+#undef HS_CNSL_AMMO
+#undef HS_CNSL_EXPLOSIVE
+#undef HS_CNSL_MELEE
+#undef HS_CNSL_CLOTHING
+#undef HS_CNSL_FOOD
+#undef HS_CNSL_DRUGS
+#undef HS_CNSL_CONTAINERS
+#undef HS_CNSL_OTHER
