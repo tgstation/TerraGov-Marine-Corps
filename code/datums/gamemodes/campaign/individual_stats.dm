@@ -4,7 +4,7 @@
 	///currently occupied mob - if any
 	var/mob/living/carbon/current_mob
 	///Credits. You buy stuff with it
-	var/currency = 300
+	var/currency = 450
 	///List of job types based on faction
 	var/list/valid_jobs = list()
 	///Single list of unlocked perks for easy reference
@@ -126,7 +126,7 @@
 	return TRUE
 
 ///Adds and equips a loadout item, replacing another
-/datum/individual_stats/proc/replace_loadout_option(new_item, removed_item, job_type_or_types, job_req_override = TRUE)
+/datum/individual_stats/proc/replace_loadout_option(new_item, removed_item, job_type_or_types, job_req_override = FALSE)
 	if(!islist(job_type_or_types))
 		job_type_or_types = list(job_type_or_types)
 	var/datum/loadout_item/item = GLOB.campaign_loadout_item_type_list[new_item]

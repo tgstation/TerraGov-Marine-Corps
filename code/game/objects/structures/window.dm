@@ -125,43 +125,41 @@
 		span_notice("You hear a knocking sound."))
 		windowknock_cooldown = world.time + 100
 
+/obj/structure/window/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	if(!isliving(grab.grabbed_thing))
+		return
+
+	var/mob/living/grabbed_mob = grab.grabbed_thing
+	var/state = user.grab_state
+	user.drop_held_item()
+	step_towards(grabbed_mob, src)
+	var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	switch(state)
+		if(GRAB_PASSIVE)
+			damage += base_damage
+			grabbed_mob.visible_message(span_warning("[user] slams [grabbed_mob] against \the [src]!"))
+			log_combat(user, grabbed_mob, "slammed", "", "against \the [src]")
+		if(GRAB_AGGRESSIVE)
+			damage += base_damage * 1.5
+			grabbed_mob.visible_message(span_danger("[user] bashes [grabbed_mob] against \the [src]!"))
+			log_combat(user, grabbed_mob, "bashed", "", "against \the [src]")
+			if(prob(50))
+				grabbed_mob.Paralyze(2 SECONDS)
+		if(GRAB_NECK)
+			damage += base_damage * 2
+			grabbed_mob.visible_message(span_danger("<big>[user] crushes [grabbed_mob] against \the [src]!</big>"))
+			log_combat(user, grabbed_mob, "crushed", "", "against \the [src]")
+			grabbed_mob.Paralyze(2 SECONDS)
+	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	take_damage(damage * 2, BRUTE, MELEE)
+	return TRUE
+
 /obj/structure/window/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
-	if(istype(I, /obj/item/grab) && get_dist(src, user) < 2)
-		if(isxeno(user))
-			return
-		var/obj/item/grab/G = I
-		if(!isliving(G.grabbed_thing))
-			return
-
-		var/mob/living/M = G.grabbed_thing
-		var/state = user.grab_state
-		user.drop_held_item()
-		switch(state)
-			if(GRAB_PASSIVE)
-				M.visible_message(span_warning("[user] slams [M] against \the [src]!"))
-				log_combat(user, M, "slammed", "", "against \the [src]")
-				M.apply_damage(7, blocked = MELEE)
-				UPDATEHEALTH(M)
-				take_damage(10, BRUTE, MELEE)
-			if(GRAB_AGGRESSIVE)
-				M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
-				log_combat(user, M, "bashed", "", "against \the [src]")
-				if(prob(50))
-					M.Paralyze(2 SECONDS)
-				M.apply_damage(10, blocked = MELEE)
-				UPDATEHEALTH(M)
-				take_damage(25, BRUTE, MELEE)
-			if(GRAB_NECK)
-				M.visible_message(span_danger("<big>[user] crushes [M] against \the [src]!</big>"))
-				log_combat(user, M, "crushed", "", "against \the [src]")
-				M.Paralyze(10 SECONDS)
-				M.apply_damage(20, blocked = MELEE)
-				UPDATEHEALTH(M)
-				take_damage(50, BRUTE, MELEE)
-
-	else if(I.flags_item & NOBLUDGEON)
+	if(I.flags_item & NOBLUDGEON)
 		return
 
 	else if(isscrewdriver(I) && deconstructable)

@@ -533,8 +533,8 @@
 
 
 /obj/item/storage/holster/icc_mg
-	name = "\improper ML-14 scabbard (10x26mm)"
-	desc = "A backpack holster allowing the storage of any a ML-14 Assault Machinegun, also carries ammo for the other portion of the system."
+	name = "\improper ML-41 scabbard (10x26mm)"
+	desc = "A backpack holster allowing the storage of any a ML-41 Assault Machinegun, also carries ammo for the other portion of the system."
 	icon_state = "icc_bagmg"
 	storage_slots = 5
 	max_storage_space = 16

@@ -29,7 +29,7 @@
 	name = "X-fuel tank"
 	desc = "A specialized fuel tank of ultra thick napthal type X, known for its extreme heat and slow burn rate, as well as it's distinct blue flames. For use with the V-62 incinerator."
 	item_typepath = /obj/item/ammo_magazine/flamer_tank/backtank/X
-	purchase_cost = 25
+	purchase_cost = 40
 	unlock_cost = 200
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
@@ -55,7 +55,7 @@
 	ui_icon = "shotgun"
 	purchase_cost = 25
 	item_typepath = /obj/item/weapon/gun/shotgun/som/standard
-	jobs_supported = list(SOM_SQUAD_MARINE)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 	loadout_item_flags = NONE
 
 /datum/loadout_item/back/som_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -67,7 +67,7 @@
 	desc = "This backpack holds 4 RPGs, in addition to a V-71 RPG launcher. Equipped with radioactive and incendiary warheads, \
 	the V-71 is incredibly effective at softening up or flushing out organic targets, making them easy prey to finish off. Has a draw delay."
 	req_desc = "Requires a suit with a Mithridatius environmental protection module."
-	purchase_cost = 100
+	purchase_cost = 50
 	quantity = 2
 	item_typepath = /obj/item/storage/holster/backholster/rpg/som/war_crimes
 	jobs_supported = list(SOM_SQUAD_VETERAN)

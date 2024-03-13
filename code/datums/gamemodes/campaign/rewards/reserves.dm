@@ -52,7 +52,7 @@
 	for(var/mob/candidate AS in GLOB.player_list)
 		if(candidate.faction != faction.faction)
 			continue
-		mode.player_death_times -= candidate.key
+		mode.player_death_times -= candidate.ckey
 		to_chat(candidate, "<span class='warning'>Tactical reserves mobilised. You can now respawn immediately if possible.<spawn>")
 		candidate.playsound_local(null, 'sound/ambience/votestart.ogg', 50)
 

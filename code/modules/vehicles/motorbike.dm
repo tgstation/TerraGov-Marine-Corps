@@ -82,6 +82,8 @@
 
 /obj/vehicle/ridden/motorbike/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/reagent_containers/jerrycan))
 		var/obj/item/reagent_containers/jerrycan/gascan = I
 		if(gascan.reagents.total_volume == 0)
@@ -176,7 +178,7 @@
 	smoke.set_up(0, src)
 	smoke.start()
 
-/obj/vehicle/ridden/motorbike/obj_destruction()
+/obj/vehicle/ridden/motorbike/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	explosion(src, light_impact_range = 2, flash_range = 0)
 	return ..()
 
@@ -195,9 +197,6 @@
 		return FALSE
 
 	if(user.lying_angle || user.incapacitated()) //Can't use your inventory when lying
-		return FALSE
-
-	if(istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) //Stops inventory actions in a mech/tank
 		return FALSE
 
 	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block

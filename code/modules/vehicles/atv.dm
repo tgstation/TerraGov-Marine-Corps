@@ -47,7 +47,7 @@
 		buckled_mob.bullet_act(P)
 	return TRUE
 
-/obj/vehicle/ridden/atv/obj_destruction()
+/obj/vehicle/ridden/atv/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	explosion(src, devastation_range = -1, light_impact_range = 2, flame_range = 3, flash_range = 4)
 	return ..()
 

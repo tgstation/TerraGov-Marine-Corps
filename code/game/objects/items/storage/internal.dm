@@ -43,9 +43,6 @@
 	if(user.lying_angle || user.incapacitated()) //Can't use your inventory when lying
 		return FALSE
 
-	if(istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) //Stops inventory actions in a mech/tank
-		return FALSE
-
 	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
 		open(user)
 		return FALSE
@@ -122,7 +119,7 @@
 			close(M)
 	return TRUE
 
-/obj/item/storage/internal/Adjacent(atom/neighbor)
+/obj/item/storage/internal/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	return master_item.Adjacent(neighbor)
 
 

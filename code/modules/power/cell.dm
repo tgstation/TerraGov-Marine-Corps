@@ -25,7 +25,7 @@
 
 /obj/item/cell/update_overlays()
 	. = ..()
-	if(charge < 0.01)
+	if(charge < 0.01 || !charge_overlay)
 		return
 	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
 	. += "[charge_overlay]_[remaining]"
@@ -104,6 +104,8 @@
 
 /obj/item/cell/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/S = I

@@ -97,14 +97,16 @@
 	GLOB.round_statistics.queen_screech++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")
 	X.create_shriekwave() //Adds the visual effect. Wom wom wom
-	//stop_momentum(charge_dir) //Screech kills a charge
 
 	var/list/nearby_living = list()
 	for(var/mob/living/L in hearers(WORLD_VIEW, X))
 		nearby_living.Add(L)
+	for(var/obj/vehicle/sealed/armored/tank AS in GLOB.tank_list)
+		if(get_dist(tank, X) > WORLD_VIEW_NUM)
+			continue
+		nearby_living += tank.occupants
 
-	for(var/i in GLOB.mob_living_list)
-		var/mob/living/L = i
+	for(var/mob/living/L AS in GLOB.mob_living_list)
 		if(get_dist(L, X) > WORLD_VIEW_NUM)
 			continue
 		L.screech_act(X, WORLD_VIEW_NUM, L in nearby_living)
@@ -230,10 +232,10 @@
 	var/mob/living/carbon/xenomorph/queen/xeno = owner
 	if(xeno.do_actions)
 		return
-	if(xeno.is_zoomed)
+	if(xeno.xeno_flags & XENO_ZOOMED)
 		zoom_xeno_out(xeno.observed_xeno ? FALSE : TRUE)
 		return
-	if(!do_after(xeno, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || xeno.is_zoomed)
+	if(!do_after(xeno, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || (xeno.xeno_flags & XENO_ZOOMED))
 		return
 	zoom_xeno_in(xeno.observed_xeno ? FALSE : TRUE) //No need for feedback message if our eye is elsewhere.
 
@@ -292,7 +294,7 @@
 /datum/action/ability/xeno_action/set_xeno_lead/proc/select_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
 	var/mob/living/carbon/xenomorph/queen/xeno_ruler = owner
 
-	if(selected_xeno.queen_chosen_lead)
+	if(selected_xeno.xeno_flags & XENO_LEADER)
 		unset_xeno_leader(selected_xeno)
 		return
 
@@ -446,7 +448,7 @@
 /datum/action/ability/xeno_action/bulwark
 	name = "Royal Bulwark"
 	action_icon_state = "bulwark"
-	desc = "Creates a field of defensive energy, filling chinks in the armor of nearby sisters, making them more resilient."
+	desc = "Creates a field of defensive energy, filling gaps in the armor of nearby sisters, making them more resilient."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(

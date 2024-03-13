@@ -848,7 +848,7 @@ EXPLOSIVES
 	name = "M40-AG Anti-Gas grenade box crate"
 	notes = "Cotains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/antigas)
-	cost = 700
+	cost = 600
 
 /datum/supply_packs/explosives/explosives_cloak
 	name = "M40-2 SCDP grenade box crate"
@@ -885,6 +885,12 @@ EXPLOSIVES
 	notes = "Contains 15 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/phosphorus)
 	cost = 700
+
+/datum/supply_packs/explosives/explosives_hefa
+	name = "M25 HEFA grenade box crate"
+	notes = "Contains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/hefa)
+	cost = 550
 
 /datum/supply_packs/explosives/plastique
 	name = "C4 plastic explosive"
@@ -1036,7 +1042,7 @@ ARMOR
 
 /datum/supply_packs/armor/scout_cloak
 	name = "Scout Cloak"
-	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak/scout)
+	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak)
 	cost = 500
 
 /datum/supply_packs/armor/sniper_cloak
@@ -1174,6 +1180,21 @@ CLOTHING
 	name = "Jetpack"
 	contains = list(/obj/item/jetpack_marine)
 	cost = 120
+
+/datum/supply_packs/clothing/night_vision
+	name = "BE-47 Night Vision Goggles"
+	contains = list(/obj/item/clothing/glasses/night_vision)
+	cost = 500
+
+/datum/supply_packs/clothing/night_vision_mounted
+	name = "BE-35 Night Vision Module"
+	contains = list(/obj/item/clothing/glasses/night_vision/mounted)
+	cost = 300
+
+/datum/supply_packs/clothing/night_vision_batteries
+	name = "Double pack of night vision batteries"
+	contains = list(/obj/item/cell/night_vision_battery, /obj/item/cell/night_vision_battery)
+	cost = 100
 
 /*******************************************************************************
 MEDICAL
@@ -2055,15 +2076,50 @@ FACTORY
 	contains = list(/obj/machinery/unboxer)
 	cost = 50
 
-/datum/supply_packs/factory/phosphosrefill
-	name = "Phosphorus-resistant plates refill"
-	contains = list(/obj/item/factory_refill/phosnade_refill)
-	cost = 900
-
 /datum/supply_packs/factory/bignaderefill
 	name = "Rounded M15 plates refill"
 	contains = list(/obj/item/factory_refill/bignade_refill)
+	cost = 700
+
+/datum/supply_packs/factory/incennaderefill
+	name = "Incendiary grenade refill"
+	contains = list(/obj/item/factory_refill/incennade_refill)
 	cost = 500
+
+/datum/supply_packs/factory/stickynaderefill
+	name = "Adhesive grenade refill"
+	contains = list(/obj/item/factory_refill/stickynade_refill)
+	cost = 450
+
+/datum/supply_packs/factory/phosphosrefill
+	name = "Phosphorus-resistant plates refill"
+	contains = list(/obj/item/factory_refill/phosnade_refill)
+	cost = 1400
+
+/datum/supply_packs/factory/trailblazerrefill
+	name = "Trailblazer grenade refill"
+	contains = list(/obj/item/factory_refill/trailblazer_refill)
+	cost = 500
+
+/datum/supply_packs/factory/lasenaderefill
+	name = "Laserburster grenade refill"
+	contains = list(/obj/item/factory_refill/lasenade_refill)
+	cost = 450
+
+/datum/supply_packs/factory/hefanaderefill
+	name = "HEFA fragmentation grenade refill"
+	contains = list(/obj/item/factory_refill/hefanade_refill)
+	cost = 700
+
+/datum/supply_packs/factory/antigasrefill
+	name = "Anti-Gas grenade refill"
+	contains = list(/obj/item/factory_refill/antigas_refill)
+	cost = 800
+
+/datum/supply_packs/factory/razornade_refill
+	name = "Razornade assembly refill"
+	contains = list(/obj/item/factory_refill/razornade_refill)
+	cost = 1000
 
 /datum/supply_packs/factory/sadar_refill_he
 	name = "SADAR HE missile assembly refill"
@@ -2174,11 +2230,6 @@ FACTORY
 	name = "Minigun powerpack assembly refill"
 	contains = list(/obj/item/factory_refill/minigun_powerpack_refill)
 	cost = 250
-
-/datum/supply_packs/factory/razornade_refill
-	name = "Razornade assembly refill"
-	contains = list(/obj/item/factory_refill/razornade_refill)
-	cost = 500
 
 /datum/supply_packs/factory/flak_sniper_refill
 	name = "SR-127 flak magazine assembly refill"

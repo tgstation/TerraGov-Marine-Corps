@@ -1,0 +1,6 @@
+author: "ClosetedSkeletonGH"
+delete-after: True
+changes:
+  - rscadd: "Alamo has been revamped to be more RP friendly and efficient"
+  - bugfix: "fixes soder machines costing money"
+  - bugfix: "fixes not being able to see out of the front of the almamo"

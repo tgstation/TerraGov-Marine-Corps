@@ -9303,7 +9303,7 @@
 /turf/open/floor/tile/yellow/full,
 /area/slumbridge/inside/engi/central)
 "hey" = (
-/obj/item/ammo_magazine/tank/ltaaap_minigun,
+/obj/item/ammo_magazine/tank/ltaap_chaingun,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/slumbridge/inside/sombase/east)
@@ -15956,16 +15956,6 @@
 /obj/structure/prop/mainship/holobarrier/passthrough,
 /turf/open/floor/plating/fake_space,
 /area/slumbridge/outside/northwest)
-"lRh" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/flasher/portable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/prison/darkred{
-	dir = 1
-	},
-/area/slumbridge/inside/prison/outerringnorth)
 "lRi" = (
 /turf/open/floor/plating/ground/snow/layer2{
 	dir = 10

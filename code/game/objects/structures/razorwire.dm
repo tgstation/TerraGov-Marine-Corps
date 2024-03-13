@@ -125,6 +125,8 @@
 
 /obj/structure/razorwire/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/metal_sheets = I
@@ -142,33 +144,28 @@
 		update_icon()
 		return
 
-	if(!istype(I, /obj/item/grab))
+/obj/structure/razorwire/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	if(!isliving(grab.grabbed_thing))
 		return
-	if(isxeno(user))//I am very tempted to remove this >:)
-		return
-
-	var/obj/item/grab/G = I
-	if(!isliving(G.grabbed_thing))
+	if(user.grab_state < GRAB_AGGRESSIVE)
+		to_chat(user, span_warning("You need a better grip to do that!"))
 		return
 
-	var/mob/living/M = G.grabbed_thing
-	if(user.a_intent == INTENT_HARM)
-		if(user.grab_state <= GRAB_AGGRESSIVE)
-			to_chat(user, span_warning("You need a better grip to do that!"))
-			return
-
+	var/mob/living/grabbed_mob = grab.grabbed_thing
+	if(user.a_intent == INTENT_HARM && user.grab_state > GRAB_AGGRESSIVE)
 		var/def_zone = ran_zone()
-		M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, MELEE, TRUE, updating_health = TRUE)
-		user.visible_message(span_danger("[user] spartas [M]'s into [src]!"),
-		span_danger("You sparta [M]'s against [src]!"))
-		log_combat(user, M, "spartaed", "", "against \the [src]")
+		grabbed_mob.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, MELEE, TRUE, updating_health = TRUE)
+		user.visible_message(span_danger("[user] spartas [grabbed_mob]'s into [src]!"),
+		span_danger("You sparta [grabbed_mob]'s against [src]!"))
+		log_combat(user, grabbed_mob, "spartaed", "", "against \the [src]")
 		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
+		return TRUE
 
-	else if(user.grab_state >= GRAB_AGGRESSIVE)
-		M.forceMove(loc)
-		M.Paralyze(10 SECONDS)
-		user.visible_message(span_danger("[user] throws [M] on [src]."),
-		span_danger("You throw [M] on [src]."))
+	grabbed_mob.forceMove(loc)
+	grabbed_mob.Paralyze(2 SECONDS)
+	user.visible_message(span_danger("[user] throws [grabbed_mob] on [src]."),
+	span_danger("You throw [grabbed_mob] on [src]."))
+	return TRUE
 
 /obj/structure/razorwire/wirecutter_act(mob/living/user, obj/item/I)
 	user.visible_message(span_notice("[user] starts disassembling [src]."),
@@ -184,11 +181,11 @@
 	deconstruct(TRUE)
 	return TRUE
 
-/obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
-	X.apply_damage(RAZORWIRE_BASE_DAMAGE, blocked = MELEE, updating_health = TRUE) //About a third as damaging as actually entering
+	xeno_attacker.apply_damage(RAZORWIRE_BASE_DAMAGE, blocked = MELEE, updating_health = TRUE) //About a third as damaging as actually entering
 	update_icon()
 	return ..()
 

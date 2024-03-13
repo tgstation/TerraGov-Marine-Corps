@@ -18,6 +18,8 @@
 
 /obj/item/whistle/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(user.wear_mask == src)
 		whistle_playsound(user)

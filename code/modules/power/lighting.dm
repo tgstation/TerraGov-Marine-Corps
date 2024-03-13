@@ -34,6 +34,8 @@
 
 /obj/machinery/light_construct/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		if(stage == 1)
@@ -338,6 +340,8 @@
 
 /obj/machinery/light/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/lightreplacer))
 		var/obj/item/lightreplacer/LR = I
@@ -459,13 +463,13 @@
 		turn_light(null, FALSE)
 
 //Xenos smashing lights
-/obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
 	if(status == 2) //Ignore if broken.
 		return FALSE
-	X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-	X.visible_message(span_danger("\The [X] smashes [src]!"), \
+	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+	xeno_attacker.visible_message(span_danger("\The [xeno_attacker] smashes [src]!"), \
 	span_danger("We smash [src]!"), null, 5)
 	broken() //Smashola!
 
@@ -703,6 +707,8 @@
 // if a syringe, can inject phoron to make it explode
 /obj/item/light_bulb/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/S = I
