@@ -190,7 +190,7 @@
 		GLOB.cryoed_item_list_containers -= I;
 		GLOB.cryoed_item_list_other -= I;
 		CRASH("Deleted or erroneous variable ([I]) called for hypersleep inventory retrivial.")
-	if(!I in (GLOB.cryoed_item_list_gun || GLOB.cryoed_item_list_ammo || GLOB.cryoed_item_list_explosive || GLOB.cryoed_item_list_melee || GLOB.cryoed_item_list_clothing || GLOB.cryoed_item_list_food || GLOB.cryoed_item_list_drugs || GLOB.cryoed_item_list_containers || GLOB.cryoed_item_list_other))
+	if((!I) in (GLOB.cryoed_item_list_gun || GLOB.cryoed_item_list_ammo || GLOB.cryoed_item_list_explosive || GLOB.cryoed_item_list_melee || GLOB.cryoed_item_list_clothing || GLOB.cryoed_item_list_food || GLOB.cryoed_item_list_drugs || GLOB.cryoed_item_list_containers || GLOB.cryoed_item_list_other))
 		if(message)
 			to_chat(user, span_warning("[I] is no longer in storage."))
 		return
