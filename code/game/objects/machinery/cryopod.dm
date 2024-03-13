@@ -165,7 +165,7 @@
 
 	else if(href_list["allitems"])
 
-		if(!length(GLOB.cryoed_item_list_gun) && !length(GLOB.cryoed_item_list_ammo) && !length(GLOB.cryoed_item_list_explosive) && !length(cryoed_item_list_melee) && !length(GLOB.cryoed_item_list_clothing) && !length(GLOB.cryoed_item_list_food) && !length(GLOB.cryoed_item_list_drugs) && !length(GLOB.cryoed_item_list_containers) && !length(GLOB.cryoed_item_list_other))
+		if(!length(GLOB.cryoed_item_list_gun) && !length(GLOB.cryoed_item_list_ammo) && !length(GLOB.cryoed_item_list_explosive) && !length(GLOB.cryoed_item_list_melee) && !length(GLOB.cryoed_item_list_clothing) && !length(GLOB.cryoed_item_list_food) && !length(GLOB.cryoed_item_list_drugs) && !length(GLOB.cryoed_item_list_containers) && !length(GLOB.cryoed_item_list_other))
 			to_chat(usr, span_warning("There is nothing to recover from storage."))
 			updateUsrDialog()
 			return
