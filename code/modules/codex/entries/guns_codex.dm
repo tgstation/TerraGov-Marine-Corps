@@ -146,6 +146,16 @@
 		traditional chargers and their capability to switch their lens, allowing more flexibility, something that a ballistic weapon \
 		aren't capable of."
 
+/datum/codex_entry/plasma_weapons
+	display_name = "plasma weapons"
+	mechanics_text = "This weapon is a plasma weapon; it fires bursts of superheated gas that have been ionized and electrically charged. You can \
+		unload it by holding it and clicking it with an empty hand, and reload it by clicking it with a power cell or a plasma cartridge, depending on the model of \
+		the weapon. \
+		<br>"
+	lore_text = "Plasma weapons are rare and powerful due to the high cost and difficulty of producing and controlling plasma \
+		pulses. They have a devastating effect on most targets, as the plasma can melt, burn, or vaporize them. Using a plasma weapon in a confined space is very risky, \
+		as the plasma can damage the surroundings or harm friendly units with its intense heat and radiation."
+
 /datum/codex_entry/ballistic_weapons
 	display_name = "ballistic weapons"
 	mechanics_text = "This weapon is a ballistic weapon; it fires solid shots using a magazine or loaded rounds of ammunition. You can \

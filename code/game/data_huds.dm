@@ -108,6 +108,14 @@
 
 
 /mob/living/carbon/xenomorph/med_hud_set_health()
+	if(hud_used?.healths)
+		var/bucket
+		if(stat == DEAD)
+			bucket = "critical"
+		else
+			bucket = get_bucket(XENO_HUD_ICON_BUCKETS, maxHealth, health, get_crit_threshold(), list("full", "critical"))
+		hud_used.healths.icon_state = "health[bucket]"
+
 	var/image/holder = hud_list[HEALTH_HUD_XENO]
 	if(!holder)
 		return
@@ -174,7 +182,6 @@
 
 
 /mob/living/carbon/xenomorph/med_hud_set_status()
-	hud_set_plasma()
 	hud_set_pheromone()
 
 
@@ -259,14 +266,19 @@
 		simple_status_hud.icon_state = ""
 		if(stat != DEAD)
 			status_hud.icon_state = "hudsynth"
+		else if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
+			status_hud.icon_state = "hudsynthdnr"
+			return TRUE
 		else
-			if(!client)
-				var/mob/dead/observer/G = get_ghost(FALSE, TRUE)
+			if(!mind)
+				var/mob/dead/observer/G = get_ghost(TRUE)
 				if(!G)
 					status_hud.icon_state = "hudsynthdnr"
 				else
 					status_hud.icon_state = "hudsynthdead"
-			return
+			else
+				status_hud.icon_state = "hudsynthdead"
+			return TRUE
 		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
 		return TRUE
 
@@ -303,8 +315,8 @@
 				hud_list[HEART_STATUS_HUD].icon_state = "still_heart"
 				status_hud.icon_state = "huddead"
 				return TRUE
-			if(!client)
-				var/mob/dead/observer/ghost = get_ghost()
+			if(!mind)
+				var/mob/dead/observer/ghost = get_ghost(TRUE)
 				if(!ghost?.can_reenter_corpse)
 					status_hud.icon_state = "huddead"
 					return TRUE
@@ -396,7 +408,6 @@
 
 	return TRUE
 
-
 //infection status that appears on humans and monkeys, viewed by xenos only.
 /datum/atom_hud/xeno_infection
 	hud_icons = list(XENO_EMBRYO_HUD)
@@ -461,8 +472,16 @@
 
 
 /mob/living/carbon/xenomorph/proc/hud_set_plasma()
-	if(!xeno_caste) // usually happens because hud ticks before New() finishes.
+	if(!xeno_caste) //this is cringe that we need this but currently its called before caste is set on init
 		return
+	if(hud_used?.alien_plasma_display)
+		var/bucket
+		if(stat == DEAD)
+			bucket = "empty"
+		else
+			bucket = get_bucket(XENO_HUD_ICON_BUCKETS, xeno_caste.plasma_max, plasma_stored, 0, list("full", "empty"))
+		hud_used.alien_plasma_display.icon_state = "power_display_[bucket]"
+
 	var/image/holder = hud_list[PLASMA_HUD]
 	if(!holder)
 		return
@@ -513,7 +532,7 @@
 		if(hive?.living_xeno_queen)
 			if(hive.living_xeno_queen.observed_xeno == src)
 				holder.icon_state = "queen_overwatch"
-			if(queen_chosen_lead)
+			if(xeno_flags & XENO_LEADER)
 				var/image/I = image('icons/mob/hud.dmi',src, "hudxenoleader")
 				holder.overlays += I
 	hud_list[QUEEN_OVERWATCH_HUD] = holder

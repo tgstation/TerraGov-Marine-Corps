@@ -128,6 +128,7 @@
 	update_icon()
 
 /obj/machinery/door_control/update_icon_state()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else if(pressed)
@@ -141,6 +142,8 @@
 
 /obj/machinery/driver_button/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/detective_scanner))
 		return
@@ -281,6 +284,7 @@
 	directional = FALSE
 
 /obj/machinery/door_control/old/update_icon_state()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "olddoorctrl-p"
 	else if(pressed)

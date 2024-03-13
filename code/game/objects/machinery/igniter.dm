@@ -30,7 +30,8 @@
 	icon_state = "igniter[on]"
 
 
-/obj/machinery/igniter/update_icon()
+/obj/machinery/igniter/update_icon_state()
+	. = ..()
 	if(is_operational())
 		icon_state = "igniter[on]"
 	else
@@ -52,17 +53,17 @@
 	var/base_state = "migniter"
 	anchored = TRUE
 
-/obj/machinery/sparker/update_icon()
-	if ( !(machine_stat & NOPOWER) && disable == 0 )
-
+/obj/machinery/sparker/update_icon_state()
+	. = ..()
+	if(!(machine_stat & NOPOWER) && disable == 0)
 		icon_state = "[base_state]"
-//		src.sd_SetLuminosity(2)
 	else
 		icon_state = "[base_state]-p"
-//		src.sd_SetLuminosity(0)
 
 /obj/machinery/sparker/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/detective_scanner))
 		return
@@ -109,6 +110,8 @@
 
 /obj/machinery/ignition_switch/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	return attack_hand(user)
 
 /obj/machinery/ignition_switch/attack_hand(mob/living/user)

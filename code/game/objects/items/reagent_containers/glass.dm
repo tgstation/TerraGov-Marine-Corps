@@ -107,6 +107,8 @@
 
 /obj/item/reagent_containers/glass/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/pen) || istype(I, /obj/item/flashlight/pen))
 		var/tmp_label = stripped_input(user, "Enter a label for [name]", "Label", label_text)
@@ -151,28 +153,35 @@
 		return
 	update_icon()
 
-/obj/item/reagent_containers/glass/beaker/update_icon()
-	overlays.Cut()
+/obj/item/reagent_containers/glass/beaker/update_overlays()
+	. = ..()
 
 	if(reagents.total_volume)
 		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "[icon_state]10")
 
 		var/percent = round((reagents.total_volume / volume) * 100)
 		switch(percent)
-			if(0 to 9)			filling.icon_state = "[icon_state]-10"
-			if(10 to 24) 		filling.icon_state = "[icon_state]10"
-			if(25 to 49)		filling.icon_state = "[icon_state]25"
-			if(50 to 74)		filling.icon_state = "[icon_state]50"
-			if(75 to 79)		filling.icon_state = "[icon_state]75"
-			if(80 to 90)		filling.icon_state = "[icon_state]80"
-			if(91 to INFINITY)	filling.icon_state = "[icon_state]100"
+			if(0 to 9)
+				filling.icon_state = "[icon_state]-10"
+			if(10 to 24)
+				filling.icon_state = "[icon_state]10"
+			if(25 to 49)
+				filling.icon_state = "[icon_state]25"
+			if(50 to 74)
+				filling.icon_state = "[icon_state]50"
+			if(75 to 79)
+				filling.icon_state = "[icon_state]75"
+			if(80 to 90)
+				filling.icon_state = "[icon_state]80"
+			if(91 to INFINITY)
+				filling.icon_state = "[icon_state]100"
 
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		overlays += filling
+		. += filling
 
 	if(!is_open_container())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
-		overlays += lid
+		. += lid
 
 /obj/item/reagent_containers/glass/beaker/large
 	name = "large beaker"
@@ -250,6 +259,8 @@
 
 /obj/item/reagent_containers/glass/bucket/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/mop))
 		if(reagents.total_volume < 1)
@@ -260,12 +271,12 @@
 		to_chat(user, span_notice("You wet [I] in [src]."))
 		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
-/obj/item/reagent_containers/glass/bucket/update_icon()
-	overlays.Cut()
+/obj/item/reagent_containers/glass/bucket/update_overlays()
+	. = ..()
 
 	if(!is_open_container())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
-		overlays += lid
+		. += lid
 
 /obj/item/reagent_containers/glass/bucket/janibucket
 	name = "janitorial bucket"
@@ -276,14 +287,17 @@
 	update_icon()
 
 
-/obj/item/reagent_containers/glass/bucket/janibucket/update_icon()
-	..()
+/obj/item/reagent_containers/glass/bucket/janibucket/update_icon_state()
+	. = ..()
 	if(reagents.total_volume)
 		var/percent = round((reagents.total_volume / volume) * 100)
 		switch(percent)
-			if(0 to 9)			icon_state = "janibucket"
-			if(10 to 65) 		icon_state = "janibucket_half"
-			if(66 to INFINITY)	icon_state = "janibucket_full"
+			if(0 to 9)
+				icon_state = "janibucket"
+			if(10 to 65)
+				icon_state = "janibucket_half"
+			if(66 to INFINITY)
+				icon_state = "janibucket_full"
 	else
 		icon_state = "janibucket"
 

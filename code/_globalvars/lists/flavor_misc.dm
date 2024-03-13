@@ -87,7 +87,6 @@ GLOBAL_LIST_INIT(genders, list(MALE, FEMALE, NEUTER))
 GLOBAL_LIST_INIT(playable_icons, list(
 	"boiler",
 	"bull",
-	"baneling",
 	"captain",
 	"carrier",
 	"chief_medical",
@@ -106,6 +105,7 @@ GLOBAL_LIST_INIT(playable_icons, list(
 	"mech_pilot",
 	"medical",
 	"pilot",
+	"transportofficer",
 	"praetorian",
 	"private",
 	"puppeteer",
@@ -139,7 +139,7 @@ GLOBAL_LIST_INIT(playable_squad_icons, list(
 	"smartgunner",
 ))
 
-GLOBAL_LIST_INIT(campaign_icon_types, list(
+GLOBAL_LIST_INIT(campaign_asset_icon_types, list(
 	"b18",
 	"gorgon",
 	"medkit",
@@ -206,27 +206,104 @@ GLOBAL_LIST_INIT(campaign_mission_icon_types, list(
 	"final_tgmc",
 ))
 
+GLOBAL_LIST_INIT(campaign_perk_icon_types, list(
+	"health_1",
+	"soft_footed",
+	"health_2",
+	"cqc_1",
+	"cqc_2",
+	"melee_1",
+	"melee_2",
+	"pistols",
+	"shotguns",
+	"rifles",
+	"smgs",
+	"heavy",
+	"construction",
+	"medical",
+	"stamina_1",
+	"stamina_2",
+	"leadership",
+	"smartguns",
+	"firearms",
+	"overclock",
+	"sword",
+	"axe",
+))
+
+GLOBAL_LIST_INIT(campaign_loadout_item_icon_types, list(
+	"light_armour_shield",
+	"medium_armour_shield",
+	"heavy_armour_shield",
+	"light_armour",
+	"medium_armour",
+	"heavy_armour",
+	"gorgon",
+	"medkit",
+	"materials",
+	"tyr",
+	"lorica",
+	"riot_shield",
+	"grenade",
+	"shotgun",
+	"scout",
+	"ballistic",
+	"lasergun",
+	"volkite",
+	"smartgun",
+	"helmet",
+	"boots",
+	"machete",
+	"axe",
+	"pistol",
+	"smg",
+	"construction",
+))
+
 GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())
 
+///Populates minimap_icons
 /proc/init_minimap_icons()
 	. = list()
 	for(var/icon_state in GLOB.playable_icons)
 		.[icon_state] = icon2base64(icon('icons/UI_icons/map_blips.dmi', icon_state, frame = 1))
 
-GLOBAL_LIST_INIT(campaign_icons, init_campaign_icons())
+GLOBAL_LIST_INIT(campaign_asset_icons, init_campaign_asset_icons())
 
-/proc/init_campaign_icons()
+///Populates campaign_asset_icons
+/proc/init_campaign_asset_icons()
 	. = list()
 	var/list/colours = list("green", "orange", "grey", "red", "blue")
-	for(var/icon_state in GLOB.campaign_icon_types)
+	for(var/icon_state in GLOB.campaign_asset_icon_types)
 		for(var/colour in colours)
-			.["[icon_state]_[colour]"] = icon2base64(icon('icons/UI_icons/campaign_icons.dmi', "[icon_state]_[colour]", frame = 1))
+			. += "[icon_state]_[colour]"
 
 GLOBAL_LIST_INIT(campaign_mission_icons, init_campaign_mission_icons())
 
+///Populates campaign_mission_icons
 /proc/init_campaign_mission_icons()
 	. = list()
 	var/list/colours = list("green", "yellow", "grey", "red", "blue")
 	for(var/icon_state in GLOB.campaign_mission_icon_types)
 		for(var/colour in colours)
-			.["[icon_state]_[colour]"] = icon2base64(icon('icons/UI_icons/mission_icons.dmi', "[icon_state]_[colour]", frame = 1))
+			. += "[icon_state]_[colour]"
+
+GLOBAL_LIST_INIT(campaign_perk_icons, init_campaign_perk_icons())
+
+///Populates campaign_perk_icons
+/proc/init_campaign_perk_icons()
+	. = list()
+	var/list/colours = list("green", "orange", "grey", "red", "blue")
+	for(var/icon_state in GLOB.campaign_perk_icon_types)
+		for(var/colour in colours)
+			. += "[icon_state]_[colour]"
+
+GLOBAL_LIST_INIT(campaign_loadout_item_icons, init_campaign_loadout_item_icons())
+
+///Populates campaign_loadout_item_icons
+/proc/init_campaign_loadout_item_icons()
+	. = list()
+	var/list/colours = list("green", "orange", "grey", "red", "blue")
+	for(var/icon_state in GLOB.campaign_loadout_item_icon_types)
+		for(var/colour in colours)
+			. += "[icon_state]_[colour]"

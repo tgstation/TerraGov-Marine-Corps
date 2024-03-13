@@ -298,7 +298,7 @@
 			R.use_command = FALSE
 		var/obj/item/card/id/ID = squad_leader.get_idcard()
 		if(istype(ID))
-			ID.access -= list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
+			ID.access -= list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TADPOLE)
 
 	to_chat(squad_leader, "<font size='3' color='blue'>You're no longer the Squad Leader for [src]!</font>")
 	var/mob/living/carbon/human/H = squad_leader
@@ -323,7 +323,7 @@
 		squad_leader.comm_title = "aSL"
 		var/obj/item/card/id/ID = squad_leader.get_idcard()
 		if(istype(ID))
-			ID.access += list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
+			ID.access += list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TADPOLE)
 
 	if(istype(squad_leader.wear_ear, /obj/item/radio/headset/mainship/marine))
 		var/obj/item/radio/headset/mainship/marine/R = squad_leader.wear_ear
@@ -421,8 +421,8 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 	var/freq = FREQ_CUSTOM_SQUAD_MIN + 2 * length(GLOB.custom_squad_radio_freqs)
 	if(freq > FREQ_CUSTOM_SQUAD_MAX)
 		return
-
-	var/new_id = lowertext(squad_name) + "_squad"
+	var/lowertext_name = lowertext(squad_name)
+	var/new_id = lowertext_name + "_squad"
 	if(SSjob.squads[new_id])
 		return
 
@@ -436,6 +436,21 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 	LAZYADDASSOCSIMPLE(GLOB.radiochannels, "[radio_channel_name]", freq)
 	LAZYADDASSOCSIMPLE(GLOB.reverseradiochannels, "[freq]", radio_channel_name)
 	new_squad.faction = squad_faction
+	var/key_prefix = lowertext_name[1]
+	if(GLOB.department_radio_keys[key_prefix])
+		for(var/letter in splittext(lowertext_name, ""))
+			if(!GLOB.department_radio_keys[letter])
+				key_prefix = letter
+				break
+		//okay... mustve been a very short name, randomly pick things from the alphabet now
+		for(var/letter in shuffle(GLOB.alphabet))
+			if(!GLOB.department_radio_keys[letter])
+				key_prefix = letter
+				break
+		key_prefix = "ERROR"
+	GLOB.department_radio_keys[key_prefix] = radio_channel_name
+	GLOB.channel_tokens[radio_channel_name] = ":[key_prefix]"
+
 	if(new_squad.faction == FACTION_TERRAGOV)
 		var/list/terragov_server_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/server/presets/alpha]
 		var/list/terragov_bus_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/bus/preset_three]

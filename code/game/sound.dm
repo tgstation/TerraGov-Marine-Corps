@@ -62,18 +62,27 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		frequency = GET_RANDOM_FREQ // Same frequency for everybody
 	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/sound/S = sound(get_sfx(soundin))
-	for(var/i in GLOB.player_list)
-		var/mob/M = i
-		if(!M.client)
+	for(var/mob/M AS in GLOB.player_list|GLOB.aiEyes)
+		if(!M.client && !istype(M, /mob/camera/aiEye))
 			continue
 		var/turf/T = get_turf(M)
 		if(!T || T.z != turf_source.z || get_dist(M, turf_source) > sound_range)
 			continue
-		M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S)
+		M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S, sound_reciever = M)
+
+	for(var/obj/vehicle/sealed/armored/armor AS in GLOB.tank_list)
+		if(!armor.interior || armor.z != turf_source.z || get_dist(armor.loc, turf_source) > sound_range)
+			continue
+		for(var/mob/crew AS in armor.interior.occupants)
+			//turf source is null on purpose because it will not work properly since crew is on a different z
+			crew.playsound_local(null, soundin, vol*0.5, vary, frequency, falloff, is_global, channel, S, sound_reciever = crew)
+
 
 //todo rename S to sound_to_use
-/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/S, distance_multiplier = 1)
-	if(!client)
+/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/S, distance_multiplier = 1, mob/sound_reciever)
+	if(!sound_reciever)
+		sound_reciever = src
+	if(!sound_reciever.client)
 		return FALSE
 
 	if(!S)
@@ -108,10 +117,10 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 	if(!is_global)
 		S.environment = SOUND_ENVIRONMENT_ROOM
 
-	SEND_SOUND(src, S)
+	SEND_SOUND(sound_reciever, S)
 
 
-/mob/living/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/S, distance_multiplier = 1)
+/mob/living/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/S, distance_multiplier = 1, mob/sound_reciever)
 	if(ear_deaf > 0)
 		return FALSE
 	return ..()

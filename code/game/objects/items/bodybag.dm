@@ -68,6 +68,8 @@
 	var/obj/item/bodybag/foldedbag_instance = null
 	var/obj/structure/bed/roller/roller_buckled //the roller bed this bodybag is attached to.
 	var/mob/living/bodybag_occupant
+	///Should the name of the person inside be displayed?
+	var/display_name = TRUE
 
 
 /obj/structure/closet/bodybag/Initialize(mapload, foldedbag)
@@ -94,7 +96,10 @@
 	return ..()
 
 
-/obj/structure/closet/bodybag/proc/update_name()
+/obj/structure/closet/bodybag/update_name(updates)
+	. = ..()
+	if(!display_name)
+		return
 	if(opened)
 		name = bag_name
 	else
@@ -106,6 +111,8 @@
 
 /obj/structure/closet/bodybag/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/pen))
 		var/t = stripped_input(user, "What would you like the label to be?", name, null, MAX_MESSAGE_LEN)
@@ -145,7 +152,7 @@
 		var/mob/living/carbon/human/new_guest = locate() in contents
 		if(new_guest)
 			bodybag_occupant = new_guest
-		update_name()
+		update_appearance()
 		return TRUE
 	return FALSE
 
@@ -154,7 +161,7 @@
 	. = ..()
 	if(bodybag_occupant)
 		bodybag_occupant = null
-	update_name()
+	update_appearance()
 
 
 /obj/structure/closet/bodybag/MouseDrop(over_object, src_location, over_location)
@@ -188,7 +195,8 @@
 	return ..()
 
 
-/obj/structure/closet/bodybag/update_icon()
+/obj/structure/closet/bodybag/update_icon_state()
+	. = ..()
 	if(!opened)
 		icon_state = icon_closed
 		for(var/mob/living/L in contents)
@@ -198,15 +206,15 @@
 		icon_state = icon_opened
 
 
-/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 	if(opened)
 		return FALSE // stop xeno closing things
-	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	bodybag_occupant?.attack_alien(X)
+	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	bodybag_occupant?.attack_alien(xeno_attacker)
 	open()
-	X.visible_message(span_danger("\The [X] slashes \the [src] open!"), \
+	xeno_attacker.visible_message(span_danger("\The [xeno_attacker] slashes \the [src] open!"), \
 		span_danger("We slash \the [src] open!"), null, 5)
 	return TRUE
 
@@ -416,6 +424,7 @@
 	close_sound = 'sound/effects/vegetation_walk_2.ogg'
 	foldedbag_path = /obj/item/bodybag/tarp
 	closet_stun_delay = 0.5 SECONDS //Short delay to prevent ambushes from being too degenerate.
+	display_name = FALSE
 	var/serial_number //Randomized serial number used to stop point macros and such.
 
 
@@ -452,11 +461,6 @@
 /obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(mob/source, gibbing)
 	SIGNAL_HANDLER
 	open()
-
-
-/obj/structure/closet/bodybag/tarp/update_name()
-	return //Shouldn't be revealing who's inside.
-
 
 /obj/structure/closet/bodybag/tarp/MouseDrop(over_object, src_location, over_location)
 	. = ..()

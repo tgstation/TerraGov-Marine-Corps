@@ -15,7 +15,6 @@
 	singular_name = "glass sheet"
 	icon_state = "sheet-glass"
 	item_state = "sheet-glass"
-	merge_type = /obj/item/stack/sheet/glass
 	var/created_window = /obj/structure/window
 	var/reinforced_type = /obj/item/stack/sheet/glass/reinforced
 	var/is_reinforced = FALSE
@@ -58,6 +57,8 @@ GLOBAL_LIST_INIT(glass_radial_images, list(
 
 /obj/item/stack/sheet/glass/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(is_reinforced)
 		return
@@ -74,8 +75,9 @@ GLOBAL_LIST_INIT(glass_radial_images, list(
 		V.use(1)
 		if(!src && !RG)
 			user.put_in_hands(RG)
-
-/obj/item/stack/sheet/glass/large_stack
+/obj/item/stack/sheet/glass/glass //this exists because otherwise glass can be merger into any ofthe other glass types.
+	merge_type = /obj/item/stack/sheet/glass/glass
+/obj/item/stack/sheet/glass/glass/large_stack
 	amount = 50
 
 
@@ -88,6 +90,7 @@ GLOBAL_LIST_INIT(glass_radial_images, list(
 	singular_name = "reinforced glass sheet"
 	icon_state = "sheet-rglass"
 	item_state = "sheet-rglass"
+	merge_type = /obj/item/stack/sheet/glass/reinforced
 
 	created_window = /obj/structure/window/reinforced
 	is_reinforced = TRUE
@@ -101,8 +104,10 @@ GLOBAL_LIST_INIT(glass_radial_images, list(
 	desc = "Phoron glass is a silicate-phoron alloy turned into a non-crystalline solid. It is transparent just like glass, even if visibly tainted pink, and very resistant to damage and heat."
 	singular_name = "phoron glass sheet"
 	icon_state = "sheet-phoronglass"
+	merge_type = /obj/item/stack/sheet/glass/phoronglass
 	created_window = /obj/structure/window/phoronbasic
 	reinforced_type = /obj/item/stack/sheet/glass/phoronrglass
+
 
 /*
 * Reinforced phoron glass sheets
@@ -112,5 +117,6 @@ GLOBAL_LIST_INIT(glass_radial_images, list(
 	desc = "Reinforced phoron glass is made out of squares of silicate-phoron alloy glass layered on a metallic rod matrice. It is insanely resistant to both physical shock and heat."
 	singular_name = "reinforced phoron glass sheet"
 	icon_state = "sheet-phoronrglass"
+	merge_type = /obj/item/stack/sheet/glass/phoronrglass
 	created_window = /obj/structure/window/phoronreinforced
 	is_reinforced = TRUE

@@ -52,5 +52,7 @@
 #define MOVESPEED_ID_CHEM_CONNECT "CHEM_CONNECT"
 #define MOVESPEED_ID_VALI_BOOST "VALI_BOOST"
 
+#define MOVESPEED_ID_MINDMELD "MINDMELD"
+
 //Specific slowdown bitfield
 #define SLOWDOWN_IMPEDE_JETPACK (1<<0) //Reduce the range of jetpack

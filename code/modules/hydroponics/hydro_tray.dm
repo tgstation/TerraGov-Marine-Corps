@@ -366,19 +366,22 @@
 
 //Refreshes the icon and sets the luminosity
 /obj/machinery/hydroponics/update_icon()
+	update_bioluminescence()
+	return ..()
 
-	overlays.Cut()
+/obj/machinery/hydroponics/update_overlays()
+	. = ..()
 
 	// Updates the plant overlay.
 	if(!isnull(seed))
 
 		if(draw_warnings && health <= (seed.endurance / 2))
-			overlays += "over_lowhealth3"
+			. += "over_lowhealth3"
 
 		if(dead)
-			overlays += "[seed.plant_icon]-dead"
+			. += "[seed.plant_icon]-dead"
 		else if(harvest)
-			overlays += "[seed.plant_icon]-harvest"
+			. += "[seed.plant_icon]-harvest"
 		else if(age < seed.maturation)
 
 			var/t_growthstate
@@ -387,26 +390,27 @@
 			else
 				t_growthstate = round(seed.maturation / seed.growth_stages)
 
-			overlays += "[seed.plant_icon]-grow[t_growthstate]"
+			. += "[seed.plant_icon]-grow[t_growthstate]"
 			lastproduce = age
 		else
-			overlays += "[seed.plant_icon]-grow[seed.growth_stages]"
+			. += "[seed.plant_icon]-grow[seed.growth_stages]"
 
 	//Draw the cover.
 	if(closed_system)
-		overlays += "hydrocover"
+		. += "hydrocover"
 
 	//Updated the various alert icons.
 	if(draw_warnings)
 		if(waterlevel <= 10)
-			overlays += "over_lowwater3"
+			. += "over_lowwater3"
 		if(nutrilevel <= 2)
-			overlays += "over_lownutri3"
+			. += "over_lownutri3"
 		if(weedlevel >= 5 || pestlevel >= 5 || toxins >= 40)
-			overlays += "over_alert3"
+			. += "over_alert3"
 		if(harvest)
-			overlays += "over_harvest3"
+			. += "over_harvest3"
 
+/obj/machinery/hydroponics/proc/update_bioluminescence()
 	// Update bioluminescence.
 	if(seed)
 		if(seed.biolum)
@@ -417,7 +421,6 @@
 			return
 
 	set_light(0)
-
 
 // If a weed growth is sufficient, this proc is called.
 /obj/machinery/hydroponics/proc/weed_invasion()
@@ -494,6 +497,8 @@
 
 /obj/machinery/hydroponics/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(I.is_open_container())
 		return
@@ -660,6 +665,8 @@
 
 /obj/machinery/hydroponics/soil/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/shovel))
 		to_chat(user, "You clear up [src]!")

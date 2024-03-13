@@ -22,7 +22,7 @@
 
 /mob/living/carbon/xenomorph/crusher/handle_special_state()
 	if(is_charging >= CHARGE_ON)
-		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Charging"
+		icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Charging"
 		return TRUE
 	return FALSE
 
@@ -30,7 +30,7 @@
 /mob/living/carbon/xenomorph/crusher/handle_special_wound_states(severity)
 	. = ..()
 	if(is_charging >= CHARGE_ON)
-		return "crusher_wounded_charging_[severity]"
+		return "wounded_charging_[severity]"
 
 /mob/living/carbon/xenomorph/crusher/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(!force)//crushers should be overriden by runners

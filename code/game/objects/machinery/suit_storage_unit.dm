@@ -35,30 +35,31 @@
 		inserted_tank = new starting_tank_type(src)
 	update_icon()
 
-
-/obj/machinery/suit_storage_unit/update_icon()
-	overlays.Cut()
-	if(isUV)
-		icon_state = "disinfecting"
+/obj/machinery/suit_storage_unit/update_overlays()
+	. = ..()
+	if(isUV || !isopen)
 		return
-	else if(isopen)
-		if(inserted_helmet)
-			overlays += image("helmet")
 
-		if(inserted_suit)
-			overlays += image("suit")
-		if(inserted_mask)
-			overlays += image("mask")
-		if(inserted_tank)
-			overlays += image("tank")
+	if(inserted_helmet)
+		. += image("helmet")
+	if(inserted_suit)
+		. += image("suit")
+	if(inserted_mask)
+		. += image("mask")
+	if(inserted_tank)
+		. += image("tank")
 
+
+/obj/machinery/suit_storage_unit/update_icon_state()
+	. = ..()
+	if(isUV)
+		return
+	if(isopen)
 		icon_state = "open"
-
 	else
 		icon_state = "closed"
 	if(machine_stat & NOPOWER)
 		icon_state += "_off"
-
 
 /obj/machinery/suit_storage_unit/power_change()
 	..()
@@ -228,6 +229,8 @@
 
 /obj/machinery/suit_storage_unit/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(machine_stat & NOPOWER)
 		return
 

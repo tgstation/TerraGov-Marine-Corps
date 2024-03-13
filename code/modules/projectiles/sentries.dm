@@ -4,6 +4,7 @@
 	use_power = 0
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
+	allow_pass_flags = PASSABLE
 
 	///Spark system for making sparks
 	var/datum/effect_system/spark_spread/spark_system
@@ -301,7 +302,7 @@
 	set_on(FALSE)
 	update_icon()
 
-/obj/machinery/deployable/mounted/sentry/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
+/obj/machinery/deployable/mounted/sentry/take_damage(damage_amount, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	if(damage_amount <= 0)
 		return
 	if(prob(10))
@@ -542,7 +543,7 @@
 	if(!item)
 		return
 	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
-		to_chat(user, span_notice("[src] is anchored in place and cannot be disassembled."))
+		balloon_alert(user, "Cannot disassemble")
 		return
 	if(!match_iff(user)) //You can't steal other faction's turrets
 		to_chat(user, span_notice("Access denied."))
@@ -571,4 +572,4 @@
 	internal_item = null
 
 	QDEL_NULL(src)
-	attached_item.update_icon_state()
+	attached_item.update_appearance()

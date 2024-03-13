@@ -357,7 +357,7 @@
 
 	if(hud_used?.static_inventory)
 		for(var/atom/movable/screen/mov_intent/selector in hud_used.static_inventory)
-			selector.update_icon(src)
+			selector.update_icon()
 
 	return TRUE
 

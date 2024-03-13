@@ -12,6 +12,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	allow_pass_flags = PASS_LOW_STRUCTURE
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	resistance_flags = PROJECTILE_IMMUNE
+	move_resist = MOVE_FORCE_WEAK
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	///The iconstate that the items use for blood on blood.dmi when drawn on the mob.
@@ -186,6 +187,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	GLOB.cryoed_item_list -= src
 	return ..()
 
+/obj/item/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	return
 
 /obj/item/proc/update_item_state(mob/user)
 	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
@@ -278,6 +281,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 // I have cleaned it up a little, but it could probably use more.  -Sayu
 /obj/item/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/facepaint) && colorable_allowed != NONE)
 		color_item(I, user)
@@ -824,7 +829,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 //The default action is attack_self().
 //Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
 /obj/item/proc/ui_action_click(mob/user, datum/action/item_action/action)
-	attack_self(user)
+	return attack_self(user)
 
 /obj/item/proc/toggle_item_state(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
@@ -996,7 +1001,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 //This proc is here to prevent Xenomorphs from picking up objects (default attack_hand behaviour)
 //Note that this is overriden by every proc concerning a child of obj unless inherited
-/obj/item/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
+/obj/item/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	return FALSE
 
 
@@ -1011,7 +1016,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 
 	user.visible_message(span_danger("[user] sprays water from [src]!"), \
-	span_warning("You spray water from [src]."),)
+	span_warning("You spray water from [src]."))
 
 	playsound(user.loc, 'sound/effects/extinguish.ogg', 52, 1, 7)
 
@@ -1238,16 +1243,14 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return icon_override
 
 	//2: species-specific sprite sheets.
-	var/icon = LAZYACCESS(sprite_sheets, species_type)
-	if(icon && !inhands)
-		return icon
+	. = LAZYACCESS(sprite_sheets, species_type)
+	if(. && !inhands)
+		return
 
 	//3: slot-specific sprite sheets
-	icon = LAZYACCESS(item_icons, slot_name)
-	if(ispath(icon, /datum/greyscale_config))
-		return SSgreyscale.GetColoredIconByType(icon, greyscale_colors)
-	if(icon)
-		return icon
+	. = LAZYACCESS(item_icons, slot_name)
+	if(.)
+		return
 
 	//5: provided default_icon
 	if(default_icon)

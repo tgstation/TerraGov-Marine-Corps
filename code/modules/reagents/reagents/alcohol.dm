@@ -400,7 +400,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/bloody_mary/on_mob_life(mob/living/L, metabolism)
 	if(L.blood_volume < BLOOD_VOLUME_NORMAL)
-		L.blood_volume += 0.3 //Bloody Mary slowly restores blood loss.
+		L.adjust_blood_volume(0.3) //Bloody Mary slowly restores blood loss.
 	return ..()
 
 /datum/reagent/consumable/ethanol/brave_bull

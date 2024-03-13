@@ -46,6 +46,8 @@
 
 /obj/vehicle/ridden/powerloader/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!isscrewdriver(I))
 		return
@@ -176,7 +178,8 @@
 
 	return target.attack_powerloader(user, src)
 
-/obj/item/powerloader_clamp/update_icon()
+/obj/item/powerloader_clamp/update_icon_state()
+	. = ..()
 	if(loaded)
 		icon_state = "loader_clamp_full"
 	else

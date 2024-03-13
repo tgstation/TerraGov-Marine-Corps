@@ -3,7 +3,7 @@
 	name = "Supply Depot raid"
 	mission_icon = "supply_depot"
 	mission_flags = MISSION_DISALLOW_DROPPODS
-	map_name = "Rocinante base"
+	map_name = "Rocinante Base"
 	map_file = '_maps/map_files/Campaign maps/som_base/sombase.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SNOWSTORM = TRUE)
 	map_light_colours = list(COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE)
@@ -45,6 +45,11 @@
 /datum/campaign_mission/destroy_mission/supply_raid/load_pre_mission_bonuses()
 	. = ..()
 	spawn_mech(defending_faction, 0, 1)
+	var/datum/faction_stats/attacking_team = mode.stat_list[starting_faction]
+	if(starting_faction == FACTION_TERRAGOV)
+		attacking_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_cas/instant)
+	else if(starting_faction == FACTION_SOM)
+		attacking_team.add_asset(/datum/campaign_asset/asset_disabler/som_cas/instant)
 
 /datum/campaign_mission/destroy_mission/supply_raid/apply_major_victory()
 	winning_faction = starting_faction
@@ -62,7 +67,7 @@
 	if(hostile_faction == FACTION_TERRAGOV)
 		winning_team.add_asset(/datum/campaign_asset/equipment/power_armor)
 	else if(hostile_faction == FACTION_SOM)
-		winning_team.add_asset(/obj/effect/landmark/campaign/mech_spawner/som/light)
+		winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 		winning_team.add_asset(/datum/campaign_asset/equipment/gorgon_armor)
 
 /datum/campaign_mission/destroy_mission/supply_raid/apply_major_loss()
@@ -71,12 +76,12 @@
 	if(hostile_faction == FACTION_TERRAGOV)
 		winning_team.add_asset(/datum/campaign_asset/equipment/power_armor)
 	else if(hostile_faction == FACTION_SOM)
-		winning_team.add_asset(/obj/effect/landmark/campaign/mech_spawner/som/light)
+		winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 		winning_team.add_asset(/datum/campaign_asset/equipment/gorgon_armor)
 
 /datum/campaign_mission/destroy_mission/supply_raid/som
 	mission_flags = MISSION_DISALLOW_TELEPORT
-	map_name = "Orion outpost"
+	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Campaign maps/orion_2/orionoutpost_2.dmm'
 	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
 	map_traits = list(ZTRAIT_AWAY = TRUE)

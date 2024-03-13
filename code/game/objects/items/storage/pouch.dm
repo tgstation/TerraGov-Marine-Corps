@@ -395,10 +395,17 @@
 
 /obj/item/storage/pouch/explosive/razorburn/Initialize(mapload)
 	. = ..()
-	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
-	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
-	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_small(src)
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_small(src)
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_small(src)
 	new /obj/item/explosive/grenade/chem_grenade/razorburn_large(src)
+
+/obj/item/storage/pouch/explosive/antigas/Initialize(mapload)
+	. = ..()
+	new /obj/item/explosive/grenade/smokebomb/antigas(src)
+	new /obj/item/explosive/grenade/smokebomb/antigas(src)
+	new /obj/item/explosive/grenade/smokebomb/antigas(src)
+	new /obj/item/explosive/grenade/smokebomb/antigas(src)
 
 /obj/item/storage/pouch/explosive/upp
 	fill_type = /obj/item/explosive/grenade/upp
@@ -438,6 +445,15 @@
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 
+/obj/item/storage/pouch/grenade/standard/Initialize(mapload)
+	. = ..()
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade/bullet/laser(src)
+	new /obj/item/explosive/grenade/bullet/laser(src)
+	new /obj/item/explosive/grenade/incendiary(src)
+
 /obj/item/storage/pouch/grenade/som
 	desc = "It can contain grenades. This one looks to be made out of traditional SOM leather."
 	icon_state = "grenade_som"
@@ -460,6 +476,15 @@
 	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
 	new /obj/item/explosive/grenade/som(src)
 	new /obj/item/explosive/grenade/som(src)
+
+/obj/item/storage/pouch/grenade/som/standard/Initialize(mapload)
+	. = ..()
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/incendiary/som(src)
+	new /obj/item/explosive/grenade/incendiary/som(src)
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
@@ -521,7 +546,7 @@
 /obj/item/storage/pouch/medical_injectors/firstaid
 	desc = "Standard marine first-aid injector pouch. Specialized to store only auto-injectors. Contains basic injectors, a stabilizing injector, stimulant injector, and an emergency injector."
 
-/obj/item/storage/pouch/medical_injectors/firstaid/Initialize(mapload)
+/obj/item/storage/pouch/medical_injectors/firstaid/Initialize(mapload) //used in hvh and erts
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane (src)
@@ -531,6 +556,17 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
+
+/obj/item/storage/pouch/medical_injectors/standard/Initialize(mapload) //normal access variant available by default to marines
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dylovene(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
 
 /obj/item/storage/pouch/medical_injectors/medic/Initialize(mapload) //corpsman autoinjector pouch gets upgraded, but more general chems.
 	. = ..()
@@ -594,7 +630,7 @@
 	sprite_slots = 3
 	storage_slots = 3
 
-	can_hold = list(/obj/item/storage/box/combat_lolipop,)
+	can_hold = list(/obj/item/storage/box/combat_lolipop)
 
 /obj/item/storage/pouch/med_lolipops/Initialize(mapload)
 	. = ..()
@@ -673,10 +709,11 @@
 		/obj/item/flashlight,
 		/obj/item/whistle,
 		/obj/item/binoculars,
-		/obj/item/beacon/supply_beacon,
+		/obj/item/supply_beacon,
 		/obj/item/compass,
 		/obj/item/deployable_camera,
 		/obj/item/hud_tablet,
+		/obj/item/squad_transfer_tablet,
 		/obj/item/minimap_tablet,
 		/obj/item/supplytablet,
 		/obj/item/megaphone,
@@ -822,7 +859,6 @@
 	storage_slots = 4
 	draw_mode = 0
 	can_hold = list(/obj/item/ammo_magazine/handful)
-
 
 /obj/item/storage/pouch/shotgun/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/ammo_magazine))

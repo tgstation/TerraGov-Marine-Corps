@@ -39,6 +39,7 @@
 	cant_hold = list(/obj/item/disk/nuclear)
 
 /obj/item/storage/bag/trash/update_icon_state()
+	. = ..()
 	if(length(contents) == 0)
 		icon_state = "trashbag0"
 	else if(length(contents) < 12)

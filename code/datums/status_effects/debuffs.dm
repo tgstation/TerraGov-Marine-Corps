@@ -144,24 +144,24 @@
 	return ..()
 
 /datum/status_effect/incapacitating/sleeping/tick()
-	if(owner.maxHealth)
-		var/health_ratio = owner.health / owner.maxHealth
-		var/healing = BASE_HEAL_RATE //set for a base of 0.25 healed per 2-second interval asleep in a bed with covers.
-		if((locate(/obj/structure/bed) in owner.loc))
-			healing += (2 * BASE_HEAL_RATE)
-		else if((locate(/obj/structure/table) in owner.loc))
-			healing += BASE_HEAL_RATE
-		for(var/obj/item/bedsheet/bedsheet in range(owner.loc,0))
-			if(bedsheet.loc != owner.loc) //bedsheets in your backpack/neck don't give you comfort
-				continue
-			healing += BASE_HEAL_RATE
-			break //Only count the first bedsheet
-		if(health_ratio > -0.5)
-			owner.adjustBruteLoss(healing)
-			owner.adjustFireLoss(healing)
-			owner.adjustToxLoss(healing * 0.5, TRUE, TRUE)
-			owner.adjustStaminaLoss(healing * 100)
-			owner.adjustCloneLoss(healing * health_ratio * 0.8)
+	if(!owner.maxHealth)
+		return
+	var/health_ratio = owner.health / owner.maxHealth
+	var/healing = BASE_HEAL_RATE //set for a base of 0.25 healed per 2-second interval asleep in a bed with covers.
+	if((locate(/obj/structure/bed) in owner.loc))
+		healing += (2 * BASE_HEAL_RATE)
+	else if((locate(/obj/structure/table) in owner.loc))
+		healing += BASE_HEAL_RATE
+	if(locate(/obj/item/bedsheet) in owner.loc)
+		healing += BASE_HEAL_RATE
+		if((locate(/obj/item/toy/plush) in owner.loc)) // plushie bonus in bed with a blanket
+			healing += 0.75 * BASE_HEAL_RATE // plushie bonus in bed with a blanket
+	if(health_ratio > -0.5)
+		owner.adjustBruteLoss(healing)
+		owner.adjustFireLoss(healing)
+		owner.adjustToxLoss(healing * 0.5, TRUE, TRUE)
+		owner.adjustStaminaLoss(healing * 100)
+		owner.adjustCloneLoss(healing * health_ratio * 0.8)
 	if(human_owner?.drunkenness)
 		human_owner.drunkenness *= 0.997 //reduce drunkenness by 0.3% per tick, 6% per 2 seconds
 	if(prob(20))
@@ -426,6 +426,7 @@
 	return ..()
 
 /datum/status_effect/spacefreeze
+	alert_type = /atom/movable/screen/alert/status_effect/spacefreeze
 	id = "spacefreeze"
 
 /datum/status_effect/spacefreeze/on_creation(mob/living/new_owner)
@@ -820,3 +821,8 @@
 	scale = generator(GEN_VECTOR, list(0.6, 0.6), list(1, 1), NORMAL_RAND)
 	friction = -0.05
 	color = "#818181"
+
+/atom/movable/screen/alert/status_effect/spacefreeze
+	name = "Freezing"
+	desc = "Space is very very cold, who would've thought?"
+	icon_state = "cold3"

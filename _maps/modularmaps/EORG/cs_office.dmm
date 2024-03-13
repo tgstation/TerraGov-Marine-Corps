@@ -4,8 +4,8 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/stairs/edge{
-	dir = 8
+/obj/structure/stairs/seamless/edge{
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/deathmatch)
@@ -623,6 +623,11 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
+"pm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/stairs/seamless/edge,
+/turf/open/floor/tile/dark,
+/area/deathmatch)
 "pn" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/tile/dark/blue2{
@@ -812,6 +817,13 @@
 /area/deathmatch)
 "tn" = (
 /turf/open/floor/tile/dark/blue2,
+/area/deathmatch)
+"tp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/stairs/seamless/edge{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "tv" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
@@ -1102,6 +1114,13 @@
 /obj/effect/landmark/deathmatch,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
+/area/deathmatch)
+"zD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/stairs/seamless/edge{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "zR" = (
 /obj/structure/cargo_container/hd,
@@ -1450,8 +1469,8 @@
 /area/deathmatch)
 "HB" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/stairs/edge{
-	dir = 4
+/obj/structure/stairs/seamless/edge{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/deathmatch)
@@ -1567,7 +1586,7 @@
 /area/deathmatch)
 "Le" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/stairs/edge{
+/obj/structure/stairs/seamless{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -2876,7 +2895,7 @@ qe
 qe
 ad
 Le
-Le
+pm
 Xv
 Mr
 Mr
@@ -3356,8 +3375,8 @@ ZD
 ZD
 ZD
 Xv
-Le
-Le
+tp
+pm
 Nm
 YU
 YU
@@ -3412,7 +3431,7 @@ gE
 WK
 Nm
 HB
-HB
+zD
 Nm
 Xv
 "}
@@ -3452,8 +3471,8 @@ ZD
 ZD
 ZD
 Xv
-Le
-Le
+tp
+pm
 If
 Jz
 tl

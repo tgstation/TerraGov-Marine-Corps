@@ -103,7 +103,8 @@
 	return ..()
 
 
-/obj/item/photo/update_icon()
+/obj/item/photo/update_icon_state()
+	. = ..()
 	if(!istype(picture) || !picture.picture_image)
 		return
 	var/icon/I = picture.get_small_icon()
@@ -213,6 +214,8 @@
 
 /obj/item/camera/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/camera_film))
 		if(pictures_left)

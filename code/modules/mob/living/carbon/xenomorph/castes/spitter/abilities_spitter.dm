@@ -125,7 +125,7 @@
 	newspit.generate_bullet(scatter_spit, scatter_spit.damage * SPIT_UPGRADE_BONUS(X))
 	newspit.def_zone = X.get_limbzone_target()
 
-	newspit.fire_at(target, X, null, newspit.ammo.max_range)
+	newspit.fire_at(target, X, X, newspit.ammo.max_range)
 
 	succeed_activate()
 	add_cooldown()

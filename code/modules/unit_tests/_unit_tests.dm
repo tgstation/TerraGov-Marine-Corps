@@ -68,6 +68,7 @@
 #include "weed_spread.dm"
 #include "xeno_logical_scaling.dm"
 #include "item_variant_test.dm"
+#include "xenoaccuracy.dm"
 
 #ifdef REFERENCE_TRACKING //Don't try and parse this file if ref tracking isn't turned on. IE: don't parse ref tracking please mr linter
 #include "find_reference_sanity.dm"

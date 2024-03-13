@@ -1990,7 +1990,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/item/trash/barcardine,
+/obj/item/trash/barcaridine,
 /turf/open/floor/wood,
 /area/outpost/dormitories)
 "jE" = (
@@ -2943,7 +2943,7 @@
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/item/stack/sheet/glass/large_stack,
+/obj/item/stack/sheet/glass/glass/large_stack,
 /obj/item/stack/sheet/mineral/phoron/medium_stack,
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science/research)
@@ -9486,7 +9486,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north)
 "Sv" = (
-/obj/item/trash/barcardine,
+/obj/item/trash/barcaridine,
 /turf/open/floor/wood,
 /area/outpost/dormitories)
 "Sw" = (

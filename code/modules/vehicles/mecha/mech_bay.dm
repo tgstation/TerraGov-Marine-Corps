@@ -117,7 +117,7 @@
 
 	if(!recharging_mech)
 		return data
-	data["recharge_port"]["mech"] = list("health" = recharging_mech.obj_integrity, "maxhealth" = recharging_mech.max_integrity, "cell" = null, "name" = recharging_mech.name,)
+	data["recharge_port"]["mech"] = list("health" = recharging_mech.obj_integrity, "maxhealth" = recharging_mech.max_integrity, "cell" = null, "name" = recharging_mech.name)
 
 	if(QDELETED(recharging_mech.cell))
 		return data

@@ -262,12 +262,13 @@ REAGENT SCANNER
 			)
 			damaged_organs += list(current_organ)
 		data["damaged_organs"] = damaged_organs
-
+	var/ssd = null
 	if(patient.has_brain() && patient.stat != DEAD && ishuman(patient))
 		if(!patient.key)
-			data["ssd"] = "No soul detected." // they ghosted
+			ssd = "No soul detected." // they ghosted
 		else if(!patient.client)
-			data["ssd"] = "SSD detected." // SSD
+			ssd = "SSD detected." // SSD
+	data["ssd"] = ssd
 
 	return data
 

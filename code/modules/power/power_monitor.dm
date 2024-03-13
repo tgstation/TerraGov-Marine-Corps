@@ -87,6 +87,7 @@
 		set_light(initial(light_range))
 
 /obj/machinery/power/monitor/update_icon_state()
+	. = ..()
 	if(machine_stat & (BROKEN|DISABLED))
 		icon_state = "[initial(icon_state)]_broken"
 	else
@@ -105,6 +106,8 @@
 //copied from computer.dm
 /obj/machinery/power/monitor/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I) && circuit)
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)

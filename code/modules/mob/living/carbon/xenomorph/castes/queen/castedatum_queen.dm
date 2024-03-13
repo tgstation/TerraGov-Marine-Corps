@@ -23,6 +23,9 @@
 	// *** Health *** //
 	max_health = 500
 
+	// *** Sunder *** //
+	sunder_multiplier = 0.8
+
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	evolve_min_xenos = 8
@@ -56,8 +59,10 @@
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/screech,
 		/datum/action/ability/xeno_action/bulwark,
@@ -94,8 +99,10 @@
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/screech,
 		/datum/action/ability/xeno_action/bulwark,

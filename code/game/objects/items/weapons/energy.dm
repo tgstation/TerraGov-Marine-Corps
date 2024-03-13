@@ -61,14 +61,24 @@
 	var/sword_color
 	///Force of the weapon when activated
 	var/active_force = 40
+	///Penetration when activated
+	var/active_penetration = 30
+	///Special attack action granted to users with the right trait
+	var/datum/action/ability/activable/weapon_skill/sword_lunge/special_attack
 
 /obj/item/weapon/energy/sword/Initialize(mapload)
 	. = ..()
 	if(!sword_color)
 		sword_color = pick("red","blue","green","purple")
-	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING, shield_cover = list(MELEE = 35, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
+	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING, list(MELEE = 35, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
 	AddComponent(/datum/component/stun_mitigation, shield_cover = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 40, BIO = 40, FIRE = 40, ACID = 40))
 	AddElement(/datum/element/strappable)
+	AddElement(/datum/element/scalping)
+	special_attack = new(src, active_force, active_penetration)
+
+/obj/item/weapon/energy/sword/Destroy()
+	QDEL_NULL(special_attack)
+	return ..()
 
 /obj/item/weapon/energy/sword/attack_self(mob/living/user)
 	switch_state(src, user)
@@ -84,27 +94,30 @@
 	SIGNAL_HANDLER
 	toggle_active()
 	if(active)
+		RegisterSignals(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_UNEQUIPPED), PROC_REF(switch_state))
 		toggle_item_bump_attack(user, TRUE)
 		hitsound = 'sound/weapons/blade1.ogg'
 		force = active_force
 		throwforce = active_force
-		penetration = 30
+		penetration = active_penetration
 		heat = 3500
 		icon_state = "[initial(icon_state)]_[sword_color]"
 		w_class = WEIGHT_CLASS_BULKY
 		playsound(src, 'sound/weapons/saberon.ogg', 25, 1)
-		RegisterSignals(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_UNEQUIPPED), PROC_REF(switch_state))
+		if(HAS_TRAIT(user, TRAIT_SWORD_EXPERT))
+			special_attack.give_action(user)
 	else
+		UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_UNEQUIPPED))
 		toggle_item_bump_attack(user, FALSE)
 		hitsound = initial(hitsound)
 		force = initial(force)
 		throwforce = initial(throwforce)
-		penetration = 0
+		penetration = initial(penetration)
 		heat = 0
 		icon_state = "[initial(icon_state)]"
 		w_class = WEIGHT_CLASS_SMALL
 		playsound(src, 'sound/weapons/saberoff.ogg', 25, 1)
-		UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_UNEQUIPPED))
+		special_attack.remove_action(user)
 
 /obj/item/weapon/energy/sword/pirate
 	name = "energy cutlass"

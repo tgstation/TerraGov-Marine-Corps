@@ -36,7 +36,7 @@
 	quick_equip_slot = 5
 
 /datum/keybinding/human/unique_action
-	hotkey_keys = list("Space")
+	hotkey_keys = list("C")
 	name = "unique_action"
 	full_name = "Perform unique action"
 	keybind_signal = COMSIG_KB_UNIQUEACTION

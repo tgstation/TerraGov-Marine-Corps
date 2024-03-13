@@ -1,10 +1,11 @@
-import { useBackend } from '../../backend';
-import { Button, NumberInput, LabeledList } from '../../components';
-import { OperatorData } from './data';
 import { toFixed } from 'common/math';
 
-export const RadioPane = (props, context) => {
-  const { act, data } = useBackend<OperatorData>(context);
+import { useBackend } from '../../backend';
+import { Button, LabeledList, NumberInput } from '../../components';
+import { OperatorData } from './data';
+
+export const RadioPane = (props) => {
+  const { act, data } = useBackend<OperatorData>();
   const { microphone, speaker, minfreq, maxfreq, frequency } =
     data.mech_electronics;
   return (
@@ -13,7 +14,8 @@ export const RadioPane = (props, context) => {
         <Button
           onClick={() => act('toggle_microphone')}
           selected={microphone}
-          icon={microphone ? 'microphone' : 'microphone-slash'}>
+          icon={microphone ? 'microphone' : 'microphone-slash'}
+        >
           {(microphone ? 'En' : 'Dis') + 'abled'}
         </Button>
       </LabeledList.Item>
@@ -21,7 +23,8 @@ export const RadioPane = (props, context) => {
         <Button
           onClick={() => act('toggle_speaker')}
           selected={speaker}
-          icon={speaker ? 'volume-up' : 'volume-mute'}>
+          icon={speaker ? 'volume-up' : 'volume-mute'}
+        >
           {(speaker ? 'En' : 'Dis') + 'abled'}
         </Button>
       </LabeledList.Item>

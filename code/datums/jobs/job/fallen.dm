@@ -62,8 +62,8 @@
 /datum/job/fallen/marine/leader
 	title = ROLE_FALLEN(SQUAD_LEADER)
 	skills_type = /datum/skills/sl
-	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
-	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TADPOLE)
+	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TADPOLE)
 	outfit = /datum/outfit/job/marine/leader
 
 /datum/job/fallen/marine/mechpilot

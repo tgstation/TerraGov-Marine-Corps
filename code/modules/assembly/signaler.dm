@@ -28,6 +28,7 @@
 	return TRUE
 
 /obj/item/assembly/signaler/update_icon()
+	. = ..()
 	if(holder)
 		holder.update_icon()
 
@@ -94,6 +95,8 @@ Code:
 
 /obj/item/assembly/signaler/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(issignaler(I))
 		var/obj/item/assembly/signaler/signaler2 = I
 		if(secured && signaler2.secured)

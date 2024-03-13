@@ -662,6 +662,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return limb_name
 	return null
 
+///Amputates the limb in the specified limb zone
+/mob/living/carbon/human/proc/amputate_limb(limb_zone)
+	var/datum/limb/limb_to_drop = get_limb(limb_zone)
+	limb_to_drop?.droplimb(TRUE, TRUE)
+
 //Handles dismemberment
 /datum/limb/proc/droplimb(amputation, delete_limb = FALSE)
 	if(limb_status & LIMB_DESTROYED)
@@ -914,23 +919,19 @@ Note that amputating the affected organ does in fact remove the infection from t
 // todo this proc sucks lmao just redo it from scratch
 //for arms and hands
 /datum/limb/proc/process_grasp(obj/item/c_hand, hand_name)
-	if (!c_hand)
+	if(!c_hand)
 		return
 
 	if(!is_usable())
-		owner.dropItemToGround(c_hand)
-		owner.emote("me", 1, "drop[owner.p_s()] what [owner.p_they()] [owner.p_were()] holding in [owner.p_their()] [hand_name], [owner.p_their()] [display_name] unresponsive!")
-		return
-	if(is_broken())
-		if(prob(15))
-			owner.dropItemToGround(c_hand)
-			var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
-			owner.emote("me", 1, "[(owner.species && owner.species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what [owner.p_they()] [owner.p_were()] holding in their [hand_name]!")
-			return
-	if(is_malfunctioning())
-		if(prob(20))
-			owner.dropItemToGround(c_hand)
-			owner.emote("me", 1, "drops what they were holding, [owner.p_their()] [hand_name] malfunctioning!")
+		if(owner.dropItemToGround(c_hand))
+			owner.emote("me", 1, "drops what [owner.p_they()] [owner.p_were()] holding in [owner.p_their()] [hand_name], [owner.p_their()] [display_name] unresponsive!")
+	else if(is_broken() && prob(15))
+		if(owner.dropItemToGround(c_hand))
+			var/emote_scream = owner.species?.species_flags & NO_PAIN ? "" : pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
+			owner.emote("me", 1, "[emote_scream]drops what [owner.p_they()] [owner.p_were()] holding in [owner.p_their()] [hand_name]!")
+	else if(is_malfunctioning() && prob(20))
+		if(owner.dropItemToGround(c_hand))
+			owner.emote("me", 1, "drops what [owner.p_they()] [owner.p_were()] holding, [owner.p_their()] [hand_name] malfunctioning!")
 			new /datum/effect_system/spark_spread(owner, owner, 5, 0, TRUE, 1 SECONDS)
 
 ///applies a splint stack to this limb. should probably be more generic but #notit

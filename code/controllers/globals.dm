@@ -18,9 +18,6 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 	controller_vars["vars"] = null
 	gvars_datum_in_built_vars = controller_vars + list(NAMEOF(src, gvars_datum_protected_varlist), NAMEOF(src, gvars_datum_in_built_vars), NAMEOF(src, gvars_datum_init_order))
 
-#if DM_VERSION >= 515 && DM_BUILD > 1620
-	#warn datum.vars hanging a ref should now be fixed, there should be no reason to remove the vars list from our controller's vars list anymore
-#endif
 	QDEL_IN(exclude_these, 1) //signal logging isn't ready
 
 	log_world("[length(vars) - length(gvars_datum_in_built_vars)] global variables")

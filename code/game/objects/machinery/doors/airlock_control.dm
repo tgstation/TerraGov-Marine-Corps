@@ -149,6 +149,7 @@
 
 
 /obj/machinery/access_button/update_icon_state()
+	. = ..()
 	if(on)
 		icon_state = "access_button_standby"
 	else
@@ -156,6 +157,8 @@
 
 /obj/machinery/access_button/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/card/id))
 		attack_hand(user)

@@ -24,8 +24,8 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	qdel(src)
 	return
 
-/obj/structure/bigDelivery/update_icon()
-	overlays = new()
+/obj/structure/bigDelivery/update_overlays()
+	. = ..()
 	if(nameset || examtext)
 		var/image/I = new/image('icons/obj/items/storage/storage.dmi',"delivery_label")
 		if(icon_state == "deliverycloset")
@@ -38,7 +38,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 				label_x = rand(-8, 6)
 			I.pixel_x = label_x
 			I.pixel_y = -3
-		overlays += I
+		. += I
 	if(src.sortTag)
 		var/image/I = new/image('icons/obj/items/storage/storage.dmi',"delivery_tag")
 		if(icon_state == "deliverycloset")
@@ -51,7 +51,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 				tag_x = rand(-8, 6)
 			I.pixel_x = tag_x
 			I.pixel_y = -3
-		overlays += I
+		. += I
 
 /obj/structure/bigDelivery/examine(mob/user)
 	..()
@@ -62,11 +62,13 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 			to_chat(user, span_notice("It has a note attached which reads, \"[examtext]\""))
 	return
 
-/obj/structure/bigDelivery/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
-	attack_hand(X)
+/obj/structure/bigDelivery/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	attack_hand(xeno_attacker)
 
 /obj/structure/bigDelivery/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/destTagger))
 		var/obj/item/destTagger/O = I
@@ -139,13 +141,13 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	qdel(src)
 	return
 
-/obj/item/smallDelivery/update_icon()
-	overlays = new()
+/obj/item/smallDelivery/update_overlays()
+	. = ..()
 	if((nameset || examtext) && icon_state != "deliverycrate1")
 		var/image/I = new/image('icons/obj/items/storage/storage.dmi',"delivery_label")
 		if(icon_state == "deliverycrate5")
 			I.pixel_y = -1
-		overlays += I
+		. += I
 	if(src.sortTag)
 		var/image/I = new/image('icons/obj/items/storage/storage.dmi',"delivery_tag")
 		switch(icon_state)
@@ -162,7 +164,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 				I.pixel_y = 3
 			if("deliverycrate5")
 				I.pixel_y = -3
-		overlays += I
+		. += I
 
 /obj/item/smallDelivery/examine(mob/user)
 	..()
@@ -174,6 +176,8 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 /obj/item/smallDelivery/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/destTagger))
 		var/obj/item/destTagger/O = I
@@ -422,6 +426,8 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 /obj/machinery/disposal/deliveryChute/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I))
 		c_mode = !c_mode
@@ -442,7 +448,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		to_chat(user, "You start slicing the floorweld off the delivery chute.")
 
-		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
+		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
 			return
 
 		to_chat(user, "You sliced the floorweld off the delivery chute.")

@@ -179,6 +179,8 @@
 
 /obj/item/tool/weldingtool/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/screwdriver))
 		flamethrower_screwdriver(src, user)
@@ -365,6 +367,8 @@
 
 /obj/item/tool/weldpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(reagents.total_volume == 0)
 		balloon_alert(user, "Out of fuel")
 		return
@@ -455,7 +459,7 @@
 	name = "handheld charger"
 	desc = "A hand-held, lightweight cell charger. It isn't going to give you tons of power, but it can help in a pinch."
 	icon = 'icons/obj/items/tools.dmi'
-	icon_state = "handheldcharger_black_empty"
+	icon_state = "handheldcharger_black"
 	item_state = "handheldcharger_black_empty"
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
@@ -470,7 +474,14 @@
 
 /obj/item/tool/handheld_charger/Initialize(mapload)
 	. = ..()
-	cell = null
+	update_icon()
+
+/obj/item/tool/handheld_charger/update_icon_state()
+	. = ..()
+	if(cell)
+		icon_state = initial(icon_state)
+	else
+		icon_state = initial(icon_state) + "_empty"
 
 /obj/item/tool/handheld_charger/attack_self(mob/user)
 	if(!cell)
@@ -498,6 +509,8 @@
 
 /obj/item/tool/handheld_charger/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!istype(I, /obj/item/cell))
 		return
@@ -527,7 +540,7 @@
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
 	balloon_alert(user, "Removes the cell")
-	icon_state = "handheldcharger_black_empty"
+	update_appearance()
 
 /obj/item/tool/handheld_charger/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
@@ -539,8 +552,12 @@
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
 	balloon_alert(user, "Removes the cell")
-	icon_state = "handheldcharger_black_empty"
+	update_appearance()
 
 /obj/item/tool/handheld_charger/Destroy()
 	QDEL_NULL(cell)
+	return ..()
+
+/obj/item/tool/handheld_charger/hicapcell/Initialize(mapload)
+	cell = new /obj/item/cell/high(src)
 	return ..()

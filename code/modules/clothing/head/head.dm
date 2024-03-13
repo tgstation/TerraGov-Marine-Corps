@@ -39,8 +39,9 @@
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
 	icon_state = "beanie_cargo"
 	flags_inv_hide = HIDETOPHAIR
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
@@ -52,8 +53,9 @@
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
 	icon_state = "beret"
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 	flags_item_map_variant = NONE
@@ -121,8 +123,9 @@
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 	var/flipped_cap = FALSE
 	var/base_cap_icon
@@ -179,7 +182,8 @@
 	icon_state = "ornamented_cap"
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
-		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',)
+		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi'
+	)
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 	flags_armor_features = ARMOR_NO_DECAP
 
@@ -199,8 +203,9 @@
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
 	icon_state = "headband"
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 	flags_armor_features = ARMOR_NO_DECAP
@@ -227,8 +232,9 @@
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
 
 /obj/item/clothing/head/cmo
 	name = "\improper Chief Medical hat"
@@ -318,8 +324,9 @@
 	icon_state = "upp_cap"
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
 	siemens_coefficient = 2
 	//anti_hug = 2
 	flags_armor_protection = HEAD
@@ -340,8 +347,9 @@
 	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
 	icon_state = "freelancer_helmet"
 	siemens_coefficient = 2
 	flags_armor_protection = HEAD
@@ -380,8 +388,9 @@
 	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
 	icon_state = "rebel_hood"
 	siemens_coefficient = 2
 	flags_armor_protection = HEAD|CHEST
@@ -409,8 +418,9 @@
 	desc = "A cap worn by commissars of the Imperial Army. This one seems to radiate authority."
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
 	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "commissar_cap"
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)
@@ -421,8 +431,9 @@
 	desc = "A hat lined with durathread on the outside, has the usual iconic look of a straw hat. A common hat across the bubble."
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
 	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "straw_hat"
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)

@@ -133,7 +133,7 @@ SUBSYSTEM_DEF(mapping)
 
 	z_list = SSmapping.z_list
 
-#define INIT_ANNOUNCE(X) to_chat(world, span_notice("[X]")); log_world(X)
+#define INIT_ANNOUNCE(X) to_chat(world, span_alert("<b>[X]</b>")); log_world(X)
 /datum/controller/subsystem/mapping/proc/LoadGroup(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE)
 	. = list()
 	var/start_time = REALTIMEOFDAY

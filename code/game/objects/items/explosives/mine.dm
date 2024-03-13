@@ -42,11 +42,12 @@ Stepping directly on the mine will also blow it up
 	return ..()
 
 /// Update the icon, adding "_armed" if appropriate to the icon_state.
-/obj/item/explosive/mine/update_icon()
+/obj/item/explosive/mine/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][armed ? "_armed" : ""]"
 
 /// On explosion mines trigger their own explosion, assuming there were not deleted straight away (larger explosions or probability)
-/obj/item/explosive/mine/ex_act()
+/obj/item/explosive/mine/ex_act(severity)
 	. = ..()
 	if(!QDELETED(src))
 		INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
@@ -101,6 +102,8 @@ Stepping directly on the mine will also blow it up
 /// Supports diarming a mine
 /obj/item/explosive/mine/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!ismultitool(I) || !anchored)
 		return
@@ -162,15 +165,15 @@ Stepping directly on the mine will also blow it up
 	return TRUE
 
 /// Alien attacks trigger the explosive to instantly detonate
-/obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 	if(triggered) //Mine is already set to go off
 		return
 
-	if(X.a_intent == INTENT_HELP)
+	if(xeno_attacker.a_intent == INTENT_HELP)
 		return
-	X.visible_message(span_danger("[X] has slashed [src]!"), \
+	xeno_attacker.visible_message(span_danger("[xeno_attacker] has slashed [src]!"), \
 	span_danger("We slash [src]!"))
 	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
@@ -236,6 +239,10 @@ Stepping directly on the mine will also blow it up
 	icon_state = "m92"
 	target_mode = MINE_VEHICLE_ONLY
 
+/obj/item/explosive/mine/anti_tank/update_icon(updates=ALL)
+	. = ..()
+	alpha = armed ? 50 : 255
+
 /obj/item/explosive/mine/anti_tank/trigger_explosion()
 	if(triggered)
 		return
@@ -244,5 +251,27 @@ Stepping directly on the mine will also blow it up
 	QDEL_NULL(tripwire)
 	qdel(src)
 
-/obj/item/explosive/mine/anti_tank/ex_act()
-	qdel(src)
+/obj/item/explosive/mine/anti_tank/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(INFINITY, BRUTE, BOMB, 0)
+			return
+		if(EXPLODE_HEAVY)
+			take_damage(rand(100, 250), BRUTE, BOMB, 0)
+			if(prob(25))
+				return
+		if(EXPLODE_LIGHT)
+			take_damage(rand(10, 90), BRUTE, BOMB, 0)
+			if(prob(50))
+				return
+		if(EXPLODE_WEAK)
+			take_damage(rand(5, 45), BRUTE, BOMB, 0)
+			return //not strong enough to detonate
+	if(QDELETED(src))
+		return
+	if(!armed)
+		return
+	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
+
+/obj/item/explosive/mine/anti_tank/flamer_fire_act(burnlevel)
+	return //its highly exploitable if fire detonates these

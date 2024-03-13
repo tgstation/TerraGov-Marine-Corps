@@ -22,7 +22,7 @@
 
 /datum/chemical_reaction/dermalime
 	name = "Dermaline"
-	results = list(/datum/reagent/medicine/dermaline = 3)
+	results = list(/datum/reagent/medicine/dermaline = 4)
 	required_reagents = list(/datum/reagent/oxygen = 1, /datum/reagent/phosphorus = 1, /datum/reagent/medicine/kelotane = 1, /datum/reagent/medicine/lemoline = 1)
 
 /datum/chemical_reaction/dexalinplus
@@ -37,12 +37,12 @@
 
 /datum/chemical_reaction/meralyne
 	name = "Meralyne"
-	results = list(/datum/reagent/medicine/meralyne = 3)
+	results = list(/datum/reagent/medicine/meralyne = 4)
 	required_reagents = list(/datum/reagent/medicine/inaprovaline = 1, /datum/reagent/medicine/bicaridine = 1, /datum/reagent/iron = 1, /datum/reagent/medicine/lemoline = 1)
 
 /datum/chemical_reaction/ryetalyn
 	name = "Ryetalyn"
-	results = list(/datum/reagent/medicine/ryetalyn = 2)
+	results = list(/datum/reagent/medicine/ryetalyn = 3)
 	required_reagents = list(/datum/reagent/medicine/arithrazine = 1, /datum/reagent/carbon = 1, /datum/reagent/medicine/lemoline = 1)
 
 /datum/chemical_reaction/cryoxadone
@@ -120,7 +120,7 @@
 
 /datum/chemical_reaction/synaptizine
 	name = "Synaptizine"
-	results = list(/datum/reagent/medicine/synaptizine = 3)
+	results = list(/datum/reagent/medicine/synaptizine = 4)
 	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/lithium = 1, /datum/reagent/water = 1, /datum/reagent/medicine/lemoline = 1)
 
 /datum/chemical_reaction/leporazine
@@ -131,7 +131,7 @@
 
 /datum/chemical_reaction/hyronalin
 	name = "Hyronalin"
-	results = list(/datum/reagent/medicine/hyronalin = 2)
+	results = list(/datum/reagent/medicine/hyronalin = 3)
 	required_reagents = list(/datum/reagent/radium = 1, /datum/reagent/medicine/dylovene = 1, /datum/reagent/medicine/lemoline = 1)
 
 /datum/chemical_reaction/arithrazine
@@ -215,9 +215,9 @@
 
 /datum/chemical_reaction/medicalnanites
 	name = "Medical Nanites"
-	results = list(/datum/reagent/medicine/research/medicalnanites = 9)
+	results = list(/datum/reagent/medicalnanites = 9)
 	required_reagents = list(/datum/reagent/iron = 10, /datum/reagent/medicine/lemoline = 1)
-	required_catalysts = list(/datum/reagent/medicine/research/medicalnanites = 1)
+	required_catalysts = list(/datum/reagent/medicalnanites = 1)
 
 /datum/chemical_reaction/stimulum
 	name = "Stimulum"

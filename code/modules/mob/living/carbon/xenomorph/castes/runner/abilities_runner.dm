@@ -32,7 +32,7 @@
 	action_icon_state = "pounce_savage_[savage_activated? "on" : "off"]"
 	update_button_icon()
 
-/datum/action/ability/activable/xeno/pounce/runner/mob_hit(datum/source, mob/living/living_target)
+/datum/action/ability/activable/xeno/pounce/runner/trigger_pounce_effect(mob/living/living_target)
 	. = ..()
 	if(!savage_activated)
 		return
@@ -77,7 +77,8 @@
 /datum/action/ability/xeno_action/evasion
 	name = "Evasion"
 	action_icon_state = "evasion_on"
-	desc = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving. Alternate use toggles Auto Evasion off or on."
+	desc = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving. \
+			Alternate use toggles Auto Evasion off or on. Click again while active to deactivate early."
 	ability_cost = 75
 	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
@@ -113,6 +114,15 @@
 	update_button_icon()
 
 /datum/action/ability/xeno_action/evasion/action_activate()
+	//Since both the button and the evasion extension call this proc directly, check if the cooldown timer exists
+	//The evasion extension removes the cooldown before calling this proc again, so use that to differentiate if it was the player trying to cancel
+	if(evade_active && cooldown_timer)
+		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_EVASION_ACTIVATION))
+			return
+		evasion_deactivate()
+		return
+
+	use_state_flags = ABILITY_IGNORE_COOLDOWN|ABILITY_IGNORE_PLASMA	//To allow the ability button to be clicked while on cooldown for deactivation purposes
 	succeed_activate()
 	add_cooldown()
 	if(evade_active)
@@ -137,6 +147,7 @@
 	RegisterSignal(owner, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(evasion_throw_dodge))
 	GLOB.round_statistics.runner_evasions++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_evasions")
+	TIMER_COOLDOWN_START(src, COOLDOWN_EVASION_ACTIVATION, 1 SECONDS)
 
 /datum/action/ability/xeno_action/evasion/process()
 	var/mob/living/carbon/xenomorph/runner/runner_owner = owner
@@ -173,6 +184,7 @@
 
 /// Deactivates Evasion, clearing signals, vars, etc.
 /datum/action/ability/xeno_action/evasion/proc/evasion_deactivate()
+	use_state_flags = NONE	//To prevent the ability from being used while on cooldown now that it can no longer be deactivated
 	STOP_PROCESSING(SSprocessing, src)
 	UnregisterSignal(owner, list(
 		COMSIG_LIVING_STATUS_STUN,
@@ -222,8 +234,8 @@
 		return FALSE
 	if(proj.original_target == xeno_owner && proj.distance_travelled < 2) //Pointblank shot.
 		return FALSE
-	if(!(proj.ammo.flags_ammo_behavior & AMMO_SENTRY) && !xeno_owner.fire_stacks) //We ignore projectiles from automated sources/sentries for the purpose of contributions towards our cooldown refresh; also fire prevents accumulation of evasion stacks
-		evasion_stacks += proj.damage //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes
+	if(!xeno_owner.fire_stacks)
+		evasion_stacks += proj.damage //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes, fire negates this
 	evasion_dodge_fx(proj)
 	return COMPONENT_PROJECTILE_DODGE
 
@@ -299,7 +311,6 @@
 		return FALSE
 
 /datum/action/ability/activable/xeno/snatch/use_ability(atom/A)
-	succeed_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!do_after(owner, 0.5 SECONDS, IGNORE_HELD_ITEM, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		return FALSE
@@ -323,6 +334,7 @@
 	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(owner_turned))
 	owner.add_movespeed_modifier(MOVESPEED_ID_SNATCH, TRUE, 0, NONE, TRUE, 2)
 	owner_turned(null, null, owner.dir)
+	succeed_activate()
 	add_cooldown()
 
 ///Signal handler to update the item overlay when the owner is changing dir

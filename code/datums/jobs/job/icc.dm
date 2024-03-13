@@ -48,8 +48,8 @@
 
 /datum/outfit/job/icc/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/barcardine, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/barcardine, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/barcaridine, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/barcaridine, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
@@ -130,6 +130,7 @@
 	outfits = list(
 		/datum/outfit/job/icc/guard/coilgun,
 		/datum/outfit/job/icc/guard/icc_autoshotgun,
+		/datum/outfit/job/icc/guard/icc_bagmg,
 	)
 
 /datum/outfit/job/icc/guard
@@ -144,8 +145,8 @@
 
 /datum/outfit/job/icc/guard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/barcardine, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/barcardine, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/barcaridine, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/barcaridine, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
@@ -211,6 +212,24 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_autoshotgun/frag, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_autoshotgun/frag, SLOT_IN_L_POUCH)
 
+/datum/outfit/job/icc/guard/icc_bagmg
+	wear_suit = /obj/item/clothing/suit/storage/marine/icc/guard/heavy
+	head = /obj/item/clothing/head/helmet/marine/icc/guard/heavy
+	suit_store = /obj/item/weapon/gun/rifle/icc_coilgun
+	back = /obj/item/storage/holster/icc_mg/full
+	belt = /obj/item/ammo_magazine/icc_mg/belt
+	l_store = /obj/item/storage/pouch/magazine/large/icc
+	r_store = /obj/item/storage/pouch/magazine/large/icc
+
+/datum/outfit/job/icc/guard/icc_bagmg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_coilgun, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_coilgun, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_coilgun, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_coilgun, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_coilgun, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_coilgun, SLOT_IN_R_POUCH)
+
 
 //ICC Medic
 /datum/job/icc/medic
@@ -236,8 +255,8 @@
 
 /datum/outfit/job/icc/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/barcardine, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/barcardine, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/barcaridine, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/barcaridine, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
@@ -317,8 +336,8 @@
 
 /datum/outfit/job/icc/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/barcardine, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/barcardine, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/barcaridine, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/barcaridine, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)

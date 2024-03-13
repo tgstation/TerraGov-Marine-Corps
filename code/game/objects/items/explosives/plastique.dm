@@ -21,12 +21,16 @@
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
 	/// radius this smoke will encompass
 	var/smokeradius = 1
+	///Current/last user of the c4
+	var/mob/living/last_user
 
 /obj/item/explosive/plastique/Destroy()
 	plant_target = null
+	last_user = null
 	return ..()
 
 /obj/item/explosive/plastique/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][plant_target ? "_set" : ""]"
 	if(armed)
 		icon_state = "[icon_state][alarm_sounded ? "_armed" : "_on"]"
@@ -93,6 +97,7 @@
 			forceMove(location)
 		armed = TRUE
 		timer = target.plastique_time_mod(timer)
+		last_user = user
 
 		log_bomber(user, "planted", src, "on [target] with a [timer] second fuse", message_admins = TRUE)
 
@@ -111,12 +116,6 @@
 
 /obj/item/explosive/plastique/attack_hand(mob/living/user)
 	if(armed)
-		to_chat(user, "<font color='warning'>Disarm [src] first to remove it!</font>")
-		return
-	return ..()
-
-/obj/item/explosive/plastique/attackby(obj/item/I, mob/user, params)
-	if(ismultitool(I) && armed)
 		if(!do_after(user, 2 SECONDS, NONE, plant_target, BUSY_ICON_HOSTILE))
 			return
 
@@ -141,7 +140,9 @@
 		armed = FALSE
 		alarm_sounded = FALSE
 		plant_target = null
+		last_user = null
 		update_icon()
+	return ..()
 
 ///Handles the actual explosion effects
 /obj/item/explosive/plastique/proc/detonate()
@@ -155,7 +156,7 @@
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	smoke.set_up(smokeradius, plant_target, 2)
 	smoke.start()
-	plant_target.plastique_act()
+	plant_target.plastique_act(last_user)
 	qdel(src)
 
 ///Triggers a warning beep prior to the actual detonation, while also setting the actual detonation timer
@@ -167,7 +168,7 @@
 		update_icon()
 
 ///Handles the effect of c4 on the atom - overridden as needed
-/atom/proc/plastique_act()
+/atom/proc/plastique_act(mob/living/plastique_user)
 	ex_act(EXPLODE_DEVASTATE)
 
 /obj/item/explosive/plastique/genghis_charge
@@ -189,7 +190,7 @@
 		flame_target.ignite(10, 5)
 		qdel(src)
 		return
-	new /obj/flamer_fire/autospread(flame_target, 17, 31)
+	new /obj/flamer_fire/autospread(flame_target, 9, 62)
 	playsound(plant_target, sound(get_sfx("explosion_small")), 100, FALSE, 25)
 	qdel(src)
 
@@ -225,7 +226,7 @@
 		spread_directions |= old_spreader.possible_directions
 	if(old_flame)
 		qdel(old_flame)
-	new /obj/flamer_fire/autospread(turf_to_burn, 17, 31, flame_color, 0, 0, spread_directions)
+	new /obj/flamer_fire/autospread(turf_to_burn, 9, 62, flame_color, 0, 0, spread_directions)
 
 ///Allows the c4 timer to be tweaked on certain atoms as required
 /atom/proc/plastique_time_mod(time)

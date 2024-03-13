@@ -266,6 +266,15 @@
 	dir = 8
 	},
 /area/mainship/patrol_base/som/hanger)
+"cT" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/oil/armorblood,
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/mainship/patrol_base/som/hanger)
 "cY" = (
 /obj/machinery/light{
 	dir = 1
@@ -409,6 +418,12 @@
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som/hanger)
+"ew" = (
+/obj/structure/bed/chair/nometal{
+	dir = 4
+	},
+/turf/open/floor/mainship/purple/full,
+/area/mainship/patrol_base/som/prep)
 "ey" = (
 /obj/machinery/shower{
 	dir = 8
@@ -516,6 +531,9 @@
 /turf/closed/shuttle/dropship2/window,
 /area/mainship/patrol_base/som)
 "gk" = (
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
 /turf/open/floor/mainship/green/full,
 /area/mainship/patrol_base/som/prep)
 "gl" = (
@@ -854,10 +872,10 @@
 /turf/open/floor/mainship_hull/gray,
 /area/mainship/patrol_base/som)
 "kH" = (
-/obj/machinery/quick_vendor/som,
 /obj/machinery/camera/autoname/mainship/somship{
 	dir = 4
 	},
+/obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som/prep)
 "kN" = (
@@ -985,6 +1003,7 @@
 "mt" = (
 /obj/effect/landmark/reward_spawn_location/som,
 /obj/effect/turf_decal/warning_stripes/box/empty,
+/obj/structure/closet/crate,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "mB" = (
@@ -1091,7 +1110,7 @@
 /turf/open/floor/mainship/som/nw,
 /area/mainship/patrol_base/som/barracks)
 "nQ" = (
-/obj/machinery/quick_vendor/som,
+/obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som/prep)
 "nR" = (
@@ -1225,6 +1244,10 @@
 	dir = 8
 	},
 /area/mainship/patrol_base/som/hanger)
+"pN" = (
+/obj/structure/closet/crate,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "pR" = (
 /obj/structure/benchpress,
 /turf/open/floor/plating/ground/concrete,
@@ -1356,8 +1379,15 @@
 /turf/open/floor/freezer,
 /area/mainship/patrol_base/som/barracks)
 "qB" = (
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
 /turf/open/floor/mainship/purple/full,
 /area/mainship/patrol_base/som/prep)
+"qI" = (
+/obj/effect/decal/cleanable/blood/oil/streak,
+/turf/open/floor/mainship_hull/gray,
+/area/mainship/patrol_base/som/hanger)
 "qJ" = (
 /obj/structure/table/black,
 /obj/machinery/prop/computer/communications,
@@ -1416,6 +1446,13 @@
 "rE" = (
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som/barracks)
+"rG" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/vending/engivend,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "rI" = (
 /obj/effect/decal/cleanable/blood/oil/streak{
 	dir = 8
@@ -1518,6 +1555,12 @@
 /area/mainship/patrol_base/som)
 "tc" = (
 /turf/open/floor/mainship/red/corner,
+/area/mainship/patrol_base/som/prep)
+"tf" = (
+/obj/structure/bed/chair/nometal{
+	dir = 4
+	},
+/turf/open/floor/mainship/orange/full,
 /area/mainship/patrol_base/som/prep)
 "tj" = (
 /obj/machinery/light{
@@ -2076,6 +2119,14 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
+"yP" = (
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/patrol_base/som/prep)
 "yY" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/mainship/patrol_base/som/barracks)
@@ -2188,6 +2239,12 @@
 /obj/effect/turf_decal/warning_stripes/thick/autosmooth,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
+"Ab" = (
+/obj/structure/bed/chair/nometal{
+	dir = 4
+	},
+/turf/open/floor/mainship/green/full,
+/area/mainship/patrol_base/som/prep)
 "Ac" = (
 /turf/open/floor/mainship/white/corner{
 	dir = 4
@@ -2201,6 +2258,10 @@
 	dir = 4
 	},
 /area/mainship/patrol_base/som/barracks)
+"Ai" = (
+/obj/vehicle/ridden/powerloader,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "Ap" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/mainship/patrol_base/som)
@@ -2415,6 +2476,12 @@
 	},
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som/prep)
+"CJ" = (
+/obj/structure/bed/chair/nometal{
+	dir = 4
+	},
+/turf/open/floor/mainship/blue/full,
+/area/mainship/patrol_base/som/prep)
 "CK" = (
 /obj/effect/turf_decal/trimline/blue/line{
 	dir = 8
@@ -2593,6 +2660,12 @@
 	dir = 8
 	},
 /area/mainship/patrol_base/som)
+"Eq" = (
+/obj/effect/decal/cleanable/blood/oil/armorblood{
+	dir = 8
+	},
+/turf/open/floor/mainship_hull/gray,
+/area/mainship/patrol_base/som/hanger)
 "Es" = (
 /obj/effect/turf_decal/siding{
 	dir = 1
@@ -2710,6 +2783,9 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som/prep)
 "FK" = (
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
 /turf/open/floor/mainship/orange/full,
 /area/mainship/patrol_base/som/prep)
 "FR" = (
@@ -3008,6 +3084,10 @@
 	dir = 4
 	},
 /area/mainship/patrol_base/som/barracks)
+"Jy" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/mainship/red,
+/area/mainship/patrol_base/som/prep)
 "JA" = (
 /obj/effect/turf_decal/trimline/blue/arrow_cw{
 	dir = 8
@@ -3185,6 +3265,12 @@
 	dir = 1
 	},
 /area/mainship/patrol_base/som)
+"LN" = (
+/obj/effect/decal/cleanable/blood/oil/armorblood{
+	dir = 4
+	},
+/turf/open/floor/mainship_hull/gray,
+/area/mainship/patrol_base/som/hanger)
 "LR" = (
 /obj/structure/stairs/seamless/platform{
 	dir = 8
@@ -3295,10 +3381,10 @@
 /turf/open/floor/mainship/blue/full,
 /area/mainship/patrol_base/som/prep)
 "MZ" = (
-/obj/machinery/quick_vendor/som,
 /obj/machinery/camera/autoname/mainship/somship{
 	dir = 8
 	},
+/obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som/prep)
 "Nd" = (
@@ -3500,6 +3586,12 @@
 /obj/structure/largecrate/supply/weapons,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/mainship/patrol_base/som)
+"OO" = (
+/obj/effect/decal/cleanable/blood/oil/streak{
+	dir = 8
+	},
+/turf/open/floor/mainship_hull/gray,
+/area/mainship/patrol_base/som/hanger)
 "OP" = (
 /turf/closed/shuttle/dropship2/wallthree,
 /area/mainship/patrol_base/som)
@@ -3608,6 +3700,12 @@
 	},
 /turf/open/shuttle/dropship/seven,
 /area/mainship/patrol_base/som)
+"PM" = (
+/obj/effect/decal/cleanable/blood/oil/armorblood{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som/hanger)
 "PS" = (
 /obj/effect/turf_decal/trimline/blue/line{
 	dir = 8
@@ -3615,6 +3713,9 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som/prep)
 "PZ" = (
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
 /turf/open/floor/mainship/blue/full,
 /area/mainship/patrol_base/som/prep)
 "Qg" = (
@@ -3835,10 +3936,10 @@
 /turf/open/floor/wood,
 /area/mainship/patrol_base/som/barracks)
 "SZ" = (
-/obj/machinery/quick_vendor/som,
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som/prep)
 "Ta" = (
@@ -4317,10 +4418,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/som)
 "Yt" = (
-/obj/machinery/quick_vendor/som,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som/prep)
 "Yy" = (
@@ -6075,7 +6176,7 @@ ua
 Ud
 Yy
 Yy
-Yy
+OO
 Yy
 Yy
 Yy
@@ -6195,10 +6296,10 @@ Iu
 ua
 ua
 Ud
+Eq
+qI
 Yy
-Yy
-Yy
-Yy
+LN
 Yy
 Yy
 Iu
@@ -7776,7 +7877,7 @@ iY
 ei
 ei
 GV
-Yy
+Eq
 Iu
 ua
 ua
@@ -8132,7 +8233,7 @@ QC
 TA
 Rq
 bk
-Rq
+PM
 AU
 kY
 kY
@@ -8375,7 +8476,7 @@ an
 St
 zF
 RN
-tj
+cT
 NA
 NA
 NA
@@ -9858,7 +9959,7 @@ Aw
 Aw
 Aw
 BG
-nQ
+gS
 kH
 Yt
 MJ
@@ -9983,7 +10084,7 @@ Uz
 la
 FK
 FK
-bF
+yP
 hX
 ye
 gS
@@ -10347,8 +10448,8 @@ ac
 Aw
 Uz
 Bd
-FK
-FK
+tf
+tf
 bF
 vd
 PH
@@ -10468,7 +10569,7 @@ sx
 LF
 mt
 BG
-nQ
+gS
 nQ
 nQ
 PK
@@ -10590,12 +10691,12 @@ sx
 LF
 mt
 BG
-nQ
+gS
 nQ
 nQ
 PK
 JD
-ye
+Jy
 gS
 We
 Bo
@@ -11079,8 +11180,8 @@ LF
 Aw
 cx
 lZ
-qB
-qB
+ew
+ew
 bF
 JD
 hX
@@ -11200,7 +11301,7 @@ sB
 ve
 mt
 Sq
-nQ
+gS
 nQ
 nQ
 PK
@@ -11322,7 +11423,7 @@ oA
 ac
 mt
 BG
-nQ
+gS
 nQ
 nQ
 PK
@@ -11547,7 +11648,7 @@ Uk
 Uk
 Uk
 vz
-zj
+rG
 Aw
 Aw
 Aw
@@ -11669,7 +11770,7 @@ Uk
 Uk
 Uk
 vz
-Aw
+pN
 Aw
 Aw
 Aw
@@ -11811,8 +11912,8 @@ ac
 Aw
 Uz
 cG
-PZ
-PZ
+CJ
+CJ
 bF
 CH
 ki
@@ -11932,7 +12033,7 @@ To
 LF
 mt
 BG
-nQ
+gS
 nQ
 nQ
 PK
@@ -12035,7 +12136,7 @@ Uk
 Uk
 Uk
 vz
-Aw
+pN
 Aw
 Aw
 Aw
@@ -12054,12 +12155,12 @@ To
 LF
 mt
 BG
-nQ
+gS
 nQ
 nQ
 uh
 CH
-ye
+Jy
 gS
 We
 Bo
@@ -12279,7 +12380,7 @@ Uk
 Uk
 Uk
 vz
-Aw
+Ai
 Aw
 Aw
 Aw
@@ -12543,8 +12644,8 @@ Aw
 Aw
 Uz
 yg
-gk
-gk
+Ab
+Ab
 bF
 tc
 Yl
@@ -12664,7 +12765,7 @@ Aw
 Aw
 Aw
 BG
-nQ
+gS
 MZ
 SZ
 qg

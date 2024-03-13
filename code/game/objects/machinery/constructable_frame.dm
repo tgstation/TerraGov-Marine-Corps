@@ -10,7 +10,8 @@
 	var/state = 1
 
 
-/obj/machinery/constructable_frame/proc/update_desc()
+/obj/machinery/constructable_frame/update_desc(updates)
+	. = ..()
 	var/D
 	if(req_components)
 		D = "Requires "

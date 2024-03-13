@@ -1,8 +1,18 @@
-import { useBackend, useLocalState } from '../../backend';
-import { Section, LabeledList, Modal, Button, Box, Stack, Flex } from '../../components';
+import { useState } from 'react';
 
-export const JobPreferences = (props, context) => {
-  const { act, data } = useBackend<JobPreferencesData>(context);
+import { useBackend } from '../../backend';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  Modal,
+  Section,
+  Stack,
+} from '../../components';
+
+export const JobPreferences = (props) => {
+  const { act, data } = useBackend<JobPreferencesData>();
   const {
     alternate_option,
     squads,
@@ -13,11 +23,7 @@ export const JobPreferences = (props, context) => {
     special_occupations,
     special_occupation,
   } = data;
-  const [shownDescription, setShownDescription] = useLocalState(
-    context,
-    'shown-desc',
-    null
-  );
+  const [shownDescription, setShownDescription] = useState(null);
 
   const xenoJobs = ['Xeno Queen', 'Xenomorph'];
   const commandRoles = [
@@ -25,8 +31,10 @@ export const JobPreferences = (props, context) => {
     'Field Commander',
     'Staff Officer',
     'Pilot Officer',
+    'Transport Officer',
     'Synthetic',
     'AI',
+    'Mech Pilot',
   ];
   const supportRoles = [
     'Chief Ship Engineer',
@@ -35,6 +43,8 @@ export const JobPreferences = (props, context) => {
     'Chief Medical Officer',
     'Medical Doctor',
     'Medical Researcher',
+    'Assault Crewman',
+    'Transport Crewman',
   ];
   const marineJobs = [
     'Squad Marine',
@@ -42,7 +52,6 @@ export const JobPreferences = (props, context) => {
     'Squad Corpsman',
     'Squad Smartgunner',
     'Squad Leader',
-    'Mech Pilot', // not really a marine job but creating empty space in the support section is lame
   ];
   const somJobs = [
     'SOM Squad Standard',
@@ -77,7 +86,8 @@ export const JobPreferences = (props, context) => {
         <Button color="bad" icon="power-off" onClick={() => act('jobreset')}>
           Reset everything!
         </Button>
-      }>
+      }
+    >
       {shownDescription && (
         <Modal width="500px" min-height="300px">
           <Box dangerouslySetInnerHTML={{ __html: shownDescription }} />
@@ -190,8 +200,8 @@ export const JobPreferences = (props, context) => {
   );
 };
 
-const JobPreference = (props, context) => {
-  const { act, data } = useBackend<JobPreferenceData>(context);
+const JobPreference = (props) => {
+  const { act, data } = useBackend<JobPreferenceData>();
   const { jobs, job_preferences } = data;
   const { job, setShownDescription } = props;
   const jobData = jobs[job];

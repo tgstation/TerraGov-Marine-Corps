@@ -6,6 +6,7 @@
 	foldable = /obj/item/stack/sheet/wood
 
 /obj/item/storage/box/crate/update_icon_state()
+	. = ..()
 	icon_state = length(contents) ? initial(icon_state) : "empty_case"
 
 /obj/item/storage/box/crate/heavy_armor

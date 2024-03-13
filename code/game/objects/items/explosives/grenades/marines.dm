@@ -218,18 +218,14 @@
 	qdel(src)
 
 
-/proc/flame_radius(radius = 1, turf/epicenter, burn_intensity = 25, burn_duration = 25, burn_damage = 25, fire_stacks = 15, int_var = 0.5, dur_var = 0.5, colour = "red") //~Art updated fire.
+/proc/flame_radius(radius = 1, turf/epicenter, burn_intensity = 25, burn_duration = 25, burn_damage = 25, fire_stacks = 15, colour = "red") //~Art updated fire.
 	if(!isturf(epicenter))
 		CRASH("flame_radius used without a valid turf parameter")
 	radius = clamp(radius, 1, 50) //Sanitize inputs
-	int_var = clamp(int_var, 0.1,0.5)
-	dur_var = clamp(int_var, 0.1,0.5)
-	fire_stacks = randfloat(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + randfloat(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
-	burn_damage = randfloat(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + randfloat(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 
 	for(var/t in filled_turfs(epicenter, radius, "circle", air_pass = TRUE))
 		var/turf/turf_to_flame = t
-		turf_to_flame.ignite(randfloat(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + randfloat(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), randfloat(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + randfloat(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, burn_damage, fire_stacks)
+		turf_to_flame.ignite(randfloat(burn_duration*0.75, burn_duration), burn_intensity, colour, burn_damage, fire_stacks)
 
 /obj/item/explosive/grenade/incendiary/som
 	name = "\improper S30-I incendiary grenade"
@@ -324,7 +320,7 @@
 	hud_state = "grenade_acid"
 	det_time = 4 SECONDS
 	dangerous = TRUE
-	smoketype = /datum/effect_system/smoke_spread/xeno/acid
+	smoketype = /datum/effect_system/smoke_spread/xeno/acid/opaque
 	smokeradius = 5
 
 /obj/item/explosive/grenade/smokebomb/satrapine
@@ -370,6 +366,17 @@
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
 
+/obj/item/explosive/grenade/smokebomb/antigas
+	name = "\improper M40-AG smoke grenade"
+	desc = "A gas grenade originally designed to remove any contaminants in the air for the purpose of cleaning, now repurposed to remove hostile gases."
+	icon_state = "grenade_agas"
+	item_state = "grenade_agas"
+	hud_state = "grenade_antigas"
+	det_time = 3 SECONDS
+	icon_state_mini = "grenade_antigas"
+	dangerous = TRUE
+	smoketype = /datum/effect_system/smoke_spread/antigas
+
 /obj/item/explosive/grenade/smokebomb/drain/agls
 	name = "\improper AGLS-T smoke grenade"
 	desc = "A small tiny smart grenade, it is about to blow up in your face, unless you found it inert. Otherwise a pretty normal grenade, other than it is somehow in a primeable state."
@@ -400,7 +407,7 @@
 	smoke.set_up(6, loc, 7)
 	smoke.start()
 	flame_radius(4, get_turf(src))
-	flame_radius(1, get_turf(src), burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)	//The closer to the middle you are the more it hurts
+	flame_radius(1, get_turf(src), burn_intensity = 75, burn_duration = 45, burn_damage = 15, fire_stacks = 75)	//The closer to the middle you are the more it hurts
 	qdel(src)
 
 /obj/item/explosive/grenade/phosphorus/activate(mob/user)

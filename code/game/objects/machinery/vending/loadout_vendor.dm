@@ -26,6 +26,7 @@
 		set_light(0)
 
 /obj/machinery/loadout_vendor/update_icon_state()
+	. = ..()
 	if(is_operational())
 		icon_state = initial(icon_state)
 	else

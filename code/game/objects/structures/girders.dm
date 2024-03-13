@@ -14,7 +14,7 @@
 	var/reinforcement = null
 	var/icon_prefix = "girder"
 	smoothing_flags = SMOOTH_BITMASK
-	canSmoothWith = list(SMOOTH_GROUP_GIRDER,SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,)
+	canSmoothWith = list(SMOOTH_GROUP_GIRDER,SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS)
 	smoothing_groups = list(SMOOTH_GROUP_GIRDER)
 	base_icon_state = "girder"
 
@@ -53,6 +53,8 @@
 
 /obj/structure/girder/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, GIRDER_REINF_METAL) || istype(I, GIRDER_REINF_PLASTEEL))
 		if(user.do_actions)
 			return TRUE //no afterattack
@@ -334,6 +336,7 @@
 
 
 /obj/structure/girder/update_icon_state()
+	. = ..()
 	switch(girder_state)
 		if(GIRDER_BROKEN, GIRDER_BROKEN_PATCHED)
 			icon = 'icons/obj/smooth_objects/girder_broke.dmi'

@@ -392,8 +392,8 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/obj/structure/stairs/edge{
-	dir = 4
+/obj/structure/stairs/seamless/edge{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/deathmatch)
@@ -598,8 +598,8 @@
 /area/deathmatch)
 "Ay" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/stairs/edge{
-	dir = 4
+/obj/structure/stairs/seamless/edge{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/deathmatch)
@@ -653,6 +653,13 @@
 "CI" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/wood,
+/area/deathmatch)
+"CK" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/stairs/seamless/edge{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "CV" = (
 /obj/structure/platform{
@@ -929,6 +936,13 @@
 "Oh" = (
 /turf/open/floor/grime,
 /area/deathmatch)
+"Oj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/stairs/seamless{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/deathmatch)
 "Op" = (
 /obj/structure/barricade/wooden{
 	dir = 1
@@ -1086,8 +1100,8 @@
 "Vm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/platform,
-/obj/structure/stairs/edge{
-	dir = 4
+/obj/structure/stairs/seamless/edge{
+	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/deathmatch)
@@ -1704,7 +1718,7 @@ wz
 (11,1,1) = {"
 wz
 Ay
-Ay
+CK
 wz
 Gl
 Gl
@@ -1786,7 +1800,7 @@ BK
 Wk
 yM
 Ay
-Ay
+CK
 Db
 Gl
 Gl
@@ -2157,7 +2171,7 @@ Gl
 Gl
 jU
 tm
-Ay
+Oj
 Vm
 tN
 Gl

@@ -71,7 +71,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	///list of plane masters to apply to owners
 	var/list/plane_masters = list()
 
-/atom/movable/screen/mech_builder_view/Initialize(mapload)
+/atom/movable/screen/mech_builder_view/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	assigned_map = "mech_preview_[REF(src)]"
 	set_position(1, 1)
@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	. = ..()
 	if(!.)
 		return
-	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_TRAINED)
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_VETERAN)
 		return FALSE
 
 /obj/machinery/computer/mech_builder/ui_interact(mob/user, datum/tgui/ui)

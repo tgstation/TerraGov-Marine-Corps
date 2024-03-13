@@ -14,11 +14,11 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 
 /datum/marine_main_ship/proc/make_maint_all_access()
 	maint_all_access = TRUE
-	priority_announce("The maintenance access requirement has been revoked on all airlocks.", "Attention!", sound = 'sound/misc/notice1.ogg')
+	priority_announce("The maintenance access requirement has been revoked on all airlocks.", "Attention!", "Shipside emergency declared.", sound = 'sound/misc/notice1.ogg', color_override = "grey")
 
 /datum/marine_main_ship/proc/revoke_maint_all_access()
 	maint_all_access = FALSE
-	priority_announce("The maintenance access requirement has been readded on all maintenance airlocks.", "Attention!", sound = 'sound/misc/notice2.ogg')
+	priority_announce("The maintenance access requirement has been readded on all maintenance airlocks.", "Attention!", "Shipside emergency revoked.", sound = 'sound/misc/notice2.ogg', color_override = "grey")
 
 /datum/marine_main_ship/proc/set_security_level(level, announce = TRUE)
 	switch(level)
@@ -79,7 +79,7 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 		switch(level)
 			if(SEC_LEVEL_GREEN)
 				if(announce)
-					priority_announce("Attention: Security level lowered to GREEN - all clear.", "Priority Alert", sound = 'sound/AI/code_green.ogg')
+					priority_announce("Attention: Security level lowered to GREEN - all clear.", title = "Security Level Lowered", subtitle = "All Clear", sound = 'sound/AI/code_green.ogg', color_override = "green")
 				security_level = SEC_LEVEL_GREEN
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
 					if(is_mainship_level(SD.z))
@@ -87,10 +87,10 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 			if(SEC_LEVEL_BLUE)
 				if(security_level < SEC_LEVEL_BLUE)
 					if(announce)
-						priority_announce("Attention: Security level elevated to BLUE - potentially hostile activity on board.", "Priority Alert", sound = 'sound/AI/code_blue_elevated.ogg')
+						priority_announce("Attention: Security level elevated to BLUE - potentially hostile activity on board.", title = "Security Level Elevated", sound = 'sound/AI/code_blue_elevated.ogg')
 				else
 					if(announce)
-						priority_announce("Attention: Security level lowered to BLUE - potentially hostile activity on board.", "Priority Alert", sound = 'sound/AI/code_blue_lowered.ogg')
+						priority_announce("Attention: Security level lowered to BLUE - potentially hostile activity on board.", title = "Security Level Lowered", sound = 'sound/AI/code_blue_lowered.ogg')
 				security_level = SEC_LEVEL_BLUE
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
 					if(is_mainship_level(SD.z))
@@ -98,10 +98,10 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 			if(SEC_LEVEL_RED)
 				if(security_level < SEC_LEVEL_RED)
 					if(announce)
-						priority_announce("Attention: Security level elevated to RED - there is an immediate threat to the ship.", "Priority Alert", sound = 'sound/AI/code_red_elevated.ogg')
+						priority_announce("Attention: Security level elevated to RED - there is an immediate threat to the ship.", title = "Security Level Elevated", sound = 'sound/AI/code_red_elevated.ogg', color_override = "red")
 				else
 					if(announce)
-						priority_announce("Attention: Security level lowered to RED - there is an immediate threat to the ship.", "Priority Alert", sound = 'sound/AI/code_red_lowered.ogg')
+						priority_announce("Attention: Security level lowered to RED - there is an immediate threat to the ship.", title = "Ship Destruction Averted", type = ANNOUNCEMENT_PRIORITY, sound = 'sound/AI/code_red_lowered.ogg', color_override = "red")
 					/*
 					var/area/A
 					for(var/obj/machinery/power/apc/O in machines)
@@ -117,7 +117,7 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 						SD.set_picture("redalert")
 			if(SEC_LEVEL_DELTA)
 				if(announce)
-					priority_announce("Attention! Delta security level reached! " + CONFIG_GET(string/alert_delta), "Priority Alert")
+					priority_announce("Attention! Delta security level reached! " + CONFIG_GET(string/alert_delta), title = "Ship Destruction Imminent", type = ANNOUNCEMENT_PRIORITY, color_override = "purple")
 				security_level = SEC_LEVEL_DELTA
 				for(var/obj/machinery/door/poddoor/shutters/mainship/D in GLOB.machines)
 					if(D.id == "sd_lockdown")

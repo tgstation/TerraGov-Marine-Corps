@@ -25,6 +25,7 @@
 	return ..()
 
 /obj/item/implantcase/update_icon_state()
+	. = ..()
 	if(imp)
 		icon_state = "implantcase-[imp.implant_color]"
 	else
@@ -33,6 +34,8 @@
 
 /obj/item/implantcase/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/pen))
 		var/label = stripped_input(user, "What would you like the label to be?", "[name]", null)

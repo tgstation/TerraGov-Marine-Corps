@@ -221,7 +221,7 @@
 		release_projectiles()
 		owner.apply_effect(1 SECONDS, WEAKEN)
 
-/obj/effect/xeno/shield/obj_destruction()
+/obj/effect/xeno/shield/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	release_projectiles()
 	owner.apply_effect(1 SECONDS, WEAKEN)
 	return ..()
@@ -245,8 +245,7 @@
 			new_angle += 360
 		else if(new_angle > 360)
 			new_angle -= 360
-		proj.firer = src
-		proj.fire_at(shooter = src, source = src, angle = new_angle, recursivity = TRUE)
+		proj.fire_at(source = src, angle = new_angle, recursivity = TRUE)
 
 		//Record those sick rocket shots
 		//Is not part of record_projectiles_frozen() because it is probably bad to be running that for every bullet!
@@ -268,6 +267,7 @@
 	ability_cost = 40
 	cooldown_duration = 12 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CRUSH,
 	)
@@ -403,9 +403,9 @@
 				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength * 1.5, STAMINA, blocked = BOMB)
 				carbon_victim.adjust_stagger(5 SECONDS)
 				carbon_victim.add_slowdown(6)
-			else if(ismecha(victim))
-				var/obj/vehicle/sealed/mecha/mecha_victim = victim
-				mecha_victim.take_damage(xeno_owner.xeno_caste.crush_strength * 5, BRUTE, BOMB)
+			else if(isvehicle(victim))
+				var/obj/vehicle/veh_victim = victim
+				veh_victim.take_damage(xeno_owner.xeno_caste.crush_strength * 5, BRUTE, BOMB)
 	stop_crush()
 
 /// stops channeling and unregisters all listeners, resetting the ability
@@ -542,16 +542,13 @@
 
 /datum/action/ability/activable/xeno/psy_blast/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/turf/target_turf = get_turf(A)
-
 	owner.balloon_alert(owner, "We channel our psychic power")
-
 	generate_particles(A, 7)
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
 	xeno_owner.update_glow(3, 3, ammo_type.glow_color)
 
-	if(!do_after(xeno_owner, 1 SECONDS, NONE, target_turf, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE))
+	if(!do_after(xeno_owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE) || !(A in range(get_screen_size(TRUE), owner)))
 		owner.balloon_alert(owner, "Our focus is disrupted")
 		end_channel()
 		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
@@ -562,7 +559,7 @@
 	var/obj/projectile/hitscan/projectile = new /obj/projectile/hitscan(xeno_owner.loc)
 	projectile.effect_icon = initial(ammo_type.hitscan_effect_icon)
 	projectile.generate_bullet(ammo_type)
-	projectile.fire_at(A, xeno_owner, null, projectile.ammo.max_range, projectile.ammo.shell_speed)
+	projectile.fire_at(A, xeno_owner, xeno_owner, projectile.ammo.max_range, projectile.ammo.shell_speed)
 	playsound(xeno_owner, 'sound/weapons/guns/fire/volkite_4.ogg', 40)
 
 	if(istype(xeno_owner.ammo, /datum/ammo/energy/xeno/psy_blast))

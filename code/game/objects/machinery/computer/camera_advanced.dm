@@ -242,7 +242,6 @@
 	var/visible_icon = 0
 	var/image/user_image = null
 
-
 /mob/camera/aiEye/remote/update_remote_sight(mob/living/user)
 	user.see_invisible = SEE_INVISIBLE_LIVING
 	user.sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS|SEE_BLACKNESS

@@ -34,6 +34,7 @@
 
 
 /obj/machinery/flasher/update_icon_state()
+	. = ..()
 	if(!(machine_stat & NOPOWER))
 		icon_state = "[base_state]1"
 	else
@@ -105,6 +106,8 @@
 
 /obj/machinery/flasher/portable/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(iswrench(I))
 		anchored = !anchored
 
@@ -120,6 +123,8 @@
 
 /obj/machinery/flasher_button/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	return attack_hand(user)
 
 /obj/machinery/flasher_button/attack_hand(mob/living/user)

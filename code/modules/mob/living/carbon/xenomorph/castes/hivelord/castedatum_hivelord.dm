@@ -30,8 +30,6 @@
 
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
-	evolves_to = list(/mob/living/carbon/xenomorph/defiler, /mob/living/carbon/xenomorph/gorger)
-
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_BUILDER
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
@@ -64,6 +62,7 @@
 		/datum/action/ability/activable/xeno/healing_infusion,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/secrete_resin/hivelord,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/activable/xeno/transfer_plasma/improved,
 		/datum/action/ability/activable/xeno/corrosive_acid,
@@ -99,6 +98,7 @@
 		/datum/action/ability/activable/xeno/healing_infusion,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/secrete_resin/hivelord,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/activable/xeno/transfer_plasma/improved,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,

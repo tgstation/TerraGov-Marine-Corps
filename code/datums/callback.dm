@@ -231,5 +231,3 @@
 	else
 		datum.vars[var_name] = var_value
 
-/proc/___callbacknew(typepath, arguments)
-	new typepath(arglist(arguments))

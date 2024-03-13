@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(modularmapping)
-	name = "Modularmapping"
+	name = "Modular Mapping"
 	init_order = INIT_ORDER_MODULARMAPPING
 	flags = SS_NO_FIRE
 	var/list/obj/effect/spawner/modularmap/markers = list()

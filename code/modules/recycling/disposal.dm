@@ -67,6 +67,8 @@
 //Attack by item places it in to disposal
 /obj/machinery/disposal/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(machine_stat & BROKEN)
 		return
@@ -100,7 +102,7 @@
 
 			playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 			to_chat(user, span_notice("You start slicing the floorweld off the disposal unit."))
-			if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
+			if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
 				return
 
 			to_chat(user, span_notice("You sliced the floorweld off the disposal unit."))
@@ -702,6 +704,8 @@
 //Attack by item. Weldingtool: unfasten and convert to obj/disposalconstruct
 /obj/structure/disposalpipe/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	var/turf/T = loc
 	if(T.intact_tile)
@@ -1011,6 +1015,8 @@
 
 /obj/structure/disposalpipe/tagger/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/destTagger))
 		var/obj/item/destTagger/O = I
@@ -1082,6 +1088,8 @@
 
 /obj/structure/disposalpipe/sortjunction/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/destTagger))
 		var/obj/item/destTagger/O = I
@@ -1304,6 +1312,8 @@
 
 /obj/structure/disposaloutlet/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I))
 		mode = !mode
@@ -1323,7 +1333,7 @@
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		to_chat(user, span_notice("You start slicing the floorweld off the disposal outlet."))
 
-		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
+		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
 			return
 
 		to_chat(user, span_notice("You sliced the floorweld off the disposal outlet."))

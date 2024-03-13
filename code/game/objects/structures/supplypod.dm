@@ -75,16 +75,20 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	. = ..()
 	setStyle(style, TRUE)
 
+/obj/structure/closet/supplypod/update_icon_state()
+	. = ..()
+	icon_state = GLOB.pod_styles[style][POD_ICON_STATE]
 
-/obj/structure/closet/supplypod/update_icon()
-	cut_overlays()
+/obj/structure/closet/supplypod/update_overlays()
+	. = ..()
+
 	if(style == STYLE_SEETHROUGH || style == STYLE_INVISIBLE)
 		return
 
 	if(opened)
-		add_overlay("[icon_state]_open")
+		. += "[icon_state]_open"
 	else
-		add_overlay("[icon_state]_door")
+		. += "[icon_state]_door"
 
 
 /obj/structure/closet/supplypod/proc/setStyle(chosenStyle, duringInit = FALSE)
@@ -92,7 +96,6 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 		setStyle(STYLE_CENTCOM)
 		return
 	style = chosenStyle
-	icon_state = GLOB.pod_styles[chosenStyle][POD_ICON_STATE]
 	if(!adminNamed)
 		name = GLOB.pod_styles[chosenStyle][POD_NAME]
 		desc = GLOB.pod_styles[chosenStyle][POD_DESC]

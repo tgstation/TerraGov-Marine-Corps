@@ -22,7 +22,7 @@
 	desc = "Exosuit"
 	icon = 'icons/mecha/mecha.dmi'
 	move_force = MOVE_FORCE_VERY_STRONG
-	move_resist = MOVE_FORCE_OVERPOWERING
+	move_resist = MOVE_FORCE_EXCEPTIONALLY_STRONG
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE|PORTAL_IMMUNE|PLASMACUTTER_IMMUNE
 	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
 	max_integrity = 300
@@ -190,13 +190,15 @@
 	var/ui_y = 600
 	/// ref to screen object that displays in the middle of the UI
 	var/atom/movable/screen/mech_view/ui_view
+	///Current owning faction
+	var/faction
 
 /obj/item/radio/mech //this has to go somewhere
 	subspace_transmission = TRUE
 
 /obj/vehicle/sealed/mecha/Initialize(mapload)
 	. = ..()
-	ui_view = new(null, src)
+	ui_view = new(null, null, src)
 	if(enclosed)
 		internal_tank = new (src)
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(play_stepsound))
@@ -266,7 +268,16 @@
 		mech_status_hud.remove_from_hud(src)
 	return ..()
 
-/obj/vehicle/sealed/mecha/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/vehicle/sealed/mecha/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
+	if(istype(blame_mob) && blame_mob.ckey)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[blame_mob.ckey]
+		if(faction == blame_mob.faction)
+			personal_statistics.mechs_destroyed -- //bruh
+			personal_statistics.mission_mechs_destroyed --
+		else
+			personal_statistics.mechs_destroyed ++
+			personal_statistics.mission_mechs_destroyed ++
+
 	spark_system?.start()
 
 	var/mob/living/silicon/ai/unlucky_ais
@@ -532,7 +543,7 @@
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		target = pick(view(3,target))
 	var/mob/living/livinguser = user
-	if(!(livinguser in return_controllers_with_flag(VEHICLE_CONTROL_EQUIPMENT)))
+	if(!is_equipment_controller(user))
 		balloon_alert(user, "wrong seat for equipment!")
 		return
 	var/obj/item/mecha_parts/mecha_equipment/selected

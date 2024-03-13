@@ -23,6 +23,7 @@
 		#include "map_files\desparity\desparity.dmm"
 		#include "map_files\Lawanka_Outpost\LawankaOutpost.dmm"
 		#include "map_files\slumbridge\slumbridge.dmm"
+		#include "map_files\DaedalusPrison\DaedalusPrison.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif

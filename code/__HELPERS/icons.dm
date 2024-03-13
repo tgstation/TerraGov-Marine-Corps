@@ -955,21 +955,19 @@ ColorTone(rgb, tone)
 /proc/generate_asset_name(file)
 	return "asset.[md5(fcopy_rsc(file))]"
 
-//Converts an icon to base64. Operates by putting the icon in the iconCache savefile,
-// exporting it as text, and then parsing the base64 from that.
-// (This relies on byond automatically storing icons in savefiles as base64)
+/**
+ * Converts an icon to base64. Operates by putting the icon in the iconCache savefile,
+ * exporting it as text, and then parsing the base64 from that.
+ * (This relies on byond automatically storing icons in savefiles as base64)
+ */
 /proc/icon2base64(icon/icon)
 	if(!isicon(icon))
 		return FALSE
-	var/savefile/dummySave = new("tmp/dummySave.sav")
+	var/savefile/dummySave = new
 	WRITE_FILE(dummySave["dummy"], icon)
 	var/iconData = dummySave.ExportText("dummy")
 	var/list/partial = splittext(iconData, "{")
-	. = replacetext(copytext_char(partial[2], 3, -5), "\n", "")  //if cleanup fails we want to still return the correct base64
-	dummySave.Unlock()
-	dummySave = null
-	fdel("tmp/dummySave.sav")  //if you get the idea to try and make this more optimized, make sure to still call unlock on the savefile after every write to unlock it.
-
+	return replacetext(copytext_char(partial[2], 3, -5), "\n", "") //if cleanup fails we want to still return the correct base64
 
 ///given a text string, returns whether it is a valid dmi icons folder path
 /proc/is_valid_dmi_file(icon_path)

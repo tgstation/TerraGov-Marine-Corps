@@ -121,7 +121,6 @@
 
 /obj/item/armor_module/ui_action_click(mob/user, datum/action/item_action/toggle/action)
 	action.set_toggle(activate(user))
-	action.update_button_icon()
 
 ///Called on ui_action_click. Used for activating the module.
 /obj/item/armor_module/proc/activate(mob/living/user)

@@ -59,21 +59,6 @@
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Ranger armor piece."
 	greyscale_config = /datum/greyscale_config/armor_mk1/ranger
 
-/obj/item/armor_module/armor/chest/marine/kabuto
-	name = "\improper Style Pattern Kabuto chestplates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Kabuto armor piece."
-	greyscale_config = /datum/greyscale_config/armor_mk1/kabuto
-
-/obj/item/armor_module/armor/chest/marine/hotaru
-	name = "\improper Style Pattern Hotaru chestplates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Hotaru armor piece."
-	greyscale_config = /datum/greyscale_config/armor_mk1/hotaru
-
-/obj/item/armor_module/armor/chest/marine/dashe
-	name = "\improper Style Pattern Dashe chestplates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Dashe armor piece."
-	greyscale_config = /datum/greyscale_config/armor_mk1/dashe
-
 // Hardsuit Chest Plates
 /obj/item/armor_module/armor/chest/marine/hardsuit
 	icon_state_variants = list(
@@ -85,8 +70,6 @@
 	colorable_colors = ARMOR_PALETTES_LIST
 	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
 	starting_attachments = list(/obj/item/armor_module/armor/secondary_color/chest/webbing)
-	attachments_allowed = list(/obj/item/armor_module/armor/secondary_color/chest/webbing)
-	attachments_by_slot = list(ATTACHMENT_SLOT_CHEST_SECONDARY_COLOR)
 
 /obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markfive
 	name = "\improper FleckTex Mark V Breacher chestplates"

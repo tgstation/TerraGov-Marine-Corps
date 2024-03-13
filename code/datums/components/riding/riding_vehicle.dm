@@ -56,7 +56,7 @@
 	handle_ride(user, direction)
 
 /// This handles the actual movement for vehicles once [/datum/component/riding/vehicle/proc/driver_move] has given us the green light
-/datum/component/riding/vehicle/proc/handle_ride(mob/user, direction)
+/datum/component/riding/vehicle/proc/handle_ride(mob/living/user, direction)
 	var/atom/movable/movable_parent = parent
 
 	var/turf/next = get_step(movable_parent, direction)
@@ -71,7 +71,7 @@
 
 	step(movable_parent, direction)
 	last_move_diagonal = ((direction & (direction - 1)) && (movable_parent.loc == next))
-	COOLDOWN_START(src, vehicle_move_cooldown, (last_move_diagonal? 2 : 1) * vehicle_move_delay)
+	COOLDOWN_START(src, vehicle_move_cooldown, (last_move_diagonal ? 2 : 1) * vehicle_move_delay + calculate_additional_delay(user))
 
 	if(QDELETED(src))
 		return
@@ -113,8 +113,46 @@
 	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 4), TEXT_SOUTH = list(0, 4), TEXT_EAST = list(0, 4), TEXT_WEST = list(0, 4)))
 
 /datum/component/riding/vehicle/wheelchair
-	vehicle_move_delay = 0
+	vehicle_move_delay = 6
 	ride_check_flags = RIDER_NEEDS_ARMS
+
+/datum/component/riding/vehicle/wheelchair/driver_move(atom/movable/movable_parent, mob/living/user, direction)
+	if(!iscarbon(user))
+		return COMPONENT_DRIVER_BLOCK_MOVE
+	var/mob/living/carbon/carbon_user = user
+
+	var/datum/limb/left_hand = carbon_user.get_limb(BODY_ZONE_PRECISE_R_HAND)
+	var/datum/limb/right_hand = carbon_user.get_limb(BODY_ZONE_PRECISE_L_HAND)
+	var/working_hands = 2
+
+	if(!left_hand?.is_usable() || user.get_item_for_held_index(1))
+		working_hands--
+	if(!right_hand?.is_usable() || user.get_item_for_held_index(2))
+		working_hands--
+	if(!working_hands)
+		to_chat(user, span_warning("You have no arms to propel [movable_parent]!"))
+		return COMPONENT_DRIVER_BLOCK_MOVE // No hands to drive your chair? Tough luck!
+	return ..()
+
+/datum/component/riding/vehicle/wheelchair/calculate_additional_delay(mob/living/user)
+	if(!iscarbon(user))
+		return 0
+	var/mob/living/carbon/carbon_user = user
+
+	var/datum/limb/left_hand = carbon_user.get_limb(BODY_ZONE_PRECISE_R_HAND)
+	var/datum/limb/right_hand = carbon_user.get_limb(BODY_ZONE_PRECISE_L_HAND)
+	var/delay_to_add = 0
+
+	if(!left_hand?.is_usable() || user.get_item_for_held_index(1))
+		delay_to_add += vehicle_move_delay * 0.5 //harder to move a wheelchair with a single hand
+	else if(left_hand?.is_broken())
+		delay_to_add = vehicle_move_delay * 0.33
+	if(!right_hand?.is_usable() || user.get_item_for_held_index(2))
+		delay_to_add += vehicle_move_delay * 0.5
+	else if(right_hand.is_broken())
+		delay_to_add = vehicle_move_delay * 0.33
+	
+	return delay_to_add
 
 /datum/component/riding/vehicle/wheelchair/handle_specials()
 	. = ..()
@@ -122,6 +160,9 @@
 	set_vehicle_dir_layer(NORTH, ABOVE_MOB_LAYER)
 	set_vehicle_dir_layer(EAST, OBJ_LAYER)
 	set_vehicle_dir_layer(WEST, OBJ_LAYER)
+
+/datum/component/riding/vehicle/wheelchair/weaponized
+	vehicle_move_delay = 5
 
 /datum/component/riding/vehicle/motorbike
 	vehicle_move_delay = 2

@@ -378,17 +378,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TASTE_DULL 30 //anything below 30%
 #define TASTE_NUMB 101 //no taste
 
-
-//defins for datum/hud
-
-#define HUD_STYLE_STANDARD 1
-#define HUD_STYLE_REDUCED 2
-#define HUD_STYLE_NOHUD 3
-#define HUD_VERSIONS 3
-#define HUD_SL_LOCATOR_COOLDOWN 0.5 SECONDS
-#define HUD_SL_LOCATOR_PROCESS_COOLDOWN 10 SECONDS
-
-
 //Blood levels
 #define BLOOD_VOLUME_MAXIMUM 600
 #define BLOOD_VOLUME_NORMAL 560
@@ -400,8 +389,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUMAN_MAX_PALENESS 30 //this is added to human skin tone to get value of pale_max variable
 
 
-// Human Overlay Indexes
-#define LASER_LAYER 29 //For sniper targeting laser
+// Overlay Indexes
+#define LASER_LAYER 30 //For sniper targeting laser
+#define WOUND_LAYER 29
 #define MOTH_WINGS_LAYER 28
 #define MUTATIONS_LAYER 27
 #define DAMAGE_LAYER 26
@@ -431,7 +421,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TARGETED_LAYER 2 //for target sprites when held at gun point, and holo cards.
 #define FIRE_LAYER 1 //If you're on fire
 
-#define TOTAL_LAYERS 29
+#define TOTAL_LAYERS 30
 
 #define MOTH_WINGS_BEHIND_LAYER 1
 
@@ -454,6 +444,18 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 
 //Xeno Defines
+//Xeno flags
+///Xeno is currently performing a leap/dash attack
+#define XENO_LEAPING (1<<0)
+///Hive leader
+#define XENO_LEADER (1<<1)
+///Zoomed out
+#define XENO_ZOOMED (1<<2)
+///mobhud on
+#define XENO_MOBHUD (1<<3)
+///rouny mode
+#define XENO_ROUNY (1<<4)
+
 
 #define XENO_DEFAULT_VENT_ENTER_TIME 4.5 SECONDS //Standard time for a xeno to enter a vent.
 #define XENO_DEFAULT_VENT_EXIT_TIME 2 SECONDS //Standard time for a xeno to exit a vent.
@@ -488,6 +490,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_SILO_DAMAGE_POINTER_DURATION 10 SECONDS //How long the alert directional pointer lasts when silos are damaged
 #define XENO_SILO_DETECTION_COOLDOWN 1 MINUTES
 #define XENO_SILO_DETECTION_RANGE 10//How far silos can detect hostiles
+#define XENO_GARGOYLE_DETECTION_COOLDOWN 30 SECONDS
+#define XENO_GARGOYLE_DETECTION_RANGE 10//How far gargoyles can detect hostiles
+#define XENO_RESTING_COOLDOWN 2 SECONDS
+#define XENO_UNRESTING_COOLDOWN 0.5 SECONDS
+
 #define XENO_HIVEMIND_DETECTION_RANGE 10 //How far out (in tiles) can the hivemind detect hostiles
 #define XENO_HIVEMIND_DETECTION_COOLDOWN 1 MINUTES
 
@@ -601,11 +608,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define GORGER_DRAIN_HEAL 40 // overheal gained each time the target is drained
 #define GORGER_DRAIN_BLOOD_DRAIN 20 // amount of plasma drained when feeding on something
 #define GORGER_TRANSFUSION_HEAL 0.3 // in %
-#define GORGER_REJUVENATE_DURATION -1
-#define GORGER_REJUVENATE_COST 20
-#define GORGER_REJUVENATE_SLOWDOWN 6
-#define GORGER_REJUVENATE_HEAL 0.05 //in %
-#define GORGER_REJUVENATE_THRESHOLD 0.10 //in %
+#define GORGER_OPPOSE_COST 100
+#define GORGER_OPPOSE_HEAL 0.2 // in %
 #define GORGER_PSYCHIC_LINK_CHANNEL 10 SECONDS
 #define GORGER_PSYCHIC_LINK_RANGE 15
 #define GORGER_PSYCHIC_LINK_REDIRECT 0.5 //in %
@@ -674,13 +678,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Defender defines
 #define DEFENDER_CHARGE_RANGE 4
 
-//Baneling defines
-#define BANELING_CHARGE_MAX 2
-#define BANELING_CHARGE_GAIN_TIME 240 SECONDS
-#define BANELING_CHARGE_RESPAWN_TIME 30 SECONDS
-/// Not specified in seconds because it causes smoke to last almost four times as long if done so
-#define BANELING_SMOKE_DURATION 4
-
 //Sentinel defines
 #define SENTINEL_TOXIC_SPIT_STACKS_PER 2 //Amount of debuff stacks to be applied per spit.
 #define SENTINEL_TOXIC_SLASH_COUNT 3 //Amount of slashes before the buff runs out
@@ -708,11 +705,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS 2 SECONDS //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 #define WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS 3 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 
-//Warrior defines
-
-#define WARRIOR_COMBO_THRESHOLD 2 //After how many abilities should warrior get an empowered cast (2 meaning the 3rd one is empowered)
-#define WARRIOR_COMBO_FADEOUT_TIME 10 SECONDS //How much time does it take for a combo to completely disappear
-
 //Larva defines
 #define LARVA_VENT_CRAWL_TIME 1 SECONDS //Larva can crawl into vents fast
 
@@ -725,6 +717,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Spiderling defines
 #define TIME_TO_DISSOLVE 5 SECONDS
 #define SPIDERLING_RAGE_RANGE 10 // how close a nearby human has to be in order to be targeted
+
+//Praetorian defines
+#define PRAE_CHARGEDISTANCE 5
 
 //misc
 
@@ -858,3 +853,12 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define SPECIES_HUMAN "species_human"
 ///Combat robot species
 #define SPECIES_COMBAT_ROBOT "species_combat_robot"
+
+///Nextmove delay after performing an interaction with a grab on something
+#define GRAB_SLAM_DELAY 0.7 SECONDS
+///Default damage for slamming a mob against an object
+#define BASE_OBJ_SLAM_DAMAGE 10
+///Default damage for slamming a mob against a wall
+#define BASE_WALL_SLAM_DAMAGE 15
+///Default damage for slamming a mob against another mob
+#define BASE_MOB_SLAM_DAMAGE 8

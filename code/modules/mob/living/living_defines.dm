@@ -124,7 +124,10 @@
 	var/grab_resist_level = 0
 	var/datum/job/job
 	var/comm_title = ""
-	///how much blood the mob has
+	/**
+	 * How much blood the mob has. 
+	 * !!! Use the adjust_blood_volume() and set_blood_volume() to set this variable instead of directly modifying it!!!
+	 */
 	var/blood_volume = 0
 	///Multiplier.
 	var/heart_multi = 1

@@ -86,15 +86,15 @@
 	if(usr.lying_angle)
 		return
 
-	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
-		return
-
 	if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
 		open(usr)
 		return
 
 	if(!istype(over_object, /atom/movable/screen))
 		return ..()
+
+	if(HAS_TRAIT(src, TRAIT_NODROP))
+		return
 
 	//Makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
 	//There's got to be a better way of doing this.
@@ -304,9 +304,6 @@
 	if(usr.incapacitated(TRUE))
 		return
 
-	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
-		return
-
 	var/list/PL = params2list(params)
 
 	if(!master)
@@ -346,7 +343,7 @@
 	sample_object = null
 	return ..()
 
-///This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
+///This proc determines the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /obj/item/storage/proc/orient2hud()
 
 	var/adjusted_contents = length(contents)
@@ -553,6 +550,8 @@
 ///This proc is called when you want to place an item into the storage item.
 /obj/item/storage/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(length(refill_types))
 		for(var/typepath in refill_types)
@@ -668,7 +667,7 @@
 	if(!allow_drawing_method)
 		verbs -= /obj/item/storage/verb/toggle_draw_mode
 
-	boxes = new
+	boxes = new()
 	boxes.name = "storage"
 	boxes.master = src
 	boxes.icon_state = "block"
@@ -676,21 +675,21 @@
 	boxes.layer = HUD_LAYER
 	boxes.plane = HUD_PLANE
 
-	storage_start = new /atom/movable/screen/storage(  )
+	storage_start = new /atom/movable/screen/storage()
 	storage_start.name = "storage"
 	storage_start.master = src
 	storage_start.icon_state = "storage_start"
 	storage_start.screen_loc = "7,7 to 10,8"
 	storage_start.layer = HUD_LAYER
 	storage_start.plane = HUD_PLANE
-	storage_continue = new /atom/movable/screen/storage(  )
+	storage_continue = new /atom/movable/screen/storage()
 	storage_continue.name = "storage"
 	storage_continue.master = src
 	storage_continue.icon_state = "storage_continue"
 	storage_continue.screen_loc = "7,7 to 10,8"
 	storage_continue.layer = HUD_LAYER
 	storage_continue.plane = HUD_PLANE
-	storage_end = new /atom/movable/screen/storage(  )
+	storage_end = new /atom/movable/screen/storage()
 	storage_end.name = "storage"
 	storage_end.master = src
 	storage_end.icon_state = "storage_end"
@@ -698,20 +697,20 @@
 	storage_end.layer = HUD_LAYER
 	storage_end.plane = HUD_PLANE
 
-	stored_start = new /obj //we just need these to hold the icon
+	stored_start = new /obj() //we just need these to hold the icon
 	stored_start.icon_state = "stored_start"
 	stored_start.layer = HUD_LAYER
 	stored_start.plane = HUD_PLANE
-	stored_continue = new /obj
+	stored_continue = new /obj()
 	stored_continue.icon_state = "stored_continue"
 	stored_continue.layer = HUD_LAYER
 	stored_continue.plane = HUD_PLANE
-	stored_end = new /obj
+	stored_end = new /obj()
 	stored_end.icon_state = "stored_end"
 	stored_end.layer = HUD_LAYER
 	stored_end.plane = HUD_PLANE
 
-	closer = new
+	closer = new()
 	closer.master = src
 
 /obj/item/storage/Destroy()
@@ -745,7 +744,7 @@
 
 ///BubbleWrap - A box can be folded up to make card
 /obj/item/storage/attack_self(mob/user)
-
+	. = ..()
 	//Clicking on itself will empty it, if it has the verb to do that.
 
 	if(allow_quick_empty)
@@ -876,6 +875,7 @@
 	return
 
 /obj/item/storage/update_icon_state()
+	. = ..()
 	if(!sprite_slots)
 		icon_state = initial(icon_state)
 		return

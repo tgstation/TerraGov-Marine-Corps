@@ -114,8 +114,9 @@
 	icon = 'icons/obj/clothing/headwear/marine_helmets.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_helmets.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
 	icon_state = "helmet"
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	max_integrity = 5
@@ -161,7 +162,16 @@
 	. = ..()
 	helmet_overlays = list("damage","band","item") //To make things simple.
 
-/obj/item/clothing/head/helmet/marine/update_icon()
+/obj/item/clothing/head/helmet/marine/on_pocket_insertion()
+	. = ..()
+	update_helmet_overlays()
+
+/obj/item/clothing/head/helmet/marine/on_pocket_removal()
+	. = ..()
+	update_helmet_overlays()
+
+///Updates the helmet_overlays list, inserting and removing images from it as necesarry
+/obj/item/clothing/head/helmet/marine/proc/update_helmet_overlays()
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		return
 	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
@@ -200,9 +210,11 @@
 	var/mutable_appearance/M
 	for(var/i in helmet_overlays)
 		M = helmet_overlays[i]
-		if(M)
-			M = mutable_appearance('icons/mob/modular/modular_helmet_storage.dmi',M.icon_state)
-			standing.overlays += M
+		if(!M)
+			continue
+
+		M = mutable_appearance('icons/mob/modular/modular_helmet_storage.dmi', M.icon_state)
+		standing.overlays += M
 
 /obj/item/clothing/head/helmet/marine/specialist
 	name = "\improper B18 helmet"
@@ -249,6 +261,18 @@
 	desc = "A lightweight helmet with a small port in the back. Offers lower response times for TGMC mech pilots by integrating them directly into their mech suit's systems, though it certainly doesn't make them smarter."
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
+/obj/item/clothing/head/helmet/marine/assault_crewman
+	name = "\improper M12B pattern tanker helmet"
+	icon_state = "assault_crewman_helmet"
+	desc = "A lightweight helmet. Offers the user protection from being hit in the hell by ejected shell casings, mostly."
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/head/helmet/marine/transport_crewman
+	name = "\improper M12A pattern transport helmet"
+	icon_state = "transport_crewman_helmet"
+	desc = "A lightweight helmet with a small port in the back. Offers decent protection against reckless driving."
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+
 /obj/item/clothing/head/helmet/marine/riot
 	name = "M8 riot helmet"
 	desc = "It's a modified version of the widely used Riot Helmets for use against angry jarheads. Boasts high ballistic protection"
@@ -265,8 +289,9 @@
 	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
 	flags_item = SYNTH_RESTRICTED
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc
@@ -327,8 +352,9 @@
 	icon_state = "guardhelm"
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
 	item_state = "guardhelm"
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 85, BULLET = 75, LASER = 70, ENERGY = 70, BOMB = 60, BIO = 50, FIRE = 50, ACID = 50)
@@ -351,8 +377,9 @@
 	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
 	icon_state = "upp_helmet1"
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 70, BULLET = 55, LASER = 40, ENERGY = 35, BOMB = 35, BIO = 5, FIRE = 35, ACID = 35)
@@ -373,8 +400,9 @@
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
 	icon_state = "spec"
 	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 10, BIO = 0, FIRE = 15, ACID = 15)
 	flags_inventory = BLOCKSHARPOBJ
@@ -417,8 +445,9 @@
 	icon_state = "som_helmet"
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
 	item_state = "som_helmet"
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
@@ -462,8 +491,9 @@
 	icon_state = "icc"
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
 	item_state = "icc"
 	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 50, ENERGY = 60, BOMB = 70, BIO = 10, FIRE = 60, ACID = 50)
 
@@ -473,3 +503,10 @@
 	icon_state = "icc_guard"
 	item_state = "icc_guard"
 	soft_armor = list(MELEE = 60, BULLET = 65, LASER = 40, ENERGY = 60, BOMB = 80, BIO = 10, FIRE = 55, ACID = 40)
+
+/obj/item/clothing/head/helmet/marine/icc/guard/heavy
+	name = "\improper Modelle/22 combat helmet"
+	desc = "A high-quality ICCGF helmet, mostly seen worn by the ICC's highest quality troops, better well known as 'Guardsmen'. Like most helmets of the ICC it is made to fit a utility and combat role with noticeably high resistance to explosions and bullets, this one is heavily reinforced."
+	icon_state = "icc_guard_heavy"
+	item_state = "icc_guard_heavy"
+	soft_armor = list(MELEE = 65, BULLET = 70, LASER = 40, ENERGY = 60, BOMB = 85, BIO = 10, FIRE = 55, ACID = 40)

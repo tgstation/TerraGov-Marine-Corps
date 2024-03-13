@@ -27,6 +27,8 @@
 	var/tier2_xeno_limit
 	/// Queue of all clients wanting to join xeno side
 	var/list/client/candidates
+	/// Amount of special resin points used to build special resin walls by each hive.
+	var/special_build_points = 50
 
 	///Reference to upgrades available and purchased by this hive.
 	var/datum/hive_purchases/purchases = new
@@ -80,8 +82,8 @@
 	.["hive_larva_rate"] = SSsilo.current_larva_spawn_rate
 	.["hive_larva_burrowed"] = xeno_job.total_positions - xeno_job.current_positions
 
-	var/psy_points = SSpoints.xeno_points_by_hive[hivenumber]
-	.["hive_psy_points"] = !isnull(psy_points) ? psy_points : 0
+	.["hive_strategic_psy_points"] = !isnull(SSpoints.xeno_strategic_points_by_hive[hivenumber]) ? SSpoints.xeno_strategic_points_by_hive[hivenumber] : 0
+	.["hive_tactical_psy_points"] = !isnull(SSpoints.xeno_tactical_points_by_hive[hivenumber]) ? SSpoints.xeno_tactical_points_by_hive[hivenumber] : 0
 
 	var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
 	.["hive_orphan_collapse"] = !isnull(hivemind_countdown) ? hivemind_countdown : 0
@@ -140,7 +142,7 @@
 			"location" = get_xeno_location(xeno),
 			"health" = round(health * 100, 1),
 			"plasma" = round((xeno.plasma_stored / (caste.plasma_max * plasma_multi)) * 100, 1),
-			"is_leader" = xeno.queen_chosen_lead,
+			"is_leader" = xeno.xeno_flags & XENO_LEADER,
 			"is_ssd" = !xeno.client,
 			"index" = GLOB.hive_ui_caste_index[caste.caste_type_path],
 		))
@@ -374,6 +376,12 @@
 	for(var/obj/structure/xeno/evotower/tower AS in evotowers)
 		. += tower.boost_amount
 
+///fetches number of bonus maturity points given to the hive
+/datum/hive_status/proc/get_upgrade_boost()
+	. = 0
+	for(var/obj/structure/xeno/evotower/tower AS in evotowers)
+		. += tower.maturty_boost_amount
+
 // ***************************************
 // *********** Adding xenos
 // ***************************************
@@ -528,7 +536,7 @@
 	if(!hive.remove_xeno(src))
 		CRASH("failed to remove xeno from a hive")
 
-	if(queen_chosen_lead || (src in hive.xeno_leader_list))
+	if((xeno_flags & XENO_LEADER) || (src in hive.xeno_leader_list))
 		hive.remove_leader(src)
 
 	SSdirection.stop_tracking(hive.hivenumber, src)
@@ -543,7 +551,7 @@
 	var/obj/machinery/nuclearbomb/nuke = thing
 	if(!nuke.timer)
 		CRASH("hive_status's setup_nuke_hud_timer called with invalid nuke object")
-	nuke_hud_timer = new(null, get_all_xenos() , nuke.timer, "Nuke ACTIVE: ${timer}")
+	nuke_hud_timer = new(null, null, get_all_xenos() , nuke.timer, "Nuke ACTIVE: ${timer}")
 
 /datum/hive_status/Destroy(force, ...)
 	. = ..()
@@ -597,12 +605,12 @@
 // ***************************************
 /datum/hive_status/proc/add_leader(mob/living/carbon/xenomorph/X)
 	xeno_leader_list += X
-	X.queen_chosen_lead = TRUE
+	X.xeno_flags |= XENO_LEADER
 	X.give_rally_abilities()
 
 /datum/hive_status/proc/remove_leader(mob/living/carbon/xenomorph/X)
 	xeno_leader_list -= X
-	X.queen_chosen_lead = FALSE
+	X.xeno_flags &= ~XENO_LEADER
 
 	if(!isxenoshrike(X) && !isxenoqueen(X) && !isxenohivemind(X)) //These innately have the Rally Hive ability
 		X.remove_rally_hive_ability()
@@ -910,7 +918,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	D.orphan_hive_timer = addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode, orphan_hivemind_collapse)), NUCLEAR_WAR_ORPHAN_HIVEMIND, TIMER_STOPPABLE)
 
-	orphan_hud_timer = new(null, get_all_xenos(), D.orphan_hive_timer, "Orphan Hivemind Collapse: ${timer}", 150, -80)
+	orphan_hud_timer = new(null, null, get_all_xenos(), D.orphan_hive_timer, "Orphan Hivemind Collapse: ${timer}", 150, -80)
 
 /datum/hive_status/normal/burrow_larva(mob/living/carbon/xenomorph/larva/L)
 	if(!is_ground_level(L.z))
@@ -967,7 +975,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		xeno_candidate.mob.reset_perspective(chosen_silo)
 		var/double_check = tgui_alert(xeno_candidate.mob, "Spawn here?", "Spawn location", list("Yes","Pick another silo","Abort"), timeout = 20 SECONDS)
 		if(double_check == "Pick another silo")
-			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
+			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos, larva_already_reserved)
 		else if(double_check != "Yes")
 			xeno_candidate.mob.reset_perspective(null)
 			remove_from_larva_candidate_queue(xeno_candidate)
@@ -1044,7 +1052,8 @@ to_chat will check for valid clients itself already so no need to double check f
 		qdel(structure)
 
 	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS_ADVANCED)
-		SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
+		SSpoints.xeno_strategic_points_by_hive[hivenumber] = SILO_PRICE //Give a free silo when going shipside and a turret
+		SSpoints.xeno_tactical_points_by_hive[hivenumber] = (XENO_TURRET_PRICE*4)
 
 
 /datum/hive_status/normal/proc/on_hijack_depart(datum/source, new_mode)
@@ -1089,8 +1098,11 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/list/possible_silos = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos)
 	if(stored_larva > 0 && !LAZYLEN(candidates) && !XENODEATHTIME_CHECK(waiter.mob) && (length(possible_mothers) || length(possible_silos) || (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && SSmonitor.gamestate == SHUTTERS_CLOSED)))
-		attempt_to_spawn_larva(waiter)
-		return
+		xeno_job.occupy_job_positions(1)
+		if(!attempt_to_spawn_larva(waiter, TRUE))
+			xeno_job.free_job_positions(1)
+			return FALSE
+		return TRUE
 	if(LAZYFIND(candidates, waiter))
 		remove_from_larva_candidate_queue(waiter)
 		return FALSE

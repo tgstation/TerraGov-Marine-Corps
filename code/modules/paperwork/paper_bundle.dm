@@ -19,6 +19,8 @@
 
 /obj/item/paper_bundle/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 
 	if(istype(I, /obj/item/paper))
@@ -196,36 +198,51 @@
 	usr.dropItemToGround(src)
 	qdel(src)
 
-/obj/item/paper_bundle/update_icon()
+/obj/item/paper_bundle/update_icon_state()
+	. = ..()
 	if(length(contents))
 		var/obj/item/I = contents[1]
 		icon_state = I.icon_state
-		overlays = I.overlays
+
+/obj/item/paper_bundle/update_desc(updates)
+	. = ..()
+	var/paper_number = 0
+	var/photo = FALSE
+	for(var/obj/thing in src)
+		if(istype(thing, /obj/item/paper))
+			paper_number++
+		else if(istype(thing, /obj/item/photo))
+			photo = TRUE
+	if(paper_number>1)
+		desc = "[paper_number] papers clipped to each other."
+	else
+		desc = "A single sheet of paper."
+	if(photo)
+		desc += "There is a photo attached to it."
+
+
+/obj/item/paper_bundle/update_overlays()
+	. = ..()
+	if(length(contents))
+		var/obj/item/I = contents[1]
+		. = I.overlays
 	underlays = 0
-	var/i = 0
-	var/photo
+	var/paper_number = 0
 	for(var/obj/O in src)
 		var/image/IMG = image('icons/obj/items/paper.dmi')
 		if(istype(O, /obj/item/paper))
 			IMG.icon_state = O.icon_state
-			IMG.pixel_x -= min(1*i, 2)
-			IMG.pixel_y -= min(1*i, 2)
-			pixel_x = min(0.5*i, 1)
-			pixel_y = min(  1*i, 2)
+			IMG.pixel_x -= min(1*paper_number, 2)
+			IMG.pixel_y -= min(1*paper_number, 2)
+			pixel_x = min(0.5*paper_number, 1)
+			pixel_y = min(  1*paper_number, 2)
 			underlays += IMG
-			i++
+			paper_number++
 		else if(istype(O, /obj/item/photo))
 			var/obj/item/photo/PH = O
 			IMG = PH.picture.picture_icon
-			photo = 1
-			overlays += IMG
-	if(i>1)
-		desc = "[i] papers clipped to each other."
-	else
-		desc = "A single sheet of paper."
-	if(photo)
-		desc += "\nThere is a photo attached to it."
-	overlays += image('icons/obj/items/paper.dmi', "clip")
+			. += IMG
+	. += image('icons/obj/items/paper.dmi', "clip")
 
 /obj/item/paper_bundle/proc/attach_doc(obj/item/I, mob/living/user, no_message)
 	if(I.loc == user)

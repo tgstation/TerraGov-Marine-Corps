@@ -121,14 +121,15 @@
 #define ABOVE_LYING_MOB_LAYER 3.9 //drone (not the xeno)
 
 //#define MOB_LAYER 4
-#define RIVER_OVERLAY_LAYER 4.01
+
+#define MOB_JUMP_LAYER 4.05
 
 #define ABOVE_MOB_LAYER 4.1
 
 ///for platform corner structures
 #define ABOVE_MOB_PLATFORM_LAYER 4.11
 
-#define TANK_BARREL_LAYER 4.2
+#define ABOVE_MOB_PROP_LAYER 4.2
 
 #define TANK_TURRET_LAYER 4.27
 

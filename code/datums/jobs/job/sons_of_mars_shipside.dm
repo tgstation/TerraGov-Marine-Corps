@@ -49,12 +49,6 @@ Godspeed, commander! And remember, you are not above the law."})
 	jobtype = /datum/job/som/command/commander
 
 	id = /obj/item/card/id/gold
-	belt = /obj/item/storage/holster/belt/pistol/m4a3/som/fancy/fieldcommander
-	ears = /obj/item/radio/headset/mainship/som/command
-	w_uniform = /obj/item/clothing/under/som/officer/senior
-	shoes = /obj/item/clothing/shoes/marinechief/som
-	gloves = /obj/item/clothing/gloves/marine/som/officer
-	r_store = /obj/item/storage/pouch/general/large/som
 
 /datum/outfit/job/som/command/commander/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -135,43 +129,6 @@ Make the SOM proud!"})
 	jobtype = /datum/job/som/command/fieldcommander
 
 	id = /obj/item/card/id/dogtag/fc
-	belt = /obj/item/storage/holster/belt/pistol/m4a3/som/fancy/fieldcommander
-	ears = /obj/item/radio/headset/mainship/som/command
-	w_uniform = /obj/item/clothing/under/som/officer/webbing
-	wear_suit = /obj/item/clothing/suit/modular/som/heavy/leader/officer
-	shoes = /obj/item/clothing/shoes/marine/som/knife
-	gloves = /obj/item/clothing/gloves/marine/som/officer
-	mask = /obj/item/clothing/mask/gas
-	head = /obj/item/clothing/head/modular/som/leader/officer
-	glasses = /obj/item/clothing/glasses/hud/health
-	r_store = /obj/item/storage/pouch/firstaid/som/combat_patrol_leader
-	l_store = /obj/item/storage/pouch/grenade/som/combat_patrol
-	suit_store = /obj/item/weapon/twohanded/fireaxe/som
-	back = /obj/item/storage/backpack/satchel/som
-
-/datum/outfit/job/som/command/fieldcommander/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
-
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/isotonic, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclot, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_SUIT)
-
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/small, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign/som, SLOT_IN_ACCESSORY)
 
 //Staff Officer
 /datum/job/som/command/staffofficer
@@ -227,13 +184,6 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	jobtype = /datum/job/som/command/staffofficer
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/holster/belt/pistol/m4a3/som/serpenta
-	ears = /obj/item/radio/headset/mainship/som/command
-	w_uniform = /obj/item/clothing/under/som/officer
-	shoes = /obj/item/clothing/shoes/marinechief/som
-	gloves = /obj/item/clothing/gloves/marine/som/officer
-	r_store = /obj/item/storage/pouch/general/large/som
-	l_store = /obj/item/binoculars/fire_support/campaign/som
 
 //Pilot Officer
 /datum/job/som/command/pilot

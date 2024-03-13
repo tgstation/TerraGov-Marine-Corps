@@ -158,6 +158,9 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
+"rx" = (
+/turf/closed/mineral/smooth/desertdamrockwall/indestructible,
+/area/deathmatch)
 "rK" = (
 /obj/machinery/door/window/right,
 /turf/open/floor/wood,
@@ -550,55 +553,55 @@
 /area/deathmatch)
 
 (1,1,1) = {"
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
 "}
 (2,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -643,10 +646,10 @@ WC
 WC
 WC
 WC
-Uv
+rx
 "}
 (3,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -691,10 +694,10 @@ WV
 GH
 WV
 WC
-Uv
+rx
 "}
 (4,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -739,10 +742,10 @@ WV
 NB
 WV
 WC
-Uv
+rx
 "}
 (5,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -787,10 +790,10 @@ GB
 GB
 WV
 WC
-Uv
+rx
 "}
 (6,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -835,10 +838,10 @@ WC
 WC
 WC
 WC
-Uv
+rx
 "}
 (7,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -883,10 +886,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (8,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -931,10 +934,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (9,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -979,10 +982,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (10,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -1027,10 +1030,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (11,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -1075,10 +1078,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (12,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -1123,10 +1126,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (13,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -1171,10 +1174,10 @@ WC
 WC
 Uv
 Uv
-Uv
+rx
 "}
 (14,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -1219,10 +1222,10 @@ WV
 WC
 Uv
 Uv
-Uv
+rx
 "}
 (15,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -1267,10 +1270,10 @@ hw
 WC
 Uv
 Uv
-Uv
+rx
 "}
 (16,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -1315,10 +1318,10 @@ WV
 WC
 Uv
 Uv
-Uv
+rx
 "}
 (17,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -1363,10 +1366,10 @@ WV
 WC
 Uv
 Uv
-Uv
+rx
 "}
 (18,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -1411,10 +1414,10 @@ WV
 WC
 Uv
 Uv
-Uv
+rx
 "}
 (19,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -1459,10 +1462,10 @@ WV
 WC
 Uv
 Uv
-Uv
+rx
 "}
 (20,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -1507,10 +1510,10 @@ WV
 WC
 Uv
 Uv
-Uv
+rx
 "}
 (21,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -1555,10 +1558,10 @@ cR
 WC
 Uv
 Uv
-Uv
+rx
 "}
 (22,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -1603,10 +1606,10 @@ WV
 WC
 Uv
 Uv
-Uv
+rx
 "}
 (23,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -1651,10 +1654,10 @@ WV
 WC
 Uv
 Uv
-Uv
+rx
 "}
 (24,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -1699,10 +1702,10 @@ hw
 WC
 Uv
 Uv
-Uv
+rx
 "}
 (25,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -1747,10 +1750,10 @@ WC
 WC
 Uv
 Uv
-Uv
+rx
 "}
 (26,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -1795,10 +1798,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (27,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -1843,10 +1846,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (28,1,1) = {"
-Uv
+rx
 Uv
 Uv
 mY
@@ -1891,10 +1894,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (29,1,1) = {"
-Uv
+rx
 Uv
 Uv
 mY
@@ -1939,10 +1942,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (30,1,1) = {"
-Uv
+rx
 Uv
 aB
 kv
@@ -1987,10 +1990,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (31,1,1) = {"
-Uv
+rx
 Uv
 mY
 uR
@@ -2035,10 +2038,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (32,1,1) = {"
-Uv
+rx
 Uv
 mY
 uR
@@ -2083,10 +2086,10 @@ WC
 WC
 WC
 WC
-Uv
+rx
 "}
 (33,1,1) = {"
-Uv
+rx
 Uv
 mY
 uR
@@ -2131,10 +2134,10 @@ WV
 sv
 NB
 WC
-Uv
+rx
 "}
 (34,1,1) = {"
-Uv
+rx
 aB
 kv
 rf
@@ -2179,10 +2182,10 @@ WV
 GB
 GB
 WC
-Uv
+rx
 "}
 (35,1,1) = {"
-Uv
+rx
 kv
 uR
 uR
@@ -2227,10 +2230,10 @@ WC
 WC
 WC
 WC
-Uv
+rx
 "}
 (36,1,1) = {"
-Uv
+rx
 uR
 uR
 uR
@@ -2275,10 +2278,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (37,1,1) = {"
-Uv
+rx
 uR
 uR
 Gx
@@ -2323,10 +2326,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (38,1,1) = {"
-Uv
+rx
 uR
 uR
 vb
@@ -2371,10 +2374,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (39,1,1) = {"
-Uv
+rx
 bP
 Vo
 Yq
@@ -2419,10 +2422,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (40,1,1) = {"
-Uv
+rx
 mY
 uR
 uR
@@ -2467,10 +2470,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (41,1,1) = {"
-Uv
+rx
 Uv
 bP
 uR
@@ -2515,10 +2518,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (42,1,1) = {"
-Uv
+rx
 Uv
 Uv
 bP
@@ -2563,10 +2566,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (43,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -2611,10 +2614,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (44,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -2659,10 +2662,10 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (45,1,1) = {"
-Uv
+rx
 Uv
 Uv
 Uv
@@ -2707,53 +2710,53 @@ Uv
 Uv
 Uv
 Uv
-Uv
+rx
 "}
 (46,1,1) = {"
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
+rx
 "}

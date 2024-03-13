@@ -64,6 +64,8 @@
 
 /obj/machinery/chem_master/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I,/obj/item/reagent_containers) && I.is_open_container())
 		for(var/datum/reagent/X in I.reagents.reagent_list)
@@ -408,7 +410,8 @@
 	popup.set_content(dat)
 	popup.open()
 
-/obj/machinery/chem_master/update_icon()
+/obj/machinery/chem_master/update_icon_state()
+	. = ..()
 	if(machine_stat & BROKEN)
 		icon_state = (beaker?"mixer1_b":"mixer0_b")
 	else if(machine_stat & NOPOWER)

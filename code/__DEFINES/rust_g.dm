@@ -118,7 +118,7 @@
 #define rustg_dmi_icon_states(fname) RUSTG_CALL(RUST_G, "dmi_icon_states")(fname)
 
 #define rustg_file_read(fname) RUSTG_CALL(RUST_G, "file_read")(fname)
-#define rustg_file_exists(fname) RUSTG_CALL(RUST_G, "file_exists")(fname)
+#define rustg_file_exists(fname) (RUSTG_CALL(RUST_G, "file_exists")(fname) == "true")
 #define rustg_file_write(text, fname) RUSTG_CALL(RUST_G, "file_write")(text, fname)
 #define rustg_file_append(text, fname) RUSTG_CALL(RUST_G, "file_append")(text, fname)
 #define rustg_file_get_line_count(fname) text2num(RUSTG_CALL(RUST_G, "file_get_line_count")(fname))
@@ -129,7 +129,13 @@
 	#define text2file(text, fname) rustg_file_append(text, "[fname]")
 #endif
 
+/// Returns the git hash of the given revision, ex. "HEAD".
 #define rustg_git_revparse(rev) RUSTG_CALL(RUST_G, "rg_git_revparse")(rev)
+
+/**
+ * Returns the date of the given revision in the format YYYY-MM-DD.
+ * Returns null if the revision is invalid.
+ */
 #define rustg_git_commit_date(rev) RUSTG_CALL(RUST_G, "rg_git_commit_date")(rev)
 
 #define RUSTG_HTTP_METHOD_GET "get"
@@ -179,7 +185,7 @@
 /**²
  * Remove every link to the node with unique_id. Replace that node by null
  */
-#define rustg_remove_node_astart(unique_id) RUSTG_CALL(RUST_G, "remove_node_astar")(unique_id)
+#define rustg_remove_node_astar(unique_id) RUSTG_CALL(RUST_G, "remove_node_astar")(unique_id)
 
 /**
  * Compute the shortest path between start_node and goal_node using A*. Heuristic used is simple geometric distance

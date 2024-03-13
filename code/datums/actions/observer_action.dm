@@ -100,4 +100,8 @@
 
 /datum/action/observer_action/campaign_respawn/action_activate()
 	var/datum/game_mode/mode = SSticker.mode
+	if(!mode)
+		to_chat(usr, span_warning("The round isn't ready yet!"))
+		return
+
 	mode.player_respawn(owner)

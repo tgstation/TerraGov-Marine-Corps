@@ -169,6 +169,7 @@
 
 
 /obj/machinery/computer/security/telescreen/update_icon_state()
+	. = ..()
 	icon_state = initial(icon_state)
 	if(machine_stat & (BROKEN|DISABLED))
 		icon_state += "b"

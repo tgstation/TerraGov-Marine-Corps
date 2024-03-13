@@ -3,13 +3,14 @@
 	name = "NT base rescue"
 	mission_icon = "nt_rescue"
 	mission_flags = MISSION_DISALLOW_TELEPORT
-	map_name = "NT site B-403"
+	map_name = "NT Site B-403"
 	map_file = '_maps/map_files/Campaign maps/nt_base/nt_base.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SNOWSTORM = TRUE)
 	map_light_colours = list(COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE)
 	map_light_levels = list(225, 150, 100, 75)
 	objectives_total = 1
 	min_destruction_amount = 1
+	max_game_time = 15 MINUTES
 	shutter_open_delay = list(
 		MISSION_STARTING_FACTION = 60 SECONDS,
 		MISSION_HOSTILE_FACTION = 0,
@@ -59,8 +60,8 @@
 
 /datum/campaign_mission/destroy_mission/base_rescue/load_pre_mission_bonuses()
 	. = ..()
-	for(var/i = 1 to objectives_total)
-		new /obj/item/storage/box/explosive_mines(get_turf(pick(GLOB.campaign_reward_spawners[defending_faction])))
+	spawn_mech(attacking_faction, 0, 0, 5)
+	spawn_mech(defending_faction, 0, 0, 2)
 
 /datum/campaign_mission/destroy_mission/base_rescue/load_mission_brief()
 	starting_faction_mission_brief = "NanoTrasen has issues an emergency request for assistance at an isolated medical facility located in the Western Ayolan Ranges. \
@@ -69,6 +70,7 @@
 	hostile_faction_mission_brief = "Recon forces have led us to this secure Nanotrasen facility in the Western Ayolan Ranges. Sympathetic native elements suggest NT have been conducting secret research here to the detriment of the local ecosystem and human settlements. \
 		Find the security override terminals to override the facility's emergency lockdown. \
 		Once the lockdown is lifted, destroy what they're working on inside."
+	hostile_faction_mission_parameters = "Teleportation is unavailable in this area due to unknown interference from beneath the NT compound."
 
 /datum/campaign_mission/destroy_mission/base_rescue/load_objective_description()
 	starting_faction_objective_description = "Major Victory:Protect the NT base from SOM attack. Do not allow them to override the security lockdown and destroy NT's sensitive equipment"
@@ -140,13 +142,14 @@
 	return ..()
 
 /obj/structure/weapon_x_pod/update_icon_state()
+	. = ..()
 	if(occupant)
 		icon_state = initial(icon_state)
 	else
 		icon_state = "[initial(icon_state)]_open"
 
-/obj/structure/weapon_x_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(X != occupant)
+/obj/structure/weapon_x_pod/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker != occupant)
 		return
 	release_occupant()
 

@@ -130,6 +130,8 @@ Buildable meters
 
 /obj/item/pipe/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(user.incapacitated())
 		return FALSE
 	if(iswrench(I))

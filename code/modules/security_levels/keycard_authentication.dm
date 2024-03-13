@@ -25,6 +25,8 @@
 
 /obj/machinery/keycard_auth/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")
@@ -42,7 +44,8 @@
 			event_triggered_by = user
 			broadcast_request() //This is the device making the initial event request. It needs to broadcast to other devices
 
-/obj/machinery/keycard_auth/update_icon()
+/obj/machinery/keycard_auth/update_icon_state()
+	. = ..()
 	if(machine_stat &NOPOWER)
 		icon_state = "auth_off"
 

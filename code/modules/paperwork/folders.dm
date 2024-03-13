@@ -43,14 +43,16 @@
 	if(updateicon)
 		update_icon()
 
-/obj/item/folder/update_icon()
-	overlays.Cut()
+/obj/item/folder/update_overlays()
+	. = ..()
 	if(length(contents))
-		overlays += "folder_paper"
-	return
+		. += "folder_paper"
+
 
 /obj/item/folder/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/paper) || istype(I, /obj/item/photo) || istype(I, /obj/item/paper_bundle))
 		if(!user.transferItemToLoc(I, src))
 			return

@@ -41,8 +41,9 @@
 	if(src.shoot_inventory && prob(2))
 		src.throw_item()
 
-/obj/machinery/smartfridge/update_icon()
-	if( !(machine_stat & NOPOWER) )
+/obj/machinery/smartfridge/update_icon_state()
+	. = ..()
+	if(!(machine_stat & NOPOWER))
 		icon_state = icon_on
 	else
 		icon_state = icon_off
@@ -53,6 +54,8 @@
 
 /obj/machinery/smartfridge/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I))
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)

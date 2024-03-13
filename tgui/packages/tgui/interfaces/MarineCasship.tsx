@@ -1,6 +1,23 @@
+import {
+  KEY_1,
+  KEY_2,
+  KEY_3,
+  KEY_4,
+  KEY_5,
+  KEY_6,
+  KEY_A,
+  KEY_D,
+  KEY_DOWN,
+  KEY_ENTER,
+  KEY_LEFT,
+  KEY_RIGHT,
+  KEY_S,
+  KEY_SPACE,
+  KEY_UP,
+  KEY_W,
+} from '../../common/keycodes';
 import { useBackend } from '../backend';
-import { Button, ProgressBar, NoticeBox, Stack } from '../components';
-import { KEY_DOWN, KEY_ENTER, KEY_LEFT, KEY_RIGHT, KEY_SPACE, KEY_UP, KEY_W, KEY_D, KEY_S, KEY_A, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6 } from '../../common/keycodes';
+import { Button, NoticeBox, ProgressBar, Stack } from '../components';
 import { Window } from '../layouts';
 
 // _DEFINES/cas.dm
@@ -32,13 +49,14 @@ type CasWeapon = {
   eqp_tag: number;
 };
 
-export const MarineCasship = (props, context) => {
-  const { act, data } = useBackend<CasData>(context);
+export const MarineCasship = (props) => {
+  const { act, data } = useBackend<CasData>();
   return (
     <Window
       width={590}
       height={data.plane_state === PLANE_STATE_ACTIVATED ? 170 : 285}
-      theme="ntos">
+      theme="ntos"
+    >
       <Window.Content
         onKeyDown={(event) => {
           const keyCode = window.event ? event.which : event.keyCode;
@@ -102,7 +120,8 @@ export const MarineCasship = (props, context) => {
             }
             act('cycle_attackdir', { newdir: newdir });
           }
-        }}>
+        }}
+      >
         {data.plane_state === PLANE_STATE_ACTIVATED ? (
           <EnginesOff />
         ) : (
@@ -113,8 +132,8 @@ export const MarineCasship = (props, context) => {
   );
 };
 
-const EnginesOff = (props, context) => {
-  const { act, data } = useBackend<CasData>(context);
+const EnginesOff = (props) => {
+  const { act, data } = useBackend<CasData>();
   const { fuel_left, fuel_max } = data;
   return (
     <Stack fill>
@@ -154,8 +173,8 @@ const EnginesOff = (props, context) => {
   );
 };
 
-const NormalOperation = (props, context) => {
-  const { act, data } = useBackend<CasData>(context);
+const NormalOperation = (props) => {
+  const { act, data } = useBackend<CasData>();
   const {
     plane_state,
     location_state,
@@ -211,7 +230,7 @@ const NormalOperation = (props, context) => {
           <Stack.Item>
             <Button
               fontSize="43px"
-              icon={getDirectionArrow(props, context)}
+              icon={getDirectionArrow(props)}
               tooltip="Direction of strafe"
               onClick={() => act('cycle_attackdir')}
               disabled={
@@ -233,7 +252,8 @@ const NormalOperation = (props, context) => {
                 onClick={() =>
                   act('change_weapon', { selection: equipment.eqp_tag })
                 }
-                color={equipment.eqp_tag === active_weapon_tag ? 'red' : null}>
+                color={equipment.eqp_tag === active_weapon_tag ? 'red' : null}
+              >
                 {equipment.ammo_name ? equipment.ammo_name : equipment.name}
               </Button>
             </Stack.Item>
@@ -259,8 +279,8 @@ const NormalOperation = (props, context) => {
   );
 };
 
-const LaunchLandButton = (props, context) => {
-  const { act, data } = useBackend<CasData>(context);
+const LaunchLandButton = (props) => {
+  const { act, data } = useBackend<CasData>();
   const { plane_state, plane_mode } = data;
   return plane_state === PLANE_STATE_FLYING ? (
     <Button
@@ -279,8 +299,8 @@ const LaunchLandButton = (props, context) => {
   );
 };
 
-const EngineFiremissionButton = (props, context) => {
-  const { act, data } = useBackend<CasData>(context);
+const EngineFiremissionButton = (props) => {
+  const { act, data } = useBackend<CasData>();
   const { plane_state, location_state } = data;
   return plane_state === PLANE_STATE_PREPARED ? (
     <Button
@@ -301,8 +321,8 @@ const EngineFiremissionButton = (props, context) => {
   );
 };
 
-const getDirectionArrow = (props, context) => {
-  const { act, data } = useBackend<CasData>(context);
+const getDirectionArrow = (props) => {
+  const { act, data } = useBackend<CasData>();
   switch (data.attackdir) {
     case 'NORTH':
       return 'arrow-up';

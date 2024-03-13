@@ -101,7 +101,8 @@ LINEN BINS
 		. += "There are [amount] bed sheets in the bin."
 
 
-/obj/structure/bedsheetbin/update_icon()
+/obj/structure/bedsheetbin/update_icon_state()
+	. = ..()
 	switch(amount)
 		if(0)
 			icon_state = "linenbin-empty"
@@ -113,6 +114,8 @@ LINEN BINS
 
 /obj/structure/bedsheetbin/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/bedsheet))
 		if(!user.drop_held_item())

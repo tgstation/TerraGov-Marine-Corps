@@ -57,8 +57,11 @@
 /obj/docking_port/mobile/marine_dropship/casplane/process()
 	#ifndef TESTING
 	fuel_left--
+	if((fuel_max*LOW_FUEL_WARNING_THRESHOLD) == fuel_left)
+		chair.occupant?.playsound_local(loc, 'sound/voice/plane_vws/low_fuel.ogg', 70, FALSE)
 	if((fuel_left <= LOW_FUEL_LANDING_THRESHOLD) && (state == PLANE_STATE_FLYING))
 		to_chat(chair.occupant, span_warning("Out of fuel, landing."))
+		chair.occupant?.playsound_local(loc, 'sound/voice/plane_vws/no_fuel.ogg', 70, FALSE)
 		SSshuttle.moveShuttle(id, SHUTTLE_CAS_DOCK, TRUE)
 		currently_returning = TRUE
 		end_cas_mission(chair.occupant)
@@ -194,6 +197,7 @@
 	#endif
 
 	to_chat(user, span_warning("Targets detected, routing to area of operations."))
+	user.playsound_local(chair, 'sound/voice/plane_vws/flightcomputer_hot.ogg', 70, FALSE)
 	give_eye_control(user)
 	eyeobj.setLoc(get_turf(starting_point))
 
