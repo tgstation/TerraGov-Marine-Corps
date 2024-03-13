@@ -26,8 +26,8 @@
 
 /datum/component/jump/Initialize(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags, mob/living/_external_user)
 	. = ..()
-	//if(!isliving(parent))
-	//	return COMPONENT_INCOMPATIBLE
+	if(!isatom(parent))
+		return COMPONENT_INCOMPATIBLE
 
 	if(_external_user)
 		set_external_user(new_user = _external_user)

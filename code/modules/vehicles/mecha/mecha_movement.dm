@@ -7,7 +7,7 @@
 ///Plays the mech step sound effect. Split from movement procs so that other mechs (HONK) can override this one specific part.
 /obj/vehicle/sealed/mecha/proc/play_stepsound()
 	SIGNAL_HANDLER
-	if(mecha_flags & QUIET_STEPS)
+	if(HAS_TRAIT(src, TRAIT_SILENT_FOOTSTEPS))
 		return
 	playsound(src, stepsound, 40, TRUE)
 
