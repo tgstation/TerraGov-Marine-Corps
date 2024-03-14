@@ -165,9 +165,6 @@
 	desc = "A supply crate containing a FK-88 mounted flak gun. Ammo sold separately."
 	supplies = list(/obj/item/weapon/gun/heavy_isg = 1)
 
-
-	/obj/item/weapon/gun/heavy_isg
-
 /obj/structure/largecrate/supply/ammo
 	name = "ammunition case"
 	icon_state = "case"
