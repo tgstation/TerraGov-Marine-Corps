@@ -71,9 +71,6 @@
 		var/obj/O = AM
 		O.stop_throw()
 		apply_damage(O.throwforce*(speed * 0.2), O.damtype, BODY_ZONE_CHEST, MELEE, is_sharp(O), has_edge(O), TRUE, O.penetration)
-		if(O.item_fire_stacks)
-			fire_stacks += O.item_fire_stacks
-			IgniteMob()
 
 	visible_message(span_warning(" [src] has been hit by [AM]."), null, null, 5)
 	if(ismob(AM.thrower))
