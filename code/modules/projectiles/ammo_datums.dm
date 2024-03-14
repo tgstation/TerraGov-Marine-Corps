@@ -3394,7 +3394,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/plasma/smg_standard
 	icon_state = "plasma_ball_small"
-	damage = 20
+	damage = 22
 	penetration = 10
 	sundering = 0.5
 
