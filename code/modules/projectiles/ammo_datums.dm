@@ -3420,7 +3420,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 10
 	sundering = 2
 	damage_falloff = 0.5
-	shell_speed = 4
 
 /datum/ammo/energy/plasma/smg_overcharge/drop_nade(turf/T)
 	explosion(T, weak_impact_range = 3)
