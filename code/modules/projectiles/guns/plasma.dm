@@ -201,10 +201,10 @@
 	aim_slowdown = 0.35
 	movement_acc_penalty_mult = 3
 
-	accuracy_mult = 1.05
-	accuracy_mult_unwielded = 0.65
-	scatter = 4
-	scatter_unwielded = 10
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.7
+	scatter = 6
+	scatter_unwielded = 12
 
 	damage_falloff_mult = 0.5
 
@@ -220,19 +220,15 @@
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope/marine,
-		/obj/item/attachable/scope/mini,
-		/obj/item/weapon/gun/shotgun/combat/masterkey,
-		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/motiondetector,
-		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
 /datum/lasrifle/base/plasma_rifle_mode/smg_standard
@@ -250,7 +246,7 @@
 	ammo_datum_type = /datum/ammo/energy/plasma/smg_overcharge
 	icon_state = "plasma_smg"
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	fire_delay = 0.8 SECONDS
+	fire_delay = 1 SECONDS
 	heat_per_fire = 25
 	rounds_per_shot = 90
 	radial_icon_state = "plasma_cannon"

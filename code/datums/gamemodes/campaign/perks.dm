@@ -282,6 +282,11 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	prereq_perks = list(/datum/perk/skill_mod/firearms)
 	unlock_cost = 500
 
+/datum/perk/skill_mod/smgs/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	if(!istype(owner_stats))
+		return
+	owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/marine/plasma_smg, SQUAD_MARINE, owner, 0)
+
 /datum/perk/skill_mod/heavy_weapons
 	name = "Heavy weapon specialisation"
 	desc = "Improved damage, accuracy and scatter with heavy weapon type firearms."
