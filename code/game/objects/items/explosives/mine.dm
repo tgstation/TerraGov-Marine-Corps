@@ -641,11 +641,9 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 /obj/item/mine/ied/update_overlays()
 	. = ..()
-	cut_overlays()
 	//Only add the wires if not deployed, don't need the overlay for that
 	if(CHECK_BITFIELD(assembly_steps_completed, IED_WIRED) && !anchored)
-		var/image/wires_overlay = image(icon, src, "wires")
-		add_overlay(wires_overlay)
+		. += "wires"
 
 /obj/item/mine/ied/setup(mob/living/user)
 	if(!CHECK_MULTIPLE_BITFIELDS(assembly_steps_completed, IED_FINISHED) || gunpowder_amount < gunpowder_amount_required || rods_amount < rods_amount_required)
@@ -666,7 +664,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 			return
 
 		ENABLE_BITFIELD(assembly_steps_completed, IED_WIRED)
-		update_icon_state()
+		update_icon()
 		balloon_alert(user, "Wired!")
 		return
 
@@ -737,7 +735,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	. = ..()
 	gunpowder_amount = gunpowder_amount_required
 	rods_amount = rods_amount_required
-	update_icon_state()
+	update_icon()
 
 /* Exotic mines - Rather than just explode, these have special effects */
 /obj/item/mine/radiation
