@@ -66,28 +66,11 @@
 	max_w_class = WEIGHT_CLASS_BULKY
 	max_storage_space = 28
 
-/obj/item/storage/backpack/holding/proc/failcheck(mob/user)
-	if (prob(reliability))
-		return TRUE //No failure
-	if (prob(reliability))
-		to_chat(user, span_warning("The Bluespace portal resists your attempt to add another item."))
-	else
-		to_chat(user, span_warning("The Bluespace generator malfunctions!"))
-		for (var/obj/O in src.contents) //it broke, delete what was in it
-			qdel(O)
-		crit_fail = 1
-		icon_state = "brokenpack"
-
 /obj/item/storage/backpack/holding/attackby(obj/item/I, mob/user, params)
-	if(crit_fail)
-		to_chat(user, span_warning("The Bluespace generator isn't working."))
-
-	else if(istype(I, /obj/item/storage/backpack/holding) && !I.crit_fail)
-		to_chat(user, span_warning("The Bluespace interfaces of the two devices conflict and malfunction."))
-		qdel(I)
-
-	else
+	if(!istype(I, /obj/item/storage/backpack/holding))
 		return ..()
+	to_chat(user, span_warning("The Bluespace interfaces of the two devices conflict and malfunction."))
+	qdel(I)
 
 /obj/item/storage/backpack/santabag
 	name = "Santa's Gift Bag"

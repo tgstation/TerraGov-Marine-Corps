@@ -46,6 +46,12 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PETRIFY,
 	)
+	///List of mobs currently petrified
+	var/list/mob/living/carbon/human/petrified_humans = list()
+
+/datum/action/ability/xeno_action/petrify/clean_action()
+	end_effects()
+	return ..()
 
 /datum/action/ability/xeno_action/petrify/action_activate()
 	var/obj/effect/overlay/eye/eye = new
@@ -64,7 +70,6 @@
 
 	finish_charging()
 	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
-	var/list/mob/living/carbon/human/humans = list()
 	for(var/mob/living/carbon/human/human in view(PETRIFY_RANGE, owner.loc))
 		if(is_blind(human))
 			continue
@@ -86,16 +91,16 @@
 		stone_overlay.overlays += mask
 
 		human.overlays += stone_overlay
-		humans[human] = stone_overlay
+		petrified_humans[human] = stone_overlay
 
-	if(!length(humans))
+	if(!length(petrified_humans))
 		flick("eye_closing", eye)
 		addtimer(CALLBACK(src, PROC_REF(remove_eye), eye), 7, TIMER_CLIENT_TIME)
 		return
 
 	addtimer(CALLBACK(src, PROC_REF(remove_eye), eye), 10, TIMER_CLIENT_TIME)
 	flick("eye_explode", eye)
-	addtimer(CALLBACK(src, PROC_REF(end_effects), humans), PETRIFY_DURATION)
+	addtimer(CALLBACK(src, PROC_REF(end_effects)), PETRIFY_DURATION)
 	add_cooldown()
 	succeed_activate()
 
@@ -109,14 +114,15 @@
 		ADD_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 
 ///ends all combat-relazted effects
-/datum/action/ability/xeno_action/petrify/proc/end_effects(list/humans)
-	for(var/mob/living/carbon/human/human AS in humans)
+/datum/action/ability/xeno_action/petrify/proc/end_effects()
+	for(var/mob/living/carbon/human/human AS in petrified_humans)
 		human.notransform = FALSE
 		human.status_flags &= ~GODMODE
 		REMOVE_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
 		human.move_resist = initial(human.move_resist)
 		human.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_GRAY)
-		human.overlays -= humans[human]
+		human.overlays -= petrified_humans[human]
+	petrified_humans.Cut()
 
 ///callback for removing the eye from viscontents
 /datum/action/ability/xeno_action/petrify/proc/remove_eye(obj/effect/eye)
