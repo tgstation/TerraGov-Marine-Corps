@@ -75,6 +75,7 @@
 	winning_team.add_asset(/datum/campaign_asset/mech/heavy/som)
 	winning_team.add_asset(/datum/campaign_asset/mech/som)
 
+///Cleans up after a mech is destroyed
 /datum/campaign_mission/tdm/mech_wars/proc/on_mech_destruction(obj/vehicle/sealed/mecha/combat/greyscale/dead_mech)
 	SIGNAL_HANDLER
 	remove_mission_object(dead_mech)
