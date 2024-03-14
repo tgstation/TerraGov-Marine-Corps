@@ -3397,7 +3397,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 10
 	sundering = 0.5
-	max_range = 1
 
 /datum/ammo/energy/plasma/smg_standard/one
 	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard
