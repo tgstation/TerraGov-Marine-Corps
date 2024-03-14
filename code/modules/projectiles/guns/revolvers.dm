@@ -21,7 +21,7 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_speed_modifier = 0.75
 	aim_fire_delay = 0.25 SECONDS
-	wield_delay = 0.2 SECONDS //If you modify your revolver to be two-handed, it will still be fast to aim
+	wield_delay = 0.4 SECONDS
 	gun_skill_category = SKILL_PISTOLS
 
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS
@@ -84,7 +84,6 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 19)
 	fire_delay = 0.15 SECONDS
@@ -183,7 +182,6 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
 	)
 
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 23, "under_x" = 24, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
@@ -298,7 +296,6 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/lace,
-		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/stock/t76,
 		/obj/item/attachable/scope/standard_magnum,
 	)
@@ -328,7 +325,6 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/lace,
-		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/stock/t76,
 		/obj/item/attachable/scope/standard_magnum,
 		/obj/item/attachable/compensator,

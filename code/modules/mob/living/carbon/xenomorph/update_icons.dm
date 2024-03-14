@@ -24,24 +24,22 @@
 		return
 	if(state_change)
 		if(stat == DEAD)
-			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Dead"
+			icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Dead"
 		else if(HAS_TRAIT(src, TRAIT_BURROWED))
-			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Burrowed"
+			icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Burrowed"
 		else if(lying_angle)
 			if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
-				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Sleeping"
+				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Sleeping"
 			else
-				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Knocked Down"
+				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Knocked Down"
 		else if(!handle_special_state())
 			if(m_intent == MOVE_INTENT_RUN)
-				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Running"
+				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Running"
 			else
-				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Walking"
+				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Walking"
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 	update_wounds()
 
-	hud_set_plasma()
-	med_hud_set_health()
 	hud_set_sunder()
 	hud_set_firestacks()
 
@@ -51,17 +49,6 @@
 	update_inv_r_hand()
 	update_inv_l_hand()
 	update_icons()
-
-
-/mob/living/carbon/xenomorph/update_inv_pockets()
-	if(l_store)
-		if(client && hud_used && hud_used.hud_shown)
-			l_store.screen_loc = ui_storage1
-			client.screen += l_store
-	if(r_store)
-		if(client && hud_used && hud_used.hud_shown)
-			r_store.screen_loc = ui_storage2
-			client.screen += r_store
 
 /mob/living/carbon/xenomorph/update_inv_r_hand()
 	remove_overlay(R_HAND_LAYER)

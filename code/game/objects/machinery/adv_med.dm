@@ -108,57 +108,59 @@
 		return
 	go_out()
 
-
 /obj/machinery/bodyscanner/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out; this is here mainly for consistency's sake.
 		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 		return
 
-	var/mob/M
-	if(!istype(I, /obj/item/grab))
+/obj/machinery/bodyscanner/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	. = ..()
+	if(.)
 		return
-
-	else if(occupant)
+	if(occupant)
 		to_chat(user, span_warning("The scanner is already occupied!"))
 		return
 
-	var/obj/item/grab/G = I
-	if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
-		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
-		if(!C.bodybag_occupant)
+	var/mob/grabbed_mob
+	if(ismob(grab.grabbed_thing))
+		grabbed_mob = grab.grabbed_thing
+	else if(istype(grab.grabbed_thing, /obj/structure/closet/bodybag/cryobag))
+		var/obj/structure/closet/bodybag/cryobag/cryobag = grab.grabbed_thing
+		if(!cryobag.bodybag_occupant)
 			to_chat(user, span_warning("The stasis bag is empty!"))
 			return
-		M = C.bodybag_occupant
-		C.open()
-		user.start_pulling(M)
-	else if(ismob(G.grabbed_thing))
-		M = G.grabbed_thing
+		grabbed_mob = cryobag.bodybag_occupant
+		cryobag.open()
+		user.start_pulling(grabbed_mob)
 
-	if(!M)
+	if(!grabbed_mob)
 		return
 
-	if(M.abiotic())
+	if(grabbed_mob.abiotic())
 		to_chat(user, span_warning("Subject cannot have abiotic items on."))
 		return
 
-	M.forceMove(src)
-	occupant = M
+	grabbed_mob.forceMove(src)
+	occupant = grabbed_mob
 	update_icon()
 	for(var/obj/O in src)
 		O.forceMove(loc)
+	return TRUE
 
-/obj/machinery/bodyscanner/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+/obj/machinery/bodyscanner/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!occupant)
-		to_chat(X, span_xenowarning("There is nothing of interest in there."))
+		to_chat(xeno_attacker, span_xenowarning("There is nothing of interest in there."))
 		return
-	if(X.status_flags & INCORPOREAL || X.do_actions)
+	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
 		return
-	visible_message(span_warning("[X] begins to pry the [src]'s cover!"), 3)
+	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
 	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
-	if(!do_after(X, 2 SECONDS))
+	if(!do_after(xeno_attacker, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	go_out()

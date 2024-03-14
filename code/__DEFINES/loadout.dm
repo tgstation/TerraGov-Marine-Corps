@@ -82,6 +82,7 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/storage/box/explosive_mines = list(CAT_ENGSUP, "M20 mine box", 18, "black"),
 		/obj/item/storage/box/explosive_mines/large = list(CAT_ENGSUP, "Large M20 mine box", 35, "black"),
 		/obj/item/minelayer = list(CAT_ENGSUP, "M21 APRDS \"Minelayer\"", 5, "black"),
+		/obj/item/supply_beacon = list(CAT_ENGSUP, "Supply beacon", 5, "black"),
 		/obj/item/minerupgrade/overclock = list(CAT_ENGSUP, "Mining well overclock upgrade", 4, "black"),
 		/obj/item/minerupgrade/reinforcement = list(CAT_ENGSUP, "Mining well reinforcement upgrade", 4, "black"),
 		/obj/item/minerupgrade/automatic = list(CAT_ENGSUP, "Mining well automation upgrade", 4, "black"),
@@ -119,7 +120,7 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/advanced/big = list(CAT_MEDSUP, "Big hypospray", 10, "orange"),
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "black"),
 		/obj/item/healthanalyzer/gloves = list(CAT_MEDSUP, "Health scanner gloves", 2, "black"),
-		/obj/item/defibrillator/gloves = list(CAT_MEDSUP, "Advanced medical gloves", 5, "black"),
+		/obj/item/clothing/gloves/defibrillator = list(CAT_MEDSUP, "Advanced medical gloves", 5, "black"),
 		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 45, "black"),
 	))
 
@@ -137,6 +138,7 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/item/explosive/grenade/smokebomb/cloak = list(CAT_LEDSUP, "Cloak grenade", 7, "black"),
 		/obj/item/explosive/grenade/incendiary = list(CAT_LEDSUP, "M40 HIDP incendiary grenade", 3, "black"),
 		/obj/item/storage/pouch/explosive/razorburn = list(CAT_LEDSUP, "Pack of Razorburn grenades", 24, "orange"),
+		/obj/item/storage/pouch/explosive/antigas = list(CAT_LEDSUP, "Pack of M40-AG Antigas grenades", 16, "orange"),
 		/obj/item/explosive/grenade/chem_grenade/razorburn_large = list(CAT_LEDSUP, "Razorburn canister", 21, "black"),
 		/obj/item/explosive/grenade/chem_grenade/razorburn_small = list(CAT_LEDSUP, "Razorburn grenade", 6, "black"),
 		/obj/item/weapon/gun/flamer/big_flamer/marinestandard = list(CAT_LEDSUP, "FL-84 flamethrower", 12, "black"),
@@ -160,6 +162,7 @@ GLOBAL_LIST_INIT(commander_gear_listed_products, list(
 		/obj/item/explosive/grenade/smokebomb/cloak = list(CAT_FCSUP, "Cloak grenade", 7, "black"),
 		/obj/item/explosive/grenade/incendiary = list(CAT_FCSUP, "M40 HIDP incendiary grenade", 3, "black"),
 		/obj/item/storage/pouch/explosive/razorburn = list(CAT_FCSUP, "Pack of Razorburn grenades", 24, "orange"),
+		/obj/item/storage/pouch/explosive/antigas = list(CAT_FCSUP, "Pack of M40-AG Antigas grenades", 16, "orange"),
 		/obj/item/explosive/grenade/chem_grenade/razorburn_large = list(CAT_FCSUP, "Razorburn canister", 21, "black"),
 		/obj/item/explosive/grenade/chem_grenade/razorburn_small = list(CAT_FCSUP, "Razorburn grenade", 6, "black"),
 		/obj/item/weapon/gun/flamer/big_flamer/marinestandard = list(CAT_FCSUP, "FL-84 flamethrower", 12, "black"),

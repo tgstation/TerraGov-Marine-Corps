@@ -20,7 +20,7 @@
 	type_of_casings = "shell"
 	allowed_ammo_types = list()
 	aim_slowdown = 0.35
-	wield_delay = 0.6 SECONDS //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
+	wield_delay = 0.8 SECONDS //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
 	gun_skill_category = SKILL_SHOTGUNS
 	flags_item_map_variant = NONE
 
@@ -32,8 +32,7 @@
 	recoil = 2
 	recoil_unwielded = 4
 	movement_acc_penalty_mult = 2
-	lower_akimbo_accuracy = 3
-	upper_akimbo_accuracy = 5
+	akimbo_scatter_mod = 8
 
 	placed_overlay_iconstate = "shotgun"
 
@@ -115,7 +114,7 @@
 	damage_mult = 0.7  //30% less damage. Faster firerate.
 	recoil = 2
 	recoil_unwielded = 4
-	wield_delay = 0.8 SECONDS
+	wield_delay = 1 SECONDS
 	akimbo_additional_delay = 0.9
 
 /obj/item/weapon/gun/shotgun/combat/standardmarine/beginner
@@ -338,6 +337,7 @@
 	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	icon_state = "trenchgun"
 	item_state = "trenchgun"
+	cock_animation = "trenchgun_pump"
 	fire_sound = 'sound/weapons/guns/fire/trenchgun.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_cmb_insert.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/trenchgun_pump.ogg'
@@ -422,7 +422,6 @@
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/stock/mosin,
-		/obj/item/attachable/shoulder_mount,
 	)
 	flags_item_map_variant = NONE
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
@@ -445,7 +444,7 @@
 	recoil_unwielded = 4
 	cock_delay = 12
 	aim_slowdown = 1
-	wield_delay = 1.2 SECONDS
+	wield_delay = 1.4 SECONDS
 	movement_acc_penalty_mult = 4.5
 
 	placed_overlay_iconstate = "wood"
@@ -490,7 +489,6 @@
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
@@ -509,7 +507,7 @@
 	recoil_unwielded = 4
 
 	aim_slowdown = 1
-	wield_delay = 1 SECONDS
+	wield_delay = 1.2 SECONDS
 	movement_acc_penalty_mult = 5
 
 	placed_overlay_iconstate = "wood"
@@ -544,7 +542,7 @@
 	recoil = 0
 	recoil_unwielded = 0
 	aim_slowdown = 0
-	wield_delay = 0.1 SECONDS
+	wield_delay = 0.3 SECONDS
 	damage_mult = 1
 
 /obj/item/weapon/gun/shotgun/double/derringer/Initialize(mapload)
@@ -724,7 +722,6 @@
 		/obj/item/attachable/foldable/t35stock,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
 	)
 	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock)
 
@@ -791,7 +788,7 @@
 
 	fire_delay = 1.75 SECONDS
 	damage_mult = 0.9
-	wield_delay = 0.75 SECONDS
+	wield_delay = 0.95 SECONDS
 	burst_amount = 2
 	burst_delay = 0.01 SECONDS //basically instantaneous two shots
 	extra_delay = 0.5 SECONDS
@@ -843,7 +840,7 @@
 	recoil = 1
 	recoil_unwielded = 4
 	aim_slowdown = 0.35
-	wield_delay = 0.65 SECONDS
+	wield_delay = 0.85 SECONDS
 
 /obj/item/weapon/gun/shotgun/som/pointman
 	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/motiondetector)

@@ -35,5 +35,5 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/activable/xeno/forward_charge/unprecise,
+		/datum/action/ability/activable/xeno/charge/forward_charge/unprecise,
 	)

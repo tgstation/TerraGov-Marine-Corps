@@ -62,6 +62,8 @@
 
 /obj/structure/sign/poster/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(iswirecutter(I))
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		if(ruined)

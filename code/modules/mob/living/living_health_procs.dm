@@ -254,7 +254,6 @@
 
 /mob/living/carbon/human/on_revive()
 	. = ..()
-	revive_grace_time = initial(revive_grace_time)
 	GLOB.alive_human_list += src
 	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	GLOB.dead_human_list -= src
@@ -374,7 +373,7 @@
 
 
 /mob/living/carbon/xenomorph/revive(admin_revive = FALSE)
-	plasma_stored = xeno_caste.plasma_max
+	set_plasma(xeno_caste.plasma_max)
 	sunder = 0
 	if(stat == DEAD)
 		hive?.on_xeno_revive(src)

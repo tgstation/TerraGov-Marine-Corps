@@ -561,6 +561,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	QDEL_NULL(portal_visuals)
 	return ..()
 
+/obj/effect/wraith_portal/ex_act()
+	if(linked_portal)
+		qdel(linked_portal)
+	qdel(src)
+
 /obj/effect/wraith_portal/attack_ghost(mob/dead/observer/user)
 	. = ..()
 	if(!linked_portal)
@@ -646,8 +651,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	animate(get_filter("portal_ripple"), time = 1.3 SECONDS, loop = -1, easing = LINEAR_EASING, radius = 32)
 
 	vis_contents += our_destination
-/obj/effect/wraith_portal/ex_act()
-	qdel(src)
 
 /datum/action/ability/activable/xeno/rewind
 	name = "Time Shift"

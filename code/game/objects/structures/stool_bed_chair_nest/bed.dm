@@ -173,6 +173,8 @@
 
 /obj/structure/bed/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		if(!buildstacktype)
@@ -183,15 +185,18 @@
 			new buildstacktype(loc, buildstackamount)
 		qdel(src)
 
-	else if(istype(I, /obj/item/grab) && !LAZYLEN(buckled_mobs) && !buckled_bodybag)
-		var/obj/item/grab/G = I
-		if(!ismob(G.grabbed_thing))
-			return
-
-		var/mob/M = G.grabbed_thing
-		to_chat(user, span_notice("You place [M] on [src]."))
-		M.forceMove(loc)
-		return TRUE
+/obj/structure/bed/grab_interact(obj/item/grab/grab, mob/user, base_damage = 5, is_sharp = FALSE)
+	. = ..()
+	if(.)
+		return
+	if(LAZYLEN(buckled_mobs) || buckled_bodybag)
+		return
+	if(!ismob(grab.grabbed_thing))
+		return
+	var/mob/grabbed_mob = grab.grabbed_thing
+	to_chat(user, span_notice("You place [grabbed_mob] on [src]."))
+	grabbed_mob.forceMove(loc)
+	return TRUE
 
 /obj/structure/bed/alien
 	icon_state = "abed"
@@ -241,6 +246,8 @@
 
 /obj/item/roller/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/roller_holder) && rollertype == /obj/structure/bed/roller)
 		var/obj/item/roller_holder/RH = I
@@ -317,13 +324,13 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	. = ..()
 	radio = new(src)
 
-/obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 	if(buckled_bodybag)
 		unbuckle_bodybag()
 	for(var/m in buckled_mobs)
-		user_unbuckle_mob(m, X, TRUE)
+		user_unbuckle_mob(m, xeno_attacker, TRUE)
 
 /obj/structure/bed/medevac_stretcher/attack_ghost(mob/dead/observer/user)
 	. = ..()
@@ -576,6 +583,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/item/roller/medevac/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/medevac_beacon))
 		var/obj/item/medevac_beacon/B = I
@@ -692,6 +701,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/item/medevac_beacon/attackby(obj/item/I, mob/user, params) //Corpsmen can lock their beacons.
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/card/id))
 		if(!allowed(user))

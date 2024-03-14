@@ -58,6 +58,7 @@
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 		/datum/action/ability/activable/xeno/secrete_resin/hivemind,
+		/datum/action/ability/activable/xeno/secrete_special_resin/hivemind,
 	)
 
 /datum/xeno_caste/hivemind/on_caste_applied(mob/xenomorph)

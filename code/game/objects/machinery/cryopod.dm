@@ -203,41 +203,27 @@
 		I.store_in_cryo()
 	return ..()
 
-/obj/machinery/cryopod/attackby(obj/item/I, mob/user, params)
+/obj/machinery/cryopod/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	. = ..()
-
-	if(!istype(I, /obj/item/grab))
+	if(.)
+		return
+	if(isxeno(user))
+		return
+	var/mob/living/carbon/human/grabbed_mob = grab.grabbed_thing
+	if(!ishuman(grabbed_mob))
+		to_chat(user, span_warning("There is no way [src] will accept [grabbed_mob]!"))
 		return
 
-	else if(isxeno(user))
-		return
-
-	var/obj/item/grab/G = I
-	if(!isliving(G.grabbed_thing))
-		return
-
-	if(!QDELETED(occupant))
-		to_chat(user, span_warning("[src] is occupied."))
-		return
-
-	var/mob/living/M = G.grabbed_thing
-
-	if(M.stat == DEAD) //This mob is dead
-		to_chat(user, span_warning("[src] immediately rejects [M]. [M.p_they(TRUE)] passed away!"))
-		return
-
-	if(!ishuman(M))
-		to_chat(user, span_warning("There is no way [src] will accept [M]!"))
-		return
-
-	if(M.client)
-		if(tgui_alert(M, "Would you like to enter cryosleep?", null, list("Yes", "No")) == "Yes")
-			if(QDELETED(M) || !(G?.grabbed_thing == M))
+	if(grabbed_mob.client)
+		if(tgui_alert(grabbed_mob, "Would you like to enter cryosleep?", null, list("Yes", "No")) == "Yes")
+			if(QDELETED(grabbed_mob) || !(grab?.grabbed_thing == grabbed_mob))
 				return
 		else
 			return
 
-	climb_in(M, user)
+	climb_in(grabbed_mob, user)
+
+	return TRUE
 
 /obj/machinery/cryopod/verb/eject()
 	set name = "Eject Pod"
@@ -314,15 +300,15 @@
 	occupant = null
 	update_icon()
 
-/obj/machinery/cryopod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+/obj/machinery/cryopod/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!occupant)
-		to_chat(X, span_xenowarning("There is nothing of interest in there."))
+		to_chat(xeno_attacker, span_xenowarning("There is nothing of interest in there."))
 		return
-	if(X.status_flags & INCORPOREAL || X.do_actions)
+	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
 		return
-	visible_message(span_warning("[X] begins to pry the [src]'s cover!"), 3)
+	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
 	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
-	if(!do_after(X, 2 SECONDS))
+	if(!do_after(xeno_attacker, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	go_out()

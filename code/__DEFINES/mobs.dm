@@ -444,6 +444,18 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 
 //Xeno Defines
+//Xeno flags
+///Xeno is currently performing a leap/dash attack
+#define XENO_LEAPING (1<<0)
+///Hive leader
+#define XENO_LEADER (1<<1)
+///Zoomed out
+#define XENO_ZOOMED (1<<2)
+///mobhud on
+#define XENO_MOBHUD (1<<3)
+///rouny mode
+#define XENO_ROUNY (1<<4)
+
 
 #define XENO_DEFAULT_VENT_ENTER_TIME 4.5 SECONDS //Standard time for a xeno to enter a vent.
 #define XENO_DEFAULT_VENT_EXIT_TIME 2 SECONDS //Standard time for a xeno to exit a vent.
@@ -666,13 +678,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Defender defines
 #define DEFENDER_CHARGE_RANGE 4
 
-//Baneling defines
-#define BANELING_CHARGE_MAX 2
-#define BANELING_CHARGE_GAIN_TIME 240 SECONDS
-#define BANELING_CHARGE_RESPAWN_TIME 30 SECONDS
-/// Not specified in seconds because it causes smoke to last almost four times as long if done so
-#define BANELING_SMOKE_DURATION 4
-
 //Sentinel defines
 #define SENTINEL_TOXIC_SPIT_STACKS_PER 2 //Amount of debuff stacks to be applied per spit.
 #define SENTINEL_TOXIC_SLASH_COUNT 3 //Amount of slashes before the buff runs out
@@ -712,6 +717,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Spiderling defines
 #define TIME_TO_DISSOLVE 5 SECONDS
 #define SPIDERLING_RAGE_RANGE 10 // how close a nearby human has to be in order to be targeted
+
+//Praetorian defines
+#define PRAE_CHARGEDISTANCE 5
 
 //misc
 
@@ -845,3 +853,12 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define SPECIES_HUMAN "species_human"
 ///Combat robot species
 #define SPECIES_COMBAT_ROBOT "species_combat_robot"
+
+///Nextmove delay after performing an interaction with a grab on something
+#define GRAB_SLAM_DELAY 0.7 SECONDS
+///Default damage for slamming a mob against an object
+#define BASE_OBJ_SLAM_DAMAGE 10
+///Default damage for slamming a mob against a wall
+#define BASE_WALL_SLAM_DAMAGE 15
+///Default damage for slamming a mob against another mob
+#define BASE_MOB_SLAM_DAMAGE 8

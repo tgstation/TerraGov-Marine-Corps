@@ -174,10 +174,8 @@
 	var/shots_fired = 0
 	///If this gun is in inactive hands and shooting in akimbo
 	var/dual_wield = FALSE
-	///determines upper accuracy modifier in akimbo
-	var/upper_akimbo_accuracy = 2
-	///determines lower accuracy modifier in akimbo
-	var/lower_akimbo_accuracy = 1
+	///mult to scatter when firing akimbo
+	var/akimbo_scatter_mod = 3
 	///If fire delay is 1 second, and akimbo_additional_delay is 0.5, then you'll have to wait 1 second * 0.5 to fire the second gun
 	var/akimbo_additional_delay = 0.5
 	///Delay for the gun winding up before firing.
@@ -234,7 +232,7 @@
 	///Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing while moving.
 	var/movement_acc_penalty_mult = 5
 	///For regular shots, how long to wait before firing again.
-	var/fire_delay = 6
+	var/fire_delay = 0.6 SECONDS
 	///Modifies the speed of projectiles fired.
 	var/shell_speed_mod = 0
 	///Modifies projectile damage by a % when a marine gets passed, but not hit
@@ -260,7 +258,7 @@
 	///Slowdown for wielding
 	var/aim_slowdown = 0
 	///How long between wielding and firing in tenths of seconds
-	var/wield_delay = 0.4 SECONDS
+	var/wield_delay = 0.6 SECONDS
 	///Extra wield delay for untrained operators
 	var/wield_penalty = 0.2 SECONDS
 	///Storing value for above
@@ -485,7 +483,7 @@
 		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET, src)
-		gun_user.hud_used.remove_ammo_hud(src)
+		gun_user.hud_used?.remove_ammo_hud(src)
 		if(heat_meter)
 			gun_user.client.images -= heat_meter
 			heat_meter = null
@@ -499,7 +497,11 @@
 	gun_user = user
 	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
 	if(flags_gun_features & GUN_AMMO_COUNTER)
-		gun_user.hud_used.add_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+		gun_user.hud_used?.add_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+	if(heat_per_fire)
+		heat_meter = new(loc=gun_user)
+		heat_meter.animate_change(heat_amount/100, 5)
+		gun_user.client.images += heat_meter
 	if(master_gun)
 		return
 	setup_bullet_accuracy()
@@ -508,14 +510,6 @@
 		COMSIG_MOB_SKILLS_CHANGED,
 		COMSIG_MOB_SHOCK_STAGE_CHANGED,
 		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED), PROC_REF(setup_bullet_accuracy))
-	if(flags_gun_features & GUN_AMMO_COUNTER)
-		gun_user.hud_used.add_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
-	if(heat_per_fire)
-		heat_meter = new(loc=gun_user)
-		heat_meter.animate_change(heat_amount/100, 5)
-		gun_user.client.images += heat_meter
-	if(master_gun)
-		return
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
@@ -677,10 +671,10 @@
 		wdelay += wield_penalty
 	else
 		var/skill_value = user.skills.getRating(gun_skill_category)
+		if(skill_value < 0)
+			wdelay += wield_penalty
 		if(skill_value > 0)
 			wdelay -= skill_value * 2
-		else
-			wdelay += wield_penalty
 	wield_time = world.time + wdelay
 	do_wield(user, wdelay)
 	if(HAS_TRAIT(src, TRAIT_GUN_AUTO_AIM_MODE))
@@ -916,13 +910,14 @@
 	apply_gun_modifiers(projectile_to_fire, target, firer)
 
 	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * max( 0.1, gun_accuracy_mult)))
+	var/proj_scatter = 0
 
 	if((flags_item & FULLY_WIELDED) || CHECK_BITFIELD(flags_item, IS_DEPLOYED) || (master_gun && (master_gun.flags_item & FULLY_WIELDED)))
 		scatter = clamp((scatter + scatter_increase) - ((world.time - last_fired - 1) * scatter_decay), min_scatter, max_scatter)
-		projectile_to_fire.scatter += gun_scatter + scatter
+		proj_scatter += gun_scatter + scatter
 	else
 		scatter_unwielded = clamp((scatter_unwielded + scatter_increase_unwielded) - ((world.time - last_fired - 1) * scatter_decay_unwielded), min_scatter_unwielded, max_scatter_unwielded)
-		projectile_to_fire.scatter += gun_scatter + scatter_unwielded
+		proj_scatter += gun_scatter + scatter_unwielded
 
 	if(gun_user)
 		projectile_to_fire.firer = gun_user
@@ -936,15 +931,15 @@
 		if((world.time - gun_user.last_move_time) < 5) //if you moved during the last half second, you have some penalties to accuracy and scatter
 			if(flags_item & FULLY_WIELDED)
 				projectile_to_fire.accuracy -= projectile_to_fire.accuracy * max(0,movement_acc_penalty_mult * 0.03)
-				projectile_to_fire.scatter = max(0, projectile_to_fire.scatter + max(0, movement_acc_penalty_mult * 0.5))
+				proj_scatter = max(0, proj_scatter + max(0, movement_acc_penalty_mult * 0.5))
 			else
 				projectile_to_fire.accuracy -= projectile_to_fire.accuracy * max(0,movement_acc_penalty_mult * 0.06)
-				projectile_to_fire.scatter = max(0, projectile_to_fire.scatter + max(0, movement_acc_penalty_mult))
+				proj_scatter = max(0, proj_scatter + max(0, movement_acc_penalty_mult))
 
 	projectile_to_fire.accuracy += gun_accuracy_mod //additive added after move delay mult
-	projectile_to_fire.scatter = max(projectile_to_fire.scatter, 0)
+	proj_scatter = max(proj_scatter, 0)
 
-	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, projectile_to_fire.scatter, projectile_to_fire.p_x, projectile_to_fire.p_y)
+	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, proj_scatter, projectile_to_fire.p_x, projectile_to_fire.p_y)
 
 	//Finally, make with the pew pew!
 	if(!isobj(projectile_to_fire))
@@ -1036,7 +1031,7 @@
 
 	simulate_recoil(dual_wield, firing_angle)
 
-	projectile_to_fire.fire_at(target, master_gun ? gun_user : loc, src, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
+	projectile_to_fire.fire_at(target, master_gun ? gun_user : null, src, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 	if(CHECK_BITFIELD(flags_gun_features, GUN_SMOKE_PARTICLES))
 		var/x_component = sin(firing_angle) * 40
 		var/y_component = cos(firing_angle) * 40
@@ -1764,7 +1759,7 @@
 
 /obj/item/weapon/gun/proc/play_fire_sound(mob/user)
 	//Guns with low ammo have their firing sound
-	var/firing_sndfreq = CHECK_BITFIELD(flags_gun_features, GUN_NO_PITCH_SHIFT_NEAR_EMPTY) ? FALSE : ((rounds / (max_rounds ? max_rounds : max_shells)) > 0.25) ? FALSE : 55000
+	var/firing_sndfreq = CHECK_BITFIELD(flags_gun_features, GUN_NO_PITCH_SHIFT_NEAR_EMPTY) ? FALSE : ((max(rounds, 1) / (max_rounds ? max_rounds : max_shells)) > 0.25) ? FALSE : 55000
 	if(HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 		playsound(user, fire_sound, 25, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 		return
@@ -1824,7 +1819,7 @@
 			gun_scatter += burst_amount * burst_scatter_mult * 2
 
 	if(dual_wield) //akimbo firing gives terrible scatter
-		gun_scatter += 2 * rand(upper_akimbo_accuracy, lower_akimbo_accuracy) //TODO: remove the rng increase
+		gun_scatter += akimbo_scatter_mod
 
 	if(gun_user)
 		//firearm skills modifiers
@@ -1846,9 +1841,6 @@
 			gun_accuracy_mod -= round(min(20, (shooter_human.shock_stage * 0.2))) //Accuracy declines with pain, being reduced by 0.2% per point of pain.
 			if(shooter_human.marksman_aura)
 				gun_accuracy_mod += 10 + max(5, shooter_human.marksman_aura * 5) //Accuracy bonus from active focus order
-				add_aim_mode_fire_delay(AURA_HUMAN_FOCUS, initial(aim_fire_delay) * -0.5)
-			else
-				remove_aim_mode_fire_delay(AURA_HUMAN_FOCUS)
 
 /obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, firing_angle)
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !gun_user)
@@ -1887,7 +1879,7 @@
 	muzzle_flash.applied = FALSE
 
 //For letting xenos turn off the flashlights on any guns left lying around.
-/obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
+/obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!HAS_TRAIT(src, TRAIT_GUN_FLASHLIGHT_ON))
 		return
 	for(var/attachment_slot in attachments_by_slot)
@@ -1896,8 +1888,8 @@
 			continue
 		lit_flashlight.turn_light(null, FALSE)
 	playsound(loc, "alien_claw_metal", 25, 1)
-	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	to_chat(X, span_warning("We disable the metal thing's lights.") )
+	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	to_chat(xeno_attacker, span_warning("We disable the metal thing's lights.") )
 
 
 /particles/overheat_smoke

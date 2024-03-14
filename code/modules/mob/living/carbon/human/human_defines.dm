@@ -37,8 +37,8 @@
 	var/g_eyes = 0
 	var/b_eyes = 0
 
-	var/ethnicity = "Western"	// Ethnicity
-	var/species_type = ""
+	///The character's ethnicity
+	var/ethnicity = "Western"
 
 	//Skin colour
 	var/r_skin = 0
@@ -48,44 +48,64 @@
 	//Species specific
 	var/moth_wings = "Plain"
 
-	var/lip_style		//no lipstick by default- arguably misleading, as it could be used for general makeup
+	///The style of the makeup the mob currently has applied. Used to determine the right icon state for on the mob.
+	var/makeup_style = ""
 
-	var/age = 30		//Player's age (pure fluff)
-	var/b_type = "A+"	//Player's bloodtype
+	///Character's age (pure fluff)
+	var/age = 30
 
-	var/underwear = 1	//Which underwear the player wants
-	var/undershirt = 0	//Which undershirt the player wants.
+	///Which underwear the player wants
+	var/underwear = 1
+	///Which undershirt the player wants.
+	var/undershirt = 0
 
-	// General information
+	//The character's citizenship. Fluff.
 	var/citizenship = ""
+	///The character's religion. Fluff.
 	var/religion = ""
 
-	//Equipment slots
-	var/obj/item/wear_suit = null
-	var/obj/item/clothing/under/w_uniform = null
-	var/obj/item/clothing/shoes/shoes = null
-	var/obj/item/belt = null
-	var/obj/item/clothing/gloves/gloves = null
-	var/obj/item/clothing/glasses/glasses = null
-	var/obj/item/head = null
-	var/obj/item/wear_ear = null
-	var/obj/item/card/id/wear_id = null
-	var/obj/item/r_store = null
-	var/obj/item/l_store = null
-	var/obj/item/s_store = null
+	//Equipment slots. These are all references to items.
 
-	var/icon/stand_icon = null
+	///The item currently being worn in the suit slot (usually armor)
+	var/obj/item/wear_suit
+	///The item currently inside the suit storage slot (not inside the armor itself)
+	var/obj/item/s_store
+	///The jumpsuit/uniform that's currently being worn.
+	var/obj/item/clothing/under/w_uniform
+	///The shoes currently being worn.
+	var/obj/item/clothing/shoes/shoes
+	///The belt being worn.
+	var/obj/item/belt
+	///The gloves being worn.
+	var/obj/item/clothing/gloves/gloves
+	///The glasses being worn.
+	var/obj/item/clothing/glasses/glasses
+	///The item currently on the character's head.
+	var/obj/item/head
+	///The headset/ear item being worn.
+	var/obj/item/wear_ear
+	///The ID being worn.
+	var/obj/item/card/id/wear_id
+	///The item currently in the right pocket
+	var/obj/item/r_store
+	///The item currently in the left pocket
+	var/obj/item/l_store
 
-	var/special_voice = "" // For changing our voice. Used by a symptom.
+	///The current standing icon
+	var/icon/stand_icon
 
-	var/last_dam = -1	//Used for determining if we need to process all limbs or just some or even none.
+	///Used for determining if we need to process all limbs or just some or even none.
+	var/last_dam = -1
 
-	var/mob/remoteview_target
-
+	///This human's flavor text. Shows up when they're examined.
 	var/flavor_text = ""
+	///This human's custom medical record. Fluff.
 	var/med_record = ""
+	///This human's custom security record. Fluff.
 	var/sec_record = ""
+	///This human's custom employment record. Fluff.
 	var/gen_record = ""
+	///This human's custom exploit record. Fluff.
 	var/exploit_record = ""
 
 
@@ -94,10 +114,13 @@
 	///How long the human is dead, in life ticks, which is 2 seconds
 	var/dead_ticks = 0
 
-	var/holo_card_color = "" //which color type of holocard is printed on us
+	///Which color type of holocard is printed on us
+	var/holo_card_color = ""
 
+	///A list of our limb datums
 	var/list/limbs = list()
-	var/list/internal_organs_by_name = list() // so internal organs have less ickiness too
+	///A list of internal organs by name ["organ name"] = /datum/internal_organ
+	var/list/internal_organs_by_name = list()
 	///How much dirt the mob's accumulated. Harmless by itself, but can trigger issues with open wounds or surgery.
 	var/germ_level = 0
 
@@ -106,25 +129,18 @@
 	///Whether we can use another command order yet. Either null or a timer ID.
 	var/command_aura_cooldown
 
+	///Strength of the move order aura affecting us
 	var/mobility_aura = 0
+	///Strength of the hold order aura affecting us
 	var/protection_aura = 0
+	///Strength of the focus order aura affecting us
 	var/marksman_aura = 0
 
-	var/datum/squad/assigned_squad //the squad assigned to
-
-	var/cloaking = FALSE
-
-	var/image/SL_directional = null
-
+	///The squad this human is assigned to
+	var/datum/squad/assigned_squad
+	///Used to help determine the severity icon state for our damage hud overlays
 	var/damageoverlaytemp = 0
-
-	var/specset //Simple way to track which set has the player taken
-
-	var/static/list/can_ride_typecache = typecacheof(list(/mob/living/carbon/human, /mob/living/simple_animal/parrot))
-
-	///Amount of deciseconds gained from the braindeath timer, usually by CPR.
-	var/revive_grace_time = 0
-
+	///The cooldown for being pushed by xenos on harm intent
 	COOLDOWN_DECLARE(xeno_push_delay)
 
 	/// This is the cooldown on suffering additional effects for when shock gets high
