@@ -217,3 +217,31 @@
       before firing a glob (you can still move, but cancels the channel)
   lbnesquik:
   - bugfix: The AI can interact with the nuke again
+2024-03-14:
+  Barnet2:
+  - balance: Boiler gas is now translucent, AP on direct hit for all glob types increased
+      by 10
+  - balance: Normal boiler gas (non-lance) has 1 more tile of radius
+  ClosetedSkeletonGH:
+  - rscadd: Alamo has been revamped to be more RP friendly and efficient
+  - bugfix: fixes soder machines costing money
+  - bugfix: fixes not being able to see out of the front of the almamo
+  Dikozda:
+  - rscadd: Drones can now place acid wells.
+  Naaanii:
+  - rscdel: Removes shoulder mount from research gacha.
+  Neocloudy:
+  - balance: The overheating damage for Normal Synthetics is now 5-16
+  - balance: The overheating damage for Early Synthetics is now 7-19
+  - rscadd: Synthetics may spark when overheating from severe damage. They will also
+      stammer when overheating.
+  coldironwarrior:
+  - balance: antigas grenade sets in FC and SL vendors; 24 points for a set of four
+      grenades
+  - bugfix: beginner tutorial sheets updated
+  lbnesquik:
+  - imageadd: added pump animation for trench gun
+  - imageadd: added firing animation for M412LI, and Minimi
+  - bugfix: fixed ICC mg mags not having the right name
+  - bugfix: fixed ICC mg mags not having the right caliber
+  - bugfix: water is now scannable by medical scanners
