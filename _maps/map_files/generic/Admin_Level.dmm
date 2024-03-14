@@ -2793,19 +2793,8 @@
 	},
 /area/centcom/valhalla)
 "dHM" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = 1;
-	pixel_y = 15
-	},
-/obj/structure/table/fancywoodentable,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = 9;
-	pixel_y = 15
-	},
-/obj/item/storage/fancy/cigar,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/nosmoking_1,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "dIg" = (
@@ -8829,11 +8818,22 @@
 /turf/closed/wall,
 /area/centcom/valhalla)
 "mPJ" = (
-/obj/machinery/marine_selector/clothes/leader/valhalla,
+/obj/structure/table/fancywoodentable,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 1;
+	pixel_y = 15
+	},
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 9;
+	pixel_y = 15
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "mPT" = (
-/obj/machinery/marine_selector/gear/leader/valhalla,
+/obj/machinery/marine_selector/clothes/leader/valhalla,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "mQe" = (
@@ -14028,6 +14028,10 @@
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
+"uUY" = (
+/obj/machinery/marine_selector/gear/leader/valhalla,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla)
 "uUZ" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -16106,6 +16110,13 @@
 /obj/structure/grille/smoothing,
 /turf/open/space,
 /area/space)
+"xHy" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/marine_selector/clothes/commander,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla)
 "xIx" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -22281,7 +22292,7 @@ jcx
 ivs
 jaW
 knm
-dHM
+lYp
 lYp
 cre
 box
@@ -22418,10 +22429,10 @@ nXQ
 jcx
 wqU
 jtL
-box
-bSp
-bSp
-box
+knm
+mPJ
+lYp
+xHy
 box
 ojb
 pfu
@@ -22557,9 +22568,9 @@ fPm
 ivs
 luM
 knm
-mPJ
-hDW
-oJr
+bSp
+bSp
+box
 box
 ojb
 pfu
@@ -22695,9 +22706,9 @@ yeN
 wqU
 luM
 knm
-ivs
+mPT
 hDW
-mPJ
+oJr
 box
 omN
 pgz
@@ -22830,10 +22841,10 @@ kqf
 knm
 jtp
 jcx
-kqf
+dHM
 aoa
 frZ
-hDW
+ivs
 hDW
 mPT
 box
@@ -22971,9 +22982,9 @@ jcx
 wqU
 luM
 box
-box
-elF
-box
+hDW
+hDW
+uUY
 box
 bka
 bka
