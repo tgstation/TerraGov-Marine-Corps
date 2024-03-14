@@ -16,7 +16,7 @@
 	flags_atom = CRITICAL_ATOM
 	resistance_flags = RESIST_ALL
 	layer = BELOW_MOB_LAYER
-	interaction_flags = INTERACT_OBJ_UI
+	interaction_flags = INTERACT_MACHINE_TGUI
 	var/deployable = TRUE
 	var/extended = FALSE
 	var/lighthack = FALSE
