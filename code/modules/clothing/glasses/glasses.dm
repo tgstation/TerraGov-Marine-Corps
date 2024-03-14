@@ -51,10 +51,9 @@
 /obj/item/clothing/glasses/ui_action_click(mob/user, datum/action/item_action/action)
 	//In case someone in the future adds a non-toggle action to a child type
 	if(istype(action, /datum/action/item_action/toggle))
-		var/datum/action/item_action/toggle/toggle = action
-		//Toggling item actions are dumb; it has to be done this way for the icon to properly update
-		toggle.set_toggle(activate(user))
-		return
+		activate(user)
+		//Always return TRUE for toggles so that the UI button icon updates
+		return TRUE
 
 	return activate(user)
 
@@ -64,7 +63,7 @@
 		playsound(get_turf(src), active ? deactivation_sound : activation_sound, 15)
 
 	active = !active
-	update_icon_state()	//Found out the hard way this has to be before update_inv_glasses()
+	update_icon()	//Found out the hard way this has to be before update_inv_glasses()
 	user?.update_inv_glasses()
 	user?.update_sight()
 
@@ -249,14 +248,9 @@
 		activate(usr)
 
 /obj/item/clothing/glasses/welding/activate(mob/user)
-	if(active)
-		DISABLE_BITFIELD(flags_inventory, COVEREYES)
-		DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
-		DISABLE_BITFIELD(flags_armor_protection, EYES)
-	else
-		ENABLE_BITFIELD(flags_inventory, COVEREYES)
-		ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
-		ENABLE_BITFIELD(flags_armor_protection, EYES)
+	TOGGLE_BITFIELD(flags_inventory, COVEREYES)
+	TOGGLE_BITFIELD(flags_inv_hide, HIDEEYES)
+	TOGGLE_BITFIELD(flags_armor_protection, EYES)
 
 	eye_protection = active ? 0 : initial(eye_protection)
 
