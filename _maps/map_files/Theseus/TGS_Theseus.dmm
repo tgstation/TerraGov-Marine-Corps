@@ -12525,8 +12525,8 @@
 /area/mainship/hull/port_hull)
 "kCa" = (
 /obj/structure/bed/bunkbed,
-/obj/effect/landmark/start/job/transport_crewman,
-/obj/effect/landmark/start/job/transport_crewman,
+/obj/effect/landmark/start/job/transportofficer,
+/obj/effect/landmark/start/job/transportofficer,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "kCg" = (
