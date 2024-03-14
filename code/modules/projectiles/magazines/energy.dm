@@ -237,3 +237,14 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER
 	w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/cell/lasgun/plasma
+	name = "plasma energy cell"
+	desc = "A specialized high density battery used to power plasma weaponry."
+	icon = 'icons/obj/items/ammo.dmi'
+	icon_state = "plasma"
+	maxcharge = 900
+	w_class = WEIGHT_CLASS_NORMAL
+	icon_state_mini = "mag_plasma"
+	charge_overlay = "plasma"
+	reload_delay = 0

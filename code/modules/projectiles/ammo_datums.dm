@@ -3392,6 +3392,52 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flame_radius(2, T, burn_intensity = 3, burn_duration = 3)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
+/datum/ammo/energy/plasma/smg_standard
+	icon_state = "plasma_ball_small"
+	damage = 20
+	penetration = 10
+	sundering = 0.5
+	max_range = 1
+
+/datum/ammo/energy/plasma/smg_standard/one
+	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard
+
+/datum/ammo/energy/plasma/smg_standard/two
+	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/one
+
+/datum/ammo/energy/plasma/smg_standard/three
+	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/two
+
+/datum/ammo/energy/plasma/smg_standard/four
+	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/three
+
+/datum/ammo/energy/plasma/smg_standard/on_hit_turf(turf/T, obj/projectile/proj)
+	reflect(T, proj, 5)
+
+/datum/ammo/energy/plasma/smg_overcharge
+	icon_state = "plasma_ball_small"
+	hud_state = "plasma_blast"
+	damage = 30
+	penetration = 10
+	sundering = 2
+	damage_falloff = 0.5
+	shell_speed = 4
+
+/datum/ammo/energy/plasma/smg_overcharge/drop_nade(turf/T)
+	explosion(T, weak_impact_range = 3)
+
+/datum/ammo/energy/plasma/smg_overcharge/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(O.density ? P.loc : O.loc)
+
+/datum/ammo/energy/plasma/smg_overcharge/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/energy/plasma/smg_overcharge/do_at_max_range(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/energy/plasma/smg_overcharge/on_hit_mob(mob/M, obj/projectile/proj)
+	drop_nade(M.loc)
+
 /datum/ammo/energy/xeno
 	barricade_clear_distance = 0
 	///Plasma cost to fire this projectile

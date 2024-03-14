@@ -177,3 +177,80 @@
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_strong"
 	message_to_user = "You set the plasma cannon's charge mode to fire glob mode."
+
+//smg
+/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg
+	name = "\improper PL-51 plasma SMG"
+	desc = "The PL-51 Plasma SMG, ."
+	icon_state = "plasma_smg"
+	item_state = "plasma_smg"
+	flags_equip_slot = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_BULKY
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_fast.ogg'
+	unload_sound = 'sound/weapons/guns/interact/plasma_unload_3.ogg'
+	reload_sound = 'sound/weapons/guns/interact/plasma_reload_3.ogg'
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_fast.ogg'
+	ammo_level_icon = null
+	ammo_datum_type = /datum/ammo/energy/plasma/smg_standard/four
+	default_ammo_type = /obj/item/cell/lasgun/plasma
+	allowed_ammo_types = list(/obj/item/cell/lasgun/plasma)
+	cool_amount = 6
+	overheat_multiplier = 0.5
+
+	wield_delay = 0.3 SECONDS
+	aim_slowdown = 0.35
+	movement_acc_penalty_mult = 3
+
+	accuracy_mult = 1.05
+	accuracy_mult_unwielded = 0.65
+	scatter = 4
+	scatter_unwielded = 10
+
+	damage_falloff_mult = 0.5
+
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	fire_delay = 0.15 SECONDS
+	heat_per_fire = 3
+	rounds_per_shot = 12
+	mode_list = list(
+		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/smg_standard,
+		"Tri-fire" = /datum/lasrifle/base/plasma_rifle_mode/smg_overcharge,
+	)
+	attachable_offset = list("muzzle_x" = 43, "muzzle_y" = 17,"rail_x" = 25, "rail_y" = 25, "under_x" = 33, "under_y" = 11, "stock_x" = 0, "stock_y" = 13)
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
+	)
+
+/datum/lasrifle/base/plasma_rifle_mode/smg_standard
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_fast.ogg'
+	ammo_datum_type = /datum/ammo/energy/plasma/smg_standard/four
+	icon_state = "plasma_smg"
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	fire_delay = 0.15 SECONDS
+	heat_per_fire = 3
+	rounds_per_shot = 12
+	radial_icon_state = "plasma_bouncy"
+
+/datum/lasrifle/base/plasma_rifle_mode/smg_overcharge
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_heavy.ogg'
+	ammo_datum_type = /datum/ammo/energy/plasma/smg_overcharge
+	icon_state = "plasma_smg"
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	fire_delay = 0.8 SECONDS
+	heat_per_fire = 25
+	rounds_per_shot = 90
+	radial_icon_state = "plasma_cannon"
