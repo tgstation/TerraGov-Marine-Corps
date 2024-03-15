@@ -124,6 +124,8 @@
 					return FALSE
 	return TRUE
 
+/proc/get_dist_manhatten(atom/A, atom/B)
+	if(!A.z || !B.z)
+		return INFINITY
 
-/// rand() but for floats, returns a random floating point number between low and high
-#define randfloat(low, high) ((low) + rand() * ((high) - (low)))
+	return abs(A.x - B.x) + abs(A.y - B.y)
