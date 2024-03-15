@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "Campaign: Respawn window automatically opens when your respawn timer is up, or when the rapid reserve asset is used"
