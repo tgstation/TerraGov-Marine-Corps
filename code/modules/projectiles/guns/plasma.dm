@@ -134,8 +134,8 @@
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 2.5 SECONDS
 	heat_per_fire = 50
-	cool_amount = 12
-	rounds_per_shot = 250
+	//cool_amount = 12
+	rounds_per_shot = 180
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_cannon/cannon_standard,
 		"Charge" = /datum/lasrifle/base/plasma_cannon/shatter_blast,
@@ -154,10 +154,10 @@
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_heavy.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/cannon_heavy
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	fire_delay = 2.5 SECONDS
+	fire_delay = 2 SECONDS
 	heat_per_fire = 50
-	rounds_per_shot = 225
-	windup_delay = 0.6 SECONDS
+	rounds_per_shot = 180
+	windup_delay = 0.5 SECONDS
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_cannon"
 	message_to_user = "You set the plasma cannon's charge mode to standard."
@@ -169,7 +169,7 @@
 	fire_delay = 1.5 SECONDS
 	heat_per_fire = 45
 	rounds_per_shot = 180
-	windup_delay = 0.6 SECONDS
+	windup_delay = 0.5 SECONDS
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_fire"
 	message_to_user = "You set the gun's charge mode to shatter."
@@ -181,7 +181,7 @@
 	fire_delay = 1.5 SECONDS
 	heat_per_fire = 40
 	rounds_per_shot = 100
-	windup_delay = 0.6 SECONDS
+	windup_delay = 0.5 SECONDS
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_strong"
 	message_to_user = "You set the plasma cannon's charge mode to incendiary."

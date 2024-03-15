@@ -3399,7 +3399,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 10
 
 /datum/ammo/energy/plasma/cannon_heavy/on_hit_mob(mob/M, obj/projectile/proj)
-	proj.damage *= max(M.mob_size, 1)
+	var/damage_mult = 1
+	switch(M.mob_size)
+		if(MOB_SIZE_BIG)
+			damage_mult = 2
+		if(MOB_SIZE_XENO)
+			damage_mult = 1.5
+
+	proj.damage *= damage_mult
 	if(!isliving(M))
 		return
 	var/mob/living/living_victim = M
@@ -3411,10 +3418,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/damage_mult = 3
 	if(isvehicle(O))
 		var/obj/vehicle/vehicle_target = O
-		if(ismecha(vehicle_target))
+		if(ismecha(vehicle_target) || isarmoredvehicle(vehicle_target))
 			damage_mult = 4
-		else if(isarmoredvehicle(vehicle_target))
-			damage_mult = 5
 		if(get_dist_euclide(proj.starting_turf, vehicle_target) <= PLASMA_CANNON_STAGGERSTUN_RANGE) //staggerstun will fail on tank occupants if we just use staggerstun
 			for(var/mob/living/living_victim AS in vehicle_target.occupants)
 				living_victim.Stagger(PLASMA_CANNON_STAGGER_DURATION)
