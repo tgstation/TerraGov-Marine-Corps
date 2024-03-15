@@ -82,8 +82,8 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 
 /datum/path_step/New(atom/previous_atom, atom/current_atom, atom/goal_atom, old_distance_walked)
 	..()
-	distance_to_goal = get_dist_euclide_square(current_atom, goal_atom)
-	distance_walked = old_distance_walked + get_dist_euclide_square(current_atom, previous_atom)
+	distance_to_goal = get_dist_euclidean_square(current_atom, goal_atom)
+	distance_walked = old_distance_walked + get_dist_euclidean_square(current_atom, previous_atom)
 	src.current_atom = current_atom
 	src.previous_atom = previous_atom
 

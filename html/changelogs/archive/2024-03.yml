@@ -245,3 +245,21 @@
   - bugfix: fixed ICC mg mags not having the right name
   - bugfix: fixed ICC mg mags not having the right caliber
   - bugfix: water is now scannable by medical scanners
+2024-03-15:
+  Lumipharon:
+  - code_imp: Cleaned up some object and flare code
+  - qol: Certain minimap blips such as important structures or defibbable marines
+      layer over other blips
+  - bugfix: Queen screech will no longer go through z-levels
+  - balance: 'Campaign: SOM medics now always have 2 RR injectors in their helmets'
+  - bugfix: 'Campaign: Fixed a few mismatched portraits when calling in firesupport'
+  - qol: 'Campaign: Loadout screen automatically opens on spawn where required'
+  - qol: 'Campaign: Respawn window automatically opens when your respawn timer is
+      up, or when the rapid reserve asset is used'
+  Notamaniac:
+  - rscadd: Adds say tech hints
+  coldironwarrior:
+  - qol: re-organizes theseus hangar and staff officer quarters
+  - qol: style hats now mask hairs behind them so they look like they're layered on
+      your head properly
+  - imageadd: resprites mimir module worn sprite
