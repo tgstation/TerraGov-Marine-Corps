@@ -84,3 +84,6 @@
 	buckled_mob.reset_perspective()
 	buckled_mob.pixel_x = initial(buckled_mob.pixel_x)
 	buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
+
+/obj/structure/bed/chair/vehicle_gunner_seat/relaymove(mob/living/user, direct)
+	return owner.relaymove(arglist(args))

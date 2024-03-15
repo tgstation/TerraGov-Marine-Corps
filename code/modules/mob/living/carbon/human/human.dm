@@ -1,7 +1,5 @@
 /mob/living/carbon/human/Initialize(mapload)
-	add_verb(src, /mob/living/proc/toggle_resting)
-	b_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
-	blood_type = b_type
+	blood_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
 
 	if(!species)
 		set_species()

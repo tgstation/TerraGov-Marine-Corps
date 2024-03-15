@@ -568,9 +568,11 @@
 
 /datum/species/synthetic/handle_unique_behavior(mob/living/carbon/human/H)
 	if(H.health <= -30 && H.stat != DEAD) // Instead of having a critical condition, they overheat and slowly die.
-		H.adjustFireLoss(rand(14, 24)) // This may need tweaks
-		if(prob(8))
-			to_chat(H, span_alert("<b>Critical damage sustained. Internal temperature regulation systems offline. <u>Immediate repair required.</u></b>"))
+		H.apply_effect(4 SECONDS, STUTTER) // Added flavor
+		H.adjustFireLoss(rand(5, 16)) // Melting!!!
+		if(prob(12))
+			H.visible_message(span_boldwarning("[H] shudders violently and shoots out sparks!"), span_warning("Critical damage sustained. Internal temperature regulation systems offline. Shutdown imminent. <b>Estimated integrity: [round(H.health)]%.</b>"))
+			do_sparks(4, TRUE, H)
 
 /datum/species/synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
@@ -629,9 +631,11 @@
 
 /datum/species/early_synthetic/handle_unique_behavior(mob/living/carbon/human/H)
 	if(H.health <= -30 && H.stat != DEAD) // Instead of having a critical condition, they overheat and slowly die.
-		H.adjustFireLoss(rand(18, 28)) // This may need tweaks
-		if(prob(8))
-			to_chat(H, span_alert("<b>Critical damage sustained. Internal temperature regulation systems offline. <u>Immediate repair required.</u></b>"))
+		H.apply_effect(4 SECONDS, STUTTER) // Added flavor
+		H.adjustFireLoss(rand(7, 19)) // Melting even more!!!
+		if(prob(12))
+			H.visible_message(span_boldwarning("[H] shudders violently and shoots out sparks!"), span_warning("Critical damage sustained. Internal temperature regulation systems offline. Shutdown imminent. <b>Estimated integrity: [round(H.health)]%.</b>"))
+			do_sparks(4, TRUE, H)
 
 /datum/species/early_synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
@@ -991,7 +995,7 @@
 		damage = victim.modify_by_armor(damage, blocked, penetration, def_zone)
 
 	if(victim.protection_aura)
-		damage = round(damage * ((20 - victim.protection_aura) / 20))
+		damage = round(damage * ((20 - victim.protection_aura) / 20), 0.1)
 
 	if(!damage)
 		return 0

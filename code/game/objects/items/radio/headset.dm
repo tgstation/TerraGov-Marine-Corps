@@ -234,7 +234,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(wearer)
 		if(headset_hud_on && wearer.wear_ear == src)
 			squadhud.remove_hud_from(wearer)
-			wearer.SL_directional = null
 			if(wearer.assigned_squad)
 				SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
 		wearer = null
@@ -290,7 +289,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			if(!ghost?.can_reenter_corpse)
 				SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
 				return
-		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "defibbable"))
+		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "defibbable", ABOVE_FLOAT_LAYER))
 		return
 	if(wearer.assigned_squad)
 		var/image/underlay = image('icons/UI_icons/map_blips.dmi', null, "squad_underlay")
