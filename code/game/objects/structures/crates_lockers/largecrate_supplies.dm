@@ -160,6 +160,11 @@
 		/obj/item/ammo_magazine/auto_cannon/flak = 3,
 	)
 
+/obj/structure/largecrate/supply/weapons/heavy_flakgun
+	name = "\improper FK-88 mounted flak gun (x1)"
+	desc = "A supply crate containing a FK-88 mounted flak gun. Ammo sold separately."
+	supplies = list(/obj/item/weapon/gun/heavy_isg = 1)
+
 /obj/structure/largecrate/supply/ammo
 	name = "ammunition case"
 	icon_state = "case"
