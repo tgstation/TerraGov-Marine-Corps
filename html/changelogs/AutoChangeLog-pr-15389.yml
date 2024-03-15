@@ -1,0 +1,5 @@
+author: "DeltaFire15"
+delete-after: True
+changes:
+  - bugfix: "Railgun factory parts now give you their respective ammunition types instead of only standard canisters."
+  - spellcheck: "AMR factory parts now can be differentiated by name as opposed to by feeling."
