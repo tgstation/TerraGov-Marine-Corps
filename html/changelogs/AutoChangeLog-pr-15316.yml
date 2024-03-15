@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "Certain minimap blips such as important structures or defibbable marines layer over other blips"
