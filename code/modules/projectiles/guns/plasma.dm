@@ -168,7 +168,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 1.5 SECONDS
 	heat_per_fire = 45
-	rounds_per_shot = 180
+	rounds_per_shot = 150
 	windup_delay = 0.5 SECONDS
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_fire"
