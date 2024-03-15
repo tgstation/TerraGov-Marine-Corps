@@ -3313,26 +3313,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/mob/living/living_victim = M
 	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, 2 SECONDS)
 
-/datum/ammo/energy/plasma/blast
+/datum/ammo/energy/plasma/blast //smg
 	name = "plasma blast"
 	icon_state = "plasma_ball_small"
 	hud_state = "plasma_blast"
-	damage = 40
+	damage = 30
 	penetration = 10
-	sundering = 3
+	sundering = 2
 	damage_falloff = 0.5
-	accurate_range = 7
+	accurate_range = 5
 	max_range = 12
-	var/melting_stacks = 2
 
 /datum/ammo/energy/plasma/blast/drop_nade(turf/T)
-	explosion(T, weak_impact_range = 4)
-	for(var/mob/living/living_victim in viewers(3, T)) //normally using viewers wouldn't work due to darkness and smoke both blocking vision. However explosions clear both temporarily so we avoid this issue.
-		var/datum/status_effect/stacking/melting/debuff = living_victim.has_status_effect(STATUS_EFFECT_MELTING)
-		if(debuff)
-			debuff.add_stacks(melting_stacks)
-		else
-			living_victim.apply_status_effect(STATUS_EFFECT_MELTING, melting_stacks)
+	explosion(T, weak_impact_range = 3, color = COLOR_DISABLER_BLUE)
 
 /datum/ammo/energy/plasma/blast/on_hit_obj(obj/O, obj/projectile/P)
 	drop_nade(O.density ? P.loc : O.loc)
@@ -3346,12 +3339,46 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/plasma/blast/on_hit_mob(mob/M, obj/projectile/proj)
 	drop_nade(M.loc)
 
-/datum/ammo/energy/plasma/rifle_blast/additional
-	name = "additional plasma blast"
-	accurate_range = 4
-	max_range = 10
-	damage = 25
-	damage_falloff = 1
+/datum/ammo/energy/plasma/blast/melting //rifle
+	damage = 40
+	sundering = 3
+	damage_falloff = 0.5
+	accurate_range = 7
+	///Number of melting stacks to apply
+	var/melting_stacks = 2
+
+/datum/ammo/energy/plasma/blast/melting/drop_nade(turf/T)
+	explosion(T, weak_impact_range = 4, color = COLOR_DISABLER_BLUE)
+	for(var/mob/living/living_victim in viewers(3, T)) //normally using viewers wouldn't work due to darkness and smoke both blocking vision. However explosions clear both temporarily so we avoid this issue.
+		var/datum/status_effect/stacking/melting/debuff = living_victim.has_status_effect(STATUS_EFFECT_MELTING)
+		if(debuff)
+			debuff.add_stacks(melting_stacks)
+		else
+			living_victim.apply_status_effect(STATUS_EFFECT_MELTING, melting_stacks)
+
+/datum/ammo/energy/plasma/blast/shatter //cannon
+	damage = 40
+	sundering = 3
+	damage_falloff = 0.5
+	accurate_range = 9
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_TARGET_TURF
+
+/datum/ammo/energy/plasma/blast/shatter/drop_nade(turf/T)
+	explosion(T, light_impact_range = 2, weak_impact_range = 5, throw_range = 0, color = COLOR_DISABLER_BLUE)
+	for(var/mob/living/living_victim in viewers(3, T))
+		living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, 5 SECONDS)
+
+/datum/ammo/energy/plasma/blast/incendiary //also cannon
+	name = "plasma glob"
+	damage = 30
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_TARGET_TURF|AMMO_INCENDIARY
+	shell_speed = 2
+	icon_state = "plasma_big"
+	hud_state = "flame"
+
+/datum/ammo/energy/plasma/blast/incendiary/drop_nade(turf/T)
+	flame_radius(2, T, burn_duration = 9, colour = "blue")
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
 /datum/ammo/energy/plasma/cannon_standard
 	damage = 20
@@ -3359,49 +3386,48 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 0.75
 	damage_falloff = 0.75
 
+#define PLASMA_CANNON_INNER_STAGGERSTUN_RANGE 3
+#define PLASMA_CANNON_STAGGERSTUN_RANGE 9
+#define PLASMA_CANNON_STAGGER_DURATION 3 SECONDS
+#define PLASMA_CANNON_SHATTER_DURATION 5 SECONDS
 /datum/ammo/energy/plasma/cannon_heavy
 	name = "plasma heavy glob"
 	icon_state = "plasma_ball_big"
 	hud_state = "plasma_sphere"
-	damage = 120
+	damage = 60
 	penetration = 40
 	sundering = 10
-	damage_falloff = 1
-	shell_speed = 4
-	///shatter effection duration when hitting mobs
-	var/shatter_duration = 10 SECONDS
 
 /datum/ammo/energy/plasma/cannon_heavy/on_hit_mob(mob/M, obj/projectile/proj)
+	proj.damage *= max(M.mob_size, 1)
 	if(!isliving(M))
 		return
 	var/mob/living/living_victim = M
-	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
+	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, PLASMA_CANNON_SHATTER_DURATION)
+	staggerstun(living_victim, proj, PLASMA_CANNON_INNER_STAGGERSTUN_RANGE, weaken = 0.5 SECONDS, knockback = 1, hard_size_threshold = 1)
+	staggerstun(living_victim, proj, PLASMA_CANNON_STAGGERSTUN_RANGE, stagger = PLASMA_CANNON_STAGGER_DURATION, slowdown = 2, knockback = 1, hard_size_threshold = 2)
 
+/datum/ammo/energy/plasma/cannon_heavy/on_hit_obj(obj/O, obj/projectile/proj)
+	var/damage_mult = 3
+	if(isvehicle(O))
+		var/obj/vehicle/vehicle_target = O
+		if(ismecha(vehicle_target))
+			damage_mult = 4
+		else if(isarmoredvehicle(vehicle_target))
+			damage_mult = 5
+		if(get_dist_euclide(proj.starting_turf, vehicle_target) <= PLASMA_CANNON_STAGGERSTUN_RANGE) //staggerstun will fail on tank occupants if we just use staggerstun
+			for(var/mob/living/living_victim AS in vehicle_target.occupants)
+				living_victim.Stagger(PLASMA_CANNON_STAGGER_DURATION)
+				to_chat(living_victim, "You are knocked about by the impact, staggering you!")
+	proj.damage *= damage_mult
 
-/datum/ammo/energy/plasma/cannon_glob
-	name = "plasma glob"
-	damage = 10
-	penetration = 100
-	flags_ammo_behavior = AMMO_TARGET_TURF|AMMO_ENERGY|AMMO_INCENDIARY
-	shell_speed = 2
-	icon_state = "plasma_big"
-	hud_state = "flame"
+/datum/ammo/energy/plasma/cannon_heavy/on_hit_turf(turf/T, obj/projectile/proj)
+	proj.damage *= 5
 
-/datum/ammo/energy/plasma/cannon_glob/on_hit_mob(mob/M, obj/projectile/P)
-	drop_nade(get_turf(M))
-
-/datum/ammo/energy/plasma/cannon_glob/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(O.density ? P.loc : O.loc)
-
-/datum/ammo/energy/plasma/cannon_glob/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
-
-/datum/ammo/energy/plasma/cannon_glob/do_at_max_range(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
-
-/datum/ammo/energy/plasma/cannon_glob/drop_nade(turf/T)
-	flame_radius(2, T, burn_intensity = 3, burn_duration = 3)
-	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
+#undef PLASMA_CANNON_INNER_STAGGERSTUN_RANGE
+#undef PLASMA_CANNON_STAGGERSTUN_RANGE
+#undef PLASMA_CANNON_STAGGER_DURATION
+#undef PLASMA_CANNON_SHATTER_DURATION
 
 /datum/ammo/energy/plasma/smg_standard
 	icon_state = "plasma_ball_small"
@@ -3423,14 +3449,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/plasma/smg_standard/on_hit_turf(turf/T, obj/projectile/proj)
 	reflect(T, proj, 5)
-
-/datum/ammo/energy/plasma/blast/smg_overcharge
-	damage = 30
-	sundering = 2
-	accurate_range = 5
-
-/datum/ammo/energy/plasma/blast/smg_overcharge/drop_nade(turf/T)
-	explosion(T, weak_impact_range = 3)
 
 /datum/ammo/energy/xeno
 	barricade_clear_distance = 0
