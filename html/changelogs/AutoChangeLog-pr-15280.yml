@@ -1,5 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - balance: "Boiler gas is now translucent, AP on direct hit for all glob types increased by 10"
-  - balance: "Normal boiler gas (non-lance) has 1 more tile of radius"
