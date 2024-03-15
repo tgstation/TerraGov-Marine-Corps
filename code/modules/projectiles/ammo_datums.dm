@@ -3294,46 +3294,57 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/plasma/rifle_standard
 	damage = 25
-	penetration = 15
+	penetration = 20
 	sundering = 0.75
-	damage_falloff = 1
 
 /datum/ammo/energy/plasma/rifle_marksman
 	icon_state = "plasma_big"
 	hud_state = "plasma_blast"
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_PASS_THROUGH_MOB
-	damage = 30
-	penetration = 20
+	damage = 40
+	penetration = 30
 	sundering = 2
-	damage_falloff = 0.15
+	damage_falloff = 0.5
 	accurate_range = 25
 
-/datum/ammo/energy/plasma/rifle_blast
-	name = "plasma blast ball"
-	icon_state = "plasma_ball_small"
-	hud_state = "plasma_blast"
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY
-	bonus_projectiles_type = /datum/ammo/energy/plasma/rifle_blast/additional
-	bonus_projectiles_amount = 4
-	bonus_projectiles_scatter = 3
-	accurate_range = 4
-	max_range = 6
-	damage = 30
-	damage_falloff = 1
-	///Number of melting stacks to apply when hitting mobs
-	var/melt_stacks = 1
-
-/datum/ammo/energy/plasma/rifle_blast/melting/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/energy/plasma/rifle_marksman/on_hit_mob(mob/M, obj/projectile/proj)
 	if(!isliving(M))
 		return
-
 	var/mob/living/living_victim = M
-	var/datum/status_effect/stacking/melting/debuff = living_victim.has_status_effect(STATUS_EFFECT_MELTING)
+	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, 2 SECONDS)
 
-	if(debuff)
-		debuff.add_stacks(melt_stacks)
-	else
-		living_victim.apply_status_effect(STATUS_EFFECT_MELTING, melt_stacks)
+/datum/ammo/energy/plasma/blast
+	name = "plasma blast"
+	icon_state = "plasma_ball_small"
+	hud_state = "plasma_blast"
+	damage = 40
+	penetration = 10
+	sundering = 3
+	damage_falloff = 0.5
+	accurate_range = 7
+	max_range = 12
+	var/melting_stacks = 2
+
+/datum/ammo/energy/plasma/blast/drop_nade(turf/T)
+	explosion(T, weak_impact_range = 4)
+	for(var/mob/living/living_victim in viewers(3, T)) //normally using viewers wouldn't work due to darkness and smoke both blocking vision. However explosions clear both temporarily so we avoid this issue.
+		var/datum/status_effect/stacking/melting/debuff = living_victim.has_status_effect(STATUS_EFFECT_MELTING)
+		if(debuff)
+			debuff.add_stacks(melting_stacks)
+		else
+			living_victim.apply_status_effect(STATUS_EFFECT_MELTING, melting_stacks)
+
+/datum/ammo/energy/plasma/blast/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(O.density ? P.loc : O.loc)
+
+/datum/ammo/energy/plasma/blast/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/energy/plasma/blast/do_at_max_range(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/energy/plasma/blast/on_hit_mob(mob/M, obj/projectile/proj)
+	drop_nade(M.loc)
 
 /datum/ammo/energy/plasma/rifle_blast/additional
 	name = "additional plasma blast"
@@ -3413,28 +3424,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/plasma/smg_standard/on_hit_turf(turf/T, obj/projectile/proj)
 	reflect(T, proj, 5)
 
-/datum/ammo/energy/plasma/smg_overcharge
-	icon_state = "plasma_ball_small"
-	hud_state = "plasma_blast"
+/datum/ammo/energy/plasma/blast/smg_overcharge
 	damage = 30
-	penetration = 10
 	sundering = 2
-	damage_falloff = 0.5
+	accurate_range = 5
 
-/datum/ammo/energy/plasma/smg_overcharge/drop_nade(turf/T)
+/datum/ammo/energy/plasma/blast/smg_overcharge/drop_nade(turf/T)
 	explosion(T, weak_impact_range = 3)
-
-/datum/ammo/energy/plasma/smg_overcharge/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(O.density ? P.loc : O.loc)
-
-/datum/ammo/energy/plasma/smg_overcharge/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
-
-/datum/ammo/energy/plasma/smg_overcharge/do_at_max_range(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
-
-/datum/ammo/energy/plasma/smg_overcharge/on_hit_mob(mob/M, obj/projectile/proj)
-	drop_nade(M.loc)
 
 /datum/ammo/energy/xeno
 	barricade_clear_distance = 0

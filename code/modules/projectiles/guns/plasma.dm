@@ -5,8 +5,8 @@
 		slot_l_hand_str = 'icons/mob/inhands/guns/plasma_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/plasma_right_1.dmi',
 	)
-	default_ammo_type = /obj/item/cell/lasgun/plasma_powerpack
-	allowed_ammo_types = list(/obj/item/cell/lasgun/plasma_powerpack)
+	default_ammo_type = /obj/item/cell/lasgun/plasma
+	allowed_ammo_types = list(/obj/item/cell/lasgun/plasma)
 	heat_per_fire = 5
 	muzzle_flash_color = COLOR_DISABLER_BLUE
 	muzzleflash_iconstate = "muzzle_flash_pulse"
@@ -17,6 +17,7 @@
 	scatter_unwielded = 35
 	movement_acc_penalty_mult = 5
 	damage_falloff_mult = 0.25
+	overheat_multiplier = 0.5
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle
 	name = "\improper PL-38 plasma rifle"
@@ -29,16 +30,16 @@
 	unload_sound = 'sound/weapons/guns/interact/plasma_unload_3.ogg'
 	reload_sound = 'sound/weapons/guns/interact/plasma_reload_2.ogg'
 
-	wield_delay = 0.6 SECONDS
+	wield_delay = 0.7 SECONDS
 	aim_slowdown = 0.5
 
-	accuracy_mult = 1.1
-	scatter = -2
+	accuracy_mult = 1.15
+	scatter = 0
 
 	fire_delay = 0.2 SECONDS
-	heat_per_fire = 3.3
-	cool_amount = 2.5
-	rounds_per_shot = 10
+	heat_per_fire = 3
+	cool_amount = 9
+	rounds_per_shot = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	ammo_datum_type = /datum/ammo/energy/plasma/rifle_standard
 	force = 20
@@ -51,6 +52,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
@@ -67,14 +69,20 @@
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle/standard
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/bayonet,
+	)
 /datum/lasrifle/base/plasma_rifle_mode/rifle_standard
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_med.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/rifle_standard
 	icon_state = "plasma_rifle"
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 0.2 SECONDS
-	heat_per_fire = 3.3
-	rounds_per_shot = 2.5
+	heat_per_fire = 3
+	rounds_per_shot = 12
 	radial_icon_state = "plasma_weak"
 	message_to_user = "You set the plasma rifle's charge mode to standard fire."
 
@@ -83,20 +91,20 @@
 	ammo_datum_type = /datum/ammo/energy/plasma/rifle_marksman
 	icon_state = "plasma_rifle"
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	fire_delay = 0.25 SECONDS
-	heat_per_fire = 10
-	rounds_per_shot = 12.5
+	fire_delay = 0.6 SECONDS
+	heat_per_fire = 12
+	rounds_per_shot = 48
 	radial_icon_state = "plasma_strong"
 	message_to_user = "You set the plasma rifle's charge mode to piercing fire."
 
 /datum/lasrifle/base/plasma_rifle_mode/rifle_blast
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_blast.ogg'
-	ammo_datum_type = /datum/ammo/energy/plasma/rifle_blast
+	ammo_datum_type = /datum/ammo/energy/plasma/blast
 	icon_state = "plasma_rifle"
-	fire_mode = GUN_FIREMODE_SEMIAUTO
-	fire_delay = 2 SECONDS
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	fire_delay = 1.5 SECONDS
 	heat_per_fire = 33
-	rounds_per_shot = 50
+	rounds_per_shot = 100
 	radial_icon_state = "plasma_multi"
 	message_to_user = "You set the plasma rifle's charge mode to blast fire."
 
@@ -109,6 +117,8 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY
 	w_class = WEIGHT_CLASS_BULKY
 	gun_skill_category = SKILL_HEAVY_WEAPONS
+	default_ammo_type = /obj/item/cell/lasgun/plasma_powerpack
+	allowed_ammo_types = list(/obj/item/cell/lasgun/plasma_powerpack)
 
 	aim_slowdown = 1.2
 	wield_delay = 1.7 SECONDS
@@ -194,11 +204,10 @@
 	ammo_datum_type = /datum/ammo/energy/plasma/smg_standard/four
 	default_ammo_type = /obj/item/cell/lasgun/plasma
 	allowed_ammo_types = list(/obj/item/cell/lasgun/plasma)
-	cool_amount = 6
-	overheat_multiplier = 0.5
+	cool_amount = 9
 
 	wield_delay = 0.3 SECONDS
-	aim_slowdown = 0.35
+	aim_slowdown = 0.25
 	movement_acc_penalty_mult = 3
 
 	accuracy_mult = 1.1
@@ -206,7 +215,7 @@
 	scatter = 6
 	scatter_unwielded = 12
 
-	damage_falloff_mult = 0.5
+	damage_falloff_mult = 0.75
 
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 0.15 SECONDS
@@ -240,13 +249,15 @@
 	heat_per_fire = 3
 	rounds_per_shot = 12
 	radial_icon_state = "plasma_bouncy"
+	message_to_user = "You set the guns's firemode to standard fire."
 
 /datum/lasrifle/base/plasma_rifle_mode/smg_overcharge
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_heavy.ogg'
-	ammo_datum_type = /datum/ammo/energy/plasma/smg_overcharge
+	ammo_datum_type = /datum/ammo/energy/plasma/blast/smg_overcharge
 	icon_state = "plasma_smg"
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 1 SECONDS
 	heat_per_fire = 25
 	rounds_per_shot = 90
 	radial_icon_state = "plasma_cannon"
+	message_to_user = "You set the guns's firemode to overcharge."
