@@ -1,0 +1,4 @@
+author: "DeltaFire15"
+delete-after: True
+changes:
+  - bugfix: "Certain xenomorphs can no longer regenerate past their plasma cap under specific circumstances."
