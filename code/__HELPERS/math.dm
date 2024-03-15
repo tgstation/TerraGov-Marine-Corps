@@ -128,4 +128,4 @@
 	if(!A.z || !B.z)
 		return INFINITY
 
-	return abs(A.x - B.x) + abs(A.y - B.y)
+	return abs(A.x - B.x) + abs(A.y - B.y) + abs(A.z - B.z)
