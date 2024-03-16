@@ -325,7 +325,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TIME_BEFORE_DNR 150 //In life ticks, multiply by 2 to have seconds
 
 
-//species_flags //Hey if someone is willing to go through these and add autodoc, that would be awesome
+//species_flags
 #define NO_BLOOD (1<<0)
 #define NO_BREATHE (1<<1)
 #define NO_SCAN (1<<2)

@@ -1,5 +1,5 @@
 /*
-	Datum-based species. Should make for much cleaner and easier to maintain species code.
+	Datum-based species. Should make for much cleaner and easier to maintain species code
 */
 ///TODO SPLIT THIS INTO MULTIPLE FILES
 
@@ -26,13 +26,13 @@
 	var/blood_color = "#A10808"
 	///Color of the gibs that spawn from our species [/mob/living/carbon/human/spawn_gibs]
 	var/flesh_color = "#FFC896"
-	///Used when setting species.
+	///Used when setting species
 	var/base_color
 	///If the species only has one hair color
 	var/hair_color
-	///Used in icon caching.
+	///Used in icon caching
 	var/race_key = 0
-	///Used in icon caching.
+	///Used in icon caching
 	var/icon/icon_template
 
 	//----Grouped these because they get set on New()
@@ -44,7 +44,7 @@
 	var/datum/unarmed_attack/unarmed
 	///type that our unarmed gets set to on New()
 	var/unarmed_type = /datum/unarmed_attack
-	///For empty hand harm-intent attack if the first fails.
+	///For empty hand harm-intent attack if the first fails
 	var/datum/unarmed_attack/secondary_unarmed
 	///type that our secondary_unarmed gets set to on New()
 	var/secondary_unarmed_type = /datum/unarmed_attack/bite
@@ -52,23 +52,23 @@
 	//----Health/Stamina + Modifiers
 	///new maxHealth [/mob/living/carbon/human/var/maxHealth] of the human mob once species is applied
 	var/total_health = 100
-	///Physical damage reduction/malus.
+	///Brute damage modifier
 	var/brute_mod = null
-	///Burn damage reduction/malus.
+	///Burn damage modifier
 	var/burn_mod = null
 	///new max_stamina [/mob/living/var/max_stamina] of the human mob once species is applied
 	var/max_stamina = 50
 
 	//----Somewhat "gameplay" relevant
-	///how much the knocked_down effect is reduced per Life call.
+	///how much the knocked_down effect is reduced per Life call
 	var/knock_down_reduction = 1
-	///how much the stunned effect is reduced per Life call.
+	///how much the stunned effect is reduced per Life call
 	var/stun_reduction = 1
-	///how much the stunned effect is reduced per Life call.
+	///how much the stunned effect is reduced per Life call
 	var/knock_out_reduction = 1
 	///How much slowdown is innate to our species
 	var/slowdown = 0
-	///Inventory slots the race can't equip stuff to. Golems cannot wear jumpsuits, for example.
+	///Inventory slots the race can't equip stuff to. Golems cannot wear jumpsuits, for example
 	var/list/no_equip = list()
 
 	//----Related to dying in some way
@@ -82,31 +82,31 @@
 	var/death_sound
 	///Message that gets sent on death()
 	var/death_message = "seizes up and falls limp, their eyes dead and lifeless..."
-	///Special death message that gets overwritten if possible.
+	///Special death message that gets overwritten if possible
 	var/special_death_message = "You have perished."
 
 	//----Temperature/Pressure
-	///Cold damage level 1 below this point.
+	///Cold damage level 1 below this point
 	var/cold_level_1 = BODYTEMP_COLD_DAMAGE_LIMIT_ONE
-	///Cold damage level 2 below this point.
+	///Cold damage level 2 below this point
 	var/cold_level_2 = BODYTEMP_COLD_DAMAGE_LIMIT_TWO
-	///Cold damage level 3 below this point.
+	///Cold damage level 3 below this point
 	var/cold_level_3 = BODYTEMP_COLD_DAMAGE_LIMIT_THREE
-	///Heat damage level 1 above this point.
+	///Heat damage level 1 above this point
 	var/heat_level_1 = BODYTEMP_HEAT_DAMAGE_LIMIT_ONE
-	///Heat damage level 2 above this point.
+	///Heat damage level 2 above this point
 	var/heat_level_2 = BODYTEMP_HEAT_DAMAGE_LIMIT_TWO
-	///Heat damage level 2 above this point.
+	///Heat damage level 2 above this point
 	var/heat_level_3 = BODYTEMP_HEAT_DAMAGE_LIMIT_THREE
 	///non-IS_SYNTHETIC species will try to stabilize at this temperature. (also affects temperature processing)
 	var/body_temperature = BODYTEMP_NORMAL
-	///Dangerously high pressure.
+	///Dangerously high pressure
 	var/hazard_high_pressure = HAZARD_HIGH_PRESSURE
-	///High pressure warning.
+	///High pressure warning
 	var/warning_high_pressure = WARNING_HIGH_PRESSURE
-	///Low pressure warning.
+	///Low pressure warning
 	var/warning_low_pressure = WARNING_LOW_PRESSURE
-	///Dangerously low pressure.
+	///Dangerously low pressure
 	var/hazard_low_pressure = HAZARD_LOW_PRESSURE
 
 	///used in mob/living/proc/taste
@@ -116,10 +116,10 @@
 
 	///Sets mob/var/see_in_dark on [/mob/living/carbon/human/update_sight]
 	var/see_in_dark = 2
-
+	///Sets our mobs lighting_alpha on [/mob/living/carbon/human/update_sight]
 	var/lighting_alpha
 
-	///Used for metabolizing reagents.
+	///Used for metabolizing reagents
 	var/reagent_tag
 
 	///List of sounds for certain emotes [/datum/emote/living/carbon/human/scream/get_sound]
@@ -137,9 +137,9 @@
 	///List of sounds for certain emotes [/datum/emote/living/carbon/human/warcry/get_sound]
 	var/list/warcries = list()
 
-	///Generic traits tied to having the species.
+	///Generic traits tied to having the species
 	var/list/inherent_traits = list()
-	///inherent Species-specific verbs.
+	///inherent Species-specific verbs
 	var/list/inherent_verbs
 	///inherent species-specific actions
 	var/list/inherent_actions
@@ -158,6 +158,8 @@
 	var/datum/namepool/namepool = /datum/namepool
 	///Whether it is possible with this race roundstart
 	var/joinable_roundstart = FALSE
+	///If this species counts as a human
+	var/count_human = FALSE
 
 /datum/species/New()
 	if(hud_type)
@@ -172,13 +174,13 @@
 	if(species_flags & GREYSCALE_BLOOD)
 		brute_damage_icon_state = "grayscale"
 
-///Handles creation of mob organs and limbs.
+///Handles creation of mob organs and limbs
 /datum/species/proc/create_organs(mob/living/carbon/human/organless_human)
 	organless_human.limbs = list()
 	organless_human.internal_organs = list()
 	organless_human.internal_organs_by_name = list()
 
-	//This is a basic humanoid limb setup.
+	//This is a basic humanoid limb setup
 	var/datum/limb/chest/new_chest = new(null, organless_human)
 	organless_human.limbs += new_chest
 	var/datum/limb/groin/new_groin = new(new_chest, organless_human)
@@ -241,7 +243,7 @@
 
 /datum/species/synthetic/prefs_name(datum/preferences/prefs)
 	. = prefs.synthetic_name
-	if(!. || . == "Undefined") //In case they don't have a name set.
+	if(!. || . == "Undefined") //In case they don't have a name set
 		switch(prefs.gender)
 			if(MALE)
 				. = "David"
@@ -253,7 +255,7 @@
 
 /datum/species/early_synthetic/prefs_name(datum/preferences/prefs)
 	. = prefs.synthetic_name
-	if(!. || . == "Undefined") //In case they don't have a name set.
+	if(!. || . == "Undefined") //In case they don't have a name set
 		switch(prefs.gender)
 			if(MALE)
 				. = "David"
@@ -301,11 +303,11 @@
 			new_species_action.give_action(H)
 	return
 
-///Handles anything not already covered by basic species assignment.
+///Handles anything not already covered by basic species assignment
 /datum/species/proc/handle_post_spawn(mob/living/carbon/human/H)
 	add_inherent_abilities(H)
 
-///Handles any species-specific death events.
+///Handles any species-specific death events
 /datum/species/proc/handle_death(mob/living/carbon/human/H)
 	return
 
@@ -314,27 +316,27 @@
 /datum/species/proc/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
 	return FALSE
 
-///Only used by horrors at the moment. Only triggers if the mob is alive and not dead.
+///Only used by horrors at the moment. Only triggers if the mob is alive and not dead
 /datum/species/proc/handle_unique_behavior(mob/living/carbon/human/H)
 	return
 
-///Used to update alien icons for aliens.
+///Used to update alien icons for aliens
 /datum/species/proc/handle_login_special(mob/living/carbon/human/H)
 	return
 
-///As above.
+///As above
 /datum/species/proc/handle_logout_special(mob/living/carbon/human/H)
 	return
 
-///Builds the HUD using species-specific icons and usable slots.
+///Builds the HUD using species-specific icons and usable slots
 /datum/species/proc/build_hud(mob/living/carbon/human/H)
 	return
 
-///Grabs the window recieved when you click-drag someone onto you.
+///Grabs the window recieved when you click-drag someone onto you
 /datum/species/proc/get_inventory_dialogue(mob/living/carbon/human/H)
 	return
 
-///Used by xenos understanding larvae and dionaea understanding nymphs.
+///Used by xenos understanding larvae and dionaea understanding nymphs
 /datum/species/proc/can_understand(mob/other)
 	return
 
@@ -376,6 +378,7 @@
 	name = "Human"
 	unarmed_type = /datum/unarmed_attack/punch
 	species_flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR
+	count_human = TRUE
 
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
 	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
@@ -453,7 +456,7 @@
 
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	total_health = 100
-	slowdown = SHOES_SLOWDOWN //because they don't wear boots.
+	slowdown = SHOES_SLOWDOWN //because they don't wear boots
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -514,7 +517,7 @@
 	else
 		H.clear_fullscreen("robothalf")
 		H.clear_fullscreen("robotlow")
-	if(H.health > -25) //Staggerslowed if below crit threshold.
+	if(H.health > -25) //Staggerslowed if below crit threshold
 		return
 	H.Stagger(2 SECONDS)
 	H.adjust_slowdown(1)
@@ -570,7 +573,7 @@
 	total_health = 125 //more health than regular humans
 
 	brute_mod = 0.7
-	burn_mod = 0.8 // A slight amount of burn resistance. Changed from 0.7 due to their critical condition phase.
+	burn_mod = 0.8 // A slight amount of burn resistance. Changed from 0.7 due to their critical condition phase
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -598,7 +601,7 @@
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 /datum/species/synthetic/handle_unique_behavior(mob/living/carbon/human/H)
-	if(H.health <= -30 && H.stat != DEAD) // Instead of having a critical condition, they overheat and slowly die.
+	if(H.health <= -30 && H.stat != DEAD) // Instead of having a critical condition, they overheat and slowly die
 		H.adjustFireLoss(rand(14, 24)) // This may need tweaks
 		if(prob(8))
 			to_chat(H, span_alert("<b>Critical damage sustained. Internal temperature regulation systems offline. <u>Immediate repair required.</u></b>"))
@@ -607,7 +610,7 @@
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
-	H.health_threshold_crit = -100 // You overheat below -30 health.
+	H.health_threshold_crit = -100 // You overheat below -30 health
 
 
 /datum/species/synthetic/post_species_loss(mob/living/carbon/human/H)
@@ -620,14 +623,14 @@
 	return TRUE
 
 
-/datum/species/early_synthetic // Worse at medical, better at engineering. Tougher in general than later synthetics.
+/datum/species/early_synthetic // Worse at medical, better at engineering. Tougher in general than later synthetics
 	name = "Early Synthetic"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'
 	hud_type = /datum/hud_data/robotic
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
-	slowdown = 1.15 //Slower than Late Synths.
-	total_health = 200 //Tough boys, very tough boys.
+	slowdown = 1.15 //Slower than Late Synths
+	total_health = 200 //Tough boys, very tough boys
 	brute_mod = 0.6
 	burn_mod = 0.6
 
@@ -657,7 +660,7 @@
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 /datum/species/early_synthetic/handle_unique_behavior(mob/living/carbon/human/H)
-	if(H.health <= -30 && H.stat != DEAD) // Instead of having a critical condition, they overheat and slowly die.
+	if(H.health <= -30 && H.stat != DEAD) // Instead of having a critical condition, they overheat and slowly die
 		H.adjustFireLoss(rand(18, 28)) // This may need tweaks
 		if(prob(8))
 			to_chat(H, span_alert("<b>Critical damage sustained. Internal temperature regulation systems offline. <u>Immediate repair required.</u></b>"))
@@ -666,7 +669,7 @@
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
-	H.health_threshold_crit = -100 // You overheat below -30 health.
+	H.health_threshold_crit = -100 // You overheat below -30 health
 
 
 /datum/species/early_synthetic/post_species_loss(mob/living/carbon/human/H)
@@ -753,6 +756,7 @@
 	icobase = 'icons/mob/human_races/r_sectoid.dmi'
 	default_language_holder = /datum/language_holder/sectoid
 	eyes = "blank_eyes"
+	count_human = TRUE
 	total_health = 80
 
 	species_flags = HAS_NO_HAIR|NO_BREATHE|NO_POISON|NO_PAIN|USES_ALIEN_WEAPONS|NO_DAMAGE_OVERLAY
@@ -773,6 +777,7 @@
 	icobase = 'icons/mob/human_races/r_moth.dmi'
 	default_language_holder = /datum/language_holder/moth
 	eyes = "blank_eyes"
+	count_human = TRUE
 	species_flags = HAS_LIPS|HAS_NO_HAIR
 	screams = list("neuter" = 'sound/voice/moth_scream.ogg')
 	paincries = list("neuter" = 'sound/voice/human_male_pain_3.ogg')
@@ -826,8 +831,9 @@
 	name = "Skeleton"
 	icobase = 'icons/mob/human_races/r_skeleton.dmi'
 	unarmed_type = /datum/unarmed_attack/punch
+	count_human = TRUE
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD // Where we're going, we don't NEED underwear.
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD // Where we're going, we don't NEED underwear
 
 	screams = list("neuter" = 'sound/voice/skeleton_scream.ogg') // RATTLE ME BONES
 	paincries = list("neuter" = 'sound/voice/skeleton_scream.ogg')
@@ -838,7 +844,7 @@
 	warcries = list("neuter" = 'sound/voice/skeleton_warcry.ogg') // AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 	namepool = /datum/namepool/skeleton
 
-///Called when using the shredding behavior.
+///Called when using the shredding behavior
 /datum/species/proc/can_shred(mob/living/carbon/human/H)
 	if(H.a_intent != INTENT_HARM)
 		return FALSE
@@ -853,22 +859,26 @@
 
 //Species unarmed attacks
 /datum/unarmed_attack
-	///Empty hand hurt intent verb.
+	///Empty hand hurt intent verb
 	var/attack_verb = list("attack")
-	///Extra empty hand attack damage.
+	///Extra empty hand attack damage
 	var/damage = 0
+	///Sound that plays when you land a punch
 	var/attack_sound = "punch"
+	///Sound that plays when you miss a punch
 	var/miss_sound = 'sound/weapons/punchmiss.ogg'
-	///Calls the old attack_alien() behavior on objects/mobs when on harm intent.
+	///Calls the old attack_alien() behavior on objects/mobs when on harm intent
 	var/shredding = 0
+	///whether our unarmed attack cuts
 	var/sharp = 0
+	// whether our unarmed attack is more likely to dismember
 	var/edge = 0
 
 /datum/unarmed_attack/proc/is_usable(mob/living/carbon/human/user)
 	if(user.restrained())
 		return FALSE
 
-	// Check if they have a functioning hand.
+	// Check if they have a functioning hand
 	var/datum/limb/E = user.get_limb("l_hand")
 	if(E?.is_usable())
 		return TRUE
@@ -879,7 +889,7 @@
 	return FALSE
 
 /datum/unarmed_attack/bite
-	attack_verb = list("bite") // 'x has biteed y', needs work.
+	attack_verb = list("bite") // 'x has biteed y', needs work
 	attack_sound = 'sound/weapons/bite.ogg'
 	shredding = 0
 	damage = 5
@@ -918,35 +928,35 @@
 	shredding = 1
 
 /datum/hud_data
-	///If set, overrides ui_style.
+	///If set, overrides ui_style
 	var/icon
-	///Set to draw intent box.
+	///Set to draw intent box
 	var/has_a_intent = TRUE
-	///Set to draw move intent box.
+	///Set to draw move intent box
 	var/has_m_intent = TRUE
-	///Set to draw environment warnings.
+	///Set to draw environment warnings
 	var/has_warnings = TRUE
-	///Draw the pressure indicator.
+	///Draw the pressure indicator
 	var/has_pressure = TRUE
-	///Draw the nutrition indicator.
+	///Draw the nutrition indicator
 	var/has_nutrition = TRUE
-	///Draw the bodytemp indicator.
+	///Draw the bodytemp indicator
 	var/has_bodytemp = TRUE
-	///Set to draw shand.
+	///Set to draw shand
 	var/has_hands = TRUE
-	///Set to draw drop button.
+	///Set to draw drop button
 	var/has_drop = TRUE
-	///Set to draw throw button.
+	///Set to draw throw button
 	var/has_throw = TRUE
-	///Set to draw resist button.
+	///Set to draw resist button
 	var/has_resist = TRUE
-	///Checked by mob_can_equip().
+	///Checked by mob_can_equip()
 	var/list/equip_slots = list()
 
 	/**
 	 * Contains information on the position and tag for all inventory slots
 	 * to be drawn for the mob. This is fairly delicate, try to avoid messing with it
-	 * unless you know exactly what it does.
+	 * unless you know exactly what it does
 	 */
 	var/list/gear = list(
 		"i_clothing" = list("loc" = ui_iclothing, "slot" = SLOT_W_UNIFORM, "state" = "uniform", "toggle" = TRUE),
@@ -1058,7 +1068,7 @@
 				return
 			victim.adjustStaminaLoss(damage)
 
-	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().
+	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life()
 	SEND_SIGNAL(victim, COMSIG_HUMAN_DAMAGE_TAKEN, damage)
 
 	if(updating_health)

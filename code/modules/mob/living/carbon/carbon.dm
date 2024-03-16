@@ -340,6 +340,7 @@
 
 	sight = initial(sight)
 	lighting_alpha = initial(lighting_alpha)
+	see_in_dark = initial(see_in_dark)
 	see_invisible = initial(see_invisible)
 
 	if(species)
