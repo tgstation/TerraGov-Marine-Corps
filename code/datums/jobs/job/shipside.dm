@@ -987,6 +987,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 
 	var/list/abilities = list(
 		/datum/action/ability/activable/catslug/spearthrow,
+		/datum/action/ability/activable/catslug/healingtouch,
 	)
 
 /datum/outfit/job/medical/companion/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

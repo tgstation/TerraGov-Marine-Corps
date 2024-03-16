@@ -958,6 +958,7 @@
 
 //catslug abilities
 #define COMSIG_ABILITY_SPEARTHROW "ability_spearthrow"
+#define COMSIG_ABILITY_HEALINGTOUCH "ability_healingtouch"
 
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
