@@ -1,7 +1,7 @@
 /atom/movable/screen/plane_master
 	screen_loc = "CENTER"
 	icon_state = "blank"
-	flags_appearance = PLANE_MASTER|NO_CLIENT_COLOR
+	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	blend_mode = BLEND_OVERLAY
 	plane = LOWEST_EVER_PLANE
 	var/show_alpha = 255
@@ -34,7 +34,7 @@
 /atom/movable/screen/plane_master/openspace_backdrop
 	name = "open space backdrop plane master"
 	plane = OPENSPACE_BACKDROP_PLANE
-	flags_appearance = PLANE_MASTER
+	appearance_flags = PLANE_MASTER
 	blend_mode = BLEND_MULTIPLY
 	alpha = 255
 	render_relay_plane = RENDER_PLANE_GAME
@@ -42,7 +42,7 @@
 /atom/movable/screen/plane_master/openspace
 	name = "open space plane master"
 	plane = OPENSPACE_PLANE
-	flags_appearance = PLANE_MASTER
+	appearance_flags = PLANE_MASTER
 	render_relay_plane = RENDER_PLANE_GAME
 
 /atom/movable/screen/plane_master/openspace/Initialize(mapload, datum/hud/hud_owner)
@@ -55,7 +55,7 @@
 /atom/movable/screen/plane_master/floor
 	name = "floor plane master"
 	plane = FLOOR_PLANE
-	flags_appearance = PLANE_MASTER
+	appearance_flags = PLANE_MASTER
 	blend_mode = BLEND_OVERLAY
 
 /atom/movable/screen/plane_master/floor/backdrop(mob/living/mymob)
@@ -69,7 +69,7 @@
 /atom/movable/screen/plane_master/game_world
 	name = "game world plane master"
 	plane = GAME_PLANE
-	flags_appearance = PLANE_MASTER //should use client color
+	appearance_flags = PLANE_MASTER //should use client color
 	blend_mode = BLEND_OVERLAY
 
 /atom/movable/screen/plane_master/game_world/backdrop(mob/living/mymob)
@@ -90,7 +90,7 @@
 	plane = BLACKNESS_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	blend_mode = BLEND_MULTIPLY
-	flags_appearance = PLANE_MASTER | NO_CLIENT_COLOR | PIXEL_SCALE
+	appearance_flags = PLANE_MASTER | NO_CLIENT_COLOR | PIXEL_SCALE
 	//byond internal end
 	render_relay_plane = RENDER_PLANE_GAME
 
@@ -140,7 +140,7 @@
 /atom/movable/screen/plane_master/above_lighting
 	name = "above lighting plane master"
 	plane = ABOVE_LIGHTING_PLANE
-	flags_appearance = PLANE_MASTER //should use client color
+	appearance_flags = PLANE_MASTER //should use client color
 	blend_mode = BLEND_OVERLAY
 	render_relay_plane = RENDER_PLANE_GAME
 
@@ -158,7 +158,7 @@
 /atom/movable/screen/plane_master/camera_static
 	name = "camera static plane master"
 	plane = CAMERA_STATIC_PLANE
-	flags_appearance = PLANE_MASTER
+	appearance_flags = PLANE_MASTER
 	blend_mode = BLEND_OVERLAY
 
 /atom/movable/screen/plane_master/o_light_visual

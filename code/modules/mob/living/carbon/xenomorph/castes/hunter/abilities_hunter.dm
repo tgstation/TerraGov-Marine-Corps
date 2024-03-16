@@ -307,7 +307,7 @@
 	xeno_owner.flags_xeno |= XENO_LEAPING
 	xeno_owner.flags_pass |= PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
 	xeno_owner.throw_at(A, pounce_range, XENO_POUNCE_SPEED, xeno_owner)
-	addtimer(CALLBACK(src, PROC_REF(flags_reset_pass)), 0.6 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(reset_flags_pass)), 0.6 SECONDS)
 	succeed_activate()
 	add_cooldown()
 
@@ -351,7 +351,7 @@
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.flags_xeno &= ~XENO_LEAPING
 
-/datum/action/ability/activable/xeno/pounce/proc/reset_pass_flags()
+/datum/action/ability/activable/xeno/pounce/proc/reset_flags_pass()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.flags_pass = initial(xeno_owner.flags_pass)
 

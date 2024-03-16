@@ -4,7 +4,7 @@
 	icon_state = ""
 	layer = ABOVE_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	flags_appearance = NONE
+	appearance_flags = NONE
 	move_resist = INFINITY
 	light_system = MOVABLE_LIGHT
 	light_range = 1.5

@@ -19,7 +19,7 @@
 	var/mutable_appearance/view = image('icons/misc/colortest.dmi', "colors")
 	if(_target)
 		target = WEAKREF(_target)
-		if(!(_target.flags_appearance & PLANE_MASTER))
+		if(!(_target.appearance_flags & PLANE_MASTER))
 			view = image(_target)
 
 	// Map name has to start and end with an A-Z character,

@@ -1,7 +1,7 @@
 /atom/movable
 	layer = OBJ_LAYER
 	glide_size = 8
-	flags_appearance = TILE_BOUND|PIXEL_SCALE
+	appearance_flags = TILE_BOUND|PIXEL_SCALE
 	var/last_move = null
 	var/last_move_time = 0
 	var/anchored = FALSE
@@ -97,7 +97,7 @@
 		var/mutable_appearance/gen_emissive_blocker = mutable_appearance(icon, icon_state, plane = EMISSIVE_PLANE, alpha = src.alpha)
 		gen_emissive_blocker.color = GLOB.em_block_color
 		gen_emissive_blocker.dir = dir
-		gen_emissive_blocker.flags_appearance |= flags_appearance
+		gen_emissive_blocker.appearance_flags |= appearance_flags
 		add_overlay(list(gen_emissive_blocker))
 
 	if(opacity)
@@ -180,7 +180,7 @@
 				em_block = new(src, render_target)
 			return em_block
 	else
-		var/mutable_appearance/gen_emissive_blocker = emissive_blocker(icon, icon_state, alpha = src.alpha, flags_appearance = src.flags_appearance)
+		var/mutable_appearance/gen_emissive_blocker = emissive_blocker(icon, icon_state, alpha = src.alpha, appearance_flags = src.appearance_flags)
 		gen_emissive_blocker.dir = dir
 
 /atom/movable/update_overlays()
@@ -707,7 +707,7 @@
 		// Scale the icon.
 		I.transform *= 0.75
 		// The icon should not rotate.
-		I.flags_appearance = APPEARANCE_UI
+		I.appearance_flags = APPEARANCE_UI
 
 		// Set the direction of the icon animation.
 		var/direction = get_dir(src, A)

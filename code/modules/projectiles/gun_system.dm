@@ -35,7 +35,7 @@
 	light_system = MOVABLE_LIGHT
 	light_range = 0
 	light_color = COLOR_WHITE
-	flags_appearance = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
+	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
 
 /*
  *  Muzzle Vars
@@ -1913,7 +1913,7 @@
 	icon = 'icons/effects/overheat.dmi'
 	icon_state = "status_bar"
 	plane = ABOVE_HUD_PLANE
-	flags_appearance = APPEARANCE_UI_IGNORE_ALPHA
+	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 
 ///takes a 0-1 value and then animates to display that percentage on this bar
 /image/heat_bar/proc/animate_change(new_percentage, animate_time)

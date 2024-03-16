@@ -616,4 +616,4 @@
 	desc = "ow."
 	icon = 'icons/obj/armored/3x3/tank_damage.dmi' //set by owner
 	icon_state = "null" // set on demand
-	flags_vis = VIS_INHERIT_DIR
+	vis_flags = VIS_INHERIT_DIR

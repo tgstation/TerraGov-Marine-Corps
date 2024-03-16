@@ -532,7 +532,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	icon_state = "portal"
 	anchored = TRUE
 	opacity = FALSE
-	flags_vis = VIS_HIDE
+	vis_flags = VIS_HIDE
 	flags_resistance = UNACIDABLE | CRUSHER_IMMUNE | BANISH_IMMUNE
 	/// Visual object for handling the viscontents
 	var/obj/effect/portal_effect/portal_visuals
@@ -622,9 +622,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	bullet.fire_at(shooter = bullet.firer, range = max(bullet.proj_max_range - bullet.distance_travelled, 0), angle = bullet.dir_angle, recursivity = TRUE, loc_override = get_turf(linked_portal))
 
 /obj/effect/portal_effect
-	flags_appearance = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
+	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	flags_vis = VIS_INHERIT_ID
+	vis_flags = VIS_INHERIT_ID
 	layer = DOOR_OPEN_LAYER
 	///turf destination to display
 	var/turf/our_destination

@@ -10,7 +10,7 @@
 	m_intent = MOVE_INTENT_WALK
 	flags_buckle = CAN_BE_BUCKLED|CAN_BUCKLE
 	flags_resistance = XENO_DAMAGEABLE|PORTAL_IMMUNE
-	flags_appearance = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
+	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
 
 	hud_type = /datum/hud/human
 

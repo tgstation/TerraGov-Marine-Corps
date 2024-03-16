@@ -98,7 +98,7 @@
 	var/health_thresholds
 	wound_overlay.layer = layer + 0.3
 	wound_overlay.icon = src.icon
-	wound_overlay.flags_vis |= VIS_HIDE
+	wound_overlay.vis_flags |= VIS_HIDE
 	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
 		wound_overlay.icon_state = "none"
 		return
@@ -135,7 +135,7 @@
 		apply_overlay(WOUND_LAYER)
 		add_filter("wounded_filter", 1, alpha_mask_filter(0, 0, null, "*[REF(src)]", MASK_INVERSE))
 
-	wound_overlay.flags_vis &= ~VIS_HIDE // Show the overlay
+	wound_overlay.vis_flags &= ~VIS_HIDE // Show the overlay
 
 /mob/living/carbon/xenomorph/update_transform()
 	..()
@@ -143,7 +143,7 @@
 
 ///Used to display the xeno wounds without rapidly switching overlays
 /atom/movable/vis_obj/xeno_wounds
-	flags_vis = VIS_INHERIT_DIR
+	vis_flags = VIS_INHERIT_DIR
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay
 	light_system = MOVABLE_LIGHT

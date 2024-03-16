@@ -242,7 +242,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	var/mutable_appearance/MA = new /mutable_appearance(E)
 	if(MA)
 		MA.layer = ABOVE_HUD_LAYER
-		MA.flags_appearance |= RESET_TRANSFORM
+		MA.appearance_flags |= RESET_TRANSFORM
 	return MA
 
 
@@ -259,7 +259,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	current_user = M.client
 	//Blank
 	menu_holder = image(icon='icons/effects/effects.dmi',loc=anchor,icon_state="nothing",layer = ABOVE_HUD_LAYER)
-	menu_holder.flags_appearance |= KEEP_APART|RESET_ALPHA|RESET_COLOR|RESET_TRANSFORM
+	menu_holder.appearance_flags |= KEEP_APART|RESET_ALPHA|RESET_COLOR|RESET_TRANSFORM
 	menu_holder.vis_contents += elements + close_button
 	current_user.images += menu_holder
 

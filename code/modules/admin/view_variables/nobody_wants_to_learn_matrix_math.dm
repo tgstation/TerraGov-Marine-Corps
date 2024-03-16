@@ -39,7 +39,7 @@
 	data["matrix_d"] = testing_matrix.d
 	data["matrix_e"] = testing_matrix.e
 	data["matrix_f"] = testing_matrix.f
-	data["pixelated"] = target.flags_appearance & PIXEL_SCALE
+	data["pixelated"] = target.appearance_flags & PIXEL_SCALE
 	return data
 
 /datum/nobody_wants_to_learn_matrix_math/ui_act(action, list/params)
@@ -68,7 +68,7 @@
 			testing_matrix.Turn(params["angle"])
 			set_transform()
 		if("toggle_pixel")
-			target.flags_appearance ^= PIXEL_SCALE
+			target.appearance_flags ^= PIXEL_SCALE
 
 /datum/nobody_wants_to_learn_matrix_math/proc/set_transform()
 	animate(target, transform = testing_matrix, time = 0.5 SECONDS)

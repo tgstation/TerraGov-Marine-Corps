@@ -3,7 +3,7 @@
 	name = "\improper Condor Jet"
 	icon = 'icons/Marine/casship.dmi'
 	icon_state = "1"
-	flags_appearance = TILE_BOUND|KEEP_TOGETHER
+	appearance_flags = TILE_BOUND|KEEP_TOGETHER
 	layer = OBJ_LAYER
 	plane = GAME_PLANE
 	opacity = FALSE
@@ -181,7 +181,7 @@
 	layer = OBJ_LAYER
 	flags_resistance = RESIST_ALL
 	density = TRUE
-	flags_appearance = TILE_BOUND|KEEP_TOGETHER
+	appearance_flags = TILE_BOUND|KEEP_TOGETHER
 	opacity = FALSE
 	///you can't shoot it to death
 	coverage = 15

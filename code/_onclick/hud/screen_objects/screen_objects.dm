@@ -4,7 +4,7 @@
 	layer = HUD_LAYER
 	plane = HUD_PLANE
 	flags_resistance = RESIST_ALL | PROJECTILE_IMMUNE
-	flags_appearance = APPEARANCE_UI
+	appearance_flags = APPEARANCE_UI
 	var/obj/master //A reference to the object in the slot. Grabs or items, generally.
 	var/datum/hud/hud // A reference to the owner HUD, if any./atom/movable/screen
 

@@ -302,7 +302,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		if(M.client)
 			speech_bubble_recipients.Add(M.client)
 	var/image/I = image('icons/mob/effects/talk.dmi', src, "[bubble_type][say_test(message_raw)]", FLY_LAYER)
-	I.flags_appearance = APPEARANCE_UI_IGNORE_ALPHA
+	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), I, speech_bubble_recipients, 30)
 
 /mob/living/GetVoice()

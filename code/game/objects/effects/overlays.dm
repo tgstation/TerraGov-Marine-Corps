@@ -365,10 +365,10 @@
 	icon_state = "light"
 	layer = O_LIGHTING_VISUAL_LAYER
 	plane = O_LIGHTING_VISUAL_PLANE
-	flags_appearance = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
+	appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 0
-	flags_vis = NONE
+	vis_flags = NONE
 	blocks_emissive = EMISSIVE_BLOCK_NONE
 
 /obj/effect/overlay/temp/timestop_effect
@@ -394,8 +394,8 @@
 /obj/effect/overlay/vis
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE
-	flags_vis = VIS_INHERIT_DIR
+	vis_flags = VIS_INHERIT_DIR
 	/// When detected to be unused it gets set to world.time, after a while it gets removed
 	var/unused = 0
 	/// Overlays which go unused for 2 minutes get cleaned up
-	var/cache_expiration = 2 MINUTES 
+	var/cache_expiration = 2 MINUTES

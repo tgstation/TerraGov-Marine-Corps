@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"PROJ_IGNORE_DENSITY" = PROJ_IGNORE_DENSITY,
 		"LIGHT_CAN_BE_SHUT" = LIGHT_CAN_BE_SHUT,
 	),
-	"flags_appearance" = list(
+	"appearance_flags" = list(
 		"LONG_GLIDE" = LONG_GLIDE,
 		"RESET_COLOR" = RESET_COLOR,
 		"RESET_ALPHA" = RESET_ALPHA,

@@ -64,7 +64,7 @@ SUBSYSTEM_DEF(vis_overlays)
 	overlay.plane = plane
 	overlay.dir = dir
 	overlay.alpha = alpha
-	overlay.flags_appearance |= flags_add_appearance
+	overlay.appearance_flags |= flags_add_appearance
 	return overlay
 
 
