@@ -263,3 +263,32 @@
   - qol: style hats now mask hairs behind them so they look like they're layered on
       your head properly
   - imageadd: resprites mimir module worn sprite
+2024-03-16:
+  Barnet2:
+  - bugfix: Campaign mortar acid smoke is opaque
+  DeltaFire15:
+  - bugfix: Certain xenomorphs can no longer regenerate past their plasma cap under
+      specific circumstances.
+  - bugfix: Railgun factory parts now give you their respective ammunition types instead
+      of only standard canisters.
+  - spellcheck: AMR factory parts now can be differentiated by name as opposed to
+      by feeling.
+  Kapu1178:
+  - bugfix: Facehuggers will now prioritize the nearest marine, preferring cardinal
+      directions.
+  Lumipharon:
+  - balance: 'Campaign: reduced mission time for ASAT and both fire support missions'
+  - balance: 'Campaign: Increased number of objectives required for minor victory
+      for fire support missions'
+  - balance: 'Campaign: Killing mechs in mech war awards a small number of capture
+      points'
+  - balance: 'Campaign: Fire support binos require line of sight, but can now target
+      any atom'
+  - bugfix: fixed flak guns being vended incorrectly
+  - qol: Antigas smoke is more visible
+  blackdav123:
+  - balance: GL-81 can now fit magnetic harness and rail flashlight.
+  lbnesquik:
+  - qol: Added a little description to the medivac bed in the corpsman vendor.
+  - spellcheck: Corrected a typo of patiant to patient
+  - code_imp: Removed a now useless verb

@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Campaign: Fire support binos require line of sight, but can now target any atom"
