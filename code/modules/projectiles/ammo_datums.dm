@@ -4413,7 +4413,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/spear
 	name = "spear"
 	icon_state = "spear"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	shell_speed = 3
 	max_range = 15
 	damage = 25

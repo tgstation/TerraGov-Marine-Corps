@@ -29,7 +29,7 @@
 	newspear.generate_bullet(spear, spear.damage)
 	newspear.def_zone = X.get_limbzone_target()
 
-	newspear.fire_at(target, X, null, newspear.ammo.max_range)
+	newspear.fire_at(target, X, X, newspear.ammo.max_range)
 
 	succeed_activate()
 	add_cooldown()
