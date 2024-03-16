@@ -1,0 +1,5 @@
+author: "AzonStarfall"
+delete-after: True
+changes:
+  - rscadd: "Expanded the Arachne vehicle bay."
+  - rscdel: "Removed the Arachne flight control station, to make room for the vehicle bay."
