@@ -21,7 +21,7 @@
 	///How much the reagents in the foam are divided when applying and how much it can apply per proccess.
 	var/reagent_divisor = 7
 	///flags for the foam, such as RAZOR_FOAM and METAL_FOAM.
-	var/foam_flags = NONE
+	var/flags_foam = NONE
 
 /obj/effect/particle_effect/foam/Initialize(mapload)
 	. = ..()
@@ -37,9 +37,9 @@
 ///Finishes the foam, stopping it from processing and doing whatever it has to do.
 /obj/effect/particle_effect/foam/proc/kill_foam()
 	STOP_PROCESSING(SSfastprocess, src)
-	if(foam_flags & METAL_FOAM)
+	if(flags_foam & METAL_FOAM)
 		new /obj/structure/foamedmetal(loc)
-	if(foam_flags & RAZOR_FOAM)
+	if(flags_foam & RAZOR_FOAM)
 		var/turf/mystery_turf = get_turf(loc)
 		if(!isopenturf(mystery_turf))
 			return
@@ -97,17 +97,17 @@
 		F.spread_amount = spread_amount
 		reagents.copy_to(F, reagents.total_volume)
 		F.color = color
-		F.foam_flags = foam_flags
+		F.flags_foam = flags_foam
 
 // foam disolves when heated
 // except metal foams
 /obj/effect/particle_effect/foam/fire_act(exposed_temperature, exposed_volume)
-	if(!(foam_flags & METAL_FOAM|RAZOR_FOAM) && prob(max(0, exposed_temperature - 475)))
+	if(!(flags_foam & METAL_FOAM|RAZOR_FOAM) && prob(max(0, exposed_temperature - 475)))
 		kill_foam()
 
 /obj/effect/particle_effect/foam/can_slip()
 	. = ..()
-	if(foam_flags & METAL_FOAM|RAZOR_FOAM)
+	if(flags_foam & METAL_FOAM|RAZOR_FOAM)
 		return FALSE
 
 //datum effect system
@@ -120,7 +120,7 @@
 	///Holder that holds the chems the foam will have
 	var/datum/reagents/carrying_reagents
 	///Flags for the foam.
-	var/foam_flags = NONE
+	var/flags_foam = NONE
 
 /datum/effect_system/foam_spread/New()
 	..()
@@ -130,7 +130,7 @@
 	QDEL_NULL(carrying_reagents)
 	return ..()
 
-/datum/effect_system/foam_spread/set_up(spread_amount = 5, atom/location, datum/reagents/carry = null, foam_flags = NONE, lifetime = 75)
+/datum/effect_system/foam_spread/set_up(spread_amount = 5, atom/location, datum/reagents/carry = null, flags_foam = NONE, lifetime = 75)
 	if(isturf(location))
 		src.location = WEAKREF(location)
 	else
@@ -138,7 +138,7 @@
 
 	src.spread_amount = round(sqrt(spread_amount / 3), 1)
 	carry.copy_to(carrying_reagents, carry.total_volume)
-	src.foam_flags = foam_flags
+	src.flags_foam = flags_foam
 
 /datum/effect_system/foam_spread/start()
 	if(spread_amount < 0)
@@ -148,7 +148,7 @@
 	carrying_reagents.copy_to(F, spread_amount ? carrying_reagents.total_volume/spread_amount : carrying_reagents.total_volume) //this magically duplicates chems
 	F.add_atom_colour(foamcolor, FIXED_COLOUR_PRIORITY)
 	F.spread_amount = spread_amount
-	F.foam_flags = foam_flags
+	F.flags_foam = flags_foam
 
 // wall formed by metal foams
 // dense and opaque, but easy to break
@@ -160,12 +160,12 @@
 	density = TRUE
 	opacity = FALSE 	// changed in New()
 	anchored = TRUE
-	allow_pass_flags = NONE
+	flags_allow_pass = NONE
 	name = "foamed metal"
 	desc = "A lightweight foamed metal wall."
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	max_integrity = 120
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(
 		SMOOTH_GROUP_FOAM_WALL,
 	)

@@ -3,7 +3,7 @@
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "x2"
 	anchored = TRUE
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	layer = MID_LANDMARK_LAYER
 	invisibility = INVISIBILITY_ABSTRACT
 
@@ -220,7 +220,7 @@
 	if(!gun_to_spawn.default_ammo_type)
 		return
 
-	if(CHECK_BITFIELD(gun_to_spawn.reciever_flags, AMMO_RECIEVER_HANDFULS) && istype(gun_to_spawn.default_ammo_type, /datum/ammo))
+	if(CHECK_BITFIELD(gun_to_spawn.flags_reciever, AMMO_RECIEVER_HANDFULS) && istype(gun_to_spawn.default_ammo_type, /datum/ammo))
 		var/obj/item/ammo_magazine/handful/handful_to_generate
 		var/datum/ammo/ammo_to_spawn = gun_to_spawn.default_ammo_type
 		for(var/i in 1 to 3)

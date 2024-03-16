@@ -15,7 +15,7 @@
 /*
 To add TK to a living mob, just make it register this proc on ranged attacks and enable the TK flag:
 	RegisterSignal(src, COMSIG_MOB_ATTACK_RANGED, PROC_REF(on_ranged_attack_tk))
-	ENABLE_BITFIELD(status_flags, TK_USER)
+	ENABLE_BITFIELD(flags_status, TK_USER)
 Redefine as needed.
 */
 /mob/living/proc/on_ranged_attack_tk(mob/user, atom/target)
@@ -192,7 +192,7 @@ Redefine as needed.
 
 
 /obj/item/tk_grab/proc/check_if_focusable(obj/target)
-	if(!istype(tk_user) || QDELETED(target) || !istype(target) || !CHECK_BITFIELD(tk_user.status_flags, TK_USER))
+	if(!istype(tk_user) || QDELETED(target) || !istype(target) || !CHECK_BITFIELD(tk_user.flags_status, TK_USER))
 		qdel(src)
 		return FALSE
 	if(!tkMaxRangeCheck(tk_user, target) || target.anchored || !isturf(target.loc))

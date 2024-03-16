@@ -25,7 +25,7 @@
 	X.visible_message(span_danger("[X] charges towards \the [A]!"), \
 	span_danger("We charge towards \the [A]!") )
 	X.emote("roar")
-	X.xeno_flags |= XENO_LEAPING //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
+	X.flags_xeno |= XENO_LEAPING //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
 	succeed_activate()
 
 	X.throw_at(A, charge_range, RAV_CHARGESPEED, X)
@@ -45,7 +45,7 @@
 		return FALSE
 	if(!line_of_sight(owner, target, charge_range))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, flags_override = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -84,7 +84,7 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENOMORPH_LEAP_BUMP))
 	var/mob/living/carbon/xenomorph/ravager/xeno_owner = owner
-	xeno_owner.xeno_flags &= ~XENO_LEAPING
+	xeno_owner.flags_xeno &= ~XENO_LEAPING
 
 // ***************************************
 // *********** Ravage
@@ -95,7 +95,7 @@
 	desc = "Attacks and knockbacks enemies in the direction your facing."
 	ability_cost = 200
 	cooldown_duration = 6 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RAVAGE_SELECT,
@@ -122,7 +122,7 @@
 	atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
 	atoms_to_ravage += get_step(owner, turn(owner.dir, 45)).contents
 	for(var/atom/movable/ravaged AS in atoms_to_ravage)
-		if(!(ravaged.resistance_flags & XENO_DAMAGEABLE) || !X.Adjacent(ravaged))
+		if(!(ravaged.flags_resistance & XENO_DAMAGEABLE) || !X.Adjacent(ravaged))
 			continue
 		if(!ishuman(ravaged))
 			ravaged.attack_alien(X, X.xeno_caste.melee_damage)
@@ -167,7 +167,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, flags_override = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -199,7 +199,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENDURE,
 	)
-	use_state_flags = ABILITY_USE_STAGGERED //Can use this while staggered
+	flags_use_state = ABILITY_USE_STAGGERED //Can use this while staggered
 	///How low the Ravager's health can go while under the effects of Endure before it dies
 	var/endure_threshold = RAVAGER_ENDURE_HP_LIMIT
 	///Timer for Endure's duration
@@ -300,7 +300,7 @@
 		return FALSE
 	if(X.health > 50)
 		return FALSE
-	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_action(flags_override = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	return TRUE
 
@@ -313,7 +313,7 @@
 	desc = "Use while at 50% health or lower to gain extra slash damage, resistances and speed in proportion to your missing hit points. This bonus is increased and you regain plasma while your HP is negative."
 	ability_cost = 0 //We're limited by cooldowns, not plasma
 	cooldown_duration = 60 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAGE,
 	)
@@ -329,7 +329,7 @@
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
-/datum/action/ability/xeno_action/rage/can_use_action(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/rage/can_use_action(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -505,7 +505,7 @@
 	desc = "Toggle on to enable boosting on "
 	ability_cost = 0 //We're limited by nothing, rip and tear
 	cooldown_duration = 1 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_VAMPIRISM,
 	)

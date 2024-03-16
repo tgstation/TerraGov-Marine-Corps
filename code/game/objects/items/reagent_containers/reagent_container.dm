@@ -11,7 +11,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 1
 	throw_range = 5
-	var/init_reagent_flags
+	var/flags_init_reagent
 	var/amount_per_transfer_from_this = 5
 	///Used to adjust how many units are transfered/injected in a single click
 	var/possible_transfer_amounts = list(5,10,15,25,30)
@@ -23,7 +23,7 @@
 
 /obj/item/reagent_containers/Initialize(mapload)
 	. = ..()
-	create_reagents(volume, init_reagent_flags, list_reagents)
+	create_reagents(volume, flags_init_reagent, list_reagents)
 	if(!possible_transfer_amounts)
 		verbs -= /obj/item/reagent_containers/verb/set_APTFT
 

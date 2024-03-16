@@ -93,7 +93,7 @@
 		to_chat(user, span_warning("\The [src] can't operate without a source of power!"))
 		return
 
-	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
+	if(M.flags_status & INCORPOREAL || user.flags_status & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
 		return
 
 	var/powerused = setting * 20

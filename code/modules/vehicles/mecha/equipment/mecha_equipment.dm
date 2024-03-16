@@ -21,7 +21,7 @@
 	///Bitflag. Determines the range of the equipment.
 	var/range = MECHA_MELEE
 	/// Bitflag. Used by exosuit fabricator to assign sub-categories based on which exosuits can equip this.
-	var/mech_flags = ALL
+	var/flags_mech = ALL
 	///boolean: FALSE if this equipment can not be removed/salvaged
 	var/detachable = TRUE
 	///Boolean: whether a pacifist can use this equipment
@@ -124,7 +124,7 @@
 	return default_can_attach(M, attach_right)
 
 /obj/item/mecha_parts/mecha_equipment/proc/default_can_attach(obj/vehicle/sealed/mecha/mech, attach_right = FALSE)
-	if(!(mech_flags & mech.mech_type))
+	if(!(flags_mech & mech.mech_type))
 		return FALSE
 	if(equipment_slot == MECHA_WEAPON)
 		if(attach_right)

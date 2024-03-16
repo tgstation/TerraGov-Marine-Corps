@@ -135,7 +135,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "jitters and death"
 	adj_temp = 5
 	targ_temp = 305
-	trait_flags = TACHYCARDIC
+	flags_trait = TACHYCARDIC
 
 /datum/reagent/consumable/ethanol/thirteenloko/on_mob_life(mob/living/L, metabolism)
 	L.adjustDrowsyness(-7)
@@ -293,7 +293,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 				var/mob/living/carbon/human/H = L
 				var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 				if(istype(E))
-					if(H.species.species_flags ~! NO_PAIN)
+					if(H.species.flags_species ~! NO_PAIN)
 						to_chat(H, span_danger("You clutch for a moment as you feel a scorching pain covering your abdomen!"))
 						H.Stun(6 SECONDS)
 					E.take_damage(20)

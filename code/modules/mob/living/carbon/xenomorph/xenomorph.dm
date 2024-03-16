@@ -65,7 +65,7 @@
 
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, XENO_TRAIT)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, XENO_TRAIT)
-	if(xeno_caste.caste_flags & CASTE_STAGGER_RESISTANT)
+	if(xeno_caste.flags_caste & CASTE_STAGGER_RESISTANT)
 		ADD_TRAIT(src, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 	hive.update_tier_limits()
 	if(CONFIG_GET(flag/xenos_on_strike))
@@ -222,7 +222,7 @@
 
 /mob/living/carbon/xenomorph/proc/grabbed_self_attack()
 	SIGNAL_HANDLER
-	if(!(xeno_caste.can_flags & CASTE_CAN_RIDE_CRUSHER))
+	if(!(xeno_caste.flags_can & CASTE_CAN_RIDE_CRUSHER))
 		return NONE
 	if(isxenocrusher(pulling) || isxenobehemoth(pulling))
 		var/mob/living/carbon/xenomorph/crusher/grabbed = pulling
@@ -267,7 +267,7 @@
 
 /mob/living/carbon/xenomorph/Destroy()
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
-	if(xeno_flags & XENO_ZOOMED)
+	if(flags_xeno & XENO_ZOOMED)
 		zoom_out()
 
 	GLOB.alive_xeno_list -= src
@@ -294,7 +294,7 @@
 		return FALSE //We are already occupied with something.
 	if(!Adjacent(AM))
 		return FALSE //The target we're trying to pull must be adjacent and anchored.
-	if(status_flags & INCORPOREAL || AM.status_flags & INCORPOREAL)
+	if(flags_status & INCORPOREAL || AM.flags_status & INCORPOREAL)
 		return FALSE //Incorporeal things can't grab or be grabbed.
 	if(AM.anchored)
 		return FALSE //We cannot grab anchored items.
@@ -410,7 +410,7 @@
 
 
 /mob/living/carbon/xenomorph/Moved(atom/old_loc, movement_dir)
-	if(xeno_flags & XENO_ZOOMED)
+	if(flags_xeno & XENO_ZOOMED)
 		zoom_out()
 	handle_weeds_on_movement()
 	return ..()
@@ -497,4 +497,4 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 		cooldown *= gravity
 		height *= gravity * 0.5
 
-	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = 0, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = flags_pass)
+	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = 0, _jump_height = height, _jump_sound = sound, flags__jump = flags, flags__jumper_allow_pass = flags_pass)

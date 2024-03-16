@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/bloodpack.dmi'
 	icon_state = "empty"
 	volume = 200
-	init_reagent_flags = AMOUNT_ESTIMEE
+	flags_init_reagent = AMOUNT_ESTIMEE
 	var/blood_type
 
 

@@ -22,8 +22,8 @@
 
 	maximum_active_caste = 1
 	// *** Flags *** //
-	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_FIRE_IMMUNE|CASTE_IS_BUILDER|CASTE_DO_NOT_ALERT_LOW_LIFE
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
+	flags_caste = CASTE_INNATE_PLASMA_REGEN|CASTE_FIRE_IMMUNE|CASTE_IS_BUILDER|CASTE_DO_NOT_ALERT_LOW_LIFE
+	flags_can = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
 	caste_traits = null
 
 	// *** Defense *** //
@@ -74,7 +74,7 @@
 	upgrade = XENO_UPGRADE_MANIFESTATION
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_BUILDER|CASTE_FIRE_IMMUNE
+	flags_caste = CASTE_IS_BUILDER|CASTE_FIRE_IMMUNE
 
 	aura_strength = 4 //Good pheros
 

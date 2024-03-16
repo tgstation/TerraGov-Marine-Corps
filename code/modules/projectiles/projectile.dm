@@ -19,7 +19,7 @@
 
 #define DAMAGE_REDUCTION_COEFFICIENT(armor) (0.1/((armor*armor*0.0001)+0.1)) //Armor offers diminishing returns.
 
-#define PROJECTILE_HIT_CHECK(thing_to_hit, projectile, cardinal_move, uncrossing, hit_atoms) (!(thing_to_hit.resistance_flags & PROJECTILE_IMMUNE) && thing_to_hit.projectile_hit(projectile, cardinal_move, uncrossing) && !(thing_to_hit in hit_atoms))
+#define PROJECTILE_HIT_CHECK(thing_to_hit, projectile, cardinal_move, uncrossing, hit_atoms) (!(thing_to_hit.flags_resistance & PROJECTILE_IMMUNE) && thing_to_hit.projectile_hit(projectile, cardinal_move, uncrossing) && !(thing_to_hit in hit_atoms))
 
 //The actual bullet objects.
 /obj/projectile
@@ -27,7 +27,7 @@
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "bullet"
 	density = FALSE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	anchored = TRUE //You will not have me, space wind!
 	move_resist = INFINITY
 	flags_atom = NOINTERACT //No real need for this, but whatever. Maybe this flag will do something useful in the future.
@@ -647,13 +647,13 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /obj/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(!density && !(obj_flags & PROJ_IGNORE_DENSITY)) //structure is passable
+	if(!density && !(flags_obj & PROJ_IGNORE_DENSITY)) //structure is passable
 		return FALSE
 	if(src == proj.original_target) //clicking on the structure itself hits the structure
 		return TRUE
-	if((allow_pass_flags & PASS_GLASS) && (proj.ammo.flags_ammo_behavior & AMMO_ENERGY))
+	if((flags_allow_pass & PASS_GLASS) && (proj.ammo.flags_ammo_behavior & AMMO_ENERGY))
 		return FALSE
-	if(!(allow_pass_flags & PASS_PROJECTILE))
+	if(!(flags_allow_pass & PASS_PROJECTILE))
 		return TRUE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
@@ -724,7 +724,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return src == buckled_mob
 
 /mob/living/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(status_flags & INCORPOREAL)
+	if(flags_status & INCORPOREAL)
 		return FALSE
 	if(proj.firer == src)
 		return FALSE
@@ -732,7 +732,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	if((proj.ammo.flags_ammo_behavior & AMMO_XENO) && (isnestedhost(src) || stat == DEAD))
 		return FALSE
-	if(pass_flags & PASS_PROJECTILE) //he's beginning to believe
+	if(flags_pass & PASS_PROJECTILE) //he's beginning to believe
 		return FALSE
 
 	//We want a temporary variable so accuracy doesn't change every time the bullet misses.
@@ -808,7 +808,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/do_projectile_hit(obj/projectile/proj)
 	. = ..()
-	if(!(species?.species_flags & NO_BLOOD) && proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
+	if(!(species?.flags_species & NO_BLOOD) && proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
 		var/angle = !isnull(proj.dir_angle) ? proj.dir_angle : round(Get_Angle(proj.starting_turf, src), 1)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, angle, get_blood_color())
 
@@ -889,19 +889,19 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	flash_weak_pain()
 
-	var/feedback_flags = NONE
+	var/flags_feedback = NONE
 	var/original_damage = damage
 	damage = modify_by_armor(damage, proj.armor_type, proj.penetration, proj.def_zone)
 	if(damage == original_damage)
-		feedback_flags |= BULLET_FEEDBACK_PEN
+		flags_feedback |= BULLET_FEEDBACK_PEN
 	else if(!damage)
-		feedback_flags |= BULLET_FEEDBACK_SOAK
+		flags_feedback |= BULLET_FEEDBACK_SOAK
 		bullet_soak_effect(proj)
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
 		adjust_fire_stacks(proj.ammo.incendiary_strength)
 		if(IgniteMob())
-			feedback_flags |= (BULLET_FEEDBACK_FIRE)
+			flags_feedback |= (BULLET_FEEDBACK_FIRE)
 
 	if(proj.sundering)
 		adjust_sunder(proj.sundering)
@@ -911,15 +911,15 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(damage)
 		if(do_shrapnel_roll(proj, damage))
-			feedback_flags |= (BULLET_FEEDBACK_SHRAPNEL|BULLET_FEEDBACK_SCREAM)
+			flags_feedback |= (BULLET_FEEDBACK_SHRAPNEL|BULLET_FEEDBACK_SCREAM)
 			embed_projectile_shrapnel(proj)
 		else if(prob(damage * 0.25))
-			feedback_flags |= BULLET_FEEDBACK_SCREAM
-		bullet_message(proj, feedback_flags, damage)
+			flags_feedback |= BULLET_FEEDBACK_SCREAM
+		bullet_message(proj, flags_feedback, damage)
 		proj.play_damage_effect(src)
 		apply_damage(damage, proj.ammo.damage_type, proj.def_zone, updating_health = TRUE) //This could potentially delete the source.
 	else
-		bullet_message(proj, feedback_flags)
+		bullet_message(proj, flags_feedback)
 
 	GLOB.round_statistics.total_projectile_hits[faction]++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectile_hits[faction]")
@@ -1232,7 +1232,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		current_bulletholes++
 
 	if(prob(30))
-		visible_message(span_warning("[src] is damaged by [proj]!"), visible_message_flags = COMBAT_MESSAGE)
+		visible_message(span_warning("[src] is damaged by [proj]!"), flags_visible_message = COMBAT_MESSAGE)
 	take_damage(damage)
 	return TRUE
 
@@ -1248,7 +1248,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 #define BULLET_MESSAGE_HUMAN_SHOOTER 1
 #define BULLET_MESSAGE_OTHER_SHOOTER 2
 
-/mob/living/proc/bullet_message(obj/projectile/proj, feedback_flags, damage)
+/mob/living/proc/bullet_message(obj/projectile/proj, flags_feedback, damage)
 	if(!proj.firer)
 		log_message("SOMETHING?? shot [key_name(src)] with a [proj]", LOG_ATTACK)
 		return BULLET_MESSAGE_NO_SHOOTER
@@ -1259,7 +1259,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return BULLET_MESSAGE_OTHER_SHOOTER
 
 
-/mob/living/carbon/human/bullet_message(obj/projectile/proj, feedback_flags, damage)
+/mob/living/carbon/human/bullet_message(obj/projectile/proj, flags_feedback, damage)
 	. = ..()
 	var/list/victim_feedback = list()
 	if(proj.shot_from && HAS_TRAIT(proj.shot_from, TRAIT_GUN_SILENCED))
@@ -1267,23 +1267,23 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	else
 		victim_feedback += "You are hit by [proj] in the [parse_zone(proj.def_zone)]!"
 
-	if(feedback_flags & BULLET_FEEDBACK_IMMUNE)
+	if(flags_feedback & BULLET_FEEDBACK_IMMUNE)
 		victim_feedback += "Your armor deflects the impact!"
-	else if(feedback_flags & BULLET_FEEDBACK_SOAK)
+	else if(flags_feedback & BULLET_FEEDBACK_SOAK)
 		victim_feedback += "Your armor absorbs the impact!"
 	else
-		if(feedback_flags & BULLET_FEEDBACK_PEN)
+		if(flags_feedback & BULLET_FEEDBACK_PEN)
 			victim_feedback += "Your armor was penetrated!"
-		if(feedback_flags & BULLET_FEEDBACK_SHRAPNEL)
+		if(flags_feedback & BULLET_FEEDBACK_SHRAPNEL)
 			victim_feedback += "The impact sends <b>shrapnel</b> into the wound!"
 
-	if(feedback_flags & BULLET_FEEDBACK_FIRE)
+	if(flags_feedback & BULLET_FEEDBACK_FIRE)
 		victim_feedback += "You burst into <b>flames!!</b> Stop drop and roll!"
 
 	if(!client?.prefs.mute_self_combat_messages)
 		to_chat(src, span_highdanger("[victim_feedback.Join(" ")]"))
 
-	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS && !(species.species_flags & NO_PAIN))
+	if(flags_feedback & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS && !(species.flags_species & NO_PAIN))
 		emote("scream")
 
 	if(. != BULLET_MESSAGE_HUMAN_SHOOTER)
@@ -1296,7 +1296,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [proj] in [ADMIN_VERBOSEJMP(T)].")
 
 
-/mob/living/carbon/xenomorph/bullet_message(obj/projectile/proj, feedback_flags, damage)
+/mob/living/carbon/xenomorph/bullet_message(obj/projectile/proj, flags_feedback, damage)
 	. = ..()
 	var/list/victim_feedback
 	if(proj.shot_from && HAS_TRAIT(proj.shot_from, TRAIT_GUN_SILENCED))
@@ -1304,17 +1304,17 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	else
 		victim_feedback = list("We are hit by the [proj] in the [parse_zone(proj.def_zone)]!")
 
-	if(feedback_flags & BULLET_FEEDBACK_IMMUNE)
+	if(flags_feedback & BULLET_FEEDBACK_IMMUNE)
 		victim_feedback += "Our exoskeleton deflects it!"
-	else if(feedback_flags & BULLET_FEEDBACK_SOAK)
+	else if(flags_feedback & BULLET_FEEDBACK_SOAK)
 		victim_feedback += "Our exoskeleton absorbs it!"
-	else if(feedback_flags & BULLET_FEEDBACK_PEN)
+	else if(flags_feedback & BULLET_FEEDBACK_PEN)
 		victim_feedback += "Our exoskeleton was penetrated!"
 
-	if(feedback_flags & BULLET_FEEDBACK_FIRE)
+	if(flags_feedback & BULLET_FEEDBACK_FIRE)
 		victim_feedback += "We burst into flames!! Auuugh! Resist to put out the flames!"
 
-	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS)
+	if(flags_feedback & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS)
 		emote(prob(70) ? "hiss" : "roar")
 
 	if(!client?.prefs.mute_self_combat_messages)

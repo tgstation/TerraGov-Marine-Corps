@@ -15,7 +15,7 @@
 	density = TRUE
 	active_power_usage = 3500 //The pneumatic pump power. 3 HP ~ 2200W
 	idle_power_usage = 100
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+	flags_allow_pass = PASS_LOW_STRUCTURE|PASSABLE
 	var/mode = 1 //Item mode 0=off 1=charging 2=charged
 	var/flush = 0 //True if flush handle is pulled
 	var/obj/structure/disposalpipe/trunk/trunk = null //The attached pipe trunk
@@ -573,7 +573,7 @@
 	max_integrity = 10 	//Health points 0-10
 	layer = DISPOSAL_PIPE_LAYER //Slightly lower than wires and other pipes
 	plane = FLOOR_PLANE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 	//New pipe, set the icon_state as on map
 /obj/structure/disposalpipe/Initialize(mapload)
@@ -1348,7 +1348,7 @@
 /obj/structure/disposaloutlet/retrieval
 	name = "retrieval outlet"
 	desc = "An outlet for the pneumatic disposal system."
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 
 /obj/structure/disposaloutlet/retrieval/attackby(obj/item/I, mob/user, params)
 	return

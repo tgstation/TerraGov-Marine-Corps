@@ -35,7 +35,7 @@
 	return TRUE
 
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
-	return !(status_flags & INCORPOREAL)
+	return !(flags_status & INCORPOREAL)
 
 /mob/living/proc/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
 	return
@@ -113,7 +113,7 @@
 	X.visible_message("[attack_message1]", \
 	"[attack_message2]")
 
-	if(status_flags & XENO_HOST && stat != DEAD)
+	if(flags_status & XENO_HOST && stat != DEAD)
 		log_combat(X, src, log, addition = "while they were infected")
 	else //Normal xenomorph friendship with benefits
 		log_combat(X, src, log)
@@ -190,7 +190,7 @@
 
 //Every other type of nonhuman mob //MARKER OVERRIDE
 /mob/living/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return FALSE
 
 	if (xeno_attacker.fortify || xeno_attacker.behemoth_charging)

@@ -25,13 +25,13 @@
 /mob/living/carbon/relaymove(mob/user, direction)
 	if(user.incapacitated(TRUE))
 		return
-	if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
+	if(!chestburst && (flags_status & XENO_HOST) && isxenolarva(user))
 		var/mob/living/carbon/xenomorph/larva/L = user
 		L.initiate_burst(src)
 
 
 /mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 	shock_damage *= siemens_coeff
 	if(shock_damage<1)
@@ -236,7 +236,7 @@
 	set name = "Sleep"
 	set category = "IC"
 
-	if(species.species_flags & ROBOTIC_LIMBS)
+	if(species.flags_species & ROBOTIC_LIMBS)
 		to_chat(src, span_warning("Your artificial body does not require sleep."))
 		return
 	if(IsSleeping())
@@ -291,7 +291,7 @@
 			. = TRUE
 
 	if(!isnull(.))
-		datum_flags |= DF_VAR_EDITED
+		flags_datum |= DF_VAR_EDITED
 		return
 
 	return ..()
@@ -357,7 +357,7 @@
 	if(glasses)
 		var/obj/item/clothing/glasses/G = glasses
 		if((G.toggleable && G.active) || !G.toggleable)
-			sight |= G.vision_flags
+			sight |= G.flags_vision
 			see_in_dark = max(G.darkness_view, see_in_dark)
 			if(G.invis_override)
 				see_invisible = G.invis_override

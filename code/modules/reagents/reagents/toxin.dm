@@ -216,7 +216,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 	taste_description = "cough syrup"
-	trait_flags = BRADYCARDICS
+	flags_trait = BRADYCARDICS
 
 /datum/reagent/toxin/sleeptoxin/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
@@ -274,7 +274,7 @@
 	color = COLOR_TOXIN_POTASSIUM_CHLORIDE
 	toxpwr = 0
 	overdose_threshold = REAGENTS_OVERDOSE
-	trait_flags = CHEARTSTOPPER
+	flags_trait = CHEARTSTOPPER
 
 /datum/reagent/toxin/potassium_chloride/overdose_process(mob/living/L, metabolism)
 	if(iscarbon(L))
@@ -351,7 +351,7 @@
 		var/mob/living/carbon/human/H = L
 
 		if(H.head)
-			if(prob(meltprob) && !CHECK_BITFIELD(H.head.resistance_flags, RESIST_ALL))
+			if(prob(meltprob) && !CHECK_BITFIELD(H.head.flags_resistance, RESIST_ALL))
 				if(show_message)
 					to_chat(H, span_danger("Your headgear melts away but protects you from the acid!"))
 				qdel(H.head)
@@ -362,7 +362,7 @@
 			return
 
 		if(H.wear_mask)
-			if(prob(meltprob) && !CHECK_BITFIELD(H.wear_mask.resistance_flags, RESIST_ALL))
+			if(prob(meltprob) && !CHECK_BITFIELD(H.wear_mask.flags_resistance, RESIST_ALL))
 				if(show_message)
 					to_chat(H, span_danger("Your mask melts away but protects you from the acid!"))
 				qdel(H.wear_mask)
@@ -373,7 +373,7 @@
 			return
 
 		if(H.glasses) //Doesn't protect you from the acid but can melt anyways!
-			if(prob(meltprob) && !CHECK_BITFIELD(H.glasses.resistance_flags, RESIST_ALL))
+			if(prob(meltprob) && !CHECK_BITFIELD(H.glasses.flags_resistance, RESIST_ALL))
 				if(show_message)
 					to_chat(H, span_danger("Your glasses melts away!"))
 				qdel(H.glasses)
@@ -387,16 +387,16 @@
 				if(affecting.take_damage_limb(4 * toxpwr, 2 * toxpwr))
 					H.UpdateDamageIcon()
 				if(prob(meltprob)) //Applies disfigurement
-					if(!H.species || !CHECK_BITFIELD(H.species.species_flags, NO_PAIN))
+					if(!H.species || !CHECK_BITFIELD(H.species.flags_species, NO_PAIN))
 						H.emote("scream")
-					H.status_flags |= DISFIGURED
+					H.flags_status |= DISFIGURED
 					H.name = H.get_visible_name()
 		else
 			L.take_limb_damage(min(6*toxpwr, volume * toxpwr) * touch_protection)
 
 /datum/reagent/toxin/acid/reaction_obj(obj/O, volume)
 	if((istype(O,/obj/item) || istype(O,/obj/structure/glowshroom)) && prob(meltprob * 3))
-		if(!CHECK_BITFIELD(O.resistance_flags, RESIST_ALL))
+		if(!CHECK_BITFIELD(O.flags_resistance, RESIST_ALL))
 			var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 			I.desc = "Looks like this was \an [O] some time ago."
 			O.visible_message(span_warning("\the [O] melts."), null, 5)

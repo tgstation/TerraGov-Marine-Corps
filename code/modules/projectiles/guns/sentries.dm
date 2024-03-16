@@ -22,7 +22,7 @@
 		/obj/machinery/miner,
 	)
 
-	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
+	flags_turret = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	deployable_item = /obj/machinery/deployable/mounted/sentry
@@ -80,7 +80,7 @@
 	name = "\improper ST-583 sentry gun"
 	desc = "A fully automatic turret with AI targeting capabilities, designed specifically for deploying inside a paired drop pod shell. Armed with a M30 autocannon and a 500-round drum magazine. Designed to sweeping a landing area to support orbital assaults."
 	icon_state = "podsentry"
-	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL
+	flags_turret = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL
 	flags_item = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 	sentry_iff_signal = TGMC_LOYALIST_IFF
 	turret_range = 10
@@ -109,7 +109,7 @@
 	integrity_failure = 50
 	deploy_time = 1 SECONDS
 	undeploy_time = 1 SECONDS
-	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL
+	flags_turret = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL
 	deployable_item = /obj/machinery/deployable/mounted/sentry/cope
 	turret_range = 9
 	w_class = WEIGHT_CLASS_NORMAL //same as other sentries
@@ -123,7 +123,7 @@
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_ENERGY|GUN_SMOKE_PARTICLES
-	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE //doesn't autoeject its recharging battery
+	flags_reciever = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE //doesn't autoeject its recharging battery
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 
@@ -201,7 +201,7 @@
 
 /obj/item/weapon/gun/sentry/big_sentry/premade/radial
 	turret_range = 9
-	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL
+	flags_turret = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 
 /obj/item/weapon/gun/sentry/big_sentry/dropship
@@ -209,7 +209,7 @@
 	sentry_iff_signal = TGMC_LOYALIST_IFF
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 	var/obj/structure/dropship_equipment/shuttle/sentry_holder/deployment_system
-	turret_flags = TURRET_HAS_CAMERA|TURRET_IMMOBILE
+	flags_turret = TURRET_HAS_CAMERA|TURRET_IMMOBILE
 	density = FALSE
 
 /obj/item/weapon/gun/sentry/big_sentry/fob_sentry
@@ -218,7 +218,7 @@
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss
 	sentry_iff_signal = TGMC_LOYALIST_IFF
 	flags_item = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
-	turret_flags = TURRET_IMMOBILE|TURRET_RADIAL|TURRET_LOCKED|TURRET_ON
+	flags_turret = TURRET_IMMOBILE|TURRET_RADIAL|TURRET_LOCKED|TURRET_ON
 	default_ammo_type = /obj/item/ammo_magazine/sentry/fob_sentry
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/fob_sentry)
 
@@ -262,13 +262,13 @@
 
 /obj/item/weapon/gun/sentry/mini/combat_patrol
 	sentry_iff_signal = TGMC_LOYALIST_IFF
-	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS
+	flags_turret = TURRET_HAS_CAMERA|TURRET_ALERTS
 
 /obj/item/weapon/gun/sentry/premade
 	name = "SG-577 Gauss Turret"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an armor penetrating MIC Gauss Cannon and a high-capacity drum magazine."
 	icon_state = "sentry"
-	turret_flags = TURRET_HAS_CAMERA|TURRET_ON|TURRET_IMMOBILE|TURRET_SAFETY|TURRET_RADIAL
+	flags_turret = TURRET_HAS_CAMERA|TURRET_ON|TURRET_IMMOBILE|TURRET_SAFETY|TURRET_RADIAL
 	max_shells = 100
 
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss
@@ -286,12 +286,12 @@
 	default_ammo_type = /obj/item/ammo_magazine/sentry_premade/dumb
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry_premade/dumb)
 	max_shells = 500
-	turret_flags = TURRET_ON|TURRET_IMMOBILE|TURRET_SAFETY|TURRET_RADIAL
+	flags_turret = TURRET_ON|TURRET_IMMOBILE|TURRET_SAFETY|TURRET_RADIAL
 
 /obj/item/weapon/gun/sentry/premade/dumb/hostile
 	name = "malfunctioning ST-571 sentry gun"
 	desc = "Oh god oh fuck."
-	turret_flags = TURRET_LOCKED|TURRET_ON|TURRET_IMMOBILE|TURRET_RADIAL
+	flags_turret = TURRET_LOCKED|TURRET_ON|TURRET_IMMOBILE|TURRET_RADIAL
 	sentry_iff_signal = NONE
 
 /obj/item/weapon/gun/sentry/premade/canterbury

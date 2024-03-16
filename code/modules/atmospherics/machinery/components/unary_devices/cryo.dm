@@ -8,8 +8,8 @@
 	max_integrity = 350
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 30, ACID = 30)
 	layer = ABOVE_MOB_LAYER
-	pipe_flags = PIPING_ONE_PER_TURF|PIPING_DEFAULT_LAYER_ONLY
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_pipe = PIPING_ONE_PER_TURF|PIPING_DEFAULT_LAYER_ONLY
+	flags_interaction = INTERACT_MACHINE_TGUI
 	can_see_pipes = FALSE
 	light_range = 2
 	light_power = 0.5
@@ -448,7 +448,7 @@
 	if(!occupant)
 		to_chat(xeno_attacker, span_xenowarning("There is nothing of interest in there."))
 		return
-	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
+	if(xeno_attacker.flags_status & INCORPOREAL || xeno_attacker.do_actions)
 		return
 	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
 	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)

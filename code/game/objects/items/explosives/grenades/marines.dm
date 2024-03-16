@@ -505,7 +505,7 @@
 		var/target_zone = check_zone(living_target.zone_selected)
 		if(!target_zone || rand(40))
 			target_zone = "chest"
-		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE) && !living_target.on_fire)
+		if(launched && CHECK_BITFIELD(flags_resistance, ON_FIRE) && !living_target.on_fire)
 			living_target.apply_damage(randfloat(throwforce * 0.75, throwforce * 1.25), BURN, target_zone, FIRE, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
 
 /obj/item/explosive/grenade/flare/attack_self(mob/user)
@@ -550,7 +550,7 @@
 	active = TRUE
 	force = 5
 	throwforce = 10
-	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
+	ENABLE_BITFIELD(flags_resistance, ON_FIRE)
 	heat = 1500
 	damtype = BURN
 	update_icon()

@@ -6,7 +6,7 @@
 	opened = FALSE
 	locked = TRUE
 	broken = FALSE
-	closet_flags = CLOSET_IS_SECURE
+	flags_closet = CLOSET_IS_SECURE
 	var/large = 1
 	icon_closed = "secure"
 	var/icon_locked = "secure1"

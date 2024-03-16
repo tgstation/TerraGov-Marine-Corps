@@ -56,7 +56,7 @@
 		var/tag_index = LAZYFIND(holder.tagged_datums, thing)
 		tagged_line = VV_MSG_TAGGED(tag_index)
 	var/varedited_line
-	if(!islist && (thing.datum_flags & DF_VAR_EDITED))
+	if(!islist && (thing.flags_datum & DF_VAR_EDITED))
 		varedited_line = VV_MSG_EDITED
 	var/deleted_line
 	if(!islist && thing.gc_destroyed)

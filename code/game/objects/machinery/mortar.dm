@@ -417,7 +417,7 @@
 	alpha = 0 //we shouldn't be able to see this!
 	internal_light = FALSE
 	c_tag = "impact camera"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 //The portable mortar item
 /obj/item/mortar_kit
@@ -430,7 +430,7 @@
 	flags_item = IS_DEPLOYABLE
 	/// What item is this going to deploy when we put down the mortar?
 	var/deployable_item = /obj/machinery/deployable/mortar
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
 	/// list of binoculars linked to the structure of the mortar, used for continuity
 	var/list/linked_item_binoculars

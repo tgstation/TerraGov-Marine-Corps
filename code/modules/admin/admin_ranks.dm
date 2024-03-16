@@ -116,7 +116,7 @@
 
 	var/list/sql_ranks = list()
 	for(var/datum/admin_rank/R in GLOB.protected_ranks)
-		sql_ranks += list(list("rank" = R.name, "flags" = R.include_rights, "exclude_flags" = R.exclude_rights, "can_edit_flags" = R.can_edit_rights))
+		sql_ranks += list(list("rank" = R.name, "flags" = R.include_rights, "flags_exclude" = R.exclude_rights, "flags_can_edit" = R.can_edit_rights))
 	SSdbcore.MassInsert(format_table_name("admin_ranks"), sql_ranks, duplicate_key = TRUE)
 
 
@@ -149,7 +149,7 @@
 			if(!no_update)
 				sync_ranks_with_db()
 		else
-			var/datum/db_query/query_load_admin_ranks = SSdbcore.NewQuery("SELECT `rank`, flags, exclude_flags, can_edit_flags FROM [format_table_name("admin_ranks")]")
+			var/datum/db_query/query_load_admin_ranks = SSdbcore.NewQuery("SELECT `rank`, flags, flags_exclude, flags_can_edit FROM [format_table_name("admin_ranks")]")
 			if(!query_load_admin_ranks.Execute())
 				message_admins("Error loading admin ranks from database. Loading from backup.")
 				log_sql("Error loading admin ranks from database. Loading from backup.")
@@ -163,10 +163,10 @@
 							skip = TRUE
 							break
 					if(!skip)
-						var/rank_flags = text2num(query_load_admin_ranks.item[2])
-						var/rank_exclude_flags = text2num(query_load_admin_ranks.item[3])
-						var/rank_can_edit_flags = text2num(query_load_admin_ranks.item[4])
-						var/datum/admin_rank/R = new(rank_name, rank_flags, rank_exclude_flags, rank_can_edit_flags)
+						var/flags_rank = text2num(query_load_admin_ranks.item[2])
+						var/flags_rank_exclude = text2num(query_load_admin_ranks.item[3])
+						var/flags_rank_can_edit = text2num(query_load_admin_ranks.item[4])
+						var/datum/admin_rank/R = new(rank_name, flags_rank, flags_rank_exclude, flags_rank_can_edit)
 						if(!R)
 							continue
 						GLOB.admin_ranks += R

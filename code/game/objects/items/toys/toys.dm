@@ -551,7 +551,7 @@
 	AddComponent(/datum/component/squeak, 'sound/items/gnome.ogg', 50)
 
 /obj/item/toy/plush/gnome/living
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	///how far the gnome should choose for teleportation purposes
 	var/gnome_move_range = 5
 	///how many failed teleports we've done

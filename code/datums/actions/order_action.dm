@@ -78,7 +78,7 @@
 /mob/living/carbon/human/proc/receive_order(atom/target, arrow_type, verb_name = "rally", faction)
 	if(!target || !arrow_type)
 		return
-	if(!(job.job_flags & JOB_FLAG_CAN_SEE_ORDERS))
+	if(!(job.flags_job & JOB_FLAG_CAN_SEE_ORDERS))
 		return
 	if(z != target.z)
 		return

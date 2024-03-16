@@ -20,7 +20,7 @@
 		cancel_stealth()
 	return ..()
 
-/datum/action/ability/xeno_action/stealth/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/stealth/can_use_action(silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -104,7 +104,7 @@
 ///Signal wrapper to verify that an object is damageable before breaking stealth
 /datum/action/ability/xeno_action/stealth/proc/on_obj_attack(datum/source, obj/attacked)
 	SIGNAL_HANDLER
-	if(attacked.resistance_flags & XENO_DAMAGEABLE)
+	if(attacked.flags_resistance & XENO_DAMAGEABLE)
 		cancel_stealth()
 
 /datum/action/ability/xeno_action/stealth/proc/sneak_attack_cooldown()
@@ -275,7 +275,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_POUNCE,
 	)
-	use_state_flags = ABILITY_USE_BUCKLED
+	flags_use_state = ABILITY_USE_BUCKLED
 	/// The range of this ability.
 	var/pounce_range = HUNTER_POUNCE_RANGE
 
@@ -284,7 +284,7 @@
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
-/datum/action/ability/activable/xeno/pounce/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/pounce/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -304,10 +304,10 @@
 	RegisterSignal(owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(pounce_complete))
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_POUNCE)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	xeno_owner.xeno_flags |= XENO_LEAPING
-	xeno_owner.pass_flags |= PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
+	xeno_owner.flags_xeno |= XENO_LEAPING
+	xeno_owner.flags_pass |= PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
 	xeno_owner.throw_at(A, pounce_range, XENO_POUNCE_SPEED, xeno_owner)
-	addtimer(CALLBACK(src, PROC_REF(reset_pass_flags)), 0.6 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(flags_reset_pass)), 0.6 SECONDS)
 	succeed_activate()
 	add_cooldown()
 
@@ -349,11 +349,11 @@
 	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENOMORPH_LEAP_BUMP, COMSIG_MOVABLE_POST_THROW))
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_POUNCE_END)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	xeno_owner.xeno_flags &= ~XENO_LEAPING
+	xeno_owner.flags_xeno &= ~XENO_LEAPING
 
 /datum/action/ability/activable/xeno/pounce/proc/reset_pass_flags()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	xeno_owner.pass_flags = initial(xeno_owner.pass_flags)
+	xeno_owner.flags_pass = initial(xeno_owner.flags_pass)
 
 /datum/action/ability/activable/xeno/pounce/ai_should_start_consider()
 	return TRUE
@@ -363,7 +363,7 @@
 		return FALSE
 	if(!line_of_sight(owner, target, pounce_range))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, flags_override = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -385,7 +385,7 @@
 	///the target marked
 	var/atom/movable/marked_target
 
-/datum/action/ability/activable/xeno/hunter_mark/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/hunter_mark/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -466,7 +466,7 @@
 	)
 	cooldown_duration = HUNTER_PSYCHIC_TRACE_COOLDOWN
 
-/datum/action/ability/xeno_action/psychic_trace/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/psychic_trace/can_use_action(silent = FALSE, flags_override)
 	. = ..()
 
 	var/mob/living/carbon/xenomorph/X = owner
@@ -486,7 +486,7 @@
 /datum/action/ability/xeno_action/psychic_trace/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/datum/action/ability/activable/xeno/hunter_mark/mark = X.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark]
-	to_chat(X, span_xenodanger("We sense our quarry <b>[mark.marked_target]</b> is currently located in <b>[AREACOORD_NO_Z(mark.marked_target)]</b> and is <b>[get_dist(X, mark.marked_target)]</b> tiles away. It is <b>[calculate_mark_health(mark.marked_target)]</b> and <b>[mark.marked_target.status_flags & XENO_HOST ? "impregnated" : "barren"]</b>."))
+	to_chat(X, span_xenodanger("We sense our quarry <b>[mark.marked_target]</b> is currently located in <b>[AREACOORD_NO_Z(mark.marked_target)]</b> and is <b>[get_dist(X, mark.marked_target)]</b> tiles away. It is <b>[calculate_mark_health(mark.marked_target)]</b> and <b>[mark.marked_target.flags_status & XENO_HOST ? "impregnated" : "barren"]</b>."))
 	X.playsound_local(X, 'sound/effects/ghost2.ogg', 10, 0, 1)
 
 	var/atom/movable/screen/arrow/hunter_mark_arrow/arrow_hud = new
@@ -547,7 +547,7 @@
 	illusions = list() //the actual illusions fade on their own, and the cooldown object may be qdel'd
 	return ..()
 
-/datum/action/ability/xeno_action/mirage/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/mirage/can_use_action(silent = FALSE, flags_override)
 	. = ..()
 	if(swap_used)
 		if(!silent)
@@ -604,7 +604,7 @@
 	)
 	cooldown_duration = HUNTER_SILENCE_COOLDOWN
 
-/datum/action/ability/activable/xeno/silence/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/silence/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return

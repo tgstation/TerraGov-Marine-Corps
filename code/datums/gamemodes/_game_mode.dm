@@ -484,7 +484,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		return ""
 
 
-/datum/game_mode/proc/count_humans_and_xenos(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
+/datum/game_mode/proc/count_humans_and_xenos(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), flags_count)
 	var/num_humans = 0
 	var/num_humans_ship = 0
 	var/num_xenos = 0
@@ -494,9 +494,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			var/mob/living/carbon/human/H = i
 			if(!istype(H)) // Small fix?
 				continue
-			if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client && H.afk_status == MOB_DISCONNECTED)
+			if(flags_count & COUNT_IGNORE_HUMAN_SSD && !H.client && H.afk_status == MOB_DISCONNECTED)
 				continue
-			if(H.status_flags & XENO_HOST)
+			if(H.flags_status & XENO_HOST)
 				continue
 			if(H.faction == FACTION_XENO)
 				continue
@@ -511,9 +511,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			var/mob/living/carbon/xenomorph/X = i
 			if(!istype(X)) // Small fix?
 				continue
-			if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client && X.afk_status == MOB_DISCONNECTED)
+			if(flags_count & COUNT_IGNORE_XENO_SSD && !X.client && X.afk_status == MOB_DISCONNECTED)
 				continue
-			if(count_flags & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))
+			if(flags_count & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))
 				continue
 			if(isspaceturf(X.loc))
 				continue
@@ -527,7 +527,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	return list(num_humans, num_xenos, num_humans_ship)
 
-/datum/game_mode/proc/get_total_joblarvaworth(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
+/datum/game_mode/proc/get_total_joblarvaworth(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), flags_count)
 	. = 0
 
 	for(var/i in GLOB.human_mob_list)
@@ -536,9 +536,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			continue
 		if(H.stat == DEAD && !H.has_working_organs())
 			continue
-		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
+		if(flags_count & COUNT_IGNORE_HUMAN_SSD && !H.client)
 			continue
-		if(H.status_flags & XENO_HOST)
+		if(H.flags_status & XENO_HOST)
 			continue
 		if(!(H.z in z_levels) || isspaceturf(H.loc))
 			continue
@@ -568,7 +568,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		return FALSE
 	if(!NP.client.prefs.random_name)
 		var/name_to_check = NP.client.prefs.real_name
-		if(job.job_flags & JOB_FLAG_SPECIALNAME)
+		if(job.flags_job & JOB_FLAG_SPECIALNAME)
 			name_to_check = job.get_special_name(NP.client)
 		if(CONFIG_GET(flag/prevent_dupe_names) && GLOB.real_names_joined.Find(name_to_check))
 			to_chat(usr, "<span class='warning'>Someone has already joined the round with this character name. Please pick another.<spawn>")
@@ -607,7 +607,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(!SSjob?.initialized)
 		to_chat(world, span_boldnotice("Error setting up valid jobs, no job subsystem found initialized."))
 		CRASH("Error setting up valid jobs, no job subsystem found initialized.")
-	if(SSjob.ssjob_flags & SSJOB_OVERRIDE_JOBS_START) //This allows an admin to pause the roundstart and set custom jobs for the round.
+	if(SSjob.flags_ssjob & SSJOB_OVERRIDE_JOBS_START) //This allows an admin to pause the roundstart and set custom jobs for the round.
 		SSjob.active_occupations = SSjob.joinable_occupations.Copy()
 		SSjob.active_joinable_occupations.Cut()
 		for(var/j in SSjob.joinable_occupations)
@@ -674,7 +674,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 
 /datum/game_mode/proc/scale_roles()
-	if(SSjob.ssjob_flags & SSJOB_OVERRIDE_JOBS_START)
+	if(SSjob.flags_ssjob & SSJOB_OVERRIDE_JOBS_START)
 		return FALSE
 	if(length(SSjob.active_squads[FACTION_TERRAGOV]))
 		scale_squad_jobs()

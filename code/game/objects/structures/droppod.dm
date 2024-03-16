@@ -16,13 +16,13 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	density = TRUE
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
-	resistance_flags = XENO_DAMAGEABLE
-	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR
+	flags_resistance = XENO_DAMAGEABLE
+	flags_interaction = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR
 	soft_armor = list(MELEE = 25, BULLET = 80, LASER = 80, ENERGY = 90, BOMB = 70, BIO = 100, FIRE = 0, ACID = 0)
 	max_integrity = 75
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	coverage = 75
-	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
+	flags_buckle = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN
@@ -378,7 +378,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 //parent for pods designed to carry something other than a mob
 /obj/structure/droppod/nonmob
-	buckle_flags = null
+	flags_buckle = null
 	///The currently stored object
 	var/obj/stored_object
 
@@ -588,7 +588,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	icon = 'icons/obj/structures/droppod.dmi'
 	icon_state = "launch_bay"
 	density = FALSE
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 	///The type of pod this bay takes by default. Used for automated reloading
 	var/pod_type = /obj/structure/droppod
 

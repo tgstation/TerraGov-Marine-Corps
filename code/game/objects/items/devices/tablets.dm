@@ -7,7 +7,7 @@
 	flags_equip_slot = ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_SMALL
 
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_interaction = INTERACT_MACHINE_TGUI
 
 
 	/// How far can these tablets see around the cameras

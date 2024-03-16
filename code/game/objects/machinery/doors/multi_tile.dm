@@ -72,7 +72,7 @@
 	name = "Secure Airlock"
 	icon = 'icons/obj/doors/Door2x1_secure.dmi'
 	openspeed = 34
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/machinery/door/airlock/multi_tile/secure2
 	name = "Secure Airlock"
@@ -355,7 +355,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear
 	opacity = TRUE
 	width = 3
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	no_panel = TRUE
 	not_weldable = TRUE
 

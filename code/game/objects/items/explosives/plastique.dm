@@ -48,7 +48,7 @@
 		return FALSE
 	if(istype(target, /obj/item) || isopenturf(target))
 		return FALSE
-	if(target.resistance_flags & INDESTRUCTIBLE)
+	if(target.flags_resistance & INDESTRUCTIBLE)
 		return FALSE
 	if(istype(target, /obj/structure/window))
 		var/obj/structure/window/W = target

@@ -77,7 +77,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 ))
 
 /datum/faction_stats
-	interaction_flags = INTERACT_UI_INTERACT
+	flags_interaction = INTERACT_UI_INTERACT
 	///The faction associated with these stats
 	var/faction
 	///The decision maker for this leader
@@ -101,7 +101,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	///List of all assets the faction can currently purchase
 	var/list/datum/campaign_asset/purchasable_assets = list()
 	///Any special behavior flags for the faction
-	var/stats_flags = NONE
+	var/flags_stats = NONE
 	///Portrait used for general screen text notifications
 	var/faction_portrait
 	///Faction-wide modifier to respawn delay
@@ -221,10 +221,10 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	SIGNAL_HANDLER
 	total_attrition_points += round(length(GLOB.clients) * 0.5 * (attrition_gain_multiplier + loss_bonus))
 	if(faction == winning_faction)
-		stats_flags |= MISSION_SELECTION_ALLOWED
+		flags_stats |= MISSION_SELECTION_ALLOWED
 		loss_bonus = 0
 	else
-		stats_flags &= ~MISSION_SELECTION_ALLOWED
+		flags_stats &= ~MISSION_SELECTION_ALLOWED
 		if((completed_mission.hostile_faction == faction) && (completed_mission.type != /datum/campaign_mission/tdm/first_mission))
 			loss_bonus = min( loss_bonus + CAMPAIGN_LOSS_BONUS, CAMPAIGN_MAX_LOSS_BONUS)
 
@@ -352,7 +352,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		mission_data["ap_major_reward"] = (faction == potential_mission.starting_faction ? potential_mission.attrition_point_rewards[MISSION_OUTCOME_MAJOR_VICTORY][1] : potential_mission.attrition_point_rewards[MISSION_OUTCOME_MAJOR_LOSS][2])
 		mission_data["ap_minor_reward"] = (faction == potential_mission.starting_faction ? potential_mission.attrition_point_rewards[MISSION_OUTCOME_MINOR_VICTORY][1] : potential_mission.attrition_point_rewards[MISSION_OUTCOME_MINOR_LOSS][2])
 		mission_data["mission_icon"] = potential_mission.mission_icon
-		mission_data["mission_critical"] = !!(potential_mission.mission_flags & MISSION_CRITICAL)
+		mission_data["mission_critical"] = !!(potential_mission.flags_mission & MISSION_CRITICAL)
 		available_missions_data += list(mission_data)
 	data["available_missions"] = available_missions_data
 
@@ -383,8 +383,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		asset_data["uses_remaining"] = asset.uses
 		asset_data["uses_original"] = initial(asset.uses)
 		asset_data["icon"] = (asset.ui_icon)
-		asset_data["currently_active"] = !!(asset.asset_flags & ASSET_ACTIVE)
-		asset_data["is_debuff"] = !!(asset.asset_flags & ASSET_DEBUFF)
+		asset_data["currently_active"] = !!(asset.flags_asset & ASSET_ACTIVE)
+		asset_data["is_debuff"] = !!(asset.flags_asset & ASSET_DEBUFF)
 		faction_assets_data += list(asset_data)
 	data["faction_rewards_data"] = faction_assets_data
 
@@ -457,7 +457,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			if(current_mode.current_mission?.mission_state != MISSION_STATE_FINISHED)
 				to_chat(user, "<span class='warning'>Current mission still ongoing!")
 				return
-			if(!(stats_flags & MISSION_SELECTION_ALLOWED))
+			if(!(flags_stats & MISSION_SELECTION_ALLOWED))
 				to_chat(user, "<span class='warning'>The opposing side has the initiative, win a mission to regain it.")
 				return
 			current_mode.load_new_mission(choice)
@@ -473,7 +473,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				return
 			var/datum/campaign_asset/choice = faction_assets[selected_asset]
 			if(!is_leadership_role(user))
-				if(!(choice.asset_flags & ASSET_SL_AVAILABLE))
+				if(!(choice.flags_asset & ASSET_SL_AVAILABLE))
 					to_chat(user, "<span class='warning'>Only leadership roles can do this.")
 					return
 				if(!(ismarineleaderjob(user.job) || issommarineleaderjob(user.job)))

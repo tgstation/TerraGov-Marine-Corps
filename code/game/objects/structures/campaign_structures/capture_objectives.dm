@@ -2,13 +2,13 @@
 
 /obj/structure/campaign_objective/capture_objective
 	name = "GENERIC CAPTURABLE OBJECTIVE"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	///Channel time to capture or activate this objective
 	var/activation_time = 10 SECONDS
 	///How long capture takes to come into effect, if applicable
 	var/capture_delay = 30 SECONDS
 	///Special capture behavior flags for this objectives
-	var/capture_flags = NONE
+	var/flags_capture = NONE
 	///Who controls this objective. Mainly used for objectives that can be recaptured
 	var/owning_faction
 	///Faction currently trying to change the objective's ownership
@@ -95,7 +95,7 @@
 		if(owning_faction == user.faction)
 			user.balloon_alert(user, "Already yours!")
 			return FALSE
-		if(!(capture_flags & CAPTURE_OBJECTIVE_RECAPTURABLE))
+		if(!(flags_capture & CAPTURE_OBJECTIVE_RECAPTURABLE))
 			user.balloon_alert(user, "Cannot recaptured!")
 			return FALSE
 	return TRUE
@@ -151,8 +151,8 @@
 	desc = "A tall tower with a sensor array at the top and a control box at the bottom. Used to hack into colony control."
 	icon = 'icons/obj/structures/sensor.dmi'
 	icon_state = "sensor"
-	obj_flags = NONE
-	capture_flags = CAPTURE_OBJECTIVE_RECAPTURABLE
+	flags_obj = NONE
+	flags_capture = CAPTURE_OBJECTIVE_RECAPTURABLE
 
 /obj/structure/campaign_objective/capture_objective/sensor_tower/Initialize(mapload)
 	. = ..()
@@ -232,7 +232,7 @@
 	icon = 'icons/obj/structures/campaign_structures.dmi'
 	icon_state = "asat"
 	desc = "A sophisticated surface to space missile system designed for attacking orbiting satellites or spacecraft."
-	capture_flags = CAPTURE_OBJECTIVE_RECAPTURABLE
+	flags_capture = CAPTURE_OBJECTIVE_RECAPTURABLE
 	owning_faction = FACTION_TERRAGOV
 
 /obj/structure/campaign_objective/capture_objective/fultonable/asat_system/capture_check(mob/living/user)

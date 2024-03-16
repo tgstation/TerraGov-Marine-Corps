@@ -15,7 +15,7 @@
 	harmful = TRUE
 	range = MECHA_MELEE
 	toolspeed = 0.9
-	mech_flags = EXOSUIT_MODULE_WORKING | EXOSUIT_MODULE_COMBAT
+	flags_mech = EXOSUIT_MODULE_WORKING | EXOSUIT_MODULE_COMBAT
 	var/drill_delay = 7
 	var/drill_level = DRILL_BASIC
 
@@ -32,7 +32,7 @@
 	// shouldn't waste our time drilling indestructible things.
 	if(isobj(target))
 		var/obj/target_obj = target
-		if(target_obj.resistance_flags & (UNACIDABLE | INDESTRUCTIBLE))
+		if(target_obj.flags_resistance & (UNACIDABLE | INDESTRUCTIBLE))
 			return
 
 	// You can't drill harder by clicking more.

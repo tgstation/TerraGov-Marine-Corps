@@ -4,7 +4,7 @@
 //generic (by snowflake) tile smoothing code; smooth your icons with this!
 /*
 	Each tile is divided in 4 corners, each corner has an appearance associated to it; the tile is then overlayed by these 4 appearances
-	To use this, just set your atom's 'smoothing_flags' var to 1. If your atom can be moved/unanchored, set its 'can_be_unanchored' var to 1.
+	To use this, just set your atom's 'flags_smoothing' var to 1. If your atom can be moved/unanchored, set its 'can_be_unanchored' var to 1.
 	If you don't want your atom's icon to smooth with anything but atoms of the same type, set the list 'canSmoothWith' to null;
 	Otherwise, put all the smoothing groups you want the atom icon to smooth with in 'canSmoothWith', including the group of the atom itself.
 	Smoothing groups are just shared flags between objects. If one of the 'canSmoothWith' of A matches one of the `smoothing_groups` of B, then A will smooth with B.
@@ -13,7 +13,7 @@
 
 	DIAGONAL SMOOTHING INSTRUCTIONS
 	To make your atom smooth diagonally you need all the proper icon states (see 'smooth_wall.dmi' for a template) and
-	to add the 'SMOOTH_DIAGONAL_CORNERS' flag to the atom's smoothing_flags var (in addition to either SMOOTH_TRUE or SMOOTH_MORE).
+	to add the 'SMOOTH_DIAGONAL_CORNERS' flag to the atom's flags_smoothing var (in addition to either SMOOTH_TRUE or SMOOTH_MORE).
 
 	For turfs, what appears under the diagonal corners depends on the turf that was in the same position previously: if you make a wall on
 	a plating floor, you will see plating under the diagonal wall corner, if it was space, you will see space.
@@ -37,7 +37,7 @@
 	do { \
 		var/turf/neighbor = get_step(source, direction); \
 		if(!neighbor) { \
-			if(source.smoothing_flags & SMOOTH_BORDER) { \
+			if(source.flags_smoothing & SMOOTH_BORDER) { \
 				junction |=  direction_flag; \
 			}; \
 		}; \
@@ -51,7 +51,7 @@
 					break; \
 				}; \
 			}; \
-			if(!(junction & direction_flag) && source.smoothing_flags & SMOOTH_OBJ) { \
+			if(!(junction & direction_flag) && source.flags_smoothing & SMOOTH_OBJ) { \
 				for(var/obj/thing in neighbor) { \
 					if(!thing.anchored || isnull(thing.smoothing_groups)) { \
 						continue; \
@@ -82,7 +82,7 @@
 	for(var/direction in GLOB.cardinals)
 		switch(find_type_in_direction(direction))
 			if(NULLTURF_BORDER)
-				if((smoothing_flags & SMOOTH_BORDER))
+				if((flags_smoothing & SMOOTH_BORDER))
 					. |= direction //BYOND and smooth dirs are the same for cardinals
 			if(ADJ_FOUND)
 				. |= direction //BYOND and smooth dirs are the same for cardinals
@@ -91,7 +91,7 @@
 		if(. & WEST_JUNCTION)
 			switch(find_type_in_direction(NORTHWEST))
 				if(NULLTURF_BORDER)
-					if((smoothing_flags & SMOOTH_BORDER))
+					if((flags_smoothing & SMOOTH_BORDER))
 						. |= NORTHWEST_JUNCTION
 				if(ADJ_FOUND)
 					. |= NORTHWEST_JUNCTION
@@ -99,7 +99,7 @@
 		if(. & EAST_JUNCTION)
 			switch(find_type_in_direction(NORTHEAST))
 				if(NULLTURF_BORDER)
-					if((smoothing_flags & SMOOTH_BORDER))
+					if((flags_smoothing & SMOOTH_BORDER))
 						. |= NORTHEAST_JUNCTION
 				if(ADJ_FOUND)
 					. |= NORTHEAST_JUNCTION
@@ -108,7 +108,7 @@
 		if(. & WEST_JUNCTION)
 			switch(find_type_in_direction(SOUTHWEST))
 				if(NULLTURF_BORDER)
-					if((smoothing_flags & SMOOTH_BORDER))
+					if((flags_smoothing & SMOOTH_BORDER))
 						. |= SOUTHWEST_JUNCTION
 				if(ADJ_FOUND)
 					. |= SOUTHWEST_JUNCTION
@@ -116,7 +116,7 @@
 		if(. & EAST_JUNCTION)
 			switch(find_type_in_direction(SOUTHEAST))
 				if(NULLTURF_BORDER)
-					if((smoothing_flags & SMOOTH_BORDER))
+					if((flags_smoothing & SMOOTH_BORDER))
 						. |= SOUTHEAST_JUNCTION
 				if(ADJ_FOUND)
 					. |= SOUTHEAST_JUNCTION
@@ -131,18 +131,18 @@
 
 //do not use, use QUEUE_SMOOTH(atom)
 /atom/proc/smooth_icon()
-	smoothing_flags &= ~SMOOTH_QUEUED
+	flags_smoothing &= ~SMOOTH_QUEUED
 	if (!z)
 		CRASH("[type] called smooth_icon() without being on a z-level")
-	if(smoothing_flags & SMOOTH_CORNERS)
-		if(smoothing_flags & SMOOTH_DIAGONAL_CORNERS)
+	if(flags_smoothing & SMOOTH_CORNERS)
+		if(flags_smoothing & SMOOTH_DIAGONAL_CORNERS)
 			corners_diagonal_smooth(calculate_adjacencies())
 		else
 			corners_cardinal_smooth(calculate_adjacencies())
-	else if(smoothing_flags & SMOOTH_BITMASK)
+	else if(flags_smoothing & SMOOTH_BITMASK)
 		bitmask_smooth()
 	else
-		CRASH("smooth_icon called for [src] with smoothing_flags == [smoothing_flags]")
+		CRASH("smooth_icon called for [src] with flags_smoothing == [flags_smoothing]")
 
 
 /atom/proc/corners_diagonal_smooth(adjacencies)
@@ -273,7 +273,7 @@
 				continue
 			return ADJ_FOUND
 
-	if(smoothing_flags & SMOOTH_OBJ)
+	if(flags_smoothing & SMOOTH_OBJ)
 		for(var/am in target_turf)
 			var/atom/movable/thing = am
 			if(!thing.anchored || isnull(thing.smoothing_groups))
@@ -319,7 +319,7 @@
 
 
 /turf/closed/set_smoothed_icon_state(new_junction)
-	if(smoothing_flags & SMOOTH_DIAGONAL_CORNERS && new_junction != smoothing_junction)
+	if(flags_smoothing & SMOOTH_DIAGONAL_CORNERS && new_junction != smoothing_junction)
 		switch(smoothing_junction)
 			if(
 				NORTH_JUNCTION|WEST_JUNCTION,
@@ -359,14 +359,14 @@
 	var/list/away_turfs = block(locate(1, 1, zlevel), locate(world.maxx, world.maxy, zlevel))
 	for(var/V in away_turfs)
 		var/turf/T = V
-		if(T.smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		if(T.flags_smoothing & (SMOOTH_CORNERS|SMOOTH_BITMASK))
 			if(now)
 				T.smooth_icon()
 			else
 				QUEUE_SMOOTH(T)
 		for(var/R in T)
 			var/atom/A = R
-			if(A.smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+			if(A.flags_smoothing & (SMOOTH_CORNERS|SMOOTH_BITMASK))
 				if(now)
 					A.smooth_icon()
 				else

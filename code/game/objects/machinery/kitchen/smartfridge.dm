@@ -7,11 +7,11 @@
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
 	anchored = TRUE
-	allow_pass_flags = PASS_AIR
+	flags_allow_pass = PASS_AIR
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 100
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_interaction = INTERACT_MACHINE_TGUI
 	var/global/max_n_of_items = 999 // Sorry but the BYOND infinite loop detector doesn't look things over 1000.
 	var/icon_on = "smartfridge"
 	var/icon_off = "smartfridge-off"

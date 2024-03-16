@@ -63,18 +63,18 @@
 			else
 				return 1
 
-	else if(!CHECK_BITFIELD(obj_flags, IN_USE))
+	else if(!CHECK_BITFIELD(flags_obj, IN_USE))
 		if(amount < 4)
 			to_chat(user, span_notice("You need at least four rods to do this."))
 			return
 		to_chat(usr, span_notice("Assembling grille..."))
-		ENABLE_BITFIELD(obj_flags, IN_USE)
+		ENABLE_BITFIELD(flags_obj, IN_USE)
 		if (!do_after(usr, 20, NONE, src, BUSY_ICON_BUILD))
-			DISABLE_BITFIELD(obj_flags, IN_USE)
+			DISABLE_BITFIELD(flags_obj, IN_USE)
 			return
 		new /obj/structure/grille/ ( usr.loc )
 		to_chat(usr, span_notice("You assemble a grille"))
-		DISABLE_BITFIELD(obj_flags, IN_USE)
+		DISABLE_BITFIELD(flags_obj, IN_USE)
 		use(4)
 
 /obj/item/stack/rods/attack_turf(turf/T, mob/living/user)

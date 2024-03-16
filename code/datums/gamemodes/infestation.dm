@@ -76,7 +76,7 @@
 		for(var/i in SSmapping.levels_by_trait(trait))
 			var/list/parsed_xenos = GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]?.Copy()
 			for(var/mob/living/carbon/xenomorph/xeno in parsed_xenos)
-				if(xeno.xeno_caste.caste_flags & CASTE_NOT_IN_BIOSCAN)
+				if(xeno.xeno_caste.flags_caste & CASTE_NOT_IN_BIOSCAN)
 					parsed_xenos -= xeno
 			counts[trait][FACTION_XENO] += length(parsed_xenos)
 			counts[trait][FACTION_TERRAGOV] += length(GLOB.humans_by_zlevel["[i]"])
@@ -171,7 +171,7 @@
 	if(world.time < (SSticker.round_start_time + 5 SECONDS))
 		return FALSE
 
-	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_ALIVE_SSD|COUNT_IGNORE_XENO_SPECIAL_AREA)
+	var/list/living_player_list = count_humans_and_xenos(flags_count = COUNT_IGNORE_ALIVE_SSD|COUNT_IGNORE_XENO_SPECIAL_AREA)
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 	var/num_humans_ship = living_player_list[3]

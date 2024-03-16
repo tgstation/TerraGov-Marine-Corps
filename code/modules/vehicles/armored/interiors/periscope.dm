@@ -5,7 +5,7 @@
 	icon = 'icons/obj/armored/3x3/tank_interior.dmi'
 	icon_state = "periscope"
 	density = FALSE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	///owner of this object, assigned during interior linkage
 	var/obj/vehicle/sealed/armored/owner
 

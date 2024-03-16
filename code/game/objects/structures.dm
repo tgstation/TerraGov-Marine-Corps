@@ -4,9 +4,9 @@
 	var/climb_delay = 50
 	var/flags_barrier = NONE
 	var/broken = FALSE //similar to machinery's stat BROKEN
-	obj_flags = CAN_BE_HIT
+	flags_obj = CAN_BE_HIT
 	anchored = TRUE
-	allow_pass_flags = PASSABLE
+	flags_allow_pass = PASSABLE
 	destroy_sound = 'sound/effects/meteorimpact.ogg'
 
 /obj/structure/proc/handle_barrier_chance(mob/living/M)
@@ -14,7 +14,7 @@
 
 
 /obj/structure/ex_act(severity)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+	if(CHECK_BITFIELD(flags_resistance, INDESTRUCTIBLE))
 		return
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -33,11 +33,11 @@
 	. = ..()
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
-	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+	if(flags_smoothing & (SMOOTH_CORNERS|SMOOTH_BITMASK))
 		QUEUE_SMOOTH(src)
 		QUEUE_SMOOTH_NEIGHBORS(src)
 		icon_state = ""
-		if(smoothing_flags & SMOOTH_CORNERS)
+		if(flags_smoothing & SMOOTH_CORNERS)
 			icon_state = ""
 
 /obj/structure/proc/climb_on()
@@ -86,7 +86,7 @@
 	for(var/obj/object in destination_turf.contents)
 		if(isstructure(object))
 			var/obj/structure/structure = object
-			if(structure.allow_pass_flags & PASS_WALKOVER)
+			if(structure.flags_allow_pass & PASS_WALKOVER)
 				continue
 		if(object.density && (!(object.flags_atom & ON_BORDER) || object.dir & get_dir(src,user)))
 			to_chat(user, span_warning("There's \a [object.name] in the way."))
@@ -95,7 +95,7 @@
 	for(var/obj/object in user_turf.contents)
 		if(isstructure(object))
 			var/obj/structure/structure = object
-			if(structure.allow_pass_flags & PASS_WALKOVER)
+			if(structure.flags_allow_pass & PASS_WALKOVER)
 				continue
 		if(object.density && (object.flags_atom & ON_BORDER) && object.dir & get_dir(user, src))
 			to_chat(user, span_warning("There's \a [object.name] in the way."))

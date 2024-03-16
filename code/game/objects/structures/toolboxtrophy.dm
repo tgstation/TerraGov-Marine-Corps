@@ -13,6 +13,6 @@ We salute you.
 	icon_state = "toolboxtrophy"
 	density = TRUE
 	anchored = TRUE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	///ROBUST coverage
 	coverage = 80

@@ -26,7 +26,7 @@
 	if(!ishuman(user))
 		return
 
-	if(status_flags & INCORPOREAL) //Incorporeal xenos cannot attack
+	if(flags_status & INCORPOREAL) //Incorporeal xenos cannot attack
 		return
 
 	var/mob/living/carbon/human/H = user
@@ -70,7 +70,7 @@
 //Hot hot Aliens on Aliens action.
 //Actually just used for eating people.
 /mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(status_flags & INCORPOREAL || xeno_attacker.status_flags & INCORPOREAL) //Incorporeal xenos cannot attack or be attacked
+	if(flags_status & INCORPOREAL || xeno_attacker.flags_status & INCORPOREAL) //Incorporeal xenos cannot attack or be attacked
 		return
 
 	if(src == xeno_attacker)

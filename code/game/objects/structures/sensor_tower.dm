@@ -3,10 +3,10 @@
 	desc = "A tall tower with a sensor array at the top and a control box at the bottom. Has a lengthy activation process."
 	icon = 'icons/obj/structures/sensor.dmi'
 	icon_state = "sensor"
-	obj_flags = NONE
+	flags_obj = NONE
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	///The timer for when the sensor tower activates
 	var/current_timer
 	///Time it takes for the sensor tower to fully activate

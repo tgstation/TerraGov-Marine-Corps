@@ -147,7 +147,7 @@
 		hit_object.take_damage(thrown_damage, BRUTE)
 	if(iswallturf(hit_atom))
 		var/turf/closed/wall/hit_wall = hit_atom
-		if(!(hit_wall.resistance_flags & INDESTRUCTIBLE))
+		if(!(hit_wall.flags_resistance & INDESTRUCTIBLE))
 			hit_wall.take_damage(thrown_damage, BRUTE)
 
 /// Ends the target's throw.
@@ -160,8 +160,8 @@
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, UnregisterSignal), source, COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW), 1)
 	var/mob/living/living_target = source
 	living_target.Knockdown(0.5 SECONDS)
-	if(living_target.pass_flags & PASS_XENO)
-		living_target.pass_flags &= ~PASS_XENO
+	if(living_target.flags_pass & PASS_XENO)
+		living_target.flags_pass &= ~PASS_XENO
 
 /obj/effect/temp_visual/warrior/impact
 	icon = 'icons/effects/96x96.dmi'
@@ -204,7 +204,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LUNGE,
 	)
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 	/// The target of our lunge, we keep it to check if we are adjacent every time we move.
 	var/atom/lunge_target
 
@@ -217,7 +217,7 @@
 	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")
 	return ..()
 
-/datum/action/ability/activable/xeno/warrior/lunge/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/warrior/lunge/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -286,7 +286,7 @@
 		return FALSE
 	if(!line_of_sight(owner, target, 2))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, flags_override = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -308,13 +308,13 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLING,
 	)
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 
 /datum/action/ability/activable/xeno/warrior/fling/New(Target)
 	. = ..()
 	desc = "Send a target flying up to [WARRIOR_FLING_DISTANCE] tiles away. Distance reduced for bigger targets. Usable on allies."
 
-/datum/action/ability/activable/xeno/warrior/fling/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/warrior/fling/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -353,8 +353,8 @@
 	if(!living_target.issamexenohive(xeno_owner))
 		RegisterSignal(living_target, COMSIG_MOVABLE_IMPACT, PROC_REF(thrown_into))
 		RegisterSignal(living_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(throw_ended))
-	if(!(living_target.pass_flags & PASS_XENO))
-		living_target.pass_flags |= PASS_XENO
+	if(!(living_target.flags_pass & PASS_XENO))
+		living_target.flags_pass |= PASS_XENO
 	var/fling_direction = get_dir(xeno_owner, living_target)
 	living_target.throw_at(get_ranged_target_turf(xeno_owner, fling_direction ? fling_direction : xeno_owner.dir, fling_distance), fling_distance, 1, xeno_owner, TRUE)
 	succeed_activate()
@@ -370,7 +370,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, flags_override = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -394,7 +394,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAPPLE_TOSS,
 	)
-	target_flags = ABILITY_TURF_TARGET
+	flags_target = ABILITY_TURF_TARGET
 
 /datum/action/ability/activable/xeno/warrior/grapple_toss/New(Target)
 	. = ..()
@@ -406,7 +406,7 @@
 	xeno_owner.balloon_alert(xeno_owner, "[fling_action ? "[initial(fling_action.name)] / " : ""][initial(name)] ready")
 	return ..()
 
-/datum/action/ability/activable/xeno/warrior/grapple_toss/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/warrior/grapple_toss/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -432,8 +432,8 @@
 		if(living_target.mob_size >= MOB_SIZE_BIG)
 			fling_distance--
 		if(!living_target.issamexenohive(xeno_owner))
-			if(!(living_target.pass_flags & PASS_XENO))
-				living_target.pass_flags |= PASS_XENO
+			if(!(living_target.flags_pass & PASS_XENO))
+				living_target.flags_pass |= PASS_XENO
 			shake_camera(living_target, 1, 1)
 			living_target.adjust_stagger(WARRIOR_GRAPPLE_TOSS_STAGGER)
 			living_target.add_slowdown(WARRIOR_GRAPPLE_TOSS_SLOWDOWN)
@@ -473,14 +473,14 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUNCH,
 	)
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 
 /datum/action/ability/activable/xeno/warrior/punch/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")
 	return ..()
 
-/datum/action/ability/activable/xeno/warrior/punch/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/warrior/punch/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -488,7 +488,7 @@
 		if(!silent)
 			owner.balloon_alert(owner, "Cannot punch")
 		return FALSE
-	if(A.resistance_flags & (INDESTRUCTIBLE|CRUSHER_IMMUNE))
+	if(A.flags_resistance & (INDESTRUCTIBLE|CRUSHER_IMMUNE))
 		if(!silent)
 			owner.balloon_alert(owner, "Cannot damage")
 		return FALSE
@@ -533,7 +533,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, flags_override = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -546,7 +546,7 @@
 /obj/machinery/punch_act(mob/living/carbon/xenomorph/xeno, punch_damage, ...)
 	xeno.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	xeno.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-	if(!(resistance_flags & UNACIDABLE) || resistance_flags & XENO_DAMAGEABLE) // If it's acidable or we can't acid it but it has the xeno damagable flag, we can damage it
+	if(!(flags_resistance & UNACIDABLE) || flags_resistance & XENO_DAMAGEABLE) // If it's acidable or we can't acid it but it has the xeno damagable flag, we can damage it
 		attack_generic(xeno, punch_damage * 4, BRUTE, effects = FALSE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
 	Shake(duration = 0.5 SECONDS)
@@ -709,7 +709,7 @@
 		return
 	return ..()
 
-/datum/action/ability/activable/xeno/warrior/punch/flurry/can_use_action(silent, override_flags)
+/datum/action/ability/activable/xeno/warrior/punch/flurry/can_use_action(silent, flags_override)
 	. = ..()
 	if(cooldown_timer && current_charges > 0)
 		return TRUE

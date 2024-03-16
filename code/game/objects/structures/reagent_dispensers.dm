@@ -7,9 +7,9 @@
 	icon_state = "watertank"
 	density = TRUE
 	anchored = FALSE
-	resistance_flags = XENO_DAMAGEABLE
-	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	flags_resistance = XENO_DAMAGEABLE
+	flags_interaction = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED
+	flags_allow_pass = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	max_integrity = 100
 	///high chance to block bullets, offset by being unanchored
 	coverage = 80

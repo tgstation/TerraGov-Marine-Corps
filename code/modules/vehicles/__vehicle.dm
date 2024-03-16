@@ -8,9 +8,9 @@
 	density = TRUE
 	anchored = FALSE
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
-	obj_flags = CAN_BE_HIT
-	resistance_flags = XENO_DAMAGEABLE
-	allow_pass_flags = PASS_AIR
+	flags_obj = CAN_BE_HIT
+	flags_resistance = XENO_DAMAGEABLE
+	flags_allow_pass = PASS_AIR
 	COOLDOWN_DECLARE(cooldown_vehicle_move)
 	///mob = bitflags of their control level.
 	var/list/mob/occupants
@@ -54,7 +54,7 @@
 
 /obj/vehicle/examine(mob/user)
 	. = ..()
-	if(resistance_flags & ON_FIRE)
+	if(flags_resistance & ON_FIRE)
 		. += span_warning("It's on fire!")
 	var/healthpercent = obj_integrity/max_integrity * 100
 	switch(healthpercent)
@@ -103,12 +103,12 @@
 /obj/vehicle/proc/is_occupant(mob/M)
 	return !isnull(LAZYACCESS(occupants, M))
 
-/obj/vehicle/proc/add_occupant(mob/M, control_flags)
+/obj/vehicle/proc/add_occupant(mob/M, flags_control)
 	if(!istype(M) || is_occupant(M))
 		return FALSE
 
 	LAZYSET(occupants, M, NONE)
-	add_control_flags(M, control_flags)
+	add_control_flags(M, flags_control)
 	after_add_occupant(M)
 	grant_passenger_actions(M)
 	return TRUE

@@ -5,5 +5,5 @@
 
 	for(var/i in subtypesof(/datum/element))
 		var/datum/element/faketype = i
-		if((initial(faketype.element_flags) & ELEMENT_BESPOKE) && initial(faketype.argument_hash_start_idx) == base_index)
+		if((initial(faketype.flags_element) & ELEMENT_BESPOKE) && initial(faketype.argument_hash_start_idx) == base_index)
 			Fail("A bespoke element was not configured with a proper argument_hash_start_idx: [faketype]")

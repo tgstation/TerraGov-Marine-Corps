@@ -16,8 +16,8 @@
 	max_integrity = 200
 	coverage = 40
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 70, ACID = 60)
-	resistance_flags = XENO_DAMAGEABLE
-	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED
+	flags_resistance = XENO_DAMAGEABLE
+	flags_interaction = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED
 
 	/// The material dropped on destruction
 	var/drop_material = /obj/item/stack/sheet/metal
@@ -40,7 +40,7 @@
 	/// The cooldown for the "bang bang" of breaking out of the closet
 	var/lastbang = FALSE
 	/// The flags of closets, used for various flags, see code\__DEFINES\objects.dm
-	var/closet_flags = NONE
+	var/flags_closet = NONE
 	/// The maximum size of the mob we can put in
 	var/max_mob_size = MOB_SIZE_HUMAN
 	/// How many max_mob_size'd mob/living can fit together inside a closet.
@@ -386,7 +386,7 @@
 
 
 /obj/structure/closet/proc/togglelock(mob/living/user, silent)
-	if(!CHECK_BITFIELD(closet_flags, CLOSET_IS_SECURE))
+	if(!CHECK_BITFIELD(flags_closet, CLOSET_IS_SECURE))
 		return FALSE
 	if(!user.dextrous)
 		if(!silent)
@@ -443,11 +443,11 @@
 
 
 /obj/closet_insertion_allowed(obj/structure/closet/destination)
-	if(!CHECK_BITFIELD(destination.closet_flags, CLOSET_ALLOW_OBJS))
+	if(!CHECK_BITFIELD(destination.flags_closet, CLOSET_ALLOW_OBJS))
 		return FALSE
 	if(anchored)
 		return FALSE
-	if(!CHECK_BITFIELD(destination.closet_flags, CLOSET_ALLOW_DENSE_OBJ) && density)
+	if(!CHECK_BITFIELD(destination.flags_closet, CLOSET_ALLOW_DENSE_OBJ) && density)
 		return FALSE
 	if(move_resist == INFINITY)
 		return FALSE
@@ -457,7 +457,7 @@
 /obj/item/closet_insertion_allowed(obj/structure/closet/destination)
 	if(anchored)
 		return FALSE
-	if(!CHECK_BITFIELD(destination.closet_flags, CLOSET_ALLOW_DENSE_OBJ) && density)
+	if(!CHECK_BITFIELD(destination.flags_closet, CLOSET_ALLOW_DENSE_OBJ) && density)
 		return FALSE
 	if(CHECK_BITFIELD(flags_item, DELONDROP))
 		return FALSE

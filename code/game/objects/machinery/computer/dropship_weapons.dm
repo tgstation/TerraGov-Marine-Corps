@@ -8,8 +8,8 @@
 	screen_overlay = "consoleright_emissive"
 	circuit = null
 	opacity = FALSE
-	resistance_flags = RESIST_ALL
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_resistance = RESIST_ALL
+	flags_interaction = INTERACT_MACHINE_TGUI
 	var/shuttle_tag  // Used to know which shuttle we're linked to.
 	var/obj/structure/dropship_equipment/selected_equipment //the currently selected equipment installed on the shuttle this console controls.
 	var/list/shuttle_equipments = list() //list of the equipments on the shuttle this console controls
@@ -38,7 +38,7 @@
 	var/element_nbr = 1
 	for(var/X in shuttle.equipments)
 		var/obj/structure/dropship_equipment/E = X
-		.["equipment_data"] += list(list("name"= sanitize(copytext(E.name,1,MAX_MESSAGE_LEN)), "eqp_tag" = element_nbr, "is_weapon" = (E.dropship_equipment_flags & IS_WEAPON), "is_interactable" = (E.dropship_equipment_flags & IS_INTERACTABLE)))
+		.["equipment_data"] += list(list("name"= sanitize(copytext(E.name,1,MAX_MESSAGE_LEN)), "eqp_tag" = element_nbr, "is_weapon" = (E.flags_dropship_equipment & IS_WEAPON), "is_interactable" = (E.flags_dropship_equipment & IS_INTERACTABLE)))
 		element_nbr++
 
 	.["selected_eqp_name"] = ""
@@ -93,7 +93,7 @@
 						return
 					if(shuttle.mode == SHUTTLE_HIJACK_LOCK)
 						return
-					if(!(selected_equipment?.dropship_equipment_flags & IS_WEAPON))
+					if(!(selected_equipment?.flags_dropship_equipment & IS_WEAPON))
 						to_chat(L, span_warning("No weapon selected."))
 						return
 					var/obj/structure/dropship_equipment/cas/weapon/DEW = selected_equipment

@@ -3,10 +3,10 @@
 	desc = "PLACEHOLDER."
 	icon = 'icons/Marine/teleporter.dmi'
 	icon_state = "teleporter"
-	obj_flags = NONE
+	flags_obj = NONE
 	density = FALSE
 	layer = BELOW_OBJ_LAYER
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 	var/teleporter_status = TELEPORTER_ARRAY_READY
 	///The faction this belongs to

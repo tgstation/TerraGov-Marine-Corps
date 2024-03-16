@@ -42,7 +42,7 @@
 	var/offset = FALSE
 	var/on_network = TRUE
 	///bitfield. used to turn on and off hearing sensitivity depending on if we can act on Hear() at all - meant for lowering the number of unessesary hearable atoms
-	var/can_hear_flags = NONE
+	var/flags_can_hear = NONE
 
 
 /obj/machinery/holopad/Initialize(mapload)
@@ -121,12 +121,12 @@
 
 //setters
 /**
- * setter for can_hear_flags. handles adding or removing the given flag on can_hear_flags and then adding hearing sensitivity or removing it depending on the final state
+ * setter for flags_can_hear. handles adding or removing the given flag on flags_can_hear and then adding hearing sensitivity or removing it depending on the final state
  * this is necessary because holopads are a significant fraction of the hearable atoms on station which increases the cost of procs that iterate through hearables
  * so we need holopads to not be hearable until it is needed
  *
- * * flag - one of the can_hear_flags flag defines
- * * set_flag - boolean, if TRUE sets can_hear_flags to that flag and might add hearing sensitivity if can_hear_flags was NONE before,
+ * * flag - one of the flags_can_hear flag defines
+ * * set_flag - boolean, if TRUE sets flags_can_hear to that flag and might add hearing sensitivity if flags_can_hear was NONE before,
  * if FALSE unsets the flag and possibly removes hearing sensitivity
  */
 /obj/machinery/holopad/proc/set_can_hear_flags(flag, set_flag = TRUE)
@@ -134,20 +134,20 @@
 		return FALSE //the given flag doesnt exist
 
 	if(set_flag)
-		if(can_hear_flags == NONE)//we couldnt hear before, so become hearing sensitive
+		if(flags_can_hear == NONE)//we couldnt hear before, so become hearing sensitive
 			become_hearing_sensitive()
 
-		can_hear_flags |= flag
+		flags_can_hear |= flag
 		return TRUE
 
 	else
-		can_hear_flags &= ~flag
-		if(can_hear_flags == NONE)
+		flags_can_hear &= ~flag
+		if(flags_can_hear == NONE)
 			lose_hearing_sensitivity()
 
 		return TRUE
 
-///setter for adding/removing holocalls to this holopad. used to update the holo_calls list and can_hear_flags
+///setter for adding/removing holocalls to this holopad. used to update the holo_calls list and flags_can_hear
 ///adds the given holocall if add_holocall is TRUE, removes if FALSE
 /obj/machinery/holopad/proc/set_holocall(datum/holocall/holocall_to_update, add_holocall = TRUE)
 	if(!istype(holocall_to_update))

@@ -6,7 +6,7 @@
  */
 /datum/element
 	/// Option flags for element behaviour
-	var/element_flags = NONE
+	var/flags_element = NONE
 	/**
 	  * The index of the first attach argument to consider for duplicate elements
 	  *
@@ -25,7 +25,7 @@
 	if(type == /datum/element)
 		return ELEMENT_INCOMPATIBLE
 	SEND_SIGNAL(target, COMSIG_ELEMENT_ATTACH, src)
-	if(element_flags & ELEMENT_DETACH_ON_HOST_DESTROY)
+	if(flags_element & ELEMENT_DETACH_ON_HOST_DESTROY)
 		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(OnTargetDelete), override = TRUE)
 
 /datum/element/proc/OnTargetDelete(datum/source, force)
@@ -63,7 +63,7 @@
  */
 /datum/proc/_RemoveElement(list/arguments)
 	var/datum/element/ele = SSdcs.GetElement(arguments)
-	if(ele.element_flags & ELEMENT_COMPLEX_DETACH)
+	if(ele.flags_element & ELEMENT_COMPLEX_DETACH)
 		arguments[1] = src
 		ele.Detach(arglist(arguments))
 	else

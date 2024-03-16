@@ -3,8 +3,8 @@
 	use_power = FALSE
 	density = FALSE
 	anchored = TRUE
-	resistance_flags = RESIST_ALL
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_resistance = RESIST_ALL
+	flags_interaction = INTERACT_MACHINE_TGUI
 	var/active_state = SELF_DESTRUCT_MACHINE_INACTIVE
 	///Whether only marines can activate this. left here in case of admins feeling nice or events
 	var/marine_only_activate = TRUE

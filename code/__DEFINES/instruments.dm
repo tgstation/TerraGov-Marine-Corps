@@ -24,6 +24,6 @@
 #define SUSTAIN_LINEAR 1
 #define SUSTAIN_EXPONENTIAL 2
 
-// /datum/instrument instrument_flags
+// /datum/instrument flags_instrument
 #define INSTRUMENT_LEGACY (1<<0)					//Legacy instrument. Implies INSTRUMENT_DO_NOT_AUTOSAMPLE
 #define INSTRUMENT_DO_NOT_AUTOSAMPLE (1<<1)			//Do not automatically sample

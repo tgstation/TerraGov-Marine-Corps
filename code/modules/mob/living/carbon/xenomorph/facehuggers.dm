@@ -18,7 +18,7 @@
 	icon_state = "facehugger"
 	item_state = "facehugger"
 	w_class = WEIGHT_CLASS_TINY //Note: can be picked up by aliens unlike most other items of w_class below 4
-	resistance_flags = NONE
+	flags_resistance = NONE
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_armor_protection = FACE|EYES
 	flags_atom = CRITICAL_ATOM
@@ -117,7 +117,7 @@
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
 /obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return
 
 	if(!issamexenohive(xeno_attacker) && stat != DEAD)
@@ -133,7 +133,7 @@
 /obj/item/clothing/mask/facehugger/attack_hand(mob/living/user)
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/X = user
-		if(X.xeno_caste.can_flags & CASTE_CAN_HOLD_FACEHUGGERS)
+		if(X.xeno_caste.flags_can & CASTE_CAN_HOLD_FACEHUGGERS)
 			deltimer(jumptimer)
 			deltimer(activetimer)
 			remove_danger_overlay() //Remove the exclamation overlay as we pick it up
@@ -439,11 +439,11 @@
 	if(F.combat_hugger) //Combat huggers will attack anything else
 		return TRUE
 
-	if((status_flags & (XENO_HOST|GODMODE)) || F.stat == DEAD)
+	if((flags_status & (XENO_HOST|GODMODE)) || F.stat == DEAD)
 		return FALSE
 
 	if(!provoked)
-		if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
+		if(species?.flags_species & (IS_SYNTHETIC|ROBOTIC_LIMBS))
 			return FALSE
 
 	if(on_fire)
@@ -483,7 +483,7 @@
 	if(attached)
 		return TRUE
 
-	if(M.status_flags & XENO_HOST || M.status_flags & GODMODE || isxeno(M))
+	if(M.flags_status & XENO_HOST || M.flags_status & GODMODE || isxeno(M))
 		return FALSE
 
 	if(isxeno(loc)) //Being carried? Drop it
@@ -586,7 +586,7 @@
 		update_icon()
 
 	if(as_planned)
-		if(sterile || target.status_flags & XENO_HOST)
+		if(sterile || target.flags_status & XENO_HOST)
 			target.visible_message(span_danger("[src] falls limp after violating [target]'s face!"))
 		else //Huggered but not impregnated, deal damage.
 			target.visible_message(span_danger("[src] frantically claws at [target]'s face before falling down!"),span_danger("[src] frantically claws at your face before falling down! Auugh!"))

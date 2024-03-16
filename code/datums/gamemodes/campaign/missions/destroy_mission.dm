@@ -100,7 +100,7 @@
 	if(!max_time_reached) //if there is still time on the clock, game continues UNLESS attacking side is completely spent
 		if(mode.stat_list[attacking_faction].active_attrition_points)
 			return FALSE //attacking team still has more bodies to throw into the fight
-		var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
+		var/list/player_list = count_humans(flags_count = COUNT_IGNORE_ALIVE_SSD)
 		if(length(player_list[attacking_faction == starting_faction ? 1 : 2]))
 			return FALSE //attacking team still has living guys
 

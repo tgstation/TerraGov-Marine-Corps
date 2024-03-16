@@ -17,7 +17,7 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/limb/S = H.get_limb(user.zone_selected)
 
-		if(H.species.species_flags & IS_SYNTHETIC)
+		if(H.species.flags_species & IS_SYNTHETIC)
 			H.set_blood_volume(BLOOD_VOLUME_NORMAL)
 
 		if(S.surgery_open_stage == 0)

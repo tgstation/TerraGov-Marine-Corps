@@ -59,7 +59,7 @@
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mopbucket"
 	anchored = FALSE
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	max_integrity = 40
 	var/amount_per_transfer_from_this = 5 //Shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
@@ -131,7 +131,7 @@
 	desc = "It is empty."
 	density = TRUE
 	max_integrity = 100
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	hit_sound = 'sound/effects/Glasshit.ogg'
 	destroy_sound = "shatter"
 	///Whatever is contained in the tank
@@ -331,11 +331,11 @@
 	density = TRUE
 	anchored = TRUE
 	layer = MOB_LAYER
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	max_integrity = 100
 
 /obj/structure/plasticflaps/CanAllowThrough(atom/movable/mover, turf/T)
-	if(istype(mover) && CHECK_BITFIELD(mover.pass_flags, PASS_GLASS))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASS_GLASS))
 		return prob(60)
 
 	if(isliving(mover))
@@ -375,8 +375,8 @@
 
 /obj/structure/plasticflaps/sturdy //Anti-unga flaps
 	desc = "Plastic flaps for transporting supplies."
-	obj_flags = null
-	resistance_flags = XENO_DAMAGEABLE
+	flags_obj = null
+	flags_resistance = XENO_DAMAGEABLE
 
 
 	//Magmoor Cryopods
@@ -389,7 +389,7 @@
 	density = TRUE
 	anchored = TRUE
 	coverage = 15
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 
 /obj/structure/tankholder
 	name = "tank holder"
@@ -399,7 +399,7 @@
 	density = TRUE
 	anchored = TRUE
 	coverage = 15
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 
 /obj/structure/tankholder/oxygen
 	icon_state = "holder_oxygen"

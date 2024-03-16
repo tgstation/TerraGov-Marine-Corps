@@ -50,7 +50,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	var/mob/living/carbon/xenomorph/carrier/caster = owner
 	return caster.xeno_caste.hugger_delay
 
-/datum/action/ability/activable/xeno/throw_hugger/can_use_ability(atom/A, silent = FALSE, override_flags) // true
+/datum/action/ability/activable/xeno/throw_hugger/can_use_ability(atom/A, silent = FALSE, flags_override) // true
 	. = ..()
 	if(!.)
 		return FALSE
@@ -119,9 +119,9 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_TRAP,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_LYING
 
-/datum/action/ability/xeno_action/place_trap/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/place_trap/can_use_action(silent = FALSE, flags_override)
 	. = ..()
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
@@ -162,14 +162,14 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPAWN_HUGGER,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_LYING
 
 /datum/action/ability/xeno_action/spawn_hugger/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We can now spawn another young one."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
-/datum/action/ability/xeno_action/spawn_hugger/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/spawn_hugger/can_use_action(silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -203,7 +203,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_ALL_HUGGER,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_LYING
 
 /datum/action/ability/xeno_action/carrier_panic/give_action(mob/living/L)
 	. = ..()
@@ -218,7 +218,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(action_activate))
 
-/datum/action/ability/xeno_action/carrier_panic/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/carrier_panic/can_use_action(silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -259,7 +259,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CHOOSE_HUGGER,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SWITCH_HUGGER,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_LYING
 
 /datum/action/ability/xeno_action/choose_hugger_type/give_action(mob/living/L)
 	. = ..()
@@ -312,7 +312,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_HUGGER_TURRET,
 	)
 
-/datum/action/ability/xeno_action/build_hugger_turret/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/build_hugger_turret/can_use_action(silent, flags_override)
 	. = ..()
 	var/turf/T = get_turf(owner)
 	var/mob/living/carbon/xenomorph/blocker = locate() in T
@@ -367,7 +367,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	)
 
 
-/datum/action/ability/activable/xeno/call_younger/can_use_ability(atom/A, silent, override_flags)
+/datum/action/ability/activable/xeno/call_younger/can_use_ability(atom/A, silent, flags_override)
 	. = ..()
 	if(!.)
 		return

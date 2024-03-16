@@ -101,7 +101,7 @@
 /image/progress
 	icon = 'icons/effects/progressbar.dmi'
 	plane = ABOVE_HUD_PLANE
-	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	flags_appearance = APPEARANCE_UI_IGNORE_ALPHA
 
 /image/progress/proc/fade_out(client, bar_bg, bar_frame)
 	animate(src, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
@@ -126,11 +126,11 @@
 
 /image/progress/bg
 	icon_state = "prog_bar_1_bg"
-	appearance_flags = APPEARANCE_UI
+	flags_appearance = APPEARANCE_UI
 
 /image/progress/frame
 	icon_state = "prog_bar_1_frame"
-	appearance_flags = APPEARANCE_UI
+	flags_appearance = APPEARANCE_UI
 
 
 /datum/progressbar/battery
@@ -226,7 +226,7 @@
 /image/progdisplay
 	icon = 'icons/effects/progressicons.dmi'
 	icon_state = "busy_generic"
-	appearance_flags = APPEARANCE_UI|KEEP_APART|TILE_BOUND
+	flags_appearance = APPEARANCE_UI|KEEP_APART|TILE_BOUND
 	alpha = 255
 	pixel_y = 32
 

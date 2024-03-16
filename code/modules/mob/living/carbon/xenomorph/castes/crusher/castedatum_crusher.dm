@@ -29,7 +29,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/bull
 
 	// *** Flags *** //
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	flags_can = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 	caste_traits = list(TRAIT_STOPS_TANK_COLLISION)
 
 	// *** Defense *** //

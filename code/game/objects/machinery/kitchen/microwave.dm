@@ -70,7 +70,7 @@
 		icon_state = "mw"
 		broken = 0
 		dirty = 0
-		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
+		ENABLE_BITFIELD(reagents.flags_reagent, OPENCONTAINER)
 
 	else if(broken > 2)
 		balloon_alert(user, "Cannot, broken")
@@ -90,7 +90,7 @@
 		dirty = 0
 		broken = 0
 		icon_state = "mw"
-		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
+		ENABLE_BITFIELD(reagents.flags_reagent, OPENCONTAINER)
 
 	else if(is_type_in_list(I, acceptable_items))
 		if(length(contents) >= max_n_of_items)
@@ -353,7 +353,7 @@
 	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
 	visible_message(span_warning(" The microwave gets covered in muck!"))
 	dirty = 100 // Make it dirty so it can't be used util cleaned
-	DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER) //So you can't add condiments
+	DISABLE_BITFIELD(reagents.flags_reagent, OPENCONTAINER) //So you can't add condiments
 	icon_state = "mwbloody0" // Make it look dirty too
 	operating = 0 // Turn it off again aferwards
 	updateUsrDialog()
@@ -365,7 +365,7 @@
 	icon_state = "mwb" // Make it look all busted up and shit
 	visible_message(span_warning(" The microwave breaks!")) //Let them know they're stupid
 	broken = 2 // Make it broken so it can't be used util fixed
-	DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER) //So you can't add condiments
+	DISABLE_BITFIELD(reagents.flags_reagent, OPENCONTAINER) //So you can't add condiments
 	operating = 0 // Turn it off again aferwards
 	updateUsrDialog()
 

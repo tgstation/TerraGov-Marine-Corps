@@ -106,7 +106,7 @@ NOTE: IF YOU UPDATE THE REAGENT-SYSTEM, ALSO UPDATE THIS README.
 			total_volume
 				This variable contains the total volume of all reagents in this holder.
 
-			reagent_flags
+			flags_reagent
 				a bitfield used to specify the properties of the holder, such as if it's OPENCONTAINER or TRASPARENT (the volume can be examined).
 				for the bitflags and their infos, check __DEFINES/reagents.dm.
 
@@ -247,9 +247,9 @@ NOTE: IF YOU UPDATE THE REAGENT-SYSTEM, ALSO UPDATE THIS README.
 	By default, all atom have a reagents var - but its null. if you want to use an object for the chem.
 	system, that should be done by calling this convenience proc:
 
-		atom/proc/create_reagents(max_volume, new_flags, list/initial_reagents, data)
+		atom/proc/create_reagents(max_volume, flags_new, list/initial_reagents, data)
 			This will create a new reagents datum with the max_volume arg as maximum volume,
-			new_flags used as its new reagent_flags bitflags.
+			flags_new used as its new flags_reagent bitflags.
 			list/initial_reagents and data are both used to add the initial reagents to the holder through add_reagent_list().
 
 	Other important stuff:

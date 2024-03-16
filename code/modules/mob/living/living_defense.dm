@@ -111,11 +111,11 @@
 
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
-	if(status_flags & GODMODE) //Invulnerable mobs don't get ignited
+	if(flags_status & GODMODE) //Invulnerable mobs don't get ignited
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_NON_FLAMMABLE))
 		return FALSE
-	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
+	if(!CHECK_BITFIELD(flags_datum, DF_ISPROCESSING))
 		return FALSE
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
@@ -129,11 +129,11 @@
 /mob/living/carbon/human/IgniteMob()
 	. = ..()
 	if(on_fire == TRUE)
-		if(!stat && !(species.species_flags & NO_PAIN))
+		if(!stat && !(species.flags_species & NO_PAIN))
 			emote("scream")
 
 /mob/living/carbon/xenomorph/IgniteMob()
-	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+	if(xeno_caste.flags_caste & CASTE_FIRE_IMMUNE)
 		return
 	. = ..()
 	if(!.)
@@ -164,7 +164,7 @@
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
 	if(QDELETED(src))
 		return
-	if(status_flags & GODMODE) //Invulnerable mobs don't get fire stacks
+	if(flags_status & GODMODE) //Invulnerable mobs don't get fire stacks
 		return
 	if(add_fire_stacks > 0)	//Fire stack increases are affected by armor, end result rounded up.
 		add_fire_stacks = CEILING(modify_by_armor(add_fire_stacks, FIRE), 1)
@@ -188,7 +188,7 @@
 /mob/living/flamer_fire_act(burnlevel)
 	if(!burnlevel)
 		return
-	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
+	if(flags_status & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
 		return
 	if(hard_armor.getRating(FIRE) >= 100)
 		to_chat(src, span_warning("You are untouched by the flames."))
@@ -197,7 +197,7 @@
 	take_overall_damage(rand(10, burnlevel), BURN, FIRE, updating_health = TRUE, max_limbs = 4)
 	to_chat(src, span_warning("You are burned!"))
 
-	if(pass_flags & PASS_FIRE) //Pass fire allow to cross fire without being ignited
+	if(flags_pass & PASS_FIRE) //Pass fire allow to cross fire without being ignited
 		return
 
 	adjust_fire_stacks(burnlevel)
@@ -232,7 +232,7 @@
 		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
 			smokecloak_off()
 		return
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO) && (stat == DEAD || isnestedhost(src)))
 		return FALSE

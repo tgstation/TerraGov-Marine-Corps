@@ -2,7 +2,7 @@
 
 /mob/living/carbon/human/handle_shock()
 	. = ..()
-	if(status_flags & GODMODE || analgesic || (species?.species_flags & NO_PAIN))
+	if(flags_status & GODMODE || analgesic || (species?.flags_species & NO_PAIN))
 		setShock_Stage(0)
 		return //Godmode or some other pain reducers. //Analgesic avoids all traumatic shock temporarily
 

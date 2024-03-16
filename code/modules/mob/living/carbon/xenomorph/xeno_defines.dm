@@ -73,9 +73,9 @@
 
 	// *** Flags *** //
 	///Bitwise flags denoting things a caste is or is not. Uses defines.
-	var/caste_flags = CASTE_EVOLUTION_ALLOWED
+	var/flags_caste = CASTE_EVOLUTION_ALLOWED
 	///Bitwise flags denoting things a caste can and cannot do. Uses defines.
-	var/can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
+	var/flags_can = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
 	///list of traits granted to the owner by becoming this caste
 	var/list/caste_traits = list(TRAIT_CAN_VENTCRAWL)
 	// How long the hive must wait before a new one of this caste can evolve
@@ -235,13 +235,13 @@
 	for(var/trait in caste_traits)
 		ADD_TRAIT(xenomorph, trait, XENO_TRAIT)
 	xenomorph.AddComponent(/datum/component/bump_attack)
-	if(can_flags & CASTE_CAN_RIDE_CRUSHER)
+	if(flags_can & CASTE_CAN_RIDE_CRUSHER)
 		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, TYPE_PROC_REF(/mob/living/carbon/xenomorph, grabbed_self_attack))
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
 	var/datum/component/bump_attack = xenomorph.GetComponent(/datum/component/bump_attack)
 	bump_attack?.RemoveComponent()
-	if(can_flags & CASTE_CAN_RIDE_CRUSHER)
+	if(flags_can & CASTE_CAN_RIDE_CRUSHER)
 		xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
 	for(var/trait in caste_traits)
 		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
@@ -267,11 +267,11 @@
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
-	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
+	flags_appearance = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, XENO_RANK_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD, XENO_BLESSING_HUD, XENO_EVASION_HUD)
-	buckle_flags = NONE
+	flags_buckle = NONE
 	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno
 	voice_filter = @{"[0:a] asplit [out0][out2]; [out0] asetrate=%SAMPLE_RATE%*0.8,aresample=%SAMPLE_RATE%,atempo=1/0.8,aformat=channel_layouts=mono [p0]; [out2] asetrate=%SAMPLE_RATE%*1.2,aresample=%SAMPLE_RATE%,atempo=1/1.2,aformat=channel_layouts=mono[p2]; [p0][0][p2] amix=inputs=3"}
@@ -283,10 +283,10 @@
 	///Hive datum we belong to
 	var/datum/hive_status/hive
 	///Xeno mob specific flags
-	var/xeno_flags = NONE
+	var/flags_xeno = NONE
 
 	///State tracking of hive status toggles
-	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
+	var/flags_status_toggle = HIVE_STATUS_DEFAULTS
 
 	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
 	var/atom/movable/vis_obj/xeno_wounds/fire_overlay/fire_overlay

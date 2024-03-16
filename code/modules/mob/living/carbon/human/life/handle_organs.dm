@@ -2,15 +2,15 @@
 /mob/living/carbon/human/handle_organs()
 	. = ..()
 
-	if(reagents && !CHECK_BITFIELD(species.species_flags, NO_CHEM_METABOLIZATION))
+	if(reagents && !CHECK_BITFIELD(species.flags_species, NO_CHEM_METABOLIZATION))
 		var/datum/internal_organ/liver/L
 		if(species?.has_organ["liver"])
 			L = internal_organs_by_name["liver"]
-		var/overdosable = CHECK_BITFIELD(species.species_flags, NO_OVERDOSE) ? FALSE : TRUE
-		if(!(status_flags & GODMODE)) //godmode doesn't work as intended anyway
+		var/overdosable = CHECK_BITFIELD(species.flags_species, NO_OVERDOSE) ? FALSE : TRUE
+		if(!(flags_status & GODMODE)) //godmode doesn't work as intended anyway
 			reagents.metabolize(src, overdosable, L ? FALSE : TRUE)
 
-	if(species && !(species.species_flags & ROBOTIC_LIMBS)) //robotic units never go hungry: todo make this a trait
+	if(species && !(species.flags_species & ROBOTIC_LIMBS)) //robotic units never go hungry: todo make this a trait
 		//Nutrition decrease
 		if(nutrition > 0 && stat != DEAD)
 			adjust_nutrition(-HUNGER_FACTOR)
@@ -49,7 +49,7 @@
 
 	//Hard to stay upright
 	if(leg_tally > 0 && prob(2.5 * leg_tally) && !is_buckled())
-		if(!(species.species_flags & NO_PAIN))
+		if(!(species.flags_species & NO_PAIN))
 			emote("pain")
 		visible_message(span_warning("[src] collapses to the ground!"),	\
 			span_danger("Your legs give out from under you!"))

@@ -10,10 +10,10 @@
 	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
 	icon_state = "terminal_red"
 	screen_overlay = "terminal_overlay"
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_interaction = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/nt_access
 	use_power = NO_POWER_USE
-	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
+	flags_resistance = INDESTRUCTIBLE|UNACIDABLE
 	layer = ABOVE_MOB_LAYER
 	///Time needed for the machine to generate the disc
 	var/segment_time = 1 MINUTES

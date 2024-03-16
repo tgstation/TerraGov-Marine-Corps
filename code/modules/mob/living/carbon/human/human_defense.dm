@@ -11,7 +11,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	var/siemens_coefficient = 1
 
-	if(species.species_flags & IS_INSULATED)
+	if(species.flags_species & IS_INSULATED)
 		siemens_coefficient = 0
 
 	var/list/clothing_items = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes) // What all are we checking?
@@ -139,7 +139,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	switch(percentage_penetration)
 		if(-INFINITY to 0)
 			visible_message(span_danger("[src] has been [attack_verb] in the [hit_area] with [I.name] by [user], but the attack is deflected by [p_their()] armor!"),\
-			null, null, COMBAT_MESSAGE_RANGE, visible_message_flags = COMBAT_MESSAGE)
+			null, null, COMBAT_MESSAGE_RANGE, flags_visible_message = COMBAT_MESSAGE)
 			user.do_attack_animation(src, used_item = I)
 			log_combat(user, src, "attacked", I, "(FAILED: armor blocked) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
 			return TRUE
@@ -151,7 +151,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			armor_verb = " [p_their(TRUE)] armor has softened the hit!"
 
 	visible_message(span_danger("[src] has been [attack_verb] in the [hit_area] with [I.name] by [user]![armor_verb]"),\
-	null, null, 5, visible_message_flags = COMBAT_MESSAGE)
+	null, null, 5, flags_visible_message = COMBAT_MESSAGE)
 
 	var/weapon_sharp = is_sharp(I)
 	var/weapon_edge = has_edge(I)

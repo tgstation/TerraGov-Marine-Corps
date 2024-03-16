@@ -77,7 +77,7 @@
 			output += "<hr style='background:#000000; border:0; height:1px'>"
 		qdel(query_check_admin_errors)
 		output += "<h3>Unused ranks</h3>"
-		var/datum/db_query/query_check_unused_rank = SSdbcore.NewQuery("SELECT [format_table_name("admin_ranks")].`rank`, flags, exclude_flags, can_edit_flags FROM [format_table_name("admin_ranks")] LEFT JOIN [format_table_name("admin")] ON [format_table_name("admin")].`rank` = [format_table_name("admin_ranks")].`rank` WHERE [format_table_name("admin")].`rank` IS NULL")
+		var/datum/db_query/query_check_unused_rank = SSdbcore.NewQuery("SELECT [format_table_name("admin_ranks")].`rank`, flags, flags_exclude, flags_can_edit FROM [format_table_name("admin_ranks")] LEFT JOIN [format_table_name("admin")] ON [format_table_name("admin")].`rank` = [format_table_name("admin_ranks")].`rank` WHERE [format_table_name("admin")].`rank` IS NULL")
 		if(!query_check_unused_rank.warn_execute())
 			qdel(query_check_unused_rank)
 			return
@@ -340,7 +340,7 @@
 		if(!query_rank_in_db.NextRow())
 			QDEL_NULL(query_rank_in_db)
 			var/datum/db_query/query_add_rank = SSdbcore.NewQuery({"
-				INSERT INTO [format_table_name("admin_ranks")] (`rank`, flags, exclude_flags, can_edit_flags)
+				INSERT INTO [format_table_name("admin_ranks")] (`rank`, flags, flags_exclude, flags_can_edit)
 				VALUES (:new_rank, '0', '0', '0')
 			"}, list("new_rank" = new_rank))
 			if(!query_add_rank.warn_execute())
@@ -383,58 +383,58 @@
 	log_admin(m2)
 
 /datum/admins/proc/change_admin_flags(admin_ckey, admin_key, use_db, datum/admins/D, legacy_only)
-	var/new_flags = input_bitfield(usr, "Include permission flags<br>[use_db ? "This will affect ALL admins with this rank." : "This will affect only the current admin [admin_key]"]", "admin_flags", D.rank.include_rights, 350, 590, allowed_edit_list = usr.client.holder.rank.can_edit_rights)
-	if(isnull(new_flags))
+	var/flags_new = input_bitfield(usr, "Include permission flags<br>[use_db ? "This will affect ALL admins with this rank." : "This will affect only the current admin [admin_key]"]", "flags_admin", D.rank.include_rights, 350, 590, allowed_edit_list = usr.client.holder.rank.can_edit_rights)
+	if(isnull(flags_new))
 		return
-	var/new_exclude_flags = input_bitfield(usr, "Exclude permission flags<br>Flags enabled here will be removed from a rank.<br>Note these take precedence over included flags.<br>[use_db ? "This will affect ALL admins with this rank." : "This will affect only the current admin [admin_key]"]", "admin_flags", D.rank.exclude_rights, 350, 670, "red", usr.client.holder.rank.can_edit_rights)
-	if(isnull(new_exclude_flags))
+	var/flags_new_exclude = input_bitfield(usr, "Exclude permission flags<br>Flags enabled here will be removed from a rank.<br>Note these take precedence over included flags.<br>[use_db ? "This will affect ALL admins with this rank." : "This will affect only the current admin [admin_key]"]", "flags_admin", D.rank.exclude_rights, 350, 670, "red", usr.client.holder.rank.can_edit_rights)
+	if(isnull(flags_new_exclude))
 		return
-	var/new_can_edit_flags = input_bitfield(usr, "Editable permission flags<br>These are the flags this rank is allowed to edit if they have access to the permissions panel.<br>They will be unable to modify admins to a rank that has a flag not included here.<br>[use_db ? "This will affect ALL admins with this rank." : "This will affect only the current admin [admin_key]"]", "admin_flags", D.rank.can_edit_rights, 350, 710, allowed_edit_list = usr.client.holder.rank.can_edit_rights)
-	if(isnull(new_can_edit_flags))
+	var/flags_new_can_edit = input_bitfield(usr, "Editable permission flags<br>These are the flags this rank is allowed to edit if they have access to the permissions panel.<br>They will be unable to modify admins to a rank that has a flag not included here.<br>[use_db ? "This will affect ALL admins with this rank." : "This will affect only the current admin [admin_key]"]", "flags_admin", D.rank.can_edit_rights, 350, 710, allowed_edit_list = usr.client.holder.rank.can_edit_rights)
+	if(isnull(flags_new_can_edit))
 		return
 	var/m1 = "[key_name_admin(usr)] edited the permissions of [use_db ? " rank [D.rank.name] permanently" : "[admin_key] temporarily"]"
 	var/m2 = "[key_name(usr)] edited the permissions of [use_db ? " rank [D.rank.name] permanently" : "[admin_key] temporarily"]"
 	if(use_db && !legacy_only)
 		var/rank_name = D.rank.name
-		var/old_flags
-		var/old_exclude_flags
-		var/old_can_edit_flags
-		var/datum/db_query/query_get_rank_flags = SSdbcore.NewQuery(
-			"SELECT flags, exclude_flags, can_edit_flags FROM [format_table_name("admin_ranks")] WHERE `rank` = :rank_name",
+		var/flags_old
+		var/flags_old_exclude
+		var/flags_old_can_edit
+		var/datum/db_query/flags_query_get_rank = SSdbcore.NewQuery(
+			"SELECT flags, flags_exclude, flags_can_edit FROM [format_table_name("admin_ranks")] WHERE `rank` = :rank_name",
 			list("rank_name" = rank_name)
 		)
-		if(!query_get_rank_flags.warn_execute())
-			qdel(query_get_rank_flags)
+		if(!flags_query_get_rank.warn_execute())
+			qdel(flags_query_get_rank)
 			return
-		if(query_get_rank_flags.NextRow())
-			old_flags = text2num(query_get_rank_flags.item[1])
-			old_exclude_flags = text2num(query_get_rank_flags.item[2])
-			old_can_edit_flags = text2num(query_get_rank_flags.item[3])
-		qdel(query_get_rank_flags)
-		var/datum/db_query/query_change_rank_flags = SSdbcore.NewQuery(
-			"UPDATE [format_table_name("admin_ranks")] SET flags = :new_flags, exclude_flags = :new_exclude_flags, can_edit_flags = :new_can_edit_flags WHERE `rank` = :rank_name",
-			list("new_flags" = new_flags, "new_exclude_flags" = new_exclude_flags, "new_can_edit_flags" = new_can_edit_flags, "rank_name" = rank_name)
+		if(flags_query_get_rank.NextRow())
+			flags_old = text2num(flags_query_get_rank.item[1])
+			flags_old_exclude = text2num(flags_query_get_rank.item[2])
+			flags_old_can_edit = text2num(flags_query_get_rank.item[3])
+		qdel(flags_query_get_rank)
+		var/datum/db_query/flags_query_change_rank = SSdbcore.NewQuery(
+			"UPDATE [format_table_name("admin_ranks")] SET flags = :flags_new, flags_exclude = :flags_new_exclude, flags_can_edit = :flags_new_can_edit WHERE `rank` = :rank_name",
+			list("flags_new" = flags_new, "flags_new_exclude" = flags_new_exclude, "flags_new_can_edit" = flags_new_can_edit, "rank_name" = rank_name)
 		)
-		if(!query_change_rank_flags.warn_execute())
-			qdel(query_change_rank_flags)
+		if(!flags_query_change_rank.warn_execute())
+			qdel(flags_query_change_rank)
 			return
-		qdel(query_change_rank_flags)
-		var/log_message = "Permissions of [rank_name] changed from[rights2text(old_flags," ")][rights2text(old_exclude_flags," ", "-")][rights2text(old_can_edit_flags," ", "*")] to[rights2text(new_flags," ")][rights2text(new_exclude_flags," ", "-")][rights2text(new_can_edit_flags," ", "*")]"
-		var/datum/db_query/query_change_rank_flags_log = SSdbcore.NewQuery({"
+		qdel(flags_query_change_rank)
+		var/log_message = "Permissions of [rank_name] changed from[rights2text(flags_old," ")][rights2text(flags_old_exclude," ", "-")][rights2text(flags_old_can_edit," ", "*")] to[rights2text(flags_new," ")][rights2text(flags_new_exclude," ", "-")][rights2text(flags_new_can_edit," ", "*")]"
+		var/datum/db_query/flags_query_change_rank_log = SSdbcore.NewQuery({"
 			INSERT INTO [format_table_name("admin_log")] (datetime, round_id, adminckey, adminip, operation, target, log)
 			VALUES (:time, :round_id, :adminckey, INET_ATON(:adminip), 'change rank flags', :rank_name, :log)
 		"}, list("time" = SQLtime(), "round_id" = "[GLOB.round_id]", "adminckey" = usr.ckey, "adminip" = usr.client.address, "rank_name" = rank_name, "log" = log_message))
-		if(!query_change_rank_flags_log.warn_execute())
-			qdel(query_change_rank_flags_log)
+		if(!flags_query_change_rank_log.warn_execute())
+			qdel(flags_query_change_rank_log)
 			return
-		qdel(query_change_rank_flags_log)
+		qdel(flags_query_change_rank_log)
 		for(var/datum/admin_rank/R in GLOB.admin_ranks)
 			if(R.name != D.rank.name)
 				continue
-			R.rights = new_flags &= ~new_exclude_flags
-			R.exclude_rights = new_exclude_flags
-			R.include_rights = new_flags
-			R.can_edit_rights = new_can_edit_flags
+			R.rights = flags_new &= ~flags_new_exclude
+			R.exclude_rights = flags_new_exclude
+			R.include_rights = flags_new
+			R.can_edit_rights = flags_new_can_edit
 		for(var/i in GLOB.admin_datums+GLOB.deadmins)
 			var/datum/admins/A = GLOB.admin_datums[i]
 			if(!A)
@@ -449,13 +449,13 @@
 	else
 		D.disassociate()
 		if(!findtext(D.rank.name, "([admin_ckey])")) //not a modified subrank, need to duplicate the admin_rank datum to prevent modifying others too
-			D.rank = new("[D.rank.name]([admin_ckey])", new_flags, new_exclude_flags, new_can_edit_flags) //duplicate our previous admin_rank but with a new name
+			D.rank = new("[D.rank.name]([admin_ckey])", flags_new, flags_new_exclude, flags_new_can_edit) //duplicate our previous admin_rank but with a new name
 			//we don't add this clone to the admin_ranks list, as it is unique to that ckey
 		else
-			D.rank.rights = new_flags &= ~new_exclude_flags
-			D.rank.include_rights = new_flags
-			D.rank.exclude_rights = new_exclude_flags
-			D.rank.can_edit_rights = new_can_edit_flags
+			D.rank.rights = flags_new &= ~flags_new_exclude
+			D.rank.include_rights = flags_new
+			D.rank.exclude_rights = flags_new_exclude
+			D.rank.can_edit_rights = flags_new_can_edit
 		var/client/C = GLOB.directory[admin_ckey] //find the client with the specified ckey (if they are logged in)
 		D.associate(C) //link up with the client and add verbs
 	message_admins(m1)

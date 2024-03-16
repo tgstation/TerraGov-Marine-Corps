@@ -14,8 +14,8 @@
 	anchored = TRUE
 	use_power = NO_POWER_USE
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
-	resistance_flags = UNACIDABLE
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_resistance = UNACIDABLE
+	flags_interaction = INTERACT_MACHINE_TGUI
 	light_range = 1
 	light_power = 0.5
 	///The area we're affecting

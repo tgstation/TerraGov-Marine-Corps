@@ -1,5 +1,5 @@
 /mob/living/carbon/human/proc/handle_pulse()
-	if(species?.species_flags & NO_BLOOD)
+	if(species?.flags_species & NO_BLOOD)
 		return PULSE_NONE //No blood, no pulse.
 
 	if(stat == DEAD)
@@ -16,13 +16,13 @@
 	//Handles different chems' influence on pulse
 	for(var/i in reagents.reagent_list)
 		var/datum/reagent/R = i
-		if(R.trait_flags & HEARTSTOPPER) //To avoid using fakedeath
+		if(R.flags_trait & HEARTSTOPPER) //To avoid using fakedeath
 			. = PULSE_NONE
 			break
-		if(R.trait_flags & CHEARTSTOPPER && (R.volume >= R.overdose_threshold)) //Conditional heart-stoppage
+		if(R.flags_trait & CHEARTSTOPPER && (R.volume >= R.overdose_threshold)) //Conditional heart-stoppage
 			. = PULSE_NONE
 			break
-		if(R.trait_flags & BRADYCARDICS && (. <= PULSE_THREADY && . >= PULSE_NORM))
+		if(R.flags_trait & BRADYCARDICS && (. <= PULSE_THREADY && . >= PULSE_NORM))
 			.--
-		if(R.trait_flags & TACHYCARDIC && (. <= PULSE_FAST && . >= PULSE_NONE))
+		if(R.flags_trait & TACHYCARDIC && (. <= PULSE_FAST && . >= PULSE_NONE))
 			.++

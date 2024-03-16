@@ -43,7 +43,7 @@
 /datum/greyscale_config/visors
 	icon_file = 'icons/mob/modular/visors.dmi'
 	json_config = 'code/datums/greyscale/json_configs/visors.json'
-	greyscale_flags = HYPERSCALE_ALLOW_GREYSCALE
+	flags_greyscale = HYPERSCALE_ALLOW_GREYSCALE
 
 /datum/greyscale_config/visors/glyphs
 	json_config = 'code/datums/greyscale/json_configs/visor_glyphs.json'
@@ -61,7 +61,7 @@
 /datum/greyscale_config/cape_highlight
 	icon_file = 'icons/mob/modular/capes_highlight.dmi'
 	json_config = 'code/datums/greyscale/json_configs/cape_highlight.json'
-	greyscale_flags = HYPERSCALE_ALLOW_GREYSCALE
+	flags_greyscale = HYPERSCALE_ALLOW_GREYSCALE
 
 /*
 	JAEGER - MK1

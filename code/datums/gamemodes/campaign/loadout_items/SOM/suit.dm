@@ -14,7 +14,7 @@
 	desc = "M-11 scout armor with a Aegis shield module. Provides excellent mobility but lower protection. The shield module has been overclocked for improved performance."
 	item_typepath = /obj/item/clothing/suit/modular/som/light/shield_overclocked
 	jobs_supported = list(SOM_SQUAD_MARINE)
-	loadout_item_flags = null
+	flags_loadout_item = null
 
 /datum/loadout_item/suit_slot/som_light_shield/overclocked/medic
 	item_typepath = /obj/item/clothing/suit/modular/som/light/shield_overclocked/medic
@@ -46,13 +46,13 @@
 	ui_icon = "medium_armour_shield"
 	item_typepath = /obj/item/clothing/suit/modular/som/shield
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/som_medium_shield/overclocked
 	desc = "M-21 battle armor with a Aegis shield module. Provides balanced mobility and protection. The shield module has been overclocked for improved performance."
 	item_typepath = /obj/item/clothing/suit/modular/som/shield_overclocked
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
-	loadout_item_flags = null
+	flags_loadout_item = null
 
 /datum/loadout_item/suit_slot/som_medium_shield/overclocked/medic
 	item_typepath = /obj/item/clothing/suit/modular/som/shield_overclocked/medic
@@ -79,13 +79,13 @@
 	ui_icon = "heavy_armour_shield"
 	item_typepath = /obj/item/clothing/suit/modular/som/heavy/shield
 	jobs_supported = list(SOM_SQUAD_VETERAN)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/som_heavy_shield/overclocked
 	desc = "M-31 combat armor with a Aegis shield module. Provides excellent protection but lower mobility. The shield module has been overclocked for improved performance."
 	item_typepath = /obj/item/clothing/suit/modular/som/heavy/shield_overclocked
 	jobs_supported = list(SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
-	loadout_item_flags = null
+	flags_loadout_item = null
 
 /datum/loadout_item/suit_slot/som_heavy_shield/breacher
 	jobs_supported = list(SOM_SQUAD_MARINE)
@@ -126,7 +126,7 @@
 	ui_icon = "gorgon"
 	item_typepath = /obj/item/clothing/suit/modular/som/heavy/leader/valk
 	jobs_supported = list(SOM_SQUAD_LEADER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/gorgon/fc
 	name = "Gorgon armor"
@@ -154,7 +154,7 @@
 	ui_icon = "medium_armour"
 	item_typepath = /obj/item/clothing/suit/modular/som/engineer
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/som_engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
@@ -176,7 +176,7 @@
 	ui_icon = "medium_armour"
 	item_typepath = /obj/item/clothing/suit/modular/som/medic
 	jobs_supported = list(SOM_SQUAD_CORPSMAN)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/som_medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)

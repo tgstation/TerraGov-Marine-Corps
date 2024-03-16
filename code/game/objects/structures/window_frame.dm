@@ -4,11 +4,11 @@
 	icon = 'icons/obj/smooth_objects/regular_window_frame.dmi'
 	icon_state = "white_window_frame-0"
 	base_icon_state = "white_window_frame"
-	interaction_flags = INTERACT_CHECK_INCAPACITATED
+	flags_interaction = INTERACT_CHECK_INCAPACITATED
 	layer = WINDOW_FRAME_LAYER
 	density = TRUE
-	resistance_flags = DROPSHIP_IMMUNE | XENO_DAMAGEABLE
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	flags_resistance = DROPSHIP_IMMUNE | XENO_DAMAGEABLE
+	flags_allow_pass = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	max_integrity = 150
 	climbable = TRUE
 	climb_delay = 1.5 SECONDS
@@ -19,7 +19,7 @@
 	var/junction = 0
 	var/reinforced = FALSE
 	coverage = 50
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FRAME)
 	canSmoothWith = list(
 		SMOOTH_GROUP_WINDOW_FULLTILE,
@@ -170,12 +170,12 @@
 
 /obj/structure/window_frame/prison/hull
 	climbable = FALSE
-	allow_pass_flags = NONE
+	flags_allow_pass = NONE
 	reinforced = TRUE
-	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
+	flags_resistance = INDESTRUCTIBLE|UNACIDABLE
 
 /obj/structure/window_frame/mainship/dropship
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FRAME, SMOOTH_GROUP_CANTERBURY)
 	canSmoothWith = list(
 		SMOOTH_GROUP_WINDOW_FULLTILE,

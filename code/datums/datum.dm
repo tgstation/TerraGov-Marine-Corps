@@ -27,7 +27,7 @@
 	var/list/_status_traits
 
 	var/hidden_from_codex = FALSE //set to TRUE if you want something to be hidden.
-	var/interaction_flags = NONE //Defined at the datum level since some can be interacted with.
+	var/flags_interaction = NONE //Defined at the datum level since some can be interacted with.
 
 	/**
 	  * Components attached to this datum
@@ -45,7 +45,7 @@
 	var/list/list/_signal_procs
 
 	/// Datum level flags
-	var/datum_flags = NONE
+	var/flags_datum = NONE
 
 	/// A cached version of our \ref
 	/// The brunt of \ref costs are in creating entries in the string tree (a tree of immutable strings)
@@ -95,7 +95,7 @@
 /datum/proc/Destroy(force=FALSE, ...)
 	SHOULD_CALL_PARENT(TRUE)
 	tag = null
-	datum_flags &= ~DF_USE_TAG //In case something tries to REF us
+	flags_datum &= ~DF_USE_TAG //In case something tries to REF us
 	weak_reference = null	//ensure prompt GCing of weakref.
 
 	cooldowns = null
@@ -282,7 +282,7 @@
 
 /datum/proc/interact(mob/user) //Return value = handled (same as attack_hand)
 	user.set_interaction(src)
-	if(interaction_flags & INTERACT_UI_INTERACT)
+	if(flags_interaction & INTERACT_UI_INTERACT)
 		return ui_interact(user)
 	return FALSE
 

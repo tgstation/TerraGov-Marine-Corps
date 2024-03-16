@@ -7,12 +7,12 @@
 
 ///We straight up set bruteloss/brute damage to a desired amount unless godmode is enabled
 /mob/living/proc/setBruteLoss(amount)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE
 	bruteloss = amount
 
 /mob/living/proc/adjustBruteLoss(amount, updating_health = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE	//godmode
 	bruteloss = clamp(bruteloss + amount, 0, maxHealth * 2)
 	if(updating_health)
@@ -24,12 +24,12 @@
 
 ///We straight up set fireloss/burn damage to a desired amount unless godmode is enabled
 /mob/living/proc/setFireLoss(amount)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE
 	fireloss = amount
 
 /mob/living/proc/adjustFireLoss(amount, updating_health = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE	//godmode
 	fireloss = clamp(fireloss + amount, 0, maxHealth * 2)
 
@@ -41,12 +41,12 @@
 	return oxyloss
 
 /mob/living/proc/adjustOxyLoss(amount)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE	//godmode
 	oxyloss = clamp(oxyloss + amount, 0, maxHealth * 2)
 
 /mob/living/proc/setOxyLoss(amount)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE	//godmode
 	oxyloss = amount
 
@@ -55,12 +55,12 @@
 	return toxloss
 
 /mob/living/proc/adjustToxLoss(amount)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE	//godmode
 	toxloss = clamp(toxloss + amount, 0, maxHealth * 2)
 
 /mob/living/proc/setToxLoss(amount)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE	//godmode
 	toxloss = amount
 
@@ -69,7 +69,7 @@
 	return staminaloss
 
 /mob/living/proc/adjustStaminaLoss(amount, update = TRUE, feedback = TRUE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE	//godmode
 
 	var/stamina_loss_adjustment = staminaloss + amount
@@ -85,7 +85,7 @@
 		updateStamina(feedback)
 
 /mob/living/proc/setStaminaLoss(amount, update = TRUE, feedback = TRUE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE	//godmode
 	staminaloss = amount
 	if(update)
@@ -136,12 +136,12 @@
 	return cloneloss
 
 /mob/living/proc/adjustCloneLoss(amount)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE	//godmode
 	cloneloss = clamp(cloneloss+amount,0,maxHealth*2)
 
 /mob/living/proc/setCloneLoss(amount)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE	//godmode
 	cloneloss = amount
 
@@ -149,12 +149,12 @@
 	return brainloss
 
 /mob/living/proc/adjustBrainLoss(amount)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE	//godmode
 	brainloss = clamp(brainloss+amount,0,maxHealth*2)
 
 /mob/living/proc/setBrainLoss(amount)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE	//godmode
 	brainloss = amount
 
@@ -174,12 +174,12 @@
 	return
 
 /mob/living/proc/adjustDrowsyness(amount)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE
 	setDrowsyness(max(drowsyness + amount, 0))
 
 /mob/living/proc/setDrowsyness(amount)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE
 	if(drowsyness == amount)
 		return
@@ -216,7 +216,7 @@
 
 // damage ONE limb, organ gets randomly selected from damaged ones.
 /mob/living/proc/take_limb_damage(brute, burn, sharp = FALSE, edge = FALSE, updating_health = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE	//godmode
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
@@ -305,7 +305,7 @@
 		qdel(A)
 	if(L)
 		qdel(L)
-	DISABLE_BITFIELD(status_flags, XENO_HOST)
+	DISABLE_BITFIELD(flags_status, XENO_HOST)
 
 	// restore us to conciousness
 	set_stat(CONSCIOUS)
@@ -341,7 +341,7 @@
 /mob/living/carbon/human/revive(admin_revive = FALSE)
 	restore_all_organs()
 
-	if(species && !(species.species_flags & NO_BLOOD))
+	if(species && !(species.flags_species & NO_BLOOD))
 		restore_blood()
 
 	//try to find the brain player in the decapitated head and put them back in control of the human

@@ -5815,7 +5815,7 @@
 	dir = 8;
 	max_integrity = 1250;
 	name = "Containment Cell Security Camera";
-	resistance_flags = 2
+	flags_resistance = 2
 	},
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 4
@@ -8005,7 +8005,7 @@
 	desc = "It opens and closes. This particular door appears hardended against Acid substances.";
 	dir = 1;
 	max_integrity = 1000;
-	resistance_flags = 2
+	flags_resistance = 2
 	},
 /obj/machinery/door/poddoor/shutters/mainship/cell/cell1{
 	dir = 1
@@ -25488,7 +25488,7 @@
 	name = "Req Lockdown";
 	pixel_x = -6;
 	pixel_y = -1;
-	resistance_flags = 3
+	flags_resistance = 3
 	},
 /obj/machinery/door_control/old/req{
 	pixel_x = -6;

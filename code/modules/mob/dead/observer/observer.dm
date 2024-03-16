@@ -20,7 +20,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	hud_type = /datum/hud/ghost
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	dextrous = TRUE
-	status_flags = GODMODE | INCORPOREAL
+	flags_status = GODMODE | INCORPOREAL
 
 	initial_language_holder = /datum/language_holder/universal
 	var/atom/movable/following = null
@@ -288,7 +288,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		return
 	var/mob/ghost = .
 	GLOB.key_to_time_of_death[ghost.key] = world.time
-	if(!aghosting && job?.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
+	if(!aghosting && job?.flags_job & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
 		GLOB.key_to_time_of_role_death[ghost.key] = world.time
 
 /mob/living/carbon/xenomorph/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
@@ -939,7 +939,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!invisibility || camera.see_ghosts)
 		return "You can also see a g-g-g-g-ghooooost!"
 
-/mob/dead/observer/incapacitated(ignore_restrained, restrained_flags)
+/mob/dead/observer/incapacitated(ignore_restrained, flags_restrained)
 	return FALSE
 
 

@@ -9,7 +9,7 @@
 /datum/loadout_item/helmet/empty
 	name = "no helmet"
 	desc = ""
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
 		SQUAD_CORPSMAN,
@@ -35,14 +35,14 @@
 	desc = "A standard TGMC combat helmet. Apply to head for best results."
 	item_typepath = /obj/item/clothing/head/modular/m10x
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/helmet/leader
 	name = "M11X helmet"
 	desc = "An upgraded helmet for protecting upgraded brains."
 	item_typepath = /obj/item/clothing/head/modular/m10x/leader
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/helmet/surt
 	name = "M10X-Surt helmet"
@@ -64,7 +64,7 @@
 
 /datum/loadout_item/helmet/tyr/smartgunner
 	jobs_supported = list(SQUAD_SMARTGUNNER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/helmet/white_dress
 	name = "Dress White Cap"
@@ -78,7 +78,7 @@
 	req_desc = "Requires a suit with a Mimir module."
 	item_typepath = /obj/item/clothing/head/modular/m10x/mimir
 	jobs_supported = list(SQUAD_CORPSMAN)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/helmet/mimir/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/neuraline, SLOT_IN_HEAD)
@@ -89,7 +89,7 @@
 	desc = "A standard combat helmet with a welding module."
 	item_typepath = /obj/item/clothing/head/modular/m10x/welding
 	jobs_supported = list(SQUAD_ENGINEER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/helmet/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
@@ -100,18 +100,18 @@
 	desc = "A beret with the field commander insignia emblazoned on it. It commands loyalty and bravery in all who gaze upon it."
 	item_typepath = /obj/item/clothing/head/tgmcberet/fc
 	jobs_supported = list(FIELD_COMMANDER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/helmet/staff_officer_cap
 	name = "Officer cap"
 	desc = "A hat usually worn by officers in the TGMC. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	item_typepath = /obj/item/clothing/head/tgmccap/ro
 	jobs_supported = list(STAFF_OFFICER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/helmet/captain_beret
 	name = "Captains Beret"
 	desc = "A beret worn by ship's captains. You thought it would have been more fancy."
 	item_typepath = /obj/item/clothing/head/tgmcberet/tan
 	jobs_supported = list(CAPTAIN)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE

@@ -3,7 +3,7 @@
 	dir = SOUTH
 	initialize_directions = SOUTH
 	device_type = UNARY
-	pipe_flags = PIPING_ONE_PER_TURF
+	flags_pipe = PIPING_ONE_PER_TURF
 	construction_type = /obj/item/pipe/directional
 	var/uid
 	var/static/gl_uid = 1

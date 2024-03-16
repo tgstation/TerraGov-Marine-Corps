@@ -16,7 +16,7 @@
 		return SURGERY_CANNOT_USE
 	if(!isnull(open_step) && affected.surgery_open_stage != open_step)
 		return SURGERY_CANNOT_USE
-	if(target_zone == "head" && target.species && (target.species.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS)))
+	if(target_zone == "head" && target.species && (target.species.flags_species & (IS_SYNTHETIC|ROBOTIC_LIMBS)))
 		return SURGERY_CAN_USE
 	if(affected.limb_status & LIMB_ROBOT)
 		return SURGERY_CANNOT_USE
@@ -44,7 +44,7 @@
 	target.balloon_alert_to_viewers("Success")
 	affected.surgery_open_stage = 1
 
-	if(istype(target) && !(target.species.species_flags & NO_BLOOD))
+	if(istype(target) && !(target.species.flags_species & NO_BLOOD))
 		affected.add_limb_flags(LIMB_BLEEDING)
 
 	affected.createwound(CUT, 1)
@@ -89,7 +89,7 @@
 	//Could be cleaner
 	affected.surgery_open_stage = 1
 
-	if(istype(target) && !(target.species.species_flags & NO_BLOOD))
+	if(istype(target) && !(target.species.flags_species & NO_BLOOD))
 		affected.add_limb_flags(LIMB_BLEEDING)
 
 	affected.createwound(CUT, 1)
@@ -135,7 +135,7 @@
 	target.balloon_alert_to_viewers("Success")
 	affected.surgery_open_stage = 1
 
-	if(istype(target) && !(target.species.species_flags & NO_BLOOD))
+	if(istype(target) && !(target.species.flags_species & NO_BLOOD))
 		affected.add_limb_flags(LIMB_BLEEDING)
 
 	affected.createwound(CUT, 1)

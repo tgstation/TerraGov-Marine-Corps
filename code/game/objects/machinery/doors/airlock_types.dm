@@ -569,7 +569,7 @@
 /obj/machinery/door/airlock/mainship/generic/ert
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/mainship/personaldoor.dmi'
-	interaction_flags = INTERACT_MACHINE_NOSILICON //go away naughty AI
+	flags_interaction = INTERACT_MACHINE_NOSILICON //go away naughty AI
 
 /obj/machinery/door/airlock/mainship/generic/glass
 	name = "\improper Glass Airlock"
@@ -759,7 +759,7 @@
 	icon = 'icons/obj/doors/mainship/dropship1_side.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	id = "sh_dropship1"
 	openspeed = 4 //shorter open animation.
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	no_panel = TRUE
 	not_weldable = TRUE
 
@@ -803,7 +803,7 @@
 	icon = 'icons/obj/doors/mainship/dropship1_pilot.dmi'
 	name = "\improper Cockpit"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	no_panel = TRUE
 	not_weldable = TRUE
 

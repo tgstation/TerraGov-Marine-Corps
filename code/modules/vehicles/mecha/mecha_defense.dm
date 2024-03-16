@@ -79,7 +79,7 @@
 
 /obj/vehicle/sealed/mecha/ex_act(severity)
 	log_message("Affected by explosion of severity: [severity].", LOG_MECHA, color="red")
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+	if(CHECK_BITFIELD(flags_resistance, INDESTRUCTIBLE))
 		return
 	if(!(flags_atom & PREVENT_CONTENTS_EXPLOSION))
 		contents_explosion(severity)
@@ -150,7 +150,7 @@
 
 /obj/vehicle/sealed/mecha/fire_act() //Check if we should ignite the pilot of an open-canopy mech
 	. = ..()
-	if(enclosed || mecha_flags & SILICON_PILOT)
+	if(enclosed || flags_mecha & SILICON_PILOT)
 		return
 	for(var/mob/living/cookedalive AS in occupants)
 		if(cookedalive.fire_stacks < 5)
@@ -170,7 +170,7 @@
 		return
 
 	if(isidcard(W))
-		if((mecha_flags & ADDING_ACCESS_POSSIBLE) || (mecha_flags & ADDING_MAINT_ACCESS_POSSIBLE))
+		if((flags_mecha & ADDING_ACCESS_POSSIBLE) || (flags_mecha & ADDING_MAINT_ACCESS_POSSIBLE))
 			if(internals_access_allowed(user))
 				ui_interact(user)
 				return

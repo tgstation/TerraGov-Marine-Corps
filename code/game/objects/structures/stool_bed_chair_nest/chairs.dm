@@ -170,7 +170,7 @@
 	name = "comfy sofa"
 	desc = "It looks comfy."
 	icon_state = "sofamiddle"
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 /obj/structure/bed/chair/sofa/left
 	icon_state = "sofaend_left"
 
@@ -212,7 +212,7 @@
 	name = "Office Chair"
 	desc = "A novel idea of a spinning chair with wheels on the bottom, for office work only."
 	anchored = FALSE
-	buckle_flags = CAN_BUCKLE
+	flags_buckle = CAN_BUCKLE
 	drag_delay = 1 //Pulling something on wheels is easy
 
 //directional chairs for random spawners
@@ -308,7 +308,7 @@
 
 /obj/structure/bed/chair/dropship/passenger
 	name = "passenger seat"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	var/is_animating = 0
 
 /obj/structure/bed/chair/dropship/passenger/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
@@ -353,7 +353,7 @@
 
 
 /obj/structure/bed/chair/dropship/passenger/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return FALSE
 	if(chair_state != DROPSHIP_CHAIR_BROKEN)
 		xeno_attacker.visible_message(span_warning("[xeno_attacker] smashes \the [src], shearing the bolts!"),
@@ -424,7 +424,7 @@
 	var/buckling_x = 0
 
 /obj/structure/bed/chair/dropship/doublewide/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+	if(X.flags_status & INCORPOREAL)
 		return FALSE
 	if(LAZYLEN(buckled_mobs))
 		unbuckle_all_mobs(TRUE)
@@ -550,5 +550,5 @@
 	desc = "A comfortable seat."
 	icon_state = "ob_chair"
 	buildstacktype = null
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	dir = WEST

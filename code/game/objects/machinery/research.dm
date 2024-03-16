@@ -17,7 +17,7 @@
 	desc = "A console for performing complex computations. Release the stabilizers to move it around."
 	icon = 'icons/obj/machines/bepis.dmi'
 	icon_state = "chamber"
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_interaction = INTERACT_MACHINE_TGUI
 	req_access = list(ACCESS_MARINE_MEDBAY)
 	///Description of usable resources for starting research
 	var/allowed_resources_desc = ""

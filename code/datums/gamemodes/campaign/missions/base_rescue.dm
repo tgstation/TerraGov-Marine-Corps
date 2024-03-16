@@ -2,7 +2,7 @@
 /datum/campaign_mission/destroy_mission/base_rescue
 	name = "NT base rescue"
 	mission_icon = "nt_rescue"
-	mission_flags = MISSION_DISALLOW_TELEPORT
+	flags_mission = MISSION_DISALLOW_TELEPORT
 	map_name = "NT Site B-403"
 	map_file = '_maps/map_files/Campaign maps/nt_base/nt_base.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SNOWSTORM = TRUE)
@@ -120,7 +120,7 @@
 	icon_state = "nt_pod"
 	density = TRUE
 	anchored = TRUE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	destroy_sound = 'sound/effects/meteorimpact.ogg'
 	///Mob type to spawn
 	var/mob_type = /mob/living/carbon/xenomorph/hunter/weapon_x

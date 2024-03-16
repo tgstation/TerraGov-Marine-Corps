@@ -2,19 +2,19 @@
 	name = "Return to Core"
 	action_icon_state = "lay_hivemind"
 	desc = "Teleport back to your core."
-	use_state_flags = ABILITY_USE_CLOSEDTURF
+	flags_use_state = ABILITY_USE_CLOSEDTURF
 
 /datum/action/ability/xeno_action/return_to_core/action_activate()
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_CORE_RETURN)
 	return ..()
 
-/datum/action/ability/activable/xeno/secrete_resin/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
-	if (owner.status_flags & INCORPOREAL)
+/datum/action/ability/activable/xeno/secrete_resin/hivemind/can_use_action(silent = FALSE, flags_override, selecting = FALSE)
+	if (owner.flags_status & INCORPOREAL)
 		return FALSE
 	return ..()
 
-/datum/action/ability/activable/xeno/secrete_special_resin/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
-	if (owner.status_flags & INCORPOREAL)
+/datum/action/ability/activable/xeno/secrete_special_resin/hivemind/can_use_action(silent = FALSE, flags_override, selecting = FALSE)
+	if (owner.flags_status & INCORPOREAL)
 		return FALSE
 	return ..()
 
@@ -25,7 +25,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM,
 	)
-	use_state_flags = ABILITY_USE_CLOSEDTURF
+	flags_use_state = ABILITY_USE_CLOSEDTURF
 
 /datum/action/ability/xeno_action/change_form/action_activate()
 	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
@@ -40,9 +40,9 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_MINION,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_MINION_BEHAVIOUR,
 	)
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY
 	cooldown_duration = 60 SECONDS
-	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
+	flags_use_state = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
 	///If minions should be agressive
 	var/minions_agressive = TRUE
 
@@ -63,25 +63,25 @@
 	SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, minions_agressive)
 	update_button_icon()
 
-/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
-	if (owner.status_flags & INCORPOREAL)
+/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind/can_use_action(silent = FALSE, flags_override, selecting = FALSE)
+	if (owner.flags_status & INCORPOREAL)
 		return FALSE
 	return ..()
 
 /datum/action/ability/activable/xeno/transfer_plasma/hivemind
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 2
 
-/datum/action/ability/activable/xeno/transfer_plasma/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
-	if (owner.status_flags & INCORPOREAL)
+/datum/action/ability/activable/xeno/transfer_plasma/hivemind/can_use_action(silent = FALSE, flags_override, selecting = FALSE)
+	if (owner.flags_status & INCORPOREAL)
 		return FALSE
 	return ..()
 
-/datum/action/ability/xeno_action/pheromones/hivemind/can_use_action(silent = FALSE, override_flags)
-	if (owner.status_flags & INCORPOREAL)
+/datum/action/ability/xeno_action/pheromones/hivemind/can_use_action(silent = FALSE, flags_override)
+	if (owner.flags_status & INCORPOREAL)
 		return FALSE
 	return ..()
 
-/datum/action/ability/xeno_action/watch_xeno/hivemind/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/watch_xeno/hivemind/can_use_action(silent = FALSE, flags_override)
 	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return FALSE
 	return ..()
@@ -99,7 +99,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMISG_XENOMORPH_HIVEMIND_TELEPORT,
 	)
-	use_state_flags = ABILITY_USE_CLOSEDTURF
+	flags_use_state = ABILITY_USE_CLOSEDTURF
 	///Is the map being shown to the player right now?
 	var/showing_map = FALSE
 
@@ -133,7 +133,7 @@
 	if(!hivemind_owner.check_weeds(turf_to_teleport_to, TRUE))
 		owner.balloon_alert(owner, "No weeds in selected location")
 		return
-	if(!(hivemind_owner.status_flags & INCORPOREAL))
+	if(!(hivemind_owner.flags_status & INCORPOREAL))
 		hivemind_owner.start_teleport(turf_to_teleport_to)
 		return
 	hivemind_owner.abstract_move(turf_to_teleport_to)

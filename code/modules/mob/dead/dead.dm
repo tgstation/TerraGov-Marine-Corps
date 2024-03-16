@@ -5,7 +5,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 /mob/dead
 	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 	move_resist = INFINITY
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 
 /mob/dead/dust()	//ghosts can't be vaporised.

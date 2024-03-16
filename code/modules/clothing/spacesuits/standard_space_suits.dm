@@ -57,7 +57,7 @@
 	desc = "A sleek silver helmet. It almost seems to stem from the future..."
 	icon_state = "rig-chronos"
 	soft_armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, FIRE = 100, ACID = 100)
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/space/chronos
@@ -65,7 +65,7 @@
 	desc = "A sleek silver suit. It almost seems to stem from the future..."
 	icon_state = "rig-chronos"
 	soft_armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, FIRE = 100, ACID = 100)	//DONT FUCK WITH THIS SENATOR
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	siemens_coefficient = 0
 	slowdown = 0
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/restraints/handcuffs,/obj/item/tank/emergency_oxygen)

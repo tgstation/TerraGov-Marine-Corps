@@ -10,14 +10,14 @@
 	name = "Recycle"
 	action_icon_state = "recycle"
 	desc = "We deconstruct the body of a fellow fallen xenomorph to avoid marines from harvesting our sisters in arms."
-	use_state_flags = ABILITY_USE_STAGGERED //can't use while staggered, defender fortified or crest down
+	flags_use_state = ABILITY_USE_STAGGERED //can't use while staggered, defender fortified or crest down
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECYCLE,
 	)
 	ability_cost = 750
-	gamemode_flags = ABILITY_NUCLEARWAR
+	flags_gamemode = ABILITY_NUCLEARWAR
 
-/datum/action/ability/activable/xeno/recycle/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/recycle/can_use_ability(atom/target, silent = FALSE, flags_override)
 	. = ..()
 	var/mob/living/carbon/xenomorph/hivelord = owner
 	var/mob/living/carbon/xenomorph/victim = target
@@ -80,7 +80,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RESIN_WALKER,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_LYING
 	action_type = ACTION_TOGGLE
 	var/speed_activated = FALSE
 	var/speed_bonus_active = FALSE
@@ -89,7 +89,7 @@
 	resinwalk_off(TRUE) // Ensure we remove the movespeed
 	return ..()
 
-/datum/action/ability/xeno_action/toggle_speed/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/toggle_speed/can_use_action(silent = FALSE, flags_override)
 	. = ..()
 	if(speed_activated)
 		return TRUE
@@ -158,7 +158,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_TUNNEL,
 	)
 
-/datum/action/ability/xeno_action/build_tunnel/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/build_tunnel/can_use_action(silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -245,9 +245,9 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_JELLY_POD,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_LYING
 
-/datum/action/ability/xeno_action/place_jelly_pod/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/place_jelly_pod/can_use_action(silent = FALSE, flags_override)
 	. = ..()
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
@@ -286,9 +286,9 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_JELLY,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_LYING
 
-/datum/action/ability/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/create_jelly/can_use_action(silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -316,11 +316,11 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEALING_INFUSION,
 	)
-	use_state_flags = ABILITY_USE_LYING
-	target_flags = ABILITY_MOB_TARGET
+	flags_use_state = ABILITY_USE_LYING
+	flags_target = ABILITY_MOB_TARGET
 	var/heal_range = HIVELORD_HEAL_RANGE
 
-/datum/action/ability/activable/xeno/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/healing_infusion/can_use_ability(atom/target, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -331,7 +331,7 @@
 		return FALSE
 	var/mob/living/carbon/xenomorph/patient = target
 
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
+	if(!CHECK_BITFIELD(flags_use_state|flags_override, ABILITY_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
 		if(!silent)
 			target.balloon_alert(owner, "Cannot heal, dead")
 		return FALSE
@@ -397,13 +397,13 @@
 	desc = "Sow the seeds of an alien plant."
 	ability_cost = 200
 	cooldown_duration = 45 SECONDS
-	use_state_flags = ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_PLANT,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CHOOSE_PLANT,
 	)
 
-/datum/action/ability/xeno_action/sow/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/sow/can_use_action(silent = FALSE, flags_override)
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(!owner_xeno.loc_weeds_type)

@@ -8,8 +8,8 @@
 	can_interact = TRUE
 	gunnoise = 'sound/weapons/guns/fire/laser.ogg'
 	spawn_equipped_type = /obj/item/uav_turret/droid
-	allow_pass_flags = PASS_AIR
-	unmanned_flags = HAS_LIGHTS|OVERLAY_TURRET
+	flags_allow_pass = PASS_AIR
+	flags_unmanned = HAS_LIGHTS|OVERLAY_TURRET
 	/// Action to activate suppply antenna.
 	var/datum/action/antenna/antenna
 	/// The mob controlling the droid remotely
@@ -67,7 +67,7 @@
 	move_delay = 2
 	max_integrity = 200
 	spawn_equipped_type = null
-	unmanned_flags = GIVE_NIGHT_VISION|OVERLAY_TURRET
+	flags_unmanned = GIVE_NIGHT_VISION|OVERLAY_TURRET
 	turret_pattern = NO_PATTERN
 	var/cloaktimer
 
@@ -134,7 +134,7 @@
 	move_delay = 7
 	max_integrity = 550
 	spawn_equipped_type = null
-	unmanned_flags = GIVE_NIGHT_VISION
+	flags_unmanned = GIVE_NIGHT_VISION
 	turret_pattern = NO_PATTERN
 	soft_armor = list(MELEE = 60, BULLET = 20, LASER = 10, ENERGY = 20, BOMB = 80, BIO = 0, FIRE = 100, ACID = 100)
 	//what the ripley is currently carrying

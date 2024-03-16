@@ -4,7 +4,7 @@
 /datum/loadout_item/mask/empty
 	name = "no mask"
 	desc = ""
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
 		SQUAD_CORPSMAN,
@@ -29,7 +29,7 @@
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	item_typepath = /obj/item/clothing/mask/gas
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER, SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/mask/tactical
 	name = "Tactical gas mask"

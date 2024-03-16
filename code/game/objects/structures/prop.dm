@@ -145,7 +145,7 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "holosign_engi"
 	density = TRUE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/structure/prop/mainship/holobarrier/passthrough
 	name = "\improper pressure-sealed holobarrier"
@@ -159,7 +159,7 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "ai_dead"
 	density = TRUE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 
 /obj/structure/prop/mainship/deadai/Initialize(mapload)
@@ -306,7 +306,7 @@
 	icon_state = "missiletubenorth"
 	bound_width = 32
 	bound_height = 96
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 
 /obj/structure/prop/mainship/missile_tube/south
 	icon_state = "missiletubesouth"
@@ -318,8 +318,8 @@
 	icon_state = "ship_memorial"
 	bound_width = 64
 	bound_height = 32
-	resistance_flags = UNACIDABLE
-	allow_pass_flags = NONE
+	flags_resistance = UNACIDABLE
+	flags_allow_pass = NONE
 	var/list/fallen_list
 
 /obj/structure/prop/mainship/ship_memorial/attackby(obj/item/I, mob/user)
@@ -351,7 +351,7 @@
 	desc = "The Mark 74 Railgun is top of the line for space based weaponry. Capable of firing a round with a diameter of 3/4ths of a meter at 24 kilometers per second. It also is capable of using a variety of round types which can be interchanged at anytime with its newly designed feed system."
 	icon = 'icons/obj/machines/artillery.dmi'
 	icon_state = "1"
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 
 
 /obj/structure/prop/mainship/name_stencil
@@ -360,7 +360,7 @@
 	icon = 'icons/Marine/mainship_props64.dmi'
 	icon_state = "TGMC1"
 	density = FALSE
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	layer = ABOVE_TURF_LAYER
 
 /obj/structure/prop/mainship/name_stencil/T
@@ -396,7 +396,7 @@
 	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. The powercell is missing and strange lines of text scroll by on its status panel, you get the feeling there's no fixing it."
 	icon = 'icons/turf/geothermal.dmi'
 	icon_state = "destroyedgen"
-	resistance_flags = RESIST_ALL //normal generators can't be destroyed, so for appearances our fake ones can't be destroyed either.
+	flags_resistance = RESIST_ALL //normal generators can't be destroyed, so for appearances our fake ones can't be destroyed either.
 
 /obj/structure/prop/mainship/cannon_cables
 	name = "\improper Cannon cables"
@@ -414,7 +414,7 @@
 	icon_state = "darkmatter"
 	layer = LADDER_LAYER
 	light_range = 4
-	resistance_flags = RESIST_ALL //no delaminations here
+	flags_resistance = RESIST_ALL //no delaminations here
 
 
 /obj/structure/prop/mainship/supermatter/proc/consume(atom/movable/consumed_object) //dust() and destroy living mobs, qdel thrown objects
@@ -444,7 +444,7 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "radcollector"
 	layer = LADDER_LAYER
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/structure/prop/mainship/invincibleshutter
 	name = "\improper heavy shutters"
@@ -454,15 +454,15 @@
 	density = TRUE
 	layer = LADDER_LAYER
 	light_range = 4
-	resistance_flags = RESIST_ALL //no delaminations here
-	allow_pass_flags = NONE
+	flags_resistance = RESIST_ALL //no delaminations here
+	flags_allow_pass = NONE
 	opacity = TRUE
 
 /obj/structure/prop/mainship/doorblocker //doors that exist only to block access, used mostly for valhalla omegastation
 	name = "\improper Barred Airlock"
 	icon = 'icons/Marine/mainship_props.dmi'
-	resistance_flags = RESIST_ALL
-	allow_pass_flags = NONE
+	flags_resistance = RESIST_ALL
+	flags_allow_pass = NONE
 	desc = "It opens and closes."
 	opacity = TRUE
 
@@ -618,7 +618,7 @@
 	max_integrity = 500
 	//100% immune to lasers and energy projectiles since it absorbs their energy.
 	soft_armor = list(MELEE = 25, BULLET = 10, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 50, ACID = 70)
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/structure/prop/mainship/generator/shieldgen
 	name = "anti-breach shielding projector"
@@ -652,7 +652,7 @@
 	icon_state = "reflector_prop"
 	density = TRUE
 	anchored = FALSE
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 
 /obj/structure/prop/mainship/cannon_cable_connector/ex_act()
 	return
@@ -662,7 +662,7 @@
 	desc = "A NT security officer guarding the perimeter. They look rather busy and pays no attention to you."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "secprop"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	density = TRUE
 
 /obj/structure/prop/mainship/prop_so
@@ -670,7 +670,7 @@
 	desc = "A staff officer in charge of the ongoing operation, either too busy operating the observation consoles or simply looking at you and your comrades and hoping that you will succeed, that being said, it's best to leave them be."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "officerprop"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	density = TRUE
 
 /obj/structure/prop/mainship/prop_so/som
@@ -681,7 +681,7 @@
 	desc = "A hard working technician maintaining the vehicles of the base, as well as the base itself. They seem to be very busy investigating something right now."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "techieprop"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	density = TRUE
 
 /obj/structure/prop/mainship/prop_tech/som
@@ -698,7 +698,7 @@
 	desc = "Standard Sons of Mars infantry with a V-31 assault rifle on hand. While their face is obscured by the visor, it feels like you should keep going instead of loitering around."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "som_inf"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	density = TRUE
 
 /obj/structure/prop/mainship/prop_sominf/heavy
@@ -726,7 +726,7 @@
 	desc = "A hard working SOM scientist type. They look like they're doing something important."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "SOM_scientist"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	density = TRUE
 
 /obj/structure/prop/mainship/som_scientist/alt
@@ -780,27 +780,27 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "aislipper"
 	density = FALSE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/structure/prop/mainship/turretprop
 	name = "laser turret"
 	desc = "A point-defense laser turret supplied by NanoTrasen. This one looks inactive"
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "turretprop"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/structure/prop/mainship/tubeprop
 	name = "pneumatic tube"
 	desc = "A pneumatic tube commonly used for transportation on NanoTrasen research stations."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "tubepropstraight"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	layer = ABOVE_OBJ_LAYER //so our fake prop can visually pass under glass panels
 
 /obj/structure/prop/mainship/tubeprop/decorative
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "decorative"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/mainship/tubeprop/end
@@ -823,7 +823,7 @@
 	desc = "That's a gas flow meter. It measures something."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "propmeterempty"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	density = FALSE
 
 /obj/structure/prop/mainship/meterprop/empty
@@ -1042,7 +1042,7 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	desc = "The insides of this vendor are visible and rusted through, you get the feeling there's no fixing this machine."
 	density = TRUE
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 
 /obj/structure/prop/brokenvendor/brokenweaponsrack
 	icon_state = "marinearmory-broken"
@@ -1104,7 +1104,7 @@
 	coverage = 80
 	bound_height = 32
 	bound_width = 64
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/structure/prop/vehicle/van/Initialize(mapload)
 	. = ..()
@@ -1114,7 +1114,7 @@
 
 /obj/structure/prop/vehicle/van/destructible
 	max_integrity = 200
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 
 /obj/structure/prop/vehicle/truck
 	name = "truck"
@@ -1125,18 +1125,18 @@
 	coverage = 80
 	bound_height = 32
 	bound_width = 64
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/structure/prop/vehicle/truck/destructible
 	max_integrity = 150
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 
 /obj/structure/prop/vehicle/truck/truckcargo
 	icon_state = "truck_cargo"
 
 /obj/structure/prop/vehicle/truck/truckcargo/destructible
 	max_integrity = 200
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 
 /obj/structure/prop/vehicle/crane
 	name = "crane"
@@ -1147,18 +1147,18 @@
 	coverage = 80
 	bound_height = 64
 	bound_width = 64
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/structure/prop/vehicle/crane/destructible
 	max_integrity = 300
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 
 /obj/structure/prop/vehicle/crane/cranecargo
 	icon_state = "crane_cargo"
 
 /obj/structure/prop/vehicle/crane/cranecargo/destructible
 	max_integrity = 300
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 
 /obj/structure/prop/vehicle/crawler
 	name = "crawler"
@@ -1169,11 +1169,11 @@
 	coverage = 80
 	bound_height = 32
 	bound_width = 64
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/structure/prop/vehicle/crawler/destructible
 	max_integrity = 200
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 
 
 /obj/structure/prop/vehicle/crawler/crawler_blue
@@ -1200,7 +1200,7 @@
 	coverage = 80
 	bound_height = 128
 	bound_width = 128
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/structure/prop/vehicle/tank/north
 	icon = 'icons/Marine/tank_propns.dmi'
@@ -1491,7 +1491,7 @@
 	coverage = 70
 	bound_height = 128
 	bound_width = 128
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/structure/prop/vehicle/apc/Initialize(mapload)
 	. = ..()
@@ -1791,7 +1791,7 @@
 	bound_width = 32
 	pixel_x = -15
 	pixel_y = -15
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/machine_frame3
@@ -2024,7 +2024,7 @@
 	desc = "Used to designate a precise transit location for the Tadpole."
 	icon_state = "shuttlecomputer"
 	screen_overlay = "shuttlecomputer_screen"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/structure/prop/computer
 	icon = 'icons/obj/machines/computer.dmi'
@@ -2034,7 +2034,7 @@
 	desc = "A busted PC, the internals look fried, there's no fixing this one."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "broken_computer1"
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	density = TRUE
 	max_integrity = 120
 

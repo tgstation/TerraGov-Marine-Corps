@@ -23,9 +23,9 @@
 /obj/hitbox/Initialize(mapload, obj/vehicle/new_root)
 	. = ..()
 	root = new_root
-	allow_pass_flags = root.allow_pass_flags
+	flags_allow_pass = root.flags_allow_pass
 	flags_atom = root.flags_atom
-	resistance_flags = root.resistance_flags
+	flags_resistance = root.flags_resistance
 	RegisterSignal(new_root, COMSIG_MOVABLE_MOVED, PROC_REF(root_move))
 	RegisterSignal(new_root, COMSIG_QDELETING, PROC_REF(root_delete))
 	RegisterSignals(new_root, list(COMSIG_RIDDEN_DRIVER_MOVE, COMSIG_VEHICLE_MOVE), PROC_REF(on_attempt_drive))
@@ -156,7 +156,7 @@
 	. = ..()
 	if(.)
 		return
-	if((allow_pass_flags & PASS_TANK) && (mover.pass_flags & PASS_TANK))
+	if((flags_allow_pass & PASS_TANK) && (mover.flags_pass & PASS_TANK))
 		return TRUE
 
 /obj/hitbox/projectile_hit(obj/projectile/proj)

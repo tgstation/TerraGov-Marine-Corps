@@ -10,10 +10,10 @@
 	icon_state = "computer"
 	screen_overlay = "nuke_red"
 	broken_icon = "computer_red_broken"
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_interaction = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/nuke_disk_generator
 
-	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
+	flags_resistance = RESIST_ALL|DROPSHIP_IMMUNE
 
 	///Time needed for the machine to generate the disc
 	var/segment_time = 1.5 MINUTES
@@ -216,7 +216,7 @@ GLOBAL_LIST_INIT(nuke_disk_generator_types, list(/obj/machinery/computer/nuke_di
 	desc = "Some dusty old computer. Looks non-functional"
 	density = TRUE
 	anchored = TRUE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	///This list contains disk set keys this list as associated with. Keys must be contained in the map's json combined with their weight. Intended to be at least 3 disks per key. Supports more, does NOT support less.
 	var/list/set_associations = list("basic") //These are set by mappers via map vars. Setting this one as its base type so people can skip that part if they only have 3 disks on a map.
 	///This will FORCE this disk location to exist for these specific sets. Please do not force more than 3 for a set or I will scream at you.

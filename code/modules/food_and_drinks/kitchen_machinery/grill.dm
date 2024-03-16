@@ -54,7 +54,7 @@
 		to_chat(user, span_warning("No fuel!"))
 		return ..()
 
-	if(I.resistance_flags & INDESTRUCTIBLE)
+	if(I.flags_resistance & INDESTRUCTIBLE)
 		to_chat(user, span_warning("You don't feel it would be wise to grill [I]..."))
 		return ..()
 

@@ -18,12 +18,12 @@
 	power_channel = ENVIRON
 	layer = GAS_PIPE_HIDDEN_LAYER //under wires
 	max_integrity = 200
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	var/can_unwrench = FALSE
 	var/initialize_directions = 0
 	var/pipe_color
 	var/piping_layer = PIPING_LAYER_DEFAULT
-	var/pipe_flags = NONE
+	var/flags_pipe = NONE
 
 	var/global/list/iconsetids = list()
 	var/global/list/pipeimages = list()
@@ -51,7 +51,7 @@
 	. = ..()
 	if(!isnull(setdir))
 		setDir(setdir)
-	if(pipe_flags & PIPING_CARDINAL_AUTONORMALIZE)
+	if(flags_pipe & PIPING_CARDINAL_AUTONORMALIZE)
 		normalize_cardinal_directions()
 	nodes = new(device_type)
 	if(process)
@@ -115,7 +115,7 @@
 	update_icon()
 
 /obj/machinery/atmospherics/proc/setPipingLayer(new_layer)
-	piping_layer = (pipe_flags & PIPING_DEFAULT_LAYER_ONLY) ? PIPING_LAYER_DEFAULT : new_layer
+	piping_layer = (flags_pipe & PIPING_DEFAULT_LAYER_ONLY) ? PIPING_LAYER_DEFAULT : new_layer
 	update_icon()
 
 /obj/machinery/atmospherics/proc/can_be_node(obj/machinery/atmospherics/target, iteration)
@@ -136,7 +136,7 @@
 /obj/machinery/atmospherics/proc/isConnectable(obj/machinery/atmospherics/target, given_layer)
 	if(isnull(given_layer))
 		given_layer = piping_layer
-	if((target.piping_layer == given_layer) || (target.pipe_flags & PIPING_ALL_LAYER))
+	if((target.piping_layer == given_layer) || (target.flags_pipe & PIPING_ALL_LAYER))
 		return TRUE
 	return FALSE
 

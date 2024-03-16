@@ -111,7 +111,7 @@
 /obj/machinery/bot/roomba/valhalla/eord
 	name = "final boss roomba"
 	desc = "You weep in terror at the sight of this perfect feat of engineering. It sucks up both items and dead creatures alike."
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/machinery/bot/roomba/valhalla/eord/suck_items()
 	for(var/obj/item/sucker in loc)

@@ -84,9 +84,9 @@
 		return
 
 	var/mob/living/M = AM
-	if(M.status_flags & INCORPOREAL)  //Flying over shards doesn't break them
+	if(M.flags_status & INCORPOREAL)  //Flying over shards doesn't break them
 		return
-	if (CHECK_MULTIPLE_BITFIELDS(M.pass_flags, HOVERING))
+	if (CHECK_MULTIPLE_BITFIELDS(M.flags_pass, HOVERING))
 		return
 
 	pick(playsound(loc, 'sound/effects/shard1.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard2.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard3.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard4.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard5.ogg', 35, TRUE))
@@ -102,7 +102,7 @@
 		return
 	var/mob/living/carbon/human/H = M
 
-	if(H.species.species_flags & ROBOTIC_LIMBS || H.species.species_flags & IS_INSULATED)
+	if(H.species.flags_species & ROBOTIC_LIMBS || H.species.flags_species & IS_INSULATED)
 		return
 
 	if(!H.shoes && !(H.wear_suit?.flags_armor_protection & FEET))
@@ -125,7 +125,7 @@
 	icon_state = "shrapnel"
 	desc = "A bunch of tiny bits of shattered metal."
 	source_sheet_type = null
-	embedding = list("embedded_flags" = EMBEDDED_DEL_ON_HOLDER_DEL, "embed_chance" = 0, "embedded_fall_chance" = 0)
+	embedding = list("flags_embedded" = EMBEDDED_DEL_ON_HOLDER_DEL, "embed_chance" = 0, "embedded_fall_chance" = 0)
 
 
 /obj/item/shard/shrapnel/Initialize(mapload, new_name, new_desc)

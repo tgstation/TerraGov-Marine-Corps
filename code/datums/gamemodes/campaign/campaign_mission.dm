@@ -21,7 +21,7 @@
 		MISSION_HOSTILE_FACTION = 0,
 	)
 	///Any mission behavior flags
-	var/mission_flags = null
+	var/flags_mission = null
 	///faction that chose the mission
 	var/starting_faction
 	///faction that did not choose the mission
@@ -381,7 +381,7 @@
 	mode.stat_list[hostile_faction].apply_cash(hostile_team_cash)
 
 ///checks how many marines and SOM are still alive
-/datum/campaign_mission/proc/count_humans(list/z_levels = SSmapping.levels_by_trait(ZTRAIT_AWAY), count_flags) //todo: make new Z's not away levels, or ensure ground and away is consistant in behavior
+/datum/campaign_mission/proc/count_humans(list/z_levels = SSmapping.levels_by_trait(ZTRAIT_AWAY), flags_count) //todo: make new Z's not away levels, or ensure ground and away is consistant in behavior
 	var/list/team_one_alive = list()
 	var/list/team_one_dead = list()
 	var/list/team_two_alive = list()
@@ -393,7 +393,7 @@
 			var/mob/living/carbon/human/H = i
 			if(!istype(H))
 				continue
-			if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
+			if(flags_count & COUNT_IGNORE_HUMAN_SSD && !H.client)
 				continue
 			if(H.faction == starting_faction)
 				team_one_alive += H
@@ -425,15 +425,15 @@
 		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[title]</u></span><br>" + "[message]", display_picture)
 
 ///Removes a flag or flags from this mission
-/datum/campaign_mission/proc/remove_mission_flag(datum/source, blocker, removed_flags, losing_faction)
+/datum/campaign_mission/proc/remove_mission_flag(datum/source, blocker, flags_removed, losing_faction)
 	SIGNAL_HANDLER
 	if(mission_state != MISSION_STATE_ACTIVE)
 		return
-	mission_flags &= ~(removed_flags)
+	flags_mission &= ~(flags_removed)
 
-	if(removed_flags & MISSION_DISALLOW_TELEPORT)
+	if(flags_removed & MISSION_DISALLOW_TELEPORT)
 		tele_blocker_disabled(blocker, losing_faction)
-	if(removed_flags & MISSION_DISALLOW_DROPPODS)
+	if(flags_removed & MISSION_DISALLOW_DROPPODS)
 		drop_blocker_disabled(blocker, losing_faction)
 
 

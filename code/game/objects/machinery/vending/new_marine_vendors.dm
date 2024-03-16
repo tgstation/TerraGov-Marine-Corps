@@ -7,7 +7,7 @@
 	layer = BELOW_OBJ_LAYER
 	req_access = null
 	req_one_access = null
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_interaction = INTERACT_MACHINE_TGUI
 
 	idle_power_usage = 60
 	active_power_usage = 3000
@@ -19,7 +19,7 @@
 	var/vendor_role //to be compared with job.type to only allow those to use that machine.
 	var/squad_tag = ""
 	var/use_points = FALSE
-	var/lock_flags = SQUAD_LOCK|JOB_LOCK
+	var/flags_lock = SQUAD_LOCK|JOB_LOCK
 
 	var/icon_vend
 	var/icon_deny
@@ -71,11 +71,11 @@
 		if(user_id.registered_name != H.real_name)
 			return FALSE
 
-		if(lock_flags & JOB_LOCK && vendor_role && !istype(H.job, vendor_role))
+		if(flags_lock & JOB_LOCK && vendor_role && !istype(H.job, vendor_role))
 			to_chat(user, span_warning("Access denied. This vendor is heavily restricted."))
 			return FALSE
 
-		if(lock_flags & SQUAD_LOCK && (!H.assigned_squad || (squad_tag && H.assigned_squad.name != squad_tag)))
+		if(flags_lock & SQUAD_LOCK && (!H.assigned_squad || (squad_tag && H.assigned_squad.name != squad_tag)))
 			to_chat(user, span_warning("Access denied. Your assigned squad isn't allowed to access this machinery."))
 			return FALSE
 
@@ -278,8 +278,8 @@
 
 /obj/machinery/marine_selector/clothes/engi/valhalla
 	vendor_role = /datum/job/fallen/marine/engineer
-	resistance_flags = INDESTRUCTIBLE
-	lock_flags = JOB_LOCK
+	flags_resistance = INDESTRUCTIBLE
+	flags_lock = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/medic
 	name = "GHMME Automated Corpsman Closet"
@@ -310,8 +310,8 @@
 
 /obj/machinery/marine_selector/clothes/medic/valhalla
 	vendor_role = /datum/job/fallen/marine/corpsman
-	resistance_flags = INDESTRUCTIBLE
-	lock_flags = JOB_LOCK
+	flags_resistance = INDESTRUCTIBLE
+	flags_lock = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/smartgun
 	name = "GHMME Automated Smartgunner Closet"
@@ -341,8 +341,8 @@
 
 /obj/machinery/marine_selector/clothes/smartgun/valhalla
 	vendor_role = /datum/job/fallen/marine/smartgunner
-	resistance_flags = INDESTRUCTIBLE
-	lock_flags = JOB_LOCK
+	flags_resistance = INDESTRUCTIBLE
+	flags_lock = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/leader
 	name = "GHMME Automated Leader Closet"
@@ -372,19 +372,19 @@
 
 /obj/machinery/marine_selector/clothes/leader/valhalla
 	vendor_role = /datum/job/fallen/marine/leader
-	resistance_flags = INDESTRUCTIBLE
-	lock_flags = JOB_LOCK
+	flags_resistance = INDESTRUCTIBLE
+	flags_lock = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/valhalla
 	vendor_role = /datum/job/fallen/marine/standard
-	resistance_flags = INDESTRUCTIBLE
-	lock_flags = JOB_LOCK
+	flags_resistance = INDESTRUCTIBLE
+	flags_lock = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/commander
 	name = "GHMME Automated Commander Closet"
 	req_access = list(ACCESS_MARINE_COMMANDER)
 	vendor_role = /datum/job/terragov/command/fieldcommander
-	lock_flags = JOB_LOCK
+	flags_lock = JOB_LOCK
 	gives_webbing = FALSE
 
 /obj/machinery/marine_selector/clothes/commander/Initialize(mapload)
@@ -457,11 +457,11 @@
 	icon_vend = "synth-vend"
 	icon_deny = "synth-deny"
 	vendor_role = /datum/job/terragov/silicon/synthetic
-	lock_flags = JOB_LOCK
+	flags_lock = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/synth/valhalla
 	vendor_role = /datum/job/fallen/marine/synthetic
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 
 
 /obj/machinery/marine_selector/clothes/synth/Initialize(mapload)
@@ -493,8 +493,8 @@
 
 /obj/machinery/marine_selector/gear/medic/valhalla
 	vendor_role = /datum/job/fallen/marine/corpsman
-	resistance_flags = INDESTRUCTIBLE
-	lock_flags = JOB_LOCK
+	flags_resistance = INDESTRUCTIBLE
+	flags_lock = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/engi
 	name = "NEXUS Automated Engineer Equipment Rack"
@@ -511,8 +511,8 @@
 
 /obj/machinery/marine_selector/gear/engi/valhalla
 	vendor_role = /datum/job/fallen/marine/engineer
-	resistance_flags = INDESTRUCTIBLE
-	lock_flags = JOB_LOCK
+	flags_resistance = INDESTRUCTIBLE
+	flags_lock = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/smartgun
 	name = "NEXUS Automated Smartgunner Equipment Rack"
@@ -529,8 +529,8 @@
 
 /obj/machinery/marine_selector/gear/smartgun/valhalla
 	vendor_role = /datum/job/fallen/marine/smartgunner
-	resistance_flags = INDESTRUCTIBLE
-	lock_flags = JOB_LOCK
+	flags_resistance = INDESTRUCTIBLE
+	flags_lock = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/leader
 	name = "NEXUS Automated Squad Leader Equipment Rack"
@@ -547,8 +547,8 @@
 
 /obj/machinery/marine_selector/gear/leader/valhalla
 	vendor_role = /datum/job/fallen/marine/leader
-	resistance_flags = INDESTRUCTIBLE
-	lock_flags = JOB_LOCK
+	flags_resistance = INDESTRUCTIBLE
+	flags_lock = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/commander
 	name = "NEXUS Automated Field Commander Equipment Rack"
@@ -558,7 +558,7 @@
 	icon_deny = "squadleader-deny"
 	vendor_role = /datum/job/terragov/command/fieldcommander
 	req_access = list(ACCESS_MARINE_COMMANDER)
-	lock_flags = JOB_LOCK
+	flags_lock = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/commander/Initialize(mapload)
 	. = ..()
@@ -566,8 +566,8 @@
 
 /obj/machinery/marine_selector/gear/commander/valhalla
 	vendor_role = /datum/job/fallen/marine/fieldcommander
-	resistance_flags = INDESTRUCTIBLE
-	lock_flags = JOB_LOCK
+	flags_resistance = INDESTRUCTIBLE
+	flags_lock = JOB_LOCK
 
 ///Spawns a set of objects from specified typepaths. For vendors to spawn multiple items while only needing one path.
 /obj/effect/vendor_bundle

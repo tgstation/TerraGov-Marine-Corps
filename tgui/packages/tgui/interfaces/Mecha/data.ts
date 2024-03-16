@@ -53,7 +53,7 @@ export type MainData = {
 
 export type MaintData = {
   name: string;
-  mecha_flags: number;
+  flags_mecha: number;
   mechflag_keys: string[];
   internal_tank_valve: number;
   cell: string;
@@ -68,7 +68,7 @@ export type OperatorData = {
   integrity: number;
   power_level: number;
   power_max: number;
-  mecha_flags: number;
+  flags_mecha: number;
   internal_damage: number;
   internal_damage_keys: string[];
   airtank_present: BooleanLike;

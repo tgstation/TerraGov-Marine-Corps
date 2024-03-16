@@ -27,7 +27,7 @@ FLOOR SAFES
 	anchored = TRUE
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	coverage = 25
 	var/spawnkey = 1 //Spawn safe code on top of it?
 	var/open = 0		//is the safe open?

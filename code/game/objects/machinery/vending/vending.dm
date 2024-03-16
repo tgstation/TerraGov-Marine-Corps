@@ -67,7 +67,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 100
-	interaction_flags = INTERACT_MACHINE_TGUI|INTERACT_POWERLOADER_PICKUP_ALLOWED
+	flags_interaction = INTERACT_MACHINE_TGUI|INTERACT_POWERLOADER_PICKUP_ALLOWED
 	wrenchable = TRUE
 	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 	light_range = 1
@@ -81,7 +81,7 @@
 	///How long it takes to vend an item, vend_ready is false during that.
 	var/vend_delay = 0
 	///Vending flags to determine the behaviour of the machine
-	var/vending_flags = NONE
+	var/flags_vending = NONE
 	/// A /datum/vending_product instance of what we're paying for right now.
 	var/datum/vending_product/currently_vending = null
 	///If this vendor uses a global list for items.
@@ -216,7 +216,7 @@
 
 /obj/machinery/vending/examine(mob/user)
 	. = ..()
-	if(vending_flags & VENDING_RECHARGER)
+	if(flags_vending & VENDING_RECHARGER)
 		. += "Internal battery charge: <b>[machine_current_charge]</b>/<b>[machine_max_charge]</b>"
 
 
@@ -288,7 +288,7 @@
 		products[seasonal_items[season]] += SSpersistence.season_items[season]
 
 /obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return FALSE
 
 	if(xeno_attacker.a_intent == INTENT_HARM)
@@ -331,7 +331,7 @@
 
 	tipped_level = 2
 	density = FALSE
-	allow_pass_flags |= (PASS_LOW_STRUCTURE|PASS_MOB)
+	flags_allow_pass |= (PASS_LOW_STRUCTURE|PASS_MOB)
 	coverage = 50
 
 /obj/machinery/vending/proc/flip_back()
@@ -340,7 +340,7 @@
 	transform = A
 
 	tipped_level = 0
-	allow_pass_flags &= ~(PASS_LOW_STRUCTURE|PASS_MOB)
+	flags_allow_pass &= ~(PASS_LOW_STRUCTURE|PASS_MOB)
 	coverage = initial(coverage)
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user, params)
@@ -691,7 +691,7 @@
 
 			if(cell.charge < cell.maxcharge)
 
-				if(vending_flags & VENDING_RECHARGER) // Item is finite and not full. Time to try to recharge
+				if(flags_vending & VENDING_RECHARGER) // Item is finite and not full. Time to try to recharge
 					recharge_amount = cell.maxcharge - cell.charge
 
 					if(machine_current_charge == 0)
@@ -733,7 +733,7 @@
 		var/obj/item/storage/S = item_to_stock.loc
 		S.remove_from_storage(item_to_stock, user.loc, user)
 
-	if(vending_flags & VENDING_RECHARGER && recharge_amount)
+	if(flags_vending & VENDING_RECHARGER && recharge_amount)
 		machine_current_charge -= recharge_amount
 		display_message_and_visuals(user, show_feedback, "Restocked and recharged", VENDING_RESTOCK_ACCEPT_RECHARGE)
 	else

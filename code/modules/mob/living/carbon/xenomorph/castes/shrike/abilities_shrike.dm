@@ -12,7 +12,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_LYING
 
 
 /datum/action/ability/xeno_action/call_of_the_burrowed/action_activate()
@@ -63,7 +63,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING,
 	)
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 
 
 /datum/action/ability/activable/xeno/psychic_fling/on_cooldown_finish()
@@ -71,7 +71,7 @@
 	return ..()
 
 
-/datum/action/ability/activable/xeno/psychic_fling/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/psychic_fling/can_use_ability(atom/target, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -88,7 +88,7 @@
 		var/mob/living/carbon/human/victim = target
 		if(isnestedhost(victim))
 			return FALSE
-		if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && victim.stat == DEAD)
+		if(!CHECK_BITFIELD(flags_use_state|flags_override, ABILITY_IGNORE_DEAD_TARGET) && victim.stat == DEAD)
 			return FALSE
 
 
@@ -143,7 +143,7 @@
 	desc = "Unleashes our raw psychic power, pushing aside anyone who stands in our path."
 	cooldown_duration = 50 SECONDS
 	ability_cost = 300
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNRELENTING_FORCE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT,
@@ -160,7 +160,7 @@
 	add_cooldown()
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_icons)), 1 SECONDS)
 	var/mob/living/carbon/xenomorph/xeno = owner
-	owner.icon_state = "[xeno.xeno_caste.caste_name][(xeno.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Screeching"
+	owner.icon_state = "[xeno.xeno_caste.caste_name][(xeno.flags_xeno & XENO_ROUNY) ? " rouny" : ""] Screeching"
 	if(target) // Keybind use doesn't have a target
 		owner.face_atom(target)
 
@@ -232,7 +232,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
 	)
 	var/heal_range = SHRIKE_HEAL_RANGE
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 
 
 /datum/action/ability/activable/xeno/psychic_cure/on_cooldown_finish()
@@ -240,7 +240,7 @@
 	return ..()
 
 
-/datum/action/ability/activable/xeno/psychic_cure/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/psychic_cure/can_use_ability(atom/target, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -251,7 +251,7 @@
 	if(!isxeno(target))
 		return FALSE
 	var/mob/living/carbon/xenomorph/patient = target
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
+	if(!CHECK_BITFIELD(flags_use_state|flags_override, ABILITY_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
 		if(!silent)
 			to_chat(owner, span_warning("It's too late. This sister won't be coming back."))
 		return FALSE
@@ -318,9 +318,9 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_ACID_WELL,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_LYING
 
-/datum/action/ability/xeno_action/place_acidwell/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/place_acidwell/can_use_action(silent = FALSE, flags_override)
 	. = ..()
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
@@ -365,7 +365,7 @@
 	desc = "Channel a sizable vortex of psychic energy, drawing in nearby enemies."
 	ability_cost = 600
 	cooldown_duration = 2 MINUTES
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_VORTEX,
 	)

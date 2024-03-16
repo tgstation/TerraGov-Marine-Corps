@@ -3,14 +3,14 @@
 	///Percentage chance to mitigate a hardstun
 	var/datum/armor/cover
 	///Any special behavior flags
-	var/shield_flags = NONE
+	var/flags_shield = NONE
 	///The slots in which the parent can be in for the component to apply
-	var/slot_flags = SLOT_L_HAND|SLOT_R_HAND
+	var/flags_slot = SLOT_L_HAND|SLOT_R_HAND
 	///Whether the component is currently active
 	var/active = TRUE
 
 
-/datum/component/stun_mitigation/Initialize(shield_flags, slot_override, shield_cover = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, FIRE = 100, ACID = 100))
+/datum/component/stun_mitigation/Initialize(flags_shield, slot_override, shield_cover = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, FIRE = 100, ACID = 100))
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -18,9 +18,9 @@
 	var/obj/item/parent_item = parent
 
 	if(slot_override)
-		slot_flags = slot_override
+		flags_slot = slot_override
 
-	if(shield_flags & SHIELD_TOGGLE)
+	if(flags_shield & SHIELD_TOGGLE)
 		RegisterSignal(parent, COMSIG_ITEM_TOGGLE_ACTIVE, PROC_REF(toggle_shield))
 		active = parent_item.active
 
@@ -64,7 +64,7 @@
 ///Signal handler for equipping the shield to a slot
 /datum/component/stun_mitigation/proc/shield_equipped(datum/source, mob/living/user, slot)
 	SIGNAL_HANDLER
-	if(!(slot_flags & slot))
+	if(!(flags_slot & slot))
 		shield_detach_from_user()
 		return
 	shield_affect_user(user)

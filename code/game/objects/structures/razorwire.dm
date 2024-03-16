@@ -9,8 +9,8 @@
 	layer = ABOVE_OBJ_LAYER
 	coverage = 5
 	climbable = TRUE
-	resistance_flags = XENO_DAMAGEABLE
-	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASS_GRILLE|PASSABLE
+	flags_resistance = XENO_DAMAGEABLE
+	flags_allow_pass = PASS_DEFENSIVE_STRUCTURE|PASS_GRILLE|PASSABLE
 	var/list/entangled_list
 	var/sheet_type = /obj/item/stack/barbed_wire
 	var/sheet_type2 = /obj/item/stack/rods
@@ -49,12 +49,12 @@
 	SIGNAL_HANDLER
 	if(!isliving(O))
 		return
-	if(CHECK_BITFIELD(O.pass_flags, PASS_DEFENSIVE_STRUCTURE))
+	if(CHECK_BITFIELD(O.flags_pass, PASS_DEFENSIVE_STRUCTURE))
 		return
 	var/mob/living/M = O
-	if(M.status_flags & INCORPOREAL)
+	if(M.flags_status & INCORPOREAL)
 		return
-	if(CHECK_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE))
+	if(CHECK_BITFIELD(M.flags_restrained, RESTRAINED_RAZORWIRE))
 		return
 	if(!M.density)
 		return
@@ -74,7 +74,7 @@
 
 /obj/structure/razorwire/proc/do_razorwire_tangle(mob/living/entangled)
 	ADD_TRAIT(entangled, TRAIT_IMMOBILE, type)
-	ENABLE_BITFIELD(entangled.restrained_flags, RESTRAINED_RAZORWIRE)
+	ENABLE_BITFIELD(entangled.flags_restrained, RESTRAINED_RAZORWIRE)
 	LAZYADD(entangled_list, entangled) //Add the entangled person to the trapped list.
 	RegisterSignal(entangled, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against))
 	RegisterSignal(entangled, COMSIG_QDELETING, PROC_REF(do_razorwire_untangle))
@@ -91,7 +91,7 @@
 
 /obj/structure/razorwire/proc/razorwire_untangle(mob/living/entangled)
 	SIGNAL_HANDLER
-	if((entangled.pass_flags & PASS_DEFENSIVE_STRUCTURE) || entangled.status_flags & INCORPOREAL)
+	if((entangled.flags_pass & PASS_DEFENSIVE_STRUCTURE) || entangled.flags_status & INCORPOREAL)
 		return
 	do_razorwire_untangle(entangled)
 	visible_message(span_danger("[entangled] disentangles from [src]!"))
@@ -106,7 +106,7 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(entangled, list(COMSIG_QDELETING, COMSIG_LIVING_DO_RESIST, COMSIG_MOVABLE_PULL_MOVED))
 	LAZYREMOVE(entangled_list, entangled)
-	DISABLE_BITFIELD(entangled.restrained_flags, RESTRAINED_RAZORWIRE)
+	DISABLE_BITFIELD(entangled.flags_restrained, RESTRAINED_RAZORWIRE)
 	REMOVE_TRAIT(entangled, TRAIT_IMMOBILE, type)
 
 
@@ -114,7 +114,7 @@
 	if(!isliving(AM))
 		return
 	var/mob/living/crossing_mob = AM
-	if(CHECK_BITFIELD(crossing_mob.restrained_flags, RESTRAINED_RAZORWIRE))
+	if(CHECK_BITFIELD(crossing_mob.flags_restrained, RESTRAINED_RAZORWIRE))
 		razorwire_untangle(AM)
 
 /obj/structure/razorwire/Destroy()
@@ -182,7 +182,7 @@
 	return TRUE
 
 /obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return FALSE
 
 	xeno_attacker.apply_damage(RAZORWIRE_BASE_DAMAGE, blocked = MELEE, updating_health = TRUE) //About a third as damaging as actually entering
@@ -205,7 +205,7 @@
 
 
 /obj/structure/razorwire/CanAllowThrough(atom/movable/mover, turf/target)
-	if(mover.throwing && ismob(mover) && !(mover.pass_flags & PASS_DEFENSIVE_STRUCTURE))
+	if(mover.throwing && ismob(mover) && !(mover.flags_pass & PASS_DEFENSIVE_STRUCTURE))
 		return FALSE
 
 	return ..()

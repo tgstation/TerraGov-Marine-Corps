@@ -75,7 +75,7 @@
 		return
 
 	///pulls the number of marines and SOM, both dead and alive
-	var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
+	var/list/player_list = count_humans(flags_count = COUNT_IGNORE_ALIVE_SSD)
 	var/num_som = length(player_list[1])
 	var/num_tgmc = length(player_list[2])
 	var/num_dead_som = length(player_list[3])

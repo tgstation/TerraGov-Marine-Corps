@@ -3,7 +3,7 @@
 	desc = "A table that displays a map of the current target location"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "maptable"
-	interaction_flags = INTERACT_MACHINE_DEFAULT
+	flags_interaction = INTERACT_MACHINE_DEFAULT
 	use_power = IDLE_POWER_USE
 	density = TRUE
 	idle_power_usage = 2
@@ -104,7 +104,7 @@
 	minimap_flag = MINIMAP_FLAG_MARINE_SOM
 	light_color = LIGHT_COLOR_FLARE
 
-/obj/machinery/cic_maptable/no_flags
+/obj/machinery/cic_maptable/flags_no
 	minimap_flag = NONE
 
 //Exactly the same but you can draw on the map
@@ -178,7 +178,7 @@
 	pixel_x = -16
 	pixel_y = -14
 	coverage = 75
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	flags_allow_pass = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	bound_width = 64
 
 /obj/machinery/cic_maptable/drawable/big/Initialize(mapload)

@@ -189,7 +189,7 @@
 	desc = "Polarized bioneural eyewear, designed to augment your vision."
 	icon_state = "jensenshades"
 	item_state = "jensenshades"
-	vision_flags = SEE_MOBS
+	flags_vision = SEE_MOBS
 	toggleable = 0
 	actions_types = null
 
@@ -234,7 +234,7 @@
 	eye_protection = 2
 	darkness_view = 8
 	hud_type = list(DATA_HUD_MEDICAL_OBSERVER, DATA_HUD_XENO_STATUS, DATA_HUD_SECURITY_ADVANCED, DATA_HUD_SQUAD_TERRAGOV, DATA_HUD_SQUAD_SOM, DATA_HUD_ORDER)
-	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
+	flags_vision = SEE_TURFS|SEE_MOBS|SEE_OBJS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 
 /obj/item/clothing/glasses/hud/sa/Initialize(mapload)

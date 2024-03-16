@@ -28,7 +28,7 @@
 
 ///Actually handles toggling the resting state
 /mob/living/proc/set_resting(rest, silent = TRUE)
-	if(status_flags & INCORPOREAL)
+	if(flags_status & INCORPOREAL)
 		return
 	if(rest == resting)
 		return

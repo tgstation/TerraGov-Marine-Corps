@@ -4,7 +4,7 @@
 /datum/loadout_item/suit_store/empty
 	name = "no suit stored"
 	desc = ""
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
 		SQUAD_CORPSMAN,
@@ -73,7 +73,7 @@
 	It does not particularly excel in any area however, and so is overshadowed by other weapons at particular tasks. It uses 10x24mm caseless ammunition."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -657,7 +657,7 @@
 	Variable firemodes gives it additional flexibility over its ballistic counterpart. Uses TE power cells that are shared across all TGMC laser weaponry."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_store/main_gun/corpsman/laser_carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -860,7 +860,7 @@
 	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. Uses 10x24mm caseless ammunition."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_carbine/engineer
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_store/main_gun/engineer/assault_rifle
 	name = "AR-12"
@@ -944,7 +944,7 @@
 	Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	ui_icon = "smartgun"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_store/main_gun/smartgunner/smartmachinegun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -1072,7 +1072,7 @@
 	Uses TE power cells that are shared across all TGMC laser weaponry."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/laser_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -1425,7 +1425,7 @@
 	Larger and more cumbersome than modern rifles and lacking any precision aimming, it makes up for this with its tremendous magazine capacity, making it more akin to a light machinegun that a rifle. Uses 10x24mm caseless ammunition."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/m41a/field_commander
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_store/main_gun/field_commander/pulse_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()

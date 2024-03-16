@@ -9,7 +9,7 @@ The Grenade Launchers
 	w_class = WEIGHT_CLASS_BULKY
 	gun_skill_category = SKILL_HEAVY_WEAPONS
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
-	reciever_flags = NONE
+	flags_reciever = NONE
 	throw_speed = 2
 	throw_range = 10
 	force = 5
@@ -65,7 +65,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/bullet/laser,
 		/obj/item/explosive/grenade/bullet/hefa,
 	)
-	reciever_flags = NONE
+	flags_reciever = NONE
 
 	///the maximum range the launcher can fling the grenade, by default 15 tiles
 	var/max_range = 15

@@ -2,7 +2,7 @@
 	name = "implant"
 	icon = 'icons/obj/items/implants.dmi'
 	icon_state = "implant"
-	embedding = list("embedded_flags" = EMBEDDED_DEL_ON_HOLDER_DEL, "embed_process_chance" = 0, "embed_chance" = 0, "embedded_fall_chance" = 0)
+	embedding = list("flags_embedded" = EMBEDDED_DEL_ON_HOLDER_DEL, "embed_process_chance" = 0, "embed_chance" = 0, "embedded_fall_chance" = 0)
 	///Whether this implant has been implanted inside a human yet
 	var/implanted = FALSE
 	///Owner mob this implant is inserted to

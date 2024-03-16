@@ -1,5 +1,5 @@
 /datum/hive_status
-	interaction_flags = INTERACT_UI_INTERACT
+	flags_interaction = INTERACT_UI_INTERACT
 	var/name = "Normal"
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/mob/living/carbon/xenomorph/queen/living_xeno_queen
@@ -8,7 +8,7 @@
 	var/list/caste_death_timers = list()
 	var/color = null
 	var/prefix = ""
-	var/hive_flags = NONE
+	var/flags_hive = NONE
 	var/list/xeno_leader_list = list()
 	var/list/list/xenos_by_typepath = list()
 	var/list/list/xenos_by_tier = list()
@@ -142,7 +142,7 @@
 			"location" = get_xeno_location(xeno),
 			"health" = round(health * 100, 1),
 			"plasma" = round((xeno.plasma_stored / (caste.plasma_max * plasma_multi)) * 100, 1),
-			"is_leader" = xeno.xeno_flags & XENO_LEADER,
+			"is_leader" = xeno.flags_xeno & XENO_LEADER,
 			"is_ssd" = !xeno.client,
 			"index" = GLOB.hive_ui_caste_index[caste.caste_type_path],
 		))
@@ -164,12 +164,12 @@
 	.["user_next_mat_level"] = isxeno(user) && xeno_user.upgrade_possible() ? xeno_user.xeno_caste.upgrade_threshold : 0
 	.["user_tracked"] = isxeno(user) && !isnull(xeno_user.tracked) ? REF(xeno_user.tracked) : ""
 
-	.["user_show_empty"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_EMPTY : 0
-	.["user_show_compact"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_COMPACT_MODE : 0
-	.["user_show_general"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_GENERAL : 0
-	.["user_show_population"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_POPULATION : 0
-	.["user_show_xeno_list"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_XENO_LIST : 0
-	.["user_show_structures"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_STRUCTURES : 0
+	.["user_show_empty"] = isxeno(user) ? xeno_user.flags_status_toggle & HIVE_STATUS_SHOW_EMPTY : 0
+	.["user_show_compact"] = isxeno(user) ? xeno_user.flags_status_toggle & HIVE_STATUS_COMPACT_MODE : 0
+	.["user_show_general"] = isxeno(user) ? xeno_user.flags_status_toggle & HIVE_STATUS_SHOW_GENERAL : 0
+	.["user_show_population"] = isxeno(user) ? xeno_user.flags_status_toggle & HIVE_STATUS_SHOW_POPULATION : 0
+	.["user_show_xeno_list"] = isxeno(user) ? xeno_user.flags_status_toggle & HIVE_STATUS_SHOW_XENO_LIST : 0
+	.["user_show_structures"] = isxeno(user) ? xeno_user.flags_status_toggle & HIVE_STATUS_SHOW_STRUCTURES : 0
 
 /// Returns a data entry for the "xeno structures" list based on the structure passed
 /datum/hive_status/proc/get_structure_packet(obj/structure/xeno/struct)
@@ -243,7 +243,7 @@
 		if("ToggleEmpty")
 			if(!isxeno(usr))
 				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_EMPTY)
+			TOGGLE_BITFIELD(xeno_target.flags_status_toggle, HIVE_STATUS_SHOW_EMPTY)
 		if("Compass")
 			var/atom/target = locate(params["target"])
 			if(isobserver(usr))
@@ -255,23 +255,23 @@
 		if("ToggleGeneral")
 			if(!isxeno(usr))
 				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_GENERAL)
+			TOGGLE_BITFIELD(xeno_target.flags_status_toggle, HIVE_STATUS_SHOW_GENERAL)
 		if("ToggleCompact")
 			if(!isxeno(usr))
 				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_COMPACT_MODE)
+			TOGGLE_BITFIELD(xeno_target.flags_status_toggle, HIVE_STATUS_COMPACT_MODE)
 		if("TogglePopulation")
 			if(!isxeno(usr))
 				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_POPULATION)
+			TOGGLE_BITFIELD(xeno_target.flags_status_toggle, HIVE_STATUS_SHOW_POPULATION)
 		if("ToggleXenoList")
 			if(!isxeno(usr))
 				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_XENO_LIST)
+			TOGGLE_BITFIELD(xeno_target.flags_status_toggle, HIVE_STATUS_SHOW_XENO_LIST)
 		if("ToggleStructures")
 			if(!isxeno(usr))
 				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_STRUCTURES)
+			TOGGLE_BITFIELD(xeno_target.flags_status_toggle, HIVE_STATUS_SHOW_STRUCTURES)
 
 /// Returns the string location of the xeno
 /datum/hive_status/proc/get_xeno_location(atom/xeno)
@@ -364,7 +364,7 @@
 			var/mob/living/carbon/xenomorph/X = i
 			if(is_centcom_level(X.z))
 				continue
-			if(!(X.xeno_caste.can_flags & CASTE_CAN_BE_LEADER))
+			if(!(X.xeno_caste.flags_can & CASTE_CAN_BE_LEADER))
 				continue
 			xenos += X
 	return xenos
@@ -536,7 +536,7 @@
 	if(!hive.remove_xeno(src))
 		CRASH("failed to remove xeno from a hive")
 
-	if((xeno_flags & XENO_LEADER) || (src in hive.xeno_leader_list))
+	if((flags_xeno & XENO_LEADER) || (src in hive.xeno_leader_list))
 		hive.remove_leader(src)
 
 	SSdirection.stop_tracking(hive.hivenumber, src)
@@ -605,12 +605,12 @@
 // ***************************************
 /datum/hive_status/proc/add_leader(mob/living/carbon/xenomorph/X)
 	xeno_leader_list += X
-	X.xeno_flags |= XENO_LEADER
+	X.flags_xeno |= XENO_LEADER
 	X.give_rally_abilities()
 
 /datum/hive_status/proc/remove_leader(mob/living/carbon/xenomorph/X)
 	xeno_leader_list -= X
-	X.xeno_flags &= ~XENO_LEADER
+	X.flags_xeno &= ~XENO_LEADER
 
 	if(!isxenoshrike(X) && !isxenoqueen(X) && !isxenohivemind(X)) //These innately have the Rally Hive ability
 		X.remove_rally_hive_ability()
@@ -885,7 +885,7 @@ to_chat will check for valid clients itself already so no need to double check f
 // *********** Normal Xenos
 // ***************************************
 /datum/hive_status/normal // subtype for easier typechecking and overrides
-	hive_flags = HIVE_CAN_HIJACK
+	flags_hive = HIVE_CAN_HIJACK
 	/// Timer ID for the orphan hive timer
 	var/atom/movable/screen/text/screen_timer/orphan_hud_timer
 
@@ -1047,7 +1047,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, PROC_REF(on_hijack_depart))
 
 	for(var/obj/structure/xeno/structure AS in GLOB.xeno_structures_by_hive[XENO_HIVE_NORMAL])
-		if(!is_ground_level(structure.z) || structure.xeno_structure_flags & DEPART_DESTRUCTION_IMMUNE)
+		if(!is_ground_level(structure.z) || structure.flags_xeno_structure & DEPART_DESTRUCTION_IMMUNE)
 			continue
 		qdel(structure)
 

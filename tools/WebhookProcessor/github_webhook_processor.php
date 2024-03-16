@@ -370,26 +370,26 @@ function handle_pr($payload) {
 			return;
 	}
 
-	$pr_flags = 0;
+	$flags_pr = 0;
 	if (strpos(strtolower($payload['pull_request']['title']), '[s]') !== false) {
-		$pr_flags |= F_SECRET_PR;
+		$flags_pr |= F_SECRET_PR;
 	}
 	if (!$validated) {
-		$pr_flags |= F_UNVALIDATED_USER;
+		$flags_pr |= F_UNVALIDATED_USER;
 	}
 
 	$repo_name = $payload['repository']['name'];
 
 	if (in_array($repo_name, $game_announce_whitelist)) {
-		game_announce($action, $payload, $pr_flags);
+		game_announce($action, $payload, $flags_pr);
 	}
 
 	if (!is_blacklisted($discord_announce_blacklist, $repo_name)) {
-		discord_announce($action, $payload, $pr_flags);
+		discord_announce($action, $payload, $flags_pr);
 	}
 }
 
-function filter_announce_targets($targets, $owner, $repo, $action, $pr_flags) {
+function filter_announce_targets($targets, $owner, $repo, $action, $flags_pr) {
 	foreach ($targets as $i=>$target) {
 		if (isset($target['exclude_events']) && in_array($action, array_map('strtolower', $target['exclude_events']))) {
 			unset($targets[$i]);
@@ -397,21 +397,21 @@ function filter_announce_targets($targets, $owner, $repo, $action, $pr_flags) {
 		}
 
 		if (isset($target['announce_secret']) && $target['announce_secret']) {
-			if (!($pr_flags & F_SECRET_PR) && $target['announce_secret'] === 'only') {
+			if (!($flags_pr & F_SECRET_PR) && $target['announce_secret'] === 'only') {
 				unset($targets[$i]);
 				continue;
 			}
-		} else if ($pr_flags & F_SECRET_PR) {
+		} else if ($flags_pr & F_SECRET_PR) {
 			unset($targets[$i]);
 			continue;
 		}
 
 		if (isset($target['announce_unvalidated']) && $target['announce_unvalidated']) {
-			if (!($pr_flags & F_UNVALIDATED_USER) && $target['announce_unvalidated'] === 'only') {
+			if (!($flags_pr & F_UNVALIDATED_USER) && $target['announce_unvalidated'] === 'only') {
 				unset($targets[$i]);
 				continue;
 			}
-		} else if ($pr_flags & F_UNVALIDATED_USER) {
+		} else if ($flags_pr & F_UNVALIDATED_USER) {
 			unset($targets[$i]);
 			continue;
 		}
@@ -463,12 +463,12 @@ function filter_announce_targets($targets, $owner, $repo, $action, $pr_flags) {
 	return $targets;
 }
 
-function game_announce($action, $payload, $pr_flags) {
+function game_announce($action, $payload, $flags_pr) {
 	global $servers;
 
 	$msg = '['.$payload['pull_request']['base']['repo']['full_name'].'] Pull Request '.$action.' by '.htmlSpecialChars($payload['sender']['login']).': <a href="'.$payload['pull_request']['html_url'].'">'.htmlSpecialChars('#'.$payload['pull_request']['number'].' '.$payload['pull_request']['user']['login'].' - '.$payload['pull_request']['title']).'</a>';
 
-	$game_servers = filter_announce_targets($servers, $payload['pull_request']['base']['repo']['owner']['login'], $payload['pull_request']['base']['repo']['name'], $action, $pr_flags);
+	$game_servers = filter_announce_targets($servers, $payload['pull_request']['base']['repo']['owner']['login'], $payload['pull_request']['base']['repo']['name'], $action, $flags_pr);
 
 	$msg = '?announce='.urlencode($msg).'&payload='.urlencode(json_encode($payload));
 
@@ -481,7 +481,7 @@ function game_announce($action, $payload, $pr_flags) {
 
 }
 
-function discord_announce($action, $payload, $pr_flags) {
+function discord_announce($action, $payload, $flags_pr) {
 	global $discordWebHooks;
 	$color;
 	switch ($action) {
@@ -522,7 +522,7 @@ function discord_announce($action, $payload, $pr_flags) {
 				)
 			)
 	);
-	$discordWebHook_targets = filter_announce_targets($discordWebHooks, $payload['pull_request']['base']['repo']['owner']['login'], $payload['pull_request']['base']['repo']['name'], $action, $pr_flags);
+	$discordWebHook_targets = filter_announce_targets($discordWebHooks, $payload['pull_request']['base']['repo']['owner']['login'], $payload['pull_request']['base']['repo']['name'], $action, $flags_pr);
 	foreach ($discordWebHook_targets as $discordWebHook) {
 		$sending_data = $data;
 		if (isset($discordWebHook['embed']) && $discordWebHook['embed']) {

@@ -19,7 +19,7 @@
 	base_icon_state = "savannah_ivanov"
 	icon_state = "savannah_ivanov_0_0"
 	//does not include mmi compatibility
-	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS
+	flags_mecha = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS
 	mech_type = EXOSUIT_MODULE_SAVANNAH
 	move_delay = 3
 	max_integrity = 450 //really tanky, like damn
@@ -127,8 +127,8 @@
 		shake_camera(shaken, 3, 3)
 
 	new /obj/effect/skyfall_landingzone(get_turf(chassis), chassis)
-	chassis.resistance_flags |= INDESTRUCTIBLE //not while jumping at least
-	chassis.mecha_flags |= QUIET_STEPS|QUIET_TURNS|CANNOT_INTERACT
+	chassis.flags_resistance |= INDESTRUCTIBLE //not while jumping at least
+	chassis.flags_mecha |= QUIET_STEPS|QUIET_TURNS|CANNOT_INTERACT
 	chassis.phasing = "flying"
 	chassis.move_delay = 1
 	chassis.density = FALSE
@@ -157,8 +157,8 @@
 /datum/action/vehicle/sealed/mecha/skyfall/proc/land()
 	chassis.visible_message(span_danger("[chassis] lands from above!"))
 	playsound(chassis, 'sound/effects/explosion_large1.ogg', 50, 1)
-	chassis.resistance_flags &= ~INDESTRUCTIBLE
-	chassis.mecha_flags &= ~(QUIET_STEPS|QUIET_TURNS|CANNOT_INTERACT)
+	chassis.flags_resistance &= ~INDESTRUCTIBLE
+	chassis.flags_mecha &= ~(QUIET_STEPS|QUIET_TURNS|CANNOT_INTERACT)
 	chassis.phasing = initial(chassis.phasing)
 	chassis.move_delay = initial(chassis.move_delay)
 	chassis.density = TRUE
@@ -237,7 +237,7 @@
 		end_missile_targeting()
 	return ..()
 
-/datum/action/vehicle/sealed/mecha/ivanov_strike/action_activate(trigger_flags)
+/datum/action/vehicle/sealed/mecha/ivanov_strike/action_activate(flags_trigger)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
 	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_MISSILE_STRIKE))

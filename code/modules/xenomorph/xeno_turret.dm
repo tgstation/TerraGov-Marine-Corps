@@ -10,9 +10,9 @@
 	max_integrity = 1500
 	layer = ABOVE_MOB_LAYER
 	density = TRUE
-	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE |PORTAL_IMMUNE
-	xeno_structure_flags = IGNORE_WEED_REMOVAL|HAS_OVERLAY
-	allow_pass_flags = PASS_AIR|PASS_THROW
+	flags_resistance = UNACIDABLE | DROPSHIP_IMMUNE |PORTAL_IMMUNE
+	flags_xeno_structure = IGNORE_WEED_REMOVAL|HAS_OVERLAY
+	flags_allow_pass = PASS_AIR|PASS_THROW
 	///What kind of spit it uses
 	var/datum/ammo/ammo = /datum/ammo/xeno/acid/heavy/turret
 	///Range of the turret
@@ -82,19 +82,19 @@
 
 /obj/structure/xeno/xeno_turret/flamer_fire_act(burnlevel)
 	take_damage(burnlevel * 2, BURN, FIRE)
-	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
+	ENABLE_BITFIELD(flags_resistance, ON_FIRE)
 
 /obj/structure/xeno/xeno_turret/fire_act()
 	take_damage(60, BURN, FIRE)
-	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
+	ENABLE_BITFIELD(flags_resistance, ON_FIRE)
 
 /obj/structure/xeno/xeno_turret/update_overlays()
 	. = ..()
-	if(!(xeno_structure_flags & HAS_OVERLAY))
+	if(!(flags_xeno_structure & HAS_OVERLAY))
 		return
 	if(obj_integrity <= max_integrity / 2)
 		. += image('icons/Xeno/acidturret.dmi', src, "+turret_damage")
-	if(CHECK_BITFIELD(resistance_flags, ON_FIRE))
+	if(CHECK_BITFIELD(flags_resistance, ON_FIRE))
 		. += image('icons/Xeno/acidturret.dmi', src, "+turret_on_fire")
 
 /obj/structure/xeno/xeno_turret/process()
@@ -102,7 +102,7 @@
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + TURRET_HEALTH_REGEN, max_integrity)
 		update_icon()
-		DISABLE_BITFIELD(resistance_flags, ON_FIRE)
+		DISABLE_BITFIELD(flags_resistance, ON_FIRE)
 	if(world.time > last_scan_time + TURRET_SCAN_FREQUENCY)
 		scan()
 		last_scan_time = world.time
@@ -185,17 +185,17 @@
 			continue
 		var/blocked = FALSE
 		for(var/turf/T AS in path)
-			if(IS_OPAQUE_TURF(T) || T.density && !(T.allow_pass_flags & PASS_PROJECTILE))
+			if(IS_OPAQUE_TURF(T) || T.density && !(T.flags_allow_pass & PASS_PROJECTILE))
 				blocked = TRUE
 				break //LoF Broken; stop checking; we can't proceed further.
 
 			for(var/obj/machinery/MA in T)
-				if(MA.opacity || MA.density && !(MA.allow_pass_flags & PASS_PROJECTILE))
+				if(MA.opacity || MA.density && !(MA.flags_allow_pass & PASS_PROJECTILE))
 					blocked = TRUE
 					break //LoF Broken; stop checking; we can't proceed further.
 
 			for(var/obj/structure/S in T)
-				if(S.opacity || S.density && !(S.allow_pass_flags & PASS_PROJECTILE))
+				if(S.opacity || S.density && !(S.flags_allow_pass & PASS_PROJECTILE))
 					blocked = TRUE
 					break //LoF Broken; stop checking; we can't proceed further.
 		if(!blocked)

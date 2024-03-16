@@ -84,7 +84,7 @@
 
 	///Generic traits tied to having the species.
 	var/list/inherent_traits = list()
-	var/species_flags = NONE       // Various specific features.
+	var/flags_species = NONE       // Various specific features.
 
 	var/list/preferences = list()
 	var/list/screams = list()
@@ -139,7 +139,7 @@
 		unarmed = new unarmed_type()
 	if(secondary_unarmed_type)
 		secondary_unarmed = new secondary_unarmed_type()
-	if(species_flags & GREYSCALE_BLOOD)
+	if(flags_species & GREYSCALE_BLOOD)
 		brute_damage_icon_state = "grayscale"
 
 /datum/species/proc/create_organs(mob/living/carbon/human/organless_human) //Handles creation of mob organs and limbs.
@@ -171,7 +171,7 @@
 		var/organ_type = has_organ[organ]
 		organless_human.internal_organs_by_name[organ] = new organ_type(organless_human)
 
-	if(species_flags & ROBOTIC_LIMBS)
+	if(flags_species & ROBOTIC_LIMBS)
 		for(var/datum/limb/robotic_limb AS in organless_human.limbs)
 			if(robotic_limb.limb_status & LIMB_DESTROYED)
 				continue
@@ -317,13 +317,13 @@
 	return
 
 /datum/species/proc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	if(CHECK_BITFIELD(species_flags, NO_CHEM_METABOLIZATION)) //explicit
+	if(CHECK_BITFIELD(flags_species, NO_CHEM_METABOLIZATION)) //explicit
 		H.reagents.del_reagent(chem.type) //for the time being
 		return TRUE
-	if(CHECK_BITFIELD(species_flags, NO_POISON) && istype(chem, /datum/reagent/toxin))
+	if(CHECK_BITFIELD(flags_species, NO_POISON) && istype(chem, /datum/reagent/toxin))
 		H.reagents.remove_reagent(chem.type, chem.custom_metabolism * H.metabolism_efficiency)
 		return TRUE
-	if(CHECK_BITFIELD(species_flags, NO_OVERDOSE)) //no stacking
+	if(CHECK_BITFIELD(flags_species, NO_OVERDOSE)) //no stacking
 		if(chem.overdose_threshold && chem.volume > chem.overdose_threshold)
 			H.reagents.remove_reagent(chem.type, chem.volume - chem.overdose_threshold)
 	return FALSE
@@ -332,7 +332,7 @@
 	name = "Human"
 	name_plural = "Humans"
 	unarmed_type = /datum/unarmed_attack/punch
-	species_flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR
+	flags_species = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR
 	count_human = TRUE
 
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
@@ -428,7 +428,7 @@
 	body_temperature = 350
 
 	inherent_traits = list(TRAIT_NON_FLAMMABLE, TRAIT_IMMEDIATE_DEFIB)
-	species_flags = NO_BREATHE|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
+	flags_species = NO_BREATHE|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
 
 	no_equip = list(
 		SLOT_W_UNIFORM,
@@ -551,7 +551,7 @@
 
 	body_temperature = 350
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
+	flags_species = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
 
 	blood_color = "#EEEEEE"
 
@@ -614,7 +614,7 @@
 
 	body_temperature = 350
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
+	flags_species = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
 
 	blood_color = "#EEEEEE"
 	hair_color = "#000000"
@@ -663,7 +663,7 @@
 	name = "Monkey"
 	name_plural = "Monkeys"
 	icobase = 'icons/mob/human_races/r_monkey.dmi'
-	species_flags = HAS_NO_HAIR|NO_STAMINA|DETACHABLE_HEAD
+	flags_species = HAS_NO_HAIR|NO_STAMINA|DETACHABLE_HEAD
 	inherent_traits = list(TRAIT_CAN_VENTCRAWL)
 	reagent_tag = IS_MONKEY
 	eyes = "blank_eyes"
@@ -687,7 +687,7 @@
 
 /datum/species/monkey/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	H.allow_pass_flags |= PASS_LOW_STRUCTURE
+	H.flags_allow_pass |= PASS_LOW_STRUCTURE
 
 /datum/species/monkey/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
 	if(!iscarbon(target))
@@ -741,7 +741,7 @@
 	count_human = TRUE
 	total_health = 80
 
-	species_flags = HAS_NO_HAIR|NO_BREATHE|NO_POISON|NO_PAIN|USES_ALIEN_WEAPONS|NO_DAMAGE_OVERLAY
+	flags_species = HAS_NO_HAIR|NO_BREATHE|NO_POISON|NO_PAIN|USES_ALIEN_WEAPONS|NO_DAMAGE_OVERLAY
 
 	paincries = list("neuter" = 'sound/voice/sectoid_death.ogg')
 	death_sound = 'sound/voice/sectoid_death.ogg'
@@ -763,7 +763,7 @@
 	speech_verb_override = "flutters"
 	count_human = TRUE
 
-	species_flags = HAS_LIPS|HAS_NO_HAIR
+	flags_species = HAS_LIPS|HAS_NO_HAIR
 	preferences = list("moth_wings" = "Wings")
 
 	screams = list("neuter" = 'sound/voice/moth_scream.ogg')
@@ -822,7 +822,7 @@
 	speech_verb_override = "rattles"
 	count_human = TRUE
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD // Where we're going, we don't NEED underwear.
+	flags_species = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD // Where we're going, we don't NEED underwear.
 
 	screams = list("neuter" = 'sound/voice/skeleton_scream.ogg') // RATTLE ME BONES
 	paincries = list("neuter" = 'sound/voice/skeleton_scream.ogg')
@@ -1033,7 +1033,7 @@
 		if(CLONE)
 			victim.adjustCloneLoss(damage)
 		if(STAMINA)
-			if(species_flags & NO_STAMINA)
+			if(flags_species & NO_STAMINA)
 				return
 			victim.adjustStaminaLoss(damage)
 

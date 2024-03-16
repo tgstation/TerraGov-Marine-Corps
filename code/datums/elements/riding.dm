@@ -7,7 +7,7 @@
  * just having the variables, behavior, and procs be standardized is still a big improvement.
  */
 /datum/element/ridable
-	element_flags = ELEMENT_BESPOKE
+	flags_element = ELEMENT_BESPOKE
 	argument_hash_start_idx = 2
 
 	/// The specific riding component subtype we're loading our instructions from, don't leave this as default please!
@@ -42,7 +42,7 @@
 			"<span class='warning'>You can't get a grip on [target_movable] because your hands are full!</span>")
 		return COMPONENT_BLOCK_BUCKLE
 /*
-	if((ride_check_flags & RIDER_NEEDS_LEGS) && HAS_TRAIT(potential_rider, TRAIT_FLOORED))
+	if((flags_ride_check & RIDER_NEEDS_LEGS) && HAS_TRAIT(potential_rider, TRAIT_FLOORED))
 		potential_rider.visible_message("<span class='warning'>[potential_rider] can't get [potential_rider.p_their()] footing on [target_movable]!</span>",
 			"<span class='warning'>You can't get your footing on [target_movable]!</span>")
 		return COMPONENT_BLOCK_BUCKLE
@@ -105,7 +105,7 @@
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE
 	flags_item = ITEM_ABSTRACT | DELONDROP | NOBLUDGEON
-	resistance_flags = INDESTRUCTIBLE | UNACIDABLE | PROJECTILE_IMMUNE
+	flags_resistance = INDESTRUCTIBLE | UNACIDABLE | PROJECTILE_IMMUNE
 	var/mob/living/carbon/rider
 	var/mob/living/parent
 	var/selfdeleting = FALSE

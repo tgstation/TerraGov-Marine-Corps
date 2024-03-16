@@ -1,4 +1,4 @@
-// interaction_flags - interactinon flags
+// flags_interaction - interactinon flags
 
 #define INTERACT_REQUIRES_DEXTERITY (1<<0)
 #define INTERACT_CHECK_INCAPACITATED (1<<1)

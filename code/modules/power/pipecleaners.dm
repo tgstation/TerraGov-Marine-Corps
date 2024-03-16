@@ -43,7 +43,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	icon_state = "0-1"
 	layer = WIRE_LAYER //Above hidden pipes, GAS_PIPE_HIDDEN_LAYER
 	anchored = TRUE
-	obj_flags = CAN_BE_HIT
+	flags_obj = CAN_BE_HIT
 	var/d1 = 0   // pipe_cleaner direction 1 (see above)
 	var/d2 = 1   // pipe_cleaner direction 2 (see above)
 	var/obj/item/stack/pipe_cleaner_coil/stored

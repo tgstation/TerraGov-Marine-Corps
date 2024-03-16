@@ -18,12 +18,12 @@
 		//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection
 		var/temp_adj = 0
 		if(loc_temp < bodytemperature) //Place is colder than we are
-			var/thermal_protection = get_flags_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+			var/thermal_protection = flags_get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 			if(thermal_protection < 1)
 				temp_adj = (1 - thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR) //This will be negative
 
 		else if (loc_temp > bodytemperature) //Place is hotter than we are
-			var/thermal_protection = get_flags_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+			var/thermal_protection = flags_get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 			if(thermal_protection < 1)
 				temp_adj = (1 - thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
 
@@ -33,7 +33,7 @@
 	if(bodytemperature > species.heat_level_1)
 		//Body temperature is too hot.
 		fire_alert = max(fire_alert, 2)
-		if(status_flags & GODMODE)
+		if(flags_status & GODMODE)
 			return 1 //Godmode
 
 		if(bodytemperature > species.heat_level_3)
@@ -46,7 +46,7 @@
 	else if(bodytemperature < species.cold_level_1)
 		fire_alert = max(fire_alert, 1)
 
-		if(status_flags & GODMODE)
+		if(flags_status & GODMODE)
 			return 1 //Godmode
 
 		if(!istype(loc, /obj/machinery/atmospherics/components/unary/cryo_cell))
@@ -62,7 +62,7 @@
 
 	//Account for massive pressure differences.  Done by Polymorph
 	//Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return 1 //Godmode
 
 	if(adjusted_pressure >= species.hazard_high_pressure)

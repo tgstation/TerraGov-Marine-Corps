@@ -6,14 +6,14 @@
 	anchored = TRUE
 	density = TRUE
 	layer = OBJ_LAYER
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
 	max_integrity = 150
 	integrity_failure = 25
 	var/girder_state = GIRDER_NORMAL
 	var/reinforcement = null
 	var/icon_prefix = "girder"
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	canSmoothWith = list(SMOOTH_GROUP_GIRDER,SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS)
 	smoothing_groups = list(SMOOTH_GROUP_GIRDER)
 	base_icon_state = "girder"

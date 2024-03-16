@@ -23,7 +23,7 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
-	vision_flags = SEE_TURFS
+	flags_vision = SEE_TURFS
 	darkness_view = 12
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle)
@@ -35,7 +35,7 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
-	vision_flags = SEE_TURFS
+	flags_vision = SEE_TURFS
 	darkness_view = 24
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle)
@@ -69,7 +69,7 @@
 	darkness_view = 5
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
-	vision_flags = SEE_TURFS
+	flags_vision = SEE_TURFS
 
 /obj/item/clothing/glasses/night/sunglasses
 	name = "\improper KTLD sunglasses"
@@ -81,7 +81,7 @@
 	darkness_view = 5
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
-	vision_flags = SEE_TURFS
+	flags_vision = SEE_TURFS
 	prescription = TRUE
 
 /obj/item/clothing/glasses/night/optgoggles

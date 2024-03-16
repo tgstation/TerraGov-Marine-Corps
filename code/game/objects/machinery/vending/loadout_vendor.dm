@@ -68,5 +68,5 @@
 	faction = VENDOR_FACTION_CRASH
 
 /obj/machinery/loadout_vendor/valhalla
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 	faction = VENDOR_FACTION_VALHALLA

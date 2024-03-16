@@ -119,7 +119,7 @@
 
 /datum/greyscale_layer/hyperscale/InternalGenerate(list/colors, list/render_steps, datum/greyscale_config/parent)
 	var/icon/new_icon = icon(icon)
-	if(CHECK_BITFIELD(parent.greyscale_flags, HYPERSCALE_ALLOW_GREYSCALE) && length(colors) == 1)
+	if(CHECK_BITFIELD(parent.flags_greyscale, HYPERSCALE_ALLOW_GREYSCALE) && length(colors) == 1)
 		new_icon.Blend(colors[1], ICON_MULTIPLY)
 		return new_icon
 	if(length(icon_file_colors) > length(colors))

@@ -7,9 +7,9 @@
 	ui_icon = "tele_active"
 	uses = 2
 	cost = 5
-	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_ACTIVE_MISSION_ONLY|ASSET_DISABLE_ON_MISSION_END|ASSET_DISALLOW_REPEAT_USE
+	flags_asset = ASSET_ACTIVATED_EFFECT|ASSET_ACTIVE_MISSION_ONLY|ASSET_DISABLE_ON_MISSION_END|ASSET_DISALLOW_REPEAT_USE
 	already_active_message = "The Teleporter Array is already activated!"
-	blacklist_mission_flags = MISSION_DISALLOW_TELEPORT
+	flags_blacklist_mission = MISSION_DISALLOW_TELEPORT
 	blacklist_message = "External factors prevent the use of the teleporter at this time. Teleporter unavailable."
 	///The teleporter associated with this asset
 	var/obj/structure/teleporter_array/linked_teleporter
@@ -62,7 +62,7 @@
 	name = "Teleporter Array disabled"
 	desc = "Teleporter Array has been permenantly disabled"
 	detailed_desc = "The Bluespace drive powering all Teleporter Arrays in the conflict zone has been destroyed, rending all Teleporter Arrays inoperable. You'll have to deploy the old fashion way from here on out."
-	asset_flags = ASSET_IMMEDIATE_EFFECT|ASSET_DEBUFF
+	flags_asset = ASSET_IMMEDIATE_EFFECT|ASSET_DEBUFF
 	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_scientist
 	ui_icon = "tele_broken"
 

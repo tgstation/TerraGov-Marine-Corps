@@ -19,7 +19,7 @@
 	name = "Eject From Mech"
 	action_icon_state = "mech_eject"
 
-/datum/action/vehicle/sealed/mecha/mech_eject/action_activate(trigger_flags)
+/datum/action/vehicle/sealed/mecha/mech_eject/action_activate(flags_trigger)
 	if(!owner)
 		return
 	if(!chassis || !(owner in chassis.occupants))
@@ -33,7 +33,7 @@
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_TOGGLE_INTERNALS,
 	)
 
-/datum/action/vehicle/sealed/mecha/mech_toggle_internals/action_activate(trigger_flags)
+/datum/action/vehicle/sealed/mecha/mech_toggle_internals/action_activate(flags_trigger)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
 
@@ -53,22 +53,22 @@
 	name = "Toggle Lights"
 	action_icon_state = "mech_lights_off"
 
-/datum/action/vehicle/sealed/mecha/mech_toggle_lights/action_activate(trigger_flags)
+/datum/action/vehicle/sealed/mecha/mech_toggle_lights/action_activate(flags_trigger)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
 
-	if(!(chassis.mecha_flags & HAS_HEADLIGHTS))
+	if(!(chassis.flags_mecha & HAS_HEADLIGHTS))
 		chassis.balloon_alert(owner, "the mech lights are broken!")
 		return
-	chassis.mecha_flags ^= LIGHTS_ON
-	if(chassis.mecha_flags & LIGHTS_ON)
+	chassis.flags_mecha ^= LIGHTS_ON
+	if(chassis.flags_mecha & LIGHTS_ON)
 		action_icon_state = "mech_lights_on"
 	else
 		action_icon_state = "mech_lights_off"
-	chassis.set_light_on(chassis.mecha_flags & LIGHTS_ON)
-	chassis.balloon_alert(owner, "toggled lights [chassis.mecha_flags & LIGHTS_ON ? "on":"off"]")
+	chassis.set_light_on(chassis.flags_mecha & LIGHTS_ON)
+	chassis.balloon_alert(owner, "toggled lights [chassis.flags_mecha & LIGHTS_ON ? "on":"off"]")
 	playsound(chassis,'sound/mecha/brass_skewer.ogg', 40, TRUE)
-	chassis.log_message("Toggled lights [(chassis.mecha_flags & LIGHTS_ON)?"on":"off"].", LOG_MECHA)
+	chassis.log_message("Toggled lights [(chassis.flags_mecha & LIGHTS_ON)?"on":"off"].", LOG_MECHA)
 	update_button_icon()
 
 /datum/action/vehicle/sealed/mecha/mech_view_stats
@@ -77,7 +77,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_VIEW_STATS,
 	)
-/datum/action/vehicle/sealed/mecha/mech_view_stats/action_activate(trigger_flags)
+/datum/action/vehicle/sealed/mecha/mech_view_stats/action_activate(flags_trigger)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
 
@@ -90,7 +90,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_TOGGLE_STRAFE,
 	)
-/datum/action/vehicle/sealed/mecha/strafe/action_activate(trigger_flags)
+/datum/action/vehicle/sealed/mecha/strafe/action_activate(flags_trigger)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
 
@@ -106,7 +106,7 @@
 	toggle_strafe()
 
 /obj/vehicle/sealed/mecha/proc/toggle_strafe()
-	if(!(mecha_flags & CANSTRAFE))
+	if(!(flags_mecha & CANSTRAFE))
 		to_chat(occupants, "this mecha doesn't support strafing!")
 		return
 
@@ -124,7 +124,7 @@
 	name = "Switch Seats"
 	action_icon_state = "mech_seat_swap"
 
-/datum/action/vehicle/sealed/mecha/swap_seat/action_activate(trigger_flags)
+/datum/action/vehicle/sealed/mecha/swap_seat/action_activate(flags_trigger)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
 

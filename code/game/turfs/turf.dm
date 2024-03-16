@@ -107,9 +107,9 @@
 	if (length(canSmoothWith))
 		sortTim(canSmoothWith)
 		if(canSmoothWith[length(canSmoothWith)] > MAX_S_TURF) //If the last element is higher than the maximum turf-only value, then it must scan turf contents for smoothing targets.
-			smoothing_flags |= SMOOTH_OBJ
+			flags_smoothing |= SMOOTH_OBJ
 		SET_BITFLAG_LIST(canSmoothWith)
-	if (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+	if (flags_smoothing & (SMOOTH_CORNERS|SMOOTH_BITMASK))
 		QUEUE_SMOOTH(src)
 		QUEUE_SMOOTH_NEIGHBORS(src)
 
@@ -165,9 +165,9 @@
 		if(i == mover || i == mover.loc) // Multi tile objects and moving out of other objects
 			continue
 		var/atom/movable/thing = i
-		if(CHECK_MULTIPLE_BITFIELDS(thing.pass_flags, HOVERING))
+		if(CHECK_MULTIPLE_BITFIELDS(thing.flags_pass, HOVERING))
 			continue
-		if(thing.status_flags & INCORPOREAL)
+		if(thing.flags_status & INCORPOREAL)
 			continue
 		if(thing.Cross(mover))
 			continue
@@ -887,7 +887,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 /turf/contents_explosion(severity)
 	for(var/thing in contents)
 		var/atom/movable/thing_in_turf = thing
-		if(thing_in_turf.resistance_flags & INDESTRUCTIBLE)
+		if(thing_in_turf.flags_resistance & INDESTRUCTIBLE)
 			continue
 		switch(severity)
 			if(EXPLODE_DEVASTATE)

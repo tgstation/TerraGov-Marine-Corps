@@ -10,7 +10,7 @@
 	plasma_stored = 150
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_NORMAL
-	buckle_flags = CAN_BUCKLE
+	flags_buckle = CAN_BUCKLE
 	pixel_x = -16
 	old_x = -16
 	max_buckled_mobs = 5

@@ -31,14 +31,14 @@
 /turf/closed/wall/r_wall/dense
 	icon_state = "iron0"
 	walltype = "iron"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /turf/closed/wall/r_wall/unmeltable
 	name = "heavy reinforced wall"
 	desc = "A huge chunk of ultra-reinforced metal used to seperate rooms. Looks virtually indestructible."
 	icon_state = "wall-invincible"
 	walltype = "rwall"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /turf/closed/wall/r_wall/unmeltable/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
 	return
@@ -78,7 +78,7 @@
 	icon = 'icons/turf/walls/gorg_prison_rwall_two.dmi'
 	icon_state = "wall-invincible"
 	walltype = "rwall"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	base_icon_state = "rwall"
 
 /turf/closed/wall/r_wall/prison_unmeltable/ex_act(severity) //Should make it indestructable

@@ -9,7 +9,7 @@
 	item_state = "pill"
 	possible_transfer_amounts = null
 	amount_per_transfer_from_this = 15
-	init_reagent_flags = AMOUNT_SKILLCHECK
+	flags_init_reagent = AMOUNT_SKILLCHECK
 	w_class = WEIGHT_CLASS_TINY
 	volume = 60
 	attack_speed = 1 //War against input locking while pill munching
@@ -30,7 +30,7 @@
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.species.species_flags & ROBOTIC_LIMBS)
+			if(H.species.flags_species & ROBOTIC_LIMBS)
 				to_chat(H, span_warning("You can't eat pills."))
 				return
 
@@ -47,7 +47,7 @@
 	else if(ishuman(M) )
 
 		var/mob/living/carbon/human/H = M
-		if(H.species.species_flags & ROBOTIC_LIMBS)
+		if(H.species.flags_species & ROBOTIC_LIMBS)
 			to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 			return
 

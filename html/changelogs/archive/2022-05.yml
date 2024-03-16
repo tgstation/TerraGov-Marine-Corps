@@ -508,7 +508,7 @@
   - bugfix: Armored floodlight cell power calculation in its description was corrected.
   Mechanelize:
   - code_imp: Split xeno related flags containing "CAN" into a new category called
-      xeno_can_flags to bypass the 21 flag bitfield limit
+      flags_xeno_can to bypass the 21 flag bitfield limit
   QualityVan:
   - code_imp: flamer_fire_act gets a new argument that, among other things, means
       x-fuel is better than default at burning non-mob stuff.

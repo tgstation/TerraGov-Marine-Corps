@@ -10130,7 +10130,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/req)
 "QV" = (
-/obj/machinery/cic_maptable/no_flags,
+/obj/machinery/cic_maptable/flags_no,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/command)
 "QW" = (

@@ -532,7 +532,7 @@
 	for(var/path in SSgarbage.items)
 		var/datum/qdel_item/I = SSgarbage.items[path]
 		dellog += "<li><u>[path]</u><ul>"
-		if (I.qdel_flags & QDEL_ITEM_SUSPENDED_FOR_LAG)
+		if (I.flags_qdel & QDEL_ITEM_SUSPENDED_FOR_LAG)
 			dellog += "<li>SUSPENDED FOR LAG</li>"
 		if (I.failures)
 			dellog += "<li>Failures: [I.failures]</li>"

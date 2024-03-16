@@ -10,7 +10,7 @@
 /obj/structure/spider/stickyweb
 	icon_state = "stickyweb1"
 	coverage = 30
-	obj_flags = CAN_BE_HIT|PROJ_IGNORE_DENSITY
+	flags_obj = CAN_BE_HIT|PROJ_IGNORE_DENSITY
 
 
 /obj/structure/spider/stickyweb/Initialize(mapload)

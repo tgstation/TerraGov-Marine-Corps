@@ -1,6 +1,6 @@
 // For any /obj/vehicle's that can be ridden
 
-/datum/component/riding/vehicle/Initialize(mob/living/riding_mob, force = FALSE, ride_check_flags = (RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS), potion_boost = FALSE)
+/datum/component/riding/vehicle/Initialize(mob/living/riding_mob, force = FALSE, flags_ride_check = (RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS), potion_boost = FALSE)
 	if(!isvehicle(parent))
 		return COMPONENT_INCOMPATIBLE
 	return ..()
@@ -21,7 +21,7 @@
 		return COMPONENT_DRIVER_BLOCK_MOVE
 
 	if(HAS_TRAIT(user, TRAIT_INCAPACITATED))
-		if(ride_check_flags & UNBUCKLE_DISABLED_RIDER)
+		if(flags_ride_check & UNBUCKLE_DISABLED_RIDER)
 			vehicle_parent.unbuckle_mob(user, TRUE)
 			user.visible_message("<span class='danger'>[user] falls off \the [vehicle_parent].</span>",\
 			"<span class='danger'>You slip off \the [vehicle_parent] as your body slumps!</span>")
@@ -31,8 +31,8 @@
 			COOLDOWN_START(src, message_cooldown, 5 SECONDS)
 		return COMPONENT_DRIVER_BLOCK_MOVE
 
-	if(ride_check_flags & RIDER_NEEDS_LEGS && HAS_TRAIT(user, TRAIT_FLOORED))
-		if(ride_check_flags & UNBUCKLE_DISABLED_RIDER)
+	if(flags_ride_check & RIDER_NEEDS_LEGS && HAS_TRAIT(user, TRAIT_FLOORED))
+		if(flags_ride_check & UNBUCKLE_DISABLED_RIDER)
 			vehicle_parent.unbuckle_mob(user, TRUE)
 			user.visible_message("<span class='danger'>[user] falls off \the [vehicle_parent].</span>",\
 			"<span class='danger'>You fall off \the [vehicle_parent] while trying to operate it while unable to stand!</span>")
@@ -42,8 +42,8 @@
 			COOLDOWN_START(src, message_cooldown, 5 SECONDS)
 		return COMPONENT_DRIVER_BLOCK_MOVE
 
-	if(ride_check_flags & RIDER_NEEDS_ARMS && user.restrained())
-		if(ride_check_flags & UNBUCKLE_DISABLED_RIDER)
+	if(flags_ride_check & RIDER_NEEDS_ARMS && user.restrained())
+		if(flags_ride_check & UNBUCKLE_DISABLED_RIDER)
 			vehicle_parent.unbuckle_mob(user, TRUE)
 			user.visible_message("<span class='danger'>[user] falls off \the [vehicle_parent].</span>",\
 			"<span class='danger'>You fall off \the [vehicle_parent] while trying to operate it without being able to hold on!</span>")
@@ -81,7 +81,7 @@
 
 /datum/component/riding/vehicle/atv
 	keytype = /obj/item/key/atv
-	ride_check_flags = RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS | UNBUCKLE_DISABLED_RIDER
+	flags_ride_check = RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS | UNBUCKLE_DISABLED_RIDER
 	vehicle_move_delay = 1.5
 
 /datum/component/riding/vehicle/atv/handle_specials()
@@ -93,7 +93,7 @@
 	set_vehicle_dir_layer(WEST, OBJ_LAYER)
 
 /datum/component/riding/vehicle/powerloader
-	ride_check_flags = RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS
+	flags_ride_check = RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS
 	vehicle_move_delay = 4
 
 /datum/component/riding/vehicle/powerloader/handle_specials()
@@ -105,7 +105,7 @@
 	set_vehicle_dir_layer(WEST, POWERLOADER_LAYER)
 
 /datum/component/riding/vehicle/bicycle
-	ride_check_flags = RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS | UNBUCKLE_DISABLED_RIDER
+	flags_ride_check = RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS | UNBUCKLE_DISABLED_RIDER
 	vehicle_move_delay = 0
 
 /datum/component/riding/vehicle/bicycle/handle_specials()
@@ -114,7 +114,7 @@
 
 /datum/component/riding/vehicle/wheelchair
 	vehicle_move_delay = 6
-	ride_check_flags = RIDER_NEEDS_ARMS
+	flags_ride_check = RIDER_NEEDS_ARMS
 
 /datum/component/riding/vehicle/wheelchair/driver_move(atom/movable/movable_parent, mob/living/user, direction)
 	if(!iscarbon(user))
@@ -166,7 +166,7 @@
 
 /datum/component/riding/vehicle/motorbike
 	vehicle_move_delay = 2
-	ride_check_flags = RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS | UNBUCKLE_DISABLED_RIDER
+	flags_ride_check = RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS | UNBUCKLE_DISABLED_RIDER
 
 /datum/component/riding/vehicle/motorbike/handle_specials()
 	. = ..()
@@ -177,7 +177,7 @@
 	set_vehicle_dir_layer(WEST, OBJ_LAYER)
 
 
-/datum/component/riding/vehicle/motorbike/sidecar/Initialize(mob/living/riding_mob, force, ride_check_flags, potion_boost)
+/datum/component/riding/vehicle/motorbike/sidecar/Initialize(mob/living/riding_mob, force, flags_ride_check, potion_boost)
 	. = ..()
 	riding_mob.density = FALSE
 

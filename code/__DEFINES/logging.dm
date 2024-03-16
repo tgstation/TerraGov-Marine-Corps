@@ -121,7 +121,7 @@
 #define LOG_CATEGORY_HREF "href"
 #define LOG_CATEGORY_HREF_TGUI "href-tgui"
 
-// Flags that apply to the entry_flags var on logging categories
+// Flags that apply to the flags_entry var on logging categories
 // These effect how entry datums process the inputs passed into them
 /// Enables data list usage for readable log entries
 /// You'll likely want to disable internal formatting to make this work properly

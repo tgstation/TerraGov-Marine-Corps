@@ -10,7 +10,7 @@
 	idle_power_usage = 20
 	icon = 'icons/obj/machines/drone_fab.dmi'
 	icon_state = "drone_fab_idle"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	/// List of everything in queue
 	var/list/queue = list()
 	///Current item being printed

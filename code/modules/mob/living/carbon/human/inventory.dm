@@ -191,7 +191,7 @@
 		glasses = null
 		I.unequipped(src, SLOT_GLASSES)
 		var/obj/item/clothing/glasses/G = I
-		if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
+		if(G.flags_vision || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
 			update_sight()
 		if(!QDELETED(src))
 			update_inv_glasses()
@@ -317,7 +317,7 @@
 			glasses = W
 			W.equipped(src, slot)
 			var/obj/item/clothing/glasses/G = W
-			if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
+			if(G.flags_vision || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
 				update_sight()
 			update_inv_glasses()
 		if(SLOT_GLOVES)

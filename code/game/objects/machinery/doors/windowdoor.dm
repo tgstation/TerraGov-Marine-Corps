@@ -4,15 +4,15 @@
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "left"
 	layer = ABOVE_WINDOW_LAYER
-	resistance_flags = XENO_DAMAGEABLE
-	obj_flags = CAN_BE_HIT
+	flags_resistance = XENO_DAMAGEABLE
+	flags_obj = CAN_BE_HIT
 	var/base_state = "left"
 	max_integrity = 50
 	soft_armor = list(MELEE = 20, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, FIRE = 70, ACID = 100)
 	visible = FALSE
 	use_power = FALSE
 	flags_atom = ON_BORDER
-	allow_pass_flags = PASS_GLASS
+	flags_allow_pass = PASS_GLASS
 	opacity = FALSE
 	var/obj/item/circuitboard/airlock/electronics = null
 

@@ -6,7 +6,7 @@
 	map_file = '_maps/map_files/Lawanka_Outpost/LawankaOutpost.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
-	mission_flags = MISSION_DISALLOW_TELEPORT
+	flags_mission = MISSION_DISALLOW_TELEPORT
 	max_game_time = 8 MINUTES
 	shutter_open_delay = list(
 		MISSION_STARTING_FACTION = 90 SECONDS,

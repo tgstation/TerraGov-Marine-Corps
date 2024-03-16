@@ -330,8 +330,8 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	return HAS_TRAIT(src, TRAIT_HANDS_BLOCKED)
 
 
-/mob/proc/incapacitated(ignore_restrained, restrained_flags)
-	return (stat || (!ignore_restrained && restrained(restrained_flags)))
+/mob/proc/incapacitated(ignore_restrained, flags_restrained)
+	return (stat || (!ignore_restrained && restrained(flags_restrained)))
 
 
 //returns how many non-destroyed legs the mob has (currently only useful for humans)

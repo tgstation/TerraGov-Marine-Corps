@@ -6,7 +6,7 @@
 	icon_state = "powerloader_open"
 	layer = POWERLOADER_LAYER //so the top appears above windows and wall mounts
 	anchored = TRUE
-	allow_pass_flags = NONE
+	flags_allow_pass = NONE
 	move_delay = 8
 	light_system = HYBRID_LIGHT
 	light_power = 8
@@ -197,4 +197,4 @@
 	density = TRUE
 	anchored = FALSE
 	opacity = FALSE
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE

@@ -17,10 +17,10 @@
 		SSmobs.stop_processing(src)
 		return
 	if(stat == UNCONSCIOUS)
-		if(xeno_flags & XENO_ZOOMED)
+		if(flags_xeno & XENO_ZOOMED)
 			zoom_out()
 	else
-		if(xeno_flags & XENO_ZOOMED)
+		if(flags_xeno & XENO_ZOOMED)
 			if(loc != zoom_turf || lying_angle)
 				zoom_out()
 		update_progression()
@@ -38,7 +38,7 @@
 		if(resting && fire_stacks > 0)
 			adjust_fire_stacks(-1)	//Passively lose firestacks when not on fire while resting and having firestacks built up.
 		return
-	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
+	if(!(xeno_caste.flags_caste & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
 		apply_damage((fire_stacks + 3), BURN, blocked = FIRE)
 
 /mob/living/carbon/xenomorph/proc/handle_living_health_updates()
@@ -52,10 +52,10 @@
 		return
 
 	var/ruler_healing_penalty = 0.5
-	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.can_flags & CASTE_CAN_HEAL_WITHOUT_QUEEN || (SSticker?.mode.flags_round_type & MODE_XENO_RULER)) //if the living queen's z-level is the same as ours.
+	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.flags_can & CASTE_CAN_HEAL_WITHOUT_QUEEN || (SSticker?.mode.flags_round_type & MODE_XENO_RULER)) //if the living queen's z-level is the same as ours.
 		ruler_healing_penalty = 1
-	if(loc_weeds_type || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
-		if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
+	if(loc_weeds_type || xeno_caste.flags_caste & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
+		if(lying_angle || resting || xeno_caste.flags_caste & CASTE_QUICK_HEAL_STANDING)
 			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty * loc_weeds_type ? initial(loc_weeds_type.resting_buff) : 1, TRUE)
 		else
 			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty, TRUE) //Major healing nerf if standing.
@@ -124,7 +124,7 @@
 		else
 			use_plasma(pheromone_cost, FALSE)
 
-	if(HAS_TRAIT(src, TRAIT_NOPLASMAREGEN) || !loc_weeds_type && !(xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
+	if(HAS_TRAIT(src, TRAIT_NOPLASMAREGEN) || !loc_weeds_type && !(xeno_caste.flags_caste & CASTE_INNATE_PLASMA_REGEN))
 		if(current_aura) //we only need to update if we actually used plasma from pheros
 			hud_set_plasma()
 		return
@@ -146,11 +146,11 @@
 
 /mob/living/carbon/xenomorph/can_receive_aura(aura_type, atom/source, datum/aura_bearer/bearer)
 	. = ..()
-	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Xenos on fire cannot receive pheros.
+	if(!(xeno_caste.flags_caste & CASTE_FIRE_IMMUNE) && on_fire) //Xenos on fire cannot receive pheros.
 		return FALSE
 
 /mob/living/carbon/xenomorph/finish_aura_cycle()
-	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Has to be here to prevent desyncing between phero and life, despite making more sense in handle_fire()
+	if(!(xeno_caste.flags_caste & CASTE_FIRE_IMMUNE) && on_fire) //Has to be here to prevent desyncing between phero and life, despite making more sense in handle_fire()
 		if(current_aura)
 			current_aura.suppressed = TRUE
 		if(leader_current_aura)
@@ -176,7 +176,7 @@
 
 /mob/living/carbon/xenomorph/proc/handle_environment() //unused while atmos is not on
 	var/env_temperature = loc.return_temperature()
-	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
+	if(!(xeno_caste.flags_caste & CASTE_FIRE_IMMUNE))
 		if(env_temperature > (T0C + 66))
 			apply_damage(((env_temperature - (T0C + 66) ) * 0.2), BURN, blocked = FIRE)
 			updatehealth() //unused while atmos is off
@@ -189,7 +189,7 @@
 				hud_used.fire_icon.icon_state = "fire0"
 
 /mob/living/carbon/xenomorph/updatehealth()
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		health = maxHealth
 		stat = CONSCIOUS
 		return

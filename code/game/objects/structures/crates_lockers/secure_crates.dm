@@ -4,7 +4,7 @@
 	icon_state = "secure_locked_basic"
 	icon_opened = "secure_open_basic"
 	icon_closed = "secure_locked_basic"
-	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ|CLOSET_IS_SECURE
+	flags_closet = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ|CLOSET_IS_SECURE
 	var/icon_locked = "secure_locked_basic"
 	var/icon_unlocked = "secure_unlocked_basic"
 	var/sparks = "securecratesparks"

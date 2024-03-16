@@ -6,7 +6,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0) // This is here to overwrite code over at objs.dm line 41. Marines don't get funny 200+ bio buff anymore.
 
 	slowdown = 0
-	appearance_flags = KEEP_APART|TILE_BOUND
+	flags_appearance = KEEP_APART|TILE_BOUND
 
 	///Reference to parent modular armor suit.
 	var/obj/item/clothing/parent

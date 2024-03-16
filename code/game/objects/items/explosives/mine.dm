@@ -127,7 +127,7 @@ Stepping directly on the mine will also blow it up
 /obj/item/explosive/mine/proc/on_cross(datum/source, atom/movable/A, oldloc, oldlocs)
 	if(!isliving(A))
 		return
-	if(CHECK_MULTIPLE_BITFIELDS(A.pass_flags, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
 		return
 	var/mob/living/L = A
 	if(L.lying_angle) ///so dragged corpses don't trigger mines.
@@ -148,7 +148,7 @@ Stepping directly on the mine will also blow it up
 
 	if(!living_victim)
 		return FALSE
-	if((living_victim.status_flags & INCORPOREAL))
+	if((living_victim.flags_status & INCORPOREAL))
 		return FALSE
 	if(living_victim.stat == DEAD)
 		return FALSE
@@ -166,7 +166,7 @@ Stepping directly on the mine will also blow it up
 
 /// Alien attacks trigger the explosive to instantly detonate
 /obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return FALSE
 	if(triggered) //Mine is already set to go off
 		return
@@ -193,7 +193,7 @@ Stepping directly on the mine will also blow it up
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = INVISIBILITY_MAXIMUM
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	var/obj/item/explosive/mine/linked_mine
 
 /obj/effect/mine_tripwire/Initialize(mapload)
@@ -217,7 +217,7 @@ Stepping directly on the mine will also blow it up
 		qdel(src)
 		return
 
-	if(CHECK_MULTIPLE_BITFIELDS(AM.pass_flags, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
 		return
 
 	if(linked_mine.triggered) //Mine is already set to go off

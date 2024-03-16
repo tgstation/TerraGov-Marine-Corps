@@ -61,7 +61,7 @@
 	///How much burn damage this pack heals when applied to a limb
 	var/heal_burn = 0
 	///Set of wound flags applied by use, including BANDAGE, SALVE, and DISINFECT
-	var/heal_flags = NONE
+	var/flags_heal = NONE
 
 
 /obj/item/stack/medical/heal_pack/attack(mob/living/M, mob/living/user)
@@ -102,22 +102,22 @@
 		return FALSE
 	if(!can_affect_limb(affecting))
 		return FALSE
-	if(heal_flags & BANDAGE && !affecting.is_bandaged())
+	if(flags_heal & BANDAGE && !affecting.is_bandaged())
 		return TRUE
-	if(heal_flags & SALVE && !affecting.is_salved())
+	if(flags_heal & SALVE && !affecting.is_salved())
 		return TRUE
-	if(heal_flags & DISINFECT && !affecting.is_disinfected())
+	if(flags_heal & DISINFECT && !affecting.is_disinfected())
 		return TRUE
 	return FALSE
 
 ///Applies the heal_pack to a specified limb. Unskilled penalty is a multiplier between 0 and 1 on brute/burn healing effectiveness
 /obj/item/stack/medical/heal_pack/proc/heal_limb(datum/limb/affecting, unskilled_penalty)
 	var/affected = FALSE
-	if(heal_flags & BANDAGE)
+	if(flags_heal & BANDAGE)
 		affected |= affecting.bandage()
-	if(heal_flags & SALVE)
+	if(flags_heal & SALVE)
 		affected |= affecting.salve()
-	if(heal_flags & DISINFECT)
+	if(flags_heal & DISINFECT)
 		affected |= affecting.disinfect()
 
 	if(affected)
@@ -139,7 +139,7 @@
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
 	heal_brute = 3
-	heal_flags = BANDAGE
+	flags_heal = BANDAGE
 
 /obj/item/stack/medical/heal_pack/gauze/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
 	if(!success)
@@ -155,7 +155,7 @@
 	singular_name = "ointment"
 	icon_state = "ointment"
 	heal_burn = 3
-	heal_flags = SALVE
+	flags_heal = SALVE
 
 /obj/item/stack/medical/heal_pack/ointment/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
 	if(!success)
@@ -172,7 +172,7 @@
 	icon_state = "predator_fixovein"
 	heal_brute = 20
 	heal_burn = 20
-	heal_flags = BANDAGE | SALVE | DISINFECT
+	flags_heal = BANDAGE | SALVE | DISINFECT
 
 
 /obj/item/stack/medical/heal_pack/advanced
@@ -187,7 +187,7 @@
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
 	heal_brute = 12
-	heal_flags = BANDAGE | DISINFECT
+	flags_heal = BANDAGE | DISINFECT
 
 /obj/item/stack/medical/heal_pack/advanced/bruise_pack/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
 	if(!success)
@@ -202,7 +202,7 @@
 	desc = "An advanced treatment kit for severe burns."
 	icon_state = "burnkit"
 	heal_burn = 12
-	heal_flags = SALVE | DISINFECT
+	flags_heal = SALVE | DISINFECT
 
 /obj/item/stack/medical/heal_pack/advanced/burn_pack/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
 	if(!success)

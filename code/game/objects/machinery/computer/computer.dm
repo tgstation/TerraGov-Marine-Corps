@@ -11,7 +11,7 @@
 	var/processing = 0
 	///How many times the computer can be smashed by a Xeno before it is disabled.
 	var/durability = 2
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	///they don't provide good cover
 	coverage = 15
 	light_range = 1
@@ -59,7 +59,7 @@
 
 
 /obj/machinery/computer/ex_act(severity)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+	if(CHECK_BITFIELD(flags_resistance, INDESTRUCTIBLE))
 		return FALSE
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -86,7 +86,7 @@
 
 
 /obj/machinery/computer/bullet_act(obj/projectile/Proj)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+	if(CHECK_BITFIELD(flags_resistance, INDESTRUCTIBLE))
 		visible_message("[Proj] ricochets off [src]!")
 		return 0
 	else
@@ -221,10 +221,10 @@
 
 ///So Xenos can smash computers out of the way without actually breaking them
 /obj/machinery/computer/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return FALSE
 
-	if(resistance_flags & INDESTRUCTIBLE)
+	if(flags_resistance & INDESTRUCTIBLE)
 		to_chat(xeno_attacker, span_xenowarning("We're unable to damage this!"))
 		return
 

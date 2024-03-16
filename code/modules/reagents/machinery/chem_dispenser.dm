@@ -8,7 +8,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 40
 	active_power_usage = 250
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_interaction = INTERACT_MACHINE_TGUI
 	req_one_access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	layer = BELOW_OBJ_LAYER //So beakers reliably appear above it
 
@@ -525,7 +525,7 @@
 
 /obj/machinery/chem_dispenser/valhalla
 	needs_medical_training = FALSE
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 
 /obj/machinery/chem_dispenser/valhalla/Initialize(mapload)

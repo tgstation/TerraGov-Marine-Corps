@@ -10,7 +10,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 80, ACID = 30)
 	layer = OBJ_LAYER
 
-	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
+	flags_pipe = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
 
 	var/icon_state_off = "freezer"
 	var/icon_state_on = "freezer_1"

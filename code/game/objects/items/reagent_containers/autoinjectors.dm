@@ -5,7 +5,7 @@
 	item_state = "hypo"
 	w_class = WEIGHT_CLASS_TINY
 	skilllock = 0
-	init_reagent_flags = DRAWABLE
+	flags_init_reagent = DRAWABLE
 	amount_per_transfer_from_this = 10
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/sodiumchloride = 30)
@@ -15,11 +15,11 @@
 	if(!(reagents.total_volume) && is_drawable())
 		icon_state += "X"
 		name = "expended [name]" //So people can see what have been expended since we have smexy new sprites people aren't used too...
-		DISABLE_BITFIELD(reagents.reagent_flags, DRAWABLE)
-	else if(reagents.total_volume && !CHECK_BITFIELD(reagents.reagent_flags, DRAWABLE)) // refilling it somehow
+		DISABLE_BITFIELD(reagents.flags_reagent, DRAWABLE)
+	else if(reagents.total_volume && !CHECK_BITFIELD(reagents.flags_reagent, DRAWABLE)) // refilling it somehow
 		icon_state = initial(icon_state)
 		name = initial(name)
-		ENABLE_BITFIELD(reagents.reagent_flags, DRAWABLE)
+		ENABLE_BITFIELD(reagents.flags_reagent, DRAWABLE)
 
 /obj/item/reagent_containers/hypospray/autoinjector/examine(mob/user)
 	. = ..()

@@ -10,7 +10,7 @@
 	hit_sound = "alien_resin_break"
 	buckling_y = 6
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
-	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
+	flags_resistance = UNACIDABLE|XENO_DAMAGEABLE
 	max_integrity = 100
 	var/resisting_time = 0
 	layer = RESIN_STRUCTURE_LAYER
@@ -112,7 +112,7 @@
 
 /obj/structure/bed/nest/post_buckle_mob(mob/living/buckling_mob)
 	. = ..()
-	ENABLE_BITFIELD(buckling_mob.restrained_flags, RESTRAINED_XENO_NEST)
+	ENABLE_BITFIELD(buckling_mob.flags_restrained, RESTRAINED_XENO_NEST)
 	buckling_mob.pulledby?.stop_pulling()
 
 /obj/structure/bed/nest/post_unbuckle_mob(mob/living/buckled_mob)
@@ -120,7 +120,7 @@
 	resisting_time = 0 //Reset it to keep track on if someone is actively resisting.
 	if(QDELETED(buckled_mob))
 		return
-	DISABLE_BITFIELD(buckled_mob.restrained_flags, RESTRAINED_XENO_NEST)
+	DISABLE_BITFIELD(buckled_mob.flags_restrained, RESTRAINED_XENO_NEST)
 
 
 /obj/structure/bed/nest/update_overlays()

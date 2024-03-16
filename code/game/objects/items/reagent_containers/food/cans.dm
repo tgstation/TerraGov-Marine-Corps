@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/food/drinks/cans
 	name = "soda can"
-	init_reagent_flags = NONE
+	flags_init_reagent = NONE
 	var/canopened = FALSE
 
 /obj/item/reagent_containers/food/drinks/cans/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
@@ -14,7 +14,7 @@
 		playsound(src,'sound/effects/canopen.ogg', 15, 1)
 		to_chat(user, span_notice("You open the drink with [pick("an audible", "a satisfying")] pop!"))
 		canopened = TRUE
-		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER_NOUNIT)
+		ENABLE_BITFIELD(reagents.flags_reagent, OPENCONTAINER_NOUNIT)
 		return
 	var/obj/item/reagent_containers/H = usr.get_active_held_item()
 	var/N = tgui_input_list(user, "Amount per transfer from this:","[H]", possible_transfer_amounts)

@@ -1,17 +1,17 @@
 /obj/machinery/deployable/reagent_tank
 	name = "portable reagent dispenser"
 	desc = "A large vessel for transporting chemicals. Has a cabinet for storing chemical supplies."
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	density = TRUE
 	max_integrity = 200
 	///Properties relating to reagents for this container; whether you can check if reagents are visible, if it is refillable, etc.
-	var/container_flags = TRANSPARENT|DRAINABLE
+	var/flags_container = TRANSPARENT|DRAINABLE
 	///Maximum units of reagents this container can hold
 	var/max_volume = 3000
 
 /obj/machinery/deployable/reagent_tank/Initialize()
 	. = ..()
-	create_reagents(max_volume, container_flags)
+	create_reagents(max_volume, flags_container)
 	playsound(src, 'sound/machines/disposalflush.ogg', 50)
 	var/obj/item/_internal_item = get_internal_item()
 	if(!internal_item)
@@ -99,12 +99,12 @@
 /obj/machinery/deployable/reagent_tank/AltClick(mob/user)
 	if(is_refillable())
 		balloon_alert(user, "Dispense mode!")
-		reagents.reagent_flags &= ~REFILLABLE
-		reagents.reagent_flags |= DRAINABLE
+		reagents.flags_reagent &= ~REFILLABLE
+		reagents.flags_reagent |= DRAINABLE
 	else
 		balloon_alert(user, "Refill mode!")
-		reagents.reagent_flags &= ~DRAINABLE
-		reagents.reagent_flags |= REFILLABLE
+		reagents.flags_reagent &= ~DRAINABLE
+		reagents.flags_reagent |= REFILLABLE
 	playsound(src, 'sound/effects/pop.ogg', 100)
 	update_icon()
 
@@ -130,7 +130,7 @@
 	can_hold = list(/obj/item/reagent_containers, /obj/item/reagent_scanner)
 	max_integrity = 200
 	///Properties relating to reagents for this container; whether you can check if reagents are visible, if it is refillable, etc.
-	var/container_flags = TRANSPARENT
+	var/flags_container = TRANSPARENT
 	///Maximum units of reagents this container can hold
 	var/max_volume = 3000
 	///List of reagents this dispenser will start with
@@ -138,7 +138,7 @@
 
 /obj/item/storage/reagent_tank/Initialize()
 	. = ..()
-	create_reagents(max_volume, container_flags, starting_reagents)
+	create_reagents(max_volume, flags_container, starting_reagents)
 	AddComponent(/datum/component/deployable_item, /obj/machinery/deployable/reagent_tank, 3 SECONDS, 3 SECONDS)
 	//Comes with a scanner by default so players can scan the tanks
 	new /obj/item/reagent_scanner/adv (src)

@@ -26,7 +26,7 @@
 	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "pinonfar"
 
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	anchored = TRUE
 
 	/**
@@ -391,9 +391,9 @@
 
 	var/crashing = FALSE
 
-	var/shuttle_flags = NONE
+	var/flags_shuttle = NONE
 	///All shuttle_control computers that share at least one control flag is able to link to this shuttle
-	var/control_flags = NONE
+	var/flags_control = NONE
 
 	///Reference of the shuttle docker holding the mobile docking port
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/shuttle_computer

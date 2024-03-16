@@ -27,7 +27,7 @@
 	for(var/obj/effect/forcefield/fog/F in range(1, target))
 		return ERROR_FOG
 	for(var/mob/living/carbon/xenomorph/blocker in target)
-		if(blocker.stat != DEAD && !CHECK_BITFIELD(blocker.xeno_caste.caste_flags, CASTE_IS_BUILDER))
+		if(blocker.stat != DEAD && !CHECK_BITFIELD(blocker.xeno_caste.flags_caste, CASTE_IS_BUILDER))
 			return ERROR_BLOCKER
 	if(!target.check_alien_construction(null, TRUE))
 		return ERROR_CONSTRUCT

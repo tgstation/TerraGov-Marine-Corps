@@ -82,6 +82,6 @@
 	icon = 'icons/obj/smooth_objects/warning_stripes.dmi'
 	icon_state = "warning_stripes-icon"
 	base_icon_state = "warning_stripes"
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_DECAL_WARNING_STRIPE)
 	canSmoothWith = list(SMOOTH_GROUP_DECAL_WARNING_STRIPE)

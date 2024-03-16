@@ -12,7 +12,7 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,30,60)
 	volume = 60
-	init_reagent_flags = OPENCONTAINER
+	flags_init_reagent = OPENCONTAINER
 
 	var/label_text = ""
 
@@ -33,12 +33,12 @@
 	set category = "Object"
 	if(is_open_container())
 		to_chat(usr, span_notice("You put the lid on \the [src]."))
-		DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
-		ENABLE_BITFIELD(reagents.reagent_flags, TRANSPARENT)
+		DISABLE_BITFIELD(reagents.flags_reagent, OPENCONTAINER)
+		ENABLE_BITFIELD(reagents.flags_reagent, TRANSPARENT)
 	else
 		to_chat(usr, span_notice("You take the lid off \the [src]."))
-		DISABLE_BITFIELD(reagents.reagent_flags, TRANSPARENT)
-		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
+		DISABLE_BITFIELD(reagents.flags_reagent, TRANSPARENT)
+		ENABLE_BITFIELD(reagents.flags_reagent, OPENCONTAINER)
 	update_icon()
 
 /obj/item/reagent_containers/glass/afterattack(obj/target, mob/user , proximity)
@@ -196,7 +196,7 @@
 	desc = "A cryostasis beaker that allows for chemical storage without reactions. Can hold up to 60 units."
 	icon_state = "beakernoreact"
 	volume = 60
-	init_reagent_flags = OPENCONTAINER|NO_REACT
+	flags_init_reagent = OPENCONTAINER|NO_REACT
 	amount_per_transfer_from_this = 10
 
 /obj/item/reagent_containers/glass/beaker/bluespace

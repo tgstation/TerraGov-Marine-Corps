@@ -3,7 +3,7 @@
 	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
 	icon_state = "timer"
 	attachable = TRUE
-	interaction_flags = INTERACT_REQUIRES_DEXTERITY
+	flags_interaction = INTERACT_REQUIRES_DEXTERITY
 
 	var/timing = FALSE
 	var/time = 5

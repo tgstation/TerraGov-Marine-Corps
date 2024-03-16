@@ -24,12 +24,12 @@
 				continue
 			if(loadout_item.item_slot != slot)
 				continue
-			if(loadout_item.loadout_item_flags & LOADOUT_ITEM_DEFAULT_CHOICE)
+			if(loadout_item.flags_loadout_item & LOADOUT_ITEM_DEFAULT_CHOICE)
 				equip_loadout_item(loadout_item)
-			if(loadout_item.loadout_item_flags & LOADOUT_ITEM_ROUNDSTART_OPTION)
+			if(loadout_item.flags_loadout_item & LOADOUT_ITEM_ROUNDSTART_OPTION)
 				available_list["[loadout_item.item_slot]"] += loadout_item
 				continue
-			if(loadout_item.loadout_item_flags & LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE)
+			if(loadout_item.flags_loadout_item & LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE)
 				purchasable_list["[loadout_item.item_slot]"] += loadout_item
 
 /datum/outfit_holder/Destroy(force, ...)

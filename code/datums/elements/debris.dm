@@ -29,7 +29,7 @@
 	friction = generator(GEN_NUM, 0.1, 0.5)
 
 /datum/element/debris
-	element_flags = ELEMENT_BESPOKE
+	flags_element = ELEMENT_BESPOKE
 	argument_hash_start_idx = 2
 
 	///Icon state of debris when impacted by a projectile

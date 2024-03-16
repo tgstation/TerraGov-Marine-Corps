@@ -1,6 +1,6 @@
 ///Add to an object if you want to be able to be hidden under tiles
 /datum/element/undertile
-	element_flags = ELEMENT_BESPOKE | COMPONENT_DUPE_HIGHLANDER
+	flags_element = ELEMENT_BESPOKE | COMPONENT_DUPE_HIGHLANDER
 	argument_hash_start_idx = 2
 
 	///the invisiblity trait applied, like TRAIT_T_RAY_VISIBLE

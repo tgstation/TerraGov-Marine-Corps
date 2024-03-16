@@ -2,7 +2,7 @@ SUBSYSTEM_DEF(job)
 	name = "Jobs"
 	init_order = INIT_ORDER_JOBS
 	flags = SS_NO_FIRE
-	var/ssjob_flags = NONE
+	var/flags_ssjob = NONE
 
 	var/list/occupations = list() //List of all jobs.
 	var/list/joinable_occupations = list() //List of jobs that can be joined as through the lobby.
@@ -58,10 +58,10 @@ SUBSYSTEM_DEF(job)
 
 	for(var/j in occupations)
 		var/datum/job/job = j
-		if(job.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))
+		if(job.flags_job & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))
 			joinable_occupations += job
 			joinable_occupations_by_category[job.job_category] += list(job)
-		if(job.job_flags & JOB_FLAG_ISCOMMAND)
+		if(job.flags_job & JOB_FLAG_ISCOMMAND)
 			GLOB.jobs_command[job.title] = job
 
 	for(var/S in all_squads)
@@ -248,11 +248,11 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/clean_roundstart_occupations()
-	if(ssjob_flags & SSJOB_OVERRIDE_JOBS_START)
+	if(flags_ssjob & SSJOB_OVERRIDE_JOBS_START)
 		return
 	for(var/j in active_joinable_occupations) //Roundstart selection is over. Remove the roundstart-only jobs.
 		var/datum/job/job = j
-		if(job.job_flags & JOB_FLAG_LATEJOINABLE)
+		if(job.flags_job & JOB_FLAG_LATEJOINABLE)
 			continue
 		job.set_job_positions(0)
 
@@ -266,7 +266,7 @@ SUBSYSTEM_DEF(job)
 
 	//If we joined at roundstart we should be positioned at our workstation
 	var/turf/spawn_turf
-	if(!joined_late || job.job_flags & JOB_FLAG_OVERRIDELATEJOINSPAWN)
+	if(!joined_late || job.flags_job & JOB_FLAG_OVERRIDELATEJOINSPAWN)
 		spawn_turf = job.return_spawn_turf()
 	if(spawn_turf)
 		SendToAtom(new_character, spawn_turf)

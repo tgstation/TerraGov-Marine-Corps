@@ -15,7 +15,7 @@
 /mob/living/silicon/ai/update_stat()
 	. = ..()
 
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 
 	if(stat != DEAD)
@@ -26,7 +26,7 @@
 
 
 /mob/living/silicon/ai/updatehealth()
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 
 	health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()

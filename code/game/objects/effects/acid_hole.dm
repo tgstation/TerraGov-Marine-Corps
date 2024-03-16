@@ -3,7 +3,7 @@
 	desc = "What could have done this? Something agile enough could probably climb through."
 	icon = 'icons/obj/smooth_objects/acid-hole.dmi'
 	icon_state = "acid-hole-0"
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_ACID_HOLE)
 	canSmoothWith = list( //smooths with everything a regular wall does, so as to keep orientation consistent
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
@@ -13,7 +13,7 @@
 	)
 	base_icon_state = "acid-hole"
 	anchored = TRUE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	layer = LOWER_ITEM_LAYER
 	var/turf/closed/wall/holed_wall
 

@@ -1,10 +1,10 @@
 /obj/machinery/deployable/mounted/sentry
 
-	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
+	flags_resistance = UNACIDABLE|XENO_DAMAGEABLE
 	use_power = 0
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
-	allow_pass_flags = PASSABLE
+	flags_allow_pass = PASSABLE
 
 	///Spark system for making sparks
 	var/datum/effect_system/spark_spread/spark_system
@@ -47,7 +47,7 @@
 		iff_signal = id?.iff_signal
 
 	knockdown_threshold = gun?.knockdown_threshold ? gun.knockdown_threshold : initial(gun.knockdown_threshold)
-	range = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ?  gun.turret_range - 2 : gun.turret_range
+	range = CHECK_BITFIELD(gun.flags_turret, TURRET_RADIAL) ?  gun.turret_range - 2 : gun.turret_range
 	ignored_terrains = gun?.ignored_terrains ? gun.ignored_terrains : initial(gun.ignored_terrains)
 
 	radio = new(src)
@@ -56,11 +56,11 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
-	if(CHECK_BITFIELD(gun?.turret_flags, TURRET_INACCURATE))
+	if(CHECK_BITFIELD(gun?.flags_turret, TURRET_INACCURATE))
 		gun.accuracy_mult -= 0.15
 		gun.scatter += 10
 
-	if(CHECK_BITFIELD(gun?.turret_flags, TURRET_HAS_CAMERA))
+	if(CHECK_BITFIELD(gun?.flags_turret, TURRET_HAS_CAMERA))
 		camera = new (src)
 		camera.network = list("military")
 		camera.c_tag = "[name] ([rand(0, 1000)])"
@@ -73,15 +73,15 @@
 	SSminimaps.remove_marker(src)
 	if(!z)
 		return
-	var/marker_flags
+	var/flags_marker
 	switch(iff_signal)
 		if(TGMC_LOYALIST_IFF)
-			marker_flags = MINIMAP_FLAG_MARINE
+			flags_marker = MINIMAP_FLAG_MARINE
 		if(SOM_IFF)
-			marker_flags = MINIMAP_FLAG_MARINE_SOM
+			flags_marker = MINIMAP_FLAG_MARINE_SOM
 		else
-			marker_flags = MINIMAP_FLAG_MARINE
-	SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "sentry[firing ? "_firing" : "_passive"]"))
+			flags_marker = MINIMAP_FLAG_MARINE
+	SSminimaps.add_marker(src, flags_marker, image('icons/UI_icons/map_blips.dmi', null, "sentry[firing ? "_firing" : "_passive"]"))
 
 /obj/machinery/deployable/mounted/sentry/update_icon_state()
 	. = ..()
@@ -164,7 +164,7 @@
 	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return TRUE
 
-	if(CHECK_BITFIELD(gun?.turret_flags, TURRET_IMMOBILE))
+	if(CHECK_BITFIELD(gun?.flags_turret, TURRET_IMMOBILE))
 		to_chat(user, span_warning("[src]'s panel is completely locked, you can't do anything."))
 		return TRUE
 
@@ -199,10 +199,10 @@
 		"rounds_max" = rounds_max,
 		"fire_mode" = gun?.gun_firemode ? gun.gun_firemode : initial(gun.gun_firemode),
 		"health_max" = max_integrity,
-		"safety_toggle" = CHECK_BITFIELD(gun.turret_flags, TURRET_SAFETY),
+		"safety_toggle" = CHECK_BITFIELD(gun.flags_turret, TURRET_SAFETY),
 		"manual_override" = operator,
-		"alerts_on" = CHECK_BITFIELD(gun.turret_flags, TURRET_ALERTS),
-		"radial_mode" = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL)
+		"alerts_on" = CHECK_BITFIELD(gun.flags_turret, TURRET_ALERTS),
+		"radial_mode" = CHECK_BITFIELD(gun.flags_turret, TURRET_RADIAL)
 	)
 
 /obj/machinery/deployable/mounted/sentry/ui_act(action, list/params)
@@ -213,12 +213,12 @@
 	if(isxeno(usr))
 		return
 	var/mob/living/user = usr
-	if(!istype(user) || CHECK_BITFIELD(gun.turret_flags, TURRET_IMMOBILE) || CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
+	if(!istype(user) || CHECK_BITFIELD(gun.flags_turret, TURRET_IMMOBILE) || CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
 	switch(action)
 		if("safety")
-			TOGGLE_BITFIELD(gun.turret_flags, TURRET_SAFETY)
-			var/safe = CHECK_BITFIELD(gun.turret_flags, TURRET_SAFETY)
+			TOGGLE_BITFIELD(gun.flags_turret, TURRET_SAFETY)
+			var/safe = CHECK_BITFIELD(gun.flags_turret, TURRET_SAFETY)
 			user.visible_message(span_warning("[user] [safe ? "" : "de"]activates [src]'s safety lock."),
 				span_warning("You [safe ? "" : "de"]activate [src]'s safety lock.</span>"))
 			visible_message(span_warning("A red light on [src] blinks brightly!"))
@@ -241,8 +241,8 @@
 			. = TRUE
 
 		if("toggle_alert")
-			TOGGLE_BITFIELD(gun.turret_flags, TURRET_ALERTS)
-			var/alert = CHECK_BITFIELD(gun.turret_flags, TURRET_ALERTS)
+			TOGGLE_BITFIELD(gun.flags_turret, TURRET_ALERTS)
+			var/alert = CHECK_BITFIELD(gun.flags_turret, TURRET_ALERTS)
 			user.visible_message(span_notice("[user] [alert ? "" : "de"]activates [src]'s alert notifications."),
 				span_notice("You [alert ? "" : "de"]activate [src]'s alert notifications."))
 			say("Alert notification system [alert ? "initiated" : "deactivated"]")
@@ -250,12 +250,12 @@
 			. = TRUE
 
 		if("toggle_radial")
-			TOGGLE_BITFIELD(gun.turret_flags, TURRET_RADIAL)
-			if(!CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))
+			TOGGLE_BITFIELD(gun.flags_turret, TURRET_RADIAL)
+			if(!CHECK_BITFIELD(gun.flags_turret, TURRET_RADIAL))
 				range = gun.turret_range
 			else
 				range = gun.turret_range - 2
-			var/rad_msg = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ? "activate" : "deactivate"
+			var/rad_msg = CHECK_BITFIELD(gun.flags_turret, TURRET_RADIAL) ? "activate" : "deactivate"
 			user.visible_message(span_notice("[user] [rad_msg]s [src]'s radial mode."), span_notice("You [rad_msg] [src]'s radial mode."))
 			say("Radial mode [rad_msg]d.")
 			update_static_data(user)
@@ -268,7 +268,7 @@
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	if(!new_state)
 		visible_message(span_notice("The [name] powers down and goes silent."))
-		DISABLE_BITFIELD(gun.turret_flags, TURRET_ON)
+		DISABLE_BITFIELD(gun.flags_turret, TURRET_ON)
 		gun?.set_target(null)
 		set_light(0)
 		update_icon()
@@ -277,7 +277,7 @@
 			UnregisterSignal(gun, COMSIG_MOB_GUN_FIRED)
 		return
 
-	ENABLE_BITFIELD(gun?.turret_flags, TURRET_ON)
+	ENABLE_BITFIELD(gun?.flags_turret, TURRET_ON)
 	visible_message(span_notice("The [name] powers up with a warm hum."))
 	set_light_range(initial(light_power))
 	set_light_color(initial(light_color))
@@ -324,7 +324,7 @@
 	if(!internal_item)
 		return
 	var/obj/item/weapon/gun/gun = get_internal_item()
-	if(!alert_code || !CHECK_BITFIELD(gun.turret_flags, TURRET_ALERTS) || !CHECK_BITFIELD(gun.turret_flags, TURRET_ON))
+	if(!alert_code || !CHECK_BITFIELD(gun.flags_turret, TURRET_ALERTS) || !CHECK_BITFIELD(gun.flags_turret, TURRET_ON))
 		return
 
 	var/notice
@@ -372,11 +372,11 @@
 	if(!gun)
 		return length(potential_targets)
 	for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, range))
-		if(nearby_human.stat == DEAD || CHECK_BITFIELD(nearby_human.status_flags, INCORPOREAL)  || (CHECK_BITFIELD(gun.turret_flags, TURRET_SAFETY) || nearby_human.wear_id?.iff_signal & iff_signal))
+		if(nearby_human.stat == DEAD || CHECK_BITFIELD(nearby_human.flags_status, INCORPOREAL)  || (CHECK_BITFIELD(gun.flags_turret, TURRET_SAFETY) || nearby_human.wear_id?.iff_signal & iff_signal))
 			continue
 		potential_targets += nearby_human
 	for(var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
-		if(nearby_xeno.stat == DEAD || HAS_TRAIT(nearby_xeno, TRAIT_TURRET_HIDDEN) || CHECK_BITFIELD(nearby_xeno.status_flags, INCORPOREAL) || CHECK_BITFIELD(nearby_xeno.xeno_iff_check(), iff_signal)) //So wraiths wont be shot at when in phase shift
+		if(nearby_xeno.stat == DEAD || HAS_TRAIT(nearby_xeno, TRAIT_TURRET_HIDDEN) || CHECK_BITFIELD(nearby_xeno.flags_status, INCORPOREAL) || CHECK_BITFIELD(nearby_xeno.xeno_iff_check(), iff_signal)) //So wraiths wont be shot at when in phase shift
 			continue
 		potential_targets += nearby_xeno
 	for(var/obj/vehicle/sealed/mecha/nearby_mech AS in cheap_get_mechs_near(src, range))
@@ -394,9 +394,9 @@
 	var/obj/item/weapon/gun/internal_gun = get_internal_item()
 	if(!internal_gun)
 		return
-	if(CHECK_BITFIELD(internal_gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && length(internal_gun.chamber_items))
+	if(CHECK_BITFIELD(internal_gun.flags_reciever, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && length(internal_gun.chamber_items))
 		INVOKE_ASYNC(internal_gun, TYPE_PROC_REF(/obj/item/weapon/gun, do_unique_action))
-	if(!CHECK_BITFIELD(internal_gun.flags_item, IS_DEPLOYED) || get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
+	if(!CHECK_BITFIELD(internal_gun.flags_item, IS_DEPLOYED) || get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.flags_turret, TURRET_RADIAL)) || !check_target_path(gun_target))
 		internal_gun.stop_fire()
 		firing = FALSE
 		update_minimap_icon()
@@ -422,7 +422,7 @@
 	if(!gun.rounds)
 		sentry_alert(SENTRY_ALERT_AMMO)
 		return
-	if(CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))
+	if(CHECK_BITFIELD(gun.flags_turret, TURRET_RADIAL))
 		setDir(get_cardinal_dir(src, target))
 	if(HAS_TRAIT(gun, TRAIT_GUN_BURST_FIRING))
 		gun.set_target(target)
@@ -453,15 +453,15 @@
 		if(smoke?.opacity)
 			return FALSE
 
-		if(IS_OPAQUE_TURF(T) || T.density && !(T.allow_pass_flags & PASS_PROJECTILE) && !(T.type in ignored_terrains))
+		if(IS_OPAQUE_TURF(T) || T.density && !(T.flags_allow_pass & PASS_PROJECTILE) && !(T.type in ignored_terrains))
 			return FALSE
 
 		for(var/obj/machinery/MA in T)
-			if(MA.density && !(MA.allow_pass_flags & PASS_PROJECTILE) && !(MA.type in ignored_terrains))
+			if(MA.density && !(MA.flags_allow_pass & PASS_PROJECTILE) && !(MA.type in ignored_terrains))
 				return FALSE
 
 		for(var/obj/structure/S in T)
-			if(S.density && !(S.allow_pass_flags & PASS_PROJECTILE) && !(S.type in ignored_terrains))
+			if(S.density && !(S.flags_allow_pass & PASS_PROJECTILE) && !(S.type in ignored_terrains))
 				return FALSE
 
 	return TRUE
@@ -472,7 +472,7 @@
 	var/buffer_distance
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	for (var/atom/nearby_target AS in potential_targets)
-		if(!(get_dir(src, nearby_target) & dir) && !CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))
+		if(!(get_dir(src, nearby_target) & dir) && !CHECK_BITFIELD(gun.flags_turret, TURRET_RADIAL))
 			continue
 
 		buffer_distance = get_dist(nearby_target, src)
@@ -496,7 +496,7 @@
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	if(!gun)
 		return
-	if(CHECK_BITFIELD(gun.turret_flags, TURRET_INACCURATE))
+	if(CHECK_BITFIELD(gun.flags_turret, TURRET_INACCURATE))
 		gun.accuracy_mult += 0.15
 		gun.scatter -= 10
 

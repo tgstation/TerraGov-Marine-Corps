@@ -6,9 +6,9 @@
 	desc = "A computer console equipped with camera screen and controls for a planetside deployed construction drone. Materials or equipment vouchers can be added simply by inserting them into the computer."
 	icon = 'icons/Marine/remotefob.dmi'
 	icon_state = "fobpc"
-	interaction_flags = INTERACT_MACHINE_DEFAULT
+	flags_interaction = INTERACT_MACHINE_DEFAULT
 	req_one_access = list(ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LEADER)
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	networks = FALSE
 	off_action = new/datum/action/innate/camera_off/remote_fob
 	jump_action = null

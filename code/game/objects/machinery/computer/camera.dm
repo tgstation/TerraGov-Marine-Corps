@@ -7,7 +7,7 @@
 	circuit = /obj/item/circuitboard/computer/security
 	light_color = COLOR_RED
 
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_interaction = INTERACT_MACHINE_TGUI
 
 	var/list/network = list("marinemainship", "dropship1", "dropship2")
 	var/obj/machinery/camera/active_camera

@@ -5,7 +5,7 @@
 	desc = "A display case for prized possessions. It taunts you to kick it."
 	density = TRUE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	max_integrity = 30
 	var/occupied = 1
 	var/destroyed = 0

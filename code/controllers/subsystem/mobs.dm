@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(mobs)
 	return ..()
 
 /datum/controller/subsystem/mobs/proc/stop_processing(mob/living/L)
-	if(!CHECK_BITFIELD(L.datum_flags, DF_ISPROCESSING))
+	if(!CHECK_BITFIELD(L.flags_datum, DF_ISPROCESSING))
 		return
 	L.ExtinguishMob()
 	for(var/i in crates)
@@ -28,7 +28,7 @@ SUBSYSTEM_DEF(mobs)
 	STOP_PROCESSING(src, L)
 
 /datum/controller/subsystem/mobs/proc/start_processing(mob/living/L)
-	if(CHECK_BITFIELD(L.datum_flags, DF_ISPROCESSING))
+	if(CHECK_BITFIELD(L.flags_datum, DF_ISPROCESSING))
 		return
 	crates[1] += L
 	START_PROCESSING(src, L)

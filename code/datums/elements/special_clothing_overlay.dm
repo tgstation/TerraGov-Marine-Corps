@@ -10,7 +10,7 @@
  */
 /datum/element/special_clothing_overlay
 	argument_hash_start_idx = 2
-	element_flags = ELEMENT_BESPOKE|ELEMENT_DETACH_ON_HOST_DESTROY
+	flags_element = ELEMENT_BESPOKE|ELEMENT_DETACH_ON_HOST_DESTROY
 	///The image/icon/mutable_appearance we arre going to be applying to here
 	var/overlay_to_apply
 	///when this layer is updated on the wearer, overlay_to_apply will be applied/removed with it

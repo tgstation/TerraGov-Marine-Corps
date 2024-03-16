@@ -9,7 +9,7 @@
 	anchored = FALSE
 	density = TRUE
 	buildstacktype = null ///can't be disassembled and doesn't drop anything when destroyed
-	buckle_flags = CAN_BUCKLE
+	flags_buckle = CAN_BUCKLE
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 	var/obj/item/storage/bag/trash/mybag = null

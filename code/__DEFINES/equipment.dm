@@ -387,7 +387,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 
 //=================================================
 // bitflags for clothing parts
-//thermal_protection_flags
+//flags_thermal_protection
 #define HEAD (1<<0)
 #define FACE (1<<1)
 #define EYES (1<<2)
@@ -409,7 +409,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 //=================================================
 
 // bitflags for the percentual amount of protection a piece of clothing which covers the body part offers.
-// Used with human/proc/get_flags_heat_protection() and human/proc/get_flags_cold_protection()
+// Used with human/proc/flags_get_heat_protection() and human/proc/flags_get_cold_protection()
 // The values here should add up to 1.
 // Hands and feet have 2.5%, arms and legs 7.5%, each of the torso parts has 15% and the head has 30%
 #define THERMAL_PROTECTION_HEAD 0.3

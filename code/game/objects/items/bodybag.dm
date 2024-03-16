@@ -63,7 +63,7 @@
 	storage_capacity = 3 //Just room enough for that stripped armor, gun and whatnot.
 	anchored = FALSE
 	drag_delay = 2 //slightly easier than to drag the body directly.
-	obj_flags = CAN_BE_HIT | PROJ_IGNORE_DENSITY
+	flags_obj = CAN_BE_HIT | PROJ_IGNORE_DENSITY
 	var/foldedbag_path = /obj/item/bodybag
 	var/obj/item/bodybag/foldedbag_instance = null
 	var/obj/structure/bed/roller/roller_buckled //the roller bed this bodybag is attached to.
@@ -207,7 +207,7 @@
 
 
 /obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return FALSE
 	if(opened)
 		return FALSE // stop xeno closing things

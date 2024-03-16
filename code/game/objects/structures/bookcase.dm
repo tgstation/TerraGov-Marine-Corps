@@ -3,11 +3,11 @@
 	name = "bookcase"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "book-0"
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	anchored = TRUE
 	density = TRUE
 	opacity = TRUE
-	allow_pass_flags = PASS_AIR
+	flags_allow_pass = PASS_AIR
 
 /obj/structure/bookcase/Initialize(mapload)
 	. = ..()

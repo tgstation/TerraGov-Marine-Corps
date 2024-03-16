@@ -36,7 +36,7 @@
 	del_on_death = TRUE
 	deathmessage = "vanishes into thin air!"
 	friendly = "attacks"
-	status_flags = GODMODE
+	flags_status = GODMODE
 	wall_smash = FALSE
 	density = FALSE//Its a fake you goof
 	var/mob/living/parent

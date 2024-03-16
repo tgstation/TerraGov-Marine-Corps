@@ -121,7 +121,7 @@
 			if(!new_type)
 				return FALSE
 			target.particles = new new_type
-			target.particles.datum_flags |= DF_VAR_EDITED
+			target.particles.flags_datum |= DF_VAR_EDITED
 			. = TRUE
 		if("transform_size")
 			var/list/values = list("Simple Matrix" = 6, "Complex Matrix" = 12, "Projection Matrix" = 16)
@@ -129,7 +129,7 @@
 			if(!new_size)
 				return FALSE
 			. = TRUE
-			target.particles.datum_flags |= DF_VAR_EDITED
+			target.particles.flags_datum |= DF_VAR_EDITED
 			if(!target.particles.transform)
 				target.particles.transform = new /list(new_size)
 				return
@@ -175,14 +175,14 @@
 						owner.icon[var_value] = 1
 					else
 						owner.icon = new_values
-					target.particles.datum_flags |= DF_VAR_EDITED
+					target.particles.flags_datum |= DF_VAR_EDITED
 					return TRUE
 				if(P_DATA_ICON_REMOVE)
 					for(var/file in owner.icon)
 						if("[file]" == var_value)
 							owner.icon -= file
 					UNSETEMPTY(owner.icon)
-					target.particles.datum_flags |= DF_VAR_EDITED
+					target.particles.flags_datum |= DF_VAR_EDITED
 					return TRUE
 				if(P_DATA_ICON_WEIGHT)
 					// [filename, new_weight]
@@ -190,10 +190,10 @@
 					for(var/file in owner.icon)
 						if("[file]" == mod_data[1])
 							owner.icon[file] = mod_data[2]
-					target.particles.datum_flags |= DF_VAR_EDITED
+					target.particles.flags_datum |= DF_VAR_EDITED
 					return TRUE
 
 			owner.vars[param_var_name] = var_value
-			target.particles.datum_flags |= DF_VAR_EDITED
+			target.particles.flags_datum |= DF_VAR_EDITED
 			return TRUE
 

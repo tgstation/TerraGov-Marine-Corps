@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(faction_to_minimap_flag, list(
 //actual size of a users screen in pixels
 #define SCREEN_PIXEL_SIZE 480
 
-GLOBAL_LIST_INIT(all_minimap_flags, bitfield2list(MINIMAP_FLAG_ALL))
+GLOBAL_LIST_INIT(flags_all_minimap, bitfield2list(MINIMAP_FLAG_ALL))
 
 //Drawing tool colors
 #define MINIMAP_DRAWING_RED "#ff0000"

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "terminal"
 	screen_overlay = "terminal1"
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_interaction = INTERACT_MACHINE_TGUI
 	var/list/linked_pods
 
 /obj/machinery/computer/droppod_control/Destroy()

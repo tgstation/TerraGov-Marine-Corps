@@ -1210,8 +1210,8 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 	//Appearing part
 	var/obj/effect/overlay/appearing_part = new
 	appearing_part.appearance = result_appearance
-	appearing_part.appearance_flags |= KEEP_TOGETHER | KEEP_APART
-	appearing_part.vis_flags = VIS_INHERIT_ID
+	appearing_part.flags_appearance |= KEEP_TOGETHER | KEEP_APART
+	appearing_part.flags_vis = VIS_INHERIT_ID
 	appearing_part.filters = filter(type="alpha",icon=icon('icons/effects/alphacolors.dmi',"white"),y=0,flags=MASK_INVERSE)
 	animate(appearing_part.filters[1],y=-32,time=time)
 	transformation_objects += appearing_part
@@ -1219,7 +1219,7 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 	if(transform_appearance)
 		var/obj/transform_effect = new
 		transform_effect.appearance = transform_appearance
-		transform_effect.vis_flags = VIS_INHERIT_ID
+		transform_effect.flags_vis = VIS_INHERIT_ID
 		transform_effect.pixel_y = 16
 		transform_effect.alpha = 255
 		transformation_objects += transform_effect

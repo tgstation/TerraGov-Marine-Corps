@@ -164,7 +164,7 @@
 	desc = "A heavy duty maglev locomotive. Designed for moving large quantities of goods from point A to point B."
 	icon = 'icons/obj/structures/train.dmi'
 	icon_state = "maglev"
-	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
+	flags_allow_pass = PASS_PROJECTILE|PASS_AIR
 	bound_width = 128
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train/Initialize(mapload)
@@ -307,7 +307,7 @@
 	pixel_x = -33
 	pixel_y = -10
 	density = TRUE
-	allow_pass_flags = PASS_AIR
+	flags_allow_pass = PASS_AIR
 
 /obj/effect/landmark/campaign_structure/harbinger
 	name = "harbinger"

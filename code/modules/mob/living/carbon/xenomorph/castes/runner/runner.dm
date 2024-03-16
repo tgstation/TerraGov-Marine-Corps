@@ -8,7 +8,7 @@
 	health = 100
 	maxHealth = 100
 	plasma_stored = 50
-	pass_flags = PASS_LOW_STRUCTURE
+	flags_pass = PASS_LOW_STRUCTURE
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_NORMAL
 	pixel_x = -16  //Needed for 2x2

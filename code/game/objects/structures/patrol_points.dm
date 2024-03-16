@@ -8,7 +8,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "patrolpoint"
 	anchored = TRUE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	layer = LADDER_LAYER
 	///ID to link with associated exit point
 	var/id = null
@@ -131,7 +131,7 @@
 ///Temporarily applies godmode to prevent spawn camping
 /obj/structure/patrol_point/proc/add_spawn_protection(mob/living/user)
 	user.ImmobilizeNoChain(RAPPEL_DURATION) //looks weird if they can move while rappeling
-	user.status_flags |= GODMODE
+	user.flags_status |= GODMODE
 	addtimer(CALLBACK(src, PROC_REF(remove_spawn_protection), user), 10 SECONDS)
 
 ///Ends the rappel effects
@@ -146,7 +146,7 @@
 
 ///Removes spawn protection godmode
 /obj/structure/patrol_point/proc/remove_spawn_protection(mob/user)
-	user.status_flags &= ~GODMODE
+	user.flags_status &= ~GODMODE
 
 /obj/structure/patrol_point/tgmc_11
 	id = "TGMC_11"
@@ -202,7 +202,7 @@
 	icon_state = "rope"
 	layer = ABOVE_MOB_LAYER
 	anchored = TRUE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /atom/movable/effect/rappel_rope/Initialize(mapload)

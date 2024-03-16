@@ -83,7 +83,7 @@
 		h_style = "Bald"
 	update_hair(0)
 
-	status_flags |= DISFIGURED
+	flags_status |= DISFIGURED
 	update_body(0)
 	name = get_visible_name()
 	return

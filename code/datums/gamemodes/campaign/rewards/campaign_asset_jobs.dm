@@ -4,7 +4,7 @@
 	paygrade = "militia1"
 	comm_title = "MIL"
 	minimap_icon = "militia"
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	flags_job = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	html_description = {"
 		<b>Difficulty</b>:Moderate<br /><br />
 		<b>You answer to the</b> commanding officer<br /><br />
@@ -441,7 +441,7 @@ What you lack in equipment and military training you make up in bravery and conv
 /datum/job/freelancer/standard/campaign_bonus
 	faction = FACTION_TERRAGOV
 	comm_title = "FL"
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	flags_job = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
 		/datum/outfit/job/freelancer/standard/one/campaign,
@@ -462,7 +462,7 @@ What you lack in equipment and military training you make up in bravery and conv
 /datum/job/freelancer/medic/campaign_bonus
 	faction = FACTION_TERRAGOV
 	comm_title = "FL"
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	flags_job = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfit = /datum/outfit/job/freelancer/medic/campaign
 
@@ -472,7 +472,7 @@ What you lack in equipment and military training you make up in bravery and conv
 /datum/job/freelancer/grenadier/campaign_bonus
 	faction = FACTION_TERRAGOV
 	comm_title = "FL"
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	flags_job = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	outfits = list(
 		/datum/outfit/job/freelancer/grenadier/one/campaign,
 		/datum/outfit/job/freelancer/grenadier/two/campaign,
@@ -488,7 +488,7 @@ What you lack in equipment and military training you make up in bravery and conv
 /datum/job/freelancer/leader/campaign_bonus
 	faction = FACTION_TERRAGOV
 	comm_title = "FL"
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	flags_job = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	outfits = list(
 		/datum/outfit/job/freelancer/leader/one/campaign,
 		/datum/outfit/job/freelancer/leader/two/campaign,
@@ -505,7 +505,7 @@ What you lack in equipment and military training you make up in bravery and conv
 /datum/job/pmc/standard/campaign_bonus
 	faction = FACTION_TERRAGOV
 	comm_title = "PMC"
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	flags_job = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfit = /datum/outfit/job/pmc/standard/campaign
 
@@ -515,7 +515,7 @@ What you lack in equipment and military training you make up in bravery and conv
 /datum/job/pmc/gunner/campaign_bonus
 	faction = FACTION_TERRAGOV
 	comm_title = "PMC"
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	flags_job = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfit = /datum/outfit/job/pmc/gunner/campaign
 
@@ -525,7 +525,7 @@ What you lack in equipment and military training you make up in bravery and conv
 /datum/job/pmc/leader/campaign_bonus
 	faction = FACTION_TERRAGOV
 	comm_title = "PMC"
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	flags_job = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfit = /datum/outfit/job/pmc/leader/campaign
 
@@ -536,7 +536,7 @@ What you lack in equipment and military training you make up in bravery and conv
 /datum/job/icc/standard/campaign_bonus
 	faction = FACTION_SOM
 	comm_title = "ICC"
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	flags_job = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
 		/datum/outfit/job/icc/standard/mpi_km/campaign,
@@ -556,7 +556,7 @@ What you lack in equipment and military training you make up in bravery and conv
 /datum/job/icc/guard/campaign_bonus
 	faction = FACTION_SOM
 	comm_title = "ICC"
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	flags_job = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
 		/datum/outfit/job/icc/guard/coilgun/campaign,
@@ -572,7 +572,7 @@ What you lack in equipment and military training you make up in bravery and conv
 /datum/job/icc/medic/campaign_bonus
 	faction = FACTION_SOM
 	comm_title = "ICC"
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	flags_job = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
 		/datum/outfit/job/icc/medic/icc_machinepistol/campaign,
@@ -588,7 +588,7 @@ What you lack in equipment and military training you make up in bravery and conv
 /datum/job/icc/leader/campaign_bonus
 	faction = FACTION_SOM
 	comm_title = "ICC"
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	flags_job = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
 		/datum/outfit/job/icc/leader/trenchgun/campaign,

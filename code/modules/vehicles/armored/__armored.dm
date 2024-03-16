@@ -10,8 +10,8 @@
 	max_drivers = 1
 	move_resist = INFINITY
 	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
-	allow_pass_flags = PASS_TANK|PASS_AIR|PASS_WALKOVER
-	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE|PORTAL_IMMUNE
+	flags_allow_pass = PASS_TANK|PASS_AIR|PASS_WALKOVER
+	flags_resistance = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE|PORTAL_IMMUNE
 
 	// placeholder, make skill check or similar later
 	req_access = list(ACCESS_MARINE_MECH)
@@ -61,7 +61,7 @@
 	//What kind of secondary tank weaponry we start with. Default minigun as standard.
 	var/secondary_weapon_type = /obj/item/armored_weapon/secondary_weapon
 	///Minimap flags to use for this vehcile
-	var/minimap_flags = MINIMAP_FLAG_MARINE
+	var/flags_minimap = MINIMAP_FLAG_MARINE
 	///minimap iconstate to use for this vehicle
 	var/minimap_icon_state
 	///if true disables stops users from being able to shoot weapons
@@ -118,7 +118,7 @@
 			if(MAP_ARMOR_STYLE_DESERT)
 				icon_state += "_desert"
 	if(minimap_icon_state)
-		SSminimaps.add_marker(src, minimap_flags, image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon_state, HIGH_FLOAT_LAYER))
+		SSminimaps.add_marker(src, flags_minimap, image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon_state, HIGH_FLOAT_LAYER))
 	GLOB.tank_list += src
 
 /obj/vehicle/sealed/armored/Destroy()
@@ -205,7 +205,7 @@
 	. = ..()
 	if(.)
 		return
-	if((allow_pass_flags & PASS_TANK) && (mover.pass_flags & PASS_TANK))
+	if((flags_allow_pass & PASS_TANK) && (mover.flags_pass & PASS_TANK))
 		return TRUE
 
 /obj/vehicle/sealed/armored/Bump(atom/A)
@@ -262,7 +262,7 @@
 		balloon_alert(M, "remove riders first")
 		return FALSE
 
-/obj/vehicle/sealed/armored/add_occupant(mob/M, control_flags)
+/obj/vehicle/sealed/armored/add_occupant(mob/M, flags_control)
 	if(!interior)
 		RegisterSignal(M, COMSIG_MOB_DEATH, PROC_REF(mob_exit), TRUE)
 		RegisterSignal(M, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against), TRUE)
@@ -616,4 +616,4 @@
 	desc = "ow."
 	icon = 'icons/obj/armored/3x3/tank_damage.dmi' //set by owner
 	icon_state = "null" // set on demand
-	vis_flags = VIS_INHERIT_DIR
+	flags_vis = VIS_INHERIT_DIR

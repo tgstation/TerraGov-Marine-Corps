@@ -38,7 +38,7 @@
 	 */
 	var/bullethole_variation = 0
 
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(
 		SMOOTH_GROUP_CLOSED_TURFS,
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
@@ -84,7 +84,7 @@
 			T = get_step(src, i)
 
 			//update junction type of nearby walls
-			if(smoothing_flags)
+			if(flags_smoothing)
 				QUEUE_SMOOTH(T)
 
 			//nearby glowshrooms updated
@@ -113,9 +113,9 @@
 
 
 /turf/closed/wall/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return
-	if(acided_hole && (xeno_attacker.mob_size == MOB_SIZE_BIG || xeno_attacker.xeno_caste.caste_flags & CASTE_IS_STRONG)) //Strong and/or big xenos can tear open acided walls
+	if(acided_hole && (xeno_attacker.mob_size == MOB_SIZE_BIG || xeno_attacker.xeno_caste.flags_caste & CASTE_IS_STRONG)) //Strong and/or big xenos can tear open acided walls
 		acided_hole.expand_hole(xeno_attacker)
 	else
 		return ..()
@@ -192,7 +192,7 @@
 
 ///Applies damage to the wall
 /turf/closed/wall/proc/take_damage(damage_amount, damage_type = BRUTE, armor_type = MELEE, armour_penetration = 0)
-	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
+	if(flags_resistance & INDESTRUCTIBLE) //Hull is literally invincible
 		return
 
 	if(!damage_amount)
@@ -214,7 +214,7 @@
 
 ///Repairs the wall by an amount
 /turf/closed/wall/proc/repair_damage(repair_amount, mob/user)
-	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
+	if(flags_resistance & INDESTRUCTIBLE) //Hull is literally invincible
 		return
 
 	if(!repair_amount)
@@ -242,7 +242,7 @@
 // Walls no longer spawn a metal sheet when destroyed to reduce clutter and
 // improve visual readability.
 /turf/closed/wall/proc/dismantle_wall(devastated = 0, explode = 0)
-	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
+	if(flags_resistance & INDESTRUCTIBLE) //Hull is literally invincible
 		return
 	if(devastated)
 		make_girder(TRUE)
@@ -255,7 +255,7 @@
 
 
 /turf/closed/wall/ex_act(severity)
-	if(resistance_flags & INDESTRUCTIBLE)
+	if(flags_resistance & INDESTRUCTIBLE)
 		return
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -272,7 +272,7 @@
 
 /turf/closed/wall/attack_animal(mob/living/M as mob)
 	if(M.wall_smash)
-		if((isrwallturf(src)) || (resistance_flags & INDESTRUCTIBLE))
+		if((isrwallturf(src)) || (flags_resistance & INDESTRUCTIBLE))
 			to_chat(M, span_warning("This [name] is far too strong for you to destroy."))
 			return
 		else
@@ -321,7 +321,7 @@
 	else if(istype(I, /obj/item/contraband/poster))
 		place_poster(I, user)
 
-	else if(resistance_flags & INDESTRUCTIBLE)
+	else if(flags_resistance & INDESTRUCTIBLE)
 		to_chat(user, "[span_warning("[src] is much too tough for you to do anything to it with [I]")].")
 
 	else if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)

@@ -11,7 +11,7 @@
 	density = TRUE
 	anchored = FALSE
 	opacity = FALSE
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 
 
 /obj/mecha_wreckage/gygax

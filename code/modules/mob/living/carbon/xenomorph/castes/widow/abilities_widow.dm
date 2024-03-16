@@ -58,9 +58,9 @@
 	max_integrity = 75
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
-	allow_pass_flags = NONE
+	flags_allow_pass = NONE
 	density = FALSE
-	obj_flags = CAN_BE_HIT | PROJ_IGNORE_DENSITY
+	flags_obj = CAN_BE_HIT | PROJ_IGNORE_DENSITY
 	/// How long the leash ball lasts untill it dies
 	var/leash_life = 10 SECONDS
 	/// Radius for how far the leash should affect humans and how far away they may walk
@@ -108,7 +108,7 @@
 
 /// This is so that xenos can remove leash balls
 /obj/structure/xeno/aoe_leash/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return
 	xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts tearing down \the [src]!"), \
 	span_xenonotice("We start to tear down \the [src]."))
@@ -134,7 +134,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_SPIDERLING,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CREATE_SPIDERLING_USING_CC,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_LYING
 
 	/// List of all our spiderlings
 	var/list/mob/living/carbon/xenomorph/spiderling/spiderlings = list()
@@ -147,7 +147,7 @@
 	var/max_spiderlings = X?.xeno_caste.max_spiderlings ? X.xeno_caste.max_spiderlings : 5
 	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy [max_spiderlings] spiderlings at one time. On alt-use, if any charges of Cannibalise are stored, create a spiderling at no plasma cost or cooldown."
 
-/datum/action/ability/xeno_action/create_spiderling/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/create_spiderling/can_use_action(silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -260,7 +260,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BURROW,
 	)
-	use_state_flags = ABILITY_USE_BURROWED
+	flags_use_state = ABILITY_USE_BURROWED
 
 /datum/action/ability/xeno_action/burrow/action_activate()
 	. = ..()
@@ -288,7 +288,7 @@
 	X.hard_armor = X.hard_armor.modifyRating(fire = 100)
 	X.mouse_opacity = initial(X.mouse_opacity)
 	X.density = TRUE
-	X.allow_pass_flags &= ~PASSABLE
+	X.flags_allow_pass &= ~PASSABLE
 	REMOVE_TRAIT(X, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
@@ -304,7 +304,7 @@
 	// This part here actually burrows the xeno
 	owner.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	owner.density = FALSE
-	owner.allow_pass_flags |= PASSABLE
+	owner.flags_allow_pass |= PASSABLE
 	// Here we prevent the xeno from moving or attacking or using abilities until they unburrow by clicking the ability
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
 	ADD_TRAIT(owner, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
@@ -380,7 +380,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CANNIBALISE_SPIDERLING,
 	)
 
-/datum/action/ability/activable/xeno/cannibalise/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/cannibalise/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return

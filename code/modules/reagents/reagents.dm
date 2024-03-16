@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	/// rate at which it purges specific chems
 	var/purge_rate = 0
 	/// Specific trait flags, like HEARTSTOPPER CHESTSTOPPER BRADYCARDICS TACHYCARDIC
-	var/trait_flags = NONE
+	var/flags_trait = NONE
 	///Affects the strength of reagent effects
 	var/effect_str = 1
 	///Used for certain chems we don't want being extracted via dialysis or being used in cryo, makes all important medical machines (dispenser, cryo etc...) refuse to interact with the reagent

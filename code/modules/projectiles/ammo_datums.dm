@@ -3439,7 +3439,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 					staggerstun(living_victim, P, 10, slowdown = 1)
 			else if(isobj(target))
 				var/obj/obj_victim = target
-				if(!(obj_victim.resistance_flags & XENO_DAMAGEABLE))
+				if(!(obj_victim.flags_resistance & XENO_DAMAGEABLE))
 					continue
 				obj_victim.take_damage(aoe_damage, BURN, ENERGY, TRUE, armour_penetration = penetration)
 			if(target.anchored)
@@ -4241,7 +4241,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/leash_ball/on_hit_obj(obj/O, obj/projectile/proj)
 	var/turf/T = get_turf(O)
-	if(T.density || (O.density && !(O.allow_pass_flags & PASS_PROJECTILE)))
+	if(T.density || (O.density && !(O.flags_allow_pass & PASS_PROJECTILE)))
 		T = get_turf(proj)
 	drop_leashball(T.density ? proj.loc : T, proj.firer)
 
@@ -4287,7 +4287,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/X = victim
-		if(!(X.xeno_caste.caste_flags & CASTE_PLASMADRAIN_IMMUNE))
+		if(!(X.xeno_caste.flags_caste & CASTE_PLASMADRAIN_IMMUNE))
 			X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
 			X.use_plasma(plasma_drain)
 

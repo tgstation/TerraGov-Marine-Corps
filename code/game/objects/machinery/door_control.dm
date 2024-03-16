@@ -21,7 +21,7 @@
 	active_power_usage = 4
 
 /obj/machinery/door_control/unmeltable
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/machinery/door_control/ai
 	name = "AI Lockdown"
@@ -277,7 +277,7 @@
 	name = "autodirection door control"
 
 /obj/machinery/door_control/directional/unmeltable
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/machinery/door_control/old //sometimes we need a button that has the appearance of the old button and isn't initialized to an x or y value
 	icon_state = "olddoorctrl0"
@@ -335,4 +335,4 @@
 	id = "AiCoreShutter"
 
 /obj/machinery/door_control/old/unmeltable
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL

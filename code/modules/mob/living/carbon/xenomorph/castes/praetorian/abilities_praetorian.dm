@@ -18,7 +18,7 @@
 	if(!do_after(X, 5, NONE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
-	if(!can_use_ability(A, TRUE, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(A, TRUE, flags_override = ABILITY_IGNORE_SELECTED_ABILITY))
 		return fail_activate()
 
 	GLOB.round_statistics.praetorian_acid_sprays++
@@ -51,7 +51,7 @@
 		return FALSE
 	if(!line_of_sight(owner, target, 3))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, flags_override = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -98,7 +98,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/turf/next_normal_turf = get_step(T, facing)
 	for (var/atom/movable/A AS in T)
 		A.acid_spray_act(owner)
-		if(((A.density && !(A.allow_pass_flags & PASS_PROJECTILE) && !(A.flags_atom & ON_BORDER)) || !A.Exit(source_spray, facing)) && !isxeno(A))
+		if(((A.density && !(A.flags_allow_pass & PASS_PROJECTILE) && !(A.flags_atom & ON_BORDER)) || !A.Exit(source_spray, facing)) && !isxeno(A))
 			is_blocked = TRUE
 	if(!is_blocked)
 		if(!skip_timer)
@@ -157,11 +157,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	xeno_owner.visible_message(span_danger("[xeno_owner] slides towards \the [A]!"), \
 	span_danger("We dash towards \the [A], spraying acid down our path!") )
 	xeno_owner.emote("roar")
-	xeno_owner.xeno_flags |= XENO_LEAPING //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
+	xeno_owner.flags_xeno |= XENO_LEAPING //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
 	succeed_activate()
 
 	last_turf = get_turf(owner)
-	owner.pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
+	owner.flags_pass = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 	owner.throw_at(A, charge_range, 2, owner)
 
 /datum/action/ability/activable/xeno/charge/acid_dash/mob_hit(datum/source, mob/living/living_target)
@@ -174,7 +174,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	to_chat(carbon_victim, span_highdanger("The [owner] tackles us, sending us behind them!"))
 	owner.visible_message(span_xenodanger("\The [owner] tackles [carbon_victim], swapping location with them!"), \
-		span_xenodanger("We push [carbon_victim] in our acid trail!"), visible_message_flags = COMBAT_MESSAGE)
+		span_xenodanger("We push [carbon_victim] in our acid trail!"), flags_visible_message = COMBAT_MESSAGE)
 
 /datum/action/ability/activable/xeno/charge/acid_dash/charge_complete()
 	. = ..()
@@ -186,7 +186,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		recast = FALSE
 		add_cooldown()
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-	xeno_owner.pass_flags = initial(xeno_owner.pass_flags)
+	xeno_owner.flags_pass = initial(xeno_owner.flags_pass)
 	recast_available = FALSE
 
 ///Drops an acid puddle on the current owner's tile, will do 0 damage if the owner has no acid_spray_damage

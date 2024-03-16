@@ -8,7 +8,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/items/spray_right.dmi',
 	)
 	item_state = "cleaner"
-	init_reagent_flags = OPENCONTAINER_NOUNIT
+	flags_init_reagent = OPENCONTAINER_NOUNIT
 	flags_item = NOBLUDGEON
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 3

@@ -7,12 +7,12 @@
 	desc = "Takes a chunk of flesh from the victim marine through a quick swiping motion, adding 100 biomass to your biomass collection."
 	ability_cost = 0
 	cooldown_duration = 20 SECONDS
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLAY,
 	)
 
-/datum/action/ability/activable/xeno/flay/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/flay/can_use_ability(atom/target, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -61,7 +61,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PINCUSHION,
 	)
 
-/datum/action/ability/activable/xeno/pincushion/can_use_ability(atom/victim, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/pincushion/can_use_ability(atom/victim, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -123,14 +123,14 @@
 	action_icon_state = "refurbish_husk"
 	desc = "Harvest the biomass and organs of a body in order to create a meat puppet to do your bidding."
 	cooldown_duration = 25 SECONDS
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REFURBISHHUSK,
 	)
 	/// List of all our puppets
 	var/list/mob/living/carbon/xenomorph/puppet/puppets = list()
 
-/datum/action/ability/activable/xeno/refurbish_husk/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/refurbish_husk/can_use_ability(atom/target, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -204,12 +204,12 @@
 	desc = "Uses 125 biomass to create a flesh homunculus to do your bidding, at an adjacent target location."
 	ability_cost = 125
 	cooldown_duration = 25 SECONDS
-	target_flags = ABILITY_TURF_TARGET
+	flags_target = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUPPET,
 	)
 
-/datum/action/ability/activable/xeno/puppet/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/puppet/can_use_ability(atom/target, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -255,7 +255,7 @@
 	desc = "Causes one of our puppets to detonate on selection, spewing acid out of the puppet's body in all directions, gibbing the puppet."
 	cooldown_duration = 30 SECONDS
 	ability_cost = 100
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ORGANICBOMB,
 	)
@@ -312,7 +312,7 @@
 	action_icon_state = "mimicry"
 	desc = "Takes direct control of a Puppet’s vocal chords. Allows you to speak directly through your puppet to the talls."
 	cooldown_duration = 10 SECONDS
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 	///Whether we should cancel instead of doing the thing when activated
 	var/talking = FALSE
 	///our current target
@@ -419,13 +419,13 @@
 	ability_cost = 200
 	desc = "Give a permanent upgrade to a puppet."
 	cooldown_duration = 30 SECONDS
-	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_NOTTURF|ABILITY_USE_BUSY|ABILITY_USE_LYING
-	target_flags = ABILITY_MOB_TARGET
+	flags_use_state = ABILITY_USE_STAGGERED|ABILITY_USE_NOTTURF|ABILITY_USE_BUSY|ABILITY_USE_LYING
+	flags_target = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BESTOWBLESSINGS,
 	)
 
-/datum/action/ability/activable/xeno/puppet_blessings/can_use_ability(mob/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/puppet_blessings/can_use_ability(mob/target, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return fail_activate()

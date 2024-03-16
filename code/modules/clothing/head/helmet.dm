@@ -223,7 +223,7 @@
 	soft_armor = list(MELEE = 75, BULLET = 80, LASER = 75, ENERGY = 65, BOMB = 70, BIO = 65, FIRE = 65, ACID = 65)
 	flags_inv_hide = HIDEALLHAIR|HIDEEARS
 	flags_item = SYNTH_RESTRICTED
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	anti_hug = 6
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
@@ -234,7 +234,7 @@
 	soft_armor = list(MELEE = 75, BULLET = 70, LASER = 60, ENERGY = 65, BOMB = 100, BIO = 60, FIRE = 65, ACID = 60)
 	flags_inv_hide = HIDEALLHAIR|HIDEEARS
 	max_heat_protection_temperature = HEAVYARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	flags_item = SYNTH_RESTRICTED
 	anti_hug = 4
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
@@ -338,7 +338,7 @@
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	eye_protection = 2
 	anti_hug = 50
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 
 /*==========================DISTRESS=================================
 =======================================================================*/
@@ -389,7 +389,7 @@
 	name = "\improper UH7 helmet"
 	icon_state = "upp_helmet_heavy"
 	soft_armor = list(MELEE = 90, BULLET = 85, LASER = 60, ENERGY = 65, BOMB = 85, BIO = 5, FIRE = 65, ACID = 65)
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	anti_hug = 3
 
 //head rag

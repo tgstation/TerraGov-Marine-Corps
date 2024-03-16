@@ -4,7 +4,7 @@
 	name = "Xeno Plant"
 	max_integrity = 5
 	icon = 'icons/Xeno/plants.dmi'
-	interaction_flags = INTERACT_CHECK_INCAPACITATED
+	flags_interaction = INTERACT_CHECK_INCAPACITATED
 	///The plant's icon once it's fully grown
 	var/mature_icon_state
 	///Is the plant ready to be used ?
@@ -47,7 +47,7 @@
 	return on_use(user)
 
 /obj/structure/xeno/plant/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if((xeno_attacker.status_flags & INCORPOREAL))
+	if((xeno_attacker.flags_status & INCORPOREAL))
 		return FALSE
 
 	if(xeno_attacker.a_intent == INTENT_HARM && isxenodrone(xeno_attacker))
@@ -158,7 +158,7 @@
 		return TRUE
 
 	var/mob/living/carbon/xenomorph/X = user
-	if(!(X.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA))
+	if(!(X.xeno_caste.flags_can & CASTE_CAN_BE_GIVEN_PLASMA))
 		to_chat(X, span_xenowarning("But our body rejects the fruit, we do not share the same plasma type!"))
 		return FALSE
 	X.apply_status_effect(/datum/status_effect/plasma_surge, X.xeno_caste.plasma_max, bonus_regen, duration)

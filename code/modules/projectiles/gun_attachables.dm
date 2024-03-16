@@ -1489,7 +1489,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			/obj/structure/window/framed/mainship,
 			/obj/structure/window/framed/prison,
 		)
-	master_gun.turret_flags |= TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
+	master_gun.flags_turret |= TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 	master_gun.AddComponent(/datum/component/deployable_item, master_gun.deployable_item, deploy_time, undeploy_time)
 	update_icon()
 
@@ -1500,7 +1500,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	qdel(detaching_gun.GetComponent(/datum/component/deployable_item))
 	detaching_gun.ignored_terrains = null
 	detaching_gun.deployable_item = null
-	detaching_gun.turret_flags &= ~(TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS)
+	detaching_gun.flags_turret &= ~(TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS)
 
 /obj/item/attachable/flamer_nozzle
 	name = "standard flamer nozzle"
@@ -1577,15 +1577,15 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		return
 	var/obj/item/weapon/gun/flamer/flamer = attaching_item
 	//Since we're firing more like a normal gun, we do need to use up rounds after firing
-	flamer.reciever_flags &= ~AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE
+	flamer.flags_reciever &= ~AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE
 
 /obj/item/attachable/flamer_nozzle/long/on_detach(attaching_item, mob/user)
 	. = ..()
 	if(!istype(attaching_item, /obj/item/weapon/gun/flamer))
 		return
 	var/obj/item/weapon/gun/flamer/flamer = attaching_item
-	if(initial(flamer.reciever_flags) & AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE)
-		flamer.reciever_flags |= AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE
+	if(initial(flamer.flags_reciever) & AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE)
+		flamer.flags_reciever |= AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE
 
 ///This is called when an attachment gun (src) attaches to a gun.
 /obj/item/weapon/gun/proc/on_attach(obj/item/attached_to, mob/user)

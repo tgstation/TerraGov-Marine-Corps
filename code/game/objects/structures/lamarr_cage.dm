@@ -5,7 +5,7 @@
 	desc = "A glass lab container for storing interesting creatures."
 	density = TRUE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	max_integrity = 30
 	var/occupied = FALSE
 

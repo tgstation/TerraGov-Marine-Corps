@@ -8,7 +8,7 @@
 	idle_power_usage = 5
 	active_power_usage = 360
 	flags_atom = HTML_USE_INITAL_ICON_1
-	obj_flags = CAN_BE_HIT
+	flags_obj = CAN_BE_HIT
 
 	var/aiControlDisabled = 0 //If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
 	var/hackProof = 0 // if 1, this door can't be hacked by the AI
@@ -274,7 +274,7 @@
 
 //Prying open doors
 /obj/machinery/door/airlock/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return FALSE
 
 	var/turf/cur_loc = xeno_attacker.loc
@@ -537,7 +537,7 @@
 			if (iscarbon(M))
 				var/mob/living/carbon/C = M
 				var/datum/species/S = C.species
-				if(S?.species_flags & NO_PAIN)
+				if(S?.flags_species & NO_PAIN)
 					INVOKE_ASYNC(M, TYPE_PROC_REF(/mob/living, emote), "pain")
 			var/turf/location = src.loc
 			if(istype(location, /turf))

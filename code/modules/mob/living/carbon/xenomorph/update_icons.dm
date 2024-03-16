@@ -24,19 +24,19 @@
 		return
 	if(state_change)
 		if(stat == DEAD)
-			icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Dead"
+			icon_state = "[xeno_caste.caste_name][(flags_xeno & XENO_ROUNY) ? " rouny" : ""] Dead"
 		else if(HAS_TRAIT(src, TRAIT_BURROWED))
-			icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Burrowed"
+			icon_state = "[xeno_caste.caste_name][(flags_xeno & XENO_ROUNY) ? " rouny" : ""] Burrowed"
 		else if(lying_angle)
 			if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
-				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Sleeping"
+				icon_state = "[xeno_caste.caste_name][(flags_xeno & XENO_ROUNY) ? " rouny" : ""] Sleeping"
 			else
-				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Knocked Down"
+				icon_state = "[xeno_caste.caste_name][(flags_xeno & XENO_ROUNY) ? " rouny" : ""] Knocked Down"
 		else if(!handle_special_state())
 			if(m_intent == MOVE_INTENT_RUN)
-				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Running"
+				icon_state = "[xeno_caste.caste_name][(flags_xeno & XENO_ROUNY) ? " rouny" : ""] Running"
 			else
-				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Walking"
+				icon_state = "[xeno_caste.caste_name][(flags_xeno & XENO_ROUNY) ? " rouny" : ""] Walking"
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 	update_wounds()
 
@@ -98,7 +98,7 @@
 	var/health_thresholds
 	wound_overlay.layer = layer + 0.3
 	wound_overlay.icon = src.icon
-	wound_overlay.vis_flags |= VIS_HIDE
+	wound_overlay.flags_vis |= VIS_HIDE
 	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
 		wound_overlay.icon_state = "none"
 		return
@@ -128,14 +128,14 @@
 
 	wound_overlay.icon_state = "[xeno_caste.wound_type]_[overlay_to_show]"
 
-	if(xeno_caste.caste_flags & CASTE_HAS_WOUND_MASK)
+	if(xeno_caste.flags_caste & CASTE_HAS_WOUND_MASK)
 		var/image/wounded_mask = image(icon, null, "alpha_[overlay_to_show]")
 		wounded_mask.render_target = "*[REF(src)]"
 		overlays_standing[WOUND_LAYER] = wounded_mask
 		apply_overlay(WOUND_LAYER)
 		add_filter("wounded_filter", 1, alpha_mask_filter(0, 0, null, "*[REF(src)]", MASK_INVERSE))
 
-	wound_overlay.vis_flags &= ~VIS_HIDE // Show the overlay
+	wound_overlay.flags_vis &= ~VIS_HIDE // Show the overlay
 
 /mob/living/carbon/xenomorph/update_transform()
 	..()
@@ -143,7 +143,7 @@
 
 ///Used to display the xeno wounds without rapidly switching overlays
 /atom/movable/vis_obj/xeno_wounds
-	vis_flags = VIS_INHERIT_DIR
+	flags_vis = VIS_INHERIT_DIR
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay
 	light_system = MOVABLE_LIGHT

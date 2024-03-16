@@ -29,7 +29,7 @@
 	if(!prob(internal_damage_probability))
 		return
 	var/internal_damage_to_deal = possible_int_damage
-	internal_damage_to_deal &= ~mecha_flags
+	internal_damage_to_deal &= ~flags_mecha
 	if(internal_damage_to_deal)
 		set_internal_damage(pick(bitfield2list(internal_damage_to_deal)))
 

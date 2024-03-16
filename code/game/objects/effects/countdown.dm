@@ -98,7 +98,7 @@
 	plane = HUD_PLANE
 	pixel_x = 5
 	pixel_y = 8
-	appearance_flags = KEEP_APART|RESET_COLOR
+	flags_appearance = KEEP_APART|RESET_COLOR
 	///The action this countdown is associated with
 	var/datum/action/ability/attached_action
 

@@ -103,7 +103,7 @@
 	var/time_per_sheet = 300
 	var/current_heat = 0
 	power_gen = 15000
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_interaction = INTERACT_MACHINE_TGUI
 
 /obj/machinery/power/port_gen/pacman/Initialize(mapload)
 	. = ..()

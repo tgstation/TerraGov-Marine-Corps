@@ -110,31 +110,31 @@
 /// (this lets us sort our run order correctly without having to re-sort the entire already sorted list)
 /datum/controller/subsystem/proc/enqueue()
 	var/SS_priority = priority
-	var/SS_flags = flags
+	var/flags_SS = flags
 	var/datum/controller/subsystem/queue_node
 	var/queue_node_priority
-	var/queue_node_flags
+	var/flags_queue_node
 
 	for (queue_node = Master.queue_head; queue_node; queue_node = queue_node.queue_next)
 		queue_node_priority = queue_node.queued_priority
-		queue_node_flags = queue_node.flags
+		flags_queue_node = queue_node.flags
 
-		if (queue_node_flags & (SS_TICKER|SS_BACKGROUND) == SS_TICKER)
-			if ((SS_flags & (SS_TICKER|SS_BACKGROUND)) != SS_TICKER)
+		if (flags_queue_node & (SS_TICKER|SS_BACKGROUND) == SS_TICKER)
+			if ((flags_SS & (SS_TICKER|SS_BACKGROUND)) != SS_TICKER)
 				continue
 			if (queue_node_priority < SS_priority)
 				break
 
-		else if (queue_node_flags & SS_BACKGROUND)
-			if (!(SS_flags & SS_BACKGROUND))
+		else if (flags_queue_node & SS_BACKGROUND)
+			if (!(flags_SS & SS_BACKGROUND))
 				break
 			if (queue_node_priority < SS_priority)
 				break
 
 		else
-			if (SS_flags & SS_BACKGROUND)
+			if (flags_SS & SS_BACKGROUND)
 				continue
-			if (SS_flags & SS_TICKER)
+			if (flags_SS & SS_TICKER)
 				break
 			if (queue_node_priority < SS_priority)
 				break
@@ -142,7 +142,7 @@
 	queued_time = world.time
 	queued_priority = SS_priority
 	state = SS_QUEUED
-	if (SS_flags & SS_BACKGROUND) //update our running total
+	if (flags_SS & SS_BACKGROUND) //update our running total
 		Master.queue_priority_count_bg += SS_priority
 	else
 		Master.queue_priority_count += SS_priority

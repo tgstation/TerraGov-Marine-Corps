@@ -22,7 +22,7 @@ export const MechStatPane = (props) => {
     cabin_pressure,
     cabin_dangerous_highpressure,
     cabin_temp,
-    mecha_flags,
+    flags_mecha,
     mechflag_keys,
     port_connected,
   } = data;
@@ -100,10 +100,10 @@ export const MechStatPane = (props) => {
               <Button
                 onClick={() => act('toggle_maintenance')}
                 selected={
-                  mecha_flags & mechflag_keys['ADDING_MAINT_ACCESS_POSSIBLE']
+                  flags_mecha & mechflag_keys['ADDING_MAINT_ACCESS_POSSIBLE']
                 }
               >
-                {mecha_flags & mechflag_keys['ADDING_MAINT_ACCESS_POSSIBLE']
+                {flags_mecha & mechflag_keys['ADDING_MAINT_ACCESS_POSSIBLE']
                   ? 'En'
                   : 'Dis'}
                 abled
@@ -112,9 +112,9 @@ export const MechStatPane = (props) => {
             <LabeledList.Item label="ID reader panel">
               <Button
                 onClick={() => act('toggle_id_panel')}
-                selected={mecha_flags & mechflag_keys['ADDING_ACCESS_POSSIBLE']}
+                selected={flags_mecha & mechflag_keys['ADDING_ACCESS_POSSIBLE']}
               >
-                {mecha_flags & mechflag_keys['ADDING_ACCESS_POSSIBLE']
+                {flags_mecha & mechflag_keys['ADDING_ACCESS_POSSIBLE']
                   ? 'En'
                   : 'Dis'}
                 abled

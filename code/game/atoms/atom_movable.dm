@@ -1,7 +1,7 @@
 /atom/movable
 	layer = OBJ_LAYER
 	glide_size = 8
-	appearance_flags = TILE_BOUND|PIXEL_SCALE
+	flags_appearance = TILE_BOUND|PIXEL_SCALE
 	var/last_move = null
 	var/last_move_time = 0
 	var/anchored = FALSE
@@ -23,12 +23,12 @@
 	var/mob/pulledby = null
 	var/atom/movable/pulling
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
-	var/glide_modifier_flags = NONE
+	var/flags_glide_modifier = NONE
 
-	var/status_flags = CANSTUN|CANKNOCKDOWN|CANKNOCKOUT|CANPUSH|CANUNCONSCIOUS|CANCONFUSE	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
+	var/flags_status = CANSTUN|CANKNOCKDOWN|CANKNOCKOUT|CANPUSH|CANUNCONSCIOUS|CANCONFUSE	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
 	var/generic_canpass = TRUE
 	///What things this atom can move past, if it has the corrosponding flag
-	var/pass_flags = NONE
+	var/flags_pass = NONE
 	///TRUE if we should not push or shuffle on bump/enter
 	var/moving_diagonally = FALSE
 
@@ -45,7 +45,7 @@
 	var/grab_state = GRAB_PASSIVE //if we're pulling a mob, tells us how aggressive our grab is.
 	var/atom/movable/buckled // movable atom we are buckled to
 	var/list/mob/living/buckled_mobs // mobs buckled to this mob
-	var/buckle_flags = NONE
+	var/flags_buckle = NONE
 	var/max_buckled_mobs = 1
 	var/buckle_lying = -1 //bed-like behaviour, forces mob.lying_angle = buckle_lying if != -1
 
@@ -97,7 +97,7 @@
 		var/mutable_appearance/gen_emissive_blocker = mutable_appearance(icon, icon_state, plane = EMISSIVE_PLANE, alpha = src.alpha)
 		gen_emissive_blocker.color = GLOB.em_block_color
 		gen_emissive_blocker.dir = dir
-		gen_emissive_blocker.appearance_flags |= appearance_flags
+		gen_emissive_blocker.flags_appearance |= flags_appearance
 		add_overlay(list(gen_emissive_blocker))
 
 	if(opacity)
@@ -145,7 +145,7 @@
 	//If we clear this before the nullspace move, a ref to this object will be hung in any of its movable containers
 	LAZYCLEARLIST(important_recursive_contents)
 
-	if(smoothing_flags && isturf(old_loc))
+	if(flags_smoothing && isturf(old_loc))
 		QUEUE_SMOOTH_NEIGHBORS(old_loc)
 
 	invisibility = INVISIBILITY_ABSTRACT
@@ -180,7 +180,7 @@
 				em_block = new(src, render_target)
 			return em_block
 	else
-		var/mutable_appearance/gen_emissive_blocker = emissive_blocker(icon, icon_state, alpha = src.alpha, appearance_flags = src.appearance_flags)
+		var/mutable_appearance/gen_emissive_blocker = emissive_blocker(icon, icon_state, alpha = src.alpha, flags_appearance = src.flags_appearance)
 		gen_emissive_blocker.dir = dir
 
 /atom/movable/update_overlays()
@@ -707,7 +707,7 @@
 		// Scale the icon.
 		I.transform *= 0.75
 		// The icon should not rotate.
-		I.appearance_flags = APPEARANCE_UI
+		I.flags_appearance = APPEARANCE_UI
 
 		// Set the direction of the icon animation.
 		var/direction = get_dir(src, A)
@@ -992,7 +992,7 @@
 		AM.pulledby.stop_pulling() //an object can't be pulled by two mobs at once.
 	pulling = AM
 	AM.pulledby = src
-	AM.glide_modifier_flags |= GLIDE_MOD_PULLED
+	AM.flags_glide_modifier |= GLIDE_MOD_PULLED
 	if(ismob(AM))
 		var/mob/M = AM
 		if(M.buckled)
@@ -1016,7 +1016,7 @@
 	setGrabState(GRAB_PASSIVE)
 
 	pulling.pulledby = null
-	pulling.glide_modifier_flags &= ~GLIDE_MOD_PULLED
+	pulling.flags_glide_modifier &= ~GLIDE_MOD_PULLED
 	if(ismob(pulling))
 		var/mob/pulled_mob = pulling
 		if(pulled_mob.buckled)
@@ -1068,9 +1068,9 @@
 		return FALSE
 	if(anchored || throwing)
 		return FALSE
-	if(buckled && buckle_flags & BUCKLE_PREVENTS_PULL)
+	if(buckled && flags_buckle & BUCKLE_PREVENTS_PULL)
 		return FALSE
-	if(status_flags & INCORPOREAL) //Incorporeal things can't be grabbed.
+	if(flags_status & INCORPOREAL) //Incorporeal things can't be grabbed.
 		return FALSE
 	if(force < (move_resist * MOVE_FORCE_PULL_RATIO))
 		return FALSE
@@ -1110,17 +1110,17 @@
 
 
 /atom/movable/proc/reset_glide_size()
-	if(glide_modifier_flags)
+	if(flags_glide_modifier)
 		return
 	set_glide_size(initial(glide_size))
 
 /obj/vehicle/reset_glide_size()
-	if(glide_modifier_flags)
+	if(flags_glide_modifier)
 		return
 	set_glide_size(DELAY_TO_GLIDE_SIZE_STATIC(move_delay))
 
 /mob/reset_glide_size()
-	if(glide_modifier_flags)
+	if(flags_glide_modifier)
 		return
 	set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
 
@@ -1208,17 +1208,17 @@
 /atom/movable/proc/set_throwing(new_throwing)
 	throwing = new_throwing
 	if(throwing)
-		pass_flags |= PASS_THROW
+		flags_pass |= PASS_THROW
 	else
-		pass_flags &= ~PASS_THROW
+		flags_pass &= ~PASS_THROW
 
 ///Toggles AM between flying states
 /atom/movable/proc/set_flying(flying, new_layer)
 	if(flying)
-		pass_flags |= HOVERING
+		flags_pass |= HOVERING
 		layer = new_layer
 		return
-	pass_flags &= ~HOVERING
+	flags_pass &= ~HOVERING
 	layer = new_layer ? new_layer : initial(layer)
 
 ///returns bool for if we want to get forcepushed
@@ -1249,7 +1249,7 @@
 /// Returns true or false to allow src to move through the blocker, mover has final say
 /atom/movable/proc/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
 	SHOULD_CALL_PARENT(TRUE)
-	if(status_flags & INCORPOREAL) //Incorporeal can normally pass through anything
+	if(flags_status & INCORPOREAL) //Incorporeal can normally pass through anything
 		blocker_opinion = TRUE
 
 	return blocker_opinion

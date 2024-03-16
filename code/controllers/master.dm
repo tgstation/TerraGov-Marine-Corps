@@ -577,7 +577,7 @@ GLOBAL_REAL(Master, /datum/controller/master)
 
 	//we create our variables outside of the loops to save on overhead
 	var/datum/controller/subsystem/SS
-	var/SS_flags
+	var/flags_SS
 
 	for (var/thing in subsystemstocheck)
 		if (!thing)
@@ -589,11 +589,11 @@ GLOBAL_REAL(Master, /datum/controller/master)
 			continue
 		if (SS.next_fire > world.time)
 			continue
-		SS_flags = SS.flags
-		if (SS_flags & SS_NO_FIRE)
+		flags_SS = SS.flags
+		if (flags_SS & SS_NO_FIRE)
 			subsystemstocheck -= SS
 			continue
-		if ((SS_flags & (SS_TICKER|SS_KEEP_TIMING)) == SS_KEEP_TIMING && SS.last_fire + (SS.wait * 0.75) > world.time)
+		if ((flags_SS & (SS_TICKER|SS_KEEP_TIMING)) == SS_KEEP_TIMING && SS.last_fire + (SS.wait * 0.75) > world.time)
 			continue
 		SS.enqueue()
 	. = 1
@@ -604,7 +604,7 @@ GLOBAL_REAL(Master, /datum/controller/master)
 /datum/controller/master/proc/RunQueue()
 	. = 0
 	var/datum/controller/subsystem/queue_node
-	var/queue_node_flags
+	var/flags_queue_node
 	var/queue_node_priority
 	var/queue_node_paused
 
@@ -626,14 +626,14 @@ GLOBAL_REAL(Master, /datum/controller/master)
 			if (ran && TICK_USAGE > TICK_LIMIT_RUNNING)
 				break
 
-			queue_node_flags = queue_node.flags
+			flags_queue_node = queue_node.flags
 			queue_node_priority = queue_node.queued_priority
 
-			if (!(queue_node_flags & SS_TICKER) && skip_ticks)
+			if (!(flags_queue_node & SS_TICKER) && skip_ticks)
 				queue_node = queue_node.queue_next
 				continue
 
-			if ((queue_node_flags & SS_BACKGROUND))
+			if ((flags_queue_node & SS_BACKGROUND))
 				if (!bg_calc)
 					current_tick_budget = queue_priority_count_bg
 					bg_calc = TRUE
@@ -705,11 +705,11 @@ GLOBAL_REAL(Master, /datum/controller/master)
 			queue_node.last_fire = world.time
 			queue_node.times_fired++
 
-			if (queue_node_flags & SS_TICKER)
+			if (flags_queue_node & SS_TICKER)
 				queue_node.next_fire = world.time + (world.tick_lag * queue_node.wait)
-			else if (queue_node_flags & SS_POST_FIRE_TIMING)
+			else if (flags_queue_node & SS_POST_FIRE_TIMING)
 				queue_node.next_fire = world.time + queue_node.wait + (world.tick_lag * (queue_node.tick_overrun/100))
-			else if (queue_node_flags & SS_KEEP_TIMING)
+			else if (flags_queue_node & SS_KEEP_TIMING)
 				queue_node.next_fire += queue_node.wait
 			else
 				queue_node.next_fire = queue_node.queued_time + queue_node.wait + (world.tick_lag * (queue_node.tick_overrun/100))

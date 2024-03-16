@@ -96,7 +96,7 @@
 	return
 
 ///checks how many marines and SOM are still alive
-/datum/game_mode/hvh/proc/count_humans(list/z_levels = SSmapping.levels_by_trait(ZTRAIT_GROUND), count_flags) //todo: either make this not ground exclusive, or make new Z's not away levels
+/datum/game_mode/hvh/proc/count_humans(list/z_levels = SSmapping.levels_by_trait(ZTRAIT_GROUND), flags_count) //todo: either make this not ground exclusive, or make new Z's not away levels
 	var/list/som_alive = list()
 	var/list/som_dead = list()
 	var/list/tgmc_alive = list()
@@ -108,7 +108,7 @@
 			var/mob/living/carbon/human/H = i
 			if(!istype(H))
 				continue
-			if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
+			if(flags_count & COUNT_IGNORE_HUMAN_SSD && !H.client)
 				continue
 			if(H.faction == FACTION_SOM)
 				som_alive += H

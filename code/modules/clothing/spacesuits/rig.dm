@@ -105,7 +105,7 @@
 	name = "gem-encrusted hardsuit helmet"
 	desc = "A bizarre gem-encrusted helmet that radiates magical energies."
 	icon_state = "rig-wiz"
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 35, BIO = 100, FIRE = 20, ACID = 20)
 	siemens_coefficient = 0.7
 
@@ -115,7 +115,7 @@
 	desc = "A bizarre gem-encrusted suit that radiates magical energies."
 	slowdown = 1
 	w_class = WEIGHT_CLASS_NORMAL
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 35, BIO = 100, FIRE = 20, ACID = 20)
 	siemens_coefficient = 0.7
 

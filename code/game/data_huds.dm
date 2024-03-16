@@ -262,7 +262,7 @@
 
 	hud_list[XENO_DEBUFF_HUD] = xeno_debuff
 
-	if(species.species_flags & IS_SYNTHETIC)
+	if(species.flags_species & IS_SYNTHETIC)
 		simple_status_hud.icon_state = ""
 		if(stat != DEAD)
 			status_hud.icon_state = "hudsynth"
@@ -282,13 +282,13 @@
 		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
 		return TRUE
 
-	if(species.species_flags & HEALTH_HUD_ALWAYS_DEAD)
+	if(species.flags_species & HEALTH_HUD_ALWAYS_DEAD)
 		status_hud.icon_state = "huddead"
 		infection_hud.icon_state = ""
 		simple_status_hud.icon_state = ""
 		return TRUE
 
-	if(status_flags & XENO_HOST)
+	if(flags_status & XENO_HOST)
 		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
 		if(E)
 			if(E.boost_timer)
@@ -301,7 +301,7 @@
 			infection_hud.icon_state = ""
 	else
 		infection_hud.icon_state = ""
-	if(species.species_flags & ROBOTIC_LIMBS)
+	if(species.flags_species & ROBOTIC_LIMBS)
 		simple_status_hud.icon_state = ""
 		infection_hud.icon_state = "hudrobot"
 
@@ -364,7 +364,7 @@
 				status_hud.icon_state = "hud_con_slowdown"
 				return TRUE
 			else
-				if(species.species_flags & ROBOTIC_LIMBS)
+				if(species.flags_species & ROBOTIC_LIMBS)
 					simple_status_hud.icon_state = ""
 					status_hud.icon_state = "hudrobot"
 					return TRUE
@@ -383,7 +383,7 @@
 
 
 /mob/living/carbon/human/med_pain_set_perceived_health()
-	if(species?.species_flags & IS_SYNTHETIC)
+	if(species?.flags_species & IS_SYNTHETIC)
 		return FALSE
 
 	var/image/holder = hud_list[PAIN_HUD]
@@ -392,9 +392,9 @@
 		return TRUE
 
 	var/perceived_health = health / maxHealth * 100
-	if(!(species.species_flags & NO_PAIN))
+	if(!(species.flags_species & NO_PAIN))
 		perceived_health -= PAIN_RATIO_PAIN_HUD * traumatic_shock
-	if(!(species.species_flags & NO_STAMINA) && staminaloss > 0)
+	if(!(species.flags_species & NO_STAMINA) && staminaloss > 0)
 		perceived_health -= STAMINA_RATIO_PAIN_HUD * staminaloss
 
 	if(perceived_health >= 100)
@@ -532,7 +532,7 @@
 		if(hive?.living_xeno_queen)
 			if(hive.living_xeno_queen.observed_xeno == src)
 				holder.icon_state = "queen_overwatch"
-			if(xeno_flags & XENO_LEADER)
+			if(flags_xeno & XENO_LEADER)
 				var/image/I = image('icons/mob/hud.dmi',src, "hudxenoleader")
 				holder.overlays += I
 	hud_list[QUEEN_OVERWATCH_HUD] = holder
@@ -599,7 +599,7 @@
 		var/rank = job.comm_title
 		if(assigned_squad.squad_leader == src)
 			rank = JOB_COMM_TITLE_SQUAD_LEADER
-		if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
+		if(job.flags_job & JOB_FLAG_PROVIDES_SQUAD_HUD)
 			var/image/IMG = image('icons/mob/hud.dmi', src, "hudmarine")
 			IMG.color = squad_color
 			holder.overlays += IMG
@@ -610,7 +610,7 @@
 			IMG2.color = squad_color
 			holder.overlays += IMG2
 
-	else if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
+	else if(job.flags_job & JOB_FLAG_PROVIDES_SQUAD_HUD)
 		holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [job.comm_title]")
 
 	hud_list[hud_type] = holder

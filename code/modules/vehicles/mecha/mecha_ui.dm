@@ -83,7 +83,7 @@
 	data["isoperator"] = isoperator
 	if(!isoperator)
 		data["name"] = name
-		data["mecha_flags"] = mecha_flags
+		data["flags_mecha"] = flags_mecha
 		data["internal_tank_valve"] = internal_tank_valve
 		data["cell"] = cell?.name
 		data["scanning"] = scanmod?.name
@@ -111,7 +111,7 @@
 	data["integrity"] = obj_integrity/max_integrity
 	data["power_level"] = cell?.charge
 	data["power_max"] = cell?.maxcharge
-	data["mecha_flags"] = mecha_flags
+	data["flags_mecha"] = flags_mecha
 	data["internal_damage"] = internal_damage
 	data["airtank_present"] = !!internal_tank
 	data["air_source"] = use_internal_tank ? "Internal Airtank" : "Environment"
@@ -206,11 +206,11 @@
 				if(construction_state > MECHA_LOCKED)
 					to_chat(usr, span_warning("You must end Maintenance Procedures first!"))
 					return
-				mecha_flags &= ~ADDING_MAINT_ACCESS_POSSIBLE
+				flags_mecha &= ~ADDING_MAINT_ACCESS_POSSIBLE
 				ui.close()
 				return FALSE
 			if("togglemaint")
-				if(!(mecha_flags & ADDING_MAINT_ACCESS_POSSIBLE))
+				if(!(flags_mecha & ADDING_MAINT_ACCESS_POSSIBLE))
 					return FALSE
 				if(construction_state == MECHA_LOCKED)
 					construction_state = MECHA_SECURE_BOLTS
@@ -240,7 +240,7 @@
 				internal_tank_valve = new_pressure
 				to_chat(usr, span_notice("The internal pressure valve has been set to [internal_tank_valve]kPa."))
 			if("add_req_access")
-				if(!(mecha_flags & ADDING_ACCESS_POSSIBLE))
+				if(!(flags_mecha & ADDING_ACCESS_POSSIBLE))
 					return
 				if(!(params["added_access"] == "all"))
 					operation_req_access += params["added_access"]
@@ -249,14 +249,14 @@
 					var/obj/item/card/id/card = living_user.get_idcard(TRUE)
 					operation_req_access += card.access
 			if("del_req_access")
-				if(!(mecha_flags & ADDING_ACCESS_POSSIBLE))
+				if(!(flags_mecha & ADDING_ACCESS_POSSIBLE))
 					return
 				if(!(params["removed_access"] == "all"))
 					operation_req_access -= params["removed_access"]
 				else
 					operation_req_access = list()
 			if("lock_req_edit")
-				mecha_flags &= ~ADDING_ACCESS_POSSIBLE
+				flags_mecha &= ~ADDING_ACCESS_POSSIBLE
 		return TRUE
 	//usr is in occupants
 	switch(action)
@@ -307,9 +307,9 @@
 			if(construction_state)
 				to_chat(occupants, "[icon2html(src, occupants)][span_danger("Maintenance protocols in effect")]")
 				return
-			mecha_flags ^= ADDING_MAINT_ACCESS_POSSIBLE
+			flags_mecha ^= ADDING_MAINT_ACCESS_POSSIBLE
 		if("toggle_id_panel")
-			mecha_flags ^= ADDING_ACCESS_POSSIBLE
+			flags_mecha ^= ADDING_ACCESS_POSSIBLE
 		if("toggle_microphone")
 			radio.broadcasting = !radio.broadcasting
 		if("toggle_speaker")

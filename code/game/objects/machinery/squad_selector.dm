@@ -7,13 +7,13 @@ GLOBAL_DATUM_INIT(squad_selector, /datum/squad_selector, new)
 	icon_state = "computer"
 	screen_overlay = "syndishuttle"
 	broken_icon = "computer_red_broken"
-	interaction_flags = INTERACT_OBJ_UI
+	flags_interaction = INTERACT_OBJ_UI
 
 /obj/machinery/computer/squad_selector/ui_interact(mob/user, datum/tgui/ui)
 	return GLOB.squad_selector.ui_interact(arglist(args))
 
 /datum/squad_selector
-	interaction_flags = INTERACT_UI_INTERACT
+	flags_interaction = INTERACT_UI_INTERACT
 
 /datum/squad_selector/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

@@ -18,12 +18,12 @@
 	desc = "Link to a xenomorph. This changes some of your abilities, and grants them and you both various bonuses."
 	cooldown_duration = 5 SECONDS
 	ability_cost = 0
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ESSENCE_LINK,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_LYING
 
 	/// Used to determine whether there is an existing Essence Link or not. Also allows access to its vars.
 	var/datum/status_effect/stacking/essence_link/existing_link
@@ -32,7 +32,7 @@
 	/// Time it takes for the attunement levels to increase.
 	var/attunement_cooldown = 60 SECONDS
 
-/datum/action/ability/activable/xeno/essence_link/can_use_ability(mob/living/carbon/xenomorph/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/essence_link/can_use_ability(mob/living/carbon/xenomorph/target, silent = FALSE, flags_override)
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!isxeno(target) || target.get_xeno_hivenumber() != X.get_xeno_hivenumber())
 		return FALSE
@@ -98,7 +98,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACIDIC_SALVE,
 	)
 	heal_range = DRONE_HEAL_RANGE
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 
 /datum/action/ability/activable/xeno/psychic_cure/acidic_salve/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/X = owner

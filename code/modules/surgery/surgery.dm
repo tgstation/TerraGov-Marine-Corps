@@ -163,7 +163,7 @@ GLOBAL_LIST_INIT(surgery_steps, init_surgery())
 			multipler -= 0.10
 		else if(locate(/obj/structure/table/, M.loc))
 			multipler -= 0.20
-		if(M.stat == CONSCIOUS && !CHECK_BITFIELD(M.species.species_flags, NO_PAIN))//If not on anesthetics or not unconsious, and able to feel pain
+		if(M.stat == CONSCIOUS && !CHECK_BITFIELD(M.species.flags_species, NO_PAIN))//If not on anesthetics or not unconsious, and able to feel pain
 			multipler -= 0.5
 			switch(M.reagent_pain_modifier)
 				if(PAIN_REDUCTION_HEAVY to PAIN_REDUCTION_MEDIUM)
@@ -191,7 +191,7 @@ GLOBAL_LIST_INIT(surgery_steps, init_surgery())
 
 		else if((tool in user.contents) && user.Adjacent(M)) //Or
 			if(M.stat == CONSCIOUS) //If not on anesthetics or not unconsious, warn player
-				if(!CHECK_BITFIELD(M.species.species_flags, NO_PAIN))
+				if(!CHECK_BITFIELD(M.species.flags_species, NO_PAIN))
 					M.emote("pain")
 					to_chat(user, span_danger("[M] moved during the surgery! Use anesthetics!"))
 				else

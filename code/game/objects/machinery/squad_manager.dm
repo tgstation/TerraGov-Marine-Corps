@@ -7,13 +7,13 @@ GLOBAL_DATUM_INIT(squad_manager, /datum/squad_manager, new)
 	desc = "A console for squad management. Allows squad leaders to manage their squad."
 	screen_overlay = "rdcomp"
 	light_color = LIGHT_COLOR_PINK
-	interaction_flags = INTERACT_OBJ_UI
+	flags_interaction = INTERACT_OBJ_UI
 
 /obj/machinery/computer/squad_manager/ui_interact(mob/user, datum/tgui/ui)
 	return GLOB.squad_manager.ui_interact(arglist(args))
 
 /datum/squad_manager
-	interaction_flags = INTERACT_UI_INTERACT
+	flags_interaction = INTERACT_UI_INTERACT
 
 /datum/squad_manager/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

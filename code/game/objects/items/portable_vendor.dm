@@ -17,7 +17,7 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
-	interaction_flags = INTERACT_OBJ_UI
+	flags_interaction = INTERACT_OBJ_UI
 
 	var/req_role //to be compared with job.type to only allow those to use that machine.
 	var/points = 40

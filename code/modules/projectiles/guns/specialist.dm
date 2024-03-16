@@ -449,7 +449,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_item = NONE
 	flags_equip_slot = NONE
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
-	reciever_flags = AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE|AMMO_RECIEVER_MAGAZINES
+	flags_reciever = AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE|AMMO_RECIEVER_MAGAZINES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	actions_types = list()
 	attachable_allowed = list()
@@ -615,7 +615,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
-	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_AUTO_EJECT_LOCKED
+	flags_reciever = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_AUTO_EJECT_LOCKED
 	gun_skill_category = SKILL_HEAVY_WEAPONS
 	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
@@ -837,7 +837,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo_type = /obj/item/ammo_magazine/rocket/oneuse
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rocket/oneuse)
-	reciever_flags = AMMO_RECIEVER_CLOSED|AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT_LOCKED
+	flags_reciever = AMMO_RECIEVER_CLOSED|AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT_LOCKED
 	flags_equip_slot = ITEM_SLOT_BELT
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_SMOKE_PARTICLES
 	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
@@ -1004,7 +1004,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER
-	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
+	flags_reciever = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 
 	fire_delay = 3 SECONDS
 	burst_amount = 1
@@ -1049,7 +1049,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
+	flags_reciever = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 
 	fire_delay = 1 SECONDS
 	windup_delay = 0.5 SECONDS

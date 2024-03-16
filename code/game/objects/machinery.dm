@@ -6,7 +6,7 @@
 	verb_yell = "blares"
 	anchored = TRUE
 	destroy_sound = 'sound/effects/metal_crash.ogg'
-	interaction_flags = INTERACT_MACHINE_DEFAULT
+	flags_interaction = INTERACT_MACHINE_DEFAULT
 
 	var/machine_stat = NONE
 	var/use_power = IDLE_POWER_USE
@@ -22,7 +22,7 @@
 	var/mob/living/carbon/human/operator
 
 	///Whether bullets can bypass the object even though it's dense
-	allow_pass_flags = PASSABLE
+	flags_allow_pass = PASSABLE
 
 /obj/machinery/Initialize(mapload)
 	. = ..()
@@ -114,7 +114,7 @@
 
 
 /obj/machinery/emp_act(severity)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+	if(CHECK_BITFIELD(flags_resistance, INDESTRUCTIBLE))
 		return FALSE
 	if(use_power && !machine_stat)
 		use_power(7500 / severity)
@@ -123,7 +123,7 @@
 
 
 /obj/machinery/ex_act(severity)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+	if(CHECK_BITFIELD(flags_resistance, INDESTRUCTIBLE))
 		return FALSE
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -202,7 +202,7 @@
 /obj/machinery/attack_ai(mob/living/silicon/ai/user)
 	if(!is_operational())
 		return FALSE
-	if(!(interaction_flags & INTERACT_SILICON_ALLOWED))
+	if(!(flags_interaction & INTERACT_SILICON_ALLOWED))
 		return FALSE
 	return interact(user)
 

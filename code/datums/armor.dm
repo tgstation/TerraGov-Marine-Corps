@@ -6,7 +6,7 @@
 		. = new /datum/armor(melee, bullet, laser, energy, bomb, bio, fire, acid)
 
 /datum/armor
-	datum_flags = DF_USE_TAG
+	flags_datum = DF_USE_TAG
 	var/melee = 0
 	var/bullet = 0
 	var/laser = 0

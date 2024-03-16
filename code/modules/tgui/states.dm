@@ -73,7 +73,7 @@
 
 /*/mob/living/shared_ui_interaction(src_object)
 	. = ..()
-	if(!(mobility_flags & MOBILITY_UI) && . == UI_INTERACTIVE)
+	if(!(flags_mobility & MOBILITY_UI) && . == UI_INTERACTIVE)
 		return UI_UPDATE*/
 
 

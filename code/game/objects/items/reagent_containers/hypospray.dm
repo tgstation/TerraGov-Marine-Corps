@@ -11,11 +11,11 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(1, 3, 5, 10, 15, 20, 30)
 	volume = 60
-	init_reagent_flags = OPENCONTAINER
+	flags_init_reagent = OPENCONTAINER
 	flags_equip_slot = ITEM_SLOT_BELT
 	flags_item = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
-	interaction_flags = INTERACT_OBJ_UI
+	flags_interaction = INTERACT_OBJ_UI
 	var/skilllock = 1
 	var/inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 	var/core_name = "hypospray"
@@ -68,7 +68,7 @@
 		return
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
-		if((C.species.species_flags & NO_CHEM_METABOLIZATION) || (C.species.species_flags & IS_SYNTHETIC))
+		if((C.species.flags_species & NO_CHEM_METABOLIZATION) || (C.species.flags_species & IS_SYNTHETIC))
 			C.balloon_alert(user, "Can't inject (robot)")
 			return
 	if(!A.is_injectable() && !ismob(A))
@@ -154,7 +154,7 @@
 		return
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
-		if(H.species.species_flags & NO_BLOOD)
+		if(H.species.flags_species & NO_BLOOD)
 			balloon_alert(user, "Can't locate blood.")
 			return
 		else
@@ -273,7 +273,7 @@
 	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy."
 	core_name = "hypospray"
 	icon_state = "hypo"
-	init_reagent_flags = REFILLABLE|DRAINABLE
+	flags_init_reagent = REFILLABLE|DRAINABLE
 	liquifier = TRUE
 
 /obj/item/reagent_containers/hypospray/advanced/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)

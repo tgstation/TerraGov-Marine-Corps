@@ -21,7 +21,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_CHARGE,
 	)
 	action_type = ACTION_TOGGLE
-	use_state_flags = ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_LYING
 	var/charge_type = CHARGE_CRUSH
 	var/next_move_limit = 0
 	var/turf/lastturf = null
@@ -395,7 +395,7 @@
 
 
 /obj/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/ability/xeno_action/ready_charge/charge_datum)
-	if((resistance_flags & (INDESTRUCTIBLE|CRUSHER_IMMUNE)) || charger.is_charging < CHARGE_ON)
+	if((flags_resistance & (INDESTRUCTIBLE|CRUSHER_IMMUNE)) || charger.is_charging < CHARGE_ON)
 		charge_datum.do_stop_momentum()
 		return PRECRUSH_STOPPED
 	if(anchored)
@@ -427,7 +427,7 @@
 	return (CHARGE_SPEED(charge_datum) * 20)
 
 /obj/structure/razorwire/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/ability/xeno_action/ready_charge/charge_datum)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE) || charger.is_charging < CHARGE_ON)
+	if(CHECK_BITFIELD(flags_resistance, INDESTRUCTIBLE) || charger.is_charging < CHARGE_ON)
 		charge_datum.do_stop_momentum()
 		return PRECRUSH_STOPPED
 	if(anchored)
@@ -636,7 +636,7 @@
 
 
 /mob/living/carbon/human/emote_gored()
-	if(species.species_flags & NO_PAIN)
+	if(species.flags_species & NO_PAIN)
 		return
 	emote("gored")
 

@@ -4,7 +4,7 @@
 	desc = "A gun breech used for loading large caliber rounds into the main gun."
 	icon = 'icons/obj/armored/3x3/tank_interior.dmi'
 	icon_state = "breech"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	///bool if this laods the secondary gun
 	var/is_secondary = FALSE
 	///owner of this object, assigned during interior linkage

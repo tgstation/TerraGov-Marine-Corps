@@ -12,7 +12,7 @@
 
 	/// Flags to apply to our /datum/log_entry's
 	/// See code/__DEFINES/logging/dm
-	var/entry_flags = NONE
+	var/flags_entry = NONE
 
 	/// If set this config flag is checked to enable this log category
 	var/config_flag
@@ -43,7 +43,7 @@ GENERAL_PROTECT_DATUM(/datum/log_category)
 		timestamp = logger.human_readable_timestamp(),
 		category = category,
 		message = message,
-		flags = entry_flags,
+		flags = flags_entry,
 		data = data,
 		semver_store = semver_store,
 	)

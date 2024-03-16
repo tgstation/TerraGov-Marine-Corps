@@ -130,7 +130,7 @@
 
 
 /obj/item/weapon/baton/attack(mob/M, mob/user)
-	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
+	if(M.flags_status & INCORPOREAL || user.flags_status & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
 		return
 
 	if(has_user_lock && user.skills.getRating(SKILL_POLICE) < SKILL_POLICE_MP)

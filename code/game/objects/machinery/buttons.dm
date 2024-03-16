@@ -15,7 +15,7 @@
 
 
 /obj/machinery/button/indestructible
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 
 /obj/machinery/button/Initialize(mapload, ndir = 0)
@@ -72,7 +72,7 @@
 
 
 /obj/machinery/button/door/indestructible
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 
 /obj/machinery/button/door/pulsed()
@@ -116,7 +116,7 @@
 	id = "landing_zone"
 	icon_state = "shutterctrl"
 	use_power = NO_POWER_USE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP)
 	/// Has the shutters alarm been played?
 	var/alarm_played = FALSE
@@ -257,7 +257,7 @@
 		icon_state = "doorctrl0"
 
 /obj/machinery/button/valhalla
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 	///The mob created by the spawner
 	var/mob/living/carbon/human/linked
 	///What spawner landmark is linked with this spawner (this has to be matching with the landmark)

@@ -8,7 +8,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "target_h"
 	density = FALSE
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 
 /obj/item/target/default
 	desc = "A shooting target with a distinctly human outline."

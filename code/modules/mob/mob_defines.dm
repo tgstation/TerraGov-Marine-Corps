@@ -4,10 +4,10 @@
 	layer = MOB_LAYER
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	animate_movement = SLIDE_STEPS
-	datum_flags = DF_USE_TAG
+	flags_datum = DF_USE_TAG
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
-	resistance_flags = NONE
+	flags_resistance = NONE
 
 	//Mob
 	///Whether a mob is alive or dead. TODO: Move this to living - Nodrak

@@ -16,7 +16,7 @@
 	max_integrity = 250
 
 	/// Used for determining if the sprite should be updated and how
-	var/update_flags = NONE
+	var/flags_update = NONE
 
 
 /obj/machinery/portable_atmospherics/canister/nitrogen
@@ -61,32 +61,32 @@
 		cut_overlays()
 		return
 
-	var/old_update_flags = update_flags
-	update_flags = NONE
+	var/flags_old_update = flags_update
+	flags_update = NONE
 
 	if(holding)
-		update_flags |= HOLDING
+		flags_update |= HOLDING
 	if(connected_port)
-		update_flags |= CONNECTED
+		flags_update |= CONNECTED
 
-	if(update_flags == old_update_flags)
+	if(flags_update == flags_old_update)
 		return
 
 	cut_overlays()
-	if(update_flags & HOLDING)
+	if(flags_update & HOLDING)
 		. += "can-open"
-	if(update_flags & CONNECTED)
+	if(flags_update & CONNECTED)
 		. += "can-connector"
-	if(update_flags & LOW)
+	if(flags_update & LOW)
 		. += "can-o0"
 		return
-	if(update_flags & MEDIUM)
+	if(flags_update & MEDIUM)
 		. += "can-o1"
 		return
-	if(update_flags & FULL)
+	if(flags_update & FULL)
 		. += "can-o2"
 		return
-	if(update_flags & DANGER)
+	if(flags_update & DANGER)
 		. += "can-o3"
 		return
 

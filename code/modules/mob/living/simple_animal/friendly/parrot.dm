@@ -21,8 +21,8 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 	density = FALSE
 	health = 80
 	maxHealth = 80
-	allow_pass_flags = PASS_MOB
-	pass_flags = PASS_LOW_STRUCTURE|PASS_MOB
+	flags_allow_pass = PASS_MOB
+	flags_pass = PASS_LOW_STRUCTURE|PASS_MOB
 
 	speak = list("Hi!","Hello!","Cracker?","BAWWWWK george mellons griffing me!")
 	speak_emote = list("squawks","says","yells")
@@ -505,8 +505,8 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 	desc = "Doomed to squawk the Earth."
 	color = "#FFFFFF77"
 	speak_chance = 20
-	status_flags = GODMODE
-	resistance_flags = RESIST_ALL
+	flags_status = GODMODE
+	flags_resistance = RESIST_ALL
 
 
 /mob/living/simple_animal/parrot/Poly/ghost/Initialize(mapload)

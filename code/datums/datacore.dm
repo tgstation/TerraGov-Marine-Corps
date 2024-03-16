@@ -158,7 +158,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	security = list()
 	for(var/i in GLOB.alive_human_list)
 		var/mob/living/carbon/human/H = i
-		if(!H.job || !(H.job.job_flags & JOB_FLAG_ADDTOMANIFEST))
+		if(!H.job || !(H.job.flags_job & JOB_FLAG_ADDTOMANIFEST))
 			continue
 		manifest_inject(H)
 		CHECK_TICK

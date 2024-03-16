@@ -30,8 +30,8 @@
 	)
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_RIDE_CRUSHER
+	flags_caste = CASTE_EVOLUTION_ALLOWED
+	flags_can = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_RIDE_CRUSHER
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
@@ -68,7 +68,7 @@
 	caste_desc = "Master of ranged combat, this xeno knows no equal."
 	upgrade = XENO_UPGRADE_PRIMO
 	primordial_message = "Our suppression is unmatched! Let nothing show its head!"
-	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_ACID_BLOOD
+	flags_caste = CASTE_EVOLUTION_ALLOWED|CASTE_ACID_BLOOD
 
 	spit_delay = 0.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/auto, /datum/ammo/xeno/acid/medium)

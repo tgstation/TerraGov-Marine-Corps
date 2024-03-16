@@ -12,7 +12,7 @@
 	screen_loc = "CENTER"
 	layer = -1
 	plane = 0
-	appearance_flags = PASS_MOUSE | NO_CLIENT_COLOR | KEEP_TOGETHER
+	flags_appearance = PASS_MOUSE | NO_CLIENT_COLOR | KEEP_TOGETHER
 
 /**
  * ## Rendering plate

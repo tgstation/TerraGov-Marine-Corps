@@ -13,8 +13,8 @@
 	bound_width = 128
 	bound_height = 64
 	bound_y = 64
-	resistance_flags = RESIST_ALL
-	allow_pass_flags = NONE
+	flags_resistance = RESIST_ALL
+	flags_allow_pass = NONE
 	var/obj/structure/orbital_tray/tray
 	var/chambered_tray = FALSE
 	var/loaded_tray = FALSE
@@ -259,7 +259,7 @@
 	layer = LADDER_LAYER + 0.01
 	bound_width = 64
 	bound_height = 32
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	pixel_y = -9
 	pixel_x = -6
 	var/obj/structure/ob_ammo/warhead/warhead
@@ -335,8 +335,8 @@
 	anchored = TRUE
 	climbable = TRUE
 	icon = 'icons/Marine/mainship_props.dmi'
-	resistance_flags = XENO_DAMAGEABLE
-	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR
+	flags_resistance = XENO_DAMAGEABLE
+	flags_interaction = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR
 	coverage = 100
 	var/is_solid_fuel = 0
 
@@ -538,7 +538,7 @@
 	bound_width = 128
 	bound_height = 64
 	bound_y = 64
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	var/cannon_busy = FALSE
 	var/last_firing = 0 //stores the last time it was fired to check when we can fire again
 	var/last_firing_ai = 0 //same thing as last_firing but only cares when the AI last fired

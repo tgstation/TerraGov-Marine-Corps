@@ -28,7 +28,7 @@
 	name = "Toggle leg actuators overload"
 	action_icon_state = "mech_overload_off"
 
-/datum/action/vehicle/sealed/mecha/mech_overload_mode/action_activate(trigger_flags, forced_state = null)
+/datum/action/vehicle/sealed/mecha/mech_overload_mode/action_activate(flags_trigger, forced_state = null)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
 	if(!isnull(forced_state))

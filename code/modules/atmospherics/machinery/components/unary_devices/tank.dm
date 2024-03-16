@@ -9,7 +9,7 @@
 	max_integrity = 800
 	density = TRUE
 	layer = ABOVE_WINDOW_LAYER
-	pipe_flags = PIPING_ONE_PER_TURF
+	flags_pipe = PIPING_ONE_PER_TURF
 
 	var/volume = 10000 //in liters
 	var/gas_type = 0

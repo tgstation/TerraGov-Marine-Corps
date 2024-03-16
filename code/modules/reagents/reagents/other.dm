@@ -102,7 +102,7 @@
 	taste_description = "bitterness"
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
-	trait_flags = BRADYCARDICS
+	flags_trait = BRADYCARDICS
 
 /datum/reagent/space_drugs/on_mob_life(mob/living/L, metabolism)
 	L.set_drugginess(15)
@@ -318,7 +318,7 @@
 	color = "#808080" // rgb: 128, 128, 128
 
 	custom_metabolism = REAGENTS_METABOLISM * 0.05
-	trait_flags = TACHYCARDIC
+	flags_trait = TACHYCARDIC
 
 /datum/reagent/radium
 	name = "Radium"
@@ -565,7 +565,7 @@
 	reagent_state = LIQUID
 	color = "#181818" // rgb: 24, 24, 24
 	taste_description = "smoke"
-	trait_flags = TACHYCARDIC
+	flags_trait = TACHYCARDIC
 
 /datum/reagent/ammonia
 	name = "Ammonia"
@@ -634,7 +634,7 @@
 	if(prob(L.getFireLoss() + L.getBruteLoss())) // >Spraying space bleach on open wounds
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
-			if(C.species.species_flags & NO_PAIN)
+			if(C.species.flags_species & NO_PAIN)
 				return
 		if(show_message)
 			to_chat(L, span_warning("Your open wounds feel like they're on fire!"))

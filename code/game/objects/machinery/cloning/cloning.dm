@@ -38,7 +38,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	screen_overlay = "body_scannerconsole_emissive"
 	density = FALSE
 	idle_power_usage = 50
-	resistance_flags = RESIST_ALL // For now, we should work out how we want xenos to counter this
+	flags_resistance = RESIST_ALL // For now, we should work out how we want xenos to counter this
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN
 	dir = EAST
 

@@ -24,8 +24,8 @@
 	max_health = 130
 
 	// *** Flags *** //
-	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
+	flags_caste = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION
+	flags_can = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
 	caste_traits = null
 
 	// *** Defense *** //

@@ -143,7 +143,7 @@
 //=========================================================================================
 
 /obj/machinery/cryopod/evacuation
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	var/being_forced = 0 //Simple variable to prevent sound spam.
 	var/linked_to_shuttle = FALSE
 
@@ -166,7 +166,7 @@
 	name = "\improper Evacuation Airlock"
 	icon = 'icons/obj/doors/mainship/pod_doors.dmi'
 	icon_state = "door_locked"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	density = TRUE
 	opacity = TRUE
 	locked = TRUE

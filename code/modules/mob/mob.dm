@@ -96,7 +96,7 @@
  * vision_distance (optional) define how many tiles away the message can be seen.
  * ignored_mob (optional) doesn't show any message to a given mob if TRUE.
  */
-/atom/proc/visible_message(message, self_message, blind_message, vision_distance, ignored_mob, visible_message_flags = NONE, emote_prefix)
+/atom/proc/visible_message(message, self_message, blind_message, vision_distance, ignored_mob, flags_visible_message = NONE, emote_prefix)
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
@@ -106,7 +106,7 @@
 		range = vision_distance
 
 	var/raw_msg = message
-	if(visible_message_flags & EMOTE_MESSAGE)
+	if(flags_visible_message & EMOTE_MESSAGE)
 		message = "[emote_prefix]<b>[src]</b> [message]"
 
 	for(var/mob/M in get_hearers_in_view(range, src))
@@ -121,7 +121,7 @@
 		if(M == src && self_message) //the src always see the main message or self message
 			msg = self_message
 
-			if((visible_message_flags & COMBAT_MESSAGE) && M.client.prefs.mute_self_combat_messages)
+			if((flags_visible_message & COMBAT_MESSAGE) && M.client.prefs.mute_self_combat_messages)
 				continue
 
 		else
@@ -131,27 +131,27 @@
 
 				msg = blind_message
 
-			if((visible_message_flags & COMBAT_MESSAGE) && M.client.prefs.mute_others_combat_messages)
+			if((flags_visible_message & COMBAT_MESSAGE) && M.client.prefs.mute_others_combat_messages)
 				continue
 
-		if(visible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, visible_message_flags) && !is_blind(M))
-			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = visible_message_flags)
+		if(flags_visible_message & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, flags_visible_message) && !is_blind(M))
+			M.create_chat_message(src, raw_message = raw_msg, flags_runechat = flags_visible_message)
 
 		M.show_message(msg, EMOTE_VISIBLE, blind_message, EMOTE_AUDIBLE)
 
 
 ///Returns the client runechat visible messages preference according to the message type.
-/atom/proc/rc_vc_msg_prefs_check(mob/target, visible_message_flags = NONE)
+/atom/proc/rc_vc_msg_prefs_check(mob/target, flags_visible_message = NONE)
 	if(!target.client?.prefs.chat_on_map || !target.client.prefs.see_chat_non_mob)
 		return FALSE
-	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.see_rc_emotes)
+	if(flags_visible_message & EMOTE_MESSAGE && !target.client.prefs.see_rc_emotes)
 		return FALSE
 	return TRUE
 
-/mob/rc_vc_msg_prefs_check(mob/target, message, visible_message_flags = NONE)
+/mob/rc_vc_msg_prefs_check(mob/target, message, flags_visible_message = NONE)
 	if(!target.client?.prefs.chat_on_map)
 		return FALSE
-	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.see_rc_emotes)
+	if(flags_visible_message & EMOTE_MESSAGE && !target.client.prefs.see_rc_emotes)
 		return FALSE
 	return TRUE
 
@@ -164,19 +164,19 @@
 // deaf_message (optional) is what deaf people will see.
 // hearing_distance (optional) is the range, how many tiles away the message can be heard.
 
-/mob/audible_message(message, deaf_message, hearing_distance, self_message, audible_message_flags = NONE, emote_prefix)
+/mob/audible_message(message, deaf_message, hearing_distance, self_message, flags_audible_message = NONE, emote_prefix)
 	var/range = 7
 	var/raw_msg = message
 	if(hearing_distance)
 		range = hearing_distance
-	if(audible_message_flags & EMOTE_MESSAGE)
+	if(flags_audible_message & EMOTE_MESSAGE)
 		message = "[emote_prefix]<b>[src]</b> [message]"
 	for(var/mob/M in get_hearers_in_view(range, src))
 		var/msg = message
 		if(self_message && M == src)
 			msg = self_message
-		if(audible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, audible_message_flags) && !isdeaf(M))
-			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
+		if(flags_audible_message & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, flags_audible_message) && !isdeaf(M))
+			M.create_chat_message(src, raw_message = raw_msg, flags_runechat = flags_audible_message)
 		M.show_message(msg, EMOTE_AUDIBLE, deaf_message, EMOTE_VISIBLE)
 
 
@@ -187,16 +187,16 @@
  * deaf_message (optional) is what deaf people will see.
  * hearing_distance (optional) is the range, how many tiles away the message can be heard.
  */
-/atom/proc/audible_message(message, deaf_message, hearing_distance, self_message, audible_message_flags = NONE, emote_prefix)
+/atom/proc/audible_message(message, deaf_message, hearing_distance, self_message, flags_audible_message = NONE, emote_prefix)
 	var/range = 7
 	var/raw_msg = message
 	if(hearing_distance)
 		range = hearing_distance
-	if(audible_message_flags & EMOTE_MESSAGE)
+	if(flags_audible_message & EMOTE_MESSAGE)
 		message = "[emote_prefix]<b>[src]</b> [message]"
 	for(var/mob/M in get_hearers_in_view(range, src))
-		if(audible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, audible_message_flags))
-			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
+		if(flags_audible_message & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, flags_audible_message))
+			M.create_chat_message(src, raw_message = raw_msg, flags_runechat = flags_audible_message)
 		M.show_message(message, EMOTE_AUDIBLE, deaf_message, EMOTE_VISIBLE)
 
 
@@ -318,7 +318,7 @@
 	switch(var_name)
 		if(NAMEOF(src, control_object))
 			var/obj/O = var_value
-			if(!istype(O) || (O.obj_flags & DANGEROUS_POSSESSION))
+			if(!istype(O) || (O.flags_obj & DANGEROUS_POSSESSION))
 				return FALSE
 		if(NAMEOF(src, machine))
 			set_machine(var_value)
@@ -331,7 +331,7 @@
 			. = TRUE
 
 	if(!isnull(.))
-		datum_flags |= DF_VAR_EDITED
+		flags_datum |= DF_VAR_EDITED
 		return
 
 	var/slowdown_edit = (var_name == NAMEOF(src, cached_multiplicative_slowdown))
@@ -376,7 +376,7 @@
 			L.language_menu()
 
 /mob/living/start_pulling(atom/movable/AM, force = move_force, suppress_message = FALSE)
-	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !Adjacent(AM) || status_flags & INCORPOREAL)	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !Adjacent(AM) || flags_status & INCORPOREAL)	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return FALSE
 
 	if(!AM.can_be_pulled(src, force))
@@ -418,7 +418,7 @@
 
 	pulling = AM
 	AM.pulledby = src
-	AM.glide_modifier_flags |= GLIDE_MOD_PULLED
+	AM.flags_glide_modifier |= GLIDE_MOD_PULLED
 
 	var/obj/item/grab/grab_item = new /obj/item/grab()
 	grab_item.grabbed_thing = AM
@@ -439,7 +439,7 @@
 		if(!suppress_message)
 			visible_message(span_warning("[src] has grabbed [pulled_mob] passively!"), null, null, 5)
 
-		if(pulled_mob.mob_size > MOB_SIZE_HUMAN || !(pulled_mob.status_flags & CANPUSH))
+		if(pulled_mob.mob_size > MOB_SIZE_HUMAN || !(pulled_mob.flags_status & CANPUSH))
 			grab_item.icon_state = "!reinforce"
 
 		set_pull_offsets(pulled_mob)
@@ -635,7 +635,7 @@
 
 
 /mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
-	emote_overlay.appearance_flags = APPEARANCE_UI_TRANSFORM
+	emote_overlay.flags_appearance = APPEARANCE_UI_TRANSFORM
 	emote_overlay.plane = ABOVE_LIGHTING_PLANE
 	emote_overlay.layer = ABOVE_HUD_LAYER
 	overlays += emote_overlay

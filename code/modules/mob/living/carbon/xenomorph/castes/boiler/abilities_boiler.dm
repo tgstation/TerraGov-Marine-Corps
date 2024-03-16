@@ -36,14 +36,14 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 /datum/action/ability/xeno_action/toggle_long_range/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	if(X.xeno_flags & XENO_ZOOMED)
+	if(X.flags_xeno & XENO_ZOOMED)
 		X.zoom_out()
 		X.visible_message(span_notice("[X] stops looking off into the distance."), \
 		span_notice("We stop looking off into the distance."), null, 5)
 	else
 		X.visible_message(span_notice("[X] starts looking off into the distance."), \
 			span_notice("We start focusing your sight to look off into the distance."), null, 5)
-		if(!do_after(X, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || (X.xeno_flags & XENO_ZOOMED))
+		if(!do_after(X, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || (X.flags_xeno & XENO_ZOOMED))
 			return
 		X.zoom_in(11)
 		..()
@@ -56,13 +56,13 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	name = "Toggle Bombard Type"
 	action_icon_state = "toggle_bomb0"
 	desc = "Switches Boiler Bombard type between available glob types."
-	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_BUSY|ABILITY_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_BOMB,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL,
 	)
 
-/datum/action/ability/xeno_action/toggle_bomb/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/toggle_bomb/can_use_action(silent = FALSE, flags_override)
 	. = ..()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	if(length(X.xeno_caste.spit_types) > 2)
@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	action_icon = 'icons/xeno/actions_boiler_glob.dmi'
 	desc = "Creates a Boiler Bombard of the type currently selected."
 	ability_cost = 200
-	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_BUSY|ABILITY_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_BOMB,
 	)
@@ -146,7 +146,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/ability/xeno_action/create_boiler_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 
-	if(X.xeno_flags & XENO_ZOOMED)
+	if(X.flags_xeno & XENO_ZOOMED)
 		to_chat(X, span_notice("We can not prepare globules as we are now. We must stop concentrating into the distance!"))
 		return
 
@@ -180,7 +180,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BOMBARD,
 	)
-	target_flags = ABILITY_TURF_TARGET
+	flags_target = ABILITY_TURF_TARGET
 
 /datum/action/ability/activable/xeno/bombard/get_cooldown()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -221,7 +221,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		to_chat(firer, span_notice("We relax our stance."))
 	UnregisterSignal(owner, COMSIG_MOB_ATTACK_RANGED)
 
-/datum/action/ability/activable/xeno/bombard/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/bombard/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE

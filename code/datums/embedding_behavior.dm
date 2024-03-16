@@ -1,9 +1,9 @@
 
-#define EMBEDID "embed-[embedded_flags]-[embed_chance]-[embed_process_chance]-[embed_limb_damage]-[embed_body_damage]-[embedded_unsafe_removal_time]-[embedded_unsafe_removal_dmg_multiplier]-[embedded_fall_chance]-[embedded_fall_dmg_multiplier]"
+#define EMBEDID "embed-[flags_embedded]-[embed_chance]-[embed_process_chance]-[embed_limb_damage]-[embed_body_damage]-[embedded_unsafe_removal_time]-[embedded_unsafe_removal_dmg_multiplier]-[embedded_fall_chance]-[embedded_fall_dmg_multiplier]"
 
 
 /proc/getEmbeddingBehavior(
-	embedded_flags = EMBED_FLAGS,
+	flags_embedded = EMBED_FLAGS,
 	embed_chance = EMBED_CHANCE,
 	embed_process_chance = EMBED_PROCESS_CHANCE,
 	embed_limb_damage = EMBED_LIMB_DAMAGE,
@@ -16,11 +16,11 @@
 
 	. = locate(EMBEDID)
 	if(!.)
-		return new /datum/embedding_behavior(embedded_flags, embed_chance, embed_process_chance, embed_limb_damage, embed_body_damage, embedded_unsafe_removal_time, embedded_unsafe_removal_dmg_multiplier, embedded_fall_chance, embedded_fall_dmg_multiplier)
+		return new /datum/embedding_behavior(flags_embedded, embed_chance, embed_process_chance, embed_limb_damage, embed_body_damage, embedded_unsafe_removal_time, embedded_unsafe_removal_dmg_multiplier, embedded_fall_chance, embedded_fall_dmg_multiplier)
 
 
 /datum/embedding_behavior
-	var/embedded_flags = EMBED_FLAGS
+	var/flags_embedded = EMBED_FLAGS
 	var/embed_chance = EMBED_CHANCE
 	var/embed_process_chance = EMBED_PROCESS_CHANCE
 	var/embed_limb_damage = EMBED_LIMB_DAMAGE
@@ -32,7 +32,7 @@
 
 
 /datum/embedding_behavior/New(
-	embedded_flags = EMBED_FLAGS,
+	flags_embedded = EMBED_FLAGS,
 	embed_chance = EMBED_CHANCE,
 	embed_process_chance = EMBED_PROCESS_CHANCE,
 	embed_limb_damage = EMBED_LIMB_DAMAGE,
@@ -43,7 +43,7 @@
 	embedded_fall_dmg_multiplier = EMBEDDED_FALL_DMG_MULTIPLIER
 	)
 
-	src.embedded_flags = embedded_flags
+	src.flags_embedded = flags_embedded
 	src.embed_chance = embed_chance
 	src.embed_process_chance = embed_process_chance
 	src.embed_limb_damage = embed_limb_damage
@@ -55,8 +55,8 @@
 	tag = EMBEDID
 
 
-/datum/embedding_behavior/proc/setRating(embedded_flags, embed_chance, embed_process_chance, embed_limb_damage, embed_body_damage, embedded_unsafe_removal_time, embedded_unsafe_removal_dmg_multiplier, embedded_fall_chance, embedded_fall_dmg_multiplier)
-	return getEmbeddingBehavior((isnull(embedded_flags) ? src.embedded_flags : embedded_flags),\
+/datum/embedding_behavior/proc/setRating(flags_embedded, embed_chance, embed_process_chance, embed_limb_damage, embed_body_damage, embedded_unsafe_removal_time, embedded_unsafe_removal_dmg_multiplier, embedded_fall_chance, embedded_fall_dmg_multiplier)
+	return getEmbeddingBehavior((isnull(flags_embedded) ? src.flags_embedded : flags_embedded),\
 		(isnull(embed_chance) ? src.embed_chance : embed_chance),\
 		(isnull(embed_process_chance) ? src.embed_process_chance : embed_process_chance),\
 		(isnull(embed_limb_damage) ? src.embed_limb_damage : embed_limb_damage),\

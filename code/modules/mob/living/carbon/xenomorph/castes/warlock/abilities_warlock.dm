@@ -58,7 +58,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_SHIELD,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TRIGGER_PSYCHIC_SHIELD,
 	)
-	use_state_flags = ABILITY_USE_BUSY
+	flags_use_state = ABILITY_USE_BUSY
 	/// The actual shield object created by this ability
 	var/obj/effect/xeno/shield/active_shield
 
@@ -181,7 +181,7 @@
 /obj/effect/xeno/shield
 	icon = 'icons/Xeno/96x96.dmi'
 	icon_state = "shield"
-	resistance_flags = BANISH_IMMUNE|UNACIDABLE|PLASMACUTTER_IMMUNE
+	flags_resistance = BANISH_IMMUNE|UNACIDABLE|PLASMACUTTER_IMMUNE
 	max_integrity = 350
 	layer = ABOVE_MOB_LAYER
 	///Who created the shield
@@ -266,8 +266,8 @@
 	desc = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area. The longer it is channeled, the larger area it will affect, but will consume more plasma."
 	ability_cost = 40
 	cooldown_duration = 12 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
-	target_flags = ABILITY_TURF_TARGET
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY
+	flags_target = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CRUSH,
 	)
@@ -460,7 +460,7 @@
 	icon = 'icons/xeno/Effects.dmi'
 	icon_state = "crush_warning"
 	anchored = TRUE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	layer = ABOVE_ALL_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
@@ -477,7 +477,7 @@
 	icon = 'icons/xeno/2x2building.dmi'
 	icon_state = "orb_idle"
 	anchored = TRUE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	layer = FLY_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pixel_x = -16
@@ -526,7 +526,7 @@
 	return ..()
 
 
-/datum/action/ability/activable/xeno/psy_blast/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/psy_blast/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE

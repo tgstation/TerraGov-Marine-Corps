@@ -245,7 +245,7 @@
 	icon_state = "consoleleft"
 	screen_overlay = "consoleleft_emissive"
 	circuit = null
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 
 /obj/machinery/computer/security/dropship/one

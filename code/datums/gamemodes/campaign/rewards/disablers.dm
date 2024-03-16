@@ -4,7 +4,7 @@
 	desc = "base type of disabler, you shouldn't see this."
 	detailed_desc = "Why can you see this? Report on github."
 	uses = 2
-	asset_flags = ASSET_IMMEDIATE_EFFECT|ASSET_DEBUFF
+	flags_asset = ASSET_IMMEDIATE_EFFECT|ASSET_DEBUFF
 	///The types of asset disabled
 	var/list/types_disabled
 	///Rewards currently disabled. Recorded to reenable later
@@ -23,9 +23,9 @@
 /datum/campaign_asset/asset_disabler/deactivate()
 	if(!uses)
 		UnregisterSignal(SSdcs, list(COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, COMSIG_CAMPAIGN_NEW_ASSET))
-		asset_flags &= ~ASSET_DEBUFF
+		flags_asset &= ~ASSET_DEBUFF
 	for(var/datum/campaign_asset/asset_type AS in types_currently_disabled)
-		asset_type.asset_flags &= ~ASSET_DISABLED
+		asset_type.flags_asset &= ~ASSET_DISABLED
 	types_currently_disabled.Cut()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
 
@@ -34,7 +34,7 @@
 	SIGNAL_HANDLER
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	var/datum/campaign_mission/current_mission = mode.current_mission
-	if(current_mission.mission_flags & blacklist_mission_flags)
+	if(current_mission.flags_mission & flags_blacklist_mission)
 		return
 
 	for(var/i in faction.faction_assets)
@@ -52,7 +52,7 @@
 		return
 	if(!(asset.type in types_disabled))
 		return
-	asset.asset_flags |= ASSET_DISABLED
+	asset.flags_asset |= ASSET_DISABLED
 	types_currently_disabled += asset
 
 /datum/campaign_asset/asset_disabler/tgmc_cas
@@ -61,7 +61,7 @@
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to close air support"
 	ui_icon = "cas_disabled"
 	types_disabled = list(/datum/campaign_asset/fire_support)
-	blacklist_mission_flags = MISSION_DISALLOW_FIRESUPPORT
+	flags_blacklist_mission = MISSION_DISALLOW_FIRESUPPORT
 
 /datum/campaign_asset/asset_disabler/tgmc_cas/instant
 	uses = 1
@@ -74,7 +74,7 @@
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to close air support"
 	ui_icon = "cas_disabled"
 	types_disabled = list(/datum/campaign_asset/fire_support/som_cas)
-	blacklist_mission_flags = MISSION_DISALLOW_FIRESUPPORT
+	flags_blacklist_mission = MISSION_DISALLOW_FIRESUPPORT
 
 /datum/campaign_asset/asset_disabler/som_cas/instant
 	uses = 1
@@ -87,7 +87,7 @@
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to mortar fire support"
 	ui_icon = "mortar_disabled"
 	types_disabled = list(/datum/campaign_asset/fire_support/mortar)
-	blacklist_mission_flags = MISSION_DISALLOW_FIRESUPPORT
+	flags_blacklist_mission = MISSION_DISALLOW_FIRESUPPORT
 
 /datum/campaign_asset/asset_disabler/tgmc_mortar/long
 	uses = 3
@@ -98,7 +98,7 @@
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to mortar fire support"
 	ui_icon = "mortar_disabled"
 	types_disabled = list(/datum/campaign_asset/fire_support/som_mortar)
-	blacklist_mission_flags = MISSION_DISALLOW_FIRESUPPORT
+	flags_blacklist_mission = MISSION_DISALLOW_FIRESUPPORT
 
 /datum/campaign_asset/asset_disabler/som_mortar/long
 	uses = 3
@@ -109,7 +109,7 @@
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to drop pod deployment"
 	ui_icon = "droppod_disabled"
 	types_disabled = list(/datum/campaign_asset/droppod_enabled)
-	blacklist_mission_flags = MISSION_DISALLOW_DROPPODS
+	flags_blacklist_mission = MISSION_DISALLOW_DROPPODS
 
 /datum/campaign_asset/asset_disabler/teleporter
 	name = "Teleporter disabled"

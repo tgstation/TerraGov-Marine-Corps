@@ -275,7 +275,7 @@
 			continue
 		if(temp_limb.limb_status & LIMB_ROBOT)
 			if(!(temp_limb.brute_dam + temp_limb.burn_dam))
-				if(!(species.species_flags & IS_SYNTHETIC))
+				if(!(species.flags_species & IS_SYNTHETIC))
 					wound_flavor_text["[temp_limb.display_name]"] = "[span_tinynotice("[t_He] [t_has] a robot [temp_limb.display_name].")]\n"
 					continue
 			else
@@ -469,7 +469,7 @@
 
 	for(var/i in embedded_objects)
 		var/obj/item/embedded = i
-		if(!(embedded.embedding.embedded_flags & EMBEDDED_CAN_BE_YANKED_OUT))
+		if(!(embedded.embedding.flags_embedded & EMBEDDED_CAN_BE_YANKED_OUT))
 			continue
 		msg += "[span_boldwarning("[t_He] [t_has] \a [embedded] sticking out of [t_his] flesh!")]\n"
 
@@ -525,9 +525,9 @@
 			msg += "[span_deadsay("<b>[t_He] [t_is] hollowed out!</b>")]\n"
 
 	if(isxeno(user))
-		if(species.species_flags & IS_SYNTHETIC)
+		if(species.flags_species & IS_SYNTHETIC)
 			msg += "[span_xenowarning("You sense [t_he] [t_is] not organic.")]\n"
-		if(status_flags & XENO_HOST)
+		if(flags_status & XENO_HOST)
 			msg += "[t_He] [t_is] impregnated.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
 			msg += "Neurotoxin: Causes increasingly intense pain and stamina damage over time, increasing in intensity at the 40 second and the minute and a half mark of metabolism.\n"

@@ -262,7 +262,7 @@
 				return
 			.["type"] = type
 			var/atom/newguy = new type()
-			newguy.datum_flags |= DF_VAR_EDITED
+			newguy.flags_datum |= DF_VAR_EDITED
 			.["value"] = newguy
 
 		if(VV_NEW_DATUM)
@@ -272,7 +272,7 @@
 				return
 			.["type"] = type
 			var/datum/newguy = new type()
-			newguy.datum_flags |= DF_VAR_EDITED
+			newguy.flags_datum |= DF_VAR_EDITED
 			.["value"] = newguy
 
 		if(VV_NEW_TYPE)
@@ -291,7 +291,7 @@
 			.["type"] = type
 			var/datum/newguy = new type()
 			if(istype(newguy))
-				newguy.datum_flags |= DF_VAR_EDITED
+				newguy.flags_datum |= DF_VAR_EDITED
 			.["value"] = newguy
 
 		if(VV_NEW_LIST)

@@ -59,7 +59,7 @@
 	var/atom/movable/screen/action_button/hide_toggle/hide_actions_toggle
 	var/action_buttons_hidden = 0
 
-	var/list/atom/movable/screen/plane_master/plane_masters = list() // see "appearance_flags" in the ref, assoc list of "[plane]" = object
+	var/list/atom/movable/screen/plane_master/plane_masters = list() // see "flags_appearance" in the ref, assoc list of "[plane]" = object
 
 	// List of weakrefs to objects that we add to our screen that we don't expect to DO anything
 	// They typically use * in their render target. They exist solely so we can reuse them,

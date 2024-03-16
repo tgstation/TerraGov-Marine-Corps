@@ -2,7 +2,7 @@
 	return traumatic_shock
 
 /mob/living/carbon/proc/adjustTraumatic_Shock(amount)
-	if(amount > 0 && (status_flags & GODMODE))
+	if(amount > 0 && (flags_status & GODMODE))
 		return FALSE
 	traumatic_shock = clamp(traumatic_shock+amount,-100,maxHealth*2)
 
@@ -15,7 +15,7 @@
 	return shock_stage
 
 /mob/living/carbon/proc/adjustShock_Stage(amount)
-	if(amount > 0 && (status_flags & GODMODE))
+	if(amount > 0 && (flags_status & GODMODE))
 		return FALSE
 	. = shock_stage
 	setShock_Stage(clamp(shock_stage + (amount - shock_stage) * PAIN_REACTIVITY, 0, maxHealth * 2))
@@ -53,7 +53,7 @@
 
 // proc to find out in how much pain the mob is at the moment
 /mob/living/carbon/proc/updateshock()
-	if(species?.species_flags & NO_PAIN || stat == DEAD)
+	if(species?.flags_species & NO_PAIN || stat == DEAD)
 		traumatic_shock = 0
 		return
 

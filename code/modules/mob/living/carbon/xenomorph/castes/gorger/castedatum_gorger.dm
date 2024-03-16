@@ -32,8 +32,8 @@
 	deevolves_to = list(/mob/living/carbon/xenomorph/warrior, /mob/living/carbon/xenomorph/hivelord)
 
 	// *** Flags *** //
-	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_PLASMADRAIN_IMMUNE|CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
+	flags_caste = CASTE_INNATE_PLASMA_REGEN|CASTE_PLASMADRAIN_IMMUNE|CASTE_EVOLUTION_ALLOWED
+	flags_can = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
 	caste_traits = null
 
 	// *** Defense *** //

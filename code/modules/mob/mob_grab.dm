@@ -11,7 +11,7 @@
 	item_state = "nothing"
 	w_class = WEIGHT_CLASS_HUGE
 	attack_speed = CLICK_CD_GRABBING
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	var/atom/movable/grabbed_thing
 
 /obj/item/grab/Destroy()
@@ -56,7 +56,7 @@
 	if(!ishuman(user)) //only humans can reinforce a grab.
 		return
 	var/mob/living/victim = grabbed_thing
-	if(victim.mob_size > MOB_SIZE_HUMAN || !(victim.status_flags & CANPUSH))
+	if(victim.mob_size > MOB_SIZE_HUMAN || !(victim.flags_status & CANPUSH))
 		return //can't tighten your grip on big mobs and mobs you can't push.
 	if(user.grab_state > GRAB_KILL)
 		return
@@ -93,7 +93,7 @@
 				span_hear("You hear aggressive shuffling!"), ignored_mob = victim)
 			to_chat(victim, span_userdanger("[src] grabs you by the neck!"))
 			victim.drop_all_held_items()
-			ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_NECKGRAB)
+			ENABLE_BITFIELD(victim.flags_restrained, RESTRAINED_NECKGRAB)
 			if(!victim.buckled && !victim.density)
 				victim.Move(loc)
 		if(GRAB_KILL)
@@ -104,7 +104,7 @@
 				span_hear("You hear aggressive shuffling!"), ignored_mob = victim)
 			to_chat(victim, span_userdanger("[src] is strangling you!"))
 			victim.drop_all_held_items()
-			ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_NECKGRAB)
+			ENABLE_BITFIELD(victim.flags_restrained, RESTRAINED_NECKGRAB)
 			if(!victim.buckled && !victim.density)
 				victim.Move(loc)
 	set_pull_offsets(victim)

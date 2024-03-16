@@ -10,8 +10,8 @@
 	anchored = TRUE
 	layer = FLY_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	pass_flags = PASS_AIR
-	resistance_flags = UNACIDABLE|PLASMACUTTER_IMMUNE|PROJECTILE_IMMUNE|CRUSHER_IMMUNE
+	flags_pass = PASS_AIR
+	flags_resistance = UNACIDABLE|PLASMACUTTER_IMMUNE|PROJECTILE_IMMUNE|CRUSHER_IMMUNE
 	var/amount = 3
 	///Duration in 2 second ticks
 	var/lifetime = 5

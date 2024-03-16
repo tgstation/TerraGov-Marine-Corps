@@ -26,7 +26,7 @@ All ShuttleMove procs go here
 		if(ismob(thing))
 			if(isliving(thing))
 				var/mob/living/M = thing
-				if(M.status_flags & INCORPOREAL)
+				if(M.flags_status & INCORPOREAL)
 					continue // Ghost things don't splat
 				if(M.buckled)
 					M.buckled.unbuckle_mob(M, TRUE)

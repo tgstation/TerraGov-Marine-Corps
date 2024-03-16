@@ -35,9 +35,9 @@
 
 	/**
 	 * Ride check flags defined for the specific riding component types, so we know if we need arms, legs, or whatever.
-	 * Takes additional flags from the ridable element and the buckle proc (buckle_mob_flags) for riding cyborgs/humans in case we need to reserve arms
+	 * Takes additional flags from the ridable element and the buckle proc (flags_buckle_mob) for riding cyborgs/humans in case we need to reserve arms
 	 */
-	var/ride_check_flags = NONE
+	var/flags_ride_check = NONE
 	/// For telling someone they can't drive
 	COOLDOWN_DECLARE(message_cooldown)
 	/// For telling someone they can't drive
@@ -50,7 +50,7 @@
 
 	handle_specials()
 	riding_mob.updating_glide_size = FALSE
-	ride_check_flags |= args_to_flags(check_loc, lying_buckle, hands_needed, target_hands_needed)//buckle_mob_flags
+	flags_ride_check |= args_to_flags(check_loc, lying_buckle, hands_needed, target_hands_needed)//flags_buckle_mob
 	vehicle_moved()
 
 ///converts buckle args to their flags. We use this proc since I dont want to add a buckle refactor to this riding refactor port

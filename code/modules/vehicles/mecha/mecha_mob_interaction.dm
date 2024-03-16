@@ -69,14 +69,14 @@
 		mob_container = M
 	else
 		return ..()
-	mecha_flags  &= ~SILICON_PILOT
+	flags_mecha  &= ~SILICON_PILOT
 	mob_container.forceMove(newloc)//ejecting mob container
 	log_message("[mob_container] moved out.", LOG_MECHA)
 	SStgui.close_user_uis(M, src)
 	setDir(dir_in)
 	return ..()
 
-/obj/vehicle/sealed/mecha/add_occupant(mob/M, control_flags)
+/obj/vehicle/sealed/mecha/add_occupant(mob/M, flags_control)
 	RegisterSignal(M, COMSIG_MOB_DEATH, PROC_REF(mob_exit), TRUE)
 	RegisterSignal(M, COMSIG_MOB_MOUSEDOWN, PROC_REF(on_mouseclick), TRUE)
 	RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(display_speech_bubble), TRUE)

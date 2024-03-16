@@ -188,7 +188,7 @@ SUBSYSTEM_DEF(minimaps)
 
 /datum/hud_displays/New()
 	..()
-	for(var/flag in GLOB.all_minimap_flags)
+	for(var/flag in GLOB.flags_all_minimap)
 		images_assoc["[flag]"] = list()
 		images_raw["[flag]"] = list()
 
@@ -213,18 +213,18 @@ SUBSYSTEM_DEF(minimaps)
  * Adds an atom we want to track with blips to the subsystem
  * Arguments:
  * * target: atom we want to track
- * * hud_flags: tracked HUDs we want this atom to be displayed on
+ * * flags_hud: tracked HUDs we want this atom to be displayed on
  * * marker: image or mutable_appearance we want to be using on the map
  */
-/datum/controller/subsystem/minimaps/proc/add_marker(atom/target, hud_flags = NONE, image/blip)
-	if(!isatom(target) || !hud_flags || !blip)
+/datum/controller/subsystem/minimaps/proc/add_marker(atom/target, flags_hud = NONE, image/blip)
+	if(!isatom(target) || !flags_hud || !blip)
 		CRASH("Invalid marker added to subsystem")
 
 	if(!initialized || !(minimaps_by_z["[target.z]"])) //the minimap doesn't exist yet, z level was probably loaded after init
 		for(var/datum/callback/callback AS in earlyadds["[target.z]"])
 			if(callback.arguments[1] == target)
 				return
-		LAZYADDASSOC(earlyadds, "[target.z]", CALLBACK(src, PROC_REF(add_marker), target, hud_flags, blip))
+		LAZYADDASSOC(earlyadds, "[target.z]", CALLBACK(src, PROC_REF(add_marker), target, flags_hud, blip))
 		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_earlyadd), override = TRUE) //Override required for late z-level loading to prevent hard dels where an atom is initiated during z load, but is qdel'd before it finishes
 		return
 
@@ -234,7 +234,7 @@ SUBSYSTEM_DEF(minimaps)
 	blip.pixel_y = MINIMAP_PIXEL_FROM_WORLD(target_turf.y) + minimaps_by_z["[target_turf.z]"].y_offset
 
 	images_by_source[target] = blip
-	for(var/flag in bitfield2list(hud_flags))
+	for(var/flag in bitfield2list(flags_hud))
 		minimaps_by_z["[target_turf.z]"].images_assoc["[flag]"][target] = blip
 		minimaps_by_z["[target_turf.z]"].images_raw["[flag]"] += blip
 		for(var/datum/minimap_updator/updator AS in update_targets["[flag]"])
@@ -243,7 +243,7 @@ SUBSYSTEM_DEF(minimaps)
 	if(ismovableatom(target))
 		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_change))
 		blip.RegisterSignal(target, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/image, minimap_on_move))
-	removal_cbs[target] = CALLBACK(src, PROC_REF(removeimage), blip, target, hud_flags)
+	removal_cbs[target] = CALLBACK(src, PROC_REF(removeimage), blip, target, flags_hud)
 	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_marker), override = TRUE) //override for atoms that were on a late loaded z-level, overrides the remove_earlyadd above
 
 ///Removes the object from the earlyadds list, in case it was qdel'd before the z-level was fully loaded
@@ -260,9 +260,9 @@ SUBSYSTEM_DEF(minimaps)
 /**
  * removes an image from raw tracked lists, invoked by callback
  */
-/datum/controller/subsystem/minimaps/proc/removeimage(image/blip, atom/target, hud_flags)
+/datum/controller/subsystem/minimaps/proc/removeimage(image/blip, atom/target, flags_hud)
 	var/turf/target_turf = get_turf(target)
-	for(var/flag in bitfield2list(hud_flags))
+	for(var/flag in bitfield2list(flags_hud))
 		minimaps_by_z["[target_turf.z]"].images_raw["[flag]"] -= blip
 		for(var/datum/minimap_updator/updator AS in update_targets["[flag]"])
 			if(updator.ztarget == target_turf.z)
@@ -278,7 +278,7 @@ SUBSYSTEM_DEF(minimaps)
 /datum/controller/subsystem/minimaps/proc/on_z_change(atom/movable/source, oldz, newz)
 	SIGNAL_HANDLER
 	var/image/blip
-	for(var/flag in GLOB.all_minimap_flags)
+	for(var/flag in GLOB.flags_all_minimap)
 		if(!minimaps_by_z["[oldz]"]?.images_assoc["[flag]"][source])
 			continue
 		if(!blip)
@@ -335,7 +335,7 @@ SUBSYSTEM_DEF(minimaps)
 		return
 	UnregisterSignal(source, list(COMSIG_QDELETING, COMSIG_MOVABLE_Z_CHANGED))
 	var/turf/source_turf = get_turf(source)
-	for(var/flag in GLOB.all_minimap_flags)
+	for(var/flag in GLOB.flags_all_minimap)
 		minimaps_by_z["[source_turf.z]"].images_assoc["[flag]"] -= source
 	images_by_source -= source
 	removal_cbs[source].Invoke()
@@ -461,9 +461,9 @@ SUBSYSTEM_DEF(minimaps)
 		KEYBINDING_NORMAL = COMSIG_KB_TOGGLE_MINIMAP,
 	)
 	///Flags to allow the owner to see others of this type
-	var/minimap_flags = MINIMAP_FLAG_ALL
+	var/flags_minimap = MINIMAP_FLAG_ALL
 	///marker flags this will give the target, mostly used for marine minimaps
-	var/marker_flags = MINIMAP_FLAG_ALL
+	var/flags_marker = MINIMAP_FLAG_ALL
 	///boolean as to whether the minimap is currently shown
 	var/minimap_displayed = FALSE
 	///Minimap object we'll be displaying
@@ -475,13 +475,13 @@ SUBSYSTEM_DEF(minimaps)
 	///Sets a fixed z level to be tracked by this minimap action instead of being influenced by the owner's / locator override's z level.
 	var/default_overwatch_level = 0
 
-/datum/action/minimap/New(Target, new_minimap_flags, new_marker_flags)
+/datum/action/minimap/New(Target, flags_new_minimap, flags_new_marker)
 	. = ..()
 	locator = new
-	if(new_minimap_flags)
-		minimap_flags = new_minimap_flags
-	if(new_marker_flags)
-		marker_flags = new_marker_flags
+	if(flags_new_minimap)
+		flags_minimap = flags_new_minimap
+	if(flags_new_marker)
+		flags_marker = flags_new_marker
 
 /datum/action/minimap/Destroy()
 	map = null
@@ -573,11 +573,11 @@ SUBSYSTEM_DEF(minimaps)
 	if(default_overwatch_level)
 		if(!SSminimaps.minimaps_by_z["[default_overwatch_level]"] || !SSminimaps.minimaps_by_z["[default_overwatch_level]"].hud_image)
 			return
-		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
+		map = SSminimaps.fetch_minimap_object(default_overwatch_level, flags_minimap)
 		return
 	if(!SSminimaps.minimaps_by_z["[tracking.z]"] || !SSminimaps.minimaps_by_z["[tracking.z]"].hud_image)
 		return
-	map = SSminimaps.fetch_minimap_object(tracking.z, minimap_flags)
+	map = SSminimaps.fetch_minimap_object(tracking.z, flags_minimap)
 
 /datum/action/minimap/remove_action(mob/M)
 	var/atom/movable/tracking = locator_override ? locator_override : M
@@ -605,7 +605,7 @@ SUBSYSTEM_DEF(minimaps)
 				locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 				minimap_displayed = FALSE
 			return
-		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
+		map = SSminimaps.fetch_minimap_object(default_overwatch_level, flags_minimap)
 		if(minimap_displayed)
 			if(owner.client)
 				owner.client.screen += map
@@ -618,7 +618,7 @@ SUBSYSTEM_DEF(minimaps)
 			locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 			minimap_displayed = FALSE
 		return
-	map = SSminimaps.fetch_minimap_object(newz, minimap_flags)
+	map = SSminimaps.fetch_minimap_object(newz, flags_minimap)
 	if(minimap_displayed)
 		if(owner.client)
 			owner.client.screen += map
@@ -628,15 +628,15 @@ SUBSYSTEM_DEF(minimaps)
 
 
 /datum/action/minimap/xeno
-	minimap_flags = MINIMAP_FLAG_XENO
+	flags_minimap = MINIMAP_FLAG_XENO
 
 /datum/action/minimap/researcher
-	minimap_flags = MINIMAP_FLAG_MARINE|MINIMAP_FLAG_EXCAVATION_ZONE
-	marker_flags = MINIMAP_FLAG_MARINE
+	flags_minimap = MINIMAP_FLAG_MARINE|MINIMAP_FLAG_EXCAVATION_ZONE
+	flags_marker = MINIMAP_FLAG_MARINE
 
 /datum/action/minimap/marine
-	minimap_flags = MINIMAP_FLAG_MARINE
-	marker_flags = MINIMAP_FLAG_MARINE
+	flags_minimap = MINIMAP_FLAG_MARINE
+	flags_marker = MINIMAP_FLAG_MARINE
 
 /datum/action/minimap/marine/external //Avoids keybind conflicts between inherent mob minimap and bonus minimap from consoles, CAS or similar.
 	keybinding_signals = list(
@@ -644,17 +644,17 @@ SUBSYSTEM_DEF(minimaps)
 	)
 
 /datum/action/minimap/marine/external/som
-	minimap_flags = MINIMAP_FLAG_MARINE_SOM
-	marker_flags = MINIMAP_FLAG_MARINE_SOM
+	flags_minimap = MINIMAP_FLAG_MARINE_SOM
+	flags_marker = MINIMAP_FLAG_MARINE_SOM
 
 /datum/action/minimap/ai	//I'll keep this as seperate type despite being identical so it's easier if people want to make different aspects different.
-	minimap_flags = MINIMAP_FLAG_MARINE
-	marker_flags = MINIMAP_FLAG_MARINE
+	flags_minimap = MINIMAP_FLAG_MARINE
+	flags_marker = MINIMAP_FLAG_MARINE
 
 /datum/action/minimap/som
-	minimap_flags = MINIMAP_FLAG_MARINE_SOM
-	marker_flags = MINIMAP_FLAG_MARINE_SOM
+	flags_minimap = MINIMAP_FLAG_MARINE_SOM
+	flags_marker = MINIMAP_FLAG_MARINE_SOM
 
 /datum/action/minimap/observer
-	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_SOM|MINIMAP_FLAG_EXCAVATION_ZONE
-	marker_flags = NONE
+	flags_minimap = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_SOM|MINIMAP_FLAG_EXCAVATION_ZONE
+	flags_marker = NONE

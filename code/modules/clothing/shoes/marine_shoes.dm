@@ -104,7 +104,7 @@
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
 	siemens_coefficient = 0.2
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
 
 /*=========Imperium=========*/

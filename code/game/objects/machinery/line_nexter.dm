@@ -6,7 +6,7 @@
 	density = TRUE
 	icon_state = "turnstile"
 	anchored = TRUE
-	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASSABLE
+	flags_allow_pass = PASS_DEFENSIVE_STRUCTURE|PASSABLE
 	flags_atom = ON_BORDER
 	dir = 8
 	var/last_use

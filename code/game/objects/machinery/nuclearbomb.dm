@@ -14,9 +14,9 @@
 	anchored = TRUE
 	coverage = 20
 	flags_atom = CRITICAL_ATOM
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	layer = BELOW_MOB_LAYER
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_interaction = INTERACT_MACHINE_TGUI
 	var/deployable = TRUE
 	var/extended = FALSE
 	var/lighthack = FALSE
@@ -122,7 +122,7 @@
 		has_auth = TRUE
 
 /obj/machinery/nuclearbomb/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return FALSE
 
 	if(!timer_enabled)

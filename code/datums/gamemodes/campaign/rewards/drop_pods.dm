@@ -6,9 +6,9 @@
 	ui_icon = "droppod_active"
 	uses = 3
 	cost = 9
-	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_ACTIVE_MISSION_ONLY|ASSET_DISABLE_ON_MISSION_END|ASSET_DISALLOW_REPEAT_USE
+	flags_asset = ASSET_ACTIVATED_EFFECT|ASSET_ACTIVE_MISSION_ONLY|ASSET_DISABLE_ON_MISSION_END|ASSET_DISALLOW_REPEAT_USE
 	already_active_message = "Ship already repositioned to allow for drop pod usage."
-	blacklist_mission_flags = MISSION_DISALLOW_DROPPODS
+	flags_blacklist_mission = MISSION_DISALLOW_DROPPODS
 	blacklist_message = "External factors prevent the ship from repositioning at this time. Drop pods unavailable."
 
 /datum/campaign_asset/droppod_enabled/activation_checks()
@@ -41,7 +41,7 @@
 	var/active = FALSE
 	if(current_mission.mission_state == MISSION_STATE_ACTIVE)
 		for(var/datum/campaign_asset/droppod_enabled/droppod_enabled in faction.faction_assets)
-			if(droppod_enabled.asset_flags & ASSET_ACTIVE)
+			if(droppod_enabled.flags_asset & ASSET_ACTIVE)
 				active = TRUE
 			break
 
@@ -56,13 +56,13 @@
 	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/pod_officer
 	ui_icon = "droppod_broken"
 	uses = 2
-	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_ACTIVE_MISSION_ONLY
-	blacklist_mission_flags = MISSION_DISALLOW_DROPPODS
+	flags_asset = ASSET_ACTIVATED_EFFECT|ASSET_ACTIVE_MISSION_ONLY
+	flags_blacklist_mission = MISSION_DISALLOW_DROPPODS
 	blacklist_message = "Enemy drop pods already unable to deploy during this mission."
 
 /datum/campaign_asset/droppod_disable/activated_effect()
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	var/datum/campaign_mission/current_mission = mode.current_mission
-	current_mission.mission_flags |= MISSION_DISALLOW_DROPPODS
+	current_mission.flags_mission |= MISSION_DISALLOW_DROPPODS
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_DISABLE_DROPPODS)
 	to_chat(faction.faction_leader, span_warning("Orbital deterrence systems activated. Enemy drop pods disabled for this mission."))

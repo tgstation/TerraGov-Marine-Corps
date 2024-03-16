@@ -109,7 +109,7 @@
 			return
 		if(isstructure(thing))
 			var/obj/structure/obstacle = thing
-			if(obstacle.resistance_flags & XENO_DAMAGEABLE)
+			if(obstacle.flags_resistance & XENO_DAMAGEABLE)
 				INVOKE_ASYNC(src, PROC_REF(attack_target), null, obstacle)
 				return COMSIG_OBSTACLE_DEALT_WITH
 		else if(istype(thing, /obj/machinery/door/airlock))
@@ -131,7 +131,7 @@
 	//Ok we found nothing, yet we are still blocked. Check for blockers on our current turf
 	obstacle_turf = get_turf(mob_parent)
 	for(var/obj/structure/obstacle in obstacle_turf.contents)
-		if(obstacle.dir & direction && obstacle.resistance_flags & XENO_DAMAGEABLE)
+		if(obstacle.dir & direction && obstacle.flags_resistance & XENO_DAMAGEABLE)
 			INVOKE_ASYNC(src, PROC_REF(attack_target), null, obstacle)
 			return COMSIG_OBSTACLE_DEALT_WITH
 

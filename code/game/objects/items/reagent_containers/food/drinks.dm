@@ -10,7 +10,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/items/drinks_right.dmi',
 	)
 	icon_state = null
-	init_reagent_flags = OPENCONTAINER_NOUNIT
+	flags_init_reagent = OPENCONTAINER_NOUNIT
 	var/gulp_size = 5 //This is now officially broken ... need to think of a nice way to fix it.
 	possible_transfer_amounts = list(5,10,15,20,30,60)
 	volume = 50
@@ -29,7 +29,7 @@
 	if(iscarbon(M))
 		if(M == user)
 			var/mob/living/carbon/H = M
-			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
+			if(ishuman(H) && (H.species.flags_species & ROBOTIC_LIMBS))
 				to_chat(M, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
 				return
 			to_chat(M,span_notice("You swallow a gulp from \the [src]."))
@@ -41,7 +41,7 @@
 			return TRUE
 		else
 			var/mob/living/carbon/H = M
-			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
+			if(ishuman(H) && (H.species.flags_species & ROBOTIC_LIMBS))
 				to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 				return
 			M.visible_message(span_warning("[user] attempts to feed [M] \the [src]."))

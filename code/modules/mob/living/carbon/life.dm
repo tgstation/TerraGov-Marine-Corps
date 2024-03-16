@@ -50,7 +50,7 @@
 	if(.)
 		return
 
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 
 	if(stat == DEAD)

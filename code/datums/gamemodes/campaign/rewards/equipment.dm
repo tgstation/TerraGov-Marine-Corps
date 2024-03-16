@@ -1,7 +1,7 @@
 //Parent for all 'spawn stuff' assets
 /datum/campaign_asset/equipment
 	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/tgmc_req
-	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_SL_AVAILABLE
+	flags_asset = ASSET_ACTIVATED_EFFECT|ASSET_SL_AVAILABLE
 	///list of objects to spawn when this asset is activated
 	var/list/obj/equipment_to_spawn = list()
 

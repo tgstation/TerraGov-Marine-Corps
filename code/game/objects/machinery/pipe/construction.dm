@@ -75,7 +75,7 @@ Buildable meters
 /obj/item/pipe/proc/setPipingLayer(new_layer = PIPING_LAYER_DEFAULT)
 	var/obj/machinery/atmospherics/fakeA = pipe_type
 
-	if(initial(fakeA.pipe_flags) & PIPING_ALL_LAYER)
+	if(initial(fakeA.flags_pipe) & PIPING_ALL_LAYER)
 		new_layer = PIPING_LAYER_DEFAULT
 	piping_layer = new_layer
 
@@ -142,12 +142,12 @@ Buildable meters
 		return TRUE
 
 	var/obj/machinery/atmospherics/fakeA = pipe_type
-	var/flags = initial(fakeA.pipe_flags)
+	var/flags = initial(fakeA.flags_pipe)
 	for(var/obj/machinery/atmospherics/M in loc)
-		if((M.pipe_flags & flags & PIPING_ONE_PER_TURF))	//Only one dense/requires density object per tile, eg connectors/cryo/heater/coolers.
+		if((M.flags_pipe & flags & PIPING_ONE_PER_TURF))	//Only one dense/requires density object per tile, eg connectors/cryo/heater/coolers.
 			to_chat(user, span_warning("Something is hogging the tile!"))
 			return TRUE
-		if((M.piping_layer != piping_layer) && !((M.pipe_flags | flags) & PIPING_ALL_LAYER)) //don't continue if either pipe goes across all layers
+		if((M.piping_layer != piping_layer) && !((M.flags_pipe | flags) & PIPING_ALL_LAYER)) //don't continue if either pipe goes across all layers
 			continue
 		if(M.GetInitDirections() & SSair.get_init_dirs(pipe_type, fixed_dir()))	// matches at least one direction on either type of pipe
 			to_chat(user, span_warning("There is already a pipe at that location!"))

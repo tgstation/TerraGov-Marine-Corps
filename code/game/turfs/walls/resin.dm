@@ -12,12 +12,12 @@
 	base_icon_state = "resin-wall"
 	max_integrity = 200
 	layer = RESIN_STRUCTURE_LAYER
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
 	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES)
 	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 75, ENERGY = 75, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	hard_armor = list(MELEE = 0, BULLET = 15, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 
 	//Used for quickbuild refunding.
 	var/is_normal_resin_wall = TRUE
@@ -59,8 +59,8 @@
 	max_integrity = 120
 	opacity = FALSE
 	alpha = 180
-	allow_pass_flags = PASS_GLASS
-	smoothing_flags = SMOOTH_BITMASK
+	flags_allow_pass = PASS_GLASS
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
 	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES)
 
@@ -91,7 +91,7 @@
 
 
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return
 	if(CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		if(is_normal_resin_wall)

@@ -2,7 +2,7 @@
 /turf/open
 	plane = FLOOR_PLANE
 	minimap_color = MINIMAP_AREA_COLONY
-	resistance_flags = PROJECTILE_IMMUNE|UNACIDABLE
+	flags_resistance = PROJECTILE_IMMUNE|UNACIDABLE
 	var/allow_construction = TRUE //whether you can build things like barricades on this turf.
 	var/slayer = 0 //snow layer
 	var/wet = 0 //whether the turf is wet (only used by floors).
@@ -315,7 +315,7 @@
 	icon = 'icons/turf/floors/cave-basalt.dmi'
 	icon_state = "cave-basalt-icon"
 	base_icon_state = "cave-basalt"
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_BASALT)
 	canSmoothWith = list(
 		SMOOTH_GROUP_BASALT,
@@ -339,7 +339,7 @@
 	icon = 'icons/turf/floors/basalt-dirt.dmi'
 	icon_state = "basalt-dirt-icon"
 	base_icon_state = "basalt-dirt"
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_BASALT)
 	canSmoothWith = list(
 		SMOOTH_GROUP_BASALT,
@@ -374,7 +374,7 @@
 	var/deconstructing = FALSE
 
 /turf/open/lavaland/catwalk/built/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return
 	if(xeno_attacker.a_intent != INTENT_HARM)
 		return

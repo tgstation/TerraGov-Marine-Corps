@@ -4,7 +4,7 @@
 	icon_state = "computer_small"
 	screen_overlay = "cameras"
 	broken_icon = "computer_small_red_broken"
-	interaction_flags = INTERACT_MACHINE_NOSILICON
+	flags_interaction = INTERACT_MACHINE_NOSILICON
 	var/list/z_lock = list() // Lock use to these z levels
 	var/lock_override = NONE
 	var/open_prompt = TRUE

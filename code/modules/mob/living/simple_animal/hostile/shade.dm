@@ -18,7 +18,7 @@
 	melee_damage = 12
 	attacktext = "metaphysically strikes"
 	stop_automated_movement = TRUE
-	status_flags = NONE
+	flags_status = NONE
 	faction = list("cult")
-	status_flags = CANPUSH
+	flags_status = CANPUSH
 	del_on_death = TRUE

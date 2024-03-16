@@ -122,7 +122,7 @@
 #define STAMINALOSS (1<<4)
 //=================================================
 
-//status_flags
+//flags_status
 #define CANSTUN (1<<0)
 #define CANKNOCKDOWN (1<<1)
 #define CANKNOCKOUT (1<<2)
@@ -325,7 +325,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TIME_BEFORE_DNR 150 //In life ticks, multiply by 2 to have seconds
 
 
-//species_flags
+//flags_species
 #define NO_BLOOD (1<<0)
 #define NO_BREATHE (1<<1)
 #define NO_SCAN (1<<2)
@@ -800,7 +800,7 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define SCREWYHUD_DEAD 2
 #define SCREWYHUD_HEALTHY 3
 
-// timed_action_flags parameter for `/proc/do_after`
+// flags_timed_action parameter for `/proc/do_after`
 /// Can do the action even if mob moves location
 #define IGNORE_USER_LOC_CHANGE (1<<0)
 /// Can do the action even if the target moves location

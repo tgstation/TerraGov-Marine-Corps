@@ -12,7 +12,7 @@
 	upgrade = XENO_UPGRADE_NORMAL
 	drag_delay = 6 //pulling a big dead xeno is hard
 	mob_size = MOB_SIZE_BIG
-	buckle_flags = CAN_BUCKLE
+	flags_buckle = CAN_BUCKLE
 
 	pixel_x = -16
 	pixel_y = -3
@@ -22,7 +22,7 @@
 
 /mob/living/carbon/xenomorph/crusher/handle_special_state()
 	if(is_charging >= CHARGE_ON)
-		icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Charging"
+		icon_state = "[xeno_caste.caste_name][(flags_xeno & XENO_ROUNY) ? " rouny" : ""] Charging"
 		return TRUE
 	return FALSE
 
@@ -41,14 +41,14 @@
 	if(!isxeno(pulling))
 		return NONE
 	var/mob/living/carbon/xenomorph/grabbed = pulling
-	if(stat == CONSCIOUS && grabbed.xeno_caste.can_flags & CASTE_CAN_RIDE_CRUSHER)
+	if(stat == CONSCIOUS && grabbed.xeno_caste.flags_can & CASTE_CAN_RIDE_CRUSHER)
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
 		INVOKE_ASYNC(src, PROC_REF(carry_xeno), grabbed)
 		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
 	return NONE
 
 /mob/living/carbon/xenomorph/crusher/proc/carry_xeno(mob/living/carbon/target, forced = FALSE)
-	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+	if(incapacitated(flags_restrained = RESTRAINED_NECKGRAB))
 		if(forced)
 			to_chat(target, span_xenowarning("You cannot mount [src]"))
 			return
@@ -60,7 +60,7 @@
 		visible_message(span_warning("[forced ? "[target] fails to mount on [src]" : "[src] fails to carry [target]!"]"))
 		return
 	//Second check to make sure they're still valid to be carried
-	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+	if(incapacitated(flags_restrained = RESTRAINED_NECKGRAB))
 		return
 	buckle_mob(target, TRUE, TRUE, 90, 1, 0)
 

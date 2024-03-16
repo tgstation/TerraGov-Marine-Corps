@@ -15,8 +15,8 @@
 	req_one_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	opacity = FALSE
 	density = FALSE
-	obj_flags = CAN_BE_HIT
-	allow_pass_flags = NONE
+	flags_obj = CAN_BE_HIT
+	flags_allow_pass = NONE
 	layer = FIREDOOR_OPEN_LAYER
 	open_layer = FIREDOOR_OPEN_LAYER // Just below doors when open
 	closed_layer = FIREDOOR_CLOSED_LAYER // Just above doors when closed
@@ -118,7 +118,7 @@
 	return FALSE
 
 /obj/machinery/door/firedoor/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return FALSE
 
 	var/turf/cur_loc = xeno_attacker.loc
@@ -329,7 +329,7 @@
 /obj/machinery/door/firedoor/border_only
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	flags_atom = ON_BORDER
-	allow_pass_flags = PASS_GLASS
+	flags_allow_pass = PASS_GLASS
 
 /obj/machinery/door/firedoor/border_only/Initialize(mapload)
 	. = ..()

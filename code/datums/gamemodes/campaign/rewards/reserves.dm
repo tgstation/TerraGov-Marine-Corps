@@ -4,7 +4,7 @@
 	detailed_desc = "A strategic reserve force is activated to bolster your numbers, increasing your active attrition significantly. Additionally, the respawn delay for your team is reduced by 90 seconds. Can only be used when defending a mission, and only once per campaign."
 	ui_icon = "reserve_force"
 	uses = 1
-	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_DISABLE_ON_MISSION_END|ASSET_DISALLOW_REPEAT_USE
+	flags_asset = ASSET_ACTIVATED_EFFECT|ASSET_DISABLE_ON_MISSION_END|ASSET_DISALLOW_REPEAT_USE
 	///How much the faction's respawn delay is modified by
 	var/respawn_delay_mod = -90 SECONDS
 

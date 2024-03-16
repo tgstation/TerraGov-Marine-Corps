@@ -122,7 +122,7 @@
 	icon = 'icons/turf/floors/river.dmi'
 	icon_state = "river-icon"
 	base_icon_state = "river"
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_RIVER)
 	canSmoothWith = list(
 		SMOOTH_GROUP_RIVER,
@@ -257,7 +257,7 @@
 			if(!L.on_fire || L.getFireLoss() <= 200)
 				var/damage_amount = max(L.modify_by_armor(LAVA_TILE_BURN_DAMAGE, FIRE), LAVA_TILE_BURN_DAMAGE * 0.3) //snowflakey interaction to stop complete lava immunity
 				L.take_overall_damage(damage_amount, BURN, updating_health = TRUE, max_limbs = 3)
-				if(!CHECK_BITFIELD(L.pass_flags, PASS_FIRE))//Pass fire allow to cross lava without igniting
+				if(!CHECK_BITFIELD(L.flags_pass, PASS_FIRE))//Pass fire allow to cross lava without igniting
 					L.adjust_fire_stacks(20)
 					L.IgniteMob()
 				. = TRUE
@@ -316,7 +316,7 @@
 /turf/open/liquid/lava/autosmoothing
 	icon = 'icons/turf/floors/lava.dmi'
 	icon_state = "lava-icon"
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_FLOOR_LAVA)
 	canSmoothWith = list(SMOOTH_GROUP_FLOOR_LAVA, SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS, SMOOTH_GROUP_WINDOW_FULLTILE)
 	base_icon_state = "lava"

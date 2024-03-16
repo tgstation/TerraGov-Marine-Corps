@@ -67,14 +67,14 @@
 
 // \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
 // If it ever becomes necesary to get a more performant REF(), this lies here in wait
-// #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : text_ref(thing))
+// #define REF(thing) (thing && istype(thing, /datum) && (thing:flags_datum & DF_USE_TAG) && thing:tag ? "[thing:tag]" : text_ref(thing))
 /proc/REF(input)
 	if(istype(input, /datum))
 		var/datum/thing = input
-		if(thing.datum_flags & DF_USE_TAG)
+		if(thing.flags_datum & DF_USE_TAG)
 			if(!thing.tag)
 				stack_trace("A ref was requested of an object with DF_USE_TAG set but no tag: [thing]")
-				thing.datum_flags &= ~DF_USE_TAG
+				thing.flags_datum &= ~DF_USE_TAG
 			else
 				return "\[[url_encode(thing.tag)]\]"
 	return text_ref(input)
@@ -210,13 +210,13 @@
 	for(var/obj/object in loc)
 		if(!object.density)
 			continue
-		if((object.allow_pass_flags & PASS_PROJECTILE) && projectile)
+		if((object.flags_allow_pass & PASS_PROJECTILE) && projectile)
 			continue
 		if((istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno)) && bypass_xeno) //xeno objects are bypassed by flamers
 			continue
-		if((object.allow_pass_flags & PASS_GLASS) && bypass_window)
+		if((object.flags_allow_pass & PASS_GLASS) && bypass_window)
 			continue
-		if((object.allow_pass_flags & PASS_AIR) && air_pass)
+		if((object.flags_allow_pass & PASS_AIR) && air_pass)
 			continue
 		if(object.flags_atom & ON_BORDER && object.dir != direction)
 			continue
@@ -1004,13 +1004,13 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 
 /// Version of view() which ignores darkness, because BYOND doesn't have it (I actually suggested it but it was tagged redundant, BUT HEARERS IS A T- /rant).
-/proc/dview(range = world.view, center, invis_flags = 0)
+/proc/dview(range = world.view, center, flags_invis = 0)
 	if(!center)
 		return
 
 	GLOB.dview_mob.loc = center
 
-	GLOB.dview_mob.see_invisible = invis_flags
+	GLOB.dview_mob.see_invisible = flags_invis
 
 	. = view(range, GLOB.dview_mob)
 	GLOB.dview_mob.loc = null
@@ -1042,9 +1042,9 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	return ..()
 
 
-#define FOR_DVIEW(type, range, center, invis_flags) \
+#define FOR_DVIEW(type, range, center, flags_invis) \
 	GLOB.dview_mob.loc = center;           \
-	GLOB.dview_mob.see_invisible = invis_flags; \
+	GLOB.dview_mob.see_invisible = flags_invis; \
 	for(type in view(range, GLOB.dview_mob))
 
 #define FOR_DVIEW_END GLOB.dview_mob.loc = null

@@ -109,7 +109,7 @@ REAGENT SCANNER
 	if(isxeno(M))
 		balloon_alert(user, "Unknown entity")
 		return
-	if(M.species.species_flags & NO_SCAN)
+	if(M.species.flags_species & NO_SCAN)
 		balloon_alert(user, "Not Organic")
 		return
 	patient = M
@@ -167,7 +167,7 @@ REAGENT SCANNER
 		"blood_type" = patient.blood_type,
 		"blood_amount" = patient.blood_volume,
 
-		"hugged" = !!(patient.status_flags & XENO_HOST)
+		"hugged" = !!(patient.flags_status & XENO_HOST)
 	)
 	data["has_unknown_chemicals"] = FALSE
 	var/list/chemicals_lists = list()
@@ -183,7 +183,7 @@ REAGENT SCANNER
 		)
 	data["has_chemicals"] = length(patient.reagents.reagent_list)
 	data["chemicals_lists"] = chemicals_lists
-	data["species"] = patient.species.species_flags & ROBOTIC_LIMBS ? "robot" : "human"
+	data["species"] = patient.species.flags_species & ROBOTIC_LIMBS ? "robot" : "human"
 
 	var/list/limb_data_lists = list()
 	if(ishuman(patient))

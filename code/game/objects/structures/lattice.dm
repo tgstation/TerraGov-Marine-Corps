@@ -76,7 +76,7 @@
 	base_icon_state = "catwalk"
 	plane = FLOOR_PLANE
 	layer = CATWALK_LAYER
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_LATTICE)
 	canSmoothWith = list(SMOOTH_GROUP_LATTICE)
 

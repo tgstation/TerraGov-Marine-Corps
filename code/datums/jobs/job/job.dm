@@ -62,7 +62,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/skills_type = /datum/skills
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
-	var/job_flags = NONE
+	var/flags_job = NONE
 
 	var/list/jobworth = list() //Associative list of indexes increased when someone joins as this job.
 
@@ -86,7 +86,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(!ishuman(L))
 		return
 	var/mob/living/carbon/human/H = L
-	if(job_flags & JOB_FLAG_PROVIDES_BANK_ACCOUNT)
+	if(flags_job & JOB_FLAG_PROVIDES_BANK_ACCOUNT)
 		var/datum/money_account/bank_account = create_account(L.real_name, rand(50, 500) * 10)
 		var/list/remembered_info = list()
 		remembered_info += "<b>Your account number is:</b> #[bank_account.account_number]"
@@ -164,7 +164,7 @@ GLOBAL_PROTECT(exp_specialmap)
 [span_role_header("You are the [title].")]
 [span_role_body("As the <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.")]
 "})
-	if(!(job_flags & JOB_FLAG_NOHEADSET))
+	if(!(flags_job & JOB_FLAG_NOHEADSET))
 		to_chat(M, "<span class='role_body'>Prefix your message with ; to speak on the default radio channel. To see other prefixes, look closely at your headset.</span>")
 	if(req_admin_notify)
 		to_chat(M, "<span class='role_body'>You are playing a job that is important for game progression. If you have to disconnect, please head to hypersleep, if you can't make it there, notify the admins via adminhelp.</span>")
@@ -238,7 +238,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		add_job_positions(1)
 
 /datum/job/proc/add_job_positions(amount)
-	if(!(job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
+	if(!(flags_job & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
 		return
 	if(total_positions == -1)
 		return TRUE
@@ -248,7 +248,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	return TRUE
 
 /datum/job/proc/remove_job_positions(amount)
-	if(!(job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
+	if(!(flags_job & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
 		CRASH("remove_job_positions called for a non-joinable job")
 	if(total_positions == -1)
 		CRASH("remove_job_positions called with [amount] amount for a job set to overflow")
@@ -258,7 +258,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	return TRUE
 
 /datum/job/proc/set_job_positions(amount)
-	if(!(job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
+	if(!(flags_job & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
 		CRASH("set_job_positions called for a non-joinable job")
 	var/previous_amount = total_positions
 	total_positions = amount
@@ -270,7 +270,7 @@ GLOBAL_PROTECT(exp_specialmap)
 			SSjob.add_active_occupation(src)
 	else if(!total_positions)
 		SSjob.remove_active_occupation(src)
-	if(!SSticker.HasRoundStarted() && !(SSjob.ssjob_flags & SSJOB_OVERRIDE_JOBS_START) && previous_amount < total_positions)
+	if(!SSticker.HasRoundStarted() && !(SSjob.flags_ssjob & SSJOB_OVERRIDE_JOBS_START) && previous_amount < total_positions)
 		LAZYADD(SSjob.occupations_reroll, src)
 
 
@@ -311,7 +311,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 		equip_role_outfit(job)
 
-	if((job.job_flags & JOB_FLAG_ALLOWS_PREFS_GEAR) && player)
+	if((job.flags_job & JOB_FLAG_ALLOWS_PREFS_GEAR) && player)
 		equip_preference_gear(player)
 
 	if(!src.assigned_squad && assigned_squad)
@@ -347,7 +347,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 
 /datum/job/proc/on_late_spawn(mob/living/late_spawner)
-	if(job_flags & JOB_FLAG_ADDTOMANIFEST)
+	if(flags_job & JOB_FLAG_ADDTOMANIFEST)
 		if(!ishuman(late_spawner))
 			CRASH("on_late_spawn called for job with JOB_FLAG_ADDTOMANIFEST on non-human late_spawner: [late_spawner]")
 		GLOB.datacore.manifest_inject(late_spawner)

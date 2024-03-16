@@ -200,7 +200,7 @@
 	// Build message image
 	message = image(loc = message_loc, layer = CHAT_LAYER + CHAT_LAYER_Z_STEP * current_z_idx++)
 	message.plane = GAME_PLANE
-	message.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
+	message.flags_appearance = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
 	message.alpha = 0
 	message.pixel_y = owner.bound_height * 0.95
 	message.maptext_width = CHAT_MESSAGE_WIDTH
@@ -245,9 +245,9 @@
  * * raw_message - The text content of the message
  * * spans - Additional classes to be added to the message
  * * message_mode - String relating to the mode of the message
- * * runechat_flags - Bitflags relating to the message
+ * * flags_runechat - Bitflags relating to the message
  */
-/mob/proc/create_chat_message(atom/speaker, datum/language/message_language, raw_message, list/spans, message_mode, runechat_flags = NONE)
+/mob/proc/create_chat_message(atom/speaker, datum/language/message_language, raw_message, list/spans, message_mode, flags_runechat = NONE)
 	// Ensure the list we are using, if present, is a copy so we don't modify the list provided to us
 	spans = spans ? spans.Copy() : list()
 
@@ -263,8 +263,8 @@
 		return
 
 	// Display visual above source
-	if(runechat_flags & (COMBAT_MESSAGE|EMOTE_MESSAGE))
-		new /datum/chatmessage(raw_message, speaker, src, (runechat_flags & EMOTE_MESSAGE ? list("emote", "italics") : list("italics")))
+	if(flags_runechat & (COMBAT_MESSAGE|EMOTE_MESSAGE))
+		new /datum/chatmessage(raw_message, speaker, src, (flags_runechat & EMOTE_MESSAGE ? list("emote", "italics") : list("italics")))
 	else
 		new /datum/chatmessage(lang_treat(speaker, message_language, raw_message, spans, null, TRUE), speaker, src, spans)
 

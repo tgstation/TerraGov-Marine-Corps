@@ -175,7 +175,7 @@
 	var/old_legacy
 	if(using_instrument)
 		using_instrument.songs_using -= src
-		old_legacy = (using_instrument.instrument_flags & INSTRUMENT_LEGACY)
+		old_legacy = (using_instrument.flags_instrument & INSTRUMENT_LEGACY)
 	using_instrument = null
 	cached_samples = null
 	cached_legacy_ext = null
@@ -186,7 +186,7 @@
 	if(istype(I))
 		using_instrument = I
 		I.songs_using += src
-		var/instrument_legacy = (I.instrument_flags & INSTRUMENT_LEGACY)
+		var/instrument_legacy = (I.flags_instrument & INSTRUMENT_LEGACY)
 		if(instrument_legacy)
 			cached_legacy_ext = I.legacy_instrument_ext
 			cached_legacy_dir = I.legacy_instrument_path

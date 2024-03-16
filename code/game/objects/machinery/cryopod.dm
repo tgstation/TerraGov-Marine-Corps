@@ -6,7 +6,7 @@
 	icon_state = "cellconsole"
 	screen_overlay = "cellconsole_screen"
 	circuit = /obj/item/circuitboard/computer/cryopodcontrol
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/machinery/computer/cryopod/interact(mob/user)
 	. = ..()
@@ -101,7 +101,7 @@
 	icon_state = "body_scanner"
 	density = TRUE
 	anchored = TRUE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	light_range = 0.5
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
@@ -304,7 +304,7 @@
 	if(!occupant)
 		to_chat(xeno_attacker, span_xenowarning("There is nothing of interest in there."))
 		return
-	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
+	if(xeno_attacker.flags_status & INCORPOREAL || xeno_attacker.do_actions)
 		return
 	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
 	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)

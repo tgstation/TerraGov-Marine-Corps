@@ -7,10 +7,10 @@
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	flags_atom = ON_BORDER
-	resistance_flags = XENO_DAMAGEABLE
-	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASSABLE|PASS_WALKOVER
+	flags_resistance = XENO_DAMAGEABLE
+	flags_allow_pass = PASS_DEFENSIVE_STRUCTURE|PASSABLE|PASS_WALKOVER
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
-	interaction_flags = INTERACT_CHECK_INCAPACITATED
+	flags_interaction = INTERACT_CHECK_INCAPACITATED
 	max_integrity = 100
 	flags_barrier = HANDLE_BARRIER_CHANCE
 	///The type of stack the barricade dropped when disassembled if any.
@@ -59,13 +59,13 @@
 /obj/structure/barricade/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	. = ..()
 
-	if(mover?.throwing && !CHECK_MULTIPLE_BITFIELDS(mover?.pass_flags, HOVERING) && density && is_wired && iscarbon(mover) && (direction & dir))
+	if(mover?.throwing && !CHECK_MULTIPLE_BITFIELDS(mover?.flags_pass, HOVERING) && density && is_wired && iscarbon(mover) && (direction & dir))
 		knownblockers += src
 		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
 	if(get_dir(loc, target) & dir)
-		if(!CHECK_MULTIPLE_BITFIELDS(mover?.pass_flags, HOVERING) && is_wired && density && ismob(mover))
+		if(!CHECK_MULTIPLE_BITFIELDS(mover?.flags_pass, HOVERING) && is_wired && density && ismob(mover))
 			return FALSE
 		if(istype(mover, /obj/effect/xenomorph)) //cades stop xeno effects like acid spray
 			return FALSE
@@ -76,7 +76,7 @@
 	return attack_alien(user)
 
 /obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return FALSE
 
 	if(is_wired)
@@ -511,7 +511,7 @@
 			soft_armor = soft_armor.modifyRating(melee = 30, bullet = 30, laser = 30, energy = 30)
 		if(CADE_TYPE_ACID)
 			soft_armor = soft_armor.modifyRating(acid = 20)
-			resistance_flags |= UNACIDABLE
+			flags_resistance |= UNACIDABLE
 
 	barricade_upgrade_type = choice
 
@@ -682,7 +682,7 @@
 					soft_armor = soft_armor.modifyRating(melee = -30, bullet = -30, laser = -30, energy = -30)
 				if(CADE_TYPE_ACID)
 					soft_armor = soft_armor.modifyRating(acid = -20)
-					resistance_flags &= ~UNACIDABLE
+					flags_resistance &= ~UNACIDABLE
 
 			new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
 			barricade_upgrade_type = null

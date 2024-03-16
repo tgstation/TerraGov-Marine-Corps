@@ -124,7 +124,7 @@
 				for(var/mob/living/M in D.loc)
 					if(!istype(M,/mob/living)) continue
 					if(M == user) continue
-					visible_message(span_warning("[M] was hit by the foam dart!"), visible_message_flags = COMBAT_MESSAGE)
+					visible_message(span_warning("[M] was hit by the foam dart!"), flags_visible_message = COMBAT_MESSAGE)
 					new /obj/item/toy/crossbow_ammo(M.loc)
 					qdel(D)
 					return

@@ -99,7 +99,7 @@
 	owner.balloon_alert(owner, "Evasion ready")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 
-/datum/action/ability/xeno_action/evasion/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/evasion/can_use_action(silent = FALSE, flags_override)
 	. = ..()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.on_fire)
@@ -122,7 +122,7 @@
 		evasion_deactivate()
 		return
 
-	use_state_flags = ABILITY_IGNORE_COOLDOWN|ABILITY_IGNORE_PLASMA	//To allow the ability button to be clicked while on cooldown for deactivation purposes
+	flags_use_state = ABILITY_IGNORE_COOLDOWN|ABILITY_IGNORE_PLASMA	//To allow the ability button to be clicked while on cooldown for deactivation purposes
 	succeed_activate()
 	add_cooldown()
 	if(evade_active)
@@ -184,7 +184,7 @@
 
 /// Deactivates Evasion, clearing signals, vars, etc.
 /datum/action/ability/xeno_action/evasion/proc/evasion_deactivate()
-	use_state_flags = NONE	//To prevent the ability from being used while on cooldown now that it can no longer be deactivated
+	flags_use_state = NONE	//To prevent the ability from being used while on cooldown now that it can no longer be deactivated
 	STOP_PROCESSING(SSprocessing, src)
 	UnregisterSignal(owner, list(
 		COMSIG_LIVING_STATUS_STUN,
@@ -271,7 +271,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SNATCH,
 	)
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 	///If the runner have an item
 	var/obj/item/stolen_item = FALSE
 	///Mutable appearance of the stolen item
@@ -288,7 +288,7 @@
 		return ..()
 	drop_item()
 
-/datum/action/ability/activable/xeno/snatch/can_use_ability(atom/A, silent, override_flags)
+/datum/action/ability/activable/xeno/snatch/can_use_ability(atom/A, silent, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -305,7 +305,7 @@
 		if(!silent)
 			owner.balloon_alert(owner, "Cannot snatch")
 		return FALSE
-	if(target.status_flags & GODMODE)
+	if(target.flags_status & GODMODE)
 		if(!silent)
 			owner.balloon_alert(owner, "Cannot snatch")
 		return FALSE

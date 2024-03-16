@@ -25,7 +25,7 @@
 	desc = "THIS SHOULDN'T BE VISIBLE"
 	density = TRUE
 	anchored = TRUE
-	allow_pass_flags = PASSABLE
+	flags_allow_pass = PASSABLE
 	destroy_sound = 'sound/effects/meteorimpact.ogg'
 
 	icon = 'icons/obj/structures/campaign_structures.dmi'

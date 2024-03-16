@@ -1,6 +1,6 @@
 /// An element for atoms that, when dragged and dropped onto a mob, opens a strip panel.
 /datum/element/strippable
-	element_flags = ELEMENT_BESPOKE | ELEMENT_DETACH_ON_HOST_DESTROY
+	flags_element = ELEMENT_BESPOKE | ELEMENT_DETACH_ON_HOST_DESTROY
 	argument_hash_start_idx = 2
 
 	/// An assoc list of keys to /datum/strippable_item
@@ -71,7 +71,7 @@
 /datum/strippable_item/proc/is_incorporeal(mob/user)
 	if(isliving(user))
 		var/mob/living/L = user
-		if(CHECK_BITFIELD(L.status_flags, INCORPOREAL)) // Mobs that can walk through walls cannot grasp items to strip
+		if(CHECK_BITFIELD(L.flags_status, INCORPOREAL)) // Mobs that can walk through walls cannot grasp items to strip
 			to_chat(user, "<span class='warning'>You can't interact with the physical plane while you are incorporeal!</span>")
 			return FALSE
 		return TRUE

@@ -372,7 +372,7 @@
 	desc = "Created by an unknown corporation for high risk missions, made with several layers of a unknown nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them."
 	icon_state = "pilot_spec"
 	item_state = "pilot_spec"
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 70, BIO = 70, FIRE = 70, ACID = 70)
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS

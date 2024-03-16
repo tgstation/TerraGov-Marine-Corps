@@ -15,7 +15,7 @@
 	standard 0 if fail
 */
 /mob/living/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
-	if(status_flags & (GODMODE))
+	if(flags_status & (GODMODE))
 		return
 	if(isnum(blocked))
 		damage -= clamp(damage * (blocked - penetration) * 0.01, 0, damage)
@@ -68,7 +68,7 @@ Arguments
 	*updating_health if we should update health [/mob/living/updatehealth]
 */
 /mob/living/proc/apply_effect(effect = 0, effecttype = STUN, updating_health = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE
 	if(effect <= 0)
 		return FALSE
@@ -85,7 +85,7 @@ Arguments
 		if(AGONY)
 			adjustStaminaLoss(effect)
 		if(STUTTER)
-			if(status_flags & CANSTUN) // stun is usually associated with stutter
+			if(flags_status & CANSTUN) // stun is usually associated with stutter
 				set_timed_status_effect(effect, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 		if(EYE_BLUR)
 			blur_eyes(effect)

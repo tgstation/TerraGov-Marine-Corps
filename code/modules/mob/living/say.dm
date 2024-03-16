@@ -294,7 +294,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		if(issilicon(src))
 			special_filter += TTS_FILTER_SILICON
 
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice_to_use, filter.Join(","), listened, message_range = message_range, volume_offset = (job?.job_flags & JOB_FLAG_LOUDER_TTS) ? 20 : 0, pitch = pitch, special_filters = special_filter.Join("|"))
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice_to_use, filter.Join(","), listened, message_range = message_range, volume_offset = (job?.flags_job & JOB_FLAG_LOUDER_TTS) ? 20 : 0, pitch = pitch, special_filters = special_filter.Join("|"))
 
 	//speech bubble
 	var/list/speech_bubble_recipients = list()
@@ -302,7 +302,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		if(M.client)
 			speech_bubble_recipients.Add(M.client)
 	var/image/I = image('icons/mob/effects/talk.dmi', src, "[bubble_type][say_test(message_raw)]", FLY_LAYER)
-	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	I.flags_appearance = APPEARANCE_UI_IGNORE_ALPHA
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), I, speech_bubble_recipients, 30)
 
 /mob/living/GetVoice()

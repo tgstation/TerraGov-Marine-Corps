@@ -17,7 +17,7 @@
 	actions_types = list(/datum/action/item_action/toggle)
 	toggleable = 1
 	darkness_view = 2
-	vision_flags = SEE_TURFS
+	flags_vision = SEE_TURFS
 
 
 /obj/item/clothing/glasses/meson/prescription

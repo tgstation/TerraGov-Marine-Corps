@@ -118,7 +118,7 @@
 	update_stam_skill_mod(skills)
 
 /mob/living/carbon/human/ex_act(severity)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 
 	var/b_loss = 0
@@ -274,7 +274,7 @@
 //Removed the horrible safety parameter. It was only being used by ninja code anyways.
 //Now checks siemens_coefficient of the affected area by default
 /mob/living/carbon/human/electrocute_act(shock_damage, obj/source, base_siemens_coeff = 1.0, def_zone = null)
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(flags_status & GODMODE)	return 0	//godmode
 
 	if (!def_zone)
 		def_zone = pick("l_hand", "r_hand")
@@ -640,7 +640,7 @@
 	return (ishuman(target) && !target.canmove)
 
 /mob/living/carbon/human/proc/fireman_carry(mob/living/carbon/target)
-	if(!can_be_firemanned(target) || incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+	if(!can_be_firemanned(target) || incapacitated(flags_restrained = RESTRAINED_NECKGRAB))
 		to_chat(src, span_warning("You can't fireman carry [target] while they're standing!"))
 		return
 	visible_message(span_notice("[src] starts lifting [target] onto [p_their()] back..."),
@@ -650,7 +650,7 @@
 		visible_message(span_warning("[src] fails to fireman carry [target]!"))
 		return
 	//Second check to make sure they're still valid to be carried
-	if(!can_be_firemanned(target) || incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+	if(!can_be_firemanned(target) || incapacitated(flags_restrained = RESTRAINED_NECKGRAB))
 		return
 	buckle_mob(target, TRUE, TRUE, 90, 1, 0)
 
@@ -795,7 +795,7 @@
 		oldspecies.post_species_loss(src)
 
 	var/datum/reagents/R
-	if(species.species_flags & NO_CHEM_METABOLIZATION)
+	if(species.flags_species & NO_CHEM_METABOLIZATION)
 		R = new /datum/reagents(0)
 	else
 		R = new /datum/reagents(1000)
@@ -831,7 +831,7 @@
 	INVOKE_ASYNC(src, PROC_REF(update_hair))
 	INVOKE_ASYNC(src, PROC_REF(restore_blood))
 
-	if(!(species.species_flags & NO_STAMINA))
+	if(!(species.flags_species & NO_STAMINA))
 		AddComponent(/datum/component/stamina_behavior)
 		max_stamina = species.max_stamina
 		max_stamina_buffer = max_stamina
@@ -932,7 +932,7 @@
 	real_name = name
 	voice = random_tts_voice()
 
-	if(!(species.species_flags & HAS_NO_HAIR))
+	if(!(species.flags_species & HAS_NO_HAIR))
 		switch(pick(15;"black", 15;"grey", 15;"brown", 15;"lightbrown", 10;"white", 15;"blonde", 15;"red"))
 			if("black")
 				r_hair = 10

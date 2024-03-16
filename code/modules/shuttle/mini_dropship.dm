@@ -19,8 +19,8 @@
 	screen_overlay = "shuttlecomputer_screen"
 	req_access = list(ACCESS_MARINE_TADPOLE)
 	density = FALSE
-	interaction_flags = INTERACT_OBJ_UI
-	resistance_flags = RESIST_ALL
+	flags_interaction = INTERACT_OBJ_UI
+	flags_resistance = RESIST_ALL
 	shuttleId = SHUTTLE_TADPOLE
 	lock_override = CAMERA_LOCK_GROUND
 	shuttlePortId = "minidropship_custom"
@@ -120,7 +120,7 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/take_off()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
 	#ifndef TESTING
-	if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+	if(!(shuttle_port.flags_shuttle & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(ui_user, span_warning("The mothership is too far away from the theatre of operation, we cannot take off."))
 		return
 	#endif
@@ -164,7 +164,7 @@
 	. = ..()
 	if(machine_stat & BROKEN)
 		return
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return
 	xeno_attacker.visible_message("[xeno_attacker] begins to slash delicately at the computer",
 	"We start slashing delicately at the computer. This will take a while.")
@@ -245,7 +245,7 @@
 	var/element_nbr = 1
 	for(var/X in shuttle?.equipments)
 		var/obj/structure/dropship_equipment/E = X
-		.["equipment_data"] += list(list("name"= sanitize(copytext(E.name,1,MAX_MESSAGE_LEN)), "eqp_tag" = element_nbr, "is_weapon" = (E.dropship_equipment_flags & IS_WEAPON), "is_interactable" = (E.dropship_equipment_flags & IS_INTERACTABLE)))
+		.["equipment_data"] += list(list("name"= sanitize(copytext(E.name,1,MAX_MESSAGE_LEN)), "eqp_tag" = element_nbr, "is_weapon" = (E.flags_dropship_equipment & IS_WEAPON), "is_interactable" = (E.flags_dropship_equipment & IS_INTERACTABLE)))
 		element_nbr++
 
 

@@ -258,7 +258,7 @@
 		if(isxeno(M) && M.stat != DEAD)
 			cell.charge += 200
 			var/mob/living/carbon/xenomorph/xeno = M
-			if(!CHECK_BITFIELD(xeno.xeno_caste.caste_flags, CASTE_PLASMADRAIN_IMMUNE))
+			if(!CHECK_BITFIELD(xeno.xeno_caste.flags_caste, CASTE_PLASMADRAIN_IMMUNE))
 				xeno.use_plasma(round(xeno.xeno_caste.plasma_regen_limit * xeno.xeno_caste.plasma_max * 0.2)) //One fifth of the xeno's regeneratable plasma per hit.
 	return ..()
 
@@ -297,7 +297,7 @@
 
 
 /obj/item/tool/pickaxe/plasmacutter/attack_obj(obj/O, mob/living/user)
-	if(!powered || user.do_actions || CHECK_BITFIELD(O.resistance_flags, INDESTRUCTIBLE) || CHECK_BITFIELD(O.resistance_flags, PLASMACUTTER_IMMUNE))
+	if(!powered || user.do_actions || CHECK_BITFIELD(O.flags_resistance, INDESTRUCTIBLE) || CHECK_BITFIELD(O.flags_resistance, PLASMACUTTER_IMMUNE))
 		..()
 		return TRUE
 

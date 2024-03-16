@@ -1,5 +1,5 @@
 /datum/element/shrapnel_removal
-	element_flags = ELEMENT_BESPOKE
+	flags_element = ELEMENT_BESPOKE
 	argument_hash_start_idx = 2
 	///Channel time per shrap removal
 	var/do_after_time

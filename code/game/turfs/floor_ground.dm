@@ -110,7 +110,7 @@
 	icon = 'icons/turf/floors/jungle-dirt-border.dmi'
 	icon_state = "jungle-border-icon"
 	base_icon_state = "jungle-border"
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
 	canSmoothWith = list(
 		SMOOTH_GROUP_JUNGLE_FLOOR,
@@ -126,7 +126,7 @@
 	icon = 'icons/turf/floors/jungle-border.dmi'
 	icon_state = "jungle-border-icon"
 	base_icon_state = "jungle-border"
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
 	canSmoothWith = list(
 		SMOOTH_GROUP_JUNGLE_FLOOR,
@@ -222,7 +222,7 @@
 	icon = 'icons/turf/floors/red-dirt.dmi'
 	icon_state = "red-dirt-icon"
 	base_icon_state = "red-dirt"
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_RED_DIRT)
 	canSmoothWith = list(
 		SMOOTH_GROUP_RED_DIRT,

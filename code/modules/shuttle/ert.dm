@@ -25,7 +25,7 @@
 	rechargeTime = 3 MINUTES
 	callTime = 1 MINUTES
 
-	shuttle_flags = GAMEMODE_IMMUNE
+	flags_shuttle = GAMEMODE_IMMUNE
 
 /obj/docking_port/mobile/ert/proc/get_destinations()
 	var/list/docks = list()
@@ -86,7 +86,7 @@
 
 
 /obj/machinery/computer/shuttle/ert
-	interaction_flags = INTERACT_MACHINE_TGUI|INTERACT_MACHINE_NOSILICON //No AIs allowed
+	flags_interaction = INTERACT_MACHINE_TGUI|INTERACT_MACHINE_NOSILICON //No AIs allowed
 
 /obj/machinery/computer/shuttle/ert/valid_destinations()
 	var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)

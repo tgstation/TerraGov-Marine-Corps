@@ -10,7 +10,7 @@
 	icon_state = "glowshroomf"
 	layer = ABOVE_TURF_LAYER
 	max_integrity = 30
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/attackblob.ogg'
 	destroy_sound = null
 	coverage = 0

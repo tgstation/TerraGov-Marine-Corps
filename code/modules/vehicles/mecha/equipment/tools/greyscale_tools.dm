@@ -4,7 +4,7 @@
 	icon_state = "armor_melee"
 	iconstate_name = "armor_melee"
 	protect_name = "Melee Armor"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	flags_mech = EXOSUIT_MODULE_GREYSCALE
 	slowdown = 0.5
 	armor_mod = list(MELEE = 15)
 
@@ -14,7 +14,7 @@
 	icon_state = "armor_acid"
 	iconstate_name = "armor_acid"
 	protect_name = "Caustic Armor"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	flags_mech = EXOSUIT_MODULE_GREYSCALE
 	slowdown = 0.4
 	armor_mod = list(ACID = 15)
 
@@ -24,7 +24,7 @@
 	icon_state = "armor_explosive"
 	iconstate_name = "armor_explosive"
 	protect_name = "Explosive Armor"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	flags_mech = EXOSUIT_MODULE_GREYSCALE
 	slowdown = 0.3
 	armor_mod = list(BOMB = 50)
 
@@ -33,7 +33,7 @@
 	name = "phoron engine"
 	desc = "An advanced Nanotrasen phoron engine core prototype designed for TGMC advanced mech exosuits. Uses solid phoron as fuel, click engine to refuel. The lightest engine mechs can use at a cost of recharge rate and max fuel capacity."
 	icon_state = "phoron_engine"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	flags_mech = EXOSUIT_MODULE_GREYSCALE
 	rechargerate = 5
 	slowdown = 0.3
 	max_fuel = 30000
@@ -50,7 +50,7 @@
 	name = "energy optimizer"
 	desc = "A Nanotrasen-brand computer that uses predictive algorithms to reduce the power consumption of all steps by 50%."
 	icon_state = "optimizer"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	flags_mech = EXOSUIT_MODULE_GREYSCALE
 	equipment_slot = MECHA_POWER
 	slowdown = 0.3
 
@@ -70,7 +70,7 @@
 	name = "melee core"
 	desc = "A bluespace orion-sperkov converter. Through science you can't be bothered to understand, makes mechs faster and their weapons able to draw more power, making them more dangerous. However this comes at the cost of not being able to use projectile and laser weaponry."
 	icon_state = "melee_core"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	flags_mech = EXOSUIT_MODULE_GREYSCALE
 	equipment_slot = MECHA_UTILITY
 	///speed amount we modify the mech by
 	var/speed_mod
@@ -123,7 +123,7 @@
 	name = "actuator safety override"
 	desc = "A haphazard collection of electronics that allows the user to override standard safety inputs to increase speed, at the cost of extremely high power usage."
 	icon_state = "booster"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	flags_mech = EXOSUIT_MODULE_GREYSCALE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_overload_mode
 	///sound to loop when the dash is activated
 	var/datum/looping_sound/mech_overload/sound_loop
@@ -136,7 +136,7 @@
 	name = "enhanced zoom"
 	desc = "A magnifying module that allows the pilot to see much further than with the standard optics. Night vision not included."
 	icon_state = "zoom"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	flags_mech = EXOSUIT_MODULE_GREYSCALE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_zoom
 
 /obj/item/mecha_parts/mecha_equipment/ability/smoke
@@ -168,7 +168,7 @@
 	name = "tanglefoot generator"
 	desc = "A tanglefoot smoke generator capable of dispensing large amounts of non-lethal gas that saps the energy from any xenoform creatures it touches."
 	icon_state = "tfoot_gas"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	flags_mech = EXOSUIT_MODULE_GREYSCALE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_smoke
 	smoke_type = /datum/effect_system/smoke_spread/plasmaloss
 
@@ -176,6 +176,6 @@
 	name = "smoke generator"
 	desc = "A multiple launch module that generates a large amount of cloaking smoke to disguise nearby friendlies. Sadly, huge robots are too difficult to hide with it."
 	icon_state = "smoke_gas"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	flags_mech = EXOSUIT_MODULE_GREYSCALE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_smoke
 	smoke_type = /datum/effect_system/smoke_spread/tactical

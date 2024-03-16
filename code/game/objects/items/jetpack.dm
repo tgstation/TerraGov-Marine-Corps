@@ -13,7 +13,7 @@
 	)
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
-	obj_flags = CAN_BE_HIT
+	flags_obj = CAN_BE_HIT
 	///Time between uses
 	var/cooldown_time = 10 SECONDS
 	///maximum amount of fuel in the jetpack
@@ -172,7 +172,7 @@
 	name = "Use jetpack"
 	action_icon_state = "axe_sweep"
 	desc = "Briefly fly using your jetpack."
-	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
+	flags_use_state = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
 	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_JETPACK)
 
 /datum/action/ability/activable/item_toggle/jetpack/New(Target, obj/item/holder)
@@ -180,7 +180,7 @@
 	var/obj/item/jetpack_marine/jetpack = Target
 	cooldown_duration = jetpack.cooldown_time
 
-/datum/action/ability/activable/item_toggle/jetpack/can_use_ability(silent, override_flags, selecting)
+/datum/action/ability/activable/item_toggle/jetpack/can_use_ability(silent, flags_override, selecting)
 	var/mob/living/carbon/carbon_owner = owner
 	if(carbon_owner.incapacitated() || carbon_owner.lying_angle)
 		return FALSE
@@ -213,7 +213,7 @@
 	if(!.)
 		return
 	if(human_user.a_intent != INTENT_HELP)
-		human_user.pass_flags &= ~PASS_MOB //we explicitly want to hit people
+		human_user.flags_pass &= ~PASS_MOB //we explicitly want to hit people
 	RegisterSignal(human_user, COMSIG_MOVABLE_PREBUMP_MOVABLE, PROC_REF(mob_hit))
 
 /obj/item/jetpack_marine/heavy/reset_flame(mob/living/carbon/human/human_user)

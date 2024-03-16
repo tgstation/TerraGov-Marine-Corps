@@ -10,7 +10,7 @@
 	level = 1
 	anchored = TRUE
 	layer = WIRE_TERMINAL_LAYER
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	var/obj/machinery/power/master = null
 
 

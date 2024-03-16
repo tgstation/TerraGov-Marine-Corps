@@ -34,7 +34,7 @@
 	if(!ishuman(C))
 		return
 	var/mob/living/carbon/human/human_spawn = C
-	if(!(human_spawn.species.species_flags & ROBOTIC_LIMBS))
+	if(!(human_spawn.species.flags_species & ROBOTIC_LIMBS))
 		human_spawn.set_nutrition(250)
 	if(!human_spawn.assigned_squad)
 		CRASH("after_spawn called for a marine without an assigned_squad")
@@ -55,7 +55,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	minimap_icon = "private"
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	total_positions = -1
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	flags_job = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	outfit = /datum/outfit/job/som/squad/standard
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
@@ -113,7 +113,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	skills_type = /datum/skills/combat_engineer
 	display_order = JOB_DISPLAY_ORDER_SUQAD_ENGINEER
 	outfit = /datum/outfit/job/som/squad/engineer
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	flags_job = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/som/squad/veteran = VETERAN_POINTS_REGULAR,
@@ -170,7 +170,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	skills_type = /datum/skills/combat_medic
 	display_order = JOB_DISPLAY_ORDER_SQUAD_CORPSMAN
 	outfit = /datum/outfit/job/som/squad/medic
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	flags_job = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/som/squad/veteran = VETERAN_POINTS_REGULAR,
@@ -226,7 +226,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SMARTGUNNER
 	minimap_icon = "smartgunner"
 	outfit = /datum/outfit/job/som/squad/veteran
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	flags_job = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
@@ -280,7 +280,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	outfit = /datum/outfit/job/som/squad/leader
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	flags_job = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/som/squad/veteran = VETERAN_POINTS_REGULAR,

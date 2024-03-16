@@ -75,7 +75,7 @@
 		return FALSE
 
 /mob/living/proc/updatehealth()
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		health = maxHealth
 		stat = CONSCIOUS
 		return
@@ -105,7 +105,7 @@
 		qdel(effect)
 	for(var/i in embedded_objects)
 		var/obj/item/embedded = i
-		if(embedded.embedding.embedded_flags & EMBEDDED_DEL_ON_HOLDER_DEL)
+		if(embedded.embedding.flags_embedded & EMBEDDED_DEL_ON_HOLDER_DEL)
 			qdel(embedded) //This should remove the object from the list via temporarilyRemoveItemFromInventory() => COMSIG_ITEM_DROPPED.
 		else
 			embedded.unembed_ourself() //This should remove the object from the list directly.
@@ -118,7 +118,7 @@
 	job = null
 	LAZYREMOVE(GLOB.ssd_living_mobs, src)
 	GLOB.key_to_time_of_death[key] = world.time
-	if(stat != DEAD && job?.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
+	if(stat != DEAD && job?.flags_job & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
 		GLOB.key_to_time_of_role_death[key] = world.time
 	. = ..()
 	hard_armor = null
@@ -269,7 +269,7 @@
 		if(isliving(pulling))
 			var/mob/living/L = pulling
 			L.grab_resist_level = 0 //zero it out
-			DISABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
+			DISABLE_BITFIELD(L.flags_restrained, RESTRAINED_NECKGRAB)
 
 	. = ..()
 
@@ -324,7 +324,7 @@
 			//restrained people act if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
 			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP) && L.move_force < MOVE_FORCE_VERY_STRONG)
 				mob_swap_mode = SWAPPING
-			else if(get_xeno_hivenumber() == L.get_xeno_hivenumber() && (L.pass_flags & PASS_XENO || pass_flags & PASS_XENO))
+			else if(get_xeno_hivenumber() == L.get_xeno_hivenumber() && (L.flags_pass & PASS_XENO || flags_pass & PASS_XENO))
 				mob_swap_mode = PHASING
 			else if((move_resist >= MOVE_FORCE_VERY_STRONG || move_resist > L.move_force) && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones. Xenos can always shove xenos
 				mob_swap_mode = SWAPPING
@@ -341,10 +341,10 @@
 				var/oldloc = loc
 				var/oldLloc = L.loc
 
-				var/L_passmob = (L.pass_flags & PASS_MOB) // we give PASS_MOB to both mobs to avoid bumping other mobs during swap.
-				var/src_passmob = (pass_flags & PASS_MOB)
-				L.pass_flags |= PASS_MOB
-				pass_flags |= PASS_MOB
+				var/L_passmob = (L.flags_pass & PASS_MOB) // we give PASS_MOB to both mobs to avoid bumping other mobs during swap.
+				var/src_passmob = (flags_pass & PASS_MOB)
+				L.flags_pass |= PASS_MOB
+				flags_pass |= PASS_MOB
 
 				if(!moving_diagonally) //the diagonal move already does this for us
 					Move(oldLloc)
@@ -352,9 +352,9 @@
 					L.Move(oldloc)
 
 				if(!src_passmob)
-					pass_flags &= ~PASS_MOB
+					flags_pass &= ~PASS_MOB
 				if(!L_passmob)
-					L.pass_flags &= ~PASS_MOB
+					L.flags_pass &= ~PASS_MOB
 
 				now_pushing = FALSE
 
@@ -363,7 +363,7 @@
 		if(mob_size < L.mob_size) //Can't go around pushing things larger than us.
 			return
 
-		if(!(L.status_flags & CANPUSH))
+		if(!(L.flags_status & CANPUSH))
 			return
 
 	if(ismovableatom(A))
@@ -412,7 +412,7 @@
 		var/atom/movable/mob_buckle = mob_to_push.buckled
 		// If we can't pull them because of what they're buckled to, make sure we can push the thing they're buckled to instead.
 		// If neither are true, we're not pushing anymore.
-		if(mob_buckle && (mob_buckle.buckle_flags & BUCKLE_PREVENTS_PULL || (force < (mob_buckle.move_resist * MOVE_FORCE_PUSH_RATIO))))
+		if(mob_buckle && (mob_buckle.flags_buckle & BUCKLE_PREVENTS_PULL || (force < (mob_buckle.move_resist * MOVE_FORCE_PUSH_RATIO))))
 			now_pushing = FALSE
 			return
 	if((AM.anchored && !push_anchored) || (force < (AM.move_resist * MOVE_FORCE_PUSH_RATIO)))
@@ -890,7 +890,7 @@ below 100 is not dizzy
 		cost *= gravity
 		height *= gravity * 0.5
 
-	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = flags_pass)
+	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, flags__jump = flags, flags__jumper_allow_pass = flags_pass)
 
 /mob/living/vv_edit_var(var_name, var_value)
 	switch(var_name)
@@ -925,7 +925,7 @@ below 100 is not dizzy
 			. = TRUE
 
 	if(!isnull(.))
-		datum_flags |= DF_VAR_EDITED
+		flags_datum |= DF_VAR_EDITED
 		return
 
 	. = ..()

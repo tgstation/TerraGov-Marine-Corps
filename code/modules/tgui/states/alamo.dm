@@ -30,6 +30,6 @@ GLOBAL_DATUM_INIT(alamo_state, /datum/ui_state/alamo_state, new)
 	var/datum/game_mode/infestation/infestation_mode = SSticker.mode
 	if(infestation_mode.round_stage == INFESTATION_MARINE_CRASHING) //Minor QOL, any xeno can check the console after a leader hijacks
 		return GLOB.xeno_state.can_use_topic(src_object, src)
-	if(!(xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
+	if(!(xeno_caste.flags_caste & CASTE_IS_INTELLIGENT))
 		return default_can_use_topic(src_object)
 	return GLOB.xeno_state.can_use_topic(src_object, src)

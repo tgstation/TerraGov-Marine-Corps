@@ -35,7 +35,7 @@
 
 /mob/illusion
 	density = FALSE
-	status_flags = GODMODE
+	flags_status = GODMODE
 	layer = BELOW_MOB_LAYER
 	///The parent mob the illusion is a copy of
 	var/mob/original_mob

@@ -116,7 +116,7 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 	icon = 'icons/Marine/dropship_prop.dmi'
 	icon_state = "fighter_shadow"
 	layer = FLY_LAYER
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	duration = 3 SECONDS
 	pixel_x = -48

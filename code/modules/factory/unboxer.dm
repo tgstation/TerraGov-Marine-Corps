@@ -25,7 +25,7 @@
 	desc = "An industrial resourcing unboxer."
 	icon = 'icons/obj/factory/factory_machines.dmi'
 	icon_state = "unboxer_inactive"
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	density = TRUE
 	anchored = FALSE
 	///the amount of resouce we have left to output factory_parts
@@ -55,7 +55,7 @@
 
 /obj/machinery/unboxer/update_icon_state()
 	. = ..()
-	if(datum_flags & DF_ISPROCESSING)
+	if(flags_datum & DF_ISPROCESSING)
 		icon_state = "unboxer"
 		return
 	icon_state = "unboxer_inactive"

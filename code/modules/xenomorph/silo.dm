@@ -7,8 +7,8 @@
 	bound_width = 96
 	bound_height = 96
 	max_integrity = 1000
-	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE | PLASMACUTTER_IMMUNE
-	xeno_structure_flags = IGNORE_WEED_REMOVAL|CRITICAL_STRUCTURE
+	flags_resistance = UNACIDABLE | DROPSHIP_IMMUNE | PLASMACUTTER_IMMUNE
+	flags_xeno_structure = IGNORE_WEED_REMOVAL|CRITICAL_STRUCTURE
 	///How many larva points one silo produce in one minute
 	var/larva_spawn_rate = 0.5
 	var/turf/center_turf
@@ -95,7 +95,7 @@
 	. = ..()
 
 	//We took damage, so it's time to start regenerating if we're not already processing
-	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
+	if(!CHECK_BITFIELD(flags_datum, DF_ISPROCESSING))
 		START_PROCESSING(SSslowprocess, src)
 
 	resin_silo_damage_alert()

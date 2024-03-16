@@ -41,7 +41,7 @@ engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot 
 		. = new skills_type
 
 /datum/skills
-	datum_flags = DF_USE_TAG
+	flags_datum = DF_USE_TAG
 	var/name = "Default/Custom"
 	var/cqc = SKILL_CQC_DEFAULT
 	var/melee_weapons = SKILL_MELEE_DEFAULT

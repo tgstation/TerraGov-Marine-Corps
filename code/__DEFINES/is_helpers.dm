@@ -53,7 +53,7 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isbrain(A) (istype(A, /mob/living/brain))
 
-#define isnestedhost(A) ((CHECK_BITFIELD(A.status_flags, XENO_HOST) && CHECK_BITFIELD(A.restrained_flags, RESTRAINED_XENO_NEST)))
+#define isnestedhost(A) ((CHECK_BITFIELD(A.flags_status, XENO_HOST) && CHECK_BITFIELD(A.flags_restrained, RESTRAINED_XENO_NEST)))
 
 //Carbon mobs
 #define iscarbon(A) (istype(A, /mob/living/carbon))
@@ -63,7 +63,7 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 //Human sub-species
 #define isrobot(H) (is_species(H, /datum/species/robot))
 #define issynth(H) (is_species(H, /datum/species/synthetic) || is_species(H, /datum/species/early_synthetic))
-#define isspeciessynthetic(H) (H.species.species_flags & IS_SYNTHETIC)
+#define isspeciessynthetic(H) (H.species.flags_species & IS_SYNTHETIC)
 #define ismoth(H) (is_species(H, /datum/species/moth))
 #define issectoid(H) (is_species(H, /datum/species/sectoid))
 #define ishumanbasic(H) (is_species(H, /datum/species/human))

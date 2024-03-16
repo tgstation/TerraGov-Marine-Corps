@@ -167,7 +167,7 @@
 
 
 /obj/machinery/camera/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return FALSE
 
 	if(obj_integrity <= 0)
@@ -349,7 +349,7 @@
 /obj/machinery/camera/headset
 	name = "headset camera"
 	network = list("marine")
-	resistance_flags = RESIST_ALL //If the containing headset is not destroyed, neither should this be.
+	flags_resistance = RESIST_ALL //If the containing headset is not destroyed, neither should this be.
 
 /obj/machinery/camera/headset/som
 	network = list(SOM_CAMERA_NETWORK)
@@ -360,7 +360,7 @@
 	icon_state = ""
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	network = list("laser targets")
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	view_range = 12
 
 /obj/machinery/camera/laser_cam/Initialize(mapload, laser_name)
@@ -374,7 +374,7 @@
 	icon_state = ""
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	network = list("supply beacons")
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/machinery/camera/beacon_cam/bomb
 	network = list("bomb beacons")
@@ -409,7 +409,7 @@
 /obj/machinery/camera/autoname/thunderdome
 	name = "thunderdome camera"
 	network = list("thunder")
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 //Special invisible cameras, to get even better angles without looking ugly
 /obj/machinery/camera/autoname/thunderdome/hidden

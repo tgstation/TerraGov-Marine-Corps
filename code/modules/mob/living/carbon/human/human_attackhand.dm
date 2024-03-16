@@ -38,7 +38,7 @@
 				to_chat(human_user, span_boldnotice("Can't help this one. Body has gone cold."))
 				return FALSE
 
-			if(species?.species_flags & ROBOTIC_LIMBS)
+			if(species?.flags_species & ROBOTIC_LIMBS)
 				to_chat(human_user, span_boldnotice("You can't help this one, [p_they()] [p_have()] no lungs!"))
 				return FALSE
 

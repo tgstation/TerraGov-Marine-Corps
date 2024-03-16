@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/Bump(atom/A)
-	if(!(xeno_flags & XENO_LEAPING))
+	if(!(flags_xeno & XENO_LEAPING))
 		return ..()
 	if(!isliving(A))
 		return ..()
@@ -108,7 +108,7 @@
 /mob/living/carbon/xenomorph/get_status_tab_items()
 	. = ..()
 
-	if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
+	if(!(xeno_caste.flags_caste & CASTE_EVOLUTION_ALLOWED))
 		. += "Evolve Progress: (FINISHED)"
 	else if(!hive.check_ruler())
 		. += "Evolve Progress: (HALTED - NO RULER)"
@@ -250,7 +250,7 @@
 
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
-	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
+	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.flags_caste & CASTE_EVOLUTION_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
 		return
 	if(!hive.check_ruler() && caste_base_type != /mob/living/carbon/xenomorph/larva) // Larva can evolve without leaders at round start.
 		return
@@ -274,7 +274,7 @@
 /mob/living/carbon/xenomorph/throw_impact(atom/hit_atom, speed)
 	set waitfor = FALSE
 
-	if(stat || !(xeno_flags & XENO_LEAPING))
+	if(stat || !(flags_xeno & XENO_LEAPING))
 		return ..()
 
 	if(isobj(hit_atom)) //Deal with smacking into dense objects. This overwrites normal throw code.
@@ -321,16 +321,16 @@
 
 /mob/living/carbon/xenomorph/proc/zoom_in(tileoffset = 5, viewsize = 12)
 	if(stat || resting)
-		if(xeno_flags & XENO_ZOOMED)
+		if(flags_xeno & XENO_ZOOMED)
 			zoom_out()
 			return
 		return
-	if(xeno_flags & XENO_ZOOMED)
+	if(flags_xeno & XENO_ZOOMED)
 		return
 	if(!client)
 		return
 	zoom_turf = get_turf(src)
-	xeno_flags |= XENO_ZOOMED
+	flags_xeno |= XENO_ZOOMED
 	client.view_size.set_view_radius_to(viewsize/2-2) //convert diameter to radius
 	var/viewoffset = 32 * tileoffset
 	switch(dir)
@@ -348,7 +348,7 @@
 			client.pixel_y = 0
 
 /mob/living/carbon/xenomorph/proc/zoom_out()
-	xeno_flags &= ~XENO_ZOOMED
+	flags_xeno &= ~XENO_ZOOMED
 	zoom_turf = null
 	if(!client)
 		return
@@ -357,7 +357,7 @@
 	client.pixel_y = 0
 
 /mob/living/carbon/xenomorph/drop_held_item()
-	if(status_flags & INCORPOREAL)
+	if(flags_status & INCORPOREAL)
 		return FALSE
 	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(istype(F))
@@ -371,7 +371,7 @@
 //When the Queen's pheromones are updated, or we add/remove a leader, update leader pheromones
 /mob/living/carbon/xenomorph/proc/handle_xeno_leader_pheromones(mob/living/carbon/xenomorph/queen/Q)
 	QDEL_NULL(leader_current_aura)
-	if(QDELETED(Q) || !(xeno_flags & XENO_LEADER) || !Q.current_aura || Q.loc.z != loc.z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
+	if(QDELETED(Q) || !(flags_xeno & XENO_LEADER) || !Q.current_aura || Q.loc.z != loc.z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
 		to_chat(src, span_xenowarning("Our pheromones wane. The Queen is no longer granting us her pheromones."))
 	else
 		leader_current_aura = SSaura.add_emitter(src, Q.current_aura.aura_types.Copy(), Q.current_aura.range, Q.current_aura.strength, Q.current_aura.duration, Q.current_aura.faction, Q.current_aura.hive_number)
@@ -457,13 +457,13 @@
 	set desc = "Toggles the health and plasma hud appearing above Xenomorphs."
 	set category = "Alien"
 
-	xeno_flags ^= XENO_MOBHUD
+	flags_xeno ^= XENO_MOBHUD
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_XENO_STATUS]
-	if(xeno_flags & XENO_MOBHUD)
+	if(flags_xeno & XENO_MOBHUD)
 		H.add_hud_to(src)
 	else
 		H.remove_hud_from(src)
-	to_chat(src, span_notice("You have [(xeno_flags & XENO_MOBHUD) ? "enabled" : "disabled"] the Xeno Status HUD."))
+	to_chat(src, span_notice("You have [(flags_xeno & XENO_MOBHUD) ? "enabled" : "disabled"] the Xeno Status HUD."))
 
 
 /mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, datum/reagent/toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4)
@@ -489,9 +489,9 @@
 	return FALSE
 
 /mob/living/carbon/human/can_sting()
-	if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
+	if(species?.flags_species & (IS_SYNTHETIC|ROBOTIC_LIMBS))
 		return FALSE
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE
 	if(stat != DEAD)
 		return TRUE

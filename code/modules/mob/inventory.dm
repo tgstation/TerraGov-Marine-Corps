@@ -5,7 +5,7 @@
 	returns the thing in our currently active hand
 */
 /mob/proc/get_active_held_item()
-	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+	if(flags_status & INCORPOREAL) // INCORPOREAL things don't have hands
 		return
 	if(hand)
 		return l_hand
@@ -15,7 +15,7 @@
 	returns the thing in our currently inactive hand
 */
 /mob/proc/get_inactive_held_item()
-	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+	if(flags_status & INCORPOREAL) // INCORPOREAL things don't have hands
 		return
 	if(hand)
 		return r_hand
@@ -46,7 +46,7 @@
 */
 /mob/proc/put_in_l_hand(obj/item/W)
 	W.do_pickup_animation(src)
-	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+	if(flags_status & INCORPOREAL) // INCORPOREAL things don't have hands
 		return FALSE
 	if(lying_angle)
 		return FALSE
@@ -74,7 +74,7 @@
 */
 /mob/proc/put_in_r_hand(obj/item/W)
 	W.do_pickup_animation(src)
-	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+	if(flags_status & INCORPOREAL) // INCORPOREAL things don't have hands
 		return FALSE
 	if(lying_angle)
 		return FALSE
@@ -101,7 +101,7 @@
 	Returns TRUE on success.
 */
 /mob/proc/put_in_active_hand(obj/item/W)
-	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+	if(flags_status & INCORPOREAL) // INCORPOREAL things don't have hands
 		return FALSE
 	if(hand)
 		return put_in_l_hand(W)
@@ -115,7 +115,7 @@
 	Returns TRUE on success.
 */
 /mob/proc/put_in_inactive_hand(obj/item/W)
-	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+	if(flags_status & INCORPOREAL) // INCORPOREAL things don't have hands
 		return FALSE
 	if(hand)
 		return put_in_r_hand(W)
@@ -133,7 +133,7 @@
 */
 /mob/proc/put_in_hands(obj/item/W, del_on_fail = FALSE)
 	W.do_pickup_animation(src)
-	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+	if(flags_status & INCORPOREAL) // INCORPOREAL things don't have hands
 		return FALSE
 	if(!W)
 		return FALSE
@@ -175,7 +175,7 @@
 /mob/living/put_in_hand_check(obj/item/I, hand_index)
 	if((I.flags_item & ITEM_ABSTRACT) || !istype(I))
 		return FALSE
-	if(incapacitated() || lying_angle || (status_flags & INCORPOREAL))
+	if(incapacitated() || lying_angle || (flags_status & INCORPOREAL))
 		return FALSE
 	return TRUE
 
@@ -199,7 +199,7 @@
 	Returns TURE if it was successful.
 */
 /mob/proc/drop_item_v()
-	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+	if(flags_status & INCORPOREAL) // INCORPOREAL things don't have hands
 		return FALSE
 	if(stat == CONSCIOUS && isturf(loc))
 		return drop_held_item()
@@ -211,7 +211,7 @@
 	Returns TURE if it was successful.
 */
 /mob/proc/drop_l_hand()
-	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+	if(flags_status & INCORPOREAL) // INCORPOREAL things don't have hands
 		return FALSE
 	if(l_hand)
 		return dropItemToGround(l_hand)
@@ -223,7 +223,7 @@
 	Returns TURE if it was successful.
 */
 /mob/proc/drop_r_hand()
-	if(status_flags & INCORPOREAL) //  things don't have hands
+	if(flags_status & INCORPOREAL) //  things don't have hands
 		return FALSE
 	if(r_hand)
 		return dropItemToGround(r_hand)
@@ -235,7 +235,7 @@
 	Returns TURE if it was successful.
 */
 /mob/proc/drop_held_item()
-	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+	if(flags_status & INCORPOREAL) // INCORPOREAL things don't have hands
 		return FALSE
 	if(hand)
 		return drop_l_hand()
@@ -247,7 +247,7 @@
 	Returns TURE if it was successful.
 */
 /mob/proc/drop_all_held_items()
-	if(status_flags & INCORPOREAL)
+	if(flags_status & INCORPOREAL)
 		return
 	drop_r_hand()
 	drop_l_hand()
@@ -392,7 +392,7 @@
 
 //proc to get the item in the active hand.
 /mob/proc/get_held_item()
-	if(status_flags & INCORPOREAL)
+	if(flags_status & INCORPOREAL)
 		return
 	if (hand)
 		return l_hand

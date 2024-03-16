@@ -3,7 +3,7 @@
 	desc = "The standard combat helmet worn by SOM combat troops. Made using advanced polymers to provide very effective protection without compromising visibility."
 	item_typepath = /obj/item/clothing/head/modular/som
 	jobs_supported = list(SOM_SQUAD_MARINE)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/helmet/som_standard/medic
 	jobs_supported = list(SOM_SQUAD_CORPSMAN)
@@ -17,14 +17,14 @@
 	desc = "The standard combat helmet worn by SOM combat specialists. State of the art materials provides more protection for more valuable brains."
 	item_typepath = /obj/item/clothing/head/modular/som/veteran
 	jobs_supported = list(SOM_SQUAD_VETERAN)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/helmet/gorgon
 	name = "Gorgon pattern helmet"
 	desc = "Made for use with Gorgon pattern assault armor, providing superior protection. Typically seen on SOM leaders or their most elite combat units."
 	item_typepath = /obj/item/clothing/head/modular/som/leader
 	jobs_supported = list(SOM_SQUAD_LEADER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/helmet/gorgon/fc
 	name = "Gorgon pattern helmet"
@@ -63,7 +63,7 @@
 	desc = "A specialised helmet designed for use by combat engineers. Its main feature being an integrated welding mask."
 	item_typepath = /obj/item/clothing/head/modular/som/engineer
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/helmet/som_engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)

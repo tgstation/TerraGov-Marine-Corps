@@ -28,8 +28,8 @@
 	deevolves_to = list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/carrier, /mob/living/carbon/xenomorph/puppeteer)
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	flags_caste = CASTE_EVOLUTION_ALLOWED
+	flags_can = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 	caste_traits = null
 
 	// *** Defense *** //

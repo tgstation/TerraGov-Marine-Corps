@@ -17,8 +17,8 @@
 	response_disarm = "gently pushes aside"
 	response_harm = "splats"
 	density = FALSE
-	allow_pass_flags = PASS_MOB
-	pass_flags = PASS_LOW_STRUCTURE|PASS_GRILLE|PASS_MOB
+	flags_allow_pass = PASS_MOB
+	flags_pass = PASS_LOW_STRUCTURE|PASS_GRILLE|PASS_MOB
 	mob_size = MOB_SIZE_SMALL
 	var/body_color //brown, gray and white, leave blank for random
 	var/chew_probability = 1

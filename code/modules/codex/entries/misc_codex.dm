@@ -19,8 +19,8 @@
 		storage_strings += general_entry.mechanics_text + "<br>"
 
 	var/list/slots = list()
-	for(var/name in GLOB.string_equip_flags)
-		if(flags_equip_slot & GLOB.string_equip_flags[name])
+	for(var/name in GLOB.flags_string_equip)
+		if(flags_equip_slot & GLOB.flags_string_equip[name])
 			slots += name
 
 	if(length(slots))

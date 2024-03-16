@@ -19,7 +19,7 @@
 	attacktext = "punches"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	a_intent = INTENT_HARM
-	status_flags = CANPUSH
+	flags_status = CANPUSH
 	del_on_death = TRUE
 
 

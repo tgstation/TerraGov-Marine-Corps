@@ -12,7 +12,7 @@
 	///Number of uses available. Negative for no limit
 	var/uses = -1
 	///Special behavior flags
-	var/fire_support_flags = FIRESUPPORT_AVAILABLE
+	var/flags_fire_support = FIRESUPPORT_AVAILABLE
 	///How far the fire support can land from the target turf
 	var/scatter_range = 6
 	///How many impacts per use
@@ -42,17 +42,17 @@
 ///Enables the firesupport option
 /datum/fire_support/proc/enable_firesupport(additional_uses)
 	uses += additional_uses
-	fire_support_flags |= FIRESUPPORT_AVAILABLE
+	flags_fire_support |= FIRESUPPORT_AVAILABLE
 
 ///Disables the firesupport entirely
 /datum/fire_support/proc/disable(clear_uses = TRUE)
 	if(clear_uses)
 		uses = 0
-	fire_support_flags &= ~FIRESUPPORT_AVAILABLE
+	flags_fire_support &= ~FIRESUPPORT_AVAILABLE
 
 ///Initiates fire support proc chain
 /datum/fire_support/proc/initiate_fire_support(turf/target_turf, mob/user)
-	if(!uses || !(fire_support_flags & FIRESUPPORT_AVAILABLE))
+	if(!uses || !(flags_fire_support & FIRESUPPORT_AVAILABLE))
 		to_chat(user, span_notice("FIRE SUPPORT UNAVAILABLE"))
 		return
 	uses --

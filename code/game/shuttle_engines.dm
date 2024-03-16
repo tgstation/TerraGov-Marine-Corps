@@ -12,7 +12,7 @@
 	density = TRUE
 	opacity = FALSE
 	anchored = TRUE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	layer = WINDOW_LAYER
 
 /obj/structure/shuttle/window/fire_act(exposed_temperature, exposed_volume)
@@ -22,7 +22,7 @@
 	name = "engine"
 	density = TRUE
 	anchored = TRUE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/structure/shuttle/engine/heater
 	name = "heater"

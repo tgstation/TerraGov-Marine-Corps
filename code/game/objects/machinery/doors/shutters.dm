@@ -3,7 +3,7 @@
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 	icon_state = "shutter1"
 	power_channel = ENVIRON
-	resistance_flags = DROPSHIP_IMMUNE
+	flags_resistance = DROPSHIP_IMMUNE
 
 /obj/machinery/door/poddoor/shutters/Initialize(mapload)
 	. = ..()
@@ -101,20 +101,20 @@
 /obj/machinery/door/poddoor/shutters/mainship/thunderdome/one
 	name = "Thunderdome Blast Door"
 	id = "thunderdome1"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 
 /obj/machinery/door/poddoor/shutters/mainship/thunderdome/two
 	name = "Thunderdome Blast Door"
 	id = "thunderdome2"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 //transit shutters used by marine dropships
 /obj/machinery/door/poddoor/shutters/transit
 	name = "Transit shutters"
 	desc = "Safety shutters to prevent dangerous depressurization during flight"
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
-	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
+	flags_resistance = RESIST_ALL|DROPSHIP_IMMUNE
 	id = "ghhjmugggggtgggbg" // do not have any button or thing have an ID assigned to this, it is a very bad idea.
 	smoothing_groups = list(SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS)
 
@@ -129,7 +129,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct
 	name = "Self Destruct Lockdown"
 	id = "sd_lockdown"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/machinery/door/poddoor/shutters/mainship/open/hangar
 	name = "\improper Hangar Shutters"
@@ -151,24 +151,24 @@
 	id = "medbay_lockdown"
 
 /obj/machinery/door/poddoor/shutters/mainship/open/indestructible
-	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
+	flags_resistance = RESIST_ALL|DROPSHIP_IMMUNE
 
 
 /obj/machinery/door/poddoor/shutters/transit/open
 	density = FALSE
 	opacity = FALSE
-	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
+	flags_resistance = RESIST_ALL|DROPSHIP_IMMUNE
 	layer = PODDOOR_OPEN_LAYER
 	icon_state = "shutter0"
 
 /obj/machinery/door/poddoor/shutters/barren
-	resistance_flags = UNACIDABLE|DROPSHIP_IMMUNE
+	flags_resistance = UNACIDABLE|DROPSHIP_IMMUNE
 
 /obj/machinery/door/poddoor/shutters/mainship/pressure
 	name = "pressure shutters"
 	density = FALSE
 	opacity = FALSE
-	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
+	flags_resistance = RESIST_ALL|DROPSHIP_IMMUNE
 	icon_state = "shutter0"
 	open_layer = PODDOOR_CLOSED_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER

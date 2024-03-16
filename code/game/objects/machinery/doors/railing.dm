@@ -4,12 +4,12 @@
 	icon_state = "railing1"
 	use_power = 0
 	flags_atom = ON_BORDER
-	allow_pass_flags = PASSABLE
+	flags_allow_pass = PASSABLE
 	opacity = FALSE
 	open_layer = CATWALK_LAYER
 	closed_layer = WINDOW_LAYER
 
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 	var/obj/docking_port/mobile/supply/linked_pad
 

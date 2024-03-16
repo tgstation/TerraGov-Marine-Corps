@@ -7,8 +7,8 @@
 	anchored = TRUE
 	coverage = 40
 	layer = BELOW_OBJ_LAYER
-	resistance_flags = XENO_DAMAGEABLE
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	flags_resistance = XENO_DAMAGEABLE
+	flags_allow_pass = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	max_integrity = 40
 	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
@@ -677,7 +677,7 @@
 	verbs -= /obj/machinery/hydroponics/verb/close_lid
 
 /obj/machinery/hydroponics/slashable
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	max_integrity = 80
 
 #undef HYDRO_SPEED_MULTIPLIER

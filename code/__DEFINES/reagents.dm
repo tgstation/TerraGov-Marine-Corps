@@ -2,7 +2,7 @@
 #define LIQUID 2
 #define GAS 3
 
-// reagent_flags defines
+// flags_reagent defines
 #define INJECTABLE (1<<0)	// Makes it possible to add reagents through droppers and syringes.
 #define DRAWABLE (1<<1)	// Makes it possible to remove reagents through syringes.
 
@@ -16,7 +16,7 @@
 #define AMOUNT_ESTIMEE (1<<7)	//For containers without volume meters on (e.g. drinking glasses, cans, sprays)
 #define NO_REACT (1<<8)
 
-// trait_flags
+// flags_trait
 #define TACHYCARDIC (1<<0)
 #define BRADYCARDICS (1<<1)
 #define HEARTSTOPPER (1<<2)

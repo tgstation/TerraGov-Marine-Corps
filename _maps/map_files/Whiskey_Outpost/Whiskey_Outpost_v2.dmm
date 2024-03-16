@@ -5138,7 +5138,7 @@
 	desc = "No escape.";
 	id = "escape";
 	name = "Exit Shield";
-	resistance_flags = 3
+	flags_resistance = 3
 	},
 /obj/effect/forcefield,
 /turf/open/floor/plating/asteroidfloor,
@@ -6801,7 +6801,7 @@
 /area/whiskey_outpost/outside/north)
 "Ot" = (
 /obj/machinery/marine_selector/clothes{
-	lock_flags = 0
+	flags_lock = 0
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost)

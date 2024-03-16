@@ -1,4 +1,4 @@
-// Flags for the obj_flags var on /obj
+// Flags for the flags_obj var on /obj
 
 ///If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 #define IN_USE (1<<0)
@@ -11,7 +11,7 @@
 ///Admin possession yes/no
 #define DANGEROUS_POSSESSION (1<<4)
 
-//Fire and Acid stuff, for resistance_flags
+//Fire and Acid stuff, for flags_resistance
 #define INDESTRUCTIBLE (1<<0) //doesn't take damage
 #define UNACIDABLE (1<<1) //immune to acid
 #define ON_FIRE (1<<2) //currently on fire

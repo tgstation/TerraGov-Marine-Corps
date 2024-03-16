@@ -11,7 +11,7 @@
 	damage = _damage
 	penetration = _penetration
 
-/datum/action/ability/activable/weapon_skill/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/weapon_skill/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return

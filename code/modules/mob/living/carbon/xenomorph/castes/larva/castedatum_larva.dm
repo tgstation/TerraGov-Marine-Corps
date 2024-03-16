@@ -28,8 +28,8 @@
 	evolution_threshold = 50
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_INNATE_HEALING
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_RIDE_CRUSHER
+	flags_caste = CASTE_EVOLUTION_ALLOWED|CASTE_INNATE_HEALING
+	flags_can = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_RIDE_CRUSHER
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //

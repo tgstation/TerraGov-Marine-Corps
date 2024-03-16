@@ -241,7 +241,7 @@
 			return FALSE //here.Adjacent(there)
 		if(2 to INFINITY)
 			var/obj/dummy = new(get_turf(here))
-			dummy.allow_pass_flags |= PASS_LOW_STRUCTURE
+			dummy.flags_allow_pass |= PASS_LOW_STRUCTURE
 			dummy.invisibility = INVISIBILITY_ABSTRACT
 			for(var/i in 1 to reach) //Limit it to that many tries
 				var/turf/T = get_step(dummy, get_dir(dummy, there))
@@ -319,14 +319,14 @@
 		selected_ability.use_ability(A)
 
 #define TARGET_FLAGS_MACRO(flagname, typepath) \
-if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
+if(selected_ability.flags_target & flagname && !istype(A, typepath)){\
 	. = locate(typepath) in get_turf(A);\
 	if(.){\
 		return;}}
 
 /mob/living/carbon/proc/ability_target(atom/A)
 	TARGET_FLAGS_MACRO(ABILITY_MOB_TARGET, /mob/living)
-	if(selected_ability.target_flags & ABILITY_TURF_TARGET)
+	if(selected_ability.flags_target & ABILITY_TURF_TARGET)
 		return get_turf(A)
 	return A
 
@@ -344,7 +344,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 		A = ability_target(A)
 		if(selected_ability.can_use_ability(A))
 			selected_ability.use_ability(A)
-			return !CHECK_BITFIELD(selected_ability.use_state_flags, ABILITY_DO_AFTER_ATTACK)
+			return !CHECK_BITFIELD(selected_ability.flags_use_state, ABILITY_DO_AFTER_ATTACK)
 
 /*
 	Right click

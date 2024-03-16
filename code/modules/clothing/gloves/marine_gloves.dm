@@ -86,7 +86,7 @@
 	icon_state = "armored"
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 35, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 25, BIO = 15, FIRE = 15, ACID = 20)
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 
 /obj/item/clothing/gloves/marine/veteran/pmc
 	name = "armored gloves"
@@ -101,7 +101,7 @@
 	desc = "A pair of heavily armored, insulated, acid-resistant gloves."
 	icon_state = "death_squad"
 	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 25)
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 
 /obj/item/clothing/gloves/marine/som
 	name = "\improper SOM gloves"

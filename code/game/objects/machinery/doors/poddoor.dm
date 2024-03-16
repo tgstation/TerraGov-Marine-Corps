@@ -7,7 +7,7 @@
 	layer = PODDOOR_OPEN_LAYER
 	open_layer = PODDOOR_OPEN_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER
-	obj_flags = NONE
+	flags_obj = NONE
 	explosion_block = 6
 	smoothing_groups = list(SMOOTH_GROUP_SHUTTERS)
 
@@ -128,7 +128,7 @@
 /obj/machinery/door/poddoor/two_tile_hor/secure
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'
 	openspeed = 17
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/machinery/door/poddoor/two_tile_ver
 	icon = 'icons/obj/doors/1x2blast_vert.dmi'
@@ -150,29 +150,29 @@
 /obj/machinery/door/poddoor/two_tile_ver/secure
 	icon = 'icons/obj/doors/1x2blast_vert.dmi'
 	openspeed = 17
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/machinery/door/poddoor/four_tile_hor
 	icon = 'icons/obj/doors/1x4blast_hor.dmi'
 	dir = EAST
 	width = 4
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 
 /obj/machinery/door/poddoor/four_tile_hor/secure
 	icon = 'icons/obj/doors/1x4blast_hor_secure.dmi'
 	openspeed = 17
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/machinery/door/poddoor/four_tile_ver
 	icon = 'icons/obj/doors/1x4blast_vert.dmi'
 	dir = NORTH
 	width = 4
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 
 /obj/machinery/door/poddoor/four_tile_ver/secure
 	icon = 'icons/obj/doors/1x4blast_vert_secure.dmi'
 	openspeed = 17
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 //mainship poddoors
 /obj/machinery/door/poddoor/mainship
@@ -223,11 +223,11 @@
 /obj/machinery/door/poddoor/mainship/mech
 	name = "\improper Mech Shutters"
 	id = "mech_shutters"
-	resistance_flags = PLASMACUTTER_IMMUNE
+	flags_resistance = PLASMACUTTER_IMMUNE
 
 /obj/machinery/door/poddoor/mainship/umbilical
 	name = "Umbilical Airlock"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 
 /obj/machinery/door/poddoor/mainship/umbilical/north
@@ -239,14 +239,14 @@
 
 
 /obj/machinery/door/poddoor/mainship/indestructible
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 
 /obj/machinery/door/poddoor/timed_late
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	name = "Timed Emergency Shutters"
 	use_power = FALSE
-	resistance_flags = DROPSHIP_IMMUNE|RESIST_ALL
+	flags_resistance = DROPSHIP_IMMUNE|RESIST_ALL
 
 
 /obj/machinery/door/poddoor/timed_late/Initialize(mapload)
@@ -257,7 +257,7 @@
 /obj/machinery/door/poddoor/timed_late/containment
 	name = "Containment shutters"
 	desc = "Safety shutters triggered by some kind of lockdown event."
-	resistance_flags = DROPSHIP_IMMUNE|RESIST_ALL
+	flags_resistance = DROPSHIP_IMMUNE|RESIST_ALL
 	open_layer = UNDER_TURF_LAYER //No longer needs to be interacted with.
 	closed_layer = ABOVE_WINDOW_LAYER //Higher than usual, this is only around on the start of the round.
 
@@ -295,7 +295,7 @@ GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
 	desc = "Safety shutters designed to withstand any punishment. You're not forcing your way past this."
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	use_power = FALSE
-	resistance_flags = DROPSHIP_IMMUNE|RESIST_ALL
+	flags_resistance = DROPSHIP_IMMUNE|RESIST_ALL
 	open_layer = UNDER_TURF_LAYER
 	closed_layer = ABOVE_WINDOW_LAYER
 	///Faction associated with the door, for signal purposes
@@ -314,7 +314,7 @@ GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
 	desc = "Safety shutters designed to withstand any punishment. You're not forcing your way past this."
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	use_power = FALSE
-	resistance_flags = DROPSHIP_IMMUNE|RESIST_ALL
+	flags_resistance = DROPSHIP_IMMUNE|RESIST_ALL
 	open_layer = UNDER_TURF_LAYER
 	closed_layer = ABOVE_WINDOW_LAYER
 	///color associated with the door, for signal purposes

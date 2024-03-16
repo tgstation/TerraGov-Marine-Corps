@@ -301,10 +301,10 @@
 	status = !status
 	if(status)
 		balloon_alert(user, "Resecures and closes")
-		DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
+		DISABLE_BITFIELD(reagents.flags_reagent, OPENCONTAINER)
 	else
 		balloon_alert(user, "Ready to be refueled")
-		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
+		ENABLE_BITFIELD(reagents.flags_reagent, OPENCONTAINER)
 
 /obj/item/tool/weldingtool/largetank
 	name = "industrial blowtorch"

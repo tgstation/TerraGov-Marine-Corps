@@ -46,7 +46,7 @@
 	//Temporary/Internal stuff, do not copy these.
 	var/static/list/ignored_vars = list("vars","x","y","z","plane","layer","override","animate_movement","pixel_step_size","screen_loc","tip_timer")
 
-	if(istype(I) && I.datum_flags & DF_VAR_EDITED)
+	if(istype(I) && I.flags_datum & DF_VAR_EDITED)
 		var/list/vedits = list()
 		for(var/varname in I.vars)
 			if(!I.can_vv_get(varname))

@@ -42,7 +42,7 @@
 	desc = "After a windup, petrifies all humans looking at you. While petrified humans are immune to damage, but also can't attack."
 	ability_cost = 100
 	cooldown_duration = 30 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PETRIFY,
 	)
@@ -75,7 +75,7 @@
 			continue
 
 		human.notransform = TRUE
-		human.status_flags |= GODMODE
+		human.flags_status |= GODMODE
 		ADD_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
 		human.move_resist = MOVE_FORCE_OVERPOWERING
 		human.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOUR_PRIORITY)
@@ -110,14 +110,14 @@
 	if(!isxeno(owner))
 		return
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	if(xeno_owner.xeno_caste.caste_flags & CASTE_STAGGER_RESISTANT)
+	if(xeno_owner.xeno_caste.flags_caste & CASTE_STAGGER_RESISTANT)
 		ADD_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 
 ///ends all combat-relazted effects
 /datum/action/ability/xeno_action/petrify/proc/end_effects()
 	for(var/mob/living/carbon/human/human AS in petrified_humans)
 		human.notransform = FALSE
-		human.status_flags &= ~GODMODE
+		human.flags_status &= ~GODMODE
 		REMOVE_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
 		human.move_resist = initial(human.move_resist)
 		human.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_GRAY)
@@ -138,13 +138,13 @@
 	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
 	)
 
 
-/datum/action/ability/activable/xeno/off_guard/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/off_guard/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -193,7 +193,7 @@
 	desc = "Unleash a mighty psychic roar, knocking down any foes in your path and weakening them."
 	ability_cost = 225
 	cooldown_duration = 45 SECONDS
-	target_flags = ABILITY_TURF_TARGET
+	flags_target = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SHATTERING_ROAR,
 	)
@@ -279,7 +279,7 @@
 	if(!isxeno(owner))
 		return
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	if(xeno_owner.xeno_caste.caste_flags & CASTE_STAGGER_RESISTANT)
+	if(xeno_owner.xeno_caste.flags_caste & CASTE_STAGGER_RESISTANT)
 		ADD_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 
 /obj/effect/temp_visual/shattering_roar
@@ -303,7 +303,7 @@
 	desc = "After a windup, concentrates the hives energy into a forward-facing beam that pierces everything, but only hurts living beings."
 	ability_cost = 25
 	cooldown_duration = 10 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ZEROFORMBEAM,
 	)
@@ -331,7 +331,7 @@
 	alpha = 0
 	animate(src, alpha = 255, time = ZEROFORM_CHARGE_TIME)
 
-/datum/action/ability/xeno_action/zero_form_beam/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/zero_form_beam/can_use_action(silent, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -425,7 +425,7 @@
 	if(!isxeno(owner))
 		return
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	if(xeno_owner.xeno_caste.caste_flags & CASTE_STAGGER_RESISTANT)
+	if(xeno_owner.xeno_caste.flags_caste & CASTE_STAGGER_RESISTANT)
 		ADD_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 
 /particles/zero_form
@@ -465,7 +465,7 @@
 	desc = "Summons all xenos in a hive to the caller's location, uses all plasma to activate."
 	ability_cost = 900
 	cooldown_duration = 10 MINUTES
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HIVE_SUMMON,
 	)
@@ -474,7 +474,7 @@
 	to_chat(owner, span_warning("The hives power swells. We may summon our sisters again."))
 	return ..()
 
-/datum/action/ability/xeno_action/psychic_summon/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/psychic_summon/can_use_action(silent, flags_override)
 	. = ..()
 	if(!.)
 		return

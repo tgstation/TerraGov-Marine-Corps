@@ -299,7 +299,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		e.start()
 		qdel(src)
 		return
-	DISABLE_BITFIELD(reagents.reagent_flags, NO_REACT)
+	DISABLE_BITFIELD(reagents.flags_reagent, NO_REACT)
 	reagents.handle_reactions()
 	icon_state = icon_on
 	item_state = icon_on
@@ -335,7 +335,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(iscarbon(loc) && (src == loc:wear_mask)) // if it's in the human/monkey mouth, transfer reagents to the mob //TODO WHAT BAYCODER USED A : UNIRONICALLY
 			if(ishuman(loc))
 				var/mob/living/carbon/human/H = loc
-				if(H.species.species_flags & ROBOTIC_LIMBS)
+				if(H.species.flags_species & ROBOTIC_LIMBS)
 					return
 			var/mob/living/carbon/C = loc
 

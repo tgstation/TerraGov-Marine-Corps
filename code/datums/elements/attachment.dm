@@ -1,5 +1,5 @@
 /datum/element/attachment
-	element_flags = ELEMENT_BESPOKE
+	flags_element = ELEMENT_BESPOKE
 	argument_hash_start_idx = 2
 	///Assoc list of the data required for attaching. It does not change and should not be edited anywhere but here.
 	var/list/attachment_data

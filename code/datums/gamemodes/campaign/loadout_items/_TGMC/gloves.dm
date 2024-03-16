@@ -4,7 +4,7 @@
 /datum/loadout_item/gloves/empty
 	name = "no gloves"
 	desc = ""
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
 		SQUAD_CORPSMAN,
@@ -30,7 +30,7 @@
 	desc = "Standard issue marine tactical gloves. It reads: 'knit by Marine Widows Association'."
 	item_typepath = /obj/item/clothing/gloves/marine
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/gloves/marine_black_gloves
 	name = "Black combat gloves"
@@ -64,7 +64,7 @@
 	desc = "Insulated marine tactical gloves that protect against electrical shocks."
 	item_typepath = /obj/item/clothing/gloves/marine/insulated
 	jobs_supported = list(SQUAD_ENGINEER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 //FC
 /datum/loadout_item/gloves/officer_gloves
@@ -72,7 +72,7 @@
 	desc = "Shiny and impressive. They look expensive."
 	item_typepath = /obj/item/clothing/gloves/marine/officer
 	jobs_supported = list(FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 //captain
 /datum/loadout_item/gloves/captain_gloves
@@ -80,4 +80,4 @@
 	desc = "You may like these gloves, but THEY think you are unworthy of them."
 	item_typepath = /obj/item/clothing/gloves/marine/techofficer/captain
 	jobs_supported = list(CAPTAIN)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE

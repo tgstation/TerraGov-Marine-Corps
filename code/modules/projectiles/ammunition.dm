@@ -83,7 +83,7 @@
 		if(!CHECK_BITFIELD(flags_magazine, MAGAZINE_WORN) || !istype(I, /obj/item/weapon/gun) || loc != user)
 			return ..()
 		var/obj/item/weapon/gun/gun = I
-		if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_MAGAZINES))
+		if(!CHECK_BITFIELD(gun.flags_reciever, AMMO_RECIEVER_MAGAZINES))
 			return ..()
 		gun.reload(src, user)
 		return

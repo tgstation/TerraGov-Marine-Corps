@@ -5,7 +5,7 @@
 	screen_overlay = "syndishuttle"
 	broken_icon = "computer_red_broken"
 	req_access = list( )
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_interaction = INTERACT_MACHINE_TGUI
 	var/shuttleId
 	var/possible_destinations = ""
 	var/admin_controlled
@@ -53,7 +53,7 @@
 	if(href_list["move"])
 		var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 		#ifndef TESTING
-		if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+		if(!(M.flags_shuttle & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 			to_chat(usr, span_warning("The engines are still refueling."))
 			return TRUE
 		#endif

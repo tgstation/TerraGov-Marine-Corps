@@ -264,12 +264,12 @@
 /obj/docking_port/mobile/marine_dropship/one
 	name = "Alamo"
 	id = SHUTTLE_ALAMO
-	control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
+	flags_control = SHUTTLE_MARINE_PRIMARY_DROPSHIP
 
 /obj/docking_port/mobile/marine_dropship/two
 	name = "Normandy"
 	id = SHUTTLE_NORMANDY
-	control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
+	flags_control = SHUTTLE_MARINE_PRIMARY_DROPSHIP
 	callTime = 28 SECONDS //smaller shuttle go whoosh
 	rechargeTime = 1.5 MINUTES
 	dheight = 6
@@ -349,7 +349,7 @@
 	if(!SSticker?.mode)
 		to_chat(src, span_warning("This power doesn't work in this gamemode."))
 
-	if(!(hive.hive_flags & HIVE_CAN_HIJACK))
+	if(!(hive.flags_hive & HIVE_CAN_HIJACK))
 		to_chat(src, span_warning("Our hive lacks the psychic prowess to hijack the bird."))
 		return
 
@@ -393,7 +393,7 @@
 	var/obj/docking_port/mobile/marine_dropship/D
 	for(var/k in SSshuttle.dropships)
 		var/obj/docking_port/mobile/M = k
-		if(M.control_flags & SHUTTLE_MARINE_PRIMARY_DROPSHIP)
+		if(M.flags_control & SHUTTLE_MARINE_PRIMARY_DROPSHIP)
 			D = M
 	if(is_ground_level(D.z))
 		var/locked_sides = 0
@@ -474,7 +474,7 @@
 	var/obj/docking_port/mobile/marine_dropship/D
 	for(var/k in SSshuttle.dropships)
 		var/obj/docking_port/mobile/M = k
-		if(M.control_flags & SHUTTLE_MARINE_PRIMARY_DROPSHIP)
+		if(M.flags_control & SHUTTLE_MARINE_PRIMARY_DROPSHIP)
 			D = M
 	D.summon_dropship_to(closest)
 	return closest
@@ -490,14 +490,14 @@
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "console"
 	screen_overlay = "console_emissive"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	possible_destinations = "lz1;lz2;alamo"
 	opacity = FALSE
 
 /obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	var/datum/game_mode/infestation/infestation_mode = SSticker.mode //Minor QOL, any xeno can check the console after a leader hijacks
-	if(!(xeno_attacker.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT) && (infestation_mode.round_stage != INFESTATION_MARINE_CRASHING))
+	if(!(xeno_attacker.xeno_caste.flags_caste & CASTE_IS_INTELLIGENT) && (infestation_mode.round_stage != INFESTATION_MARINE_CRASHING))
 		return
 	#ifndef TESTING
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
@@ -644,7 +644,7 @@
 		//These are actions for the Xeno dropship UI
 		if("hijack")
 			var/mob/living/carbon/xenomorph/xeno = usr
-			if(!(xeno.hive.hive_flags & HIVE_CAN_HIJACK))
+			if(!(xeno.hive.flags_hive & HIVE_CAN_HIJACK))
 				to_chat(xeno, span_warning("Our hive lacks the psychic prowess to hijack the bird."))
 				return
 			if(shuttle.mode == SHUTTLE_RECHARGING)
@@ -803,9 +803,9 @@
 /obj/structure/dropship_piece
 	icon = 'icons/obj/structures/dropship_structures.dmi'
 	density = TRUE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	opacity = TRUE
-	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
+	flags_allow_pass = PASS_PROJECTILE|PASS_AIR
 
 /obj/structure/dropship_piece/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
@@ -915,22 +915,22 @@
 /obj/structure/dropship_piece/one/rearwing/leftlbottom
 	icon_state = "brown_rearwing_llb"
 	opacity = FALSE
-	allow_pass_flags = PASSABLE
+	flags_allow_pass = PASSABLE
 
 /obj/structure/dropship_piece/one/rearwing/rightrbottom
 	icon_state = "brown_rearwing_rrb"
 	opacity = FALSE
-	allow_pass_flags = PASSABLE
+	flags_allow_pass = PASSABLE
 
 /obj/structure/dropship_piece/one/rearwing/leftllbottom
 	icon_state = "brown_rearwing_lllb"
 	opacity = FALSE
-	allow_pass_flags = PASSABLE
+	flags_allow_pass = PASSABLE
 
 /obj/structure/dropship_piece/one/rearwing/rightrrbottom
 	icon_state = "brown_rearwing_rrrb"
 	opacity = FALSE
-	allow_pass_flags = PASSABLE
+	flags_allow_pass = PASSABLE
 
 
 
@@ -962,9 +962,9 @@
 
 /obj/structure/dropship_piece/glassone/tadpole
 	icon_state = "shuttle_glass1"
-	resistance_flags = NONE
+	flags_resistance = NONE
 	opacity = FALSE
-	allow_pass_flags = PASS_GLASS
+	flags_allow_pass = PASS_GLASS
 
 /obj/structure/dropship_piece/glasstwo
 	icon = 'icons/turf/dropship2.dmi'
@@ -973,24 +973,24 @@
 /obj/structure/dropship_piece/glasstwo/tadpole
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "shuttle_glass2"
-	resistance_flags = NONE
+	flags_resistance = NONE
 	opacity = FALSE
-	allow_pass_flags = PASS_GLASS
+	flags_allow_pass = PASS_GLASS
 
 /obj/structure/dropship_piece/singlewindow/tadpole
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "shuttle_single_window"
-	allow_pass_flags = PASS_GLASS
-	resistance_flags = NONE
+	flags_allow_pass = PASS_GLASS
+	flags_resistance = NONE
 	opacity = FALSE
 
 /obj/structure/dropship_piece/tadpole/cockpit
 	desc = "The nose part of the tadpole, able to be destroyed."
 	max_integrity = 500
-	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
+	flags_resistance = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
 	layer = BELOW_OBJ_LAYER
-	allow_pass_flags = NONE
+	flags_allow_pass = NONE
 
 /obj/structure/dropship_piece/tadpole/cockpit/left
 	icon_state = "blue_cockpit_fl"
@@ -1240,7 +1240,7 @@
 	icon_state = "computer_small"
 	screen_overlay = "shuttle"
 	///Able to auto-relink to any shuttle with at least one of the flags in common if shuttleId is invalid.
-	var/compatible_control_flags = NONE
+	var/flags_compatible_control = NONE
 
 
 /obj/machinery/computer/shuttle/shuttle_control/Initialize(mapload)
@@ -1274,7 +1274,7 @@
 
 	var/obj/docking_port/mobile/shuttle = SSshuttle.getShuttle(shuttleId)
 	#ifndef TESTING
-	if(!(shuttle.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+	if(!(shuttle.flags_shuttle & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(usr, span_warning("The engines are still refueling."))
 		return TRUE
 	#endif
@@ -1356,7 +1356,7 @@
 		return
 	user.forceMove(get_turf(target_port))
 
-/// Relinks the shuttleId in the console to a valid shuttle currently existing. Will only relink to a shuttle with a matching control_flags flag. Returns true if successfully relinked
+/// Relinks the shuttleId in the console to a valid shuttle currently existing. Will only relink to a shuttle with a matching flags_control flag. Returns true if successfully relinked
 /obj/machinery/computer/shuttle/shuttle_control/proc/RelinkShuttleId(forcedId)
 	var/newId = null
 	/// The preferred shuttleId to link to if it exists.
@@ -1372,7 +1372,7 @@
 	else
 		M = null
 		for(M AS in SSshuttle.mobile)
-			if(!(M.control_flags & compatible_control_flags)) //Need at least one matching control flag
+			if(!(M.flags_control & flags_compatible_control)) //Need at least one matching control flag
 				continue
 			newId = M.id
 			shuttleName = M.name
@@ -1398,11 +1398,11 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer_small"
 	screen_overlay = "shuttle"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	shuttleId = SHUTTLE_ALAMO
 	possible_destinations = "lz1;lz2;alamo"
-	compatible_control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
+	flags_compatible_control = SHUTTLE_MARINE_PRIMARY_DROPSHIP
 
 
 /obj/machinery/computer/shuttle/shuttle_control/dropship/two
@@ -1417,7 +1417,7 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer_small"
 	screen_overlay = "shuttle"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	shuttleId = SHUTTLE_CANTERBURY
 	possible_destinations = "canterbury_loadingdock"
 
@@ -1457,7 +1457,7 @@
 
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 	#ifndef TESTING
-	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+	if(!(M.flags_shuttle & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(usr, span_warning("The engines are still refueling."))
 		return TRUE
 	#endif

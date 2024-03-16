@@ -12,12 +12,12 @@
 	desc = "A mattress seated on a rectangular metallic frame. This is used to support a lying person in a comfortable manner, notably for regular sleep. Ancient technology, but still useful."
 	icon_state = "bed"
 	icon = 'icons/obj/objects.dmi'
-	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
+	flags_buckle = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
 	buckle_lying = 90
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
-	resistance_flags = XENO_DAMAGEABLE
+	flags_allow_pass = PASS_LOW_STRUCTURE|PASSABLE
+	flags_resistance = XENO_DAMAGEABLE
 	max_integrity = 40
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
 	coverage = 10
 	var/dropmetal = TRUE
@@ -79,7 +79,7 @@
 		return
 	B.visible_message(span_notice("[user] buckles [B] to [src]!"))
 	B.roller_buckled = src
-	B.glide_modifier_flags |= GLIDE_MOD_BUCKLED
+	B.flags_glide_modifier |= GLIDE_MOD_BUCKLED
 	B.loc = loc
 	B.setDir(dir)
 	B.layer = layer + 0.1
@@ -100,7 +100,7 @@
 	buckled_bodybag.layer = initial(buckled_bodybag.layer)
 	buckled_bodybag.pixel_y = initial(buckled_bodybag.pixel_y)
 	buckled_bodybag.roller_buckled = null
-	buckled_bodybag.glide_modifier_flags &= ~GLIDE_MOD_BUCKLED
+	buckled_bodybag.flags_glide_modifier &= ~GLIDE_MOD_BUCKLED
 	buckled_bodybag.reset_glide_size()
 	buckled_bodybag = null
 	density = FALSE
@@ -215,7 +215,7 @@
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "roller_down"
 	anchored = FALSE
-	buckle_flags = CAN_BUCKLE
+	flags_buckle = CAN_BUCKLE
 	drag_delay = 0 //Pulling something on wheels is easy
 	buckling_y = 6
 	foldabletype = /obj/item/roller
@@ -311,7 +311,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	foldabletype = /obj/item/roller/medevac
 	base_bed_icon = "stretcher"
 	accepts_bodybag = TRUE
-	resistance_flags = NONE
+	flags_resistance = NONE
 	var/teleport_timer = null
 	var/last_teleport = null
 	var/obj/item/medevac_beacon/linked_beacon = null
@@ -325,7 +325,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	radio = new(src)
 
 /obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return FALSE
 	if(buckled_bodybag)
 		unbuckle_bodybag()

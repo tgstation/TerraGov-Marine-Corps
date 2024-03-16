@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	color = COLOR_YELLOW
 	layer = WIRE_LAYER //Above hidden pipes, GAS_PIPE_HIDDEN_LAYER
 	anchored = TRUE
-	obj_flags = CAN_BE_HIT
+	flags_obj = CAN_BE_HIT
 	plane = FLOOR_PLANE
 	var/linked_dirs = 0 //bitflag
 	var/node = FALSE //used for sprites display
@@ -617,23 +617,23 @@ GLOBAL_LIST(cable_radial_layer_list)
 /obj/effect/node
 	icon = 'icons/obj/power_cond/layer_cable.dmi'
 	icon_state = "l2-noconnection"
-	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER
+	flags_vis = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER
 	color = COLOR_ALMOST_BLACK
 
 /obj/effect/node/layer1
 	color = COLOR_RED
 	icon_state = "l1-1-2-4-8-node"
-	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER|VIS_UNDERLAY
+	flags_vis = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER|VIS_UNDERLAY
 
 /obj/effect/node/layer2
 	color = COLOR_YELLOW
 	icon_state = "l2-1-2-4-8-node"
-	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER|VIS_UNDERLAY
+	flags_vis = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER|VIS_UNDERLAY
 
 /obj/effect/node/layer3
 	color = COLOR_BLUE
 	icon_state = "l4-1-2-4-8-node"
-	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER|VIS_UNDERLAY
+	flags_vis = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER|VIS_UNDERLAY
 
 /obj/structure/cable/multilayer/update_icon_state()
 	return

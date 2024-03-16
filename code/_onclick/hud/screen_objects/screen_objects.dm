@@ -3,8 +3,8 @@
 	icon = 'icons/mob/screen/generic.dmi'
 	layer = HUD_LAYER
 	plane = HUD_PLANE
-	resistance_flags = RESIST_ALL | PROJECTILE_IMMUNE
-	appearance_flags = APPEARANCE_UI
+	flags_resistance = RESIST_ALL | PROJECTILE_IMMUNE
+	flags_appearance = APPEARANCE_UI
 	var/obj/master //A reference to the object in the slot. Grabs or items, generally.
 	var/datum/hud/hud // A reference to the owner HUD, if any./atom/movable/screen
 

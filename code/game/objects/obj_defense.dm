@@ -5,7 +5,7 @@
 		return
 	if(effects)
 		play_attack_sound(damage_amount, damage_type, armor_type)
-	if((resistance_flags & INDESTRUCTIBLE) || obj_integrity <= 0)
+	if((flags_resistance & INDESTRUCTIBLE) || obj_integrity <= 0)
 		return
 
 	if(armor_type)
@@ -50,7 +50,7 @@
 
 
 /obj/ex_act(severity)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+	if(CHECK_BITFIELD(flags_resistance, INDESTRUCTIBLE))
 		return
 	. = ..() //contents explosion
 	if(QDELETED(src))
@@ -72,7 +72,7 @@
 		return
 	if(!anchored && (move_resist < MOVE_FORCE_STRONG))
 		step(src, AM.dir)
-	visible_message(span_warning("[src] was hit by [AM]."), visible_message_flags = COMBAT_MESSAGE)
+	visible_message(span_warning("[src] was hit by [AM]."), flags_visible_message = COMBAT_MESSAGE)
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 40
@@ -83,13 +83,13 @@
 
 
 /obj/bullet_act(obj/projectile/P)
-	if(istype(P.ammo, /datum/ammo/xeno) && !(resistance_flags & XENO_DAMAGEABLE))
+	if(istype(P.ammo, /datum/ammo/xeno) && !(flags_resistance & XENO_DAMAGEABLE))
 		return
 	. = ..()
 	if(P.damage < 1)
 		return
 	playsound(loc, P.hitsound, 50, 1)
-	visible_message(span_warning("\the [src] is damaged by \the [P]!"), visible_message_flags = COMBAT_MESSAGE)
+	visible_message(span_warning("\the [src] is damaged by \the [P]!"), flags_visible_message = COMBAT_MESSAGE)
 	take_damage(P.damage, P.ammo.damage_type, P.ammo.armor_type, 0, REVERSE_DIR(P.dir), P.ammo.penetration, isliving(P.firer) ? P.firer : null)
 
 
@@ -115,12 +115,12 @@
 
 /obj/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	// SHOULD_CALL_PARENT(TRUE) // TODO: fix this
-	if(xeno_attacker.status_flags & INCORPOREAL) //Ghosts can't attack machines
+	if(xeno_attacker.flags_status & INCORPOREAL) //Ghosts can't attack machines
 		return FALSE
 	SEND_SIGNAL(xeno_attacker, COMSIG_XENOMORPH_ATTACK_OBJ, src)
 	if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, xeno_attacker) & COMPONENT_NO_ATTACK_ALIEN)
 		return FALSE
-	if(!(resistance_flags & XENO_DAMAGEABLE))
+	if(!(flags_resistance & XENO_DAMAGEABLE))
 		to_chat(xeno_attacker, span_warning("We stare at \the [src] cluelessly."))
 		return FALSE
 	if(effects)

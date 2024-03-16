@@ -27,7 +27,7 @@
 	icon_state = "rock"
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 	minimap_color = MINIMAP_BLACK
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 
 /turf/closed/mineral/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_ROCK, -10, 5, 1)
@@ -74,7 +74,7 @@
 	base_icon_state = "lvwall"
 	icon_state = "lvwall-0"
 	walltype = "lvwall"
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_MINERAL_STRUCTURES)
 	canSmoothWith = list(SMOOTH_GROUP_MINERAL_STRUCTURES)
 
@@ -83,7 +83,7 @@
 
 /turf/closed/mineral/smooth/indestructible
 	name = "tough rock"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	icon_state = "wall-invincible"
 
 /turf/closed/mineral/smooth/snowrock
@@ -93,7 +93,7 @@
 	base_icon_state = "snowwall"
 
 /turf/closed/mineral/smooth/snowrock/indestructible
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	icon_state = "wall-invincible"
 
 /turf/closed/mineral/smooth/frostwall
@@ -103,7 +103,7 @@
 	base_icon_state = "frostwall"
 
 /turf/closed/mineral/smooth/frostwall/indestructible
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	icon_state = "wall-invincible"
 
 /turf/closed/mineral/smooth/darkfrostwall
@@ -111,14 +111,14 @@
 	icon_state = "darkfrostwall-0"
 	walltype = "darkfrostwall"
 	base_icon_state = "darkfrostwall"
-	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
+	flags_resistance = PLASMACUTTER_IMMUNE|UNACIDABLE
 
 /turf/closed/mineral/smooth/darkfrostwall/cuttable
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 
 /turf/closed/mineral/smooth/darkfrostwall/indestructible
 	name = "tough rock"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	icon_state = "wall-invincible"
 
 /turf/closed/mineral/smooth/bluefrostwall
@@ -130,7 +130,7 @@
 	canSmoothWith = list(SMOOTH_GROUP_ICE_WALL)
 
 /turf/closed/mineral/smooth/bluefrostwall/indestructible
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	icon_state = "wall-invincible"
 
 /turf/closed/mineral/smooth/bigred
@@ -140,7 +140,7 @@
 	base_icon_state = "red_wall"
 
 /turf/closed/mineral/smooth/bigred/indestructible
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	icon_state = "wall-invincible"
 
 /turf/closed/mineral/bigred
@@ -152,7 +152,7 @@
 	name = "impenetrable rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock_dark"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 //desertdam rock, seen in certain EORD maps. Surprisingly not seen in Desert Dam.
 /turf/closed/mineral/smooth/desertdamrockwall
@@ -163,7 +163,7 @@
 	walltype = "cave"
 	base_icon_state = "cave"
 /turf/closed/mineral/smooth/desertdamrockwall/indestructible
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	icon_state = "wall-invincible"
 
 //Ground map dense jungle
@@ -171,8 +171,8 @@
 	icon = 'icons/turf/walls/jungle.dmi'
 	icon_state = "junglewall-0"
 	desc = "Some thick jungle."
-	resistance_flags = UNACIDABLE
-	smoothing_flags = SMOOTH_BITMASK
+	flags_resistance = UNACIDABLE
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_FLORA)
 	canSmoothWith = list(SMOOTH_GROUP_FLORA)
 	base_icon_state = "junglewall"
@@ -195,7 +195,7 @@
 
 /turf/closed/gm/dense
 	name = "dense jungle wall"
-	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
+	flags_resistance = PLASMACUTTER_IMMUNE|UNACIDABLE
 	minimap_color = MINIMAP_BLACK
 	icon_state = "wall-dense"
 
@@ -209,7 +209,7 @@
 //Orange Border (What else am I meant to call it?)
 /turf/closed/perimeter
 	name = "wall"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	base_icon_state = "pwall"
 	icon_state = "pwall"
 	icon = 'icons/turf/shuttle.dmi'
@@ -299,7 +299,7 @@
 /turf/closed/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE))
+		if(CHECK_BITFIELD(flags_resistance, PLASMACUTTER_IMMUNE))
 			to_chat(user, span_warning("[P] can't cut through this!"))
 			return
 		else if(!P.start_cut(user, name, src))
@@ -346,7 +346,7 @@
 /turf/closed/ice_rock
 	name = "Icy rock"
 	icon = 'icons/turf/rockwall.dmi'
-	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
+	flags_resistance = PLASMACUTTER_IMMUNE|UNACIDABLE
 	open_turf_type = /turf/open/floor/plating/ground/ice
 
 /turf/closed/ice_rock/add_debris_element()
@@ -409,7 +409,7 @@
 	icon_state = "wall1"
 	icon = 'icons/turf/shuttle.dmi'
 	plane = FLOOR_PLANE
-	resistance_flags = PLASMACUTTER_IMMUNE
+	flags_resistance = PLASMACUTTER_IMMUNE
 
 /turf/closed/shuttle/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
@@ -489,7 +489,7 @@
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 	plane = GAME_PLANE
-	resistance_flags = RESIST_ALL|PLASMACUTTER_IMMUNE
+	flags_resistance = RESIST_ALL|PLASMACUTTER_IMMUNE
 
 /turf/closed/shuttle/dropship1/transparent
 	opacity = FALSE
@@ -509,7 +509,7 @@
 /turf/closed/shuttle/dropship1/window
 	icon_state = "shuttle_window_glass"
 	opacity = FALSE
-	allow_pass_flags = PASS_GLASS
+	flags_allow_pass = PASS_GLASS
 
 /turf/closed/shuttle/dropship1/aislewindow
 	icon_state = "shuttle_aisle_window"
@@ -552,7 +552,7 @@
 /turf/closed/shuttle/dropship1/interiorwindow
 	icon_state = "shuttle_interior_inwards"
 	opacity = FALSE
-	allow_pass_flags = PASS_GLASS
+	flags_allow_pass = PASS_GLASS
 
 /turf/closed/shuttle/dropship1/interiormisc
 	icon_state = "shuttle_interior_threeside"
@@ -706,7 +706,7 @@
 /turf/closed/shuttle/dropship2/window
 	icon_state = "shuttle_window_glass"
 	opacity = FALSE
-	allow_pass_flags = PASS_GLASS
+	flags_allow_pass = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/panel
 	icon_state = "shuttle_interior_panel"
@@ -765,11 +765,11 @@
 /turf/closed/shuttle/dropship2/singlewindow
 	icon_state = "shuttle_single_window"
 	opacity = FALSE
-	allow_pass_flags = PASS_GLASS
+	flags_allow_pass = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/singlewindow/tadpole
 	icon_state = "shuttle_single_window"
-	resistance_flags = NONE
+	flags_resistance = NONE
 
 /turf/closed/shuttle/dropship2/interiormisc
 	icon_state = "shuttle_interior_threeside"
@@ -795,23 +795,23 @@
 /turf/closed/shuttle/dropship2/glassone
 	icon_state = "shuttle_glass1"
 	opacity = FALSE
-	allow_pass_flags = PASS_GLASS
+	flags_allow_pass = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glassone/tadpole
 	icon_state = "shuttle_glass1"
-	resistance_flags = NONE
+	flags_resistance = NONE
 	opacity = FALSE
-	allow_pass_flags = PASS_GLASS
+	flags_allow_pass = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glasstwo
 	icon_state = "shuttle_glass2"
 	opacity = FALSE
-	allow_pass_flags = PASS_GLASS
+	flags_allow_pass = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glasstwo/tadpole
 	icon_state = "shuttle_glass2"
-	resistance_flags = NONE
-	allow_pass_flags = PASS_GLASS
+	flags_resistance = NONE
+	flags_allow_pass = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glassthree
 	icon_state = "shuttle_glass3"
@@ -827,14 +827,14 @@
 
 /turf/closed/shuttle/dropship2/rearcorner/tadpole
 	icon_state = "shuttle_rearcorner"
-	resistance_flags = NONE
+	flags_resistance = NONE
 
 /turf/closed/shuttle/dropship2/rearcorner/alt
 	icon_state = "shuttle_rearcorner_alt"
 
 /turf/closed/shuttle/dropship2/rearcorner/alt/tadpole
 	icon_state = "shuttle_rearcorner_alt"
-	resistance_flags = NONE
+	flags_resistance = NONE
 
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
@@ -882,7 +882,7 @@
 	icon = 'icons/turf/walls/sulaco.dmi'
 	icon_state = "sulaco-0"
 	base_icon_state = "sulaco"
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_ESCAPESHUTTLE)
 	canSmoothWith = list(
 		SMOOTH_GROUP_ESCAPESHUTTLE,
@@ -893,7 +893,7 @@
 	minimap_color = MINIMAP_FENCE
 
 /turf/closed/shuttle/escapeshuttle/prison
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	icon_state = "wall-invincible"
 
 /turf/closed/banish_space //Brazil

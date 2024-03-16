@@ -145,7 +145,7 @@
   - rscadd: Added new earpiece sprte by kuro
   - rscdel: Removed old earpiece sprite
   Wayland-Smithy:
-  - bugfix: Fixed King caste_flags, so it can now be healed by and become a leader
+  - bugfix: Fixed King flags_caste, so it can now be healed by and become a leader
       for the Queen.
   - balance: S&W .357 Revolver ricochet rounds no longer stagger or knockback.
   - balance: M-44 SAA Revolver is now bulky like an extended barrel TP-44.

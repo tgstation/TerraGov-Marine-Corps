@@ -17,7 +17,7 @@
 	anchored = FALSE
 	density = FALSE
 	dir = NORTH
-	allow_pass_flags = PASS_GLASS|PASS_AIR
+	flags_allow_pass = PASS_GLASS|PASS_AIR
 	flags_atom = ON_BORDER
 
 	var/obj/item/circuitboard/airlock/electronics = null

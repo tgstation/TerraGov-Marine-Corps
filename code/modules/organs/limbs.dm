@@ -155,7 +155,7 @@
 
 
 /datum/limb/proc/take_damage_limb(brute, burn, sharp, edge, blocked = 0, updating_health = FALSE, list/forbidden_limbs = list())
-	if(owner.status_flags & GODMODE)
+	if(owner.flags_status & GODMODE)
 		return FALSE
 	var/hit_percent = (100 - blocked) * 0.01
 
@@ -173,7 +173,7 @@
 	if(limb_status & LIMB_DESTROYED)
 		return 0
 
-	if(limb_status & LIMB_ROBOT && !(owner.species.species_flags & ROBOTIC_LIMBS))
+	if(limb_status & LIMB_ROBOT && !(owner.species.flags_species & ROBOTIC_LIMBS))
 		brute *= 0.50 // half damage for ROBOLIMBS if you weren't born with them
 		burn *= 0.50
 
@@ -189,7 +189,7 @@
 		brute -= brute / 2
 
 	if(limb_status & LIMB_BROKEN && prob(40) && brute)
-		if(!(owner.species && (owner.species.species_flags & NO_PAIN)))
+		if(!(owner.species && (owner.species.flags_species & NO_PAIN)))
 			owner.emote("scream") //Getting hit on broken hand hurts
 
 	//Possibly trigger an internal wound, too.
@@ -275,7 +275,7 @@
 		return update_icon()
 	if(CONFIG_GET(flag/limbs_can_break) && brute_dam >= max_damage * LIMB_MAX_DAMAGE_SEVER_RATIO)
 		droplimb()
-		if(!(owner.species && (owner.species.species_flags & NO_PAIN)))
+		if(!(owner.species && (owner.species.flags_species & NO_PAIN)))
 			owner.emote("scream")
 		return
 
@@ -536,7 +536,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 ///Updates LIMB_BLEEDING limb flag
 /datum/limb/proc/update_bleeding()
-	if(limb_status & LIMB_ROBOT || owner.species.species_flags & NO_BLOOD)
+	if(limb_status & LIMB_ROBOT || owner.species.flags_species & NO_BLOOD)
 		return
 	var/is_bleeding = FALSE
 
@@ -569,8 +569,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return //Nothing old to remove.
 	. = limb_status
 	limb_status &= ~flags_to_remove
-	var/changed_flags = . & flags_to_remove
-	if((changed_flags & LIMB_DESTROYED))
+	var/flags_changed = . & flags_to_remove
+	if((flags_changed & LIMB_DESTROYED))
 		SEND_SIGNAL(src, COMSIG_LIMB_UNDESTROYED)
 
 
@@ -579,8 +579,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return //Nothing new to add.
 	. = limb_status
 	limb_status |= flags_to_add
-	var/changed_flags = ~(. & flags_to_add) & flags_to_add
-	if((changed_flags & LIMB_DESTROYED))
+	var/flags_changed = ~(. & flags_to_add) & flags_to_add
+	if((flags_changed & LIMB_DESTROYED))
 		SEND_SIGNAL(src, COMSIG_LIMB_DESTROYED)
 
 
@@ -588,16 +588,16 @@ Note that amputating the affected organ does in fact remove the infection from t
 	. = ..()
 	if(isnull(.))
 		return
-	var/changed_flags = . & flags_to_remove
-	if((changed_flags & LIMB_DESTROYED) && owner.has_legs())
+	var/flags_changed = . & flags_to_remove
+	if((flags_changed & LIMB_DESTROYED) && owner.has_legs())
 		REMOVE_TRAIT(owner, TRAIT_LEGLESS, TRAIT_LEGLESS)
 
 /datum/limb/foot/add_limb_flags(flags_to_add)
 	. = ..()
 	if(isnull(.))
 		return
-	var/changed_flags = ~(. & flags_to_add) & flags_to_add
-	if((changed_flags & LIMB_DESTROYED) && !owner.has_legs())
+	var/flags_changed = ~(. & flags_to_add) & flags_to_add
+	if((flags_changed & LIMB_DESTROYED) && !owner.has_legs())
 		ADD_TRAIT(owner, TRAIT_LEGLESS, TRAIT_LEGLESS)
 
 
@@ -680,7 +680,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	else
 		set_limb_flags(LIMB_DESTROYED)
 
-	if(owner.species.species_flags & ROBOTIC_LIMBS)
+	if(owner.species.flags_species & ROBOTIC_LIMBS)
 		limb_status |= LIMB_ROBOT
 
 	for(var/i in implants)
@@ -854,7 +854,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		"<span class='warning'>You hear a sickening crack!<span>")
 	var/soundeffect = pick('sound/effects/bone_break1.ogg','sound/effects/bone_break2.ogg','sound/effects/bone_break3.ogg','sound/effects/bone_break4.ogg','sound/effects/bone_break5.ogg','sound/effects/bone_break6.ogg','sound/effects/bone_break7.ogg')
 	playsound(owner,soundeffect, 45, 1)
-	if(owner.species && !(owner.species.species_flags & NO_PAIN))
+	if(owner.species && !(owner.species.flags_species & NO_PAIN))
 		owner.emote("scream")
 
 	add_limb_flags(LIMB_BROKEN)
@@ -892,7 +892,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return brute_dam || burn_dam
 
 /datum/limb/proc/get_icon(icon/race_icon, gender="")
-	if(limb_status & LIMB_ROBOT && !(owner.species.species_flags & LIMB_ROBOT)) //if race set the flag then we just let the race handle this
+	if(limb_status & LIMB_ROBOT && !(owner.species.flags_species & LIMB_ROBOT)) //if race set the flag then we just let the race handle this
 		return icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
 
 	var/datum/ethnicity/E = GLOB.ethnicities_list[owner.ethnicity]
@@ -927,7 +927,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			owner.emote("me", 1, "drops what [owner.p_they()] [owner.p_were()] holding in [owner.p_their()] [hand_name], [owner.p_their()] [display_name] unresponsive!")
 	else if(is_broken() && prob(15))
 		if(owner.dropItemToGround(c_hand))
-			var/emote_scream = owner.species?.species_flags & NO_PAIN ? "" : pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
+			var/emote_scream = owner.species?.flags_species & NO_PAIN ? "" : pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
 			owner.emote("me", 1, "[emote_scream]drops what [owner.p_they()] [owner.p_were()] holding in [owner.p_their()] [hand_name]!")
 	else if(is_malfunctioning() && prob(20))
 		if(owner.dropItemToGround(c_hand))
@@ -1165,5 +1165,5 @@ Note that amputating the affected organ does in fact remove the infection from t
 	. = ..()
 	if(!.)
 		return
-	if(!(owner.species.species_flags & DETACHABLE_HEAD) && vital)
+	if(!(owner.species.flags_species & DETACHABLE_HEAD) && vital)
 		owner.set_undefibbable()

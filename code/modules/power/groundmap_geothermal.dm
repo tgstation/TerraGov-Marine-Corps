@@ -12,7 +12,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, then wirecutters, and then a wrench to repair it."
 	anchored = TRUE
 	density = TRUE
-	resistance_flags = RESIST_ALL | DROPSHIP_IMMUNE
+	flags_resistance = RESIST_ALL | DROPSHIP_IMMUNE
 	var/power_gen_percent = 0 //100,000W at full capacity
 	var/power_generation_max = 100000 //Full capacity
 	var/buildstate = GEOTHERMAL_HEAVY_DAMAGE //What state of building it are we on, 0-3, 1 is "broken", the default
@@ -170,7 +170,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	. = ..()
 	if(corrupted) //you have no reason to interact with it if its already corrupted
 		return
-	if(CHECK_BITFIELD(xeno_attacker.xeno_caste.can_flags, CASTE_CAN_CORRUPT_GENERATOR) && is_corruptible)
+	if(CHECK_BITFIELD(xeno_attacker.xeno_caste.flags_can, CASTE_CAN_CORRUPT_GENERATOR) && is_corruptible)
 		to_chat(xeno_attacker, span_notice("You start to corrupt [src]"))
 		if(!do_after(xeno_attacker, 10 SECONDS, NONE, src, BUSY_ICON_HOSTILE))
 			return

@@ -2,7 +2,7 @@
 
 //Updates the mob's health from limbs and mob damage variables
 /mob/living/carbon/human/updatehealth()
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		health = maxHealth
 		set_stat(CONSCIOUS)
 		return
@@ -13,7 +13,7 @@
 		total_burn	+= O.burn_dam
 
 	var/oxy_l = getOxyLoss()
-	var/tox_l = ((species.species_flags & NO_POISON) ? 0 : getToxLoss())
+	var/tox_l = ((species.flags_species & NO_POISON) ? 0 : getToxLoss())
 	var/clone_l = getCloneLoss()
 
 	health = maxHealth - oxy_l - tox_l - clone_l - total_burn - total_brute
@@ -33,7 +33,7 @@
 
 /mob/living/carbon/human/adjustBrainLoss(amount, silent = FALSE)
 
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE	//godmode
 
 	if(species?.has_organ["brain"])
@@ -49,7 +49,7 @@
 
 /mob/living/carbon/human/setBrainLoss(amount)
 
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE	//godmode
 
 	if(species?.has_organ["brain"])
@@ -64,7 +64,7 @@
 
 /mob/living/carbon/human/getBrainLoss()
 
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return FALSE	//godmode
 
 	if(species?.has_organ["brain"])
@@ -144,12 +144,12 @@
 
 
 /mob/living/carbon/human/getCloneLoss()
-	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
+	if(species.flags_species & (IS_SYNTHETIC|NO_SCAN))
 		cloneloss = 0
 	return ..()
 
 /mob/living/carbon/human/setCloneLoss(amount)
-	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
+	if(species.flags_species & (IS_SYNTHETIC|NO_SCAN))
 		cloneloss = 0
 	else
 		..()
@@ -157,54 +157,54 @@
 /mob/living/carbon/human/adjustCloneLoss(amount)
 	..()
 
-	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
+	if(species.flags_species & (IS_SYNTHETIC|NO_SCAN))
 		cloneloss = 0
 		return
 
 
 /mob/living/carbon/human/adjustOxyLoss(amount, forced = FALSE)
-	if(species.species_flags & NO_BREATHE && !forced)
+	if(species.flags_species & NO_BREATHE && !forced)
 		oxyloss = 0
 		return
 	return ..()
 
 /mob/living/carbon/human/setOxyLoss(amount, forced = FALSE)
-	if(species.species_flags & NO_BREATHE && !forced)
+	if(species.flags_species & NO_BREATHE && !forced)
 		oxyloss = 0
 		return
 	return ..()
 
 /mob/living/carbon/human/getToxLoss()
-	if(species.species_flags & NO_POISON)
+	if(species.flags_species & NO_POISON)
 		toxloss = 0
 	return ..()
 
 /mob/living/carbon/human/adjustToxLoss(amount)
-	if(species.species_flags & NO_POISON)
+	if(species.flags_species & NO_POISON)
 		toxloss = 0
 	else
 		..()
 
 /mob/living/carbon/human/setToxLoss(amount)
-	if(species.species_flags & NO_POISON)
+	if(species.flags_species & NO_POISON)
 		toxloss = 0
 	else
 		..()
 
 /mob/living/carbon/human/getStaminaLoss()
-	if(species.species_flags & NO_STAMINA)
+	if(species.flags_species & NO_STAMINA)
 		staminaloss = 0
 		return staminaloss
 	return ..()
 
 /mob/living/carbon/human/adjustStaminaLoss(amount)
-	if(species.species_flags & NO_STAMINA)
+	if(species.flags_species & NO_STAMINA)
 		staminaloss = 0
 		return
 	return ..()
 
 /mob/living/carbon/human/setStaminaLoss(amount)
-	if(species.species_flags & NO_STAMINA)
+	if(species.flags_species & NO_STAMINA)
 		staminaloss = 0
 		return
 	return ..()
@@ -281,7 +281,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 
 //Damage all limbs on your body equally
 /mob/living/carbon/human/take_overall_damage(damage, damagetype, armortype, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, max_limbs)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 
 	var/list/datum/limb/parts = get_damageable_limbs()
@@ -338,7 +338,7 @@ This function restores all limbs.
 		return EO
 
 /mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
-	if(status_flags & (GODMODE))
+	if(flags_status & (GODMODE))
 		return
 	return species.apply_damage(damage, damagetype, def_zone, blocked, sharp, edge, updating_health, penetration, src)
 

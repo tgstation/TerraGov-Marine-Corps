@@ -21,16 +21,16 @@
 	if(climbable)
 		structure_strings += "You can climb ontop of this structure."
 
-	if(buckle_flags & CAN_BUCKLE)
+	if(flags_buckle & CAN_BUCKLE)
 		structure_strings += "You can buckle someone or yourself to this structure. <br>Click the structure or press 'resist' to unbuckle."
 
-	if(CHECK_BITFIELD(resistance_flags, UNACIDABLE))
+	if(CHECK_BITFIELD(flags_resistance, UNACIDABLE))
 		structure_strings += "Acid does not stick to or affect this structure at all."
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+	if(CHECK_BITFIELD(flags_resistance, INDESTRUCTIBLE))
 		structure_strings += "You cannot destroy this structure."
 	else
 		structure_strings += "You can destroy this structure."
-	if(CHECK_BITFIELD(resistance_flags, XENO_DAMAGEABLE))
+	if(CHECK_BITFIELD(flags_resistance, XENO_DAMAGEABLE))
 		structure_strings += "Xenos can damage this structure."
 
 	if(anchored)

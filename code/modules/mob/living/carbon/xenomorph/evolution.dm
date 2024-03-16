@@ -161,10 +161,10 @@
 		new_xeno.fireloss = fireloss //Transfers the damage over.
 		new_xeno.updatehealth()
 
-	if(xeno_flags & XENO_MOBHUD)
+	if(flags_xeno & XENO_MOBHUD)
 		var/datum/atom_hud/H = GLOB.huds[DATA_HUD_XENO_STATUS]
 		H.add_hud_to(new_xeno) //keep our mobhud choice
-		new_xeno.xeno_flags |= XENO_MOBHUD
+		new_xeno.flags_xeno |= XENO_MOBHUD
 
 	if(lighting_alpha != new_xeno.lighting_alpha)
 		new_xeno.toggle_nightvision(lighting_alpha)
@@ -182,7 +182,7 @@
 	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 
-	if((xeno_flags & XENO_LEADER) && (new_xeno.xeno_caste.can_flags & CASTE_CAN_BE_LEADER)) // xeno leader is removed by Destroy()
+	if((flags_xeno & XENO_LEADER) && (new_xeno.xeno_caste.flags_can & CASTE_CAN_BE_LEADER)) // xeno leader is removed by Destroy()
 		hive.add_leader(new_xeno)
 		new_xeno.hud_set_queen_overwatch()
 		if(hive.living_xeno_queen)
@@ -237,7 +237,7 @@
 		balloon_alert(src, "The restraints are too restricting to allow us to evolve")
 		return FALSE
 
-	if(isnull(get_evolution_options()) || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
+	if(isnull(get_evolution_options()) || !(xeno_caste.flags_caste & CASTE_EVOLUTION_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
 		balloon_alert(src, "We are already the apex of form and function. Let's go forth and spread the hive!")
 		return FALSE
 
@@ -249,7 +249,7 @@
 		balloon_alert(src, "We must be at full plasma to evolve")
 		return FALSE
 
-	if (agility || fortify || crest_defense || status_flags & INCORPOREAL)
+	if (agility || fortify || crest_defense || flags_status & INCORPOREAL)
 		balloon_alert(src, "We cannot evolve while in this stance")
 		return FALSE
 
@@ -273,8 +273,8 @@
 	var/no_room_tier_three = length(hive.xenos_by_tier[XENO_TIER_THREE]) >= hive.tier3_xeno_limit
 	var/datum/xeno_caste/new_caste_type = GLOB.xeno_caste_datums[new_mob_type][XENO_UPGRADE_BASETYPE]
 	// Initial can access uninitialized vars, which is why it's used here.
-	var/new_caste_flags = new_caste_type.caste_flags
-	if(CHECK_BITFIELD(new_caste_flags, CASTE_LEADER_TYPE))
+	var/flags_new_caste = new_caste_type.flags_caste
+	if(CHECK_BITFIELD(flags_new_caste, CASTE_LEADER_TYPE))
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
 			balloon_alert(src, "You are jobbanned from xenomorph leader roles")
 			return FALSE
@@ -287,7 +287,7 @@
 	if(min_xenos && (hive.total_xenos_for_evolving() < min_xenos))
 		balloon_alert(src, "[min_xenos] xenos needed to become a [initial(new_caste_type.display_name)]")
 		return FALSE
-	if(CHECK_BITFIELD(new_caste_flags, CASTE_CANNOT_EVOLVE_IN_CAPTIVITY) && isxenoresearcharea(get_area(src)))
+	if(CHECK_BITFIELD(flags_new_caste, CASTE_CANNOT_EVOLVE_IN_CAPTIVITY) && isxenoresearcharea(get_area(src)))
 		to_chat(src, "Something in this place is isolating us from Queen Mother's psychic presence. We should leave before it's too late!")
 		return FALSE
 	// Check if there is a death timer for this caste
@@ -301,7 +301,7 @@
 		to_chat(src, span_warning("There is already a [initial(new_caste_type.display_name)] in the hive. We must wait for it to die."))
 		return FALSE
 	var/turf/T = get_turf(src)
-	if(CHECK_BITFIELD(new_caste_flags, CASTE_REQUIRES_FREE_TILE) && T.check_alien_construction(src))
+	if(CHECK_BITFIELD(flags_new_caste, CASTE_REQUIRES_FREE_TILE) && T.check_alien_construction(src))
 		balloon_alert(src, "We need a empty tile to evolve")
 		return FALSE
 
@@ -335,7 +335,7 @@
 			else if(isxenodrone(src) && new_mob_type != /mob/living/carbon/xenomorph/shrike)
 				to_chat(src, span_xenonotice("The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Shrike!"))
 				return FALSE
-		if(!CHECK_BITFIELD(new_caste_flags, CASTE_INSTANT_EVOLUTION) && xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold)
+		if(!CHECK_BITFIELD(flags_new_caste, CASTE_INSTANT_EVOLUTION) && xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold)
 			to_chat(src, span_warning("We must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold]."))
 			return FALSE
 

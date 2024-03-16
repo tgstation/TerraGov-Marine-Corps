@@ -15,7 +15,7 @@
 	)
 	item_state = "syringe_0"
 	icon_state = "0"
-	init_reagent_flags = AMOUNT_SKILLCHECK
+	flags_init_reagent = AMOUNT_SKILLCHECK
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = null //list(5,10,15)
 	volume = 15
@@ -91,7 +91,7 @@
 
 					if(ishuman(T))
 						var/mob/living/carbon/human/H = T
-						if(H.species.species_flags & NO_BLOOD)
+						if(H.species.flags_species & NO_BLOOD)
 							to_chat(user, span_warning("You are unable to locate any blood."))
 							return
 						else

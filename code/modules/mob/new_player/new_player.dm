@@ -208,12 +208,12 @@
 			if(!IsJobAvailable(job_datum, TRUE, forced_faction))
 				continue
 			var/command_bold = ""
-			if(job_datum.job_flags & JOB_FLAG_BOLD_NAME_ON_SELECTION)
+			if(job_datum.flags_job & JOB_FLAG_BOLD_NAME_ON_SELECTION)
 				command_bold = " command"
 			var/position_amount
-			if(job_datum.job_flags & JOB_FLAG_HIDE_CURRENT_POSITIONS)
+			if(job_datum.flags_job & JOB_FLAG_HIDE_CURRENT_POSITIONS)
 				position_amount = "?"
-			else if(job_datum.job_flags & JOB_FLAG_SHOW_OPEN_POSITIONS)
+			else if(job_datum.flags_job & JOB_FLAG_SHOW_OPEN_POSITIONS)
 				position_amount = "[job_datum.total_positions - job_datum.current_positions] open positions"
 			else
 				position_amount = job_datum.current_positions

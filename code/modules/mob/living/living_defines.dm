@@ -62,7 +62,7 @@
 	var/hallucination = 0
 	var/disabilities = NONE
 
-	var/restrained_flags = NONE
+	var/flags_restrained = NONE
 
 	var/now_pushing
 
@@ -125,7 +125,7 @@
 	var/datum/job/job
 	var/comm_title = ""
 	/**
-	 * How much blood the mob has. 
+	 * How much blood the mob has.
 	 * !!! Use the adjust_blood_volume() and set_blood_volume() to set this variable instead of directly modifying it!!!
 	 */
 	var/blood_volume = 0

@@ -8,9 +8,9 @@
 	anchored = TRUE
 	coverage = 10
 	flags_atom = CONDUCT
-	allow_pass_flags = PASS_AIR|PASS_PROJECTILE|PASS_GRILLE
+	flags_allow_pass = PASS_AIR|PASS_PROJECTILE|PASS_GRILLE
 	layer = OBJ_LAYER
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 100, BOMB = 10, BIO = 100, FIRE = 0, ACID = 0)
 	max_integrity = 10
 
@@ -142,7 +142,7 @@
 	icon = 'icons/obj/smooth_objects/grille.dmi'
 	icon_state = "grille-0"
 	base_icon_state = "grille"
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_GRILLE)
 	canSmoothWith = list(SMOOTH_GROUP_GRILLE)
 

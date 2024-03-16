@@ -27,7 +27,7 @@
 	. = ..()
 	if(.)
 		return
-	if(buckle_flags & CAN_BUCKLE && isliving(user) && !(user.status_flags & INCORPOREAL) && mouse_buckle_handling(dropping, user) == TRUE)
+	if(flags_buckle & CAN_BUCKLE && isliving(user) && !(user.flags_status & INCORPOREAL) && mouse_buckle_handling(dropping, user) == TRUE)
 		return TRUE
 
 /client/MouseDown(atom/object, turf/location, control, params)

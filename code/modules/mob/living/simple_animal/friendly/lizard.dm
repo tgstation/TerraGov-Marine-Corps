@@ -14,7 +14,7 @@
 	response_disarm = "shoos"
 	response_harm = "stomps on"
 	density = FALSE
-	allow_pass_flags = PASS_MOB
-	pass_flags = PASS_LOW_STRUCTURE|PASS_MOB
+	flags_allow_pass = PASS_MOB
+	flags_pass = PASS_LOW_STRUCTURE|PASS_MOB
 	mob_size = MOB_SIZE_SMALL
 	obj_damage = 0

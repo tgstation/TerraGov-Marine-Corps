@@ -40,7 +40,7 @@
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle)
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	gun_skill_category = SKILL_HEAVY_WEAPONS
-	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE
+	flags_reciever = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20)
 	fire_delay = 2 SECONDS
 
@@ -266,7 +266,7 @@
 
 		if(isxeno(mob_caught))
 			var/mob/living/carbon/xenomorph/xeno_caught = mob_caught
-			if(CHECK_BITFIELD(xeno_caught.xeno_caste.caste_flags, CASTE_FIRE_IMMUNE))
+			if(CHECK_BITFIELD(xeno_caught.xeno_caste.flags_caste, CASTE_FIRE_IMMUNE))
 				continue
 
 		else if(ishuman(mob_caught))

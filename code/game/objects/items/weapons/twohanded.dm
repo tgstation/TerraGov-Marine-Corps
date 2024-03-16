@@ -137,7 +137,7 @@
 	icon_state = "offhand"
 	name = "offhand"
 	flags_item = DELONDROP|TWOHANDED|WIELDED
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 
 /obj/item/weapon/twohanded/offhand/Destroy()
@@ -250,7 +250,7 @@
 	desc = "A powerful sweeping blow that hits foes in the direction you are facing. Cannot stun."
 	ability_cost = 12
 	cooldown_duration = 6 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_WEAPONABILITY_AXESWEEP,
 		KEYBINDING_ALTERNATE = COMSIG_WEAPONABILITY_AXESWEEP_SELECT,
@@ -272,7 +272,7 @@
 	atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
 	atoms_to_ravage += get_step(owner, turn(owner.dir, 45)).contents
 	for(var/atom/movable/victim AS in atoms_to_ravage)
-		if((victim.resistance_flags & INDESTRUCTIBLE))
+		if((victim.flags_resistance & INDESTRUCTIBLE))
 			continue
 		if(!ishuman(victim))
 			var/obj/obj_victim = victim
@@ -441,7 +441,7 @@
 	sharp = IS_SHARP_ITEM_BIG
 	flags_atom = CONDUCT
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	attack_speed = 12 //Default is 7.
 
 /obj/item/weapon/twohanded/glaive/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
@@ -566,7 +566,7 @@
 		to_chat(user, span_warning("You need a more secure grip to use [src]!"))
 		return
 
-	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL)
+	if(M.flags_status & INCORPOREAL || user.flags_status & INCORPOREAL)
 		return
 
 	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used)

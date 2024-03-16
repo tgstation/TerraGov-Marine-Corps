@@ -2,7 +2,7 @@
 	name = "manifest"
 	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "x"
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 
 /obj/effect/manifest/Initialize(mapload)
 	. = ..()

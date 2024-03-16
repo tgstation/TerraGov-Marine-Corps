@@ -10,7 +10,7 @@
 	desc = "Just your average condiment container."
 	icon = 'icons/obj/items/food/condiment.dmi'
 	icon_state = "emptycondiment"
-	init_reagent_flags = OPENCONTAINER
+	flags_init_reagent = OPENCONTAINER
 	possible_transfer_amounts = list(1,5,10)
 	center_of_mass = list("x"=16, "y"=6)
 	volume = 50
@@ -28,7 +28,7 @@
 	if(iscarbon(M))
 		var/mob/living/carbon/H = M
 		if(M == user)
-			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
+			if(ishuman(H) && (H.species.flags_species & ROBOTIC_LIMBS))
 				to_chat(H, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
 				return
 			to_chat(H, span_notice("You swallow some of contents of the [src]."))
@@ -38,7 +38,7 @@
 			playsound(H.loc,'sound/items/drink.ogg', 15, 1)
 			return 1
 		else
-			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
+			if(ishuman(H) && (H.species.flags_species & ROBOTIC_LIMBS))
 				to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 				return
 			M.visible_message(span_warning("[user] attempts to feed [M] [src]."))

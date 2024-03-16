@@ -8,22 +8,22 @@
 	/// Percentage damage The shield intercepts.
 	var/datum/armor/cover
 	///Behavior flags
-	var/shield_flags = NONE
+	var/flags_shield = NONE
 	///What slots the parent item provides its shield effects in
-	var/slot_flags = list(SLOT_L_HAND, SLOT_R_HAND)
+	var/flags_slot = list(SLOT_L_HAND, SLOT_R_HAND)
 	///Shield priority layer
 	var/layer = 50
 	///Is the shield currently active
 	var/active = TRUE
 
 
-/datum/component/shield/Initialize(shield_flags, shield_cover = list(MELEE = 80, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 80, BIO = 30, FIRE = 80, ACID = 80))
+/datum/component/shield/Initialize(flags_shield, shield_cover = list(MELEE = 80, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 80, BIO = 30, FIRE = 80, ACID = 80))
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	var/obj/item/parent_item = parent
 
-	if(shield_flags & SHIELD_TOGGLE)
+	if(flags_shield & SHIELD_TOGGLE)
 		RegisterSignal(parent, COMSIG_ITEM_TOGGLE_ACTIVE, PROC_REF(toggle_shield))
 		active = parent_item.active
 
@@ -34,7 +34,7 @@
 		var/mob/holder_mob = parent_item.loc
 		shield_equipped(parent, holder_mob, holder_mob.get_equipped_slot(parent))
 
-	setup_callbacks(shield_flags)
+	setup_callbacks(flags_shield)
 
 	if(islist(shield_cover))
 		cover = getArmor(arglist(shield_cover))
@@ -53,12 +53,12 @@
 	return ..()
 
 ///Sets up the correct callbacks based on flagged behavior
-/datum/component/shield/proc/setup_callbacks(shield_flags)
-	if(shield_flags & SHIELD_PURE_BLOCKING)
+/datum/component/shield/proc/setup_callbacks(flags_shield)
+	if(flags_shield & SHIELD_PURE_BLOCKING)
 		intercept_damage_cb = CALLBACK(src, PROC_REF(item_pure_block_chance))
 	else
 		intercept_damage_cb = CALLBACK(src, PROC_REF(item_intercept_attack))
-	if(shield_flags & SHIELD_PARENT_INTEGRITY)
+	if(flags_shield & SHIELD_PARENT_INTEGRITY)
 		transfer_damage_cb = CALLBACK(src, PROC_REF(transfer_damage_to_parent))
 
 ///Toggles the mitigation on or off when already equipped
@@ -80,7 +80,7 @@
 ///Handles equipping the shield
 /datum/component/shield/proc/shield_equipped(datum/source, mob/living/user, slot)
 	SIGNAL_HANDLER
-	if(!(slot in slot_flags))
+	if(!(slot in flags_slot))
 		shield_detach_from_user()
 		return
 	shield_affect_user(user)
@@ -209,7 +209,7 @@
 /datum/component/shield/overhealth
 	layer = 100
 	cover = list(MELEE = 0, BULLET = 80, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 80)
-	slot_flags = list(SLOT_WEAR_SUIT) //For now it only activates while worn on a single place, meaning only one active at a time. Need to handle overlays properly to allow for stacking.
+	flags_slot = list(SLOT_WEAR_SUIT) //For now it only activates while worn on a single place, meaning only one active at a time. Need to handle overlays properly to allow for stacking.
 	var/max_shield_integrity = 100
 	var/shield_integrity = 100
 	var/recharge_rate = 1 SECONDS
@@ -218,7 +218,7 @@
 	var/next_recharge = 0 //world.time based
 	var/shield_overlay = "shield-blue"
 
-/datum/component/shield/overhealth/Initialize(shield_flags, shield_cover = list(MELEE = 0, BULLET = 80, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 80))
+/datum/component/shield/overhealth/Initialize(flags_shield, shield_cover = list(MELEE = 0, BULLET = 80, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 80))
 	if(!issuit(parent))
 		return COMPONENT_INCOMPATIBLE
 	return ..()
@@ -228,7 +228,7 @@
 	return ..()
 
 
-/datum/component/shield/overhealth/setup_callbacks(shield_flags)
+/datum/component/shield/overhealth/setup_callbacks(flags_shield)
 	intercept_damage_cb = CALLBACK(src, PROC_REF(overhealth_intercept_attack))
 	transfer_damage_cb = CALLBACK(src, PROC_REF(transfer_damage_to_overhealth))
 

@@ -147,7 +147,7 @@
 	soft_armor = list(MELEE = 75, BULLET = 80, LASER = 80, ENERGY = 85, BOMB = 85, BIO = 70, FIRE = 85, ACID = 70)
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD //B18 effectively stabilizes these.
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	flags_item = AUTOBALANCE_CHECK
 
 /obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
@@ -293,7 +293,7 @@
 	attachments_allowed = list(/obj/item/armor_module/storage/grenade)
 	starting_attachments = list(/obj/item/armor_module/storage/grenade)
 	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD //B18 effectively stabilizes these.
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/commando/Initialize(mapload, ...)
 	. = ..()

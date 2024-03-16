@@ -27,9 +27,9 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	desc = "A conveyor belt. It can be rotated with a <b>wrench</b>. It can be reversed with a <b>screwdriver</b>."
 	layer = FIREDOOR_OPEN_LAYER
 	max_integrity = 50
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	///Conveyor specific flags
-	var/conveyor_flags = CONVEYOR_OPERABLE
+	var/flags_conveyor = CONVEYOR_OPERABLE
 	///Operating direction
 	var/operating = CONVEYOR_OFF
 	///Current direction of movement
@@ -66,7 +66,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		icon_state = "conveyor-broken"
 
 	else
-		icon_state = "conveyor[!operating ? "_off" : operating == CONVEYOR_ON_FORWARDS ? "_forwards": "_reverse"][conveyor_flags & CONVEYOR_INVERTED ? "_inverted" : ""]"
+		icon_state = "conveyor[!operating ? "_off" : operating == CONVEYOR_ON_FORWARDS ? "_forwards": "_reverse"][flags_conveyor & CONVEYOR_INVERTED ? "_inverted" : ""]"
 
 /obj/machinery/conveyor/setDir(newdir)
 	. = ..()
@@ -94,10 +94,10 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor/screwdriver_act(mob/living/user, obj/item/I)
 	if(machine_stat & BROKEN)
 		return TRUE
-	conveyor_flags ^= CONVEYOR_INVERTED
+	flags_conveyor ^= CONVEYOR_INVERTED
 	update_move_direction()
 	update_icon()
-	balloon_alert(user, "[conveyor_flags & CONVEYOR_INVERTED ? "backwards" : "back to default"]")
+	balloon_alert(user, "[flags_conveyor & CONVEYOR_INVERTED ? "backwards" : "back to default"]")
 
 /obj/machinery/conveyor/attackby(obj/item/I, mob/living/user, def_zone)
 	. = ..()
@@ -116,7 +116,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	update()
 
 /obj/machinery/conveyor/process()
-	if(conveyor_flags & CONVEYOR_IS_CONVEYING)
+	if(flags_conveyor & CONVEYOR_IS_CONVEYING)
 		return //you've made a lag monster
 	if(!is_operational())
 		return PROCESS_KILL
@@ -130,7 +130,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	if(length(items_to_move) > MAX_CONVEYOR_ITEMS_MOVE)
 		items_to_move = items_to_move.Copy(1, MAX_CONVEYOR_ITEMS_MOVE + 1)
 
-	conveyor_flags |= CONVEYOR_IS_CONVEYING
+	flags_conveyor |= CONVEYOR_IS_CONVEYING
 	INVOKE_NEXT_TICK(src, PROC_REF(convey), items_to_move)
 
 ///Attempts to move a batch of AMs
@@ -156,7 +156,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 			continue
 		step(movable_thing, movedir)
 
-	conveyor_flags &= ~CONVEYOR_IS_CONVEYING
+	flags_conveyor &= ~CONVEYOR_IS_CONVEYING
 
 ///Sets the correct movement directions based on dir
 /obj/machinery/conveyor/proc/update_move_direction()
@@ -187,7 +187,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		if(SOUTHWEST)
 			forwards = WEST
 			backwards = NORTH
-	if(conveyor_flags & CONVEYOR_INVERTED)
+	if(flags_conveyor & CONVEYOR_INVERTED)
 		var/temp = forwards
 		forwards = backwards
 		backwards = temp
@@ -212,7 +212,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 ///Checks to see if the conveyor needs to be switched off
 /obj/machinery/conveyor/proc/update()
-	if(!is_operational() || !(conveyor_flags & CONVEYOR_OPERABLE))
+	if(!is_operational() || !(flags_conveyor & CONVEYOR_OPERABLE))
 		set_operating(CONVEYOR_OFF)
 		return FALSE
 	return TRUE
@@ -222,7 +222,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor/inverted //Directions inverted so you can use different corner pieces.
 	icon_state = "conveyor_map_inverted"
-	conveyor_flags = CONVEYOR_OPERABLE|CONVEYOR_INVERTED
+	flags_conveyor = CONVEYOR_OPERABLE|CONVEYOR_INVERTED
 
 /obj/machinery/conveyor/inverted/Initialize(mapload)
 	. = ..()

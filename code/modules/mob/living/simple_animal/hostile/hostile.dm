@@ -189,7 +189,7 @@
 
 	if(ismob(the_target)) //Target is in godmode, ignore it.
 		var/mob/M = the_target
-		if(M.status_flags & GODMODE)
+		if(M.flags_status & GODMODE)
 			return FALSE
 
 	if(see_invisible < the_target.invisibility)//Target's invisible to us, forget it

@@ -11,7 +11,7 @@
 /obj/effect/beam
 	name = "beam"
 	var/def_zone
-	allow_pass_flags = PASS_LOW_STRUCTURE
+	flags_allow_pass = PASS_LOW_STRUCTURE
 
 
 /obj/effect/begin
@@ -64,7 +64,7 @@
 	density = TRUE
 	icon_state = "blocker"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/effect/forcefield/Initialize(mapload)
 	. = ..()
@@ -119,7 +119,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
 	density = FALSE
-	resistance_flags = RESIST_ALL|PROJECTILE_IMMUNE
+	flags_resistance = RESIST_ALL|PROJECTILE_IMMUNE
 
 /obj/effect/forcefield/fog/passable_fog/Initialize(mapload)
 	. = ..()
@@ -151,9 +151,9 @@
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_AIRLOCK)
 
 /obj/effect/opacifier/Initialize(mapload, initial_opacity)

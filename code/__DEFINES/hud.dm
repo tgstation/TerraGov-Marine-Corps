@@ -13,7 +13,7 @@
 #define HUD_SL_LOCATOR_COOLDOWN 0.5 SECONDS
 #define HUD_SL_LOCATOR_PROCESS_COOLDOWN 10 SECONDS
 
-// Consider these images/atoms as part of the UI/HUD (apart of the appearance_flags)
+// Consider these images/atoms as part of the UI/HUD (apart of the flags_appearance)
 /// Used for progress bars and chat messages
 #define APPEARANCE_UI_IGNORE_ALPHA (RESET_COLOR|RESET_TRANSFORM|NO_CLIENT_COLOR|RESET_ALPHA|PIXEL_SCALE)
 /// Used for HUD objects

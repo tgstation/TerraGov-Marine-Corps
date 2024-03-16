@@ -14,7 +14,7 @@
 	desc = "Better keep this safe."
 	icon_state = "nucleardisk"
 	w_class = WEIGHT_CLASS_TINY
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/item/disk/nuclear/Initialize(mapload)
 	. = ..()

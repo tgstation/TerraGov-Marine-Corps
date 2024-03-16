@@ -6,7 +6,7 @@
 	pixel_x = -33
 	pixel_y = -10
 	density = TRUE
-	allow_pass_flags = PASS_AIR
+	flags_allow_pass = PASS_AIR
 
 /obj/structure/prop/som_fighter/empty
 	icon_state = "SOM_fighter_empty"
@@ -18,7 +18,7 @@
 	icon = 'icons/obj/structures/train.dmi'
 	icon_state = "maglev"
 	density = TRUE
-	allow_pass_flags = PASS_AIR
+	flags_allow_pass = PASS_AIR
 	bound_width = 128
 
 /obj/structure/prop/train/Initialize(mapload)
@@ -59,31 +59,31 @@
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one is carrying a variety of construction materials."
 	icon_state = "construction"
-	allow_pass_flags = PASSABLE
+	flags_allow_pass = PASSABLE
 
 /obj/structure/prop/train/crates
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one has a variety of crates on it."
 	icon_state = "crates"
-	allow_pass_flags = PASSABLE
+	flags_allow_pass = PASSABLE
 
 /obj/structure/prop/train/weapons
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one is carrying a shipment of weapons."
 	icon_state = "weapons"
-	allow_pass_flags = PASSABLE
+	flags_allow_pass = PASSABLE
 
 /obj/structure/prop/train/mech
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one has a variety of mech equipment on it."
 	icon_state = "mech"
-	allow_pass_flags = PASSABLE
+	flags_allow_pass = PASSABLE
 
 /obj/structure/prop/train/empty
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one is currently empty."
 	icon_state = "empty"
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	flags_allow_pass = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 
 /obj/structure/prop/nt_computer
 	name = "server rack"
@@ -127,8 +127,8 @@
 	bound_width = 128
 	bound_height = 64
 	bound_y = 64
-	resistance_flags = RESIST_ALL
-	allow_pass_flags = NONE
+	flags_resistance = RESIST_ALL
+	flags_allow_pass = NONE
 	light_range = 4
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUEGREEN

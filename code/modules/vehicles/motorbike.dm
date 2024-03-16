@@ -7,13 +7,13 @@
 	icon_state = "motorbike"
 	max_integrity = 300
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 30, FIRE = 60, ACID = 60)
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	key_type = null
 	integrity_failure = 0.5
-	allow_pass_flags = PASSABLE
+	flags_allow_pass = PASSABLE
 	coverage = 30	//It's just a bike, not hard to shoot over
-	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
+	flags_buckle = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
 	///Internal motorbick storage object
 	var/obj/item/storage/internal/motorbike_pack/motor_pack = /obj/item/storage/internal/motorbike_pack
 	///Mutable appearance overlay that covers up the mob with th e bike as needed

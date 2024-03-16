@@ -2,12 +2,12 @@
 /obj/machinery/deployable/mounted
 
 	anchored = TRUE
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	density = TRUE
 	layer = ABOVE_MOB_PROP_LAYER
 	use_power = FALSE
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
-	allow_pass_flags = PASSABLE|PASS_LOW_STRUCTURE
+	flags_allow_pass = PASSABLE|PASS_LOW_STRUCTURE
 	///Store user old pixel x
 	var/user_old_x = 0
 	///Store user old pixel y
@@ -106,7 +106,7 @@
 
 	REMOVE_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
 
-	if(!CHECK_BITFIELD(gun?.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+	if(!CHECK_BITFIELD(gun?.flags_reciever, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 		return
 	gun?.do_unique_action(gun, user)
 

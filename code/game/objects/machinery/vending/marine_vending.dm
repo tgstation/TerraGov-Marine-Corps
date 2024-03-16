@@ -425,7 +425,7 @@
 	)
 
 /obj/machinery/vending/weapon/valhalla
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 	products = list(
 		"Rifles" = list(
@@ -707,7 +707,7 @@
 	use_power = NO_POWER_USE
 
 /obj/machinery/vending/cigarette/valhalla
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 	products = list(
 		/obj/item/storage/fancy/cigarettes/luckystars = -1,
@@ -822,7 +822,7 @@
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
 	icon_deny = "lascharger-deny"
-	vending_flags = VENDING_RECHARGER
+	flags_vending = VENDING_RECHARGER
 	wrenchable = TRUE
 	drag_delay = FALSE
 	anchored = FALSE
@@ -884,7 +884,7 @@
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas3 = 25)*/
 
 /obj/machinery/vending/marineFood/valhalla
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 
 /obj/machinery/vending/marineFood/som
@@ -949,7 +949,7 @@
 	)
 
 /obj/machinery/vending/MarineMed/valhalla
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 	products = list(
 		"Pill Bottles" = list(
@@ -1180,7 +1180,7 @@
 	prices = list()
 
 /obj/machinery/vending/armor_supply/valhalla
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 
 /obj/machinery/vending/uniform_supply
@@ -1377,7 +1377,7 @@
 	prices = list()
 
 /obj/machinery/vending/uniform_supply/valhalla
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 
 /obj/machinery/vending/dress_supply
@@ -1405,14 +1405,14 @@
 	)
 
 /obj/machinery/vending/dress_supply/valhalla
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 
 /obj/machinery/vending/valhalla_req
 	name = "\improper TerraGovTech requisition vendor"
 	desc = "An automated rack hooked up to a colossal storage of items."
 	icon_state = "requisitionop"
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 	products = list(
 		"Weapon" = list(
@@ -1540,7 +1540,7 @@
 	name = "\improper TerraGovTech seasonal vendor"
 	desc = "An automated rack hooked up to a colossal storage of items."
 	icon_state = "requisitionop"
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 	products = list(
 		"Seasonal" = list(
@@ -1706,13 +1706,13 @@
 	use_power = NO_POWER_USE
 
 /obj/machinery/vending/tool/nopower/valhalla
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 
 /obj/machinery/vending/mech_vendor
 	name = "\improper Mech equipment vendor"
 	desc = "An automated rack hooked up to a colossal storage of items."
 	icon_state = "requisitionop"
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 	wrenchable = FALSE
 	products = list(

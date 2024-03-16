@@ -1,9 +1,9 @@
 /obj/vehicle/ridden
 	name = "ridden vehicle"
-	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
+	flags_buckle = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
 	max_buckled_mobs = 1
 	buckle_lying = -1
-	allow_pass_flags = PASS_LOW_STRUCTURE
+	flags_allow_pass = PASS_LOW_STRUCTURE
 	COOLDOWN_DECLARE(message_cooldown)
 
 /obj/vehicle/ridden/examine(mob/user)

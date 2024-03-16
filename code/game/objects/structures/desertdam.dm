@@ -4,7 +4,7 @@
 	icon = 'icons/turf/desertdam_map.dmi'
 	density = FALSE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	layer = ABOVE_MOB_LAYER
 
 //loose sand overlay

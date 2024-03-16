@@ -7,14 +7,14 @@
 	coverage = 10
 	layer = TABLE_LAYER
 	anchored = TRUE
-	resistance_flags = UNACIDABLE
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	flags_resistance = UNACIDABLE
+	flags_allow_pass = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 1
 	active_power_usage = 5
 	var/mob/living/carbon/human/victim = null
 	var/strapped = 0
-	buckle_flags = CAN_BUCKLE
+	flags_buckle = CAN_BUCKLE
 	buckle_lying = 90
 	var/obj/item/tank/anesthetic/anes_tank
 

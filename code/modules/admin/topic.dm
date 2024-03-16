@@ -1504,7 +1504,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/slot = href_list["addjobslot"]
 
 		var/datum/job/job = SSjob.name_occupations[slot]
-		if(!(job.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
+		if(!(job.flags_job & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
 			to_chat(usr, span_warning("Job is not joinable."))
 			return
 		job.add_job_positions(1)
@@ -1558,7 +1558,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/slot = href_list["removejobslot"]
 
 		var/datum/job/job = SSjob.name_occupations[slot]
-		if(!(job.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
+		if(!(job.flags_job & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
 			to_chat(usr, span_warning("Job is not joinable."))
 			return
 		if(job.total_positions <= 0 || job.total_positions <= job.current_positions)
@@ -1579,7 +1579,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/slot = href_list["clearjobslots"]
 
 		var/datum/job/job = SSjob.name_occupations[slot]
-		if(!(job.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
+		if(!(job.flags_job & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
 			to_chat(usr, span_warning("Job is not joinable."))
 			return
 		job.set_job_positions(0)
@@ -1596,7 +1596,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		for(var/slot in SSjob.name_occupations)
 			var/datum/job/job = SSjob.name_occupations[slot]
-			if(!(job.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
+			if(!(job.flags_job & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
 				continue
 			job.set_job_positions(0)
 
@@ -1613,7 +1613,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/slot = href_list["unlimitjobslot"]
 
 		var/datum/job/job = SSjob.name_occupations[slot]
-		if(!(job.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
+		if(!(job.flags_job & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
 			to_chat(usr, span_warning("Job is not joinable."))
 			return
 		job.set_job_positions(-1)
@@ -1646,9 +1646,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/override = href_list["overridejobsstart"]
 		switch(override)
 			if("true")
-				SSjob.ssjob_flags |= SSJOB_OVERRIDE_JOBS_START
+				SSjob.flags_ssjob |= SSJOB_OVERRIDE_JOBS_START
 			if("false")
-				SSjob.ssjob_flags &= ~(SSJOB_OVERRIDE_JOBS_START)
+				SSjob.flags_ssjob &= ~(SSJOB_OVERRIDE_JOBS_START)
 
 		usr.client.holder.job_slots()
 

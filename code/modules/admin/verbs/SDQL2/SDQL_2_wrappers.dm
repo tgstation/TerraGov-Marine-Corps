@@ -87,7 +87,7 @@
 /proc/_new(type, arguments)
 	var/datum/result = new type(arglist(arguments))
 	if(istype(result))
-		result.datum_flags |= DF_VAR_EDITED
+		result.flags_datum |= DF_VAR_EDITED
 	return result
 
 /proc/_num2text(N, SigFig = 6)

@@ -30,7 +30,7 @@
 	/// assoc list key = /datum/instrument_key. do not fill this yourself!
 	var/list/samples
 	/// See __DEFINES/flags/instruments.dm
-	var/instrument_flags = NONE
+	var/flags_instrument = NONE
 	/// For legacy instruments, the path to our notes
 	var/legacy_instrument_path
 	/// For legacy instruments, our file extension
@@ -54,7 +54,7 @@
  * Initializes the instrument, calculating its samples if necessary.
  */
 /datum/instrument/proc/Initialize()
-	if(instrument_flags & (INSTRUMENT_LEGACY | INSTRUMENT_DO_NOT_AUTOSAMPLE))
+	if(flags_instrument & (INSTRUMENT_LEGACY | INSTRUMENT_DO_NOT_AUTOSAMPLE))
 		return
 	calculate_samples()
 
@@ -62,9 +62,9 @@
  * Checks if this instrument is ready to play.
  */
 /datum/instrument/proc/ready()
-	if(instrument_flags & INSTRUMENT_LEGACY)
+	if(flags_instrument & INSTRUMENT_LEGACY)
 		return legacy_instrument_path && legacy_instrument_ext
-	else if(instrument_flags & INSTRUMENT_DO_NOT_AUTOSAMPLE)
+	else if(flags_instrument & INSTRUMENT_DO_NOT_AUTOSAMPLE)
 		return length(samples)
 	return (length(samples) >= 128)
 

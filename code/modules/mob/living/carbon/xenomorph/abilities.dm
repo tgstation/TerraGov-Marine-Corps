@@ -6,7 +6,7 @@
 	name = "Rest"
 	action_icon_state = "resting"
 	desc = "Rest on weeds to regenerate health and plasma."
-	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_CRESTED|ABILITY_USE_CLOSEDTURF
+	flags_use_state = ABILITY_USE_LYING|ABILITY_USE_CRESTED|ABILITY_USE_CLOSEDTURF
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REST,
 	)
@@ -30,7 +30,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_WEEDS,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CHOOSE_WEEDS,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_LYING
 	///the maximum range of the ability
 	var/max_range = 0
 	///The seleted type of weeds
@@ -40,7 +40,7 @@
 	///The turf that was last weeded
 	var/turf/last_weeded_turf
 
-/datum/action/ability/activable/xeno/plant_weeds/can_use_action(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/plant_weeds/can_use_action(atom/A, silent = FALSE, flags_override)
 	ability_cost = initial(ability_cost) * initial(weed_type.ability_cost_mult)
 	return ..()
 
@@ -146,7 +146,7 @@
 	return TRUE
 
 /datum/action/ability/activable/xeno/plant_weeds/ai_should_use(target)
-	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_action(flags_override = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(owner_xeno.loc_weeds_type)
@@ -156,7 +156,7 @@
 /datum/action/ability/activable/xeno/plant_weeds/ranged
 	max_range = 4
 
-/datum/action/ability/activable/xeno/plant_weeds/ranged/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/plant_weeds/ranged/can_use_ability(atom/A, silent = FALSE, flags_override)
 	var/area/area = get_area(A)
 	if(area.flags_area & MARINE_BASE)
 		if(!silent)
@@ -167,8 +167,8 @@
 		return FALSE
 	return ..()
 
-/datum/action/ability/activable/xeno/plant_weeds/ranged/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
-	if (owner.status_flags & INCORPOREAL)
+/datum/action/ability/activable/xeno/plant_weeds/ranged/can_use_action(silent = FALSE, flags_override, selecting = FALSE)
+	if (owner.flags_status & INCORPOREAL)
 		return FALSE
 	return ..()
 
@@ -177,7 +177,7 @@
 	name = "Secrete Resin"
 	action_icon_state = RESIN_WALL
 	desc = "Builds whatever resin you selected"
-	target_flags = ABILITY_TURF_TARGET
+	flags_target = ABILITY_TURF_TARGET
 	ability_cost = 75
 	action_type = ACTION_TOGGLE
 	keybinding_signals = list(
@@ -444,7 +444,7 @@
 	name = "Secrete Special Resin"
 	action_icon_state = RESIN_WALL
 	desc = "Builds whatever special resin you selected"
-	target_flags = ABILITY_TURF_TARGET
+	flags_target = ABILITY_TURF_TARGET
 	ability_cost = 75
 	action_type = ACTION_TOGGLE
 	keybinding_signals = list(
@@ -607,7 +607,7 @@
 	action_icon_state = "emit_pheromones"
 	ability_cost = 30
 	desc = "Opens your pheromone options."
-	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_NOTTURF|ABILITY_USE_BUSY|ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_STAGGERED|ABILITY_USE_NOTTURF|ABILITY_USE_BUSY|ABILITY_USE_LYING
 
 /datum/action/ability/xeno_action/pheromones/proc/apply_pheros(phero_choice)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -685,9 +685,9 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TRANSFER_PLASMA,
 	)
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 
-/datum/action/ability/activable/xeno/transfer_plasma/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/transfer_plasma/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -697,7 +697,7 @@
 
 	var/mob/living/carbon/xenomorph/target = A
 
-	if(!(target.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA))
+	if(!(target.xeno_caste.flags_can & CASTE_CAN_BE_GIVEN_PLASMA))
 		if(!silent)
 			to_chat(owner, span_warning("We can't give that caste plasma."))
 			return FALSE
@@ -759,9 +759,9 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CORROSIVE_ACID,
 	)
-	use_state_flags = ABILITY_USE_BUCKLED
+	flags_use_state = ABILITY_USE_BUCKLED
 
-/datum/action/ability/activable/xeno/corrosive_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/corrosive_acid/can_use_ability(atom/A, silent = FALSE, flags_override)
 	var/obj/effect/xenomorph/acid/current_acid_type = acid_type
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		current_acid_type = /obj/effect/xenomorph/acid/strong //if it is before shutters open, everyone gets strong acid
@@ -780,7 +780,7 @@
 		if(!silent)
 			owner.balloon_alert(owner, "We can't melt [A]")
 		return FALSE
-	if(A.resistance_flags & UNACIDABLE || !A.dissolvability(initial(current_acid_type.acid_strength)))
+	if(A.flags_resistance & UNACIDABLE || !A.dissolvability(initial(current_acid_type.acid_strength)))
 		if(!silent)
 			owner.balloon_alert(owner, "We cannot dissolve [A]")
 		return FALSE
@@ -837,9 +837,9 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPRAY_ACID,
 	)
-	use_state_flags = ABILITY_USE_BUCKLED
+	flags_use_state = ABILITY_USE_BUCKLED
 
-/datum/action/ability/activable/xeno/spray_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/spray_acid/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -880,8 +880,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_XENO_SPIT,
 	)
-	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED|ABILITY_DO_AFTER_ATTACK|ABILITY_USE_STAGGERED
-	target_flags = ABILITY_MOB_TARGET
+	flags_use_state = ABILITY_USE_LYING|ABILITY_USE_BUCKLED|ABILITY_DO_AFTER_ATTACK|ABILITY_USE_STAGGERED
+	flags_target = ABILITY_MOB_TARGET
 	///Current target that the xeno is targeting. This is for aiming.
 	var/current_target
 
@@ -920,7 +920,7 @@
 	UnregisterSignal(owner, list(COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEDOWN))
 	return ..()
 
-/datum/action/ability/activable/xeno/xeno_spit/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/xeno_spit/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -944,10 +944,10 @@
 /datum/action/ability/activable/xeno/xeno_spit/use_ability(atom/A)
 	if(!owner.GetComponent(/datum/component/ai_controller)) //If its not an ai it will register to listen for clicks instead of use this proc. We want to call start_fire from here only if the owner is an ai.
 		return
-	start_fire(object = A, can_use_ability_flags = ABILITY_IGNORE_SELECTED_ABILITY)
+	start_fire(object = A, flags_can_use_ability = ABILITY_IGNORE_SELECTED_ABILITY)
 
 ///Starts the xeno firing.
-/datum/action/ability/activable/xeno/xeno_spit/proc/start_fire(datum/source, atom/object, turf/location, control, params, can_use_ability_flags)
+/datum/action/ability/activable/xeno/xeno_spit/proc/start_fire(datum/source, atom/object, turf/location, control, params, flags_can_use_ability)
 	SIGNAL_HANDLER
 	var/list/modifiers = params2list(params)
 	if(((modifiers["right"] || modifiers["middle"]) && (modifiers["shift"] || modifiers["ctrl"] || modifiers["left"])) || \
@@ -955,7 +955,7 @@
 	(modifiers["left"] && !modifiers["shift"]))
 		return
 	var/mob/living/carbon/xenomorph/xeno = owner
-	if(!can_use_ability(object, TRUE, can_use_ability_flags))
+	if(!can_use_ability(object, TRUE, flags_can_use_ability))
 		return fail_activate()
 	set_target(get_turf_on_clickcatcher(object, xeno, params))
 	if(!current_target)
@@ -1024,7 +1024,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 6)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, flags_override = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(!line_of_sight(owner, target))
 		return FALSE
@@ -1063,12 +1063,12 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_NEUROTOX_STING,
 	)
-	target_flags = ABILITY_MOB_TARGET
-	use_state_flags = ABILITY_USE_BUCKLED
+	flags_target = ABILITY_MOB_TARGET
+	flags_use_state = ABILITY_USE_BUCKLED
 	/// Whatever our victim is injected with.
 	var/sting_chemical = /datum/reagent/toxin/xeno_neurotoxin
 
-/datum/action/ability/activable/xeno/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/neurotox_sting/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -1135,8 +1135,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_WHISPER,
 	)
-	use_state_flags = ABILITY_USE_LYING
-	target_flags = ABILITY_MOB_TARGET
+	flags_use_state = ABILITY_USE_LYING
+	flags_target = ABILITY_MOB_TARGET
 
 
 /datum/action/ability/xeno_action/psychic_whisper/action_activate()
@@ -1220,9 +1220,9 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_HIVE,
 	)
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY
 	cooldown_duration = 60 SECONDS
-	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
+	flags_use_state = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
 
 /datum/action/ability/xeno_action/rally_hive/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -1245,9 +1245,9 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_MINION,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_MINION_BEHAVIOUR,
 	)
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY
 	cooldown_duration = 10 SECONDS
-	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
+	flags_use_state = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
 	///If minions should be agressive
 	var/minions_agressive = TRUE
 
@@ -1272,7 +1272,7 @@
 /mob/living/carbon/xenomorph/proc/add_abilities()
 	for(var/action_path in xeno_caste.actions)
 		var/datum/action/ability/xeno_action/action = new action_path(src)
-		if(!SSticker.mode || SSticker.mode.flags_xeno_abilities & action.gamemode_flags)
+		if(!SSticker.mode || SSticker.mode.flags_xeno_abilities & action.flags_gamemode)
 			action.give_action(src)
 
 
@@ -1291,15 +1291,15 @@
 	action_icon_state = "headbite"
 	desc = "Drain the victim of its life force to gain larva and psych points"
 	ability_cost = 50
-	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	flags_use_state = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEADBITE,
 	)
-	gamemode_flags = ABILITY_NUCLEARWAR
+	flags_gamemode = ABILITY_NUCLEARWAR
 	///How much larva points it gives (8 points for one larva in distress)
 	var/larva_point_reward = 1
 
-/datum/action/ability/activable/xeno/psydrain/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/psydrain/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..() //do after checking the below stuff
 	if(!.)
 		return
@@ -1388,16 +1388,16 @@
 	name = "Cocoon"
 	action_icon_state = "regurgitate"
 	desc = "Devour your victim to cocoon it in your belly. This cocoon will automatically be ejected later, and while the marine inside it still has life force it will give psychic points."
-	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	flags_use_state = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGURGITATE,
 	)
 	ability_cost = 100
-	gamemode_flags = ABILITY_NUCLEARWAR
+	flags_gamemode = ABILITY_NUCLEARWAR
 	///In how much time the cocoon will be ejected
 	var/cocoon_production_time = 3 SECONDS
 
-/datum/action/ability/activable/xeno/cocoon/can_use_ability(atom/A, silent, override_flags)
+/datum/action/ability/activable/xeno/cocoon/can_use_ability(atom/A, silent, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -1484,7 +1484,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BLESSINGSMENU,
 	)
-	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_CRESTED
+	flags_use_state = ABILITY_USE_LYING|ABILITY_USE_CRESTED
 
 /datum/action/ability/xeno_action/blessing_menu/should_show()
 	return FALSE // Blessings meni now done through hive status UI!

@@ -321,7 +321,7 @@
 
 /datum/keybinding/mob/interactive_emote/down(client/user)
 	. = ..()
-	if(. || !isliving(user.mob) || CHECK_BITFIELD(user.mob.status_flags, INCORPOREAL) || !user.mob.can_interact(user.mob))
+	if(. || !isliving(user.mob) || CHECK_BITFIELD(user.mob.flags_status, INCORPOREAL) || !user.mob.can_interact(user.mob))
 		return
 
 	var/list/adjacent_mobs = cheap_get_living_near(user.mob, 1)

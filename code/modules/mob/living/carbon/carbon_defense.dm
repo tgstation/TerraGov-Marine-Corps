@@ -1,5 +1,5 @@
 /mob/living/carbon/proc/has_smoke_protection()
-	if(stat == DEAD || species.species_flags & NO_BREATHE) //they don't breath
+	if(stat == DEAD || species.flags_species & NO_BREATHE) //they don't breath
 		return TRUE
 	return FALSE
 

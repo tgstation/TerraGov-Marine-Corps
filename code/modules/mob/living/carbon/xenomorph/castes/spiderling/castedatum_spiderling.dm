@@ -25,7 +25,7 @@
 	max_health = 125
 
 	// *** Flags *** //
-	caste_flags = CASTE_NOT_IN_BIOSCAN|CASTE_DO_NOT_ANNOUNCE_DEATH|CASTE_DO_NOT_ALERT_LOW_LIFE
+	flags_caste = CASTE_NOT_IN_BIOSCAN|CASTE_DO_NOT_ANNOUNCE_DEATH|CASTE_DO_NOT_ALERT_LOW_LIFE
 
 	// *** Minimap Icon *** //
 	minimap_icon = "spiderling"

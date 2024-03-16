@@ -1,5 +1,5 @@
 /datum/element/egrill
-	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
+	flags_element = ELEMENT_DETACH_ON_HOST_DESTROY
 
 /datum/element/egrill/Attach(datum/target)
 	if(!isobj(target))
@@ -40,7 +40,7 @@
 
 /datum/element/egrill/proc/attack_alien(obj/source, mob/living/carbon/xenomorph/attacker)
 	SIGNAL_HANDLER
-	if(attacker.status_flags & INCORPOREAL)
+	if(attacker.flags_status & INCORPOREAL)
 		return FALSE
 	shock(source, attacker)
 

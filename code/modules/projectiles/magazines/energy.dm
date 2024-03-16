@@ -168,7 +168,7 @@
 		return
 	if(istype(I, /obj/item/weapon/gun) && loc == user)
 		var/obj/item/weapon/gun/gun = I
-		if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_MAGAZINES))
+		if(!CHECK_BITFIELD(gun.flags_reciever, AMMO_RECIEVER_MAGAZINES))
 			return
 		gun.reload(src, user)
 		return
@@ -221,7 +221,7 @@
 		return
 	if(istype(I, /obj/item/weapon/gun) && loc == user)
 		var/obj/item/weapon/gun/gun = I
-		if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_MAGAZINES))
+		if(!CHECK_BITFIELD(gun.flags_reciever, AMMO_RECIEVER_MAGAZINES))
 			return
 		gun.reload(src, user)
 		return

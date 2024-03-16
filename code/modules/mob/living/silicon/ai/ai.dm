@@ -12,10 +12,10 @@
 	move_resist = MOVE_FORCE_OVERPOWERING
 	density = TRUE
 	canmove = FALSE
-	status_flags = CANSTUN|CANKNOCKOUT
+	flags_status = CANSTUN|CANKNOCKOUT
 	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS
 	hud_type = /datum/hud/ai
-	buckle_flags = NONE
+	flags_buckle = NONE
 	has_unlimited_silicon_privilege = TRUE
 
 	var/list/available_networks = list("marinemainship", "marine", "dropship1", "dropship2")
@@ -177,7 +177,7 @@
 	return FALSE
 
 
-/mob/living/silicon/ai/incapacitated(ignore_restrained, restrained_flags)
+/mob/living/silicon/ai/incapacitated(ignore_restrained, flags_restrained)
 	if(control_disabled)
 		return TRUE
 	return ..()

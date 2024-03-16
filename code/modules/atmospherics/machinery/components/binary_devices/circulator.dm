@@ -10,7 +10,7 @@
 
 	var/active = FALSE
 
-	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
+	flags_pipe = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
 
 	density = TRUE
 

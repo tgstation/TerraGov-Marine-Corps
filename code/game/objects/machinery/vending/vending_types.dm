@@ -229,7 +229,7 @@
 /obj/machinery/vending/medical/valhalla
 	use_power = NO_POWER_USE
 	req_access = list()
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 	products = list(
 		"Hypospray" = list (
 			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = -1,
@@ -583,7 +583,7 @@
 	use_power = NO_POWER_USE
 
 /obj/machinery/vending/engivend/nopower/valhalla
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 
 //This one's from bay12
 /obj/machinery/vending/robotics

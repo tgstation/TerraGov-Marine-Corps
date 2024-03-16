@@ -23,7 +23,7 @@
 	if(!isliving(loc))
 		return
 	affected_mob = loc
-	affected_mob.status_flags |= XENO_HOST
+	affected_mob.flags_status |= XENO_HOST
 	log_combat(affected_mob, null, "been infected with an embryo")
 	START_PROCESSING(SSobj, src)
 	if(iscarbon(affected_mob))
@@ -34,7 +34,7 @@
 /obj/item/alien_embryo/Destroy()
 	if(affected_mob)
 		log_combat(affected_mob, null, "had their embryo removed")
-		affected_mob.status_flags &= ~(XENO_HOST)
+		affected_mob.flags_status &= ~(XENO_HOST)
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
 			C.med_hud_set_status()
@@ -49,7 +49,7 @@
 		return PROCESS_KILL
 
 	if(loc != affected_mob)
-		affected_mob.status_flags &= ~(XENO_HOST)
+		affected_mob.flags_status &= ~(XENO_HOST)
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
 			C.med_hud_set_status()
@@ -231,7 +231,7 @@
 
 
 /mob/living/carbon/human/emote_burstscream()
-	if(species.species_flags & NO_PAIN)
+	if(species.flags_species & NO_PAIN)
 		return
 	emote("burstscream")
 

@@ -84,7 +84,7 @@
 	if(!occupant)
 		to_chat(xeno_attacker, span_xenowarning("There is nothing of interest in there."))
 		return
-	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
+	if(xeno_attacker.flags_status & INCORPOREAL || xeno_attacker.do_actions)
 		return
 	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
 	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)

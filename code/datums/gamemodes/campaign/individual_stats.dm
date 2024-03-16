@@ -1,5 +1,5 @@
 /datum/individual_stats
-	interaction_flags = INTERACT_UI_INTERACT
+	flags_interaction = INTERACT_UI_INTERACT
 	var/owner_ckey
 	///currently occupied mob - if any
 	var/mob/living/carbon/current_mob

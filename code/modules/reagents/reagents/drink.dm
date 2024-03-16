@@ -207,7 +207,7 @@
 	adj_temp = 20
 	taste_description = "bitterness"
 	purge_rate = 2
-	trait_flags = TACHYCARDIC
+	flags_trait = TACHYCARDIC
 
 
 /datum/reagent/consumable/drink/coffee/overdose_process(mob/living/L, metabolism)
@@ -248,7 +248,7 @@
 	taste_description = "bitterness"
 	purge_list = list(/datum/reagent/consumable/frostoil, /datum/reagent/medicine/oxycodone)
 	purge_rate = 2
-	trait_flags = TACHYCARDIC
+	flags_trait = TACHYCARDIC
 
 /datum/reagent/consumable/drink/atomiccoffee/on_mob_add(mob/living/L, metabolism)
 	. = ..()
@@ -540,7 +540,7 @@
 	color = "#2E2E61" // rgb: 46, 46, 97
 	adj_dizzy = 6
 	taste_description = "a numbing sensation"
-	trait_flags = BRADYCARDICS
+	flags_trait = BRADYCARDICS
 
 /datum/reagent/consumable/drink/neurotoxin/on_mob_life(mob/living/L, metabolism)
 	L.Paralyze(6 SECONDS)

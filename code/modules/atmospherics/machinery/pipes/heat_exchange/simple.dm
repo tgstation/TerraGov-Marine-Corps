@@ -7,7 +7,7 @@
 
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH
-	pipe_flags = PIPING_CARDINAL_AUTONORMALIZE
+	flags_pipe = PIPING_CARDINAL_AUTONORMALIZE
 
 	device_type = BINARY
 

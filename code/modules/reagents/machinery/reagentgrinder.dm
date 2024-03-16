@@ -10,7 +10,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 100
-	allow_pass_flags = PASS_LOW_STRUCTURE
+	flags_allow_pass = PASS_LOW_STRUCTURE
 	var/operating = FALSE
 	var/speed = 1
 	var/obj/item/reagent_containers/beaker = null
@@ -390,4 +390,4 @@
 	use_power = NO_POWER_USE
 
 /obj/machinery/reagentgrinder/nopower/valhalla
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE

@@ -141,7 +141,7 @@
 		if(!T.blood_type)
 			return
 
-		if(T.species?.species_flags & NO_BLOOD)
+		if(T.species?.flags_species & NO_BLOOD)
 			return
 
 		// If the human is losing too much blood, beep.

@@ -46,14 +46,14 @@ export const MaintMode = (props) => {
 const MainPanel = (props) => {
   const { act, data } = useBackend<MaintData>();
   const [screen, setPanel] = useLocalState('screen', MECHA_MAINT_PANELS.main);
-  const { mecha_flags, mechflag_keys } = data;
+  const { flags_mecha, mechflag_keys } = data;
   return (
     <Stack fill vertical>
-      {mecha_flags & mechflag_keys['ADDING_MAINT_ACCESS_POSSIBLE'] ? (
+      {flags_mecha & mechflag_keys['ADDING_MAINT_ACCESS_POSSIBLE'] ? (
         <MaintEnabled />
       ) : null}
       <Stack.Item>
-        {mecha_flags & mechflag_keys['ADDING_ACCESS_POSSIBLE'] ? (
+        {flags_mecha & mechflag_keys['ADDING_ACCESS_POSSIBLE'] ? (
           <Button
             fluid
             bold

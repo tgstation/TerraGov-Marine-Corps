@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(VVlocked, list("vars", "datum_flags", "client", "mob")) //Requires DEBUG
+GLOBAL_LIST_INIT(VVlocked, list("vars", "flags_datum", "client", "mob")) //Requires DEBUG
 GLOBAL_PROTECT(VVlocked)
 GLOBAL_LIST_INIT(VVicon_edit_lock, list("icon", "icon_state", "overlays", "underlays")) //Requires DEBUG or FUN
 GLOBAL_PROTECT(VVicon_edit_lock)
@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(VVckey_edit, list("key", "ckey")) //Requires DEBUG or SPAWN
 GLOBAL_PROTECT(VVckey_edit)
 GLOBAL_LIST_INIT(VVpixelmovement, list("bound_x", "bound_y", "step_x", "step_y", "step_size", "bound_height", "bound_width", "bounds")) //No editing ever.
 GLOBAL_PROTECT(VVpixelmovement)
-GLOBAL_LIST_INIT(VVwarning, list("vars", "datum_flags", "client", "key", "ckey", "type"))
+GLOBAL_LIST_INIT(VVwarning, list("vars", "flags_datum", "client", "key", "ckey", "type"))
 GLOBAL_PROTECT(VVwarning)
 
 /client/proc/vv_parse_text(O, new_var)

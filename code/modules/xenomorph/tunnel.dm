@@ -11,13 +11,13 @@ TUNNEL
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE|BANISH_IMMUNE
+	flags_resistance = UNACIDABLE|BANISH_IMMUNE
 	layer = RESIN_STRUCTURE_LAYER
 
 	max_integrity = 140
 
 	hud_possible = list(XENO_TACTICAL_HUD)
-	xeno_structure_flags = IGNORE_WEED_REMOVAL
+	flags_xeno_structure = IGNORE_WEED_REMOVAL
 	///Description added by the hivelord.
 	var/tunnel_desc = ""
 	///What hivelord created that tunnel. Can be null
@@ -75,7 +75,7 @@ TUNNEL
 	attack_alien(user)
 
 /obj/structure/xeno/tunnel/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(!istype(xeno_attacker) || xeno_attacker.stat || xeno_attacker.lying_angle || xeno_attacker.status_flags & INCORPOREAL)
+	if(!istype(xeno_attacker) || xeno_attacker.stat || xeno_attacker.lying_angle || xeno_attacker.flags_status & INCORPOREAL)
 		return
 
 	if(xeno_attacker.a_intent == INTENT_HARM && xeno_attacker == creator)

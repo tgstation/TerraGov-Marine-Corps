@@ -193,7 +193,7 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is braindead. No remedy possible."))
 		return
 
-	if(!H.has_working_organs() && !(H.species.species_flags & ROBOTIC_LIMBS))
+	if(!H.has_working_organs() && !(H.species.flags_species & ROBOTIC_LIMBS))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
 		return
 
@@ -243,11 +243,11 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's brain has decayed too much. No remedy possible."))
 		return
 
-	if(!H.has_working_organs() && !(H.species.species_flags & ROBOTIC_LIMBS))
+	if(!H.has_working_organs() && !(H.species.flags_species & ROBOTIC_LIMBS))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
 		return
 
-	if(H.species.species_flags & DETACHABLE_HEAD)	//But if their head's missing, they're still not coming back
+	if(H.species.flags_species & DETACHABLE_HEAD)	//But if their head's missing, they're still not coming back
 		var/datum/limb/head/braincase = H.get_limb("head")
 		if(braincase.limb_status & LIMB_DESTROYED)
 			user.visible_message("[icon2html(src, viewers(user))] \The [src] buzzes: Positronic brain missing, cannot reboot.")
@@ -326,7 +326,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_human_revives[H.faction]")
 	to_chat(H, span_notice("You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane."))
 
-	if(CHECK_BITFIELD(H.status_flags, XENO_HOST))
+	if(CHECK_BITFIELD(H.flags_status, XENO_HOST))
 		var/obj/item/alien_embryo/friend = locate() in H
 		START_PROCESSING(SSobj, friend)
 

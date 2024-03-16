@@ -142,7 +142,7 @@
 	if(!shuttle_landed && !force_end)
 		return FALSE
 
-	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
+	var/list/living_player_list = count_humans_and_xenos(flags_count = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 
 	if(num_humans && planet_nuked == INFESTATION_NUKE_NONE && marines_evac == CRASH_EVAC_NONE && !force_end)
@@ -178,7 +178,7 @@
 
 
 /datum/game_mode/infestation/crash/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
-	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
+	var/list/living_player_list = count_humans_and_xenos(flags_count = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 	if(!num_humans) // no humans left on planet to try and restart it.
 		addtimer(VARSET_CALLBACK(src, marines_evac, CRASH_EVAC_COMPLETED), 10 SECONDS)
@@ -203,7 +203,7 @@
 	xeno_job.add_job_positions(1)
 	xeno_hive.update_tier_limits()
 
-/datum/game_mode/infestation/crash/get_total_joblarvaworth(list/z_levels, count_flags)
+/datum/game_mode/infestation/crash/get_total_joblarvaworth(list/z_levels, flags_count)
 	. = 0
 
 	for(var/mob/living/carbon/human/H AS in GLOB.human_mob_list)

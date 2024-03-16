@@ -10,7 +10,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_LYING
 
 /datum/action/ability/xeno_action/hive_message/action_activate()
 	var/mob/living/carbon/xenomorph/queen/Q = owner
@@ -66,7 +66,7 @@
 	desc = "A large area knockdown that causes pain and screen-shake."
 	ability_cost = 250
 	cooldown_duration = 100 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCREECH,
 	)
@@ -121,7 +121,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 4)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, flags_override = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -135,7 +135,7 @@
 	action_icon_state = "watch_xeno"
 	desc = "See from the target Xenomorphs vision. Click again the ability to stop observing"
 	ability_cost = 0
-	use_state_flags = ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_LYING
 	var/overwatch_active = FALSE
 
 /datum/action/ability/xeno_action/watch_xeno/give_action(mob/living/L)
@@ -234,10 +234,10 @@
 	var/mob/living/carbon/xenomorph/queen/xeno = owner
 	if(xeno.do_actions)
 		return
-	if(xeno.xeno_flags & XENO_ZOOMED)
+	if(xeno.flags_xeno & XENO_ZOOMED)
 		zoom_xeno_out(xeno.observed_xeno ? FALSE : TRUE)
 		return
-	if(!do_after(xeno, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || (xeno.xeno_flags & XENO_ZOOMED))
+	if(!do_after(xeno, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || (xeno.flags_xeno & XENO_ZOOMED))
 		return
 	zoom_xeno_in(xeno.observed_xeno ? FALSE : TRUE) //No need for feedback message if our eye is elsewhere.
 
@@ -272,7 +272,7 @@
 	action_icon_state = "xeno_lead"
 	desc = "Make a target Xenomorph a leader."
 	ability_cost = 200
-	use_state_flags = ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_LYING
 
 /datum/action/ability/xeno_action/set_xeno_lead/should_show()
 	return FALSE // Leadership now set through hive status UI!
@@ -296,7 +296,7 @@
 /datum/action/ability/xeno_action/set_xeno_lead/proc/select_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
 	var/mob/living/carbon/xenomorph/queen/xeno_ruler = owner
 
-	if(selected_xeno.xeno_flags & XENO_LEADER)
+	if(selected_xeno.flags_xeno & XENO_LEADER)
 		unset_xeno_leader(selected_xeno)
 		return
 
@@ -320,7 +320,7 @@
 /// Promote the passed xeno to a hive leader, should not be called direct
 /datum/action/ability/xeno_action/set_xeno_lead/proc/set_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
 	var/mob/living/carbon/xenomorph/xeno_ruler = owner
-	if(!(selected_xeno.xeno_caste.can_flags & CASTE_CAN_BE_LEADER))
+	if(!(selected_xeno.xeno_caste.flags_can & CASTE_CAN_BE_LEADER))
 		xeno_ruler.balloon_alert(xeno_ruler, "Xeno cannot lead")
 		return
 	xeno_ruler.balloon_alert(xeno_ruler, "Xeno promoted")
@@ -347,7 +347,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HEAL,
 	)
 	heal_range = HIVELORD_HEAL_RANGE
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 
 /datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/use_ability(atom/target)
 	if(owner.do_actions)
@@ -388,21 +388,21 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA,
 	)
-	use_state_flags = ABILITY_USE_LYING
-	target_flags = ABILITY_MOB_TARGET
+	flags_use_state = ABILITY_USE_LYING
+	flags_target = ABILITY_MOB_TARGET
 
-/datum/action/ability/activable/xeno/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
 	if(!isxeno(target))
 		return FALSE
 	var/mob/living/carbon/xenomorph/receiver = target
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && receiver.stat == DEAD)
+	if(!CHECK_BITFIELD(flags_use_state|flags_override, ABILITY_IGNORE_DEAD_TARGET) && receiver.stat == DEAD)
 		if(!silent)
 			receiver.balloon_alert(owner, "Cannot give plasma, dead")
 		return FALSE
-	if(!CHECK_BITFIELD(receiver.xeno_caste.can_flags, CASTE_CAN_BE_GIVEN_PLASMA))
+	if(!CHECK_BITFIELD(receiver.xeno_caste.flags_can, CASTE_CAN_BE_GIVEN_PLASMA))
 		if(!silent)
 			receiver.balloon_alert(owner, "Cannot give plasma")
 			return FALSE

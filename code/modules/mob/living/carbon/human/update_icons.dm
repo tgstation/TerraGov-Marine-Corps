@@ -107,7 +107,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	var/icon/burn_state_icon = icon('icons/mob/dam_human.dmi', "[species.burn_damage_icon_state]_[burn_state]")
 	var/icon/damage_mask_icon = icon(species.damage_mask_icon, body_part)
 	var/icon/DI = icon('icons/mob/dam_human.dmi', "00") //starts blank
-	if(species.species_flags & GREYSCALE_BLOOD)
+	if(species.flags_species & GREYSCALE_BLOOD)
 		DI.Blend(species.blood_color, ICON_MULTIPLY) 	//coloring with species' blood color
 	DI.Blend(brute_state_icon, ICON_OVERLAY)			//add bruises
 	DI.Blend(burn_state_icon, ICON_OVERLAY)				//add burns
@@ -118,7 +118,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 //DAMAGE OVERLAYS
 //constructs damage icon for each organ from mask * damage field and saves it in our overlays_ lists
 /mob/living/carbon/human/UpdateDamageIcon()
-	if(species.species_flags & NO_DAMAGE_OVERLAY)
+	if(species.flags_species & NO_DAMAGE_OVERLAY)
 		return
 
 	// first check whether something actually changed about damage appearance
@@ -273,7 +273,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	/*
 	//Skin colour. Not in cache because highly variable (and relatively benign).
-	if (species.species_flags & HAS_SKIN_COLOR)
+	if (species.flags_species & HAS_SKIN_COLOR)
 		stand_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
 	*/
 
@@ -284,11 +284,11 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		stand_icon.Blend(eyes, ICON_OVERLAY)
 
 		//Mouth	(lipstick!)
-		if(makeup_style && (species?.species_flags & HAS_LIPS))	//skeletons are allowed to wear lipstick no matter what you think, agouri.
+		if(makeup_style && (species?.flags_species & HAS_LIPS))	//skeletons are allowed to wear lipstick no matter what you think, agouri.
 			stand_icon.Blend(new/icon('icons/mob/human_face.dmi', "camo_[makeup_style]_s"), ICON_OVERLAY)
 
 
-	if(species.species_flags & HAS_UNDERWEAR)
+	if(species.flags_species & HAS_UNDERWEAR)
 		stand_icon.Blend(new /icon('icons/mob/human.dmi', "underwear_[underwear]_[gender]"), ICON_OVERLAY)
 		stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirt_[undershirt]_[gender]"), ICON_OVERLAY)
 
@@ -301,7 +301,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	//Reset our hair
 	remove_overlay(HAIR_LAYER)
 
-	if(species.species_flags & HAS_NO_HAIR)
+	if(species.flags_species & HAS_NO_HAIR)
 		return
 
 	var/datum/limb/head/head_organ = get_limb("head")

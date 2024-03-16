@@ -6,17 +6,17 @@
 	///The cost of using this ability. Typically a plasma cost for xenos
 	var/ability_cost = 0
 	///bypass use limitations checked by can_use_action()
-	var/use_state_flags = NONE
+	var/flags_use_state = NONE
 	///Standard cooldown for this ability
 	var/cooldown_duration
 	///special behavior flags for how this ability is used
-	var/keybind_flags
+	var/flags_keybind
 	///the actual cooldown timer
 	var/cooldown_timer
 	///any special flags for what this ability targets
-	var/target_flags = NONE
+	var/flags_target = NONE
 	/// flags to restrict an ability to certain gamemode
-	var/gamemode_flags = ABILITY_ALL_GAMEMODE
+	var/flags_gamemode = ABILITY_ALL_GAMEMODE
 	///Cooldown map text holder
 	var/obj/effect/countdown/action_cooldown/countdown
 
@@ -52,11 +52,11 @@
 	else
 		button.color = "#ffffffff" // rgb(255,255,255,255)
 
-/datum/action/ability/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/can_use_action(silent = FALSE, flags_override)
 	var/mob/living/carbon/carbon_owner = owner
 	if(!carbon_owner)
 		return FALSE
-	var/flags_to_check = use_state_flags|override_flags
+	var/flags_to_check = flags_use_state|flags_override
 
 	if(!(flags_to_check & ABILITY_IGNORE_COOLDOWN) && !action_cooldown_check())
 		if(!silent)
@@ -200,7 +200,7 @@
 
 /datum/action/ability/activable/keybind_activation()
 	. = COMSIG_KB_ACTIVATED
-	if(CHECK_BITFIELD(keybind_flags, ABILITY_KEYBIND_USE_ABILITY))
+	if(CHECK_BITFIELD(flags_keybind, ABILITY_KEYBIND_USE_ABILITY))
 		if(can_use_ability(null, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
 			use_ability()
 		return
@@ -214,22 +214,22 @@
 		carbon_owner.selected_ability = null
 	return ..()
 
-/datum/action/ability/activable/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+/datum/action/ability/activable/can_use_action(silent = FALSE, flags_override, selecting = FALSE)
 	if(selecting)
 		return ..(silent, ABILITY_IGNORE_COOLDOWN|ABILITY_IGNORE_PLASMA|ABILITY_USE_STAGGERED)
 	return ..()
 
 ///override this
-/datum/action/ability/activable/proc/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/proc/can_use_ability(atom/A, silent = FALSE, flags_override)
 	if(QDELETED(owner))
 		return FALSE
 
-	var/flags_to_check = use_state_flags|override_flags
+	var/flags_to_check = flags_use_state|flags_override
 
 	var/mob/living/carbon/carbon_owner = owner
 	if(!CHECK_BITFIELD(flags_to_check, ABILITY_IGNORE_SELECTED_ABILITY) && carbon_owner.selected_ability != src)
 		return FALSE
-	. = can_use_action(silent, override_flags)
+	. = can_use_action(silent, flags_override)
 	if(!CHECK_BITFIELD(flags_to_check, ABILITY_TARGET_SELF) && A == owner)
 		return FALSE
 

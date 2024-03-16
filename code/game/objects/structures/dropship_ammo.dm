@@ -9,9 +9,9 @@
 	density = TRUE
 	anchored = TRUE
 	climbable = TRUE
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	coverage = 20
-	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR
+	flags_interaction = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR
 	///Time before the ammo impacts
 	var/travelling_time = 10 SECONDS
 	///type of equipment that accept this type of ammo.

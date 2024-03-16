@@ -27,7 +27,7 @@
 	internal_damage_threshold = 15
 	internal_damage_probability = 5
 	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_SHORT_CIRCUIT
-	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED
+	flags_mecha = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
 	var/list/datum/mech_limb/limbs = list(
 		MECH_GREY_TORSO = null,
@@ -66,7 +66,7 @@
 
 
 /obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/M)
-	if((mecha_flags & MECHA_SKILL_LOCKED) && M.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_VETERAN)
+	if((flags_mecha & MECHA_SKILL_LOCKED) && M.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_VETERAN)
 		balloon_alert(M, "You don't know how to pilot this")
 		return FALSE
 	return ..()
@@ -147,7 +147,7 @@
 	)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill
-	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+	flags_mecha = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 
 /obj/vehicle/sealed/mecha/combat/greyscale/assault
 	name = "Assault Mecha"
@@ -160,7 +160,7 @@
 	)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill
-	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+	flags_mecha = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard
 	name = "Vanguard Mecha"
@@ -173,4 +173,4 @@
 	)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill
-	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+	flags_mecha = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS

@@ -1,8 +1,8 @@
 /obj
 	animate_movement = SLIDE_STEPS
 	speech_span = SPAN_ROBOT
-	interaction_flags = INTERACT_OBJ_DEFAULT
-	resistance_flags = NONE
+	flags_interaction = INTERACT_OBJ_DEFAULT
+	flags_resistance = NONE
 
 	///damage amount to deal when this obj is attacking something
 	var/force = 0
@@ -24,7 +24,7 @@
 	///Base throw damage. Throwforce needs to be at least 1 else it causes runtimes with shields
 	var/throwforce = 1
 	///Object behavior flags
-	var/obj_flags = NONE
+	var/flags_obj = NONE
 	///Sound when hit
 	var/hit_sound
 	///Sound this object makes when destroyed
@@ -106,37 +106,37 @@
 		return
 	if((flags_atom & ON_BORDER) && !(get_dir(loc, target) & dir))
 		return TRUE
-	if((allow_pass_flags & PASS_DEFENSIVE_STRUCTURE) && (mover.pass_flags & PASS_DEFENSIVE_STRUCTURE))
+	if((flags_allow_pass & PASS_DEFENSIVE_STRUCTURE) && (mover.flags_pass & PASS_DEFENSIVE_STRUCTURE))
 		return TRUE
-	if((allow_pass_flags & PASS_GLASS) && (mover.pass_flags & PASS_GLASS))
+	if((flags_allow_pass & PASS_GLASS) && (mover.flags_pass & PASS_GLASS))
 		return TRUE
-	if(mover?.throwing && (allow_pass_flags & PASS_THROW))
+	if(mover?.throwing && (flags_allow_pass & PASS_THROW))
 		return TRUE
-	if((allow_pass_flags & PASS_LOW_STRUCTURE) && (mover.pass_flags & PASS_LOW_STRUCTURE))
+	if((flags_allow_pass & PASS_LOW_STRUCTURE) && (mover.flags_pass & PASS_LOW_STRUCTURE))
 		return TRUE
-	if((allow_pass_flags & PASS_AIR) && (mover.pass_flags & PASS_AIR))
+	if((flags_allow_pass & PASS_AIR) && (mover.flags_pass & PASS_AIR))
 		return TRUE
 	if(!ismob(mover))
 		return FALSE
-	if((allow_pass_flags & PASS_MOB))
+	if((flags_allow_pass & PASS_MOB))
 		return TRUE
-	if((allow_pass_flags & PASS_WALKOVER) && SEND_SIGNAL(target, COMSIG_OBJ_TRY_ALLOW_THROUGH, mover))
+	if((flags_allow_pass & PASS_WALKOVER) && SEND_SIGNAL(target, COMSIG_OBJ_TRY_ALLOW_THROUGH, mover))
 		return TRUE
 
 ///Handles extra checks for things trying to exit this objects turf
 /obj/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	SIGNAL_HANDLER
-	if(mover?.throwing && (allow_pass_flags & PASS_THROW))
+	if(mover?.throwing && (flags_allow_pass & PASS_THROW))
 		return NONE
-	if((allow_pass_flags & PASS_DEFENSIVE_STRUCTURE) && (mover.pass_flags & PASS_DEFENSIVE_STRUCTURE))
+	if((flags_allow_pass & PASS_DEFENSIVE_STRUCTURE) && (mover.flags_pass & PASS_DEFENSIVE_STRUCTURE))
 		return NONE
-	if((allow_pass_flags & PASS_LOW_STRUCTURE) && (mover.pass_flags & PASS_LOW_STRUCTURE))
+	if((flags_allow_pass & PASS_LOW_STRUCTURE) && (mover.flags_pass & PASS_LOW_STRUCTURE))
 		return NONE
-	if((allow_pass_flags & PASS_AIR) && (mover.pass_flags & PASS_AIR))
+	if((flags_allow_pass & PASS_AIR) && (mover.flags_pass & PASS_AIR))
 		return TRUE
-	if((allow_pass_flags & PASS_GLASS) && (mover.pass_flags & PASS_GLASS))
+	if((flags_allow_pass & PASS_GLASS) && (mover.flags_pass & PASS_GLASS))
 		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.flags_status & INCORPOREAL))
 		return NONE
 
 	knownblockers += src
@@ -149,7 +149,7 @@
 		return TRUE
 
 /obj/proc/updateUsrDialog()
-	if(!CHECK_BITFIELD(obj_flags, IN_USE))
+	if(!CHECK_BITFIELD(flags_obj, IN_USE))
 		return
 	var/is_in_use = FALSE
 
@@ -158,7 +158,7 @@
 		AI = usr
 		if(AI.client && AI.interactee == src)
 			is_in_use = TRUE
-			if(interaction_flags & INTERACT_UI_INTERACT)
+			if(flags_interaction & INTERACT_UI_INTERACT)
 				ui_interact(AI)
 			else
 				interact(AI)
@@ -167,7 +167,7 @@
 		if(!M.client || M.interactee != src || M == AI)
 			continue
 		is_in_use = TRUE
-		if(interaction_flags & INTERACT_UI_INTERACT)
+		if(flags_interaction & INTERACT_UI_INTERACT)
 			ui_interact(M)
 		else
 			interact(M)
@@ -175,13 +175,13 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		is_in_use = TRUE
-		if(interaction_flags & INTERACT_UI_INTERACT)
+		if(flags_interaction & INTERACT_UI_INTERACT)
 			ui_interact(M)
 		else
 			interact(M)
 
 	if(!is_in_use)
-		DISABLE_BITFIELD(obj_flags, IN_USE)
+		DISABLE_BITFIELD(flags_obj, IN_USE)
 
 
 /obj/proc/hide(h) // TODO: Fix all children
@@ -201,7 +201,7 @@
 
 /obj/on_set_interaction(mob/user)
 	. = ..()
-	ENABLE_BITFIELD(obj_flags, IN_USE)
+	ENABLE_BITFIELD(flags_obj, IN_USE)
 
 /mob/proc/unset_machine()
 	if(machine)
@@ -217,7 +217,7 @@
 		unset_machine()
 	machine = O
 	if(istype(O))
-		O.obj_flags |= IN_USE
+		O.flags_obj |= IN_USE
 
 /obj/vv_edit_var(var_name, var_value)
 	switch(var_name)

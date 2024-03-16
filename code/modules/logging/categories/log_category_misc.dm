@@ -30,4 +30,4 @@
 /datum/log_category/qdel
 	category = LOG_CATEGORY_QDEL
 	// We want this human readable so it's easy to see at a glance
-	entry_flags = ENTRY_USE_DATA_W_READABLE
+	flags_entry = ENTRY_USE_DATA_W_READABLE

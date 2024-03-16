@@ -4,7 +4,7 @@
 /datum/loadout_item/back/empty
 	name = "no backpack"
 	desc = ""
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
 		SQUAD_CORPSMAN,
@@ -29,7 +29,7 @@
 	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel. Carries less than a backpack, but items can be drawn instantly."
 	item_typepath = /obj/item/storage/backpack/marine/satchel
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, STAFF_OFFICER, CAPTAIN)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/back/marine_backpack
 	name = "Backpack"
@@ -47,7 +47,7 @@
 /datum/loadout_item/back/combat_pack/free
 	purchase_cost = 0
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/back/flamer_tank
 	name = "Flame tank"
@@ -63,7 +63,7 @@
 	item_typepath = /obj/item/ammo_magazine/flamer_tank/backtank/X
 	purchase_cost = 40
 	unlock_cost = 200
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
 /datum/loadout_item/back/jetpack
 	name = "Heavy jetpack"
@@ -89,7 +89,7 @@
 	purchase_cost = 25
 	item_typepath = /obj/item/weapon/gun/shotgun/pump/t35/standard
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER)
-	loadout_item_flags = NONE
+	flags_loadout_item = NONE
 
 /datum/loadout_item/back/marine_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -101,7 +101,7 @@
 	ui_icon = "machete"
 	item_typepath = /obj/item/storage/holster/blade/machete/full
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER)
-	loadout_item_flags = NONE
+	flags_loadout_item = NONE
 
 //corpsman
 /datum/loadout_item/back/corpsman_satchel
@@ -115,7 +115,7 @@
 	desc = "The standard-issue backpack worn by TGMC corpsmen. You can recharge defibrillators by plugging them in. Carries more than a satchel but has a draw delay."
 	item_typepath = /obj/item/storage/backpack/marine/corpsman
 	jobs_supported = list(SQUAD_CORPSMAN)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 //engineer
 /datum/loadout_item/back/engineerpack
@@ -123,7 +123,7 @@
 	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling. Loaded with 2 point defense sentries, excellent for defending areas or establishing killboxes."
 	item_typepath = /obj/item/storage/backpack/marine/engineerpack
 	jobs_supported = list(SQUAD_ENGINEER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/back/engineerpack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()

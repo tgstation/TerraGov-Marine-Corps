@@ -195,7 +195,7 @@
 					"playtime_req" = job.required_playtime_remaining(user.client),
 					"account_age_req" = !job.player_old_enough(user.client),
 					"flags" = list(
-						"bold" = (job.job_flags & JOB_FLAG_BOLD_NAME_ON_SELECTION) ? TRUE : FALSE
+						"bold" = (job.flags_job & JOB_FLAG_BOLD_NAME_ON_SELECTION) ? TRUE : FALSE
 					)
 				)
 			.["overflow_job"] = SSjob?.overflow_role?.title

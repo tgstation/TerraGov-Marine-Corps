@@ -14,7 +14,7 @@
 	flags_equip_slot = ITEM_SLOT_EYES
 	flags_armor_protection = EYES
 	var/deactive_state = "degoggles"
-	var/vision_flags = NONE
+	var/flags_vision = NONE
 	var/darkness_view = 2 //Base human is 2
 	var/invis_view = SEE_INVISIBLE_LIVING
 	var/invis_override = 0 //Override to allow glasses to set higher than normal see_invis
@@ -116,7 +116,7 @@
 	item_state = "glasses"
 	actions_types = list(/datum/action/item_action/toggle)
 	toggleable = 1
-	vision_flags = SEE_OBJS
+	flags_vision = SEE_OBJS
 
 /obj/item/clothing/glasses/regular
 	name = "\improper regulation prescription glasses"
@@ -215,7 +215,7 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
-	vision_flags = SEE_TURFS
+	flags_vision = SEE_TURFS
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle)
 
@@ -430,7 +430,7 @@
 	tint = COLOR_RED
 	darkness_view = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	vision_flags = SEE_TURFS
+	flags_vision = SEE_TURFS
 	toggleable = TRUE
 	goggles = TRUE
 	active = FALSE
@@ -559,7 +559,7 @@
 	desc = "Goggles for seeing clearer in low light conditions. Must remain attached to a helmet."
 	icon_state = "night_vision_mounted"
 	tint = COLOR_BLUE
-	vision_flags = NONE
+	flags_vision = NONE
 	darkness_view = 9	//The standalone version cannot see the edges
 	active_energy_cost = 2	//A little over 7 minutes of use
 	looping_sound_volume = 50

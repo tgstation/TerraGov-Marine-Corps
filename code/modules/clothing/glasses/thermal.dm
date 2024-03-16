@@ -7,7 +7,7 @@
 	icon_state = "thermal"
 	item_state = "glasses"
 	toggleable = 1
-	vision_flags = SEE_MOBS
+	flags_vision = SEE_MOBS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 	eye_protection = -1
 	deactive_state = "goggles_off"

@@ -31,7 +31,7 @@
 	Uses 10x25mm caseless ammunition and 10 gauge micro grenades."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som/standard
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_store/main_gun/som_marine/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -350,7 +350,7 @@
 	Uses 10x25mm caseless ammunition and 10 gauge micro grenades."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som/standard
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -501,7 +501,7 @@
 	Uses 10x25mm caseless ammunition and 10 gauge micro grenades."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som/standard
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_store/main_gun/som_medic/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -651,7 +651,7 @@
 	Uses 10x25mm caseless ammunition and 10 gauge micro grenades."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som/veteran
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_store/main_gun/som_veteran/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -1025,7 +1025,7 @@
 	Uses 10x25mm caseless ammunition and 10 gauge micro grenades."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som/veteran
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_store/main_gun/som_squad_leader/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -1191,7 +1191,7 @@
 	Uses 10x25mm caseless ammunition and 10 gauge micro grenades."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som/veteran
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_store/main_gun/som_field_commander/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()

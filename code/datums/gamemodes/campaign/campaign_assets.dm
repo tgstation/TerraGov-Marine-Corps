@@ -33,7 +33,7 @@
 	///Specific portrait used when activating this asset. Defaults to faction default if not specified
 	var/asset_portrait = null
 	///asset related flags
-	var/asset_flags = ASSET_ACTIVATED_EFFECT
+	var/flags_asset = ASSET_ACTIVATED_EFFECT
 	///Number of times this can be used
 	var/uses = 1
 	///Cost in attrition points if this asset is purchased
@@ -43,7 +43,7 @@
 	///Message if this asset is already active and can't be activated again
 	var/already_active_message = "Asset already active."
 	///Missions flags that prevent the use of this asset
-	var/blacklist_mission_flags = NONE
+	var/flags_blacklist_mission = NONE
 	///Feedback message if this asset is unusable during this mission
 	var/blacklist_message = "Unavailable during this mission."
 
@@ -53,9 +53,9 @@
 		return qdel(src)
 	SEND_SIGNAL(new_faction, COMSIG_CAMPAIGN_NEW_ASSET, src)
 	faction = new_faction
-	if(asset_flags & ASSET_IMMEDIATE_EFFECT)
+	if(flags_asset & ASSET_IMMEDIATE_EFFECT)
 		immediate_effect()
-	if(asset_flags & ASSET_PASSIVE_EFFECT)
+	if(flags_asset & ASSET_PASSIVE_EFFECT)
 		passive_effect()
 
 /datum/campaign_asset/Destroy(force, ...)
@@ -65,8 +65,8 @@
 ///Reapplies the asset, refreshing it or restoring uses
 /datum/campaign_asset/proc/reapply()
 	uses += initial(uses)
-	asset_flags &= ~ASSET_CONSUMED
-	if(asset_flags & ASSET_IMMEDIATE_EFFECT)
+	flags_asset &= ~ASSET_CONSUMED
+	if(flags_asset & ASSET_IMMEDIATE_EFFECT)
 		immediate_effect()
 
 ///Handles the activated asset process
@@ -76,40 +76,40 @@
 
 	activated_effect()
 
-	if(asset_flags & ASSET_DISABLE_ON_MISSION_END)
-		asset_flags |= ASSET_ACTIVE
+	if(flags_asset & ASSET_DISABLE_ON_MISSION_END)
+		flags_asset |= ASSET_ACTIVE
 		RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/datum/campaign_asset, deactivate), override = TRUE) //Some assets can be used multiple times per mission
 
 	uses --
 	if(uses <= 0)
-		asset_flags |= ASSET_CONSUMED
+		flags_asset |= ASSET_CONSUMED
 	SEND_SIGNAL(src, COMSIG_CAMPAIGN_ASSET_ACTIVATION)
 	return TRUE
 
 ///Returns TRUE if unable to be activated
 /datum/campaign_asset/proc/activation_checks(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
-	if(!(asset_flags & ASSET_ACTIVATED_EFFECT))
+	if(!(flags_asset & ASSET_ACTIVATED_EFFECT))
 		return TRUE
-	if((asset_flags & ASSET_CONSUMED))
+	if((flags_asset & ASSET_CONSUMED))
 		to_chat(user, span_warning("This asset is inactive."))
 		return TRUE
 	if(uses <= 0)
 		to_chat(user, span_warning("No further uses of this assets available."))
 		return TRUE
-	if(asset_flags & ASSET_DISABLED)
+	if(flags_asset & ASSET_DISABLED)
 		to_chat(user, span_warning("External interferance prevents the activation of this asset."))
 		return TRUE
-	if((asset_flags & ASSET_DISALLOW_REPEAT_USE) && (asset_flags & ASSET_ACTIVE))
+	if((flags_asset & ASSET_DISALLOW_REPEAT_USE) && (flags_asset & ASSET_ACTIVE))
 		to_chat(user, span_warning(already_active_message))
 		return TRUE
-	if(asset_flags & ASSET_ACTIVE_MISSION_ONLY)
+	if(flags_asset & ASSET_ACTIVE_MISSION_ONLY)
 		var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 		var/datum/campaign_mission/current_mission = mode.current_mission
 		if(!current_mission || (current_mission.mission_state == MISSION_STATE_NEW) || (current_mission.mission_state == MISSION_STATE_FINISHED))
 			to_chat(user, span_warning("Unavailable until next mission confirmed."))
 			return TRUE
-		if(blacklist_mission_flags & current_mission.mission_flags)
+		if(flags_blacklist_mission & current_mission.flags_mission)
 			to_chat(user, span_warning(blacklist_message))
 			return TRUE
 
@@ -133,5 +133,5 @@
 ///Deactivates the asset once the mission is over
 /datum/campaign_asset/proc/deactivate()
 	SIGNAL_HANDLER
-	asset_flags &= ~ASSET_ACTIVE
+	flags_asset &= ~ASSET_ACTIVE
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)

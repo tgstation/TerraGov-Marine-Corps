@@ -1,6 +1,6 @@
 //Parent for all passive attrition modifiers
 /datum/campaign_asset/attrition_modifier
-	asset_flags = ASSET_PASSIVE_EFFECT|ASSET_ACTIVE
+	flags_asset = ASSET_PASSIVE_EFFECT|ASSET_ACTIVE
 	///Modifier to faction passive attrition gain
 	var/attrition_mod = 0
 
@@ -10,10 +10,10 @@
 
 /datum/campaign_asset/attrition_modifier/remove_passive_effect()
 	faction.attrition_gain_multiplier -= attrition_mod
-	asset_flags |= ASSET_CONSUMED
+	flags_asset |= ASSET_CONSUMED
 
 /datum/campaign_asset/attrition_modifier/Destroy(force, ...)
-	if(!(asset_flags & ASSET_CONSUMED))
+	if(!(flags_asset & ASSET_CONSUMED))
 		remove_passive_effect()
 	return ..()
 
@@ -90,7 +90,7 @@
 	detailed_desc = "Damage to our supply lines have increased the difficulty and time required to move men and materiel, resulting in a lower deployment of combat forces."
 	attrition_mod = -0.2
 	ui_icon = "logistics_malus"
-	asset_flags = ASSET_PASSIVE_EFFECT|ASSET_DEBUFF
+	flags_asset = ASSET_PASSIVE_EFFECT|ASSET_DEBUFF
 
 /datum/campaign_asset/attrition_modifier/malus_strong
 	name = "Severely degraded supply lines"
@@ -104,4 +104,4 @@
 	detailed_desc = "The loss of our teleporter arrays has increased the difficulty and time required to move men and materiel, resulting in a lower deployment of combat forces."
 	attrition_mod = -0.2
 	ui_icon = "bluespace_logistics_malus"
-	asset_flags = ASSET_PASSIVE_EFFECT|ASSET_DEBUFF
+	flags_asset = ASSET_PASSIVE_EFFECT|ASSET_DEBUFF

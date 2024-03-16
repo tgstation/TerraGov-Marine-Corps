@@ -16,7 +16,7 @@
 	to_chat(world, "post ui_interact")
 
 /datum/podlauncher
-	interaction_flags = INTERACT_UI_INTERACT
+	flags_interaction = INTERACT_UI_INTERACT
 	var/static/list/ignored_atoms = typecacheof(list(null, /mob/dead, /obj/effect/landmark, /obj/docking_port, /obj/effect/particle_effect/sparks, /obj/effect/DPtarget, /obj/effect/supplypod_selector))
 	var/turf/oldTurf
 	var/client/holder

@@ -16,7 +16,7 @@
 	icon = 'icons/obj/flora/smooth/grass_decal.dmi'
 	icon_state = "jungle-border-icon"
 	base_icon_state = "jungle-border"
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
 	canSmoothWith = list(
 		SMOOTH_GROUP_JUNGLE_FLOOR,

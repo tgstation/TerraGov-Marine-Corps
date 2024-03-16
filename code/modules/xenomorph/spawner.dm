@@ -7,8 +7,8 @@
 	bound_width = 96
 	bound_height = 96
 	max_integrity = 500
-	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
-	xeno_structure_flags = IGNORE_WEED_REMOVAL | CRITICAL_STRUCTURE
+	flags_resistance = UNACIDABLE | DROPSHIP_IMMUNE
+	flags_xeno_structure = IGNORE_WEED_REMOVAL | CRITICAL_STRUCTURE
 	///For minimap icon change if silo takes damage or nearby hostile
 	var/warning
 	COOLDOWN_DECLARE(spawner_damage_alert_cooldown)

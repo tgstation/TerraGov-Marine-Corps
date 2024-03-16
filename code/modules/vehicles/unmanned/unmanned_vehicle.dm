@@ -5,7 +5,7 @@
 	icon = 'icons/obj/unmanned_vehicles.dmi'
 	icon_state = "light_uv"
 	anchored = FALSE
-	buckle_flags = null
+	flags_buckle = null
 	light_range = 6
 	light_power = 3
 	light_system = MOVABLE_LIGHT
@@ -14,7 +14,7 @@
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	flags_atom = BUMP_ATTACKABLE
 	soft_armor = list(MELEE = 25, BULLET = 85, LASER = 50, ENERGY = 100, BOMB = 50, BIO = 100, FIRE = 25, ACID = 25)
-	allow_pass_flags = PASS_AIR|PASS_LOW_STRUCTURE|PASS_THROW
+	flags_allow_pass = PASS_AIR|PASS_LOW_STRUCTURE|PASS_THROW
 	/// Needed to keep track of any slowdowns and/or diagonal movement
 	var/next_move_delay = 0
 	/// Path of "turret" attached
@@ -44,7 +44,7 @@
 	/// If something is already controlling the vehicle
 	var/controlled = FALSE
 	/// Flags for unmanned vehicules
-	var/unmanned_flags = OVERLAY_TURRET|HAS_LIGHTS
+	var/flags_unmanned = OVERLAY_TURRET|HAS_LIGHTS
 	/// Iff flags, to prevent friendly fire from sg and aiming marines
 	var/iff_signal = TGMC_LOYALIST_IFF
 	/// muzzleflash stuff
@@ -93,7 +93,7 @@
 
 /obj/vehicle/unmanned/update_overlays()
 	. = ..()
-	if(!(unmanned_flags & OVERLAY_TURRET))
+	if(!(flags_unmanned & OVERLAY_TURRET))
 		return
 	switch(turret_type)
 		if(TURRET_TYPE_HEAVY)
@@ -239,9 +239,9 @@
 ///Called when remote control is taken
 /obj/vehicle/unmanned/proc/on_remote_toggle(datum/source, is_on, mob/user)
 	SIGNAL_HANDLER
-	if(unmanned_flags & HAS_LIGHTS)
+	if(flags_unmanned & HAS_LIGHTS)
 		set_light_on(is_on)
-	if(unmanned_flags & GIVE_NIGHT_VISION)
+	if(flags_unmanned & GIVE_NIGHT_VISION)
 		if(is_on)
 			ADD_TRAIT(user, TRAIT_SEE_IN_DARK, UNMANNED_VEHICLE)
 		else

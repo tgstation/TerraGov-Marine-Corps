@@ -8,8 +8,8 @@
 	anchored = TRUE
 	layer = WINDOW_LAYER
 	flags_atom = ON_BORDER|DIRLOCK
-	allow_pass_flags = PASS_GLASS
-	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
+	flags_allow_pass = PASS_GLASS
+	flags_resistance = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	coverage = 20
 	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
 	max_integrity = 15
@@ -362,7 +362,7 @@
 	basestate = "rwindow"
 	max_integrity = 1500
 	reinf = TRUE
-	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
+	flags_resistance = UNACIDABLE|XENO_DAMAGEABLE
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
@@ -400,7 +400,7 @@
 	static_frame = TRUE
 	flags_atom = NONE //This is not a border object; it takes up the entire tile.
 	explosion_block = 2
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(
 		SMOOTH_GROUP_WINDOW_FULLTILE,
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
@@ -447,7 +447,7 @@
 /obj/structure/window/framed/mainship/escapeshuttle
 
 /obj/structure/window/framed/mainship/escapeshuttle/prison
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	icon_state = "window-invincible"
 
 /obj/structure/window/framed/mainship/toughened
@@ -472,7 +472,7 @@
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	damageable = FALSE
 	deconstructable = FALSE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	icon_state = "window-invincible"
 	max_integrity = 1000000 //Failsafe, shouldn't matter
 
@@ -537,7 +537,7 @@
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
 	damageable = FALSE
 	deconstructable = FALSE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	icon_state = "window-invincible"
 
 /obj/structure/window/framed/mainship/white/toughened/hull
@@ -546,7 +546,7 @@
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
 	damageable = FALSE
 	deconstructable = FALSE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /obj/structure/window/framed/colony
 	name = "window"
@@ -576,7 +576,7 @@
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	damageable = FALSE
 	deconstructable = FALSE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	max_integrity = 1000000 //Failsafe, shouldn't matter
 	icon_state = "window-invincible"
 
@@ -643,7 +643,7 @@
 	desc = "A glass window with a special rod matrice inside a wall frame. This one has an automatic shutter system to prevent any atmospheric breach."
 	max_integrity = 200
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
-	resistance_flags = BANISH_IMMUNE
+	flags_resistance = BANISH_IMMUNE
 	icon_state = "window-invincible"
 
 /obj/structure/window/framed/prison/reinforced/hull/Initialize(mapload)
@@ -655,7 +655,7 @@
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
 	damageable = FALSE
 	deconstructable = FALSE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 // dont even ask
 /obj/structure/window/framed/prison/reinforced/hull/tyson

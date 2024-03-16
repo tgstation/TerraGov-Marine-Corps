@@ -1,7 +1,7 @@
 /atom
 	layer = TURF_LAYER
 	plane = GAME_PLANE
-	appearance_flags = TILE_BOUND
+	flags_appearance = TILE_BOUND
 	var/level = 2
 
 	var/flags_atom = NONE
@@ -12,9 +12,9 @@
 	var/list/blood_DNA
 
 	///Things can move past this atom if they have the corrosponding flag
-	var/allow_pass_flags = NONE
+	var/flags_allow_pass = NONE
 
-	var/resistance_flags = PROJECTILE_IMMUNE
+	var/flags_resistance = PROJECTILE_IMMUNE
 
 	///If non-null, overrides a/an/some in all cases
 	var/article
@@ -94,7 +94,7 @@
 	var/smoothing_behavior = NO_SMOOTHING
 
 	///Icon-smoothing behavior.
-	var/smoothing_flags = NONE
+	var/flags_smoothing = NONE
 	///What directions this is currently smoothing with. IMPORTANT: This uses the smoothing direction flags as defined in icon_smoothing.dm, instead of the BYOND flags.
 	var/smoothing_junction = NONE
 	///Smoothing variable
@@ -218,16 +218,16 @@ directive is properly returned.
 	return is_refillable() && is_drainable()
 
 /atom/proc/is_injectable(allowmobs = TRUE)
-	return reagents && CHECK_BITFIELD(reagents.reagent_flags, INJECTABLE | REFILLABLE)
+	return reagents && CHECK_BITFIELD(reagents.flags_reagent, INJECTABLE | REFILLABLE)
 
 /atom/proc/is_drawable(allowmobs = TRUE)
-	return reagents && CHECK_BITFIELD(reagents.reagent_flags, DRAWABLE | DRAINABLE)
+	return reagents && CHECK_BITFIELD(reagents.flags_reagent, DRAWABLE | DRAINABLE)
 
 /atom/proc/is_refillable()
-	return reagents && CHECK_BITFIELD(reagents.reagent_flags, REFILLABLE)
+	return reagents && CHECK_BITFIELD(reagents.flags_reagent, REFILLABLE)
 
 /atom/proc/is_drainable()
-	return reagents && CHECK_BITFIELD(reagents.reagent_flags, DRAINABLE)
+	return reagents && CHECK_BITFIELD(reagents.flags_reagent, DRAINABLE)
 
 
 /atom/proc/HasProximity(atom/movable/AM)
@@ -323,7 +323,7 @@ directive is properly returned.
 		. += span_notice("The codex has <a href='?_src_=codex;show_examined_info=[REF(src)];show_to=[REF(user)]'>relevant information</a> available.")
 
 	if((get_dist(user,src) <= 2) && reagents)
-		if(reagents.reagent_flags & TRANSPARENT)
+		if(reagents.flags_reagent & TRANSPARENT)
 			. += "It contains:"
 			if(length(reagents.reagent_list)) // TODO: Implement scan_reagent and can_see_reagents() to show each individual reagent
 				var/total_volume = 0
@@ -332,12 +332,12 @@ directive is properly returned.
 				. +=  span_notice("[total_volume] units of various reagents.")
 			else
 				. += "Nothing."
-		else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_VISIBLE))
+		else if(CHECK_BITFIELD(reagents.flags_reagent, AMOUNT_VISIBLE))
 			if(reagents.total_volume)
 				. += span_notice("It has [reagents.total_volume] unit\s left.")
 			else
 				. += span_warning("It's empty.")
-		else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_SKILLCHECK))
+		else if(CHECK_BITFIELD(reagents.flags_reagent, AMOUNT_SKILLCHECK))
 			if(isxeno(user))
 				return
 			if(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)
@@ -349,7 +349,7 @@ directive is properly returned.
 					. += "Nothing."
 			else
 				. += "You don't know what's in it."
-		else if(reagents.reagent_flags & AMOUNT_ESTIMEE)
+		else if(reagents.flags_reagent & AMOUNT_ESTIMEE)
 			var/obj/item/reagent_containers/C = src
 			if(!reagents.total_volume)
 				. += span_notice("\The [src] is empty!")
@@ -458,7 +458,7 @@ directive is properly returned.
 	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
 		GLOB._preloader.load(src)
 
-	if(datum_flags & DF_USE_TAG)
+	if(flags_datum & DF_USE_TAG)
 		GenerateTag()
 
 	var/do_initialize = SSatoms.initialized
@@ -643,7 +643,7 @@ directive is properly returned.
 				var/turf/T = loc
 				T.directional_opacity = ALL_CARDINALS // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
-			if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+			if(flags_smoothing & (SMOOTH_CORNERS|SMOOTH_BITMASK))
 				QUEUE_SMOOTH(src)
 				QUEUE_SMOOTH_NEIGHBORS(src)
 
@@ -653,7 +653,7 @@ directive is properly returned.
 	if(length(canSmoothWith))
 		sortTim(canSmoothWith)
 		if(canSmoothWith[length(canSmoothWith)] > MAX_S_TURF) //If the last element is higher than the maximum turf-only value, then it must scan turf contents for smoothing targets.
-			smoothing_flags |= SMOOTH_OBJ
+			flags_smoothing |= SMOOTH_OBJ
 		SET_BITFLAG_LIST(canSmoothWith)
 
 	return INITIALIZE_HINT_NORMAL
@@ -975,10 +975,10 @@ directive is properly returned.
 	if(!.)
 		return FALSE
 
-	if((interaction_flags & INTERACT_REQUIRES_DEXTERITY) && !user.dextrous)
+	if((flags_interaction & INTERACT_REQUIRES_DEXTERITY) && !user.dextrous)
 		return FALSE
 
-	if((interaction_flags & INTERACT_CHECK_INCAPACITATED) && user.incapacitated())
+	if((flags_interaction & INTERACT_CHECK_INCAPACITATED) && user.incapacitated())
 		return FALSE
 
 	return TRUE
@@ -992,7 +992,7 @@ directive is properly returned.
 				hud_list[hud] = list()
 			else
 				var/image/I = image('icons/mob/hud.dmi', src, "")
-				I.appearance_flags = RESET_COLOR|RESET_TRANSFORM|KEEP_APART
+				I.flags_appearance = RESET_COLOR|RESET_TRANSFORM|KEEP_APART
 				hud_list[hud] = I
 
 /**

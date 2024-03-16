@@ -37,8 +37,8 @@ CREATE TABLE IF NOT EXISTS `admin_log` (
 CREATE TABLE IF NOT EXISTS `admin_ranks` (
   `rank` varchar(32) NOT NULL,
   `flags` smallint(5) unsigned NOT NULL,
-  `exclude_flags` smallint(5) unsigned NOT NULL,
-  `can_edit_flags` smallint(5) unsigned NOT NULL,
+  `flags_exclude` smallint(5) unsigned NOT NULL,
+  `flags_can_edit` smallint(5) unsigned NOT NULL,
   PRIMARY KEY (`rank`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

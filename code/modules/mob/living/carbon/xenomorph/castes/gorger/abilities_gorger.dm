@@ -8,14 +8,14 @@
 	name = "Devour"
 	action_icon_state = "abduct"
 	desc = "Devour your victim to be able to carry it faster."
-	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	flags_use_state = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	ability_cost = 0
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR,
 	)
 
-/datum/action/ability/activable/xeno/devour/can_use_ability(atom/target, silent, override_flags)
+/datum/action/ability/activable/xeno/devour/can_use_ability(atom/target, silent, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -90,15 +90,15 @@
 	name = "Drain"
 	action_icon_state = "drain"
 	desc = "Hold a marine for some time and drain their blood, while healing. You can't attack during this time and can be shot by the marine. When used on a dead human, you heal, or gain overheal, gradually and don't gain blood."
-	use_state_flags = ABILITY_KEYBIND_USE_ABILITY
+	flags_use_state = ABILITY_KEYBIND_USE_ABILITY
 	cooldown_duration = 15 SECONDS
 	ability_cost = 0
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN,
 	)
 
-/datum/action/ability/activable/xeno/drain/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/drain/can_use_ability(atom/target, silent = FALSE, flags_override)
 	. = ..()
 	if(!ishuman(target) || issynth(target))
 		if(!silent)
@@ -175,7 +175,7 @@
 	//When used on self, drains blood continuosly, slows you down and reduces damage taken, while restoring health over time.
 	cooldown_duration = 2 SECONDS
 	ability_cost = 20
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TRANSFUSION,
 	)
@@ -183,7 +183,7 @@
 	///Used to keep track of the target's previous health for extra_health_check()
 	var/target_health
 
-/datum/action/ability/activable/xeno/transfusion/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
+/datum/action/ability/activable/xeno/transfusion/can_use_ability(atom/target, silent = FALSE, flags_override) //it is set up to only return true on specific xeno or human targets
 	. = ..()
 	if(!.)
 		return
@@ -253,7 +253,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OPPOSE,
 	)
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY
 
 /datum/action/ability/activable/xeno/oppose/use_ability(atom/A)
 	. = ..()
@@ -297,7 +297,7 @@
 	desc = "Link to a xenomorph and take some damage in their place. Unrest to cancel."
 	cooldown_duration = 50 SECONDS
 	ability_cost = 0
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_LINK,
 	)
@@ -306,7 +306,7 @@
 	///Overlay applied on the target xeno while linking
 	var/datum/progressicon/target_overlay
 
-/datum/action/ability/activable/xeno/psychic_link/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/psychic_link/can_use_ability(atom/target, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -396,7 +396,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CARNAGE,
 	)
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY
 
 /datum/action/ability/activable/xeno/carnage/use_ability(atom/A)
 	. = ..()
@@ -428,10 +428,10 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FEAST,
 	)
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
-	use_state_flags = ABILITY_USE_STAGGERED
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY
+	flags_use_state = ABILITY_USE_STAGGERED
 
-/datum/action/ability/activable/xeno/feast/can_use_ability(atom/target, silent, override_flags)
+/datum/action/ability/activable/xeno/feast/can_use_ability(atom/target, silent, flags_override)
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(TIMER_COOLDOWN_CHECK(owner_xeno, FEAST_MISCLICK_CD))

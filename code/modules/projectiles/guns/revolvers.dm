@@ -24,7 +24,7 @@
 	wield_delay = 0.4 SECONDS
 	gun_skill_category = SKILL_PISTOLS
 
-	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS
+	flags_reciever = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS
 	max_chamber_items = 7
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver)
 
@@ -358,7 +358,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
-	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS|AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION|AMMO_RECIEVER_UNIQUE_ACTION_LOCKS
+	flags_reciever = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS|AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION|AMMO_RECIEVER_UNIQUE_ACTION_LOCKS
 	cocked_message = "You prime the hammer."
 	cock_delay = 0
 

@@ -10,7 +10,7 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 
 	can_unwrench = FALSE
 	shift_underlay_only = FALSE
-	pipe_flags = PIPING_CARDINAL_AUTONORMALIZE
+	flags_pipe = PIPING_CARDINAL_AUTONORMALIZE
 
 	var/id = null
 

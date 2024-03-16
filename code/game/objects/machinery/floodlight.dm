@@ -32,12 +32,12 @@
 		if(user)
 			to_chat(user, span_notice("You turn on the light."))
 		set_light(brightness_on)
-		DISABLE_BITFIELD(resistance_flags, UNACIDABLE)
+		DISABLE_BITFIELD(flags_resistance, UNACIDABLE)
 		return
 	if(user)
 		to_chat(user, span_notice("You turn off the light."))
 	set_light(0)
-	ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
+	ENABLE_BITFIELD(flags_resistance, UNACIDABLE)
 
 /obj/machinery/floodlight/landing
 	name = "Landing Light"
@@ -73,7 +73,7 @@
 	desc = "A powerful light placed concealed on the base to provide better visibility."
 	density = 0
 	alpha = 0
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	brightness_on = 25
 
 /obj/machinery/floodlight/landing/testroom/Initialize(mapload)
@@ -84,8 +84,8 @@
 	use_power = NO_POWER_USE
 	anchored = TRUE
 	density = TRUE
-	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
-	allow_pass_flags = PASSABLE
+	flags_resistance = UNACIDABLE|XENO_DAMAGEABLE
+	flags_allow_pass = PASSABLE
 	/// The lighting power of the floodlight
 	var/floodlight_light_range = 15
 	/// The amount of integrity repaired with every welder act.
@@ -197,7 +197,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 0
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	var/turned_on = FALSE //has to be toggled in engineering
 
 /obj/machinery/colony_floodlight_switch/update_icon_state()

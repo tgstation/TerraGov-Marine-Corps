@@ -18,10 +18,10 @@
 	if(check_loc && buckling_mob.loc != loc)
 		return FALSE
 
-	if((!(buckle_flags & CAN_BUCKLE) && !force) || buckling_mob.buckled || (LAZYLEN(buckled_mobs) >= max_buckled_mobs) || (buckle_flags & BUCKLE_REQUIRES_RESTRAINTS && !buckling_mob.restrained()) || buckling_mob == src)
+	if((!(flags_buckle & CAN_BUCKLE) && !force) || buckling_mob.buckled || (LAZYLEN(buckled_mobs) >= max_buckled_mobs) || (flags_buckle & BUCKLE_REQUIRES_RESTRAINTS && !buckling_mob.restrained()) || buckling_mob == src)
 		return FALSE
 
-	if(!(buckling_mob.buckle_flags & CAN_BE_BUCKLED) && !force)
+	if(!(buckling_mob.flags_buckle & CAN_BE_BUCKLED) && !force)
 		if(!silent)
 			if(buckling_mob == usr)
 				balloon_alert_to_viewers("can't buckle")
@@ -38,7 +38,7 @@
 
 
 	if(buckling_mob.pulledby)
-		if(buckle_flags & BUCKLE_PREVENTS_PULL)
+		if(flags_buckle & BUCKLE_PREVENTS_PULL)
 			buckling_mob.pulledby.stop_pulling()
 		else if(isliving(buckling_mob.pulledby))
 			var/mob/living/buckling_living = buckling_mob.pulledby
@@ -54,7 +54,7 @@
 	else
 		buckling_mob.set_glide_size(glide_size)
 
-	buckling_mob.glide_modifier_flags |= GLIDE_MOD_BUCKLED
+	buckling_mob.flags_glide_modifier |= GLIDE_MOD_BUCKLED
 	buckling_mob.buckled = src
 	buckling_mob.setDir(dir)
 	LAZYADD(buckled_mobs, buckling_mob)
@@ -71,17 +71,17 @@
 	. = ..()
 	if(!.)
 		return
-	if(resistance_flags & ON_FIRE) //Sets the mob on fire if you buckle them to a burning atom/movableect
+	if(flags_resistance & ON_FIRE) //Sets the mob on fire if you buckle them to a burning atom/movableect
 		buckling_mob.adjust_fire_stacks(1)
 		buckling_mob.IgniteMob()
 
 
 /atom/movable/proc/unbuckle_mob(mob/living/buckled_mob, force = FALSE)
-	if(!isliving(buckled_mob) || buckled_mob.buckled != src || (!(buckle_flags & CAN_BUCKLE) && !force))
+	if(!isliving(buckled_mob) || buckled_mob.buckled != src || (!(flags_buckle & CAN_BUCKLE) && !force))
 		return
 	. = buckled_mob
 	buckled_mob.buckled = null
-	buckled_mob.glide_modifier_flags &= ~GLIDE_MOD_BUCKLED
+	buckled_mob.flags_glide_modifier &= ~GLIDE_MOD_BUCKLED
 	buckled_mob.reset_glide_size()
 	buckled_mob.anchored = initial(buckled_mob.anchored)
 	if(buckle_lying != -1)
@@ -117,9 +117,9 @@
 
 	add_fingerprint(user, "buckle")
 	var/hands_req = 0
-	if(buckle_flags & BUCKLE_NEEDS_HAND)
+	if(flags_buckle & BUCKLE_NEEDS_HAND)
 		hands_req = 1
-	else if(buckle_flags & BUCKLE_NEEDS_TWO_HANDS)
+	else if(flags_buckle & BUCKLE_NEEDS_TWO_HANDS)
 		hands_req = 2
 	. = buckle_mob(buckling_mob, check_loc = check_loc, target_hands_needed = hands_req)
 	if(!.)

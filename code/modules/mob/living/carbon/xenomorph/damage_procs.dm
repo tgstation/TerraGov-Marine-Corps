@@ -1,10 +1,10 @@
 /mob/living/carbon/xenomorph/fire_act()
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 	return ..()
 
 /mob/living/carbon/xenomorph/flamer_fire_act(burnlevel)
-	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+	if(xeno_caste.flags_caste & CASTE_FIRE_IMMUNE)
 		return
 	return ..()
 
@@ -19,7 +19,7 @@
 	return clamp(damage_amount * (1 - ((get_soft_armor(armor_type, def_zone) * sunder_ratio - effective_penetration) * 0.01)), 0, damage_amount)
 
 /mob/living/carbon/xenomorph/ex_act(severity)
-	if(status_flags & (INCORPOREAL|GODMODE))
+	if(flags_status & (INCORPOREAL|GODMODE))
 		return
 
 	var/ex_damage
@@ -63,7 +63,7 @@
 	apply_damages(ex_damage * 0.5, ex_damage * 0.5, blocked = BOMB, updating_health = TRUE)
 
 /mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 	if(damagetype != BRUTE && damagetype != BURN)
 		return
@@ -101,7 +101,7 @@
 	if(!COOLDOWN_CHECK(src, xeno_health_alert_cooldown))
 		return
 	//If we're alive and health is less than either the alert threshold, or the alert trigger percent, whichever is greater, and we're not on alert cooldown, trigger the hive alert
-	if(stat == DEAD || (health > max(XENO_HEALTH_ALERT_TRIGGER_THRESHOLD, maxHealth * XENO_HEALTH_ALERT_TRIGGER_PERCENT)) || xeno_caste.caste_flags & CASTE_DO_NOT_ALERT_LOW_LIFE)
+	if(stat == DEAD || (health > max(XENO_HEALTH_ALERT_TRIGGER_THRESHOLD, maxHealth * XENO_HEALTH_ALERT_TRIGGER_PERCENT)) || xeno_caste.flags_caste & CASTE_DO_NOT_ALERT_LOW_LIFE)
 		return
 
 	var/list/filter_list = list()
@@ -183,7 +183,7 @@
 			if(decal.random_icon_states && length(decal.random_icon_states) > 0) //If there's already one, just randomize it so it changes.
 				decal.icon_state = pick(decal.random_icon_states)
 
-		if(!(xeno_caste.caste_flags & CASTE_ACID_BLOOD))
+		if(!(xeno_caste.flags_caste & CASTE_ACID_BLOOD))
 			return
 		var/splash_chance
 		for(var/mob/living/carbon/human/victim in range(radius,src)) //Loop through all nearby victims, including the tile.
@@ -191,6 +191,6 @@
 			if(prob(splash_chance))
 				victim.visible_message(span_danger("\The [victim] is scalded with hissing green blood!"), \
 				span_danger("You are splattered with sizzling blood! IT BURNS!"))
-				if(victim.stat != CONSCIOUS && !(victim.species.species_flags & NO_PAIN) && prob(60))
+				if(victim.stat != CONSCIOUS && !(victim.species.flags_species & NO_PAIN) && prob(60))
 					victim.emote("scream")
 				victim.take_overall_damage(rand(15, 30), BURN, ACID, updating_health = TRUE)

@@ -5,7 +5,7 @@
 	icon_state = "req_tablet_off"
 	flags_equip_slot = ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_SMALL
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_interaction = INTERACT_MACHINE_TGUI
 	/// REF()s for all currently active transfering marines
 	var/list/active_requests = list()
 

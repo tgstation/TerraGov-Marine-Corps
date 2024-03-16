@@ -23,7 +23,7 @@
 					count_marine_humans++
 				if(issommarinejob(human_mob.job))
 					count_som_marine_humans++
-				if(C.mob.status_flags & XENO_HOST)
+				if(C.mob.flags_status & XENO_HOST)
 					count_infectedhumans++
 			if(isxeno(C.mob))
 				count_aliens++

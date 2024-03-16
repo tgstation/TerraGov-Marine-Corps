@@ -169,14 +169,14 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	climbable = TRUE
 	layer = ABOVE_OBJ_LAYER //so they always appear above attach points when installed
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	coverage = 20
 	///on what kind of base this can be installed.
 	var/equip_category
 	///the ship base the equipment is currently installed on.
 	var/obj/effect/attach_point/ship_base
 	///whether it uses ammo
-	var/dropship_equipment_flags = NONE
+	var/flags_dropship_equipment = NONE
 	///the ammo currently equipped.
 	var/obj/structure/ship_ammo/ammo_equipped
 	///whether the equipment is a weapon usable for dropship bombardment.
@@ -208,7 +208,7 @@
 
 /obj/structure/dropship_equipment/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 	if(attached_clamp.loaded)
-		if((!(dropship_equipment_flags & IS_NOT_REMOVABLE) && !ship_base) || !(dropship_equipment_flags & USES_AMMO) || ammo_equipped || !istype(attached_clamp.loaded, /obj/structure/ship_ammo))
+		if((!(flags_dropship_equipment & IS_NOT_REMOVABLE) && !ship_base) || !(flags_dropship_equipment & USES_AMMO) || ammo_equipped || !istype(attached_clamp.loaded, /obj/structure/ship_ammo))
 			return
 		var/obj/structure/ship_ammo/clamp_ammo = attached_clamp.loaded
 		if(istype(type, clamp_ammo.equipment_type) || clamp_ammo.ammo_type != ammo_type_used) //Incompatible ammo
@@ -227,7 +227,7 @@
 		ammo_equipped = clamp_ammo
 		update_equipment()
 		return //refilled dropship ammo
-	if((dropship_equipment_flags & USES_AMMO) && ammo_equipped)
+	if((flags_dropship_equipment & USES_AMMO) && ammo_equipped)
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		if(!do_after(user, 30, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 			return
@@ -246,7 +246,7 @@
 		ammo_equipped = null
 		update_icon()
 		return //emptied or removed dropship ammo
-	if(dropship_equipment_flags & IS_NOT_REMOVABLE)
+	if(flags_dropship_equipment & IS_NOT_REMOVABLE)
 		to_chat(user, span_notice("You cannot remove [src]!"))
 		return
 	if(!current_acid)
@@ -291,7 +291,7 @@
 	return
 
 /obj/structure/dropship_equipment/proc/equipment_interact(mob/user)
-	if(dropship_equipment_flags & IS_INTERACTABLE)
+	if(flags_dropship_equipment & IS_INTERACTABLE)
 		if(linked_console.selected_equipment)
 			return
 		linked_console.selected_equipment = src
@@ -303,7 +303,7 @@
 	name = "flare launcher system"
 	desc = "A system that deploys flares stronger than the inputted flares. Fits on the weapon attach points of dropships. You need a powerloader to lift it."
 	icon_state = "flare_system"
-	dropship_equipment_flags = IS_INTERACTABLE
+	flags_dropship_equipment = IS_INTERACTABLE
 	point_cost = 150
 	///cooldown for deployment
 	COOLDOWN_DECLARE(deploy_cooldown)
@@ -363,7 +363,7 @@
 	name = "sentry deployment system"
 	desc = "A box that deploys a sentry turret. Fits on the weapon attach points of dropships. You need a powerloader to lift it."
 	icon_state = "sentry_system"
-	dropship_equipment_flags = IS_INTERACTABLE
+	flags_dropship_equipment = IS_INTERACTABLE
 	point_cost = 500
 	var/deployment_cooldown
 	var/obj/machinery/deployable/mounted/sentry/deployed_turret
@@ -381,7 +381,7 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(deployed_turret, COMSIG_OBJ_DECONSTRUCT)
 	deployed_turret = null
-	dropship_equipment_flags &= ~IS_NOT_REMOVABLE
+	flags_dropship_equipment &= ~IS_NOT_REMOVABLE
 
 /obj/structure/dropship_equipment/shuttle/sentry_holder/examine(mob/user)
 	. = ..()
@@ -457,7 +457,7 @@
 	deployed_turret.update_icon()
 	deployed_turret.loc = get_step(src, dir)
 	icon_state = "sentry_system_deployed"
-	dropship_equipment_flags |= IS_NOT_REMOVABLE
+	flags_dropship_equipment |= IS_NOT_REMOVABLE
 	deployed_turret.update_minimap_icon()
 
 /obj/structure/dropship_equipment/shuttle/sentry_holder/proc/undeploy_sentry()
@@ -470,7 +470,7 @@
 	deployed_turret.set_on(FALSE)
 	deployed_turret.update_icon()
 	icon_state = "sentry_system_installed"
-	dropship_equipment_flags &= ~IS_NOT_REMOVABLE
+	flags_dropship_equipment &= ~IS_NOT_REMOVABLE
 
 /obj/structure/dropship_equipment/shuttle/weapon_holder
 	equip_category = DROPSHIP_CREW_WEAPON
@@ -580,7 +580,7 @@
 	name = "spotlight"
 	icon_state = "spotlights"
 	desc = "A set of highpowered spotlights to illuminate large areas. Fits on electronics attach points of dropships. Moving this will require a powerloader."
-	dropship_equipment_flags = IS_INTERACTABLE
+	flags_dropship_equipment = IS_INTERACTABLE
 	point_cost = 300
 	var/spotlights_cooldown
 	var/brightness = 11
@@ -645,7 +645,7 @@
 	equip_category = DROPSHIP_WEAPON
 	bound_width = 32
 	bound_height = 64
-	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE|FIRE_MISSION_ONLY
+	flags_dropship_equipment = USES_AMMO|IS_WEAPON|IS_INTERACTABLE|FIRE_MISSION_ONLY
 	screen_mode = 1
 	///used for weapon cooldown after use
 	COOLDOWN_DECLARE(last_fired)
@@ -666,7 +666,7 @@
 	update_icon()
 
 /obj/structure/dropship_equipment/cas/weapon/equipment_interact(mob/user)
-	if(dropship_equipment_flags & IS_INTERACTABLE)
+	if(flags_dropship_equipment & IS_INTERACTABLE)
 		if(linked_console.selected_equipment == src)
 			linked_console.selected_equipment = null
 		else
@@ -723,7 +723,7 @@
 	icon_state = "30mm_cannon"
 	firing_sound = 'sound/weapons/gunship_chaingun.ogg'
 	point_cost = 300
-	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
+	flags_dropship_equipment = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
 	ammo_type_used = CAS_30MM
 
 /obj/structure/dropship_equipment/cas/weapon/heavygun/update_icon_state()
@@ -739,7 +739,7 @@
 /obj/structure/dropship_equipment/cas/weapon/heavygun/radial_cas
 	name = "Condor Jet Radial minigun"
 	point_cost = 0
-	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE|IS_NOT_REMOVABLE
+	flags_dropship_equipment = USES_AMMO|IS_WEAPON|IS_INTERACTABLE|IS_NOT_REMOVABLE
 
 /obj/structure/dropship_equipment/cas/weapon/heavygun/radial_cas/Initialize(mapload)
 	. = ..()
@@ -802,7 +802,7 @@
 	firing_sound = 'sound/weapons/gunship_laser.ogg'
 	firing_delay = 50 //5 seconds
 	point_cost = 800
-	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
+	flags_dropship_equipment = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
 	ammo_type_used = CAS_LASER_BATTERY
 
 /obj/structure/dropship_equipment/cas/weapon/laser_beam_gun/update_icon_state()
@@ -884,7 +884,7 @@
 	firing_sound = 'sound/weapons/gunship_rocketpod.ogg'
 	firing_delay = 0.5 SECONDS
 	point_cost = 450
-	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
+	flags_dropship_equipment = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
 	ammo_type_used = CAS_BOMBLET
 
 /obj/structure/dropship_equipment/cas/weapon/bomblet_pod/update_icon_state()
@@ -904,7 +904,7 @@
 	firing_sound = 'sound/weapons/gunship_rocketpod.ogg'
 	firing_delay = 2 SECONDS
 	point_cost = 450
-	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
+	flags_dropship_equipment = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
 	ammo_type_used = CAS_BOMB
 
 /obj/structure/dropship_equipment/cas/weapon/bomb_pod/update_icon_state()

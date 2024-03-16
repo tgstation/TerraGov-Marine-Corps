@@ -11,7 +11,7 @@
 	layer = RESIN_STRUCTURE_LAYER
 	pixel_x = -16
 	pixel_y = -16
-	xeno_structure_flags = IGNORE_WEED_REMOVAL
+	flags_xeno_structure = IGNORE_WEED_REMOVAL
 
 	hit_sound = "alien_resin_move"
 	destroy_sound = "alien_resin_move"
@@ -36,7 +36,7 @@
 /obj/structure/xeno/resin_jelly_pod/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(isxeno(user))
-		. += "It has [chargesleft] jelly globules remaining[datum_flags & DF_ISPROCESSING ? ", and will create a new jelly in [(recharge_rate-nextjelly)*5] seconds": " and seems latent"]."
+		. += "It has [chargesleft] jelly globules remaining[flags_datum & DF_ISPROCESSING ? ", and will create a new jelly in [(recharge_rate-nextjelly)*5] seconds": " and seems latent"]."
 
 /obj/structure/xeno/resin_jelly_pod/process()
 	if(nextjelly <= recharge_rate)
@@ -48,7 +48,7 @@
 		return PROCESS_KILL
 
 /obj/structure/xeno/resin_jelly_pod/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return FALSE
 
 	if((xeno_attacker.a_intent == INTENT_HARM && isxenohivelord(xeno_attacker)) || xeno_attacker.hivenumber != hivenumber)
@@ -64,5 +64,5 @@
 	balloon_alert(xeno_attacker, "Retrieved jelly")
 	new /obj/item/resin_jelly(loc)
 	chargesleft--
-	if(!(datum_flags & DF_ISPROCESSING) && (chargesleft < maxcharges))
+	if(!(flags_datum & DF_ISPROCESSING) && (chargesleft < maxcharges))
 		START_PROCESSING(SSslowprocess, src)

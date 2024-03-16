@@ -111,7 +111,7 @@
   - qol: Jaeger visors now glow in the dark, this can also be toggled with right clicking
       on the helmet
   Wayland-Smithy:
-  - bugfix: Fixed resistance_flags for important xeno structures, unacidable + dropship
+  - bugfix: Fixed flags_resistance for important xeno structures, unacidable + dropship
       immune.
   - qol: Added DROPSHIP_IMMUNE resistance flag to the VV bitfields list.
 2021-05-07:
@@ -429,4 +429,4 @@
   - bugfix: Xeno pings are now visible by xenos only.
 2021-05-31:
   Walarks:
-  - code_imp: changed xeno structures typepaths, adds xeno_structure_flags var
+  - code_imp: changed xeno structures typepaths, adds flags_xeno_structure var

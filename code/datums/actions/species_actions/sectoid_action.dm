@@ -10,7 +10,7 @@
 	action_icon_state = "mindmeld"
 	desc = "Merge minds with the target, empowering both."
 	cooldown_duration = 60 SECONDS
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_ABILITY_MINDMELD,
 	)
@@ -38,7 +38,7 @@
 		return FALSE
 	return ..()
 
-/datum/action/ability/activable/sectoid/mindmeld/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/sectoid/mindmeld/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -106,14 +106,14 @@
 	action_icon_state = "mindfray"
 	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
 	cooldown_duration = 20 SECONDS
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_ABILITY_MINDFRAY,
 	)
 	///damage of this ability
 	var/damage = 20
 
-/datum/action/ability/activable/sectoid/mindfray/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/sectoid/mindfray/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -158,8 +158,8 @@
 	action_icon_state = "stasis"
 	desc = "We surround a living thing with a powerful psionic field, temporarily disabling them and protecting them from all harm."
 	cooldown_duration = 20 SECONDS
-	target_flags = ABILITY_MOB_TARGET
-	use_state_flags = ABILITY_TARGET_SELF
+	flags_target = ABILITY_MOB_TARGET
+	flags_use_state = ABILITY_TARGET_SELF
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_ABILITY_STASIS,
 	)
@@ -168,7 +168,7 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
-/datum/action/ability/activable/sectoid/stasis/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/sectoid/stasis/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -206,7 +206,7 @@
 	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
 
 	carbon_target.notransform = TRUE
-	carbon_target.status_flags |= GODMODE
+	carbon_target.flags_status |= GODMODE
 	ADD_TRAIT(carbon_target, TRAIT_HANDS_BLOCKED, REF(src))
 	carbon_target.move_resist = MOVE_FORCE_OVERPOWERING
 	carbon_target.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOUR_PRIORITY)
@@ -232,7 +232,7 @@
 ///ends all combat-relazted effects
 /datum/action/ability/activable/sectoid/stasis/proc/end_effects(mob/living/carbon/carbon_target, image/stone_overlay)
 	carbon_target.notransform = FALSE
-	carbon_target.status_flags &= ~GODMODE
+	carbon_target.flags_status &= ~GODMODE
 	REMOVE_TRAIT(carbon_target, TRAIT_HANDS_BLOCKED, REF(src))
 	carbon_target.move_resist = initial(carbon_target.move_resist)
 	carbon_target.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_GRAY)
@@ -248,8 +248,8 @@
 	action_icon_state = "reknit_form"
 	desc = "Flesh and bone runs like water at our will, healing horrendous damage with the power of our mind."
 	cooldown_duration = 60 SECONDS
-	target_flags = ABILITY_MOB_TARGET
-	use_state_flags = ABILITY_TARGET_SELF
+	flags_target = ABILITY_MOB_TARGET
+	flags_use_state = ABILITY_TARGET_SELF
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_ABILITY_REKNIT_FORM,
 	)
@@ -258,7 +258,7 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
-/datum/action/ability/activable/sectoid/reknit_form/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/sectoid/reknit_form/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -316,7 +316,7 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
-/datum/action/ability/activable/sectoid/fuse/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/sectoid/fuse/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -367,8 +367,8 @@
 	action_icon = 'icons/mob/psionic_icons.dmi'
 	desc = "We manipulate things from a distance."
 	cooldown_duration = 20 SECONDS
-	target_flags = ABILITY_MOB_TARGET
-	use_state_flags = ABILITY_TARGET_SELF
+	flags_target = ABILITY_MOB_TARGET
+	flags_use_state = ABILITY_TARGET_SELF
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_ABILITY_TELEKINESIS,
 	)
@@ -379,7 +379,7 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
-/datum/action/ability/activable/psionic_interact/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/psionic_interact/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -472,7 +472,7 @@
 	action_icon_state = "reanimate"
 	desc = "With our psionic strength we turn the dead into our puppet, or revive a fallen ally."
 	cooldown_duration = 60 SECONDS
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_ABILITY_REANIMATE,
 	)
@@ -489,7 +489,7 @@
 	kill_zombies()
 	return ..()
 
-/datum/action/ability/activable/sectoid/reanimate/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/sectoid/reanimate/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return

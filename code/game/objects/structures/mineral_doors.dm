@@ -5,7 +5,7 @@
 	name = "mineral door"
 	density = TRUE
 	opacity = TRUE
-	allow_pass_flags = NONE
+	flags_allow_pass = NONE
 	icon = 'icons/obj/doors/mineral_doors.dmi'
 	icon_state = "metal"
 
@@ -69,7 +69,7 @@
 	switching_states = TRUE
 	open = !open
 	playsound(get_turf(src), trigger_sound, 25, 1)
-	flick("[base_icon_state][smoothing_flags ? "-[smoothing_junction]" : ""]-[open ? "opening" : "closing"]", src)
+	flick("[base_icon_state][flags_smoothing ? "-[smoothing_junction]" : ""]-[open ? "opening" : "closing"]", src)
 	density = !density
 	opacity = !opacity
 	update_icon()
@@ -78,9 +78,9 @@
 /obj/structure/mineral_door/update_icon_state()
 	. = ..()
 	if(open)
-		icon_state = "[base_icon_state][smoothing_flags ? "-[smoothing_junction]" : ""]-open"
+		icon_state = "[base_icon_state][flags_smoothing ? "-[smoothing_junction]" : ""]-open"
 	else
-		icon_state = "[base_icon_state][smoothing_flags ? "-[smoothing_junction]" : ""]"
+		icon_state = "[base_icon_state][flags_smoothing ? "-[smoothing_junction]" : ""]"
 
 
 /obj/structure/mineral_door/attackby(obj/item/W, mob/living/user)

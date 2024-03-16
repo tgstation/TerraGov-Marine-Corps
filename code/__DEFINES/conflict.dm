@@ -94,7 +94,7 @@
 #define GUN_SHOWS_LOADED (1<<15) //Whether the mob sprite as loaded or unloaded, a binary version of the above
 #define GUN_SMOKE_PARTICLES (1<<16) //Whether the gun has smoke particles
 
-//reciever_flags. Used to determin how the gun cycles, what kind of ammo it uses, etc.
+//flags_reciever. Used to determin how the gun cycles, what kind of ammo it uses, etc.
 #define AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION (1<<0)
 	#define AMMO_RECIEVER_UNIQUE_ACTION_LOCKS (1<<1)
 #define AMMO_RECIEVER_MAGAZINES (1<<2)

@@ -34,7 +34,7 @@
  * First, it tries to find that object in a vendor with enough supplies.
  * If it finds one vendor with that item in reserve, it sells it and instantiate that item.
  * If it fails to find a vendor, it will add that item to a list on seller to warns him that it failed
- * Seller: The datum in charge of checking for points and buying_flags
+ * Seller: The datum in charge of checking for points and flags_buying
  * Master: used for modules, when the item need to be installed on master. Can be null
  * User: The human trying to equip this item
  * Return the instantatiated item if it was successfully sold, and return null otherwise

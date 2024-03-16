@@ -25,10 +25,10 @@
 	if(.)
 		return
 
-	if(status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //We can't physically attack or be attacked by the incorporeal
+	if(flags_status & INCORPOREAL || user.flags_status & INCORPOREAL) //We can't physically attack or be attacked by the incorporeal
 		return FALSE
 
-	if(buckle_flags & CAN_BUCKLE)
+	if(flags_buckle & CAN_BUCKLE)
 		switch(LAZYLEN(buckled_mobs))
 			if(0)
 				return

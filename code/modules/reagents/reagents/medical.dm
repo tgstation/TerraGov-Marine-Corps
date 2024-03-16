@@ -14,7 +14,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE*2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*2
 	scannable = TRUE
-	trait_flags = TACHYCARDIC
+	flags_trait = TACHYCARDIC
 
 /datum/reagent/medicine/inaprovaline/on_mob_add(mob/living/L, metabolism)
 	ADD_TRAIT(L, TRAIT_IGNORE_SUFFOCATION, REAGENT_TRAIT(src))
@@ -963,7 +963,7 @@
 	color = COLOR_REAGENT_CRYOXADONE
 	scannable = TRUE
 	taste_description = "sludge"
-	trait_flags = BRADYCARDICS
+	flags_trait = BRADYCARDICS
 
 /datum/reagent/medicine/cryoxadone/on_mob_life(mob/living/L, metabolism)
 	if(L.bodytemperature < 170)
@@ -979,7 +979,7 @@
 	color = COLOR_REAGENT_CLONEXADONE
 	scannable = TRUE
 	taste_description = "muscle"
-	trait_flags = BRADYCARDICS
+	flags_trait = BRADYCARDICS
 
 /datum/reagent/medicine/clonexadone/on_mob_life(mob/living/L, metabolism)
 	if(L.bodytemperature < 170)
@@ -1009,7 +1009,7 @@
 			L.adjustCloneLoss(-2*effect_str)
 			L.heal_overall_damage(2*effect_str,effect_str)
 
-			L.status_flags &= ~DISFIGURED
+			L.flags_status &= ~DISFIGURED
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				H.name = H.get_visible_name()

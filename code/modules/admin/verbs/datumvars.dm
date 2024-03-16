@@ -9,7 +9,7 @@
 	if(var_name == NAMEOF(src, vars))
 		return FALSE
 	vars[var_name] = var_value
-	datum_flags |= DF_VAR_EDITED
+	flags_datum |= DF_VAR_EDITED
 	return TRUE
 
 /datum/proc/vv_get_var(var_name)

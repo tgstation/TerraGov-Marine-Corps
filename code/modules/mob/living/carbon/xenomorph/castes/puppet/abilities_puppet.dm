@@ -4,7 +4,7 @@
 	desc = "Assault an organic, restoring health through the use of the their biomass."
 	ability_cost = 0
 	cooldown_duration = 35 SECONDS
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 
 /datum/action/ability/activable/xeno/feed/use_ability(mob/living/carbon/human/target_human)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
@@ -18,7 +18,7 @@
 	HEAL_XENO_DAMAGE(owner_xeno, amount, FALSE)
 	add_cooldown()
 
-/datum/action/ability/activable/xeno/feed/can_use_ability(mob/living/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/feed/can_use_ability(mob/living/target, silent = FALSE, flags_override)
 	. = ..()
 	if(!ishuman(target))
 		return FALSE

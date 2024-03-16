@@ -1,6 +1,6 @@
 //Parent for all bonus role assets
 /datum/campaign_asset/bonus_job
-	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_DISABLE_ON_MISSION_END
+	flags_asset = ASSET_ACTIVATED_EFFECT|ASSET_DISABLE_ON_MISSION_END
 	///list of bonus jobs to grant for this asset
 	var/list/datum/job/bonus_job_list = list()
 

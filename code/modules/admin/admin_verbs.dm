@@ -1269,7 +1269,7 @@
 
 	dat += "<table>"
 	if(SSjob.initialized && (!SSticker.HasRoundStarted()))
-		if(SSjob.ssjob_flags & SSJOB_OVERRIDE_JOBS_START)
+		if(SSjob.flags_ssjob & SSJOB_OVERRIDE_JOBS_START)
 			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];overridejobsstart=false'>Do Not Override Game Mode Settings</A> (game mode settings deal with job scaling and roundstart-only jobs cleanup, which will require manual editing if used while overriden)"
 		else
 			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];overridejobsstart=true'>Override Game Mode Settings</A> (if not selected, changes will be erased at roundstart)"

@@ -8,8 +8,8 @@
 	hit_sound = 'sound/effects/alien_resin_break2.ogg'
 	max_integrity = 400
 	anchored = TRUE
-	obj_flags = CAN_BE_HIT
-	resistance_flags = UNACIDABLE
+	flags_obj = CAN_BE_HIT
+	flags_resistance = UNACIDABLE
 	///Which hive it belongs too
 	var/hivenumber
 	///What is inside the cocoon

@@ -5,8 +5,8 @@
 	icon_state = "door_as_0"
 	anchored = FALSE
 	density = TRUE
-	resistance_flags = XENO_DAMAGEABLE
-	allow_pass_flags = PASS_AIR
+	flags_resistance = XENO_DAMAGEABLE
+	flags_allow_pass = PASS_AIR
 	max_integrity = 50
 	var/state = 0
 	base_icon_state = ""

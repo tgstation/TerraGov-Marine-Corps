@@ -41,7 +41,7 @@
 		return
 
 	///pulls the number of both factions, dead or alive
-	var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
+	var/list/player_list = count_humans(flags_count = COUNT_IGNORE_ALIVE_SSD)
 	var/num_team_one = length(player_list[1])
 	var/num_team_two = length(player_list[2])
 	var/num_dead_team_one = length(player_list[3])

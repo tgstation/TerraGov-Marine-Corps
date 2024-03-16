@@ -11,7 +11,7 @@
 	range = MECHA_MELEE
 	toolspeed = 0.8
 	harmful = TRUE
-	mech_flags = EXOSUIT_MODULE_RIPLEY
+	flags_mech = EXOSUIT_MODULE_RIPLEY
 	///Bool for whether we beat the hell out of things we punch (and tear off their arms)
 	var/killer_clamp = FALSE
 	///How much base damage this clamp does
@@ -134,7 +134,7 @@
 	energy_drain = 0
 	equipment_slot = MECHA_UTILITY
 	range = MECHA_MELEE|MECHA_RANGED
-	mech_flags = EXOSUIT_MODULE_WORKING
+	flags_mech = EXOSUIT_MODULE_WORKING
 	///Minimum amount of reagent needed to activate.
 	var/required_amount = 80
 

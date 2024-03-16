@@ -2,7 +2,7 @@
 
 ///Footstep element. Plays footsteps at parents location when it is appropriate.
 /datum/element/footstep
-	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY|ELEMENT_BESPOKE
+	flags_element = ELEMENT_DETACH_ON_HOST_DESTROY|ELEMENT_BESPOKE
 	argument_hash_start_idx = 2
 	///A list containing living mobs and the number of steps they have taken since the last time their footsteps were played.
 	var/list/steps_for_living = list()
@@ -59,7 +59,7 @@
 	if(!istype(turf))
 		return
 
-	if(source.buckled || source.throwing || source.is_ventcrawling || source.lying_angle || CHECK_MULTIPLE_BITFIELDS(source.pass_flags, HOVERING) || HAS_TRAIT(source, TRAIT_IMMOBILE))
+	if(source.buckled || source.throwing || source.is_ventcrawling || source.lying_angle || CHECK_MULTIPLE_BITFIELDS(source.flags_pass, HOVERING) || HAS_TRAIT(source, TRAIT_IMMOBILE))
 		return
 
 	if(ishuman(source))

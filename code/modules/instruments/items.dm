@@ -4,7 +4,7 @@
 	force = 10
 	max_integrity = 100
 	icon = 'icons/obj/musician.dmi'
-	interaction_flags = INTERACT_OBJ_UI
+	flags_interaction = INTERACT_OBJ_UI
 	item_state_worn = TRUE
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/instruments_left.dmi',

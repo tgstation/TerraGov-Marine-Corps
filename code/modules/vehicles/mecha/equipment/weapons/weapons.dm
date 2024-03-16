@@ -3,7 +3,7 @@
 	range = MECHA_RANGED
 	equipment_slot = MECHA_WEAPON
 	destroy_sound = 'sound/mecha/weapdestr.ogg'
-	mech_flags = EXOSUIT_MODULE_COMBAT
+	flags_mech = EXOSUIT_MODULE_COMBAT
 	/// ammo datum/object typepath
 	var/datum/ammo/ammotype
 	///sound file to play when this weapon you know, fires

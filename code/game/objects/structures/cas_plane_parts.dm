@@ -3,11 +3,11 @@
 	name = "\improper Condor Jet"
 	icon = 'icons/Marine/casship.dmi'
 	icon_state = "1"
-	appearance_flags = TILE_BOUND|KEEP_TOGETHER
+	flags_appearance = TILE_BOUND|KEEP_TOGETHER
 	layer = OBJ_LAYER
 	plane = GAME_PLANE
 	opacity = FALSE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /turf/closed/shuttle/cas/one
 	icon_state = "cas_plane_trim_one"
@@ -179,9 +179,9 @@
 	icon = 'icons/Marine/casship.dmi'
 	icon_state = "2"
 	layer = OBJ_LAYER
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	density = TRUE
-	appearance_flags = TILE_BOUND|KEEP_TOGETHER
+	flags_appearance = TILE_BOUND|KEEP_TOGETHER
 	opacity = FALSE
 	///you can't shoot it to death
 	coverage = 15

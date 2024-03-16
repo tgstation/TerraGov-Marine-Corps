@@ -264,7 +264,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	return SU.interact(user)
 
 /datum/supply_ui
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_interaction = INTERACT_MACHINE_TGUI
 	var/atom/source_object
 	var/tgui_name = "Cargo"
 	///Id of the shuttle controlled

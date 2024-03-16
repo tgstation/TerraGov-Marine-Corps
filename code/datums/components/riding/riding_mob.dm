@@ -47,10 +47,10 @@
 	if(living_parent.lying_angle) // if we move while on the ground, the rider falls off
 		kick_us_off = TRUE
 	// for piggybacks and (redundant?) borg riding, check if the rider is stunned/restrained
-	else if((ride_check_flags & RIDER_NEEDS_ARMS) && (rider.restrained(RESTRAINED_NECKGRAB) || rider.incapacitated(TRUE, TRUE)))
+	else if((flags_ride_check & RIDER_NEEDS_ARMS) && (rider.restrained(RESTRAINED_NECKGRAB) || rider.incapacitated(TRUE, TRUE)))
 		kick_us_off = TRUE
 	// for fireman carries, check if the ridden is stunned/restrained
-	else if((ride_check_flags & CARRIER_NEEDS_ARM) && (rider.restrained(RESTRAINED_NECKGRAB) || living_parent.incapacitated(TRUE, TRUE)))
+	else if((flags_ride_check & CARRIER_NEEDS_ARM) && (rider.restrained(RESTRAINED_NECKGRAB) || living_parent.incapacitated(TRUE, TRUE)))
 		kick_us_off = TRUE
 
 	if(!kick_us_off)
@@ -114,12 +114,12 @@
 	var/mob/living/carbon/human/human_parent = parent
 	human_parent.add_movespeed_modifier(MOVESPEED_ID_HUMAN_CARRYING, TRUE, 0, NONE, TRUE, HUMAN_CARRY_SLOWDOWN)
 
-	if(ride_check_flags & RIDER_NEEDS_ARMS) // piggyback
+	if(flags_ride_check & RIDER_NEEDS_ARMS) // piggyback
 		human_parent.buckle_lying = 0
 		// the riding mob is made nondense so they don't bump into any dense atoms the carrier is pulling,
 		// since pulled movables are moved before buckled movables
 		riding_mob.density = FALSE
-	else if(ride_check_flags & CARRIER_NEEDS_ARM) // fireman
+	else if(flags_ride_check & CARRIER_NEEDS_ARM) // fireman
 		human_parent.buckle_lying = 90
 
 /datum/component/riding/creature/human/RegisterWithParent()
@@ -130,10 +130,10 @@
 	if(!istype(living_parent) || !istype(rider))
 		return
 
-	if(ride_check_flags & RIDER_NEEDS_ARMS) // piggyback
+	if(flags_ride_check & RIDER_NEEDS_ARMS) // piggyback
 		living_parent.log_message("started giving [rider] a piggyback ride", LOG_ATTACK, color="pink")
 		rider.log_message("started piggyback riding [living_parent]", LOG_ATTACK, color="pink")
-	else if(ride_check_flags & CARRIER_NEEDS_ARM) // fireman
+	else if(flags_ride_check & CARRIER_NEEDS_ARM) // fireman
 		living_parent.log_message("started fireman carrying [rider]", LOG_ATTACK, color="pink")
 		rider.log_message("was fireman carried by [living_parent]", LOG_ATTACK, color="pink")
 

@@ -161,7 +161,7 @@
 			return
 		if(isobj(thing)) //otherwise smash it if its damageable
 			var/obj/obstacle = thing
-			if(obstacle.resistance_flags & XENO_DAMAGEABLE)
+			if(obstacle.flags_resistance & XENO_DAMAGEABLE)
 				INVOKE_ASYNC(src, PROC_REF(attack_target), null, obstacle)
 				return COMSIG_OBSTACLE_DEALT_WITH
 	if(ISDIAGONALDIR(direction) && ((deal_with_obstacle(null, turn(direction, -45)) & COMSIG_OBSTACLE_DEALT_WITH) || (deal_with_obstacle(null, turn(direction, 45)) & COMSIG_OBSTACLE_DEALT_WITH)))

@@ -75,9 +75,9 @@
 			M.show_message("[FOLLOW_LINK(M, user)] [dchatmsg]")
 
 	if(emote_type == EMOTE_AUDIBLE)
-		user.audible_message(msg, audible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)
+		user.audible_message(msg, flags_audible_message = EMOTE_MESSAGE, emote_prefix = prefix)
 	else
-		user.visible_message(msg, visible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)
+		user.visible_message(msg, flags_visible_message = EMOTE_MESSAGE, emote_prefix = prefix)
 
 /// For handling emote cooldown, return true to allow the emote to happen
 /datum/emote/proc/check_cooldown(mob/user, intentional)

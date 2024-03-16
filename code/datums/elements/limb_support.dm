@@ -1,5 +1,5 @@
 /datum/element/limb_support
-	element_flags = ELEMENT_BESPOKE
+	flags_element = ELEMENT_BESPOKE
 	argument_hash_start_idx = 2
 
 	var/limbs_to_support = FULL_BODY

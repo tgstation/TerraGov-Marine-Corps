@@ -6,11 +6,11 @@
 	anchored = TRUE
 	opacity = TRUE
 	density = TRUE
-	allow_pass_flags = NONE
+	flags_allow_pass = NONE
 	move_resist = MOVE_FORCE_VERY_STRONG
 	layer = DOOR_OPEN_LAYER
 	explosion_block = 2
-	resistance_flags = DROPSHIP_IMMUNE
+	flags_resistance = DROPSHIP_IMMUNE
 	minimap_color = MINIMAP_DOOR
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 100, FIRE = 80, ACID = 70)
 	var/open_layer = DOOR_OPEN_LAYER
@@ -44,7 +44,7 @@
 	. = ..()
 	if(density)
 		layer = closed_layer
-		update_flags_heat_protection(get_turf(src))
+		flags_update_heat_protection(get_turf(src))
 	else
 		layer = open_layer
 
@@ -54,7 +54,7 @@
 	current_turf.flags_atom &= ~ AI_BLOCKED
 
 	if(glass)
-		allow_pass_flags |= PASS_GLASS
+		flags_allow_pass |= PASS_GLASS
 
 /obj/machinery/door/Destroy()
 	for(var/o in fillers)
@@ -157,7 +157,7 @@
 
 
 /obj/machinery/door/ex_act(severity)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+	if(CHECK_BITFIELD(flags_resistance, INDESTRUCTIBLE))
 		return
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -248,7 +248,7 @@
 /obj/machinery/door/proc/hasPower()
 	return !CHECK_BITFIELD(machine_stat, NOPOWER)
 
-/obj/machinery/door/proc/update_flags_heat_protection(turf/source)
+/obj/machinery/door/proc/flags_update_heat_protection(turf/source)
 
 /obj/machinery/door/proc/autoclose()
 	if(!density && !operating && !locked && !welded && autoclose)

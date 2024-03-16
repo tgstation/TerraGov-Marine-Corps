@@ -10,11 +10,11 @@
 	anchored = TRUE
 	layer = TABLE_LAYER
 	climbable = TRUE
-	resistance_flags = XENO_DAMAGEABLE
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	flags_resistance = XENO_DAMAGEABLE
+	flags_allow_pass = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	hit_sound = 'sound/effects/metalhit.ogg'
 	coverage = 10
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	base_icon_state = "table_regular"
 	//determines if we drop metal on deconstruction
 	var/dropmetal = TRUE
@@ -504,8 +504,8 @@
 	climbable = TRUE
 	var/dropmetal = TRUE   //if true drop metal when destroyed; mostly used when we need large amounts of racks without marines hoarding the metal
 	max_integrity = 40
-	resistance_flags = XENO_DAMAGEABLE
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+	flags_resistance = XENO_DAMAGEABLE
+	flags_allow_pass = PASS_LOW_STRUCTURE|PASSABLE
 	var/parts = /obj/item/frame/rack
 
 /obj/structure/rack/Initialize(mapload)

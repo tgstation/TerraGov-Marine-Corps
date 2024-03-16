@@ -3,9 +3,9 @@
 	icon = 'icons/mob/animal.dmi'
 	health = 20
 	maxHealth = 20
-	status_flags = CANPUSH
+	flags_status = CANPUSH
 	gender = PLURAL
-	buckle_flags = NONE
+	flags_buckle = NONE
 
 	//Icons
 	var/icon_living = ""
@@ -81,7 +81,7 @@
 
 
 /mob/living/simple_animal/update_stat()
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 	if(stat != DEAD)
 		if(health <= 0)
@@ -348,7 +348,7 @@
 		return FALSE
 	if(ismob(the_target))
 		var/mob/M = the_target
-		if(M.status_flags & GODMODE)
+		if(M.flags_status & GODMODE)
 			return FALSE
 	if(isliving(the_target))
 		var/mob/living/L = the_target
@@ -363,7 +363,7 @@
 
 
 /mob/living/simple_animal/proc/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	if(!forced && (status_flags & GODMODE))
+	if(!forced && (flags_status & GODMODE))
 		return FALSE
 	bruteloss = round(clamp(bruteloss + amount, 0, maxHealth), 0.1)
 	if(updating_health)

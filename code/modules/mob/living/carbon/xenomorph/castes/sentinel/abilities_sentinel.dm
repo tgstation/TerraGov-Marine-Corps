@@ -39,7 +39,7 @@
 	desc = "Imbue your claws with acid for a short duration, inflicting lasting effects on your victims."
 	cooldown_duration = 10 SECONDS
 	ability_cost = 100
-	//use_state_flags = ABILITY_USE_BUCKLED
+	//flags_use_state = ABILITY_USE_BUCKLED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_SLASH,
 	)
@@ -129,13 +129,13 @@
 	desc = "Sting your victim, draining them and gaining benefits if they are Intoxicated."
 	cooldown_duration = 25 SECONDS
 	ability_cost = 75
-	target_flags = ABILITY_MOB_TARGET
-	use_state_flags = ABILITY_USE_BUCKLED
+	flags_target = ABILITY_MOB_TARGET
+	flags_use_state = ABILITY_USE_BUCKLED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN_STING,
 	)
 
-/datum/action/ability/activable/xeno/drain_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/drain_sting/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE

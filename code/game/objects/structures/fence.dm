@@ -9,11 +9,11 @@
 	coverage = 5
 	layer = WINDOW_LAYER
 	max_integrity = 150 //Its cheap but still viable to repair, cant be moved around, about 7 runner hits to take down
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	minimap_color = MINIMAP_FENCE
 	var/cut = FALSE //Cut fences can be passed through
 	coverage = 0 //4 rods doesn't provide any cover
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_FENCE)
 	canSmoothWith = list(SMOOTH_GROUP_FENCE)
 	///Chance for the fence to break on /init

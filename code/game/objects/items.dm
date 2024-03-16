@@ -9,9 +9,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	light_system = MOVABLE_LIGHT
-	allow_pass_flags = PASS_LOW_STRUCTURE
+	flags_allow_pass = PASS_LOW_STRUCTURE
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
-	resistance_flags = PROJECTILE_IMMUNE
+	flags_resistance = PROJECTILE_IMMUNE
 	move_resist = MOVE_FORCE_WEAK
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
@@ -745,7 +745,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/image/pickup_animation = image(icon = src, loc = loc, layer = layer + 0.1)
 	pickup_animation.plane = GAME_PLANE
 	pickup_animation.transform.Scale(0.75)
-	pickup_animation.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	pickup_animation.flags_appearance = APPEARANCE_UI_IGNORE_ALPHA
 
 	var/turf/current_turf = get_turf(src)
 	var/direction = get_dir(current_turf, target)

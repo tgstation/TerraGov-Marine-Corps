@@ -11,9 +11,9 @@
 
 ///Applies stun from current world time unless existing duration is higher
 /mob/living/proc/Stun(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANSTUN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANSTUN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -35,9 +35,9 @@
 		if(current_stun)
 			qdel(current_stun)
 		return
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANSTUN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANSTUN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -53,9 +53,9 @@
 
 ///Applies stun or adds to existing duration
 /mob/living/proc/AdjustStun(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANSTUN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANSTUN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -82,7 +82,7 @@
 
 ///Applies knockdown only if not currently applied
 /mob/living/proc/KnockdownNoChain(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 	if(IsKnockdown())
 		return 0
@@ -90,9 +90,9 @@
 
 ///Applies knockdown from current world time unless existing duration is higher
 /mob/living/proc/Knockdown(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANKNOCKDOWN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANKNOCKDOWN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_KNOCKDOWN, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -114,9 +114,9 @@
 		if(current_knockdown)
 			qdel(current_knockdown)
 		return
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANSTUN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANSTUN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_KNOCKDOWN, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -132,9 +132,9 @@
 
 ///Applies knockdown or adds to existing duration
 /mob/living/proc/AdjustKnockdown(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANSTUN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANSTUN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_KNOCKDOWN, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -161,7 +161,7 @@
 
 ///Applies immobilize only if not currently applied
 /mob/living/proc/ImmobilizeNoChain(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 	if(IsImmobilized())
 		return 0
@@ -169,9 +169,9 @@
 
 ///Applies immobilize from current world time unless existing duration is higher
 /mob/living/proc/Immobilize(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANKNOCKDOWN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANKNOCKDOWN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_IMMOBILIZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -193,9 +193,9 @@
 		if(current_immobilized)
 			qdel(current_immobilized)
 		return
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANKNOCKDOWN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANKNOCKDOWN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_IMMOBILIZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -211,9 +211,9 @@
 
 ///Applies immobilized or adds to existing duration
 /mob/living/proc/AdjustImmobilized(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANKNOCKDOWN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANKNOCKDOWN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_IMMOBILIZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -240,7 +240,7 @@
 
 ///Applies paralyze only if not currently applied
 /mob/living/proc/ParalyzeNoChain(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 	if(IsParalyzed())
 		return 0
@@ -248,9 +248,9 @@
 
 ///Applies paralyze from current world time unless existing duration is higher
 /mob/living/proc/Paralyze(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANKNOCKDOWN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANKNOCKDOWN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_PARALYZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -266,7 +266,7 @@
 	return current_paralyzed
 
 /mob/living/carbon/Paralyze(amount, ignore_canstun)
-	if(species?.species_flags & PARALYSE_RESISTANT)
+	if(species?.flags_species & PARALYSE_RESISTANT)
 		if(amount > MAX_PARALYSE_AMOUNT_FOR_PARALYSE_RESISTANT * 4)
 			amount = MAX_PARALYSE_AMOUNT_FOR_PARALYSE_RESISTANT
 			return ..()
@@ -280,9 +280,9 @@
 		if(current_paralyzed)
 			qdel(current_paralyzed)
 		return
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANKNOCKDOWN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANKNOCKDOWN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_PARALYZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -298,9 +298,9 @@
 
 ///Applies paralyzed or adds to existing duration
 /mob/living/proc/AdjustParalyzed(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANKNOCKDOWN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANKNOCKDOWN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_PARALYZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -327,7 +327,7 @@
 
 ///Applies sleeping from current world time unless existing duration is higher
 /mob/living/proc/Sleeping(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 	if(HAS_TRAIT(src, TRAIT_STUNIMMUNE) && !ignore_canstun)
 		return
@@ -351,7 +351,7 @@
 		if(current_sleeping)
 			qdel(current_sleeping)
 		return
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 	if(HAS_TRAIT(src, TRAIT_STUNIMMUNE) && !ignore_canstun)
 		return
@@ -369,7 +369,7 @@
 
 ///Applies sleeping or adds to existing duration
 /mob/living/proc/AdjustSleeping(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 	if(HAS_TRAIT(src, TRAIT_STUNIMMUNE) && !ignore_canstun)
 		return
@@ -419,9 +419,9 @@
 
 ///Applies unconscious from current world time unless existing duration is higher
 /mob/living/proc/Unconscious(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANUNCONSCIOUS) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANUNCONSCIOUS) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_UNCONSCIOUS, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -443,9 +443,9 @@
 		if(current_unconscious)
 			qdel(current_unconscious)
 		return
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANUNCONSCIOUS) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANUNCONSCIOUS) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_UNCONSCIOUS, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -461,9 +461,9 @@
 
 ///Applies unconscious or adds to existing duration
 /mob/living/proc/AdjustUnconscious(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANUNCONSCIOUS) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANUNCONSCIOUS) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_UNCONSCIOUS, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -490,9 +490,9 @@
 
 ///Applies confused from current world time unless existing duration is higher
 /mob/living/proc/Confused(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANCONFUSE) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANCONFUSE) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSED, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -514,9 +514,9 @@
 		if(current_confused)
 			qdel(current_confused)
 		return
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANCONFUSE) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANCONFUSE) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSED, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -532,9 +532,9 @@
 
 ///Applies confused or adds to existing duration
 /mob/living/proc/AdjustConfused(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANCONFUSE) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANCONFUSE) || HAS_TRAIT(src, TRAIT_STUNIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSED, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -717,9 +717,9 @@
 
 ///Applies stagger from current world time unless existing duration is higher
 /mob/living/proc/Stagger(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANSTUN) || HAS_TRAIT(src, TRAIT_STAGGERIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANSTUN) || HAS_TRAIT(src, TRAIT_STAGGERIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STAGGER, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -741,9 +741,9 @@
 		if(current_stagger)
 			qdel(current_stagger)
 		return
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANSTUN) || HAS_TRAIT(src, TRAIT_STAGGERIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANSTUN) || HAS_TRAIT(src, TRAIT_STAGGERIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STAGGER, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -759,9 +759,9 @@
 
 ///Applies stagger or adds to existing duration
 /mob/living/proc/adjust_stagger(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
-	if((!(status_flags & CANSTUN) || HAS_TRAIT(src, TRAIT_STAGGERIMMUNE)) && !ignore_canstun)
+	if((!(flags_status & CANSTUN) || HAS_TRAIT(src, TRAIT_STAGGERIMMUNE)) && !ignore_canstun)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STAGGER, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
@@ -836,7 +836,7 @@
 
 ///Mutes the target for the stated duration
 /mob/living/proc/Mute(amount) //Can't go below remaining duration
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_MUTE, amount) & COMPONENT_NO_MUTE)
 		return
@@ -849,7 +849,7 @@
 
 //Sets remaining mute duration
 /mob/living/proc/SetMute(amount)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_MUTE, amount) & COMPONENT_NO_MUTE)
 		return
@@ -870,7 +870,7 @@
 /mob/living/proc/AdjustMute(amount)
 	if(!amount)
 		return
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_MUTE, amount) & COMPONENT_NO_MUTE)
 		return
@@ -897,7 +897,7 @@
 
 ///Applies irradiation from a source
 /mob/living/proc/irradiate(amount, ignore_canstun = FALSE) //Can't go below remaining duration
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
 	if(irradiated)
@@ -908,7 +908,7 @@
 
 ///Sets irradiation  duration
 /mob/living/proc/set_radiation(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
 	if(amount <= 0)
@@ -923,7 +923,7 @@
 
 ///Modifies irradiation duration
 /mob/living/proc/adjust_radiation(amount, ignore_canstun = FALSE)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
 	if(irradiated)

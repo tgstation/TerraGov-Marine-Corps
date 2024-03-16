@@ -88,7 +88,7 @@
 				set_light(l_range = var_value)
 			else
 				set_light_range(var_value)
-			datum_flags |= DF_VAR_EDITED
+			flags_datum |= DF_VAR_EDITED
 			return TRUE
 
 		if("light_power")
@@ -96,7 +96,7 @@
 				set_light(l_power = var_value)
 			else
 				set_light_power(var_value)
-			datum_flags |= DF_VAR_EDITED
+			flags_datum |= DF_VAR_EDITED
 			return TRUE
 
 		if("light_color")
@@ -104,7 +104,7 @@
 				set_light(l_color = var_value)
 			else
 				set_light_color(var_value)
-			datum_flags |= DF_VAR_EDITED
+			flags_datum |= DF_VAR_EDITED
 			return TRUE
 	return ..()
 

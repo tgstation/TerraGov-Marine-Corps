@@ -1,6 +1,6 @@
 #define VV_HTML_ENCODE(thing) ( sanitize ? html_encode(thing) : thing )
 /// Get displayed variable in VV variable list
-/proc/debug_variable(name, value, level, datum/owner, sanitize = TRUE, display_flags = NONE) //if D is a list, name will be index, and value will be assoc value.
+/proc/debug_variable(name, value, level, datum/owner, sanitize = TRUE, flags_display = NONE) //if D is a list, name will be index, and value will be assoc value.
 	if(owner)
 		if(islist(owner))
 			var/index = name
@@ -24,12 +24,12 @@
 
 	. = "[.][name_part] = "
 
-	var/item = _debug_variable_value(name, value, level, owner, sanitize, display_flags)
+	var/item = _debug_variable_value(name, value, level, owner, sanitize, flags_display)
 
 	return "[.][item]</li>"
 
 // This is split into a seperate proc mostly to make errors that happen not break things too much
-/proc/_debug_variable_value(name, value, level, datum/owner, sanitize, display_flags)
+/proc/_debug_variable_value(name, value, level, datum/owner, sanitize, flags_display)
 	. = "<font color='red'>DISPLAY_ERROR:</font> ([value] [REF(value)])" // Make sure this line can never runtime
 
 	if(isnull(value))
@@ -62,7 +62,7 @@
 
 	if(isdatum(value))
 		var/datum/datum_value = value
-		return datum_value.debug_variable_value(name, level, owner, sanitize, display_flags)
+		return datum_value.debug_variable_value(name, level, owner, sanitize, flags_display)
 
 	if(islist(value) || (name in GLOB.vv_special_lists)) // Some special lists arent detectable as a list through istype
 		var/list/list_value = value
@@ -73,7 +73,7 @@
 		if(name in GLOB.vv_special_lists)
 			link_vars = "vars=[REF(owner)];special_varname=[name]"
 
-		if (!(display_flags & VV_ALWAYS_CONTRACT_LIST) && list_value.len > 0 && list_value.len <= (IS_NORMAL_LIST(list_value) ? VV_NORMAL_LIST_NO_EXPAND_THRESHOLD : VV_SPECIAL_LIST_NO_EXPAND_THRESHOLD))
+		if (!(flags_display & VV_ALWAYS_CONTRACT_LIST) && list_value.len > 0 && list_value.len <= (IS_NORMAL_LIST(list_value) ? VV_NORMAL_LIST_NO_EXPAND_THRESHOLD : VV_SPECIAL_LIST_NO_EXPAND_THRESHOLD))
 			for (var/i in 1 to list_value.len)
 				var/key = list_value[i]
 				var/val
@@ -101,17 +101,17 @@
 	else
 		return "<span class='value'>[VV_HTML_ENCODE(value)]</span>"
 
-/datum/proc/debug_variable_value(name, level, datum/owner, sanitize, display_flags)
+/datum/proc/debug_variable_value(name, level, datum/owner, sanitize, flags_display)
 	if("[src]" != "[type]") // If we have a name var, let's use it.
 		return "<a href='?_src_=vars;[HrefToken()];vars=[REF(src)]'>[src] [type] [REF(src)]</a>"
 	else
 		return "<a href='?_src_=vars;[HrefToken()];vars=[REF(src)]'>[type] [REF(src)]</a>"
 
-/datum/weakref/debug_variable_value(name, level, datum/owner, sanitize, display_flags)
+/datum/weakref/debug_variable_value(name, level, datum/owner, sanitize, flags_display)
 	. = ..()
 	return "[.] <a href='?_src_=vars;[HrefToken()];vars=[reference]'>(Resolve)</a>"
 
-/matrix/debug_variable_value(name, level, datum/owner, sanitize, display_flags)
+/matrix/debug_variable_value(name, level, datum/owner, sanitize, flags_display)
 	return {"<span class='value'>
 			<table class='matrixbrak'><tbody><tr><td class='lbrak'>&nbsp;</td><td>
 			<table class='matrix'>

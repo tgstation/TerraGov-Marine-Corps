@@ -5,7 +5,7 @@
 /datum/loadout_item/r_pocket/empty
 	name = "no right pocket"
 	desc = ""
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
 		SQUAD_CORPSMAN,
@@ -36,7 +36,7 @@
 /datum/loadout_item/r_pocket/standard_first_aid/standard_improved
 	desc = "Standard marine first-aid pouch. Contains a improved set of medical supplies."
 	item_typepath = /obj/item/storage/pouch/firstaid/combat_patrol_leader
-	loadout_item_flags = null
+	flags_loadout_item = null
 
 /datum/loadout_item/r_pocket/standard_first_aid/improved
 	desc = "Standard marine first-aid pouch. Contains a improved set of medical supplies."
@@ -49,7 +49,7 @@
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/combat_patrol
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/r_pocket/marine_standard_grenades
 	name = "Standard grenades"
@@ -101,7 +101,7 @@
 	ui_icon = "construction"
 	item_typepath = /obj/item/storage/pouch/tools/full
 	jobs_supported = list(SQUAD_ENGINEER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/r_pocket/general
 	name = "General pouch"
@@ -117,7 +117,7 @@
 /datum/loadout_item/l_pocket/empty
 	name = "no left pocket"
 	desc = ""
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
 		SQUAD_CORPSMAN,
@@ -144,18 +144,18 @@
 	ui_icon = "medkit"
 	item_typepath = /obj/item/storage/pouch/firstaid/combat_patrol
 	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_SMARTGUNNER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/l_pocket/standard_first_aid/standard_improved
 	desc = "Standard marine first-aid pouch. Contains a improved set of medical supplies."
 	item_typepath = /obj/item/storage/pouch/firstaid/combat_patrol_leader
-	loadout_item_flags = null
+	flags_loadout_item = null
 
 /datum/loadout_item/l_pocket/standard_first_aid/improved
 	desc = "Standard marine first-aid pouch. Contains a improved set of medical supplies."
 	item_typepath = /obj/item/storage/pouch/firstaid/combat_patrol_leader
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/l_pocket/marine_support_grenades
 	name = "Support grenades"
@@ -211,7 +211,7 @@
 
 /datum/loadout_item/l_pocket/magazine/medic
 	jobs_supported = list(SQUAD_CORPSMAN)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/l_pocket/general
 	name = "General pouch"

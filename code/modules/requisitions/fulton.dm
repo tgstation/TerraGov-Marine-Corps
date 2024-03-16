@@ -10,7 +10,7 @@
 	)
 	w_class = WEIGHT_CLASS_NORMAL
 	tool_behaviour = TOOL_FULTON
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	///Reference to the balloon vis obj effect
 	var/atom/movable/vis_obj/fulton_balloon/baloon
 	var/obj/effect/fulton_extraction_holder/holder_obj

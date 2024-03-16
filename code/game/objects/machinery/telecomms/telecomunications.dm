@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(telecomms_freq_listening_list)
 /obj/machinery/telecomms
 	icon = 'icons/obj/machines/telecomms.dmi'
 	anchored = TRUE
-	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
+	flags_resistance = INDESTRUCTIBLE|UNACIDABLE
 	/// list of machines this machine is linked to
 	var/list/links = list()
 	/**

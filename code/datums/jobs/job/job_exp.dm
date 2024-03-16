@@ -24,7 +24,7 @@ GLOBAL_PROTECT(exp_to_update)
 
 
 /datum/job/proc/get_exp_req_amount()
-	if(job_flags & JOB_FLAG_ISCOMMAND)
+	if(flags_job & JOB_FLAG_ISCOMMAND)
 		var/uerhh = CONFIG_GET(number/use_exp_restrictions_command_hours)
 		if(uerhh)
 			return uerhh * 60
@@ -32,16 +32,16 @@ GLOBAL_PROTECT(exp_to_update)
 
 
 /datum/job/proc/get_exp_req_type()
-	if(job_flags & JOB_FLAG_ISCOMMAND)
+	if(flags_job & JOB_FLAG_ISCOMMAND)
 		if(CONFIG_GET(flag/use_exp_restrictions_command_department) && exp_type_department)
 			return exp_type_department
 	return exp_type
 
 
 /proc/job_is_xp_locked(datum/job/job)
-	if(!CONFIG_GET(flag/use_exp_restrictions_command) && job.job_flags & JOB_FLAG_ISCOMMAND)
+	if(!CONFIG_GET(flag/use_exp_restrictions_command) && job.flags_job & JOB_FLAG_ISCOMMAND)
 		return FALSE
-	if(!CONFIG_GET(flag/use_exp_restrictions_other) && !(job.job_flags & JOB_FLAG_ISCOMMAND))
+	if(!CONFIG_GET(flag/use_exp_restrictions_other) && !(job.flags_job & JOB_FLAG_ISCOMMAND))
 		return FALSE
 	return TRUE
 

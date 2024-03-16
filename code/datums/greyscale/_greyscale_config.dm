@@ -28,7 +28,7 @@
 	var/prefix = ""
 
 	/// Flags that can be used to modify use
-	var/greyscale_flags = NONE
+	var/flags_greyscale = NONE
 
 // There's more sanity checking here than normal because this is designed for spriters to work with
 // Sensible error messages that tell you exactly what's wrong is the best way to make this easy to use

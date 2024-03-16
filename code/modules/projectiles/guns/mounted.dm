@@ -199,7 +199,7 @@
 	soft_armor = list(MELEE = 60, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
 /obj/machinery/deployable/mounted/moveable/auto_cannon
-	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
+	flags_resistance = XENO_DAMAGEABLE|UNACIDABLE
 	coverage = 85 //has a shield
 
 //-------------------------------------------------------
@@ -498,7 +498,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/shotgun_reload.ogg'
 	opened_sound = 'sound/weapons/guns/interact/shotgun_open.ogg'
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
-	reciever_flags = AMMO_RECIEVER_HANDFULS
+	flags_reciever = AMMO_RECIEVER_HANDFULS
 	default_ammo_type = /datum/ammo/bullet/sniper/clf_heavyrifle
 	attachable_allowed = list(
 		/obj/item/attachable/motiondetector,
@@ -565,7 +565,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_time = 6 SECONDS
-	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT
+	flags_reciever = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT
 	soft_armor = list(MELEE = 60, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
 	scatter = 0
@@ -578,7 +578,7 @@
 
 /obj/machinery/deployable/mounted/moveable/atgun
 	var/obj/item/storage/internal/ammo_rack/sponson = /obj/item/storage/internal/ammo_rack
-	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
+	flags_resistance = XENO_DAMAGEABLE|UNACIDABLE
 	coverage = 85 //has a shield
 	anchor_time = 1 SECONDS
 

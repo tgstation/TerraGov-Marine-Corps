@@ -3,7 +3,7 @@
 	icon_state = "gear"
 	anchored = TRUE
 	density = FALSE
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	use_power = 0
 	var/id
 
@@ -18,7 +18,7 @@
 	name = "\improper strut"
 	icon = 'icons/obj/elevator_strut.dmi'
 	anchored = TRUE
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	density = FALSE
 	use_power = 0
 	opacity = TRUE

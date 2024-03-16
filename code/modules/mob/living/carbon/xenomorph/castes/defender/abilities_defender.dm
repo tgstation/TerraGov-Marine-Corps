@@ -6,14 +6,14 @@
 	action_icon_state = "tail_sweep"
 	desc = "Hit all adjacent units around you, knocking them away and down."
 	ability_cost = 35
-	use_state_flags = ABILITY_USE_CRESTED
+	flags_use_state = ABILITY_USE_CRESTED
 	cooldown_duration = 12 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_SWEEP,
 	)
 
-/datum/action/ability/xeno_action/tail_sweep/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/tail_sweep/can_use_action(silent, flags_override)
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.crest_defense && X.plasma_stored < (ability_cost * 2))
@@ -76,7 +76,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_action(flags_override = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -91,7 +91,7 @@
 	desc = "Charge up to 4 tiles and knockdown any targets in our way."
 	cooldown_duration = 10 SECONDS
 	ability_cost = 80
-	use_state_flags = ABILITY_USE_CRESTED|ABILITY_USE_FORTIFIED
+	flags_use_state = ABILITY_USE_CRESTED|ABILITY_USE_FORTIFIED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORWARD_CHARGE,
 	)
@@ -123,7 +123,7 @@
 	RegisterSignal(xeno_owner, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
 	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
-	xeno_owner.xeno_flags |= XENO_LEAPING
+	xeno_owner.flags_xeno |= XENO_LEAPING
 
 	xeno_owner.throw_at(A, charge_range, 5, xeno_owner)
 
@@ -162,7 +162,7 @@
 	name = "Toggle Crest Defense"
 	action_icon_state = "crest_defense"
 	desc = "Increase your resistance to projectiles at the cost of move speed. Can use abilities while in Crest Defense."
-	use_state_flags = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED // duh
+	flags_use_state = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED // duh
 	cooldown_duration = 1 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREST_DEFENSE,
@@ -240,7 +240,7 @@
 	name = "Fortify"
 	action_icon_state = "fortify"	// TODO
 	desc = "Plant yourself for a large defensive boost."
-	use_state_flags = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED // duh
+	flags_use_state = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED // duh
 	cooldown_duration = 1 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORTIFY,
@@ -326,10 +326,10 @@
 	name = "Regenerate Skin"
 	action_icon_state = "regenerate_skin"
 	desc = "Regenerate your hard exoskeleton skin, restoring some health and removing all sunder."
-	use_state_flags = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED|ABILITY_TARGET_SELF|ABILITY_IGNORE_SELECTED_ABILITY|ABILITY_KEYBIND_USE_ABILITY
+	flags_use_state = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED|ABILITY_TARGET_SELF|ABILITY_IGNORE_SELECTED_ABILITY|ABILITY_KEYBIND_USE_ABILITY
 	ability_cost = 160
 	cooldown_duration = 1 MINUTES
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGENERATE_SKIN,
 	)
@@ -368,9 +368,9 @@
 	action_icon_state = "centrifugal_force"
 	desc = "Rapidly spin and hit all adjacent humans around you, knocking them away and down. Uses double plasma when crest is active."
 	ability_cost = 15
-	use_state_flags = ABILITY_USE_CRESTED
+	flags_use_state = ABILITY_USE_CRESTED
 	cooldown_duration = 30 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CENTRIFUGAL_FORCE,
 	)
@@ -379,7 +379,7 @@
 	///timer hash for the timer we use when spinning
 	var/spin_loop_timer
 
-/datum/action/ability/xeno_action/centrifugal_force/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/centrifugal_force/can_use_action(silent, flags_override)
 	if(spin_loop_timer)
 		return TRUE
 	. = ..()

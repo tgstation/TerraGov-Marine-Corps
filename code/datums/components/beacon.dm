@@ -117,10 +117,10 @@
 		source.anchored = TRUE
 		source.layer = ABOVE_OBJ_LAYER
 		source.set_light(2, 1)
-		var/marker_flags = GLOB.faction_to_minimap_flag[user.faction]
-		if(!marker_flags)
-			marker_flags = MINIMAP_FLAG_MARINE
-		SSminimaps.add_marker(source, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "supply", ABOVE_FLOAT_LAYER))
+		var/flags_marker = GLOB.faction_to_minimap_flag[user.faction]
+		if(!flags_marker)
+			flags_marker = MINIMAP_FLAG_MARINE
+		SSminimaps.add_marker(source, flags_marker, image('icons/UI_icons/map_blips.dmi', null, "supply", ABOVE_FLOAT_LAYER))
 
 	message_admins("[ADMIN_TPMONTY(user)] set up a supply beacon.") //do something with this
 	playsound(source, 'sound/machines/twobeep.ogg', 15, 1)

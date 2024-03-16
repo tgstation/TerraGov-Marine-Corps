@@ -590,7 +590,7 @@
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to upgrade [foundbarricade] but it already has armor!")
 	foundbarricade.barricade_upgrade_type = CADE_TYPE_ACID
 	foundbarricade.soft_armor = soft_armor.modifyRating(acid = 20)
-	foundbarricade.resistance_flags |= UNACIDABLE
+	foundbarricade.flags_resistance |= UNACIDABLE
 	foundbarricade.update_icon()
 
 /obj/effect/mapping_helpers/barricade/melee

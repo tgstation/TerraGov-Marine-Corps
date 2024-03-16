@@ -67,7 +67,7 @@
 	desc = "Channel to inject an adjacent target with an accelerant that violently reacts with xeno toxins, releasing gas and dealing heavy tox damage in proportion to the amount in their system."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEFILE,
 	)
@@ -77,7 +77,7 @@
 	to_chat(owner, span_xenodanger("You feel your toxin accelerant glands refill. You can use Defile again."))
 	return ..()
 
-/datum/action/ability/activable/xeno/defile/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/defile/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -97,7 +97,7 @@
 /datum/action/ability/activable/xeno/defile/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/living_target = A
-	if(living_target.status_flags & GODMODE)
+	if(living_target.flags_status & GODMODE)
 		owner.balloon_alert(owner, "Cannot defile")
 		return fail_activate()
 	X.face_atom(living_target)
@@ -168,7 +168,7 @@
 	desc = "Channel for 3 seconds to emit a cloud of noxious smoke, based on selected reagent, that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
 	ability_cost = 200
 	cooldown_duration = 40 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY|ABILITY_IGNORE_SELECTED_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY|ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_NEUROGAS,
 	)
@@ -191,16 +191,16 @@
 
 	X.emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
 
-	X.icon_state = "[X.xeno_caste.caste_name][(X.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Power Up"
+	X.icon_state = "[X.xeno_caste.caste_name][(X.flags_xeno & XENO_ROUNY) ? " rouny" : ""] Power Up"
 
 	if(!do_after(X, DEFILER_GAS_CHANNEL_TIME, NONE, null, BUSY_ICON_HOSTILE))
 		if(!QDELETED(src))
 			to_chat(X, span_xenodanger("We abort emitting fumes, our expended plasma resulting in nothing."))
 			X.emitting_gas = FALSE
-			X.icon_state = "[X.xeno_caste.caste_name][(X.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Running"
+			X.icon_state = "[X.xeno_caste.caste_name][(X.flags_xeno & XENO_ROUNY) ? " rouny" : ""] Running"
 			return fail_activate()
 	X.emitting_gas = FALSE
-	X.icon_state = "[X.xeno_caste.caste_name][(X.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Running"
+	X.icon_state = "[X.xeno_caste.caste_name][(X.flags_xeno & XENO_ROUNY) ? " rouny" : ""] Running"
 
 	add_cooldown()
 	succeed_activate()
@@ -286,7 +286,7 @@
 	desc = "Inject an egg with toxins, killing the larva, but filling it full with gas ready to explode."
 	ability_cost = 100
 	cooldown_duration = 5 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS,
 	)
@@ -355,7 +355,7 @@
 	name = "Select Reagent"
 	action_icon_state = "select_reagent0"
 	desc = "Selects which reagent to use for reagent slash and noxious gas. Neuro causes increasing pain and stamina damage. Hemodile slows targets down, multiplied by each other xeno-based toxin. Transvitox converts burns to toxin, and causes additional toxin damage when they take brute damage, both effects multiplied by other xeno-based toxins. Ozelomelyn purges all medicines from their system rapidly and causes minor toxin damage."
-	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
+	flags_use_state = ABILITY_USE_BUSY|ABILITY_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SELECT_REAGENT,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT,
@@ -425,7 +425,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REAGENT_SLASH,
 	)
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 	///How many remaining reagent slashes the Defiler has
 	var/reagent_slash_count = 0
 	///Timer ID for the Reagent Slashes timer; we reference this to delete the timer if the effect lapses before the timer does
@@ -529,7 +529,7 @@
 	///reference to beam tentacle
 	var/datum/beam/tentacle
 
-/datum/action/ability/activable/xeno/tentacle/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/tentacle/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return

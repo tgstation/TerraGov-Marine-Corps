@@ -27,7 +27,7 @@
 
 
 /mob/living/brain/proc/handle_temperature_damage(body_part, exposed_temperature)
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 
 	if(exposed_temperature > bodytemperature)
@@ -47,7 +47,7 @@
 
 /mob/living/brain/update_stat()
 	.=..()
-	if(status_flags & GODMODE)
+	if(flags_status & GODMODE)
 		return
 	if(stat != DEAD)
 		if(!container && (health < get_death_threshold() || ((world.time - timeofhostdeath) > CONFIG_GET(number/revival_brain_life))) )

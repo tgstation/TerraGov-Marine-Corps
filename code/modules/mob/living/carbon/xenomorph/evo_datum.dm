@@ -24,7 +24,7 @@
 	.["abilities"] = list()
 	for(var/ability in xeno.xeno_caste.actions)
 		var/datum/action/ability/xeno_action/xeno_ability = ability
-		if(SSticker.mode && !(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
+		if(SSticker.mode && !(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.flags_gamemode)))
 			continue
 		.["abilities"]["[ability]"] = list(
 			"name" = initial(xeno_ability.name),
@@ -39,11 +39,11 @@
 			"type_path" = caste.caste_type_path,
 			"name" = caste.display_name,
 			"abilities" = list(),
-			"instant_evolve" = (caste.caste_flags & CASTE_INSTANT_EVOLUTION || (HAS_TRAIT(xeno, TRAIT_CASTE_SWAP) || HAS_TRAIT(xeno, TRAIT_REGRESSING))),
+			"instant_evolve" = (caste.flags_caste & CASTE_INSTANT_EVOLUTION || (HAS_TRAIT(xeno, TRAIT_CASTE_SWAP) || HAS_TRAIT(xeno, TRAIT_REGRESSING))),
 		)
 		for(var/ability in caste.actions)
 			var/datum/action/ability/xeno_action/xeno_ability = ability
-			if(SSticker.mode && !(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
+			if(SSticker.mode && !(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.flags_gamemode)))
 				continue
 			caste_data["abilities"]["[ability]"] = list(
 				"name" = initial(xeno_ability.name),

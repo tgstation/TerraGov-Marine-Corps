@@ -8,7 +8,7 @@
 	soft_armor = list(MELEE = 50, BULLET = 55, LASER = 40, ENERGY = 30, BOMB = 30, BIO = 0, FIRE = 100, ACID = 100)
 	max_temperature = 60000
 	wreckage = /obj/structure/mecha_wreckage/marauder
-	mecha_flags = CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS
+	flags_mecha = CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS
 	mech_type = EXOSUIT_MODULE_COMBAT
 	force = 45
 	max_equip_by_category = list(
@@ -38,7 +38,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_SMOKE,
 	)
-/datum/action/vehicle/sealed/mecha/mech_smoke/action_activate(trigger_flags)
+/datum/action/vehicle/sealed/mecha/mech_smoke/action_activate(flags_trigger)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
 	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA_SMOKE) && chassis.smoke_charges>0)
@@ -52,7 +52,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_TOGGLE_ZOOM,
 	)
-/datum/action/vehicle/sealed/mecha/mech_zoom/action_activate(trigger_flags)
+/datum/action/vehicle/sealed/mecha/mech_zoom/action_activate(flags_trigger)
 	if(!owner?.client || !chassis || !(owner in chassis.occupants))
 		return
 	chassis.zoom_mode = !chassis.zoom_mode

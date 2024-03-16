@@ -189,7 +189,7 @@
 
 /obj/item/clothing/suit/straight_jacket/equipped(mob/living/carbon/user, slot)
 	if(slot == SLOT_WEAR_SUIT)
-		ENABLE_BITFIELD(user.restrained_flags, RESTRAINED_STRAIGHTJACKET)
+		ENABLE_BITFIELD(user.flags_restrained, RESTRAINED_STRAIGHTJACKET)
 		user.stop_pulling() //Can't pull if restrained.
 		if(user.handcuffed) //Keep the cuffs on.
 			user.drop_all_held_items()
@@ -200,7 +200,7 @@
 
 /obj/item/clothing/suit/straight_jacket/proc/on_removal(datum/source, mob/living/user)
 	SIGNAL_HANDLER
-	DISABLE_BITFIELD(user.restrained_flags, RESTRAINED_STRAIGHTJACKET)
+	DISABLE_BITFIELD(user.flags_restrained, RESTRAINED_STRAIGHTJACKET)
 	UnregisterSignal(src, COMSIG_ITEM_DROPPED)
 
 

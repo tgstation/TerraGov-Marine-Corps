@@ -27,7 +27,7 @@
 	///Transparency value.
 	var/set_alpha = 0
 	///For light sources that can be turned on and off.
-	var/overlay_lighting_flags = NONE
+	var/flags_overlay_lighting = NONE
 
 	///Cache of the possible light overlays, according to size.
 	var/static/list/light_overlays = list(
@@ -67,7 +67,7 @@
 	visible_mask.pixel_x = movable_parent.light_pixel_x
 	visible_mask.pixel_y = movable_parent.light_pixel_y
 	visible_mask.plane = O_LIGHTING_VISUAL_PLANE
-	visible_mask.appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
+	visible_mask.flags_appearance = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
 	visible_mask.alpha = 0
 	if(!isnull(_range))
 		movable_parent.set_light_range(_range)
@@ -106,7 +106,7 @@
 		COMSIG_ATOM_SET_LIGHT_ON,
 		COMSIG_ATOM_SET_LIGHT_FLAGS,
 		))
-	if(overlay_lighting_flags & LIGHTING_ON)
+	if(flags_overlay_lighting & LIGHTING_ON)
 		turn_off()
 	return ..()
 
@@ -168,13 +168,13 @@
 	if(new_holder == current_holder)
 		return
 	if(current_holder)
-		if(overlay_lighting_flags & LIGHTING_ON)
+		if(flags_overlay_lighting & LIGHTING_ON)
 			remove_dynamic_lumi(current_holder)
 	current_holder = new_holder
 	if(new_holder == null)
 		clean_old_turfs()
 		return
-	if(overlay_lighting_flags & LIGHTING_ON)
+	if(flags_overlay_lighting & LIGHTING_ON)
 		add_dynamic_lumi(new_holder)
 
 
@@ -202,7 +202,7 @@
 
 ///Called when current_holder changes loc.
 /datum/component/overlay_lighting/proc/on_holder_moved(atom/movable/source, OldLoc, Dir, Forced)
-	if(!(overlay_lighting_flags & LIGHTING_ON))
+	if(!(flags_overlay_lighting & LIGHTING_ON))
 		return
 	make_luminosity_update()
 
@@ -211,7 +211,7 @@
 /datum/component/overlay_lighting/proc/on_parent_moved(atom/movable/source, OldLoc, Dir, Forced)
 	SIGNAL_HANDLER
 	check_holder()
-	if(!(overlay_lighting_flags & LIGHTING_ON) || !current_holder)
+	if(!(flags_overlay_lighting & LIGHTING_ON) || !current_holder)
 		return
 	make_luminosity_update()
 
@@ -226,7 +226,7 @@
 	range = clamp(CEILING(new_range, 0.5), 1, 6)
 	var/pixel_bounds = ((range - 1) * 64) + 32
 	lumcount_range = CEILING(range, 1)
-	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+	if(current_holder && flags_overlay_lighting & LIGHTING_ON)
 		current_holder.underlays -= visible_mask
 	visible_mask.icon = light_overlays["[pixel_bounds]"]
 	if(pixel_bounds == 32)
@@ -236,9 +236,9 @@
 	var/matrix/transform = new
 	transform.Translate(-offset, -offset)
 	visible_mask.transform = transform
-	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+	if(current_holder && flags_overlay_lighting & LIGHTING_ON)
 		current_holder.underlays += visible_mask
-	if(overlay_lighting_flags & LIGHTING_ON)
+	if(flags_overlay_lighting & LIGHTING_ON)
 		make_luminosity_update()
 
 
@@ -247,20 +247,20 @@
 	SIGNAL_HANDLER
 	set_lum_power(new_power >= 0 ? 0.5 : -0.5)
 	set_alpha = min(230, (abs(new_power) * 120) + 30)
-	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+	if(current_holder && flags_overlay_lighting & LIGHTING_ON)
 		current_holder.underlays -= visible_mask
 	visible_mask.alpha = set_alpha
-	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+	if(current_holder && flags_overlay_lighting & LIGHTING_ON)
 		current_holder.underlays += visible_mask
 
 
 ///Changes the light's color, pretty straightforward.
 /datum/component/overlay_lighting/proc/set_color(atom/source, new_color)
 	SIGNAL_HANDLER
-	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+	if(current_holder && flags_overlay_lighting & LIGHTING_ON)
 		current_holder.underlays -= visible_mask
 	visible_mask.color = new_color
-	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+	if(current_holder && flags_overlay_lighting & LIGHTING_ON)
 		current_holder.underlays += visible_mask
 
 
@@ -275,21 +275,21 @@
 
 ///Toggles the light on.
 /datum/component/overlay_lighting/proc/turn_on()
-	if(overlay_lighting_flags & LIGHTING_ON)
+	if(flags_overlay_lighting & LIGHTING_ON)
 		return
 	if(current_holder)
 		add_dynamic_lumi(current_holder)
-	overlay_lighting_flags |= LIGHTING_ON
+	flags_overlay_lighting |= LIGHTING_ON
 	get_new_turfs()
 
 
 ///Toggles the light off.
 /datum/component/overlay_lighting/proc/turn_off()
-	if(!(overlay_lighting_flags & LIGHTING_ON))
+	if(!(flags_overlay_lighting & LIGHTING_ON))
 		return
 	if(current_holder)
 		remove_dynamic_lumi(current_holder)
-	overlay_lighting_flags &= ~LIGHTING_ON
+	flags_overlay_lighting &= ~LIGHTING_ON
 	clean_old_turfs()
 
 

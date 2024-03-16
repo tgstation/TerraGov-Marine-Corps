@@ -7,7 +7,7 @@
 	desc = "Knocks all adjacent targets away and down."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_STOMP,
 	)
@@ -52,7 +52,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, flags_override = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -70,7 +70,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CRESTTOSS,
 	)
-	target_flags = ABILITY_MOB_TARGET
+	flags_target = ABILITY_MOB_TARGET
 
 /datum/action/ability/activable/xeno/cresttoss/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -78,7 +78,7 @@
 	playsound(X, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	return ..()
 
-/datum/action/ability/activable/xeno/cresttoss/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/cresttoss/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -155,7 +155,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, flags_override = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -181,7 +181,7 @@
 	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	return ..()
 
-/datum/action/ability/activable/xeno/advance/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/advance/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -223,7 +223,7 @@
 /datum/action/ability/activable/xeno/advance/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, flags_override = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE

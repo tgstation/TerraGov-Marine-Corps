@@ -127,7 +127,7 @@
 		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if((H.species.species_flags & NO_PAIN))
+		if((H.species.flags_species & NO_PAIN))
 			return ..()
 	if(prob(5))
 		to_chat(L, discomfort_message)
@@ -188,13 +188,13 @@
 	else if( eyes_covered ) // Mouth cover is better than eye cover, except it's actually the opposite.
 		if(show_message)
 			to_chat(victim, span_danger("Your [safe_thing] protects you from most of the pepperspray!"))
-		if(!(victim.species && (victim.species.species_flags & NO_PAIN)))
+		if(!(victim.species && (victim.species.flags_species & NO_PAIN)))
 			if(prob(10))
 				victim.Stun(2 SECONDS)
 		victim.blur_eyes(5)
 		return
 	else // Oh dear :D
-		if(!(victim.species && (victim.species.species_flags & NO_PAIN)))
+		if(!(victim.species && (victim.species.flags_species & NO_PAIN)))
 			if(prob(10))
 				victim.emote("scream")
 		if(show_message)

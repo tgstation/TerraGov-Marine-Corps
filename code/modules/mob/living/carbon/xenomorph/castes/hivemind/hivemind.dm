@@ -9,9 +9,9 @@
 	icon_state = "hivemind_marker"
 	bubble_icon = "alienroyal"
 	icon = 'icons/Xeno/castes/hivemind.dmi'
-	status_flags = GODMODE | INCORPOREAL
-	resistance_flags = RESIST_ALL|BANISH_IMMUNE
-	pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_FIRE //to prevent hivemind eye to catch fire when crossing lava
+	flags_status = GODMODE | INCORPOREAL
+	flags_resistance = RESIST_ALL|BANISH_IMMUNE
+	flags_pass = PASS_LOW_STRUCTURE|PASSABLE|PASS_FIRE //to prevent hivemind eye to catch fire when crossing lava
 	density = FALSE
 
 	a_intent = INTENT_HELP
@@ -56,7 +56,7 @@
 	if(on_fire)
 		ExtinguishMob()
 	health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
-	if(health <= 0 && !(status_flags & INCORPOREAL))
+	if(health <= 0 && !(flags_status & INCORPOREAL))
 		setBruteLoss(0)
 		setFireLoss(-minimum_health)
 		change_form()
@@ -74,7 +74,7 @@
 	if(!istype(T))
 		return
 	// If manifested and off weeds, lets deal some damage.
-	if(!(status_flags & INCORPOREAL) && !loc_weeds_type)
+	if(!(flags_status & INCORPOREAL) && !loc_weeds_type)
 		adjustBruteLoss(20 * XENO_RESTING_HEAL, TRUE)
 		return
 	// If not manifested
@@ -107,7 +107,7 @@
 	return
 
 /mob/living/carbon/xenomorph/hivemind/change_form()
-	if(status_flags & INCORPOREAL && health != maxHealth)
+	if(flags_status & INCORPOREAL && health != maxHealth)
 		to_chat(src, span_xenowarning("You do not have the strength to manifest yet!"))
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
@@ -115,7 +115,7 @@
 	wound_overlay.icon_state = "none"
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
 	invisibility = 0
-	flick(status_flags & INCORPOREAL ? "Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation" : "Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation_reverse", src)
+	flick(flags_status & INCORPOREAL ? "Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation" : "Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation_reverse", src)
 	setDir(SOUTH)
 	addtimer(CALLBACK(src, PROC_REF(do_change_form)), TIME_TO_TRANSFORM)
 
@@ -126,10 +126,10 @@
 /mob/living/carbon/xenomorph/hivemind/proc/do_change_form()
 	LAZYCLEARLIST(movespeed_modification)
 	update_movespeed()
-	if(status_flags & INCORPOREAL)
-		status_flags = NONE
-		resistance_flags = BANISH_IMMUNE
-		pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_XENO
+	if(flags_status & INCORPOREAL)
+		flags_status = NONE
+		flags_resistance = BANISH_IMMUNE
+		flags_pass = PASS_LOW_STRUCTURE|PASS_MOB|PASS_XENO
 		density = TRUE
 		hive.xenos_by_upgrade[upgrade] -= src
 		upgrade = XENO_UPGRADE_MANIFESTATION
@@ -139,9 +139,9 @@
 		update_icon()
 		update_action_buttons()
 		return
-	status_flags = initial(status_flags)
-	resistance_flags = initial(resistance_flags)
-	pass_flags = initial(pass_flags)
+	flags_status = initial(flags_status)
+	flags_resistance = initial(flags_resistance)
+	flags_pass = initial(flags_pass)
 	density = FALSE
 	hive.xenos_by_upgrade[upgrade] -= src
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -178,7 +178,7 @@
 	return
 
 /mob/living/carbon/xenomorph/hivemind/proc/return_to_core()
-	if(!(status_flags & INCORPOREAL) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+	if(!(flags_status & INCORPOREAL) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		do_change_form()
 	for(var/obj/item/explosive/grenade/sticky/sticky_bomb in contents)
 		sticky_bomb.clean_refs()
@@ -207,7 +207,7 @@
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
-	if(!(status_flags & INCORPOREAL))
+	if(!(flags_status & INCORPOREAL))
 		return ..()
 	if(!check_weeds(NewLoc))
 		return FALSE
@@ -241,7 +241,7 @@
 	if(!check_weeds(get_turf(xeno), TRUE))
 		balloon_alert(src, "No nearby weeds")
 		return
-	if(!(status_flags & INCORPOREAL))
+	if(!(flags_status & INCORPOREAL))
 		start_teleport(get_turf(xeno))
 		return
 	abstract_move(get_turf(xeno))
@@ -249,7 +249,7 @@
 /// handles hivemind updating with their respective weedtype
 /mob/living/carbon/xenomorph/hivemind/update_icon_state()
 	. = ..()
-	if(status_flags & INCORPOREAL)
+	if(flags_status & INCORPOREAL)
 		icon_state = "hivemind_marker"
 		return
 	icon_state = "Hivemind_[initial(loc_weeds_type.color_variant)]"
@@ -262,7 +262,7 @@
 	if(!holder)
 		return
 
-	if(status_flags & INCORPOREAL)
+	if(flags_status & INCORPOREAL)
 		holder.icon_state = ""
 
 	var/amount = round(health * 100 / maxHealth, 10)
@@ -279,19 +279,19 @@
 	var/turf/target_turf = get_turf(A)
 	if(!check_weeds(target_turf, TRUE))
 		return
-	if(!(status_flags & INCORPOREAL))
+	if(!(flags_status & INCORPOREAL))
 		start_teleport(target_turf)
 		return
 	setDir(SOUTH)
 	abstract_move(target_turf)
 
 /mob/living/carbon/xenomorph/hivemind/CtrlClick(mob/user)
-	if(!(status_flags & INCORPOREAL))
+	if(!(flags_status & INCORPOREAL))
 		return ..()
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/CtrlShiftClickOn(atom/A)
-	if(!(status_flags & INCORPOREAL))
+	if(!(flags_status & INCORPOREAL))
 		return ..()
 	return FALSE
 
@@ -322,7 +322,7 @@
 	max_integrity = 600
 	icon = 'icons/Xeno/1x1building.dmi'
 	icon_state = "hivemind_core"
-	xeno_structure_flags = CRITICAL_STRUCTURE|DEPART_DESTRUCTION_IMMUNE
+	flags_xeno_structure = CRITICAL_STRUCTURE|DEPART_DESTRUCTION_IMMUNE
 	///The cooldown of the alert hivemind gets when a hostile is near it's core
 	COOLDOWN_DECLARE(hivemind_proxy_alert_cooldown)
 	///The weakref to the parent hivemind mob that we're attached to

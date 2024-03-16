@@ -71,7 +71,7 @@
 	)
 	item_state = "vali_claymore"
 	attack_speed = 24
-	resistance_flags = NONE
+	flags_resistance = NONE
 
 /obj/item/weapon/twohanded/glaive/harvester/Initialize(mapload)
 	. = ..()

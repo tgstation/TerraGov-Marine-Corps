@@ -3,8 +3,8 @@
 	icon_state = "chair"
 	layer = ABOVE_MOB_LAYER
 	req_access = list(ACCESS_MARINE_PILOT)
-	interaction_flags = INTERACT_MACHINE_TGUI|INTERACT_MACHINE_NOSILICON
-	resistance_flags = RESIST_ALL
+	flags_interaction = INTERACT_MACHINE_TGUI|INTERACT_MACHINE_NOSILICON
+	flags_resistance = RESIST_ALL
 	///The docking port we are handling control for
 	var/obj/docking_port/mobile/marine_dropship/casplane/owner
 	///The pilot human
@@ -148,7 +148,7 @@
 	if(!occupant)
 		to_chat(xeno_attacker, span_xenowarning("There is nothing of interest in there."))
 		return
-	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
+	if(xeno_attacker.flags_status & INCORPOREAL || xeno_attacker.do_actions)
 		return
 	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
 	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)

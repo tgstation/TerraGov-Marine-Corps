@@ -8,7 +8,7 @@
 	can_unwrench = FALSE
 	shift_underlay_only = FALSE
 
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 
 	var/injecting = 0
 

@@ -23,7 +23,7 @@
 	icon = 'icons/mecha/mecha.dmi'
 	move_force = MOVE_FORCE_VERY_STRONG
 	move_resist = MOVE_FORCE_EXCEPTIONALLY_STRONG
-	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE|PORTAL_IMMUNE|PLASMACUTTER_IMMUNE
+	flags_resistance = UNACIDABLE|XENO_DAMAGEABLE|PORTAL_IMMUNE|PLASMACUTTER_IMMUNE
 	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
 	max_integrity = 300
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 100, ACID = 100)
@@ -59,7 +59,7 @@
 	///Whether the mechs maintenance protocols are on or off
 	var/construction_state = MECHA_LOCKED
 	///Contains flags for the mecha
-	var/mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS
+	var/flags_mecha = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS
 	///Stores the DNA enzymes of a carbon so tht only they can access the mech
 	var/dna_lock
 	///Spark effects are handled by this datum
@@ -381,7 +381,7 @@
 	initialize_controller_action_type(/datum/action/vehicle/sealed/mecha/strafe, VEHICLE_CONTROL_DRIVE)
 
 /obj/vehicle/sealed/mecha/proc/get_mecha_occupancy_state()
-	if((mecha_flags & SILICON_PILOT) && silicon_icon_state)
+	if((flags_mecha & SILICON_PILOT) && silicon_icon_state)
 		return silicon_icon_state
 	if(LAZYLEN(occupants))
 		return base_icon_state
@@ -434,7 +434,7 @@
 			. += "[icon2html(ME, user)] \A [ME]."
 	if(enclosed)
 		return
-	if(mecha_flags & SILICON_PILOT)
+	if(flags_mecha & SILICON_PILOT)
 		. += "[src] appears to be piloting itself..."
 	else
 		for(var/occupante in occupants)
@@ -495,7 +495,7 @@
 				break  // all good
 			checking = checking.loc
 
-	if(mecha_flags & LIGHTS_ON)
+	if(flags_mecha & LIGHTS_ON)
 		use_power(2*delta_time)
 
 //Diagnostic HUD updates
@@ -523,7 +523,7 @@
 		. = COMSIG_MOB_CLICK_CANCELED
 	if(!isturf(target) && !isturf(target.loc)) // Prevents inventory from being drilled
 		return
-	if(completely_disabled || is_currently_ejecting || (mecha_flags & CANNOT_INTERACT))
+	if(completely_disabled || is_currently_ejecting || (flags_mecha & CANNOT_INTERACT))
 		return
 	if(phasing)
 		balloon_alert(user, "not while [phasing]!")
@@ -538,7 +538,7 @@
 	if(src == target)
 		return
 	var/dir_to_target = get_dir(src,target)
-	if(!(mecha_flags & OMNIDIRECTIONAL_ATTACKS) && dir_to_target && !(dir_to_target & dir))//wrong direction
+	if(!(flags_mecha & OMNIDIRECTIONAL_ATTACKS) && dir_to_target && !(dir_to_target & dir))//wrong direction
 		return
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		target = pick(view(3,target))

@@ -14,7 +14,7 @@
 	layer = LIGHTING_SECONDARY_LAYER
 	invisibility = INVISIBILITY_LIGHTING
 	blend_mode = BLEND_ADD
-	appearance_flags = KEEP_TOGETHER|RESET_TRANSFORM
+	flags_appearance = KEEP_TOGETHER|RESET_TRANSFORM
 	move_resist = INFINITY
 
 	///The current angle the item is pointing at

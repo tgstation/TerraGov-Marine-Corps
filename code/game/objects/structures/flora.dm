@@ -42,7 +42,7 @@
 	pixel_x = -16
 	max_integrity = 500
 	layer = ABOVE_FLY_LAYER
-	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
+	flags_allow_pass = PASS_PROJECTILE|PASS_AIR
 	var/log_amount = 10
 
 /obj/structure/flora/tree/add_debris_element()
@@ -239,7 +239,7 @@
 	icon = 'icons/obj/flora/smooth/tall_grass.dmi'
 	icon_state = "tallgrass-icon"
 	base_icon_state = "tallgrass"
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_TALL_GRASS)
 	canSmoothWith = list(
 		SMOOTH_GROUP_TALL_GRASS,

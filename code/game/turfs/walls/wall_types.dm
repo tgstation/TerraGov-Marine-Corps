@@ -39,7 +39,7 @@
 	desc = "A huge chunk of metal used to seperate space from the ship"
 	//icon_state = "testwall0_debug" //Uncomment to check hull in the map editor.
 	walltype = "testwall"
-	resistance_flags = RESIST_ALL //Impossible to destroy or even damage. Used for outer walls that would breach into space, potentially some special walls
+	flags_resistance = RESIST_ALL //Impossible to destroy or even damage. Used for outer walls that would breach into space, potentially some special walls
 	icon_state = "wall-invincible"
 	decorated_wall = FALSE
 
@@ -72,7 +72,7 @@
 	name = "outer hull"
 	desc = "A huge chunk of metal used to seperate space from the ship"
 	walltype = "gwall"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	icon_state = "wall-invincible"
 	decorated_wall = FALSE
 
@@ -87,20 +87,20 @@
 	)
 
 /turf/closed/wall/mainship/research
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	decorated_wall = FALSE
 
 /turf/closed/wall/mainship/white/outer
 	name = "outer hull"
 	desc = "A huge chunk of metal used to seperate space from the ship"
 	icon_state = "wall-invincible"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /turf/closed/wall/mainship/research/containment/wall
 	icon = 'icons/turf/mainshipwalls.dmi'
 	name = "cell wall"
 	walltype = null
-	smoothing_flags = NONE
+	flags_smoothing = NONE
 	decorated_wall = FALSE
 
 /turf/closed/wall/mainship/research/containment/wall/corner
@@ -156,13 +156,13 @@
 	base_icon_state = "chigusa"
 
 /turf/closed/wall/desert/invincible
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	icon_state = "wall-invincible"
 
 //tyson
 /turf/closed/wall/tyson
 	name = "outer wall"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /turf/closed/wall/tyson/airlock
 	name = "rusted airlock"
@@ -211,11 +211,11 @@
 	name = "outer hull"
 	desc = "A reinforced outer hull, probably to prevent breaches"
 	walltype = "sulaco"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	icon_state = "wall-invincible"
 
 /turf/closed/wall/sulaco/unmeltable
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	icon_state = "wall-invincible"
 
 /turf/closed/wall/sulaco/unmeltable/ex_act(severity) //Should make it indestructable
@@ -232,8 +232,8 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "riveted"
 	opacity = TRUE
-	resistance_flags = RESIST_ALL
-	smoothing_flags = NONE
+	flags_resistance = RESIST_ALL
+	flags_smoothing = NONE
 
 /turf/closed/wall/indestructible/ex_act(severity)
 	return
@@ -283,7 +283,7 @@
 	name = "mineral wall"
 	desc = "This shouldn't exist"
 	icon_state = ""
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	var/mineral
 	var/last_event = 0
 	var/active = null

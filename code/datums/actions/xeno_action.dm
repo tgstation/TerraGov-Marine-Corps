@@ -17,7 +17,7 @@
 	UnregisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	return ..()
 
-/datum/action/ability/xeno_action/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/can_use_action(silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -25,7 +25,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!X)
 		return FALSE
-	var/flags_to_check = use_state_flags|override_flags
+	var/flags_to_check = flags_use_state|flags_override
 
 	if(!(flags_to_check & ABILITY_USE_FORTIFIED) && X.fortify)
 		if(!silent)
@@ -58,7 +58,7 @@
 	UnregisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	return ..()
 
-/datum/action/ability/activable/xeno/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/can_use_action(silent = FALSE, flags_override)
 	. = ..()
 	if(!.)
 		return
@@ -66,7 +66,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!X)
 		return FALSE
-	var/flags_to_check = use_state_flags|override_flags
+	var/flags_to_check = flags_use_state|flags_override
 
 	if(!(flags_to_check & ABILITY_USE_FORTIFIED) && X.fortify)
 		if(!silent)

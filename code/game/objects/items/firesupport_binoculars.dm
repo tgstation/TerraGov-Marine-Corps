@@ -101,7 +101,7 @@
 
 	var/list/radial_options = list()
 	for(var/fire_support_type in mode_list)
-		if(!mode_list[fire_support_type].uses || !(mode_list[fire_support_type].fire_support_flags & FIRESUPPORT_AVAILABLE))
+		if(!mode_list[fire_support_type].uses || !(mode_list[fire_support_type].flags_fire_support & FIRESUPPORT_AVAILABLE))
 			continue
 		radial_options[mode_list[fire_support_type].name] = image(icon = 'icons/mob/radial.dmi', icon_state = mode_list[fire_support_type].icon_state)
 
@@ -156,7 +156,7 @@
 	if(!mode)
 		balloon_alert_to_viewers("Select a mode!")
 		return FALSE
-	if(!(mode.fire_support_flags & FIRESUPPORT_AVAILABLE))
+	if(!(mode.flags_fire_support & FIRESUPPORT_AVAILABLE))
 		balloon_alert_to_viewers("[mode.name] unavailable")
 		return FALSE
 	if(!mode.uses)

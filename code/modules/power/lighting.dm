@@ -137,7 +137,7 @@
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	light_system = STATIC_LIGHT //do not change this, byond and potato pcs no like
-	obj_flags = CAN_BE_HIT
+	flags_obj = CAN_BE_HIT
 	var/brightness = 8			// power usage and light range when on
 	var/bulb_power = 1			// basically the light_power of the emitted light source
 	var/bulb_colour = COLOR_WHITE
@@ -464,7 +464,7 @@
 
 //Xenos smashing lights
 /obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return
 	if(status == 2) //Ignore if broken.
 		return FALSE
@@ -754,7 +754,7 @@
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
-	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
+	flags_resistance = RESIST_ALL|DROPSHIP_IMMUNE
 	///ID of dropship
 	var/id
 	///port its linked to

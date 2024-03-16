@@ -71,7 +71,7 @@
 /obj/item/limb/head
 	name = "head"
 	icon_state = "head_m"
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	var/mob/living/brain/brainmob
 	var/brain_item_type = /obj/item/organ/brain
 	var/braindeath_on_decap = 1 //whether the brainmob dies when head is decapitated (used by synthetics)
@@ -81,7 +81,7 @@
 	if(!istype(H))
 		return
 
-	if(H.species.species_flags & HAS_NO_HAIR)
+	if(H.species.flags_species & HAS_NO_HAIR)
 		return
 	//Add (facial) hair.
 	if(H.f_style)

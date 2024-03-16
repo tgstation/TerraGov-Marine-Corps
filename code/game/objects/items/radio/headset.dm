@@ -279,26 +279,26 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	SSminimaps.remove_marker(wearer)
 	if(!wearer.job || !wearer.job.minimap_icon)
 		return
-	var/marker_flags = initial(minimap_type.marker_flags)
+	var/flags_marker = initial(minimap_type.flags_marker)
 	if(wearer.stat == DEAD)
 		if(HAS_TRAIT(wearer, TRAIT_UNDEFIBBABLE))
-			SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
+			SSminimaps.add_marker(wearer, flags_marker, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
 			return
 		if(!wearer.mind)
 			var/mob/dead/observer/ghost = wearer.get_ghost(TRUE)
 			if(!ghost?.can_reenter_corpse)
-				SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
+				SSminimaps.add_marker(wearer, flags_marker, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
 				return
-		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "defibbable", ABOVE_FLOAT_LAYER))
+		SSminimaps.add_marker(wearer, flags_marker, image('icons/UI_icons/map_blips.dmi', null, "defibbable", ABOVE_FLOAT_LAYER))
 		return
 	if(wearer.assigned_squad)
 		var/image/underlay = image('icons/UI_icons/map_blips.dmi', null, "squad_underlay")
 		var/image/overlay = image('icons/UI_icons/map_blips.dmi', null, wearer.job.minimap_icon)
 		overlay.color = wearer.assigned_squad.color
 		underlay.overlays += overlay
-		SSminimaps.add_marker(wearer, marker_flags, underlay)
+		SSminimaps.add_marker(wearer, flags_marker, underlay)
 		return
-	SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, wearer.job.minimap_icon))
+	SSminimaps.add_marker(wearer, flags_marker, image('icons/UI_icons/map_blips.dmi', null, wearer.job.minimap_icon))
 
 ///Remove all action of type minimap from the wearer, and make him disappear from the minimap
 /obj/item/radio/headset/mainship/proc/remove_minimap()

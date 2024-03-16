@@ -1,11 +1,11 @@
 /mob/CanAllowThrough(atom/movable/mover, turf/target)
-	if(mover.pass_flags & PASS_MOB)
+	if(mover.flags_pass & PASS_MOB)
 		return TRUE
 	if(..())
 		return TRUE
 	if(lying_angle)
 		return TRUE
-	if(mover.throwing && !(allow_pass_flags & PASS_THROW))
+	if(mover.throwing && !(flags_allow_pass & PASS_THROW))
 		return FALSE
 	if(!mover.density)
 		return TRUE
@@ -370,7 +370,7 @@
 
 
 /mob/living/carbon/human/toggle_move_intent(new_intent)
-	if((m_intent == MOVE_INTENT_WALK || new_intent == MOVE_INTENT_RUN) && (staminaloss >= 0 || (species.species_flags & NO_STAMINA)))
+	if((m_intent == MOVE_INTENT_WALK || new_intent == MOVE_INTENT_RUN) && (staminaloss >= 0 || (species.flags_species & NO_STAMINA)))
 		return
 	return ..()
 
@@ -378,7 +378,7 @@
 	return
 
 /mob/living/proc/update_move_intent_effects()
-	if(status_flags & INCORPOREAL)
+	if(flags_status & INCORPOREAL)
 		return FALSE
 	switch(m_intent)
 		if(MOVE_INTENT_WALK)

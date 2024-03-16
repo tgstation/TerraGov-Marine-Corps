@@ -427,7 +427,7 @@
 	use_power = NO_POWER_USE
 
 /obj/machinery/chem_master/nopower/valhalla
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 
 /obj/machinery/chem_master/condimaster/nopower
 	use_power = NO_POWER_USE

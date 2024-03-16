@@ -6,8 +6,8 @@
 	icon_state = "computer"
 	screen_overlay = "computer_generic"
 	circuit = null
-	resistance_flags = RESIST_ALL
-	interaction_flags = INTERACT_MACHINE_TGUI
+	flags_resistance = RESIST_ALL
+	flags_interaction = INTERACT_MACHINE_TGUI
 	req_access = list(ACCESS_MARINE_DROPSHIP)
 	/// dock id to dock our chosen shuttle at
 	var/dock_id = SHUTTLE_TADPOLE

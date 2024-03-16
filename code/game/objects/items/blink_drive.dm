@@ -13,7 +13,7 @@
 	icon_state = "bluespace_pack"
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
-	obj_flags = CAN_BE_HIT
+	flags_obj = CAN_BE_HIT
 	light_range = 0.1
 	light_power = 0.1
 	light_color = LIGHT_COLOR_BLUE
@@ -189,10 +189,10 @@
 	name = "Use Blink Drive"
 	action_icon_state = "axe_sweep"
 	desc = "Teleport a short distance instantly."
-	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
+	flags_use_state = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
 	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_BLINKDRIVE)
 
-/datum/action/ability/activable/item_toggle/blink_drive/can_use_ability(silent, override_flags, selecting)
+/datum/action/ability/activable/item_toggle/blink_drive/can_use_ability(silent, flags_override, selecting)
 	var/mob/living/carbon/carbon_owner = owner
 	if(carbon_owner.incapacitated() || carbon_owner.lying_angle)
 		return FALSE

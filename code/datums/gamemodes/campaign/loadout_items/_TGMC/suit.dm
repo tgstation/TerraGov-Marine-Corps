@@ -11,7 +11,7 @@
 /datum/loadout_item/suit_slot/empty
 	name = "no suit"
 	desc = ""
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
 		SQUAD_CORPSMAN,
@@ -43,7 +43,7 @@
 	desc = "Light armor with a Svallin shield module. Provides excellent mobility but lower protection. The shield module has been overclocked for improved performance."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
-	loadout_item_flags = null
+	flags_loadout_item = null
 
 /datum/loadout_item/suit_slot/light_shield/overclocked/medic
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked/medic
@@ -75,7 +75,7 @@
 	desc = "Medium armor with a Svallin shield module. Provides balanced mobility and protection."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/shield_overclocked
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
-	loadout_item_flags = null
+	flags_loadout_item = null
 
 /datum/loadout_item/suit_slot/medium_shield/overclocked/medic
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/shield_overclocked/medic
@@ -102,13 +102,13 @@
 	ui_icon = "heavy_armour_shield"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/shield
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/heavy_shield/overclocked
 	desc = "Heavy armor with a Svallin shield module. Provides excellent protection but lower mobility. The shield module has been overclocked for improved performance."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/shield_overclocked
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
-	loadout_item_flags = null
+	flags_loadout_item = null
 
 /datum/loadout_item/suit_slot/heavy_surt
 	name = "Heavy Surt armor"
@@ -131,7 +131,7 @@
 
 /datum/loadout_item/suit_slot/heavy_tyr/smartgunner
 	jobs_supported = list(SQUAD_SMARTGUNNER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	item_whitelist = null
 
 /datum/loadout_item/suit_slot/medium_valk
@@ -147,7 +147,7 @@
 	ui_icon = "heavy_armour"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/leader
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/white_dress
 	name = "White dress jacket"
@@ -162,7 +162,7 @@
 	ui_icon = "medium_armour"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/mimir
 	jobs_supported = list(SQUAD_CORPSMAN)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/medium_mimir/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
@@ -175,7 +175,7 @@
 	ui_icon = "medium_armour"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/engineer
 	jobs_supported = list(SQUAD_ENGINEER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/medium_engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)

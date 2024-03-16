@@ -272,8 +272,8 @@
 #define COMSIG_ATOM_SET_LIGHT_COLOR "atom_set_light_color"
 ///Called right before the atom changes the value of light_on to a different one, from base atom/set_light_on(): (new_value)
 #define COMSIG_ATOM_SET_LIGHT_ON "atom_set_light_on"
-///Called right before the atom changes the value of light_flags to a different one, from base atom/set_light_flags(): (new_value)
-#define COMSIG_ATOM_SET_LIGHT_FLAGS "atom_set_light_flags"
+///Called right before the atom changes the value of flags_light to a different one, from base atom/set_light_flags(): (new_value)
+#define COMSIG_ATOM_SET_LIGHT_FLAGS "flags_atom_set_light"
 
 
 // /atom/movable signals
@@ -288,7 +288,7 @@
 #define COMSIG_MOVABLE_BUMP "movable_bump"						//from base of atom/movable/Bump(): (/atom)
 	#define COMPONENT_BUMP_RESOLVED (1<<0)
 #define COMSIG_MOVABLE_IMPACT "movable_impact"					//from base of atom/movable/throw_impact(): (/atom/hit_atom)
-///from /atom/movable/proc/buckle_mob(): (mob/living/M, force, check_loc, buckle_mob_flags)
+///from /atom/movable/proc/buckle_mob(): (mob/living/M, force, check_loc, flags_buckle_mob)
 #define COMSIG_MOVABLE_PREBUCKLE "prebuckle" // this is the last chance to interrupt and block a buckle before it finishes
 	#define COMPONENT_BLOCK_BUCKLE	(1<<0)
 #define COMSIG_MOVABLE_BUCKLE "buckle"							//from base of atom/movable/buckle_mob(): (mob, force)

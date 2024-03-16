@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	name = "Blink"
 	action_icon_state = "blink"
 	desc = "We teleport ourselves a short distance to a location within line of sight."
-	use_state_flags = ABILITY_TURF_TARGET
+	flags_use_state = ABILITY_TURF_TARGET
 	ability_cost = 30
 	cooldown_duration = 0.5 SECONDS
 	keybinding_signals = list(
@@ -156,7 +156,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	name = "Banish"
 	action_icon_state = "Banish"
 	desc = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target onself and allies. Non-friendlies are banished for half as long."
-	use_state_flags = ABILITY_TARGET_SELF
+	flags_use_state = ABILITY_TARGET_SELF
 	ability_cost = 50
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
@@ -181,10 +181,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	QDEL_NULL(reserved_area) //clean up
 	return ..()
 
-/datum/action/ability/activable/xeno/banish/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/banish/can_use_ability(atom/A, silent = FALSE, flags_override)
 	. = ..()
 
-	if(!ismovableatom(A) || iseffect(A) || istype(A, /obj/alien) || CHECK_BITFIELD(A.resistance_flags, INDESTRUCTIBLE) || CHECK_BITFIELD(A.resistance_flags, BANISH_IMMUNE)) //Cannot banish non-movables/things that are supposed to be invul; also we ignore effects
+	if(!ismovableatom(A) || iseffect(A) || istype(A, /obj/alien) || CHECK_BITFIELD(A.flags_resistance, INDESTRUCTIBLE) || CHECK_BITFIELD(A.flags_resistance, BANISH_IMMUNE)) //Cannot banish non-movables/things that are supposed to be invul; also we ignore effects
 		if(!silent)
 			to_chat(owner, span_xenowarning("We cannot banish this!"))
 		return FALSE
@@ -218,7 +218,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	teleport_debuff_aoe(banishment_target) //Debuff when we disappear
 	portal = new /obj/effect/temp_visual/banishment_portal(banished_turf)
-	banishment_target.resistance_flags = RESIST_ALL
+	banishment_target.flags_resistance = RESIST_ALL
 
 	if(isliving(A))
 		var/mob/living/stasis_target = banishment_target
@@ -306,8 +306,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 				if(step(displacing, card))
 					to_chat(displacing, span_warning("A sudden force pushes you away from [return_turf]!"))
 					break
-	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
-	banishment_target.status_flags = initial(banishment_target.status_flags) //Remove stasis and temp invulerability
+	banishment_target.flags_resistance = initial(banishment_target.flags_resistance)
+	banishment_target.flags_status = initial(banishment_target.flags_status) //Remove stasis and temp invulerability
 	banishment_target.forceMove(return_turf)
 
 	var/list/all_contents = banishment_target.GetAllContents()
@@ -357,13 +357,13 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	name = "Recall"
 	action_icon_state = "Recall"
 	desc = "We recall a target we've banished back from the depths of nullspace."
-	use_state_flags = ABILITY_USE_NOTTURF|ABILITY_USE_CLOSEDTURF|ABILITY_USE_STAGGERED|ABILITY_USE_INCAP|ABILITY_USE_LYING //So we can recall ourselves from nether Brazil
+	flags_use_state = ABILITY_USE_NOTTURF|ABILITY_USE_CLOSEDTURF|ABILITY_USE_STAGGERED|ABILITY_USE_INCAP|ABILITY_USE_LYING //So we can recall ourselves from nether Brazil
 	cooldown_duration = 1 SECONDS //Token for anti-spam
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECALL,
 	)
 
-/datum/action/ability/xeno_action/recall/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/recall/can_use_action(silent = FALSE, flags_override)
 	. = ..()
 
 	var/datum/action/ability/activable/xeno/banish/banish_check = owner.actions_by_path[/datum/action/ability/activable/xeno/banish]
@@ -399,7 +399,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			continue
 		if(!ignore_density) //If we care about all dense atoms or only certain types of dense atoms
 			return TRUE
-		if((blocker.resistance_flags & INDESTRUCTIBLE) && !ignore_invulnerable) //If we care about dense invulnerable objects
+		if((blocker.flags_resistance & INDESTRUCTIBLE) && !ignore_invulnerable) //If we care about dense invulnerable objects
 			return TRUE
 		if(isobj(blocker) && !ignore_objects) //If we care about dense objects
 			var/obj/obj_blocker = blocker
@@ -487,7 +487,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	. = ..()
 	RegisterSignal(M, COMSIG_MOB_DEATH, PROC_REF(clean_portals))
 
-/datum/action/ability/xeno_action/portal/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/portal/can_use_action(silent, flags_override)
 	if(locate(/obj/effect/wraith_portal) in get_turf(owner))
 		if(!silent)
 			to_chat(owner, span_xenowarning("There is already a portal here!"))
@@ -532,8 +532,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	icon_state = "portal"
 	anchored = TRUE
 	opacity = FALSE
-	vis_flags = VIS_HIDE
-	resistance_flags = UNACIDABLE | CRUSHER_IMMUNE | BANISH_IMMUNE
+	flags_vis = VIS_HIDE
+	flags_resistance = UNACIDABLE | CRUSHER_IMMUNE | BANISH_IMMUNE
 	/// Visual object for handling the viscontents
 	var/obj/effect/portal_effect/portal_visuals
 	/// The linked portal
@@ -589,10 +589,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /// Signal handler teleporting crossing atoms
 /obj/effect/wraith_portal/proc/teleport_atom/(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
-	if(!linked_portal || !COOLDOWN_CHECK(src, portal_cooldown) || crosser.anchored || (crosser.resistance_flags & PORTAL_IMMUNE))
+	if(!linked_portal || !COOLDOWN_CHECK(src, portal_cooldown) || crosser.anchored || (crosser.flags_resistance & PORTAL_IMMUNE))
 		return
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
-	crosser.pass_flags &= ~PASS_MOB
+	crosser.flags_pass &= ~PASS_MOB
 	RegisterSignal(crosser, COMSIG_MOVABLE_MOVED, PROC_REF(do_teleport_atom))
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 
@@ -622,9 +622,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	bullet.fire_at(shooter = bullet.firer, range = max(bullet.proj_max_range - bullet.distance_travelled, 0), angle = bullet.dir_angle, recursivity = TRUE, loc_override = get_turf(linked_portal))
 
 /obj/effect/portal_effect
-	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
+	flags_appearance = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	vis_flags = VIS_INHERIT_ID
+	flags_vis = VIS_INHERIT_ID
 	layer = DOOR_OPEN_LAYER
 	///turf destination to display
 	var/turf/our_destination
@@ -661,7 +661,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REWIND,
 	)
-	use_state_flags = ABILITY_TARGET_SELF
+	flags_use_state = ABILITY_TARGET_SELF
 	/// How long till the time rewinds
 	var/start_rewinding = 5 SECONDS
 	/// The targeted atom
@@ -682,7 +682,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/range = 5
 
 
-/datum/action/ability/activable/xeno/rewind/can_use_ability(atom/A, silent, override_flags)
+/datum/action/ability/activable/xeno/rewind/can_use_ability(atom/A, silent, flags_override)
 	. = ..()
 
 	var/distance = get_dist(owner, A)
@@ -737,7 +737,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		targeted = null
 		return
 	targeted.add_filter("rewind_blur", 1, radial_blur_filter(0.3))
-	targeted.status_flags |= (INCORPOREAL|GODMODE)
+	targeted.flags_status |= (INCORPOREAL|GODMODE)
 	INVOKE_NEXT_TICK(src, PROC_REF(rewind))
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
 	playsound(targeted, 'sound/effects/woosh_swoosh.ogg', 50)
@@ -750,7 +750,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	var/turf/loc_b = pop(last_target_locs_list)
 	if(!loc_b)
-		targeted.status_flags &= ~(INCORPOREAL|GODMODE)
+		targeted.flags_status &= ~(INCORPOREAL|GODMODE)
 		REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
 		targeted.heal_overall_damage(targeted.getBruteLoss() - target_initial_brute_damage, targeted.getFireLoss() - target_initial_burn_damage, updating_health = TRUE)
 		if(target_initial_on_fire && target_initial_fire_stacks >= 0)

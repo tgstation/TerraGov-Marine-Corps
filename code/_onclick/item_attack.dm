@@ -70,7 +70,7 @@
 	if(user.a_intent != INTENT_HARM)
 		return
 
-	if(obj_flags & CAN_BE_HIT)
+	if(flags_obj & CAN_BE_HIT)
 		return I.attack_obj(src, user)
 
 /obj/item/proc/attack_obj(obj/O, mob/living/user)
@@ -89,7 +89,7 @@
 
 /obj/attacked_by(obj/item/I, mob/living/user, def_zone)
 	user.visible_message(span_warning("[user] hits [src] with [I]!"),
-		span_warning("You hit [src] with [I]!"), visible_message_flags = COMBAT_MESSAGE)
+		span_warning("You hit [src] with [I]!"), flags_visible_message = COMBAT_MESSAGE)
 	log_combat(user, src, "attacked", I)
 	var/power = I.force + round(I.force * MELEE_SKILL_DAM_BUFF * user.skills.getRating(SKILL_MELEE_WEAPONS))
 	take_damage(power, I.damtype, MELEE, blame_mob = user)
@@ -104,11 +104,11 @@
 	if(attached_clamp.loaded)
 		return
 
-	if(!CHECK_BITFIELD(interaction_flags, INTERACT_POWERLOADER_PICKUP_ALLOWED) && !CHECK_BITFIELD(interaction_flags, INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR))
+	if(!CHECK_BITFIELD(flags_interaction, INTERACT_POWERLOADER_PICKUP_ALLOWED) && !CHECK_BITFIELD(flags_interaction, INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR))
 		to_chat(user, span_notice("[attached_clamp.linked_powerloader] cannot pick up [src]!"))
 		return
 
-	if(anchored && !CHECK_BITFIELD(interaction_flags, INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR))
+	if(anchored && !CHECK_BITFIELD(flags_interaction, INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR))
 		to_chat(user, span_notice("[src] is bolted to the ground."))
 		return
 
@@ -185,7 +185,7 @@
 		return FALSE
 
 	// TODO terrible placement move this up the stack or something
-	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL)
+	if(M.flags_status & INCORPOREAL || user.flags_status & INCORPOREAL)
 		return FALSE
 
 	if(M.can_be_operated_on() && do_surgery(M, user, src)) //Checks if mob is lying down on table for surgery

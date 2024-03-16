@@ -48,7 +48,7 @@
 #define FOLLOW_OR_TURF_LINK(observer, target, turfy) "<a href=?src=[REF(observer)];track=[REF(target)];jump=1;x=[turfy.x];y=[turfy.y];z=[turfy.z]>(F)</a>"
 
 
-//Used in visible_message_flags, audible_message_flags and runechat_flags
+//Used in flags_visible_message, flags_audible_message and flags_runechat
 #define COMBAT_MESSAGE (1<<0)
 #define EMOTE_MESSAGE (1<<1)
 

@@ -38,10 +38,10 @@
 	name = "generic inflatable"
 	desc = "You shouldn't be seeing this."
 	density = TRUE
-	allow_pass_flags = NONE
+	flags_allow_pass = NONE
 	icon = 'icons/obj/inflatable.dmi'
 	max_integrity = 50
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 
 	///Are we deflated?
 	var/deflated = FALSE

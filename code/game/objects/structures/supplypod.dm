@@ -25,7 +25,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	pixel_x = -16
 	pixel_y = -5
 	layer = TABLE_LAYER
-	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
+	flags_closet = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
 	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 50, ENERGY = 100, BOMB = 100, BIO = 0, FIRE = 100, ACID = 80)
 	anchored = TRUE
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
@@ -68,7 +68,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	bluespace = TRUE
 	explosionSize = list(0, 0, 0, 0)
 	landingDelay = 20
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 
 /obj/structure/closet/supplypod/Initialize(mapload)

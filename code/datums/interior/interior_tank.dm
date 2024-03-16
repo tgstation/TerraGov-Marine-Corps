@@ -30,7 +30,7 @@
 	return ..()
 
 /turf/closed/interior
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /turf/closed/interior/tank
 	name = "\improper Ares tank interior"
@@ -85,7 +85,7 @@
 	name = "exit hatch"
 	icon = 'icons/obj/armored/3x3/tank_interior.dmi'
 	icon_state = "tank_interior_7"
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	///owner of this object, assigned during interior linkage
 	var/obj/vehicle/sealed/armored/owner
 
@@ -114,7 +114,7 @@
 
 
 /turf/open/interior
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 
 /turf/open/interior/tank
 	name = "\improper Ares tank interior"

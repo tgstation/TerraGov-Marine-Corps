@@ -6,7 +6,7 @@
 	icon_state = "stripe_box_thick"
 	anchored = TRUE
 	density = FALSE
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	layer = ABOVE_TURF_LAYER
 	/// The faction of this supply drop
 	var/faction = FACTION_TERRAGOV

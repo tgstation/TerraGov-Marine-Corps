@@ -20,8 +20,8 @@
 	evolution_threshold = 225
 
 	deevolves_to = list(/mob/living/carbon/xenomorph/defender)
-	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_PLASMADRAIN_IMMUNE|CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
+	flags_caste = CASTE_INNATE_PLASMA_REGEN|CASTE_PLASMADRAIN_IMMUNE|CASTE_EVOLUTION_ALLOWED
+	flags_can = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
 	caste_traits = null
 	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 20, FIRE = 20, ACID = 20)
 	minimap_icon = "puppeteer"

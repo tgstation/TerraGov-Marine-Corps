@@ -49,7 +49,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	///inventory slot it is intended to go into
 	var/item_slot
 	///Behavior flags for loadout items
-	var/loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
+	var/flags_loadout_item = LOADOUT_ITEM_ROUNDSTART_OPTION
 	///Cost to unlock this option
 	var/unlock_cost = 0
 	///Cost to use this option

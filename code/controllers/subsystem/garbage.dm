@@ -94,7 +94,7 @@ SUBSYSTEM_DEF(garbage)
 		var/list/entry = list()
 		del_log[path] = entry
 
-		if (I.qdel_flags & QDEL_ITEM_SUSPENDED_FOR_LAG)
+		if (I.flags_qdel & QDEL_ITEM_SUSPENDED_FOR_LAG)
 			entry["SUSPENDED FOR LAG"] = TRUE
 		if (I.failures)
 			entry["Failures"] = I.failures
@@ -225,7 +225,7 @@ SUBSYSTEM_DEF(garbage)
 				#endif
 				I.failures++
 
-				if (I.qdel_flags & QDEL_ITEM_SUSPENDED_FOR_LAG)
+				if (I.flags_qdel & QDEL_ITEM_SUSPENDED_FOR_LAG)
 					#ifdef REFERENCE_TRACKING
 					if(ref_searching)
 						return //ref searching intentionally cancels all further fires while running so things that hold references don't end up getting deleted, so we want to return here instead of continue
@@ -292,14 +292,14 @@ SUBSYSTEM_DEF(garbage)
 		postpone(time)
 	var/threshold = CONFIG_GET(number/hard_deletes_overrun_threshold)
 	if (threshold && (time > threshold SECONDS))
-		if (!(I.qdel_flags & QDEL_ITEM_ADMINS_WARNED))
+		if (!(I.flags_qdel & QDEL_ITEM_ADMINS_WARNED))
 			log_game("Error: [type]([refID]) took longer than [threshold] seconds to delete (took [round(time/10, 0.1)] seconds to delete)")
 			message_admins("Error: [type]([refID]) took longer than [threshold] seconds to delete (took [round(time/10, 0.1)] seconds to delete).")
-			I.qdel_flags |= QDEL_ITEM_ADMINS_WARNED
+			I.flags_qdel |= QDEL_ITEM_ADMINS_WARNED
 		I.hard_deletes_over_threshold++
 		var/overrun_limit = CONFIG_GET(number/hard_deletes_overrun_limit)
 		if (overrun_limit && I.hard_deletes_over_threshold >= overrun_limit)
-			I.qdel_flags |= QDEL_ITEM_SUSPENDED_FOR_LAG
+			I.flags_qdel |= QDEL_ITEM_SUSPENDED_FOR_LAG
 
 /datum/controller/subsystem/garbage/Recover()
 	InitQueues() //We first need to create the queues before recovering data
@@ -320,7 +320,7 @@ SUBSYSTEM_DEF(garbage)
 	var/no_respect_force = 0 //!Number of times it's not respected force=TRUE
 	var/no_hint = 0 //!Number of times it's not even bother to give a qdel hint
 	var/slept_destroy = 0 //!Number of times it's slept in its destroy
-	var/qdel_flags = 0 //!Flags related to this type's trip thru qdel.
+	var/flags_qdel = 0 //!Flags related to this type's trip thru qdel.
 
 /datum/qdel_item/New(mytype)
 	name = "[mytype]"

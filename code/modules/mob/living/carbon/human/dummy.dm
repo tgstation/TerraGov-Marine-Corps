@@ -1,7 +1,7 @@
 /mob/living/carbon/human/dummy
 	real_name = "Test Dummy"
-	status_flags = GODMODE|CANPUSH
-	resistance_flags = RESIST_ALL
+	flags_status = GODMODE|CANPUSH
+	flags_resistance = RESIST_ALL
 	var/in_use = FALSE
 
 INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)

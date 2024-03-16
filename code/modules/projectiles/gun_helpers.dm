@@ -8,7 +8,7 @@
 /obj/item/weapon/gun/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
 		return ..()
-	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN_EJECTS))
+	if(CHECK_BITFIELD(flags_reciever, AMMO_RECIEVER_TOGGLES_OPEN) && CHECK_BITFIELD(flags_reciever, AMMO_RECIEVER_TOGGLES_OPEN_EJECTS))
 		do_unique_action(user, TRUE)
 		return
 	unload(user)
@@ -109,7 +109,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(src != user.r_hand && src != user.l_hand && (!master_gun || (master_gun != user.r_hand && master_gun != user.l_hand)))
 		to_chat(user, span_warning("[src] must be in your hand to do that."))
 		return
-	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) || max_chamber_items > 1)
+	if(!CHECK_BITFIELD(flags_reciever, AMMO_RECIEVER_MAGAZINES) || max_chamber_items > 1)
 		to_chat(user, span_warning("Can't do tactical reloads with [src]."))
 		return
 	//no tactical reload for the untrained.
@@ -127,7 +127,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(istype(new_magazine.loc, /obj/item/storage))
 		var/obj/item/storage/S = new_magazine.loc
 		S.remove_from_storage(new_magazine, get_turf(user), user)
-	if(!CHECK_BITFIELD(get_flags_magazine_features(new_magazine), MAGAZINE_WORN))
+	if(!CHECK_BITFIELD(flags_get_magazine_features(new_magazine), MAGAZINE_WORN))
 		user.put_in_any_hand_if_possible(new_magazine)
 	reload(new_magazine, user)
 
@@ -567,12 +567,12 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	set name = "Toggle Automatic Magazine Ejection (Weapon)"
 	set desc = "Toggles the automatic unloading of the gun's magazine upon depletion."
 
-	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT_LOCKED))
+	if(CHECK_BITFIELD(flags_reciever, AMMO_RECIEVER_AUTO_EJECT_LOCKED))
 		balloon_alert(usr, "Cannot toggle ejection")
 		return
 
-	TOGGLE_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT)
-	balloon_alert(usr, "Automatic unloading [CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) ? "enabled" : "disabled"].")
+	TOGGLE_BITFIELD(flags_reciever, AMMO_RECIEVER_AUTO_EJECT)
+	balloon_alert(usr, "Automatic unloading [CHECK_BITFIELD(flags_reciever, AMMO_RECIEVER_AUTO_EJECT) ? "enabled" : "disabled"].")
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
 	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))

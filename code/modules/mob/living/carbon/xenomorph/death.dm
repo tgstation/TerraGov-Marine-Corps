@@ -17,7 +17,7 @@
 	hive?.on_xeno_death(src)
 	hive?.update_tier_limits() //Update our tier limits.
 
-	if(xeno_flags & XENO_ZOOMED)
+	if(flags_xeno & XENO_ZOOMED)
 		zoom_out()
 
 	if(GLOB.xeno_stat_multiplicator_buff == 1) //if autobalance is on, it won't equal 1, so xeno respawn timer is not set
@@ -75,10 +75,10 @@
 /mob/living/carbon/xenomorph/proc/xeno_death_alert()
 	if(is_centcom_level(z))
 		return
-	if(xeno_caste.caste_flags & CASTE_DO_NOT_ANNOUNCE_DEATH)
+	if(xeno_caste.flags_caste & CASTE_DO_NOT_ANNOUNCE_DEATH)
 		return
 	var/area/A = get_area(src)
-	xeno_message("Hive: \The [src] has <b>died</b>[A? " at [A]":""]!", "xenoannounce", xeno_caste.caste_flags & CASTE_DO_NOT_ALERT_LOW_LIFE ? 2 : 5, hivenumber)
+	xeno_message("Hive: \The [src] has <b>died</b>[A? " at [A]":""]!", "xenoannounce", xeno_caste.flags_caste & CASTE_DO_NOT_ALERT_LOW_LIFE ? 2 : 5, hivenumber)
 
 /mob/living/carbon/xenomorph/gib()
 

@@ -70,7 +70,7 @@
 	return ..()
 
 ///A delayed action with adjustable checks
-/proc/do_after(mob/user, delay, timed_action_flags = NONE, atom/target, user_display, target_display, prog_bar = PROGRESS_GENERIC, datum/callback/extra_checks)
+/proc/do_after(mob/user, delay, flags_timed_action = NONE, atom/target, user_display, target_display, prog_bar = PROGRESS_GENERIC, datum/callback/extra_checks)
 	if(!user)
 		return FALSE
 	if(!isnum(delay))
@@ -101,16 +101,16 @@
 		if(QDELETED(user) || (target && (QDELETED(target))))
 			. = FALSE
 			break
-		if(!(timed_action_flags & IGNORE_INCAPACITATED) && user.incapacitated(TRUE))
+		if(!(flags_timed_action & IGNORE_INCAPACITATED) && user.incapacitated(TRUE))
 			. = FALSE
 			break
-		if(!(timed_action_flags & IGNORE_HELD_ITEM) && user.get_active_held_item() != holding)
+		if(!(flags_timed_action & IGNORE_HELD_ITEM) && user.get_active_held_item() != holding)
 			. = FALSE
 			break
-		if(!(timed_action_flags & IGNORE_USER_LOC_CHANGE) && (user.loc != user_loc))
+		if(!(flags_timed_action & IGNORE_USER_LOC_CHANGE) && (user.loc != user_loc))
 			. = FALSE
 			break
-		if(!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) && target && (QDELETED(target_loc) || target_loc != target.loc))
+		if(!(flags_timed_action & IGNORE_TARGET_LOC_CHANGE) && target && (QDELETED(target_loc) || target_loc != target.loc))
 			. = FALSE
 			break
 		if(extra_checks && !extra_checks.Invoke())

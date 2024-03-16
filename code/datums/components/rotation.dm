@@ -10,17 +10,17 @@
 	var/datum/callback/can_be_rotated  //Check if object can be rotated at all
 	var/datum/callback/after_rotation     //Additional stuff to do after rotation
 
-	var/rotation_flags = NONE
+	var/flags_rotation = NONE
 	var/default_rotation_direction = ROTATION_CLOCKWISE
 
 
-/datum/component/simple_rotation/Initialize(rotation_flags = NONE, can_user_rotate, can_be_rotated, after_rotation)
+/datum/component/simple_rotation/Initialize(flags_rotation = NONE, can_user_rotate, can_be_rotated, after_rotation)
 	if(!ismovableatom(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	//throw if no rotation direction is specificed ?
 
-	src.rotation_flags = rotation_flags
+	src.flags_rotation = flags_rotation
 
 	if(can_user_rotate)
 		src.can_user_rotate = can_user_rotate
@@ -38,30 +38,30 @@
 		src.after_rotation = CALLBACK(src,PROC_REF(default_after_rotation))
 
 	//Try Clockwise,counter,flip in order
-	if(src.rotation_flags & ROTATION_FLIP)
+	if(src.flags_rotation & ROTATION_FLIP)
 		default_rotation_direction = ROTATION_FLIP
-	if(src.rotation_flags & ROTATION_COUNTERCLOCKWISE)
+	if(src.flags_rotation & ROTATION_COUNTERCLOCKWISE)
 		default_rotation_direction = ROTATION_COUNTERCLOCKWISE
-	if(src.rotation_flags & ROTATION_CLOCKWISE)
+	if(src.flags_rotation & ROTATION_CLOCKWISE)
 		default_rotation_direction = ROTATION_CLOCKWISE
 
 
 /datum/component/simple_rotation/proc/add_signals()
-	if(rotation_flags & ROTATION_ALTCLICK)
+	if(flags_rotation & ROTATION_ALTCLICK)
 		RegisterSignal(parent, COMSIG_CLICK_ALT, PROC_REF(HandRot))
 		RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(ExamineMessage))
-	if(rotation_flags & ROTATION_WRENCH)
+	if(flags_rotation & ROTATION_WRENCH)
 		RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(WrenchRot))
 
 
 /datum/component/simple_rotation/proc/add_verbs()
-	if(rotation_flags & ROTATION_VERBS)
+	if(flags_rotation & ROTATION_VERBS)
 		var/atom/movable/AM = parent
-		if(rotation_flags & ROTATION_FLIP)
+		if(flags_rotation & ROTATION_FLIP)
 			AM.verbs += /atom/movable/proc/simple_rotate_flip
-		if(src.rotation_flags & ROTATION_CLOCKWISE)
+		if(src.flags_rotation & ROTATION_CLOCKWISE)
 			AM.verbs += /atom/movable/proc/simple_rotate_clockwise
-		if(src.rotation_flags & ROTATION_COUNTERCLOCKWISE)
+		if(src.flags_rotation & ROTATION_COUNTERCLOCKWISE)
 			AM.verbs += /atom/movable/proc/simple_rotate_counterclockwise
 
 
@@ -108,7 +108,7 @@
 
 /datum/component/simple_rotation/proc/ExamineMessage(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	if(rotation_flags & ROTATION_ALTCLICK)
+	if(flags_rotation & ROTATION_ALTCLICK)
 		examine_list += span_notice("Alt-click to rotate it clockwise.")
 
 

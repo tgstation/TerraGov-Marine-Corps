@@ -18,7 +18,7 @@
 	name = "Eject From Mech"
 	action_icon_state = "mech_eject"
 
-/datum/action/vehicle/sealed/armored/eject/action_activate(trigger_flags)
+/datum/action/vehicle/sealed/armored/eject/action_activate(flags_trigger)
 	if(!owner)
 		return
 	if(!chassis || !(owner in chassis.occupants))
@@ -33,7 +33,7 @@
 #define ARMOR_GUNNER "Gunner"
 #define ARMOR_PASSENGER "Passenger"
 
-/datum/action/vehicle/sealed/armored/swap_seat/action_activate(trigger_flags)
+/datum/action/vehicle/sealed/armored/swap_seat/action_activate(flags_trigger)
 	if(!transfer_checks())
 		return
 	var/list/choices = list()
@@ -88,7 +88,7 @@
 	name = "Toggle Lights"
 	action_icon_state = "mech_lights_off"
 
-/datum/action/vehicle/sealed/armored/toggle_lights/action_activate(trigger_flags)
+/datum/action/vehicle/sealed/armored/toggle_lights/action_activate(flags_trigger)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
 
@@ -113,7 +113,7 @@
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_TOGGLE_ZOOM,
 	)
 
-/datum/action/vehicle/sealed/armored/zoom/action_activate(trigger_flags)
+/datum/action/vehicle/sealed/armored/zoom/action_activate(flags_trigger)
 	if(!owner?.client || !chassis || !(owner in chassis.occupants))
 		return
 	chassis.zoom_mode = !chassis.zoom_mode

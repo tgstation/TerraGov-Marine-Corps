@@ -18,8 +18,8 @@
 	tier = XENO_TIER_MINION
 	upgrade = XENO_UPGRADE_BASETYPE
 	pull_speed = -2
-	allow_pass_flags = PASS_XENO
-	pass_flags = PASS_XENO|PASS_LOW_STRUCTURE
+	flags_allow_pass = PASS_XENO
+	flags_pass = PASS_XENO|PASS_LOW_STRUCTURE
 	density = FALSE
 	/// The widow that this spiderling belongs to
 	var/mob/living/carbon/xenomorph/spidermother

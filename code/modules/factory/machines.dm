@@ -5,7 +5,7 @@
 	icon_state = "heater_inactive"
 	density = TRUE
 	anchored = FALSE // start off unanchored so its easier to move
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	///process type we will use to determine what step of the production process this machine will do
 	var/process_type = FACTORY_MACHINE_HEATER

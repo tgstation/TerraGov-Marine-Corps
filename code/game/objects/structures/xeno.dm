@@ -9,8 +9,8 @@
 	hit_sound = "alien_resin_break"
 	anchored = TRUE
 	max_integrity = 1
-	resistance_flags = UNACIDABLE
-	obj_flags = CAN_BE_HIT
+	flags_resistance = UNACIDABLE
+	flags_obj = CAN_BE_HIT
 	var/on_fire = FALSE
 	///Set this to true if this object isn't destroyed when the weeds under it is.
 	var/ignore_weed_destruction = FALSE
@@ -33,7 +33,7 @@
 	if(user.a_intent == INTENT_HARM) //Already handled at the parent level.
 		return
 
-	if(obj_flags & CAN_BE_HIT)
+	if(flags_obj & CAN_BE_HIT)
 		return I.attack_obj(src, user)
 
 /obj/alien/flamer_fire_act(burnlevel)
@@ -65,7 +65,7 @@
 	desc = "Looks like some kind of slimy growth."
 	icon_state = "Resin1"
 	max_integrity = 200
-	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
+	flags_resistance = XENO_DAMAGEABLE|UNACIDABLE
 
 
 /obj/alien/resin/attack_hand(mob/living/user)
@@ -108,7 +108,7 @@
 	if(!ishuman(crosser))
 		return
 
-	if(CHECK_MULTIPLE_BITFIELDS(crosser.allow_pass_flags, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(crosser.flags_allow_pass, HOVERING))
 		return
 
 	var/mob/living/carbon/human/victim = crosser
@@ -119,7 +119,7 @@
 	victim.next_move_slowdown += slow_amt
 
 /obj/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return FALSE
 
 	if(xeno_attacker.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
@@ -150,7 +150,7 @@
 	base_icon_state = "resin-door"
 	layer = RESIN_STRUCTURE_LAYER
 	max_integrity = 100
-	smoothing_flags = SMOOTH_BITMASK
+	flags_smoothing = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
 	canSmoothWith = list(
 		SMOOTH_GROUP_XENO_STRUCTURES,
@@ -289,10 +289,10 @@
 	var/current_user
 
 /obj/item/resin_jelly/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
+	if(xeno_attacker.flags_status & INCORPOREAL)
 		return FALSE
 
-	if(xeno_attacker.xeno_caste.can_flags & CASTE_CAN_HOLD_JELLY)
+	if(xeno_attacker.xeno_caste.flags_can & CASTE_CAN_HOLD_JELLY)
 		return attack_hand(xeno_attacker)
 	if(xeno_attacker.do_actions || !isnull(current_user))
 		return
@@ -355,7 +355,7 @@
 	if(!isxeno(hit_atom))
 		return
 	var/mob/living/carbon/xenomorph/X = hit_atom
-	if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+	if(X.xeno_caste.flags_caste & CASTE_FIRE_IMMUNE)
 		return
 	X.visible_message(span_notice("[X] is splattered with jelly!"))
 	INVOKE_ASYNC(src, PROC_REF(activate_jelly), X)

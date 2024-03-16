@@ -8,7 +8,7 @@
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
-	if(species.species_flags & NO_BLOOD)
+	if(species.flags_species & NO_BLOOD)
 		return
 
 	if(stat == DEAD || bodytemperature <= 170) //Dead or cryosleep people do not pump the blood.
@@ -93,7 +93,7 @@
 /mob/living/carbon/human/drip(amt)
 	if(HAS_TRAIT(src, TRAIT_STASIS)) // stasis now stops bloodloss
 		return
-	if(species.species_flags & NO_BLOOD)
+	if(species.flags_species & NO_BLOOD)
 		return
 	return ..()
 
@@ -163,7 +163,7 @@
 
 /mob/living/carbon/human/take_blood(obj/O, amount)
 
-	if(species?.species_flags & NO_BLOOD)
+	if(species?.flags_species & NO_BLOOD)
 		return
 
 	. = ..()
@@ -212,7 +212,7 @@
 	return "xenoblood"
 
 /mob/living/carbon/human/get_blood_id()
-	if((species.species_flags & NO_BLOOD))
+	if((species.flags_species & NO_BLOOD))
 		return
 	if(issynth(src))
 		return "whiteblood"
@@ -308,7 +308,7 @@
 
 
 /mob/living/carbon/human/add_splatter_floor(turf/T, small_drip, b_color)
-	if(species.species_flags & NO_BLOOD)
+	if(species.flags_species & NO_BLOOD)
 		return
 
 	b_color = species.blood_color

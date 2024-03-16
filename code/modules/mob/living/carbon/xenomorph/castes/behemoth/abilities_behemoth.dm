@@ -232,7 +232,7 @@
 	desc = "Rush forward in the selected direction, damaging enemies caught in a wide path."
 	ability_cost = 3 // This is deducted per step taken during the ability.
 	cooldown_duration = 20 SECONDS
-	target_flags = ABILITY_TURF_TARGET
+	flags_target = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LANDSLIDE,
 	)
@@ -264,7 +264,7 @@
 	button.add_overlay(visual_references[VREF_MUTABLE_LANDSLIDE])
 	return ..()
 
-/datum/action/ability/activable/xeno/landslide/can_use_action(silent, override_flags, selecting)
+/datum/action/ability/activable/xeno/landslide/can_use_action(silent, flags_override, selecting)
 	if(ability_active)
 		if(cooldown_timer)
 			return FALSE
@@ -396,7 +396,7 @@
 					veh_victim.take_damage(damage * LANDSLIDE_DAMAGE_VEHICLE_MODIFIER, MELEE)
 					continue
 				var/obj/affected_object = affected_atom
-				if(!affected_object.density || affected_object.allow_pass_flags & PASS_MOB || affected_object.resistance_flags & INDESTRUCTIBLE)
+				if(!affected_object.density || affected_object.flags_allow_pass & PASS_MOB || affected_object.flags_resistance & INDESTRUCTIBLE)
 					continue
 				hit_object(affected_object)
 	if(LinkBlocked(owner_turf, direct_turf))
@@ -458,7 +458,7 @@
 					veh_victim.take_damage(damage * LANDSLIDE_DAMAGE_VEHICLE_MODIFIER, MELEE)
 					continue
 				var/obj/affected_object = affected_atom
-				if(!affected_object.density || affected_object.allow_pass_flags & PASS_MOB || affected_object.resistance_flags & INDESTRUCTIBLE)
+				if(!affected_object.density || affected_object.flags_allow_pass & PASS_MOB || affected_object.flags_resistance & INDESTRUCTIBLE)
 					continue
 				hit_object(affected_object)
 	steps_to_take--
@@ -898,7 +898,7 @@
 	action_icon_state = "primal_wrath"
 	desc = "Unleash your wrath. Enhances your abilities, changing their functionality and allowing them to apply a damage over time debuff."
 	cooldown_duration = 1 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY|ABILITY_IGNORE_SELECTED_ABILITY
+	flags_keybind = ABILITY_KEYBIND_USE_ABILITY|ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PRIMAL_WRATH,
 	)
@@ -958,7 +958,7 @@
 		return
 	toggle_buff(TRUE)
 	currently_roaring = TRUE
-	xeno_owner.status_flags |= GODMODE
+	xeno_owner.flags_status |= GODMODE
 	xeno_owner.fortify = TRUE
 	xeno_owner.face_atom(target)
 	xeno_owner.set_canmove(FALSE)
@@ -995,7 +995,7 @@
 /// Ends the ability.
 /datum/action/ability/xeno_action/primal_wrath/proc/end_ability()
 	currently_roaring = FALSE
-	owner.status_flags &= ~GODMODE
+	owner.flags_status &= ~GODMODE
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.fortify = FALSE
 	xeno_owner.set_canmove(TRUE)
@@ -1174,7 +1174,7 @@
 	layer = ABOVE_LYING_MOB_LAYER
 	climbable = TRUE
 	climb_delay = 1.5 SECONDS
-	interaction_flags = INTERACT_CHECK_INCAPACITATED
+	flags_interaction = INTERACT_CHECK_INCAPACITATED
 	density = TRUE
 	max_integrity = 200
 	soft_armor = list(MELEE = 25, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 0, BIO = 100, FIRE = 100, ACID = 0)
@@ -1414,7 +1414,7 @@
 		for(var/atom/movable/affected_atom AS in affected_turf)
 			if(isliving(affected_atom))
 				var/mob/living/affected_living = affected_atom
-				if(xeno_owner.issamexenohive(affected_living) || affected_living.stat == DEAD || CHECK_BITFIELD(affected_living.status_flags, INCORPOREAL|GODMODE))
+				if(xeno_owner.issamexenohive(affected_living) || affected_living.stat == DEAD || CHECK_BITFIELD(affected_living.flags_status, INCORPOREAL|GODMODE))
 					continue
 				affected_living.emote("scream")
 				shake_camera(affected_living, 1, 0.8)
@@ -1456,5 +1456,5 @@
 		new warning_type(target_turf, duration)
 		playsound(target_turf, 'sound/effects/behemoth/behemoth_rumble.ogg', 15, TRUE)
 		for(var/mob/living/target_living in target_turf)
-			if(xeno_owner.issamexenohive(target_living) || target_living.stat == DEAD || CHECK_BITFIELD(target_living.status_flags, INCORPOREAL|GODMODE))
+			if(xeno_owner.issamexenohive(target_living) || target_living.stat == DEAD || CHECK_BITFIELD(target_living.flags_status, INCORPOREAL|GODMODE))
 				continue

@@ -309,7 +309,7 @@
 			. = SHUTTLE_DOCKER_BLOCKED_BY_HIDDEN_PORT
 
 	for(var/obj/O in T)
-		if(CHECK_BITFIELD(O.resistance_flags, DROPSHIP_IMMUNE))
+		if(CHECK_BITFIELD(O.flags_resistance, DROPSHIP_IMMUNE))
 			return SHUTTLE_DOCKER_BLOCKED
 
 	if(length(whitelist_turfs))

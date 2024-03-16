@@ -21,7 +21,7 @@
 	attack_sound = 'sound/weapons/punch1.ogg'
 	a_intent = INTENT_HARM
 	check_friendly_fire = TRUE
-	status_flags = CANPUSH
+	flags_status = CANPUSH
 	del_on_death = TRUE
 	dodging = TRUE
 	rapid_melee = 2
@@ -55,7 +55,7 @@
 	icon_living = "syndicate_knife"
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-	status_flags = NONE
+	flags_status = NONE
 	var/projectile_deflect_chance = 0
 
 
@@ -90,7 +90,7 @@
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/blade1.ogg'
 	armour_penetration = 35
-	status_flags = NONE
+	flags_status = NONE
 	projectile_deflect_chance = 50
 
 

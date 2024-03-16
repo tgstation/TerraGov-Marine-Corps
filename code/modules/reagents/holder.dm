@@ -18,12 +18,12 @@
 	/// currently addicted reagents
 	var/list/datum/reagent/addiction_list = list()
 	/// various flags, see code\__DEFINES\reagents.dm
-	var/reagent_flags
+	var/flags_reagent
 
-/datum/reagents/New(maximum = 100, new_flags)
+/datum/reagents/New(maximum = 100, flags_new)
 	maximum_volume = maximum
 
-	reagent_flags = new_flags
+	flags_reagent = flags_new
 
 /datum/reagents/Destroy()
 	for(var/datum/reagent/reagent AS in reagent_list)
@@ -347,7 +347,7 @@
 
 
 /datum/reagents/proc/handle_reactions()
-	if(CHECK_BITFIELD(reagent_flags, NO_REACT))
+	if(CHECK_BITFIELD(flags_reagent, NO_REACT))
 		return //Yup, no reactions here. No siree.
 	var/list/cached_reagents = reagent_list
 	var/list/cached_reactions = GLOB.chemical_reactions_list
@@ -796,10 +796,10 @@
 
 // Convenience proc to create a reagents holder for an atom
 // Max vol is maximum volume of holder
-/atom/proc/create_reagents(max_vol, new_flags, list/init_reagents, data)
+/atom/proc/create_reagents(max_vol, flags_new, list/init_reagents, data)
 	if(reagents)
 		qdel(reagents)
-	reagents = new (max_vol, new_flags)
+	reagents = new (max_vol, flags_new)
 	reagents.my_atom = WEAKREF(src)
 	if(init_reagents)
 		reagents.add_reagent_list(init_reagents, data)

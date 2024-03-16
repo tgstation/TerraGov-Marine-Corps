@@ -7,7 +7,7 @@
 	destroy_sound = "shatter"
 	density = FALSE
 	anchored = TRUE
-	resistance_flags = XENO_DAMAGEABLE
+	flags_resistance = XENO_DAMAGEABLE
 	var/shattered = FALSE
 
 /obj/structure/mirror/Initialize(mapload)

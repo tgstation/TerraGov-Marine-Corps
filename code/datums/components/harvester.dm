@@ -213,7 +213,7 @@
 	if(!loaded_reagent)
 		return
 
-	if(target.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
+	if(target.flags_status & INCORPOREAL || user.flags_status & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
 		return
 
 	switch(loaded_reagent)
@@ -265,7 +265,7 @@
 		return
 	var/mob/living/carbon/carbon_target = target
 
-	if((carbon_target.species.species_flags & NO_CHEM_METABOLIZATION))
+	if((carbon_target.species.flags_species & NO_CHEM_METABOLIZATION))
 		to_chat(user, span_rose("[target] Cannot process chemicals."))
 		return
 

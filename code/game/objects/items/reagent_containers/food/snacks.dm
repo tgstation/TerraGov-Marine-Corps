@@ -13,12 +13,12 @@
 	center_of_mass = list("x"=15, "y"=15)
 	var/list/tastes // for example list("crisps" = 2, "salt" = 1)
 
-/obj/item/reagent_containers/food/snacks/create_reagents(max_vol, new_flags, list/init_reagents, data)
+/obj/item/reagent_containers/food/snacks/create_reagents(max_vol, flags_new, list/init_reagents, data)
 	if(!length(tastes) || !length(init_reagents))
 		return ..()
 	if(reagents)
 		qdel(reagents)
-	reagents = new (max_vol, new_flags)
+	reagents = new (max_vol, flags_new)
 	reagents.my_atom = WEAKREF(src)
 	for(var/rid in init_reagents)
 		var/amount = list_reagents[rid]
@@ -68,7 +68,7 @@
 		var/fullness = C.nutrition + (C.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 25)
 		if(M == user)								//If you're eating it yourself
 			var/mob/living/carbon/H = M
-			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
+			if(ishuman(H) && (H.species.flags_species & ROBOTIC_LIMBS))
 				balloon_alert(user, "can't eat food")
 				return
 			if (fullness <= 50)
@@ -84,7 +84,7 @@
 				return FALSE
 		else
 			var/mob/living/carbon/H = M
-			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
+			if(ishuman(H) && (H.species.flags_species & ROBOTIC_LIMBS))
 				balloon_alert(user, "can't eat food")
 				return
 			if (fullness <= 550)

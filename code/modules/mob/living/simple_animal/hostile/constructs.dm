@@ -12,7 +12,7 @@
 	speed = 0
 	a_intent = INTENT_HARM
 	stop_automated_movement = TRUE
-	status_flags = CANPUSH
+	flags_status = CANPUSH
 	attack_sound = 'sound/weapons/punch1.ogg'
 	see_in_dark = 7
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
@@ -70,6 +70,6 @@
 	attacktext = "smashes their armored gauntlet into"
 	speed = 2.5
 	attack_sound = 'sound/weapons/punch3.ogg'
-	status_flags = NONE
+	flags_status = NONE
 	mob_size = MOB_SIZE_BIG
 	force_threshold = 10

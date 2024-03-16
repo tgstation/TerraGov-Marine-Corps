@@ -1,20 +1,20 @@
 /obj/structure/xeno
 	hit_sound = "alien_resin_break"
 	layer = RESIN_STRUCTURE_LAYER
-	resistance_flags = UNACIDABLE
+	flags_resistance = UNACIDABLE
 	///Bitflags specific to xeno structures
-	var/xeno_structure_flags
+	var/flags_xeno_structure
 	///Which hive(number) do we belong to?
 	var/hivenumber = XENO_HIVE_NORMAL
 
 /obj/structure/xeno/Initialize(mapload, _hivenumber)
 	. = ..()
-	if(!(xeno_structure_flags & IGNORE_WEED_REMOVAL))
+	if(!(flags_xeno_structure & IGNORE_WEED_REMOVAL))
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, PROC_REF(weed_removed))
 	if(_hivenumber) ///because admins can spawn them
 		hivenumber = _hivenumber
 	LAZYADDASSOC(GLOB.xeno_structures_by_hive, hivenumber, src)
-	if(xeno_structure_flags & CRITICAL_STRUCTURE)
+	if(flags_xeno_structure & CRITICAL_STRUCTURE)
 		LAZYADDASSOC(GLOB.xeno_critical_structures_by_hive, hivenumber, src)
 
 /obj/structure/xeno/Destroy()
@@ -22,7 +22,7 @@
 		stack_trace("[src] not found in the list of (potentially critical) xeno structures!") //We dont want to CRASH because that'd block deletion completely. Just trace it and continue.
 		return ..()
 	GLOB.xeno_structures_by_hive[hivenumber] -= src
-	if(xeno_structure_flags & CRITICAL_STRUCTURE)
+	if(flags_xeno_structure & CRITICAL_STRUCTURE)
 		GLOB.xeno_critical_structures_by_hive[hivenumber] -= src
 	return ..()
 

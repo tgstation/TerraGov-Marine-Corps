@@ -44,7 +44,7 @@
 	. = ..()
 	if(isliving(arrived))
 		var/mob/living/spaceman = arrived
-		if(!spaceman.has_status_effect(debuff_type) && !(spaceman.status_flags & INCORPOREAL))
+		if(!spaceman.has_status_effect(debuff_type) && !(spaceman.flags_status & INCORPOREAL))
 			spaceman.apply_status_effect(debuff_type)
 
 /area/space/Exited(atom/movable/leaver, direction)

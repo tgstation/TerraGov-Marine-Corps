@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	networks = list("marine")
 	open_prompt = FALSE
-	interaction_flags = INTERACT_MACHINE_DEFAULT
+	flags_interaction = INTERACT_MACHINE_DEFAULT
 	var/state = OW_MAIN
 	var/living_marines_sorting = FALSE
 	///The overwatch computer is busy launching an OB/SB, lock controls
@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	///Groundside minimap for overwatch
 	var/datum/action/minimap/marine/external/cic_mini
 	///Overrides the minimap action minimap and marker flags
-	var/map_flags = MINIMAP_FLAG_MARINE
+	var/flags_map = MINIMAP_FLAG_MARINE
 	///Ref of the lase that's had an OB warning mark placed on the minimap
 	var/obj/effect/overlay/temp/laser_target/OB/marked_lase
 	///Static list of CIC radial options for the camera when clicking on a marine
@@ -99,7 +99,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	send_defend_order = new
 	send_retreat_order = new
 	send_rally_order = new
-	cic_mini = new(null, map_flags, map_flags)
+	cic_mini = new(null, flags_map, flags_map)
 	GLOB.main_overwatch_consoles += src
 
 /obj/machinery/computer/camera_advanced/overwatch/Destroy()
@@ -170,7 +170,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	light_color = LIGHT_COLOR_FLARE
 	networks = list(SOM_CAMERA_NETWORK)
 	req_access = list(ACCESS_MARINE_BRIDGE)
-	map_flags = MINIMAP_FLAG_MARINE_SOM
+	flags_map = MINIMAP_FLAG_MARINE_SOM
 
 /obj/machinery/computer/camera_advanced/overwatch/main/som
 	faction = FACTION_SOM
@@ -179,7 +179,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	light_color = LIGHT_COLOR_FLARE
 	networks = list(SOM_CAMERA_NETWORK)
 	req_access = list(ACCESS_MARINE_BRIDGE)
-	map_flags = MINIMAP_FLAG_MARINE_SOM
+	flags_map = MINIMAP_FLAG_MARINE_SOM
 
 /obj/machinery/computer/camera_advanced/overwatch/som/zulu
 	name = "\improper Zulu Overwatch Console"
@@ -898,7 +898,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	desc = "You are not supposed to see this. Please report it."
 	icon_state = "" //No sprite
 	invisibility = INVISIBILITY_MAXIMUM
-	resistance_flags = RESIST_ALL
+	flags_resistance = RESIST_ALL
 	light_system = STATIC_LIGHT
 	light_color = COLOR_TESLA_BLUE
 	light_range = 15	//This is a HUGE light.

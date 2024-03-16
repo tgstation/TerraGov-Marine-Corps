@@ -5,7 +5,7 @@
 	screen_overlay = "id"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
 	circuit = /obj/item/circuitboard/computer/card
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 	var/obj/item/card/id/scan = null
 	var/obj/item/card/id/modify = null
 	var/authenticated = 0
@@ -346,7 +346,7 @@
 	icon_state = "computer_small"
 	screen_overlay = "guest"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
-	resistance_flags = INDESTRUCTIBLE
+	flags_resistance = INDESTRUCTIBLE
 	var/obj/item/card/id/modify = null
 	var/screen = 0 //0: main, 1: squad menu
 	///Which faction this computer belongs to
