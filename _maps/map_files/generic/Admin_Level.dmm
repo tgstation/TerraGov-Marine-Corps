@@ -8830,6 +8830,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/item/storage/fancy/cigar,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "mPT" = (
