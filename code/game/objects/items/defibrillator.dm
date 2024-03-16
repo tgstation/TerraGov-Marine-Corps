@@ -33,7 +33,6 @@
 	sparks.attach(src)
 	set_dcell(new /obj/item/cell())
 	update_icon()
-	ADD_TRAIT(src,TRAIT_NEWT_USABLE_ITEM, CATSLUG_TRAIT)
 
 
 /obj/item/defibrillator/Destroy()

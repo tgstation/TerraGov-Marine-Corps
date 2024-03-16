@@ -194,19 +194,6 @@
 		H.visible_message(span_notice("[H] hugs [target] to make [target.p_them()] feel better!"), \
 					span_notice("You hug [target] to make [target.p_them()] feel better!"), null, 4)
 
-/datum/species/proc/can_pickup_item(mob/living/carbon/human/source, obj/item/item)
-	if(HAS_TRAIT(item, TRAIT_NEWT_ONLY_ITEM))
-		source.visible_message(span_warning("You cannot pickup newt-only items as a [name]."))
-		return COMPONENT_HUMAN_CANNOT_PICKUP
-
-/datum/species/catslug/can_pickup_item(mob/living/carbon/human/source, obj/item/item)
-	if(HAS_TRAIT(item, TRAIT_NEWT_ONLY_ITEM))
-		return
-	if(HAS_TRAIT(item, TRAIT_NEWT_USABLE_ITEM))
-		return
-	source.visible_message(span_warning("As a newt you cannot pickup this item."))
-	return COMPONENT_HUMAN_CANNOT_PICKUP
-
 /datum/species/proc/random_name(gender)
 	return GLOB.namepool[namepool].get_random_name(gender)
 
@@ -254,15 +241,11 @@
 		ADD_TRAIT(H, newtrait, SPECIES_TRAIT)
 	H.maxHealth += total_health - (old_species ? old_species.total_health : initial(H.maxHealth))
 
-	RegisterSignal(H, COMSIG_HUMAN_PUT_IN_HAND_CHECK, PROC_REF(can_pickup_item))
-
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
 	SHOULD_CALL_PARENT(TRUE)
 	for(var/oldtrait in inherent_traits)
 		REMOVE_TRAIT(H, oldtrait, SPECIES_TRAIT)
-
-	UnregisterSignal(H, COMSIG_HUMAN_PUT_IN_HAND_CHECK)
 
 /// Removes all species-specific verbs and actions
 /datum/species/proc/remove_inherent_abilities(mob/living/carbon/human/H)
@@ -273,8 +256,6 @@
 			var/datum/action/old_species_action = H.actions_by_path[action_path]
 			qdel(old_species_action)
 	return
-
-
 
 /// Adds all species-specific verbs and actions
 /datum/species/proc/add_inherent_abilities(mob/living/carbon/human/H)
@@ -748,7 +729,7 @@
 	burn_mod = 0.5 //slug coating, slippery
 	brute_mod = 0.8 //some innate brute defense so they have some protection
 
-	species_flags =  HAS_NO_HAIR|NO_POISON|NO_PAIN|DETACHABLE_HEAD|GREYSCALE_BLOOD
+	species_flags =  HAS_NO_HAIR|NO_POISON|GREYSCALE_BLOOD|NO_DELIMB
 
 	blood_color = "#EEEEEE"
 
@@ -771,6 +752,10 @@
 	warcries = list(FEMALE = "female_warcry")
 	special_death_message = "You have been slain in your duties down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 	joinable_roundstart = TRUE
+
+/datum/species/catslug/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	H.allow_pass_flags |= PASS_LOW_STRUCTURE
 
 /datum/species/catslug/update_inv_gloves(mob/living/carbon/human/H)
 	var/datum/limb/left_hand = H.get_limb("l_hand")

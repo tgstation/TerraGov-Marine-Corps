@@ -420,10 +420,14 @@
 	icon_state = "newtsatchel"
 	item_state = "newtsatchel"
 
-/obj/item/storage/backpack/marine/newt/Initialize(mapload)
+/obj/item/storage/backpack/marine/satchel/newt/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src,TRAIT_NODROP, CATSLUG_TRAIT)
-	ADD_TRAIT(src,TRAIT_NEWT_ONLY_ITEM, CATSLUG_TRAIT)
+
+/obj/item/storage/backpack/marine/satchel/newt/attack_hand(mob/living/user)
+	if(!iscatslug(user))
+		return
+	return ..()
 
 /obj/item/storage/backpack/marine/smock
 	name = "\improper M3 sniper's smock"

@@ -68,7 +68,11 @@
 /obj/item/clothing/head/tgmcberet/newt/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src,TRAIT_NODROP, CATSLUG_TRAIT)
-	ADD_TRAIT(src,TRAIT_NEWT_ONLY_ITEM, CATSLUG_TRAIT)
+
+/obj/item/clothing/head/tgmcberet/newt/attack_hand(mob/living/user)
+	if(!iscatslug(user))
+		return
+	return ..()
 
 /obj/item/clothing/head/tgmcberet/tan
 	name = "\improper Tan beret"

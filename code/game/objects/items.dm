@@ -249,6 +249,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		to_chat(user, "[src] is anchored to the ground.")
 		return
 
+	if(iscatslug(user))
+		return
+
 	set_throwing(FALSE)
 
 	if(istype(loc, /obj/item/storage))
@@ -1391,6 +1394,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 ///Called by vendors when vending an item. Allows the item to specify what happens when it is given to the player.
 /obj/item/proc/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)
+	//to avoid vendors bypassing newt not being unable to pickup items
+	if(iscatslug(user))
+		return
 	//Put item into player's currently open storage
 	if (fill_container && user.s_active && user.s_active.can_be_inserted(src, FALSE))
 		user.s_active.handle_item_insertion(src, FALSE, user)

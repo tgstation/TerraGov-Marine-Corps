@@ -242,7 +242,3 @@
 	if(species.name)
 		. += species.name
 
-/mob/living/carbon/human/put_in_hand_check(obj/item/I, hand_index)
-	if(SEND_SIGNAL(src, COMSIG_HUMAN_PUT_IN_HAND_CHECK, I) & COMPONENT_HUMAN_CANNOT_PICKUP)
-		return FALSE
-	return ..()
