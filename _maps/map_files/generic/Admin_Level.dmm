@@ -16115,7 +16115,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/machinery/marine_selector/clothes/commander,
+/obj/machinery/marine_selector/clothes/commander/valhalla,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "xIx" = (
