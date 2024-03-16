@@ -395,6 +395,9 @@
 			. += "AI bioscan status: Instruments recalibrating, next scan in [(last_ai_bioscan  + COOLDOWN_AI_BIOSCAN - world.time)/10] seconds." //about 10 minutes
 		else
 			. += "AI bioscan status: Instruments are ready to scan the planet."
+	var/status_value = SSevacuation?.get_status_panel_eta()
+	if(status_value)
+		. += "Evacuation in: [status_value]"
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
 	. = ..()
