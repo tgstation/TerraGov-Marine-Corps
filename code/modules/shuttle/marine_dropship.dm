@@ -258,14 +258,7 @@
 	if(hijack_state != HIJACK_STATE_NORMAL)
 		return
 	cycle_timer = addtimer(CALLBACK(src, PROC_REF(go_to_previous_destination)), 20 SECONDS, TIMER_STOPPABLE)
-	priority_announce(
-		type = ANNOUNCEMENT_PRIORITY,
-		title = "Dropship Takeoff Imminent",
-		message = "The Alamo will automatically depart to [previous.name] in 20 seconds.",
-		random_channel = TRUE, // Probably round-changing enough to prevent interruption.
-		sound = 'sound/misc/ds_signalled_alarm.ogg',
-		color_override = "yellow"
-	)
+	priority_announce("The Alamo will depart towards [previous.name] in 20 seconds.", "Dropship Automatic Departure", color_override = "grey", should_play_sound = FALSE)
 	takeoff_alarm_locked = TRUE // Probably not a good idea if someone turns off auto and needs to use the alarm later, but...
 
 ///Send the dropship to its previous dock

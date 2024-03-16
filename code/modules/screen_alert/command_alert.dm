@@ -32,8 +32,11 @@
 		return
 	if(owner.stat != CONSCIOUS || TIMER_COOLDOWN_CHECK(owner, COOLDOWN_HUD_ORDER))
 		return FALSE
+	if(owner.skills.getRating(skill_name) < skill_min)
+		return FALSE
 
 /datum/action/innate/message_squad/action_activate()
+	to_chat(owner, span_warning("That messagwefwraraeewing the server rules."))
 	if(!can_use_action())
 		return
 	var/mob/living/carbon/human/human_owner = owner
@@ -48,15 +51,18 @@
 		log_filter("IC", text, filter_result)
 		return
 	if(!can_use_action())
+		to_chat(human_owner, span_warning("Tawdaswdaswdsawds."))
 		return
-	var/sound/S = sound('sound/misc/notice2.ogg')
-	S.channel = CHANNEL_ANNOUNCEMENTS
+	var/sound/S //Unique sound for squad leaders/non-squad leaders set further down
 	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
 	log_game("[key_name(human_owner)] has broadcasted the hud message [text] at [AREACOORD(human_owner)]")
 	var/override_color // for squad colors
 	var/list/alert_receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list) // for full faction alerts, do this so that faction's AI and ghosts can hear aswell
 	var/faction_string = "Command" // In case it's not a TGMC announcement, rename this with the faction name
 	if(human_owner.assigned_squad)
+		to_chat(human_owner, span_warning("Thawefrafeawfider reviewing the server rules."))
+		S = sound('sound/misc/notice3.ogg')
+		S.channel = CHANNEL_ANNOUNCEMENTS
 		switch(human_owner.assigned_squad.id)
 			if(ALPHA_SQUAD)
 				override_color = "red"
@@ -78,6 +84,8 @@
 			))
 		return
 	for(var/mob/faction_receiver in alert_receivers)
+		S = sound('sound/misc/notice2.ogg')
+		S.channel = CHANNEL_ANNOUNCEMENTS
 		if(faction_receiver.faction == human_owner.faction || isdead(faction_receiver))
 			faction_receiver.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>COMMAND ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
 			if(human_owner.faction != FACTION_TERRAGOV)
