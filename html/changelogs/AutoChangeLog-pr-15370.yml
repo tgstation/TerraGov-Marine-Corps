@@ -1,4 +1,0 @@
-author: "Kapu1178"
-delete-after: True
-changes:
-  - bugfix: "Facehuggers will now prioritize the nearest marine, preferring cardinal directions."

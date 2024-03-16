@@ -1,6 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes:
-  - qol: "Added a little description to the medivac bed in the corpsman vendor."
-  - spellcheck: "Corrected a typo of patiant to patient"
-  - code_imp: "Removed a now useless verb"
