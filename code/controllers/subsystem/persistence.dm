@@ -363,7 +363,7 @@ SUBSYSTEM_DEF(persistence)
 	name = "Explosive Heavy Weapons"
 	description = "Flak cannon and Recoilless guns for roundstart vendors."
 	item_list = list(
-		/obj/item/weapon/gun/heavy_isg = 1,
+		/obj/structure/largecrate/supply/weapons/heavy_flakgun = 1,
 		/obj/item/ammo_magazine/heavy_isg/he = 8,
 		/obj/item/ammo_magazine/heavy_isg/sabot = 5,
 		/obj/item/storage/holster/backholster/rpg/full = 2,
