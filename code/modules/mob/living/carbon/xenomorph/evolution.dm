@@ -8,6 +8,7 @@
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 
+	SStgui.close_user_uis(src, GLOB.evo_panel) // Closes all verbs using evo UI; evolution, caste swap and regress. They need to be refreshed with their respective castelists.
 	GLOB.evo_panel.ui_interact(src)
 
 /mob/living/carbon/xenomorph/verb/caste_swap()
@@ -19,6 +20,7 @@
 		to_chat(src, span_warning("Your caste swap timer is not done yet."))
 		return
 
+	SStgui.close_user_uis(src, GLOB.evo_panel)
 	ADD_TRAIT(src, TRAIT_CASTE_SWAP, TRAIT_CASTE_SWAP)
 	GLOB.evo_panel.ui_interact(src)
 
@@ -27,6 +29,7 @@
 	set desc = "Regress into a lower form."
 	set category = "Alien"
 
+	SStgui.close_user_uis(src, GLOB.evo_panel)
 	ADD_TRAIT(src, TRAIT_REGRESSING, TRAIT_REGRESSING)
 	GLOB.evo_panel.ui_interact(src)
 
@@ -158,10 +161,10 @@
 		new_xeno.fireloss = fireloss //Transfers the damage over.
 		new_xeno.updatehealth()
 
-	if(xeno_mobhud)
+	if(xeno_flags & XENO_MOBHUD)
 		var/datum/atom_hud/H = GLOB.huds[DATA_HUD_XENO_STATUS]
 		H.add_hud_to(new_xeno) //keep our mobhud choice
-		new_xeno.xeno_mobhud = TRUE
+		new_xeno.xeno_flags |= XENO_MOBHUD
 
 	if(lighting_alpha != new_xeno.lighting_alpha)
 		new_xeno.toggle_nightvision(lighting_alpha)
@@ -179,7 +182,7 @@
 	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 
-	if(queen_chosen_lead && (new_xeno.xeno_caste.can_flags & CASTE_CAN_BE_LEADER)) // xeno leader is removed by Destroy()
+	if((xeno_flags & XENO_LEADER) && (new_xeno.xeno_caste.can_flags & CASTE_CAN_BE_LEADER)) // xeno leader is removed by Destroy()
 		hive.add_leader(new_xeno)
 		new_xeno.hud_set_queen_overwatch()
 		if(hive.living_xeno_queen)

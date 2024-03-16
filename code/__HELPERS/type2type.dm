@@ -100,7 +100,6 @@
 		return WEST
 	return NORTH|WEST
 
-
 //returns the north-zero clockwise angle in degrees, given a direction
 /proc/dir2angle(D)
 	switch(D)

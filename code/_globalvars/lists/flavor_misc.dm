@@ -87,7 +87,6 @@ GLOBAL_LIST_INIT(genders, list(MALE, FEMALE, NEUTER))
 GLOBAL_LIST_INIT(playable_icons, list(
 	"boiler",
 	"bull",
-	"baneling",
 	"captain",
 	"carrier",
 	"chief_medical",
@@ -106,6 +105,7 @@ GLOBAL_LIST_INIT(playable_icons, list(
 	"mech_pilot",
 	"medical",
 	"pilot",
+	"transportofficer",
 	"praetorian",
 	"private",
 	"puppeteer",

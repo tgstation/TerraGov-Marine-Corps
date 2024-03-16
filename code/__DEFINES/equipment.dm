@@ -22,6 +22,8 @@
 #define PASS_AIR (1<<9)
 ///Mobs can walk freely between turfs with walkover flagged objects
 #define PASS_WALKOVER (1<<10)
+///when jumping, mobs can pass onto tanks
+#define PASS_TANK (1<<11)
 
 #define PASSABLE (PASS_THROW|PASS_PROJECTILE|PASS_AIR)
 #define HOVERING (PASS_LOW_STRUCTURE|PASS_MOB|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE)
@@ -106,8 +108,6 @@
 #define IN_INVENTORY (1<<19)
 ///This item is used for autobalance calculations or excluded, such as valhalla items
 #define AUTOBALANCE_CHECK (1<<20)
-///Prevents catslugs from wearing or picking up items with this flag
-#define CATSLUG_RESTRICTED (1<<21)
 
 //flags_storage
 ///If a storage container can be restocked into a vendor

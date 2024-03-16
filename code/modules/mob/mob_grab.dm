@@ -61,7 +61,7 @@
 	if(user.grab_state > GRAB_KILL)
 		return
 	user.changeNext_move(CLICK_CD_GRABBING)
-	if(!do_after(user, 2 SECONDS, NONE, victim, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, TYPE_PROC_REF(/datum, Adjacent), victim)) || !user.pulling)
+	if(!do_after(user, max(2 SECONDS - (user.skills.getRating(SKILL_CQC) * 0.5 SECONDS), 1 SECONDS), NONE, victim, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, TYPE_PROC_REF(/datum, Adjacent), victim)) || !user.pulling)
 		return
 	user.advance_grab_state()
 	if(user.grab_state == GRAB_NECK)
@@ -74,6 +74,7 @@
 	var/mob/living/victim = pulling
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 	setGrabState(grab_state + 1)
+	victim.grab_resist_level -= 1
 	switch(grab_state)
 		if(GRAB_AGGRESSIVE)
 			log_combat(src, victim, "aggressive grabbed")

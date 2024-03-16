@@ -122,6 +122,9 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 ///Gamemode setup run after the game has started
 /datum/game_mode/proc/post_setup()
 	addtimer(CALLBACK(src, PROC_REF(display_roundstart_logout_report)), ROUNDSTART_LOGOUT_REPORT_TIME)
+	if(flags_round_type & MODE_FORCE_CUSTOMSQUAD_UI)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(send_global_signal), COMSIG_GLOB_DEPLOY_TIMELOCK_ENDED), deploy_time_lock)
+
 	if(!SSdbcore.Connect())
 		return
 	var/sql
@@ -469,13 +472,11 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.points_from_research)
 		parts += "[GLOB.round_statistics.points_from_research] requisitions points gained from research."
 	if(length(GLOB.round_statistics.req_items_produced))
+		parts += ""  // make it special from other stats above
 		parts += "Requisitions produced: "
 		for(var/atom/movable/path AS in GLOB.round_statistics.req_items_produced)
-			parts += "[GLOB.round_statistics.req_items_produced[path]] [initial(path.name)]"
-			if(path == GLOB.round_statistics.req_items_produced[length(GLOB.round_statistics.req_items_produced)]) //last element
-				parts += "."
-			else
-				parts += ","
+			var/last = GLOB.round_statistics.req_items_produced[length(GLOB.round_statistics.req_items_produced)]
+			parts += "[GLOB.round_statistics.req_items_produced[path]] [initial(path.name)][last ? "." : ","]"
 
 	if(length(parts))
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"

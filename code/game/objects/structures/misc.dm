@@ -73,6 +73,8 @@
 
 /obj/structure/mopbucket/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/mop))
 		if(reagents.total_volume < 1)

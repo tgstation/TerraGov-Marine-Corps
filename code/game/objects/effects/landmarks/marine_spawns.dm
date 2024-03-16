@@ -34,6 +34,10 @@
 	icon_state = "PO"
 	job = /datum/job/terragov/command/pilot
 
+/obj/effect/landmark/start/job/transportofficer
+	icon_state = "TO"
+	job = /datum/job/terragov/command/transportofficer
+
 /obj/effect/landmark/start/job/chiefshipengineer
 	icon_state = "CSE"
 	job = /datum/job/terragov/engineering/chief
@@ -45,6 +49,14 @@
 /obj/effect/landmark/start/job/mechpilot
 	icon_state = "MP"
 	job = /datum/job/terragov/command/mech_pilot
+
+/obj/effect/landmark/start/job/assault_crewman
+	icon_state = "AC"
+	job = /datum/job/terragov/command/assault_crewman
+
+/obj/effect/landmark/start/job/transport_crewman
+	icon_state = "TC"
+	job = /datum/job/terragov/command/transport_crewman
 
 /obj/effect/landmark/start/job/shiptech
 	icon_state = "SE"

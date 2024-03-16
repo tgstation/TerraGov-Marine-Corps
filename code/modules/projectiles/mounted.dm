@@ -4,7 +4,7 @@
 	anchored = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	density = TRUE
-	layer = TANK_BARREL_LAYER
+	layer = ABOVE_MOB_PROP_LAYER
 	use_power = FALSE
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	allow_pass_flags = PASSABLE|PASS_LOW_STRUCTURE
@@ -71,6 +71,8 @@
 
 /obj/machinery/deployable/mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun, if its in acid cant touch it.
 	. = ..()
+	if(.)
+		return
 
 	if(!ishuman(user))
 		return

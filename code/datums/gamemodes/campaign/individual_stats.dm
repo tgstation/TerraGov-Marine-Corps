@@ -1,9 +1,10 @@
 /datum/individual_stats
 	interaction_flags = INTERACT_UI_INTERACT
+	var/owner_ckey
 	///currently occupied mob - if any
 	var/mob/living/carbon/current_mob
 	///Credits. You buy stuff with it
-	var/currency = 300
+	var/currency = 450
 	///List of job types based on faction
 	var/list/valid_jobs = list()
 	///Single list of unlocked perks for easy reference
@@ -19,6 +20,8 @@
 
 /datum/individual_stats/New(mob/living/carbon/new_mob, new_faction, new_currency)
 	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(post_mission_credits))
+	owner_ckey = new_mob.ckey
 	current_mob = new_mob
 	faction = new_faction
 	currency += new_currency
@@ -36,6 +39,12 @@
 	perks_by_job = null
 	unlocked_items = null
 	return ..()
+
+///Pay each player additional credits based on individual performance during the mission
+/datum/individual_stats/proc/post_mission_credits(datum/source)
+	SIGNAL_HANDLER
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner_ckey]
+	give_funds(personal_statistics.get_mission_reward())
 
 ///Applies cash
 /datum/individual_stats/proc/give_funds(amount)
@@ -117,7 +126,7 @@
 	return TRUE
 
 ///Adds and equips a loadout item, replacing another
-/datum/individual_stats/proc/replace_loadout_option(new_item, removed_item, job_type_or_types, job_req_override = TRUE)
+/datum/individual_stats/proc/replace_loadout_option(new_item, removed_item, job_type_or_types, job_req_override = FALSE)
 	if(!islist(job_type_or_types))
 		job_type_or_types = list(job_type_or_types)
 	var/datum/loadout_item/item = GLOB.campaign_loadout_item_type_list[new_item]

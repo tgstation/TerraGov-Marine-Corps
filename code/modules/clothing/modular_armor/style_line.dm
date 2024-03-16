@@ -9,8 +9,8 @@
 	icon = 'icons/obj/clothing/suits/marine_suits.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_suits.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	attachments_allowed = list(
 // Armor Modules
@@ -116,6 +116,7 @@
 	icon_state = "beret_inhand"
 	item_state = "beret"
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/stylehat_badge)
+	flags_inv_hide = HIDE_EXCESS_HAIR
 
 
 /obj/item/clothing/head/modular/style/classic_beret
@@ -124,18 +125,21 @@
 	icon_state = "classic_beret_inhand"
 	item_state = "classic_beret"
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/stylehat_badge/classic)
+	flags_inv_hide = HIDE_EXCESS_HAIR
 
 /obj/item/clothing/head/modular/style/boonie
 	name = "TGMC boonie"
 	desc = "A boonie hat used by the TGMC, purpose made for operations in enviroments with a lot of sun, or dense vegetation."
 	icon_state = "boonie_inhand"
 	item_state = "boonie"
+	flags_inv_hide = HIDE_EXCESS_HAIR
 
 /obj/item/clothing/head/modular/style/cap
 	name = "TGMC cap"
 	desc = "A common patrol cap used by the TGMC, stylish and comes in many colors. Mostly useful to keep the sun and officers away."
 	icon_state = "cap_inhand"
 	item_state = "cap"
+	flags_inv_hide = HIDE_EXCESS_HAIR
 
 
 /obj/item/clothing/head/modular/style/slouchhat
@@ -143,6 +147,7 @@
 	desc = "A slouch hat, makes you feel down under, doesn't it? Has 'PROPERTY OF THE TGMC' markings under the hat."
 	icon_state = "slouch_inhand"
 	item_state = "slouch"
+	flags_inv_hide = HIDE_EXCESS_HAIR
 
 /obj/item/clothing/head/modular/style/ushanka
 	name = "TGMC ushanka"
@@ -150,6 +155,7 @@
 	icon_state = "ushanka_inhand"
 	item_state = "ushanka"
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/stylehat_badge/ushanka)
+	flags_inv_hide = HIDE_EXCESS_HAIR
 
 
 /obj/item/clothing/head/modular/style/campaignhat
@@ -157,6 +163,7 @@
 	desc = "A campaign hat, you can feel the menacing aura that this hat erodes just by looking at it."
 	icon_state = "campaign_inhand"
 	item_state = "campaign"
+	flags_inv_hide = HIDE_EXCESS_HAIR
 
 
 /obj/item/clothing/head/modular/style/beanie
@@ -164,6 +171,7 @@
 	desc = "A beanie, just looking at it makes you feel like an 'Oussama', or in better terms- A modern phenomenon of people suddenly needing to bench once they put on a beanie."
 	icon_state = "beanie_inhand"
 	item_state = "beanie"
+	flags_inv_hide = HIDE_EXCESS_HAIR
 
 /obj/item/clothing/head/modular/style/headband
 	name = "TGMC headband"
@@ -177,6 +185,7 @@
 	desc = "A bandana that goes on your head. Has TGMC markings on the back tie, and it seems that the knot will never come undone somehow."
 	icon_state = "headbandana_inhand"
 	item_state = "headbandana"
+	flags_inv_hide = HIDE_EXCESS_HAIR
 
 // style masks
 /obj/item/clothing/mask/gas/modular/skimask

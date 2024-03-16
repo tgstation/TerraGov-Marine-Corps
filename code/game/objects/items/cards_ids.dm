@@ -341,6 +341,8 @@
 
 /obj/item/dogtag/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/dogtag))
 		var/obj/item/dogtag/D = I

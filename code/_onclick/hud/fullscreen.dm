@@ -75,6 +75,7 @@
 	icon_state = "default"
 	screen_loc = "CENTER-7,CENTER-7"
 	layer = FULLSCREEN_LAYER
+	plane = FULLSCREEN_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/severity = 0
 	var/fs_view = WORLD_VIEW
@@ -103,7 +104,6 @@
 /atom/movable/screen/fullscreen/blind
 	icon_state = "blackimageoverlay"
 	layer = FULLSCREEN_BLIND_LAYER
-	plane = FULLSCREEN_PLANE
 
 /atom/movable/screen/fullscreen/damage
 	icon = 'icons/mob/screen/full/damage.dmi'
@@ -111,12 +111,10 @@
 /atom/movable/screen/fullscreen/damage/brute
 	icon_state = "brutedamageoverlay"
 	layer = FULLSCREEN_DAMAGE_LAYER
-	plane = FULLSCREEN_PLANE
 
 /atom/movable/screen/fullscreen/damage/oxy
 	icon_state = "oxydamageoverlay"
 	layer = FULLSCREEN_DAMAGE_LAYER
-	plane = FULLSCREEN_PLANE
 
 /atom/movable/screen/fullscreen/impaired
 	icon = 'icons/mob/screen/full/impaired.dmi'
@@ -126,7 +124,6 @@
 /atom/movable/screen/fullscreen/impaired/crit
 	icon_state = "critical"
 	layer = FULLSCREEN_CRIT_LAYER
-	plane = FULLSCREEN_PLANE
 
 /atom/movable/screen/fullscreen/flash
 	icon = 'icons/mob/screen/generic.dmi'
@@ -150,7 +147,7 @@
 	icon_state = "painoverlay"
 	layer = FULLSCREEN_PAIN_LAYER
 
-/atom/movable/screen/fullscreen/animated/bloodlust
+/atom/movable/screen/fullscreen/animated
 	icon = 'icons/mob/screen/full/animated.dmi'
 
 /atom/movable/screen/fullscreen/animated/bloodlust

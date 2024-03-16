@@ -26,7 +26,7 @@
 /obj/structure/campaign_deployblocker/Initialize(mapload)
 	. = ..()
 	GLOB.campaign_structures += src
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "tele_block"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "tele_block", HIGH_FLOAT_LAYER))
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	if(!istype(mode))
 		return
@@ -43,7 +43,10 @@
 /obj/structure/campaign_deployblocker/ex_act()
 	return
 
-/obj/structure/campaign_deployblocker/plastique_act()
+/obj/structure/campaign_deployblocker/plastique_act(mob/living/plastique_user)
+	if(plastique_user && plastique_user.ckey)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[plastique_user.ckey]
+		personal_statistics.mission_blocker_destroyed += (faction != plastique_user.faction ? 1 : -1)
 	qdel(src)
 
 ///Signals its destruction, enabling the use of the teleporter asset

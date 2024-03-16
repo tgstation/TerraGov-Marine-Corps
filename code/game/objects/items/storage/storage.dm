@@ -86,9 +86,6 @@
 	if(usr.lying_angle)
 		return
 
-	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
-		return
-
 	if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
 		open(usr)
 		return
@@ -307,9 +304,6 @@
 	if(usr.incapacitated(TRUE))
 		return
 
-	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
-		return
-
 	var/list/PL = params2list(params)
 
 	if(!master)
@@ -349,7 +343,7 @@
 	sample_object = null
 	return ..()
 
-///This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
+///This proc determines the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /obj/item/storage/proc/orient2hud()
 
 	var/adjusted_contents = length(contents)
@@ -556,6 +550,8 @@
 ///This proc is called when you want to place an item into the storage item.
 /obj/item/storage/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(length(refill_types))
 		for(var/typepath in refill_types)

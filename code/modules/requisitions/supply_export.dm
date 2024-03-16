@@ -15,7 +15,7 @@
 
 /**
  * Getter proc for the point value of this object
- * 
+ *
  * Returns:
  * * A list where the first value is the number of req points and the second number is the number of cas points.
  */
@@ -43,16 +43,16 @@
 		if(XENO_TIER_ONE)
 			. = list(150, 15)
 		if(XENO_TIER_TWO)
-			. = list(300, 30)
+			. = list(350, 30)
 		if(XENO_TIER_THREE)
-			. = list(500, 50)
+			. = list(600, 50)
 		if(XENO_TIER_FOUR)
-			. = list(1000, 100)
+			. = list(1100, 100)
 	return
 
 //I hate it but it's how it was so I'm not touching it further than this
 /mob/living/carbon/xenomorph/shrike/get_export_value()
-	return list(500, 50)
+	return list(600, 50)
 
 /obj/item/reagent_containers/food/snacks/req_pizza/get_export_value()
 	return list(10, 0)

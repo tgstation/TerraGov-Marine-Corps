@@ -238,9 +238,7 @@
 		cell.charge -= 1000 / severity
 		if (cell.charge < 0)
 			cell.charge = 0
-		if(cell.reliability != 100 && prob(50/severity))
-			cell.reliability -= 10 / severity
-	..()
+	return ..()
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
 /obj/item/clothing/gloves/proc/Touch(atom/A, proximity)
@@ -248,6 +246,8 @@
 
 /obj/item/clothing/gloves/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(iswirecutter(I) || istype(I, /obj/item/tool/surgery/scalpel))
 		if(clipped)
 			to_chat(user, span_notice("The [src] have already been clipped!"))

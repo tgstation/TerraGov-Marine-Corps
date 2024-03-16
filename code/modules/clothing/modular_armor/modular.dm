@@ -157,8 +157,8 @@
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit != src)
 		return
-	turn_light(user, !light_on)
-	return TRUE
+	if(turn_light(user, !light_on) == CHECKS_PASSED)
+		return TRUE
 
 /obj/item/clothing/suit/modular/item_action_slot_check(mob/user, slot)
 	if(!light_range) // No light no ability
@@ -305,6 +305,7 @@
 		/obj/item/armor_module/module/binoculars/artemis_mark_two,
 		/obj/item/armor_module/module/artemis,
 		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/module/night_vision,
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/badge,
 	)

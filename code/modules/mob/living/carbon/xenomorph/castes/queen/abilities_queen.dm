@@ -39,17 +39,17 @@
 	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS)
 	var/sound/king_sound = sound('sound/voice/xenos_roaring.ogg', channel = CHANNEL_ANNOUNCEMENTS)
 	for(var/mob/living/carbon/xenomorph/X AS in Q.hive.get_all_xenos())
+		to_chat(X, assemble_alert(
+			title = "Hive Announcement",
+			subtitle = "From [Q.name]",
+			message = input,
+			color_override = "purple"
+		))
 		switch(Q.caste_base_type)
-			if(/mob/living/carbon/xenomorph/queen)
+			if(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/shrike)
 				SEND_SOUND(X, queen_sound)
-				//In case in combat, couldn't read fast enough, or needs to copy paste into a translator. Here's the old hive message.
-				to_chat(X, "<meta charset='UTF-8'>[span_faction_alert("[span_faction_alert_title("The words of the Queen reverberate in your head...")]<br>[span_faction_alert_text("[html_encode(input)]")]")]")
 			if(/mob/living/carbon/xenomorph/king)
 				SEND_SOUND(X, king_sound)
-				to_chat(X, "<meta charset='UTF-8'>[span_faction_alert("[span_faction_alert_title("The words of the King reverberate in your head...")]<br>[span_faction_alert_text("[html_encode(input)]")]")]")
-			if(/mob/living/carbon/xenomorph/shrike)
-				SEND_SOUND(X, queen_sound)
-				to_chat(X, "<meta charset='UTF-8'>[span_faction_alert("[span_faction_alert_title("The words of the Shrike reverberate in your head...")]<br>[span_faction_alert_text("[html_encode(input)]")]")]")
 		//Display the ruler's hive message at the top of the game screen.
 		X.play_screen_text(queens_word, /atom/movable/screen/text/screen_text/queen_order)
 
@@ -76,38 +76,42 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/screech/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/queen/X = owner
+	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
 
 	//screech is so powerful it kills huggers in our hands
-	if(istype(X.r_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = X.r_hand
+	if(istype(xeno_owner.r_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/FH = xeno_owner.r_hand
 		if(FH.stat != DEAD)
 			FH.kill_hugger()
 
-	if(istype(X.l_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = X.l_hand
+	if(istype(xeno_owner.l_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/FH = xeno_owner.l_hand
 		if(FH.stat != DEAD)
 			FH.kill_hugger()
 
 	succeed_activate()
 	add_cooldown()
 
-	playsound(X.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
-	X.visible_message(span_xenohighdanger("\The [X] emits an ear-splitting guttural roar!"))
+	playsound(xeno_owner.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
+	xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 	GLOB.round_statistics.queen_screech++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")
-	X.create_shriekwave() //Adds the visual effect. Wom wom wom
-	//stop_momentum(charge_dir) //Screech kills a charge
+	xeno_owner.create_shriekwave() //Adds the visual effect. Wom wom wom
 
-	var/list/nearby_living = list()
-	for(var/mob/living/L in hearers(WORLD_VIEW, X))
-		nearby_living.Add(L)
-
-	for(var/i in GLOB.mob_living_list)
-		var/mob/living/L = i
-		if(get_dist(L, X) > WORLD_VIEW_NUM)
+	for(var/obj/vehicle/sealed/armored/tank AS in GLOB.tank_list)
+		if(get_dist(tank, xeno_owner) > WORLD_VIEW_NUM)
 			continue
-		L.screech_act(X, WORLD_VIEW_NUM, L in nearby_living)
+		if(tank.z != owner.z)
+			continue
+		for(var/mob/living/living_victim AS in tank.occupants)
+			living_victim.screech_act(xeno_owner, WORLD_VIEW_NUM) //todo: The effects of screech are weird due to relying on get_dist for a mob on a diff z-level
+
+	var/list/nearby_living = list() //if you're a hearer you get effected more severely
+	for(var/mob/living/living_victim in hearers(WORLD_VIEW, xeno_owner))
+		nearby_living.Add(living_victim)
+
+	for(var/mob/living/living_victim AS in cheap_get_living_near(xeno_owner, WORLD_VIEW_NUM))
+		living_victim.screech_act(xeno_owner, WORLD_VIEW_NUM, living_victim in nearby_living)
 
 /datum/action/ability/activable/xeno/screech/ai_should_start_consider()
 	return TRUE
@@ -230,10 +234,10 @@
 	var/mob/living/carbon/xenomorph/queen/xeno = owner
 	if(xeno.do_actions)
 		return
-	if(xeno.is_zoomed)
+	if(xeno.xeno_flags & XENO_ZOOMED)
 		zoom_xeno_out(xeno.observed_xeno ? FALSE : TRUE)
 		return
-	if(!do_after(xeno, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || xeno.is_zoomed)
+	if(!do_after(xeno, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || (xeno.xeno_flags & XENO_ZOOMED))
 		return
 	zoom_xeno_in(xeno.observed_xeno ? FALSE : TRUE) //No need for feedback message if our eye is elsewhere.
 
@@ -292,7 +296,7 @@
 /datum/action/ability/xeno_action/set_xeno_lead/proc/select_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
 	var/mob/living/carbon/xenomorph/queen/xeno_ruler = owner
 
-	if(selected_xeno.queen_chosen_lead)
+	if(selected_xeno.xeno_flags & XENO_LEADER)
 		unset_xeno_leader(selected_xeno)
 		return
 
@@ -446,7 +450,7 @@
 /datum/action/ability/xeno_action/bulwark
 	name = "Royal Bulwark"
 	action_icon_state = "bulwark"
-	desc = "Creates a field of defensive energy, filling chinks in the armor of nearby sisters, making them more resilient."
+	desc = "Creates a field of defensive energy, filling gaps in the armor of nearby sisters, making them more resilient."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(

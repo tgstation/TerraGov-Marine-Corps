@@ -62,11 +62,13 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 			to_chat(user, span_notice("It has a note attached which reads, \"[examtext]\""))
 	return
 
-/obj/structure/bigDelivery/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
-	attack_hand(X)
+/obj/structure/bigDelivery/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	attack_hand(xeno_attacker)
 
 /obj/structure/bigDelivery/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/destTagger))
 		var/obj/item/destTagger/O = I
@@ -174,6 +176,8 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 /obj/item/smallDelivery/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/destTagger))
 		var/obj/item/destTagger/O = I
@@ -422,6 +426,8 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 /obj/machinery/disposal/deliveryChute/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I))
 		c_mode = !c_mode
@@ -442,7 +448,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		to_chat(user, "You start slicing the floorweld off the delivery chute.")
 
-		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
+		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
 			return
 
 		to_chat(user, "You sliced the floorweld off the delivery chute.")

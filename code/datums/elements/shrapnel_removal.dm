@@ -66,6 +66,10 @@
 		if(is_type_in_list(I, GLOB.known_implants))
 			continue
 		I.unembed_ourself(FALSE)
+		if(user.ckey)
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+			personal_statistics.shrapnel_removed ++
+			personal_statistics.mission_shrapnel_removed ++
 		if(skill < SKILL_MEDICAL_PRACTICED)
 			user.visible_message(span_notice("[user] violently rips out [I] from [target]!"), span_notice("You violently rip out [I] from [target]!"))
 			targetlimb.take_damage_limb(30 * (SKILL_MEDICAL_PRACTICED - skill), 0, FALSE, FALSE)

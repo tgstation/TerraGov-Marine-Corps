@@ -47,6 +47,13 @@
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 	hotkey_keys = list("R")
 
+/datum/keybinding/xeno/secrete_special_resin
+	name = "secrete_special_resin"
+	full name = "Secrete Special Resin"
+	description = "Builds whatever special resin you have selected."
+	keybind_signal = COMSIG_XENOABILITY_SECRETE_SPECIAL_RESIN
+	hotkey_keys = list("ShiftR")
+
 /datum/keybinding/xeno/recycle
 	name = "Recycle"
 	full_name = "Recycle xenomorph"
@@ -198,34 +205,6 @@
 // Single caste, alphabetical order
 //
 
-/datum/keybinding/xeno/dash_explosion
-	name = "Dash Explosion"
-	full_name = "Baneling: Dash Explode"
-	description = "Aim in a direction, charge up and dash, knocking down any humans hit and detonate yourself. "
-	keybind_signal = COMSIG_XENOABILITY_BANELING_DASH_EXPLOSION
-	hotkey_keys = list("Q")
-
-/datum/keybinding/xeno/spawn_pod
-	name = "Spawn Pod"
-	full_name = "Baneling: Spawn Pod"
-	description = "Spawn a pod on your current position, when you die from any source you will respawn on this pod. Activate again to change its location. "
-	keybind_signal = COMSIG_XENOABILITY_BANELING_SPAWN_POD
-	hotkey_keys = list("F")
-
-/datum/keybinding/xeno/baneling_explode
-	name = "Explode"
-	full_name = "Baneling: Explode"
-	description = "Detonate yourself, spreading your currently selected reagent. Size depends on current stored plasma, more plasma is more reagent."
-	keybind_signal = COMSIG_XENOABILITY_BANELING_EXPLODE
-	hotkey_keys = list("E")
-
-/datum/keybinding/xeno/select_reagent/baneling
-	name = "Select Reagent"
-	full_name = "Baneling: Select Reagent"
-	description = "Choose a reagent that will be spread upon death. Costs plasma to change."
-	keybind_signal = COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT
-	hotkey_keys = list("C")
-
 /datum/keybinding/xeno/long_range_sight
 	name = "long_range_sight"
 	full_name = "Boiler: Long Range Sight"
@@ -252,13 +231,6 @@
 	description = "Create new globs to fire."
 	keybind_signal = COMSIG_XENOABILITY_CREATE_BOMB
 	hotkey_keys = list("F")
-
-/datum/keybinding/xeno/root
-	name = "root"
-	full_name = "Boiler: Root in place"
-	description = "Begin rooting in place."
-	keybind_signal = COMSIG_XENOABILITY_ROOT
-	hotkey_keys = list("C")
 
 /datum/keybinding/xeno/bombard
 	name = "bombard"

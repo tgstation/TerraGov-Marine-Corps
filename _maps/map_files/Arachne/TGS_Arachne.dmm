@@ -4070,9 +4070,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "dAc" = (
-/obj/structure/stairs{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
@@ -5489,7 +5486,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/pilotofficer,
+/obj/effect/landmark/start/job/transportofficer,
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "eMo" = (
@@ -6307,6 +6304,7 @@
 "fur" = (
 /obj/structure/rack,
 /obj/item/uav_turret/droid,
+/obj/item/uav_turret/droid,
 /turf/open/floor/mainship/cargo,
 /area/mainship/command/airoom)
 "fuI" = (
@@ -6886,6 +6884,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
+/obj/structure/stairs,
 /turf/open/floor/plating,
 /area/mainship/hallways/starboard_hallway)
 "fRR" = (
@@ -7801,6 +7800,7 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/item/stack/sandbags_empty/half,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/engineering_workshop)
 "gJr" = (
@@ -7864,9 +7864,7 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/obj/structure/disposalpipe/junction/flipped{
-	dir = 8
-	},
+/obj/structure/disposalpipe/junction/yjunc,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "gLH" = (
@@ -13484,9 +13482,9 @@
 /turf/open/floor/plating,
 /area/mainship/engineering/engineering_workshop)
 "liC" = (
-/obj/vehicle/unmanned/droid/scout,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/vehicle/unmanned/droid,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/mainship/command/airoom)
 "liE" = (
@@ -21867,10 +21865,6 @@
 	dir = 8
 	},
 /area/mainship/medical/upper_medical)
-"rZa" = (
-/obj/structure/ship_ammo/cas/bomblet,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "rZc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/machinery/light/mainship{
@@ -26945,10 +26939,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/starboard_atmos)
-"wzy" = (
-/obj/structure/ship_ammo/cas/bomb/fourhundred,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "wzR" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -40091,7 +40081,7 @@ oUe
 oHG
 nTG
 mGC
-wzy
+mGC
 mGC
 jfL
 jcy
@@ -40193,7 +40183,7 @@ oUe
 oHG
 nTG
 mGC
-rZa
+mGC
 mGC
 mGC
 mtP

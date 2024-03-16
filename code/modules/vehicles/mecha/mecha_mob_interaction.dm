@@ -56,6 +56,7 @@
 			hud_type.add_to_hud(src)
 		else
 			hud_type.remove_from_hud(src)
+	faction = newoccupant.faction //we do not unset when exiting, last occupant is the owner
 
 	if(!internal_damage)
 		SEND_SOUND(newoccupant, sound('sound/mecha/nominal.ogg',volume=50))

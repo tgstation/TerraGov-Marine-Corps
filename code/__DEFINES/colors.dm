@@ -254,6 +254,8 @@ Important note: colors can end up significantly different from the basic html pi
 #define LIGHT_COLOR_FLAME "#F88818"
 /// Rich and bright blue. rgb(0, 183, 255)
 #define LIGHT_COLOR_BLUE_FLAME "#00b8ff"
+///Strong red orange
+#define LIGHT_COLOR_RED_ORANGE "#ff2802"
 
 //Ammo and grenade colors
 #define COLOR_AMMO_AIRBURST "#2272eb"
@@ -276,3 +278,8 @@ Important note: colors can end up significantly different from the basic html pi
 #define LIGHT_COLOR_EMISSIVE_RED "#fa6464"
 #define LIGHT_COLOR_EMISSIVE_YELLOW "#f0fa64"
 #define LIGHT_COLOR_EMISSIVE_ORANGE "#faac64"
+
+//Colors used by special resin walls.
+#define COLLOR_WALL_BULLETPROOF "#ed99f6"
+#define COLOR_WALL_FIREPROOF "#ff696e"
+#define COLOR_WALL_HARDY "#6699ff"

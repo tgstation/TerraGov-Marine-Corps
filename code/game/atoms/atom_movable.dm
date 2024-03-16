@@ -367,12 +367,12 @@
 
 
 /atom/movable/proc/Moved(atom/old_loc, movement_dir, forced = FALSE, list/old_locs)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, movement_dir, forced, old_locs)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, movement_dir, forced, locs)
 	if(client_mobs_in_contents)
 		update_parallax_contents()
 
 	if(pulledby)
-		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, old_loc, movement_dir, forced, old_locs)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, old_loc, movement_dir, forced, locs)
 	//Cycle through the light sources on this atom and tell them to update.
 	for(var/datum/dynamic_light_source/light AS in hybrid_light_sources)
 		light.source_atom.update_light()
@@ -477,7 +477,7 @@
 	var/old_throw_source = throw_source
 	hit_successful = hit_atom.hitby(src, speed)
 	if(hit_successful)
-		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, speed)
 		if(bounce && hit_atom.density && !isliving(hit_atom))
 			INVOKE_NEXT_TICK(src, PROC_REF(throw_bounce), hit_atom, old_throw_source)
 	return hit_successful //if the throw missed, it continues
@@ -565,13 +565,14 @@
 
 	if(dist_x > dist_y)
 		var/error = dist_x/2 - dist_y
-		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && get_dist_euclide(origin, src) < range) || isspaceturf(loc)) && throwing && istype(loc, /turf))
+		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && get_dist_euclidean(origin, src) < range) || isspaceturf(loc)) && throwing && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				Move(step)
+				if(!Move(step))
+					throwing = FALSE
 				error += dist_x
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -581,7 +582,8 @@
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				Move(step)
+				if(!Move(step))
+					throwing = FALSE
 				error -= dist_y
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -589,13 +591,14 @@
 					sleep(0.1 SECONDS)
 	else
 		var/error = dist_y/2 - dist_x
-		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && get_dist_euclide(origin, src) < range) || isspaceturf(loc)) && throwing && istype(loc, /turf))
+		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && get_dist_euclidean(origin, src) < range) || isspaceturf(loc)) && throwing && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				Move(step)
+				if(!Move(step))
+					throwing = FALSE
 				error += dist_y
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -605,7 +608,8 @@
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				Move(step)
+				if(!Move(step))
+					throwing = FALSE
 				error -= dist_x
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)

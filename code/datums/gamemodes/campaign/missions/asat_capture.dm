@@ -7,7 +7,7 @@
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
 	mission_flags = MISSION_DISALLOW_TELEPORT
-	max_game_time = 10 MINUTES
+	max_game_time = 8 MINUTES
 	shutter_open_delay = list(
 		MISSION_STARTING_FACTION = 90 SECONDS,
 		MISSION_HOSTILE_FACTION = 0,
@@ -53,7 +53,31 @@
 
 /datum/campaign_mission/capture_mission/asat/load_objective_description()
 	starting_faction_objective_description = "Major Victory:Capture all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] ASAT systems." : ""]"
-	hostile_faction_objective_description = "Major Victory:Prevent the capture of all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Prevent the capture of atleast [min_capture_amount] ASAT systems." : ""]"
+	hostile_faction_objective_description = "Major Victory:Prevent the capture of all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Prevent the capture of atleast [objectives_total - min_capture_amount + 1] ASAT systems." : ""]"
+
+/datum/campaign_mission/capture_mission/asat/check_mission_progress()
+	if(outcome)
+		return TRUE
+
+	if(!game_timer)
+		return FALSE
+
+	if(!max_time_reached && objectives_remaining)
+		return FALSE
+
+	if(capture_count[MISSION_STARTING_FACTION] >= objectives_total)
+		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_VICTORY]")
+		outcome = MISSION_OUTCOME_MAJOR_VICTORY
+	else if(min_capture_amount && (capture_count[MISSION_STARTING_FACTION] >= min_capture_amount))
+		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_VICTORY]")
+		outcome = MISSION_OUTCOME_MINOR_VICTORY
+	else if(capture_count[MISSION_STARTING_FACTION] > 0)
+		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_LOSS]")
+		outcome = MISSION_OUTCOME_MINOR_LOSS
+	else
+		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_LOSS]")
+		outcome = MISSION_OUTCOME_MAJOR_LOSS
+	return TRUE
 
 /datum/campaign_mission/capture_mission/asat/apply_major_victory()
 	. = ..()
