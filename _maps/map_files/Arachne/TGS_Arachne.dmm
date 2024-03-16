@@ -1260,7 +1260,7 @@
 "bnf" = (
 /obj/machinery/vending/cargo_supply,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/mainship/green{
 	dir = 2
 	},
@@ -1730,7 +1730,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "bFc" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/holopad,
 /turf/open/floor/plating/plating_catwalk,
@@ -1815,7 +1815,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/numbertwobunks)
 "bIO" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/structure/disposalpipe/junction/yjunc{
 	dir = 8
@@ -2263,7 +2263,7 @@
 "chN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 4
 	},
@@ -2585,7 +2585,7 @@
 "cuU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -2758,7 +2758,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/port_ert)
 "cAR" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
@@ -4125,6 +4125,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/engineering_workshop)
 "dDc" = (
@@ -4225,7 +4226,7 @@
 "dHM" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 4
 	},
@@ -5407,7 +5408,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/manifold4w/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/mainship/red{
 	dir = 8
@@ -6050,7 +6051,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
@@ -6173,7 +6174,7 @@
 /area/mainship/medical/upper_medical)
 "foM" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 4
@@ -6506,7 +6507,7 @@
 "fFA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/manifold4w/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/general)
 "fFS" = (
@@ -7152,7 +7153,7 @@
 /turf/closed/wall/mainship/research/containment/wall/purple,
 /area/mainship/medical/medical_science)
 "gjQ" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
@@ -8373,7 +8374,7 @@
 "hlj" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
@@ -9109,6 +9110,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "hNU" = (
@@ -9320,6 +9322,7 @@
 	dir = 5
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/engineering_workshop)
 "hYA" = (
@@ -9612,7 +9615,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/machinery/mech_bay_recharge_port{
 	dir = 8
@@ -9986,7 +9989,7 @@
 "iyV" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/mainship/purple{
 	dir = 4
 	},
@@ -10019,7 +10022,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/cmo_office)
 "izM" = (
-/obj/machinery/atmospherics/pipe/manifold4w/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -10207,7 +10210,7 @@
 /area/mainship/command/corporateliaison)
 "iGR" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
@@ -10358,7 +10361,7 @@
 /area/mainship/shipboard/weapon_room)
 "iNv" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold4w/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/engineering_workshop)
@@ -10940,7 +10943,7 @@
 /area/mainship/living/numbertwobunks)
 "jlh" = (
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/manifold4w/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -11695,7 +11698,7 @@
 /area/mainship/hull/starboard_hull)
 "jQw" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -12462,7 +12465,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/black/corner{
 	dir = 1
@@ -12639,7 +12642,7 @@
 /area/mainship/hallways/hangar)
 "kER" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/disposalpipe/junction{
 	dir = 8
 	},
@@ -12759,7 +12762,7 @@
 /area/mainship/engineering/engineering_workshop)
 "kIx" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/structure/disposalpipe/junction{
 	dir = 4
@@ -13159,7 +13162,7 @@
 /area/mainship/medical/chemistry)
 "kXK" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -13914,7 +13917,7 @@
 /obj/item/tool/taperoll/engineering,
 /obj/item/clothing/gloves/insulated,
 /obj/item/lightreplacer,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/engineering_workshop)
@@ -14141,7 +14144,7 @@
 	},
 /area/mainship/hull/starboard_hull)
 "lNB" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
@@ -14678,7 +14681,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/commandbunks)
 "miU" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/evacuation)
@@ -15445,7 +15448,7 @@
 /area/mainship/squads/req)
 "mPC" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
@@ -15644,7 +15647,6 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -15960,7 +15962,7 @@
 "nmt" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/side{
 	dir = 9
 	},
@@ -16496,7 +16498,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "nJH" = (
@@ -17175,7 +17176,7 @@
 /area/mainship/hull/port_hull)
 "olm" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
@@ -17530,17 +17531,6 @@
 	dir = 4
 	},
 /area/mainship/hallways/port_hallway)
-"ozH" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/mainship/floor,
-/area/mainship/engineering/engineering_workshop)
 "ozU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -18128,7 +18118,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
 "oZE" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
@@ -18261,7 +18251,7 @@
 	},
 /area/mainship/command/airoom)
 "pdI" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
@@ -18624,7 +18614,7 @@
 "put" = (
 /obj/structure/table/mainship/nometal,
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
@@ -19704,7 +19694,7 @@
 /area/mainship/living/bridgebunks)
 "qpQ" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
@@ -21785,7 +21775,7 @@
 /turf/open/floor/wood,
 /area/mainship/hallways/port_ert)
 "sal" = (
-/obj/machinery/atmospherics/pipe/manifold4w/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -21817,6 +21807,9 @@
 /area/mainship/hull/starboard_hull)
 "sbi" = (
 /obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/vending/nanomed{
 	dir = 1
 	},
 /turf/open/floor/mainship/orange{
@@ -23464,7 +23457,7 @@
 "tFh" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/orange{
 	dir = 8
@@ -23507,7 +23500,7 @@
 /area/mainship/living/grunt_rnr)
 "tIN" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -24268,7 +24261,6 @@
 /obj/machinery/door/firedoor{
 	dir = 1
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "uud" = (
@@ -24546,7 +24538,7 @@
 "uEC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
@@ -26812,7 +26804,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/starboard_atmos)
 "wzR" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -26900,7 +26892,7 @@
 /area/mainship/shipboard/brig)
 "wCN" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/structure/disposalpipe/junction{
 	dir = 8
@@ -27107,7 +27099,7 @@
 /area/mainship/living/cryo_cells)
 "wJE" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/mainship/medical/medical_science)
@@ -27234,7 +27226,7 @@
 /area/mainship/medical/lower_medical)
 "wOQ" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -27384,7 +27376,7 @@
 "wXK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/manifold4w/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
@@ -27478,7 +27470,7 @@
 "xen" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/starboard_hallway)
 "xez" = (
@@ -27714,7 +27706,7 @@
 /area/mainship/medical/medical_science)
 "xop" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold4w/supply/visible/layer1,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/sterile/side{
@@ -34059,7 +34051,7 @@ goY
 uEC
 kse
 eUB
-ozH
+eRd
 ukp
 owW
 mZd
