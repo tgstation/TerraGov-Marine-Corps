@@ -47,7 +47,7 @@
 			else
 				new_icon_state = capturing_faction ? "campaign_objective_decap_som" : "campaign_objective_som"
 
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, new_icon_state))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, new_icon_state, HIGH_FLOAT_LAYER))
 
 /obj/structure/campaign_objective/capture_objective/attack_hand(mob/living/user)
 	if(!ishuman(user))

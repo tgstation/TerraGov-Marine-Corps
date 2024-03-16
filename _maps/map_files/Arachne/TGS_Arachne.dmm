@@ -6304,6 +6304,7 @@
 "fur" = (
 /obj/structure/rack,
 /obj/item/uav_turret/droid,
+/obj/item/uav_turret/droid,
 /turf/open/floor/mainship/cargo,
 /area/mainship/command/airoom)
 "fuI" = (
@@ -7799,6 +7800,7 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/item/stack/sandbags_empty/half,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/engineering_workshop)
 "gJr" = (
@@ -13480,9 +13482,9 @@
 /turf/open/floor/plating,
 /area/mainship/engineering/engineering_workshop)
 "liC" = (
-/obj/vehicle/unmanned/droid/scout,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/vehicle/unmanned/droid,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/mainship/command/airoom)
 "liE" = (

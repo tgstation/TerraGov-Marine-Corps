@@ -13071,6 +13071,10 @@
 	},
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
+"gcZ" = (
+/obj/structure/ship_ammo/cas/heavygun,
+/turf/open/floor/plating,
+/area/sulaco/hangar/cas)
 "gdq" = (
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -13729,6 +13733,15 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
+"gWz" = (
+/obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/item/clothing/gloves/insulated,
+/turf/open/floor/prison,
+/area/sulaco/bridge/office)
 "gWF" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/prison,
@@ -14040,6 +14053,7 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
+/obj/item/clothing/gloves/insulated,
 /turf/open/floor/prison/darkyellow{
 	dir = 8
 	},
@@ -20563,6 +20577,7 @@
 	},
 /obj/structure/rack,
 /obj/item/uav_turret/droid,
+/obj/item/uav_turret/droid,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "pum" = (
@@ -22146,7 +22161,7 @@
 /area/sulaco/hallway/lower_foreship)
 "ryR" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/vehicle/unmanned/droid/scout,
+/obj/vehicle/unmanned/droid,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "rzi" = (
@@ -54205,7 +54220,7 @@ arc
 avr
 atF
 ecX
-uif
+gWz
 avr
 awI
 rhM
@@ -59182,7 +59197,7 @@ kwh
 bhA
 ddK
 pwv
-pwv
+gcZ
 pwv
 qct
 pwv
@@ -59439,7 +59454,7 @@ kwh
 bhA
 ddK
 pwv
-pwv
+gcZ
 pwv
 qct
 pwv
