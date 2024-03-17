@@ -117,15 +117,15 @@
 	///Operation name for hostile faction
 	var/op_name_hostile
 	///Possible rewards for a major victory, used by Generate_rewards()
-	var/list/major_victory_reward_table = list()
+	var/list/major_victory_reward_table
 	///Possible rewards for a minor victory, used by Generate_rewards()
-	var/list/minor_victory_reward_table = list()
+	var/list/minor_victory_reward_table
 	///Possible rewards for a minor loss, used by Generate_rewards()
-	var/list/minor_loss_reward_table = list()
+	var/list/minor_loss_reward_table
 	///Possible rewards for a major loss, used by Generate_rewards()
-	var/list/major_loss_reward_table = list()
+	var/list/major_loss_reward_table
 	///Possible rewards for a draw, used by Generate_rewards()
-	var/list/draw_reward_table = list()
+	var/list/draw_reward_table
 
 /datum/campaign_mission/New(initiating_faction)
 	. = ..()
@@ -241,6 +241,9 @@
 			reward_table = major_loss_reward_table
 		if(MISSION_OUTCOME_DRAW)
 			reward_table = draw_reward_table
+
+	if(!length(reward_table))
+		return
 
 	for(var/i = 1 to reward_amount)
 		var/obj/reward = pickweight(reward_table)

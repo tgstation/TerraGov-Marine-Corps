@@ -35,40 +35,6 @@
 	starting_faction_additional_rewards = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion."
 	hostile_faction_additional_rewards = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion."
 
-	major_victory_reward_table = list(
-		/obj/effect/supply_drop/medical_basic = 7,
-		/obj/effect/supply_drop/marine_sentry = 5,
-		/obj/effect/supply_drop/recoilless_rifle = 3,
-		/obj/effect/supply_drop/armor_upgrades = 5,
-		/obj/effect/supply_drop/mmg = 4,
-		/obj/effect/supply_drop/zx_shotgun = 3,
-		/obj/effect/supply_drop/minigun = 3,
-		/obj/effect/supply_drop/scout = 3,
-	)
-	minor_victory_reward_table = list(
-		/obj/effect/supply_drop/medical_basic = 7,
-		/obj/effect/supply_drop/marine_sentry = 5,
-		/obj/effect/supply_drop/recoilless_rifle = 3,
-		/obj/effect/supply_drop/armor_upgrades = 5,
-		/obj/effect/supply_drop/mmg = 4,
-	)
-	minor_loss_reward_table = list(
-		/obj/effect/supply_drop/medical_basic = 7,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope = 5,
-		/obj/effect/supply_drop/som_rpg = 3,
-		/obj/effect/supply_drop/som_armor_upgrades = 5,
-		/obj/effect/supply_drop/charger = 4,
-	)
-	major_loss_reward_table = list(
-		/obj/effect/supply_drop/medical_basic = 7,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope = 5,
-		/obj/effect/supply_drop/som_rpg = 3,
-		/obj/effect/supply_drop/som_armor_upgrades = 5,
-		/obj/effect/supply_drop/charger = 4,
-		/obj/effect/supply_drop/culverin = 3,
-		/obj/effect/supply_drop/blink_kit = 3,
-		/obj/effect/supply_drop/som_shotgun_burst = 3,
-	)
 	///Point limit to win the game via objectives
 	var/capture_point_target = 400
 	///starting team's point count
