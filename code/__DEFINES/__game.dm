@@ -6,6 +6,7 @@
 #define MAP_BIG_RED "Big Red"
 #define MAP_ICE_COLONY "Ice Colony"
 #define MAP_ICY_CAVES "Icy Caves"
+#define MAP_CHIGUSA "Chigusa"
 #define MAP_LV_624 "LV624"
 #define MAP_PRISON_STATION "Prison Station"
 #define MAP_RESEARCH_OUTPOST "Research Outpost"
