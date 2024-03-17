@@ -2235,12 +2235,12 @@ FACTORY
 
 /datum/supply_packs/factory/railgun_hvap_magazine_refill
 	name = "Railgun HVAP magazine assembly refill"
-	contains = list(/obj/item/factory_refill/railgun_hvap_magazine_refill)
+	contains = list(/obj/item/factory_refill/railgun_magazine_refill)
 	cost = 200
 
 /datum/supply_packs/factory/railgun_smart_magazine_refill
 	name = "Railgun magazine assembly refill"
-	contains = list(/obj/item/factory_refill/railgun_smart_magazine_refill)
+	contains = list(/obj/item/factory_refill/railgun_magazine_refill)
 	cost = 200
 
 /datum/supply_packs/factory/minigun_powerpack_refill
@@ -2254,17 +2254,17 @@ FACTORY
 	cost = 600
 
 /datum/supply_packs/factory/amr_magazine_refill
-	name = "T-26 AMR standard magazine assembly refill"
+	name = "T-26 AMR magazine assembly refill"
 	contains = list(/obj/item/factory_refill/amr_magazine_refill)
 	cost = 380
 
 /datum/supply_packs/factory/amr_magazine_incend_refill
-	name = "T-26 AMR incendiary magazine assembly refill"
+	name = "T-26 AMR magazine assembly refill"
 	contains = list(/obj/item/factory_refill/amr_magazine_incend_refill)
 	cost = 380
 
 /datum/supply_packs/factory/amr_magazine_flak_refill
-	name = "T-26 AMR flak magazine assembly refill"
+	name = "T-26 AMR magazine assembly refill"
 	contains = list(/obj/item/factory_refill/amr_magazine_flak_refill)
 	cost = 380
 

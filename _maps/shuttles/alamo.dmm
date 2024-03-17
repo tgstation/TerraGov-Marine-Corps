@@ -2,94 +2,134 @@
 "aa" = (
 /obj/structure/dropship_piece/one/front/left,
 /turf/template_noop,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "ab" = (
 /obj/structure/dropship_piece/one/front,
 /turf/template_noop,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "ac" = (
 /obj/machinery/door/poddoor/shutters/transit{
 	dir = 8
 	},
 /obj/machinery/door/airlock/dropship_hatch/left,
-/turf/open/shuttle/dropship/floor/out{
-	dir = 1
-	},
-/area/shuttle/dropship/alamo)
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "ad" = (
 /obj/structure/dropship_piece/one/front/right,
 /turf/template_noop,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "ae" = (
 /obj/structure/dropship_piece/one/cockpit/left,
 /turf/template_noop,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "af" = (
 /turf/closed/shuttle/dropship1/window,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "ag" = (
 /turf/closed/shuttle/dropship1/window{
 	dir = 1
 	},
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "ah" = (
 /turf/closed/shuttle/dropship1/window{
 	dir = 8
 	},
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "ai" = (
 /obj/structure/dropship_piece/one/cockpit/right,
 /turf/template_noop,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aj" = (
 /turf/closed/shuttle/dropship1/cornersalt{
 	dir = 4
 	},
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "ak" = (
 /obj/machinery/computer/security/dropship/one,
 /turf/closed/shuttle/dropship1/panel,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"al" = (
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "am" = (
 /obj/machinery/computer/dropship_weapons/dropship1,
 /turf/closed/shuttle/dropship1/panel{
 	dir = 4
 	},
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "an" = (
 /turf/closed/shuttle/dropship1/cornersalt{
 	dir = 8
 	},
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "ao" = (
 /turf/template_noop,
 /area/template_noop)
 "ap" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 1
-	},
+/obj/effect/attach_point/weapon/dropship1,
 /obj/structure/dropship_piece/one/weapon/leftleft,
 /turf/template_noop,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aq" = (
-/obj/effect/attach_point/electronics/dropship1{
-	dir = 1
-	},
+/obj/effect/attach_point/electronics/dropship1,
 /obj/structure/dropship_piece/one/weapon/leftright,
 /turf/template_noop,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "ar" = (
 /turf/closed/shuttle/dropship1/interiorwindow,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "as" = (
-/obj/machinery/light,
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
 	},
-/turf/open/shuttle/dropship/floor/out{
-	dir = 8
+/obj/machinery/light,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"at" = (
+/obj/item/radio/intercom/dropship{
+	pixel_x = 21;
+	pixel_y = 16
 	},
-/area/shuttle/dropship/alamo)
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "au" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
@@ -98,586 +138,809 @@
 	pixel_x = -6;
 	pixel_y = -16
 	},
-/turf/open/shuttle/dropship/floor/out{
-	dir = 4
-	},
-/area/shuttle/dropship/alamo)
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "av" = (
 /turf/closed/shuttle/dropship1/interiorwindow{
 	dir = 1
 	},
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aw" = (
-/obj/effect/attach_point/electronics/dropship1{
-	dir = 1
-	},
+/obj/effect/attach_point/electronics/dropship1,
 /obj/structure/dropship_piece/one/weapon/rightleft,
 /turf/template_noop,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "ax" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 1
-	},
+/obj/effect/attach_point/weapon/dropship1,
 /obj/structure/dropship_piece/one/weapon/rightright,
 /turf/template_noop,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "ay" = (
 /turf/closed/shuttle/dropship1/cornersalt2,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aB" = (
 /turf/closed/shuttle/dropship1/interiormisc{
 	dir = 4
 	},
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aC" = (
 /obj/machinery/door/airlock/hatch/cockpit,
-/turf/open/shuttle/dropship/floor/out,
-/area/shuttle/dropship/alamo)
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aD" = (
 /turf/closed/shuttle/dropship1/interiormisc{
 	dir = 8
 	},
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aE" = (
 /turf/closed/shuttle/dropship1/edge,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aF" = (
 /turf/closed/shuttle/dropship1/cornersalt2{
 	dir = 1
 	},
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aG" = (
 /obj/structure/dropship_piece/one/wing/left/top,
 /turf/template_noop,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aH" = (
 /turf/closed/shuttle/dropship1/finleft{
 	dir = 4
 	},
-/area/shuttle/dropship/alamo)
-"aI" = (
-/obj/structure/bed/chair/dropship/doublewide/left,
-/obj/structure/bed/chair/dropship/doublewide/right,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aJ" = (
-/obj/machinery/vending/nanomed,
-/turf/open/shuttle/dropship/nine,
-/area/shuttle/dropship/alamo)
+/obj/item/radio/intercom/dropship,
+/turf/open/shuttle/dropship/six,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aK" = (
 /turf/open/shuttle/dropship/five,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aM" = (
-/obj/structure/bed/chair/dropship/doublewide/left,
-/obj/structure/bed/chair/dropship/doublewide/right,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/shuttle/dropship/floor/out{
-	dir = 1
-	},
-/area/shuttle/dropship/alamo)
+/obj/item/radio/intercom/dropship,
+/turf/open/shuttle/dropship/seven,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aN" = (
-/obj/structure/bed/chair/dropship/doublewide/right/bravo,
-/obj/structure/bed/chair/dropship/doublewide/left/alpha,
-/turf/open/shuttle/dropship/floor/out{
-	dir = 8
-	},
-/area/shuttle/dropship/alamo)
+/obj/structure/bed/bunkbed,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aO" = (
 /turf/closed/shuttle/dropship1/finright{
 	dir = 4
 	},
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aP" = (
 /obj/structure/dropship_piece/one/wing/right/top,
 /turf/template_noop,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aQ" = (
 /turf/closed/shuttle/dropship1/finleft{
 	dir = 8
 	},
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aR" = (
 /turf/closed/shuttle/dropship1/finleft{
 	dir = 1
 	},
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aS" = (
 /turf/open/shuttle/dropship/three,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"aT" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/turf/closed/shuttle/dropship1/aisle,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aU" = (
-/obj/structure/bed/chair/dropship/doublewide/right,
-/obj/structure/bed/chair/dropship/doublewide/left,
-/obj/machinery/light{
-	dir = 4
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
 	},
-/turf/open/shuttle/dropship/floor/out{
-	dir = 1
+/obj/machinery/camera/autoname/mainship/dropship_one{
+	dir = 8;
+	pixel_x = 16
 	},
-/area/shuttle/dropship/alamo)
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aV" = (
 /turf/closed/shuttle/dropship1/finright{
 	dir = 1
 	},
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aW" = (
 /turf/closed/shuttle/dropship1/finright{
 	dir = 8
 	},
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aX" = (
-/obj/machinery/vending/snack/alamo,
-/turf/open/shuttle/dropship/thirtyeight,
-/area/shuttle/dropship/alamo)
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8
+	},
+/obj/structure/dropship_piece/one/wing/left/bottom,
+/turf/template_noop,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aY" = (
 /turf/closed/shuttle/dropship1/finleft,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "aZ" = (
-/obj/machinery/camera/autoname/mainship/dropship_one{
-	pixel_y = 32
-	},
-/turf/open/shuttle/dropship/five,
-/area/shuttle/dropship/alamo)
+/obj/machinery/autodoc,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "ba" = (
-/obj/structure/bed/chair/dropship/doublewide/fieldcommander,
-/turf/open/shuttle/dropship/floor/alt,
-/area/shuttle/dropship/alamo)
+/turf/closed/shuttle/dropship1/finright,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "bb" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 4
 	},
 /obj/structure/dropship_piece/one/wing/right/bottom,
 /turf/template_noop,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "bc" = (
 /obj/machinery/door/poddoor/shutters/transit,
 /obj/machinery/door/airlock/dropship_hatch/right,
-/turf/open/shuttle/dropship/floor/out{
-	dir = 1
-	},
-/area/shuttle/dropship/alamo)
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "bd" = (
-/obj/docking_port/mobile/marine_dropship/one,
-/turf/closed/shuttle/dropship1/aislewindow{
-	dir = 1
-	},
-/area/shuttle/dropship/alamo)
-"be" = (
-/obj/machinery/door/poddoor/shutters/transit{
+/obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/obj/machinery/door/airlock/dropship_hatch/left,
-/turf/open/shuttle/dropship/floor/out,
-/area/shuttle/dropship/alamo)
-"bi" = (
-/obj/structure/bed/chair/dropship/doublewide/right,
-/obj/structure/bed/chair/dropship/doublewide/left,
+/obj/machinery/vending/nanomed{
+	dir = 8
+	},
 /turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"be" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/vending/nanomed{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bg" = (
+/obj/docking_port/mobile/marine_dropship/one,
+/obj/machinery/vending/weapon,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bi" = (
+/turf/closed/shuttle/dropship1/edge{
+	dir = 4
+	},
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "bj" = (
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/bed/bunkbed,
 /turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "bk" = (
-/obj/structure/dropship_piece/one/wing/left/bottom,
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 4
+/turf/closed/shuttle/dropship1/aisle{
+	dir = 8
 	},
-/turf/template_noop,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "bl" = (
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/bed/bunkbed,
 /turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bm" = (
+/turf/closed/shuttle/dropship1/edge{
+	dir = 8
+	},
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "bn" = (
-/turf/open/shuttle/dropship,
-/area/shuttle/dropship/alamo)
+/obj/machinery/vending/medical/shipside,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "bo" = (
 /turf/open/shuttle/dropship/four,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "bp" = (
-/obj/effect/attach_point/crew_weapon/dropship1,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/alamo)
+/obj/item/radio/intercom/dropship,
+/obj/machinery/holopad,
+/turf/open/shuttle/dropship/five,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "bq" = (
 /turf/open/shuttle/dropship/eight,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "br" = (
 /turf/closed/shuttle/dropship1/cornersalt,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "bs" = (
 /obj/structure/dropship_piece/one/corner/middleright,
 /turf/template_noop,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "bt" = (
 /obj/structure/dropship_piece/one/corner/middleleft,
 /turf/template_noop,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "bu" = (
 /turf/closed/shuttle/dropship1/edge/alt{
 	dir = 1
 	},
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "bv" = (
 /turf/closed/shuttle/dropship1/cornersalt{
 	dir = 1
 	},
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "bw" = (
-/turf/open/shuttle/dropship/eleven,
-/area/shuttle/dropship/alamo)
-"by" = (
-/turf/closed/shuttle/dropship1/edge/alt,
-/area/shuttle/dropship/alamo)
-"bD" = (
-/obj/structure/bed/chair/dropship/doublewide/left,
-/obj/structure/bed/chair/dropship/doublewide/right,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/shuttle/dropship/floor/out{
-	dir = 1
-	},
-/area/shuttle/dropship/alamo)
-"bE" = (
-/obj/structure/dropship_piece/one/engine/lefttop,
-/turf/template_noop,
-/area/shuttle/dropship/alamo)
-"bF" = (
-/obj/structure/dropship_piece/one/engine/righttop,
-/turf/template_noop,
-/area/shuttle/dropship/alamo)
-"bG" = (
-/turf/closed/shuttle/dropship1/enginefour,
-/area/shuttle/dropship/alamo)
-"bH" = (
-/turf/closed/shuttle/dropship1/enginefour{
-	dir = 1
-	},
-/area/shuttle/dropship/alamo)
-"bI" = (
-/obj/machinery/camera/autoname/mainship/dropship_one{
-	dir = 8;
-	pixel_x = 16
-	},
-/turf/open/shuttle/dropship/floor/out{
-	dir = 1
-	},
-/area/shuttle/dropship/alamo)
-"bJ" = (
-/turf/closed/shuttle/dropship1/wall,
-/area/shuttle/dropship/alamo)
-"bK" = (
-/turf/closed/shuttle/dropship1/enginefour{
-	dir = 4
-	},
-/area/shuttle/dropship/alamo)
-"bL" = (
-/turf/closed/shuttle/dropship1/enginefour{
-	dir = 8
-	},
-/area/shuttle/dropship/alamo)
-"bM" = (
-/turf/closed/shuttle/dropship1/enginethree,
-/area/shuttle/dropship/alamo)
-"bN" = (
-/turf/closed/shuttle/dropship1/enginethree{
-	dir = 1
-	},
-/area/shuttle/dropship/alamo)
-"bO" = (
-/turf/closed/shuttle/dropship1/wall{
-	dir = 4
-	},
-/area/shuttle/dropship/alamo)
-"bP" = (
-/turf/closed/shuttle/dropship1/wall{
-	dir = 8
-	},
-/area/shuttle/dropship/alamo)
-"bQ" = (
-/turf/closed/shuttle/dropship1/enginethree{
-	dir = 8
-	},
-/area/shuttle/dropship/alamo)
-"bR" = (
-/turf/closed/shuttle/dropship1/enginethree{
-	dir = 4
-	},
-/area/shuttle/dropship/alamo)
-"bS" = (
-/turf/closed/shuttle/dropship1/enginetwo,
-/area/shuttle/dropship/alamo)
-"bT" = (
-/turf/closed/shuttle/dropship1/enginetwo{
-	dir = 1
-	},
-/area/shuttle/dropship/alamo)
-"bW" = (
-/obj/structure/dropship_piece/one/corner/rearleft,
-/turf/template_noop,
-/area/shuttle/dropship/alamo)
-"bX" = (
-/turf/closed/shuttle/dropship1/interiormisc,
-/area/shuttle/dropship/alamo)
-"bY" = (
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 1
-	},
-/turf/open/shuttle/dropship/floor/alt,
-/area/shuttle/dropship/alamo)
-"ca" = (
-/turf/closed/shuttle/dropship1/interiormisc{
-	dir = 1
-	},
-/area/shuttle/dropship/alamo)
-"cb" = (
-/obj/structure/dropship_piece/one/corner/rearright,
-/turf/template_noop,
-/area/shuttle/dropship/alamo)
-"cc" = (
-/obj/structure/dropship_piece/one/rearwing/lefttop,
-/turf/template_noop,
-/area/shuttle/dropship/alamo)
-"cd" = (
-/obj/structure/dropship_piece/one/rearwing/righttop,
-/turf/template_noop,
-/area/shuttle/dropship/alamo)
-"ce" = (
-/obj/structure/dropship_piece/one/rearwing/leftllbottom,
-/turf/template_noop,
-/area/shuttle/dropship/alamo)
-"cf" = (
-/obj/structure/dropship_piece/one/rearwing/leftlbottom,
-/turf/template_noop,
-/area/shuttle/dropship/alamo)
-"cg" = (
-/obj/structure/dropship_piece/one/rearwing/leftbottom,
-/turf/template_noop,
-/area/shuttle/dropship/alamo)
-"ci" = (
-/obj/structure/dropship_piece/one/rearwing/rightbottom,
-/turf/template_noop,
-/area/shuttle/dropship/alamo)
-"cj" = (
-/obj/structure/dropship_piece/one/rearwing/rightrbottom,
-/turf/template_noop,
-/area/shuttle/dropship/alamo)
-"ck" = (
-/obj/structure/dropship_piece/one/rearwing/rightrrbottom,
-/turf/template_noop,
-/area/shuttle/dropship/alamo)
-"di" = (
-/obj/machinery/telecomms/relay/preset/telecomms/onboard/nondense,
-/turf/open/shuttle/dropship/five,
-/area/shuttle/dropship/alamo)
-"dS" = (
-/turf/closed/shuttle/dropship1/enginetwo{
-	dir = 4
-	},
-/area/shuttle/dropship/alamo)
-"ec" = (
-/obj/machinery/door/poddoor/shutters/transit,
-/obj/machinery/door/airlock/dropship_hatch/right,
-/turf/open/shuttle/dropship/floor/out,
-/area/shuttle/dropship/alamo)
-"ez" = (
-/obj/structure/bed/chair/dropship/doublewide/left,
-/obj/structure/bed/chair/dropship/doublewide/right,
-/obj/structure/closet/walllocker/hydrant/extinguisher{
-	dir = 4
-	},
-/turf/open/shuttle/dropship/floor/out,
-/area/shuttle/dropship/alamo)
-"gl" = (
-/turf/open/shuttle/dropship/thirtytwo,
-/area/shuttle/dropship/alamo)
-"gB" = (
-/turf/closed/shuttle/dropship1/edge/alt{
-	dir = 4
-	},
-/area/shuttle/dropship/alamo)
-"hm" = (
-/obj/structure/bed/chair/dropship/doublewide/left,
-/obj/structure/bed/chair/dropship/doublewide/right,
-/obj/item/radio/intercom/dropship{
-	dir = 4
-	},
+/obj/structure/bed/chair/dropship/passenger,
 /turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/alamo)
-"ie" = (
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 1
-	},
-/turf/open/shuttle/dropship/floor/out{
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bx" = (
+/obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/area/shuttle/dropship/alamo)
-"ji" = (
-/obj/structure/bed/chair/dropship/doublewide/left,
-/obj/structure/bed/chair/dropship/doublewide/right,
-/obj/item/radio/intercom/dropship{
-	dir = 8
-	},
-/turf/open/shuttle/dropship/floor/out{
-	dir = 8
-	},
-/area/shuttle/dropship/alamo)
-"jI" = (
-/obj/structure/bed/chair/dropship/doublewide/left,
-/obj/structure/bed/chair/dropship/doublewide/right,
-/turf/open/shuttle/dropship/floor/out{
-	dir = 1
-	},
-/area/shuttle/dropship/alamo)
-"jS" = (
-/turf/closed/shuttle/dropship1/aislewindow{
-	dir = 8
-	},
-/area/shuttle/dropship/alamo)
-"li" = (
-/turf/closed/shuttle/dropship1/aislewindow{
-	dir = 4
-	},
-/area/shuttle/dropship/alamo)
-"me" = (
-/obj/structure/bed/chair/dropship/doublewide/left,
-/obj/structure/bed/chair/dropship/doublewide/right,
-/turf/open/shuttle/dropship/floor/out,
-/area/shuttle/dropship/alamo)
-"nt" = (
-/obj/structure/bed/chair/dropship/doublewide/left,
-/obj/structure/bed/chair/dropship/doublewide/right,
-/turf/open/shuttle/dropship/floor/out{
-	dir = 4
-	},
-/area/shuttle/dropship/alamo)
-"nO" = (
-/obj/machinery/holopad,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/alamo)
-"og" = (
-/obj/structure/bed/chair/dropship/doublewide/right/delta,
-/obj/structure/bed/chair/dropship/doublewide/left/charlie,
-/turf/open/shuttle/dropship/floor/out{
-	dir = 4
-	},
-/area/shuttle/dropship/alamo)
-"oO" = (
-/obj/machinery/vending/nanomed{
-	dir = 4
-	},
-/turf/open/shuttle/dropship/thirtyeight,
-/area/shuttle/dropship/alamo)
-"pw" = (
-/turf/open/shuttle/dropship/thirtythree,
-/area/shuttle/dropship/alamo)
-"sk" = (
-/turf/open/shuttle/dropship/thirtyseven,
-/area/shuttle/dropship/alamo)
-"tf" = (
-/turf/open/shuttle/dropship/thirtysix,
-/area/shuttle/dropship/alamo)
-"vw" = (
-/obj/structure/dropship_piece/one/engine/leftbottom,
-/turf/template_noop,
-/area/shuttle/dropship/alamo)
-"vQ" = (
-/turf/open/shuttle/dropship/floor/out,
-/area/shuttle/dropship/alamo)
-"yv" = (
-/turf/closed/shuttle/dropship1/finright,
-/area/shuttle/dropship/alamo)
-"yA" = (
-/turf/open/shuttle/dropship/floor/alt{
-	dir = 1
-	},
-/area/shuttle/dropship/alamo)
-"Aq" = (
-/turf/open/shuttle/dropship/thirtyfour,
-/area/shuttle/dropship/alamo)
-"Bi" = (
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 1
-	},
-/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds1,
-/turf/open/shuttle/dropship/floor/out{
-	dir = 8
-	},
-/area/shuttle/dropship/alamo)
-"Dp" = (
-/turf/open/shuttle/dropship/ten,
-/area/shuttle/dropship/alamo)
-"DE" = (
-/turf/open/shuttle/dropship/nine,
-/area/shuttle/dropship/alamo)
-"FA" = (
-/turf/closed/shuttle/dropship1/enginetwo{
-	dir = 8
-	},
-/area/shuttle/dropship/alamo)
-"IA" = (
 /obj/machinery/camera/autoname/mainship/dropship_one{
 	dir = 4;
 	pixel_x = -16
 	},
-/turf/open/shuttle/dropship/floor/out{
+/obj/machinery/vending/nanomed{
+	dir = 4
+	},
+/obj/structure/largecrate/supply/supplies/water,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"by" = (
+/turf/closed/shuttle/dropship1/edge/alt,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bD" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/camera/autoname/mainship/dropship_one{
+	dir = 4;
+	pixel_x = -16
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bE" = (
+/obj/structure/dropship_piece/one/engine/lefttop,
+/turf/template_noop,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bF" = (
+/obj/structure/dropship_piece/one/engine/righttop,
+/turf/template_noop,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bG" = (
+/turf/closed/shuttle/dropship1/enginefour,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bH" = (
+/turf/closed/shuttle/dropship1/enginefour{
 	dir = 1
 	},
-/area/shuttle/dropship/alamo)
-"Ki" = (
-/obj/machinery/computer/shuttle/marine_dropship/one,
-/turf/closed/shuttle/dropship1/panel{
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bI" = (
+/obj/effect/attach_point/crew_weapon/dropship1,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bJ" = (
+/turf/closed/shuttle/dropship1/wall,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bK" = (
+/turf/closed/shuttle/dropship1/enginefour{
+	dir = 4
+	},
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bL" = (
+/turf/closed/shuttle/dropship1/enginefour{
+	dir = 8
+	},
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bM" = (
+/obj/effect/attach_point/fuel/dropship1,
+/turf/closed/shuttle/dropship1/enginethree,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bN" = (
+/turf/closed/shuttle/dropship1/enginethree{
 	dir = 1
 	},
-/area/shuttle/dropship/alamo)
-"MG" = (
-/turf/closed/shuttle/dropship1/aislewindow,
-/area/shuttle/dropship/alamo)
-"Nj" = (
-/turf/open/shuttle/dropship/thirtyone,
-/area/shuttle/dropship/alamo)
-"OZ" = (
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bO" = (
+/turf/closed/shuttle/dropship1/wall{
+	dir = 4
+	},
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bP" = (
+/turf/closed/shuttle/dropship1/wall{
+	dir = 8
+	},
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bQ" = (
+/obj/effect/attach_point/fuel/dropship1,
+/turf/closed/shuttle/dropship1/enginethree{
+	dir = 8
+	},
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bR" = (
+/turf/closed/shuttle/dropship1/enginethree{
+	dir = 4
+	},
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bS" = (
+/turf/closed/shuttle/dropship1/enginetwo,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bT" = (
+/turf/closed/shuttle/dropship1/enginetwo{
+	dir = 1
+	},
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bW" = (
+/obj/structure/dropship_piece/one/corner/rearleft,
+/turf/template_noop,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bX" = (
+/turf/closed/shuttle/dropship1/interiormisc,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bY" = (
+/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds1,
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 1
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"bZ" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 1
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"ca" = (
+/turf/closed/shuttle/dropship1/interiormisc{
+	dir = 1
+	},
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"cb" = (
+/obj/structure/dropship_piece/one/corner/rearright,
+/turf/template_noop,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"cc" = (
+/obj/structure/dropship_piece/one/rearwing/lefttop,
+/turf/template_noop,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"cd" = (
+/obj/structure/dropship_piece/one/rearwing/righttop,
+/turf/template_noop,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"ce" = (
+/obj/structure/dropship_piece/one/rearwing/leftllbottom,
+/turf/template_noop,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"cf" = (
+/obj/structure/dropship_piece/one/rearwing/leftlbottom,
+/turf/template_noop,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"cg" = (
+/obj/structure/dropship_piece/one/rearwing/leftbottom,
+/turf/template_noop,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"ci" = (
+/obj/structure/dropship_piece/one/rearwing/rightbottom,
+/turf/template_noop,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"cj" = (
+/obj/structure/dropship_piece/one/rearwing/rightrbottom,
+/turf/template_noop,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"ck" = (
+/obj/structure/dropship_piece/one/rearwing/rightrrbottom,
+/turf/template_noop,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"dS" = (
+/turf/closed/shuttle/dropship1/enginetwo{
+	dir = 4
+	},
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"er" = (
+/obj/machinery/optable,
+/obj/item/storage/surgical_tray,
+/obj/machinery/iv_drip,
+/obj/item/tank/anesthetic,
+/obj/item/tank/anesthetic,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"gm" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/medicine/blood,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"gq" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/largecrate/supply/supplies/plasteel,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"gB" = (
+/turf/closed/shuttle/dropship1/edge/alt{
+	dir = 4
+	},
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"km" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/structure/largecrate/supply/ammo/sentry,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"lf" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/supplies/plasteel,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"lg" = (
+/obj/machinery/vending/uniform_supply,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"li" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"rs" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"ry" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/supplies/metal,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"rJ" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
 /obj/machinery/vending/nanomed{
 	dir = 8
 	},
-/turf/open/shuttle/dropship/thirtynine,
-/area/shuttle/dropship/alamo)
+/obj/structure/largecrate/supply/supplies/flares,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"sE" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/explosives/disposable,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"vw" = (
+/obj/structure/dropship_piece/one/engine/leftbottom,
+/turf/template_noop,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"wO" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/structure/largecrate/supply/medicine/medkits,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"xG" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/supplies/mre,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"Dp" = (
+/turf/open/shuttle/dropship/ten,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"EN" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/structure/largecrate/supply/supplies/sandbags,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"ES" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"FA" = (
+/turf/closed/shuttle/dropship1/enginetwo{
+	dir = 8
+	},
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"Ki" = (
+/obj/machinery/computer/shuttle/marine_dropship/one{
+	possible_destinations = "lz1;lz2;hqlz1;hqlz2;normandy;alamo"
+	},
+/turf/closed/shuttle/dropship1/panel{
+	dir = 1
+	},
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"Of" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/supplies/metal,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"Pq" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/structure/largecrate/supply/supplies/metal,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "QK" = (
 /obj/structure/dropship_piece/one/engine/rightbottom,
 /turf/template_noop,
-/area/shuttle/dropship/alamo)
-"VW" = (
-/turf/open/shuttle/dropship/thirtyfive,
-/area/shuttle/dropship/alamo)
-"Yd" = (
-/obj/machinery/vending/cola/alamo,
-/turf/open/shuttle/dropship/thirtynine,
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"Se" = (
+/obj/machinery/computer/autodoc_console,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"Yb" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/structure/largecrate/supply/explosives/mines,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
 "Zx" = (
 /turf/closed/shuttle/dropship1/wall{
 	dir = 1
 	},
-/area/shuttle/dropship/alamo)
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"ZS" = (
+/obj/machinery/vending/tool,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo{
+	ceiling = 2
+	})
+"ZT" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
 
 (1,1,1) = {"
 ao
 ao
 ao
 ao
-ao
+rs
 aG
 aQ
-bk
+aX
 ao
 ao
 ao
-ao
+rs
 ao
 ao
 bE
@@ -697,10 +960,10 @@ ay
 aH
 aR
 aY
-bu
-be
+ac
 ac
 bu
+bi
 bu
 bt
 bF
@@ -717,14 +980,14 @@ ao
 ao
 aq
 aE
-aX
+ES
 bD
-hm
-ez
-Dp
-bw
-bD
-me
+be
+al
+al
+wO
+km
+li
 br
 bu
 bu
@@ -742,17 +1005,17 @@ ar
 aE
 aJ
 aS
-Nj
 aS
-Aq
-tf
+aS
+aS
+aS
 aS
 bo
-nt
-oO
-IA
-bl
-vQ
+Yb
+bx
+EN
+ry
+Pq
 bX
 cc
 cg
@@ -763,20 +1026,20 @@ af
 ak
 as
 aB
-aZ
-aN
 aK
-jI
-aI
-aI
-me
-DE
+bj
+aN
+al
+al
+aN
+bj
+Dp
 aS
-sk
 aS
 aS
-pw
-Bi
+aS
+aS
+bY
 ao
 ao
 "}
@@ -784,22 +1047,22 @@ ao
 ab
 ag
 Ki
-yA
+at
 aC
+aK
+aT
 bn
-ba
-di
-jS
-li
-bd
-MG
-aK
-jI
-aK
+aZ
+er
+bg
+bk
 bp
-nO
-Dp
-bY
+bw
+bI
+al
+bI
+al
+bZ
 ao
 ao
 "}
@@ -810,19 +1073,19 @@ am
 au
 aD
 aK
-og
-aK
-jI
-aI
-aI
-me
-DE
-aS
-sk
+bl
+aN
+Se
+al
+aN
+bl
+Dp
 aS
 aS
-Aq
-ie
+aS
+aS
+aS
+bZ
 ao
 ao
 "}
@@ -832,19 +1095,19 @@ ai
 an
 av
 aE
-aJ
+aM
 aS
-gl
 aS
-pw
-VW
+aS
+aS
+aS
 aS
 bq
-ji
-OZ
-bI
-bj
-vQ
+sE
+rJ
+lf
+gq
+xG
 ca
 cd
 ci
@@ -855,14 +1118,14 @@ ao
 ao
 aw
 aE
-Yd
+lg
 aU
-bi
-me
-Dp
-bw
-aM
-me
+bd
+al
+al
+Of
+gm
+ZS
 bv
 by
 by
@@ -880,11 +1143,11 @@ ax
 aF
 aO
 aV
-yv
-gB
+ba
 bc
-ec
+bc
 gB
+bm
 by
 bs
 bE
@@ -900,14 +1163,14 @@ ao
 ao
 ao
 ao
-ao
+ZT
 aP
 aW
 bb
 ao
 ao
 ao
-ao
+ZT
 ao
 ao
 bF

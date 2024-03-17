@@ -118,7 +118,7 @@
 			if(MAP_ARMOR_STYLE_DESERT)
 				icon_state += "_desert"
 	if(minimap_icon_state)
-		SSminimaps.add_marker(src, minimap_flags, image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon_state, HIGH_FLOAT_LAYER))
+		SSminimaps.add_marker(src, minimap_flags, image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon_state))
 	GLOB.tank_list += src
 
 /obj/vehicle/sealed/armored/Destroy()

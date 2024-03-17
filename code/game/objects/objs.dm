@@ -13,26 +13,30 @@
 
 	/// %-reduction-based armor.
 	var/datum/armor/soft_armor
-	///Modifies the AP of incoming attacks
+	/// Flat-damage-reduction-based armor.
 	var/datum/armor/hard_armor
-	///Object HP
-	var/obj_integrity
-	///Max object HP
+
+	var/obj_integrity	//defaults to max_integrity
 	var/max_integrity = 500
-	///Integrety below this number causes special behavior
-	var/integrity_failure = 0
-	///Base throw damage. Throwforce needs to be at least 1 else it causes runtimes with shields
+	var/integrity_failure = 0 //0 if we have no special broken behavior
+	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
+	var/crit_fail = 0
+
+	///throwforce needs to be at least 1 else it causes runtimes with shields
 	var/throwforce = 1
-	///Object behavior flags
+
 	var/obj_flags = NONE
-	///Sound when hit
-	var/hit_sound
-	///Sound this object makes when destroyed
-	var/destroy_sound
-	///ID access where all are required to access this object
+	var/hit_sound //Sound this object makes when hit, overrides specific item hit sound.
+	var/destroy_sound //Sound this object makes when destroyed.
+
+	var/item_fire_stacks = 0	//How many fire stacks it applies
+
 	var/list/req_access = null
-	///ID access where any one is required to access this object
 	var/list/req_one_access = null
+
+	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
+	var/real_explosion_block
+
 	///Odds of a projectile hitting the object, if the object is dense
 	var/coverage = 50
 

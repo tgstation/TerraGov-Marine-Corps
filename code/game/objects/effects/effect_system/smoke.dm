@@ -300,9 +300,9 @@
 ////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/antigas
-	alpha = 65
+	alpha = 25
 	opacity = FALSE
-	color = "#1b1b1b"
+	color = "#030101"
 	smoke_traits = SMOKE_PURGER
 
 //////////////////////////////////////

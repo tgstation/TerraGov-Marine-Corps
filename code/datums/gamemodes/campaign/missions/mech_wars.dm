@@ -39,7 +39,7 @@
 			spawner = pick(GLOB.campaign_mech_spawners[faction])
 			new_mech = spawner.spawn_mech()
 			GLOB.campaign_structures += new_mech
-			RegisterSignal(new_mech, COMSIG_QDELETING, PROC_REF(on_mech_destruction))
+			RegisterSignal(new_mech, COMSIG_QDELETING, TYPE_PROC_REF(/datum/campaign_mission, remove_mission_object))
 
 			//anti mech infantry weapons
 			if(i % 2)
@@ -74,17 +74,6 @@
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
 	winning_team.add_asset(/datum/campaign_asset/mech/heavy/som)
 	winning_team.add_asset(/datum/campaign_asset/mech/som)
-
-///Cleans up after a mech is destroyed
-/datum/campaign_mission/tdm/mech_wars/proc/on_mech_destruction(obj/vehicle/sealed/mecha/combat/greyscale/dead_mech)
-	SIGNAL_HANDLER
-	remove_mission_object(dead_mech)
-	if(outcome)
-		return
-	if(dead_mech.faction == hostile_faction)
-		start_team_cap_points += 10
-	else if(dead_mech.faction == starting_faction)
-		hostile_team_cap_points += 10
 
 //mech spawn points
 /obj/effect/landmark/campaign/mech_spawner

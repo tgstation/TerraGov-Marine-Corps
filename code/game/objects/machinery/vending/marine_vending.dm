@@ -1585,7 +1585,7 @@
 			/obj/item/ammo_magazine/sniper/flak = -1,
 		),
 		"Mounted" = list(
-			/obj/structure/largecrate/supply/weapons/standard_flakgun = -1,
+			/obj/item/weapon/gun/standard_auto_cannon = -1,
 			/obj/item/ammo_magazine/auto_cannon = -1,
 			/obj/item/ammo_magazine/auto_cannon/flak = -1,
 			/obj/item/weapon/gun/standard_minigun = -1,
@@ -1597,7 +1597,7 @@
 			/obj/item/ammo_magazine/standard_agls/flare = -1,
 			/obj/item/ammo_magazine/standard_agls/cloak = -1,
 			/obj/item/ammo_magazine/standard_agls/tanglefoot = -1,
-			/obj/structure/largecrate/supply/weapons/heavy_flakgun = -1,
+			/obj/item/weapon/gun/heavy_isg = -1,
 			/obj/item/ammo_magazine/heavy_isg/he = -1,
 			/obj/item/ammo_magazine/heavy_isg/sabot = -1,
 		),

@@ -231,7 +231,6 @@
 	initiate_chat_message = "TARGET ACQUIRED SENTRY POD LAUNCHING."
 	initiate_screen_message = "Co-ordinates confirmed, sentry pod launching."
 	initiate_sound = null
-	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/pod_officer
 	start_visual = null
 	start_sound = null
 	cooldown_duration = 1 SECONDS
@@ -329,7 +328,7 @@
 	initiate_screen_message = "Coordinates confirmed, high explosive inbound!"
 	initiate_title = "Rhino-1"
 	initiate_sound = 'sound/weapons/guns/misc/mortar_travel.ogg'
-	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/tgmc_mortar
+	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait
 	start_visual = null
 	start_sound = 'sound/weapons/guns/misc/mortar_long_whistle.ogg'
 
@@ -392,7 +391,7 @@
 	icon_state = "acid_smoke_mortar"
 	initiate_chat_message = "COORDINATES CONFIRMED. MORTAR BARRAGE INCOMING."
 	initiate_screen_message = "Coordinates confirmed, acid smoke inbound!"
-	smoketype = /datum/effect_system/smoke_spread/xeno/acid/opaque
+	smoketype = /datum/effect_system/smoke_spread/xeno/acid
 	smokeradius = 5
 
 /datum/fire_support/mortar/smoke/satrapine
@@ -402,7 +401,6 @@
 	icon_state = "satrapine_mortar"
 	initiate_chat_message = "COORDINATES CONFIRMED. MORTAR BARRAGE INCOMING."
 	initiate_screen_message = "Coordinates confirmed, satrapine inbound!"
-	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_mortar
 	smoketype = /datum/effect_system/smoke_spread/satrapine
 	smokeradius = 5
 

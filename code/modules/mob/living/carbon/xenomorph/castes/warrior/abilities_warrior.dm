@@ -230,7 +230,7 @@
 		if(!silent)
 			owner.balloon_alert(owner, "Dead")
 		return FALSE
-	if(get_dist_euclidean_square(living_target, owner) > WARRIOR_LUNGE_RANGE * 5)
+	if(get_dist_euclide_square(living_target, owner) > WARRIOR_LUNGE_RANGE * 5)
 		if(!silent)
 			owner.balloon_alert(owner, "Too far")
 		return FALSE
