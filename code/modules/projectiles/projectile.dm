@@ -651,8 +651,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /atom/proc/do_projectile_hit(obj/projectile/proj)
 	return
 
-
 /obj/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(proj.shot_from == src)
+		return FALSE
 	if(!density && !(obj_flags & PROJ_IGNORE_DENSITY)) //structure is passable
 		return FALSE
 	if(src == proj.original_target) //clicking on the structure itself hits the structure
