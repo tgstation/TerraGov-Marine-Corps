@@ -511,8 +511,13 @@
 	opacity = FALSE
 	allow_pass_flags = PASS_GLASS
 
+/turf/closed/shuttle/dropship1/aislewindow
+	icon_state = "shuttle_aisle_window"
+	opacity = FALSE
+
 /turf/closed/shuttle/dropship1/panel
 	icon_state = "shuttle_interior_panel"
+	opacity = FALSE
 
 /turf/closed/shuttle/dropship1/engineone
 	icon_state = "shuttle_interior_backengine"

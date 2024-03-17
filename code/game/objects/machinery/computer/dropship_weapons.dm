@@ -7,6 +7,7 @@
 	icon_state = "consoleright"
 	screen_overlay = "consoleright_emissive"
 	circuit = null
+	opacity = FALSE
 	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_MACHINE_TGUI
 	var/shuttle_tag  // Used to know which shuttle we're linked to.

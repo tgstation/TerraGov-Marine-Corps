@@ -31,6 +31,13 @@
 
 #define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
 
+//Float layers. These layer over normal layers, but a high float layer will layer over a lower float layer (i.e. -1 over -2)
+#define BELOW_FLOAT_LAYER -2
+#define STANDARD_FLOAT_LAYER -1
+#define ABOVE_FLOAT_LAYER -0.9
+#define HIGH_FLOAT_LAYER -0.8
+#define VERY_HIGH_FLOAT_LAYER -0.7
+
 #define SPACE_LAYER 1.8
 
 #define UNDER_TURF_LAYER 1.99

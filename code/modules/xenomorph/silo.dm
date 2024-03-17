@@ -231,4 +231,4 @@
 ///Change minimap icon if silo is under attack or not
 /obj/structure/xeno/silo/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "silo[warning ? "_warn" : "_passive"]"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "silo[warning ? "_warn" : "_passive"]", HIGH_FLOAT_LAYER))
