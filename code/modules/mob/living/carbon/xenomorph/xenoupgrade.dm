@@ -39,7 +39,7 @@
 			activable_ability.select()
 			break
 
-	if(queen_chosen_lead)
+	if(xeno_flags & XENO_LEADER)
 		give_rally_abilities() //Give them back their rally hive ability
 
 	if(current_aura) //Updates pheromone strength
@@ -376,15 +376,6 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 //----WARLOCK END----//
-//============//
-//----BANELING START----//
-/mob/living/carbon/xenomorph/baneling
-	upgrade = XENO_UPGRADE_NORMAL
-
-/mob/living/carbon/xenomorph/baneling/primordial
-	upgrade = XENO_UPGRADE_PRIMO
-
-//----BANELING END----//
 //============//
 //----PUPPETEER START----//
 /mob/living/carbon/xenomorph/puppeteer

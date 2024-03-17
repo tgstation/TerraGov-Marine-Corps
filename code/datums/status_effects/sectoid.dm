@@ -47,7 +47,14 @@
 /datum/status_effect/mindmeld/on_remove()
 	link_target.balloon_alert(link_target, "mindmeld inactive")
 	REMOVE_TRAIT(link_target, TRAIT_MINDMELDED, TRAIT_STATUS_EFFECT(id))
-	UnregisterSignal(link_target, COMSIG_MOB_DEATH)
+	link_target.UnregisterSignal(link_target, list(
+		COMSIG_LIVING_STATUS_STUN,
+		COMSIG_LIVING_STATUS_KNOCKDOWN,
+		COMSIG_LIVING_STATUS_PARALYZE,
+		COMSIG_LIVING_STATUS_UNCONSCIOUS,
+		COMSIG_LIVING_STATUS_CONFUSED,
+		COMSIG_LIVING_STATUS_STAGGER,
+	))
 	check_range()
 	return ..()
 

@@ -26,7 +26,7 @@
 	update_sides()
 
 //Xenos digging up snow
-/turf/open/floor/plating/ground/snow/attack_alien(mob/living/carbon/xenomorph/M, damage_amount = M.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/turf/open/floor/plating/ground/snow/attack_alien(mob/living/carbon/xenomorph/M, damage_amount = M.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(M.status_flags & INCORPOREAL)
 		return
 
@@ -54,6 +54,8 @@
 //PLACING/REMOVING/BUILDING
 /turf/open/floor/plating/ground/snow/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	//Light Stick
 	if(istype(I, /obj/item/lightstick))
 		var/obj/item/lightstick/L = I

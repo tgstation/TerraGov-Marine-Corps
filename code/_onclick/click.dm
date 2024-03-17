@@ -153,12 +153,13 @@
 			var/proximity = A.Adjacent(src)
 			if(!proximity || !A.attackby(W, src, params))
 				W.afterattack(A, src, proximity, params)
+				RangedAttack(A, params)
 		else
 			if(A.Adjacent(src))
 				A.attack_hand(src)
+			else
+				RangedAttack(A, params)
 
-	if(!A.Adjacent(src))
-		RangedAttack(A, params)
 
 
 /atom/movable/proc/CanReach(atom/ultimate_target, obj/item/tool, view_only = FALSE)
@@ -511,7 +512,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 
 
 /atom/proc/CtrlShiftClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_SHIFT)
+	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_SHIFT, user)
 
 
 /*

@@ -143,6 +143,8 @@
 
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!istype(I, /obj/item/assembly_holder))
 		return
@@ -238,13 +240,13 @@
 	exploding = TRUE
 
 	if(reagents.total_volume > 500)
-		flame_radius(5, loc, 46, 40, 31, 30, colour = "blue")
+		flame_radius(5, loc, 40, 46, 31, 30, colour = "blue")
 		explosion(loc, light_impact_range = 5)
 	else if(reagents.total_volume > 100)
-		flame_radius(4, loc, 46, 40, 31, 30, colour = "blue")
+		flame_radius(4, loc, 40, 46, 31, 30, colour = "blue")
 		explosion(loc, light_impact_range = 4)
 	else
-		flame_radius(3, loc, 46, 40, 31, 30, colour = "blue")
+		flame_radius(3, loc, 40, 46, 31, 30, colour = "blue")
 		explosion(loc, light_impact_range = 3)
 
 	qdel(src)

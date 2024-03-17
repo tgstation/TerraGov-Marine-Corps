@@ -59,7 +59,7 @@ export const BlessingMenu = (props) => {
           title={
             'Strategic Psychic points: ' +
             (strategicpoints ? strategicpoints : 0) +
-            ' | Strategic Psychic points: ' +
+            ' | Tactical Psychic points: ' +
             (tacticalpoints ? tacticalpoints : 0)
           }
         >

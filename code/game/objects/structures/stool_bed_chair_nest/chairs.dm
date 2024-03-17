@@ -1,6 +1,16 @@
-#define DROPSHIP_CHAIR_UNFOLDED 1
-#define DROPSHIP_CHAIR_FOLDED 2
-#define DROPSHIP_CHAIR_BROKEN 3
+#define DROPSHIP_CHAIR_UNBUCKLED ""
+#define DROPSHIP_CHAIR_FOLDED 0
+#define DROPSHIP_CHAIR_BUCKLED "_buckled"
+#define DROPSHIP_CHAIR_BROKEN "_broken"
+
+#define LEADER_CHAIR 0
+
+#define NO_CHAIR_COLOR ""
+#define ALPHA_CHAIR "_alpha"
+#define BRAVO_CHAIR "_bravo"
+#define CHARLIE_CHAIR "_charlie"
+#define DELTA_CHAIR "_delta"
+#define FC_CHAIR "_fc"
 
 /obj/structure/bed/chair //YES, chairs are a type of bed, which are a type of stool. This works, believe me.	-Pete
 	name = "chair"
@@ -82,6 +92,8 @@
 
 /obj/structure/bed/chair/reinforced/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		to_chat(user, span_warning("You can only deconstruct this by welding it down!"))
@@ -260,9 +272,34 @@
 	icon_state = "officechair_dark"
 	anchored = FALSE
 
+/obj/structure/bed/chair/dropship
+	name = "dropship chair"
+	desc = "Holds you in place during high altitude drops."
+	icon_state = "shuttle_chair"
+	/// Handles the chair buckle bars overlay
+	var/image/chairbar = null
+	buildstacktype = 0
+	/// Handles the current state of the chair (buckled, unbuckled, folded, broke)
+	var/chair_state = DROPSHIP_CHAIR_UNBUCKLED
+
+/obj/structure/bed/chair/dropship/update_overlays()
+	. = ..()
+	if(chair_state == DROPSHIP_CHAIR_BUCKLED)
+		. += image('icons/obj/objects.dmi', icon_state = "shuttle_bars", layer = ABOVE_MOB_LAYER)
+		return
+
+/obj/structure/bed/chair/dropship/doublewide/post_buckle_mob(mob/buckling_mob)
+	chair_state = DROPSHIP_CHAIR_BUCKLED
+	update_icon()
+	return ..()
+
+/obj/structure/bed/chair/dropship/doublewide/post_unbuckle_mob(mob/buckled_mob)
+	chair_state = DROPSHIP_CHAIR_UNBUCKLED
+	update_icon()
+	return ..()
+
 /obj/structure/bed/chair/dropship/pilot
 	icon_state = "pilot_chair"
-	anchored = TRUE
 	name = "pilot's chair"
 	desc = "A specially designed chair for pilots to sit in."
 
@@ -271,47 +308,24 @@
 
 /obj/structure/bed/chair/dropship/passenger
 	name = "passenger seat"
-	desc = "Holds you in place during high altitude drops."
-	icon_state = "shuttle_chair"
-	var/image/chairbar = null
-	var/chair_state = DROPSHIP_CHAIR_UNFOLDED
-	buildstacktype = 0
 	resistance_flags = RESIST_ALL
 	var/is_animating = 0
 
 /obj/structure/bed/chair/dropship/passenger/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && istype(mover, /obj/vehicle/sealed) && !is_animating)
+	if(chair_state == DROPSHIP_CHAIR_UNBUCKLED && istype(mover, /obj/vehicle/sealed) && !is_animating)
 		visible_message(span_danger("[mover] slams into [src] and breaks it!"))
 		INVOKE_ASYNC(src, PROC_REF(fold_down), TRUE)
 		return FALSE
 
 	return ..()
 
-/obj/structure/bed/chair/dropship/passenger/Initialize(mapload)
-	. = ..()
-	chairbar = image("icons/obj/objects.dmi", "shuttle_bars")
-	chairbar.layer = ABOVE_MOB_LAYER
-
-
-/obj/structure/bed/chair/dropship/passenger/post_buckle_mob(mob/buckling_mob)
-	icon_state = "shuttle_chair_buckled"
-	overlays += chairbar
-	return ..()
-
-
-/obj/structure/bed/chair/dropship/passenger/post_unbuckle_mob(mob/buckled_mob)
-	icon_state = "shuttle_chair"
-	overlays -= chairbar
-	return ..()
-
-
 /obj/structure/bed/chair/dropship/passenger/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
-	if(chair_state != DROPSHIP_CHAIR_UNFOLDED)
+	if(chair_state != DROPSHIP_CHAIR_UNBUCKLED)
 		return FALSE
 	return ..()
 
 /obj/structure/bed/chair/dropship/passenger/proc/fold_down(break_it = FALSE)
-	if(chair_state == DROPSHIP_CHAIR_UNFOLDED)
+	if(chair_state == DROPSHIP_CHAIR_UNBUCKLED)
 		is_animating = 1
 		flick("shuttle_chair_new_folding", src)
 		is_animating = 0
@@ -330,7 +344,7 @@
 	is_animating = 1
 	flick("shuttle_chair_new_unfolding", src)
 	is_animating = 0
-	chair_state = DROPSHIP_CHAIR_UNFOLDED
+	chair_state = DROPSHIP_CHAIR_UNBUCKLED
 	sleep(0.5 SECONDS)
 	icon_state = "shuttle_chair"
 
@@ -338,20 +352,22 @@
 	return // no
 
 
-/obj/structure/bed/chair/dropship/passenger/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/structure/bed/chair/dropship/passenger/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 	if(chair_state != DROPSHIP_CHAIR_BROKEN)
-		X.visible_message(span_warning("[X] smashes \the [src], shearing the bolts!"),
+		xeno_attacker.visible_message(span_warning("[xeno_attacker] smashes \the [src], shearing the bolts!"),
 		span_warning("We smash \the [src], shearing the bolts!"))
 		fold_down(1)
 
 /obj/structure/bed/chair/dropship/passenger/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		switch(chair_state)
-			if(DROPSHIP_CHAIR_UNFOLDED)
+			if(DROPSHIP_CHAIR_UNBUCKLED)
 				user.visible_message(span_warning("[user] begins loosening the bolts on \the [src]."),
 				span_warning("You begin loosening the bolts on \the [src]."))
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
@@ -396,6 +412,138 @@
 		span_warning("You repair \the [src]."))
 		chair_state = DROPSHIP_CHAIR_FOLDED
 
+/obj/structure/bed/chair/dropship/doublewide
+	name = "doublewide seat"
+	icon_state = "doublewide_chair" //only facing south cause the rest are ugly
+	max_integrity = 130
+	/// Handles the color of the chair
+	var/chair_color = NO_CHAIR_COLOR
+	/// If the chair can only be sat in by a leader or not
+	var/leader_chair = FALSE
+	/// pixel x shift to give to the buckled mob
+	var/buckling_x = 0
+
+/obj/structure/bed/chair/dropship/doublewide/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+	if(LAZYLEN(buckled_mobs))
+		unbuckle_all_mobs(TRUE)
+	return ..()
+
+/obj/structure/bed/chair/dropship/doublewide/welder_act(mob/living/user, obj/item/I)
+	if(LAZYLEN(buckled_mobs))
+		balloon_alert_to_viewers("You cannot repair this chair while someone is sitting in it")
+		return
+	welder_repair_act(user, I, 130, 1 SECONDS, 0, SKILL_ENGINEER_METAL, 1)
+	chair_state = DROPSHIP_CHAIR_UNBUCKLED
+	update_icon()
+	return
+
+/obj/structure/bed/chair/dropship/doublewide/update_icon_state()
+	. = ..()
+	var/percentage = (obj_integrity / max_integrity) * 100
+	switch(percentage)
+		if(-INFINITY to 65)
+			chair_state = DROPSHIP_CHAIR_BROKEN
+	icon_state = "doublewide_chair[chair_color][chair_state]"
+
+/obj/structure/bed/chair/dropship/doublewide/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(LAZYLEN(buckled_mobs) && chair_state == DROPSHIP_CHAIR_BROKEN)
+		unbuckle_mob(buckled_mobs[1])
+		balloon_alert_to_viewers("This chair is too damaged to stay sitting in")
+
+/obj/structure/bed/chair/dropship/doublewide/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
+	if(chair_state == DROPSHIP_CHAIR_BROKEN)
+		balloon_alert_to_viewers("This chair is too damaged to sit in")
+		return FALSE
+	if(leader_chair && buckling_mob.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_TRAINED)
+		balloon_alert(buckling_mob, "You don't feel worthy enough to sit in this chair")
+		return FALSE
+	if(buckling_x)
+		src.pixel_x = buckling_x
+	return ..()
+
+/obj/structure/bed/chair/dropship/doublewide/post_buckle_mob(mob/buckling_mob)
+	buckling_mob.pixel_x = buckling_x
+	buckling_mob.old_x = buckling_x
+	doublewide_mob_density(buckling_mob, TRUE)
+	return ..()
+
+/obj/structure/bed/chair/dropship/doublewide/post_unbuckle_mob(mob/buckled_mob)
+	buckled_mob.pixel_x = initial(buckled_mob.pixel_x)
+	buckled_mob.old_x = initial(buckled_mob.pixel_x)
+	doublewide_mob_density(buckled_mob, FALSE)
+	return ..()
+
+/// Handles checking the changing density for the person buckling or unbuckling and the person next to the buckling/unbuckling person
+/obj/structure/bed/chair/dropship/doublewide/proc/doublewide_mob_density(mob/interactionmob, buckling)
+	var/obj/structure/bed/chair/dropship/doublewide/other_doublewide = locate(/obj/structure/bed/chair/dropship/doublewide) in interactionmob.loc
+	var/mob/living/other_chair_buckled_mob
+	if(other_doublewide) //if there is another doublewide
+		if(LAZYLEN(other_doublewide.buckled_mobs) && (other_doublewide.buckled_mobs[1] != interactionmob))
+			other_chair_buckled_mob = other_doublewide.buckled_mobs[1]
+			if(buckling)
+				other_chair_buckled_mob.density = TRUE
+				interactionmob.density = TRUE
+				return
+			//if theyre unbuckling with and there is another buckled mob
+			other_chair_buckled_mob.density = FALSE
+			interactionmob.density = TRUE
+			return
+		if(buckling) //if theyre buckling with no other chairs
+			interactionmob.density = FALSE
+			return
+	//if there is no other doublewide or theyre unbuckling
+	interactionmob.density = TRUE
+
+/obj/structure/bed/chair/dropship/doublewide/left
+	pixel_x = -8
+	buckling_x = -8
+
+/obj/structure/bed/chair/dropship/doublewide/right
+	pixel_x = 9
+	buckling_x = 9
+
+/obj/structure/bed/chair/dropship/doublewide/left/alpha
+	name = "Alpha Squad Leader's Chair"
+	desc = "A chair specially reserved for the Alpha Squad Leader."
+	icon_state = "doublewide_chair_alpha"
+	chair_color = ALPHA_CHAIR
+	leader_chair = TRUE
+	max_integrity = 200
+
+/obj/structure/bed/chair/dropship/doublewide/right/bravo
+	name = "Bravo Squad Leader's Chair"
+	desc = "A chair specially reserved for the Bravo Squad Leader."
+	icon_state = "doublewide_chair_bravo"
+	chair_color = BRAVO_CHAIR
+	leader_chair = TRUE
+	max_integrity = 200
+
+/obj/structure/bed/chair/dropship/doublewide/left/charlie
+	name = "Charlie Squad Leader's Chair"
+	desc = "A chair specially reserved for the Charlie Squad Leader."
+	icon_state = "doublewide_chair_charlie"
+	chair_color = CHARLIE_CHAIR
+	leader_chair = TRUE
+	max_integrity = 200
+
+/obj/structure/bed/chair/dropship/doublewide/right/delta
+	name = "Delta Squad Leader's Chair"
+	desc = "A chair specially reserved for the Delta Squad Leader."
+	icon_state = "doublewide_chair_delta"
+	chair_color = DELTA_CHAIR
+	leader_chair = TRUE
+	max_integrity = 200
+
+/obj/structure/bed/chair/dropship/doublewide/fieldcommander
+	name = "Field Commander's Chair"
+	desc = "A chair specially reserved for the Field Commander."
+	icon_state = "doublewide_chair_fc"
+	chair_color = FC_CHAIR
+	leader_chair = TRUE
+	max_integrity = 200
 
 /obj/structure/bed/chair/ob_chair
 	name = "seat"

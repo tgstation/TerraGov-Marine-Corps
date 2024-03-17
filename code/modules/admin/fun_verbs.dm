@@ -82,7 +82,7 @@
 	for(var/mob/living/carbon/xenomorph/xenotorouny in GLOB.xeno_mob_list)
 		if(!isliving(xenotorouny))
 			return
-		xenotorouny.is_a_rouny = !xenotorouny.is_a_rouny
+		xenotorouny.xeno_flags ^= XENO_ROUNY
 
 
 /datum/admins/proc/hive_status()
@@ -665,7 +665,7 @@
 /proc/delayed_detonate_bomb_napalm(turf/impact)
 	impact.ceiling_debris_check(3)
 	explosion(impact, 2, 3, 4, 0, 6)
-	flame_radius(5, impact, 60, 30)
+	flame_radius(5, impact, 30, 60)
 
 
 /datum/admins/proc/drop_dynex_bomb()

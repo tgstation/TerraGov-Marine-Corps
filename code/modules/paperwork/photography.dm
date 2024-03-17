@@ -214,6 +214,8 @@
 
 /obj/item/camera/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/camera_film))
 		if(pictures_left)

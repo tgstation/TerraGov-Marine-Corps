@@ -105,22 +105,26 @@
 		user.visible_message(span_notice("You show the paper to [M]. "), \
 			span_notice(" [user] holds up a paper and shows it to [M]. "))
 		examine(M)
+		return
 
-	else if(user.zone_selected == "mouth") // lipstick wiping
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(H == user)
-				to_chat(user, span_notice("You wipe off the lipstick with [src]."))
-				H.lip_style = null
-				H.update_body()
-			else
-				user.visible_message(span_warning("[user] begins to wipe [H]'s lipstick off with \the [src]."), \
-									span_notice("You begin to wipe off [H]'s lipstick."))
-				if(do_after(user, 10, NONE, H, BUSY_ICON_FRIENDLY))
-					user.visible_message(span_notice("[user] wipes [H]'s lipstick off with \the [src]."), \
-										span_notice("You wipe off [H]'s lipstick."))
-					H.lip_style = null
-					H.update_body()
+	if(user.zone_selected == "mouth") // lipstick wiping
+		if(!ishuman(M))
+			return
+		var/mob/living/carbon/human/H = M
+		if(H == user)
+			to_chat(user, span_notice("You wipe off the lipstick with [src]."))
+			H.makeup_style = null
+			H.update_body()
+			return
+
+		user.visible_message(span_warning("[user] begins to wipe [H]'s lipstick off with \the [src]."), \
+							span_notice("You begin to wipe off [H]'s lipstick."))
+		if(!do_after(user, 10, NONE, H, BUSY_ICON_FRIENDLY))
+			return
+		user.visible_message(span_notice("[user] wipes [H]'s lipstick off with \the [src]."), \
+							span_notice("You wipe off [H]'s lipstick."))
+		H.makeup_style = null
+		H.update_body()
 
 /obj/item/paper/proc/addtofield(id, text, links = 0)
 	var/locid = 0
@@ -281,6 +285,8 @@
 
 /obj/item/paper/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/paper) || istype(I, /obj/item/photo))
 		if(istype(I, /obj/item/paper/carbon))

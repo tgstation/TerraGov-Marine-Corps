@@ -60,3 +60,8 @@
 	mid_sounds = list('sound/machines/creak.ogg'=1)
 	mid_length = 8
 	volume = 60
+
+/datum/looping_sound/scan_pulse
+	mid_sounds = list('sound/items/scan_pulse.wav' = 1)
+	mid_length = 5 SECONDS
+	volume = 60

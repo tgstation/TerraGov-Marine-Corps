@@ -125,7 +125,7 @@
 	if(ISDIAGONALDIR(direction))
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	if((root.dir != direction) && (root.dir != REVERSE_DIR(direction)))
-		root.setDir(direction) // tivi todo dupe on medium size kill me
+		root.setDir(direction)
 		if(isarmoredvehicle(root))
 			var/obj/vehicle/sealed/armored/armor = root
 			playsound(armor, armor.engine_sound, 100, TRUE, 20)
@@ -169,7 +169,7 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, proj)
 	return root.bullet_act(proj)
 
-/obj/hitbox/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+/obj/hitbox/take_damage(damage_amount, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	return root.take_damage(arglist(args))
 
 /obj/hitbox/ex_act(severity)

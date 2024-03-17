@@ -111,6 +111,8 @@
 
 /obj/structure/closet/bodybag/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/pen))
 		var/t = stripped_input(user, "What would you like the label to be?", name, null, MAX_MESSAGE_LEN)
@@ -204,15 +206,15 @@
 		icon_state = icon_opened
 
 
-/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 	if(opened)
 		return FALSE // stop xeno closing things
-	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	bodybag_occupant?.attack_alien(X)
+	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	bodybag_occupant?.attack_alien(xeno_attacker)
 	open()
-	X.visible_message(span_danger("\The [X] slashes \the [src] open!"), \
+	xeno_attacker.visible_message(span_danger("\The [xeno_attacker] slashes \the [src] open!"), \
 		span_danger("We slash \the [src] open!"), null, 5)
 	return TRUE
 

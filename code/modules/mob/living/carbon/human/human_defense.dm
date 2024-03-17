@@ -213,11 +213,6 @@ Contains most of the procs that are called when a mob is attacked by something
 	//Melee weapon embedded object code.
 	if(affecting.limb_status & LIMB_DESTROYED)
 		hit_report += "(delimbed [affecting.display_name])"
-	else if(I.damtype == BRUTE && !(HAS_TRAIT(I, TRAIT_NODROP) || (I.flags_item & DELONDROP)))
-		if (percentage_penetration && weapon_sharp && prob(I.embedding.embed_chance))
-			user.dropItemToGround(I, TRUE)
-			I.embed_into(src, affecting)
-			hit_report += "(embedded in [affecting.display_name])"
 
 	record_melee_damage(user, applied_damage, affecting.limb_status & LIMB_DESTROYED)
 	log_combat(user, src, "attacked", I, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)]) [hit_report.Join(" ")]")
@@ -302,11 +297,6 @@ Contains most of the procs that are called when a mob is attacked by something
 		apply_damage(applied_damage, thrown_item.damtype, zone, 0, is_sharp(thrown_item), has_edge(thrown_item), updating_health = TRUE)
 
 		hit_report += "(RAW DMG: [throw_damage])"
-
-		if(thrown_item.item_fire_stacks)
-			fire_stacks += thrown_item.item_fire_stacks
-			IgniteMob()
-			hit_report += "(set ablaze)"
 
 		//thrown weapon embedded object code.
 		if(affecting.limb_status & LIMB_DESTROYED)

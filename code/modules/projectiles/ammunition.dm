@@ -77,6 +77,8 @@
 
 /obj/item/ammo_magazine/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(!istype(I, /obj/item/ammo_magazine))
 		if(!CHECK_BITFIELD(flags_magazine, MAGAZINE_WORN) || !istype(I, /obj/item/weapon/gun) || loc != user)
 			return ..()
@@ -329,7 +331,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	pixel_y = rand(-2, 2)
 	icon_state = initial_icon_state += "[rand(1, number_of_states)]" //Set the icon to it.
 
-//This does most of the heavy lifting. It updates the icon and name if needed 
+//This does most of the heavy lifting. It updates the icon and name if needed
 
 /obj/item/ammo_casing/update_name(updates)
 	. = ..()
@@ -346,9 +348,9 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		var/base_direction = current_casings - (current_icon * 8)
 		setDir(base_direction + round(base_direction)/3)
 		switch(current_casings)
-			if(3 to 5) 
+			if(3 to 5)
 				w_class = WEIGHT_CLASS_SMALL //Slightly heavier.
-			if(9 to 10) 
+			if(9 to 10)
 				w_class = WEIGHT_CLASS_NORMAL //Can't put it in your pockets and stuff.
 
 ///changes .dir to simulate new casings, also sets the new w_class
@@ -356,9 +358,9 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/base_direction = current_casings - (current_icon * 8)
 	setDir(base_direction + round(base_direction)/3)
 	switch(current_casings)
-		if(3 to 5) 
+		if(3 to 5)
 			w_class = WEIGHT_CLASS_SMALL //Slightly heavier.
-		if(9 to 10) 
+		if(9 to 10)
 			w_class = WEIGHT_CLASS_NORMAL //Can't put it in your pockets and stuff.
 
 /obj/item/ammo_casing/update_icon()
@@ -412,6 +414,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/big_ammo_box/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = I
@@ -547,6 +551,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/shotgunbox/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!istype(I, /obj/item/ammo_magazine/handful))
 		return
