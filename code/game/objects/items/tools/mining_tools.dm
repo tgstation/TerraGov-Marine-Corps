@@ -7,8 +7,8 @@
 	name = "pickaxe"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "pickaxe"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 15
 	throwforce = 4
 	item_state = "pickaxe"
@@ -86,7 +86,7 @@
 	icon_state = "plasma_cutter_off"
 	item_state = "plasmacutter"
 	w_class = WEIGHT_CLASS_BULKY
-	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	force = 70
 	damtype = BURN
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction

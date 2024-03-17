@@ -10,7 +10,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	light_system = MOVABLE_LIGHT
 	allow_pass_flags = PASS_LOW_STRUCTURE
-	flags_atom = PREVENT_CONTENTS_EXPLOSION
+	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	resistance_flags = PROJECTILE_IMMUNE
 	move_resist = MOVE_FORCE_WEAK
 
@@ -37,21 +37,21 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/hitsound = null
 	var/w_class = WEIGHT_CLASS_NORMAL
-	var/flags_item = NONE	//flags for item stuff that isn't clothing/equipping specific.
-	var/flags_equip_slot = NONE		//This is used to determine on which slots an item can fit.
+	var/item_flags = NONE	//flags for item stuff that isn't clothing/equipping specific.
+	var/equip_slot_flags = NONE		//This is used to determine on which slots an item can fit.
 
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
-	var/flags_inventory = NONE //This flag is used for various clothing/equipment item stuff
-	var/flags_inv_hide = NONE //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
+	var/inventory_flags = NONE //This flag is used for various clothing/equipment item stuff
+	var/inv_hide_flags = NONE //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
 
 	var/obj/item/master = null
 
-	var/flags_armor_protection = NONE //see setup.dm for appropriate bit flags
-	var/flags_heat_protection = NONE //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
-	var/flags_cold_protection = NONE //flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
+	var/armor_protection_flags = NONE //see setup.dm for appropriate bit flags
+	var/heat_protection_flags = NONE //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
+	var/cold_protection_flags = NONE //flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
 
-	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by flags_heat_protection flags
-	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by flags_cold_protection flags
+	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by heat_protection_flags flags
+	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by cold_protection_flags flags
 
 	///list of /datum/action's that this item has.
 	var/list/actions
@@ -124,7 +124,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	///Worn inhand overlay will be shifted by this along y axis
 	var/inhand_y_offset = 0
 
-	var/flags_item_map_variant = NONE
+	var/item_map_variant_flags = NONE
 
 	//TOOL RELATED VARS
 	var/tool_behaviour = FALSE
@@ -169,7 +169,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	else if(islist(embedding))
 		embedding = getEmbeddingBehavior(arglist(embedding))
 
-	if(flags_item_map_variant)
+	if(item_map_variant_flags)
 		update_item_sprites()
 
 	if(current_variant)
@@ -191,7 +191,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	return
 
 /obj/item/proc/update_item_state(mob/user)
-	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
+	item_state = "[initial(icon_state)][item_flags & WIELDED ? "_w" : ""]"
 
 
 //user: The mob that is suiciding
@@ -342,9 +342,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 // apparently called whenever an item is removed from a slot, container, or anything else.
 //the call happens after the item's potential loc change.
 /obj/item/proc/dropped(mob/user)
-	if((flags_item & DELONDROP) && !QDELETED(src))
+	if((item_flags & DELONDROP) && !QDELETED(src))
 		qdel(src)
-	flags_item &= ~IN_INVENTORY
+	item_flags &= ~IN_INVENTORY
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
 
 ///Called whenever an item is unequipped to a new loc (IE, not when the item ends up in the hands)
@@ -375,7 +375,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 			limb_count++
 		UPDATEHEALTH(H)
 		QDEL_NULL(current_acid)
-	flags_item |= IN_INVENTORY
+	item_flags |= IN_INVENTORY
 	return
 
 ///Called to return an item to equip using the quick equip hotkey. Base proc returns the item itself, overridden for storage behavior.
@@ -407,8 +407,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	SHOULD_CALL_PARENT(TRUE) // no exceptions
 	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
 
-	var/equipped_to_slot = flags_equip_slot & slotdefine2slotbit(slot)
-	if(equipped_to_slot) // flags_equip_slot is a bitfield
+	var/equipped_to_slot = equip_slot_flags & slotdefine2slotbit(slot)
+	if(equipped_to_slot) // equip_slot_flags is a bitfield
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_TO_SLOT, user, slot)
 	else
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, user, slot)
@@ -417,17 +417,17 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		if(item_action_slot_check(user, slot)) //some items only give their actions buttons when in a specific slot.
 			A.give_action(user)
 
-	flags_item |= IN_INVENTORY
+	item_flags |= IN_INVENTORY
 
 	if(!equipped_to_slot)
 		return
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
-		if(flags_armor_protection)
+		if(armor_protection_flags)
 			human_user.add_limb_armor(src)
 		if(slowdown)
-			human_user.add_movespeed_modifier(type, TRUE, 0, (flags_item & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE, TRUE, slowdown)
+			human_user.add_movespeed_modifier(type, TRUE, 0, (item_flags & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE, TRUE, slowdown)
 
 
 ///Called when an item is removed from an equipment slot. The loc should still be in the unequipper.
@@ -435,7 +435,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNEQUIPPED, unequipper, slot)
 
-	var/equipped_from_slot = flags_equip_slot & slotdefine2slotbit(slot)
+	var/equipped_from_slot = equip_slot_flags & slotdefine2slotbit(slot)
 
 	for(var/datum/action/A AS in actions)
 		A.remove_action(unequipper)
@@ -445,7 +445,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	if(ishuman(unequipper))
 		var/mob/living/carbon/human/human_unequipper = unequipper
-		if(flags_armor_protection)
+		if(armor_protection_flags)
 			human_unequipper.remove_limb_armor(src)
 		if(slowdown)
 			human_unequipper.remove_movespeed_modifier(type)
@@ -467,12 +467,12 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 ///Used to enable/disable an item's bump attack. Grouped in a proc to make sure the signal or flags aren't missed
 /obj/item/proc/toggle_item_bump_attack(mob/user, enable_bump_attack)
 	SEND_SIGNAL(user, COMSIG_ITEM_TOGGLE_BUMP_ATTACK, enable_bump_attack)
-	if(flags_item & CAN_BUMP_ATTACK && enable_bump_attack)
+	if(item_flags & CAN_BUMP_ATTACK && enable_bump_attack)
 		return
 	if(enable_bump_attack)
-		flags_item |= CAN_BUMP_ATTACK
+		item_flags |= CAN_BUMP_ATTACK
 		return
-	flags_item &= ~CAN_BUMP_ATTACK
+	item_flags &= ~CAN_BUMP_ATTACK
 
 /**
  * The mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
@@ -509,7 +509,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		if(!is_type_in_list(H.species, species_exception))
 			return FALSE
 
-	if(issynth(H) && CHECK_BITFIELD(flags_item, SYNTH_RESTRICTED) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+	if(issynth(H) && CHECK_BITFIELD(item_flags, SYNTH_RESTRICTED) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(H, span_warning("Your programming prevents you from wearing this."))
 		return FALSE
 
@@ -658,7 +658,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 			return FALSE //Unsupported slot
 
 	if(equip_to_slot)
-		if(!(flags_equip_slot & slotdefine2slotbit(slot)))
+		if(!(equip_slot_flags & slotdefine2slotbit(slot)))
 			return FALSE
 		return TRUE
 
@@ -697,7 +697,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 /obj/item/proc/update_item_sprites()
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
 		if(MAP_ARMOR_STYLE_JUNGLE)
-			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
+			if(item_map_variant_flags & ITEM_JUNGLE_VARIANT)
 				if(colorable_allowed & PRESET_COLORS_ALLOWED)
 					greyscale_colors = ARMOR_PALETTE_DRAB
 				else if(colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
@@ -706,7 +706,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 					icon_state = "m_[icon_state]"
 					item_state = "m_[item_state]"
 		if(MAP_ARMOR_STYLE_ICE)
-			if(flags_item_map_variant & ITEM_ICE_VARIANT)
+			if(item_map_variant_flags & ITEM_ICE_VARIANT)
 				if(colorable_allowed & PRESET_COLORS_ALLOWED)
 					greyscale_colors = ARMOR_PALETTE_SNOW
 				else if(colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
@@ -715,7 +715,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 					icon_state = "s_[icon_state]"
 					item_state = "s_[item_state]"
 		if(MAP_ARMOR_STYLE_PRISON)
-			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
+			if(item_map_variant_flags & ITEM_PRISON_VARIANT)
 				if(colorable_allowed & PRESET_COLORS_ALLOWED)
 					greyscale_colors = ARMOR_PALETTE_BLACK
 				else if(colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
@@ -724,13 +724,13 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 					icon_state = "k_[icon_state]"
 					item_state = "k_[item_state]"
 		if(MAP_ARMOR_STYLE_DESERT)
-			if(flags_item_map_variant & ITEM_DESERT_VARIANT)
+			if(item_map_variant_flags & ITEM_DESERT_VARIANT)
 				if(colorable_allowed & PRESET_COLORS_ALLOWED)
 					greyscale_colors = ARMOR_PALETTE_DESERT
 				else if(colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
 					current_variant = DESERT_VARIANT
 
-	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD] && (flags_item_map_variant & ITEM_ICE_PROTECTION))
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD] && (item_map_variant_flags & ITEM_ICE_PROTECTION))
 		min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 	if(!greyscale_colors)
@@ -841,7 +841,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	set category = "Object"
 
 	var/obj/item/I = get_active_held_item()
-	if(I && !(I.flags_item & ITEM_ABSTRACT))
+	if(I && !(I.item_flags & ITEM_ABSTRACT))
 		visible_message("[src] holds up [I]. <a HREF=?src=[REF(usr)];lookitem=[REF(I)]>Take a closer look.</a>")
 
 /*
@@ -1386,9 +1386,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///Handles registering if an item is flagged as deployed or not
 /obj/item/proc/toggle_deployment_flag(deployed)
 	if(deployed)
-		ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
+		ENABLE_BITFIELD(item_flags, IS_DEPLOYED)
 	else
-		DISABLE_BITFIELD(flags_item, IS_DEPLOYED)
+		DISABLE_BITFIELD(item_flags, IS_DEPLOYED)
 
 ///Called by vendors when vending an item. Allows the item to specify what happens when it is given to the player.
 /obj/item/proc/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)

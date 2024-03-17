@@ -191,7 +191,7 @@
 	return ..()
 
 /obj/item/proc/store_in_cryo()
-	if(is_type_in_typecache(src, GLOB.do_not_preserve) || HAS_TRAIT(src, TRAIT_NODROP) || (flags_item & (ITEM_ABSTRACT|DELONDROP)))
+	if(is_type_in_typecache(src, GLOB.do_not_preserve) || HAS_TRAIT(src, TRAIT_NODROP) || (item_flags & (ITEM_ABSTRACT|DELONDROP)))
 		if(!QDELETED(src))
 			qdel(src)
 		return

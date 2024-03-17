@@ -388,12 +388,12 @@
 			user.visible_message("[user] tightens the bolts securing \the [src] to the floor.", "You tighten the bolts securing \the [src] to the floor.")
 			var/turf/current_turf = get_turf(src)
 			if(current_turf && density)
-				current_turf.flags_atom |= AI_BLOCKED
+				current_turf.atom_flags |= AI_BLOCKED
 		else
 			user.visible_message("[user] unfastens the bolts securing \the [src] to the floor.", "You unfasten the bolts securing \the [src] to the floor.")
 			var/turf/current_turf = get_turf(src)
 			if(current_turf && density)
-				current_turf.flags_atom &= ~AI_BLOCKED
+				current_turf.atom_flags &= ~AI_BLOCKED
 	else if(isitem(I))
 		var/obj/item/to_stock = I
 		stock(to_stock, user)
@@ -668,7 +668,7 @@
 	//More accurate comparison between absolute paths.
 	if(isstorage(item_to_stock)) //Nice try, specialists/engis
 		var/obj/item/storage/storage_to_stock = item_to_stock
-		if(!(storage_to_stock.flags_storage & BYPASS_VENDOR_CHECK)) //If your storage has this flag, it can be restocked
+		if(!(storage_to_stock.storage_flags & BYPASS_VENDOR_CHECK)) //If your storage has this flag, it can be restocked
 			display_message_and_visuals(user, show_feedback, "Can't restock containers!", VENDING_RESTOCK_DENY)
 			return FALSE
 
@@ -725,7 +725,7 @@
 	// At this point the item is guaranteed to be accepted into the vending machine
 
 	if(item_to_stock.loc == user) //Inside the mob's inventory
-		if(item_to_stock.flags_item & WIELDED)
+		if(item_to_stock.item_flags & WIELDED)
 			item_to_stock.unwield(user)
 		user.transferItemToLoc(item_to_stock, src)
 

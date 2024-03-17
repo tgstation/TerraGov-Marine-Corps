@@ -211,7 +211,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "req_tablet_off"
 	req_access = list(ACCESS_MARINE_CARGO)
-	flags_equip_slot = ITEM_SLOT_POCKET
+	equip_slot_flags = ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_NORMAL
 	var/datum/supply_ui/SU
 	///Id of the shuttle controlled

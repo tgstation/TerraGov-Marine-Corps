@@ -4,7 +4,7 @@
 	appearance_flags = TILE_BOUND
 	var/level = 2
 
-	var/flags_atom = NONE
+	var/atom_flags = NONE
 	var/datum/reagents/reagents = null
 
 	var/list/fingerprints
@@ -415,7 +415,7 @@ directive is properly returned.
  * Default behaviour is to call [contents_explosion][/atom/proc/contents_explosion] and send the [COMSIG_ATOM_EX_ACT] signal
  */
 /atom/proc/ex_act(severity, epicenter_dist, impact_range)
-	if(!(flags_atom & PREVENT_CONTENTS_EXPLOSION))
+	if(!(atom_flags & PREVENT_CONTENTS_EXPLOSION))
 		contents_explosion(severity, epicenter_dist, impact_range)
 	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, epicenter_dist, impact_range)
 
@@ -628,9 +628,9 @@ directive is properly returned.
 /atom/proc/Initialize(mapload, ...)
 	SHOULD_CALL_PARENT(TRUE)
 	SHOULD_NOT_SLEEP(TRUE)
-	if(flags_atom & INITIALIZED)
+	if(atom_flags & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
-	flags_atom |= INITIALIZED
+	atom_flags |= INITIALIZED
 
 	update_greyscale()
 

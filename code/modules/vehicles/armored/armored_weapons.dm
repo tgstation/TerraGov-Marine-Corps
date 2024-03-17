@@ -165,7 +165,7 @@
 	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
 	if(chassis.hitbox?.tank_desants)
 		projectile_to_fire.hit_atoms += chassis.hitbox.tank_desants
-	if((projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF) && ishuman(firer))
+	if((projectile_to_fire.ammo.ammo_behavior_flags & AMMO_IFF) && ishuman(firer))
 		var/mob/living/carbon/human/human_firer = firer
 		var/obj/item/card/id/id = human_firer.get_idcard()
 		projectile_to_fire.iff_signal = id?.iff_signal
@@ -187,7 +187,7 @@
 		chassis.add_overlay(chassis.secondary_weapon_overlay)
 
 
-	var/type_to_spawn = CHECK_BITFIELD(initial(ammo.default_ammo.flags_ammo_behavior), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
+	var/type_to_spawn = CHECK_BITFIELD(initial(ammo.default_ammo.ammo_behavior_flags), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
 	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammo.default_ammo.hitscan_effect_icon))
 	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammo.default_ammo])
 

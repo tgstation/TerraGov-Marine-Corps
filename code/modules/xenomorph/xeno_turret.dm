@@ -121,7 +121,7 @@
 		SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT)
 
 /obj/structure/xeno/xeno_turret/attackby(obj/item/I, mob/living/user, params)
-	if(I.flags_item & NOBLUDGEON || !isliving(user))
+	if(I.item_flags & NOBLUDGEON || !isliving(user))
 		return attack_hand(user)
 
 	user.changeNext_move(I.attack_speed)

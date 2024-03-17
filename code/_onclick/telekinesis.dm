@@ -84,7 +84,7 @@ Redefine as needed.
 	desc = "Magic"
 	icon = 'icons/obj/magic.dmi'
 	icon_state = "2"
-	flags_item = NOBLUDGEON | ITEM_ABSTRACT | DELONDROP
+	item_flags = NOBLUDGEON | ITEM_ABSTRACT | DELONDROP
 	w_class = WEIGHT_CLASS_GIGANTIC
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE

@@ -49,7 +49,7 @@
 	for(var/obj/stuff_in_turf in to_turf)
 		if(!stuff_in_turf.opacity)
 			continue
-		if(!CHECK_BITFIELD(stuff_in_turf.flags_atom, ON_BORDER))
+		if(!CHECK_BITFIELD(stuff_in_turf.atom_flags, ON_BORDER))
 			return FALSE
 		if(ISDIAGONALDIR(stuff_in_turf.dir))
 			return FALSE

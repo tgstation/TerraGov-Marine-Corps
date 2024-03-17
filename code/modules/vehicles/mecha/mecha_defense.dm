@@ -81,7 +81,7 @@
 	log_message("Affected by explosion of severity: [severity].", LOG_MECHA, color="red")
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
-	if(!(flags_atom & PREVENT_CONTENTS_EXPLOSION))
+	if(!(atom_flags & PREVENT_CONTENTS_EXPLOSION))
 		contents_explosion(severity)
 	if(QDELETED(src))
 		return

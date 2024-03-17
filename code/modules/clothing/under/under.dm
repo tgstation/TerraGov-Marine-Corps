@@ -6,11 +6,11 @@
 		slot_r_hand_str = 'icons/mob/inhands/clothing/uniforms_right.dmi',
 	)
 	name = "under"
-	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
-	flags_heat_protection = CHEST|GROIN|LEGS|ARMS
+	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
+	cold_protection_flags = CHEST|GROIN|LEGS|ARMS
+	heat_protection_flags = CHEST|GROIN|LEGS|ARMS
 	permeability_coefficient = 0.90
-	flags_equip_slot = ITEM_SLOT_ICLOTHING
+	equip_slot_flags = ITEM_SLOT_ICLOTHING
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	w_class = WEIGHT_CLASS_BULKY
 	blood_sprite_state = "uniformblood"

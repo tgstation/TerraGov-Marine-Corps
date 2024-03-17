@@ -16,7 +16,7 @@
 	charge_overlay = "m43"
 	var/reload_delay = 0
 	///Magazine flags.
-	var/flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER
+	var/magazine_features_flags = MAGAZINE_REFUND_IN_CHAMBER
 	///if the magazine has a special overlay associated with it, i.e. extended mags etc
 	var/bonus_overlay = null
 
@@ -114,9 +114,9 @@
 	)
 	icon_state = "volkite_powerpack"
 	charge_overlay = null
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BACK
-	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BACK
+	magazine_features_flags = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_HUGE
 	slowdown = 0.2
 	maxcharge = 3000
@@ -193,9 +193,9 @@
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "lasgun_pouch"
 	charge_overlay = "lasgun_cell"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_POCKET
-	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_POCKET
+	magazine_features_flags = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_BULKY
 	slowdown = 0
 	maxcharge = 2400
@@ -209,8 +209,8 @@
 	icon_state = "marine_plaspack"
 	icon_state_mini = "mag_plasma"
 	charge_overlay = null
-	flags_equip_slot = ITEM_SLOT_BACK
-	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
+	equip_slot_flags = ITEM_SLOT_BACK
+	magazine_features_flags = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_HUGE
 	maxcharge = 1000
 	reload_delay = 0.25 SECONDS
@@ -234,6 +234,6 @@
 	maxcharge = 250
 	cell_type = /obj/item/cell/lasgun/plasma_powerpack
 	self_recharge = FALSE
-	flags_equip_slot = ITEM_SLOT_BACK
-	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER
+	equip_slot_flags = ITEM_SLOT_BACK
+	magazine_features_flags = MAGAZINE_REFUND_IN_CHAMBER
 	w_class = WEIGHT_CLASS_NORMAL

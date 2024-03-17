@@ -396,7 +396,7 @@
 		return
 	if(CHECK_BITFIELD(internal_gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && length(internal_gun.chamber_items))
 		INVOKE_ASYNC(internal_gun, TYPE_PROC_REF(/obj/item/weapon/gun, do_unique_action))
-	if(!CHECK_BITFIELD(internal_gun.flags_item, IS_DEPLOYED) || get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
+	if(!CHECK_BITFIELD(internal_gun.item_flags, IS_DEPLOYED) || get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
 		internal_gun.stop_fire()
 		firing = FALSE
 		update_minimap_icon()
@@ -542,7 +542,7 @@
 	var/obj/item/item = get_internal_item()
 	if(!item)
 		return
-	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
+	if(CHECK_BITFIELD(item.item_flags, DEPLOYED_NO_PICKUP))
 		balloon_alert(user, "Cannot disassemble")
 		return
 	if(!match_iff(user)) //You can't steal other faction's turrets
@@ -560,7 +560,7 @@
 		set_on(TRUE)
 		return
 
-	DISABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
+	DISABLE_BITFIELD(attached_item.item_flags, IS_DEPLOYED)
 
 	attached_item.reset()
 	user.unset_interaction()
