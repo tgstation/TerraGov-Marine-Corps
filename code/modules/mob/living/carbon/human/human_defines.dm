@@ -196,7 +196,6 @@
  * proc that resuscitates a human, separated because it's better this way
  *
  * intended to be called by defibrillators
- *
  */
 /mob/living/carbon/human/proc/resuscitate()
 	updatehealth() // so they don't die instantly
@@ -226,7 +225,7 @@
 	if(head.limb_status & LIMB_DESTROYED)
 		return DEFIB_FAIL_DECAPITATED
 
-	if((dead_ticks > TIME_BEFORE_DNR) && !issynth(src)) // synthetics never expire
+	if((dead_ticks > TIME_BEFORE_DNR) && !issynth(src) || HAS_TRAIT(src, TRAIT_UNDEFIBBABLE)) // synthetics never expire
 		return DEFIB_FAIL_BRAINDEAD
 
 	if(!client) // no client at all

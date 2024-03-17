@@ -152,7 +152,3 @@
 	maxcharge = 500
 	w_class = WEIGHT_CLASS_TINY
 	charge_overlay = ""
-
-/obj/item/cell/defibrillator
-	name = "defibrillator power cell"
-	maxcharge = 1320

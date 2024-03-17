@@ -345,7 +345,7 @@
 
 /obj/item/clothing/gloves/defibrillator
 	name = "advanced medical combat gloves"
-	desc = "Advanced medical gloves, these include small electrodes to defibrilate a patient No more bulky units!"
+	desc = "Advanced medical gauntlets with small electrodes to resuscitate patients without a bulky unit."
 	icon_state = "defib_out_full"
 	item_state = "defib_gloves"
 	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
@@ -393,3 +393,11 @@
 		return
 	if(istype(user) && istype(target))
 		INVOKE_ASYNC(internal_defib, TYPE_PROC_REF(/obj/item/defibrillator, defibrillate), target, user)
+
+#undef DOAFTER_FAIL_STRING
+#undef FAIL_REASON_TISSUE
+#undef FAIL_REASON_ORGANS
+#undef FAIL_REASON_DECAPITATED
+#undef FAIL_REASON_BRAINDEAD
+#undef FAIL_REASON_DNR
+#undef FAIL_REASON_SOUL
