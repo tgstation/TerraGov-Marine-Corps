@@ -144,6 +144,7 @@
 	op_name_hostile = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 
 	load_mission_brief() //late loaded so we can ref the specific factions etc
+	set_loot_tables()
 
 /datum/campaign_mission/Destroy(force, ...)
 	STOP_PROCESSING(SSslowprocess, src)
@@ -156,6 +157,22 @@
 		return
 	end_mission()
 	return PROCESS_KILL
+
+///Sets up the loot tables for this mission, if required
+/datum/campaign_mission/proc/set_loot_tables()
+	if(starting_faction == FACTION_TERRAGOV)
+		major_victory_reward_table = campaign_tgmc_major_loot
+		minor_victory_reward_table = campaign_tgmc_minor_loot
+	else if(starting_faction == FACTION_SOM)
+		major_victory_reward_table = campaign_som_major_loot
+		minor_victory_reward_table = campaign_som_minor_loot
+
+	if(hostile_faction == FACTION_TERRAGOV)
+		minor_loss_reward_table = campaign_tgmc_minor_loot
+		major_loss_reward_table = campaign_tgmc_major_loot
+	else if(hostile_faction == FACTION_SOM)
+		minor_loss_reward_table = campaign_som_minor_loot
+		major_loss_reward_table = campaign_som_major_loot
 
 ///Sets up the mission once it has been selected
 /datum/campaign_mission/proc/load_mission()
