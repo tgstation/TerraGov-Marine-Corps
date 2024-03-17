@@ -420,8 +420,6 @@
 	var/chair_color = NO_CHAIR_COLOR
 	/// If the chair can only be sat in by a leader or not
 	var/leader_chair = FALSE
-	/// pixel x shift to give to the buckled mob
-	var/buckling_x = 0
 
 /obj/structure/bed/chair/dropship/doublewide/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)

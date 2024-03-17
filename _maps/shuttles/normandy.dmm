@@ -19,9 +19,8 @@
 	ceiling = 2
 	})
 "cW" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
+/obj/structure/bed/chair/dropship/doublewide/left,
+/obj/structure/bed/chair/dropship/doublewide/right,
 /turf/open/shuttle/dropship/seven,
 /area/shuttle/dropship/normandy{
 	ceiling = 2
@@ -125,18 +124,16 @@
 /obj/machinery/camera/autoname/mainship/dropship_two{
 	dir = 8
 	},
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
+/obj/structure/bed/chair/dropship/doublewide/left,
+/obj/structure/bed/chair/dropship/doublewide/right,
 /turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/normandy{
 	ceiling = 2
 	})
 "oB" = (
 /obj/item/radio/intercom/dropship/normandy,
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
+/obj/structure/bed/chair/dropship/doublewide/left,
+/obj/structure/bed/chair/dropship/doublewide/right,
 /turf/open/shuttle/dropship/six,
 /area/shuttle/dropship/normandy{
 	ceiling = 2
@@ -161,6 +158,7 @@
 	ceiling = 2
 	})
 "rG" = (
+/obj/machinery/vending/MarineMed,
 /turf/closed/shuttle/dropship2/edge{
 	dir = 1
 	},
@@ -298,6 +296,13 @@
 /turf/closed/shuttle/dropship2/engineone/alt{
 	dir = 1
 	},
+/area/shuttle/dropship/normandy{
+	ceiling = 2
+	})
+"Dl" = (
+/obj/structure/bed/chair/dropship/doublewide/left,
+/obj/structure/bed/chair/dropship/doublewide/right,
+/turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/normandy{
 	ceiling = 2
 	})
@@ -499,6 +504,14 @@
 /area/shuttle/dropship/normandy{
 	ceiling = 2
 	})
+"YI" = (
+/obj/machinery/vending/weapon,
+/turf/closed/shuttle/dropship2/edge{
+	dir = 1
+	},
+/area/shuttle/dropship/normandy{
+	ceiling = 2
+	})
 "Zp" = (
 /turf/template_noop,
 /area/template_noop)
@@ -571,7 +584,7 @@ Fn
 Js
 rG
 oB
-nu
+Dl
 eY
 fJ
 SV
@@ -599,7 +612,7 @@ Ph
 hz
 pB
 cK
-rG
+YI
 cW
 oe
 eY

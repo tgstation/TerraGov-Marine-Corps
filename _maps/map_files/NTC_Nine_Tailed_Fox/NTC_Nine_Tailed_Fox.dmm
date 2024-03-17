@@ -489,6 +489,11 @@
 /obj/machinery/door/poddoor/mainship,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hull/upper_hull)
+"aBF" = (
+/turf/open/floor/mainship/black{
+	dir = 6
+	},
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "aBL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -1546,6 +1551,16 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
+"bry" = (
+/obj/machinery/door_control/mainship/mech{
+	dir = 1;
+	id = "veh_shutters";
+	name = "Vehicle Shutter"
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "brC" = (
 /turf/open/floor/wood,
 /area/mainship/hallways/port_hallway{
@@ -1557,6 +1572,13 @@
 	dir = 9
 	},
 /area/mainship/ntf/fcroom)
+"brS" = (
+/obj/machinery/door/poddoor/mainship/mech{
+	id = "veh_shutters";
+	name = "\improper Vehicle Shutters"
+	},
+/turf/open/floor/mainship/black,
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "brX" = (
 /turf/open/floor/plating,
 /area/mainship/squads/req)
@@ -3973,6 +3995,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
+"dzM" = (
+/obj/machinery/light/mainship,
+/turf/open/floor/mainship/black{
+	dir = 10
+	},
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "dAy" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/firstaid/rad,
@@ -4573,6 +4601,12 @@
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
 	})
+"efA" = (
+/obj/machinery/computer/mech_builder,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "efM" = (
 /obj/structure/bed/stool,
 /turf/open/floor/wood,
@@ -4989,6 +5023,19 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
+"eCr" = (
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/door/poddoor/mainship/mech{
+	id = "veh_shutters";
+	name = "\improper Vehicle Shutters"
+	},
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "eEo" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/grass,
@@ -5168,6 +5215,13 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/living/basketball)
+"eON" = (
+/obj/machinery/power/apc/mainship,
+/obj/structure/cable,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "eOP" = (
 /obj/structure/lattice,
 /turf/closed/shuttle/ert{
@@ -6356,6 +6410,16 @@
 	name = "Captain's Room";
 	outside = 0
 	})
+"fOr" = (
+/obj/machinery/landinglight/alamo{
+	dir = 8;
+	id = "normandy"
+	},
+/obj/machinery/landinglight/alamo{
+	id = "normandy"
+	},
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "fOv" = (
 /obj/machinery/light{
 	dir = 8
@@ -6869,6 +6933,11 @@
 /obj/structure/sign/fixedinplace/evac,
 /turf/closed/wall/mainship,
 /area/mainship/command/telecomms)
+"gjl" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "gjt" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/bed/stool{
@@ -7486,6 +7555,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
+"gQx" = (
+/obj/structure/largecrate/supply/supplies/mre,
+/obj/structure/largecrate/supply/supplies/flares,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "gQG" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 5
@@ -9323,6 +9397,7 @@
 "izY" = (
 /obj/machinery/light,
 /obj/effect/ai_node,
+/obj/structure/largecrate/supply/weapons/standard_smg,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "iAi" = (
@@ -9384,6 +9459,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
+"iCv" = (
+/obj/machinery/light/mainship,
+/turf/open/floor/plating/icefloor/warnplate,
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "iCy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9948,6 +10027,12 @@
 /obj/machinery/marine_selector/clothes/smartgun,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
+"jaF" = (
+/obj/machinery/door/airlock/mainship/generic/mech_pilot/bunk{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "jaO" = (
 /turf/closed/shuttle/ert{
 	icon_state = "leftengine_2";
@@ -10464,15 +10549,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "jFo" = (
-/obj/structure/bed/bunkbed,
-/obj/effect/landmark/start/job/squadmarine,
-/obj/effect/landmark/start/job/squadmarine,
-/obj/item/trash/barcardine,
-/obj/machinery/firealarm{
-	dir = 8
+/turf/open/floor/mainship/black{
+	dir = 5
 	},
-/turf/open/floor/wood,
-/area/mainship/living/cryo_cells)
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "jFp" = (
 /obj/structure/largecrate/supply/supplies/sandbags,
 /turf/open/floor/mainship/orange/full,
@@ -10871,6 +10951,11 @@
 	dir = 4
 	},
 /area/mainship/squads/req)
+"jVG" = (
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "jVP" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -11697,9 +11782,12 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "kHA" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
+/obj/machinery/door/poddoor/mainship/mech{
+	id = "veh_shutters";
+	name = "\improper Vehicle Shutters"
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "kHD" = (
 /obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/mainship/cargo,
@@ -12816,6 +12904,11 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
 /area/mainship/living/officer_study)
+"lyP" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
+	},
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "lyQ" = (
 /obj/machinery/cloning/vats,
 /turf/open/floor/mainship/sterile/side{
@@ -13918,10 +14011,8 @@
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/operating_room_one)
 "mvq" = (
-/obj/item/minelayer,
-/obj/item/minelayer,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
+/turf/closed/wall/mainship,
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "mvu" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -13975,6 +14066,12 @@
 /obj/structure/closet/secure_closet/guncabinet/mp_armory,
 /turf/open/floor/mainship/cargo,
 /area/mainship/groundhq/ntf/shipboard/brig)
+"mxI" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "mxL" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -14970,6 +15067,11 @@
 	static_lighting = 1;
 	base_lighting_alpha = 0
 	})
+"nBn" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "nBV" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 6
@@ -16393,6 +16495,13 @@
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
 	})
+"oNQ" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "oOa" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -17055,9 +17164,8 @@
 	name = "Shipside Corpsec Office"
 	})
 "pyy" = (
-/obj/structure/largecrate/supply/explosives,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
+/turf/open/floor/plating/icefloor/warnplate,
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "pyC" = (
 /obj/machinery/door_control/mainship/ammo{
 	id = "lowercargohold2";
@@ -18754,6 +18862,11 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
+"rci" = (
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "rcw" = (
 /obj/structure/bed/chair/wood/wings,
 /obj/effect/ai_node,
@@ -18930,9 +19043,8 @@
 	},
 /area/mainship/ntf/fcroom)
 "rnH" = (
-/obj/structure/largecrate/supply/weapons/standard_smg,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
+/turf/open/floor/plating,
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "roa" = (
 /obj/structure/largecrate/guns,
 /turf/open/floor/mainship/cargo,
@@ -20374,6 +20486,10 @@
 /obj/machinery/door/window/secure/bridge,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
+"sKH" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "sKQ" = (
 /obj/structure/sign/fixedinplace/command{
 	dir = 1;
@@ -24415,12 +24531,8 @@
 /turf/open/space/basic,
 /area/mainship/hull/upper_hull)
 "wAI" = (
-/obj/structure/bed/bunkbed,
-/obj/effect/landmark/start/job/squadmarine,
-/obj/effect/landmark/start/job/squadmarine,
-/obj/item/trash/barcardine,
-/turf/open/floor/wood,
-/area/mainship/living/cryo_cells)
+/turf/closed/wall/mainship/outer,
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "wAM" = (
 /obj/machinery/power/geothermal,
 /obj/structure/cable,
@@ -24593,16 +24705,11 @@
 	},
 /area/mainship/living/chapel)
 "wMc" = (
-/obj/machinery/floodlight/landing,
-/obj/machinery/landinglight/alamo{
-	dir = 8;
-	id = "normandy"
+/obj/structure/cable,
+/turf/open/floor/mainship/black{
+	dir = 1
 	},
-/obj/machinery/landinglight/alamo{
-	id = "normandy"
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "wMn" = (
 /obj/machinery/light{
 	dir = 8
@@ -24892,6 +24999,11 @@
 /obj/structure/ship_ammo/cas/minirocket,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
+"wXc" = (
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/mainship/floor,
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "wXe" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/cargo,
@@ -24970,13 +25082,11 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "wZr" = (
-/obj/machinery/light/small{
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black{
 	dir = 8
 	},
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hull/upper_hull)
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "wZy" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship/black{
@@ -25695,6 +25805,13 @@
 /obj/machinery/computer/camera_advanced/remote_fob,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"xEv" = (
+/obj/machinery/vending/nanomed,
+/obj/structure/cable,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "xEE" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -25803,6 +25920,11 @@
 	},
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/squads/general)
+"xLn" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/mainship/groundhq/ntf/living/tankerbunks)
 "xLz" = (
 /obj/machinery/suit_storage_unit/carbon_unit,
 /turf/open/floor/mainship/mono,
@@ -26269,6 +26391,8 @@
 	pixel_x = -15;
 	dir = 4
 	},
+/obj/item/minelayer,
+/obj/item/minelayer,
 /turf/closed/wall/mainship,
 /area/mainship/hallways/hangar)
 "ylS" = (
@@ -32941,11 +33065,11 @@ iSM
 iSM
 iSM
 iSM
-iSM
-iSM
-wZr
 idg
-usb
+mxI
+wZr
+jVG
+dzM
 oJY
 dar
 nwr
@@ -33183,12 +33307,12 @@ dgq
 aMa
 aMa
 aMa
+mvq
+wMc
+nBn
+efA
+oNQ
 aMa
-aMa
-aMa
-aMa
-tIk
-oJY
 knB
 nwr
 nKd
@@ -33422,15 +33546,15 @@ tIk
 tIk
 tIk
 tIk
-tIk
+usb
 aCV
 tIk
-hht
-tIk
-tIk
-tIk
-tIk
-eOY
+jaF
+wXc
+gjl
+sKH
+iCv
+mvq
 tsF
 wAz
 nKd
@@ -33657,8 +33781,6 @@ jrG
 jrG
 jrG
 jrG
-jrG
-jrG
 pQx
 iGE
 iGE
@@ -33668,11 +33790,13 @@ vyc
 jrG
 jrG
 jrG
+fOr
+mvq
 wMc
-tIk
-kEG
-qmM
-eOY
+gjl
+rnH
+pyy
+mvq
 jaO
 mqa
 nKd
@@ -33894,8 +34018,6 @@ leX
 pin
 pin
 pin
-pin
-pin
 eUf
 jZf
 jZf
@@ -33911,10 +34033,12 @@ pin
 pin
 pin
 mFP
-tIk
-kEG
+mvq
+xEv
+gjl
+rnH
 pyy
-eOY
+mvq
 sbM
 eOP
 nKd
@@ -34136,8 +34260,6 @@ leX
 pin
 pin
 pin
-pin
-pin
 bVA
 pin
 pin
@@ -34153,10 +34275,12 @@ lRY
 pin
 pin
 mFP
-tIk
+mvq
+wMc
+gjl
 rnH
 pyy
-eOY
+mvq
 knB
 wAz
 nKd
@@ -34375,8 +34499,6 @@ vTo
 aMa
 dnc
 leX
-pin
-pin
 eUf
 jZf
 jZf
@@ -34395,10 +34517,12 @@ gVE
 pin
 pin
 mFP
-tIk
-kkG
-kEG
-eOY
+mvq
+eON
+lyP
+xLn
+bry
+wAI
 jaO
 mqa
 nKd
@@ -34617,8 +34741,6 @@ wnb
 aMa
 tIk
 leX
-pin
-pin
 bVA
 pin
 pin
@@ -34637,10 +34759,12 @@ pin
 pin
 pin
 mFP
-tIk
-kEG
-kkG
-eOY
+mvq
+jFo
+rci
+rci
+aBF
+wAI
 sbM
 eOP
 nwr
@@ -34859,8 +34983,6 @@ iSM
 sLq
 tIk
 leX
-pin
-pin
 bVA
 pin
 pin
@@ -34879,10 +35001,12 @@ pin
 pin
 pin
 mFP
-tIk
-kEG
-kEG
-eOY
+mvq
+eCr
+kHA
+kHA
+brS
+wAI
 knB
 wAz
 nKd
@@ -35101,8 +35225,6 @@ vTo
 aMa
 tIk
 leX
-pin
-pin
 bVA
 pin
 pin
@@ -35122,8 +35244,10 @@ pin
 pin
 mFP
 tIk
-kHA
-wEL
+tIk
+tIk
+usb
+tIk
 eOY
 jaO
 mqa
@@ -35343,8 +35467,6 @@ iSM
 aMa
 tIk
 leX
-pin
-pin
 msB
 uXc
 uXc
@@ -35364,8 +35486,10 @@ pin
 pin
 mFP
 tIk
-kEG
-qmM
+tIk
+tIk
+tIk
+fNe
 eOY
 sbM
 eOP
@@ -35588,8 +35712,6 @@ leX
 pin
 pin
 pin
-pin
-pin
 bVA
 pin
 pin
@@ -35606,8 +35728,10 @@ pin
 pin
 mFP
 tIk
-kEG
-rnH
+tIk
+tIk
+tIk
+tIk
 eOY
 knB
 wAz
@@ -35830,8 +35954,6 @@ leX
 pin
 pin
 pin
-pin
-pin
 msB
 kyy
 uXc
@@ -35848,8 +35970,10 @@ pin
 pin
 mFP
 tIk
-kEG
-kEG
+tIk
+tIk
+tIk
+dZk
 eOY
 wgC
 tsF
@@ -36077,8 +36201,6 @@ eaA
 eaA
 eaA
 eaA
-eaA
-eaA
 iAi
 tlt
 tlt
@@ -36090,8 +36212,10 @@ eaA
 eaA
 iRe
 tIk
-cey
-mvq
+tIk
+usb
+tIk
+tIk
 eOY
 wgC
 iNP
@@ -36332,8 +36456,8 @@ tIk
 tIk
 tIk
 tIk
-wAs
-kEG
+tIk
+tIk
 eOY
 oJY
 oJY
@@ -36571,10 +36695,10 @@ tIk
 tIk
 tIk
 tIk
-tIk
-tIk
 fNe
 hbg
+dnc
+tIk
 tIk
 eOY
 oJY
@@ -37784,7 +37908,7 @@ pin
 uXc
 akQ
 tIk
-usb
+tIk
 tIk
 pUt
 jaO
@@ -38025,7 +38149,7 @@ pin
 pin
 pin
 vbI
-tIk
+usb
 tIk
 tIk
 pUt
@@ -38753,7 +38877,7 @@ xlY
 vbI
 tIk
 tIk
-tIk
+dZk
 eOY
 sbM
 eOP
@@ -40205,7 +40329,7 @@ jJw
 bZO
 tIk
 tIk
-dZk
+tIk
 eOY
 wgC
 tsF
@@ -40930,7 +41054,7 @@ vhN
 xVb
 gxB
 tIk
-kEG
+wAs
 nwY
 eOY
 oJY
@@ -41173,7 +41297,7 @@ dHS
 fQx
 tIk
 nwY
-kEG
+wEL
 eOY
 wgC
 tsF
@@ -41414,7 +41538,7 @@ tIk
 dHS
 tIk
 tIk
-kEG
+cey
 nwY
 eOY
 wgC
@@ -41898,7 +42022,7 @@ xyd
 qpy
 tIk
 tIk
-udK
+gQx
 izY
 eOY
 jaO
@@ -42141,7 +42265,7 @@ qpy
 tIk
 tIk
 kEG
-kEG
+kkG
 eOY
 sbM
 eOP
@@ -44024,7 +44148,7 @@ dDT
 qtL
 sNA
 uYU
-wAI
+bNX
 dDT
 qtL
 eyu
@@ -44263,7 +44387,7 @@ aMa
 bbv
 aMa
 pTu
-jFo
+kHI
 uYU
 eyu
 bNX
