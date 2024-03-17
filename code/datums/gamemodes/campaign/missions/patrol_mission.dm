@@ -8,7 +8,7 @@
 	mission_icon = "combat_patrol"
 	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the AO or capture and hold the sensor towers for a points victory. Minor Victory: Eliminate more hostiles than you lose."
 	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the AO or capture and hold the sensor towers for a points victory. Minor Victory: Eliminate more hostiles than you lose."
-	max_game_time = 15 MINUTES
+	max_game_time = 12 MINUTES
 	game_timer_delay = 5 MINUTES
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(2, 0),

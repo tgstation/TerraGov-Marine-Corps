@@ -81,9 +81,9 @@
 	///Whether the max game time has been reached
 	var/max_time_reached = FALSE
 	///Delay before the mission actually starts
-	var/mission_start_delay = 3 MINUTES
+	var/mission_start_delay = 1.5 MINUTES
 	///Delay from shutter drop until game TIMER starts
-	var/game_timer_delay = 3 MINUTES
+	var/game_timer_delay = 1 MINUTES
 	///Map text intro message for the start of the mission
 	var/list/intro_message = list(
 		MISSION_STARTING_FACTION = "starting faction intro text here",
