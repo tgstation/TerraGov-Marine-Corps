@@ -17,7 +17,15 @@
 		CRASH("after_spawn called for a marine without an assigned_squad")
 	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[human_spawn.assigned_squad.color]>[lowertext(human_spawn.assigned_squad.name)] squad</font></b>.
 Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."})
-
+	///yes i know istype(src) is gross but we literally have 1 child type we would want to ignore so
+	if(ismarineleaderjob(src))
+		return
+	if(!(SSticker.mode.flags_round_type & MODE_FORCE_CUSTOMSQUAD_UI))
+		return
+	if(world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+		human_spawn.RegisterSignal(SSdcs, COMSIG_GLOB_DEPLOY_TIMELOCK_ENDED, TYPE_PROC_REF(/mob/living/carbon/human, suggest_squad_assign))
+		return
+	addtimer(CALLBACK(GLOB.squad_selector, TYPE_PROC_REF(/datum, interact), human_spawn), 2 SECONDS)
 
 //Squad Marine
 /datum/job/terragov/squad/standard
@@ -37,6 +45,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 		/datum/job/terragov/squad/engineer = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Easy<br /><br />
@@ -99,6 +108,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 		/datum/job/terragov/squad/corpsman = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	job_points_needed = 5
 	html_description = {"
@@ -137,10 +147,12 @@ Your squaddies will look to you when it comes to construction in the field of ba
 			new_human.wear_id.paygrade = "E3"
 		if(1501 to 6000) // 25 hrs
 			new_human.wear_id.paygrade = "E4"
-		if(6001 to 60000) // 100 hrs
+		if(6001 to 18000) // 100 hrs
 			new_human.wear_id.paygrade = "E5"
+		if(18001 to 60000) // 300 hrs
+			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
-			new_human.wear_id.paygrade = "E9" //If you play way too much TGMC. 1000 hours.
+			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
 
 //Squad Corpsman
 /datum/job/terragov/squad/corpsman
@@ -157,6 +169,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	jobworth = list(
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM,
 		/datum/job/terragov/squad/engineer = SMARTIE_POINTS_REGULAR,
@@ -197,10 +210,12 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 			new_human.wear_id.paygrade = "E3"
 		if(1501 to 6000) // 25 hrs
 			new_human.wear_id.paygrade = "E4"
-		if(6001 to 60000) // 100 hrs
+		if(6001 to 18000) // 100 hrs
 			new_human.wear_id.paygrade = "E5"
+		if(18001 to 60000) // 300 hrs
+			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
-			new_human.wear_id.paygrade = "E9" //If you play way too much TGMC. 1000 hours.
+			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
 
 //Squad Smartgunner
 /datum/job/terragov/squad/smartgunner
@@ -248,10 +263,12 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 			new_human.wear_id.paygrade = "E3"
 		if(1501 to 6000) // 25 hrs
 			new_human.wear_id.paygrade = "E4"
-		if(6001 to 60000) // 100 hrs
+		if(6001 to 18000) // 100 hrs
 			new_human.wear_id.paygrade = "E5"
+		if(18001 to 60000) // 300 hrs
+			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
-			new_human.wear_id.paygrade = "E9" //If you play way too much TGMC. 1000 hours.
+			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
 
 /datum/outfit/job/marine/smartgunner
 	name = SQUAD_SMARTGUNNER
@@ -316,6 +333,7 @@ You can serve a variety of roles, so choose carefully."})
 		/datum/job/terragov/squad/engineer = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
@@ -347,13 +365,17 @@ You are also in charge of communicating with command and letting them know about
 	var/playtime_mins = user?.client?.get_exp(title)
 	switch(playtime_mins)
 		if(0 to 1500) // starting
-			new_human.wear_id.paygrade = "E5"
-		if(1501 to 7500) // 25 hrs
-			new_human.wear_id.paygrade = "E6"
-		if(7501 to 60000) // 125 hrs
 			new_human.wear_id.paygrade = "E7"
+		if(1501 to 6000) // 25 hrs
+			new_human.wear_id.paygrade = "E7E"
+		if(6001 to 18000) // 100 hrs
+			new_human.wear_id.paygrade = "E8E"
+		if(18001 to 60000) // 300 hrs
+			new_human.wear_id.paygrade = "E9"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9E" //If you play way too much TGMC. 1000 hours.
+	if(SSticker.mode.flags_round_type & MODE_FORCE_CUSTOMSQUAD_UI)
+		addtimer(CALLBACK(GLOB.squad_manager, TYPE_PROC_REF(/datum, interact), new_human), 2 SECONDS)
 	if(!latejoin)
 		return
 	if(!new_human.assigned_squad)
@@ -362,7 +384,6 @@ You are also in charge of communicating with command and letting them know about
 		if(new_human.assigned_squad.squad_leader)
 			new_human.assigned_squad.demote_leader()
 		new_human.assigned_squad.promote_leader(new_human)
-
 
 
 /datum/job/terragov/squad/vatgrown
@@ -379,6 +400,7 @@ You are also in charge of communicating with command and letting them know about
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	minimap_icon = "private"
 

@@ -52,16 +52,25 @@
 #define EMBEDDED_FALL_CHANCE 5	//Percentage chance for an embeddedd object fall out of the victim on its own, each process.
 #define EMBEDDED_FALL_DMG_MULTIPLIER 3	//Coefficient of multiplication for the damage the item does when it falls out (this*(embed_limb_damage or embed_body_damage))
 
+///Melee damage
 #define COMBAT_MELEE_ATTACK "melee_attack"
+///Projectile damage
 #define COMBAT_PROJ_ATTACK "proj_attack"
+///Potentially hostile interactions that aren't actually damage, such as disarms or grabs
 #define COMBAT_TOUCH_ATTACK "touch_attack"
 
-#define SHIELD_TOGGLE (1<<0) //Can be toggled on and off.
-#define SHIELD_PURE_BLOCKING (1<<1) //Only runs a percentage chance to block, and doesn't interact in other ways.
-#define SHIELD_PARENT_INTEGRITY (1<<2) //Transfers damage to parent's integrity.
+///Can be toggled on and off
+#define SHIELD_TOGGLE (1<<0)
+///Shield works by % chance to simply block the attack entirely, instead of normal reductive calc
+#define SHIELD_PURE_BLOCKING (1<<1)
+///Transfers damage to parent's integrity
+#define SHIELD_PARENT_INTEGRITY (1<<2)
 
 #define EXPLODE_NONE 0
 #define EXPLODE_DEVASTATE 1
 #define EXPLODE_HEAVY 2
 #define EXPLODE_LIGHT 3
 #define EXPLODE_WEAK 4
+
+///Xenomorph accuracy
+#define XENO_DEFAULT_ACCURACY 70

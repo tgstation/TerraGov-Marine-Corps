@@ -151,8 +151,10 @@
 #define SKILL_PILOT_TRAINED 1 //Pilot
 
 //multitile and mech vehicle skills
-#define SKILL_LARGE_VEHICLE_DEFAULT 0
-#define SKILL_LARGE_VEHICLE_TRAINED 1
+#define SKILL_LARGE_VEHICLE_DEFAULT 0 //nothing
+#define SKILL_LARGE_VEHICLE_TRAINED 1 //loader
+#define SKILL_LARGE_VEHICLE_EXPERIENCED 2 //transport crew
+#define SKILL_LARGE_VEHICLE_VETERAN 3 //mech pilot and assault crew
 
 //stamina skill - you do cardio, right?
 //buff stamina related things
@@ -161,7 +163,7 @@
 #define SKILL_STAMINA_TRAINED 1
 #define SKILL_STAMINA_SUPER 2
 
-#define STAMINA_SKILL_COOLDOWN_MOD 2
+#define STAMINA_SKILL_COOLDOWN_MOD 2 SECONDS
 #define STAMINA_SKILL_REGEN_MOD 0.15
 
 ////////////////////////////////////////////////

@@ -188,7 +188,7 @@
 	if(CONFIG_GET(flag/log_access))
 		for(var/I in GLOB.clients)
 			if(!I)
-				stack_trace("null in GLOB.clients during client/New()")
+				listclearnulls(GLOB.clients)
 				continue
 			if(I == src)
 				continue

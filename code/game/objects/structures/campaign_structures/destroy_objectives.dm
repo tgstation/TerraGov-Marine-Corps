@@ -73,7 +73,7 @@
 
 /obj/structure/campaign_objective/destruction_objective/mlrs/update_overlays()
 	. = ..()
-	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_MOB_LAYER, dir)
+	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
 	. += new_overlay
 
 /obj/structure/campaign_objective/destruction_objective/mlrs/plastique_act(mob/living/plastique_user)
@@ -173,7 +173,7 @@
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train/update_overlays()
 	. = ..()
-	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_MOB_LAYER, dir)
+	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
 	. += new_overlay
 
 /obj/effect/landmark/campaign_structure/train/carriage
@@ -209,7 +209,7 @@
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/phoron_stack/update_overlays()
 	. = ..()
-	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_MOB_LAYER, dir)
+	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
 	. += new_overlay
 
 //NT base
@@ -273,10 +273,10 @@
 	switch(status)
 		if(BLUESPACE_CORE_OK)
 			. += image(icon, icon_state = "top_overlay", layer = ABOVE_MOB_LAYER)
-			. += image(icon, icon_state = "bsd_c_s", layer = TANK_BARREL_LAYER)
+			. += image(icon, icon_state = "bsd_c_s", layer = ABOVE_MOB_PROP_LAYER)
 		if(BLUESPACE_CORE_UNSTABLE)
 			. += image(icon, icon_state = "top_overlay", layer = ABOVE_MOB_LAYER)
-			. += image(icon, icon_state = "bsd_c_u", layer = TANK_BARREL_LAYER)
+			. += image(icon, icon_state = "bsd_c_u", layer = ABOVE_MOB_PROP_LAYER)
 		if(BLUESPACE_CORE_BROKEN)
 			. += image(icon, icon_state = "top_overlay_broken", layer = ABOVE_MOB_LAYER)
 

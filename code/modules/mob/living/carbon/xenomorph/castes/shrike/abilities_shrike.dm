@@ -160,7 +160,7 @@
 	add_cooldown()
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_icons)), 1 SECONDS)
 	var/mob/living/carbon/xenomorph/xeno = owner
-	owner.icon_state = "[xeno.xeno_caste.caste_name][xeno.is_a_rouny ? " rouny" : ""] Screeching"
+	owner.icon_state = "[xeno.xeno_caste.caste_name][(xeno.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Screeching"
 	if(target) // Keybind use doesn't have a target
 		owner.face_atom(target)
 
@@ -318,6 +318,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_ACID_WELL,
 	)
+	use_state_flags = ABILITY_USE_LYING
 
 /datum/action/ability/xeno_action/place_acidwell/can_use_action(silent = FALSE, override_flags)
 	. = ..()

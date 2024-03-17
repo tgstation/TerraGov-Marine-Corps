@@ -345,7 +345,7 @@
 	. += "Moving this will require some sort of lifter."
 
 
-/obj/structure/ob_ammo/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/structure/ob_ammo/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2)
 	return ..()
 
@@ -378,7 +378,7 @@
 /obj/structure/ob_ammo/warhead/incendiary/warhead_impact(turf/target, inaccuracy_amt = 0)
 	. = ..()
 	var/range_num = max(15 - inaccuracy_amt, 12)
-	flame_radius(range_num, target,	burn_intensity = 36, burn_duration = 40, colour = "blue")
+	flame_radius(range_num, target,	burn_intensity = 46, burn_duration = 40, colour = "blue")
 	var/datum/effect_system/smoke_spread/phosphorus/warcrime = new
 	warcrime.set_up(17, target, 20)
 	warcrime.start()
@@ -398,7 +398,7 @@
 	var/total_amt = max(25 - inaccuracy_amt, 20)
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
-		explosion(U, 1, 4, 6, 0, 6, throw_range = 0, adminlog = FALSE) //rocket barrage
+		explosion(U, 2, 4, 6, 0, 6, throw_range = 0, adminlog = FALSE) //rocket barrage
 		sleep(0.1 SECONDS)
 
 /obj/structure/ob_ammo/warhead/plasmaloss

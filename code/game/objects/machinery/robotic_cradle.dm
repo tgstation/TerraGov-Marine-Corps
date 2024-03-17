@@ -6,6 +6,8 @@
 #define CRADLE_NOTICE_IDIOT_EJECT 6
 #define CRADLE_NOTICE_FORCE_EJECT 7
 //Cradle
+//This code is so shit, I don't even want to fix it. If someone wants to, please fix var/repairing never being used and try to make sense of the procs
+//Like auto_start() gets called 20 seconds after the machine says it's starting, which seems to be turning on the machine, but immediately calls repair_op() which pops out the occupant ???????
 
 /obj/machinery/robotic_cradle
 	name = "robotic cradle"
@@ -15,17 +17,16 @@
 	density = TRUE
 	max_integrity = 350
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 30, ACID = 30)
-	//This var is used to see if the machine is currently repairing or not.
-	var/repairing = FALSE
-	//This var is the reference used for the patient
-	var/mob/living/carbon/human/occupant
-
 	//It uses power
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 15
 	active_power_usage = 10000 // It rebuilds you from nothing...
 
-	//This var is in reference to the radio the cradle uses to speak to the craw.
+	///This var is used to see if the machine is currently repairing or not.
+	var/repairing = FALSE
+	///This var is the reference used for the patient
+	var/mob/living/carbon/human/occupant
+	///This var is in reference to the radio the cradle uses to speak to the crew
 	var/obj/item/radio/headset/mainship/doc/radio
 
 /obj/machinery/robotic_cradle/Initialize(mapload)
@@ -39,16 +40,9 @@
 	return ..()
 
 /obj/machinery/robotic_cradle/update_icon_state()
-	. = ..()
-	if(machine_stat & NOPOWER)
-		icon_state = "borgcharger0"
-		return
-	if(repairing)
+	if(occupant && !(machine_stat & NOPOWER))
 		icon_state = "borgcharger1"
-		return
-	if(occupant)
-		icon_state = "borgcharger1"
-		return
+		return ..()
 	icon_state = "borgcharger0"
 
 /obj/machinery/robotic_cradle/power_change()
@@ -72,7 +66,7 @@
 	if(!repairing)
 		return
 
-//This proc handles the actual repair once the timer is up, ejection of the healed robot and radio message of ejection.
+///This proc handles the actual repair once the timer is up, ejection of the healed robot and radio message of ejection.
 /obj/machinery/robotic_cradle/proc/repair_op()
 	if(QDELETED(occupant) || occupant.stat == DEAD)
 		if(!ishuman(occupant))
@@ -86,15 +80,15 @@
 	repairing = FALSE
 	go_out(CRADLE_NOTICE_SUCCESS)
 
-/obj/machinery/robotic_cradle/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+/obj/machinery/robotic_cradle/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!occupant)
-		to_chat(X, span_xenowarning("There is nothing of interest in there."))
+		to_chat(xeno_attacker, span_xenowarning("There is nothing of interest in there."))
 		return
-	if(X.status_flags & INCORPOREAL || X.do_actions)
+	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
 		return
-	visible_message(span_warning("[X] begins to pry the [src]'s cover!"), 3)
+	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
 	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
-	if(!do_after(X, 2 SECONDS))
+	if(!do_after(xeno_attacker, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	go_out()
@@ -161,12 +155,12 @@
 	dropped.stop_pulling()
 	dropped.forceMove(src)
 	occupant = dropped
-	icon_state = "pod_0"
 	var/implants = list(/obj/item/implant/neurostim)
 	var/mob/living/carbon/human/H = occupant
 	var/doc_dat
 	med_scan(H, doc_dat, implants, TRUE)
 	start_processing()
+	update_icon()
 
 	say("Automatic mode engaged, initialising procedure.")
 	addtimer(CALLBACK(src, PROC_REF(auto_start)), 20 SECONDS)
@@ -181,9 +175,9 @@
 	say("Beginning repair procedure.")
 	repair_op()
 
-/obj/machinery/robotic_cradle/MouseDrop_T(mob/M, mob/user)
+/obj/machinery/robotic_cradle/MouseDrop_T(mob/dropping, mob/user)
 	. = ..()
-	move_inside_wrapper(M, user)
+	move_inside_wrapper(dropping, user)
 
 /obj/machinery/robotic_cradle/verb/move_inside()
 	set name = "Enter Cradle"
@@ -192,86 +186,86 @@
 
 	move_inside_wrapper(usr, usr)
 
-//This proc is called when someone has a robot grabbed either by hand or in a stasis bag. It is also lets docs/engineers use health analyzers on the cradle if they really want to.
 /obj/machinery/robotic_cradle/attackby(obj/item/I, mob/user, params)
 	. = ..()
-
-	if(!ishuman(user))
-		return //no
+	if(.)
+		return
 
 	if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
 		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 		return
 
-	if(!istype(I, /obj/item/grab))
+/obj/machinery/robotic_cradle/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	. = ..()
+	if(.)
 		return
-
+	if(!ishuman(user))
+		return
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(user, span_notice("[src] is non-functional!"))
+		to_chat(user, span_notice("\ [src] is non-functional!"))
 		return
 
 	if(occupant)
-		to_chat(user, span_notice("[src] is already occupied!"))
+		to_chat(user, span_notice("\ [src] is already occupied!"))
 		return
 
-	var/obj/item/grab/G = I
+	var/mob/grabbed_mob
 
-	var/mob/M
-	if(ismob(G.grabbed_thing))
-		M = G.grabbed_thing
-	else if(istype(G.grabbed_thing, /obj/structure/closet/bodybag/cryobag))
-		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
-		if(!C.bodybag_occupant)
+	if(ismob(grab.grabbed_thing))
+		grabbed_mob = grab.grabbed_thing
+
+	else if(istype(grab.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
+		var/obj/structure/closet/bodybag/cryobag/cryobag = grab.grabbed_thing
+		if(!cryobag.bodybag_occupant)
 			to_chat(user, span_warning("The stasis bag is empty!"))
 			return
-		M = C.bodybag_occupant
-		C.open()
-		user.start_pulling(M)
+		grabbed_mob = cryobag.bodybag_occupant
+		cryobag.open()
+		user.start_pulling(grabbed_mob)
 
-	if(!M)
+	if(!ishuman(grabbed_mob))
+		to_chat(user, span_notice("\ [src] is compatible with humanoid anatomies only!"))
 		return
 
-	if(!ishuman(M)) // No monkee or beano
-		to_chat(user, span_notice("[src] is compatible with humanoid anatomies only!"))
-		return
-
-	if(M.abiotic())
-		to_chat(user, span_warning("Subject cannot have abiotic items on."))
-		return
-
-	if(ishumanbasic(M))
+	if(ishumanbasic(grabbed_mob))
 		to_chat(user, span_warning("Subject is biological, cannot repair."))
 		return
 
+	if(grabbed_mob.abiotic())
+		to_chat(user, span_warning("Subject cannot have abiotic items on."))
+		return
+
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-		user.visible_message(span_notice("[user] fumbles around figuring out how to put [M] into [src]."),
-		span_notice("You fumble around figuring out how to put [M] into [src]."))
+		user.visible_message(span_notice("[user] fumbles around figuring out how to put [grabbed_mob] into [src]."),
+		span_notice("You fumble around figuring out how to put [grabbed_mob] into [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.skills.getRating(SKILL_ENGINEER) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(user, fumbling_time, NONE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
+		if(!do_after(user, fumbling_time, NONE, grabbed_mob, BUSY_ICON_UNSKILLED) || QDELETED(src))
 			return
 
-	visible_message("[user] starts putting [M] into [src].", 3)
+	visible_message("[user] starts putting [grabbed_mob] into [src].", 3)
 
-	if(!do_after(user, 10, IGNORE_HELD_ITEM, M, BUSY_ICON_GENERIC) || QDELETED(src))
+	if(!do_after(user, 10, IGNORE_HELD_ITEM, grabbed_mob, BUSY_ICON_GENERIC) || QDELETED(src))
 		return
 
 	if(occupant)
 		to_chat(user, span_notice("[src] is already occupied!"))
 		return
 
-	if(!M || !G)
+	if(!grabbed_mob || !grab)
 		return
 
-	M.forceMove(src)
-	occupant = M
-	icon_state = "pod_1"
+	grabbed_mob.forceMove(src)
+	occupant = grabbed_mob
+	update_icon()
 	var/implants = list(/obj/item/implant/neurostim)
 	var/mob/living/carbon/human/H = occupant
 	med_scan(H, null, implants, TRUE)
 	start_processing()
 	say("Automatic mode engaged, initialising procedure.")
 	addtimer(CALLBACK(src, PROC_REF(auto_start)), 20 SECONDS)
+
+	return TRUE
 
 /obj/machinery/robotic_cradle/verb/eject()
 	set name = "Eject cradle"
@@ -281,7 +275,7 @@
 		return
 	do_eject()
 
-//This proc ejects whomever is inside the cradle, by force if needed depending if the cradle is destroyed or not.
+///This proc ejects whomever is inside the cradle, by force if needed depending if the cradle is destroyed or not.
 /obj/machinery/robotic_cradle/proc/do_eject(forceeject)
 	if(!occupant)
 		return
@@ -312,7 +306,7 @@
 		if(!do_after(usr, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED) || !occupant)
 			return
 	if(repairing)
-		repairing = 0
+		repairing = FALSE
 		if(usr.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI) //Untrained people will fail to terminate the repair properly.
 			visible_message("\The [src] malfunctions as [usr] aborts the rapair in progress.")
 			occupant.take_limb_damage(rand(30,50),rand(30,50))
@@ -321,3 +315,11 @@
 			go_out(CRADLE_NOTICE_IDIOT_EJECT)
 			return
 	go_out()
+
+#undef CRADLE_NOTICE_SUCCESS
+#undef CRADLE_NOTICE_DEATH
+#undef CRADLE_NOTICE_NO_RECORD
+#undef CRADLE_NOTICE_NO_POWER
+#undef CRADLE_NOTICE_XENO_FUCKERY
+#undef CRADLE_NOTICE_IDIOT_EJECT
+#undef CRADLE_NOTICE_FORCE_EJECT

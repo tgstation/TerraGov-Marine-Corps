@@ -40,12 +40,12 @@
 	update_action_button_icons()
 	update_icon()
 
-/obj/item/flashlight/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
-	if(turn_light(X, FALSE) != CHECKS_PASSED)
+/obj/item/flashlight/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(turn_light(xeno_attacker, FALSE) != CHECKS_PASSED)
 		return
 	playsound(loc, "alien_claw_metal", 25, 1)
-	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	to_chat(X, span_warning("We disable the metal thing's lights.") )
+	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	to_chat(xeno_attacker, span_warning("We disable the metal thing's lights.") )
 
 /obj/item/flashlight/update_icon_state()
 	. = ..()
@@ -65,6 +65,8 @@
 
 /obj/item/flashlight/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/screwdriver))
 		if(!raillight_compatible) //No fancy messages, just no
@@ -174,12 +176,12 @@
 	if(!usr.stat)
 		attack_self(usr)
 
-/obj/item/flashlight/lamp/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/item/flashlight/lamp/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
-	X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 	playsound(loc, 'sound/effects/metalhit.ogg', 20, TRUE)
-	X.visible_message(span_danger("\The [X] smashes [src]!"), \
+	xeno_attacker.visible_message(span_danger("\The [xeno_attacker] smashes [src]!"), \
 	span_danger("We smash [src]!"), null, 5)
 	deconstruct(FALSE)
 

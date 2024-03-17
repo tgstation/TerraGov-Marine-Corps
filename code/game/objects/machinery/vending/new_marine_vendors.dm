@@ -702,6 +702,7 @@
 	)
 
 /obj/effect/vendor_bundle/stretcher
+	desc = "A standard-issue TerraGov Marine Corps corpsman medivac stretcher. Comes with an extra beacon, but multiple beds can be linked to one beacon."
 	gear_to_spawn = list(
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
@@ -710,7 +711,7 @@
 /obj/effect/vendor_bundle/engi
 	gear_to_spawn = list(
 		/obj/item/explosive/plastique,
-		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_small,
 		/obj/item/clothing/gloves/marine/insulated,
 		/obj/item/cell/high,
 		/obj/item/lightreplacer,

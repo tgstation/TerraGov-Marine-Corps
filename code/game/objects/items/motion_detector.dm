@@ -106,7 +106,7 @@
 
 /obj/item/attachable/motiondetector/removed_from_inventory(mob/user)
 	. = ..()
-	clean_operator()
+	clean_operator(forced = TRUE) //Exploit prevention. If you are putting the tac sensor into a storage in your hand (Like holding a satchel), hand == loc will return
 
 /// Signal handler to clean out user vars
 /obj/item/attachable/motiondetector/proc/clean_operator(datum/source, obj/item/weapon/gun/gun, forced = FALSE)

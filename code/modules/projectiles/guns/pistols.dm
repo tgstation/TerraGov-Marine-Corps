@@ -2,7 +2,12 @@
 //--------------------------------------------------
 
 /obj/item/weapon/gun/pistol
+	icon = 'icons/obj/items/guns/pistols.dmi'
 	icon_state = "" //Defaults to revolver pistol when there's no sprite.
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/pistols_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/pistols_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/pistol.ogg'
 	unload_sound = 'sound/weapons/guns/interact/pistol_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/pistol_reload.ogg'
@@ -13,7 +18,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
 	movement_acc_penalty_mult = 2
-	wield_delay = 0.2 SECONDS //If you modify your pistol to be two-handed, it will still be fast to aim
+	wield_delay = 0.4 SECONDS
 	type_of_casings = "bullet"
 	gun_skill_category = SKILL_PISTOLS
 	attachable_allowed = list(
@@ -64,8 +69,7 @@
 	scatter_unwielded = 4
 	recoil = -2
 	recoil_unwielded = -2
-	upper_akimbo_accuracy = 5
-	lower_akimbo_accuracy = 4
+	akimbo_scatter_mod = 8
 
 //-------------------------------------------------------
 //PP-7 Plasma Pistol
@@ -74,8 +78,13 @@
 	desc = "An experimental weapon designed to set the terrain and targets on fire. It hums with power as magnetic fields coil round each other."
 	icon_state = "tx7"
 	item_state = "tx7"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/energy_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_1.dmi',
+	)
 	caliber = CALIBER_PLASMA
 	max_shots = 10
+	icon = 'icons/obj/items/guns/energy.dmi'
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/plasma_pistol
@@ -89,7 +98,6 @@
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/scope/marine,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 	)
@@ -98,7 +106,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 	actions_types = list()
-	wield_delay = 0.5 SECONDS
+	wield_delay = 0.7 SECONDS
 	muzzle_flash_color = COLOR_GREEN
 
 	fire_delay = 1.5 SECONDS
@@ -189,7 +197,6 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
@@ -200,7 +207,6 @@
 	accuracy_mult_unwielded = 0.95
 	recoil = -2
 	recoil_unwielded = -2
-	lower_akimbo_accuracy = 2
 
 /obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
 	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/flashlight) //Tacticool
@@ -237,7 +243,6 @@
 	accuracy_mult_unwielded = 0.85
 	damage_mult = 1.15
 	recoil = -2
-	lower_akimbo_accuracy = 2
 
 /obj/item/weapon/gun/pistol/m1911/custom
 	name = "\improper P-1911A1 custom pistol"
@@ -251,7 +256,6 @@
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	fire_delay = 0.15 SECONDS
@@ -331,7 +335,6 @@
 		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
@@ -377,7 +380,6 @@
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/suppressor/unremovable/invisible,
-		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
@@ -531,7 +533,6 @@
 	aim_slowdown = 0.2
 	scatter = 0
 	scatter_unwielded = 6
-	lower_akimbo_accuracy = 2
 	akimbo_additional_delay = 2
 
 /obj/item/weapon/gun/pistol/vp70/tactical
@@ -656,7 +657,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	desc = "The PL-5 is a true and tested ICCAF handgun, used for a very long time with minimal changes to the core design, best used at close quarters with its higher than usual magazine size for its caliber. It is chambered in .45 ACP."
 	icon_state = "pl5"
 	item_state = "pl5"
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/pistols64.dmi'
 	caliber = CALIBER_45ACP //codex
 	max_shells = 18 //codex
 	fire_sound = 'sound/weapons/guns/fire/colt.ogg'
@@ -745,7 +746,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 /obj/item/weapon/gun/pistol/smart_pistol
 	name = "\improper SP-13 smart pistol"
 	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. A cutting-edge miniaturization technology allows mounting of a KTLD IFF system on the pistol, albeit at high manufactoring cost and the usual specialized training required to use such a pistol. Unique design feature high-capacity mag on top of the barrel, with integrated sight."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/pistols64.dmi'
 	icon_state = "sp13"
 	item_state = "sp13"
 	caliber = CALIBER_9X19 //codex
@@ -773,7 +774,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
 
 	aim_slowdown = 0.2
-	wield_delay = 0.4 SECONDS
+	wield_delay = 0.6 SECONDS
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.85

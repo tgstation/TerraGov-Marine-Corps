@@ -112,11 +112,11 @@
 	..()
 
 
-/turf/closed/wall/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/turf/closed/wall/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
-	if(acided_hole && (X.mob_size == MOB_SIZE_BIG || X.xeno_caste.caste_flags & CASTE_IS_STRONG)) //Strong and/or big xenos can tear open acided walls
-		acided_hole.expand_hole(X)
+	if(acided_hole && (xeno_attacker.mob_size == MOB_SIZE_BIG || xeno_attacker.xeno_caste.caste_flags & CASTE_IS_STRONG)) //Strong and/or big xenos can tear open acided walls
+		acided_hole.expand_hole(xeno_attacker)
 	else
 		return ..()
 
@@ -191,15 +191,15 @@
 	. += bullethole_overlay
 
 ///Applies damage to the wall
-/turf/closed/wall/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", armour_penetration = 0)
+/turf/closed/wall/proc/take_damage(damage_amount, damage_type = BRUTE, armor_type = MELEE, armour_penetration = 0)
 	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
 		return
 
 	if(!damage_amount)
 		return
 
-	if(damage_flag)
-		damage_amount = modify_by_armor(damage_amount, damage_flag, armour_penetration)
+	if(armor_type)
+		damage_amount = modify_by_armor(damage_amount, armor_type, armour_penetration)
 
 	wall_integrity = max(0, wall_integrity - damage_amount)
 
@@ -290,6 +290,8 @@
 
 /turf/closed/wall/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!ishuman(user))
 		to_chat(user, span_warning("You don't have the dexterity to do this!"))
@@ -491,3 +493,34 @@
 
 /turf/closed/wall/dissolvability(acid_strength)
 	return 0.5
+
+/turf/closed/wall/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_WALL_SLAM_DAMAGE, is_sharp = FALSE)
+	if(!isliving(grab.grabbed_thing))
+		return
+
+	var/mob/living/grabbed_mob = grab.grabbed_thing
+	step_towards(grabbed_mob, src)
+	var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	var/state = user.grab_state
+	switch(state)
+		if(GRAB_PASSIVE)
+			damage += base_damage
+			grabbed_mob.visible_message(span_warning("[user] slams [grabbed_mob] against [src]!"))
+			log_combat(user, grabbed_mob, "slammed", "", "against [src]")
+		if(GRAB_AGGRESSIVE)
+			damage += base_damage * 1.5
+			grabbed_mob.visible_message(span_danger("[user] bashes [grabbed_mob] against [src]!"))
+			log_combat(user, grabbed_mob, "bashed", "", "against [src]")
+			if(prob(50))
+				grabbed_mob.Paralyze(2 SECONDS)
+				user.drop_held_item()
+		if(GRAB_NECK)
+			damage += base_damage * 2
+			grabbed_mob.visible_message(span_danger("<big>[user] crushes [grabbed_mob] against [src]!</big>"))
+			log_combat(user, grabbed_mob, "crushed", "", "against [src]")
+			grabbed_mob.Paralyze(2 SECONDS)
+			user.drop_held_item()
+	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	take_damage(damage, BRUTE, MELEE)
+	playsound(src, 'sound/weapons/heavyhit.ogg', 40)
+	return TRUE

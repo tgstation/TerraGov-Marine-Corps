@@ -59,7 +59,7 @@
 	if(!item)
 		return
 	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
-		to_chat(user, span_notice("The [src] is anchored in place and cannot be disassembled."))
+		balloon_alert(user, "Cannot disassemble")
 		return
 	operator?.unset_interaction()
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
@@ -99,8 +99,8 @@
 		if(EXPLODE_DEVASTATE)
 			qdel(src)
 		if(EXPLODE_HEAVY)
-			take_damage(200, damage_flag = BOMB, effects = TRUE)
+			take_damage(200, armor_type = BOMB, effects = TRUE)
 		if(EXPLODE_LIGHT)
-			take_damage(100, damage_flag = BOMB, effects = TRUE)
+			take_damage(100, armor_type = BOMB, effects = TRUE)
 		if(EXPLODE_WEAK)
-			take_damage(50, damage_flag = BOMB, effects = TRUE)
+			take_damage(50, armor_type = BOMB, effects = TRUE)

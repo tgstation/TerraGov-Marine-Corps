@@ -287,38 +287,38 @@
 	for(var/season in seasonal_items)
 		products[seasonal_items[season]] += SSpersistence.season_items[season]
 
-/obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
-	if(X.a_intent == INTENT_HARM)
-		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-		if(prob(X.xeno_caste.melee_damage))
+	if(xeno_attacker.a_intent == INTENT_HARM)
+		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+		if(prob(damage_amount))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
-			X.visible_message(span_danger("\The [X] smashes \the [src] beyond recognition!"), \
+			xeno_attacker.visible_message(span_danger("\The [xeno_attacker] smashes \the [src] beyond recognition!"), \
 			span_danger("We enter a frenzy and smash \the [src] apart!"), null, 5)
 			malfunction()
 			return TRUE
 		else
-			X.visible_message(span_danger("[X] slashes \the [src]!"), \
+			xeno_attacker.visible_message(span_danger("[xeno_attacker] slashes \the [src]!"), \
 			span_danger("We slash \the [src]!"), null, 5)
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 		return TRUE
 
 	if(tipped_level)
-		to_chat(X, span_warning("There's no reason to bother with that old piece of trash."))
+		to_chat(xeno_attacker, span_warning("There's no reason to bother with that old piece of trash."))
 		return FALSE
 
-	X.visible_message(span_warning("\The [X] begins to lean against \the [src]."), \
+	xeno_attacker.visible_message(span_warning("\The [xeno_attacker] begins to lean against \the [src]."), \
 	span_warning("You begin to lean against \the [src]."), null, 5)
 	tipped_level = 1
 	var/shove_time = 1 SECONDS
-	if(X.mob_size == MOB_SIZE_BIG)
+	if(xeno_attacker.mob_size == MOB_SIZE_BIG)
 		shove_time = 5 SECONDS
-	if(istype(X,/mob/living/carbon/xenomorph/crusher))
+	if(istype(xeno_attacker,/mob/living/carbon/xenomorph/crusher))
 		shove_time = 1.5 SECONDS
-	if(do_after(X, shove_time, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
-		X.visible_message(span_danger("\The [X] knocks \the [src] down!"), \
+	if(do_after(xeno_attacker, shove_time, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
+		xeno_attacker.visible_message(span_danger("\The [xeno_attacker] knocks \the [src] down!"), \
 		span_danger("You knock \the [src] down!"), null, 5)
 		tip_over()
 	else
@@ -345,6 +345,8 @@
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(tipped_level)
 		to_chat(user, "Tip it back upright first!")
@@ -874,7 +876,7 @@
 	. = TRUE
 
 
-/obj/machinery/vending/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0)
+/obj/machinery/vending/take_damage(damage_amount, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	if(density && damage_amount >= knockdown_threshold)
 		tip_over()
 	return ..()

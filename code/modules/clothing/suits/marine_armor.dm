@@ -9,8 +9,8 @@
 	item_state = "armor"
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	flags_atom = CONDUCT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
@@ -98,6 +98,24 @@
 	desc = "A somewhat sparsely armored but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. While the suit is a bit more encumbering to wear with the mech pilot uniform, it offers the them a degree of protection that they otherwise do not enjoy outside their mech."
 	icon_state = "mech_pilot_suit"
 	item_state = "mech_pilot_suit"
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	soft_armor = list(MELEE = 45, BULLET = 55, LASER = 55, ENERGY = 20, BOMB = 45, BIO = 30, FIRE = 25, ACID = 35)
+	flags_item_map_variant = NONE
+
+/obj/item/clothing/suit/storage/marine/assault_crewman
+	name = "\improper PAS-73 pattern tanker armor"
+	desc = "A somewhat sparsely armored but robust armored vest. Used by tankers, mostly to absorb bumps in the road as they drive over enemies."
+	icon_state = "assault_crewman_suit"
+	item_state = "assault_crewman_suit"
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	soft_armor = list(MELEE = 45, BULLET = 55, LASER = 55, ENERGY = 20, BOMB = 45, BIO = 30, FIRE = 25, ACID = 35)
+	flags_item_map_variant = NONE
+
+/obj/item/clothing/suit/storage/marine/transport_crewman
+	name = "\improper PAS-74 pattern transport armor"
+	desc = "A somewhat sparsely armored but robust armored vest. Used by transport crewmen so that they can pretend that they may survice when their vehicle is overrun."
+	icon_state = "transport_crewman_suit"
+	item_state = "transport_crewman_suit"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	soft_armor = list(MELEE = 45, BULLET = 55, LASER = 55, ENERGY = 20, BOMB = 45, BIO = 30, FIRE = 25, ACID = 35)
 	flags_item_map_variant = NONE
@@ -216,8 +234,8 @@
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	flags_armor_features = ARMOR_LAMP_OVERLAY
 
@@ -290,8 +308,8 @@
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "guardarmor"
 	soft_armor = list(MELEE = 75, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 0, FIRE = 60, ACID = 60)
@@ -338,8 +356,8 @@
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	flags_atom = CONDUCT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -644,8 +662,8 @@
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "som_armor"
 	item_state = "som_armor"
@@ -678,8 +696,8 @@
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "icc"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM

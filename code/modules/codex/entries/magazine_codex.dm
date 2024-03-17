@@ -59,8 +59,8 @@
 	if(default_ammo.flags_ammo_behavior & AMMO_INCENDIARY)
 		traits += "Secondary effect: Set target on fire<br>"
 
-	if(default_ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
-		traits += "Secondary effect: Explosive<br>"
+	if(default_ammo.flags_ammo_behavior & AMMO_TARGET_TURF)
+		traits += "Secondary effect: Targets turfs<br>"
 
 	if(default_ammo.flags_ammo_behavior & AMMO_SPECIAL_PROCESS)
 		traits += "Secondary effect: Hits nearby targets in-flight<br>"

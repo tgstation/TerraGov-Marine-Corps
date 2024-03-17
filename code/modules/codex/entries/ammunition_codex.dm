@@ -23,8 +23,8 @@
 		if(ammo.flags_ammo_behavior & AMMO_INCENDIARY)
 			entry.mechanics_text += "Secondary effect: set target on fire.<br>"
 
-		if(ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
-			entry.mechanics_text += "Secondary effect: explosion.<br>"
+		if(ammo.flags_ammo_behavior & AMMO_TARGET_TURF)
+			entry.mechanics_text += "Secondary effect: Hits the turf clicked on.<br>"
 
 		if(ammo.flags_ammo_behavior & AMMO_SPECIAL_PROCESS)
 			entry.mechanics_text += "Secondary effect: hits nearby targets in-flight.<br>"

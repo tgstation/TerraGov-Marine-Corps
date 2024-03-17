@@ -19,7 +19,7 @@
 
 /mob/living/carbon/xenomorph/bull/handle_special_state()
 	if(is_charging >= CHARGE_ON)
-		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Charging"
+		icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Charging"
 		return TRUE
 	return FALSE
 
@@ -27,4 +27,4 @@
 /mob/living/carbon/xenomorph/bull/handle_special_wound_states(severity)
 	. = ..()
 	if(is_charging >= CHARGE_ON)
-		return "bull_wounded_charging_[severity]"
+		return "wounded_charging_[severity]"

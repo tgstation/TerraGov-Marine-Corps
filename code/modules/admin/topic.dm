@@ -404,8 +404,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/warrior, location, null, delmob)
 			if("runner")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/runner, location, null, delmob)
-			if("baneling")
-				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/baneling, location, null, delmob)
 			if("drone")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/drone, location, null, delmob)
 			if("sentinel")
@@ -2145,6 +2143,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/timerid_to_cancel = href_list["cancelob"]
 		deltimer(timerid_to_cancel)
 		var/logtext = "[key_name(usr)] has cancelled an OB with the timerid [timerid_to_cancel]"
+		message_admins(logtext)
+		log_admin(logtext)
+
+	else if(href_list["cancelsummon"])
+		GLOB.active_summons.Cut()
+		var/logtext = "[key_name(usr)] has cancelled all psychic summons"
 		message_admins(logtext)
 		log_admin(logtext)
 

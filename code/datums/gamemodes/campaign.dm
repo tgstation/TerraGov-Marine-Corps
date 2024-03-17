@@ -29,6 +29,8 @@
 	var/list/datum/faction_stats/stat_list = list()
 	///List of death times by ckey. Used for respawn time
 	var/list/player_death_times = list()
+	///List of timers to auto open the respawn window
+	var/list/respawn_timers = list()
 
 /datum/game_mode/hvh/campaign/announce()
 	to_chat(world, "<b>The current game mode is - Campaign!</b>")
@@ -155,7 +157,7 @@
 
 	if(team_one_count > team_two_count * ratio)
 		return list(factions[1], factions[2])
-	else if(team_one_count < team_two_count * ratio)
+	else if(team_two_count > team_one_count * ratio)
 		return list(factions[2], factions[1])
 
 ///Actually swaps the player to the other team, unless balance has been restored
@@ -181,7 +183,7 @@
 	if(!autobalance_faction_list)
 		return
 
-	var/autobal_num = ROUND_UP(length(GLOB.alive_human_list_faction[autobalance_faction_list[1]]) - length(GLOB.alive_human_list_faction[autobalance_faction_list[2]]) * 0.2)
+	var/autobal_num = ROUND_UP((length(GLOB.alive_human_list_faction[autobalance_faction_list[1]]) - length(GLOB.alive_human_list_faction[autobalance_faction_list[2]])) * 0.2)
 	current_mission.spawn_mech(autobalance_faction_list[2], 0, 0, autobal_num, "[autobal_num] additional mechs granted for autobalance")
 
 //respawn stuff
@@ -196,15 +198,31 @@
 	if(!(player.faction in factions))
 		return
 	player_death_times[player.ckey] = world.time
+	respawn_timers[player.ckey] = addtimer(CALLBACK(src, PROC_REF(auto_attempt_respawn), player.ckey), CAMPAIGN_RESPAWN_TIME + stat_list[player.faction]?.respawn_delay_modifier + 1, TIMER_STOPPABLE)
+
+///Auto pops up the respawn window
+/datum/game_mode/hvh/campaign/proc/auto_attempt_respawn(respawnee_ckey)
+	for(var/mob/player AS in GLOB.player_list)
+		if(player.ckey != respawnee_ckey)
+			continue
+		respawn_timers[respawnee_ckey] = null
+		if(isliving(player) && player.stat != DEAD)
+			return
+		player_respawn(player)
+		return
 
 ///Wrapper for cutting the deathlist via timer due to the players not immediately returning to base
 /datum/game_mode/hvh/campaign/proc/cut_death_list_timer(datum/source)
 	SIGNAL_HANDLER
 	addtimer(CALLBACK(src, PROC_REF(cut_death_list)), AFTER_MISSION_TELEPORT_DELAY + 1)
 
-///cuts the death time list at mission end
+///cuts the death time and respawn_timers list at mission end
 /datum/game_mode/hvh/campaign/proc/cut_death_list(datum/source)
 	player_death_times.Cut()
+	for(var/ckey in respawn_timers)
+		auto_attempt_respawn(ckey) //Faction datum doesn't pop up for ghosts
+		deltimer(respawn_timers[ckey])
+	respawn_timers.Cut()
 
 ///respawns the player if attrition points are available
 /datum/game_mode/hvh/campaign/proc/attempt_attrition_respawn(mob/candidate)

@@ -56,7 +56,7 @@
 	SIGNAL_HANDLER
 	qdel(src)
 
-/obj/structure/xeno/xeno_turret/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/structure/xeno/xeno_turret/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	if(damage_amount) //Spawn the gas only if we actually get destroyed by damage
 		var/datum/effect_system/smoke_spread/xeno/smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
 		smoke.set_up(1, get_turf(src))
@@ -236,7 +236,7 @@
 	var/obj/projectile/newshot = new(loc)
 	newshot.generate_bullet(ammo)
 	newshot.def_zone = pick(GLOB.base_miss_chance)
-	newshot.fire_at(hostile, src, null, ammo.max_range, ammo.shell_speed)
+	newshot.fire_at(hostile, null, src, ammo.max_range, ammo.shell_speed)
 	if(istype(ammo, /datum/ammo/xeno/hugger))
 		var/datum/ammo/xeno/hugger/hugger_ammo = ammo
 		newshot.color = initial(hugger_ammo.hugger_type.color)
