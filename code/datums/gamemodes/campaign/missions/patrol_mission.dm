@@ -215,7 +215,7 @@
 	map_text_broadcast(losing_team, "[objective] was activated by the enemy. Get it offline!", "Activation cancelled")
 
 ///test missions
-/datum/campaign_mission/tdm/lv624
+/datum/campaign_mission/tdm/orion
 	name = "Combat patrol 2"
 	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Orion_Military_Outpost/orionoutpost.dmm'
