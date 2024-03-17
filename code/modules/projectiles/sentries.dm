@@ -370,7 +370,7 @@
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	potential_targets.Cut()
 	if(!gun)
-		return length(potential_targets)
+		return FALSE
 	for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, range))
 		if(nearby_human.stat == DEAD || CHECK_BITFIELD(nearby_human.status_flags, INCORPOREAL)  || (CHECK_BITFIELD(gun.turret_flags, TURRET_SAFETY) || nearby_human.wear_id?.iff_signal & iff_signal))
 			continue
@@ -408,9 +408,10 @@
 ///Sees if theres a target to shoot, then handles firing.
 /obj/machinery/deployable/mounted/sentry/proc/sentry_start_fire()
 	var/obj/item/weapon/gun/gun = get_internal_item()
-	var/mob/living/target = get_target()
+	var/atom/target = get_target()
+	sentry_alert(SENTRY_ALERT_HOSTILE, target)
 	update_icon()
-	if(!target || get_dist(src, target) > range)
+	if(!target)
 		gun.stop_fire()
 		firing = FALSE
 		update_minimap_icon()
@@ -433,6 +434,8 @@
 
 ///Checks the path to the target for obstructions. Returns TRUE if the path is clear, FALSE if not.
 /obj/machinery/deployable/mounted/sentry/proc/check_target_path(atom/target)
+	if(target.loc == loc)
+		return TRUE
 	var/list/turf/path = getline(src, target)
 	var/turf/starting_turf = get_turf(src)
 	var/turf/target_turf = path[length(path)-1]
@@ -468,24 +471,15 @@
 
 ///Works through potential targets. First checks if they are in range, and if they are friend/foe. Then checks the path to them. Returns the first eligable target.
 /obj/machinery/deployable/mounted/sentry/proc/get_target()
-	var/distance = range + 0.5 //we add 0.5 so if a potential target is at range, it is accepted by the system
-	var/buffer_distance
 	var/obj/item/weapon/gun/gun = get_internal_item()
-	for (var/atom/nearby_target AS in potential_targets)
+	for(var/atom/nearby_target AS in potential_targets)
+		if(nearby_target.loc == loc)
+			return nearby_target
+
 		if(!(get_dir(src, nearby_target) & dir) && !CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))
 			continue
-
-		buffer_distance = get_dist(nearby_target, src)
-
-		if (distance <= buffer_distance)
-			continue
-
 		if(!check_target_path(nearby_target))
 			continue
-
-		sentry_alert(SENTRY_ALERT_HOSTILE, nearby_target)
-
-		distance = buffer_distance
 		return nearby_target
 
 /obj/machinery/deployable/mounted/sentry/disassemble(mob/user)
