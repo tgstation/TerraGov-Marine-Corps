@@ -1,5 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - balance: "Explosives using flame_radius (phos nades, incen nades) no longer have damage RNG, and less duration RNG"
-  - balance: "Incendiary OB now has the same burn level as xfuel"
