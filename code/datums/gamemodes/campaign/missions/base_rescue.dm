@@ -63,7 +63,7 @@
 	spawn_mech(attacking_faction, 0, 0, 4)
 	spawn_mech(defending_faction, 0, 0, 2)
 
-	var/datum/faction_stats/defending_team = mode.stat_list[starting_faction]
+	var/datum/faction_stats/defending_team = mode.stat_list[defending_faction]
 	defending_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_cas/instant)
 	defending_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_mortar)
 
@@ -84,30 +84,30 @@
 /datum/campaign_mission/destroy_mission/base_rescue/start_mission()
 	. = ..()
 	//We do this when the mission starts to stop nerds from wasting the militia roles pregame
-	var/datum/faction_stats/attacking_team = mode.stat_list[hostile_faction]
+	var/datum/faction_stats/attacking_team = mode.stat_list[attacking_faction]
 	attacking_team.add_asset(/datum/campaign_asset/bonus_job/colonial_militia)
 	attacking_team.faction_assets[/datum/campaign_asset/bonus_job/colonial_militia].attempt_activatation(attacking_team.faction_leader, TRUE)
 
 
 /datum/campaign_mission/destroy_mission/base_rescue/apply_major_victory()
 	. = ..()
-	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
+	var/datum/faction_stats/winning_team = mode.stat_list[defending_faction]
 	winning_team.add_asset(/datum/campaign_asset/bonus_job/pmc)
 	winning_team.add_asset(/datum/campaign_asset/attrition_modifier/corporate_approval)
 
 /datum/campaign_mission/destroy_mission/base_rescue/apply_minor_victory()
 	. = ..()
-	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
+	var/datum/faction_stats/winning_team = mode.stat_list[defending_faction]
 	winning_team.add_asset(/datum/campaign_asset/bonus_job/pmc)
 
 /datum/campaign_mission/destroy_mission/base_rescue/apply_minor_loss()
 	. = ..()
-	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
+	var/datum/faction_stats/winning_team = mode.stat_list[attacking_faction]
 	winning_team.add_asset(/datum/campaign_asset/bonus_job/colonial_militia)
 
 /datum/campaign_mission/destroy_mission/base_rescue/apply_major_loss()
 	. = ..()
-	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
+	var/datum/faction_stats/winning_team = mode.stat_list[attacking_faction]
 	winning_team.add_asset(/datum/campaign_asset/bonus_job/colonial_militia)
 	winning_team.add_asset(/datum/campaign_asset/attrition_modifier/local_approval)
 
