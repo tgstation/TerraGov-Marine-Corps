@@ -298,11 +298,6 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		hit_report += "(RAW DMG: [throw_damage])"
 
-		if(thrown_item.item_fire_stacks)
-			fire_stacks += thrown_item.item_fire_stacks
-			IgniteMob()
-			hit_report += "(set ablaze)"
-
 		//thrown weapon embedded object code.
 		if(affecting.limb_status & LIMB_DESTROYED)
 			hit_report += "(delimbed [affecting.display_name])"

@@ -290,7 +290,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			if(!ghost?.can_reenter_corpse)
 				SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
 				return
-		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "defibbable"))
+		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "defibbable", ABOVE_FLOAT_LAYER))
 		return
 	if(wearer.assigned_squad)
 		var/image/underlay = image('icons/UI_icons/map_blips.dmi', null, "squad_underlay")

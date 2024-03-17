@@ -144,6 +144,9 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		get_player_stats(new_member)
 	var/datum/action/campaign_loadout/loadouts = new
 	loadouts.give_action(new_member)
+	if(!(new_member.job.job_cost))
+		return
+	loadouts.action_activate()
 
 ///Returns a users individual stat datum, generating a new one if required
 /datum/faction_stats/proc/get_player_stats(mob/user)
