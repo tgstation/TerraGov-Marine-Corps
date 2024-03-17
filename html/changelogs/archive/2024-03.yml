@@ -292,3 +292,8 @@
   - qol: Added a little description to the medivac bed in the corpsman vendor.
   - spellcheck: Corrected a typo of patiant to patient
   - code_imp: Removed a now useless verb
+2024-03-17:
+  AzonStarfall:
+  - rscadd: Expanded the Arachne vehicle bay.
+  - rscdel: Removed the Arachne flight control station, to make room for the vehicle
+      bay.
