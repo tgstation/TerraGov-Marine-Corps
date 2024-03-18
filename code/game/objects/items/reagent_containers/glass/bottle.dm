@@ -139,7 +139,6 @@
 	icon_state = "bottle17"
 	list_reagents = list(/datum/reagent/diethylamine = 60)
 
-
 /obj/item/reagent_containers/glass/bottle/pacid
 	name = "polytrinic acid bottle"
 	desc = "A small bottle. Contains a small amount of Polytrinic Acid"
@@ -249,6 +248,11 @@
 /obj/item/reagent_containers/glass/bottle/lemoline/doctor
 	desc = "A small bottle. Contains 30 units of lemoline, a reagent used in the creation of advanced medicine."
 	list_reagents = list(/datum/reagent/medicine/lemoline = 30)
+
+/obj/item/reagent_containers/glass/bottle/russian_red
+	desc = "A small bottle. Contains 30 units of russian red. An emergency generic treatment with extreme side effects."
+	list_reagents = list(/datum/reagent/medicine/russian_red = 30)
+	icon_state = "bottle19"
 
 /obj/item/reagent_containers/glass/bottle/doctor_delight
 	name = "\improper Doctor's Delight bottle"

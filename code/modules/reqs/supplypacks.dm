@@ -1316,6 +1316,14 @@ MEDICAL
 	)
 	cost = 80
 
+/datum/supply_packs/medical/russian_red
+	name = "Russian Red"
+	notes = "Contains 1 bottle of lemoline with 30 units each."
+	contains = list(
+		/obj/item/reagent_containers/glass/bottle/russian_red,
+	)
+	cost = 50
+
 /datum/supply_packs/medical/advancedKits
 	name = "Advanced medical packs"
 	notes = "Contains 5 advanced packs of each type and 5 splints."
