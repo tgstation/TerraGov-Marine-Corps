@@ -292,7 +292,8 @@
 		if(corpse.z != mission_z_level.z_value)
 			continue
 		if(!HAS_TRAIT(corpse, TRAIT_UNDEFIBBABLE) && corpse.job.job_cost)
-			corpse.job.add_job_positions(1)
+			corpse.job.free_job_positions(1)
+
 		qdel(corpse)
 
 ///Unregisters all signals when the mission finishes
