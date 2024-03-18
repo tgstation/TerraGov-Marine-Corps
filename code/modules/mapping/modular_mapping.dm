@@ -1211,7 +1211,7 @@
 
 /datum/map_template/modular/jungle_outpost/westtowertwo
 	name = "Western Bar Dome"
-	mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower2"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower2.dmm"
 	modular_id = "jowesttower"
 	template_width = 12
 	template_height = 12
