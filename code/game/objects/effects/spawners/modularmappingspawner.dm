@@ -246,3 +246,8 @@
 	mapid = "jowesttower"
 	spawner_height = 12
 	spawner_width = 12
+
+/obj/effect/spawner/modularmap/jungle_outpost/southcrates
+	mapid = "josouthcrates"
+	spawner_width = 12
+	spawner_height = 14

@@ -1229,3 +1229,31 @@
 	modular_id = "jowesttower"
 	template_width = 12
 	template_height = 12
+
+/datum/map_template/modular/jungle_outpost/southcratesone
+	name = "South Crates"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostscrates1.dmm"
+	modular_id = "josouthcrates"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/southcratestwo
+	name = "South Office"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostscrates2.dmm"
+	modular_id = "josouthcrates"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/southcratesthree
+	name = "South Crates "
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostscrates3.dmm"
+	modular_id = "josouthcrates"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/southcratesfour
+	name = "South Garage"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostscrates4.dmm"
+	modular_id = "josouthcrates"
+	template_width = 12
+	template_height = 14
