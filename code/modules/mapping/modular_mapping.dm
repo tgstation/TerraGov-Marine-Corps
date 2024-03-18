@@ -1257,3 +1257,24 @@
 	modular_id = "josouthcrates"
 	template_width = 12
 	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/hydroponicsone
+	name = "Hydroponics"
+	mappath = "_maps/modularmaps/jungle_outpost/joutposthydro1.dmm"
+	modular_id = "johydroponics"
+	template_width = 19
+	template_height = 18
+
+/datum/map_template/modular/jungle_outpost/hydroponicstwo
+	name = "Hydroponics"
+	mappath = "_maps/modularmaps/jungle_outpost/joutposthydro2.dmm"
+	modular_id = "johydroponics"
+	template_width = 19
+	template_height = 18
+
+/datum/map_template/modular/jungle_outpost/hydroponicsthree
+	name = "Hydroponics Shack"
+	mappath = "_maps/modularmaps/jungle_outpost/joutposthydro3.dmm"
+	modular_id = "johydroponics"
+	template_width = 19
+	template_height = 18

@@ -251,3 +251,8 @@
 	mapid = "josouthcrates"
 	spawner_width = 12
 	spawner_height = 14
+
+/obj/effect/spawner/modularmap/jungle_outpost/hydroponics
+	mapid = "johydroponics"
+	spawner_width = 19
+	spawner_height = 18
