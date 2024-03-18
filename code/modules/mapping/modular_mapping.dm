@@ -1201,6 +1201,7 @@
 	modular_id = "EORG"
 	template_width = 46
 	template_height = 46
+
 /datum/map_template/modular/jungle_outpost/westtowerone
     name = "Western Dome"
     mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower1.dmm"
