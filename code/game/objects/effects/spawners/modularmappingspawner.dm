@@ -240,3 +240,9 @@
 	mapid = "EORG"
 	spawner_height = 46
 	spawner_width = 46
+
+/**********Jungle Outpost*******/
+/obj/effect/spawner/modularmap/jungle_outpost/westtower
+	mapid = "jowesttower"
+	spawner_height = 12
+	spawner_width = 12
