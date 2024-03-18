@@ -124,8 +124,8 @@
 					return FALSE
 	return TRUE
 
-/// Returns the manhatten distance between two atoms. Returns INFINITY if either are not on a turf, for BYOND get_dist() parity.
-/proc/get_dist_manhatten(atom/A, atom/B)
+/// Returns the manhattan distance between two atoms. Returns INFINITY if either are not on a turf, for BYOND get_dist() parity.
+/proc/get_dist_manhattan(atom/A, atom/B)
 	if(!A.z || !B.z)
 		return INFINITY
 
