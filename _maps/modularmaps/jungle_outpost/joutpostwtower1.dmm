@@ -1,0 +1,53 @@
+"a" = (/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"b" = (/obj/structure/table/reinforced,/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"c" = (/obj/structure/table/reinforced,/obj/effect/spawner/random/engineering/engibelt,/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"e" = (/obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"f" = (/obj/structure/cable,/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"g" = (/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"h" = (/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"i" = (/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,/obj/structure/platform{dir = 1},/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"j" = (/obj/machinery/door/airlock/colony/medical/hydroponics{dir = 1},/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"k" = (/obj/item/trash/cheesie,/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"l" = (/obj/structure/platform{dir = 8},/turf/closed/wall,/area/campaign/jungle_outpost/outpost/outer/west)
+"m" = (/obj/effect/landmark/campaign_structure/phoron_crate,/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"n" = (/obj/item/trash/raisins,/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"o" = (/obj/machinery/light,/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"p" = (/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,/obj/structure/platform{dir = 8},/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"q" = (/obj/structure/platform_decoration{dir = 5},/turf/open/ground/grass/weedable,/area/campaign/jungle_outpost/ground/jungle/west)
+"r" = (/obj/structure/platform{dir = 1},/turf/closed/wall,/area/campaign/jungle_outpost/outpost/outer/west)
+"s" = (/obj/structure/platform{dir = 5},/turf/closed/wall,/area/campaign/jungle_outpost/outpost/outer/west)
+"t" = (/obj/machinery/door/airlock/multi_tile/mainship/generic,/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"v" = (/obj/structure/table/reinforced,/obj/item/paper,/obj/effect/spawner/random/medical/pillbottle,/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"z" = (/obj/machinery/door/airlock/multi_tile/mainship/generic{dir = 1},/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"A" = (/obj/structure/platform,/turf/closed/wall,/area/campaign/jungle_outpost/outpost/outer/west)
+"B" = (/obj/structure/table/reinforced,/obj/item/clipboard,/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"C" = (/obj/machinery/light{dir = 8},/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"E" = (/obj/structure/platform_decoration{dir = 10},/turf/open/ground/grass/weedable,/area/campaign/jungle_outpost/ground/jungle/west)
+"G" = (/turf/closed/wall,/area/campaign/jungle_outpost/outpost/outer/west)
+"I" = (/obj/structure/platform{dir = 4},/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"J" = (/obj/structure/platform{dir = 10},/turf/closed/wall,/area/campaign/jungle_outpost/outpost/outer/west)
+"K" = (/obj/structure/platform_decoration{dir = 9},/turf/open/ground/grass/weedable,/area/campaign/jungle_outpost/ground/jungle/west)
+"L" = (/obj/structure/platform{dir = 6},/turf/closed/wall,/area/campaign/jungle_outpost/outpost/outer/west)
+"M" = (/obj/effect/spawner/random/engineering/tool,/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"O" = (/obj/structure/platform{dir = 9},/turf/closed/wall,/area/campaign/jungle_outpost/outpost/outer/west)
+"P" = (/obj/item/trash/cigbutt,/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"R" = (/obj/structure/platform_decoration{dir = 6},/turf/open/ground/grass/weedable,/area/campaign/jungle_outpost/ground/jungle/west)
+"T" = (/obj/machinery/power/apc/drained{dir = 1},/obj/structure/cable,/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"U" = (/obj/machinery/light{dir = 1},/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"V" = (/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,/obj/structure/platform,/turf/open/floor,/area/campaign/jungle_outpost/outpost/outer/west)
+"W" = (/obj/structure/platform{dir = 4},/turf/closed/wall,/area/campaign/jungle_outpost/outpost/outer/west)
+
+(1,1,1) = {"
+ROriirrtfrsE
+OGaaaUaafaGs
+lcPaaaaafaaW
+lbnaaffffaeW
+laaaoTmaaoeW
+lGgjGGGtaGGW
+laaaUGhaaUhW
+paaaaaaMaaaI
+paaaazaaaaaI
+lCaaaGCPPkaW
+JGaaaGMaBvGL
+KJAjAAAVVALq
+"}

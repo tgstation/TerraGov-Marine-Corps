@@ -1201,3 +1201,16 @@
 	modular_id = "EORG"
 	template_width = 46
 	template_height = 46
+/datum/map_template/modular/jungle_outpost/westtowerone
+    name = "Western Dome"
+    mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower1.dmm"
+    modular_id = "jowesttower"
+    template_width = 12
+    template_height = 12
+
+/datum/map_template/modular/jungle_outpost/westtowertwo
+	name = "Western Bar Dome"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower2"
+	modular_id = "jowesttower"
+	template_width = 12
+	template_height = 12
