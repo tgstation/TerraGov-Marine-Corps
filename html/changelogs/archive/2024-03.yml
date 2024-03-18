@@ -297,3 +297,9 @@
   - rscadd: Expanded the Arachne vehicle bay.
   - rscdel: Removed the Arachne flight control station, to make room for the vehicle
       bay.
+2024-03-18:
+  Lumipharon:
+  - bugfix: fixed an issue with airburst type projectiles
+  - bugfix: Fix hefa nades
+  - bugfix: Fix piercing ammo not piercing if your main target is adjacent to you
+  - bugfix: Fix tank blowing itself up with the main cannon

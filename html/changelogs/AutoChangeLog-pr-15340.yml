@@ -1,7 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed an issue with airburst type projectiles"
-  - bugfix: "Fix hefa nades"
-  - bugfix: "Fix piercing ammo not piercing if your main target is adjacent to you"
-  - bugfix: "Fix tank blowing itself up with the main cannon"
