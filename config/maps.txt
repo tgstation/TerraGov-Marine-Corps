@@ -78,7 +78,15 @@ map slumbridge
   minplayers 35
 endmap
 
-
 map daedalusprison
 	minplayers 50
+endmap
+
+map desertdam
+	minplayers 75
+endmap
+
+map barrenquilla_mining
+	minplayers 30
+	maxplayers 50
 endmap
