@@ -1222,3 +1222,10 @@
 	modular_id = "jowesttower"
 	template_width = 12
 	template_height = 12
+
+/datum/map_template/modular/jungle_outpost/westtowerfour
+	name = "Western Pond"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower4.dmm"
+	modular_id = "jowesttower"
+	template_width = 12
+	template_height = 12
