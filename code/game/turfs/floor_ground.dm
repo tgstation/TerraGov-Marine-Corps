@@ -346,6 +346,21 @@
 	name = "asphalt"
 	icon_state = "cement_threeside"
 
+/turf/open/floor/plating/ground/desertdam/asphalt/autosmooth
+	name = "concrete"
+	icon = 'icons/turf/floors/asphalt-regular.dmi'
+	icon_state = "asphalt-icon"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_ASPHALT)
+	canSmoothWith = list(
+		SMOOTH_GROUP_ASPHALT,
+	)
+	base_icon_state = "asphalt-regular"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/autosmooth/alt
+	icon = 'icons/turf/floors/asphalt-sunbleached.dmi'
+	base_icon_state = "aasphalt-sunbleached"
+
 
 //CAVE
 /turf/open/floor/plating/ground/desertdam/cave
