@@ -2757,6 +2757,32 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/mortar/rocket/smoke/mlrs
 	smoketype = /datum/effect_system/smoke_spread/tactical
 
+/datum/ammo/fireball
+	name = "fireball"
+	icon_state = "pulse0"	//There is a fireball sprite but it's in reverse :') this fits fine anyways
+	ping = null
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
+	armor_type = FIRE
+	damage_falloff = 0
+	shell_speed = 1
+	accuracy = 100
+	max_range = 14
+	damage = 60
+	penetration = 10
+	bullet_color = LIGHT_COLOR_FIRE
+
+/datum/ammo/fireball/on_hit_mob(mob/M, obj/projectile/proj)
+	drop_flame(get_turf(M))
+
+/datum/ammo/fireball/on_hit_obj(obj/O, obj/projectile/proj)
+	drop_flame(get_turf(O))
+
+/datum/ammo/fireball/on_hit_turf(turf/T, obj/projectile/proj)
+	drop_flame(T)
+
+/datum/ammo/fireball/do_at_max_range(turf/T, obj/projectile/proj)
+	drop_flame(T)
+
 /*
 //================================================
 					Energy Ammo

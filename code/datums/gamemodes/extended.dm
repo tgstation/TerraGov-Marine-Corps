@@ -24,6 +24,7 @@
 		/datum/job/terragov/squad/corpsman = 8,
 		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/leader = 4,
+		/datum/job/terragov/squad/wizard = 4,
 		/datum/job/terragov/squad/standard = -1
 	)
 	enable_fun_tads = TRUE

@@ -411,3 +411,43 @@ You are also in charge of communicating with command and letting them know about
 	name = SQUAD_VATGROWN
 	jobtype = /datum/job/terragov/squad/vatgrown
 	id = /obj/item/card/id/dogtag
+
+/datum/job/terragov/squad/wizard
+	title = SQUAD_WIZARD
+	paygrade = "WO"
+	comm_title = "WIZ"
+	access = list(ACCESS_MARINE_PREP)
+	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
+	//skills_type = /datum/skills/wizard
+	display_order = JOB_DISPLAY_ORDER_SQUAD_WIZARD
+	outfit = /datum/outfit/job/marine/wizard
+	total_positions = 1
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
+		/datum/job/terragov/squad/corpsman = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/squad/engineer = SMARTIE_POINTS_REGULAR,
+	)
+	html_description = {"
+		<b>Difficulty</b>: Magical<br /><br />
+		<b>You answer to the</b> acting Squad Leader<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
+		You cast spells. Decimate the xenomorph horde.
+		<br /><br />
+		<b>Duty</b>: Carry out orders made by your acting Squad Leader, deal with any threats that oppose the TGMC.
+	"}
+	minimap_icon = "private"
+
+/datum/outfit/job/marine/wizard
+	name = SQUAD_WIZARD
+	jobtype = /datum/job/terragov/squad
+	id = /obj/item/card/id/dogtag
+	head = /obj/item/clothing/head/wizard_hat
+	w_uniform = /obj/item/clothing/under/marine
+	wear_suit = /obj/item/clothing/suit/wizard_robe
+	shoes = /obj/item/clothing/shoes/wizard_shoes
+
+/datum/outfit/job/marine/wizard/pre_equip(mob/living/carbon/human/H, visualsOnly)
+	. = ..()
+	H.add_ability(/datum/action/ability/activate_magic)
