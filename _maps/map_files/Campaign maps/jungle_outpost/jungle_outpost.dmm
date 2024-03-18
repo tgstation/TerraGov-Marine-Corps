@@ -11495,6 +11495,10 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle/north)
+"Xk" = (
+/obj/effect/spawner/modularmap/jungle_outpost/westtower,
+/turf/open/space/basic,
+/area/space)
 "Xl" = (
 /obj/machinery/light{
 	dir = 8
@@ -13287,7 +13291,7 @@ pd
 pd
 pd
 pd
-pd
+Xk
 il
 bE
 bE
