@@ -5,6 +5,7 @@
 "e" = (/obj/structure/table/woodentable,/obj/item/reagent_containers/food/drinks/drinkingglass{pixel_y = 4},/turf/open/floor/grimy,/area/campaign/jungle_outpost/outpost/bar)
 "f" = (/obj/structure/cable,/turf/open/floor/wood,/area/campaign/jungle_outpost/outpost/bar)
 "g" = (/obj/structure/device/piano/full,/turf/open/floor/wood,/area/campaign/jungle_outpost/outpost/bar)
+"h" = (/obj/structure/platform_decoration{dir = 10},/turf/open/ground/grass/weedable,/area/campaign/jungle_outpost/ground/jungle/west)
 "i" = (/obj/structure/bed/chair/wood/normal{dir = 1},/obj/machinery/light{dir = 4},/turf/open/floor/wood,/area/campaign/jungle_outpost/outpost/bar)
 "j" = (/obj/structure/bed/chair/wood/normal{dir = 1},/turf/open/floor/cult/clock,/area/campaign/jungle_outpost/outpost/bar)
 "k" = (/turf/closed/wall/wood,/area/campaign/jungle_outpost/outpost/bar)
@@ -33,22 +34,24 @@
 "I" = (/obj/machinery/light{dir = 8},/turf/open/floor/wood,/area/campaign/jungle_outpost/outpost/bar)
 "J" = (/obj/structure/platform{dir = 10},/turf/closed/wall/wood,/area/campaign/jungle_outpost/outpost/bar)
 "K" = (/obj/structure/bed/chair/wood/normal{dir = 8},/turf/open/floor/cult/clock,/area/campaign/jungle_outpost/outpost/bar)
+"L" = (/obj/structure/platform_decoration{dir = 9},/turf/open/ground/grass/weedable,/area/campaign/jungle_outpost/ground/jungle/west)
 "M" = (/obj/structure/window/framed/wood,/obj/structure/platform{dir = 4},/turf/open/floor/wood,/area/campaign/jungle_outpost/outpost/bar)
 "N" = (/obj/structure/table/reinforced,/obj/machinery/chem_dispenser/soda{pixel_y = 32},/turf/open/floor/grimy,/area/campaign/jungle_outpost/outpost/bar)
 "O" = (/obj/structure/bed/stool,/turf/open/floor/grimy,/area/campaign/jungle_outpost/outpost/bar)
-"P" = (/turf/open/space/basic,/area/campaign/jungle_outpost/ground/jungle/west)
+"P" = (/obj/structure/platform_decoration{dir = 5},/turf/open/ground/grass/weedable,/area/campaign/jungle_outpost/ground/jungle/west)
 "Q" = (/obj/machinery/door/airlock/multi_tile/mainship/generic,/turf/open/floor/wood,/area/campaign/jungle_outpost/outpost/bar)
 "R" = (/obj/structure/platform,/turf/closed/wall/wood,/area/campaign/jungle_outpost/outpost/bar)
 "S" = (/obj/structure/platform{dir = 6},/turf/closed/wall/wood,/area/campaign/jungle_outpost/outpost/bar)
 "T" = (/obj/structure/table/woodentable,/turf/open/floor/cult/clock,/area/campaign/jungle_outpost/outpost/bar)
 "U" = (/obj/machinery/door/airlock/colony/medical/hydroponics{dir = 1},/obj/structure/platform,/turf/open/floor/wood,/area/campaign/jungle_outpost/outpost/bar)
 "V" = (/obj/structure/bed/chair/wood/wings{dir = 8},/turf/open/floor/wood,/area/campaign/jungle_outpost/outpost/bar)
+"W" = (/obj/structure/platform_decoration{dir = 6},/turf/open/ground/grass/weedable,/area/campaign/jungle_outpost/ground/jungle/west)
 "X" = (/obj/machinery/light{dir = 1},/turf/open/floor/wood,/area/campaign/jungle_outpost/outpost/bar)
 "Y" = (/obj/structure/window/framed/wood,/obj/structure/platform{dir = 8},/turf/open/floor/wood,/area/campaign/jungle_outpost/outpost/bar)
 "Z" = (/obj/structure/bed/chair/wood/normal{dir = 1},/turf/open/floor/wood,/area/campaign/jungle_outpost/outpost/bar)
 
 (1,1,1) = {"
-PzvvvvvQfvdP
+WzvvvvvQfvdh
 zkbNwXqffakd
 ylllDaBxBaHu
 yeeFeanoKapu
@@ -59,5 +62,5 @@ yInoKanTKaCu
 yaBjBaBjBamu
 yaaaaHaaaaZu
 JkaacAErgVkS
-PJRURRRRRRSP
+LJRURRRRRRSP
 "}
