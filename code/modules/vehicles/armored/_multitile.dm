@@ -39,3 +39,10 @@
 	if(!.)
 		return
 	return (M.loc in enter_locations(M))
+
+//3x4
+/obj/vehicle/sealed/armored/multitile/rectangle
+	pixel_x = -48
+	pixel_y = -64
+
+	hitbox = /obj/hitbox/rectangle

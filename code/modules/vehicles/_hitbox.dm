@@ -9,8 +9,6 @@
 	density = TRUE
 	anchored = TRUE
 	invisibility = INVISIBILITY_MAXIMUM
-	bound_width = 96
-	bound_height = 96
 	bound_x = -32
 	bound_y = -32
 	max_integrity = INFINITY
@@ -19,9 +17,15 @@
 	var/list/atom/movable/tank_desants
 	///The "parent" that this hitbox is attached to and to whom it will relay damage
 	var/obj/vehicle/root = null
+	///Length of the vehicle. Assumed to be longer than it is wide
+	var/vehicle_length = 96
+	///Width of the vehicle
+	var/vehicle_width = 96
 
 /obj/hitbox/Initialize(mapload, obj/vehicle/new_root)
 	. = ..()
+	bound_height = vehicle_length
+	bound_width = vehicle_width
 	root = new_root
 	allow_pass_flags = root.allow_pass_flags
 	flags_atom = root.flags_atom
@@ -55,7 +59,9 @@
 /obj/hitbox/proc/owner_turned(datum/source, old_dir, new_dir)
 	SIGNAL_HANDLER
 	if(!new_dir || new_dir == old_dir)
-		return
+		return FALSE
+	if(vehicle_length != vehicle_width)
+		return TRUE //handled by child types
 	for(var/mob/living/desant AS in tank_desants)
 		if(desant.loc == root.loc)
 			continue
@@ -68,6 +74,8 @@
 		else
 			new_pos = get_step(root, turn(get_dir(desant, root), 90))
 		desant.forceMove(new_pos)
+
+	return FALSE
 
 ///signal handler when someone jumping lands on us
 /obj/hitbox/proc/on_jump_landed(datum/source, atom/lander)
@@ -177,8 +185,8 @@
 
 ///2x2 hitbox version
 /obj/hitbox/medium
-	bound_width = 64
-	bound_height = 64
+	vehicle_length = 64
+	vehicle_width = 64
 	bound_x = 0
 	bound_y = -32
 
@@ -221,3 +229,112 @@
 	if(canstep)
 		return NONE
 	return COMPONENT_DRIVER_BLOCK_MOVE
+
+//3x4
+/obj/hitbox/rectangle
+
+	bound_x = -32
+	bound_y = -64
+	vehicle_length = 128
+	vehicle_width = 96
+
+/obj/hitbox/rectangle/owner_turned(datum/source, old_dir, new_dir)
+	. = ..()
+	if(!.)
+		return
+	var/list/old_locs = locs.Copy()
+	switch(new_dir)
+		if(NORTH)
+			bound_height = vehicle_length
+			bound_width = vehicle_width
+			bound_x = -32
+			bound_y = -32
+			root.pixel_x = -48
+			root.pixel_y = -32
+		if(SOUTH)
+			bound_height = vehicle_length
+			bound_width = vehicle_width
+			bound_x = -32
+			bound_y = -64
+			root.pixel_x = -48
+			root.pixel_y = -64
+		if(WEST)
+			bound_height = vehicle_width
+			bound_width = vehicle_length
+			bound_x = -64
+			bound_y = -32
+			root.pixel_x = -64
+			root.pixel_y = -48
+		if(EAST)
+			bound_height = vehicle_width
+			bound_width = vehicle_length
+			bound_x = -32
+			bound_y = -32
+			root.pixel_x = -32
+			root.pixel_y = -48
+
+	var/angle_change = dir2angle(new_dir) - dir2angle(old_dir)
+	//north needing to be considered 0 OR 360 is inconvenient, I'm sure there is a non ungabrain way to do this
+	switch(angle_change)
+		if(-270)
+			angle_change = 90
+		if(270)
+			angle_change = -90
+	for(var/mob/living/desant AS in tank_desants)
+		if(desant.loc == root.loc)
+			continue
+		var/new_x
+		var/new_y
+		if(angle_change > 0) //clockwise turn
+			new_x = root.x + (desant.y - root.y)
+			new_y = root.y - (desant.x - root.x)
+		else //anti-clockwise
+			new_x = root.x - (desant.y - root.y)
+			new_y = root.y + (desant.x - root.x)
+
+		desant.forceMove(locate(new_x, new_y, z))
+
+	SEND_SIGNAL(src, COMSIG_MULTITILE_ROTATED, loc, new_dir, null, old_locs) //this is fine for now but will need changing before release
+
+/obj/hitbox/rectangle/on_attempt_drive(atom/movable/movable_parent, mob/living/user, direction)
+	if(ISDIAGONALDIR(direction))
+		return COMPONENT_DRIVER_BLOCK_MOVE
+	if((root.dir != direction) && (root.dir != REVERSE_DIR(direction)) && isarmoredvehicle(root)) //turning
+		var/obj/vehicle/sealed/armored/armor = root
+		playsound(armor, armor.engine_sound, 100, TRUE, 20)
+	/////////////////////////////
+	var/turf/centerturf = get_turf(root)
+	var/dist_count = 3
+	if(root.dir != direction)
+		dist_count =2
+	for(var/i in 1 to dist_count)
+		centerturf = get_step(centerturf, direction)
+	var/list/enteringturfs = list(centerturf)
+	enteringturfs += get_step(centerturf, turn(direction, 90))
+	enteringturfs += get_step(centerturf, turn(direction, -90))
+	/////////////////////////////
+	var/canstep = TRUE
+	for(var/turf/T AS in enteringturfs)	//No break because we want to crush all the turfs before we start trying to move
+		if(!T.Enter(root, direction))	//Check if we can cross the turf first/bump the turf
+			canstep = FALSE
+
+		for(var/atom/movable/O AS in T.contents) // this is checked in turf/enter but it doesnt return false so lmao
+			if(O.CanPass(root))	// Then check for obstacles to crush
+				continue
+			root.Bump(O) //manually call bump on everything
+			canstep = FALSE
+
+	if(canstep)
+		if((root.dir != direction) && (root.dir != REVERSE_DIR(direction)))
+			root.setDir(direction)
+			return COMPONENT_DRIVER_BLOCK_MOVE
+		else
+			return NONE
+	return COMPONENT_DRIVER_BLOCK_MOVE
+
+/obj/vehicle/sealed/armored/multitile/rectangle
+	pixel_x = -48
+	pixel_y = -64
+
+	hitbox = /obj/hitbox/rectangle
+
