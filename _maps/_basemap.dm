@@ -13,6 +13,7 @@
 		#include "map_files\Theseus\TGS_Theseus.dmm"
 		#include "map_files\Vapor_Processing\Vapor_Processing.dmm"
 		#include "map_files\Sulaco\TGS_Sulaco.dmm"
+		#include "map_files\Icarus_Military_Port\icarus_military_port.dmm"
 		#include "map_files\barrenquilla_mining\Barrenquilla_Mining_Facility.dmm"
 		#include "map_files\Pillar_of_Spring\TGS_Pillar_of_Spring.dmm"
 		#include "map_files\icy_caves\icy_caves.dmm"

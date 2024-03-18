@@ -654,6 +654,7 @@
 #include "code\game\area\gelida_iv.dm"
 #include "code\game\area\general.dm"
 #include "code\game\area\icecolony.dm"
+#include "code\game\area\icarus.dm"
 #include "code\game\area\icy_caves.dm"
 #include "code\game\area\lawankaoutpost.dm"
 #include "code\game\area\lv624.dm"
