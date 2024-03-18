@@ -1215,3 +1215,10 @@
 	modular_id = "jowesttower"
 	template_width = 12
 	template_height = 12
+
+/datum/map_template/modular/jungle_outpost/westtowerthree
+	name = "Western Bungalow"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower3.dmm"
+	modular_id = "jowesttower"
+	template_width = 12
+	template_height = 12
