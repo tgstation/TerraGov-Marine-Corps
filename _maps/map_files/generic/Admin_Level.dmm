@@ -2793,8 +2793,14 @@
 	},
 /area/centcom/valhalla)
 "dHM" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/nosmoking_1,
+/obj/item/toy/prize/mauler{
+	pixel_y = 16
+	},
+/obj/item/toy/prize/seraph{
+	pixel_x = 6;
+	pixel_y = 10
+	},
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "dIg" = (
@@ -5312,6 +5318,13 @@
 /area/centcom/valhalla)
 "hrC" = (
 /turf/open/floor/wood/broken,
+/area/centcom/valhalla)
+"htj" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/sign/nosmoking_1,
+/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "htq" = (
 /obj/structure/table/reinforced,
@@ -22293,7 +22306,7 @@ jcx
 ivs
 jaW
 knm
-lYp
+dHM
 lYp
 cre
 box
@@ -22842,7 +22855,7 @@ kqf
 knm
 jtp
 jcx
-dHM
+kqf
 aoa
 frZ
 ivs
@@ -22981,7 +22994,7 @@ tFi
 aWz
 jcx
 wqU
-luM
+htj
 box
 hDW
 hDW
