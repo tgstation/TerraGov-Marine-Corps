@@ -318,12 +318,12 @@ WEAPONS
 	cost = 1000
 
 /datum/supply_packs/weapons/flak_he
-	name = "FK-88 HE Shell"
+	name = "FK-88 Flak HE Shell"
 	contains = list(/obj/item/ammo_magazine/heavy_isg/he)
 	cost = 50
 
 /datum/supply_packs/weapons/flak_sabot
-	name = "FK-88 APFDS Shell"
+	name = "FK-88 Flak APFDS Shell"
 	contains = list(/obj/item/ammo_magazine/heavy_isg/sabot)
 	cost = 50
 
@@ -2407,12 +2407,12 @@ FACTORY
 	cost = 100
 
 /datum/supply_packs/factory/heavy_isg_he_refill
-	name = "FK-88 HE shell assembly refill"
+	name = "FK-88 Flak HE shell assembly refill"
 	contains = list(/obj/item/factory_refill/heavy_isg_he_refill)
 	cost = 300
 
 /datum/supply_packs/factory/heavy_isg_sabot_refill
-	name = "FK-88 APFDS shell assembly refill"
+	name = "FK-88 Flak APFDS shell assembly refill"
 	contains = list(/obj/item/factory_refill/heavy_isg_sabot_refill)
 	cost = 400
 
