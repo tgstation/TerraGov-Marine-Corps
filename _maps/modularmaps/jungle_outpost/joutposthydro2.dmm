@@ -54,6 +54,9 @@
 /area/campaign/jungle_outpost/outpost/living/hydro)
 "iS" = (
 /obj/structure/flora/tree/jungle,
+/obj/structure/platform_decoration{
+	dir = 9
+	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
 "jO" = (
@@ -158,6 +161,13 @@
 /obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"sm" = (
+/obj/structure/flora/jungle/grass,
+/obj/structure/platform_decoration{
+	dir = 9
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
 "st" = (
 /obj/machinery/vending/hydronutrients,
 /turf/open/floor/tile/hydro,
@@ -183,6 +193,20 @@
 /obj/machinery/light,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"uR" = (
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"uU" = (
+/obj/structure/platform_decoration{
+	dir = 5
+	},
+/turf/open/liquid/water,
+/area/campaign/jungle_outpost/ground/jungle)
 "vA" = (
 /obj/structure/platform{
 	dir = 9
@@ -213,6 +237,13 @@
 /area/campaign/jungle_outpost/ground/jungle)
 "wz" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"wY" = (
+/obj/structure/flora/jungle/large_bush,
+/obj/structure/platform_decoration{
+	dir = 6
+	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
 "yc" = (
@@ -328,6 +359,12 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle)
+"Nv" = (
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
 "Ol" = (
 /obj/structure/stairs/edge,
 /turf/open/liquid/water,
@@ -348,10 +385,24 @@
 	},
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"QM" = (
+/obj/structure/flora/jungle/large_bush,
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
 "QO" = (
 /obj/machinery/botany/editor,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"QX" = (
+/obj/structure/flora/jungle/grass/thin,
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
 "Rt" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/platform{
@@ -359,12 +410,26 @@
 	},
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"Se" = (
+/obj/structure/flora/jungle/grass,
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
 "Sq" = (
 /obj/structure/platform{
 	dir = 6
 	},
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"SN" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
 "Te" = (
 /obj/structure/bed/stool,
 /turf/open/floor/tile/hydro,
@@ -382,9 +447,18 @@
 /obj/machinery/hydroponics,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"UT" = (
+/obj/structure/platform_decoration{
+	dir = 5
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
 "Wq" = (
 /obj/structure/flora/jungle/bush,
 /obj/structure/flora/grass/tallgrass/autosmooth,
+/obj/structure/platform_decoration{
+	dir = 9
+	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
 "WB" = (
@@ -409,6 +483,9 @@
 /area/campaign/jungle_outpost/outpost/living/hydro)
 "Yu" = (
 /obj/structure/flora/tree/jungle/small,
+/obj/structure/platform_decoration{
+	dir = 9
+	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
 "Yv" = (
@@ -453,7 +530,7 @@ wd
 pa
 DF
 WB
-DF
+Nv
 nT
 ZY
 ZY
@@ -471,7 +548,7 @@ to
 lo
 DF
 DF
-WB
+QX
 vA
 ZY
 oD
@@ -509,7 +586,7 @@ bU
 "}
 (4,1,1) = {"
 DF
-lo
+wY
 cw
 UO
 UO
@@ -548,7 +625,7 @@ pa
 bU
 "}
 (6,1,1) = {"
-vF
+Se
 nj
 QO
 bp
@@ -564,7 +641,7 @@ bp
 Dp
 UO
 rR
-vF
+sm
 WB
 "}
 (7,1,1) = {"
@@ -688,7 +765,7 @@ Sq
 DF
 "}
 (13,1,1) = {"
-lo
+QM
 nj
 KB
 bp
@@ -704,7 +781,7 @@ IT
 YF
 YF
 rR
-DF
+UT
 DF
 "}
 (14,1,1) = {"
@@ -729,7 +806,7 @@ DF
 "}
 (15,1,1) = {"
 BC
-wz
+SN
 cw
 UO
 UO
@@ -743,7 +820,7 @@ YF
 UO
 UO
 LN
-DF
+UT
 DF
 DF
 "}
@@ -771,7 +848,7 @@ vF
 Ni
 wz
 wz
-wz
+SN
 BG
 Rt
 gI
@@ -781,7 +858,7 @@ bp
 gI
 Rt
 Sq
-Mx
+uU
 sZ
 HE
 sX
@@ -793,13 +870,13 @@ om
 HF
 kM
 om
-om
+uR
 BG
 qK
 gI
 au
 Sq
-Mx
+uU
 Mx
 Mx
 Mx

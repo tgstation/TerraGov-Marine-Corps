@@ -33,8 +33,22 @@
 /obj/structure/bed/stool,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"cQ" = (
+/obj/structure/flora/jungle/large_bush,
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
 "da" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"dN" = (
+/obj/structure/flora/jungle/grass,
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
 "dS" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
@@ -43,6 +57,13 @@
 /area/campaign/jungle_outpost/outpost/living/hydro)
 "ec" = (
 /turf/closed/gm/dense,
+/area/campaign/jungle_outpost/ground/jungle)
+"ey" = (
+/obj/structure/flora/jungle/grass,
+/obj/structure/platform_decoration{
+	dir = 9
+	},
+/turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
 "eH" = (
 /obj/structure/closet/crate/hydroponics,
@@ -97,6 +118,13 @@
 /obj/structure/cable,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"ie" = (
+/obj/structure/flora/jungle/grass/thin,
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
 "iK" = (
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 4
@@ -125,6 +153,14 @@
 /obj/machinery/light,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"nh" = (
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
 "nB" = (
 /obj/structure/stairs/edge{
 	dir = 1
@@ -147,8 +183,17 @@
 /obj/machinery/vending/hydronutrients,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"qR" = (
+/obj/structure/platform_decoration{
+	dir = 5
+	},
+/turf/open/liquid/water,
+/area/campaign/jungle_outpost/ground/jungle)
 "sq" = (
 /obj/structure/flora/tree/jungle,
+/obj/structure/platform_decoration{
+	dir = 9
+	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
 "ss" = (
@@ -225,6 +270,13 @@
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle)
+"xI" = (
+/obj/structure/flora/jungle/large_bush,
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
 "xQ" = (
 /obj/machinery/vending/hydroseeds,
 /turf/open/floor/tile/hydro,
@@ -254,6 +306,12 @@
 /obj/item/reagent_containers/food/drinks/flask/vacuumflask,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"Bc" = (
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
 "Bx" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bucket,
@@ -265,6 +323,9 @@
 /area/campaign/jungle_outpost/outpost/living/hydro)
 "BW" = (
 /obj/structure/flora/tree/jungle/small,
+/obj/structure/platform_decoration{
+	dir = 9
+	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
 "CF" = (
@@ -272,6 +333,13 @@
 /obj/structure/table,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"Db" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
 "EL" = (
 /obj/structure/platform{
 	dir = 5
@@ -344,6 +412,9 @@
 "Ni" = (
 /obj/structure/flora/jungle/bush,
 /obj/structure/flora/grass/tallgrass/autosmooth,
+/obj/structure/platform_decoration{
+	dir = 9
+	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
 "NT" = (
@@ -421,6 +492,12 @@
 	},
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"VD" = (
+/obj/structure/platform_decoration{
+	dir = 5
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
 "Wp" = (
 /obj/structure/table,
 /obj/item/tool/hatchet{
@@ -465,7 +542,7 @@ wP
 ss
 pi
 FJ
-pi
+Bc
 NT
 oM
 oM
@@ -483,7 +560,7 @@ WE
 ht
 pi
 pi
-FJ
+ie
 GO
 oM
 Pq
@@ -521,7 +598,7 @@ da
 "}
 (4,1,1) = {"
 pi
-ht
+cQ
 KR
 sX
 sX
@@ -560,7 +637,7 @@ ss
 da
 "}
 (6,1,1) = {"
-In
+dN
 KR
 sX
 sX
@@ -576,7 +653,7 @@ wF
 sX
 sX
 dS
-In
+ey
 FJ
 "}
 (7,1,1) = {"
@@ -700,7 +777,7 @@ Pw
 pi
 "}
 (13,1,1) = {"
-ht
+xI
 KR
 sX
 sX
@@ -716,7 +793,7 @@ sX
 sX
 sX
 dS
-pi
+VD
 pi
 "}
 (14,1,1) = {"
@@ -741,7 +818,7 @@ pi
 "}
 (15,1,1) = {"
 Ol
-UE
+Db
 KR
 sX
 sX
@@ -755,7 +832,7 @@ KH
 sX
 sX
 dS
-pi
+VD
 pi
 pi
 "}
@@ -783,7 +860,7 @@ In
 gY
 UE
 UE
-UE
+Db
 EL
 Am
 Fs
@@ -793,7 +870,7 @@ KH
 Fs
 Am
 Pw
-Al
+qR
 wa
 kv
 kJ
@@ -805,13 +882,13 @@ iK
 Ig
 cg
 iK
-iK
+nh
 EL
 wv
 Fs
 IW
 Pw
-Al
+qR
 Al
 Al
 Al
