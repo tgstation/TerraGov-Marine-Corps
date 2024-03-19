@@ -24,6 +24,12 @@
 	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle/east)
+"cl" = (
+/obj/structure/catwalk,
+/turf/open/ground/grass/beach{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
 "cx" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass,
 /turf/open/floor/tile/dark,
@@ -54,6 +60,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/campaign/jungle_outpost/outpost/engineering)
+"ee" = (
+/obj/structure/rock/variable/jungle/big,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/east)
 "eC" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/liquid/water/river,
@@ -164,6 +174,12 @@
 /obj/structure/closet/secure_closet/engineering_personal,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
+"lw" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/ground/grass/beach{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
 "ly" = (
 /obj/structure/platform{
 	dir = 8
@@ -199,6 +215,10 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle/east)
+"oS" = (
+/obj/structure/catwalk,
+/turf/open/ground/grass/beach,
+/area/campaign/jungle_outpost/ground/jungle/east)
 "pn" = (
 /obj/structure/cable,
 /turf/open/floor,
@@ -210,6 +230,16 @@
 "rr" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"rP" = (
+/obj/structure/catwalk,
+/obj/structure/reagent_dispensers/fueltank/barrel,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"sd" = (
+/turf/open/ground/grass/beach{
 	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle/east)
@@ -243,6 +273,10 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
+"tY" = (
+/obj/structure/catwalk,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/east)
 "up" = (
 /obj/structure/stairs/seamless/edge_vert{
 	dir = 8
@@ -274,6 +308,11 @@
 /obj/structure/platform,
 /turf/closed/wall/r_wall,
 /area/campaign/jungle_outpost/outpost/engineering)
+"xl" = (
+/obj/structure/catwalk,
+/obj/structure/largecrate/random/barrel,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/east)
 "xm" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2{
 	dir = 4
@@ -297,6 +336,13 @@
 "yL" = (
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"zy" = (
+/obj/structure/catwalk,
+/obj/structure/cable,
+/turf/open/ground/grass/beach{
+	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle/east)
 "zA" = (
@@ -384,7 +430,7 @@
 /area/campaign/jungle_outpost/outpost/engineering)
 "Gg" = (
 /obj/structure/flora/jungle/large_bush,
-/turf/open/ground/grass/weedable,
+/turf/open/ground/grass/beach,
 /area/campaign/jungle_outpost/ground/jungle/east)
 "GA" = (
 /obj/structure/stairs/seamless/edge_vert{
@@ -467,6 +513,13 @@
 "Jw" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2,
 /area/campaign/jungle_outpost/ground/jungle/east)
+"JC" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/east)
 "JT" = (
 /obj/machinery/light{
 	dir = 1
@@ -497,6 +550,12 @@
 	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle/east)
+"LX" = (
+/obj/structure/catwalk,
+/turf/open/ground/grass/beach{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
 "Ma" = (
 /obj/structure/platform_decoration{
 	dir = 6
@@ -516,6 +575,13 @@
 /obj/structure/catwalk,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/east)
+"Nm" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/ground/grass/beach,
+/area/campaign/jungle_outpost/ground/jungle/east)
 "NJ" = (
 /obj/structure/cable,
 /obj/structure/table/reinforced,
@@ -534,6 +600,16 @@
 /obj/item/paper,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
+"Oj" = (
+/obj/structure/catwalk,
+/obj/structure/cable,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"OU" = (
+/turf/open/ground/grass/beach/corner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
 "Pm" = (
 /obj/structure/cable,
 /obj/structure/table/reinforced,
@@ -776,8 +852,8 @@ qv
 zA
 zA
 DA
-MS
-MS
+cl
+cl
 Ga
 Yf
 zA
@@ -799,8 +875,8 @@ ar
 vO
 vO
 qv
-Un
-Un
+Oj
+Oj
 sj
 qv
 qv
@@ -822,8 +898,8 @@ Ad
 Ad
 Ad
 Ga
-MS
-MS
+tY
+tY
 zA
 zA
 zA
@@ -845,8 +921,8 @@ Ga
 Ga
 Ga
 Ga
-MS
-MS
+tY
+tY
 Ga
 cO
 zA
@@ -865,11 +941,11 @@ lN
 AL
 ga
 MS
-MS
-MS
-MS
-MS
-MS
+oS
+tY
+tY
+tY
+tY
 Ga
 Ga
 yB
@@ -888,12 +964,12 @@ vP
 js
 MS
 MS
-MS
-MS
-MS
-MS
-MS
-MS
+oS
+tY
+tY
+tY
+tY
+rP
 Ga
 Ga
 Iu
@@ -914,10 +990,10 @@ Ga
 Ga
 Ga
 Ga
-MS
-MS
-MS
-MS
+tY
+tY
+xl
+xl
 Ga
 Ga
 zA
@@ -938,15 +1014,15 @@ Ym
 Ym
 sr
 Ga
-MS
-MS
-MS
-MS
-MS
-MS
-Un
-MS
-MS
+tY
+tY
+tY
+tY
+tY
+tY
+Oj
+tY
+LX
 MS
 MS
 up
@@ -961,15 +1037,15 @@ Cs
 Bf
 iP
 Ga
-MS
-MS
-MS
-MS
-MS
-MS
-Un
-Un
-Un
+tY
+tY
+tY
+tY
+tY
+tY
+Oj
+Oj
+zy
 Un
 MS
 Ri
@@ -984,8 +1060,8 @@ NL
 GX
 iP
 Ga
-MS
-MS
+tY
+tY
 Ga
 Ga
 Ga
@@ -1007,8 +1083,8 @@ zA
 zA
 sr
 Ga
-MS
-MS
+tY
+tY
 Ga
 wA
 Ir
@@ -1029,9 +1105,9 @@ Ga
 zA
 ur
 Ga
-MS
-MS
-MS
+tY
+tY
+tY
 DA
 zA
 zA
@@ -1051,10 +1127,10 @@ Ye
 MS
 MS
 MS
-MS
-MS
-MS
-MS
+oS
+tY
+tY
+tY
 zA
 zA
 zA
@@ -1074,10 +1150,10 @@ jm
 Bd
 MS
 MS
-Bd
-Bd
-Bd
-Bd
+Nm
+JC
+JC
+JC
 Ga
 wA
 UK
@@ -1098,8 +1174,8 @@ UH
 Vt
 ZF
 Gg
-IB
-UH
+ee
+Tc
 Jd
 Zb
 hB
@@ -1120,9 +1196,9 @@ Ab
 UH
 vP
 sf
-UH
-UH
-Xq
+OU
+sd
+lw
 DV
 DV
 DV

@@ -342,9 +342,6 @@
 /obj/machinery/iv_drip,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/campaign/jungle_outpost/outpost/medbay)
-"yT" = (
-/turf/open/liquid/water/river,
-/area/campaign/jungle_outpost/ground/river/north)
 "zg" = (
 /obj/structure/stairs/edge{
 	dir = 1
@@ -739,10 +736,10 @@
 /area/campaign/jungle_outpost/outpost/medbay)
 
 (1,1,1) = {"
-yT
-yT
-yT
-yT
+Hv
+Hv
+Hv
+Hv
 Hv
 Hv
 RM
