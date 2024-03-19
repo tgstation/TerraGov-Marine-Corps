@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: True
+changes:
+  - bugfix: "Iguana ammo boxes now properly delete themselves when they perform a reload that uses up all their ammo"
