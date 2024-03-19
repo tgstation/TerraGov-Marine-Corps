@@ -61,7 +61,7 @@
 	name = "Lunging strike"
 	action_icon_state = "sword_lunge"
 	desc = "A powerful leaping strike. Cannot stun."
-	ability_cost = 12
+	ability_cost = 8
 	cooldown_duration = 6 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_WEAPONABILITY_SWORDLUNGE,

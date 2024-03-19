@@ -233,8 +233,8 @@
 	if(!.)
 		return
 	toggle_item_bump_attack(user, TRUE)
-	//if(HAS_TRAIT(user, TRAIT_AXE_EXPERT))
-	special_attack.give_action(user)
+	if(HAS_TRAIT(user, TRAIT_AXE_EXPERT))
+		special_attack.give_action(user)
 
 /obj/item/weapon/twohanded/fireaxe/som/unwield(mob/user)
 	. = ..()
@@ -248,7 +248,7 @@
 	name = "Sweeping blow"
 	action_icon_state = "axe_sweep"
 	desc = "A powerful sweeping blow that hits foes in the direction you are facing. Cannot stun."
-	ability_cost = 12
+	ability_cost = 10
 	cooldown_duration = 6 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_WEAPONABILITY_AXESWEEP,
