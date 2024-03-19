@@ -256,3 +256,8 @@
 	mapid = "johydroponics"
 	spawner_width = 19
 	spawner_height = 18
+
+/obj/effect/spawner/modularmap/jungle_outpost/medbay
+	mapid = "jomedbay"
+	spawner_width = 16
+	spawner_height = 24

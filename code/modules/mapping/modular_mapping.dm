@@ -1278,3 +1278,24 @@
 	modular_id = "johydroponics"
 	template_width = 19
 	template_height = 18
+
+/datum/map_template/modular/jungle_outpost/medicalone
+	name = "Medical"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostmedbay1.dmm"
+	modular_id = "jomedbay"
+	template_width = 16
+	template_height = 24
+
+/datum/map_template/modular/jungle_outpost/medicaltwo
+	name = "Medical"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostmedbay2.dmm"
+	modular_id = "jomedbay"
+	template_width = 16
+	template_height = 24
+
+/datum/map_template/modular/jungle_outpost/medicalthree
+	name = "Outdoor Medical"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostmedbay3.dmm"
+	modular_id = "jomedbay"
+	template_width = 16
+	template_height = 24
