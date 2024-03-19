@@ -10,6 +10,10 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle/west)
+"c" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
 "d" = (
 /turf/open/ground/grass/beach/corner{
 	dir = 4
@@ -54,8 +58,29 @@
 	},
 /turf/open/ground/grass/beach,
 /area/campaign/jungle_outpost/ground/jungle/west)
+"m" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/area/campaign/jungle_outpost/ground/jungle/west)
 "n" = (
 /turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"o" = (
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"p" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"q" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
 /area/campaign/jungle_outpost/ground/jungle/west)
 "r" = (
 /obj/structure/catwalk,
@@ -149,6 +174,18 @@
 /obj/structure/flora/jungle/grass,
 /turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle/west)
+"N" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"O" = (
+/obj/structure/stairs/seamless/edge_vert,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
 "P" = (
 /obj/structure/catwalk,
 /obj/structure/platform{
@@ -161,6 +198,11 @@
 "Q" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"R" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 1
+	},
 /area/campaign/jungle_outpost/ground/jungle/west)
 "S" = (
 /obj/structure/flora/jungle/large_bush,
@@ -190,8 +232,13 @@
 "Y" = (
 /turf/closed/gm/dense,
 /area/campaign/jungle_outpost/ground/jungle/west)
+"Z" = (
+/obj/structure/stairs/edge,
+/turf/open/floor/plating/ground/dirtgrassborder2,
+/area/campaign/jungle_outpost/ground/jungle/west)
 
 (1,1,1) = {"
+W
 W
 W
 W
@@ -204,8 +251,10 @@ Y
 Y
 Y
 E
+E
 "}
 (2,1,1) = {"
+W
 i
 Y
 Y
@@ -218,8 +267,10 @@ Y
 Y
 Y
 Y
+W
 "}
 (3,1,1) = {"
+W
 Y
 Y
 Y
@@ -232,8 +283,10 @@ n
 a
 Y
 Y
+m
 "}
 (4,1,1) = {"
+N
 Y
 Y
 w
@@ -246,8 +299,10 @@ n
 r
 V
 h
+Z
 "}
 (5,1,1) = {"
+o
 u
 V
 w
@@ -260,8 +315,10 @@ F
 x
 w
 A
+R
 "}
 (6,1,1) = {"
+o
 k
 x
 V
@@ -274,8 +331,10 @@ g
 V
 w
 X
+E
 "}
 (7,1,1) = {"
+o
 t
 x
 V
@@ -288,8 +347,10 @@ j
 V
 w
 X
+c
 "}
 (8,1,1) = {"
+O
 P
 f
 w
@@ -302,8 +363,10 @@ U
 x
 b
 d
+W
 "}
 (9,1,1) = {"
+q
 J
 I
 w
@@ -316,8 +379,10 @@ n
 x
 G
 K
+W
 "}
 (10,1,1) = {"
+p
 W
 Y
 Y
@@ -330,8 +395,10 @@ Y
 Y
 Y
 W
+W
 "}
 (11,1,1) = {"
+W
 W
 Y
 Y
@@ -343,10 +410,12 @@ Y
 Y
 Y
 Y
+W
 W
 "}
 (12,1,1) = {"
 W
+W
 i
 Y
 Y
@@ -358,4 +427,5 @@ Y
 i
 W
 W
+E
 "}

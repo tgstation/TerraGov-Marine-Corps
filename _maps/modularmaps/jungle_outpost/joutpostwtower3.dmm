@@ -84,6 +84,10 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/west)
+"p" = (
+/obj/structure/stairs/edge,
+/turf/open/floor/plating/ground/dirtgrassborder2,
+/area/campaign/jungle_outpost/ground/jungle/west)
 "q" = (
 /obj/structure/rock/variable/jungle/big,
 /turf/open/ground/grass/weedable,
@@ -108,6 +112,20 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/west)
+"v" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"w" = (
+/obj/structure/stairs/seamless/edge_vert,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
 "x" = (
 /obj/structure/platform_decoration{
 	dir = 10
@@ -119,6 +137,11 @@
 /obj/structure/cable,
 /turf/open/floor/carpet,
 /area/campaign/jungle_outpost/outpost/outer/west)
+"z" = (
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
 "A" = (
 /obj/structure/table/fancywoodentable,
 /obj/item/toy/plush/farwa,
@@ -127,6 +150,10 @@
 "B" = (
 /turf/open/floor/carpet,
 /area/campaign/jungle_outpost/outpost/outer/west)
+"C" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
 "D" = (
 /obj/structure/platform{
 	dir = 6
@@ -136,6 +163,10 @@
 "E" = (
 /turf/open/floor/wood/alt_four,
 /area/campaign/jungle_outpost/outpost/outer/west)
+"F" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
 "G" = (
 /obj/structure/catwalk,
 /turf/open/ground/grass/weedable,
@@ -180,6 +211,12 @@
 /obj/structure/platform,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/west)
+"O" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
 "P" = (
 /obj/structure/table/fancywoodentable,
 /obj/item/reagent_containers/food/drinks/cans/waterbottle,
@@ -188,6 +225,11 @@
 	},
 /turf/open/floor/wood/alt_four,
 /area/campaign/jungle_outpost/outpost/outer/west)
+"R" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
 "S" = (
 /obj/structure/table/fancywoodentable,
 /obj/item/binoculars,
@@ -218,6 +260,14 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/west)
+"X" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"Y" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/area/campaign/jungle_outpost/ground/jungle/west)
 "Z" = (
 /obj/structure/table/fancywoodentable,
 /obj/machinery/light,
@@ -226,6 +276,7 @@
 /area/campaign/jungle_outpost/outpost/outer/west)
 
 (1,1,1) = {"
+g
 q
 g
 g
@@ -238,8 +289,10 @@ H
 h
 o
 g
+C
 "}
 (2,1,1) = {"
+g
 g
 g
 g
@@ -252,8 +305,10 @@ T
 G
 a
 g
+g
 "}
 (3,1,1) = {"
+g
 g
 g
 j
@@ -266,8 +321,10 @@ s
 G
 N
 o
+Y
 "}
 (4,1,1) = {"
+O
 g
 g
 g
@@ -280,8 +337,10 @@ s
 s
 G
 H
+p
 "}
 (5,1,1) = {"
+z
 g
 l
 g
@@ -294,8 +353,10 @@ L
 V
 G
 N
+X
 "}
 (6,1,1) = {"
+z
 g
 g
 g
@@ -308,8 +369,10 @@ Z
 s
 G
 N
+C
 "}
 (7,1,1) = {"
+z
 s
 s
 s
@@ -322,8 +385,10 @@ A
 s
 M
 N
+F
 "}
 (8,1,1) = {"
+w
 G
 G
 G
@@ -336,8 +401,10 @@ s
 s
 G
 N
+g
 "}
 (9,1,1) = {"
+v
 K
 G
 T
@@ -350,8 +417,10 @@ s
 G
 G
 D
+g
 "}
 (10,1,1) = {"
+R
 x
 u
 G
@@ -364,8 +433,10 @@ G
 G
 W
 U
+g
 "}
 (11,1,1) = {"
+g
 g
 c
 u
@@ -378,8 +449,10 @@ G
 W
 U
 g
+g
 "}
 (12,1,1) = {"
+g
 g
 g
 x
@@ -392,4 +465,5 @@ D
 U
 g
 q
+C
 "}

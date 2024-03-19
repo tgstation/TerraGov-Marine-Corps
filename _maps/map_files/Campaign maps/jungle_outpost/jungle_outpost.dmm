@@ -3602,12 +3602,6 @@
 /obj/machinery/door/airlock/glass,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/living)
-"rQ" = (
-/obj/structure/stairs/seamless/edge_vert,
-/turf/open/floor/plating/ground/dirtgrassborder2{
-	dir = 1
-	},
-/area/campaign/jungle_outpost/ground/jungle/west)
 "rS" = (
 /obj/structure/platform,
 /turf/closed/wall,
@@ -4066,14 +4060,6 @@
 	},
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/science/south)
-"uc" = (
-/obj/structure/stairs/seamless/edge_vert{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirtgrassborder2{
-	dir = 1
-	},
-/area/campaign/jungle_outpost/ground/jungle/west)
 "ue" = (
 /obj/effect/landmark/campaign_structure/barricade/sandbags{
 	dir = 4
@@ -6074,12 +6060,6 @@
 /obj/structure/largecrate/random/case,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/landing/storage)
-"Et" = (
-/obj/structure/flora/jungle/grass/thin,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
-	dir = 8
-	},
-/area/campaign/jungle_outpost/ground/jungle/west)
 "Eu" = (
 /obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor,
@@ -8880,10 +8860,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/campaign/jungle_outpost/outpost/security)
-"SF" = (
-/obj/structure/stairs/edge,
-/turf/open/floor/plating/ground/dirtgrassborder2,
-/area/campaign/jungle_outpost/ground/jungle/west)
 "SG" = (
 /obj/structure/rock/variable/jungle,
 /turf/open/floor/plating/ground/dirtgrassborder2{
@@ -11552,7 +11528,8 @@ ZS
 ZS
 Fd
 bE
-bE
+pd
+pd
 pd
 pd
 pd
@@ -11565,7 +11542,6 @@ pd
 pd
 pd
 Xk
-il
 bE
 bE
 bE
@@ -11704,7 +11680,6 @@ bE
 Sa
 wT
 bE
-bE
 pd
 pd
 pd
@@ -11717,7 +11692,8 @@ pd
 pd
 pd
 pd
-bE
+pd
+pd
 bE
 bE
 ZS
@@ -11856,7 +11832,6 @@ Rl
 Rl
 aH
 bE
-bE
 pd
 pd
 pd
@@ -11869,7 +11844,8 @@ pd
 pd
 pd
 pd
-lU
+pd
+pd
 Rl
 ZS
 ZS
@@ -12008,7 +11984,6 @@ Sf
 FL
 Lv
 Rl
-Et
 pd
 pd
 pd
@@ -12021,7 +11996,8 @@ pd
 pd
 pd
 pd
-SF
+pd
+pd
 Hq
 ZS
 ZS
@@ -12160,7 +12136,6 @@ bE
 wX
 Sf
 FL
-Cl
 pd
 pd
 pd
@@ -12173,7 +12148,8 @@ pd
 pd
 pd
 pd
-Eq
+pd
+pd
 Sf
 oU
 ZS
@@ -12312,7 +12288,6 @@ ZS
 ZS
 ZS
 ct
-Cl
 pd
 pd
 pd
@@ -12325,7 +12300,8 @@ pd
 pd
 pd
 pd
-il
+pd
+pd
 bE
 il
 ZS
@@ -12464,7 +12440,6 @@ ZS
 ZS
 jQ
 sg
-Cl
 pd
 pd
 pd
@@ -12477,7 +12452,8 @@ pd
 pd
 pd
 pd
-Fd
+pd
+pd
 bE
 ZS
 ZS
@@ -12616,7 +12592,6 @@ Fd
 bE
 ct
 Hq
-rQ
 pd
 pd
 pd
@@ -12629,7 +12604,8 @@ pd
 pd
 pd
 pd
-bE
+pd
+pd
 bE
 ZS
 ZS
@@ -12768,7 +12744,6 @@ bE
 bE
 ct
 Hq
-uc
 pd
 pd
 pd
@@ -12781,7 +12756,8 @@ pd
 pd
 pd
 pd
-bE
+pd
+pd
 bE
 bE
 fp
@@ -12920,7 +12896,6 @@ bE
 bE
 ct
 kO
-tr
 pd
 pd
 pd
@@ -12933,7 +12908,8 @@ pd
 pd
 pd
 pd
-bE
+pd
+pd
 bE
 bE
 eB
@@ -13072,7 +13048,6 @@ Ie
 bE
 ct
 MR
-bE
 pd
 pd
 pd
@@ -13085,7 +13060,8 @@ pd
 pd
 pd
 pd
-bE
+pd
+pd
 bE
 bE
 eB
@@ -13224,7 +13200,6 @@ ph
 ph
 ct
 Km
-bE
 pd
 pd
 pd
@@ -13237,7 +13212,8 @@ pd
 pd
 pd
 pd
-il
+pd
+pd
 bE
 bE
 Qp

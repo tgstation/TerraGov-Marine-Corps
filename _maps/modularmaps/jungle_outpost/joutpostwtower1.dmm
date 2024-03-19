@@ -11,6 +11,9 @@
 /obj/effect/spawner/random/engineering/engibelt,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/outer/west)
+"d" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/area/campaign/jungle_outpost/ground/jungle/west)
 "e" = (
 /obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /turf/open/floor,
@@ -91,12 +94,31 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/outer/west)
+"u" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
 "v" = (
 /obj/structure/table/reinforced,
 /obj/item/paper,
 /obj/effect/spawner/random/medical/pillbottle,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/outer/west)
+"w" = (
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"x" = (
+/obj/structure/stairs/edge,
+/turf/open/floor/plating/ground/dirtgrassborder2,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"y" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
 "z" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -124,9 +146,19 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/west)
+"F" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
 "G" = (
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/outer/west)
+"H" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
 "I" = (
 /obj/structure/platform{
 	dir = 4
@@ -156,6 +188,10 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/outer/west)
+"N" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
 "O" = (
 /obj/structure/platform{
 	dir = 9
@@ -166,6 +202,12 @@
 /obj/item/trash/cigbutt,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/outer/west)
+"Q" = (
+/obj/structure/stairs/seamless/edge_vert,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
 "R" = (
 /obj/structure/platform_decoration{
 	dir = 6
@@ -196,8 +238,20 @@
 	},
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/outer/west)
+"X" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"Y" = (
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
 
 (1,1,1) = {"
+Y
 R
 O
 l
@@ -210,8 +264,10 @@ p
 l
 J
 K
+u
 "}
 (2,1,1) = {"
+Y
 O
 G
 c
@@ -224,8 +280,10 @@ a
 C
 G
 J
+Y
 "}
 (3,1,1) = {"
+Y
 r
 a
 P
@@ -238,8 +296,10 @@ a
 a
 a
 A
+d
 "}
 (4,1,1) = {"
+y
 i
 a
 a
@@ -252,8 +312,10 @@ a
 a
 a
 j
+x
 "}
 (5,1,1) = {"
+w
 i
 a
 a
@@ -266,8 +328,10 @@ a
 a
 a
 A
+H
 "}
 (6,1,1) = {"
+w
 r
 U
 a
@@ -280,8 +344,10 @@ z
 G
 G
 A
+u
 "}
 (7,1,1) = {"
+w
 r
 a
 a
@@ -294,8 +360,10 @@ a
 C
 M
 A
+N
 "}
 (8,1,1) = {"
+Q
 t
 a
 a
@@ -308,8 +376,10 @@ a
 P
 a
 V
+Y
 "}
 (9,1,1) = {"
+X
 f
 f
 f
@@ -322,8 +392,10 @@ a
 a
 B
 V
+Y
 "}
 (10,1,1) = {"
+F
 r
 a
 a
@@ -336,8 +408,10 @@ a
 k
 v
 A
+Y
 "}
 (11,1,1) = {"
+Y
 s
 G
 a
@@ -350,8 +424,10 @@ a
 a
 G
 L
+Y
 "}
 (12,1,1) = {"
+Y
 E
 s
 W
@@ -364,4 +440,5 @@ I
 W
 L
 q
+u
 "}

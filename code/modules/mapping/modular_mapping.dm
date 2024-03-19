@@ -1207,28 +1207,28 @@
 	mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower1.dmm"
 	modular_id = "jowesttower"
 	template_width = 12
-	template_height = 12
+	template_height = 14
 
 /datum/map_template/modular/jungle_outpost/westtowertwo
 	name = "Western Bar Dome"
 	mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower2.dmm"
 	modular_id = "jowesttower"
 	template_width = 12
-	template_height = 12
+	template_height = 14
 
 /datum/map_template/modular/jungle_outpost/westtowerthree
 	name = "Western Bungalow"
 	mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower3.dmm"
 	modular_id = "jowesttower"
 	template_width = 12
-	template_height = 12
+	template_height = 14
 
 /datum/map_template/modular/jungle_outpost/westtowerfour
 	name = "Western Pond"
 	mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower4.dmm"
 	modular_id = "jowesttower"
 	template_width = 12
-	template_height = 12
+	template_height = 14
 
 /datum/map_template/modular/jungle_outpost/southcratesone
 	name = "South Crates"

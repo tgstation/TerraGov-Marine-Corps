@@ -245,7 +245,7 @@
 /obj/effect/spawner/modularmap/jungle_outpost/westtower
 	mapid = "jowesttower"
 	spawner_height = 12
-	spawner_width = 12
+	spawner_width = 14
 
 /obj/effect/spawner/modularmap/jungle_outpost/southcrates
 	mapid = "josouthcrates"
