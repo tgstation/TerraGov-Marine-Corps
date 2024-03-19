@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Campaign: NT Base Rescue no longer allows firesupport for TGMC"
-  - balance: "Campaign: NT Base Rescue provides SOM with automatic militia support"
-  - balance: "Campaign: NT Base Rescue reduced SOM mech count to 4"
