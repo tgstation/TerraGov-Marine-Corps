@@ -121,7 +121,7 @@
 /area/campaign/jungle_outpost/outpost/outer/west)
 "A" = (
 /obj/structure/table/fancywoodentable,
-/obj/effect/spawner/random/misc/plushie,
+/obj/item/toy/plush/farwa,
 /turf/open/floor/wood/alt_four,
 /area/campaign/jungle_outpost/outpost/outer/west)
 "B" = (
@@ -338,7 +338,7 @@ G
 N
 "}
 (9,1,1) = {"
-m
+K
 G
 T
 s

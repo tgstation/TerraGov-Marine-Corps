@@ -3,6 +3,10 @@
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/tile/dark/gray,
 /area/campaign/jungle_outpost/outpost/req/depot)
+"b" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/south)
 "c" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/gray,
@@ -30,6 +34,11 @@
 "i" = (
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south)
+"j" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/grassdecal,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/ground/jungle/south)
 "k" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/pastries/birthdaycakeslice,
@@ -49,14 +58,15 @@
 /obj/effect/landmark/campaign_structure/asat_system,
 /turf/open/floor/tile/dark/gray,
 /area/campaign/jungle_outpost/outpost/req/depot)
+"o" = (
+/obj/structure/janitorialcart,
+/obj/machinery/light/small,
+/turf/open/floor/tile/dark/gray,
+/area/campaign/jungle_outpost/outpost/req/depot)
 "p" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/gray,
-/area/campaign/jungle_outpost/outpost/req/depot)
-"q" = (
-/obj/machinery/light/small,
 /turf/open/floor/tile/dark/gray,
 /area/campaign/jungle_outpost/outpost/req/depot)
 "r" = (
@@ -64,8 +74,9 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/tile/dark/gray,
-/area/campaign/jungle_outpost/outpost/req/depot)
+/obj/effect/turf_decal/grassdecal,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/ground/jungle/south)
 "s" = (
 /obj/structure/sink,
 /turf/open/floor/tile/dark/gray,
@@ -95,19 +106,18 @@
 /obj/machinery/computer/camera,
 /turf/open/floor/tile/dark/gray,
 /area/campaign/jungle_outpost/outpost/req/depot)
+"A" = (
+/obj/effect/turf_decal/grassdecal/corner2{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/ground/jungle/south)
 "B" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/tile/dark/gray,
 /area/campaign/jungle_outpost/outpost/req/depot)
 "C" = (
-/turf/open/floor/tile/dark/gray,
-/area/campaign/jungle_outpost/outpost/req/depot)
-"D" = (
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 4
-	},
 /turf/open/floor/tile/dark/gray,
 /area/campaign/jungle_outpost/outpost/req/depot)
 "E" = (
@@ -141,16 +151,15 @@
 /area/campaign/jungle_outpost/outpost/req/depot)
 "J" = (
 /obj/structure/stairs/seamless/edge,
-/turf/open/floor/tile/dark/gray,
-/area/campaign/jungle_outpost/outpost/req/depot)
+/obj/effect/turf_decal/grassdecal{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/ground/jungle/south)
 "L" = (
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/gray,
-/area/campaign/jungle_outpost/outpost/req/depot)
-"M" = (
-/obj/structure/janitorialcart,
 /turf/open/floor/tile/dark/gray,
 /area/campaign/jungle_outpost/outpost/req/depot)
 "N" = (
@@ -168,6 +177,15 @@
 /obj/effect/spawner/random/food_or_drink/drink_cans,
 /turf/open/floor/tile/dark/gray,
 /area/campaign/jungle_outpost/outpost/req/depot)
+"R" = (
+/obj/effect/turf_decal/grassdecal{
+	dir = 1
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/south)
+"S" = (
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/ground/jungle/south)
 "T" = (
 /obj/structure/bed/chair/sofa/right,
 /turf/open/floor/tile/dark/gray,
@@ -210,14 +228,14 @@ X
 X
 "}
 (2,1,1) = {"
-X
-C
+a
+T
 C
 C
 H
-C
-C
-C
+c
+c
+c
 c
 C
 C
@@ -227,14 +245,14 @@ X
 "}
 (3,1,1) = {"
 a
-T
+m
 C
-C
+I
 X
 c
-c
-c
-D
+C
+C
+p
 C
 C
 C
@@ -242,10 +260,10 @@ C
 a
 "}
 (4,1,1) = {"
-a
-m
-C
-I
+X
+t
+F
+Q
 X
 c
 C
@@ -259,9 +277,9 @@ a
 "}
 (5,1,1) = {"
 X
-t
-F
-Q
+X
+X
+X
 X
 c
 C
@@ -269,27 +287,11 @@ X
 Z
 B
 X
-C
-C
-X
-"}
-(6,1,1) = {"
-X
-X
-X
-X
-X
-c
-C
-X
-s
-q
-X
 g
 C
 X
 "}
-(7,1,1) = {"
+(6,1,1) = {"
 X
 v
 C
@@ -303,9 +305,9 @@ C
 l
 C
 C
-a
+X
 "}
-(8,1,1) = {"
+(7,1,1) = {"
 X
 E
 C
@@ -315,13 +317,13 @@ p
 W
 X
 h
-M
+o
 X
 C
 C
 a
 "}
-(9,1,1) = {"
+(8,1,1) = {"
 X
 L
 C
@@ -335,33 +337,33 @@ X
 X
 n
 C
-X
+a
 "}
-(10,1,1) = {"
+(9,1,1) = {"
 X
 a
 X
 c
-C
+x
 X
 W
+u
 N
-C
 X
 C
 C
 C
 X
 "}
-(11,1,1) = {"
+(10,1,1) = {"
 P
 i
+b
+j
+S
 X
-c
-C
-X
-C
-u
+f
+z
 C
 H
 C
@@ -369,19 +371,35 @@ C
 W
 X
 "}
-(12,1,1) = {"
+(11,1,1) = {"
 d
 P
+i
+j
+A
 X
+a
+a
+X
+X
+a
+a
+X
+X
+"}
+(12,1,1) = {"
+i
+i
+R
 r
 J
-X
-f
-z
-X
-X
-a
-a
-X
-X
+i
+P
+b
+i
+i
+P
+b
+P
+i
 "}

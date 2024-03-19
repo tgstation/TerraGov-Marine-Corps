@@ -9,18 +9,16 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
+"c" = (
+/obj/effect/turf_decal/grassdecal,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/ground/jungle/south)
 "d" = (
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
 "e" = (
 /obj/structure/stairs/seamless/edge,
-/turf/open/floor/plating/ground/concrete,
-/area/campaign/jungle_outpost/outpost/req/depot)
-"g" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
 "h" = (
@@ -31,6 +29,17 @@
 /area/campaign/jungle_outpost/outpost/req/depot)
 "i" = (
 /obj/effect/turf_decal/grassdecal{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/depot)
+"k" = (
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/south)
+"l" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/engibelt,
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -46,11 +55,6 @@
 "o" = (
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
-"p" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/engibelt,
-/turf/open/floor/plating/ground/concrete,
-/area/campaign/jungle_outpost/outpost/req/depot)
 "r" = (
 /obj/structure/largecrate/random/barrel/red,
 /turf/open/floor/plating/ground/concrete,
@@ -60,6 +64,12 @@
 /obj/item/radio/survivor,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
+"t" = (
+/obj/effect/turf_decal/grassdecal/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/ground/jungle/south)
 "u" = (
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/req/depot)
@@ -67,6 +77,12 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
+"x" = (
+/obj/effect/turf_decal/grassdecal/corner2{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/ground/jungle/south)
 "z" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/plating/ground/concrete,
@@ -101,7 +117,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/campaign/jungle_outpost/outpost/req/depot)
+/area/campaign/jungle_outpost/ground/jungle/south)
 "O" = (
 /obj/structure/stairs/seamless/edge{
 	dir = 4
@@ -272,7 +288,7 @@ o
 i
 "}
 (8,1,1) = {"
-m
+u
 o
 o
 b
@@ -289,7 +305,7 @@ Q
 "}
 (9,1,1) = {"
 u
-o
+l
 o
 b
 o
@@ -300,26 +316,10 @@ d
 o
 o
 X
-o
-u
-"}
-(10,1,1) = {"
-u
-g
-o
-b
-o
-o
-o
-o
-o
-o
-o
-o
 Y
 u
 "}
-(11,1,1) = {"
+(10,1,1) = {"
 u
 Z
 o
@@ -335,19 +335,35 @@ o
 v
 u
 "}
-(12,1,1) = {"
+(11,1,1) = {"
 u
-p
+u
+o
+b
+o
+o
+C
+C
+u
+u
+o
+o
+u
+u
+"}
+(12,1,1) = {"
+c
+o
 o
 O
 e
 o
-C
-C
-u
-u
+o
+o
+x
 N
 N
-u
-u
+N
+t
+k
 "}
