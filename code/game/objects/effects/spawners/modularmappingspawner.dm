@@ -261,3 +261,8 @@
 	mapid = "jomedbay"
 	spawner_width = 16
 	spawner_height = 24
+
+/obj/effect/spawner/modularmap/jungle_outpost/engineering
+	mapid = "joengineering"
+	spawner_width = 21
+	spawner_height = 21

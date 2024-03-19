@@ -1299,3 +1299,24 @@
 	modular_id = "jomedbay"
 	template_width = 16
 	template_height = 24
+
+/datum/map_template/modular/jungle_outpost/engineeringone
+	name = "Engineering"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostengi1.dmm"
+	modular_id = "joengineering"
+	template_width = 21
+	template_height = 21
+
+/datum/map_template/modular/jungle_outpost/engineeringtwo
+	name = "Engineering"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostengi2.dmm"
+	modular_id = "joengineering"
+	template_width = 21
+	template_height = 21
+
+/datum/map_template/modular/jungle_outpost/engineeringthree
+	name = "Outdoor Engineering"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostengi3.dmm"
+	modular_id = "joengineering"
+	template_width = 21
+	template_height = 21
