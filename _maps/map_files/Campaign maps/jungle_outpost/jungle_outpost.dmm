@@ -9557,9 +9557,6 @@
 	},
 /turf/open/floor/freezer,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
-"VV" = (
-/turf/open/liquid/water/river,
-/area/campaign/jungle_outpost/ground/river/north)
 "VX" = (
 /obj/structure/platform{
 	dir = 8
@@ -16521,7 +16518,7 @@ YS
 YS
 ve
 ve
-VV
+ve
 pd
 pd
 pd

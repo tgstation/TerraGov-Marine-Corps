@@ -110,13 +110,6 @@
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
-"nT" = (
-/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
-/obj/structure/platform{
-	dir = 9
-	},
-/turf/open/floor/tile/hydro,
-/area/campaign/jungle_outpost/outpost/living/hydro)
 "nZ" = (
 /obj/structure/stairs/seamless/edge_vert{
 	dir = 8
@@ -347,13 +340,6 @@
 "Mx" = (
 /turf/open/liquid/water,
 /area/campaign/jungle_outpost/ground/jungle)
-"Nf" = (
-/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
-/obj/structure/platform{
-	dir = 5
-	},
-/turf/open/floor/tile/hydro,
-/area/campaign/jungle_outpost/outpost/living/hydro)
 "Ni" = (
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 1
@@ -375,13 +361,6 @@
 /obj/effect/spawner/random/misc/folder,
 /obj/machinery/light{
 	dir = 1
-	},
-/turf/open/floor/tile/hydro,
-/area/campaign/jungle_outpost/outpost/living/hydro)
-"Qt" = (
-/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
-/obj/structure/platform{
-	dir = 6
 	},
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
@@ -474,13 +453,6 @@
 /obj/structure/sink,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
-"Yk" = (
-/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
-/obj/structure/platform{
-	dir = 10
-	},
-/turf/open/floor/tile/hydro,
-/area/campaign/jungle_outpost/outpost/living/hydro)
 "Yu" = (
 /obj/structure/flora/tree/jungle/small,
 /obj/structure/platform_decoration{
@@ -531,11 +503,11 @@ pa
 DF
 WB
 Nv
-nT
+vA
 ZY
 ZY
 ZY
-Yk
+lL
 Wq
 bU
 bU
@@ -567,7 +539,7 @@ to
 (3,1,1) = {"
 WB
 DF
-nT
+vA
 ZY
 oD
 UO
@@ -579,7 +551,7 @@ UO
 UO
 oD
 ZY
-Yk
+lL
 bU
 bU
 bU
@@ -827,7 +799,7 @@ DF
 (16,1,1) = {"
 Ni
 wz
-Nf
+BG
 Rt
 oD
 UO
@@ -839,7 +811,7 @@ YF
 YF
 oD
 Rt
-Qt
+Sq
 DF
 DF
 vF

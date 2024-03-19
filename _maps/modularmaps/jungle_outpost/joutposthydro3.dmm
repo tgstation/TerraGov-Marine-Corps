@@ -13,11 +13,6 @@
 /obj/structure/flora/jungle/grass,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle)
-"aF" = (
-/obj/structure/catwalk,
-/obj/structure/platform_decoration,
-/turf/open/liquid/water/river/autosmooth,
-/area/campaign/jungle_outpost/ground/jungle)
 "bb" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -108,6 +103,12 @@
 /area/campaign/jungle_outpost/ground/jungle)
 "kA" = (
 /obj/structure/rock/variable/jungle/big,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"kK" = (
+/obj/structure/platform_decoration{
+	dir = 5
+	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle)
 "lh" = (
@@ -220,6 +221,12 @@
 "Az" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"BN" = (
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/open/liquid/water/river/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle)
 "BO" = (
 /turf/open/ground/grass/beach{
@@ -395,13 +402,6 @@
 "ZH" = (
 /obj/structure/catwalk,
 /obj/structure/platform{
-	dir = 8
-	},
-/turf/open/liquid/water/river/autosmooth,
-/area/campaign/jungle_outpost/ground/jungle)
-"ZM" = (
-/obj/structure/catwalk,
-/obj/structure/platform_decoration{
 	dir = 8
 	},
 /turf/open/liquid/water/river/autosmooth,
@@ -595,9 +595,9 @@ hH
 gg
 iT
 MB
-ZM
+CQ
 Rq
-aF
+CQ
 Ma
 HY
 Kq
@@ -614,11 +614,11 @@ RG
 Gt
 pf
 WH
-cx
+BN
 mB
 CQ
 OK
-Zs
+kK
 RG
 Gt
 Gt
