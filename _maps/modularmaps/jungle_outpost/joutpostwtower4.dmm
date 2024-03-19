@@ -17,9 +17,6 @@
 /area/campaign/jungle_outpost/ground/jungle/west)
 "f" = (
 /obj/structure/catwalk,
-/obj/structure/platform_decoration{
-	dir = 4
-	},
 /turf/open/ground/grass/beach/corner2{
 	dir = 4
 	},
@@ -52,6 +49,9 @@
 /turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "k" = (
+/obj/structure/platform_decoration{
+	dir = 10
+	},
 /turf/open/ground/grass/beach,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "n" = (
@@ -64,11 +64,23 @@
 	},
 /turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle/west)
+"t" = (
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/turf/open/ground/grass/beach,
+/area/campaign/jungle_outpost/ground/jungle/west)
 "u" = (
 /obj/structure/stairs/railstairs_vert{
 	dir = 1
 	},
 /turf/open/ground/grass/beach,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"v" = (
+/obj/structure/platform_decoration{
+	dir = 9
+	},
+/turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "w" = (
 /obj/structure/catwalk,
@@ -82,12 +94,13 @@
 	},
 /turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle/west)
-"C" = (
-/obj/structure/catwalk,
+"A" = (
 /obj/structure/platform_decoration{
-	dir = 8
+	dir = 5
 	},
-/turf/open/liquid/water/river,
+/turf/open/ground/grass/beach{
+	dir = 1
+	},
 /area/campaign/jungle_outpost/ground/jungle/west)
 "D" = (
 /obj/structure/flora/jungle/grass/thin,
@@ -96,6 +109,12 @@
 "E" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"F" = (
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "G" = (
 /obj/structure/catwalk,
@@ -130,13 +149,6 @@
 /obj/structure/flora/jungle/grass,
 /turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle/west)
-"O" = (
-/obj/structure/catwalk,
-/obj/structure/platform_decoration{
-	dir = 4
-	},
-/turf/open/liquid/water/river,
-/area/campaign/jungle_outpost/ground/jungle/west)
 "P" = (
 /obj/structure/catwalk,
 /obj/structure/platform{
@@ -150,16 +162,21 @@
 /obj/structure/flora/tree/jungle/small,
 /turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle/west)
-"R" = (
-/obj/structure/catwalk,
+"S" = (
+/obj/structure/flora/jungle/large_bush,
 /obj/structure/platform_decoration{
-	dir = 1
+	dir = 5
+	},
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"U" = (
+/obj/structure/platform_decoration{
+	dir = 10
 	},
 /turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "V" = (
 /obj/structure/catwalk,
-/obj/structure/platform_decoration,
 /turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "W" = (
@@ -232,34 +249,34 @@ h
 "}
 (5,1,1) = {"
 u
-C
+V
 w
-n
+v
 Q
 n
 n
 n
-n
+F
 x
 w
-X
+A
 "}
 (6,1,1) = {"
 k
 x
-R
+V
 g
 g
 g
 g
 g
 g
-O
+V
 w
 X
 "}
 (7,1,1) = {"
-k
+t
 x
 V
 j
@@ -268,7 +285,7 @@ j
 j
 j
 j
-C
+V
 w
 X
 "}
@@ -276,12 +293,12 @@ X
 P
 f
 w
-a
+S
 n
 n
 n
 Q
-n
+U
 x
 b
 d

@@ -297,6 +297,9 @@
 	},
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/medbay)
+"vA" = (
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
 "vK" = (
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 8
@@ -762,8 +765,8 @@ qv
 OR
 "}
 (2,1,1) = {"
-RM
-UL
+vA
+vA
 UL
 RM
 hI
@@ -788,7 +791,7 @@ vi
 OR
 "}
 (3,1,1) = {"
-RM
+vA
 hl
 bp
 eM

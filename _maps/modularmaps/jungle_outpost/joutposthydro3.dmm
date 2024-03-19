@@ -101,10 +101,6 @@
 /obj/item/tool/scythe,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
-"kA" = (
-/obj/structure/rock/variable/jungle/big,
-/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
-/area/campaign/jungle_outpost/ground/jungle)
 "kK" = (
 /obj/structure/platform_decoration{
 	dir = 5
@@ -218,6 +214,10 @@
 "wZ" = (
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"zM" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
 "Az" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/ground/grass/weedable,
@@ -338,6 +338,9 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle)
+"Mn" = (
+/turf/closed/wall,
+/area/campaign/jungle_outpost/ground/jungle)
 "MB" = (
 /obj/structure/catwalk,
 /obj/structure/platform{
@@ -355,6 +358,10 @@
 /obj/structure/platform,
 /turf/open/liquid/water/river/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle)
+"Rl" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
 "Rq" = (
 /obj/structure/catwalk,
 /obj/effect/landmark/campaign_structure/phoron_crate,
@@ -368,9 +375,12 @@
 "Sx" = (
 /turf/closed/gm/dense,
 /area/campaign/jungle_outpost/ground/jungle)
+"SD" = (
+/obj/structure/catwalk,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
 "To" = (
 /obj/structure/catwalk,
-/obj/structure/platform,
 /turf/open/liquid/water,
 /area/campaign/jungle_outpost/ground/jungle)
 "WC" = (
@@ -421,8 +431,8 @@ uo
 uo
 uo
 Zs
-kA
-aB
+sb
+Rl
 iJ
 iJ
 iJ
@@ -441,7 +451,7 @@ ko
 Zs
 aB
 Zs
-GW
+zM
 cx
 cx
 iJ
@@ -464,7 +474,7 @@ cx
 cx
 cx
 cx
-cx
+Zs
 Zs
 "}
 (4,1,1) = {"
@@ -477,13 +487,13 @@ wZ
 wZ
 lp
 aB
+Zs
 cx
 cx
 cx
 cx
 cx
-cx
-cx
+Zs
 uB
 Zs
 "}
@@ -634,11 +644,11 @@ eX
 ko
 FL
 Zs
-cx
-mB
+Mn
 CQ
-OK
-uB
+CQ
+SD
+Mn
 ko
 JP
 Sx
@@ -774,11 +784,11 @@ Gt
 Gt
 ut
 Gz
-wi
-cI
+Mn
+SD
 oY
 To
-rI
+Mn
 DM
 BO
 BO
