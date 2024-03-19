@@ -233,8 +233,8 @@
 	if(!.)
 		return
 	toggle_item_bump_attack(user, TRUE)
-	if(HAS_TRAIT(user, TRAIT_AXE_EXPERT))
-		special_attack.give_action(user)
+	//if(HAS_TRAIT(user, TRAIT_AXE_EXPERT))
+	special_attack.give_action(user)
 
 /obj/item/weapon/twohanded/fireaxe/som/unwield(mob/user)
 	. = ..()
@@ -250,23 +250,21 @@
 	desc = "A powerful sweeping blow that hits foes in the direction you are facing. Cannot stun."
 	ability_cost = 12
 	cooldown_duration = 6 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_WEAPONABILITY_AXESWEEP,
-		KEYBINDING_ALTERNATE = COMSIG_WEAPONABILITY_AXESWEEP_SELECT,
 	)
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/action/ability/activable/weapon_skill/axe_sweep/use_ability(atom/A)
+	succeed_activate()
+	add_cooldown()
 	var/mob/living/carbon/carbon_owner = owner
-
-	carbon_owner.emote("roar")
-	carbon_owner.visible_message(span_danger("[carbon_owner] Swing their weapon in a deadly arc!"))
-
+	carbon_owner.Move(get_step_towards(carbon_owner, A), get_dir(src, A))
 	carbon_owner.face_atom(A)
-	activate_particles(carbon_owner.dir)
+	activate_particles(owner.dir)
 	playsound(owner, "sound/effects/alien_tail_swipe3.ogg", 50, 0, 5)
+	owner.visible_message(span_danger("[owner] Swing their weapon in a deadly arc!"))
 
 	var/list/atom/movable/atoms_to_ravage = get_step(owner, owner.dir).contents.Copy()
 	atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
@@ -278,19 +276,16 @@
 			var/obj/obj_victim = victim
 			obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, armour_penetration = penetration)
 			if(!obj_victim.anchored)
-				obj_victim.knockback(carbon_owner, 1, 2)
+				obj_victim.knockback(owner, 1, 2)
 			continue
 		var/mob/living/carbon/human/human_victim = victim
 		if(human_victim.lying_angle)
 			continue
 		human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration)
-		human_victim.knockback(carbon_owner, 1, 2)
+		human_victim.knockback(owner, 1, 2)
 		human_victim.adjust_stagger(1 SECONDS)
 		playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, 0, 5)
 		shake_camera(human_victim, 2, 1)
-
-	succeed_activate()
-	add_cooldown()
 
 /// Handles the activation and deactivation of particles, as well as their appearance.
 /datum/action/ability/activable/weapon_skill/axe_sweep/proc/activate_particles(direction)
