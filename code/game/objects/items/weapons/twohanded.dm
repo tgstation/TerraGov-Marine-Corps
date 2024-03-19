@@ -274,8 +274,8 @@
 			continue
 		if(!ishuman(victim))
 			var/obj/obj_victim = victim
-			obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, armour_penetration = penetration)
-			if(!obj_victim.anchored)
+			obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, TRUE, get_dir(obj_victim, carbon_owner), penetration, carbon_owner)
+			if(!obj_victim.anchored && obj_victim.move_resist < MOVE_FORCE_VERY_STRONG)
 				obj_victim.knockback(owner, 1, 2)
 			continue
 		var/mob/living/carbon/human/human_victim = victim
