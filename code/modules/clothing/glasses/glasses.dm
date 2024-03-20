@@ -248,19 +248,32 @@
 		activate(usr)
 
 /obj/item/clothing/glasses/welding/activate(mob/user)
-	TOGGLE_BITFIELD(flags_inventory, COVEREYES)
-	TOGGLE_BITFIELD(flags_inv_hide, HIDEEYES)
-	TOGGLE_BITFIELD(flags_armor_protection, EYES)
-
-	eye_protection = active ? 0 : initial(eye_protection)
-
-	if(user)
-		to_chat(usr, "You [active ? "push [src] up out of your face" : "flip [src] down to protect your eyes"].")
+	. = ..()
+	if(active)
+		flip_up()
+	else
+		flip_down()
 
 	//I imagine some signals use it so letting it still call it
 	toggle_item_state(user)
 
-	return ..()
+///Toggle the welding goggles on
+/obj/item/clothing/glasses/welding/proc/flip_up()
+	DISABLE_BITFIELD(flags_inventory, COVEREYES)
+	DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
+	DISABLE_BITFIELD(flags_armor_protection, EYES)
+	eye_protection = 0
+	update_icon()
+	to_chat(usr, "You push [src] up out of your face.")
+
+///Toggle the welding goggles off
+/obj/item/clothing/glasses/welding/proc/flip_down()
+	ENABLE_BITFIELD(flags_inventory, COVEREYES)
+	ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
+	ENABLE_BITFIELD(flags_armor_protection, EYES)
+	eye_protection = initial(eye_protection)
+	update_icon()
+	to_chat(usr, "You flip [src] down to protect your eyes.")
 
 /obj/item/clothing/glasses/welding/update_icon_state()
 	icon_state = "[initial(icon_state)][!active ? "up" : ""]"
