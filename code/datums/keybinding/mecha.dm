@@ -50,3 +50,10 @@
 	description = "Bombard an area with rockets"
 	keybind_signal = COMSIG_MECHABILITY_STRIKE
 	hotkey_keys = list("F")
+
+/datum/keybinding/mecha/mech_reload_weapons
+	name = "mech_reload_weapons"
+	full_name = "Mech Reload Weapons"
+	description = "Reload any equipped weapons"
+	keybind_signal = COMSIG_MECHABILITY_RELOAD
+	hotkey_keys = list("R")

@@ -276,6 +276,15 @@
 		rearm()
 		return TRUE
 
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/attempt_rearm(mob/living/user)
+	if(!needs_rearm())
+		return
+	if(!projectiles_cache)
+		return
+	if(user && !do_after(user, rearm_time, IGNORE_HELD_ITEM, chassis, BUSY_ICON_GENERIC))
+		return
+	rearm()
+
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rearm()
 	if(projectiles >= initial(projectiles))
 		return FALSE
@@ -294,7 +303,7 @@
 	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/needs_rearm()
-	return projectiles <= 0
+	return projectiles < initial(projectiles)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/fire()
 	. = ..()

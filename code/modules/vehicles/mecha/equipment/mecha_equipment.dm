@@ -193,6 +193,9 @@
 /obj/item/mecha_parts/mecha_equipment/proc/get_snowflake_data()
 	return list()
 
+/obj/item/mecha_parts/mecha_equipment/proc/attempt_rearm()
+	return
+
 /**
  * Proc for reloading weapons from HTML UI or by AI
  * note that this is old and likely broken code
