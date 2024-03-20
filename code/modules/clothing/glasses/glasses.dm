@@ -59,10 +59,13 @@
 
 ///Toggle the functions of the glasses
 /obj/item/clothing/glasses/proc/activate(mob/user)
-	if(activation_sound && deactivation_sound)
-		playsound(get_turf(src), active ? deactivation_sound : activation_sound, 15)
-
 	active = !active
+
+	if(active && activation_sound)
+		playsound(get_turf(src), activation_sound, 15)
+	else if(deactivation_sound)
+		playsound(get_turf(src), deactivation_sound, 15)
+
 	update_icon()	//Found out the hard way this has to be before update_inv_glasses()
 	user?.update_inv_glasses()
 	user?.update_sight()
