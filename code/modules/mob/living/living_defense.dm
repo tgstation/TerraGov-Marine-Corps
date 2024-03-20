@@ -185,7 +185,7 @@
 	adjust_fire_stacks(rand(1,2))
 	IgniteMob()
 
-mob/living/lava_act()
+/mob/living/lava_act()
 	if(stat == DEAD)
 		return TRUE
 
