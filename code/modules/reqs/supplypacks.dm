@@ -192,14 +192,14 @@ WEAPONS
 	cost = 250
 
 
-/datum/supply_packs/weapons/m56d_emplacement
+/datum/supply_packs/weapons/hsg_102_emplacement
 	name = "HSG-102 Mounted Heavy Smartgun"
-	contains = list(/obj/item/storage/box/tl102)
+	contains = list(/obj/item/storage/box/hsg_102)
 	cost = 600
 
-/datum/supply_packs/weapons/m56d
+/datum/supply_packs/weapons/hsg_102
 	name = "HSG-102 mounted heavy smartgun ammo"
-	contains = list(/obj/item/ammo_magazine/tl102)
+	contains = list(/obj/item/ammo_magazine/hsg_102)
 	cost = 30
 
 /datum/supply_packs/weapons/minigun_emplacement
@@ -318,12 +318,12 @@ WEAPONS
 	cost = 1000
 
 /datum/supply_packs/weapons/flak_he
-	name = "FK-88 HE Shell"
+	name = "FK-88 Flak HE Shell"
 	contains = list(/obj/item/ammo_magazine/heavy_isg/he)
 	cost = 50
 
 /datum/supply_packs/weapons/flak_sabot
-	name = "FK-88 APFDS Shell"
+	name = "FK-88 Flak APFDS Shell"
 	contains = list(/obj/item/ammo_magazine/heavy_isg/sabot)
 	cost = 50
 
@@ -2007,7 +2007,7 @@ VEHICLES
 
 /datum/supply_packs/vehicles/hsg_ammo
 	name = "Mounted HSG ammo"
-	contains = list(/obj/item/ammo_magazine/tl102/hsg_nest)
+	contains = list(/obj/item/ammo_magazine/hsg_102/hsg_nest)
 	cost = 100
 	containertype = /obj/structure/closet/crate/ammo
 
@@ -2407,12 +2407,12 @@ FACTORY
 	cost = 100
 
 /datum/supply_packs/factory/heavy_isg_he_refill
-	name = "FK-88 HE shell assembly refill"
+	name = "FK-88 Flak HE shell assembly refill"
 	contains = list(/obj/item/factory_refill/heavy_isg_he_refill)
 	cost = 300
 
 /datum/supply_packs/factory/heavy_isg_sabot_refill
-	name = "FK-88 APFDS shell assembly refill"
+	name = "FK-88 Flak APFDS shell assembly refill"
 	contains = list(/obj/item/factory_refill/heavy_isg_sabot_refill)
 	cost = 400
 

@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Campaign: Fixed some loot tables being wrong from SOM initiated combat patrol/mech war missions"

@@ -303,3 +303,20 @@
   - bugfix: Fix hefa nades
   - bugfix: Fix piercing ammo not piercing if your main target is adjacent to you
   - bugfix: Fix tank blowing itself up with the main cannon
+2024-03-19:
+  Lumipharon:
+  - balance: 'Campaign: Reduced game and pregame delays on most missions'
+  - balance: 'Campaign: NT Base Rescue no longer allows firesupport for TGMC'
+  - balance: 'Campaign: NT Base Rescue provides SOM with automatic militia support'
+  - balance: 'Campaign: NT Base Rescue reduced SOM mech count to 4'
+  - balance: 'Campaign: SOM have to destroy 6 objectives to win on Supply Raid'
+2024-03-20:
+  Kapu1178:
+  - bugfix: Huggers *actually* prioritize orthogonal marines over diagonal marines.
+  Notamaniac:
+  - bugfix: Iguana ammo boxes now properly delete themselves when they perform a reload
+      that uses up all their ammo
+  lbnesquik:
+  - code_imp: Nukes all references to the M56D
+  - qol: Add the evac timer to the AI status tab
+  - qol: Added the word flak to fk-88 in req
