@@ -12,8 +12,8 @@
 /obj/machinery/robotic_cradle
 	name = "robotic cradle"
 	desc = "A highly experimental robotic maintenence machine using a bath of industrial nanomachines to quickly restore any robotic machine inserted."
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "borgcharger0"
+	icon = 'icons/obj/machines/suit_cycler.dmi'
+	icon_state = "suit_cycler"
 	density = TRUE
 	max_integrity = 350
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 30, ACID = 30)
@@ -41,9 +41,9 @@
 
 /obj/machinery/robotic_cradle/update_icon_state()
 	if(occupant && !(machine_stat & NOPOWER))
-		icon_state = "borgcharger1"
+		icon_state = "suit_cycler_active"
 		return ..()
-	icon_state = "borgcharger0"
+	icon_state = "suit_cycler"
 
 /obj/machinery/robotic_cradle/power_change()
 	. = ..()
