@@ -95,23 +95,6 @@
 
 	chassis.toggle_strafe()
 
-//reload
-/datum/action/vehicle/sealed/mecha/reload
-	name = "Reload equipped weapons"
-	action_icon_state = "reload"
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_MECHABILITY_RELOAD,
-	)
-
-/datum/action/vehicle/sealed/mecha/reload/action_activate(trigger_flags)
-	if(!owner || !chassis || !(owner in chassis.occupants))
-		return
-
-	for(var/i in chassis.equip_by_category)
-		if(!istype(chassis.equip_by_category[i], /obj/item/mecha_parts/mecha_equipment))
-			continue
-		INVOKE_ASYNC(chassis.equip_by_category[i], TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment, attempt_rearm), owner)
-
 /obj/vehicle/sealed/mecha/AltClick(mob/living/user)
 	if(!(user in occupants))
 		return
@@ -164,3 +147,19 @@
 		chassis.remove_control_flags(owner, VEHICLE_CONTROL_MELEE|VEHICLE_CONTROL_EQUIPMENT)
 		chassis.add_control_flags(owner, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS)
 	chassis.update_appearance()
+
+/datum/action/vehicle/sealed/mecha/reload
+	name = "Reload equipped weapons"
+	action_icon_state = "reload"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_MECHABILITY_RELOAD,
+	)
+
+/datum/action/vehicle/sealed/mecha/reload/action_activate(trigger_flags)
+	if(!owner || !chassis || !(owner in chassis.occupants))
+		return
+
+	for(var/i in chassis.equip_by_category)
+		if(!istype(chassis.equip_by_category[i], /obj/item/mecha_parts/mecha_equipment))
+			continue
+		INVOKE_ASYNC(chassis.equip_by_category[i], TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment, attempt_rearm), owner)
