@@ -97,8 +97,8 @@
 
 //reload
 /datum/action/vehicle/sealed/mecha/reload
-	name = "Reload equipped weapons."
-	action_icon_state = "strafe"
+	name = "Reload equipped weapons"
+	action_icon_state = "reload"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_RELOAD,
 	)
