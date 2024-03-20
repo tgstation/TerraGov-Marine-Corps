@@ -270,20 +270,16 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(action == "reload")
-		var/mob/occupant = usr
-		if(occupant && !do_after(occupant, rearm_time, IGNORE_HELD_ITEM, chassis, BUSY_ICON_GENERIC))
-			return FALSE
-		rearm()
-		return TRUE
+		return attempt_rearm(usr)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/attempt_rearm(mob/living/user)
 	if(!needs_rearm())
-		return
+		return FALSE
 	if(!projectiles_cache)
-		return
+		return FALSE
 	if(user && !do_after(user, rearm_time, IGNORE_HELD_ITEM, chassis, BUSY_ICON_GENERIC))
-		return
-	rearm()
+		return FALSE
+	return rearm()
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rearm()
 	if(projectiles >= initial(projectiles))
@@ -315,11 +311,7 @@
 	if(projectiles > 0)
 		return
 	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
-	if(LAZYACCESS(current_firer.do_actions, src) || projectiles_cache < 1)
-		return
-	if(!do_after(current_firer, rearm_time, IGNORE_HELD_ITEM, chassis, BUSY_ICON_GENERIC))
-		return
-	rearm()
+	attempt_rearm(current_firer)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
 	name = "\improper FNX-99 \"Hades\" Carbine"
