@@ -250,7 +250,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "amV" = (
