@@ -185,6 +185,17 @@
 	adjust_fire_stacks(rand(1,2))
 	IgniteMob()
 
+mob/living/lava_act()
+	if(stat == DEAD)
+		return TRUE
+
+	var/lava_damage = 20
+	take_overall_damage(max(modify_by_armor(lava_damage, FIRE), lava_damage * 0.3), BURN, updating_health = TRUE, max_limbs = 3) //snowflakey interaction to stop complete lava immunity
+	if(!CHECK_BITFIELD(pass_flags, PASS_FIRE))//Pass fire allow to cross lava without igniting
+		adjust_fire_stacks(20)
+		IgniteMob()
+	return
+
 /mob/living/flamer_fire_act(burnlevel)
 	if(!burnlevel)
 		return
