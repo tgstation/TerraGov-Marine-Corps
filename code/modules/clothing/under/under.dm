@@ -144,6 +144,15 @@
 			. += "Its vital tracker appears to be enabled."
 		if(3)
 			. += "Its vital tracker and tracking beacon appear to be enabled."
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_BADGE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_BADGE]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM_TIE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM_TIE]].\n"
+	if(armor_info)
+		. += "	It has the following attachments:"
+		. += armor_info
 
 //we only want to quick equip from actual 'holster' type webbings
 /obj/item/clothing/under/do_quick_equip(mob/user)

@@ -186,6 +186,24 @@
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		. += "<br> It has a [attachments_by_slot[ATTACHMENT_SLOT_STORAGE]] installed."
 
+/obj/item/clothing/suit/modular/examine(mob/user)
+	. = ..()
+	var/armor_info
+	var/obj/item/clothing/suit/modular/wear_modular_suit = src
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CHESTPLATE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CHESTPLATE]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_SHOULDER])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_SHOULDER]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_KNEE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_KNEE]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_MODULE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_MODULE]].\n"
+	if(armor_info)
+		. += "	It has the following attachments:"
+		. += armor_info
+
 /obj/item/clothing/suit/modular/rownin
 	name = "\improper Rownin Skeleton"
 	desc = "A light armor, if you can even call it that, for marines that want to have agility in exchange for protection. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
@@ -350,6 +368,16 @@
 	. = ..()
 	. += "<br><br />This is a piece of modular armor, It can equip different attachments.<br />"
 	. += "<br>It currently has [attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] ? attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] : "nothing"] installed."
+
+/obj/item/clothing/head/modular/examine(mob/user)
+	. = ..()
+	var/armor_info
+	var/obj/item/clothing/head/modular/wear_modular_suit = src
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE]].\n"
+	if(armor_info)
+		. += "	It has the following attachments:"
+		. += armor_info
 
 /** Colorable masks */
 /obj/item/clothing/mask/gas/modular
