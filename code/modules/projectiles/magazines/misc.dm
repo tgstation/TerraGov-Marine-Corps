@@ -167,7 +167,7 @@
 	max_rounds = 42
 
 /obj/item/ammo_magazine/packet/acp
-	name = "packet of .45 ACP"
+	name = "packet of pistol .45 ACP"
 	icon_state = "box_45acp"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	w_class = WEIGHT_CLASS_SMALL
