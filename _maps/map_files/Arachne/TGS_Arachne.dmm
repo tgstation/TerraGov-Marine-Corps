@@ -11343,7 +11343,7 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/mob/living/simple_animal/corgi/walten,
+/obj/machinery/bot/cleanbot,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "jAr" = (
@@ -16657,6 +16657,18 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
+"nQW" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
+	},
+/area/mainship/medical/lower_medical)
 "nRj" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/light/mainship{
@@ -17432,10 +17444,6 @@
 "oxH" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/hallways/starboard_hallway)
-"oyj" = (
-/obj/machinery/bot/cleanbot,
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical)
 "oyu" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -27946,6 +27954,10 @@
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
+"xEq" = (
+/mob/living/simple_animal/corgi/walten,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "xEA" = (
 /obj/machinery/photocopier,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -27964,7 +27976,9 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
-/turf/open/floor/mainship/sterile/dark,
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
+	},
 /area/mainship/medical/lower_medical)
 "xES" = (
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -33655,9 +33669,9 @@ ksC
 mDs
 xSK
 xEN
-lYh
-dor
-lYh
+qSo
+nQW
+qSo
 mzL
 xyx
 iKx
@@ -33961,7 +33975,7 @@ hqL
 pso
 lYh
 lYh
-oyj
+lYh
 uPS
 nUb
 nUb
@@ -34471,7 +34485,7 @@ amv
 lYh
 lYh
 lYh
-lYh
+xEq
 dBJ
 lYh
 lYh
