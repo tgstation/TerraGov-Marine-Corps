@@ -62,8 +62,10 @@
 	if(sucked_one && prob(10))
 		say(pick(sentences))
 
-///For each obj/item/sucker, we try to restock it if possible
-///If the item cannot be restocked, we send it to cryo storage so it's not just deleted from existence
+/**
+ * For each obj/item/sucker, we try to restock it if possible
+ * If the item cannot be restocked, we send it to cryo storage so it's not just deleted from existence
+ */
 /obj/machinery/bot/roomba/proc/roomba_restock(obj/item/sucker)
 	set waitfor = FALSE
 
