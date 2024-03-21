@@ -196,6 +196,7 @@
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
 	map_light_levels = list(200, 100, 75, 50)
+	mission_start_delay = 3 MINUTES
 
 /datum/campaign_mission/tdm/first_mission/end_mission()
 	. = ..()
