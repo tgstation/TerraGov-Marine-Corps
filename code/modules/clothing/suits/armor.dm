@@ -136,7 +136,6 @@
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 50, BULLET = 15, LASER = 50, ENERGY = 10, BOMB = 25, BIO = 0, FIRE = 10, ACID = 10)
 
-
 /obj/item/clothing/suit/armor/rugged
 	name = "rugged armor"
 	desc = "A suit of armor used by workers in dangerous environments."
@@ -148,6 +147,7 @@
 	slowdown = 0
 	soft_armor = list(MELEE = 50, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 50, BIO = 40, FIRE = 50, ACID = 50)
 	siemens_coefficient = 0.7
+
 /obj/item/clothing/suit/armor/sectoid
 	name = "psionic field"
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."

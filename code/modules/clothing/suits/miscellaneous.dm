@@ -97,6 +97,7 @@
 	item_state = "imperium_monk"
 	flags_armor_protection = HEAD|CHEST|GROIN|LEGS|FEET|ARMS
 	flags_inv_hide = HIDESHOES|HIDEJUMPSUIT
+
 /obj/item/clothing/suit/chickensuit
 	name = "Chicken Suit"
 	desc = "A suit made long ago by the ancient empire KFC."
@@ -105,6 +106,7 @@
 	flags_armor_protection = CHEST|ARMS|GROIN|LEGS|FEET
 	flags_inv_hide = HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 2
+
 /obj/item/clothing/suit/monkeysuit
 	name = "Monkey Suit"
 	desc = "A suit that looks like a primate"
@@ -113,6 +115,7 @@
 	flags_armor_protection = CHEST|ARMS|GROIN|LEGS|FEET|HANDS
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 2
+
 /obj/item/clothing/suit/holidaypriest
 	name = "Holiday Priest"
 	desc = "This is a nice holiday my son."
@@ -120,6 +123,7 @@
 	item_state = "holidaypriest"
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_inv_hide = HIDEJUMPSUIT
+
 /obj/item/clothing/suit/cardborg
 	name = "cardborg suit"
 	desc = "An ordinary cardboard box with holes cut in the sides."
@@ -140,6 +144,7 @@
 		/obj/item/weapon/claymore,
 		/obj/item/weapon/twohanded,
 	)
+
 /obj/item/clothing/suit/straight_jacket
 	name = "straight jacket"
 	desc = "A suit that completely restrains the wearer."
