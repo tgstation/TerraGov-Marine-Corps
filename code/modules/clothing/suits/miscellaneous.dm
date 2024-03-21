@@ -268,3 +268,10 @@
 	item_state = "rebel_armor"
 	flags_armor_protection = CHEST|GROIN|LEGS
 
+/obj/item/clothing/suit/techpriest
+	name = "Techpriest Robes"
+	desc = "Praise the omnissiah!"
+	icon_state = "tp_bodyrobes"
+	item_state = "tp_bodyrobes"
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
+
