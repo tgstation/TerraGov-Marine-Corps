@@ -29,7 +29,7 @@
 		MISSION_OUTCOME_MINOR_VICTORY = list(0, 0),
 		MISSION_OUTCOME_DRAW = list(0, 0),
 		MISSION_OUTCOME_MINOR_LOSS = list(0, 0),
-		MISSION_OUTCOME_MAJOR_LOSS = list(10, 20),
+		MISSION_OUTCOME_MAJOR_LOSS = list(10, 30),
 	)
 
 	starting_faction_mission_brief = "We have finally been able to track down a hidden SOM outpost which they have been using as a base of operations to raid our supply lines, wrecking havoc on our logistics. \
@@ -107,14 +107,23 @@
 	. = ..()
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_CAMPAIGN_OB_BEACON_ACTIVATION, COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED))
 
-
-
-//todo: remove these if nothing new is added
 /datum/campaign_mission/raiding_base/apply_major_victory()
 	. = ..()
+	winning_faction = starting_faction
+	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
+	winning_team.remove_asset(/datum/campaign_asset/attrition_modifier/malus_strong)
+	winning_team.remove_asset(/datum/campaign_asset/attrition_modifier/malus_standard)
 
 /datum/campaign_mission/raiding_base/apply_major_loss()
 	. = ..()
+	winning_faction = hostile_faction
+	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
+	if(hostile_faction == FACTION_TERRAGOV)
+		winning_team.add_asset(/datum/campaign_asset/equipment/power_armor)
+	else if(hostile_faction == FACTION_SOM)
+		winning_team.add_asset(/datum/campaign_asset/mech/light/som)
+		winning_team.add_asset(/datum/campaign_asset/equipment/gorgon_armor)
+
 
 ///Returns a list of areas in which the beacon can be deployed
 /datum/campaign_mission/raiding_base/proc/get_valid_beacon_areas()
