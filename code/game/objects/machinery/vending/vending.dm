@@ -744,9 +744,9 @@
 				item_to_stock.unwield(user)
 			user.temporarilyRemoveItemFromInventory(item_to_stock)
 
-	else if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
-		var/obj/item/storage/S = item_to_stock.loc
-		S.remove_from_storage(item_to_stock, user.loc, user)
+		else if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
+			var/obj/item/storage/S = item_to_stock.loc
+			S.remove_from_storage(item_to_stock, user.loc, user)
 
 	qdel(item_to_stock)
 
