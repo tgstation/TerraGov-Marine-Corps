@@ -263,3 +263,67 @@
   - qol: style hats now mask hairs behind them so they look like they're layered on
       your head properly
   - imageadd: resprites mimir module worn sprite
+2024-03-16:
+  Barnet2:
+  - bugfix: Campaign mortar acid smoke is opaque
+  DeltaFire15:
+  - bugfix: Certain xenomorphs can no longer regenerate past their plasma cap under
+      specific circumstances.
+  - bugfix: Railgun factory parts now give you their respective ammunition types instead
+      of only standard canisters.
+  - spellcheck: AMR factory parts now can be differentiated by name as opposed to
+      by feeling.
+  Kapu1178:
+  - bugfix: Facehuggers will now prioritize the nearest marine, preferring cardinal
+      directions.
+  Lumipharon:
+  - balance: 'Campaign: reduced mission time for ASAT and both fire support missions'
+  - balance: 'Campaign: Increased number of objectives required for minor victory
+      for fire support missions'
+  - balance: 'Campaign: Killing mechs in mech war awards a small number of capture
+      points'
+  - balance: 'Campaign: Fire support binos require line of sight, but can now target
+      any atom'
+  - bugfix: fixed flak guns being vended incorrectly
+  - qol: Antigas smoke is more visible
+  blackdav123:
+  - balance: GL-81 can now fit magnetic harness and rail flashlight.
+  lbnesquik:
+  - qol: Added a little description to the medivac bed in the corpsman vendor.
+  - spellcheck: Corrected a typo of patiant to patient
+  - code_imp: Removed a now useless verb
+2024-03-17:
+  AzonStarfall:
+  - rscadd: Expanded the Arachne vehicle bay.
+  - rscdel: Removed the Arachne flight control station, to make room for the vehicle
+      bay.
+2024-03-18:
+  Lumipharon:
+  - bugfix: fixed an issue with airburst type projectiles
+  - bugfix: Fix hefa nades
+  - bugfix: Fix piercing ammo not piercing if your main target is adjacent to you
+  - bugfix: Fix tank blowing itself up with the main cannon
+2024-03-19:
+  Lumipharon:
+  - balance: 'Campaign: Reduced game and pregame delays on most missions'
+  - balance: 'Campaign: NT Base Rescue no longer allows firesupport for TGMC'
+  - balance: 'Campaign: NT Base Rescue provides SOM with automatic militia support'
+  - balance: 'Campaign: NT Base Rescue reduced SOM mech count to 4'
+  - balance: 'Campaign: SOM have to destroy 6 objectives to win on Supply Raid'
+2024-03-20:
+  Kapu1178:
+  - bugfix: Huggers *actually* prioritize orthogonal marines over diagonal marines.
+  Notamaniac:
+  - bugfix: Iguana ammo boxes now properly delete themselves when they perform a reload
+      that uses up all their ammo
+  lbnesquik:
+  - code_imp: Nukes all references to the M56D
+  - qol: Add the evac timer to the AI status tab
+  - qol: Added the word flak to fk-88 in req
+2024-03-21:
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed some loot tables being wrong from SOM initiated combat
+      patrol/mech war missions'
+  Notamaniac:
+  - bugfix: Spamming the Iguana remote will no longer cause massive chat spam when
+      people speak to the Iguana

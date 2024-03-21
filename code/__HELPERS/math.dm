@@ -124,6 +124,9 @@
 					return FALSE
 	return TRUE
 
+/// Returns the manhattan distance between two atoms. Returns INFINITY if either are not on a turf, for BYOND get_dist() parity.
+/proc/get_dist_manhattan(atom/A, atom/B)
+	if(!A.z || !B.z)
+		return INFINITY
 
-/// rand() but for floats, returns a random floating point number between low and high
-#define randfloat(low, high) ((low) + rand() * ((high) - (low)))
+	return abs(A.x - B.x) + abs(A.y - B.y) + abs(A.z - B.z)

@@ -273,7 +273,7 @@
 	var/obj/projectile/shell = new /obj/projectile(loc)
 	var/datum/ammo/ammo = GLOB.ammo_list[arty_shell.ammo_type]
 	shell.generate_bullet(ammo)
-	var/shell_range = min(get_dist_euclide(src, target), ammo.max_range)
+	var/shell_range = min(get_dist_euclidean(src, target), ammo.max_range)
 	shell.fire_at(target, null, src, shell_range, ammo.shell_speed)
 
 	perform_firing_visuals()
@@ -375,7 +375,7 @@
 	location.ceiling_debris_check(2)
 	log_game("[key_name(user)] has fired the [src] at [AREACOORD(target)]")
 
-	var/max_offset = round(abs((get_dist_euclide(src,target)))/offset_per_turfs)
+	var/max_offset = round(abs((get_dist_euclidean(src,target)))/offset_per_turfs)
 	var/firing_spread = max_offset + spread
 	if(firing_spread > max_spread)
 		firing_spread = max_spread
