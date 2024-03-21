@@ -1676,6 +1676,7 @@
 #include "code\modules\mob\living\carbon\human\species_types\skeletons.dm"
 #include "code\modules\mob\living\carbon\human\species_types\synthetics.dm"
 #include "code\modules\mob\living\carbon\human\species_types\vatborns.dm"
+#include "code\modules\mob\living\carbon\human\species_types\zombies.dm"
 #include "code\modules\mob\living\carbon\xenomorph\abilities.dm"
 #include "code\modules\mob\living\carbon\xenomorph\attack_alien.dm"
 #include "code\modules\mob\living\carbon\xenomorph\charge_crush.dm"
