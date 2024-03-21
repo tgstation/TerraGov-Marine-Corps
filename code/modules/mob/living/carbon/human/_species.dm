@@ -344,14 +344,6 @@
 			H.reagents.remove_reagent(chem.type, chem.volume - chem.overdose_threshold)
 	return FALSE
 
-
-
-
-
-
-
-
-
 ///Called when using the shredding behavior
 /datum/species/proc/can_shred(mob/living/carbon/human/H)
 	if(H.a_intent != INTENT_HARM)
