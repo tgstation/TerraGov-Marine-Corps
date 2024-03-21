@@ -108,11 +108,15 @@
 ///Override code for NT base rescue mission
 #define COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE "!campaign_nt_override_code"
 ///Campaign asset obtained for the first time
-#define COMSIG_CAMPAIGN_NEW_ASSET "campaign_new_asset"
+#define COMSIG_CAMPAIGN_NEW_ASSET "!campaign_new_asset"
 ///Campaign asset activation successful
-#define COMSIG_CAMPAIGN_ASSET_ACTIVATION "campaign_asset_activation"
+#define COMSIG_CAMPAIGN_ASSET_ACTIVATION "!campaign_asset_activation"
 ///Campaign asset disabler activated
-#define COMSIG_CAMPAIGN_DISABLER_ACTIVATION "campaign_disabler_activation"
+#define COMSIG_CAMPAIGN_DISABLER_ACTIVATION "!campaign_disabler_activation"
+///Campaign OB beacon deployed
+#define COMSIG_CAMPAIGN_OB_BEACON_ACTIVATION "!campaign_ob_beacon_activation"
+///Campaign OB beacon going off
+#define COMSIG_CAMPAIGN_OB_BEACON_TRIGGERED "!campaign_ob_beacon_triggered"
 
 //////////////////////////////////////////////////////////////////
 // /datum/component signals
