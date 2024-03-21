@@ -63,6 +63,10 @@
 	name = "Chief Medical Officer's labcoat"
 	desc = "Bluer than the standard model."
 	icon_state = "labcoat_cmo"
+/obj/item/clothing/suit/storage/labcoat/mad
+	name = "The Mad's labcoat"
+	desc = "It makes you look capable of konking someone on the noggin and shooting them into space."
+	icon_state = "labgreen"
 
 /obj/item/clothing/suit/storage/labcoat/paramedic
 	name = "Paramedic's labcoat"

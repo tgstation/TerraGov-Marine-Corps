@@ -136,15 +136,7 @@
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 50, BULLET = 15, LASER = 50, ENERGY = 10, BOMB = 25, BIO = 0, FIRE = 10, ACID = 10)
 
-/obj/item/clothing/suit/armor/sectoid
-	name = "psionic field"
-	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "shield-blue"
-	flags_item = DELONDROP
-	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 35, ENERGY = 20, BOMB = 40, BIO = 40, FIRE = 40, ACID = 40)
-	allowed = list()//how would you put a gun onto a field of energy?
+
 /obj/item/clothing/suit/armor/rugged
 	name = "rugged armor"
 	desc = "A suit of armor used by workers in dangerous environments."
@@ -156,7 +148,15 @@
 	slowdown = 0
 	soft_armor = list(MELEE = 50, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 50, BIO = 40, FIRE = 50, ACID = 50)
 	siemens_coefficient = 0.7
-
+/obj/item/clothing/suit/armor/sectoid
+	name = "psionic field"
+	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "shield-blue"
+	flags_item = DELONDROP
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 35, ENERGY = 20, BOMB = 40, BIO = 40, FIRE = 40, ACID = 40)
+	allowed = list()//how would you put a gun onto a field of energy?
 
 /obj/item/clothing/suit/armor/sectoid/Initialize(mapload)
 	. = ..()

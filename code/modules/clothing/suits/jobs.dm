@@ -114,6 +114,8 @@
 	desc = "This piece of clothing was specifically designed for asserting superior authority."
 	icon_state = "hosbluejacket"
 
+/obj/item/clothing/suit/security/formal/senior_officer/tan
+	icon_state = "hostanjacket"
 
 //Detective
 /obj/item/clothing/suit/storage/det_suit
