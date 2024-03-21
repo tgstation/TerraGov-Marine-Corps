@@ -1,97 +1,93 @@
 //placeholder
 /datum/campaign_mission/raiding_base
-	name = "Combat patrol"
+	name = "Raiding Base"
 	mission_icon = "raiding_base"
 	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
-	starting_faction_objective_description = null
-	hostile_faction_objective_description = null
-	max_game_time = 20 MINUTES
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
+	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
+	starting_faction_objective_description = "Major Victory: Set and defend an orbital beacon inside the facility until a precision orbital strike can be called in."
+	hostile_faction_objective_description = "Major Victory: Prevent the enemy destroying the base via orbital strike with an orbtial beacon placed inside the facility."
+	intro_message = list(
+		MISSION_STARTING_FACTION = "Infiltrate the SOM base, then plant and defend an orbital beacon so we can drop the hammer on them from orbit!",
+		MISSION_HOSTILE_FACTION = "Stop TGMC forces from infiltrating the base. Prevent them from activating an orbital beacon at all costs!",
+	)
+	max_game_time = 12 MINUTES
+	mission_start_delay = 90 SECONDS
+	shutter_open_delay = list(
+		MISSION_STARTING_FACTION = 90 SECONDS,
+		MISSION_HOSTILE_FACTION = 0,
+	)
 	victory_point_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
-		MISSION_OUTCOME_MINOR_VICTORY = list(1, 0),
-		MISSION_OUTCOME_DRAW = list(0, 0),
-		MISSION_OUTCOME_MINOR_LOSS = list(0, 1),
-		MISSION_OUTCOME_MAJOR_LOSS = list(0, 3),
+		MISSION_OUTCOME_MAJOR_VICTORY = list(2, 0),
+		MISSION_OUTCOME_MAJOR_LOSS = list(0, 2),
 	)
 	attrition_point_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(20, 5),
-		MISSION_OUTCOME_MINOR_VICTORY = list(15, 10),
-		MISSION_OUTCOME_DRAW = list(10, 10),
-		MISSION_OUTCOME_MINOR_LOSS = list(10, 15),
-		MISSION_OUTCOME_MAJOR_LOSS = list(5, 20),
+		MISSION_OUTCOME_MAJOR_VICTORY = list(20, 20),
+		MISSION_OUTCOME_MAJOR_LOSS = list(10, 20),
 	)
 
-	starting_faction_mission_brief = null
-	hostile_faction_mission_brief = null
-	starting_faction_additional_rewards = null
-	hostile_faction_additional_rewards = null
+	starting_faction_mission_brief = "We have finally been able to track down a hidden SOM outpost which they have been using as a base of operations to raid our supply lines. \
+	The SOM have been wreaking havoc with our logistics, they must be stopped with extreme prejudice. \
+	Infiltrate the facility, then deploy one of the orbital beacons you have been supplied with. \
+	Defend the beacon until the TGS Horizon can secure a target lock and deploy a thermobaric bunker buster to wipe the outpost off the face of the planet."
+	hostile_faction_mission_brief = "Intelligence has picked up a TGMC plan to assault Raiding base Zulu. This base has been key to our sabotage and disruption efforts, significantly degrading TGMC supply lines. \
+	Intel suggests that the TGMC are seeking to infiltrate the base to deploy a orbital beacon, in order to call down an orbital strike. \
+	Prevent TGMC forces from entering the base, and destroy any orbital beacon they try to deploy."
+	starting_faction_additional_rewards = "Remove negative effects on our logistics"
+	hostile_faction_additional_rewards = "Allow us to continue degrading TGMC logistics"
 
-/datum/campaign_mission/raiding_base/play_start_intro()
-	intro_message = list(
-		MISSION_STARTING_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [hostile_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
-		MISSION_HOSTILE_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [starting_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
-	)
+	var/ob_called = FALSE
+
+/datum/campaign_mission/raiding_base/start_mission()
 	. = ..()
+	RegisterSignal(SSdcs, COMSIG_CAMPAIGN_OB_BEACON_TRIGGERED, PROC_REF(beacon_triggered))
 
 /datum/campaign_mission/raiding_base/check_mission_progress()
 	if(outcome)
 		return TRUE
 
 	if(!game_timer)
-		return
+		return FALSE
 
-	///pulls the number of both factions, dead or alive
-	var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
-	var/num_team_one = length(player_list[1])
-	var/num_team_two = length(player_list[2])
-	var/num_dead_team_one = length(player_list[3])
-	var/num_dead_team_two = length(player_list[4])
-
-	if(num_team_two && num_team_one && !max_time_reached)
-		return //fighting is ongoing
-
-	//major victor for wiping out the enemy, or draw if both sides wiped simultaneously somehow
-	if(!num_team_two)
-		if(!num_team_one)
-			message_admins("Mission finished: [MISSION_OUTCOME_DRAW]") //everyone died at the same time, no one wins
-			outcome = MISSION_OUTCOME_DRAW
-			return TRUE
-		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_VICTORY]") //starting team wiped the hostile team
+	if(ob_called)
+		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_VICTORY]") //Attackers dropped the hammer
 		outcome = MISSION_OUTCOME_MAJOR_VICTORY
 		return TRUE
 
-	if(!num_team_one)
-		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_LOSS]") //hostile team wiped the starting team
-		outcome = MISSION_OUTCOME_MAJOR_LOSS
-		return TRUE
+	var/attacker_lost
 
-	//minor victories for more kills or draw for equal kills
-	if(num_dead_team_two > num_dead_team_one)
-		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_VICTORY]") //starting team got more kills
-		outcome = MISSION_OUTCOME_MINOR_VICTORY
-		return TRUE
-	if(num_dead_team_one > num_dead_team_two)
-		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_LOSS]") //hostile team got more kills
-		outcome = MISSION_OUTCOME_MINOR_LOSS
-		return TRUE
+	if(!length(GLOB.campaign_objectives) || max_time_reached)
+		attacker_lost = TRUE
+	else
+		var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
+		var/num_team_one = length(player_list[1])
+		var/datum/faction_stats/attacker_stats = mode.stat_list[starting_faction]
+		if(!num_team_one && !attacker_stats.active_attrition_points)
+			attacker_lost = TRUE
 
-	message_admins("Mission finished: [MISSION_OUTCOME_DRAW]") //equal number of kills, or any other edge cases
-	outcome = MISSION_OUTCOME_DRAW
+	if(!attacker_lost)
+		return FALSE
+	message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_LOSS]") //Attackers run out of beacons, time or bodies
+	outcome = MISSION_OUTCOME_MAJOR_LOSS
 	return TRUE
 
 //todo: remove these if nothing new is added
 /datum/campaign_mission/raiding_base/apply_major_victory()
 	. = ..()
 
-/datum/campaign_mission/raiding_base/apply_minor_victory()
-	. = ..()
-
-/datum/campaign_mission/raiding_base/apply_draw()
-	winning_faction = pick(starting_faction, hostile_faction)
-
-/datum/campaign_mission/raiding_base/apply_minor_loss()
-	. = ..()
-
 /datum/campaign_mission/raiding_base/apply_major_loss()
 	. = ..()
+
+///Reacts to an OB beacon being successfully triggered
+/datum/campaign_mission/raiding_base/proc/beacon_placed(obj/structure/campaign_objective/destruction_objective/bunker_buster/source)
+	SIGNAL_HANDLER
+	map_text_broadcast(starting_faction, "Confirming beacon deployed in [get_area(source)]. Defend it until we can secure a target lock marines!", "TGS Horizon", /atom/movable/screen/text/screen_text/picture/potrait/pod_officer, "sound/effects/alert.ogg")
+	map_text_broadcast(hostile_faction, "Orbital beacon detected in [get_area(source)]. Destroy that beacon before they can secure a target lock!", "Overwatch", sound_effect = "sound/effects/alert.ogg")
+
+///Reacts to an OB beacon being successfully triggered
+/datum/campaign_mission/raiding_base/proc/beacon_triggered(datum/source)
+	SIGNAL_HANDLER
+	deltimer(game_timer)
+	addtimer(VARSET_CALLBACK(src, ob_called, TRUE), CAMPAIGN_OB_BEACON_IMPACT_DELAY + 1 SECONDS)
+

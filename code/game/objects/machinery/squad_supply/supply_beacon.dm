@@ -33,6 +33,14 @@
 	deploy_time = 2 SECONDS
 	undeploy_time = 2 SECONDS
 
+/obj/item/campaign_beacon/bunker_buster/Initialize(mapload)
+	. = ..()
+	GLOB.campaign_objectives += src
+
+/obj/item/campaign_beacon/bunker_buster/Destroy()
+	GLOB.campaign_objectives -= src
+	return ..()
+
 /obj/structure/campaign_objective/destruction_objective/bunker_buster
 	name = "deployed orbital beacon"
 	desc = "An ominous red beacon, used to provide precision guidance to powerful orbital weapon systems."
@@ -66,13 +74,13 @@
 	qdel(src)
 
 /obj/structure/campaign_objective/destruction_objective/bunker_buster/get_time_left()
-	return beacon_timer ? round(timeleft(capture_timer) MILLISECONDS) : null
+	return beacon_timer ? round(timeleft(beacon_timer) MILLISECONDS) : null
 
 ///Effects triggered when the timer runs out
 /obj/structure/campaign_objective/destruction_objective/bunker_buster/proc/beacon_effect()
 	UnregisterSignal(SSdcs, COMSIG_CAMPAIGN_OB_BEACON_TRIGGERED)
 	SEND_SIGNAL(SSdcs, COMSIG_CAMPAIGN_OB_BEACON_TRIGGERED) //tie a hud alert to this
-	addtimer(CALLBACK(src, PROC_REF(do_explosion)), 11 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_explosion)), CAMPAIGN_OB_BEACON_IMPACT_DELAY)
 	for(var/mob/mob AS in GLOB.player_list)
 		if(mob.z != z)
 			continue
