@@ -7,12 +7,18 @@
 	///Typepath that the item deploys into. Can be anything but an item so far. The preffered type is /obj/machinery/deployable since it was built for this.
 	var/obj/deploy_type
 
-/datum/component/deployable_item/Initialize(_deploy_type, _deploy_time, _undeploy_time)
+	var/datum/callback/deploy_check_callback
+
+	//extra_checks = CALLBACK(current_turf, TYPE_PROC_REF(/turf, check_alien_construction), owner)
+
+/datum/component/deployable_item/Initialize(_deploy_type, _deploy_time, _undeploy_time, _deploy_check_callback)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	deploy_type = _deploy_type
 	deploy_time = _deploy_time
 	undeploy_time = _undeploy_time
+	if(_deploy_check_callback)
+		deploy_check_callback = _deploy_check_callback
 
 	var/obj/item/attached_item = parent
 	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
@@ -51,6 +57,8 @@
 		return
 	var/list/modifiers = params2list(params)
 	if(!modifiers["ctrl"] || modifiers["right"] || get_turf(user) == location || !(user.Adjacent(object)) || !location)
+		return
+	if(deploy_check_callback && !deploy_check_callback.Invoke(user, location))
 		return
 	INVOKE_ASYNC(src, PROC_REF(finish_deploy), parent, user, location)
 	return COMSIG_KB_ACTIVATED

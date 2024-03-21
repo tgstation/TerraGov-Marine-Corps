@@ -20,10 +20,16 @@
 	)
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(2, 0),
+		MISSION_OUTCOME_MINOR_VICTORY = list(1, 0),
+		MISSION_OUTCOME_DRAW = list(0, 0),
+		MISSION_OUTCOME_MINOR_LOSS = list(0, 1),
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 2),
 	)
 	attrition_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(20, 20),
+		MISSION_OUTCOME_MINOR_VICTORY = list(0, 0),
+		MISSION_OUTCOME_DRAW = list(0, 0),
+		MISSION_OUTCOME_MINOR_LOSS = list(0, 0),
 		MISSION_OUTCOME_MAJOR_LOSS = list(10, 20),
 	)
 
@@ -36,11 +42,19 @@
 	Prevent TGMC forces from entering the base, and destroy any orbital beacon they try to deploy."
 	starting_faction_additional_rewards = "Remove negative effects on our logistics"
 	hostile_faction_additional_rewards = "Allow us to continue degrading TGMC logistics"
-
+	///Records whether the OB has been called
 	var/ob_called = FALSE
+
+/datum/campaign_mission/raiding_base/load_pre_mission_bonuses()
+	new /obj/item/storage/box/crate/loot/materials_pack(get_turf(pick(GLOB.campaign_reward_spawners[defending_faction])))
+	for(var/i = 1 to 3)
+		new /obj/item/campaign_beacon/bunker_buster(get_turf(pick(GLOB.campaign_reward_spawners[starting_faction])))
+		new /obj/item/explosive/plastique(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
+		new /obj/item/explosive/plastique(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
 
 /datum/campaign_mission/raiding_base/start_mission()
 	. = ..()
+	RegisterSignal(SSdcs, COMSIG_CAMPAIGN_OB_BEACON_ACTIVATION, PROC_REF(beacon_placed))
 	RegisterSignal(SSdcs, COMSIG_CAMPAIGN_OB_BEACON_TRIGGERED, PROC_REF(beacon_triggered))
 
 /datum/campaign_mission/raiding_base/check_mission_progress()
@@ -82,8 +96,9 @@
 ///Reacts to an OB beacon being successfully triggered
 /datum/campaign_mission/raiding_base/proc/beacon_placed(obj/structure/campaign_objective/destruction_objective/bunker_buster/source)
 	SIGNAL_HANDLER
-	map_text_broadcast(starting_faction, "Confirming beacon deployed in [get_area(source)]. Defend it until we can secure a target lock marines!", "TGS Horizon", /atom/movable/screen/text/screen_text/picture/potrait/pod_officer, "sound/effects/alert.ogg")
-	map_text_broadcast(hostile_faction, "Orbital beacon detected in [get_area(source)]. Destroy that beacon before they can secure a target lock!", "Overwatch", sound_effect = "sound/effects/alert.ogg")
+	var/area/deployed_area = get_area(source)
+	map_text_broadcast(starting_faction, "Confirming beacon deployed in [deployed_area.name]. Defend it until we can secure a target lock marines!", "TGS Horizon", /atom/movable/screen/text/screen_text/picture/potrait/pod_officer, "sound/effects/alert.ogg")
+	map_text_broadcast(hostile_faction, "Orbital beacon detected in [deployed_area.name]. Destroy that beacon before they can secure a target lock!", "Overwatch", sound_effect = "sound/effects/alert.ogg")
 
 ///Reacts to an OB beacon being successfully triggered
 /datum/campaign_mission/raiding_base/proc/beacon_triggered(datum/source)

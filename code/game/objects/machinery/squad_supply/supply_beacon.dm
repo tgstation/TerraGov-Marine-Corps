@@ -22,7 +22,10 @@
 
 /obj/item/campaign_beacon/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/deployable_item, deployable_type, deploy_time, undeploy_time)
+	AddComponent(/datum/component/deployable_item, deployable_type, deploy_time, undeploy_time, CALLBACK(src, PROC_REF(can_deploy)))
+
+/obj/item/campaign_beacon/proc/can_deploy(mob/user, turf/location)
+	return TRUE
 
 /obj/item/campaign_beacon/bunker_buster
 	name = "orbital beacon"
@@ -32,6 +35,7 @@
 	deployable_type = /obj/structure/campaign_objective/destruction_objective/bunker_buster
 	deploy_time = 2 SECONDS
 	undeploy_time = 2 SECONDS
+	var/list/valid_deploy_areas = list(/area/mainship/patrol_base/hanger)
 
 /obj/item/campaign_beacon/bunker_buster/Initialize(mapload)
 	. = ..()
@@ -41,6 +45,15 @@
 	GLOB.campaign_objectives -= src
 	return ..()
 
+///Checks if we can deploy the beacon here
+/obj/item/campaign_beacon/bunker_buster/can_deploy(mob/user, turf/location)
+	var/area/beacon_area = get_area(location)
+	if(beacon_area.type in valid_deploy_areas)
+		return TRUE
+	if(user)
+		user.balloon_alert(user, "Cannot deploy here")
+	return FALSE
+
 /obj/structure/campaign_objective/destruction_objective/bunker_buster
 	name = "deployed orbital beacon"
 	desc = "An ominous red beacon, used to provide precision guidance to powerful orbital weapon systems."
@@ -49,7 +62,7 @@
 	faction = FACTION_TERRAGOV
 	density = FALSE
 	///How long the beacon takes to trigger its effect
-	var/beacon_duration = 1 MINUTES
+	var/beacon_duration = 3 MINUTES
 	///Holds the actual timer for the beacon
 	var/beacon_timer
 
