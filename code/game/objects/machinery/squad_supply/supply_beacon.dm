@@ -68,14 +68,15 @@
 
 /obj/structure/campaign_objective/destruction_objective/bunker_buster/Initialize(mapload)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_CAMPAIGN_OB_BEACON_TRIGGERED, PROC_REF(cancel_beacon))
-	SEND_SIGNAL(SSdcs, COMSIG_CAMPAIGN_OB_BEACON_ACTIVATION) //tie a hud alert to this
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED, PROC_REF(cancel_beacon))
+	SEND_SIGNAL(SSdcs, COMSIG_GLOB_CAMPAIGN_OB_BEACON_ACTIVATION)
 
 	beacon_timer = addtimer(CALLBACK(src, PROC_REF(beacon_effect)), beacon_duration, TIMER_STOPPABLE)
 	countdown = new(src)
 	countdown.start()
 
 /obj/structure/campaign_objective/destruction_objective/bunker_buster/Destroy()
+	SEND_SIGNAL(SSdcs, COMSIG_GLOB_CAMPAIGN_OB_BEACON_ACTIVATION)
 	QDEL_NULL(countdown)
 	if(beacon_timer)
 		deltimer(beacon_timer)
@@ -91,8 +92,8 @@
 
 ///Effects triggered when the timer runs out
 /obj/structure/campaign_objective/destruction_objective/bunker_buster/proc/beacon_effect()
-	UnregisterSignal(SSdcs, COMSIG_CAMPAIGN_OB_BEACON_TRIGGERED)
-	SEND_SIGNAL(SSdcs, COMSIG_CAMPAIGN_OB_BEACON_TRIGGERED) //tie a hud alert to this
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED)
+	SEND_SIGNAL(SSdcs, COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED)
 	addtimer(CALLBACK(src, PROC_REF(do_explosion)), CAMPAIGN_OB_BEACON_IMPACT_DELAY)
 	for(var/mob/mob AS in GLOB.player_list)
 		if(mob.z != z)
