@@ -28,7 +28,7 @@
 	items_to_spawn = list(\
 	/obj/item/clothing/under/gimmick/rank/captain/suit,\
 	/obj/item/clothing/head/flatcap,\
-	/obj/item/clothing/suit/storage/labcoat/cmo,\
+	/obj/item/clothing/suit/storage/labcoat/mad,\
 	/obj/item/clothing/glasses/gglasses)
 
 
