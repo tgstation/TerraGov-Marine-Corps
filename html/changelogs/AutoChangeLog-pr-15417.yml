@@ -1,4 +1,0 @@
-author: "Notamaniac"
-delete-after: True
-changes:
-  - bugfix: "Spamming the Iguana remote will no longer cause massive chat spam when people speak to the Iguana"
