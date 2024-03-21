@@ -459,16 +459,12 @@
 	H.speech_span = SPAN_ROBOT
 	H.voice_filter = "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=512:overlap=1,rubberband=pitch=0.8"
 	H.health_threshold_crit = -100
-	H.brute_revive_threshold = INFINITY
-	H.burn_revive_threshold = INFINITY
 
 /datum/species/robot/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.speech_span = initial(H.speech_span)
 	H.voice_filter = initial(H.voice_filter)
 	H.health_threshold_crit = -50
-	H.brute_revive_threshold = 180
-	H.burn_revive_threshold = 180
 
 /datum/species/robot/handle_unique_behavior(mob/living/carbon/human/H)
 	if(H.health <= 0 && H.health > -50)

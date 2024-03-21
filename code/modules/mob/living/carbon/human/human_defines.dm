@@ -114,11 +114,6 @@
 	///How long the human is dead, in life ticks, which is 2 seconds
 	var/dead_ticks = 0
 
-	// Brute Revive Threshold with a defibrillator
-	var/brute_revive_threshold = 180
-	// Burn Revive Threshold with a defibrillator
-	var/burn_revive_threshold = 180
-
 	///Which color type of holocard is printed on us
 	var/holo_card_color = ""
 
@@ -209,13 +204,13 @@
 		apply_effect(10, EYE_BLUR)
 		apply_effect(20 SECONDS, PARALYZE)
 		handle_regular_hud_updates()
-		updatehealth() // do this ONE LAST TIME for extra cleanup.
+		updatehealth() // do this one more time for extra cleanup
 		REMOVE_TRAIT(src, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 		dead_ticks = 0 // reset DNR timer
 
 ///Checks brute/fire damage, heart status, having a head, death ticks and client for defibrillation
 /mob/living/carbon/human/proc/check_defib()
-	if((getBruteLoss() >= brute_revive_threshold) || (getFireLoss() >= burn_revive_threshold))
+	if((getBruteLoss() >= 180) || (getFireLoss() >= 180) && !HAS_TRAIT(src, TRAIT_IMMEDIATE_DEFIB)) // allow robots to bypass the damage threshold
 		return DEFIB_FAIL_TISSUE_DAMAGE
 
 	if(!has_working_organs() && !(species.species_flags & ROBOTIC_LIMBS)) // Ya organs dpmt wprl
@@ -225,7 +220,7 @@
 	if(head.limb_status & LIMB_DESTROYED)
 		return DEFIB_FAIL_DECAPITATED
 
-	if((dead_ticks > TIME_BEFORE_DNR) && !issynth(src) || HAS_TRAIT(src, TRAIT_UNDEFIBBABLE)) // synthetics never expire
+	if((dead_ticks > TIME_BEFORE_DNR) && !issynth(src) || HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
 		return DEFIB_FAIL_BRAINDEAD
 
 	if(!client) // no client at all
