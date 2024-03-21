@@ -1,15 +1,17 @@
 /*
-	Datum-based species. Should make for much cleaner and easier to maintain species code.
+	Datum-based species. Should make for much cleaner and easier to maintain species code
 */
 ///TODO SPLIT THIS INTO MULTIPLE FILES
 
 /datum/species
 	///Species name
 	var/name
-	var/name_plural
-	///what kind of species it is considered
+	///what kind of species it is considered (See: Species defines)
 	var/species_type = SPECIES_HUMAN
+	///Special effects that are inherent to our species
+	var/species_flags = NONE
 
+	//----Icon stuff here
 	///Normal icon file
 	var/icobase = 'icons/mob/human_races/r_human.dmi'
 	///icon state for calculating brute damage icons
@@ -18,96 +20,130 @@
 	var/burn_damage_icon_state = "human_burn"
 	///damage mask icon we want to use when drawing wounds
 	var/damage_mask_icon = 'icons/mob/dam_mask.dmi'
-	///If set, draws this from icobase when mob is prone.
-	var/prone_icon
 	///icon for eyes
 	var/eyes = "eyes_s"
-
-	var/datum/unarmed_attack/unarmed           // For empty hand harm-intent attack
-	var/datum/unarmed_attack/secondary_unarmed // For empty hand harm-intent attack if the first fails.
-	var/datum/hud_data/hud
-	var/hud_type
-	var/slowdown = 0
-	var/taste_sensitivity = TASTE_NORMAL
-	var/gluttonous        // Can eat some mobs. 1 for monkeys, 2 for people.
-	var/rarity_value = 1  // Relative rarity/collector value for this species. Only used by ninja and cultists atm.
-	var/datum/unarmed_attack/unarmed_type = /datum/unarmed_attack
-	var/secondary_unarmed_type = /datum/unarmed_attack/bite
-	var/default_language_holder = /datum/language_holder
-	var/speech_verb_override
-	var/secondary_langs = list()  // The names of secondary languages that are available to this species.
-	var/list/speech_sounds        // A list of sounds to potentially play when speaking.
-	var/list/speech_chance
-	var/has_fine_manipulation = TRUE // Can use small items.
-	var/count_human = FALSE // Does this count as a human?
-
-	///Inventory slots the race can't equip stuff to. Golems cannot wear jumpsuits, for example.
-	var/list/no_equip = list()
-
-	// Some species-specific gibbing data.
-	var/gibbed_anim = "gibbed-h"
-	var/dusted_anim = "dust-h"
-	var/remains_type = /obj/effect/decal/cleanable/ash
-	var/death_sound
-	var/death_message = "seizes up and falls limp, their eyes dead and lifeless..."
-
-	var/breath_type = "oxygen"   // Non-oxygen gas breathed, if any.
-	var/poison_type = "phoron"   // Poisonous air.
-	var/exhale_type = "carbon_dioxide"      // Exhaled gas type.
-
-	/// new maxHealth [/mob/living/carbon/human/var/maxHealth] of the human mob once species is applied
-	var/total_health = 100
-	var/max_stamina = 50
-
-	var/cold_level_1 = BODYTEMP_COLD_DAMAGE_LIMIT_ONE  	// Cold damage level 1 below this point.
-	var/cold_level_2 = BODYTEMP_COLD_DAMAGE_LIMIT_TWO  	// Cold damage level 2 below this point.
-	var/cold_level_3 = BODYTEMP_COLD_DAMAGE_LIMIT_THREE	// Cold damage level 3 below this point.
-
-	var/heat_level_1 = BODYTEMP_HEAT_DAMAGE_LIMIT_ONE  	// Heat damage level 1 above this point.
-	var/heat_level_2 = BODYTEMP_HEAT_DAMAGE_LIMIT_TWO  	// Heat damage level 2 above this point.
-	var/heat_level_3 = BODYTEMP_HEAT_DAMAGE_LIMIT_THREE	// Heat damage level 2 above this point.
-
-	var/body_temperature = BODYTEMP_NORMAL 	//non-IS_SYNTHETIC species will try to stabilize at this temperature. (also affects temperature processing)
-	var/reagent_tag                 //Used for metabolizing reagents.
-
-	var/darksight = 2
-	var/hazard_high_pressure = HAZARD_HIGH_PRESSURE   // Dangerously high pressure.
-	var/warning_high_pressure = WARNING_HIGH_PRESSURE // High pressure warning.
-	var/warning_low_pressure = WARNING_LOW_PRESSURE   // Low pressure warning.
-	var/hazard_low_pressure = HAZARD_LOW_PRESSURE     // Dangerously low pressure.
-
-	var/brute_mod = null    // Physical damage reduction/malus.
-	var/burn_mod = null     // Burn damage reduction/malus.
-
-	///Whether this mob will tell when the user has logged out
-	var/is_sentient = TRUE
-
-	///Generic traits tied to having the species.
-	var/list/inherent_traits = list()
-	var/species_flags = NONE       // Various specific features.
-
-	var/list/preferences = list()
-	var/list/screams = list()
-	var/list/paincries = list()
-	var/list/goredcries = list()
-	var/list/gasps = list()
-	var/list/coughs = list()
-	var/list/burstscreams = list()
-	var/list/warcries = list()
-
-	var/blood_color = "#A10808" //Red.
-	var/flesh_color = "#FFC896" //Pink.
-	var/base_color      //Used when setting species.
-	var/hair_color      //If the species only has one hair color
-
-	//Used in icon caching.
+	///Color of the blood specific to our species
+	var/blood_color = "#A10808"
+	///Color of the gibs that spawn from our species [/mob/living/carbon/human/spawn_gibs]
+	var/flesh_color = "#FFC896"
+	///Used when setting species
+	var/base_color
+	///If the species only has one hair color
+	var/hair_color
+	///Used in icon caching
 	var/race_key = 0
+	///Used in icon caching
 	var/icon/icon_template
 
-	/// inherent Species-specific verbs.
+	//----Grouped these because they get set on New()
+	///hud that our mob uses, gets given the type stored in hud_type on New()
+	var/datum/hud_data/hud
+	///type that our hud gets set to on New()
+	var/hud_type
+	///For empty hand harm-intent attack
+	var/datum/unarmed_attack/unarmed
+	///type that our unarmed gets set to on New()
+	var/unarmed_type = /datum/unarmed_attack
+	///For empty hand harm-intent attack if the first fails
+	var/datum/unarmed_attack/secondary_unarmed
+	///type that our secondary_unarmed gets set to on New()
+	var/secondary_unarmed_type = /datum/unarmed_attack/bite
+
+	//----Health/Stamina + Modifiers
+	///new maxHealth [/mob/living/carbon/human/var/maxHealth] of the human mob once species is applied
+	var/total_health = 100
+	///Brute damage modifier
+	var/brute_mod = null
+	///Burn damage modifier
+	var/burn_mod = null
+	///new max_stamina [/mob/living/var/max_stamina] of the human mob once species is applied
+	var/max_stamina = 50
+
+	//----Somewhat "gameplay" relevant
+	///how much the knocked_down effect is reduced per Life call
+	var/knock_down_reduction = 1
+	///how much the stunned effect is reduced per Life call
+	var/stun_reduction = 1
+	///how much the stunned effect is reduced per Life call
+	var/knock_out_reduction = 1
+	///How much slowdown is innate to our species
+	var/slowdown = 0
+	///Inventory slots the race can't equip stuff to. Golems cannot wear jumpsuits, for example
+	var/list/no_equip = list()
+
+	//----Related to dying in some way
+	///species-specific gibbing animation
+	var/gibbed_anim = "gibbed-h"
+	///species-specific dusting animation
+	var/dusted_anim = "dust-h"
+	///used to determine what item is left behind in /spawn_dust_remains()
+	var/remains_type = /obj/effect/decal/cleanable/ash
+	///Sound that gets played on death()
+	var/death_sound
+	///Message that gets sent on death()
+	var/death_message = "seizes up and falls limp, their eyes dead and lifeless..."
+	///Special death message that gets overwritten if possible
+	var/special_death_message = "You have perished."
+
+	//----Temperature/Pressure
+	///Cold damage level 1 below this point
+	var/cold_level_1 = BODYTEMP_COLD_DAMAGE_LIMIT_ONE
+	///Cold damage level 2 below this point
+	var/cold_level_2 = BODYTEMP_COLD_DAMAGE_LIMIT_TWO
+	///Cold damage level 3 below this point
+	var/cold_level_3 = BODYTEMP_COLD_DAMAGE_LIMIT_THREE
+	///Heat damage level 1 above this point
+	var/heat_level_1 = BODYTEMP_HEAT_DAMAGE_LIMIT_ONE
+	///Heat damage level 2 above this point
+	var/heat_level_2 = BODYTEMP_HEAT_DAMAGE_LIMIT_TWO
+	///Heat damage level 2 above this point
+	var/heat_level_3 = BODYTEMP_HEAT_DAMAGE_LIMIT_THREE
+	///non-IS_SYNTHETIC species will try to stabilize at this temperature. (also affects temperature processing)
+	var/body_temperature = BODYTEMP_NORMAL
+	///Dangerously high pressure
+	var/hazard_high_pressure = HAZARD_HIGH_PRESSURE
+	///High pressure warning
+	var/warning_high_pressure = WARNING_HIGH_PRESSURE
+	///Low pressure warning
+	var/warning_low_pressure = WARNING_LOW_PRESSURE
+	///Dangerously low pressure
+	var/hazard_low_pressure = HAZARD_LOW_PRESSURE
+
+	///used in mob/living/proc/taste
+	var/taste_sensitivity = TASTE_NORMAL
+	///type that gets set as our language_holder on proc/set_species
+	var/default_language_holder = /datum/language_holder
+
+	///Sets mob/var/see_in_dark on [/mob/living/carbon/human/update_sight]
+	var/see_in_dark = 2
+	///Sets our mobs lighting_alpha on [/mob/living/carbon/human/update_sight]
+	var/lighting_alpha
+
+	///Used for metabolizing reagents
+	var/reagent_tag
+
+	///List of sounds for certain emotes [/datum/emote/living/carbon/human/scream/get_sound]
+	var/list/screams = list()
+	///List of sounds for certain emotes [/datum/emote/living/carbon/human/pain/get_sound]
+	var/list/paincries = list()
+	///List of sounds for certain emotes [/datum/emote/living/carbon/human/gored/get_sound]
+	var/list/goredcries = list()
+	///List of sounds for certain emotes [/datum/emote/living/carbon/human/gasp/get_sound]
+	var/list/gasps = list()
+	///List of sounds for certain emotes [/datum/emote/living/carbon/human/cough/get_sound]
+	var/list/coughs = list()
+	///List of sounds for certain emotes [/datum/emote/living/carbon/human/burstscream/get_sound]
+	var/list/burstscreams = list()
+	///List of sounds for certain emotes [/datum/emote/living/carbon/human/warcry/get_sound]
+	var/list/warcries = list()
+
+	///Generic traits tied to having the species
+	var/list/inherent_traits = list()
+	///inherent Species-specific verbs
 	var/list/inherent_verbs
-	/// inherent species-specific actions
+	///inherent species-specific actions
 	var/list/inherent_actions
+	///Associated list of our organs
 	var/list/has_organ = list(
 		"heart" = /datum/internal_organ/heart,
 		"lungs" = /datum/internal_organ/lungs,
@@ -118,16 +154,12 @@
 		"eyes" = /datum/internal_organ/eyes
 		)
 
-	var/knock_down_reduction = 1 //how much the knocked_down effect is reduced per Life call.
-	var/stun_reduction = 1 //how much the stunned effect is reduced per Life call.
-	var/knock_out_reduction = 1 //same thing
-	var/lighting_alpha
-	var/see_in_dark
-
+	///List of names for random generation based on a given pool
 	var/datum/namepool/namepool = /datum/namepool
-	var/special_death_message = "You have perished." // Special death message that gets overwritten if possible.
 	///Whether it is possible with this race roundstart
 	var/joinable_roundstart = FALSE
+	///If this species counts as a human
+	var/count_human = FALSE
 
 /datum/species/New()
 	if(hud_type)
@@ -142,13 +174,13 @@
 	if(species_flags & GREYSCALE_BLOOD)
 		brute_damage_icon_state = "grayscale"
 
-/datum/species/proc/create_organs(mob/living/carbon/human/organless_human) //Handles creation of mob organs and limbs.
-
+///Handles creation of mob organs and limbs
+/datum/species/proc/create_organs(mob/living/carbon/human/organless_human)
 	organless_human.limbs = list()
 	organless_human.internal_organs = list()
 	organless_human.internal_organs_by_name = list()
 
-	//This is a basic humanoid limb setup.
+	//This is a basic humanoid limb setup
 	var/datum/limb/chest/new_chest = new(null, organless_human)
 	organless_human.limbs += new_chest
 	var/datum/limb/groin/new_groin = new(new_chest, organless_human)
@@ -179,7 +211,7 @@
 		for(var/datum/internal_organ/my_cold_heart in organless_human.internal_organs)
 			my_cold_heart.mechanize()
 
-
+///Called by [/mob/living/carbon/proc/help_shake_act], the act of hugging someone
 /datum/species/proc/hug(mob/living/carbon/human/H, mob/living/target)
 	if(H.zone_selected == "head")
 		H.visible_message(span_notice("[H] pats [target] on the head."), \
@@ -194,9 +226,11 @@
 		H.visible_message(span_notice("[H] hugs [target] to make [target.p_them()] feel better!"), \
 					span_notice("You hug [target] to make [target.p_them()] feel better!"), null, 4)
 
+///Generates a random name from namepool
 /datum/species/proc/random_name(gender)
 	return GLOB.namepool[namepool].get_random_name(gender)
 
+///Returns the name if there is one in prefs
 /datum/species/proc/prefs_name(datum/preferences/prefs)
 	return prefs.real_name
 
@@ -209,7 +243,7 @@
 
 /datum/species/synthetic/prefs_name(datum/preferences/prefs)
 	. = prefs.synthetic_name
-	if(!. || . == "Undefined") //In case they don't have a name set.
+	if(!. || . == "Undefined") //In case they don't have a name set
 		switch(prefs.gender)
 			if(MALE)
 				. = "David"
@@ -221,7 +255,7 @@
 
 /datum/species/early_synthetic/prefs_name(datum/preferences/prefs)
 	. = prefs.synthetic_name
-	if(!. || . == "Undefined") //In case they don't have a name set.
+	if(!. || . == "Undefined") //In case they don't have a name set
 		switch(prefs.gender)
 			if(MALE)
 				. = "David"
@@ -231,8 +265,10 @@
 				. = "Jeri"
 		to_chat(prefs.parent, span_warning("You forgot to set your synthetic name in your preferences. Please do so next time."))
 
+///Called when we turn into a species, called by [/mob/living/carbon/human/proc/set_species()]
+///drops things we shouldn't be allowed to equip, adds relevant traits, and adjusts the max health of our mob
 /datum/species/proc/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
-	SHOULD_CALL_PARENT(TRUE) //remember to call base procs kids
+	SHOULD_CALL_PARENT(TRUE)
 	for(var/slot_id in no_equip)
 		var/obj/item/thing = H.get_item_by_slot(slot_id)
 		if(thing && !is_type_in_list(src,thing.species_exception))
@@ -241,13 +277,13 @@
 		ADD_TRAIT(H, newtrait, SPECIES_TRAIT)
 	H.maxHealth += total_health - (old_species ? old_species.total_health : initial(H.maxHealth))
 
-//special things to change after we're no longer that species
+///special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
 	SHOULD_CALL_PARENT(TRUE)
 	for(var/oldtrait in inherent_traits)
 		REMOVE_TRAIT(H, oldtrait, SPECIES_TRAIT)
 
-/// Removes all species-specific verbs and actions
+///Removes all species-specific verbs and actions
 /datum/species/proc/remove_inherent_abilities(mob/living/carbon/human/H)
 	if(inherent_verbs)
 		remove_verb(H, inherent_verbs)
@@ -257,7 +293,7 @@
 			qdel(old_species_action)
 	return
 
-/// Adds all species-specific verbs and actions
+///Adds all species-specific verbs and actions
 /datum/species/proc/add_inherent_abilities(mob/living/carbon/human/H)
 	if(inherent_verbs)
 		add_verb(H, inherent_verbs)
@@ -267,55 +303,65 @@
 			new_species_action.give_action(H)
 	return
 
-/datum/species/proc/handle_post_spawn(mob/living/carbon/human/H) //Handles anything not already covered by basic species assignment.
+///Handles anything not already covered by basic species assignment
+/datum/species/proc/handle_post_spawn(mob/living/carbon/human/H)
 	add_inherent_abilities(H)
 
-/datum/species/proc/handle_death(mob/living/carbon/human/H) //Handles any species-specific death events.
+///Handles any species-specific death events
+/datum/species/proc/handle_death(mob/living/carbon/human/H)
+	return
 
 //TODO KILL ME
 ///Snowflake proc for monkeys so they can call attackpaw
 /datum/species/proc/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
 	return FALSE
 
-//Only used by horrors at the moment. Only triggers if the mob is alive and not dead.
+///Only used by horrors at the moment. Only triggers if the mob is alive and not dead
 /datum/species/proc/handle_unique_behavior(mob/living/carbon/human/H)
 	return
 
-/// Used to update alien icons for aliens.
+///Used to update alien icons for aliens
 /datum/species/proc/handle_login_special(mob/living/carbon/human/H)
 	return
 
-// As above.
+///As above
 /datum/species/proc/handle_logout_special(mob/living/carbon/human/H)
 	return
 
-// Builds the HUD using species-specific icons and usable slots.
+///Builds the HUD using species-specific icons and usable slots
 /datum/species/proc/build_hud(mob/living/carbon/human/H)
 	return
 
-// Grabs the window recieved when you click-drag someone onto you.
+///Grabs the window recieved when you click-drag someone onto you
 /datum/species/proc/get_inventory_dialogue(mob/living/carbon/human/H)
 	return
 
-//Used by xenos understanding larvae and dionaea understanding nymphs.
+///Used by xenos understanding larvae and dionaea understanding nymphs
 /datum/species/proc/can_understand(mob/other)
 	return
 
+///Called on Life(), special behaviour if we are on fire
 /datum/species/proc/handle_fire(mob/living/carbon/human/H)
 	return
 
+///Basically just used to update moth wings
 /datum/species/proc/update_body(mob/living/carbon/human/H)
 	return
 
+///Basically just used to update moth wings
 /datum/species/proc/update_inv_head(mob/living/carbon/human/H)
 	return
 
+///Basically just used to update moth wings
 /datum/species/proc/update_inv_w_uniform(mob/living/carbon/human/H)
 	return
 
+///Basically just used to update moth wings //Man moths are giga shitcoded
 /datum/species/proc/update_inv_wear_suit(mob/living/carbon/human/H)
 	return
 
+///Called by [/mob/living/carbon/human/reagent_check]
+///Returns TRUE if we can't metabolize chems, or can't be poisoned by a toxin
 /datum/species/proc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(CHECK_BITFIELD(species_flags, NO_CHEM_METABOLIZATION)) //explicit
 		H.reagents.del_reagent(chem.type) //for the time being
@@ -330,7 +376,6 @@
 
 /datum/species/human
 	name = "Human"
-	name_plural = "Humans"
 	unarmed_type = /datum/unarmed_attack/punch
 	species_flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR
 	count_human = TRUE
@@ -348,7 +393,6 @@
 
 /datum/species/human/vatborn
 	name = "Vatborn"
-	name_plural = "Vatborns"
 	icobase = 'icons/mob/human_races/r_vatborn.dmi'
 	namepool = /datum/namepool/vatborn
 
@@ -357,7 +401,6 @@
 
 /datum/species/human/vatgrown
 	name = "Vat-Grown Human"
-	name_plural = "Vat-Grown Humans"
 	icobase = 'icons/mob/human_races/r_vatgrown.dmi'
 	brute_mod = 1.05
 	burn_mod = 1.05
@@ -377,7 +420,6 @@
 
 /datum/species/human/vatgrown/early
 	name = "Early Vat-Grown Human"
-	name_plural = "Early Vat-Grown Humans"
 	brute_mod = 1.3
 	burn_mod = 1.3
 	slowdown = 0.3
@@ -402,7 +444,6 @@
 
 /datum/species/robot
 	name = "Combat Robot"
-	name_plural = "Combat Robots"
 	species_type = SPECIES_COMBAT_ROBOT
 	icobase = 'icons/mob/human_races/r_robot.dmi'
 	damage_mask_icon = 'icons/mob/dam_mask_robot.dmi'
@@ -415,7 +456,7 @@
 
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	total_health = 100
-	slowdown = SHOES_SLOWDOWN //because they don't wear boots.
+	slowdown = SHOES_SLOWDOWN //because they don't wear boots
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -476,7 +517,7 @@
 	else
 		H.clear_fullscreen("robothalf")
 		H.clear_fullscreen("robotlow")
-	if(H.health > -25) //Staggerslowed if below crit threshold.
+	if(H.health > -25) //Staggerslowed if below crit threshold
 		return
 	H.Stagger(2 SECONDS)
 	H.adjust_slowdown(1)
@@ -505,41 +546,34 @@
 
 /datum/species/robot/alpharii
 	name = "Hammerhead Combat Robot"
-	name_plural = "Hammerhead Combat Robots"
 	icobase = 'icons/mob/human_races/r_robot_alpharii.dmi'
 	joinable_roundstart = FALSE
 
 /datum/species/robot/charlit
 	name = "Chilvaris Combat Robot"
-	name_plural = "Chilvaris Combat Robots"
 	icobase = 'icons/mob/human_races/r_robot_charlit.dmi'
 	joinable_roundstart = FALSE
 
 /datum/species/robot/deltad
 	name = "Ratcher Combat Robot"
-	name_plural = "Ratcher Combat Robots"
 	icobase = 'icons/mob/human_races/r_robot_deltad.dmi'
 	joinable_roundstart = FALSE
 
 /datum/species/robot/bravada
 	name = "Sterling Combat Robot"
-	name_plural = "Sterling Combat Robots"
 	icobase = 'icons/mob/human_races/r_robot_bravada.dmi'
 	joinable_roundstart = FALSE
 
 /datum/species/synthetic
 	name = "Synthetic"
-	name_plural = "Synthetics"
-
 	hud_type = /datum/hud_data/robotic
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
-	rarity_value = 2
 
 	total_health = 125 //more health than regular humans
 
 	brute_mod = 0.7
-	burn_mod = 0.8 // A slight amount of burn resistance. Changed from 0.7 due to their critical condition phase.
+	burn_mod = 0.8 // A slight amount of burn resistance. Changed from 0.7 due to their critical condition phase
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -578,7 +612,7 @@
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
-	H.health_threshold_crit = -100 // You overheat below -30 health.
+	H.health_threshold_crit = -100 // You overheat below -30 health
 
 
 /datum/species/synthetic/post_species_loss(mob/living/carbon/human/H)
@@ -591,16 +625,14 @@
 	return TRUE
 
 
-/datum/species/early_synthetic // Worse at medical, better at engineering. Tougher in general than later synthetics.
+/datum/species/early_synthetic // Worse at medical, better at engineering. Tougher in general than later synthetics
 	name = "Early Synthetic"
-	name_plural = "Early Synthetics"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'
 	hud_type = /datum/hud_data/robotic
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
-	rarity_value = 1.5
-	slowdown = 1.15 //Slower than Late Synths.
-	total_health = 200 //Tough boys, very tough boys.
+	slowdown = 1.15 //Slower than Late Synths
+	total_health = 200 //Tough boys, very tough boys
 	brute_mod = 0.6
 	burn_mod = 0.6
 
@@ -641,7 +673,7 @@
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
-	H.health_threshold_crit = -100 // You overheat below -30 health.
+	H.health_threshold_crit = -100 // You overheat below -30 health
 
 
 /datum/species/early_synthetic/post_species_loss(mob/living/carbon/human/H)
@@ -661,21 +693,17 @@
 //im not about to cram in that refactor with a carbon -> species refactor though
 /datum/species/monkey
 	name = "Monkey"
-	name_plural = "Monkeys"
 	icobase = 'icons/mob/human_races/r_monkey.dmi'
 	species_flags = HAS_NO_HAIR|NO_STAMINA|DETACHABLE_HEAD
 	inherent_traits = list(TRAIT_CAN_VENTCRAWL)
 	reagent_tag = IS_MONKEY
 	eyes = "blank_eyes"
-	speech_verb_override = "chimpers"
 	unarmed_type = /datum/unarmed_attack/bite/strong
 	secondary_unarmed_type = /datum/unarmed_attack/punch/strong
 	joinable_roundstart = FALSE
-	has_fine_manipulation = TRUE //monki gun
 	death_message = "lets out a faint chimper as it collapses and stops moving..."
 	dusted_anim = "dust-m"
 	gibbed_anim = "gibbed-m"
-	is_sentient = FALSE
 
 /datum/species/monkey/handle_unique_behavior(mob/living/carbon/human/H)
 	if(!H.client && H.stat == CONSCIOUS)
@@ -711,33 +739,27 @@
 /datum/species/monkey/tajara
 	name = "Farwa"
 	icobase = 'icons/mob/human_races/r_farwa.dmi'
-	speech_verb_override = "mews"
 
 /datum/species/monkey/skrell
 	name = "Naera"
 	icobase = 'icons/mob/human_races/r_naera.dmi'
-	speech_verb_override = "squiks"
 
 /datum/species/monkey/unathi
 	name = "Stok"
 	icobase = 'icons/mob/human_races/r_stok.dmi'
-	speech_verb_override = "hisses"
 
 /datum/species/monkey/yiren
 	name = "Yiren"
 	icobase = 'icons/mob/human_races/r_yiren.dmi'
-	speech_verb_override = "grumbles"
 	cold_level_1 = ICE_COLONY_TEMPERATURE - 20
 	cold_level_2 = ICE_COLONY_TEMPERATURE - 40
 	cold_level_3 = ICE_COLONY_TEMPERATURE - 80
 
 /datum/species/sectoid
 	name = "Sectoid"
-	name_plural = "Sectoids"
 	icobase = 'icons/mob/human_races/r_sectoid.dmi'
 	default_language_holder = /datum/language_holder/sectoid
 	eyes = "blank_eyes"
-	speech_verb_override = "transmits"
 	count_human = TRUE
 	total_health = 80
 
@@ -756,16 +778,11 @@
 
 /datum/species/moth
 	name = "Moth"
-	name_plural = "Moth"
 	icobase = 'icons/mob/human_races/r_moth.dmi'
 	default_language_holder = /datum/language_holder/moth
 	eyes = "blank_eyes"
-	speech_verb_override = "flutters"
 	count_human = TRUE
-
 	species_flags = HAS_LIPS|HAS_NO_HAIR
-	preferences = list("moth_wings" = "Wings")
-
 	screams = list("neuter" = 'sound/voice/moth_scream.ogg')
 	paincries = list("neuter" = 'sound/voice/human_male_pain_3.ogg')
 	goredcries = list("neuter" = 'sound/voice/moth_scream.ogg')
@@ -816,13 +833,11 @@
 
 /datum/species/skeleton
 	name = "Skeleton"
-	name_plural = "skeletons"
 	icobase = 'icons/mob/human_races/r_skeleton.dmi'
 	unarmed_type = /datum/unarmed_attack/punch
-	speech_verb_override = "rattles"
 	count_human = TRUE
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD // Where we're going, we don't NEED underwear.
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD // Where we're going, we don't NEED underwear
 
 	screams = list("neuter" = 'sound/voice/skeleton_scream.ogg') // RATTLE ME BONES
 	paincries = list("neuter" = 'sound/voice/skeleton_scream.ogg')
@@ -833,7 +848,7 @@
 	warcries = list("neuter" = 'sound/voice/skeleton_warcry.ogg') // AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 	namepool = /datum/namepool/skeleton
 
-///Called when using the shredding behavior.
+///Called when using the shredding behavior
 /datum/species/proc/can_shred(mob/living/carbon/human/H)
 	if(H.a_intent != INTENT_HARM)
 		return FALSE
@@ -848,19 +863,26 @@
 
 //Species unarmed attacks
 /datum/unarmed_attack
-	var/attack_verb = list("attack")	// Empty hand hurt intent verb.
-	var/damage = 0						// Extra empty hand attack damage.
+	///Empty hand hurt intent verb
+	var/attack_verb = list("attack")
+	///Extra empty hand attack damage
+	var/damage = 0
+	///Sound that plays when you land a punch
 	var/attack_sound = "punch"
+	///Sound that plays when you miss a punch
 	var/miss_sound = 'sound/weapons/punchmiss.ogg'
-	var/shredding = 0 // Calls the old attack_alien() behavior on objects/mobs when on harm intent.
+	///Calls the old attack_alien() behavior on objects/mobs when on harm intent
+	var/shredding = 0
+	///whether our unarmed attack cuts
 	var/sharp = 0
+	// whether our unarmed attack is more likely to dismember
 	var/edge = 0
 
 /datum/unarmed_attack/proc/is_usable(mob/living/carbon/human/user)
 	if(user.restrained())
 		return FALSE
 
-	// Check if they have a functioning hand.
+	// Check if they have a functioning hand
 	var/datum/limb/E = user.get_limb("l_hand")
 	if(E?.is_usable())
 		return TRUE
@@ -871,7 +893,7 @@
 	return FALSE
 
 /datum/unarmed_attack/bite
-	attack_verb = list("bite") // 'x has biteed y', needs work.
+	attack_verb = list("bite") // 'x has biteed y', needs work
 	attack_sound = 'sound/weapons/bite.ogg'
 	shredding = 0
 	damage = 5
@@ -910,37 +932,51 @@
 	shredding = 1
 
 /datum/hud_data
-	var/icon              // If set, overrides ui_style.
-	var/has_a_intent = TRUE  // Set to draw intent box.
-	var/has_m_intent = TRUE  // Set to draw move intent box.
-	var/has_warnings = TRUE  // Set to draw environment warnings.
-	var/has_pressure = TRUE  // Draw the pressure indicator.
-	var/has_nutrition = TRUE // Draw the nutrition indicator.
-	var/has_bodytemp = TRUE  // Draw the bodytemp indicator.
-	var/has_hands = TRUE     // Set to draw shand.
-	var/has_drop = TRUE      // Set to draw drop button.
-	var/has_throw = TRUE     // Set to draw throw button.
-	var/has_resist = TRUE    // Set to draw resist button.
-	var/list/equip_slots = list() // Checked by mob_can_equip().
+	///If set, overrides ui_style
+	var/icon
+	///Set to draw intent box
+	var/has_a_intent = TRUE
+	///Set to draw move intent box
+	var/has_m_intent = TRUE
+	///Set to draw environment warnings
+	var/has_warnings = TRUE
+	///Draw the pressure indicator
+	var/has_pressure = TRUE
+	///Draw the nutrition indicator
+	var/has_nutrition = TRUE
+	///Draw the bodytemp indicator
+	var/has_bodytemp = TRUE
+	///Set to draw shand
+	var/has_hands = TRUE
+	///Set to draw drop button
+	var/has_drop = TRUE
+	///Set to draw throw button
+	var/has_throw = TRUE
+	///Set to draw resist button
+	var/has_resist = TRUE
+	///Checked by mob_can_equip()
+	var/list/equip_slots = list()
 
-	// Contains information on the position and tag for all inventory slots
-	// to be drawn for the mob. This is fairly delicate, try to avoid messing with it
-	// unless you know exactly what it does.
+	/**
+	 * Contains information on the position and tag for all inventory slots
+	 * to be drawn for the mob. This is fairly delicate, try to avoid messing with it
+	 * unless you know exactly what it does
+	 */
 	var/list/gear = list(
 		"i_clothing" = list("loc" = ui_iclothing, "slot" = SLOT_W_UNIFORM, "state" = "uniform", "toggle" = TRUE),
-		"o_clothing" = list("loc" = ui_oclothing, "slot" = SLOT_WEAR_SUIT, "state" = "suit",  "toggle" = TRUE),
-		"mask" = list("loc" = ui_mask,      "slot" = SLOT_WEAR_MASK, "state" = "mask",  "toggle" = TRUE),
-		"gloves" = list("loc" = ui_gloves,    "slot" = SLOT_GLOVES,    "state" = "gloves", "toggle" = TRUE),
-		"eyes" = list("loc" = ui_glasses,   "slot" = SLOT_GLASSES,   "state" = "glasses","toggle" = TRUE),
-		"wear_ear" = list("loc" = ui_wear_ear,  "slot" = SLOT_EARS,     "state" = "ears",   "toggle" = TRUE),
-		"head" = list("loc" = ui_head,      "slot" = SLOT_HEAD,      "state" = "head",   "toggle" = TRUE),
-		"shoes" = list("loc" = ui_shoes,     "slot" = SLOT_SHOES,     "state" = "shoes",  "toggle" = TRUE),
-		"suit storage" = list("loc" = ui_sstore1,   "slot" = SLOT_S_STORE,   "state" = "suit_storage"),
-		"back" = list("loc" = ui_back,      "slot" = SLOT_BACK,      "state" = "back"),
-		"id" = list("loc" = ui_id,        "slot" = SLOT_WEAR_ID,   "state" = "id"),
-		"storage1" = list("loc" = ui_storage1,  "slot" = SLOT_L_STORE,   "state" = "pocket"),
-		"storage2" = list("loc" = ui_storage2,  "slot" = SLOT_R_STORE,   "state" = "pocket"),
-		"belt" = list("loc" = ui_belt,      "slot" = SLOT_BELT,      "state" = "belt")
+		"o_clothing" = list("loc" = ui_oclothing, "slot" = SLOT_WEAR_SUIT, "state" = "suit", "toggle" = TRUE),
+		"mask" = list("loc" = ui_mask, "slot" = SLOT_WEAR_MASK, "state" = "mask", "toggle" = TRUE),
+		"gloves" = list("loc" = ui_gloves, "slot" = SLOT_GLOVES, "state" = "gloves", "toggle" = TRUE),
+		"eyes" = list("loc" = ui_glasses, "slot" = SLOT_GLASSES, "state" = "glasses","toggle" = TRUE),
+		"wear_ear" = list("loc" = ui_wear_ear, "slot" = SLOT_EARS, "state" = "ears", "toggle" = TRUE),
+		"head" = list("loc" = ui_head, "slot" = SLOT_HEAD, "state" = "head", "toggle" = TRUE),
+		"shoes" = list("loc" = ui_shoes, "slot" = SLOT_SHOES, "state" = "shoes", "toggle" = TRUE),
+		"suit storage" = list("loc" = ui_sstore1, "slot" = SLOT_S_STORE, "state" = "suit_storage"),
+		"back" = list("loc" = ui_back, "slot" = SLOT_BACK, "state" = "back"),
+		"id" = list("loc" = ui_id, "slot" = SLOT_WEAR_ID, "state" = "id"),
+		"storage1" = list("loc" = ui_storage1, "slot" = SLOT_L_STORE, "state" = "pocket"),
+		"storage2" = list("loc" = ui_storage2, "slot" = SLOT_R_STORE, "state" = "pocket"),
+		"belt" = list("loc" = ui_belt, "slot" = SLOT_BELT, "state" = "belt")
 		)
 
 /datum/hud_data/New()
@@ -1000,7 +1036,6 @@
 	if(!damage)
 		return 0
 
-
 	switch(damagetype)
 		if(BRUTE)
 			victim.damageoverlaytemp = 20
@@ -1037,7 +1072,7 @@
 				return
 			victim.adjustStaminaLoss(damage)
 
-	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().
+	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life()
 	SEND_SIGNAL(victim, COMSIG_HUMAN_DAMAGE_TAKEN, damage)
 
 	if(updating_health)

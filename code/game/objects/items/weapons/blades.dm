@@ -61,7 +61,7 @@
 	name = "Lunging strike"
 	action_icon_state = "sword_lunge"
 	desc = "A powerful leaping strike. Cannot stun."
-	ability_cost = 12
+	ability_cost = 8
 	cooldown_duration = 6 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_WEAPONABILITY_SWORDLUNGE,
@@ -101,8 +101,8 @@
 	var/mob/living/carbon/carbon_owner = source
 	if(!ishuman(target))
 		var/obj/obj_victim = target
-		obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, armour_penetration = penetration)
-		if(!obj_victim.anchored)
+		obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, TRUE, get_dir(obj_victim, carbon_owner), penetration, carbon_owner)
+		if(!obj_victim.anchored && obj_victim.move_resist < MOVE_FORCE_VERY_STRONG)
 			obj_victim.knockback(carbon_owner, 1, 2)
 	else
 		var/mob/living/carbon/human/human_victim = target
