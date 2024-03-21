@@ -156,6 +156,11 @@ OPERATIONS
 	containertype = null
 	cost = 200
 
+/datum/supply_packs/operations/supply_tablet
+	name = "Supply Tablet"
+	contains = list(/obj/item/supplytablet)
+	cost = 50
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
