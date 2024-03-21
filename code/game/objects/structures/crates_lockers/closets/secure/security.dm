@@ -134,7 +134,7 @@
 	new /obj/item/clothing/suit/armor/vest/security(src)
 	new /obj/item/clothing/under/rank/warden(src)
 	new /obj/item/clothing/under/rank/warden/white(src)
-
+	new /obj/item/clothing/suit/armor/vest/warden(src)
 	new /obj/item/clothing/head/helmet/warden(src)
 	new /obj/item/clothing/glasses/sunglasses/sechud(src)
 	new /obj/item/tool/taperoll/police(src)
