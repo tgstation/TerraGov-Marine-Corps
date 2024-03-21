@@ -63,7 +63,7 @@
 
 	if(active && activation_sound)
 		playsound(get_turf(src), activation_sound, 15)
-	else if(deactivation_sound)
+	else if(!active && deactivation_sound)
 		playsound(get_turf(src), deactivation_sound, 15)
 
 	update_icon()	//Found out the hard way this has to be before update_inv_glasses()
