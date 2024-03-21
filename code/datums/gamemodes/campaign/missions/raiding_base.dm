@@ -1,4 +1,3 @@
-//placeholder
 /datum/campaign_mission/raiding_base
 	name = "Raiding Base"
 	mission_icon = "raiding_base"
@@ -7,9 +6,9 @@
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
 	starting_faction_objective_description = "Major Victory: Set and defend an orbital beacon inside the facility until a precision orbital strike can be called in."
-	hostile_faction_objective_description = "Major Victory: Prevent the enemy destroying the base via orbital strike with an orbtial beacon placed inside the facility."
+	hostile_faction_objective_description = "Major Victory: Prevent the enemy from activating an orbital beacon inside the facility."
 	intro_message = list(
-		MISSION_STARTING_FACTION = "Infiltrate the SOM base, then plant and defend an orbital beacon so we can drop the hammer on them from orbit!",
+		MISSION_STARTING_FACTION = "Infiltrate the SOM base, then plant and defend an orbital beacon until we can drop the hammer on them from orbit!",
 		MISSION_HOSTILE_FACTION = "Stop TGMC forces from infiltrating the base. Prevent them from activating an orbital beacon at all costs!",
 	)
 	max_game_time = 12 MINUTES
@@ -33,8 +32,8 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(10, 20),
 	)
 
-	starting_faction_mission_brief = "We have finally been able to track down a hidden SOM outpost which they have been using as a base of operations to raid our supply lines. \
-	The SOM have been wreaking havoc with our logistics, they must be stopped with extreme prejudice. \
+	starting_faction_mission_brief = "We have finally been able to track down a hidden SOM outpost which they have been using as a base of operations to raid our supply lines, wrecking havoc on our logistics. \
+	Your unit has been tasked with ensuring the complete and utter destruction of this base and everything within it. \
 	Infiltrate the facility, then deploy one of the orbital beacons you have been supplied with. \
 	Defend the beacon until the TGS Horizon can secure a target lock and deploy a thermobaric bunker buster to wipe the outpost off the face of the planet."
 	hostile_faction_mission_brief = "Intelligence has picked up a TGMC plan to assault Raiding base Zulu. This base has been key to our sabotage and disruption efforts, significantly degrading TGMC supply lines. \
@@ -44,7 +43,7 @@
 	hostile_faction_additional_rewards = "Allow us to continue degrading TGMC logistics"
 	outro_message = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(
-			MISSION_STARTING_FACTION = "<u>Major victory</u><br> Confirming successful destruction of target facility. Outstanding marines!",
+			MISSION_STARTING_FACTION = "<u>Major victory</u><br> Confirming good hit. Successful destruction of target facility. Outstanding marines!",
 			MISSION_HOSTILE_FACTION = "<u>Major loss</u><br> We've lost Zulu, any survivors, fallback to exfil point Charlie, retreat!",
 		),
 		MISSION_OUTCOME_MAJOR_LOSS = list(
@@ -55,19 +54,15 @@
 	///Records whether the OB has been called
 	var/ob_called = FALSE
 	///Count of beacons still in play
-	var/beacon_remaining = 3
-
-/datum/campaign_mission/raiding_base/load_objective_description()
-	starting_faction_objective_description = "Major Victory:Capture all [objectives_total] targets.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] targets." : ""]"
-	hostile_faction_objective_description = "Major Victory:Capture all [objectives_total] targets.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] targets." : ""]"
+	var/beacons_remaining = 3
 
 /datum/campaign_mission/raiding_base/get_status_tab_items(mob/source, list/items)
 	. = ..()
-	items += "Beacons remaining: [beacon_remaining]"
+	items += "Beacons remaining: [beacons_remaining]"
 
 /datum/campaign_mission/raiding_base/load_pre_mission_bonuses()
-	new /obj/item/storage/box/crate/loot/materials_pack(get_turf(pick(GLOB.campaign_reward_spawners[defending_faction])))
-	for(var/i = 1 to beacon_remaining)
+	new /obj/item/storage/box/crate/loot/materials_pack(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
+	for(var/i = 1 to beacons_remaining)
 		new /obj/item/explosive/plastique(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
 		new /obj/item/explosive/plastique(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
 
@@ -121,26 +116,38 @@
 /datum/campaign_mission/raiding_base/apply_major_loss()
 	. = ..()
 
+///Returns a list of areas in which the beacon can be deployed
+/datum/campaign_mission/raiding_base/proc/get_valid_beacon_areas()
+	return list(/area/mainship/patrol_base/hanger)
+
 ///Reacts to an OB beacon being successfully triggered
-/datum/campaign_mission/raiding_base/proc/beacon_placed(obj/structure/campaign_objective/destruction_objective/bunker_buster/source)
+/datum/campaign_mission/raiding_base/proc/beacon_placed(datum/source, obj/structure/campaign_objective/destruction_objective/bunker_buster/beacon)
 	SIGNAL_HANDLER
-	var/area/deployed_area = get_area(source)
-	map_text_broadcast(starting_faction, "Confirming beacon deployed in [deployed_area.name]. Defend it until we can secure a target lock marines!", "TGS Horizon", /atom/movable/screen/text/screen_text/picture/potrait/pod_officer, "sound/effects/alert.ogg")
-	map_text_broadcast(hostile_faction, "Orbital beacon detected in [deployed_area.name]. Destroy that beacon before they can secure a target lock!", "Overwatch", sound_effect = "sound/effects/alert.ogg")
+	var/area/deployed_area = get_area(beacon)
+	map_text_broadcast(starting_faction, "Confirming beacon deployed in [deployed_area]. Defend it until we can secure a target lock marines!", "TGS Horizon", /atom/movable/screen/text/screen_text/picture/potrait/pod_officer, "sound/effects/alert.ogg")
+	map_text_broadcast(hostile_faction, "Orbital beacon detected in [deployed_area]. Destroy that beacon before they can secure a target lock!", "Overwatch", sound_effect = "sound/effects/alert.ogg")
 
 ///Handles a beacon being destroyed. Separate from normal objective destruction as the beacon item is not an objective type
 /datum/campaign_mission/raiding_base/proc/beacon_destroyed(obj/item/campaign_beacon/source)
 	SIGNAL_HANDLER
-	beacon_remaining --
+	beacons_remaining --
 	if(outcome)
 		return
-	var/beacons_destroyed = [initial.beacon_remaining - beacon_remaining]
-	map_text_broadcast(starting_faction, "We've lost [beacons_destroyed] beacon[beacons_destroyed > 1 ? s], get it together!", "Overwatch")
-	map_text_broadcast(hostile_faction, "[beacons_destroyed] beacon[beacons_destroyed > 1 ? s] destroyed, keep up the good work!", "Overwatch")
+	var/beacons_destroyed = initial(beacons_remaining) - beacons_remaining
+	map_text_broadcast(starting_faction, "We've lost [beacons_destroyed] beacon[beacons_destroyed > 1 ? "s" : null], get it together!", "Overwatch")
+	map_text_broadcast(hostile_faction, "[beacons_destroyed] beacon[beacons_destroyed > 1 ? "s" : null] destroyed, keep up the good work!", "Overwatch")
 
 ///Reacts to an OB beacon being successfully triggered
-/datum/campaign_mission/raiding_base/proc/beacon_triggered(obj/structure/campaign_objective/destruction_objective/bunker_buster/source)
+/datum/campaign_mission/raiding_base/proc/beacon_triggered(datum/source, obj/structure/campaign_objective/destruction_objective/bunker_buster/beacon, activation_delay)
 	SIGNAL_HANDLER
-	deltimer(game_timer)
-	addtimer(VARSET_CALLBACK(src, ob_called, TRUE), CAMPAIGN_OB_BEACON_IMPACT_DELAY + 1 SECONDS)
+	deltimer(game_timer) //stops the game from ending if it comes down to the wire
+	addtimer(CALLBACK(src, PROC_REF(beacon_effect), beacon, beacon.loc), activation_delay)
 
+///Makes the bang
+/datum/campaign_mission/raiding_base/proc/beacon_effect(obj/structure/campaign_objective/destruction_objective/bunker_buster/beacon, turf/location)
+	ob_called = TRUE
+	//We handle this here instead of the beacon structure because it could be destroyed before this triggers
+	explosion(location, 25, 30)
+	if(QDELETED(beacon))
+		return
+	qdel(beacon)

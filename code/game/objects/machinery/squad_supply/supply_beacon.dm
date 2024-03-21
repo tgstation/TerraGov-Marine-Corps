@@ -35,15 +35,29 @@
 	deployable_type = /obj/structure/campaign_objective/destruction_objective/bunker_buster
 	deploy_time = 2 SECONDS
 	undeploy_time = 2 SECONDS
-	var/list/valid_deploy_areas = list(/area/mainship/patrol_base/hanger)
+	var/list/valid_deploy_areas
 
 /obj/item/campaign_beacon/bunker_buster/Initialize(mapload)
 	. = ..()
 	GLOB.campaign_objectives += src
+	var/datum/campaign_mission/raiding_base/current_mission = get_current_mission()
+	if(!istype(current_mission))
+		return
+	valid_deploy_areas = current_mission.get_valid_beacon_areas()
 
 /obj/item/campaign_beacon/bunker_buster/Destroy()
 	GLOB.campaign_objectives -= src
 	return ..()
+
+/obj/item/campaign_beacon/bunker_buster/examine(mob/user)
+	. = ..()
+	if(!length(valid_deploy_areas))
+		return
+	var/location_info
+	location_info += "Can be deployed in the following areas: \n"
+	for(var/area/valid_area AS in valid_deploy_areas)
+		location_info += "[valid_area::name]\n"
+	. += location_info
 
 ///Checks if we can deploy the beacon here
 /obj/item/campaign_beacon/bunker_buster/can_deploy(mob/user, turf/location)
@@ -53,6 +67,9 @@
 	if(user)
 		user.balloon_alert(user, "Cannot deploy here")
 	return FALSE
+
+///Delay between beacon timer finishing and the actual explosion
+#define CAMPAIGN_OB_BEACON_IMPACT_DELAY 10 SECONDS
 
 /obj/structure/campaign_objective/destruction_objective/bunker_buster
 	name = "deployed orbital beacon"
@@ -69,14 +86,15 @@
 /obj/structure/campaign_objective/destruction_objective/bunker_buster/Initialize(mapload)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED, PROC_REF(cancel_beacon))
-	SEND_SIGNAL(SSdcs, COMSIG_GLOB_CAMPAIGN_OB_BEACON_ACTIVATION)
+	SEND_SIGNAL(SSdcs, COMSIG_GLOB_CAMPAIGN_OB_BEACON_ACTIVATION, src)
 
 	beacon_timer = addtimer(CALLBACK(src, PROC_REF(beacon_effect)), beacon_duration, TIMER_STOPPABLE)
 	countdown = new(src)
+	countdown.pixel_x = 7
+	countdown.pixel_y = 24
 	countdown.start()
 
 /obj/structure/campaign_objective/destruction_objective/bunker_buster/Destroy()
-	SEND_SIGNAL(SSdcs, COMSIG_GLOB_CAMPAIGN_OB_BEACON_ACTIVATION)
 	QDEL_NULL(countdown)
 	if(beacon_timer)
 		deltimer(beacon_timer)
@@ -93,8 +111,7 @@
 ///Effects triggered when the timer runs out
 /obj/structure/campaign_objective/destruction_objective/bunker_buster/proc/beacon_effect()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED)
-	SEND_SIGNAL(SSdcs, COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED)
-	addtimer(CALLBACK(src, PROC_REF(do_explosion)), CAMPAIGN_OB_BEACON_IMPACT_DELAY)
+	SEND_SIGNAL(SSdcs, COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED, src, CAMPAIGN_OB_BEACON_IMPACT_DELAY)
 	for(var/mob/mob AS in GLOB.player_list)
 		if(mob.z != z)
 			continue
@@ -103,8 +120,4 @@
 			play_sound = 'sound/effects/OB_warning_announce.ogg'
 		mob.playsound_local(loc, play_sound, 125, falloff = 10, distance_multiplier = 0.2)
 
-///Makes the bang
-/obj/structure/campaign_objective/destruction_objective/bunker_buster/proc/do_explosion()
-	explosion(src, 25, 30)
-	qdel(src) //do we do this here or just wrap up after? ideally here but gotta ensure the order is correct so we don't 'lose' for triggering it
-
+#undef CAMPAIGN_OB_BEACON_IMPACT_DELAY

@@ -51,6 +51,3 @@
 #define MISSION_CODE_BLUE "blue"
 #define MISSION_CODE_RED "red"
 #define MISSION_CODE_GREEN "green"
-
-///Delay between beacon timer finishing and the actual explosion
-#define CAMPAIGN_OB_BEACON_IMPACT_DELAY 10 SECONDS
