@@ -644,8 +644,7 @@
 		display_message_and_visuals(user, show_feedback, "Vendor is unresponsive!", VENDING_RESTOCK_IDLE)
 		return FALSE
 
-	/// The found record matching the item_to_stock in the vending_records lists
-	var/datum/vending_product/record
+	var/datum/vending_product/record //The found record matching the item_to_stock in the vending_records lists
 	for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)
 		if(item_to_stock.type != checked_record.product_path)
 			continue
@@ -745,9 +744,9 @@
 				item_to_stock.unwield(user)
 			user.temporarilyRemoveItemFromInventory(item_to_stock)
 
-		if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
-			var/obj/item/storage/S = item_to_stock.loc
-			S.remove_from_storage(item_to_stock, user.loc, user)
+	else if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
+		var/obj/item/storage/S = item_to_stock.loc
+		S.remove_from_storage(item_to_stock, user.loc, user)
 
 	qdel(item_to_stock)
 
