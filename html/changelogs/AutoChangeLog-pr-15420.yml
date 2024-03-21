@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Campaign: fixed the timing of the autobalance prompt"
+  - balance: "Very slight increase in time for ASAT and firesupport missions"
