@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Campaign: Melee special attacks use less stamina, and can be used at 0 stamina loss"
-  - balance: "Campaign: Axe sweep steps towards you target before sweeping"
-  - bugfix: "Fixed a few minor bugs with melee special attacks"

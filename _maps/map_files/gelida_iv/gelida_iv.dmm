@@ -4786,7 +4786,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/computer/intel_computer,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/casino)
 "dgr" = (
@@ -9646,10 +9645,6 @@
 /obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
-"gqh" = (
-/obj/machinery/computer/intel_computer,
-/turf/open/floor/prison,
-/area/gelida/cavestructuretwo)
 "gqE" = (
 /obj/structure/platform_decoration,
 /obj/effect/landmark/weed_node,
@@ -21386,10 +21381,6 @@
 	},
 /turf/closed/wall,
 /area/gelida/indoors/a_block/admin)
-"oca" = (
-/obj/machinery/computer/intel_computer,
-/turf/open/floor/prison/darkbrown/full,
-/area/gelida/indoors/c_block/casino)
 "ocn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -39729,7 +39720,7 @@ iUh
 sZZ
 upW
 eOl
-gqh
+upW
 mSM
 res
 sZZ
@@ -49562,7 +49553,7 @@ sKa
 bqU
 xTa
 vPO
-glJ
+ams
 sKa
 fTS
 sKa
@@ -50456,7 +50447,7 @@ vPO
 kiM
 kiM
 vPO
-glJ
+ams
 sKa
 vWC
 sKa
@@ -62500,7 +62491,7 @@ jaT
 gKW
 xvC
 xvC
-oca
+tAB
 mQy
 wmi
 mQy
