@@ -33,6 +33,14 @@
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(wearer), SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
 
+/datum/loadout_item/suit_store/main_gun/squad_leader/standard_rifle/enhanced
+	name = "AR-12+"
+	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. The AR-12 is the former main weapon of the TGMC before it was superceded by the AR-18 for general issue. \
+	A jack of all trades weapon, effect at close and long range, with good capacity and handling, making it a reliable all-rounder. \
+	It does not particularly excel in any area however, and so is overshadowed by other weapons at particular tasks. It uses a mix of standard and AP 10x24mm caseless ammunition."
+	loadout_item_flags = NONE
+	secondary_ammo_type = /obj/item/ammo_magazine/rifle/standard_assaultrifle/ap
+
 /datum/loadout_item/suit_store/main_gun/squad_leader/laser_rifle
 	name = "Laser rifle"
 	desc = "Equipped with a red dot sight, bayonet and miniflamer. The Terra Experimental laser rifle, is a powerful and flexible weapon thanks to a variety of firemodes. \
@@ -96,6 +104,13 @@
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(wearer), SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/suit_store/main_gun/squad_leader/carbine/enhanced
+	name = "AR-18+"
+	desc = "Equipped with red dot sight, extended barrel and plasma pistol. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
+	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. It uses a mix of standard and AP 10x24mm caseless ammunition."
+	loadout_item_flags = NONE
+	secondary_ammo_type = /obj/item/ammo_magazine/rifle/standard_carbine/ap
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/combat_rifle
 	name = "AR-11"

@@ -277,12 +277,21 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 		return
 	if(owner_stats.faction == FACTION_TERRAGOV)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/marine/standard_rifle, SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/standard_carbine/enhanced, /datum/loadout_item/suit_store/main_gun/marine/standard_carbine, SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/scout_carbine/enhanced, /datum/loadout_item/suit_store/main_gun/marine/scout_carbine, SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/suppressed_carbine/enhanced, /datum/loadout_item/suit_store/main_gun/marine/suppressed_carbine, SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/corpsman/assault_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/corpsman/assault_rifle, SQUAD_CORPSMAN)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/engineer/carbine/enhanced, /datum/loadout_item/suit_store/main_gun/engineer/carbine, SQUAD_ENGINEER)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/engineer/assault_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/engineer/assault_rifle, SQUAD_ENGINEER)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/squad_leader/carbine/enhanced, /datum/loadout_item/suit_store/main_gun/squad_leader/carbine, SQUAD_LEADER)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/squad_leader/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/squad_leader/standard_rifle, SQUAD_LEADER)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/field_commander/carbine/enhanced, /datum/loadout_item/suit_store/main_gun/field_commander/carbine, FIELD_COMMANDER)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/field_commander/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/field_commander/standard_rifle, FIELD_COMMANDER)
+
+
 	//else if(owner_stats.faction == FACTION_SOM)
 		//owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/marine/standard_rifle, SQUAD_MARINE)
 
-
-
-	/datum/loadout_item/suit_store/main_gun/marine/standard_rifle_enhanced
 
 /datum/perk/skill_mod/smgs
 	name = "Advanced SMG training"

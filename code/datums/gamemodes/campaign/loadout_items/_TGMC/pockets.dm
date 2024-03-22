@@ -86,7 +86,7 @@
 
 /datum/loadout_item/r_pocket/magazine
 	name = "Magazine pouch"
-	desc = "A pouch containing three ammo magazines."
+	desc = "A pouch containing three ammo magazines. Will contain a primary ammo type where applicable."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/magazine/large
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
@@ -199,7 +199,7 @@
 
 /datum/loadout_item/l_pocket/magazine
 	name = "Magazine pouch"
-	desc = "A pouch containing three ammo magazines."
+	desc = "A pouch containing three ammo magazines. Will contain a secondary ammo type where applicable."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/magazine/large
 	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)

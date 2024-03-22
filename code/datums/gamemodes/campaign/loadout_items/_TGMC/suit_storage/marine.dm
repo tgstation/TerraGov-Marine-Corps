@@ -17,29 +17,6 @@
 	item_typepath = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
-/datum/loadout_item/suit_store/main_gun/marine/standard_rifle/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	//we manually specify some standard ammo so we can change the ammo_type without swapping all ammo over
-
-	if(!ammo_type)
-		return ..()
-	if(istype(wearer.belt, /obj/item/storage/belt))
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	if(istype(wearer.l_store, /obj/item/storage/pouch/magazine))
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_L_POUCH)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
-	if(istype(wearer.r_store, /obj/item/storage/pouch/magazine))
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_R_POUCH)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
-
-	return ..()
-
 /datum/loadout_item/suit_store/main_gun/marine/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
 	if(!istype(wearer.back, /obj/item/storage))
@@ -62,7 +39,7 @@
 	A jack of all trades weapon, effect at close and long range, with good capacity and handling, making it a reliable all-rounder. \
 	It does not particularly excel in any area however, and so is overshadowed by other weapons at particular tasks. It uses a mix of standard and AP 10x24mm caseless ammunition."
 	loadout_item_flags = NONE
-	ammo_type = /obj/item/ammo_magazine/rifle/standard_assaultrifle/ap
+	secondary_ammo_type = /obj/item/ammo_magazine/rifle/standard_assaultrifle/ap
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_rifle/enhanced/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
@@ -119,7 +96,18 @@
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/suit_store/main_gun/marine/standard_carbine/enhanced
+	name = "AR-18+"
+	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
+	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. It uses a mix of standard and AP 10x24mm caseless ammunition."
+	loadout_item_flags = NONE
+	secondary_ammo_type = /obj/item/ammo_magazine/rifle/standard_carbine/ap
+
+/datum/loadout_item/suit_store/main_gun/marine/standard_carbine/enhanced/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
+	return ..()
 
 /datum/loadout_item/suit_store/main_gun/marine/combat_rifle
 	name = "AR-11"
@@ -442,8 +430,20 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_ACCESSORY)
+	if(istype(wearer.back, /obj/item/storage))
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_ACCESSORY)
+	else
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+
+/datum/loadout_item/suit_store/main_gun/marine/scout_carbine/enhanced
+	name = "AR-18-S+"
+	desc = "Equipped with motion detector, extended barrel and underbarrel grenade launcher. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
+	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. \
+	The motion detector on this example makes it excellent for scouting out enemy positions and tracking down hidden enemies. It uses a mix of standard and AP 10x24mm caseless ammunition."
+	loadout_item_flags = NONE
+	secondary_ammo_type = /obj/item/ammo_magazine/rifle/standard_carbine/ap
 
 /datum/loadout_item/suit_store/main_gun/marine/smg_and_shield
 	name = "SMG-25 & riot shield"
@@ -479,6 +479,7 @@
 	Like all smgs, it has excellent mobility and handling, but has poor damage application at longer ranges. Uses 10x20mm caseless ammunition, and comes with multiple ammo types."
 	ui_icon = "smg"
 	item_typepath = /obj/item/weapon/gun/smg/m25/magharness
+	secondary_ammo_type = /obj/item/ammo_magazine/smg/m25/ap
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -498,11 +499,11 @@
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_smg/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_ACCESSORY)
 
 /datum/loadout_item/suit_store/main_gun/marine/scout_rifle
 	name = "BR-8"
@@ -572,7 +573,19 @@
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/mirage, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/suit_store/main_gun/marine/suppressed_carbine/enhanced
+	name = "AR-18-Suppressed+"
+	desc = "Equipped with red dot sight, suppressor and underbarrel grenade launcher. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
+	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. \
+	This suppressed variant is typically used for stealth operations, where its quiet firing and lack of tracers can give the user an edge over unsuspecting opponents. It uses a mix of standard and AP 10x24mm caseless ammunition."
+	loadout_item_flags = NONE
+	secondary_ammo_type = /obj/item/ammo_magazine/rifle/standard_carbine/ap
+
+/datum/loadout_item/suit_store/main_gun/marine/suppressed_carbine/enhanced/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
+	return ..()
 
 /datum/loadout_item/suit_store/main_gun/marine/mag_gl
 	name = "GL-54"
