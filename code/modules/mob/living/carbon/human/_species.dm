@@ -2,7 +2,7 @@
  * # The base species datum
  *
  * This datum handles different species in the game, such as synthetics, mothmen, combat robots, skeletons, etc.
- * It is used in [mob/living/carbon/human] to determine many things about them, including damage resistance, appearance, genders, special behaviors, and more.
+ * It is used in [mob/living/carbon/human] to determine many things about them, including damage resistance, appearance, special behaviors, and more.
 */
 /datum/species
 	///Species name
@@ -157,7 +157,7 @@
 
 	///List of names for random generation based on a given pool
 	var/datum/namepool/namepool = /datum/namepool
-	///Whether it is possible with this race roundstart
+	///Whether it is possible to select this species and join as it
 	var/joinable_roundstart = FALSE
 	///If this species counts as a human
 	var/count_human = FALSE
