@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed sentries being unable to shoot targets on their own turf"
+  - bugfix: "Fixed energy sentries not shooting through glass"
