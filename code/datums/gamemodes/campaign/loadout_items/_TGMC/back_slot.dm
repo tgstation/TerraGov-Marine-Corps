@@ -95,6 +95,18 @@
 	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, SLOT_R_HAND)
 
+/datum/loadout_item/back/tgmc_heam_rocket_bag
+	name = "HEAM rocket bag"
+	desc = "This backpack holds 4 67mm high explosive anti mech shells, in addition to a recoiless rifle. \
+	The recoiless rifle is a powerful support weapon that deals significant damage against heavily armored mechs or vehicles, \
+	but will generally devastate any human target unfortunate enough to be hit in a pinch. Has a draw delay and has poor accuracy against human targets."
+	unlock_cost = 300
+	purchase_cost = 100
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
+	quantity = 2
+	item_typepath = /obj/item/storage/holster/backholster/rpg/heam
+	jobs_supported = list(SQUAD_MARINE)
+
 /datum/loadout_item/back/machete
 	name = "Machete"
 	desc = "A large leather scabbard carrying a M2132 machete. It can be strapped to the back, waist or armor. Extremely dangerous against human opponents - if you can get close enough."

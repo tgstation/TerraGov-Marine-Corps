@@ -333,6 +333,14 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	prereq_perks = list(/datum/perk/skill_mod/firearms)
 	unlock_cost = 800
 
+/datum/perk/skill_mod/heavy_weapons/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	if(!istype(owner_stats))
+		return
+	if(owner_stats.faction == FACTION_TERRAGOV)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/back/tgmc_heam_rocket_bag, SQUAD_MARINE, owner, 0)
+	else if(owner_stats.faction == FACTION_SOM)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/back/som_heat_rocket_bag, SOM_SQUAD_VETERAN, owner, 0)
+
 /datum/perk/skill_mod/smartgun
 	name = "Advanced smartgun training"
 	desc = "Improved damage, accuracy and scatter with smartguns type firearms."
