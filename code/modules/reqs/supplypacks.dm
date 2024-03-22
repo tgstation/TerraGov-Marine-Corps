@@ -351,7 +351,7 @@ WEAPONS
 /datum/supply_packs/weapons/plasma_cannon
 	name = "PL-96 Plasma Cannon"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon)
-	cost = 250
+	cost = 400
 
 /datum/supply_packs/weapons/tx54
 	name = "GL-54 airburst grenade launcher"

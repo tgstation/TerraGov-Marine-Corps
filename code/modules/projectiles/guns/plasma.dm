@@ -115,8 +115,6 @@
 	item_state = "plasma_cannon"
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	gun_skill_category = SKILL_HEAVY_WEAPONS
-	//default_ammo_type = /obj/item/cell/lasgun/plasma_powerpack
-	//allowed_ammo_types = list(/obj/item/cell/lasgun/plasma_powerpack)
 
 	aim_slowdown = 1.2
 	wield_delay = 1.7 SECONDS
