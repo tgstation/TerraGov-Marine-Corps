@@ -436,7 +436,7 @@
 /obj/effect/landmark/sensor_tower
 	name = "Sensor tower"
 	icon = 'icons/obj/structures/sensor.dmi'
-	icon_state = "sensor_loyalist"
+	icon_state = "sensor"
 
 /obj/effect/landmark/sensor_tower/Initialize(mapload)
 	..()
