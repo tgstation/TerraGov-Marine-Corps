@@ -638,8 +638,9 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
 
 /datum/loadout_item/suit_store/main_gun/marine/plasma_smg
-	name = "Plasma SMG"
-	desc = "desc here"
+	name = "PL-51"
+	desc = "Unlocked for free with the Advanced SMG training perk. Equipped with a motion sensor, bayonet and vertical grip. The PL-51 plasma SMG is a powerful close range weapon, with great mobility and handling. \
+	Has two firemodes, with a standard reflecting shot, or a more powerful AOE overcharged shot. Like all plasma weapons, it can rapidly build up heat and overheat, rendering it inoperable for a period if used incorrectly."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/motion_sensor
 	unlock_cost = 400
@@ -670,8 +671,9 @@
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
 
 /datum/loadout_item/suit_store/main_gun/marine/plasma_rifle
-	name = "Plasma rifle"
-	desc = "desc here"
+	name = "PL-38"
+	desc = "Unlocked for free with the Advanced rifle training perk. Equipped with a red dot sight, bayonet and miniflamer. The PL-38 plasma rifle is a powerful heavy rifle, able to unleash significant damage at any range. \
+	Has three firemodes, with a standard high ROF mode, a piercing shatter shot, or a melting blast mode. Like all plasma weapons, it can rapidly build up heat and overheat, rendering it inoperable for a period if used incorrectly."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle/standard
 	unlock_cost = 400
@@ -702,8 +704,9 @@
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
 
 /datum/loadout_item/suit_store/main_gun/marine/plasma_cannon
-	name = "Plasma cannon"
-	desc = "desc here"
+	name = "PL-96"
+	desc = "Unlocked for free with the Heavy weapon specialisation perk. Equipped with a magharness. The PL-96 plasma cannon is massive, cumbersome weapon, designed to unleash devastating damage against all targets. \
+	Has three firemodes, with a plasma wave mode, that scales in damage against larger targets, a shatter blast mode, or an incendiary blast mode. Like all plasma weapons, it can rapidly build up heat and overheat, rendering it inoperable for a period if used incorrectly."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon/mag_harness
 	unlock_cost = 400
@@ -940,8 +943,9 @@
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/corpsman/plasma_smg
-	name = "Plasma SMG"
-	desc = "desc here"
+	name = "PL-51"
+	desc = "Unlocked for free with the Advanced SMG training perk. Equipped with a red dot sight, bayonet and vertical grip. The PL-51 plasma SMG is a powerful close range weapon, with great mobility and handling. \
+	Has two firemodes, with a standard reflecting shot, or a more powerful AOE overcharged shot. Like all plasma weapons, it can rapidly build up heat and overheat, rendering it inoperable for a period if used incorrectly."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/standard
 	unlock_cost = 400
@@ -967,8 +971,9 @@
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/corpsman/plasma_rifle
-	name = "Plasma rifle"
-	desc = "desc here"
+	name = "PL-38"
+	desc = "Unlocked for free with the Advanced rifle training perk. Equipped with a red dot sight, bayonet and miniflamer. The PL-38 plasma rifle is a powerful heavy rifle, able to unleash significant damage at any range. \
+	Has three firemodes, with a standard high ROF mode, a piercing shatter shot, or a melting blast mode. Like all plasma weapons, it can rapidly build up heat and overheat, rendering it inoperable for a period if used incorrectly."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle/standard
 	unlock_cost = 400
@@ -1082,8 +1087,9 @@
 	item_typepath = /obj/item/weapon/gun/smg/m25/vgrip
 
 /datum/loadout_item/suit_store/main_gun/engineer/plasma_smg
-	name = "Plasma SMG"
-	desc = "desc here"
+	name = "PL-51"
+	desc = "Unlocked for free with the Advanced SMG training perk. Equipped with a red dot sight, bayonet and vertical grip. The PL-51 plasma SMG is a powerful close range weapon, with great mobility and handling. \
+	Has two firemodes, with a standard reflecting shot, or a more powerful AOE overcharged shot. Like all plasma weapons, it can rapidly build up heat and overheat, rendering it inoperable for a period if used incorrectly."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/standard
 	unlock_cost = 400
@@ -1091,8 +1097,9 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
 /datum/loadout_item/suit_store/main_gun/engineer/plasma_rifle
-	name = "Plasma rifle"
-	desc = "desc here"
+	name = "PL-38"
+	desc = "Unlocked for free with the Advanced rifle training perk. Equipped with a red dot sight, bayonet and vertical grip. The PL-38 plasma rifle is a powerful heavy rifle, able to unleash significant damage at any range. \
+	Has three firemodes, with a standard high ROF mode, a piercing shatter shot, or a melting blast mode. Like all plasma weapons, it can rapidly build up heat and overheat, rendering it inoperable for a period if used incorrectly."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle/v_grip
 	unlock_cost = 400
@@ -1511,8 +1518,9 @@
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_R_POUCH)
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/plasma_smg
-	name = "Plasma SMG"
-	desc = "desc here"
+	name = "PL-51"
+	desc = "Unlocked for free with the Advanced SMG training perk. Equipped with a motion sensor, bayonet and vertical grip. The PL-51 plasma SMG is a powerful close range weapon, with great mobility and handling. \
+	Has two firemodes, with a standard reflecting shot, or a more powerful AOE overcharged shot. Like all plasma weapons, it can rapidly build up heat and overheat, rendering it inoperable for a period if used incorrectly."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/motion_sensor
 	unlock_cost = 400
@@ -1544,8 +1552,9 @@
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/plasma_rifle
-	name = "Plasma rifle"
-	desc = "desc here"
+	name = "PL-38"
+	desc = "Unlocked for free with the Advanced rifle training perk. Equipped with a red dot sight, bayonet and miniflamer. The PL-38 plasma rifle is a powerful heavy rifle, able to unleash significant damage at any range. \
+	Has three firemodes, with a standard high ROF mode, a piercing shatter shot, or a melting blast mode. Like all plasma weapons, it can rapidly build up heat and overheat, rendering it inoperable for a period if used incorrectly."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle/standard
 	unlock_cost = 400
@@ -1770,8 +1779,9 @@
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/field_commander/plasma_smg
-	name = "Plasma SMG"
-	desc = "desc here"
+	name = "PL-51"
+	desc = "Unlocked for free with the Advanced SMG training perk. Equipped with a motion sensor, bayonet and vertical grip. The PL-51 plasma SMG is a powerful close range weapon, with great mobility and handling. \
+	Has two firemodes, with a standard reflecting shot, or a more powerful AOE overcharged shot. Like all plasma weapons, it can rapidly build up heat and overheat, rendering it inoperable for a period if used incorrectly."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/motion_sensor
 	unlock_cost = 400
@@ -1800,8 +1810,9 @@
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/field_commander/plasma_rifle
-	name = "Plasma rifle"
-	desc = "desc here"
+	name = "PL-38"
+	desc = "Unlocked for free with the Advanced rifle training perk. Equipped with a red dot sight, bayonet and miniflamer. The PL-38 plasma rifle is a powerful heavy rifle, able to unleash significant damage at any range. \
+	Has three firemodes, with a standard high ROF mode, a piercing shatter shot, or a melting blast mode. Like all plasma weapons, it can rapidly build up heat and overheat, rendering it inoperable for a period if used incorrectly."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle/standard
 	unlock_cost = 400
