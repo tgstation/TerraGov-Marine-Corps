@@ -139,12 +139,11 @@
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 2.5 SECONDS
 	heat_per_fire = 50
-	//cool_amount = 12
 	rounds_per_shot = 180
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_cannon/cannon_standard,
-		"Charge" = /datum/lasrifle/base/plasma_cannon/shatter_blast,
-		"Glob" = /datum/lasrifle/base/plasma_cannon/incendiary_blast,
+		"Shatter" = /datum/lasrifle/base/plasma_cannon/shatter_blast,
+		"Incendiary" = /datum/lasrifle/base/plasma_cannon/incendiary_blast,
 	)
 	attachable_offset = list("muzzle_x" = 49, "muzzle_y" = 16,"rail_x" = 25, "rail_y" = 26, "under_x" = 42, "under_y" = 11, "stock_x" = 0, "stock_y" = 13)
 	attachable_allowed = list(
@@ -191,7 +190,6 @@
 	radial_icon_state = "plasma_strong"
 	message_to_user = "You set the plasma cannon's charge mode to incendiary."
 
-//smg
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg
 	name = "\improper PL-51 plasma SMG"
 	desc = "The PL-51 Plasma SMG, ."
@@ -223,7 +221,7 @@
 	rounds_per_shot = 12
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_smg/smg_standard,
-		"Tri-fire" = /datum/lasrifle/base/plasma_smg/smg_overcharge,
+		"Overcharge" = /datum/lasrifle/base/plasma_smg/smg_overcharge,
 	)
 	attachable_offset = list("muzzle_x" = 43, "muzzle_y" = 17,"rail_x" = 25, "rail_y" = 25, "under_x" = 33, "under_y" = 11, "stock_x" = 0, "stock_y" = 13)
 	attachable_allowed = list(
