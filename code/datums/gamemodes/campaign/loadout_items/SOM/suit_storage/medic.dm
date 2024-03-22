@@ -149,12 +149,12 @@
 
 /datum/loadout_item/suit_store/main_gun/som_medic/volkite_charger
 	name = "VX-32 charger"
-	desc = "Equipped with a mag harness. The VX-32 is a sophisticated energy weapon capable of explosively deflagrated organic targets, horrifically burning and igniting the victim and anyone unfortunate enough to be near them. \
+	desc = "Unlocked for free with the Advanced rifle training perk. Equipped with a red dot sight and laser sight. The VX-32 is a sophisticated energy weapon capable of explosively deflagrated organic targets, horrifically burning and igniting the victim and anyone unfortunate enough to be near them. \
 	Has excellent mobility and handling and is best used at close range. Can be used one handed relatively effectively with sufficient skill. \
 	Its deflagrating ability works best against light armored targets, where it can quickly mow down and demoralise tightly packed enemies. Against heavily armored opponents, its effectiveness can quickly drop however. \
 	Uses volkite power cells, shared with the VX-33."
 	ui_icon = "volkite"
-	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/magharness
+	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/standard
 	unlock_cost = 300
 	purchase_cost = 25
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE

@@ -75,7 +75,7 @@
 
 /datum/loadout_item/back/som_heat_rocket_bag
 	name = "HEAT RPG bag"
-	desc = "This backpack holds 4 high explosive anti armor RPGs, in addition to a V-71 RPG launcher. Deals significant damage against vehicles and mechs, but will also generally devastate human victims in a pinch. \
+	desc = "Unlocked for free with the Heavy weapon specialisation perk. This backpack holds 4 high explosive anti armor RPGs, in addition to a V-71 RPG launcher. Deals significant damage against vehicles and mechs, but will also generally devastate human victims in a pinch. \
 	Has a draw delay and has poor accuracy against human targets."
 	unlock_cost = 300
 	purchase_cost = 100

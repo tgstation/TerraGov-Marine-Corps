@@ -97,7 +97,7 @@
 
 /datum/loadout_item/back/tgmc_heam_rocket_bag
 	name = "HEAM rocket bag"
-	desc = "This backpack holds 4 67mm high explosive anti mech shells, in addition to a recoiless rifle. \
+	desc = "Unlocked for free with the Heavy weapon specialisation perk. This backpack holds 4 67mm high explosive anti mech shells, in addition to a recoiless rifle. \
 	The recoiless rifle is a powerful support weapon that deals significant damage against heavily armored mechs or vehicles, \
 	but will generally devastate any human target unfortunate enough to be hit in a pinch. Has a draw delay and has poor accuracy against human targets."
 	unlock_cost = 300

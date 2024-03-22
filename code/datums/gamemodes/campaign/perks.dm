@@ -265,7 +265,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/rifles
 	name = "Advanced rifle training"
-	desc = "Improved damage, accuracy and scatter with rifle type firearms."
+	desc = "Improved damage, accuracy and scatter with rifle type firearms. Unlocks new weapons and ammo types for some roles."
 	req_desc = "Requires Advanced firearm training."
 	ui_icon = "rifles"
 	rifles = 1
@@ -301,7 +301,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/smgs
 	name = "Advanced SMG training"
-	desc = "Improved damage, accuracy and scatter with SMG type firearms."
+	desc = "Improved damage, accuracy and scatter with SMG type firearms. Unlocks new weapons and ammo types for some roles."
 	req_desc = "Requires Advanced firearm training."
 	ui_icon = "smgs"
 	smgs = 1
@@ -326,7 +326,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/heavy_weapons
 	name = "Heavy weapon specialisation"
-	desc = "Improved damage, accuracy and scatter with heavy weapon type firearms."
+	desc = "Improved damage, accuracy and scatter with heavy weapon type firearms. Unlocks new weapons and ammo types for some roles."
 	req_desc = "Requires Advanced firearm training."
 	ui_icon = "heavy"
 	heavy_weapons = 1
