@@ -66,7 +66,7 @@
 	name = "SH-15"
 	desc = "Equipped with a mag harness and underbarrel grenade launcher. \
 	The SH-15 automatic shotgun has excellent mobility and handling, and offers powerful damage per shot. Its comparatively slow rate of fire means in a straight gunfight its overall damage output is somewhat lacking.\
-	Can use both slugs or flechette rounds. Takes 12-round 16 gauge magazines."
+	Uses 12-round 16 gauge magazines with slugs and flechette."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_autoshotgun/engineer
 	secondary_ammo_type = /obj/item/ammo_magazine/rifle/tx15_flechette
