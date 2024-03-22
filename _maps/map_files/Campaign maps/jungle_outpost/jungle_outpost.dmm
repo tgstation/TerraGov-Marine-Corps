@@ -1570,7 +1570,7 @@
 /area/campaign/jungle_outpost/outpost/landing)
 "gv" = (
 /obj/structure/table,
-/obj/item/clothing/suit/apron,
+/obj/item/clothing/suit/storage/apron,
 /obj/item/clothing/gloves/botanic_leather,
 /obj/machinery/light{
 	dir = 8
@@ -3272,7 +3272,7 @@
 /area/campaign/jungle_outpost/ground/jungle)
 "nH" = (
 /obj/structure/table/mainship,
-/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/suit/storage/chef/classic,
 /obj/item/clothing/head/chefhat,
 /obj/item/clothing/gloves/latex,
 /turf/open/floor/tile/barber,
