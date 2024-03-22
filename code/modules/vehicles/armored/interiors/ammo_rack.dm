@@ -64,7 +64,7 @@
 	max_w_class = WEIGHT_CLASS_GIGANTIC
 	can_hold = list(
 		/obj/item/ammo_magazine/tank/ltb_cannon,
-		/obj/item/ammo_magazine/tank/ltaap_minigun,
+		/obj/item/ammo_magazine/tank/ltaap_chaingun,
 	)
 
 /obj/item/storage/internal/ammorack_secondary

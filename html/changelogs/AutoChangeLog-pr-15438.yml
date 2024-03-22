@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: True
+changes:
+  - bugfix: "Fixes view getting bugged if you regress/caste swap while zoomed in"

@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - qol: "added categories to the hypersleep bay console"

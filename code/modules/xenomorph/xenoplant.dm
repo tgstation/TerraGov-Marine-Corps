@@ -46,17 +46,17 @@
 		return ..()
 	return on_use(user)
 
-/obj/structure/xeno/plant/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if((X.status_flags & INCORPOREAL))
+/obj/structure/xeno/plant/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if((xeno_attacker.status_flags & INCORPOREAL))
 		return FALSE
 
-	if(X.a_intent == INTENT_HARM && isxenodrone(X))
-		balloon_alert(X, "Uprooted the plant")
-		X.do_attack_animation(src)
+	if(xeno_attacker.a_intent == INTENT_HARM && isxenodrone(xeno_attacker))
+		balloon_alert(xeno_attacker, "Uprooted the plant")
+		xeno_attacker.do_attack_animation(src)
 		deconstruct(FALSE)
 		return FALSE
-	if(can_interact(X))
-		return on_use(X)
+	if(can_interact(xeno_attacker))
+		return on_use(xeno_attacker)
 	return TRUE
 
 /obj/structure/xeno/plant/heal_fruit

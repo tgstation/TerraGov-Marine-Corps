@@ -455,11 +455,6 @@
 #define COMSIG_GRAB_SELF_ATTACK "grab_self_attack"				//from base of obj/item/grab/attack() if attacked is the same as attacker: (mob/living/user)
 	#define COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK (1<<0)
 
-// /obj/projectile signals
-#define COMSIG_PROJ_SCANTURF "proj_scanturf"
-	#define COMPONENT_PROJ_SCANTURF_TURFCLEAR (1<<0)
-	#define COMPONENT_PROJ_SCANTURF_TARGETFOUND (1<<1)
-
 // /mob signals
 #define COMSIG_MOB_DEATH "mob_death"							//from base of mob/death(): (gibbing)
 #define COMSIG_MOB_PRE_DEATH "mob_pre_death"
@@ -643,7 +638,7 @@
 ///from /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location, random_location, no_head, no_crit, force_intent)
 #define COMSIG_XENOMORPH_ATTACK_LIVING "xenomorph_attack_living"
 	#define COMSIG_XENOMORPH_BONUS_APPLIED (1<<0)
-///from /mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+///from /mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 ///only on INTENT_HARM, INTENT_DISARM, IF it does damaage
 #define COMSIG_XENOMORPH_ATTACK_HOSTILE_XENOMORPH "xenomorph_attack_xenomorph"
 
@@ -761,6 +756,7 @@
 #define COMSIG_MECHABILITY_TOGGLE_ZOOM "mechability_toggle_zoom"
 #define COMSIG_MECHABILITY_SKYFALL "mechability_skyfall"
 #define COMSIG_MECHABILITY_STRIKE "mechability_strike"
+#define COMSIG_MECHABILITY_TOGGLE_ACTUATORS "mechability_toggle_actuators"
 
 #define COMSIG_ACTION_EXCLUSIVE_TOGGLE "action_exclusive_toggle"
 // xeno abilities for keybindings
@@ -945,11 +941,6 @@
 #define COMSIG_XENOABILITY_SENDORDERS "xenoability_sendorders"
 #define COMSIG_XENOABILITY_BESTOWBLESSINGS "xenoability_giveblessings"
 
-#define COMSIG_XENOABILITY_BANELING_EXPLODE "xenoability_baneling_explode"
-#define COMSIG_XENOABILITY_BANELING_SPAWN_POD "xenoability_baneling_spawn_pod"
-#define COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT "xenoability_baneling_choose_reagent"
-#define COMSIG_XENOABILITY_BANELING_DASH_EXPLOSION "xenoability_baneling_dash_explosion"
-
 #define COMSIG_XENOABILITY_BEHEMOTH_ROLL "xenoability_behemoth_roll"
 #define COMSIG_XENOABILITY_LANDSLIDE "xenoability_landslide"
 #define COMSIG_XENOABILITY_EARTH_RISER "xenoability_earth_riser"
@@ -1009,7 +1000,6 @@
 
 //Weapon related ability keybinds
 #define COMSIG_WEAPONABILITY_AXESWEEP "weaponability_axesweep"
-#define COMSIG_WEAPONABILITY_AXESWEEP_SELECT "weaponability_axesweep_select"
 #define COMSIG_WEAPONABILITY_SWORDLUNGE "weaponability_swordlunge"
 
 // human modules signals for keybindings

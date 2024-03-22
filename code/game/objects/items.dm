@@ -12,6 +12,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	allow_pass_flags = PASS_LOW_STRUCTURE
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	resistance_flags = PROJECTILE_IMMUNE
+	move_resist = MOVE_FORCE_WEAK
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	///The iconstate that the items use for blood on blood.dmi when drawn on the mob.
@@ -183,7 +184,15 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	master = null
 	embedding = null
 	embedded_into = null //Should have been removed by temporarilyRemoveItemFromInventory, but let's play it safe.
-	GLOB.cryoed_item_list -= src
+	GLOB.cryoed_item_list_gun -= src
+	GLOB.cryoed_item_list_ammo -= src
+	GLOB.cryoed_item_list_explosive -= src
+	GLOB.cryoed_item_list_melee -= src
+	GLOB.cryoed_item_list_clothing -= src
+	GLOB.cryoed_item_list_food -= src
+	GLOB.cryoed_item_list_drugs -= src
+	GLOB.cryoed_item_list_containers -= src
+	GLOB.cryoed_item_list_other -= src
 	return ..()
 
 /obj/item/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
@@ -1000,7 +1009,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 //This proc is here to prevent Xenomorphs from picking up objects (default attack_hand behaviour)
 //Note that this is overriden by every proc concerning a child of obj unless inherited
-/obj/item/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
+/obj/item/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	return FALSE
 
 

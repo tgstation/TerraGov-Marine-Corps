@@ -20,14 +20,14 @@
 	return ..()
 
 /datum/interior/armored/mob_enter(mob/enterer)
-	. = ..()
 	if(door)
 		enterer.forceMove(door.get_enter_location())
 		enterer.setDir(EAST)
-		return
+		return ..()
 	to_chat(enterer, span_userdanger("AN ERROR OCCURED PUTTING YOU INTO AN INTERIOR"))
 	stack_trace("a [enterer.type] could not find a door when entering an interior")
 	enterer.forceMove(pick(loaded_turfs))
+	return ..()
 
 /turf/closed/interior
 	resistance_flags = RESIST_ALL

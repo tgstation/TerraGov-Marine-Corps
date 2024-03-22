@@ -91,7 +91,7 @@
 			. += span_info("It appears in good shape, pulsating healthily.")
 
 
-/obj/structure/xeno/silo/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+/obj/structure/xeno/silo/take_damage(damage_amount, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
 
 	//We took damage, so it's time to start regenerating if we're not already processing
@@ -152,4 +152,4 @@
 ///Change minimap icon if silo is under attack or not
 /obj/structure/xeno/silo/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "silo[warning ? "_warn" : "_passive"]"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "silo[warning ? "_warn" : "_passive"]", HIGH_FLOAT_LAYER))

@@ -115,12 +115,12 @@
 	var/dead_ticks = 0
 
 	///Which color type of holocard is printed on us
-	var/holo_card_color = "" 
+	var/holo_card_color = ""
 
 	///A list of our limb datums
 	var/list/limbs = list()
 	///A list of internal organs by name ["organ name"] = /datum/internal_organ
-	var/list/internal_organs_by_name = list() 
+	var/list/internal_organs_by_name = list()
 	///How much dirt the mob's accumulated. Harmless by itself, but can trigger issues with open wounds or surgery.
 	var/germ_level = 0
 
@@ -137,17 +137,9 @@
 	var/marksman_aura = 0
 
 	///The squad this human is assigned to
-	var/datum/squad/assigned_squad 
-
-	///Is the human currently cloaked? Used by the thermal cloak
-	var/cloaking = FALSE
-
+	var/datum/squad/assigned_squad
 	///Used to help determine the severity icon state for our damage hud overlays
 	var/damageoverlaytemp = 0
-
-	///Amount of deciseconds gained from the braindeath timer, usually by CPR.
-	var/revive_grace_time = 0
-
 	///The cooldown for being pushed by xenos on harm intent
 	COOLDOWN_DECLARE(xeno_push_delay)
 

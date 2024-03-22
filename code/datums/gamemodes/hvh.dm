@@ -6,19 +6,20 @@
 	flags_xeno_abilities = ABILITY_CRASH
 	factions = list(FACTION_TERRAGOV, FACTION_SOM)
 	valid_job_types = list(
-		/datum/job/terragov/squad/engineer = 4,
+		/datum/job/terragov/squad/engineer = 8,
 		/datum/job/terragov/squad/corpsman = 8,
 		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/som/squad/leader = 4,
-		/datum/job/som/squad/veteran = 2,
-		/datum/job/som/squad/engineer = 4,
+		/datum/job/som/squad/veteran = 4,
+		/datum/job/som/squad/engineer = 8,
 		/datum/job/som/squad/medic = 8,
 		/datum/job/som/squad/standard = -1,
 	)
 	job_points_needed_by_job_type = list(
-		/datum/job/som/squad/veteran = 5, //Every 5 non vets join, a new vet slot opens
+		/datum/job/terragov/squad/smartgunner = 5,
+		/datum/job/som/squad/veteran = 5,
 	)
 	/// Time between two bioscan
 	var/bioscan_interval = 3 MINUTES
@@ -27,13 +28,6 @@
 	. = ..()
 	for(var/z_num in SSmapping.areas_in_z)
 		set_z_lighting(z_num)
-
-/datum/game_mode/hvh/scale_roles()
-	. = ..()
-	if(!.)
-		return
-	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/som/squad/veteran)
-	scaled_job.job_points_needed = 5 //Every 5 non vets join, a new vet slot opens
 
 //sets TGMC and SOM squads
 /datum/game_mode/hvh/set_valid_squads()

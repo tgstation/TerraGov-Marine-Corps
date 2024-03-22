@@ -6718,7 +6718,7 @@
 /area/slumbridge/outside/southeast)
 "fiB" = (
 /obj/structure/coatrack,
-/obj/item/clothing/suit/security/formal/senior_officer/tan{
+/obj/item/clothing/suit/storage/security/formal/senior_officer/tan{
 	pixel_x = -1;
 	pixel_y = 4
 	},
@@ -9303,7 +9303,7 @@
 /turf/open/floor/tile/yellow/full,
 /area/slumbridge/inside/engi/central)
 "hey" = (
-/obj/item/ammo_magazine/tank/ltaap_minigun,
+/obj/item/ammo_magazine/tank/ltaap_chaingun,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/slumbridge/inside/sombase/east)
@@ -12866,7 +12866,7 @@
 /area/slumbridge/inside/colony/bar)
 "jFz" = (
 /obj/structure/table,
-/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/suit/storage/chef/classic,
 /obj/effect/spawner/random/food_or_drink/kitchen,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
@@ -15956,16 +15956,6 @@
 /obj/structure/prop/mainship/holobarrier/passthrough,
 /turf/open/floor/plating/fake_space,
 /area/slumbridge/outside/northwest)
-"lRh" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/flasher/portable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/prison/darkred{
-	dir = 1
-	},
-/area/slumbridge/inside/prison/outerringnorth)
 "lRi" = (
 /turf/open/floor/plating/ground/snow/layer2{
 	dir = 10

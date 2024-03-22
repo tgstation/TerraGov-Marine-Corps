@@ -142,7 +142,7 @@
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 			/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
 			/obj/item/storage/box/crate/sentry = 4,
-			/obj/item/storage/box/tl102 = 1,
+			/obj/item/storage/box/hsg_102 = 1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 5,
 			/obj/item/ammo_magazine/heavymachinegun/small = 10,
@@ -470,6 +470,7 @@
 			/obj/item/ammo_magazine/rifle/standard_br = -1,
 			/obj/item/weapon/gun/rifle/chambered = -1,
 			/obj/item/ammo_magazine/rifle/chamberedrifle = -1,
+			/obj/item/ammo_magazine/rifle/chamberedrifle/flak = -1,
 			/obj/item/weapon/gun/shotgun/pump/bolt = -1,
 			/obj/item/ammo_magazine/rifle/bolt = -1,
 			/obj/item/weapon/gun/shotgun/double/martini = -1,
@@ -571,7 +572,7 @@
 			/obj/item/ammo_magazine/standard_atgun/beehive = -1,
 			/obj/item/ammo_magazine/standard_atgun/incend = -1,
 			/obj/item/storage/box/crate/sentry = -1,
-			/obj/item/storage/box/tl102 = -1,
+			/obj/item/storage/box/hsg_102 = -1,
 			/obj/item/weapon/gun/heavymachinegun = -1,
 			/obj/item/ammo_magazine/heavymachinegun = -1,
 			/obj/item/storage/holster/backholster/rpg/full = -1,
@@ -821,7 +822,6 @@
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
 	icon_deny = "lascharger-deny"
-	vending_flags = VENDING_RECHARGER
 	wrenchable = TRUE
 	drag_delay = FALSE
 	anchored = FALSE
@@ -833,7 +833,6 @@
 	products = list(
 		/obj/item/cell/lasgun/lasrifle = 10, /obj/item/cell/lasgun/volkite/powerpack/marine = 2,
 	)
-
 
 	prices = list()
 
@@ -855,6 +854,10 @@
 				icon_state = "lascharger_25"
 			if(0)
 				icon_state = "lascharger_0"
+
+/obj/machinery/vending/lasgun/examine(mob/user)
+	. = ..()
+	. += "Internal battery charge: <b>[machine_current_charge]</b>/<b>[machine_max_charge]</b>"
 
 /obj/machinery/vending/marineFood
 	name = "\improper Marine Food and Drinks Vendor"
@@ -1450,6 +1453,7 @@
 			/obj/item/explosive/grenade/smokebomb/acid = -1,
 			/obj/item/explosive/grenade/smokebomb/satrapine = -1,
 			/obj/item/explosive/grenade/smokebomb/drain = -1,
+			/obj/item/explosive/grenade/chem_grenade/cleaner = -1,
 			/obj/item/weapon/gun/rifle/m412l1_hpr = -1,
 			/obj/item/ammo_magazine/m412l1_hpr = -1,
 			/obj/item/weapon/gun/rifle/famas = -1,
@@ -1481,9 +1485,11 @@
 			/obj/item/ammo_magazine/rifle/autosniper = -1,
 			/obj/item/weapon/gun/rifle/sniper/antimaterial = -1,
 			/obj/item/ammo_magazine/sniper = -1,
+			/obj/item/ammo_magazine/sniper/incendiary = -1,
+			/obj/item/ammo_magazine/sniper/flak = -1,
 		),
 		"Mounted" = list(
-			/obj/item/weapon/gun/standard_auto_cannon = -1,
+			/obj/structure/largecrate/supply/weapons/standard_flakgun = -1,
 			/obj/item/ammo_magazine/auto_cannon = -1,
 			/obj/item/ammo_magazine/auto_cannon/flak = -1,
 			/obj/item/weapon/gun/standard_minigun = -1,
@@ -1495,7 +1501,7 @@
 			/obj/item/ammo_magazine/standard_agls/flare = -1,
 			/obj/item/ammo_magazine/standard_agls/cloak = -1,
 			/obj/item/ammo_magazine/standard_agls/tanglefoot = -1,
-			/obj/item/weapon/gun/heavy_isg = -1,
+			/obj/structure/largecrate/supply/weapons/heavy_flakgun = -1,
 			/obj/item/ammo_magazine/heavy_isg/he = -1,
 			/obj/item/ammo_magazine/heavy_isg/sabot = -1,
 		),
@@ -1508,7 +1514,7 @@
 			/obj/item/clothing/gloves/marine/specialist = -1,
 			/obj/item/clothing/suit/storage/marine/B17/valhalla = -1,
 			/obj/item/clothing/head/helmet/marine/grenadier = -1,
-			/obj/item/storage/backpack/marine/satchel/scout_cloak/scout = -1,
+			/obj/item/storage/backpack/marine/satchel/scout_cloak = -1,
 			/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper = -1,
 			/obj/item/storage/belt/grenade/b17 = -1,
 			/obj/item/storage/holster/m25 = -1,
@@ -1517,7 +1523,6 @@
 			/obj/item/armor_module/module/fire_proof_helmet = -1,
 			/obj/item/armor_module/module/tyr_extra_armor = -1,
 			/obj/item/armor_module/module/tyr_head = -1,
-			/obj/item/attachable/shoulder_mount = -1,
 			/obj/item/armor_module/module/mimir_environment_protection = -1,
 			/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet = -1,
 			/obj/item/armor_module/module/better_shoulder_lamp = -1,

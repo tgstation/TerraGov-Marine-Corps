@@ -1,5 +1,4 @@
 /mob/living/carbon/human/Initialize(mapload)
-	add_verb(src, /mob/living/proc/toggle_resting)
 	blood_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
 
 	if(!species)
@@ -805,7 +804,7 @@
 
 	species.create_organs(src)
 
-	dextrous = species.has_fine_manipulation
+	dextrous = TRUE
 
 	if(species.default_language_holder)
 		language_holder = new species.default_language_holder(src)
