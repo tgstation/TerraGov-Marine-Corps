@@ -3365,7 +3365,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 3
 	damage_falloff = 0.5
 	accurate_range = 9
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_TARGET_TURF
+	flags_ammo_behavior = AMMO_ENERGY
 
 /datum/ammo/energy/plasma/blast/shatter/drop_nade(turf/T)
 	explosion(T, light_impact_range = 2, weak_impact_range = 5, throw_range = 0, color = COLOR_DISABLER_BLUE)
@@ -3375,7 +3375,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/plasma/blast/incendiary
 	name = "plasma glob"
 	damage = 30
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_TARGET_TURF|AMMO_INCENDIARY
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY
 	shell_speed = 2
 	icon_state = "plasma_big"
 	hud_state = "flame"
