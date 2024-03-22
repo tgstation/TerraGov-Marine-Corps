@@ -305,7 +305,7 @@
 
 	if(source.Adjacent(target) && PROJECTILE_HIT_CHECK(target, src, null, FALSE, null))
 		target.do_projectile_hit(src)
-		if((!ismob(target) || !(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOB)) && !(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
+		if((!ismob(target) || !(ammo.ammo_behavior_flags & AMMO_PASS_THROUGH_MOB)) && !(ammo.ammo_behavior_flags & AMMO_PASS_THROUGH_MOVABLE))
 			qdel(src)
 			return
 		hit_atoms += target
@@ -980,7 +980,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(source.Adjacent(target) && PROJECTILE_HIT_CHECK(target, src, null, FALSE, null))
 		target.do_projectile_hit(src)
-		if((!ismob(target) || !(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOB)) && !(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
+		if((!ismob(target) || !(ammo.ammo_behavior_flags & AMMO_PASS_THROUGH_MOB)) && !(ammo.ammo_behavior_flags & AMMO_PASS_THROUGH_MOVABLE))
 			qdel(src)
 			return
 		hit_atoms += target
