@@ -1193,7 +1193,7 @@ CLOTHING
 
 /datum/supply_packs/clothing/night_vision_mounted
 	name = "BE-35 Night Vision Module"
-	contains = list(/obj/item/clothing/glasses/night_vision/mounted)
+	contains = list(/obj/item/armor_module/module/night_vision)
 	cost = 300
 
 /datum/supply_packs/clothing/night_vision_batteries
