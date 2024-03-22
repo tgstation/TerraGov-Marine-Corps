@@ -166,7 +166,7 @@ SUBSYSTEM_DEF(explosions)
 					far_volume += (dist <= far_dist * 0.5 ? 50 : 0) // add 50 volume if the mob is pretty close to the explosion
 					M.playsound_local(epicenter, null, far_volume, 1, frequency, falloff = 5, sound_to_use = far_explosion_sound)
 					if(is_mainship_level(epicenter.z))
-						M.playsound_local(epicenter, null, far_volume*3, 1, frequency, falloff = 5, sound_to_useS = creak_sound)//ship groaning under explosion effect
+						M.playsound_local(epicenter, null, far_volume*3, 1, frequency, falloff = 5, sound_to_use = creak_sound)//ship groaning under explosion effect
 					if(baseshakeamount > 0)
 						shake_camera(M, 7, clamp(baseshakeamount*0.15, 0, 1.5))
 
