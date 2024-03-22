@@ -276,6 +276,10 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	if(!istype(owner_stats))
 		return
 	owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/marine/plasma_rifle, SQUAD_MARINE, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/corpsman/plasma_rifle, SQUAD_CORPSMAN, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/engineer/plasma_rifle, SQUAD_ENGINEER, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/squad_leader/plasma_rifle, SQUAD_LEADER, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/field_commander/plasma_rifle, FIELD_COMMANDER, owner, 0)
 
 /datum/perk/skill_mod/smgs
 	name = "Advanced SMG training"
@@ -291,6 +295,10 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	if(!istype(owner_stats))
 		return
 	owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/marine/plasma_smg, SQUAD_MARINE, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/corpsman/plasma_smg, SQUAD_CORPSMAN, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/engineer/plasma_smg, SQUAD_ENGINEER, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/squad_leader/plasma_smg, SQUAD_LEADER, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/field_commander/plasma_smg, FIELD_COMMANDER, owner, 0)
 
 /datum/perk/skill_mod/heavy_weapons
 	name = "Heavy weapon specialisation"
