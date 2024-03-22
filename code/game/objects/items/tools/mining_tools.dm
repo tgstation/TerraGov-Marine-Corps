@@ -166,7 +166,6 @@
 		spark_system.attach(source)
 		spark_system.start(source)
 	if(!no_string)
-		balloon_alert(user, "Cutting...")
 		if(custom_string)
 			to_chat(user, span_notice(custom_string))
 		else
@@ -185,8 +184,6 @@
 	balloon_alert(user, "Charge Remaining: [cell.charge]/[cell.maxcharge]")
 	if(custom_string)
 		to_chat(user, span_notice(custom_string))
-	else
-		balloon_alert(user, "Cuts apart")
 
 /obj/item/tool/pickaxe/plasmacutter/proc/debris(location, metal = 0, rods = 0, wood = 0, wires = 0, shards = 0, plasteel = 0)
 	if(metal)
