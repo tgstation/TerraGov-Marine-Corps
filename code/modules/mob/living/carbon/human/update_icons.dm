@@ -442,6 +442,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	if(!blood_color || !bloody_hands)
 		return
+	if(species?.update_inv_gloves(src))
+		return
 	var/datum/limb/left_hand = get_limb("l_hand")
 	var/datum/limb/right_hand = get_limb("r_hand")
 	var/mutable_appearance/bloodsies

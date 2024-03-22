@@ -374,6 +374,10 @@
 			H.reagents.remove_reagent(chem.type, chem.volume - chem.overdose_threshold)
 	return FALSE
 
+// return true here to override blood overstuff for hands
+/datum/species/proc/update_inv_gloves(mob/living/carbon/human/H)
+	return FALSE
+
 /datum/species/human
 	name = "Human"
 	unarmed_type = /datum/unarmed_attack/punch
@@ -754,6 +758,65 @@
 	cold_level_1 = ICE_COLONY_TEMPERATURE - 20
 	cold_level_2 = ICE_COLONY_TEMPERATURE - 40
 	cold_level_3 = ICE_COLONY_TEMPERATURE - 80
+
+/datum/species/catslug
+	name = "Catslug"
+	name_plural = "Catslugs"
+	icobase = 'icons/mob/human_races/r_catslug.dmi'
+	damage_mask_icon = 'icons/mob/dam_mask_catslug.dmi'
+	brute_damage_icon_state = "newt_brute"
+	burn_damage_icon_state = "newt_burn"
+	eyes = "blank_eyes"
+	unarmed_type = /datum/unarmed_attack/bite
+	slowdown = -1.25 //faster then the average human, can't wear shoes
+	total_health = 75 //small size, small health
+	burn_mod = 0.5 //slug coating, slippery
+	brute_mod = 0.8 //some innate brute defense so they have some protection
+
+	species_flags =  HAS_NO_HAIR|NO_POISON|GREYSCALE_BLOOD|NO_DELIMB
+
+	blood_color = "#EEEEEE"
+
+	no_equip = list(
+		SLOT_W_UNIFORM,
+		SLOT_WEAR_MASK,
+		SLOT_WEAR_SUIT,
+		SLOT_SHOES,
+		SLOT_GLOVES,
+		SLOT_GLASSES,
+	)
+	has_organ = list()
+
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	see_in_dark = 6 //darkvision
+
+	screams = list(FEMALE = "female_scream")
+	paincries = list( EMALE = "female_pain")
+	goredcries = list(FEMALE = "female_gored")
+	warcries = list(FEMALE = "female_warcry")
+	special_death_message = "You have been slain in your duties down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
+	joinable_roundstart = TRUE
+
+/datum/species/catslug/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	H.allow_pass_flags |= PASS_LOW_STRUCTURE
+
+/datum/species/catslug/update_inv_gloves(mob/living/carbon/human/H)
+	var/datum/limb/left_hand = H.get_limb("l_hand")
+	var/datum/limb/right_hand = H.get_limb("r_hand")
+	var/mutable_appearance/bloodsies
+	if(left_hand.limb_status & LIMB_DESTROYED)
+		if(right_hand.limb_status & LIMB_DESTROYED)
+			return //No hands.
+		bloodsies = mutable_appearance(icon = 'icons/effects/blood.dmi', icon_state = "bloodyhand_right_newt") //Only right hand.
+	else if(right_hand.limb_status & LIMB_DESTROYED)
+		bloodsies = mutable_appearance(icon = 'icons/effects/blood.dmi', icon_state = "bloodyhand_left_newt") //Only left hand.
+	else
+		bloodsies = mutable_appearance(icon = 'icons/effects/blood.dmi', icon_state = "bloodyhands_newt") //Both hands.
+	bloodsies.color = H.blood_color
+	H.overlays_standing[GLOVES_LAYER] = bloodsies
+	H.apply_overlay(GLOVES_LAYER)
+	return TRUE
 
 /datum/species/sectoid
 	name = "Sectoid"

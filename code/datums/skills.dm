@@ -311,6 +311,13 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	surgery = SKILL_SURGERY_PROFESSIONAL
 	melee_weapons = SKILL_MELEE_WEAK
 
+/datum/skills/companion
+	name = "Companion"
+	firearms = SKILL_FIREARMS_UNTRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
+	medical = SKILL_MEDICAL_PRACTICED
+	cqc = SKILL_CQC_WEAK
+
 /datum/skills/cmo
 	name = "CMO"
 	cqc = SKILL_CQC_WEAK

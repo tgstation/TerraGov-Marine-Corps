@@ -30,6 +30,9 @@
 	if(issynth(activator) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		balloon_alert(user, "Can't wear this")
 		return TRUE
+	if(iscatslug(activator) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		balloon_alert(user, "Can't wear this")
+		return TRUE
 	if(user.alpha != 255)
 		balloon_alert(user, "Can't, your cloak prevents you")
 		return TRUE

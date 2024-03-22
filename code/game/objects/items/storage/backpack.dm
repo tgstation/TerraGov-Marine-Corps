@@ -402,6 +402,21 @@
 		/obj/item/stack/sandbags,
 	)
 
+/obj/item/storage/backpack/marine/satchel/newt
+	name = "\improper Newt satchel"
+	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel, this one has been cut down and fits a much smaller lifeform."
+	icon_state = "newtsatchel"
+	item_state = "newtsatchel"
+
+/obj/item/storage/backpack/marine/satchel/newt/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src,TRAIT_NODROP, CATSLUG_TRAIT)
+
+/obj/item/storage/backpack/marine/satchel/newt/attack_hand(mob/living/user)
+	if(!iscatslug(user))
+		return
+	return ..()
+
 /obj/item/storage/backpack/marine/smock
 	name = "\improper M3 sniper's smock"
 	desc = "A specially designed smock with pockets for all your sniper needs."

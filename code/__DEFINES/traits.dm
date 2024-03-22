@@ -116,6 +116,7 @@
 #define VALI_TRAIT "vali"
 #define HELDGLOVE_TRAIT "heldglove"
 #define SECTOID_TRAIT "sectoid"
+#define CATSLUG_TRAIT "catslug"
 #define HUGGER_TRAIT "hugger"
 #define PISTOL_LACE_TRAIT "pistol_lace"
 #define NIGHT_VISION_GOGGLES_TRAIT "night_vision_goggles"
@@ -258,3 +259,4 @@
 //regress and caste swap UI
 #define TRAIT_CASTE_SWAP "caste_swap"
 #define TRAIT_REGRESSING "regressing"
+

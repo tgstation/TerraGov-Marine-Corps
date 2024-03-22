@@ -252,6 +252,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		to_chat(user, "[src] is anchored to the ground.")
 		return
 
+	if(iscatslug(user))
+		return
+
 	set_throwing(FALSE)
 
 	if(istype(loc, /obj/item/storage))
@@ -511,6 +514,10 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	if(issynth(H) && CHECK_BITFIELD(flags_item, SYNTH_RESTRICTED) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(H, span_warning("Your programming prevents you from wearing this."))
+		return FALSE
+
+	if(iscatslug(H) && CHECK_BITFIELD(flags_item, SYNTH_RESTRICTED) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		to_chat(H, span_warning("Your anatomy prevents you from wearing this."))
 		return FALSE
 
 	var/obj/item/selected_slot //the item in the specific slot we're trying to insert into
@@ -1392,6 +1399,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 ///Called by vendors when vending an item. Allows the item to specify what happens when it is given to the player.
 /obj/item/proc/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)
+	//to avoid vendors bypassing newt not being unable to pickup items
+	if(iscatslug(user))
+		return
 	//Put item into player's currently open storage
 	if (fill_container && user.s_active && user.s_active.can_be_inserted(src, FALSE))
 		user.s_active.handle_item_insertion(src, FALSE, user)

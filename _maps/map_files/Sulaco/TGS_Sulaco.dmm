@@ -26,7 +26,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 10
 	},
-/mob/living/simple_animal/catslug/newt,
+/obj/effect/landmark/start/job/companion,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/research)
 "aaf" = (

@@ -247,3 +247,4 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(SSdcs, COMSIG_GLOB_DEPLOY_TIMELOCK_ENDED)
 	GLOB.squad_selector.interact(src)
+
