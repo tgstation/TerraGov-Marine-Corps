@@ -81,6 +81,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked/veteran, /datum/loadout_item/suit_slot/som_light_shield/veteran, jobs_supported)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_medium_shield/overclocked, /datum/loadout_item/suit_slot/som_medium_shield, jobs_supported)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_heavy_shield/overclocked, /datum/loadout_item/suit_slot/som_heavy_shield, jobs_supported)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_heavy_shield/breacher/overclocked, /datum/loadout_item/suit_slot/som_heavy_shield/breacher, jobs_supported)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked/medic, /datum/loadout_item/suit_slot/som_medic/light, jobs_supported)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_medium_shield/overclocked/medic, /datum/loadout_item/suit_slot/som_medic, jobs_supported)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked/engineer, /datum/loadout_item/suit_slot/som_engineer/light, jobs_supported)

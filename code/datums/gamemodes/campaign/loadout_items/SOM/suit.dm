@@ -90,9 +90,15 @@
 /datum/loadout_item/suit_slot/som_heavy_shield/breacher
 	jobs_supported = list(SOM_SQUAD_MARINE)
 	req_desc = "Requires a V-21 and boarding shield."
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 	item_whitelist = list(
 		/obj/item/weapon/gun/smg/som/one_handed = ITEM_SLOT_SUITSTORE,
 	)
+
+/datum/loadout_item/suit_slot/som_heavy_shield/breacher/overclocked
+	desc = "M-31 combat armor with a Aegis shield module. Provides excellent protection but lower mobility. The shield module has been overclocked for improved performance."
+	item_typepath = /obj/item/clothing/suit/modular/som/heavy/shield_overclocked
+	loadout_item_flags = null
 
 /datum/loadout_item/suit_slot/som_heavy_surt
 	name = "Heavy Hades armor"
