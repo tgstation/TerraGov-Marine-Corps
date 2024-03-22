@@ -142,14 +142,21 @@
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
 	if(!istype(wearer.back, /obj/item/storage/backpack/marine/corpsman/satchel))
 		wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x20mm, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/suit_store/main_gun/corpsman/standard_smg/enhanced
+	name = "SMG-25+"
+	desc = "Equipped with a mag harness, recoil compensator and gyroscopic stabilizer. SMG-25 submachinegun, is a large capacity smg, able to be be used effectively one or two handed. \
+	Like all smgs, it has excellent mobility and handling, but has poor damage application at longer ranges. Uses a mix of standard and AP 10x20mm caseless ammunition."
+	loadout_item_flags = NONE
+	secondary_ammo_type = /obj/item/ammo_magazine/smg/m25/ap
 
 /datum/loadout_item/suit_store/main_gun/corpsman/assault_rifle
 	name = "AR-12"

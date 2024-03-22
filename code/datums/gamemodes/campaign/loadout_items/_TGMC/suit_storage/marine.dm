@@ -473,13 +473,21 @@
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 
+/datum/loadout_item/suit_store/main_gun/marine/smg_and_shield/enhanced
+	name = "SMG-25+ & riot shield"
+	desc = "Equipped with a mag harness, recoil compensator and gyroscopic stabilizer, and comes with a TL-172 defensive shield. SMG-25 submachinegun, is a large capacity smg, able to be be used effectively one or two handed. \
+	Like all smgs, it has excellent mobility and handling, but has poor damage application at longer ranges. \
+	The defensive shield provides incredible resilience, allowing the user to soak up tremendous amounts of damage while they or their team mates push the enemy. \
+	Generally used with Tyr heavy armor for maximum survivability. Uses standard and AP 10x20mm caseless ammunition."
+	loadout_item_flags = NONE
+	secondary_ammo_type = /obj/item/ammo_magazine/smg/m25/ap
+
 /datum/loadout_item/suit_store/main_gun/marine/standard_smg
 	name = "SMG-25"
 	desc = "Equipped with a mag harness, recoil compensator and gyroscopic stabilizer. SMG-25 submachinegun, is a large capacity smg, able to be be used effectively one or two handed. \
-	Like all smgs, it has excellent mobility and handling, but has poor damage application at longer ranges. Uses 10x20mm caseless ammunition, and comes with multiple ammo types."
+	Like all smgs, it has excellent mobility and handling, but has poor damage application at longer ranges. Uses 10x20mm caseless ammunition."
 	ui_icon = "smg"
 	item_typepath = /obj/item/weapon/gun/smg/m25/magharness
-	secondary_ammo_type = /obj/item/ammo_magazine/smg/m25/ap
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -499,11 +507,20 @@
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_smg/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	if(istype(wearer.belt, /obj/item/storage/belt))
+		return ..()
 	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_ACCESSORY)
+
+/datum/loadout_item/suit_store/main_gun/marine/standard_smg/enhanced
+	name = "SMG-25+"
+	desc = "Equipped with a mag harness, recoil compensator and gyroscopic stabilizer. SMG-25 submachinegun, is a large capacity smg, able to be be used effectively one or two handed. \
+	Like all smgs, it has excellent mobility and handling, but has poor damage application at longer ranges. Uses standard and AP 10x20mm caseless ammunition."
+	loadout_item_flags = NONE
+	secondary_ammo_type = /obj/item/ammo_magazine/smg/m25/ap
 
 /datum/loadout_item/suit_store/main_gun/marine/scout_rifle
 	name = "BR-8"

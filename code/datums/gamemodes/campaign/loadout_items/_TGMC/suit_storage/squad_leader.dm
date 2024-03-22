@@ -281,9 +281,9 @@
 /datum/loadout_item/suit_store/main_gun/squad_leader/standard_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
 	if(!istype(wearer.back, /obj/item/storage)) //bruh
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_ACCESSORY)
 		wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
 		return
@@ -294,9 +294,9 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
 
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
@@ -308,19 +308,9 @@
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
 
-/datum/loadout_item/suit_store/main_gun/squad_leader/standard_smg/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	if(istype(wearer.belt, /obj/item/storage/belt))
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_BELT)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_BELT)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_BELT)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x20mm, SLOT_IN_BELT)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
-	if(loadout.l_store == /obj/item/storage/pouch/magazine/large)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_L_POUCH)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_L_POUCH)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_L_POUCH)
-	if(loadout.r_store == /obj/item/storage/pouch/magazine/large)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_R_POUCH)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_R_POUCH)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_R_POUCH)
+/datum/loadout_item/suit_store/main_gun/squad_leader/standard_smg/enhanced
+	name = "SMG-25+"
+	desc = "Equipped with a mag harness, recoil compensator and plasma pistol. SMG-25 submachinegun, is a large capacity smg, intended to be used two handed to take advantage of the attached plasma pistol. \
+	Like all smgs, it has excellent mobility and handling, but has poor damage application at longer ranges. Uses standard and AP 10x20mm caseless ammunition."
+	loadout_item_flags = NONE
+	secondary_ammo_type = /obj/item/ammo_magazine/smg/m25/ap

@@ -28,7 +28,7 @@
 	It has good mobility and handling and a good rate of fire, but tends to favour closer range fighting compared to many TGMC equivilents. \
 	The rail launcher electromagnetically launches a variety of 10 gauge airbursting grenades. Extremely effective when used correctly, their fixed fuse time makes them entirely ineffective at very close or far ranges. \
 	Managing engagement range is thus vital for maximising the effectiveness of this weapon. \
-	Uses 10x25mm caseless ammunition and 10 gauge micro grenades."
+	Uses 10x24mm caseless ammunition and 10 gauge micro grenades."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/rifle/som/standard
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
@@ -45,7 +45,7 @@
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/cluster, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/som_marine/standard_rifle/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
@@ -53,6 +53,20 @@
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/dragonbreath, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/cluster, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/smoke_burst, SLOT_IN_ACCESSORY)
+
+/datum/loadout_item/suit_store/main_gun/som_marine/standard_rifle/enhanced
+	name = "V-31+"
+	desc = "Equipped with a red dot sight, extended barrel, vertical grip and integrated micro rail launcher. The V-31 is the principal ballistic weapon for the SOM. \
+	It has good mobility and handling and a good rate of fire, but tends to favour closer range fighting compared to many TGMC equivilents. \
+	The rail launcher electromagnetically launches a variety of 10 gauge airbursting grenades. Extremely effective when used correctly, their fixed fuse time makes them entirely ineffective at very close or far ranges. \
+	Managing engagement range is thus vital for maximising the effectiveness of this weapon. \
+	Uses a mix of standard and AP 10x24mm caseless ammunition, and 10 gauge micro grenades."
+	loadout_item_flags = NONE
+	secondary_ammo_type = /obj/item/ammo_magazine/rifle/som/ap
+
+/datum/loadout_item/suit_store/main_gun/som_marine/standard_rifle/enhanced/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
+	return ..()
 
 /datum/loadout_item/suit_store/main_gun/som_marine/mpi_grenadier
 	name = "MPi-KM"
@@ -117,14 +131,14 @@
 	if(!istype(wearer.back, /obj/item/storage))
 		return
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
 	if(!istype(wearer.back, /obj/item/storage/backpack/satchel))
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/som, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/som_marine/smg/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -133,6 +147,20 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_ACCESSORY)
+
+/datum/loadout_item/suit_store/main_gun/som_marine/smg/enhanced
+	name = "V-21+"
+	desc = "Equipped with a motion sensor, recoil compensator and vertical grip. The V-21 is the principal submachinegun used by the Sons of Mars, with a variable rate of fire. \
+	Has outstanding mobility and handling and can be comfortably fired one handed on its lower fire rate mode. \
+	When set to its higher rate of fire, it unleashes a staggering torrent of firepower, but is difficult to control even two handed, and quickly loses effectiveness at range. \
+	At close range however, it will quickly obliterate most targets - as long as you don't run out of ammo. \
+	Uses a mix of standard and AP 10x20mm caseless ammunition."
+	loadout_item_flags = NONE
+	secondary_ammo_type = /obj/item/ammo_magazine/smg/som/ap
+
+/datum/loadout_item/suit_store/main_gun/som_marine/smg/enhanced/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
+	return ..()
 
 /datum/loadout_item/suit_store/main_gun/som_marine/standard_shotgun
 	name = "V-51"
@@ -215,16 +243,16 @@
 	wearer.equip_to_slot_or_del(new /obj/item/tool/weldingtool/largetank, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
 	if(!istype(wearer.back, /obj/item/storage/backpack/satchel))
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
 	return ..() //we explicitly don't want a sidearm for this weapon choice
 
 /datum/loadout_item/suit_store/main_gun/som_marine/smg_and_shield/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -233,6 +261,16 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_ACCESSORY)
+
+/datum/loadout_item/suit_store/main_gun/som_marine/smg_and_shield/enhanced
+	name = "V-21+ & riot shield"
+	desc = "Equipped with a red dot sight, recoil compensator and vertical grip, along with a S-144 boarding shield, intended for use with M-31 combat armor for boarding actions.. The V-21 is the principal submachinegun used by the Sons of Mars, with a variable rate of fire. \
+	Has outstanding mobility and handling and can be comfortably fired one handed on its lower fire rate mode. \
+	When set to its higher rate of fire, it unleashes a staggering torrent of firepower, but is difficult to control even two handed, and quickly loses effectiveness at range. \
+	When used with the boarding shield, use of the higher rate of fire is highly unrecommended outside of anything but absolute point blank range. \
+	Uses a mix of standard and AP 10x20mm caseless ammunition."
+	loadout_item_flags = NONE
+	secondary_ammo_type = /obj/item/ammo_magazine/smg/som/ap
 
 /datum/loadout_item/suit_store/main_gun/som_marine/machinegunner
 	name = "V-41"
@@ -269,8 +307,9 @@
 	Uses volkite power cells, shared with the VX-33."
 	ui_icon = "volkite"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/magharness
+	unlock_cost = 300
 	purchase_cost = 25
-	quantity = 4
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
 /datum/loadout_item/suit_store/main_gun/som_marine/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()

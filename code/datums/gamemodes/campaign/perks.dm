@@ -288,9 +288,14 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/field_commander/carbine/enhanced, /datum/loadout_item/suit_store/main_gun/field_commander/carbine, FIELD_COMMANDER)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/field_commander/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/field_commander/standard_rifle, FIELD_COMMANDER)
 
+	else if(owner_stats.faction == FACTION_SOM)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_marine/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/som_marine/standard_rifle, SOM_SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_medic/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/som_medic/standard_rifle, SOM_SQUAD_CORPSMAN)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_engineer/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/som_engineer/standard_rifle, SOM_SQUAD_ENGINEER)
 
-	//else if(owner_stats.faction == FACTION_SOM)
-		//owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/marine/standard_rifle, SQUAD_MARINE)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/som_marine/volkite_charger, SOM_SQUAD_MARINE, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/som_medic/volkite_charger, SOM_SQUAD_CORPSMAN, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/som_engineer/volkite_charger, SOM_SQUAD_ENGINEER, owner, 0)
 
 
 /datum/perk/skill_mod/smgs
@@ -302,6 +307,21 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	all_jobs = TRUE
 	prereq_perks = list(/datum/perk/skill_mod/firearms)
 	unlock_cost = 500
+
+/datum/perk/skill_mod/smgs/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	if(!istype(owner_stats))
+		return
+	if(owner_stats.faction == FACTION_TERRAGOV)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/standard_smg/enhanced, /datum/loadout_item/suit_store/main_gun/marine/standard_smg, SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/smg_and_shield/enhanced, /datum/loadout_item/suit_store/main_gun/marine/smg_and_shield, SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/corpsman/standard_smg/enhanced, /datum/loadout_item/suit_store/main_gun/corpsman/standard_smg, SQUAD_CORPSMAN)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/engineer/standard_smg/enhanced, /datum/loadout_item/suit_store/main_gun/engineer/standard_smg, SQUAD_ENGINEER)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/squad_leader/standard_smg/enhanced, /datum/loadout_item/suit_store/main_gun/squad_leader/standard_smg, SQUAD_LEADER)
+	else if(owner_stats.faction == FACTION_SOM)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_marine/smg/enhanced, /datum/loadout_item/suit_store/main_gun/som_marine/smg, SOM_SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_marine/smg_and_shield/enhanced, /datum/loadout_item/suit_store/main_gun/som_marine/smg_and_shield, SOM_SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_marine/smg/enhanced, /datum/loadout_item/suit_store/main_gun/som_marine/smg, SOM_SQUAD_CORPSMAN)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_engineer/smg/enhanced, /datum/loadout_item/suit_store/main_gun/som_engineer/smg, SOM_SQUAD_ENGINEER)
 
 /datum/perk/skill_mod/heavy_weapons
 	name = "Heavy weapon specialisation"

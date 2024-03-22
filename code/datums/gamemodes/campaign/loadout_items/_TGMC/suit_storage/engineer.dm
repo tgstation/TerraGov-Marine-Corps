@@ -99,3 +99,10 @@
 	Like all smgs, it has excellent mobility and handling, but has poor damage application at longer ranges. Uses 10x20mm caseless ammunition."
 	ui_icon = "smg"
 	item_typepath = /obj/item/weapon/gun/smg/m25/vgrip
+
+/datum/loadout_item/suit_store/main_gun/engineer/standard_smg/enhanced
+	name = "SMG-25+"
+	desc = "Equipped with a mag harness, recoil compensator and vertical grip. SMG-25 submachinegun, is a large capacity smg, able to be be used effectively one or two handed. \
+	Like all smgs, it has excellent mobility and handling, but has poor damage application at longer ranges. Uses a mix of standard and AP 10x20mm caseless ammunition."
+	loadout_item_flags = NONE
+	secondary_ammo_type = /obj/item/ammo_magazine/smg/m25/ap
