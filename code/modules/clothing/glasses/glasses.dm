@@ -242,50 +242,44 @@
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_5, TRUE)
 
-/obj/item/clothing/glasses/welding/proc/flip_up()
-	DISABLE_BITFIELD(flags_inventory, COVEREYES)
-	DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
-	DISABLE_BITFIELD(flags_armor_protection, EYES)
-	eye_protection = 0
-	update_icon()
-	to_chat(usr, "You push [src] up out of your face.")
-
-///Toggle the welding goggles off
-/obj/item/clothing/glasses/welding/proc/flip_down()
-	ENABLE_BITFIELD(flags_inventory, COVEREYES)
-	ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
-	ENABLE_BITFIELD(flags_armor_protection, EYES)
-	eye_protection = initial(eye_protection)
-	icon_state = initial(icon_state)
-
 /obj/item/clothing/glasses/welding/verb/verbtoggle()
 	set category = "Object"
 	set name = "Adjust welding goggles"
 	set src in usr
 
 	if(!usr.incapacitated())
-		toggle_item_state(usr)
+		activate(usr)
 
-/obj/item/clothing/glasses/welding/attack_self(mob/user)
-	toggle_item_state(user)
-
-/obj/item/clothing/glasses/welding/toggle_item_state(mob/user)
+/obj/item/clothing/glasses/welding/activate(mob/user)
 	. = ..()
-	active = !active
-	icon_state = "[initial(icon_state)][!active ? "up" : ""]"
-	if(!active)
+	if(active)
 		flip_up()
 	else
 		flip_down()
-	if(user)
-		to_chat(usr, "You [active ? "flip [src] down to protect your eyes" : "push [src] up out of your face"].")
 
-	update_clothing_icon()
+	//I imagine some signals use it so letting it still call it
+	toggle_item_state(user)
 
-	update_action_button_icons()
+///Toggle the welding goggles on
+/obj/item/clothing/glasses/welding/proc/flip_up()
+	DISABLE_BITFIELD(inventory_flags, COVEREYES)
+	DISABLE_BITFIELD(inv_hide_flags, HIDEEYES)
+	DISABLE_BITFIELD(armor_protection_flags, EYES)
+	eye_protection = 0
+	update_icon()
+	to_chat(usr, "You push [src] up out of your face.")
 
-/obj/item/clothing/glasses/welding/flipped //spawn in flipped up.
-	active = FALSE
+///Toggle the welding goggles off
+/obj/item/clothing/glasses/welding/proc/flip_down()
+	ENABLE_BITFIELD(inventory_flags, COVEREYES)
+	ENABLE_BITFIELD(inv_hide_flags, HIDEEYES)
+	ENABLE_BITFIELD(armor_protection_flags, EYES)
+	eye_protection = initial(eye_protection)
+	update_icon()
+	to_chat(usr, "You flip [src] down to protect your eyes.")
+
+/obj/item/clothing/glasses/welding/update_icon_state()
+	icon_state = "[initial(icon_state)][!active ? "up" : ""]"
 
 /obj/item/clothing/glasses/welding/flipped/Initialize(mapload)	//spawn in flipped up.
 	. = ..()
