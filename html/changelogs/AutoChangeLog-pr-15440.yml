@@ -1,0 +1,5 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - balance: "Tank's LTB cannon no longer has devastation."
+  - balance: "Tank's integrity reduced from 1250 to 900 due to armor working again"

@@ -666,7 +666,7 @@
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/standard_gpmg,
-		/obj/item/ammo_magazine/tl102,
+		/obj/item/ammo_magazine/hsg_102,
 		/obj/item/ammo_magazine/standard_lmg,
 		/obj/item/ammo_magazine/standard_mmg,
 		/obj/item/ammo_magazine/heavymachinegun,

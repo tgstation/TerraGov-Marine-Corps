@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Campaign: Updated a few job slot limits for consistancy"
+  - bugfix: "fixed job slots not being closed correctly in some cases"

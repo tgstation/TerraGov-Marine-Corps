@@ -65,6 +65,11 @@
 		if(EXPLODE_WEAK)
 			take_damage(rand(5, 45), BRUTE, BOMB, 0)
 
+/obj/lava_act()
+	take_damage(25, BURN, FIRE)
+	if(QDELETED(src))
+		return
+	fire_act()
 
 /obj/hitby(atom/movable/AM, speed = 5)
 	. = ..()

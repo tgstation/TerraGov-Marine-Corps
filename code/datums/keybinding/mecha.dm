@@ -57,3 +57,9 @@
 	description = "Reload any equipped weapons"
 	keybind_signal = COMSIG_MECHABILITY_RELOAD
 	hotkey_keys = list("R")
+/datum/keybinding/mecha/mech_toggle_actuators
+	name = "mech_toggle_actuators"
+	full_name = "Mecha Toggle Actuators"
+	description = "Toggle leg actuator overload for your mecha"
+	keybind_signal = COMSIG_MECHABILITY_TOGGLE_ACTUATORS
+	hotkey_keys = list("X")

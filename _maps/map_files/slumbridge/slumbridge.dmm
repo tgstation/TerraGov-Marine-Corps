@@ -6718,7 +6718,7 @@
 /area/slumbridge/outside/southeast)
 "fiB" = (
 /obj/structure/coatrack,
-/obj/item/clothing/suit/security/formal/senior_officer/tan{
+/obj/item/clothing/suit/storage/security/formal/senior_officer/tan{
 	pixel_x = -1;
 	pixel_y = 4
 	},
@@ -12866,7 +12866,7 @@
 /area/slumbridge/inside/colony/bar)
 "jFz" = (
 /obj/structure/table,
-/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/suit/storage/chef/classic,
 /obj/effect/spawner/random/food_or_drink/kitchen,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
