@@ -1270,7 +1270,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 /datum/ammo/bullet/sniper/auto
-	name = "high caliber rifle bullet"
+	name = "low velocity high caliber rifle bullet"
 	hud_state = "sniper_auto"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER
 	damage = 50
@@ -2192,7 +2192,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "bigshell_he"
 
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
-	explosion(T, 1, 2, 5, 0, 3)
+	explosion(T, 0, 2, 5, 0, 3)
 
 /datum/ammo/rocket/mech
 	name = "large high-explosive rocket"

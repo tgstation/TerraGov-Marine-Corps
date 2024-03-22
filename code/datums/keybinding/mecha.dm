@@ -50,3 +50,10 @@
 	description = "Bombard an area with rockets"
 	keybind_signal = COMSIG_MECHABILITY_STRIKE
 	hotkey_keys = list("F")
+
+/datum/keybinding/mecha/mech_toggle_actuators
+	name = "mech_toggle_actuators"
+	full_name = "Mecha Toggle Actuators"
+	description = "Toggle leg actuator overload for your mecha"
+	keybind_signal = COMSIG_MECHABILITY_TOGGLE_ACTUATORS
+	hotkey_keys = list("X")

@@ -123,6 +123,9 @@
 	if(HAS_TRAIT(src, TRAIT_CASTE_SWAP))
 		GLOB.key_to_time_of_caste_swap[key] = world.time
 
+	if(xeno_flags & XENO_ZOOMED)
+		zoom_out()
+
 	SStgui.close_user_uis(src) //Force close all UIs upon evolution.
 	finish_evolve(new_mob_type)
 

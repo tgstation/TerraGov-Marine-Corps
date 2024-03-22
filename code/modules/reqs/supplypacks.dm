@@ -156,6 +156,11 @@ OPERATIONS
 	containertype = null
 	cost = 200
 
+/datum/supply_packs/operations/supply_tablet
+	name = "Supply Tablet"
+	contains = list(/obj/item/supplytablet)
+	cost = 50
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
@@ -1188,7 +1193,7 @@ CLOTHING
 
 /datum/supply_packs/clothing/night_vision_mounted
 	name = "BE-35 Night Vision Module"
-	contains = list(/obj/item/clothing/glasses/night_vision/mounted)
+	contains = list(/obj/item/armor_module/module/night_vision)
 	cost = 300
 
 /datum/supply_packs/clothing/night_vision_batteries

@@ -136,7 +136,7 @@
 	icon_state = "sensor"
 	mission_types = list(
 		/datum/campaign_mission/tdm,
-		/datum/campaign_mission/tdm/lv624,
+		/datum/campaign_mission/tdm/orion,
 		/datum/campaign_mission/tdm/first_mission,
 		/datum/campaign_mission/tdm/mech_wars,
 		/datum/campaign_mission/tdm/mech_wars/som,
