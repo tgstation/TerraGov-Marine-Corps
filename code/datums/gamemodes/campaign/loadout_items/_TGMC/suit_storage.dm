@@ -641,7 +641,7 @@
 	name = "Plasma SMG"
 	desc = "desc here"
 	ui_icon = "lasergun"
-	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/standard
+	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/motion_sensor
 	unlock_cost = 400
 	purchase_cost = 40
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
@@ -981,8 +981,8 @@
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
@@ -1094,7 +1094,7 @@
 	name = "Plasma rifle"
 	desc = "desc here"
 	ui_icon = "lasergun"
-	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle/standard
+	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle/v_grip
 	unlock_cost = 400
 	purchase_cost = 50
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
@@ -1514,7 +1514,7 @@
 	name = "Plasma SMG"
 	desc = "desc here"
 	ui_icon = "lasergun"
-	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/standard
+	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/motion_sensor
 	unlock_cost = 400
 	purchase_cost = 40
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
@@ -1556,8 +1556,8 @@
 	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
 
 	if(!istype(wearer.back, /obj/item/storage))
@@ -1773,7 +1773,7 @@
 	name = "Plasma SMG"
 	desc = "desc here"
 	ui_icon = "lasergun"
-	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/standard
+	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/motion_sensor
 	unlock_cost = 400
 	purchase_cost = 40
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
@@ -1812,8 +1812,8 @@
 	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
 
 	if(!istype(wearer.back, /obj/item/storage))

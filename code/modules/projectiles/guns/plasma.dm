@@ -75,6 +75,13 @@
 		/obj/item/attachable/bayonet,
 	)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle/v_grip
+	starting_attachment_types = list(
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/bayonet,
+	)
+
 /datum/lasrifle/base/plasma_rifle/rifle_standard
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_med.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/rifle_standard
@@ -234,6 +241,13 @@
 	)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/standard
+	starting_attachment_types = list(
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/bayonet,
+	)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/motion_sensor
 	starting_attachment_types = list(
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/motiondetector,
