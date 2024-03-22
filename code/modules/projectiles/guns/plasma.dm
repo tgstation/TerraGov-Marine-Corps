@@ -201,8 +201,6 @@
 	reload_sound = 'sound/weapons/guns/interact/plasma_reload_3.ogg'
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_fast.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/smg_standard/four
-	default_ammo_type = /obj/item/cell/lasgun/plasma
-	allowed_ammo_types = list(/obj/item/cell/lasgun/plasma)
 
 	wield_delay = 0.3 SECONDS
 	aim_slowdown = 0.25
