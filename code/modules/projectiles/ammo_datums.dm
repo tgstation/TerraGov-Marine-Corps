@@ -3317,7 +3317,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/mob/living/living_victim = M
 	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, 2 SECONDS)
 
-/datum/ammo/energy/plasma/blast //smg
+/datum/ammo/energy/plasma/blast
 	name = "plasma blast"
 	icon_state = "plasma_ball_small"
 	hud_state = "plasma_blast"
@@ -3343,7 +3343,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/plasma/blast/on_hit_mob(mob/M, obj/projectile/proj)
 	drop_nade(M.loc)
 
-/datum/ammo/energy/plasma/blast/melting //rifle
+/datum/ammo/energy/plasma/blast/melting
 	damage = 40
 	sundering = 3
 	damage_falloff = 0.5
@@ -3360,7 +3360,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		else
 			living_victim.apply_status_effect(STATUS_EFFECT_MELTING, melting_stacks)
 
-/datum/ammo/energy/plasma/blast/shatter //cannon
+/datum/ammo/energy/plasma/blast/shatter
 	damage = 40
 	sundering = 3
 	damage_falloff = 0.5
@@ -3372,7 +3372,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	for(var/mob/living/living_victim in viewers(3, T))
 		living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, 5 SECONDS)
 
-/datum/ammo/energy/plasma/blast/incendiary //also cannon
+/datum/ammo/energy/plasma/blast/incendiary
 	name = "plasma glob"
 	damage = 30
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_TARGET_TURF|AMMO_INCENDIARY
