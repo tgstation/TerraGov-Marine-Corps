@@ -3424,7 +3424,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/obj/vehicle/vehicle_target = O
 		if(ismecha(vehicle_target) || isarmoredvehicle(vehicle_target))
 			damage_mult = 4
-		if(get_dist_euclide(proj.starting_turf, vehicle_target) <= PLASMA_CANNON_STAGGERSTUN_RANGE) //staggerstun will fail on tank occupants if we just use staggerstun
+		if(get_dist_euclidean(proj.starting_turf, vehicle_target) <= PLASMA_CANNON_STAGGERSTUN_RANGE) //staggerstun will fail on tank occupants if we just use staggerstun
 			for(var/mob/living/living_victim AS in vehicle_target.occupants)
 				living_victim.Stagger(PLASMA_CANNON_STAGGER_DURATION)
 				to_chat(living_victim, "You are knocked about by the impact, staggering you!")
