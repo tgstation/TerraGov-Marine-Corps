@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - code_imp: "Jungle walls spawn weedable grass when hit with a devastating explosion"

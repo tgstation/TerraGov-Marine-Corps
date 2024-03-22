@@ -3,7 +3,7 @@
 */
 
 //Botonist
-/obj/item/clothing/suit/apron
+/obj/item/clothing/suit/storage/apron
 	name = "apron"
 	desc = "A basic blue apron."
 	icon_state = "apron"
@@ -85,7 +85,7 @@
 	inv_hide_flags = HIDESHOES|HIDEJUMPSUIT
 
 //Chef
-/obj/item/clothing/suit/chef
+/obj/item/clothing/suit/storage/chef
 	name = "Chef's apron"
 	desc = "An apron used by a high class chef."
 	icon_state = "chef"
@@ -96,7 +96,7 @@
 	allowed = list (/obj/item/tool/kitchen/knife,
 	/obj/item/tool/kitchen/knife/butcher)
 
-/obj/item/clothing/suit/chef/classic
+/obj/item/clothing/suit/storage/chef/classic
 	name = "A classic chef's apron."
 	desc = "A basic, dull, white chef's apron."
 	icon_state = "apronchef"
@@ -125,12 +125,12 @@
 /obj/item/clothing/suit/security/formal/officer/tan
 	icon_state = "wardentanjacket"
 
-/obj/item/clothing/suit/security/formal/senior_officer
+/obj/item/clothing/suit/storage/security/formal/senior_officer
 	name = "senior officer's jacket"
 	desc = "This piece of clothing was specifically designed for asserting superior authority."
 	icon_state = "hosbluejacket"
 
-/obj/item/clothing/suit/security/formal/senior_officer/tan
+/obj/item/clothing/suit/storage/security/formal/senior_officer/tan
 	icon_state = "hostanjacket"
 
 //Detective

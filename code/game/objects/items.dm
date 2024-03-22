@@ -184,7 +184,15 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	master = null
 	embedding = null
 	embedded_into = null //Should have been removed by temporarilyRemoveItemFromInventory, but let's play it safe.
-	GLOB.cryoed_item_list -= src
+	GLOB.cryoed_item_list_gun -= src
+	GLOB.cryoed_item_list_ammo -= src
+	GLOB.cryoed_item_list_explosive -= src
+	GLOB.cryoed_item_list_melee -= src
+	GLOB.cryoed_item_list_clothing -= src
+	GLOB.cryoed_item_list_food -= src
+	GLOB.cryoed_item_list_drugs -= src
+	GLOB.cryoed_item_list_containers -= src
+	GLOB.cryoed_item_list_other -= src
 	return ..()
 
 /obj/item/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)

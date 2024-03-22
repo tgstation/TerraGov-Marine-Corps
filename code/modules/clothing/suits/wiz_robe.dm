@@ -89,7 +89,7 @@
 	icon_state = "psyamp"
 	item_state = "psyamp"
 
-/obj/item/clothing/suit/wizrobe/gentlecoat
+/obj/item/clothing/suit/storage/wizrobe/gentlecoat
 	name = "Gentlemans Coat"
 	desc = "A heavy threaded twead gray jacket. For a different sort of Gentleman."
 	icon_state = "gentlecoat"

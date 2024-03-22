@@ -1,0 +1,5 @@
+author: "Xander3359"
+delete-after: True
+changes:
+  - bugfix: "Plasma cutter is no longer spammed by unreadable balloon alerts"
+  - code_imp: "adds isplasmacutter(I)"

@@ -1,5 +1,5 @@
 ///box for storage of ammo and gun
-/obj/item/storage/box/tl102
+/obj/item/storage/box/hsg_102
 	name = "\improper HSG-102 crate"
 	desc = "A large and rusted metal case. It has not seen much use. Written in faded letters on its top, it says, \"This is a HSG-102 heavy smartgun\". There are many other warning labels atop that are too faded to read."
 	icon = 'icons/Marine/marine-hmg.dmi'
@@ -7,17 +7,17 @@
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 7
 	bypass_w_limit = list(
-		/obj/item/weapon/gun/tl102,
-		/obj/item/ammo_magazine/tl102,
+		/obj/item/weapon/gun/hsg_102,
+		/obj/item/ammo_magazine/hsg_102,
 	)
 
-/obj/item/storage/box/tl102/Initialize(mapload)
+/obj/item/storage/box/hsg_102/Initialize(mapload)
 	. = ..()
-	new /obj/item/weapon/gun/tl102(src) //gun itself
-	new /obj/item/ammo_magazine/tl102(src) //ammo for the gun
+	new /obj/item/weapon/gun/hsg_102(src) //gun itself
+	new /obj/item/ammo_magazine/hsg_102(src) //ammo for the gun
 
 ///HSG-102, now with full auto. It is not a superclass of deployed guns, however there are a few varients.
-/obj/item/weapon/gun/tl102
+/obj/item/weapon/gun/hsg_102
 	name = "\improper HSG-102 mounted heavy smartgun"
 	desc = "The HSG-102 heavy machinegun, it's too heavy to be wielded or operated without the tripod. IFF capable. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
 
@@ -33,7 +33,7 @@
 	fire_sound = 'sound/weapons/guns/fire/hmg2.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
-	default_ammo_type = /obj/item/ammo_magazine/tl102
+	default_ammo_type = /obj/item/ammo_magazine/hsg_102
 
 	scatter = 10
 	deployed_scatter_change = -10
@@ -51,15 +51,15 @@
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
 
 	attachable_allowed = list(
-		/obj/item/attachable/scope/unremovable/tl102,
+		/obj/item/attachable/scope/unremovable/hsg_102,
 	)
 
 	starting_attachment_types = list(
-		/obj/item/attachable/scope/unremovable/tl102,
+		/obj/item/attachable/scope/unremovable/hsg_102,
 	)
 
 	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/tl102,
+		/obj/item/ammo_magazine/hsg_102,
 	)
 
 	deploy_time = 5 SECONDS
@@ -70,27 +70,27 @@
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
 
 ///Unmovable ship mounted version.
-/obj/item/weapon/gun/tl102/hsg_nest
+/obj/item/weapon/gun/hsg_102/hsg_nest
 	name = "\improper HSG-102 heavy smartgun nest"
 	desc = "A HSG-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.</span>"
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "entrenched"
 
-	default_ammo_type = /obj/item/ammo_magazine/tl102/hsg_nest
+	default_ammo_type = /obj/item/ammo_magazine/hsg_102/hsg_nest
 
-	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/hsg_102/nest)
 	starting_attachment_types = list(
-		/obj/item/attachable/scope/unremovable/tl102/nest,
+		/obj/item/attachable/scope/unremovable/hsg_102/nest,
 	)
 
 	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/tl102,
-		/obj/item/ammo_magazine/tl102/hsg_nest,
+		/obj/item/ammo_magazine/hsg_102,
+		/obj/item/ammo_magazine/hsg_102/hsg_nest,
 	)
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
-/obj/item/weapon/gun/tl102/hsg_nest/sandless
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless
 	icon_state = "entrenched_sandless"
 
 //-------------------------------------------------------
@@ -124,9 +124,9 @@
 	aim_time = 2 SECONDS
 	aim_fire_delay = 0.05 SECONDS
 
-	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/hsg_102)
 
-	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/hsg_102)
 
 	allowed_ammo_types = list(/obj/item/ammo_magazine/heavy_minigun)
 
@@ -146,9 +146,9 @@
 
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 
-	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/hsg_102/nest)
 
-	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/hsg_102/nest)
 
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
 
@@ -228,9 +228,9 @@
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
-	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/hsg_102/nest)
 
-	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/hsg_102/nest)
 
 	allowed_ammo_types = list(/obj/item/cell/lasgun/heavy_laser)
 
@@ -312,9 +312,9 @@
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 
-	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/hsg_102/nest)
 
-	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/hsg_102/nest)
 
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/heavy_isg/he,
@@ -336,7 +336,7 @@
 	pixel_y = -11
 
 ///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
-/obj/item/weapon/gun/tl102/death
+/obj/item/weapon/gun/hsg_102/death
 	name = "\improper \"Death incarnate\" heavy machine gun"
 	desc = "It looks like a regular HSG-102, however glowing archaeic writing glows faintly on its sides and top. It beckons for blood."
 	icon = 'icons/Marine/marine-hmg.dmi'
@@ -718,11 +718,11 @@
 	aim_speed_modifier = 5
 
 	attachable_allowed = list(
-		/obj/item/attachable/scope/unremovable/tl102,
+		/obj/item/attachable/scope/unremovable/hsg_102,
 	)
 
 	starting_attachment_types = list(
-		/obj/item/attachable/scope/unremovable/tl102,
+		/obj/item/attachable/scope/unremovable/hsg_102,
 	)
 
 	deploy_time = 1.5 SECONDS

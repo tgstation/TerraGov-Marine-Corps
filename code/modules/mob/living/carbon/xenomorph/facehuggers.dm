@@ -262,7 +262,7 @@
 
 	for(var/mob/living/carbon/M in view(4, src))
 		// Using euclidean distance means it will prioritize cardinal directions, which are less likely to miss due to wall jank.
-		if(chosen_target && (get_dist_euclidean(src, M) > get_dist_euclidean(src, chosen_target)))
+		if(chosen_target && (get_dist_manhattan(src, M) > get_dist_manhattan(src, chosen_target)))
 			continue
 
 		if(!M.can_be_facehugged(src))

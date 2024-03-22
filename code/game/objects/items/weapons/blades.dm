@@ -61,7 +61,7 @@
 	name = "Lunging strike"
 	action_icon_state = "sword_lunge"
 	desc = "A powerful leaping strike. Cannot stun."
-	ability_cost = 12
+	ability_cost = 8
 	cooldown_duration = 6 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_WEAPONABILITY_SWORDLUNGE,
@@ -71,7 +71,7 @@
 	var/mob/living/carbon/carbon_owner = owner
 
 	RegisterSignal(carbon_owner, COMSIG_MOVABLE_MOVED, PROC_REF(movement_fx))
-	RegisterSignal(carbon_owner, COMSIG_MOVABLE_IMPACT, PROC_REF(lunge_impact))
+	RegisterSignal(carbon_owner, COMSIG_MOVABLE_BUMP, PROC_REF(lunge_impact))
 	RegisterSignal(carbon_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 
 	carbon_owner.visible_message(span_danger("[carbon_owner] charges towards \the [A]!"))
@@ -88,7 +88,7 @@
 ///Unregisters signals after lunge complete
 /datum/action/ability/activable/weapon_skill/sword_lunge/proc/charge_complete()
 	SIGNAL_HANDLER
-	UnregisterSignal(owner, list(COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED))
+	UnregisterSignal(owner, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED))
 
 ///Sig handler for atom impacts during lunge
 /datum/action/ability/activable/weapon_skill/sword_lunge/proc/lunge_impact(datum/source, obj/target, speed)
@@ -101,8 +101,8 @@
 	var/mob/living/carbon/carbon_owner = source
 	if(!ishuman(target))
 		var/obj/obj_victim = target
-		obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, armour_penetration = penetration)
-		if(!obj_victim.anchored)
+		obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, TRUE, get_dir(obj_victim, carbon_owner), penetration, carbon_owner)
+		if(!obj_victim.anchored && obj_victim.move_resist < MOVE_FORCE_VERY_STRONG)
 			obj_victim.knockback(carbon_owner, 1, 2)
 	else
 		var/mob/living/carbon/human/human_victim = target

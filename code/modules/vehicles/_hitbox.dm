@@ -160,7 +160,7 @@
 		return TRUE
 
 /obj/hitbox/projectile_hit(obj/projectile/proj)
-	if(proj.firer == root)
+	if(proj.shot_from == root)
 		return FALSE
 	return root.projectile_hit(arglist(args))
 

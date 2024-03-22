@@ -45,7 +45,7 @@
 	max_rounds = 5
 
 /obj/item/ammo_magazine/tank/secondary_cupola
-	name = "M56 Cupola Magazine"
+	name = "HSG-102 Cupola Magazine"
 	desc = "A secondary armament MG magazine"
 	caliber = CALIBER_10X28
 	icon_state = "cupolaammo"

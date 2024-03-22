@@ -31,9 +31,10 @@
 	return ..()
 
 
-/obj/item/clothing/glasses/hud/activate(mob/user, silent = FALSE)
-	if(QDELETED(affected_user))
-		return
+/obj/item/clothing/glasses/hud/activate(mob/user)
+	//Run the activation stuff BEFORE getting to the HUD de/activations
+	. = ..()
+
 	if(!ishuman(user))
 		return
 
@@ -42,11 +43,9 @@
 		return
 
 	if(active)
-		deactivate_hud(hud_user)
-	else
 		activate_hud(hud_user)
-
-	return ..()
+	else
+		deactivate_hud(hud_user)
 
 ///Activates the hud(s) these glasses have
 /obj/item/clothing/glasses/hud/proc/activate_hud(mob/living/carbon/human/user)
@@ -236,6 +235,8 @@
 	hud_type = list(DATA_HUD_MEDICAL_OBSERVER, DATA_HUD_XENO_STATUS, DATA_HUD_SECURITY_ADVANCED, DATA_HUD_SQUAD_TERRAGOV, DATA_HUD_SQUAD_SOM, DATA_HUD_ORDER)
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	activation_sound = null
+	deactivation_sound = null
 
 /obj/item/clothing/glasses/hud/sa/Initialize(mapload)
 	. = ..()

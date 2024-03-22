@@ -422,6 +422,9 @@ directive is properly returned.
 /atom/proc/fire_act()
 	return
 
+///Effects of lava. Return true where we want the lava to keep processing
+/atom/proc/lava_act()
+	fire_act()
 
 /atom/proc/hitby(atom/movable/AM, speed = 5)
 	if(density)

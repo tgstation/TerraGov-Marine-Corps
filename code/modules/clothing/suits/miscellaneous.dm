@@ -90,7 +90,7 @@
 	armor_protection_flags = CHEST|GROIN
 
 
-/obj/item/clothing/suit/apron/overalls
+/obj/item/clothing/suit/storage/apron/overalls
 	name = "coveralls"
 	desc = "A set of denim overalls."
 	icon_state = "overalls"
@@ -328,7 +328,7 @@
 	desc = "Your classic, non-racist poncho. This one is red."
 	icon_state = "redponcho"
 
-/obj/item/clothing/suit/bomber
+/obj/item/clothing/suit/storage/bomber
 	name = "bomber jacket"
 	desc = "A well-worn WW2 leather bomber jacket."
 	icon_state = "bomber"
