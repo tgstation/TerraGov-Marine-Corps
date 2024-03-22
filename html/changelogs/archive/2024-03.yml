@@ -327,3 +327,18 @@
   Notamaniac:
   - bugfix: Spamming the Iguana remote will no longer cause massive chat spam when
       people speak to the Iguana
+2024-03-22:
+  Lumipharon:
+  - balance: Increased volkite charger deflag chance slightly
+  - balance: 'Campaign: Reduced the loadout cost of some volkite weapons'
+  - balance: 'Campaign: Melee special attacks use less stamina, and can be used at
+      0 stamina loss'
+  - balance: 'Campaign: Axe sweep steps towards you target before sweeping'
+  - bugfix: Fixed a few minor bugs with melee special attacks
+  - balance: Mech explosive armour modules increased bomb armour by 25 instead of
+      50
+  - qol: 'Campaign: fixed the timing of the autobalance prompt'
+  - balance: Very slight increase in time for ASAT and firesupport missions
+  Xander3359:
+  - code_imp: cleans species.dm
+  - qol: Roomba tries to restock elligible items
