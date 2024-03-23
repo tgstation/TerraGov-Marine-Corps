@@ -44,7 +44,7 @@
 #define COOLDOWN_ORBITAL_SPOTLIGHT "orbital_spotlight"
 #define COOLDOWN_GAS_BREATH "cooldown_gas_breath"
 #define COOLDOWN_SIGNALLER_SEND "cooldown_signaller_send"
-#define COOLDOWN_BIKE_FUEL_MESSAGE "cooldown_bikee_fuel_message"
+#define COOLDOWN_BIKE_FUEL_MESSAGE "cooldown_bike_fuel_message"
 #define COOLDOWN_WRAITH_PORTAL_TELEPORTED "cooldown_wraith_portal_teleported"
 #define COOLDOWN_ITEM_TRICK "cooldown_item_trick"
 #define COOLDOWN_RAVAGER_FLAMER_ACT "cooldown_ravager_flamer_act"
