@@ -30072,10 +30072,6 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship/black/full,
 /area/gelida/outdoors/colony_streets/central_streets)
-"tJg" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/prison/sterilewhite/full,
-/area/gelida/indoors/a_block/medical)
 "tJs" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
@@ -35509,6 +35505,10 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
+"xDw" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/plate,
+/area/gelida/indoors/a_block/hallway)
 "xDF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
@@ -70474,7 +70474,7 @@ pYZ
 fBW
 orh
 mhj
-tJg
+mxg
 vCT
 ojR
 ojR
@@ -72475,7 +72475,7 @@ orh
 nPI
 tcF
 wvV
-wsk
+xDw
 orh
 hPB
 rRB
