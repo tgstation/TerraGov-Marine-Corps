@@ -100,12 +100,14 @@
 	UnregisterSignal(fool, COMSIG_MOB_LOGOUT)
 	clear_image(trickery_image, fool.client)
 
-/datum/component/seethrough_mob/proc/toggle_active()
+/datum/component/seethrough_mob/proc/toggle_active(datum/action/ability)
 	is_active = !is_active
 	if(is_active)
 		trick_mob()
+		ability.set_toggle(TRUE)
 	else
 		untrick_mob()
+		ability.set_toggle(FALSE)
 
 /datum/action/ability/xeno_action/toggle_seethrough
 	name = "Toggle Seethrough"
@@ -113,11 +115,14 @@
 	action_icon = 'icons/Xeno/actions.dmi'
 	action_icon_state = "xenohide"
 	cooldown_duration = 1 SECONDS
+	use_state_flags = ABILITY_USE_LYING
+	action_type = ACTION_TOGGLE
 
 /datum/action/ability/xeno_action/toggle_seethrough/action_activate(atom/t)
 	. = ..()
 	var/datum/component/seethrough_mob/transparency = target
-	transparency.toggle_active()
+	transparency.toggle_active(src)
+	add_cooldown()
 
 /datum/action/ability/xeno_action/toggle_seethrough/Destroy()
 	var/datum/component/seethrough_mob/transparency = target
