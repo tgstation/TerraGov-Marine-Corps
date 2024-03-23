@@ -115,9 +115,6 @@
 	cooldown_duration = 1 SECONDS
 
 /datum/action/ability/xeno_action/toggle_seethrough/action_activate(atom/t)
-	if(!can_use_action(TRUE))
-		return fail_activate()
-
 	. = ..()
 	var/datum/component/seethrough_mob/transparency = target
 	transparency.toggle_active()
