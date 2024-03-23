@@ -289,6 +289,12 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/field_commander/carbine/enhanced, /datum/loadout_item/suit_store/main_gun/field_commander/carbine, FIELD_COMMANDER)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/field_commander/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/field_commander/standard_rifle, FIELD_COMMANDER)
 
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/marine/plasma_rifle, SQUAD_MARINE, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/corpsman/plasma_rifle, SQUAD_CORPSMAN, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/engineer/plasma_rifle, SQUAD_ENGINEER, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/squad_leader/plasma_rifle, SQUAD_LEADER, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/field_commander/plasma_rifle, FIELD_COMMANDER, owner, 0)
+
 	else if(owner_stats.faction == FACTION_SOM)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_marine/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/som_marine/standard_rifle, SOM_SQUAD_MARINE)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_medic/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/som_medic/standard_rifle, SOM_SQUAD_CORPSMAN)
@@ -297,7 +303,6 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/som_marine/volkite_charger, SOM_SQUAD_MARINE, owner, 0)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/som_medic/volkite_charger, SOM_SQUAD_CORPSMAN, owner, 0)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/som_engineer/volkite_charger, SOM_SQUAD_ENGINEER, owner, 0)
-
 
 /datum/perk/skill_mod/smgs
 	name = "Advanced SMG training"
@@ -318,6 +323,12 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/corpsman/standard_smg/enhanced, /datum/loadout_item/suit_store/main_gun/corpsman/standard_smg, SQUAD_CORPSMAN)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/engineer/standard_smg/enhanced, /datum/loadout_item/suit_store/main_gun/engineer/standard_smg, SQUAD_ENGINEER)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/squad_leader/standard_smg/enhanced, /datum/loadout_item/suit_store/main_gun/squad_leader/standard_smg, SQUAD_LEADER)
+
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/marine/plasma_smg, SQUAD_MARINE, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/corpsman/plasma_smg, SQUAD_CORPSMAN, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/engineer/plasma_smg, SQUAD_ENGINEER, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/squad_leader/plasma_smg, SQUAD_LEADER, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/field_commander/plasma_smg, FIELD_COMMANDER, owner, 0)
 	else if(owner_stats.faction == FACTION_SOM)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_marine/smg/enhanced, /datum/loadout_item/suit_store/main_gun/som_marine/smg, SOM_SQUAD_MARINE)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_marine/smg_and_shield/enhanced, /datum/loadout_item/suit_store/main_gun/som_marine/smg_and_shield, SOM_SQUAD_MARINE)
@@ -339,6 +350,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 		return
 	if(owner_stats.faction == FACTION_TERRAGOV)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/back/tgmc_heam_rocket_bag, SQUAD_MARINE, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/marine/plasma_cannon, SQUAD_MARINE, owner, 0)
 	else if(owner_stats.faction == FACTION_SOM)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/back/som_heat_rocket_bag, SOM_SQUAD_VETERAN, owner, 0)
 

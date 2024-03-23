@@ -156,6 +156,11 @@ OPERATIONS
 	containertype = null
 	cost = 200
 
+/datum/supply_packs/operations/supply_tablet
+	name = "Supply Tablet"
+	contains = list(/obj/item/supplytablet)
+	cost = 50
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
@@ -343,15 +348,29 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla)
 	cost = 600
 
+/datum/supply_packs/weapons/plasma_cells
+	name = "WML plasma energy cell (x3)"
+	contains = list(
+		/obj/item/cell/lasgun/plasma,
+		/obj/item/cell/lasgun/plasma,
+		/obj/item/cell/lasgun/plasma,
+	)
+	cost = 100
+
+/datum/supply_packs/weapons/plasma_smg
+	name = "PL-51 Plasma SMG"
+	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg)
+	cost = 250
+
 /datum/supply_packs/weapons/plasma_rifle
 	name = "PL-38 Plasma Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle)
-	cost = 250
+	cost = 300
 
 /datum/supply_packs/weapons/plasma_cannon
 	name = "PL-96 Plasma Cannon"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon)
-	cost = 250
+	cost = 400
 
 /datum/supply_packs/weapons/tx54
 	name = "GL-54 airburst grenade launcher"
@@ -1188,7 +1207,7 @@ CLOTHING
 
 /datum/supply_packs/clothing/night_vision_mounted
 	name = "BE-35 Night Vision Module"
-	contains = list(/obj/item/clothing/glasses/night_vision/mounted)
+	contains = list(/obj/item/armor_module/module/night_vision)
 	cost = 300
 
 /datum/supply_packs/clothing/night_vision_batteries

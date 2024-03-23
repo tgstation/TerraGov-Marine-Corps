@@ -17,7 +17,7 @@
 		/datum/job/som/squad/standard = -1,
 		/datum/job/som/squad/medic = 8,
 		/datum/job/som/squad/engineer = 4,
-		/datum/job/som/squad/veteran = 2,
+		/datum/job/som/squad/veteran = 4,
 		/datum/job/som/squad/leader = 4,
 		/datum/job/som/command/fieldcommander = 1,
 		/datum/job/som/command/staffofficer = 2,

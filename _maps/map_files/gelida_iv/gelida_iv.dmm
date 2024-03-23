@@ -20043,7 +20043,7 @@
 /area/gelida/indoors/a_block/executive)
 "nkE" = (
 /obj/structure/table/mainship,
-/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/suit/storage/chef/classic,
 /turf/open/floor/prison/kitchen,
 /area/gelida/indoors/a_block/kitchen)
 "nkH" = (
