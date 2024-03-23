@@ -225,6 +225,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define iscrowbar(I) (istype(I, /obj/item/tool/crowbar))
 
+#define isplasmacutter(I) istype(I, /obj/item/tool/pickaxe/plasmacutter)
+
 #define iscell(I) (istype(I, /obj/item/cell))
 
 #define isfactorypart(I) (istype(I, /obj/item/factory_part))

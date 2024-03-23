@@ -392,7 +392,7 @@
 	icon_state = "acid_smoke_mortar"
 	initiate_chat_message = "COORDINATES CONFIRMED. MORTAR BARRAGE INCOMING."
 	initiate_screen_message = "Coordinates confirmed, acid smoke inbound!"
-	smoketype = /datum/effect_system/smoke_spread/xeno/acid
+	smoketype = /datum/effect_system/smoke_spread/xeno/acid/opaque
 	smokeradius = 5
 
 /datum/fire_support/mortar/smoke/satrapine

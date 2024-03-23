@@ -9029,7 +9029,7 @@
 /area/icy_caves/caves/northwestmonorail)
 "US" = (
 /obj/structure/table,
-/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/suit/storage/chef/classic,
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "UT" = (

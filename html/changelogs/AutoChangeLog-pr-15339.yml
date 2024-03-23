@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Campaign: reduced mission time for ASAT and both fire support missions"
-  - balance: "Campaign: Increased number of objectives required for minor victory for fire support missions"
-  - balance: "Campaign: Killing mechs in mech war awards a small number of capture points"
