@@ -528,11 +528,11 @@
 /area/campaign/jungle_outpost/outpost/living/hydro)
 "ZD" = (
 /obj/structure/table,
-/obj/item/clothing/suit/apron,
 /obj/item/clothing/gloves/botanic_leather,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/clothing/suit/storage/apron,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
 

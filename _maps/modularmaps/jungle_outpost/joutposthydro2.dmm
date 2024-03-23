@@ -50,6 +50,7 @@
 "ip" = (
 /obj/item/clothing/gloves/botanic_leather,
 /obj/structure/table,
+/obj/item/clothing/suit/storage/apron,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
 "iS" = (
@@ -94,7 +95,6 @@
 /area/campaign/jungle_outpost/outpost/living/hydro)
 "lO" = (
 /obj/structure/table,
-/obj/item/clothing/suit/apron,
 /obj/item/clothing/gloves/botanic_leather,
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/tile/hydro,
