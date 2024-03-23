@@ -364,17 +364,17 @@
 		GLOB.cryoed_item_list_gun += src
 	else if(istype(src, /obj/item/ammo_magazine))
 		GLOB.cryoed_item_list_ammo += src
-	else if(istype(src, /obj/item/explosive/))
+	else if(istype(src, /obj/item/explosive))
 		GLOB.cryoed_item_list_explosive += src
-	else if(istype(src, /obj/item/weapon/))
+	else if(istype(src, /obj/item/weapon))
 		GLOB.cryoed_item_list_melee += src
-	else if(istype(src, /obj/item/clothing/))
+	else if(istype(src, /obj/item/clothing))
 		GLOB.cryoed_item_list_clothing += src
-	else if(istype(src, /obj/item/reagant_containers/food/))
+	else if(isfood(src))
 		GLOB.cryoed_item_list_food += src
-	else if(istype(src, /obj/item/reagent_containers/hypospray/) || istype(src, /obj/item/reagent_containers/syringe) || istype(src, /obj/item/reagent_containers/pill))
+	else if(istype(src, /obj/item/reagent_containers/hypospray) || istype(src, /obj/item/reagent_containers/syringe) || istype(src, /obj/item/reagent_containers/pill))
 		GLOB.cryoed_item_list_drugs += src
-	else if(istype(src, /obj/item/storage/))
+	else if(istype(src, /obj/item/storage))
 		GLOB.cryoed_item_list_containers += src
 	else
 		GLOB.cryoed_item_list_other += src
