@@ -32,7 +32,7 @@
 	dat +="<table style='text-align:justify'><tr>"
 	dat += "<tr></table>"
 	dat += "<center><a href='byond://?src=[text_ref(src)];allitems=TRUE'>Dispense All</a></center><br/>"
-	dat += "<a href='?src=[text_ref(src)];operation=guns'>Guns</a><br>"
+	dat += "<a href='?src=[text_ref(src)];operation=gun'>Guns</a><br>"
 	dat += "<a href='?src=[text_ref(src)];operation=ammo'>Ammo</a><br>"
 	dat += "<a href='?src=[text_ref(src)];operation=explosive'>Explosives</a><br>"
 	dat += "<a href='?src=[text_ref(src)];operation=melee'>Melee</a><br>"
@@ -120,7 +120,7 @@
 		return
 
 	switch(href_list["operation"])
-		if("guns")
+		if("gun")
 			state = STATE_GUN
 		if("ammo")
 			state = STATE_AMMO
@@ -132,7 +132,7 @@
 			state = STATE_CLOTHING
 		if("food")
 			state = STATE_FOOD
-		if("drugs")
+		if("drug")
 			state = STATE_DRUGS
 		if("container")
 			state = STATE_CONTAINERS
