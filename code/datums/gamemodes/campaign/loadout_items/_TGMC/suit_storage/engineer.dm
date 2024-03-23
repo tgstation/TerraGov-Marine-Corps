@@ -91,3 +91,23 @@
 	Like all smgs, it has excellent mobility and handling, but has poor damage application at longer ranges. Uses a mix of standard and AP 10x20mm caseless ammunition."
 	loadout_item_flags = NONE
 	secondary_ammo_type = /obj/item/ammo_magazine/smg/m25/ap
+
+/datum/loadout_item/suit_store/main_gun/engineer/plasma_smg
+	name = "PL-51"
+	desc = "Unlocked for free with the Advanced SMG training perk. Equipped with a red dot sight, bayonet and vertical grip. The PL-51 plasma SMG is a powerful close range weapon, with great mobility and handling. \
+	Has two firemodes, with a standard reflecting shot, or a more powerful AOE overcharged shot. Like all plasma weapons, it can rapidly build up heat and overheat, rendering it inoperable for a period if used incorrectly."
+	ui_icon = "lasergun"
+	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/standard
+	unlock_cost = 400
+	purchase_cost = 40
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
+
+/datum/loadout_item/suit_store/main_gun/engineer/plasma_rifle
+	name = "PL-38"
+	desc = "Unlocked for free with the Advanced rifle training perk. Equipped with a red dot sight, bayonet and vertical grip. The PL-38 plasma rifle is a powerful heavy rifle, able to unleash significant damage at any range. \
+	Has three firemodes, with a standard high ROF mode, a piercing shatter shot, or a melting blast mode. Like all plasma weapons, it can rapidly build up heat and overheat, rendering it inoperable for a period if used incorrectly."
+	ui_icon = "lasergun"
+	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle/v_grip
+	unlock_cost = 400
+	purchase_cost = 50
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
