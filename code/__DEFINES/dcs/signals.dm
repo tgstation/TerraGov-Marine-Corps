@@ -756,6 +756,7 @@
 #define COMSIG_MECHABILITY_TOGGLE_ZOOM "mechability_toggle_zoom"
 #define COMSIG_MECHABILITY_SKYFALL "mechability_skyfall"
 #define COMSIG_MECHABILITY_STRIKE "mechability_strike"
+#define COMSIG_MECHABILITY_RELOAD "mechability_reload"
 #define COMSIG_MECHABILITY_TOGGLE_ACTUATORS "mechability_toggle_actuators"
 
 #define COMSIG_ACTION_EXCLUSIVE_TOGGLE "action_exclusive_toggle"
