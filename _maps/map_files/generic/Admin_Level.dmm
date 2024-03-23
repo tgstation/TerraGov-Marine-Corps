@@ -2536,6 +2536,13 @@
 	dir = 5
 	},
 /area/tdome/tdomeobserve)
+"drL" = (
+/obj/structure/window/reinforced/extratoughened{
+	dir = 1
+	},
+/obj/machinery/chem_master/nopower/valhalla,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla)
 "drS" = (
 /turf/open/floor/plating/dmg1,
 /area/centcom/valhalla)
@@ -2560,13 +2567,6 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/white,
-/area/centcom/valhalla)
-"duo" = (
-/obj/structure/window/reinforced/extratoughened{
-	dir = 1
-	},
-/obj/machinery/chem_master/nopower/valhalla,
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "dur" = (
 /obj/effect/turf_decal/warning_stripes/thick,
@@ -2791,19 +2791,14 @@
 	},
 /area/centcom/valhalla)
 "dHM" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
+/obj/item/toy/prize/mauler{
+	pixel_y = 16
 	},
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = 1;
-	pixel_y = 15
+/obj/item/toy/prize/seraph{
+	pixel_x = 6;
+	pixel_y = 10
 	},
 /obj/structure/table/fancywoodentable,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = 9;
-	pixel_y = 15
-	},
-/obj/item/storage/fancy/cigar,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "dIg" = (
@@ -3197,12 +3192,6 @@
 /obj/effect/turf_decal/warning_stripes,
 /obj/structure/prop/mainship/suit_storage_prop,
 /turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"ebZ" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/suit/apron,
-/obj/item/tool/kitchen/rollingpin,
-/turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla)
 "ecW" = (
 /obj/machinery/door_control/unmeltable{
@@ -5322,6 +5311,13 @@
 "hrC" = (
 /turf/open/floor/wood/broken,
 /area/centcom/valhalla)
+"htj" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/sign/nosmoking_1,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla)
 "htq" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/yellow,
@@ -5693,6 +5689,22 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla)
+"hWD" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/suit/wizrobe/red,
+/obj/item/clothing/suit/wizrobe/psypurple,
+/obj/item/clothing/suit/wizrobe/magusred,
+/obj/item/clothing/suit/storage/wizrobe/gentlecoat,
+/obj/item/clothing/suit/wizrobe,
+/obj/item/clothing/head/wizard/amp,
+/obj/item/clothing/head/wizard/cap,
+/obj/item/clothing/head/wizard/magus,
+/obj/item/clothing/head/wizard/marisa,
+/obj/item/clothing/head/wizard/red,
+/turf/open/floor/tile/vault{
+	dir = 5
+	},
 /area/centcom/valhalla)
 "hXf" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -8827,11 +8839,23 @@
 /turf/closed/wall,
 /area/centcom/valhalla)
 "mPJ" = (
-/obj/machinery/marine_selector/clothes/leader/valhalla,
+/obj/structure/table/fancywoodentable,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 1;
+	pixel_y = 15
+	},
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 9;
+	pixel_y = 15
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/storage/fancy/cigar,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "mPT" = (
-/obj/machinery/marine_selector/gear/leader/valhalla,
+/obj/machinery/marine_selector/clothes/leader/valhalla,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "mQe" = (
@@ -10913,6 +10937,12 @@
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
+/area/centcom/valhalla)
+"qgs" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/suit/storage/apron,
+/obj/item/tool/kitchen/rollingpin,
+/turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla)
 "qha" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
@@ -14027,6 +14057,10 @@
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
+"uUY" = (
+/obj/machinery/marine_selector/gear/leader/valhalla,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla)
 "uUZ" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -14859,22 +14893,6 @@
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lamp,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"vXr" = (
-/obj/structure/closet/cabinet,
-/obj/item/clothing/suit/wizrobe/red,
-/obj/item/clothing/suit/wizrobe/psypurple,
-/obj/item/clothing/suit/wizrobe/magusred,
-/obj/item/clothing/suit/wizrobe/gentlecoat,
-/obj/item/clothing/suit/wizrobe,
-/obj/item/clothing/head/wizard/amp,
-/obj/item/clothing/head/wizard/cap,
-/obj/item/clothing/head/wizard/magus,
-/obj/item/clothing/head/wizard/marisa,
-/obj/item/clothing/head/wizard/red,
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
 /area/centcom/valhalla)
 "vXO" = (
 /obj/machinery/door/firedoor,
@@ -16105,6 +16123,13 @@
 /obj/structure/grille/smoothing,
 /turf/open/space,
 /area/space)
+"xHy" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/marine_selector/clothes/commander/valhalla,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla)
 "xIx" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -20348,7 +20373,7 @@ xOF
 foh
 fvw
 pqM
-duo
+drL
 uOI
 ble
 etk
@@ -22417,10 +22442,10 @@ nXQ
 jcx
 wqU
 jtL
-box
-bSp
-bSp
-box
+knm
+mPJ
+lYp
+xHy
 box
 ojb
 pfu
@@ -22556,9 +22581,9 @@ fPm
 ivs
 luM
 knm
-mPJ
-hDW
-oJr
+bSp
+bSp
+box
 box
 ojb
 pfu
@@ -22694,9 +22719,9 @@ yeN
 wqU
 luM
 knm
-ivs
+mPT
 hDW
-mPJ
+oJr
 box
 omN
 pgz
@@ -22832,7 +22857,7 @@ jcx
 kqf
 aoa
 frZ
-hDW
+ivs
 hDW
 mPT
 box
@@ -22968,11 +22993,11 @@ tFi
 aWz
 jcx
 wqU
-luM
+htj
 box
-box
-elF
-box
+hDW
+hDW
+uUY
 box
 bka
 bka
@@ -27125,7 +27150,7 @@ qQt
 vps
 bcm
 uze
-vXr
+hWD
 ckN
 fvd
 hhc
@@ -28645,7 +28670,7 @@ xkj
 uRy
 mGe
 ycL
-ebZ
+qgs
 oIG
 lYl
 cfQ

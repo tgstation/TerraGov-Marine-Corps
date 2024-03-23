@@ -785,16 +785,16 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scope_delay = 2 SECONDS
 	zoom_tile_offset = 7
 
-/obj/item/attachable/scope/unremovable/tl102
+/obj/item/attachable/scope/unremovable/hsg_102
 	name = "HSG-102 smart sight"
-	desc = "An unremovable smart sight built for use with the tl102, it does nearly all the aiming work for the gun's integrated IFF systems."
+	desc = "An unremovable smart sight built for use with the HSG-102, it does nearly all the aiming work for the gun's integrated IFF systems."
 	icon_state = "sniperscope_invisible"
 	zoom_viewsize = 0
 	zoom_tile_offset = 5
 	deployed_scope_rezoom = TRUE
 
 //all mounted guns with a nest use this
-/obj/item/attachable/scope/unremovable/tl102/nest
+/obj/item/attachable/scope/unremovable/hsg_102/nest
 	scope_delay = 2 SECONDS
 	zoom_tile_offset = 7
 	zoom_viewsize = 2

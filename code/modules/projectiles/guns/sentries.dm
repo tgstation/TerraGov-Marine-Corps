@@ -71,9 +71,9 @@
 
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 
-	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/hsg_102)
 	starting_attachment_types = list(
-		/obj/item/attachable/scope/unremovable/tl102,
+		/obj/item/attachable/scope/unremovable/hsg_102,
 	)
 
 /obj/item/weapon/gun/sentry/pod_sentry

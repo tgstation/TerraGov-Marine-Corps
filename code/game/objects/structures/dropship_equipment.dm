@@ -523,10 +523,10 @@
 
 /obj/structure/dropship_equipment/shuttle/weapon_holder/machinegun
 	name = "machinegun deployment system"
-	desc = "A box that deploys a modified M56D crewserved machine gun. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
+	desc = "A box that deploys a modified HSG-102 crewserved machine gun. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
 	icon_state = "mg_system"
 	point_cost = 300
-	deployable_type = /obj/item/weapon/gun/tl102/hsg_nest
+	deployable_type = /obj/item/weapon/gun/hsg_102/hsg_nest
 
 /obj/structure/dropship_equipment/shuttle/weapon_holder/minigun
 	name = "minigun deployment system"

@@ -228,8 +228,9 @@ GLOBAL_PROTECT(exp_specialmap)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
 		if(!(scaled_job in SSjob.active_joinable_occupations))
 			continue
-		scaled_job.add_job_points(-jobworth[index])
+		scaled_job.remove_job_points(jobworth[index])
 
+///Adds to job points, adding a new slot if threshold reached
 /datum/job/proc/add_job_points(amount)
 	job_points += amount
 	if(total_positions >= max_positions)
@@ -237,6 +238,17 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(job_points >= job_points_needed )
 		job_points -= job_points_needed
 		add_job_positions(1)
+
+///Removes job points, and if needed, job positions
+/datum/job/proc/remove_job_points(amount)
+	if(job_points_needed == INFINITY || total_positions == -1)
+		return
+	if(job_points >= amount)
+		job_points -= amount
+		return
+	var/job_slots_removed = ROUND_UP((amount - job_points) / job_points_needed)
+	remove_job_positions(job_slots_removed)
+	job_points += (job_slots_removed * job_points_needed) - amount
 
 /datum/job/proc/add_job_positions(amount)
 	if(!(job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))

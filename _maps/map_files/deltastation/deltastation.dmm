@@ -26066,7 +26066,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
 /obj/item/trash/tray,
-/obj/item/clothing/suit/apron,
+/obj/item/clothing/suit/storage/apron,
 /obj/item/clothing/head/chefhat,
 /obj/machinery/door/poddoor/shutters/opened{
 	dir = 8;
@@ -27281,7 +27281,7 @@
 "fyj" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/clothing/suit/apron,
+/obj/item/clothing/suit/storage/apron,
 /obj/item/clothing/head/chefhat,
 /obj/item/reagent_containers/food/snacks/flour,
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -29209,7 +29209,7 @@
 /area/deltastation/maintenance/department/crew_quarters/bar)
 "fRP" = (
 /obj/structure/table,
-/obj/item/clothing/suit/apron,
+/obj/item/clothing/suit/storage/apron,
 /obj/item/clothing/under/color/white,
 /obj/item/clothing/head/soft/mime,
 /obj/item/clothing/mask/surgical,
@@ -31507,7 +31507,7 @@
 /area/deltastation/service/chapel/storage)
 "gpz" = (
 /obj/item/radio/intercom,
-/obj/item/clothing/suit/bomber,
+/obj/item/clothing/suit/storage/bomber,
 /obj/effect/spawner/random/misc/structure/securecloset,
 /turf/open/floor/wood,
 /area/deltastation/commons/dorms)
@@ -41594,7 +41594,7 @@
 	},
 /obj/structure/rack,
 /obj/effect/turf_decal/bot_red,
-/obj/item/clothing/suit/apron{
+/obj/item/clothing/suit/storage/apron{
 	desc = "A white smock used by barbers to remain hair free.";
 	name = "barber smock"
 	},

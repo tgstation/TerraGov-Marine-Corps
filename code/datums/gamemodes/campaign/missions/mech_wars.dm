@@ -9,7 +9,7 @@
 	map_light_levels = list(225, 150, 100, 75)
 	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
 	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
-	mission_start_delay = 5 MINUTES //since there is actual mech prep time required
+	mission_start_delay = 3 MINUTES //since there is actual mech prep time required
 	starting_faction_additional_rewards = "Mechanised units will be allocated to your battalion for use in future missions."
 	hostile_faction_additional_rewards = "Mechanised units will be allocated to your battalion for use in future missions."
 

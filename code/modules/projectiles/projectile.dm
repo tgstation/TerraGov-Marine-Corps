@@ -176,7 +176,7 @@
 	armor_type = ammo.armor_type
 
 //Target, firer, shot from. Ie the gun
-/obj/projectile/proc/fire_at(atom/target, mob/living/shooter, atom/source, range, speed, angle, recursivity, suppress_light = FALSE, atom/loc_override = source)
+/obj/projectile/proc/fire_at(atom/target, mob/living/shooter, atom/source, range, speed, angle, recursivity, suppress_light = FALSE, atom/loc_override = source, scan_loc = FALSE)
 	if(!isnull(speed))
 		projectile_speed = speed
 
@@ -303,14 +303,20 @@
 	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
 		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle, target)
 
+	if(source.Adjacent(target) && PROJECTILE_HIT_CHECK(target, src, null, FALSE, null))
+		target.do_projectile_hit(src)
+		if((!ismob(target) || !(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOB)) && !(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
+			qdel(src)
+			return
+		hit_atoms += target
+
 	if(original_target_turf == loc) //Shooting from and towards the same tile. Why not?
 		distance_travelled++
 		scan_a_turf(loc)
 		qdel(src)
 		return
 
-	if(source.Adjacent(target) && PROJECTILE_HIT_CHECK(target, src, null, FALSE, null)) //todo: doesn't take into account piercing projectiles
-		target.do_projectile_hit(src)
+	if(scan_loc && scan_a_turf(loc))
 		qdel(src)
 		return
 
@@ -645,8 +651,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /atom/proc/do_projectile_hit(obj/projectile/proj)
 	return
 
-
 /obj/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(proj.shot_from == src)
+		return FALSE
 	if(!density && !(obj_flags & PROJ_IGNORE_DENSITY)) //structure is passable
 		return FALSE
 	if(src == proj.original_target) //clicking on the structure itself hits the structure
@@ -941,7 +948,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(effect_icon)
 		src.effect_icon = effect_icon
 
-/obj/projectile/hitscan/fire_at(atom/target, mob/living/shooter, atom/source, range, speed, angle, recursivity, suppress_light, atom/loc_override = source)
+/obj/projectile/hitscan/fire_at(atom/target, mob/living/shooter, atom/source, range, speed, angle, recursivity, suppress_light, atom/loc_override = source, scan_loc = FALSE)
 	if(!isnull(range))
 		proj_max_range = range
 	if(shooter)
@@ -971,14 +978,20 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(ammo.bonus_projectiles_amount)
 			ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle, target)
 
+	if(source.Adjacent(target) && PROJECTILE_HIT_CHECK(target, src, null, FALSE, null))
+		target.do_projectile_hit(src)
+		if((!ismob(target) || !(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOB)) && !(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
+			qdel(src)
+			return
+		hit_atoms += target
+
 	if(original_target_turf == loc) //Shooting from and towards the same tile. Why not?
 		distance_travelled++
 		scan_a_turf(loc)
 		qdel(src)
 		return
 
-	if(source.Adjacent(target) && PROJECTILE_HIT_CHECK(target, src, null, FALSE, null)) //todo: doesn't take into account piercing projectiles
-		target.do_projectile_hit(src)
+	if(scan_loc && scan_a_turf(loc))
 		qdel(src)
 		return
 
@@ -1356,7 +1369,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			else
 				current_angle += angle_between_bullets
 
-			proj.fire_at(source.loc, firer, source, range, speed, current_angle)
+			proj.fire_at(null, firer, source, range, speed, current_angle, scan_loc = TRUE)
 		if(fire_sound)
 			playsound(source, fire_sound, 60, TRUE)
 		return
@@ -1369,7 +1382,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		else
 			current_angle += angle_between_bullets
 
-		proj.fire_at(source.loc, firer, source, range, speed, current_angle)
+		proj.fire_at(null, firer, source, range, speed, current_angle, scan_loc = TRUE)
 		if(play_sound % 3 && fire_sound)
 			playsound(source, fire_sound, 60, FALSE)
 		stoplag(1)

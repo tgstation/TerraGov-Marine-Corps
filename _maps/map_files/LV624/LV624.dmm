@@ -7847,7 +7847,7 @@
 /area/lv624/ground/river1)
 "gxL" = (
 /obj/structure/table,
-/obj/item/clothing/suit/apron,
+/obj/item/clothing/suit/storage/apron,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
 	},
@@ -12728,7 +12728,7 @@
 /area/lv624/lazarus/engineering)
 "lmd" = (
 /obj/structure/table,
-/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/suit/storage/chef/classic,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "lmI" = (
@@ -18583,7 +18583,7 @@
 /area/lv624/ground/jungle9)
 "ruj" = (
 /obj/structure/table,
-/obj/item/clothing/suit/apron/overalls,
+/obj/item/clothing/suit/storage/apron/overalls,
 /obj/item/clothing/under/colonist,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
@@ -18784,7 +18784,7 @@
 	dir = 1
 	},
 /obj/structure/table,
-/obj/item/clothing/suit/apron,
+/obj/item/clothing/suit/storage/apron,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
 	},
@@ -19881,7 +19881,7 @@
 "sDZ" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/botanic_leather,
-/obj/item/clothing/suit/apron,
+/obj/item/clothing/suit/storage/apron,
 /obj/item/clothing/under/colonist,
 /turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/hydroponics/aux)
