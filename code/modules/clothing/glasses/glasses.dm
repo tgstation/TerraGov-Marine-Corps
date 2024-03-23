@@ -51,21 +51,24 @@
 /obj/item/clothing/glasses/ui_action_click(mob/user, datum/action/item_action/action)
 	//In case someone in the future adds a non-toggle action to a child type
 	if(istype(action, /datum/action/item_action/toggle))
-		var/datum/action/item_action/toggle/toggle = action
-		toggle.toggled = !activate(user)
-		return
+		activate(user)
+		//Always return TRUE for toggles so that the UI button icon updates
+		return TRUE
 
-	activate(user)
+	return activate(user)
 
 ///Toggle the functions of the glasses
-/obj/item/clothing/glasses/proc/activate(mob/user, silent = FALSE)
-	if(!silent)
-		playsound(get_turf(src), active ? deactivation_sound : activation_sound, 15)
-
+/obj/item/clothing/glasses/proc/activate(mob/user)
 	active = !active
+
+	if(active && activation_sound)
+		playsound(get_turf(src), activation_sound, 15)
+	else if(!active && deactivation_sound)
+		playsound(get_turf(src), deactivation_sound, 15)
+
+	update_icon()	//Found out the hard way this has to be before update_inv_glasses()
 	user?.update_inv_glasses()
 	user?.update_sight()
-	update_icon_state()
 
 	return active	//For the UI button update
 
@@ -232,24 +235,12 @@
 	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEEYES
 	eye_protection = 2
+	activation_sound = null
+	deactivation_sound = null
 
 /obj/item/clothing/glasses/welding/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_5, TRUE)
-
-/obj/item/clothing/glasses/welding/proc/flip_up()
-	DISABLE_BITFIELD(flags_inventory, COVEREYES)
-	DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
-	DISABLE_BITFIELD(flags_armor_protection, EYES)
-	eye_protection = 0
-	icon_state = "[initial(icon_state)]up"
-
-/obj/item/clothing/glasses/welding/proc/flip_down()
-	ENABLE_BITFIELD(flags_inventory, COVEREYES)
-	ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
-	ENABLE_BITFIELD(flags_armor_protection, EYES)
-	eye_protection = initial(eye_protection)
-	icon_state = initial(icon_state)
 
 /obj/item/clothing/glasses/welding/verb/verbtoggle()
 	set category = "Object"
@@ -257,32 +248,42 @@
 	set src in usr
 
 	if(!usr.incapacitated())
-		toggle_item_state(usr)
+		activate(usr)
 
-/obj/item/clothing/glasses/welding/attack_self(mob/user)
-	toggle_item_state(user)
-
-/obj/item/clothing/glasses/welding/toggle_item_state(mob/user)
+/obj/item/clothing/glasses/welding/activate(mob/user)
 	. = ..()
-	active = !active
-	icon_state = "[initial(icon_state)][!active ? "up" : ""]"
-	if(!active)
+	if(active)
 		flip_up()
 	else
 		flip_down()
-	if(user)
-		to_chat(usr, "You [active ? "flip [src] down to protect your eyes" : "push [src] up out of your face"].")
 
-	update_clothing_icon()
+	//I imagine some signals use it so letting it still call it
+	toggle_item_state(user)
 
-	update_action_button_icons()
+///Toggle the welding goggles on
+/obj/item/clothing/glasses/welding/proc/flip_up()
+	DISABLE_BITFIELD(flags_inventory, COVEREYES)
+	DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
+	DISABLE_BITFIELD(flags_armor_protection, EYES)
+	eye_protection = 0
+	update_icon()
+	to_chat(usr, "You push [src] up out of your face.")
 
-/obj/item/clothing/glasses/welding/flipped //spawn in flipped up.
-	active = FALSE
+///Toggle the welding goggles off
+/obj/item/clothing/glasses/welding/proc/flip_down()
+	ENABLE_BITFIELD(flags_inventory, COVEREYES)
+	ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
+	ENABLE_BITFIELD(flags_armor_protection, EYES)
+	eye_protection = initial(eye_protection)
+	update_icon()
+	to_chat(usr, "You flip [src] down to protect your eyes.")
 
-/obj/item/clothing/glasses/welding/flipped/Initialize(mapload)
+/obj/item/clothing/glasses/welding/update_icon_state()
+	icon_state = "[initial(icon_state)][!active ? "up" : ""]"
+
+/obj/item/clothing/glasses/welding/flipped/Initialize(mapload)	//spawn in flipped up.
 	. = ..()
-	flip_up()
+	activate()
 	AddComponent(/datum/component/clothing_tint, TINT_5, FALSE)
 
 /obj/item/clothing/glasses/welding/superior
@@ -444,7 +445,7 @@
 	///Looping sound to play
 	var/datum/looping_sound/active_sound = /datum/looping_sound/scan_pulse
 	///How loud the looping sound should be
-	var/looping_sound_volume = 15
+	var/looping_sound_volume = 25
 
 /obj/item/clothing/glasses/night_vision/Initialize(mapload)
 	. = ..()
@@ -465,9 +466,6 @@
 	if(battery)
 		return span_notice("Battery: [battery.charge]/[battery.maxcharge]")
 	return span_warning("No battery installed!")
-
-/obj/item/clothing/glasses/night_vision/ui_action_click(mob/user, datum/action/item_action/action)
-	activate(user)
 
 /obj/item/clothing/glasses/night_vision/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() == src && eject_battery(user))

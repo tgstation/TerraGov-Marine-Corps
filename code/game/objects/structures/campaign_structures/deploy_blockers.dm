@@ -26,7 +26,7 @@
 /obj/structure/campaign_deployblocker/Initialize(mapload)
 	. = ..()
 	GLOB.campaign_structures += src
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "tele_block"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "tele_block", HIGH_FLOAT_LAYER))
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	if(!istype(mode))
 		return
