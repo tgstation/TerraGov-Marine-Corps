@@ -120,7 +120,7 @@
 			/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope = 4,
 			/obj/item/cell/lasgun/volkite/turret = 4,
-			/obj/item/storage/box/tl102 = 1,
+			/obj/item/storage/box/hsg_102 = 1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 5,
 			/obj/item/ammo_magazine/heavymachinegun/small = 10,
@@ -296,7 +296,7 @@
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
 	icon_deny = "lascharger-deny"
-	vending_flags = VENDING_RECHARGER
+	vending_flags = VENDING_RESTOCK_RECHARGE
 	wrenchable = TRUE
 	drag_delay = FALSE
 	anchored = FALSE

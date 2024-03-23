@@ -20,17 +20,32 @@
 	var/invis_override = 0 //Override to allow glasses to set higher than normal see_invis
 	var/lighting_alpha
 	var/goggles = FALSE
+	///Sound played on activate() when turning on
+	var/activation_sound = 'sound/items/googles_on.ogg'
+	///Sound played on activate() when turning off
+	var/deactivation_sound = 'sound/items/googles_off.ogg'
+	///Color to use for the HUD tint; leave null if no tint
+	var/tint
 
+/obj/item/clothing/glasses/Initialize(mapload)
+	. = ..()
+	if(active)	//For glasses that spawn active
+		active = FALSE
+		activate()
+
+/obj/item/clothing/glasses/update_icon_state()
+	. = ..()
+	icon_state = active ? initial(icon_state) : deactive_state
 
 /obj/item/clothing/glasses/update_clothing_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_glasses()
 
-
+//Glasses can still be toggled if held in the hand if the player wishes to
 /obj/item/clothing/glasses/attack_self(mob/user)
-	if(toggleable)
-		toggle_glasses(user)
+	if(can_interact(user))
+		activate(user)
 
 //Just call the activate() directly instead of needing to call attack_self()
 /obj/item/clothing/glasses/ui_action_click(mob/user, datum/action/item_action/action)
@@ -55,14 +70,7 @@
 	user?.update_inv_glasses()
 	user?.update_sight()
 
-/obj/item/clothing/glasses/proc/deactivate_glasses(mob/user, silent = FALSE)
-	active = FALSE
-	icon_state = deactive_state
-	user.update_inv_glasses()
-	if(!silent)
-		to_chat(user, "You deactivate the optical matrix on [src].")
-		playsound(user, 'sound/items/googles_off.ogg', 15)
-
+	return active	//For the UI button update
 
 /obj/item/clothing/glasses/science
 	name = "science goggles"
@@ -156,7 +164,7 @@
 
 /obj/item/clothing/glasses/mgoggles
 	name = "marine ballistic goggles"
-	desc = "Standard issue NTC goggles. Mostly used to decorate one's helmet."
+	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet."
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
 	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 0, ENERGY = 15, BOMB = 35, BIO = 10, FIRE = 30, ACID = 30)
@@ -167,7 +175,7 @@
 
 /obj/item/clothing/glasses/mgoggles/prescription
 	name = "prescription marine ballistic goggles"
-	desc = "Standard issue NTC goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not."
+	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not."
 	prescription = TRUE
 
 /obj/item/clothing/glasses/mgoggles/attackby(obj/item/I, mob/user, params)
@@ -286,7 +294,7 @@
 
 /obj/item/clothing/glasses/welding/superior/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/clothing_tint, TINT_2)
+	AddComponent(/datum/component/clothing_tint, TINT_4)
 
 //sunglasses
 
@@ -318,17 +326,15 @@
 	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/big
-	name = "big sunglasses"
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
 	icon_state = "bigsunglasses"
 	item_state = "bigsunglasses"
 
 /obj/item/clothing/glasses/sunglasses/big/prescription
-	name = "big prescription sunglasses"
+	name = "prescription sunglasses"
 	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/fake
-	name = "designer sunglasses"
 	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
 	eye_protection = 0
 
@@ -359,17 +365,16 @@
 		update_icon()
 
 /obj/item/clothing/glasses/sunglasses/fake/prescription
-	name = "prescription glasses"
+	name = "prescription sunglasses"
 	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/fake/big
-	name = "large sunglasses"
 	desc = "A pair of larger than average designer sunglasses. Doesn't seem like it'll block flashes."
 	icon_state = "bigsunglasses"
 	item_state = "bigsunglasses"
 
 /obj/item/clothing/glasses/sunglasses/fake/big/prescription
-	name = "big prescription sunglasses"
+	name = "prescription sunglasses"
 	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/sechud

@@ -160,14 +160,14 @@
 
 ///Sets up the loot tables for this mission, if required
 /datum/campaign_mission/proc/set_loot_tables()
-	if(starting_faction == FACTION_TERRAGOV)
+	if(starting_faction == FACTION_NTC)
 		major_victory_reward_table = GLOB.campaign_tgmc_major_loot
 		minor_victory_reward_table = GLOB.campaign_tgmc_minor_loot
 	else if(starting_faction == FACTION_SOM)
 		major_victory_reward_table = GLOB.campaign_som_major_loot
 		minor_victory_reward_table = GLOB.campaign_som_minor_loot
 
-	if(hostile_faction == FACTION_TERRAGOV)
+	if(hostile_faction == FACTION_NTC)
 		minor_loss_reward_table = GLOB.campaign_tgmc_minor_loot
 		major_loss_reward_table = GLOB.campaign_tgmc_major_loot
 	else if(hostile_faction == FACTION_SOM)
