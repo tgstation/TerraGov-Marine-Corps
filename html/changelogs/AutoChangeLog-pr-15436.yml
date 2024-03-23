@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Campaign: Gun perks now unlock certain weapon and ammo options in addition to their existing effects"
+  - bugfix: "Campaign: Fixed a missing overclocked option for heavy shielded armour for SOM standards"
