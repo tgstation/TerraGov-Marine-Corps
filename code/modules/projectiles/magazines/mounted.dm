@@ -1,5 +1,5 @@
 ///Default ammo for the HSG-102.
-/obj/item/ammo_magazine/tl102
+/obj/item/ammo_magazine/hsg_102
 	name = "HSG-102 drum magazine (10x30mm Caseless)"
 	desc = "A box of 300, 10x30mm caseless tungsten rounds for the HSG-102 mounted heavy smartgun."
 	w_class = WEIGHT_CLASS_NORMAL
@@ -13,7 +13,7 @@
 	icon_state_mini = "mag_hmg"
 
 ///This is the one that comes in the mapbound and dropship mounted version of the HSG-102, it has a stupid amount of ammo. Even more than the ammo counter can display.
-/obj/item/ammo_magazine/tl102/hsg_nest
+/obj/item/ammo_magazine/hsg_102/hsg_nest
 	max_rounds = 500
 
 /obj/item/ammo_magazine/heavymachinegun
