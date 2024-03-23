@@ -880,14 +880,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 
 	//friendly fire reduces the damage of the projectile, so only applies the multiplier if a hit is confirmed
-	if(proj.firer)
-		if(proj.firer?.faction == faction)
-			damage *= proj.friendly_fire_multiplier
-
-		if(iscarbon(proj.firer))
-			var/mob/living/carbon/shooter_carbon = proj.firer
-			if(shooter_carbon.IsStaggered())
-				damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
+	if(proj.firer && proj.firer.faction == faction)
+		damage *= proj.friendly_fire_multiplier
 
 	damage = check_shields(COMBAT_PROJ_ATTACK, damage, proj.ammo.armor_type, FALSE, proj.penetration)
 	if(!damage)
