@@ -644,7 +644,7 @@
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/motion_sensor
 	unlock_cost = 400
-	purchase_cost = 40
+	purchase_cost = 50
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
 /datum/loadout_item/suit_store/main_gun/marine/plasma_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1524,7 +1524,7 @@
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/motion_sensor
 	unlock_cost = 400
-	purchase_cost = 40
+	purchase_cost = 50
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/plasma_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -1785,7 +1785,7 @@
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/motion_sensor
 	unlock_cost = 400
-	purchase_cost = 40
+	purchase_cost = 50
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
 /datum/loadout_item/suit_store/main_gun/field_commander/plasma_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
