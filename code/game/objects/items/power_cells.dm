@@ -104,6 +104,12 @@
 	charge_amount = 25
 	charge_delay = 2 SECONDS //One hit on a resin thingy every 8 seconds, or one actual wall every 80 seconds.
 
+/obj/item/cell/night_vision_battery
+	name = "night vision goggle battery"
+	desc = "A small, non-rechargable, proprietary battery for night vision goggles."
+	maxcharge = 500
+	w_class = WEIGHT_CLASS_TINY
+
 /obj/item/cell/rtg/plasma_cutter
 	name = "plasma cutter cell"
 	desc = "You shouldn't be seeing this"

@@ -296,7 +296,6 @@
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
 	icon_deny = "lascharger-deny"
-	vending_flags = VENDING_RESTOCK_RECHARGE
 	wrenchable = TRUE
 	drag_delay = FALSE
 	anchored = FALSE
@@ -330,6 +329,10 @@
 				icon_state = "lascharger_25"
 			if(0)
 				icon_state = "lascharger_0"
+
+/obj/machinery/vending/som/lasgun/examine(mob/user)
+	. = ..()
+	. += "Internal battery charge: <b>[machine_current_charge]</b>/<b>[machine_max_charge]</b>"
 
 /obj/machinery/vending/SyndiMed
 	name = "\improper Syndicate Medicament Deployer"

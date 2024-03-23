@@ -37,10 +37,10 @@
 
 	if(!ishuman(user))
 		return
+
 	var/mob/living/carbon/human/hud_user = user
 	if(hud_user.glasses != src)
 		return
-	activate_hud(hud_user)
 
 	if(active)
 		activate_hud(hud_user)
@@ -90,7 +90,7 @@
 
 /obj/item/clothing/glasses/hud/medgoggles
 	name = "\improper HealthMate ballistic goggles"
-	desc = "Standard issue NTC goggles. This pair has been fitted with an internal HealthMate HUD projector."
+	desc = "Standard issue TGMC goggles. This pair has been fitted with an internal HealthMate HUD projector."
 	icon_state = "medgoggles"
 	item_state = "medgoggles"
 	deactive_state = "degoggles_medgoggles"
@@ -110,7 +110,7 @@
 
 /obj/item/clothing/glasses/hud/medgoggles/prescription
 	name = "\improper HealthMate prescription ballistic goggles"
-	desc = "Standard issue NTC prescription goggles. This pair has been fitted with an internal HealthMate HUD projector."
+	desc = "Standard issue TGMC prescription goggles. This pair has been fitted with an internal HealthMate HUD projector."
 	prescription = TRUE
 
 /obj/item/clothing/glasses/hud/medpatch
@@ -131,7 +131,7 @@
 
 /obj/item/clothing/glasses/hud/medglasses
 	name = "\improper HealthMate regulation prescription glasses"
-	desc = "Standard issue NTC Regulation Prescription Glasses. This pair has been fitted with an internal HealthMate HUD projector."
+	desc = "Standard issue TGMC Regulation Prescription Glasses. This pair has been fitted with an internal HealthMate HUD projector."
 	icon_state = "medglasses"
 	item_state = "medglasses"
 	deactive_state = "degoggles_medglasses"
