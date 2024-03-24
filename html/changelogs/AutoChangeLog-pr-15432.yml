@@ -1,0 +1,4 @@
+author: "coldironwarrior"
+delete-after: True
+changes:
+  - imagedel: "deletes unused sprites from the \"obj\" folder"
