@@ -379,3 +379,15 @@
   - rscadd: Added FC vendor to valhalla
   - qol: Added the ASRS supply tablet to req
   - qol: added categories to the hypersleep bay console
+2024-03-24:
+  Lumipharon:
+  - balance: 'Campaign: Gun perks now unlock certain weapon and ammo options in addition
+      to their existing effects'
+  - bugfix: 'Campaign: Fixed a missing overclocked option for heavy shielded armour
+      for SOM standards'
+  - rscadd: Reworked plasma weapons in addition to a new plasma SMG
+  - balance: 'Campaign: Plasma weapons are available via unlock or perk'
+  blackdav123:
+  - rscadd: Added modulars to Jungle Outpost
+  coldironwarrior:
+  - rscadd: sulaco vehicle bay, next to the TAD and mech workshop
