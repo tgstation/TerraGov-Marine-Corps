@@ -1,0 +1,4 @@
+author: "coldironwarrior"
+delete-after: True
+changes:
+  - imagedel: "deleted the \"unused\" folder of dmis"
