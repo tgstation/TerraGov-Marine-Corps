@@ -1311,7 +1311,7 @@
 	var/datum/ammo/xeno/earth_pillar/projectile = landslide? GLOB.ammo_list[/datum/ammo/xeno/earth_pillar/landslide] : GLOB.ammo_list[/datum/ammo/xeno/earth_pillar]
 	var/obj/projectile/new_projectile = new /obj/projectile(source_turf)
 	new_projectile.generate_bullet(projectile)
-	new_projectile.fire_at(get_turf(target_atom), usr, null, new_projectile.ammo.max_range, loc_override = source_turf)
+	new_projectile.fire_at(get_turf(target_atom), usr, source_turf, new_projectile.ammo.max_range)
 
 /// Seismic Fracture (as in the ability) has a special interaction with any Earth Pillars caught in its attack range.
 /// Those Earth Pillars will reflect the same attack in a similar range around it, destroying itself afterwards.

@@ -98,7 +98,15 @@ GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
 	/obj/vehicle/unmanned)))
 
 //hypersleep related
-GLOBAL_LIST_EMPTY(cryoed_item_list)
+GLOBAL_LIST_EMPTY(cryoed_item_list_gun)
+GLOBAL_LIST_EMPTY(cryoed_item_list_ammo)
+GLOBAL_LIST_EMPTY(cryoed_item_list_explosive)
+GLOBAL_LIST_EMPTY(cryoed_item_list_melee)
+GLOBAL_LIST_EMPTY(cryoed_item_list_clothing)
+GLOBAL_LIST_EMPTY(cryoed_item_list_food)
+GLOBAL_LIST_EMPTY(cryoed_item_list_drugs)
+GLOBAL_LIST_EMPTY(cryoed_item_list_containers)
+GLOBAL_LIST_EMPTY(cryoed_item_list_other)
 
 GLOBAL_LIST_INIT(do_not_preserve, typecacheof(list(
 	/obj/item/clothing/mask/cigarette,

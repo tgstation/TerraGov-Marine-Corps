@@ -73,7 +73,7 @@
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST|GROIN
 
-/obj/item/clothing/suit/apron/overalls
+/obj/item/clothing/suit/storage/apron/overalls
 	name = "coveralls"
 	desc = "A set of denim overalls."
 	icon_state = "overalls"
@@ -239,7 +239,7 @@
 	icon_state = "swim_red"
 	siemens_coefficient = 1
 
-/obj/item/clothing/suit/bomber
+/obj/item/clothing/suit/storage/bomber
 	name = "bomber jacket"
 	desc = "A well-worn WW2 leather bomber jacket."
 	icon_state = "bomber"

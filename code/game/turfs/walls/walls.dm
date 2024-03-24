@@ -324,7 +324,7 @@
 	else if(resistance_flags & INDESTRUCTIBLE)
 		to_chat(user, "[span_warning("[src] is much too tough for you to do anything to it with [I]")].")
 
-	else if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
+	else if(isplasmacutter(I) && !user.do_actions)
 		return
 
 	else if(wall_integrity < max_integrity && iswelder(I))

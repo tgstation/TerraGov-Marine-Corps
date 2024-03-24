@@ -30,6 +30,7 @@
 	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine, /datum/reagent/consumable)
 	purge_rate = 1
 	taste_description = "water"
+	scannable = TRUE
 
 /datum/reagent/water/reaction_turf(turf/T, volume)
 	if(volume >= 3)

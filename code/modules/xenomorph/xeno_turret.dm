@@ -132,7 +132,7 @@
 	if(I.damtype == BURN) //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1
 
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
+	if(isplasmacutter(I) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
 			multiplier += PLASMACUTTER_RESIN_MULTIPLIER
@@ -236,7 +236,7 @@
 	var/obj/projectile/newshot = new(loc)
 	newshot.generate_bullet(ammo)
 	newshot.def_zone = pick(GLOB.base_miss_chance)
-	newshot.fire_at(hostile, src, null, ammo.max_range, ammo.shell_speed)
+	newshot.fire_at(hostile, null, src, ammo.max_range, ammo.shell_speed)
 	if(istype(ammo, /datum/ammo/xeno/hugger))
 		var/datum/ammo/xeno/hugger/hugger_ammo = ammo
 		newshot.color = initial(hugger_ammo.hugger_type.color)

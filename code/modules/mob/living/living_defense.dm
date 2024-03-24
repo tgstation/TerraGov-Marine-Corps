@@ -71,9 +71,6 @@
 		var/obj/O = AM
 		O.stop_throw()
 		apply_damage(O.throwforce*(speed * 0.2), O.damtype, BODY_ZONE_CHEST, MELEE, is_sharp(O), has_edge(O), TRUE, O.penetration)
-		if(O.item_fire_stacks)
-			fire_stacks += O.item_fire_stacks
-			IgniteMob()
 
 	visible_message(span_warning(" [src] has been hit by [AM]."), null, null, 5)
 	if(ismob(AM.thrower))
@@ -187,6 +184,17 @@
 /mob/living/fire_act()
 	adjust_fire_stacks(rand(1,2))
 	IgniteMob()
+
+/mob/living/lava_act()
+	if(stat == DEAD)
+		return TRUE
+
+	var/lava_damage = 20
+	take_overall_damage(max(modify_by_armor(lava_damage, FIRE), lava_damage * 0.3), BURN, updating_health = TRUE, max_limbs = 3) //snowflakey interaction to stop complete lava immunity
+	if(!CHECK_BITFIELD(pass_flags, PASS_FIRE))//Pass fire allow to cross lava without igniting
+		adjust_fire_stacks(20)
+		IgniteMob()
+	return
 
 /mob/living/flamer_fire_act(burnlevel)
 	if(!burnlevel)
