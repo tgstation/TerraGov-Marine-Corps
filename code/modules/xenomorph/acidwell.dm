@@ -3,7 +3,7 @@
 /obj/structure/xeno/acidwell
 	name = "acid well"
 	desc = "An acid well. It stores acid to put out fires."
-	icon = 'icons/Xeno/acid_pool.dmi'
+	icon = 'icons/Xeno/acid_well.dmi'
 	icon_state = "well"
 	density = FALSE
 	opacity = FALSE
