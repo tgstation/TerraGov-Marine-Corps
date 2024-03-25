@@ -135,7 +135,7 @@
 	else
 		. += "Caste Swap Timer: [(casteswap_value / 60) % 60]:[add_leading(num2text(casteswap_value % 60), 2, "0")]"
 
-	//Very weak <= 1.0, Weak <= 2.0, Medium <= 3.0, Strong <= 4.0, Very strong > 4.0
+	//Very weak <= 1.0, Weak <= 2.0, Medium < 3.0, Strong < 4.0, Very strong >= 4.0
 	var/msg_holder = ""
 	if(frenzy_aura)
 		switch(frenzy_aura)
