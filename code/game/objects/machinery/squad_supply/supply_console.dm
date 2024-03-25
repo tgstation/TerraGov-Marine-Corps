@@ -25,6 +25,7 @@
 
 /obj/machinery/computer/supplydrop_console/Initialize(mapload)
 	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_SUPPLY_BEACON_CREATED, PROC_REF(ping_beacon))
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/computer/supplydrop_console/LateInitialize()
@@ -34,9 +35,15 @@
 			supply_pad = _supply_pad
 			return
 
+
+/obj/machinery/computer/supplydrop_console/proc/ping_beacon()
+	SIGNAL_HANDLER
+	playsound(src,'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
+
 /obj/machinery/computer/supplydrop_console/Destroy()
 	supply_beacon = null
 	supply_pad = null
+	UnregisterSignal(SSdcs, COMSIG_GLOB_SUPPLY_BEACON_CREATED)
 	return ..()
 
 /obj/machinery/computer/supplydrop_console/ui_interact(mob/user, datum/tgui/ui)
