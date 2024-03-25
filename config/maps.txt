@@ -95,3 +95,7 @@ map icarus_military_port
 	minplayers 50
 endmap
 
+map corsat
+	minplayers 70
+endmap
+
