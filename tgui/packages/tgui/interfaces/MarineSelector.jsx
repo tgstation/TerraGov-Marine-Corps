@@ -160,62 +160,62 @@ const ItemLine = (props) => {
             </Box>
           )}
           {prod_color === 'engi-tool' && (
-            <Box inline mr="6px" ml="6px" color="bisque">
+            <Box inline mr="6px" ml="6px" color="#FFE4C4">
               Tools
             </Box>
           )}
           {prod_color === 'engi-construction' && (
-            <Box inline mr="6px" ml="6px" color="aquamarine">
+            <Box inline mr="6px" ml="6px" color="#7FFFD4">
               Materials
             </Box>
           )}
           {prod_color === 'engi-artillery' && (
-            <Box inline mr="6px" ml="6px" color="indianred">
+            <Box inline mr="6px" ml="6px" color="#CD5C5C">
               Artillery
             </Box>
           )}
           {prod_color === 'engi-mining' && (
-            <Box inline mr="6px" ml="6px" color="dodgerblue">
+            <Box inline mr="6px" ml="6px" color="#1E90FFe">
               Mining
             </Box>
           )}
           {prod_color === 'engi-explosive' && (
-            <Box inline mr="6px" ml="6px" color="coral">
+            <Box inline mr="6px" ml="6px" color="#FF7F50">
               Explosives
             </Box>
           )}
           {prod_color === 'engi-other' && (
-            <Box inline mr="6px" ml="6px" color="mediumorchid">
+            <Box inline mr="6px" ml="6px" color="#BA55D3">
               Other
             </Box>
           )}
           {prod_color === 'corps-meds' && (
-            <Box inline mr="6px" ml="6px" color="aquamarine">
+            <Box inline mr="6px" ml="6px" color="#7FFFD4">
               Medicine
             </Box>
           )}
           {prod_color === 'corps-tools' && (
-            <Box inline mr="6px" ml="6px" color="dodgerblue">
+            <Box inline mr="6px" ml="6px" color="#1E90FF">
               Tools
             </Box>
           )}
           {prod_color === 'sg-minigun' && (
-            <Box inline mr="6px" ml="6px" color="dodgerblue">
+            <Box inline mr="6px" ml="6px" color="#1E90FF">
               SG-85 Gatling Gun
             </Box>
           )}
           {prod_color === 'sg-targetrifle' && (
-            <Box inline mr="6px" ml="6px" color="mediumorchid">
+            <Box inline mr="6px" ml="6px" color="#BA55D3">
               SG-62 Target Rifle
             </Box>
           )}
           {prod_color === 'sg-machinegun' && (
-            <Box inline mr="6px" ml="6px" color="lime">
+            <Box inline mr="6px" ml="6px" color="#00FF00">
               SG-29 Machine Gun
             </Box>
           )}
           {prod_color === 'sg-smartpistol' && (
-            <Box inline mr="6px" ml="6px" color="bisque">
+            <Box inline mr="6px" ml="6px" color="#FFE4C4">
               SP-13 Smartpistol
             </Box>
           )}
