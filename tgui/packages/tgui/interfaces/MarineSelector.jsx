@@ -225,7 +225,7 @@ const ItemLine = (props) => {
             </Box>
           )}
           {prod_color === 'synth-storage' && (
-            <Box inline mr="6px" ml="6px" color="magenta">
+            <Box inline mr="6px" ml="6px" color="#7FFFD4">
               Storage
             </Box>
           )}
