@@ -201,22 +201,22 @@ const ItemLine = (props) => {
           )}
           {prod_color === 'sg-minigun' && (
             <Box inline mr="6px" ml="6px" color="#1E90FF">
-              SG-85 Gatling Gun
+              Gatling Gun
             </Box>
           )}
           {prod_color === 'sg-targetrifle' && (
             <Box inline mr="6px" ml="6px" color="#BA55D3">
-              SG-62 Target Rifle
+              Target Rifle
             </Box>
           )}
           {prod_color === 'sg-machinegun' && (
             <Box inline mr="6px" ml="6px" color="#00FF00">
-              SG-29 Machine Gun
+              Machine Gun
             </Box>
           )}
           {prod_color === 'sg-smartpistol' && (
             <Box inline mr="6px" ml="6px" color="#FFE4C4">
-              SP-13 Smartpistol
+              Smartpistol
             </Box>
           )}
           {prod_color === 'synth-cosmetic' && (
