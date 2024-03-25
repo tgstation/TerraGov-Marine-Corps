@@ -253,11 +253,16 @@ REAGENT SCANNER
 		data["implants"] = unknown_implants
 		var/damaged_organs = list()
 		for(var/datum/internal_organ/organ AS in human_patient.internal_organs)
-			if(organ.organ_status == ORGAN_HEALTHY)
+			if(organ.damage <= 0)
 				continue
+			var/organ_health_status = ""
+			if(organ.organ_status == ORGAN_HEALTHY)
+				organ_health_status = "Scarred"
+			else
+				organ_health_status = organ.organ_status == ORGAN_BRUISED ? "Bruised" : "Broken"
 			var/current_organ = list(
 				"name" = organ.name,
-				"status" = organ.organ_status == ORGAN_BRUISED ? "Bruised" : "Broken",
+				"status" = organ_health_status,
 				"damage" = organ.damage
 			)
 			damaged_organs += list(current_organ)
