@@ -2635,9 +2635,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "squares"
-	},
+/turf/open/floor/grayscale/black,
 /area/corsat/gamma/airlock/control)
 "Df" = (
 /obj/machinery/atmospherics/pipe/layer_manifold{
@@ -2715,9 +2713,7 @@
 /obj/machinery/door/airlock/mainship/maint{
 	name = "Maintainence"
 	},
-/turf/open/floor{
-	icon_state = "squares"
-	},
+/turf/open/floor/grayscale/black,
 /area/corsat/gamma/airlock/control)
 "DK" = (
 /turf/closed/wall/r_wall,
@@ -4024,9 +4020,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "squares"
-	},
+/turf/open/floor/grayscale/black,
 /area/corsat/gamma/airlock/control)
 "Rh" = (
 /obj/effect/turf_decal/tile/corsatcorner/lighpurple{
@@ -4044,9 +4038,7 @@
 	name = "Access Shutter"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "squares"
-	},
+/turf/open/floor/grayscale/black,
 /area/corsat/gamma/airlock/control)
 "Rm" = (
 /obj/machinery/light{
@@ -4831,11 +4823,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/corsat/gamma/biodome)
-"YU" = (
-/turf/open/floor{
-	icon_state = "squares"
-	},
-/area/corsat/gamma/airlock/control)
 "YV" = (
 /obj/effect/turf_decal/tile/corsatsemi/lightpurple{
 	dir = 8
@@ -10485,7 +10472,7 @@ aP
 nS
 nS
 nS
-YU
+UK
 QU
 nS
 nS
