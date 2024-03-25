@@ -172,34 +172,29 @@
 
 		visible_message(span_notice("[src] beeps happily as it disgorges the desired objects."))
 
+		var/list/da_list
 		switch(state)
 			if(STATE_GUN)
-				for(var/obj/item/I in GLOB.cryoed_item_list_gun)
-					dispense_item(I, usr, FALSE)
+				da_list = GLOB.cryoed_item_list_gun
 			if(STATE_AMMO)
-				for(var/obj/item/I in GLOB.cryoed_item_list_ammo)
-					dispense_item(I, usr, FALSE)
+				da_list = GLOB.cryoed_item_list_ammo
 			if(STATE_EXPLOSIVE)
-				for(var/obj/item/I in GLOB.cryoed_item_list_explosive)
-					dispense_item(I, usr, FALSE)
+				da_list = GLOB.cryoed_item_list_explosive
 			if(STATE_MELEE)
-				for(var/obj/item/I in GLOB.cryoed_item_list_melee)
-					dispense_item(I, usr, FALSE)
+				da_list = GLOB.cryoed_item_list_melee
 			if(STATE_CLOTHING)
-				for(var/obj/item/I in GLOB.cryoed_item_list_clothing)
-					dispense_item(I, usr, FALSE)
+				da_list = GLOB.cryoed_item_list_clothing
 			if(STATE_FOOD)
-				for(var/obj/item/I in GLOB.cryoed_item_list_food)
-					dispense_item(I, usr, FALSE)
+				da_list = GLOB.cryoed_item_list_food
 			if(STATE_DRUGS)
-				for(var/obj/item/I in GLOB.cryoed_item_list_drugs)
-					dispense_item(I, usr, FALSE)
+				da_list = GLOB.cryoed_item_list_drugs
 			if(STATE_CONTAINERS)
-				for(var/obj/item/I in GLOB.cryoed_item_list_containers)
-					dispense_item(I, usr, FALSE)
+				da_list = GLOB.cryoed_item_list_containers
 			if(STATE_OTHER)
-				for(var/obj/item/I in GLOB.cryoed_item_list_other)
-					dispense_item(I, usr, FALSE)
+				da_list = GLOB.cryoed_item_list_other
+		for(var/obj/item/I in da_list)
+			dispense_item(I, usr, FALSE)
+
 	updateUsrDialog()
 
 
