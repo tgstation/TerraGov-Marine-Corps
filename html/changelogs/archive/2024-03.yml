@@ -391,3 +391,9 @@
   - rscadd: Added modulars to Jungle Outpost
   coldironwarrior:
   - rscadd: sulaco vehicle bay, next to the TAD and mech workshop
+2024-03-25:
+  XElectricX:
+  - bugfix: Welding goggles no longer work in reverse.
+  coldironwarrior:
+  - imagedel: deletes unused sprites from the "obj" folder
+  - imagedel: deleted the "unused" folder of dmis
