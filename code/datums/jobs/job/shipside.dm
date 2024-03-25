@@ -891,6 +891,10 @@ A happy ship is a well-functioning ship."})
 	head = /obj/item/clothing/head/tgmccap/req
 	r_store = /obj/item/storage/pouch/general/large
 
+/datum/outfit/job/requisitions/officer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_hand(new /obj/item/supplytablet, SLOT_IN_R_POUCH)
+
 /datum/job/terragov/medical
 	job_category = JOB_CAT_MEDICAL
 	selection_color = "#BBFFBB"

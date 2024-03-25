@@ -86,8 +86,8 @@
 	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, SLOT_IN_R_POUCH)
 
 /datum/loadout_item/r_pocket/magazine
-	name = "Magazine pouch"
-	desc = "A pouch containing three ammo magazines."
+	name = "Magazine pouch-P"
+	desc = "A pouch containing three ammo magazines. Will contain a primary ammo type where applicable."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/magazine/large
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
@@ -200,8 +200,8 @@
 	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, SLOT_IN_L_POUCH)
 
 /datum/loadout_item/l_pocket/magazine
-	name = "Magazine pouch"
-	desc = "A pouch containing three ammo magazines."
+	name = "Magazine pouch-S"
+	desc = "A pouch containing three ammo magazines. Will contain a secondary ammo type where applicable."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/magazine/large
 	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
