@@ -127,7 +127,10 @@
 
 //This proc is what a robot calls when they try to enter a cradle on their own.
 /obj/machinery/robotic_cradle/proc/move_inside_wrapper(mob/living/dropped, mob/dragger)
-	if(dragger.incapacitated() || !ishuman(dragger) || !isrobot(dropped))
+	if(dragger.incapacitated()||!ishuman(dragger)||!ishuman(dropped))
+		return
+	var/mob/living/carbon/human/patient = dropped
+	if(!(patient.species.species_flags & ROBOTIC_LIMBS))
 		return
 
 	if(occupant)
@@ -139,26 +142,25 @@
 		return
 
 	if(dragger.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-		dropped.visible_message(span_notice("[dropped] fumbles around figuring out how to get into \the [src]."),
+		patient.visible_message(span_notice("[patient] fumbles around figuring out how to get into \the [src]."),
 		span_notice("You fumble around figuring out how to get into \the [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * dragger.skills.getRating(SKILL_ENGINEER) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(dropped, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(patient, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return
 
-	dropped.visible_message(span_notice("[dropped] starts climbing into \the [src]."),
+	patient.visible_message(span_notice("[patient] starts climbing into \the [src]."),
 	span_notice("You start climbing into \the [src]."))
-	if(!do_after(dropped, 1 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_GENERIC))
+	if(!do_after(patient, 1 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_GENERIC))
 		return
 	if(occupant)
 		to_chat(dragger, span_notice("[src] is already occupied!"))
 		return
-	dropped.stop_pulling()
-	dropped.forceMove(src)
-	occupant = dropped
+	patient.stop_pulling()
+	patient.forceMove(src)
+	occupant = patient
 	var/implants = list(/obj/item/implant/neurostim)
-	var/mob/living/carbon/human/H = occupant
 	var/doc_dat
-	med_scan(H, doc_dat, implants, TRUE)
+	med_scan(patient, doc_dat, implants, TRUE)
 	start_processing()
 	update_icon()
 
@@ -228,39 +230,39 @@
 		to_chat(user, span_notice("\ [src] is compatible with humanoid anatomies only!"))
 		return
 
-	if(ishumanbasic(grabbed_mob))
+	var/mob/living/carbon/human/patient = grabbed_mob
+	if(!(patient.species.species_flags & ROBOTIC_LIMBS))
 		to_chat(user, span_warning("Subject is biological, cannot repair."))
 		return
 
-	if(grabbed_mob.abiotic())
+	if(patient.abiotic())
 		to_chat(user, span_warning("Subject cannot have abiotic items on."))
 		return
 
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-		user.visible_message(span_notice("[user] fumbles around figuring out how to put [grabbed_mob] into [src]."),
-		span_notice("You fumble around figuring out how to put [grabbed_mob] into [src]."))
+		user.visible_message(span_notice("[user] fumbles around figuring out how to put [patient] into [src]."),
+		span_notice("You fumble around figuring out how to put [patient] into [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.skills.getRating(SKILL_ENGINEER) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(user, fumbling_time, NONE, grabbed_mob, BUSY_ICON_UNSKILLED) || QDELETED(src))
+		if(!do_after(user, fumbling_time, NONE, patient, BUSY_ICON_UNSKILLED) || QDELETED(src))
 			return
 
-	visible_message("[user] starts putting [grabbed_mob] into [src].", 3)
+	visible_message("[user] starts putting [patient] into [src].", 3)
 
-	if(!do_after(user, 10, IGNORE_HELD_ITEM, grabbed_mob, BUSY_ICON_GENERIC) || QDELETED(src))
+	if(!do_after(user, 10, IGNORE_HELD_ITEM, patient, BUSY_ICON_GENERIC) || QDELETED(src))
 		return
 
 	if(occupant)
 		to_chat(user, span_notice("[src] is already occupied!"))
 		return
 
-	if(!grabbed_mob || !grab)
+	if(!patient || !grab)
 		return
 
-	grabbed_mob.forceMove(src)
-	occupant = grabbed_mob
+	patient.forceMove(src)
+	occupant = patient
 	update_icon()
 	var/implants = list(/obj/item/implant/neurostim)
-	var/mob/living/carbon/human/H = occupant
-	med_scan(H, null, implants, TRUE)
+	med_scan(patient, null, implants, TRUE)
 	start_processing()
 	say("Automatic mode engaged, initialising procedure.")
 	addtimer(CALLBACK(src, PROC_REF(auto_start)), 20 SECONDS)
