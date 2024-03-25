@@ -68,7 +68,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		/datum/campaign_mission/destroy_mission/base_rescue = 12,
 	),
 	FACTION_SOM = list(
-		/datum/campaign_mission/tdm/lv624 = 10,
+		/datum/campaign_mission/tdm/orion = 10,
 		/datum/campaign_mission/destroy_mission/fire_support_raid/som = 15,
 		/datum/campaign_mission/tdm/mech_wars/som = 12,
 		/datum/campaign_mission/destroy_mission/supply_raid/som = 15,
@@ -144,6 +144,9 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		get_player_stats(new_member)
 	var/datum/action/campaign_loadout/loadouts = new
 	loadouts.give_action(new_member)
+	if(!(new_member.job.job_cost))
+		return
+	loadouts.action_activate()
 
 ///Returns a users individual stat datum, generating a new one if required
 /datum/faction_stats/proc/get_player_stats(mob/user)

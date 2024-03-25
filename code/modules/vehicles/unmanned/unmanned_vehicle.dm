@@ -83,7 +83,7 @@
 	robogibs(src)
 	return ..()
 
-/obj/vehicle/unmanned/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+/obj/vehicle/unmanned/take_damage(damage_amount, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
 	hud_set_machine_health()
 
@@ -182,10 +182,10 @@
 		var/extra_rounds = current_rounds - max_rounds
 		reload_ammo.current_rounds = extra_rounds
 		current_rounds = max_rounds
+	else
+		qdel(reload_ammo)
 	user.visible_message(span_notice("[user] reloads [src] with [reload_ammo]."), span_notice("You reload [src] with [reload_ammo]. It now has [current_rounds] shots left out of a maximum of [max_rounds]."))
 	playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
-	if(reload_ammo.current_rounds < 1)
-		qdel(reload_ammo)
 	update_icon()
 	hud_set_uav_ammo()
 
@@ -269,7 +269,7 @@
 		//Shoot at the thing
 		var/angle = Get_Angle(src, target)
 		playsound(loc, gunnoise, 65, 1)
-		in_chamber.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
+		in_chamber.fire_at(target, user, src, ammo.max_range, ammo.shell_speed)
 		in_chamber = null
 		COOLDOWN_START(src, fire_cooldown, fire_delay)
 		current_rounds--

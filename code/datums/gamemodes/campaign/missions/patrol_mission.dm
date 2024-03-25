@@ -9,7 +9,7 @@
 	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the AO or capture and hold the sensor towers for a points victory. Minor Victory: Eliminate more hostiles than you lose."
 	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the AO or capture and hold the sensor towers for a points victory. Minor Victory: Eliminate more hostiles than you lose."
 	max_game_time = 15 MINUTES
-	game_timer_delay = 5 MINUTES
+	game_timer_delay = 3 MINUTES
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(2, 0),
 		MISSION_OUTCOME_MINOR_VICTORY = list(1, 0),
@@ -35,40 +35,6 @@
 	starting_faction_additional_rewards = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion."
 	hostile_faction_additional_rewards = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion."
 
-	major_victory_reward_table = list(
-		/obj/effect/supply_drop/medical_basic = 7,
-		/obj/effect/supply_drop/marine_sentry = 5,
-		/obj/effect/supply_drop/recoilless_rifle = 3,
-		/obj/effect/supply_drop/armor_upgrades = 5,
-		/obj/effect/supply_drop/mmg = 4,
-		/obj/effect/supply_drop/zx_shotgun = 3,
-		/obj/effect/supply_drop/minigun = 3,
-		/obj/effect/supply_drop/scout = 3,
-	)
-	minor_victory_reward_table = list(
-		/obj/effect/supply_drop/medical_basic = 7,
-		/obj/effect/supply_drop/marine_sentry = 5,
-		/obj/effect/supply_drop/recoilless_rifle = 3,
-		/obj/effect/supply_drop/armor_upgrades = 5,
-		/obj/effect/supply_drop/mmg = 4,
-	)
-	minor_loss_reward_table = list(
-		/obj/effect/supply_drop/medical_basic = 7,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope = 5,
-		/obj/effect/supply_drop/som_rpg = 3,
-		/obj/effect/supply_drop/som_armor_upgrades = 5,
-		/obj/effect/supply_drop/charger = 4,
-	)
-	major_loss_reward_table = list(
-		/obj/effect/supply_drop/medical_basic = 7,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope = 5,
-		/obj/effect/supply_drop/som_rpg = 3,
-		/obj/effect/supply_drop/som_armor_upgrades = 5,
-		/obj/effect/supply_drop/charger = 4,
-		/obj/effect/supply_drop/culverin = 3,
-		/obj/effect/supply_drop/blink_kit = 3,
-		/obj/effect/supply_drop/som_shotgun_burst = 3,
-	)
 	///Point limit to win the game via objectives
 	var/capture_point_target = 400
 	///starting team's point count
@@ -81,6 +47,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED, PROC_REF(objective_captured))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAP_STARTED, PROC_REF(objective_cap_started))
 
+
 /datum/campaign_mission/tdm/unregister_mission_signals()
 	. = ..()
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED, COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAP_STARTED))
@@ -90,7 +57,7 @@
 		MISSION_STARTING_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [hostile_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
 		MISSION_HOSTILE_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [starting_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
 	)
-	. = ..()
+	return ..()
 
 /datum/campaign_mission/tdm/get_status_tab_items(mob/source, list/items)
 	. = ..()
@@ -215,7 +182,7 @@
 	map_text_broadcast(losing_team, "[objective] was activated by the enemy. Get it offline!", "Activation cancelled")
 
 ///test missions
-/datum/campaign_mission/tdm/lv624
+/datum/campaign_mission/tdm/orion
 	name = "Combat patrol 2"
 	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Orion_Military_Outpost/orionoutpost.dmm'
@@ -229,6 +196,7 @@
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
 	map_light_levels = list(200, 100, 75, 50)
+	mission_start_delay = 3 MINUTES
 
 /datum/campaign_mission/tdm/first_mission/end_mission()
 	. = ..()

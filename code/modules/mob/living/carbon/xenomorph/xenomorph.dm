@@ -5,7 +5,6 @@
 //This is so they can be easily transferred between them without copypasta
 
 /mob/living/carbon/xenomorph/Initialize(mapload)
-	setup_verbs()
 	if(mob_size == MOB_SIZE_BIG)
 		move_resist = MOVE_FORCE_EXTREMELY_STRONG
 		move_force = MOVE_FORCE_EXTREMELY_STRONG
@@ -54,9 +53,6 @@
 	generate_name()
 
 	regenerate_icons()
-
-	hud_set_plasma()
-	med_hud_set_health()
 
 	toggle_xeno_mobhud() //This is a verb, but fuck it, it just werks
 
@@ -271,7 +267,8 @@
 
 /mob/living/carbon/xenomorph/Destroy()
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
-	if(is_zoomed) zoom_out()
+	if(xeno_flags & XENO_ZOOMED)
+		zoom_out()
 
 	GLOB.alive_xeno_list -= src
 	LAZYREMOVE(GLOB.alive_xeno_list_hive[hivenumber], src)
@@ -413,7 +410,7 @@
 
 
 /mob/living/carbon/xenomorph/Moved(atom/old_loc, movement_dir)
-	if(is_zoomed)
+	if(xeno_flags & XENO_ZOOMED)
 		zoom_out()
 	handle_weeds_on_movement()
 	return ..()

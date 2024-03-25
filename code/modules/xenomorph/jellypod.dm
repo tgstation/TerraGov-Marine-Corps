@@ -2,7 +2,7 @@
 /obj/structure/xeno/resin_jelly_pod
 	name = "Resin jelly pod"
 	desc = "A large resin pod. Inside is a thick, viscous fluid that looks like it doesnt burn easily."
-	icon = 'icons/Xeno/resinpod.dmi'
+	icon = 'icons/Xeno/resin_pod.dmi'
 	icon_state = "resinpod"
 	density = FALSE
 	opacity = FALSE
@@ -47,21 +47,21 @@
 	if(chargesleft >= maxcharges)
 		return PROCESS_KILL
 
-/obj/structure/xeno/resin_jelly_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/structure/xeno/resin_jelly_pod/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
-	if((X.a_intent == INTENT_HARM && isxenohivelord(X)) || X.hivenumber != hivenumber)
-		balloon_alert(X, "Destroying...")
-		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
+	if((xeno_attacker.a_intent == INTENT_HARM && isxenohivelord(xeno_attacker)) || xeno_attacker.hivenumber != hivenumber)
+		balloon_alert(xeno_attacker, "Destroying...")
+		if(do_after(xeno_attacker, HIVELORD_TUNNEL_DISMANTLE_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
 		return
 
 	if(!chargesleft)
-		balloon_alert(X, "No jelly remaining")
-		to_chat(X, span_xenonotice("We reach into \the [src], but only find dregs of resin. We should wait some more.") )
+		balloon_alert(xeno_attacker, "No jelly remaining")
+		to_chat(xeno_attacker, span_xenonotice("We reach into \the [src], but only find dregs of resin. We should wait some more.") )
 		return
-	balloon_alert(X, "Retrieved jelly")
+	balloon_alert(xeno_attacker, "Retrieved jelly")
 	new /obj/item/resin_jelly(loc)
 	chargesleft--
 	if(!(datum_flags & DF_ISPROCESSING) && (chargesleft < maxcharges))

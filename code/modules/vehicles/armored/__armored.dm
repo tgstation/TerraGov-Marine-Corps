@@ -46,6 +46,8 @@
 
 	///reference to our interior datum if set, uses the typepath its set to
 	var/datum/interior/armored/interior
+	///Skill required to enter this vehicle
+	var/required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	///What weapon we have in our primary slot
 	var/obj/item/armored_weapon/primary_weapon
 	///What weapon we have in our secondary slot
@@ -58,6 +60,10 @@
 	var/primary_weapon_type = /obj/item/armored_weapon
 	//What kind of secondary tank weaponry we start with. Default minigun as standard.
 	var/secondary_weapon_type = /obj/item/armored_weapon/secondary_weapon
+	///Minimap flags to use for this vehcile
+	var/minimap_flags = MINIMAP_FLAG_MARINE
+	///minimap iconstate to use for this vehicle
+	var/minimap_icon_state
 	///if true disables stops users from being able to shoot weapons
 	var/weapons_safety = FALSE
 	//Bool for zoom on/off
@@ -111,6 +117,8 @@
 				icon_state += "_urban"
 			if(MAP_ARMOR_STYLE_DESERT)
 				icon_state += "_desert"
+	if(minimap_icon_state)
+		SSminimaps.add_marker(src, minimap_flags, image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon_state, HIGH_FLOAT_LAYER))
 	GLOB.tank_list += src
 
 /obj/vehicle/sealed/armored/Destroy()
@@ -242,7 +250,17 @@
 		return FALSE
 	if(!ishuman(M))
 		return FALSE
+	if(M.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		return FALSE
 	return ..()
+
+/obj/vehicle/sealed/armored/enter_checks(mob/M)
+	. = ..()
+	if(!.)
+		return
+	if(LAZYLEN(M.buckled_mobs))
+		balloon_alert(M, "remove riders first")
+		return FALSE
 
 /obj/vehicle/sealed/armored/add_occupant(mob/M, control_flags)
 	if(!interior)
@@ -286,6 +304,11 @@
 	UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
 	return ..()
 
+/obj/vehicle/sealed/armored/relaymove(mob/living/user, direction)
+	. = ..()
+	if(!is_driver(user) && is_equipment_controller(user))
+		swivel_turret(null, direction)
+
 /obj/vehicle/sealed/armored/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	for(var/mob/living/carbon/human/crew AS in occupants)
 		if(crew.wear_id?.iff_signal & proj.iff_signal)
@@ -295,6 +318,9 @@
 /obj/vehicle/sealed/armored/attack_hand(mob/living/user)
 	. = ..()
 	if(interior) // handled by gun breech
+		return
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		balloon_alert(user, "not enough skill")
 		return
 	if(!primary_weapon)
 		balloon_alert(user, "no primary")
@@ -318,6 +344,9 @@
 /obj/vehicle/sealed/armored/attack_hand_alternate(mob/living/user)
 	. = ..()
 	if(interior) // handled by gun breech
+		return
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		balloon_alert(user, "not enough skill")
 		return
 	if(!secondary_weapon)
 		balloon_alert(user, "no secondary")
@@ -354,7 +383,7 @@
 		var/obj/item/tank_module/mod = I
 		mod.on_equip(src, user)
 		return
-	if(!interior) // if interior handle by gun breech
+	if(interior) // if interior handle by gun breech
 		return
 	if(istype(I, /obj/item/ammo_magazine))
 		if(!primary_weapon)
@@ -379,6 +408,9 @@
 
 /obj/vehicle/sealed/armored/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		balloon_alert(user, "not enough skill")
+		return
 	if(istype(I, /obj/item/armored_weapon))
 		var/obj/item/armored_weapon/gun = I
 		if(!(gun.weapon_slot & MODULE_SECONDARY))
@@ -399,7 +431,7 @@
 		gunner_utility_module.on_unequip(user)
 		balloon_alert(user, "detached")
 		return
-	if(!interior) // if interior handle by gun breech
+	if(interior) // if interior handle by gun breech
 		return
 	if(istype(I, /obj/item/ammo_magazine))
 		if(!secondary_weapon)
@@ -428,6 +460,9 @@
 
 /obj/vehicle/sealed/armored/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		balloon_alert(user, "not enough skill")
+		return
 	if(!primary_weapon)
 		balloon_alert(user, "no primary weapon")
 		return
@@ -441,6 +476,9 @@
 
 /obj/vehicle/sealed/armored/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		balloon_alert(user, "not enough skill")
+		return
 	if(!secondary_weapon)
 		balloon_alert(user, "no secondary weapon")
 		return
@@ -454,6 +492,9 @@
 
 /obj/vehicle/sealed/armored/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		balloon_alert(user, "not enough skill")
+		return
 	if(!driver_utility_module)
 		balloon_alert(user, "no driver utility module")
 		return
@@ -478,8 +519,9 @@
 	// todo maybe make tanks also update the mouse icon?
 
 ///Rotates the cannon overlay
-/obj/vehicle/sealed/armored/proc/swivel_turret(atom/A)
-	var/new_weapon_dir = angle_to_cardinal_dir(Get_Angle(src, A))
+/obj/vehicle/sealed/armored/proc/swivel_turret(atom/A, new_weapon_dir)
+	if(!new_weapon_dir)
+		new_weapon_dir = angle_to_cardinal_dir(Get_Angle(get_turf(src), get_turf(A)))
 	if(turret_overlay.dir == new_weapon_dir)
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam

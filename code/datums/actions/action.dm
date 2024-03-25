@@ -61,8 +61,10 @@ KEYBINDINGS
 	target = null
 	return ..()
 
+/// Cleans up the action if the owner is deleted
 /datum/action/proc/clean_action()
 	SIGNAL_HANDLER
+	SHOULD_CALL_PARENT(TRUE)
 	qdel(src)
 
 /datum/action/proc/should_show()

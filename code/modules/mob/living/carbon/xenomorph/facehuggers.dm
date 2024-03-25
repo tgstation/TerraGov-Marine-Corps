@@ -116,18 +116,18 @@
 
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
-/obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
 
-	if(!issamexenohive(X) && stat != DEAD)
-		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-		X.visible_message("<span class='xenowarning'>[X] crushes \the [src]",
+	if(!issamexenohive(xeno_attacker) && stat != DEAD)
+		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+		xeno_attacker.visible_message("<span class='xenowarning'>[xeno_attacker] crushes \the [src]",
 			"<span class='xenowarning'>We crush \the [src]")
 		kill_hugger()
 		return
 	else
-		attack_hand(X)
+		attack_hand(xeno_attacker)
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/mask/facehugger/attack_hand(mob/living/user)
@@ -258,16 +258,23 @@
 			go_idle()
 		return
 
-	var/i = 10//So if we have a pile of dead bodies around, it doesn't scan everything, just ten iterations.
-	for(var/mob/living/carbon/M in view(4,src))
-		if(!i)
-			break
-		if(M.can_be_facehugged(src))
-			visible_message(span_warning("\The scuttling [src] leaps at [M]!"), null, null, 4)
-			leaping = TRUE
-			throw_at(M, 4, 1)
-			return //We found a target and will jump towards it; cancel out. If we didn't find anything, continue and try again later
-		--i
+	var/mob/living/carbon/chosen_target
+
+	for(var/mob/living/carbon/M in view(4, src))
+		// Using euclidean distance means it will prioritize cardinal directions, which are less likely to miss due to wall jank.
+		if(chosen_target && (get_dist_manhattan(src, M) > get_dist_manhattan(src, chosen_target)))
+			continue
+
+		if(!M.can_be_facehugged(src))
+			continue
+
+		chosen_target = M
+
+	if(chosen_target)
+		visible_message(span_warning("\The scuttling [src] leaps at [chosen_target]!"), null, null, 4)
+		leaping = TRUE
+		throw_at(chosen_target, 4, 1)
+		return
 
 	remove_danger_overlay() //Remove the danger overlay
 	pre_leap() //Go into the universal leap set up proc

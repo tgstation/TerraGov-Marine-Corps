@@ -447,6 +447,14 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Xeno flags
 ///Xeno is currently performing a leap/dash attack
 #define XENO_LEAPING (1<<0)
+///Hive leader
+#define XENO_LEADER (1<<1)
+///Zoomed out
+#define XENO_ZOOMED (1<<2)
+///mobhud on
+#define XENO_MOBHUD (1<<3)
+///rouny mode
+#define XENO_ROUNY (1<<4)
 
 
 #define XENO_DEFAULT_VENT_ENTER_TIME 4.5 SECONDS //Standard time for a xeno to enter a vent.
@@ -669,13 +677,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Defender defines
 #define DEFENDER_CHARGE_RANGE 4
-
-//Baneling defines
-#define BANELING_CHARGE_MAX 2
-#define BANELING_CHARGE_GAIN_TIME 240 SECONDS
-#define BANELING_CHARGE_RESPAWN_TIME 30 SECONDS
-/// Not specified in seconds because it causes smoke to last almost four times as long if done so
-#define BANELING_SMOKE_DURATION 4
 
 //Sentinel defines
 #define SENTINEL_TOXIC_SPIT_STACKS_PER 2 //Amount of debuff stacks to be applied per spit.

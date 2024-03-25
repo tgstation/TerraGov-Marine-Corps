@@ -400,6 +400,13 @@
 	new /obj/item/explosive/grenade/chem_grenade/razorburn_small(src)
 	new /obj/item/explosive/grenade/chem_grenade/razorburn_large(src)
 
+/obj/item/storage/pouch/explosive/antigas/Initialize(mapload)
+	. = ..()
+	new /obj/item/explosive/grenade/smokebomb/antigas(src)
+	new /obj/item/explosive/grenade/smokebomb/antigas(src)
+	new /obj/item/explosive/grenade/smokebomb/antigas(src)
+	new /obj/item/explosive/grenade/smokebomb/antigas(src)
+
 /obj/item/storage/pouch/explosive/upp
 	fill_type = /obj/item/explosive/grenade/upp
 	fill_number = 4
@@ -438,6 +445,15 @@
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 
+/obj/item/storage/pouch/grenade/standard/Initialize(mapload)
+	. = ..()
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade/bullet/laser(src)
+	new /obj/item/explosive/grenade/bullet/laser(src)
+	new /obj/item/explosive/grenade/incendiary(src)
+
 /obj/item/storage/pouch/grenade/som
 	desc = "It can contain grenades. This one looks to be made out of traditional SOM leather."
 	icon_state = "grenade_som"
@@ -460,6 +476,15 @@
 	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
 	new /obj/item/explosive/grenade/som(src)
 	new /obj/item/explosive/grenade/som(src)
+
+/obj/item/storage/pouch/grenade/som/standard/Initialize(mapload)
+	. = ..()
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/incendiary/som(src)
+	new /obj/item/explosive/grenade/incendiary/som(src)
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"

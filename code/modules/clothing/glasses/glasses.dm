@@ -20,44 +20,57 @@
 	var/invis_override = 0 //Override to allow glasses to set higher than normal see_invis
 	var/lighting_alpha
 	var/goggles = FALSE
+	///Sound played on activate() when turning on
+	var/activation_sound = 'sound/items/googles_on.ogg'
+	///Sound played on activate() when turning off
+	var/deactivation_sound = 'sound/items/googles_off.ogg'
+	///Color to use for the HUD tint; leave null if no tint
+	var/tint
 
+/obj/item/clothing/glasses/Initialize(mapload)
+	. = ..()
+	if(active)	//For glasses that spawn active
+		active = FALSE
+		activate()
+
+/obj/item/clothing/glasses/update_icon_state()
+	. = ..()
+	icon_state = active ? initial(icon_state) : deactive_state
 
 /obj/item/clothing/glasses/update_clothing_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_glasses()
 
-
+//Glasses can still be toggled if held in the hand if the player wishes to
 /obj/item/clothing/glasses/attack_self(mob/user)
-	if(toggleable)
-		toggle_glasses(user)
+	if(can_interact(user))
+		activate(user)
 
-/obj/item/clothing/glasses/proc/toggle_glasses(mob/user)
-	if(active)
-		deactivate_glasses(user)
-	else
-		activate_glasses(user)
+//Just call the activate() directly instead of needing to call attack_self()
+/obj/item/clothing/glasses/ui_action_click(mob/user, datum/action/item_action/action)
+	//In case someone in the future adds a non-toggle action to a child type
+	if(istype(action, /datum/action/item_action/toggle))
+		activate(user)
+		//Always return TRUE for toggles so that the UI button icon updates
+		return TRUE
 
-	update_action_button_icons()
+	return activate(user)
 
+///Toggle the functions of the glasses
+/obj/item/clothing/glasses/proc/activate(mob/user)
+	active = !active
 
-/obj/item/clothing/glasses/proc/activate_glasses(mob/user, silent = FALSE)
-	active = TRUE
-	icon_state = initial(icon_state)
-	user.update_inv_glasses()
-	if(!silent)
-		to_chat(user, "You activate the optical matrix on [src].")
-		playsound(user, 'sound/items/googles_on.ogg', 15)
+	if(active && activation_sound)
+		playsound(get_turf(src), activation_sound, 15)
+	else if(!active && deactivation_sound)
+		playsound(get_turf(src), deactivation_sound, 15)
 
+	update_icon()	//Found out the hard way this has to be before update_inv_glasses()
+	user?.update_inv_glasses()
+	user?.update_sight()
 
-/obj/item/clothing/glasses/proc/deactivate_glasses(mob/user, silent = FALSE)
-	active = FALSE
-	icon_state = deactive_state
-	user.update_inv_glasses()
-	if(!silent)
-		to_chat(user, "You deactivate the optical matrix on [src].")
-		playsound(user, 'sound/items/googles_off.ogg', 15)
-
+	return active	//For the UI button update
 
 /obj/item/clothing/glasses/science
 	name = "science goggles"
@@ -222,24 +235,12 @@
 	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEEYES
 	eye_protection = 2
+	activation_sound = null
+	deactivation_sound = null
 
 /obj/item/clothing/glasses/welding/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_5, TRUE)
-
-/obj/item/clothing/glasses/welding/proc/flip_up()
-	DISABLE_BITFIELD(flags_inventory, COVEREYES)
-	DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
-	DISABLE_BITFIELD(flags_armor_protection, EYES)
-	eye_protection = 0
-	icon_state = "[initial(icon_state)]up"
-
-/obj/item/clothing/glasses/welding/proc/flip_down()
-	ENABLE_BITFIELD(flags_inventory, COVEREYES)
-	ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
-	ENABLE_BITFIELD(flags_armor_protection, EYES)
-	eye_protection = initial(eye_protection)
-	icon_state = initial(icon_state)
 
 /obj/item/clothing/glasses/welding/verb/verbtoggle()
 	set category = "Object"
@@ -247,32 +248,44 @@
 	set src in usr
 
 	if(!usr.incapacitated())
-		toggle_item_state(usr)
+		activate(usr)
 
-/obj/item/clothing/glasses/welding/attack_self(mob/user)
+/obj/item/clothing/glasses/welding/activate(mob/user)
+	. = ..()
+	if(active)
+		flip_down(user)
+	else
+		flip_up(user)
+
+	//This sends a signal that toggles the tint component's effects
 	toggle_item_state(user)
 
-/obj/item/clothing/glasses/welding/toggle_item_state(mob/user)
-	. = ..()
-	active = !active
-	icon_state = "[initial(icon_state)][!active ? "up" : ""]"
-	if(!active)
-		flip_up()
-	else
-		flip_down()
+///Toggle the welding goggles on
+/obj/item/clothing/glasses/welding/proc/flip_up(mob/user)
+	DISABLE_BITFIELD(flags_inventory, COVEREYES)
+	DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
+	DISABLE_BITFIELD(flags_armor_protection, EYES)
+	eye_protection = 0
+	update_icon()
 	if(user)
-		to_chat(usr, "You [active ? "flip [src] down to protect your eyes" : "push [src] up out of your face"].")
+		to_chat(user, "You push [src] up out of your face.")
 
-	update_clothing_icon()
+///Toggle the welding goggles off
+/obj/item/clothing/glasses/welding/proc/flip_down(mob/user)
+	ENABLE_BITFIELD(flags_inventory, COVEREYES)
+	ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
+	ENABLE_BITFIELD(flags_armor_protection, EYES)
+	eye_protection = initial(eye_protection)
+	update_icon()
+	if(user)
+		to_chat(user, "You flip [src] down to protect your eyes.")
 
-	update_action_button_icons()
+/obj/item/clothing/glasses/welding/update_icon_state()
+	icon_state = "[initial(icon_state)][!active ? "up" : ""]"
 
-/obj/item/clothing/glasses/welding/flipped //spawn in flipped up.
-	active = FALSE
-
-/obj/item/clothing/glasses/welding/flipped/Initialize(mapload)
+/obj/item/clothing/glasses/welding/flipped/Initialize(mapload)	//spawn in flipped up.
 	. = ..()
-	flip_up()
+	activate()
 	AddComponent(/datum/component/clothing_tint, TINT_5, FALSE)
 
 /obj/item/clothing/glasses/welding/superior
@@ -409,3 +422,148 @@
 	desc = "A pair of aviator sunglasses. Comes with yellow lens."
 	icon_state = "aviator_yellow"
 	item_state = "aviator_yellow"
+
+/obj/item/clothing/glasses/night_vision
+	name = "\improper BE-47 night vision goggles"
+	desc = "Goggles for seeing clearer in low light conditions and maintaining sight of the surrounding environment."
+	icon_state = "night_vision"
+	deactive_state = "night_vision_off"
+	worn_layer = COLLAR_LAYER	//The sprites are designed to render over helmets
+	item_state_slots = list()
+	tint = COLOR_RED
+	darkness_view = 8
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	vision_flags = SEE_TURFS
+	toggleable = TRUE
+	goggles = TRUE
+	active = FALSE
+	actions_types = list(/datum/action/item_action/toggle)
+	activation_sound = 'sound/effects/nightvision.ogg'
+	deactivation_sound = 'sound/machines/click.ogg'
+	///The battery inside
+	var/obj/item/cell/night_vision_battery/battery
+	///How much energy this module needs when activated
+	var/active_energy_cost = 4	//Little over 4 minutes of use
+	///Looping sound to play
+	var/datum/looping_sound/active_sound = /datum/looping_sound/scan_pulse
+	///How loud the looping sound should be
+	var/looping_sound_volume = 25
+
+/obj/item/clothing/glasses/night_vision/Initialize(mapload)
+	. = ..()
+	//Start with a charged battery
+	battery = new /obj/item/cell/night_vision_battery(src)
+	active_sound = new active_sound()
+	active_sound.volume = looping_sound_volume
+	update_worn_state()
+
+/obj/item/clothing/glasses/night_vision/examine(mob/user)
+	. = ..()
+	. += span_notice("This model drains [active_energy_cost] energy when active.")
+	. += battery_status()
+	. += "To eject the battery, [span_bold("[user.get_inactive_held_item() == src ? "click" : "ALT-click"]")] [src] with an empty hand. To insert a battery, [span_bold("click")] [src] with a compatible cell."
+
+///Info regarding battery status; separate proc so that it can be displayed when examining the parent object
+/obj/item/clothing/glasses/night_vision/proc/battery_status()
+	if(battery)
+		return span_notice("Battery: [battery.charge]/[battery.maxcharge]")
+	return span_warning("No battery installed!")
+
+/obj/item/clothing/glasses/night_vision/attack_hand(mob/living/user)
+	if(user.get_inactive_held_item() == src && eject_battery(user))
+		return
+	return ..()
+
+/obj/item/clothing/glasses/night_vision/AltClick(mob/user)
+	if(!eject_battery(user))
+		return ..()
+
+/obj/item/clothing/glasses/night_vision/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	insert_battery(I, user)
+
+///Insert a battery, if checks pass
+/obj/item/clothing/glasses/night_vision/proc/insert_battery(obj/item/I, mob/user)
+	if(!istype(I, /obj/item/cell/night_vision_battery))
+		return
+
+	if(battery && (battery.charge > battery.maxcharge / 2))
+		balloon_alert(user, "Battery already installed")
+		return
+	//Hot swap!
+	eject_battery()
+
+	user.temporarilyRemoveItemFromInventory(I)
+	I.forceMove(src)
+	battery = I
+	return TRUE
+
+///Eject the internal battery, if there is one
+/obj/item/clothing/glasses/night_vision/proc/eject_battery(mob/user)
+	if(user?.get_active_held_item() || !battery)
+		return
+
+	if(user)
+		user.put_in_active_hand(battery)
+	else
+		battery.forceMove(get_turf(src))
+	battery = null
+
+	if(active)
+		activate(user)
+
+	return TRUE
+
+/obj/item/clothing/glasses/night_vision/activate(mob/user)
+	if(active)
+		STOP_PROCESSING(SSobj, src)
+		active_sound.stop(src)
+	else
+		if(!battery || battery.charge < active_energy_cost)
+			if(user)
+				balloon_alert(user, "No power")
+			return FALSE	//Don't activate
+		START_PROCESSING(SSobj, src)
+		active_sound.start(src)
+
+	update_worn_state(!active)	//The active var has not been toggled yet, so pass the opposite value
+	return ..()
+
+/obj/item/clothing/glasses/night_vision/process()
+	if(!battery?.use(active_energy_cost))
+		if(ismob(loc))	//If it's deactivated while being worn, pass on the reference to activate() so that the user's sight is updated
+			activate(loc)
+		else
+			activate()
+		return PROCESS_KILL
+
+///Simple proc to update the worn state of the glasses; will use the active value by default if no argument passed
+/obj/item/clothing/glasses/night_vision/proc/update_worn_state(state = active)
+	item_state_slots[slot_glasses_str] = initial(icon_state) + (state ? "" : "_off")
+
+/obj/item/clothing/glasses/night_vision/unequipped(mob/unequipper, slot)
+	. = ..()
+	if(active)
+		activate(unequipper)
+
+/obj/item/clothing/glasses/night_vision/Destroy()
+	QDEL_NULL(active_sound)
+	return ..()
+
+//So that the toggle button is only given when in the eyes slot
+/obj/item/clothing/glasses/night_vision/item_action_slot_check(mob/user, slot)
+	return CHECK_BITFIELD(slot, ITEM_SLOT_EYES)
+
+/obj/item/clothing/glasses/night_vision/mounted
+	name = "\improper BE-35 night vision goggles"
+	desc = "Goggles for seeing clearer in low light conditions. Must remain attached to a helmet."
+	icon_state = "night_vision_mounted"
+	tint = COLOR_BLUE
+	vision_flags = NONE
+	darkness_view = 9	//The standalone version cannot see the edges
+	active_energy_cost = 2	//A little over 7 minutes of use
+	looping_sound_volume = 50
+
+/obj/item/clothing/glasses/night_vision/mounted/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, NIGHT_VISION_GOGGLES_TRAIT)

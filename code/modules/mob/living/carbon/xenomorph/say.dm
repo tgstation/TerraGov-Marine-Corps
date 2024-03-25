@@ -5,7 +5,7 @@
 	This is also paired with [/mob/living/carbon/xenomorph/hivemind_end]
 */
 /mob/living/carbon/xenomorph/proc/hivemind_start()
-	return "<span class='hivemind [queen_chosen_lead?"xenoleader":""]'>Hivemind, <b>[span_name("[name]")]</b>"
+	return "<span class='hivemind [(xeno_flags & XENO_LEADER) ? "xenoleader" : ""]'>Hivemind, <b>[span_name("[name]")]</b>"
 
 /**
 	Called to create the suffix for xeno hivemind messages
