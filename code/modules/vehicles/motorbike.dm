@@ -9,7 +9,7 @@
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 30, FIRE = 60, ACID = 60)
 	resistance_flags = XENO_DAMAGEABLE
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
-	key_type = null
+	key_type = /obj/item/key/motorbike
 	integrity_failure = 0.5
 	allow_pass_flags = PASSABLE
 	coverage = 30	//It's just a bike, not hard to shoot over
@@ -32,6 +32,7 @@
 	motor_pack = new motor_pack(src)
 	motorbike_cover = mutable_appearance(icon, "motorbike_cover", MOB_LAYER + 0.1)
 	fuel_count = fuel_max
+	inserted_key = new key_type
 
 /obj/vehicle/ridden/motorbike/examine(mob/user)
 	. = ..()
@@ -53,6 +54,9 @@
 	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
 
 /obj/vehicle/ridden/motorbike/relaymove(mob/living/user, direction)
+	if(!inserted_key)
+		to_chat(user, span_warning("You need the key to use the bike!"))
+		return
 	if(fuel_count <= 0)
 		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIKE_FUEL_MESSAGE))
 			to_chat(user, span_warning("There is no fuel left!"))
@@ -124,6 +128,9 @@
 		max_buckled_mobs = 2
 		max_occupants = 2
 		return TRUE
+
+	if(istype(I, /obj/item/key/motorbike))
+		return
 	if(user.a_intent != INTENT_HARM)
 		return motor_pack.attackby(I, user, params)
 
@@ -203,6 +210,17 @@
 		open(user)
 		return FALSE
 
+
+/obj/item/key/motorbike
+	name = "key"
+	desc = "A keyring with a small steel key."
+	icon = 'icons/obj/vehicles.dmi'
+	icon_state = "train_keys"
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/key/motorbike/Initialize(mapload)
+	. = ..()
+	icon_state = pick("keys", "key", "securikey")
 
 /**
  * Sidecar that when attached lets you put two people on the bike
