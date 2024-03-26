@@ -127,7 +127,8 @@
 
 //This proc is what a robot calls when they try to enter a cradle on their own.
 /obj/machinery/robotic_cradle/proc/move_inside_wrapper(mob/living/dropped, mob/dragger)
-	if(dragger.incapacitated() || !ishuman(dragger) || !isrobot(dropped))
+	if(dragger.incapacitated() || !ishuman(dragger) || (!isrobot(dropped) && !issynth(dropped)) )
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 20, FALSE)
 		return
 
 	if(occupant)
