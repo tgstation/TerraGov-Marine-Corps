@@ -1,0 +1,409 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"c" = (
+/obj/structure/cargo_container/horizontal{
+	dir = 8
+	},
+/obj/structure/cargo_container/horizontal{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"e" = (
+/obj/structure/cargo_container{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"f" = (
+/obj/structure/cargo_container/red{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"g" = (
+/obj/structure/cargo_container/hd,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"h" = (
+/obj/structure/stairs/seamless/edge,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"i" = (
+/obj/structure/cargo_container{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"j" = (
+/obj/structure/cargo_container/horizontal{
+	dir = 1
+	},
+/obj/structure/cargo_container/horizontal{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"k" = (
+/obj/structure/cargo_container/horizontal{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"l" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"n" = (
+/obj/effect/turf_decal/grassdecal/corner2{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"o" = (
+/obj/effect/turf_decal/grassdecal{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"p" = (
+/obj/effect/turf_decal/grassdecal{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"q" = (
+/obj/structure/cargo_container/hd_blue{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"s" = (
+/obj/structure/cargo_container/ch_green,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"t" = (
+/obj/structure/cargo_container/green,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"v" = (
+/obj/structure/cargo_container/nt{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"x" = (
+/obj/structure/cargo_container/nt,
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"z" = (
+/obj/effect/landmark/campaign_structure/asat_system,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"A" = (
+/obj/structure/cargo_container/horizontal{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"B" = (
+/obj/structure/cargo_container/hd{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"C" = (
+/obj/structure/cargo_container/red,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"D" = (
+/obj/structure/cargo_container,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"G" = (
+/obj/effect/turf_decal/grassdecal{
+	dir = 1
+	},
+/obj/structure/flora/jungle/large_bush,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"K" = (
+/obj/structure/stairs/seamless/edge{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"L" = (
+/obj/effect/turf_decal/grassdecal/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"N" = (
+/obj/structure/cargo_container/nt{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"O" = (
+/obj/structure/cargo_container/ch_green{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"P" = (
+/obj/structure/cargo_container/horizontal{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"Q" = (
+/obj/structure/cargo_container/hd_blue,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"R" = (
+/obj/effect/turf_decal/grassdecal{
+	dir = 1
+	},
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"T" = (
+/obj/structure/cargo_container/hd{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"U" = (
+/obj/structure/cargo_container/hd_blue{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"V" = (
+/obj/structure/cargo_container/green{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"W" = (
+/obj/effect/turf_decal/grassdecal,
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"X" = (
+/obj/structure/cargo_container/ch_green{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"Y" = (
+/obj/structure/cargo_container/horizontal{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"Z" = (
+/obj/effect/turf_decal/grassdecal,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+
+(1,1,1) = {"
+W
+a
+a
+l
+l
+l
+l
+l
+l
+a
+a
+a
+a
+p
+"}
+(2,1,1) = {"
+Z
+D
+a
+x
+C
+t
+a
+a
+s
+a
+a
+a
+a
+p
+"}
+(3,1,1) = {"
+Z
+i
+a
+v
+f
+V
+a
+a
+X
+a
+a
+a
+a
+p
+"}
+(4,1,1) = {"
+Z
+i
+a
+N
+f
+V
+a
+a
+O
+a
+a
+Q
+a
+R
+"}
+(5,1,1) = {"
+Z
+e
+a
+l
+f
+V
+a
+a
+a
+a
+a
+U
+a
+G
+"}
+(6,1,1) = {"
+Z
+a
+a
+l
+a
+a
+a
+a
+a
+a
+a
+q
+a
+p
+"}
+(7,1,1) = {"
+Z
+a
+a
+l
+a
+a
+a
+a
+a
+a
+a
+a
+a
+p
+"}
+(8,1,1) = {"
+Z
+a
+a
+Y
+j
+c
+k
+a
+a
+a
+D
+a
+a
+R
+"}
+(9,1,1) = {"
+Z
+g
+a
+l
+a
+a
+a
+a
+a
+a
+i
+z
+a
+R
+"}
+(10,1,1) = {"
+Z
+B
+a
+l
+a
+P
+A
+k
+a
+a
+e
+a
+a
+p
+"}
+(11,1,1) = {"
+Z
+T
+a
+l
+a
+a
+a
+a
+a
+a
+a
+a
+a
+p
+"}
+(12,1,1) = {"
+Z
+a
+a
+K
+h
+a
+a
+a
+a
+n
+o
+o
+o
+L
+"}

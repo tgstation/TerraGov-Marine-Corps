@@ -2115,10 +2115,6 @@
 	dir = 9
 	},
 /area/icy_caves/caves/cavesbrig)
-"mo" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/icy_caves/outpost/outside/center)
 "mp" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -9029,7 +9025,7 @@
 /area/icy_caves/caves/northwestmonorail)
 "US" = (
 /obj/structure/table,
-/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/suit/storage/chef/classic,
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "UT" = (
@@ -19867,7 +19863,7 @@ ow
 ow
 nL
 ZI
-mo
+li
 li
 ow
 ZI

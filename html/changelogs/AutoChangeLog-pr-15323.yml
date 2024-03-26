@@ -1,6 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - balance: "The overheating damage for Normal Synthetics is now 5-16"
-  - balance: "The overheating damage for Early Synthetics is now 7-19"
-  - rscadd: "Synthetics may spark when overheating from severe damage. They will also stammer when overheating."

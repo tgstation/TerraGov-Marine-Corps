@@ -164,24 +164,29 @@ const ItemLine = (props) => {
               Cosmetic
             </Box>
           )}
+          {prod_color === 'synth-storage' && (
+            <Box inline mr="6px" ml="6px" color="magenta">
+              Storage
+            </Box>
+          )}
           {prod_color === 'synth-armor' && (
             <Box inline mr="6px" ml="6px" color="red">
-              Provides Armor
+              Armor
             </Box>
           )}
           {prod_color === 'synth-rcmarmor' && (
             <Box inline mr="6px" ml="6px" color="orange">
-              Recommended - Provides Armor
+              Recommended - Armor
             </Box>
           )}
           {prod_color === 'synth-rcmarmstorage' && (
             <Box inline mr="6px" ml="6px" color="green">
-              Recommended - Provides Armor and Storage
+              Recommended - Armor and Suit Storage
             </Box>
           )}
           {prod_color === 'synth-attachable' && (
             <Box inline mr="6px" ml="6px" color="green">
-              Recommended - Can be attached to flak jacket
+              Recommended - Attachable to Flak Jacket
             </Box>
           )}
           {prod_cost > 0 && (

@@ -1845,6 +1845,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/upper_medical)
+"cky" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/space)
 "cnd" = (
 /obj/machinery/door/airlock/mainship/maint/free_access,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -7410,13 +7415,9 @@
 	},
 /area/mainship/medical/operating_room_two)
 "jrW" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship/cargo/arrow,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment/corner,
+/turf/open/floor/plating/plating_catwalk,
 /area/space)
 "jsl" = (
 /obj/machinery/light/mainship{
@@ -12713,7 +12714,6 @@
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/item/clothing/gloves/latex,
 /obj/item/clothing/head/chefhat,
-/obj/item/clothing/suit/chef/classic,
 /obj/item/tool/kitchen/rollingpin,
 /obj/item/book/manual/chef_recipes,
 /turf/open/floor/mainship/mono,
@@ -18083,7 +18083,6 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/clothing/head/chefhat,
 /obj/item/clothing/under/rank/chef,
-/obj/item/clothing/suit/chef/classic,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "wwQ" = (
@@ -57532,7 +57531,7 @@ hRh
 nWT
 tBb
 jrW
-xqu
+cky
 xqu
 xqu
 xqu

@@ -140,6 +140,8 @@
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod)
 
+	plasma_mod[1] = clamp(plasma_mod[1], 0, xeno_caste.plasma_max * xeno_caste.plasma_regen_limit - plasma_stored)
+
 	gain_plasma(plasma_mod[1])
 
 /mob/living/carbon/xenomorph/can_receive_aura(aura_type, atom/source, datum/aura_bearer/bearer)

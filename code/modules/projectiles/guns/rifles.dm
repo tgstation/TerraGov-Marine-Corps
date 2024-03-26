@@ -38,7 +38,7 @@
 	max_shells = 36 //codex
 	force = 20
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_carbine
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_carbine)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_carbine, /obj/item/ammo_magazine/rifle/standard_carbine/ap)
 	attachable_allowed = list(
 		/obj/item/attachable/stock/t18stock,
 		/obj/item/attachable/reddot,
@@ -125,7 +125,7 @@
 	max_shells = 50 //codex
 	force = 20
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_assaultrifle
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_assaultrifle)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_assaultrifle, /obj/item/ammo_magazine/rifle/standard_assaultrifle/ap)
 	attachable_allowed = list(
 		/obj/item/attachable/stock/t12stock,
 		/obj/item/attachable/reddot,

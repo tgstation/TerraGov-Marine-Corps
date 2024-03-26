@@ -171,7 +171,7 @@
 
 /obj/effect/landmark/resin_jelly_pod
 	name = "xeno jelly pod landmark"
-	icon = 'icons/Xeno/resinpod.dmi'
+	icon = 'icons/Xeno/resin_pod.dmi'
 	icon_state = "resinpod"
 
 /obj/effect/landmark/resin_jelly_pod/Initialize(mapload)
@@ -422,7 +422,7 @@
 		/obj/item/weapon/gun/minigun,
 		/obj/item/weapon/gun/grenade_launcher/multinade_launcher,
 		/obj/item/weapon/gun/energy/lasgun/pulse,
-		/obj/item/weapon/gun/tl102/death, // memes
+		/obj/item/weapon/gun/hsg_102/death, // memes
 	)
 
 /obj/effect/landmark/weapon_spawn/tier6_weapon_spawn
@@ -436,7 +436,7 @@
 /obj/effect/landmark/sensor_tower
 	name = "Sensor tower"
 	icon = 'icons/obj/structures/sensor.dmi'
-	icon_state = "sensor_loyalist"
+	icon_state = "sensor"
 
 /obj/effect/landmark/sensor_tower/Initialize(mapload)
 	..()

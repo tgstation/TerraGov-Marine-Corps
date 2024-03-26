@@ -7,7 +7,8 @@
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
 	mission_flags = MISSION_DISALLOW_TELEPORT
-	max_game_time = 10 MINUTES
+	max_game_time = 9 MINUTES
+	game_timer_delay = 90 SECONDS
 	shutter_open_delay = list(
 		MISSION_STARTING_FACTION = 90 SECONDS,
 		MISSION_HOSTILE_FACTION = 0,
