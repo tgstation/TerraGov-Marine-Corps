@@ -391,3 +391,14 @@
   - rscadd: Added modulars to Jungle Outpost
   coldironwarrior:
   - rscadd: sulaco vehicle bay, next to the TAD and mech workshop
+2024-03-25:
+  XElectricX:
+  - bugfix: Welding goggles no longer work in reverse.
+  coldironwarrior:
+  - imagedel: deletes unused sprites from the "obj" folder
+  - imagedel: deleted the "unused" folder of dmis
+2024-03-26:
+  Lumipharon:
+  - bugfix: fixed lava trying to burn indestructable things forever
+  blackdav123:
+  - balance: Removed outdoor plat miner from Icy Caves

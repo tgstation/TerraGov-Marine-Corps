@@ -1,0 +1,5 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - bugfix: "fix the hypersleep dispense all not working"
+  - bugfix: "fix the drug category not displaying"

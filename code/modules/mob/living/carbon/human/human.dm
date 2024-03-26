@@ -595,7 +595,6 @@
 		else if(newcolor != holo_card_color)
 			holo_card_color = newcolor
 			to_chat(usr, span_notice("You add a [newcolor] holo card on [src]."))
-		update_targeted()
 
 	if(href_list["scanreport"])
 		if(!hasHUD(usr,"medical"))
