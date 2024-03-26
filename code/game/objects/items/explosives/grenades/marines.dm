@@ -281,7 +281,7 @@
 	/// smoke type created when the grenade is primed
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
 	///radius this smoke grenade will encompass
-	var/smokeradius = 7
+	var/smokeradius = 6
 	///The duration of the smoke
 	var/smoke_duration = 11
 
@@ -310,7 +310,6 @@
 	det_time = 4 SECONDS
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/medium
-	smokeradius = 6
 
 /obj/item/explosive/grenade/smokebomb/acid
 	name = "\improper M40-A Acid smoke grenade"
@@ -332,7 +331,6 @@
 	det_time = 4 SECONDS
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/satrapine
-	smokeradius = 6
 
 /obj/item/explosive/grenade/smokebomb/satrapine/activate(mob/user)
 	. = ..()
@@ -348,6 +346,7 @@
 	hud_state = "grenade_hide"
 	icon_state_mini = "grenade_green"
 	smoketype = /datum/effect_system/smoke_spread/tactical
+	smokeradius = 7
 
 /obj/item/explosive/grenade/smokebomb/cloak/ags
 	name = "\improper AGLS-37 SCDP smoke grenade"
@@ -365,6 +364,7 @@
 	icon_state_mini = "grenade_blue"
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
+	smokeradius = 7
 
 /obj/item/explosive/grenade/smokebomb/antigas
 	name = "\improper M40-AG smoke grenade"
@@ -376,6 +376,7 @@
 	icon_state_mini = "grenade_antigas"
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/antigas
+	smokeradius = 7
 
 /obj/item/explosive/grenade/smokebomb/drain/agls
 	name = "\improper AGLS-T smoke grenade"
