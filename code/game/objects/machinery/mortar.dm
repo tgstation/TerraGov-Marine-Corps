@@ -598,7 +598,7 @@
 		user.balloon_alert(user, "The barrel is steaming hot. Wait till it cools off")
 		return
 
-	if(!istype(I, /obj/item/storage/box/mlrs_rockets) && !istype(I, /obj/item/storage/box/mlrs_rockets/gas))
+	if(!istype(I, /obj/item/storage/box/mlrs_rockets))
 		return ..()
 
 	var/obj/item/storage/box/rocket_box = I
