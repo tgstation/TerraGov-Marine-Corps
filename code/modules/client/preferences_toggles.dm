@@ -307,7 +307,7 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 
 /client/verb/toggle_round_end_sounds()
 	set category = "Preferences"
-	set name = "Toggle round end sounds."
+	set name = "Toggle round end sounds"
 
 	usr.client.prefs.toggles_sound ^= SOUND_NOENDOFROUND
 	usr.client.prefs.save_preferences()
