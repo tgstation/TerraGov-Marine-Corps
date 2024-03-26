@@ -963,6 +963,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	//This loop will keep iterating until it finds a valid target, then it will break
 	for(var/atom in nearby_objects)
 		if(!check_path(src, atom))	//circle_range() goes through walls, so make sure the target is reachable
+			nearby_objects -= atom	//Remove it in case it needs to iterate again later
 			continue
 
 		//Mob checks
@@ -991,7 +992,14 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	//In the rare event of no valid target, just grab a turf and zap it for the cool effect and to signal it is active
 	//Was considering it not doing anything but then you could exploit it by triggering and having it be active indefinitely
 	if(!target)
-		target = pick(/turf in nearby_objects)
+		for(var/turf/turf in nearby_objects)
+			target = turf
+			break
+
+		//The mine is either in some kind of void or something very horrible has happened, so just disarm it
+		if(!target)
+			disarm()
+			return
 
 	playsound(loc, "sparks", 100, sound_range = 7)
 	if(target)
