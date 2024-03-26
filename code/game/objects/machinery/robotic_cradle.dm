@@ -29,7 +29,7 @@
 	var/mob/living/carbon/human/occupant
 	///This var is in reference to the radio the cradle uses to speak to the crew
 	var/obj/item/radio/headset/mainship/doc/radio
-	///This var tracks the operation timer, so we can delete it if we need to abort the operation early
+	///This var is so we can call deltimer() it if we need to abort the operation early
 	var/operation_timer
 
 /obj/machinery/robotic_cradle/Initialize(mapload)
@@ -37,7 +37,7 @@
 	radio = new(src)
 
 /obj/machinery/robotic_cradle/Destroy()
-	early_eject(forceeject = TRUE)
+	start_emergency_eject(forceeject = TRUE)
 	if(radio)
 		QDEL_NULL(radio)
 	return ..()
@@ -53,7 +53,6 @@
 	if(is_operational() || !occupant)
 		return
 	visible_message("[src] engages the safety override, ejecting the occupant.")
-	repairing = FALSE
 	perform_eject(CRADLE_NOTICE_NO_POWER)
 
 /obj/machinery/robotic_cradle/process()
@@ -62,27 +61,11 @@
 
 	if(occupant.stat == DEAD)
 		say("Patient has expired.")
-		repairing = FALSE
 		perform_eject(CRADLE_NOTICE_DEATH)
 		return
 
 	if(!repairing)
 		return
-
-///This proc handles the actual repair once the timer is up, ejection of the healed robot and radio message of ejection.
-/obj/machinery/robotic_cradle/proc/finish_repair()
-	if(!occupant)
-		return
-	if(QDELETED(occupant) || occupant.stat == DEAD)
-		if(!ishuman(occupant))
-			stack_trace("Non-human occupant made its way into the autodoc: [occupant] | [occupant?.type].")
-		visible_message("[src] buzzes.")
-		perform_eject(CRADLE_NOTICE_DEATH) //kick them out too.
-		return
-	occupant.revive()
-	visible_message("\The [src] clicks and opens up having finished the requested operations.")
-	repairing = FALSE
-	perform_eject(CRADLE_NOTICE_SUCCESS)
 
 /obj/machinery/robotic_cradle/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!occupant)
@@ -90,14 +73,9 @@
 		return
 	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
 		return
-	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
-	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
-	if(!do_after(xeno_attacker, 2 SECONDS))
-		return
-	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-	early_eject()
+	start_emergency_eject()
 
-///This proc acts as a heads up to the doctors/engineers about the patient exiting the cradle for whatever reason.
+///This proc acts as a heads up to the doctors/engineers about the patient exiting the cradle for whatever reason. Takes CRADLE_NOTICE defines as arguments
 /obj/machinery/robotic_cradle/proc/notify_about_eject(notice_code = FALSE)
 	var/reason = "Reason for discharge: Procedural completion."
 	switch(notice_code)
@@ -128,7 +106,7 @@
 		return
 	radio.talk_into(src, "<b>Patient: [occupant] has been released from [src] at: [get_area(src)]. [reason]</b>", RADIO_CHANNEL_MEDICAL)
 
-///Forces the occupant out of the cradle, leaves it empty for someone else to enter. Shouldn't be called directly, call perform_eject() or early_eject()
+///Forces the occupant out of the cradle, leaves it empty for someone else to enter.
 /obj/machinery/robotic_cradle/proc/remove_occupant()
 	if(!occupant)
 		return
@@ -137,19 +115,20 @@
 	update_icon()
 	stop_processing()
 
-///Handles the ejecting the patient. notice_code takes CRADLE_NOTICE defines as arguments, used in notify_about_eject()
+///Finishes ejecting the patient after the cradle is done. Takes CRADLE_NOTICE defines as arguments, used in notify_about_eject()
 /obj/machinery/robotic_cradle/proc/perform_eject(notice_code = FALSE)
+	repairing = FALSE
 	if(operation_timer)
 		deltimer(operation_timer)
 	notify_about_eject(notice_code)
 	remove_occupant()
 
-///Handles any mob placing themselves or someone else into the cradle. target_mob is the mob being placed in, supervisor is the person placing the mob in. If it isn't obvious already, no humans allowed
-/obj/machinery/robotic_cradle/proc/place_mob_inside(mob/living/target_mob, mob/supervisor)
-	if(supervisor.incapacitated()||!ishuman(supervisor)||!ishuman(target_mob))
+///Handles any mob placing themselves or someone else into the cradle. target_mob is the mob being placed in, operating_mob is the person placing the mob in. Returns true if the mob got placed inside, false otherwise
+/obj/machinery/robotic_cradle/proc/place_mob_inside(mob/living/target_mob, mob/operating_mob)
+	if(operating_mob.incapacitated()||!ishuman(operating_mob)||!ishuman(target_mob))
 		return FALSE
 	if(occupant)
-		to_chat(supervisor, span_notice("[src] is already occupied!"))
+		to_chat(operating_mob, span_notice("[src] is already occupied!"))
 		return FALSE
 	var/mob/living/carbon/human/patient = target_mob
 	if(!(patient.species.species_flags & ROBOTIC_LIMBS))
@@ -161,31 +140,31 @@
 		playsound(src, 'sound/machines/buzz-two.ogg', 50, FALSE)
 		return FALSE
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(supervisor, span_notice("[src] is non-functional!"))
+		to_chat(operating_mob, span_notice("[src] is non-functional!"))
 		return FALSE
 
-	if(supervisor.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-		if(supervisor == patient)
-			patient.visible_message(span_notice("[patient] fumbles around figuring out how to get into \the [src]."),
+	if(operating_mob.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
+		if(operating_mob == patient)
+			operating_mob.visible_message(span_notice("[operating_mob] fumbles around figuring out how to get into \the [src]."),
 			span_notice("You fumble around figuring out how to get into \the [src]."))
 		else
-			supervisor.visible_message(span_notice("[supervisor] fumbles around figuring out how to get [patient] into \the [src]."),
+			operating_mob.visible_message(span_notice("[operating_mob] fumbles around figuring out how to get [patient] into \the [src]."),
 			span_notice("You fumble around figuring out how to get [patient] into \the [src]."))
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * supervisor.skills.getRating(SKILL_ENGINEER) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(patient, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
+		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * operating_mob.skills.getRating(SKILL_ENGINEER) ))// 8 secs non-trained, 5 amateur
+		if(!do_after(operating_mob, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 
-	if(supervisor == patient)
+	if(operating_mob == patient)
 		patient.visible_message(span_notice("[patient] starts climbing into \the [src]."),
 		span_notice("You start climbing into \the [src]."))
 	else
-		supervisor.visible_message(span_notice("[supervisor] starts placing [patient] \the [src]."),
+		operating_mob.visible_message(span_notice("[operating_mob] starts placing [patient] \the [src]."),
 		span_notice("You start placing [patient] into \the [src]."))
 
 	if(!do_after(patient, 1 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_GENERIC))
 		return FALSE
 	if(occupant) //In case someone tried climbing in earlier than us, while the cradle was empty
-		to_chat(supervisor, span_notice("[src] is already occupied!"))
+		to_chat(operating_mob, span_notice("[src] is already occupied!"))
 		return FALSE
 	patient.stop_pulling()
 	patient.forceMove(src)
@@ -195,25 +174,45 @@
 /obj/machinery/robotic_cradle/proc/start_repair_operation()
 	if(!occupant)
 		return
-	var/implants = list(/obj/item/implant/neurostim)
-	var/doc_dat
-	med_scan(occupant, doc_dat, implants, TRUE)
+
+	if(powered())
+		use_power(active_power_usage)
+		playsound(loc, 'sound/machines/ping.ogg', 25, 1)
+	else
+		perform_eject(CRADLE_NOTICE_NO_POWER)
+		return
+
 	start_processing()
 	update_icon()
 	repairing = TRUE
 	say("Automatic mode engaged, initialising repair procedure.")
 	operation_timer = addtimer(CALLBACK(src, PROC_REF(handle_repair_operation)), 20 SECONDS,TIMER_STOPPABLE)
 
-///Callback to start repair on someone entering
+///Callback to start repair on someone entering the cradle
 /obj/machinery/robotic_cradle/proc/handle_repair_operation()
-	if(!occupant) //sanity check, in case we get teleported outside the cradle without calling perform_eject()
+	if(!occupant) //sanity check, in case we get teleported outside the cradle midrepair without calling perform_eject()
 		if(operation_timer)
 			deltimer(operation_timer)
+		repairing = FALSE
 		visible_message(span_warning("[src] buzzes. Occupant missing, procedures canceled."))
 		playsound(src, 'sound/machines/buzz-two.ogg', 50, FALSE)
 		return
 	say("Repair procedure complete.")
-	finish_repair()
+	perform_repair()
+
+///This proc handles the actual repair once the timer is up and ejects the healed robot.
+/obj/machinery/robotic_cradle/proc/perform_repair()
+	if(!occupant)
+		return
+	if(QDELETED(occupant) || occupant.stat == DEAD)
+		if(!ishuman(occupant))
+			stack_trace("Non-human occupant made its way into the autodoc: [occupant] | [occupant?.type].")
+		visible_message(span_warning("[src] buzzes."))
+		perform_eject(CRADLE_NOTICE_DEATH)
+		return
+	occupant.revive()
+	visible_message("\The [src] clicks and opens up having finished the requested operations.")
+	perform_eject(CRADLE_NOTICE_SUCCESS)
 
 /obj/machinery/robotic_cradle/MouseDrop_T(mob/dropping, mob/user)
 	. = ..()
@@ -238,20 +237,18 @@
 		J.attack(occupant, user)
 		return
 
+/obj/machinery/robotic_cradle/attack_hand(mob/living/user)
+	. = ..()
+	if(user.do_actions) //stops them from spamming if they're attempting to eject someone or otherwise busy
+		return
+	if(!occupant)
+		return
+	start_emergency_eject()
+
 /obj/machinery/robotic_cradle/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	. = ..()
 	if(.)
 		return
-	if(!ishuman(user))
-		return
-	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(user, span_notice("\ [src] is non-functional!"))
-		return
-
-	if(occupant)
-		to_chat(user, span_notice("\ [src] is already occupied!"))
-		return
-
 	var/mob/grabbed_mob
 
 	if(ismob(grab.grabbed_thing))
@@ -277,47 +274,46 @@
 	set src in oview(1)
 	if(usr.incapacitated())
 		return
-	early_eject()
+	start_emergency_eject()
 
 ///This proc ejects whomever is inside the cradle while it is presumably operating, by force if needed depending if the cradle is destroyed or not.
-/obj/machinery/robotic_cradle/proc/early_eject(forceeject)
+/obj/machinery/robotic_cradle/proc/start_emergency_eject(forceeject)
 	if(!occupant)
 		return
+	if(!repairing)//this shouldn't be possible unless you get var edited inside without triggering start_repair_operation(), in that case just get them out
+		remove_occupant()
+		return
 	if(forceeject)
-		if(!repairing)//this shouldn't ever happen unless you get var edited inside without calling start_repair()
-			visible_message("\The [src] is destroyed, ejecting [occupant] and showering them in debris.")
-			occupant.take_limb_damage(rand(10,20),rand(10,20))
-		else
-			visible_message("\The [src] malfunctions as it is destroyed mid-repair, ejecting [occupant] with unfinished repair wounds and showering them in debris.")
-			occupant.take_limb_damage(rand(30,50),rand(30,50))
+		visible_message("\The [src] malfunctions as it is destroyed mid-repair, ejecting [occupant] with unfinished repair wounds and showering them in debris.")
+		occupant.take_limb_damage(rand(30,50),rand(30,50))
 		perform_eject(CRADLE_NOTICE_FORCE_EJECT)
 		return
-	if(isxeno(usr) && !repairing) //again, this shouldn't ever happen unless you get var edited inside, otherwise the xeno will just cause the standard damage a unskilled user would do by ejecting
+	if(isxeno(usr))
+		usr.visible_message(span_notice("[usr] pries the cover of [src]"),
+		span_notice("You begin to pry at the cover of [src]."))
+		playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
+		if(!do_after(usr, 2 SECONDS, NONE, src, BUSY_ICON_DANGER) || !occupant)
+			return
 		perform_eject(CRADLE_NOTICE_XENO_FUCKERY)
 		return
 	if(!ishuman(usr))
 		return
 	if(usr == occupant)
-		if(repairing)
-			to_chat(usr, span_warning("There's no way you're getting out while this thing is operating on you!"))
-			return
-		else
-			visible_message("[usr] engages the internal release mechanism, and climbs out of \the [src].") // this is also technically impossible, unless you get var edited inside
+		to_chat(usr, span_warning("There's no way you're getting out while this thing is operating on you!"))
+		return
 	if(usr.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 		usr.visible_message(span_notice("[usr] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.skills.getRating(SKILL_ENGINEER) ))// 8 secs non-trained, 5 amateur
 		if(!do_after(usr, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED) || !occupant)
 			return
-	if(repairing)
-		repairing = FALSE
-		if(usr.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI) //Untrained people will fail to terminate the repair properly.
-			visible_message("\The [src] malfunctions as [usr] aborts the repair in progress.")
-			occupant.take_limb_damage(rand(30,50),rand(30,50))
-			log_game("[key_name(usr)] ejected [key_name(occupant)] from the cradle during repair causing damage.")
-			message_admins("[ADMIN_TPMONTY(usr)] ejected [ADMIN_TPMONTY(occupant)] from the cradle during repair causing damage.")
-			perform_eject(CRADLE_NOTICE_IDIOT_EJECT)
-			return
+		visible_message("\The [src] malfunctions as [usr] aborts the repair in progress.")
+		occupant.take_limb_damage(rand(30,50),rand(30,50))
+		log_game("[key_name(usr)] ejected [key_name(occupant)] from the cradle during repair causing damage.")
+		message_admins("[ADMIN_TPMONTY(usr)] ejected [ADMIN_TPMONTY(occupant)] from the cradle during repair causing damage.")
+		perform_eject(CRADLE_NOTICE_IDIOT_EJECT)
+		return
+
 	perform_eject(CRADLE_NOTICE_EARLY_EJECT)
 
 #undef CRADLE_NOTICE_SUCCESS
