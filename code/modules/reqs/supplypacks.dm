@@ -348,15 +348,29 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla)
 	cost = 600
 
+/datum/supply_packs/weapons/plasma_cells
+	name = "WML plasma energy cell (x3)"
+	contains = list(
+		/obj/item/cell/lasgun/plasma,
+		/obj/item/cell/lasgun/plasma,
+		/obj/item/cell/lasgun/plasma,
+	)
+	cost = 100
+
+/datum/supply_packs/weapons/plasma_smg
+	name = "PL-51 Plasma SMG"
+	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg)
+	cost = 250
+
 /datum/supply_packs/weapons/plasma_rifle
 	name = "PL-38 Plasma Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle)
-	cost = 250
+	cost = 300
 
 /datum/supply_packs/weapons/plasma_cannon
 	name = "PL-96 Plasma Cannon"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon)
-	cost = 250
+	cost = 400
 
 /datum/supply_packs/weapons/tx54
 	name = "GL-54 airburst grenade launcher"

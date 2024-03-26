@@ -507,9 +507,9 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/nonmob/mech_pod/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(100, BRUTE, BOMB, 0)
+			take_damage(100, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(50, BRUTE, BOMB, 0)
+			take_damage(50, BRUTE, BOMB)
 
 /obj/structure/droppod/nonmob/mech_pod/mech_shift_click(obj/vehicle/sealed/mecha/mecha_clicker, mob/living/user)
 	if(mecha_clicker == stored_object)

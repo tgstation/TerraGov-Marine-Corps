@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "M40 HSDP smoke grenade smoke radius reduced to 6 from 7"

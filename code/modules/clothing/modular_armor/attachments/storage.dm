@@ -184,7 +184,7 @@
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
-		/obj/item/cell/lasgun/plasma_powerpack,
+		/obj/item/cell/lasgun/plasma,
 	)
 	cant_hold = list(/obj/item/cell/lasgun/volkite/powerpack)
 

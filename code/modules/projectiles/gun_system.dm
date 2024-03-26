@@ -295,7 +295,7 @@
 	var/cool_amount = 5
 	///tracks overheat timer ref
 	var/overheat_timer
-	///overheat multiplier
+	///multiplier on cool amount to determine overheat time
 	var/overheat_multiplier = 1.1
 	///image we create to keep track of heat
 	var/image/heat_bar/heat_meter
@@ -484,7 +484,7 @@
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET, src)
 		gun_user.hud_used?.remove_ammo_hud(src)
-		if(heat_meter)
+		if(heat_meter && gun_user.client)
 			gun_user.client.images -= heat_meter
 			heat_meter = null
 		gun_user = null
@@ -894,7 +894,7 @@
 		var/obj/effect/abstract/particle_holder/overheat_smoke = new(src, /particles/overheat_smoke)
 		playsound(src, 'sound/weapons/guns/interact/gun_overheat.ogg', 25, 1, 5)
 		//overheat gives either you a bonus or penalty depending on gun, by default it is +10% time.
-		var/overheat_time = heat_amount/cool_amount*overheat_multiplier
+		var/overheat_time = (heat_amount/cool_amount*overheat_multiplier) SECONDS
 		overheat_timer = addtimer(CALLBACK(src, PROC_REF(complete_overheat), overheat_smoke), overheat_time, TIMER_STOPPABLE)
 		heat_meter.animate_change(0, overheat_time)
 		return NONE

@@ -253,30 +253,32 @@
 /obj/item/clothing/glasses/welding/activate(mob/user)
 	. = ..()
 	if(active)
-		flip_up()
+		flip_down(user)
 	else
-		flip_down()
+		flip_up(user)
 
-	//I imagine some signals use it so letting it still call it
+	//This sends a signal that toggles the tint component's effects
 	toggle_item_state(user)
 
 ///Toggle the welding goggles on
-/obj/item/clothing/glasses/welding/proc/flip_up()
-	DISABLE_BITFIELD(inventory_flags, COVEREYES)
-	DISABLE_BITFIELD(inv_hide_flags, HIDEEYES)
-	DISABLE_BITFIELD(armor_protection_flags, EYES)
+/obj/item/clothing/glasses/welding/proc/flip_up(mob/user)
+	DISABLE_BITFIELD(flags_inventory, COVEREYES)
+	DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
+	DISABLE_BITFIELD(flags_armor_protection, EYES)
 	eye_protection = 0
 	update_icon()
-	to_chat(usr, "You push [src] up out of your face.")
+	if(user)
+		to_chat(user, "You push [src] up out of your face.")
 
 ///Toggle the welding goggles off
-/obj/item/clothing/glasses/welding/proc/flip_down()
-	ENABLE_BITFIELD(inventory_flags, COVEREYES)
-	ENABLE_BITFIELD(inv_hide_flags, HIDEEYES)
-	ENABLE_BITFIELD(armor_protection_flags, EYES)
+/obj/item/clothing/glasses/welding/proc/flip_down(mob/user)
+	ENABLE_BITFIELD(flags_inventory, COVEREYES)
+	ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
+	ENABLE_BITFIELD(flags_armor_protection, EYES)
 	eye_protection = initial(eye_protection)
 	update_icon()
-	to_chat(usr, "You flip [src] down to protect your eyes.")
+	if(user)
+		to_chat(user, "You flip [src] down to protect your eyes.")
 
 /obj/item/clothing/glasses/welding/update_icon_state()
 	icon_state = "[initial(icon_state)][!active ? "up" : ""]"

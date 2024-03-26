@@ -169,6 +169,8 @@
 		var/mob/living/carbon/human/human_firer = firer
 		var/obj/item/card/id/id = human_firer.get_idcard()
 		projectile_to_fire.iff_signal = id?.iff_signal
+	if(firer)
+		projectile_to_fire.def_zone = firer.zone_selected
 
 ///actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop
 /obj/item/armored_weapon/proc/fire()

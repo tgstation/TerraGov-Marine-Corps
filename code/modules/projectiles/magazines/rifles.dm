@@ -51,6 +51,13 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 36
 
+/obj/item/ammo_magazine/rifle/standard_carbine/ap
+	name = "\improper AR-18 AP magazine (10x24mm)"
+	desc = "A 10mm assault carbine magazine, loaded with light armor piercing rounds."
+	icon_state = "t18_ap"
+	default_ammo = /datum/ammo/bullet/rifle/hv
+	bonus_overlay = "t18_ap"
+
 //-------------------------------------------------------
 //T12 Assault Rifle
 
@@ -63,6 +70,13 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 50
+
+/obj/item/ammo_magazine/rifle/standard_assaultrifle/ap
+	name = "\improper AR-12 AP magazine (10x24mm)"
+	desc = "A 10mm assault rifle magazine, loaded with light armor piercing rounds."
+	icon_state = "t12_ap"
+	default_ammo = /datum/ammo/bullet/rifle/hv
+	bonus_overlay = "t12_ap"
 
 //-------------------------------------------------------
 //T37 DMR

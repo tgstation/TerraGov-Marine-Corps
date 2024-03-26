@@ -158,7 +158,10 @@
 			cookedalive.IgniteMob()
 
 /obj/vehicle/sealed/mecha/lava_act()
+	if(resistance_flags & INDESTRUCTIBLE)
+		return FALSE
 	take_damage(80, BURN, FIRE, armour_penetration = 30)
+	return TRUE
 
 /obj/vehicle/sealed/mecha/attackby_alternate(obj/item/weapon, mob/user, params)
 	if(istype(weapon, /obj/item/mecha_parts))

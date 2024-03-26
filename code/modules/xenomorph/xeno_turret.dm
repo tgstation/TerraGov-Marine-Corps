@@ -1,6 +1,6 @@
 
 /obj/structure/xeno/xeno_turret
-	icon = 'icons/Xeno/acidturret.dmi'
+	icon = 'icons/Xeno/acid_turret.dmi'
 	icon_state = XENO_TURRET_ACID_ICONSTATE
 	name = "acid turret"
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires acid against intruders."
@@ -93,9 +93,9 @@
 	if(!(xeno_structure_flags & HAS_OVERLAY))
 		return
 	if(obj_integrity <= max_integrity / 2)
-		. += image('icons/Xeno/acidturret.dmi', src, "+turret_damage")
+		. += image('icons/Xeno/acid_turret.dmi', src, "+turret_damage")
 	if(CHECK_BITFIELD(resistance_flags, ON_FIRE))
-		. += image('icons/Xeno/acidturret.dmi', src, "+turret_on_fire")
+		. += image('icons/Xeno/acid_turret.dmi', src, "+turret_on_fire")
 
 /obj/structure/xeno/xeno_turret/process()
 	//Turrets regen some HP, every 2 sec
@@ -246,7 +246,7 @@
 
 /obj/structure/xeno/xeno_turret/sticky
 	name = "Sticky resin turret"
-	icon = 'icons/Xeno/acidturret.dmi'
+	icon = 'icons/Xeno/acid_turret.dmi'
 	icon_state = XENO_TURRET_STICKY_ICONSTATE
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires resin against intruders."
 	light_initial_color = LIGHT_COLOR_PURPLE
