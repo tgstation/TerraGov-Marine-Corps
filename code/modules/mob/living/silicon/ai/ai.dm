@@ -138,9 +138,6 @@
 	GLOB.ai_list -= src
 	QDEL_NULL(builtInCamera)
 	QDEL_NULL(track)
-	UnregisterSignal(src, COMSIG_ORDER_SELECTED)
-	UnregisterSignal(src, COMSIG_MOB_CLICK_ALT)
-
 	QDEL_NULL(mini)
 	return ..()
 
