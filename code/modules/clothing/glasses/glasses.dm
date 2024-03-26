@@ -262,9 +262,9 @@
 
 ///Toggle the welding goggles on
 /obj/item/clothing/glasses/welding/proc/flip_up(mob/user)
-	DISABLE_BITFIELD(flags_inventory, COVEREYES)
-	DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
-	DISABLE_BITFIELD(flags_armor_protection, EYES)
+	DISABLE_BITFIELD(inventory_inventory, COVEREYES)
+	DISABLE_BITFIELD(inv_hide_flags, HIDEEYES)
+	DISABLE_BITFIELD(armor_protection_flags, EYES)
 	eye_protection = 0
 	update_icon()
 	if(user)
@@ -272,9 +272,9 @@
 
 ///Toggle the welding goggles off
 /obj/item/clothing/glasses/welding/proc/flip_down(mob/user)
-	ENABLE_BITFIELD(flags_inventory, COVEREYES)
-	ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
-	ENABLE_BITFIELD(flags_armor_protection, EYES)
+	ENABLE_BITFIELD(inventory_inventory, COVEREYES)
+	ENABLE_BITFIELD(inv_hide_flags, HIDEEYES)
+	ENABLE_BITFIELD(armor_protection_flags, EYES)
 	eye_protection = initial(eye_protection)
 	update_icon()
 	if(user)
