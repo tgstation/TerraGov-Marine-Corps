@@ -2767,7 +2767,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	smoke.set_up(5, T, 6)
 	smoke.start()
 
-/datum/ammo/mortar/rocket/smoke/mlrs
+/datum/ammo/mortar/rocket/smoke/mlrs/cloak
 	smoketype = /datum/effect_system/smoke_spread/tactical
 
 /*
