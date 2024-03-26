@@ -350,16 +350,18 @@
 	if(H.stat != DEAD)
 		return
 	var/timer = 0 // variable for DNR timer check
+	if(H.dead_ticks < TIME_BEFORE_DNR) //Check if DNR timer already passed
+		timer = (TIME_BEFORE_DNR-(H.dead_ticks))*2 //Time to DNR left in seconds
 	if(!H.mind && !H.get_ghost(TRUE)|| H.dead_ticks > TIME_BEFORE_DNR || H.suiciding) //We couldn't find a suitable ghost or patient has passed their DNR timer or suicided, this means the person is not returning
 		. += "<span class = 'deptradio'>Patient is DNR</span>"
 	else if(!H.mind && H.get_ghost(TRUE)) // Ghost is available but outside of the body
 		. += "<span class = 'deptradio'>Defib patient to check departed status</span>"
+		. += "<span class = 'deptradio'>Patient have [timer] seconds left before DNR</span>"
 	else if(!H.client) //Mind is in the body but no client, most likely currently disconnected.
 		. += "<span class = 'deptradio'>Patient is almost departed</span>"
-	else if(H.dead_ticks < TIME_BEFORE_DNR) //Check if DNR timer already passed
-		timer = (TIME_BEFORE_DNR-(H.dead_ticks))*2 //Time to DNR left in seconds
 		. += "<span class = 'deptradio'>Patient have [timer] seconds left before DNR</span>"
 		return
+
 
 
 /obj/structure/closet/bodybag/cryobag/Topic(href, href_list)
