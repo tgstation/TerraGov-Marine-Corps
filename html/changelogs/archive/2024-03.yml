@@ -397,3 +397,6 @@
   coldironwarrior:
   - imagedel: deletes unused sprites from the "obj" folder
   - imagedel: deleted the "unused" folder of dmis
+2024-03-26:
+  blackdav123:
+  - balance: Removed outdoor plat miner from Icy Caves
