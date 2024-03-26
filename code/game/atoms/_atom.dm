@@ -424,7 +424,10 @@ directive is properly returned.
 
 ///Effects of lava. Return true where we want the lava to keep processing
 /atom/proc/lava_act()
+	if(resistance_flags & INDESTRUCTIBLE)
+		return FALSE
 	fire_act()
+	return TRUE
 
 /atom/proc/hitby(atom/movable/AM, speed = 5)
 	if(density)

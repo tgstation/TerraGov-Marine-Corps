@@ -1,0 +1,5 @@
+author: "DeltaFire15"
+delete-after: True
+changes:
+  - qol: "Pheromone strength in the statpanel now shows the actual value next to the approximate category."
+  - spellcheck: "Corrected a code comment about phero brackets which was quite outdated."
