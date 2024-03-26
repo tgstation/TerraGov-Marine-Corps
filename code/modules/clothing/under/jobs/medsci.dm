@@ -63,14 +63,6 @@
 	permeability_coefficient = 0.50
 	flags_armor_protection = CHEST|GROIN
 
-/obj/item/clothing/under/rank/nurse
-	desc = "A dress commonly worn by the nursing staff in the medical department."
-	name = "nurse's dress"
-	icon_state = "nurse"
-	permeability_coefficient = 0.50
-	flags_armor_protection = CHEST|GROIN
-	adjustment_variants = list()
-
 /obj/item/clothing/under/rank/orderly
 	desc = "A white suit to be worn by orderly people who love orderly things."
 	name = "orderly's uniform"

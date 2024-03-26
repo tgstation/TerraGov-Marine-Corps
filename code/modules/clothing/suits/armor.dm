@@ -45,14 +45,6 @@
 		/obj/item/storage/holster/blade
 	)
 
-/obj/item/clothing/suit/armor/vest/admiral
-	name = "admiral's jacket"
-	desc = "An armoured jacket with gold regalia"
-	icon_state = "admiral_jacket"
-	item_state = "admiral_jacket"
-	flags_armor_protection = CHEST|GROIN|ARMS
-	w_class = WEIGHT_CLASS_NORMAL
-
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"
 	desc = "An armored vest that protects against some damage."
@@ -155,7 +147,6 @@
 	slowdown = 0
 	soft_armor = list(MELEE = 50, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 50, BIO = 40, FIRE = 50, ACID = 50)
 	siemens_coefficient = 0.7
-
 
 /obj/item/clothing/suit/armor/sectoid
 	name = "psionic field"

@@ -274,7 +274,6 @@ Good luck, but do not expect to survive."})
 	shoes = /obj/item/clothing/shoes/jackboots
 	back = /obj/item/storage/backpack/satchel/sec
 
-
 // Rambo Survivor
 /datum/job/survivor/rambo
 	title = "Survivor"
