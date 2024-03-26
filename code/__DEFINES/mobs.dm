@@ -51,7 +51,6 @@
 #define ALIEN_SELECT_AFK_BUFFER 1 // How many minutes that a person can be AFK before not being allowed to be an alien.
 
 //Life variables
-#define CARBON_BREATH_DELAY 2 // The interval in life ticks between breathe()
 
 ///The amount of damage you'll take per tick when you can't breath. Default value is 1
 #define CARBON_CRIT_MAX_OXYLOSS (round(SSmobs.wait/5, 0.1))
@@ -386,17 +385,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BLOOD_VOLUME_BAD 224
 #define BLOOD_VOLUME_SURVIVE 122
 
-#define HUMAN_MAX_PALENESS 30 //this is added to human skin tone to get value of pale_max variable
-
-
 // Overlay Indexes
-#define LASER_LAYER 30 //For sniper targeting laser
-#define WOUND_LAYER 29
-#define MOTH_WINGS_LAYER 28
-#define MUTATIONS_LAYER 27
-#define DAMAGE_LAYER 26
-#define UNIFORM_LAYER 25
-#define TAIL_LAYER 24 //bs12 specific. this hack is probably gonna come back to haunt me
+#define WOUND_LAYER 27
+#define MOTH_WINGS_LAYER 26
+#define DAMAGE_LAYER 25
+#define UNIFORM_LAYER 24
 #define ID_LAYER 23
 #define SHOES_LAYER 22
 #define GLOVES_LAYER 21
@@ -418,16 +411,14 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define R_HAND_LAYER 5
 #define BURST_LAYER 4 //Chestburst overlay
 #define OVERHEALTH_SHIELD_LAYER 3
-#define TARGETED_LAYER 2 //for target sprites when held at gun point, and holo cards.
-#define FIRE_LAYER 1 //If you're on fire
+#define FIRE_LAYER 2 //If you're on fire
+#define LASER_LAYER 1 //For sniper targeting laser
 
-#define TOTAL_LAYERS 30
+#define TOTAL_LAYERS 27
 
 #define MOTH_WINGS_BEHIND_LAYER 1
 
 #define TOTAL_UNDERLAYS 1
-
-#define ANTI_CHAINSTUN_TICKS 2
 
 #define BASE_GRAB_SLOWDOWN 3 //Slowdown called by /mob/setGrabState(newstate) in mob.dm when grabbing a target aggressively.
 
@@ -471,8 +462,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 #define XENO_EXPLOSION_GIB_THRESHOLD 0.95 //if your effective bomb armour is less than 5, devestating explosions will gib xenos
-
-#define KING_SUMMON_TIMER_DURATION 5 MINUTES
 
 #define SPIT_UPGRADE_BONUS(Xenomorph) (Xenomorph.upgrade_as_number() ?  0.6 : 0.45 ) //Primo damage increase
 

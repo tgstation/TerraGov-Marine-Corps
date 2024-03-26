@@ -233,7 +233,7 @@
 /turf/open/liquid/lava/proc/burn_stuff(AM)
 	var/thing_to_check = AM ? list(AM) : src
 	for(var/atom/thing AS in thing_to_check)
-		if(!thing.lava_act())
+		if(thing.lava_act())
 			. = TRUE
 
 /turf/open/liquid/lava/attackby(obj/item/C, mob/user, params)

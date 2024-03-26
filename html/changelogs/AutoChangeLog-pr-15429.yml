@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - qol: "helmets, armor and suits show their equipped modules on examine"
