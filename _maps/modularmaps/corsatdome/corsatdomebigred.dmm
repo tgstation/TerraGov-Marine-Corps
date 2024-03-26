@@ -20,9 +20,8 @@
 	id = "SigmaGrounds";
 	name = "Testing Grounds"
 	},
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "warnplate"
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
 	},
 /area/corsat/sigma/biodome/testgrounds)
 "aT" = (
@@ -216,7 +215,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
-/obj/item/weapon/gun/rifle/m41a,
+/obj/effect/spawner/random/weaponry/gun/egun,
 /turf/open/floor/plating/asteroidplating,
 /area/corsat/sigma/biodome/gunrange)
 "es" = (
@@ -357,17 +356,6 @@
 "fZ" = (
 /turf/open/floor/dark2,
 /area/corsat/sigma/airlock/control)
-"gd" = (
-/obj/structure/rack,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/turf/open/floor/plating/asteroidplating,
-/area/corsat/sigma/biodome/gunrange)
-"gf" = (
-/obj/structure/table/mainship,
-/obj/item/explosive/grenade/flashbang,
-/obj/item/explosive/grenade/flashbang,
-/turf/open/floor/plating/asteroidplating,
-/area/corsat/sigma/biodome/gunrange)
 "gh" = (
 /obj/structure/bed/chair/office/light,
 /obj/effect/turf_decal/tile/full/black,
@@ -611,17 +599,6 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/control)
-"lZ" = (
-/obj/structure/rack,
-/obj/structure/window/reinforced/toughened{
-	dir = 1
-	},
-/obj/machinery/door/window{
-	name = "Weapon Rack"
-	},
-/obj/item/weapon/gun/smg/uzi,
-/turf/open/floor/plating/asteroidplating,
-/area/corsat/sigma/biodome/gunrange)
 "mb" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -1069,21 +1046,14 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/control)
-"tX" = (
-/obj/structure/table/mainship,
-/obj/item/explosive/grenade/impact,
-/obj/item/explosive/grenade/impact,
-/turf/open/floor/plating/asteroidplating,
-/area/corsat/sigma/biodome/gunrange)
 "tY" = (
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 4;
 	id = "SigmaGrounds";
 	name = "Testing Grounds"
 	},
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "warnplate"
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
 	},
 /area/corsat/sigma/biodome/testgrounds)
 "um" = (
@@ -1185,9 +1155,7 @@
 	id = "SigmaGrounds";
 	name = "Testing Grounds"
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/corsat/sigma/biodome/testgrounds)
 "wG" = (
 /obj/effect/decal/cleanable/blood/splatter,
@@ -1324,10 +1292,10 @@
 /obj/structure/closet/secure_closet/guncabinet{
 	name = "explosives cabinet"
 	},
-/obj/item/explosive/grenade/smokebomb,
-/obj/item/explosive/grenade/smokebomb,
-/obj/item/explosive/grenade/smokebomb,
-/obj/item/explosive/grenade/smokebomb,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
 /turf/open/floor/asteroidfloor,
 /area/corsat/sigma/biodome/testgrounds)
 "zy" = (
@@ -1706,9 +1674,7 @@
 /turf/open/floor/asteroidfloor,
 /area/corsat/sigma/biodome)
 "EQ" = (
-/obj/machinery/constructable_frame{
-	icon_state = "box_1"
-	},
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/corsat/sigma/biodome/scrapyard)
 "EU" = (
@@ -1805,10 +1771,10 @@
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/control)
 "Hl" = (
-/obj/item/explosive/grenade/impact,
-/obj/item/explosive/grenade/impact,
-/obj/item/explosive/grenade/impact,
-/obj/item/explosive/grenade/impact,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
 /obj/structure/closet/secure_closet/guncabinet{
 	name = "explosives cabinet"
 	},
@@ -1971,7 +1937,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
-/obj/item/weapon/gun/shotgun/pump/cmb,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/plating/asteroidplating,
 /area/corsat/sigma/biodome/gunrange)
 "Kc" = (
@@ -2325,10 +2291,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/corsat/sigma/biodome)
-"Pj" = (
-/obj/mecha_wreckage/hoverpod,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/corsat/sigma/biodome/scrapyard)
 "Pt" = (
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
@@ -2407,8 +2369,8 @@
 /obj/machinery/door/window{
 	name = "Weapon Rack"
 	},
-/obj/item/weapon/gun/pistol/vp70,
-/obj/item/weapon/gun/pistol/vp70,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/plating/asteroidplating,
 /area/corsat/sigma/biodome/gunrange)
 "QT" = (
@@ -2461,7 +2423,7 @@
 /obj/machinery/door/window{
 	name = "Weapon Rack"
 	},
-/obj/item/weapon/gun/smg/m25,
+/obj/effect/spawner/random/weaponry/gun/machineguns,
 /turf/open/floor/plating/asteroidplating,
 /area/corsat/sigma/biodome/gunrange)
 "RE" = (
@@ -2509,7 +2471,7 @@
 /area/corsat/sigma/airlock/control)
 "So" = (
 /obj/structure/table/mainship,
-/obj/item/explosive/grenade/impact,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
 /turf/open/floor/plating/asteroidplating,
 /area/corsat/sigma/biodome/gunrange)
 "Su" = (
@@ -2529,9 +2491,8 @@
 	id = "SigmaGrounds";
 	name = "Testing Grounds"
 	},
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "warnplate"
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
 	},
 /area/corsat/sigma/biodome/testgrounds)
 "SK" = (
@@ -2540,12 +2501,6 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/control)
-"SL" = (
-/obj/structure/table/mainship,
-/obj/item/explosive/grenade/smokebomb,
-/obj/item/explosive/grenade/smokebomb,
-/turf/open/floor/plating/asteroidplating,
-/area/corsat/sigma/biodome/gunrange)
 "SQ" = (
 /obj/effect/turf_decal/tile/corsatsemi/yellow{
 	dir = 8
@@ -2759,7 +2714,7 @@
 /area/corsat/sigma/biodome)
 "VY" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/plating/asteroidplating,
 /area/corsat/sigma/biodome/gunrange)
 "VZ" = (
@@ -2816,9 +2771,8 @@
 	name = "Testing Grounds"
 	},
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "warnplate"
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
 	},
 /area/corsat/sigma/biodome/testgrounds)
 "Xe" = (
@@ -2859,8 +2813,8 @@
 /area/corsat/sigma/biodome/testgrounds)
 "Yk" = (
 /obj/structure/table/mainship,
-/obj/item/explosive/grenade/incendiary,
-/obj/item/explosive/grenade/incendiary,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
 /turf/open/floor/plating/asteroidplating,
 /area/corsat/sigma/biodome/gunrange)
 "Yn" = (
@@ -4625,7 +4579,7 @@ CI
 CI
 CI
 Jg
-Pj
+CI
 CI
 CI
 CI
@@ -4785,7 +4739,7 @@ lW
 CI
 CI
 CI
-Fu
+EQ
 CI
 CI
 Oj
@@ -6730,7 +6684,7 @@ Ea
 jz
 sB
 sB
-gd
+VY
 xI
 VY
 mR
@@ -6896,7 +6850,7 @@ sB
 sB
 sB
 Yk
-gf
+Yk
 mR
 Op
 Op
@@ -7059,7 +7013,7 @@ jz
 sB
 sB
 sB
-SL
+Yk
 So
 mR
 Op
@@ -7388,7 +7342,7 @@ sB
 sB
 en
 Rp
-lZ
+Rp
 mR
 Op
 Op
@@ -7551,8 +7505,8 @@ jz
 sB
 sB
 sB
-tX
-tX
+Yk
+Yk
 mR
 Op
 Op
@@ -7715,8 +7669,8 @@ jz
 sB
 sB
 sB
-tX
-tX
+Yk
+Yk
 mR
 Op
 Op

@@ -677,9 +677,7 @@
 /obj/structure/window/phoronreinforced{
 	dir = 4
 	},
-/obj/item/shard/phoron{
-	icon_state = "phoronsmall"
-	},
+/obj/item/shard/phoron,
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 4
 	},
@@ -4852,9 +4850,7 @@
 	},
 /area/magmoor/research/lab)
 "dIw" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-05"
-	},
+/obj/structure/flora/pottedplant,
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "dIA" = (
@@ -5358,8 +5354,7 @@
 /area/magmoor/compound/east)
 "dZS" = (
 /obj/structure/table/mainship,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18";
+/obj/structure/flora/pottedplant/eighteen{
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/mono,
@@ -5751,9 +5746,7 @@
 /turf/open/floor/marking/bot,
 /area/magmoor/mining/refinery)
 "ekC" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-05"
-	},
+/obj/structure/flora/pottedplant,
 /turf/open/floor/mainship/sterile/corner,
 /area/magmoor/medical/treatment)
 "ekY" = (
@@ -6758,12 +6751,10 @@
 	},
 /area/magmoor/medical/treatment)
 "eYf" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18"
-	},
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/flora/pottedplant/eighteen,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -7202,9 +7193,7 @@
 /area/magmoor/cave/northeast)
 "foy" = (
 /obj/machinery/light,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18"
-	},
+/obj/structure/flora/pottedplant/eighteen,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "foC" = (
@@ -8429,8 +8418,7 @@
 /area/magmoor/cargo/storage/south)
 "gfZ" = (
 /obj/structure/table/mainship,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18";
+/obj/structure/flora/pottedplant/eighteen{
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/purple,
@@ -8674,8 +8662,7 @@
 /area/magmoor/research)
 "gnN" = (
 /obj/structure/table/woodentable,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18";
+/obj/structure/flora/pottedplant/eighteen{
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/green{
@@ -9095,8 +9082,7 @@
 /area/magmoor/research)
 "gHq" = (
 /obj/structure/table/woodentable,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-15";
+/obj/structure/flora/pottedplant/fifteen{
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/green{
@@ -10698,8 +10684,7 @@
 /area/magmoor/cave/northwest)
 "hOH" = (
 /obj/structure/table/mainship,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18";
+/obj/structure/flora/pottedplant/eighteen{
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/sterile/corner{
@@ -11077,9 +11062,7 @@
 	},
 /area/magmoor/medical/lobby)
 "hYB" = (
-/turf/open/floor/mainship{
-	icon_state = "sterile_green_corner"
-	},
+/turf/open/floor/mainship/sterile/corner,
 /area/magmoor/medical/lobby)
 "hYT" = (
 /obj/effect/attach_point/electronics/dropship1,
@@ -11592,9 +11575,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green_corner"
-	},
+/turf/open/floor/mainship/sterile/corner,
 /area/magmoor/medical/lobby)
 "isn" = (
 /obj/structure/bed/chair/office/light{
@@ -12757,14 +12738,14 @@
 	},
 /area/magmoor/engi/power)
 "jkd" = (
-/obj/item/shard/phoron{
-	icon_state = "phoronsmall"
+/obj/structure/bed/chair,
+/obj/structure/flora/pottedplant/fifteen{
+	pixel_y = 10
 	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
+/turf/open/floor/mainship/green{
+	dir = 1
 	},
-/turf/open/floor/plating,
-/area/magmoor/research/containment)
+/area/magmoor/hydroponics)
 "jkz" = (
 /obj/item/tool/kitchen/knife/butcher,
 /turf/open/floor/wood,
@@ -15235,13 +15216,11 @@
 /turf/open/lavaland/catwalk,
 /area/magmoor/cave/west)
 "kXZ" = (
-/obj/item/shard/phoron{
-	icon_state = "phoronsmall"
-	},
 /obj/structure/xenoautopsy/tank/escaped,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
+/obj/item/shard/phoron,
 /obj/item/shard/phoron,
 /turf/open/floor/plating/platebotc,
 /area/magmoor/research/containment)
@@ -17042,9 +17021,7 @@
 /turf/closed/wall/r_wall,
 /area/magmoor/engi/power)
 "mwD" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18"
-	},
+/obj/structure/flora/pottedplant/eighteen,
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
@@ -21195,14 +21172,11 @@
 /turf/open/floor/plating,
 /area/magmoor/cave/southwest)
 "prN" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
-	icon_state = "equip_base_l_wing"
+/obj/structure/flora/pottedplant/eighteen{
+	pixel_y = 10
 	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
-/area/magmoor/landing)
+/turf/open/floor/mainship/mono,
+/area/magmoor/hydroponics)
 "prS" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -22342,9 +22316,7 @@
 	},
 /area/magmoor/cargo/processing/south)
 "qek" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-05"
-	},
+/obj/structure/flora/pottedplant,
 /obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 8
@@ -23794,15 +23766,6 @@
 	dir = 4
 	},
 /area/magmoor/cargo/processing)
-"rcV" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
-	icon_state = "equip_base_l_wing"
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
-/area/magmoor/landing/two)
 "rcX" = (
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi/storage)
@@ -24576,8 +24539,7 @@
 /area/magmoor/cave/northwest)
 "rDB" = (
 /obj/structure/table/woodentable,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-15";
+/obj/structure/flora/pottedplant/fifteen{
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/green{
@@ -30126,8 +30088,7 @@
 /area/magmoor/compound/east)
 "vaW" = (
 /obj/structure/table/reinforced,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-15";
+/obj/structure/flora/pottedplant/fifteen{
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/mono,
@@ -32281,8 +32242,7 @@
 /area/magmoor/civilian/arrival/east)
 "woV" = (
 /obj/structure/table/reinforced,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-15";
+/obj/structure/flora/pottedplant/fifteen{
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/mono,
@@ -35634,8 +35594,7 @@
 /area/magmoor/compound/northeast)
 "yhr" = (
 /obj/structure/table/woodentable,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18";
+/obj/structure/flora/pottedplant/eighteen{
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/green{
@@ -43639,7 +43598,7 @@ nzm
 tyH
 uwV
 xwO
-gCc
+jkd
 qbZ
 tkA
 uMf
@@ -43649,7 +43608,7 @@ fOG
 tkA
 tkA
 tkA
-tkA
+prN
 gbt
 xwO
 ylY
@@ -57240,7 +57199,7 @@ rek
 rek
 rek
 rek
-prN
+rek
 rek
 rek
 pvz
@@ -69166,13 +69125,13 @@ tyH
 tyH
 tyH
 piO
-jkd
+nHT
 jzk
 kIL
 jzk
 pPs
 kXZ
-jkd
+nHT
 qAo
 nHT
 xcT
@@ -76727,7 +76686,7 @@ xpT
 xpT
 xpT
 xpT
-rcV
+xpT
 xpT
 xpT
 rce

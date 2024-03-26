@@ -481,7 +481,6 @@
 /obj/structure/prop/mainship/missile_tube{
 	color = "grey";
 	desc = "An linear accelerator used in experimental genetic treatments. It hums ominously.";
-	icon_state = "missiletubesouth";
 	name = "\improper genetic LINAC system";
 	pixel_x = -15
 	},
@@ -515,11 +514,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/white,
 /area/corsat/theta/biodome/complex)
-"fw" = (
-/turf/open/ground/coast{
-	dir = 9
-	},
-/area/corsat/theta/biodome)
 "fB" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/grayscale/round/black,
@@ -564,10 +558,7 @@
 /turf/open/floor/grayscale/round,
 /area/corsat/theta/biodome)
 "fU" = (
-/obj/structure/flora/jungle/plantbot1{
-	icon_state = "alienplant1";
-	luminosity = 2
-	},
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/floor/plating/ground/dirt,
 /area/corsat/theta/biodome)
 "fW" = (
@@ -982,14 +973,6 @@
 	},
 /turf/open/floor/grayscale/round/black,
 /area/corsat/theta/airlock/control)
-"kR" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/ground/coast{
-	dir = 8
-	},
-/area/corsat/theta/biodome)
 "kU" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/corsat/theta/biodome)
@@ -1054,11 +1037,6 @@
 /obj/structure/flora/jungle/plantbot1,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/corsat/theta/biodome)
-"ln" = (
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/corsat/theta/biodome)
 "lp" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -1072,11 +1050,6 @@
 	},
 /turf/open/floor/grayscale/white,
 /area/corsat/theta/biodome/complex)
-"lv" = (
-/turf/open/ground/coast{
-	dir = 4
-	},
-/area/corsat/theta/biodome)
 "lK" = (
 /obj/effect/turf_decal/tile/full/black,
 /obj/effect/spawner/random/engineering/metal,
@@ -1115,11 +1088,6 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass/weedable,
 /area/corsat/theta/biodome)
-"mv" = (
-/turf/open/ground/coast{
-	dir = 8
-	},
-/area/corsat/theta/biodome)
 "mz" = (
 /obj/effect/ai_node,
 /turf/open/shuttle/escapepod,
@@ -1151,7 +1119,7 @@
 /area/corsat/theta/biodome)
 "mN" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/liquid/water/river,
+/turf/open/liquid/water/river/autosmooth,
 /area/corsat/theta/biodome)
 "mQ" = (
 /obj/structure/flora/ausbushes/fernybush,
@@ -1340,10 +1308,7 @@
 /turf/open/floor/grayscale/round/black,
 /area/corsat/theta/airlock/control)
 "oN" = (
-/obj/structure/flora/jungle/plantbot1{
-	icon_state = "alienplant1";
-	luminosity = 2
-	},
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/ground/grass/weedable,
 /area/corsat/theta/biodome)
 "oP" = (
@@ -1382,15 +1347,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/white,
 /area/corsat/theta/biodome/complex)
-"pu" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/ground/coast{
-	dir = 8;
-	icon_state = "beachcorner"
-	},
-/area/corsat/theta/biodome)
 "pw" = (
 /obj/structure/platform{
 	dir = 8
@@ -1449,7 +1405,7 @@
 /area/corsat/theta/biodome/hydroeast)
 "qj" = (
 /obj/structure/flora/jungle/plantbot1,
-/turf/open/liquid/water/river,
+/turf/open/liquid/water/river/autosmooth,
 /area/corsat/theta/biodome)
 "ql" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1495,7 +1451,7 @@
 /area/corsat/theta/biodome)
 "qC" = (
 /obj/structure/flora/jungle/planttop1,
-/turf/open/liquid/water/river,
+/turf/open/liquid/water/river/autosmooth,
 /area/corsat/theta/biodome)
 "qG" = (
 /obj/effect/turf_decal/tile/corsatcorner/lighpurple{
@@ -1600,20 +1556,6 @@
 "ry" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/ground/grass/weedable,
-/area/corsat/theta/biodome)
-"rE" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/ground/coast{
-	dir = 4
-	},
-/area/corsat/theta/biodome)
-"rG" = (
-/turf/open/ground/coast{
-	dir = 8;
-	icon_state = "beachcorner"
-	},
 /area/corsat/theta/biodome)
 "rL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -1740,19 +1682,13 @@
 /obj/structure/sink{
 	pixel_y = 24
 	},
-/turf/open/floor{
-	dir = 10;
-	icon_state = "whitebluefull"
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/corsat/theta/biodome/complex)
 "tk" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Toilet Unit"
 	},
-/turf/open/floor{
-	dir = 10;
-	icon_state = "whitebluefull"
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/corsat/theta/biodome/complex)
 "tn" = (
 /obj/structure/rack,
@@ -1977,9 +1913,6 @@
 	},
 /turf/open/floor/grayscale/white,
 /area/corsat/theta/biodome/complex)
-"wj" = (
-/turf/open/liquid/water/river,
-/area/corsat/theta/biodome)
 "wm" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2158,10 +2091,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 10;
-	icon_state = "whitebluefull"
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/corsat/theta/biodome/complex)
 "ys" = (
 /obj/machinery/light,
@@ -2602,11 +2532,6 @@
 /obj/structure/prop/mainship/research/destructive_analyzer,
 /turf/open/floor/grayscale/white,
 /area/corsat/theta/biodome/complex)
-"Dj" = (
-/turf/open/ground/coast{
-	dir = 5
-	},
-/area/corsat/theta/biodome)
 "Dm" = (
 /obj/structure/flora/jungle/vines/heavy,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -2614,17 +2539,12 @@
 /turf/open/ground/grass/weedable,
 /area/corsat/theta/biodome)
 "Dn" = (
-/obj/machinery/gravity_generator{
-	desc = "Absorbs and redirects radiation, hopefully away from you.";
-	name = "Radiation Collector";
-	pixel_x = 15;
-	pixel_y = -5
-	},
-/obj/structure/platform{
+/obj/effect/landmark/weed_node,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
 	dir = 1
 	},
-/turf/open/shuttle/escapepod,
-/area/corsat/theta/biodome/complex)
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
 "Dp" = (
 /obj/structure/closet/wardrobe/atmospherics_yellow,
 /obj/effect/turf_decal/tile/corsatsemi/yellow{
@@ -2695,10 +2615,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/corsat/theta/biodome)
 "Ep" = (
-/obj/structure/flora/jungle/plantbot1{
-	icon_state = "alienplant1";
-	luminosity = 2
-	},
+/obj/structure/flora/jungle/plantbot1/alien,
 /obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/corsat/theta/biodome)
@@ -2710,11 +2627,8 @@
 /turf/open/floor/grayscale/white,
 /area/corsat/theta/biodome)
 "EA" = (
-/obj/structure/flora/jungle/plantbot1{
-	icon_state = "alienplant1";
-	luminosity = 2
-	},
-/turf/open/liquid/water/river,
+/obj/structure/flora/jungle/plantbot1/alien,
+/turf/open/liquid/water/river/autosmooth,
 /area/corsat/theta/biodome)
 "EC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2763,18 +2677,6 @@
 	dir = 4
 	},
 /turf/open/ground/grass/weedable,
-/area/corsat/theta/biodome)
-"Fl" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/liquid/water/river,
-/area/corsat/theta/biodome)
-"Fo" = (
-/turf/open/ground/coast{
-	dir = 4;
-	icon_state = "beachcorner2"
-	},
 /area/corsat/theta/biodome)
 "Fp" = (
 /obj/effect/turf_decal/warning_stripes/box,
@@ -2827,10 +2729,7 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
-/turf/open/ground/coast{
-	dir = 4;
-	icon_state = "beachcorner"
-	},
+/turf/open/liquid/water/river/autosmooth,
 /area/corsat/theta/biodome)
 "FT" = (
 /obj/machinery/door/airlock/mainship/research/glass{
@@ -2989,6 +2888,7 @@
 /area/corsat/theta/biodome/complex)
 "HP" = (
 /obj/effect/landmark/weed_node,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple,
 /turf/open/floor/grayscale/white,
 /area/corsat/theta/biodome/hydrowest)
 "HR" = (
@@ -3220,11 +3120,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/white,
 /area/corsat/theta/biodome/complex)
-"KT" = (
-/turf/open/ground/coast{
-	dir = 6
-	},
-/area/corsat/theta/biodome)
 "Lb" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -3277,10 +3172,7 @@
 /turf/open/floor/dark2,
 /area/corsat/theta/biodome)
 "LU" = (
-/obj/structure/flora/jungle/plantbot1{
-	icon_state = "alienplant1";
-	luminosity = 2
-	},
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/corsat/theta/biodome)
 "LX" = (
@@ -3679,11 +3571,6 @@
 /obj/structure/flora/jungle/plantbot1,
 /turf/open/floor/plating/ground/dirt,
 /area/corsat/theta/biodome)
-"PS" = (
-/turf/open/ground/coast{
-	icon_state = "beachcorner"
-	},
-/area/corsat/theta/biodome)
 "PT" = (
 /obj/structure/prop/mainship/sensor_computer1,
 /turf/open/shuttle/escapepod,
@@ -3720,13 +3607,11 @@
 /obj/structure/sign/safety/laser{
 	pixel_x = 32
 	},
-/obj/structure/platform{
-	density = 0;
-	dir = 4;
-	icon_state = "platform_deco"
-	},
 /obj/effect/turf_decal/tile/corsatstraight/lightpurple{
 	dir = 8
+	},
+/obj/structure/platform_decoration{
+	dir = 4
 	},
 /turf/open/floor/grayscale/white,
 /area/corsat/theta/biodome/complex)
@@ -3831,13 +3716,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/white,
 /area/corsat/theta/biodome/hydroeast)
-"Rh" = (
-/obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/coast,
-/area/corsat/theta/biodome)
-"Ro" = (
-/turf/open/ground/coast,
-/area/corsat/theta/biodome)
 "Rp" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/effect/landmark/weed_node,
@@ -3884,10 +3762,7 @@
 /turf/open/ground/grass/weedable,
 /area/corsat/theta/biodome)
 "RG" = (
-/obj/structure/flora/jungle/plantbot1{
-	icon_state = "alienplant1";
-	luminosity = 2
-	},
+/obj/structure/flora/jungle/plantbot1/alien,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -3926,12 +3801,6 @@
 	},
 /turf/open/floor/grayscale/round/black,
 /area/corsat/theta/airlock/control)
-"RX" = (
-/turf/open/ground/coast{
-	dir = 1;
-	icon_state = "beachcorner"
-	},
-/area/corsat/theta/biodome)
 "Sd" = (
 /obj/effect/turf_decal/tile/corsatstraight/blue{
 	dir = 4
@@ -3996,12 +3865,6 @@
 	},
 /turf/open/floor/grayscale/white,
 /area/corsat/theta/biodome/hydrowest)
-"Td" = (
-/turf/open/ground/coast{
-	dir = 4;
-	icon_state = "beachcorner"
-	},
-/area/corsat/theta/biodome)
 "Tf" = (
 /turf/open/floor/dark2,
 /area/corsat/theta/biodome)
@@ -4279,7 +4142,7 @@
 /area/corsat/theta/biodome)
 "Wy" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/liquid/water/river,
+/turf/open/liquid/water/river/autosmooth,
 /area/corsat/theta/biodome)
 "Wz" = (
 /obj/effect/turf_decal/tile/corsatcorner/lighpurple{
@@ -4399,9 +4262,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/ground/coast{
-	dir = 1
-	},
+/turf/open/liquid/water/river/autosmooth,
 /area/corsat/theta/biodome)
 "XK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4613,10 +4474,7 @@
 /turf/open/floor/grayscale/round/black,
 /area/corsat/theta/airlock/control)
 "Zj" = (
-/turf/open/ground/coast{
-	dir = 1;
-	icon_state = "beachcorner2"
-	},
+/turf/open/liquid/water/river/autosmooth,
 /area/corsat/theta/biodome)
 "Zk" = (
 /obj/machinery/light{
@@ -4690,9 +4548,7 @@
 /area/corsat/theta/airlock/control)
 "ZZ" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/coast{
-	icon_state = "beachcorner"
-	},
+/turf/open/liquid/water/river/autosmooth,
 /area/corsat/theta/biodome)
 
 (1,1,1) = {"
@@ -5625,8 +5481,8 @@ Iu
 Iu
 Iu
 Iu
-PS
-rG
+Zj
+Zj
 rL
 Yf
 Yf
@@ -5706,9 +5562,9 @@ Iu
 GJ
 Iu
 Iu
-PS
-KT
-ln
+Zj
+Zj
+Zj
 rL
 Iu
 AU
@@ -5784,13 +5640,13 @@ JX
 Yf
 Iu
 GJ
-PS
-lv
-lv
-lv
-KT
-wj
-ln
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
 xQ
 Iu
 ZD
@@ -5864,16 +5720,16 @@ DX
 lR
 eO
 Yf
-PS
-lv
-KT
+Zj
+Zj
+Zj
 mN
-wj
-wj
-wj
-wj
-Dj
-pu
+Zj
+Zj
+Zj
+Zj
+Zj
+XJ
 Iu
 Iu
 Iu
@@ -5946,14 +5802,14 @@ Io
 lR
 Yf
 Yf
-Rh
-wj
-wj
-wj
-wj
-wj
-wj
-wj
+Wy
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
 EA
 XJ
 Iu
@@ -6027,16 +5883,16 @@ DX
 eO
 Fi
 En
-PS
-KT
-wj
-wj
-wj
-wj
-wj
-wj
-wj
-fw
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
 FQ
 Dt
 GJ
@@ -6109,16 +5965,16 @@ zm
 JX
 YX
 ZR
-Ro
-wj
-wj
-wj
-wj
-wj
-wj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
 Wy
-wj
-ln
+Zj
+Zj
 rL
 Iu
 Yf
@@ -6191,16 +6047,16 @@ zm
 eO
 YX
 Iu
-Ro
+Zj
 mN
-wj
-wj
-wj
-wj
-wj
-wj
-fw
-Td
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
 xQ
 Yf
 Yf
@@ -6273,15 +6129,15 @@ Ya
 cX
 LX
 Iu
-Ro
-wj
-wj
-wj
-wj
+Zj
+Zj
+Zj
+Zj
+Zj
 qC
 qj
-wj
-ln
+Zj
+Zj
 Iu
 YX
 WE
@@ -6306,7 +6162,7 @@ WM
 RD
 HP
 Bm
-HP
+Dn
 RD
 sT
 Lw
@@ -6355,15 +6211,15 @@ zm
 eO
 Lb
 Iu
-RX
+Zj
 Zj
 Wy
-wj
-wj
-wj
-wj
-fw
-Td
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
 Iu
 YX
 eO
@@ -6438,13 +6294,13 @@ eO
 YX
 GJ
 Iu
-Ro
-wj
-wj
-wj
+Zj
+Zj
+Zj
+Zj
 mN
-fw
-Td
+Zj
+Zj
 Iu
 Wf
 YX
@@ -6520,12 +6376,12 @@ Yf
 YX
 Yf
 GJ
-Ro
-wj
-wj
-fw
-mv
-Td
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
 Iu
 Yf
 Yf
@@ -6602,10 +6458,10 @@ Yf
 YX
 Yf
 Yf
-RX
-mv
-mv
-Td
+Zj
+Zj
+Zj
+Zj
 Iu
 Iu
 GJ
@@ -6882,7 +6738,7 @@ jH
 Gc
 ax
 yG
-Dn
+JY
 Ny
 zk
 rZ
@@ -9437,9 +9293,9 @@ DX
 ry
 Yf
 Yf
-PS
-rE
-rG
+Zj
+XJ
+Zj
 Yf
 Hn
 eO
@@ -9519,10 +9375,10 @@ DX
 eO
 Yf
 ZZ
-KT
-Fl
-Fo
-rG
+Zj
+XJ
+Zj
+Zj
 Yf
 JX
 DX
@@ -9600,11 +9456,11 @@ DX
 DX
 nM
 Yf
-Ro
+Zj
 mN
-Fl
-fw
-Td
+XJ
+Zj
+Zj
 Yf
 DX
 kU
@@ -9682,10 +9538,10 @@ DX
 DX
 bu
 Yf
-RX
-mv
-kR
-Td
+Zj
+Zj
+XJ
+Zj
 Yf
 ZR
 DX

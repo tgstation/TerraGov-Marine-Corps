@@ -179,6 +179,7 @@
 	name = "\improper Biodome Sigma"
 	icon_state = "sigma_biodome"
 	always_unpowered = 1
+	ceiling = CEILING_UNDERGROUND_METAL
 
 // Ice Nightmare insert variation. COLD!
 /area/corsat/sigma/biodome/ice
@@ -422,7 +423,7 @@
 	name = "\improper Biodome Gamma"
 	icon_state = "gamma_biodome"
 	temperature = ICE_COLONY_TEMPERATURE
-	ceiling = CEILING_GLASS
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/corsat/gamma/biodome/complex
 	name = "\improper Gamma Research Complex"
@@ -449,6 +450,7 @@
 /area/corsat/theta/biodome
 	name = "\improper Biodome Theta"
 	icon_state = "theta_biodome"
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/corsat/theta/biodome/complex
 	name = "\improper Theta Research Complex"
