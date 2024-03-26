@@ -360,7 +360,9 @@
 	else if(!H.client) //Mind is in the body but no client, most likely currently disconnected.
 		. += "<span class = 'deptradio'>Patient is almost departed</span>"
 		. += "<span class = 'deptradio'>Patient have [timer] seconds left before DNR</span>"
-		return
+	else
+		. += "<span class = 'deptradio'>Patient have [timer] seconds left before DNR</span>"
+		return	
 
 
 
