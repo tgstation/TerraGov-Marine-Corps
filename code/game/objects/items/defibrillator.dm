@@ -51,13 +51,13 @@
 	return ..()
 
 
-/obj/item/defibrillator/update_icon()
-	. = ..()
+/obj/item/defibrillator/update_icon_state()
 	icon_state = initial(icon_state)
-
 	if(ready)
 		icon_state += "_out"
 
+/obj/item/defibrillator/update_overlays()
+	. = ..()
 	if(dcell?.charge)
 		switch(round(dcell.charge * 100 / dcell.maxcharge))
 			if(67 to INFINITY)
@@ -85,13 +85,13 @@
 	var/message
 	message += span_info("It has [round(dcell.charge / charge_cost)] out of [round(dcell.maxcharge / charge_cost)] uses left in its internal battery.\n")
 	if(dcell.charge < charge_cost)
-		message += "The battery is empty.\n"
+		message += span_alert("The battery is empty.\n")
 	else if(round(dcell.charge * 100 / dcell.maxcharge) <= 33)
-		message += "The battery is low.\n"
+		message += span_alert("The battery is low.\n")
 
 	if(!message)
 		return
-	return span_alert("[message] You can click-drag this unit on a corpsman backpack to recharge it.")
+	return "[message] You can click-drag this unit on a corpsman backpack to recharge it."
 
 
 /obj/item/defibrillator/attack_self(mob/living/carbon/human/user)
@@ -283,11 +283,11 @@
 		// Adjust procs won't do it
 		H.updatehealth()
 
-
 	to_chat(H, span_notice("<i><font size=4>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane...</font></i>"))
 	user.visible_message(span_notice("[icon2html(src, viewers(user))] \The [src] beeps: Resuscitation successful."))
 	playsound(get_turf(src), 'sound/items/defib_success.ogg', 50, 0)
 	H.resuscitate() // time for a smoke
+	H.emote("gasp")
 
 	//Checks if our "patient" is wearing a camera. Then it turns it on if it's off.
 	if(istype(H.wear_ear, /obj/item/radio/headset/mainship))

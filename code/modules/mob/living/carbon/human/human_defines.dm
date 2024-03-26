@@ -188,7 +188,7 @@
 	return TRUE
 
 /**
- * proc that resuscitates a human, separated because it's better this way
+ * proc that resuscitates a carbon human, bringing them back to life- only works if `can_be_revived()` is true and the human is actually dead
  *
  * intended to be called by defibrillators
  */
@@ -196,7 +196,6 @@
 	updatehealth() // so they don't die instantly
 	if(stat == DEAD && can_be_revived())
 		set_stat(UNCONSCIOUS)
-		emote("gasp")
 		chestburst = 0 // reset this so we don't have someone walk around with a hole in their chest (lol)
 		regenerate_icons()
 		reload_fullscreens()
