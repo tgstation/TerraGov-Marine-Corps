@@ -384,7 +384,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		return
 	explode(victim)
 
-///Proc that actually causes the explosion
+///Proc that actually causes the explosion; will return TRUE for the sake of reusable mines or mines with durations (at the moment, the radiation mine)
 /obj/item/mine/proc/explode(atom/movable/victim)
 	if(!triggered)
 		return FALSE
@@ -414,14 +414,19 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	if(duration || duration < 0)
 		extra_effects(victim)
 		if(duration > 0)
+			//Mines that are reusable will go back to sleep after the duration
 			if(CHECK_BITFIELD(mine_features, MINE_REUSABLE))
-				return deletion_timer = addtimer(CALLBACK(src, PROC_REF(disarm)), duration, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
-			return deletion_timer = addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), duration, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
-		return TRUE	//Don't stop
+				deletion_timer = addtimer(CALLBACK(src, PROC_REF(disarm)), duration, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+				return TRUE
+			//Mines that are not reusable will delete themselves after the duration
+			deletion_timer = addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), duration, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+		//Negative duration means the mine will stay active indefinitely, so just do nothing but return TRUE
+		return TRUE
 
 	//Reusable mines do not delete themselves upon detonation, just go back to sleep
 	if(CHECK_BITFIELD(mine_features, MINE_REUSABLE))
-		return disarm()
+		disarm()
+		return TRUE
 
 	delete_detection_zone()
 	qdel(src)
@@ -465,7 +470,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /obj/item/mine/emp_act(severity)
 	if(CHECK_BITFIELD(mine_features, MINE_VOLATILE_EMP))
 		trigger_explosion()
-	else if(CHECK_BITFIELD(mine_features, MINE_ELECTRONIC))
+		return
+	if(CHECK_BITFIELD(mine_features, MINE_ELECTRONIC))
 		disarm()
 
 ///Act as dummy objects that detects if something touched it, causing the linked mine to detonate
@@ -715,7 +721,6 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		return
 	ENABLE_BITFIELD(assembly_steps_completed, IED_SECURED)
 	balloon_alert(user, "Secured!")
-	return
 
 /obj/item/mine/ied/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()
@@ -931,7 +936,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 /obj/item/mine/shock/screwdriver_act(mob/living/user, obj/item/I)
 	if(!battery)
-		return balloon_alert(user, "No battery installed!")
+		balloon_alert(user, "No battery installed!")
+		return
 	user.put_in_hands(battery)
 	battery = null
 	update_icon()
@@ -945,17 +951,21 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	if(!battery?.charge || battery.charge < energy_cost)
 		playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, sound_range = 7)
 		balloon_alert_to_viewers("Out of charge!")
-		return disarm()
+		disarm()
+		return
 
 	//Grab a list of nearby objects, shuffle it, then see if they are an eligible victim
 	var/target
 	var/list/nearby_objects = shuffle(circle_range(src, range))
 	nearby_objects -= src	//Prevent the mine from committing suicide
 
+	//What the lightning bolts should hit: living mobs and conductive objects (items/structures/etc); it should NOT hit turfs, invisible objects, or effects
+	//This loop will keep iterating until it finds a valid target, then it will break
 	for(var/atom in nearby_objects)
 		if(!check_path(src, atom))	//circle_range() goes through walls, so make sure the target is reachable
 			continue
 
+		//Mob checks
 		if(isliving(atom))
 			if(ishuman(atom))
 				var/mob/living/carbon/human/human_victim = atom
@@ -968,7 +978,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 				target = living_victim
 			break
 
-		else if(isobj(atom) && !iseffect(atom))
+		//Check if it's an object that's NOT an effect
+		if(isobj(atom) && !iseffect(atom))
 			var/obj/lightning_rod = atom
 			//Prevents targeting things like wiring under floor tiles and makes it so only conductive objects will attract lightning
 			if(lightning_rod.invisibility > SEE_INVISIBLE_LIVING || !CHECK_BITFIELD(lightning_rod.flags_atom, CONDUCT))
@@ -976,6 +987,11 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 			lightning_rod.take_damage(damage, BURN, ENERGY)
 			target = lightning_rod
 			break
+
+	//In the rare event of no valid target, just grab a turf and zap it for the cool effect and to signal it is active
+	//Was considering it not doing anything but then you could exploit it by triggering and having it be active indefinitely
+	if(!target)
+		target = pick(/turf in nearby_objects)
 
 	playsound(loc, "sparks", 100, sound_range = 7)
 	if(target)
@@ -1199,7 +1215,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /obj/item/mine/flash/extra_effects(atom/movable/victim)
 	if(!battery?.charge || battery.charge < energy_cost)
 		balloon_alert_to_viewers("Out of charge!")
-		return disarm()
+		disarm()
+		return
 
 	triggered = FALSE	//Reset the mine but not disarm it
 	var/turf/epicenter = get_turf(src)
