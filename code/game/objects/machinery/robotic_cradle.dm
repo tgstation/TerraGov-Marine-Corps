@@ -143,17 +143,6 @@
 		to_chat(operating_mob, span_notice("[src] is non-functional!"))
 		return FALSE
 
-	if(operating_mob.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-		if(operating_mob == patient)
-			operating_mob.visible_message(span_notice("[operating_mob] fumbles around figuring out how to get into \the [src]."),
-			span_notice("You fumble around figuring out how to get into \the [src]."))
-		else
-			operating_mob.visible_message(span_notice("[operating_mob] fumbles around figuring out how to get [patient] into \the [src]."),
-			span_notice("You fumble around figuring out how to get [patient] into \the [src]."))
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * operating_mob.skills.getRating(SKILL_ENGINEER) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(operating_mob, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
-			return FALSE
-
 	if(operating_mob == patient)
 		patient.visible_message(span_notice("[patient] starts climbing into \the [src]."),
 		span_notice("You start climbing into \the [src]."))
@@ -301,19 +290,6 @@
 	if(usr == occupant)
 		to_chat(usr, span_warning("There's no way you're getting out while this thing is operating on you!"))
 		return
-	if(usr.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-		usr.visible_message(span_notice("[usr] fumbles around figuring out how to use [src]."),
-		span_notice("You fumble around figuring out how to use [src]."))
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.skills.getRating(SKILL_ENGINEER) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(usr, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED) || !occupant)
-			return
-		visible_message("\The [src] malfunctions as [usr] aborts the repair in progress.")
-		occupant.take_limb_damage(rand(30,50),rand(30,50))
-		log_game("[key_name(usr)] ejected [key_name(occupant)] from the cradle during repair causing damage.")
-		message_admins("[ADMIN_TPMONTY(usr)] ejected [ADMIN_TPMONTY(occupant)] from the cradle during repair causing damage.")
-		perform_eject(CRADLE_NOTICE_IDIOT_EJECT)
-		return
-
 	perform_eject(CRADLE_NOTICE_EARLY_EJECT)
 
 #undef CRADLE_NOTICE_SUCCESS
