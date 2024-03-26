@@ -167,7 +167,7 @@
 			DIRECT_OUTPUT(usr, browse(null, "window=xenosunbalanced"))
 
 	if(href_list["showpoll"])
-		handle_playeR_DBRANKSing()
+		handle_playeR_POLLSing()
 		return
 
 	if(href_list["viewpoll"])

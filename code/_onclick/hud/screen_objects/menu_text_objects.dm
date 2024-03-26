@@ -159,6 +159,6 @@
 /atom/movable/screen/text/lobby/clickable/polls/Click()
 	. = ..()
 	var/mob/new_player/player = hud.mymob
-	player.handle_playeR_DBRANKSing()
+	player.handle_playeR_POLLSing()
 	fetch_polls()
 
