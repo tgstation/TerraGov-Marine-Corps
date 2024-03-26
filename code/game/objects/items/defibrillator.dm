@@ -209,12 +209,34 @@
 	update_icon()
 	H.updatehealth()
 
+	//at this point, the defibrillator is healing damage
+	if(HAS_TRAIT(H, TRAIT_IMMEDIATE_DEFIB)) // this trait ignores user skill for the heal amount
+		H.setOxyLoss(0)
+		H.updatehealth()
+
+		var/heal_target = H.get_death_threshold() - H.health + 1
+		var/all_loss = H.getBruteLoss() + H.getFireLoss() + H.getToxLoss()
+		if(all_loss && (heal_target > 0))
+			var/brute_ratio = H.getBruteLoss() / all_loss
+			var/burn_ratio = H.getFireLoss() / all_loss
+			var/tox_ratio = H.getToxLoss() / all_loss
+			if(tox_ratio)
+				H.adjustToxLoss(-(tox_ratio * heal_target))
+			H.heal_overall_damage(brute_ratio*heal_target, burn_ratio*heal_target, TRUE) // explicitly also heals robit parts
+
+	else if(!issynth(H)) // TODO make me a trait :)
+		H.adjustBruteLoss(-defib_heal_amt)
+		H.adjustFireLoss(-defib_heal_amt)
+		H.adjustToxLoss(-defib_heal_amt)
+		H.setOxyLoss(0)
+
+	//the defibrillator is checking parameters now
 	var/defib_result = H.check_defib()
 	var/fail_reason
 
 	switch(defib_result)
-		if(DEFIB_FAIL_TISSUE_DAMAGE) // checks damage threshold in human_defines.dm, whatever is defined for their species
-			fail_reason = FAIL_REASON_TISSUE // also, if this is the fail reason, heals brute&burn based on skill
+		if(DEFIB_FAIL_TISSUE_DAMAGE)
+			fail_reason = "Tissue damage too severe. Repair damage and try again."
 		if(DEFIB_FAIL_BAD_ORGANS)
 			fail_reason = "Patient is missing intelligence patterns or has a DNR. Further attempts futile."
 		if(DEFIB_FAIL_DECAPITATED)
@@ -225,7 +247,7 @@
 		if(DEFIB_FAIL_BRAINDEAD)
 			fail_reason = "Patient is braindead. Further attempts futile."
 		if(DEFIB_FAIL_CLIENT_MISSING)
-			if(H.mind && !H.client) // no client, like a DNR mob or colonist
+			if(!H.mind && !H.get_ghost(TRUE)) // confirmed NPC: colonist or something
 				fail_reason = "Patient is missing intelligence patterns or has a DNR. Further attempts futile."
 			else if(HAS_TRAIT(H, TRAIT_UNDEFIBBABLE))
 				fail_reason = "Patient is missing intelligence patterns or has a DNR. Further attempts futile."
@@ -235,53 +257,9 @@
 	if(fail_reason)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Resuscitation failed - [fail_reason]"))
 		playsound(src, 'sound/items/defib_failed.ogg', 50, FALSE)
-		if(!issynth(H) && fail_reason == FAIL_REASON_TISSUE) // Heal them if this is failing because of too much damage.
-			H.adjustBruteLoss(-defib_heal_amt)
-			H.adjustFireLoss(-defib_heal_amt)
-			H.updatehealth() // Adjust procs won't update health
 		return
 
-
-	if(HAS_TRAIT(H, TRAIT_IMMEDIATE_DEFIB)) // if they're a robot or something, heal them to one hit from death
-		H.setOxyLoss(0)
-
-		var/heal_target = H.get_death_threshold() - H.health + 1
-		var/all_loss = H.getBruteLoss() + H.getFireLoss() + H.getToxLoss()
-		if(all_loss && (heal_target > 0))
-			var/brute_ratio = H.getBruteLoss() / all_loss
-			var/burn_ratio = H.getFireLoss() / all_loss
-			var/tox_ratio = H.getToxLoss() / all_loss
-			if(tox_ratio)
-				H.adjustToxLoss(-(tox_ratio * heal_target))
-				H.heal_overall_damage(brute_ratio*heal_target, burn_ratio*heal_target, TRUE) // explicitly also heals robot parts
-
-		// Adjust procs won't do it
-		H.updatehealth()
-
-
-	if(!issynth(H))
-		// Humans, doesn't do anything for synths
-		// The health target is -52 health
-		var/death_threshold = H.get_death_threshold()
-		var/crit_threshold
-		var/hardcrit_target = crit_threshold + death_threshold * 0
-		var/total_brute = H.getBruteLoss()
-		var/total_burn = H.getFireLoss()
-
-		H.setStaminaLoss(-250) // stamina victims shouldn't die instantly when coming back to life.
-		if(H.health > hardcrit_target)
-			H.adjustOxyLoss(H.health - hardcrit_target + 2) // So they remain in crit.
-
-		var/overall_damage = total_brute + total_burn + H.getToxLoss() + H.getOxyLoss() + H.getCloneLoss()
-		var/mobhealth = H.health
-		H.adjustCloneLoss((mobhealth - hardcrit_target) * (H.getCloneLoss() / overall_damage))
-		H.adjustOxyLoss((mobhealth - hardcrit_target) * (H.getOxyLoss() / overall_damage) + 2)
-		H.adjustToxLoss((mobhealth - hardcrit_target) * (H.getToxLoss() / overall_damage))
-		H.adjustFireLoss((mobhealth - hardcrit_target) * (total_burn / overall_damage))
-		H.adjustBruteLoss((mobhealth - hardcrit_target) * (total_brute / overall_damage))
-
-		// Adjust procs won't do it
-		H.updatehealth()
+	H.updatehealth()
 
 	to_chat(H, span_notice("<i><font size=4>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane...</font></i>"))
 	user.visible_message(span_notice("[icon2html(src, viewers(user))] \The [src] beeps: Resuscitation successful."))

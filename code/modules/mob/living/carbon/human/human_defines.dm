@@ -209,7 +209,7 @@
 
 ///Checks brute/fire damage, heart status, having a head, death ticks and client for defibrillation
 /mob/living/carbon/human/proc/check_defib()
-	if((getBruteLoss() >= 180) || (getFireLoss() >= 180) && !HAS_TRAIT(src, TRAIT_IMMEDIATE_DEFIB)) // allow robots to bypass the damage threshold
+	if(health <= -100 && !HAS_TRAIT(src, TRAIT_IMMEDIATE_DEFIB)) // allow robots to bypass the damage threshold
 		return DEFIB_FAIL_TISSUE_DAMAGE
 
 	if(!has_working_organs() && !(species.species_flags & ROBOTIC_LIMBS)) // Ya organs dpmt wprl
@@ -219,10 +219,13 @@
 	if(head.limb_status & LIMB_DESTROYED)
 		return DEFIB_FAIL_DECAPITATED
 
-	if((dead_ticks > TIME_BEFORE_DNR) && !issynth(src) || HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
+	if((dead_ticks > TIME_BEFORE_DNR) && !issynth(src))
 		return DEFIB_FAIL_BRAINDEAD
 
 	if(!client) // no client at all
 		return DEFIB_FAIL_CLIENT_MISSING
+
+	if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE)) // probably unreachable, BUT this is here for completion
+		return DEFIB_FAIL_BRAINDEAD
 
 	return DEFIB_POSSIBLE

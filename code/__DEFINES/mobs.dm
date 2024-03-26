@@ -28,7 +28,7 @@
 
 //=================================================
 
-///////////////////Defibrillation///////////////////
+//////////////Defibrillation Outcomes//////////////
 
 // Defibrillation outcomes. used in human_defines.dm
 #define DEFIB_POSSIBLE (1<<0)
