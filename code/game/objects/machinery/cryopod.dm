@@ -172,27 +172,27 @@
 
 		visible_message(span_notice("[src] beeps happily as it disgorges the desired objects."))
 
-		var/list/da_list
+		var/list/combined_list
 		switch(state)
 			if(STATE_GUN)
-				da_list = GLOB.cryoed_item_list_gun
+				combined_list = GLOB.cryoed_item_list_gun
 			if(STATE_AMMO)
-				da_list = GLOB.cryoed_item_list_ammo
+				combined_list = GLOB.cryoed_item_list_ammo
 			if(STATE_EXPLOSIVE)
-				da_list = GLOB.cryoed_item_list_explosive
+				combined_list = GLOB.cryoed_item_list_explosive
 			if(STATE_MELEE)
-				da_list = GLOB.cryoed_item_list_melee
+				combined_list = GLOB.cryoed_item_list_melee
 			if(STATE_CLOTHING)
-				da_list = GLOB.cryoed_item_list_clothing
+				combined_list = GLOB.cryoed_item_list_clothing
 			if(STATE_FOOD)
-				da_list = GLOB.cryoed_item_list_food
+				combined_list = GLOB.cryoed_item_list_food
 			if(STATE_DRUGS)
-				da_list = GLOB.cryoed_item_list_drugs
+				combined_list = GLOB.cryoed_item_list_drugs
 			if(STATE_CONTAINERS)
-				da_list = GLOB.cryoed_item_list_containers
+				combined_list = GLOB.cryoed_item_list_containers
 			if(STATE_OTHER)
-				da_list = GLOB.cryoed_item_list_other
-		for(var/obj/item/I in da_list)
+				combined_list = GLOB.cryoed_item_list_other
+		for(var/obj/item/I in combined_list)
 			dispense_item(I, usr, FALSE)
 
 	updateUsrDialog()
