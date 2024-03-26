@@ -622,7 +622,7 @@
 	scannable = TRUE
 	toxpwr = 0 // This is going to do slightly snowflake tox damage.
 	purge_list = list(/datum/reagent/medicine)
-	purge_rate = 5
+	purge_rate = 8
 
 /datum/reagent/toxin/xeno_ozelomelyn/on_mob_life(mob/living/L, metabolism)
 	if(L.getToxLoss() < 40) // if our toxloss is below 40, do 0.75 tox damage.
