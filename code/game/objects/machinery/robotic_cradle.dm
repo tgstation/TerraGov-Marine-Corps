@@ -1,14 +1,10 @@
 #define CRADLE_NOTICE_SUCCESS 1
 #define CRADLE_NOTICE_DEATH 2
-#define CRADLE_NOTICE_NO_RECORD 3
-#define CRADLE_NOTICE_NO_POWER 4
-#define CRADLE_NOTICE_XENO_FUCKERY 5
-#define CRADLE_NOTICE_IDIOT_EJECT 6
-#define CRADLE_NOTICE_FORCE_EJECT 7
-#define CRADLE_NOTICE_EARLY_EJECT 8
+#define CRADLE_NOTICE_NO_POWER 3
+#define CRADLE_NOTICE_XENO_FUCKERY 4
+#define CRADLE_NOTICE_FORCE_EJECT 5
+#define CRADLE_NOTICE_EARLY_EJECT 6
 //Cradle
-//This code is so shit, I don't even want to fix it. If someone wants to, please fix var/repairing never being used and try to make sense of the procs
-//Like handle_repair_operation() gets called 20 seconds after the machine says it's starting, which seems to be turning on the machine, but immediately calls finish_repair() which pops out the occupant ???????
 
 /obj/machinery/robotic_cradle
 	name = "robotic cradle"
@@ -84,18 +80,12 @@
 		if(CRADLE_NOTICE_DEATH)
 			playsound(src, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 			reason = "Reason for discharge: Patient has expired."
-		if(CRADLE_NOTICE_NO_RECORD)
-			playsound(src, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
-			reason = "Reason for discharge: Medical records not detected. Alerting security advised."
 		if(CRADLE_NOTICE_NO_POWER)
 			playsound(src, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 			reason = "Reason for discharge: Power failure."
 		if(CRADLE_NOTICE_XENO_FUCKERY)
 			playsound(src, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 			reason = "Reason for discharge: Unauthorized manual release. Alerting security advised."
-		if(CRADLE_NOTICE_IDIOT_EJECT)
-			playsound(src, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
-			reason = "Reason for discharge: Unauthorized manual release during repair. Alerting security advised."
 		if(CRADLE_NOTICE_FORCE_EJECT)
 			playsound(src, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 			reason = "Reason for discharge: Destruction of linked CRADLE Engineering System. Alerting security advised."
@@ -294,9 +284,6 @@
 
 #undef CRADLE_NOTICE_SUCCESS
 #undef CRADLE_NOTICE_DEATH
-#undef CRADLE_NOTICE_NO_RECORD
 #undef CRADLE_NOTICE_NO_POWER
-#undef CRADLE_NOTICE_XENO_FUCKERY
-#undef CRADLE_NOTICE_IDIOT_EJECT
 #undef CRADLE_NOTICE_FORCE_EJECT
 #undef CRADLE_NOTICE_EARLY_EJECT
