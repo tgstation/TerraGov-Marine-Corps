@@ -203,8 +203,8 @@
 	if(message)
 		visible_message(span_notice("[src] beeps happily as it disgorges [I]."))
 	I.forceMove(get_turf(src))
-
 	active_glob_cryo_items_list -= I;
+	updateUsrDialog()
 
 //Decorative structures to go alongside cryopods.
 /obj/structure/cryofeed
