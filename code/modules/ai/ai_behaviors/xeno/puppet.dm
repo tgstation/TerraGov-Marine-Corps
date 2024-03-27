@@ -24,6 +24,10 @@
 		RegisterSignal(master, COMSIG_PUPPET_CHANGE_ALL_ORDER, PROC_REF(change_order))
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, PROC_REF(deal_with_obstacle))
 	RegisterSignal(mob_parent, COMSIG_PUPPET_CHANGE_ORDER, PROC_REF(change_order))
+	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_REST, PROC_REF(start_resting))
+	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_UNREST, PROC_REF(stop_resting))
+	RegisterSignal(escorted_atom, COMSIG_ELEMENT_JUMP_STARTED, PROC_REF(do_jump))
+	RegisterSignal(escorted_atom, COMSIG_LIVING_DO_RESIST, PROC_REF(parent_resist))
 	return ..()
 
 ///cleans up signals and unregisters obstructed move signal
@@ -181,3 +185,28 @@
 		return
 	if(feed.ai_should_use(target))
 		feed.use_ability(target)
+
+/// rest when puppeter does
+/datum/ai_behavior/puppet/proc/start_resting(mob/source)
+	SIGNAL_HANDLER
+	var/mob/living/living = mob_parent
+	living?.set_resting(TRUE)
+
+/// stop resting when puppeter does, plus unbuckle all mobs so the widow won't get stuck
+/datum/ai_behavior/puppet/proc/stop_resting(mob/source)
+	SIGNAL_HANDLER
+	var/mob/living/living = mob_parent
+	living?.set_resting(FALSE)
+	source?.unbuckle_all_mobs()
+
+/// resist when puppeter does
+/datum/ai_behavior/puppet/proc/do_jump()
+	SIGNAL_HANDLER
+	var/datum/component/jump/jumpy_spider = mob_parent.GetComponent(/datum/component/jump)
+	jumpy_spider?.do_jump(mob_parent)
+
+/// resist when puppeter does
+/datum/ai_behavior/puppet/proc/parent_resist()
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/spiderling/spiderling_parent = mob_parent
+	spiderling_parent?.do_resist()
