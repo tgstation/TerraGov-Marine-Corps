@@ -13,7 +13,7 @@
 	)
 
 /datum/loadout_item/belt/som_sparepouch
-	name = "standard utility pouch"
+	name = "Utility pouch"
 	desc = "A small, lightweight pouch that can be clipped onto armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines. Made from genuine SOM leather."
 	item_typepath = /obj/item/storage/belt/sparepouch/som
 	jobs_supported = list(SOM_SQUAD_MARINE)
@@ -31,7 +31,7 @@
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
 
 /datum/loadout_item/belt/som_grenades
-	name = "S16 grenade rig"
+	name = "Grenade rig"
 	desc = "A simple harness system available in many configurations. This version is designed to carry bulk quantities of grenades."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/belt/grenade/som
@@ -52,7 +52,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/som, SLOT_IN_BELT)
 
 /datum/loadout_item/belt/som_burst_pistol
-	name = "V-11 extended"
+	name = "V-11e"
 	desc = "The standard sidearm used by the Sons of Mars. A reliable and simple weapon that is often seen on the export market on the outer colonies. \
 	Typically chambered in 9mm armor piercing rounds. This one is configures for burstfire, and loaded with extended mags."
 	ui_icon = "v11"

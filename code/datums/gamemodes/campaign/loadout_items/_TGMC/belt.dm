@@ -39,7 +39,7 @@
 	)
 
 /datum/loadout_item/belt/sparepouch
-	name = "G8 storage pouch"
+	name = "G8 pouch"
 	desc = "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines."
 	item_typepath = /obj/item/storage/belt/sparepouch
 	jobs_supported = list(SQUAD_MARINE)

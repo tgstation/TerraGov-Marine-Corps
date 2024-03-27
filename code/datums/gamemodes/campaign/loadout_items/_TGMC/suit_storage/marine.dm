@@ -446,7 +446,7 @@
 	secondary_ammo_type = /obj/item/ammo_magazine/rifle/standard_carbine/ap
 
 /datum/loadout_item/suit_store/main_gun/marine/smg_and_shield
-	name = "SMG-25 & riot shield"
+	name = "SMG-25 & shield"
 	desc = "Equipped with a mag harness, recoil compensator and gyroscopic stabilizer, and comes with a TL-172 defensive shield. SMG-25 submachinegun, is a large capacity smg, able to be be used effectively one or two handed. \
 	Like all smgs, it has excellent mobility and handling, but has poor damage application at longer ranges. \
 	The defensive shield provides incredible resilience, allowing the user to soak up tremendous amounts of damage while they or their team mates push the enemy. \
