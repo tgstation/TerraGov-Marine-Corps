@@ -101,6 +101,7 @@
 	desc = "Unlocked for free with the Heavy weapon specialisation perk. This backpack holds 4 67mm high explosive anti mech shells, in addition to a recoiless rifle. \
 	The recoiless rifle is a powerful support weapon that deals significant damage against heavily armored mechs or vehicles, \
 	but will generally devastate any human target unfortunate enough to be hit in a pinch. Has a draw delay and has poor accuracy against human targets."
+	ui_icon = "t160"
 	unlock_cost = 300
 	purchase_cost = 100
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
@@ -151,6 +152,7 @@
 	name = "Rocket bag"
 	desc = "This backpack holds 4 67mm shells, in addition to a recoiless rifle. \
 	A powerful ranged weapon with a wide area of effect, the recoiless rifle is a powerful support weapon that can severely wound whole groups of opponents in a single shot. Has a draw delay."
+	ui_icon = "t160"
 	purchase_cost = 100
 	quantity = 2
 	item_typepath = /obj/item/storage/holster/backholster/rpg/low_impact

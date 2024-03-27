@@ -223,7 +223,7 @@
 	name = "MG-60"
 	desc = "Equipped with a mag harness, extended barrel and bipod. The MG-60 is a powerful machinegun, combining a tremendous capacity good stopping power and blistering rate of fire, it is extremely deadly at any range. \
 	It has terrible mobility and poor accuracy on the move, so is generally used as a static weapon where it can lay down blistering firepower for team mates. It uses 10x26mm caseless ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "t60"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_gpmg/machinegunner
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_gpmg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
