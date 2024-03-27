@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed a few instances where object damage was incorrectly applying armour multipliers when it shouldn't"

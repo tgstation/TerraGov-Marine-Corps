@@ -402,3 +402,23 @@
   - bugfix: fixed lava trying to burn indestructable things forever
   blackdav123:
   - balance: Removed outdoor plat miner from Icy Caves
+2024-03-27:
+  DeltaFire15:
+  - qol: Pheromone strength in the statpanel now shows the actual value next to the
+      approximate category.
+  - spellcheck: Corrected a code comment about phero brackets which was quite outdated.
+  Lumipharon:
+  - bugfix: fixed IFF shrap on airburst weapons
+  - bugfix: AMR/fire support bino lase no longer layers under clothing and such
+  - balance: M40 HSDP smoke grenade smoke radius reduced to 6 from 7
+  - bugfix: fixed a few instances where object damage was incorrectly applying armour
+      multipliers when it shouldn't
+  - bugfix: Mechs and tanks properly respect target def zone
+  blackdav123:
+  - balance: Adds disk sets to Gelida IV
+  lbnesquik:
+  - bugfix: fix the hypersleep dispense all not working
+  - bugfix: fix the drug category not displaying
+  - rscadd: Added the cradle to valhala and debugabus
+  - qol: Changed the cradle sprites
+  - qol: helmets, armor and suits show their equipped modules on examine
