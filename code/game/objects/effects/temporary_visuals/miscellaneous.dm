@@ -119,7 +119,10 @@ GLOBAL_LIST_EMPTY(blood_particles)
 
 /obj/effect/temp_visual/xenomorph/afterimage/Initialize(mapload, atom/owner)
 	. = ..()
-	var/mutable_appearance/xeno_afterimage = mutable_appearance(owner.icon, owner.icon_state, owner.layer, owner.plane, initial(alpha), owner.appearance_flags)
+	var/mutable_appearance/xeno_afterimage = new()
+	xeno_afterimage.appearance = owner.appearance
+	xeno_afterimage.density = initial(density)
+	xeno_afterimage.render_target = null
 	xeno_afterimage.appearance_flags = RESET_COLOR|RESET_ALPHA|PASS_MOUSE
 	xeno_afterimage.setDir(owner.dir)
 	xeno_afterimage.pixel_x = owner.pixel_x
