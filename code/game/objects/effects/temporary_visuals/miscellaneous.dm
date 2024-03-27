@@ -121,8 +121,9 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	. = ..()
 	var/mutable_appearance/xeno_afterimage = new()
 	xeno_afterimage.appearance = owner.appearance
-	xeno_afterimage.density = initial(density)
 	xeno_afterimage.render_target = null
+	xeno_afterimage.density = initial(density)
+	xeno_afterimage.alpha = initial(alpha)
 	xeno_afterimage.appearance_flags = RESET_COLOR|RESET_ALPHA|PASS_MOUSE
 	xeno_afterimage.setDir(owner.dir)
 	xeno_afterimage.pixel_x = owner.pixel_x

@@ -92,6 +92,7 @@
 	atom_parent.vis_contents -= render_source_atom
 	atom_parent.render_target = initial_render_target_value
 	remove_from?.images -= removee
+	remove_from.mob.update_appearance(UPDATE_ICON)
 
 ///Effect is disabled when they log out because client gets deleted
 /datum/component/seethrough_mob/proc/on_client_disconnect()
