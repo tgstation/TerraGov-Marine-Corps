@@ -17,10 +17,10 @@
 	density = TRUE
 
 /obj/structure/mine_structure/wooden/flamer_fire_act(burnlevel)
-	take_damage(burnlevel, BURN, "fire")
+	take_damage(burnlevel, BURN, FIRE)
 
 /obj/structure/mine_structure/wooden/fire_act()
-	take_damage(25, BURN, "fire")
+	take_damage(25, BURN, FIRE)
 
 /obj/structure/mine_structure/wooden/support_wall
 	name = "wooden support"

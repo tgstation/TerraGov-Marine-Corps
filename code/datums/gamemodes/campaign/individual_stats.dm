@@ -340,7 +340,7 @@
 				to_chat(user, span_warning("Must be alive to do this!"))
 				return
 			var/obj/item/card/id/user_id = user.get_idcard()
-			if(!(user_id.flags_id & CAN_BUY_LOADOUT))
+			if(!(user_id.id_flags & CAN_BUY_LOADOUT))
 				to_chat(user, span_warning("You have already selected a loadout for this mission."))
 				return
 			if(user.job.title != job)
@@ -358,7 +358,7 @@
 				return
 			loadouts[job].equip_loadout(user)
 			user.playsound_local(user, 'sound/effects/menu_click.ogg', 50)
-			user_id.flags_id &= ~CAN_BUY_LOADOUT
+			user_id.id_flags &= ~CAN_BUY_LOADOUT
 			return TRUE
 
 //loadout/perk UI for campaign gamemode

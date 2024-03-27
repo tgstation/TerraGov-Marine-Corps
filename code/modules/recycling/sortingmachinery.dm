@@ -333,8 +333,8 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
 	)
 	item_state = "electronic"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 
 /obj/item/destTagger/proc/openwindow(mob/user as mob)
 	var/dat

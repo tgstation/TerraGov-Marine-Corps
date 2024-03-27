@@ -388,5 +388,5 @@
 	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
 	var/turf/current_turf = get_turf(src)
 	if(current_turf)
-		current_turf.flags_atom |= AI_BLOCKED
+		current_turf.atom_flags |= AI_BLOCKED
 	ChangeTurf(/turf/open/liquid/lava)

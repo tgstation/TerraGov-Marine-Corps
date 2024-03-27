@@ -7,7 +7,7 @@
 #define CAN_ATTACH "can_attach"
 #define PIXEL_SHIFT_X "pixel_shift_x"
 #define PIXEL_SHIFT_Y "pixel_shift_y"
-#define FLAGS_ATTACH_FEATURES "flags_attach_features"
+#define FLAGS_ATTACH_FEATURES "attach_features_flags"
 #define ATTACH_DELAY "attach_delay"
 #define DETACH_DELAY "detach_delay"
 #define ATTACH_SKILL "attach_skill"
@@ -19,7 +19,7 @@
 #define MOB_PIXEL_SHIFT_Y "mob_pixel_shift_y"
 #define ATTACHMENT_LAYER "attachment_layer"
 
-//flags_attach_features
+//attach_features_flags
 #define ATTACH_REMOVABLE (1<<0)
 #define ATTACH_ACTIVATION (1<<1)
 #define ATTACH_SAME_ICON (1<<2)

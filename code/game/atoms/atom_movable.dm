@@ -230,7 +230,7 @@
 	var/can_pass_diagonally = NONE
 	if (direction & (direction - 1)) //Check if the first part of the diagonal move is possible
 		moving_diagonally = TRUE
-		if(!(flags_atom & DIRLOCK))
+		if(!(atom_flags & DIRLOCK))
 			setDir(direction) //We first set the direction to prevent going through dir sensible object
 		if((direction & NORTH) && loc.Exit(src, NORTH) && get_step(loc, NORTH).Enter(src))
 			can_pass_diagonally = NORTH
@@ -246,13 +246,13 @@
 		moving_diagonally = FALSE
 		if(!get_step(loc, can_pass_diagonally)?.Exit(src, direction & ~can_pass_diagonally))
 			return Move(get_step(loc, can_pass_diagonally), can_pass_diagonally)
-		if(!(flags_atom & DIRLOCK)) //We want to set the direction to be the one of the "second" diagonal move, aka not can_pass_diagonally
+		if(!(atom_flags & DIRLOCK)) //We want to set the direction to be the one of the "second" diagonal move, aka not can_pass_diagonally
 			setDir(direction &~ can_pass_diagonally)
 
 	else
 		if(!loc.Exit(src, direction))
 			return
-		if(!(flags_atom & DIRLOCK))
+		if(!(atom_flags & DIRLOCK))
 			setDir(direction)
 
 	var/enter_return_value = newloc.Enter(src)
@@ -539,10 +539,10 @@
 	if(flying)
 		set_flying(TRUE, FLY_LAYER)
 
-	var/originally_dir_locked = flags_atom & DIRLOCK
+	var/originally_dir_locked = atom_flags & DIRLOCK
 	if(!originally_dir_locked)
 		setDir(get_dir(src, target))
-		flags_atom |= DIRLOCK
+		atom_flags |= DIRLOCK
 
 	throw_source = get_turf(src)	//store the origin turf
 
@@ -618,7 +618,7 @@
 
 	//done throwing, either because it hit something or it finished moving
 	if(!originally_dir_locked)
-		flags_atom &= ~DIRLOCK
+		atom_flags &= ~DIRLOCK
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
 	stop_throw(flying, original_layer)

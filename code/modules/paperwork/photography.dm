@@ -172,7 +172,7 @@
 	light_color = COLOR_WHITE
 	light_power = FLASH_LIGHT_POWER
 	w_class = WEIGHT_CLASS_SMALL
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	interaction_flags = INTERACT_REQUIRES_DEXTERITY
 	var/flash_enabled = TRUE
 	var/state_on = "camera"
