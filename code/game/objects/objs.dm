@@ -322,9 +322,9 @@
 		if(!do_after(user, (fumble_time ? fumble_time : repair_time) * (skill_required - user.skills.getRating(SKILL_ENGINEER)), NONE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-	if(user.skills.getRating(SKILL_ENGINEER) >= SKILL_ENGINEER_ENGI)
+	if(user.skills.getRating(SKILL_ENGINEER) > SKILL_ENGINEER_ENGI)
 		repair_amount *= (1+(0.1*(user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI)))
-		
+
 	repair_time *= welder.toolspeed
 	balloon_alert_to_viewers("starting repair...")
 	handle_weldingtool_overlay()
