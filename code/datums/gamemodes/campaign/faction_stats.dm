@@ -219,7 +219,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 ///Removes an asset from a faction entirely
 /datum/faction_stats/proc/remove_asset(datum/campaign_asset/removed_asset)
 	if(faction_assets[removed_asset])
-		QDEL_NULL(faction_assets[new_asset])
+		QDEL_NULL(faction_assets[removed_asset])
 
 ///handles post mission wrap up for the faction
 /datum/faction_stats/proc/mission_end(datum/source, datum/campaign_mission/completed_mission, winning_faction)
