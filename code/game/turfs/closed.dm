@@ -111,10 +111,6 @@
 	icon_state = "darkfrostwall-0"
 	walltype = "darkfrostwall"
 	base_icon_state = "darkfrostwall"
-	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
-
-/turf/closed/mineral/smooth/darkfrostwall/cuttable
-	resistance_flags = UNACIDABLE
 
 /turf/closed/mineral/smooth/darkfrostwall/indestructible
 	name = "tough rock"
