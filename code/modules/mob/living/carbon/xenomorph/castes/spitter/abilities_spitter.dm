@@ -61,7 +61,7 @@
 		for(var/obj/O in T)
 			if(is_type_in_typecache(O, GLOB.acid_spray_hit) && O.acid_spray_act(owner))
 				return // returned true if normal density applies
-			if(O.density && !(O.allow_pass_flags & PASS_PROJECTILE) && !(O.flags_atom & ON_BORDER))
+			if(O.density && !(O.allow_pass_flags & PASS_PROJECTILE) && !(O.atom_flags & ON_BORDER))
 				blocked = TRUE
 				break
 
@@ -125,7 +125,7 @@
 	newspit.generate_bullet(scatter_spit, scatter_spit.damage * SPIT_UPGRADE_BONUS(X))
 	newspit.def_zone = X.get_limbzone_target()
 
-	newspit.fire_at(target, X, null, newspit.ammo.max_range)
+	newspit.fire_at(target, X, X, newspit.ammo.max_range)
 
 	succeed_activate()
 	add_cooldown()

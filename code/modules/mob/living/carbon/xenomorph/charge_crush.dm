@@ -399,7 +399,7 @@
 		charge_datum.do_stop_momentum()
 		return PRECRUSH_STOPPED
 	if(anchored)
-		if(flags_atom & ON_BORDER)
+		if(atom_flags & ON_BORDER)
 			if(dir == REVERSE_DIR(charger.dir))
 				. = (CHARGE_SPEED(charge_datum) * 80) //Damage to inflict.
 				charge_datum.speed_down(3)
@@ -422,6 +422,9 @@
 
 /obj/vehicle/sealed/mecha/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/ability/xeno_action/ready_charge/charge_datum)
 	return (CHARGE_SPEED(charge_datum) * 375)
+
+/obj/hitbox/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/ability/xeno_action/ready_charge/charge_datum)
+	return (CHARGE_SPEED(charge_datum) * 20)
 
 /obj/structure/razorwire/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/ability/xeno_action/ready_charge/charge_datum)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE) || charger.is_charging < CHARGE_ON)

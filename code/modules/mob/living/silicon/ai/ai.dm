@@ -102,7 +102,7 @@
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 	H.add_hud_to(src)
 
-	RegisterSignal(src, COMSIG_MOB_ALT_LEFT_CLICK, PROC_REF(send_order))
+	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, PROC_REF(send_order))
 	RegisterSignal(src, COMSIG_ORDER_SELECTED, PROC_REF(set_order))
 
 	///register the various signals we need for alerts
@@ -139,7 +139,7 @@
 	QDEL_NULL(builtInCamera)
 	QDEL_NULL(track)
 	UnregisterSignal(src, COMSIG_ORDER_SELECTED)
-	UnregisterSignal(src, COMSIG_MOB_ALT_LEFT_CLICK)
+	UnregisterSignal(src, COMSIG_MOB_CLICK_ALT)
 
 	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
@@ -255,7 +255,6 @@
 		to_chat(src, span_notice("Camera lights activated."))
 	camera_light_on = !camera_light_on
 
-
 /mob/living/silicon/ai/proc/light_cameras()
 	var/list/obj/machinery/camera/add = list()
 	var/list/obj/machinery/camera/remove = list()
@@ -277,6 +276,14 @@
 		C.Togglelight(1)
 		lit_cameras |= C
 
+/mob/living/silicon/ai/proc/supply_interface()
+	var/datum/supply_ui/SU
+	if(!SU)
+		SU = new(src)
+		SU.shuttle_id = SHUTTLE_SUPPLY
+		SU.home_id = "supply_home"
+		SU.faction = src.faction
+	return SU.interact(src)
 
 /mob/living/silicon/ai/proc/camera_visibility(mob/camera/aiEye/moved_eye)
 	GLOB.cameranet.visibility(moved_eye, client, all_eyes, moved_eye.use_static)
@@ -348,18 +355,17 @@
 			clear_fullscreen("remote_view", 0)
 
 /mob/living/silicon/ai/update_sight()
-	. = ..()
 	if(HAS_TRAIT(src, TRAIT_SEE_IN_DARK))
 		see_in_dark = max(see_in_dark, 8)
 		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 		eyeobj.see_in_dark = max(eyeobj.see_in_dark, 8)
 		eyeobj.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		return
+		return ..()
+	see_in_dark = initial(see_in_dark)
+	lighting_alpha = initial(lighting_alpha)
 	eyeobj.see_in_dark = initial(eyeobj.see_in_dark)
 	eyeobj.lighting_alpha = initial(eyeobj.lighting_alpha)
-	see_in_dark = initial(see_in_dark)
-	lighting_alpha = initial(lighting_alpha) // yes you really have to change both the eye and the ai vars
-
+	return ..()
 
 /mob/living/silicon/ai/get_status_tab_items()
 	. = ..()
@@ -396,6 +402,9 @@
 			. += "AI bioscan status: Instruments recalibrating, next scan in [(last_ai_bioscan  + COOLDOWN_AI_BIOSCAN - world.time)/10] seconds." //about 10 minutes
 		else
 			. += "AI bioscan status: Instruments are ready to scan the planet."
+	var/status_value = SSevacuation?.get_status_panel_eta()
+	if(status_value)
+		. += "Evacuation in: [status_value]"
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
 	. = ..()

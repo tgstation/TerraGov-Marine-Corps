@@ -1,7 +1,7 @@
 /datum/game_mode/hvh/campaign
 	name = "Campaign"
 	config_tag = "Campaign"
-	flags_round_type = MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY
+	round_type_flags = MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY
 	whitelist_ship_maps = list(MAP_ITERON)
 	whitelist_ground_maps = list(MAP_FORT_PHOBOS)
 	bioscan_interval = 3 MINUTES
@@ -17,7 +17,7 @@
 		/datum/job/som/squad/standard = -1,
 		/datum/job/som/squad/medic = 8,
 		/datum/job/som/squad/engineer = 4,
-		/datum/job/som/squad/veteran = 2,
+		/datum/job/som/squad/veteran = 4,
 		/datum/job/som/squad/leader = 4,
 		/datum/job/som/command/fieldcommander = 1,
 		/datum/job/som/command/staffofficer = 2,
@@ -27,8 +27,10 @@
 	var/datum/campaign_mission/current_mission
 	///campaign stats organised by faction
 	var/list/datum/faction_stats/stat_list = list()
-	///List of death times by key. Used for respawn time
+	///List of death times by ckey. Used for respawn time
 	var/list/player_death_times = list()
+	///List of timers to auto open the respawn window
+	var/list/respawn_timers = list()
 
 /datum/game_mode/hvh/campaign/announce()
 	to_chat(world, "<b>The current game mode is - Campaign!</b>")
@@ -64,8 +66,8 @@
 		return respawnee.respawn()
 
 	var/respawn_delay = CAMPAIGN_RESPAWN_TIME + stat_list[respawnee.faction]?.respawn_delay_modifier
-	if((player_death_times[respawnee.key] + respawn_delay) > world.time)
-		to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.key] + respawn_delay - world.time) / 10)] seconds remaining.<spawn>")
+	if((player_death_times[respawnee.ckey] + respawn_delay) > world.time)
+		to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.ckey] + respawn_delay - world.time) / 10)] seconds remaining.<spawn>")
 		return
 
 	attempt_attrition_respawn(respawnee)
@@ -128,8 +130,61 @@
 ///sets up the newly selected mission
 /datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission)
 	current_mission = new_mission
+	addtimer(CALLBACK(src, PROC_REF(autobalance_cycle)), CAMPAIGN_AUTOBALANCE_DELAY) //we autobalance teams after a short delay to account for slow respawners
 	current_mission.load_mission()
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
+
+///Checks team balance and tries to correct if possible
+/datum/game_mode/hvh/campaign/proc/autobalance_cycle()
+	var/list/autobalance_faction_list = autobalance_check()
+	if(!autobalance_faction_list)
+		return
+
+	for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[autobalance_faction_list[1]])
+		if(stat_list[faction_member.faction].faction_leader == faction_member)
+			continue
+		swap_player_team(faction_member, autobalance_faction_list[2])
+
+	addtimer(CALLBACK(src, PROC_REF(autobalance_bonus)), CAMPAIGN_AUTOBALANCE_DECISION_TIME + 1 SECONDS)
+
+/** Checks team balance
+ * Returns null if teams are nominally balanced
+ * Returns a list with the stronger team first if they are inbalanced
+ */
+/datum/game_mode/hvh/campaign/proc/autobalance_check(ratio = MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
+	var/team_one_count = length(GLOB.alive_human_list_faction[factions[1]])
+	var/team_two_count = length(GLOB.alive_human_list_faction[factions[2]])
+
+	if(team_one_count > team_two_count * ratio)
+		return list(factions[1], factions[2])
+	else if(team_two_count > team_one_count * ratio)
+		return list(factions[2], factions[1])
+
+///Actually swaps the player to the other team, unless balance has been restored
+/datum/game_mode/hvh/campaign/proc/swap_player_team(mob/living/carbon/human/user, new_faction)
+	if(tgui_alert(user, "The teams are currently imbalanced, in favour of your team.", "Join the other team?", list("Stay on team", "Change team"), CAMPAIGN_AUTOBALANCE_DECISION_TIME, FALSE) != "Change team")
+		return
+	var/list/current_ratio = autobalance_check(1)
+	if(!current_ratio || current_ratio[2] == user.faction)
+		to_chat(user, span_warning("Team balance already corrected."))
+		return
+	LAZYREMOVE(GLOB.alive_human_list_faction[user.faction], user)
+	user.faction = new_faction //we set this first so the ghost's faction and subsequent job screen is correct, but it means we have to remove from the faction list above first.
+	var/mob/dead/observer/ghost = user.ghostize()
+	user.job.add_job_positions(1)
+	qdel(user)
+	var/datum/individual_stats/new_stats = stat_list[new_faction].get_player_stats(ghost)
+	new_stats.give_funds(max(stat_list[new_faction].accumulated_mission_reward * 0.5, 200)) //Added credits for swapping team
+	player_respawn(ghost) //auto open the respawn screen
+
+///buffs the weaker team if players don't voluntarily switch
+/datum/game_mode/hvh/campaign/proc/autobalance_bonus()
+	var/list/autobalance_faction_list = autobalance_check()
+	if(!autobalance_faction_list)
+		return
+
+	var/autobal_num = ROUND_UP((length(GLOB.alive_human_list_faction[autobalance_faction_list[1]]) - length(GLOB.alive_human_list_faction[autobalance_faction_list[2]])) * 0.2)
+	current_mission.spawn_mech(autobalance_faction_list[2], 0, 0, autobal_num, "[autobal_num] additional mechs granted for autobalance")
 
 //respawn stuff
 
@@ -142,16 +197,32 @@
 		return
 	if(!(player.faction in factions))
 		return
-	player_death_times[player.key] = world.time
+	player_death_times[player.ckey] = world.time
+	respawn_timers[player.ckey] = addtimer(CALLBACK(src, PROC_REF(auto_attempt_respawn), player.ckey), CAMPAIGN_RESPAWN_TIME + stat_list[player.faction]?.respawn_delay_modifier + 1, TIMER_STOPPABLE)
+
+///Auto pops up the respawn window
+/datum/game_mode/hvh/campaign/proc/auto_attempt_respawn(respawnee_ckey)
+	for(var/mob/player AS in GLOB.player_list)
+		if(player.ckey != respawnee_ckey)
+			continue
+		respawn_timers[respawnee_ckey] = null
+		if(isliving(player) && player.stat != DEAD)
+			return
+		player_respawn(player)
+		return
 
 ///Wrapper for cutting the deathlist via timer due to the players not immediately returning to base
 /datum/game_mode/hvh/campaign/proc/cut_death_list_timer(datum/source)
 	SIGNAL_HANDLER
 	addtimer(CALLBACK(src, PROC_REF(cut_death_list)), AFTER_MISSION_TELEPORT_DELAY + 1)
 
-///cuts the death time list at mission end
+///cuts the death time and respawn_timers list at mission end
 /datum/game_mode/hvh/campaign/proc/cut_death_list(datum/source)
 	player_death_times.Cut()
+	for(var/ckey in respawn_timers)
+		auto_attempt_respawn(ckey) //Faction datum doesn't pop up for ghosts
+		deltimer(respawn_timers[ckey])
+	respawn_timers.Cut()
 
 ///respawns the player if attrition points are available
 /datum/game_mode/hvh/campaign/proc/attempt_attrition_respawn(mob/candidate)

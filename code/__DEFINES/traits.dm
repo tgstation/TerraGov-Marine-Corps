@@ -77,7 +77,6 @@
 #define ROUNDSTART_TRAIT "roundstart" //cannot be removed without admin intervention
 #define SLEEPER_TRAIT "sleeper"
 #define STASIS_BAG_TRAIT "stasis_bag"
-#define BANELING_STASIS_TRAIT "baneling_stasis_trait"
 #define SPECIES_TRAIT "species" // /datum/species innate trait
 #define CRYOPOD_TRAIT "cryopod"
 #define XENO_TRAIT "xeno"
@@ -119,6 +118,7 @@
 #define SECTOID_TRAIT "sectoid"
 #define HUGGER_TRAIT "hugger"
 #define PISTOL_LACE_TRAIT "pistol_lace"
+#define NIGHT_VISION_GOGGLES_TRAIT "night_vision_goggles"
 
 #define ABSTRACT_ITEM_TRAIT "abstract_item"
 /// A trait given by any status effect
@@ -165,6 +165,13 @@
 #define TRAIT_AXE_EXPERT "axe_expert"
 ///You swing sword good
 #define TRAIT_SWORD_EXPERT "sword_expert"
+///Pain reduction light
+#define TRAIT_LIGHT_PAIN_RESIST "light_pain_resist"
+///Pain reduction medium
+#define TRAIT_MEDIUM_PAIN_RESIST "medium_pain_resist"
+///is currently riding an armored vehicle
+#define TRAIT_TANK_DESANT "tank_desant"
+
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
@@ -239,6 +246,8 @@
 
 //this mech is melee core boosted
 #define TRAIT_MELEE_CORE "melee_core"
+///stops tanks from being able to ram this mob
+#define TRAIT_STOPS_TANK_COLLISION "stops_tanks"
 
 //added to escaped humans
 #define TRAIT_HAS_ESCAPED "escaped_marine"
@@ -246,3 +255,7 @@
 
 //added to AIs firing railguns
 #define TRAIT_IS_FIRING_RAILGUN "firing_railgun"
+
+//regress and caste swap UI
+#define TRAIT_CASTE_SWAP "caste_swap"
+#define TRAIT_REGRESSING "regressing"

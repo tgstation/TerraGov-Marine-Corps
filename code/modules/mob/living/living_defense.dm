@@ -1,3 +1,53 @@
+/mob/living/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_MOB_SLAM_DAMAGE, is_sharp = FALSE)
+	if(!isliving(grab.grabbed_thing))
+		return
+	if(grab.grabbed_thing == src)
+		return
+	if(user == src)
+		return
+
+	var/mob/living/grabbed_mob = grab.grabbed_thing
+	step_towards(grabbed_mob, src)
+	user.drop_held_item()
+	var/state = user.grab_state
+
+	if(state >= GRAB_AGGRESSIVE)
+		var/own_stun_chance = 0
+		var/grabbed_stun_chance = 0
+		if(grabbed_mob.mob_size > mob_size)
+			own_stun_chance = 25
+			grabbed_stun_chance = 10
+		else if(grabbed_mob.mob_size < mob_size)
+			own_stun_chance = 0
+			grabbed_stun_chance = 25
+		else
+			own_stun_chance = 25
+			grabbed_stun_chance = 25
+
+		if(prob(own_stun_chance))
+			Paralyze(1 SECONDS)
+		if(prob(grabbed_stun_chance))
+			grabbed_mob.Paralyze(1 SECONDS)
+
+	var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	switch(state)
+		if(GRAB_PASSIVE)
+			damage += base_damage
+			grabbed_mob.visible_message(span_warning("[user] slams [grabbed_mob] against [src]!"))
+			log_combat(user, grabbed_mob, "slammed", "", "against [src]")
+		if(GRAB_AGGRESSIVE)
+			damage += base_damage * 1.5
+			grabbed_mob.visible_message(span_danger("[user] bashes [grabbed_mob] against [src]!"))
+			log_combat(user, grabbed_mob, "bashed", "", "against [src]")
+		if(GRAB_NECK)
+			damage += base_damage * 2
+			grabbed_mob.visible_message(span_danger("<big>[user] crushes [grabbed_mob] against [src]!</big>"))
+			log_combat(user, grabbed_mob, "crushed", "", "against [src]")
+	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	playsound(src, 'sound/weapons/heavyhit.ogg', 40)
+	return TRUE
+
 /mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0)
 	return 0 //only carbon liveforms have this proc
 
@@ -21,9 +71,6 @@
 		var/obj/O = AM
 		O.stop_throw()
 		apply_damage(O.throwforce*(speed * 0.2), O.damtype, BODY_ZONE_CHEST, MELEE, is_sharp(O), has_edge(O), TRUE, O.penetration)
-		if(O.item_fire_stacks)
-			fire_stacks += O.item_fire_stacks
-			IgniteMob()
 
 	visible_message(span_warning(" [src] has been hit by [AM]."), null, null, 5)
 	if(ismob(AM.thrower))
@@ -137,6 +184,21 @@
 /mob/living/fire_act()
 	adjust_fire_stacks(rand(1,2))
 	IgniteMob()
+
+/mob/living/lava_act()
+	if(resistance_flags & INDESTRUCTIBLE)
+		return FALSE
+	if(stat == DEAD)
+		return FALSE
+	if(status_flags & GODMODE)
+		return TRUE //while godmode will stop the damage, we don't want the process to stop in case godmode is removed
+
+	var/lava_damage = 20
+	take_overall_damage(max(modify_by_armor(lava_damage, FIRE), lava_damage * 0.3), BURN, updating_health = TRUE, max_limbs = 3) //snowflakey interaction to stop complete lava immunity
+	if(!CHECK_BITFIELD(pass_flags, PASS_FIRE))//Pass fire allow to cross lava without igniting
+		adjust_fire_stacks(20)
+		IgniteMob()
+	return TRUE
 
 /mob/living/flamer_fire_act(burnlevel)
 	if(!burnlevel)

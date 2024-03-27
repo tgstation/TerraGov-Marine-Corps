@@ -15,6 +15,8 @@
 
 /obj/item/stack/snow/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!istype(I, /obj/item/tool/shovel))
 		return
@@ -95,7 +97,7 @@
 	//Using same safeties as other constructions
 	for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
 		if(O.density)
-			if(O.flags_atom & ON_BORDER)
+			if(O.atom_flags & ON_BORDER)
 				if(O.dir == user.dir)
 					to_chat(user, span_warning("There is already \a [O.name] in this direction!"))
 					return
@@ -111,7 +113,7 @@
 		return
 	for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
 		if(O.density)
-			if(!(O.flags_atom & ON_BORDER) || O.dir == user.dir)
+			if(!(O.atom_flags & ON_BORDER) || O.dir == user.dir)
 				return
 	var/obj/structure/barricade/snow/SB = new(user.loc, user.dir)
 	user.visible_message(span_notice("[user] assembles a snow barricade."),

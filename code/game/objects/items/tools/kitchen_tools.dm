@@ -26,7 +26,7 @@
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	attack_verb = list("attacked", "stabbed", "poked")
 	sharp = 0
 	var/loaded      //Descriptive string for currently loaded food object.
@@ -60,10 +60,10 @@
 	else
 		..()
 
-/obj/item/tool/kitchen/utensil/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/item/tool/kitchen/utensil/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!CONFIG_GET(flag/fun_allowed))
 		return FALSE
-	attack_hand(X)
+	attack_hand(xeno_attacker)
 
 /obj/item/tool/kitchen/utensil/fork
 	name = "fork"
@@ -123,7 +123,7 @@
 	name = "kitchen knife"
 	icon_state = "knife"
 	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
 	force = 10
@@ -152,7 +152,7 @@
 	name = "butcher's cleaver"
 	icon_state = "butch"
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	force = 15
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 8
@@ -195,7 +195,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	/* // NOPE
 	var/food_total= 0
 	var/burger_amt = 0
@@ -260,7 +260,7 @@
 
 
 
-	if(ishuman(M) && ((H.head && (H.head.flags_inventory & COVEREYES) ) || (H.wear_mask && (H.wear_mask.flags_inventory & COVEREYES) ) || (H.glasses && (H.glasses.flags_inventory & COVEREYES) )))
+	if(ishuman(M) && ((H.head && (H.head.inventory_flags & COVEREYES) ) || (H.wear_mask && (H.wear_mask.inventory_flags & COVEREYES) ) || (H.glasses && (H.glasses.inventory_flags & COVEREYES) )))
 		to_chat(M, span_warning("You get slammed in the face with the tray, against your mask!"))
 		if(prob(33))
 			src.add_mob_blood(H)
@@ -317,6 +317,8 @@
 
 /obj/item/tool/kitchen/tray/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/kitchen/rollingpin))
 		if(cooldown < world.time - 25)

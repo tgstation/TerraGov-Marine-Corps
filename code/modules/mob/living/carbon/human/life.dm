@@ -33,7 +33,7 @@
 
 		else //Dead
 			dead_ticks ++
-			var/mob/dead/observer/related_ghost = get_ghost()
+			var/mob/dead/observer/related_ghost = get_ghost(TRUE)
 			var/datum/limb/headcheck = get_limb("head")
 			// boolean, determines if the body's ghost can reenter the body
 			var/ghost_left = !mind && (!(!headcheck || (headcheck.limb_status & LIMB_DESTROYED)) || (!(species.species_flags & DETACHABLE_HEAD))) && !related_ghost?.can_reenter_corpse
@@ -66,8 +66,8 @@
 			qdel(parasite)
 		DISABLE_BITFIELD(status_flags, XENO_HOST)
 
-	if((SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS) && job?.job_cost)
-		job.add_job_positions(1)
+	if((SSticker.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS) && job?.job_cost)
+		job.free_job_positions(1)
 	if(hud_list)
 		med_hud_set_status()
 
@@ -75,10 +75,13 @@
 	if(species.species_flags & NO_BREATHE)
 		return
 
-	if(losebreath <= 10)
-		adjust_Losebreath(-1) //Since this happens before checking to take/heal oxyloss, a losebreath of 1 or less won't do anything.
-	else
+	if(pulledby?.grab_state >= GRAB_KILL)
+		Losebreath(1)
+		adjustOxyLoss(4)
+	else if(losebreath > 10)
 		set_Losebreath(10) //Any single hit is functionally capped - to keep someone suffocating, you need continued losebreath applications.
+	else if(losebreath > 0)
+		adjust_Losebreath(-1) //Since this happens before checking to take/heal oxyloss, a losebreath of 1 or less won't do anything.
 
 	if(health < get_crit_threshold() || losebreath)
 		if(HAS_TRAIT(src, TRAIT_IGNORE_SUFFOCATION)) //Prevent losing health from asphyxiation, but natural recovery can still happen.

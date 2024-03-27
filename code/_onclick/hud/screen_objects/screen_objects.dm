@@ -85,9 +85,6 @@
 	if(isobserver(usr) || usr.incapacitated(TRUE))
 		return TRUE
 
-	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
-		return TRUE
-
 	//If there is an item in the slot you are clicking on, this will relay the click to the item within the slot
 	var/atom/item_in_slot = usr.get_item_by_slot(slot_id)
 	if(item_in_slot)
@@ -208,7 +205,7 @@
 	if(!isliving(usr))
 		return
 	var/mob/living/L = usr
-	L.lay_down()
+	L.toggle_resting()
 
 /atom/movable/screen/rest/update_icon_state()
 	. = ..()

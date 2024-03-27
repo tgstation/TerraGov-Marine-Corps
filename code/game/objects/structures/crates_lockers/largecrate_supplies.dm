@@ -139,7 +139,7 @@
 /obj/structure/largecrate/supply/weapons/standard_hmg
 	name = "\improper HSG-102 mounted heavy smartgun chest (x2)"
 	desc = "A supply crate containing two boxed HSG-102 mounted heavy smartguns."
-	supplies = list(/obj/item/storage/box/tl102 = 2)
+	supplies = list(/obj/item/storage/box/hsg_102 = 2)
 
 /obj/structure/largecrate/supply/weapons/standard_atgun
 	name = "\improper AT-36 anti tank gun and ammo chest (x1, x10)"
@@ -159,6 +159,11 @@
 		/obj/item/ammo_magazine/auto_cannon = 3,
 		/obj/item/ammo_magazine/auto_cannon/flak = 3,
 	)
+
+/obj/structure/largecrate/supply/weapons/heavy_flakgun
+	name = "\improper FK-88 mounted flak gun (x1)"
+	desc = "A supply crate containing a FK-88 mounted flak gun. Ammo sold separately."
+	supplies = list(/obj/item/weapon/gun/heavy_isg = 1)
 
 /obj/structure/largecrate/supply/ammo
 	name = "ammunition case"
@@ -197,7 +202,7 @@
 /obj/structure/largecrate/supply/ammo/standard_hmg
 	name = "\improper HSG-102 ammunition box case (x6)"
 	desc = "An ammunition case containing six HSG-102 ammunition boxes."
-	supplies = list(/obj/item/ammo_magazine/tl102 = 6)
+	supplies = list(/obj/item/ammo_magazine/hsg_102 = 6)
 
 /obj/structure/largecrate/supply/ammo/standard_ammo
 	name = "large surplus ammuniton crate"
@@ -397,7 +402,7 @@
 
 /obj/structure/largecrate/machine/autodoc/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 
 	if(iscrowbar(I))
@@ -417,7 +422,7 @@
 
 /obj/structure/largecrate/supply/machine/bodyscanner/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 
 	if(iscrowbar(I))
@@ -436,7 +441,7 @@
 
 /obj/structure/largecrate/machine/sleeper/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 
 	if(iscrowbar(I))

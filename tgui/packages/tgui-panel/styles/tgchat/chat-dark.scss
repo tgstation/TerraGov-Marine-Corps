@@ -3,6 +3,9 @@
  * SPDX-License-Identifier: MIT
  */
 
+@use 'sass:map';
+@use 'sass:color';
+
 em {
   font-style: normal;
   font-weight: bold;
@@ -276,7 +279,7 @@ em {
   font-weight: bold;
 }
 .colorooc {
-  color: #004ed8;
+  color: #4c6dff;
   font-weight: bold;
 }
 
@@ -404,16 +407,24 @@ em {
 }
 
 .deadsay {
-  color: #8041d8;
+  color: #b560ff;
+}
+.bigdeadsay {
+  color: #b560ff;
+  font-size: 140%;
+}
+.tinydeadsay {
+  color: #b560ff;
+  font-size: 85%;
 }
 .radio {
-  color: #158c15;
+  color: #1fc01f;
 }
 .deptradio {
   color: #b21ab2;
 }
 .comradio {
-  color: #3e67b2;
+  color: #517ac5;
 }
 .syndradio {
   color: #7f4648;
@@ -426,27 +437,27 @@ em {
 }
 
 .casradio {
-  color: #a51830;
+  color: #d62946;
 }
 .engradio {
-  color: #cc631e;
+  color: #e2772f;
 }
 .medradio {
-  color: #158c78;
+  color: #25c5aa;
 }
 .sciradio {
   color: #993599;
 }
 
 .supradio {
-  color: #996f2d;
+  color: #b88646;
 }
 
 .alpharadio {
   color: #bf2f2f;
 }
 .bravoradio {
-  color: #cc8814;
+  color: #d4a046;
 }
 .charlieradio {
   color: #b259b2;
@@ -482,7 +493,7 @@ em {
 }
 
 .alert {
-  color: #ff0000;
+  color: #c51e1e;
 }
 h1.alert,
 h2.alert {
@@ -524,14 +535,19 @@ h2.alert {
   color: #ff4c4c;
 }
 .info {
-  color: #6666cc;
+  color: #9ab0ff;
 }
 .debuginfo {
-  color: #6c994c;
+  color: #33cc33;
+  font-weight: bold;
   font-style: italic;
 }
 .notice {
-  color: #6060c9;
+  color: #6685f5;
+}
+.tinynotice {
+  color: #6685f5;
+  font-size: 85%;
 }
 .xenonotice {
   color: #2c7f5c;
@@ -541,21 +557,26 @@ h2.alert {
   font-weight: bold;
 }
 .warning {
-  color: #ff5959;
+  color: #c51e1e;
   font-style: italic;
 }
 .xenowarning {
   color: #2c7f5c;
   font-style: italic;
 }
+.boldwarning {
+  color: #c51e1e;
+  font-style: italic;
+  font-weight: bold;
+}
 .danger {
-  color: #ff2626;
+  color: #c51e1e;
   font-weight: bold;
 }
 .userdanger {
-  color: #ff0000;
+  color: #c51e1e;
   font-weight: bold;
-  font-size: 3em;
+  font-size: 185%;
 }
 .xenodanger {
   color: #359980;
@@ -566,9 +587,9 @@ h2.alert {
   font-weight: bold;
 }
 .highdanger {
-  color: #ff2626;
+  color: #c51e1e;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 185%;
 }
 .xenohighdanger {
   color: #359980;
@@ -583,8 +604,7 @@ h2.alert {
   font-size: 1.5em;
 }
 .hivemind {
-  color: #b23593;
-  font-weight: bold;
+  color: #e755c3;
 }
 .xenoqueen {
   font-size: 1.4em;
@@ -611,15 +631,14 @@ h2.alert {
 }
 
 .role_header {
-  color: #db0000;
+  color: #8fb2ff;
   display: block;
   text-align: center;
   font-weight: bold;
-  font-family: trebuchet-ms;
   font-size: 1.5em;
 }
 .role_body {
-  color: #5a5abd;
+  color: #d41010;
   display: block;
   text-align: center;
 }
@@ -633,7 +652,6 @@ h2.alert {
   color: #db0000;
   display: block;
   text-align: center;
-  font-family: courier;
   font-weight: bold;
   font-size: 2em;
 }
@@ -641,7 +659,6 @@ h2.alert {
   color: #6685f5;
   display: block;
   text-align: center;
-  font-family: trebuchet-ms;
   font-weight: bold;
   font-size: 1.5em;
 }
@@ -656,6 +673,17 @@ h2.alert {
 }
 .season_additional_info {
   color: #aeb6bf;
+}
+
+.announce_header {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 150%;
+}
+.announce_body {
+  color: #e92d2d;
+  font-weight: normal;
+  font-size: 125%;
 }
 
 .centerbold {
@@ -995,4 +1023,120 @@ h2.alert {
 .tooltip {
   font-style: italic;
   border-bottom: 1px dashed #fff;
+}
+
+$alert-stripe-colors: (
+  'default': #00283a,
+  'green': #003d00,
+  'blue': #00283a,
+  'pink': #30001b,
+  'yellow': #574a00,
+  'orange': #593400,
+  'red': #420000,
+  'purple': #2c0030,
+  'grey': #252525,
+);
+
+$alert-stripe-alternate-colors: (
+  'default': #003045,
+  'green': #004700,
+  'blue': #003045,
+  'pink': #400025,
+  'yellow': #4d4100,
+  'orange': #6b4200,
+  'red': #520000,
+  'purple': #38003d,
+  'grey': #292929,
+);
+
+$alert-major-header-colors: (
+  'default': #33d5ff,
+  'green': #00ff80,
+  'blue': #33d5ff,
+  'pink': #ff5297,
+  'yellow': #fff4e0,
+  'orange': #feefe7,
+  'red': #ff5297,
+  'purple': #c7a1f7,
+  'grey': #ff5297,
+);
+
+$alert-subheader-header-colors: (
+  'default': #ff5297,
+  'green': #ff85b5,
+  'blue': #ff5297,
+  'pink': #33d5ff,
+  'yellow': #33d5ff,
+  'orange': #33d5ff,
+  'red': #33d5ff,
+  'purple': #33d5ff,
+  'grey': #33d5ff,
+);
+
+$border-width: 4;
+
+$border-width-px: $border-width * 1px;
+
+.faction_alert_text {
+  background: #202020;
+  padding: 0.5rem 0.5rem;
+}
+.faction_alert_subtitle {
+  padding: 0 0.5rem;
+  padding-top: 0.25rem;
+  font-size: 125%;
+}
+.faction_alert_title {
+  padding: 0 0.5rem;
+  font-size: 185%;
+}
+.faction_alert_minortitle {
+  padding: 0 0.5rem;
+  font-size: 150%;
+}
+.alert_header {
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+@each $color-name, $color-value in $alert-stripe-colors {
+  .faction_alert_#{$color-name} {
+    color: #ffffff;
+    box-shadow: none;
+    font-weight: bold;
+    margin: 1rem 0 1rem 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    border-image: repeating-linear-gradient(
+      -45deg,
+      map.get($alert-stripe-alternate-colors, $color-name),
+      map.get($alert-stripe-alternate-colors, $color-name) 10px,
+      $color-value 10px,
+      $color-value 20px
+    );
+    border-image-slice: $border-width fill;
+    border-width: $border-width-px;
+    border-image-width: $border-width-px;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: repeat repeat;
+    border-style: solid;
+  }
+
+  .faction_alert_#{$color-name} .faction_alert_title {
+    color: map.get($alert-major-header-colors, $color-name);
+  }
+
+  .faction_alert_#{$color-name} .faction_alert_minortitle {
+    color: map.get($alert-major-header-colors, $color-name);
+  }
+
+  .faction_alert_#{$color-name} .faction_alert_subtitle {
+    color: map.get($alert-subheader-header-colors, $color-name);
+  }
+
+  .faction_alert_#{$color-name} .faction_alert_text {
+    background-color: darken(map.get($alert-stripe-colors, $color-name), 5);
+  }
 }

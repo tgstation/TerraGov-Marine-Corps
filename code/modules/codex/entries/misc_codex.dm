@@ -20,7 +20,7 @@
 
 	var/list/slots = list()
 	for(var/name in GLOB.string_equip_flags)
-		if(flags_equip_slot & GLOB.string_equip_flags[name])
+		if(equip_slot_flags & GLOB.string_equip_flags[name])
 			slots += name
 
 	if(length(slots))

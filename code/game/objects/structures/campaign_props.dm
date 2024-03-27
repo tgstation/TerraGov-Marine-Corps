@@ -21,6 +21,15 @@
 	allow_pass_flags = PASS_AIR
 	bound_width = 128
 
+/obj/structure/prop/train/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/structure/prop/train/update_overlays()
+	. = ..()
+	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
+	. += new_overlay
+
 /obj/structure/prop/train/carriage
 	name = "rail carriage"
 	desc = "A heavy duty maglev carriage. I wonder what's inside?."

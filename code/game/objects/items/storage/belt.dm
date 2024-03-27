@@ -7,7 +7,7 @@
 	icon_state = "utilitybelt"
 	item_state = "utility"
 	item_state_worn = TRUE
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
 	w_class = WEIGHT_CLASS_BULKY
 	allow_drawing_method = TRUE
@@ -336,15 +336,15 @@
 	new /obj/item/storage/pill_bottle/tricordrazine(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
-	new /obj/item/storage/pill_bottle/dexalin(src)
+	new /obj/item/storage/pill_bottle/isotonic(src)
 	new /obj/item/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/storage/pill_bottle/alkysine(src)
 	new /obj/item/storage/pill_bottle/imidazoline(src)
 	new /obj/item/storage/pill_bottle/quickclot(src)
 	new /obj/item/storage/pill_bottle/hypervene(src)
+	new /obj/item/bodybag/cryobag(src)
 	new /obj/item/defibrillator(src)
 	new /obj/item/tool/research/excavation_tool(src)
-	new /obj/item/tool/research/xeno_analyzer(src)
 	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/belt/hypospraybelt
@@ -754,12 +754,11 @@
 
 
 /obj/item/storage/belt/shotgun/attackby(obj/item/I, mob/user, params)
-
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/M = I
-		if(CHECK_BITFIELD(M.flags_magazine, MAGAZINE_HANDFUL))
+		if(CHECK_BITFIELD(M.magazine_flags, MAGAZINE_HANDFUL))
 			return ..()
-		if(M.flags_magazine & MAGAZINE_REFILLABLE)
+		if(M.magazine_flags & MAGAZINE_REFILLABLE)
 			if(!M.current_rounds)
 				to_chat(user, span_warning("[M] is empty."))
 				return
@@ -898,13 +897,13 @@
 /obj/item/storage/belt/shotgun/martini
 	name = "martini henry ammo belt"
 	desc = "A belt good enough for holding all your .577/400 ball rounds."
-	icon_state = "marini_belt"
+	icon_state = "martini_belt"
 	storage_slots = 12
 	max_storage_space = 24
 	sprite_slots = 6
 	draw_mode = 1
 
-	flags_atom = DIRLOCK
+	atom_flags = DIRLOCK
 
 /obj/item/storage/belt/shotgun/martini/Initialize(mapload, ...)
 	. = ..()
@@ -920,18 +919,22 @@
 		to_chat(user, span_notice("[src] can only be filled with .557/440 ball rifle rounds."))
 		return
 
+	return ..()
 
 /obj/item/storage/belt/shotgun/martini/attack_hand(mob/living/user)
-	if (loc != user)
+	if(!ishuman(user))
+		return
+
+	if(loc != user)
 		. = ..()
 		for(var/mob/M in content_watchers)
 			close(M)
 
-	if(!draw_mode || !ishuman(user) && !length(contents))
-		open(user)
-
 	if(!length(contents))
-		return
+		open(user) //Empty belt? Open the inventory
+
+	if(!draw_mode)
+		return ..() //No draw mode so we just click like normal
 
 	var/obj/item/I = contents[length(contents)]
 	if(!istype(I, /obj/item/ammo_magazine/handful))
@@ -945,7 +948,6 @@
 
 	existing_handful.create_handful(user, 1)
 	update_icon()
-
 
 /obj/item/storage/belt/knifepouch
 	name="\improper M276 pattern knife rig"

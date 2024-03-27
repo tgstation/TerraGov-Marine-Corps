@@ -68,11 +68,11 @@
 	)
 	///cash rewards for the mission type
 	var/list/cash_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(800, 600),
-		MISSION_OUTCOME_MINOR_VICTORY = list(700, 600),
-		MISSION_OUTCOME_DRAW = list(600, 600),
-		MISSION_OUTCOME_MINOR_LOSS = list(600, 700),
-		MISSION_OUTCOME_MAJOR_LOSS = list(600, 800),
+		MISSION_OUTCOME_MAJOR_VICTORY = list(700, 500),
+		MISSION_OUTCOME_MINOR_VICTORY = list(600, 500),
+		MISSION_OUTCOME_DRAW = list(500, 500),
+		MISSION_OUTCOME_MINOR_LOSS = list(500, 600),
+		MISSION_OUTCOME_MAJOR_LOSS = list(500, 700),
 	)
 	/// Timer used to calculate how long till mission ends
 	var/game_timer
@@ -81,14 +81,15 @@
 	///Whether the max game time has been reached
 	var/max_time_reached = FALSE
 	///Delay before the mission actually starts
-	var/mission_start_delay = 3 MINUTES
+	var/mission_start_delay = 1.5 MINUTES
 	///Delay from shutter drop until game TIMER starts
-	var/game_timer_delay = 3 MINUTES
+	var/game_timer_delay = 1 MINUTES
 	///Map text intro message for the start of the mission
 	var/list/intro_message = list(
 		MISSION_STARTING_FACTION = "starting faction intro text here",
 		MISSION_HOSTILE_FACTION = "hostile faction intro text here",
 	)
+	///Message to players when a mission ends
 	var/list/outro_message = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(
 			MISSION_STARTING_FACTION = "<u>Major victory</u><br> All mission objectives achieved, outstanding work!",
@@ -116,15 +117,15 @@
 	///Operation name for hostile faction
 	var/op_name_hostile
 	///Possible rewards for a major victory, used by Generate_rewards()
-	var/list/major_victory_reward_table = list()
+	var/list/major_victory_reward_table
 	///Possible rewards for a minor victory, used by Generate_rewards()
-	var/list/minor_victory_reward_table = list()
+	var/list/minor_victory_reward_table
 	///Possible rewards for a minor loss, used by Generate_rewards()
-	var/list/minor_loss_reward_table = list()
+	var/list/minor_loss_reward_table
 	///Possible rewards for a major loss, used by Generate_rewards()
-	var/list/major_loss_reward_table = list()
+	var/list/major_loss_reward_table
 	///Possible rewards for a draw, used by Generate_rewards()
-	var/list/draw_reward_table = list()
+	var/list/draw_reward_table
 
 /datum/campaign_mission/New(initiating_faction)
 	. = ..()
@@ -143,6 +144,7 @@
 	op_name_hostile = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 
 	load_mission_brief() //late loaded so we can ref the specific factions etc
+	set_loot_tables()
 
 /datum/campaign_mission/Destroy(force, ...)
 	STOP_PROCESSING(SSslowprocess, src)
@@ -155,6 +157,22 @@
 		return
 	end_mission()
 	return PROCESS_KILL
+
+///Sets up the loot tables for this mission, if required
+/datum/campaign_mission/proc/set_loot_tables()
+	if(starting_faction == FACTION_TERRAGOV)
+		major_victory_reward_table = GLOB.campaign_tgmc_major_loot
+		minor_victory_reward_table = GLOB.campaign_tgmc_minor_loot
+	else if(starting_faction == FACTION_SOM)
+		major_victory_reward_table = GLOB.campaign_som_major_loot
+		minor_victory_reward_table = GLOB.campaign_som_minor_loot
+
+	if(hostile_faction == FACTION_TERRAGOV)
+		minor_loss_reward_table = GLOB.campaign_tgmc_minor_loot
+		major_loss_reward_table = GLOB.campaign_tgmc_major_loot
+	else if(hostile_faction == FACTION_SOM)
+		minor_loss_reward_table = GLOB.campaign_som_minor_loot
+		major_loss_reward_table = GLOB.campaign_som_major_loot
 
 ///Sets up the mission once it has been selected
 /datum/campaign_mission/proc/load_mission()
@@ -224,6 +242,9 @@
 		if(MISSION_OUTCOME_DRAW)
 			reward_table = draw_reward_table
 
+	if(!length(reward_table))
+		return
+
 	for(var/i = 1 to reward_amount)
 		var/obj/reward = pickweight(reward_table)
 		new reward(get_turf(pick(GLOB.campaign_reward_spawners[faction])))
@@ -288,10 +309,11 @@
 		for(var/datum/loadout_item/loadout_item AS in GLOB.campaign_loadout_items_by_role[job])
 			loadout_item.quantity = initial(loadout_item.quantity)
 	for(var/mob/living/carbon/human/corpse AS in GLOB.dead_human_list) //clean up all the bodies and refund normal roles if required
-		if(corpse.z != mission_z_level)
+		if(corpse.z != mission_z_level.z_value)
 			continue
 		if(!HAS_TRAIT(corpse, TRAIT_UNDEFIBBABLE) && corpse.job.job_cost)
-			corpse.job.add_job_positions(1)
+			corpse.job.free_job_positions(1)
+
 		qdel(corpse)
 
 ///Unregisters all signals when the mission finishes
@@ -460,7 +482,7 @@
 	GLOB.campaign_structures -= mission_obj
 
 ///spawns mechs for a faction
-/datum/campaign_mission/proc/spawn_mech(mech_faction, heavy_mech, medium_mech, light_mech)
+/datum/campaign_mission/proc/spawn_mech(mech_faction, heavy_mech, medium_mech, light_mech, override_message)
 	if(!mech_faction)
 		return
 	var/total_count = (heavy_mech + medium_mech + light_mech)
@@ -480,4 +502,4 @@
 		GLOB.campaign_structures += new_mech
 		RegisterSignal(new_mech, COMSIG_QDELETING, TYPE_PROC_REF(/datum/campaign_mission, remove_mission_object))
 
-	map_text_broadcast(mech_faction, "[total_count] mechs have been deployed for this mission.", "Mechs available")
+	map_text_broadcast(mech_faction, override_message ? override_message : "[total_count] mechs have been deployed for this mission.", "Mechs available")

@@ -66,9 +66,9 @@
 	var/obj/item/storage/internal_bag = get_internal_item()
 	internal_bag?.open(user)
 
-/obj/machinery/deployable/reagent_tank/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
-	if(X.a_intent != INTENT_HARM)
-		return drink_from_nozzle(X, TRUE)
+/obj/machinery/deployable/reagent_tank/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.a_intent != INTENT_HARM)
+		return drink_from_nozzle(xeno_attacker, TRUE)
 	return ..()
 
 ///Process for drinking reagents directly from the dispenser's nozzle
@@ -122,7 +122,7 @@
 	icon_state = "dispenser"
 	item_state_worn = TRUE
 	item_state = "reagent_dispenser"
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	max_w_class = WEIGHT_CLASS_SMALL	//Beaker size
 	storage_slots = null
@@ -172,16 +172,16 @@
 	update_icon()
 
 /obj/item/storage/reagent_tank/attack_hand(mob/living/user)
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(CHECK_BITFIELD(item_flags, IS_DEPLOYED))
 		return open(user)
 	return ..()
 
 /obj/item/storage/reagent_tank/open(mob/user)
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(CHECK_BITFIELD(item_flags, IS_DEPLOYED))
 		return ..()
 
 /obj/item/storage/reagent_tank/attempt_draw_object(mob/living/user)
-	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(!CHECK_BITFIELD(item_flags, IS_DEPLOYED))
 		balloon_alert(user, "Not deployed")
 		return FALSE
 	return ..()
@@ -190,7 +190,7 @@
 	balloon_alert(user, "Not deployed")
 
 /obj/item/storage/reagent_tank/can_be_inserted(obj/item/W, warning)
-	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(!CHECK_BITFIELD(item_flags, IS_DEPLOYED))
 		balloon_alert(usr, "Not deployed")
 		return FALSE
 	return ..()

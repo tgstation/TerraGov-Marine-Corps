@@ -259,7 +259,7 @@
 		/obj/item/trash/tgmc_tray,
 		/obj/item/trash/boonie,
 		/obj/item/trash/chunk,
-		/obj/item/trash/barcardine,
+		/obj/item/trash/barcaridine,
 		/obj/item/trash/mre,
 		/obj/item/trash/berrybar,
 	)

@@ -322,7 +322,7 @@ SUBSYSTEM_DEF(minimaps)
 	if(mover != src)
 		return
 	var/image/blip = SSminimaps.images_by_source[src]
-	blip.UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
+	blip?.UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(source, COMSIG_ATOM_EXITED)
 
 
@@ -515,7 +515,7 @@ SUBSYSTEM_DEF(minimaps)
 	var/atom/movable/tracking = locator_override ? locator_override : owner
 	var/atom/movable/new_track = to_track ? to_track : owner
 	if(locator_override)
-		UnregisterSignal(locator_override, COMSIG_QDELETING)
+		clear_locator_override()
 	if(owner)
 		UnregisterSignal(tracking, COMSIG_MOVABLE_Z_CHANGED)
 	if(!minimap_displayed)

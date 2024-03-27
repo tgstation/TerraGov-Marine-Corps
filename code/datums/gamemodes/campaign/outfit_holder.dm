@@ -52,19 +52,29 @@
 
 ///Adds a new loadout_item to the available list
 /datum/outfit_holder/proc/unlock_new_option(datum/loadout_item/new_item)
-	if(new_item in available_list["[new_item.item_slot]"])
-		return FALSE
-	available_list["[new_item.item_slot]"] += new_item
+	available_list["[new_item.item_slot]"] |= new_item
 	purchasable_list["[new_item.item_slot]"] -= new_item
-	return TRUE
 
 ///Adds a new loadout_item to the purchasable list
 /datum/outfit_holder/proc/allow_new_option(datum/loadout_item/new_item)
+	if(!istype(new_item))
+		return
 	if(new_item in purchasable_list["[new_item.item_slot]"])
 		return
 	if(new_item in available_list["[new_item.item_slot]"])
 		return
 	purchasable_list["[new_item.item_slot]"] += new_item
+
+///Removes loadout_item entirely from being equipped
+/datum/outfit_holder/proc/remove_option(datum/loadout_item/removed_item)
+	if(!istype(removed_item))
+		return
+	var/removed_item_slot = "[removed_item.item_slot]"
+	available_list[removed_item_slot] -= removed_item
+	purchasable_list[removed_item_slot] -= removed_item
+	if(equipped_things[removed_item_slot] == removed_item)
+		equip_loadout_item(available_list[removed_item_slot][1])
+		return TRUE
 
 ///Tries to add a datum if valid
 /datum/outfit_holder/proc/attempt_equip_loadout_item(datum/loadout_item/new_item)

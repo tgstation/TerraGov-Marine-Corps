@@ -9,13 +9,13 @@
 	item_state = "armor"
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
-	flags_atom = CONDUCT
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
-	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
-	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	atom_flags = CONDUCT
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	cold_protection_flags = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	heat_protection_flags = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	blood_overlay_type = "armor"
@@ -35,24 +35,27 @@
 		/obj/item/tool/pickaxe/plasmacutter,
 	)
 	var/locate_cooldown = 0 //Cooldown for SL locator
-	var/list/armor_overlays
+	var/list/armor_overlays = list()
 	actions_types = list(/datum/action/item_action/toggle/suit_toggle)
-	flags_armor_features = ARMOR_LAMP_OVERLAY
-	flags_item = SYNTH_RESTRICTED|IMPEDE_JETPACK
+	armor_features_flags = ARMOR_LAMP_OVERLAY
+	item_flags = SYNTH_RESTRICTED|IMPEDE_JETPACK
 	w_class = WEIGHT_CLASS_HUGE
 	equip_delay_self = 2 SECONDS
 	unequip_delay_self = 2 SECONDS
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/clothing/suit/storage/marine/Initialize(mapload)
 	. = ..()
-	armor_overlays = list("lamp") //Just one for now, can add more later.
 	update_icon()
+
+/obj/item/clothing/suit/storage/marine/turn_light(mob/user, toggle_on)
+	. = ..()
+	user?.update_inv_wear_suit()
 
 /obj/item/clothing/suit/storage/marine/update_overlays()
 	. = ..()
-	if(flags_armor_features & ARMOR_LAMP_OVERLAY)
-		var/image/I = image(icon, src, flags_armor_features & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
+	if(armor_features_flags & ARMOR_LAMP_OVERLAY)
+		var/image/I = image(icon, src, armor_features_flags & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
 		armor_overlays["lamp"] = I
 		. += I
 	else
@@ -80,8 +83,8 @@
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit != src)
 		return
-	turn_light(user, !light_on)
-	return TRUE
+	if(turn_light(user, !light_on) == CHECKS_PASSED)
+		return TRUE
 
 /obj/item/clothing/suit/storage/marine/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user))
@@ -97,7 +100,25 @@
 	item_state = "mech_pilot_suit"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	soft_armor = list(MELEE = 45, BULLET = 55, LASER = 55, ENERGY = 20, BOMB = 45, BIO = 30, FIRE = 25, ACID = 35)
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
+
+/obj/item/clothing/suit/storage/marine/assault_crewman
+	name = "\improper PAS-73 pattern tanker armor"
+	desc = "A somewhat sparsely armored but robust armored vest. Used by tankers, mostly to absorb bumps in the road as they drive over enemies."
+	icon_state = "assault_crewman_suit"
+	item_state = "assault_crewman_suit"
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	soft_armor = list(MELEE = 45, BULLET = 55, LASER = 55, ENERGY = 20, BOMB = 45, BIO = 30, FIRE = 25, ACID = 35)
+	item_map_variant_flags = NONE
+
+/obj/item/clothing/suit/storage/marine/transport_crewman
+	name = "\improper PAS-74 pattern transport armor"
+	desc = "A somewhat sparsely armored but robust armored vest. Used by transport crewmen so that they can pretend that they may survice when their vehicle is overrun."
+	icon_state = "transport_crewman_suit"
+	item_state = "transport_crewman_suit"
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	soft_armor = list(MELEE = 45, BULLET = 55, LASER = 55, ENERGY = 20, BOMB = 45, BIO = 30, FIRE = 25, ACID = 35)
+	item_map_variant_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/riot
 	name = "\improper M5 riot control armor"
@@ -114,7 +135,7 @@
 		/obj/item/storage/belt/knifepouch,
 		/obj/item/weapon/twohanded,
 	)
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 //===========================SPECIALIST================================
 
@@ -127,23 +148,23 @@
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
-	obj_flags = AUTOBALANCE_CHECK
+	item_flags = AUTOBALANCE_CHECK
 
 /obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
 	. = ..()
 	AddComponent(/datum/component/suit_autodoc)
 	AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
 	AddElement(/datum/element/limb_support, supporting_limbs)
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(item_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b18_in_use += src
 
 /obj/item/clothing/suit/storage/marine/specialist/Destroy()
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(item_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b18_in_use -= src
 	return ..()
 
 /obj/item/clothing/suit/storage/marine/specialist/valhalla
-	obj_flags = NONE
+	item_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/B17
 	name = "\improper B17 defensive armor"
@@ -152,20 +173,20 @@
 	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 50, ENERGY = 55, BOMB = 100, BIO = 55, FIRE = 75, ACID = 65)
 	max_heat_protection_temperature = HEAVYARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
-	obj_flags = AUTOBALANCE_CHECK
+	item_flags = AUTOBALANCE_CHECK
 
 /obj/item/clothing/suit/storage/marine/B17/Initialize(mapload, ...)
 	. = ..()
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(item_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b17_in_use += src
 
 /obj/item/clothing/suit/storage/marine/B17/Destroy()
-	if(obj_flags & AUTOBALANCE_CHECK)
+	if(item_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b17_in_use -= src
 	return ..()
 
 /obj/item/clothing/suit/storage/marine/B17/valhalla
-	obj_flags = NONE
+	item_flags = NONE
 
 ////////////////////////////////
 
@@ -174,7 +195,7 @@
 	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. It offers more protection against the exotic dangers that technicians face."
 	icon_state = "tanker"
 	soft_armor = list(MELEE = 40, BULLET = 55, LASER = 60, ENERGY = 45, BOMB = 60, BIO = 45, FIRE = 45, ACID = 65)
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/officer
 	name = "\improper PAS-N3 pattern officer armor"
@@ -182,7 +203,7 @@
 	icon_state = "officer"
 	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 45, BOMB = 45, BIO = 45, FIRE = 45, ACID = 50)
 	slowdown = 0.5
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
@@ -213,16 +234,16 @@
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
-	flags_armor_features = ARMOR_LAMP_OVERLAY
+	armor_features_flags = ARMOR_LAMP_OVERLAY
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc
 	name = "\improper M4 pattern PMC armor"
 	desc = "A common armor vest that is designed for high-profile security operators and corporate mercenaries in mind."
 	icon_state = "pmc_armor"
-	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 38, BOMB = 50, BIO = 15, FIRE = 38, ACID = 45)
+	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 55, BOMB = 50, BIO = 15, FIRE = 38, ACID = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(
 		/obj/item/weapon/gun,
@@ -238,7 +259,7 @@
 		/obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/combat_knife,
 	)
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/leader
 	name = "\improper M4 pattern PMC leader armor"
@@ -251,8 +272,8 @@
 	name = "\improper M4 pattern PMC sniper armor"
 	icon_state = "pmc_sniper"
 	soft_armor = list(MELEE = 55, BULLET = 65, LASER = 55, ENERGY = 60, BOMB = 75, BIO = 10, FIRE = 60, ACID = 60)
-	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = HIDELOWHAIR
+	inventory_flags = BLOCKSHARPOBJ
+	inv_hide_flags = HIDELOWHAIR
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner
 	name = "\improper PMC gunner armor"
@@ -260,7 +281,7 @@
 	icon_state = "pmc_heavyarmor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	soft_armor = list(MELEE = 65, BULLET = 80, LASER = 70, ENERGY = 70, BOMB = 80, BIO = 30, FIRE = 65, ACID = 65)
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 /*===========================Death Commando============================*/
 /obj/item/clothing/suit/storage/marine/veteran/pmc/commando
@@ -287,12 +308,12 @@
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "guardarmor"
 	soft_armor = list(MELEE = 75, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 0, FIRE = 60, ACID = 60)
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/imperial/sergeant
 	// SL armour, better than flak, covers more
@@ -335,13 +356,13 @@
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
-	flags_atom = CONDUCT
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_heat_protection =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	atom_flags = CONDUCT
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	cold_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	heat_protection_flags =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	blood_overlay_type = "armor"
@@ -361,8 +382,8 @@
 		/obj/item/storage/holster/blade,
 		/obj/item/weapon/twohanded,
 	)
-	flags_armor_features = ARMOR_LAMP_OVERLAY
-	flags_item = SYNTH_RESTRICTED
+	armor_features_flags = ARMOR_LAMP_OVERLAY
+	item_flags = SYNTH_RESTRICTED
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/armor_overlays["lamp"]
 	actions_types = list(/datum/action/item_action/toggle)
@@ -374,8 +395,8 @@
 
 /obj/item/clothing/suit/storage/faction/update_overlays()
 	. = ..()
-	if(flags_armor_features & ARMOR_LAMP_OVERLAY)
-		var/image/I = image(icon, src, flags_armor_features & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
+	if(armor_features_flags & ARMOR_LAMP_OVERLAY)
+		var/image/I = image(icon, src, armor_features_flags & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
 		armor_overlays["lamp"] = I
 		. += I
 	else
@@ -393,8 +414,8 @@
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit != src) return
 
-	turn_light(user, !light_on)
-	return 1
+	if(turn_light(user, !light_on) == CHECKS_PASSED)
+		return TRUE
 
 /obj/item/clothing/suit/storage/faction/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user)) return FALSE
@@ -406,7 +427,7 @@
 	desc = "Standard body armor of the USL pirates, the UM5 (United Medium MK5) is a medium body armor, roughly on par with the venerable M3 pattern body armor in service with the TGMC."
 	icon_state = "upp_armor"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	soft_armor = list(MELEE = 55, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 55, BIO = 10, FIRE = 60, ACID = 60)
 
 /// Modified version of the armor for HvH combat. Stats are based on medium armor, with tyr mark 2.
@@ -453,9 +474,9 @@
 	desc = "A armored protective chestplate scrapped together from various plates. It keeps up remarkably well, as the craftsmanship is solid, and the design mirrors such armors in the UPP and the TGMC."
 	icon_state = "freelancer_armor"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_heat_protection =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	cold_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	heat_protection_flags =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 50, ENERGY = 60, BOMB = 40, BIO = 10, FIRE = 60, ACID = 50)
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_STORAGE,
@@ -526,10 +547,10 @@
 	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. "
 	icon_state = "rebel_armor"
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_heat_protection =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_item = SYNTH_RESTRICTED
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	cold_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	heat_protection_flags =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	item_flags = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 30, BOMB = 60, BIO = 30, FIRE = 30, ACID = 30)
 	allowed = list(
 		/obj/item/weapon/twohanded,
@@ -566,9 +587,9 @@
 	desc = "A green jacket worn by TGMC personnel. The back has the flag of the TerraGov on it."
 	icon_state = "RO_jacket"
 	blood_overlay_type = "coat"
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_heat_protection =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	cold_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	heat_protection_flags =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 
 /*===========================HELGHAST - MERCENARY================================*/
 
@@ -641,15 +662,15 @@
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "som_armor"
 	item_state = "som_armor"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	soft_armor = list(MELEE = 50, BULLET = 55, LASER = 55, ENERGY = 55, BOMB = 55, BIO = 55, FIRE = 55, ACID = 55)
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/som/veteran
 	name = "\improper S12 combat Hauberk"
@@ -657,7 +678,7 @@
 	icon_state = "som_armor_veteran"
 	item_state = "som_armor_veteran"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	soft_armor = list(MELEE = 65, BULLET = 70, LASER = 70, ENERGY = 55, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 
 /obj/item/clothing/suit/storage/marine/som/leader
@@ -666,7 +687,7 @@
 	icon_state = "som_armor_leader"
 	item_state = "som_armor_leader"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	soft_armor = list(MELEE = 55, BULLET = 50, LASER = 40, ENERGY = 55, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 
 /obj/item/clothing/suit/storage/marine/icc
@@ -675,22 +696,28 @@
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "icc"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_heat_protection =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	cold_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	heat_protection_flags =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 50, ENERGY = 60, BOMB = 70, BIO = 10, FIRE = 60, ACID = 50)
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/icc/guard
 	name = "\improper Modelle/19 combat armor"
 	desc = "A piece of ICCGF body armor, worn by specialized infantry. Most Infantry actions in the ICC forces are done by adhoc personnel due to constant shortages of manpower, however most real Infantry divisions are of high quality, and are better known as 'Guardsmen'.  Protects well from most sources, and will entirely protect from explosions."
 	icon_state = "icc_guard"
 	soft_armor = list(MELEE = 60, BULLET = 65, LASER = 40, ENERGY = 60, BOMB = 85, BIO = 10, FIRE = 55, ACID = 40)
+
+/obj/item/clothing/suit/storage/marine/icc/guard/heavy
+	name = "\improper Modelle/22 'Cuirassier' combat armor"
+	desc = "A piece of ICCGF body armor, worn by specialized infantry. Most Infantry actions in the ICC forces are done by adhoc personnel due to constant shortages of manpower, however most real Infantry divisions are of high quality, and are better known as 'Guardsmen'.  Protects well from most sources, and will entirely protect from explosions."
+	icon_state = "icc_guard_heavy"
+	soft_armor = list(MELEE = 70, BULLET = 75, LASER = 40, ENERGY = 60, BOMB = 90, BIO = 10, FIRE = 55, ACID = 40)
 
 //===========================SPEC OPS================================
 
@@ -704,13 +731,13 @@
 	icon_state = "specops_vest"
 	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 20, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	flags_armor_protection = CHEST|GROIN
-	flags_armor_features = NONE
+	armor_protection_flags = CHEST|GROIN
+	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/specops/support
 	name = "Ballistic vest"
 	desc = "Civilian type armor, made to combat both melee and projectiles."
-	icon_state = "specops_vest_drone"
+	icon_state = "specops_vest_support"
 
 /obj/item/clothing/suit/storage/marine/specops/medic
 	name = "Ballistic vest"

@@ -1,24 +1,25 @@
 //The base setup for HvH gamemodes, not for actual use
 /datum/game_mode/hvh
 	name = "HvH base mode"
-	flags_round_type = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_TWO_HUMAN_FACTIONS
+	round_type_flags = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_TWO_HUMAN_FACTIONS
 	shutters_drop_time = 3 MINUTES
-	flags_xeno_abilities = ABILITY_CRASH
+	xeno_abilities_flags = ABILITY_CRASH
 	factions = list(FACTION_TERRAGOV, FACTION_SOM)
 	valid_job_types = list(
-		/datum/job/terragov/squad/engineer = 4,
+		/datum/job/terragov/squad/engineer = 8,
 		/datum/job/terragov/squad/corpsman = 8,
 		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/som/squad/leader = 4,
-		/datum/job/som/squad/veteran = 2,
-		/datum/job/som/squad/engineer = 4,
+		/datum/job/som/squad/veteran = 4,
+		/datum/job/som/squad/engineer = 8,
 		/datum/job/som/squad/medic = 8,
 		/datum/job/som/squad/standard = -1,
 	)
 	job_points_needed_by_job_type = list(
-		/datum/job/som/squad/veteran = 5, //Every 5 non vets join, a new vet slot opens
+		/datum/job/terragov/squad/smartgunner = 5,
+		/datum/job/som/squad/veteran = 5,
 	)
 	/// Time between two bioscan
 	var/bioscan_interval = 3 MINUTES
@@ -27,13 +28,6 @@
 	. = ..()
 	for(var/z_num in SSmapping.areas_in_z)
 		set_z_lighting(z_num)
-
-/datum/game_mode/hvh/scale_roles()
-	. = ..()
-	if(!.)
-		return
-	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/som/squad/veteran)
-	scaled_job.job_points_needed = 5 //Every 5 non vets join, a new vet slot opens
 
 //sets TGMC and SOM squads
 /datum/game_mode/hvh/set_valid_squads()
@@ -157,7 +151,7 @@
 Sensors indicate [num_tgmc_delta || "no"] unknown lifeform signature[num_tgmc_delta > 1 ? "s":""] present in the area of operations[tgmc_location ? ", including one at: [tgmc_location]":""]"}
 
 	if(announce_som)
-		priority_announce(som_scan_input, som_scan_name, sound = 'sound/AI/bioscan.ogg', receivers = (som_list + GLOB.observer_list))
+		priority_announce(som_scan_input, som_scan_name, sound = 'sound/AI/bioscan.ogg', color_override = "orange", receivers = (som_list + GLOB.observer_list))
 
 	//announcement for TGMC
 	var/marine_scan_name = "Long Range Tactical Bioscan Status"
@@ -166,14 +160,14 @@ Sensors indicate [num_tgmc_delta || "no"] unknown lifeform signature[num_tgmc_de
 Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delta > 1 ? "s":""] present in the area of operations[som_location ? ", including one at: [som_location]":""]"}
 
 	if(announce_marines)
-		priority_announce(marine_scan_input, marine_scan_name, sound = 'sound/AI/bioscan.ogg', receivers = (tgmc_list + GLOB.observer_list))
+		priority_announce(marine_scan_input, marine_scan_name, sound = 'sound/AI/bioscan.ogg', color_override = "blue", receivers = (tgmc_list + GLOB.observer_list))
 
 	log_game("Bioscan. [num_tgmc] active TGMC personnel[tgmc_location ? " Location: [tgmc_location]":""] and [num_som] active SOM personnel[som_location ? " Location: [som_location]":""]")
 
 	for(var/i in GLOB.observer_list)
 		var/mob/M = i
-		to_chat(M, "<h2 class='alert'>Detailed Information</h2>")
-		to_chat(M, {"<span class='alert'>[num_som] SOM alive.
+		to_chat(M, "<span class='announce_header'>Detailed Information</span>")
+		to_chat(M, {"<span class='announce_body'>[num_som] SOM alive.
 [num_tgmc] Marine\s alive."})
 
 	message_admins("Bioscan - Marines: [num_tgmc] active TGMC personnel[tgmc_location ? " .Location:[tgmc_location]":""]")

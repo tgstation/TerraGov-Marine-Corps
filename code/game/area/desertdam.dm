@@ -1004,13 +1004,13 @@
 	name = "LZ1 'Admin'"
 	icon_state = "tcomsatcham"
 	requires_power = 0
-	flags_area = NO_DROPPOD
+	area_flags = NO_DROPPOD
 
 /area/desert_dam/landing/console2
 	name = "LZ2 'Supply'"
 	icon_state = "tcomsatcham"
 	requires_power = 0
-	flags_area = NO_DROPPOD
+	area_flags = NO_DROPPOD
 
 //Transit Shuttle
 /area/shuttle/tri_trans1/alpha

@@ -1,0 +1,491 @@
+2024-02-01:
+  Lumipharon:
+  - bugfix: fixed beacon layers
+  - bugfix: fixed supply beacon weight class
+  - bugfix: Visible suit lights now correctly update on the mob sprite when turning
+      on and off
+  - bugfix: You can actually turn off your motion sensor now
+  - balance: Volkite deflagrate chance reduced by 10% and stagger reduced from 1 sec
+      to 0.5 sec
+  - qol: Left pocket option is before the right pocket in the campaign loadout screen
+  - bugfix: fixed some campaign loadout bugs with overclocked shields and TGMC FC
+      options
+  - bugfix: fixed a BSOD in campaign
+  - imageadd: Updated a few loadout item icons in campaign
+  - balance: V-34 has its slowdown increased from 0.3 to 0.4
+  - balance: Adjusted the points cost of some items in campaign
+  - balance: Reduced the power of radiation weaponry
+  - balance: 'Campaign: Attacking teams on defensive missions can no longer call in
+      CAS'
+  - rscadd: 'Campaign: Esword now benefits from the sword master perk'
+  - code_imp: Improves some code relating to loadout items in campaign
+  - bugfix: Sensor towers on BR will show up correctly during Mech War missions
+  - bugfix: fixed some visuals with hud icons
+  - rscadd: Added the GL-54 to normal marines in campaign
+  - bugfix: fixed some minor skill issues on some weapons
+  - qol: Only some gas masks such as the tactical or swat masks have TTS filters
+  - balance: PMC standard armour has improved energy armour in line with other pmc
+      suits
+  SomrNetwork:
+  - rscadd: one word "drone" to "support"
+  usnpeepoo:
+  - balance: Puppeteers organic bombs base timer reduced, now uses a windup
+2024-02-02:
+  AzonStarfall:
+  - qol: Adjusted Arachne CAS bay.
+  - qol: Made the front of the Arachne symmetrical.
+  Pariah919:
+  - balance: MP-19 now has burst fire again instead of auto burst, has insanely high
+      akimbo penalties.
+  ivanmixo:
+  - bugfix: You can no longer go over the blood limit, or go below 0 blood
+  yyzsong:
+  - bugfix: readds tx54 razor nades to valhalla
+  - rscadd: adds tx54 acid grenades to valhalla
+2024-02-03:
+  Barnet2:
+  - balance: 'Caste Swap: Every 15 minutes a Xenomorph can change to another caste
+      inside of their tier'
+  - code_imp: Regress uses evo UI
+  Dikozda:
+  - rscdel: Remove 3 pointless lights from orion outpost
+  Helg2:
+  - bugfix: '[Magmoor] Cryopods are now visible again.'
+  Lumipharon:
+  - balance: Minor tweaks to asat
+  - rscadd: Added X-fuel to campaign
+  - balance: Antitank mines are harder to spot when deployed
+  - balance: Constition perks now also give some pain resist
+  - balance: Stamina perks now also increase max stamina
+  - balance: Adjusted the cost of a few perks
+  XElectricX:
+  - qol: Runners can manually cancel evasion.
+  - balance: Runners no longer disarmed for the entire duration of evasion if they
+      cancel it.
+2024-02-04:
+  Lumipharon:
+  - rscdel: Removed the jump emote
+2024-02-05:
+  '?':
+  - rscdel: Deletes "specialclick" keybind
+  Barnet2:
+  - balance: Evolution now gives an extra 0.8 maturity instead of 0.2
+  Lumipharon:
+  - bugfix: Fixed tac sensor turning off when you holster a different weapon
+  - bugfix: shift click will work for human abilities such as jetpack, if you have
+      toggled your pref from middle mouse button
+  - bugfix: fixed b18 glove sprites
+  - bugfix: fixed the recoil on some weapons such as the BR-8
+  - balance: Psylance stagger reduced to 1 second
+  Pariah919:
+  - rscadd: Added new seasonal with flak cannon and plasma guns.
+  Xander3359:
+  - rscdel: Deletes "Examinate" Keybind
+2024-02-06:
+  Lewdcifer:
+  - balance: Psydrain plasma cost reduced from 100 to 50.
+  Lumipharon:
+  - bugfix: fixed bodies not being cleaned up after a campaign mission
+  Xander3359:
+  - code_imp: add proc attack_self_alternate()
+  ivanmixo:
+  - bugfix: Vali necro overlay should show up again
+  - code_imp: The fullscreen overlays now all actually share the proper plane
+  - bugfix: Readded span_debuginfo
+  - bugfix: Beacons now go back to their inactive icon state when undeployed
+  - bugfix: Beacons now deactivate themselves when they change Z level to a Z level
+      that isn't groundside (instead of leaving the beacon datum on the tile they
+      were at just before they changed Z level)
+2024-02-07:
+  Aporhtonoma:
+  - bugfix: squad rally skill requirement from 3 to 2
+  Lumipharon:
+  - qol: 'Campaign: SSD''s will no longer be eligable for faction leader'
+  - qol: 'Campaign: SSD shipside players are cleaned up at the end of each mission'
+  - bugfix: fixed normal claymores being sneakier than intended
+  - balance: 'Campaign: Switching team for autobalance rewards you with addition credits'
+  - balance: 'Campaign: If teams are still not balanced, the weaker team is given
+      light mechs based on how outnumbered they are'
+  - bugfix: 'Campaign: fixed attrition sometimes being lost if several people were
+      setting it at the same time'
+  - bugfix: 'Campaign: Marines will no longer be able to steal their own ASAT objectives'
+  - bugfix: 'Campaign: Fixed some errors in the ASAT mission win conditions'
+  - balance: 'Campaign: credits are additionally awarded at the end of a mission based
+      on individual performance'
+  - balance: 'Campaign: Base credit reward for ending a mission reduced by 150'
+  - imageadd: Fixed some visuals with train props and large map tables
+  Xander3359:
+  - bugfix: SG-162 high impact and heavy impact now apply their CC for 1 second instead
+      of 1 decisecond
+  coldironwarrior:
+  - rscadd: removes xeno probing
+  - balance: point adjustments to xeno caste values for req exports
+2024-02-08:
+  Lumipharon:
+  - balance: Tfoot OB's duration is reduced by 4 seconds per level of fuel inaccuracy
+  Naaanii:
+  - rscadd: Adds Baneling to admin player panel tab.
+  Xander3359:
+  - code_imp: extra_checks use PROC_REF() for their callbacks
+2024-02-09:
+  Barnet2:
+  - rscadd: 'New role: Transport Officer'
+  - balance: Reduces PO slot to one
+  - bugfix: Tadpole cameras use the proper network
+  Lumipharon:
+  - bugfix: fixed SG loadouts often not spawning everything they should
+  - qol: Cancelling delta alert explicitly tells you that this controls both evac
+      and SD
+  - bugfix: fixed deployable shields being climbable when barbed after redeploying
+  - qol: Suit lights no longer mismatch their actual state and action state if spammed
+  - balance: 'Campaign: Made NT base rescue a bit easier for SOM'
+  Wisemonster:
+  - qol: The alert for resin gargoyles have been changed to use the growl sound effect
+      instead of the screech.
+  XElectricX:
+  - rscadd: 'Interactive emotes: you can high-five, fist bump, headbutt, or tail slap
+      other players'
+2024-02-10:
+  AusarAtkin:
+  - qol: Supply Beacon now Auto Update if Tad are moving across Z-level.
+  Barnet2:
+  - bugfix: Fixes a certain exploit with caste swap and regress
+  - admin: Expert timelock increased to 25 hours
+  Lewdcifer:
+  - rscadd: 'Behemoth 2: Now with more caffeine! Check the relevant PR for the full
+      detailed changelog.'
+  - rscadd: Completely revamped Earth Riser's primo. Meteors rain from above!
+  - balance: Behemoth melee damage reduced from 26 to 23. This also affects all ability
+      damage.
+  - balance: Maximum health reduced from 750 to 650, maximum wrath adjusted accordingly.
+  - balance: Movement speed increased from -0.2 to -0.5, weed speed modifier increased
+      from -0.1 to -0.2.
+  - balance: Behemoth roll wind up increased from 1.8s to 2s.
+  - balance: Behemoth roll speed gain reduced from 0.4 to 0.35.
+  - balance: Landslide movement speed increased from 1.7 to 1.5. This is much faster
+      than it sounds!
+  - balance: Earth Riser plasma cost reduced from 30 to 20.
+  - balance: Earth Riser cooldown reduced from 15s to 10s.
+  - balance: Seismic Fracture is no longer ranged, but rather an AoE around the Behemoth.
+  - balance: Seismic Fracture attack radius increased from 2 to 3.
+  - bugfix: Fixed a bug where Primal Wrath would no longer replace plasma costs with
+      wrath.
+  - bugfix: Fixed a bug where Landslide couldn't be cancelled sometimes. Now it's
+      responsive and reliable.
+  - spellcheck: Behemoth cooldown messages no longer include the ability's plasma
+      cost.
+  - sounddel: Removed an unused Behemoth sound file.
+  - imageadd: Added an icon for the primordial version of Earth Riser
+  - refactor: Refactored Behemoth AoE attacks.
+  Lumipharon:
+  - rscadd: Improved rappel effects in HvH
+  - bugfix: fixed various exploits with capturing the alamo
+  Pariah919:
+  - rscdel: You can no loner acquire long or wide nozzle in HvX.
+  Xander3359:
+  - bugfix: Chicken protein bars no longer runtime
+  ivanmixo:
+  - balance: Stagger doesn't stack in duration anymore
+2024-02-11:
+  Dikozda:
+  - bugfix: SG prep on cantabury no longer has its only door blocked
+  Helg2:
+  - bugfix: '[Big Red] fixed pipes in medbay variants 4 and 5.'
+  Neocloudy:
+  - rscadd: new announcement design- announcements can be recolored, have a subtitle,
+      and pop out easier.
+  - code_imp: priority announcements can now have a color override and subtitle
+  - admin: added subtitle and color option to command reports
+  novaepee:
+  - imageadd: port TG surgery tool sprites
+2024-02-12:
+  AzonStarfall:
+  - bugfix: Fixed Arachne's Medbay Disposal.
+  Helg2:
+  - bugfix: Xenos now show their wound in their special states.
+  Lumipharon:
+  - balance: Unarmed damage against humans is no longer rng if your victim is prone
+  - balance: CQC skill lowers grab upgrade time
+  - balance: Unarmed attacks against humans uses the same zone targeting as melee
+      weapons
+  - bugfix: Choking someone to death once again actually causes oxyloss
+  - bugfix: Melee attack can now actually miss some times as intended (only for humans
+      attacking humans)
+  Naaanii:
+  - rscadd: Added HVAP and smart railgun rounds to reqtorio.
+  - rscadd: Added SR-127 flak ammo to reqtorio.
+  - rscadd: Added deployable floodlights to reqtorio.
+  - rscadd: Added both plastiques to reqtorio.
+  - rscadd: Added detpacks to reqtorio.
+  - spellcheck: Added a missing period to drop pod factory description.
+  - balance: All AMR mags cost the same.
+  Pariah919:
+  - rscadd: Added new cloak and incendiary rockets for MLRS.
+  TiviPlus:
+  - code_imp: razorburns have been removed from loadouts due to an internal code change
+  Xander3359:
+  - refactor: Alamo console for xenos is TGUI now
+  Xander3359 Naaanii:
+  - admin: Admins can cancel king summon
+2024-02-13:
+  Barnet2:
+  - balance: If autobalance is on or if you are a tier four, the xeno respawn timer
+      is not applied
+  - balance: Sentinel gas nade is now transparent (you can see through it)
+  Lumipharon:
+  - bugfix: fixed a couple of minor edge case bugs with jumping
+  - code_imp: connect_loc now works properly for multitile atoms
+2024-02-14:
+  Cpol-CzHa:
+  - rscadd: Adds a number of missing items to valhalla.
+  Naaanii:
+  - rscadd: Added all AGLS ammo to reqtorio.
+  - rscadd: Added all TAT ammo to reqtorio.
+  - rscadd: Added all FK-88 ammo to reqtorio.
+  - rscadd: Added all ATR-22 ammo to reqtorio.
+  - bugfix: Actually adds the camera refill to req.
+  TiviPlus:
+  - rscadd: Added new "lasburster" grenade
+  - code_imp: added the ability to shoot bullets in a circle
+  Xander3359:
+  - bugfix: fix typo in martini belt causing broken sprite
+  efzapa:
+  - spellcheck: Bicaridine is now universally spelt correctly.
+2024-02-15:
+  Helg2:
+  - balance: Psychic Relays, Evolution Towers and Pheromonone Towers now ignore weed
+      removal.
+  Pariah919:
+  - rscadd: New squashhead bullets for SMG-45
+  - rscdel: SMG-45 HP
+  - soundadd: New firesound for SMG-45
+  Xander3359:
+  - bugfix: Fix not being able to click martini belt
+  yyzsong:
+  - qol: Adds a cooldown between unresting and then resting again for xenomorphs
+2024-02-16:
+  Lumipharon:
+  - bugfix: fixed some throw bugs involving buckled mobs, and added a failsafe to
+      catch any other edge cases
+  - bugfix: 'Campaign: Fixed a bug in destroy mission victory checks'
+  - bugfix: fixed some campaign autobalance logic
+  ivanmixo:
+  - bugfix: Xenos abilities shouldn't go through missing corners anymore
+2024-02-17:
+  Barnet2:
+  - rscadd: 'New limited grenade: M40-AG "Anti Gas" grenades. Purges gas inside of
+      it''s smoke radius. 10 in vendor roundstart, 700 points for 25 nades, fairly
+      expensive'
+  Lumipharon:
+  - qol: 'Campaign: Updated weapon descriptions in the loadout UI'
+  Xander3359:
+  - bugfix: Fixes a bug allowing you to have tac sensor active permanently
+2024-02-18:
+  AzonStarfall:
+  - bugfix: Removed duplicated bomb ammo placements on Arachne.
+  Barnet2:
+  - bugfix: Transport Officer icon should show in orbit menu
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed some guns not working with upgraded shield light armour
+      as expected'
+  - balance: 'Campaign: Light and medium explosions have a chance to detonate armed
+      AT mines'
+  - bugfix: fixed some wonky shield behavior
+  - code_imp: Cleaned up some shield code
+  Pariah919:
+  - balance: FK-88 Ammo changes. APFDS no longer has a minimum range, does 275 damage,
+      has 20 less pen. HE does 100 damage, matching SADAR.
+  Scarlet-Oduko:
+  - code_imp: merged overlay defines into one layer list
+  Xander3359:
+  - bugfix: Loadouts work in Valhalla now
+  - bugfix: Xeno alamo console is functional once more
+  - refactor: Converts Autoinjectors + Hyposprays into TGUI
+  - code_imp: reagent_containers use attack_self_alternate + attack_hand_alternate
+      to open the reagent change UI (Also applies to hypos)
+  - bugfix: Fix not being able to use the beginner loadout in valhalla
+  - bugfix: Martini belt no longer has an error sprite when its full
+  exdal:
+  - bugfix: Requisitions status at round end stats is now properly formated.
+  ivanmixo:
+  - bugfix: Fixed the xeno ability going thru wall bug fix
+2024-02-19:
+  AusarAtkin:
+  - balance: Synth & Early Synth can fix Groundside Gens faster now.
+  Barnet2:
+  - balance: Ice colony now has 2100 quickbuild points instead of 1600.
+  - balance: Xeno spit is unstaggerable
+  - balance: Big Red now has 2300 quickbuild points instead of 1800
+  Lewdcifer:
+  - balance: Earth Riser maximum pillars increased from 1 to 3. Primordial version
+      now uncapped but limited by a 2s. cooldown.
+  - balance: Earth Riser displacement is now a knockback, meaning it throws people.
+  - bugfix: Fixed an issue where footstep changes on Landslide were setup incorrectly,
+      which could lead to wacky behavior in certain cases.
+  - bugfix: Fixed an unintended result where the primordial version of Earth Riser
+      would have a much shorter cooldown than intended.
+  - bugfix: Fixed an issue where hitting Earth Pillars with Seismic Fracture wouldn't
+      begin Earth Riser's cooldown.
+  - code_imp: If the owner of an Earth Pillar is somehow deleted while it is active,
+      it will now clean away the reference.
+  - code_imp: Changed the name of a Behemoth proc.
+  Xander3359:
+  - rscdel: Medics and SLs no longer get a firstaid box
+  - bugfix: The ship AI can no longer hijack/capture the Alamo
+  blackdav123:
+  - balance: Reinforced the external walls of two buildings on Magmoor.
+  - balance: Preweeded Gelida IV and added a tunnel.
+2024-02-20:
+  blackdav123:
+  - rscadd: A set of vendors near the Alamo on Sulaco.
+2024-02-21:
+  TiviPlus:
+  - bugfix: Fixes custom squad tablets not working
+  - bugfix: Fix Main console not being able to overwatch custom squads
+  - bugfix: fixed headsets being invisible if you spawned them while in a custom squad
+  - bugfix: 'Custom squads will now automatically pick the first most unused letter
+      in the name: (e.g cool squad will be .o because .c is taken by charlie by default)
+      the key can be found by examining your headset. people in the squad still have
+      to use ; because im lazy and didnt fix it'
+  XElectricX:
+  - bugfix: Fix interactive emotes
+  ivanmixo:
+  - bugfix: Nulls in the global client list shouldnt be as common anymore
+2024-02-22:
+  Lumipharon:
+  - bugfix: fixed heightened stamina skill not properly lowering the stam regen delay
+  - bugfix: 'Campaign: Fixed an issue with some perks unlocking items incorrectly'
+  - balance: 'Campaign: Advanced firearm training perk reduced to 400 credits'
+  - balance: 'Campaign: Advanced construction and medical training reduced to 300
+      credits and increase skill by 2'
+  Naaanii:
+  - balance: Increases hunter speed to -1.5
+  - balance: Essence link (Drone), Create Jelly (Drone and Hivelord), Place Jelly
+      Pod (Hivelord), Place Resin trap (Carrier), Create Spiderling (Widow), Acid
+      well placement (several castes) can be used while resting.
+  blackdav123:
+  - balance: ' Removed 7 phoron miners from Ice Colony, Added 1.'
+2024-02-23:
+  Barnet2:
+  - balance: Resin walls take 1.75x from melee, but have highly increased bullet and
+      laser armor
+  Lewdcifer:
+  - rscadd: Various Warrior changes, as part of a minor rework and rebalancing!
+  - rscadd: 'Added a new Primordial Warrior ability: Flurry!'
+  - rscadd: 'FLURRY: 10 plasma, 7 CD, three charges.'
+  - rscadd: 'FLURRY: Each attack deals 25% of the Warrior''s melee damage, and counts
+      towards the Empower combo count.'
+  - rscadd: 'FLURRY: Empowered version is the same as Jab''s. Inflicts 3 stacks of
+      blind, 6 of blur, and confuses for 3s.'
+  - rscdel: Primordial Warrior's Jab ability removed.
+  - balance: Melee damage reduced from 23 to 20.
+  - balance: Maximum plasma reduced from 120 to 100.
+  - balance: Plasma gain reduced from 12 to 10.
+  - balance: 'AGILITY: Cooldown reduced from 0.5s to 0.4s.'
+  - balance: 'LUNGE: Plasma cost increased from 18 to 20.'
+  - balance: 'GRAPPLE TOSS: Plasma cost increased from 18 to 20.'
+  - balance: 'FLING + GRAPPLE TOSS: Distance penalty on big mobs changed. Instead
+      of halving it, it now reduces it by one.'
+  - balance: 'FLING + GRAPPLE TOSS: Throwing impact effect added.'
+  - balance: 'PUNCH: Plasma cost increased from 12 to 15.'
+  - balance: 'PUNCH: Will no longer push targets if they''re against a wall.'
+  - qol: 'ALL ABILITIES: Abilities will now inform the player via a balloon message
+      when their cooldown is finished.'
+  - qol: 'AGILITY: No longer disallows using abilities while active. However, using
+      any ability will automatically disable Agility.'
+  - imageadd: Visual effects for throwing impacts, and punching.
+  - refactor: Refactored most of Warrior's coding, with the intention of better quality
+      and containment.
+  Pariah919:
+  - balance: Reinforced Walls have 75 laser/bullet armor and 5000 HP.
+2024-02-24:
+  74delta:
+  - rscadd: hefa grenades to req for 550 a box and 10 in roundstart vendors
+  Lumipharon:
+  - qol: Xeno plasma levels will update on the hud as soon as plasma levels change,
+      instead of waiting for life ticks
+  - bugfix: fixed pheros not using plasma if you were on full plasma, even off weeds
+  - code_imp: Improved some xeno plasma hud code
+  - balance: 'Campaign: Added individual stats to track shrapnel removed, mines placed
+      and mechs destroyed'
+  - balance: 'Campaign: Boosted the cash rewards for performing non combat actions'
+  - bugfix: fixed some wrong/misleading wield time stats
+  - bugfix: 'Campaign: Fixed an incorrect objective desc for ASAT Capture'
+  - code_imp: Cleaned up some conveyor code
+  - bugfix: 'Campaign: Fixed not being properly despawned at the end of a mission
+      in some cases'
+  MiniMeatwad:
+  - admin: Added message for recipient when a ticket is (un)marked, closed, or tiered.
+  XElectricX:
+  - code_imp: Interactive emotes can be bound to a key instead of using right clicking.
+  Xander3359:
+  - bugfix: Fix robotic cradle sprite
+  ivanmixo:
+  - rscadd: Added directional attacks, you can enable them in the preference menu
+      for all living mobs.
+2024-02-25:
+  RipGrayson:
+  - rscadd: Added some barricade mapping helpers for mapper use.
+  TiviPlus:
+  - rscadd: added some admin-only vehicles
+  - code_imp: added multitile, multicrew vehicle support
+  Wisemonster:
+  - balance: ERT ships will now have plasteel cades protecting their doors.
+  - code_imp: Added a plasteel child that spawns in closed
+2024-02-26:
+  Barnet2:
+  - balance: Daedalus Prison has weaker tables and pre-broken fences for a better
+      prep experience
+  - bugfix: Snows shows up as a proper texture in SDMM
+2024-02-27:
+  Barnet2:
+  - balance: Boiler no longer has to root to fire
+  - spellcheck: New groundside marine ranks
+  - balance: Antigas nade req price reduced to 600, 20 nades in vendor instead of
+      10
+  - balance: Widow and Puppeteer minions have a 5% chance to hit their selected limb
+      (chest) instead of a 70% chance.
+  - rscadd: Xeno manifest on lobby screen
+  - balance: Queen has a sunder multiplier of 0.8 (takes 80% sunder), Crusher has
+      a sunder multiplier of 0.5 (takes 50% sunder)
+  DeltaFire15:
+  - bugfix: The new larva queue check should no longer be broken.
+  Helg2:
+  - code_imp: Weather danger messages now can be filtered by chat settings.
+  Lumipharon:
+  - balance: 'Campaign: Improved HP, shield and stamina perks'
+  - bugfix: fixed a larva queue issue
+  - bugfix: fixed xeno plasma hud getting stuck on death
+  - balance: Meleeing humans can no longer embed the item
+  - balance: 'Campaign: Slightly increased some credit reward values, and loss bonus
+      now applies to mission credit rewards'
+  Pariah919:
+  - balance: AC has significantly more wall damage to keep up with wall resistance
+      buffs.
+  Wisemonster:
+  - qol: The tadpole surgery dispenser now layers over objects
+  exdal:
+  - rscadd: AI VOX announcements are now visible on chat
+2024-02-28:
+  Lumipharon:
+  - bugfix: Fixed a new issue with the larva queue
+  - balance: 'Campaign: Shotgun perk unlocks shotgun in the backslot for SL''s and
+      veterans'
+  - bugfix: fixed conveyors not working in some cases
+  Xander3359:
+  - code_imp: add emp signal
+  exdal:
+  - code_imp: Observers and AI now receive VOX announcement message
+2024-02-29:
+  Barnet2:
+  - rscadd: Bulletproof, Hardy and Fireproof walls
+  - bugfix: Landmark resin walls now properly function
+  Lumipharon:
+  - balance: 'Campaign: Delimbing no longer provides additional credits'
+  - bugfix: 'Campaign: Fixed the tactical reserve asset'
+  - imageadd: Added some new portraits to some campaign assets
+  - bugfix: fixed the sectoid gun sprite
+  TiviPlus:
+  - rscadd: Custom squad UIs will now open during the round automatically
+  - rscadd: Added interiors that can be attached to any object
+  - rscadd: Tank now has an interior

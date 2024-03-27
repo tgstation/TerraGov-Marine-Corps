@@ -151,7 +151,7 @@
 	icon_state = "harmonica"
 	item_state = "harmonica"
 	allowed_instrument_ids = list("crharmony", "harmonica")
-	flags_equip_slot = ITEM_SLOT_MASK
+	equip_slot_flags = ITEM_SLOT_MASK
 	force = 5
 	w_class = WEIGHT_CLASS_SMALL
 	actions_types = list(/datum/action/item_action/instrument)

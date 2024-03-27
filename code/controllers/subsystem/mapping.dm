@@ -158,7 +158,7 @@ SUBSYSTEM_DEF(mapping)
 
 	z_list = SSmapping.z_list
 
-#define INIT_ANNOUNCE(X) to_chat(world, span_notice("[X]")); log_world(X)
+#define INIT_ANNOUNCE(X) to_chat(world, span_alert("<b>[X]</b>")); log_world(X)
 /datum/controller/subsystem/mapping/proc/LoadGroup(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE)
 	. = list()
 	var/start_time = REALTIMEOFDAY
@@ -369,7 +369,7 @@ SUBSYSTEM_DEF(mapping)
 		// No need to empty() these, because it's world init and they're
 		// already /turf/open/space/basic.
 		var/turf/T = t
-		T.flags_atom |= UNUSED_RESERVATION_TURF_1
+		T.atom_flags |= UNUSED_RESERVATION_TURF_1
 	unused_turfs["[z]"] = block
 	reservation_ready["[z]"] = TRUE
 	clearing_reserved_turfs = FALSE
@@ -380,7 +380,7 @@ SUBSYSTEM_DEF(mapping)
 		T.empty(RESERVED_TURF_TYPE, RESERVED_TURF_TYPE, null, TRUE)
 		LAZYINITLIST(unused_turfs["[T.z]"])
 		unused_turfs["[T.z]"] |= T
-		T.flags_atom |= UNUSED_RESERVATION_TURF_1
+		T.atom_flags |= UNUSED_RESERVATION_TURF_1
 		GLOB.areas_by_type[world.area].contents += T
 		CHECK_TICK
 

@@ -4,7 +4,7 @@
 	appearance_flags = TILE_BOUND
 	var/level = 2
 
-	var/flags_atom = NONE
+	var/atom_flags = NONE
 	var/datum/reagents/reagents = null
 
 	var/list/fingerprints
@@ -235,6 +235,7 @@ directive is properly returned.
 
 
 /atom/proc/emp_act(severity)
+	SEND_SIGNAL(src, COMSIG_ATOM_EMP_ACT, severity)
 	return
 
 
@@ -277,7 +278,7 @@ directive is properly returned.
 
 	if(is_blind(src))
 		to_chat(src, span_notice("Something is there but you can't see it."))
-		return COMSIG_MOB_CLICK_CANCELED
+		return
 
 	face_atom(examinify)
 	var/list/result = examinify.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
@@ -288,7 +289,6 @@ directive is properly returned.
 
 	to_chat(src, examine_block(span_infoplain(result.Join())))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
-	return COMSIG_MOB_CLICK_CANCELED
 
 /**
  * Get the name of this object for examine
@@ -415,13 +415,19 @@ directive is properly returned.
  * Default behaviour is to call [contents_explosion][/atom/proc/contents_explosion] and send the [COMSIG_ATOM_EX_ACT] signal
  */
 /atom/proc/ex_act(severity, epicenter_dist, impact_range)
-	if(!(flags_atom & PREVENT_CONTENTS_EXPLOSION))
+	if(!(atom_flags & PREVENT_CONTENTS_EXPLOSION))
 		contents_explosion(severity, epicenter_dist, impact_range)
 	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, epicenter_dist, impact_range)
 
 /atom/proc/fire_act()
 	return
 
+///Effects of lava. Return true where we want the lava to keep processing
+/atom/proc/lava_act()
+	if(resistance_flags & INDESTRUCTIBLE)
+		return FALSE
+	fire_act()
+	return TRUE
 
 /atom/proc/hitby(atom/movable/AM, speed = 5)
 	if(density)
@@ -628,9 +634,9 @@ directive is properly returned.
 /atom/proc/Initialize(mapload, ...)
 	SHOULD_CALL_PARENT(TRUE)
 	SHOULD_NOT_SLEEP(TRUE)
-	if(flags_atom & INITIALIZED)
+	if(atom_flags & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
-	flags_atom |= INITIALIZED
+	atom_flags |= INITIALIZED
 
 	update_greyscale()
 
@@ -983,13 +989,6 @@ directive is properly returned.
 
 	return TRUE
 
-
-// For special click interactions (take first item out of container, quick-climb, etc.)
-/atom/proc/specialclick(mob/living/carbon/user)
-	SHOULD_CALL_PARENT(TRUE)
-	SEND_SIGNAL(src, COMSIG_ATOM_SPECIALCLICK, user)
-	return COMSIG_MOB_CLICK_CANCELED
-
 /atom/proc/prepare_huds()
 	hud_list = new
 	for(var/hud in hud_possible) //Providing huds.
@@ -999,7 +998,7 @@ directive is properly returned.
 				hud_list[hud] = list()
 			else
 				var/image/I = image('icons/mob/hud.dmi', src, "")
-				I.appearance_flags = RESET_COLOR|RESET_TRANSFORM
+				I.appearance_flags = RESET_COLOR|RESET_TRANSFORM|KEEP_APART
 				hud_list[hud] = I
 
 /**
@@ -1088,4 +1087,8 @@ directive is properly returned.
 
 ///Returns the hard armor for the given atom. If human and a limb is specified, gets the armor for that specific limb.
 /atom/proc/get_hard_armor(armor_type, proj_def_zone)
+	return
+
+///Interaction for using a grab on an atom
+/atom/proc/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	return

@@ -171,10 +171,10 @@
 	if(!penetrate_thick)
 		switch(target_zone)
 			if("head")
-				if(head?.flags_inventory & BLOCKSHARPOBJ)
+				if(head?.inventory_flags & BLOCKSHARPOBJ)
 					. = FALSE
 			else
-				if(wear_suit?.flags_inventory & BLOCKSHARPOBJ)
+				if(wear_suit?.inventory_flags & BLOCKSHARPOBJ)
 					. = FALSE
 	if(!. && error_msg && user)
 		// Might need re-wording.
@@ -217,19 +217,19 @@
 /mob/living/carbon/human/get_permeability_protection()
 	var/list/prot = list("hands"=0, "chest"=0, "groin"=0, "legs"=0, "feet"=0, "arms"=0, "head"=0)
 	for(var/obj/item/I in get_equipped_items())
-		if(I.flags_armor_protection & HANDS)
+		if(I.armor_protection_flags & HANDS)
 			prot["hands"] = max(1 - I.permeability_coefficient, prot["hands"])
-		if(I.flags_armor_protection & CHEST)
+		if(I.armor_protection_flags & CHEST)
 			prot["chest"] = max(1 - I.permeability_coefficient, prot["chest"])
-		if(I.flags_armor_protection & GROIN)
+		if(I.armor_protection_flags & GROIN)
 			prot["groin"] = max(1 - I.permeability_coefficient, prot["groin"])
-		if(I.flags_armor_protection & LEGS)
+		if(I.armor_protection_flags & LEGS)
 			prot["legs"] = max(1 - I.permeability_coefficient, prot["legs"])
-		if(I.flags_armor_protection & FEET)
+		if(I.armor_protection_flags & FEET)
 			prot["feet"] = max(1 - I.permeability_coefficient, prot["feet"])
-		if(I.flags_armor_protection & ARMS)
+		if(I.armor_protection_flags & ARMS)
 			prot["arms"] = max(1 - I.permeability_coefficient, prot["arms"])
-		if(I.flags_armor_protection & HEAD)
+		if(I.armor_protection_flags & HEAD)
 			prot["head"] = max(1 - I.permeability_coefficient, prot["head"])
 	var/protection = (prot["head"] + prot["arms"] + prot["feet"] + prot["legs"] + prot["groin"] + prot["chest"] + prot["hands"])/7
 	return protection
@@ -241,3 +241,9 @@
 	. = ..()
 	if(species.name)
 		. += species.name
+
+///wrapper for a signal to handle opening the squad selector ui just before drop
+/mob/living/carbon/human/proc/suggest_squad_assign()
+	SIGNAL_HANDLER
+	UnregisterSignal(SSdcs, COMSIG_GLOB_DEPLOY_TIMELOCK_ENDED)
+	GLOB.squad_selector.interact(src)

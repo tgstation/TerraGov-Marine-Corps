@@ -5,15 +5,14 @@
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gas_alt"
 	item_state = "gas_alt"
-	flags_inventory = COVERMOUTH | COVEREYES | BLOCKGASEFFECT
-	flags_inv_hide = HIDEEARS|HIDEFACE|HIDELOWHAIR
-	flags_cold_protection = HEAD
+	inventory_flags = COVERMOUTH | COVEREYES | BLOCKGASEFFECT
+	inv_hide_flags = HIDEEARS|HIDEFACE|HIDELOWHAIR
+	cold_protection_flags = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	w_class = WEIGHT_CLASS_SMALL
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
-	voice_filter = "lowpass=f=750,volume=2"
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list(/datum/reagent/toxin/phoron, "sleeping_agent", "carbon_dioxide")
 	///Does this particular mask have breath noises
@@ -40,12 +39,13 @@
 /obj/item/clothing/mask/gas/tactical
 	name = "Tactical gas mask"
 	icon_state = "gas_alt_tactical"
+	voice_filter = "lowpass=f=750,volume=2"
 
 /obj/item/clothing/mask/gas/tactical/coif
 	name = "Tactical coifed gas mask"
 	desc = "A face-covering coifed mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gascoif"
-	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
+	inv_hide_flags = HIDEEARS|HIDEFACE|HIDEALLHAIR
 
 /obj/item/clothing/mask/gas/pmc
 	name = "\improper M8 pattern armored balaclava"
@@ -53,10 +53,10 @@
 	icon_state = "pmc_mask"
 	item_state = "helmet"
 	anti_hug = 3
-	flags_inventory = COVERMOUTH|BLOCKGASEFFECT
-	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
+	inventory_flags = COVERMOUTH|BLOCKGASEFFECT
+	inv_hide_flags = HIDEEARS|HIDEFACE|HIDEALLHAIR
 	breathy = FALSE
-	voice_filter = null
+	voice_filter = "lowpass=f=750,volume=2"
 
 /obj/item/clothing/mask/gas/pmc/damaged
 	name = "damaged M8 pattern armored balaclava"
@@ -77,7 +77,6 @@
 	icon_state = "wolf_mask"
 	anti_hug = 2
 	breathy = FALSE
-	voice_filter = null
 
 /obj/item/clothing/mask/gas/icc
 	name = "\improper Modelle/60 gas mask"
@@ -91,7 +90,7 @@
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 2, ENERGY = 2, BOMB = 0, BIO = 75, FIRE = 2, ACID = 2)
-	flags_armor_protection = HEAD|FACE
+	armor_protection_flags = HEAD|FACE
 
 /obj/item/clothing/mask/gas/swat
 	name = "\improper SWAT mask"
@@ -99,7 +98,8 @@
 	icon_state = "swat"
 	anti_hug = 1
 	siemens_coefficient = 0.7
-	flags_armor_protection = FACE|EYES
+	armor_protection_flags = FACE|EYES
+	voice_filter = "lowpass=f=750,volume=2"
 
 /obj/item/clothing/mask/gas/specops
 	name = "Special Operations gasmask"
@@ -111,6 +111,7 @@
 	icon_state = "specop"
 	item_state = "specop"
 	siemens_coefficient = 0.7
+	voice_filter = "lowpass=f=750,volume=2"
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "syndicate mask"
@@ -139,7 +140,6 @@
 	icon_state = "clown"
 	item_state = "clown_hat"
 	breathy = FALSE
-	voice_filter = null
 
 /obj/item/clothing/mask/gas/sexyclown
 	name = "sexy-clown wig and mask"
@@ -147,7 +147,6 @@
 	icon_state = "sexyclown"
 	item_state = "sexyclown"
 	breathy = FALSE
-	voice_filter = null
 
 /obj/item/clothing/mask/gas/mime
 	name = "mime mask"
@@ -155,16 +154,14 @@
 	icon_state = "mime"
 	item_state = "mime"
 	breathy = FALSE
-	voice_filter = null
 
 /obj/item/clothing/mask/gas/monkeymask
 	name = "monkey mask"
 	desc = "A mask used when acting as a monkey."
 	icon_state = "monkeymask"
 	item_state = "monkeymask"
-	flags_armor_protection = HEAD|FACE|EYES
+	armor_protection_flags = HEAD|FACE|EYES
 	breathy = FALSE
-	voice_filter = null
 
 /obj/item/clothing/mask/gas/sexymime
 	name = "sexy mime mask"
@@ -172,7 +169,6 @@
 	icon_state = "sexymime"
 	item_state = "sexymime"
 	breathy = FALSE
-	voice_filter = null
 
 /obj/item/clothing/mask/gas/death_commando
 	name = "Death Commando Mask"
@@ -185,7 +181,6 @@
 	desc = "Beep boop"
 	icon_state = "death"
 	breathy = FALSE
-	voice_filter = null
 
 /obj/item/clothing/mask/gas/owl_mask
 	name = "owl mask"

@@ -124,6 +124,9 @@
 		if("manifest")
 			view_manifest()
 
+		if("xenomanifest")
+			view_xeno_manifest()
+
 		if("lore")
 			view_lore()
 
@@ -186,7 +189,7 @@
 	if(!GLOB.enter_allowed)
 		dat += "<div class='notice red'>You may no longer join the round.</div><br>"
 	var/forced_faction
-	if(SSticker.mode.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
+	if(SSticker.mode.round_type_flags & MODE_TWO_HUMAN_FACTIONS)
 		if(faction in SSticker.mode.get_joinable_factions(FALSE))
 			forced_faction = faction
 		else
@@ -230,6 +233,14 @@
 	var/dat = GLOB.datacore.get_manifest(ooc = TRUE)
 
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 400, 420)
+	popup.set_content(dat)
+	popup.open(FALSE)
+
+/// Proc for lobby button "View Hive Leaders" to see current leader/queen status.
+/mob/new_player/proc/view_xeno_manifest()
+	var/dat = GLOB.datacore.get_xeno_manifest()
+
+	var/datum/browser/popup = new(src, "xenomanifest", "<div align='center'>Xeno Manifest</div>", 400, 420)
 	popup.set_content(dat)
 	popup.open(FALSE)
 
@@ -434,7 +445,7 @@
 		to_chat(src, span_warning("The round is either not ready, or has already finished."))
 		return
 
-	if(SSticker.mode.flags_round_type & MODE_NO_LATEJOIN)
+	if(SSticker.mode.round_type_flags & MODE_NO_LATEJOIN)
 		to_chat(src, span_warning("Sorry, you cannot late join during [SSticker.mode.name]. You have to start at the beginning of the round. You may observe or try to join as an alien, if possible."))
 		return
 

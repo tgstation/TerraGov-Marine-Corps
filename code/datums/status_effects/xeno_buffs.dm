@@ -546,7 +546,7 @@
 	owner = new_owner
 	duration = set_duration
 	src.plasma_drain = plasma_drain
-	owner.overlay_fullscreen("xeno_feast", /atom/movable/screen/fullscreen/bloodlust)
+	owner.overlay_fullscreen("xeno_feast", /atom/movable/screen/fullscreen/animated/bloodlust)
 	owner.add_filter("[id]2", 2, outline_filter(2, "#61132360"))
 	owner.add_filter("[id]1", 1, wave_filter(0.72, 0.24, 0.4, 0.5))
 	return ..()

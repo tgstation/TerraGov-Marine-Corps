@@ -10,8 +10,6 @@
 	spawn_equipped_type = /obj/item/uav_turret/droid
 	allow_pass_flags = PASS_AIR
 	unmanned_flags = HAS_LIGHTS|OVERLAY_TURRET
-	/// Existing signal for Supply console.
-	var/datum/supply_beacon/beacon_datum
 	/// Action to activate suppply antenna.
 	var/datum/action/antenna/antenna
 	/// The mob controlling the droid remotely
@@ -20,6 +18,7 @@
 /obj/vehicle/unmanned/droid/Initialize(mapload)
 	. = ..()
 	antenna = new
+	AddComponent(/datum/component/beacon/ai_droid)
 
 /obj/vehicle/unmanned/droid/process() //play beepy noise every 5 seconds for effect while active
 	if(prob(90))
@@ -38,19 +37,16 @@
 		START_PROCESSING(SSslowprocess, src)
 		user.overlay_fullscreen("machine", /atom/movable/screen/fullscreen/machine)
 		antenna.give_action(user)
-		RegisterSignal(user, COMSIG_UNMANNED_COORDINATES, PROC_REF(activate_antenna))
+		antenna.ai_droid = src
 	else
 		remote_user = null
 		playsound(src, 'sound/machines/drone/droneoff.ogg', 70)
 		STOP_PROCESSING(SSslowprocess, src)
 		user.clear_fullscreen("machine", 5)
 		antenna.remove_action(user)
-		UnregisterSignal(user, COMSIG_UNMANNED_COORDINATES)
+		antenna.ai_droid = null
 
 /obj/vehicle/unmanned/droid/Destroy()
-	if(beacon_datum)
-		UnregisterSignal(beacon_datum, COMSIG_QDELETING)
-		QDEL_NULL(beacon_datum)
 	if(!remote_user) //No remote user, no need to do this.
 		return ..()
 	var/mob/living/living_user = remote_user.resolve()
@@ -58,7 +54,6 @@
 		return
 	living_user.clear_fullscreen("machine", 5)
 	antenna.remove_action(living_user)
-	UnregisterSignal(living_user, COMSIG_UNMANNED_COORDINATES)
 	if(isAI(living_user))
 		var/mob/living/silicon/ai/AI = living_user
 		AI.eyeobj?.forceMove(get_turf(src))
@@ -117,39 +112,19 @@
 	alpha = initial(alpha)
 	TIMER_COOLDOWN_START(src, COOLDOWN_DRONE_CLOAK, 12 SECONDS)
 
-///Proc used for the supply link feature, activate to appear as an antenna
-/obj/vehicle/unmanned/droid/proc/activate_antenna(datum/source, mob/user)
-	SIGNAL_HANDLER
-
-	user = source
-
-	if(beacon_datum)
-		UnregisterSignal(beacon_datum, COMSIG_QDELETING)
-		QDEL_NULL(beacon_datum)
-		to_chat(source, (span_warning("The [src] beeps and states, \"Your last position is no longer accessible by the supply console")))
-		return
-	if(!is_ground_level(z))
-		to_chat(source, span_warning("You have to be on the planet to use this or it won't transmit."))
-		return FALSE
-	var/area/A = get_area(user)
-	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
-		to_chat(user, span_warning("This won't work if you're standing deep underground."))
-		return FALSE
-	beacon_datum = new /datum/supply_beacon(user.name, src.loc, user.faction, 4 MINUTES)
-	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
-	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [loc.x]. LATITUDE [loc.y]. Area ID: [get_area(src)]\""))
-
-///removes the beacon when we delete the droid
-/obj/vehicle/unmanned/droid/proc/clean_beacon_datum()
-	SIGNAL_HANDLER
-	beacon_datum = null
-
 /datum/action/antenna
 	name = "Use Antenna"
 	action_icon_state = "signal_transmit"
+	///The droid linked to this ability
+	var/obj/vehicle/unmanned/droid/ai_droid
+
+/datum/action/antenna/Destroy()
+	ai_droid = null
+	return ..()
 
 /datum/action/antenna/action_activate()
-	SEND_SIGNAL(owner, COMSIG_UNMANNED_COORDINATES)
+	if(ai_droid)
+		SEND_SIGNAL(ai_droid, COMSIG_UNMANNED_COORDINATES, owner)
 
 /obj/vehicle/unmanned/droid/ripley
 	name = "XN-27-C cargo droid"

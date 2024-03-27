@@ -130,7 +130,7 @@
 
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/xmas
-	flags_gun_features = NONE
+	gun_features_flags = NONE
 
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/xmas/able_to_fire(mob/living/user)
@@ -142,7 +142,7 @@
 
 
 /obj/item/weapon/gun/rifle/sniper/elite/xmas
-	flags_gun_features = NONE
+	gun_features_flags = NONE
 
 
 /obj/item/weapon/gun/rifle/sniper/elite/xmas/able_to_fire(mob/living/user)
@@ -157,6 +157,8 @@
 
 /obj/effect/spresent/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!iswirecutter(I))
 		to_chat(user, span_notice("You need wirecutters for that."))
@@ -184,6 +186,8 @@
 
 /obj/item/wrapping_paper/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	var/a_used = 2 ** (w_class - 1)
 

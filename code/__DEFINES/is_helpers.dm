@@ -110,7 +110,6 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define isxenopraetorian(A) (istype(A, /mob/living/carbon/xenomorph/praetorian))
 #define isxenoravager(A) (istype(A, /mob/living/carbon/xenomorph/ravager))
 #define isxenorunner(A) (istype(A, /mob/living/carbon/xenomorph/runner))
-#define isxenobaneling(A) (istype(A, /mob/living/carbon/xenomorph/baneling))
 #define isxenospitter(A) (istype(A, /mob/living/carbon/xenomorph/spitter))
 #define isxenosentinel(A) (istype(A, /mob/living/carbon/xenomorph/sentinel))
 #define isxenowarrior(A) (istype(A, /mob/living/carbon/xenomorph/warrior))
@@ -226,6 +225,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define iscrowbar(I) (istype(I, /obj/item/tool/crowbar))
 
+#define isplasmacutter(I) istype(I, /obj/item/tool/pickaxe/plasmacutter)
+
 #define iscell(I) (istype(I, /obj/item/cell))
 
 #define isfactorypart(I) (istype(I, /obj/item/factory_part))
@@ -249,6 +250,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define isvehicle(A) (istype(A, /obj/vehicle))
 
 #define ismecha(A) (istype(A, /obj/vehicle/sealed/mecha))
+
+#define isarmoredvehicle(A) (istype(A, /obj/vehicle/sealed/armored))
 
 #define isorgan(A) (istype(A, /datum/limb))
 

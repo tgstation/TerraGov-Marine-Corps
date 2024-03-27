@@ -404,8 +404,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/warrior, location, null, delmob)
 			if("runner")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/runner, location, null, delmob)
-			if("baneling")
-				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/baneling, location, null, delmob)
 			if("drone")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/drone, location, null, delmob)
 			if("sentinel")
@@ -1088,9 +1086,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				message_admins("[ADMIN_TPMONTY(usr)] canceled an evacuation.")
 
 			if("toggle_evac")
-				SSevacuation.flags_scuttle ^= FLAGS_EVACUATION_DENY
-				log_admin("[key_name(src)] has [SSevacuation.flags_scuttle & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
-				message_admins("[ADMIN_TPMONTY(usr)] has [SSevacuation.flags_scuttle & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
+				SSevacuation.scuttle_flags ^= FLAGS_EVACUATION_DENY
+				log_admin("[key_name(src)] has [SSevacuation.scuttle_flags & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
+				message_admins("[ADMIN_TPMONTY(usr)] has [SSevacuation.scuttle_flags & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
 
 			if("force_evac")
 				if(!SSevacuation.begin_launch())
@@ -1128,9 +1126,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				message_admins("[ADMIN_TPMONTY(usr)] forced the self-destruct system, destroying the [SSmapping.configs[SHIP_MAP].map_name].")
 
 			if("toggle_dest")
-				SSevacuation.flags_scuttle ^= FLAGS_SELF_DESTRUCT_DENY
-				log_admin("[key_name(src)] has [SSevacuation.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
-				message_admins("[ADMIN_TPMONTY(usr)] has [SSevacuation.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
+				SSevacuation.scuttle_flags ^= FLAGS_SELF_DESTRUCT_DENY
+				log_admin("[key_name(src)] has [SSevacuation.scuttle_flags & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
+				message_admins("[ADMIN_TPMONTY(usr)] has [SSevacuation.scuttle_flags & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
 
 
 	else if(href_list["object_list"])
@@ -2145,6 +2143,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/timerid_to_cancel = href_list["cancelob"]
 		deltimer(timerid_to_cancel)
 		var/logtext = "[key_name(usr)] has cancelled an OB with the timerid [timerid_to_cancel]"
+		message_admins(logtext)
+		log_admin(logtext)
+
+	else if(href_list["cancelsummon"])
+		GLOB.active_summons.Cut()
+		var/logtext = "[key_name(usr)] has cancelled all psychic summons"
 		message_admins(logtext)
 		log_admin(logtext)
 

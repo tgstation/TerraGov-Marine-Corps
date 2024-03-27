@@ -81,6 +81,8 @@
 
 /obj/structure/camera_assembly/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
+	if(.)
+		return
 
 	switch(state)
 		if(STATE_WRENCHED)
@@ -173,7 +175,7 @@
 
 
 /obj/structure/camera_assembly/deconstruct(disassembled = TRUE)
-	if(!(flags_atom & NODECONSTRUCT))
+	if(!(atom_flags & NODECONSTRUCT))
 		new /obj/item/stack/sheet/metal(loc)
 	return ..()
 

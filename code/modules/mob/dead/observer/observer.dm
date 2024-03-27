@@ -685,7 +685,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/stop_orbit(datum/component/orbiter/orbits)
 	. = ..()
 	pixel_y = 0
-	animate(src, pixel_y = 2, time = 10, loop = -1)
+	animate(src, pixel_y = 2, time = 10, loop = -1, flags = ANIMATION_RELATIVE)
+	animate(pixel_y = -2, time = 10, loop = -1, flags = ANIMATION_RELATIVE)
 
 
 /mob/dead/observer/verb/toggle_zoom()

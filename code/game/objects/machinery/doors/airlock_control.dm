@@ -157,6 +157,8 @@
 
 /obj/machinery/access_button/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/card/id))
 		attack_hand(user)

@@ -9,11 +9,11 @@
 	icon_state = "gloves_marine"
 	siemens_coefficient = 0.6
 	permeability_coefficient = 0.05
-	flags_cold_protection = HANDS
-	flags_heat_protection = HANDS
+	cold_protection_flags = HANDS
+	heat_protection_flags = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
-	flags_armor_protection = HANDS
+	armor_protection_flags = HANDS
 	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
 
 /obj/item/clothing/gloves/marine/black
@@ -84,7 +84,7 @@
 	name = "\improper B18 defensive gauntlets"
 	desc = "A pair of heavily armored gloves."
 	icon_state = "armored"
-	flags_item = SYNTH_RESTRICTED
+	item_flags = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 35, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 25, BIO = 15, FIRE = 15, ACID = 20)
 	resistance_flags = UNACIDABLE
 
@@ -93,13 +93,13 @@
 	desc = "Armored gloves used in special operations. They are also insulated against electrical shock."
 	icon_state = "black"
 	siemens_coefficient = 0
-	flags_item = SYNTH_RESTRICTED
+	item_flags = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 15)
 
 /obj/item/clothing/gloves/marine/veteran/pmc/commando
 	name = "\improper PMC commando gloves"
 	desc = "A pair of heavily armored, insulated, acid-resistant gloves."
-	icon_state = "armored"
+	icon_state = "death_squad"
 	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 25)
 	resistance_flags = UNACIDABLE
 

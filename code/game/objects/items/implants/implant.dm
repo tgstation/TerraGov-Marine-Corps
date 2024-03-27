@@ -16,7 +16,7 @@
 	///What level of malfunction/breakage this implant is at, used for functionality checks
 	var/malfunction = MALFUNCTION_NONE
 	///Implant secific flags
-	var/flags_implant = GRANT_ACTIVATION_ACTION
+	var/implant_flags = GRANT_ACTIVATION_ACTION
 	///Whitelist for llimbs that this implavnt is allowed to be inserted into, all limbs by default
 	var/list/allowed_limbs
 	///Activation_action reference
@@ -27,7 +27,7 @@
 
 /obj/item/implant/Initialize(mapload)
 	. = ..()
-	if(flags_implant & GRANT_ACTIVATION_ACTION)
+	if(implant_flags & GRANT_ACTIVATION_ACTION)
 		activation_action = new(src, src)
 	if(allow_reagents)
 		reagents = new /datum/reagents(MAX_IMPLANT_REAGENTS)
@@ -43,7 +43,7 @@
 	return ..()
 
 /obj/item/implant/ui_action_click(mob/user, datum/action/item_action/action)
-	activate()
+	return activate()
 
 ///Handles the actual activation of the implant/it's effects. Returns TRUE on succesful activation and FALSE on failure for parentcalls
 /obj/item/implant/proc/activate()
@@ -77,7 +77,7 @@
 		CRASH("[src] implanted into [target] [user ? "by [user]" : ""] but had no limb, despite being set to implant in [limb_targeting].")
 	affected.implants += src
 	part = affected
-	if(flags_implant & ACTIVATE_ON_HEAR)
+	if(implant_flags & ACTIVATE_ON_HEAR)
 		RegisterSignal(src, COMSIG_MOVABLE_HEAR, PROC_REF(on_hear))
 	activation_action?.give_action(target)
 	embed_into(target, limb_targeting, TRUE)
@@ -92,7 +92,7 @@
 	if(!implanted)
 		return FALSE
 	activation_action?.remove_action(implant_owner)
-	if(flags_implant & ACTIVATE_ON_HEAR)
+	if(implant_flags & ACTIVATE_ON_HEAR)
 		UnregisterSignal(src, COMSIG_MOVABLE_HEAR)
 	implanted = FALSE
 	part.implants -= src

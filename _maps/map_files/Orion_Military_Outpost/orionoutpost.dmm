@@ -2640,7 +2640,7 @@
 /area/orion_outpost/ground/outpostsw)
 "nJ" = (
 /obj/item/ammo_magazine/tank/ltb_cannon,
-/obj/item/ammo_magazine/tank/ltaaap_minigun,
+/obj/item/ammo_magazine/tank/ltaap_chaingun,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -3446,6 +3446,10 @@
 /obj/structure/flora/pottedplant/twentytwo,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/dorms)
+"rD" = (
+/obj/effect/landmark/campaign_structure/sensor_tower,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/orion_outpost/ground/outposts)
 "rE" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -4310,6 +4314,7 @@
 /area/orion_outpost/ground/outpostsw)
 "vX" = (
 /obj/effect/landmark/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/floor/mainship/terragov{
 	dir = 1
 	},
@@ -6262,7 +6267,7 @@
 /area/orion_outpost/ground/outpostcent)
 "Gr" = (
 /obj/item/ammo_magazine/tank/ltb_cannon,
-/obj/item/ammo_magazine/tank/ltaaap_minigun,
+/obj/item/ammo_magazine/tank/ltaap_chaingun,
 /turf/open/floor/mainship/black/full,
 /area/orion_outpost/surface/building/ammodepot)
 "Gs" = (
@@ -7396,6 +7401,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/cargo)
+"Me" = (
+/obj/effect/landmark/campaign_structure/sensor_tower,
+/turf/open/floor/plating/ground/concrete,
+/area/orion_outpost/ground/outpostse)
 "Mf" = (
 /turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostw)
@@ -7715,13 +7724,6 @@
 	dir = 10
 	},
 /area/orion_outpost/surface/building/tadpolepad)
-"NF" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/bed/bunkbed,
-/turf/open/floor/wood,
-/area/orion_outpost/surface/building/barracks)
 "NG" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -9281,6 +9283,10 @@
 	dir = 1
 	},
 /area/orion_outpost/surface/building/brig)
+"VD" = (
+/obj/effect/landmark/campaign_structure/sensor_tower,
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/cargo)
 "VE" = (
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/nebuilding)
@@ -9872,6 +9878,7 @@
 /area/orion_outpost/surface/building/vehicledepot)
 "YG" = (
 /obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/floor/mainship/terragov{
 	dir = 1
 	},
@@ -18277,7 +18284,7 @@ Qp
 Qp
 Qp
 DU
-DU
+rD
 Qp
 Du
 Gp
@@ -19336,7 +19343,7 @@ Zl
 xi
 Zl
 xi
-NF
+Zl
 Jd
 Qu
 VA
@@ -19350,7 +19357,7 @@ Zl
 xi
 Zl
 xi
-NF
+Zl
 Jd
 tS
 hX
@@ -20788,7 +20795,7 @@ Zl
 xi
 Zl
 xi
-NF
+Zl
 Jd
 in
 in
@@ -20989,7 +20996,7 @@ Qw
 pW
 pW
 pW
-Qw
+VD
 Qw
 Qw
 pW
@@ -22524,7 +22531,7 @@ yu
 Nk
 Nk
 cT
-Nk
+Me
 Nk
 hP
 Tm
@@ -24218,7 +24225,7 @@ kb
 IQ
 Tm
 Tm
-An
+Tm
 Tm
 kb
 Tm
@@ -24350,7 +24357,7 @@ kb
 cR
 Tm
 Tm
-Tm
+An
 cR
 kb
 Tm

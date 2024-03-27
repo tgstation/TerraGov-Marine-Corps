@@ -18,7 +18,7 @@
 	icon_state = "pt_belt"
 	item_state = "pt_belt_a"
 	slot = ATTACHMENT_SLOT_BELT
-	flags_attach_features = ATTACH_NO_HANDS
+	attach_features_flags = ATTACH_NO_HANDS
 
 /**
  * Shoulder lamp strength module
@@ -32,7 +32,6 @@
 	slowdown = 0
 	light_mod = 4 /// The boost to armor shoulder light
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_lamp_xn")
 
 /**
  * Mini autodoc module
@@ -45,7 +44,6 @@
 	item_state = "mod_autodoc_a"
 	slowdown = 0.3
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_autodoc_xn")
 	var/static/list/supported_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT)
 
 /obj/item/armor_module/module/valkyrie_autodoc/on_attach(obj/item/attaching_to, mob/user)
@@ -81,16 +79,15 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 35, ACID = 0)
 	slowdown = 0.4
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_fire_xn")
 
 /obj/item/armor_module/module/fire_proof/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	parent.max_heat_protection_temperature += FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	parent.flags_armor_features |= ARMOR_FIRE_RESISTANT
+	parent.armor_features_flags |= ARMOR_FIRE_RESISTANT
 
 /obj/item/armor_module/module/fire_proof/on_detach(obj/item/detaching_from, mob/user)
 	parent.max_heat_protection_temperature -= FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	parent.flags_armor_features &= ~ARMOR_FIRE_RESISTANT
+	parent.armor_features_flags &= ~ARMOR_FIRE_RESISTANT
 	return ..()
 
 /obj/item/armor_module/module/fire_proof/som
@@ -108,7 +105,6 @@
 	item_state = "mod_fire_head_a"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 35, ACID = 0)
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "mod_fire_head_xn")
 
 /**
  * Extra armor module
@@ -123,11 +119,12 @@
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, FIRE = 15, ACID = 15)
 	slowdown = 0.3
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_armor_xn")
 
 /obj/item/armor_module/module/tyr_extra_armor/mark1
 	name = "\improper Mark 1 Tyr Armor Reinforcement"
 	desc = "Designed for mounting on modular armor. A substantial amount of additional armor plating designed to grant the user extra protection against threats, ranging from xeno slashes to friendly fire incidents. This older version has worse protection. Will greatly impact mobility."
+	icon_state = "mod_armor_lower"
+	item_state = "mod_armor_lower_a"
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 	slowdown = 0.4
 
@@ -138,9 +135,7 @@
 	icon_state = "lorica_armor"
 	item_state = "lorica_armor_a"
 	attachment_layer = null
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 10, ACID = 5)
-	slowdown = 0.2
-	slot = ATTACHMENT_SLOT_MODULE
+	soft_armor = list(MELEE = 10, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 10, ACID = 5)
 
 /obj/item/armor_module/module/tyr_head
 	name = "Tyr Helmet System"
@@ -150,7 +145,6 @@
 	item_state = "tyr_head_a"
 	soft_armor = list(MELEE = 15, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "tyr_head_xn")
 
 /obj/item/armor_module/module/hod_head
 	name = "\improper Hod Helmet System"
@@ -173,7 +167,6 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 40, FIRE = 0, ACID = 30)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_biohazard_xn")
 	///siemens coefficient mod for gas protection.
 	var/siemens_coefficient_mod = -0.9
 	///permeability coefficient mod for gas protection.
@@ -217,7 +210,6 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 40, FIRE = 0, ACID = 30)
 	slowdown = 0
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "mimir_head_xn")
 
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1 //gas protection
 	name = "Mark 1 Mimir Environmental Helmet System"
@@ -234,7 +226,6 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 40, BIO = 0, FIRE = 0, ACID = 0)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_bombimmune_xn")
 
 /**
  * Extra armor module
@@ -248,7 +239,6 @@
 	soft_armor = list(MELEE = 0, BULLET = 40, LASER = 40, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_ff_xn")
 
 /obj/item/armor_module/module/chemsystem
 	name = "Vali chemical enhancement module"
@@ -293,7 +283,6 @@
 	item_state = "mod_eshield_a"
 	slot = ATTACHMENT_SLOT_MODULE
 	soft_armor = list(MELEE = -10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = -5, FIRE = 0, ACID = -5)
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_eshield_xn")
 
 	///Current shield Health
 	var/shield_health = 0
@@ -436,10 +425,24 @@
 	affected.remove_filter("eshield")
 	affected.add_filter("eshield", 2, outline_filter(1, new_color))
 
+/obj/item/armor_module/module/eshield/overclocked
+	max_shield_health = 75
+	damaged_shield_cooldown = 5 SECONDS
+	shield_color_low = COLOR_MAROON
+	shield_color_mid = LIGHT_COLOR_RED_ORANGE
+	shield_color_full = LIGHT_COLOR_ELECTRIC_CYAN
+
 //original Martian design, donutsteel
 /obj/item/armor_module/module/eshield/som
 	name = "Aegis Energy Dispersion Module"
 	desc = "A sophisticated shielding unit, designed to disperse the energy of incoming impacts, rendering them harmless to the user. If it sustains too much it will deactivate, and leave the user vulnerable. It is unclear if this was a purely  SOM designed module, or whether it was reverse engineered from the TGMC's 'Svalinn' shield system which was developed around the same time."
+
+/obj/item/armor_module/module/eshield/som/overclocked
+	max_shield_health = 75
+	damaged_shield_cooldown = 5 SECONDS
+	shield_color_low = COLOR_MAROON
+	shield_color_mid = LIGHT_COLOR_RED_ORANGE
+	shield_color_full = LIGHT_COLOR_ELECTRIC_CYAN
 
 /obj/item/armor_module/module/style
 	name = "\improper Armor Equalizer"
@@ -488,8 +491,7 @@
 	icon_state = "welding_head"
 	item_state = "welding_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "welding_head_xn")
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	prefered_slot = SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
@@ -508,14 +510,14 @@
 
 /obj/item/armor_module/module/welding/activate(mob/living/user)
 	if(active)
-		DISABLE_BITFIELD(parent.flags_inventory, COVEREYES)
-		DISABLE_BITFIELD(parent.flags_inv_hide, HIDEEYES)
-		DISABLE_BITFIELD(parent.flags_armor_protection, EYES)
+		DISABLE_BITFIELD(parent.inventory_flags, COVEREYES)
+		DISABLE_BITFIELD(parent.inv_hide_flags, HIDEEYES)
+		DISABLE_BITFIELD(parent.armor_protection_flags, EYES)
 		parent.eye_protection -= eye_protection_mod // reset to the users base eye
 	else
-		ENABLE_BITFIELD(parent.flags_inventory, COVEREYES)
-		ENABLE_BITFIELD(parent.flags_inv_hide, HIDEEYES)
-		ENABLE_BITFIELD(parent.flags_armor_protection, EYES)
+		ENABLE_BITFIELD(parent.inventory_flags, COVEREYES)
+		ENABLE_BITFIELD(parent.inv_hide_flags, HIDEEYES)
+		ENABLE_BITFIELD(parent.armor_protection_flags, EYES)
 		parent.eye_protection += eye_protection_mod
 
 	active = !active
@@ -532,7 +534,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "welding_head_som"
 	item_state = "welding_head_som_a"
-	flags_attach_features = ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 
 /obj/item/armor_module/module/welding/superior
 	name = "Superior Welding Helmet Module"
@@ -541,8 +543,7 @@
 	icon_state = "welding_head"
 	item_state = "welding_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "welding_head_superior_xn")
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	prefered_slot = SLOT_HEAD
 
@@ -557,10 +558,10 @@
 	icon_state = "binocular_head"
 	item_state = "binocular_head_a"
 	active = FALSE
-	flags_item = DOES_NOT_NEED_HANDS
+	item_flags = DOES_NOT_NEED_HANDS
 	zoom_tile_offset = 11
 	zoom_viewsize = 12
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	prefered_slot = SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
@@ -592,7 +593,6 @@
 	desc = "Designed for mounting on a modular helmet. The Freyr module is designed with an overlay visor that clarifies the user's vision, allowing them to see clearly even in the harshest of circumstances. This version is enhanced and allows the marine to peer through the visor, akin to binoculars."
 	icon_state = "artemis_head"
 	item_state = "artemis_head_mk2_a"
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "artemis_head_mk2_xn", /obj/item/clothing/head/modular/marine/old/open = "artemis_head_mk2_xn", /obj/item/clothing/head/modular/m10x/heavy = "artemis_head_mk2")
 
 /obj/item/armor_module/module/binoculars/artemis_mark_two/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
@@ -605,8 +605,7 @@
 	icon_state = "artemis_head"
 	item_state = "artemis_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "artemis_head_xn", /obj/item/clothing/head/modular/marine/old/open = "artemis_head_xn", /obj/item/clothing/head/modular/m10x/heavy = "artemis_head")
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
 	prefered_slot = SLOT_HEAD
 
 /obj/item/armor_module/module/artemis/on_attach(obj/item/attaching_to, mob/user)
@@ -623,7 +622,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "antenna_head"
 	item_state = "antenna_head_a"
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	prefered_slot = SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
@@ -678,3 +677,97 @@
 #undef COMMS_OFF
 #undef COMMS_SETTING
 #undef COMMS_SETUP
+
+/obj/item/armor_module/module/night_vision
+	name = "\improper BE-35 night vision kit"
+	desc = "Installation kit for the BE-35 night vision system. Slightly impedes movement."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "night_vision"
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_NO_HANDS
+	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	prefered_slot = SLOT_HEAD
+	slowdown = 0.1
+	///The goggles this module deploys
+	var/obj/item/clothing/glasses/night_vision/mounted/attached_goggles
+
+/obj/item/armor_module/module/night_vision/Initialize(mapload)
+	. = ..()
+	attached_goggles = new /obj/item/clothing/glasses/night_vision/mounted(src)
+
+/obj/item/armor_module/module/night_vision/examine(mob/user)
+	. = ..()
+	. += attached_goggles.battery_status()
+	. += "To eject the battery, [span_bold("click")] [src] with an empty hand. To insert a battery, [span_bold("click")] [src] with a compatible cell."
+
+///Called when the parent is examined; relays battery info
+/obj/item/armor_module/module/night_vision/proc/on_examine(datum/source, mob/user, list/examine_text)
+	SIGNAL_HANDLER
+	examine_text += attached_goggles.battery_status()
+	examine_text += "To eject the battery, [span_bold("CTRL + SHIFT + left-click")] [src] with an empty hand. To insert a battery, [span_bold("click")] [src] with a compatible cell."
+
+/obj/item/armor_module/module/night_vision/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent, COMSIG_CLICK_CTRL_SHIFT, PROC_REF(on_click))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby))
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(deploy))
+	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, PROC_REF(undeploy))
+
+/obj/item/armor_module/module/night_vision/on_detach(obj/item/detaching_from, mob/user)
+	UnregisterSignal(parent, COMSIG_ATOM_EXAMINE)
+	UnregisterSignal(parent, COMSIG_CLICK_CTRL_SHIFT)
+	UnregisterSignal(parent, COMSIG_ATOM_ATTACKBY)
+	UnregisterSignal(parent, COMSIG_ITEM_EQUIPPED)
+	UnregisterSignal(parent, COMSIG_ITEM_UNEQUIPPED)
+	return ..()
+
+///Called when the parent is clicked on with an open hand; to take out the battery
+/obj/item/armor_module/module/night_vision/proc/on_click(datum/source, mob/user)
+	SIGNAL_HANDLER
+	attached_goggles.eject_battery(user)
+
+///Called when the parent is hit by object; to insert a battery
+/obj/item/armor_module/module/night_vision/proc/on_attackby(datum/source, obj/item/I, mob/user)
+	SIGNAL_HANDLER
+	if(attached_goggles.insert_battery(I, user))
+		return COMPONENT_NO_AFTERATTACK
+
+/obj/item/armor_module/module/night_vision/attack_hand(mob/living/user)
+	if(user.get_inactive_held_item() == src && attached_goggles.eject_battery(user))
+		return
+	return ..()
+
+/obj/item/armor_module/module/night_vision/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(attached_goggles.insert_battery(I, user))
+		return COMPONENT_NO_AFTERATTACK
+
+///Called when the parent is equipped; deploys the goggles
+/obj/item/armor_module/module/night_vision/proc/deploy(datum/source, mob/user, slot)
+	SIGNAL_HANDLER
+	if(!ishuman(user) || prefered_slot != slot)	//Must be human for the following procs to work
+		return
+
+	var/mob/living/carbon/human/wearer = user
+	if(wearer.glasses && !wearer.dropItemToGround(wearer.glasses))
+		//This only happens if the wearer has a head item that can't be dropped
+		to_chat(wearer, span_warning("Could not deploy night vision system due to [wearer.head]!"))
+		return
+
+	INVOKE_ASYNC(wearer, TYPE_PROC_REF(/mob/living/carbon/human, equip_to_slot), attached_goggles, SLOT_GLASSES)
+
+///Called when the parent is unequipped; undeploys the goggles
+/obj/item/armor_module/module/night_vision/proc/undeploy(datum/source, mob/user, slot)
+	SIGNAL_HANDLER
+	//See if goggles are deployed
+	if(attached_goggles.loc == src)
+		return
+
+	//The goggles should not be anywhere but on the wearer's face; but if it's not, just yoink it back to the module
+	if(attached_goggles.loc == user)
+		user.temporarilyRemoveItemFromInventory(attached_goggles, TRUE)
+	attached_goggles.forceMove(src)
+
+/obj/item/armor_module/module/night_vision/Destroy()
+	QDEL_NULL(attached_goggles)
+	return ..()

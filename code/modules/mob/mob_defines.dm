@@ -6,7 +6,7 @@
 	animate_movement = SLIDE_STEPS
 	datum_flags = DF_USE_TAG
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
-	flags_atom = PREVENT_CONTENTS_EXPLOSION
+	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	resistance_flags = NONE
 
 	//Mob
@@ -77,6 +77,8 @@
 	var/list/fullscreens = list()
 	///contains /atom/movable/screen/alert only, used by alerts.dm
 	var/list/alerts = list()
+	///List of queued interactions on this mob
+	var/list/queued_interactions
 	var/list/datum/action/actions = list()
 	var/list/actions_by_path = list()
 	var/lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE

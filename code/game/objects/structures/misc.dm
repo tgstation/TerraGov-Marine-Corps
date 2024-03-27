@@ -73,6 +73,8 @@
 
 /obj/structure/mopbucket/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/mop))
 		if(reagents.total_volume < 1)
@@ -382,7 +384,7 @@
 /obj/structure/cryopods
 	name = "hypersleep chamber"
 	icon = 'icons/obj/machines/cryogenics.dmi'
-	icon_state = "body_scanner_0"
+	icon_state = "body_scanner"
 	desc = "A large automated capsule with LED displays intended to put anyone inside into 'hypersleep'."
 	density = TRUE
 	anchored = TRUE

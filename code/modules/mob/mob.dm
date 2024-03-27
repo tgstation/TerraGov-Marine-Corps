@@ -236,13 +236,13 @@
 			return FALSE
 		equip_to_slot(W, slot) //This proc should not ever fail.
 		//This will unwield items -without- triggering lights.
-		if(CHECK_BITFIELD(W.flags_item, TWOHANDED))
+		if(CHECK_BITFIELD(W.item_flags, TWOHANDED))
 			W.unwield(src)
 		return TRUE
 	else
 		equip_to_slot(W, slot) //This proc should not ever fail.
 		//This will unwield items -without- triggering lights.
-		if(CHECK_BITFIELD(W.flags_item, TWOHANDED))
+		if(CHECK_BITFIELD(W.item_flags, TWOHANDED))
 			W.unwield(src)
 		return TRUE
 
@@ -303,7 +303,7 @@
 	var/obj/item/found = I.do_quick_equip(src)
 	if(!found)
 		return FALSE
-	if(CHECK_BITFIELD(found.flags_inventory, NOQUICKEQUIP))
+	if(CHECK_BITFIELD(found.inventory_flags, NOQUICKEQUIP))
 		return FALSE
 	temporarilyRemoveItemFromInventory(found)
 	put_in_hands(found)
@@ -811,6 +811,7 @@
 		//This would go on on_revive() but that is a mob/living proc
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 		personal_statistics.times_revived++
+		personal_statistics.mission_times_revived++
 	SEND_SIGNAL(src, COMSIG_MOB_STAT_CHANGED, ., new_stat)
 
 /// Cleanup proc that's called when a mob loses a client, either through client destroy or logout

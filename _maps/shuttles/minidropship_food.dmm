@@ -7,7 +7,7 @@
 /area/shuttle/minidropship)
 "c" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
-/obj/machinery/camera/autoname/mainship,
+/obj/machinery/camera/autoname/mainship/dropship_two,
 /turf/open/floor/iron/white/textured_half,
 /area/shuttle/minidropship)
 "d" = (
@@ -18,7 +18,7 @@
 	pixel_x = 25;
 	pixel_y = 8
 	},
-/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/suit/storage/chef/classic,
 /obj/item/tool/kitchen/rollingpin,
 /obj/item/clothing/head/chefhat,
 /turf/open/floor/iron/white/textured_half{

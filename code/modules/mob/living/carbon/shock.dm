@@ -70,6 +70,7 @@
 		traumatic_shock -= 10
 	if(analgesic)
 		traumatic_shock = 0
+		return traumatic_shock
 
 
 	//Broken or ripped off organs and limbs will add quite a bit of pain
@@ -94,6 +95,10 @@
 			traumatic_shock -= 20 + M.protection_aura * 20 //-40 pain for SLs, -80 for Commanders
 
 	traumatic_shock += reagent_pain_modifier
+	if(HAS_TRAIT(src, TRAIT_MEDIUM_PAIN_RESIST))
+		traumatic_shock += PAIN_REDUCTION_HEAVY
+	else if(HAS_TRAIT(src, TRAIT_LIGHT_PAIN_RESIST))
+		traumatic_shock += PAIN_REDUCTION_MEDIUM
 
 	return traumatic_shock
 

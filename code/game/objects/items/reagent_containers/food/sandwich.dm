@@ -3,6 +3,8 @@
 
 /obj/item/reagent_containers/food/snacks/sandwiches/breadslice/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/shard) || istype(I, /obj/item/reagent_containers/food/snacks))
 		var/obj/item/reagent_containers/food/snacks/sandwiches/csandwich/S = new(loc)
@@ -82,6 +84,8 @@
 
 /obj/item/reagent_containers/food/snacks/sandwiches/csandwich/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	var/sandwich_limit = 4
 	for(var/obj/item/reagent_containers/food/snacks/sandwiches/breadslice/B in ingredients)

@@ -444,6 +444,8 @@
 	if(iscrowbar(I)) // Prevent generation of infinite 'floor_tile' objs caused by the overridden make_plating() above never clearing the var
 		return
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		user.visible_message(span_notice("[user] starts removing [src]'s protective cover."),

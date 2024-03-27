@@ -14,7 +14,7 @@
 		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
 	)
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 2
 	throw_speed = 3
@@ -95,6 +95,8 @@
 
 /obj/item/assembly/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(isassembly(I))
 		var/obj/item/assembly/A = I
 		if(!A.secured && !secured)

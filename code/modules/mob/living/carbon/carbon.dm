@@ -16,7 +16,7 @@
 		to_chat(src,"<b>[span_deadsay("<p style='font-size:1.5em'>[species.special_death_message]</p>")]</b>")
 	return ..()
 
-/mob/living/carbon/Moved(oldLoc, dir)
+/mob/living/carbon/Moved(atom/old_loc, movement_dir, forced = FALSE, list/old_locs)
 	. = ..()
 	if(nutrition && stat != DEAD)
 		adjust_nutrition(-HUNGER_FACTOR * 0.1 * ((m_intent == MOVE_INTENT_RUN) ? 2 : 1))
@@ -202,7 +202,7 @@
 
 ///Called by the carbon throw_item() proc. Returns null if the item negates the throw, or a reference to the thing to suffer the throw else.
 /obj/item/proc/on_thrown(mob/living/carbon/user, atom/target)
-	if((flags_item & ITEM_ABSTRACT) || HAS_TRAIT(src, TRAIT_NODROP))
+	if((item_flags & ITEM_ABSTRACT) || HAS_TRAIT(src, TRAIT_NODROP))
 		return
 	user.dropItemToGround(src, TRUE)
 	return src
@@ -340,14 +340,14 @@
 
 	sight = initial(sight)
 	lighting_alpha = initial(lighting_alpha)
-	see_in_dark = species.darksight
+	see_in_dark = initial(see_in_dark)
 	see_invisible = initial(see_invisible)
 
 	if(species)
 		if(species.lighting_alpha)
-			lighting_alpha = initial(species.lighting_alpha)
+			lighting_alpha = species.lighting_alpha
 		if(species.see_in_dark)
-			see_in_dark = initial(species.see_in_dark)
+			see_in_dark = species.see_in_dark
 
 	if(client.eye != src)
 		var/atom/A = client.eye
@@ -365,6 +365,14 @@
 				see_invisible = min(G.invis_view, see_invisible)
 			if(!isnull(G.lighting_alpha))
 				lighting_alpha = min(lighting_alpha, G.lighting_alpha)
+			if(G.tint && !fullscreens["glasses"])
+				var/atom/movable/screen/fullscreen/screen = overlay_fullscreen("glasses", /atom/movable/screen/fullscreen/flash)
+				screen.color = G.tint
+				screen.alpha = 50
+		else
+			clear_fullscreen("glasses")
+	else
+		clear_fullscreen("glasses")
 
 	if(see_override)
 		see_invisible = see_override

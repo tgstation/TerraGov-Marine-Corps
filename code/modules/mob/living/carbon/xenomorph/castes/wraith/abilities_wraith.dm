@@ -391,7 +391,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(isclosedturf(T) && !ignore_closed_turf) //If we care about closed turfs
 		return TRUE
 	for(var/atom/blocker AS in T)
-		if((blocker.flags_atom & ON_BORDER) || blocker == subject) //If they're a border entity or our subject, we don't care
+		if((blocker.atom_flags & ON_BORDER) || blocker == subject) //If they're a border entity or our subject, we don't care
 			continue
 		if(!blocker.CanPass(subject, T) && !ignore_can_pass) //If the subject atom can't pass and we care about that, we have a block
 			return TRUE
@@ -493,7 +493,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, span_xenowarning("There is already a portal here!"))
 		return FALSE
 	var/area/area = get_area(owner)
-	if(area.flags_area & MARINE_BASE)
+	if(area.area_flags & MARINE_BASE)
 		if(!silent)
 			to_chat(owner, span_xenowarning("You cannot portal here!"))
 		return FALSE
@@ -561,6 +561,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	QDEL_NULL(portal_visuals)
 	return ..()
 
+/obj/effect/wraith_portal/ex_act()
+	if(linked_portal)
+		qdel(linked_portal)
+	qdel(src)
+
 /obj/effect/wraith_portal/attack_ghost(mob/dead/observer/user)
 	. = ..()
 	if(!linked_portal)
@@ -597,6 +602,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	for(var/mob/rider AS in crosser.buckled_mobs)
 		if(ishuman(rider))
 			crosser.unbuckle_mob(rider)
+	if(crosser.throwing)
+		crosser.throw_source = get_turf(linked_portal)
 	crosser.Move(get_turf(linked_portal), crosser.dir)
 	UnregisterSignal(crosser, COMSIG_MOVABLE_MOVED)
 
@@ -644,8 +651,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	animate(get_filter("portal_ripple"), time = 1.3 SECONDS, loop = -1, easing = LINEAR_EASING, radius = 32)
 
 	vis_contents += our_destination
-/obj/effect/wraith_portal/ex_act()
-	qdel(src)
 
 /datum/action/ability/activable/xeno/rewind
 	name = "Time Shift"

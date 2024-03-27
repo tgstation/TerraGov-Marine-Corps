@@ -32,17 +32,17 @@
 	equip_delay_self = parent.equip_delay_self
 	strip_delay = parent.strip_delay
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(access_storage))
-	RegisterSignal(parent, COMSIG_ALT_RIGHT_CLICK, PROC_REF(open_storage))	//Open storage if the armor is alt right clicked
+	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, PROC_REF(open_storage))	//Open storage if the armor is alt right clicked
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(insert_item))
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_GHOST, PROC_REF(open_storage))
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, PROC_REF(draw_from_storage))
-	RegisterSignal(parent, COMSIG_ATOM_SPECIALCLICK, PROC_REF(left_draw_from_storage))
+	RegisterSignal(parent, COMSIG_CLICK_CTRL, PROC_REF(left_draw_from_storage))
 	storage.master_item = parent
 
 /obj/item/armor_module/storage/on_detach(obj/item/detaching_from, mob/user)
 	equip_delay_self = initial(equip_delay_self)
 	strip_delay = initial(strip_delay)
-	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_ALT_RIGHT_CLICK, COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_ATTACK_GHOST, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, COMSIG_ATOM_SPECIALCLICK))
+	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_CLICK_ALT_RIGHT, COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_ATTACK_GHOST, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, COMSIG_CLICK_CTRL))
 	storage.master_item = src
 	return ..()
 
@@ -115,7 +115,7 @@
 /obj/item/armor_module/storage/pocket
 	icon_state = ""
 	item_state = ""
-	flags_attach_features = ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_APPLY_ON_MOB
 	storage = /obj/item/storage/internal/pocket
 
 /obj/item/storage/internal/pocket
@@ -184,7 +184,7 @@
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
-		/obj/item/cell/lasgun/plasma_powerpack,
+		/obj/item/cell/lasgun/plasma,
 	)
 	cant_hold = list(/obj/item/cell/lasgun/volkite/powerpack)
 
@@ -272,7 +272,7 @@
 		/obj/item/tool/multitool,
 		/obj/item/binoculars/tactical/range,
 		/obj/item/explosive/plastique,
-		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_small,
 		/obj/item/explosive/grenade/chem_grenade/razorburn_large,
 		/obj/item/cell/apc,
 		/obj/item/cell/high,
@@ -385,7 +385,7 @@
 	desc = "A small set of straps to hold something in your boot."
 	icon_state = ""
 	storage = /obj/item/storage/internal/shoes/boot_knife
-	flags_attach_features = ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_APPLY_ON_MOB
 
 /obj/item/storage/internal/shoes/boot_knife
 	max_storage_space = 3
@@ -415,7 +415,7 @@
 	icon_state = ""
 	storage = /obj/item/storage/internal/marinehelmet
 	show_storage = TRUE
-	flags_attach_features = NONE
+	attach_features_flags = NONE
 
 /obj/item/storage/internal/marinehelmet
 	max_storage_space = 3

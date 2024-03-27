@@ -4,6 +4,7 @@
 	icon = 'icons/Xeno/2x2building.dmi'
 	icon_state = "gargoyle"
 	max_integrity = 100
+	xeno_structure_flags = CRITICAL_STRUCTURE|IGNORE_WEED_REMOVAL
 	///Bool if we're currently alerting
 	var/is_alerting = FALSE
 	//cd tracking for the alert
@@ -39,7 +40,7 @@
 			return
 
 	is_alerting = TRUE
-	GLOB.hive_datums[hivenumber].xeno_message("Our [name] has detected a hostile [hostile] at [get_area(hostile)].", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien_help2.ogg', FALSE, null, /atom/movable/screen/arrow/leader_tracker_arrow)
+	GLOB.hive_datums[hivenumber].xeno_message("Our [name] has detected a hostile [hostile] at [get_area(hostile)].", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien_talk2.ogg', FALSE, null, /atom/movable/screen/arrow/leader_tracker_arrow)
 	COOLDOWN_START(src, proxy_alert_cooldown, XENO_GARGOYLE_DETECTION_COOLDOWN)
 	addtimer(CALLBACK(src, PROC_REF(clear_warning)), XENO_GARGOYLE_DETECTION_COOLDOWN, TIMER_STOPPABLE)
 	update_minimap_icon()
@@ -58,4 +59,4 @@
 ///resets minimap icon for the gargoyle
 /obj/structure/xeno/resin_gargoyle/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "gargoyle[is_alerting ? "_alarm" : ""]"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "gargoyle[is_alerting ? "_alarm" : ""]", ABOVE_FLOAT_LAYER))

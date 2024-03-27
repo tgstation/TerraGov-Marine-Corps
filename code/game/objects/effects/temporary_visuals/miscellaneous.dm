@@ -175,7 +175,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 
 	var/marker_flags = GLOB.faction_to_minimap_flag[faction]
 	if(marker_flags)
-		SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips_large.dmi', null, icon_state_on))
+		SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips_large.dmi', null, icon_state_on, VERY_HIGH_FLOAT_LAYER))
 	set_visuals(faction)
 
 /obj/effect/temp_visual/order/attack_order

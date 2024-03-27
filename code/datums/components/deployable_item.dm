@@ -15,7 +15,7 @@
 	undeploy_time = _undeploy_time
 
 	var/obj/item/attached_item = parent
-	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
+	if(CHECK_BITFIELD(attached_item.item_flags, DEPLOY_ON_INITIALIZE))
 		finish_deploy(attached_item, null, attached_item.loc, attached_item.dir)
 
 /datum/component/deployable_item/RegisterWithParent()
@@ -69,11 +69,11 @@
 			location.balloon_alert(user, "No room to deploy")
 			return
 		var/newdir = get_dir(user, location)
-		if(deploy_type.flags_atom & ON_BORDER)
+		if(deploy_type.atom_flags & ON_BORDER)
 			for(var/obj/object in location)
 				if(!object.density)
 					continue
-				if(!(object.flags_atom & ON_BORDER))
+				if(!(object.atom_flags & ON_BORDER))
 					continue
 				if(object.dir != newdir)
 					continue
@@ -91,7 +91,7 @@
 			return
 		user.temporarilyRemoveItemFromInventory(item_to_deploy)
 
-		item_to_deploy.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_AUTOEJECT, COMSIG_MOB_RIGHT_CLICK)) //This unregisters Signals related to guns, its for safety
+		item_to_deploy.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_AUTOEJECT, COMSIG_MOB_CLICK_RIGHT)) //This unregisters Signals related to guns, its for safety
 
 		direction_to_deploy = newdir
 
