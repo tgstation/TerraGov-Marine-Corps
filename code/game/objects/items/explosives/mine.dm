@@ -52,7 +52,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	icon = 'icons/obj/items/mine.dmi'
 	icon_state = "proximity"
 	resistance_flags = XENO_DAMAGEABLE
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_SMALL
 	max_integrity = 100
 	force = 5
@@ -60,8 +60,6 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	throw_range = 6
 	throw_speed = 3
 	atom_flags = CONDUCT
-	///Trigger flags for this mine
-	var/target_mode = MINE_LIVING_ONLY
 	/// IFF signal - used to determine friendly units
 	var/iff_signal = NONE
 	///If the mine has been triggered
@@ -985,7 +983,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		if(isobj(atom) && !iseffect(atom))
 			var/obj/lightning_rod = atom
 			//Prevents targeting things like wiring under floor tiles and makes it so only conductive objects will attract lightning
-			if(lightning_rod.invisibility > SEE_INVISIBLE_LIVING || !CHECK_BITFIELD(lightning_rod.flags_atom, CONDUCT))
+			if(lightning_rod.invisibility > SEE_INVISIBLE_LIVING || !CHECK_BITFIELD(lightning_rod.atom_flags, CONDUCT))
 				continue
 			lightning_rod.take_damage(damage, BURN, ENERGY)
 			target = lightning_rod
