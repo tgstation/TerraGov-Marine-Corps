@@ -281,7 +281,7 @@
 	/// smoke type created when the grenade is primed
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
 	///radius this smoke grenade will encompass
-	var/smokeradius = 7
+	var/smokeradius = 6
 	///The duration of the smoke
 	var/smoke_duration = 11
 
@@ -310,7 +310,6 @@
 	det_time = 4 SECONDS
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/medium
-	smokeradius = 6
 
 /obj/item/explosive/grenade/smokebomb/acid
 	name = "\improper M40-A Acid smoke grenade"
@@ -320,7 +319,7 @@
 	hud_state = "grenade_acid"
 	det_time = 4 SECONDS
 	dangerous = TRUE
-	smoketype = /datum/effect_system/smoke_spread/xeno/acid
+	smoketype = /datum/effect_system/smoke_spread/xeno/acid/opaque
 	smokeradius = 5
 
 /obj/item/explosive/grenade/smokebomb/satrapine
@@ -332,7 +331,6 @@
 	det_time = 4 SECONDS
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/satrapine
-	smokeradius = 6
 
 /obj/item/explosive/grenade/smokebomb/satrapine/activate(mob/user)
 	. = ..()
@@ -348,6 +346,7 @@
 	hud_state = "grenade_hide"
 	icon_state_mini = "grenade_green"
 	smoketype = /datum/effect_system/smoke_spread/tactical
+	smokeradius = 7
 
 /obj/item/explosive/grenade/smokebomb/cloak/ags
 	name = "\improper AGLS-37 SCDP smoke grenade"
@@ -365,10 +364,11 @@
 	icon_state_mini = "grenade_blue"
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
+	smokeradius = 7
 
 /obj/item/explosive/grenade/smokebomb/antigas
 	name = "\improper M40-AG smoke grenade"
-	desc = "A gas grenade originally designed to remove any contaminates in the air for the purpose of cleaning, now repurposed to remove hostile gasses."
+	desc = "A gas grenade originally designed to remove any contaminants in the air for the purpose of cleaning, now repurposed to remove hostile gases."
 	icon_state = "grenade_agas"
 	item_state = "grenade_agas"
 	hud_state = "grenade_antigas"
@@ -376,6 +376,7 @@
 	icon_state_mini = "grenade_antigas"
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/antigas
+	smokeradius = 7
 
 /obj/item/explosive/grenade/smokebomb/drain/agls
 	name = "\improper AGLS-T smoke grenade"
@@ -442,7 +443,7 @@
 		explosion(loc, light_impact_range = 1, flash_range = 2)
 		qdel(src)
 
-
+#define FLARE_FIRE_STACKS 5
 /obj/item/explosive/grenade/flare
 	name = "\improper M40 FLDP grenade"
 	desc = "A TGMC standard issue flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand."
@@ -485,68 +486,6 @@
 	if(!fuel || !active)
 		turn_off()
 
-/obj/item/explosive/grenade/flare/proc/turn_off()
-	active = FALSE
-	fuel = 0
-	heat = 0
-	item_fire_stacks = 0
-	force = initial(force)
-	damtype = initial(damtype)
-	update_brightness()
-	icon_state = "[initial(icon_state)]_empty" // override icon state set by update_brightness
-	STOP_PROCESSING(SSobj, src)
-
-/obj/item/explosive/grenade/flare/proc/turn_on()
-	active = TRUE
-	force = 5
-	throwforce = 10
-	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
-	item_fire_stacks = 5
-	heat = 1500
-	damtype = BURN
-	update_brightness()
-	playsound(src,'sound/items/flare.ogg', 15, 1)
-	START_PROCESSING(SSobj, src)
-
-/obj/item/explosive/grenade/flare/attack_self(mob/user)
-
-	// Usual checks
-	if(!fuel)
-		to_chat(user, span_notice("It's out of fuel."))
-		return
-	if(active)
-		return
-
-	// All good, turn it on.
-	user.visible_message(span_notice("[user] activates the flare."), span_notice("You depress the ignition button, activating it!"))
-	turn_on(user)
-
-/obj/item/explosive/grenade/flare/activate(mob/user)
-	if(!active)
-		turn_on(user)
-
-/obj/item/explosive/grenade/flare/on/Initialize(mapload)
-	. = ..()
-	active = TRUE
-	heat = 1500
-	update_brightness()
-	force = 5
-	throwforce = 10
-	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
-	item_fire_stacks = 5
-	damtype = BURN
-	START_PROCESSING(SSobj, src)
-
-/obj/item/explosive/grenade/flare/proc/update_brightness()
-	if(active && fuel > 0)
-		icon_state = "[initial(icon_state)]_active"
-		item_state = "[initial(item_state)]_active"
-		set_light_on(TRUE)
-	else
-		icon_state = initial(icon_state)
-		item_state = initial(item_state)
-		set_light_on(FALSE)
-
 /obj/item/explosive/grenade/flare/throw_impact(atom/hit_atom, speed)
 	if(isopenturf(hit_atom))
 		var/obj/alien/weeds/node/N = locate() in loc
@@ -560,13 +499,70 @@
 		return
 
 	if(isliving(hit_atom))
-		var/mob/living/L = hit_atom
+		var/mob/living/living_target = hit_atom
+		living_target.fire_stacks += FLARE_FIRE_STACKS
+		living_target.IgniteMob()
 
-		var/target_zone = check_zone(L.zone_selected)
+		var/target_zone = check_zone(living_target.zone_selected)
 		if(!target_zone || rand(40))
 			target_zone = "chest"
-		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE) && !L.on_fire)
-			L.apply_damage(randfloat(throwforce * 0.75, throwforce * 1.25), BURN, target_zone, FIRE, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
+		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE) && !living_target.on_fire)
+			living_target.apply_damage(randfloat(throwforce * 0.75, throwforce * 1.25), BURN, target_zone, FIRE, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
+
+/obj/item/explosive/grenade/flare/attack_self(mob/user)
+	if(!fuel)
+		to_chat(user, span_notice("It's out of fuel."))
+		return
+	if(active)
+		return
+
+	user.visible_message(span_notice("[user] activates the flare."), span_notice("You depress the ignition button, activating it!"))
+	turn_on(user)
+
+/obj/item/explosive/grenade/flare/activate(mob/user)
+	if(!active)
+		turn_on(user)
+
+/obj/item/explosive/grenade/flare/update_icon_state()
+	if(active && fuel > 0)
+		icon_state = "[initial(icon_state)]_active"
+		item_state = "[initial(item_state)]_active"
+	else if(!fuel)
+		icon_state = "[initial(icon_state)]_empty"
+		item_state = "[initial(item_state)]_empty"
+	else
+		icon_state = initial(icon_state)
+		item_state = initial(item_state)
+
+
+///Shuts the flare off
+/obj/item/explosive/grenade/flare/proc/turn_off()
+	active = FALSE
+	fuel = 0
+	heat = 0
+	force = initial(force)
+	damtype = initial(damtype)
+	update_icon()
+	set_light_on(FALSE)
+	STOP_PROCESSING(SSobj, src)
+
+///Activates the flare
+/obj/item/explosive/grenade/flare/proc/turn_on()
+	active = TRUE
+	force = 5
+	throwforce = 10
+	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
+	heat = 1500
+	damtype = BURN
+	update_icon()
+	set_light_on(TRUE)
+	playsound(src,'sound/items/flare.ogg', 15, 1)
+	START_PROCESSING(SSobj, src)
+
+//Starts on
+/obj/item/explosive/grenade/flare/on/Initialize(mapload)
+	. = ..()
+	turn_on()
 
 /obj/item/explosive/grenade/flare/civilian
 	name = "flare"
@@ -615,8 +611,7 @@
 	upper_fuel_limit = 20
 	light_system = STATIC_LIGHT//movable light has a max range
 	light_color = LIGHT_COLOR_CYAN
-	///The brightness of the flare
-	var/brightness = 12
+	light_range = 12
 
 /obj/item/explosive/grenade/flare/strongerflare/throw_impact(atom/hit_atom, speed)
 	. = ..()
@@ -624,11 +619,6 @@
 		return
 	anchored = TRUE//prevents marines from picking up and running around with a stronger flare
 
-/obj/item/explosive/grenade/flare/strongerflare/update_brightness()
+/obj/item/explosive/grenade/flare/strongerflare/turn_off()
 	. = ..()
-	if(active && fuel > 0)
-		icon_state = "[initial(icon_state)]_active"
-		set_light(brightness)
-	else
-		icon_state = initial(icon_state)
-		set_light(0)
+	set_light(0)

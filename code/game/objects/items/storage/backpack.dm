@@ -19,7 +19,7 @@
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		)
 	w_class = WEIGHT_CLASS_BULKY
-	flags_equip_slot = ITEM_SLOT_BACK	//ERROOOOO
+	equip_slot_flags = ITEM_SLOT_BACK	//ERROOOOO
 	max_w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = null
 	max_storage_space = 24
@@ -66,28 +66,11 @@
 	max_w_class = WEIGHT_CLASS_BULKY
 	max_storage_space = 28
 
-/obj/item/storage/backpack/holding/proc/failcheck(mob/user)
-	if (prob(reliability))
-		return TRUE //No failure
-	if (prob(reliability))
-		to_chat(user, span_warning("The Bluespace portal resists your attempt to add another item."))
-	else
-		to_chat(user, span_warning("The Bluespace generator malfunctions!"))
-		for (var/obj/O in src.contents) //it broke, delete what was in it
-			qdel(O)
-		crit_fail = 1
-		icon_state = "brokenpack"
-
 /obj/item/storage/backpack/holding/attackby(obj/item/I, mob/user, params)
-	if(crit_fail)
-		to_chat(user, span_warning("The Bluespace generator isn't working."))
-
-	else if(istype(I, /obj/item/storage/backpack/holding) && !I.crit_fail)
-		to_chat(user, span_warning("The Bluespace interfaces of the two devices conflict and malfunction."))
-		qdel(I)
-
-	else
+	if(!istype(I, /obj/item/storage/backpack/holding))
 		return ..()
+	to_chat(user, span_warning("The Bluespace interfaces of the two devices conflict and malfunction."))
+	qdel(I)
 
 /obj/item/storage/backpack/santabag
 	name = "Santa's Gift Bag"
@@ -364,14 +347,14 @@
 
 /obj/item/storage/backpack/marine/tech
 	name = "\improper TGMC technician backpack"
-	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
+	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and HSG-102 emplacement parts."
 	icon_state = "marinepackt"
 	item_state = "marinepackt"
 	bypass_w_limit = list(
 		/obj/item/weapon/gun/sentry/big_sentry,
 		/obj/item/weapon/gun/sentry/mini,
-		/obj/item/weapon/gun/tl102,
-		/obj/item/ammo_magazine/tl102,
+		/obj/item/weapon/gun/hsg_102,
+		/obj/item/ammo_magazine/hsg_102,
 		/obj/item/ammo_magazine/sentry,
 		/obj/item/ammo_magazine/minisentry,
 		/obj/item/mortal_shell,
@@ -411,7 +394,7 @@
 	item_state = "marinesatt"
 	bypass_w_limit = list(
 		/obj/item/weapon/gun/sentry/mini,
-		/obj/item/ammo_magazine/tl102,
+		/obj/item/ammo_magazine/hsg_102,
 		/obj/item/ammo_magazine/sentry,
 		/obj/item/ammo_magazine/minisentry,
 		/obj/item/mortal_shell,

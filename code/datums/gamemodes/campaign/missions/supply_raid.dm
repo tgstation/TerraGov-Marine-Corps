@@ -87,5 +87,5 @@
 	map_traits = list(ZTRAIT_AWAY = TRUE)
 	map_light_levels = list(225, 150, 100, 75)
 	objectives_total = 8
-	min_destruction_amount = 5
+	min_destruction_amount = 6
 	hostile_faction_additional_rewards = "Prevent the degradation of our attrition generation. B18 power armour available if you successfully protect this depot."

@@ -19,8 +19,8 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "riot"
 	max_integrity = 200
-	flags_item = IMPEDE_JETPACK
-	flags_equip_slot = ITEM_SLOT_BACK
+	item_flags = IMPEDE_JETPACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	force = 5
 	throwforce = 5
 	throw_speed = 1
@@ -93,7 +93,7 @@
 	desc = "A heavy shield adept at blocking blunt or sharp objects from connecting with the shield wielder. Looks very robust. Alt click to tighten the strap."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "marine_shield"
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	max_integrity = 400
 	integrity_failure = 100
 	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 20, ENERGY = 70, BOMB = 15, BIO = 50, FIRE = 0, ACID = 30)
@@ -140,13 +140,13 @@
 	desc = "A compact shield adept at blocking blunt or sharp objects from connecting with the shield wielder. Can be deployed as a barricade. Alt click to tighten the strap."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "folding_shield"
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_NORMAL
 	max_integrity = 300
 	integrity_failure = 50
 	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 20, ENERGY = 40, BOMB = 25, BIO = 50, FIRE = 0, ACID = 30)
 	slowdown = 0.3
-	flags_item = IS_DEPLOYABLE
+	item_flags = IS_DEPLOYABLE
 	///The item this deploys into
 	var/deployable_item = /obj/structure/barricade/metal/deployable
 	///Time to deploy
@@ -168,7 +168,7 @@
 	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "eshield0" // eshield1 for expanded
-	flags_atom = CONDUCT|NOBLOODY
+	atom_flags = CONDUCT|NOBLOODY
 	force = 3
 	throwforce = 5
 	throw_speed = 1

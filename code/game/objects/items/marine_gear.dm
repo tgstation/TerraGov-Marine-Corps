@@ -248,11 +248,11 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "gun_sling"
 	item_state = "gun_sling"
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
 	equip_delay_self = 2 SECONDS
 	unequip_delay_self = 1 SECONDS
-	flags_inventory = NOQUICKEQUIP
+	inventory_flags = NOQUICKEQUIP
 	///The current attacher. Gets remade for every new item
 	var/datum/component/reequip/reequip_component
 

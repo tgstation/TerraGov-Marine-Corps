@@ -4786,7 +4786,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/computer/intel_computer,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/casino)
 "dgr" = (
@@ -8166,7 +8165,9 @@
 /area/gelida/indoors/a_block/bridges/corpo_fitness)
 "flF" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set2", "set3")
+	},
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/security)
 "flJ" = (
@@ -9646,10 +9647,6 @@
 /obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
-"gqh" = (
-/obj/machinery/computer/intel_computer,
-/turf/open/floor/prison,
-/area/gelida/cavestructuretwo)
 "gqE" = (
 /obj/structure/platform_decoration,
 /obj/effect/landmark/weed_node,
@@ -10066,7 +10063,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set1", "set2", "set3", "set4")
+	},
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
 "gDB" = (
@@ -20048,7 +20047,7 @@
 /area/gelida/indoors/a_block/executive)
 "nkE" = (
 /obj/structure/table/mainship,
-/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/suit/storage/chef/classic,
 /turf/open/floor/prison/kitchen,
 /area/gelida/indoors/a_block/kitchen)
 "nkH" = (
@@ -21386,10 +21385,6 @@
 	},
 /turf/closed/wall,
 /area/gelida/indoors/a_block/admin)
-"oca" = (
-/obj/machinery/computer/intel_computer,
-/turf/open/floor/prison/darkbrown/full,
-/area/gelida/indoors/c_block/casino)
 "ocn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -23058,7 +23053,9 @@
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
 "pfn" = (
-/obj/structure/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set2", "set4")
+	},
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "pfs" = (
@@ -23647,7 +23644,9 @@
 /turf/open/floor/plating,
 /area/gelida/powergen)
 "pzF" = (
-/obj/structure/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set1")
+	},
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -24571,7 +24570,9 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/admin)
 "qdj" = (
-/obj/machinery/computer/intel_computer,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set4")
+	},
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/medical)
 "qdK" = (
@@ -30071,10 +30072,6 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship/black/full,
 /area/gelida/outdoors/colony_streets/central_streets)
-"tJg" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/prison/sterilewhite/full,
-/area/gelida/indoors/a_block/medical)
 "tJs" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
@@ -35508,6 +35505,10 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
+"xDw" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/plate,
+/area/gelida/indoors/a_block/hallway)
 "xDF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
@@ -35533,7 +35534,9 @@
 	},
 /area/gelida/outdoors/colony_streets/central_streets)
 "xDW" = (
-/obj/structure/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set1", "set3")
+	},
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -39729,7 +39732,7 @@ iUh
 sZZ
 upW
 eOl
-gqh
+upW
 mSM
 res
 sZZ
@@ -49562,7 +49565,7 @@ sKa
 bqU
 xTa
 vPO
-glJ
+ams
 sKa
 fTS
 sKa
@@ -50456,7 +50459,7 @@ vPO
 kiM
 kiM
 vPO
-glJ
+ams
 sKa
 vWC
 sKa
@@ -62500,7 +62503,7 @@ jaT
 gKW
 xvC
 xvC
-oca
+tAB
 mQy
 wmi
 mQy
@@ -70471,7 +70474,7 @@ pYZ
 fBW
 orh
 mhj
-tJg
+mxg
 vCT
 ojR
 ojR
@@ -72472,7 +72475,7 @@ orh
 nPI
 tcF
 wvV
-wsk
+xDw
 orh
 hPB
 rRB

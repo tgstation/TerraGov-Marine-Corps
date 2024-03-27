@@ -144,11 +144,11 @@
 		var/obj/hit_object = hit_atom
 		if(istype(hit_object, /obj/structure/xeno))
 			return
-		hit_object.take_damage(thrown_damage, BRUTE)
+		hit_object.take_damage(thrown_damage, BRUTE, MELEE)
 	if(iswallturf(hit_atom))
 		var/turf/closed/wall/hit_wall = hit_atom
 		if(!(hit_wall.resistance_flags & INDESTRUCTIBLE))
-			hit_wall.take_damage(thrown_damage, BRUTE)
+			hit_wall.take_damage(thrown_damage, BRUTE, MELEE)
 
 /// Ends the target's throw.
 /datum/action/ability/activable/xeno/warrior/proc/throw_ended(datum/source)
@@ -230,7 +230,7 @@
 		if(!silent)
 			owner.balloon_alert(owner, "Dead")
 		return FALSE
-	if(get_dist_euclide_square(living_target, owner) > WARRIOR_LUNGE_RANGE * 5)
+	if(get_dist_euclidean_square(living_target, owner) > WARRIOR_LUNGE_RANGE * 5)
 		if(!silent)
 			owner.balloon_alert(owner, "Too far")
 		return FALSE

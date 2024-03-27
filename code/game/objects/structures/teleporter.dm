@@ -28,7 +28,7 @@
 
 /obj/machinery/deployable/teleporter/Initialize(mapload)
 	. = ..()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "teleporter"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "teleporter", HIGH_FLOAT_LAYER))
 
 
 /obj/machinery/deployable/teleporter/attack_hand(mob/living/user)
@@ -151,10 +151,10 @@
 	icon_state = "teleporter"
 
 	max_integrity = 200
-	flags_item = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
+	item_flags = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
 
 	w_class = WEIGHT_CLASS_BULKY
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	///The linked teleporter
 	var/obj/item/teleporter_kit/linked_teleporter
 	///The optional cell to power the teleporter if off the grid

@@ -12104,7 +12104,7 @@
 /area/daedalusprison/inside/hydroponics)
 "kbA" = (
 /obj/structure/table,
-/obj/item/clothing/suit/apron,
+/obj/item/clothing/suit/storage/apron,
 /turf/open/floor/tile/green/greentaupecorner,
 /area/daedalusprison/inside/garden)
 "kbJ" = (
@@ -12763,7 +12763,7 @@
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/inside/bunker/east)
 "kEx" = (
-/obj/item/clothing/suit/apron,
+/obj/item/clothing/suit/storage/apron,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/green/greentaupecorner{
 	dir = 1
@@ -19442,7 +19442,7 @@
 /area/daedalusprison/inside/pmcdropship)
 "pSw" = (
 /obj/structure/table/mainship,
-/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/suit/storage/chef/classic,
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/inside/colonydorms)
 "pSy" = (
@@ -29766,7 +29766,7 @@
 /area/daedalusprison/inside/westcomputerlab)
 "ykk" = (
 /obj/structure/table/mainship,
-/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/suit/storage/chef/classic,
 /turf/open/floor/prison/kitchen,
 /area/daedalusprison/inside/kitchen)
 "ykE" = (
