@@ -1,7 +1,7 @@
 /obj/alien/egg
 	name = "theoretical egg"
 	density = FALSE
-	flags_atom = CRITICAL_ATOM
+	atom_flags = CRITICAL_ATOM
 	max_integrity = 80
 	integrity_failure = 20
 	///What maturity stage are we in
@@ -83,7 +83,7 @@
 	name = "hugger egg"
 	icon_state = "egg_hugger"
 	density = FALSE
-	flags_atom = CRITICAL_ATOM
+	atom_flags = CRITICAL_ATOM
 	max_integrity = 80
 	maturity_time = 15 SECONDS
 	stage_ready_to_burst = 2

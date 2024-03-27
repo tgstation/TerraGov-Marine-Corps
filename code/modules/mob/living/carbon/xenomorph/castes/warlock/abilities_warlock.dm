@@ -212,7 +212,7 @@
 	return !uncrossing
 
 /obj/effect/xeno/shield/do_projectile_hit(obj/projectile/proj)
-	proj.flags_projectile_behavior |= PROJECTILE_FROZEN
+	proj.projectile_behavior_flags |= PROJECTILE_FROZEN
 	proj.iff_signal = null
 	frozen_projectiles += proj
 	take_damage(proj.damage, proj.ammo.damage_type, proj.ammo.armor_type, 0, REVERSE_DIR(proj.dir), proj.ammo.penetration)
@@ -229,7 +229,7 @@
 ///Unfeezes the projectiles on their original path
 /obj/effect/xeno/shield/proc/release_projectiles()
 	for(var/obj/projectile/proj AS in frozen_projectiles)
-		proj.flags_projectile_behavior &= ~PROJECTILE_FROZEN
+		proj.projectile_behavior_flags &= ~PROJECTILE_FROZEN
 		proj.resume_move()
 	record_projectiles_frozen(owner, LAZYLEN(frozen_projectiles))
 
@@ -238,7 +238,7 @@
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 	var/perpendicular_angle = Get_Angle(get_turf(src), get_step(src, dir)) //the angle src is facing, get_turf because pixel_x or y messes with the angle
 	for(var/obj/projectile/proj AS in frozen_projectiles)
-		proj.flags_projectile_behavior &= ~PROJECTILE_FROZEN
+		proj.projectile_behavior_flags &= ~PROJECTILE_FROZEN
 		proj.distance_travelled = 0 //we're effectively firing it fresh
 		var/new_angle = (perpendicular_angle + (perpendicular_angle - proj.dir_angle - 180))
 		if(new_angle < 0)

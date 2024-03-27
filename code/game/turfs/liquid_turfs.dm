@@ -211,7 +211,7 @@
 	. = ..()
 	var/turf/current_turf = get_turf(src)
 	if(current_turf && density)
-		current_turf.flags_atom |= AI_BLOCKED
+		current_turf.atom_flags |= AI_BLOCKED
 
 /turf/open/liquid/lava/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
@@ -255,7 +255,7 @@
 			ChangeTurf(/turf/open/lavaland/catwalk/built)
 			var/turf/current_turf = get_turf(src)
 			if(current_turf && density)
-				current_turf.flags_atom &= ~AI_BLOCKED
+				current_turf.atom_flags &= ~AI_BLOCKED
 		else
 			to_chat(user, span_warning("You need four rods to build a heatproof catwalk."))
 		return

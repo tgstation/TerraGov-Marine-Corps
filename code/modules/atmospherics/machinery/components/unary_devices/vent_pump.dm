@@ -16,7 +16,7 @@
 	welded = FALSE
 	level = 1
 	layer = ATMOS_DEVICE_LAYER
-	flags_atom = SHUTTLE_IMMUNE
+	atom_flags = SHUTTLE_IMMUNE
 
 	var/pump_direction = RELEASING
 

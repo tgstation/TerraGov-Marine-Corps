@@ -82,7 +82,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
 	)
 	item_state = "pen"
-	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_EARS
+	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_EARS
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 7
 	throw_range = 15
@@ -119,7 +119,7 @@
 */
 /obj/item/tool/pen/sleepypen
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 
 
 /obj/item/tool/pen/sleepypen/Initialize(mapload)
@@ -141,7 +141,7 @@
 * Parapens
 */
 /obj/item/tool/pen/paralysis
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 
 
 /obj/item/tool/pen/paralysis/attack(mob/living/M as mob, mob/user as mob)

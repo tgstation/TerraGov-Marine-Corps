@@ -64,9 +64,9 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 	singular_name = "metal sheet"
 	icon_state = "sheet-metal"
 	item_state = "sheet-metal"
-	flags_item = NOBLUDGEON
+	item_flags = NOBLUDGEON
 	throwforce = 14
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	merge_type = /obj/item/stack/sheet/metal
 	number_of_extra_variants = 3
 
@@ -118,9 +118,9 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 	desc = "This sheet is an alloy of iron and phoron."
 	icon_state = "sheet-plasteel"
 	item_state = "sheet-plasteel"
-	flags_item = NOBLUDGEON
+	item_flags = NOBLUDGEON
 	throwforce = 15
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	merge_type = /obj/item/stack/sheet/plasteel
 	number_of_extra_variants = 3
 
