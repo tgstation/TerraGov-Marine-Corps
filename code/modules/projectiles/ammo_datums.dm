@@ -3508,6 +3508,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 				var/obj/obj_victim = target
 				if(!(obj_victim.resistance_flags & XENO_DAMAGEABLE))
 					continue
+				if(isbarricade(target))
+					continue
 				obj_victim.take_damage(aoe_damage, BURN, ENERGY, TRUE, armour_penetration = penetration)
 			if(target.anchored)
 				continue
