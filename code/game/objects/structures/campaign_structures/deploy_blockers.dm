@@ -17,7 +17,7 @@
 	icon_state = "tele_blocker"
 	pixel_x = -16
 	///What flag this removes from the mission
-	var/flags_to_remove = MISSION_DISALLOW_TELEPORT
+	var/to_remove_flags = MISSION_DISALLOW_TELEPORT
 	///The faction this belongs to
 	var/faction = FACTION_TERRAGOV
 	var/owning_faction_notification = "A teleportation disruptor has been deployed in this area. Protect the disruptor to ensure hostile forces cannot deploy via teleportation. "
@@ -51,7 +51,7 @@
 
 ///Signals its destruction, enabling the use of the teleporter asset
 /obj/structure/campaign_deployblocker/proc/deactivate()
-	SEND_SIGNAL(SSdcs, COMSIG_GLOB_CAMPAIGN_TELEBLOCKER_DISABLED, src, flags_to_remove, faction)
+	SEND_SIGNAL(SSdcs, COMSIG_GLOB_CAMPAIGN_TELEBLOCKER_DISABLED, src, to_remove_flags, faction)
 	SSminimaps.remove_marker(src)
 	GLOB.campaign_structures -= src
 
@@ -65,7 +65,7 @@
 /obj/structure/campaign_deployblocker/drop_blocker
 	name = "drop pod guidance disruptor array"
 	desc = "A sophisticated device intended to severely disrupt drop pod guidance systems, rendering them unusable while the tower stands."
-	flags_to_remove = MISSION_DISALLOW_DROPPODS
+	to_remove_flags = MISSION_DISALLOW_DROPPODS
 	faction = FACTION_SOM
 	owning_faction_notification = "A drop pod disruptor has been deployed in this area. Protect the disruptor to ensure hostile forces cannot deploy via drop pod. "
 	hostile_faction_notification = "The enemy has a device in this area that will prevent the use of our drop pods. Destroy this first to allow for drop pod assault against primary objectives. "

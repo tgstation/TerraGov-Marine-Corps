@@ -383,7 +383,7 @@
 		L.Paralyze(20 SECONDS)
 		L.visible_message(span_danger("[L] was stunned by [L.p_their()] wet [I]!"))
 
-	if(I.flags_item & ITEM_ABSTRACT)
+	if(I.item_flags & ITEM_ABSTRACT)
 		return
 
 	var/turf/location = user.loc

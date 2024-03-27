@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "tweezers"
 	item_state = "tweezers"
-	flags_item = NOBLUDGEON
+	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/tweezers/Initialize(mapload)
@@ -17,7 +17,7 @@
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "predator_bone-gel"
 	item_state = "predator_bone-gel"
-	flags_item = NOBLUDGEON
+	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/tweezers_advanced/Initialize(mapload)
