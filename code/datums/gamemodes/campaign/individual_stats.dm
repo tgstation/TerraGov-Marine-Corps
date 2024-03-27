@@ -1,3 +1,6 @@
+#define TAB_LOADOUT "Loadout"
+#define TAB_PERKS "Perks"
+
 /datum/individual_stats
 	interaction_flags = INTERACT_UI_INTERACT
 	var/owner_ckey
@@ -17,6 +20,8 @@
 	var/list/datum/outfit_holder/loadouts = list()
 	///The faction associated with these stats
 	var/faction
+	var/selected_tab = TAB_LOADOUT
+	var/selected_job
 
 /datum/individual_stats/New(mob/living/carbon/new_mob, new_faction, new_currency)
 	. = ..()
@@ -173,92 +178,95 @@
 	data["current_job"] = istype(living_user) ? living_user.job.title : null
 	data["currency"] = currency
 
+	//if(selected_tab == TAB_PERKS)
 	//perk stuff
 	var/list/perks_data = list()
-	for(var/job in perks_by_job)
-		for(var/datum/perk/perk AS in GLOB.campaign_perks_by_role[job])
-			var/list/perk_data = list()
-			perk_data["name"] = perk.name
-			perk_data["job"] = job
-			perk_data["type"] = perk.type
-			perk_data["desc"] = perk.desc
-			perk_data["requirements"] = perk.req_desc
-			perk_data["cost"] = perk.unlock_cost
-			perk_data["icon"] = perk.ui_icon
-			perk_data["currently_active"] = !!(perk in perks_by_job[job])
-			perks_data += list(perk_data)
+	for(var/datum/perk/perk AS in GLOB.campaign_perks_by_role[selected_job])
+		var/list/perk_data = list()
+		perk_data["name"] = perk.name
+		perk_data["job"] = selected_job
+		perk_data["type"] = perk.type
+		perk_data["desc"] = perk.desc
+		perk_data["requirements"] = perk.req_desc
+		perk_data["cost"] = perk.unlock_cost
+		perk_data["icon"] = perk.ui_icon
+		perk_data["currently_active"] = !!(perk in perks_by_job[selected_job])
+		perks_data += list(perk_data)
 	data["perks_data"] = perks_data
+	//return data
 
+	if(selected_tab != TAB_LOADOUT)
+		return data //something fucked up but ok
 	//loadout stuff
 	var/list/equipped_loadouts_data = list() //items currently equipped to ALL job outfits
 	var/list/available_loadouts_data = list() //all available AND purchasable loadout options
 	var/list/outfit_cost_data = list() //Current cost of all outfits
-	for(var/job in loadouts)
-		var/datum/outfit_holder/outfit = loadouts[job]
 
-		var/list/outfit_cost_list = list()
-		outfit_cost_list["job"] = job
-		outfit_cost_list["outfit_cost"] = outfit.loadout_cost
-		outfit_cost_data += list(outfit_cost_list)
+	var/datum/outfit_holder/outfit = loadouts[selected_job]
 
-		for(var/slot in outfit.equipped_things)
-			var/datum/loadout_item/loadout_item = outfit.equipped_things[slot]
-			if(!loadout_item)
-				continue
-			var/list/equipped_item_ui_data = list() //slot + equipped item data
-			var/list/current_loadout_item_data = list() //equipped item data
-			current_loadout_item_data["name"] = loadout_item.name
-			current_loadout_item_data["job"] = outfit.role
-			current_loadout_item_data["slot"] = GLOB.inventory_slots_to_string["[loadout_item.item_slot]"]
-			current_loadout_item_data["type"] = loadout_item.type
-			current_loadout_item_data["desc"] = loadout_item.desc
-			current_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
-			current_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost
-			current_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit)
-			current_loadout_item_data["icon"] = loadout_item.ui_icon
-			current_loadout_item_data["quantity"] = loadout_item.quantity
-			current_loadout_item_data["requirements"] = loadout_item.req_desc
-			current_loadout_item_data["unlocked"] = TRUE
+	var/list/outfit_cost_list = list()
+	outfit_cost_list["job"] = selected_job
+	outfit_cost_list["outfit_cost"] = outfit.loadout_cost
+	outfit_cost_data += list(outfit_cost_list)
 
-			equipped_item_ui_data["item_type"] = current_loadout_item_data
-			equipped_item_ui_data["slot"] = slot
-			equipped_item_ui_data["slot_text"] = GLOB.inventory_slots_to_string["[slot]"]
+	for(var/slot in outfit.equipped_things)
+		var/datum/loadout_item/loadout_item = outfit.equipped_things[slot]
+		if(!loadout_item)
+			continue
+		var/list/equipped_item_ui_data = list() //slot + equipped item data
+		var/list/current_loadout_item_data = list() //equipped item data
+		current_loadout_item_data["name"] = loadout_item.name
+		current_loadout_item_data["job"] = outfit.role
+		current_loadout_item_data["slot"] = GLOB.inventory_slots_to_string["[loadout_item.item_slot]"]
+		current_loadout_item_data["type"] = loadout_item.type
+		current_loadout_item_data["desc"] = loadout_item.desc
+		current_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
+		current_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost
+		current_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit)
+		current_loadout_item_data["icon"] = loadout_item.ui_icon
+		current_loadout_item_data["quantity"] = loadout_item.quantity
+		current_loadout_item_data["requirements"] = loadout_item.req_desc
+		current_loadout_item_data["unlocked"] = TRUE
 
-			equipped_loadouts_data += list(equipped_item_ui_data)
+		equipped_item_ui_data["item_type"] = current_loadout_item_data
+		equipped_item_ui_data["slot"] = slot
+		equipped_item_ui_data["slot_text"] = GLOB.inventory_slots_to_string["[slot]"]
 
-		for(var/slot in outfit.available_list)
-			for(var/datum/loadout_item/loadout_item AS in outfit.available_list[slot])
-				var/list/available_loadout_item_data = list()
-				available_loadout_item_data["name"] = loadout_item.name
-				available_loadout_item_data["job"] = outfit.role
-				available_loadout_item_data["slot"] = GLOB.inventory_slots_to_string["[loadout_item.item_slot]"]
-				available_loadout_item_data["type"] = loadout_item.type
-				available_loadout_item_data["desc"] = loadout_item.desc
-				available_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
-				available_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost
-				available_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit)
-				available_loadout_item_data["icon"] = loadout_item.ui_icon
-				available_loadout_item_data["quantity"] = loadout_item.quantity
-				available_loadout_item_data["requirements"] = loadout_item.req_desc
-				available_loadout_item_data["unlocked"] = TRUE
-				available_loadouts_data += list(available_loadout_item_data)
+		equipped_loadouts_data += list(equipped_item_ui_data)
 
-		for(var/slot in outfit.purchasable_list)
-			for(var/datum/loadout_item/loadout_item AS in outfit.purchasable_list[slot])
-				var/list/purchasable_loadout_item_data = list()
-				purchasable_loadout_item_data["name"] = loadout_item.name
-				purchasable_loadout_item_data["job"] = outfit.role
-				purchasable_loadout_item_data["slot"] = GLOB.inventory_slots_to_string["[loadout_item.item_slot]"]
-				purchasable_loadout_item_data["type"] = loadout_item.type
-				purchasable_loadout_item_data["desc"] = loadout_item.desc
-				purchasable_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
-				purchasable_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost
-				purchasable_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit)
-				purchasable_loadout_item_data["icon"] = loadout_item.ui_icon
-				purchasable_loadout_item_data["quantity"] = loadout_item.quantity
-				purchasable_loadout_item_data["requirements"] = loadout_item.req_desc
-				purchasable_loadout_item_data["unlocked"] = FALSE
-				available_loadouts_data += list(purchasable_loadout_item_data)
+	for(var/slot in outfit.available_list)
+		for(var/datum/loadout_item/loadout_item AS in outfit.available_list[slot])
+			var/list/available_loadout_item_data = list()
+			available_loadout_item_data["name"] = loadout_item.name
+			available_loadout_item_data["job"] = outfit.role
+			available_loadout_item_data["slot"] = GLOB.inventory_slots_to_string["[loadout_item.item_slot]"]
+			available_loadout_item_data["type"] = loadout_item.type
+			available_loadout_item_data["desc"] = loadout_item.desc
+			available_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
+			available_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost
+			available_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit)
+			available_loadout_item_data["icon"] = loadout_item.ui_icon
+			available_loadout_item_data["quantity"] = loadout_item.quantity
+			available_loadout_item_data["requirements"] = loadout_item.req_desc
+			available_loadout_item_data["unlocked"] = TRUE
+			available_loadouts_data += list(available_loadout_item_data)
+
+	for(var/slot in outfit.purchasable_list)
+		for(var/datum/loadout_item/loadout_item AS in outfit.purchasable_list[slot])
+			var/list/purchasable_loadout_item_data = list()
+			purchasable_loadout_item_data["name"] = loadout_item.name
+			purchasable_loadout_item_data["job"] = outfit.role
+			purchasable_loadout_item_data["slot"] = GLOB.inventory_slots_to_string["[loadout_item.item_slot]"]
+			purchasable_loadout_item_data["type"] = loadout_item.type
+			purchasable_loadout_item_data["desc"] = loadout_item.desc
+			purchasable_loadout_item_data["purchase_cost"] = loadout_item.purchase_cost
+			purchasable_loadout_item_data["unlock_cost"] = loadout_item.unlock_cost
+			purchasable_loadout_item_data["valid_choice"] = loadout_item.item_checks(outfit)
+			purchasable_loadout_item_data["icon"] = loadout_item.ui_icon
+			purchasable_loadout_item_data["quantity"] = loadout_item.quantity
+			purchasable_loadout_item_data["requirements"] = loadout_item.req_desc
+			purchasable_loadout_item_data["unlocked"] = FALSE
+			available_loadouts_data += list(purchasable_loadout_item_data)
 
 	data["equipped_loadouts_data"] = equipped_loadouts_data
 	data["available_loadouts_data"] = available_loadouts_data
@@ -297,6 +305,20 @@
 	var/mob/living/user = usr
 
 	switch(action)
+		if("set_selected_tab")
+			var/new_tab = params["new_selected_tab"]
+			if(new_tab != TAB_LOADOUT && new_tab != TAB_PERKS)
+				return
+			selected_tab = new_tab
+			user.playsound_local(user, 'sound/effects/menu_click.ogg', 50)
+			return TRUE
+		if("set_selected_job")
+			var/new_job = params["new_selected_job"]
+			if(!new_job)
+				return
+			selected_job = new_job
+			user.playsound_local(user, 'sound/effects/menu_click.ogg', 50)
+			return TRUE
 		if("unlock_perk")
 			var/unlocked_perk = text2path(params["selected_perk"])
 			if(!unlocked_perk)
@@ -385,4 +407,12 @@
 	if(!stats)
 		return
 	stats.current_mob = owner //taking over ssd's creates a mismatch
+	if(!isliving(owner))
+		stats.selected_job = stats.valid_jobs[1]
+	else
+		var/mob/living/living_owner = owner
+		stats.selected_job = living_owner.job.title
 	stats.interact(owner)
+
+#undef TAB_LOADOUT
+#undef TAB_PERKS
