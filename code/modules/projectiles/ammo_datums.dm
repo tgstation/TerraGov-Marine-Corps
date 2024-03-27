@@ -1481,13 +1481,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "pulse0"
 	hud_state = "flame"
 	hud_state_empty = "flame_empty"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_TARGET_TURF
+	damage_type = BURN
+	ammo_behavior_flags = AMMO_INCENDIARY|AMMO_FLAME
+	armor_type = FIRE
+	damage = 30
+	max_range = 7
 
 /datum/ammo/bullet/turret/flamer/drop_nade(turf/T)
-	if(!T || !isturf(T))
-		return
-	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(2, T)
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
+
 
 /datum/ammo/bullet/turret/flamer/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M))
