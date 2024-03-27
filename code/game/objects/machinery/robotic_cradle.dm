@@ -2,8 +2,7 @@
 #define CRADLE_NOTICE_DEATH 2
 #define CRADLE_NOTICE_NO_POWER 3
 #define CRADLE_NOTICE_XENO_FUCKERY 4
-#define CRADLE_NOTICE_FORCE_EJECT 5
-#define CRADLE_NOTICE_EARLY_EJECT 6
+#define CRADLE_NOTICE_EARLY_EJECT 5
 //Cradle
 
 /obj/machinery/robotic_cradle
@@ -33,7 +32,10 @@
 	radio = new(src)
 
 /obj/machinery/robotic_cradle/Destroy()
-	start_emergency_eject(forceeject = TRUE)
+	if(occupant)
+		visible_message("\The [src] malfunctions as it is destroyed mid-repair, ejecting [occupant] with unfinished repair wounds and showering them in debris.")
+		occupant.take_limb_damage(rand(30,50),rand(30,50))
+		remove_occupant()
 	if(radio)
 		QDEL_NULL(radio)
 	return ..()
@@ -69,7 +71,7 @@
 		return
 	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
 		return
-	start_emergency_eject()
+	start_emergency_eject(xeno_attacker)
 
 ///This proc acts as a heads up to the doctors/engineers about the patient exiting the cradle for whatever reason. Takes CRADLE_NOTICE defines as arguments
 /obj/machinery/robotic_cradle/proc/notify_about_eject(notice_code = FALSE)
@@ -86,9 +88,6 @@
 		if(CRADLE_NOTICE_XENO_FUCKERY)
 			playsound(src, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 			reason = "Reason for discharge: Unauthorized manual release. Alerting security advised."
-		if(CRADLE_NOTICE_FORCE_EJECT)
-			playsound(src, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
-			reason = "Reason for discharge: Destruction of linked CRADLE Engineering System. Alerting security advised."
 		if(CRADLE_NOTICE_EARLY_EJECT)
 			playsound(src,'sound/machines/buzz-two.ogg',50,FALSE)
 			reason = "Reason for discharge: Operation manually terminated by end user."
@@ -222,7 +221,7 @@
 		return
 	if(!occupant)
 		return
-	start_emergency_eject()
+	start_emergency_eject(user)
 
 /obj/machinery/robotic_cradle/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	. = ..()
@@ -253,31 +252,29 @@
 	set src in oview(1)
 	if(usr.incapacitated())
 		return
-	start_emergency_eject()
+	start_emergency_eject(usr)
 
-///This proc ejects whomever is inside the cradle while it is presumably operating, by force if needed depending if the cradle is destroyed or not.
-/obj/machinery/robotic_cradle/proc/start_emergency_eject(forceeject)
+///This proc ejects whomever is inside the cradle while it is presumably operating. mob_ejecting is the mob triggering the eject
+/obj/machinery/robotic_cradle/proc/start_emergency_eject(mob/mob_ejecting)
 	if(!occupant)
 		return
 	if(!repairing)//this shouldn't be possible unless you get var edited inside without triggering start_repair_operation(), in that case just get them out
 		remove_occupant()
 		return
-	if(forceeject)
-		visible_message("\The [src] malfunctions as it is destroyed mid-repair, ejecting [occupant] with unfinished repair wounds and showering them in debris.")
-		occupant.take_limb_damage(rand(30,50),rand(30,50))
-		perform_eject(CRADLE_NOTICE_FORCE_EJECT)
+	if(!mob_ejecting)
+		perform_eject(CRADLE_NOTICE_EARLY_EJECT)
 		return
-	if(isxeno(usr))
-		usr.visible_message(span_notice("[usr] pries the cover of [src]"),
+	if(isxeno(mob_ejecting))
+		mob_ejecting.visible_message(span_notice("[mob_ejecting] pries the cover of [src]"),
 		span_notice("You begin to pry at the cover of [src]."))
-		playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
-		if(!do_after(usr, 2 SECONDS, NONE, src, BUSY_ICON_DANGER) || !occupant)
+		playsound(mob_ejecting,'sound/effects/metal_creaking.ogg', 25, 1)
+		if(!do_after(mob_ejecting, 2 SECONDS, NONE, src, BUSY_ICON_DANGER) || !occupant)
 			return
 		perform_eject(CRADLE_NOTICE_XENO_FUCKERY)
 		return
-	if(!ishuman(usr))
+	if(!ishuman(mob_ejecting))
 		return
-	if(usr == occupant)
+	if(mob_ejecting == occupant)
 		to_chat(usr, span_warning("There's no way you're getting out while this thing is operating on you!"))
 		return
 	perform_eject(CRADLE_NOTICE_EARLY_EJECT)
@@ -285,5 +282,4 @@
 #undef CRADLE_NOTICE_SUCCESS
 #undef CRADLE_NOTICE_DEATH
 #undef CRADLE_NOTICE_NO_POWER
-#undef CRADLE_NOTICE_FORCE_EJECT
 #undef CRADLE_NOTICE_EARLY_EJECT
