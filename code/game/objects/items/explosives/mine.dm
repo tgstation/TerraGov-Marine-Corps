@@ -59,8 +59,10 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	throwforce = 5
 	throw_range = 6
 	throw_speed = 3
-	flags_atom = CONDUCT
-	///IFF signal - used to determine friendly units
+	atom_flags = CONDUCT
+	///Trigger flags for this mine
+	var/target_mode = MINE_LIVING_ONLY
+	/// IFF signal - used to determine friendly units
 	var/iff_signal = NONE
 	///If the mine has been triggered
 	var/triggered = FALSE

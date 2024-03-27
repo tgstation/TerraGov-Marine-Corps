@@ -18,18 +18,18 @@
 	Note that this proc can be overridden, and is in the case of screen objects.
 */
 /atom/Click(location, control, params)
-	if(flags_atom & INITIALIZED)
+	if(atom_flags & INITIALIZED)
 		SEND_SIGNAL(src, COMSIG_CLICK, location, control, params, usr)
 		usr.ClickOn(src, location, params)
 
 
 /atom/DblClick(location, control, params)
-	if(flags_atom & INITIALIZED)
+	if(atom_flags & INITIALIZED)
 		usr.DblClickOn(src, params)
 
 
 /atom/MouseWheel(delta_x, delta_y, location, control, params)
-	if(flags_atom & INITIALIZED)
+	if(atom_flags & INITIALIZED)
 		usr.MouseWheelOn(src, delta_x, delta_y, params)
 
 
@@ -211,14 +211,14 @@
 	if(!T)
 		return FALSE
 	for(var/atom/movable/AM AS in T)
-		if(AM.flags_atom & PREVENT_CLICK_UNDER && AM.density && AM.layer > layer)
+		if(AM.atom_flags & PREVENT_CLICK_UNDER && AM.density && AM.layer > layer)
 			return TRUE
 	return FALSE
 
 
 /turf/IsObscured()
 	for(var/atom/movable/AM AS in src)
-		if(AM.flags_atom & PREVENT_CLICK_UNDER && AM.density)
+		if(AM.atom_flags & PREVENT_CLICK_UNDER && AM.density)
 			return TRUE
 	return FALSE
 

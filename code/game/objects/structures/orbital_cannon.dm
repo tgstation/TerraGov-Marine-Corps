@@ -433,7 +433,7 @@
 	icon_state = "ob_console"
 	screen_overlay = "ob_console_screen"
 	dir = WEST
-	flags_atom = ON_BORDER|CONDUCT
+	atom_flags = ON_BORDER|CONDUCT
 	var/orbital_window_page = 0
 
 /obj/machinery/computer/orbital_cannon_console/Initialize(mapload)

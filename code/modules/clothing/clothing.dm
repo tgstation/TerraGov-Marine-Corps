@@ -3,7 +3,7 @@
 
 	// Resets the armor on clothing since by default /objs get 100 bio armor
 	soft_armor = list()
-	flags_inventory = NOQUICKEQUIP
+	inventory_flags = NOQUICKEQUIP
 
 	///Assoc list of available slots. Since this keeps track of all currently equiped attachments per object, this cannot be a string_list()
 	var/list/attachments_by_slot = list()
@@ -16,7 +16,7 @@
 	var/list/starting_attachments = list()
 
 	/// Bitflags used to determine the state of the armor (light on, overlay used, or reinfornced), currently support flags are in [equipment.dm:100]
-	var/flags_armor_features = NONE
+	var/armor_features_flags = NONE
 
 	/// used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
 	var/eye_protection = 0
@@ -35,26 +35,26 @@
 
 /obj/item/clothing/equipped(mob/user, slot)
 	. = ..()
-	if(!(flags_equip_slot & slotdefine2slotbit(slot)))
+	if(!(equip_slot_flags & slotdefine2slotbit(slot)))
 		return
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/human_user = user
 	if(accuracy_mod)
 		human_user.adjust_mob_accuracy(accuracy_mod)
-	if(flags_armor_features & ARMOR_FIRE_RESISTANT)
+	if(armor_features_flags & ARMOR_FIRE_RESISTANT)
 		ADD_TRAIT(human_user, TRAIT_NON_FLAMMABLE, src)
 
 
 /obj/item/clothing/unequipped(mob/unequipper, slot)
-	if(!(flags_equip_slot & slotdefine2slotbit(slot)))
+	if(!(equip_slot_flags & slotdefine2slotbit(slot)))
 		return ..()
 	if(!ishuman(unequipper))
 		return ..()
 	var/mob/living/carbon/human/human_unequipper = unequipper
 	if(accuracy_mod)
 		human_unequipper.adjust_mob_accuracy(-accuracy_mod)
-	if(flags_armor_features & ARMOR_FIRE_RESISTANT)
+	if(armor_features_flags & ARMOR_FIRE_RESISTANT)
 		REMOVE_TRAIT(human_unequipper, TRAIT_NON_FLAMMABLE, src)
 	return ..()
 
@@ -121,7 +121,7 @@
 	)
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
-	flags_equip_slot = ITEM_SLOT_EARS
+	equip_slot_flags = ITEM_SLOT_EARS
 
 /obj/item/clothing/ears/update_clothing_icon()
 	if (ismob(src.loc))
@@ -134,7 +134,7 @@
 	desc = "Protects your hearing from loud noises, and quiet ones as well."
 	icon_state = "earmuffs"
 	item_state = "earmuffs"
-	flags_equip_slot = ITEM_SLOT_EARS
+	equip_slot_flags = ITEM_SLOT_EARS
 
 /obj/item/clothing/ears/earmuffs/green
 	icon_state = "earmuffs2"
@@ -151,10 +151,10 @@
 		slot_r_hand_str = 'icons/mob/inhands/clothing/suits_right.dmi',
 	)
 	name = "suit"
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS
 	allowed = list(/obj/item/tank/emergency_oxygen)
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-	flags_equip_slot = ITEM_SLOT_OCLOTHING
+	equip_slot_flags = ITEM_SLOT_OCLOTHING
 	siemens_coefficient = 0.9
 	w_class = WEIGHT_CLASS_NORMAL
 	attachments_by_slot = list(ATTACHMENT_SLOT_BADGE)
@@ -185,7 +185,7 @@
 	if(. != CHECKS_PASSED)
 		return
 	set_light_on(toggle_on)
-	flags_armor_features ^= ARMOR_LAMP_ON
+	armor_features_flags ^= ARMOR_LAMP_ON
 	playsound(src, 'sound/items/flashlight.ogg', 15, TRUE)
 	update_icon()
 
@@ -221,8 +221,8 @@
 	var/clipped = 0
 	var/transfer_prints = TRUE
 	blood_sprite_state = "bloodyhands"
-	flags_armor_protection = HANDS
-	flags_equip_slot = ITEM_SLOT_GLOVES
+	armor_protection_flags = HANDS
+	equip_slot_flags = ITEM_SLOT_GLOVES
 	attack_verb = list("challenged")
 
 
@@ -238,9 +238,7 @@
 		cell.charge -= 1000 / severity
 		if (cell.charge < 0)
 			cell.charge = 0
-		if(cell.reliability != 100 && prob(50/severity))
-			cell.reliability -= 10 / severity
-	..()
+	return ..()
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
 /obj/item/clothing/gloves/proc/Touch(atom/A, proximity)
@@ -275,8 +273,8 @@
 		slot_l_hand_str = 'icons/mob/inhands/clothing/masks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/masks_right.dmi',
 	)
-	flags_equip_slot = ITEM_SLOT_MASK
-	flags_armor_protection = FACE|EYES
+	equip_slot_flags = ITEM_SLOT_MASK
+	armor_protection_flags = FACE|EYES
 	blood_sprite_state = "maskblood"
 	var/anti_hug = 0
 	var/toggleable = FALSE
@@ -304,8 +302,8 @@
 	desc = "Comfortable-looking shoes."
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	siemens_coefficient = 0.9
-	flags_armor_protection = FEET
-	flags_equip_slot = ITEM_SLOT_FEET
+	armor_protection_flags = FEET
+	equip_slot_flags = ITEM_SLOT_FEET
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	blood_sprite_state = "shoeblood"

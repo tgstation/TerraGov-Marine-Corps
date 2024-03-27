@@ -7,10 +7,11 @@
 	///Faction locks this item if specified
 	var/faction = null
 	///lase effect
-	var/obj/effect/overlay/temp/laser_target/laser
+	var/image/laser_overlay
+	///lasing time
 	var/target_acquisition_delay = 5 SECONDS
 	///Last stored turf targetted by rangefinders
-	var/turf/targetturf
+	var/turf/target_atom
 	///Current mode for support request
 	var/datum/fire_support/mode = null
 	///firemodes available for these binos
@@ -41,11 +42,9 @@
 	. += span_warning("Available in [round(timeleft(mode.cooldown_timer) MILLISECONDS)] seconds.")
 
 /obj/item/binoculars/fire_support/Destroy()
-	if(laser)
-		QDEL_NULL(laser)
+	unset_target()
 	mode = null
 	mode_list = null
-	targetturf = null
 	return ..()
 
 
@@ -70,7 +69,7 @@
 /obj/item/binoculars/fire_support/onunzoom(mob/living/user)
 	. = ..()
 
-	QDEL_NULL(laser)
+	unset_target()
 
 	if(!user?.client)
 		return
@@ -115,77 +114,88 @@
 	update_icon()
 
 ///lases a target and calls fire support on it
-/obj/item/binoculars/fire_support/proc/acquire_target(atom/A, mob/living/carbon/human/user)
+/obj/item/binoculars/fire_support/proc/acquire_target(atom/target, mob/living/carbon/human/user)
 	set waitfor = 0
+	if(user.do_actions)
+		balloon_alert_to_viewers("Busy")
+		return
 	if(is_mainship_level(user.z))
 		user.balloon_alert(user, "Can't use here")
 		return
 	if(faction && user.faction != faction)
 		balloon_alert_to_viewers("Security locks engaged")
 		return
-	if(laser)
+	if(laser_overlay)
 		to_chat(user, span_warning("You're already targeting something."))
 		return
-	if(!mode)
-		balloon_alert_to_viewers("Select a mode!")
+	if(!bino_checks(target, user))
 		return
-	if(!(mode.fire_support_flags & FIRESUPPORT_AVAILABLE))
-		balloon_alert_to_viewers("[mode.name] unavailable")
-		return
-	if(!mode.uses)
-		balloon_alert_to_viewers("[mode.name] expended")
-		return
-	if(mode.cooldown_timer)
-		balloon_alert_to_viewers("On cooldown")
+	if(!can_see_target(target, user))
+		balloon_alert_to_viewers("No clear view")
 		return
 
-	var/turf/TU = get_turf(A)
-	var/distance = get_dist(TU, get_turf(user))
-	var/zoom_screen_size = zoom_tile_offset + zoom_viewsize + 1
-	if(TU.z != user.z || distance == -1 || (distance > zoom_screen_size))
-		to_chat(user, span_warning("You can't focus properly through \the [src] while looking through something else."))
-		return
-
-	if(!user.mind)
-		return
-
-	var/area/targ_area = get_area(A)
-	if(isspacearea(targ_area))
-		to_chat(user, span_warning("Cannot fire into space."))
-		return
-	if(targ_area.ceiling >= CEILING_UNDERGROUND)
-		to_chat(user, span_warning("DEPTH WARNING: Target too deep for ordnance."))
-		return
-	if(user.do_actions)
-		return
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
 	to_chat(user, span_notice("INITIATING LASER TARGETING. Stand still."))
-	var/obj/effect/overlay/temp/laser_target/cas/CS = new (TU)
-	laser = CS
-	if(!do_after(user, target_acquisition_delay, NONE, user, BUSY_ICON_HOSTILE))
+	target_atom = target
+	laser_overlay = image('icons/obj/items/projectiles.dmi', icon_state = "sniper_laser", layer =-LASER_LAYER)
+	target_atom.apply_fire_support_laser(laser_overlay)
+	if(!do_after(user, target_acquisition_delay, NONE, user, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(can_see_target), target, user)))
+		to_chat(user, span_danger("You lose sight of your target!"))
+		playsound(user,'sound/machines/click.ogg', 25, 1)
+		unset_target()
 		return
-	if(!mode)
-		balloon_alert_to_viewers("Select a mode!")
-		return
-	if(!(mode.fire_support_flags & FIRESUPPORT_AVAILABLE))
-		balloon_alert_to_viewers("[mode.name] unavailable")
-		return
-	if(!mode.uses)
-		balloon_alert_to_viewers("[mode.name] expended")
-		return
-	if(mode.cooldown_timer)
-		balloon_alert_to_viewers("On cooldown")
+	if(!bino_checks(target, user))
 		return
 
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
-	QDEL_NULL(laser)
-	mode.initiate_fire_support(TU, user)
+	mode.initiate_fire_support(get_turf(target_atom), user)
+	unset_target()
+
+///Internal bino checks, mainly around firemode
+/obj/item/binoculars/fire_support/proc/bino_checks(atom/target, mob/living/user)
+	if(!mode)
+		balloon_alert_to_viewers("Select a mode!")
+		return FALSE
+	if(!(mode.fire_support_flags & FIRESUPPORT_AVAILABLE))
+		balloon_alert_to_viewers("[mode.name] unavailable")
+		return FALSE
+	if(!mode.uses)
+		balloon_alert_to_viewers("[mode.name] expended")
+		return FALSE
+	if(mode.cooldown_timer)
+		balloon_alert_to_viewers("On cooldown")
+		return FALSE
+	var/area/targ_area = get_area(target)
+	if(isspacearea(targ_area))
+		to_chat(user, span_warning("Cannot fire into space."))
+		return FALSE
+	if(targ_area.ceiling >= CEILING_UNDERGROUND)
+		to_chat(user, span_warning("DEPTH WARNING: Target too deep for ordnance."))
+		return FALSE
+	return TRUE
+
+///Checks if we can draw LOS to the target
+/obj/item/binoculars/fire_support/proc/can_see_target(atom/target, mob/living/user)
+	if(QDELETED(target))
+		return FALSE
+	if(target.z != user.z)
+		return FALSE
+	if(!(user in viewers(zoom_tile_offset + zoom_viewsize + 1, target)))
+		return FALSE
+	return TRUE
+
+///Unsets the target and cleans up
+/obj/item/binoculars/fire_support/proc/unset_target()
+	if(target_atom)
+		target_atom.remove_fire_support_laser(laser_overlay)
+		target_atom = null
+	if(laser_overlay)
+		QDEL_NULL(laser_overlay)
 
 ///Acquires coords of a target turf
 /obj/item/binoculars/fire_support/proc/acquire_coordinates(atom/A, mob/living/carbon/human/user)
-	var/turf/TU = get_turf(A)
-	targetturf = TU
-	to_chat(user, span_notice("COORDINATES: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
+	var/turf/target_turf = get_turf(A)
+	to_chat(user, span_notice("COORDINATES: LONGITUDE [target_turf.x]. LATITUDE [target_turf.y]."))
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 
 
@@ -215,3 +225,18 @@
 		FIRESUPPORT_TYPE_SATRAPINE_SMOKE_MORTAR,
 		FIRESUPPORT_TYPE_SMOKE_MORTAR_SOM,
 	)
+
+///Sets a laser overlay for fire support binos
+/atom/proc/apply_fire_support_laser(image/laser_overlay)
+	add_overlay(laser_overlay)
+
+/mob/living/carbon/apply_fire_support_laser(image/laser_overlay)
+	overlays_standing[LASER_LAYER] = laser_overlay
+	apply_overlay(LASER_LAYER)
+
+///Removes a laser overlay for fire support binos
+/atom/proc/remove_fire_support_laser(image/laser_overlay)
+	cut_overlay(laser_overlay)
+
+/mob/living/carbon/remove_fire_support_laser(image/laser_overlay)
+	remove_overlay(LASER_LAYER)

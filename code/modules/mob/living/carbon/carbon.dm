@@ -202,7 +202,7 @@
 
 ///Called by the carbon throw_item() proc. Returns null if the item negates the throw, or a reference to the thing to suffer the throw else.
 /obj/item/proc/on_thrown(mob/living/carbon/user, atom/target)
-	if((flags_item & ITEM_ABSTRACT) || HAS_TRAIT(src, TRAIT_NODROP))
+	if((item_flags & ITEM_ABSTRACT) || HAS_TRAIT(src, TRAIT_NODROP))
 		return
 	user.dropItemToGround(src, TRUE)
 	return src
@@ -340,14 +340,14 @@
 
 	sight = initial(sight)
 	lighting_alpha = initial(lighting_alpha)
-	see_in_dark = species.darksight
+	see_in_dark = initial(see_in_dark)
 	see_invisible = initial(see_invisible)
 
 	if(species)
 		if(species.lighting_alpha)
-			lighting_alpha = initial(species.lighting_alpha)
+			lighting_alpha = species.lighting_alpha
 		if(species.see_in_dark)
-			see_in_dark = initial(species.see_in_dark)
+			see_in_dark = species.see_in_dark
 
 	if(client.eye != src)
 		var/atom/A = client.eye

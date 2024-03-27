@@ -32,7 +32,7 @@
 
 
 
-//flags_atom
+//atom_flags
 
 #define UNUSED_RESERVATION_TURF_1 (1<<0)
 #define AI_BLOCKED (1<<1) //Prevent ai from going onto this turf
@@ -58,14 +58,14 @@
 
 //==========================================================================================
 
-//flags_barrier
+//barrier_flags
 #define HANDLE_BARRIER_CHANCE (1<<0)
 #define HANDLE_BARRIER_BLOCK (1<<1)
 
 
-//bitflags that were previously under flags_atom, these only apply to items.
-//clothing specific stuff uses flags_inventory.
-//flags_item
+//bitflags that were previously under atom_flags, these only apply to items.
+//clothing specific stuff uses inventory_flags.
+//item_flags
 /// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
 #define NOBLUDGEON (1<<0)
 /// Deletes on drop instead of falling on the floor.
@@ -109,11 +109,11 @@
 ///This item is used for autobalance calculations or excluded, such as valhalla items
 #define AUTOBALANCE_CHECK (1<<20)
 
-//flags_storage
+//storage_flags
 ///If a storage container can be restocked into a vendor
 #define BYPASS_VENDOR_CHECK (1<<0)
 
-//flags_id
+//id_flags
 ///If you can get buy a loadout
 #define CAN_BUY_LOADOUT (1<<0)
 ///If you have used the GHMME
@@ -121,8 +121,8 @@
 
 //==========================================================================================
 
-//flags_inv_hide
-//Bit flags for the flags_inv_hide variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
+//inv_hide_flags
+//Bit flags for the inv_hide_flags variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
 
 #define HIDEGLOVES (1<<0)
 #define HIDESUITSTORAGE (1<<1)
@@ -140,7 +140,7 @@
 
 //==========================================================================================
 
-//flags_inventory
+//inventory_flags
 
 //SHOES ONLY===========================================================================================
 #define NOSLIPPING (1<<0) 	//prevents from slipping on wet floors, in space etc
@@ -176,7 +176,7 @@
 
 
 //===========================================================================================
-//Marine armor only, use for flags_armor_features.
+//Marine armor only, use for armor_features_flags.
 #define ARMOR_SQUAD_OVERLAY (1<<0)
 #define ARMOR_LAMP_OVERLAY (1<<1)
 #define ARMOR_LAMP_ON (1<<2)
@@ -186,7 +186,7 @@
 //===========================================================================================
 
 //===========================================================================================
-//Marine helmet only, use for flags_marine_helmet.
+//Marine helmet only, use for marine_helmet_flags.
 #define HELMET_SQUAD_OVERLAY (1<<0)
 #define HELMET_GARB_OVERLAY (1<<1)
 #define HELMET_STORE_GARB (1<<2)
@@ -194,7 +194,7 @@
 //===========================================================================================
 
 //ITEM INVENTORY SLOT BITMASKS - These determine to which slot an item can be equipped to
-//flags_equip_slot
+//equip_slot_flags
 #define ITEM_SLOT_OCLOTHING (1<<0) //outer clothing, so armor, vests, etc
 #define ITEM_SLOT_ICLOTHING (1<<1) //inner clothing, so jumpsuits/uniforms, etc
 #define ITEM_SLOT_GLOVES (1<<2) //gloves, any type of gloves
@@ -409,7 +409,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 //=================================================
 
 // bitflags for the percentual amount of protection a piece of clothing which covers the body part offers.
-// Used with human/proc/get_flags_heat_protection() and human/proc/get_flags_cold_protection()
+// Used with human/proc/get_heat_protection_flags() and human/proc/get_cold_protection_flags()
 // The values here should add up to 1.
 // Hands and feet have 2.5%, arms and legs 7.5%, each of the torso parts has 15% and the head has 30%
 #define THERMAL_PROTECTION_HEAD 0.3

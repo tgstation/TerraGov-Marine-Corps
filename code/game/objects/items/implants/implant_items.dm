@@ -69,8 +69,8 @@
 	item_state = "armblade"
 	force = 75
 	attack_speed = 8
-	flags_atom = CONDUCT
-	flags_equip_slot = NONE
+	atom_flags = CONDUCT
+	equip_slot_flags = NONE
 	w_class = WEIGHT_CLASS_BULKY //not needed but just in case why not
 	sharp = IS_SHARP_ITEM_BIG
 	hitsound = 'sound/weapons/slash.ogg'

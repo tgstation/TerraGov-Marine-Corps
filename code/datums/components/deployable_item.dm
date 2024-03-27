@@ -15,7 +15,7 @@
 	undeploy_time = _undeploy_time
 
 	var/obj/item/attached_item = parent
-	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
+	if(CHECK_BITFIELD(attached_item.item_flags, DEPLOY_ON_INITIALIZE))
 		finish_deploy(attached_item, null, attached_item.loc, attached_item.dir)
 
 /datum/component/deployable_item/RegisterWithParent()
@@ -69,11 +69,11 @@
 			location.balloon_alert(user, "No room to deploy")
 			return
 		var/newdir = get_dir(user, location)
-		if(deploy_type.flags_atom & ON_BORDER)
+		if(deploy_type.atom_flags & ON_BORDER)
 			for(var/obj/object in location)
 				if(!object.density)
 					continue
-				if(!(object.flags_atom & ON_BORDER))
+				if(!(object.atom_flags & ON_BORDER))
 					continue
 				if(object.dir != newdir)
 					continue

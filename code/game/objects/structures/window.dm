@@ -7,12 +7,14 @@
 	density = TRUE
 	anchored = TRUE
 	layer = WINDOW_LAYER
-	flags_atom = ON_BORDER|DIRLOCK
+	atom_flags = ON_BORDER|DIRLOCK
 	allow_pass_flags = PASS_GLASS
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	coverage = 20
 	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
 	max_integrity = 15
+	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
+	var/real_explosion_block = 0
 	var/state = 2
 	var/reinf = FALSE
 	var/basestate = "window"
@@ -29,7 +31,7 @@
 //I hate this as much as you do
 /obj/structure/window/full
 	dir = 10
-	flags_atom = DIRLOCK
+	atom_flags = DIRLOCK
 
 /obj/structure/window/Initialize(mapload, start_dir, constructed)
 	..()
@@ -93,7 +95,7 @@
 //Once a full window, it will always be a full window, so there's no point
 //having the same type for both.
 /obj/structure/window/proc/is_full_window()
-	if(!(flags_atom & ON_BORDER) || ISDIAGONALDIR(dir))
+	if(!(atom_flags & ON_BORDER) || ISDIAGONALDIR(dir))
 		return TRUE
 	return FALSE
 
@@ -159,7 +161,7 @@
 	if(.)
 		return
 
-	if(I.flags_item & NOBLUDGEON)
+	if(I.item_flags & NOBLUDGEON)
 		return
 
 	else if(isscrewdriver(I) && deconstructable)
@@ -385,7 +387,7 @@
 	basestate = "window"
 	max_integrity = 40
 	reinf = TRUE
-	flags_atom = NONE
+	atom_flags = NONE
 
 /obj/structure/window/shuttle/update_icon_state()
 	return
@@ -396,7 +398,7 @@
 	name = "theoretical window"
 	layer = TABLE_LAYER
 	static_frame = TRUE
-	flags_atom = NONE //This is not a border object; it takes up the entire tile.
+	atom_flags = NONE //This is not a border object; it takes up the entire tile.
 	explosion_block = 2
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(

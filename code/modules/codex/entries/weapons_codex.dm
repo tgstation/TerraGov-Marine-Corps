@@ -28,10 +28,10 @@
 	if(slot == ATTACHMENT_SLOT_UNDER)
 		attach_strings += "This attaches to the underbarrel slot on most weapons.<br>"
 
-	if(flags_attach_features & ATTACH_REMOVABLE)
+	if(attach_features_flags & ATTACH_REMOVABLE)
 		attach_strings += "This can be field stripped off the weapon if needed."
 
-	if(flags_attach_features & ATTACH_ACTIVATION)
+	if(attach_features_flags & ATTACH_ACTIVATION)
 		attach_strings += "This needs to be activated to be used."
 
 	attach_strings += "<br><U>Always on modifications</U>:<br>"

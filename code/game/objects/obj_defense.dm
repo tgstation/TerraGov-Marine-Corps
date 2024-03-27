@@ -1,4 +1,4 @@
-/obj/proc/take_damage(damage_amount, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+/obj/proc/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	if(QDELETED(src))
 		CRASH("[src] taking damage after deletion")
 	if(!damage_amount)
@@ -65,6 +65,15 @@
 		if(EXPLODE_WEAK)
 			take_damage(rand(5, 45), BRUTE, BOMB, 0)
 
+/obj/lava_act()
+	if(resistance_flags & INDESTRUCTIBLE)
+		return FALSE
+	if(!take_damage(50, BURN, FIRE))
+		return FALSE
+	if(QDELETED(src))
+		return FALSE
+	fire_act()
+	return TRUE
 
 /obj/hitby(atom/movable/AM, speed = 5)
 	. = ..()

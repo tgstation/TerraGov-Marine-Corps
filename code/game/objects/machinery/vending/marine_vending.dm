@@ -29,8 +29,7 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = 2,
-			/obj/item/cell/lasgun/plasma_powerpack = -1,
-			/obj/item/cell/lasgun/volkite/powerpack/plasma_chargepack = -1,
+			/obj/item/cell/lasgun/plasma = -1,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,
@@ -148,7 +147,7 @@
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 			/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
 			/obj/item/storage/box/crate/sentry = 4,
-			/obj/item/storage/box/tl102 = 1,
+			/obj/item/storage/box/hsg_102 = 1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 5,
 			/obj/item/ammo_magazine/heavymachinegun/small = 10,
@@ -255,8 +254,7 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = 2,
-			/obj/item/cell/lasgun/plasma_powerpack = -1,
-			/obj/item/cell/lasgun/volkite/powerpack/plasma_chargepack = -1,
+			/obj/item/cell/lasgun/plasma = -1,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,
@@ -455,8 +453,7 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = -1,
-			/obj/item/cell/lasgun/plasma_powerpack = -1,
-			/obj/item/cell/lasgun/volkite/powerpack/plasma_chargepack = -1,
+			/obj/item/cell/lasgun/plasma = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon = -1,
 		),
@@ -578,7 +575,7 @@
 			/obj/item/ammo_magazine/standard_atgun/beehive = -1,
 			/obj/item/ammo_magazine/standard_atgun/incend = -1,
 			/obj/item/storage/box/crate/sentry = -1,
-			/obj/item/storage/box/tl102 = -1,
+			/obj/item/storage/box/hsg_102 = -1,
 			/obj/item/weapon/gun/heavymachinegun = -1,
 			/obj/item/ammo_magazine/heavymachinegun = -1,
 			/obj/item/storage/holster/backholster/rpg/full = -1,
@@ -828,7 +825,6 @@
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
 	icon_deny = "lascharger-deny"
-	vending_flags = VENDING_RECHARGER
 	wrenchable = TRUE
 	drag_delay = FALSE
 	anchored = FALSE
@@ -840,7 +836,6 @@
 	products = list(
 		/obj/item/cell/lasgun/lasrifle = 10, /obj/item/cell/lasgun/volkite/powerpack/marine = 2,
 	)
-
 
 	prices = list()
 
@@ -862,6 +857,10 @@
 				icon_state = "lascharger_25"
 			if(0)
 				icon_state = "lascharger_0"
+
+/obj/machinery/vending/lasgun/examine(mob/user)
+	. = ..()
+	. += "Internal battery charge: <b>[machine_current_charge]</b>/<b>[machine_max_charge]</b>"
 
 /obj/machinery/vending/marineFood
 	name = "\improper Marine Food and Drinks Vendor"
@@ -1493,7 +1492,7 @@
 			/obj/item/ammo_magazine/sniper/flak = -1,
 		),
 		"Mounted" = list(
-			/obj/item/weapon/gun/standard_auto_cannon = -1,
+			/obj/structure/largecrate/supply/weapons/standard_flakgun = -1,
 			/obj/item/ammo_magazine/auto_cannon = -1,
 			/obj/item/ammo_magazine/auto_cannon/flak = -1,
 			/obj/item/weapon/gun/standard_minigun = -1,
@@ -1505,7 +1504,7 @@
 			/obj/item/ammo_magazine/standard_agls/flare = -1,
 			/obj/item/ammo_magazine/standard_agls/cloak = -1,
 			/obj/item/ammo_magazine/standard_agls/tanglefoot = -1,
-			/obj/item/weapon/gun/heavy_isg = -1,
+			/obj/structure/largecrate/supply/weapons/heavy_flakgun = -1,
 			/obj/item/ammo_magazine/heavy_isg/he = -1,
 			/obj/item/ammo_magazine/heavy_isg/sabot = -1,
 		),

@@ -9,7 +9,7 @@
 	map_light_levels = list(225, 150, 100, 75)
 	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
 	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
-	mission_start_delay = 5 MINUTES //since there is actual mech prep time required
+	mission_start_delay = 3 MINUTES //since there is actual mech prep time required
 	starting_faction_additional_rewards = "Mechanised units will be allocated to your battalion for use in future missions."
 	hostile_faction_additional_rewards = "Mechanised units will be allocated to your battalion for use in future missions."
 
@@ -39,7 +39,7 @@
 			spawner = pick(GLOB.campaign_mech_spawners[faction])
 			new_mech = spawner.spawn_mech()
 			GLOB.campaign_structures += new_mech
-			RegisterSignal(new_mech, COMSIG_QDELETING, TYPE_PROC_REF(/datum/campaign_mission, remove_mission_object))
+			RegisterSignal(new_mech, COMSIG_QDELETING, PROC_REF(on_mech_destruction))
 
 			//anti mech infantry weapons
 			if(i % 2)
@@ -74,6 +74,17 @@
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
 	winning_team.add_asset(/datum/campaign_asset/mech/heavy/som)
 	winning_team.add_asset(/datum/campaign_asset/mech/som)
+
+///Cleans up after a mech is destroyed
+/datum/campaign_mission/tdm/mech_wars/proc/on_mech_destruction(obj/vehicle/sealed/mecha/combat/greyscale/dead_mech)
+	SIGNAL_HANDLER
+	remove_mission_object(dead_mech)
+	if(outcome)
+		return
+	if(dead_mech.faction == hostile_faction)
+		start_team_cap_points += 10
+	else if(dead_mech.faction == starting_faction)
+		hostile_team_cap_points += 10
 
 //mech spawn points
 /obj/effect/landmark/campaign/mech_spawner

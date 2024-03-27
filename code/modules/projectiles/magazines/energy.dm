@@ -16,7 +16,7 @@
 	charge_overlay = "m43"
 	var/reload_delay = 0
 	///Magazine flags.
-	var/flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER
+	var/magazine_features_flags = MAGAZINE_REFUND_IN_CHAMBER
 	///if the magazine has a special overlay associated with it, i.e. extended mags etc
 	var/bonus_overlay = null
 
@@ -68,38 +68,39 @@
 /obj/item/cell/lasgun/fob_sentry/cell
 	maxcharge = INFINITY
 
+/obj/item/cell/lasgun/plasma
+	name = "\improper WML plasma energy cell"
+	desc = "A plasma containment cell used by the TerraGov Marine Corps for plasma guns. It doesn't seem to have an expiry date on it."
+	icon_state = "plasma"
+	maxcharge = 900
+	icon_state_mini = "mag_plasma"
+	charge_overlay = "plasma"
+
 //volkite
 
 /obj/item/cell/lasgun/volkite
-	name = "\improper volkite energy cell"
+	name = "volkite energy cell"
 	desc = "A specialized high density battery used to power volkite weaponry."
-	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "volkite"
 	maxcharge = 1440
-	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_cell"
 	charge_overlay = "volkite"
-	reload_delay = 0
 
 /obj/item/cell/lasgun/volkite/small
-	name = "\improper compact volkite energy cell"
+	name = "compact volkite energy cell"
 	desc = "A specialized compact battery used to power the smallest volkite weaponry."
-	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "volkite_small"
 	maxcharge = 540
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "mag_cell"
 
 /obj/item/cell/lasgun/volkite/turret
-	name = "\improper volkite nuclear energy cell"
+	name = "volkite nuclear energy cell"
 	desc = "A nuclear powered battery designed for certain heavy SOM machinery like sentries. Slowly charges over time."
-	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "volkite_turret"
 	maxcharge = 1800
-	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_cell"
 	charge_overlay = "volkite_big"
-	reload_delay = 0
 	self_recharge = TRUE
 	charge_amount = 24
 	charge_delay = 2 SECONDS
@@ -114,9 +115,9 @@
 	)
 	icon_state = "volkite_powerpack"
 	charge_overlay = null
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BACK
-	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BACK
+	magazine_features_flags = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_HUGE
 	slowdown = 0.2
 	maxcharge = 3000
@@ -193,47 +194,11 @@
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "lasgun_pouch"
 	charge_overlay = "lasgun_cell"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_POCKET
-	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_POCKET
+	magazine_features_flags = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_BULKY
 	slowdown = 0
 	maxcharge = 2400
 	cell_type = /obj/item/cell/lasgun/lasrifle
 	self_recharge = FALSE
-
-/obj/item/cell/lasgun/plasma_powerpack
-	name = "\improper WML plasma backpack"
-	desc = "A plasma containment backpack used by the TerraGov Marine Corps for plasma guns. It doesn't seem to have an expiry date on it."
-	icon = 'icons/obj/items/storage/storage.dmi'
-	icon_state = "marine_plaspack"
-	icon_state_mini = "mag_plasma"
-	charge_overlay = null
-	flags_equip_slot = ITEM_SLOT_BACK
-	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
-	w_class = WEIGHT_CLASS_HUGE
-	maxcharge = 1000
-	reload_delay = 0.25 SECONDS
-
-/obj/item/cell/lasgun/plasma_powerpack/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
-	if(istype(I, /obj/item/weapon/gun) && loc == user)
-		var/obj/item/weapon/gun/gun = I
-		if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_MAGAZINES))
-			return
-		gun.reload(src, user)
-		return
-
-/// Chargepack to reload the plasma backpack, not actually used as a magazine.
-/obj/item/cell/lasgun/volkite/powerpack/plasma_chargepack
-	name = "\improper WML Plasma Chargepack"
-	desc = "An advanced, ultracheap capacity battery used to power a plasma backpack, recharges a quarter of power."
-	icon_state = "chargepack"
-	maxcharge = 250
-	cell_type = /obj/item/cell/lasgun/plasma_powerpack
-	self_recharge = FALSE
-	flags_equip_slot = ITEM_SLOT_BACK
-	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER
-	w_class = WEIGHT_CLASS_NORMAL

@@ -4,7 +4,7 @@
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "minelayer"
 	max_integrity = 200
-	flags_item = IS_DEPLOYABLE
+	item_flags = IS_DEPLOYABLE
 	w_class = WEIGHT_CLASS_NORMAL
 	///amount of currently stored mines
 	var/stored_mines = 0

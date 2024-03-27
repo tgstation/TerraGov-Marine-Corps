@@ -22,8 +22,8 @@
 	desc = "What are you standing around staring at this for? Get to killing!"
 	icon_state = "claymore"
 	item_state = "claymore"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 40
 	throwforce = 10
 	sharp = IS_SHARP_ITEM_BIG
@@ -61,7 +61,7 @@
 	name = "Lunging strike"
 	action_icon_state = "sword_lunge"
 	desc = "A powerful leaping strike. Cannot stun."
-	ability_cost = 12
+	ability_cost = 8
 	cooldown_duration = 6 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_WEAPONABILITY_SWORDLUNGE,
@@ -71,7 +71,7 @@
 	var/mob/living/carbon/carbon_owner = owner
 
 	RegisterSignal(carbon_owner, COMSIG_MOVABLE_MOVED, PROC_REF(movement_fx))
-	RegisterSignal(carbon_owner, COMSIG_MOVABLE_IMPACT, PROC_REF(lunge_impact))
+	RegisterSignal(carbon_owner, COMSIG_MOVABLE_BUMP, PROC_REF(lunge_impact))
 	RegisterSignal(carbon_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 
 	carbon_owner.visible_message(span_danger("[carbon_owner] charges towards \the [A]!"))
@@ -88,7 +88,7 @@
 ///Unregisters signals after lunge complete
 /datum/action/ability/activable/weapon_skill/sword_lunge/proc/charge_complete()
 	SIGNAL_HANDLER
-	UnregisterSignal(owner, list(COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED))
+	UnregisterSignal(owner, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED))
 
 ///Sig handler for atom impacts during lunge
 /datum/action/ability/activable/weapon_skill/sword_lunge/proc/lunge_impact(datum/source, obj/target, speed)
@@ -101,8 +101,8 @@
 	var/mob/living/carbon/carbon_owner = source
 	if(!ishuman(target))
 		var/obj/obj_victim = target
-		obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, armour_penetration = penetration)
-		if(!obj_victim.anchored)
+		obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, TRUE, get_dir(obj_victim, carbon_owner), penetration, carbon_owner)
+		if(!obj_victim.anchored && obj_victim.move_resist < MOVE_FORCE_VERY_STRONG)
 			obj_victim.knockback(carbon_owner, 1, 2)
 	else
 		var/mob/living/carbon/human/human_victim = target
@@ -173,7 +173,7 @@
 	name = "katana"
 	desc = "A finely made Japanese sword, with a well sharpened blade. The blade has been filed to a molecular edge, and is extremely deadly. Commonly found in the hands of mercenaries and yakuza."
 	icon_state = "katana"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	force = 50
 	throwforce = 10
 	sharp = IS_SHARP_ITEM_BIG
@@ -232,7 +232,7 @@
 	icon_state = "combat_knife"
 	item_state = "combat_knife"
 	desc = "A standard survival knife of high quality. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle with cable coil."
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 30
 	w_class = WEIGHT_CLASS_SMALL
@@ -285,7 +285,7 @@
 	icon_state = "karambit"
 	item_state = "karambit"
 	desc = "A small high quality knife with a curved blade, good for slashing and hooking. This one has a mottled red finish."
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 30
 	w_class = WEIGHT_CLASS_SMALL
@@ -328,7 +328,7 @@
 	desc="A military knife designed to be thrown at the enemy. Much quieter than a firearm, but requires a steady hand to be used effectively."
 	stack_name = "pile"
 	singular_name = "knife"
-	flags_atom = CONDUCT|DIRLOCK
+	atom_flags = CONDUCT|DIRLOCK
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 20
 	w_class = WEIGHT_CLASS_TINY
@@ -337,7 +337,7 @@
 	throw_range = 7
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	flags_equip_slot = ITEM_SLOT_POCKET
+	equip_slot_flags = ITEM_SLOT_POCKET
 
 	max_amount = 5
 	amount = 5
