@@ -27,7 +27,7 @@
 /area/shuttle/dropship/Initialize(mapload, ...)
 	. = ..()
 	var/area/area = get_area(src)
-	area.flags_area |= MARINE_BASE
+	area.area_flags |= MARINE_BASE
 
 /area/shuttle/dropship/alamo
 	name = "Dropship Alamo"
@@ -47,7 +47,7 @@
 /area/shuttle/minidropship/Initialize(mapload, ...)
 	. = ..()
 	var/area/area = get_area(src)
-	area.flags_area |= MARINE_BASE
+	area.area_flags |= MARINE_BASE
 
 /area/shuttle/ert
 	name = "Emergency Response Team"
@@ -183,7 +183,7 @@
 /area/shuttle/canterbury/Initialize(mapload, ...)
 	. = ..()
 	var/area/area = get_area(src)
-	area.flags_area |= MARINE_BASE
+	area.area_flags |= MARINE_BASE
 
 /area/shuttle/canterbury/cic
 	name = "Combat Information Center"

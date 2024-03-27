@@ -8,7 +8,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
 	)
 	item_state = "electronic"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	var/build_path = null
 
 //Called when the circuitboard is used to contruct a new machine.

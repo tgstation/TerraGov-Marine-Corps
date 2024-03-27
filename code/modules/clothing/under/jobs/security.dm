@@ -38,7 +38,7 @@
 	name = "dispatcher's uniform"
 	desc = "A dress shirt and khakis with a security patch sewn on."
 	icon_state = "dispatch"
-	flags_armor_protection = CHEST|GROIN|LEGS
+	armor_protection_flags = CHEST|GROIN|LEGS
 	siemens_coefficient = 0.9
 	adjustment_variants = list()
 

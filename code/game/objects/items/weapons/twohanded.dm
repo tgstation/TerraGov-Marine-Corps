@@ -6,7 +6,7 @@
 	var/force_wielded = 0
 	var/wieldsound
 	var/unwieldsound
-	flags_item = TWOHANDED
+	item_flags = TWOHANDED
 
 /obj/item/weapon/twohanded/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
 	unwield(user)
@@ -23,7 +23,7 @@
 
 
 /obj/item/proc/wield(mob/user)
-	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
+	if(!(item_flags & TWOHANDED) || item_flags & WIELDED)
 		return FALSE
 
 	var/obj/item/offhand = user.get_inactive_held_item()
@@ -58,7 +58,7 @@
 
 
 /obj/item/proc/unwield(mob/user)
-	if(!CHECK_MULTIPLE_BITFIELDS(flags_item, TWOHANDED|WIELDED))
+	if(!CHECK_MULTIPLE_BITFIELDS(item_flags, TWOHANDED|WIELDED))
 		return FALSE
 
 	toggle_wielded(user, FALSE)
@@ -94,9 +94,9 @@
 
 /obj/item/proc/toggle_wielded(user, wielded)
 	if(wielded)
-		flags_item |= WIELDED
+		item_flags |= WIELDED
 	else
-		flags_item &= ~WIELDED
+		item_flags &= ~WIELDED
 
 /obj/item/weapon/twohanded/wield(mob/user)
 	. = ..()
@@ -125,7 +125,7 @@
 /obj/item/weapon/twohanded/attack_self(mob/user)
 	. = ..()
 
-	if(flags_item & WIELDED)
+	if(item_flags & WIELDED)
 		unwield(user)
 	else
 		wield(user)
@@ -136,7 +136,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	icon_state = "offhand"
 	name = "offhand"
-	flags_item = DELONDROP|TWOHANDED|WIELDED
+	item_flags = DELONDROP|TWOHANDED|WIELDED
 	resistance_flags = RESIST_ALL
 
 
@@ -177,9 +177,9 @@
 	sharp = IS_SHARP_ITEM_BIG
 	edge = TRUE
 	w_class = WEIGHT_CLASS_BULKY
-	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
-	flags_atom = CONDUCT
-	flags_item = TWOHANDED
+	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_BACK
+	atom_flags = CONDUCT
+	item_flags = TWOHANDED
 	force_wielded = 75
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 
@@ -212,7 +212,7 @@
 	force = 40
 	force_wielded = 80
 	penetration = 35
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	attack_speed = 15
 	///Special attack action granted to users with the right trait
 	var/datum/action/ability/activable/weapon_skill/axe_sweep/special_attack
@@ -322,7 +322,7 @@
 	force_wielded = 150
 	wieldsound = 'sound/weapons/saberon.ogg'
 	unwieldsound = 'sound/weapons/saberoff.ogg'
-	flags_atom = NOBLOODY
+	atom_flags = NOBLOODY
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
@@ -339,7 +339,7 @@
 	item_state = "spearglass"
 	force = 40
 	w_class = WEIGHT_CLASS_BULKY
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	force_wielded = 75
 	throwforce = 75
 	throw_speed = 3
@@ -428,13 +428,13 @@
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon."
 	force = 28
 	w_class = WEIGHT_CLASS_BULKY
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	force_wielded = 90
 	throwforce = 65
 	throw_speed = 3
 	edge = 1
 	sharp = IS_SHARP_ITEM_BIG
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	resistance_flags = UNACIDABLE
 	attack_speed = 12 //Default is 7.
@@ -455,13 +455,13 @@
 	item_state = "rocketsledge"
 	force = 30
 	w_class = WEIGHT_CLASS_BULKY
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	force_wielded = 75
 	throwforce = 50
 	throw_speed = 2
 	edge = 1
 	sharp = IS_SHARP_ITEM_BIG
-	flags_atom = CONDUCT | TWOHANDED
+	atom_flags = CONDUCT | TWOHANDED
 	attack_verb = list("smashed", "hammered")
 	attack_speed = 20
 
@@ -519,7 +519,7 @@
 
 /obj/item/weapon/twohanded/rocketsledge/update_icon_state()
 	. = ..()
-	if ((reagents.get_reagent_amount(/datum/reagent/fuel) > fuel_used) && (CHECK_BITFIELD(flags_item, WIELDED)))
+	if ((reagents.get_reagent_amount(/datum/reagent/fuel) > fuel_used) && (CHECK_BITFIELD(item_flags, WIELDED)))
 		icon_state = "rocketsledge_w"
 	else
 		icon_state = "rocketsledge"
@@ -557,7 +557,7 @@
 	playsound(loc, 'sound/machines/switch.ogg', 25)
 
 /obj/item/weapon/twohanded/rocketsledge/attack(mob/living/carbon/M, mob/living/carbon/user as mob)
-	if(!CHECK_BITFIELD(flags_item, WIELDED))
+	if(!CHECK_BITFIELD(item_flags, WIELDED))
 		to_chat(user, span_warning("You need a more secure grip to use [src]!"))
 		return
 

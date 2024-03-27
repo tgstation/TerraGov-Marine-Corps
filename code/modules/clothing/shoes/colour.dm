@@ -3,9 +3,9 @@
 	icon_state = "black"
 	desc = "A pair of black shoes."
 
-	flags_cold_protection = FEET
+	cold_protection_flags = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_heat_protection = FEET
+	heat_protection_flags = FEET
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/shoes/brown

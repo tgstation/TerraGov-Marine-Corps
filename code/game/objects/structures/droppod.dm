@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR
 	soft_armor = list(MELEE = 25, BULLET = 80, LASER = 80, ENERGY = 90, BOMB = 70, BIO = 100, FIRE = 0, ACID = 0)
 	max_integrity = 75
-	flags_atom = PREVENT_CONTENTS_EXPLOSION
+	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	coverage = 75
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
 	light_range = 1
@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 			balloon_alert(user, "Hazardous zone")
 		return FALSE
 	var/area/targetarea = get_area(target)
-	if(targetarea.flags_area & NO_DROPPOD) // Thou shall not pass!
+	if(targetarea.area_flags & NO_DROPPOD) // Thou shall not pass!
 		if(user)
 			balloon_alert(user, "Invalid area")
 		return FALSE
