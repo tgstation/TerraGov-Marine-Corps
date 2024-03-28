@@ -319,6 +319,9 @@
 			selected_job = new_job
 			user.playsound_local(user, 'sound/effects/menu_click.ogg', 50)
 			return TRUE
+		if("play_ding")
+			user.playsound_local(user, 'sound/effects/menu_click.ogg', 50) //just for the consistant experience
+			return TRUE
 		if("unlock_perk")
 			var/unlocked_perk = text2path(params["selected_perk"])
 			if(!unlocked_perk)
