@@ -283,16 +283,6 @@
 /obj/machinery/telecomms/server/presets/bravo,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
-"avq" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "avK" = (
 /obj/structure/table/mainship,
 /obj/item/ashtray/bronze,
@@ -1105,9 +1095,7 @@
 /turf/open/floor/iron/kitchen,
 /area/mainship/living/grunt_rnr)
 "bth" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1
-	},
+/obj/structure/bed/chair/office/dark,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "btW" = (
@@ -8795,6 +8783,9 @@
 	dir = 9
 	},
 /obj/effect/ai_node,
+/obj/machinery/cic_maptable/drawable/big{
+	pixel_x = 0
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "lmy" = (
@@ -9884,10 +9875,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
-"mza" = (
-/obj/machinery/computer/navigation,
-/turf/open/floor/mainship/mono,
-/area/mainship/command/cic)
 "mzh" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
@@ -16970,7 +16957,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/engineering/port_atmos)
 "vjs" = (
-/obj/machinery/cic_maptable/drawable/big,
+/obj/machinery/computer/navigation,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "vjC" = (
@@ -48592,7 +48579,7 @@ sVR
 ufq
 uud
 tyN
-dpY
+eJJ
 nWE
 cPE
 kDx
@@ -53295,7 +53282,7 @@ lwj
 jwK
 nvN
 vfH
-mza
+yaz
 qKz
 rjL
 vfH
@@ -54007,7 +53994,7 @@ kDx
 kDx
 cxw
 opn
-avq
+dpY
 dpY
 dpY
 dpY
