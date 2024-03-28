@@ -15,7 +15,6 @@
 /datum/storage/tank/ammorack_primary
 	can_hold = list(
 		/obj/item/ammo_magazine/tank/ltb_cannon,
-		/obj/item/ammo_magazine/tank/ltaap_minigun,
 	)
 
 /datum/storage/tank/ammorack_secondary

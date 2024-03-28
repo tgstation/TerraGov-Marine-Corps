@@ -6,7 +6,7 @@
 	icon_state = "crate"
 	w_class = WEIGHT_CLASS_HUGE
 
-/obj/item/storage/box/tl102/Initialize(mapload)
+/obj/item/storage/box/hsg_102/Initialize(mapload)
 	. = ..()
 	atom_storage.storage_slots = 7
 	atom_storage.bypass_w_limit = list(
