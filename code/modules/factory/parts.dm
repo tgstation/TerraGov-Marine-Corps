@@ -521,13 +521,14 @@ GLOBAL_LIST_INIT(swat_mask, list(
 	. = ..()
 	recipe = GLOB.swat_mask
 
-GLOBAL_LIST_INIT(meds, list(
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "uncutplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "req_bag3"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "req_bag1"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "req_bag2"),
+GLOBAL_LIST_INIT(module, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "roundplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "barrelplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "unfinished_module_top"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "unfinished_module_bottom"),
 	))
-
 /obj/item/factory_part/module_valk
 	name = "\improper Valkyrie automedical armor system"
 	desc = "An unfinished Valkyrie automedical armor system module."
