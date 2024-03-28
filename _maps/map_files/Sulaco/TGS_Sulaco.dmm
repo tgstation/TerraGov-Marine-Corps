@@ -12089,6 +12089,12 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall)
+"eNo" = (
+/obj/item/radio/intercom/general{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray/outer,
+/area/sulaco/hallway/lower_foreship)
 "eNX" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -18610,6 +18616,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
+"mQc" = (
+/obj/item/radio/intercom/general{
+	dir = 8
+	},
+/turf/open/floor/prison/green/full,
+/area/sulaco/marine)
 "mQk" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -19426,13 +19438,6 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
-"nVV" = (
-/obj/structure/closet/emcloset,
-/obj/structure/closet/walllocker/emerglocker{
-	dir = 4
-	},
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "nVZ" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -22542,14 +22547,6 @@
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
-"rSe" = (
-/obj/item/radio/intercom/general{
-	dir = 8
-	},
-/turf/open/floor/prison/green{
-	dir = 8
-	},
-/area/sulaco/marine)
 "rSi" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/ashtray/glass,
@@ -22667,6 +22664,9 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
 "sbO" = (
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/chemistry)
 "sbP" = (
@@ -24333,9 +24333,6 @@
 "uam" = (
 /obj/structure/table/reinforced,
 /obj/machinery/microwave,
-/obj/structure/closet/walllocker/emerglocker{
-	dir = 4
-	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "ube" = (
@@ -24607,9 +24604,6 @@
 	},
 /obj/machinery/chem_master,
 /obj/item/reagent_containers/glass/beaker/bluespace,
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/chemistry)
 "utx" = (
@@ -49332,7 +49326,7 @@ hBd
 aLG
 lTL
 aLG
-rSe
+aLG
 vkI
 xJd
 wMp
@@ -49589,12 +49583,12 @@ nWx
 aYV
 hdZ
 xJd
+mQc
 aLk
 aLk
 aLk
 aLk
-aLk
-lqm
+lIp
 tsP
 xJd
 wmQ
@@ -49851,7 +49845,7 @@ htm
 gdR
 htm
 aLf
-lIp
+lqm
 vRu
 qzc
 bbP
@@ -50115,7 +50109,7 @@ euR
 euR
 euR
 vgl
-vgl
+eNo
 vgl
 vgl
 vgl
@@ -52423,7 +52417,7 @@ alm
 two
 aTg
 aVH
-pIP
+bIb
 aam
 abb
 abC
@@ -53194,7 +53188,7 @@ szj
 sbT
 iqQ
 xKR
-bIb
+pIP
 uPy
 xWb
 egL
@@ -60913,7 +60907,7 @@ aPF
 aQr
 dsn
 aPF
-nVV
+aSu
 rQn
 kgo
 ecj
