@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - qol: "The toxin reagent from QC+, Peri+ and Nanoblood now shows on medical scanners."
