@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - rscadd: "Added new Sniper and Shotgun sentry to the marine arsenal, as well as new sentry sprites."
