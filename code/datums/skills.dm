@@ -387,12 +387,12 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/so
 	name = STAFF_OFFICER
-	engineer = SKILL_ENGINEER_PLASTEEL
+	engineer = SKILL_ENGINEER_ENGI
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
-	powerloader = SKILL_POWERLOADER_PRO
+	powerloader = SKILL_POWERLOADER_TRAINED
 	police = SKILL_POLICE_MP
 
 /datum/skills/pilot
