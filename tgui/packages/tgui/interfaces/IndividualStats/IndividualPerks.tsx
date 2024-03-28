@@ -47,7 +47,10 @@ export const IndividualPerks = (props) => {
                   <Button
                     width={'220px'}
                     height={'22px'}
-                    onClick={() => setSelectedPerk(perk)}
+                    onClick={() => {
+                      act('play_ding');
+                      setSelectedPerk(perk);
+                    }}
                     color={
                       selectedPerk.name === perk.name
                         ? 'orange'
