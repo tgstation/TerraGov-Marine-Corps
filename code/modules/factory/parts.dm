@@ -464,48 +464,6 @@ GLOBAL_LIST_INIT(minigun_powerpack, list(
 	. = ..()
 	recipe = GLOB.minigun_powerpack
 
-GLOBAL_LIST_INIT(howitzer_shell, list(
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "cutplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "barrelplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
-	))
-/obj/item/factory_part/howitzer_shell_he
-	name = "howitzer shell"
-	desc = "An unfinished high explosive howitzer shell."
-	result = /obj/item/mortal_shell/howitzer/he
-
-/obj/item/factory_part/howitzer_shell_he/Initialize(mapload)
-	. = ..()
-	recipe = GLOB.howitzer_shell
-
-/obj/item/factory_part/howitzer_shell_incen
-	name = "howitzer shell"
-	desc = "An unfinished incendiary howitzer shell."
-	result = /obj/item/mortal_shell/howitzer/incendiary
-
-/obj/item/factory_part/howitzer_shell_incen/Initialize(mapload)
-	. = ..()
-	recipe = GLOB.howitzer_shell
-
-/obj/item/factory_part/howitzer_shell_wp
-	name = "howitzer shell"
-	desc = "An unfinished white phosphorus Howitzer shell."
-	result = /obj/item/mortal_shell/howitzer/white_phos
-
-/obj/item/factory_part/howitzer_shell_wp/Initialize(mapload)
-	. = ..()
-	recipe = GLOB.howitzer_shell
-
-/obj/item/factory_part/howitzer_shell_tfoot
-	name = "howitzer shell"
-	desc = "An unfinished high explosive howitzer shell."
-	result = /obj/item/mortal_shell/howitzer/plasmaloss
-
-/obj/item/factory_part/howitzer_shell_tfoot/Initialize(mapload)
-	. = ..()
-	recipe = GLOB.howitzer_shell
-
 GLOBAL_LIST_INIT(swat_mask, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "cutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "steelingot"),
@@ -613,6 +571,8 @@ GLOBAL_LIST_INIT(module, list(
 	. = ..()
 	recipe = GLOB.module
 
+// Mortar
+
 GLOBAL_LIST_INIT(mortar_shell, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
@@ -666,7 +626,55 @@ GLOBAL_LIST_INIT(mortar_shell, list(
 	. = ..()
 	recipe = GLOB.mortar_shell
 
+//
+// Howitzer
+//
 
+GLOBAL_LIST_INIT(howitzer_shell, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "barrelplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
+	))
+/obj/item/factory_part/howitzer_shell_he
+	name = "howitzer shell"
+	desc = "An unfinished high explosive howitzer shell."
+	result = /obj/item/mortal_shell/howitzer/he
+
+/obj/item/factory_part/howitzer_shell_he/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.howitzer_shell
+
+/obj/item/factory_part/howitzer_shell_incen
+	name = "howitzer shell"
+	desc = "An unfinished incendiary howitzer shell."
+	result = /obj/item/mortal_shell/howitzer/incendiary
+
+/obj/item/factory_part/howitzer_shell_incen/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.howitzer_shell
+
+/obj/item/factory_part/howitzer_shell_wp
+	name = "howitzer shell"
+	desc = "An unfinished white phosphorus Howitzer shell."
+	result = /obj/item/mortal_shell/howitzer/white_phos
+
+/obj/item/factory_part/howitzer_shell_wp/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.howitzer_shell
+
+/obj/item/factory_part/howitzer_shell_tfoot
+	name = "howitzer shell"
+	desc = "An unfinished high explosive howitzer shell."
+	result = /obj/item/mortal_shell/howitzer/plasmaloss
+
+/obj/item/factory_part/howitzer_shell_tfoot/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.howitzer_shell
+
+//
+// MLRS
+//
 
 GLOBAL_LIST_INIT(mlrs_rocket, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
@@ -692,6 +700,23 @@ GLOBAL_LIST_INIT(thermobaric_wp_recipe, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "rockettube"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
 	))
+
+/obj/item/factory_part/mlrs_rocket/gas
+	name = "\improper MLRS mustard gas rocket"
+	desc = "An unfinished mustard gas rocket."
+	result = /obj/item/storage/box/mlrs_rockets/gas
+
+/obj/item/factory_part/mlrs_rocket/cloak
+	name = "\improper MLRS cloak rocket"
+	desc = "An unfinished cloak gas rocket."
+	result = /obj/item/storage/box/mlrs_rockets/cloak
+
+/obj/item/factory_part/mlrs_rocket/incendiary
+	name = "\improper MLRS Incendiary rocket"
+	desc = "An unfinished incendiary rocket."
+	result = /obj/item/storage/box/mlrs_rockets/incendiary
+
+// Thermobaric
 
 /obj/item/factory_part/thermobaric_wp
 	name = "\improper RL-57 Thermobaric WP rocket array"

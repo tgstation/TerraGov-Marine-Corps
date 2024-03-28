@@ -969,20 +969,20 @@ EXPLOSIVES
 	contains = list(/obj/item/storage/box/mlrs_rockets)
 	cost = 60
 
-/datum/supply_packs/explosives/mlrs_rockets_incendiary
-	name = "TA-40L MLRS Incendiary Rocket Pack (x16)"
-	contains = list(/obj/item/storage/box/mlrs_rocket_incendiary)
-	cost = 60
-
 /datum/supply_packs/explosives/mlrs_rockets_gas
 	name = "TA-40L X-50 MLRS Rocket Pack (x16)"
-	contains = list(/obj/item/storage/box/mlrs_rockets_gas)
+	contains = list(/obj/item/storage/box/mlrs_rockets/gas)
 	cost = 60
 
 /datum/supply_packs/explosives/mlrs_rockets_cloak
 	name = "TA-40L S-2 MLRS Cloak Rocket Pack (x16)"
-	contains = list(/obj/item/storage/box/mlrs_rocket_gas_cloak)
+	contains = list(/obj/item/storage/box/mlrs_rockets/cloak)
 	cost = 50
+
+/datum/supply_packs/explosives/mlrs_rockets_incendiary
+	name = "TA-40L MLRS Incendiary Rocket Pack (x16)"
+	contains = list(/obj/item/storage/box/mlrs_rockets/incendiary)
+	cost = 60
 
 /datum/supply_packs/explosives/howitzer
 	name = "MG-100Y howitzer"
@@ -2368,6 +2368,21 @@ FACTORY
 /datum/supply_packs/factory/mlrs_rocket_refill
 	name = "MLRS High Explosive rocket assembly refill"
 	contains = list(/obj/item/factory_refill/mlrs_rocket_refill)
+	cost = 240
+
+/datum/supply_packs/factory/mlrs_rocket_refill_cloak
+	name = "MLRS 'S-2' Cloak rocket assembly refill"
+	contains = list(/obj/item/factory_refill/mlrs_rocket_refill_cloak)
+	cost = 240
+
+/datum/supply_packs/factory/mlrs_rocket_refill_gas
+	name = "MLRS 'X-50' gas rocket assembly refill"
+	contains = list(/obj/item/factory_refill/mlrs_rocket_refill_gas)
+	cost = 240
+
+/datum/supply_packs/factory/mlrs_rocket_refill_incendiary
+	name = "MLRS Incendiary rocket assembly refill"
+	contains = list(/obj/item/factory_refill/mlrs_rocket_refill_incendiary)
 	cost = 240
 
 /datum/supply_packs/factory/agls_he_refill

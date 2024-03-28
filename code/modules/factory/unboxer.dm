@@ -440,8 +440,26 @@
 
 /obj/item/factory_refill/mlrs_rocket_refill
 	name = "box of rounded metal plates"
-	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become High Explosive rockets for an MLRS, once finished."
 	refill_type = /obj/item/factory_part/mlrs_rocket
+	refill_amount = 6
+	
+/obj/item/factory_refill/mlrs_rocket_refill_gas
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become deadly Gas rockets for an MLRS, once finished."
+	refill_type = /obj/item/factory_part/mlrs_rocket/gas
+	refill_amount = 6
+
+/obj/item/factory_refill/mlrs_rocket_refill_cloak
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Cloaking Smoke rockets for an MLRS, once finished."
+	refill_type = /obj/item/factory_part/mlrs_rocket/cloak
+	refill_amount = 6
+
+/obj/item/factory_refill/mlrs_rocket_refill_incendiary
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Incendiary rockets for an MLRS, once finished."
+	refill_type = /obj/item/factory_part/mlrs_rocket/incendiary
 	refill_amount = 6
 
 /obj/item/factory_refill/agls_he_refill
