@@ -10,9 +10,9 @@
 	var/prescription = FALSE
 	var/toggleable = FALSE
 	active = TRUE
-	flags_inventory = COVEREYES
-	flags_equip_slot = ITEM_SLOT_EYES
-	flags_armor_protection = EYES
+	inventory_flags = COVEREYES
+	equip_slot_flags = ITEM_SLOT_EYES
+	armor_protection_flags = EYES
 	var/deactive_state = "degoggles"
 	var/vision_flags = NONE
 	var/darkness_view = 2 //Base human is 2
@@ -83,7 +83,7 @@
 	desc = "Yarr."
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
-	flags_armor_protection = NONE
+	armor_protection_flags = NONE
 
 /obj/item/clothing/glasses/eyepatch/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -110,7 +110,7 @@
 	name = "monocle"
 	desc = "Such a dapper eyepiece!"
 	icon_state = "monocle"
-	flags_armor_protection = NONE
+	armor_protection_flags = NONE
 
 /obj/item/clothing/glasses/material
 	name = "optical material scanner"
@@ -153,14 +153,14 @@
 	name = "3D glasses"
 	icon_state = "3d"
 	item_state = "3d"
-	flags_armor_protection = NONE
+	armor_protection_flags = NONE
 
 /obj/item/clothing/glasses/gglasses
 	name = "green glasses"
 	desc = "Forest green glasses, like the kind you'd wear when hatching a nasty scheme."
 	icon_state = "gglasses"
 	item_state = "gglasses"
-	flags_armor_protection = NONE
+	armor_protection_flags = NONE
 
 /obj/item/clothing/glasses/mgoggles
 	name = "marine ballistic goggles"
@@ -168,7 +168,7 @@
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
 	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 0, ENERGY = 15, BOMB = 35, BIO = 10, FIRE = 30, ACID = 30)
-	flags_equip_slot = ITEM_SLOT_EYES|ITEM_SLOT_MASK
+	equip_slot_flags = ITEM_SLOT_EYES|ITEM_SLOT_MASK
 	goggles = TRUE
 	w_class = WEIGHT_CLASS_TINY
 
@@ -232,8 +232,8 @@
 	icon_state = "welding-g"
 	item_state = "welding-g"
 	actions_types = list(/datum/action/item_action/toggle)
-	flags_inventory = COVEREYES
-	flags_inv_hide = HIDEEYES
+	inventory_flags = COVEREYES
+	inv_hide_flags = HIDEEYES
 	eye_protection = 2
 	activation_sound = null
 	deactivation_sound = null
@@ -262,9 +262,9 @@
 
 ///Toggle the welding goggles on
 /obj/item/clothing/glasses/welding/proc/flip_up(mob/user)
-	DISABLE_BITFIELD(flags_inventory, COVEREYES)
-	DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
-	DISABLE_BITFIELD(flags_armor_protection, EYES)
+	DISABLE_BITFIELD(inventory_flags, COVEREYES)
+	DISABLE_BITFIELD(inv_hide_flags, HIDEEYES)
+	DISABLE_BITFIELD(armor_protection_flags, EYES)
 	eye_protection = 0
 	update_icon()
 	if(user)
@@ -272,9 +272,9 @@
 
 ///Toggle the welding goggles off
 /obj/item/clothing/glasses/welding/proc/flip_down(mob/user)
-	ENABLE_BITFIELD(flags_inventory, COVEREYES)
-	ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
-	ENABLE_BITFIELD(flags_armor_protection, EYES)
+	ENABLE_BITFIELD(inventory_flags, COVEREYES)
+	ENABLE_BITFIELD(inv_hide_flags, HIDEEYES)
+	ENABLE_BITFIELD(armor_protection_flags, EYES)
 	eye_protection = initial(eye_protection)
 	update_icon()
 	if(user)

@@ -160,7 +160,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	throw_speed = 0.5
 	item_state = "cigoff"
 	w_class = WEIGHT_CLASS_TINY
-	flags_armor_protection = NONE
+	armor_protection_flags = NONE
 	light_range = 0.1
 	light_power = 0.1
 	light_color = LIGHT_COLOR_ORANGE
@@ -561,8 +561,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	light_color = LIGHT_COLOR_FIRE
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 4
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	attack_verb = list("burnt", "singed")
 
 /obj/item/tool/lighter/zippo

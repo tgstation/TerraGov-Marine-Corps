@@ -12,7 +12,7 @@
 	)
 	icon_state = "bluespace_pack"
 	w_class = WEIGHT_CLASS_BULKY
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	obj_flags = CAN_BE_HIT
 	light_range = 0.1
 	light_power = 0.1

@@ -352,7 +352,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_INHUMAN
 	construction = SKILL_CONSTRUCTION_INHUMAN
 	firearms = SKILL_FIREARMS_UNTRAINED
-	medical = SKILL_SURGERY_PROFESSIONAL
+	medical = SKILL_MEDICAL_COMPETENT
 	cqc = SKILL_CQC_MASTER
 	surgery = SKILL_SURGERY_PROFESSIONAL
 	pilot = SKILL_PILOT_TRAINED

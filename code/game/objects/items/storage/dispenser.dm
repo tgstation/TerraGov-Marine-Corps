@@ -113,7 +113,7 @@
 	desc = "The TX-9000 also known as \"Dispenser\" is a machine capable of holding a big amount of items on it, while also healing nearby synthetics. Your allies will often ask you to lay down one of those."
 	icon = 'icons/obj/items/storage/storage_48.dmi'
 	icon_state = "dispenser"
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	max_storage_space = 48
 	max_integrity = 250
 
@@ -122,12 +122,12 @@
 	AddComponent(/datum/component/deployable_item, /obj/machinery/deployable/dispenser, 0, 0)
 
 /obj/item/storage/backpack/dispenser/attack_hand(mob/living/user)
-	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(!CHECK_BITFIELD(item_flags, IS_DEPLOYED))
 		return ..()
 	open(user)
 
 /obj/item/storage/backpack/dispenser/open(mob/user)
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(CHECK_BITFIELD(item_flags, IS_DEPLOYED))
 		return ..()
 
 /obj/item/storage/backpack/dispenser/attempt_draw_object(mob/living/user)

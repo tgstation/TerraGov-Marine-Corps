@@ -105,7 +105,7 @@
 	if(H.species.species_flags & ROBOTIC_LIMBS || H.species.species_flags & IS_INSULATED)
 		return
 
-	if(!H.shoes && !(H.wear_suit?.flags_armor_protection & FEET))
+	if(!H.shoes && !(H.wear_suit?.armor_protection_flags & FEET))
 		INVOKE_ASYNC(src, PROC_REF(pierce_foot), H)
 
 /obj/item/shard/proc/pierce_foot(mob/living/carbon/human/target)

@@ -477,7 +477,7 @@
 	. = ..()
 	//adds the exit points to the glob, and the start points link to them in lateinit
 	GLOB.patrol_point_list += src
-	if(!(SSticker?.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS))
+	if(!(SSticker?.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS))
 		return
 	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips.dmi', null, minimap_icon))
 
