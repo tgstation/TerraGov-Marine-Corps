@@ -192,21 +192,20 @@
 	var/mob/living/living = mob_parent
 	living?.set_resting(TRUE)
 
-/// stop resting when puppeter does, plus unbuckle all mobs so the widow won't get stuck
+/// stop resting when puppeter does
 /datum/ai_behavior/puppet/proc/stop_resting(mob/source)
 	SIGNAL_HANDLER
 	var/mob/living/living = mob_parent
 	living?.set_resting(FALSE)
-	source?.unbuckle_all_mobs()
 
 /// resist when puppeter does
 /datum/ai_behavior/puppet/proc/do_jump()
 	SIGNAL_HANDLER
-	var/datum/component/jump/jumpy_spider = mob_parent.GetComponent(/datum/component/jump)
-	jumpy_spider?.do_jump(mob_parent)
+	var/datum/component/jump/puppet_jump = mob_parent.GetComponent(/datum/component/jump)
+	puppet_jump?.do_jump(mob_parent)
 
 /// resist when puppeter does
 /datum/ai_behavior/puppet/proc/parent_resist()
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/spiderling/spiderling_parent = mob_parent
-	spiderling_parent?.do_resist()
+	var/mob/living/carbon/xenomorph/puppet/puppet_parent = mob_parent
+	puppet_parent?.do_resist()
