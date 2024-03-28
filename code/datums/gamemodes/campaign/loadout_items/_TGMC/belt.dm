@@ -4,6 +4,7 @@
 /datum/loadout_item/belt/empty
 	name = "no belt"
 	desc = ""
+	ui_icon = "empty"
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
@@ -38,7 +39,7 @@
 	)
 
 /datum/loadout_item/belt/sparepouch
-	name = "G8 storage pouch"
+	name = "G8 pouch"
 	desc = "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines."
 	item_typepath = /obj/item/storage/belt/sparepouch
 	jobs_supported = list(SQUAD_MARINE)
@@ -63,7 +64,7 @@
 	name = "SMG-25 holster"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. \
 	This version is designed for the SMG-25, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
-	ui_icon = "smg"
+	ui_icon = "m25"
 	item_typepath = /obj/item/storage/holster/m25
 	jobs_supported = list(SQUAD_MARINE)
 
@@ -110,7 +111,7 @@
 	name = "P-1911A1-C pistol"
 	desc = "The P-1911A1-C is a custom modified pistol with impressive stopping power for its size. \
 	Light and easy to use one handed, it suffers from a small magazine size and no auto eject feature. Comes in a holster that fits on your waist or armor. Uses .45 ACP ammunition."
-	ui_icon = "pistol"
+	ui_icon = "m1911c"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 	jobs_supported = list(FIELD_COMMANDER)
 	item_blacklist = list(/obj/item/storage/holster/belt/pistol/m4a3/fieldcommander = ITEM_SLOT_SUITSTORE)
@@ -119,7 +120,7 @@
 /datum/loadout_item/belt/so_pistol
 	name = "RT-3 pistol"
 	desc = "An RT-3 target pistol, a common sight throughout the bubble and the standard sidearm for noncombat roles in the TGMC. Comes in a holster to fit on your waist. uses 9mm caseless ammunition."
-	ui_icon = "pistol"
+	ui_icon = "rt3"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/officer
 	jobs_supported = list(STAFF_OFFICER)
 

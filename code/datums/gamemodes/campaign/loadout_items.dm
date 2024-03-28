@@ -45,7 +45,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	///Typepath of the actual item this datum represents
 	var/obj/item/item_typepath
 	///UI icon for this item
-	var/ui_icon = "heavy_armour" //placeholder
+	var/ui_icon = "default"
 	///inventory slot it is intended to go into
 	var/item_slot
 	///Behavior flags for loadout items

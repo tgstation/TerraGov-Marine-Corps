@@ -124,7 +124,7 @@
 	Passed down the generations and lovingly maintained as a family heirloom, \
 	its use on modern battlefields is an idiosyncratic example of the SOM's persistant desire to maintain a link to their cultural past, more than any possible tactical reason. \
 	Despite having relatively poor mobility and handling, it never the less has fearsome firepower and good capacity, ensuring it stays a relevant weapon choice for the SOM. Uses 7.62x39mm ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "ak47"
 	item_typepath = /obj/item/weapon/gun/rifle/mpi_km/grenadier
 
 /datum/loadout_item/suit_store/main_gun/som_squad_leader/mpi/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -147,7 +147,7 @@
 	It combines good mobility and managable handling with fearsome stopping power and a tremendous rate of fire, making the V-34 an exceptionally deadly weapon at close range. \
 	With poor falloff and accuracy, it is a poor weapon outside of close range, and its mobility lacks compared to some other close range weapons like the V-21. \
 	Uses 7.62x39mm ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "v34"
 	item_typepath = /obj/item/weapon/gun/rifle/som_carbine/mag_harness
 
 /datum/loadout_item/suit_store/main_gun/som_squad_leader/carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)

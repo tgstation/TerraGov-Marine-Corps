@@ -1,5 +1,5 @@
 /datum/loadout_item/suit_slot/som_light_shield
-	name = "Light Aegis armor"
+	name = "L Aegis armor"
 	desc = "M-11 scout armor with a Aegis shield module. Provides excellent mobility but lower protection."
 	ui_icon = "light_armour_shield"
 	item_typepath = /obj/item/clothing/suit/modular/som/light/shield
@@ -41,7 +41,7 @@
 	item_whitelist = list(/obj/item/blink_drive = ITEM_SLOT_BACK)
 
 /datum/loadout_item/suit_slot/som_medium_shield
-	name = "Medium Aegis armor"
+	name = "M Aegis armor"
 	desc = "M-21 battle armor with a Aegis shield module. Provides balanced mobility and protection."
 	ui_icon = "medium_armour_shield"
 	item_typepath = /obj/item/clothing/suit/modular/som/shield
@@ -74,7 +74,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/half_stack, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/som_heavy_shield
-	name = "Heavy Aegis armor"
+	name = "H Aegis armor"
 	desc = "M-31 combat armor with a Aegis shield module. Provides excellent protection but lower mobility."
 	ui_icon = "heavy_armour_shield"
 	item_typepath = /obj/item/clothing/suit/modular/som/heavy/shield
@@ -101,7 +101,7 @@
 	loadout_item_flags = null
 
 /datum/loadout_item/suit_slot/som_heavy_surt
-	name = "Heavy Hades armor"
+	name = "H Hades armor"
 	desc = "M-31 combat armor with a Hades fireproof module. Provides excellent protection and almost total fire immunity, but has poor mobility."
 	ui_icon = "heavy_armour"
 	req_desc = "Requires a V-62 incinerator."
@@ -110,7 +110,7 @@
 	item_whitelist = list(/obj/item/weapon/gun/flamer/som/mag_harness = ITEM_SLOT_SUITSTORE)
 
 /datum/loadout_item/suit_slot/som_heavy_tyr
-	name = "Heavy Lorica armor"
+	name = "H Lorica armor"
 	desc = "M-31 combat armor with a Lorica extra armor module. Provides incredible protection at the cost of further reduced mobility."
 	ui_icon = "lorica"
 	req_desc = "Requires a boarding axe primary weapon."
@@ -143,7 +143,7 @@
 	jobs_supported = list(SOM_FIELD_COMMANDER)
 
 /datum/loadout_item/suit_slot/som_heavy_mimir
-	name = "Heavy Mith armor"
+	name = "H Mith armor"
 	desc = "M-31 combat armor with a Mithridatius 'Mith' environmental protection module. Provides excellent armor and total immunity to chemical attacks, and improved radiological protection. Has lower mobility."
 	req_desc = "Requires a helmet with a Mithridatius environmental protection module."
 	ui_icon = "heavy_armour"
@@ -155,7 +155,7 @@
 
 //engineer
 /datum/loadout_item/suit_slot/som_engineer
-	name = "Medium armor"
+	name = "M armor"
 	desc = "M-21 battle armor with engineering storage. Provides balanced armor and mobility."
 	ui_icon = "medium_armour"
 	item_typepath = /obj/item/clothing/suit/modular/som/engineer
@@ -170,14 +170,14 @@
 	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/half_stack, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/som_engineer/light
-	name = "Light armor"
+	name = "L armor"
 	desc = "M-11 scout armor with engineering storage. Provides excellent mobility but lower protection."
 	ui_icon = "light_armour"
 	item_typepath = /obj/item/clothing/suit/modular/som/light/engineer
 
 //medic
 /datum/loadout_item/suit_slot/som_medic
-	name = "Medium armor"
+	name = "M armor"
 	desc = "M-21 battle armor with medical storage. Provides balanced armor and mobility."
 	ui_icon = "medium_armour"
 	item_typepath = /obj/item/clothing/suit/modular/som/medic
@@ -189,7 +189,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/som_medic/light
-	name = "Light armor"
+	name = "L armor"
 	desc = "M-11 scout armor with medical storage. Provides excellent mobility but lower protection."
 	ui_icon = "light_armour"
 	item_typepath = /obj/item/clothing/suit/modular/som/light/medic

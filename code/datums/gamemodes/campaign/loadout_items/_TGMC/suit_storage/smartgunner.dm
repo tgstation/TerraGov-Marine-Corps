@@ -7,7 +7,7 @@
 	It has good mobility for a machinegun, and is extremely effective on the move. Its innate IFF, good damage application and attached motion sensor makes it a powerful support weapon. \
 	Has somewhat poor falloff however, and although it has an excellent capacity, has slow reloading. It uses 10x26mm caseless ammunition. \
 	Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
-	ui_icon = "smartgun"
+	ui_icon = "sg29"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
