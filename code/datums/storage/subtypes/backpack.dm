@@ -31,7 +31,7 @@
 	bypass_w_limit = list(
 		/obj/item/weapon/gun/sentry/big_sentry,
 		/obj/item/weapon/gun/sentry/mini,
-		/obj/item/weapon/gun/tl102,
+		/obj/item/weapon/gun/hsg_102,
 		/obj/item/ammo_magazine/hsg_102,
 		/obj/item/ammo_magazine/sentry,
 		/obj/item/ammo_magazine/minisentry,
@@ -67,7 +67,7 @@
 
 /datum/storage/backpack/dispenser/open(mob/user)
 	var/obj/item/dispenser = parent
-	if(CHECK_BITFIELD(dispenser.flags_item, IS_DEPLOYED))
+	if(CHECK_BITFIELD(dispenser.item_flags, IS_DEPLOYED))
 		return ..()
 
 /datum/storage/backpack/dispenser/attempt_draw_object(mob/living/user)

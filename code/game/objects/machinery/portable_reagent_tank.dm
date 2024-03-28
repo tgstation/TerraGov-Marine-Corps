@@ -176,12 +176,6 @@
 /obj/item/storage/reagent_tank/do_quick_equip(mob/user)
 	balloon_alert(user, "Not deployed")
 
-/obj/item/storage/reagent_tank/can_be_inserted(obj/item/W, warning)
-	if(!CHECK_BITFIELD(item_flags, IS_DEPLOYED))
-		balloon_alert(usr, "Not deployed")
-		return FALSE
-	return ..()
-
 //Preset tanks so you can have these ready for a round and not need to drain the chem master's energy
 /obj/item/storage/reagent_tank/bicaridine
 	name = "portable Bicaridine dispenser"

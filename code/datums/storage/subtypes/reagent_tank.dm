@@ -6,19 +6,19 @@
 
 /datum/storage/reagent_tank/open(mob/user)
 	var/obj/item/reagent_tank = parent
-	if(CHECK_BITFIELD(reagent_tank.flags_item, IS_DEPLOYED))
+	if(CHECK_BITFIELD(reagent_tank.item_flags, IS_DEPLOYED))
 		return ..()
 
 /datum/storage/reagent_tank/attempt_draw_object(mob/living/user)
 	var/obj/item/reagent_tank = parent
-	if(!CHECK_BITFIELD(reagent_tank.flags_item, IS_DEPLOYED))
+	if(!CHECK_BITFIELD(reagent_tank.item_flags, IS_DEPLOYED))
 		user.balloon_alert(user, "Not deployed")
 		return FALSE
 	return ..()
 
 /datum/storage/reagent_tank/can_be_inserted(obj/item/item_to_insert, warning)
 	var/obj/item/reagent_tank = parent
-	if(!CHECK_BITFIELD(reagent_tank.flags_item, IS_DEPLOYED))
+	if(!CHECK_BITFIELD(reagent_tank.item_flags, IS_DEPLOYED))
 		usr.balloon_alert(usr, "Not deployed")
 		return FALSE
 	return ..()

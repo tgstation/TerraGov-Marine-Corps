@@ -1781,7 +1781,7 @@
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/west)
 "ll" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -1948,7 +1948,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "mR" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless{
 	dir = 1;
 	pixel_y = -5
 	},
@@ -2932,7 +2932,7 @@
 /obj/structure/platform/trench{
 	dir = 1
 	},
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless{
 	dir = 1;
 	pixel_y = -5
 	},
@@ -3256,7 +3256,7 @@
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/east)
 "wf" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless{
 	dir = 8;
 	name = "\improper T37 Medium Machinegun"
 	},
@@ -3397,7 +3397,7 @@
 /obj/structure/barricade/metal{
 	dir = 1
 	},
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless{
 	dir = 1
 	},
 /turf/open/floor/engine/cult{
@@ -3903,7 +3903,7 @@
 /turf/open/floor/plating,
 /area/oscar_outpost/outside/north)
 "Bo" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -4156,7 +4156,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "Dg" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless{
 	dir = 1;
 	pixel_y = -5
 	},
@@ -4331,7 +4331,7 @@
 	},
 /area/oscar_outpost/outside/northeast)
 "DB" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless{
 	dir = 1;
 	pixel_y = -5
 	},
@@ -4611,7 +4611,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/north)
 "FM" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless{
 	dir = 4;
 	name = "\improper T37 Medium Machinegun"
 	},
@@ -4719,7 +4719,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/oscar_outpost/outside/northeast)
 "GR" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless{
 	dir = 1;
 	pixel_y = -5
 	},
@@ -5133,7 +5133,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "Kp" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless{
 	dir = 1;
 	pixel_y = -5
 	},
@@ -5917,7 +5917,7 @@
 	},
 /area/oscar_outpost/outside/east)
 "Pn" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless{
 	dir = 8;
 	name = "\improper T37 Medium Machinegun"
 	},
@@ -5988,10 +5988,10 @@
 /obj/item/ammo_magazine/hsg_102{
 	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
 	},
-/obj/item/weapon/gun/tl102{
+/obj/item/weapon/gun/hsg_102{
 	name = "\improper T37 Medium Machinegun"
 	},
-/obj/item/weapon/gun/tl102{
+/obj/item/weapon/gun/hsg_102{
 	name = "\improper T37 Medium Machinegun"
 	},
 /obj/machinery/light{
@@ -6359,7 +6359,7 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "RA" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless{
 	dir = 1;
 	pixel_y = -5
 	},
@@ -6376,7 +6376,7 @@
 	},
 /area/oscar_outpost)
 "RD" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless,
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "RL" = (
@@ -6673,7 +6673,7 @@
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/east)
 "Ug" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless{
 	dir = 8;
 	name = "\improper T37 Medium Machinegun"
 	},
@@ -6858,7 +6858,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/oscar_outpost/outside/west)
 "WC" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless{
 	dir = 4;
 	name = "\improper T37 Medium Machinegun"
 	},
@@ -7075,13 +7075,13 @@
 	},
 /area/oscar_outpost/outside/northwest)
 "YM" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "YT" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless,
+/obj/item/weapon/gun/hsg_102/hsg_nest/sandless,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "YV" = (

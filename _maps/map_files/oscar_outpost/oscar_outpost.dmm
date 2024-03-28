@@ -1139,7 +1139,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/oscar_outpost/village/fairgrounds)
 "hX" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/hsg_102/hsg_nest{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -1453,7 +1453,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "jS" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/hsg_102/hsg_nest{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -3029,7 +3029,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "uA" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/hsg_102/hsg_nest{
 	dir = 1;
 	pixel_y = 7
 	},
@@ -3625,7 +3625,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/underground)
 "yn" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/hsg_102/hsg_nest{
 	dir = 1;
 	pixel_y = 7
 	},
@@ -6761,7 +6761,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Md" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/hsg_102/hsg_nest{
 	dir = 4
 	},
 /obj/structure/cable,

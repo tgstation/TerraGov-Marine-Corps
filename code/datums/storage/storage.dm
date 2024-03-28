@@ -93,7 +93,7 @@
 	///the item left behind when our parent is destroyed
 	var/trash_item = null
 	///flags for special behaviours
-	var/flags_storage = NONE
+	var/storage_flags = NONE
 
 	//----- Holster vars
 	///the sound produced when the special item is drawn
@@ -936,13 +936,13 @@
 	SIGNAL_HANDLER
 	var/obj/item/parent_item = parent
 	if(allow_quick_gather)
-		if(parent_item.flags_item & IN_INVENTORY)
+		if(parent_item.item_flags & IN_INVENTORY)
 			parent.verbs += /datum/storage/verb/toggle_gathering_mode
 		else
 			parent.verbs -= /datum/storage/verb/toggle_gathering_mode
 
 	if(allow_drawing_method)
-		if(parent_item.flags_item & IN_INVENTORY)
+		if(parent_item.item_flags & IN_INVENTORY)
 			parent.verbs += /datum/storage/verb/toggle_draw_mode
 		else
 			parent.verbs -= /datum/storage/verb/toggle_draw_mode
