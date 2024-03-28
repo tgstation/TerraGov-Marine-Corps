@@ -129,7 +129,7 @@ SUBSYSTEM_DEF(tts)
 //				falloff_exponent = SOUND_FALLOFF_EXPONENT,
 				channel = channel,
 //				pressure_affected = TRUE,
-				S = audio_to_use,
+				sound_to_use = audio_to_use,
 //				max_distance = SOUND_RANGE,
 //				falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE,
 				distance_multiplier = 1,
