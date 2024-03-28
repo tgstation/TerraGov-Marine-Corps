@@ -372,12 +372,6 @@
 	refill_type = /obj/item/factory_part/swat_mask
 	refill_amount = 20
 
-/obj/item/factory_refill/med_advpack_refill
-	name = "box of rounded metal plates"
-	desc = "A box of round metal plates inside. Used to refill Unboxers."
-	refill_type = /obj/item/factory_part/med_advpack
-	refill_amount = 10
-
 /obj/item/factory_refill/module_valk_refill
 	name = "box of rounded metal plates"
 	desc = "A box of round metal plates inside. Used to refill Unboxers."
