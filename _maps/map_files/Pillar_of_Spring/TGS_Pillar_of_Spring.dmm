@@ -8309,14 +8309,14 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "kMo" = (
-/obj/machinery/door/poddoor/mainship/droppod,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/space/basic,
+/obj/machinery/door/poddoor/mainship/droppod,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
 "kML" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -15290,7 +15290,7 @@
 /area/mainship/hallways/hangar)
 "tlT" = (
 /obj/machinery/door/poddoor/mainship/droppod,
-/turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
 "tnR" = (
 /obj/structure/bed/chair/office/dark,
