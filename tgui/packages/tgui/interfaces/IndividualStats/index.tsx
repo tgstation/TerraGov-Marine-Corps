@@ -30,18 +30,15 @@ export type PerkData = {
 
 export type IndividualData = {
   ui_theme: string;
-  perks_data?: PerkData[];
+  perks_data: PerkData[];
   currency: number;
   current_job?: string;
   faction: string;
   jobs: string[];
   perk_icons?: string[];
-  mission_icons?: string[];
-  equipped_loadouts_data?: EquippedItemData[];
-  available_loadouts_data?: LoadoutItemData[];
-  purchasable_loadouts_data?: LoadoutItemData[];
-  outfit_slots?: string[];
-  outfit_cost_data?: OutfitCostData[];
+  equipped_loadouts_data: EquippedItemData[];
+  available_loadouts_data: LoadoutItemData[];
+  outfit_cost_data: OutfitCostData[];
 };
 
 export type OutfitCostData = {

@@ -178,26 +178,24 @@
 	data["current_job"] = istype(living_user) ? living_user.job.title : null
 	data["currency"] = currency
 
-	//if(selected_tab == TAB_PERKS)
-	//perk stuff
-	var/list/perks_data = list()
-	for(var/datum/perk/perk AS in GLOB.campaign_perks_by_role[selected_job])
-		var/list/perk_data = list()
-		perk_data["name"] = perk.name
-		perk_data["job"] = selected_job
-		perk_data["type"] = perk.type
-		perk_data["desc"] = perk.desc
-		perk_data["requirements"] = perk.req_desc
-		perk_data["cost"] = perk.unlock_cost
-		perk_data["icon"] = perk.ui_icon
-		perk_data["currently_active"] = !!(perk in perks_by_job[selected_job])
-		perks_data += list(perk_data)
-	data["perks_data"] = perks_data
-	//return data
+	if(selected_tab == TAB_PERKS)
+		var/list/perks_data = list()
+		for(var/datum/perk/perk AS in GLOB.campaign_perks_by_role[selected_job])
+			var/list/perk_data = list()
+			perk_data["name"] = perk.name
+			perk_data["job"] = selected_job
+			perk_data["type"] = perk.type
+			perk_data["desc"] = perk.desc
+			perk_data["requirements"] = perk.req_desc
+			perk_data["cost"] = perk.unlock_cost
+			perk_data["icon"] = perk.ui_icon
+			perk_data["currently_active"] = !!(perk in perks_by_job[selected_job])
+			perks_data += list(perk_data)
+		data["perks_data"] = perks_data
+		return data
 
 	if(selected_tab != TAB_LOADOUT)
-		return data //something fucked up but ok
-	//loadout stuff
+		return data //How'd you fuck up this badly?
 	var/list/equipped_loadouts_data = list() //items currently equipped to ALL job outfits
 	var/list/available_loadouts_data = list() //all available AND purchasable loadout options
 	var/list/outfit_cost_data = list() //Current cost of all outfits
@@ -412,6 +410,7 @@
 	else
 		var/mob/living/living_owner = owner
 		stats.selected_job = living_owner.job.title
+	stats.selected_tab = TAB_LOADOUT
 	stats.interact(owner)
 
 #undef TAB_LOADOUT
