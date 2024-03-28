@@ -30,7 +30,7 @@
 #define SKILL_FIREARMS_DEFAULT 1	// marines (allow tactical reloads)
 #define SKILL_FIREARMS_TRAINED 2	// special training (CO)
 
-// Damage mod for having the weapon specific skill above 0
+///Damage mod for having the weapon specific skill above 0
 #define FIREARM_SKILL_DAM_MOD 0.05
 
 // pistols skill
@@ -143,7 +143,7 @@
 #define SKILL_MELEE_TRAINED 1
 #define SKILL_MELEE_SUPER 2
 
-// The amount of extra damage per melee skill level
+///The amount of extra damage per melee skill level
 #define MELEE_SKILL_DAM_BUFF 0.15
 
 // pilot skill, hidden
