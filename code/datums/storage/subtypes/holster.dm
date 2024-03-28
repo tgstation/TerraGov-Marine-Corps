@@ -129,7 +129,7 @@
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
-		/obj/item/cell/lasgun/plasma_powerpack,
+		/obj/item/cell/lasgun/plasma,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
 		/obj/item/cell/lasgun/lasrifle,
 		/obj/item/cell/lasgun/volkite/small,
