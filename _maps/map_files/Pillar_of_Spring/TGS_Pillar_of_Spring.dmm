@@ -517,6 +517,15 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"aJH" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	on = 1
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/hallways/hangar/droppod)
 "aKj" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 1;
@@ -1321,6 +1330,16 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
+"bFG" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/mainship/floor,
+/area/mainship/hallways/hangar/droppod)
 "bFX" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -1849,16 +1868,6 @@
 /obj/machinery/computer/telecomms/server/preset,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
-"cqZ" = (
-/obj/machinery/door/poddoor/mainship/droppod,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/space/basic,
-/area/mainship/hallways/hangar/droppod)
 "cra" = (
 /turf/open/floor/mainship_hull,
 /area/mainship/hull/lower_hull)
@@ -1926,15 +1935,6 @@
 /obj/machinery/cryopod/right,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
-"cxf" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar/droppod)
 "cxw" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -2097,15 +2097,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
-"cIm" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
-	},
-/turf/open/floor/mainship/floor,
-/area/mainship/hallways/hangar/droppod)
 "cLc" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -2262,6 +2253,15 @@
 	dir = 9
 	},
 /area/space)
+"cTx" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar/droppod)
 "cTF" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -2297,9 +2297,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
-	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "cXa" = (
@@ -5436,6 +5434,15 @@
 	dir = 10
 	},
 /area/mainship/living/pilotbunks)
+"gSN" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar/droppod)
 "gTg" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/folder/blue,
@@ -7875,6 +7882,15 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"kpI" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/hallways/hangar/droppod)
 "krn" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -8292,6 +8308,16 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
+"kMo" = (
+/obj/machinery/door/poddoor/mainship/droppod,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/space/basic,
+/area/mainship/hallways/hangar/droppod)
 "kML" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/camera/autoname/mainship{
@@ -17413,14 +17439,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "vSU" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
 	on = 1
 	},
-/turf/open/floor/mainship/floor,
-/area/mainship/hallways/hangar/droppod)
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "vTy" = (
 /obj/machinery/computer/med_data,
 /turf/open/floor/mainship/sterile/dark,
@@ -17637,15 +17661,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
-"wjc" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar/droppod)
 "wkJ" = (
 /obj/machinery/iv_drip,
 /obj/machinery/holopad,
@@ -18361,11 +18376,6 @@
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/engineering_workshop)
-"xbH" = (
-/obj/structure/cable,
-/obj/structure/sign/pods,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar/droppod)
 "xdy" = (
 /obj/effect/landmark/start/job/ai,
 /obj/machinery/camera/autoname/mainship{
@@ -18458,16 +18468,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
-"xiH" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/machinery/light/mainship{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/mainship/floor,
-/area/mainship/hallways/hangar/droppod)
 "xiT" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -19430,6 +19430,11 @@
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
+"yiq" = (
+/obj/structure/cable,
+/obj/structure/sign/pods,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar/droppod)
 "yiF" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/mainship/research/containment/floor2{
@@ -47067,7 +47072,7 @@ ubW
 cTc
 ygT
 hcF
-dpY
+vSU
 xyA
 kDx
 kDx
@@ -54807,8 +54812,8 @@ fAJ
 fAJ
 fAJ
 fAJ
-xbH
-wjc
+yiq
+cTx
 xvv
 xvv
 xvv
@@ -55065,7 +55070,7 @@ iku
 plO
 fAJ
 rWD
-wjc
+cTx
 xvv
 kWM
 kWM
@@ -55322,7 +55327,7 @@ sAI
 lLe
 eSw
 ton
-wjc
+cTx
 xvv
 kHT
 roN
@@ -55579,7 +55584,7 @@ fAJ
 omd
 fAJ
 vyj
-wjc
+cTx
 xvv
 bbw
 uzy
@@ -55836,7 +55841,7 @@ eSw
 pmP
 fAJ
 aEk
-wjc
+cTx
 xvv
 eKC
 kWM
@@ -56093,7 +56098,7 @@ fAJ
 fAJ
 fAJ
 tlT
-cqZ
+kMo
 tlT
 pdj
 lIW
@@ -56347,13 +56352,13 @@ fpg
 xLu
 pSt
 tCO
-vSU
+aJH
 hPp
 aqp
-cxf
+gSN
 pfU
-xiH
-cIm
+bFG
+kpI
 tCO
 giN
 uyy
