@@ -2,7 +2,7 @@
 //skill defines
 
 ////////////////////////////////////////////////
-// All skill string-var defines
+///All skill string-var defines
 #define SKILL_CQC "cqc"
 #define SKILL_MELEE_WEAPONS "melee_weapons"
 #define SKILL_FIREARMS "firearms"
