@@ -681,6 +681,7 @@
 #include "code\game\area\areas\shuttles.dm"
 #include "code\game\area\campaign_maps\jungle_outpost.dm"
 #include "code\game\area\campaign_maps\som_base.dm"
+#include "code\game\area\campaign_maps\som_raiding_base.dm"
 #include "code\game\atoms\_atom.dm"
 #include "code\game\atoms\atom_appearance.dm"
 #include "code\game\atoms\atom_movable.dm"
