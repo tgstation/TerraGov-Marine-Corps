@@ -157,6 +157,11 @@
 	icon_state = "livingspace"
 	minimap_color = MINIMAP_AREA_COMMAND
 
+/area/mainship/living/mechpilotquarters
+	name = "Mech Pilot Quarters"
+	icon_state = "blueold"
+	minimap_color = MINIMAP_AREA_COMMAND
+
 /area/mainship/hallways/exoarmor
 	name = "Vehicle Armor Storage"
 	icon_state = "exoarmor"
