@@ -382,7 +382,7 @@
 			return
 
 		visible_message("[user] smashed the light!", "You hit the light, and it smashes!")
-		if(light_on && (I.flags_atom & CONDUCT) && prob(12))
+		if(light_on && (I.atom_flags & CONDUCT) && prob(12))
 			electrocute_mob(user, get_area(src), src, 0.3)
 		broken()
 
@@ -404,7 +404,7 @@
 			newlight.stage = 2
 			qdel(src)
 
-		else if(has_power() && (I.flags_atom & CONDUCT))
+		else if(has_power() && (I.atom_flags & CONDUCT))
 			to_chat(user, "You stick \the [I] into the light socket!")
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(3, 1, src)
@@ -463,13 +463,13 @@
 		turn_light(null, FALSE)
 
 //Xenos smashing lights
-/obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
 	if(status == 2) //Ignore if broken.
 		return FALSE
-	X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-	X.visible_message(span_danger("\The [X] smashes [src]!"), \
+	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+	xeno_attacker.visible_message(span_danger("\The [xeno_attacker] smashes [src]!"), \
 	span_danger("We smash [src]!"), null, 5)
 	broken() //Smashola!
 

@@ -7,7 +7,7 @@
 	icon_state = "utilitybelt"
 	item_state = "utility"
 	item_state_worn = TRUE
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
 	w_class = WEIGHT_CLASS_BULKY
 	storage_type = /datum/storage/belt
@@ -268,15 +268,15 @@
 	new /obj/item/storage/pill_bottle/tricordrazine(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
-	new /obj/item/storage/pill_bottle/dexalin(src)
+	new /obj/item/storage/pill_bottle/isotonic(src)
 	new /obj/item/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/storage/pill_bottle/alkysine(src)
 	new /obj/item/storage/pill_bottle/imidazoline(src)
 	new /obj/item/storage/pill_bottle/quickclot(src)
 	new /obj/item/storage/pill_bottle/hypervene(src)
+	new /obj/item/bodybag/cryobag(src)
 	new /obj/item/defibrillator(src)
 	new /obj/item/tool/research/excavation_tool(src)
-	new /obj/item/tool/research/xeno_analyzer(src)
 	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/belt/hypospraybelt
@@ -588,9 +588,9 @@
 /obj/item/storage/belt/shotgun/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/M = I
-		if(CHECK_BITFIELD(M.flags_magazine, MAGAZINE_HANDFUL))
+		if(CHECK_BITFIELD(M.magazine_flags, MAGAZINE_HANDFUL))
 			return ..()
-		if(M.flags_magazine & MAGAZINE_REFILLABLE)
+		if(M.magazine_flags & MAGAZINE_REFILLABLE)
 			if(!M.current_rounds)
 				to_chat(user, span_warning("[M] is empty."))
 				return
@@ -730,7 +730,7 @@
 	name = "martini henry ammo belt"
 	desc = "A belt good enough for holding all your .577/400 ball rounds."
 	icon_state = "martini_belt"
-	flags_atom = DIRLOCK
+	atom_flags = DIRLOCK
 	storage_type = /datum/storage/belt/shotgun/martini
 
 /obj/item/storage/belt/shotgun/martini/Initialize(mapload, ...)

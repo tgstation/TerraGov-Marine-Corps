@@ -4,9 +4,9 @@
 	icon = 'icons/obj/items/defibrillator.dmi'
 	icon_state = "defib_full"
 	item_state = "defib"
-	flags_atom = CONDUCT
-	flags_item = NOBLUDGEON
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	item_flags = NOBLUDGEON
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 5
 	throwforce = 6
 	w_class = WEIGHT_CLASS_NORMAL
@@ -197,7 +197,7 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
 		return
 
-	if((H.wear_suit && H.wear_suit.flags_atom & CONDUCT))
+	if((H.wear_suit && H.wear_suit.atom_flags & CONDUCT))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring."))
 		return
 
@@ -231,7 +231,7 @@
 	H.visible_message(span_danger("[H]'s body convulses a bit."))
 	defib_cooldown = world.time + 10 //1 second cooldown before you can shock again
 
-	if(H.wear_suit && H.wear_suit.flags_atom & CONDUCT)
+	if(H.wear_suit && H.wear_suit.atom_flags & CONDUCT)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring."))
 		return
 
@@ -338,46 +338,74 @@
 	icon_state = "civ_defib_full"
 	item_state = "defib"
 
-
-/obj/item/defibrillator/gloves
-	name = "advanced medical combat gloves"
-	desc = "Advanced medical gloves, these include small electrodes to defibrilate a patiant. No more bulky units!"
-	icon_state = "defib_gloves"
-	item_state = "defib_gloves"
+/obj/item/defibrillator/internal
+	icon = 'icons/obj/clothing/gloves.dmi' //even though you'll never see this directly, it shows up in the chat panel due to icon2html
 	ready = TRUE
 	ready_needed = FALSE
-	flags_equip_slot = ITEM_SLOT_GLOVES
-	w_class = WEIGHT_CLASS_SMALL
-	icon = 'icons/obj/clothing/gloves.dmi'
-	item_state_worn = TRUE
-	siemens_coefficient = 0.50
-	blood_sprite_state = "bloodyhands"
-	flags_armor_protection = HANDS
-	flags_equip_slot = ITEM_SLOT_GLOVES
-	attack_verb = "zaps"
+	///Parent item containing this defib
+	var/obj/parent_obj
+
+/obj/item/defibrillator/internal/Initialize(mapload, obj/new_parent)
+	if(!istype(new_parent))
+		return INITIALIZE_HINT_QDEL
+	parent_obj = new_parent
+	return ..()
+
+/obj/item/defibrillator/internal/Destroy()
+	parent_obj = null
+	return ..()
+
+/obj/item/defibrillator/internal/update_icon()
+	. = ..()
+	parent_obj.update_icon()
+
+/obj/item/clothing/gloves/defibrillator
+	name = "advanced medical combat gloves"
+	desc = "Advanced medical gloves, these include small electrodes to defibrilate a patient No more bulky units!"
+	icon_state = "defib_out_full"
+	item_state = "defib_gloves"
 	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
-	flags_cold_protection = HANDS
-	flags_heat_protection = HANDS
+	cold_protection_flags = HANDS
+	heat_protection_flags = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+	///The internal defib item
+	var/obj/item/defibrillator/internal/internal_defib
 
-/obj/item/defibrillator/gloves/equipped(mob/living/carbon/human/user, slot)
+/obj/item/clothing/gloves/defibrillator/Initialize(mapload)
+	. = ..()
+	internal_defib = new(src, src)
+	update_icon()
+
+/obj/item/clothing/gloves/defibrillator/Destroy()
+	internal_defib = null
+	return ..()
+
+/obj/item/clothing/gloves/defibrillator/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(user.gloves == src)
 		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
 	else
 		UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
 
-/obj/item/defibrillator/gloves/unequipped(mob/living/carbon/human/user, slot)
+/obj/item/clothing/gloves/defibrillator/unequipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK) //Unregisters in the case of getting delimbed
 
+/obj/item/clothing/gloves/defibrillator/examine(mob/user)
+	. = ..()
+	. += internal_defib.maybe_message_recharge_hint()
+
+/obj/item/clothing/gloves/defibrillator/update_icon_state()
+	. = ..()
+	if(!internal_defib) //should only happen on init
+		return
+	icon_state = internal_defib.icon_state
+
 //when you are wearing these gloves, this will call the normal attack code to begin defibing the target
-/obj/item/defibrillator/gloves/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
+/obj/item/clothing/gloves/defibrillator/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	SIGNAL_HANDLER
 	if(user.a_intent != INTENT_HELP)
 		return
 	if(istype(user) && istype(target))
-		defibrillate(target, user)
-
-/obj/item/defibrillator/gloves/update_icon_state()
-	return //The parent has some behaviour we don't want
+		INVOKE_ASYNC(internal_defib, TYPE_PROC_REF(/obj/item/defibrillator, defibrillate), target, user)

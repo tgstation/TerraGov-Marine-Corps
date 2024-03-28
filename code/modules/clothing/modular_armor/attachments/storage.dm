@@ -48,7 +48,7 @@
 /obj/item/armor_module/storage/pocket
 	icon_state = ""
 	item_state = ""
-	flags_attach_features = ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_APPLY_ON_MOB
 	storage_type = /datum/storage/internal/pocket
 
 /obj/item/armor_module/storage/pocket/medical
@@ -147,7 +147,7 @@
 	desc = "A small set of straps to hold something in your boot."
 	icon_state = ""
 	storage_type = /datum/storage/internal/shoes/boot_knife
-	flags_attach_features = ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_APPLY_ON_MOB
 
 /obj/item/armor_module/storage/boot/full/PopulateContents()
 	new /obj/item/weapon/combat_knife(src)
@@ -161,4 +161,4 @@
 	icon_state = ""
 	storage_type = /datum/storage/internal/marinehelmet
 	show_storage = TRUE
-	flags_attach_features = NONE
+	attach_features_flags = NONE

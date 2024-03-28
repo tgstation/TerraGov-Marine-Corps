@@ -1,7 +1,7 @@
 /datum/game_mode/extended
 	name = "Extended"
 	config_tag = "Extended"
-	flags_xeno_abilities = ABILITY_NUCLEARWAR
+	xeno_abilities_flags = ABILITY_NUCLEARWAR
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
@@ -9,6 +9,8 @@
 		/datum/job/terragov/command/pilot = 1,
 		/datum/job/terragov/command/transportofficer = 1,
 		/datum/job/terragov/command/mech_pilot = 0,
+		/datum/job/terragov/command/assault_crewman = 2,
+		/datum/job/terragov/command/transport_crewman = 1,
 		/datum/job/terragov/engineering/chief = 1,
 		/datum/job/terragov/engineering/tech = 1,
 		/datum/job/terragov/requisitions/officer = 1,

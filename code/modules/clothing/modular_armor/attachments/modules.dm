@@ -18,7 +18,7 @@
 	icon_state = "pt_belt"
 	item_state = "pt_belt_a"
 	slot = ATTACHMENT_SLOT_BELT
-	flags_attach_features = ATTACH_NO_HANDS
+	attach_features_flags = ATTACH_NO_HANDS
 
 /**
  * Shoulder lamp strength module
@@ -83,11 +83,11 @@
 /obj/item/armor_module/module/fire_proof/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	parent.max_heat_protection_temperature += FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	parent.flags_armor_features |= ARMOR_FIRE_RESISTANT
+	parent.armor_features_flags |= ARMOR_FIRE_RESISTANT
 
 /obj/item/armor_module/module/fire_proof/on_detach(obj/item/detaching_from, mob/user)
 	parent.max_heat_protection_temperature -= FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	parent.flags_armor_features &= ~ARMOR_FIRE_RESISTANT
+	parent.armor_features_flags &= ~ARMOR_FIRE_RESISTANT
 	return ..()
 
 /obj/item/armor_module/module/fire_proof/som
@@ -491,7 +491,7 @@
 	icon_state = "welding_head"
 	item_state = "welding_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	prefered_slot = SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
@@ -510,14 +510,14 @@
 
 /obj/item/armor_module/module/welding/activate(mob/living/user)
 	if(active)
-		DISABLE_BITFIELD(parent.flags_inventory, COVEREYES)
-		DISABLE_BITFIELD(parent.flags_inv_hide, HIDEEYES)
-		DISABLE_BITFIELD(parent.flags_armor_protection, EYES)
+		DISABLE_BITFIELD(parent.inventory_flags, COVEREYES)
+		DISABLE_BITFIELD(parent.inv_hide_flags, HIDEEYES)
+		DISABLE_BITFIELD(parent.armor_protection_flags, EYES)
 		parent.eye_protection -= eye_protection_mod // reset to the users base eye
 	else
-		ENABLE_BITFIELD(parent.flags_inventory, COVEREYES)
-		ENABLE_BITFIELD(parent.flags_inv_hide, HIDEEYES)
-		ENABLE_BITFIELD(parent.flags_armor_protection, EYES)
+		ENABLE_BITFIELD(parent.inventory_flags, COVEREYES)
+		ENABLE_BITFIELD(parent.inv_hide_flags, HIDEEYES)
+		ENABLE_BITFIELD(parent.armor_protection_flags, EYES)
 		parent.eye_protection += eye_protection_mod
 
 	active = !active
@@ -534,7 +534,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "welding_head_som"
 	item_state = "welding_head_som_a"
-	flags_attach_features = ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 
 /obj/item/armor_module/module/welding/superior
 	name = "Superior Welding Helmet Module"
@@ -543,7 +543,7 @@
 	icon_state = "welding_head"
 	item_state = "welding_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	prefered_slot = SLOT_HEAD
 
@@ -558,10 +558,10 @@
 	icon_state = "binocular_head"
 	item_state = "binocular_head_a"
 	active = FALSE
-	flags_item = DOES_NOT_NEED_HANDS
+	item_flags = DOES_NOT_NEED_HANDS
 	zoom_tile_offset = 11
 	zoom_viewsize = 12
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	prefered_slot = SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
@@ -605,7 +605,7 @@
 	icon_state = "artemis_head"
 	item_state = "artemis_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
 	prefered_slot = SLOT_HEAD
 
 /obj/item/armor_module/module/artemis/on_attach(obj/item/attaching_to, mob/user)
@@ -622,7 +622,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "antenna_head"
 	item_state = "antenna_head_a"
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	prefered_slot = SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
@@ -677,3 +677,97 @@
 #undef COMMS_OFF
 #undef COMMS_SETTING
 #undef COMMS_SETUP
+
+/obj/item/armor_module/module/night_vision
+	name = "\improper BE-35 night vision kit"
+	desc = "Installation kit for the BE-35 night vision system. Slightly impedes movement."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "night_vision"
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_NO_HANDS
+	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	prefered_slot = SLOT_HEAD
+	slowdown = 0.1
+	///The goggles this module deploys
+	var/obj/item/clothing/glasses/night_vision/mounted/attached_goggles
+
+/obj/item/armor_module/module/night_vision/Initialize(mapload)
+	. = ..()
+	attached_goggles = new /obj/item/clothing/glasses/night_vision/mounted(src)
+
+/obj/item/armor_module/module/night_vision/examine(mob/user)
+	. = ..()
+	. += attached_goggles.battery_status()
+	. += "To eject the battery, [span_bold("click")] [src] with an empty hand. To insert a battery, [span_bold("click")] [src] with a compatible cell."
+
+///Called when the parent is examined; relays battery info
+/obj/item/armor_module/module/night_vision/proc/on_examine(datum/source, mob/user, list/examine_text)
+	SIGNAL_HANDLER
+	examine_text += attached_goggles.battery_status()
+	examine_text += "To eject the battery, [span_bold("CTRL + SHIFT + left-click")] [src] with an empty hand. To insert a battery, [span_bold("click")] [src] with a compatible cell."
+
+/obj/item/armor_module/module/night_vision/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent, COMSIG_CLICK_CTRL_SHIFT, PROC_REF(on_click))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby))
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(deploy))
+	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, PROC_REF(undeploy))
+
+/obj/item/armor_module/module/night_vision/on_detach(obj/item/detaching_from, mob/user)
+	UnregisterSignal(parent, COMSIG_ATOM_EXAMINE)
+	UnregisterSignal(parent, COMSIG_CLICK_CTRL_SHIFT)
+	UnregisterSignal(parent, COMSIG_ATOM_ATTACKBY)
+	UnregisterSignal(parent, COMSIG_ITEM_EQUIPPED)
+	UnregisterSignal(parent, COMSIG_ITEM_UNEQUIPPED)
+	return ..()
+
+///Called when the parent is clicked on with an open hand; to take out the battery
+/obj/item/armor_module/module/night_vision/proc/on_click(datum/source, mob/user)
+	SIGNAL_HANDLER
+	attached_goggles.eject_battery(user)
+
+///Called when the parent is hit by object; to insert a battery
+/obj/item/armor_module/module/night_vision/proc/on_attackby(datum/source, obj/item/I, mob/user)
+	SIGNAL_HANDLER
+	if(attached_goggles.insert_battery(I, user))
+		return COMPONENT_NO_AFTERATTACK
+
+/obj/item/armor_module/module/night_vision/attack_hand(mob/living/user)
+	if(user.get_inactive_held_item() == src && attached_goggles.eject_battery(user))
+		return
+	return ..()
+
+/obj/item/armor_module/module/night_vision/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(attached_goggles.insert_battery(I, user))
+		return COMPONENT_NO_AFTERATTACK
+
+///Called when the parent is equipped; deploys the goggles
+/obj/item/armor_module/module/night_vision/proc/deploy(datum/source, mob/user, slot)
+	SIGNAL_HANDLER
+	if(!ishuman(user) || prefered_slot != slot)	//Must be human for the following procs to work
+		return
+
+	var/mob/living/carbon/human/wearer = user
+	if(wearer.glasses && !wearer.dropItemToGround(wearer.glasses))
+		//This only happens if the wearer has a head item that can't be dropped
+		to_chat(wearer, span_warning("Could not deploy night vision system due to [wearer.head]!"))
+		return
+
+	INVOKE_ASYNC(wearer, TYPE_PROC_REF(/mob/living/carbon/human, equip_to_slot), attached_goggles, SLOT_GLASSES)
+
+///Called when the parent is unequipped; undeploys the goggles
+/obj/item/armor_module/module/night_vision/proc/undeploy(datum/source, mob/user, slot)
+	SIGNAL_HANDLER
+	//See if goggles are deployed
+	if(attached_goggles.loc == src)
+		return
+
+	//The goggles should not be anywhere but on the wearer's face; but if it's not, just yoink it back to the module
+	if(attached_goggles.loc == user)
+		user.temporarilyRemoveItemFromInventory(attached_goggles, TRUE)
+	attached_goggles.forceMove(src)
+
+/obj/item/armor_module/module/night_vision/Destroy()
+	QDEL_NULL(attached_goggles)
+	return ..()

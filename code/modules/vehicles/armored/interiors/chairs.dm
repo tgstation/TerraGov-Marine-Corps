@@ -27,6 +27,11 @@
 	inside.drive_seat = src
 	owner = inside.container
 
+/obj/structure/bed/chair/vehicle_driver_seat/buckle_mob(mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
+	if(buckling_mob.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_VETERAN)
+		return FALSE
+	return ..()
+
 /obj/structure/bed/chair/vehicle_driver_seat/post_buckle_mob(mob/buckling_mob)
 	. = ..()
 	owner.add_control_flags(buckling_mob, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS)
@@ -61,6 +66,11 @@
 	inside.gun_seat = src
 	owner = inside.container
 
+/obj/structure/bed/chair/vehicle_gunner_seat/buckle_mob(mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
+	if(buckling_mob.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_VETERAN)
+		return FALSE
+	return ..()
+
 /obj/structure/bed/chair/vehicle_gunner_seat/post_buckle_mob(mob/buckling_mob)
 	. = ..()
 	owner.add_control_flags(buckling_mob, VEHICLE_CONTROL_MELEE|VEHICLE_CONTROL_EQUIPMENT)
@@ -74,3 +84,6 @@
 	buckled_mob.reset_perspective()
 	buckled_mob.pixel_x = initial(buckled_mob.pixel_x)
 	buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
+
+/obj/structure/bed/chair/vehicle_gunner_seat/relaymove(mob/living/user, direct)
+	return owner.relaymove(arglist(args))

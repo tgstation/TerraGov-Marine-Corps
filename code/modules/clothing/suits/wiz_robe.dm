@@ -4,7 +4,7 @@
 	icon_state = "wizard"
 	//Not given any special protective value since the magic robes are full-body protection --NEO
 	siemens_coefficient = 0.8
-	flags_armor_protection = NONE
+	armor_protection_flags = NONE
 
 /obj/item/clothing/head/wizard/red
 	name = "red wizard hat"
@@ -16,7 +16,7 @@
 	name = "wizard hat"
 	desc = "It has WIZZARD written across it in sequins. Comes with a cool beard."
 	icon_state = "wizard-fake"
-	flags_armor_protection = HEAD|FACE
+	armor_protection_flags = HEAD|FACE
 
 /obj/item/clothing/head/wizard/marisa
 	name = "Witch Hat"
@@ -30,7 +30,7 @@
 	icon_state = "magus"
 	item_state = "magus"
 	siemens_coefficient = 0.8
-	flags_armor_protection = HEAD|FACE|EYES
+	armor_protection_flags = HEAD|FACE|EYES
 
 /obj/item/clothing/head/wizard/amp
 	name = "psychic amplifier"
@@ -53,7 +53,7 @@
 	permeability_coefficient = 0.01
 	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 20, BIO = 20, FIRE = 20, ACID = 20)
 	allowed = list()
-	flags_inv_hide = HIDEJUMPSUIT
+	inv_hide_flags = HIDEJUMPSUIT
 	siemens_coefficient = 0.8
 
 /obj/item/clothing/suit/wizrobe/red
@@ -74,14 +74,14 @@
 	desc = "A set of armoured robes that seem to radiate a dark power"
 	icon_state = "magusblue"
 	item_state = "magusblue"
-	flags_armor_protection = CHEST|GROIN|ARMS|HANDS|LEGS|FEET
+	armor_protection_flags = CHEST|GROIN|ARMS|HANDS|LEGS|FEET
 
 /obj/item/clothing/suit/wizrobe/magusred
 	name = "Magus Robe"
 	desc = "A set of armoured robes that seem to radiate a dark power"
 	icon_state = "magusred"
 	item_state = "magusred"
-	flags_armor_protection = CHEST|GROIN|ARMS|HANDS|LEGS|FEET
+	armor_protection_flags = CHEST|GROIN|ARMS|HANDS|LEGS|FEET
 
 /obj/item/clothing/suit/wizrobe/psypurple
 	name = "purple robes"
@@ -89,13 +89,13 @@
 	icon_state = "psyamp"
 	item_state = "psyamp"
 
-/obj/item/clothing/suit/wizrobe/gentlecoat
+/obj/item/clothing/suit/storage/wizrobe/gentlecoat
 	name = "Gentlemans Coat"
 	desc = "A heavy threaded twead gray jacket. For a different sort of Gentleman."
 	icon_state = "gentlecoat"
 	item_state = "gentlecoat"
-	flags_armor_protection = CHEST|GROIN|ARMS
-	flags_inv_hide = NONE
+	armor_protection_flags = CHEST|GROIN|ARMS
+	inv_hide_flags = NONE
 
 /obj/item/clothing/suit/wizrobe/fake
 	name = "wizard robe"
@@ -117,7 +117,7 @@
 	desc = "Magic is all about the spell power, ZE!"
 	icon_state = "marisa"
 	item_state = "marisarobe"
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	siemens_coefficient = 1
 

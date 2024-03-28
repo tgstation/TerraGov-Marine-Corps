@@ -60,7 +60,7 @@
 
 	//else if(IS_EDIBLE(I))
 	else if(istype(I, /obj/item/reagent_containers/food))
-		if(HAS_TRAIT(I, TRAIT_NODROP) || (I.flags_item & (ITEM_ABSTRACT|DELONDROP)))
+		if(HAS_TRAIT(I, TRAIT_NODROP) || (I.item_flags & (ITEM_ABSTRACT|DELONDROP)))
 			return ..()
 		else if(HAS_TRAIT(I, TRAIT_FOOD_GRILLED))
 			to_chat(user, span_notice("[I] has already been grilled!"))
@@ -152,7 +152,7 @@
 
 /obj/machinery/grill/deconstruct(disassembled = TRUE)
 	finish_grill()
-	if(!(flags_atom & NODECONSTRUCT))
+	if(!(atom_flags & NODECONSTRUCT))
 		new /obj/item/stack/sheet/metal(loc, 5)
 		new /obj/item/stack/rods(loc, 5)
 	..()

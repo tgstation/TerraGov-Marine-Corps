@@ -1326,10 +1326,10 @@
 	icon_state = "glauncher_0"
 
 /obj/structure/prop/vehicle/tank/east/decoration/cupolaone
-	icon_state = "m56cupola_1"
+	icon_state = "hsg102cupola_1"
 
 /obj/structure/prop/vehicle/tank/east/decoration/cupolazero
-	icon_state = "m56cupola_0"
+	icon_state = "hsg102cupola_0"
 
 /obj/structure/prop/vehicle/tank/east/decoration/towlauncherone
 	icon_state = "towlauncher_1"
@@ -1453,10 +1453,10 @@
 	icon_state = "glauncher_0"
 
 /obj/structure/prop/vehicle/tank/north/decoration/cupolaone
-	icon_state = "m56cupola_1"
+	icon_state = "hsg102cupola_1"
 
 /obj/structure/prop/vehicle/tank/north/decoration/cupolazero
-	icon_state = "m56cupola_0"
+	icon_state = "hsg102cupola_0"
 
 /obj/structure/prop/vehicle/tank/north/decoration/towlauncherone
 	icon_state = "towlauncher_1"

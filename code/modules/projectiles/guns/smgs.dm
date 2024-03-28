@@ -21,7 +21,7 @@
 		/obj/item/attachable/magnetic_harness,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	gun_skill_category = SKILL_SMGS
 
@@ -29,7 +29,7 @@
 	burst_amount = 3
 	recoil_unwielded = 0.5
 	akimbo_additional_delay = 0.2
-	movement_acc_penalty_mult = 3
+	akimbo_scatter_mod = 8
 
 //-------------------------------------------------------
 // MP-19 Machinepistol. It fits here more.
@@ -43,7 +43,7 @@
 	caliber = CALIBER_10X20_CASELESS //codex
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	max_shells = 30 //codex
-	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_machinepistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/standard_machinepistol)
@@ -80,8 +80,7 @@
 	aim_slowdown = 0.15
 	movement_acc_penalty_mult = 2
 
-	upper_akimbo_accuracy = 12
-	lower_akimbo_accuracy = 9
+	akimbo_scatter_mod = 24
 	burst_amount = 5
 	burst_delay = 0.1 SECONDS
 	akimbo_additional_delay = 20 // Literally do not even bother to try
@@ -106,7 +105,7 @@
 	item_state = "t90"
 	caliber = CALIBER_10X20_CASELESS //codex
 	max_shells = 50 //codex
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	wield_delay = 0.7 SECONDS
 	force = 20
 	type_of_casings = null
@@ -125,10 +124,9 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
@@ -141,8 +139,6 @@
 	scatter_unwielded = 8
 	aim_slowdown = 0.2
 	burst_amount = 0
-	upper_akimbo_accuracy = 4
-	lower_akimbo_accuracy = 2
 
 	placed_overlay_iconstate = "t90"
 
@@ -169,7 +165,7 @@
 	fire_sound = 'sound/weapons/guns/fire/skorpevo.ogg'
 	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_heavysmg
 	allowed_ammo_types = list(
@@ -210,8 +206,6 @@
 	scatter = 2
 	scatter_unwielded = 11
 	akimbo_additional_delay = 0.4
-	upper_akimbo_accuracy = 5
-	lower_akimbo_accuracy = 3
 
 //-------------------------------------------------------
 //M-25 SMG
@@ -227,7 +221,7 @@
 	fire_sound = 'sound/weapons/guns/fire/mp5.ogg'
 	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/m25
 	allowed_ammo_types = list(
@@ -265,8 +259,6 @@
 	aim_slowdown = 0.15
 	burst_amount = 3
 	akimbo_additional_delay = 0.4
-	upper_akimbo_accuracy = 5
-	lower_akimbo_accuracy = 3
 	damage_falloff_mult = 0.9
 
 /obj/item/weapon/gun/smg/m25/holstered
@@ -274,6 +266,12 @@
 
 /obj/item/weapon/gun/smg/m25/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/compensator, /obj/item/attachable/gyro)
+
+/obj/item/weapon/gun/smg/m25/vgrip
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/compensator, /obj/item/attachable/verticalgrip)
+
+/obj/item/weapon/gun/smg/m25/plasma
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/compensator, /obj/item/weapon/gun/pistol/plasma_pistol)
 
 /obj/item/weapon/gun/smg/m25/elite
 	name = "\improper SMG-25B2 submachinegun"
@@ -296,7 +294,7 @@
 		/obj/item/attachable/gyro,
 	)
 
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 	burst_amount = 4
 	accuracy_mult = 1.1
@@ -358,7 +356,7 @@
 	item_state = "skorpion"
 	caliber = CALIBER_32ACP //codex
 	max_shells = 20 //codex
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	fire_sound = 'sound/weapons/guns/fire/skorpion.ogg'
 	unload_sound = 'sound/weapons/guns/interact/skorpion_unload.ogg'
@@ -399,7 +397,7 @@
 	item_state = "ppsh"
 	caliber = CALIBER_762X25 //codex
 	max_shells = 42 //codex
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	fire_sound = 'sound/weapons/guns/fire/ppsh.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/ppsh_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ppsh_unload.ogg'
@@ -426,7 +424,7 @@
 		/obj/item/attachable/foldable/bipod,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 21, "under_x" = 26, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.15 SECONDS
@@ -492,7 +490,7 @@
 	item_state = "v21"
 	caliber = CALIBER_10X20_CASELESS
 	max_shells = 50
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/som
 	allowed_ammo_types = list(
@@ -542,8 +540,6 @@
 	burst_scatter_mult = 15
 
 	akimbo_additional_delay = 0.7
-	upper_akimbo_accuracy = 5
-	lower_akimbo_accuracy = 3
 
 /obj/item/weapon/gun/smg/som/scout
 	starting_attachment_types = list(
@@ -600,7 +596,7 @@
 	caliber = CALIBER_10X20_CASELESS //codex
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	max_shells = 32 //codex
-	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/icc_machinepistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/icc_machinepistol, /obj/item/ammo_magazine/smg/icc_machinepistol/hp)
@@ -641,9 +637,6 @@
 	aim_slowdown = 0.2
 	wield_delay = 0.55 SECONDS
 
-	upper_akimbo_accuracy = 5
-	lower_akimbo_accuracy = 3
-
 /obj/item/weapon/gun/smg/icc_machinepistol/medic
 	starting_attachment_types = list(/obj/item/attachable/foldable/icc_machinepistol, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
 
@@ -666,7 +659,7 @@
 
 	caliber = CALIBER_46X30
 	max_shells = 45
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/icc_pdw
 	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/icc_pdw)

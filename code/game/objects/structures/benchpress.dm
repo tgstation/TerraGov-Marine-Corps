@@ -85,11 +85,11 @@
 		return
 	do_workout_set(user)
 
-/obj/structure/benchpress/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+/obj/structure/benchpress/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
 	if(.)
 		return
-	do_workout_set(X)
+	do_workout_set(xeno_attacker)
 
 ///checks if possible and if yes performs a workout set for this mob
 /obj/structure/benchpress/proc/do_workout_set(mob/living/user)
@@ -99,7 +99,7 @@
 	ADD_TRAIT(src, BENCH_BEING_USED, WEIGHTBENCH_TRAIT) // yea this is meh but IN_USE and interact code are a mess rn and too buggy so less sidestep it
 	update_icon()
 	user.setDir(SOUTH)
-	user.flags_atom |= DIRLOCK
+	user.atom_flags |= DIRLOCK
 	ADD_TRAIT(user, TRAIT_IMMOBILE, WEIGHTBENCH_TRAIT)
 	user.forceMove(loc)
 	var/bragmessage = pick("pushing it to the limit","going into overdrive","burning with determination","rising up to the challenge", "getting strong now","getting ripped")
@@ -112,7 +112,7 @@
 	creak_loop.stop(src)
 	playsound(user, 'sound/machines/click.ogg', 60, TRUE)
 	REMOVE_TRAIT(src, BENCH_BEING_USED, WEIGHTBENCH_TRAIT)
-	user.flags_atom &= ~DIRLOCK
+	user.atom_flags &= ~DIRLOCK
 	REMOVE_TRAIT(user, TRAIT_IMMOBILE, WEIGHTBENCH_TRAIT)
 	update_icon()
 	if(user.faction)

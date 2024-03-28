@@ -16,7 +16,7 @@
 
 //  Generic non-item
 /obj/item/storage/bag
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	storage_type = /datum/storage/bag
 
 // -----------------------------
@@ -67,7 +67,7 @@
 	desc = "This little bugger can be used to store and transport ores."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "satchel"
-	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_POCKET
+	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/bag/ore
 

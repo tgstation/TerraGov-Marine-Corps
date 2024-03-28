@@ -77,10 +77,11 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/light_shield/overclocked/engineer, SQUAD_ENGINEER, owner)
 
 	else if(owner_stats.faction == FACTION_SOM)
-		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked, /datum/loadout_item/suit_slot/light_shield, jobs_supported)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked, /datum/loadout_item/suit_slot/som_light_shield, jobs_supported)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked/veteran, /datum/loadout_item/suit_slot/som_light_shield/veteran, jobs_supported)
-		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_medium_shield/overclocked, /datum/loadout_item/suit_slot/medium_shield, jobs_supported)
-		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_heavy_shield/overclocked, /datum/loadout_item/suit_slot/heavy_shield, jobs_supported)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_medium_shield/overclocked, /datum/loadout_item/suit_slot/som_medium_shield, jobs_supported)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_heavy_shield/overclocked, /datum/loadout_item/suit_slot/som_heavy_shield, jobs_supported)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_heavy_shield/breacher/overclocked, /datum/loadout_item/suit_slot/som_heavy_shield/breacher, jobs_supported)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked/medic, /datum/loadout_item/suit_slot/som_medic/light, jobs_supported)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_medium_shield/overclocked/medic, /datum/loadout_item/suit_slot/som_medic, jobs_supported)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_light_shield/overclocked/engineer, /datum/loadout_item/suit_slot/som_engineer/light, jobs_supported)
@@ -264,7 +265,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/rifles
 	name = "Advanced rifle training"
-	desc = "Improved damage, accuracy and scatter with rifle type firearms."
+	desc = "Improved damage, accuracy and scatter with rifle type firearms. Unlocks new weapons and ammo types for some roles."
 	req_desc = "Requires Advanced firearm training."
 	ui_icon = "rifles"
 	rifles = 1
@@ -272,9 +273,40 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	prereq_perks = list(/datum/perk/skill_mod/firearms)
 	unlock_cost = 1000
 
+/datum/perk/skill_mod/rifles/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	if(!istype(owner_stats))
+		return
+	if(owner_stats.faction == FACTION_TERRAGOV)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/marine/standard_rifle, SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/standard_carbine/enhanced, /datum/loadout_item/suit_store/main_gun/marine/standard_carbine, SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/scout_carbine/enhanced, /datum/loadout_item/suit_store/main_gun/marine/scout_carbine, SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/suppressed_carbine/enhanced, /datum/loadout_item/suit_store/main_gun/marine/suppressed_carbine, SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/corpsman/assault_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/corpsman/assault_rifle, SQUAD_CORPSMAN)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/engineer/carbine/enhanced, /datum/loadout_item/suit_store/main_gun/engineer/carbine, SQUAD_ENGINEER)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/engineer/assault_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/engineer/assault_rifle, SQUAD_ENGINEER)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/squad_leader/carbine/enhanced, /datum/loadout_item/suit_store/main_gun/squad_leader/carbine, SQUAD_LEADER)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/squad_leader/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/squad_leader/standard_rifle, SQUAD_LEADER)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/field_commander/carbine/enhanced, /datum/loadout_item/suit_store/main_gun/field_commander/carbine, FIELD_COMMANDER)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/field_commander/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/field_commander/standard_rifle, FIELD_COMMANDER)
+
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/marine/plasma_rifle, SQUAD_MARINE, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/corpsman/plasma_rifle, SQUAD_CORPSMAN, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/engineer/plasma_rifle, SQUAD_ENGINEER, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/squad_leader/plasma_rifle, SQUAD_LEADER, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/field_commander/plasma_rifle, FIELD_COMMANDER, owner, 0)
+
+	else if(owner_stats.faction == FACTION_SOM)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_marine/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/som_marine/standard_rifle, SOM_SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_medic/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/som_medic/standard_rifle, SOM_SQUAD_CORPSMAN)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_engineer/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/som_engineer/standard_rifle, SOM_SQUAD_ENGINEER)
+
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/som_marine/volkite_charger, SOM_SQUAD_MARINE, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/som_medic/volkite_charger, SOM_SQUAD_CORPSMAN, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/som_engineer/volkite_charger, SOM_SQUAD_ENGINEER, owner, 0)
+
 /datum/perk/skill_mod/smgs
 	name = "Advanced SMG training"
-	desc = "Improved damage, accuracy and scatter with SMG type firearms."
+	desc = "Improved damage, accuracy and scatter with SMG type firearms. Unlocks new weapons and ammo types for some roles."
 	req_desc = "Requires Advanced firearm training."
 	ui_icon = "smgs"
 	smgs = 1
@@ -282,15 +314,45 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	prereq_perks = list(/datum/perk/skill_mod/firearms)
 	unlock_cost = 500
 
+/datum/perk/skill_mod/smgs/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	if(!istype(owner_stats))
+		return
+	if(owner_stats.faction == FACTION_TERRAGOV)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/standard_smg/enhanced, /datum/loadout_item/suit_store/main_gun/marine/standard_smg, SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/smg_and_shield/enhanced, /datum/loadout_item/suit_store/main_gun/marine/smg_and_shield, SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/corpsman/standard_smg/enhanced, /datum/loadout_item/suit_store/main_gun/corpsman/standard_smg, SQUAD_CORPSMAN)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/engineer/standard_smg/enhanced, /datum/loadout_item/suit_store/main_gun/engineer/standard_smg, SQUAD_ENGINEER)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/squad_leader/standard_smg/enhanced, /datum/loadout_item/suit_store/main_gun/squad_leader/standard_smg, SQUAD_LEADER)
+
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/marine/plasma_smg, SQUAD_MARINE, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/corpsman/plasma_smg, SQUAD_CORPSMAN, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/engineer/plasma_smg, SQUAD_ENGINEER, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/squad_leader/plasma_smg, SQUAD_LEADER, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/field_commander/plasma_smg, FIELD_COMMANDER, owner, 0)
+	else if(owner_stats.faction == FACTION_SOM)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_marine/smg/enhanced, /datum/loadout_item/suit_store/main_gun/som_marine/smg, SOM_SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_marine/smg_and_shield/enhanced, /datum/loadout_item/suit_store/main_gun/som_marine/smg_and_shield, SOM_SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_marine/smg/enhanced, /datum/loadout_item/suit_store/main_gun/som_marine/smg, SOM_SQUAD_CORPSMAN)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_engineer/smg/enhanced, /datum/loadout_item/suit_store/main_gun/som_engineer/smg, SOM_SQUAD_ENGINEER)
+
 /datum/perk/skill_mod/heavy_weapons
 	name = "Heavy weapon specialisation"
-	desc = "Improved damage, accuracy and scatter with heavy weapon type firearms."
+	desc = "Improved damage, accuracy and scatter with heavy weapon type firearms. Unlocks new weapons and ammo types for some roles."
 	req_desc = "Requires Advanced firearm training."
 	ui_icon = "heavy"
 	heavy_weapons = 1
 	all_jobs = TRUE
 	prereq_perks = list(/datum/perk/skill_mod/firearms)
 	unlock_cost = 800
+
+/datum/perk/skill_mod/heavy_weapons/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	if(!istype(owner_stats))
+		return
+	if(owner_stats.faction == FACTION_TERRAGOV)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/back/tgmc_heam_rocket_bag, SQUAD_MARINE, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/marine/plasma_cannon, SQUAD_MARINE, owner, 0)
+	else if(owner_stats.faction == FACTION_SOM)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/back/som_heat_rocket_bag, SOM_SQUAD_VETERAN, owner, 0)
 
 /datum/perk/skill_mod/smartgun
 	name = "Advanced smartgun training"

@@ -5,7 +5,7 @@
 #define ALARM_WARNING_READY (1<<3)
 #define ALARM_WARNING_DOWN (1<<4)
 
-//flags_area
+//area_flags
 ///When present prevents xenos from weeding this area
 #define DISALLOW_WEEDING (1<<0)
 ///When present, monitor will consider marines inside it to be at FOB

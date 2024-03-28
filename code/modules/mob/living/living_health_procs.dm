@@ -254,7 +254,6 @@
 
 /mob/living/carbon/human/on_revive()
 	. = ..()
-	revive_grace_time = initial(revive_grace_time)
 	GLOB.alive_human_list += src
 	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	GLOB.dead_human_list -= src

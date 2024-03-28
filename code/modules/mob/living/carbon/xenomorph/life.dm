@@ -3,8 +3,6 @@
 #define XENO_STANDING_HEAL 0.2
 #define XENO_CRIT_DAMAGE 5
 
-#define XENO_HUD_ICON_BUCKETS 16  // should equal the number of icons you use to represent health / plasma (from 0 -> X)
-
 /mob/living/carbon/xenomorph/Life()
 
 	if(!loc)
@@ -19,10 +17,10 @@
 		SSmobs.stop_processing(src)
 		return
 	if(stat == UNCONSCIOUS)
-		if(is_zoomed)
+		if(xeno_flags & XENO_ZOOMED)
 			zoom_out()
 	else
-		if(is_zoomed)
+		if(xeno_flags & XENO_ZOOMED)
 			if(loc != zoom_turf || lying_angle)
 				zoom_out()
 		update_progression()
@@ -48,14 +46,13 @@
 		handle_critical_health_updates()
 		return
 	if((health >= maxHealth) || on_fire) //can't regenerate.
-		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
 		return
 	var/turf/T = loc
 	if(!istype(T))
 		return
 
 	var/ruler_healing_penalty = 0.5
-	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.can_flags & CASTE_CAN_HEAL_WITHOUT_QUEEN || (SSticker?.mode.flags_round_type & MODE_XENO_RULER)) //if the living queen's z-level is the same as ours.
+	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.can_flags & CASTE_CAN_HEAL_WITHOUT_QUEEN || (SSticker?.mode.round_type_flags & MODE_XENO_RULER)) //if the living queen's z-level is the same as ours.
 		ruler_healing_penalty = 1
 	if(loc_weeds_type || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
 		if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
@@ -143,6 +140,8 @@
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod)
 
+	plasma_mod[1] = clamp(plasma_mod[1], 0, xeno_caste.plasma_max * xeno_caste.plasma_regen_limit - plasma_stored)
+
 	gain_plasma(plasma_mod[1])
 
 /mob/living/carbon/xenomorph/can_receive_aura(aura_type, atom/source, datum/aura_bearer/bearer)
@@ -173,37 +172,7 @@
 	..()
 
 /mob/living/carbon/xenomorph/handle_regular_hud_updates()
-	if(!client)
-		return FALSE
-
-	// Sanity checks
-	if(!maxHealth)
-		stack_trace("[src] called handle_regular_hud_updates() while having [maxHealth] maxHealth.")
-		return
-	if(!xeno_caste.plasma_max)
-		stack_trace("[src] called handle_regular_hud_updates() while having [xeno_caste.plasma_max] xeno_caste.plasma_max.")
-		return
-
-	// Health Hud
-	if(hud_used?.healths)
-		if(stat != DEAD)
-			var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, maxHealth, health, get_crit_threshold(), list("full", "critical"))
-			hud_used.healths.icon_state = "health[bucket]"
-		else
-			hud_used.healths.icon_state = "health_dead"
-
-	// Plasma Hud
-	if(hud_used?.alien_plasma_display)
-		if(stat != DEAD)
-			var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, xeno_caste.plasma_max, plasma_stored, 0, list("full", "empty"))
-			hud_used.alien_plasma_display.icon_state = "power_display_[bucket]"
-		else
-			hud_used.alien_plasma_display.icon_state = "power_display_empty"
-
-
-	interactee?.check_eye(src)
-
-	return TRUE
+	return
 
 /mob/living/carbon/xenomorph/proc/handle_environment() //unused while atmos is not on
 	var/env_temperature = loc.return_temperature()
@@ -225,7 +194,7 @@
 		stat = CONSCIOUS
 		return
 	health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
-	med_hud_set_health()
+	med_hud_set_health() //todo: Make all damage update health so we can just kill pointless life updates entirely
 	update_stat()
 	update_wounds()
 

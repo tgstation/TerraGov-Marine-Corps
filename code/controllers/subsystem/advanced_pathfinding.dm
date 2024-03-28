@@ -82,8 +82,8 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 
 /datum/path_step/New(atom/previous_atom, atom/current_atom, atom/goal_atom, old_distance_walked)
 	..()
-	distance_to_goal = get_dist_euclide_square(current_atom, goal_atom)
-	distance_walked = old_distance_walked + get_dist_euclide_square(current_atom, previous_atom)
+	distance_to_goal = get_dist_euclidean_square(current_atom, goal_atom)
+	distance_walked = old_distance_walked + get_dist_euclidean_square(current_atom, previous_atom)
 	src.current_atom = current_atom
 	src.previous_atom = previous_atom
 
@@ -113,7 +113,7 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 					atom_to_check = current_node.adjacent_nodes[direction]
 				if(TILE_PATHING)
 					var/turf/turf_to_check = get_step(current_atom, direction)
-					if(turf_to_check.density || turf_to_check.flags_atom & AI_BLOCKED)
+					if(turf_to_check.density || turf_to_check.atom_flags & AI_BLOCKED)
 						continue
 					atom_to_check = turf_to_check
 			if(paths_to_check[atom_to_check] || paths_checked[atom_to_check] || !atom_to_check) //We already found a better path to get to this atom

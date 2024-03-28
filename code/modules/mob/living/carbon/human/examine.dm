@@ -11,19 +11,19 @@
 
 	//exosuits and helmets obscure our view and stuff.
 	if(wear_suit)
-		skipgloves = wear_suit.flags_inv_hide & HIDEGLOVES
-		skipsuitstorage = wear_suit.flags_inv_hide & HIDESUITSTORAGE
-		skipjumpsuit = wear_suit.flags_inv_hide & HIDEJUMPSUIT
-		skipshoes = wear_suit.flags_inv_hide & HIDESHOES
+		skipgloves = wear_suit.inv_hide_flags & HIDEGLOVES
+		skipsuitstorage = wear_suit.inv_hide_flags & HIDESUITSTORAGE
+		skipjumpsuit = wear_suit.inv_hide_flags & HIDEJUMPSUIT
+		skipshoes = wear_suit.inv_hide_flags & HIDESHOES
 
 	if(head)
-		skipmask = head.flags_inv_hide & HIDEMASK
-		skipeyes = head.flags_inv_hide & HIDEEYES
-		skipears = head.flags_inv_hide & HIDEEARS
-		skipface = head.flags_inv_hide & HIDEFACE
+		skipmask = head.inv_hide_flags & HIDEMASK
+		skipeyes = head.inv_hide_flags & HIDEEYES
+		skipears = head.inv_hide_flags & HIDEEARS
+		skipface = head.inv_hide_flags & HIDEFACE
 
 	if(wear_mask)
-		skipface |= wear_mask.flags_inv_hide & HIDEFACE
+		skipface |= wear_mask.inv_hide_flags & HIDEFACE
 
 	var/t_He = p_they(TRUE) //capitalised for use at the start of each line.
 	var/t_he = p_they()
@@ -223,8 +223,7 @@
 
 	if((!species.has_organ["brain"] || has_brain()) && stat != DEAD)
 		if(!key)
-			if(species.is_sentient)
-				msg += "[span_deadsay("[t_He] [t_is] fast asleep. It doesn't look like [t_he] [t_is] waking up anytime soon.")]\n"
+			msg += "[span_deadsay("[t_He] [t_is] fast asleep. It doesn't look like [t_he] [t_is] waking up anytime soon.")]\n"
 		else if(!client)
 			if(isxeno(user))
 				msg += "[span_xenowarning("[t_He] [p_do()]n't seem responsive.")]\n"

@@ -61,7 +61,7 @@
 	name = "X-fuel tank"
 	desc = "A specialized fuel tank of ultra thick napthal type X, known for its extreme heat and slow burn rate, as well as it's distinct blue flames. For use with the FL-84 flamethrower and FL-240 incinerator unit."
 	item_typepath = /obj/item/ammo_magazine/flamer_tank/backtank/X
-	purchase_cost = 25
+	purchase_cost = 40
 	unlock_cost = 200
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
@@ -94,6 +94,18 @@
 /datum/loadout_item/back/marine_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, SLOT_R_HAND)
+
+/datum/loadout_item/back/tgmc_heam_rocket_bag
+	name = "HEAM rocket bag"
+	desc = "Unlocked for free with the Heavy weapon specialisation perk. This backpack holds 4 67mm high explosive anti mech shells, in addition to a recoiless rifle. \
+	The recoiless rifle is a powerful support weapon that deals significant damage against heavily armored mechs or vehicles, \
+	but will generally devastate any human target unfortunate enough to be hit in a pinch. Has a draw delay and has poor accuracy against human targets."
+	unlock_cost = 300
+	purchase_cost = 100
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
+	quantity = 2
+	item_typepath = /obj/item/storage/holster/backholster/rpg/heam
+	jobs_supported = list(SQUAD_MARINE)
 
 /datum/loadout_item/back/machete
 	name = "Machete"
@@ -153,7 +165,7 @@
 	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/minelayer, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)

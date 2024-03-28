@@ -322,7 +322,7 @@
 	belt = /obj/item/storage/belt/grenade
 	mask = /obj/item/clothing/mask/gas
 	w_uniform = /obj/item/clothing/under/marine/corpman_vest
-	head = /obj/item/clothing/head/modular/m10x/antenna
+	head = /obj/item/clothing/head/modular/m10x/hod
 	shoes = /obj/item/clothing/shoes/marine
 	l_hand = /obj/item/paper/tutorial/beginner_chad
 
@@ -435,7 +435,7 @@
 
 /datum/outfit/quick/beginner/engineer/burnitall
 	name = "Flamethrower"
-	desc = "For those who truly love to watch the world burn. Equipped with a laser and a flamethrower, you can be certain that none of your enemies will be left un-burnt."
+	desc = "For those who truly love to watch the world burn. Equipped with a laser carbine and a flamethrower, you can be certain that none of your enemies will be left un-burnt."
 
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/beginner
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/engineer
@@ -513,7 +513,7 @@
 
 	suit_store = /obj/item/weapon/gun/shotgun/pump/lever/repeater/beginner
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/mimirinjector
-	gloves = /obj/item/defibrillator/gloves
+	gloves = /obj/item/clothing/gloves/defibrillator
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/m10x/mimir
 	r_store = /obj/item/storage/pouch/medkit/medic
@@ -645,7 +645,8 @@
 	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
 
 	human.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/plasma_pistol, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_BACKPACK)
 	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
 	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
 	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)

@@ -149,6 +149,12 @@
 	update_sight()
 	SEND_SIGNAL(src, COMSIG_MOB_HUD_CREATED)
 
+/mob/living/carbon/xenomorph/create_mob_hud()
+	. = ..()
+	//Some parts require hud_used to already be set
+	med_hud_set_health()
+	hud_set_plasma()
+
 //Version denotes which style should be displayed. blank or 0 means "next version"
 /datum/hud/proc/show_hud(version = 0, mob/viewmob)
 	if(!ismob(mymob))

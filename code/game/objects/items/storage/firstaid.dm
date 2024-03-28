@@ -335,7 +335,7 @@
 
 /obj/item/storage/pill_bottle/kelotane/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.flags_storage = BYPASS_VENDOR_CHECK
+	atom_storage.storage_flags = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/dermaline
 	name = "dermaline pill bottle"
@@ -354,7 +354,7 @@
 
 /obj/item/storage/pill_bottle/dylovene/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.flags_storage = BYPASS_VENDOR_CHECK
+	atom_storage.storage_flags = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/isotonic
 	name = "isotonic pill bottle"
@@ -365,7 +365,7 @@
 
 /obj/item/storage/pill_bottle/isotonic/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.flags_storage = BYPASS_VENDOR_CHECK
+	atom_storage.storage_flags = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "inaprovaline pill bottle"
@@ -384,7 +384,7 @@
 
 /obj/item/storage/pill_bottle/tramadol/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.flags_storage = BYPASS_VENDOR_CHECK
+	atom_storage.storage_flags = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/paracetamol
 	name = "paracetamol pill bottle"
@@ -397,7 +397,7 @@
 
 /obj/item/storage/pill_bottle/paracetamol/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.flags_storage = BYPASS_VENDOR_CHECK
+	atom_storage.storage_flags = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "spaceacillin pill bottle"
@@ -416,7 +416,7 @@
 
 /obj/item/storage/pill_bottle/bicaridine/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.flags_storage = BYPASS_VENDOR_CHECK
+	atom_storage.storage_flags = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/meralyne
 	name = "meralyne pill bottle"
@@ -488,7 +488,7 @@
 
 /obj/item/storage/pill_bottle/tricordrazine/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.flags_storage = BYPASS_VENDOR_CHECK
+	atom_storage.storage_flags = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/happy
 	name = "happy pill bottle"

@@ -193,7 +193,7 @@
 /* Firealarm */
 /obj/machinery/firealarm/AICtrlClick(mob/living/silicon/ai/user) // toggle the fire alarm
 	var/area/A = get_area(src)
-	if(A.flags_alarm_state & ALARM_WARNING_FIRE)
+	if(A.alarm_state_flags & ALARM_WARNING_FIRE)
 		reset()
 	else
 		alarm()
@@ -247,9 +247,6 @@
 
 /obj/structure/xeno/trap/AIMiddleClick(mob/living/silicon/ai/user)
 	user.ai_ping(src, COOLDOWN_AI_PING_NORMAL)
-
-/obj/structure/xeno/baneling_pod/AIMiddleClick(mob/living/silicon/ai/user)
-	user.ai_ping(src, COOLDOWN_AI_PING_LOW)
 
 /* acid */
 

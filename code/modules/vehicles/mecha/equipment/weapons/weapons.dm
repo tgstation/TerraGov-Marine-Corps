@@ -143,18 +143,14 @@
 		var/obj/vehicle/sealed/mecha/combat/greyscale/grey = chassis
 		var/datum/mech_limb/head/head = grey.limbs[MECH_GREY_HEAD]
 		if(head)
-			projectile_to_fire.accuracy *= head.accuracy_mod
-		var/datum/mech_limb/arm/holding
-		if(grey.equip_by_category[MECHA_R_ARM] == src)
-			holding = grey.limbs[MECH_GREY_R_ARM]
-		else
-			holding = grey.limbs[MECH_GREY_L_ARM]
-		projectile_to_fire.scatter = max(variance + holding?.scatter_mod, 0)
+			projectile_to_fire.accuracy *= head.accuracy_mod //todo: we can probably just make the accuracy_mod apply directly to the gun like attachments do
 	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
-	if((projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF) && ishuman(firer))
+	if((projectile_to_fire.ammo.ammo_behavior_flags & AMMO_IFF) && ishuman(firer))
 		var/mob/living/carbon/human/human_firer = firer
 		var/obj/item/card/id/id = human_firer.get_idcard()
 		projectile_to_fire.iff_signal = id?.iff_signal
+	if(firer)
+		projectile_to_fire.def_zone = firer.zone_selected
 
 ///actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/fire()
@@ -164,15 +160,24 @@
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
 		return AUTOFIRE_CONTINUE
 
-	var/type_to_spawn = CHECK_BITFIELD(initial(ammotype.flags_ammo_behavior), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
+	var/type_to_spawn = CHECK_BITFIELD(initial(ammotype.ammo_behavior_flags), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
 	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammotype.hitscan_effect_icon))
 	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammotype])
 
 	apply_weapon_modifiers(projectile_to_fire, current_firer)
-	var/firing_angle = get_angle_with_scatter(chassis, current_target, projectile_to_fire.scatter, projectile_to_fire.p_x, projectile_to_fire.p_y)
+	var/proj_scatter = variance
+	if(istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale))
+		var/obj/vehicle/sealed/mecha/combat/greyscale/grey = chassis
+		var/datum/mech_limb/arm/holding
+		if(grey.equip_by_category[MECHA_R_ARM] == src)
+			holding = grey.limbs[MECH_GREY_R_ARM]
+		else
+			holding = grey.limbs[MECH_GREY_L_ARM]
+		proj_scatter += holding.scatter_mod //todo: we can probably just make the scatter_modmod apply directly to the gun like attachments do
+	var/firing_angle = get_angle_with_scatter(chassis, current_target, max(proj_scatter, 0), projectile_to_fire.p_x, projectile_to_fire.p_y)
 
 	playsound(chassis, fire_sound, 25, TRUE)
-	projectile_to_fire.fire_at(current_target, chassis, null, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
+	projectile_to_fire.fire_at(current_target, current_firer, chassis, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 
 	chassis.use_power(energy_drain)
 	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
@@ -267,11 +272,16 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(action == "reload")
-		var/mob/occupant = usr
-		if(occupant && !do_after(occupant, rearm_time, IGNORE_HELD_ITEM, chassis, BUSY_ICON_GENERIC))
-			return FALSE
-		rearm()
-		return TRUE
+		return attempt_rearm(usr)
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/attempt_rearm(mob/living/user)
+	if(!needs_rearm())
+		return FALSE
+	if(!projectiles_cache)
+		return FALSE
+	if(user && !do_after(user, rearm_time, IGNORE_HELD_ITEM, chassis, BUSY_ICON_GENERIC))
+		return FALSE
+	return rearm()
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rearm()
 	if(projectiles >= initial(projectiles))
@@ -291,7 +301,7 @@
 	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/needs_rearm()
-	return projectiles <= 0
+	return projectiles < initial(projectiles)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/fire()
 	. = ..()
@@ -303,11 +313,7 @@
 	if(projectiles > 0)
 		return
 	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
-	if(LAZYACCESS(current_firer.do_actions, src) || projectiles_cache < 1)
-		return
-	if(!do_after(current_firer, rearm_time, IGNORE_HELD_ITEM, chassis, BUSY_ICON_GENERIC))
-		return
-	rearm()
+	attempt_rearm(current_firer)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
 	name = "\improper FNX-99 \"Hades\" Carbine"

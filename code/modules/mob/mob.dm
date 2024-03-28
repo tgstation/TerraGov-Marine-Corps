@@ -236,13 +236,13 @@
 			return FALSE
 		equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
 		//This will unwield items -without- triggering lights.
-		if(CHECK_BITFIELD(item_to_equip.flags_item, TWOHANDED))
+		if(CHECK_BITFIELD(item_to_equip.item_flags, TWOHANDED))
 			item_to_equip.unwield(src)
 		return TRUE
 	else
 		equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
 		//This will unwield items -without- triggering lights.
-		if(CHECK_BITFIELD(item_to_equip.flags_item, TWOHANDED))
+		if(CHECK_BITFIELD(item_to_equip.item_flags, TWOHANDED))
 			item_to_equip.unwield(src)
 		return TRUE
 
@@ -312,7 +312,7 @@
 	var/obj/item/found = I.do_quick_equip(src)
 	if(!found)
 		return FALSE
-	if(CHECK_BITFIELD(found.flags_inventory, NOQUICKEQUIP))
+	if(CHECK_BITFIELD(found.inventory_flags, NOQUICKEQUIP))
 		return FALSE
 	temporarilyRemoveItemFromInventory(found)
 	put_in_hands(found)

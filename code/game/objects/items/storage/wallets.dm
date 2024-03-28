@@ -3,7 +3,7 @@
 	desc = "It can hold a few small and personal things."
 	icon_state = "wallet"
 	w_class = WEIGHT_CLASS_TINY
-	flags_equip_slot = ITEM_SLOT_ID
+	equip_slot_flags = ITEM_SLOT_ID
 	var/obj/item/card/id/front_id = null
 	storage_type = /datum/storage/wallet
 

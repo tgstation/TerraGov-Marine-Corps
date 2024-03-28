@@ -12,8 +12,8 @@
 /obj/machinery/robotic_cradle
 	name = "robotic cradle"
 	desc = "A highly experimental robotic maintenence machine using a bath of industrial nanomachines to quickly restore any robotic machine inserted."
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "borgcharger0"
+	icon = 'icons/obj/machines/suit_cycler.dmi'
+	icon_state = "suit_cycler"
 	density = TRUE
 	max_integrity = 350
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 30, ACID = 30)
@@ -41,9 +41,9 @@
 
 /obj/machinery/robotic_cradle/update_icon_state()
 	if(occupant && !(machine_stat & NOPOWER))
-		icon_state = "borgcharger1"
+		icon_state = "suit_cycler_active"
 		return ..()
-	icon_state = "borgcharger0"
+	icon_state = "suit_cycler"
 
 /obj/machinery/robotic_cradle/power_change()
 	. = ..()
@@ -80,15 +80,15 @@
 	repairing = FALSE
 	go_out(CRADLE_NOTICE_SUCCESS)
 
-/obj/machinery/robotic_cradle/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+/obj/machinery/robotic_cradle/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!occupant)
-		to_chat(X, span_xenowarning("There is nothing of interest in there."))
+		to_chat(xeno_attacker, span_xenowarning("There is nothing of interest in there."))
 		return
-	if(X.status_flags & INCORPOREAL || X.do_actions)
+	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
 		return
-	visible_message(span_warning("[X] begins to pry the [src]'s cover!"), 3)
+	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
 	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
-	if(!do_after(X, 2 SECONDS))
+	if(!do_after(xeno_attacker, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	go_out()

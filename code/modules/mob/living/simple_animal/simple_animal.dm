@@ -197,22 +197,22 @@
 			return TRUE
 
 
-/mob/living/simple_animal/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
+/mob/living/simple_animal/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
 	if(!.)
 		return
-	if(X.a_intent == INTENT_DISARM)
+	if(xeno_attacker.a_intent == INTENT_DISARM)
 		playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
-		visible_message(span_danger("[X] [response_disarm] [name]!"), \
-				span_userdanger("[X] [response_disarm] [name]!"))
-		log_combat(X, src, "disarmed")
+		visible_message(span_danger("[xeno_attacker] [response_disarm] [name]!"), \
+				span_userdanger("[xeno_attacker] [response_disarm] [name]!"))
+		log_combat(xeno_attacker, src, "disarmed")
 	else
 		var/damage = rand(15, 30)
-		visible_message(span_danger("[X] has slashed at [src]!"), \
-				span_userdanger("[X] has slashed at [src]!"))
+		visible_message(span_danger("[xeno_attacker] has slashed at [src]!"), \
+				span_userdanger("[xeno_attacker] has slashed at [src]!"))
 		playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 		attack_threshold_check(damage)
-		log_combat(X, src, "attacked")
+		log_combat(xeno_attacker, src, "attacked")
 	return TRUE
 
 

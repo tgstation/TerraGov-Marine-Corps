@@ -152,7 +152,7 @@
 	SEND_SIGNAL(controlled, COMSIG_REMOTECONTROL_CHANGED, FALSE, user)
 	is_controlling = FALSE
 	user.set_remote_control(null)
-	REMOVE_TRAIT(controlled, TRAIT_HEARING_SENSITIVE, TRAIT_GENERIC)
+	controlled.lose_hearing_sensitivity()
 	UnregisterSignal(user, list(COMSIG_MOB_CLICKON, COMSIG_MOB_LOGOUT, COMSIG_RELAYED_SPEECH))
 	UnregisterSignal(parent, COMSIG_ITEM_DROPPED)
 	user = null

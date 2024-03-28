@@ -73,7 +73,7 @@
 	icon_type = "candle"
 	item_state = "candlebox5"
 	throwforce = 2
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	spawn_type = /obj/item/tool/candle
 	spawn_number = 5
 
@@ -137,7 +137,7 @@
 	item_state = "cigpacket"
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	icon_type = "cigarette"
 	spawn_type = /obj/item/clothing/mask/cigarette
 	spawn_number = 18
@@ -177,7 +177,7 @@
 	item_state = "chempacketbox"
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	icon_type = "chempacket"
 
 /obj/item/storage/fancy/chemrettes/Initialize(mapload, ...)
@@ -240,7 +240,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
 	w_class = WEIGHT_CLASS_SMALL
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	spawn_type = /obj/item/clothing/mask/cigarette/cigar
 	spawn_number = 7
 	icon_type = "cigar"

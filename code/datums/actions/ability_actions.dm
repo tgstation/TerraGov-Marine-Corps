@@ -29,11 +29,7 @@
 /datum/action/ability/Destroy()
 	if(cooldown_timer)
 		deltimer(cooldown_timer)
-	return ..()
-
-/datum/action/ability/Destroy()
-	if(cooldown_timer)
-		deltimer(cooldown_timer)
+	QDEL_NULL(countdown)
 	return ..()
 
 /datum/action/ability/give_action(mob/living/L)
@@ -60,49 +56,49 @@
 	var/mob/living/carbon/carbon_owner = owner
 	if(!carbon_owner)
 		return FALSE
-	var/flags_to_check = use_state_flags|override_flags
+	var/to_check_flags = use_state_flags|override_flags
 
-	if(!(flags_to_check & ABILITY_IGNORE_COOLDOWN) && !action_cooldown_check())
+	if(!(to_check_flags & ABILITY_IGNORE_COOLDOWN) && !action_cooldown_check())
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Wait [cooldown_remaining()] sec")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_INCAP) && carbon_owner.incapacitated())
+	if(!(to_check_flags & ABILITY_USE_INCAP) && carbon_owner.incapacitated())
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while incapacitated")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_LYING) && carbon_owner.lying_angle)
+	if(!(to_check_flags & ABILITY_USE_LYING) && carbon_owner.lying_angle)
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while lying down")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_BUCKLED) && carbon_owner.buckled)
+	if(!(to_check_flags & ABILITY_USE_BUCKLED) && carbon_owner.buckled)
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while buckled")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_STAGGERED) && carbon_owner.IsStaggered())
+	if(!(to_check_flags & ABILITY_USE_STAGGERED) && carbon_owner.IsStaggered())
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while staggered")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_NOTTURF) && !isturf(carbon_owner.loc))
+	if(!(to_check_flags & ABILITY_USE_NOTTURF) && !isturf(carbon_owner.loc))
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot do this here")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_BUSY) && carbon_owner.do_actions)
+	if(!(to_check_flags & ABILITY_USE_BUSY) && carbon_owner.do_actions)
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot, busy")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_BURROWED) && HAS_TRAIT(carbon_owner, TRAIT_BURROWED))
+	if(!(to_check_flags & ABILITY_USE_BURROWED) && HAS_TRAIT(carbon_owner, TRAIT_BURROWED))
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while burrowed")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_CLOSEDTURF) && isclosedturf(get_turf(carbon_owner)))
+	if(!(to_check_flags & ABILITY_USE_CLOSEDTURF) && isclosedturf(get_turf(carbon_owner)))
 		if(!silent)
 			//Not converted to balloon alert as xeno.dm's balloon alert is simultaneously called and will overlap.
 			to_chat(owner, span_warning("We can't do this while in a solid object!"))
@@ -158,9 +154,9 @@
 ///override this for cooldown completion
 /datum/action/ability/proc/on_cooldown_finish()
 	cooldown_timer = null
-	if(!button)
-		CRASH("no button object on finishing ability action cooldown")
 	countdown.stop()
+	if(!button)
+		return
 	update_button_icon()
 
 ///Any changes when a xeno with this ability evolves
@@ -228,13 +224,13 @@
 	if(QDELETED(owner))
 		return FALSE
 
-	var/flags_to_check = use_state_flags|override_flags
+	var/to_check_flags = use_state_flags|override_flags
 
 	var/mob/living/carbon/carbon_owner = owner
-	if(!CHECK_BITFIELD(flags_to_check, ABILITY_IGNORE_SELECTED_ABILITY) && carbon_owner.selected_ability != src)
+	if(!CHECK_BITFIELD(to_check_flags, ABILITY_IGNORE_SELECTED_ABILITY) && carbon_owner.selected_ability != src)
 		return FALSE
 	. = can_use_action(silent, override_flags)
-	if(!CHECK_BITFIELD(flags_to_check, ABILITY_TARGET_SELF) && A == owner)
+	if(!CHECK_BITFIELD(to_check_flags, ABILITY_TARGET_SELF) && A == owner)
 		return FALSE
 
 ///the thing to do when the selected action ability is selected and triggered by middle_click
@@ -277,7 +273,7 @@
 /mob/living/carbon/proc/add_ability(datum/action/ability/new_ability)
 	if(!new_ability)
 		return
-	new_ability = new new_ability
+	new_ability = new new_ability(src)
 	new_ability.give_action(src)
 
 ///Removes an ability from a mob
