@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;armor_module&#x2F;storage - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/armor_module/storage.html#var">Var Details</a> - <a href="obj/item/armor_module/storage.html#proc">Proc Details</a></header>
+<main>
+<h1>storage <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/armor_module.html">armor_module</a>/<a href="obj/item/armor_module/storage.html">storage</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/clothing/modular_armor/attachments/storage.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;storage.dm 9"/></a></h1>
+
+<p>Modular armor storage storage attachments</p>
+<p>These are storage attachments that equip into storage slots on modular armor</p>
+<p>Storage modules</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/armor_module/storage.html#var/show_storage">show_storage</a></th><td>If TRUE it will add extra overlays for the items within.</td></tr>
+            <tr><th><a href="obj/item/armor_module/storage.html#var/show_storage_icon">show_storage_icon</a></th><td>Icon for the extra storage overlays.</td></tr>
+            <tr><th><a href="obj/item/armor_module/storage.html#var/storage">storage</a></th><td>Internal storage of the module. Its parent is switched to the parent item when attached.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/armor_module/storage.html#proc/access_storage">access_storage</a></th><td>Triggers attack hand interaction for storage when the parent is clicked on.</td></tr>
+            <tr><th><a href="obj/item/armor_module/storage.html#proc/draw_from_storage">draw_from_storage</a></th><td>We draw from the item's storage</td></tr>
+            <tr><th><a href="obj/item/armor_module/storage.html#proc/insert_item">insert_item</a></th><td>Inserts I into storage when parent is attacked by I.</td></tr>
+            <tr><th><a href="obj/item/armor_module/storage.html#proc/left_draw_from_storage">left_draw_from_storage</a></th><td>We draw the leftmost item from the item's storage</td></tr>
+            <tr><th><a href="obj/item/armor_module/storage.html#proc/open_storage">open_storage</a></th><td>Opens the internal storage when the parent is alt right clicked on.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/show_storage"><aside class="declaration">var </aside>show_storage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/clothing/modular_armor/attachments/storage.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;storage.dm 18"/></a></h3>
+        <p>If TRUE it will add extra overlays for the items within.</p><h3 id="var/show_storage_icon"><aside class="declaration">var </aside>show_storage_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/clothing/modular_armor/attachments/storage.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;storage.dm 20"/></a></h3>
+        <p>Icon for the extra storage overlays.</p><h3 id="var/storage"><aside class="declaration">var </aside>storage
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/storage.html">storage</a>/<a href="obj/item/storage/internal.html">internal</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/clothing/modular_armor/attachments/storage.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;storage.dm 16"/></a></h3>
+        <p>Internal storage of the module. Its parent is switched to the parent item when attached.</p><h2 id="proc">Proc Details</h2><h3 id="proc/access_storage"><aside class="declaration">proc </aside>access_storage<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/clothing/modular_armor/attachments/storage.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;storage.dm 50"/></a></aside>
+        </h3>
+        <p>Triggers attack hand interaction for storage when the parent is clicked on.</p><h3 id="proc/draw_from_storage"><aside class="declaration">proc </aside>draw_from_storage<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/clothing/modular_armor/attachments/storage.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;storage.dm 76"/></a></aside>
+        </h3>
+        <p>We draw from the item's storage</p><h3 id="proc/insert_item"><aside class="declaration">proc </aside>insert_item<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/clothing/modular_armor/attachments/storage.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;storage.dm 66"/></a></aside>
+        </h3>
+        <p>Inserts I into storage when parent is attacked by I.</p><h3 id="proc/left_draw_from_storage"><aside class="declaration">proc </aside>left_draw_from_storage<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/clothing/modular_armor/attachments/storage.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;storage.dm 85"/></a></aside>
+        </h3>
+        <p>We draw the leftmost item from the item's storage</p><h3 id="proc/open_storage"><aside class="declaration">proc </aside>open_storage<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/clothing/modular_armor/attachments/storage.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;storage.dm 58"/></a></aside>
+        </h3>
+        <p>Opens the internal storage when the parent is alt right clicked on.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/2cd608e2f2a5c33bd83cb1c11474516016385be6">2cd608e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

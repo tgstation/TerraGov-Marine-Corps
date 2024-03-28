@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;mobs.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/mobs.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/mobs.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/mobs.html#define/AI_VOX">AI_VOX</a></th><td>Comment out if you don't want VOX to be enabled and have players download the voice sounds.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/CARBON_CRIT_MAX_OXYLOSS">CARBON_CRIT_MAX_OXYLOSS</a></th><td>The amount of damage you'll take per tick when you can't breath. Default value is 1</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/CARBON_RECOVERY_OXYLOSS">CARBON_RECOVERY_OXYLOSS</a></th><td>the amount of oxyloss recovery per successful breath tick.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HUMAN_BLOODTYPES">HUMAN_BLOODTYPES</a></th><td>HUMAN BLOODTYPES</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MOVE_INTENT_WALK">MOVE_INTENT_WALK</a></th><td>MOVE DEFINES</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/ORGAN_ASSISTED">ORGAN_ASSISTED</a></th><td>INTERNAL ORGANS DEFINES</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SURGERY_CANNOT_USE">SURGERY_CANNOT_USE</a></th><td>SURGERY DEFINES</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/LIVING_STAMINA_EXHAUSTION_COOLDOWN">LIVING_STAMINA_EXHAUSTION_COOLDOWN</a></th><td>Stamina exhaustion</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/XENO_LEAPING">XENO_LEAPING</a></th><td>Xeno is currently performing a leap/dash attack</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/XENO_LEADER">XENO_LEADER</a></th><td>Hive leader</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/XENO_ZOOMED">XENO_ZOOMED</a></th><td>Zoomed out</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/XENO_MOBHUD">XENO_MOBHUD</a></th><td>mobhud on</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/XENO_ROUNY">XENO_ROUNY</a></th><td>rouny mode</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/IGNORE_USER_LOC_CHANGE">IGNORE_USER_LOC_CHANGE</a></th><td>Can do the action even if mob moves location</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/IGNORE_TARGET_LOC_CHANGE">IGNORE_TARGET_LOC_CHANGE</a></th><td>Can do the action even if the target moves location</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/IGNORE_HELD_ITEM">IGNORE_HELD_ITEM</a></th><td>Can do the action even if the item is no longer being held</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/IGNORE_INCAPACITATED">IGNORE_INCAPACITATED</a></th><td>Can do the action even if the mob is incapacitated (ex. handcuffed)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/IGNORE_SLOWDOWNS">IGNORE_SLOWDOWNS</a></th><td>Used to prevent important slowdowns from being abused by drugs like kronkaine</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MOB_WATER_SLOWDOWN">MOB_WATER_SLOWDOWN</a></th><td>Default slowdown for mobs moving through liquid</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/XENO_WATER_SLOWDOWN">XENO_WATER_SLOWDOWN</a></th><td>Slowdown for xenos moving through liquid</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BOILER_WATER_SLOWDOWN">BOILER_WATER_SLOWDOWN</a></th><td>Slowdown for boilers moving through liquid</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/WARLOCK_WATER_SLOWDOWN">WARLOCK_WATER_SLOWDOWN</a></th><td>Slowdown for warlocks moving through liquid</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SPECIES_HUMAN">SPECIES_HUMAN</a></th><td>Human species or those that functional behave like them. Default species</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SPECIES_COMBAT_ROBOT">SPECIES_COMBAT_ROBOT</a></th><td>Combat robot species</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/GRAB_SLAM_DELAY">GRAB_SLAM_DELAY</a></th><td>Nextmove delay after performing an interaction with a grab on something</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BASE_OBJ_SLAM_DAMAGE">BASE_OBJ_SLAM_DAMAGE</a></th><td>Default damage for slamming a mob against an object</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BASE_WALL_SLAM_DAMAGE">BASE_WALL_SLAM_DAMAGE</a></th><td>Default damage for slamming a mob against a wall</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BASE_MOB_SLAM_DAMAGE">BASE_MOB_SLAM_DAMAGE</a></th><td>Default damage for slamming a mob against another mob</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/AI_VOX"><aside class="declaration">#define </aside>AI_VOX
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 4"/></a>
+    </h3>
+    <p>Comment out if you don't want VOX to be enabled and have players download the voice sounds.</p><h3 id="define/BASE_MOB_SLAM_DAMAGE"><aside class="declaration">#define </aside>BASE_MOB_SLAM_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L853">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 853"/></a>
+    </h3>
+    <p>Default damage for slamming a mob against another mob</p><h3 id="define/BASE_OBJ_SLAM_DAMAGE"><aside class="declaration">#define </aside>BASE_OBJ_SLAM_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L849">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 849"/></a>
+    </h3>
+    <p>Default damage for slamming a mob against an object</p><h3 id="define/BASE_WALL_SLAM_DAMAGE"><aside class="declaration">#define </aside>BASE_WALL_SLAM_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L851">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 851"/></a>
+    </h3>
+    <p>Default damage for slamming a mob against a wall</p><h3 id="define/BOILER_WATER_SLOWDOWN"><aside class="declaration">#define </aside>BOILER_WATER_SLOWDOWN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L834">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 834"/></a>
+    </h3>
+    <p>Slowdown for boilers moving through liquid</p><h3 id="define/CARBON_CRIT_MAX_OXYLOSS"><aside class="declaration">#define </aside>CARBON_CRIT_MAX_OXYLOSS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 56"/></a>
+    </h3>
+    <p>The amount of damage you'll take per tick when you can't breath. Default value is 1</p><h3 id="define/CARBON_RECOVERY_OXYLOSS"><aside class="declaration">#define </aside>CARBON_RECOVERY_OXYLOSS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 58"/></a>
+    </h3>
+    <p>the amount of oxyloss recovery per successful breath tick.</p><h3 id="define/GRAB_SLAM_DELAY"><aside class="declaration">#define </aside>GRAB_SLAM_DELAY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L847">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 847"/></a>
+    </h3>
+    <p>Nextmove delay after performing an interaction with a grab on something</p><h3 id="define/HUMAN_BLOODTYPES"><aside class="declaration">#define </aside>HUMAN_BLOODTYPES
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L179">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 179"/></a>
+    </h3>
+    <p>HUMAN BLOODTYPES</p><h3 id="define/IGNORE_HELD_ITEM"><aside class="declaration">#define </aside>IGNORE_HELD_ITEM
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L798">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 798"/></a>
+    </h3>
+    <p>Can do the action even if the item is no longer being held</p><h3 id="define/IGNORE_INCAPACITATED"><aside class="declaration">#define </aside>IGNORE_INCAPACITATED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L800">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 800"/></a>
+    </h3>
+    <p>Can do the action even if the mob is incapacitated (ex. handcuffed)</p><h3 id="define/IGNORE_SLOWDOWNS"><aside class="declaration">#define </aside>IGNORE_SLOWDOWNS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L802">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 802"/></a>
+    </h3>
+    <p>Used to prevent important slowdowns from being abused by drugs like kronkaine</p><h3 id="define/IGNORE_TARGET_LOC_CHANGE"><aside class="declaration">#define </aside>IGNORE_TARGET_LOC_CHANGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L796">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 796"/></a>
+    </h3>
+    <p>Can do the action even if the target moves location</p><h3 id="define/IGNORE_USER_LOC_CHANGE"><aside class="declaration">#define </aside>IGNORE_USER_LOC_CHANGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L794">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 794"/></a>
+    </h3>
+    <p>Can do the action even if mob moves location</p><h3 id="define/LIVING_STAMINA_EXHAUSTION_COOLDOWN"><aside class="declaration">#define </aside>LIVING_STAMINA_EXHAUSTION_COOLDOWN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L427">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 427"/></a>
+    </h3>
+    <p>Stamina exhaustion</p><h3 id="define/MOB_WATER_SLOWDOWN"><aside class="declaration">#define </aside>MOB_WATER_SLOWDOWN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L830">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 830"/></a>
+    </h3>
+    <p>Default slowdown for mobs moving through liquid</p><h3 id="define/MOVE_INTENT_WALK"><aside class="declaration">#define </aside>MOVE_INTENT_WALK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L200">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 200"/></a>
+    </h3>
+    <p>MOVE DEFINES</p><h3 id="define/ORGAN_ASSISTED"><aside class="declaration">#define </aside>ORGAN_ASSISTED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L206">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 206"/></a>
+    </h3>
+    <p>INTERNAL ORGANS DEFINES</p><h3 id="define/SPECIES_COMBAT_ROBOT"><aside class="declaration">#define </aside>SPECIES_COMBAT_ROBOT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L844">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 844"/></a>
+    </h3>
+    <p>Combat robot species</p><h3 id="define/SPECIES_HUMAN"><aside class="declaration">#define </aside>SPECIES_HUMAN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L842">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 842"/></a>
+    </h3>
+    <p>Human species or those that functional behave like them. Default species</p><h3 id="define/SURGERY_CANNOT_USE"><aside class="declaration">#define </aside>SURGERY_CANNOT_USE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L227">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 227"/></a>
+    </h3>
+    <p>SURGERY DEFINES</p><h3 id="define/WARLOCK_WATER_SLOWDOWN"><aside class="declaration">#define </aside>WARLOCK_WATER_SLOWDOWN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L836">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 836"/></a>
+    </h3>
+    <p>Slowdown for warlocks moving through liquid</p><h3 id="define/XENO_LEADER"><aside class="declaration">#define </aside>XENO_LEADER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L442">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 442"/></a>
+    </h3>
+    <p>Hive leader</p><h3 id="define/XENO_LEAPING"><aside class="declaration">#define </aside>XENO_LEAPING
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L440">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 440"/></a>
+    </h3>
+    <p>Xeno is currently performing a leap/dash attack</p><h3 id="define/XENO_MOBHUD"><aside class="declaration">#define </aside>XENO_MOBHUD
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L446">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 446"/></a>
+    </h3>
+    <p>mobhud on</p><h3 id="define/XENO_ROUNY"><aside class="declaration">#define </aside>XENO_ROUNY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L448">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 448"/></a>
+    </h3>
+    <p>rouny mode</p><h3 id="define/XENO_WATER_SLOWDOWN"><aside class="declaration">#define </aside>XENO_WATER_SLOWDOWN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L832">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 832"/></a>
+    </h3>
+    <p>Slowdown for xenos moving through liquid</p><h3 id="define/XENO_ZOOMED"><aside class="declaration">#define </aside>XENO_ZOOMED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/__DEFINES/mobs.dm#L444">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 444"/></a>
+    </h3>
+    <p>Zoomed out</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/2cd608e2f2a5c33bd83cb1c11474516016385be6">2cd608e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

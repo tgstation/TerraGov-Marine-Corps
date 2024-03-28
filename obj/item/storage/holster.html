@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;storage&#x2F;holster - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/storage/holster.html#var">Var Details</a> - <a href="obj/item/storage/holster.html#proc">Proc Details</a></header>
+<main>
+<h1>holster <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/storage.html">storage</a>/<a href="obj/item/storage/holster.html">holster</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/game/objects/items/storage/holsters.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;storage&#x2F;holsters.dm 2"/></a></h1>
+
+<p>Parent item for all holster type storage items</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/storage/holster.html#var/draw_sound">draw_sound</a></th><td>the sound produced when the special item is drawn</td></tr>
+            <tr><th><a href="obj/item/storage/holster.html#var/holsterable_allowed">holsterable_allowed</a></th><td>the snowflake item(s) that will update the sprite.</td></tr>
+            <tr><th><a href="obj/item/storage/holster.html#var/holstered_item">holstered_item</a></th><td>records the specific special item currently in the holster</td></tr>
+            <tr><th><a href="obj/item/storage/holster.html#var/holstered_item_underlay">holstered_item_underlay</a></th><td>Image that get's underlayed under the sprite of the holster</td></tr>
+            <tr><th><a href="obj/item/storage/holster.html#var/sheathe_sound">sheathe_sound</a></th><td>the sound produced when the special item is sheathed</td></tr>
+            <tr><th><a href="obj/item/storage/holster.html#var/storage_slots">storage_slots</a></th><td>normally the special item will be larger than what should fit. Child items will have lower limits and an override</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/storage/holster.html#proc/update_underlays">update_underlays</a></th><td>Adds or removes underlay sprites, checks holstered_item to see which underlay to add</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/draw_sound"><aside class="declaration">var </aside>draw_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/game/objects/items/storage/holsters.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;storage&#x2F;holsters.dm 15"/></a></h3>
+        <p>the sound produced when the special item is drawn</p><h3 id="var/holsterable_allowed"><aside class="declaration">var </aside>holsterable_allowed
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/game/objects/items/storage/holsters.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;storage&#x2F;holsters.dm 19"/></a></h3>
+        <p>the snowflake item(s) that will update the sprite.</p><h3 id="var/holstered_item"><aside class="declaration">var </aside>holstered_item
+            <aside>&ndash; /<a href="obj.html">obj</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/game/objects/items/storage/holsters.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;storage&#x2F;holsters.dm 21"/></a></h3>
+        <p>records the specific special item currently in the holster</p><h3 id="var/holstered_item_underlay"><aside class="declaration">var </aside>holstered_item_underlay
+            <aside>&ndash; /<a href="image.html">image</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/game/objects/items/storage/holsters.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;storage&#x2F;holsters.dm 25"/></a></h3>
+        <p>Image that get's underlayed under the sprite of the holster</p><h3 id="var/sheathe_sound"><aside class="declaration">var </aside>sheathe_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/game/objects/items/storage/holsters.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;storage&#x2F;holsters.dm 17"/></a></h3>
+        <p>the sound produced when the special item is sheathed</p><h3 id="var/storage_slots"><aside class="parent"><a title="/obj/item/storage" href="obj/item/storage.html#var/storage_slots">&uarr;</a></aside>storage_slots
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/game/objects/items/storage/holsters.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;storage&#x2F;holsters.dm 8"/></a></h3>
+        <p>normally the special item will be larger than what should fit. Child items will have lower limits and an override</p><h2 id="proc">Proc Details</h2><h3 id="proc/update_underlays"><aside class="declaration">proc </aside>update_underlays<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/game/objects/items/storage/holsters.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;storage&#x2F;holsters.dm 93"/></a></aside>
+        </h3>
+        <p>Adds or removes underlay sprites, checks holstered_item to see which underlay to add</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/2cd608e2f2a5c33bd83cb1c11474516016385be6">2cd608e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

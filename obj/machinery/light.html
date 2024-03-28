@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;light - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/light.html#var">Var Details</a> - <a href="obj/machinery/light.html#proc">Proc Details</a></header>
+<main>
+<h1>light <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/light.html">light</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/power/lighting.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;lighting.dm 126"/></a></h1>
+
+<p>the standard tube light fixture</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/light.html#var/flicker_time">flicker_time</a></th><td>what's the duration that the light switches between on and off while flickering</td></tr>
+            <tr><th><a href="obj/machinery/light.html#var/flicker_time_lower_min">flicker_time_lower_min</a></th><td>lower bounds of potential flicker time when randomized</td></tr>
+            <tr><th><a href="obj/machinery/light.html#var/flicker_time_upper_max">flicker_time_upper_max</a></th><td>upper bounds of potential flicker time when randomized</td></tr>
+            <tr><th><a href="obj/machinery/light.html#var/flickering">flickering</a></th><td>is our light flickering?</td></tr>
+            <tr><th><a href="obj/machinery/light.html#var/light_flicker_state">light_flicker_state</a></th><td>holds the state of our flickering</td></tr>
+            <tr><th><a href="obj/machinery/light.html#var/light_type">light_type</a></th><td>the type of light item</td></tr>
+            <tr><th><a href="obj/machinery/light.html#var/lightambient">lightambient</a></th><td>looping sound for flickering lights</td></tr>
+            <tr><th><a href="obj/machinery/light.html#var/random_flicker">random_flicker</a></th><td>if true randomize the time we turn on and off</td></tr>
+            <tr><th><a href="obj/machinery/light.html#var/rigged">rigged</a></th><td>true if rigged to explode</td></tr>
+            <tr><th><a href="obj/machinery/light.html#var/switchcount">switchcount</a></th><td>count of number of times switched on/off. this is used to calc the probability the light burns out</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/light.html#proc/flicker">flicker</a></th><td>flicker lights on and off</td></tr>
+            <tr><th><a href="obj/machinery/light.html#proc/flicker_power_state">flicker_power_state</a></th><td>proc to toggle power on and off for light</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/flicker_time"><aside class="declaration">var </aside>flicker_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/power/lighting.dm#L148">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;lighting.dm 148"/></a></h3>
+        <p>what's the duration that the light switches between on and off while flickering</p><h3 id="var/flicker_time_lower_min"><aside class="declaration">var </aside>flicker_time_lower_min
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/power/lighting.dm#L163">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;lighting.dm 163"/></a></h3>
+        <p>lower bounds of potential flicker time when randomized</p><h3 id="var/flicker_time_upper_max"><aside class="declaration">var </aside>flicker_time_upper_max
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/power/lighting.dm#L161">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;lighting.dm 161"/></a></h3>
+        <p>upper bounds of potential flicker time when randomized</p><h3 id="var/flickering"><aside class="declaration">var </aside>flickering
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/power/lighting.dm#L146">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;lighting.dm 146"/></a></h3>
+        <p>is our light flickering?</p><h3 id="var/light_flicker_state"><aside class="declaration">var </aside>light_flicker_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/power/lighting.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;lighting.dm 157"/></a></h3>
+        <p>holds the state of our flickering</p><h3 id="var/light_type"><aside class="declaration">var </aside>light_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/power/lighting.dm#L150">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;lighting.dm 150"/></a></h3>
+        <p>the type of light item</p><h3 id="var/lightambient"><aside class="declaration">var </aside>lightambient
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/looping_sound.html">looping_sound</a>/flickeringambient</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/power/lighting.dm#L167">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;lighting.dm 167"/></a></h3>
+        <p>looping sound for flickering lights</p><h3 id="var/random_flicker"><aside class="declaration">var </aside>random_flicker
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/power/lighting.dm#L159">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;lighting.dm 159"/></a></h3>
+        <p>if true randomize the time we turn on and off</p><h3 id="var/rigged"><aside class="declaration">var </aside>rigged
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/power/lighting.dm#L155">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;lighting.dm 155"/></a></h3>
+        <p>true if rigged to explode</p><h3 id="var/switchcount"><aside class="declaration">var </aside>switchcount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/power/lighting.dm#L153">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;lighting.dm 153"/></a></h3>
+        <p>count of number of times switched on/off. this is used to calc the probability the light burns out</p><h2 id="proc">Proc Details</h2><h3 id="proc/flicker"><aside class="declaration">proc </aside>flicker<aside>(toggle_flicker) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/power/lighting.dm#L423">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;lighting.dm 423"/></a></aside>
+        </h3>
+        <p>flicker lights on and off</p><h3 id="proc/flicker_power_state"><aside class="declaration">proc </aside>flicker_power_state<aside>(turn_on, turn_off) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/modules/power/lighting.dm#L457">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;lighting.dm 457"/></a></aside>
+        </h3>
+        <p>proc to toggle power on and off for light</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/2cd608e2f2a5c33bd83cb1c11474516016385be6">2cd608e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

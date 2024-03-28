@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;robotic_cradle - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/robotic_cradle.html#var">Var Details</a> - <a href="obj/machinery/robotic_cradle.html#proc">Proc Details</a></header>
+<main>
+<h1>robotic_cradle <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/robotic_cradle.html">robotic_cradle</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/game/objects/machinery/robotic_cradle.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 12"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/robotic_cradle.html#var/occupant">occupant</a></th><td>This var is the reference used for the patient</td></tr>
+            <tr><th><a href="obj/machinery/robotic_cradle.html#var/radio">radio</a></th><td>This var is in reference to the radio the cradle uses to speak to the crew</td></tr>
+            <tr><th><a href="obj/machinery/robotic_cradle.html#var/repairing">repairing</a></th><td>This var is used to see if the machine is currently repairing or not.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/robotic_cradle.html#proc/auto_start">auto_start</a></th><td>Callback to start auto mode on someone entering</td></tr>
+            <tr><th><a href="obj/machinery/robotic_cradle.html#proc/do_eject">do_eject</a></th><td>This proc ejects whomever is inside the cradle, by force if needed depending if the cradle is destroyed or not.</td></tr>
+            <tr><th><a href="obj/machinery/robotic_cradle.html#proc/repair_op">repair_op</a></th><td>This proc handles the actual repair once the timer is up, ejection of the healed robot and radio message of ejection.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/occupant"><aside class="declaration">var </aside>occupant
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/game/objects/machinery/robotic_cradle.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 28"/></a></h3>
+        <p>This var is the reference used for the patient</p><h3 id="var/radio"><aside class="declaration">var </aside>radio
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/radio.html">radio</a>/<a href="obj/item/radio/headset.html">headset</a>/<a href="obj/item/radio/headset/mainship.html">mainship</a>/doc</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/game/objects/machinery/robotic_cradle.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 32"/></a></h3>
+        <p>This var is in reference to the radio the cradle uses to speak to the crew</p><h3 id="var/repairing"><aside class="declaration">var </aside>repairing
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/game/objects/machinery/robotic_cradle.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 26"/></a></h3>
+        <p>This var is used to see if the machine is currently repairing or not.</p><h2 id="proc">Proc Details</h2><h3 id="proc/auto_start"><aside class="declaration">proc </aside>auto_start<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/game/objects/machinery/robotic_cradle.dm#L169">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 169"/></a></aside>
+        </h3>
+        <p>Callback to start auto mode on someone entering</p><h3 id="proc/do_eject"><aside class="declaration">proc </aside>do_eject<aside>(forceeject) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/game/objects/machinery/robotic_cradle.dm#L279">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 279"/></a></aside>
+        </h3>
+        <p>This proc ejects whomever is inside the cradle, by force if needed depending if the cradle is destroyed or not.</p><h3 id="proc/repair_op"><aside class="declaration">proc </aside>repair_op<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2cd608e2f2a5c33bd83cb1c11474516016385be6/code/game/objects/machinery/robotic_cradle.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 70"/></a></aside>
+        </h3>
+        <p>This proc handles the actual repair once the timer is up, ejection of the healed robot and radio message of ejection.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/2cd608e2f2a5c33bd83cb1c11474516016385be6">2cd608e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
