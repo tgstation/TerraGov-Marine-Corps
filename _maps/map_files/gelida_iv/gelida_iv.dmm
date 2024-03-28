@@ -36502,9 +36502,6 @@
 "yiB" = (
 /turf/closed/wall,
 /area/gelida/cavestructuretwo)
-"yjx" = (
-/turf/open/floor/plating/ground/snow/layer1,
-/area/gelida/caves/central_caves)
 "yjB" = (
 /obj/item/stack/rods,
 /obj/structure/window_frame/colony,
@@ -50196,7 +50193,7 @@ ubb
 oHy
 ubb
 cYz
-yjx
+bcB
 tzc
 eue
 tzc
@@ -50418,7 +50415,7 @@ cYz
 oHy
 cYz
 cYz
-yjx
+bcB
 rai
 eue
 tzc
