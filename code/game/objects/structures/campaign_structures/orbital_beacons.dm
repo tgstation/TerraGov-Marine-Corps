@@ -4,9 +4,12 @@
 	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "motion4"
 	w_class = WEIGHT_CLASS_SMALL
-	flags_item = IS_DEPLOYABLE
+	item_flags = IS_DEPLOYABLE
+	///Type path for what this deploys into
 	var/deployable_type
+	///Time to deploy
 	var/deploy_time = 2 SECONDS
+	///Time to undeploy
 	var/undeploy_time = 2 SECONDS
 
 /obj/item/campaign_beacon/Initialize(mapload)
@@ -91,13 +94,13 @@
 		beacon_timer = null
 	return ..()
 
+/obj/structure/campaign_objective/destruction_objective/bunker_buster/get_time_left()
+	return beacon_timer ? round(timeleft(beacon_timer) MILLISECONDS) : null
+
 ///Clears the beacon if another beacon successfully activates
 /obj/structure/campaign_objective/destruction_objective/bunker_buster/proc/cancel_beacon(datum/source)
 	SIGNAL_HANDLER
 	qdel(src)
-
-/obj/structure/campaign_objective/destruction_objective/bunker_buster/get_time_left()
-	return beacon_timer ? round(timeleft(beacon_timer) MILLISECONDS) : null
 
 ///Effects triggered when the timer runs out
 /obj/structure/campaign_objective/destruction_objective/bunker_buster/proc/beacon_effect()
