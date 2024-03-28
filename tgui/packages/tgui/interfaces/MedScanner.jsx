@@ -305,7 +305,7 @@ export const MedScanner = (props) => {
                 >
                   <Box
                     inline
-                    color={organ.status === 'Bruised' ? 'orange' : 'red'}
+                    color={organ.status === 'Broken' ? 'red' : 'orange'}
                     bold={1}
                   >
                     {organ.status + ' with ' + organ.damage + ' damage'}
