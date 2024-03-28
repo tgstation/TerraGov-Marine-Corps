@@ -2529,7 +2529,7 @@
 "chJ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth/darkfrostwall/cuttable,
+/turf/closed/mineral/smooth/darkfrostwall,
 /area/daedalusprison/caves/rock)
 "chS" = (
 /obj/structure/table,
@@ -8694,7 +8694,7 @@
 /area/daedalusprison/inside/mechanicshop)
 "hoO" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth/darkfrostwall/cuttable,
+/turf/closed/mineral/smooth/darkfrostwall,
 /area/daedalusprison/caves/rock)
 "hoW" = (
 /obj/structure/table/reinforced/weak,
@@ -13521,7 +13521,7 @@
 	},
 /area/daedalusprison/inside/centralhalls)
 "liI" = (
-/turf/closed/mineral/smooth/darkfrostwall/cuttable,
+/turf/closed/mineral/smooth/darkfrostwall,
 /area/daedalusprison/caves/rock)
 "lja" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -17333,7 +17333,7 @@
 /turf/open/floor/tile/dark/purple2/corner,
 /area/daedalusprison/inside/colonydorms)
 "opr" = (
-/turf/closed/mineral/smooth/darkfrostwall/cuttable,
+/turf/closed/mineral/smooth/darkfrostwall,
 /area/daedalusprison/caves/northwest)
 "opN" = (
 /turf/open/floor/tile/green/greentaupe{
