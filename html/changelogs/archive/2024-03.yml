@@ -422,3 +422,6 @@
   - rscadd: Added the cradle to valhala and debugabus
   - qol: Changed the cradle sprites
   - qol: helmets, armor and suits show their equipped modules on examine
+2024-03-28:
+  Xander3359:
+  - code_imp: flags now all follow the formatting of flagname_flags
