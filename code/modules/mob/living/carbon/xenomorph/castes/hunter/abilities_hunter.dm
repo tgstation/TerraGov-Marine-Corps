@@ -211,8 +211,6 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_DISGUISE,
 	)
-	///the regular appearance of the hunter
-	var/old_appearance
 
 /datum/action/ability/xeno_action/stealth/disguise/action_activate()
 	if(stealth)
@@ -229,33 +227,28 @@
 	if(ishuman(mark.marked_target))
 		to_chat(owner, "You cannot turn into a human!")
 		return
-	old_appearance = xenoowner.appearance
-	ADD_TRAIT(xenoowner, TRAIT_MOB_ICON_UPDATE_BLOCKED, STEALTH_TRAIT)
+	var/image/disguised_icon = image(icon = mark.marked_target.icon, icon_state = mark.marked_target.icon_state, loc = owner)
+	disguised_icon.override = TRUE
+	xenoowner.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/everyone, "hunter_disguise", disguised_icon)
+	ADD_TRAIT(xenoowner, TRAIT_XENOMORPH_INVISIBLE_BLOOD, STEALTH_TRAIT)
 	xenoowner.update_wounds()
 	return ..()
 
 /datum/action/ability/xeno_action/stealth/disguise/cancel_stealth()
 	. = ..()
-	owner.appearance = old_appearance
-	REMOVE_TRAIT(owner, TRAIT_MOB_ICON_UPDATE_BLOCKED, STEALTH_TRAIT)
 	var/mob/living/carbon/xenomorph/xenoowner = owner
+	REMOVE_TRAIT(xenoowner, TRAIT_XENOMORPH_INVISIBLE_BLOOD, STEALTH_TRAIT)
+	xenoowner.remove_alt_appearance("hunter_disguise")
 	xenoowner.update_wounds()
 
 /datum/action/ability/xeno_action/stealth/disguise/handle_stealth()
 	var/mob/living/carbon/xenomorph/xenoowner = owner
-	var/datum/action/ability/activable/xeno/hunter_mark/mark = xenoowner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark]
-	var/old_layer = xenoowner.layer
-	xenoowner.appearance = mark.marked_target.appearance
-	//Retaining old rendering layer to prevent rendering under objects.
-	xenoowner.layer = old_layer
-	xenoowner.underlays.Cut()
 	if(owner.last_move_intent >= world.time - HUNTER_STEALTH_STEALTH_DELAY)
 		xenoowner.use_plasma(owner.m_intent == MOVE_INTENT_WALK ? HUNTER_STEALTH_WALK_PLASMADRAIN : HUNTER_STEALTH_RUN_PLASMADRAIN)
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
 	if(!xenoowner.plasma_stored)
 		to_chat(xenoowner, span_xenodanger("We lack sufficient plasma to remain disguised."))
 		cancel_stealth()
-
 
 // ***************************************
 // *********** Hunter's Pounce

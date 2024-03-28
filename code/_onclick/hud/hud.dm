@@ -59,7 +59,11 @@
 	var/atom/movable/screen/action_button/hide_toggle/hide_actions_toggle
 	var/action_buttons_hidden = 0
 
-	var/list/atom/movable/screen/plane_master/plane_masters = list() // see "appearance_flags" in the ref, assoc list of "[plane]" = object
+	/// Assoc list of key => "plane master groups"
+	/// This is normally just the main window, but it'll occasionally contain things like spyglasses windows
+	var/list/datum/plane_master_group/master_groups = list()
+	/// see "appearance_flags" in the ref, assoc list of "[plane]" = object
+	var/list/atom/movable/screen/plane_master/plane_masters = list()
 
 	// List of weakrefs to objects that we add to our screen that we don't expect to DO anything
 	// They typically use * in their render target. They exist solely so we can reuse them,
@@ -74,6 +78,15 @@
 		var/atom/movable/screen/plane_master/instance = new mytype()
 		plane_masters["[instance.plane]"] = instance
 		instance.backdrop(mymob)
+
+	var/datum/plane_master_group/main/main_group = new(PLANE_GROUP_MAIN)
+	main_group.attach_to(src)
+
+/datum/hud/proc/should_use_scale()
+	return should_sight_scale(mymob.sight)
+
+/datum/hud/proc/should_sight_scale(sight_flags)
+	return (sight_flags & (SEE_TURFS | SEE_OBJS)) != SEE_TURFS
 
 /datum/hud/Destroy()
 	if(mymob.hud_used == src)
@@ -138,6 +151,25 @@
 	mymob = null
 
 	return ..()
+
+/// Creates the required plane masters to fill out new z layers (because each "level" of multiz gets its own plane master set)
+/datum/hud/proc/build_plane_groups(starting_offset, ending_offset)
+	for(var/group_key in master_groups)
+		var/datum/plane_master_group/group = master_groups[group_key]
+		group.build_plane_masters(starting_offset, ending_offset)
+
+/// Returns the plane master that matches the input plane from the passed in group
+/datum/hud/proc/get_plane_master(plane, group_key = PLANE_GROUP_MAIN)
+	var/plane_key = "[plane]"
+	var/datum/plane_master_group/group = master_groups[group_key]
+	return group.plane_masters[plane_key]
+
+/// Returns a list of all plane masters that match the input true plane, drawn from the passed in group (ignores z layer offsets)
+/datum/hud/proc/get_true_plane_masters(true_plane, group_key = PLANE_GROUP_MAIN)
+	var/list/atom/movable/screen/plane_master/masters = list()
+	for(var/plane in TRUE_PLANE_TO_OFFSETS(true_plane))
+		masters += get_plane_master(plane, group_key)
+	return masters
 
 /mob/proc/create_mob_hud()
 	if(!client || hud_used)
