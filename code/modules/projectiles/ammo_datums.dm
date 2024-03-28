@@ -1476,7 +1476,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 40
 	damage_falloff = 1
 
-/datum/ammo/bullet/turret/flamer
+/datum/ammo/flamer
 	name = "flame turret glob"
 	icon_state = "pulse0"
 	hud_state = "flame"
@@ -1486,22 +1486,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	armor_type = FIRE
 	damage = 30
 	max_range = 7
+	bullet_color = LIGHT_COLOR_FIRE
 
-/datum/ammo/bullet/turret/flamer/drop_nade(turf/T)
+/datum/ammo/flamer/drop_nade(turf/T)
 	flame_radius(2, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 
 
-/datum/ammo/bullet/turret/flamer/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/flamer/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M))
 
-/datum/ammo/bullet/turret/flamer/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/flamer/on_hit_obj(obj/O, obj/projectile/P)
 	drop_nade(O.density ? P.loc : O.loc)
 
-/datum/ammo/bullet/turret/flamer/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/flamer/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
-/datum/ammo/bullet/turret/flamer/do_at_max_range(turf/T, obj/projectile/P)
+/datum/ammo/flamer/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)

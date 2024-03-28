@@ -410,7 +410,7 @@
 
 	scatter = 5
 
-	ammo_datum_type = /datum/ammo/bullet/turret/flamer
+	ammo_datum_type = /datum/ammo/flamer
 	default_ammo_type = /obj/item/ammo_magazine/sentry/flamer
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/flamer)
 

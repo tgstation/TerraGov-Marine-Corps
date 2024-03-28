@@ -57,5 +57,5 @@
 	caliber = CALIBER_12G
 	icon_state = "flamersentry"
 	max_rounds = 100
-	default_ammo = /datum/ammo/bullet/turret/flamer
+	default_ammo = /datum/ammo/flamer
 
