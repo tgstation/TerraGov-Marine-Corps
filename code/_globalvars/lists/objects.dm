@@ -104,8 +104,8 @@ GLOBAL_LIST_EMPTY(cryoed_item_list_explosive)
 GLOBAL_LIST_EMPTY(cryoed_item_list_melee)
 GLOBAL_LIST_EMPTY(cryoed_item_list_clothing)
 GLOBAL_LIST_EMPTY(cryoed_item_list_food)
-GLOBAL_LIST_EMPTY(cryoed_item_list_drugs)
-GLOBAL_LIST_EMPTY(cryoed_item_list_containers)
+GLOBAL_LIST_EMPTY(cryoed_item_list_drug)
+GLOBAL_LIST_EMPTY(cryoed_item_list_container)
 GLOBAL_LIST_EMPTY(cryoed_item_list_other)
 
 GLOBAL_LIST_INIT(do_not_preserve, typecacheof(list(

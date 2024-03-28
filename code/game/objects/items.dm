@@ -190,8 +190,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	GLOB.cryoed_item_list_melee -= src
 	GLOB.cryoed_item_list_clothing -= src
 	GLOB.cryoed_item_list_food -= src
-	GLOB.cryoed_item_list_drugs -= src
-	GLOB.cryoed_item_list_containers -= src
+	GLOB.cryoed_item_list_drug -= src
+	GLOB.cryoed_item_list_container -= src
 	GLOB.cryoed_item_list_other -= src
 	return ..()
 
