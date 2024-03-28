@@ -20,7 +20,9 @@
 	var/list/datum/outfit_holder/loadouts = list()
 	///The faction associated with these stats
 	var/faction
+	///Currently selected UI category tab
 	var/selected_tab = TAB_LOADOUT
+	///Currently selected UI job tab
 	var/selected_job
 
 /datum/individual_stats/New(mob/living/carbon/new_mob, new_faction, new_currency)
@@ -405,6 +407,7 @@
 	if(!stats)
 		return
 	stats.current_mob = owner //taking over ssd's creates a mismatch
+	//we have to update selected tab/job so we load the correct data for the UI
 	if(!isliving(owner))
 		stats.selected_job = stats.valid_jobs[1]
 	else
