@@ -180,24 +180,9 @@
 	data["current_job"] = istype(living_user) ? living_user.job.title : null
 	data["currency"] = currency
 
-	if(selected_tab == TAB_PERKS)
-		var/list/perks_data = list()
-		for(var/datum/perk/perk AS in GLOB.campaign_perks_by_role[selected_job])
-			var/list/perk_data = list()
-			perk_data["name"] = perk.name
-			perk_data["job"] = selected_job
-			perk_data["type"] = perk.type
-			perk_data["desc"] = perk.desc
-			perk_data["requirements"] = perk.req_desc
-			perk_data["cost"] = perk.unlock_cost
-			perk_data["icon"] = perk.ui_icon
-			perk_data["currently_active"] = !!(perk in perks_by_job[selected_job])
-			perks_data += list(perk_data)
-		data["perks_data"] = perks_data
-		return data
-
 	if(selected_tab != TAB_LOADOUT)
-		return data //How'd you fuck up this badly?
+		return data
+	//This cannot be static data due to the limitations on how frequently static data can be updated, and clicking on loadout options requires a data update.
 	var/list/equipped_loadouts_data = list() //items currently equipped to ALL job outfits
 	var/list/available_loadouts_data = list() //all available AND purchasable loadout options
 	var/list/outfit_cost_data = list() //Current cost of all outfits
@@ -291,6 +276,21 @@
 	data["faction"] = faction
 	data["jobs"] = valid_jobs
 
+	var/list/perks_data = list()
+	for(var/job in perks_by_job)
+		for(var/datum/perk/perk AS in GLOB.campaign_perks_by_role[job])
+			var/list/perk_data = list()
+			perk_data["name"] = perk.name
+			perk_data["job"] = job
+			perk_data["type"] = perk.type
+			perk_data["desc"] = perk.desc
+			perk_data["requirements"] = perk.req_desc
+			perk_data["cost"] = perk.unlock_cost
+			perk_data["icon"] = perk.ui_icon
+			perk_data["currently_active"] = !!(perk in perks_by_job[job])
+			perks_data += list(perk_data)
+		data["perks_data"] = perks_data
+
 	return data
 
 /datum/individual_stats/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -328,6 +328,7 @@
 			var/datum/perk/perk = GLOB.campaign_perk_list[unlocked_perk]
 			if(!purchase_perk(perk, user))
 				return
+			ui.send_full_update()
 			user.playsound_local(user, 'sound/effects/menu_click.ogg', 50)
 			return TRUE
 		if("equip_item")

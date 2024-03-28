@@ -24,9 +24,9 @@ export const IndividualPerks = (props) => {
   );
   const [selectedPerk, setSelectedPerk] = useLocalState(
     'selectedPerk',
-    perks_data ? perks_data[0] : null,
+    perks_data[0],
   );
-  perks_data?.sort((a, b) => {
+  perks_data.sort((a, b) => {
     const used_asset_a = a.currently_active;
     const used_asset_b = b.currently_active;
     if (used_asset_a && used_asset_b) return 0;
@@ -40,45 +40,43 @@ export const IndividualPerks = (props) => {
       <Stack.Item>
         <Section>
           <Stack vertical>
-            {!perks_data
-              ? null
-              : perks_data
-                  .filter((perk) => perk.job === selectedJob)
-                  .map((perk) => (
-                    <Stack.Item key={perk.name}>
-                      <Button
-                        width={'220px'}
-                        height={'22px'}
-                        onClick={() => setSelectedPerk(perk)}
-                        color={
-                          selectedPerk?.name === perk.name
-                            ? 'orange'
+            {perks_data
+              .filter((perk) => perk.job === selectedJob)
+              .map((perk) => (
+                <Stack.Item key={perk.name}>
+                  <Button
+                    width={'220px'}
+                    height={'22px'}
+                    onClick={() => setSelectedPerk(perk)}
+                    color={
+                      selectedPerk.name === perk.name
+                        ? 'orange'
+                        : perk.currently_active > 0
+                          ? 'blue'
+                          : perk.cost > data.currency
+                            ? 'red'
+                            : 'grey'
+                    }
+                  >
+                    <Flex align="center" mt="1px">
+                      <Flex.Item
+                        mr={1.5}
+                        className={classes([
+                          'campaign_perks18x18',
+                          selectedPerk.name === perk.name
+                            ? perk.icon + '_orange'
                             : perk.currently_active > 0
-                              ? 'blue'
+                              ? perk.icon + '_blue'
                               : perk.cost > data.currency
-                                ? 'red'
-                                : 'grey'
-                        }
-                      >
-                        <Flex align="center" mt="1px">
-                          <Flex.Item
-                            mr={1.5}
-                            className={classes([
-                              'campaign_perks18x18',
-                              selectedPerk?.name === perk.name
-                                ? perk.icon + '_orange'
-                                : perk.currently_active > 0
-                                  ? perk.icon + '_blue'
-                                  : perk.cost > data.currency
-                                    ? perk.icon + '_red'
-                                    : perk.icon + '_grey',
-                            ])}
-                          />
-                          {perk.name}
-                        </Flex>
-                      </Button>
-                    </Stack.Item>
-                  ))}
+                                ? perk.icon + '_red'
+                                : perk.icon + '_grey',
+                        ])}
+                      />
+                      {perk.name}
+                    </Flex>
+                  </Button>
+                </Stack.Item>
+              ))}
           </Stack>
         </Section>
       </Stack.Item>
@@ -125,9 +123,9 @@ export const IndividualPerks = (props) => {
             <LabeledList.Item label="Cost">
               {selectedPerk?.cost}
             </LabeledList.Item>
-            {selectedPerk?.requirements && (
+            {selectedPerk.requirements && (
               <LabeledList.Item label="Requirements">
-                {selectedPerk?.requirements}
+                {selectedPerk.requirements}
               </LabeledList.Item>
             )}
           </LabeledList>
