@@ -242,7 +242,7 @@
  *
  */
 /datum/admins/proc/poll_parse_href(list/href_list, datum/poll_question/poll)
-	if(!check_rights(R_DBRANKS))
+	if(!check_rights(R_POLLS))
 		return
 	if(!SSdbcore.Connect())
 		to_chat(usr, span_danger("Failed to establish database connection."))
@@ -351,7 +351,7 @@
  *
  */
 /datum/poll_question/proc/delete_poll()
-	if(!check_rights(R_DBRANKS))
+	if(!check_rights(R_POLLS))
 		return
 	if(!SSdbcore.Connect())
 		to_chat(usr, span_danger("Failed to establish database connection."))
@@ -376,11 +376,11 @@
  * Uses INSERT ON DUPLICATE KEY UPDATE to handle both inserting and updating at once.
  * The start and end datetimes and poll id for new polls is then retrieved for the poll datum.
  * Arguments:
- * * clear_votes - When true will call cleaR_DBRANKS_votes() to delete all votes matching this poll id.
+ * * clear_votes - When true will call cleaR_POLLS_votes() to delete all votes matching this poll id.
  *
  */
 /datum/poll_question/proc/save_poll_data(clear_votes)
-	if(!check_rights(R_DBRANKS))
+	if(!check_rights(R_POLLS))
 		return
 	if(!SSdbcore.Connect())
 		to_chat(usr, span_danger("Failed to establish database connection."))
@@ -427,7 +427,7 @@
 		future_poll = text2num(query_get_poll_id_start_endtime.item[3])
 	qdel(query_get_poll_id_start_endtime)
 	if(clear_votes)
-		cleaR_DBRANKS_votes()
+		cleaR_POLLS_votes()
 	edit_ready = TRUE
 	var/msg = "has [new_poll ? "created a new" : "edited a"][admin_only ? " admin only" : ""] server poll. Question: [question]"
 	if(admin_only)
@@ -456,8 +456,8 @@
  * Deletes all votes or text replies for this poll, depending on its type.
  *
  */
-/datum/poll_question/proc/cleaR_DBRANKS_votes()
-	if(!check_rights(R_DBRANKS))
+/datum/poll_question/proc/cleaR_POLLS_votes()
+	if(!check_rights(R_POLLS))
 		return
 	if(!SSdbcore.Connect())
 		to_chat(usr, span_danger("Failed to establish database connection."))
@@ -465,14 +465,14 @@
 	var/table = "poll_vote"
 	if(poll_type == POLLTYPE_TEXT)
 		table = "poll_textreply"
-	var/datum/db_query/query_cleaR_DBRANKS_votes = SSdbcore.NewQuery(
+	var/datum/db_query/query_cleaR_POLLS_votes = SSdbcore.NewQuery(
 		"UPDATE [format_table_name(table)] SET deleted = 1 WHERE pollid = :poll_id",
 		list("poll_id" = poll_id)
 	)
-	if(!query_cleaR_DBRANKS_votes.warn_execute())
-		qdel(query_cleaR_DBRANKS_votes)
+	if(!query_cleaR_POLLS_votes.warn_execute())
+		qdel(query_cleaR_POLLS_votes)
 		return
-	qdel(query_cleaR_DBRANKS_votes)
+	qdel(query_cleaR_POLLS_votes)
 	poll_votes = 0
 	to_chat(usr, span_danger("Poll [poll_type == POLLTYPE_TEXT ? "responses" : "votes"] cleared."))
 
@@ -540,7 +540,7 @@
  *
  */
 /datum/admins/proc/poll_option_parse_href(list/href_list, datum/poll_question/poll, datum/poll_option/option)
-	if(!check_rights(R_DBRANKS))
+	if(!check_rights(R_POLLS))
 		return
 	if(!SSdbcore.Connect())
 		to_chat(usr, span_danger("Failed to establish database connection."))
@@ -638,7 +638,7 @@
  *
  */
 /datum/poll_option/proc/save_option()
-	if(!check_rights(R_DBRANKS))
+	if(!check_rights(R_POLLS))
 		return
 	if(!SSdbcore.Connect())
 		to_chat(usr, span_danger("Failed to establish database connection."))
@@ -672,7 +672,7 @@
  *
  */
 /datum/poll_option/proc/delete_option()
-	if(!check_rights(R_DBRANKS))
+	if(!check_rights(R_POLLS))
 		return
 	. = parent_poll
 	if(option_id)

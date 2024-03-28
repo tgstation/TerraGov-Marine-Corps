@@ -15,7 +15,8 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"SPAWN" = R_SPAWN,
 		"DBRANKS" = R_DBRANKS,
 		"RUNTIME" = R_RUNTIME,
-		"LOG" = R_LOG
+		"LOG" = R_LOG,
+		"POLLS" = R_POLLS
 	),
 	"machine_stat" = list(
 		"BROKEN" = BROKEN,
