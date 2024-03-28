@@ -110,6 +110,13 @@
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
 	hotkey_keys = list("Q")
 
+/datum/keybinding/xeno/long_range_sight
+	name = "long_range_sight"
+	full_name = "Long Range Sight"
+	description = "Toggles the zoom in."
+	keybind_signal = COMSIG_XENOABILITY_LONG_RANGE_SIGHT
+	hotkey_keys = list("E")
+
 /datum/keybinding/xeno/xenohide
 	name = "xenohide"
 	full_name = "Hide"
@@ -205,13 +212,6 @@
 // Single caste, alphabetical order
 //
 
-/datum/keybinding/xeno/long_range_sight
-	name = "long_range_sight"
-	full_name = "Boiler: Long Range Sight"
-	description = "Toggles the zoom in."
-	keybind_signal = COMSIG_XENOABILITY_LONG_RANGE_SIGHT
-	hotkey_keys = list("E")
-
 /datum/keybinding/xeno/toggle_bomb
 	name = "toggle_bomb"
 	full_name = "Boiler: Toggle Bombard Type"
@@ -251,7 +251,7 @@
 	full_name = "Bull: Headbutt Charge"
 	description = "A charge that tosses the victim forward or backwards, depending on intent."
 	keybind_signal = COMSIG_XENOABILITY_BULLHEADBUTT
-	hotkey_keys = list("E")
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/gore_charge
 	name = "gore_charge"
