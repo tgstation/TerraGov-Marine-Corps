@@ -14206,7 +14206,7 @@
 /area/mainship/living/commandbunks)
 "rOV" = (
 /obj/structure/mirror{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
