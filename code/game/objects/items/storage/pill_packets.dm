@@ -6,7 +6,6 @@
 	icon_state = "packet_canister"
 	greyscale_config = null //So that we get packets and not pill bottles.
 	storage_type = /datum/storage/pill_bottle/packet
-	storage_flags = BYPASS_VENDOR_CHECK
 	///Color of the pips on top of the pill packet
 	var/pip_color = "#0066ff" //default color because I like this color
 
