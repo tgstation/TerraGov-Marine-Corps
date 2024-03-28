@@ -1333,11 +1333,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bEi" = (
-/obj/machinery/holopad,
-/turf/open/floor/mainship/green{
-	dir = 1
-	},
-/area/mainship/squads/req)
+/obj/structure/table/mainship/nometal,
+/obj/item/stack/barbed_wire/half_stack,
+/obj/item/tool/crowbar,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "bFc" = (
 /obj/machinery/vending/marineFood,
 /obj/item/reagent_containers/food/snacks/protein_pack,
@@ -1816,7 +1816,9 @@
 /area/mainship/shipboard/weapon_room)
 "cim" = (
 /obj/machinery/holopad,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/green{
+	dir = 1
+	},
 /area/mainship/squads/req)
 "ciN" = (
 /turf/open/floor/grass,
@@ -2140,12 +2142,9 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "cGu" = (
-/obj/item/attachable/bayonetknife,
-/obj/structure/table/mainship/nometal,
-/obj/item/book/manual/marine_law,
-/obj/effect/spawner/random/misc/gnome,
-/turf/open/floor/mainship/floor,
-/area/mainship/shipboard/brig)
+/obj/machinery/holopad,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "cGy" = (
 /obj/structure/closet/secure_closet/staff_officer,
 /turf/open/floor/mainship/mono,
@@ -2874,9 +2873,12 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/cryo_cells)
 "dvZ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/bridgebunks)
+/obj/item/attachable/bayonetknife,
+/obj/structure/table/mainship/nometal,
+/obj/item/book/manual/marine_law,
+/obj/effect/spawner/random/misc/gnome,
+/turf/open/floor/mainship/floor,
+/area/mainship/shipboard/brig)
 "dxc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -3068,6 +3070,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
+"dMg" = (
+/obj/structure/closet/cabinet,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/bridgebunks)
 "dMk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -3407,10 +3413,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "egW" = (
-/obj/structure/sink{
-	dir = 8
-	},
-/turf/open/floor/mainship/sterile/white,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
 "ehf" = (
 /obj/docking_port/stationary/marine_dropship/hangar/one,
@@ -6017,13 +6021,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
-"hyZ" = (
-/obj/structure/bed,
-/obj/item/bedsheet/captain,
-/obj/effect/landmark/corpsespawner/marine/regular,
-/obj/effect/landmark/start/job/staffofficer,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/bridgebunks)
 "hzc" = (
 /obj/machinery/door/airlock/mainship/command/CPTstudy,
 /turf/open/floor/wood,
@@ -10975,12 +10972,6 @@
 	dir = 8
 	},
 /area/mainship/medical/upper_medical)
-"nBi" = (
-/obj/structure/bed,
-/obj/item/bedsheet/captain,
-/obj/effect/landmark/start/job/staffofficer,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/bridgebunks)
 "nBk" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -11262,7 +11253,7 @@
 /area/mainship/medical/lower_medical)
 "nRP" = (
 /obj/structure/sink{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/mainship/sterile/white,
 /area/mainship/living/bridgebunks)
@@ -12219,6 +12210,12 @@
 	dir = 4
 	},
 /area/mainship/command/airoom)
+"pdw" = (
+/obj/structure/bed,
+/obj/item/bedsheet/captain,
+/obj/effect/landmark/start/job/staffofficer,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/bridgebunks)
 "peg" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
@@ -16505,8 +16502,10 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "umj" = (
-/obj/structure/closet/cabinet,
-/turf/open/floor/mainship/mono,
+/obj/structure/sink{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/white,
 /area/mainship/living/bridgebunks)
 "umU" = (
 /obj/effect/landmark/start/latejoin,
@@ -17547,6 +17546,13 @@
 "vyJ" = (
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/weapon_room)
+"vzt" = (
+/obj/structure/bed,
+/obj/item/bedsheet/captain,
+/obj/effect/landmark/corpsespawner/marine/regular,
+/obj/effect/landmark/start/job/staffofficer,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/bridgebunks)
 "vzy" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/junction{
@@ -44645,7 +44651,7 @@ jjR
 bpc
 oke
 llr
-egW
+nRP
 bVU
 aXc
 whZ
@@ -45159,7 +45165,7 @@ oSt
 bpc
 oke
 nqG
-nRP
+umj
 bVU
 aXc
 whZ
@@ -45929,10 +45935,10 @@ hzc
 bpc
 bpc
 xyO
-dvZ
+egW
 rPt
 aZI
-nBi
+pdw
 whZ
 kxh
 rbL
@@ -46957,10 +46963,10 @@ szV
 aKD
 bpc
 bYb
-dvZ
+egW
 rPt
 aZI
-hyZ
+vzt
 whZ
 hUf
 uBn
@@ -47216,7 +47222,7 @@ bpc
 ljN
 hvL
 whZ
-umj
+dMg
 cGy
 whZ
 hUf
@@ -49705,7 +49711,7 @@ dpY
 vvE
 sqP
 eTC
-dpY
+bEi
 dpY
 eiU
 wEZ
@@ -52830,7 +52836,7 @@ gMb
 gMb
 aKj
 xbi
-bEi
+cim
 exV
 xjF
 gUa
@@ -52860,7 +52866,7 @@ whQ
 vMr
 bjJ
 azH
-cGu
+dvZ
 ekx
 fUs
 vwk
@@ -53356,7 +53362,7 @@ hTr
 hTr
 hTr
 oac
-cim
+cGu
 mKN
 gYy
 uny
