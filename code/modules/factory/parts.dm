@@ -528,40 +528,6 @@ GLOBAL_LIST_INIT(meds, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "req_bag2"),
 	))
 
-/obj/item/factory_part/med_advpack
-	name = "advanced first-aid kit"
-	desc = "An unfinished advanced first-aid ."
-	result = list(
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
-		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
-		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
-		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
-		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
-		/obj/item/stack/medical/splint,
-		/obj/item/stack/medical/splint,
-		/obj/item/stack/medical/splint,
-		/obj/item/stack/medical/splint,
-		/obj/item/stack/medical/splint,
-	)
-
-/obj/item/factory_part/med_advpack/Initialize(mapload)
-	. = ..()
-	recipe = GLOB.meds
-
-GLOBAL_LIST_INIT(module, list(
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "cutplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "roundplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "uncutplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "barrelplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "unfinished_module_top"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "unfinished_module_bottom"),
-	))
-
 /obj/item/factory_part/module_valk
 	name = "\improper Valkyrie automedical armor system"
 	desc = "An unfinished Valkyrie automedical armor system module."
