@@ -58,6 +58,13 @@
 	item_typepath = /obj/item/storage/pouch/grenade/standard
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
+/datum/loadout_item/r_pocket/mines
+	name = "flash mine pouch"
+	desc = "A pouch carrying flash mines."
+	ui_icon = "grenade"
+	item_typepath = /obj/item/storage/pouch/mine/flash
+	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER)
+
 /datum/loadout_item/r_pocket/shotgun
 	name = "Buckshot shells"
 	desc = "A pouch specialized for holding shotgun ammo. Contains buckshot shells."
@@ -170,6 +177,13 @@
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/standard
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+
+/datum/loadout_item/l_pocket/mines
+	name = "flash mine pouch"
+	desc = "A pouch carrying flash mines."
+	ui_icon = "grenade"
+	item_typepath = /obj/item/storage/pouch/mine/flash
+	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER)
 
 /datum/loadout_item/l_pocket/shotgun
 	name = "Flechette shells"

@@ -302,7 +302,7 @@ GLOBAL_LIST_INIT(claymore_recipe, list(
 /obj/item/factory_part/claymore
 	name = "claymore assembly"
 	desc = "An unfinished claymore."
-	result = /obj/item/explosive/mine
+	result = /obj/item/mine
 
 /obj/item/factory_part/claymore/Initialize(mapload)
 	. = ..()

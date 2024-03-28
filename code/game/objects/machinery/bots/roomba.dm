@@ -6,7 +6,7 @@
 	icon_state = "roomba"
 	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 	///The mine we have attached to this roomba
-	var/obj/item/explosive/mine/claymore //Claymore roomb
+	var/obj/item/mine/claymore //Claymore roomb
 	///Admins can let it have a claymore
 	var/allow_claymore = FALSE
 	sentences = list(
@@ -96,7 +96,7 @@
 /obj/machinery/bot/roomba/attackby(obj/item/I, mob/living/user, def_zone)
 	if(!allow_claymore)
 		return
-	if(!istype(I, /obj/item/explosive/mine) || claymore)
+	if(!istype(I, /obj/item/mine) || claymore)
 		return
 	visible_message(span_warning("[user] begins to try to attach [I] to [src]..."))
 	stop_processing()

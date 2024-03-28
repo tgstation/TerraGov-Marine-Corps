@@ -119,6 +119,9 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	. = ..()
 	recipes = GLOB.uranium_recipes
 
+/obj/item/stack/sheet/mineral/uranium/small_stack
+	amount = 10
+
 /obj/item/stack/sheet/mineral/phoron
 	name = "solid phoron"
 	desc = "Phoron is an extremely rare mineral with exotic properties, often used in cutting-edge research. Just getting it into a stable, solid form is already hard enough."

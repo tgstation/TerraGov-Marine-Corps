@@ -338,15 +338,14 @@
 
 ////////// MARINES BOXES //////////////////////////
 
-
+//Generic land mine storage box, holds less
 /obj/item/storage/box/explosive_mines
-	name = "\improper M20 mine box"
-	desc = "A secure box holding anti-personel proximity mines."
+	name = "general mine box"
+	desc = "Holds any type of explosive mine."
 	icon_state = "minebox"
 	w_class = WEIGHT_CLASS_NORMAL
-	max_storage_space = 10
-	spawn_type = /obj/item/explosive/mine
-	spawn_number = 5
+	max_storage_space = 8
+	can_hold = list(/obj/item/mine)
 
 /obj/item/storage/box/explosive_mines/update_icon_state()
 	. = ..()
@@ -354,24 +353,77 @@
 	if(!length(contents))
 		icon_state += "_e"
 
-/obj/item/storage/box/explosive_mines/large
-	name = "\improper M20 mine box"
-	desc = "A large secure box holding anti-personel proximity mines."
-	icon_state = "minebox"
+/obj/item/storage/box/explosive_mines/claymore
+	name = "\improper M20 claymore box"
+	desc = "A secure box holding anti-personnel claymore mines"
+	spawn_type = /obj/item/mine/claymore
+	max_storage_space = 10
+	spawn_number = 5
+	can_hold = list(/obj/item/mine/claymore)
+
+/obj/item/storage/box/explosive_mines/claymore/large
+	name = "large M20 claymore box"
 	max_storage_space = 20
-	spawn_type = /obj/item/explosive/mine
 	spawn_number = 10
 
-/obj/item/storage/box/explosive_mines/pmc
+/obj/item/storage/box/explosive_mines/claymore/pmc
 	name = "\improper M20P mine box"
-	spawn_type = /obj/item/explosive/mine/pmc
+	spawn_type = /obj/item/mine/claymore/pmc
 
 /obj/item/storage/box/explosive_mines/antitank
 	name = "\improper M92 mine box"
 	desc = "A secure box holding anti-tank proximity mines."
 	icon_state = "atminebox"
-	spawn_type = /obj/item/explosive/mine/anti_tank
+	spawn_type = /obj/item/mine/pressure/anti_tank
 	spawn_number = 5
+
+/obj/item/storage/box/explosive_mines/proximity
+	name = "proximity mine box"
+	desc = "A secure box holding proximity mines."
+	spawn_type = /obj/item/mine/proximity
+	spawn_number = 5
+
+/obj/item/storage/box/explosive_mines/pressure
+	name = "pressure mine box"
+	desc = "A secure box holding pressure mines."
+	spawn_type = /obj/item/mine/pressure
+	spawn_number = 5
+
+/obj/item/storage/box/explosive_mines/incendiary
+	name = "incendiary mine box"
+	desc = "A secure box holding incendiary mines."
+	spawn_type = /obj/item/mine/incendiary
+	spawn_number = 5
+
+/obj/item/storage/box/explosive_mines/tanglefoot
+	name = "tanglefoot mine box"
+	desc = "A secure box holding tanglefoot mines."
+	spawn_type = /obj/item/mine/tanglefoot
+	spawn_number = 5
+
+/obj/item/storage/box/explosive_mines/emp
+	name = "\improper EMP mine box"
+	desc = "A secure box holding EMP mines."
+	spawn_type = /obj/item/mine/emp
+	spawn_number = 5
+
+/obj/item/storage/box/ied_assembly_kit
+	name = "\improper BYOND IED assembly kit"
+	desc = "A box containing the core components for a pipe mine. Think BYOND your traditional bomb training, anyone can make their own explosives!"
+	icon_state = "minebox"
+	w_class = WEIGHT_CLASS_NORMAL
+	max_storage_space = 30
+	storage_slots = 12
+	spawn_number = 6
+	spawn_type = /obj/item/assembly/prox_sensor
+	can_hold = list(/obj/item/pipe, /obj/item/assembly/prox_sensor)
+	max_w_class = WEIGHT_CLASS_NORMAL	//So pipes can be put back in
+
+/obj/item/storage/box/ied_assembly_kit/Initialize(mapload, ...)
+	. = ..()
+	//Spawn an equal number of proximity sensors
+	for(var/i in 1 to spawn_number)
+		new /obj/item/pipe(src, /obj/machinery/atmospherics/pipe/simple, NORTH)
 
 /obj/item/storage/box/m94
 	name = "\improper M40 FLDP flare pack"

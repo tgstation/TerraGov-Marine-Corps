@@ -56,6 +56,21 @@ Buildable meters
 	pixel_y += rand(-5, 5)
 	return ..()
 
+/obj/item/pipe/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!isprox(I))
+		return FALSE
+
+	var/obj/item/assembly/prox_sensor/sensor = I
+	if(!sensor.attachable)
+		return FALSE
+
+	//Delete the sensor and pipe, create a mine assembly
+	var/mine = new /obj/item/mine/ied()
+	qdel(I)
+	user.put_in_active_hand(mine)
+	qdel(src)
+
 /obj/item/pipe/proc/make_from_existing(obj/machinery/atmospherics/make_from)
 	setDir(make_from.dir)
 	pipename = make_from.name

@@ -306,6 +306,18 @@
 /datum/campaign_asset/equipment/at_mines/som
 	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_req
 
+/datum/campaign_asset/equipment/emp_mines
+	name = "EMP mines"
+	desc = "10 EMP mines"
+	detailed_desc = "EMP mines capable of disabling electronics and vehicles."
+	ui_icon = "at_mine"
+	uses = 1
+	cost = 3
+	equipment_to_spawn = list(
+		/obj/item/storage/box/explosive_mines/emp,
+		/obj/item/storage/box/explosive_mines/emp,
+	)
+
 /datum/campaign_asset/equipment/tac_bino_som
 	name = "Tactical binoculars"
 	desc = "One set of tactical binoculars"
