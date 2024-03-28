@@ -98,7 +98,6 @@
 
 
 /obj/structure/closet/toolcloset/PopulateContents()
-	. = ..()
 	new /obj/item/clothing/suit/storage/hazardvest(src)
 	new /obj/item/clothing/suit/storage/hazardvest/lime(src)
 	new /obj/item/clothing/suit/storage/hazardvest/blue(src)

@@ -95,7 +95,8 @@
 	var/atom/movable/remote_control
 	var/obj/item/l_hand //Living
 	var/obj/item/r_hand //Living
-	var/obj/item/storage/s_active //Carbon
+	///Our mobs currently active storage
+	var/datum/storage/s_active //Carbon
 	var/obj/item/clothing/mask/wear_mask //Carbon
 	///the current turf being examined in the stat panel
 	var/turf/listed_turf

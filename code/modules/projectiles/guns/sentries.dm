@@ -36,20 +36,9 @@
 	desc = "A large case containing all you need to set up an automated sentry."
 	icon_state = "sentry_case"
 	w_class = WEIGHT_CLASS_HUGE
-	max_w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 6
-	max_storage_space = 16
-	can_hold = list(
-		/obj/item/weapon/gun/sentry,
-		/obj/item/ammo_magazine/sentry,
-	)
-	bypass_w_limit = list(
-		/obj/item/weapon/gun/sentry,
-		/obj/item/ammo_magazine/sentry,
-	)
+	storage_type = /datum/storage/box/crate/sentry
 
-/obj/item/storage/box/crate/sentry/Initialize(mapload)
-	. = ..()
+/obj/item/storage/box/crate/sentry/PopulateContents()
 	new /obj/item/weapon/gun/sentry/big_sentry(src)
 	new /obj/item/ammo_magazine/sentry(src)
 
@@ -227,14 +216,16 @@
 	desc = "A large case containing all you need to set up an ST-580 point defense sentry."
 	icon_state = "sentry_mini_case"
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 6
-	can_hold = list(
+
+/obj/item/storage/box/crate/minisentry/Initialize(mapload, ...)
+	. = ..()
+	atom_storage.storage_slots = 6
+	atom_storage.can_hold = list(
 		/obj/item/weapon/gun/sentry/mini,
 		/obj/item/ammo_magazine/minisentry,
 	)
 
-/obj/item/storage/box/crate/minisentry/Initialize(mapload, ...)
-	. = ..()
+/obj/item/storage/box/crate/minisentry/PopulateContents()
 	new /obj/item/weapon/gun/sentry/mini(src)
 	new /obj/item/ammo_magazine/minisentry(src)
 	new /obj/item/ammo_magazine/minisentry(src)

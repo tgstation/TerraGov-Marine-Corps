@@ -108,6 +108,9 @@
 #define IN_INVENTORY (1<<19)
 ///This item is used for autobalance calculations or excluded, such as valhalla items
 #define AUTOBALANCE_CHECK (1<<20)
+///This item is in any storage
+#define IN_STORAGE (1<<21)
+
 
 //storage_flags
 ///If a storage container can be restocked into a vendor

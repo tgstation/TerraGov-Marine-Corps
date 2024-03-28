@@ -62,21 +62,6 @@
 	..()
 	return user.equip_to_appropriate_slot(src)
 
-/obj/item/clothing/on_pocket_insertion()
-	. = ..()
-	update_icon()
-
-/obj/item/clothing/on_pocket_removal()
-	. = ..()
-	update_icon()
-
-/obj/item/clothing/do_quick_equip(mob/user)
-	for(var/attachment_slot in attachments_by_slot)
-		if(ismodulararmorstoragemodule(attachments_by_slot[attachment_slot]))
-			var/obj/item/armor_module/storage/storage_attachment = attachments_by_slot[attachment_slot]
-			return storage_attachment.storage.do_quick_equip(user)
-	return src
-
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
 	return
@@ -194,15 +179,6 @@
 		var/mob/M = loc
 		M.update_inv_wear_suit()
 
-/obj/item/clothing/suit/MouseDrop(over_object, src_location, over_location)
-	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
-		return ..()
-	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
-		return ..()
-	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-	if(armor_storage.storage.handle_mousedrop(usr, over_object))
-		return ..()
-
 /////////////////////////////////////////////////////////
 //Gloves
 /obj/item/clothing/gloves
@@ -313,13 +289,3 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_shoes()
-
-
-/obj/item/clothing/shoes/MouseDrop(over_object, src_location, over_location)
-	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
-		return ..()
-	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
-		return ..()
-	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-	if(armor_storage.storage.handle_mousedrop(usr, over_object))
-		return ..()

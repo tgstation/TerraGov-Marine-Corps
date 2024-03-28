@@ -183,7 +183,7 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isgrenade(A) (istype(A, /obj/item/explosive/grenade))
 
-#define isstorage(A) (istype(A, /obj/item/storage))
+#define isstorage(A) (istype(A, /datum/storage))
 
 #define isitemstack(A) (istype(A, /obj/item/stack))
 

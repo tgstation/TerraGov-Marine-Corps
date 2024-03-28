@@ -191,7 +191,7 @@
 			var/mob/living/living_puller = pulledby
 			living_puller.set_pull_offsets(src)
 
-	if(s_active && !(s_active in contents) && !CanReach(s_active))
+	if(s_active && !(s_active.parent in contents) && !CanReach(s_active.parent))
 		s_active.close(src)
 
 
