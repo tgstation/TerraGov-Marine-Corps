@@ -58,7 +58,7 @@
 /obj/item/armored_weapon/Destroy()
 	if(chassis)
 		detach(get_turf(chassis))
-	if(ammo)
+	if(isdatum(ammo))
 		QDEL_NULL(ammo)
 	QDEL_LIST(ammo_magazine)
 	return ..()
