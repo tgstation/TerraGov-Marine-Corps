@@ -1,0 +1,6 @@
+author: "Aporhtonoma"
+delete-after: True
+changes:
+  - rscadd: "Puppets have now the ability to rest and unrest when puppeter does"
+  - rscadd: "puppets have now the ability to sleep and resist when puppeter does"
+  - rscadd: "Puppets have now the ability to jump when puppeter does"
