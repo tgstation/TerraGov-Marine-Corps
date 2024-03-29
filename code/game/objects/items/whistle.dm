@@ -43,13 +43,11 @@
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_WHISTLE_WARCRY))
 		to_chat(user, span_notice("You have to wait a little longer to rally your troops..."))
 	else
+		TIMER_COOLDOWN_START(src, COOLDOWN_WHISTLE_WARCRY, 15 SECONDS)
 		for(var/mob/living/carbon/human/human in get_hearers_in_view(warcryrange, user.loc))
 			human.emote("warcry")
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_WHISTLE_BLOW, 3 SECONDS)
-
-	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_WHISTLE_WARCRY))
-		TIMER_COOLDOWN_START(src, COOLDOWN_WHISTLE_WARCRY, 15 SECONDS)
 
 
 /obj/item/hailer
