@@ -239,13 +239,15 @@
 	var/protection = 0
 	for(var/defZone in human_body_parts)
 		protection += get_soft_armor(ACID, defZone)
-	return protection/7
+	// adds arms and feet twice since precise.
+	return protection/11
 
 /mob/living/carbon/human/get_hard_acid_protection()
 	var/protection = 0
 	for(var/defZone in human_body_parts)
 		protection += get_hard_armor(ACID, defZone)
-	return protection/7
+	// adds arms and feet twice since precise.
+	return protection/11
 
 /mob/living/carbon/human/get_standard_bodytemperature()
 	return species.body_temperature
