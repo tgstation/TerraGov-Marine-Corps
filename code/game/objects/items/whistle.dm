@@ -8,6 +8,7 @@
 	equip_slot_flags = ITEM_SLOT_MASK
 
 	var/volume = 60
+	/// The range in tiles which whistle makes people warcry
 	var/warcryrange = 9
 
 /obj/item/whistle/attack_self(mob/user)
