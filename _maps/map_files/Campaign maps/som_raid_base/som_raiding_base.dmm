@@ -360,7 +360,7 @@
 /turf/open/floor/mainship/mono,
 /area/campaign/som_raiding/outpost/req/secure)
 "cr" = (
-/obj/machinery/power/apc/drained,
+/obj/machinery/power/apc,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/campaign/som_raiding/outpost/living)
@@ -485,7 +485,7 @@
 	},
 /area/campaign/som_raiding/ground/jungle/north)
 "dn" = (
-/obj/machinery/power/apc/drained,
+/obj/machinery/power/apc,
 /obj/structure/cable,
 /turf/open/floor/tile/brown{
 	dir = 4
@@ -821,7 +821,7 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/som_raiding/ground/jungle/north)
 "fs" = (
-/obj/machinery/power/apc/drained,
+/obj/machinery/power/apc,
 /obj/structure/cable,
 /turf/open/floor/tile/neutral/full,
 /area/campaign/som_raiding/outpost/living/canteen)
@@ -899,7 +899,7 @@
 /area/campaign/som_raiding/outpost/req/qm)
 "gf" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/campaign/som_raiding/outpost/medbay)
@@ -1204,6 +1204,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/campaign/som_raiding/outpost/command)
+"ia" = (
+/obj/structure/platform_decoration{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/som_raiding/outpost/req)
 "ib" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -1354,7 +1360,7 @@
 /turf/open/floor/mainship/mono,
 /area/campaign/som_raiding/outpost/req/secure)
 "iR" = (
-/obj/machinery/power/apc/drained,
+/obj/machinery/power/apc,
 /obj/structure/cable,
 /turf/open/floor/mainship/red{
 	dir = 1
@@ -1722,6 +1728,10 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/mainship/mono,
 /area/campaign/som_raiding/outpost/command/living)
+"ln" = (
+/obj/structure/platform,
+/turf/closed/wall/mainship/gray,
+/area/campaign/som_raiding/outpost/req/north)
 "lr" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/extinguisher,
@@ -1781,6 +1791,12 @@
 	dir = 8
 	},
 /area/campaign/som_raiding/outpost/security/cargo_post)
+"lM" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray,
+/area/campaign/som_raiding/outpost/req/north)
 "lO" = (
 /obj/effect/turf_decal/sandedge/corner{
 	dir = 4
@@ -2037,7 +2053,7 @@
 /turf/open/floor/mainship/mono,
 /area/campaign/som_raiding/outpost/central_corridor)
 "nx" = (
-/obj/machinery/power/apc/drained,
+/obj/machinery/power/apc,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/campaign/som_raiding/outpost/engineering)
@@ -2720,7 +2736,7 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/som_raiding/ground/jungle)
 "sh" = (
-/obj/machinery/power/apc/drained{
+/obj/machinery/power/apc{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -2868,6 +2884,12 @@
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/closed/gm/dense,
 /area/campaign/som_raiding/ground/jungle/west)
+"tk" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray,
+/area/campaign/som_raiding/outpost/req)
 "tl" = (
 /obj/structure/table/black,
 /turf/open/floor/mainship/silver,
@@ -3225,7 +3247,7 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/som_raiding/ground/jungle)
 "vB" = (
-/obj/machinery/power/apc/drained,
+/obj/machinery/power/apc,
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/white,
 /area/campaign/som_raiding/outpost/living/bathroom)
@@ -3396,7 +3418,7 @@
 /turf/open/floor/tile/dark,
 /area/campaign/som_raiding/outpost/engineering)
 "wA" = (
-/obj/structure/stairs{
+/obj/structure/stairs/edge{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -3746,7 +3768,7 @@
 /area/campaign/som_raiding/outpost/security/southeast_post)
 "ze" = (
 /obj/structure/platform{
-	dir = 10
+	dir = 8
 	},
 /turf/closed/mineral/smooth,
 /area/campaign/som_raiding/outpost/maintenance/req)
@@ -3993,6 +4015,10 @@
 	dir = 4
 	},
 /area/campaign/som_raiding/outpost/security/southeast_post)
+"AO" = (
+/obj/structure/platform_decoration,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/som_raiding/outpost/req/north)
 "AS" = (
 /obj/machinery/light{
 	light_color = "#da2f1b"
@@ -4830,7 +4856,7 @@
 	},
 /area/campaign/som_raiding/outpost/security/west_post)
 "Gt" = (
-/obj/machinery/power/apc/drained,
+/obj/machinery/power/apc,
 /obj/structure/cable,
 /turf/open/floor/mainship/silver{
 	dir = 1
@@ -5296,7 +5322,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/som_raiding/outpost/req/north)
 "JM" = (
-/obj/machinery/power/apc/drained,
+/obj/machinery/power/apc,
 /obj/structure/cable,
 /turf/open/floor/mainship/red{
 	dir = 1
@@ -5524,6 +5550,12 @@
 /obj/structure/flora/jungle/grass,
 /turf/open/ground/grass/weedable,
 /area/campaign/som_raiding/ground/jungle/south)
+"Lx" = (
+/obj/structure/platform_decoration{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/som_raiding/outpost/req/north)
 "Ly" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 4
@@ -5614,7 +5646,7 @@
 /area/campaign/som_raiding/outpost/command)
 "LW" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/campaign/som_raiding/outpost/command/cic)
@@ -5898,7 +5930,7 @@
 	},
 /area/campaign/som_raiding/outpost/security/south_post)
 "Ny" = (
-/obj/machinery/power/apc/drained{
+/obj/machinery/power/apc{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -6094,7 +6126,7 @@
 /area/campaign/som_raiding/outpost/req/secure)
 "OV" = (
 /obj/machinery/door/airlock/hatch,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/tile/dark/gray,
 /area/campaign/som_raiding/outpost/req/qm)
 "OW" = (
 /turf/closed/mineral/smooth,
@@ -6296,6 +6328,12 @@
 /obj/structure/rock/variable/jungle,
 /turf/open/ground/grass/weedable,
 /area/campaign/som_raiding/ground/jungle/north)
+"Qu" = (
+/obj/structure/platform_decoration{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/som_raiding/outpost/req/north)
 "Qw" = (
 /turf/closed/wall/mainship/gray,
 /area/campaign/som_raiding/outpost/req)
@@ -6406,6 +6444,13 @@
 /obj/structure/prop/mainship/telecomms/processor,
 /turf/open/floor/mainship/mono,
 /area/campaign/som_raiding/outpost/command/telecom)
+"Rt" = (
+/obj/structure/cable,
+/obj/structure/platform_decoration{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/campaign/som_raiding/outpost/maintenance/req)
 "Ru" = (
 /obj/machinery/computer/som{
 	dir = 4
@@ -7141,6 +7186,13 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/campaign/som_raiding/ground/jungle/south)
+"Wg" = (
+/obj/structure/cable,
+/obj/structure/platform_decoration{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/som_raiding/outpost/req/north)
 "Wh" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/tool,
@@ -7345,7 +7397,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass{
 	dir = 2
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/tile/dark/gray,
 /area/campaign/som_raiding/outpost/req/qm)
 "XA" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
@@ -7441,7 +7493,7 @@
 	},
 /area/campaign/som_raiding/outpost/req/qm)
 "Yb" = (
-/obj/machinery/power/apc/drained,
+/obj/machinery/power/apc,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/campaign/som_raiding/outpost/req/secure)
@@ -7606,7 +7658,7 @@
 /turf/open/floor/mainship/red,
 /area/campaign/som_raiding/outpost/security/south_post)
 "Zm" = (
-/obj/machinery/power/apc/drained{
+/obj/machinery/power/apc{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -7685,10 +7737,6 @@
 /obj/structure/flora/tree/jungle,
 /turf/open/ground/grass/weedable,
 /area/campaign/som_raiding/ground/jungle/west)
-"ZO" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/req/qm)
 "ZQ" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -18829,7 +18877,7 @@ uq
 VF
 hS
 XP
-fe
+ln
 Aw
 Aw
 Aw
@@ -18981,7 +19029,7 @@ uq
 uq
 hS
 XP
-fe
+ln
 Aw
 Aw
 Aw
@@ -19133,7 +19181,7 @@ uq
 uq
 eK
 XP
-fe
+ln
 Lv
 Aw
 Aw
@@ -19286,7 +19334,7 @@ uq
 uq
 uG
 ek
-Aw
+Lx
 Aw
 Aw
 Aw
@@ -19438,7 +19486,7 @@ JX
 JX
 JX
 FG
-JH
+Wg
 JH
 JH
 JH
@@ -19589,7 +19637,7 @@ uq
 uq
 uq
 XP
-fe
+ln
 Lv
 Aw
 Aw
@@ -19741,7 +19789,7 @@ uq
 uq
 nz
 XP
-fe
+ln
 Aw
 Aw
 Aw
@@ -21134,7 +21182,7 @@ ED
 nm
 ED
 OM
-ED
+ia
 ED
 ED
 ED
@@ -21261,7 +21309,7 @@ ol
 ol
 BI
 fD
-fe
+ln
 Aw
 JH
 Aw
@@ -21283,9 +21331,9 @@ Qw
 hT
 hT
 hT
-Qw
-Qw
-Qw
+tk
+tk
+tk
 NT
 NF
 wA
@@ -21413,7 +21461,7 @@ hf
 hf
 BI
 ol
-fe
+ln
 Lv
 JH
 Aw
@@ -21869,7 +21917,7 @@ oK
 hf
 ol
 ol
-fe
+ln
 JH
 Aw
 Aw
@@ -22021,7 +22069,7 @@ Ad
 Ad
 Ad
 HN
-fe
+ln
 JH
 JH
 JH
@@ -22190,7 +22238,7 @@ Aw
 Aw
 fe
 UQ
-Aa
+Rt
 dF
 sd
 Ya
@@ -22335,8 +22383,8 @@ Aw
 sU
 Aw
 Aw
-Aw
-Aw
+Qu
+AO
 Aw
 sU
 Aw
@@ -22347,7 +22395,7 @@ BA
 sd
 sd
 sd
-ZO
+LC
 Xz
 sd
 sd
@@ -22484,14 +22532,14 @@ Ad
 ls
 ls
 ls
-fe
-fe
-fe
+lM
+lM
+lM
 GC
 El
-fe
-fe
-fe
+lM
+lM
+lM
 fe
 LT
 Aa
@@ -26166,7 +26214,7 @@ zJ
 zJ
 zJ
 cd
-Dz
+oR
 oR
 Dz
 Zi
@@ -28751,7 +28799,7 @@ zJ
 zJ
 zJ
 cd
-Dz
+oR
 oR
 oR
 oR
