@@ -100,13 +100,6 @@
 				if(MAP_ARMOR_STYLE_DESERT)
 					turret_overlay.icon_state += "_desert"
 		vis_contents += turret_overlay
-		if(primary_weapon_type)
-			var/obj/item/armored_weapon/primary = new primary_weapon_type(src)
-			primary.attach(src, TRUE)
-	if(armored_flags & ARMORED_HAS_SECONDARY_WEAPON)
-		if(secondary_weapon_type)
-			var/obj/item/armored_weapon/secondary = new secondary_weapon_type(src)
-			secondary.attach(src, FALSE)
 	if(armored_flags & ARMORED_HAS_MAP_VARIANTS)
 		switch(SSmapping.configs[GROUND_MAP].armor_style)
 			if(MAP_ARMOR_STYLE_JUNGLE)
@@ -134,7 +127,7 @@
 		QDEL_NULL(damage_overlay)
 	if(turret_overlay)
 		QDEL_NULL(turret_overlay)
-	if(interior)
+	if(isdatum(interior))
 		QDEL_NULL(interior)
 	underlay = null
 	GLOB.tank_list -= src

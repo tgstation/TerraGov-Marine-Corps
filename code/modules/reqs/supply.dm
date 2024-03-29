@@ -676,6 +676,7 @@ GLOBAL_LIST_INIT(armored_guntypes, armored_init_guntypes())
 
 /proc/armored_init_guntypes()
 	. = list()
+	return
 	for(var/obj/vehicle/sealed/armored/vehtype AS in typesof(/obj/vehicle/sealed/armored))
 		vehtype = new vehtype
 		GLOB.armored_modtypes[vehtype.type] = vehtype.permitted_mods
@@ -689,7 +690,7 @@ GLOBAL_LIST_INIT(armored_guntypes, armored_init_guntypes())
 /datum/supply_ui/vehicles/ui_static_data(mob/user)
 	var/list/data = list()
 	for(var/obj/vehicle/sealed/armored/vehtype AS in typesof(/obj/vehicle/sealed/armored))
-		var/flags = initial(vehtype.flags_armored)
+		var/flags = initial(vehtype.armored_flags)
 
 		if(flags & ARMORED_PURCHASABLE_TRANSPORT)
 			if(user.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_EXPERIENCED)
