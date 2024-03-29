@@ -2330,11 +2330,6 @@ FACTORY
 	contains = list(/obj/item/factory_refill/swat_mask_refill)
 	cost = 500
 
-/datum/supply_packs/factory/med_advpack
-	name = "Advanced medical pack assembly refill"
-	contains = list(/obj/item/factory_refill/med_advpack_refill)
-	cost = 500
-
 /datum/supply_packs/factory/module_valk_refill
 	name = "Valkyrie Automedical Armor System assembly refill"
 	contains = list(/obj/item/factory_refill/module_valk_refill)
