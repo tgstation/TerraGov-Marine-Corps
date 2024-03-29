@@ -26,9 +26,9 @@
 
 // firearms skill (general knowledge of guns) (hidden skill)
 ///Increase or decrase accuracy, recoil, and firing delay of most guns.
-#define SKILL_FIREARMS_UNTRAINED 0	// Civilian (Researcher, MD, CL, SO)
-#define SKILL_FIREARMS_DEFAULT 1	// Marines (allow tactical reloads)
-#define SKILL_FIREARMS_TRAINED 2	// Special training (CO)
+#define SKILL_FIREARMS_UNTRAINED 0	///Civilian (Researcher, MD, CL, SO)
+#define SKILL_FIREARMS_DEFAULT 1	///Marines (allow tactical reloads)
+#define SKILL_FIREARMS_TRAINED 2	///Special training (CO)
 
 ///Damage mod for having the weapon specific skill above 0
 #define FIREARM_SKILL_DAM_MOD 0.05
