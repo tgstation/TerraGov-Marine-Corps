@@ -327,7 +327,7 @@
 	atom_storage.max_w_class = WEIGHT_CLASS_HUGE
 	atom_storage.storage_slots = 6
 	atom_storage.max_storage_space = 16
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/weapon/gun/sentry/sniper_sentry,
 		/obj/item/ammo_magazine/sentry/sniper,
 	)
@@ -377,7 +377,7 @@
 	atom_storage.max_w_class = WEIGHT_CLASS_HUGE
 	atom_storage.storage_slots = 6
 	atom_storage.max_storage_space = 16
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/weapon/gun/sentry/shotgun_sentry,
 		/obj/item/ammo_magazine/sentry/shotgun,
 	)
@@ -427,7 +427,7 @@
 	atom_storage.max_w_class = WEIGHT_CLASS_HUGE
 	atom_storage.storage_slots = 6
 	atom_storage.max_storage_space = 16
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/weapon/gun/sentry/flamer_sentry,
 		/obj/item/ammo_magazine/sentry/flamer,
 	)
