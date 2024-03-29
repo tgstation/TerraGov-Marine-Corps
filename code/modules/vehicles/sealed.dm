@@ -1,5 +1,5 @@
 /obj/vehicle/sealed
-	flags_atom = PREVENT_CONTENTS_EXPLOSION
+	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	var/enter_delay = 2 SECONDS
 	var/mouse_pointer
 	var/headlights_toggle = FALSE

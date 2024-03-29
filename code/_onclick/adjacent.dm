@@ -193,7 +193,7 @@
 		if(O == target_atom || O == mover || (O.allow_pass_flags & PASS_PROJECTILE)) //check if there's a dense object present on the turf
 			continue // PASS_THROW is used for anything you can click through (or the firedoor special case, see above)
 
-		if(O.flags_atom & ON_BORDER) // windows have PASS_PROJECTILE but are on border, check them first
+		if(O.atom_flags & ON_BORDER) // windows have PASS_PROJECTILE but are on border, check them first
 			if(O.dir & target_dir || O.dir & (O.dir-1)) // full tile windows are just diagonals mechanically
 				return FALSE
 
@@ -203,13 +203,13 @@
 
 /atom/proc/handle_barriers(mob/living/M)
 	for(var/obj/structure/S in M.loc)
-		if(S.flags_atom & ON_BORDER && S.dir & get_dir(M,src) || S.dir&(S.dir-1))
-			if(S.flags_barrier & HANDLE_BARRIER_CHANCE)
+		if(S.atom_flags & ON_BORDER && S.dir & get_dir(M,src) || S.dir&(S.dir-1))
+			if(S.barrier_flags & HANDLE_BARRIER_CHANCE)
 				if(S.handle_barrier_chance(M))
 					return S // blocked
 	for(var/obj/structure/S in loc)
-		if(S.flags_atom & ON_BORDER && S.dir & get_dir(src,M) || S.dir&(S.dir-1))
-			if(S.flags_barrier & HANDLE_BARRIER_CHANCE)
+		if(S.atom_flags & ON_BORDER && S.dir & get_dir(src,M) || S.dir&(S.dir-1))
+			if(S.barrier_flags & HANDLE_BARRIER_CHANCE)
 				if(S.handle_barrier_chance(M))
 					return S // blocked
 	return src // not blocked

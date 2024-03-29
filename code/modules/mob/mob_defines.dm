@@ -6,7 +6,7 @@
 	animate_movement = SLIDE_STEPS
 	datum_flags = DF_USE_TAG
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
-	flags_atom = PREVENT_CONTENTS_EXPLOSION
+	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	resistance_flags = NONE
 
 	//Mob

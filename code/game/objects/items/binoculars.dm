@@ -7,7 +7,7 @@
 		slot_l_hand_str = 'icons/mob/inhands/equipment/binoculars_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/binoculars_right.dmi',
 	)
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	force = 5
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 5
@@ -225,7 +225,7 @@
 		to_chat(user, span_notice("INITIATING LASER TARGETING. Stand still."))
 		if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating(SKILL_LEADERSHIP))), NONE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
 			return
-	if(targ_area.flags_area & OB_CAS_IMMUNE)
+	if(targ_area.area_flags & OB_CAS_IMMUNE)
 		to_chat(user, span_warning("Our payload won't reach this target!"))
 		return
 	switch(mode)
@@ -250,7 +250,7 @@
 			mortar.recieve_target(TU,user)
 			return
 		if(MODE_RAILGUN)
-			if(SSticker?.mode?.flags_round_type & MODE_DISALLOW_RAILGUN)
+			if(SSticker?.mode?.round_type_flags & MODE_DISALLOW_RAILGUN)
 				to_chat(user, span_notice("ERROR. NO LINKED RAILGUN DETECTED. UNABLE TO FIRE."))
 				return
 			to_chat(user, span_notice("ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE."))

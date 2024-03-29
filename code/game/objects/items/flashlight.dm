@@ -9,8 +9,8 @@
 	)
 	item_state = "flashlight"
 	w_class = WEIGHT_CLASS_SMALL
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	actions_types = list(/datum/action/item_action)
 	light_range = 5
 	light_power = 3 //luminosity when on
@@ -94,8 +94,8 @@
 
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
-		if(ishuman(M) && ((H.head && H.head.flags_inventory & COVEREYES) || (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) || (H.glasses && H.glasses.flags_inventory & COVEREYES)))
-			to_chat(user, span_notice("You're going to need to remove that [(H.head && H.head.flags_inventory & COVEREYES) ? "helmet" : (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) ? "mask": "glasses"] first."))
+		if(ishuman(M) && ((H.head && H.head.inventory_flags & COVEREYES) || (H.wear_mask && H.wear_mask.inventory_flags & COVEREYES) || (H.glasses && H.glasses.inventory_flags & COVEREYES)))
+			to_chat(user, span_notice("You're going to need to remove that [(H.head && H.head.inventory_flags & COVEREYES) ? "helmet" : (H.wear_mask && H.wear_mask.inventory_flags & COVEREYES) ? "mask": "glasses"] first."))
 			return
 
 		if(M == user)	//they're using it on themselves
@@ -123,7 +123,7 @@
 	desc = "A pen-sized light, used by medical staff."
 	icon_state = "penlight"
 	item_state = ""
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	light_range = 2
 	w_class = WEIGHT_CLASS_TINY
 	raillight_compatible = FALSE
