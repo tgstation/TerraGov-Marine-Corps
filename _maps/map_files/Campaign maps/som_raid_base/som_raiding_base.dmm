@@ -7424,8 +7424,8 @@
 /area/campaign/som_raiding/ground/jungle/north)
 "XE" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/rifle/standard_br,
-/obj/item/weapon/gun/rifle/standard_br,
+/obj/item/weapon/gun/rifle/standard_br/standard,
+/obj/item/weapon/gun/rifle/standard_br/standard,
 /turf/open/floor/mainship/mono,
 /area/campaign/som_raiding/outpost/req/secure)
 "XF" = (
