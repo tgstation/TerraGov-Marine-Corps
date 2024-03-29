@@ -49,95 +49,89 @@
 #define SKILL_RIFLES_TRAINED 1	// special training
 
 // shotguns skill
-// increase or decrase accuracy, recoil, and firing delay of shotguns.
+///Increase or decrase accuracy, recoil, and firing delay of shotguns.
 #define SKILL_SHOTGUNS_DEFAULT 0	//marines
 #define SKILL_SHOTGUNS_TRAINED 1	//special training
 
 // heavy weapons skill
-// increase or decrase accuracy, recoil, and firing delay of heavy weapons (non spec weapons, e.g. flamethrower).
+///Increase or decrase accuracy, recoil, and firing delay of heavy weapons (non spec weapons, e.g. flamethrower).
 #define SKILL_HEAVY_WEAPONS_DEFAULT 0	// marines
 #define SKILL_HEAVY_WEAPONS_TRAINED 1	// special training
 
 // smartgun skill
-// increase or decrase accuracy, recoil, and firing delay for smartgun, and whether we can use smartguns at all.
-#define SKILL_SMART_DEFAULT -4 // big negative so the effects are far worse than pistol/rifle untrained
-#define SKILL_SMART_USE -3 // can use smartgun
-#define SKILL_SMART_TRAINED 0 // default for smartgunner
+///Increase or decrase accuracy, recoil, and firing delay for smartgun, and whether we can use smartguns at all.
+#define SKILL_SMART_DEFAULT -4 ///Big negative so the effects are far worse than pistol/rifle untrained
+#define SKILL_SMART_USE -3 ///Can use smartgun
+#define SKILL_SMART_TRAINED 0 ///Default for smartgunner
 #define SKILL_SMART_EXPERT 1
 #define SKILL_SMART_MASTER 2
 
-// construction skill
+///Construction skill
 #define SKILL_CONSTRUCTION_DEFAULT 0
-#define SKILL_CONSTRUCTION_METAL 1	// metal barricade construction
-#define SKILL_CONSTRUCTION_PLASTEEL 2	// plasteel barricade,(RO, SL)
-#define SKILL_CONSTRUCTION_ADVANCED 3	// windows and girder construction (Squad Engineer, CO)
-#define SKILL_CONSTRUCTION_MASTER 4	// building machine & computer frames (ST)
-#define SKILL_CONSTRUCTION_INHUMAN 5	// Early synth level (Early synth, CSE)
+#define SKILL_CONSTRUCTION_METAL 1	///Metal barricade construction
+#define SKILL_CONSTRUCTION_PLASTEEL 2	///Plasteel barricade,(RO, SL)
+#define SKILL_CONSTRUCTION_ADVANCED 3	///Windows and girder construction (Squad Engineer, CO)
+#define SKILL_CONSTRUCTION_MASTER 4	///Building machine & computer frames (ST)
+#define SKILL_CONSTRUCTION_INHUMAN 5	///Early synth level (Early synth, CSE)
 
-// engineer skill
+///Engineer skill; higher levels give faster engine repair.
 #define SKILL_ENGINEER_DEFAULT 0
-#define SKILL_ENGINEER_METAL 1	// metal barricade repair & c4 use
-#define SKILL_ENGINEER_PLASTEEL 2	// plasteel barricade repair
-#define SKILL_ENGINEER_ENGI 3	// hacking & planet engine fixing & apc building (Squad Engineer)
-#define SKILL_ENGINEER_MASTER 4	// Telecomms fixing, faster engine fixing (ST, Synth)
-#define SKILL_ENGINEER_INHUMAN 5	// Early synth level (Early synth, CSE)
-// higher levels give faster engine repair.
+#define SKILL_ENGINEER_METAL 1	///Metal barricade repair & c4 use
+#define SKILL_ENGINEER_PLASTEEL 2	///Plasteel barricade repair
+#define SKILL_ENGINEER_ENGI 3	///Hacking & planet engine fixing & apc building (Squad Engineer)
+#define SKILL_ENGINEER_MASTER 4	///Telecomms fixing, faster engine fixing (ST, Synth)
+#define SKILL_ENGINEER_INHUMAN 5	///Early synth level (Early synth, CSE)
 
-// medical skill
+///Medical skill; higher levels means faster syringe use and better defibrillation
 #define SKILL_MEDICAL_UNTRAINED 0
-#define SKILL_MEDICAL_NOVICE 1 // Premed or paramedic. Recognizing chemicals (SL, survivors)
-#define SKILL_MEDICAL_PRACTICED 2 // Beginning intern (Squad Corpsman)
-#define SKILL_MEDICAL_COMPETENT 3 // General practitioner (Survivor doc, early synth)
-#define SKILL_MEDICAL_EXPERT 4 // Surgeons (MD, Researcher, Synth)
-#define SKILL_MEDICAL_MASTER 5 // Modern-day Aesculapius (CMO)
-// higher levels means faster syringe use and better defibrillation
+#define SKILL_MEDICAL_NOVICE 1 ///Premed or paramedic. Recognizing chemicals (SL, survivors)
+#define SKILL_MEDICAL_PRACTICED 2 ///Beginning intern (Squad Corpsman)
+#define SKILL_MEDICAL_COMPETENT 3 ///General practitioner (Survivor doc, early synth)
+#define SKILL_MEDICAL_EXPERT 4 ///Surgeons (MD, Researcher, Synth)
+#define SKILL_MEDICAL_MASTER 5 ///Modern-day Aesculapius (CMO)
 
-// surgery skill
-#define SKILL_SURGERY_DEFAULT 0 // untrained, really slow
-#define SKILL_SURGERY_AMATEUR 1 // basic notions of first aid and biology (SL, SO)
-#define SKILL_SURGERY_TRAINED 2 // semi-professional surgery (Squad Corpsman)
-#define SKILL_SURGERY_PROFESSIONAL 3 // professional but unspecialized (Researcher)
-#define SKILL_SURGERY_EXPERT 4 // specialized (MD)
-#define SKILL_SURGERY_MASTER 5 // CMO
-// higher levels means faster surgery.
+///Surgery skill; higher levels means faster surgery, less fumble chance on non-ideal surfaces
+#define SKILL_SURGERY_DEFAULT 0 ///Untrained, really slow
+#define SKILL_SURGERY_AMATEUR 1 ///Basic notions of first aid and biology (SL, SO)
+#define SKILL_SURGERY_TRAINED 2 ///Semi-professional surgery (Squad Corpsman)
+#define SKILL_SURGERY_PROFESSIONAL 3 ///Professional but unspecialized (Researcher)
+#define SKILL_SURGERY_EXPERT 4 //Specialized (MD)
+#define SKILL_SURGERY_MASTER 5 ///CMO
 
-// police skill, hidden
+///Police skill, hidden
 #define SKILL_POLICE_DEFAULT 0
-#define SKILL_POLICE_FLASH 1 //flash use
-#define SKILL_POLICE_MP 2 //all police gear use, can strip someone's clothes simultaneously
+#define SKILL_POLICE_FLASH 1 ///Flash use
+#define SKILL_POLICE_MP 2 ///All police gear use, can strip someone's clothes simultaneously
 
-// cqc skill
-// higher disarm chance on humans(+5% per level)
-// slight increase in punch damage.
+///CQC skill; higher disarm chance on humans(+5% per level); slight increase in punch damage.
 #define SKILL_CQC_WEAK -1
 #define SKILL_CQC_DEFAULT 0
 #define SKILL_CQC_TRAINED 1
-#define SKILL_CQC_MP 2 // no risk of accidental weapon discharge upon disarming (MP)
+#define SKILL_CQC_MP 2 ///No risk of accidental weapon discharge upon disarming (MP)
 #define SKILL_CQC_MASTER 5
 
-// unarmed damage mod from CQC skill
+///Unarmed damage mod from CQC skill
 #define CQC_SKILL_DAMAGE_MOD 5
-// disarm chance mod from CQC skill
+///Disarm chance mod from CQC skill
 #define CQC_SKILL_DISARM_MOD 5
 
-// powerloader skill
-// hidden
-// proficiency with powerloader, changes powerloader speed.
+// powerloader skill (hidden)
+///Proficiency with powerloader, changes powerloader speed.
 #define SKILL_POWERLOADER_DEFAULT 0
-#define SKILL_POWERLOADER_DABBLING 1 // Squad Engineer
-#define SKILL_POWERLOADER_TRAINED 2 // FC
-#define SKILL_POWERLOADER_PRO 3 // Pilot
-#define SKILL_POWERLOADER_MASTER 4 // CSE, RO, ST, Synths, Captain
+#define SKILL_POWERLOADER_DABBLING 1 ///Squad Engineer
+#define SKILL_POWERLOADER_TRAINED 2 ///FC
+#define SKILL_POWERLOADER_PRO 3 ///Pilot
+#define SKILL_POWERLOADER_MASTER 4 ///CSE, RO, ST, Synths, Captain
 
-// leadership skill
-#define SKILL_LEAD_NOVICE 0 // Anyone. Using SL items is possible but painfully slow
-#define SKILL_LEAD_BEGINNER 1 // All non-Standard Marines
-#define SKILL_LEAD_TRAINED 2 // PO, CMO
-#define SKILL_LEAD_EXPERT 3 // SL, SO, CSE
-#define SKILL_LEAD_MASTER 4 // FC, CO, AI
+///Leadership skill; order strength + range of effect
+#define SKILL_LEAD_NOVICE 0 ///Anyone. Using SL items is possible but painfully slow
+#define SKILL_LEAD_BEGINNER 1 ///All non-Standard Marines
+#define SKILL_LEAD_TRAINED 2 ///PO, CMO
+#define SKILL_LEAD_EXPERT 3 ///SL, SO, CSE
+#define SKILL_LEAD_MASTER 4 ///FC, CO, AI
 
 // melee_weapons skill
-// buff to melee weapon attack damage
+///Buff to melee weapon attack damage
 #define SKILL_MELEE_WEAK -1
 #define SKILL_MELEE_DEFAULT 0
 #define SKILL_MELEE_TRAINED 1
@@ -146,18 +140,17 @@
 ///The amount of extra damage per melee skill level
 #define MELEE_SKILL_DAM_BUFF 0.15
 
-// pilot skill, hidden
+///Pilot skill, hidden
 #define SKILL_PILOT_DEFAULT 0
-#define SKILL_PILOT_TRAINED 1 //Pilot
+#define SKILL_PILOT_TRAINED 1 ///Pilot
 
-// multitile and mech vehicle skills
-#define SKILL_LARGE_VEHICLE_DEFAULT 0 // nothing
-#define SKILL_LARGE_VEHICLE_TRAINED 1 // loader
-#define SKILL_LARGE_VEHICLE_EXPERIENCED 2 // transport crew
-#define SKILL_LARGE_VEHICLE_VETERAN 3 // mech pilot and assault crew
+///Multitile and mech vehicle skills
+#define SKILL_LARGE_VEHICLE_DEFAULT 0 ///Nothing
+#define SKILL_LARGE_VEHICLE_TRAINED 1 ///Loader
+#define SKILL_LARGE_VEHICLE_EXPERIENCED 2 ///Transport crew
+#define SKILL_LARGE_VEHICLE_VETERAN 3 ///Mech pilot and assault crew
 
-// stamina skill - you do cardio, right?
-// buff stamina related things
+///Stamina skill - you do cardio, right?; buff stamina related things
 #define SKILL_STAMINA_WEAK -1
 #define SKILL_STAMINA_DEFAULT 0
 #define SKILL_STAMINA_TRAINED 1
@@ -168,12 +161,12 @@
 
 ////////////////////////////////////////////////
 
-// skill-related fumble and delay times, in deciseconds
-#define SKILL_TASK_TRIVIAL 10
-#define SKILL_TASK_VERY_EASY 20
-#define SKILL_TASK_EASY 30
-#define SKILL_TASK_AVERAGE 50
-#define SKILL_TASK_TOUGH 80
-#define SKILL_TASK_DIFFICULT 100
-#define SKILL_TASK_CHALLENGING 150
-#define SKILL_TASK_FORMIDABLE 200
+///Skill-related fumble and delay times
+#define SKILL_TASK_TRIVIAL 1 SECOND
+#define SKILL_TASK_VERY_EASY 2 SECONDS
+#define SKILL_TASK_EASY 3 SECONDS
+#define SKILL_TASK_AVERAGE 5 SECONDS
+#define SKILL_TASK_TOUGH 8 SECONDS
+#define SKILL_TASK_DIFFICULT 10 SECONDS
+#define SKILL_TASK_CHALLENGING 15 SECONDS
+#define SKILL_TASK_FORMIDABLE 20 SECONDS
