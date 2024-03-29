@@ -903,7 +903,7 @@ EXPLOSIVES
 	name = "M40 HSDP white phosphorous grenade box crate"
 	notes = "Contains 15 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/phosphorus)
-	cost = 700
+	cost = 1000
 
 /datum/supply_packs/explosives/explosives_hefa
 	name = "M25 HEFA grenade box crate"
