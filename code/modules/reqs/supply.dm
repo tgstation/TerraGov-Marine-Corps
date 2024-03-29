@@ -1,7 +1,8 @@
 GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/mob/living,
 		/obj/item/disk/nuclear,
-		/obj/item/radio/beacon
+		/obj/item/radio/beacon,
+		/obj/vehicle,
 	)))
 
 /datum/supply_order
@@ -628,7 +629,17 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/docking_port/mobile/supply/vehicle/buy(mob/user, datum/supply_ui/supply_ui)
 	var/datum/supply_ui/vehicles/veh_ui = supply_ui
-	var/obj/vehicle/sealed/armored/tank = new veh_ui.current_veh_type(loc)
+	if(!veh_ui || !veh_ui.current_veh_type)
+		return
+	var/obj/vehicle/sealed/armored/tanktype = veh_ui.current_veh_type
+	var/is_assault = initial(tanktype.armored_flags) & ARMORED_PURCHASABLE_ASSAULT
+	if(GLOB.purchased_tanks[user.faction]?["[is_assault]"])
+		to_chat(usr, span_danger("A vehicle of this type has already been purchased!"))
+		return
+	if(!GLOB.purchased_tanks[user.faction])
+		GLOB.purchased_tanks[user.faction] = list()
+	GLOB.purchased_tanks[user.faction]["[is_assault]"] += 1
+	var/obj/vehicle/sealed/armored/tank = new tanktype(loc)
 	if(veh_ui.current_primary)
 		var/obj/item/armored_weapon/gun = new veh_ui.current_primary(loc)
 		gun.attach(tank, TRUE)
@@ -639,7 +650,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/obj/item/tank_module/mod = new veh_ui.current_driver_mod(loc)
 		mod.on_equip(tank)
 	if(veh_ui.current_gunner_mod)
-		var/obj/item/tank_module/mod = new veh_ui.current_driver_mod(loc)
+		var/obj/item/tank_module/mod = new veh_ui.current_gunner_mod(loc)
 		mod.on_equip(tank)
 	if(length(veh_ui.primary_ammo))
 		var/turf/dumploc = get_step(get_step(loc, NORTH), NORTH) // todo should autoload depending on tank prolly
@@ -656,27 +667,17 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	id = "vehicle_home"
 	roundstart_template = /datum/map_template/shuttle/supply/vehicle
 
-/datum/supply_ui/vehicles
-	tgui_name = "VehicleSupply"
-	shuttle_id = SHUTTLE_VEHICLE_SUPPLY
-	home_id = "vehicle_home"
-	var/current_veh_type
-	var/current_primary
-	var/current_secondary
-	var/current_driver_mod
-	var/current_gunner_mod
-	var/list/primary_ammo = list()
-	var/list/secondary_ammo = list()
 
-///im a lazy bum who cant use initial on lists
-GLOBAL_LIST_EMPTY(armored_gunammo) // tivi todo replace this shitheap
+
+GLOBAL_LIST_EMPTY(armored_gunammo)
 GLOBAL_LIST_EMPTY(armored_modtypes)
 GLOBAL_LIST_INIT(armored_guntypes, armored_init_guntypes())
+GLOBAL_LIST_EMPTY(purchased_tanks)
 #define DEFAULT_MAX_ARMORED_AMMO 20
 
+///im a lazy bum who cant use initial on lists, so we just load everything into a list
 /proc/armored_init_guntypes()
 	. = list()
-	return
 	for(var/obj/vehicle/sealed/armored/vehtype AS in typesof(/obj/vehicle/sealed/armored))
 		vehtype = new vehtype
 		GLOB.armored_modtypes[vehtype.type] = vehtype.permitted_mods
@@ -686,6 +687,25 @@ GLOBAL_LIST_INIT(armored_guntypes, armored_init_guntypes())
 		gun = new gun
 		GLOB.armored_gunammo[gun.type] = gun.accepted_ammo
 		qdel(gun)
+
+/datum/supply_ui/vehicles
+	tgui_name = "VehicleSupply"
+	shuttle_id = SHUTTLE_VEHICLE_SUPPLY
+	home_id = "vehicle_home"
+	/// current selected vehicles typepath
+	var/current_veh_type
+	/// current selected primary weapons typepath
+	var/current_primary
+	/// current selected secondaryies typepath
+	var/current_secondary
+	/// current driver mod typepath
+	var/current_driver_mod
+	/// current gunner mod typepath
+	var/current_gunner_mod
+	/// current primary ammo list, type = count
+	var/list/primary_ammo = list()
+	/// current secondary ammo list, type = count
+	var/list/secondary_ammo = list()
 
 /datum/supply_ui/vehicles/ui_static_data(mob/user)
 	var/list/data = list()
@@ -756,6 +776,37 @@ GLOBAL_LIST_INIT(armored_guntypes, armored_init_guntypes())
 				))
 	return data
 
+/datum/supply_ui/vehicles/ui_data(mob/living/user)
+	var/list/data = list()
+	if(supply_shuttle)
+		if(supply_shuttle?.mode == SHUTTLE_CALL)
+			if(is_mainship_level(supply_shuttle.destination.z))
+				data["elevator"] = "Raising"
+				data["elevator_dir"] = "up"
+			else
+				data["elevator"] = "Lowering"
+				data["elevator_dir"] = "down"
+		else if(supply_shuttle?.mode == SHUTTLE_IDLE)
+			if(is_mainship_level(supply_shuttle.z))
+				data["elevator"] = "Raised"
+				data["elevator_dir"] = "down"
+			else if(current_veh_type)
+				data["elevator"] = "Purchase"
+				data["elevator_dir"] = "store"
+			else
+				data["elevator"] = "Lowered"
+				data["elevator_dir"] = "up"
+		else
+			if(is_mainship_level(supply_shuttle.z))
+				data["elevator"] = "Lowering"
+				data["elevator_dir"] = "down"
+			else
+				data["elevator"] = "Raising"
+				data["elevator_dir"] = "up"
+	else
+		data["elevator"] = "MISSING!"
+	return data
+
 /datum/supply_ui/vehicles/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
@@ -766,6 +817,11 @@ GLOBAL_LIST_INIT(armored_guntypes, armored_init_guntypes())
 			var/newtype = text2path(params["type"])
 			if(!ispath(newtype, /obj/vehicle/sealed/armored))
 				return
+			var/obj/vehicle/sealed/armored/tank_type = newtype
+			var/is_assault = initial(tank_type.armored_flags) & ARMORED_PURCHASABLE_ASSAULT
+			if(GLOB.purchased_tanks[usr.faction]?["[is_assault]"])
+				to_chat(usr, span_danger("A vehicle of this type has already been purchased!"))
+				return
 			current_veh_type = newtype
 			. = TRUE
 
@@ -774,7 +830,7 @@ GLOBAL_LIST_INIT(armored_guntypes, armored_init_guntypes())
 				return
 			var/newtype = text2path(params["type"])
 			if(!(newtype in GLOB.armored_guntypes[current_veh_type]))
-				return // tivi todo check that its correct slot due to href modification
+				return
 			current_primary = newtype
 			var/list/assoc_cast = GLOB.armored_gunammo[newtype]
 			primary_ammo = assoc_cast.Copy()
@@ -831,6 +887,8 @@ GLOBAL_LIST_INIT(armored_guntypes, armored_init_guntypes())
 			var/newtype = text2path(params["type"])
 			if(!ispath(newtype, /obj/item/tank_module))
 				return
+			if(!(newtype in GLOB.armored_modtypes[current_veh_type]))
+				return
 			current_driver_mod = newtype
 			. = TRUE
 
@@ -840,15 +898,19 @@ GLOBAL_LIST_INIT(armored_guntypes, armored_init_guntypes())
 			var/newtype = text2path(params["type"])
 			if(!ispath(newtype, /obj/item/tank_module))
 				return
+			if(!(newtype in GLOB.armored_modtypes[current_veh_type]))
+				return
 			current_gunner_mod = newtype
 			. = TRUE
 
 		if("deploy")
 			if(supply_shuttle.mode != SHUTTLE_IDLE)
+				to_chat(usr, span_danger("Elevator moving!"))
 				return
-			if(!is_mainship_level(supply_shuttle.z))
+			if(is_mainship_level(supply_shuttle.z))
+				to_chat(usr, span_danger("Elevator raised. Lower to deploy vehicle."))
 				return
-			supply_shuttle.buy(usr)
+			supply_shuttle.buy(usr, src)
 			ui_act("send", params, ui, state)
 			SStgui.close_user_uis(usr, src)
 

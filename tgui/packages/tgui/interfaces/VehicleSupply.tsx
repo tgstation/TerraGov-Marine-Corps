@@ -1,15 +1,5 @@
-import { useState } from 'react';
-
 import { useBackend } from '../backend';
-import {
-  Box,
-  Button,
-  Collapsible,
-  Modal,
-  Section,
-  Slider,
-  Stack,
-} from '../components';
+import { Button, Collapsible, Section, Slider, Stack } from '../components';
 import { Window } from '../layouts';
 
 type SelectionEntry = {
@@ -35,6 +25,9 @@ type VehicleSupplyData = {
 
   primaryammotypes?: AmmoData[];
   secondarymmotypes?: AmmoData[];
+
+  elevator: string;
+  elevator_dir: string;
 };
 
 export const VehicleSupply = (props) => {
@@ -47,24 +40,11 @@ export const VehicleSupply = (props) => {
     gunnerModules,
     primaryammotypes,
     secondarymmotypes,
+    elevator,
+    elevator_dir,
   } = data;
-  const [desc, setDesc] = useState('');
-  const [vehselect, setVehselect] = useState('');
-
   return (
     <Window width={1250} height={600}>
-      {!!desc && (
-        <Modal width="400px">
-          <Box>{desc}</Box>
-          <Button content="Dismiss" onClick={() => setDesc('')} />
-        </Modal>
-      )}
-      {!!vehselect && (
-        <Modal width="400px">
-          <Box>{vehselect}</Box>
-          <Button content="Dismiss" onClick={() => setVehselect('')} />
-        </Modal>
-      )}
       <Window.Content scrollable>
         <Stack>
           <Stack.Item>
@@ -155,20 +135,17 @@ export const VehicleSupply = (props) => {
           </Stack.Item>
           <Stack.Item>
             <Button
-              width="300px"
+              width="400px"
               height="40px"
               align="center"
               fontSize={2}
               color="red"
-              content="Deploy"
-              onClick={() => act('deploy')}
-            />
-            <Button
-              width="100px"
-              height="40px"
-              align="center"
-              fontSize={2}
-              content="Send"
+              content={elevator}
+              icon={
+                elevator_dir === 'store'
+                  ? elevator_dir
+                  : 'angle-double-' + elevator_dir
+              }
               onClick={() => act('send')}
             />
             {vehicles?.map((veh) => (
