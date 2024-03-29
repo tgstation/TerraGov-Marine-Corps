@@ -127,7 +127,16 @@
 
 ///Returns a list of areas in which the beacon can be deployed
 /datum/campaign_mission/raiding_base/proc/get_valid_beacon_areas()
-	return list(/area/mainship/patrol_base/hanger)
+	return list(
+		/area/campaign/som_raiding/outpost/command,
+		/area/campaign/som_raiding/outpost/command/captain,
+		/area/campaign/som_raiding/outpost/command/telecom,
+		/area/campaign/som_raiding/outpost/command/cic,
+		/area/campaign/som_raiding/outpost/command/north,
+		/area/campaign/som_raiding/outpost/command/living,
+		/area/campaign/som_raiding/outpost/medbay,
+		/area/campaign/som_raiding/outpost/central_corridor,
+	)
 
 ///Reacts to an OB beacon being successfully triggered
 /datum/campaign_mission/raiding_base/proc/beacon_placed(datum/source, obj/structure/campaign_objective/destruction_objective/bunker_buster/beacon)
