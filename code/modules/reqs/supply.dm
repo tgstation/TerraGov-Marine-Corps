@@ -45,6 +45,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/faction = FACTION_TERRAGOV
 	/// Id of the home docking port
 	var/home_id = "supply_home"
+	///prefix for railings and gear todo should probbaly be defines instead?
+	var/railing_gear_name = "supply"
 
 /obj/docking_port/mobile/supply/Destroy(force)
 	for(var/i in railings)
@@ -77,11 +79,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /obj/docking_port/mobile/supply/register()
 	. = ..()
 	for(var/obj/machinery/gear/G in GLOB.machines)
-		if(G.id == "supply_elevator_gear")
+		if(G.id == (railing_gear_name+"_elevator_gear"))
 			gears += G
 			RegisterSignal(G, COMSIG_QDELETING, PROC_REF(clean_gear))
 	for(var/obj/machinery/door/poddoor/railing/R in GLOB.machines)
-		if(R.id == "supply_elevator_railing")
+		if(R.id == (railing_gear_name+"_elevator_railing"))
 			railings += R
 			RegisterSignal(R, COMSIG_QDELETING, PROC_REF(clean_railing))
 			R.linked_pad = src
@@ -127,7 +129,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		return 2
 	return ..()
 
-/obj/docking_port/mobile/supply/proc/buy(mob/user)
+/obj/docking_port/mobile/supply/proc/buy(mob/user, datum/supply_ui/supply_ui)
 	if(!length(SSpoints.shoppinglist[faction]))
 		return
 	log_game("Supply pack orders have been purchased by [key_name(user)]")
@@ -469,7 +471,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 					addtimer(CALLBACK(supply_shuttle, TYPE_PROC_REF(/obj/docking_port/mobile/supply, sell)), 15 SECONDS)
 			else
 				var/obj/docking_port/D = SSshuttle.getDock(home_id)
-				supply_shuttle.buy(usr)
+				supply_shuttle.buy(usr, src)
 				playsound(D.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
 				SSshuttle.moveShuttle(shuttle_id, home_id, TRUE)
 			. = TRUE
@@ -618,3 +620,236 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	if(!supply_interface)
 		supply_interface = new(src)
 	return supply_interface.interact(user)
+
+/obj/docking_port/mobile/supply/vehicle
+	railing_gear_name = "vehicle"
+	id = SHUTTLE_VEHICLE_SUPPLY
+	home_id = "vehicle_home"
+
+/obj/docking_port/mobile/supply/vehicle/buy(mob/user, datum/supply_ui/supply_ui)
+	var/datum/supply_ui/vehicles/veh_ui = supply_ui
+	var/obj/vehicle/sealed/armored/tank = new veh_ui.current_veh_type(loc)
+	if(veh_ui.current_primary)
+		var/obj/item/armored_weapon/gun = new veh_ui.current_primary(loc)
+		gun.attach(tank, TRUE)
+	if(veh_ui.current_secondary)
+		var/obj/item/armored_weapon/gun = new veh_ui.current_secondary(loc)
+		gun.attach(tank, FALSE)
+	if(veh_ui.current_driver_mod)
+		var/obj/item/tank_module/mod = new veh_ui.current_driver_mod(loc)
+		mod.on_equip(tank)
+	if(veh_ui.current_gunner_mod)
+		var/obj/item/tank_module/mod = new veh_ui.current_driver_mod(loc)
+		mod.on_equip(tank)
+	if(length(veh_ui.primary_ammo))
+		var/turf/dumploc = get_step(get_step(loc, NORTH), NORTH) // todo should autoload depending on tank prolly
+		for(var/ammo in veh_ui.primary_ammo)
+			for(var/i=1 to veh_ui.primary_ammo[ammo])
+				new ammo(dumploc)
+	if(length(veh_ui.secondary_ammo))
+		var/turf/dumploc = get_step(get_step(loc, NORTH), NORTH) // todo should autoload depending on tank prolly
+		for(var/ammo in veh_ui.secondary_ammo)
+			for(var/i=1 to veh_ui.secondary_ammo[ammo])
+				new ammo(dumploc)
+
+/obj/docking_port/stationary/supply/vehicle
+	id = "vehicle_home"
+	roundstart_template = /datum/map_template/shuttle/supply/vehicle
+
+/datum/supply_ui/vehicles
+	tgui_name = "VehicleSupply"
+	shuttle_id = SHUTTLE_VEHICLE_SUPPLY
+	home_id = "vehicle_home"
+	var/current_veh_type
+	var/current_primary
+	var/current_secondary
+	var/current_driver_mod
+	var/current_gunner_mod
+	var/list/primary_ammo = list()
+	var/list/secondary_ammo = list()
+
+///im a lazy bum who cant use initial on lists
+GLOBAL_LIST_EMPTY(armored_gunammo) // tivi todo replace this shitheap
+GLOBAL_LIST_EMPTY(armored_modtypes)
+GLOBAL_LIST_INIT(armored_guntypes, armored_init_guntypes())
+#define DEFAULT_MAX_ARMORED_AMMO 20
+
+/proc/armored_init_guntypes()
+	. = list()
+	for(var/obj/vehicle/sealed/armored/vehtype AS in typesof(/obj/vehicle/sealed/armored))
+		vehtype = new vehtype
+		GLOB.armored_modtypes[vehtype.type] = vehtype.permitted_mods
+		.[vehtype.type] = vehtype.permitted_weapons
+		qdel(vehtype)
+	for(var/obj/item/armored_weapon/gun AS in typesof(/obj/item/armored_weapon))
+		gun = new gun
+		GLOB.armored_gunammo[gun.type] = gun.accepted_ammo
+		qdel(gun)
+
+/datum/supply_ui/vehicles/ui_static_data(mob/user)
+	var/list/data = list()
+	for(var/obj/vehicle/sealed/armored/vehtype AS in typesof(/obj/vehicle/sealed/armored))
+		var/flags = initial(vehtype.flags_armored)
+
+		if(flags & ARMORED_PURCHASABLE_TRANSPORT)
+			if(user.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_EXPERIENCED)
+				continue
+		else if(flags & ARMORED_PURCHASABLE_ASSAULT)
+			if(user.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_VETERAN)
+				continue
+		else
+			continue
+
+		data["vehicles"] += list(list("name" = initial(vehtype.name), "desc" = initial(vehtype.desc), "type" = "[vehtype]", "isselected" = (vehtype == current_veh_type)))
+		if(vehtype != current_veh_type)
+			continue
+		for(var/obj/item/armored_weapon/gun AS in GLOB.armored_guntypes[vehtype])
+			var/primary_selected = (current_primary == gun)
+			var/secondary_selected = (current_secondary == gun)
+			if(initial(gun.weapon_slot) & MODULE_PRIMARY)
+				data["primaryWeapons"] += list(list(
+					"name" = initial(gun.name),
+					"desc" = initial(gun.desc),
+					"type" = gun,
+					"isselected" = primary_selected,
+				))
+				if(primary_selected)
+					for(var/obj/item/ammo_magazine/mag AS in primary_ammo)
+						data["primaryammotypes"] += list(list(
+							"name" = initial(mag.name),
+							"type" = mag,
+							"current" = primary_ammo[mag],
+							"max" = DEFAULT_MAX_ARMORED_AMMO, //TODO make vehicle ammo dynamic instead of fixed number
+						))
+
+			if(initial(gun.weapon_slot) & MODULE_SECONDARY)
+				data["secondaryWeapons"] += list(list(
+					"name" = initial(gun.name),
+					"desc" = initial(gun.desc),
+					"type" = gun,
+					"isselected" = secondary_selected,
+				))
+				if(secondary_selected)
+					for(var/obj/item/ammo_magazine/mag AS in secondary_ammo)
+						data["secondarymmotypes"] += list(list(
+							"name" = initial(mag.name),
+							"type" = mag,
+							"current" = secondary_ammo[mag],
+							"max" = DEFAULT_MAX_ARMORED_AMMO, //TODO make vehicle ammo dynamic instead of fixed number
+						))
+
+		for(var/obj/item/tank_module/mod AS in GLOB.armored_modtypes[vehtype])
+			if(initial(mod.is_driver_module))
+				data["driverModules"] += list(list(
+					"name" = initial(mod.name),
+					"desc" = initial(mod.desc),
+					"type" = mod,
+					"isselected" = (current_driver_mod == mod),
+				))
+			else
+				data["gunnerModules"] += list(list(
+					"name" = initial(mod.name),
+					"desc" = initial(mod.desc),
+					"type" = mod,
+					"isselected" = (current_gunner_mod == mod),
+				))
+	return data
+
+/datum/supply_ui/vehicles/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("setvehicle")
+			var/newtype = text2path(params["type"])
+			if(!ispath(newtype, /obj/vehicle/sealed/armored))
+				return
+			current_veh_type = newtype
+			. = TRUE
+
+		if("setprimary")
+			if(!current_veh_type)
+				return
+			var/newtype = text2path(params["type"])
+			if(!(newtype in GLOB.armored_guntypes[current_veh_type]))
+				return // tivi todo check that its correct slot due to href modification
+			current_primary = newtype
+			var/list/assoc_cast = GLOB.armored_gunammo[newtype]
+			primary_ammo = assoc_cast.Copy()
+			for(var/ammo in primary_ammo)
+				primary_ammo[ammo] = 0
+			. = TRUE
+
+		if("setsecondary")
+			if(!current_veh_type)
+				return
+			var/newtype = text2path(params["type"])
+			if(!(newtype in GLOB.armored_guntypes[current_veh_type]))
+				return
+			current_secondary = newtype
+			var/list/assoc_cast = GLOB.armored_gunammo[newtype]
+			secondary_ammo = assoc_cast.Copy()
+			for(var/ammo in secondary_ammo)
+				secondary_ammo[ammo] = 0
+			. = TRUE
+
+		if("set_ammo_primary")
+			if(!current_primary)
+				return
+			var/newtype = text2path(params["type"])
+			if(!(newtype in primary_ammo))
+				return
+			var/non_adjusted_total = 0
+			for(var/ammo in primary_ammo)
+				if(ammo == newtype)
+					continue
+				non_adjusted_total += primary_ammo[ammo]
+			var/newvalue = clamp(params["new_value"], 0, DEFAULT_MAX_ARMORED_AMMO-non_adjusted_total)
+			primary_ammo[newtype] = newvalue
+			. = TRUE
+
+		if("set_ammo_secondary")
+			if(!current_secondary)
+				return
+			var/newtype = text2path(params["type"])
+			if(!(newtype in secondary_ammo))
+				return
+			var/non_adjusted_total = 0
+			for(var/ammo in secondary_ammo)
+				if(ammo == newtype)
+					continue
+				non_adjusted_total += secondary_ammo[ammo]
+			var/newvalue = clamp(params["new_value"], 0, DEFAULT_MAX_ARMORED_AMMO-non_adjusted_total)
+			secondary_ammo[newtype] = newvalue
+			. = TRUE
+
+		if("set_driver_mod")
+			if(!current_veh_type)
+				return
+			var/newtype = text2path(params["type"])
+			if(!ispath(newtype, /obj/item/tank_module))
+				return
+			current_driver_mod = newtype
+			. = TRUE
+
+		if("set_gunner_mod")
+			if(!current_veh_type)
+				return
+			var/newtype = text2path(params["type"])
+			if(!ispath(newtype, /obj/item/tank_module))
+				return
+			current_gunner_mod = newtype
+			. = TRUE
+
+		if("deploy")
+			if(supply_shuttle.mode != SHUTTLE_IDLE)
+				return
+			if(!is_mainship_level(supply_shuttle.z))
+				return
+			supply_shuttle.buy(usr)
+			ui_act("send", params, ui, state)
+			SStgui.close_user_uis(usr, src)
+
+	if(.)
+		update_static_data(usr)
