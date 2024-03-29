@@ -61,6 +61,8 @@
 	items += "Beacons remaining: [beacons_remaining]"
 
 /datum/campaign_mission/raiding_base/load_pre_mission_bonuses()
+	spawn_mech(starting_faction, 0, 0, 3)
+	spawn_mech(hostile_faction, 0, 2)
 	new /obj/item/storage/box/crate/loot/materials_pack(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
 	for(var/i = 1 to beacons_remaining)
 		new /obj/item/explosive/plastique(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))

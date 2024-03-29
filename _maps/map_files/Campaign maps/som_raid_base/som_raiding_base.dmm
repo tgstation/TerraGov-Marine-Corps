@@ -3623,6 +3623,10 @@
 /obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/mainship/mono,
 /area/campaign/som_raiding/outpost/req/secure)
+"xW" = (
+/obj/effect/landmark/campaign_structure/drop_blocker,
+/turf/open/ground/grass/weedable,
+/area/campaign/som_raiding/ground/jungle/south_east)
 "xZ" = (
 /obj/structure/prop/mainship/gelida/miner,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -26714,7 +26718,7 @@ Ex
 Ex
 LP
 LP
-GK
+xW
 LP
 LP
 LP
