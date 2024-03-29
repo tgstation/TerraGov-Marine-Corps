@@ -237,14 +237,14 @@
 
 /mob/living/carbon/human/get_soft_acid_protection()
 	var/protection = 0
-	for(var/defZone in human_body_parts)
+	for(var/defZone in GLOB.human_body_parts)
 		protection += get_soft_armor(ACID, defZone)
 	// adds arms and feet twice since precise.
 	return protection/11
 
 /mob/living/carbon/human/get_hard_acid_protection()
 	var/protection = 0
-	for(var/defZone in human_body_parts)
+	for(var/defZone in GLOB.human_body_parts)
 		protection += get_hard_armor(ACID, defZone)
 	// adds arms and feet twice since precise.
 	return protection/11
