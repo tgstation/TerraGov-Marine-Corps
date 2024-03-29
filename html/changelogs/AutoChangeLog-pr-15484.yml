@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - rscdel: "Removes the ability to vote for the current map during groundmap vote"

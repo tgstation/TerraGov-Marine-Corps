@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - admin: "R_POLLS rank used for Server Poll Management"
