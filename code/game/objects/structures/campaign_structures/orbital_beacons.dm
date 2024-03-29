@@ -28,6 +28,7 @@
 	deployable_type = /obj/structure/campaign_objective/destruction_objective/bunker_buster
 	deploy_time = 2 SECONDS
 	undeploy_time = 2 SECONDS
+	///Can only be deployed in map areas listed here
 	var/list/valid_deploy_areas
 
 /obj/item/campaign_beacon/bunker_buster/Initialize(mapload)
