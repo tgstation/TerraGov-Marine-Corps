@@ -147,6 +147,8 @@
 
 	for(var/obj/item/W in contents) //Drop stuff
 		dropItemToGround(W)
+		if(isgun(W))	//Delete any infinite ammo guns
+			qdel(w)
 
 	if(mind)
 		mind.transfer_to(new_xeno)
@@ -211,6 +213,8 @@
 	INVOKE_ASYNC(new_xeno, TYPE_PROC_REF(/atom, do_jitter_animation), 1000)
 
 	new_xeno.overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
+	if(isxenodrone(new_xeno))
+		new_xeno.equip_pistol()
 
 ///Check if the xeno is currently able to evolve
 /mob/living/carbon/xenomorph/proc/generic_evolution_checks()

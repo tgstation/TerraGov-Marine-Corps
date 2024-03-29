@@ -573,3 +573,32 @@
 
 /mob/living/carbon/xenomorph/on_eord(turf/destination)
 	revive(TRUE)
+
+///Let the player choose a pistol to equip
+/mob/living/carbon/xenomorph/proc/equip_pistol()
+	//Create the list of pistols
+	var/list/pistols = subtypesof(/obj/item/weapon/gun/pistol)
+	//Create a list of just the names of the pistols to use in selection
+	var/list/pistols_by_name = list()
+	//Iterate through the pistols type list to append the name to the pistols_by_name list; would use an assoc list but need key (type path) as well!
+	for(var/atom/type AS in pistols)
+		//No unwanted children
+		if(type.parent_type != /obj/item/weapon/gun/pistol)
+			pistols -= type
+			continue
+		pistols_by_name += type.name
+
+	//Choice is just the string name of the pistol to spawn
+	var/choice = tgui_input_list(src, "Select your desired pistol", "Gun Shop", pistols_by_name)
+	var/obj/item/weapon/gun/gun
+	if(!choice)
+		gun = /obj/item/weapon/gun/pistol/standard_pistol
+	else
+		gun = pistols[pistols_by_name.Find(choice)]
+	gun = new gun()
+
+	//Get the magazine so we can give it infinite ammo
+	var/obj/item/ammo_magazine/magazine = gun.chamber_items[gun.current_chamber_position]
+	magazine.max_rounds = INFINITY
+	magazine.current_rounds = INFINITY
+	put_in_active_hand(gun)

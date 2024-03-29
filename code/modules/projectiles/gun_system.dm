@@ -1696,9 +1696,9 @@
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		to_chat(user, span_warning("The chamber is open! Close it first."))
 		return FALSE
-	if(!user.dextrous)
+	/*if(!user.dextrous)
 		to_chat(user, span_warning("You don't have the dexterity to do this!"))
-		return FALSE
+		return FALSE*/
 	if(!(flags_gun_features & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user))
 		to_chat(user, span_warning("Your program does not allow you to use this firearm."))
 		return FALSE
