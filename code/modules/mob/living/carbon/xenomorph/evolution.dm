@@ -148,7 +148,7 @@
 	for(var/obj/item/W in contents) //Drop stuff
 		dropItemToGround(W)
 		if(isgun(W))	//Delete any infinite ammo guns
-			qdel(w)
+			qdel(W)
 
 	if(mind)
 		mind.transfer_to(new_xeno)
