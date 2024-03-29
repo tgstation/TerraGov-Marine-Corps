@@ -1016,6 +1016,11 @@
 	},
 /turf/open/floor/plating,
 /area/campaign/som_raiding/outpost/tunnel/west)
+"fZ" = (
+/obj/structure/flora/jungle/grass/thin,
+/obj/effect/landmark/mob_spawner/farwa,
+/turf/open/ground/grass/weedable,
+/area/campaign/som_raiding/ground/jungle)
 "ga" = (
 /turf/closed/mineral/smooth,
 /area/campaign/som_raiding/outpost/req/qm)
@@ -1467,6 +1472,10 @@
 	dir = 4
 	},
 /area/campaign/som_raiding/ground/jungle/south_west)
+"iv" = (
+/obj/effect/landmark/mob_spawner/farwa,
+/turf/open/ground/grass/weedable,
+/area/campaign/som_raiding/ground/jungle/north)
 "iy" = (
 /obj/structure/prop/vehicle/truck/truckcargo/destructible{
 	dir = 1
@@ -1641,6 +1650,11 @@
 /obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/ground/grass/weedable,
 /area/campaign/som_raiding/ground/jungle/north)
+"jp" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/obj/effect/landmark/mob_spawner/farwa,
+/turf/open/ground/grass/weedable,
+/area/campaign/som_raiding/ground/jungle)
 "ju" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/structure/handheld_lighting,
@@ -2003,6 +2017,10 @@
 /obj/structure/platform,
 /turf/closed/wall/mainship/gray,
 /area/campaign/som_raiding/outpost/req/north)
+"lp" = (
+/obj/effect/landmark/mob_spawner/farwa,
+/turf/open/ground/grass/weedable,
+/area/campaign/som_raiding/ground/jungle/west)
 "lr" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/extinguisher,
@@ -4150,6 +4168,10 @@
 	dir = 6
 	},
 /area/campaign/som_raiding/outpost/req/secure)
+"xV" = (
+/obj/effect/landmark/mob_spawner/farwa,
+/turf/open/ground/grass/weedable,
+/area/campaign/som_raiding/ground/jungle/south_east)
 "xW" = (
 /obj/effect/landmark/campaign_structure/drop_blocker,
 /turf/open/ground/grass/weedable,
@@ -5931,6 +5953,13 @@
 	dir = 1
 	},
 /area/campaign/som_raiding/ground/jungle)
+"Io" = (
+/obj/structure/flora/jungle/grass/thin,
+/obj/effect/landmark/mob_spawner/farwa,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
+	},
+/area/campaign/som_raiding/ground/jungle/north)
 "It" = (
 /obj/effect/spawner/random/engineering/assemblies,
 /turf/open/floor/plating,
@@ -6239,6 +6268,10 @@
 	dir = 4
 	},
 /area/campaign/som_raiding/outpost/security/cargo_post)
+"KD" = (
+/obj/effect/landmark/mob_spawner/farwa,
+/turf/open/ground/grass/weedable,
+/area/campaign/som_raiding/ground/jungle/south_west)
 "KE" = (
 /obj/structure/table/mainship,
 /obj/structure/extinguisher_cabinet/mini{
@@ -7205,6 +7238,10 @@
 	dir = 10
 	},
 /area/campaign/som_raiding/outpost/req/secure)
+"Qd" = (
+/obj/effect/landmark/mob_spawner/farwa,
+/turf/open/ground/grass/weedable,
+/area/campaign/som_raiding/ground/jungle/south)
 "Qe" = (
 /obj/machinery/computer/som_two{
 	dir = 4
@@ -7448,6 +7485,11 @@
 	},
 /turf/open/floor/tile/showroom,
 /area/campaign/som_raiding/outpost/living/bathroom)
+"Ry" = (
+/obj/structure/flora/jungle/grass/thin,
+/obj/effect/landmark/mob_spawner/farwa,
+/turf/open/ground/grass/weedable,
+/area/campaign/som_raiding/ground/jungle/south)
 "Rz" = (
 /turf/open/ground/grass/beach/corner,
 /area/campaign/som_raiding/ground/jungle/north)
@@ -8640,6 +8682,10 @@
 /obj/effect/turf_decal/siding/dark,
 /turf/open/floor/mainship/som/s,
 /area/campaign/som_raiding/outpost/command)
+"Yk" = (
+/obj/effect/landmark/mob_spawner/farwa,
+/turf/open/ground/grass/weedable,
+/area/campaign/som_raiding/ground/jungle)
 "Yp" = (
 /turf/open/floor/mainship/mono,
 /area/campaign/som_raiding/outpost/tunnel)
@@ -9478,7 +9524,7 @@ vC
 fl
 vC
 vC
-vC
+lp
 vC
 eB
 vC
@@ -9699,7 +9745,7 @@ eW
 ro
 eH
 eH
-Qj
+Io
 eH
 eH
 eH
@@ -9739,7 +9785,7 @@ JW
 JW
 JW
 JW
-JW
+iv
 JW
 eY
 eY
@@ -9837,7 +9883,7 @@ xk
 eW
 eY
 JW
-JW
+iv
 yq
 JW
 JW
@@ -10125,7 +10171,7 @@ Ov
 Fw
 Fw
 Fw
-Fw
+KD
 Fw
 rL
 rL
@@ -10251,7 +10297,7 @@ kf
 kf
 Fw
 IQ
-Fw
+KD
 Fw
 rL
 rL
@@ -11185,7 +11231,7 @@ rL
 rL
 rL
 rL
-Fw
+KD
 Fw
 Fw
 Fw
@@ -11847,7 +11893,7 @@ eY
 eW
 eW
 eW
-JW
+iv
 vL
 uF
 JW
@@ -11975,7 +12021,7 @@ eY
 eY
 JW
 JW
-JW
+iv
 JW
 OW
 OW
@@ -12959,7 +13005,7 @@ vC
 fl
 vC
 vC
-vC
+lp
 vC
 vC
 KN
@@ -13737,7 +13783,7 @@ hF
 hF
 hF
 vC
-vC
+lp
 Fw
 Fw
 Fw
@@ -13815,7 +13861,7 @@ OW
 OW
 JW
 JW
-JW
+iv
 JW
 LQ
 eY
@@ -14619,7 +14665,7 @@ JW
 Tx
 vC
 vC
-vC
+lp
 vC
 OW
 OW
@@ -14910,7 +14956,7 @@ JW
 JW
 JW
 JW
-JW
+iv
 JW
 JW
 Pc
@@ -15046,7 +15092,7 @@ uF
 LQ
 JW
 JW
-JW
+iv
 JW
 JW
 JW
@@ -15421,7 +15467,7 @@ UF
 Fw
 Fw
 Fw
-Fw
+KD
 Up
 Fw
 Ov
@@ -17081,7 +17127,7 @@ OK
 OK
 DT
 si
-Qb
+jp
 Qb
 bF
 Qb
@@ -17404,7 +17450,7 @@ rU
 NP
 NP
 NP
-NP
+Qd
 NP
 PM
 PM
@@ -19206,7 +19252,7 @@ rU
 rU
 Qb
 Qb
-Qb
+jp
 bF
 bF
 bF
@@ -19247,7 +19293,7 @@ NP
 NP
 Lw
 NP
-GR
+Ry
 PM
 PM
 PM
@@ -20139,7 +20185,7 @@ rU
 rU
 SC
 NP
-NP
+Qd
 NP
 SC
 GR
@@ -22392,7 +22438,7 @@ no
 In
 rU
 rU
-rU
+Yk
 rU
 rU
 rU
@@ -23795,7 +23841,7 @@ EB
 NP
 NP
 NP
-NP
+Qd
 NP
 NP
 bt
@@ -24382,7 +24428,7 @@ OK
 UP
 In
 rU
-LI
+fZ
 rU
 xi
 xi
@@ -28488,7 +28534,7 @@ Dz
 vM
 Hc
 GK
-GK
+xV
 yK
 yK
 yK
@@ -28654,7 +28700,7 @@ LP
 LP
 Hc
 GK
-GK
+xV
 Ex
 Ex
 Ex
@@ -28672,7 +28718,7 @@ pE
 GK
 GK
 Hc
-GK
+xV
 GK
 GK
 GK
