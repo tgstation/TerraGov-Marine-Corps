@@ -602,3 +602,5 @@
 	magazine.max_rounds = INFINITY
 	magazine.current_rounds = INFINITY
 	put_in_active_hand(gun)
+	ADD_TRAIT(gun, TRAIT_NODROP, "xeno_pistol_no_drop")
+
