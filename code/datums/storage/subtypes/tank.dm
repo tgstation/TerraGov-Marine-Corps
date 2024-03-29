@@ -13,12 +13,12 @@
 		open(user)
 
 /datum/storage/tank/ammorack_primary
-	can_hold = list(
+	canhold = list(
 		/obj/item/ammo_magazine/tank/ltb_cannon,
 		/obj/item/ammo_magazine/tank/ltaap_chaingun,
 	)
 
 /datum/storage/tank/ammorack_secondary
-	can_hold = list(
+	canhold = list(
 		/obj/item/ammo_magazine/tank/secondary_cupola,
 	)

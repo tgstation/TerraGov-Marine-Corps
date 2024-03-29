@@ -1,5 +1,5 @@
 /datum/storage/pill_bottle
-	can_hold = list(
+	canhold = list(
 		/obj/item/reagent_containers/pill,
 		/obj/item/toy/dice,
 		/obj/item/paper,
@@ -18,7 +18,7 @@
 		playsound(user, 'sound/items/pills.ogg', 15, 1)
 
 /datum/storage/pill_bottle/packet
-	cant_hold = list(/obj/item/reagent_containers/pill) //Nada. Once you take the pills out. They don't come back in.
+	canthold = list(/obj/item/reagent_containers/pill) //Nada. Once you take the pills out. They don't come back in.
 	storage_slots = 8
 	max_w_class = 0
 	max_storage_space = 8

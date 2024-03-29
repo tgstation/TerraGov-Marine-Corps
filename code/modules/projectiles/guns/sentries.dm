@@ -220,7 +220,7 @@
 /obj/item/storage/box/crate/minisentry/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 6
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/weapon/gun/sentry/mini,
 		/obj/item/ammo_magazine/minisentry,
 	)

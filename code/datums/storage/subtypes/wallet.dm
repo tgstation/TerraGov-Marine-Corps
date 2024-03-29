@@ -1,6 +1,6 @@
 /datum/storage/wallet
 	storage_slots = 10
-	can_hold = list(
+	canhold = list(
 		/obj/item/spacecash,
 		/obj/item/card,
 		/obj/item/clothing/mask/cigarette,

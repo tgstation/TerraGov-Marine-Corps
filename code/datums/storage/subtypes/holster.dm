@@ -45,7 +45,7 @@
 	bypass_w_limit = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle)
 	///only one RR per bag
 	storage_type_limits = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle = 1)
-	can_hold = list(
+	canhold = list(
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
 	)
@@ -53,7 +53,7 @@
 /datum/storage/holster/backholster/rpg/som
 	bypass_w_limit = list(/obj/item/weapon/gun/launcher/rocket/som)
 	storage_type_limits = list(/obj/item/weapon/gun/launcher/rocket/som = 1)
-	can_hold = list(
+	canhold = list(
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/weapon/gun/launcher/rocket/som,
 	)
@@ -65,7 +65,7 @@
 	access_delay = 0
 	bypass_w_limit = list(/obj/item/mortar_kit)
 	storage_type_limits = list(/obj/item/mortar_kit = 1)
-	can_hold = list(
+	canhold = list(
 		/obj/item/mortal_shell/he,
 		/obj/item/mortal_shell/incendiary,
 		/obj/item/mortal_shell/smoke,
@@ -95,7 +95,7 @@
 	max_storage_space = 10
 	max_w_class = WEIGHT_CLASS_BULKY
 
-	can_hold = list(
+	canhold = list(
 		/obj/item/weapon/gun/smg/standard_machinepistol,
 		/obj/item/ammo_magazine/smg/standard_machinepistol,
 	)
@@ -104,7 +104,7 @@
 	storage_slots = 28
 	max_storage_space = 28
 	storage_type_limits = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare = 1)
-	can_hold = list(
+	canhold = list(
 		/obj/item/explosive/grenade/flare/civilian,
 		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
 		/obj/item/explosive/grenade/flare,
@@ -115,7 +115,7 @@
 /datum/storage/holster/icc_mg
 	storage_slots = 5
 	max_storage_space = 16
-	can_hold = list(
+	canhold = list(
 		/obj/item/weapon/gun/rifle/icc_mg,
 		/obj/item/ammo_magazine/icc_mg/packet,
 	)
@@ -125,7 +125,7 @@
 	storage_slots = 7
 	max_storage_space = 15
 	max_w_class = WEIGHT_CLASS_NORMAL
-	can_hold = list(
+	canhold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
@@ -138,7 +138,7 @@
 /datum/storage/holster/belt/m44
 	max_storage_space = 16
 	max_w_class = WEIGHT_CLASS_BULKY
-	can_hold = list(
+	canhold = list(
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
 	)
@@ -148,13 +148,13 @@
 	bypass_w_limit = list(
 		/obj/item/weapon/gun/revolver/mateba,
 	)
-	can_hold = list(
+	canhold = list(
 		/obj/item/weapon/gun/revolver/mateba,
 		/obj/item/ammo_magazine/revolver/mateba,
 	)
 
 /datum/storage/holster/belt/korovin
-	can_hold = list(
+	canhold = list(
 		/obj/item/weapon/gun/pistol/c99,
 		/obj/item/ammo_magazine/pistol/c99,
 		/obj/item/ammo_magazine/pistol/c99t,
@@ -164,7 +164,7 @@
 	max_w_class = WEIGHT_CLASS_BULKY //So it can hold the shotgun.
 	storage_slots = 3
 	max_storage_space = 8
-	can_hold = list(
+	canhold = list(
 		/obj/item/weapon/gun/shotgun/double/marine,
 		/obj/item/ammo_magazine/shotgun,
 		/obj/item/ammo_magazine/handful,

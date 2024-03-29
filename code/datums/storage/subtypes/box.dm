@@ -9,7 +9,7 @@
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
 
 /datum/storage/box/mre
-	can_hold = list(/obj/item/reagent_containers/food/snacks/packaged_meal)
+	canhold = list(/obj/item/reagent_containers/food/snacks/packaged_meal)
 	storage_slots = 4
 	foldable = 0
 	trash_item = /obj/item/trash/mre
@@ -24,7 +24,7 @@
 	storage_slots = 32 // 8 images x 4 items
 	max_storage_space = 64
 	use_to_pickup = TRUE
-	can_hold = list(
+	canhold = list(
 		/obj/item, //This box should normally be unobtainable so here we go
 	)
 
@@ -32,7 +32,7 @@
 	max_w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 32 // 8 images x 4 items
 	max_storage_space = 64	//SMG and pistol sized (tiny and small) mags can fit all 32 slots, normal (LMG and AR) fit 21
-	can_hold = list(
+	canhold = list(
 		/obj/item/ammo_magazine/packet,
 		/obj/item/ammo_magazine/flamer_tank,
 		/obj/item/ammo_magazine/handful,
@@ -53,7 +53,7 @@
 		/obj/item/ammo_magazine/som_mg,
 		/obj/item/cell/lasgun,
 	)
-	cant_hold = list(
+	canthold = list(
 		/obj/item/ammo_magazine/flamer_tank/backtank,
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
@@ -61,25 +61,25 @@
 /datum/storage/box/visual/magazine/compact
 	storage_slots = 40 //Same storage as the old prefilled mag boxes found in the req vendor.
 	max_storage_space = 40 //Adjusted in update_stats() to fit the needs.
-	can_hold = list(
+	canhold = list(
 		/obj/item/ammo_magazine, //Able to hold all ammo due to this box being unobtainable. admemes beware of the rocket crate.
 	)
-	cant_hold = list()
+	canthold = list()
 
 /datum/storage/box/visual/grenade
 	max_w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = 25
 	max_storage_space = 50
-	can_hold = list(
+	canhold = list(
 		/obj/item/explosive/grenade,
 	)
-	cant_hold = list()
+	canthold = list()
 
 /datum/storage/box/crate/sentry
 	max_w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 6
 	max_storage_space = 16
-	can_hold = list(
+	canhold = list(
 		/obj/item/weapon/gun/sentry,
 		/obj/item/ammo_magazine/sentry,
 	)

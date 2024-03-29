@@ -3,13 +3,13 @@
 
 /datum/storage/belt/champion
 	storage_slots = 1
-	can_hold = list(
+	canhold = list(
 		/obj/item/clothing/mask/luchador,
 	)
 
 /datum/storage/belt/utility
 	max_w_class = WEIGHT_CLASS_NORMAL
-	can_hold = list(
+	canhold = list(
 		/obj/item/tool/screwdriver,
 		/obj/item/tool/wirecutters,
 		/obj/item/tool/weldingtool,
@@ -29,7 +29,7 @@
 	storage_slots = 15
 	max_storage_space = 30
 	max_w_class = 3
-	can_hold = list(
+	canhold = list(
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/pill,
@@ -45,7 +45,7 @@
 	storage_slots = 21 //can hold 3 "rows" of very limited medical equipment, but it *should* give a decent boost to squad medics.
 	max_storage_space = 42
 	max_w_class = WEIGHT_CLASS_SMALL
-	can_hold = list(
+	canhold = list(
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/pill,
@@ -60,7 +60,7 @@
 	storage_slots = 16
 	max_w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 42
-	can_hold = list(
+	canhold = list(
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/glass/beaker,
 		/obj/item/reagent_containers/glass/bottle,
@@ -80,7 +80,7 @@
 	storage_slots = 21
 	max_storage_space = 42
 	max_w_class = WEIGHT_CLASS_SMALL
-	can_hold = list(
+	canhold = list(
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/glass/beaker,
 		/obj/item/reagent_containers/glass/bottle,
@@ -92,7 +92,7 @@
 	storage_slots = 7
 	max_w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 21
-	can_hold = list(
+	canhold = list(
 		/obj/item/explosive/grenade/flashbang,
 		/obj/item/explosive/grenade/chem_grenade/teargas,
 		/obj/item/reagent_containers/spray/pepper,
@@ -111,7 +111,7 @@
 		/obj/item/radio/headset,
 		/obj/item/tool/taperoll/police,
 	)
-	cant_hold = list(
+	canthold = list(
 		/obj/item/weapon/gun,
 	)
 
@@ -122,7 +122,7 @@
 	storage_slots = 6
 	max_w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 18
-	can_hold = list(
+	canhold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/explosive/grenade/flare/civilian,
@@ -141,7 +141,7 @@
 	)
 
 /datum/storage/belt/marine/sectoid
-	can_hold = list(
+	canhold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/explosive/grenade,
@@ -160,7 +160,7 @@
 	storage_slots = 14
 	max_w_class = WEIGHT_CLASS_SMALL
 	max_storage_space = 28
-	can_hold = list(/obj/item/ammo_magazine/handful)
+	canhold = list(/obj/item/ammo_magazine/handful)
 
 /datum/storage/belt/shotgun/martini
 	storage_slots = 12
@@ -173,13 +173,13 @@
 	max_w_class = WEIGHT_CLASS_TINY
 	max_storage_space = 6
 	draw_mode = TRUE
-	can_hold = list(/obj/item/stack/throwing_knife)
+	canhold = list(/obj/item/stack/throwing_knife)
 
 /datum/storage/belt/grenade
 	storage_slots = 9
 	max_w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 27
-	can_hold = list(/obj/item/explosive/grenade)
+	canhold = list(/obj/item/explosive/grenade)
 
 /datum/storage/belt/grenade/b17
 	storage_slots = 16
@@ -194,5 +194,5 @@
 	storage_slots = 20
 	max_storage_space = 20
 	max_w_class = WEIGHT_CLASS_TINY
-	can_hold = list(/obj/item/reagent_containers/food/snacks/protein_pack)
+	canhold = list(/obj/item/reagent_containers/food/snacks/protein_pack)
 	sprite_slots = 4

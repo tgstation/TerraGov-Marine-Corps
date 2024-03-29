@@ -23,7 +23,7 @@
 /obj/item/storage/fancy/Initialize(mapload, ...)
 	. = ..()
 	if(spawn_type)
-		atom_storage.can_hold = list(spawn_type)
+		atom_storage.canhold = list(spawn_type)
 	if(spawn_type)
 		for(var/i in 1 to spawn_number)
 			new spawn_type(src)
@@ -96,7 +96,7 @@
 /obj/item/storage/fancy/crayons/Initialize(mapload)
 	. = ..()
 	atom_storage.storage_slots = 6
-	atom_storage.can_hold = list(/obj/item/toy/crayon)
+	atom_storage.canhold = list(/obj/item/toy/crayon)
 
 /obj/item/storage/fancy/crayons/PopulateContents()
 	new /obj/item/toy/crayon/red(src)
@@ -146,7 +146,7 @@
 	. = ..()
 	atom_storage.max_storage_space = 18
 	atom_storage.storage_slots = 18
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/clothing/mask/cigarette,
 		/obj/item/tool/lighter,
 	)
@@ -184,7 +184,7 @@
 	. = ..()
 	atom_storage.max_storage_space = 18
 	atom_storage.storage_slots = 18
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/clothing/mask/cigarette,
 		/obj/item/tool/lighter,
 		/obj/item/storage/box/matches,
@@ -295,7 +295,7 @@
 /obj/item/storage/lockbox/vials/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.max_w_class = WEIGHT_CLASS_NORMAL
-	atom_storage.can_hold = list(/obj/item/reagent_containers/glass/beaker/vial)
+	atom_storage.canhold = list(/obj/item/reagent_containers/glass/beaker/vial)
 	atom_storage.max_storage_space = 14 //The sum of the w_classes of all the items in this storage item.
 	atom_storage.storage_slots = 6
 	update_icon()

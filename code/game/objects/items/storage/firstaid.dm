@@ -27,7 +27,7 @@
 /obj/item/storage/firstaid/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.use_sound = 'sound/effects/toolbox.ogg'
-	atom_storage.cant_hold = list(
+	atom_storage.canthold = list(
 		/obj/item/ammo_magazine,
 		/obj/item/explosive/grenade,
 	)
@@ -160,7 +160,7 @@
 /obj/item/storage/syringe_case/empty/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 3
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/syringe,
 	)

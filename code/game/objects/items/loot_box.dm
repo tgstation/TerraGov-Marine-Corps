@@ -449,7 +449,7 @@
 /obj/item/storage/box/crate/loot/Initialize(mapload)
 	. = ..()
 	atom_storage.storage_slots = 21
-	atom_storage.can_hold = list() // Holds absolutely nothing after you take it out.
+	atom_storage.canhold = list() // Holds absolutely nothing after you take it out.
 	//atom_storage.foldable = null // I don't know why this was commented out, but I'm not gonna be the one to change it
 	new /obj/item/weapon/banhammer(src)
 

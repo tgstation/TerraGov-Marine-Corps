@@ -167,7 +167,7 @@
 /obj/item/storage/secure/safe/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.max_w_class = WEIGHT_CLASS_GIGANTIC
-	atom_storage.cant_hold = list(/obj/item/storage/secure/briefcase)
+	atom_storage.canthold = list(/obj/item/storage/secure/briefcase)
 
 /obj/item/storage/secure/safe/PopulateContents()
 	new /obj/item/paper(src)

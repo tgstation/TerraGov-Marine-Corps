@@ -4,22 +4,39 @@
  */
 
 ///Helper proc to give something storage
-/atom/proc/create_storage(storage_type = /datum/storage, list/can_hold, list/cant_hold, list/bypass_w_limit)
+/atom/proc/create_storage(storage_type = /datum/storage, list/canhold, list/canthold, list/bypass_w_limit)
+	RETURN_TYPE(/datum/storage)
+
 	if(atom_storage)
 		QDEL_NULL(atom_storage)
 
-	atom_storage = new storage_type(src, can_hold, cant_hold, bypass_w_limit)
+	atom_storage = new storage_type(src)
+
+	if(canhold || canthold)
+		atom_storage.set_holdable(canhold, canthold, bypass_w_limit)
+
 	return atom_storage
 
 // The parent and real_location variables are both weakrefs, so they must be resolved before they can be used.
 /datum/storage
-	/// the actual item we're attached to
-	var/atom/parent
+	/**
+	 * A reference to the atom linked to this storage object
+	 * If the parent goes, we go. Will never be null.
+	 */
+	VAR_FINAL/atom/parent
+	/**
+	 * A reference to the atom where the items are actually stored.
+	 * By default this is parent. Should generally never be null.
+	 * Sometimes it's not the parent, that's what is called "dissassociated storage".
+	 *
+	 * Do NOT set this directly, use set_real_location.
+	 */
+	VAR_FINAL/atom/real_location
 
 	///List of objects which this item can store (if set, it can't store anything else)
-	var/list/can_hold = list()
-	///List of objects which this item can't store (in effect only if can_hold isn't set)
-	var/list/cant_hold = list()
+	var/list/canhold = list()
+	///List of objects which this item can't store (in effect only if canhold isn't set)
+	var/list/canthold = list()
 	///a list of objects which this item can store despite not passing the w_class limit
 	var/list/bypass_w_limit = list()
 	/**
@@ -32,10 +49,7 @@
 	 * With entries for both /obj/A and /obj/A/B, inserting a B requires non-zero allowed count remaining for, and reduces, both.
 	 */
 	var/list/storage_type_limits
-	///In slotless storage, stores areas where clicking will refer to the associated item
-	var/list/click_border_start = list()
-	var/list/click_border_end = list()
-	///Max size of objects that this object can store (in effect only if can_hold isn't set)
+	///Max size of objects that this object can store (in effect only if canhold isn't set)
 	var/max_w_class = WEIGHT_CLASS_SMALL
 	///The sum of the storage costs of all the items in this storage item.
 	var/max_storage_space = 14
@@ -43,8 +57,13 @@
 	var/storage_slots = 7
 	///Defines how many versions of the sprites that gets progressively emptier as they get closer to "_0" in .dmi.
 	var/sprite_slots = null
-	var/atom/movable/screen/storage/boxes = null
 
+	///In slotless storage, stores areas where clicking will refer to the associated item
+	var/list/click_border_start = list()
+	///In slotless storage, stores areas where clicking will refer to the associated item
+	var/list/click_border_end = list()
+	///storage UI
+	var/atom/movable/screen/storage/boxes = null
 	///storage UI
 	var/atom/movable/screen/storage/storage_start = null
 	///storage UI
@@ -95,7 +114,7 @@
 	///flags for special behaviours
 	var/storage_flags = NONE
 
-	//----- Holster vars
+	//---- Holster vars
 	///the sound produced when the special item is drawn
 	var/draw_sound = null
 	///the sound produced when the special item is sheathed
@@ -108,22 +127,14 @@
 	var/image/holstered_item_underlay
 
 
-/datum/storage/New(atom/parent, list/can_hold, list/cant_hold, list/bypass_w_limit)
+/datum/storage/New(atom/parent)
 	. = ..()
 	if(!istype(parent))
 		stack_trace("Storage datum ([type]) created without a [isnull(parent) ? "null parent" : "invalid parent ([parent.type])"]!")
 		qdel(src)
 		return
-	src.parent = parent
 
-	if(length(src.can_hold))
-		src.can_hold = typecacheof(src.can_hold)
-	else if(length(src.cant_hold))
-		src.cant_hold = typecacheof(src.cant_hold)
-	if(length(src.bypass_w_limit))
-		src.bypass_w_limit = typecacheof(src.bypass_w_limit)
-
-	register_storage_signals(parent) //Registers all our relevant signals, separate proc because it's also called by storage/on_attach()
+	set_parent(parent)
 
 	boxes = new()
 	boxes.name = "storage"
@@ -199,10 +210,19 @@
 	parent = null
 	. = ..()
 
-///Registers signals to parent
-///Make sure to actually pass the atom/parent that we want to register signals to
+/// Set the passed atom as the parent
+/datum/storage/proc/set_parent(atom/new_parent)
+	PRIVATE_PROC(TRUE)
+
+	ASSERT(isnull(parent))
+
+	parent = new_parent
+
+	register_storage_signals(parent) //Registers all our relevant signals, separate proc because some subtypes have conflicting signals
+
+/// Registers signals to parent
 /datum/storage/proc/register_storage_signals(atom/parent)
-	//Clicking signals
+	//----Clicking signals
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby)) //Left click
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(on_attack_hand)) //Left click empty hand
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(on_attack_self)) //Item clicking on itself
@@ -213,7 +233,7 @@
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_GHOST, PROC_REF(on_attack_ghost)) //Ghosts can see inside your storages
 	RegisterSignal(parent, COMSIG_MOUSEDROP_ONTO, PROC_REF(on_mousedrop_onto)) //Click dragging
 
-	//Something is happening to our storage
+	//----Something is happening to our storage
 	RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, PROC_REF(on_emp)) //Getting EMP'd
 	RegisterSignal(parent, COMSIG_CONTENTS_EX_ACT, PROC_REF(on_contents_explode)) //Getting exploded
 
@@ -246,6 +266,41 @@
 	COMSIG_ITEM_DROPPED,
 	COMSIG_ITEM_QUICK_EQUIP,
 	))
+
+/// Almost 100% of the time the lists passed into set_holdable are reused for each instance
+/// Just fucking cache it 4head
+/// Yes I could generalize this, but I don't want anyone else using it. in fact, DO NOT COPY THIS
+/// If you find yourself needing this pattern, you're likely better off using static typecaches
+/// I'm not because I do not trust implementers of the storage component to use them, BUT
+/// IF I FIND YOU USING THIS PATTERN IN YOUR CODE I WILL BREAK YOU ACROSS MY KNEES
+/// ~Lemon
+GLOBAL_LIST_EMPTY(cached_storage_typecaches)
+
+/datum/storage/proc/set_holdable(list/can_hold_list, list/cant_hold_list, list/bypass_w_limit_list)
+	if(!isnull(can_hold_list) && !islist(can_hold_list))
+		can_hold_list = list(can_hold_list)
+	if(!isnull(cant_hold_list) && !islist(cant_hold_list))
+		cant_hold_list = list(cant_hold_list)
+	if(!isnull(bypass_w_limit_list) && !islist(bypass_w_limit_list))
+		bypass_w_limit_list = list(bypass_w_limit_list)
+
+	if(!isnull(can_hold_list))
+		var/unique_key = can_hold_list.Join("-")
+		if(!GLOB.cached_storage_typecaches[unique_key])
+			GLOB.cached_storage_typecaches[unique_key] = typecacheof(can_hold_list)
+		canhold = GLOB.cached_storage_typecaches[unique_key]
+
+	if(!isnull(cant_hold_list))
+		var/unique_key = cant_hold_list.Join("-")
+		if(!GLOB.cached_storage_typecaches[unique_key])
+			GLOB.cached_storage_typecaches[unique_key] = typecacheof(cant_hold_list)
+		canthold = GLOB.cached_storage_typecaches[unique_key]
+
+	if(!isnull(bypass_w_limit_list))
+		var/unique_key = bypass_w_limit_list.Join("-")
+		if(!GLOB.cached_storage_typecaches[unique_key])
+			GLOB.cached_storage_typecaches[unique_key] = typecacheof(bypass_w_limit_list)
+		bypass_w_limit = GLOB.cached_storage_typecaches[unique_key]
 
 ///This proc is called when you want to place an attacking_item into the storage
 /datum/storage/proc/on_attackby(datum/source, obj/item/attacking_item, mob/user, params)
@@ -612,12 +667,12 @@
 			to_chat(usr, span_notice("[parent.name] is full, make some space."))
 		return FALSE //Storage item is full
 
-	if(length(can_hold) && !is_type_in_typecache(item_to_insert, typecacheof(can_hold)))
+	if(length(canhold) && !is_type_in_typecache(item_to_insert, typecacheof(canhold)))
 		if(warning)
 			to_chat(usr, span_notice("[parent.name] cannot hold [item_to_insert]."))
 		return FALSE
 
-	if(is_type_in_typecache(item_to_insert, typecacheof(cant_hold))) //Check for specific items which this container can't hold.
+	if(is_type_in_typecache(item_to_insert, typecacheof(canthold))) //Check for specific items which this container can't hold.
 		if(warning)
 			to_chat(usr, span_notice("[parent.name] cannot hold [item_to_insert]."))
 		return FALSE

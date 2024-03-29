@@ -6,7 +6,7 @@
 	max_storage_space = 15
 	storage_slots = 9
 	storage_type_limits = list(/obj/item/weapon/gun = 1)
-	can_hold = list(
+	canhold = list(
 		/obj/item/weapon/gun/revolver/standard_magnum,
 		/obj/item/attachable/stock/t76,
 		/obj/item/attachable/scope/standard_magnum,

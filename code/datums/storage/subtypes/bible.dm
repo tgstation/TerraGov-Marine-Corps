@@ -3,7 +3,7 @@
 
 /datum/storage/bible/alcoholic
 	storage_slots = 7
-	can_hold = list(
+	canhold = list(
 		/obj/item/reagent_containers/food/drinks/cans,
 		/obj/item/spacecash,
 	)

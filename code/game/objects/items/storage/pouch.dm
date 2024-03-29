@@ -98,7 +98,7 @@
 
 /obj/item/storage/pouch/bayonet/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/stack/throwing_knife,
 		/obj/item/attachable/bayonet,
@@ -124,7 +124,7 @@
 	atom_storage.sprite_slots = 1
 	atom_storage.storage_slots = 6
 	atom_storage.max_w_class = WEIGHT_CLASS_NORMAL
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/flashlight,
 		/obj/item/reagent_containers/pill,
 		/obj/item/stack/medical/heal_pack/gauze,
@@ -150,7 +150,7 @@
 	. = ..()
 	atom_storage.sprite_slots = 3
 	atom_storage.storage_slots = 6
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
 		/obj/item/storage/pill_bottle,
@@ -222,7 +222,7 @@
 	. = ..()
 	atom_storage.sprite_slots = 1
 	atom_storage.max_w_class = WEIGHT_CLASS_NORMAL
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/weapon/gun/revolver,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
@@ -265,7 +265,7 @@
 	atom_storage.max_w_class = WEIGHT_CLASS_NORMAL
 	atom_storage.storage_slots = 2
 	atom_storage.draw_mode = 0
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/pistol,
@@ -324,7 +324,7 @@
 	atom_storage.max_w_class = WEIGHT_CLASS_SMALL
 	atom_storage.sprite_slots = 3
 	atom_storage.storage_slots = 3
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/smg/standard_machinepistol,
@@ -402,7 +402,7 @@
 	. = ..()
 	atom_storage.storage_slots = 4
 	atom_storage.sprite_slots = null
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/ammo_magazine/,
 	)
 
@@ -417,7 +417,7 @@
 	atom_storage.sprite_slots = 2
 	atom_storage.storage_slots = 4
 	atom_storage.max_w_class = WEIGHT_CLASS_NORMAL
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/explosive/plastique,
 		/obj/item/explosive/mine,
 		/obj/item/explosive/grenade,
@@ -480,7 +480,7 @@
 	. = ..()
 	atom_storage.sprite_slots = 6
 	atom_storage.storage_slots = 6
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/explosive/grenade,
 	)
 
@@ -549,7 +549,7 @@
 	atom_storage.sprite_slots = 1
 	atom_storage.max_w_class = WEIGHT_CLASS_BULKY
 	atom_storage.storage_slots = 7
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/pill,
@@ -600,7 +600,7 @@
 	atom_storage.sprite_slots = 5
 	atom_storage.storage_slots = 8
 	atom_storage.max_storage_space = 14
-	atom_storage.can_hold = list(/obj/item/reagent_containers/hypospray/autoinjector)
+	atom_storage.canhold = list(/obj/item/reagent_containers/hypospray/autoinjector)
 
 /obj/item/storage/pouch/medical_injectors/firstaid
 	desc = "Standard marine first-aid injector pouch. Specialized to store only auto-injectors. Contains basic injectors, a stabilizing injector, stimulant injector, and an emergency injector."
@@ -690,7 +690,7 @@
 	. = ..()
 	atom_storage.sprite_slots = 3
 	atom_storage.storage_slots = 3
-	atom_storage.can_hold = list(/obj/item/storage/box/combat_lolipop)
+	atom_storage.canhold = list(/obj/item/storage/box/combat_lolipop)
 
 /obj/item/storage/pouch/med_lolipops/PopulateContents()
 	new /obj/item/storage/box/combat_lolipop(src)
@@ -708,7 +708,7 @@
 	. = ..()
 	atom_storage.sprite_slots = 3
 	atom_storage.storage_slots = 6
-	atom_storage.can_hold = list(/obj/item/reagent_containers/food/snacks/wrapped/berrybar)
+	atom_storage.canhold = list(/obj/item/reagent_containers/food/snacks/wrapped/berrybar)
 
 /obj/item/storage/pouch/surgery
 	name = "surgery tools pouch"
@@ -720,7 +720,7 @@
 	atom_storage.sprite_slots = 1
 	atom_storage.storage_slots = 12
 	atom_storage.max_storage_space = 24
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/tool/surgery,
 		/obj/item/stack/nanopaste,
 		/obj/item/tweezers,
@@ -748,7 +748,7 @@
 /obj/item/storage/pouch/document/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 7
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/paper,
 		/obj/item/clipboard,
 	)
@@ -764,7 +764,7 @@
 	atom_storage.max_w_class = WEIGHT_CLASS_NORMAL
 	atom_storage.sprite_slots = 4
 	atom_storage.draw_mode = 1
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/attachable/motiondetector,
 		/obj/item/radio,
 		/obj/item/assembly/signaler,
@@ -801,7 +801,7 @@
 	. = ..()
 	atom_storage.sprite_slots = 1
 	atom_storage.storage_slots = 6
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/circuitboard,
 		/obj/item/cell,
 	)
@@ -822,7 +822,7 @@
 	atom_storage.storage_slots = 4
 	atom_storage.max_w_class = WEIGHT_CLASS_NORMAL
 	atom_storage.sprite_slots = 1
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/stack/barbed_wire,
 		/obj/item/stack/sheet,
 		/obj/item/stack/rods,
@@ -873,7 +873,7 @@
 	atom_storage.storage_slots = 5
 	atom_storage.max_w_class = WEIGHT_CLASS_NORMAL
 	atom_storage.sprite_slots = 1
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/tool/screwdriver,
 		/obj/item/tool/wirecutters,
 		/obj/item/tool/weldingtool,
@@ -936,7 +936,7 @@
 	atom_storage.sprite_slots = 4
 	atom_storage.storage_slots = 4
 	atom_storage.draw_mode = 0
-	atom_storage.can_hold = list(/obj/item/ammo_magazine/handful)
+	atom_storage.canhold = list(/obj/item/ammo_magazine/handful)
 
 /obj/item/storage/pouch/shotgun/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/ammo_magazine))
@@ -990,4 +990,4 @@
 	atom_storage.max_storage_space = 10
 	atom_storage.sprite_slots = 1
 	atom_storage.max_w_class = WEIGHT_CLASS_TINY
-	atom_storage.can_hold = list(/obj/item/reagent_containers/food/snacks/protein_pack)
+	atom_storage.canhold = list(/obj/item/reagent_containers/food/snacks/protein_pack)

@@ -20,7 +20,7 @@
 
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()
-	create_storage(storage_type, storage_type.can_hold, storage_type.cant_hold, storage_type.bypass_w_limit)
+	create_storage(storage_type, storage_type.canhold, storage_type.canthold, storage_type.bypass_w_limit)
 
 	PopulateContents()
 

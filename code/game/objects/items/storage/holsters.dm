@@ -301,7 +301,7 @@
 
 /obj/item/storage/holster/blade/machete/full/Initialize(mapload)
 	. = ..()
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/claymore/harvester,
 	)
@@ -328,7 +328,7 @@
 
 /obj/item/storage/holster/blade/katana/full/Initialize(mapload)
 	. = ..()
-	atom_storage.can_hold = list(/obj/item/weapon/katana)
+	atom_storage.canhold = list(/obj/item/weapon/katana)
 
 /obj/item/storage/holster/blade/katana/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/katana(src)
@@ -343,7 +343,7 @@
 
 /obj/item/storage/holster/blade/officer/full/Initialize(mapload)
 	. = ..()
-	atom_storage.can_hold = list(/obj/item/weapon/claymore/mercsword/machete/officersword)
+	atom_storage.canhold = list(/obj/item/weapon/claymore/mercsword/machete/officersword)
 
 /obj/item/storage/holster/blade/officer/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/machete/officersword(src)
@@ -362,7 +362,7 @@
 
 /obj/item/storage/holster/m37/full/Initialize(mapload)
 	. = ..()
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/weapon/gun/shotgun/combat,
 		/obj/item/weapon/gun/shotgun/pump,
 	)
@@ -380,7 +380,7 @@
 
 /obj/item/storage/holster/t35/full/Initialize(mapload)
 	. = ..()
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/weapon/gun/shotgun/pump/t35,
 	)
 
@@ -401,7 +401,7 @@
 
 /obj/item/storage/holster/m25/full/Initialize(mapload)
 	. = ..()
-	atom_storage.can_hold = list(/obj/item/weapon/gun/smg/m25)
+	atom_storage.canhold = list(/obj/item/weapon/gun/smg/m25)
 
 /obj/item/storage/holster/m25/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/gun/smg/m25(src)
@@ -500,7 +500,7 @@
 
 /obj/item/storage/holster/belt/pistol/m4a3/full/Initialize(mapload)
 	. = ..()
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
@@ -575,7 +575,7 @@
 
 /obj/item/storage/holster/belt/pistol/m4a3/som/serpenta/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
@@ -616,7 +616,7 @@
 
 /obj/item/storage/holster/belt/pistol/stand/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 	)
@@ -636,7 +636,7 @@
 	atom_storage.bypass_w_limit = list(
 		/obj/item/weapon/gun/revolver,
 	)
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
 	)
@@ -745,7 +745,7 @@
 
 /obj/item/storage/holster/belt/pistol/smart_pistol/full/Initialize(mapload)
 	. = ..()
-	atom_storage.can_hold = list(
+	atom_storage.canhold = list(
 		/obj/item/weapon/gun/pistol/smart_pistol,
 		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
 	)

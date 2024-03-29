@@ -72,7 +72,7 @@
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/cell/lasgun,
 	)
-	cant_hold = list(
+	canthold = list(
 		/obj/item/stack/razorwire,
 		/obj/item/stack/sheet,
 		/obj/item/stack/sandbags,
@@ -84,7 +84,7 @@
 /datum/storage/internal/vest
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_SMALL
-	cant_hold = list(
+	canthold = list(
 		/obj/item/stack/razorwire,
 		/obj/item/stack/sheet,
 		/obj/item/stack/sandbags,
@@ -95,7 +95,7 @@
 	max_w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 6 //one more than the brown webbing but you lose out on being able to hold non-medic stuff
 	max_storage_space = 24
-	can_hold = list(
+	canhold = list(
 		/obj/item/healthanalyzer,
 		/obj/item/stack/medical,
 		/obj/item/reagent_containers/hypospray,
@@ -117,7 +117,7 @@
 /datum/storage/internal/surgery_webbing
 	storage_slots = 12
 	max_storage_space = 24
-	can_hold = list(
+	canhold = list(
 		/obj/item/tool/surgery,
 		/obj/item/stack/nanopaste,
 		/obj/item/tweezers,
@@ -129,7 +129,7 @@
 	max_storage_space = 10
 	max_w_class = WEIGHT_CLASS_BULKY
 	storage_type_limits = list(/obj/item/weapon/gun = 1)
-	can_hold = list(
+	canhold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/revolver,
@@ -145,7 +145,7 @@
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
 	)
-	cant_hold = list(
+	canthold = list(
 		/obj/item/stack,
 	)
 
@@ -162,7 +162,7 @@
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
 	)
-	cant_hold = list(/obj/item/cell/lasgun/volkite/powerpack)
+	canthold = list(/obj/item/cell/lasgun/volkite/powerpack)
 
 /datum/storage/internal/pocket/insertion_message(obj/item/item, mob/user)
 	var/visidist = item.w_class >= WEIGHT_CLASS_NORMAL ? 3 : 1
@@ -175,7 +175,7 @@
 	max_storage_space = 30
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_SMALL
-	can_hold = list(
+	canhold = list(
 		/obj/item/healthanalyzer,
 		/obj/item/stack/medical,
 		/obj/item/reagent_containers/hypospray,
@@ -206,13 +206,13 @@
 		/obj/item/ammo_magazine/handful,
 		/obj/item/cell/lasgun/plasma,
 	)
-	cant_hold = list(/obj/item/cell/lasgun/volkite/powerpack)
+	canthold = list(/obj/item/cell/lasgun/volkite/powerpack)
 
 /datum/storage/internal/modular/ammo_mag
 	max_storage_space = 15
 	storage_slots = 4
 	max_w_class = WEIGHT_CLASS_NORMAL
-	can_hold = list(
+	canhold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/explosive/grenade/flare/civilian,
@@ -233,7 +233,7 @@
 	max_storage_space = 15
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_BULKY
-	can_hold = list(
+	canhold = list(
 		/obj/item/stack/barbed_wire,
 		/obj/item/stack/sheet,
 		/obj/item/stack/rods,
@@ -263,13 +263,13 @@
 		/obj/item/circuitboard,
 		/obj/item/lightreplacer,
 	)
-	cant_hold = list()
+	canthold = list()
 
 /datum/storage/internal/modular/medical
 	max_storage_space = 30
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_SMALL
-	can_hold = list(
+	canhold = list(
 		/obj/item/healthanalyzer,
 		/obj/item/stack/medical,
 		/obj/item/reagent_containers/hypospray,
@@ -294,7 +294,7 @@
 	max_storage_space = 10
 	storage_slots = 10
 	max_w_class = WEIGHT_CLASS_TINY
-	can_hold = list(
+	canhold = list(
 		/obj/item/reagent_containers/syringe,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 	)
@@ -309,7 +309,7 @@
 	max_storage_space = 12
 	storage_slots = 6
 	max_w_class = WEIGHT_CLASS_SMALL
-	can_hold = list(
+	canhold = list(
 		/obj/item/explosive/grenade,
 		/obj/item/reagent_containers/food/drinks/cans,
 	)
@@ -318,7 +318,7 @@
 	max_storage_space = 3
 	storage_slots = 1
 	draw_mode = TRUE
-	can_hold = list(
+	canhold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
 		/obj/item/weapon/gun/shotgun/double/derringer,
@@ -339,7 +339,7 @@
 		/obj/item/stack/medical/heal_pack/ointment,
 		/obj/item/ammo_magazine/handful,
 	)
-	cant_hold = list(
+	canthold = list(
 		/obj/item/stack/sheet,
 		/obj/item/stack/catwalk,
 		/obj/item/stack/rods,
@@ -352,7 +352,7 @@
 	storage_slots = 10
 	max_storage_space = 40
 	max_w_class = WEIGHT_CLASS_BULKY
-	can_hold = list(/obj/item/ammo_magazine/standard_atgun)
+	canhold = list(/obj/item/ammo_magazine/standard_atgun)
 
 //Reason for this override is due to conflict controls from deployables
 /datum/storage/internal/ammo_rack/register_storage_signals(atom/parent)

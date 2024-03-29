@@ -61,8 +61,8 @@
 	. = ..()
 	atom_storage.max_w_class = WEIGHT_CLASS_BULKY
 	atom_storage.allow_drawing_method = TRUE
-	atom_storage.can_hold = list(/obj/item/reagent_containers/hypospray)
-	atom_storage.cant_hold = list(/obj/item/reagent_containers/glass/reagent_canister) //To prevent chat spam when you try to put the container in
+	atom_storage.canhold = list(/obj/item/reagent_containers/hypospray)
+	atom_storage.canthold = list(/obj/item/reagent_containers/glass/reagent_canister) //To prevent chat spam when you try to put the container in
 	atom_storage.draw_mode = TRUE
 
 	inner = new /obj/item/reagent_containers/glass/reagent_canister
