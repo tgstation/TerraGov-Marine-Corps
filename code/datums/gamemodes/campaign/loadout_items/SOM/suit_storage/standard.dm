@@ -276,7 +276,7 @@
 	name = "V-41"
 	desc = "Equipped with a red dot sight, extended barrel and bipod. The V-41 is a large man portable machine used by the SOM, allowing for sustained, accurate suppressive firepower at the cost of mobility and handling. \
 	Commonly seen where their preferred tactics of fast, mobile aggression is ill suited. Has impressive ranged damage application as a static weapon. Uses 10x26mm Caseless ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "v41"
 	item_typepath = /obj/item/weapon/gun/rifle/som_mg/standard
 
 /datum/loadout_item/suit_store/main_gun/som_marine/machinegunner/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)

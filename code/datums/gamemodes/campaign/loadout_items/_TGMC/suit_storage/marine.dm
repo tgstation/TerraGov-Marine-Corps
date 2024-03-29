@@ -333,7 +333,7 @@
 	The SH-35 is the most commonly used shotgun of the TGMC. With good mobility and handling, it has unparalleled close range power when using buckshot. Able to kill or maim all but the most heavily armored targets with a single well aimmed blast. \
 	When using flechette rounds, it can provide surprisingly powerful long range damage with good penetration, although its low rate of fire means its sustained damage is relatively poor. \
 	Uses 12 gauge shells."
-	ui_icon = "shotgun"
+	ui_icon = "t35"
 	item_typepath = /obj/item/weapon/gun/shotgun/pump/t35/standard
 
 /datum/loadout_item/suit_store/main_gun/marine/shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)

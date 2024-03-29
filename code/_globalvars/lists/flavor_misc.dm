@@ -280,6 +280,9 @@ GLOBAL_LIST_INIT(campaign_loadout_item_icon_types, list(
 	"t60",
 	"v34",
 	"ak47",
+	"v41",
+	"rpg",
+	"t35",
 ))
 
 GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())
