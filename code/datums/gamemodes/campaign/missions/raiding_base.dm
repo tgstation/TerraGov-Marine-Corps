@@ -113,6 +113,10 @@
 	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
 	winning_team.remove_asset(/datum/campaign_asset/attrition_modifier/malus_strong)
 	winning_team.remove_asset(/datum/campaign_asset/attrition_modifier/malus_standard)
+	//We don't have enough missions in the pool yet to activate this
+	//GLOB.campaign_mission_pool[hostile_faction] -= /datum/campaign_mission/destroy_mission/supply_raid/som
+	//GLOB.campaign_mission_pool[hostile_faction] -= /datum/campaign_mission/destroy_mission/supply_raid
+
 
 /datum/campaign_mission/raiding_base/apply_major_loss()
 	. = ..()
@@ -123,7 +127,6 @@
 	else if(hostile_faction == FACTION_SOM)
 		winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 		winning_team.add_asset(/datum/campaign_asset/equipment/gorgon_armor)
-
 
 ///Returns a list of areas in which the beacon can be deployed
 /datum/campaign_mission/raiding_base/proc/get_valid_beacon_areas()
