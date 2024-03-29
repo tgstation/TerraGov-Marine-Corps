@@ -131,7 +131,7 @@
 	desc = "A cargo droid, rigged with experimental technology to allow AI control. The claw is not standard and cannot grasp warheads."
 	icon = 'icons/obj/powerloader.dmi'
 	icon_state = "ai_powerloader"
-	move_delay = 7
+	move_delay = 5
 	max_integrity = 550
 	spawn_equipped_type = null
 	unmanned_flags = GIVE_NIGHT_VISION
