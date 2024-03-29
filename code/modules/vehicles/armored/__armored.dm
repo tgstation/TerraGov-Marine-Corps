@@ -13,8 +13,6 @@
 	allow_pass_flags = PASS_TANK|PASS_AIR|PASS_WALKOVER
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE|PORTAL_IMMUNE
 
-	// placeholder, make skill check or similar later
-	req_access = list(ACCESS_MARINE_MECH)
 	move_delay = 0.7 SECONDS
 	max_integrity = 600
 	light_range = 10

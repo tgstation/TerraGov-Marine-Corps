@@ -4,6 +4,7 @@
 	density = TRUE
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
+	req_access = list(ACCESS_MARINE_ARMORED)
 	idle_power_usage = 20
 	bound_width = 64
 	icon = 'icons/obj/machines/drone_fab.dmi'
