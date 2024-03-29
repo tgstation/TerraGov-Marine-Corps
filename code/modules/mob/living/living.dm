@@ -463,6 +463,12 @@
 /mob/living/proc/get_permeability_protection()
 	return LIVING_PERM_COEFF
 
+/mob/living/proc/get_soft_acid_protection()
+	return soft_armor?.getRating(ACID)
+
+/mob/living/proc/get_hard_acid_protection()
+	return hard_armor?.getRating(ACID)
+
 /mob/proc/flash_act(intensity = 1, bypass_checks, type = /atom/movable/screen/fullscreen/flash, duration)
 	return
 
