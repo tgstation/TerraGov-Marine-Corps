@@ -25,26 +25,26 @@
 ////////////////////////////////////////////////
 
 // firearms skill (general knowledge of guns) (hidden skill)
-// increase or decrase accuracy, recoil, and firing delay of most guns.
-#define SKILL_FIREARMS_UNTRAINED 0	// civilian (Researcher, MD, CL, SO)
-#define SKILL_FIREARMS_DEFAULT 1	// marines (allow tactical reloads)
-#define SKILL_FIREARMS_TRAINED 2	// special training (CO)
+///Increase or decrase accuracy, recoil, and firing delay of most guns.
+#define SKILL_FIREARMS_UNTRAINED 0	// Civilian (Researcher, MD, CL, SO)
+#define SKILL_FIREARMS_DEFAULT 1	// Marines (allow tactical reloads)
+#define SKILL_FIREARMS_TRAINED 2	// Special training (CO)
 
 ///Damage mod for having the weapon specific skill above 0
 #define FIREARM_SKILL_DAM_MOD 0.05
 
 // pistols skill
-// increase or decrase accuracy, recoil, and firing delay of pistols and revolvers.
-#define SKILL_PISTOLS_DEFAULT 0	// marines
-#define SKILL_PISTOLS_TRAINED 1	// special training
+///Increase or decrase accuracy, recoil, and firing delay of pistols and revolvers.
+#define SKILL_PISTOLS_DEFAULT 0	// Marines
+#define SKILL_PISTOLS_TRAINED 1	// Special training
 
 // smgs skill
-// increase or decrase accuracy, recoil, and firing delay of submachineguns.
-#define SKILL_SMGS_DEFAULT 0	//marines
-#define SKILL_SMGS_TRAINED 1	//special training
+///Increase or decrase accuracy, recoil, and firing delay of submachineguns.
+#define SKILL_SMGS_DEFAULT 0	// Marines
+#define SKILL_SMGS_TRAINED 1	// Special training
 
 // rifles skill
-// increase or decrase accuracy, recoil, and firing delay of rifles.
+///Increase or decrase accuracy, recoil, and firing delay of rifles.
 #define SKILL_RIFLES_DEFAULT 0	// marines
 #define SKILL_RIFLES_TRAINED 1	// special training
 
