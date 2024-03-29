@@ -321,20 +321,22 @@
 	desc = "A large case containing all you need to set up an automated sentry."
 	icon_state = "sentry_case"
 	w_class = WEIGHT_CLASS_HUGE
-	max_w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 6
-	max_storage_space = 16
-	can_hold = list(
+
+/obj/item/storage/box/crate/sentry_sniper/Initialize(mapload)
+	. = ..()
+	atom_storage.max_w_class = WEIGHT_CLASS_HUGE
+	atom_storage.storage_slots = 6
+	atom_storage.max_storage_space = 16
+	atom_storage.can_hold = list(
 		/obj/item/weapon/gun/sentry/sniper_sentry,
 		/obj/item/ammo_magazine/sentry/sniper,
 	)
-	bypass_w_limit = list(
+	atom_storage.bypass_w_limit = list(
 		/obj/item/weapon/gun/sentry/sniper_sentry,
 		/obj/item/ammo_magazine/sentry/sniper,
 	)
 
-/obj/item/storage/box/crate/sentry_sniper/Initialize(mapload)
-	. = ..()
+/obj/item/storage/box/crate/sentry_sniper/PopulateContents()
 	new /obj/item/weapon/gun/sentry/sniper_sentry(src)
 	new /obj/item/ammo_magazine/sentry/sniper(src)
 
@@ -369,20 +371,22 @@
 	desc = "A large case containing all you need to set up an automated sentry."
 	icon_state = "sentry_case"
 	w_class = WEIGHT_CLASS_HUGE
-	max_w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 6
-	max_storage_space = 16
-	can_hold = list(
+
+/obj/item/storage/box/crate/sentry_shotgun/Initialize(mapload)
+	. = ..()
+	atom_storage.max_w_class = WEIGHT_CLASS_HUGE
+	atom_storage.storage_slots = 6
+	atom_storage.max_storage_space = 16
+	atom_storage.can_hold = list(
 		/obj/item/weapon/gun/sentry/shotgun_sentry,
 		/obj/item/ammo_magazine/sentry/shotgun,
 	)
-	bypass_w_limit = list(
+	atom_storage.bypass_w_limit = list(
 		/obj/item/weapon/gun/sentry/shotgun_sentry,
 		/obj/item/ammo_magazine/sentry/shotgun,
 	)
 
-/obj/item/storage/box/crate/sentry_shotgun/Initialize(mapload)
-	. = ..()
+/obj/item/storage/box/crate/sentry_shotgun/PopulateContents()
 	new /obj/item/weapon/gun/sentry/shotgun_sentry(src)
 	new /obj/item/ammo_magazine/sentry/shotgun(src)
 
@@ -417,20 +421,21 @@
 	desc = "A large case containing all you need to set up an automated sentry."
 	icon_state = "sentry_case"
 	w_class = WEIGHT_CLASS_HUGE
-	max_w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 6
-	max_storage_space = 16
-	can_hold = list(
-		/obj/item/weapon/gun/sentry/flamer_sentry,
-		/obj/item/ammo_magazine/sentry/flamer,
-	)
-	bypass_w_limit = list(
-		/obj/item/weapon/gun/sentry/flamer_sentry,
-		/obj/item/ammo_magazine/sentry/flamer,
-	)
 
 /obj/item/storage/box/crate/sentry_flamer/Initialize(mapload)
 	. = ..()
+	atom_storage.max_w_class = WEIGHT_CLASS_HUGE
+	atom_storage.storage_slots = 6
+	atom_storage.max_storage_space = 16
+	atom_storage.can_hold = list(
+		/obj/item/weapon/gun/sentry/flamer_sentry,
+		/obj/item/ammo_magazine/sentry/flamer,
+	)
+	atom_storage.bypass_w_limit = list(
+		/obj/item/weapon/gun/sentry/flamer_sentry,
+		/obj/item/ammo_magazine/sentry/flamer,
+	)
+
+/obj/item/storage/box/crate/sentry_flamer/PopulateContents()
 	new /obj/item/weapon/gun/sentry/flamer_sentry(src)
 	new /obj/item/ammo_magazine/sentry/flamer(src)
-
