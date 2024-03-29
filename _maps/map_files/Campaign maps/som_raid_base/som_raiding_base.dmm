@@ -407,6 +407,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/campaign/som_raiding/outpost/medbay)
+"cN" = (
+/obj/structure/platform_decoration,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/som_raiding/outpost/req)
 "cS" = (
 /obj/effect/turf_decal/sandedge/corner2{
 	dir = 1
@@ -18726,7 +18730,7 @@ XP
 XP
 XP
 ls
-Aw
+Qu
 Aw
 Aw
 Aw
@@ -19942,7 +19946,7 @@ hz
 OH
 tV
 ls
-Aw
+Lx
 Aw
 Aw
 Aw
@@ -21158,7 +21162,7 @@ Ne
 BI
 ol
 ls
-Aw
+Qu
 JH
 Aw
 Aw
@@ -21178,7 +21182,7 @@ Qw
 ED
 ED
 ED
-ED
+cN
 nm
 ED
 OM
@@ -22222,7 +22226,7 @@ QL
 Ad
 HN
 ls
-Aw
+Lx
 Aw
 Aw
 Aw
@@ -22379,7 +22383,7 @@ sU
 Aw
 Aw
 Aw
-Aw
+AO
 sU
 Aw
 Aw
