@@ -35,28 +35,28 @@
 
 // pistols skill
 ///Increase or decrase accuracy, recoil, and firing delay of pistols and revolvers.
-#define SKILL_PISTOLS_DEFAULT 0	// Marines
-#define SKILL_PISTOLS_TRAINED 1	// Special training
+#define SKILL_PISTOLS_DEFAULT 0	///Marines
+#define SKILL_PISTOLS_TRAINED 1	///Special training
 
 // smgs skill
 ///Increase or decrase accuracy, recoil, and firing delay of submachineguns.
-#define SKILL_SMGS_DEFAULT 0	// Marines
-#define SKILL_SMGS_TRAINED 1	// Special training
+#define SKILL_SMGS_DEFAULT 0	///Marines
+#define SKILL_SMGS_TRAINED 1	///Special training
 
 // rifles skill
 ///Increase or decrase accuracy, recoil, and firing delay of rifles.
-#define SKILL_RIFLES_DEFAULT 0	// marines
-#define SKILL_RIFLES_TRAINED 1	// special training
+#define SKILL_RIFLES_DEFAULT 0	///Marines
+#define SKILL_RIFLES_TRAINED 1	///Special training
 
 // shotguns skill
 ///Increase or decrase accuracy, recoil, and firing delay of shotguns.
-#define SKILL_SHOTGUNS_DEFAULT 0	//marines
-#define SKILL_SHOTGUNS_TRAINED 1	//special training
+#define SKILL_SHOTGUNS_DEFAULT 0	///Marines
+#define SKILL_SHOTGUNS_TRAINED 1	///Special training
 
 // heavy weapons skill
 ///Increase or decrase accuracy, recoil, and firing delay of heavy weapons (non spec weapons, e.g. flamethrower).
-#define SKILL_HEAVY_WEAPONS_DEFAULT 0	// marines
-#define SKILL_HEAVY_WEAPONS_TRAINED 1	// special training
+#define SKILL_HEAVY_WEAPONS_DEFAULT 0	///Marines
+#define SKILL_HEAVY_WEAPONS_TRAINED 1	///Special training
 
 // smartgun skill
 ///Increase or decrase accuracy, recoil, and firing delay for smartgun, and whether we can use smartguns at all.
@@ -161,12 +161,12 @@
 
 ////////////////////////////////////////////////
 
-///Skill-related fumble and delay times
-#define SKILL_TASK_TRIVIAL 1 SECOND
-#define SKILL_TASK_VERY_EASY 2 SECONDS
-#define SKILL_TASK_EASY 3 SECONDS
-#define SKILL_TASK_AVERAGE 5 SECONDS
-#define SKILL_TASK_TOUGH 8 SECONDS
-#define SKILL_TASK_DIFFICULT 10 SECONDS
-#define SKILL_TASK_CHALLENGING 15 SECONDS
-#define SKILL_TASK_FORMIDABLE 20 SECONDS
+///Skill-related fumble and delay times; in deciseconds
+#define SKILL_TASK_TRIVIAL 10
+#define SKILL_TASK_VERY_EASY 20
+#define SKILL_TASK_EASY 30
+#define SKILL_TASK_AVERAGE 50
+#define SKILL_TASK_TOUGH 80
+#define SKILL_TASK_DIFFICULT 100
+#define SKILL_TASK_CHALLENGING 150
+#define SKILL_TASK_FORMIDABLE 200
