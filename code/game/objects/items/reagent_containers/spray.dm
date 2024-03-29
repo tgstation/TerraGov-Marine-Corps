@@ -9,8 +9,8 @@
 	)
 	item_state = "cleaner"
 	init_reagent_flags = OPENCONTAINER_NOUNIT
-	flags_item = NOBLUDGEON
-	flags_equip_slot = ITEM_SLOT_BELT
+	item_flags = NOBLUDGEON
+	equip_slot_flags = ITEM_SLOT_BELT
 	throwforce = 3
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2

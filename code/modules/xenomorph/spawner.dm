@@ -41,7 +41,7 @@
 			. += span_info("It appears in good shape, pulsating healthily.")
 
 
-/obj/structure/xeno/spawner/take_damage(damage_amount, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+/obj/structure/xeno/spawner/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
 	spawner_damage_alert()
 

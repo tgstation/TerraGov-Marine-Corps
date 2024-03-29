@@ -11,7 +11,7 @@
 	soft_armor = list(MELEE = 20, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, FIRE = 70, ACID = 100)
 	visible = FALSE
 	use_power = FALSE
-	flags_atom = ON_BORDER
+	atom_flags = ON_BORDER
 	allow_pass_flags = PASS_GLASS
 	opacity = FALSE
 	var/obj/item/circuitboard/airlock/electronics = null

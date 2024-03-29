@@ -13,7 +13,7 @@
 
 	var/pressure_adjustment_coefficient = 1 // Assume no protection at first.
 
-	if(wear_suit && (wear_suit.flags_inventory & NOPRESSUREDMAGE) && head && (head.flags_inventory & NOPRESSUREDMAGE)) //Complete set of pressure-proof suit worn, assume fully sealed.
+	if(wear_suit && (wear_suit.inventory_flags & NOPRESSUREDMAGE) && head && (head.inventory_flags & NOPRESSUREDMAGE)) //Complete set of pressure-proof suit worn, assume fully sealed.
 		pressure_adjustment_coefficient = 0
 
 	pressure_adjustment_coefficient = min(1, max(pressure_adjustment_coefficient, 0)) //So it isn't less than 0 or larger than 1.
@@ -70,35 +70,35 @@
 
 
 //This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, CHEST, GROIN, etc. See setup.dm for the full list)
-/mob/living/carbon/human/proc/get_flags_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
+/mob/living/carbon/human/proc/get_heat_protection_flags_flags(temperature) //Temperature is the temperature you're being exposed to.
 
 	var/thermal_protection_flags = NONE
 
 	//Handle normal clothing
 	if(head)
 		if(head.max_heat_protection_temperature && head.max_heat_protection_temperature >= temperature)
-			thermal_protection_flags |= head.flags_heat_protection
+			thermal_protection_flags |= head.heat_protection_flags
 	if(wear_suit)
 		if(wear_suit.max_heat_protection_temperature && wear_suit.max_heat_protection_temperature >= temperature)
-			thermal_protection_flags |= wear_suit.flags_heat_protection
+			thermal_protection_flags |= wear_suit.heat_protection_flags
 	if(w_uniform)
 		if(w_uniform.max_heat_protection_temperature && w_uniform.max_heat_protection_temperature >= temperature)
-			thermal_protection_flags |= w_uniform.flags_heat_protection
+			thermal_protection_flags |= w_uniform.heat_protection_flags
 	if(shoes)
 		if(shoes.max_heat_protection_temperature && shoes.max_heat_protection_temperature >= temperature)
-			thermal_protection_flags |= shoes.flags_heat_protection
+			thermal_protection_flags |= shoes.heat_protection_flags
 	if(gloves)
 		if(gloves.max_heat_protection_temperature && gloves.max_heat_protection_temperature >= temperature)
-			thermal_protection_flags |= gloves.flags_heat_protection
+			thermal_protection_flags |= gloves.heat_protection_flags
 	if(wear_mask)
 		if(wear_mask.max_heat_protection_temperature && wear_mask.max_heat_protection_temperature >= temperature)
-			thermal_protection_flags |= wear_mask.flags_heat_protection
+			thermal_protection_flags |= wear_mask.heat_protection_flags
 
 	return thermal_protection_flags
 
 
-/mob/living/carbon/human/proc/get_flags_heat_protection(temperature) //Temperature is the temperature you're being exposed to.
-	var/thermal_protection_flags = get_flags_heat_protection_flags(temperature)
+/mob/living/carbon/human/proc/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
+	var/thermal_protection_flags = get_heat_protection_flags_flags(temperature)
 	var/thermal_protection = 0
 	if(thermal_protection_flags)
 		if(thermal_protection_flags & HEAD)
@@ -128,42 +128,42 @@
 
 
 
-//See proc/get_flags_heat_protection_flags(temperature) for the description of this proc.
-/mob/living/carbon/human/proc/get_flags_cold_protection_flags(temperature, deficit = 0)
+//See proc/get_heat_protection_flags_flags(temperature) for the description of this proc.
+/mob/living/carbon/human/proc/get_cold_protection_flags_flags(temperature, deficit = 0)
 
 	var/thermal_protection_flags = NONE
 
 	//Handle normal clothing
 	if(head)
 		if(head.min_cold_protection_temperature && head.min_cold_protection_temperature <= temperature)
-			thermal_protection_flags |= head.flags_cold_protection
+			thermal_protection_flags |= head.cold_protection_flags
 
 	if(wear_suit)
 		if(wear_suit.min_cold_protection_temperature && wear_suit.min_cold_protection_temperature <= temperature)
-			thermal_protection_flags |= wear_suit.flags_cold_protection
+			thermal_protection_flags |= wear_suit.cold_protection_flags
 
 	if(w_uniform)
 		if(w_uniform.min_cold_protection_temperature && w_uniform.min_cold_protection_temperature <= temperature)
-			thermal_protection_flags |= w_uniform.flags_cold_protection
+			thermal_protection_flags |= w_uniform.cold_protection_flags
 
 	if(shoes)
 		if(shoes.min_cold_protection_temperature && shoes.min_cold_protection_temperature <= temperature)
-			thermal_protection_flags |= shoes.flags_cold_protection
+			thermal_protection_flags |= shoes.cold_protection_flags
 
 	if(gloves)
 		if(gloves.min_cold_protection_temperature && gloves.min_cold_protection_temperature <= temperature)
-			thermal_protection_flags |= gloves.flags_cold_protection
+			thermal_protection_flags |= gloves.cold_protection_flags
 
 	if(wear_mask)
 		if(wear_mask.min_cold_protection_temperature && wear_mask.min_cold_protection_temperature <= temperature)
-			thermal_protection_flags |= wear_mask.flags_cold_protection
+			thermal_protection_flags |= wear_mask.cold_protection_flags
 
 	return thermal_protection_flags
 
 
-/mob/living/carbon/human/proc/get_flags_cold_protection(temperature)
+/mob/living/carbon/human/proc/get_cold_protection_flags(temperature)
 	temperature = max(temperature, 2.7) //There is an occasional bug where the temperature is miscalculated in ares with a small amount of gas on them, so this is necessary to ensure that that bug does not affect this calculation. Space's temperature is 2.7K and most suits that are intended to protect against any cold, protect down to 2.0K.
-	var/thermal_protection_flags = get_flags_cold_protection_flags(temperature)
+	var/thermal_protection_flags = get_cold_protection_flags_flags(temperature)
 	var/thermal_protection = 0
 
 	if(thermal_protection_flags)

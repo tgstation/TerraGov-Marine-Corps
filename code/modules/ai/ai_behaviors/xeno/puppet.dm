@@ -150,7 +150,7 @@
 ///behavior to deal with obstacles
 /datum/ai_behavior/puppet/deal_with_obstacle(datum/source, direction)
 	var/turf/obstacle_turf = get_step(mob_parent, direction)
-	if(obstacle_turf.flags_atom & AI_BLOCKED)
+	if(obstacle_turf.atom_flags & AI_BLOCKED)
 		return
 	for(var/thing in obstacle_turf.contents)
 		if(istype(thing, /obj/structure/window_frame)) //if its a window, climb it after 2 seconds

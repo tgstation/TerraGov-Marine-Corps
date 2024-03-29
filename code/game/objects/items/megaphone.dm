@@ -9,7 +9,7 @@
 	)
 	item_state = "radio"
 	w_class = WEIGHT_CLASS_SMALL
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	var/spamcheck = 0
 	var/list/voicespan = list(SPAN_COMMAND)
 

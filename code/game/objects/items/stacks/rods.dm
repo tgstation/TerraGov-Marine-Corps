@@ -3,7 +3,7 @@
 	desc = "Some rods. Can be used for building, or something."
 	singular_name = "metal rod"
 	icon_state = "rods"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 9
 	throwforce = 15

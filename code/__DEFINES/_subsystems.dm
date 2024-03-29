@@ -47,7 +47,7 @@
 //type and all subtypes should always call Initialize in New()
 #define INITIALIZE_IMMEDIATE(X) ##X/New(loc, ...){\
 	..();\
-	if(!(flags_atom & INITIALIZED)) {\
+	if(!(atom_flags & INITIALIZED)) {\
 		args[1] = TRUE;\
 		SSatoms.InitAtom(src, FALSE, args);\
 	}\

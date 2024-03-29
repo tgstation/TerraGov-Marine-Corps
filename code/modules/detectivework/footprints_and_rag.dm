@@ -17,7 +17,7 @@
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list(5)
 	volume = 5
-	flags_item = NOBLUDGEON
+	item_flags = NOBLUDGEON
 
 /obj/item/reagent_containers/glass/rag/attack_self(mob/user as mob)
 	return
