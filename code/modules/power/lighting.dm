@@ -209,6 +209,15 @@
 	light_type = /obj/item/light_bulb/tube/large
 	brightness = 12
 
+/obj/machinery/light/floor
+	name = "floor light"
+	base_state = "floortube"
+	icon_state = "floortube1"
+	layer = HOLOPAD_LAYER
+	fitting = "large tube"
+	light_type = /obj/item/light_bulb/tube/large
+	brightness = 12
+
 /obj/machinery/light/built/Initialize(mapload)
 	. = ..()
 	status = LIGHT_EMPTY
