@@ -1847,9 +1847,6 @@
 /obj/machinery/computer/telecomms/server/preset,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
-"cra" = (
-/turf/open/floor/mainship_hull,
-/area/mainship/hull/lower_hull)
 "csh" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -1864,11 +1861,6 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
-"cth" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/space)
 "ctR" = (
 /obj/structure/dropship_equipment/shuttle/sentry_holder,
 /turf/open/floor/mainship/orange{
@@ -2515,14 +2507,6 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/living/chapel)
-"djE" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment/corner{
-	dir = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/living/mechpilotquarters)
 "dkD" = (
 /obj/machinery/door/airlock/mainship/medical/glass/chemistry{
 	dir = 1
@@ -5878,10 +5862,6 @@
 	dir = 8
 	},
 /area/mainship/squads/req)
-"hAf" = (
-/obj/structure/window/framed/mainship/hull,
-/turf/open/floor/mainship_hull,
-/area/space)
 "hCx" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/hexagon,
@@ -5929,13 +5909,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
-"hFL" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/space)
 "hFZ" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating,
@@ -7256,7 +7229,7 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner,
 /turf/open/floor/plating/plating_catwalk,
-/area/space)
+/area/mainship/hull/lower_hull)
 "jsl" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -7401,7 +7374,7 @@
 /obj/effect/ai_node,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/plating_catwalk,
-/area/space)
+/area/mainship/hull/lower_hull)
 "jDL" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -13546,13 +13519,6 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/port_hallway)
-"qSz" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/living/mechpilotquarters)
 "qST" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -15461,9 +15427,6 @@
 /obj/item/stack/tile/plasteel,
 /turf/open/floor/plating,
 /area/mainship/squads/general)
-"tBb" = (
-/turf/closed/wall/mainship/outer,
-/area/space)
 "tBh" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -16430,11 +16393,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/medical_science)
-"uDj" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/living/mechpilotquarters)
 "uDl" = (
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
@@ -16601,9 +16559,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
-"uOd" = (
-/turf/closed/wall/mainship/outer,
-/area/mainship/living/mechpilotquarters)
 "uOe" = (
 /obj/structure/closet/bodybag,
 /turf/open/floor/mainship/mono,
@@ -18575,11 +18530,6 @@
 /obj/item/trash/chips,
 /turf/open/floor/wood,
 /area/mainship/living/cryo_cells)
-"xqu" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating/plating_catwalk,
-/area/space)
 "xqN" = (
 /obj/machinery/suit_storage_unit/carbon_unit,
 /turf/open/floor/mainship/orange{
@@ -19082,9 +19032,6 @@
 	},
 /turf/open/floor/mainship/yellow_cargo,
 /area/mainship/squads/req)
-"xTL" = (
-/turf/open/floor/mainship_hull,
-/area/mainship/living/mechpilotquarters)
 "xTN" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -56295,8 +56242,8 @@ nWT
 nWT
 nWT
 nWT
-tBb
-hFL
+esN
+unX
 vou
 lMf
 scb
@@ -56552,8 +56499,8 @@ qpC
 qpC
 nWT
 nWT
-tBb
-hFL
+esN
+unX
 vou
 qHC
 lhG
@@ -56809,8 +56756,8 @@ mBZ
 mBZ
 hRh
 nWT
-tBb
-hFL
+esN
+unX
 vou
 mFy
 cLc
@@ -57066,8 +57013,8 @@ mBZ
 mBZ
 hRh
 nWT
-tBb
-hFL
+esN
+unX
 vou
 vou
 vou
@@ -57323,18 +57270,18 @@ mBZ
 mBZ
 hRh
 nWT
-tBb
+esN
 jrW
-cth
-xqu
-xqu
-xqu
-xqu
+cbS
+hUz
+hUz
+hUz
+hUz
 jDG
-xqu
-xqu
-xqu
-xqu
+hUz
+hUz
+hUz
+hUz
 hUz
 hUz
 nEM
@@ -57580,25 +57527,25 @@ mBZ
 mBZ
 hRh
 nWT
-tBb
-tBb
-tBb
-tBb
-tBb
-tBb
-tBb
-tBb
-tBb
-tBb
-tBb
-tBb
-tBb
-tBb
-hAf
-hAf
-hAf
-hAf
-tBb
+esN
+esN
+esN
+esN
+esN
+esN
+esN
+esN
+esN
+esN
+esN
+esN
+esN
+esN
+cuG
+cuG
+cuG
+cuG
+esN
 unX
 rKn
 xGl
@@ -57855,7 +57802,7 @@ nWT
 nWT
 nWT
 nWT
-tBb
+esN
 byk
 ycz
 ygV
@@ -58112,7 +58059,7 @@ qpC
 qpC
 qpC
 nWT
-tBb
+esN
 unX
 rKn
 xGl
@@ -58369,20 +58316,20 @@ mBZ
 qVo
 qVo
 nWT
-tBb
+esN
 unX
 rKn
-pdj
-pdj
-pdj
-pdj
-pdj
-pdj
-pdj
-pdj
-pdj
-pdj
-pdj
+rKn
+rKn
+rKn
+rKn
+rKn
+rKn
+rKn
+rKn
+rKn
+rKn
+rKn
 nJG
 bDv
 bDv
@@ -58626,7 +58573,7 @@ qVo
 qVo
 qVo
 nWT
-tBb
+esN
 ssm
 hUz
 hUz
@@ -58637,9 +58584,9 @@ hUz
 hUz
 hUz
 hUz
-uDj
-uDj
-djE
+hUz
+hUz
+pQt
 nJG
 gXs
 bDv
@@ -58883,7 +58830,6 @@ qVo
 qVo
 qVo
 nWT
-tBb
 esN
 esN
 esN
@@ -58894,9 +58840,10 @@ esN
 esN
 esN
 esN
-uOd
-uOd
-qSz
+esN
+esN
+esN
+unX
 nJG
 pgv
 bDv
@@ -59149,11 +59096,11 @@ nWT
 nWT
 nWT
 nWT
-cra
-cra
-xTL
-uOd
-qSz
+nWT
+nWT
+nWT
+esN
+unX
 nJG
 nZI
 lHN
@@ -59406,11 +59353,11 @@ qpC
 qpC
 nWT
 nWT
-cra
-cra
-xTL
-uOd
-qSz
+nWT
+nWT
+nWT
+esN
+unX
 nJG
 nJG
 nJG
@@ -59663,9 +59610,9 @@ qVo
 qVo
 hRh
 nWT
-cra
-cra
-cra
+nWT
+nWT
+nWT
 esN
 unX
 nJG
@@ -59920,9 +59867,9 @@ qVo
 qVo
 hRh
 nWT
-cra
-cra
-cra
+nWT
+nWT
+nWT
 esN
 unX
 nJG
