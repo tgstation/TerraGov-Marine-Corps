@@ -141,10 +141,10 @@
 	if(!welder.tool_use_check(user, 2))
 		return FALSE
 
-	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_EXPERT)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to deconstruct [src]."),
 		span_notice("You fumble around figuring out how to deconstruct [src]."))
-		var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_MASTER - user.skills.getRating(SKILL_ENGINEER))
+		var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_EXPERT - user.skills.getRating(SKILL_ENGINEER))
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return
 
@@ -172,10 +172,10 @@
 		return
 
 	if(isscrewdriver(I) && circuit)
-		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
+		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_EXPERT)
 			user.visible_message(span_notice("[user] fumbles around figuring out how to deconstruct [src]."),
 			span_notice("You fumble around figuring out how to deconstruct [src]."))
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_MASTER - user.skills.getRating(SKILL_ENGINEER) )
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_EXPERT - user.skills.getRating(SKILL_ENGINEER) )
 			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 
