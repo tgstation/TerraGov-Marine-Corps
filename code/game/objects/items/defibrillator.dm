@@ -271,7 +271,7 @@
 		return
 
 	//At this point, the defibrillator is ready to work
-	if(HAS_TRAIT(H, TRAIT_IMMEDIATE_DEFIB)) // this trait ignores user skill for the heal amount
+	if(HAS_TRAIT(H, TRAIT_IMMEDIATE_DEFIB) || SSticker.mode.round_type_flags & MODE_FORCE_IMMEDIATE_DEFIB) // this trait ignores user skill for the heal amount
 		H.setOxyLoss(0)
 		H.updatehealth()
 

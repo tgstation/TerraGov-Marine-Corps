@@ -50,6 +50,8 @@
 #define MODE_ALLOW_XENO_QUICKBUILD (1<<14)
 #define MODE_DISALLOW_RAILGUN (1<<15)
 #define MODE_FORCE_CUSTOMSQUAD_UI (1<<16)
+/// Forces all defibs to act like everyone has the IMMEDIATE_DEFIB trait.
+#define MODE_FORCE_IMMEDIATE_DEFIB (1<<17)
 
 #define MODE_INFESTATION_X_MAJOR "Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR "Marine Major Victory"
