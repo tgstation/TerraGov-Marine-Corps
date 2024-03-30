@@ -149,6 +149,38 @@
 	loadout_item_flags = NONE
 	secondary_ammo_type = /obj/item/ammo_magazine/smg/m25/ap
 
+/datum/loadout_item/suit_store/main_gun/corpsman/carbine
+	name = "AR-18"
+	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
+	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. Uses 10x24mm caseless ammunition."
+	ui_icon = "t18"
+	item_typepath = /obj/item/weapon/gun/rifle/standard_carbine/standard
+
+/datum/loadout_item/suit_store/main_gun/corpsman/carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	. = ..()
+	if(!istype(wearer.back, /obj/item/storage))
+		return ..()
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	if(!istype(wearer.back, /obj/item/storage/backpack/marine/corpsman/satchel))
+		wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/suit_store/main_gun/corpsman/carbine/enhanced
+	name = "AR-18+"
+	desc = "Equipped with mag harness, extended barrel and vertical grip. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
+	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. It uses a mix of standard and AP 10x24mm caseless ammunition."
+	loadout_item_flags = NONE
+	secondary_ammo_type = /obj/item/ammo_magazine/rifle/standard_carbine/ap
+
 /datum/loadout_item/suit_store/main_gun/corpsman/assault_rifle
 	name = "AR-12"
 	desc = "Equipped with mag harness, extended barrel and underbarrel grenade launcher. The AR-12 is the former main weapon of the TGMC before it was superceded by the AR-18 for general issue. \
@@ -164,9 +196,9 @@
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
 	if(!istype(wearer.back, /obj/item/storage/backpack/marine/corpsman/satchel))
 		wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
