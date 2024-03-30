@@ -135,11 +135,12 @@
 	unload_sound = 'sound/weapons/guns/interact/plasma_unload_2.ogg'
 	reload_sound = 'sound/weapons/guns/interact/plasma_reload_1.ogg'
 	force = 35
-	ammo_datum_type = /datum/ammo/energy/plasma/cannon_standard
+	ammo_datum_type = /datum/ammo/energy/plasma/cannon_heavy
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	fire_delay = 2.5 SECONDS
+	fire_delay = 2 SECONDS
 	heat_per_fire = 50
 	rounds_per_shot = 180
+	windup_delay = 0.5 SECONDS
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_cannon/cannon_standard,
 		"Shatter" = /datum/lasrifle/base/plasma_cannon/shatter_blast,

@@ -20,8 +20,17 @@
 /turf/open/floor/mainship/plate/outline
 	icon_state = "test_floor5"
 
+/turf/open/floor/mainship/hexagon
+	icon_state = "hexagon"
+
 /turf/open/floor/mainship/cargo
 	icon_state = "cargo"
+
+/turf/open/floor/mainship/yellow_cargo
+	icon_state = "yellow_cargo"
+
+/turf/open/floor/mainship/yellow_cargo/arrow
+	icon_state = "yellow_cargo_arrow"
 
 /turf/open/floor/mainship/cargo/arrow
 	icon_state = "cargo_arrow"

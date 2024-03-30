@@ -69,11 +69,9 @@
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay)
 "aak" = (
-/obj/machinery/power/fusion_engine{
-	name = "\improper S-52 fusion reactor #2"
-	},
 /obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin,
+/obj/machinery/power/fusion_engine/preset,
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
 "aam" = (
@@ -82,14 +80,6 @@
 "aan" = (
 /turf/closed/wall/mainship/white,
 /area/sulaco/medbay/chemistry)
-"aap" = (
-/obj/machinery/power/fusion_engine{
-	name = "\improper S-52 fusion reactor #3"
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/plating/mainship,
-/area/sulaco/engineering/engine)
 "aar" = (
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/storage/surgical_tray,
@@ -121,13 +111,11 @@
 	},
 /area/sulaco/medbay/chemistry)
 "aat" = (
-/obj/machinery/power/fusion_engine{
-	name = "\improper S-52 fusion reactor #5"
-	},
 /obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/machinery/power/fusion_engine/preset,
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
 "aav" = (
@@ -312,16 +300,6 @@
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/chemistry)
-"abn" = (
-/obj/machinery/power/fusion_engine{
-	name = "\improper S-52 fusion reactor #6"
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating/mainship,
-/area/sulaco/engineering/engine)
 "abo" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/job/medicalofficer,
@@ -3148,14 +3126,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
-"arX" = (
-/obj/machinery/power/fusion_engine{
-	name = "\improper S-52 fusion reactor #1"
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/plating/mainship,
-/area/sulaco/engineering/engine)
 "arY" = (
 /turf/open/floor/prison/red{
 	dir = 8
@@ -4852,6 +4822,9 @@
 /obj/effect/spawner/random/misc/table_lighting,
 /obj/item/weapon/chainofcommand,
 /obj/machinery/camera/autoname,
+/obj/item/clothing/mask/cigarette/pipe{
+	pixel_y = 5
+	},
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
 "aAb" = (
@@ -7916,14 +7889,6 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
-"aSv" = (
-/obj/machinery/power/fusion_engine{
-	name = "\improper S-52 fusion reactor #7"
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/plating/mainship,
-/area/sulaco/engineering/engine)
 "aSx" = (
 /obj/machinery/door/airlock/multi_tile/mainship/research,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -7988,14 +7953,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
-"aSV" = (
-/obj/machinery/power/fusion_engine{
-	name = "\improper S-52 fusion reactor #8"
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/plating/mainship,
-/area/sulaco/engineering/engine)
 "aTb" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/effect/decal/cleanable/dirt,
@@ -8933,14 +8890,6 @@
 /obj/machinery/firealarm,
 /turf/open/floor/prison,
 /area/sulaco/hallway/dropshipprep)
-"baR" = (
-/obj/machinery/power/fusion_engine{
-	name = "\improper S-52 fusion reactor #9"
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/plating/mainship,
-/area/sulaco/engineering/engine)
 "baS" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -9047,7 +8996,7 @@
 /area/sulaco/hallway/dropshipprep)
 "bct" = (
 /obj/structure/cable,
-/obj/machinery/power/smes/buildable/empty,
+/obj/machinery/power/smes/preset,
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
 "bcD" = (
@@ -18084,16 +18033,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
-"mkj" = (
-/obj/machinery/power/fusion_engine{
-	name = "\improper S-52 fusion reactor #4"
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating/mainship,
-/area/sulaco/engineering/engine)
 "mkk" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -19088,16 +19027,6 @@
 /obj/machinery/robotic_cradle,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay)
-"nCb" = (
-/obj/machinery/power/fusion_engine{
-	name = "\improper S-52 fusion reactor #10"
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating/mainship,
-/area/sulaco/engineering/engine)
 "nCl" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/ship_ammo/cas/rocket/keeper,
@@ -19629,16 +19558,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
-"okJ" = (
-/obj/machinery/power/fusion_engine{
-	name = "\improper S-52 fusion reactor #11"
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating/mainship,
-/area/sulaco/engineering/engine)
 "okM" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
@@ -24357,16 +24276,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_1)
-"ubp" = (
-/obj/machinery/power/fusion_engine{
-	name = "\improper S-52 fusion reactor #12"
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating/mainship,
-/area/sulaco/engineering/engine)
 "ubQ" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/mainship,
@@ -76222,13 +76131,13 @@ qrY
 aeq
 tAS
 nIK
-arX
+aak
 aqO
-mkj
+aat
 oQG
-aSv
+aak
 aqO
-nCb
+aat
 xnw
 apl
 apl
@@ -76483,9 +76392,9 @@ aak
 aqO
 aat
 oQG
-aSV
+aak
 aqO
-okJ
+aat
 xnw
 apl
 mDu
@@ -76736,13 +76645,13 @@ mDu
 mDu
 tBB
 nIK
-aap
+aak
 aqO
-abn
+aat
 oQG
-baR
+aak
 aqO
-ubp
+aat
 xnw
 apl
 mDu
