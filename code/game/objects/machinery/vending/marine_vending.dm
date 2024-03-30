@@ -219,7 +219,7 @@
 			/obj/item/toy/deck/kotahi = -1,
 			/obj/item/deployable_floodlight = 5,
 		),
-		"Specalized Ammunition" = list(
+		"Specialized Ammunition" = list(
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle/squashhead = -1,
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle/flak = -1,
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle/depleteduranium = -1,
@@ -439,7 +439,7 @@
 			/obj/item/compass = -1,
 			/obj/item/deployable_floodlight = 5,
 		),
-		"Specalized Ammunition" = list(
+		"Specialized Ammunition" = list(
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle/squashhead = -1,
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle/flak = -1,
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle/depleteduranium = -1,
@@ -701,7 +701,7 @@
 			/obj/item/toy/deck/kotahi = -1,
 			/obj/item/deployable_floodlight = -1,
 		),
-		"Specalized Ammunition" = list(
+		"Specialized Ammunition" = list(
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle/squashhead = -1,
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle/flak = -1,
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle/depleteduranium = -1,
