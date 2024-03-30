@@ -36,7 +36,7 @@
 									"Rfoot" = radial_options[BODY_ZONE_PRECISE_R_FOOT])
 
 	var/datum/limb/affecting = null
-	var/choice = show_radial_menu(doctor, H, radial_options_show, null, 48, null, TRUE)
+	var/choice = show_radial_menu(doctor, H, radial_options_show, null, 48, null, TRUE, null, 30)
 	switch(choice)
 		if("head")
 			affecting = H.get_limb(BODY_ZONE_HEAD)
