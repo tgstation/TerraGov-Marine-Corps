@@ -243,6 +243,16 @@
 	if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating(SKILL_MEDICAL) - 1, 0)) : applied_splint_health*user.skills.getRating(SKILL_MEDICAL), user, M))
 		use(1)
 
+/// Very tough splint, meant mostly for HvH , but i guess ERT's could have it too if someone sees it fit.
+/obj/item/stack/medical/splint/reinforced
+	name = "reinforced medical splints"
+	desc = "Used to stabilize broken bones. Military grade specifications allow it to withstand far more damage before coming apart."
+	singular_name = "reinforced medical splint"
+	icon_state = "reinforced-splint"
+	///How much splint health per medical skill is applied
+	applied_splint_health = 75
+
+
 
 #undef BANDAGE
 #undef SALVE

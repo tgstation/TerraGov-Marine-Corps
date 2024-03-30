@@ -93,7 +93,7 @@
 	name = "Lifesaver bag"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
 	ui_icon = "medkit"
-	item_typepath = /obj/item/storage/belt/lifesaver/quick
+	item_typepath = /obj/item/storage/belt/lifesaver/campaign
 	jobs_supported = list(SQUAD_CORPSMAN)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 

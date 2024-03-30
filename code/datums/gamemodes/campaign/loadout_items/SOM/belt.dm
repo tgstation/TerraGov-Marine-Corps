@@ -94,7 +94,7 @@
 	name = "S17 lifesaver bag"
 	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
 	ui_icon = "medkit"
-	item_typepath = /obj/item/storage/belt/lifesaver/som/quick
+	item_typepath = /obj/item/storage/belt/lifesaver/som/campaign
 	jobs_supported = list(SOM_SQUAD_CORPSMAN)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
