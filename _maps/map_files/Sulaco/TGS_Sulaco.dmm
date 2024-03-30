@@ -7827,8 +7827,8 @@
 "aRS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door_control/mainship/mech{
-	id = "mech_shutters_1";
-	dir = 1
+	dir = 1;
+	id = "mech_shutters_1"
 	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
@@ -9732,6 +9732,7 @@
 "bOG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/apc/mainship,
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "bOX" = (
@@ -15712,10 +15713,10 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "jiY" = (
-/obj/machinery/door/poddoor/mainship/mech{
-	id = "mech_shutters_2"
-	},
 /obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/poddoor/mainship/mech{
+	id = "mech_shutters_3"
+	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "jlB" = (
@@ -15734,8 +15735,6 @@
 "jmy" = (
 /obj/machinery/light/mainship,
 /obj/structure/bed/bunkbed,
-/obj/effect/landmark/start/job/transportofficer,
-/obj/effect/landmark/start/job/transportofficer,
 /turf/open/floor/mainship/black,
 /area/sulaco/mechpilotquarters)
 "jnn" = (
@@ -17436,8 +17435,8 @@
 	name = "Telecomms Window Control"
 	},
 /obj/item/toy/plush/rouny{
-	pixel_y = 9;
-	pixel_x = -1
+	pixel_x = -1;
+	pixel_y = 9
 	},
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
@@ -19803,7 +19802,11 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "ovo" = (
-/turf/open/floor/mainship_hull/gray,
+/obj/machinery/door/poddoor/mainship/mech{
+	id = "mech_shutters_3"
+	},
+/obj/machinery/door/firedoor/mainship,
+/turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "ovJ" = (
 /obj/machinery/holopad{
@@ -20120,6 +20123,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
 	},
+/obj/effect/landmark/start/job/transportofficer,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
 "oNb" = (
@@ -20135,7 +20139,9 @@
 /area/sulaco/medbay)
 "oNf" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship,
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
@@ -21285,7 +21291,7 @@
 /area/sulaco/bridge)
 "qpD" = (
 /obj/machinery/door_control/mainship/mech{
-	id = "mech_shutters_2"
+	id = "mech_shutters_3"
 	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
@@ -21910,7 +21916,6 @@
 /area/sulaco/security)
 "rgO" = (
 /obj/structure/bed/bunkbed,
-/obj/effect/landmark/start/job/mechpilot,
 /obj/effect/landmark/start/job/mechpilot,
 /turf/open/floor/mainship/black{
 	dir = 6
@@ -22965,6 +22970,7 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/hangar/droppod)
 "sqc" = (
+/obj/effect/landmark/start/job/mechpilot,
 /turf/open/floor/mainship/black/corner{
 	dir = 4
 	},
@@ -23189,6 +23195,13 @@
 /obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
+"sDv" = (
+/obj/machinery/door_control/mainship/mech{
+	dir = 4;
+	id = "mech_shutters_3"
+	},
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "sDU" = (
 /obj/machinery/cryopod/right,
 /turf/open/floor/prison/whitegreen/corner{
@@ -26706,6 +26719,7 @@
 /area/sulaco/hangar)
 "xgG" = (
 /obj/machinery/camera/autoname,
+/obj/effect/landmark/start/job/transportofficer,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
 "xhY" = (
@@ -69118,7 +69132,7 @@ bYM
 bYM
 jiY
 jiY
-jiY
+ovo
 bYM
 bYM
 bYM
@@ -69377,7 +69391,7 @@ exf
 exf
 exf
 lBh
-jJa
+sDv
 bYM
 qpD
 mCT
@@ -71176,7 +71190,7 @@ mDu
 mDu
 mDu
 mDu
-ovo
+mDu
 ykt
 aeL
 bWI
@@ -71432,8 +71446,8 @@ nzi
 mDu
 mDu
 mDu
-ovo
-ovo
+mDu
+mDu
 qHb
 aWo
 dpg
@@ -71688,9 +71702,9 @@ aaa
 tZr
 mDu
 mDu
-ovo
-ovo
-ovo
+mDu
+mDu
+mDu
 ykt
 pWS
 ftU
@@ -71945,8 +71959,8 @@ aaa
 aaa
 nzi
 mDu
-ovo
-ovo
+mDu
+mDu
 kOr
 kOr
 wwW
@@ -72202,7 +72216,7 @@ aaa
 aaa
 nzi
 mDu
-ovo
+mDu
 kOr
 kOr
 iIH

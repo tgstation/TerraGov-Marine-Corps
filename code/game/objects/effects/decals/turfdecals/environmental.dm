@@ -56,16 +56,6 @@
 	icon = 'icons/turf/bigred.dmi'
 	icon_state = "sandedge"
 
-/obj/effect/turf_decal/sandedge/autosmooth
-	name = "dirt"
-	desc = "A dirty pile, it looks thinner in certain areas."
-	icon = 'icons/turf/floors/sand-border.dmi'
-	icon_state = "sand-border-icon"
-	base_icon_state = "sand-border"
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_SAND_BORDER)
-	canSmoothWith = list(SMOOTH_GROUP_SAND_BORDER, SMOOTH_GROUP_SAND)
-
 /obj/effect/turf_decal/sandedge/corner
 	icon_state = "sandcorner"
 
