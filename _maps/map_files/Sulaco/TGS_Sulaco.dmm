@@ -12089,12 +12089,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall)
-"eNo" = (
-/obj/item/radio/intercom/general{
-	dir = 8
-	},
-/turf/closed/wall/mainship/gray/outer,
-/area/sulaco/hallway/lower_foreship)
 "eNX" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -12330,9 +12324,6 @@
 /area/sulaco/hallway/evac)
 "fcn" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/machinery/light/mainship{
-	dir = 1
-	},
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/landinglight/tadpole{
 	pixel_y = 4
@@ -15588,6 +15579,15 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"jcV" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "jdD" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -15722,6 +15722,9 @@
 	id = "mech_shutters_2"
 	},
 /obj/machinery/door/firedoor/mainship,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "jlB" = (
@@ -17808,9 +17811,6 @@
 	dir = 1
 	},
 /area/sulaco/medbay/west)
-"lRu" = (
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar/storage)
 "lSf" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -20140,11 +20140,10 @@
 /area/sulaco/medbay)
 "oNf" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship,
-/obj/machinery/camera/autoname{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
-/obj/effect/turf_decal/warning_stripes/thick{
+/obj/machinery/power/apc/mainship{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -23427,6 +23426,16 @@
 	},
 /turf/open/floor/prison/marked,
 /area/sulaco/firingrange)
+"sQQ" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/mainship/mech{
+	id = "mech_shutters_2"
+	},
+/obj/machinery/door/firedoor/mainship,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "sQY" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -24626,6 +24635,10 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
+"uuj" = (
+/obj/machinery/computer/dropship_picker,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "uux" = (
 /obj/machinery/vending/medical/shipside,
 /turf/open/floor/prison,
@@ -25341,17 +25354,6 @@
 	dir = 1
 	},
 /area/sulaco/medbay/storage)
-"vtx" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/machinery/computer/dropship_picker,
-/obj/machinery/landinglight/tadpole{
-	dir = 1;
-	pixel_y = -4
-	},
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "vtA" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "qm_warehouse";
@@ -50109,7 +50111,7 @@ euR
 euR
 euR
 vgl
-eNo
+vgl
 vgl
 vgl
 vgl
@@ -66021,7 +66023,7 @@ aPF
 aPF
 aPF
 aPF
-aPF
+uuj
 aPF
 aPF
 aPF
@@ -66527,7 +66529,7 @@ aaa
 aaa
 nzi
 bFa
-aPF
+aRR
 aPF
 ewe
 aPZ
@@ -67057,7 +67059,7 @@ qqt
 aPF
 aPF
 aPF
-lRu
+aPF
 bYM
 iWz
 tkV
@@ -67310,11 +67312,11 @@ aPZ
 aPZ
 aPZ
 rhc
-vtx
+qqt
 aPF
 xNa
 aPF
-lRu
+aPF
 bYM
 gNn
 aWo
@@ -67571,7 +67573,7 @@ qqt
 aPF
 aPF
 aPF
-lRu
+aPF
 hDn
 pWS
 pWS
@@ -67828,7 +67830,7 @@ qqt
 aPF
 aPF
 aPF
-lRu
+aPF
 bYM
 rpY
 pWS
@@ -68069,7 +68071,7 @@ aaa
 aaa
 nzi
 bFa
-aPF
+aRR
 aPF
 ewe
 aPZ
@@ -68084,7 +68086,7 @@ lMr
 qqt
 aPF
 aPF
-aPF
+gQS
 bYM
 bYM
 rTP
@@ -68849,9 +68851,9 @@ aPF
 aRQ
 sKM
 aPF
-aPF
-aPF
 aRQ
+aPF
+aPF
 aPF
 aPF
 aPF
@@ -69108,8 +69110,8 @@ bFa
 bFa
 kOr
 bYM
-bYM
-bYM
+sQQ
+sQQ
 jiY
 jiY
 jiY
@@ -70651,7 +70653,7 @@ nzi
 kOr
 kOr
 kOr
-ojX
+jcV
 ojX
 oNf
 pUq
