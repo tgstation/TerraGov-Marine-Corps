@@ -38,7 +38,16 @@
 	max_shells = 36 //codex
 	force = 20
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_carbine
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_carbine, /obj/item/ammo_magazine/rifle/standard_carbine/ap)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/standard_carbine,
+		/obj/item/ammo_magazine/rifle/standard_carbine/ap,
+		/obj/item/ammo_magazine/rifle/standard_carbine/squashhead,
+		/obj/item/ammo_magazine/rifle/standard_carbine/flak,
+		/obj/item/ammo_magazine/rifle/standard_carbine/depleteduranium,
+		/obj/item/ammo_magazine/rifle/standard_carbine/incendiary,
+		/obj/item/ammo_magazine/rifle/standard_carbine/cryogenic,
+		/obj/item/ammo_magazine/rifle/standard_carbine/ricochet,
+		/obj/item/ammo_magazine/rifle/standard_carbine/wallpierce,)
 	attachable_allowed = list(
 		/obj/item/attachable/stock/t18stock,
 		/obj/item/attachable/reddot,
@@ -125,7 +134,16 @@
 	max_shells = 50 //codex
 	force = 20
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_assaultrifle
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_assaultrifle, /obj/item/ammo_magazine/rifle/standard_assaultrifle/ap)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle,
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle/ap,
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle/squashhead,
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle/flak,
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle/depleteduranium,
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle/incendiary,
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle/cryogenic,
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle/ricochet,
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle/wallpierce,)
 	attachable_allowed = list(
 		/obj/item/attachable/stock/t12stock,
 		/obj/item/attachable/reddot,
@@ -895,7 +913,15 @@
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/standard_lmg
-	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_lmg)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/standard_lmg,
+		/obj/item/ammo_magazine/standard_lmg/squashhead,
+		/obj/item/ammo_magazine/standard_lmg/flak,
+		/obj/item/ammo_magazine/standard_lmg/depleteduranium,
+		/obj/item/ammo_magazine/standard_lmg/incendiary,
+		/obj/item/ammo_magazine/standard_lmg/cryogenic,
+		/obj/item/ammo_magazine/standard_lmg/ricochet,
+		/obj/item/ammo_magazine/standard_lmg/wallpierce,)
 	attachable_allowed = list(
 		/obj/item/attachable/stock/t42stock,
 		/obj/item/attachable/reddot,

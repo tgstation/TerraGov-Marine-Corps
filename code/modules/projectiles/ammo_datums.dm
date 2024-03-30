@@ -850,6 +850,98 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	damage_falloff = 0.7
 
+/datum/ammo/bullet/rifle/squashhead
+	name = "squashhead rifle bullet"
+	hud_state = "rifle_squashhead"
+	damage = 15
+	penetration = 20
+	sundering = 1
+	damage_falloff = 3
+	shrapnel_chance = 0
+	armor_type = BOMB
+	bullet_color = COLOR_VIVID_YELLOW
+	///shatter effection duration when hitting mobs
+	var/shatter_duration = 3 SECONDS
+
+/datum/ammo/bullet/rifle/squashhead/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+
+	var/mob/living/living_victim = M
+	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
+
+/datum/ammo/bullet/rifle/flak
+	name = "flak rifle bullet"
+	hud_state = "rifle_flak"
+	damage = 5
+	penetration = 10
+	sundering = 0.5
+	bullet_color = COLOR_NAVY
+
+/datum/ammo/bullet/rifle/flak/drop_nade(mob/target)
+	var/aoe_damage = 15 // how much damage mobs take in the radius
+	for(var/mob/living/victim in range(2, target))
+		victim.apply_damage(aoe_damage, BRUTE, null, BULLET, FALSE, FALSE, TRUE, penetration)
+
+	var/mob/living/victim = target
+	new /obj/effect/temp_visual/shockwave(get_turf(victim), 2)
+
+/datum/ammo/bullet/rifle/flak/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+
+/datum/ammo/bullet/rifle/depleteduranium
+	name = "depleted uranium rifle bullet"
+	hud_state = "rifle_du"
+	damage = 17.5
+	penetration = 15
+	sundering = 0
+	bullet_color = COLOR_GREEN
+
+/datum/ammo/bullet/rifle/marineincendiary
+	name = "incendiary rifle bullet"
+	hud_state = "rifle_incendiary"
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
+	damage = 15
+	penetration = 10
+	sundering = 0
+	bullet_color = COLOR_ORANGE
+
+/datum/ammo/bullet/rifle/cryogenic
+	name = "cryogenic rifle bullet"
+	hud_state = "rifle_cryo"
+	damage = 20
+	penetration = 5
+	sundering = 0
+	bullet_color = COLOR_DARK_CYAN
+
+/datum/ammo/bullet/rifle/cryogenic/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, max_range = 12, slowdown = 1)
+
+/datum/ammo/bullet/rifle/ricochet
+	name = "ricochet rifle bullet"
+	hud_state = "rifle_rico"
+	damage = 20
+	penetration = 5
+	bullet_color = COLOR_PURPLE
+
+/datum/ammo/bullet/rifle/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
+	reflect(T, proj, 10)
+
+/datum/ammo/bullet/rifle/wallpierce
+	name = "wall piercing rifle bullet"
+	hud_state = "rifle_wall"
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF
+	damage = 15
+	penetration = 10
+	sundering = 0
+	bullet_color = COLOR_WHITE
+
+/datum/ammo/bullet/rifle/wallpierce/on_hit_obj(obj/O, obj/projectile/P)
+	P.proj_max_range -= 10
+
+/datum/ammo/bullet/rifle/wallpierce/on_hit_turf(turf/T, obj/projectile/P)
+	P.proj_max_range -= 10
+
 /*
 //================================================
 					Shotgun Ammo

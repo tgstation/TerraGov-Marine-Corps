@@ -58,6 +58,55 @@
 	default_ammo = /datum/ammo/bullet/rifle/hv
 	bonus_overlay = "t18_ap"
 
+/obj/item/ammo_magazine/rifle/standard_carbine/squashhead
+	name = "\improper AR-18 Squash Head magazine (10x24mm)"
+	desc = "A 10mm assault carbine magazine, loaded with squash head rounds."
+	icon_state = "t18_squash"
+	default_ammo = /datum/ammo/bullet/rifle/squashhead
+	bonus_overlay = "t18_squash"
+
+/obj/item/ammo_magazine/rifle/standard_carbine/flak
+	name = "\improper AR-18 Flak magazine (10x24mm)"
+	desc = "A 10mm assault carbine magazine, loaded with flak rounds that do damage in a small radius."
+	icon_state = "t18_flak"
+	default_ammo = /datum/ammo/bullet/rifle/flak
+	bonus_overlay = "t18_flak"
+
+/obj/item/ammo_magazine/rifle/standard_carbine/depleteduranium
+	name = "\improper AR-18 Depleted Uranium magazine (10x24mm)"
+	desc = "A 10mm assault carbine magazine, loaded with depleted uranium rounds that excel at armor penetration."
+	icon_state = "t18_du"
+	default_ammo = /datum/ammo/bullet/rifle/depleteduranium
+	bonus_overlay = "t18_du"
+
+/obj/item/ammo_magazine/rifle/standard_carbine/incendiary
+	name = "\improper AR-18 Incendiary magazine (10x24mm)"
+	desc = "A 10mm assault carbine magazine, loaded with incendiary rounds that light targets ablaze."
+	icon_state = "t18_incen"
+	default_ammo = /datum/ammo/bullet/rifle/marineincendiary
+	bonus_overlay = "t18_incen"
+
+/obj/item/ammo_magazine/rifle/standard_carbine/cryogenic
+	name = "\improper AR-18 Cryogenic magazine (10x24mm)"
+	desc = "A 10mm assault carbine magazine, loaded with cryogenic rounds that slow targets."
+	icon_state = "t18_cryo"
+	default_ammo = /datum/ammo/bullet/rifle/cryogenic
+	bonus_overlay = "t18_cryo"
+
+/obj/item/ammo_magazine/rifle/standard_carbine/ricochet
+	name = "\improper AR-18 Ricochet magazine (10x24mm)"
+	desc = "A 10mm assault carbine magazine, loaded with ricochet rounds that bounce off of walls."
+	icon_state = "t18_rico"
+	default_ammo = /datum/ammo/bullet/rifle/ricochet
+	bonus_overlay = "t18_rico"
+
+/obj/item/ammo_magazine/rifle/standard_carbine/wallpierce
+	name = "\improper AR-18 Wall Piercing magazine (10x24mm)"
+	desc = "A 10mm assault carbine magazine, loaded with wall piercing rounds that go through solid surfaces."
+	icon_state = "t18_wall"
+	default_ammo = /datum/ammo/bullet/rifle/wallpierce
+	bonus_overlay = "t18_wall"
+
 //-------------------------------------------------------
 //T12 Assault Rifle
 
@@ -77,6 +126,55 @@
 	icon_state = "t12_ap"
 	default_ammo = /datum/ammo/bullet/rifle/hv
 	bonus_overlay = "t12_ap"
+
+/obj/item/ammo_magazine/rifle/standard_assaultrifle/squashhead
+	name = "\improper AR-12 Squash Head magazine (10x24mm)"
+	desc = "A 10mm assault carbine magazine, loaded with squash head rounds."
+	icon_state = "t12_squash"
+	default_ammo = /datum/ammo/bullet/rifle/squashhead
+	bonus_overlay = "t12_squash"
+
+/obj/item/ammo_magazine/rifle/standard_assaultrifle/flak
+	name = "\improper AR-12 Flak magazine (10x24mm)"
+	desc = "A 10mm assault carbine magazine, loaded with flak rounds that do damage in a small radius."
+	icon_state = "t12_flak"
+	default_ammo = /datum/ammo/bullet/rifle/flak
+	bonus_overlay = "t12_flak"
+
+/obj/item/ammo_magazine/rifle/standard_assaultrifle/depleteduranium
+	name = "\improper AR-12 Depleted Uranium magazine (10x24mm)"
+	desc = "A 10mm assault carbine magazine, loaded with depleted uranium rounds that excel at armor penetration."
+	icon_state = "t12_du"
+	default_ammo = /datum/ammo/bullet/rifle/depleteduranium
+	bonus_overlay = "t12_du"
+
+/obj/item/ammo_magazine/rifle/standard_assaultrifle/incendiary
+	name = "\improper AR-12 Incendiary magazine (10x24mm)"
+	desc = "A 10mm assault carbine magazine, loaded with incendiary rounds that light targets ablaze."
+	icon_state = "t12_incen"
+	default_ammo = /datum/ammo/bullet/rifle/marineincendiary
+	bonus_overlay = "t12_incen"
+
+/obj/item/ammo_magazine/rifle/standard_assaultrifle/cryogenic
+	name = "\improper AR-12 Cryogenic magazine (10x24mm)"
+	desc = "A 10mm assault carbine magazine, loaded with cryogenic rounds that slow targets."
+	icon_state = "t12_cryo"
+	default_ammo = /datum/ammo/bullet/rifle/cryogenic
+	bonus_overlay = "t12_cryo"
+
+/obj/item/ammo_magazine/rifle/standard_assaultrifle/ricochet
+	name = "\improper AR-12 Ricochet magazine (10x24mm)"
+	desc = "A 10mm assault carbine magazine, loaded with ricochet rounds that bounce off of walls."
+	icon_state = "t12_rico"
+	default_ammo = /datum/ammo/bullet/rifle/ricochet
+	bonus_overlay = "t12_rico"
+
+/obj/item/ammo_magazine/rifle/standard_assaultrifle/wallpierce
+	name = "\improper AR-12 Wall Pierce magazine (10x24mm)"
+	desc = "A 10mm assault carbine magazine, loaded with wall piercing rounds that go through solid surfaces."
+	icon_state = "t12_wall"
+	default_ammo = /datum/ammo/bullet/rifle/wallpierce
+	bonus_overlay = "t12_wall"
 
 //-------------------------------------------------------
 //T37 DMR
@@ -236,6 +334,55 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 120
+
+/obj/item/ammo_magazine/standard_lmg/squashhead
+	name = "\improper MG-42 Squash Head drum magazine (10x24mm)"
+	desc = "A drum magazine for the MG-42 light machine gun, loaded with squash head rounds."
+	icon_state = "t42_squash"
+	default_ammo = /datum/ammo/bullet/rifle/squashhead
+	bonus_overlay = "t42_squash"
+
+/obj/item/ammo_magazine/standard_lmg/flak
+	name = "\improper MG-42 Flak drum magazine (10x24mm)"
+	desc = "A drum magazine for the MG-42 light machine gun, loaded with flak rounds that do damage in a small radius."
+	icon_state = "t42_flak"
+	default_ammo = /datum/ammo/bullet/rifle/flak
+	bonus_overlay = "t42_flak"
+
+/obj/item/ammo_magazine/standard_lmg/depleteduranium
+	name = "\improper MG-42 Depleted Uranium drum magazine (10x24mm)"
+	desc = "A drum magazine for the MG-42 light machine gun, loaded with depleted uranium rounds that excel at armor penetration."
+	icon_state = "t42_du"
+	default_ammo = /datum/ammo/bullet/rifle/depleteduranium
+	bonus_overlay = "t42_du"
+
+/obj/item/ammo_magazine/standard_lmg/incendiary
+	name = "\improper MG-42 Incendiary drum magazine (10x24mm)"
+	desc = "A drum magazine for the MG-42 light machine gun, loaded with incendiary rounds that light targets ablaze."
+	icon_state = "t42_incen"
+	default_ammo = /datum/ammo/bullet/rifle/marineincendiary
+	bonus_overlay = "t42_incen"
+
+/obj/item/ammo_magazine/standard_lmg/cryogenic
+	name = "\improper MG-42 Cryogenic drum magazine (10x24mm)"
+	desc = "A drum magazine for the MG-42 light machine gun, loaded with cryogenic rounds that slow targets."
+	icon_state = "t42_cryo"
+	default_ammo = /datum/ammo/bullet/rifle/cryogenic
+	bonus_overlay = "t42_cryo"
+
+/obj/item/ammo_magazine/standard_lmg/ricochet
+	name = "\improper MG-42 Ricochet drum magazine (10x24mm)"
+	desc = "A drum magazine for the MG-42 light machine gun, loaded with ricochet rounds that bounce off of walls."
+	icon_state = "t42_rico"
+	default_ammo = /datum/ammo/bullet/rifle/ricochet
+	bonus_overlay = "t42_rico"
+
+/obj/item/ammo_magazine/standard_lmg/wallpierce
+	name = "\improper MG-42 Wall Pierce drum magazine (10x24mm)"
+	desc = "A drum magazine for the MG-42 light machine gun, loaded with wall piercing rounds that go through solid surfaces."
+	icon_state = "t42_wall"
+	default_ammo = /datum/ammo/bullet/rifle/wallpierce
+	bonus_overlay = "t42_wall"
 
 //-------------------------------------------------------
 //MG-60 General Purpose Machine Gun
