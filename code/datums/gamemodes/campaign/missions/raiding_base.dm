@@ -166,7 +166,7 @@
 	deltimer(game_timer) //stops the game from ending if it comes down to the wire
 	addtimer(CALLBACK(src, PROC_REF(beacon_effect), beacon, beacon.loc), activation_delay)
 
-///Makes the bang
+///Handles the actual detonation effects
 /datum/campaign_mission/raiding_base/proc/beacon_effect(obj/structure/campaign_objective/destruction_objective/bunker_buster/beacon, turf/location)
 	ob_called = TRUE
 	//We handle this here instead of the beacon structure because it could be destroyed before this triggers

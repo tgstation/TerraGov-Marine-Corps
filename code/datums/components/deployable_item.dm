@@ -15,8 +15,7 @@
 	deploy_type = _deploy_type
 	deploy_time = _deploy_time
 	undeploy_time = _undeploy_time
-	if(_deploy_check_callback)
-		deploy_check_callback = _deploy_check_callback
+	deploy_check_callback = _deploy_check_callback
 
 	var/obj/item/attached_item = parent
 	if(CHECK_BITFIELD(attached_item.item_flags, DEPLOY_ON_INITIALIZE))
