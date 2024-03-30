@@ -513,10 +513,6 @@
 "kk" = (
 /turf/open/floor/plating/ground/mars,
 /area/corsat/sigma/biodome)
-"ko" = (
-/obj/machinery/door/airlock/mainship/maint,
-/turf/closed/wall/r_wall/unmeltable,
-/area/corsat/sigma/biodome)
 "kw" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/corsatstraight/red{
@@ -3765,7 +3761,7 @@ jn
 jn
 FW
 TV
-ko
+RY
 HG
 TV
 to

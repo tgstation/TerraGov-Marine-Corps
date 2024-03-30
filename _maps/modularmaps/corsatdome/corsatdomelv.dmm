@@ -383,11 +383,6 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass/weedable,
 /area/corsat/theta/biodome)
-"dH" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor/grayscale/white,
-/area/corsat/theta/biodome/complex)
 "dK" = (
 /obj/machinery/smartfridge,
 /obj/effect/turf_decal/tile/corsatsemi/lightpurple{
@@ -1256,10 +1251,6 @@
 	},
 /obj/effect/ai_node,
 /turf/open/ground/grass/weedable,
-/area/corsat/theta/biodome)
-"om" = (
-/obj/machinery/door/airlock/mainship/maint,
-/turf/closed/wall/r_wall/unmeltable,
 /area/corsat/theta/biodome)
 "on" = (
 /obj/structure/flora/jungle/vines,
@@ -5435,7 +5426,7 @@ zV
 xb
 xb
 kU
-om
+gh
 gf
 kU
 Su
@@ -7308,7 +7299,7 @@ gD
 jH
 jJ
 sU
-dH
+sU
 sU
 sU
 AF

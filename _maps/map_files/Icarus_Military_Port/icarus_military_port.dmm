@@ -3967,7 +3967,6 @@
 /area/icarus/interior/dorms)
 "fEk" = (
 /obj/structure/dropship_piece/two/cockpit/right,
-/obj/structure/lattice,
 /obj/structure/monorail{
 	dir = 5
 	},
@@ -13570,10 +13569,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/icarus/interior/cargoholdingtwo)
-"rSZ" = (
-/obj/structure/window/framed/mainship/canterbury,
-/turf/closed/wall/mainship,
-/area/icarus/interior/library)
 "rTK" = (
 /obj/structure/closet/secure_closet/medical3,
 /obj/machinery/light{
@@ -18486,10 +18481,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/dorms)
-"ylw" = (
-/obj/structure/window/framed/mainship/canterbury,
-/turf/closed/wall/mainship,
-/area/icarus/interior/shipbaytwo)
 "ylB" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -34517,7 +34508,7 @@ xxN
 tFL
 xxN
 xxN
-rSZ
+jVq
 bIY
 nLy
 cXK
@@ -34721,7 +34712,7 @@ xxN
 tFL
 xxN
 xxN
-rSZ
+jVq
 bIY
 nLy
 nLy
@@ -34925,7 +34916,7 @@ ups
 tFL
 xxN
 xxN
-rSZ
+jVq
 cdX
 sDz
 nLy
@@ -35532,10 +35523,10 @@ xaG
 xaG
 sax
 xaG
-asz
+jVq
 ibC
 qmZ
-asz
+jVq
 xSu
 xSu
 xSu
@@ -51037,7 +51028,7 @@ ohx
 oOU
 ggS
 wDO
-pMK
+viP
 kZU
 oeT
 wlk
@@ -51241,7 +51232,7 @@ ohN
 oOU
 pdh
 wDO
-ylw
+viP
 kZU
 oeT
 wlk

@@ -9,7 +9,7 @@
 "ag" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/effect/ai_node,
-/turf/closed/wall/r_wall/unmeltable,
+/turf/open/floor/dark2,
 /area/corsat/gamma/biodome)
 "aj" = (
 /obj/machinery/atmospherics/pipe/manifold/green{
@@ -2333,7 +2333,7 @@
 /area/corsat/gamma/airlock/control)
 "AD" = (
 /obj/machinery/door/airlock/mainship/research/glass{
-	name = "Subject den"
+	name = "Subject Den"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4

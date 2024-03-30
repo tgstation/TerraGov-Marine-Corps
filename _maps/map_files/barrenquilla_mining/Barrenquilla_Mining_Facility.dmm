@@ -690,10 +690,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/barren/civilian/botany)
-"el" = (
-/obj/structure/cable,
-/turf/open/lavaland/basalt,
-/area/barren/outside/n)
 "em" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor/marking,
@@ -758,10 +754,6 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/dark,
 /area/barren/cave/lz2)
-"eE" = (
-/obj/structure/cable,
-/turf/open/floor/tile/hydro,
-/area/barren/civilian/botany)
 "eF" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/lavaland/basalt,
@@ -1292,11 +1284,6 @@
 /obj/effect/decal/cleanable/ash,
 /turf/open/floor/grimy,
 /area/barren/civilian/workdorm)
-"hB" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/lavaland/basalt,
-/area/barren/outside/c)
 "hC" = (
 /obj/effect/decal/remains/human,
 /turf/open/lavaland/basalt,
@@ -1852,10 +1839,6 @@
 	dir = 1
 	},
 /area/shuttle/drop1/lz1)
-"kN" = (
-/obj/structure/cable,
-/turf/open/lavaland/basalt,
-/area/barren/outside/e)
 "kO" = (
 /obj/machinery/light{
 	dir = 1
@@ -2015,10 +1998,6 @@
 /obj/structure/barricade/guardrail,
 /turf/open/lavaland/basalt,
 /area/barren/outside/c)
-"lI" = (
-/obj/structure/cable,
-/turf/open/lavaland/basalt,
-/area/barren/outside/c)
 "lJ" = (
 /obj/structure/table,
 /turf/open/floor/tile/dark2,
@@ -2145,10 +2124,6 @@
 	},
 /turf/open/lavaland/basalt/glowing,
 /area/barren/outside/w)
-"mq" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/barren/cave/lz2)
 "mr" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/ai_node,
@@ -4489,10 +4464,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/red,
 /area/barren/security)
-"Ah" = (
-/obj/structure/cable,
-/turf/open/floor/prison/sterilewhite,
-/area/barren/medical/research)
 "Ai" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/colony/research{
@@ -4627,10 +4598,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean/two,
 /area/barren/security)
-"Bd" = (
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/barren/outside/c)
 "Bf" = (
 /obj/machinery/light{
 	dir = 1
@@ -4770,12 +4737,6 @@
 "BR" = (
 /turf/open/floor/vault,
 /area/prison/laundry)
-"BT" = (
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/ai_node,
-/turf/open/floor,
-/area/barren/civilian)
 "BU" = (
 /obj/machinery/door/airlock/colony/medical,
 /obj/effect/decal/cleanable/dirt,
@@ -5654,10 +5615,6 @@
 /obj/effect/landmark/corpsespawner/pmc,
 /turf/open/lavaland/basalt,
 /area/barren/outside/c)
-"Hm" = (
-/obj/structure/cable,
-/turf/open/lavaland/basalt,
-/area/barren/cave/south)
 "Ho" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /obj/effect/landmark/start/job/xenomorph,
@@ -5742,10 +5699,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/dmg1,
 /area/barren/outside/c)
-"HN" = (
-/obj/structure/cable,
-/turf/open/floor,
-/area/barren/cave/lz1)
 "HO" = (
 /obj/structure/table/mainship,
 /obj/item/storage/belt/marine,
@@ -5835,13 +5788,6 @@
 	name = "medical"
 	},
 /area/barren/medical)
-"Ir" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 2
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/barren/cave/lz1)
 "It" = (
 /obj/effect/turf_decal/woodsiding{
 	dir = 9
@@ -7373,10 +7319,6 @@
 	dir = 8
 	},
 /area/shuttle/drop1/lz1)
-"QZ" = (
-/obj/structure/cable,
-/turf/open/floor,
-/area/barren/civilian)
 "Ra" = (
 /obj/structure/cable,
 /turf/open/floor/grimy,
@@ -12299,7 +12241,7 @@ Gy
 Gy
 Gy
 Gy
-mq
+Gy
 Gy
 Gy
 Gy
@@ -17782,7 +17724,7 @@ tO
 tO
 tO
 tO
-el
+Lk
 Lk
 Lk
 tO
@@ -18597,7 +18539,7 @@ Mw
 Mw
 Mw
 Mw
-el
+Lk
 Lk
 Lk
 tO
@@ -18928,7 +18870,7 @@ Mw
 Mw
 pq
 Lk
-el
+Lk
 tO
 tO
 WP
@@ -19308,7 +19250,7 @@ Fo
 Mw
 Mw
 Mw
-lI
+zY
 Fo
 Fo
 Fo
@@ -19470,9 +19412,9 @@ Fo
 Mw
 Mw
 Mw
-lI
-lI
-lI
+zY
+zY
+zY
 bG
 Fo
 Fo
@@ -19571,7 +19513,7 @@ Mw
 Mw
 Mw
 tO
-el
+Lk
 Lk
 Lk
 tO
@@ -19634,7 +19576,7 @@ Mw
 Mw
 Mw
 RQ
-lI
+zY
 Ct
 Fo
 Fo
@@ -19975,11 +19917,11 @@ pe
 Mb
 pe
 Mb
-Hm
+Zm
 Kr
-Ah
-Ah
-Ah
+FZ
+FZ
+FZ
 Ai
 FZ
 NC
@@ -20249,7 +20191,7 @@ Fo
 mb
 Fo
 Fo
-lI
+zY
 tK
 tK
 tK
@@ -20292,12 +20234,12 @@ Mw
 Mw
 Mw
 Zm
-Hm
+Zm
 ft
-Hm
-Hm
-Hm
-Hm
+Zm
+Zm
+Zm
+Zm
 Zm
 Mw
 Tp
@@ -20411,7 +20353,7 @@ Fo
 Fo
 Fo
 Fo
-lI
+zY
 Fo
 Mw
 Mw
@@ -20453,7 +20395,7 @@ Mw
 Mw
 Mw
 Fo
-Hm
+Zm
 Mb
 Mb
 Mb
@@ -20573,8 +20515,8 @@ Fo
 Fo
 Fo
 Fo
-lI
-lI
+zY
+zY
 Fo
 Mw
 Mw
@@ -20614,8 +20556,8 @@ Mw
 Mw
 Mw
 Fo
-lI
-Hm
+zY
+Zm
 Mb
 Mb
 Mb
@@ -20736,7 +20678,7 @@ Fo
 Fo
 bG
 Fo
-lI
+zY
 Fo
 Mw
 Mw
@@ -20772,11 +20714,11 @@ PQ
 BP
 Mw
 zY
-lI
+zY
 aj
-lI
-lI
-lI
+zY
+zY
+zY
 Mb
 Mb
 Ja
@@ -20898,7 +20840,7 @@ Fo
 Fo
 Fo
 mb
-lI
+zY
 Fo
 Fo
 Fo
@@ -20931,9 +20873,9 @@ PI
 lb
 lb
 yV
-Bd
+Ii
 gp
-hB
+rJ
 Fo
 PT
 Fo
@@ -21060,7 +21002,7 @@ Mw
 Fo
 Fo
 Fo
-lI
+zY
 Fo
 mb
 bG
@@ -21222,7 +21164,7 @@ Mw
 Mw
 bG
 Fo
-lI
+zY
 Fo
 bG
 HJ
@@ -21384,8 +21326,8 @@ Mw
 Mw
 Mw
 Mw
-lI
-lI
+zY
+zY
 Fo
 Fo
 HJ
@@ -21547,7 +21489,7 @@ Mw
 Mw
 Mw
 Mw
-lI
+zY
 Ey
 LK
 Fo
@@ -21708,7 +21650,7 @@ JB
 Mw
 Mw
 Mw
-lI
+zY
 FF
 sW
 mb
@@ -21869,8 +21811,8 @@ BN
 SF
 kd
 Mw
-lI
-lI
+zY
+zY
 Fo
 sW
 Fo
@@ -22031,7 +21973,7 @@ vN
 ma
 Mw
 Fo
-lI
+zY
 Fo
 Fo
 uU
@@ -22193,7 +22135,7 @@ Kk
 Kk
 Fo
 Fo
-lI
+zY
 Fo
 Fo
 Fo
@@ -22355,7 +22297,7 @@ Fo
 Fo
 Fo
 Fo
-lI
+zY
 Fo
 Fo
 Fo
@@ -22386,11 +22328,11 @@ PQ
 PQ
 Vt
 yJ
-lI
-lI
-lI
-lI
-lI
+zY
+zY
+zY
+zY
+zY
 Fo
 Fo
 Fo
@@ -22517,7 +22459,7 @@ Fo
 Fo
 mb
 Fo
-lI
+zY
 mb
 mb
 Fo
@@ -22684,8 +22626,8 @@ Fo
 Fo
 bG
 Fo
-lI
-lI
+zY
+zY
 gC
 gC
 Jr
@@ -22842,10 +22784,10 @@ Fo
 Fo
 Fo
 zY
-lI
-lI
-lI
-lI
+zY
+zY
+zY
+zY
 iF
 Fo
 Fo
@@ -23003,7 +22945,7 @@ lk
 Fo
 mb
 Fo
-lI
+zY
 Fo
 Fo
 bG
@@ -23165,7 +23107,7 @@ Mw
 Fo
 Fo
 Fo
-lI
+zY
 Fo
 sW
 Fo
@@ -23327,7 +23269,7 @@ Mw
 Mw
 Fo
 Fo
-lI
+zY
 Fo
 sW
 Fo
@@ -23489,7 +23431,7 @@ Mw
 Mw
 Mw
 Mw
-lI
+zY
 Fo
 Ut
 Fo
@@ -23651,7 +23593,7 @@ Mw
 Fo
 Fo
 Fo
-lI
+zY
 Fo
 sW
 Fo
@@ -23813,7 +23755,7 @@ Mw
 Fo
 Fo
 mb
-lI
+zY
 Fo
 Fo
 Fo
@@ -23975,7 +23917,7 @@ Fo
 mb
 Fo
 Fo
-lI
+zY
 Fo
 Fo
 Fo
@@ -24117,7 +24059,7 @@ OG
 OG
 aN
 OG
-BT
+JV
 le
 yz
 pf
@@ -24137,7 +24079,7 @@ yI
 Fo
 Fo
 Fo
-lI
+zY
 Fo
 Fo
 Fo
@@ -24290,15 +24232,15 @@ tO
 tO
 Mw
 Mw
-lI
+zY
 iF
-lI
-lI
-lI
-lI
-lI
-lI
-lI
+zY
+zY
+zY
+zY
+zY
+zY
+zY
 rJ
 mb
 Fo
@@ -24461,7 +24403,7 @@ Fo
 Fo
 Fo
 bG
-lI
+zY
 Fo
 Xe
 Fo
@@ -24504,15 +24446,15 @@ Fo
 Fo
 Fo
 bG
-Hm
+Zm
 Mb
 Mb
 Mb
 Mb
-Hm
-Hm
-Hm
-Hm
+Zm
+Zm
+Zm
+Zm
 uo
 Zm
 Mb
@@ -24614,7 +24556,7 @@ tO
 tO
 Fo
 Fo
-lI
+zY
 Fo
 Fo
 Fo
@@ -24623,10 +24565,10 @@ Mw
 Fo
 Fo
 Fo
-lI
-lI
-lI
-lI
+zY
+zY
+zY
+zY
 Fo
 Fo
 Fo
@@ -24660,13 +24602,13 @@ rl
 uE
 RQ
 Fo
-lI
-lI
-lI
-lI
-lI
-lI
-Hm
+zY
+zY
+zY
+zY
+zY
+zY
+Zm
 Mb
 Mb
 Mb
@@ -24677,11 +24619,11 @@ Mb
 Mb
 Mb
 Zm
-Hm
+Zm
 ft
-Hm
-Hm
-Hm
+Zm
+Zm
+Zm
 Mb
 Mb
 Mb
@@ -24821,8 +24763,8 @@ BP
 BP
 HM
 Xa
-lI
-lI
+zY
+zY
 Fo
 Fo
 Fo
@@ -24844,7 +24786,7 @@ Mb
 Mb
 Mb
 uo
-Hm
+Zm
 Zm
 Mb
 Mb
@@ -24938,7 +24880,7 @@ Mw
 WP
 mb
 Fo
-lI
+zY
 Fo
 Mw
 Mw
@@ -24970,9 +24912,9 @@ Fo
 Fo
 Fo
 SP
-lI
-lI
-lI
+zY
+zY
+zY
 aj
 BP
 BP
@@ -25007,7 +24949,7 @@ Mw
 Mb
 Mb
 pe
-Hm
+Zm
 Mb
 Mb
 Mw
@@ -25131,8 +25073,8 @@ Mw
 Fo
 IP
 Fo
-lI
-lI
+zY
+zY
 Fo
 Fo
 Mw
@@ -25169,7 +25111,7 @@ Mw
 Mw
 Mb
 Mb
-Hm
+Zm
 Mw
 Mw
 Mw
@@ -25253,7 +25195,7 @@ OG
 YK
 JV
 rX
-eE
+GD
 Nv
 Nv
 Je
@@ -25262,7 +25204,7 @@ tO
 Mw
 Fo
 Fo
-lI
+zY
 Fo
 Fo
 ZF
@@ -25293,7 +25235,7 @@ eb
 Fo
 Fo
 Fo
-lI
+zY
 Fo
 Fo
 Fo
@@ -25424,7 +25366,7 @@ tO
 tO
 Fo
 Fo
-lI
+zY
 Fo
 Fo
 ZF
@@ -25455,7 +25397,7 @@ eb
 Fo
 Fo
 yI
-lI
+zY
 Fo
 mb
 Fo
@@ -25493,7 +25435,7 @@ Mw
 Mw
 Mb
 Mb
-Hm
+Zm
 Mb
 Mw
 Mw
@@ -25586,7 +25528,7 @@ tO
 tO
 mb
 Fo
-lI
+zY
 Fo
 Mw
 ZF
@@ -25617,7 +25559,7 @@ eb
 Fo
 BZ
 Fo
-lI
+zY
 bG
 Fo
 Fo
@@ -25655,7 +25597,7 @@ Mb
 Mb
 Mb
 Mb
-Hm
+Zm
 Mb
 Mw
 Mw
@@ -25748,7 +25690,7 @@ Mw
 tO
 Fo
 Fo
-lI
+zY
 Fo
 Mw
 ZF
@@ -25779,7 +25721,7 @@ Fo
 Fo
 Fo
 Fo
-lI
+zY
 Fo
 Fo
 mb
@@ -25817,7 +25759,7 @@ Mb
 Mb
 jp
 Mb
-Hm
+Zm
 Mb
 Mi
 Mw
@@ -25893,7 +25835,7 @@ BR
 BR
 FS
 rX
-QZ
+RJ
 OG
 Lf
 vT
@@ -25910,7 +25852,7 @@ Mw
 tO
 mb
 Fo
-lI
+zY
 Fo
 Mw
 ZF
@@ -25940,8 +25882,8 @@ Yr
 Fo
 Fo
 mb
-lI
-lI
+zY
+zY
 Fo
 Fo
 Fo
@@ -25979,7 +25921,7 @@ Ja
 Mb
 Mb
 Mb
-Hm
+Zm
 Mb
 Mb
 Mw
@@ -26102,7 +26044,7 @@ Yr
 RQ
 Fo
 Fo
-lI
+zY
 Fo
 Fo
 IP
@@ -26217,13 +26159,13 @@ BR
 BR
 zm
 sj
-QZ
 RJ
 RJ
-QZ
+RJ
+RJ
 RJ
 fh
-QZ
+RJ
 vL
 Ly
 Uk
@@ -26233,8 +26175,8 @@ Lk
 Lk
 Lk
 iF
-lI
-lI
+zY
+zY
 ZF
 ZF
 ZF
@@ -26264,7 +26206,7 @@ On
 eb
 mb
 Fo
-lI
+zY
 Fo
 Fo
 Fo
@@ -26303,7 +26245,7 @@ Mb
 Mb
 Mb
 Mb
-Hm
+Zm
 Mb
 Mb
 Mb
@@ -26425,8 +26367,8 @@ Yr
 On
 eb
 Fo
-lI
-lI
+zY
+zY
 Fo
 mb
 Fo
@@ -26465,7 +26407,7 @@ Mb
 Mb
 Mb
 Mb
-Hm
+Zm
 Mb
 Mb
 Mb
@@ -26587,7 +26529,7 @@ Yr
 On
 eb
 Fo
-lI
+zY
 Fo
 Ia
 Fo
@@ -26789,10 +26731,10 @@ Mb
 jp
 Mb
 Mb
-Hm
+Zm
 RF
-Hm
-Hm
+Zm
+Zm
 KV
 Lz
 Lz
@@ -26911,7 +26853,7 @@ Mw
 Mw
 Mw
 Mw
-lI
+zY
 Fo
 mb
 Fo
@@ -27073,7 +27015,7 @@ Mw
 Mw
 Mw
 Mw
-lI
+zY
 Fo
 Fo
 Fo
@@ -27366,7 +27308,7 @@ tO
 Lk
 Lk
 Lk
-lI
+zY
 WQ
 wB
 wB
@@ -27397,7 +27339,7 @@ pw
 Mw
 Mw
 Fo
-lI
+zY
 rY
 Fo
 Mw
@@ -27721,7 +27663,7 @@ On
 Mw
 Mw
 Ia
-lI
+zY
 RQ
 Mw
 Mw
@@ -28409,7 +28351,7 @@ Mw
 Mb
 jp
 Mb
-An
+Mw
 An
 Mb
 Mb
@@ -28692,7 +28634,7 @@ Fo
 Fo
 Fo
 lH
-lI
+zY
 Fo
 lH
 Yr
@@ -28854,7 +28796,7 @@ Fo
 Fo
 Fo
 Mw
-lI
+zY
 mb
 lH
 vN
@@ -29016,7 +28958,7 @@ Fo
 Mw
 Mw
 Mw
-lI
+zY
 Fo
 Fo
 Mw
@@ -29178,7 +29120,7 @@ Mw
 Mw
 Mw
 Mw
-lI
+zY
 sJ
 Fo
 Mw
@@ -29340,7 +29282,7 @@ Mw
 Mw
 Mw
 mb
-lI
+zY
 Fo
 Fo
 Mw
@@ -29502,7 +29444,7 @@ Mw
 Mw
 Mw
 Fo
-lI
+zY
 Fo
 Fo
 Mw
@@ -29664,7 +29606,7 @@ Mw
 Mw
 Mw
 Fo
-lI
+zY
 mb
 Fo
 Mw
@@ -29988,7 +29930,7 @@ OY
 OY
 OY
 Fo
-lI
+zY
 Fo
 Fo
 Fo
@@ -35132,11 +35074,11 @@ ZL
 bY
 bY
 bY
-HN
+Zd
 PG
 Ek
 HU
-Ir
+PG
 BI
 go
 mC
@@ -35306,7 +35248,7 @@ gU
 gU
 Wn
 zD
-kN
+zD
 sZ
 zD
 zD
