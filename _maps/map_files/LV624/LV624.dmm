@@ -3919,7 +3919,7 @@
 /area/lv624/lazarus/medbay)
 "awp" = (
 /obj/structure/table,
-/obj/item/clothing/suit/apron/overalls,
+/obj/item/clothing/suit/storage/apron/overalls,
 /obj/item/clothing/under/colonist,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
@@ -4928,7 +4928,7 @@
 /area/lv624/lazarus/hydroponics)
 "aAR" = (
 /obj/structure/table,
-/obj/item/clothing/suit/apron,
+/obj/item/clothing/suit/storage/apron,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
 	},
@@ -10674,7 +10674,7 @@
 /area/lv624/lazarus/main_hall)
 "bjo" = (
 /obj/structure/table,
-/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/suit/storage/chef/classic,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bjp" = (
