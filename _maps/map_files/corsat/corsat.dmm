@@ -55349,7 +55349,7 @@
 "xSP" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "\improper Dressing room"
+	name = "Dressing Room"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/blue/whitebluefull,

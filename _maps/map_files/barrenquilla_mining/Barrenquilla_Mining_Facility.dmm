@@ -4471,10 +4471,6 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/barren/medical/research)
-"An" = (
-/obj/structure/lattice,
-/turf/closed/mineral/smooth/basalt,
-/area/barren/cave/rock)
 "Ao" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 1
@@ -29458,7 +29454,7 @@ Mw
 ej
 if
 if
-An
+Mw
 Mw
 Mw
 Mw
