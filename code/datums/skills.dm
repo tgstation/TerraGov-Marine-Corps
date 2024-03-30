@@ -295,6 +295,12 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_METAL
 	engineer = SKILL_ENGINEER_METAL
 
+/datum/skills/combat_medic/special_forces
+	name = "Special Operations Medic"
+	construction = SKILL_CONSTRUCTION_METAL
+	engineer = SKILL_ENGINEER_METAL
+	smgs = SKILL_SMGS_TRAINED
+
 /datum/skills/doctor
 	name = "Doctor"
 	cqc = SKILL_CQC_WEAK
@@ -467,7 +473,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	leadership = SKILL_LEAD_TRAINED
 	powerloader = SKILL_POWERLOADER_MASTER
 	police = SKILL_POLICE_MP
-	smgs = SKILL_SMGS_TRAINED
 
 /datum/skills/st
 	name = SHIP_TECH
@@ -495,6 +500,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_METAL
 	engineer = SKILL_ENGINEER_METAL
 	police = SKILL_POLICE_MP
+	smgs = SKILL_SMGS_TRAINED
 
 /datum/skills/sl
 	name = SQUAD_LEADER
@@ -534,6 +540,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/sl/pmc/special_forces
 	name = "Special Force Leader"
 	police = SKILL_POLICE_MP
+	smgs = SKILL_SMGS_TRAINED
 
 /datum/skills/sl/icc
 	name = "ICC Leader"
