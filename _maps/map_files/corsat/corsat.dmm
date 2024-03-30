@@ -9946,13 +9946,6 @@
 /obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/south)
-"ews" = (
-/obj/machinery/atmospherics/pipe/manifold/green{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/grayscale/white,
-/area/corsat/gamma/residential)
 "ewD" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/corsat/omega/offices)
@@ -38674,11 +38667,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/gamma/hangar/office)
-"qZm" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor/grayscale/white,
-/area/corsat/sigma/hangar/checkpoint)
 "qZr" = (
 /obj/machinery/atmospherics/pipe/manifold/green,
 /turf/open/floor/wood,
@@ -46066,11 +46054,6 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/checkpoint)
-"ucO" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor/grayscale/white,
-/area/corsat/gamma/rnr)
 "ucP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -49853,10 +49836,6 @@
 /obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/omega/hangar/office)
-"vFj" = (
-/obj/structure/lattice,
-/turf/closed/wall/r_wall/unmeltable,
-/area/corsat/gamma/hallwaysouth)
 "vFm" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window{
@@ -59854,7 +59833,7 @@ tre
 tre
 tre
 tre
-vFj
+tre
 tre
 tre
 tre
@@ -60110,7 +60089,7 @@ vHg
 jYK
 jYK
 vHg
-vFj
+tre
 fUl
 ncq
 ncq
@@ -81887,7 +81866,7 @@ dDC
 uhf
 uhf
 uhf
-ews
+gkT
 qWG
 ygc
 ygc
@@ -82436,7 +82415,7 @@ anT
 anT
 rwW
 hXP
-ucO
+wRm
 tbr
 ejL
 tuh
@@ -103570,18 +103549,18 @@ mOr
 xmr
 kVT
 tfa
-qZm
+wAF
 xVo
 wAF
 ppy
-qZm
+wAF
 kGB
-qZm
-qZm
-qZm
-qZm
-qZm
-qZm
+wAF
+wAF
+wAF
+wAF
+wAF
+wAF
 dOo
 nYk
 jiS
