@@ -54,6 +54,7 @@
 #define COOLDOWN_TANK_SWIVEL "tank_turret_swivel"
 #define COOLDOWN_WHISTLE_BLOW "cooldown_whistle_blow"
 #define COOLDOWN_WHISTLE_WARCRY "cooldown_whistle_warcry"
+#define COOLDOWN_WHISTLE_WARCRIER "cooldown_whistle_warcrier"
 
 //Mecha cooldowns
 #define COOLDOWN_MECHA "mecha"
