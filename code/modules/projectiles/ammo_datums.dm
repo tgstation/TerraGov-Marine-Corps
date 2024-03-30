@@ -899,12 +899,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/rifle/marineincendiary
 	name = "incendiary rifle bullet"
-	hud_state = "rifle_incendiary"
-	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
+	hud_state = "rifle_incen"
 	damage = 15
 	penetration = 10
 	sundering = 0
 	bullet_color = COLOR_ORANGE
+
+/datum/ammo/bullet/rifle/marineincendiary/on_hit_mob(mob/M,obj/projectile/P)
+	var/mob/living/target = M
+	if(prob(15))
+		target.adjust_fire_stacks(incendiary_strength)
+		target.IgniteMob()
 
 /datum/ammo/bullet/rifle/cryogenic
 	name = "cryogenic rifle bullet"
@@ -915,7 +920,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bullet_color = COLOR_DARK_CYAN
 
 /datum/ammo/bullet/rifle/cryogenic/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, max_range = 12, slowdown = 1)
+	var/mob/living/target = M
+	if(prob(15))
+		target.add_slowdown(1)
 
 /datum/ammo/bullet/rifle/ricochet
 	name = "ricochet rifle bullet"
