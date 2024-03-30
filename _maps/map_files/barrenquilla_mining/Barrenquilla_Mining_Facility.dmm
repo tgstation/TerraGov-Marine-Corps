@@ -2043,7 +2043,6 @@
 /area/barren/medical)
 "lO" = (
 /obj/machinery/door/airlock/colony/medical,
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/bar{
 	name = "medical"

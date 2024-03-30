@@ -3495,10 +3495,6 @@
 /obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
-"atK" = (
-/obj/structure/cable,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle6)
 "atQ" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle7)
@@ -10915,10 +10911,6 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
-"blj" = (
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/lv624/lazarus/engineering)
 "blo" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -11221,10 +11213,6 @@
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
-/area/lv624/lazarus/engineering)
-"bmJ" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "bmK" = (
 /obj/machinery/door/airlock/colony/engineering/smes{
@@ -12651,10 +12639,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/ground/caves/east1)
-"dgb" = (
-/obj/structure/cable,
-/turf/open/floor/plating/warning,
-/area/lv624/lazarus/engineering)
 "dmz" = (
 /obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -13071,11 +13055,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
-"eMi" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/compound/sw)
 "eMm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -13687,10 +13666,6 @@
 /obj/structure/catwalk,
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
-"gUO" = (
-/obj/structure/cable,
-/turf/open/floor,
-/area/shuttle/drop2/lz2)
 "gWo" = (
 /turf/closed/wall/r_wall,
 /area/shuttle/drop2/lz2)
@@ -14369,14 +14344,6 @@
 	dir = 1
 	},
 /area/lv624/ground/river1)
-"jRN" = (
-/obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 1;
-	name = "\improper Engineering Dome"
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/lv624/lazarus/engineering)
 "jTj" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/marking/loadingarea{
@@ -15129,7 +15096,6 @@
 	},
 /area/lv624/ground/jungle7)
 "njw" = (
-/obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/door/airlock/mainship/generic{
 	desc = "This strange temple is covered in runes. It looks extremely ancient.";
 	dir = 2;
@@ -16942,12 +16908,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
-"vin" = (
-/obj/structure/cable,
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/lv624/lazarus/engineering)
 "viC" = (
 /obj/item/clothing/head/hardhat/orange,
 /obj/effect/landmark/weed_node,
@@ -17343,7 +17303,6 @@
 /turf/closed/gm/dense,
 /area/lv624/lazarus/quartstorage/outdoors)
 "wPJ" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/light{
 	dir = 1
@@ -22417,7 +22376,7 @@ aXb
 aXb
 qDj
 aXb
-gUO
+pro
 aXb
 aXb
 wEt
@@ -24386,7 +24345,7 @@ xVM
 xVM
 xVM
 xmL
-eMi
+xmL
 biS
 biS
 biS
@@ -28480,7 +28439,7 @@ avd
 avd
 aOj
 axR
-atK
+aPa
 axR
 kir
 avx
@@ -28659,7 +28618,7 @@ ayn
 avd
 aOj
 axR
-atK
+aPa
 axR
 kir
 axx
@@ -29197,8 +29156,8 @@ axQ
 aOj
 axR
 lXV
-atK
-atK
+aPa
+aPa
 axR
 axR
 eeq
@@ -29377,7 +29336,7 @@ aOj
 axR
 ayo
 axR
-atK
+aPa
 axR
 avq
 aMn
@@ -29556,7 +29515,7 @@ avq
 aNO
 avq
 axR
-atK
+aPa
 axR
 kir
 aLu
@@ -29735,7 +29694,7 @@ avd
 avd
 aOj
 axR
-atK
+aPa
 axR
 kir
 avw
@@ -31639,7 +31598,7 @@ acO
 acO
 alO
 dXE
-dgb
+fLK
 jex
 hrt
 ipK
@@ -31817,12 +31776,12 @@ acO
 acO
 acO
 gPc
-blj
+crT
 xVe
 blP
 bmH
 bmH
-vin
+bqj
 cmc
 rbB
 blo
@@ -31996,12 +31955,12 @@ acO
 acO
 acO
 bjH
-blj
+crT
 rbB
-blj
-blj
-blj
-blj
+crT
+crT
+crT
+crT
 fMS
 tMP
 gFw
@@ -32713,7 +32672,7 @@ acO
 acO
 bjH
 bjH
-blj
+crT
 xSy
 bjH
 bjH
@@ -32722,11 +32681,11 @@ bjH
 bjH
 bjH
 wPJ
-blj
+crT
 boH
 crT
 pwl
-blj
+crT
 bqo
 blo
 ajG
@@ -32900,7 +32859,7 @@ pkq
 rWp
 yfP
 jEE
-blj
+crT
 wit
 bnV
 bqj
@@ -33079,7 +33038,7 @@ qQd
 pwl
 qQd
 qQd
-bmJ
+qQd
 bqo
 boG
 bjH
@@ -33254,11 +33213,11 @@ wit
 wit
 blo
 xSy
-blj
+crT
 vTg
 xUO
 pkq
-blj
+crT
 wit
 dmG
 bjH
@@ -33443,9 +33402,9 @@ dmG
 bjH
 bqn
 bqT
-blj
-blj
-jRN
+crT
+crT
+oav
 pIv
 pIv
 oQH
@@ -33612,17 +33571,17 @@ acO
 acO
 alO
 blT
-blj
+crT
 wit
 jkY
 bjH
 rHP
 bnR
 boJ
-jRN
-blj
+oav
+crT
 eMf
-blj
+crT
 brR
 blo
 akH
@@ -33791,7 +33750,7 @@ nxQ
 acO
 alO
 qYO
-blj
+crT
 viC
 lmx
 bjH
@@ -33971,7 +33930,7 @@ acO
 alO
 dFh
 ohH
-blj
+crT
 wit
 bjH
 bnq
@@ -34150,10 +34109,10 @@ nxQ
 alO
 dFh
 ohH
-blj
-blj
+crT
+crT
 bmK
-blj
+crT
 bnU
 boM
 bjH
@@ -34329,7 +34288,7 @@ acO
 alO
 dFh
 ohH
-blj
+crT
 wit
 bjH
 bno

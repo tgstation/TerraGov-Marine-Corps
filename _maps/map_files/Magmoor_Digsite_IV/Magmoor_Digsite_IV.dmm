@@ -9290,7 +9290,6 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "gOG" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -9910,7 +9909,7 @@
 /area/magmoor/medical/treatment)
 "hmf" = (
 /obj/machinery/smartfridge/chemistry,
-/turf/closed/wall/r_wall,
+/turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/chemistry)
 "hmn" = (
 /obj/effect/landmark/corpsespawner/colonist,
@@ -24813,10 +24812,6 @@
 	dir = 8
 	},
 /area/magmoor/compound/west)
-"rKd" = (
-/obj/structure/lattice,
-/turf/closed/wall/r_wall,
-/area/magmoor/cave/south)
 "rKq" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -26267,10 +26262,6 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/orange/corner,
 /area/magmoor/cargo/storage/secure)
-"sGc" = (
-/obj/structure/lattice,
-/turf/closed/wall/r_wall,
-/area/magmoor/compound/north)
 "sGe" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -33367,7 +33358,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/research)
@@ -52191,12 +52181,12 @@ lTN
 dWA
 lTN
 qkJ
-rKd
+qkJ
 rTq
 rTq
 rTq
-rKd
-sGc
+qkJ
+vsm
 sPI
 xsc
 xsc
@@ -53356,12 +53346,12 @@ lTN
 lTN
 ruC
 qkJ
-rKd
+qkJ
 rTq
 rTq
 rTq
-rKd
-sGc
+qkJ
+vsm
 xyU
 xyU
 xyU
