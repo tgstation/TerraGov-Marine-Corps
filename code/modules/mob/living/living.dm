@@ -463,9 +463,11 @@
 /mob/living/proc/get_permeability_protection()
 	return LIVING_PERM_COEFF
 
+/// Returns the overall SOFT acid protection of a mob.
 /mob/living/proc/get_soft_acid_protection()
 	return soft_armor?.getRating(ACID)
 
+/// Returns the overall HARD acid protection of a mob.
 /mob/living/proc/get_hard_acid_protection()
 	return hard_armor?.getRating(ACID)
 
