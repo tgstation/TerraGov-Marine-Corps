@@ -194,7 +194,7 @@
 
 /obj/machinery/computer/cryopod/proc/dispense_item(obj/item/I, mob/user, message = TRUE)
 	if(!istype(I) || QDELETED(I))
-		active_glob_cryo_items_list -= I;
+		active_glob_cryo_items_list -= I
 		CRASH("Deleted or erroneous variable ([I]) called for hypersleep inventory retrivial.")
 	if((!I) in active_glob_cryo_items_list)
 		if(message)
