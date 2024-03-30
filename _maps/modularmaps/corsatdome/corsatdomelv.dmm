@@ -386,7 +386,6 @@
 "dH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/grayscale/white,
 /area/corsat/theta/biodome/complex)
 "dK" = (
@@ -900,7 +899,6 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/white,
@@ -2305,7 +2303,6 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/grayscale/white,
 /area/corsat/theta/biodome/complex)

@@ -9951,7 +9951,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/grayscale/white,
 /area/corsat/gamma/residential)
 "ewD" = (
@@ -21958,7 +21957,6 @@
 	dir = 6
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/south/robotics)
 "jUT" = (
@@ -26883,7 +26881,6 @@
 /area/corsat/omega/hallways)
 "lWJ" = (
 /obj/machinery/atmospherics/pipe/manifold4w/green,
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/white,
@@ -36699,7 +36696,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/engineering)
 "qiO" = (
@@ -37240,7 +37236,6 @@
 /obj/effect/turf_decal/tile/corsatstraight/yellow{
 	dir = 8
 	},
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/biodome/one)
@@ -46074,7 +46069,6 @@
 "ucO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/grayscale/white,
 /area/corsat/gamma/rnr)
 "ucP" = (
@@ -51846,7 +51840,6 @@
 /area/corsat/gamma/airlock/north/id)
 "wAF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/grayscale/white,
 /area/corsat/sigma/hangar/checkpoint)

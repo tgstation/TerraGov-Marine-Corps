@@ -1710,7 +1710,6 @@
 "akv" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "akw" = (
@@ -7139,7 +7138,6 @@
 /area/lv624/ground/compound/c)
 "aPa" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "aPb" = (
@@ -10149,7 +10147,6 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "bfQ" = (
@@ -11226,7 +11223,6 @@
 	},
 /area/lv624/lazarus/engineering)
 "bmJ" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
@@ -12532,7 +12528,6 @@
 /area/lv624/ground/jungle7)
 "crT" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "csn" = (
@@ -13079,7 +13074,6 @@
 "eMi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
 "eMm" = (
@@ -13331,7 +13325,6 @@
 /area/lv624/ground/caves/east1)
 "fLK" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/engineering)
 "fMC" = (
@@ -13339,7 +13332,6 @@
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "fMS" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -13697,7 +13689,6 @@
 /area/lv624/ground/sand8)
 "gUO" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "gWo" = (
@@ -13864,7 +13855,6 @@
 "hNc" = (
 /obj/machinery/power/geothermal,
 /obj/structure/lattice,
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/plating/warning{
 	dir = 4
@@ -14432,7 +14422,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
@@ -15378,7 +15367,6 @@
 	name = "\improper Engineering Dome"
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "obw" = (
@@ -15462,7 +15450,6 @@
 	},
 /area/lv624/ground/jungle2)
 "oqt" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -16115,7 +16102,6 @@
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	name = "\improper Engineering Dome"
 	},
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
@@ -17244,7 +17230,6 @@
 /obj/machinery/power/geothermal,
 /obj/structure/lattice,
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/plating/warning{
 	dir = 5
 	},
@@ -17358,7 +17343,6 @@
 /turf/closed/gm/dense,
 /area/lv624/lazarus/quartstorage/outdoors)
 "wPJ" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/light{
