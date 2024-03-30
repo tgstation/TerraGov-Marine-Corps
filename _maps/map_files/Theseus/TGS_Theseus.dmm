@@ -15275,10 +15275,6 @@
 "oXT" = (
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/lower_engineering)
-"oYw" = (
-/obj/structure/closet/secure_closet/guncabinet/emergency_combat_gear,
-/turf/open/floor/mainship/sterile/side,
-/area/mainship/medical/lower_medical)
 "oYB" = (
 /obj/machinery/marine_selector/clothes/smartgun,
 /obj/structure/sign/poster,
@@ -17042,6 +17038,10 @@
 	dir = 1
 	},
 /area/mainship/hallways/bow_hallway)
+"rRE" = (
+/obj/structure/closet/secure_closet/guncabinet/emergency_combat_gear,
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/medical/lower_medical)
 "rRW" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/binoculars,
@@ -17543,15 +17543,15 @@
 /area/mainship/hallways/bow_hallway)
 "sBz" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/glass/beaker/biomass{
-	pixel_x = 9;
-	pixel_y = 7
-	},
+/obj/item/healthanalyzer,
 /obj/item/storage/box/ids/dogtag{
 	pixel_x = -5;
 	pixel_y = 4
 	},
-/obj/item/healthanalyzer,
+/obj/item/reagent_containers/glass/beaker/biomass{
+	pixel_x = 9;
+	pixel_y = 7
+	},
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "sEZ" = (
@@ -54725,7 +54725,7 @@ biu
 nSl
 kFq
 aJS
-oYw
+rRE
 nSl
 uYN
 vmj
