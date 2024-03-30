@@ -5070,7 +5070,7 @@
 "Ew" = (
 /obj/machinery/door/airlock/colony/medical,
 /turf/open/floor/tile/bar{
-	name = "medical"
+	name = "Medical"
 	},
 /area/barren/medical)
 "Ex" = (
@@ -6411,12 +6411,10 @@
 /area/barren/civilian/workdorm)
 "Mq" = (
 /obj/machinery/door/airlock/colony/medical{
-	name = "medicine storage"
+	name = "Medicine storage"
 	},
 /obj/structure/cable,
-/turf/open/floor/tile/bar{
-	name = "medical"
-	},
+/turf/open/floor/tile/bar,
 /area/barren/medical/chemistry)
 "Ms" = (
 /obj/effect/decal/cleanable/cobweb,
@@ -7114,7 +7112,7 @@
 /area/barren/outside/c)
 "Qj" = (
 /obj/machinery/door/airlock/colony/medical{
-	name = "chemistry"
+	name = "Chemistry"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/bar{

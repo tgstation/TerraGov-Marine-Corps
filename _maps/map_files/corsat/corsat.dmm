@@ -8118,7 +8118,6 @@
 /area/corsat/gamma/rnr)
 "dFK" = (
 /obj/structure/lattice,
-/obj/structure/lattice,
 /turf/open/space,
 /area/space)
 "dFU" = (
