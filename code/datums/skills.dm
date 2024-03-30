@@ -385,6 +385,32 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	powerloader = SKILL_POWERLOADER_TRAINED
 	cqc = SKILL_CQC_TRAINED
 
+/datum/skills/veteran
+	name = VETERAN
+	engineer = SKILL_ENGINEER_ENGI //to fix CIC apc.
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	leadership = SKILL_LEAD_MASTER
+	medical = SKILL_MEDICAL_PRACTICED
+	surgery = SKILL_SURGERY_AMATEUR
+	police = SKILL_POLICE_MP
+	powerloader = SKILL_POWERLOADER_TRAINED
+	cqc = SKILL_CQC_TRAINED
+	firearms = SKILL_FIREARMS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+
+/datum/skills/veteran_captain
+	name = VETERAN_CAPTAIN
+	leadership = SKILL_LEAD_MASTER
+	police = SKILL_POLICE_MP
+	medical = SKILL_MEDICAL_COMPETENT
+	surgery = SKILL_SURGERY_AMATEUR
+	engineer = SKILL_ENGINEER_ENGI
+	construction = SKILL_CONSTRUCTION_ADVANCED
+	powerloader = SKILL_POWERLOADER_MASTER
+	firearms = SKILL_FIREARMS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	smartgun = SKILL_SMART_TRAINED
+
 /datum/skills/so
 	name = STAFF_OFFICER
 	construction = SKILL_CONSTRUCTION_PLASTEEL
@@ -441,6 +467,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	leadership = SKILL_LEAD_TRAINED
 	powerloader = SKILL_POWERLOADER_MASTER
 	police = SKILL_POLICE_MP
+	smgs = SKILL_SMGS_TRAINED
 
 /datum/skills/st
 	name = SHIP_TECH

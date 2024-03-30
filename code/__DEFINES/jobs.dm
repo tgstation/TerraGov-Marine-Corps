@@ -71,6 +71,11 @@
 #define SQUAD_VATGROWN "Squad VatGrown"
 #define SILICON_AI "AI"
 
+/// ERT
+#define VETERAN "Veteran"
+#define VETERAN_CAPTAIN "Veteran Captain"
+#define SPECOPS "Special Operations Soldier"
+
 //SOM
 #define SOM_COMMANDER "SOM Commander"
 #define SOM_FIELD_COMMANDER "SOM Field Commander"
