@@ -1,0 +1,17 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - bugfix: "Fixed a few incorrect icons in our walls."
+  - bugfix: "You can no longer perma trap people inside hull walls on some BR modulars as wraith."
+  - bugfix: "Corrected an incorrect icon for mounted lasers on Oscar Outpost."
+  - bugfix: "Removed an incorrect merge conflict marker on Jungle Outpost."
+  - bugfix: "Fixed the tank being unable to leave the dropship on Delta."
+  - bugfix: "Fixed a situation on Sulaco where transport officers could be stuck in mech crew headquarters."
+  - bugfix: "Adjusted some IDs on the tank vehicle bay so that they were no longer bugged."
+  - imageadd: "Ported some carpets from TG for mapper use."
+  - imageadd: "Ported some glass floors from TG for mapper use."
+  - imageadd: "Ported the chasm sprites from TG."
+  - imageadd: "Created a new set of walls for basalt terrain."
+  - imageadd: "Created two new autosmoothing variations for asphalt."
+  - imageadd: "Added error signs to many icon files, for easier debugging."
+  - imagedel: "Deleted some unused carpet icons that have been obsolete since the new smoothing system."
