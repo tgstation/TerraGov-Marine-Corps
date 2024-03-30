@@ -673,7 +673,6 @@
 /turf/open/floor/tile/dark,
 /area/campaign/som_raiding/outpost/command/cic)
 "dO" = (
-/obj/structure/closet/secure_closet/security,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -1002,6 +1001,10 @@
 	dir = 8
 	},
 /area/campaign/som_raiding/outpost/command/cic)
+"fC" = (
+/obj/structure/largecrate/random/case/small,
+/turf/open/floor/tile/dark,
+/area/campaign/som_raiding/outpost/req/secure)
 "fD" = (
 /obj/machinery/light{
 	light_color = "#da2f1b"
@@ -1018,6 +1021,13 @@
 /obj/structure/prop/brokenvendor/brokenmarinemedvendor,
 /turf/open/floor/tile/dark,
 /area/campaign/som_raiding/outpost/security)
+"fG" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/som_raiding/outpost/req/north)
 "fH" = (
 /obj/machinery/door/airlock/maintenance{
 	dir = 1
@@ -1031,6 +1041,10 @@
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/cable,
 /turf/open/floor/plating,
+/area/campaign/som_raiding/outpost/req/north)
+"fQ" = (
+/obj/structure/largecrate/supply/supplies,
+/turf/open/floor/plating/ground/concrete,
 /area/campaign/som_raiding/outpost/req/north)
 "fR" = (
 /turf/open/floor/tile/dark/brown2{
@@ -2104,6 +2118,10 @@
 /obj/effect/landmark/mob_spawner/farwa,
 /turf/open/ground/grass/weedable,
 /area/campaign/som_raiding/ground/jungle/west)
+"lq" = (
+/obj/structure/largecrate/random,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/som_raiding/outpost/req/north)
 "lr" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/extinguisher,
@@ -2112,6 +2130,10 @@
 "ls" = (
 /turf/closed/mineral/smooth,
 /area/campaign/som_raiding/outpost/req/north)
+"lt" = (
+/obj/structure/largecrate/supply/ammo/m41a,
+/turf/open/floor/tile/dark,
+/area/campaign/som_raiding/outpost/req/secure)
 "lu" = (
 /obj/structure/prop/nt_computer,
 /turf/open/floor/tile/dark/blue2{
@@ -2204,6 +2226,17 @@
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
 /turf/open/floor/tile/dark,
 /area/campaign/som_raiding/outpost/security/south_post)
+"lV" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/medical/firstaid,
+/obj/effect/spawner/random/medical/heal_pack,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/campaign/som_raiding/outpost/medbay)
 "lW" = (
 /obj/structure/flora/drought/shroom/lure_weed,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -2437,7 +2470,9 @@
 /turf/open/floor/tile/barber,
 /area/campaign/som_raiding/outpost/living/kitchen)
 "nh" = (
-/obj/structure/closet/secure_closet/security,
+/obj/structure/rack,
+/obj/item/weapon/gun/shotgun/som/standard,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
@@ -2800,6 +2835,12 @@
 	dir = 1
 	},
 /area/campaign/som_raiding/outpost/req/qm)
+"pm" = (
+/obj/structure/largecrate/supply/explosives/grenades,
+/turf/open/floor/tile/dark/brown2/corner{
+	dir = 4
+	},
+/area/campaign/som_raiding/outpost/req/secure)
 "pn" = (
 /obj/structure/ore_box,
 /turf/open/floor/wood/alt_one,
@@ -3192,6 +3233,7 @@
 /area/campaign/som_raiding/outpost/req/qm)
 "ry" = (
 /obj/structure/table/black,
+/obj/item/explosive/grenade/som,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -3406,6 +3448,12 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/tile/dark/gray,
 /area/campaign/som_raiding/outpost/req/qm)
+"sP" = (
+/obj/structure/largecrate/guns/russian,
+/turf/open/floor/tile/dark/brown2{
+	dir = 6
+	},
+/area/campaign/som_raiding/outpost/req/secure)
 "sQ" = (
 /obj/structure/closet/cabinet,
 /obj/machinery/light{
@@ -4110,6 +4158,12 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/campaign/som_raiding/outpost/req)
+"wy" = (
+/obj/structure/largecrate/supply/explosives/grenades,
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/campaign/som_raiding/outpost/req/secure)
 "wz" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass,
 /turf/open/floor/tile/dark,
@@ -6024,6 +6078,12 @@
 	dir = 4
 	},
 /area/campaign/som_raiding/ground/jungle/south_west)
+"Hm" = (
+/obj/structure/largecrate/random/barrel/green,
+/turf/open/floor/tile/dark/brown2/corner{
+	dir = 1
+	},
+/area/campaign/som_raiding/outpost/req/secure)
 "Hn" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/blue2/corner{
@@ -6049,6 +6109,7 @@
 /area/campaign/som_raiding/outpost/tunnel/west)
 "Hw" = (
 /obj/structure/table/black,
+/obj/item/explosive/grenade/som,
 /turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
@@ -6398,6 +6459,12 @@
 	dir = 9
 	},
 /area/campaign/som_raiding/outpost/living/briefing)
+"Jx" = (
+/obj/machinery/bioprinter,
+/turf/open/floor/mainship/sterile/corner{
+	dir = 1
+	},
+/area/campaign/som_raiding/outpost/medbay)
 "Jy" = (
 /obj/structure/cable,
 /turf/open/floor/tile/brown,
@@ -6622,6 +6689,7 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/fire,
+/obj/effect/spawner/random/medical/bloodpack,
 /obj/effect/spawner/random/medical/bloodpack,
 /obj/effect/spawner/random/medical/bloodpack,
 /turf/open/floor/mainship/sterile/corner{
@@ -6877,6 +6945,7 @@
 /area/campaign/som_raiding/outpost/req/secure)
 "Mm" = (
 /obj/structure/table/black,
+/obj/item/weapon/gun/pistol/som/standard,
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
@@ -6900,7 +6969,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/som_raiding/outpost/req)
 "Mq" = (
-/obj/structure/largecrate/guns,
+/obj/structure/largecrate/guns/russian,
 /turf/open/floor/tile/dark/brown2/corner,
 /area/campaign/som_raiding/outpost/req/secure)
 "Mr" = (
@@ -7658,6 +7727,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
+/obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/som_raiding/outpost/req/north)
 "Qw" = (
@@ -8037,6 +8107,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/campaign/som_raiding/outpost/security)
+"Sz" = (
+/obj/effect/spawner/random/engineering/structure/tank,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/som_raiding/outpost/req/north)
 "SA" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/green2/corner{
@@ -8090,6 +8164,10 @@
 	dir = 8
 	},
 /area/campaign/som_raiding/outpost/command)
+"SL" = (
+/obj/structure/largecrate/random/barrel/yellow,
+/turf/open/floor/tile/dark/brown2/corner,
+/area/campaign/som_raiding/outpost/req/secure)
 "SN" = (
 /obj/effect/spawner/random/engineering/structure/handheld_lighting,
 /turf/open/floor/mainship/mono,
@@ -20060,8 +20138,8 @@ OW
 OW
 OW
 fe
-Aw
-KF
+lq
+fG
 Aw
 Aw
 Aw
@@ -20212,7 +20290,7 @@ OW
 OW
 OW
 ls
-Aw
+eq
 Aw
 Aw
 Aw
@@ -20225,7 +20303,7 @@ Aw
 Aw
 Aw
 Aw
-Aw
+eq
 ls
 hT
 Qw
@@ -20377,7 +20455,7 @@ Aw
 Aw
 Aw
 Aw
-Aw
+fQ
 ls
 hT
 Qw
@@ -21890,7 +21968,7 @@ Sa
 fg
 Aw
 Qh
-Aw
+Sz
 sU
 fg
 Aw
@@ -25669,7 +25747,7 @@ LG
 LG
 LG
 LG
-mO
+Jx
 jZ
 OD
 LG
@@ -26007,7 +26085,7 @@ Aa
 xc
 fR
 za
-Ml
+fC
 Ml
 ij
 nb
@@ -26173,7 +26251,7 @@ UX
 Ml
 Ml
 ij
-vc
+sP
 cd
 hZ
 FU
@@ -26468,7 +26546,7 @@ Pz
 Qc
 cd
 Hj
-za
+Hm
 Ml
 Ml
 gA
@@ -26890,7 +26968,7 @@ kz
 LG
 LG
 LG
-nD
+lV
 mJ
 mJ
 HL
@@ -27530,7 +27608,7 @@ WX
 cd
 cd
 fR
-UN
+wy
 zJ
 cd
 cd
@@ -28139,8 +28217,8 @@ Ml
 Ml
 ij
 yo
-FU
-Ml
+pm
+lt
 Ml
 Pz
 zJ
@@ -28300,7 +28378,7 @@ GF
 UX
 Ml
 Ml
-ij
+SL
 hc
 cd
 zZ
