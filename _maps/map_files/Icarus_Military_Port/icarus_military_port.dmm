@@ -706,10 +706,6 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
-"aWY" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
-/turf/closed/wall/mainship/outer,
-/area/icarus/interior/lztwo)
 "aXT" = (
 /obj/structure/grille/smoothing,
 /turf/open/floor/mainship/mono,
@@ -1419,12 +1415,6 @@
 /obj/machinery/vending/cola,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/scrapyardone)
-"bUI" = (
-/obj/structure/lattice,
-/turf/open/floor/mainship_hull/dir{
-	dir = 1
-	},
-/area/space)
 "bVa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
@@ -2744,10 +2734,6 @@
 	dir = 9
 	},
 /area/icarus/interior/dorms)
-"dTz" = (
-/obj/structure/cable,
-/turf/open/floor/plating/mainship,
-/area/icarus/interior/unloading)
 "dTM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -7805,10 +7791,6 @@
 	dir = 9
 	},
 /area/icarus/interior/library)
-"kBh" = (
-/obj/structure/window/framed/mainship/canterbury,
-/turf/closed/wall/mainship,
-/area/icarus/interior/shipbayone)
 "kBX" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -14785,10 +14767,6 @@
 "tzP" = (
 /turf/closed/shuttle/cas/rightwingmid,
 /area/icarus/interior/hangarone)
-"tzV" = (
-/obj/structure/window/framed/prison/reinforced,
-/turf/closed/wall/r_wall/prison,
-/area/icarus/interior/cargoholding)
 "tAo" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor{
 	dir = 8
@@ -17067,10 +17045,6 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbaytwo)
-"wFj" = (
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space)
 "wFv" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -21042,10 +21016,10 @@ skt
 xMs
 xMs
 xMs
-aWY
-aWY
-aWY
-aWY
+uVy
+uVy
+uVy
+uVy
 xMs
 xMs
 xMs
@@ -26171,7 +26145,7 @@ dur
 xxE
 hSv
 dPo
-dTz
+qcX
 qcX
 egx
 egx
@@ -30292,7 +30266,7 @@ xDV
 xDV
 sAE
 gmG
-tzV
+tCg
 tFS
 uED
 lRB
@@ -32522,7 +32496,7 @@ xys
 xys
 wuD
 xys
-kBh
+tOm
 ibC
 ibC
 ibC
@@ -40114,7 +40088,7 @@ jzC
 jzC
 jzC
 jzC
-wFj
+yan
 yan
 yan
 yan
@@ -40318,7 +40292,7 @@ jzC
 jzC
 jzC
 jzC
-wFj
+yan
 yan
 yan
 yan
@@ -42341,7 +42315,7 @@ onh
 cmS
 hqU
 uCr
-bUI
+wOv
 sLK
 sWA
 wOv
@@ -42545,7 +42519,7 @@ onh
 cmS
 czn
 uCr
-bUI
+wOv
 sLK
 sWA
 wOv
@@ -45572,7 +45546,7 @@ viP
 wte
 jMM
 viP
-voD
+toT
 toT
 toT
 toT
