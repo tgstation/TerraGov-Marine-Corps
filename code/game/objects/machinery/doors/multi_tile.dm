@@ -313,8 +313,6 @@
 /obj/machinery/door/airlock/multi_tile/mainship/engineering
 	name = "\improper Engineering Airlock"
 	icon = 'icons/obj/doors/mainship/2x1engidoor.dmi'
-	opacity = FALSE
-	glass = FALSE
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING)
 
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass
