@@ -2635,7 +2635,6 @@
 /area/barren/outside/general_offices)
 "pd" = (
 /obj/machinery/door/airlock/colony/medical,
-	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/bar{
 	name = "medical"
