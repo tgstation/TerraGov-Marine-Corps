@@ -54,7 +54,7 @@
 	item_state = "alien_lens"
 	darkness_view = 7
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-	flags_item = DELONDROP
+	item_flags = DELONDROP
 
 /obj/item/clothing/glasses/night/sectoid/Initialize(mapload)
 	. = ..()
@@ -100,7 +100,7 @@
 		"Chilvaris Combat Robot" = 'icons/mob/species/robot/glasses_charlit.dmi',
 		"Hammerhead Combat Robot" = 'icons/mob/species/robot/glasses_alpharii.dmi',
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
-	flags_equip_slot = ITEM_SLOT_EYES
+	equip_slot_flags = ITEM_SLOT_EYES
 	goggles = TRUE
 
 /obj/item/clothing/glasses/night/optgoggles/prescription

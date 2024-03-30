@@ -1,7 +1,7 @@
 /datum/game_mode/hvh/campaign
 	name = "Campaign"
 	config_tag = "Campaign"
-	flags_round_type = MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY
+	round_type_flags = MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY
 	whitelist_ship_maps = list(MAP_ITERON)
 	whitelist_ground_maps = list(MAP_FORT_PHOBOS)
 	bioscan_interval = 3 MINUTES
@@ -17,7 +17,7 @@
 		/datum/job/som/squad/standard = -1,
 		/datum/job/som/squad/medic = 8,
 		/datum/job/som/squad/engineer = 4,
-		/datum/job/som/squad/veteran = 2,
+		/datum/job/som/squad/veteran = 4,
 		/datum/job/som/squad/leader = 4,
 		/datum/job/som/command/fieldcommander = 1,
 		/datum/job/som/command/staffofficer = 2,
@@ -130,8 +130,8 @@
 ///sets up the newly selected mission
 /datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission)
 	current_mission = new_mission
-	current_mission.load_mission()
 	addtimer(CALLBACK(src, PROC_REF(autobalance_cycle)), CAMPAIGN_AUTOBALANCE_DELAY) //we autobalance teams after a short delay to account for slow respawners
+	current_mission.load_mission()
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 
 ///Checks team balance and tries to correct if possible

@@ -297,3 +297,158 @@
   - rscadd: Expanded the Arachne vehicle bay.
   - rscdel: Removed the Arachne flight control station, to make room for the vehicle
       bay.
+2024-03-18:
+  Lumipharon:
+  - bugfix: fixed an issue with airburst type projectiles
+  - bugfix: Fix hefa nades
+  - bugfix: Fix piercing ammo not piercing if your main target is adjacent to you
+  - bugfix: Fix tank blowing itself up with the main cannon
+2024-03-19:
+  Lumipharon:
+  - balance: 'Campaign: Reduced game and pregame delays on most missions'
+  - balance: 'Campaign: NT Base Rescue no longer allows firesupport for TGMC'
+  - balance: 'Campaign: NT Base Rescue provides SOM with automatic militia support'
+  - balance: 'Campaign: NT Base Rescue reduced SOM mech count to 4'
+  - balance: 'Campaign: SOM have to destroy 6 objectives to win on Supply Raid'
+2024-03-20:
+  Kapu1178:
+  - bugfix: Huggers *actually* prioritize orthogonal marines over diagonal marines.
+  Notamaniac:
+  - bugfix: Iguana ammo boxes now properly delete themselves when they perform a reload
+      that uses up all their ammo
+  lbnesquik:
+  - code_imp: Nukes all references to the M56D
+  - qol: Add the evac timer to the AI status tab
+  - qol: Added the word flak to fk-88 in req
+2024-03-21:
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed some loot tables being wrong from SOM initiated combat
+      patrol/mech war missions'
+  Notamaniac:
+  - bugfix: Spamming the Iguana remote will no longer cause massive chat spam when
+      people speak to the Iguana
+2024-03-22:
+  Lumipharon:
+  - balance: Increased volkite charger deflag chance slightly
+  - balance: 'Campaign: Reduced the loadout cost of some volkite weapons'
+  - balance: 'Campaign: Melee special attacks use less stamina, and can be used at
+      0 stamina loss'
+  - balance: 'Campaign: Axe sweep steps towards you target before sweeping'
+  - bugfix: Fixed a few minor bugs with melee special attacks
+  - balance: Mech explosive armour modules increased bomb armour by 25 instead of
+      50
+  - qol: 'Campaign: fixed the timing of the autobalance prompt'
+  - balance: Very slight increase in time for ASAT and firesupport missions
+  Xander3359:
+  - code_imp: cleans species.dm
+  - qol: Roomba tries to restock elligible items
+2024-03-23:
+  AusarAtkin:
+  - spellcheck: fixed BR-8 mag typos and clarify some bullet with same caliber.
+  - spellcheck: fixed typo on Shield module in SL loadout.
+  Barnet2:
+  - code_imp: Jungle walls spawn weedable grass when hit with a devastating explosion
+  - balance: Tank's LTB cannon no longer has devastation.
+  - balance: Tank's integrity reduced from 1250 to 900 due to armor working again
+  - rscdel: Removed duplicate intel computers on Gelida IV
+  Lumipharon:
+  - bugfix: fixed mech UI size
+  - qol: Gun codex entries now state what weapon skill applies to them
+  - balance: 'Campaign: Updated a few job slot limits for consistancy'
+  - bugfix: fixed job slots not being closed correctly in some cases
+  - balance: Lava will actually melt objects now
+  - qol: Mech actuator overload has a hotkey
+  - qol: Added a mech reload hotkey
+  - bugfix: 'Campaign: Fixed an issue with towers on Orion Outpost and Patrick''s
+      Rest'
+  - bugfix: 'Campaign: Fixed the sword lunge ability not properly doing damage'
+  - bugfix: fixed sentries being unable to shoot targets on their own turf
+  - bugfix: Fixed energy sentries not shooting through glass
+  Notamaniac:
+  - bugfix: Fixes view getting bugged if you regress/caste swap while zoomed in
+  XElectricX:
+  - bugfix: Welding goggles and HUD glasses work again. Night vision module req order
+      spawns the actual module.
+  Xander3359:
+  - bugfix: Plasma cutter is no longer spammed by unreadable balloon alerts
+  - code_imp: adds isplasmacutter(I)
+  coldironwarrior:
+  - balance: gave more jackets storage slots
+  lbnesquik:
+  - qol: Add a button for the AI to open the req console directly
+  - rscadd: Added FC vendor to valhalla
+  - qol: Added the ASRS supply tablet to req
+  - qol: added categories to the hypersleep bay console
+2024-03-24:
+  Lumipharon:
+  - balance: 'Campaign: Gun perks now unlock certain weapon and ammo options in addition
+      to their existing effects'
+  - bugfix: 'Campaign: Fixed a missing overclocked option for heavy shielded armour
+      for SOM standards'
+  - rscadd: Reworked plasma weapons in addition to a new plasma SMG
+  - balance: 'Campaign: Plasma weapons are available via unlock or perk'
+  blackdav123:
+  - rscadd: Added modulars to Jungle Outpost
+  coldironwarrior:
+  - rscadd: sulaco vehicle bay, next to the TAD and mech workshop
+2024-03-25:
+  XElectricX:
+  - bugfix: Welding goggles no longer work in reverse.
+  coldironwarrior:
+  - imagedel: deletes unused sprites from the "obj" folder
+  - imagedel: deleted the "unused" folder of dmis
+2024-03-26:
+  Lumipharon:
+  - bugfix: fixed lava trying to burn indestructable things forever
+  blackdav123:
+  - balance: Removed outdoor plat miner from Icy Caves
+2024-03-27:
+  DeltaFire15:
+  - qol: Pheromone strength in the statpanel now shows the actual value next to the
+      approximate category.
+  - spellcheck: Corrected a code comment about phero brackets which was quite outdated.
+  Lumipharon:
+  - bugfix: fixed IFF shrap on airburst weapons
+  - bugfix: AMR/fire support bino lase no longer layers under clothing and such
+  - balance: M40 HSDP smoke grenade smoke radius reduced to 6 from 7
+  - bugfix: fixed a few instances where object damage was incorrectly applying armour
+      multipliers when it shouldn't
+  - bugfix: Mechs and tanks properly respect target def zone
+  blackdav123:
+  - balance: Adds disk sets to Gelida IV
+  lbnesquik:
+  - bugfix: fix the hypersleep dispense all not working
+  - bugfix: fix the drug category not displaying
+  - rscadd: Added the cradle to valhala and debugabus
+  - qol: Changed the cradle sprites
+  - qol: helmets, armor and suits show their equipped modules on examine
+2024-03-28:
+  Xander3359:
+  - code_imp: flags now all follow the formatting of flagname_flags
+2024-03-29:
+  Barnet2:
+  - qol: The toxin reagent from QC+, Peri+ and Nanoblood now shows on medical scanners.
+  Lumipharon:
+  - code_imp: Some performance improvements to campaign loadout UI
+  Pariah919:
+  - rscadd: Added new Sniper and Shotgun sentry to the marine arsenal, as well as
+      new sentry sprites.
+  blackdav123:
+  - bugfix: Fills in space tile on Theseus
+2024-03-30:
+  Aporhtonoma:
+  - rscadd: Puppets have now the ability to rest and unrest when puppeter does
+  - rscadd: puppets have now the ability to sleep and resist when puppeter does
+  - rscadd: Puppets have now the ability to jump when puppeter does
+  Barnet2:
+  - rscdel: Removes the ability to vote for the current map during groundmap vote
+  - admin: R_POLLS rank used for Server Poll Management
+  Lumipharon:
+  - qol: 'Campaign: Improved loadout UI and new icons'
+  Xander3359:
+  - bugfix: fix the HSG_102 that spawn on maps having the wrong item path
+  blackdav123:
+  - bugfix: Fixed a few misplaced area tiles on Gelida caves
+  lbnesquik:
+  - code_imp: Removes some redundant code
+  - rscdel: Removed factory medpacks

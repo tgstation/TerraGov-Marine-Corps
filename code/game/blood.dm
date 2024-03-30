@@ -27,7 +27,7 @@
 
 
 /obj/add_blood(b_color)
-	if(flags_atom & NOBLOODY)
+	if(atom_flags & NOBLOODY)
 		return FALSE
 	if(b_color)
 		blood_color = b_color
@@ -145,24 +145,24 @@
 	var/washears = TRUE
 	var/washglasses = TRUE
 	if(wear_suit)
-		washgloves = !(wear_suit.flags_inv_hide & HIDEGLOVES)
-		washshoes = !(wear_suit.flags_inv_hide & HIDESHOES)
+		washgloves = !(wear_suit.inv_hide_flags & HIDEGLOVES)
+		washshoes = !(wear_suit.inv_hide_flags & HIDESHOES)
 		if(wear_suit.clean_blood())
 			update_inv_wear_suit()
 	else if(w_uniform)
 		if(w_uniform.clean_blood())
 			update_inv_w_uniform()
 	if(head)
-		washmask = !(head.flags_inv_hide & HIDEMASK)
-		washglasses = !(head.flags_inv_hide & HIDEEYES)
-		washears = !(head.flags_inv_hide & HIDEEARS)
+		washmask = !(head.inv_hide_flags & HIDEMASK)
+		washglasses = !(head.inv_hide_flags & HIDEEYES)
+		washears = !(head.inv_hide_flags & HIDEEARS)
 		if(head.clean_blood())
 			update_inv_head()
 	if(wear_mask)
 		if(washears)
-			washears = !(wear_mask.flags_inv_hide & HIDEEARS)
+			washears = !(wear_mask.inv_hide_flags & HIDEEARS)
 		if(washglasses)
-			washglasses = !(wear_mask.flags_inv_hide & HIDEEYES)
+			washglasses = !(wear_mask.inv_hide_flags & HIDEEYES)
 		if(washmask && wear_mask.clean_blood())
 			update_inv_wear_mask()
 	if(gloves && washgloves)

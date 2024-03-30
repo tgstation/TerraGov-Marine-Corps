@@ -2,7 +2,7 @@
 //---------------------------------------------------
 
 /obj/item/weapon/gun/revolver
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/pistols_left_1.dmi',
@@ -17,7 +17,7 @@
 	hand_reload_sound = 'sound/weapons/guns/interact/revolver_load.ogg'
 	type_of_casings = "bullet"
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_SMOKE_PARTICLES
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_SMOKE_PARTICLES
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_speed_modifier = 0.75
 	aim_fire_delay = 0.25 SECONDS

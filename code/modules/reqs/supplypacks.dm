@@ -156,6 +156,11 @@ OPERATIONS
 	containertype = null
 	cost = 200
 
+/datum/supply_packs/operations/supply_tablet
+	name = "Supply Tablet"
+	contains = list(/obj/item/supplytablet)
+	cost = 50
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
@@ -184,6 +189,26 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/minisentry)
 	cost = 100
 
+/datum/supply_packs/weapons/sentry_shotgun
+	name = "SHT-573 Shotgun Sentry"
+	contains = list(/obj/item/storage/box/crate/sentry_shotgun)
+	cost = 400
+
+/datum/supply_packs/weapons/sentry_shotgun_ammo
+	name = "SHT-573 shotgun sentry ammunition"
+	contains = list(/obj/item/ammo_magazine/sentry/shotgun)
+	cost = 100
+
+/datum/supply_packs/weapons/sentry_sniper
+	name = "SST-574 Sniper Sentry"
+	contains = list(/obj/item/storage/box/crate/sentry_sniper)
+	cost = 600
+
+/datum/supply_packs/weapons/sentry_sniper_ammo
+	name = "SST-571 sniper sentry ammunition"
+	contains = list(/obj/item/ammo_magazine/sentry/sniper)
+	cost = 100
+
 /datum/supply_packs/weapons/buildasentry
 	name = "Build-A-Sentry Attachment System"
 	contains = list(
@@ -192,14 +217,14 @@ WEAPONS
 	cost = 250
 
 
-/datum/supply_packs/weapons/m56d_emplacement
+/datum/supply_packs/weapons/hsg_102_emplacement
 	name = "HSG-102 Mounted Heavy Smartgun"
-	contains = list(/obj/item/storage/box/tl102)
+	contains = list(/obj/item/storage/box/hsg_102)
 	cost = 600
 
-/datum/supply_packs/weapons/m56d
+/datum/supply_packs/weapons/hsg_102
 	name = "HSG-102 mounted heavy smartgun ammo"
-	contains = list(/obj/item/ammo_magazine/tl102)
+	contains = list(/obj/item/ammo_magazine/hsg_102)
 	cost = 30
 
 /datum/supply_packs/weapons/minigun_emplacement
@@ -318,12 +343,12 @@ WEAPONS
 	cost = 1000
 
 /datum/supply_packs/weapons/flak_he
-	name = "FK-88 HE Shell"
+	name = "FK-88 Flak HE Shell"
 	contains = list(/obj/item/ammo_magazine/heavy_isg/he)
 	cost = 50
 
 /datum/supply_packs/weapons/flak_sabot
-	name = "FK-88 APFDS Shell"
+	name = "FK-88 Flak APFDS Shell"
 	contains = list(/obj/item/ammo_magazine/heavy_isg/sabot)
 	cost = 50
 
@@ -343,15 +368,29 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla)
 	cost = 600
 
+/datum/supply_packs/weapons/plasma_cells
+	name = "WML plasma energy cell (x3)"
+	contains = list(
+		/obj/item/cell/lasgun/plasma,
+		/obj/item/cell/lasgun/plasma,
+		/obj/item/cell/lasgun/plasma,
+	)
+	cost = 100
+
+/datum/supply_packs/weapons/plasma_smg
+	name = "PL-51 Plasma SMG"
+	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg)
+	cost = 400
+
 /datum/supply_packs/weapons/plasma_rifle
 	name = "PL-38 Plasma Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle)
-	cost = 250
+	cost = 350
 
 /datum/supply_packs/weapons/plasma_cannon
 	name = "PL-96 Plasma Cannon"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon)
-	cost = 250
+	cost = 400
 
 /datum/supply_packs/weapons/tx54
 	name = "GL-54 airburst grenade launcher"
@@ -796,6 +835,21 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	cost = 10
 
+/datum/supply_packs/weapons/ltb_shells
+	name = "LTB tank shell"
+	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
+	cost = 10
+
+/datum/supply_packs/weapons/ltaap_rounds
+	name = "LTAAP tank magazine"
+	contains = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
+	cost = 10
+
+/datum/supply_packs/weapons/cupola_rounds
+	name = "Cupola tank magazine"
+	contains = list(/obj/item/ammo_magazine/tank/secondary_cupola)
+	cost = 10
+
 /*******************************************************************************
 EXPLOSIVES
 *******************************************************************************/
@@ -1188,7 +1242,7 @@ CLOTHING
 
 /datum/supply_packs/clothing/night_vision_mounted
 	name = "BE-35 Night Vision Module"
-	contains = list(/obj/item/clothing/glasses/night_vision/mounted)
+	contains = list(/obj/item/armor_module/module/night_vision)
 	cost = 300
 
 /datum/supply_packs/clothing/night_vision_batteries
@@ -2007,7 +2061,7 @@ VEHICLES
 
 /datum/supply_packs/vehicles/hsg_ammo
 	name = "Mounted HSG ammo"
-	contains = list(/obj/item/ammo_magazine/tl102/hsg_nest)
+	contains = list(/obj/item/ammo_magazine/hsg_102/hsg_nest)
 	cost = 100
 	containertype = /obj/structure/closet/crate/ammo
 
@@ -2276,11 +2330,6 @@ FACTORY
 	contains = list(/obj/item/factory_refill/swat_mask_refill)
 	cost = 500
 
-/datum/supply_packs/factory/med_advpack
-	name = "Advanced medical pack assembly refill"
-	contains = list(/obj/item/factory_refill/med_advpack_refill)
-	cost = 500
-
 /datum/supply_packs/factory/module_valk_refill
 	name = "Valkyrie Automedical Armor System assembly refill"
 	contains = list(/obj/item/factory_refill/module_valk_refill)
@@ -2407,12 +2456,12 @@ FACTORY
 	cost = 100
 
 /datum/supply_packs/factory/heavy_isg_he_refill
-	name = "FK-88 HE shell assembly refill"
+	name = "FK-88 Flak HE shell assembly refill"
 	contains = list(/obj/item/factory_refill/heavy_isg_he_refill)
 	cost = 300
 
 /datum/supply_packs/factory/heavy_isg_sabot_refill
-	name = "FK-88 APFDS shell assembly refill"
+	name = "FK-88 Flak APFDS shell assembly refill"
 	contains = list(/obj/item/factory_refill/heavy_isg_sabot_refill)
 	cost = 400
 

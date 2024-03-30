@@ -51,7 +51,7 @@
 	for(var/obj/thing in user.loc)
 		if(!thing.density) //not dense, move on
 			continue
-		if(!(thing.flags_atom & ON_BORDER)) //dense and non-directional, end
+		if(!(thing.atom_flags & ON_BORDER)) //dense and non-directional, end
 			balloon_alert(user, "No space")
 			return FALSE
 		if(thing.dir != user.dir)

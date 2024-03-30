@@ -6,11 +6,11 @@
 		slot_r_hand_str = 'icons/mob/inhands/clothing/uniforms_right.dmi',
 	)
 	name = "under"
-	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
-	flags_heat_protection = CHEST|GROIN|LEGS|ARMS
+	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
+	cold_protection_flags = CHEST|GROIN|LEGS|ARMS
+	heat_protection_flags = CHEST|GROIN|LEGS|ARMS
 	permeability_coefficient = 0.90
-	flags_equip_slot = ITEM_SLOT_ICLOTHING
+	equip_slot_flags = ITEM_SLOT_ICLOTHING
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	w_class = WEIGHT_CLASS_BULKY
 	blood_sprite_state = "uniformblood"
@@ -144,6 +144,23 @@
 			. += "Its vital tracker appears to be enabled."
 		if(3)
 			. += "Its vital tracker and tracking beacon appear to be enabled."
+	var/armor_info
+	var/obj/item/clothing/under/wear_modular_suit = src
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_BADGE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_BADGE]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM_TIE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM_TIE]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CAPE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CAPE]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CAPE_HIGHLIGHT])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CAPE_HIGHLIGHT]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_KAMA])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_KAMA]].\n"
+	if(armor_info)
+		. += "	It has the following attachments:"
+		. += armor_info
 
 //we only want to quick equip from actual 'holster' type webbings
 /obj/item/clothing/under/do_quick_equip(mob/user)

@@ -12,7 +12,7 @@
 	move_delay = 2.5	//set this to limit the speed of the vehicle
 	max_integrity = 150
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
-	flags_atom = BUMP_ATTACKABLE
+	atom_flags = BUMP_ATTACKABLE
 	soft_armor = list(MELEE = 25, BULLET = 85, LASER = 50, ENERGY = 100, BOMB = 50, BIO = 100, FIRE = 25, ACID = 25)
 	allow_pass_flags = PASS_AIR|PASS_LOW_STRUCTURE|PASS_THROW
 	/// Needed to keep track of any slowdowns and/or diagonal movement
@@ -83,7 +83,7 @@
 	robogibs(src)
 	return ..()
 
-/obj/vehicle/unmanned/take_damage(damage_amount, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+/obj/vehicle/unmanned/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
 	hud_set_machine_health()
 
@@ -182,10 +182,10 @@
 		var/extra_rounds = current_rounds - max_rounds
 		reload_ammo.current_rounds = extra_rounds
 		current_rounds = max_rounds
+	else
+		qdel(reload_ammo)
 	user.visible_message(span_notice("[user] reloads [src] with [reload_ammo]."), span_notice("You reload [src] with [reload_ammo]. It now has [current_rounds] shots left out of a maximum of [max_rounds]."))
 	playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
-	if(reload_ammo.current_rounds < 1)
-		qdel(reload_ammo)
 	update_icon()
 	hud_set_uav_ammo()
 

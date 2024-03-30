@@ -36,11 +36,8 @@ export type IndividualData = {
   faction: string;
   jobs: string[];
   perk_icons?: string[];
-  mission_icons?: string[];
   equipped_loadouts_data: EquippedItemData[];
   available_loadouts_data: LoadoutItemData[];
-  purchasable_loadouts_data: LoadoutItemData[];
-  outfit_slots: string[];
   outfit_cost_data: OutfitCostData[];
 };
 
@@ -98,8 +95,8 @@ export const IndividualStats = (props) => {
     <Window
       theme={data.ui_theme}
       title={'Prep screen'}
-      width={850}
-      height={750}
+      width={980}
+      height={775}
     >
       <Window.Content>
         {unlockedPerk ? (
@@ -217,7 +214,12 @@ export const IndividualStats = (props) => {
                 selected={jobname === selectedJob}
                 fontSize="130%"
                 textAlign="center"
-                onClick={() => setSelectedJob(jobname)}
+                onClick={() => {
+                  act('set_selected_job', {
+                    new_selected_job: jobname,
+                  });
+                  setSelectedJob(jobname);
+                }}
               >
                 {jobname}
               </Tabs.Tab>
@@ -239,7 +241,12 @@ export const IndividualStats = (props) => {
                 selected={tabname === selectedTab}
                 fontSize="130%"
                 textAlign="center"
-                onClick={() => setSelectedTab(tabname)}
+                onClick={() => {
+                  act('set_selected_tab', {
+                    new_selected_tab: tabname,
+                  });
+                  setSelectedTab(tabname);
+                }}
               >
                 {tabname}
               </Tabs.Tab>

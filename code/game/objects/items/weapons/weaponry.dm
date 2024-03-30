@@ -5,7 +5,7 @@
 	name = "banhammer"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "toyhammer"
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 7
 	throw_range = 15
@@ -20,7 +20,7 @@
 	desc = "A rod of pure obsidian, its very presence disrupts and dampens the powers of paranormal phenomenae."
 	icon_state = "nullrod"
 	item_state = "nullrod"
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 15
 	throw_speed = 1
 	throw_range = 4
@@ -118,7 +118,7 @@
 	desc = "A rod with some wire wrapped around the top. It'd be easy to attach something to the top bit."
 	icon_state = "wiredrod"
 	item_state = "rods"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	force = 8
 	throwforce = 10
 	w_class = WEIGHT_CLASS_NORMAL

@@ -2345,6 +2345,10 @@
 /obj/machinery/vending/cargo_supply,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
+"dTa" = (
+/obj/machinery/robotic_cradle,
+/turf/open/floor/mainship,
+/area/mainship/medical/lower_medical)
 "dZo" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
@@ -4816,7 +4820,7 @@ ahy
 ahy
 dZo
 aie
-ahy
+dTa
 ahy
 ajT
 ahg

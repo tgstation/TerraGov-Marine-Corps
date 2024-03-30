@@ -19,10 +19,10 @@
 	item_state = "facehugger"
 	w_class = WEIGHT_CLASS_TINY //Note: can be picked up by aliens unlike most other items of w_class below 4
 	resistance_flags = NONE
-	flags_inventory = COVEREYES|COVERMOUTH
-	flags_armor_protection = FACE|EYES
-	flags_atom = CRITICAL_ATOM
-	flags_item = NOBLUDGEON
+	inventory_flags = COVEREYES|COVERMOUTH
+	armor_protection_flags = FACE|EYES
+	atom_flags = CRITICAL_ATOM
+	item_flags = NOBLUDGEON
 	throw_range = 1
 	worn_layer = FACEHUGGER_LAYER
 	layer = FACEHUGGER_LAYER
@@ -262,7 +262,7 @@
 
 	for(var/mob/living/carbon/M in view(4, src))
 		// Using euclidean distance means it will prioritize cardinal directions, which are less likely to miss due to wall jank.
-		if(chosen_target && (get_dist_euclidean(src, M) > get_dist_euclidean(src, chosen_target)))
+		if(chosen_target && (get_dist_manhattan(src, M) > get_dist_manhattan(src, chosen_target)))
 			continue
 
 		if(!M.can_be_facehugged(src))
@@ -632,13 +632,13 @@
 	kill_hugger()
 
 /obj/item/clothing/mask/facehugger/attackby(obj/item/I, mob/user, params)
-	if(I.flags_item & NOBLUDGEON || attached)
+	if(I.item_flags & NOBLUDGEON || attached)
 		return
 	kill_hugger()
 
 /obj/item/clothing/mask/facehugger/bullet_act(obj/projectile/P)
 	..()
-	if(P.ammo.flags_ammo_behavior & AMMO_XENO)
+	if(P.ammo.ammo_behavior_flags & AMMO_XENO)
 		return FALSE //Xeno spits ignore huggers.
 	if(P.damage && !(P.ammo.damage_type in list(OXY, STAMINA)))
 		kill_hugger()
@@ -689,7 +689,7 @@
 /obj/item/clothing/mask/facehugger/combat
 	sterile = TRUE
 	combat_hugger = TRUE
-	flags_equip_slot = NONE
+	equip_slot_flags = NONE
 
 /obj/item/clothing/mask/facehugger/combat/chem_injector
 	desc = "This strange creature has a single prominent sharp proboscis."

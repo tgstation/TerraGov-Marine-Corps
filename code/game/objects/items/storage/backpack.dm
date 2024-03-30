@@ -19,7 +19,7 @@
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		)
 	w_class = WEIGHT_CLASS_BULKY
-	flags_equip_slot = ITEM_SLOT_BACK	//ERROOOOO
+	equip_slot_flags = ITEM_SLOT_BACK	//ERROOOOO
 	max_w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = null
 	max_storage_space = 24
@@ -347,14 +347,14 @@
 
 /obj/item/storage/backpack/marine/tech
 	name = "\improper TGMC technician backpack"
-	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
+	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and HSG-102 emplacement parts."
 	icon_state = "marinepackt"
 	item_state = "marinepackt"
 	bypass_w_limit = list(
 		/obj/item/weapon/gun/sentry/big_sentry,
 		/obj/item/weapon/gun/sentry/mini,
-		/obj/item/weapon/gun/tl102,
-		/obj/item/ammo_magazine/tl102,
+		/obj/item/weapon/gun/hsg_102,
+		/obj/item/ammo_magazine/hsg_102,
 		/obj/item/ammo_magazine/sentry,
 		/obj/item/ammo_magazine/minisentry,
 		/obj/item/mortal_shell,
@@ -394,7 +394,7 @@
 	item_state = "marinesatt"
 	bypass_w_limit = list(
 		/obj/item/weapon/gun/sentry/mini,
-		/obj/item/ammo_magazine/tl102,
+		/obj/item/ammo_magazine/hsg_102,
 		/obj/item/ammo_magazine/sentry,
 		/obj/item/ammo_magazine/minisentry,
 		/obj/item/mortal_shell,

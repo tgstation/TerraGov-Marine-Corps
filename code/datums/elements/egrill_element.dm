@@ -33,7 +33,7 @@
 
 /datum/element/egrill/proc/attackby(obj/source, obj/item/attacked_by, mob/attacker, params)
 	SIGNAL_HANDLER
-	if(!iswirecutter(attacked_by) && !isscrewdriver(attacked_by) && !(attacked_by.flags_atom & CONDUCT))
+	if(!iswirecutter(attacked_by) && !isscrewdriver(attacked_by) && !(attacked_by.atom_flags & CONDUCT))
 		return
 	if(shock(source, attacker))
 		return COMPONENT_NO_AFTERATTACK

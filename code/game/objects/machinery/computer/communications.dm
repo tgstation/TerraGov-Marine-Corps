@@ -149,11 +149,11 @@
 					to_chat(usr, span_warning("The ship must be under red alert in order to enact evacuation procedures."))
 					return FALSE
 
-				if(SSevacuation.flags_scuttle & FLAGS_SDEVAC_TIMELOCK)
+				if(SSevacuation.scuttle_flags & FLAGS_SDEVAC_TIMELOCK)
 					to_chat(usr, span_warning("The sensors do not detect a sufficient threat present."))
 					return FALSE
 
-				if(SSevacuation.flags_scuttle & FLAGS_EVACUATION_DENY)
+				if(SSevacuation.scuttle_flags & FLAGS_EVACUATION_DENY)
 					to_chat(usr, span_warning("The TGMC has placed a lock on deploying the evacuation pods."))
 					return FALSE
 
