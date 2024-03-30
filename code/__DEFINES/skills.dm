@@ -197,7 +197,6 @@
 #define SKILL_POWERLOADER_PRO 3
 #define SKILL_POWERLOADER_MASTER 4
 
-
 /**
  * Leadership skill; order strength + range of effect
  * DEFAULT = Untrained; Using SL items is possible but painfully slow
