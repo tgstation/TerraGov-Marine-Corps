@@ -226,7 +226,7 @@
 ///The amount of extra damage per melee skill level
 #define MELEE_SKILL_DAM_BUFF 0.15
 
-///Pilot skill, hidden; affects nothing (not called anywhere)
+///Pilot skill, hidden; affects dropship weapon usage (not called anywhere on Condor)
 #define SKILL_PILOT_DEFAULT 0
 #define SKILL_PILOT_TRAINED 1
 
