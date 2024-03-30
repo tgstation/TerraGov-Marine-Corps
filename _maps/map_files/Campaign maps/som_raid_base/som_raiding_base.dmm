@@ -6246,6 +6246,10 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/campaign/som_raiding/ground/jungle)
+"IE" = (
+/obj/effect/landmark/mob_spawner/farwa,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/campaign/som_raiding/cave/tunnel)
 "IF" = (
 /obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/ground/grass/weedable,
@@ -28603,6 +28607,7 @@ Dz
 Dz
 oR
 oR
+oR
 Dz
 Dz
 Dz
@@ -28612,9 +28617,8 @@ Dz
 Dz
 Dz
 Dz
-Dz
-Dz
-Dz
+oR
+oR
 Dz
 Dz
 WW
@@ -28899,7 +28903,7 @@ cd
 cd
 Dz
 Dz
-Dz
+oR
 oR
 oR
 oR
@@ -29367,7 +29371,7 @@ Dz
 Dz
 Dz
 Dz
-Dz
+oR
 Dz
 oR
 oR
@@ -29506,7 +29510,7 @@ Dz
 Dz
 Dz
 Dz
-Dz
+oR
 oR
 Dz
 oR
@@ -29831,7 +29835,7 @@ Dz
 Dz
 Dz
 Dz
-oR
+IE
 oR
 oR
 oR
@@ -30575,8 +30579,8 @@ oR
 Dz
 Dz
 Dz
-Dz
-Dz
+lW
+oR
 oR
 oR
 Dz
@@ -30729,7 +30733,7 @@ Dz
 Dz
 Dz
 Dz
-Dz
+oR
 oR
 oR
 yx
@@ -31189,7 +31193,7 @@ oR
 oR
 oR
 Dz
-Dz
+oR
 OW
 OW
 OW
