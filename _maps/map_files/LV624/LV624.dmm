@@ -5529,36 +5529,6 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor,
-/area/lv624/ground/sand8)
-"gxf" = (
-/obj/structure/catwalk,
-/obj/effect/ai_node,
-/turf/open/liquid/water/river/deep,
-/area/lv624/ground/river1)
-"gxL" = (
-/obj/structure/table,
-/obj/item/clothing/suit/storage/apron,
-/turf/open/floor/tile/green/greentaupe{
-	dir = 5
-	},
-/area/lv624/lazarus/hydroponics)
-"gzl" = (
-/obj/structure/cable,
-/turf/open/floor/tile/blue/whiteblue{
-	dir = 1
-	},
-/area/lv624/lazarus/internal_affairs)
-"gzL" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
-/area/lv624/ground/jungle3)
-"gAb" = (
-/obj/structure/extinguisher_cabinet{
-	dir = 1
-	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "aFf" = (
@@ -8401,23 +8371,6 @@
 /area/lv624/lazarus/chapel)
 "aVw" = (
 /obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
-"lmd" = (
-/obj/structure/table,
-/obj/item/clothing/suit/storage/chef/classic,
-/turf/open/floor/freezer,
-/area/lv624/lazarus/kitchen)
-"lmI" = (
-/obj/structure/cargo_container/nt{
-	dir = 4
-	},
-/turf/open/floor/marking/bot,
-/area/lv624/lazarus/spaceport2)
-"lne" = (
-/turf/open/liquid/water/river/autosmooth,
-/area/lv624/ground/sand6)
-"lno" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
 /area/lv624/lazarus/chapel)
@@ -12955,19 +12908,13 @@
 "dWQ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle10)
-"ruh" = (
-/obj/structure/coatrack,
-/turf/open/floor/grimy,
-/area/lv624/lazarus/captain)
-"rui" = (
-/turf/open/ground/coast/corner2,
-/area/lv624/ground/jungle9)
-"ruj" = (
-/obj/structure/table,
-/obj/item/clothing/suit/storage/apron/overalls,
-/obj/item/clothing/under/colonist,
-/turf/open/floor/tile/green/greentaupe{
+/area/lv624/lazarus/quartstorage/outdoors)
+"dXe" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/gm/dense,
+/area/lv624/ground/jungle1)
+"dXy" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
 /turf/open/floor/tile/dark,
@@ -13072,15 +13019,15 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
-/obj/structure/table,
-/obj/item/clothing/suit/storage/apron,
-/turf/open/floor/tile/green/greentaupe{
-	dir = 5
-	},
-/area/lv624/lazarus/hydroponics)
-"rDw" = (
-/obj/machinery/smartfridge/seeds,
-/obj/structure/extinguisher_cabinet{
+/area/lv624/ground/jungle9)
+"exa" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle3)
+"eys" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/sign/botany,
+/turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
 /area/lv624/ground/jungle7)
@@ -13732,23 +13679,20 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
-"sDw" = (
-/obj/effect/landmark/start/job/survivor,
-/turf/open/floor/wood,
-/area/lv624/ground/jungle8)
-"sDY" = (
-/turf/closed/mineral/smooth,
-/area/lv624/lazarus/sandtemple/garbledradio)
-"sDZ" = (
-/obj/structure/table,
-/obj/item/clothing/gloves/botanic_leather,
-/obj/item/clothing/suit/storage/apron,
-/obj/item/clothing/under/colonist,
-/turf/open/floor/tile/green/whitegreen,
-/area/lv624/lazarus/hydroponics/aux)
-"sEE" = (
-/obj/structure/table/mainship,
+/area/lv624/ground/caves/central1)
+"gSa" = (
+/turf/open/floor/marking/loadingarea,
+/area/shuttle/drop2/lz2)
+"gSr" = (
+/obj/structure/largecrate/random,
+/turf/open/floor/marking/bot,
+/area/shuttle/drop2/lz2)
+"gSB" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/cult,
+/area/lv624/ground/caves/west1)
+"gTc" = (
+/obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "gUj" = (
