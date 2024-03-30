@@ -14618,10 +14618,6 @@
 	},
 /turf/open/liquid/lava/autosmoothing,
 /area/magmoor/cave/west)
-"kAo" = (
-/obj/structure/lattice,
-/turf/closed/wall/r_wall,
-/area/magmoor/cave/west)
 "kAp" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
@@ -20192,10 +20188,6 @@
 "oHm" = (
 /turf/open/floor/mainship/green,
 /area/magmoor/hydroponics/north)
-"oHv" = (
-/obj/structure/lattice,
-/turf/closed/wall/r_wall,
-/area/magmoor/cave/southwest)
 "oHX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
@@ -43533,12 +43525,12 @@ fIc
 nAL
 ajn
 ktc
-kAo
+ktc
 kTE
 kTE
 kTE
-kAo
-kAo
+ktc
+ktc
 lHF
 gkG
 gkG
@@ -43547,12 +43539,12 @@ gkG
 gkG
 gkG
 own
-oHv
+own
 pbu
 pbu
 pbu
-oHv
-oHv
+own
+own
 qhW
 nYL
 uXf
@@ -44698,12 +44690,12 @@ fIc
 nAL
 kon
 ktc
-kAo
+ktc
 kTE
 kTE
 kTE
-kAo
-kAo
+ktc
+ktc
 fIc
 tcR
 tcR
@@ -44712,12 +44704,12 @@ tcR
 tcR
 ocr
 own
-oHv
+own
 pbu
 pbu
 pbu
-oHv
-oHv
+own
+own
 vFa
 nYL
 tGO
@@ -60309,12 +60301,12 @@ pwz
 mky
 eGp
 iUW
-pjn
+iUW
 lJJ
 lJJ
 lJJ
-pjn
-pjn
+iUW
+iUW
 lXD
 oIR
 prn
@@ -61474,12 +61466,12 @@ wUp
 ebB
 kpi
 iUW
-pjn
+iUW
 lJJ
 lJJ
 lJJ
-pjn
-pjn
+iUW
+iUW
 eGp
 prn
 fsX
@@ -69820,7 +69812,7 @@ tyH
 tyH
 aOB
 tyH
-aOB
+tyH
 tyH
 tyH
 tyH

@@ -359,6 +359,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/barren/cave/lz1)
 "cp" = (
@@ -692,6 +693,7 @@
 /area/barren/civilian/botany)
 "el" = (
 /obj/structure/cable,
+/obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/barren/outside/n)
 "em" = (
@@ -759,6 +761,7 @@
 /turf/open/floor/tile/dark,
 /area/barren/cave/lz2)
 "eE" = (
+/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/tile/hydro,
 /area/barren/civilian/botany)
@@ -1293,6 +1296,7 @@
 /turf/open/floor/grimy,
 /area/barren/civilian/workdorm)
 "hB" = (
+/obj/structure/cable,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
@@ -1854,6 +1858,7 @@
 /area/shuttle/drop1/lz1)
 "kN" = (
 /obj/structure/cable,
+/obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/barren/outside/e)
 "kO" = (
@@ -2146,6 +2151,7 @@
 /turf/open/lavaland/basalt/glowing,
 /area/barren/outside/w)
 "mq" = (
+/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/barren/cave/lz2)
@@ -3217,6 +3223,7 @@
 /turf/open/floor/tile/red,
 /area/barren/security)
 "sx" = (
+/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 4
@@ -4467,6 +4474,7 @@
 /area/barren/engie/engine)
 "zY" = (
 /obj/structure/cable,
+/obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/barren/outside/c)
 "zZ" = (
@@ -4628,6 +4636,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/barren/security)
 "Bd" = (
+/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/barren/outside/c)
@@ -5494,6 +5503,7 @@
 /area/barren/cave/lz1)
 "FZ" = (
 /obj/structure/cable,
+/obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
 /area/barren/medical/research)
 "Gf" = (
@@ -5743,6 +5753,7 @@
 /turf/open/floor/plating/dmg1,
 /area/barren/outside/c)
 "HN" = (
+/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor,
 /area/barren/cave/lz1)
@@ -6170,6 +6181,7 @@
 /turf/open/lavaland/basalt,
 /area/barren/cave/south)
 "JV" = (
+/obj/structure/cable,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -7124,6 +7136,7 @@
 /area/barren/cave/lz1)
 "PE" = (
 /obj/structure/cable,
+/obj/structure/cable,
 /obj/item/trash/cigbutt,
 /turf/open/floor/wood,
 /area/barren/civilian/cook)
@@ -7131,6 +7144,7 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
 	},
+/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/barren/cave/lz1)
@@ -7222,6 +7236,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/barren/medical/research)
 "Qh" = (
+/obj/structure/cable,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor,
@@ -7374,6 +7389,7 @@
 	},
 /area/shuttle/drop1/lz1)
 "QZ" = (
+/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor,
 /area/barren/civilian)
@@ -8727,6 +8743,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/barren/civilian)
 "Zm" = (
+/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/barren/cave/south)
@@ -28404,7 +28421,7 @@ Mb
 Mb
 Mw
 Mw
-An
+Mw
 Mw
 Mb
 jp
