@@ -281,6 +281,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/standard_carbine/enhanced, /datum/loadout_item/suit_store/main_gun/marine/standard_carbine, SQUAD_MARINE)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/scout_carbine/enhanced, /datum/loadout_item/suit_store/main_gun/marine/scout_carbine, SQUAD_MARINE)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/suppressed_carbine/enhanced, /datum/loadout_item/suit_store/main_gun/marine/suppressed_carbine, SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/corpsman/carbine/enhanced, /datum/loadout_item/suit_store/main_gun/corpsman/carbine, SQUAD_CORPSMAN)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/corpsman/assault_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/corpsman/assault_rifle, SQUAD_CORPSMAN)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/engineer/carbine/enhanced, /datum/loadout_item/suit_store/main_gun/engineer/carbine, SQUAD_ENGINEER)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/engineer/assault_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/engineer/assault_rifle, SQUAD_ENGINEER)
