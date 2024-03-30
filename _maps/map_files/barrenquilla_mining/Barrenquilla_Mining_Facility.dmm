@@ -6411,7 +6411,7 @@
 /area/barren/civilian/workdorm)
 "Mq" = (
 /obj/machinery/door/airlock/colony/medical{
-	name = "Medicine storage"
+	name = "Medicine Storage"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/bar,
