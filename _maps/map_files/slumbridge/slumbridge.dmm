@@ -15168,9 +15168,7 @@
 /turf/open/floor/plating/heatinggrate,
 /area/slumbridge/inside/colony/dorms)
 "lpI" = (
-/obj/structure/stairs/seamless{
-	dir = 4
-	},
+/obj/structure/stairs/seamless,
 /turf/open/floor/plating/ground/snow,
 /area/slumbridge/outside/southwest)
 "lpM" = (
