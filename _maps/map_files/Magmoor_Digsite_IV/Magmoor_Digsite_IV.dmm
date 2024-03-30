@@ -14423,10 +14423,6 @@
 /obj/structure/rock/basalt/pile/alt,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound)
-"krY" = (
-/obj/structure/lattice,
-/turf/closed/wall/r_wall,
-/area/magmoor/compound/northeast)
 "ksb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
@@ -20946,10 +20942,6 @@
 	dir = 1
 	},
 /area/magmoor/cave/southeast)
-"pjn" = (
-/obj/structure/lattice,
-/turf/closed/wall/r_wall,
-/area/magmoor/cave/east)
 "pkq" = (
 /obj/machinery/landinglight/lz2{
 	dir = 8
@@ -68916,12 +68908,12 @@ eGp
 pwz
 mky
 iUW
-pjn
+iUW
 lJJ
 lJJ
 lJJ
-pjn
-pjn
+iUW
+iUW
 kJl
 piL
 jIn
@@ -70081,12 +70073,12 @@ eGp
 oEH
 jBV
 iUW
-krY
+tik
 xAw
 xAw
 xAw
-krY
-krY
+tik
+tik
 pYI
 uUg
 uUg
