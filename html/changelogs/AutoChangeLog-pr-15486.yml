@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - rscdel: "Removed factory medpacks"

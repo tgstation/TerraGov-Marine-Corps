@@ -73,7 +73,7 @@
 	desc = "Equipped with a red dot sight and underbarrel grenade launcher. The MPi-KM is a modern reproduction based off several variants of kalashnikov type rifles used during the original Martian rebellion. \
 	These weapons were already ancient at that time, and their continued use by the SOM speaks more to their cultural legacy than any tactical benefits. \
 	Despite having relatively poor mobility and handling, it never the less has fearsome firepower and good capacity, ensuring it stays a relevant weapon choice for the SOM. Uses 7.62x39mm ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "ak47"
 	item_typepath = /obj/item/weapon/gun/rifle/mpi_km/black/grenadier
 
 /datum/loadout_item/suit_store/main_gun/som_marine/mpi_grenadier/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -95,7 +95,7 @@
 	It combines good mobility and managable handling with fearsome stopping power and a tremendous rate of fire, making the V-34 an exceptionally deadly weapon at close range. \
 	With poor falloff and accuracy, it is a poor weapon outside of close range, and its mobility lacks compared to some other close range weapons like the V-21. \
 	Uses 7.62x39mm ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "v34"
 	item_typepath = /obj/item/weapon/gun/rifle/som_carbine/black/standard
 
 /datum/loadout_item/suit_store/main_gun/som_marine/carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -276,7 +276,7 @@
 	name = "V-41"
 	desc = "Equipped with a red dot sight, extended barrel and bipod. The V-41 is a large man portable machine used by the SOM, allowing for sustained, accurate suppressive firepower at the cost of mobility and handling. \
 	Commonly seen where their preferred tactics of fast, mobile aggression is ill suited. Has impressive ranged damage application as a static weapon. Uses 10x26mm Caseless ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "v41"
 	item_typepath = /obj/item/weapon/gun/rifle/som_mg/standard
 
 /datum/loadout_item/suit_store/main_gun/som_marine/machinegunner/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)

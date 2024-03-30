@@ -835,6 +835,21 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	cost = 10
 
+/datum/supply_packs/weapons/ltb_shells
+	name = "LTB tank shell"
+	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
+	cost = 10
+
+/datum/supply_packs/weapons/ltaap_rounds
+	name = "LTAAP tank magazine"
+	contains = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
+	cost = 10
+
+/datum/supply_packs/weapons/cupola_rounds
+	name = "Cupola tank magazine"
+	contains = list(/obj/item/ammo_magazine/tank/secondary_cupola)
+	cost = 10
+
 /*******************************************************************************
 EXPLOSIVES
 *******************************************************************************/
@@ -2313,11 +2328,6 @@ FACTORY
 /datum/supply_packs/factory/swat_mask_refill
 	name = "SWAT mask assembly refill"
 	contains = list(/obj/item/factory_refill/swat_mask_refill)
-	cost = 500
-
-/datum/supply_packs/factory/med_advpack
-	name = "Advanced medical pack assembly refill"
-	contains = list(/obj/item/factory_refill/med_advpack_refill)
 	cost = 500
 
 /datum/supply_packs/factory/module_valk_refill
