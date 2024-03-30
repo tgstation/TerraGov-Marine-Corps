@@ -3443,12 +3443,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flame_radius(2, T, burn_duration = 9, colour = "blue")
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
-/datum/ammo/energy/plasma/cannon_standard
-	damage = 20
-	penetration = 15
-	sundering = 0.75
-	damage_falloff = 0.75
-
 #define PLASMA_CANNON_INNER_STAGGERSTUN_RANGE 3
 #define PLASMA_CANNON_STAGGERSTUN_RANGE 9
 #define PLASMA_CANNON_STAGGER_DURATION 3 SECONDS
