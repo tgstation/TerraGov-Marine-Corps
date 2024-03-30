@@ -47,7 +47,8 @@
 		/obj/item/ammo_magazine/rifle/standard_carbine/incendiary,
 		/obj/item/ammo_magazine/rifle/standard_carbine/cryogenic,
 		/obj/item/ammo_magazine/rifle/standard_carbine/ricochet,
-		/obj/item/ammo_magazine/rifle/standard_carbine/wallpierce,)
+		/obj/item/ammo_magazine/rifle/standard_carbine/wallpierce,
+	)
 	attachable_allowed = list(
 		/obj/item/attachable/stock/t18stock,
 		/obj/item/attachable/reddot,
@@ -143,7 +144,8 @@
 		/obj/item/ammo_magazine/rifle/standard_assaultrifle/incendiary,
 		/obj/item/ammo_magazine/rifle/standard_assaultrifle/cryogenic,
 		/obj/item/ammo_magazine/rifle/standard_assaultrifle/ricochet,
-		/obj/item/ammo_magazine/rifle/standard_assaultrifle/wallpierce,)
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle/wallpierce,
+	)
 	attachable_allowed = list(
 		/obj/item/attachable/stock/t12stock,
 		/obj/item/attachable/reddot,
@@ -921,7 +923,8 @@
 		/obj/item/ammo_magazine/standard_lmg/incendiary,
 		/obj/item/ammo_magazine/standard_lmg/cryogenic,
 		/obj/item/ammo_magazine/standard_lmg/ricochet,
-		/obj/item/ammo_magazine/standard_lmg/wallpierce,)
+		/obj/item/ammo_magazine/standard_lmg/wallpierce,
+	)
 	attachable_allowed = list(
 		/obj/item/attachable/stock/t42stock,
 		/obj/item/attachable/reddot,
