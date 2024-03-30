@@ -7396,9 +7396,7 @@
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/control)
 "doS" = (
-/obj/machinery/sleeper{
-	flags_atom = 18
-	},
+/obj/machinery/sleeper,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/residential/east)
 "dph" = (
@@ -7462,9 +7460,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/sleeper{
-	flags_atom = 18
-	},
+/obj/machinery/sleeper,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/residential/east)
 "drt" = (
