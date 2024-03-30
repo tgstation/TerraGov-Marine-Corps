@@ -1421,7 +1421,6 @@
 /area/icarus/interior/scrapyardone)
 "bUI" = (
 /obj/structure/lattice,
-/obj/structure/lattice,
 /turf/open/floor/mainship_hull/dir{
 	dir = 1
 	},
@@ -17069,7 +17068,6 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbaytwo)
 "wFj" = (
-/obj/structure/lattice,
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space)
