@@ -2379,9 +2379,7 @@
 	},
 /area/campaign/som_raiding/outpost/security/cargo_post)
 "mI" = (
-/obj/machinery/door/airlock/hatch{
-	dir = 1
-	},
+/obj/machinery/door/airlock/hatch,
 /turf/open/floor/mainship/mono,
 /area/campaign/som_raiding/outpost/tunnel)
 "mJ" = (
@@ -2497,8 +2495,8 @@
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/som_raiding/ground/jungle)
 "nr" = (
-/obj/structure/mine_structure/wooden/support_wall/beams/above,
 /obj/structure/mine_structure/wooden/plank/alt,
+/obj/structure/mine_structure/wooden/support_wall/beams,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/campaign/som_raiding/cave/tunnel)
 "nt" = (
@@ -4492,7 +4490,7 @@
 	},
 /area/campaign/som_raiding/outpost/security/south_post)
 "yx" = (
-/obj/structure/mine_structure/wooden/support_wall/beams/above,
+/obj/structure/mine_structure/wooden/support_wall/beams,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/campaign/som_raiding/cave/tunnel)
 "yy" = (
@@ -6801,7 +6799,7 @@
 /turf/closed/wall/mainship/gray,
 /area/campaign/som_raiding/outpost/living/bathroom)
 "LB" = (
-/obj/structure/mine_structure/wooden/support_wall/above,
+/obj/structure/mine_structure/wooden/support_wall,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/campaign/som_raiding/cave/tunnel)
 "LC" = (
@@ -8931,7 +8929,7 @@
 /turf/open/floor/mainship/mono,
 /area/campaign/som_raiding/outpost/living/briefing)
 "WW" = (
-/obj/structure/mine_structure/wooden/support_wall/t_bar/above,
+/obj/structure/mine_structure/wooden/support_wall/t_bar,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/campaign/som_raiding/cave/tunnel)
 "WX" = (
