@@ -18788,7 +18788,7 @@
 "iAY" = (
 /obj/structure/table/mainship,
 /obj/item/clothing/gloves/latex,
-/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/suit/storage/chef/classic,
 /obj/item/tool/kitchen/rollingpin,
 /obj/effect/turf_decal/tile/full/white,
 /obj/machinery/atmospherics/pipe/manifold/green{
