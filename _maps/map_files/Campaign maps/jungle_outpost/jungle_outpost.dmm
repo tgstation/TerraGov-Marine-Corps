@@ -571,18 +571,6 @@
 	dir = 9
 	},
 /area/campaign/jungle_outpost/outpost/req)
-"cO" = (
-/obj{
-	name = "---Merge conflict marker---"
-	},
-/obj/structure/table,
-/obj/item/clothing/suit/storage/apron,
-/obj/item/clothing/gloves/botanic_leather,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/space/basic,
-/area/space)
 "cP" = (
 /obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/tile/green/greentaupe{
@@ -15478,7 +15466,7 @@ ZC
 ZC
 ZC
 ZC
-cO
+ZC
 ZC
 ZC
 ZC
