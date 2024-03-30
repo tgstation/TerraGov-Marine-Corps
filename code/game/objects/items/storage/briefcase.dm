@@ -3,7 +3,7 @@
 	desc = "It's made of AUTHENTIC faux-leather and has a price-tag still attached. Its owner must be a real professional."
 	icon_state = "briefcase"
 	item_state = "briefcase"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	force = 8
 	throw_speed = 1
 	throw_range = 4
@@ -16,7 +16,7 @@
 	desc = "A well made, expensive looking case, made to fit an R-76 Magnum and its accessories. For the discerning gun owner."
 	icon_state = "magnum_case"
 	item_state = "briefcase"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	force = 12
 	throw_speed = 1
 	throw_range = 4

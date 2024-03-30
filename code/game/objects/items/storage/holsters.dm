@@ -7,7 +7,7 @@
 	max_w_class = WEIGHT_CLASS_BULKY ///normally the special item will be larger than what should fit. Child items will have lower limits and an override
 	storage_slots = 1
 	max_storage_space = 4
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	draw_mode = 1
 	allow_drawing_method = TRUE
 	storage_type_limits = list(/obj/item/weapon = 1)
@@ -79,7 +79,7 @@
 
 /obj/item/storage/holster/update_icon()
 	. = ..()
-	if(flags_item & HAS_UNDERLAY)
+	if(item_flags & HAS_UNDERLAY)
 		update_underlays()
 	var/mob/user = loc
 	if(!istype(user))
@@ -366,7 +366,7 @@
 	name = "\improper H5 pattern M2132 machete scabbard"
 	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the back, waist or armor."
 	icon_state = "machete_holster"
-	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	holsterable_allowed = list(
 		/obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/claymore/harvester,
@@ -395,7 +395,7 @@
 	icon_state = "katana_holster"
 	force = 12
 	attack_verb = list("bludgeoned", "struck", "cracked")
-	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	holsterable_allowed = list(/obj/item/weapon/katana)
 	can_hold = list(/obj/item/weapon/katana)
 
@@ -408,7 +408,7 @@
 	name = "\improper officer sword scabbard"
 	desc = "A large leather scabbard used to carry a sword. Appears to be a reproduction, rather than original. It can be strapped to the waist or armor."
 	icon_state = "officer_sheath"
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	holsterable_allowed = list(/obj/item/weapon/claymore/mercsword/machete/officersword)
 	can_hold = list(/obj/item/weapon/claymore/mercsword/machete/officersword)
 
@@ -456,7 +456,7 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the M25 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
 	icon_state = "m25_holster"
 	icon = 'icons/obj/clothing/belts.dmi'
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	holsterable_allowed = list(
 		/obj/item/weapon/gun/smg/m25,
 		/obj/item/weapon/gun/smg/m25/holstered,
@@ -473,7 +473,7 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the MP-19 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
 	icon_state = "t19_holster"
 	icon = 'icons/obj/clothing/belts.dmi'
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	holsterable_allowed = list(
 		/obj/item/weapon/gun/smg/standard_machinepistol,
 		/obj/item/weapon/gun/smg/standard_machinepistol/compact,
@@ -497,7 +497,7 @@
 /obj/item/storage/holster/flarepouch
 	name = "flare pouch"
 	desc = "A pouch designed to hold flares and a single flaregun. Refillable with a M94 flare pack."
-	flags_equip_slot = ITEM_SLOT_POCKET
+	equip_slot_flags = ITEM_SLOT_POCKET
 	storage_slots = 28
 	max_storage_space = 28
 	icon = 'icons/Marine/marine-pouches.dmi'
@@ -533,8 +533,8 @@
 
 
 /obj/item/storage/holster/icc_mg
-	name = "\improper ML-14 scabbard (10x26mm)"
-	desc = "A backpack holster allowing the storage of any a ML-14 Assault Machinegun, also carries ammo for the other portion of the system."
+	name = "\improper ML-41 scabbard (10x26mm)"
+	desc = "A backpack holster allowing the storage of any a ML-41 Assault Machinegun, also carries ammo for the other portion of the system."
 	icon_state = "icc_bagmg"
 	storage_slots = 5
 	max_storage_space = 16
@@ -564,8 +564,8 @@
 	desc = "A belt-holster assembly that allows one to hold a pistol and two magazines."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "m4a3_holster"
-	flags_equip_slot = ITEM_SLOT_BELT
-	flags_item = HAS_UNDERLAY
+	equip_slot_flags = ITEM_SLOT_BELT
+	item_flags = HAS_UNDERLAY
 	use_sound = null
 	storage_slots = 7
 	max_storage_space = 15
@@ -576,7 +576,7 @@
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
-		/obj/item/cell/lasgun/plasma_powerpack,
+		/obj/item/cell/lasgun/plasma,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
 		/obj/item/cell/lasgun/lasrifle,
 		/obj/item/cell/lasgun/volkite/small,
@@ -602,7 +602,7 @@
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
 		/obj/item/cell/lasgun/lasrifle,
-		/obj/item/cell/lasgun/plasma_powerpack,
+		/obj/item/cell/lasgun/plasma,
 	)
 
 /obj/item/storage/holster/belt/pistol/m4a3/full/Initialize(mapload)
@@ -682,7 +682,7 @@
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
 		/obj/item/cell/lasgun/lasrifle,
 		/obj/item/cell/lasgun/volkite/small,
-		/obj/item/cell/lasgun/plasma_powerpack,
+		/obj/item/cell/lasgun/plasma,
 	)
 
 /obj/item/storage/holster/belt/pistol/m4a3/som/serpenta/Initialize(mapload, ...)

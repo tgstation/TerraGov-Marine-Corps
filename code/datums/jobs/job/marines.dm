@@ -20,7 +20,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	///yes i know istype(src) is gross but we literally have 1 child type we would want to ignore so
 	if(ismarineleaderjob(src))
 		return
-	if(!(SSticker.mode.flags_round_type & MODE_FORCE_CUSTOMSQUAD_UI))
+	if(!(SSticker.mode.round_type_flags & MODE_FORCE_CUSTOMSQUAD_UI))
 		return
 	if(world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		human_spawn.RegisterSignal(SSdcs, COMSIG_GLOB_DEPLOY_TIMELOCK_ENDED, TYPE_PROC_REF(/mob/living/carbon/human, suggest_squad_assign))
@@ -374,7 +374,7 @@ You are also in charge of communicating with command and letting them know about
 			new_human.wear_id.paygrade = "E9"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9E" //If you play way too much TGMC. 1000 hours.
-	if(SSticker.mode.flags_round_type & MODE_FORCE_CUSTOMSQUAD_UI)
+	if(SSticker.mode.round_type_flags & MODE_FORCE_CUSTOMSQUAD_UI)
 		addtimer(CALLBACK(GLOB.squad_manager, TYPE_PROC_REF(/datum, interact), new_human), 2 SECONDS)
 	if(!latejoin)
 		return

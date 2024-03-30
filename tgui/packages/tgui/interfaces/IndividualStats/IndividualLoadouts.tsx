@@ -83,6 +83,7 @@ export const IndividualLoadouts = (props) => {
                       mr="3px"
                       ml="3px"
                       onClick={() => {
+                        act('play_ding');
                         setselectedLoadoutItem(equippeditem);
                         setselectedPossibleItem(equippeditem.item_type);
                       }}

@@ -31,8 +31,8 @@
 	)
 	item_state = "electronic"
 
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 
 	w_class = WEIGHT_CLASS_SMALL
 

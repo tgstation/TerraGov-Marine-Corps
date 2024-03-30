@@ -3,8 +3,8 @@
 	desc = "A tool used by great men to placate the frothing masses."
 	icon_state = "chain"
 	item_state = "chain"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 10
 	throwforce = 7
 	w_class = WEIGHT_CLASS_NORMAL
@@ -20,7 +20,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "cane"
 	item_state = "cane"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	force = 5
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
@@ -50,7 +50,7 @@
 	desc = "A metal gauntlet with a energy-powered fist to throw back enemies. Altclick to clamp it around your hand, use it to change power settings and click with an empty off-hand or right click to pop out the cell."
 	icon_state = "powerfist"
 	item_state = "powerfist"
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 10
 	attack_verb = list("smashed", "rammed", "power-fisted")
 	var/obj/item/cell/cell
@@ -188,5 +188,5 @@
 	attack_verb = list("smacked", "whacked", "bonked", "pelted", "thwacked", "cracked")
 	hitsound = 'sound/weapons/heavyhit.ogg'
 	singular_name = "stone"
-	flags_atom = DIRLOCK
+	atom_flags = DIRLOCK
 	sharp = IS_NOT_SHARP_ITEM

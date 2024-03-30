@@ -13,7 +13,7 @@
 	var/list/storedinfo = list()
 	var/list/timestamp = list()
 	var/canprint = 1
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	throwforce = 2
 	throw_speed = 4
 	throw_range = 20

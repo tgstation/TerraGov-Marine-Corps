@@ -93,7 +93,7 @@
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
-	if(CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		if(is_normal_resin_wall)
 			SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
 			take_damage(max_integrity) // Ensure its destroyed
@@ -117,7 +117,7 @@
 
 
 /turf/closed/wall/resin/attackby(obj/item/I, mob/living/user, params)
-	if(I.flags_item & NOBLUDGEON || !isliving(user))
+	if(I.item_flags & NOBLUDGEON || !isliving(user))
 		return
 
 	user.changeNext_move(I.attack_speed)
@@ -130,7 +130,7 @@
 	else if(I.damtype == BRUTE)
 		multiplier += 0.75
 
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
+	if(isplasmacutter(I) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
 			multiplier += PLASMACUTTER_RESIN_MULTIPLIER

@@ -3,10 +3,10 @@
 	desc = "Standard issue combat boots for combat scenarios or combat situations. All combat, all the time."
 	icon_state = "marine"
 	item_state = "marine"
-	flags_armor_protection = FEET
-	flags_cold_protection = FEET
-	flags_heat_protection = FEET
-	flags_inventory = NOQUICKEQUIP|NOSLIPPING
+	armor_protection_flags = FEET
+	cold_protection_flags = FEET
+	heat_protection_flags = FEET
+	inventory_flags = NOQUICKEQUIP|NOSLIPPING
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
@@ -59,7 +59,7 @@
 	desc = "Only a small amount of monkeys, kittens, and orphans were killed in making this."
 	icon_state = "laceups"
 	soft_armor = list(MELEE = 35, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 25)
-	flags_inventory = NOSLIPPING
+	inventory_flags = NOSLIPPING
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/shoes/marinechief/captain
@@ -82,13 +82,13 @@
 	desc = "The height of fashion, but these look to be woven with protective fiber."
 	icon_state = "jackboots"
 	item_state = "jackboots"
-	flags_armor_protection = FEET
+	armor_protection_flags = FEET
 	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 15)
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
-	flags_cold_protection = FEET
-	flags_heat_protection = FEET
-	flags_inventory = NOSLIPPING
+	cold_protection_flags = FEET
+	heat_protection_flags = FEET
+	inventory_flags = NOSLIPPING
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/shoes/marine/deathsquad
@@ -97,12 +97,12 @@
 	icon_state = "commando_boots"
 	item_state = "commando_boots"
 	permeability_coefficient = 0.01
-	flags_armor_protection = FEET
+	armor_protection_flags = FEET
 	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 25)
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
-	flags_cold_protection = FEET
-	flags_heat_protection = FEET
+	cold_protection_flags = FEET
+	heat_protection_flags = FEET
 	siemens_coefficient = 0.2
 	resistance_flags = UNACIDABLE
 	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
@@ -130,9 +130,9 @@
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
-	flags_item = DELONDROP
+	item_flags = DELONDROP
 	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 25)
-	flags_inventory = NOSLIPPING
+	inventory_flags = NOSLIPPING
 
 /obj/item/clothing/shoes/sectoid/Initialize(mapload)
 	. = ..()

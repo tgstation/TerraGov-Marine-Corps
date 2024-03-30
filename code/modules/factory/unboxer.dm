@@ -303,13 +303,13 @@
 /obj/item/factory_refill/railgun_hvap_magazine_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
-	refill_type = /obj/item/factory_part/railgun_magazine
+	refill_type = /obj/item/factory_part/railgun_hvap_magazine
 	refill_amount = 20
 
 /obj/item/factory_refill/railgun_smart_magazine_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
-	refill_type = /obj/item/factory_part/railgun_magazine
+	refill_type = /obj/item/factory_part/railgun_smart_magazine
 	refill_amount = 20
 
 /obj/item/factory_refill/minigun_powerpack_refill
@@ -317,12 +317,6 @@
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/minigun_powerpack
 	refill_amount = 10
-
-/obj/item/factory_refill/sniper_flak_magazine_refill
-	name = "box of rounded metal plates"
-	desc = "A box with round metal plates inside. Used to refill Unboxers."
-	refill_type = /obj/item/factory_part/sniper_flak_magazine
-	refill_amount = 20
 
 /obj/item/factory_refill/sniper_flak_magazine_refill
 	name = "box of rounded metal plates"

@@ -1,11 +1,11 @@
 ///Default ammo for the HSG-102.
-/obj/item/ammo_magazine/tl102
+/obj/item/ammo_magazine/hsg_102
 	name = "HSG-102 drum magazine (10x30mm Caseless)"
 	desc = "A box of 300, 10x30mm caseless tungsten rounds for the HSG-102 mounted heavy smartgun."
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "mag"
-	flags_magazine = NONE
+	magazine_flags = NONE
 	caliber = CALIBER_10X30
 	max_rounds = 300
 	default_ammo = /datum/ammo/bullet/machinegun
@@ -13,18 +13,18 @@
 	icon_state_mini = "mag_hmg"
 
 ///This is the one that comes in the mapbound and dropship mounted version of the HSG-102, it has a stupid amount of ammo. Even more than the ammo counter can display.
-/obj/item/ammo_magazine/tl102/hsg_nest
+/obj/item/ammo_magazine/hsg_102/hsg_nest
 	max_rounds = 500
 
 /obj/item/ammo_magazine/heavymachinegun
 	name = "HMG-08 drum magazine (10x30mm Caseless)"
 	desc = "A box of 500, 10x28mm caseless tungsten rounds for the HMG-08 mounted heavy machinegun. Is probably not going to fit in your backpack. Put it on your belt or back."
 	w_class = WEIGHT_CLASS_BULKY
-	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "mg08_mag"
 	icon_state_mini = "mag_drum_big_green"
-	flags_magazine = NONE
+	magazine_flags = NONE
 	caliber = CALIBER_10X28
 	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/machinegun
@@ -34,7 +34,7 @@
 	name = "HMG-08 box magazine (10x30mm Caseless)"
 	desc = "A box of 250 10x28mm caseless tungsten rounds for the HMG-08 mounted heavy machinegun."
 	w_class = WEIGHT_CLASS_NORMAL
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	icon_state = "mg08_mag_small"
 	icon_state_mini = "mag_hmg"
 	max_rounds = 250
@@ -47,7 +47,7 @@
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "mag"
 	icon_state_mini = "mag_drum_big_armygreen"
-	flags_magazine = NONE
+	magazine_flags = NONE
 	caliber = CALIBER_10x27_CASELESS
 	max_rounds = 150
 	default_ammo = /datum/ammo/bullet/rifle/heavy
@@ -59,7 +59,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "ags_mag"
-	flags_magazine = NONE
+	magazine_flags = NONE
 	caliber = CALIBER_40MM
 	max_rounds = 30
 	default_ammo = /datum/ammo/grenade_container/ags_grenade
@@ -103,7 +103,7 @@
 	icon = 'icons/Marine/marine-atgun.dmi'
 	icon_state = "tat36_shell"
 	item_state = "tat36"
-	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
+	magazine_flags = MAGAZINE_REFUND_IN_CHAMBER
 	caliber = CALIBER_37MM
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/atgun_shell
@@ -143,7 +143,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "minigun"
-	flags_magazine = NONE
+	magazine_flags = NONE
 	caliber = CALIBER_762X51
 	max_rounds = 1000
 	default_ammo = /datum/ammo/bullet/minigun
@@ -156,7 +156,7 @@
 	icon = 'icons/Marine/marine-ac.dmi'
 	icon_state = "ac_mag"
 	item_state = "ac"
-	flags_magazine = NONE
+	magazine_flags = NONE
 	caliber = CALIBER_20
 	max_rounds = 100
 	default_ammo = /datum/ammo/bullet/auto_cannon
@@ -185,7 +185,7 @@
 	icon_state = "isg_ammo"
 	item_state = "isg_ammo"
 	w_class = WEIGHT_CLASS_BULKY
-	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
+	magazine_flags = MAGAZINE_REFUND_IN_CHAMBER
 	caliber = CALIBER_15CM
 	max_rounds = 1
 	reload_delay = 8 SECONDS
@@ -220,7 +220,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "kord_mag"
-	flags_magazine = NONE
+	magazine_flags = NONE
 	caliber = CALIBER_10X30
 	max_rounds = 300
 	default_ammo = /datum/ammo/bullet/machinegun

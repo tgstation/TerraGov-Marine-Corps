@@ -158,7 +158,7 @@
 	else
 		for(var/i in 1 to amount)
 			var/atom/A = new chosen(T)
-			A.flags_atom |= ADMIN_SPAWNED
+			A.atom_flags |= ADMIN_SPAWNED
 
 	log_admin("[key_name(usr)] spawned [amount] x [chosen] at [AREACOORD(usr)]")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Spawn Atom") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
