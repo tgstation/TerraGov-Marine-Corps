@@ -3523,7 +3523,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/xeno/psy_blast
 	name = "psychic blast"
-	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_ENERGY|AMMO_HITSCAN
+	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_ENERGY|AMMO_HITSCAN|AMMO_SKIPS_ALIENS
 	damage = 35
 	penetration = 10
 	sundering = 1
@@ -3546,7 +3546,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/mob/living/carbon/xenomorph/xeno_firer = P.firer
 		aoe_damage = xeno_firer.xeno_caste.blast_strength
 
-	var/list/throw_atoms = list()
 	var/list/turf/target_turfs = generate_true_cone(T, aoe_range, -1, 359, 0, air_pass = TRUE)
 	for(var/turf/target_turf AS in target_turfs)
 		for(var/atom/movable/target AS in target_turf)
@@ -3561,16 +3560,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 				var/obj/obj_victim = target
 				if(!(obj_victim.resistance_flags & XENO_DAMAGEABLE))
 					continue
+				if(isbarricade(target))
+					continue
 				obj_victim.take_damage(aoe_damage, BURN, ENERGY, TRUE, armour_penetration = penetration)
 			if(target.anchored)
 				continue
-			throw_atoms += target
-
-	for(var/atom/movable/target AS in throw_atoms)
-		var/throw_dir = get_dir(T, target)
-		if(T == get_turf(target))
-			throw_dir = get_dir(P.starting_turf, T)
-		target.safe_throw_at(get_ranged_target_turf(T, throw_dir, 5), 3, 1, spin = TRUE)
 
 	new /obj/effect/temp_visual/shockwave(T, aoe_range + 2)
 
