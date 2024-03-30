@@ -174,7 +174,7 @@
 
 /turf/closed/mineral/smooth/basalt/indestructible
 	resistance_flags = RESIST_ALL
-	icon_state = "basaltwall-0"
+	icon_state = "wall-invincible"
 
 //Ground map dense jungle
 /turf/closed/gm
