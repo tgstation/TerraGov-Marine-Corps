@@ -693,14 +693,6 @@ GLOBAL_LIST_INIT(mlrs_rocket, list(
 	. = ..()
 	recipe = GLOB.mlrs_rocket
 
-GLOBAL_LIST_INIT(thermobaric_wp_recipe, list(
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "hotplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "rockettube"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
-	))
-
 /obj/item/factory_part/mlrs_rocket/gas
 	name = "\improper MLRS mustard gas rocket"
 	desc = "An unfinished mustard gas rocket."
@@ -717,6 +709,14 @@ GLOBAL_LIST_INIT(thermobaric_wp_recipe, list(
 	result = /obj/item/storage/box/mlrs_rockets/incendiary
 
 // Thermobaric
+
+GLOBAL_LIST_INIT(thermobaric_wp_recipe, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "hotplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "rockettube"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
+	))
 
 /obj/item/factory_part/thermobaric_wp
 	name = "\improper RL-57 Thermobaric WP rocket array"
