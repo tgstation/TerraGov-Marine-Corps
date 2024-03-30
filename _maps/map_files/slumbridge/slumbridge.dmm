@@ -55,7 +55,7 @@
 "adD" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
 /turf/open/floor/tile/dark/yellow2{
-	dir = 10
+	dir = 8
 	},
 /area/slumbridge/landingzonetwo)
 "adG" = (
@@ -236,6 +236,11 @@
 /obj/effect/turf_decal/riverdecal,
 /turf/open/liquid/water/river,
 /area/slumbridge/inside/hydrotreatment)
+"alp" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/turf/open/floor/tile/dark/red2,
+/area/slumbridge/landingzoneone)
 "alt" = (
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
@@ -1355,13 +1360,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/slumbridge/outside/northeast)
-"beC" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/obj/structure/table/mainship,
-/turf/open/floor/tile/dark/red2{
-	dir = 1
-	},
-/area/slumbridge/landingzoneone)
 "beH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/gibspawner/human,
@@ -2114,14 +2112,6 @@
 "bDN" = (
 /turf/open/floor/stairs/rampbottom,
 /area/slumbridge/outside/northeast/bridges)
-"bDO" = (
-/obj/structure/platform/metalplatform{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/yellow2{
-	dir = 6
-	},
-/area/slumbridge/landingzonetwo)
 "bDT" = (
 /obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /turf/open/floor/plating,
@@ -8390,6 +8380,11 @@
 	},
 /turf/open/floor/tile/dark,
 /area/slumbridge/inside/zeta/south)
+"gvd" = (
+/turf/open/floor/tile/dark/yellow2{
+	dir = 10
+	},
+/area/slumbridge/landingzonetwo)
 "gvi" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -11544,6 +11539,12 @@
 "iDK" = (
 /turf/open/floor/tile/blue/whitebluefull,
 /area/slumbridge/inside/medical/foyer)
+"iEd" = (
+/obj/structure/stairs/seamless/edge{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/slumbridge/landingzonetwo)
 "iEk" = (
 /turf/open/floor/plating/icefloor,
 /area/shuttle/drop2/lz2)
@@ -11677,12 +11678,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/slumbridge/outside/northeast)
-"iKb" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/obj/structure/table/mainship,
-/obj/structure/cable,
-/turf/open/floor/plating/ground/snow,
-/area/slumbridge/landingzonetwo)
 "iKz" = (
 /obj/structure/barricade/snow{
 	dir = 8
@@ -11892,7 +11887,7 @@
 /area/slumbridge/inside/medical/surgery)
 "iSc" = (
 /obj/effect/landmark/patrol_point/som/som_11,
-/turf/open/floor/tile/dark/yellow2,
+/turf/open/floor/tile/dark,
 /area/slumbridge/landingzonetwo)
 "iSw" = (
 /obj/structure/window_frame/wood,
@@ -15173,7 +15168,9 @@
 /turf/open/floor/plating/heatinggrate,
 /area/slumbridge/inside/colony/dorms)
 "lpI" = (
-/obj/structure/stairs/seamless,
+/obj/structure/stairs/seamless{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/snow,
 /area/slumbridge/outside/southwest)
 "lpM" = (
@@ -26436,7 +26433,7 @@
 /area/slumbridge/outside/southeast)
 "tyJ" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
-/turf/open/floor/tile/dark/yellow2,
+/turf/open/floor/tile/dark,
 /area/slumbridge/landingzonetwo)
 "tzA" = (
 /obj/structure/disposalpipe/junction/flipped{
@@ -31812,6 +31809,12 @@
 	},
 /turf/open/floor/prison,
 /area/slumbridge/inside/prison/innerring)
+"xyj" = (
+/obj/structure/stairs/seamless{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/slumbridge/landingzonetwo)
 "xyv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -33831,7 +33834,7 @@ tUr
 tUr
 tUr
 xvW
-vyM
+xvW
 vyM
 "}
 (6,1,1) = {"
@@ -34011,8 +34014,8 @@ pjL
 pjL
 pjL
 pjL
+pjL
 xvW
-vyM
 vyM
 "}
 (7,1,1) = {"
@@ -34191,9 +34194,9 @@ fBt
 pzJ
 ffG
 adD
+gvd
 pjL
 xvW
-vyM
 vyM
 "}
 (8,1,1) = {"
@@ -34371,10 +34374,10 @@ sfW
 sfW
 sfW
 sfW
+sfW
 fVX
 pjL
 xvW
-vyM
 vyM
 "}
 (9,1,1) = {"
@@ -34552,10 +34555,10 @@ wia
 wia
 tqd
 sfW
+sfW
 yiz
 pjL
 xvW
-vyM
 vyM
 "}
 (10,1,1) = {"
@@ -34733,10 +34736,10 @@ iTj
 gWB
 vBZ
 cUJ
+sfW
 yiz
 pjL
 xvW
-vyM
 vyM
 "}
 (11,1,1) = {"
@@ -34914,10 +34917,10 @@ iEk
 oXX
 vBZ
 sfW
+sfW
 yiz
 pjL
 xvW
-vyM
 vyM
 "}
 (12,1,1) = {"
@@ -35095,10 +35098,10 @@ iEk
 oXX
 vBZ
 sfW
+sfW
 fVX
 pjL
 xvW
-vyM
 vyM
 "}
 (13,1,1) = {"
@@ -35276,10 +35279,10 @@ iEk
 oXX
 vBZ
 iPr
+sfW
 yiz
 pjL
 xvW
-vyM
 vyM
 "}
 (14,1,1) = {"
@@ -35457,10 +35460,10 @@ iEk
 oXX
 khO
 uSH
+sfW
 yiz
 pjL
 xvW
-vyM
 vyM
 "}
 (15,1,1) = {"
@@ -35638,10 +35641,10 @@ iEk
 oXX
 khO
 uSH
+sfW
 yiz
 pjL
 xvW
-vyM
 vyM
 "}
 (16,1,1) = {"
@@ -35819,10 +35822,10 @@ iEk
 oXX
 khO
 uSH
+sfW
 fVX
 pjL
 xvW
-vyM
 vyM
 "}
 (17,1,1) = {"
@@ -36001,9 +36004,9 @@ oXX
 vBZ
 sfW
 iSc
+yiz
 pjL
 xvW
-vyM
 vyM
 "}
 (18,1,1) = {"
@@ -36181,10 +36184,10 @@ iEk
 oXX
 vBZ
 sfW
+sfW
 yiz
 pjL
 xvW
-vyM
 vyM
 "}
 (19,1,1) = {"
@@ -36362,10 +36365,10 @@ iEk
 oXX
 vBZ
 sfW
+sfW
 yiz
 pjL
 xvW
-vyM
 vyM
 "}
 (20,1,1) = {"
@@ -36543,10 +36546,10 @@ nxw
 wpm
 vBZ
 sfW
+sfW
 fVX
 pjL
 xvW
-vyM
 vyM
 "}
 (21,1,1) = {"
@@ -36725,9 +36728,9 @@ qWU
 tqd
 sfW
 tyJ
+yiz
 pjL
 xvW
-vyM
 vyM
 "}
 (22,1,1) = {"
@@ -36905,10 +36908,10 @@ sfW
 sfW
 sfW
 sfW
+sfW
 yiz
 pjL
 xvW
-vyM
 vyM
 "}
 (23,1,1) = {"
@@ -37085,11 +37088,11 @@ egI
 egI
 egI
 egI
-egI
-bDO
+iEd
+xyj
+xyj
 pjL
 xvW
-vyM
 vyM
 "}
 (24,1,1) = {"
@@ -37267,10 +37270,10 @@ ooG
 ooG
 ooG
 ooG
+ooG
 bPI
 pjL
 xvW
-vyM
 vyM
 "}
 (25,1,1) = {"
@@ -37443,15 +37446,15 @@ ooG
 ooG
 ooG
 aEa
-gGN
-iKb
-gGN
-gGN
+ooG
+ooG
+ooG
+ooG
+ooG
 ooG
 ooG
 pjL
 xvW
-vyM
 vyM
 "}
 (26,1,1) = {"
@@ -37624,15 +37627,15 @@ fnu
 fnu
 fnu
 ooG
-nrN
-pjL
-pjL
-uUd
-pjL
-pjL
+gGN
+gGN
+gGN
+gGN
+ooG
+ooG
+ooG
 pjL
 xvW
-vyM
 vyM
 "}
 (27,1,1) = {"
@@ -37807,13 +37810,13 @@ kwy
 ooG
 gGN
 pjL
-kfE
-ddr
-cCV
+pjL
+uUd
+pjL
+pjL
+pjL
 pjL
 xvW
-tUr
-vyM
 vyM
 "}
 (28,1,1) = {"
@@ -37987,14 +37990,14 @@ fnu
 plp
 ooG
 gGN
-pbh
+pjL
+kfE
+ddr
 cCV
-cCV
-aVn
 pjL
 xvW
-vyM
-vyM
+tUr
+tUr
 vyM
 "}
 (29,1,1) = {"
@@ -38032,7 +38035,7 @@ bkz
 bkz
 nwg
 aWu
-beC
+qKi
 qYu
 aTh
 bYh
@@ -38171,7 +38174,7 @@ gGN
 pbh
 cCV
 cCV
-cCV
+aVn
 pjL
 xvW
 vyM
@@ -38215,7 +38218,7 @@ nwg
 aWu
 qKi
 nHt
-qKi
+alp
 bYh
 fjl
 kSa
@@ -38349,10 +38352,10 @@ cgP
 fLs
 ooG
 nrN
-pjL
-pjL
-pjL
-pjL
+pbh
+cCV
+cCV
+cCV
 pjL
 xvW
 vyM
@@ -38531,11 +38534,11 @@ kwy
 ooG
 gGN
 pjL
-ljW
-wYt
-wYt
-wYt
-wYt
+pjL
+pjL
+pjL
+pjL
+xvW
 vyM
 vyM
 vyM
@@ -38713,10 +38716,10 @@ gGN
 gGN
 pjL
 ljW
-ddg
-ddg
-ddg
-ddg
+wYt
+wYt
+wYt
+wYt
 vyM
 vyM
 vyM
