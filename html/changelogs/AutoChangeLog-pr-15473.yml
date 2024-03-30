@@ -1,0 +1,10 @@
+author: "Notamaniac"
+delete-after: True
+changes:
+  - refactor: "Robotic Cradle was refactored"
+  - qol: "You can now eject people just by clicking"
+  - balance: "There are no more skill requirements to putting yourself or someone into the cradle"
+  - bugfix: "Synths can now place themselves into the cradle"
+  - bugfix: "Moths can no longer use the cradle by getting grabbed and put in (or other creatures like sectoids)"
+  - bugfix: "Robot and synth medical records don't get updated anymore when using the cradle."
+  - bugfix: "You can no longer start a repair, get ejected, then hop back in and get repaired from the earlier unfinished operation."

@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Made SMG and rifle more expensive"
+  - bugfix: "Fixed plasma cannon starting with an incorrect ammo type set"

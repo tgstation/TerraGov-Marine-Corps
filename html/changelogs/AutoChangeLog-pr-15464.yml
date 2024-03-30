@@ -1,0 +1,5 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - balance: "Bull now has Boiler's zoom ability"
+  - balance: "Bull is now has a mob size of big"

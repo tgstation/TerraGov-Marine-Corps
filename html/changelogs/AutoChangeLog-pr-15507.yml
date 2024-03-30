@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - rscadd: "Add OB shots to round end statistics"

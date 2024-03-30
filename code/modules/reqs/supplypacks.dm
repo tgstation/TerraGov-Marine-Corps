@@ -380,12 +380,12 @@ WEAPONS
 /datum/supply_packs/weapons/plasma_smg
 	name = "PL-51 Plasma SMG"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg)
-	cost = 250
+	cost = 400
 
 /datum/supply_packs/weapons/plasma_rifle
 	name = "PL-38 Plasma Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle)
-	cost = 300
+	cost = 350
 
 /datum/supply_packs/weapons/plasma_cannon
 	name = "PL-96 Plasma Cannon"
