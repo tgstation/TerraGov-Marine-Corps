@@ -800,10 +800,6 @@
 	dir = 4
 	},
 /area/magmoor/cargo/processing/south)
-"aOB" = (
-/obj/structure/lattice,
-/turf/closed/mineral/smooth,
-/area/magmoor/cave/rock)
 "aOD" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/yellow{
@@ -69802,7 +69798,7 @@ tyH
 tyH
 tyH
 tyH
-aOB
+tyH
 tyH
 tyH
 tyH

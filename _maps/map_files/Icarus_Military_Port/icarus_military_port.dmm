@@ -1881,10 +1881,6 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/icarus/exterior/northcaves)
-"cDH" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/closed/wall/mainship/outer,
-/area/icarus/interior/lztwo)
 "cDJ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -2957,10 +2953,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/hangartwo)
-"eor" = (
-/obj/structure/window/reinforced,
-/turf/closed/wall/mainship,
-/area/icarus/interior/library)
 "eoB" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cargo_container/gorg{
@@ -3738,10 +3730,6 @@
 	dir = 1
 	},
 /area/space)
-"fnQ" = (
-/obj/structure/lattice,
-/turf/closed/wall/mainship,
-/area/icarus/interior/shipbaytwo)
 "fnX" = (
 /turf/open/liquid/water/river/desertdam/clean/shallow_water_cave_waterway/edge{
 	dir = 8
@@ -9735,10 +9723,6 @@
 "mYH" = (
 /turf/open/floor/prison/darkyellow/full,
 /area/icarus/interior/atmospherics)
-"mYO" = (
-/obj/structure/lattice,
-/turf/closed/wall/mainship/outer,
-/area/icarus/exterior/northcaves)
 "nba" = (
 /turf/open/floor/prison/darkyellow{
 	dir = 1
@@ -13945,7 +13929,6 @@
 /turf/open/floor/plating,
 /area/icarus/interior/disposals)
 "stq" = (
-/obj/structure/lattice,
 /turf/closed/shuttle/dropship2/singlewindow/tadpole,
 /area/space)
 "sua" = (
@@ -18237,12 +18220,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/telecomms)
-"xVf" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/closed/wall/mainship,
-/area/icarus/interior/library)
 "xVx" = (
 /obj/machinery/flasher/cell1,
 /turf/open/floor/mainship/research/containment/floor2{
@@ -18278,12 +18255,6 @@
 "xXH" = (
 /turf/open/floor/mainship/sterile/purple/side,
 /area/icarus/interior/research)
-"xXW" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/closed/wall/mainship,
-/area/icarus/interior/library)
 "xZw" = (
 /turf/open/floor/mainship/orange{
 	dir = 8
@@ -26136,7 +26107,7 @@ oaF
 eYx
 cqZ
 cCp
-cDH
+eYx
 xMs
 xMs
 xMs
@@ -38023,8 +37994,8 @@ jVq
 vlk
 tXL
 xSu
-xVf
-xVf
+xSu
+xSu
 ibC
 qjc
 jVq
@@ -38226,7 +38197,7 @@ tKg
 eUJ
 vlk
 tXL
-eor
+xSu
 xSE
 ipG
 sij
@@ -38430,7 +38401,7 @@ tKg
 ibC
 vlk
 tXL
-eor
+xSu
 xWq
 ifz
 wEH
@@ -38635,8 +38606,8 @@ jVq
 vlk
 tXL
 xSu
-xXW
-xXW
+xSu
+xSu
 ibC
 qjc
 jVq
@@ -47573,7 +47544,7 @@ hiT
 jqf
 wRp
 mLz
-mYO
+mLz
 vru
 fTt
 fTt
@@ -51653,7 +51624,7 @@ kYY
 toT
 toT
 toT
-fnQ
+toT
 toT
 toT
 toT
