@@ -28,7 +28,7 @@
 		/obj/item/ammo_magazine/tank/secondary_cupola,
 		/obj/item/ammo_magazine/tank/tank_glauncher,
 		/obj/item/ammo_magazine/tank/tank_slauncher,
-		)
+	)
 
 ///returns a list of possible locations that this vehicle may be entered from
 /obj/vehicle/sealed/armored/multitile/enter_locations(mob/M)
