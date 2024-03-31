@@ -448,8 +448,9 @@
 
 /obj/item/storage/box/crate/loot/Initialize(mapload)
 	. = ..()
-	atom_storage.storage_slots = 0 // Holds absolutely nothing after you take it out.
-	//atom_storage.foldable = null // I don't know why this was commented out, but I'm not gonna be the one to change it
+	atom_storage.storage_slots = INFINITY
+	atom_storage.max_storage_space = INFINITY
+	atom_storage.max_w_class = 0 //1 way storage
 
 /obj/item/storage/box/crate/loot/PopulateContents()
 	new /obj/item/weapon/banhammer(src)
