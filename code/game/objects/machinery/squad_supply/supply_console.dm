@@ -43,7 +43,6 @@
 /obj/machinery/computer/supplydrop_console/Destroy()
 	supply_beacon = null
 	supply_pad = null
-	UnregisterSignal(SSdcs, COMSIG_GLOB_SUPPLY_BEACON_CREATED)
 	return ..()
 
 /obj/machinery/computer/supplydrop_console/ui_interact(mob/user, datum/tgui/ui)

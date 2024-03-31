@@ -67,7 +67,7 @@
 #define COMSIG_GLOB_CAS_LASER_CREATED "!cas_laser_sent"
 #define COMSIG_GLOB_RAILGUN_LASER_CREATED "!railgun_laser_sent"
 
-//Signals for fire support
+//Sent when a supply beacon is activated
 #define COMSIG_GLOB_SUPPLY_BEACON_CREATED "!supply_beacon_created"
 
 //Signals for shuttle
