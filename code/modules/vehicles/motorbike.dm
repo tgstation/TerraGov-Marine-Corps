@@ -129,7 +129,7 @@
 		max_occupants = 2
 		return TRUE
 
-	if(istype(I, /obj/item/key/motorbike))
+	if(istype(I, key_type))
 		return
 	if(user.a_intent != INTENT_HARM)
 		return motor_pack.attackby(I, user, params)
