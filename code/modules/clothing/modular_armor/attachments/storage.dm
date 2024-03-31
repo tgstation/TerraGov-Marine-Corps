@@ -19,7 +19,7 @@
 
 /obj/item/armor_module/storage/Initialize(mapload)
 	. = ..()
-	create_storage(storage_type, storage_type.canhold, storage_type.canthold, storage_type.bypass_w_limit)
+	create_storage(storage_type)
 	PopulateContents()
 
 /obj/item/armor_module/storage/on_attach(obj/item/attaching_to, mob/user)

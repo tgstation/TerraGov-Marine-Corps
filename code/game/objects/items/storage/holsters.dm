@@ -301,10 +301,10 @@
 
 /obj/item/storage/holster/blade/machete/full/Initialize(mapload)
 	. = ..()
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/claymore/harvester,
-	)
+	))
 
 /obj/item/storage/holster/blade/machete/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/machete(src)
@@ -328,7 +328,7 @@
 
 /obj/item/storage/holster/blade/katana/full/Initialize(mapload)
 	. = ..()
-	atom_storage.canhold = list(/obj/item/weapon/katana)
+	atom_storage.set_holdable(can_hold_list = list(/obj/item/weapon/katana))
 
 /obj/item/storage/holster/blade/katana/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/katana(src)
@@ -343,7 +343,7 @@
 
 /obj/item/storage/holster/blade/officer/full/Initialize(mapload)
 	. = ..()
-	atom_storage.canhold = list(/obj/item/weapon/claymore/mercsword/machete/officersword)
+	atom_storage.set_holdable(can_hold_list = list(/obj/item/weapon/claymore/mercsword/machete/officersword))
 
 /obj/item/storage/holster/blade/officer/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/machete/officersword(src)
@@ -362,10 +362,10 @@
 
 /obj/item/storage/holster/m37/full/Initialize(mapload)
 	. = ..()
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/shotgun/combat,
 		/obj/item/weapon/gun/shotgun/pump,
-	)
+	))
 
 /obj/item/storage/holster/m37/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/gun/shotgun/pump(src)
@@ -380,9 +380,9 @@
 
 /obj/item/storage/holster/t35/full/Initialize(mapload)
 	. = ..()
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/shotgun/pump/t35,
-	)
+	))
 
 /obj/item/storage/holster/t35/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/gun/shotgun/pump/t35(src)
@@ -401,7 +401,7 @@
 
 /obj/item/storage/holster/m25/full/Initialize(mapload)
 	. = ..()
-	atom_storage.canhold = list(/obj/item/weapon/gun/smg/m25)
+	atom_storage.set_holdable(can_hold_list = list(/obj/item/weapon/gun/smg/m25))
 
 /obj/item/storage/holster/m25/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/gun/smg/m25(src)
@@ -500,13 +500,13 @@
 
 /obj/item/storage/holster/belt/pistol/m4a3/full/Initialize(mapload)
 	. = ..()
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
 		/obj/item/cell/lasgun/lasrifle,
 		/obj/item/cell/lasgun/plasma,
-	)
+	))
 
 /obj/item/storage/holster/belt/pistol/m4a3/full/PopulateContents()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
@@ -575,7 +575,7 @@
 
 /obj/item/storage/holster/belt/pistol/m4a3/som/serpenta/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
@@ -583,7 +583,7 @@
 		/obj/item/cell/lasgun/lasrifle,
 		/obj/item/cell/lasgun/volkite/small,
 		/obj/item/cell/lasgun/plasma,
-	)
+	))
 
 /obj/item/storage/holster/belt/pistol/m4a3/som/serpenta/PopulateContents()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta(src)
@@ -616,10 +616,10 @@
 
 /obj/item/storage/holster/belt/pistol/stand/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
-	)
+	))
 
 /obj/item/storage/holster/belt/pistol/standard_pistol
 	name = "\improper T457 pattern pistol holster rig"
@@ -633,13 +633,13 @@
 
 /obj/item/storage/holster/belt/revolver/standard_revolver/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.bypass_w_limit = list(
+	atom_storage.storage_type_limits = list(
 		/obj/item/weapon/gun/revolver,
 	)
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
-	)
+	))
 
 /obj/item/storage/holster/belt/m44
 	name = "\improper M276 pattern M44 holster rig"
@@ -745,10 +745,10 @@
 
 /obj/item/storage/holster/belt/pistol/smart_pistol/full/Initialize(mapload)
 	. = ..()
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/pistol/smart_pistol,
 		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
-	)
+	))
 
 /obj/item/storage/holster/belt/pistol/smart_pistol/full/PopulateContents()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/smart_pistol(src)

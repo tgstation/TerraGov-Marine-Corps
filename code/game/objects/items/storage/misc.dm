@@ -21,7 +21,7 @@
 
 /obj/item/storage/donut_box/Initialize(mapload)
 	. = ..()
-	atom_storage.canhold = list(/obj/item/reagent_containers/food/snacks/donut)
+	atom_storage.set_holdable(can_hold_list = list(/obj/item/reagent_containers/food/snacks/donut))
 	atom_storage.foldable = /obj/item/stack/sheet/cardboard
 	atom_storage.storage_slots = 6
 

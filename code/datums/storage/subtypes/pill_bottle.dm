@@ -1,9 +1,4 @@
 /datum/storage/pill_bottle
-	canhold = list(
-		/obj/item/reagent_containers/pill,
-		/obj/item/toy/dice,
-		/obj/item/paper,
-	)
 	allow_quick_gather = TRUE
 	use_to_pickup = TRUE
 	storage_slots = null
@@ -12,13 +7,20 @@
 	refill_types = list(/obj/item/storage/pill_bottle)
 	refill_sound = 'sound/items/pills.ogg'
 
+/datum/storage/pill_bottle/New(atom/parent)
+	. = ..()
+	set_holdable(can_hold_list = list(
+		/obj/item/reagent_containers/pill,
+		/obj/item/toy/dice,
+		/obj/item/paper,
+	))
+
 /datum/storage/pill_bottle/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	. = ..()
 	if(. && user)
 		playsound(user, 'sound/items/pills.ogg', 15, 1)
 
 /datum/storage/pill_bottle/packet
-	canthold = list(/obj/item/reagent_containers/pill) //Nada. Once you take the pills out. They don't come back in.
 	storage_slots = 8
 	max_w_class = 0
 	max_storage_space = 8
@@ -26,6 +28,10 @@
 	refill_types = null
 	refill_sound = null
 	storage_flags = BYPASS_VENDOR_CHECK
+
+/datum/storage/pill_bottle/packet/New(atom/parent)
+	. = ..()
+	set_holdable(cant_hold_list = list(/obj/item/reagent_containers/pill)) //Nada. Once you take the pills out. They don't come back in.
 
 /datum/storage/pill_bottle/packet/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	. = ..()

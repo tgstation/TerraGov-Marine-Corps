@@ -27,8 +27,9 @@
 	max_storage_space = 15
 	access_delay = 0
 
-/datum/storage/backpack/tech
-	bypass_w_limit = list(
+/datum/storage/backpack/tech/New(atom/parent)
+	. = ..()
+	set_holdable(storage_type_limits_list = list(
 		/obj/item/weapon/gun/sentry/big_sentry,
 		/obj/item/weapon/gun/sentry/mini,
 		/obj/item/weapon/gun/hsg_102,
@@ -39,10 +40,11 @@
 		/obj/item/mortar_kit,
 		/obj/item/stack/razorwire,
 		/obj/item/stack/sandbags,
-	)
+	))
 
-/datum/storage/backpack/satchel/tech
-	bypass_w_limit = list(
+/datum/storage/backpack/satchel/tech/New(atom/parent)
+	. = ..()
+	set_holdable(storage_type_limits_list = list(
 		/obj/item/weapon/gun/sentry/mini,
 		/obj/item/ammo_magazine/hsg_102,
 		/obj/item/ammo_magazine/sentry,
@@ -50,7 +52,7 @@
 		/obj/item/mortal_shell,
 		/obj/item/stack/razorwire,
 		/obj/item/stack/sandbags,
-	)
+	))
 
 /datum/storage/backpack/no_delay //Backpack sized with no draw delay
 	access_delay = 0

@@ -12,13 +12,15 @@
 	if(parent.Adjacent(user))
 		open(user)
 
-/datum/storage/tank/ammorack_primary
-	canhold = list(
+/datum/storage/tank/ammorack_primary/New(atom/parent)
+	. = ..()
+	set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/tank/ltb_cannon,
 		/obj/item/ammo_magazine/tank/ltaap_chaingun,
-	)
+	))
 
-/datum/storage/tank/ammorack_secondary
-	canhold = list(
+/datum/storage/tank/ammorack_secondary/New(atom/parent)
+	. = ..()
+	set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/tank/secondary_cupola,
-	)
+	))

@@ -220,10 +220,10 @@
 /obj/item/storage/box/crate/minisentry/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 6
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/sentry/mini,
 		/obj/item/ammo_magazine/minisentry,
-	)
+	))
 
 /obj/item/storage/box/crate/minisentry/PopulateContents()
 	new /obj/item/weapon/gun/sentry/mini(src)
@@ -327,13 +327,15 @@
 	atom_storage.max_w_class = WEIGHT_CLASS_HUGE
 	atom_storage.storage_slots = 6
 	atom_storage.max_storage_space = 16
-	atom_storage.canhold = list(
-		/obj/item/weapon/gun/sentry/sniper_sentry,
-		/obj/item/ammo_magazine/sentry/sniper,
-	)
-	atom_storage.bypass_w_limit = list(
-		/obj/item/weapon/gun/sentry/sniper_sentry,
-		/obj/item/ammo_magazine/sentry/sniper,
+	atom_storage.set_holdable(
+		can_hold_list = list(
+			/obj/item/weapon/gun/sentry/sniper_sentry,
+			/obj/item/ammo_magazine/sentry/sniper,
+		),
+		storage_type_limits_list = list(
+			/obj/item/weapon/gun/sentry/sniper_sentry,
+			/obj/item/ammo_magazine/sentry/sniper,
+		)
 	)
 
 /obj/item/storage/box/crate/sentry_sniper/PopulateContents()
@@ -377,13 +379,15 @@
 	atom_storage.max_w_class = WEIGHT_CLASS_HUGE
 	atom_storage.storage_slots = 6
 	atom_storage.max_storage_space = 16
-	atom_storage.canhold = list(
-		/obj/item/weapon/gun/sentry/shotgun_sentry,
-		/obj/item/ammo_magazine/sentry/shotgun,
-	)
-	atom_storage.bypass_w_limit = list(
-		/obj/item/weapon/gun/sentry/shotgun_sentry,
-		/obj/item/ammo_magazine/sentry/shotgun,
+	atom_storage.set_holdable(
+		can_hold_list = list(
+			/obj/item/weapon/gun/sentry/shotgun_sentry,
+			/obj/item/ammo_magazine/sentry/shotgun,
+		),
+		storage_type_limits_list = list(
+			/obj/item/weapon/gun/sentry/shotgun_sentry,
+			/obj/item/ammo_magazine/sentry/shotgun,
+		)
 	)
 
 /obj/item/storage/box/crate/sentry_shotgun/PopulateContents()
@@ -427,13 +431,15 @@
 	atom_storage.max_w_class = WEIGHT_CLASS_HUGE
 	atom_storage.storage_slots = 6
 	atom_storage.max_storage_space = 16
-	atom_storage.canhold = list(
-		/obj/item/weapon/gun/sentry/flamer_sentry,
-		/obj/item/ammo_magazine/sentry/flamer,
-	)
-	atom_storage.bypass_w_limit = list(
-		/obj/item/weapon/gun/sentry/flamer_sentry,
-		/obj/item/ammo_magazine/sentry/flamer,
+	atom_storage.set_holdable(
+		can_hold_list = list(
+			/obj/item/weapon/gun/sentry/flamer_sentry,
+			/obj/item/ammo_magazine/sentry/flamer,
+		),
+		storage_type_limits_list = list(
+			/obj/item/weapon/gun/sentry/flamer_sentry,
+			/obj/item/ammo_magazine/sentry/flamer,
+		)
 	)
 
 /obj/item/storage/box/crate/sentry_flamer/PopulateContents()

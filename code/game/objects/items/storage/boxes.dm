@@ -45,15 +45,17 @@
 	icon_state = "box"
 	item_state = "syringe_kit"
 	w_class = WEIGHT_CLASS_BULKY //Changed becuase of in-game abuse
-	var/spawn_type
+	var/obj/item/spawn_type
 	var/spawn_number
 	storage_type = /datum/storage/box
 
 /obj/item/storage/box/Initialize(mapload, ...)
 	. = ..()
 	if(spawn_type)
-		if(!(spawn_type in atom_storage.canhold))
-			atom_storage.canhold += spawn_type // must be set before parent init for typecacheof
+		if(!(spawn_type in atom_storage.can_hold))
+			// must be set before parent init for typecacheof
+			var/list/new_hold_list = atom_storage.can_hold + spawn_type
+			atom_storage.set_holdable(can_hold_list = list(new_hold_list))
 	if(spawn_type)
 		for(var/i in 1 to spawn_number)
 			new spawn_type(src)
@@ -292,10 +294,10 @@
 
 /obj/item/storage/box/lights/mixed/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/light_bulb/tube/large,
 		/obj/item/light_bulb/bulb,
-	)
+	))
 
 	for(var/i in 1 to 14)
 		new /obj/item/light_bulb/tube/large(src)
@@ -508,9 +510,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 	max_overlays = amt_horizontal * amt_vertical
 	overlay_w_class = FLOOR(atom_storage.max_storage_space / max_overlays, 1)
-	atom_storage.canhold -= atom_storage.canthold //Have canthold actually have a use
 	update_icon() //Getting the closed_overlay onto it
-
 
 /obj/item/storage/box/visual/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -650,7 +650,7 @@
 	storage_type = /datum/storage/box/visual/magazine/compact
 
 /obj/item/storage/box/visual/magazine/compact/update_stats()
-	for(var/item_path in atom_storage.canhold)
+	for(var/item_path in atom_storage.can_hold)
 		var/obj/item/I = item_path
 		if(I)
 			atom_storage.max_storage_space = max(initial(I.w_class) * atom_storage.storage_slots, atom_storage.max_storage_space)
@@ -668,9 +668,9 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_pistol/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/pistol/standard_pistol,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/standard_pistol/full
 	spawn_number = 40
@@ -683,9 +683,9 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_heavypistol/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/pistol/standard_heavypistol,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/standard_heavypistol/full
 	spawn_number = 40
@@ -698,9 +698,9 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_revolver/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/revolver/standard_revolver,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/standard_revolver/full
 	spawn_number = 40
@@ -713,9 +713,9 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_pocketpistol/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/pistol/standard_pocketpistol,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/standard_pocketpistol/full
 	spawn_number = 40
@@ -728,9 +728,9 @@
 
 /obj/item/storage/box/visual/magazine/compact/vp70/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/pistol/vp70,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/vp70/full
 	spawn_number = 40
@@ -744,9 +744,9 @@
 
 /obj/item/storage/box/visual/magazine/compact/derringer/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/pistol/derringer,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/derringer/full
 	spawn_number = 40
@@ -759,9 +759,9 @@
 
 /obj/item/storage/box/visual/magazine/compact/plasma_pistol/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/pistol/plasma_pistol,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/plasma_pistol/full
 	spawn_number = 40
@@ -776,9 +776,9 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_smg/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/smg/standard_smg,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/standard_smg/full
 	spawn_number = 40
@@ -791,9 +791,9 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_machinepistol/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/smg/standard_machinepistol,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/standard_machinepistol/full
 	spawn_number = 40
@@ -807,9 +807,9 @@
 /obj/item/storage/box/visual/magazine/compact/pepperball/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 30
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/pepperball,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/pepperball/full
 	spawn_number = 30
@@ -825,9 +825,9 @@
 /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 30
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/standard_assaultrifle,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full
 	spawn_number = 30
@@ -841,9 +841,9 @@
 /obj/item/storage/box/visual/magazine/compact/standard_carbine/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 30
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/standard_carbine,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/standard_carbine/full
 	spawn_number = 30
@@ -857,9 +857,9 @@
 /obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 30
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/standard_skirmishrifle,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/full
 	spawn_number = 30
@@ -873,9 +873,9 @@
 /obj/item/storage/box/visual/magazine/compact/ar11/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 30
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/tx11,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/ar11/full
 	spawn_number = 30
@@ -889,9 +889,9 @@
 /obj/item/storage/box/visual/magazine/compact/martini/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 30
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/martini,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/martini/full
 	spawn_number = 30
@@ -905,10 +905,10 @@
 /obj/item/storage/box/visual/magazine/compact/sh15/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 30
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/tx15_flechette,
 		/obj/item/ammo_magazine/rifle/tx15_slug,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/sh15/flechette
 	name = "SH-15 flechette magazine box"
@@ -935,9 +935,9 @@
 /obj/item/storage/box/visual/magazine/compact/sectoid_rifle/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 30
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/sectoid_rifle,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/sectoid_rifle/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -958,9 +958,9 @@
 /obj/item/storage/box/visual/magazine/compact/lasrifle/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 30
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/cell/lasgun/lasrifle,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle/full
 	spawn_number = 30
@@ -974,9 +974,9 @@
 /obj/item/storage/box/visual/magazine/compact/lasrifle/marine/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 30
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/cell/lasgun/lasrifle,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full
 	spawn_number = 30
@@ -992,9 +992,9 @@
 /obj/item/storage/box/visual/magazine/compact/standard_dmr/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 30
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/standard_dmr,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/standard_dmr/full
 	spawn_number = 30
@@ -1008,9 +1008,9 @@
 /obj/item/storage/box/visual/magazine/compact/standard_br/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 30
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/standard_br,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/standard_br/full
 	spawn_number = 30
@@ -1024,9 +1024,9 @@
 /obj/item/storage/box/visual/magazine/compact/chamberedrifle/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 30
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/chamberedrifle,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/chamberedrifle/full
 	spawn_number = 30
@@ -1040,10 +1040,10 @@
 /obj/item/storage/box/visual/magazine/compact/mosin/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 30
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/bolt,
 		/obj/item/ammo_magazine/rifle/boltclip,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/mosin/packet/full
 	spawn_number = 30
@@ -1063,9 +1063,9 @@
 /obj/item/storage/box/visual/magazine/compact/standard_lmg/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 30
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/standard_lmg,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/standard_lmg/full
 	spawn_number = 30
@@ -1079,9 +1079,9 @@
 /obj/item/storage/box/visual/magazine/compact/standard_gpmg/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 30
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/standard_gpmg,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/standard_gpmg/full
 	spawn_number = 30
@@ -1095,9 +1095,9 @@
 /obj/item/storage/box/visual/magazine/compact/standard_mmg/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 30
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/standard_mmg,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/standard_mmg/full
 	spawn_number = 30
@@ -1112,9 +1112,9 @@
 /obj/item/storage/box/visual/magazine/compact/heavymachinegun/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 30
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/heavymachinegun,
-	)
+	))
 
 /obj/item/storage/box/visual/magazine/compact/heavymachinegun/full
 	spawn_number = 10

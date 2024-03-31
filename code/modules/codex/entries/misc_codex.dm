@@ -35,24 +35,24 @@
 	if(atom_storage.max_storage_space)
 		storage_strings += "It can carry [atom_storage.max_storage_space] weight of stuff."
 
-	if(atom_storage.max_w_class && !length(atom_storage.canhold))
+	if(atom_storage.max_w_class && !length(atom_storage.can_hold))
 		storage_strings += "It can carry weight [atom_storage.max_w_class] things or lighter."
 
-	if(length(atom_storage.canhold))
+	if(length(atom_storage.can_hold))
 		storage_strings += "<br><U>You can only carry the following in this</U>:"
-		for(var/X in atom_storage.canhold)
+		for(var/X in atom_storage.can_hold)
 			var/obj/item/A = X
 			storage_strings += "[initial(A.name)]"
 
-	if(length(atom_storage.bypass_w_limit))
+	if(length(atom_storage.storage_type_limits))
 		storage_strings += "<br><U>You can also carry the following special items in this</U>:"
-		for(var/X in atom_storage.bypass_w_limit)
+		for(var/X in atom_storage.storage_type_limits)
 			var/obj/item/A = X
 			storage_strings += "[initial(A.name)]"
 
-	if(length(atom_storage.canthold))
+	if(length(atom_storage.cant_hold))
 		storage_strings += "<br><U>You can specifically not carry these things in this</U>:"
-		for(var/X in atom_storage.canthold)
+		for(var/X in atom_storage.cant_hold)
 			var/obj/item/A = X
 			storage_strings += "[initial(A.name)]"
 

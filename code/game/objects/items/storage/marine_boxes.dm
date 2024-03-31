@@ -21,7 +21,7 @@
 /obj/item/storage/box/crate/heavy_armor/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 3
-	atom_storage.canhold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	atom_storage.max_storage_space = 0
 
 /obj/item/storage/box/crate/heavy_armor/PopulateContents()
 	new /obj/item/clothing/gloves/marine/specialist(src)
@@ -38,7 +38,7 @@
 /obj/item/storage/box/crate/grenade_system/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 2
-	atom_storage.canhold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	atom_storage.max_storage_space = 0
 
 /obj/item/storage/box/crate/grenade_system/PopulateContents()
 	new /obj/item/weapon/gun/grenade_launcher/multinade_launcher(src)
@@ -54,7 +54,7 @@
 /obj/item/storage/box/crate/rocket_system/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 6
-	atom_storage.canhold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	atom_storage.max_storage_space = 0
 
 /obj/item/storage/box/crate/rocket_system/PopulateContents()
 	new /obj/item/weapon/gun/launcher/rocket/sadar(src)
@@ -74,7 +74,7 @@
 /obj/item/storage/box/crate/heavy_grenadier/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 6
-	atom_storage.canhold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	atom_storage.max_storage_space = 0
 
 /obj/item/storage/box/crate/heavy_grenadier/PopulateContents()
 	new /obj/item/weapon/gun/grenade_launcher/multinade_launcher(src)
@@ -95,7 +95,7 @@
 /obj/item/storage/box/crate/heavy_gunner/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 16
-	atom_storage.canhold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	atom_storage.max_storage_space = 0
 
 /obj/item/storage/box/crate/heavy_gunner/PopulateContents()
 	new /obj/item/clothing/gloves/marine/specialist(src)
@@ -115,7 +115,7 @@
 /obj/item/storage/box/crate/m42c_system/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 12
-	atom_storage.canhold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	atom_storage.max_storage_space = 0
 
 /obj/item/storage/box/crate/m42c_system/PopulateContents()
 	new /obj/item/clothing/suit/modular/xenonauten/light(src)
@@ -142,7 +142,7 @@
 /obj/item/storage/box/crate/m42c_system_Jungle/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 9
-	atom_storage.canhold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	atom_storage.max_storage_space = 0
 
 /obj/item/storage/box/crate/m42c_system_Jungle/PopulateContents()
 	new /obj/item/clothing/suit/modular/xenonauten/light(src)

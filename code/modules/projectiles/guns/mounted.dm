@@ -9,7 +9,7 @@
 /obj/item/storage/box/hsg_102/Initialize(mapload)
 	. = ..()
 	atom_storage.storage_slots = 7
-	atom_storage.bypass_w_limit = list(
+	atom_storage.storage_type_limits = list(
 		/obj/item/weapon/gun/hsg_102,
 		/obj/item/ammo_magazine/hsg_102,
 	)

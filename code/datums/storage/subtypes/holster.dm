@@ -4,7 +4,11 @@
 	max_storage_space = 4
 	draw_mode = 1
 	allow_drawing_method = TRUE
-	storage_type_limits = list(/obj/item/weapon = 1)
+
+/datum/storage/holster/New(atom/parent)
+	. = ..()
+	set_holdable(storage_type_limits_list = list(/obj/item/weapon))
+	storage_type_limits_max = list(/obj/item/weapon = 1)
 
 /datum/storage/holster/should_access_delay(obj/item/item, mob/user, taking_out) //defaults to 0
 	if(!taking_out) // Always allow items to be tossed in instantly
@@ -42,45 +46,58 @@
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_BULKY
 	access_delay = 0.5 SECONDS
-	bypass_w_limit = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle)
-	///only one RR per bag
-	storage_type_limits = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle = 1)
-	canhold = list(
-		/obj/item/ammo_magazine/rocket,
-		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
-	)
 
-/datum/storage/holster/backholster/rpg/som
-	bypass_w_limit = list(/obj/item/weapon/gun/launcher/rocket/som)
-	storage_type_limits = list(/obj/item/weapon/gun/launcher/rocket/som = 1)
-	canhold = list(
-		/obj/item/ammo_magazine/rocket,
-		/obj/item/weapon/gun/launcher/rocket/som,
-	)
+/datum/storage/holster/backholster/rpg/New(atom/parent)
+	. = ..()
+	set_holdable(
+		can_hold_list = list(
+			/obj/item/ammo_magazine/rocket,
+			/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
+		),
+		storage_type_limits_list = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle)	//only one RR per bag
+		)
+
+/datum/storage/holster/backholster/rpg/som/New(atom/parent)
+	. = ..()
+	set_holdable(
+		can_hold_list = list(
+			/obj/item/ammo_magazine/rocket,
+			/obj/item/weapon/gun/launcher/rocket/som,
+		),
+		storage_type_limits_list = list(/obj/item/weapon/gun/launcher/rocket/som)
+		)
 
 /datum/storage/holster/backholster/mortar
 	max_w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = null
 	max_storage_space = 30
 	access_delay = 0
-	bypass_w_limit = list(/obj/item/mortar_kit)
-	storage_type_limits = list(/obj/item/mortar_kit = 1)
-	canhold = list(
+
+/datum/storage/holster/backholster/mortar/New(atom/parent)
+	. = ..()
+	set_holdable(
+		can_hold_list = list(
 		/obj/item/mortal_shell/he,
 		/obj/item/mortal_shell/incendiary,
 		/obj/item/mortal_shell/smoke,
 		/obj/item/mortal_shell/flare,
 		/obj/item/mortal_shell/plasmaloss,
 		/obj/item/mortar_kit,
+	),
+		storage_type_limits_list = list(/obj/item/mortar_kit)
 	)
+	storage_type_limits_max = list(/obj/item/mortar_kit = 1)
 
 /datum/storage/holster/backholster/flamer
 	storage_slots = null
 	max_storage_space = 16
 	max_w_class = WEIGHT_CLASS_NORMAL
 	access_delay = 0
-	bypass_w_limit = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer)
-	storage_type_limits = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer = 1)
+
+/datum/storage/holster/backholster/flamer/New(atom/parent)
+	. = ..()
+	set_holdable(storage_type_limits_list = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer))
+	storage_type_limits_max = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer = 1)
 
 /datum/storage/holster/backholster/flamer/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
 	. = ..()
@@ -95,37 +112,49 @@
 	max_storage_space = 10
 	max_w_class = WEIGHT_CLASS_BULKY
 
-	canhold = list(
+/datum/storage/holster/t19/New(atom/parent)
+	. = ..()
+	set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/smg/standard_machinepistol,
 		/obj/item/ammo_magazine/smg/standard_machinepistol,
-	)
+	))
 
 /datum/storage/holster/flarepouch
 	storage_slots = 28
 	max_storage_space = 28
-	storage_type_limits = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare = 1)
-	canhold = list(
+	refill_types = list(/obj/item/storage/box/m94)
+	refill_sound = "rustle"
+
+/datum/storage/holster/flarepouch/New(atom/parent)
+	. = ..()
+	set_holdable(can_hold_list = list(
 		/obj/item/explosive/grenade/flare/civilian,
 		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
 		/obj/item/explosive/grenade/flare,
-	)
-	refill_types = list(/obj/item/storage/box/m94)
-	refill_sound = "rustle"
+	))
+	storage_type_limits_max = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare = 1)
+
 
 /datum/storage/holster/icc_mg
 	storage_slots = 5
 	max_storage_space = 16
-	canhold = list(
+
+/datum/storage/holster/icc_mg/New(atom/parent)
+	. = ..()
+	set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/rifle/icc_mg,
 		/obj/item/ammo_magazine/icc_mg/packet,
-	)
+	))
 
 /datum/storage/holster/belt
 	use_sound = null
 	storage_slots = 7
 	max_storage_space = 15
 	max_w_class = WEIGHT_CLASS_NORMAL
-	canhold = list(
+
+/datum/storage/holster/belt/New(atom/parent)
+	. = ..()
+	set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
@@ -133,42 +162,48 @@
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
 		/obj/item/cell/lasgun/lasrifle,
 		/obj/item/cell/lasgun/volkite/small,
-	)
+	))
 
 /datum/storage/holster/belt/m44
 	max_storage_space = 16
 	max_w_class = WEIGHT_CLASS_BULKY
-	canhold = list(
+
+/datum/storage/holster/belt/m44/New(atom/parent)
+	. = ..()
+	set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
-	)
+	))
 
 /datum/storage/holster/belt/mateba
 	max_storage_space = 16
-	bypass_w_limit = list(
-		/obj/item/weapon/gun/revolver/mateba,
-	)
-	canhold = list(
+
+/datum/storage/holster/belt/mateba/New(atom/parent)
+	. = ..()
+	set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/revolver/mateba,
 		/obj/item/ammo_magazine/revolver/mateba,
-	)
+	))
 
-/datum/storage/holster/belt/korovin
-	canhold = list(
+/datum/storage/holster/belt/korovin/New(atom/parent)
+	. = ..()
+	set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/pistol/c99,
 		/obj/item/ammo_magazine/pistol/c99,
 		/obj/item/ammo_magazine/pistol/c99t,
-	)
+	))
 
 /datum/storage/holster/belt/ts34
-	max_w_class = WEIGHT_CLASS_BULKY //So it can hold the shotgun.
 	storage_slots = 3
 	max_storage_space = 8
-	canhold = list(
+
+/datum/storage/holster/belt/ts34/New(atom/parent)
+	. = ..()
+	set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/shotgun/double/marine,
 		/obj/item/ammo_magazine/shotgun,
 		/obj/item/ammo_magazine/handful,
-	)
+	))
 
 
 

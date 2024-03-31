@@ -1,6 +1,9 @@
 /datum/storage/wallet
 	storage_slots = 10
-	canhold = list(
+
+/datum/storage/wallet/New(atom/parent)
+	. = ..()
+	set_holdable(can_hold_list = list(
 		/obj/item/spacecash,
 		/obj/item/card,
 		/obj/item/clothing/mask/cigarette,
@@ -20,7 +23,7 @@
 		/obj/item/reagent_containers/dropper,
 		/obj/item/tool/screwdriver,
 		/obj/item/tool/stamp,
-	)
+	))
 
 /datum/storage/wallet/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	. = ..()

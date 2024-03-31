@@ -2,7 +2,10 @@
 	max_w_class = WEIGHT_CLASS_SMALL //Beaker size
 	storage_slots = null
 	max_storage_space = 5
-	canhold = list(/obj/item/reagent_containers, /obj/item/reagent_scanner)
+
+/datum/storage/reagent_tank/New(atom/parent)
+	. = ..()
+	set_holdable(can_hold_list = list(/obj/item/reagent_containers, /obj/item/reagent_scanner))
 
 /datum/storage/reagent_tank/open(mob/user)
 	var/obj/item/reagent_tank = parent

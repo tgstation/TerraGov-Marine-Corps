@@ -4,7 +4,7 @@
  */
 
 ///Helper proc to give something storage
-/atom/proc/create_storage(storage_type = /datum/storage, list/canhold, list/canthold, list/bypass_w_limit)
+/atom/proc/create_storage(storage_type = /datum/storage, list/canhold, list/canthold, list/storage_type_limits)
 	RETURN_TYPE(/datum/storage)
 
 	if(atom_storage)
@@ -13,7 +13,7 @@
 	atom_storage = new storage_type(src)
 
 	if(canhold || canthold)
-		atom_storage.set_holdable(canhold, canthold, bypass_w_limit)
+		atom_storage.set_holdable(canhold, canthold, storage_type_limits)
 
 	return atom_storage
 
@@ -33,22 +33,27 @@
 	 */
 	VAR_FINAL/atom/real_location
 
-	///List of objects which this item can store (if set, it can't store anything else)
-	var/list/canhold = list()
-	///List of objects which this item can't store (in effect only if canhold isn't set)
-	var/list/canthold = list()
-	///a list of objects which this item can store despite not passing the w_class limit
-	var/list/bypass_w_limit = list()
+	/// Typecache of items that can be inserted into this storage.
+	/// By default, all item types can be inserted (assuming other conditions are met).
+	/// Do not set directly, use set_holdable
+	VAR_FINAL/list/obj/item/can_hold
+	/// Typecache of items that cannot be inserted into this storage.
+	/// By default, no item types are barred from insertion.
+	/// Do not set directly, use set_holdable
+	VAR_FINAL/list/obj/item/cant_hold
+	/// Typecache of items that can always be inserted into this storage, regardless of size.
+	VAR_FINAL/list/obj/item/storage_type_limits
+
 	/**
 	 * Associated list of types and their max count, formatted as
-	 * 	storage_type_limits = list(
+	 * 	storage_type_limits_max = list(
 	 * 		/obj/A = 3,
 	 * 	)
 	 *
 	 * Any inserted objects will decrement the allowed count of every listed type which matches or is a parent of that object.
 	 * With entries for both /obj/A and /obj/A/B, inserting a B requires non-zero allowed count remaining for, and reduces, both.
 	 */
-	var/list/storage_type_limits
+	VAR_FINAL/list/storage_type_limits_max
 	///Max size of objects that this object can store (in effect only if canhold isn't set)
 	var/max_w_class = WEIGHT_CLASS_SMALL
 	///The sum of the storage costs of all the items in this storage item.
@@ -276,31 +281,31 @@
 /// ~Lemon
 GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
-/datum/storage/proc/set_holdable(list/can_hold_list, list/cant_hold_list, list/bypass_w_limit_list)
+/datum/storage/proc/set_holdable(list/can_hold_list, list/cant_hold_list, list/storage_type_limits_list)
 	if(!isnull(can_hold_list) && !islist(can_hold_list))
 		can_hold_list = list(can_hold_list)
 	if(!isnull(cant_hold_list) && !islist(cant_hold_list))
 		cant_hold_list = list(cant_hold_list)
-	if(!isnull(bypass_w_limit_list) && !islist(bypass_w_limit_list))
-		bypass_w_limit_list = list(bypass_w_limit_list)
+	if(!isnull(storage_type_limits_list) && !islist(storage_type_limits_list))
+		storage_type_limits_list = list(storage_type_limits_list)
 
 	if(!isnull(can_hold_list))
 		var/unique_key = can_hold_list.Join("-")
 		if(!GLOB.cached_storage_typecaches[unique_key])
 			GLOB.cached_storage_typecaches[unique_key] = typecacheof(can_hold_list)
-		canhold = GLOB.cached_storage_typecaches[unique_key]
+		can_hold = GLOB.cached_storage_typecaches[unique_key]
 
 	if(!isnull(cant_hold_list))
 		var/unique_key = cant_hold_list.Join("-")
 		if(!GLOB.cached_storage_typecaches[unique_key])
 			GLOB.cached_storage_typecaches[unique_key] = typecacheof(cant_hold_list)
-		canthold = GLOB.cached_storage_typecaches[unique_key]
+		cant_hold = GLOB.cached_storage_typecaches[unique_key]
 
-	if(!isnull(bypass_w_limit_list))
-		var/unique_key = bypass_w_limit_list.Join("-")
+	if(!isnull(storage_type_limits_list))
+		var/unique_key = storage_type_limits_list.Join("-")
 		if(!GLOB.cached_storage_typecaches[unique_key])
-			GLOB.cached_storage_typecaches[unique_key] = typecacheof(bypass_w_limit_list)
-		bypass_w_limit = GLOB.cached_storage_typecaches[unique_key]
+			GLOB.cached_storage_typecaches[unique_key] = typecacheof(storage_type_limits_list)
+		storage_type_limits = GLOB.cached_storage_typecaches[unique_key]
 
 ///This proc is called when you want to place an attacking_item into the storage
 /datum/storage/proc/on_attackby(datum/source, obj/item/attacking_item, mob/user, params)
@@ -667,17 +672,17 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			to_chat(usr, span_notice("[parent.name] is full, make some space."))
 		return FALSE //Storage item is full
 
-	if(length(canhold) && !is_type_in_typecache(item_to_insert, typecacheof(canhold)))
+	if(length(can_hold) && !is_type_in_typecache(item_to_insert, typecacheof(can_hold)))
 		if(warning)
 			to_chat(usr, span_notice("[parent.name] cannot hold [item_to_insert]."))
 		return FALSE
 
-	if(is_type_in_typecache(item_to_insert, typecacheof(canthold))) //Check for specific items which this container can't hold.
+	if(is_type_in_typecache(item_to_insert, typecacheof(cant_hold))) //Check for specific items which this container can't hold.
 		if(warning)
 			to_chat(usr, span_notice("[parent.name] cannot hold [item_to_insert]."))
 		return FALSE
 
-	if(!is_type_in_typecache(item_to_insert, typecacheof(bypass_w_limit)) && item_to_insert.w_class > max_w_class)
+	if(!is_type_in_typecache(item_to_insert, typecacheof(storage_type_limits)) && item_to_insert.w_class > max_w_class)
 		if(warning)
 			to_chat(usr, span_notice("[item_to_insert] is too long for this [parent.name]."))
 		return FALSE
@@ -693,16 +698,16 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 	if(isitem(parent))
 		var/obj/item/parent_storage = parent
-		if(item_to_insert.w_class >= parent_storage.w_class && istype(item_to_insert, /obj/item/storage) && !is_type_in_typecache(item_to_insert.type, typecacheof(bypass_w_limit)))
+		if(item_to_insert.w_class >= parent_storage.w_class && istype(item_to_insert, /obj/item/storage) && !is_type_in_typecache(item_to_insert.type, typecacheof(storage_type_limits)))
 			if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
 				if(warning)
 					to_chat(usr, span_notice("[parent.name] cannot hold [item_to_insert] as it's a storage item of the same size."))
 				return FALSE //To prevent the stacking of same sized storage items.
 
-	for(var/limited_type in storage_type_limits)
+	for(var/limited_type in storage_type_limits_max)
 		if(!istype(item_to_insert, limited_type))
 			continue
-		if(storage_type_limits[limited_type] == 0)
+		if(storage_type_limits_max[limited_type] == 0)
 			if(warning)
 				to_chat(usr, span_warning("[parent.name] can't fit any more of those.") )
 			return FALSE
@@ -780,9 +785,9 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(storage_slots)
 		item.mouse_opacity = 2 //not having to click the item's tiny sprite to take it out of the storage.
 	parent.update_icon()
-	for(var/limited_type in storage_type_limits)
+	for(var/limited_type in storage_type_limits_max)
 		if(istype(item, limited_type))
-			storage_type_limits[limited_type] -= 1
+			storage_type_limits_max[limited_type] -= 1
 	return TRUE
 
 ///Output a message when an item is inserted into a storage object
@@ -827,9 +832,9 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		item.on_exit_storage(src)
 		item.mouse_opacity = initial(item.mouse_opacity)
 
-	for(var/limited_type in storage_type_limits)
+	for(var/limited_type in storage_type_limits_max)
 		if(istype(item, limited_type))
-			storage_type_limits[limited_type] += 1
+			storage_type_limits_max[limited_type] += 1
 
 	parent.update_icon()
 
@@ -958,7 +963,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 ///signal sent from /atom/proc/max_stack_merging()
 /datum/storage/proc/max_stack_merging(datum/source, obj/item/stack/stacks)
-	if(is_type_in_typecache(stacks, typecacheof(bypass_w_limit)))
+	if(is_type_in_typecache(stacks, typecacheof(storage_type_limits)))
 		return FALSE //No need for limits if we can bypass it.
 	var/weight_diff = initial(stacks.w_class) - max_w_class
 	if(weight_diff <= 0)

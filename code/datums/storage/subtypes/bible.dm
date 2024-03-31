@@ -3,7 +3,10 @@
 
 /datum/storage/bible/alcoholic
 	storage_slots = 7
-	canhold = list(
+
+/datum/storage/bible/alcoholic/New(atom/parent)
+	. = ..()
+	set_holdable(can_hold_list = list(
 		/obj/item/reagent_containers/food/drinks/cans,
 		/obj/item/spacecash,
-	)
+	))

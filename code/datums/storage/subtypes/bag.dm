@@ -7,39 +7,52 @@
 /datum/storage/bag/trash
 	max_w_class = WEIGHT_CLASS_SMALL
 	storage_slots = 21
-	canhold = list() // any
-	canthold = list(/obj/item/disk/nuclear)
+
+/datum/storage/bag/trash/New(atom/parent)
+	. = ..()
+	set_holdable(cant_hold_list = list(/obj/item/disk/nuclear))
 
 /datum/storage/bag/plasticbag
 	max_w_class = WEIGHT_CLASS_SMALL
 	storage_slots = 21
-	canhold = list() // any
-	canthold = list(/obj/item/disk/nuclear)
+
+/datum/storage/bag/plasticbag/New(atom/parent)
+	. = ..()
+	set_holdable(cant_hold_list = list(/obj/item/disk/nuclear))
 
 /datum/storage/bag/ore
 	storage_slots = 50
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * ore.w_class
 	max_w_class = WEIGHT_CLASS_NORMAL
-	canhold = list(/obj/item/ore)
+
+/datum/storage/bag/ore/New(atom/parent)
+	. = ..()
+	set_holdable(list(/obj/item/ore))
 
 /datum/storage/bag/plants
 	storage_slots = 50; //the number of plant pieces it can carry.
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * plants.w_class
 	max_w_class = WEIGHT_CLASS_NORMAL
-	canhold = list(
+
+/datum/storage/bag/plants/New(atom/parent)
+	. = ..()
+	set_holdable(list(
 		/obj/item/reagent_containers/food/snacks/grown,
 		/obj/item/seeds,
 		/obj/item/grown,
-	)
+	))
 
 /datum/storage/bag/cash
 	storage_slots = 50; //the number of cash pieces it can carry.
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * cash.w_class
 	max_w_class = WEIGHT_CLASS_NORMAL
-	canhold = list(
+
+/datum/storage/bag/cash/New(atom/parent)
+	. = ..()
+	set_holdable(list(
 		/obj/item/coin,
 		/obj/item/spacecash,
-	)
+	))
 
 /datum/storage/bag/sheetsnatcher
 	allow_quick_empty = 1 // this function is superceded

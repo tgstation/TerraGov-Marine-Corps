@@ -44,7 +44,7 @@
 /obj/item/storage/pouch/general/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.draw_mode = 1
-	atom_storage.bypass_w_limit = list(/obj/item/ammo_magazine/packet)
+	atom_storage.storage_type_limits = list(/obj/item/ammo_magazine/packet)
 
 /obj/item/storage/pouch/general/medium
 	name = "medium general pouch"
@@ -98,11 +98,11 @@
 
 /obj/item/storage/pouch/bayonet/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/stack/throwing_knife,
 		/obj/item/attachable/bayonet,
-	)
+	))
 	atom_storage.storage_slots = 3
 	atom_storage.draw_mode = 1
 
@@ -124,14 +124,14 @@
 	atom_storage.sprite_slots = 1
 	atom_storage.storage_slots = 6
 	atom_storage.max_w_class = WEIGHT_CLASS_NORMAL
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/flashlight,
 		/obj/item/reagent_containers/pill,
 		/obj/item/stack/medical/heal_pack/gauze,
 		/obj/item/stack/sheet/metal,
 		/obj/item/stack/sheet/plasteel,
 		/obj/item/tool/weldingtool,
-	)
+	))
 
 /obj/item/storage/pouch/survival/full/PopulateContents()
 	new /obj/item/flashlight(src)
@@ -150,11 +150,11 @@
 	. = ..()
 	atom_storage.sprite_slots = 3
 	atom_storage.storage_slots = 6
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
 		/obj/item/storage/pill_bottle,
-	)
+	))
 
 /obj/item/storage/pouch/firstaid/combat_patrol/PopulateContents()
 	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine(src)
@@ -222,12 +222,12 @@
 	. = ..()
 	atom_storage.sprite_slots = 1
 	atom_storage.max_w_class = WEIGHT_CLASS_NORMAL
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/weapon/gun/revolver,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
-	)
+	))
 	atom_storage.draw_mode = 1
 
 /obj/item/storage/pouch/pistol/vp70/PopulateContents()
@@ -265,7 +265,7 @@
 	atom_storage.max_w_class = WEIGHT_CLASS_NORMAL
 	atom_storage.storage_slots = 2
 	atom_storage.draw_mode = 0
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/pistol,
@@ -274,7 +274,7 @@
 		/obj/item/ammo_magazine/handful,
 		/obj/item/ammo_magazine/railgun,
 		/obj/item/cell/lasgun,
-	)
+	))
 
 /obj/item/storage/pouch/magazine/smgfull
 	fill_type = /obj/item/ammo_magazine/smg/standard_machinepistol
@@ -324,12 +324,12 @@
 	atom_storage.max_w_class = WEIGHT_CLASS_SMALL
 	atom_storage.sprite_slots = 3
 	atom_storage.storage_slots = 3
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/smg/standard_machinepistol,
 		/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini,
-	)
+	))
 
 /obj/item/storage/pouch/magazine/pistol/large
 	name = "pistol magazine pouch"
@@ -402,9 +402,9 @@
 	. = ..()
 	atom_storage.storage_slots = 4
 	atom_storage.sprite_slots = null
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/,
-	)
+	))
 
 
 /obj/item/storage/pouch/explosive
@@ -417,7 +417,7 @@
 	atom_storage.sprite_slots = 2
 	atom_storage.storage_slots = 4
 	atom_storage.max_w_class = WEIGHT_CLASS_NORMAL
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/explosive/plastique,
 		/obj/item/explosive/mine,
 		/obj/item/explosive/grenade,
@@ -425,7 +425,7 @@
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/detpack,
 		/obj/item/assembly/signaler,
-	)
+	))
 
 /obj/item/storage/pouch/explosive/full
 	fill_type = /obj/item/explosive/grenade
@@ -480,9 +480,9 @@
 	. = ..()
 	atom_storage.sprite_slots = 6
 	atom_storage.storage_slots = 6
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/explosive/grenade,
-	)
+	))
 
 /obj/item/storage/pouch/grenade/slightlyfull
 	fill_type = /obj/item/explosive/grenade
@@ -549,7 +549,7 @@
 	atom_storage.sprite_slots = 1
 	atom_storage.max_w_class = WEIGHT_CLASS_BULKY
 	atom_storage.storage_slots = 7
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/pill,
@@ -559,7 +559,7 @@
 		/obj/item/stack/medical,
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/reagent_containers/hypospray,
-	)
+	))
 
 /obj/item/storage/pouch/medkit/firstaid
 	desc = "Standard marine first-aid pouch. Contains basic pills, splints, and a stabilizing injector."
@@ -600,7 +600,7 @@
 	atom_storage.sprite_slots = 5
 	atom_storage.storage_slots = 8
 	atom_storage.max_storage_space = 14
-	atom_storage.canhold = list(/obj/item/reagent_containers/hypospray/autoinjector)
+	atom_storage.set_holdable(can_hold_list = list(/obj/item/reagent_containers/hypospray/autoinjector))
 
 /obj/item/storage/pouch/medical_injectors/firstaid
 	desc = "Standard marine first-aid injector pouch. Specialized to store only auto-injectors. Contains basic injectors, a stabilizing injector, stimulant injector, and an emergency injector."
@@ -690,7 +690,7 @@
 	. = ..()
 	atom_storage.sprite_slots = 3
 	atom_storage.storage_slots = 3
-	atom_storage.canhold = list(/obj/item/storage/box/combat_lolipop)
+	atom_storage.set_holdable(can_hold_list = list(/obj/item/storage/box/combat_lolipop))
 
 /obj/item/storage/pouch/med_lolipops/PopulateContents()
 	new /obj/item/storage/box/combat_lolipop(src)
@@ -708,7 +708,7 @@
 	. = ..()
 	atom_storage.sprite_slots = 3
 	atom_storage.storage_slots = 6
-	atom_storage.canhold = list(/obj/item/reagent_containers/food/snacks/wrapped/berrybar)
+	atom_storage.set_holdable(can_hold_list = list(/obj/item/reagent_containers/food/snacks/wrapped/berrybar))
 
 /obj/item/storage/pouch/surgery
 	name = "surgery tools pouch"
@@ -720,12 +720,12 @@
 	atom_storage.sprite_slots = 1
 	atom_storage.storage_slots = 12
 	atom_storage.max_storage_space = 24
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/tool/surgery,
 		/obj/item/stack/nanopaste,
 		/obj/item/tweezers,
 		/obj/item/tweezers_advanced,
-	)
+	))
 
 /obj/item/storage/pouch/surgery/PopulateContents()
 	new /obj/item/tool/surgery/scalpel/manager(src)
@@ -748,10 +748,10 @@
 /obj/item/storage/pouch/document/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 7
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/paper,
 		/obj/item/clipboard,
-	)
+	))
 
 /obj/item/storage/pouch/field_pouch
 	name = "field utility pouch"
@@ -764,7 +764,7 @@
 	atom_storage.max_w_class = WEIGHT_CLASS_NORMAL
 	atom_storage.sprite_slots = 4
 	atom_storage.draw_mode = 1
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/attachable/motiondetector,
 		/obj/item/radio,
 		/obj/item/assembly/signaler,
@@ -784,7 +784,7 @@
 		/obj/item/toy/deck,
 		/obj/item/paper,
 		/obj/item/clipboard,
-	)
+	))
 
 /obj/item/storage/pouch/field_pouch/full/PopulateContents()
 	new /obj/item/attachable/motiondetector (src)
@@ -801,10 +801,10 @@
 	. = ..()
 	atom_storage.sprite_slots = 1
 	atom_storage.storage_slots = 6
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/circuitboard,
 		/obj/item/cell,
-	)
+	))
 
 /obj/item/storage/pouch/electronics/full/PopulateContents()
 	new /obj/item/circuitboard/airlock (src)
@@ -822,7 +822,7 @@
 	atom_storage.storage_slots = 4
 	atom_storage.max_w_class = WEIGHT_CLASS_NORMAL
 	atom_storage.sprite_slots = 1
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/stack/barbed_wire,
 		/obj/item/stack/sheet,
 		/obj/item/stack/rods,
@@ -830,7 +830,7 @@
 		/obj/item/tool/shovel/etool,
 		/obj/item/stack/sandbags_empty,
 		/obj/item/stack/sandbags,
-	)
+	))
 
 /obj/item/storage/pouch/construction/full/PopulateContents()
 	new /obj/item/stack/sandbags_empty/half (src)
@@ -873,7 +873,7 @@
 	atom_storage.storage_slots = 5
 	atom_storage.max_w_class = WEIGHT_CLASS_NORMAL
 	atom_storage.sprite_slots = 1
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/tool/screwdriver,
 		/obj/item/tool/wirecutters,
 		/obj/item/tool/weldingtool,
@@ -887,7 +887,7 @@
 		/obj/item/tool/taperoll/engineering,
 		/obj/item/tool/extinguisher/mini,
 		/obj/item/tool/shovel/etool,
-	)
+	))
 
 /obj/item/storage/pouch/tools/full/PopulateContents()
 	new /obj/item/tool/screwdriver (src)
@@ -936,7 +936,7 @@
 	atom_storage.sprite_slots = 4
 	atom_storage.storage_slots = 4
 	atom_storage.draw_mode = 0
-	atom_storage.canhold = list(/obj/item/ammo_magazine/handful)
+	atom_storage.set_holdable(can_hold_list = list(/obj/item/ammo_magazine/handful))
 
 /obj/item/storage/pouch/shotgun/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/ammo_magazine))
@@ -990,4 +990,4 @@
 	atom_storage.max_storage_space = 10
 	atom_storage.sprite_slots = 1
 	atom_storage.max_w_class = WEIGHT_CLASS_TINY
-	atom_storage.canhold = list(/obj/item/reagent_containers/food/snacks/protein_pack)
+	atom_storage.set_holdable(can_hold_list = list(/obj/item/reagent_containers/food/snacks/protein_pack))

@@ -27,10 +27,10 @@
 /obj/item/storage/firstaid/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.use_sound = 'sound/effects/toolbox.ogg'
-	atom_storage.canthold = list(
+	atom_storage.set_holdable(cant_hold_list = list(
 		/obj/item/ammo_magazine,
 		/obj/item/explosive/grenade,
-	)
+	))
 
 	icon_full = icon_state
 	if(empty)
@@ -160,10 +160,10 @@
 /obj/item/storage/syringe_case/empty/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 3
-	atom_storage.canhold = list(
+	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/syringe,
-	)
+	))
 
 /obj/item/storage/syringe_case/empty/PopulateContents()
 	new /obj/item/reagent_containers/syringe(src)

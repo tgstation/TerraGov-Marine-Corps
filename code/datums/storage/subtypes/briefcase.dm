@@ -5,10 +5,16 @@
 /datum/storage/briefcase/standard_magnum
 	max_storage_space = 15
 	storage_slots = 9
-	storage_type_limits = list(/obj/item/weapon/gun = 1)
-	canhold = list(
-		/obj/item/weapon/gun/revolver/standard_magnum,
-		/obj/item/attachable/stock/t76,
-		/obj/item/attachable/scope/standard_magnum,
-		/obj/item/ammo_magazine/revolver/standard_magnum,
+
+/datum/storage/briefcase/standard_magnum/New(atom/parent)
+	. = ..()
+	set_holdable(
+		can_hold_list = list(
+			/obj/item/weapon/gun/revolver/standard_magnum,
+			/obj/item/attachable/stock/t76,
+			/obj/item/attachable/scope/standard_magnum,
+			/obj/item/ammo_magazine/revolver/standard_magnum,
+		),
+		storage_type_limits_list = list(/obj/item/weapon/gun)
 	)
+	storage_type_limits_max = list(/obj/item/weapon/gun = 1)

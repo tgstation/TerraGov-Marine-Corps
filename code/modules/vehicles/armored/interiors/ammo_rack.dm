@@ -7,7 +7,7 @@
 
 /obj/structure/ammo_rack/Initialize(mapload)
 	. = ..()
-	create_storage(storage_type, storage_type.canhold, storage_type.canthold, storage_type.bypass_w_limit)
+	create_storage(storage_type)
 	PopulateContents()
 	update_appearance(UPDATE_OVERLAYS)
 
