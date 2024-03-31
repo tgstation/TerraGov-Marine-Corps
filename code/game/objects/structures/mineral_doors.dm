@@ -95,7 +95,7 @@
 			pcutter.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
 			user.changeNext_move(attacking_item.attack_speed)
 			user.do_attack_animation(src, used_item = attacking_item)
-			take_damage(src.max_integrity, BURN, FIRE, armour_penetration = 100)
+			take_damage(max_integrity, BURN, FIRE, armour_penetration = 100)
 		return
 
 	attacking_item.attack_obj(src, user)
