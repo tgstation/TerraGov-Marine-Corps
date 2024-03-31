@@ -503,3 +503,10 @@
 		RegisterSignal(new_mech, COMSIG_QDELETING, TYPE_PROC_REF(/datum/campaign_mission, remove_mission_object))
 
 	map_text_broadcast(mech_faction, override_message ? override_message : "[total_count] mechs have been deployed for this mission.", "Mechs available")
+
+///Returns the current mission, if its the campaign gamemode
+/proc/get_current_mission()
+	if(!iscampaigngamemode(SSticker.mode))
+		return null
+	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	return mode.current_mission
