@@ -27,7 +27,7 @@
 		/obj/item/ammo_magazine/tank/towlauncher,
 		/obj/item/ammo_magazine/tank/secondary_cupola,
 		/obj/item/ammo_magazine/tank/tank_glauncher,
-		/obj/item/ammo_magazine/tank/tank_slauncher
+		/obj/item/ammo_magazine/tank/tank_slauncher,
 		)
 
 ///returns a list of possible locations that this vehicle may be entered from
