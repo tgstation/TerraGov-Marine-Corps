@@ -4620,11 +4620,11 @@
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_RND)
 "azn" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating/ground/desertdam/asphalt/twoside,
-/area/desert_dam/exterior/valley/valley_mining)
+/obj/structure/stairs/corner_seamless{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/desert_dam/building/church)
 "azo" = (
 /turf/open/floor/prison/blue,
 /area/desert_dam/interior/lab_northeast/east_lab_RND)
@@ -6363,7 +6363,6 @@
 	name = "\improper Mining Substation"
 	},
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison,
 /area/desert_dam/building/substation/northeast)
 "aNJ" = (
@@ -7398,6 +7397,7 @@
 	start_charge = 0
 	},
 /obj/structure/cable,
+/obj/effect/mapping_helpers/broken_apc/highchance,
 /turf/open/floor/wood,
 /area/desert_dam/building/administration/office)
 "aVR" = (
@@ -7554,11 +7554,9 @@
 /turf/open/floor/wood,
 /area/desert_dam/building/administration/office)
 "aWW" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen{
-	dir = 1
-	},
-/area/desert_dam/building/medical/east_wing_hallway)
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/exterior/landing/landing_pad_two_external)
 "aWY" = (
 /turf/closed/wall/r_wall,
 /area/desert_dam/building/administration/hallway)
@@ -11856,10 +11854,6 @@
 	dir = 8
 	},
 /area/desert_dam/building/security/staffroom)
-"bwF" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/landing/landing_pad_two_external)
 "bwH" = (
 /turf/open/floor/tile/dark,
 /area/desert_dam/building/security/observation)
@@ -12801,13 +12795,11 @@
 "bCK" = (
 /obj/structure/flora/desert/grass/heavy,
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_mining)
 "bCL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -12969,7 +12961,7 @@
 	},
 /area/desert_dam/interior/dam_interior/atmos_storage)
 "bDC" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison/green{
 	dir = 1
 	},
@@ -18355,7 +18347,6 @@
 	},
 /area/desert_dam/building/medical/chemistry)
 "cjq" = (
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
@@ -18374,7 +18365,6 @@
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Medical"
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},
@@ -18473,7 +18463,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
@@ -18496,7 +18485,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
@@ -18533,7 +18521,6 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/medical/break_room)
 "ckk" = (
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/darkbrown{
 	dir = 4
 	},
@@ -18766,7 +18753,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/chemistry)
 "clH" = (
@@ -18789,7 +18775,6 @@
 	dir = 2;
 	name = "\improper Medical Chemistry"
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/tile/white,
 /area/desert_dam/building/medical/chemistry)
 "clM" = (
@@ -18911,7 +18896,6 @@
 "cmE" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison,
 /area/desert_dam/building/medical/break_room)
 "cmF" = (
@@ -19066,14 +19050,6 @@
 	},
 /turf/open/floor/carpet,
 /area/desert_dam/building/warehouse/breakroom)
-"cnF" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/whitegreen{
-	dir = 4
-	},
-/area/desert_dam/building/medical/east_wing_hallway)
 "cnG" = (
 /turf/open/floor/tile/purple/whitepurple,
 /area/desert_dam/building/medical/chemistry)
@@ -19105,14 +19081,12 @@
 	},
 /area/desert_dam/building/medical/break_room)
 "cnP" = (
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/darkbrown/corner{
 	dir = 8
 	},
 /area/desert_dam/building/medical/break_room)
 "cnQ" = (
 /obj/machinery/light,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/wood,
 /area/desert_dam/building/medical/break_room)
 "cnS" = (
@@ -19272,7 +19246,6 @@
 /area/desert_dam/building/medical/chemistry)
 "coR" = (
 /obj/structure/bed/stool,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/tile/purple/whitepurplecorner,
 /area/desert_dam/building/medical/chemistry)
 "coS" = (
@@ -19289,7 +19262,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/medical/morgue)
 "coU" = (
@@ -19420,7 +19392,6 @@
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 1
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
@@ -19494,10 +19465,6 @@
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
-"cpW" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/desert_dam/exterior/valley/valley_medical)
 "cqa" = (
 /turf/open/floor/prison,
 /area/desert_dam/building/telecommunication)
@@ -19716,7 +19683,6 @@
 	dir = 1;
 	name = "\improper Medical Hallway"
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/north_wing_hallway)
 "crM" = (
@@ -20005,7 +19971,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/lobby)
 "ctV" = (
@@ -20036,12 +20001,10 @@
 	name = "\improper Observation"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/surgery_observation)
 "cua" = (
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/surgery_observation)
 "cub" = (
@@ -20053,7 +20016,6 @@
 	name = "\improper Medical Hallway"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},
@@ -20208,7 +20170,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},
@@ -20348,7 +20309,6 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/surgery_observation)
 "cwd" = (
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -20473,7 +20433,6 @@
 /area/desert_dam/building/medical/lobby)
 "cwL" = (
 /obj/machinery/door/airlock/mainship/generic,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/medical/lobby)
 "cwM" = (
@@ -20518,7 +20477,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/east_wing_hallway)
 "cwW" = (
@@ -20886,7 +20844,6 @@
 	dir = 2;
 	name = "\improper Medical Storage"
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/primary_storage)
 "cyX" = (
@@ -20928,7 +20885,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
@@ -21020,6 +20976,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
@@ -21468,7 +21425,6 @@
 	name = "\improper Garage"
 	},
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/garage)
 "cCf" = (
@@ -21698,7 +21654,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -21715,7 +21670,6 @@
 	},
 /area/desert_dam/building/medical/emergency_room)
 "cDp" = (
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -21746,7 +21700,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/surgery_room_one)
 "cDu" = (
@@ -21761,7 +21714,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/surgery_room_two)
 "cDy" = (
@@ -21775,7 +21727,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/office1)
 "cDA" = (
@@ -21789,7 +21740,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/office2)
 "cDC" = (
@@ -21923,7 +21873,6 @@
 	},
 /area/desert_dam/building/medical/emergency_room)
 "cEr" = (
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 9
 	},
@@ -21945,7 +21894,6 @@
 	start_charge = 0
 	},
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 9
 	},
@@ -21964,7 +21912,6 @@
 "cED" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/treatment_room)
 "cEF" = (
@@ -21972,7 +21919,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -21982,7 +21928,6 @@
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/treatment_room)
 "cEJ" = (
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -22058,7 +22003,6 @@
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/emergency_room)
 "cFp" = (
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 9
 	},
@@ -22117,7 +22061,6 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/warehouse/warehouse)
 "cFV" = (
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/tile/white,
 /area/desert_dam/building/medical/emergency_room)
 "cFX" = (
@@ -22136,7 +22079,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -22245,7 +22187,6 @@
 	name = "\improper Emergency Room"
 	},
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/tile/white,
 /area/desert_dam/building/medical/emergency_room)
 "cGY" = (
@@ -22265,7 +22206,6 @@
 	name = "\improper Surgery"
 	},
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/emergency_room)
 "cHc" = (
@@ -22281,7 +22221,6 @@
 	},
 /area/desert_dam/building/medical/treatment_room)
 "cHg" = (
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/corner,
 /area/desert_dam/building/medical/treatment_room)
 "cHi" = (
@@ -22335,7 +22274,6 @@
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/emergency_room)
 "cHA" = (
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -22345,7 +22283,6 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_telecoms)
 "cHI" = (
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -22356,7 +22293,6 @@
 /area/desert_dam/building/medical/treatment_room)
 "cHK" = (
 /obj/machinery/light,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/treatment_room)
 "cHL" = (
@@ -22369,7 +22305,6 @@
 	req_one_access = null
 	},
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/east_wing_hallway)
 "cHN" = (
@@ -22381,7 +22316,6 @@
 /area/desert_dam/building/medical/virology_wing)
 "cHP" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},
@@ -22400,7 +22334,6 @@
 	name = "\improper Patient Room 1"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/east_wing_hallway)
 "cHS" = (
@@ -22409,7 +22342,6 @@
 	name = "\improper Patient Room 2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/east_wing_hallway)
 "cHT" = (
@@ -22424,7 +22356,6 @@
 	name = "\improper Patient Room 3"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/east_wing_hallway)
 "cIa" = (
@@ -22524,7 +22455,6 @@
 /area/desert_dam/building/medical/emergency_room)
 "cIE" = (
 /obj/machinery/light,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 10
 	},
@@ -22535,7 +22465,6 @@
 	name = "\improper Medical Office"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/treatment_room)
 "cIG" = (
@@ -22544,18 +22473,15 @@
 "cIH" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/treatment_room)
 "cII" = (
 /obj/effect/spawner/random/medical/structure/ivdrip,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/treatment_room)
 "cIJ" = (
 /obj/effect/spawner/random/medical/structure/ivdrip,
 /obj/machinery/light,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/treatment_room)
 "cIK" = (
@@ -22602,7 +22528,6 @@
 	},
 /area/desert_dam/building/medical/virology_wing)
 "cIU" = (
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 5
 	},
@@ -22775,12 +22700,6 @@
 	dir = 1
 	},
 /area/desert_dam/building/medical/virology_wing)
-"cJM" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen{
-	dir = 4
-	},
-/area/desert_dam/building/medical/virology_wing)
 "cJN" = (
 /obj/effect/spawner/random/medical/structure/ivdrip,
 /turf/open/floor/prison/sterilewhite,
@@ -22889,7 +22808,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/east_wing_hallway)
 "cKD" = (
@@ -22916,7 +22834,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/virology_wing)
 "cKH" = (
@@ -22937,7 +22854,6 @@
 	start_charge = 0
 	},
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
@@ -23087,7 +23003,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/freezer,
 /area/desert_dam/building/medical/virology_wing)
 "cMi" = (
@@ -23237,7 +23152,6 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/virology_isolation)
 "cMZ" = (
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -23397,7 +23311,7 @@
 	},
 /area/desert_dam/building/church)
 "cOa" = (
-/obj/structure/stairs{
+/obj/structure/stairs/corner_seamless{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -23631,7 +23545,6 @@
 	req_access = null
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison,
 /area/desert_dam/building/medical/virology_isolation)
 "cPO" = (
@@ -23639,7 +23552,6 @@
 	dir = 2;
 	req_one_access = null
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/virology_wing)
 "cPP" = (
@@ -23653,14 +23565,12 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/virology_wing)
 "cPR" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/virology_wing)
 "cPS" = (
@@ -25141,7 +25051,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/prison,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "dda" = (
@@ -25711,7 +25620,6 @@
 	dir = 4;
 	on = 1
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/lobby)
 "djg" = (
@@ -26628,7 +26536,7 @@
 /area/desert_dam/building/administration/office)
 "duo" = (
 /obj/structure/cable,
-/obj/machinery/computer/intel_computer,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/carpet/side{
 	dir = 4
 	},
@@ -27615,7 +27523,6 @@
 /area/desert_dam/building/medical/surgery_room_one)
 "dDn" = (
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 10
 	},
@@ -27867,7 +27774,6 @@
 /area/desert_dam/exterior/river/riverside_east)
 "dFS" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -28677,7 +28583,6 @@
 "dRi" = (
 /obj/item/clothing/head/surgery/blue,
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -28730,12 +28635,10 @@
 	dir = 2;
 	name = "\improper Containment Pen"
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/freezer,
 /area/desert_dam/building/medical/virology_wing)
 "dTp" = (
 /obj/item/trash/sosjerky,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 6
 	},
@@ -29425,7 +29328,6 @@
 /area/desert_dam/building/water_treatment_one/breakroom)
 "eeh" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 6
 	},
@@ -29600,13 +29502,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/south_valley_dam)
-"ehh" = (
-/obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen{
-	dir = 1
-	},
-/area/desert_dam/building/medical/north_wing_hallway)
 "ehx" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -29715,10 +29610,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidplating,
 /area/desert_dam/exterior/valley/valley_crashsite)
-"ekP" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating/ground/desertdam/asphalt/twoside,
-/area/desert_dam/exterior/valley/valley_medical)
 "ekQ" = (
 /obj/structure/desertdam/decals/road,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -30270,7 +30161,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/treatment_room)
 "eFb" = (
@@ -30501,7 +30391,6 @@
 /area/desert_dam/interior/dam_interior/workshop)
 "eMH" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -30534,18 +30423,10 @@
 	},
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
-"eNF" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_medical)
 "eNR" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/prison/darkbrown,
 /area/desert_dam/building/warehouse/warehouse)
-"eNY" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/sterilewhite,
-/area/desert_dam/building/medical/emergency_room)
 "eOn" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -30690,7 +30571,6 @@
 /area/desert_dam/building/dorms/restroom)
 "eRA" = (
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 6
 	},
@@ -30743,7 +30623,6 @@
 /area/desert_dam/exterior/river/riverside_east)
 "eSD" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/corner,
 /area/desert_dam/building/medical/west_wing_hallway)
 "eSH" = (
@@ -30934,13 +30813,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/desert_dam/exterior/valley/valley_northwest)
-"eXX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/whitegreen{
-	dir = 4
-	},
-/area/desert_dam/building/medical/virology_isolation)
 "eYf" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -31273,7 +31145,6 @@
 /area/desert_dam/interior/caves/temple)
 "fiZ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -31851,7 +31722,6 @@
 /obj/effect/turf_decal/medical_decals/triage/edge{
 	dir = 4
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -31940,7 +31810,6 @@
 /area/desert_dam/interior/east_engineering)
 "fGe" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -32016,19 +31885,12 @@
 	name = "\improper Medical Lobby"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/lobby)
 "fIz" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/interior/lab_northeast/east_lab_maintenence)
-"fID" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 1
-	},
-/area/desert_dam/building/medical/west_wing_hallway)
 "fIK" = (
 /obj/structure/platform{
 	dir = 4
@@ -32272,7 +32134,6 @@
 "fQw" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/turf_decal/medical_decals/triage/bottom,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -32532,7 +32393,6 @@
 /area/desert_dam/building/hydroponics/hydroponics)
 "fXS" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -32738,7 +32598,6 @@
 "gdk" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/medical_decals/triage/bottom,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
@@ -32857,7 +32716,6 @@
 	dir = 4
 	},
 /obj/effect/landmark/lv624/fog_blocker,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/virology_wing)
 "gir" = (
@@ -33725,12 +33583,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/freezer,
 /area/desert_dam/interior/dam_interior/break_room)
-"gPD" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison,
-/area/desert_dam/building/medical/break_room)
 "gQg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -33755,7 +33607,6 @@
 "gQZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 10
 	},
@@ -33801,7 +33652,6 @@
 	req_one_access = null
 	},
 /obj/effect/ai_node,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/virology_wing)
 "gSH" = (
@@ -33877,7 +33727,6 @@
 /area/desert_dam/interior/dam_interior/engine_west_wing)
 "gVq" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
@@ -33924,13 +33773,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/west_tunnel)
-"gWP" = (
-/obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 4
-	},
-/area/desert_dam/building/medical/treatment_room)
 "gXe" = (
 /obj/structure/desertdam/decals/road{
 	dir = 4
@@ -34209,11 +34051,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/desert_dam/interior/caves/east_caves)
-"hfi" = (
-/obj/effect/ai_node,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/desert_dam/exterior/valley/valley_medical)
 "hfu" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -34380,8 +34217,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_civilian)
 "hjo" = (
-/obj/machinery/computer/nuke_disk_generator/green,
 /obj/machinery/light,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/mainship/blue{
 	dir = 6
 	},
@@ -34609,7 +34446,6 @@
 	start_charge = 0
 	},
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -34727,7 +34563,6 @@
 	dir = 8;
 	on = 1
 	},
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/wood,
 /area/desert_dam/building/medical/break_room)
 "hvm" = (
@@ -34753,10 +34588,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/desert_dam/exterior/valley/north_valley_dam)
-"hvS" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/desert_dam/exterior/valley/valley_medical)
 "hvV" = (
 /obj/structure/bed/chair/office/light,
 /turf/open/floor/prison,
@@ -35602,10 +35433,6 @@
 "hUX" = (
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner,
 /area/desert_dam/exterior/river/riverside_central_south)
-"hVa" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen,
-/area/desert_dam/building/medical/north_wing_hallway)
 "hVA" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/desert_dam/exterior/valley/valley_mining)
@@ -35672,7 +35499,6 @@
 	on = 1
 	},
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
@@ -35975,7 +35801,6 @@
 /area/desert_dam/exterior/valley/south_valley_dam)
 "iiN" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 10
 	},
@@ -36233,11 +36058,6 @@
 	dir = 10
 	},
 /area/desert_dam/exterior/valley/valley_mining)
-"isa" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/tile/white,
-/area/desert_dam/building/medical/chemistry)
 "isk" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -36339,18 +36159,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/desert_dam/exterior/valley/bar_valley_dam)
-"ivp" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating/ground/desertdam/asphalt/edge{
-	dir = 1
-	},
-/area/desert_dam/exterior/valley/valley_medical)
 "ivu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -36449,17 +36257,6 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
-"iyQ" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/sterilewhite,
-/area/desert_dam/building/medical/primary_storage)
 "iyR" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -36574,7 +36371,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/east_wing_hallway)
 "iDC" = (
@@ -37478,7 +37274,6 @@
 "jea" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/emergency_room)
 "jeg" = (
@@ -37789,15 +37584,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/desert_dam/exterior/valley/valley_crashsite)
-"jpn" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/whitegreen{
-	dir = 8
-	},
-/area/desert_dam/building/medical/east_wing_hallway)
 "jpP" = (
 /obj/structure/cable,
 /turf/open/floor/prison/darkyellow/corner{
@@ -37869,11 +37655,6 @@
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison,
 /area/desert_dam/building/substation/west)
-"jrN" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/sterilewhite,
-/area/desert_dam/building/medical/lobby)
 "jsg" = (
 /obj/structure/rock/basalt/pile/alt2,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -38114,7 +37895,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/virology_isolation)
 "jzt" = (
@@ -38947,7 +38727,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/north_wing_hallway)
 "jYd" = (
@@ -39030,18 +38809,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/primary_storage)
-"jZY" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/whitegreen{
-	dir = 1
-	},
-/area/desert_dam/building/medical/north_wing_hallway)
 "jZZ" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/desert_dam/exterior/valley/valley_telecoms)
@@ -39654,7 +39421,6 @@
 /area/desert_dam/interior/dam_interior/north_tunnel)
 "kug" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -39737,11 +39503,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
 /area/desert_dam/building/hydroponics/hydroponics_breakroom)
-"kvQ" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/whitegreen,
-/area/desert_dam/building/medical/east_wing_hallway)
 "kvS" = (
 /turf/open/floor/plating/ground/mars/random/cave{
 	dir = 9
@@ -39957,18 +39718,10 @@
 "kCI" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
 /area/desert_dam/building/medical/east_wing_hallway)
-"kCR" = (
-/obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 1
-	},
-/area/desert_dam/building/medical/north_wing_hallway)
 "kDh" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -40241,7 +39994,6 @@
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "kLZ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -40263,19 +40015,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_telecoms)
-"kME" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/whitegreen{
-	dir = 1
-	},
-/area/desert_dam/building/medical/north_wing_hallway)
 "kMH" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 9
@@ -40357,13 +40096,6 @@
 	dir = 10
 	},
 /area/desert_dam/interior/dam_interior/west_tunnel)
-"kOx" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/whitegreen{
-	dir = 4
-	},
-/area/desert_dam/building/medical/east_wing_hallway)
 "kOL" = (
 /obj/structure/rock/basalt/alt3{
 	name = "rock"
@@ -40504,7 +40236,6 @@
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison,
 /area/desert_dam/building/medical/break_room)
 "kSI" = (
@@ -41085,7 +40816,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/north_wing_hallway)
 "low" = (
@@ -41696,7 +41426,6 @@
 "lHL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 6
 	},
@@ -41739,7 +41468,6 @@
 /area/desert_dam/building/medical/emergency_room)
 "lJv" = (
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -41869,7 +41597,6 @@
 "lMF" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/medical_decals/triage,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -42110,11 +41837,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/tile/white,
 /area/desert_dam/interior/lab_northeast/east_lab_lobby)
-"lWX" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/whitegreen/full,
-/area/desert_dam/building/medical/emergency_room)
 "lXF" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -42177,7 +41899,6 @@
 "lZg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/treatment_room)
 "lZj" = (
@@ -42286,10 +42007,6 @@
 /obj/structure/desertdam/decals/road/edge/long,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/south_valley_dam)
-"mer" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/desert_dam/exterior/valley/valley_mining)
 "mfa" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 10
@@ -42569,7 +42286,6 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/water_treatment_two/floodgate_control)
 "mnY" = (
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
@@ -42583,7 +42299,6 @@
 	name = "\improper Containment Pen"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},
@@ -43003,13 +42718,6 @@
 	dir = 8
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_biology)
-"mAS" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/whitegreen{
-	dir = 1
-	},
-/area/desert_dam/building/medical/treatment_room)
 "mAU" = (
 /obj/structure/desertdam/decals/road{
 	dir = 4
@@ -43928,10 +43636,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/interior/lab_northeast/east_lab_central_hallway)
-"nfg" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/sterilewhite,
-/area/desert_dam/building/medical/lobby)
 "nfj" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -44096,12 +43800,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
-"nkT" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 8
-	},
-/area/desert_dam/building/medical/west_wing_hallway)
 "nkZ" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -44118,10 +43816,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
-"nlD" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/desert_dam/exterior/valley/valley_medical)
 "nlN" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean/two,
@@ -44134,7 +43828,6 @@
 "nlW" = (
 /obj/machinery/light,
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/wood,
 /area/desert_dam/building/medical/break_room)
 "nmt" = (
@@ -44431,7 +44124,6 @@
 	dir = 8;
 	on = 1
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
@@ -44705,7 +44397,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/north_wing_hallway)
 "nIe" = (
@@ -45274,7 +44965,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/east_wing_hallway)
 "nZu" = (
@@ -45358,10 +45048,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
-"obR" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/tile/white,
-/area/desert_dam/building/medical/chemistry)
 "obX" = (
 /obj/structure/flora/desert/grass/heavy,
 /obj/effect/landmark/weed_node,
@@ -45604,18 +45290,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/desert_dam/building/warehouse/warehouse)
-"ojb" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/whitegreen,
-/area/desert_dam/building/medical/east_wing_hallway)
 "ojA" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside{
@@ -46238,11 +45912,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_one/hallway)
-"oHC" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
-/area/desert_dam/exterior/valley/valley_medical)
 "oHL" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -46347,7 +46016,6 @@
 "oJW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/healthanalyzer,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen/corner,
 /area/desert_dam/building/medical/lobby)
 "oKa" = (
@@ -47485,7 +47153,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
@@ -47923,12 +47590,6 @@
 	dir = 8
 	},
 /area/desert_dam/interior/dam_interior/south_tunnel)
-"pDx" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen{
-	dir = 1
-	},
-/area/desert_dam/building/medical/emergency_room)
 "pDI" = (
 /obj/structure/cable,
 /turf/open/floor/prison/blue{
@@ -48060,7 +47721,6 @@
 /area/desert_dam/building/bar/bar)
 "pHF" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
@@ -48509,7 +48169,6 @@
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/emergency_room)
 "pSn" = (
@@ -48517,21 +48176,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/desert_dam/building/security/prison)
-"pSq" = (
-/obj/machinery/computer/sleep_console,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen,
-/area/desert_dam/building/medical/emergency_room)
 "pSr" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
-"pSB" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen,
-/area/desert_dam/building/medical/treatment_room)
 "pSK" = (
 /obj/structure/desertdam/decals/road/edge{
 	dir = 4
@@ -48730,10 +48379,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
-"pZF" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison,
-/area/desert_dam/building/substation/northeast)
 "pZJ" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/darkyellow/corner,
@@ -48764,10 +48409,6 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/desert_dam/interior/caves/temple)
-"qaz" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_medical)
 "qaA" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
@@ -49000,7 +48641,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/north_wing_hallway)
 "qhw" = (
@@ -49255,7 +48895,6 @@
 	dir = 4;
 	on = 1
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/lobby)
 "qpI" = (
@@ -49624,10 +49263,6 @@
 	dir = 8
 	},
 /area/desert_dam/building/medical/virology_wing)
-"qzS" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating,
-/area/desert_dam/building/medical/east_wing_hallway)
 "qAm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/prop/mainship/brokengen,
@@ -49700,7 +49335,6 @@
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "qCS" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
@@ -50062,7 +49696,6 @@
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},
@@ -51077,7 +50710,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/virology_wing)
 "ryf" = (
@@ -51100,7 +50732,6 @@
 /area/desert_dam/building/hydroponics/hydroponics_loading)
 "ryU" = (
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -51379,10 +51010,6 @@
 	dir = 9
 	},
 /area/desert_dam/exterior/valley/valley_medical)
-"rIw" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen/corner,
-/area/desert_dam/building/medical/east_wing_hallway)
 "rIA" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/whitepurple/corner{
@@ -51649,10 +51276,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
-"rPX" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating/ground/desertdam/asphalt/edge,
-/area/desert_dam/exterior/valley/valley_medical)
 "rQk" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/orange{
@@ -51990,12 +51613,6 @@
 	dir = 9
 	},
 /area/desert_dam/exterior/valley/valley_wilderness)
-"rXG" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/whitegreen{
-	dir = 1
-	},
-/area/desert_dam/building/medical/virology_wing)
 "rXI" = (
 /obj/structure/desertdam/decals/road/edge{
 	dir = 8
@@ -52053,12 +51670,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_medical)
-"rZh" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating/ground/desertdam/asphalt/twoside,
 /area/desert_dam/exterior/valley/valley_medical)
 "rZl" = (
 /obj/effect/decal/cleanable/dirt,
@@ -52119,7 +51730,6 @@
 	name = "\improper Medical Hallway"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/north_wing_hallway)
 "sbi" = (
@@ -52260,7 +51870,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/treatment_room)
 "sfw" = (
@@ -52533,7 +52142,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/wood,
 /area/desert_dam/building/medical/break_room)
 "smu" = (
@@ -53255,12 +52863,6 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_one/hallway)
-"sII" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen{
-	dir = 4
-	},
-/area/desert_dam/building/medical/east_wing_hallway)
 "sIL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -53298,10 +52900,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/security/northern_hallway)
-"sJZ" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/desertdam/asphalt/edge,
-/area/desert_dam/exterior/valley/valley_medical)
 "sKl" = (
 /turf/open/floor/plating/ground/mars/random/cave{
 	dir = 9
@@ -53323,7 +52921,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/treatment_room)
 "sKZ" = (
@@ -53465,7 +53062,6 @@
 /area/desert_dam/interior/lab_northeast/east_lab_east_hallway)
 "sSm" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/virology_wing)
 "sSI" = (
@@ -53511,7 +53107,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -53565,11 +53160,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/bar/bar_restroom)
-"sXq" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/sterilewhite,
-/area/desert_dam/building/medical/lobby)
 "sXr" = (
 /obj/structure/desertdam/decals/road,
 /obj/structure/desertdam/decals/road/line{
@@ -53841,7 +53431,6 @@
 "teu" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/turf_decal/medical_decals/triage/bottom,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
@@ -54101,10 +53690,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/interior/lab_northeast/east_lab_central_hallway)
-"tmA" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_mining)
 "tmE" = (
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
@@ -54184,7 +53769,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -54203,13 +53787,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/warehouse/warehouse)
-"tpl" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/desertdam/asphalt/twoside{
-	dir = 4
-	},
-/area/desert_dam/exterior/valley/valley_medical)
 "tpx" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -54261,12 +53838,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/south_tunnel)
-"tqQ" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/desertdam/asphalt/twoside{
-	dir = 4
-	},
-/area/desert_dam/exterior/valley/valley_medical)
 "trE" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -54960,7 +54531,6 @@
 	name = "\improper Emergency Room"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/emergency_room)
 "tNP" = (
@@ -55216,12 +54786,6 @@
 	dir = 6
 	},
 /area/desert_dam/building/medical/east_wing_hallway)
-"tWm" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen{
-	dir = 4
-	},
-/area/desert_dam/building/medical/lobby)
 "tWo" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -55275,7 +54839,6 @@
 "tWZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},
@@ -55650,10 +55213,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/control_room)
-"uhM" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
-/area/desert_dam/exterior/valley/valley_medical)
 "uhN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -55793,10 +55352,6 @@
 	dir = 4
 	},
 /area/desert_dam/exterior/valley/south_valley_dam)
-"una" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/wood,
-/area/desert_dam/building/medical/break_room)
 "und" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkyellow{
@@ -56035,7 +55590,6 @@
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "utM" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/desert_dam/exterior/valley/valley_medical)
 "uuf" = (
@@ -56191,7 +55745,6 @@
 "uxT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/east_wing_hallway)
 "uyc" = (
@@ -57129,7 +56682,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},
@@ -57261,11 +56813,6 @@
 	dir = 8
 	},
 /area/desert_dam/interior/dam_interior/hangar_storage)
-"vfY" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/wood,
-/area/desert_dam/building/medical/break_room)
 "vgh" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
@@ -57353,15 +56900,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_medical)
-"viA" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/whitegreen{
-	dir = 4
-	},
-/area/desert_dam/building/medical/virology_wing)
 "viH" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -58009,11 +57547,6 @@
 	dir = 9
 	},
 /area/desert_dam/exterior/landing/landing_pad_one_external)
-"vDj" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen,
-/area/desert_dam/building/medical/north_wing_hallway)
 "vEe" = (
 /obj/structure/desertdam/decals/road/line{
 	dir = 4
@@ -58169,11 +57702,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_wilderness)
-"vJl" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/sterilewhite,
-/area/desert_dam/building/medical/east_wing_hallway)
 "vJI" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/cable,
@@ -58458,16 +57986,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/desert_dam/exterior/valley/valley_mining)
-"vQx" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen{
-	dir = 1
-	},
-/area/desert_dam/building/medical/north_wing_hallway)
 "vQL" = (
 /obj/structure/disposalpipe/junction{
 	dir = 8
@@ -58555,15 +58073,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/desert_dam/exterior/valley/tradeship)
-"vUI" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/whitegreen{
-	dir = 4
-	},
-/area/desert_dam/building/medical/west_wing_hallway)
 "vUR" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt{
@@ -58692,7 +58201,6 @@
 	name = "\improper Medical Lobby"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/lobby)
 "vYZ" = (
@@ -58743,12 +58251,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/green/whitegreen,
 /area/desert_dam/building/lab_northwest/west_lab_xenoflora)
-"vZO" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/whitegreen{
-	dir = 1
-	},
-/area/desert_dam/building/medical/virology_isolation)
 "vZV" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
@@ -59185,7 +58687,6 @@
 "wiU" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/north_wing_hallway)
 "wiW" = (
@@ -59592,11 +59093,6 @@
 /obj/machinery/light,
 /turf/open/floor/tile/whiteyellow,
 /area/desert_dam/interior/dam_interior/break_room)
-"wyt" = (
-/obj/machinery/light,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen,
-/area/desert_dam/building/medical/north_wing_hallway)
 "wyz" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -59676,7 +59172,6 @@
 /area/desert_dam/interior/east_engineering)
 "wCu" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -59789,10 +59284,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/freezer,
 /area/desert_dam/building/hydroponics/hydroponics_breakroom)
-"wEN" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen,
-/area/desert_dam/building/medical/virology_wing)
 "wEO" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -60799,13 +60290,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/desert_dam/exterior/valley/valley_wilderness)
-"xiB" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 4
-	},
-/area/desert_dam/building/medical/west_wing_hallway)
 "xjh" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/whitegreen/full,
@@ -60846,12 +60330,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/water_treatment_one/floodgate_control)
-"xlL" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 8
-	},
-/area/desert_dam/building/medical/north_wing_hallway)
 "xlN" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -61010,11 +60488,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
-"xpp" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/wood,
-/area/desert_dam/building/medical/break_room)
 "xpw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -61042,17 +60515,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/surgery_room_two)
-"xqF" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/tile/white,
-/area/desert_dam/building/medical/chemistry)
 "xqL" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -61473,7 +60935,6 @@
 "xDU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/emergency_room)
 "xEa" = (
@@ -61518,10 +60979,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/desert_dam/building/security/prison)
-"xFz" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen/corner,
-/area/desert_dam/building/medical/north_wing_hallway)
 "xFD" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 1
@@ -61532,7 +60989,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/turf_decal/medical_decals/triage/bottom,
-/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},
@@ -61543,12 +60999,6 @@
 	dir = 8
 	},
 /area/desert_dam/exterior/landing/landing_pad_three_external)
-"xFV" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/whitegreen{
-	dir = 4
-	},
-/area/desert_dam/building/medical/west_wing_hallway)
 "xGi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -61720,7 +61170,6 @@
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "xMd" = (
 /obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/emergency_room)
 "xMl" = (
@@ -61861,11 +61310,6 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/warehouse)
-"xPY" = (
-/obj/effect/turf_decal/medical_decals/triage/bottom,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/sterilewhite,
-/area/desert_dam/building/medical/lobby)
 "xPZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -62651,7 +62095,6 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
-/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/tile/purple/whitepurple,
 /area/desert_dam/building/medical/chemistry)
 "ymj" = (
@@ -75948,7 +75391,7 @@ cOu
 cOU
 cOU
 cOU
-cOa
+azn
 coi
 cJe
 vul
@@ -95783,7 +95226,7 @@ ckB
 coN
 ciR
 crA
-sXq
+bLF
 vYQ
 crA
 cvM
@@ -95791,7 +95234,7 @@ crA
 crA
 cvM
 crA
-nfg
+crD
 vYQ
 crA
 cCf
@@ -96496,7 +95939,7 @@ hnn
 jxa
 gro
 uyc
-eNY
+cCi
 cCi
 nuV
 xCZ
@@ -96718,18 +96161,18 @@ cnH
 coQ
 cpC
 cjV
-jrN
-nfg
+luE
+crD
 qoX
 oJW
-tWm
-tWm
-tWm
+crE
+crE
+crE
 gVq
 kLZ
 djf
-sXq
-xPY
+bLF
+uyc
 cCg
 dQY
 tIn
@@ -97199,7 +96642,7 @@ sHL
 hxS
 ctS
 cCg
-pDx
+cEp
 cEp
 uus
 osI
@@ -97413,9 +96856,9 @@ jXq
 ciR
 cjr
 cjq
-xqF
-obR
-isa
+ckH
+clI
+vLa
 ymh
 coR
 cpD
@@ -97438,7 +96881,7 @@ gbr
 xBi
 bKa
 cgP
-pSq
+lJr
 cCf
 rCV
 rCV
@@ -97647,7 +97090,7 @@ jXq
 ciR
 ciR
 cjV
-xqF
+ckH
 clL
 cjV
 cnJ
@@ -97878,15 +97321,15 @@ sLI
 chr
 qhF
 vXl
-sJZ
+jXq
 cjs
-xiB
+tXV
 jzY
 aSb
 vKT
 cnK
 cjX
-nkT
+cmx
 cqt
 rRU
 myA
@@ -97903,7 +97346,7 @@ fQw
 cCj
 cDp
 fiZ
-lWX
+xCZ
 pSf
 xDU
 iqt
@@ -98347,7 +97790,7 @@ chs
 cia
 sHs
 sbo
-vUI
+yjS
 kof
 ckM
 yjS
@@ -98580,15 +98023,15 @@ vis
 chr
 dBN
 dnP
-sJZ
+jXq
 cjs
 cjZ
-xFV
+ckN
 vGw
 ckN
 ckN
 uXz
-fID
+cpG
 cqw
 uHP
 kTu
@@ -98814,7 +98257,7 @@ cgN
 cht
 ilz
 cix
-tpl
+sDT
 cjv
 cka
 cka
@@ -98823,7 +98266,7 @@ cka
 cka
 cka
 cpH
-kME
+jVC
 crL
 cpH
 ctW
@@ -98831,7 +98274,7 @@ ctX
 ctX
 ctX
 ctX
-iyQ
+cyd
 cyW
 ctX
 ctX
@@ -99048,7 +98491,7 @@ cgN
 chu
 ciu
 chr
-tqQ
+ciU
 cjv
 ckb
 ckb
@@ -99059,7 +98502,7 @@ cka
 cpI
 jVC
 lFU
-hVa
+crM
 ctX
 cuY
 cvT
@@ -99076,7 +98519,7 @@ cEy
 oyT
 cGg
 oaD
-pSB
+cHc
 cEG
 cJC
 cKu
@@ -99293,7 +98736,7 @@ cka
 cpI
 qPy
 rKM
-hVa
+crM
 ctX
 cuZ
 jZX
@@ -99527,7 +98970,7 @@ cka
 cpJ
 oDZ
 lFU
-hVa
+crM
 ctX
 cva
 iZW
@@ -99761,7 +99204,7 @@ coT
 aaQ
 oob
 vFD
-wyt
+csR
 ctW
 ctW
 ctW
@@ -99995,7 +99438,7 @@ cka
 cpL
 obg
 uZc
-xlL
+csS
 ctY
 cvb
 cvb
@@ -100012,7 +99455,7 @@ lJv
 cFp
 qQz
 gQZ
-pSB
+cHc
 cEG
 cJF
 sAK
@@ -100480,7 +99923,7 @@ sfs
 cFq
 nnh
 cHc
-pSB
+cHc
 cIH
 cJG
 cKx
@@ -100694,10 +100137,10 @@ ckg
 ckg
 ckg
 cka
-ehh
+yiG
 cqA
 lFU
-xFz
+csT
 ctY
 gOd
 cvW
@@ -100928,7 +100371,7 @@ cjy
 cjy
 cjy
 cjy
-vQx
+cpM
 cqA
 uZc
 wiU
@@ -101162,10 +100605,10 @@ vFv
 cmB
 vGI
 cjy
-ehh
-jZY
+yiG
+cqA
 jXN
-vDj
+lFU
 ctY
 gOd
 cvW
@@ -101187,7 +100630,7 @@ cIJ
 cJG
 iIq
 tCs
-eXX
+cLY
 cLY
 fkJ
 uam
@@ -101412,11 +100855,11 @@ cAt
 miO
 cCu
 cDu
-gWP
+cEC
 jfe
 rHt
 cHc
-pSB
+cHc
 cIH
 cJG
 cKx
@@ -101650,7 +101093,7 @@ cED
 xId
 raS
 cHf
-pSB
+cHc
 cHL
 cHL
 cHL
@@ -101864,7 +101307,7 @@ cjy
 cjy
 cjy
 cjy
-ehh
+yiG
 fSC
 uZc
 crM
@@ -101881,7 +101324,7 @@ cBt
 cCw
 cDu
 fGe
-mAS
+ykT
 sKY
 cHg
 eeh
@@ -102115,7 +101558,7 @@ cyp
 cyp
 cyp
 cEG
-mAS
+ykT
 eEW
 cEG
 cHL
@@ -102564,7 +102007,7 @@ qyf
 tdo
 hUR
 oKU
-gPD
+oKU
 kSk
 qhj
 nbC
@@ -102582,7 +102025,7 @@ tPv
 nZu
 nZu
 nZu
-jpn
+nZu
 sDZ
 xxp
 cHi
@@ -102804,8 +102247,8 @@ lov
 wDK
 sjB
 csV
-kOx
-cnF
+cud
+vMO
 qsI
 dGG
 pgB
@@ -102821,10 +102264,10 @@ gZj
 cGq
 cxH
 cHL
-qzS
-qzS
+cIK
+cIK
 cKC
-qzS
+cIK
 cHL
 cMZ
 cNH
@@ -103034,7 +102477,7 @@ ffv
 qmn
 ckk
 coU
-kCR
+cpL
 iTe
 pBn
 csT
@@ -103042,14 +102485,14 @@ cub
 qCS
 cwd
 cwV
-rIw
-sII
+cxH
+cvg
 cze
 qCS
-sII
-sII
+cvg
+cvg
 qCS
-sII
+cvg
 cwd
 tyj
 aHL
@@ -103061,7 +102504,7 @@ cHL
 cHL
 cHL
 cNa
-vZO
+cNH
 jzi
 lYq
 cJG
@@ -103266,9 +102709,9 @@ tTs
 hZn
 tTR
 noh
-una
+cjG
 cjy
-ehh
+yiG
 iTe
 pBn
 crM
@@ -103502,7 +102945,7 @@ wef
 tTR
 cnQ
 cjy
-vQx
+cpM
 iTe
 mEm
 csR
@@ -103734,9 +103177,9 @@ tUy
 xmk
 wdR
 uZW
-vfY
+ceZ
 coU
-ehh
+yiG
 iTe
 pBn
 crM
@@ -103968,9 +103411,9 @@ tUy
 fYM
 yhy
 cmF
-una
+cjG
 coU
-ehh
+yiG
 iTe
 iyZ
 lFU
@@ -103986,7 +103429,7 @@ dre
 cBx
 cBx
 dyW
-vJl
+tih
 cEM
 dPD
 nVv
@@ -104202,9 +103645,9 @@ tUy
 dCw
 scl
 gNX
-una
+cjG
 coU
-ehh
+yiG
 eLs
 mEm
 lFU
@@ -104231,7 +103674,7 @@ cKE
 cLp
 cHN
 cHO
-rXG
+cIP
 rxq
 cHO
 cHN
@@ -104436,7 +103879,7 @@ fpC
 ckZ
 ubw
 cjG
-una
+cjG
 coU
 yiG
 xwW
@@ -104454,7 +103897,7 @@ cBy
 cBy
 cCy
 czf
-aWW
+cEM
 jre
 lKI
 cHj
@@ -104467,7 +103910,7 @@ cHN
 wTF
 cIP
 ipq
-wEN
+cLp
 cPP
 cLu
 cAe
@@ -104666,10 +104109,10 @@ chZ
 jXq
 ciV
 smf
-xpp
+tTR
 hvk
-xpp
-una
+tTR
+cjG
 nlW
 cjy
 cpM
@@ -104922,7 +104365,7 @@ cAB
 cAB
 cAB
 cAB
-aWW
+cEM
 uis
 oYY
 uJs
@@ -105135,7 +104578,7 @@ iMk
 cjT
 cjT
 cjT
-ekP
+cjT
 cjT
 mbd
 cjT
@@ -105160,7 +104603,7 @@ kug
 pAz
 tTo
 flo
-viA
+cHQ
 cHQ
 cHQ
 cKH
@@ -105369,7 +104812,7 @@ cdw
 cdw
 cdw
 hgO
-eNF
+cdw
 cdw
 cdw
 cdw
@@ -105396,12 +104839,12 @@ jXv
 xMw
 cHO
 cIU
-cJM
+mnY
 cKI
-cJM
+mnY
 ppA
 nzH
-cJM
+mnY
 mnY
 dTp
 cPS
@@ -106092,7 +105535,7 @@ cAG
 cAG
 cAG
 cAG
-aWW
+cEM
 tyj
 cGt
 vMx
@@ -106326,7 +105769,7 @@ cpz
 nSN
 nSN
 cDA
-aWW
+cEM
 jre
 jXv
 snM
@@ -106543,11 +105986,11 @@ aMz
 vfH
 mrv
 aNh
-pZF
+aNh
 ceX
 acN
 jiY
-nlD
+caH
 rCV
 rCV
 rCV
@@ -106778,11 +106221,11 @@ sqC
 aNh
 aNh
 aMz
-nlD
-ivp
-rPX
-hfi
-uhM
+caH
+cbD
+jXq
+lDe
+xqW
 rCV
 rCV
 rCV
@@ -107016,7 +106459,7 @@ aMz
 iEU
 jXq
 aYE
-uhM
+xqW
 rCV
 rCV
 rCV
@@ -107250,9 +106693,9 @@ aNC
 cbD
 jXq
 caH
-qaz
-uhM
-hvS
+cdw
+xqW
+cOk
 rCV
 rCV
 rCV
@@ -107262,10 +106705,10 @@ iHA
 iHA
 rJm
 cAG
-aWW
-aWW
-ojb
-kvQ
+cEM
+cEM
+jXv
+snM
 cub
 cIX
 cJN
@@ -107486,8 +106929,8 @@ jXq
 caH
 jEa
 xqW
-hvS
-hvS
+cOk
+cOk
 rCV
 rCV
 rCV
@@ -107722,7 +107165,7 @@ cdw
 cdw
 xqW
 utM
-hvS
+cOk
 rCV
 rCV
 rCV
@@ -107956,8 +107399,8 @@ cdw
 owP
 cdw
 xaO
-uhM
-hvS
+xqW
+cOk
 rCV
 rCV
 rCV
@@ -108191,10 +107634,10 @@ cdw
 cdw
 dBQ
 cdw
-oHC
-uhM
-uhM
-uhM
+wnq
+xqW
+xqW
+xqW
 rCV
 nXY
 cDF
@@ -108412,11 +107855,11 @@ aYE
 caH
 lDe
 caH
-cpW
+caH
 aYE
 caH
 caH
-cpW
+caH
 cbD
 jXq
 lDe
@@ -108425,7 +107868,7 @@ caH
 caH
 caH
 caH
-cpW
+caH
 caH
 fPP
 caH
@@ -108646,11 +108089,11 @@ cjT
 him
 him
 mbd
-ekP
+cjT
 cjT
 cjT
 mbd
-ekP
+cjT
 sgm
 cbG
 cbH
@@ -108659,7 +108102,7 @@ cbH
 cbH
 dgl
 cbH
-rZh
+cbH
 cbH
 brz
 brz
@@ -108670,7 +108113,7 @@ brz
 brz
 wSU
 brz
-azn
+brz
 brz
 brz
 bWD
@@ -108904,7 +108347,7 @@ ohd
 iaj
 yhu
 ohd
-mer
+bnA
 bnA
 bnA
 ltO
@@ -109134,11 +108577,11 @@ aUU
 lsJ
 aUU
 aUU
-tmA
-tmA
+bjV
+bjV
 bCK
-tmA
-tmA
+bjV
+bjV
 bKI
 bnA
 bFF
@@ -113663,7 +113106,7 @@ ksP
 wsc
 uop
 xLK
-bwF
+aWW
 xLK
 xLK
 rCV
