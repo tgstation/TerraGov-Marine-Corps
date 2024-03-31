@@ -3542,12 +3542,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flame_radius(2, T, burn_duration = 9, colour = "blue")
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
-/datum/ammo/energy/plasma/cannon_standard
-	damage = 20
-	penetration = 15
-	sundering = 0.75
-	damage_falloff = 0.75
-
 #define PLASMA_CANNON_INNER_STAGGERSTUN_RANGE 3
 #define PLASMA_CANNON_STAGGERSTUN_RANGE 9
 #define PLASMA_CANNON_STAGGER_DURATION 3 SECONDS
@@ -3628,7 +3622,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/xeno/psy_blast
 	name = "psychic blast"
-	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_ENERGY|AMMO_HITSCAN
+	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_ENERGY|AMMO_HITSCAN|AMMO_SKIPS_ALIENS
 	damage = 35
 	penetration = 10
 	sundering = 1
@@ -3651,7 +3645,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/mob/living/carbon/xenomorph/xeno_firer = P.firer
 		aoe_damage = xeno_firer.xeno_caste.blast_strength
 
-	var/list/throw_atoms = list()
 	var/list/turf/target_turfs = generate_true_cone(T, aoe_range, -1, 359, 0, air_pass = TRUE)
 	for(var/turf/target_turf AS in target_turfs)
 		for(var/atom/movable/target AS in target_turf)
@@ -3666,16 +3659,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 				var/obj/obj_victim = target
 				if(!(obj_victim.resistance_flags & XENO_DAMAGEABLE))
 					continue
+				if(isbarricade(target))
+					continue
 				obj_victim.take_damage(aoe_damage, BURN, ENERGY, TRUE, armour_penetration = penetration)
 			if(target.anchored)
 				continue
-			throw_atoms += target
-
-	for(var/atom/movable/target AS in throw_atoms)
-		var/throw_dir = get_dir(T, target)
-		if(T == get_turf(target))
-			throw_dir = get_dir(P.starting_turf, T)
-		target.safe_throw_at(get_ranged_target_turf(T, throw_dir, 5), 3, 1, spin = TRUE)
 
 	new /obj/effect/temp_visual/shockwave(T, aoe_range + 2)
 
@@ -4334,7 +4322,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	///As opposed to normal globs, this will pass by the target tile if they hit nothing.
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_LEAVE_TURF
 	danger_message = span_danger("A pressurized glob of acid lands with a nasty splat and explodes into noxious fumes!")
-	max_range = 40
+	max_range = 25
 	damage = 75
 	penetration = 70
 	reagent_transfer_amount = 55
@@ -4354,7 +4342,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	///As opposed to normal globs, this will pass by the target tile if they hit nothing.
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_LEAVE_TURF
 	danger_message = span_danger("A pressurized glob of acid lands with a concerning hissing sound and explodes into corrosive bile!")
-	max_range = 40
+	max_range = 25
 	damage = 75
 	penetration = 70
 	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/acid/light
@@ -4363,7 +4351,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hit_drowsyness = 2
 	fixed_spread_range = 2
 	accuracy = 100
-	accurate_range = 30
 	shell_speed = 1.5
 
 /datum/ammo/xeno/hugger
