@@ -1,0 +1,4 @@
+###############################################################################################
+# Words that will block in character chat messages from sending.                              #
+# Case is not important. Commented-out examples are listed below, just remove the "#".        #
+###############################################################################################

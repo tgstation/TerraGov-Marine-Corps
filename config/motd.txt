@@ -1,0 +1,3 @@
+<!-- Most valid html will work in here, excluding images. -->
+Blackstone Discord Server: <a href="https://discord.gg/bx9c7ha5Qk">discord.gg/Blackstone</a>
+<center>* Unstable Playtest - Expect Restarts *</center>

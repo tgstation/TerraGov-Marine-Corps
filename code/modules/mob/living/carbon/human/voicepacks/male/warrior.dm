@@ -1,0 +1,18 @@
+/datum/voicepack/male/warrior/get_sound(soundin, modifiers)
+	var/used
+	switch(soundin)
+		if("firescream")
+			used = list('sound/vo/male/warrior/firescream (1).ogg','sound/vo/male/warrior/firescream (2).ogg','sound/vo/male/warrior/firescream (3).ogg')
+		if("laugh")
+			used = list('sound/vo/male/warrior/laugh (1).ogg','sound/vo/male/warrior/laugh (2).ogg','sound/vo/male/warrior/laugh (3).ogg')
+		if("pain")
+			used = list('sound/vo/male/warrior/pain (1).ogg','sound/vo/male/warrior/pain (2).ogg','sound/vo/male/warrior/pain (3).ogg','sound/vo/male/warrior/pain (4).ogg','sound/vo/male/warrior/pain (5).ogg','sound/vo/male/warrior/pain (6).ogg','sound/vo/male/warrior/pain (7).ogg','sound/vo/male/warrior/pain (8).ogg','sound/vo/male/warrior/pain (9).ogg','sound/vo/male/warrior/pain (10).ogg')
+		if("paincrit")
+			used = list('sound/vo/male/warrior/paincrit (1).ogg','sound/vo/male/warrior/paincrit (2).ogg','sound/vo/male/warrior/paincrit (3).ogg')
+		if("painscream")
+			used = list('sound/vo/male/warrior/painscream (1).ogg','sound/vo/male/warrior/painscream (2).ogg','sound/vo/male/warrior/painscream (3).ogg')
+		if("rage")
+			used = list('sound/vo/male/warrior/rage (1).ogg','sound/vo/male/warrior/rage (2).ogg','sound/vo/male/warrior/rage (3).ogg')
+	if(!used)
+		used = ..(soundin, modifiers)
+	return used

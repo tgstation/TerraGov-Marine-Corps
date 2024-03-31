@@ -1,0 +1,64 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"},/area/shuttle/escape)
+"c" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 1},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 9},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floort"},/area/shuttle/escape)
+"d" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 1},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 9},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/escape)
+"e" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 1},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 5},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/escape)
+"f" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 1},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 5},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floort"},/area/shuttle/escape)
+"g" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 9},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floort"},/area/shuttle/escape)
+"h" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 5},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floort"},/area/shuttle/escape)
+"i" = (/obj/effect/decal/cobbleedge{icon_state = "jagged"; dir = 2},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floor2"; dir = 1},/area/shuttle/escape)
+"j" = (/obj/machinery/light/rogue/torchholder{icon_state = "torchwall1"; dir = 8},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floor2"; dir = 1},/area/shuttle/escape)
+"k" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/obj/structure/stairs,/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"},/area/shuttle/escape)
+"l" = (/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"},/area/shuttle/escape)
+"m" = (/turf/closed/wall/mineral/rogue/wooddark,/area/shuttle/escape)
+"n" = (/obj/effect/decal/cobbleedge{icon_state = "jagged"; dir = 1},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floor2"; dir = 1},/area/shuttle/escape)
+"o" = (/obj/machinery/light/rogue/torchholder{icon_state = "torchwall1"; dir = 8},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floort"},/area/shuttle/escape)
+"p" = (/obj/machinery/light/rogue/torchholder{icon_state = "torchwall1"; dir = 4},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floort"},/area/shuttle/escape)
+"q" = (/obj/machinery/light/rogue/torchholder{icon_state = "torchwall1"; dir = 4},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floor2"; dir = 1},/area/shuttle/escape)
+"r" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 1},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 9},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floor2"; dir = 1},/area/shuttle/escape)
+"s" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/obj/effect/decal/cobbleedge{icon_state = "jagged"; dir = 1},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/escape)
+"t" = (/obj/effect/decal/cobbleedge{icon_state = "jagged"; dir = 1},/obj/structure/fluff/wallclock,/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floor2"; dir = 1},/area/shuttle/escape)
+"u" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floort"},/area/shuttle/escape)
+"v" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 1},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 5},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floor2"; dir = 1},/area/shuttle/escape)
+"w" = (/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floort"},/area/shuttle/escape)
+"x" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floort"},/area/shuttle/escape)
+"y" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/obj/effect/decal/cobbleedge{icon_state = "jagged"; dir = 1},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/escape)
+"z" = (/obj/structure/boatbell/escape{pixel_y = 16},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floor2"; dir = 1},/area/shuttle/escape)
+"A" = (/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floor2"; dir = 1},/area/shuttle/escape)
+"B" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/obj/structure/stairs,/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"},/area/shuttle/escape)
+"C" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/escape)
+"D" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/escape)
+"E" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/obj/effect/decal/cobbleedge{icon_state = "jagged"; dir = 2},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/escape)
+"F" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/obj/effect/decal/cobbleedge{icon_state = "jagged"; dir = 2},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/escape)
+"G" = (/obj/docking_port/mobile/emergency{dwidth = 9; height = 5; name = "Box emergency shuttle"; width = 15},/obj/effect/decal/cobbleedge{icon_state = "jagged"; dir = 1},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floort"},/area/shuttle/escape)
+"H" = (/obj/effect/decal/cobbleedge{icon_state = "jagged"; dir = 1},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floort"},/area/shuttle/escape)
+"I" = (/obj/machinery/light/rogue/torchholder{icon_state = "torchwall1"; dir = 8},/obj/effect/decal/cobbleedge{icon_state = "jagged"; dir = 4},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floor2"; dir = 1},/area/shuttle/escape)
+"J" = (/obj/machinery/light/rogue/torchholder{icon_state = "torchwall1"; dir = 4},/obj/effect/decal/cobbleedge{icon_state = "jagged"; dir = 4},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floor2"; dir = 1},/area/shuttle/escape)
+"K" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/obj/effect/decal/cobbleedge{icon_state = "jagged"; dir = 4},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floort"},/area/shuttle/escape)
+"L" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/obj/effect/decal/cobbleedge{icon_state = "jagged"; dir = 4},/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floort"},/area/shuttle/escape)
+"M" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 1},/obj/machinery/light/rogue/firebowl,/turf/open/floor/rogue/ruinedwood{icon_state = "wooden_floor2"; dir = 1},/area/shuttle/escape)
+"N" = (/obj/structure/fluff/railing/border,/obj/structure/fluff/railing/border{icon_state = "border"; dir = 9},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 10},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/escape)
+"O" = (/obj/structure/fluff/railing/border,/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/escape)
+"P" = (/obj/structure/fluff/railing/border,/obj/structure/fluff/railing/border{icon_state = "border"; dir = 5},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 6},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/escape)
+"Q" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/obj/structure/fluff/railing/border,/obj/structure/fluff/railing/border{icon_state = "border"; dir = 10},/turf/closed/wall/mineral/rogue/wooddark/end{icon_state = "endwooddark"; dir = 8},/area/shuttle/escape)
+"R" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 10},/turf/closed/wall/mineral/rogue/wooddark/end{icon_state = "endwooddark"; dir = 4},/area/shuttle/escape)
+"T" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 6},/turf/closed/wall/mineral/rogue/wooddark/end{icon_state = "endwooddark"; dir = 8},/area/shuttle/escape)
+"U" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/obj/structure/fluff/railing/border,/obj/structure/fluff/railing/border{icon_state = "border"; dir = 6},/turf/closed/wall/mineral/rogue/wooddark/end{icon_state = "endwooddark"; dir = 4},/area/shuttle/escape)
+
+(1,1,1) = {"
+aabaa
+acbfa
+agbha
+dglhe
+CompD
+sntny
+EiiiF
+ujmqx
+wAzAw
+GnnnH
+KImJL
+krMvB
+CAAAD
+QRmTU
+aNOPa
+"}

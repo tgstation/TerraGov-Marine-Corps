@@ -1,0 +1,10 @@
+body
+{
+	font-family: Pterra, TrueType;
+	background-image: url('html/book.png');
+	background-repeat: repeat;
+	padding: 0;
+	margin: 0;
+	font-size: 14px;
+	line-height: 170%;
+}

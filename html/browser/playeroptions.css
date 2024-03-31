@@ -1,0 +1,20 @@
+.job {
+  display: block;
+  width: 173px;
+  color: #ffffff;
+}
+
+.command {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.priority {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.nopositions {
+  color: #ffffff;
+  font-style: italic;
+}
