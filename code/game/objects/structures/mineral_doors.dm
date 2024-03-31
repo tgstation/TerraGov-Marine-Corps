@@ -90,7 +90,6 @@
 	if(QDELETED(src))
 		return
 
-	var/multiplier = 1
 	if(isplasmacutter(attacking_item) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/pcutter = attacking_item
 		if(pcutter.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, no_string = TRUE))
