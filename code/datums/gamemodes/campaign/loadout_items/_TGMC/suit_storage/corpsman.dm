@@ -67,7 +67,7 @@
 	desc = "Equipped with a mag harness and underbarrel grenade launcher. \
 	The SH-15 automatic shotgun has excellent mobility and handling, and offers powerful damage per shot. Its comparatively slow rate of fire means in a straight gunfight its overall damage output is somewhat lacking.\
 	Uses 12-round 16 gauge magazines with slugs and flechette."
-	ui_icon = "ballistic"
+	ui_icon = "tx15"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_autoshotgun/engineer
 	secondary_ammo_type = /obj/item/ammo_magazine/rifle/tx15_flechette
 
@@ -119,7 +119,7 @@
 	name = "SMG-25"
 	desc = "Equipped with a mag harness, recoil compensator and gyroscopic stabilizer. SMG-25 submachinegun, is a large capacity smg, able to be be used effectively one or two handed. \
 	Like all smgs, it has excellent mobility and handling, but has poor damage application at longer ranges. Uses 10x20mm caseless ammunition."
-	ui_icon = "smg"
+	ui_icon = "m25"
 	item_typepath = /obj/item/weapon/gun/smg/m25/magharness
 
 /datum/loadout_item/suit_store/main_gun/corpsman/standard_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -154,7 +154,7 @@
 	desc = "Equipped with mag harness, extended barrel and underbarrel grenade launcher. The AR-12 is the former main weapon of the TGMC before it was superceded by the AR-18 for general issue. \
 	A jack of all trades weapon, effect at close and long range, with good capacity and handling, making it a reliable all-rounder. \
 	It does not particularly excel in any area however, and so is overshadowed by other weapons at particular tasks. It uses 10x24mm caseless ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "t12"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_assaultrifle/medic
 
 /datum/loadout_item/suit_store/main_gun/corpsman/assault_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -188,7 +188,7 @@
 	desc = "Equipped with a red dot sight and laser sight. The AR-11 is an old rifle of the TGMC, but is now a relatively uncommon sight. \
 	It has a very large magazine capacity, and can inflict incredible damage at long range with its HV ammo, making it particularly effective at well armored targets. \
 	However it suffers from relatively poor handling and mobility, and lacks any underbarrel weapon attachments, making it an effective but less flexible weapon. It uses 4.92×34mm caseless HV ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "tx11"
 	item_typepath = /obj/item/weapon/gun/rifle/tx11/standard
 
 /datum/loadout_item/suit_store/main_gun/corpsman/combat_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)

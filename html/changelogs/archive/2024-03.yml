@@ -425,3 +425,30 @@
 2024-03-28:
   Xander3359:
   - code_imp: flags now all follow the formatting of flagname_flags
+2024-03-29:
+  Barnet2:
+  - qol: The toxin reagent from QC+, Peri+ and Nanoblood now shows on medical scanners.
+  Lumipharon:
+  - code_imp: Some performance improvements to campaign loadout UI
+  Pariah919:
+  - rscadd: Added new Sniper and Shotgun sentry to the marine arsenal, as well as
+      new sentry sprites.
+  blackdav123:
+  - bugfix: Fills in space tile on Theseus
+2024-03-30:
+  Aporhtonoma:
+  - rscadd: Puppets have now the ability to rest and unrest when puppeter does
+  - rscadd: puppets have now the ability to sleep and resist when puppeter does
+  - rscadd: Puppets have now the ability to jump when puppeter does
+  Barnet2:
+  - rscdel: Removes the ability to vote for the current map during groundmap vote
+  - admin: R_POLLS rank used for Server Poll Management
+  Lumipharon:
+  - qol: 'Campaign: Improved loadout UI and new icons'
+  Xander3359:
+  - bugfix: fix the HSG_102 that spawn on maps having the wrong item path
+  blackdav123:
+  - bugfix: Fixed a few misplaced area tiles on Gelida caves
+  lbnesquik:
+  - code_imp: Removes some redundant code
+  - rscdel: Removed factory medpacks
