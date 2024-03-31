@@ -1,5 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - balance: "Boiler glob CD increased by 5"
-  - balance: "Boiler lance has a range of 25, the same distance as it's horizontal zoom range."

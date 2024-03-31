@@ -1,6 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - balance: "Warlock psy blast AOE no longer damages barricades and their subtypes"
-  - balance: "Warlock psy blast no longer has knockback"
-  - balance: "Warlock psy blast now has IFF, going through teammates"

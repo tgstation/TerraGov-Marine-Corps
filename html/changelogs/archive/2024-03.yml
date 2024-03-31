@@ -452,3 +452,68 @@
   lbnesquik:
   - code_imp: Removes some redundant code
   - rscdel: Removed factory medpacks
+2024-03-31:
+  Barnet2:
+  - balance: Boiler glob CD increased by 5
+  - balance: Boiler lance has a range of 25, the same distance as it's horizontal
+      zoom range.
+  - rscadd: Whistle makes every human in range do the *warcry emote
+  - balance: Bull now has Boiler's zoom ability
+  - balance: Bull is now has a mob size of big
+  - qol: Sulaco generators and SMES are now preset
+  - balance: Warlock psy blast AOE no longer damages barricades and their subtypes
+  - balance: Warlock psy blast no longer has knockback
+  - balance: Warlock psy blast now has IFF, going through teammates
+  Lumipharon:
+  - balance: Made SMG and rifle more expensive
+  - bugfix: Fixed plasma cannon starting with an incorrect ammo type set
+  - bugfix: 'Campaign: Fixed a missing whitelist requirement for Surt'
+  Naaanii:
+  - rscdel: Removed RR launcher, AT gun and it's ammo from regular Valhalla vendors.
+  - rscadd: Added the RR launcher, AT gun and it's ammo to the Valhalla req vendors.
+  - rscadd: Added the small HMG magazines to the regular Valhalla vendors.
+  Notamaniac:
+  - refactor: Robotic Cradle was refactored
+  - qol: You can now eject people just by clicking
+  - balance: There are no more skill requirements to putting yourself or someone into
+      the cradle
+  - bugfix: Synths can now place themselves into the cradle
+  - bugfix: Moths can no longer use the cradle by getting grabbed and put in (or other
+      creatures like sectoids)
+  - bugfix: Robot and synth medical records don't get updated anymore when using the
+      cradle.
+  - bugfix: You can no longer start a repair, get ejected, then hop back in and get
+      repaired from the earlier unfinished operation.
+  PestoVerde322:
+  - qol: The TE powerpack is now available in the default, Crash and Valhalla Automated
+      weapon rack
+  RipGrayson:
+  - bugfix: Fixed a few incorrect icons in our walls.
+  - bugfix: You can no longer perma trap people inside hull walls on some BR modulars
+      as wraith.
+  - bugfix: Corrected an incorrect icon for mounted lasers on Oscar Outpost.
+  - bugfix: Removed an incorrect merge conflict marker on Jungle Outpost.
+  - bugfix: Fixed the tank being unable to leave the dropship on Delta.
+  - bugfix: Fixed a situation on Sulaco where transport officers could be stuck in
+      mech crew headquarters.
+  - bugfix: Adjusted some IDs on the tank vehicle bay so that they were no longer
+      bugged.
+  - imageadd: Ported some carpets from TG for mapper use.
+  - imageadd: Ported some glass floors from TG for mapper use.
+  - imageadd: Ported the chasm sprites from TG.
+  - imageadd: Created a new set of walls for basalt terrain.
+  - imageadd: Created two new autosmoothing variations for asphalt.
+  - imageadd: Added error signs to many icon files, for easier debugging.
+  - imagedel: Deleted some unused carpet icons that have been obsolete since the new
+      smoothing system.
+  Xander3359:
+  - bugfix: Touching the alamo console as a xeno stops takeoff
+  lbnesquik:
+  - rscadd: Add OB shots to round end statistics
+  novaepee:
+  - rscadd: Pillar of Spring's Vehicle Bay
+  - rscadd: Change POS's TO and PO's bunk
+  - rscadd: expand PoS' req
+  - rscadd: Move PoS' OB to be closer to CIC. Also add brig.
+  - rscadd: move PoS' droppod to where mech is and vice versa
+  - rscadd: move PoS' tadpole to where briefing is and vice versa
