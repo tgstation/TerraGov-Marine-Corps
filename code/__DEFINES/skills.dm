@@ -92,7 +92,7 @@
 #define SKILL_SMART_MASTER 2
 
 /**
- * Construction skill; higher levels means faster engine repair
+ * Construction skill; higher levels means faster buidling
  * DEFAULT = Untrained
  * METAL = Metal barricade construction with no fumble (TO)
  * PLASTEEL = Plasteel barricade construction with no fumble (RO, SL)
