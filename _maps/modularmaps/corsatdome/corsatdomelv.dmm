@@ -2586,10 +2586,6 @@
 /obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/corsat/theta/biodome)
-"Ey" = (
-/obj/machinery/door/airlock/mainship/maint,
-/turf/closed/wall/r_wall/unmeltable,
-/area/corsat/theta/biodome)
 "EA" = (
 /obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river/autosmooth,
@@ -5588,7 +5584,7 @@ kU
 kU
 kU
 kU
-Ey
+gh
 kU
 DX
 DX
