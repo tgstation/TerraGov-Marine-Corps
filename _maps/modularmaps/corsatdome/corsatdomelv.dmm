@@ -341,17 +341,6 @@
 	},
 /turf/open/floor/wood,
 /area/corsat/theta/biodome/complex)
-"dd" = (
-/obj/effect/decal/cleanable/blood/oil,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/grayscale/white,
-/area/corsat/theta/biodome)
-"dg" = (
-/obj/effect/turf_decal/tile/full/black,
-/turf/open/floor/grayscale/black,
-/area/corsat/theta/biodome)
 "di" = (
 /obj/machinery/light{
 	dir = 8
@@ -436,10 +425,6 @@
 	},
 /turf/open/floor/grayscale/white,
 /area/corsat/theta/biodome/complex)
-"ex" = (
-/obj/effect/ai_node,
-/turf/open/floor/grayscale/white,
-/area/corsat/theta/biodome)
 "ez" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -1104,12 +1089,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/white,
 /area/corsat/theta/biodome/complex)
-"mM" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8
-	},
-/turf/open/floor/grayscale/white,
-/area/corsat/theta/biodome)
 "mN" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/liquid/water/river/autosmooth,
@@ -2608,11 +2587,8 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/corsat/theta/biodome)
 "Ey" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /obj/machinery/door/airlock/mainship/maint,
-/turf/open/floor/grayscale/white,
+/turf/closed/wall/r_wall/unmeltable,
 /area/corsat/theta/biodome)
 "EA" = (
 /obj/structure/flora/jungle/plantbot1/alien,
@@ -4172,12 +4148,6 @@
 	},
 /turf/open/floor/grayscale/round/black,
 /area/corsat/theta/airlock/control)
-"Xa" = (
-/obj/machinery/door/airlock/mainship/maint,
-/obj/structure/flora/jungle/vines,
-/obj/effect/ai_node,
-/turf/open/floor/dark2,
-/area/corsat/theta/biodome)
 "Xm" = (
 /obj/machinery/atmospherics/pipe/manifold/green{
 	dir = 1
@@ -4799,12 +4769,12 @@ Su
 Su
 Su
 Su
-kU
-kU
-Ey
-kU
-kU
-kU
+Su
+Su
+Su
+Su
+Su
+Su
 Su
 Su
 Su
@@ -4881,11 +4851,11 @@ Su
 Su
 Su
 Su
-kU
-Tf
-dd
-Sg
-kU
+Su
+Su
+Su
+Su
+Su
 Su
 Su
 Su
@@ -4963,12 +4933,12 @@ Su
 Su
 Su
 Su
-kU
-Mm
-mM
-Tf
-kU
-kU
+Su
+Su
+Su
+Su
+Su
+Su
 Su
 kU
 kU
@@ -5045,11 +5015,11 @@ Su
 Su
 Su
 Su
-kU
-kU
-ex
-Tf
-kU
+Su
+Su
+Su
+Su
+Su
 kU
 kU
 kU
@@ -5127,9 +5097,9 @@ Su
 Su
 Su
 Su
-kU
-Tf
-dg
+Su
+Su
+Su
 kU
 kU
 DX
@@ -5211,7 +5181,7 @@ Su
 Su
 kU
 kU
-Xa
+kU
 kU
 DX
 Yf
@@ -5618,7 +5588,7 @@ kU
 kU
 kU
 kU
-kU
+Ey
 kU
 DX
 DX
@@ -5700,7 +5670,7 @@ kU
 Tf
 Yb
 Sg
-kU
+Tf
 DX
 DX
 DX
@@ -5781,8 +5751,8 @@ Su
 kU
 Mm
 Tf
-Tf
-kU
+eO
+eO
 DX
 DX
 ak
@@ -5862,9 +5832,9 @@ Su
 Su
 kU
 kU
-kU
-kU
-kU
+eO
+eO
+eO
 DX
 DX
 DX
@@ -5946,7 +5916,7 @@ kU
 eO
 eO
 zm
-xb
+yy
 xb
 DX
 zm

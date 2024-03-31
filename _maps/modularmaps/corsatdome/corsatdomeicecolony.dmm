@@ -481,6 +481,7 @@
 "fW" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/ground/ice,
 /area/corsat/gamma/biodome)
 "fZ" = (
@@ -491,13 +492,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/gamma/biodome/virology)
-"ge" = (
-/obj/effect/decal/cleanable/blood/oil,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/grayscale/white,
-/area/corsat/gamma/biodome)
 "gi" = (
 /obj/machinery/light{
 	dir = 1
@@ -1034,10 +1028,6 @@
 /obj/effect/turf_decal/tile/corsatstraight/lightpurple,
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/gamma/biodome/toxins)
-"lM" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/grayscale/white,
-/area/corsat/gamma/biodome)
 "lP" = (
 /obj/machinery/light{
 	dir = 8
@@ -1055,13 +1045,6 @@
 /obj/docking_port/stationary/crashmode,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/corsat/gamma/biodome)
-"lZ" = (
-/obj/structure/computerframe,
-/obj/effect/decal/cleanable/cobweb{
-	dir = 4
-	},
-/turf/open/floor/dark2,
 /area/corsat/gamma/biodome)
 "me" = (
 /obj/machinery/atmospherics/pipe/manifold/green{
@@ -2901,11 +2884,8 @@
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/gamma/biodome/toxins)
 "HF" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /obj/machinery/door/airlock/mainship/maint,
-/turf/open/floor/grayscale/white,
+/turf/open/floor/plating/ground/ice,
 /area/corsat/gamma/biodome)
 "HG" = (
 /obj/machinery/portable_atmospherics/canister,
@@ -3181,13 +3161,6 @@
 	},
 /turf/open/floor/grayscale/white,
 /area/corsat/gamma/biodome/complex)
-"Kz" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/grayscale/white,
-/area/corsat/gamma/biodome)
 "KF" = (
 /obj/structure/fence,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -3409,12 +3382,6 @@
 /obj/effect/turf_decal/tile/corsatstraight/lightpurple,
 /turf/open/floor/grayscale/white,
 /area/corsat/gamma/biodome/complex)
-"ML" = (
-/obj/effect/decal/cleanable/cobweb{
-	dir = 1
-	},
-/turf/open/floor/dark2,
-/area/corsat/gamma/biodome)
 "MN" = (
 /obj/effect/landmark/weed_node,
 /turf/closed/mineral/smooth/darkfrostwall,
@@ -3978,10 +3945,6 @@
 "Sl" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor,
-/area/corsat/gamma/biodome)
-"Sm" = (
-/obj/effect/turf_decal/tile/full/black,
-/turf/open/floor/grayscale/black,
 /area/corsat/gamma/biodome)
 "Sn" = (
 /obj/effect/turf_decal/tile/full/black,
@@ -4974,12 +4937,12 @@ Su
 Su
 Su
 Su
-Op
-Op
-HF
-Op
-Op
-Op
+Su
+Su
+Su
+Su
+Su
+Su
 Su
 Su
 Su
@@ -5056,11 +5019,11 @@ Su
 Su
 Su
 Su
-Op
-ko
-ge
-ML
-Op
+Su
+Su
+Su
+Su
+Su
 Su
 Su
 Su
@@ -5138,11 +5101,11 @@ Su
 Su
 Su
 Su
-Op
-lZ
-Kz
-ko
-Op
+Su
+Su
+Su
+Su
+Su
 Op
 Op
 Op
@@ -5220,11 +5183,11 @@ Su
 Su
 Su
 Su
-Op
-Op
-lM
-ko
-Op
+Su
+Su
+Su
+Su
+Su
 Op
 Op
 ZZ
@@ -5302,12 +5265,12 @@ Su
 Su
 Su
 Su
+Su
+Su
+Su
+Su
 Op
-ko
-Sm
 Op
-Op
-ZZ
 ZZ
 ZZ
 YK
@@ -5386,9 +5349,9 @@ Su
 Su
 Op
 Op
-FS
 Op
-YK
+Op
+Op
 YK
 YK
 YK
@@ -5553,7 +5516,7 @@ Op
 YK
 YK
 YK
-YK
+aY
 KO
 KO
 KO
@@ -5628,14 +5591,14 @@ Su
 Su
 Su
 Su
-Op
+ko
 Op
 xh
-lb
+aY
 fW
-YK
-YK
-YK
+KO
+KO
+di
 xh
 YK
 YK
@@ -5710,8 +5673,8 @@ Su
 Su
 Su
 Op
+ko
 Op
-YK
 YK
 lb
 YK
@@ -5792,8 +5755,8 @@ Su
 Su
 Op
 Op
-YK
-YK
+HF
+Op
 bh
 lb
 eS
@@ -6038,7 +6001,7 @@ Op
 aY
 xE
 di
-YK
+xh
 YK
 xh
 ZZ

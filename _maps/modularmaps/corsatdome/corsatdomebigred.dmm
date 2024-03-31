@@ -117,13 +117,6 @@
 	},
 /turf/open/floor/plating/asteroidwarning/down,
 /area/corsat/sigma/biodome)
-"cm" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/machinery/door/airlock/mainship/maint,
-/turf/open/floor/grayscale/white,
-/area/corsat/sigma/biodome)
 "cF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -330,10 +323,6 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/control)
-"fE" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/grayscale/white,
-/area/corsat/sigma/biodome)
 "fJ" = (
 /obj/machinery/floodlight{
 	name = "Floodlight"
@@ -1181,10 +1170,8 @@
 /turf/open/floor/plating/ground/mars,
 /area/corsat/sigma/biodome)
 "xp" = (
-/obj/effect/decal/cleanable/cobweb{
-	dir = 1
-	},
-/turf/open/floor/dark2,
+/obj/machinery/door/airlock/mainship/maint,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/corsat/sigma/biodome)
 "xs" = (
 /obj/structure/table/mainship,
@@ -1272,13 +1259,6 @@
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 10
 	},
-/area/corsat/sigma/biodome)
-"zf" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/grayscale/white,
 /area/corsat/sigma/biodome)
 "zr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1506,13 +1486,6 @@
 	},
 /turf/open/floor/plating/asteroidplating,
 /area/corsat/sigma/biodome/gunrange)
-"Cj" = (
-/obj/effect/decal/cleanable/blood/oil,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/grayscale/white,
-/area/corsat/sigma/biodome)
 "Cl" = (
 /obj/machinery/light{
 	dir = 1
@@ -1915,10 +1888,6 @@
 "Jy" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/corsat/sigma/biodome/gunrange)
-"JG" = (
-/obj/effect/turf_decal/tile/full/black,
-/turf/open/floor/grayscale/black,
-/area/corsat/sigma/biodome)
 "JW" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector{
 	dir = 8
@@ -2695,13 +2664,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/corsat/sigma/airlock/control)
-"VT" = (
-/obj/structure/computerframe,
-/obj/effect/decal/cleanable/cobweb{
-	dir = 4
-	},
-/turf/open/floor/dark2,
-/area/corsat/sigma/biodome)
 "VV" = (
 /obj/machinery/atmospherics/pipe/manifold/green{
 	dir = 1
@@ -3134,12 +3096,12 @@ to
 to
 to
 to
-TV
-TV
-cm
-TV
-TV
-TV
+to
+to
+to
+to
+to
+to
 to
 to
 to
@@ -3216,11 +3178,11 @@ to
 to
 to
 to
-TV
-Em
-Cj
-xp
-TV
+to
+to
+to
+to
+to
 to
 TV
 TV
@@ -3298,11 +3260,11 @@ to
 to
 to
 to
-TV
-VT
-zf
-Em
-TV
+to
+to
+to
+to
+to
 TV
 TV
 TV
@@ -3380,11 +3342,11 @@ to
 to
 to
 to
-TV
-TV
-fE
-Em
-TV
+to
+to
+to
+to
+to
 TV
 bu
 nL
@@ -3462,12 +3424,12 @@ to
 to
 to
 to
+to
+to
+to
 TV
-Em
-JG
 TV
 TV
-bu
 bu
 bu
 bu
@@ -3546,7 +3508,7 @@ to
 to
 TV
 TV
-RY
+TV
 TV
 bu
 bu
@@ -3789,7 +3751,7 @@ to
 to
 to
 to
-TV
+Em
 TV
 bu
 bu
@@ -3871,8 +3833,8 @@ to
 to
 to
 TV
+Em
 TV
-bu
 bu
 mb
 bu
@@ -3953,8 +3915,8 @@ to
 to
 TV
 TV
-bu
-bu
+xp
+TV
 bu
 bu
 Pz
