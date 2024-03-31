@@ -10,9 +10,9 @@
 		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
 	)
 	item_state = "electronic"
-	flags_atom = CONDUCT
-	flags_item = NOBLUDGEON
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	item_flags = NOBLUDGEON
+	equip_slot_flags = ITEM_SLOT_BELT
 
 /obj/item/detective_scanner/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	to_chat(user, span_warning("This device is non-functional."))

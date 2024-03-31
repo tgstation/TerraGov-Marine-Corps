@@ -24,14 +24,14 @@
 		fibertext = "Material from \a [M.wear_suit]."
 		if(prob(10*item_multiplier) && !(fibertext in suit_fibers))
 			suit_fibers += fibertext
-		suit_coverage = M.wear_suit.flags_armor_protection
+		suit_coverage = M.wear_suit.armor_protection_flags
 
-	if(M.w_uniform && (M.w_uniform.flags_armor_protection & ~suit_coverage))
+	if(M.w_uniform && (M.w_uniform.armor_protection_flags & ~suit_coverage))
 		fibertext = "Fibers from \a [M.w_uniform]."
 		if(prob(15*item_multiplier) && !(fibertext in suit_fibers))
 			suit_fibers += fibertext
 
-	if(M.gloves && (M.gloves.flags_armor_protection & ~suit_coverage))
+	if(M.gloves && (M.gloves.armor_protection_flags & ~suit_coverage))
 		fibertext = "Material from a pair of [M.gloves.name]."
 		if(prob(20*item_multiplier) && !(fibertext in suit_fibers))
 			suit_fibers += "Material from a pair of [M.gloves.name]."

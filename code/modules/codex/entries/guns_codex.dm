@@ -14,7 +14,25 @@
 	. = ..()
 	var/list/traits = list()
 
-	if(flags_gun_features & GUN_WIELDED_FIRING_ONLY)
+	var/skill_name
+	switch(gun_skill_category)
+		if(SKILL_RIFLES)
+			skill_name = "rifle skill"
+		if(SKILL_SMGS)
+			skill_name = "SMG skill"
+		if(SKILL_HEAVY_WEAPONS)
+			skill_name = "heavy weapon skill"
+		if(SKILL_SMARTGUN)
+			skill_name = "smartgun skill"
+		if(SKILL_SHOTGUNS)
+			skill_name = "shotgun skill"
+		if(SKILL_PISTOLS)
+			skill_name = "pistol skill"
+
+	if(skill_name)
+		traits += "This weapons is effected by the user's <U>[skill_name]</U> rating. <br>"
+
+	if(gun_features_flags & GUN_WIELDED_FIRING_ONLY)
 		traits += "This can only be fired with a two-handed grip."
 	else
 		traits += "It's best fired with a two-handed grip."

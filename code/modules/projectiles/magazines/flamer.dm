@@ -11,7 +11,7 @@
 	reload_delay = 2 SECONDS
 	w_class = WEIGHT_CLASS_NORMAL //making sure you can't sneak this onto your belt.
 	caliber = CALIBER_FUEL_THICK //Ultra Thick Napthal Fuel, from the lore book.
-	flags_magazine = NONE
+	magazine_flags = NONE
 	icon_state_mini = "tank_light"
 
 	default_ammo = /datum/ammo/flamethrower
@@ -91,13 +91,13 @@
 	name = "back fuel tank"
 	desc = "A specialized fuel tank for use with the FL-84 flamethrower and FL-240 incinerator unit."
 	icon_state = "flamethrower_tank"
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 500
 	current_rounds = 500
 	reload_delay = 1 SECONDS
 	caliber = CALIBER_FUEL_THICK
-	flags_magazine = MAGAZINE_WORN
+	magazine_flags = MAGAZINE_WORN
 	icon_state_mini = "tank"
 
 	default_ammo = /datum/ammo/flamethrower
@@ -118,7 +118,7 @@
 	reload_delay = 0 SECONDS
 	w_class = WEIGHT_CLASS_NORMAL
 	caliber = CALIBER_WATER //Deep lore
-	flags_magazine = NONE
+	magazine_flags = NONE
 	icon_state_mini = "tank_water"
 
 	default_ammo = /datum/ammo/water

@@ -1609,6 +1609,9 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/deltastation/engineering/atmos/mix)
+"arC" = (
+/turf/open/floor/plating/icefloor/warnplate,
+/area/shuttle/drop1/lz1)
 "arT" = (
 /obj/structure/prop/vehicle/crawler,
 /obj/effect/decal/cleanable/dirt,
@@ -18578,11 +18581,10 @@
 /turf/open/floor/iron,
 /area/deltastation/service/hydroponics)
 "dOS" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/lz1{
-	dir = 1
-	},
-/turf/open/floor/asteroidfloor,
+/obj/machinery/floodlight/landing,
+/obj/effect/turf_decal/warning_stripes,
+/obj/structure/cable,
+/turf/open/floor/mech_bay_recharge_floor,
 /area/deltastation/external/landingzone)
 "dPa" = (
 /obj/structure/disposalpipe/trunk{
@@ -18716,11 +18718,6 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/iron,
 /area/deltastation/cargo/warehouse)
-"dQu" = (
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 10
-	},
-/area/shuttle/drop1/lz1)
 "dQx" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
@@ -26066,7 +26063,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
 /obj/item/trash/tray,
-/obj/item/clothing/suit/apron,
+/obj/item/clothing/suit/storage/apron,
 /obj/item/clothing/head/chefhat,
 /obj/machinery/door/poddoor/shutters/opened{
 	dir = 8;
@@ -27275,13 +27272,15 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/port/fore)
 "fyi" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/landinglight/lz1,
+/obj/structure/cable,
+/turf/open/floor/asteroidfloor,
+/area/deltastation/external/landingzone)
 "fyj" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/clothing/suit/apron,
+/obj/item/clothing/suit/storage/apron,
 /obj/item/clothing/head/chefhat,
 /obj/item/reagent_containers/food/snacks/flour,
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -29209,7 +29208,7 @@
 /area/deltastation/maintenance/department/crew_quarters/bar)
 "fRP" = (
 /obj/structure/table,
-/obj/item/clothing/suit/apron,
+/obj/item/clothing/suit/storage/apron,
 /obj/item/clothing/under/color/white,
 /obj/item/clothing/head/soft/mime,
 /obj/item/clothing/mask/surgical,
@@ -30762,7 +30761,8 @@
 /turf/open/floor/plating,
 /area/deltastation/cargo/miningoffice)
 "ghS" = (
-/obj/effect/ai_node,
+/obj/machinery/floodlight/landing,
+/obj/effect/turf_decal/warning_stripes,
 /obj/machinery/landinglight/lz1{
 	dir = 8
 	},
@@ -31507,7 +31507,7 @@
 /area/deltastation/service/chapel/storage)
 "gpz" = (
 /obj/item/radio/intercom,
-/obj/item/clothing/suit/bomber,
+/obj/item/clothing/suit/storage/bomber,
 /obj/effect/spawner/random/misc/structure/securecloset,
 /turf/open/floor/wood,
 /area/deltastation/commons/dorms)
@@ -32087,9 +32087,8 @@
 /turf/open/floor/iron,
 /area/deltastation/command/heads_quarters/qm)
 "guZ" = (
-/obj/machinery/landinglight/lz1{
-	dir = 1
-	},
+/obj/machinery/landinglight/lz1,
+/obj/structure/cable,
 /turf/open/floor/asteroidfloor,
 /area/deltastation/external/landingzone)
 "gvc" = (
@@ -33391,11 +33390,8 @@
 /turf/open/floor/plating,
 /area/deltastation/service/library/abandoned)
 "gIk" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8
-	},
 /turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
+	dir = 5
 	},
 /area/shuttle/drop1/lz1)
 "gIm" = (
@@ -35001,9 +34997,10 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/command/heads_quarters/ce)
 "hao" = (
-/obj/machinery/landinglight/lz1,
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/shuttle/drop1/lz1)
 "har" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -36319,6 +36316,11 @@
 	},
 /turf/open/floor/plating,
 /area/deltastation/security/prison)
+"hmF" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/shuttle/drop1/lz1)
 "hmL" = (
 /obj/effect/turf_decal/tile/transparent/yellow{
 	dir = 1
@@ -41594,7 +41596,7 @@
 	},
 /obj/structure/rack,
 /obj/effect/turf_decal/bot_red,
-/obj/item/clothing/suit/apron{
+/obj/item/clothing/suit/storage/apron{
 	desc = "A white smock used by barbers to remain hair free.";
 	name = "barber smock"
 	},
@@ -50615,10 +50617,12 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/deltastation/medical/cryo)
 "kpf" = (
-/obj/docking_port/stationary/marine_dropship/lz1,
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/landinglight/lz1{
+	dir = 4
+	},
+/turf/open/floor/asteroidfloor,
+/area/deltastation/external/landingzone)
 "kpj" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -60255,7 +60259,7 @@
 /turf/open/floor/iron/edge,
 /area/deltastation/hallway/primary/central/aft)
 "mmf" = (
-/obj/machinery/camera/autoname/lz_camera,
+/obj/effect/attach_point/weapon/dropship1,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "mmr" = (
@@ -62655,13 +62659,9 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/break_room)
 "mMC" = (
-/obj/machinery/floodlight/landing,
-/obj/effect/turf_decal/warning_stripes,
-/obj/machinery/landinglight/lz1{
-	dir = 4
-	},
-/turf/open/floor/mech_bay_recharge_floor,
-/area/deltastation/external/landingzone)
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "mMI" = (
 /obj/structure/prop/mainship/turretprop{
 	dir = 4;
@@ -63904,13 +63904,9 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/disposal/incinerator)
 "nbj" = (
-/obj/machinery/floodlight/landing,
-/obj/effect/turf_decal/warning_stripes,
-/obj/machinery/landinglight/lz1{
-	dir = 8
-	},
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "nbo" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
@@ -66588,8 +66584,12 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/starboard)
 "nEs" = (
-/turf/open/floor/plating/icefloor/warnplate,
-/area/shuttle/drop1/lz1)
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/landinglight/lz1{
+	dir = 1
+	},
+/turf/open/floor/asteroidfloor,
+/area/deltastation/external/landingzone)
 "nEz" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/line,
@@ -74166,8 +74166,11 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/command/heads_quarters/hos)
 "phF" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8
+	},
 /turf/open/floor/plating/icefloor/warnplate{
-	dir = 9
+	dir = 8
 	},
 /area/shuttle/drop1/lz1)
 "phG" = (
@@ -76217,6 +76220,13 @@
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/construction)
+"pCk" = (
+/obj/machinery/landinglight/lz1{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/asteroidfloor,
+/area/deltastation/external/landingzone)
 "pCl" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/effect/decal/cleanable/dirt,
@@ -76296,10 +76306,12 @@
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/storage/testroom)
 "pCO" = (
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 1
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
+	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/turf/open/floor/asteroidfloor,
+/area/deltastation/external/landingzone)
 "pCP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/sandedge/corner2{
@@ -85455,11 +85467,13 @@
 /turf/open/floor/gcircuit,
 /area/deltastation/science/xenobiology)
 "rsx" = (
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating/icefloor/warnplate{
+/obj/machinery/floodlight/landing,
+/obj/effect/turf_decal/warning_stripes,
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
-/area/shuttle/drop1/lz1)
+/turf/open/floor/mech_bay_recharge_floor,
+/area/deltastation/external/landingzone)
 "rsC" = (
 /obj/effect/spawner/random/machinery/status_display,
 /turf/closed/wall/r_wall,
@@ -87345,12 +87359,11 @@
 /turf/open/floor/iron,
 /area/deltastation/cargo/office)
 "rLQ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/lz1{
-	dir = 4
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
 	},
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/shuttle/drop1/lz1)
 "rMb" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -97766,7 +97779,8 @@
 	},
 /area/deltastation/engineering/atmos/pumproom)
 "tRz" = (
-/obj/effect/attach_point/electronics/dropship1,
+/obj/docking_port/stationary/marine_dropship/lz1,
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "tRG" = (
@@ -99396,10 +99410,10 @@
 /turf/open/floor/plating,
 /area/deltastation/tcommsat/server)
 "uin" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/lz1,
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
+/area/shuttle/drop1/lz1)
 "uit" = (
 /obj/effect/turf_decal/tile/transparent/neutral/anticorner/contrasted{
 	dir = 8
@@ -101436,7 +101450,7 @@
 "uDj" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
+	dir = 4
 	},
 /area/shuttle/drop1/lz1)
 "uDo" = (
@@ -109888,10 +109902,11 @@
 /turf/open/floor/iron/half,
 /area/deltastation/security/office)
 "wkR" = (
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 6
+/obj/machinery/landinglight/lz1{
+	dir = 1
 	},
-/area/shuttle/drop1/lz1)
+/turf/open/floor/asteroidfloor,
+/area/deltastation/external/landingzone)
 "wkX" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 8
@@ -112275,7 +112290,7 @@
 /area/deltastation/command/bridge)
 "wIv" = (
 /turf/open/floor/plating/icefloor/warnplate{
-	dir = 5
+	dir = 10
 	},
 /area/shuttle/drop1/lz1)
 "wIx" = (
@@ -166626,7 +166641,7 @@ dfm
 xuY
 xuY
 xuY
-vNR
+xuY
 vNR
 vNR
 cSG
@@ -166884,8 +166899,8 @@ xuY
 xuY
 dfm
 xuY
-vNR
-vNR
+xuY
+xuY
 cSG
 sbS
 vNR
@@ -167142,7 +167157,7 @@ dfm
 xuY
 xuY
 xuY
-vNR
+xuY
 cSG
 sbS
 vNR
@@ -167375,30 +167390,30 @@ vNR
 pCr
 dfm
 xuY
-vXs
+dOS
+rTj
+rTj
+kpf
+rTj
+rTj
+rTj
+rTj
+rTj
+kpf
+rTj
+rsx
+rTj
+rTj
+kpf
+rTj
+rTj
+kpf
+rTj
+rTj
+rTj
+rTj
 orp
-rTj
-rTj
-rLQ
-rTj
-rTj
-rTj
-rTj
-rTj
-rLQ
-rTj
-mMC
-rTj
-rTj
-rLQ
-rTj
-rTj
-rLQ
-rTj
-rTj
-rTj
-rTj
-orp
+xuY
 dfm
 cSG
 sbS
@@ -167632,19 +167647,18 @@ vNR
 xoq
 xoq
 sfZ
-bYh
+fyi
 uin
+wVi
+wVi
+wVi
+wVi
+wVi
+wVi
 phF
 wVi
 wVi
-wVi
-wVi
-wVi
-wVi
-gIk
-wVi
-wVi
-uDj
+rLQ
 wVi
 wVi
 wVi
@@ -167654,8 +167668,9 @@ wVi
 wVi
 wVi
 wVi
-dQu
-guZ
+wIv
+wkR
+xuY
 xuY
 cSG
 sbS
@@ -167889,30 +167904,30 @@ vNR
 toH
 nZF
 aZA
-vXs
+guZ
 hao
-pCO
 qgB
-mmf
-fyi
-qgB
-qgB
-qgB
-qgB
-qgB
-qgB
-qgB
-qgB
-qgB
-qgB
-qgB
-qgB
-qgB
-qgB
+mMC
 mmf
 qgB
+qgB
+qgB
+qgB
+qgB
+qgB
+qgB
+qgB
+qgB
+qgB
+qgB
+qgB
+qgB
+qgB
+mMC
+qgB
+arC
 nEs
-dOS
+xuY
 bqa
 cSG
 sbS
@@ -168146,14 +168161,11 @@ vNR
 jOD
 gdc
 aZA
-vXs
-uin
-pCO
+fyi
+hao
 qgB
 qgB
-tRz
-qgB
-qgB
+nbj
 qgB
 qgB
 qgB
@@ -168168,8 +168180,11 @@ qgB
 qgB
 qgB
 qgB
-nEs
-guZ
+qgB
+qgB
+arC
+wkR
+dfm
 dfm
 cSG
 sbS
@@ -168403,9 +168418,8 @@ vNR
 toH
 xaf
 aZA
-bYh
+guZ
 hao
-pCO
 qgB
 qgB
 qgB
@@ -168425,8 +168439,9 @@ qgB
 qgB
 qgB
 qgB
+arC
 nEs
-dOS
+xuY
 xuY
 cSG
 sbS
@@ -168660,9 +168675,8 @@ vNR
 bPd
 bPd
 kZL
-vXs
-uin
-pCO
+fyi
+hao
 qgB
 qgB
 qgB
@@ -168682,8 +168696,9 @@ qgB
 qgB
 qgB
 qgB
+arC
 nEs
-dOS
+dfm
 dfm
 cSG
 sbS
@@ -168917,9 +168932,8 @@ vNR
 toH
 toH
 aZA
-bYh
-uin
-pCO
+fyi
+hao
 qgB
 qgB
 qgB
@@ -168929,7 +168943,7 @@ qgB
 qgB
 qgB
 qgB
-kpf
+tRz
 qgB
 qgB
 qgB
@@ -168939,8 +168953,9 @@ qgB
 qgB
 qgB
 qgB
+arC
 nEs
-dOS
+xuY
 xuY
 cSG
 sbS
@@ -169174,9 +169189,8 @@ vNR
 npA
 toH
 sYK
-vXs
-uin
-pCO
+fyi
+hao
 qgB
 qgB
 qgB
@@ -169196,8 +169210,9 @@ qgB
 qgB
 qgB
 qgB
+arC
 nEs
-dOS
+dfm
 dfm
 cSG
 sbS
@@ -169431,9 +169446,8 @@ vNR
 toH
 xuo
 kZL
-vXs
+guZ
 hao
-pCO
 qgB
 qgB
 qgB
@@ -169453,8 +169467,9 @@ qgB
 qgB
 qgB
 qgB
+arC
 nEs
-dOS
+dfm
 xuY
 cSG
 sbS
@@ -169688,14 +169703,11 @@ vNR
 toH
 xuo
 kZL
-bYh
-uin
-pCO
+fyi
+hao
 qgB
 qgB
-tRz
-qgB
-qgB
+nbj
 qgB
 qgB
 qgB
@@ -169710,8 +169722,11 @@ qgB
 qgB
 qgB
 qgB
-nEs
-guZ
+qgB
+qgB
+arC
+pCk
+xuY
 dfm
 cSG
 sbS
@@ -169945,30 +169960,30 @@ vNR
 xuo
 toH
 sYK
-vXs
-uin
-pCO
-qgB
-mmf
 fyi
+hao
 qgB
-qgB
-qgB
-qgB
-qgB
-qgB
-qgB
-qgB
-qgB
-qgB
-qgB
-qgB
-qgB
-qgB
+mMC
 mmf
 qgB
+qgB
+qgB
+qgB
+qgB
+qgB
+qgB
+qgB
+qgB
+qgB
+qgB
+qgB
+qgB
+qgB
+mMC
+qgB
+arC
 nEs
-dOS
+xuY
 bqa
 cSG
 sbS
@@ -170202,30 +170217,30 @@ vNR
 njf
 njf
 liB
-bYh
-hao
-wIv
-wAz
-wAz
-wAz
-wAz
-wAz
-wAz
-wAz
-wAz
-wAz
-rsx
-wAz
-wAz
-wAz
-wAz
-wAz
-wAz
-wAz
-wAz
-wAz
-wkR
 guZ
+gIk
+wAz
+wAz
+wAz
+wAz
+wAz
+wAz
+wAz
+wAz
+wAz
+uDj
+wAz
+wAz
+wAz
+wAz
+wAz
+wAz
+wAz
+wAz
+wAz
+hmF
+wkR
+xuY
 dfm
 cSG
 sbS
@@ -170459,8 +170474,7 @@ vNf
 xuY
 dfm
 xuY
-vXs
-orp
+dOS
 fcv
 exa
 fcv
@@ -170470,8 +170484,8 @@ exa
 exa
 fcv
 exa
+pCO
 ghS
-nbj
 fcv
 exa
 fcv
@@ -170483,6 +170497,7 @@ exa
 fcv
 fcv
 orp
+xuY
 xuY
 cSG
 sbS

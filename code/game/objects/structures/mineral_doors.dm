@@ -89,10 +89,12 @@
 		return TRUE
 	if(QDELETED(src))
 		return
-	if(istype(attacking_item, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions) //Special plasmacutter interaction
-		var/obj/item/tool/pickaxe/plasmacutter/pcutter = attacking_item
-		if(pcutter.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
-			pcutter.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
+
+	var/multiplier = 1
+	if(isplasmacutter(W) && !user.do_actions)
+		var/obj/item/tool/pickaxe/plasmacutter/pcutter = W
+		if(pcutter.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, no_string = TRUE))
+			pcutter.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
 			user.changeNext_move(attacking_item.attack_speed)
 			user.do_attack_animation(src, used_item = attacking_item)
 			take_damage(max_integrity, BURN, FIRE, armour_penetration = 100)

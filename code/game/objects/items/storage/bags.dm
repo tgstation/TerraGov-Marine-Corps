@@ -20,7 +20,7 @@
 	allow_quick_empty = 1
 	display_contents_with_number = 0 // UNStABLE AS FuCK, turn on when it stops crashing clients
 	use_to_pickup = 1
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 
 // -----------------------------
 //          Trash bag
@@ -76,7 +76,7 @@
 	desc = "This little bugger can be used to store and transport ores."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "satchel"
-	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_POCKET
+	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = 50
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * ore.w_class

@@ -15,7 +15,8 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"SPAWN" = R_SPAWN,
 		"DBRANKS" = R_DBRANKS,
 		"RUNTIME" = R_RUNTIME,
-		"LOG" = R_LOG
+		"LOG" = R_LOG,
+		"POLLS" = R_POLLS
 	),
 	"machine_stat" = list(
 		"BROKEN" = BROKEN,
@@ -28,7 +29,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"KNOCKED_DOWN" = KNOCKED_DOWN,
 		"MACHINE_DO_NOT_PROCESS" = MACHINE_DO_NOT_PROCESS
 	),
-	"flags_gun_features" = list(
+	"gun_features_flags" = list(
 		"GUN_CAN_POINTBLANK" = GUN_CAN_POINTBLANK,
 		"GUN_UNUSUAL_DESIGN" = GUN_UNUSUAL_DESIGN,
 		"GUN_AMMO_COUNTER" = GUN_AMMO_COUNTER,
@@ -47,12 +48,12 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"GUN_SHOWS_LOADED" = GUN_SHOWS_LOADED,
 		"GUN_SMOKE_PARTICLES" = GUN_SMOKE_PARTICLES
 	),
-	"flags_flamer_features" = list(
+	"flamer_features_flags" = list(
 		"FLAMER_IS_LIT" = FLAMER_IS_LIT,
 		"FLAMER_NO_LIT_OVERLAY" = FLAMER_NO_LIT_OVERLAY,
 		"FLAMER_USES_GUN_FLAMES" = FLAMER_USES_GUN_FLAMES
 	),
-	"flags_magazine" = list(
+	"magazine_flags" = list(
 		"MAGAZINE_REFILLABLE" = MAGAZINE_REFILLABLE,
 		"MAGAZINE_HANDFUL" = MAGAZINE_HANDFUL,
 		"MAGAZINE_WORN" = MAGAZINE_WORN,
@@ -81,7 +82,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"BE_SQUAD_STRICT" = BE_SQUAD_STRICT,
 		"BE_ALIEN_UNREVIVABLE" = BE_ALIEN_UNREVIVABLE
 	),
-	"flags_atom" = list(
+	"atom_flags" = list(
 		"UNUSED_RESERVATION_TURF_1" = UNUSED_RESERVATION_TURF_1,
 		"AI_BLOCKED" = AI_BLOCKED,
 		"NOINTERACT" = NOINTERACT,
@@ -99,7 +100,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"SHUTTLE_IMMUNE" = SHUTTLE_IMMUNE,
 		"HTML_USE_INITAL_ICON_1" = HTML_USE_INITAL_ICON_1,
 	),
-	"flags_area" = list(
+	"area_flags" = list(
 		"DISALLOW_WEEDING" = DISALLOW_WEEDING,
 		"NEAR_FOB" = NEAR_FOB,
 		"NO_DROPPOD" = NO_DROPPOD,
@@ -189,7 +190,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"PIPING_DEFAULT_LAYER_ONLY" = PIPING_DEFAULT_LAYER_ONLY,
 		"PIPING_CARDINAL_AUTONORMALIZE" = PIPING_CARDINAL_AUTONORMALIZE
 	),
-	"flags_inv_hide" = list(
+	"inv_hide_flags" = list(
 		"HIDEGLOVES" = HIDEGLOVES,
 		"HIDESUITSTORAGE" = HIDESUITSTORAGE,
 		"HIDEJUMPSUIT" = HIDEJUMPSUIT,
@@ -203,7 +204,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"HIDEFACE" = HIDEFACE,
 		"HIDE_EXCESS_HAIR" = HIDE_EXCESS_HAIR
 	),
-	"flags_inventory" = list(
+	"inventory_flags" = list(
 		"NOSLIPPING" = NOSLIPPING,
 		"COVEREYES" = COVEREYES,
 		"COVERMOUTH" = COVERMOUTH,
@@ -212,7 +213,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"NOPRESSUREDMAGE" = NOPRESSUREDMAGE,
 		"NOQUICKEQUIP" = NOQUICKEQUIP
 	),
-	"flags_armor_features" = list(
+	"armor_features_flags" = list(
 		"ARMOR_SQUAD_OVERLAY" = ARMOR_SQUAD_OVERLAY,
 		"ARMOR_LAMP_OVERLAY" = ARMOR_LAMP_OVERLAY,
 		"ARMOR_LAMP_ON" = ARMOR_LAMP_ON,
@@ -220,13 +221,13 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"ARMOR_NO_DECAP" = ARMOR_NO_DECAP,
 		"ARMOR_FIRE_RESISTANT" = ARMOR_FIRE_RESISTANT
 	),
-	"flags_marine_helmet" = list(
+	"marine_helmet_flags" = list(
 		"HELMET_SQUAD_OVERLAY" = HELMET_SQUAD_OVERLAY,
 		"HELMET_GARB_OVERLAY" = HELMET_GARB_OVERLAY,
 		"HELMET_STORE_GARB" = HELMET_STORE_GARB,
 		"HELMET_IS_DAMAGED" = HELMET_IS_DAMAGED
 	),
-	"flags_equip_slot" = list(
+	"equip_slot_flags" = list(
 		"ITEM_SLOT_OCLOTHING" = ITEM_SLOT_OCLOTHING,
 		"ITEM_SLOT_ICLOTHING" = ITEM_SLOT_ICLOTHING,
 		"ITEM_SLOT_GLOVES" = ITEM_SLOT_GLOVES,
@@ -260,7 +261,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"HAND_LEFT" = HAND_LEFT,
 		"HAND_RIGHT" = HAND_RIGHT
 	),
-	"flags_armor_protection" = list(
+	"armor_protection_flags" = list(
 		"HEAD" = HEAD,
 		"FACE" = FACE,
 		"EYES" = EYES,
@@ -275,7 +276,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"HAND_LEFT" = HAND_LEFT,
 		"HAND_RIGHT" = HAND_RIGHT
 	),
-	"flags_cold_protection" = list(
+	"cold_protection_flags" = list(
 		"HEAD" = HEAD,
 		"FACE" = FACE,
 		"EYES" = EYES,
@@ -290,7 +291,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"HAND_LEFT" = HAND_LEFT,
 		"HAND_RIGHT" = HAND_RIGHT
 	),
-	"flags_heat_protection" = list(
+	"heat_protection_flags" = list(
 		"HEAD" = HEAD,
 		"FACE" = FACE,
 		"EYES" = EYES,
@@ -424,7 +425,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"CONFIG_ENTRY_LOCKED" = CONFIG_ENTRY_LOCKED,
 		"CONFIG_ENTRY_HIDDEN" = CONFIG_ENTRY_HIDDEN
 	),
-	"flags_ammo_behavior" = list(
+	"ammo_behavior_flags" = list(
 		"AMMO_TARGET_TURF" = AMMO_TARGET_TURF,
 		"AMMO_XENO" = AMMO_XENO,
 		"AMMO_UNWIELDY" = AMMO_UNWIELDY,
@@ -443,7 +444,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"AMMO_PASS_THROUGH_MOB" = AMMO_PASS_THROUGH_MOB,
 		"AMMO_SOUND_PITCH" = AMMO_SOUND_PITCH
 	),
-	"flags_attach_features" = list(
+	"attach_features_flags" = list(
 		"ATTACH_REMOVABLE" = ATTACH_REMOVABLE,
 		"ATTACH_ACTIVATION" = ATTACH_ACTIVATION,
 		"ATTACH_SAME_ICON" = ATTACH_SAME_ICON,
@@ -453,11 +454,11 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"ATTACH_BYPASS_ALLOWED_LIST" = ATTACH_BYPASS_ALLOWED_LIST,
 		"ATTACH_DIFFERENT_MOB_ICON_STATE" = ATTACH_DIFFERENT_MOB_ICON_STATE
 	),
-	"flags_barrier" = list(
+	"barrier_flags" = list(
 		"HANDLE_BARRIER_CHANCE" = HANDLE_BARRIER_CHANCE,
 		"HANDLE_BARRIER_BLOCK" = HANDLE_BARRIER_BLOCK
 	),
-	"flags_item" = list(
+	"item_flags" = list(
 		"IN_INVENTORY" = IN_INVENTORY,
 		"NOBLUDGEON" = NOBLUDGEON,
 		"DELONDROP" = DELONDROP,
@@ -480,10 +481,10 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"HAS_UNDERLAY" = HAS_UNDERLAY,
 		"AUTOBALANCE_CHECK" = AUTOBALANCE_CHECK,
 	),
-	"flags_storage" = list(
+	"storage_flags" = list(
 		"BYPASS_VENDOR_CHECK" = BYPASS_VENDOR_CHECK,
 	),
-	"flags_id" = list(
+	"id_flags" = list(
 		"CAN_BUY_LOADOUT" = CAN_BUY_LOADOUT,
 		"USED_GHMME" = USED_GHMME,
 	),
@@ -532,7 +533,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"CHAT_STATISTICS" = CHAT_STATISTICS,
 		"CHAT_LOOC" = CHAT_LOOC
 	),
-	"flags_scuttle" = list(
+	"scuttle_flags" = list(
 		"FLAGS_EVACUATION_DENY" = FLAGS_EVACUATION_DENY,
 		"FLAGS_SELF_DESTRUCT_DENY" = FLAGS_SELF_DESTRUCT_DENY,
 		"FLAGS_SDEVAC_TIMELOCK" = FLAGS_SDEVAC_TIMELOCK

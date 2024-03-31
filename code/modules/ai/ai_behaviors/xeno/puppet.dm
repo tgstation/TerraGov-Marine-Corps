@@ -24,6 +24,10 @@
 		RegisterSignal(master, COMSIG_PUPPET_CHANGE_ALL_ORDER, PROC_REF(change_order))
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, PROC_REF(deal_with_obstacle))
 	RegisterSignal(mob_parent, COMSIG_PUPPET_CHANGE_ORDER, PROC_REF(change_order))
+	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_REST, PROC_REF(start_resting))
+	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_UNREST, PROC_REF(stop_resting))
+	RegisterSignal(escorted_atom, COMSIG_ELEMENT_JUMP_STARTED, PROC_REF(do_jump))
+	RegisterSignal(escorted_atom, COMSIG_LIVING_DO_RESIST, PROC_REF(parent_resist))
 	return ..()
 
 ///cleans up signals and unregisters obstructed move signal
@@ -150,7 +154,7 @@
 ///behavior to deal with obstacles
 /datum/ai_behavior/puppet/deal_with_obstacle(datum/source, direction)
 	var/turf/obstacle_turf = get_step(mob_parent, direction)
-	if(obstacle_turf.flags_atom & AI_BLOCKED)
+	if(obstacle_turf.atom_flags & AI_BLOCKED)
 		return
 	for(var/thing in obstacle_turf.contents)
 		if(istype(thing, /obj/structure/window_frame)) //if its a window, climb it after 2 seconds
@@ -181,3 +185,27 @@
 		return
 	if(feed.ai_should_use(target))
 		feed.use_ability(target)
+
+/// rest when puppeter does
+/datum/ai_behavior/puppet/proc/start_resting(mob/source)
+	SIGNAL_HANDLER
+	var/mob/living/living = mob_parent
+	living?.set_resting(TRUE)
+
+/// stop resting when puppeter does
+/datum/ai_behavior/puppet/proc/stop_resting(mob/source)
+	SIGNAL_HANDLER
+	var/mob/living/living = mob_parent
+	living?.set_resting(FALSE)
+
+/// resist when puppeter does
+/datum/ai_behavior/puppet/proc/do_jump()
+	SIGNAL_HANDLER
+	var/datum/component/jump/puppet_jump = mob_parent.GetComponent(/datum/component/jump)
+	puppet_jump?.do_jump(mob_parent)
+
+/// resist when puppeter does
+/datum/ai_behavior/puppet/proc/parent_resist()
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/puppet/puppet_parent = mob_parent
+	puppet_parent?.do_resist()

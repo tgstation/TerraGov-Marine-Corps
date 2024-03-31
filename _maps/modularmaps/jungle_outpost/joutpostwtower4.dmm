@@ -1,0 +1,431 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/flora/jungle/large_bush,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"b" = (
+/obj/structure/catwalk,
+/obj/structure/platform,
+/turf/open/ground/grass/beach/corner2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"c" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"d" = (
+/turf/open/ground/grass/beach/corner{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"f" = (
+/obj/structure/catwalk,
+/turf/open/ground/grass/beach/corner2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"g" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"h" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/ground/grass/beach{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"i" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"j" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"k" = (
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/open/ground/grass/beach,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"m" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"n" = (
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"o" = (
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"p" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"q" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"r" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 9
+	},
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"t" = (
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/turf/open/ground/grass/beach,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"u" = (
+/obj/structure/stairs/railstairs_vert{
+	dir = 1
+	},
+/turf/open/ground/grass/beach,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"v" = (
+/obj/structure/platform_decoration{
+	dir = 9
+	},
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"w" = (
+/obj/structure/catwalk,
+/obj/structure/platform,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"x" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"A" = (
+/obj/structure/platform_decoration{
+	dir = 5
+	},
+/turf/open/ground/grass/beach{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"D" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"E" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"F" = (
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"G" = (
+/obj/structure/catwalk,
+/turf/open/ground/grass/beach{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"H" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 4
+	},
+/obj/effect/landmark/campaign_structure/phoron_crate,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"I" = (
+/obj/structure/catwalk,
+/turf/open/ground/grass/beach,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"J" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"K" = (
+/obj/structure/stairs/edge,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"M" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"N" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"O" = (
+/obj/structure/stairs/seamless/edge_vert,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"P" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/ground/grass/beach/corner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"Q" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"R" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"S" = (
+/obj/structure/flora/jungle/large_bush,
+/obj/structure/platform_decoration{
+	dir = 5
+	},
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"U" = (
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"V" = (
+/obj/structure/catwalk,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"W" = (
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"X" = (
+/turf/open/ground/grass/beach{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"Y" = (
+/turf/closed/gm/dense,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"Z" = (
+/obj/structure/stairs/edge,
+/turf/open/floor/plating/ground/dirtgrassborder2,
+/area/campaign/jungle_outpost/ground/jungle/west)
+
+(1,1,1) = {"
+W
+W
+W
+W
+Y
+Y
+Y
+Y
+Y
+Y
+Y
+Y
+E
+E
+"}
+(2,1,1) = {"
+W
+i
+Y
+Y
+Y
+Y
+Y
+Y
+Y
+Y
+Y
+Y
+Y
+W
+"}
+(3,1,1) = {"
+W
+Y
+Y
+Y
+Y
+M
+n
+n
+n
+n
+a
+Y
+Y
+m
+"}
+(4,1,1) = {"
+N
+Y
+Y
+w
+n
+n
+n
+D
+n
+n
+r
+V
+h
+Z
+"}
+(5,1,1) = {"
+o
+u
+V
+w
+v
+Q
+n
+n
+n
+F
+x
+w
+A
+R
+"}
+(6,1,1) = {"
+o
+k
+x
+V
+g
+g
+g
+g
+g
+g
+V
+w
+X
+E
+"}
+(7,1,1) = {"
+o
+t
+x
+V
+j
+H
+j
+j
+j
+j
+V
+w
+X
+c
+"}
+(8,1,1) = {"
+O
+P
+f
+w
+S
+n
+n
+n
+Q
+U
+x
+b
+d
+W
+"}
+(9,1,1) = {"
+q
+J
+I
+w
+n
+D
+n
+n
+n
+n
+x
+G
+K
+W
+"}
+(10,1,1) = {"
+p
+W
+Y
+Y
+n
+n
+n
+n
+M
+Y
+Y
+Y
+W
+W
+"}
+(11,1,1) = {"
+W
+W
+Y
+Y
+Y
+Y
+Y
+Y
+Y
+Y
+Y
+Y
+W
+W
+"}
+(12,1,1) = {"
+W
+W
+i
+Y
+Y
+Y
+Y
+Y
+Y
+Y
+i
+W
+W
+E
+"}

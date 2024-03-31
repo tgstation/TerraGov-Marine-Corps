@@ -96,7 +96,7 @@ Can look good elsewhere as well.*/
 
 //Regular fadeout disappear, for most objects.
 /proc/animation_destruction_fade(atom/A, speed = 12)
-	A.flags_atom |= NOINTERACT
+	A.atom_flags |= NOINTERACT
 	A.mouse_opacity = MOUSE_OPACITY_TRANSPARENT //We don't want them to click this while the animation is still playing.
 	A.density = FALSE //So it doesn't block anything.
 	var/i = 1 + (0.1 * rand(1,5))
@@ -106,7 +106,7 @@ Can look good elsewhere as well.*/
 
 //Fadeout when something gets hit. Not completely done yet, as offset doesn't want to cooperate.
 /proc/animation_destruction_knock_fade(atom/A, speed = 7, x_n = rand(10,18), y_n = rand(10,18))
-	A.flags_atom |= NOINTERACT
+	A.atom_flags |= NOINTERACT
 	A.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	A.density = FALSE
 	var/x_o = initial(A.pixel_x)

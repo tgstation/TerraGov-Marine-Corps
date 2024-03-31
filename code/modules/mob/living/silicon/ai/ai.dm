@@ -138,19 +138,6 @@
 	GLOB.ai_list -= src
 	QDEL_NULL(builtInCamera)
 	QDEL_NULL(track)
-	UnregisterSignal(src, COMSIG_ORDER_SELECTED)
-	UnregisterSignal(src, COMSIG_MOB_CLICK_ALT)
-
-	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_RAILGUN_LASER_CREATED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_MINI_DROPSHIP_DESTROYED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_DISK_GENERATED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_NUKE_START)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_CLONE_PRODUCED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_HOLOPAD_AI_CALLED)
 	QDEL_NULL(mini)
 	return ..()
 
@@ -255,7 +242,6 @@
 		to_chat(src, span_notice("Camera lights activated."))
 	camera_light_on = !camera_light_on
 
-
 /mob/living/silicon/ai/proc/light_cameras()
 	var/list/obj/machinery/camera/add = list()
 	var/list/obj/machinery/camera/remove = list()
@@ -277,6 +263,14 @@
 		C.Togglelight(1)
 		lit_cameras |= C
 
+/mob/living/silicon/ai/proc/supply_interface()
+	var/datum/supply_ui/SU
+	if(!SU)
+		SU = new(src)
+		SU.shuttle_id = SHUTTLE_SUPPLY
+		SU.home_id = "supply_home"
+		SU.faction = src.faction
+	return SU.interact(src)
 
 /mob/living/silicon/ai/proc/camera_visibility(mob/camera/aiEye/moved_eye)
 	GLOB.cameranet.visibility(moved_eye, client, all_eyes, moved_eye.use_static)
